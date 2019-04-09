@@ -16,7 +16,7 @@ parse_list = []
 t = time.time()
 set_logging(True)
 
-test_set_name = 'test_set1_pied_piping.txt'
+test_set_name = 'test_set1.txt'
 lexicon_file_name = test_set_name[:-4] + '_lexicon.txt'
 log_file_name = test_set_name[:-4] + '_log.txt'
 results_file_name = test_set_name[:-4] + '_results.txt'
