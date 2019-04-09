@@ -1,0 +1,553 @@
+
+# Symbols:
+# '#' - exclude this item from the run (also, make comment)
+# '+' - include this item to the run
+# '%' - include only this item to the run
+# & - this sentence will be carried into the results but it will not be parsed (=result comment)
+#------------------------------------------------------------------------------------
+# Pied-piping corpus
+
+# Non-pied-piped 
+	# Declarative
+		# Intransitive
+			# Canonical
+				# No embedding
+			
+					& Group 1
+					teoria kumoutui
+					the city sleeps
+					John rolled down the hill
+					la Senna scorre attraverso Parigi
+					
+				# With embedding (single and double, V- and N-embedding)
+
+					& Group 2
+					Pekka sanoi että teoria kumoutui
+					Pekka kertoi että Merja sanoi että teoria kumoutui
+					se väite.N että Pekka nukkui kumoutui
+					se väite.N että Pekka sanoi että teoria kumoutui kumoutui
+					Pekka sanoi että se väite.N että Merja nukkui kumoutui
+					John said that the city sleeps
+					John said that John rolled down the hill
+					Gianni dice che la Senna scorre attraverso Parigi
+					Gianni dice che la Senna sfocia nell oceano
+					
+			# Non-canonical
+				# No embedding
+					
+					& Group 3
+					kaupungissa asui Pekka
+					down the hill rolled John
+					giu dalla collina rotola Gianni
+					# giu dalla collina.top pro rotola Gianni
+						
+				# With embedding
+					
+					& Group 4
+					John said that down the hill rolled John
+					Gianni dice che giu dalla collina rotola Gianni
+					Merja sanoi että kaupungissa asui Pekka
+					
+		# Transitive
+			# Canonical
+				# No embedding
+				
+					& Group 5
+					Pekka saavuttaa Merjaa
+					Seine saavuttaa meren
+					Seine saavuttaa meren virtaamalla
+					Seine saavuttaa meren virtaamalla kohti kaupunkia_DP
+					John likes Mary
+					la Senna sfocia nell oceano
+					la Senna raggiunge l oceano
+					
+				# With embedding (V- and N-embedding)
+	
+					& Group 6
+					Pekka sanoi että Merja löysi meren
+					se väite.N että Seine saavuttaa meren kumoutui
+					his claim that John likes Mary
+					Simon said that John likes Mary	
+					Gianni dice la Senna raggiunge l oceano
+					
+			# Non-canonical
+				# No embedding
+				
+					& Group 7
+					Pekkaa saavuttaa Merja
+	
+				# With embedding
+		
+					& Group 8
+					Pekka sanoi että avaimen löysi Merja
+		
+		# Ditransitive
+			# Canonical
+				# No embedding
+	
+					& Group 9
+					John gave the book to Mary
+					Pekka antoi kirjan Merjalle
+					Gianni da_V il libro a Luisa
+	
+				# With embedding
+				
+					& Group 10
+					Pekka sanoi että Jari antoi kirjan Merjalle
+					John said that Mary gave the book to Mary
+					Gianni dice che Luisa da_V il libro a Luisa
+					
+			# Noncanonical
+				# No embedding
+	
+					& Group 11
+					Pekka antoi Merjalle kirjan
+					kirjan antoi Merjalle Pekka
+					kirjan antoi Pekka Merjalle
+					Merjalle antoi kirjan Pekka
+					Merjalle antoi Pekka kirjan
+					John gave Mary the book
+					Gianni da_V a Luisa il libro
+					
+				# With embedding (V- and N-embedding)
+	
+					& Group 12
+					Pekka sanoi että kirjan antoi Merjalle Jari
+					Pekka sanoi että kirjan antoi Jari Merjalle
+					Pekka sanoi että Merjalle antoi kirjan Jari
+					Pekka sanoi että Merjalle antoi Jari kirjan
+					se väite.N että Pekka antoi kirjan Merjalle kumoutui
+					se väite.N että meren löysi Merja kumoutui
+					se väite.N että kirjan antoi Merjalle Pekka kumoutui
+					se väite.N että kirjan antoi Pekka Merjalle kumoutui
+					se väite.N että Merjalle antoi kirjan Pekka kumoutui
+					se väite.N että Merjalle antoi Pekka kirjan kumoutui
+					his claim that John gave Mary the book
+					Simon said that John gave Mary the book
+					Luisa dice che Gianni da_V a Luisa il libro
+					
+	# Interrogative (Wh-)
+		# Intransitive
+			# Canonical
+				# No embedding
+		
+					& Group 13
+					kuka kumoutui
+					's who car broke
+					who rolled down the hill
+					dove sfocia la Senna
+					
+				# With embedding
+		
+					& Group 14
+					Merja kysyi kuka kumoutui
+					John wonders who rolled down the hill
+					cosa credi che Gianni sappia della visita di Luisa
+					
+			# Noncanonical
+				# No embedding
+				
+				# With embedding
+			
+		# Transitive
+			# Canonical
+				# No embedding
+		
+					& Group 15
+					mitä Pekka löysi
+					kuka löysi avaimen
+					what did.C John found
+					who likes John
+					chi ama Gianni
+		
+				# With embedding
+	
+					& Group 16
+					Merja kysyi mitä Pekka löysi
+					Merja kysyi että.Q mitä Pekka löysi
+					John wonders who likes Mary
+					Gianni si_chiede chi ama Luisa
+					
+			# Noncanonical
+				# No embedding
+			
+					& Group 17
+					mitä löysi Pekka
+					cosa trova Gianni
+		
+				# With embedding
+				
+					& Group 18
+					Merja kysyi mitä löysi Pekka
+					Luisa si_chiede cosa trova Gianni
+		
+		# Ditransitive
+			# Canonical
+				# No embedding
+					
+					& Group 19
+					kenelle Pekka antoi kirjan
+					mitä Pekka antoi Merjalle
+					kuka antoi Merjalle kirjan
+					who gave the book to Mary
+					what did.C John gave to Mary
+					to who did.C John gave the book
+					a chi da_V il libro Gianni
+		
+				# With embedding
+	
+					& Group 20
+					Merja kysyi kenelle Pekka antoi kirjan
+					Merja kysyi kuka antoi Merjalle kirjan
+					Merja kysyi mitä Pekka antoi Merjalle
+					John wonders what did.C John gave to Mary
+					John wonders to who did.C John gave the book
+					Gianni si_chiede a chi Luisa da_V il libro
+		
+			# Noncanonical
+				# No embedding
+		
+					& Group 21
+					kenelle kirjan antoi Pekka
+					mitä Merjalle antoi Pekka	
+					who gave Mary the book
+					
+				# With embedding
+
+					& Group 22
+					Merja kysyi kenelle kirjan antoi Pekka
+					Merja kysyi mitä antoi Pekka Merjalle
+					Merja kysyi mitä antoi Merjalle Pekka
+					Pekka kysyi kuka antoi Merjalle kirjan
+					John wonders who gave Mary the book
+				
+		# SPECIAL CATEGORY: Long-distance wh-movement			
+					
+					& Group 23
+					mitä Pekka sanoi että Merja löysi
+					mitä Pekka sanoi että Merja sanoi että Jari löysi
+					kenelle Pekka sanoi että Merja antoi kirjan
+					kenelle Pekka sanoi että kirjan antoi Merja
+					who John said that Mary said that Simon likes
+					chi pro credi che sappia qualcosa della visita
+					chi pro credi che Gianni abbia avvertito
+					chi pro credi che abbia avvertito Gianni
+					chi pro credi che abbia avvertito Gianni prima della visita
+
+	# Relative (Rel-)
+		# Intransitive
+			# Canonical
+				# No embedding
+					
+					& Group 24
+					poika joka nukkui heräsi
+					la citta che.rel dorme dorme
+					the city that.rel sleeps
+					
+				# With embedding
+
+					& Group 25
+					Pekka keksi teorian joka kumoutui
+					John likes the city that.rel sleeps
+					Gianni adora la citta che.rel dorme
+					
+			# Noncanonical
+				# No embedding
+				
+				# With embedding
+			
+		# Transitive
+			# Canonical
+				# No embedding
+	
+					& Group 26
+					talo jonka Pekka löysi
+					the city that.rel John likes
+					la citta che.rel Gianni adora
+				
+				# With embedding
+	
+					& Group 27
+					Merja löysi talon jonka Pekka löysi
+					John likes the city that.rel Mary likes
+					Gianni adora la citta che.rel adora Luisa
+					
+			# Noncanonical
+				# No embedding
+	
+					& Group 28
+					talo jonka löysi Pekka
+					Gianni adora la citta che.rel Luisa adora
+					
+				# With embedding
+				
+					& Group 29
+					Merja löysi talon jonka löysi Pekka
+					Luisa adora la citta che.rel adora Gianni
+					
+		# Ditransitive
+			# Canonical
+				# No embedding
+	
+					& Group 30
+					mies jolle Pekka antoi kirjan
+					the person to whom.rel John gave the book
+					the person who.rel gave the book to Mary
+					la citta che.rel da_V il libro a Luisa
+	
+				# With embedding
+
+					& Group 31
+					Merja ihailee henkilöä jolle Pekka antoi kirjan
+					the person to whom.rel John gave the book sleeps
+					the person who.rel gave the book to Mary sleeps
+					la citta che.rel da_V il libro a Luisa dorme
+	
+			# Noncanonical
+				# No embedding
+
+					& Group 32
+					mies jolle kirjan antoi Pekka
+					the person who.rel gave Mary the book
+	
+				# With embedding
+					
+					& Group 33
+					henkilö jolle kirjan antoi Pekka kasvaa
+					the person who.rel gave Mary the book sleeps
+				
+	# Focus operator
+	
+		& Group 34
+		Merjan.foc Pekka löysi
+		virtaamalla.foc Seine saavuttaa meren
+		
+#--------------------------------------------------------------------------------
+# Pied-piped
+	# Declarative
+		# n/a
+	# Interrogative (Wh-)
+		# Intransitive
+			# Canonical
+				# No embedding
+				
+					& Group 35
+					mitä.D kaupunkia kohti Seine virtaa
+					mitä.D kaupunkia kohti virtaamalla teoria kumoutui
+					towards which.D city does Seine run	
+					's who car broke
+					cosa attraversa la Senna scorrendo
+	
+				# With embedding
+
+					& Group 36
+					Pekka kysyi mitä.D kaupunkia kohti Seine virtaa
+					Pekka kysyi mitä.D kaupunkia kohti virtaamalla Seine kasvaa
+					John wonders towards which.D city does Seine run
+					Gianni si_chiede cosa attraversa la Senna scorrendo
+
+			# Noncanonical
+				# No embedding			
+							
+				# With embedding
+			
+		# Transitive
+			# Canonical
+				# No embedding
+	
+					& Group 37
+					mitä.D kaupunkia kohti virtaamalla Seine saavuttaa meren
+					minne virtaamalla Seine saavuttaa meren
+					by.adv flowing towards which.D city does.C Seine reach the ocean
+					attraverso quale citta passa la Senna
+					scorrendo attraverso quale citta la Senna passa fino a_inf raggiungere l oceano
+					attraversando quale citta la Senna cresce fino a sfociare nell oceano
+	
+				# With embedding
+	
+					& Group 38
+					Pekka kysyi mitä.D kaupunkia kohti virtaamalla Seine saavuttaa meren
+					John wonders by.adv flowing towards which.D city does.C Seine reach the ocean
+					Gianni si_chiede attraverso quale citta passa la Senna
+					Gianni si_chiede scorrendo attraverso quale citta la Senna passa fino a raggiungere l oceano
+					Gianni si_chiede attraversando quale citta la Senna cresce fino a sfociare nell oceano
+					
+			# Noncanonical
+				# No embedding
+	
+					& Group 39
+					mitä.D kaupunkia kohti virtaamalla meren saavuttaa Seine
+					minne virtaamalla meren saavuttaa Seine
+					dove scorrendo verso il mare arriva la Senna
+			
+				# With embedding
+		
+					& Group 40
+					Pekka kysyi mitä.D kaupunkia kohti virtaamalla meren saavuttaa Seine
+					Pekka kysyi minne virtaamalla meren saavuttaa Seine
+					Gianni si_chiede dove scorrendo verso il mare arriva la Senna
+					
+		# Ditransitive
+			# Canonical
+				# No embedding
+	
+					& Group 41
+					mitä.D kaupunkia kohti virtaamalla Pekka antoi kirjan Merjalle
+					by.adv flowing towards which.D city did.C Pekka gave the book to Mary
+					correndo verso quale citta Gianni da_V il libro a Luisa
+					
+				# With embedding
+	
+					& Group 42
+					Pekka kysyi mitä.D kaupunkia kohti virtaamalla Jari antoi kirjan Merjalle
+					John wonders by.adv flowing towards which.D city did.C Pekka gave the book to Mary
+					Gianni si_chiede correndo verso quale citta Gianni da_V il libro a Luisa
+	
+			# Noncanonical
+				# No embedding
+
+					& Group 43
+					mitä.D kaupunkia kohti virtaamalla kirjan antoi Pekka Merjalle
+					mitä.D kaupunkia kohti virtaamalla Merjalle antoi kirjan Pekka
+					mitä.D kaupunkia kohti virtaamalla Pekka antoi Merjalle kirjan
+					
+				# With embedding
+
+					& Group 44
+					Pekka kysyi mitä.D kaupunkia kohti virtaamalla meren saavuttaa Seine
+					Pekka kysyi mitä.D kaupunkia kohti virtaamalla kirjan antoi Jari Merjalle
+					Pekka kysyi mitä.D kaupunkia kohti virtaamalla Merjalle antoi kirjan Jari
+					Pekka kysyi mitä.D kaupunkia kohti virtaamalla Jari antoi Merjalle kirjan
+					
+		# SPECIAL CATEGORY: Long-distance wh-pied-piping
+		
+			& Group 45
+			quale libro tu credi che Gianni abbia letto
+			di quale libro tu credi che Gianni abbia letto la recensione
+			mitä.D kaupunkia kohti Pekka sanoi että.Q Seine virtaa
+			mitä.D kaupunkia Pekka sanoi että Merja asui lähellä
+			towards which.D city did.C John say that the river runs
+			
+		# SPECIAL CATEGORY: Stranding
+		
+			& Group 46
+			mitä.D kaupunkia lähellä Pekka asui
+			mitä.D kaupunkia Pekka asui lähellä
+			who does John live with
+			who did.C John like a.D picture of
+			who did.C John like a.D picture of at the party
+								
+	# Relative (Rel-)
+		# Intransitive
+			# Canonical
+			
+				& Group 49
+				se kaupunki jota lähellä Pekka asui tuhoutui
+				se kaupunki jota kohti Seine virtaa tuhoutui
+				the city towards which.rel Seine runs
+				la citta attraverso che.rel la Senna scorre
+	
+			# Noncanonical
+				
+		# Transitive
+			# Canonical
+				
+				& Group 50
+				se kaupunki jota kohti virtaamalla Seine saavuttaa meren tuhoutui
+				the city by.adv flowing towards which.rel John likes Mary
+				la foto attraverso che.rel Gianni da_V Luisa
+				
+			# Noncanonical
+				
+				& Group 51
+				se kaupunki jota kohti virtaamalla meren saavuttaa Seine tuhoutui
+					
+		# Ditransitive
+			# Canonical
+				
+				& Group 52
+				se kaupunki jota kohti matkustamalla Pekka palautti kirjan Merjalle tuhoutui
+				the city by.adv flowing towards which.rel John gave the book to Mary
+				le mezzo attraverso cui Gianni da_V il libro a Luisa
+				
+			# Noncanonical
+				
+				& Group 53
+				se kaupunki jota kohti matkustamalla Merjalle palautti Pekka kirjan tuhoutui
+				se kaupunki jota kohti matkustamalla Pekka palautti Merjalle kirjan tuhoutui
+				the city by.adv flowing towards which.rel John gave Mary the book
+				le mezzo attraverso cui Gianni da_V a Luisa il libro 
+		
+	
+#------------------------------------------------------------------------------
+# Violations of UG conditions (should come out as ungrammatical)
+
+# Left Branch Condition (Ross 1967)
+	
+& Group 55: LBC in English
+# English
+	who 's John likes car
+	Mary wonders whose John likes car
+	which.D did.Q Mary found book
+	what did.Q Mary found book
+	
+& Group 56: LBC in Finnish
+# Finnish
+	mitä Seine virtaa kohti kaupunkia
+	kenen Pekka luki kirjaa
+	kenen Pekka luki kirjaa_DP
+
+# that-trace effect
+	& Group 64: that-trace effect in English
+	who did.C John said gave Mary the book
+	who did.C John said that gave Mary the book
+	
+# Condition on Extraction Domain (Huang), extraction from within subjects and adjuncts
+	
+	& Group 57: CED 
+	mitä.D Pekka sanoi kaupunkia kohti Seine virtaa
+	mitä.DP Pekka sanoi kaupunkia kohti Seine virtaa
+	mitä.D kaupunkia Seine saavuttaa meren kohti virtaamalla
+	which.D city does Seine run by.adv flowing towards
+	kuka se väite.N että nukkuu kumoutui
+	
+# Finite clause EPP (Chomsky; Vainikka; Holmberg)
+
+	& Group 59: EPP
+	saavuttaa Pekka meren
+	likes John Mary
+
+# Edge Generalization in Finnish (Huhmarniemi)
+
+	& Group 60: Edge generalization
+	kohti mitä.D kaupunkia Seine virtaa
+	kohti mitä.D kaupunkia virtaamalla Seine saavuttaa meren
+	which city towards does Seine run
+	
+# Picture nouns
+
+	& Group 47
+	John wonders a.D picture of whom did.C Mary take
+
+	& Group 48
+	# Criterial feature pied-piping inside an adjunct
+	John wonders about which.D topic a.D documentary swayed the voters
+	John wonders a.D documentary about which.D topic swayed the voters
+
+	& Group 62
+	John wonders about which.D topic a.D documentary swayed the voters
+	John wonders a.D documentary about which.D topic swayed the voters
+	
+# Wh-in situ
+	
+	& Group 63
+	John likes who
+	did.C John like.T who
+	Pekka saavuttaa mitä
+	Pekka antoi kirjan kenelle
+	
+# Relative clauses versus interrogatives
+	
+	& Group 65: relative clauses versus interrogatives
+	John likes a person a.D documentary about which.DP Mary likes
+	
