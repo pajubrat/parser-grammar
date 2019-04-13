@@ -6,3 +6,5 @@ they return sets, many tests are easier to implement by using set intersection. 
 
 2. The drop (movement reconstruction) is such a mess, it has to be refractored in some way. It should not be part of parser class,
 because the functions are cognitive reflexes and do not open up parsing space. I will create a class 'reconstruction' that will take care of these operations. 
+
+3. The way how morphology-lexicon monitors  what are word-internal morphemes is a mess and unintuitive
