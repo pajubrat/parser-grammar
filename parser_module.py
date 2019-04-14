@@ -2,10 +2,11 @@ from support import set_logging, log, get_number_of_operations, reset_number_of_
 from LexicalInterface import LexicalInterface
 from LF import LF
 from operator import itemgetter
+from reconstruction import Reconstruction
 
-# Brattico-Chesi Parser
+# Parser-Grammar
 # 2019
-# V. 0.9
+# V. 1.02
 
 class Pcb_parser():
     def __init__(self, lexicon_file, ug_morphemes_file='ug_morphemes.txt',
@@ -96,13 +97,13 @@ class Pcb_parser():
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
             log('\t>>>\t' + f'Trying candidate parse ' + ps.illustrate() + ' ('+str(self.number_of_solutions_tried)+'.)')
             log('\t\tReversing movement.')
-            ps_ = self.drop(ps)
+            ps_ = self.reconstruct(ps)
             log('\t\t\t= ' + ps_.illustrate())
             log(f'\t\tChecking LF-interface conditions.')
 
             # Test if the final configuration is grammatical
             # The three tests below check for LF-interface conditions
-            if self.LF_legibility_test(ps_).all_pass():
+            if ps_.LF_legibility_test().all_pass():
                 if LF.final_tail_check(ps_) and self.transfer_to_LF(ps_):
                     log(f'!--->\t\tTests passed (with {self.number_of_operations}/'
                         f'{get_number_of_operations()} operations) <------------------------------------')
@@ -191,7 +192,7 @@ class Pcb_parser():
                                 log(f'\t\tExploring solution number ({i}) =' + f'[{site}*{lex_decomposed.get_pf()}]')
                                 new_ps = site * lex_decomposed  # Sink
                             else:
-                                site_ = self.drop(ps_[ps.index(site)])
+                                site_ = self.reconstruct(ps_[ps.index(site)])
                                 new_ps = site_ + lex_decomposed  # Merge
                                 log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lex_decomposed.get_pf()}]')
                             self.__first_pass_parse(new_ps, lst_branched, index + 1)
@@ -247,9 +248,9 @@ class Pcb_parser():
 
                 # We must drop all constituents before we check for conditions
                 set_logging(False) # I silence this because "hypothetical droppings" are confusing in the logs
-                dropped = self.drop(site.copy())
+                dropped = self.reconstruct(site.copy())
 
-                lf_test = self.LF_legibility_test(dropped)
+                lf_test = dropped.LF_legibility_test()
                 # Conditions for permanent rejection
                 if lf_test.fail() and not (
                         w.is_adjoinable() and
@@ -424,10 +425,10 @@ class Pcb_parser():
 
                 # We must drop all constituents before we check for conditions
                 set_logging(False) # I silence this because "hypothetical droppings" are confusing in the logs
-                dropped = self.drop(site.copy())
+                dropped = self.reconstruct(site.copy())
                 set_logging(True)
 
-                if self.LF_legibility_test(dropped).fail():
+                if dropped.LF_legibility_test().fail():
                     priority = priority + priority_base - 100
                     log(f'\t\t\t\tAvoid {dropped.illustrate()} as left branch because it constitutes illicit structure.')
                     avoid_set.add(site)
@@ -468,7 +469,7 @@ class Pcb_parser():
                     size_ = get_size(site_)
                     if size_ > size and not site_.contains_feature('CAT:T/fin'):
                         set_logging(False)
-                        if self.LF_legibility_test(self.drop(site_.copy())).all_pass():
+                        if self.reconstruct(site_.copy()).LF_legibility_test().all_pass():
                             max_site = site_
                             max_priority = priority
                             size = size_
@@ -508,53 +509,6 @@ class Pcb_parser():
             return True
         else:
             return False
-
-    # This is reductive definition for EPP under current feature system
-    def EPP(self, ps):
-        """
-        A reductive definition for the generalized EPP feature.
-
-        This provides a reductive definition for Chomsky's (2000) generalized EPP as it is realized in the
-        present theory: it is a combination of three things:
-
-        i) SPEC:* feature,
-        ii) !SPEC:* feature,
-        iii) +PHI marking.
-
-        The relevance of (iii) is currently open.
-        """
-
-        for f in ps.features:
-            if f == 'SPEC:*' or f == '!SPEC:*' or f == '+PHI':
-                return True
-        return False
-
-    # Returns True if a spec-feature of H matches with the category of the head of G
-    def spec_match(self, H, G):
-
-        if 'SPEC:*' in H.features or '!SPEC:*' in H.features:
-            return True
-
-        for f_ in H.for_parsing(H.get_specs()):
-            for g_ in G.get_labels():
-                if f_ == g_:
-                    return True
-        return False
-
-    def LF_legibility_test(self, ps):
-        """
-        Checks if the phrase structure, as a detached item, is interpretable at the LF-level
-
-        The construction is send off to LF interface (a separate class/object) for checking. The function that
-        performs checking is lf.test(), lf being an object of the class LF().
-        """
-        def detached(ps):
-            ps.mother = None
-            return ps
-
-        lf = LF()
-        lf.test(detached(ps.copy()))
-        return lf
 
     def transfer_to_LF(self, ps):
         """
@@ -615,593 +569,13 @@ class Pcb_parser():
         else:
             return False
 
-    # ---- Movement related functions -------------------------------------------------
-
-    # This locates node XP in [T/fin XP] or return the highest node if not found
-    # It is required because many operations are restricted by a minimal tense condition
-    # e.g. argument/adjunct float
-    # todo the implementation is ugly and descriptive this must be re-thought
-    # todo we have the same condition in other places but written differently
-    def locate_minimal_tense_edge(self, ps):
-
-        ps_iterator_ = ps
-        node = ps
-
-        # If we do not detect T/fin... go upwards
-        while ps_iterator_ and \
-                ps_iterator_.geometrical_sister() and \
-                not ps_iterator_.is_finite() and \
-                not ps_iterator_.geometrical_sister().is_finite():
-            node = ps_iterator_
-            ps_iterator_ = ps_iterator_.walk_upstream()
-
-        if not ps_iterator_:
-            ps_iterator_ = node
-
-        # If we are inside T/fin..., we need to climb down to XP, [T/Fin XP]
-        while ps_iterator_ and ps_iterator_.is_finite():
-            node = ps_iterator_
-            ps_iterator_ = ps_iterator_.walk_downstream()
-
-        if not ps_iterator_:
-            ps_iterator_ = node
-
-        return ps_iterator_
-
     # Reverses all movement
-    def drop(self, ps):
-        """
-        Performs movement reconstruction.
-
-        The phrase structure is first detached from its context (mother). Then,
-        (i) Head movement reconstruction is applied first,
-        (ii) Floater reconstruction is applied second,
-        (iii) A/A-bar reconstruction.
-
-        (i) Head movement.
-
-        (ii) The right edge of the phrase structure is explored to locate constituents (at left) with tail-head features
-        at their heads that are not satisfied. Once found, the constituent is dropped. Dropping is implemented by
-        going back to the highest node, walking downwards and looking for the first position that would satisfy the
-        tail-features.
-
-        (iii) Walk downwards on the right edge, while locating left heads with the EPP feature. If found, put the
-        phrase from SPEC into M-buffer. Conversely, if we encounter a head that has a SPEC or COMP feature
-        matching with something in M-buffer but missing in the phrase structure, elements are transferred from
-        M-buffer into these positions. The result is that phrases are dropped from SPEC/EPP positions into
-        positions in which they are lexically selected (either SPEC or COMP).
-        """
-
-        # Checks intervention
-        def memory_intervention(criterial_features):
-            for constituent in memory_buffer:
-                if constituent.get_criterial_features().intersection(criterial_features):
-                    return True
-            return False
-
-        # Reconstructs head movement
-        def head_movement_reconstruction(ps):
-
-            def drop_head(ps, affix_):
-
-                def drop_condition_for_heads(affix_):
-                    if affix_.get_selector() and (set(affix_.get_selector().get_comps()) & set(affix_.get_cats())):
-                        if '!SPEC:*' not in affix_.features:
-                            return True
-                        else:
-                            if affix_.specifier():
-                                return True
-                            else:
-                                return False
-                        return True
-                    else:
-                        return False
-
-                # --- Main function begins here ---#
-
-                iterator_ = ps
-
-                while iterator_:
-                    iterator_.merge(affix, 'left')  # We try a solution
-                    if drop_condition_for_heads(affix):
-                        return True
-                    else:
-                        affix.remove()
-                        iterator_ = iterator_.walk_downstream()
-                return False
-
-            #--- main function begins here---#
-
-            log(f'\t\t\t!Reconstructing head movement for {ps}.')
-            ps_ = ps
-            top = ps
-            while ps_:
-
-                # Condition for dealing with phrase
-                if ps_.left_const and ps_.left_const.is_primitive() and ps_.left_const.has_affix():
-                    affix = ps_.left_const.get_affix()
-                    if drop_head(ps_.right_const, affix):
-                        ps_.left_const.right_const = None
-                        log(f'\t\t\t\tExtracted head \"{affix}\" and reconstructed it = {ps_.get_top()}')
-                    else:
-                        log(f'\t\t\t\tHead reconstruction failed for {affix}.')
-
-
-                # Condition for dealing with primitive element
-                elif ps_.is_primitive and ps_.has_affix():
-                    affix = ps_.get_affix()
-                    new_ps = ps_ + affix
-                    ps_.right_const = None
-                    top = new_ps
-                    log(f'\t\t\t\tExtracted head \"{affix}\" from {ps_} and created {new_ps}')
-                    if affix.has_affix():
-                        head_movement_reconstruction(affix)
-
-                ps_ = ps_.walk_downstream()
-
-            return top
-
-        # Drops all floaters in a structure
-        def drop_floaters(ps):
-
-            # Drops one phrase that has been detected as a floater
-            def drop_floater(floater, ps):
-
-                def adjoin_floater(floater, site, direction):
-                    site.merge(floater, direction)
-
-                # ---drop floater beings here---
-                Tfin = None
-                T_fin_intervention = False
-
-                # We need to locate the approriate starting point, the node XP in [T/fin XP]
-                ps_iterator_ = self.locate_minimal_tense_edge(floater.mother)
-                floater_copy = floater.copy()
-
-                while not T_fin_intervention and ps_iterator_ and not ps_iterator_ == floater and not ps_iterator_.find_me_elsewhere:
-
-                    # Determine if the conditions for T/fin intervention are satisfied
-                    if ps_iterator_.sister() and 'T/fin' in ps_iterator_.sister().get_labels():
-                        if not Tfin:
-                            Tfin = ps_iterator_.sister().get_head()
-                        else:
-                            if not ps_iterator_.sister().get_head() == Tfin:
-                                T_fin_intervention = True
-
-                    # Create hypothetical structure for testing
-                    if 'ADV' in floater_copy.get_labels():
-                        ps_iterator_.merge(floater_copy, 'right')
-                    else:
-                        ps_iterator_.merge(floater_copy, 'left')
-
-                    # If a suitable position is found, dropping will be executed
-                    if floater_copy.get_head().external_tail_head_test():
-                        self.create_adjunct(floater)
-                        dropped_floater = floater.transfer(self.babtize())
-                        if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
-                            adjoin_floater(dropped_floater, ps_iterator_, 'right')
-                        else:
-                            adjoin_floater(dropped_floater, ps_iterator_, 'left')
-                        floater_copy.remove()
-                        floater.find_me_elsewhere = True
-                        log(f'\t\t\t\tFloater ' + dropped_floater.illustrate() + ' dropped.')
-                        return
-                    else:
-                        floater_copy.remove()
-
-                    ps_iterator_ = ps_iterator_.walk_downstream()
-
-            # --- drops all floaters --- #
-
-            _ps_iterator = ps.get_top()  # Begin from the top and move downstream
-            log(f'\t\t\t!Dropping floaters...')
-            while _ps_iterator:
-
-                floater = None
-
-                # Check if a phrase at the left has unsatisfied tail features
-                if not _ps_iterator.is_primitive() and \
-                        not _ps_iterator.left_const.is_primitive() and \
-                        not _ps_iterator.left_const.find_me_elsewhere and \
-                        _ps_iterator.left_const.get_head().get_tail_sets():
-                    floater = _ps_iterator.left_const
-
-                    # Check if its tail features fail to find a head
-                    if not floater.get_head().external_tail_head_test():
-                        log('\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(
-                            floater.get_head().get_tail_sets()))
-                        drop_floater(floater, ps)
-
-                    # Or if it (constituent with tail features) sits in an EPP SPEC position of a finite clause edge
-                    elif floater.mother and self.EPP(floater.mother.get_head()) and floater.mother.is_finite():
-                        log('\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
-                        drop_floater(floater, ps)
-
-                # Check if the right edge itself has tail features (e.g. DP at the bottom, floaters/adjuncts)
-                if not _ps_iterator.is_primitive() and \
-                        _ps_iterator.right_const.get_head().get_tail_sets():
-                    floater = _ps_iterator.right_const.get_head()
-
-                    # If tail features fail to find a head, the constituent must be dropped
-                    if not floater.external_tail_head_test():
-                        log('\t\t\t\t' + floater.illustrate() + ' failed to tail.')
-
-                        # This is empirically very contentious matter:
-                        # A right DP inside a finite clause with failed tail-test must be an adjunct(?)
-                        if 'D' in floater.get_labels() and floater.get_top().contains_feature('CAT:T/fin'):
-                            self.create_adjunct(floater)
-                        drop_floater(floater.mother, ps)
-                    else:
-                        if 'ADV' in floater.get_labels() and not _ps_iterator.right_const.adjunct:
-                            self.create_adjunct(floater)
-
-                # Travels on the right edge
-                _ps_iterator = _ps_iterator.walk_downstream()
-
-            log(f'\t\t\t\t= ' + ps.illustrate())
-
-            # --- drop floaters ends here --- #
-
-        # This algorithm will try to apply extraposition to the phrase structure
-        # Last resort function
-        # The true nature of this rule, or if it indeed exists, is very unclear to me
-        # todo, does not process correctly layered adjunctions (e.g. "of the visit of John")
-        def try_extraposition(ps):
-            # Returns the bottom node on the right edge (not geometrical)
-            def get_bottom(ps):
-                iterator_ = ps
-                while iterator_:
-                    if iterator_.is_primitive():
-                        return iterator_
-                    else:
-                        iterator_ = iterator_.walk_downstream()
-
-                return
-
-            # Presupposition 1
-            # LF - legibility fails(last resort)
-            if self.LF_legibility_test(ps.get_top()).all_pass():
-                return
-
-            # Presupposition 2
-            # Do this only for referential structures (T/fin, D)
-            if not(ps.get_top().contains_feature('CAT:T/fin') or 'D' in ps.get_top().get_labels()):
-                return
-
-            log(f'\t\t\t\tExtraposition will be tried on {ps.get_top()}.')
-            self.operator_counter_ += 1
-            ps_ = get_bottom(ps).mother
-
-            # Find first [H XP] where H is adjoinable and
-            # we have either [XP][HP] or [X HP] with X not selecting for H
-            while ps_:
-                if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
-
-                    # If its phrase, then we can select HP
-                    if not ps_.sister().is_primitive():
-                        break
-
-                    # If it is head, then we select HP if the head rejects HP as complement
-                    elif set(ps_.left_const.get_labels()) & set(ps_.sister().get_not_comps()):
-                        break
-
-                ps_ = ps_.walk_upstream()
-
-            if ps_:
-
-                # It only applies this rule if there is a verb (V) or D
-                # This is LF-requirement: the adjunct must get semantic interpretation
-                for head in ps_.left_const.get_feature_vector():
-                    if 'T/fin' in head.get_labels() or 'D' in head.get_labels():
-                        ps_.adjunct = True
-                        log(f'\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
-                        if not self.LF_legibility_test(ps_.get_top()).all_pass():
-                            # If phi set is available...
-                            if self.promote_phi_set(ps_.left_const):
-                                log(f'\t\t\t\tThe structure is still illicit. Try phi-tailing as a last resort.')
-                                drop_floaters(ps_.get_top())
-                                log(f'\t\t\t\t={ps_.get_top()}')
-                        return True
-
-            return False
-            # ---end of try extraposition---#
-
-        # Reverse-engineers A-movement and A-bar movement and uses Chesi memory buffer
-        def drop_movement(ps):
-            # Creates an adjunct of the constituent ('ps')
-
-            memory_buffer = []
-            _ps_iterator = ps
-            _ps_last_site = _ps_iterator
-
-            log(f'\t\t\t!Dropping A-/A-bar movement with Chesi memory buffer.')
-            while _ps_iterator:
-
-                # Target primitive heads on our way downstream
-                if _ps_iterator.is_primitive():
-                    h = _ps_iterator
-                elif _ps_iterator.left_const.is_primitive():
-                    h = _ps_iterator.left_const
-                else:
-                    h = None
-
-                # If a primitive head was detected
-                if h:
-                    h_labels = sorted(h.get_labels())
-
-                    # Case 1a. Missing Spec is filled.
-                    # The head has no phrase in its Spec, but the memory buffer holds a suitable constituent
-                    if _ps_iterator.sister() and _ps_iterator.sister().is_primitive():
-                        target_const = None
-
-                        # Select the first possible Spec constituent
-                        for const in memory_buffer:
-                            if self.spec_match(h, const) and not target_const:
-                                target_const = const
-
-                        # Transfer it from memory buffer into the phrase structure
-                        if target_const:
-
-                            # Try to merge it to Spec
-                            _ps_iterator.merge(target_const.transfer(self.babtize()), 'left')
-
-                            # Check that this does not cause tail-head violations
-                            if _ps_iterator.geometrical_sister().get_head().external_tail_head_test():
-                                log(f'\t\t\t\tDropping constituent {target_const} from memory buffer into Spec of ' +
-                                    f'{h_labels}')
-                                memory_buffer.remove(target_const)
-                                self.operator_counter_ += 1
-                            else:
-                                # If there was a tail-head violation, dropping is cancelled
-                                _ps_iterator.geometrical_sister().remove()
-
-                    # Case 1b. EPP head hosts Specs.
-                    # The head has the EPP and a phrase (or several) is sitting at its Specs (left)
-                    if self.EPP(h):
-
-                        # spec-iterator iterated over multiple Specs (if possible) into upward direction
-                        _ps_spec_iterator = _ps_iterator
-                        list_ = []
-                        spec_found = False
-                        while _ps_spec_iterator:
-
-                            # If a phrase is found from left...
-
-                            if _ps_spec_iterator.sister() and \
-                                    not _ps_spec_iterator.sister().is_primitive() and \
-                                    _ps_spec_iterator.sister().is_left():
-
-                                # we gather criterial features from the Spec (WH, FOC, REL, TOP)
-                                criterial_features = _ps_spec_iterator.sister().get_criterial_features()
-                                # Reset memory if there is intervention
-                                if memory_intervention(criterial_features):
-                                    memory_buffer = []
-
-                                # ...and it has not been moved already...
-                                if not _ps_spec_iterator.sister().find_me_elsewhere:
-                                    # ...we put a pointer to the specifier into memory buffer.
-                                    list_.append(_ps_spec_iterator.sister())
-                                    log(f'\t\t\t\tMoving \"' + _ps_spec_iterator.sister().spellout() + f'\" into memory buffer from SPEC of {h}.')
-
-                                # If we already have processed one Spec, then we are gonna need to spawn phantom heads
-                                if spec_found:
-
-                                    if not criterial_features:
-                                        log(f'\t\t\t\tNew head was spawned due to multiple specifiers at {h}'
-                                            ' but its category is unknown!')
-                                    else:
-                                        log(f'\t\t\t\tNew {criterial_features} head was spawned due to '
-                                            f'the occurrence of multiple specifiers at {h.get_pf()}')
-
-                                    # Create and merge the new head, then move the pointer over it so we don't repeat
-                                    new_h = self.engineer_head_from_specifier(criterial_features)
-                                    _ps_spec_iterator.merge(new_h, 'left')
-
-                                    # Move to the new constituent (otherwise we will loop this)
-                                    _ps_spec_iterator = _ps_spec_iterator.walk_upstream()
-                                    if new_h.get_tail_sets():
-                                        log('\t\t\t\tThe new head has tail features, must be an adjunct floater.')
-                                        self.create_adjunct(new_h)
-
-                                        # Drop inside the right-adjunct
-                                        if _ps_spec_iterator.mother:
-                                            _ps_spec_iterator = _ps_spec_iterator.mother  # Move one step up
-                                else:
-                                    # If its just one Spec, copy criterial features
-                                    spec_found = True  # We register that one head has been found
-                                    if criterial_features:
-                                        log(f'\t\t\t\tCriterial features {criterial_features} copied to {h_labels}')
-                                        for f in criterial_features:
-                                            # Create formal copies of features
-                                            h.features.add('CAT:u' + f)
-                                            # Add scope marker if needed, todo this looks stipulative in the present form
-                                            if 'C/fin' in h.get_labels() or 'T/fin' in h.get_labels() or 'FORCE' in h.get_labels():
-                                                h.features.add('CAT:i' + f)
-                                            h.features = self.lexical_access.apply_parameters(
-                                                self.lexical_access.apply_redundancy_rules(h.features))
-                                        if h.get_tail_sets():
-                                            log(f'\t\t\t\tTail features ' + illu(h.get_tail_sets()) + f' were detected at {h}, this must head an adjunct floater.')
-                                            self.create_adjunct(h)
-                                            if _ps_spec_iterator.mother:
-                                                _ps_spec_iterator = _ps_spec_iterator.mother
-
-                                # Move to next specifier
-                                _ps_spec_iterator = _ps_spec_iterator.walk_upstream()
-
-                            # If there is primitive c-commanding head on the left, we must stop searching
-                            else:
-                                _ps_spec_iterator = None
-
-                        # Add everything into memory buffer
-                        memory_buffer = list_ + memory_buffer
-
-                        if len(list_) > 0:
-                            log(f'\t\t\t\tMemory buffer: {memory_buffer}')
-
-                    # Case 1c. Missing Comp.
-                    # The head lacks complement but could take one, and a matching entity is found from memory buffer
-                    if h.is_primitive() and not h.complement():
-                        # If H has comp features
-                        if h.get_comps():
-                            target_const = None
-                            for const in memory_buffer:
-                                for c in h.get_comps():
-                                    # If suitable candidate exists in the memory buffer
-                                    if c in const.get_labels() and target_const == None:
-                                        target_const = const
-
-                            if target_const:
-                                h.merge(target_const.transfer(self.babtize()), 'right')
-                                log(f'\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
-                                    + f') from memory buffer into Comp of {h_labels}.')
-                                log(f'\t\t\t\tResult {h.get_top()}')
-                                memory_buffer.remove(target_const)
-                                log(f'\t\t\t\tRemaining items in memory buffer: {memory_buffer}')
-
-                    # Case 1d. Mismatching Comp.
-                    # The head has a non-matching complement and matching item is found from memory
-                    if h.is_left() and h.complement():
-                        match_found = False
-                        target_const = None
-                        for label in h.complement().get_labels():
-                            for comp in h.get_comps():
-                                if label == comp:
-                                    match_found = True  # matching H-comp feature was found => don't bring anything from memory
-                        # look if there is something in MB
-                        if not match_found:
-                            for const in memory_buffer:
-                                for comp in h.get_comps():
-                                    if comp in const.get_labels() and target_const == None:
-                                        target_const = const
-
-                        if not match_found and target_const:
-                            log(f'\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
-                                + f') from memory buffer into Comp of {h_labels} '
-                                  f'due to the presence of mismatching complement {h.complement()}.')
-                            h.complement().merge(target_const.transfer(self.babtize()), 'left')
-                            # The mismatching complement will be demoted to floater status
-                            if h.complement().right_const.is_adjoinable():
-                                log('\t\t\t\tThe mismatching complement will be trasformed into floater adjunct.')
-                                self.create_adjunct(h.complement().right_const)
-                            memory_buffer.remove(target_const)
-                            log(f'\t\t\t\tRemaining memory buffer: {memory_buffer}')
-
-                # Walk downwards on the right edge
-                _ps_last_site = _ps_iterator
-                _ps_iterator = _ps_iterator.walk_downstream()
-
-            try_extraposition(_ps_last_site)
-
-
-        #---Dropping algorithm main body---#
-
-        # Detach the structure
-        original_mother = ps.detach()
-        memory_buffer = []
-        self.operator_counter_ = 0
-
-        if not ps.is_primitive():
-            ps = head_movement_reconstruction(ps)
-            drop_floaters(ps)
-            drop_movement(ps)
-        elif ps.is_primitive() and ps.has_affix():
-            set_logging(False)
-            ps_ = head_movement_reconstruction(ps.copy())
-            set_logging(True)
-            if self.LF_legibility_test(ps_).all_pass():
-                ps = head_movement_reconstruction(ps)
-
-
-        # Restore the links
+    def reconstruct(self, ps):
+        original_mother = ps.mother
+        ps.detach()
+        R = Reconstruction()
+        ps = R.reconstruct(ps)
         if original_mother:
-            ps.get_top().mother = original_mother
+            ps.mother = original_mother
 
-        # Return the new structure
         return ps
-
-    # Creates an adjunct of a constituent
-    def create_adjunct(self, ps):
-        """
-        Creates an adjunct out of a constituent.
-
-        Adjuncts are marked as such by a specific feature of the constituent. Right adjuncts are processes in a
-        separate syntactic working space. This function sets that feature to true.
-
-        If the sister is already an adjunct, the operation is cancelled. In other words, [<XP>, <YP>] is not possible.
-        This constituent is anomalous in the current system.
-
-        If the constituent is a phrase, it is marked as adjunct and no further steps are taken. If the constituent
-        is a head, then we have to consider how much of the surrounding structure will be eaten into the adjunct. If
-        the head is marked for EPP, we eat the SPEC (if any). If not, we can eat only the complement. The procedure here
-        is complex and must be verified by empirical tests.
-        """
-
-        def make_adjunct(ps):
-            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-                log(f'\t\t\t\t{ps} cannot be made an adjunct because its sister is an adjunct.')
-                return False
-            ps.adjunct = True
-            log(f'\t\t\t\t{ps} was made an adjunct.')
-            return True
-
-        # --- Main function begins here --- #
-
-        head = ps.get_head()
-
-        # If the head is primitive, we must decide how much of the surrounding structure we will eat
-        if ps.is_primitive():
-            # If the adjunct has found an acceptable position, we use !SPEC:* feature
-            if head.external_tail_head_test():
-                if '!SPEC:*' in head.features and head.mother.mother:
-                    make_adjunct(head.mother.mother)
-                    return ps.mother.mother
-                else:
-                    make_adjunct(head.mother)
-                    return ps.mother
-            # If the adjunct is still in wrong position, we eat the specifier if accepted
-            else:
-                # If potential Spec exists and the head accepts specifiers...
-                if head.specifier() and not '-SPEC:*' in head.features and \
-                        not set(head.get_not_specs()).intersection(set(head.specifier().get_labels())):
-                    if head.mother.mother:
-                        make_adjunct(head.mother.mother)
-                    return ps.mother.mother
-                else:
-                    make_adjunct(head.mother)
-                    return ps.mother
-        else:
-            make_adjunct(ps)
-
-    # This will create a head from a specifier that lacks a head
-    def engineer_head_from_specifier(self, features):
-        """
-        This operation spawns a head H from a detected specifier XP that lacks a head.
-
-        The category of the new head will be constructed from the criterial features F... scanned from XP,
-        by creating uninterpretable (uF) and interpretable (iF) copies of the original features (F).
-
-        The uninterpretable feature uF is the probe feature that agrees with F, but does not have
-        semantic effects. The interpretable feature iF represents the scope-marker or the criterial head.
-        Accordingly, a head that is spawned is always a criterial head. Then, other required features
-        are added to the head on the basis of lexical rules (or the language).
-        """
-
-        new_h = self.lexical_access.PhraseStructure()
-
-        # The category of the new head is going to be a copy of criterial feature of Spec
-        # We also create artificial phonological matrix for illustration
-        for f in features:
-            new_h.features.add('CAT:u' + f)
-            new_h.features.add('PF:u' + f)
-            new_h.features.add('CAT:i' + f)
-
-        # We add EPP required features
-        new_h.features = self.lexical_access.apply_parameters(
-            self.lexical_access.apply_redundancy_rules(new_h.features))
-        return new_h
-
-    # This will provide unique names when chains are formed
-    # It is used only for output purposes
-    def babtize(self):
-        self.name_provider_index += 1
-        return str(self.name_provider_index)

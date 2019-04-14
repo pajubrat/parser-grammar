@@ -1,5 +1,6 @@
 # This modular and class defines basic linguistic competence, i.e. phrase structures and operations on phrase structure
 from support import log
+from LF import LF
 
 major_category = {'N', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM'}
 
@@ -129,6 +130,26 @@ class PhraseStructure:
         get_bottom(self).left_const = None
 
         return self.get_top()
+
+    # This is reductive definition for EPP under current feature system
+    def EPP(self):
+        """
+        A reductive definition for the generalized EPP feature.
+
+        This provides a reductive definition for Chomsky's (2000) generalized EPP as it is realized in the
+        present theory: it is a combination of three things:
+
+        i) SPEC:* feature,
+        ii) !SPEC:* feature,
+        iii) +PHI marking.
+
+        The relevance of (iii) is currently open.
+        """
+
+        for f in self.features:
+            if f == 'SPEC:*' or f == '!SPEC:*' or f == '+PHI':
+                return True
+        return False
 
     # This function copies a constituent and does all other operations required for dropping
     # Babtize will be the name (index) given to the original and its copy,
@@ -475,6 +496,21 @@ class PhraseStructure:
         ps_.find_me_elsewhere = self.find_me_elsewhere
         ps_.identity = self.identity
         return ps_
+
+    def LF_legibility_test(self):
+        """
+        Checks if the phrase structure, as a detached item, is interpretable at the LF-level
+
+        The construction is send off to LF interface (a separate class/object) for checking. The function that
+        performs checking is lf.test(), lf being an object of the class LF().
+        """
+        def detached(ps):
+            ps.mother = None
+            return ps
+
+        lf = LF()
+        lf.test(detached(self.copy()))
+        return lf
 
     # This will separate ps from its host and return the mother (for later attachment)
     def detach(self):
@@ -950,15 +986,26 @@ class PhraseStructure:
 
 # Below are support functions that will be moved to the support class and are not part of phrase structure at all
 
+    def show_affix(self):
+        i = ''
+        if self.is_primitive() and self.right_const:
+            i = self.right_const.get_cats_string()
+            if self.right_const.right_const:
+                i = i + ',' + self.right_const.show_affix()
+        else:
+            i = ''
+        return i
+
     def get_pf(self):
 
         # We return phonological features but not inflectional features
         pfs = [f[3:] for f in self.features if f[:2] == 'PF' and f[3:] not in ['NOM', 'ACC', 'PAR', '3sg', 'FOC',
                                                                                'TOP']]
         if self.has_affix():
-            pfs.append('.')
-
-        return '.'.join(sorted(pfs))
+            affix_str = self.show_affix()
+            return '.'.join(sorted(pfs)) + '{' + affix_str + '}'
+        else:
+            return '.'.join(sorted(pfs))
 
     def get_lf(self):
         # We return semantic features
