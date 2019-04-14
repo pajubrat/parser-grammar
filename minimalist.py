@@ -26,7 +26,7 @@ class PhraseStructure:
         # Default feature set
         self.features = set()   # Primitive constituents have features
         self.morphology = ''
-        self.internal = False
+        self.internal = False   # Tells if the constituent is word-internal
         self.adjunct = False    # Marks the constituent as an adjunct. For right adjuncts this means the "location"
                                 # of the constituent, so that it is stored into a separate syntactic working space
 
@@ -46,22 +46,25 @@ class PhraseStructure:
     def __getitem__(self, item):
 
         iterator_ = 0
-        site_ = self
-        while site_ and not iterator_ == item:
-            site_ = site_.right_const
-            iterator_ = iterator_  + 1
+        ps_ = self
+        while ps_ and not iterator_ == item:
+            if not ps_.is_primitive():
+                ps_ = ps_.right_const
+                iterator_ = iterator_ + 1
+            else:
+                ps_ = None
 
-        if not site_:
+        if not ps_:
             raise IndexError
         else:
-            return site_
+            return ps_
 
     # returns the index of 'site' inside 'self'
     def index(self, site):
 
         ps_ = self
         iterator_ = 0
-        while not ps_ == site and ps_.right_const:
+        while not ps_ == site and ps_.right_const and not ps_.is_primitive():
             ps_ = ps_.right_const
             iterator_ = iterator_ + 1
 
@@ -78,7 +81,7 @@ class PhraseStructure:
         This operation merges a constituent into an existing phrase structure. It uses the primitive Merge
         function (__init__) but is able to merge items (countercyclically) inside the phrase structure, as
         required by the Phillips architecture. It is also used by operations implementing Move and its
-        reverse version Drop.
+        reverse version drop.
         """
 
         new_ps = None               # The resulting new complex constituent
@@ -112,6 +115,20 @@ class PhraseStructure:
         new_ps.mother = old_mother
 
         return new_ps.get_top()
+
+
+    def __mul__(self, ps):
+        def get_bottom(site):
+            ps_ = site
+            while ps_.right_const:
+                ps_ = ps_.right_const
+            return ps_
+
+        get_bottom(self).right_const = ps
+        ps.mother = get_bottom(self)
+        get_bottom(self).left_const = None
+
+        return self.get_top()
 
     # This function copies a constituent and does all other operations required for dropping
     # Babtize will be the name (index) given to the original and its copy,
@@ -185,6 +202,12 @@ class PhraseStructure:
             self.mother = None
 
         return
+
+    def get_affix(self):
+        if not self.left_const and self.is_primitive():
+            return self.right_const
+        else:
+            return None
 
     # This function returns the highest mother node, i.e. identifies the phrase structure that contains 'self'
     def get_top(self):
@@ -353,6 +376,16 @@ class PhraseStructure:
 
         return None
 
+    def get_selector(self):
+        """
+        Return the closest c-commanding primitive head or None if there is none.
+        """
+        feature_vector = self.get_feature_vector()
+        if len(feature_vector) == 1:
+            return None
+        else:
+            return feature_vector[1]
+
     def is_left(self):
         """
         Returns True is the constituent is the left constituent.
@@ -375,18 +408,24 @@ class PhraseStructure:
 
     def is_primitive(self):
         """
-        Returns True is the constituent has no daughters.
+        Returns True is the constituent does not have two daughters.
         """
 
-        if not self.right_const and not self.left_const:
+        if self.right_const and self.left_const:
+            return False
+
+        else:
+            return True
+
+    # todo this function no longer works as intended -- remove? we should use is_primitive
+    def has_children(self):
+        return self.left_const and self.right_const
+
+    def has_affix(self):
+        if self.right_const and not self.left_const:
             return True
         else:
             return False
-
-    # todo why do we need this ? we should use one or the other ? If this is faster we can use it
-    # todo on the other hand it is less intuitive for non-python people
-    def has_children(self):
-        return self.left_const or self.right_const
 
     # todo, is this needed anymore?
     def is_word_internal(self):
@@ -675,6 +714,16 @@ class PhraseStructure:
 
         return phi_feature_set
 
+    def get_bottom_affix(self):
+        if not self.is_primitive:
+            return None
+
+        ps_ = self
+        while ps_.right_const:
+            ps_ = ps_.right_const
+
+        return ps_
+
     # Returns a set of tail feature sets from the head of 'self'
     def get_tail_sets(self):
         tail_features = set()
@@ -721,6 +770,14 @@ class PhraseStructure:
 
         # If there there were NO overlapping features, this test is accepted
         return True
+
+    def get_bottom(self):
+        ps_ = self
+
+        while not ps_.is_primitive():
+            ps_ = ps_.right_const
+
+        return ps_
 
     # This will return a set of criterial features found inside the constituent (self)
     # We don't search (a) below T/fin or (b) into right adjuncts
@@ -894,9 +951,13 @@ class PhraseStructure:
 # Below are support functions that will be moved to the support class and are not part of phrase structure at all
 
     def get_pf(self):
+
         # We return phonological features but not inflectional features
         pfs = [f[3:] for f in self.features if f[:2] == 'PF' and f[3:] not in ['NOM', 'ACC', 'PAR', '3sg', 'FOC',
                                                                                'TOP']]
+        if self.has_affix():
+            pfs.append('.')
+
         return '.'.join(sorted(pfs))
 
     def get_lf(self):

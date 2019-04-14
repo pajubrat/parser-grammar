@@ -1,0 +1,234 @@
+
+
+\========================================================================
+# 1
+['ANTOI', 'Pekka', 'kirjan', 'Merjalle']
+
+
+			=None
+
+1.
+
+		Next word contains multiple morphemes ['$Q', '$C/fin', '$T/fin', '$v', 'anta-']
+		Storing inflectional feature ['-', 'CAT:Q', 'LANG:FI'] into working memory.
+
+		Consume "$C/fin"
+
+			=None
+
+2.
+
+		Adding inflectional features to C
+		= ['!COMP:*', '!PROBE:CAT:T/fin', '-', '-SPEC:C/fin', '-SPEC:N', '-SPEC:T/fin', 'CAT:C/fin', 'CAT:C/fin/Q', 'CAT:Q', 'COMP:T/fin', 'LANG:FI', 'LF:C/fin', 'PF:C', 'SPEC:*']
+			=C
+
+3.
+
+		Consume "T"
+
+		C + T
+			Filtering out impossible merge sites...
+			Sink "T" into C because they are inside the same phonological word.
+		Exploring solution number (1) =[C*T]
+			=..C
+
+4.
+
+		Consume "v"
+
+		..C + v
+			Filtering out impossible merge sites...
+			Sink "v" into ..C because they are inside the same phonological word.
+		Exploring solution number (1) =[..C*v]
+			=..C
+
+5.
+
+		Consume "antaa"
+
+		..C + antaa
+			Filtering out impossible merge sites...
+			Sink "antaa" into ..C because they are inside the same phonological word.
+		Exploring solution number (1) =[..C*antaa]
+			=..C
+
+6.
+
+		Next word contains multiple morphemes ['$nom', '$D', 'Pekka-']
+		Storing inflectional feature ['-', 'LANG:FI', 'TAIL:CAT:T/fin,!COMP:*'] into working memory.
+
+		Consume "$D"
+
+			=..C
+
+7.
+
+		Adding inflectional features to D
+		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:T/fin,!COMP:*']
+
+		Consume "D"
+
+		..C + D
+			Filtering out impossible merge sites...
+				An EPP-head "T" lacks specifier but needs one.
+				v probing for CAT:D failed.
+				An EPP-head "v" lacks specifier D that it requires.
+		Exploring solution number (1) =[..C D]
+			=[..C D]
+
+8.
+
+		Consume "Pekka"
+
+		[..C D] + Pekka
+			Filtering out impossible merge sites...
+			Sink "Pekka" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*Pekka]
+			=[..C ..D]
+
+9.
+
+		Next word contains multiple morphemes ['$asp', '$D', 'kirja-']
+		Storing inflectional feature ['-', 'LANG:FI', 'TAIL:CAT:v,!COMP:*'] into working memory.
+
+		Consume "$D"
+
+			=[..C ..D]
+
+10.
+
+		Adding inflectional features to D
+		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:v,!COMP:*']
+
+		Consume "D"
+
+		[..C ..D] + D
+			Filtering out impossible merge sites...
+				Reject [[..C <D Pekka>] D] due to bad left branch.
+			!Reconstructing head movement for ..D.
+				Extracted head "Pekka" from D and created [D Pekka]
+		Exploring solution number (1) =[..D D]
+			=[..C [[D Pekka] D]]
+
+11.
+
+		Consume "kirja"
+
+		[..C [[D Pekka] D]] + kirja
+			Filtering out impossible merge sites...
+			Sink "kirja" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*kirja]
+			=[..C [[D Pekka] ..D]]
+
+12.
+
+		Next word contains multiple morphemes ['$lle', '$D', 'Merja-']
+
+		Consume "P(lle)"
+
+		[..C [[D Pekka] ..D]] + P(lle)
+			Filtering out impossible merge sites...
+			Ranking remaining sites...
+				Avoid [[D Pekka] ..D] because it could break words.
+		Ranking completed:
+			1. [..D; P(lle)]
+			2. [[..C [[D Pekka] ..D]]; P(lle)]
+			3. [[[D Pekka] ..D]; P(lle)]
+			!Reconstructing head movement for ..D.
+				Extracted head "kirja" from D and created [D kirja]
+		Exploring solution number (1) =[..D P(lle)]
+			=[..C [[D Pekka] [[D kirja] P(lle)]]]
+
+13.
+
+		Consume "D"
+
+		[..C [[D Pekka] [[D kirja] P(lle)]]] + D
+			Filtering out impossible merge sites...
+			Sink "D" into P(lle) because they are inside the same phonological word.
+		Exploring solution number (1) =[P(lle)*D]
+			=[..C [[D Pekka] [[D kirja] ..P(lle)]]]
+
+14.
+
+		Consume "Merja-"
+
+		[..C [[D Pekka] [[D kirja] ..P(lle)]]] + Merja-
+			Filtering out impossible merge sites...
+			Sink "Merja-" into ..P(lle) because they are inside the same phonological word.
+		Exploring solution number (1) =[..P(lle)*Merja-]
+			=[..C [[D Pekka] [[D kirja] ..P(lle)]]]
+
+15.
+	>>>	Trying candidate parse [..C [[D Pekka] [[D kirja] ..P(lle)]]] (1.)
+		Reversing movement.
+			!Reconstructing head movement for [..C [[D Pekka] [[D kirja] ..P(lle)]]].
+				Extracted head "..T" and reconstructed it = [C [[D Pekka] [..T [[D kirja] ..P(lle)]]]]
+				Extracted head "..v" and reconstructed it = [C [[D Pekka] [T [..v [[D kirja] ..P(lle)]]]]]
+				Extracted head "antaa" and reconstructed it = [C [[D Pekka] [T [v [antaa [[D kirja] ..P(lle)]]]]]]
+				Extracted head "..D" from P(lle) and created [C [[D Pekka] [T [v [antaa [[D kirja] [P(lle) ..D]]]]]]]
+			!Reconstructing head movement for ..D.
+				Extracted head "Merja-" from D and created [C [[D Pekka] [T [v [antaa [[D kirja] [P(lle) [D Merja-]]]]]]]]
+			!Dropping floaters...
+				[D Pekka] failed to tail [!COMP:*][CAT:T/fin]
+				<D Pekka> was made an adjunct.
+				Floater <D Pekka> dropped.
+				= [C [<D Pekka> [T [<D Pekka> [v [antaa [[D kirja] [P(lle) [D Merja-]]]]]]]]]
+			!Dropping A-/A-bar movement with Chesi memory buffer.
+				Moving "D kirja " into memory buffer from SPEC of P(lle).
+				Memory buffer: [[D N]]
+				[D kirja]" has no thematic role
+				Extraposition will be tried on [C [<D Pekka>:3 [T [<DP>:3 [v [antaa [[D kirja] [P(lle) [D Merja-]]]]]]]]].
+				<P(lle) [D Merja-]> was made adjunct by an extraposition rule.
+			= [C [<D Pekka> [T [<D Pekka> [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]
+		Checking LF-interface conditions.
+			Trying to transfer [C [<D Pekka>:3 [T [<DP>:3 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]] into LF...
+				Transfer to LF successful.
+!--->		Tests passed (with 15/131 operations) <------------------------------------
+		Solution:
+		[C [<D Pekka> [T [<D Pekka> [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]
+		Grammar: [C [<D Pekka>:1 [T [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]
+		Spellout C/finQP = [C/finQ [DP:1 [T/fin [__:1 [v [V [[D N] PP]]]]]]]
+C:['!COMP:*', '!PROBE:CAT:T/fin', '-', '-SPEC:C/fin', '-SPEC:N', '-SPEC:T/fin', 'CAT:C/fin', 'CAT:C/fin/Q', 'CAT:Q', 'COMP:T/fin', 'LANG:FI', 'LF:C/fin', 'PF:C', 'SPEC:*']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A']
+T:['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '+PHI', '-COMP:D', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'CAT:T/fin', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'NUM:sg', 'PER:3', 'PF:T']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:T/fin,!COMP:*', 'null']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A', 'null']
+v:['!COMP:*', '!PROBE:CAT:D', '!PROBE:CAT:V', '!SPEC:D', '-PHI', '-SPEC:N', 'CAT:v', 'COMP:V', 'LANG:FI', 'LF:v', 'PF:v']
+antaa:['-COMP:ADV', '-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', 'CAT:V', 'COMP:D', 'COMP:P', 'LANG:FI', 'LF:give', 'PF:antaa', 'SPEC:ADV', 'SPEC:D', 'SPEC:P']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:v,!COMP:*']
+kirja:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:book', 'PF:kirja', 'SPEC:A']
+P(lle):['!COMP:*', '+SEM:directional', '-COMP:ADV', '-COMP:N', '-COMP:T/fin', '-COMP:uWH', '-SPEC:ADV', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:T/fin', '-SPEC:V', '-SPEC:iR', '-SPEC:iWH', '-SPEC:v', 'CAT:P', 'COMP:D', 'COMP:INF', 'LANG:FI', 'LF:for', 'PF:P(lle)', 'SPEC:*']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D']
+Merja-:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Merja', 'PF:Merja-', 'SPEC:A']
+
+C:['!COMP:*', '!PROBE:CAT:T/fin', '-', '-SPEC:C/fin', '-SPEC:N', '-SPEC:T/fin', 'CAT:C/fin', 'CAT:C/fin/Q', 'CAT:Q', 'COMP:T/fin', 'LANG:FI', 'LF:C/fin', 'PF:C', 'SPEC:*']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A']
+T:['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '+PHI', '-COMP:D', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'CAT:T/fin', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'NUM:sg', 'PER:3', 'PF:T']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:T/fin,!COMP:*', 'null']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A', 'null']
+v:['!COMP:*', '!PROBE:CAT:D', '!PROBE:CAT:V', '!SPEC:D', '-PHI', '-SPEC:N', 'CAT:v', 'COMP:V', 'LANG:FI', 'LF:v', 'PF:v']
+antaa:['-COMP:ADV', '-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', 'CAT:V', 'COMP:D', 'COMP:P', 'LANG:FI', 'LF:give', 'PF:antaa', 'SPEC:ADV', 'SPEC:D', 'SPEC:P']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:v,!COMP:*']
+kirja:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:book', 'PF:kirja', 'SPEC:A']
+P(lle):['!COMP:*', '+SEM:directional', '-COMP:ADV', '-COMP:N', '-COMP:T/fin', '-COMP:uWH', '-SPEC:ADV', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:T/fin', '-SPEC:V', '-SPEC:iR', '-SPEC:iWH', '-SPEC:v', 'CAT:P', 'COMP:D', 'COMP:INF', 'LANG:FI', 'LF:for', 'PF:P(lle)', 'SPEC:*']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-COMP:T/fin', '-COMP:uR', '-PHI', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D']
+Merja-:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Merja', 'PF:Merja-', 'SPEC:A']
+
+C: [C/finQ]
+D: [D, C/finQ]
+Pekka: [N, D, C/finQ]
+T: [T/fin, C/finQ]
+(D): [D, T/fin, C/finQ]
+(N): [N, D, T/fin, C/finQ]
+v: [v, T/fin, C/finQ]
+antaa: [V, v, T/fin, C/finQ]
+D: [D, V, v, T/fin, C/finQ]
+kirja: [N, D, V, v, T/fin, C/finQ]
+P(lle): [P, V, v, T/fin, C/finQ]
+D: [D, P, V, v, T/fin, C/finQ]
+Merja-: [N, D, P, V, v, T/fin, C/finQ]
+
+			Checking if the sentence is ambiguous...

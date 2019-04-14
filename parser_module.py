@@ -173,26 +173,33 @@ class Pcb_parser():
                     if not ps:
                         self.__first_pass_parse(lex_decomposed.copy(), lst_branched, index + 1)
 
-                    # Merge the new word (disambiguateted lexical item) to the existing phrase structure
+                    # Merge the new word (disambiguated lexical item) to the existing phrase structure
                     else:
                         log('\n\t\tConsume \"' + lex_decomposed.get_pf() + '\"\n')
                         log('\t\t' + ps.illustrate() + ' + ' + lex_decomposed.get_pf())
 
-                        # --------- This is the core parsing functionality -----------
+                        # --------- This is the core parsing functionality ----------------------------------------
+                        # -----------------------------------------------------------------------------------------
 
-                        # Get the adjunction sites
+                        # Get the merge sites
                         adjunction_sites = self.ranking(self.filter(ps, lex_decomposed), lex_decomposed)
 
                         # Test each licit adjunction site in the order of ranking
                         for i, site in enumerate(adjunction_sites, start=1):
                             ps_ = ps.get_top().copy()
-                            log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lex_decomposed.get_pf()}]')
-                            site_ = self.drop(ps_[ps.index(site)])
-                            self.__first_pass_parse(site_.merge(lex_decomposed, 'right'), lst_branched, index + 1)
+                            if site.get_bottom_affix().internal:
+                                log(f'\t\tExploring solution number ({i}) =' + f'[{site}*{lex_decomposed.get_pf()}]')
+                                new_ps = site * lex_decomposed  # Sink
+                            else:
+                                site_ = self.drop(ps_[ps.index(site)])
+                                new_ps = site_ + lex_decomposed  # Merge
+                                log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lex_decomposed.get_pf()}]')
+                            self.__first_pass_parse(new_ps, lst_branched, index + 1)
                             if self.exit:
                                 break
 
-                        # -------------------------------------------------------------
+                        # ------------------------------------------------------------------------------------------
+                        # ------------------------------------------------------------------------------------------
 
             if not self.exit:
                 # All branches for the incoming surface word have been explored
@@ -220,11 +227,10 @@ class Pcb_parser():
         log('\t\t\tFiltering out impossible merge sites...')
 
         # Check if the new word must be inside the last word. If yes, we must use H-Comp solution
-        for site in ps:
-            if site.is_primitive() and site.internal:
-                log(f'\t\t\tForce {w.get_pf()} COMP to {site.get_pf()}'
-                    ' because morphology tells they were inside the same phonological word.')
-                return [site]
+        if ps.get_bottom().get_bottom_affix().internal:
+            log(f'\t\t\tSink \"{w.get_pf()}\" into {ps.get_bottom().get_pf()}'
+                ' because they are inside the same phonological word.')
+            return [ps.get_bottom()]
 
         adjunction_sites = []
 
@@ -571,7 +577,7 @@ class Pcb_parser():
 
         Morpheme boundaries must be marked by # in the input. The function separates the morphemes into a list L and
         substitutes the original multi-morphemic word w with the inverse of the resulting list L in the input string,
-        (w1, w2, a#b#c, w3) = (v1, v2, v3, c, b, a, v3), and puts the index to point 'a'.
+        (w1, w2, a#b#c, w3) = (v1, v2, v3, c, b, a, v3), and puts the index to point 'c'.
 
         """
 
@@ -583,7 +589,7 @@ class Pcb_parser():
         # Create a list of morphemes
         word = lexical_constituent.morphology
 
-        #  All word-internal morphemes will begin with symbol $ (= phonological spellout feature)
+        #  All word-internal morphemes will begin with symbol $ (= phonological spell-out feature)
         word = word.replace("#", "#$")
         lst_ = word.split("#")
 
@@ -645,26 +651,26 @@ class Pcb_parser():
     # Reverses all movement
     def drop(self, ps):
         """
-        Performs phrasal dropping for a phrase structure.
+        Performs movement reconstruction.
 
-        The phrase structure is first detached from its context (mother). (i) Floater dropping is applied first,
-        followed by (ii) A/A-bar dropping (Chesi memory buffer). A/A-bar dropping are not distinguished in this version,
-        but will be distinguished later.
+        The phrase structure is first detached from its context (mother). Then,
+        (i) Head movement reconstruction is applied first,
+        (ii) Floater reconstruction is applied second,
+        (iii) A/A-bar reconstruction.
 
-        (i) The right edge of the phrase structure is explored to locate constituents (at left) with tail-head features
+        (i) Head movement.
+
+        (ii) The right edge of the phrase structure is explored to locate constituents (at left) with tail-head features
         at their heads that are not satisfied. Once found, the constituent is dropped. Dropping is implemented by
         going back to the highest node, walking downwards and looking for the first position that would satisfy the
         tail-features.
 
-        (ii) Walk downwards on the right edge, while locating left heads with the EPP feature. If found, put the
+        (iii) Walk downwards on the right edge, while locating left heads with the EPP feature. If found, put the
         phrase from SPEC into M-buffer. Conversely, if we encounter a head that has a SPEC or COMP feature
         matching with something in M-buffer but missing in the phrase structure, elements are transferred from
         M-buffer into these positions. The result is that phrases are dropped from SPEC/EPP positions into
         positions in which they are lexically selected (either SPEC or COMP).
         """
-
-        if ps.is_primitive():
-            return ps
 
         # Checks intervention
         def memory_intervention(criterial_features):
@@ -673,7 +679,69 @@ class Pcb_parser():
                     return True
             return False
 
-            # Drops all floaters in a structure
+        # Reconstructs head movement
+        def head_movement_reconstruction(ps):
+
+            def drop_head(ps, affix_):
+
+                def drop_condition_for_heads(affix_):
+                    if affix_.get_selector() and (set(affix_.get_selector().get_comps()) & set(affix_.get_cats())):
+                        if '!SPEC:*' not in affix_.features:
+                            return True
+                        else:
+                            if affix_.specifier():
+                                return True
+                            else:
+                                return False
+                        return True
+                    else:
+                        return False
+
+                # --- Main function begins here ---#
+
+                iterator_ = ps
+
+                while iterator_:
+                    iterator_.merge(affix, 'left')  # We try a solution
+                    if drop_condition_for_heads(affix):
+                        return True
+                    else:
+                        affix.remove()
+                        iterator_ = iterator_.walk_downstream()
+                return False
+
+            #--- main function begins here---#
+
+            log(f'\t\t\t!Reconstructing head movement for {ps}.')
+            ps_ = ps
+            top = ps
+            while ps_:
+
+                # Condition for dealing with phrase
+                if ps_.left_const and ps_.left_const.is_primitive() and ps_.left_const.has_affix():
+                    affix = ps_.left_const.get_affix()
+                    if drop_head(ps_.right_const, affix):
+                        ps_.left_const.right_const = None
+                        log(f'\t\t\t\tExtracted head \"{affix}\" and reconstructed it = {ps_.get_top()}')
+                    else:
+                        log(f'\t\t\t\tHead reconstruction failed for {affix}.')
+
+
+                # Condition for dealing with primitive element
+                elif ps_.is_primitive and ps_.has_affix():
+                    affix = ps_.get_affix()
+                    new_ps = ps_ + affix
+                    ps_.right_const = None
+                    top = new_ps
+                    log(f'\t\t\t\tExtracted head \"{affix}\" from {ps_} and created {new_ps}')
+                    if affix.has_affix():
+                        head_movement_reconstruction(affix)
+
+                ps_ = ps_.walk_downstream()
+
+            return top
+
+        # Drops all floaters in a structure
         def drop_floaters(ps):
 
             # Drops one phrase that has been detected as a floater
@@ -694,7 +762,7 @@ class Pcb_parser():
 
                     # Determine if the conditions for T/fin intervention are satisfied
                     if ps_iterator_.sister() and 'T/fin' in ps_iterator_.sister().get_labels():
-                        if Tfin == None:
+                        if not Tfin:
                             Tfin = ps_iterator_.sister().get_head()
                         else:
                             if not ps_iterator_.sister().get_head() == Tfin:
@@ -726,7 +794,7 @@ class Pcb_parser():
             # --- drops all floaters --- #
 
             _ps_iterator = ps.get_top()  # Begin from the top and move downstream
-            log(f'\t\t\t!Operation: Dropping floaters...')
+            log(f'\t\t\t!Dropping floaters...')
             while _ps_iterator:
 
                 floater = None
@@ -846,7 +914,7 @@ class Pcb_parser():
             _ps_iterator = ps
             _ps_last_site = _ps_iterator
 
-            log(f'\t\t\t!Operation: Dropping A-/A-bar movement with Chesi memory buffer.')
+            log(f'\t\t\t!Dropping A-/A-bar movement with Chesi memory buffer.')
             while _ps_iterator:
 
                 # Target primitive heads on our way downstream
@@ -1031,8 +1099,18 @@ class Pcb_parser():
         original_mother = ps.detach()
         memory_buffer = []
         self.operator_counter_ = 0
-        drop_floaters(ps)
-        drop_movement(ps)
+
+        if not ps.is_primitive():
+            ps = head_movement_reconstruction(ps)
+            drop_floaters(ps)
+            drop_movement(ps)
+        elif ps.is_primitive() and ps.has_affix():
+            set_logging(False)
+            ps_ = head_movement_reconstruction(ps.copy())
+            set_logging(True)
+            if self.LF_legibility_test(ps_).all_pass():
+                ps = head_movement_reconstruction(ps)
+
 
         # Restore the links
         if original_mother:
