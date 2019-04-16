@@ -8,3 +8,5 @@ they return sets, many tests are easier to implement by using set intersection. 
 because the functions are cognitive reflexes and do not open up parsing space. I will create a class 'reconstruction' that will take care of these operations. 
 
 3. The way how morphology-lexicon monitors  what are word-internal morphemes is a mess and unintuitive
+
+4. Head movement reconstruction forces me to be more explicit about verb's argument structures, for example, that each intransitive V must have !SPEC:D or !COMP:D, otherwise it will open T{V} as a LF-legible package. The problem is that the  argument structure must be defined by few classes triggering redundancy rules, not listed individually in the lexicon. These verbal classes must be created as features.
