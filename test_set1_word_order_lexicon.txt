@@ -2,36 +2,58 @@ antaa :: anta-#v#-ta LANG:FI
 antanut	:: anta-#v#T LANG:FI
 anta-   :: PF:antaa LF:give CAT:V SPEC:D COMP:D COMP:P LANG:FI
 antoi   :: anta-#v#T/fin LANG:FI
-
+asked	:: ask-#T/fin LANG:EN
+ask-	:: PF:ask LF:ask CAT:V COMP:INF !SPEC:D LANG:EN
+ask		:: PF:ask LF:ask CAT:V COMP:INF !SPEC:D LANG:EN
+did     :: CAT:T/fin PF:did LF:did CAT:AUX LANG:EN
+ei		:: PF:ei LF:not	CAT:Neg/fin	CAT:FIN !SPEC:* !COMP:T LANG:FI
+Fido	:: Fido-#D LANG:EN
+Fido-	:: PF:Fido LF:Fido CAT:N LANG:EN
+give	:: PF:gave LF:gave CAT:V SPEC:D COMP:D -COMP:T/fin SPEC:P LANG:EN
+heidän	:: heidän-#D#gen LANG:FI
+heidän- :: PF:heidän LF:theirs CAT:N CAT:PHI LANG:FI  
+John    :: John-#D
+John-   :: PF:John- -SEM:directional LF:John CAT:N
 käske- ::	PF:käske LF:ask !SPEC:D CAT:V COMP:A/inf LANG:FI
 käski	::	käske-#T/fin LANG:FI
 käskenyt :: käske-#T LANG:FI
-Pekka   :: Pekka-#D#nom LANG:FI
+like-    :: PF:like LF:like CAT:V !COMP:D LANG:EN
+likes   :: like-#v#T/fin LANG:EN
+like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
+malla   :: PF:malla LF:by CAT:ADV LANG:FI
+Mary    :: Mary-#D
+Mary-   :: PF:Mary- CAT:N LF:Mary -SEM:directional
 Merjaa	::	Merjaa-#D#par LANG:FI
 Merjaa-	::	PF:Merjaa CAT:N
-ei		:: PF:ei LF:not	CAT:Neg/fin	CAT:FIN !SPEC:* !COMP:T LANG:FI
-heidän	:: heidän-#D#gen LANG:FI
-heidän- :: PF:heidän LF:theirs CAT:N CAT:PHI LANG:FI  
+not		:: PF:not LF:not CAT:Neg LANG:EN COMP:v COMP:V COMP:INF
 nukkui	:: nukku-#T/fin LANG:FI
 nukku-	:: PF:nukku LF:sleep !SPEC:D CAT:V LANG:FI
 nukkua	:: nukku-#-ta LANG:FI
 nukkunut :: nukku-#T LANG:FI
--ta	::	PF:Ainf LF:to CAT:INF CAT:A/inf PHI:0 LANG:FI
-
-
+Pekka   :: Pekka-#D#nom LANG:FI
+sleeps	::sleep-#T/fin LANG:EN
+sleep   ::PF:sleep LF:sleep CAT:V -COMP:D !SPEC:D LANG:EN
+sleep-	:: PF:sleep LF:sleep CAT:V -COMP:D !SPEC:D LANG:EN
+slowly	:: slow-#ly LANG:EN
+slow-	:: PF:slow LF:slow CAT:A LANG:EN
+ly		:: PF:ly LF:ly CAT:ADV LANG:EN
+-ta		::	PF:Ainf LF:to CAT:INF CAT:A/inf PHI:0 LANG:FI
+to		:: PF:to LF:to CAT:P +SEM:directional LANG:EN
+to.inf	:: PF:to LF:to CAT:INF +PHI LANG:EN
+virtaa  :: virtaa-#T/fin LANG:FI
+virtaa- :: PF:virtaa LF:flow CAT:V !SPEC:D COMP:P -COMP:D -COMP:WH -COMP:T/fin LANG:FI
+virtaa_pro- :: PF:virtaa LF:flow CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D
+virtaamalla :: virtaa_pro-#malla LANG:FI
+virtaamalla.foc :: virtaa_pro-#malla#foc LANG:FI
 
 
 's      :: PF:'s CAT:D LANG:EN
 Gianni-	::	Gianni PF:Gianni CAT:N -SEM:directional LF:Gianni LANG:IT
 Gianni	::	Gianni-#D#3sg LANG:IT
 Gianni.nom 	:: Gianni-#D#nom LF:Gianni LANG:IT
-John    :: John-#D
-John-   :: PF:John- -SEM:directional LF:John CAT:N
 John.nom :: John-#D#nom
 Luisa	::	Luisa-#D LANG:IT
 Luisa-	::	 PF:Luisa CAT:N -SEM:directional LF:Luisa LANG:IT 
-Mary    :: Mary-#D
-Mary-   :: PF:Mary- CAT:N LF:Mary -SEM:directional
 Simon   :: Simon-#D
 Simon-  :: PF:Simon- -SEM:directional LF:Simon CAT:N
 Merja-  :: PF:Merja- CAT:N -SEM:directional LF:Merja LANG:FI
@@ -122,7 +144,6 @@ dice	:: dice-#T/fin LANG:IT
 dice-	:: PF:dice CAT:V SPEC:D COMP:FORCE LANG:IT
 di		:: PF:di CAT:P !COMP:D -EPP LANG:IT
 did.C   :: PF:did LF:did CAT:C/fin CAT:AUX LANG:EN
-did     :: CAT:T/fin PF:did LF:did CAT:AUX LANG:EN
 documentary :: PF:documentary CAT:N LANG:EN
 does    :: T/fin	 PF:does CAT:T/fin CAT:AUX LANG:EN
 does.C :: PF:does CAT:C/fin CAT:AUX LANG:EN
@@ -204,10 +225,6 @@ le		::	PF:le CAT:D LANG:IT
 letto	::	letto-#v LANG:IT
 letto-	::	PF:letto CAT:V COMP:D SPEC:P LANG:IT
 libro	::	libro PF:libro LF:book CAT:N -SEM:directional LANG:IT
-like-    :: PF:like LF:like CAT:V !COMP:D LANG:EN
-like.T	:: like-#v#T/fin LANG:EN
-like		:: like-#v#T/fin LANG:EN
-likes   :: like-#v#T/fin LANG:EN
 live    :: PF:live LF:live CAT:V COMP:P SPEC:D LANG:EN
 lle     :: PF:P(lle) LF:for CAT:P +SEM:directional LANG:FI
 lo		::	PF:lo CAT:D LANG:IT
@@ -216,7 +233,6 @@ luke-	:: PF:luke LF:read CAT:V LANG:FI
 lähellä :: PF:lähellä LF:near CAT:P -PHI LANG:FI
 löysi   :: löytä-#v#T/fin LANG:FI
 löytä-  :: PF:löytä- LF:found CAT:V !COMP:D LANG:FI
-malla   :: PF:malla LF:by CAT:ADV LANG:FI
 mare 	:: PF:mare LF:sea CAT:N LANG:IT
 mere-   :: PF:meri LF:sea CAT:N LANG:FI
 meren   :: mere-#D#asp LANG:FI
@@ -286,9 +302,6 @@ se-	:: PF:se LF:that CAT:D LANG:FI
 sfocia	::	sfocia-#T/fin LANG:IT
 sfocia-		::	PF:sfocia- CAT:V SPEC:P LANG:IT
 sfociare	::	sfocia-#v/pro#-are LANG:IT
-sleeps	::sleep-#T/fin LANG:EN
-sleep    :: sleep-#T/fin LANG:EN
-sleep-	:: PF:sleep LF:sleep CAT:V -COMP:D !SPEC:D LANG:EN
 si_chiede	:: si_chiede-#T/fin LANG:IT
 si_chiede- 	:: PF:si_chiede CAT:V !COMP:iWH LANG:IT
 sitä		:: PF:sitä LF:it CAT:D LANG:FI
@@ -308,7 +321,6 @@ this	::	PF:this LF:this CAT:D LANG:EN
 teoria- :: PF:teoria LF:theory CAT:N SPEC:D COMP:D LANG:FI
 teoria	:: teoria-#D#nom LANG:FI
 teorian :: teoria-#D#asp LANG:FI
-to		:: PF:to LF:to CAT:P +SEM:directional LANG:EN
 towards :: PF:towards LF:towards CAT:P +SEM:directional LANG:EN
 topic	:: PF:topic LF:topic CAT:N LANG:EN
 tu		:: tu-#D LANG:IT
@@ -319,11 +331,6 @@ trova	:: trova-#v#T/fin LANG:IT
 trova- 	:: PF:trova CAT:V LANG:IT
 una	:: PF:una CAT:D LANG:IT
 verso :: PF:verso CAT:P LANG:IT
-virtaa  :: virtaa-#T/fin LANG:FI
-virtaa- :: PF:virtaa LF:flow CAT:V !SPEC:D COMP:P -COMP:D -COMP:WH -COMP:T/fin LANG:FI
-virtaa_pro- :: PF:virtaa LF:flow CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D
-virtaamalla :: virtaa_pro-#malla LANG:FI
-virtaamalla.foc :: virtaa_pro-#malla#foc LANG:FI
 visita :: PF:visita LF:visit CAT:N LANG:IT
 voters	:: PF:voters LF:voters CAT:N LANG:EN
 väite.N :: PF:väite LF:claim CAT:N COMP:FORCE LANG:FI

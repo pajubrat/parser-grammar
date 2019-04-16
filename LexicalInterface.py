@@ -188,7 +188,7 @@ class LexicalInterface:
             if Non_Finite_Agreement and not 'CAT:FORCE' in features and not 'CAT:D' in features: # D does not phi-agree, hence it belongs to the second group
                 features.add('SPEC:*')
             else:
-                if not 'CAT:uWH' in features and not 'CAT:uR' in features:
+                if not '+PHI' in features and not 'CAT:uWH' in features and not 'CAT:uR' in features:
                     features.add('-SPEC:*')
                     features.add('-PHI')
 

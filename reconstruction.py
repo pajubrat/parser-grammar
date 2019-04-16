@@ -318,11 +318,12 @@ class Reconstruction():
     def fill_spec_from_memory(self, h):
 
         target_const = None
-        if h.mother:
+        if h.mother and h.is_left():
             ps = h.mother
         else:
             ps = h
 
+        # If SPEC is missing...
         if ps.sister() and ps.sister().is_primitive():
             # Select the first possible Spec constituent from memory buffer
             for const in self.memory_buffer:
