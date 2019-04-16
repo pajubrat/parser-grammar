@@ -2,7 +2,7 @@
 from support import log
 from LF import LF
 
-major_category = {'N', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM'}
+major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM'}
 
 class PhraseStructure:
 
@@ -223,6 +223,20 @@ class PhraseStructure:
             self.mother = None
 
         return
+
+    def get_affix_list(self):
+        lst = [self]
+        iterator_ = self
+
+        while iterator_:
+            if iterator_.right_const:
+                iterator_ = iterator_.right_const
+                lst.append(iterator_)
+            else:
+                iterator_ = None
+
+        return lst
+
 
     def get_affix(self):
         if not self.left_const and self.is_primitive():
@@ -644,9 +658,7 @@ class PhraseStructure:
         here because some of the empirical details are still unclear.
         """
         head = self.get_head()
-        if 'CAT:T/fin' in head.features or \
-            'CAT:C/fin' in head.features or \
-            'CAT:FORCE' in head.features:
+        if 'CAT:FIN' in head.features:
             return True
         else:
             return False

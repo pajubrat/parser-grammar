@@ -12,6 +12,7 @@ from support import set_logging, log
 import logging
 import time
 from LanguageGuesser import LanguageGuesser
+from context import Context
 
 parse_list = []
 t = time.time()
@@ -21,7 +22,6 @@ test_set_name = 'test_set1_word_order.txt'
 lexicon_file_name = test_set_name[:-4] + '_lexicon.txt'
 log_file_name = test_set_name[:-4] + '_log.txt'
 results_file_name = test_set_name[:-4] + '_results.txt'
-
 ug_morphemes = 'ug_morphemes.txt'
 redundancy_rules = 'redundancy_rules.txt'
 
@@ -53,10 +53,12 @@ if plus_sentences:
 parsers = {}
 lang_guesser = LanguageGuesser(lexicon_file_name)
 for language in lang_guesser.languages:
-    parsers[language] = Pcb_parser(lexicon_file_name,
-                                   ug_morphemes_file=ug_morphemes,
-                                   redundancy_rules_file=redundancy_rules,
-                                   language=language)
+    context = Context()
+    context.lexicon_file_name = lexicon_file_name
+    context.ug_morpheme_file = ug_morphemes
+    context.redundancy_rule_file = redundancy_rules
+    context.language = language
+    parsers[language] = Pcb_parser(context)
 
 logging.basicConfig(level=logging.INFO, filename=log_file_name, filemode='w', format='%(message)s')
 # Parses all sentences in parse_list and shows the results

@@ -12,6 +12,7 @@ T/fin   :: CAT:T/fin PF:T LF:T
 v       :: CAT:v PF:v LF:v
 v/pro	:: CAT:v/pro PF:v/pro LF:pro
 C/fin   :: CAT:C/fin PF:C LF:C/fin
+T		:: CAT:T PF:T LF:T
 
 # Infinitivals
 # INF is generic
@@ -51,4 +52,4 @@ Q		:: - CAT:Q
 
 # This is not correct characterization of the genitive (correct will be TAIL:CAT:PHI, generalized phi-probe)
 # gen     :: - TAIL:CAT:D
-gen		:: TAIL:CAT:A/inf
+gen		:: - TAIL:PHI:0,!COMP:*

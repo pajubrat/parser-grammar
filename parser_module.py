@@ -3,20 +3,20 @@ from LexicalInterface import LexicalInterface
 from LF import LF
 from operator import itemgetter
 from reconstruction import Reconstruction
+from context import Context
 
 # Parser-Grammar
 # 2019
 # V. 1.02
 
 class Pcb_parser():
-    def __init__(self, lexicon_file, ug_morphemes_file='ug_morphemes.txt',
-                 redundancy_rules_file='redundancy_rules.txt', language='LANG:EN'):
+    def __init__(self, context):
+
+        # Contextual variables (language etc.)
+        self.context = context
 
         # All results (analyses)
         self.result_list = []
-
-        # Access to the lexicon
-        self.lexical_access = LexicalInterface(redundancy_rules_file)
 
         # Number of lexical ambiguities detected (support function)
         self.number_of_ambiguities = 0
@@ -37,8 +37,10 @@ class Pcb_parser():
         # index for name provider, for output reasons (chain identification)
         self.name_provider_index = 0
 
-        self.lexical_access.load_lexicon(lexicon_file, language)
-        self.lexical_access.load_lexicon(ug_morphemes_file, language, combine=True)
+        # Access to the lexicon
+        self.lexical_access = LexicalInterface(self.context.redundancy_rules_file)
+        self.lexical_access.load_lexicon(self.context.lexicon_file, context.language)
+        self.lexical_access.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
 
     # Preparatory steps.
     def parse(self, lst):
@@ -96,7 +98,7 @@ class Pcb_parser():
         if index == len(lst):
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
             log('\t>>>\t' + f'Trying candidate parse ' + ps.illustrate() + ' ('+str(self.number_of_solutions_tried)+'.)')
-            log('\t\tReversing movement.')
+            log('\t\tReconstructing...')
             ps_ = self.reconstruct(ps)
             log('\t\t\t= ' + ps_.illustrate())
             log(f'\t\tChecking LF-interface conditions.')
@@ -130,7 +132,6 @@ class Pcb_parser():
                 log('\n\t\tTrying to find other solutions...')
             # This return will send the parser to an unexplored path in the recursive parse tree
             return
-
         # Process next word if exists
         else:
 
@@ -187,14 +188,15 @@ class Pcb_parser():
 
                         # Test each licit adjunction site in the order of ranking
                         for i, site in enumerate(adjunction_sites, start=1):
-                            ps_ = ps.get_top().copy()
+                            ps_ = ps.get_top().copy()   # We copy the phrase structure first to create clean branch
                             if site.get_bottom_affix().internal:
                                 log(f'\t\tExploring solution number ({i}) =' + f'[{site}*{lex_decomposed.get_pf()}]')
-                                new_ps = site * lex_decomposed  # Sink
+                                site_ = ps_[ps.index(site)]
+                                new_ps = site_ * lex_decomposed
                             else:
-                                site_ = self.reconstruct(ps_[ps.index(site)])
-                                new_ps = site_ + lex_decomposed  # Merge
                                 log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lex_decomposed.get_pf()}]')
+                                site_ = self.reconstruct(ps_[ps.index(site)])
+                                new_ps = site_ + lex_decomposed
                             self.__first_pass_parse(new_ps, lst_branched, index + 1)
                             if self.exit:
                                 break
@@ -299,8 +301,8 @@ class Pcb_parser():
 
         These conditions may be in conflict, in which case ranking is based on their combined input. The current
         algorithm weights each node on the basis of (i-vii) and then ranks them accordingly.
-
         """
+
         def get_size(ps):
             size_ = 1
             if ps.left_const:
@@ -388,26 +390,6 @@ class Pcb_parser():
             # Check if h is primitive (takes a complement)
             if site.is_primitive():
 
-                # . . . search through the categorical features of the new word
-                for f in word_cats:
-
-                    # Check if H selects w and if yes, prioritize this solution
-                    if f in site.for_parsing(site.get_comps()):
-                        priority = priority + priority_base + 100
-                        log(f'\t\t\t\tPrioritize [{site.get_pf()} {word_pf}] due to complement selection for [' + f + ']')
-                        avoid_set.clear()
-
-                    # ... if f cannot be merged to the complement, avoid this solution
-                    if f in site.for_parsing(site.get_not_comps()):
-                        priority = priority + priority_base - 100
-                        log(f'\t\t\t\tAvoid [{site.get_cats_string()} {word_pf}] due to complement selection against [' + f + ']')
-                        avoid_set.add(site)
-
-                if not LF.semantic_match(site, w):
-                    priority = priority + priority_base - 100
-                    log(f'\t\t\t\tAvoid [{site},{w}] solution due to semantic mismatch.')
-                    avoid_set.add(site)
-
                 # Check if the solution violates tailing agreement and if yes, avoid
                 # Check that the new constituent has tailing features
                 if word_tail_set:
@@ -418,6 +400,28 @@ class Pcb_parser():
                         log(f'\t\t\t\tAvoid [{site.get_pf()} {word_pf}] due to local agreement failure.')
                         avoid_set.add(site)
                     test_word.remove()
+
+                # Evaluation Comp selection for all morphemes inside the site
+                for m in site.get_affix_list():
+                    # . . . search through the categorical features of the new word
+                    for f in word_cats:
+
+                        # Check if H selects w and if yes, prioritize this solution
+                        if f in m.for_parsing(m.get_comps()):
+                            priority = priority + priority_base + 100
+                            log(f'\t\t\t\tPrioritize [{m.get_pf()} {word_pf}] due to complement selection for [' + f + ']')
+                            avoid_set.clear()
+
+                        # ... if f cannot be merged to the complement, avoid this solution
+                        if f in m.for_parsing(m.get_not_comps()):
+                            priority = priority + priority_base - 100
+                            log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection against [' + f + ']')
+                            avoid_set.add(site)
+
+                    if not LF.semantic_match(m, w):
+                        priority = priority + priority_base - 100
+                        log(f'\t\t\t\tAvoid [{site},{w}] solution due to semantic mismatch.')
+                        avoid_set.add(site)
 
             # Case 5. LF-legibility violations
             # We don't check primitive "left branch phases"
@@ -491,25 +495,6 @@ class Pcb_parser():
             log(f'\t\t\t{i}. [{site}; {word_pf}]')
         return adjunction_sites
 
-    # This will promote a phi set (if any) into tail features
-    def promote_phi_set(self, ps):
-        """
-        Promotes the phi-set into the status of a tail feature.
-
-        An argument DP can be floated by allowing its phi-features to function as tail-features. When this happens,
-        the DP will function like an adverb that tries to link with a functional element containing those phi-
-        features. Intuitively, it links DPs with c-commanding heads that share their phi-features. This function
-        must be scrutinized later when we add phi-feature mechanisms more generally.
-        """
-
-        if ps.get_phi_set():
-            new_tail_feature_list = list(ps.get_phi_set())
-            new_tail_feature = f'TAIL:{",".join([str(f) for f in sorted(new_tail_feature_list)])},!COMP:*'
-            ps.features.add(new_tail_feature)
-            return True
-        else:
-            return False
-
     def transfer_to_LF(self, ps):
         """
         Transfers the syntactic phrase structure into the conceptual-intentional system through the LF-interface.
@@ -573,7 +558,7 @@ class Pcb_parser():
     def reconstruct(self, ps):
         original_mother = ps.mother
         ps.detach()
-        R = Reconstruction()
+        R = Reconstruction(self.context)
         ps = R.reconstruct(ps)
         if original_mother:
             ps.mother = original_mother
