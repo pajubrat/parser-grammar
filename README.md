@@ -5,3 +5,5 @@ I will type here various things I encountered while working with v. 1.01, mainly
 they return sets, many tests are easier to implement by using set intersection. I think all conditions should be implemented in terms of set operations if possible -- but right now I don't remember if there was some reason to use sets.
 
 2. The way how morphology-lexicon monitors  what are word-internal morphemes is a mess and unintuitive
+
+3. Should we replace all merge statements with the + notation? Is there are problem here? I would like to do it like an algebra.
