@@ -1,10 +1,10 @@
 BC parser v. 0.9
-2019-04-17 16:20:43.982582
+2019-04-17 22:10:21.913188
 Test sentences from file "test_set1_word_order.txt".
 Logs into file "test_set1_word_order_log.txt.
 Lexicon from file "test_set1_word_order_lexicon.txt".
 1
-['Pekka=FOC', 'antoi', 'kirjan', 'Merjalle']
-[<D Pekka>:1 [T [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
-'D Pekka T __v give D book for D Merja .'
-Failed parses 0, Merge operations:13, Move operations: 4
+['antoi=FOC', 'Pekka', 'kirjan', 'Merjalle']
+[[C [[D Pekka]:1 [T [(DP):1 [v [antaa [D kirja]]]]]]] [P(lle) [D Merja-]]]
+'C/fin D Pekka T __v give D book for D Merja .'
+Failed parses 0, Merge operations:14, Move operations: 3
