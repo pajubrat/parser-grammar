@@ -3,8 +3,8 @@ antanut	:: anta-#v#T LANG:FI
 anta-   :: PF:antaa LF:give CAT:V SPEC:D COMP:D COMP:P LANG:FI
 antoi   :: anta-#v#T/fin LANG:FI
 asked	:: ask-#T/fin LANG:EN
-ask-	:: PF:ask LF:ask CAT:V COMP:INF !SPEC:D LANG:EN
-ask		:: PF:ask LF:ask CAT:V COMP:INF !SPEC:D LANG:EN
+ask-	:: PF:ask LF:ask CAT:V COMP:INF UNERG LANG:EN
+ask		:: PF:ask LF:ask CAT:V COMP:INF UNERG !SPEC:D LANG:EN
 did     :: CAT:T/fin PF:did LF:did CAT:AUX LANG:EN
 ei		:: PF:ei LF:not	CAT:Neg/fin	CAT:FIN !SPEC:* !COMP:T LANG:FI
 Fido	:: Fido-#D LANG:EN
@@ -14,7 +14,7 @@ heidän	:: heidän-#D#gen LANG:FI
 heidän- :: PF:heidän LF:theirs CAT:N CAT:PHI LANG:FI  
 John    :: John-#D
 John-   :: PF:John- -SEM:directional LF:John CAT:N
-käske- ::	PF:käske LF:ask !SPEC:D CAT:V COMP:A/inf LANG:FI
+käske- ::	PF:käske LF:ask UNERG CAT:V COMP:A/inf LANG:FI
 käski	::	käske-#T/fin LANG:FI
 käskenyt :: käske-#T LANG:FI
 like-    :: PF:like LF:like CAT:V !COMP:D LANG:EN
@@ -27,12 +27,12 @@ Merjaa	::	Merjaa-#D#par LANG:FI
 Merjaa-	::	PF:Merjaa CAT:N
 not		:: PF:not LF:not CAT:Neg LANG:EN COMP:v COMP:V COMP:INF
 nukkui	:: nukku-#T/fin LANG:FI
-nukku-	:: PF:nukku LF:sleep !SPEC:D CAT:V LANG:FI
+nukku-	:: PF:nukku LF:sleep UNERG CAT:V LANG:FI
 nukkua	:: nukku-#-ta LANG:FI
 nukkunut :: nukku-#T LANG:FI
 Pekka   :: Pekka-#D#nom LANG:FI
 sleeps	::sleep-#T/fin LANG:EN
-sleep   ::PF:sleep LF:sleep CAT:V -COMP:D !SPEC:D LANG:EN
+sleep   ::PF:sleep LF:sleep CAT:V UNERG -COMP:D !SPEC:D LANG:EN
 sleep-	:: PF:sleep LF:sleep CAT:V -COMP:D !SPEC:D LANG:EN
 slowly	:: slow-#ly LANG:EN
 slow-	:: PF:slow LF:slow CAT:A LANG:EN
@@ -41,7 +41,7 @@ ly		:: PF:ly LF:ly CAT:ADV LANG:EN
 to		:: PF:to LF:to CAT:P +SEM:directional LANG:EN
 to.inf	:: PF:to LF:to CAT:INF +PHI LANG:EN
 virtaa  :: virtaa-#T/fin LANG:FI
-virtaa- :: PF:virtaa LF:flow CAT:V !SPEC:D COMP:P -COMP:D -COMP:WH -COMP:T/fin LANG:FI
+virtaa- :: PF:virtaa LF:flow CAT:V UNERG COMP:P -COMP:D -COMP:WH -COMP:T/fin LANG:FI
 virtaa_pro- :: PF:virtaa LF:flow CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D
 virtaamalla :: virtaa_pro-#malla LANG:FI
 virtaamalla.foc :: virtaa_pro-#malla#foc LANG:FI
@@ -263,6 +263,8 @@ picture ::  PF:picture LF:picture CAT:N LANG:EN
 poika	:: poika-#D#nom LANG:FI
 poika-	:: PF:poika LF:boy CAT:N LANG:FI
 prima	:: prima PF:prima CAT:ADV COMP:P LANG:IT
+putosi	::	puto-#T/fin	LANG:FI
+puto-	::	PF:puto LF:fell CAT:V UNACC LANG:FI
 quale	::	quale PF:quale CAT:D CAT:WH LANG:IT
 qualcosa :: qualcosa-#D LANG:IT
 qualcosa- :: PF:qualcosa CAT:N CAT:PHI LANG:IT

@@ -92,6 +92,8 @@ for sentence in parse_list:
         log(f'Using lexicon "{lexicon_file_name}".')
         log(f'Language appears to be {lang}')
         P.number_of_solutions_tried = 0
+        P.number_of_Moves = 0
+        P.number_of_Merges = 0
         P.parse(sentence)
         set_logging(True)
         if len(P.result_list) == 0:
@@ -105,12 +107,10 @@ for sentence in parse_list:
             for parse in P.result_list:
                 results_file.write(f'{parse}\n')
                 results_file.write('\''+parse.gloss()+'.\'\n')
-                results_file.write('Complexity: Failed parses ' + str(P.number_of_solutions_tried - 1) + ', Merge operations required ' + str(P.number_of_operations) + '\n')
+                results_file.write('Failed parses ' + str(P.number_of_solutions_tried - 1) + ', Merge operations:' +
+                                   str(P.number_of_Merges) + ', Move operations: ' + str(P.number_of_Moves) + '\n')
     else:
         results_file.write('\n'+' '.join(map(str, sentence))+'\n')
 
 print(f'took: {time.time() - t}s.')
-#if len(not_parsed) > 0:
-#    print(str(len(not_parsed)) + ' sentences were judged as ungrammatical:')
-#    for s in not_parsed:
-#        print(s)
+

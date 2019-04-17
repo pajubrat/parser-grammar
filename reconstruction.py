@@ -8,6 +8,7 @@ class Reconstruction():
         self.name_provider_index = 0
         self.memory_buffer = []
         self.context = context
+        self.number_of_Moves = 0
 
         # Access to the lexicon
         self.lexical_access = LexicalInterface(context.redundancy_rules_file)
@@ -37,13 +38,15 @@ class Reconstruction():
         positions in which they are lexically selected (either SPEC or COMP).
         """
 
+        self.number_of_Moves = 0
+
         if ps.is_primitive() and ps.has_affix():
             set_logging(False)
             if self.reconstruct_head_movement(ps.copy()).LF_legibility_test().all_pass():
                 new = self.reconstruct_head_movement(ps)
                 set_logging(True)
                 log(f'\t\t\t{ps} was opened.')
-                return new
+                return new, self.number_of_Moves
             else:
                 set_logging(True)
                 log(f'\t\t\t{ps} cannot be opened.')
@@ -51,7 +54,7 @@ class Reconstruction():
             self.reconstruct_head_movement(ps)
             self.reconstruct_floaters(ps)
             self.reconstruct_phrasal_movement(ps)
-        return ps
+        return ps, self.number_of_Moves
 
     def reconstruct_head_movement(self, ps):
         log(f'\t\t\t!Reconstructing head movement for {ps}.')
@@ -88,6 +91,7 @@ class Reconstruction():
             floater = self.detect_floater(_ps_iterator)
             if floater:
                 self.drop_floater(floater, ps)
+                self.number_of_Moves += 1
             _ps_iterator = _ps_iterator.walk_downstream()
 
         log(f'\t\t\t\t= ' + ps.illustrate())
@@ -288,6 +292,7 @@ class Reconstruction():
         # We add EPP required features
         new_h.features = self.lexical_access.apply_parameters(
             self.lexical_access.apply_redundancy_rules(new_h.features))
+
         return new_h
 
     # This will provide unique names when chains are formed
@@ -338,6 +343,7 @@ class Reconstruction():
                     log(f'\t\t\t\tDropping constituent {target_const} from memory buffer into Spec of ' +
                         f'{h}')
                     self.memory_buffer.remove(target_const)
+                    self.number_of_Moves += 1
                 else:
                     # If there was a tail-head violation, dropping is cancelled
                     ps.geometrical_sister().remove()
@@ -377,7 +383,6 @@ class Reconstruction():
                             #...we reconstruct  A-movement (a version of phi-agreement)
                             self.A_reconstruct(_ps_spec_iterator.sister())
 
-
                     # If we already have processed one Spec, then we are gonna need to spawn phantom heads
                     if spec_found:
 
@@ -405,7 +410,7 @@ class Reconstruction():
                         # If its just one Spec, copy criterial features
                         spec_found = True  # We register that one head has been found
                         if criterial_features:
-                            log(f'\t\t\t\tCriterial features {criterial_features} copied to {h_labels}')
+                            log(f'\t\t\t\tCriterial features {criterial_features} copied to {h.get_labels()}')
                             for f in criterial_features:
                                 # Create formal copies of features
                                 h.features.add('CAT:u' + f)
@@ -447,6 +452,7 @@ class Reconstruction():
 
                 if target_const:
                     h.merge(target_const.transfer(self.babtize()), 'right')
+                    self.number_of_Moves += 1
                     log(f'\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
                         + f') from memory buffer into Comp of {h.get_labels()}.')
                     log(f'\t\t\t\tResult {h.get_top()}')
@@ -473,6 +479,7 @@ class Reconstruction():
                     + f') from memory buffer into Comp of {h.get_labels()} '
                     f'due to the presence of mismatching complement {h.complement()}.')
                 h.complement().merge(target_const.transfer(self.babtize()), 'left')
+                self.number_of_Moves += 1
                 # The mismatching complement will be demoted to floater status
                 if h.complement().right_const.is_adjoinable():
                     log('\t\t\t\tThe mismatching complement will be trasformed into floater adjunct.')
@@ -515,8 +522,10 @@ class Reconstruction():
                 log(f'\t\t\t\t{ps} will undergo A-reconstruction (form of Agree).')
                 if not ps.sister().is_primitive():
                     ps.sister().right_const.merge(ps.transfer(self.babtize()), 'left')
+                    self.number_of_Moves += 1
                 else:
                     ps.sister().merge(ps.transfer(self.babtize()), 'right')
+                    self.number_of_Moves += 1
 
     def detect_floater(self, _ps_iterator):
         # Check if a phrase at the left requires reconstruction
@@ -553,7 +562,7 @@ class Reconstruction():
                 if 'ADV' in floater.get_labels() and not _ps_iterator.right_const.adjunct:
                     self.create_adjunct(floater)
 
-    # Drops one floater that is targeted fro dropping
+    # Drops one floater that is targeted for dropping
     def drop_floater(self, floater, ps):
 
         Tfin = None

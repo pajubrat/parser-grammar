@@ -3,7 +3,7 @@ from LexicalInterface import LexicalInterface
 from LF import LF
 from operator import itemgetter
 from reconstruction import Reconstruction
-from context import Context
+from morphology import Morphology
 
 # Parser-Grammar
 # 2019
@@ -25,10 +25,11 @@ class Pcb_parser():
         self.result_matrix = [[] for i in range(50)]
 
         # Local memory buffer for inflectional affixes
-        self.memory_buffer_inflectional_affixes = []
+        self.memory_buffer_inflectional_affixes = set()
 
         # This counts the number of computational operations (support function)
-        self.number_of_operations = 1
+        self.number_of_Merges = 1
+        self.number_of_Moves = 1
         self.number_of_solutions_tried = 0
 
         # Stops parsing when the first solution is available
@@ -38,9 +39,9 @@ class Pcb_parser():
         self.name_provider_index = 0
 
         # Access to the lexicon
-        self.lexical_access = LexicalInterface(self.context.redundancy_rules_file)
-        self.lexical_access.load_lexicon(self.context.lexicon_file, context.language)
-        self.lexical_access.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
+        self.lexicon = LexicalInterface(self.context.redundancy_rules_file)
+        self.lexicon.load_lexicon(self.context.lexicon_file, context.language)
+        self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
 
     # Preparatory steps.
     def parse(self, lst):
@@ -52,8 +53,8 @@ class Pcb_parser():
         """
         # Reset parser state
         self.result_list = []
-        self.memory_buffer_inflectional_affixes = []
-        self.number_of_operations = 0
+        self.memory_buffer_inflectional_affixes = set()
+        self.number_of_Merges = 0
         self.number_of_ambiguities = 0
         reset_number_of_operations()
         self.name_provider_index = 0
@@ -88,11 +89,11 @@ class Pcb_parser():
             return
 
         set_logging(True)
-        self.number_of_operations = self.number_of_operations + 1
+        self.number_of_Merges = self.number_of_Merges + 1
 
         log(f'\t\t\t={ps}')
 
-        log('\n'+str(self.number_of_operations)+ '.')
+        log('\n' + str(self.number_of_Merges) + '.')
 
         # Test if we have reached at the end of the input list
         if index == len(lst):
@@ -107,14 +108,16 @@ class Pcb_parser():
             # The three tests below check for LF-interface conditions
             if ps_.LF_legibility_test().all_pass():
                 if LF.final_tail_check(ps_) and self.transfer_to_LF(ps_):
-                    log(f'!--->\t\tTests passed (with {self.number_of_operations}/'
+                    log(f'!--->\t\tTests passed (with {self.number_of_Merges}/'
                         f'{get_number_of_operations()} operations) <------------------------------------')
                     self.result_list.append(ps_)
                     ps_.tidy_names(1)
                     print(chr(96 + len(self.result_list)) + '. ' + ps_.show())
                     print(ps_.spellout())
                     print(ps_.illustrate_spellout())
-                    print(ps_.illustrate()+'\n')
+                    print(ps_.illustrate())
+                    print('Merges: '+str(self.number_of_Merges)+', Moves: ' + str(self.number_of_Moves)
+                          + ', Solutions tried: ' + str(self.number_of_solutions_tried) + '\n')
                     log_result(ps_)
                     log(ps_.show_primitive_constituents())
                     log(ps_.show_all_vectors())
@@ -132,71 +135,71 @@ class Pcb_parser():
                 log('\n\t\tTrying to find other solutions...')
             # This return will send the parser to an unexplored path in the recursive parse tree
             return
-        # Process next word if exists
+        # Process next word
         else:
+            # Initialize morphology
+            m = Morphology(self.context)
+
+            # Extract prosodic information
+            word, prosodic_features = m.extract_prosody(lst[index])
 
             # Sort out lexical ambiguity
-            disambiguated_word_list = self.lexical_access.access_lexicon(lst[index])
+            disambiguated_word_list = self.lexicon.access_lexicon(word)
             if len(disambiguated_word_list) > 1:
                 log('\t\tAmbiguous lexical item ' + str(disambiguated_word_list) + 'detected.')
 
             for lexical_constituent in disambiguated_word_list:
-
-                # Morphological parser
                 lst_branched = lst.copy()
-                lex_decomposed = self.morphological_parse(lexical_constituent, lst_branched, index)
 
-                # Inflectional suffixes are stored as features to be used in connection with the next word
-                if lex_decomposed.morphology == '':
-                    log(f'\t\tStoring inflectional feature {sorted(lex_decomposed.features)} into working memory.')
-                    # Unload the features to memory
-                    for feature in lex_decomposed.features:
-                        self.memory_buffer_inflectional_affixes.append(feature)
+                # 1. Morphological decomposition into input list
+                lexical_item, lst_branched = m.morphological_parse(lexical_constituent, lst_branched, index)
 
+                # 2. Add prosodic features
+                lexical_item.features = lexical_item.features | prosodic_features
+
+                # 3. Read inflectional features (if any) and store them into memory buffer, then consume next word
+                inflection = m.get_inflection(lexical_item)
+                if inflection:
+                    self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
+                    self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(prosodic_features)
                     log('\n\t\tConsume \"' + lst_branched[index + 1] + '\"\n')
                     if ps:
                         self.__first_pass_parse(ps.copy(), lst_branched, index + 1)
                     else:
                         self.__first_pass_parse(None, lst_branched, index + 1)
 
-                # Process morpheme (inflectional features are processed above)
+                # 3. Process next morpheme
                 else:
+                    # 3.1 Unload inflectional suffixes from the memory into the morpheme as features
+                    lexical_item = m.set_inflection(lexical_item, self.memory_buffer_inflectional_affixes)
+                    self.memory_buffer_inflectional_affixes = set()
 
-                    # Unload inflectional suffixes from the memory first
-                    if self.memory_buffer_inflectional_affixes:
-                        log('\n\t\tAdding inflectional features to ' + lex_decomposed.get_pf())
-                        lex_decomposed.features = \
-                            lex_decomposed.features = lex_decomposed.features.union(set(self.memory_buffer_inflectional_affixes))
-                        lex_decomposed.features = self.lexical_access.create_combined_categories(lex_decomposed.features)
-                        self.memory_buffer_inflectional_affixes = []
-                        log(f'\t\t= {sorted(lex_decomposed.features)}')
-
-                    # If there is no prior phrase structure, we create it by using the first word
+                    # 3.2 If there is no prior phrase structure, we create it by using the first word
                     if not ps:
-                        self.__first_pass_parse(lex_decomposed.copy(), lst_branched, index + 1)
+                        self.__first_pass_parse(lexical_item.copy(), lst_branched, index + 1)
 
-                    # Merge the new word (disambiguated lexical item) to the existing phrase structure
+                    # 3.3 Merge the new word (disambiguated lexical item) to the existing phrase structure
                     else:
-                        log('\n\t\tConsume \"' + lex_decomposed.get_pf() + '\"\n')
-                        log('\t\t' + ps.illustrate() + ' + ' + lex_decomposed.get_pf())
+                        log('\n\t\tConsume \"' + lexical_item.get_pf() + '\"\n')
+                        log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_pf())
 
                         # --------- This is the core parsing functionality ----------------------------------------
                         # -----------------------------------------------------------------------------------------
 
                         # Get the merge sites
-                        adjunction_sites = self.ranking(self.filter(ps, lex_decomposed), lex_decomposed)
+                        adjunction_sites = self.ranking(self.filter(ps, lexical_item), lexical_item)
 
                         # Test each licit adjunction site in the order of ranking
                         for i, site in enumerate(adjunction_sites, start=1):
                             ps_ = ps.get_top().copy()   # We copy the phrase structure first to create clean branch
                             if site.get_bottom_affix().internal:
-                                log(f'\t\tExploring solution number ({i}) =' + f'[{site}*{lex_decomposed.get_pf()}]')
+                                log(f'\t\tExploring solution number ({i}) =' + f'[{site}*{lexical_item.get_pf()}]')
                                 site_ = ps_[ps.index(site)]
-                                new_ps = site_ * lex_decomposed
+                                new_ps = site_ * lexical_item
                             else:
-                                log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lex_decomposed.get_pf()}]')
+                                log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lexical_item.get_pf()}]')
                                 site_ = self.reconstruct(ps_[ps.index(site)])
-                                new_ps = site_ + lex_decomposed
+                                new_ps = site_ + lexical_item
                             self.__first_pass_parse(new_ps, lst_branched, index + 1)
                             if self.exit:
                                 break
@@ -510,42 +513,6 @@ class Pcb_parser():
         lf = LF()
         return(lf.transfer_to_LF(detached(ps.copy())))
 
-    def morphological_parse(self, lexical_constituent, lst_branched, index):
-        """
-        Operation performs morphological parsing for word w.
-
-        Morpheme boundaries must be marked by # in the input. The function separates the morphemes into a list L and
-        substitutes the original multi-morphemic word w with the inverse of the resulting list L in the input string,
-        (w1, w2, a#b#c, w3) = (v1, v2, v3, c, b, a, v3), and puts the index to point 'c'.
-
-        """
-
-        # Morphological symbols
-        # '#*   internal morpheme boundaries from the lexicon, will be removed
-        # '$'   internal morpheme boundary, as marked by the morphological parser
-        #       In syntax, $ corresponds to 'needs a host word, grab local head.'
-
-        # Create a list of morphemes
-        word = lexical_constituent.morphology
-
-        #  All word-internal morphemes will begin with symbol $ (= phonological spell-out feature)
-        word = word.replace("#", "#$")
-        lst_ = word.split("#")
-
-        # If we had more than one morpheme, the list will substitute the original multimorphemic word
-        if len(lst_) > 1:
-            log('\n' + f'\t\tNext word contains multiple morphemes ' + str(lst_[::-1]))
-
-            del lst_branched[index]
-            for w_ in lst_:
-                lst_branched.insert(index, w_)
-
-            # Take the first morpheme discovered and continues parsing from that
-            return self.lexical_access.access_lexicon(lst_branched[index])[0]
-        else:
-            # If there was only one morpheme, we return that
-            return lexical_constituent
-
     # This function checks if phrase structure XP cannot be broken off from its selector H (H-XP) because
     # H and X were part of the same word. It is used to prevent right adjunction to XP
     def is_word_internal(self, XP):
@@ -554,12 +521,13 @@ class Pcb_parser():
         else:
             return False
 
-    # Reverses all movement
+    # Reverses all movement inside left branches
     def reconstruct(self, ps):
         original_mother = ps.mother
         ps.detach()
         R = Reconstruction(self.context)
-        ps = R.reconstruct(ps)
+        ps, ops = R.reconstruct(ps)
+        self.number_of_Moves += ops
         if original_mother:
             ps.mother = original_mother
 
