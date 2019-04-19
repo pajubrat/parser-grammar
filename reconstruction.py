@@ -54,10 +54,11 @@ class Reconstruction():
             self.reconstruct_head_movement(ps)
             self.reconstruct_floaters(ps)
             self.reconstruct_phrasal_movement(ps)
+
         return ps, self.number_of_Moves
 
     def reconstruct_head_movement(self, ps):
-        log(f'\t\t\t!Reconstructing head movement for {ps}.')
+        log(f'\t\t\tReconstructing head movement for {ps}.')
         ps_ = ps
         top = ps
 
@@ -83,9 +84,33 @@ class Reconstruction():
 
         return top
 
+    def drop_head(self, ps, affix_):
+        def drop_condition_for_heads(affix_):
+            if affix_.get_selector() and (set(affix_.get_selector().get_comps()) & set(affix_.get_cats())):
+                if '!SPEC:*' not in affix_.features:
+                    return True
+                else:
+                    if affix_.specifier():
+                        return True
+                    else:
+                        return False
+            else:
+                return False
+
+        iterator_ = ps
+
+        while iterator_:
+            iterator_.merge(affix_, 'left')  # We try a solution
+            if drop_condition_for_heads(affix_):
+                return True
+            else:
+                affix_.remove()
+                iterator_ = iterator_.walk_downstream()
+        return False
+
     def reconstruct_floaters(self, ps):
         _ps_iterator = ps.get_top()  # Begin from the top and move downstream
-        log(f'\t\t\t!Dropping floaters...')
+        log(f'\t\t\tDropping floaters...')
 
         while _ps_iterator:
             floater = self.detect_floater(_ps_iterator)
@@ -98,7 +123,7 @@ class Reconstruction():
 
     # Reverse-engineers A-movement and A-bar movement and uses Chesi memory buffer
     def reconstruct_phrasal_movement(self, ps):
-        log(f'\t\t\t!Dropping A-/A-bar movement.')
+        log(f'\t\t\tDropping A-/A-bar movement.')
         self.memory_buffer = []
         _ps_iterator = ps
         _ps_last_site = _ps_iterator
@@ -332,8 +357,14 @@ class Reconstruction():
         if ps.sister() and ps.sister().is_primitive():
             # Select the first possible Spec constituent from memory buffer
             for const in self.memory_buffer:
+                # Check if SPEC,h could accept the constituent from memory
                 if self.spec_match(h, const) and not target_const:
                     target_const = const
+                # Check if SPEC,h is a EPP position
+                if '+PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
+                    target_const = const
+                    log('jesus')
+
             # Transfer it from memory buffer into the phrase structure
             if target_const:
                 # Try to merge it to Spec
@@ -486,30 +517,6 @@ class Reconstruction():
                     self.create_adjunct(h.complement().right_const)
                 self.memory_buffer.remove(target_const)
                 log(f'\t\t\t\tRemaining memory buffer: {self.memory_buffer}')
-
-    def drop_head(self, ps, affix_):
-        def drop_condition_for_heads(affix_):
-            if affix_.get_selector() and (set(affix_.get_selector().get_comps()) & set(affix_.get_cats())):
-                if '!SPEC:*' not in affix_.features:
-                    return True
-                else:
-                    if affix_.specifier():
-                        return True
-                    else:
-                        return False
-            else:
-                return False
-
-        iterator_ = ps
-
-        while iterator_:
-            iterator_.merge(affix_, 'left')  # We try a solution
-            if drop_condition_for_heads(affix_):
-                return True
-            else:
-                affix_.remove()
-                iterator_ = iterator_.walk_downstream()
-        return False
 
     def A_reconstruct(self, ps):
         """

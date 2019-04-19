@@ -419,7 +419,7 @@ class Pcb_parser():
 
             # Case 6. Word-breaking violations
             # Remove all solutions which would cause phonological words to break apart
-            if not site.is_primitive() and self.is_word_internal(site):
+            if site.is_primitive() and self.is_word_internal(site):
                 priority = priority + priority_base - 100
                 log(f'\t\t\t\tAvoid {site} because it could break words.')
                 avoid_set.add(site)

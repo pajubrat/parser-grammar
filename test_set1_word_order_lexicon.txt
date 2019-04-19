@@ -1,7 +1,7 @@
 antaa :: anta-#v#-ta LANG:FI
-antanut	:: anta-#v#T LANG:FI
-anta-   :: PF:antaa LF:give CAT:V SPEC:D COMP:D COMP:P LANG:FI
+anta-   :: PF:antaa LF:give CAT:V SPEC:D COMP:D LANG:FI
 antoi   :: anta-#v#T/fin LANG:FI
+antanut	:: anta-#v#T LANG:FI
 asked	:: ask-#T/fin LANG:EN
 ask-	:: PF:ask LF:ask CAT:V COMP:INF UNERG LANG:EN
 ask		:: PF:ask LF:ask CAT:V COMP:INF UNERG !SPEC:D LANG:EN
@@ -15,8 +15,14 @@ heidän- :: PF:heidän LF:theirs CAT:N CAT:PHI LANG:FI
 John    :: John-#D
 John-   :: PF:John- -SEM:directional LF:John CAT:N
 käske- ::	PF:käske LF:ask UNERG CAT:V COMP:A/inf LANG:FI
+kenen	:: kenen-#D#wh#gen LANG:FI
+kenen-  :: PF:kenen LF:whose CAT:N CAT:PHI LANG:FI
 käski	::	käske-#T/fin LANG:FI
 käskenyt :: käske-#T LANG:FI
+kuka 	:: kuka-#D#wh#nom LANG:FI
+kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
+ketä	:: ketä-#D#wh#par LANG:FI
+ketä-   :: PF:ketä LF:who CAT:N CAT:PHI LANG:FI
 like-    :: PF:like LF:like CAT:V !COMP:D LANG:EN
 likes   :: like-#v#T/fin LANG:EN
 like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
@@ -25,6 +31,8 @@ Mary    :: Mary-#D
 Mary-   :: PF:Mary- CAT:N LF:Mary -SEM:directional
 Merjaa	::	Merjaa-#D#par LANG:FI
 Merjaa-	::	PF:Merjaa CAT:N
+mitä	:: mitä-#D#wh#par LANG:FI
+mitä-   :: PF:mitä LF:what CAT:N CAT:PHI LANG:FI
 not		:: PF:not LF:not CAT:Neg LANG:EN COMP:v COMP:V COMP:INF
 nukkui	:: nukku-#T/fin LANG:FI
 nukku-	:: PF:nukku LF:sleep UNERG CAT:V LANG:FI
@@ -203,18 +211,13 @@ keksi	:: keksi-#v#T/fin LANG:FI
 keksi- 	:: PF:keksi LF:invent CAT:V LANG:FI
 kenelle :: kenelle-#D#P#wh LANG:FI
 kenelle- :: PF:kenelle LF:to_who CAT:N CAT:PHI LANG:FI
-kenen	:: kuka-#D#wh#gen LANG:FI
 kertoi	:: kertoi-#T/fin LANG:FI
 kertoi- :: PF:kertoi LF:told CAT:V LANG:FI
-ketä_DP :: ketä-#D#wh#par LANG:FI
-ketä-   :: PF:ketä LF:who CAT:N CAT:PHI LANG:FI
 kirja-  :: PF:kirja LF:book CAT:N -SEM:directional LANG:FI
 kirjaa	:: kirja-#D#par LANG:FI
 kirjaa_DP :: kirja-#D#par LANG:FI
 kirjan  :: kirja-#D#asp LANG:FI
 kohti   :: PF:kohti LF:towards -PHI CAT:P !COMP:D +SEM:directional LANG:FI
-kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
-kuka 	:: kuka-#D#wh#nom LANG:FI
 kumoutu- :: PF:kumoutui LF:was_rejected CAT:V -COMP:D !SPEC:D LANG:FI
 kumoutui :: kumoutu-#T/fin LANG:FI
 kysyi :: kysyi-#T/fin LANG:FI

@@ -712,9 +712,10 @@ class PhraseStructure:
         for tail_set in tail_sets:
 
             # Condition i)
-            # First check if the constituent is already inside appropriate projection
-            if 'D' not in self.get_labels() and get_max(self) and get_max(self).mother and get_max(self).mother.get_head().check_features(tail_set):
-                return True
+            # First check if the constituent is already inside the checking projection (Spec-Head checking)
+            if get_max(self) and get_max(self).mother and get_max(self).mother.get_head().check_features(tail_set):
+                if self.mysterious_property(): # This matter involves things that I don't understand
+                    return True
 
             # Condition ii)
             # Check if goal's tail features can be matched in the feature vector
@@ -724,12 +725,17 @@ class PhraseStructure:
                     # If ALL goal's features are matched, the test is accepted
                     if const.check_features(tail_set):
                         return True
-                    # If there is PARTIAL match, the test is rejected
+                    # If there is PARTIAL match, it is left unchecked
                     elif tail_set.intersection(const.features):
                         return False
 
-        # This means that this test requires full match
-        return False
+            return False
+
+    def mysterious_property(self):
+        if 'CAT:D' in self.features and 'TAIL:PHI:0,!COMP:*' not in self.features:
+            return False
+        else:
+            return True
 
     # Not needed yet, but added this for future (if it will be needed)
     def phi_feature_match(self, ps):
