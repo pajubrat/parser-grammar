@@ -50,19 +50,15 @@ class Morphology():
 
     def get_inflection(self, lexical_item):
         if lexical_item.morphology == '':
-            s = set()
             log(f'\t\tStoring inflectional feature {sorted(lexical_item.features)} into working memory.')
-            for feature in lexical_item.features:
-                s.add(feature)
-                return s
+            return lexical_item.features
         else:
             return set()
 
     def set_inflection(self, lexical_item, inflectional_affixes):
         if inflectional_affixes:
-            log('\n\t\tAdding inflectional features to ' + lexical_item.get_pf())
-            lexical_item.features = \
-                lexical_item.features = lexical_item.features.union(set(inflectional_affixes))
+            log('\n\t\tAdding inflectional features ' + str(inflectional_affixes) + ' to ' + lexical_item.get_pf())
+            lexical_item.features = lexical_item.features.union(set(inflectional_affixes))
             lexical_item.features = self.lexicon.create_combined_categories(lexical_item.features)
             log(f'\t\t= {sorted(lexical_item.features)}')
         return lexical_item

@@ -713,9 +713,10 @@ class PhraseStructure:
 
             # Condition i)
             # First check if the constituent is already inside appropriate projection
-            if 'D' not in self.get_labels() and get_max(self) and get_max(self).mother and get_max(self).mother.get_head().check_features(tail_set):
+            if get_max(self) and get_max(self).mother and get_max(self).mother.get_head().check_features(tail_set):
                 return True
 
+            # 'D' not in self.get_labels() and
             # Condition ii)
             # Check if goal's tail features can be matched in the feature vector
             for const in feature_vector:
