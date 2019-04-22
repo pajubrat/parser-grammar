@@ -117,7 +117,6 @@ class PhraseStructure:
 
         return new_ps.get_top()
 
-
     def __mul__(self, ps):
         def get_bottom(site):
             ps_ = site

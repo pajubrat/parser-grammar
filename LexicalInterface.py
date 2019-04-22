@@ -9,7 +9,6 @@ class LexicalInterface:
 
     # The interface contains a dictionary which holds the lexical items
     # The lexicon is a combination of language-invariant morphemes (UG_morphemes) and language-specific morphemes
-    # loaded from a file (in JSON format)
     def __init__(self, redundancy_rules_file='redundancy_rules.txt'):
         self.PhraseStructure = minimalist.PhraseStructure
         self.d = defaultdict(list)

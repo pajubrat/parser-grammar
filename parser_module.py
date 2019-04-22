@@ -245,7 +245,7 @@ class Pcb_parser():
 
             set_logging(True)
 
-            # Word-breaking Violations
+            # Word-breaking violations
             # Remove all solutions which would cause phonological words to break apart
             if not site.is_primitive() and self.is_word_internal(site):
                 # How to control for the fact that right adjuncts don't break words?
@@ -362,9 +362,10 @@ class Pcb_parser():
                     site.mother.left_const and site.mother.left_const.is_primitive():
                 # and if H selects for site
                 if set(site.mother.left_const.get_comps()) & set(site.get_labels()):
-                    priority = priority + priority_base - 100
-                    log(f'\t\t\t\tAvoid [{site}, {w}] because the operation breaks up an existing selectional dependency.')
-                    avoid_set.add(site)
+                    if 'ADV' not in w.get_labels(): # Adverbs will not break selection because they will be adjuncts
+                        priority = priority + priority_base - 100
+                        log(f'\t\t\t\tAvoid [{site}, {w}] because the operation breaks up an existing selectional dependency.')
+                        avoid_set.add(site)
 
             # Case 4. Comp solutions and local morphosyntax
             # Check if h is primitive (takes a complement)
@@ -420,9 +421,10 @@ class Pcb_parser():
             # Case 6. Word-breaking violations
             # Remove all solutions which would cause phonological words to break apart
             if site.is_primitive() and self.is_word_internal(site):
-                priority = priority + priority_base - 100
-                log(f'\t\t\t\tAvoid {site} because it could break words.')
-                avoid_set.add(site)
+                if 'ADV' not in w.get_labels():
+                    priority = priority + priority_base - 100
+                    log(f'\t\t\t\tAvoid {site} because it could break words.')
+                    avoid_set.add(site)
 
             # Case 7. Adverbials select legitimate tail-head configurations
             if 'ADV' in word_labels and word_tail_set:

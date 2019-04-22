@@ -1,0 +1,245 @@
+BC parser v. 0.9
+2019-04-22 11:19:25.851649
+Test sentences from file "test_set1_word_order_experiment1.txt".
+Logs into file "test_set1_word_order_experiment1_log.txt.
+Lexicon from file "test_set1_word_order_experiment1_lexicon.txt".
+1
+['Pekka', 'nukkui']
+[<D Pekka>:1 [T [<DP>:1 nukku]]]
+'D Pekka T __sleep .'
+Failed parses 0, Merge operations:6, Move operations: 1
+2
+['Pekka', 'ei', 'nukkunut']
+[[D Pekka]:1 [ei [T [(DP):1 nukku]]]]
+'D Pekka not T __sleep .'
+Failed parses 0, Merge operations:7, Move operations: 3
+3
+['Pekka', 'ihailee', 'Merjaa']
+[<D Pekka>:1 [T [<DP>:1 [v [ihailee [D Merjaa]]]]]]
+'D Pekka T __v admire D  .'
+Failed parses 0, Merge operations:10, Move operations: 2
+4
+['Pekka', 'ei', 'ihaile', 'Merjaa']
+[[D Pekka]:1 [ei [T [(DP):1 [v [ihailee [D Merjaa]]]]]]]
+'D Pekka not T __v admire D  .'
+Failed parses 0, Merge operations:11, Move operations: 5
+5
+['Pekka', 'antoi', 'kirjan', 'Merjalle']
+[<D Pekka>:1 [T [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+'D Pekka T __v give D book for D Merja .'
+Failed parses 0, Merge operations:13, Move operations: 4
+6
+['Pekka', 'ei', 'antanut', 'kirjaa', 'Merjalle']
+[[D Pekka]:1 [ei [T [(DP):1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]
+'D Pekka not T __v give D book for D Merja .'
+Failed parses 0, Merge operations:14, Move operations: 9
+7
+['Pekka', 'käski', 'heidän', 'nukkua']
+[<D Pekka>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 nukku]]]]]]]
+'D Pekka T __ask D theirs to __sleep .'
+Failed parses 0, Merge operations:11, Move operations: 7
+8
+['Pekka', 'ei', 'käskenyt', 'heidän', 'nukkua']
+[[D Pekka]:1 [ei [T [(DP):1 [käske [[D heidän]:2 [Ainf [(DP):2 nukku]]]]]]]]
+'D Pekka not T __ask D theirs to __sleep .'
+Failed parses 0, Merge operations:12, Move operations: 10
+9
+['Pekka', 'käski', 'heidän', 'ihailla', 'Merjaa']
+[<D Pekka>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [ihailee [D Merjaa]]]]]]]]]]
+'D Pekka T __ask D theirs to __v admire D  .'
+Failed parses 0, Merge operations:15, Move operations: 11
+10
+['Pekka', 'ei', 'käskenyt', 'heidän', 'ihailla', 'Merjaa']
+[[D Pekka]:1 [ei [T [(DP):1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [ihailee [D Merjaa]]]]]]]]]]]
+'D Pekka not T __ask D theirs to __v admire D  .'
+Failed parses 0, Merge operations:16, Move operations: 16
+11
+['Pekka', 'käski', 'heidän', 'antaa', 'kirjan', 'Merjalle']
+[<D Pekka>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]
+'D Pekka T __ask D theirs to __v give D book for D Merja .'
+Failed parses 0, Merge operations:18, Move operations: 19
+12
+['Pekka', 'ei', 'käskenyt', 'heidän', 'antaa', 'kirjaa', 'Merjalle']
+[[D Pekka]:1 [ei [T [(DP):1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]]
+'D Pekka not T __ask D theirs to __v give D book for D Merja .'
+Failed parses 0, Merge operations:19, Move operations: 28
+13
+['Pekka', 'nukkui', 'virtaamalla']
+[<D Pekka>:1 [T [<DP>:1 [nukku <malla virtaa>]]]]
+'D Pekka T __sleep by flow .'
+Failed parses 0, Merge operations:8, Move operations: 3
+14
+['Pekka', 'ei', 'nukkunut', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [nukku <malla virtaa>]]]]]
+'D Pekka not T __sleep by flow .'
+Failed parses 0, Merge operations:9, Move operations: 7
+15
+['Pekka', 'ihailee', 'Merjaa', 'virtaamalla']
+[<D Pekka>:1 [T [<DP>:1 [v [ihailee [[D Merjaa] <malla virtaa>]]]]]]
+'D Pekka T __v admire D  by flow .'
+Failed parses 0, Merge operations:12, Move operations: 4
+16
+['Pekka', 'ei', 'ihaile', 'Merjaa', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [v [ihailee [[D Merjaa] <malla virtaa>]]]]]]]
+'D Pekka not T __v admire D  by flow .'
+Failed parses 0, Merge operations:13, Move operations: 9
+17
+['Pekka', 'antoi', 'kirjan', 'Merjalle', 'virtaamalla']
+[<D Pekka>:1 [T [<DP>:1 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]
+'D Pekka T __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:15, Move operations: 9
+18
+['Pekka', 'ei', 'antanut', 'kirjaa', 'Merjalle', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]]
+'D Pekka not T __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:16, Move operations: 16
+19
+['Pekka', 'käski', 'heidän', 'nukkua', 'virtaamalla']
+[<D Pekka>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [nukku <malla virtaa>]]]]]]]]
+'D Pekka T __ask D theirs to __sleep by flow .'
+Failed parses 0, Merge operations:13, Move operations: 15
+20
+['Pekka', 'ei', 'käskenyt', 'heidän', 'nukkua', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [käske [[D heidän]:2 [Ainf [(DP):2 [nukku <malla virtaa>]]]]]]]]]
+'D Pekka not T __ask D theirs to __sleep by flow .'
+Failed parses 0, Merge operations:14, Move operations: 22
+21
+['Pekka', 'käski', 'heidän', 'ihailla', 'Merjaa', 'virtaamalla']
+[<D Pekka>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [ihailee [[D Merjaa] <malla virtaa>]]]]]]]]]]
+'D Pekka T __ask D theirs to __v admire D  by flow .'
+Failed parses 0, Merge operations:17, Move operations: 19
+22
+['Pekka', 'ei', 'käskenyt', 'heidän', 'ihailla', 'Merjaa', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [käske [[[D heidän]:1 [Ainf [(DP):1 [v [ihailee [D Merjaa]]]]]] <malla virtaa>]]]]]]
+'D Pekka not T __ask D theirs to __v admire D  by flow .'
+Failed parses 0, Merge operations:18, Move operations: 28
+23
+['Pekka', 'käski', 'heidän', 'antaa', 'kirjan', 'Merjalle', 'virtaamalla']
+[<D Pekka>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]]]]]
+'D Pekka T __ask D theirs to __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:20, Move operations: 30
+24
+['Pekka', 'ei', 'käskenyt', 'heidän', 'antaa', 'kirjaa', 'Merjalle', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]]]]]]
+'D Pekka not T __ask D theirs to __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:21, Move operations: 43
+25
+['kuka', 'nukkui']
+[<D kuka>:1 [T [<DP>:1 nukku]]]
+'D who T __sleep .'
+Failed parses 0, Merge operations:7, Move operations: 1
+26
+['kuka', 'ei', 'nukkunut']
+[[D kuka]:1 [ei [T [(DP):1 nukku]]]]
+'D who not T __sleep .'
+Failed parses 0, Merge operations:8, Move operations: 3
+27
+['ketä', 'Pekka', 'ihailee']
+[<D ketä>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [v [<DP>:1 ihailee]]]]]]]
+'D who  D Pekka T __v __admire .'
+Failed parses 0, Merge operations:11, Move operations: 3
+28
+['ketä', 'Pekka', 'ei', 'ihaile']
+[<D ketä>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [v [<DP>:1 ihailee]]]]]]]]
+'D who  D Pekka not T __v __admire .'
+Failed parses 0, Merge operations:12, Move operations: 7
+29
+['mitä', 'Pekka', 'antoi', 'Merjalle']
+[<D mitä>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [v [<DP>:1 [antaa [P(lle) [D Merja-]]]]]]]]]]
+'D what  D Pekka T __v __give for D Merja .'
+Failed parses 0, Merge operations:14, Move operations: 8
+30
+['mitä', 'Pekka', 'ei', 'antanut', 'Merjalle']
+[<D mitä>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [v [<DP>:1 [antaa [P(lle) [D Merja-]]]]]]]]]]]
+'D what  D Pekka not T __v __give for D Merja .'
+Failed parses 0, Merge operations:15, Move operations: 15
+31
+['kenen', 'Pekka', 'käski', 'nukkua']
+[<D kenen>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [käske [<DP>:1 [Ainf [<DP>:1 nukku]]]]]]]]]
+'D whose  D Pekka T __ask __to __sleep .'
+Failed parses 0, Merge operations:12, Move operations: 8
+32
+['kenen', 'Pekka', 'ei', 'käskenyt', 'nukkua']
+[<D kenen>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [käske [<DP>:1 [Ainf [<DP>:1 nukku]]]]]]]]]]
+'D whose  D Pekka not T __ask __to __sleep .'
+Failed parses 0, Merge operations:13, Move operations: 15
+33
+['mitä', 'Pekka', 'käski', 'heidän', 'ihailla']
+[<D mitä>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 ihailee]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __admire .'
+Failed parses 0, Merge operations:16, Move operations: 16
+34
+['mitä', 'Pekka', 'ei', 'käskenyt', 'heidän', 'ihailla']
+[<D mitä>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 ihailee]]]]]]]]]]]]
+'D what  D Pekka not T __ask D theirs to __v __admire .'
+Failed parses 0, Merge operations:17, Move operations: 23
+35
+['mitä', 'Pekka', 'käski', 'heidän', 'antaa', 'Merjalle']
+[<D mitä>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [antaa [P(lle) [D Merja-]]]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __give for D Merja .'
+Failed parses 0, Merge operations:19, Move operations: 26
+36
+['mitä', 'Pekka', 'ei', 'käskenyt', 'heidän', 'antaa', 'Merjalle']
+[<D mitä>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [antaa [P(lle) [D Merja-]]]]]]]]]]]]]]]
+'D what  D Pekka not T __ask D theirs to __v __give for D Merja .'
+Failed parses 0, Merge operations:20, Move operations: 37
+37
+['kuka', 'nukkui', 'virtaamalla']
+[<D kuka>:1 [T [<DP>:1 [nukku <malla virtaa>]]]]
+'D who T __sleep by flow .'
+Failed parses 0, Merge operations:9, Move operations: 3
+38
+['kuka', 'ei', 'nukkunut', 'virtaamalla']
+[[D kuka]:1 [ei [T [(DP):1 [nukku <malla virtaa>]]]]]
+'D who not T __sleep by flow .'
+Failed parses 0, Merge operations:10, Move operations: 7
+39
+['mitä', 'Pekka', 'ihailee', 'virtaamalla']
+[<D mitä>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]
+'D what  D Pekka T __v __admire by flow .'
+Failed parses 0, Merge operations:13, Move operations: 8
+40
+['mitä', 'Pekka', 'ei', 'ihaile', 'virtaamalla']
+[<D mitä>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]]
+'D what  D Pekka not T __v __admire by flow .'
+Failed parses 0, Merge operations:14, Move operations: 15
+41
+['kuka', 'antoi', 'kirjan', 'Merjalle', 'virtaamalla']
+[<D kuka>:1 [T [<DP>:1 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]
+'D who T __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:16, Move operations: 9
+42
+['mitä', 'Pekka', 'ei', 'antanut', 'Merjalle', 'virtaamalla']
+[<D mitä>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [v [<DP>:1 [antaa [[P(lle) [D Merja-]] <malla virtaa>]]]]]]]]]]
+'D what  D Pekka not T __v __give for D Merja by flow .'
+Failed parses 0, Merge operations:17, Move operations: 25
+43
+['kenen', 'Pekka', 'käski', 'nukkua', 'virtaamalla']
+[<D kenen>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [käske [<DP>:1 [Ainf [<DP>:1 [nukku <malla virtaa>]]]]]]]]]]
+'D whose  D Pekka T __ask __to __sleep by flow .'
+Failed parses 0, Merge operations:14, Move operations: 16
+44
+['kenen', 'Pekka', 'ei', 'käskenyt', 'nukkua', 'virtaamalla']
+[<D kenen>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [käske [<DP>:1 [Ainf [<DP>:1 [nukku <malla virtaa>]]]]]]]]]]]
+'D whose  D Pekka not T __ask __to __sleep by flow .'
+Failed parses 0, Merge operations:15, Move operations: 27
+45
+['mitä', 'Pekka', 'käski', 'heidän', 'ihailla', 'virtaamalla']
+[<D mitä>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __admire by flow .'
+Failed parses 0, Merge operations:18, Move operations: 26
+46
+['mitä', 'Pekka', 'ei', 'käskenyt', 'heidän', 'ihailla', 'virtaamalla']
+[<D mitä>:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]]]]]]
+'D what  D Pekka not T __ask D theirs to __v __admire by flow .'
+Failed parses 0, Merge operations:19, Move operations: 37
+47
+['mitä', 'Pekka', 'käski', 'heidän', 'antaa', 'Merjalle', 'virtaamalla']
+[<D mitä>:1 [uWH [<D Pekka>:2 [T [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [antaa [[P(lle) [D Merja-]] <malla virtaa>]]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __give for D Merja by flow .'
+Failed parses 0, Merge operations:21, Move operations: 40
+48
+['mitä', 'Pekka', 'ei', 'käskenyt', 'heidän', 'antaa', 'Merjalle', 'virtaamalla']
+[[D mitä]:1 [uWH [[D Pekka]:2 [ei [T [(DP):2 [käske [[[D heidän]:2 [Ainf [(DP):2 [v [(DP):1 [antaa [P(lle) [D Merja-]]]]]]]] <malla virtaa>]]]]]]]]
+'D what  D Pekka not T __ask D theirs to __v __give for D Merja by flow .'
+Failed parses 0, Merge operations:22, Move operations: 58
