@@ -27,8 +27,8 @@ class Morphology():
         # Create a list of morphemes
         word = lexical_constituent.morphology
 
-        # Prosodic emphasis on finite element expressed C/fin/foc
-        if '#T/fin' in word and 'FOC' in prosodic_features:
+        # Prosodic emphasis on head expressed C/fin/foc
+        if lexical_constituent.is_primitive() and 'FIN' in lexical_constituent.get_labels() and 'foc' in prosodic_features:
             word = word + '#C/fin'
             log('\t\tProsodic focus detected at finite element, converted into C/fin.')
 
@@ -68,5 +68,6 @@ class Morphology():
         if len(decomposition) == 1:
             return word, set()
         else:
-            log('\t\tProsodic features detected.')
+            log(f'\t\tProsodic features detected at ' + decomposition[0] + ': ' + str(decomposition[1:]))
+
             return decomposition[0], set(decomposition[1:])

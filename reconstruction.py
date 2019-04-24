@@ -86,7 +86,7 @@ class Reconstruction():
 
     def drop_head(self, ps, affix_):
         def drop_condition_for_heads(affix_):
-            if affix_.get_selector() and (set(affix_.get_selector().get_comps()) & set(affix_.get_cats())):
+            if affix_.get_selector() and (affix_.get_selector().get_comps() & affix_.get_cats()):
                 if '!SPEC:*' not in affix_.features:
                     return True
                 else:
@@ -100,13 +100,21 @@ class Reconstruction():
         iterator_ = ps
 
         while iterator_:
-            iterator_.merge(affix_, 'left')  # We try a solution
+            iterator_.merge(affix_, 'left') # We try a solution
             if drop_condition_for_heads(affix_):
                 return True
             else:
                 affix_.remove()
                 iterator_ = iterator_.walk_downstream()
-        return False
+
+        # What do we do if head reconstruction doesn't find any position?
+        # we will merge it to the local position as a last resort
+        log(f'\t\t\t\tHead reconstruction failed for {affix_}, merged locally as a last resort.')
+        ps.merge(affix_, 'left')
+        # We need to reconstruct head movement for the left branch
+        if ps.is_primitive() and ps.has_affix():
+            self.reconstruct_head_movement(ps)
+        return True
 
     def reconstruct_floaters(self, ps):
         _ps_iterator = ps.get_top()  # Begin from the top and move downstream
@@ -207,36 +215,28 @@ class Reconstruction():
 
         return False
 
-    # This locates node XP in [T/fin XP] or return the highest node if not found
+    # This locates node XP in [fin XP] or return the highest node if not found
     # It is required because many operations are restricted by a minimal tense condition
     # e.g. argument/adjunct float
-    # todo the implementation is ugly and descriptive this must be re-thought
-    # todo we have the same condition in other places but written differently
     def locate_minimal_tense_edge(self, ps):
 
         ps_iterator_ = ps
         node = ps
 
-        # If we do not detect T/fin... go upwards
-        while ps_iterator_ and \
-                ps_iterator_.geometrical_sister() and \
-                not ps_iterator_.is_finite() and \
-                not ps_iterator_.geometrical_sister().is_finite():
+        # Go upwards to the upper edge of the finite construction
+        while ps_iterator_:
             node = ps_iterator_
+            if ps_iterator_.sister() \
+                    and 'FIN' in ps_iterator_.get_labels() \
+                    and 'FIN' not in ps_iterator_.sister().get_labels():
+                break
             ps_iterator_ = ps_iterator_.walk_upstream()
 
-        if not ps_iterator_:
-            ps_iterator_ = node
-
-        # If we are inside T/fin..., we need to climb down to XP, [T/Fin XP]
-        while ps_iterator_ and ps_iterator_.is_finite():
-            node = ps_iterator_
-            ps_iterator_ = ps_iterator_.walk_downstream()
-
-        if not ps_iterator_:
-            ps_iterator_ = node
-
-        return ps_iterator_
+        # we return the right const because that is the upper edge
+        if node.right_const:
+            return node.right_const
+        else:
+            return node
 
     # Creates an adjunct of a constituent
     def create_adjunct(self, ps):
@@ -547,7 +547,6 @@ class Reconstruction():
                     floater.get_head().get_tail_sets()))
                 # Target the floater
                 return floater
-
             # Or if it (constituent with tail features) sits in an EPP SPEC position of a finite clause edge
             elif floater.mother and floater.mother.get_head().EPP() and floater.mother.is_finite():
                 log('\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
@@ -562,7 +561,7 @@ class Reconstruction():
                 log('\t\t\t\t' + floater.illustrate() + ' failed to tail.')
                 # This is empirically very contentious matter:
                 # A right DP inside a finite clause with failed tail-test must be an adjunct(?)
-                if 'D' in floater.get_labels() and floater.get_top().contains_feature('CAT:T/fin'):
+                if 'D' in floater.get_labels() and floater.get_top().contains_feature('CAT:FIN'):
                     self.create_adjunct(floater)
                     return floater.mother
             else:
@@ -572,23 +571,19 @@ class Reconstruction():
     # Drops one floater that is targeted for dropping
     def drop_floater(self, floater, ps):
 
-        Tfin = None
-        T_fin_intervention = False
+        # This is stored so we don't implement reconstruction inside the same projection (leads into regress)
+        starting_point = floater.mother.get_head()
 
-        # We need to locate the appropriate starting point, the node XP in [T/fin XP]
+        # We need to locate the appropriate starting point, XP in [fin XP]
         ps_iterator_ = self.locate_minimal_tense_edge(floater.mother)
+        log(f'\t\t\t\tStart reconstruction at {ps_iterator_}')
+
         floater_copy = floater.copy()
 
         # This downward loop searches a position for the floater
-        while not T_fin_intervention and ps_iterator_ and not ps_iterator_ == floater and not ps_iterator_.find_me_elsewhere:
+        while ps_iterator_ and not ps_iterator_ == floater and not ps_iterator_.find_me_elsewhere:
 
-            # Determine if T/fin intervenes (blocks further downward search)
-            if ps_iterator_.sister() and 'T/fin' in ps_iterator_.sister().get_labels():
-                if not Tfin:
-                    Tfin = ps_iterator_.sister().get_head()
-                else:
-                    if not ps_iterator_.sister().get_head() == Tfin:
-                        T_fin_intervention = True
+            # Lower bound must be the edge of next fin, this condition is missing (not needed for 1.x)
 
             # Create hypothetical structure for testing
             if 'ADV' in floater_copy.get_labels():
@@ -597,7 +592,9 @@ class Reconstruction():
                 ps_iterator_.merge(floater_copy, 'left')
 
             # If a suitable position is found, dropping will be executed
-            if floater_copy.get_head().external_tail_head_test():
+            # Condition 1: tail test succeeds,
+            # Condition 2: we are not reconstructing inside the same projection
+            if floater_copy.get_head().external_tail_head_test() and ps_iterator_.get_head() is not starting_point.get_head():
                 self.create_adjunct(floater)
                 dropped_floater = floater.transfer(self.babtize())
                 if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
@@ -606,7 +603,7 @@ class Reconstruction():
                     ps_iterator_.merge(dropped_floater, 'left')
                 floater_copy.remove()
                 floater.find_me_elsewhere = True
-                log(f'\t\t\t\tFloater ' + dropped_floater.illustrate() + ' dropped.')
+                log(f'\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped: {ps}')
                 return
             else:
                 floater_copy.remove()

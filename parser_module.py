@@ -118,6 +118,7 @@ class Pcb_parser():
 
             # Extract prosodic information from the surface
             word, prosodic_features = m.extract_prosody(lst[index])
+            lst[index] = word
 
             # Lexical ambiguity
             disambiguated_word_list = self.lexicon.access_lexicon(word)
@@ -127,7 +128,7 @@ class Pcb_parser():
             for lexical_constituent in disambiguated_word_list:
                 lst_branched = lst.copy()
 
-                # Morphological decomposition
+                # Morphological decomposition: increases the input list if there are several morphemes
                 lexical_item, lst_branched = m.morphological_parse(lexical_constituent,
                                                                    lst_branched,
                                                                    index,
@@ -298,9 +299,9 @@ class Pcb_parser():
 
         log('\t\t\tRanking remaining sites...')
 
-        word_specs = sorted(w.for_parsing(w.get_specs()))
-        word_not_specs = sorted(w.for_parsing(w.get_not_specs()))
-        word_cats = sorted(w.get_cats())
+        word_specs = w.for_parsing(w.get_specs())
+        word_not_specs = w.for_parsing(w.get_not_specs())
+        word_cats = w.get_cats()
         word_tail_set = w.get_tail_sets()
         word_pf = w.get_pf()
         word_labels = w.get_labels()
@@ -312,47 +313,29 @@ class Pcb_parser():
 
             priority_base = i
             priority = 0
-            site_cats = sorted(site.get_head().get_cats())
+            site_cats = site.get_head().get_cats()
 
             # Case 2a. Spec Solutions
             # Check if there are SPEC-w solutions
-
             # Get all positive SPEC solutions from w
-            for spec_solution in word_specs:
-
-                # Get the category label(s) from hP
-                for label_in_existing_parse in site_cats:
-
-                    # Check if there is a positive Spec-H match and if yes, rank it higher
-                    if spec_solution == label_in_existing_parse:
-                        priority = priority + priority_base + 100
-                        log(f'\t\t\t\tPrioritize {site.get_cats_string()} as SPEC,{word_pf}')
-                        avoid_set.clear()
+            if word_specs & site_cats:
+                priority = priority + priority_base + 100 * len(word_specs & site_cats)
+                log(f'\t\t\t\tPrioritize {site.get_cats_string()} as SPEC,{word_pf}.')
+                avoid_set.clear()
 
             # Case 2b. Spec Mismatches
             # Check if there are negative SPEC conditions and avoid them
-
             # Get negative -SPEC features from w
-            if not site.is_primitive():
+            if not site.is_primitive() and (word_not_specs & site_cats):
+                priority = priority + priority_base - 100 * len(word_not_specs & site_cats)
+                log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC, {word_pf}.')
+                avoid_set.add(site)
 
-                for non_spec_solution in word_not_specs:
-
-                    # Get labels from the head of phrase h(P)
-                    for label_in_existing_parse in site_cats:
-
-                        # Check if the features match
-                        if non_spec_solution == label_in_existing_parse:
-
-                            # If they match, rank this spec solution lower
-                            priority = priority + priority_base - 100
-                            log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC, {word_pf}')
-                            avoid_set.add(site)
-
-                    # Avoid all SPEC solutions if there is [-SPEC:*]
-                    if '*' == non_spec_solution:
-                        priority = priority + priority_base - 100
-                        log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC for {word_pf}')
-                        avoid_set.add(site)
+            # Avoid all SPEC solutions if there is [-SPEC:*]
+            if '*' in word_not_specs:
+                priority = priority + priority_base - 100
+                log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC for {word_pf} due to unselective SPEC feature.')
+                avoid_set.add(site)
 
             # Case 2c. Check if existing H-Comp-relations would be broken
             # The rule captures that fact that 'H X' often means [H XP]
@@ -361,16 +344,15 @@ class Pcb_parser():
             if not site.is_primitive() and site.mother and \
                     site.mother.left_const and site.mother.left_const.is_primitive():
                 # and if H selects for site
-                if set(site.mother.left_const.get_comps()) & set(site.get_labels()):
+                if site.mother.left_const.get_comps() & site.get_labels():
                     if 'ADV' not in w.get_labels(): # Adverbs will not break selection because they will be adjuncts
-                        priority = priority + priority_base - 100
+                        priority = priority + priority_base - 100 * len(site.mother.left_const.get_comps() & site.get_labels())
                         log(f'\t\t\t\tAvoid [{site}, {w}] because the operation breaks up an existing selectional dependency.')
                         avoid_set.add(site)
 
             # Case 4. Comp solutions and local morphosyntax
-            # Check if h is primitive (takes a complement)
+            # Check if site is primitive (takes a complement)
             if site.is_primitive():
-
                 # Check if the solution violates tailing agreement and if yes, avoid
                 # Check that the new constituent has tailing features
                 if word_tail_set:
@@ -384,20 +366,18 @@ class Pcb_parser():
 
                 # Evaluation Comp selection for all morphemes inside the site
                 for m in site.get_affix_list():
-                    # . . . search through the categorical features of the new word
-                    for f in word_cats:
+                    log(f'{m} ' + str(word_cats) + str(m.for_parsing(m.get_comps())))
+                    # Check if H selects w and if yes, prioritize this solution
+                    if word_cats & m.for_parsing(m.get_comps()):
+                        priority = priority + priority_base + 100 * len(word_cats & m.for_parsing(m.get_comps()))
+                        log(f'\t\t\t\tPrioritize [{m.get_pf()} {word_pf}] due to complement selection.')
+                        avoid_set.clear()
 
-                        # Check if H selects w and if yes, prioritize this solution
-                        if f in m.for_parsing(m.get_comps()):
-                            priority = priority + priority_base + 100
-                            log(f'\t\t\t\tPrioritize [{m.get_pf()} {word_pf}] due to complement selection for [' + f + ']')
-                            avoid_set.clear()
-
-                        # ... if f cannot be merged to the complement, avoid this solution
-                        if f in m.for_parsing(m.get_not_comps()):
-                            priority = priority + priority_base - 100
-                            log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection against [' + f + ']')
-                            avoid_set.add(site)
+                    # ... if f cannot be merged to the complement, avoid this solution
+                    if word_cats & m.for_parsing(m.get_not_comps()):
+                        priority = priority + priority_base - 100 * len(word_cats & m.for_parsing(m.get_not_comps()))
+                        log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection.')
+                        avoid_set.add(site)
 
                     if not LF.semantic_match(m, w):
                         priority = priority + priority_base - 100
@@ -468,8 +448,9 @@ class Pcb_parser():
 
         # Sort based on priority (and only priority, not phrase structure)
         adjunction_sites = sorted(adjunction_sites, key=itemgetter(0))
-
+        log(str(adjunction_sites))
         adjunction_sites = [site for priority, site in adjunction_sites]
+
         adjunction_sites.reverse()
 
         log(f'\t\tRanking completed:')

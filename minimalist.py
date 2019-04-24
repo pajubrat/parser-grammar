@@ -929,45 +929,45 @@ class PhraseStructure:
             return None
 
     def get_comps(self):
-        list_ = []
+        set_ = set()
         for f in self.features:
             if f[:4] == 'COMP':
-                list_.append(f[5:])
+                set_.add(f[5:])
             if f[:5] == '!COMP':
-                list_.append(f[6:])
-        return list_
+                set_.add(f[6:])
+        return set_
 
     def get_not_comps(self):
-        list_ = []
+        set_ = set()
         for f in self.features:
             if f[:5] == '-COMP':
-                list_.append(f[6:])
-        return list_
+                set_.add(f[6:])
+        return set_
 
-    # Return the list of POS categories
+    # Return the set of POS categories
     def get_cats(self):
-        list_ = []
+        set_ = set()
         if self.features:
             for f in self.features:
                 if f[:3] == 'CAT':
-                    list_.append(f[4:])
-        return list_
+                    set_.add(f[4:])
+        return set_
 
     def get_specs(self):
-        list_ = []
+        set_ = set()
         for f in self.features:
             if f[:4] == 'SPEC':
-                list_.append(f[5:])
+                set_.add(f[5:])
             if f[:5] == '!SPEC':
-                list_.append(f[6:])
-        return list_
+                set_.add(f[6:])
+        return set_
 
     def get_not_specs(self):
-        list_ = []
+        set_ = set()
         for f in self.features:
             if f[:5] == '-SPEC':
-                list_.append(f[6:])
-        return list_
+                set_.add(f[6:])
+        return set_
 
     # Transforms a set of lexical features to be used locally in parsing,
     def for_parsing(self, features):

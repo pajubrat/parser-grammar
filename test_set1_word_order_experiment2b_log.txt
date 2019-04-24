@@ -1,0 +1,157 @@
+
+
+\========================================================================
+# 1
+['ei=foc', 'nukkunut', 'Pekka']
+
+
+			=None
+
+1.
+		Prosodic features detected at ei: ['foc']
+		Prosodic focus detected at finite element, converted into C/fin.
+
+		Next word contains multiple morphemes ['$C/fin', 'ei']
+			=C
+
+2.
+
+		Consume "ei"
+
+		C + ei
+			Filtering out impossible merge sites...
+			Sink "ei" into C because they are inside the same phonological word.
+		Exploring solution number (1) =[C*ei]
+			=C{Neg/fin}
+
+3.
+
+		Next word contains multiple morphemes ['$T', 'nukku-']
+
+		Consume "T"
+
+		C{Neg/fin} + T
+			Filtering out impossible merge sites...
+		Exploring solution number (1) =[C{Neg/fin} T]
+			C{Neg/fin} cannot be opened.
+			=[C{Neg/fin} T]
+
+4.
+
+		Consume "nukku"
+
+		[C{Neg/fin} T] + nukku
+			Filtering out impossible merge sites...
+			Sink "nukku" into T because they are inside the same phonological word.
+		Exploring solution number (1) =[T*nukku]
+			=[C{Neg/fin} T{V}]
+
+5.
+
+		Next word contains multiple morphemes ['$nom', '$D', 'Pekka-']
+		Storing inflectional feature ['-', 'LANG:FI', 'TAIL:CAT:FIN,!COMP:*'] into working memory.
+
+		Consume "$D"
+
+			=[C{Neg/fin} T{V}]
+
+6.
+
+		Adding inflectional features {'-', 'LANG:FI', 'TAIL:CAT:FIN,!COMP:*'} to D
+		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:FIN,!COMP:*']
+
+		Consume "D"
+
+		[C{Neg/fin} T{V}] + D
+			Filtering out impossible merge sites...
+			Ranking remaining sites...
+				Avoid C/finP as SPEC for D due to unselective SPEC feature.
+				An EPP-head "ei" lacks specifier but needs one.
+				An EPP-head "nukku" lacks specifier D that it requires.
+				Avoid [C [ei [T nukku]]] as left branch because it constitutes illicit structure.
+				Avoid P as SPEC for D due to unselective SPEC feature.
+				Avoid [T{V} D] due to local agreement failure.
+T{V} {'D'}{'*', 'V', 'v', 'D'}
+				Prioritize [T{V} D] due to complement selection.
+nukku {'D'}{'P'}
+				Avoid T{V} because it could break words.
+[(-198, [C/fin ]), (-192, )]
+		Ranking completed:
+			1. [T{V}; D]
+			2. [[C{Neg/fin} T{V}]; D]
+		Exploring solution number (1) =[T{V} D]
+			T{V} cannot be opened.
+			=[C{Neg/fin} [T{V} D]]
+
+7.
+
+		Consume "Pekka"
+
+		[C{Neg/fin} [T{V} D]] + Pekka
+			Filtering out impossible merge sites...
+			Sink "Pekka" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*Pekka]
+			=[C{Neg/fin} [T{V} D{N}]]
+
+8.
+	>>>	Trying candidate parse [C{Neg/fin} [T{V} D{N}]] (1.)
+		Reconstructing...
+			Reconstructing head movement for [C{Neg/fin} [T{V} D{N}]].
+				Head reconstruction failed for ei, merged locally as a last resort.
+				Extracted head "ei" and reconstructed it = [C [ei [T{V} D{N}]]]
+				Extracted head "nukku" and reconstructed it = [C [ei [T [nukku D{N}]]]]
+				Extracted head "Pekka" from D and created [C [ei [T [nukku [D Pekka]]]]]
+			Dropping floaters...
+				D failed to tail.
+				<D Pekka> was made an adjunct.
+				Start reconstruction at [ei [T [nukku <D Pekka>]]]
+				<D Pekka> was made an adjunct.
+				Floater <D Pekka> dropped: [C [<DP>:1 [ei [T [nukku <D Pekka>:1]]]]]
+				= [C [<D Pekka> [ei [T [nukku <D Pekka>]]]]]
+			Dropping A-/A-bar movement.
+				Moving "____" into memory buffer from SPEC of "ei".
+				Memory buffer: [[D N]]
+				Dropping constituent <DP>:1 from memory buffer into Spec of nukku
+			= [C [<D Pekka> [ei [T [<D Pekka> [nukku <D Pekka>]]]]]]
+		Checking LF-interface conditions.
+			Trying to transfer [C [<DP>:1 [ei [T [<DP>:1 [nukku <D Pekka>:1]]]]]] into LF...
+				Transfer to LF successful.
+!--->		Tests passed (with 8/87 operations) <------------------------------------
+		Solution:
+		[C [<D Pekka> [ei [T [<D Pekka> [nukku <D Pekka>]]]]]]
+		Grammar: [C [<DP>:1 [ei [T [<DP>:1 [nukku <D Pekka>:1]]]]]]
+		Spellout C/finP = [C/fin [__:1 [Neg/fin [ [__:1 [V DP:1]]]]]]
+C:['!COMP:*', '!PROBE:CAT:FIN', '-SPEC:C/fin', '-SPEC:N', '-SPEC:T/fin', 'CAT:C/fin', 'CAT:C/fin/FIN', 'CAT:FIN', 'COMP:Neg/fin', 'COMP:T/fin', 'LANG:FI', 'LF:C/fin', 'PF:C', 'SPEC:*', 'foc']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'null']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A', 'null']
+ei:['!COMP:T', '!SPEC:*', 'CAT:FIN', 'CAT:FIN/NEG/Neg/fin', 'CAT:NEG', 'CAT:Neg/fin', 'LANG:FI', 'LF:not', 'PF:ei']
+T:['!COMP:*', '!PROBE:CAT:V', '+PHI', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'CAT:T', 'COMP:D', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'PF:T', 'SPEC:*']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'null']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A', 'null']
+nukku:['!SPEC:D', '-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', 'CAT:V', 'COMP:P', 'LANG:FI', 'LF:sleep', 'PF:nukku', 'SPEC:ADV', 'SPEC:P', 'UNERG']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A']
+
+C:['!COMP:*', '!PROBE:CAT:FIN', '-SPEC:C/fin', '-SPEC:N', '-SPEC:T/fin', 'CAT:C/fin', 'CAT:C/fin/FIN', 'CAT:FIN', 'COMP:Neg/fin', 'COMP:T/fin', 'LANG:FI', 'LF:C/fin', 'PF:C', 'SPEC:*', 'foc']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'null']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A', 'null']
+ei:['!COMP:T', '!SPEC:*', 'CAT:FIN', 'CAT:FIN/NEG/Neg/fin', 'CAT:NEG', 'CAT:Neg/fin', 'LANG:FI', 'LF:not', 'PF:ei']
+T:['!COMP:*', '!PROBE:CAT:V', '+PHI', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'CAT:T', 'COMP:D', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'PF:T', 'SPEC:*']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'null']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A', 'null']
+nukku:['!SPEC:D', '-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', 'CAT:V', 'COMP:P', 'LANG:FI', 'LF:sleep', 'PF:nukku', 'SPEC:ADV', 'SPEC:P', 'UNERG']
+D:['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A']
+
+C: [C/fin]
+(D): [D, C/fin]
+(N): [N, D, C/fin]
+ei: [Neg/fin, C/fin]
+T: [, Neg/fin, C/fin]
+(D): [D, , Neg/fin, C/fin]
+(N): [N, D, , Neg/fin, C/fin]
+nukku: [V, , Neg/fin, C/fin]
+D: [D, V, , Neg/fin, C/fin]
+Pekka: [N, D, V, , Neg/fin, C/fin]
+
+			Checking if the sentence is ambiguous...
