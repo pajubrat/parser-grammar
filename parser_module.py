@@ -42,6 +42,8 @@ class Pcb_parser():
         self.lexicon = LexicalInterface(self.context.redundancy_rules_file)
         self.lexicon.load_lexicon(self.context.lexicon_file, context.language)
         self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
+        self.morphology = Morphology(self.context)
+        self.reconstruction = Reconstruction(self.context)
 
     # Preparatory steps.
     def parse(self, lst):
@@ -114,7 +116,7 @@ class Pcb_parser():
         # Process next word
         else:
             # Initialize morphology
-            m = Morphology(self.context)
+            m = self.morphology
 
             # Lexical ambiguity
             # If the item was not recognized, an ad hoc constituent is returned that has CAT:X
@@ -481,7 +483,7 @@ class Pcb_parser():
     def reconstruct(self, ps):
         original_mother = ps.mother
         ps.detach()
-        R = Reconstruction(self.context)
+        R = self.reconstruction
         ps, ops = R.reconstruct(ps)
         self.number_of_Moves += ops
         if original_mother:

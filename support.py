@@ -13,6 +13,7 @@ class Logger:
         self.buffer = []
         self.colors = True
         self.operations = 0
+        self.disabled = False
 
 
 log_instance = Logger()
@@ -40,18 +41,24 @@ def report_LF_problem(ps_):
     log(ps_.show_all_vectors())
     log('\n\t\tTrying to find other solutions...')
 
+
 def report_tail_head_problem(ps_):
     log('\t\t\tFinal tail-head check failed.')
     log(ps_.show_primitive_constituents())
     log(ps_.show_all_vectors())
     log('\t\t\tLet\'s find another solution...\n.\n.\n.')
 
+
 def log(text):
-    if log_instance.logging:
+    if log_instance.logging and not log_instance.disabled:
         my_log.info(text)
         log_instance.operations += 1
         if log_instance.use_buffer:
             log_instance.buffer.append(text)
+
+
+def disable_all_logging():
+    log_instance.disabled = True
 
 
 def get_log_buffer():

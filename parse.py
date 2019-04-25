@@ -8,7 +8,7 @@
 
 import datetime
 from parser_module import Pcb_parser
-from support import set_logging, log
+from support import disable_all_logging, set_logging, log
 import logging
 import time
 from LanguageGuesser import LanguageGuesser
@@ -16,7 +16,8 @@ from context import Context
 
 parse_list = []
 t = time.time()
-set_logging(True)
+disable_all_logging()
+#set_logging(True)
 
 test_set_name = 'test_set1_word_order_experiment2b.txt'
 lexicon_file_name = test_set_name[:-4] + '_lexicon.txt'
