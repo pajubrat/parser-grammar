@@ -116,12 +116,9 @@ class Pcb_parser():
             # Initialize morphology
             m = Morphology(self.context)
 
-            # Extract prosodic information from the surface
-            word, prosodic_features = m.extract_prosody(lst[index])
-            lst[index] = word
-
             # Lexical ambiguity
-            disambiguated_word_list = self.lexicon.access_lexicon(word)
+            # If the item was not recognized, an ad hoc constituent is returned that has CAT:X
+            disambiguated_word_list = self.lexicon.access_lexicon(lst[index])
             if len(disambiguated_word_list) > 1:
                 log('\t\tAmbiguous lexical item ' + str(disambiguated_word_list) + 'detected.')
 
@@ -129,17 +126,16 @@ class Pcb_parser():
                 lst_branched = lst.copy()
 
                 # Morphological decomposition: increases the input list if there are several morphemes
+                # If the word was not recognized (CAT:X), generative morphology will be tried
                 lexical_item, lst_branched = m.morphological_parse(lexical_constituent,
                                                                    lst_branched,
-                                                                   index,
-                                                                   prosodic_features)
+                                                                   index)
 
                 # Read inflectional features (if any) and store them into memory buffer, then consume next word
                 inflection = m.get_inflection(lexical_item)
                 if inflection:
                     # Add inflectional features and prosodic features into memory
                     self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
-                    self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(prosodic_features)
                     log('\n\t\tConsume \"' + lst_branched[index + 1] + '\"\n')
                     if ps:
                         self.__first_pass_parse(ps.copy(), lst_branched, index + 1)

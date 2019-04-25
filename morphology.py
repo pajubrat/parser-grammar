@@ -9,7 +9,7 @@ class Morphology():
         self.lexicon.load_lexicon(self.context.lexicon_file, context.language)
         self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
 
-    def morphological_parse(self, lexical_constituent, lst_branched, index, prosodic_features):
+    def morphological_parse(self, lexical_constituent, lst_branched, index):
         """
         Operation performs morphological parsing for word w.
 
@@ -24,28 +24,26 @@ class Morphology():
         # '$'   internal morpheme boundary, as marked by the morphological parser
         #       In syntax, $ corresponds to 'needs a host word, grab local head.'
 
+        phonological_input_word = lst_branched[index]
         # Create a list of morphemes
+        # If the word has not been recognized, its morphology must be computed
+        if 'CAT:X' in lexical_constituent.features:
+            morphologically_decomposed_input = self.generative_morphology(phonological_input_word)
+            lexical_constituent.morphology = morphologically_decomposed_input
+
         word = lexical_constituent.morphology
-
-        # Prosodic emphasis on head expressed C/fin/foc
-        if lexical_constituent.is_primitive() and 'FIN' in lexical_constituent.get_labels() and 'foc' in prosodic_features:
-            word = word + '#C/fin'
-            log('\t\tProsodic focus detected at finite element, converted into C/fin.')
-
-        #  All word-internal morphemes will begin with symbol $ (= phonological spell-out feature)
         word = word.replace("#", "#$")
         lst_ = word.split("#")
 
         # If we had more than one morpheme, the list will substitute the original multimorphemic word
         if len(lst_) > 1:
-            log('\n' + f'\t\tNext word contains multiple morphemes ' + str(lst_[::-1]))
+            log(f'\t\tNext word contains multiple morphemes ' + str(lst_[::-1]))
             del lst_branched[index]
             for w_ in lst_:
                 lst_branched.insert(index, w_)
 
         # Take the first morpheme discovered, add prosodic features
         lexical_item = self.lexicon.access_lexicon(lst_branched[index])[0]
-        lexical_item.features = lexical_item.features | prosodic_features
         return lexical_item, lst_branched
 
     def get_inflection(self, lexical_item):
@@ -63,11 +61,27 @@ class Morphology():
             log(f'\t\t= {sorted(lexical_item.features)}')
         return lexical_item
 
-    def extract_prosody(self, word):
-        decomposition = word.split('=')
-        if len(decomposition) == 1:
-            return word, set()
-        else:
-            log(f'\t\tProsodic features detected at ' + decomposition[0] + ': ' + str(decomposition[1:]))
+    def generative_morphology(self, word):
 
-            return decomposition[0], set(decomposition[1:])
+        # This procedure will deal with the prosodic feature foc. The problem is that it can be either a feature or a morpheme,
+        # This could be solved by relying on disambiguation, but that is not realistic.
+
+        # First we extract morphemes
+        list_ = self.extract_morphemes(word)
+        # Recognize the presence of the foc feature
+        if 'foc' in list_:
+            # We use the category of first morpheme as a cue
+            first_morpheme = self.lexicon.access_lexicon(list_[0])[0]
+            if 'V' in first_morpheme.get_labels() or 'FIN' in first_morpheme.get_labels():
+                log('\t\t\t\tProsodic feature [foc] interpreted as a C morpheme')
+                word = word.replace('#foc', '#C/fin')
+
+        return word
+
+    def extract_morphemes(self, word):
+        list_ = [word]
+        while '#' in list_[0]:
+            list_ = list_[0].split('#') + list_[1:]
+            list_[0] = self.lexicon.access_lexicon(list_[0])[0].morphology
+
+        return list_

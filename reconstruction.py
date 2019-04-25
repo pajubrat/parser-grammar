@@ -110,8 +110,11 @@ class Reconstruction():
         # What do we do if head reconstruction doesn't find any position?
         # we will merge it to the local position as a last resort
         log(f'\t\t\t\tHead reconstruction failed for {affix_}, merged locally as a last resort.')
-        ps.merge(affix_, 'left')
-        # We need to reconstruct head movement for the left branch
+        if affix_.EPP():
+            ps.get_bottom().merge(affix_, 'right')
+        else:
+            ps.merge(affix_, 'left')
+            # We need to reconstruct head movement for the left branch
         if ps.is_primitive() and ps.has_affix():
             self.reconstruct_head_movement(ps)
         return True
