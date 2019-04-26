@@ -377,6 +377,21 @@ class PhraseStructure:
         else:
             return None
 
+    def count_specifiers(self):
+
+        ps_ = self.mother
+        count = 0
+
+        while ps_ and ps_.sister() and (ps_.sister().is_left() and not ps_.sister().is_primitive()):
+            count = count + 1
+            ps_ = ps_.walk_upstream()
+        return count
+
+
+
+
+
+
     # Returns the complement of head ('self') if available, otherwise returns None
     # Complement = right sister
     def complement(self):

@@ -16,8 +16,8 @@ from context import Context
 
 parse_list = []
 t = time.time()
-disable_all_logging()
-#set_logging(True)
+#disable_all_logging()
+set_logging(True)
 
 test_set_name = 'test_set1_word_order_experiment2b.txt'
 lexicon_file_name = test_set_name[:-4] + '_lexicon.txt'

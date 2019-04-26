@@ -578,7 +578,6 @@ class Reconstruction():
 
         # We need to locate the appropriate starting point, XP in [fin XP]
         ps_iterator_ = self.locate_minimal_tense_edge(floater.mother)
-        log(f'\t\t\t\tStart reconstruction at {ps_iterator_}')
 
         floater_copy = floater.copy()
 
@@ -596,17 +595,21 @@ class Reconstruction():
             # If a suitable position is found, dropping will be executed
             # Condition 1: tail test succeeds,
             # Condition 2: we are not reconstructing inside the same projection
+            # Condition 3: dropped non-ADV will become the only SPEC
             if floater_copy.get_head().external_tail_head_test() and ps_iterator_.get_head() is not starting_point.get_head():
-                self.create_adjunct(floater)
-                dropped_floater = floater.transfer(self.babtize())
-                if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
-                    ps_iterator_.merge(dropped_floater, 'right')
+                if 'ADV' in floater_copy.get_labels() or ps_iterator_.get_head().count_specifiers() < 2:
+                    self.create_adjunct(floater)
+                    dropped_floater = floater.transfer(self.babtize())
+                    if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
+                        ps_iterator_.merge(dropped_floater, 'right')
+                    else:
+                        ps_iterator_.merge(dropped_floater, 'left')
+                    floater_copy.remove()
+                    floater.find_me_elsewhere = True
+                    log(f'\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped: {ps}')
+                    return
                 else:
-                    ps_iterator_.merge(dropped_floater, 'left')
-                floater_copy.remove()
-                floater.find_me_elsewhere = True
-                log(f'\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped: {ps}')
-                return
+                    floater_copy.remove()
             else:
                 floater_copy.remove()
 

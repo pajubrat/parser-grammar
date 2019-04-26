@@ -40,7 +40,7 @@ pro-	:: PF:(pro) LF:pro CAT:N CAT:PHI
 asp		:: - TAIL:CAT:v,!COMP:*
 
 nom   	:: - TAIL:CAT:FIN,A/HEAD
-par   	:: - TAIL:!COMP:*,A/HEAD, -PHI
+par   	:: - TAIL:!COMP:*,-PHI
 acc		:: - TAIL:!COMP:*,A/HEAD, -PHI
 Pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH

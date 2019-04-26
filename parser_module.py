@@ -364,7 +364,6 @@ class Pcb_parser():
 
                 # Evaluation Comp selection for all morphemes inside the site
                 for m in site.get_affix_list():
-                    log(f'{m} ' + str(word_cats) + str(m.for_parsing(m.get_comps())))
                     # Check if H selects w and if yes, prioritize this solution
                     if word_cats & m.for_parsing(m.get_comps()):
                         priority = priority + priority_base + 100 * len(word_cats & m.for_parsing(m.get_comps()))
@@ -446,7 +445,6 @@ class Pcb_parser():
 
         # Sort based on priority (and only priority, not phrase structure)
         adjunction_sites = sorted(adjunction_sites, key=itemgetter(0))
-        log(str(adjunction_sites))
         adjunction_sites = [site for priority, site in adjunction_sites]
 
         adjunction_sites.reverse()
