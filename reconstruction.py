@@ -63,7 +63,7 @@ class Reconstruction():
         top = ps
 
         while ps_:
-            # Condition for dealing with phrase
+            # Condition when the head is part of a complex phrase structure
             if ps_.left_const and ps_.left_const.is_primitive() and ps_.left_const.has_affix():
                 affix = ps_.left_const.get_affix()
                 if self.drop_head(ps_.right_const, affix):
@@ -107,16 +107,18 @@ class Reconstruction():
                 affix_.remove()
                 iterator_ = iterator_.walk_downstream()
 
+        # We try the bottom right position
+        ps.get_bottom().merge(affix_, 'right')
+        if drop_condition_for_heads(affix_):
+            return True
+        else:
+            affix_.remove()
+
         # What do we do if head reconstruction doesn't find any position?
         # we will merge it to the local position as a last resort
         log(f'\t\t\t\tHead reconstruction failed for {affix_}, merged locally as a last resort.')
-        if affix_.EPP():
-            ps.get_bottom().merge(affix_, 'right')
-        else:
-            ps.merge(affix_, 'left')
-            # We need to reconstruct head movement for the left branch
-        if ps.is_primitive() and ps.has_affix():
-            self.reconstruct_head_movement(ps)
+        ps.merge(affix_, 'left')
+        # We need to reconstruct head movement for the left branch
         return True
 
     def reconstruct_floaters(self, ps):
@@ -366,16 +368,14 @@ class Reconstruction():
                 # Check if SPEC,h is a EPP position
                 if '+PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
                     target_const = const
-                    log('jesus')
 
             # Transfer it from memory buffer into the phrase structure
             if target_const:
                 # Try to merge it to Spec
                 ps.merge(target_const.transfer(self.babtize()), 'left')
                 # Check that this does not cause tail-head violations
-                if ps.geometrical_sister().get_head().external_tail_head_test():
-                    log(f'\t\t\t\tDropping constituent {target_const} from memory buffer into Spec of ' +
-                        f'{h}')
+                if ps.geometrical_sister().get_head().external_tail_head_test(): # Checks the head of the dropped constituent
+                    log(f'\t\t\t\tDropping constituent {target_const} from memory buffer into Spec of ' + f'{h}')
                     self.memory_buffer.remove(target_const)
                     self.number_of_Moves += 1
                 else:
@@ -449,7 +449,7 @@ class Reconstruction():
                                 # Create formal copies of features
                                 h.features.add('CAT:u' + f)
                                 # Add scope marker if needed, todo this looks stipulative in the present form
-                                if 'C/fin' in h.get_labels() or 'T/fin' in h.get_labels() or 'FORCE' in h.get_labels():
+                                if 'FIN' in h.get_labels():
                                     h.features.add('CAT:i' + f)
                                 h.features = self.lexical_access.apply_parameters(
                                     self.lexical_access.apply_redundancy_rules(h.features))
@@ -546,8 +546,7 @@ class Reconstruction():
             floater = _ps_iterator.left_const
             # Also check if its tail features fail to find a head
             if not floater.get_head().external_tail_head_test():
-                log('\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(
-                    floater.get_head().get_tail_sets()))
+                log('\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.get_head().get_tail_sets()))
                 # Target the floater
                 return floater
             # Or if it (constituent with tail features) sits in an EPP SPEC position of a finite clause edge

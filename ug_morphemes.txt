@@ -8,7 +8,7 @@
 #
 # Important: the keys must refers to UG morphemes, not language specific keys
 
-T/fin   :: CAT:T/fin PF:T LF:T
+T/fin   :: CAT:T/fin PF:T/fin LF:T
 v       :: CAT:v PF:v LF:v
 v/pro	:: CAT:v/pro PF:v/pro LF:pro
 C/fin   :: CAT:C/fin PF:C LF:C/fin
@@ -39,9 +39,9 @@ pro-	:: PF:(pro) LF:pro CAT:N CAT:PHI
 # Finnish accusative is aspectual, but we currently lack the required ASP feature (to be added later)
 asp		:: - TAIL:CAT:v,!COMP:*
 
-nom   	:: - TAIL:CAT:FIN,!COMP:*
-par   	:: - TAIL:!COMP:*,-PHI
-acc		:: - TAIL:!COMP:*,-PHI
+nom   	:: - TAIL:CAT:FIN,A/HEAD
+par   	:: - TAIL:!COMP:*,A/HEAD, -PHI
+acc		:: - TAIL:!COMP:*,A/HEAD, -PHI
 Pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH
 wh     	:: - CAT:WH
@@ -52,4 +52,4 @@ Q		:: - CAT:Q
 
 # This is not correct characterization of the genitive (correct will be TAIL:CAT:PHI, generalized phi-probe)
 # gen     :: - TAIL:CAT:D
-gen		:: - TAIL:PHI:0,!COMP:*
+gen		:: - TAIL:PHI:0,A/HEAD

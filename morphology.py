@@ -64,17 +64,20 @@ class Morphology():
     def generative_morphology(self, word):
 
         # This procedure will deal with the prosodic feature foc. The problem is that it can be either a feature or a morpheme,
-        # This could be solved by relying on disambiguation, but that is not realistic.
+        # This could be solved by relying on disambiguation, but that is not realistic. The whole problem is intriguing and
+        # tricky.
 
         # First we extract morphemes
         list_ = self.extract_morphemes(word)
         # Recognize the presence of the foc feature
-        if 'foc' in list_:
-            # We use the category of first morpheme as a cue
-            first_morpheme = self.lexicon.access_lexicon(list_[0])[0]
-            if 'V' in first_morpheme.get_labels() or 'FIN' in first_morpheme.get_labels():
-                log('\t\t\t\tProsodic feature [foc] interpreted as a C morpheme')
-                word = word.replace('#foc', '#C/fin')
+        if len(list_) > 1:
+            if 'foc' in list_:
+                # We use the category of second last morpheme as a cue
+                second_last_morpheme = self.lexicon.access_lexicon(list_[-2])[0]
+                labels = second_last_morpheme.get_labels()
+                if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels:
+                    log('\t\t\t\tProsodic feature [foc] interpreted as a C morpheme')
+                    word = word.replace('#foc', '#C/fin') # This meanss that #foc is interpreted as a morpheme
 
         return word
 

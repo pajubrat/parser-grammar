@@ -2,7 +2,7 @@
 from support import log
 from LF import LF
 
-major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM'}
+major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T'}
 
 class PhraseStructure:
 
@@ -635,6 +635,7 @@ class PhraseStructure:
         while _ps_iterator and _ps_iterator.mother:
             if _ps_iterator.geometrical_sister() \
                 and _ps_iterator.geometrical_sister().is_primitive() \
+                and _ps_iterator.geometrical_sister().is_left() \
                 and not _ps_iterator.geometrical_sister() == self.complement():
                     feature_vector.append(_ps_iterator.geometrical_sister())
 
@@ -725,7 +726,7 @@ class PhraseStructure:
                     if const.check_features(tail_set):
                         return True
                     # If there is PARTIAL match, it is left unchecked
-                    elif tail_set.intersection(const.features):
+                    elif tail_set & const.features:
                         return False
 
             return False
@@ -818,7 +819,7 @@ class PhraseStructure:
                         return True
                     # If there is PARTIAL match, the test is rejected
                     # (Intervention)
-                    elif tail_set.intersection(const.features):
+                    elif tail_set & const.features:
                         return False
 
         # If there there were NO overlapping features, this test is accepted
@@ -857,7 +858,7 @@ class PhraseStructure:
 
     # Checks that constituent 'self' can check all features in the 'feature_set'
     def check_features(self, feature_set):
-        return feature_set.intersection(self.features) == feature_set
+        return (feature_set & self.features) == feature_set
 
     # Checks if 'ps' contains a head with feature F
     def contains_feature(self, feature):
