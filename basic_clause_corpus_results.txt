@@ -1,0 +1,1365 @@
+BC parser v. 0.9
+2019-04-27 11:36:29.894946
+Test sentences from file "basic_clause_corpus.txt".
+Logs into file "basic_clause_corpus_log.txt.
+Lexicon from file "basic_clause_corpus_lexicon.txt".
+1
+['Pekka', 'nukkui']
+[<D Pekka>:1 [T/fin [<DP>:1 nukku]]]
+'D Pekka T __sleep .'
+Failed parses 0, Merge operations:6, Move operations: 1
+2
+['Pekka#foc', 'nukkui']
+[<D Pekka>:1 [T/fin [<DP>:1 nukku]]]
+'D Pekka T __sleep .'
+Failed parses 0, Merge operations:7, Move operations: 1
+3
+['nukkui', 'Pekka']
+*Ungrammatical.
+4
+['nukkui#foc', 'Pekka']
+[C [<DP>:1 [T/fin [<DP>:1 [nukku <D Pekka>:1]]]]]
+'C/fin __T __sleep D Pekka .'
+Failed parses 0, Merge operations:7, Move operations: 2
+5
+['Pekka', 'nukkui', 'kuorsaamalla']
+[<D Pekka>:1 [T/fin [<DP>:1 [nukku ?]]]]
+'D Pekka T __sleep  .'
+Failed parses 0, Merge operations:7, Move operations: 3
+6
+['Pekka#foc', 'nukkui', 'kuorsaamalla']
+[<D Pekka>:1 [T/fin [<DP>:1 [nukku ?]]]]
+'D Pekka T __sleep  .'
+Failed parses 0, Merge operations:8, Move operations: 3
+7
+['Pekka', 'kuorsaamalla', 'nukkui']
+*Ungrammatical.
+8
+['Pekka#foc', 'kuorsaamalla', 'nukkui']
+*Ungrammatical.
+9
+['nukkui', 'Pekka', 'kuorsaamalla']
+*Ungrammatical.
+10
+['nukkui#foc', 'Pekka', 'kuorsaamalla']
+[[C [<DP>:1 [T/fin [<DP>:1 [nukku <D Pekka>:1]]]]] ?]
+'C/fin __T __sleep D Pekka  .'
+Failed parses 0, Merge operations:8, Move operations: 6
+11
+['nukkui', 'kuorsaamalla', 'Pekka']
+*Ungrammatical.
+12
+['nukkui#foc', 'kuorsaamalla', 'Pekka']
+[C [<DP>:1 [T/fin [<DP>:1 [nukku [? <D Pekka>:1]]]]]]
+'C/fin __T __sleep  D Pekka .'
+Failed parses 0, Merge operations:8, Move operations: 2
+13
+['kuorsaamalla', 'Pekka', 'nukkui']
+[? [<D Pekka>:1 [T/fin [<DP>:1 nukku]]]]
+' D Pekka T __sleep .'
+Failed parses 1, Merge operations:9, Move operations: 1
+14
+['kuorsaamalla#foc', 'Pekka', 'nukkui']
+*Ungrammatical.
+15
+['kuorsaamalla', 'nukkui', 'Pekka']
+*Ungrammatical.
+16
+['kuorsaamalla#foc', 'nukkui', 'Pekka']
+*Ungrammatical.
+17
+['Pekka', 'ihailee', 'Merjaa']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]
+'D Pekka T __v admire D  .'
+Failed parses 0, Merge operations:10, Move operations: 2
+18
+['Pekka#foc', 'ihailee', 'Merjaa']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]
+'D Pekka T __v admire D  .'
+Failed parses 0, Merge operations:11, Move operations: 2
+19
+['Pekka', 'Merjaa', 'ihailee']
+*Ungrammatical.
+20
+['Pekka#foc', 'Merjaa', 'ihailee']
+[<D Pekka>:1 [uFOC [<D Merjaa>:2 [T/fin [<DP>:1 [v [<DP>:2 ihailee]]]]]]]
+'D Pekka  D  T __v __admire .'
+Failed parses 1, Merge operations:14, Move operations: 6
+21
+['ihailee', 'Pekka', 'Merjaa']
+*Ungrammatical.
+22
+['ihailee#foc', 'Pekka', 'Merjaa']
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]]
+'C/fin D Pekka T __v admire D  .'
+Failed parses 0, Merge operations:11, Move operations: 3
+23
+['ihailee', 'Merjaa', 'Pekka']
+*Ungrammatical.
+24
+['ihailee#foc', 'Merjaa', 'Pekka']
+[C [<D Merjaa>:1 [T/fin [<DP>:2 [v [<DP>:1 [ihailee <D Pekka>:2]]]]]]]
+'C/fin D  T __v __admire D Pekka .'
+Failed parses 0, Merge operations:11, Move operations: 2
+25
+['Merjaa', 'Pekka', 'ihailee']
+*Ungrammatical.
+26
+['Merjaa#foc', 'Pekka', 'ihailee']
+[<D Merjaa>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 ihailee]]]]]]]
+'D   D Pekka T __v __admire .'
+Failed parses 1, Merge operations:14, Move operations: 6
+27
+['Merjaa', 'ihailee', 'Pekka']
+[<D Merjaa>:1 [T/fin [<DP>:2 [v [<DP>:1 [ihailee <D Pekka>:2]]]]]]
+'D  T __v __admire D Pekka .'
+Failed parses 0, Merge operations:10, Move operations: 4
+28
+['Merjaa#foc', 'ihailee', 'Pekka']
+[<D Merjaa>:1 [T/fin [<DP>:2 [v [<DP>:1 [ihailee <D Pekka>:2]]]]]]
+'D  T __v __admire D Pekka .'
+Failed parses 0, Merge operations:11, Move operations: 4
+29
+['Pekka', 'ihailee', 'Merjaa', 'virtaamalla']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [[D Merjaa] <malla virtaa>]]]]]]
+'D Pekka T __v admire D  by flow .'
+Failed parses 0, Merge operations:12, Move operations: 4
+30
+['Pekka#foc', 'ihailee', 'Merjaa', 'virtaamalla']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [[D Merjaa] <malla virtaa>]]]]]]
+'D Pekka T __v admire D  by flow .'
+Failed parses 0, Merge operations:13, Move operations: 4
+31
+['Pekka', 'ihailee', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+32
+['Pekka#foc', 'ihailee', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+33
+['Pekka', 'Merjaa', 'ihailee', 'virtaamalla']
+*Ungrammatical.
+34
+['Pekka#foc', 'Merjaa', 'ihailee', 'virtaamalla']
+[<D Pekka>:1 [uFOC [<D Merjaa>:2 [T/fin [<DP>:1 [v [<DP>:2 [ihailee <malla virtaa>]]]]]]]]
+'D Pekka  D  T __v __admire by flow .'
+Failed parses 1, Merge operations:18, Move operations: 13
+35
+['Pekka', 'Merjaa', 'virtaamalla', 'ihailee']
+*Ungrammatical.
+36
+['Pekka#foc', 'Merjaa', 'virtaamalla', 'ihailee']
+*Ungrammatical.
+37
+['Pekka', 'virtaamalla', 'ihailee', 'Merjaa']
+*Ungrammatical.
+38
+['Pekka#foc', 'virtaamalla', 'ihailee', 'Merjaa']
+[<D Pekka>:1 [uFOC [<malla virtaa>:2 [T/fin [<DP>:1 [v [ihailee [[D Merjaa] <ADVP>:2]]]]]]]]
+'D Pekka  by flow T __v admire D  __.'
+Failed parses 0, Merge operations:13, Move operations: 6
+39
+['Pekka', 'virtaamalla', 'Merjaa', 'ihailee']
+*Ungrammatical.
+40
+['Pekka#foc', 'virtaamalla', 'Merjaa', 'ihailee']
+*Ungrammatical.
+41
+['ihailee', 'Pekka', 'Merjaa', 'virtaamalla']
+*Ungrammatical.
+42
+['ihailee#foc', 'Pekka', 'Merjaa', 'virtaamalla']
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [[D Merjaa] <malla virtaa>]]]]]]]
+'C/fin D Pekka T __v admire D  by flow .'
+Failed parses 2, Merge operations:17, Move operations: 10
+43
+['ihailee', 'Pekka', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+44
+['ihailee#foc', 'Pekka', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+45
+['ihailee', 'Merjaa', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+46
+['ihailee#foc', 'Merjaa', 'Pekka', 'virtaamalla']
+[C [<D Merjaa>:1 [T/fin [(DP):2 [v [<DP>:1 [ihailee [[D Pekka]:2 <malla virtaa>]]]]]]]]
+'C/fin D  T __v __admire D Pekka by flow .'
+Failed parses 2, Merge operations:17, Move operations: 12
+47
+['ihailee', 'Merjaa', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+48
+['ihailee#foc', 'Merjaa', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+49
+['ihailee', 'virtaamalla', 'Pekka', 'Merjaa']
+*Ungrammatical.
+50
+['ihailee#foc', 'virtaamalla', 'Pekka', 'Merjaa']
+[C [<malla virtaa>:1 [T/fin [<DP>:2 [v [ihailee [[<D Pekka>:2 <D Merjaa>] <ADVP>:1]]]]]]]
+'C/fin by flow T __v admire D Pekka D  __.'
+Failed parses 2, Merge operations:17, Move operations: 14
+51
+['ihailee', 'virtaamalla', 'Merjaa', 'Pekka']
+*Ungrammatical.
+52
+['ihailee#foc', 'virtaamalla', 'Merjaa', 'Pekka']
+[C [<[malla virtaa] <D Merjaa>>:1 [T/fin [(DP):2 [v [ihailee [[D Pekka]:2 <ADVP>:1]]]]]]]
+'C/fin by flow D  T __v admire D Pekka __.'
+Failed parses 0, Merge operations:13, Move operations: 8
+53
+['Merjaa', 'Pekka', 'ihailee', 'virtaamalla']
+*Ungrammatical.
+54
+['Merjaa#foc', 'Pekka', 'ihailee', 'virtaamalla']
+[<D Merjaa>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]
+'D   D Pekka T __v __admire by flow .'
+Failed parses 2, Merge operations:20, Move operations: 14
+55
+['Merjaa', 'Pekka', 'virtaamalla', 'ihailee']
+*Ungrammatical.
+56
+['Merjaa#foc', 'Pekka', 'virtaamalla', 'ihailee']
+*Ungrammatical.
+57
+['Merjaa', 'ihailee', 'Pekka', 'virtaamalla']
+[<D Merjaa>:1 [T/fin [(DP):2 [v [<DP>:1 [ihailee [[D Pekka]:2 <malla virtaa>]]]]]]]
+'D  T __v __admire D Pekka by flow .'
+Failed parses 0, Merge operations:12, Move operations: 9
+58
+['Merjaa#foc', 'ihailee', 'Pekka', 'virtaamalla']
+[<D Merjaa>:1 [T/fin [(DP):2 [v [<DP>:1 [ihailee [[D Pekka]:2 <malla virtaa>]]]]]]]
+'D  T __v __admire D Pekka by flow .'
+Failed parses 0, Merge operations:13, Move operations: 9
+59
+['Merjaa', 'ihailee', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+60
+['Merjaa#foc', 'ihailee', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+61
+['Merjaa', 'virtaamalla', 'Pekka', 'ihailee']
+*Ungrammatical.
+62
+['Merjaa#foc', 'virtaamalla', 'Pekka', 'ihailee']
+*Ungrammatical.
+63
+['Merjaa', 'virtaamalla', 'ihailee', 'Pekka']
+*Ungrammatical.
+64
+['Merjaa#foc', 'virtaamalla', 'ihailee', 'Pekka']
+[<D Merjaa>:1 [uFOC [<malla virtaa>:2 [T/fin [(DP):3 [v [<DP>:1 [ihailee [[D Pekka]:3 <ADVP>:2]]]]]]]]]
+'D   by flow T __v __admire D Pekka __.'
+Failed parses 0, Merge operations:13, Move operations: 9
+65
+['virtaamalla', 'Pekka', 'ihailee', 'Merjaa']
+*Ungrammatical.
+66
+['virtaamalla#foc', 'Pekka', 'ihailee', 'Merjaa']
+[<malla virtaa>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [ihailee [[D Merjaa] <ADVP>:1]]]]]]]]
+'by flow  D Pekka T __v admire D  __.'
+Failed parses 1, Merge operations:19, Move operations: 10
+67
+['virtaamalla', 'Pekka', 'Merjaa', 'ihailee']
+*Ungrammatical.
+68
+['virtaamalla#foc', 'Pekka', 'Merjaa', 'ihailee']
+*Ungrammatical.
+69
+['virtaamalla', 'ihailee', 'Pekka', 'Merjaa']
+[<malla virtaa>:1 [T/fin [<DP>:2 [v [ihailee [[<D Pekka>:2 <D Merjaa>] <ADVP>:1]]]]]]
+'by flow T __v admire D Pekka D  __.'
+Failed parses 1, Merge operations:14, Move operations: 11
+70
+['virtaamalla#foc', 'ihailee', 'Pekka', 'Merjaa']
+[<malla virtaa>:1 [T/fin [<DP>:2 [v [ihailee [[<D Pekka>:2 <D Merjaa>] <ADVP>:1]]]]]]
+'by flow T __v admire D Pekka D  __.'
+Failed parses 1, Merge operations:15, Move operations: 11
+71
+['virtaamalla', 'ihailee', 'Merjaa', 'Pekka']
+[<malla virtaa>:1 [T/fin [<DP>:2 [v [ihailee [[[D Merjaa] <D Pekka>:2] <ADVP>:1]]]]]]
+'by flow T __v admire D  D Pekka __.'
+Failed parses 0, Merge operations:12, Move operations: 5
+72
+['virtaamalla#foc', 'ihailee', 'Merjaa', 'Pekka']
+[<malla virtaa>:1 [T/fin [<DP>:2 [v [ihailee [[[D Merjaa] <D Pekka>:2] <ADVP>:1]]]]]]
+'by flow T __v admire D  D Pekka __.'
+Failed parses 0, Merge operations:13, Move operations: 5
+73
+['virtaamalla', 'Merjaa', 'Pekka', 'ihailee']
+*Ungrammatical.
+74
+['virtaamalla#foc', 'Merjaa', 'Pekka', 'ihailee']
+*Ungrammatical.
+75
+['virtaamalla', 'Merjaa', 'ihailee', 'Pekka']
+[<[malla virtaa] <D Merjaa>>:1 [T/fin [(DP):2 [v [ihailee [[D Pekka]:2 <ADVP>:1]]]]]]
+'by flow D  T __v admire D Pekka __.'
+Failed parses 0, Merge operations:12, Move operations: 6
+76
+['virtaamalla#foc', 'Merjaa', 'ihailee', 'Pekka']
+[<[malla virtaa] <D Merjaa>>:1 [T/fin [(DP):2 [v [ihailee [[D Pekka]:2 <ADVP>:1]]]]]]
+'by flow D  T __v admire D Pekka __.'
+Failed parses 0, Merge operations:13, Move operations: 6
+77
+['Pekka', 'antoi', 'kirjan', 'Merjalle']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+'D Pekka T __v give D book for D Merja .'
+Failed parses 0, Merge operations:13, Move operations: 4
+78
+['Pekka#foc', 'antoi', 'kirjan', 'Merjalle']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+'D Pekka T __v give D book for D Merja .'
+Failed parses 0, Merge operations:14, Move operations: 4
+79
+['Pekka', 'antoi', 'Merjalle', 'kirjan']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[P(lle) [D Merja-]] <D kirja>]]]]]]
+'D Pekka T __v give for D Merja D book .'
+Failed parses 2, Merge operations:17, Move operations: 9
+80
+['Pekka#foc', 'antoi', 'Merjalle', 'kirjan']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[P(lle) [D Merja-]] <D kirja>]]]]]]
+'D Pekka T __v give for D Merja D book .'
+Failed parses 2, Merge operations:18, Move operations: 9
+81
+['Pekka', 'kirjan', 'antoi', 'Merjalle']
+*Ungrammatical.
+82
+['Pekka#foc', 'kirjan', 'antoi', 'Merjalle']
+[<D Pekka>:1 [uFOC [<D kirja>:2 [T/fin [<DP>:1 [v [<DP>:2 [antaa [P(lle) [D Merja-]]]]]]]]]]
+'D Pekka  D book T __v __give for D Merja .'
+Failed parses 1, Merge operations:20, Move operations: 13
+83
+['Pekka', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+84
+['Pekka#foc', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+85
+['Pekka', 'Merjalle', 'antoi', 'kirjan']
+*Ungrammatical.
+86
+['Pekka#foc', 'Merjalle', 'antoi', 'kirjan']
+[<D Pekka>:1 [uFOC [[P(lle) [D Merja-]]:2 [T/fin [<DP>:1 [v [(PP):2 [antaa [D kirja]]]]]]]]]
+'D Pekka  for D Merja T __v __give D book .'
+Failed parses 0, Merge operations:14, Move operations: 6
+87
+['Pekka', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+88
+['Pekka#foc', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+89
+['antoi', 'Pekka', 'kirjan', 'Merjalle']
+*Ungrammatical.
+90
+['antoi#foc', 'Pekka', 'kirjan', 'Merjalle']
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]
+'C/fin D Pekka T __v give D book for D Merja .'
+Failed parses 2, Merge operations:20, Move operations: 10
+91
+['antoi', 'Pekka', 'Merjalle', 'kirjan']
+*Ungrammatical.
+92
+['antoi#foc', 'Pekka', 'Merjalle', 'kirjan']
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[P(lle) [D Merja-]] <D kirja>]]]]]]]
+'C/fin D Pekka T __v give for D Merja D book .'
+Failed parses 1, Merge operations:16, Move operations: 9
+93
+['antoi', 'kirjan', 'Pekka', 'Merjalle']
+*Ungrammatical.
+94
+['antoi#foc', 'kirjan', 'Pekka', 'Merjalle']
+[C [<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [<D Pekka>:2 [P(lle) [D Merja-]]]]]]]]]]
+'C/fin D book T __v __give D Pekka for D Merja .'
+Failed parses 2, Merge operations:20, Move operations: 12
+95
+['antoi', 'kirjan', 'Merjalle', 'Pekka']
+*Ungrammatical.
+96
+['antoi#foc', 'kirjan', 'Merjalle', 'Pekka']
+[C [<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[P(lle) [D Merja-]] <D Pekka>:2]]]]]]]]
+'C/fin D book T __v __give for D Merja D Pekka .'
+Failed parses 0, Merge operations:14, Move operations: 6
+97
+['antoi', 'Merjalle', 'Pekka', 'kirjan']
+*Ungrammatical.
+98
+['antoi#foc', 'Merjalle', 'Pekka', 'kirjan']
+[C [[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [<D Pekka>:2 <D kirja>]]]]]]]]
+'C/fin for D Merja T __v __give D Pekka D book .'
+Failed parses 3, Merge operations:23, Move operations: 12
+99
+['antoi', 'Merjalle', 'kirjan', 'Pekka']
+*Ungrammatical.
+100
+['antoi#foc', 'Merjalle', 'kirjan', 'Pekka']
+[C [[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[D kirja] <D Pekka>:2]]]]]]]]
+'C/fin for D Merja T __v __give D book D Pekka .'
+Failed parses 3, Merge operations:23, Move operations: 13
+101
+['kirjan', 'Pekka', 'antoi', 'Merjalle']
+*Ungrammatical.
+102
+['kirjan#foc', 'Pekka', 'antoi', 'Merjalle']
+[<D kirja>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 [antaa [P(lle) [D Merja-]]]]]]]]]]
+'D book  D Pekka T __v __give for D Merja .'
+Failed parses 2, Merge operations:23, Move operations: 14
+103
+['kirjan', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+104
+['kirjan#foc', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+105
+['kirjan', 'antoi', 'Pekka', 'Merjalle']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [<D Pekka>:2 [P(lle) [D Merja-]]]]]]]]]
+'D book T __v __give D Pekka for D Merja .'
+Failed parses 0, Merge operations:13, Move operations: 9
+106
+['kirjan#foc', 'antoi', 'Pekka', 'Merjalle']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [<D Pekka>:2 [P(lle) [D Merja-]]]]]]]]]
+'D book T __v __give D Pekka for D Merja .'
+Failed parses 0, Merge operations:14, Move operations: 9
+107
+['kirjan', 'antoi', 'Merjalle', 'Pekka']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[P(lle) [D Merja-]] <D Pekka>:2]]]]]]]
+'D book T __v __give for D Merja D Pekka .'
+Failed parses 2, Merge operations:17, Move operations: 11
+108
+['kirjan#foc', 'antoi', 'Merjalle', 'Pekka']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[P(lle) [D Merja-]] <D Pekka>:2]]]]]]]
+'D book T __v __give for D Merja D Pekka .'
+Failed parses 2, Merge operations:18, Move operations: 11
+109
+['kirjan', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+110
+['kirjan#foc', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+111
+['kirjan', 'Merjalle', 'antoi', 'Pekka']
+*Ungrammatical.
+112
+['kirjan#foc', 'Merjalle', 'antoi', 'Pekka']
+[<D kirja>:1 [uFOC [[P(lle) [D Merja-]]:2 [T/fin [<DP>:3 [v [<DP>:1 [[antaa (PP):2] <D Pekka>:3]]]]]]]]
+'D book  for D Merja T __v __give __D Pekka .'
+Failed parses 0, Merge operations:14, Move operations: 9
+113
+['Merjalle', 'Pekka', 'antoi', 'kirjan']
+*Ungrammatical.
+114
+['Merjalle#foc', 'Pekka', 'antoi', 'kirjan']
+[[P(lle) [D Merja-]]:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [(PP):1 [antaa [D kirja]]]]]]]]]
+'for D Merja  D Pekka T __v __give D book .'
+Failed parses 1, Merge operations:20, Move operations: 7
+115
+['Merjalle', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+116
+['Merjalle#foc', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+117
+['Merjalle', 'antoi', 'Pekka', 'kirjan']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [<D Pekka>:2 <D kirja>]]]]]]]
+'for D Merja T __v __give D Pekka D book .'
+Failed parses 0, Merge operations:13, Move operations: 6
+118
+['Merjalle#foc', 'antoi', 'Pekka', 'kirjan']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [<D Pekka>:2 <D kirja>]]]]]]]
+'for D Merja T __v __give D Pekka D book .'
+Failed parses 0, Merge operations:14, Move operations: 6
+119
+['Merjalle', 'antoi', 'kirjan', 'Pekka']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[D kirja] <D Pekka>:2]]]]]]]
+'for D Merja T __v __give D book D Pekka .'
+Failed parses 0, Merge operations:13, Move operations: 5
+120
+['Merjalle#foc', 'antoi', 'kirjan', 'Pekka']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[D kirja] <D Pekka>:2]]]]]]]
+'for D Merja T __v __give D book D Pekka .'
+Failed parses 0, Merge operations:14, Move operations: 5
+121
+['Merjalle', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+122
+['Merjalle#foc', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+123
+['Merjalle', 'kirjan', 'antoi', 'Pekka']
+*Ungrammatical.
+124
+['Merjalle#foc', 'kirjan', 'antoi', 'Pekka']
+[[P(lle) [D Merja-]]:1 [uFOC [<D kirja>:2 [T/fin [<DP>:3 [v [<DP>:2 [[antaa (PP):1] <D Pekka>:3]]]]]]]]
+'for D Merja  D book T __v __give __D Pekka .'
+Failed parses 1, Merge operations:20, Move operations: 12
+125
+['Pekka', 'antoi', 'kirjan', 'Merjalle', 'virtaamalla']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]
+'D Pekka T __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:15, Move operations: 9
+126
+['Pekka#foc', 'antoi', 'kirjan', 'Merjalle', 'virtaamalla']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]
+'D Pekka T __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:16, Move operations: 9
+127
+['Pekka', 'antoi', 'kirjan', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+128
+['Pekka#foc', 'antoi', 'kirjan', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+129
+['Pekka', 'antoi', 'Merjalle', 'kirjan', 'virtaamalla']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[[P(lle) [D Merja-]] <D kirja>] <malla virtaa>]]]]]]
+'D Pekka T __v give for D Merja D book by flow .'
+Failed parses 5, Merge operations:29, Move operations: 26
+130
+['Pekka#foc', 'antoi', 'Merjalle', 'kirjan', 'virtaamalla']
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[[P(lle) [D Merja-]] <D kirja>] <malla virtaa>]]]]]]
+'D Pekka T __v give for D Merja D book by flow .'
+Failed parses 5, Merge operations:30, Move operations: 26
+131
+['Pekka', 'antoi', 'Merjalle', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+132
+['Pekka#foc', 'antoi', 'Merjalle', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+133
+['Pekka', 'antoi', 'virtaamalla', 'kirjan', 'Merjalle']
+*Ungrammatical.
+134
+['Pekka#foc', 'antoi', 'virtaamalla', 'kirjan', 'Merjalle']
+*Ungrammatical.
+135
+['Pekka', 'antoi', 'virtaamalla', 'Merjalle', 'kirjan']
+*Ungrammatical.
+136
+['Pekka#foc', 'antoi', 'virtaamalla', 'Merjalle', 'kirjan']
+*Ungrammatical.
+137
+['Pekka', 'kirjan', 'antoi', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+138
+['Pekka#foc', 'kirjan', 'antoi', 'Merjalle', 'virtaamalla']
+[<D Pekka>:1 [uFOC [<D kirja>:2 [T/fin [<DP>:1 [v [<DP>:2 [antaa [[P(lle) [D Merja-]] <malla virtaa>]]]]]]]]]
+'D Pekka  D book T __v __give for D Merja by flow .'
+Failed parses 3, Merge operations:28, Move operations: 23
+139
+['Pekka', 'kirjan', 'antoi', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+140
+['Pekka#foc', 'kirjan', 'antoi', 'virtaamalla', 'Merjalle']
+[<D Pekka>:1 [uFOC [<D kirja>:2 [T/fin [<DP>:1 [v [<DP>:2 [antaa [[malla virtaa] <P(lle) [D Merja-]>]]]]]]]]]
+'D Pekka  D book T __v __give by flow for D Merja .'
+Failed parses 1, Merge operations:24, Move operations: 20
+141
+['Pekka', 'kirjan', 'Merjalle', 'antoi', 'virtaamalla']
+*Ungrammatical.
+142
+['Pekka#foc', 'kirjan', 'Merjalle', 'antoi', 'virtaamalla']
+*Ungrammatical.
+143
+['Pekka', 'kirjan', 'Merjalle', 'virtaamalla', 'antoi']
+*Ungrammatical.
+144
+['Pekka#foc', 'kirjan', 'Merjalle', 'virtaamalla', 'antoi']
+*Ungrammatical.
+145
+['Pekka', 'kirjan', 'virtaamalla', 'antoi', 'Merjalle']
+*Ungrammatical.
+146
+['Pekka#foc', 'kirjan', 'virtaamalla', 'antoi', 'Merjalle']
+*Ungrammatical.
+147
+['Pekka', 'kirjan', 'virtaamalla', 'Merjalle', 'antoi']
+*Ungrammatical.
+148
+['Pekka#foc', 'kirjan', 'virtaamalla', 'Merjalle', 'antoi']
+*Ungrammatical.
+149
+['Pekka', 'Merjalle', 'antoi', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+150
+['Pekka#foc', 'Merjalle', 'antoi', 'kirjan', 'virtaamalla']
+[<D Pekka>:1 [uFOC [[P(lle) [D Merja-]]:2 [T/fin [<DP>:1 [v [(PP):2 [antaa [[D kirja] <malla virtaa>]]]]]]]]]
+'D Pekka  for D Merja T __v __give D book by flow .'
+Failed parses 0, Merge operations:16, Move operations: 12
+151
+['Pekka', 'Merjalle', 'antoi', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+152
+['Pekka#foc', 'Merjalle', 'antoi', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+153
+['Pekka', 'Merjalle', 'kirjan', 'antoi', 'virtaamalla']
+*Ungrammatical.
+154
+['Pekka#foc', 'Merjalle', 'kirjan', 'antoi', 'virtaamalla']
+*Ungrammatical.
+155
+['Pekka', 'Merjalle', 'kirjan', 'virtaamalla', 'antoi']
+*Ungrammatical.
+156
+['Pekka#foc', 'Merjalle', 'kirjan', 'virtaamalla', 'antoi']
+*Ungrammatical.
+157
+['Pekka', 'Merjalle', 'virtaamalla', 'antoi', 'kirjan']
+*Ungrammatical.
+158
+['Pekka#foc', 'Merjalle', 'virtaamalla', 'antoi', 'kirjan']
+[<D Pekka>:1 [uFOC [<[P(lle) [D Merja-]]:3 [malla [(PP):3 virtaa]]>:2 [T/fin [<DP>:1 [v [antaa [[D kirja] <ADVP>:2]]]]]]]]
+'D Pekka  for D Merja by __flow T __v give D book __.'
+Failed parses 0, Merge operations:16, Move operations: 15
+159
+['Pekka', 'Merjalle', 'virtaamalla', 'kirjan', 'antoi']
+*Ungrammatical.
+160
+['Pekka#foc', 'Merjalle', 'virtaamalla', 'kirjan', 'antoi']
+*Ungrammatical.
+161
+['Pekka', 'virtaamalla', 'antoi', 'kirjan', 'Merjalle']
+*Ungrammatical.
+162
+['Pekka#foc', 'virtaamalla', 'antoi', 'kirjan', 'Merjalle']
+[<D Pekka>:1 [uFOC [<malla virtaa>:2 [T/fin [<DP>:1 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <ADVP>:2]]]]]]]]
+'D Pekka  by flow T __v give D book for D Merja __.'
+Failed parses 0, Merge operations:16, Move operations: 12
+163
+['Pekka', 'virtaamalla', 'antoi', 'Merjalle', 'kirjan']
+*Ungrammatical.
+164
+['Pekka#foc', 'virtaamalla', 'antoi', 'Merjalle', 'kirjan']
+[<D Pekka>:1 [uFOC [<malla virtaa>:2 [T/fin [<DP>:1 [v [antaa [[[P(lle) [D Merja-]] <D kirja>] <ADVP>:2]]]]]]]]
+'D Pekka  by flow T __v give for D Merja D book __.'
+Failed parses 3, Merge operations:22, Move operations: 24
+165
+['Pekka', 'virtaamalla', 'kirjan', 'antoi', 'Merjalle']
+*Ungrammatical.
+166
+['Pekka#foc', 'virtaamalla', 'kirjan', 'antoi', 'Merjalle']
+[<D Pekka>:1 [uFOC [<[malla virtaa] <D kirja>>:2 [T/fin [<DP>:1 [v [antaa [[P(lle) [D Merja-]] <ADVP>:2]]]]]]]]
+'D Pekka  by flow D book T __v give for D Merja __.'
+Failed parses 0, Merge operations:16, Move operations: 13
+167
+['Pekka', 'virtaamalla', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+168
+['Pekka#foc', 'virtaamalla', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+169
+['Pekka', 'virtaamalla', 'Merjalle', 'antoi', 'kirjan']
+*Ungrammatical.
+170
+['Pekka#foc', 'virtaamalla', 'Merjalle', 'antoi', 'kirjan']
+*Ungrammatical.
+171
+['Pekka', 'virtaamalla', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+172
+['Pekka#foc', 'virtaamalla', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+173
+['antoi', 'Pekka', 'kirjan', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+174
+['antoi#foc', 'Pekka', 'kirjan', 'Merjalle', 'virtaamalla']
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <malla virtaa>]]]]]]]
+'C/fin D Pekka T __v give D book for D Merja by flow .'
+Failed parses 6, Merge operations:34, Move operations: 28
+175
+['antoi', 'Pekka', 'kirjan', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+176
+['antoi#foc', 'Pekka', 'kirjan', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+177
+['antoi', 'Pekka', 'Merjalle', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+178
+['antoi#foc', 'Pekka', 'Merjalle', 'kirjan', 'virtaamalla']
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[[P(lle) [D Merja-]] <D kirja>] <malla virtaa>]]]]]]]
+'C/fin D Pekka T __v give for D Merja D book by flow .'
+Failed parses 2, Merge operations:22, Move operations: 15
+179
+['antoi', 'Pekka', 'Merjalle', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+180
+['antoi#foc', 'Pekka', 'Merjalle', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+181
+['antoi', 'Pekka', 'virtaamalla', 'kirjan', 'Merjalle']
+*Ungrammatical.
+182
+['antoi#foc', 'Pekka', 'virtaamalla', 'kirjan', 'Merjalle']
+*Ungrammatical.
+183
+['antoi', 'Pekka', 'virtaamalla', 'Merjalle', 'kirjan']
+*Ungrammatical.
+184
+['antoi#foc', 'Pekka', 'virtaamalla', 'Merjalle', 'kirjan']
+*Ungrammatical.
+185
+['antoi', 'kirjan', 'Pekka', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+186
+['antoi#foc', 'kirjan', 'Pekka', 'Merjalle', 'virtaamalla']
+[C [<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[<D Pekka>:2 [P(lle) [D Merja-]]] <malla virtaa>]]]]]]]]
+'C/fin D book T __v __give D Pekka for D Merja by flow .'
+Failed parses 6, Merge operations:34, Move operations: 33
+187
+['antoi', 'kirjan', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+188
+['antoi#foc', 'kirjan', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+189
+['antoi', 'kirjan', 'Merjalle', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+190
+['antoi#foc', 'kirjan', 'Merjalle', 'Pekka', 'virtaamalla']
+[C [<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[[P(lle) [D Merja-]] <D Pekka>:2] <malla virtaa>]]]]]]]]
+'C/fin D book T __v __give for D Merja D Pekka by flow .'
+Failed parses 0, Merge operations:16, Move operations: 11
+191
+['antoi', 'kirjan', 'Merjalle', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+192
+['antoi#foc', 'kirjan', 'Merjalle', 'virtaamalla', 'Pekka']
+[C [<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[[P(lle) [D Merja-]]:3 <malla [(PP):3 virtaa]>] <D Pekka>:2]]]]]]]]
+'C/fin D book T __v __give for D Merja by __flow D Pekka .'
+Failed parses 0, Merge operations:16, Move operations: 15
+193
+['antoi', 'kirjan', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+194
+['antoi#foc', 'kirjan', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+195
+['antoi', 'kirjan', 'virtaamalla', 'Merjalle', 'Pekka']
+*Ungrammatical.
+196
+['antoi#foc', 'kirjan', 'virtaamalla', 'Merjalle', 'Pekka']
+[C [<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[malla virtaa] [<P(lle) [D Merja-]> <D Pekka>:2]]]]]]]]]
+'C/fin D book T __v __give by flow for D Merja D Pekka .'
+Failed parses 0, Merge operations:16, Move operations: 12
+197
+['antoi', 'Merjalle', 'Pekka', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+198
+['antoi#foc', 'Merjalle', 'Pekka', 'kirjan', 'virtaamalla']
+[C [[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [<D Pekka>:2 [<D kirja> <malla virtaa>]]]]]]]]]
+'C/fin for D Merja T __v __give D Pekka D book by flow .'
+Failed parses 10, Merge operations:45, Move operations: 44
+199
+['antoi', 'Merjalle', 'Pekka', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+200
+['antoi#foc', 'Merjalle', 'Pekka', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+201
+['antoi', 'Merjalle', 'kirjan', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+202
+['antoi#foc', 'Merjalle', 'kirjan', 'Pekka', 'virtaamalla']
+[C [[[P(lle) [D Merja-]] <D kirja>]:1 [T/fin [(DP):2 [v [(PP):1 [antaa [[D Pekka]:2 <malla virtaa>]]]]]]]]
+'C/fin for D Merja D book T __v __give D Pekka by flow .'
+Failed parses 6, Merge operations:35, Move operations: 30
+203
+['antoi', 'Merjalle', 'kirjan', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+204
+['antoi#foc', 'Merjalle', 'kirjan', 'virtaamalla', 'Pekka']
+[C [[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[D kirja] [<malla virtaa> <D Pekka>:2]]]]]]]]]
+'C/fin for D Merja T __v __give D book by flow D Pekka .'
+Failed parses 6, Merge operations:39, Move operations: 37
+205
+['antoi', 'Merjalle', 'virtaamalla', 'Pekka', 'kirjan']
+*Ungrammatical.
+206
+['antoi#foc', 'Merjalle', 'virtaamalla', 'Pekka', 'kirjan']
+[C [<[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]>:1 [T/fin [<DP>:3 [v [antaa [[<D Pekka>:3 <D kirja>] <ADVP>:1]]]]]]]
+'C/fin for D Merja by __flow T __v give D Pekka D book __.'
+Failed parses 2, Merge operations:20, Move operations: 19
+207
+['antoi', 'Merjalle', 'virtaamalla', 'kirjan', 'Pekka']
+*Ungrammatical.
+208
+['antoi#foc', 'Merjalle', 'virtaamalla', 'kirjan', 'Pekka']
+[C [<[[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]] <D kirja>>:1 [T/fin [(DP):3 [v [antaa [[D Pekka]:3 <ADVP>:1]]]]]]]
+'C/fin for D Merja by __flow D book T __v give D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 13
+209
+['antoi', 'virtaamalla', 'Pekka', 'kirjan', 'Merjalle']
+*Ungrammatical.
+210
+['antoi#foc', 'virtaamalla', 'Pekka', 'kirjan', 'Merjalle']
+*Ungrammatical.
+211
+['antoi', 'virtaamalla', 'Pekka', 'Merjalle', 'kirjan']
+*Ungrammatical.
+212
+['antoi#foc', 'virtaamalla', 'Pekka', 'Merjalle', 'kirjan']
+*Ungrammatical.
+213
+['antoi', 'virtaamalla', 'kirjan', 'Pekka', 'Merjalle']
+*Ungrammatical.
+214
+['antoi#foc', 'virtaamalla', 'kirjan', 'Pekka', 'Merjalle']
+[C [<[malla virtaa] <D kirja>>:1 [T/fin [<DP>:2 [v [antaa [[<D Pekka>:2 [P(lle) [D Merja-]]] <ADVP>:1]]]]]]]
+'C/fin by flow D book T __v give D Pekka for D Merja __.'
+Failed parses 2, Merge operations:22, Move operations: 18
+215
+['antoi', 'virtaamalla', 'kirjan', 'Merjalle', 'Pekka']
+*Ungrammatical.
+216
+['antoi#foc', 'virtaamalla', 'kirjan', 'Merjalle', 'Pekka']
+[C [<[malla virtaa] <D kirja>>:1 [T/fin [<DP>:2 [v [antaa [[[P(lle) [D Merja-]] <D Pekka>:2] <ADVP>:1]]]]]]]
+'C/fin by flow D book T __v give for D Merja D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 11
+217
+['antoi', 'virtaamalla', 'Merjalle', 'Pekka', 'kirjan']
+*Ungrammatical.
+218
+['antoi#foc', 'virtaamalla', 'Merjalle', 'Pekka', 'kirjan']
+*Ungrammatical.
+219
+['antoi', 'virtaamalla', 'Merjalle', 'kirjan', 'Pekka']
+*Ungrammatical.
+220
+['antoi#foc', 'virtaamalla', 'Merjalle', 'kirjan', 'Pekka']
+[C [<malla virtaa>:1 [T/fin [<DP>:2 [v [antaa [[[[P(lle) [D Merja-]] <D kirja>] <D Pekka>:2] <ADVP>:1]]]]]]]
+'C/fin by flow T __v give for D Merja D book D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 9
+221
+['kirjan', 'Pekka', 'antoi', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+222
+['kirjan#foc', 'Pekka', 'antoi', 'Merjalle', 'virtaamalla']
+[<D kirja>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[P(lle) [D Merja-]] <malla virtaa>]]]]]]]]]
+'D book  D Pekka T __v __give for D Merja by flow .'
+Failed parses 5, Merge operations:35, Move operations: 26
+223
+['kirjan', 'Pekka', 'antoi', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+224
+['kirjan#foc', 'Pekka', 'antoi', 'virtaamalla', 'Merjalle']
+[<D kirja>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[malla virtaa] <P(lle) [D Merja-]>]]]]]]]]]
+'D book  D Pekka T __v __give by flow for D Merja .'
+Failed parses 4, Merge operations:35, Move operations: 24
+225
+['kirjan', 'Pekka', 'Merjalle', 'antoi', 'virtaamalla']
+*Ungrammatical.
+226
+['kirjan#foc', 'Pekka', 'Merjalle', 'antoi', 'virtaamalla']
+*Ungrammatical.
+227
+['kirjan', 'Pekka', 'Merjalle', 'virtaamalla', 'antoi']
+*Ungrammatical.
+228
+['kirjan#foc', 'Pekka', 'Merjalle', 'virtaamalla', 'antoi']
+*Ungrammatical.
+229
+['kirjan', 'Pekka', 'virtaamalla', 'antoi', 'Merjalle']
+*Ungrammatical.
+230
+['kirjan#foc', 'Pekka', 'virtaamalla', 'antoi', 'Merjalle']
+*Ungrammatical.
+231
+['kirjan', 'Pekka', 'virtaamalla', 'Merjalle', 'antoi']
+*Ungrammatical.
+232
+['kirjan#foc', 'Pekka', 'virtaamalla', 'Merjalle', 'antoi']
+*Ungrammatical.
+233
+['kirjan', 'antoi', 'Pekka', 'Merjalle', 'virtaamalla']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [<D Pekka>:2 [[P(lle) [D Merja-]] <malla virtaa>]]]]]]]]
+'D book T __v __give D Pekka for D Merja by flow .'
+Failed parses 0, Merge operations:15, Move operations: 18
+234
+['kirjan#foc', 'antoi', 'Pekka', 'Merjalle', 'virtaamalla']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [<D Pekka>:2 [[P(lle) [D Merja-]] <malla virtaa>]]]]]]]]
+'D book T __v __give D Pekka for D Merja by flow .'
+Failed parses 0, Merge operations:16, Move operations: 18
+235
+['kirjan', 'antoi', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+236
+['kirjan#foc', 'antoi', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+237
+['kirjan', 'antoi', 'Merjalle', 'Pekka', 'virtaamalla']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[[P(lle) [D Merja-]] <D Pekka>:2] <malla virtaa>]]]]]]]
+'D book T __v __give for D Merja D Pekka by flow .'
+Failed parses 5, Merge operations:29, Move operations: 32
+238
+['kirjan#foc', 'antoi', 'Merjalle', 'Pekka', 'virtaamalla']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[[P(lle) [D Merja-]] <D Pekka>:2] <malla virtaa>]]]]]]]
+'D book T __v __give for D Merja D Pekka by flow .'
+Failed parses 5, Merge operations:30, Move operations: 32
+239
+['kirjan', 'antoi', 'Merjalle', 'virtaamalla', 'Pekka']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[[P(lle) [D Merja-]]:3 <malla [(PP):3 virtaa]>] <D Pekka>:2]]]]]]]
+'D book T __v __give for D Merja by __flow D Pekka .'
+Failed parses 0, Merge operations:15, Move operations: 12
+240
+['kirjan#foc', 'antoi', 'Merjalle', 'virtaamalla', 'Pekka']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[[P(lle) [D Merja-]]:3 <malla [(PP):3 virtaa]>] <D Pekka>:2]]]]]]]
+'D book T __v __give for D Merja by __flow D Pekka .'
+Failed parses 0, Merge operations:16, Move operations: 12
+241
+['kirjan', 'antoi', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+242
+['kirjan#foc', 'antoi', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+243
+['kirjan', 'antoi', 'virtaamalla', 'Merjalle', 'Pekka']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[malla virtaa] [<P(lle) [D Merja-]> <D Pekka>:2]]]]]]]]
+'D book T __v __give by flow for D Merja D Pekka .'
+Failed parses 0, Merge operations:15, Move operations: 10
+244
+['kirjan#foc', 'antoi', 'virtaamalla', 'Merjalle', 'Pekka']
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa [[malla virtaa] [<P(lle) [D Merja-]> <D Pekka>:2]]]]]]]]
+'D book T __v __give by flow for D Merja D Pekka .'
+Failed parses 0, Merge operations:16, Move operations: 10
+245
+['kirjan', 'Merjalle', 'Pekka', 'antoi', 'virtaamalla']
+*Ungrammatical.
+246
+['kirjan#foc', 'Merjalle', 'Pekka', 'antoi', 'virtaamalla']
+*Ungrammatical.
+247
+['kirjan', 'Merjalle', 'Pekka', 'virtaamalla', 'antoi']
+*Ungrammatical.
+248
+['kirjan#foc', 'Merjalle', 'Pekka', 'virtaamalla', 'antoi']
+*Ungrammatical.
+249
+['kirjan', 'Merjalle', 'antoi', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+250
+['kirjan#foc', 'Merjalle', 'antoi', 'Pekka', 'virtaamalla']
+[<D kirja>:1 [uFOC [[P(lle) [D Merja-]] [T/fin [(DP):2 [v [<DP>:1 [antaa [[D Pekka]:2 <malla virtaa>]]]]]]]]]
+'D book  for D Merja T __v __give D Pekka by flow .'
+Failed parses 0, Merge operations:16, Move operations: 17
+251
+['kirjan', 'Merjalle', 'antoi', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+252
+['kirjan#foc', 'Merjalle', 'antoi', 'virtaamalla', 'Pekka']
+[<D kirja>:1 [uFOC [[P(lle) [D Merja-]]:2 [T/fin [<DP>:3 [v [<DP>:1 [antaa [(PP):2 <[malla virtaa] <D Pekka>:3>]]]]]]]]]
+'D book  for D Merja T __v __give __by flow D Pekka .'
+Failed parses 0, Merge operations:16, Move operations: 14
+253
+['kirjan', 'Merjalle', 'virtaamalla', 'Pekka', 'antoi']
+*Ungrammatical.
+254
+['kirjan#foc', 'Merjalle', 'virtaamalla', 'Pekka', 'antoi']
+*Ungrammatical.
+255
+['kirjan', 'Merjalle', 'virtaamalla', 'antoi', 'Pekka']
+*Ungrammatical.
+256
+['kirjan#foc', 'Merjalle', 'virtaamalla', 'antoi', 'Pekka']
+[<D kirja>:1 [uFOC [<[P(lle) [D Merja-]]:3 [malla [(PP):3 virtaa]]>:2 [T/fin [(DP):4 [v [<DP>:1 [antaa [[D Pekka]:4 <ADVP>:2]]]]]]]]]
+'D book  for D Merja by __flow T __v __give D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 18
+257
+['kirjan', 'virtaamalla', 'Pekka', 'antoi', 'Merjalle']
+*Ungrammatical.
+258
+['kirjan#foc', 'virtaamalla', 'Pekka', 'antoi', 'Merjalle']
+*Ungrammatical.
+259
+['kirjan', 'virtaamalla', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+260
+['kirjan#foc', 'virtaamalla', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+261
+['kirjan', 'virtaamalla', 'antoi', 'Pekka', 'Merjalle']
+*Ungrammatical.
+262
+['kirjan#foc', 'virtaamalla', 'antoi', 'Pekka', 'Merjalle']
+[<D kirja>:1 [uFOC [<malla virtaa>:2 [T/fin [<DP>:3 [v [<DP>:1 [antaa [[<D Pekka>:3 [P(lle) [D Merja-]]] <ADVP>:2]]]]]]]]]
+'D book  by flow T __v __give D Pekka for D Merja __.'
+Failed parses 0, Merge operations:16, Move operations: 20
+263
+['kirjan', 'virtaamalla', 'antoi', 'Merjalle', 'Pekka']
+*Ungrammatical.
+264
+['kirjan#foc', 'virtaamalla', 'antoi', 'Merjalle', 'Pekka']
+[<D kirja>:1 [uFOC [<malla virtaa>:2 [T/fin [<DP>:3 [v [<DP>:1 [antaa [[[P(lle) [D Merja-]] <D Pekka>:3] <ADVP>:2]]]]]]]]]
+'D book  by flow T __v __give for D Merja D Pekka __.'
+Failed parses 3, Merge operations:22, Move operations: 27
+265
+['kirjan', 'virtaamalla', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+266
+['kirjan#foc', 'virtaamalla', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+267
+['kirjan', 'virtaamalla', 'Merjalle', 'antoi', 'Pekka']
+*Ungrammatical.
+268
+['kirjan#foc', 'virtaamalla', 'Merjalle', 'antoi', 'Pekka']
+*Ungrammatical.
+269
+['Merjalle', 'Pekka', 'antoi', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+270
+['Merjalle#foc', 'Pekka', 'antoi', 'kirjan', 'virtaamalla']
+[[P(lle) [D Merja-]]:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [(PP):1 [antaa [[D kirja] <malla virtaa>]]]]]]]]]
+'for D Merja  D Pekka T __v __give D book by flow .'
+Failed parses 3, Merge operations:28, Move operations: 17
+271
+['Merjalle', 'Pekka', 'antoi', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+272
+['Merjalle#foc', 'Pekka', 'antoi', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+273
+['Merjalle', 'Pekka', 'kirjan', 'antoi', 'virtaamalla']
+*Ungrammatical.
+274
+['Merjalle#foc', 'Pekka', 'kirjan', 'antoi', 'virtaamalla']
+*Ungrammatical.
+275
+['Merjalle', 'Pekka', 'kirjan', 'virtaamalla', 'antoi']
+*Ungrammatical.
+276
+['Merjalle#foc', 'Pekka', 'kirjan', 'virtaamalla', 'antoi']
+*Ungrammatical.
+277
+['Merjalle', 'Pekka', 'virtaamalla', 'antoi', 'kirjan']
+*Ungrammatical.
+278
+['Merjalle#foc', 'Pekka', 'virtaamalla', 'antoi', 'kirjan']
+*Ungrammatical.
+279
+['Merjalle', 'Pekka', 'virtaamalla', 'kirjan', 'antoi']
+*Ungrammatical.
+280
+['Merjalle#foc', 'Pekka', 'virtaamalla', 'kirjan', 'antoi']
+*Ungrammatical.
+281
+['Merjalle', 'antoi', 'Pekka', 'kirjan', 'virtaamalla']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [<D Pekka>:2 [<D kirja> <malla virtaa>]]]]]]]]
+'for D Merja T __v __give D Pekka D book by flow .'
+Failed parses 2, Merge operations:19, Move operations: 20
+282
+['Merjalle#foc', 'antoi', 'Pekka', 'kirjan', 'virtaamalla']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [<D Pekka>:2 [<D kirja> <malla virtaa>]]]]]]]]
+'for D Merja T __v __give D Pekka D book by flow .'
+Failed parses 2, Merge operations:20, Move operations: 20
+283
+['Merjalle', 'antoi', 'Pekka', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+284
+['Merjalle#foc', 'antoi', 'Pekka', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+285
+['Merjalle', 'antoi', 'kirjan', 'Pekka', 'virtaamalla']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[[D kirja] <D Pekka>:2] <malla virtaa>]]]]]]]
+'for D Merja T __v __give D book D Pekka by flow .'
+Failed parses 0, Merge operations:15, Move operations: 15
+286
+['Merjalle#foc', 'antoi', 'kirjan', 'Pekka', 'virtaamalla']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[[D kirja] <D Pekka>:2] <malla virtaa>]]]]]]]
+'for D Merja T __v __give D book D Pekka by flow .'
+Failed parses 0, Merge operations:16, Move operations: 15
+287
+['Merjalle', 'antoi', 'kirjan', 'virtaamalla', 'Pekka']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[D kirja] [<malla virtaa> <D Pekka>:2]]]]]]]]
+'for D Merja T __v __give D book by flow D Pekka .'
+Failed parses 0, Merge operations:15, Move operations: 10
+288
+['Merjalle#foc', 'antoi', 'kirjan', 'virtaamalla', 'Pekka']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[D kirja] [<malla virtaa> <D Pekka>:2]]]]]]]]
+'for D Merja T __v __give D book by flow D Pekka .'
+Failed parses 0, Merge operations:16, Move operations: 10
+289
+['Merjalle', 'antoi', 'virtaamalla', 'Pekka', 'kirjan']
+*Ungrammatical.
+290
+['Merjalle#foc', 'antoi', 'virtaamalla', 'Pekka', 'kirjan']
+*Ungrammatical.
+291
+['Merjalle', 'antoi', 'virtaamalla', 'kirjan', 'Pekka']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[malla virtaa] [<D kirja> <D Pekka>:2]]]]]]]]
+'for D Merja T __v __give by flow D book D Pekka .'
+Failed parses 1, Merge operations:17, Move operations: 11
+292
+['Merjalle#foc', 'antoi', 'virtaamalla', 'kirjan', 'Pekka']
+[[P(lle) [D Merja-]]:1 [T/fin [<DP>:2 [v [(PP):1 [antaa [[malla virtaa] [<D kirja> <D Pekka>:2]]]]]]]]
+'for D Merja T __v __give by flow D book D Pekka .'
+Failed parses 1, Merge operations:18, Move operations: 11
+293
+['Merjalle', 'kirjan', 'Pekka', 'antoi', 'virtaamalla']
+*Ungrammatical.
+294
+['Merjalle#foc', 'kirjan', 'Pekka', 'antoi', 'virtaamalla']
+*Ungrammatical.
+295
+['Merjalle', 'kirjan', 'Pekka', 'virtaamalla', 'antoi']
+*Ungrammatical.
+296
+['Merjalle#foc', 'kirjan', 'Pekka', 'virtaamalla', 'antoi']
+*Ungrammatical.
+297
+['Merjalle', 'kirjan', 'antoi', 'Pekka', 'virtaamalla']
+[[[P(lle) [D Merja-]] <D kirja>]:1 [T/fin [(DP):2 [v [(PP):1 [antaa [[D Pekka]:2 <malla virtaa>]]]]]]]
+'for D Merja D book T __v __give D Pekka by flow .'
+Failed parses 0, Merge operations:15, Move operations: 6
+298
+['Merjalle#foc', 'kirjan', 'antoi', 'Pekka', 'virtaamalla']
+[[[P(lle) [D Merja-]] <D kirja>]:1 [T/fin [(DP):2 [v [(PP):1 [antaa [[D Pekka]:2 <malla virtaa>]]]]]]]
+'for D Merja D book T __v __give D Pekka by flow .'
+Failed parses 0, Merge operations:16, Move operations: 6
+299
+['Merjalle', 'kirjan', 'antoi', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+300
+['Merjalle#foc', 'kirjan', 'antoi', 'virtaamalla', 'Pekka']
+[[P(lle) [D Merja-]]:1 [uFOC [<D kirja>:2 [T/fin [<DP>:3 [v [<DP>:2 [antaa [(PP):1 <[malla virtaa] <D Pekka>:3>]]]]]]]]]
+'for D Merja  D book T __v __give __by flow D Pekka .'
+Failed parses 1, Merge operations:24, Move operations: 19
+301
+['Merjalle', 'kirjan', 'virtaamalla', 'Pekka', 'antoi']
+*Ungrammatical.
+302
+['Merjalle#foc', 'kirjan', 'virtaamalla', 'Pekka', 'antoi']
+*Ungrammatical.
+303
+['Merjalle', 'kirjan', 'virtaamalla', 'antoi', 'Pekka']
+*Ungrammatical.
+304
+['Merjalle#foc', 'kirjan', 'virtaamalla', 'antoi', 'Pekka']
+[[[P(lle) [D Merja-]] <D kirja>]:1 [uFOC [<malla virtaa>:2 [T/fin [(DP):3 [v [(PP):1 [antaa [[D Pekka]:3 <ADVP>:2]]]]]]]]]
+'for D Merja D book  by flow T __v __give D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 7
+305
+['Merjalle', 'virtaamalla', 'Pekka', 'antoi', 'kirjan']
+*Ungrammatical.
+306
+['Merjalle#foc', 'virtaamalla', 'Pekka', 'antoi', 'kirjan']
+[<[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]>:1 [uFOC [<D Pekka>:3 [T/fin [<DP>:3 [v [[antaa [D kirja]] <ADVP>:1]]]]]]]
+'for D Merja by __flow  D Pekka T __v give D book __.'
+Failed parses 1, Merge operations:22, Move operations: 14
+307
+['Merjalle', 'virtaamalla', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+308
+['Merjalle#foc', 'virtaamalla', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+309
+['Merjalle', 'virtaamalla', 'antoi', 'Pekka', 'kirjan']
+[<[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]>:1 [T/fin [<DP>:3 [v [antaa [[<D Pekka>:3 <D kirja>] <ADVP>:1]]]]]]
+'for D Merja by __flow T __v give D Pekka D book __.'
+Failed parses 1, Merge operations:17, Move operations: 14
+310
+['Merjalle#foc', 'virtaamalla', 'antoi', 'Pekka', 'kirjan']
+[<[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]>:1 [T/fin [<DP>:3 [v [[antaa [<D Pekka>:3 <D kirja>]] <ADVP>:1]]]]]
+'for D Merja by __flow T __v give D Pekka D book __.'
+Failed parses 0, Merge operations:16, Move operations: 9
+311
+['Merjalle', 'virtaamalla', 'antoi', 'kirjan', 'Pekka']
+[<[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]>:1 [T/fin [<DP>:3 [v [antaa [[[D kirja] <D Pekka>:3] <ADVP>:1]]]]]]
+'for D Merja by __flow T __v give D book D Pekka __.'
+Failed parses 0, Merge operations:15, Move operations: 8
+312
+['Merjalle#foc', 'virtaamalla', 'antoi', 'kirjan', 'Pekka']
+[<[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]>:1 [T/fin [<DP>:3 [v [[antaa [[D kirja] <D Pekka>:3]] <ADVP>:1]]]]]
+'for D Merja by __flow T __v give D book D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 8
+313
+['Merjalle', 'virtaamalla', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+314
+['Merjalle#foc', 'virtaamalla', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+315
+['Merjalle', 'virtaamalla', 'kirjan', 'antoi', 'Pekka']
+[<[[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]] <D kirja>>:1 [T/fin [(DP):3 [v [antaa [[D Pekka]:3 <ADVP>:1]]]]]]
+'for D Merja by __flow D book T __v give D Pekka __.'
+Failed parses 0, Merge operations:15, Move operations: 10
+316
+['Merjalle#foc', 'virtaamalla', 'kirjan', 'antoi', 'Pekka']
+[<<[P(lle) [D Merja-]]:2 [malla [(PP):2 virtaa]]> <D kirja>>:1 [T/fin [(DP):3 [v [antaa [[D Pekka]:3 <ADVP>:1]]]]]]
+'for D Merja by __flow D book T __v give D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 10
+317
+['virtaamalla', 'Pekka', 'antoi', 'kirjan', 'Merjalle']
+*Ungrammatical.
+318
+['virtaamalla#foc', 'Pekka', 'antoi', 'kirjan', 'Merjalle']
+[<malla virtaa>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <ADVP>:1]]]]]]]]
+'by flow  D Pekka T __v give D book for D Merja __.'
+Failed parses 3, Merge operations:31, Move operations: 20
+319
+['virtaamalla', 'Pekka', 'antoi', 'Merjalle', 'kirjan']
+*Ungrammatical.
+320
+['virtaamalla#foc', 'Pekka', 'antoi', 'Merjalle', 'kirjan']
+[<malla virtaa>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [antaa [[[P(lle) [D Merja-]] <D kirja>] <ADVP>:1]]]]]]]]
+'by flow  D Pekka T __v give for D Merja D book __.'
+Failed parses 6, Merge operations:35, Move operations: 35
+321
+['virtaamalla', 'Pekka', 'kirjan', 'antoi', 'Merjalle']
+*Ungrammatical.
+322
+['virtaamalla#foc', 'Pekka', 'kirjan', 'antoi', 'Merjalle']
+*Ungrammatical.
+323
+['virtaamalla', 'Pekka', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+324
+['virtaamalla#foc', 'Pekka', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+325
+['virtaamalla', 'Pekka', 'Merjalle', 'antoi', 'kirjan']
+*Ungrammatical.
+326
+['virtaamalla#foc', 'Pekka', 'Merjalle', 'antoi', 'kirjan']
+*Ungrammatical.
+327
+['virtaamalla', 'Pekka', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+328
+['virtaamalla#foc', 'Pekka', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+329
+['virtaamalla', 'antoi', 'Pekka', 'kirjan', 'Merjalle']
+*Ungrammatical.
+330
+['virtaamalla#foc', 'antoi', 'Pekka', 'kirjan', 'Merjalle']
+*Ungrammatical.
+331
+['virtaamalla', 'antoi', 'Pekka', 'Merjalle', 'kirjan']
+*Ungrammatical.
+332
+['virtaamalla#foc', 'antoi', 'Pekka', 'Merjalle', 'kirjan']
+*Ungrammatical.
+333
+['virtaamalla', 'antoi', 'kirjan', 'Pekka', 'Merjalle']
+*Ungrammatical.
+334
+['virtaamalla#foc', 'antoi', 'kirjan', 'Pekka', 'Merjalle']
+*Ungrammatical.
+335
+['virtaamalla', 'antoi', 'kirjan', 'Merjalle', 'Pekka']
+[<malla virtaa>:1 [T/fin [<DP>:2 [v [antaa [[[D kirja] [<P(lle) [D Merja-]> <D Pekka>:2]] <ADVP>:1]]]]]]
+'by flow T __v give D book for D Merja D Pekka __.'
+Failed parses 0, Merge operations:15, Move operations: 9
+336
+['virtaamalla#foc', 'antoi', 'kirjan', 'Merjalle', 'Pekka']
+[<malla virtaa>:1 [T/fin [<DP>:2 [v [antaa [[[D kirja] [<P(lle) [D Merja-]> <D Pekka>:2]] <ADVP>:1]]]]]]
+'by flow T __v give D book for D Merja D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 9
+337
+['virtaamalla', 'antoi', 'Merjalle', 'Pekka', 'kirjan']
+*Ungrammatical.
+338
+['virtaamalla#foc', 'antoi', 'Merjalle', 'Pekka', 'kirjan']
+*Ungrammatical.
+339
+['virtaamalla', 'antoi', 'Merjalle', 'kirjan', 'Pekka']
+[<malla virtaa>:1 [T/fin [<DP>:2 [v [antaa [[[[P(lle) [D Merja-]] <D kirja>] <D Pekka>:2] <ADVP>:1]]]]]]
+'by flow T __v give for D Merja D book D Pekka __.'
+Failed parses 5, Merge operations:31, Move operations: 36
+340
+['virtaamalla#foc', 'antoi', 'Merjalle', 'kirjan', 'Pekka']
+[<malla virtaa>:1 [T/fin [<DP>:2 [v [antaa [[[[P(lle) [D Merja-]] <D kirja>] <D Pekka>:2] <ADVP>:1]]]]]]
+'by flow T __v give for D Merja D book D Pekka __.'
+Failed parses 5, Merge operations:32, Move operations: 36
+341
+['virtaamalla', 'kirjan', 'Pekka', 'antoi', 'Merjalle']
+*Ungrammatical.
+342
+['virtaamalla#foc', 'kirjan', 'Pekka', 'antoi', 'Merjalle']
+[<[malla virtaa] <D kirja>>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [antaa [[P(lle) [D Merja-]] <ADVP>:1]]]]]]]]
+'by flow D book  D Pekka T __v give for D Merja __.'
+Failed parses 1, Merge operations:22, Move operations: 14
+343
+['virtaamalla', 'kirjan', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+344
+['virtaamalla#foc', 'kirjan', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+345
+['virtaamalla', 'kirjan', 'antoi', 'Pekka', 'Merjalle']
+[<[malla virtaa] <D kirja>>:1 [T/fin [<DP>:2 [v [antaa [[<D Pekka>:2 [P(lle) [D Merja-]]] <ADVP>:1]]]]]]
+'by flow D book T __v give D Pekka for D Merja __.'
+Failed parses 0, Merge operations:15, Move operations: 11
+346
+['virtaamalla#foc', 'kirjan', 'antoi', 'Pekka', 'Merjalle']
+[<[malla virtaa] <D kirja>>:1 [T/fin [<DP>:2 [v [antaa [[<D Pekka>:2 [P(lle) [D Merja-]]] <ADVP>:1]]]]]]
+'by flow D book T __v give D Pekka for D Merja __.'
+Failed parses 0, Merge operations:16, Move operations: 11
+347
+['virtaamalla', 'kirjan', 'antoi', 'Merjalle', 'Pekka']
+[<[malla virtaa] <D kirja>>:1 [T/fin [<DP>:2 [v [antaa [[[P(lle) [D Merja-]] <D Pekka>:2] <ADVP>:1]]]]]]
+'by flow D book T __v give for D Merja D Pekka __.'
+Failed parses 2, Merge operations:19, Move operations: 13
+348
+['virtaamalla#foc', 'kirjan', 'antoi', 'Merjalle', 'Pekka']
+[<[malla virtaa] <D kirja>>:1 [T/fin [<DP>:2 [v [antaa [[[P(lle) [D Merja-]] <D Pekka>:2] <ADVP>:1]]]]]]
+'by flow D book T __v give for D Merja D Pekka __.'
+Failed parses 2, Merge operations:20, Move operations: 13
+349
+['virtaamalla', 'kirjan', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+350
+['virtaamalla#foc', 'kirjan', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+351
+['virtaamalla', 'kirjan', 'Merjalle', 'antoi', 'Pekka']
+*Ungrammatical.
+352
+['virtaamalla#foc', 'kirjan', 'Merjalle', 'antoi', 'Pekka']
+[<[malla virtaa] <D kirja>>:1 [uFOC [[P(lle) [D Merja-]]:2 [T/fin [(DP):3 [v [(PP):2 [antaa [[D Pekka]:3 <ADVP>:1]]]]]]]]]
+'by flow D book  for D Merja T __v __give D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 10
+353
+['virtaamalla', 'Merjalle', 'Pekka', 'antoi', 'kirjan']
+*Ungrammatical.
+354
+['virtaamalla#foc', 'Merjalle', 'Pekka', 'antoi', 'kirjan']
+*Ungrammatical.
+355
+['virtaamalla', 'Merjalle', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+356
+['virtaamalla#foc', 'Merjalle', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+357
+['virtaamalla', 'Merjalle', 'antoi', 'Pekka', 'kirjan']
+*Ungrammatical.
+358
+['virtaamalla#foc', 'Merjalle', 'antoi', 'Pekka', 'kirjan']
+[<malla virtaa>:1 [uFOC [[P(lle) [D Merja-]]:2 [T/fin [<DP>:3 [v [(PP):2 [antaa [[<D Pekka>:3 <D kirja>] <ADVP>:1]]]]]]]]]
+'by flow  for D Merja T __v __give D Pekka D book __.'
+Failed parses 1, Merge operations:18, Move operations: 20
+359
+['virtaamalla', 'Merjalle', 'antoi', 'kirjan', 'Pekka']
+*Ungrammatical.
+360
+['virtaamalla#foc', 'Merjalle', 'antoi', 'kirjan', 'Pekka']
+[<malla virtaa>:1 [uFOC [[P(lle) [D Merja-]]:2 [T/fin [<DP>:3 [v [(PP):2 [antaa [[[D kirja] <D Pekka>:3] <ADVP>:1]]]]]]]]]
+'by flow  for D Merja T __v __give D book D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 13
+361
+['virtaamalla', 'Merjalle', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+362
+['virtaamalla#foc', 'Merjalle', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+363
+['virtaamalla', 'Merjalle', 'kirjan', 'antoi', 'Pekka']
+*Ungrammatical.
+364
+['virtaamalla#foc', 'Merjalle', 'kirjan', 'antoi', 'Pekka']
+[<malla virtaa>:1 [uFOC [[[P(lle) [D Merja-]] <D kirja>]:2 [T/fin [(DP):3 [v [(PP):2 [antaa [[D Pekka]:3 <ADVP>:1]]]]]]]]]
+'by flow  for D Merja D book T __v __give D Pekka __.'
+Failed parses 0, Merge operations:16, Move operations: 9
