@@ -417,10 +417,10 @@ class Reconstruction():
                             #...we reconstruct  A-movement (a version of phi-agreement)
                             self.A_reconstruct(_ps_spec_iterator.sister())
 
-                    # If we already have processed one Spec, then we are gonna need to spawn phantom heads
+                    # If we already have processed one Spec, and there is additional non-adjunct phrase, then we are gonna need to spawn phantom heads
                     if spec_found:
 
-                        if not criterial_features:
+                        if not criterial_features and not _ps_spec_iterator.sister().adjunct:
                             log(f'\t\t\t\tNew head was spawned due to multiple specifiers at {h}'
                                 ' but its category is unknown!')
                         else:
@@ -448,7 +448,7 @@ class Reconstruction():
                             for f in criterial_features:
                                 # Create formal copies of features
                                 h.features.add('CAT:u' + f)
-                                # Add scope marker if needed, todo this looks stipulative in the present form
+                                # Add scope marker if needed
                                 if 'FIN' in h.get_labels():
                                     h.features.add('CAT:i' + f)
                                 h.features = self.lexical_access.apply_parameters(

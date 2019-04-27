@@ -4,11 +4,12 @@ antoi   :: anta-#v#T/fin LANG:FI
 antanut	:: anta-#v#T LANG:FI
 asked	:: ask-#T/fin LANG:EN
 ask-	:: PF:ask LF:ask CAT:V COMP:INF UNERG LANG:EN
-ask		:: PF:ask LF:ask CAT:V COMP:INF UNERG !SPEC:D LANG:EN
+ask	:: PF:ask LF:ask CAT:V COMP:INF UNERG !SPEC:D LANG:EN
+auttanut :: autta-#v#T LANG:FI
 auttaa	:: autta-#v#T/fin LANG:FI
 autta-	:: PF:auttaa LF:help CAT:V !COMP:D LANG:FI
 did     :: CAT:T/fin PF:did LF:did CAT:AUX LANG:EN
-ei		:: PF:ei LF:not	CAT:Neg/fin	CAT:FIN !SPEC:* !COMP:T LANG:FI
+ei	:: PF:ei LF:not	CAT:Neg/fin CAT:FIN +PHI !SPEC:* !COMP:T LANG:FI
 Fido	:: Fido-#D LANG:EN
 Fido-	:: PF:Fido LF:Fido CAT:N LANG:EN
 give	:: PF:gave LF:gave CAT:V SPEC:D COMP:D -COMP:T/fin SPEC:P LANG:EN
@@ -25,6 +26,8 @@ kenen	:: kenen-#D#wh#gen LANG:FI
 kenen-  :: PF:kenen LF:whose CAT:N CAT:PHI LANG:FI
 kaski	::	kaske-#T/fin LANG:FI
 kaskenyt :: kaske-#T LANG:FI
+kirja-  :: PF:kirja LF:book CAT:N -SEM:directional LANG:FI
+kirjaa	:: kirja-#D#par LANG:FI
 kuka 	:: kuka-#D#wh#nom LANG:FI
 kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
 kuorsaa_pro- :: PF:kuorsaa LF:snore CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
@@ -216,8 +219,6 @@ kenelle :: kenelle-#D#P#wh LANG:FI
 kenelle- :: PF:kenelle LF:to_who CAT:N CAT:PHI LANG:FI
 kertoi	:: kertoi-#T/fin LANG:FI
 kertoi- :: PF:kertoi LF:told CAT:V LANG:FI
-kirja-  :: PF:kirja LF:book CAT:N -SEM:directional LANG:FI
-kirjaa	:: kirja-#D#par LANG:FI
 kirjaa_DP :: kirja-#D#par LANG:FI
 kirjan  :: kirja-#D#asp LANG:FI
 kohti   :: PF:kohti LF:towards -PHI CAT:P !COMP:D +SEM:directional LANG:FI

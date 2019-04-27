@@ -6,7 +6,7 @@
 # Imports
 import itertools
 
-scramble_file_list = ['basic_clause_seeds']
+scramble_file_list = ['basic_clause_seeds', 'basic_clause_negated_seeds']
 
 print('Scrambling...')
 

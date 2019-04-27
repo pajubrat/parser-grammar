@@ -19,7 +19,7 @@ t = time.time()
 # disable_all_logging()
 set_logging(True)
 
-test_set_name = 'basic_clause_corpus.txt'
+test_set_name = 'basic_clause_negated_corpus.txt'
 lexicon_file_name = 'lexicon.txt'
 log_file_name = test_set_name[:-4] + '_log.txt'
 results_file_name = test_set_name[:-4] + '_results.txt'
@@ -97,19 +97,19 @@ for sentence in parse_list:
         P.number_of_Merges = 0
         P.parse(sentence)
         set_logging(True)
+        s = ''
+        for word in sentence:
+            s = s + word + ' '
         if len(P.result_list) == 0:
-            print('This sentence is ungrammatical.')
-            results_file.write(str(count) + '\n')
-            results_file.write(str(sentence) + '\n')
-            results_file.write('*Ungrammatical.' + '\n')
+            print('Ungrammatical.')
+            results_file.write(str(count) + '. *' + s + '\n\n')
         else:
-            results_file.write(str(count) + '\n')
-            results_file.write(str(sentence) + '\n')
+            results_file.write(str(count) + '. ' + s + '\n')
             for parse in P.result_list:
                 results_file.write(f'{parse}\n')
                 results_file.write('\''+parse.gloss()+'.\'\n')
-                results_file.write('Failed parses ' + str(P.number_of_solutions_tried - 1) + ', Merge operations:' +
-                                   str(P.number_of_Merges) + ', Move operations: ' + str(P.number_of_Moves) + '\n')
+                results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', Merge:' +
+                                   str(P.number_of_Merges) + ', Move: ' + str(P.number_of_Moves) + '\n\n')
     else:
         results_file.write('\n'+' '.join(map(str, sentence))+'\n')
 
