@@ -20,7 +20,7 @@ t = time.time()
 set_logging(True)
 
 test_set_name = 'basic_clause_corpus.txt'
-lexicon_file_name = test_set_name[:-4] + '_lexicon.txt'
+lexicon_file_name = 'lexicon.txt'
 log_file_name = test_set_name[:-4] + '_log.txt'
 results_file_name = test_set_name[:-4] + '_results.txt'
 ug_morphemes = 'ug_morphemes.txt'

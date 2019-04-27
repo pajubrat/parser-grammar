@@ -1,28 +1,37 @@
-antaa :: anta-#v#-ta LANG:FI
+﻿antaa :: anta-#v#-ta LANG:FI
 anta-   :: PF:antaa LF:give CAT:V SPEC:D COMP:D LANG:FI
 antoi   :: anta-#v#T/fin LANG:FI
 antanut	:: anta-#v#T LANG:FI
 asked	:: ask-#T/fin LANG:EN
 ask-	:: PF:ask LF:ask CAT:V COMP:INF UNERG LANG:EN
 ask		:: PF:ask LF:ask CAT:V COMP:INF UNERG !SPEC:D LANG:EN
+auttaa	:: autta-#v#T/fin LANG:FI
+autta-	:: PF:auttaa LF:help CAT:V !COMP:D LANG:FI
 did     :: CAT:T/fin PF:did LF:did CAT:AUX LANG:EN
 ei		:: PF:ei LF:not	CAT:Neg/fin	CAT:FIN !SPEC:* !COMP:T LANG:FI
 Fido	:: Fido-#D LANG:EN
 Fido-	:: PF:Fido LF:Fido CAT:N LANG:EN
 give	:: PF:gave LF:gave CAT:V SPEC:D COMP:D -COMP:T/fin SPEC:P LANG:EN
-heidan	:: heidän-#D#gen LANG:FI
+heidan	:: heidan-#D#gen LANG:FI
 heidan- :: PF:heidän LF:theirs CAT:N CAT:PHI LANG:FI  
+ihaile- :: PF:ihailee LF:admire CAT:V COMP:D LANG:FI
+ihailee :: ihaile-#v#T/fin LANG:FI
+ihailla	:: ihaile-#v#-ta LANG:FI
+ihaile	:: ihaile-#v#T LANG:FI
 John    :: John-#D
 John-   :: PF:John- -SEM:directional LF:John CAT:N
 kaske- ::	PF:käske LF:ask UNERG CAT:V COMP:A/inf LANG:FI
 kenen	:: kenen-#D#wh#gen LANG:FI
 kenen-  :: PF:kenen LF:whose CAT:N CAT:PHI LANG:FI
-kaski	::	käske-#T/fin LANG:FI
-kaskenyt :: käske-#T LANG:FI
+kaski	::	kaske-#T/fin LANG:FI
+kaskenyt :: kaske-#T LANG:FI
 kuka 	:: kuka-#D#wh#nom LANG:FI
 kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
+kuorsaa_pro- :: PF:kuorsaa LF:snore CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
+kuorsaamalla :: kuorsaa_pro-#malla LANG:FI
 keta	:: ketä-#D#wh#par LANG:FI
 keta-   :: PF:ketä LF:who CAT:N CAT:PHI LANG:FI
+lle     :: PF:P(lle) LF:for CAT:P +SEM:directional TAIL:CAT:V LANG:FI
 like-    :: PF:like LF:like CAT:V !COMP:D LANG:EN
 likes   :: like-#v#T/fin LANG:EN
 like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
@@ -31,11 +40,12 @@ Mary    :: Mary-#D
 Mary-   :: PF:Mary- CAT:N LF:Mary -SEM:directional
 Merjaa	::	Merjaa-#D#par LANG:FI
 Merjaa-	::	PF:Merjaa CAT:N
+Merjalle	::	Merja-#D#lle
 mitä	:: mitä-#D#wh#par LANG:FI
 mitä-   :: PF:mitä LF:what CAT:N CAT:PHI LANG:FI
 not		:: PF:not LF:not CAT:Neg LANG:EN COMP:v COMP:V COMP:INF
 nukkui	:: nukku-#T/fin LANG:FI
-nukku-	:: PF:nukku LF:sleep UNERG CAT:V LANG:FI
+nukku-	:: PF:nukku LF:sleep UNERG CAT:V -COMP:T -COMP:T/fin -COMP:Neg/fin LANG:FI
 nukkua	:: nukku-#-ta LANG:FI
 nukkunut :: nukku-#T LANG:FI
 Pekka   :: Pekka-#D#nom LANG:FI
@@ -50,7 +60,7 @@ to		:: PF:to LF:to CAT:P +SEM:directional LANG:EN
 to.inf	:: PF:to LF:to CAT:INF +PHI LANG:EN
 virtaa  :: virtaa-#T/fin LANG:FI
 virtaa- :: PF:virtaa LF:flow CAT:V UNERG COMP:P -COMP:D -COMP:WH -COMP:T/fin LANG:FI
-virtaa_pro- :: PF:virtaa LF:flow CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D
+virtaa_pro- :: PF:virtaa LF:flow CAT:V COMP:P -COMP:D -COMP:WH -COMP:T/fin -COMP:D
 virtaamalla :: virtaa_pro-#malla LANG:FI
 virtaamalla.foc :: virtaa_pro-#malla#foc LANG:FI
 
@@ -68,7 +78,6 @@ Merja-  :: PF:Merja- CAT:N -SEM:directional LF:Merja LANG:FI
 Merja   :: Merja-#D#nom LANG:FI
 Merjan  :: Merja-#D LANG:FI
 Merjan.foc :: Merja-#D#foc LANG:FI
-Merjalle	::	Merja-#D#lle
 Parigi	::	Parigi-#D LANG:IT
 Parigi-	::	PF:Parigi CAT:N LF:Parigi LANG:IT
 Pariisi- :: PF:Pariisi -SEM:directional LF:Paris CAT:N
@@ -184,11 +193,6 @@ hill	:: PF:hill LF:hill CAT:N LANG:EN
 his     :: PF:his LF:his CAT:D LANG:EN
 i		::	il 	PF:i CAT:D AGREE:P.M LANG:IT
 in 		::  in PF:in LF:in CAT:P -EPP LANG:IT
-ihaile- :: PF:ihailee LF:admire CAT:V !COMP:D LANG:FI
-ihailee :: ihaile-#v#T/fin LANG:FI
-IHAILEE :: ihaile-#v#T/fin#C/fin#Q LANG:FI
-ihailla	:: ihaile-#v#-ta LANG:FI
-ihaile	:: ihaile-#v#T LANG:FI
 il		:: PF:il CAT:D LANG:IT
 jonka   :: jonka-#D#rel LANG:FI
 jonka-  :: PF:jonka LF:whose CAT:N CAT:PHI LANG:FI
@@ -228,7 +232,6 @@ letto	::	letto-#v LANG:IT
 letto-	::	PF:letto CAT:V COMP:D SPEC:P LANG:IT
 libro	::	libro PF:libro LF:book CAT:N -SEM:directional LANG:IT
 live    :: PF:live LF:live CAT:V COMP:P SPEC:D LANG:EN
-lle     :: PF:P(lle) LF:for CAT:P +SEM:directional LANG:FI
 lo		::	PF:lo CAT:D LANG:IT
 luki	:: luke-#v#T/fin LANG:FI
 luke-	:: PF:luke LF:read CAT:V LANG:FI

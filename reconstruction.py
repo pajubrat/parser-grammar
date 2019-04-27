@@ -238,7 +238,7 @@ class Reconstruction():
             ps_iterator_ = ps_iterator_.walk_upstream()
 
         # we return the right const because that is the upper edge
-        if node.right_const:
+        if node.right_const and not node.right_const.adjunct:
             return node.right_const
         else:
             return node
@@ -549,9 +549,12 @@ class Reconstruction():
                 log('\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.get_head().get_tail_sets()))
                 # Target the floater
                 return floater
-            # Or if it (constituent with tail features) sits in an EPP SPEC position of a finite clause edge
+            # or if it (constituent with tail features) sits in an EPP SPEC position of a finite clause edge
             elif floater.mother and floater.mother.get_head().EPP() and floater.mother.is_finite():
                 log('\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
+                return floater
+            # or if its in a wrong SPEC position
+            elif floater.mother and '-SPEC:*' in floater.mother.get_head().features:
                 return floater
 
         # Check if the right edge itself has tail features (e.g. DP at the bottom, floaters/adjuncts)
@@ -563,7 +566,7 @@ class Reconstruction():
                 log('\t\t\t\t' + floater.illustrate() + ' failed to tail.')
                 # This is empirically very contentious matter:
                 # A right DP inside a finite clause with failed tail-test must be an adjunct(?)
-                if 'D' in floater.get_labels() and floater.get_top().contains_feature('CAT:FIN'):
+                if ('D' in floater.get_labels() or 'P' in floater.get_labels()) and floater.get_top().contains_feature('CAT:FIN'):
                     self.create_adjunct(floater)
                     return floater.mother
             else:
@@ -594,26 +597,40 @@ class Reconstruction():
 
             # If a suitable position is found, dropping will be executed
             # Condition 1: tail test succeeds,
-            # Condition 2: we are not reconstructing inside the same projection
+            # Condition 2: we are not reconstructing inside the same projection (does not applly to Adv which are right-adjoined)
             # Condition 3: dropped non-ADV will become the only SPEC
-            if floater_copy.get_head().external_tail_head_test() and ps_iterator_.get_head() is not starting_point.get_head():
-                if 'ADV' in floater_copy.get_labels() or ps_iterator_.get_head().count_specifiers() < 2:
-                    self.create_adjunct(floater)
-                    dropped_floater = floater.transfer(self.babtize())
-                    if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
-                        ps_iterator_.merge(dropped_floater, 'right')
-                    else:
-                        ps_iterator_.merge(dropped_floater, 'left')
-                    floater_copy.remove()
-                    floater.find_me_elsewhere = True
-                    log(f'\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped: {ps}')
-                    return
+            if self.is_drop_position(ps_iterator_, floater_copy, starting_point):
+                self.create_adjunct(floater)
+                dropped_floater = floater.transfer(self.babtize())
+                if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
+                    ps_iterator_.merge(dropped_floater, 'right')
                 else:
-                    floater_copy.remove()
+                    ps_iterator_.merge(dropped_floater, 'left')
+                floater_copy.remove()
+                floater.find_me_elsewhere = True
+                log(f'\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped: {ps}')
+                return
             else:
                 floater_copy.remove()
 
             ps_iterator_ = ps_iterator_.walk_downstream()
+
+    def is_drop_position(self, ps_iterator_, floater_copy, starting_point):
+        if floater_copy.get_head().external_tail_head_test():
+            # Conditions for merging to the right (no additional conditions)
+            if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
+                return True
+            # Conditions for merging to the left
+            else:
+                if ps_iterator_.get_head() is not starting_point.get_head(): # Don't go inside where you started
+                    if ps_iterator_.get_head().count_specifiers() < 2: # Don't fill in more than one SPEC position
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
+        else:
+            return False
 
     # This will promote a phi set (if any) into tail features
     def promote_phi_set(self, ps):

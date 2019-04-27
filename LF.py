@@ -108,9 +108,10 @@ class LF:
             # 3.2. No specifier of any kind allowed (e.g., English P)
             if f == '-SPEC:*':
                 if spec:
-                    log(f'\t\t\t\t{ps} ({ps.illustrate()}) has a specifier {spec} '
-                        f'but is marked for -EPP behavior.')
-                    self.selection_test_result = False
+                    if not (spec.adjunct and spec.find_me_elsewhere):
+                        log(f'\t\t\t\t{ps} ({ps.illustrate()}) has a specifier {spec} '
+                            f'but is marked for -EPP behavior.')
+                        self.selection_test_result = False
 
             # 3.3. Obligatory complement
             if f.startswith('!COMP:') and not f == '!COMP:*':
