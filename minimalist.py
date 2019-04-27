@@ -747,7 +747,7 @@ class PhraseStructure:
             return False
 
     def mysterious_property(self):
-        if 'CAT:D' in self.features and 'TAIL:PHI:0,!COMP:*' not in self.features:
+        if 'CAT:D' in self.features and 'TAIL:PHI:0,A/HEAD' not in self.features:
             return False
         else:
             return True
