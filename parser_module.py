@@ -363,6 +363,7 @@ class Pcb_parser():
                     test_word.remove()
 
                 # Evaluation Comp selection for all morphemes inside the site
+                # This can also be implemented by using get_affix_comps() function
                 for m in site.get_affix_list():
                     # Check if H selects w and if yes, prioritize this solution
                     if word_cats & m.for_parsing(m.get_comps()):

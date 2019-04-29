@@ -84,11 +84,21 @@ class LF:
 
         # 4. Double Spec test for DP arguments
         if '2SPEC' not in ps.features:
-            if spec and 'D' in spec.get_labels():
-                aunt = spec.mother and spec.mother.sister()
-                if aunt and 'D' in aunt.get_labels() and not aunt.is_primitive() and not aunt.is_right():
-                    self.head_integrity_test_result = False
-                    log(f'\t\t\t\t{ps} has double specifiers.')
+            """
+            Returns False if the head is associated with more than one non-adjunct DP specifier at LF
+            
+            The test ignores adjuncts, non-DPs and DPs that have been moved out from SPEC
+            """
+            count = 0
+            list_ = ps.get_specifiers()
+            if list_:
+                for spec in list_:
+                    if not spec.adjunct and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
+                        count = count + 1
+
+            if count > 1:
+                self.head_integrity_test_result = False
+                log(f'\t\t\t\t{ps} has double specifiers.')
 
         # 5. Semantic match test between H and Comp,H
         if comp:

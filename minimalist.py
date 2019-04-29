@@ -2,7 +2,7 @@
 from support import log
 from LF import LF
 
-major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T'}
+major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'INF'}
 
 class PhraseStructure:
 
@@ -387,6 +387,16 @@ class PhraseStructure:
             ps_ = ps_.walk_upstream()
         return count
 
+    def get_specifiers(self):
+
+        ps_ = self.mother
+        list = []
+
+        while ps_ and ps_.sister() and (ps_.sister().is_left() and not ps_.sister().is_primitive()):
+            list.append(ps_.sister())
+            ps_ = ps_.walk_upstream()
+
+        return list
 
 
 
@@ -952,6 +962,22 @@ class PhraseStructure:
             if f[:5] == '!COMP':
                 set_.add(f[6:])
         return set_
+
+    def get_affix_comps(self):
+
+        set_ = set()
+        affixes = self.get_affix_list()
+
+        for affix in affixes:
+
+            for f in affix.features:
+                if f[:4] == 'COMP':
+                    set_.add(f[5:])
+                if f[:5] == '!COMP':
+                    set_.add(f[6:])
+
+        return set_
+
 
     def get_not_comps(self):
         set_ = set()
