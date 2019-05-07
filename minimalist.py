@@ -694,7 +694,7 @@ class PhraseStructure:
         Executes the external tail-head test for head H.
 
         The external tail-head test checks that a constituent can be "linked" with an appropriate head at LF.
-        If it cannot be, this operation returns false and crashes.
+        If it cannot be, returns false.
 
         If H has no tail features, then the test is vacuous and the operations returns true. If it has
         tail features, then the operation returns true if and only if the features are matched. That is, unchecked
@@ -748,11 +748,13 @@ class PhraseStructure:
                 # Ignore the first element which is the goal itself
                 if const is not self:
                     # If ALL goal's features are matched, the test is accepted
-                    if const.check_features(tail_set):
-                        return True
-                    # If there is PARTIAL match, it is left unchecked
-                    elif tail_set & const.features:
-                        return False
+                    # Notice that we check also internal affixes
+                    for m in const.get_affix_list():
+                        if m.check_features(tail_set):
+                            return True
+                        # If there is PARTIAL match, it is left unchecked
+                        elif tail_set & const.features:
+                            return False
 
             return False
 
@@ -1008,6 +1010,13 @@ class PhraseStructure:
         set_ = set()
         for f in self.features:
             if f[:5] == '-SPEC':
+                set_.add(f[6:])
+        return set_
+
+    def get_rare_specs(self):
+        set_ = set()
+        for f in self.features:
+            if f[:5] == '%SPEC':
                 set_.add(f[6:])
         return set_
 

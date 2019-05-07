@@ -17,6 +17,7 @@ class LF:
         self.head_integrity_test_result = True
         self.criterial_feature_test_result = True
         self.semantic_test_result = True
+        self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_crash = False
 
@@ -181,6 +182,17 @@ class LF:
             if (f == 'SPEC:*' or f == '!SPEC:*') and spec and not spec.adjunct and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
                 log(f'\t\t\t\t{spec}" has no thematic role')
                 self.projection_principle_test_result = False
+
+        # 9. Discourse/pragmatic tests
+        # 9.1 This test accumulates discourse violations for each SPEC that cannot (easily) be topicalized
+        list_ = ps.get_specifiers()
+        if list_:
+            if len(list_) > 1:
+                # Discourse penalty for multiple specifiers
+                self.discourse_test_result = self.discourse_test_result + len(list_)*0.5
+            for spec in list_:
+                if 'INF' in spec.get_labels():
+                    self.discourse_test_result = self.discourse_test_result + 2
 
     # This function will try to transfer the phrase structure into LF out of syntactic working memory
     def transfer_to_LF(self, ps):

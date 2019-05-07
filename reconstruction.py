@@ -104,6 +104,7 @@ class Reconstruction():
         iterator_ = ps
 
         while iterator_:
+            self.number_of_Moves += 1
             iterator_.merge(affix_, 'left') # We try a solution
             if drop_condition_for_heads(affix_):
                 return True
@@ -220,15 +221,16 @@ class Reconstruction():
             # This is LF-requirement: the adjunct must get semantic interpretation
             for head in ps_.left_const.get_feature_vector():
                 if 'FIN' in head.get_labels() or 'D' in head.get_labels():
-                    ps_.adjunct = True
-                    log(f'\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
-                    if not ps_.get_top().LF_legibility_test().all_pass():
-                        # If phi set is available...
-                        if self.promote_phi_set(ps_.left_const):
-                            log(f'\t\t\t\tThe structure is still illicit. Try phi-tailing as a last resort.')
-                            drop_floaters(ps_.get_top())
-                            log(f'\t\t\t\t={ps_.get_top()}')
-                    return True
+                    if not ps_.geometrical_sister().adjunct: # This prevents the creation of <XP><YP>
+                        ps_.adjunct = True
+                        log(f'\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
+                        if not ps_.get_top().LF_legibility_test().all_pass():
+                            # If phi set is available...
+                            if self.promote_phi_set(ps_.left_const):
+                                log(f'\t\t\t\tThe structure is still illicit. Try phi-tailing as a last resort.')
+                                drop_floaters(ps_.get_top())
+                                log(f'\t\t\t\t={ps_.get_top()}')
+                        return True
 
         return False
 
@@ -394,7 +396,8 @@ class Reconstruction():
                     # If there was a tail-head violation, dropping is cancelled
                     ps.geometrical_sister().remove()
 
-    # todo this function must be implemented with get_specifiers() function.
+    # todo this is such a mess now that I have tried to make it work empirically in a correct way
+    # todo must be revised later. Perhaps use get_specifiers() function
     def store_specs_into_memory(self, h):
         if h.EPP():
 
@@ -434,28 +437,36 @@ class Reconstruction():
 
                     # If we already have processed one Spec, and there is additional non-adjunct phrase, then we are gonna need to spawn phantom heads
                     if spec_found:
-                        if not adjunct_found: # If the previous SPEC was adjunct, then we don't need to spawn new heads
-                            if not criterial_features and not _ps_spec_iterator.sister().adjunct:
-                                log(f'\t\t\t\tNew head was spawned due to multiple specifiers at {h}'
-                                    ' but its category is unknown!')
+                        # If the lower SPEC is adjunct that there are no criterial features in the uppoer SPEC, we don't do anything
+                        if not criterial_features and adjunct_found:
+                            adjunct_found = _ps_spec_iterator.sister().adjunct
+                        # If the lower SPEC is not an adjunct, or if there are criterial features in the higher SPEC, we need to spawn a head
+                        else:
+                            # If the second SPEC has no criterial features and is adjunct, we do nothing
+                            if not criterial_features and _ps_spec_iterator.sister().adjunct:
+                                pass
                             else:
-                                log(f'\t\t\t\tNew {criterial_features} head was spawned due to '
-                                    f'the occurrence of multiple specifiers at {h.get_pf()}')
+                                if not criterial_features and not _ps_spec_iterator.sister().adjunct:
+                                    log(f'\t\t\t\tNew head was spawned due to multiple specifiers at {h}'
+                                        ' but its category is unknown!')
+                                else:
+                                    log(f'\t\t\t\tNew {criterial_features} head was spawned due to '
+                                        f'the occurrence of multiple specifiers at {h.get_pf()}')
 
-                            # Create and merge the new head, then move the pointer over it so we don't repeat
-                            new_h = self.engineer_head_from_specifier(criterial_features)
-                            _ps_spec_iterator.merge(new_h, 'left')
+                                # Create and merge the new head, then move the pointer over it so we don't repeat
+                                new_h = self.engineer_head_from_specifier(criterial_features)
+                                _ps_spec_iterator.merge(new_h, 'left')
 
-                            # Move to the new constituent (otherwise we will loop this)
-                            _ps_spec_iterator = _ps_spec_iterator.walk_upstream()
-                            if new_h.get_tail_sets():
-                                log('\t\t\t\tThe new head has tail features, must be an adjunct floater.')
-                                self.create_adjunct(new_h)
+                                # Move to the new constituent (otherwise we will loop this)
+                                _ps_spec_iterator = _ps_spec_iterator.walk_upstream()
+                                if new_h.get_tail_sets():
+                                    log('\t\t\t\tThe new head has tail features, must be an adjunct floater.')
+                                    self.create_adjunct(new_h)
 
-                                # Drop inside the right-adjunct
-                                if _ps_spec_iterator.mother:
-                                    _ps_spec_iterator = _ps_spec_iterator.mother  # Move one step up
-                        adjunct_found = _ps_spec_iterator.sister().adjunct
+                                    # Drop inside the right-adjunct
+                                    if _ps_spec_iterator.mother:
+                                        _ps_spec_iterator = _ps_spec_iterator.mother  # Move one step up
+
                     else:
                         # If its just one Spec, copy criterial features
                         spec_found = True  # We register that one head has been found

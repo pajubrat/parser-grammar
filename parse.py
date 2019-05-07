@@ -95,6 +95,7 @@ for sentence in parse_list:
         P.number_of_solutions_tried = 0
         P.number_of_Moves = 0
         P.number_of_Merges = 0
+        P.score = 0
         P.parse(sentence)
         set_logging(True)
         s = ''
@@ -108,8 +109,10 @@ for sentence in parse_list:
             for parse in P.result_list:
                 results_file.write(f'{parse}\n')
                 results_file.write('\''+parse.gloss()+'.\'\n')
+                results_file.write('Score: ' + str(P.score) + '  (')
                 results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', Merge:' +
-                                   str(P.number_of_Merges) + ', Move: ' + str(P.number_of_Moves) + '\n\n')
+                                   str(P.number_of_Merges) + ', Move: ' + str(P.number_of_Moves) + ' = Ops: ' + str(P.number_of_Moves + P.number_of_Merges) + '; ')
+                results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
     else:
         results_file.write('\n'+' '.join(map(str, sentence))+'\n')
 

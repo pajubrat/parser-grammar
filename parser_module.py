@@ -31,6 +31,8 @@ class Pcb_parser():
         self.number_of_Merges = 1
         self.number_of_Moves = 1
         self.number_of_solutions_tried = 0
+        self.discourse_plausibility = 0
+        self.score = 0
 
         # Stops parsing when the first solution is available
         self.exit = False
@@ -103,8 +105,11 @@ class Pcb_parser():
             ps_ = self.reconstruct(ps)
             log('\t\t\t= ' + ps_.illustrate())
             log(f'\t\tChecking LF-interface conditions.')
-            if ps_.LF_legibility_test().all_pass():
-                if LF.final_tail_check(ps_) and self.transfer_to_LF(ps_):
+            lf = ps_.LF_legibility_test()
+            if lf.all_pass():
+                if lf.final_tail_check(ps_) and self.transfer_to_LF(ps_):
+                    self.discourse_plausibility = lf.discourse_test_result
+                    self.score = 1 - self.number_of_solutions_tried - self.discourse_plausibility
                     self.result_list.append(ps_)
                     show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried)
                     self.exit = True    # Knock this out if you want to see all solutions
@@ -298,6 +303,7 @@ class Pcb_parser():
         log('\t\t\tRanking remaining sites...')
 
         word_specs = w.for_parsing(w.get_specs())
+        word_rare_specs = w.for_parsing(w.get_rare_specs())
         word_not_specs = w.for_parsing(w.get_not_specs())
         word_cats = w.get_cats()
         word_tail_set = w.get_tail_sets()
@@ -309,8 +315,11 @@ class Pcb_parser():
 
         for i, site in enumerate(site_list, start=1):
 
+            # This determines how to order constituents with the same ranking
+            # This method takes the local phrase
             priority_base = i
-            priority = 0
+
+            priority = 0 + priority_base
             site_cats = site.get_head().get_cats()
 
             # Case 2a. Spec Solutions
@@ -335,6 +344,12 @@ class Pcb_parser():
                 log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC for {word_pf} due to unselective SPEC feature.')
                 avoid_set.add(site)
 
+            # Avoid rare SPEC solutions
+            if word_rare_specs & site_cats:
+                priority = priority + priority_base - 1000
+                log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC for {word_pf} due to rare SPEC feature.')
+                avoid_set.add(site)
+
             # Case 2c. Check if existing H-Comp-relations would be broken
             # The rule captures that fact that 'H X' often means [H XP]
             # Improves performance 75%
@@ -357,7 +372,7 @@ class Pcb_parser():
                     test_word = w.copy()
                     site.merge(test_word, 'right')
                     if not test_word.internal_tail_head_test():
-                        priority = priority + priority_base - 100
+                        priority = priority + priority_base - 50
                         log(f'\t\t\t\tAvoid [{site.get_pf()} {word_pf}] due to local agreement failure.')
                         avoid_set.add(site)
                     test_word.remove()
@@ -367,15 +382,18 @@ class Pcb_parser():
                 for m in site.get_affix_list():
                     # Check if H selects w and if yes, prioritize this solution
                     if word_cats & m.for_parsing(m.get_comps()):
-                        priority = priority + priority_base + 100 * len(word_cats & m.for_parsing(m.get_comps()))
+                        priority = priority + priority_base + 100
                         log(f'\t\t\t\tPrioritize [{m.get_pf()} {word_pf}] due to complement selection.')
                         avoid_set.clear()
 
                     # ... if f cannot be merged to the complement, avoid this solution
                     if word_cats & m.for_parsing(m.get_not_comps()):
-                        priority = priority + priority_base - 100 * len(word_cats & m.for_parsing(m.get_not_comps()))
-                        log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection.')
-                        avoid_set.add(site)
+                        # This condition has the effect that D{N} will be favored as SPEC
+                        # (i.e. neither D nor N will take w as COMP and so negative comp solutions are not examined)
+                        if 'CAT:N' not in m.features and 'CAT:D' not in m.features:
+                            priority = priority + priority_base - 100 * len(word_cats & m.for_parsing(m.get_not_comps()))
+                            log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection.')
+                            avoid_set.add(site)
 
                     if not LF.semantic_match(m, w):
                         priority = priority + priority_base - 100
@@ -416,6 +434,7 @@ class Pcb_parser():
                         avoid_set.add(site)
                     else:
                         priority = priority + priority_base + 100
+                        priority = priority + priority_base + 100
                         log(f'\t\t\t\tConsidering {site} due to legitimate tail-head configuration.')
                         avoid_set.clear()
                 w_copy.remove()
@@ -443,6 +462,10 @@ class Pcb_parser():
                 log(f'\t\t\t\tPrioritize {max_site} because all solutions were negative.')
                 adjunction_sites.remove((max_priority, max_site))
                 adjunction_sites.append((max_priority + 200, max_site))
+
+        # Provide rankings
+        for priority, site in adjunction_sites:
+            log(f'\t\t\t\t{site} + {word_pf} = {priority}]')
 
         # Sort based on priority (and only priority, not phrase structure)
         adjunction_sites = sorted(adjunction_sites, key=itemgetter(0))
