@@ -435,9 +435,9 @@ class Reconstruction():
                             #...we reconstruct  A-movement (a version of phi-agreement)
                             self.A_reconstruct(_ps_spec_iterator.sister())
 
-                    # If we already have processed one Spec, and there is additional non-adjunct phrase, then we are gonna need to spawn phantom heads
+                    # If we already have processed one Spec, and there is additional non-adjunct phrase, then we might need phantom heads
                     if spec_found:
-                        # If the lower SPEC is adjunct that there are no criterial features in the uppoer SPEC, we don't do anything
+                        # If the lower SPEC is adjunct and there are no criterial features in the upper SPEC, we don't do anything
                         if not criterial_features and adjunct_found:
                             adjunct_found = _ps_spec_iterator.sister().adjunct
                         # If the lower SPEC is not an adjunct, or if there are criterial features in the higher SPEC, we need to spawn a head

@@ -739,7 +739,7 @@ class PhraseStructure:
             # Condition i)
             # First check if the constituent is already inside the checking projection (Spec-Head checking)
             if get_max(self) and get_max(self).mother and get_max(self).mother.get_head().check_features(tail_set):
-                if self.mysterious_property(): # This includes genitive DPs
+                if self.mysterious_property(): # False if self is DP without genitive Case (PP, Advs, genitive DPs are accepted)
                     return True
 
             # Condition ii)
@@ -759,7 +759,8 @@ class PhraseStructure:
             return False
 
     def mysterious_property(self):
-        if 'CAT:D' in self.features and 'TAIL:INF,A/HEAD' in self.features:
+        # True if self is a DP with genitive case
+        if 'CAT:D' in self.features and not 'TAIL:INF,A/HEAD' in self.features:
             return False
         else:
             return True

@@ -78,8 +78,8 @@ class LF:
                     log(f'\t\t\t\t{ps} probing for {f[7:]} failed.')
                     self.probe_goal_test_result = False
 
-        # 3. Tail-head test
-        if not ps.internal_tail_head_test():
+        # 3. Internal tail-head test for case (DPs)
+        if 'D' in ps.get_labels() and not ps.internal_tail_head_test():
             log(f'\t\t\t\t{ps} failed internal tail test.')
             self.tail_head_test_result = False
 
