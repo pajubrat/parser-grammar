@@ -574,7 +574,8 @@ class Reconstruction():
         if not _ps_iterator.is_primitive() and \
                 not _ps_iterator.left_const.is_primitive() and \
                 not _ps_iterator.left_const.find_me_elsewhere and \
-                _ps_iterator.left_const.get_head().get_tail_sets():
+                _ps_iterator.left_const.get_head().get_tail_sets() and \
+                not '-FLOAT' in _ps_iterator.left_const.get_head().features:
             floater = _ps_iterator.left_const
             # Also check if its tail features fail to find a head
             if not floater.get_head().external_tail_head_test():
@@ -591,7 +592,8 @@ class Reconstruction():
 
         # Check if the right edge itself has tail features (e.g. DP at the bottom, floaters/adjuncts)
         if not _ps_iterator.is_primitive() and \
-                _ps_iterator.right_const.get_head().get_tail_sets():
+                _ps_iterator.right_const.get_head().get_tail_sets() and \
+                not '-FLOAT' in _ps_iterator.right_const.get_head().features:
             floater = _ps_iterator.right_const.get_head()
             # If tail features fail to find a head, the constituent must be dropped
             if not floater.external_tail_head_test():
@@ -629,7 +631,7 @@ class Reconstruction():
 
             # If a suitable position is found, dropping will be executed
             # Condition 1: tail test succeeds,
-            # Condition 2: we are not reconstructing inside the same projection (does not applly to Adv which are right-adjoined)
+            # Condition 2: we are not reconstructing inside the same projection (does not apply to Adv which are right-adjoined)
             # Condition 3: dropped non-ADV will become the only SPEC
             if self.is_drop_position(ps_iterator_, floater_copy, starting_point):
                 self.create_adjunct(floater)

@@ -1,7 +1,7 @@
 
 #################################################################################
 # This is the main script that should be run when testing the parser
-# Version 1.01
+# Version 2.02
 ################################################################################
 
 # Imports
@@ -14,12 +14,14 @@ import time
 from LanguageGuesser import LanguageGuesser
 from context import Context
 
+grammaticality_judgement = ['','(?)','?','(?)?', '??', '?(*)', '?*', '##']
 parse_list = []
 t = time.time()
 # disable_all_logging()
 set_logging(True)
 
-test_set_name = 'basic_clause_infinitival_corpus.txt'
+#test_set_name = 'Experiment1_corpus.txt'
+test_set_name = 'Experiment1_corpus.txt'
 lexicon_file_name = 'lexicon.txt'
 log_file_name = test_set_name[:-4] + '_log.txt'
 results_file_name = test_set_name[:-4] + '_results.txt'
@@ -79,14 +81,15 @@ results_file.write(f'Logs into file \"{log_file_name}.\n')
 results_file.write(f'Lexicon from file \"{lexicon_file_name}\".\n')
 
 for sentence in parse_list:
+    print(str(count))
     if sentence[0] != '&':
         count = count + 1
         set_logging(True)
         log('\n\n\========================================================================')
         log('# '+str(count))
         log(str(sentence) + '\n\n')
-        print('\n' + str(count) + '. ' + str(sentence))
-        print('----------------------------------------------------------------')
+        # print('\n' + str(count) + '. ' + str(sentence))
+        # print('----------------------------------------------------------------')
         set_logging(False)
         lang = lang_guesser.guess(sentence)
         P = parsers[lang]
@@ -102,17 +105,20 @@ for sentence in parse_list:
         for word in sentence:
             s = s + word + ' '
         if len(P.result_list) == 0:
-            print('Ungrammatical.')
-            results_file.write(str(count) + '. *' + s + '\n\n')
+            results_file.write(str(count) + '. * ' + s + '\n\n')
         else:
-            results_file.write(str(count) + '. ' + s + '\n')
-            for parse in P.result_list:
-                results_file.write(f'{parse}\n')
-                results_file.write('\''+parse.gloss()+'.\'\n')
-                results_file.write('Score: ' + str(P.score) + '  (')
-                results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', Merge:' +
-                                   str(P.number_of_Merges) + ', Move: ' + str(P.number_of_Moves) + ' = Ops: ' + str(P.number_of_Moves + P.number_of_Merges) + '; ')
-                results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
+            if 0 >= P.score >= -6:
+                judgment = grammaticality_judgement[int(round(abs(P.score),0))]
+            else:
+                judgment = '##'
+            results_file.write(str(count) + '. ' + judgment + ' ' + s + '\n')
+            parse = P.result_list[0]
+            results_file.write(f'{parse}\n')
+            results_file.write('\''+parse.gloss()+'.\'\n')
+            results_file.write('Score: ' + str(P.score) + '  (')
+            results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', Merge:' +
+                               str(P.number_of_Merges) + ', Move: ' + str(P.number_of_Moves) + ' = Ops: ' + str(P.number_of_Moves + P.number_of_Merges) + '; ')
+            results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
     else:
         results_file.write('\n'+' '.join(map(str, sentence))+'\n')
 

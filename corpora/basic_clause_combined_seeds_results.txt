@@ -1,0 +1,97 @@
+BC parser v. 0.9
+2019-05-09 08:02:36.170308
+Test sentences from file "basic_clause_combined_seeds.txt".
+Logs into file "basic_clause_combined_seeds_log.txt.
+Lexicon from file "lexicon.txt".
+
+& Group 1. Declarative clauses
+1.  Pekka nukkui 
+[<D Pekka>:1 [T/fin [<DP>:1 nukku]]]
+'D Pekka T __sleep .'
+Score: 0  (Failed: 0, Merge:6, Move: 1 = Ops: 7; Discourse plausibility: -0)
+
+2.  Pekka ihailee Merjaa 
+[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]
+'D Pekka T __v admire D  .'
+Score: 0  (Failed: 0, Merge:10, Move: 4 = Ops: 14; Discourse plausibility: -0)
+
+3.  Pekka antoi kirjan Merjalle 
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+'D Pekka T __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:13, Move: 14 = Ops: 27; Discourse plausibility: -0)
+
+
+& Group 2. Negative clauses
+4.  Pekka ei nukkunut 
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 nukku]]]]]
+'D Pekka not __T __sleep .'
+Score: 0  (Failed: 0, Merge:7, Move: 3 = Ops: 10; Discourse plausibility: -0)
+
+5.  Pekka ei ihaile Merjaa 
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [ihailee [D Merjaa]]]]]]]]
+'D Pekka not __T __v admire D  .'
+Score: 0  (Failed: 0, Merge:11, Move: 7 = Ops: 18; Discourse plausibility: -0)
+
+6.  Pekka ei antanut kirjaa Merjalle 
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]
+'D Pekka not __T __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:14, Move: 23 = Ops: 37; Discourse plausibility: -0)
+
+
+& Group 3. Embedded infinitivals
+7.  Pekka kaski heidan nukkua 
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 nukku]]]]]]]
+'D Pekka T __ask D theirs to __sleep .'
+Score: 0  (Failed: 0, Merge:11, Move: 10 = Ops: 21; Discourse plausibility: -0)
+
+8.  Pekka kaski heidan ihailla Merjaa 
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [ihailee [D Merjaa]]]]]]]]]]
+'D Pekka T __ask D theirs to __v admire D  .'
+Score: 0  (Failed: 0, Merge:15, Move: 18 = Ops: 33; Discourse plausibility: -0)
+
+9.  Pekka kaski heidan antaa kirjan Merjalle 
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]
+'D Pekka T __ask D theirs to __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:18, Move: 46 = Ops: 64; Discourse plausibility: -0)
+
+
+& Group 4. Adverbial
+10.  Pekka nukkui kuorsaamalla 
+[<D Pekka>:1 [T/fin [<DP>:1 [nukku <malla kuorsaa>]]]]
+'D Pekka T __sleep by snore .'
+Score: 0  (Failed: 0, Merge:8, Move: 4 = Ops: 12; Discourse plausibility: -0)
+
+11.  Pekka hairitsee Merjaa kuorsaamalla 
+[<D Pekka>:1 [T/fin [<DP>:1 [v [(DP):2 [hairitsee [[D Merjaa]:2 <malla kuorsaa>]]]]]]]
+'D Pekka T __v __disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:12, Move: 15 = Ops: 27; Discourse plausibility: -0)
+
+12. ? Pekka antoi kirjan Merjalle heittamalla 
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <malla heitta>]]]]]]
+'D Pekka T __v give D book for D Merja by throw .'
+Score: -1  (Failed: 1, Merge:17, Move: 30 = Ops: 47; Discourse plausibility: -0)
+
+
+& Group 5. Negation and adverbial
+13.  Pekka ei nukkunut kuorsaamalla 
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [nukku <malla kuorsaa>]]]]]]
+'D Pekka not __T __sleep by snore .'
+Score: 0  (Failed: 0, Merge:9, Move: 8 = Ops: 17; Discourse plausibility: -0)
+
+14.  Pekka ei hairitse Merjaa kuorsaamalla 
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [(DP):2 [hairitsee [[D Merjaa]:2 <malla kuorsaa>]]]]]]]]]
+'D Pekka not __T __v __disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:13, Move: 24 = Ops: 37; Discourse plausibility: -0)
+
+15. ? Pekka ei antanut kirjaa Merjalle heittamalla 
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <malla heitta>]]]]]]]]
+'D Pekka not __T __v give D book for D Merja by throw .'
+Score: -1  (Failed: 1, Merge:18, Move: 47 = Ops: 65; Discourse plausibility: -0)
+
+
+& Grouop 6. Negated infinitival embedding
+16.  Pekka ei kaskenyt heidan nukkua 
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 nukku]]]]]]]]]
+'D Pekka not __T __ask D theirs to __sleep .'
+Score: 0  (Failed: 0, Merge:12, Move: 17 = Ops: 29; Discourse plausibility: -0)
+

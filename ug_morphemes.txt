@@ -41,7 +41,7 @@ asp		:: - TAIL:CAT:v,!COMP:*
 
 nom   	:: - TAIL:CAT:FIN,A/HEAD
 par   	:: - TAIL:!COMP:*,-PHI
-acc		:: - TAIL:!COMP:*,A/HEAD, -PHI
+acc		:: - TAIL:!COMP:*,A/HEAD,-PHI
 Pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH
 wh     	:: - CAT:WH
@@ -53,4 +53,4 @@ Q		:: - CAT:Q
 # This is not correct characterization of the genitive (correct will be TAIL:CAT:PHI, generalized phi-probe)
 # gen     :: - TAIL:CAT:D
 # gen		:: - TAIL:PHI:0,A/HEAD
-gen		::	- feature
+gen		:: - TAIL:CAT:INF,A/HEAD -FLOAT

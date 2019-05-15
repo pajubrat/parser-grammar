@@ -113,8 +113,9 @@ class LF:
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
                 if spec and f[6:] in spec.get_labels():
-                    log(f'\t\t\t\t{ps} has unaccetable specifier {spec}.')
-                    self.selection_test_result = False
+                    if not spec.adjunct:
+                        log(f'\t\t\t\t{ps} has unaccetable specifier {spec}.')
+                        self.selection_test_result = False
 
             # 3.2. No specifier of any kind allowed (e.g., English P)
             if f == '-SPEC:*':

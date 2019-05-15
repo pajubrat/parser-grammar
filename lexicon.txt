@@ -1,7 +1,7 @@
 ﻿Gianni.nom 	:: Gianni-#D#nom LF:Gianni LANG:IT
 asked	:: ask-#T/fin LANG:EN
 antaa	:: anta-#v#-ta LANG:FI
-anta-   :: PF:antaa LF:give CAT:V SPEC:D COMP:D -COMP:FIN -COMP:T -COMP:T/fin LANG:FI
+anta-   :: PF:antaa LF:give CAT:V SPEC:D COMP:D -COMP:FIN -COMLANG:FI
 antoi   :: anta-#v#T/fin LANG:FI
 antanut	:: anta-#v#T LANG:FI
 ask-	:: PF:ask LF:ask CAT:V COMP:INF UNERG LANG:EN
@@ -16,6 +16,12 @@ Fido-	:: PF:Fido LF:Fido CAT:N LANG:EN
 give	:: PF:gave LF:gave CAT:V SPEC:D COMP:D -COMP:T/fin SPEC:P LANG:EN
 heidan	:: heidan-#D#gen LANG:FI
 heidan- :: PF:heidän LF:theirs CAT:N CAT:PHI LANG:FI  
+heitta_pro- :: PF:heitta LF:throw CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
+heittamalla :: heitta_pro-#malla LANG:FI
+hairitsee :: hairitse-#v#T/fin LANG:FI
+hairitse- :: PF:hairitsee LF:disturb CAT:V COMP:D -COMP:FIN LANG:FI
+hairitse :: hairitse-#v#T LANG:FI
+hairita :: hairitse-#v#-ta LANG:FI
 ihaile- :: PF:ihailee LF:admire CAT:V COMP:D -COMP:FIN LANG:FI
 ihailee :: ihaile-#v#T/fin LANG:FI
 ihailla	:: ihaile-#v#-ta LANG:FI
@@ -53,6 +59,7 @@ nukku-	:: PF:nukku LF:sleep UNERG CAT:V -COMP:T -COMP:T/fin -COMP:Neg/fin LANG:F
 nukkua	:: nukku-#-ta LANG:FI
 nukkunut :: nukku-#T LANG:FI
 Pekka   :: Pekka-#D#nom LANG:FI
+Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 sleeps	::sleep-#T/fin LANG:EN
 sleep   ::PF:sleep LF:sleep CAT:V UNERG -COMP:D !SPEC:D LANG:EN
 sleep-	:: PF:sleep LF:sleep CAT:V -COMP:D !SPEC:D LANG:EN
@@ -88,7 +95,6 @@ Pariisia.top ::	Pariisi-#D#top
 Pekan   :: Pekka-#D LANG:FI
 Pekkaa	::	Pekkaa-#D#par LANG:FI
 Pekkaa-	::	PF:Pekkaa LF:Pekka CAT:N
-Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 Jari-		:: PF:Jari CAT:N -SEM:directional LF:Jari LANG:FI
 Jari		:: Jari-#D#nom LANG:FI
 Jarin	:: Jari-#D#gen LANG:FI
@@ -268,7 +274,7 @@ poika	:: poika-#D#nom LANG:FI
 poika-	:: PF:poika LF:boy CAT:N LANG:FI
 prima	:: prima PF:prima CAT:ADV COMP:P LANG:IT
 putosi	::	puto-#T/fin	LANG:FI
-puto-	::	PF:puto LF:fell CAT:V UNACC LANG:FI
+puto-	::	PF:puto LF:fell CAT:V UNacc LANG:FI
 quale	::	quale PF:quale CAT:D CAT:WH LANG:IT
 qualcosa :: qualcosa-#D LANG:IT
 qualcosa- :: PF:qualcosa CAT:N CAT:PHI LANG:IT
