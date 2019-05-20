@@ -180,6 +180,7 @@ class LexicalInterface:
         # This captures the connection between agreement and optional EPP
         # Select non-finite heads minus v which is special because it assigns thematic role to its Spec
         if '!COMP:*' in features and \
+                not 'CAT:T' in features and \
                 not 'CAT:T/fin' in features and \
                 not 'CAT:C/fin' in features and \
                 not 'CAT:v' in features and \

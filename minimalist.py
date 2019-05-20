@@ -146,7 +146,7 @@ class PhraseStructure:
         """
 
         for f in self.features:
-            if f == 'SPEC:*' or f == '!SPEC:*' or f == '+PHI':
+            if f == 'SPEC:*' or f == '!SPEC:*' or f == '+PHI' or f == 'PHI:0':
                 return True
         return False
 
@@ -189,6 +189,7 @@ class PhraseStructure:
 
         # take copy
         self_copy = self.copy()             # Copy the constituent
+        self_copy.find_me_elsewhere = False
         self_copy.silence_phonologically()  # Silence the new constituent phonologically
         self.find_me_elsewhere = True       # Mark that the constituent has been copied
 
@@ -760,7 +761,7 @@ class PhraseStructure:
 
     def mysterious_property(self):
         # True if self is a DP with genitive case
-        if 'CAT:D' in self.features and not 'TAIL:INF,A/HEAD' in self.features:
+        if 'CAT:D' in self.features and not 'TAIL:CAT:INF,A/HEAD' in self.features:
             return False
         else:
             return True
@@ -957,22 +958,16 @@ class PhraseStructure:
         else:
             return None
 
+    def get_mandatory_comps(self):
+        return  {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
+
     def get_comps(self):
-        set_ = set()
-        for f in self.features:
-            if f[:4] == 'COMP':
-                set_.add(f[5:])
-            if f[:5] == '!COMP':
-                set_.add(f[6:])
-        return set_
+        return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}
 
     def get_affix_comps(self):
-
         set_ = set()
         affixes = self.get_affix_list()
-
         for affix in affixes:
-
             for f in affix.features:
                 if f[:4] == 'COMP':
                     set_.add(f[5:])
@@ -981,45 +976,21 @@ class PhraseStructure:
 
         return set_
 
-
     def get_not_comps(self):
-        set_ = set()
-        for f in self.features:
-            if f[:5] == '-COMP':
-                set_.add(f[6:])
-        return set_
+        return {f[6:] for f in self.features if f[:5] == '-COMP'}
 
     # Return the set of POS categories
     def get_cats(self):
-        set_ = set()
-        if self.features:
-            for f in self.features:
-                if f[:3] == 'CAT':
-                    set_.add(f[4:])
-        return set_
+        return {f[4:] for f in self.features if f[:3] == 'CAT'}
 
     def get_specs(self):
-        set_ = set()
-        for f in self.features:
-            if f[:4] == 'SPEC':
-                set_.add(f[5:])
-            if f[:5] == '!SPEC':
-                set_.add(f[6:])
-        return set_
+        return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
 
     def get_not_specs(self):
-        set_ = set()
-        for f in self.features:
-            if f[:5] == '-SPEC':
-                set_.add(f[6:])
-        return set_
+        return {f[6:] for f in self.features if f[:5] == '-SPEC'}
 
     def get_rare_specs(self):
-        set_ = set()
-        for f in self.features:
-            if f[:5] == '%SPEC':
-                set_.add(f[6:])
-        return set_
+        return {f[6:] for f in self.features if f[:5] == '%SPEC'}
 
     # Transforms a set of lexical features to be used locally in parsing,
     def for_parsing(self, features):

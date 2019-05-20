@@ -111,7 +111,7 @@ class Pcb_parser():
                     self.discourse_plausibility = lf.discourse_test_result
                     self.score = 1 - self.number_of_solutions_tried - self.discourse_plausibility
                     self.result_list.append(ps_)
-                    show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried)
+                    # show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried)
                     self.exit = True    # Knock this out if you want to see all solutions
                 else:
                     report_tail_head_problem(ps_)
