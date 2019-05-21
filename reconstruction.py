@@ -182,11 +182,11 @@ class Reconstruction():
             # or if its in a wrong SPEC position
             elif floater.mother and '-SPEC:*' in floater.mother.get_head().features:
                 return floater
-            # todo, I don't remember why this condition was here, must be checked, it caused some DPs to get dropped twice
-            # or if its a floating DP, we need to start reconstruction from the top
-            # elif 'D' in floater.get_labels():
-            #    return floater
-
+            # or if its a floating DP
+            # This is needed to get arguments to move into a higher EPP position from otherwise legit position (e.g. antanut __ ei Pekka . . .)
+            # This rule causes problems elsewhere because it makes it possible to double drop floaters, lets fix this later
+            elif 'D' in floater.get_labels():
+                return floater
 
         # Check if the right edge itself has tail features (e.g. DP at the bottom, floaters/adjuncts)
         if not _ps_iterator.is_primitive() and \
@@ -399,9 +399,9 @@ class Reconstruction():
         """
 
         def make_adjunct(ps):
-            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-                log(f'\t\t\t\t{ps} cannot be made an adjunct because its sister is an adjunct.')
-                return False
+            #if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
+            #    log(f'\t\t\t\t{ps} cannot be made an adjunct because its sister is an adjunct.')
+            #    return False
             ps.adjunct = True
             log(f'\t\t\t\t{ps} was made an adjunct.')
             return True
