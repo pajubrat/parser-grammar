@@ -181,12 +181,13 @@ class Reconstruction():
                 return floater
             # or if its in a wrong SPEC position
             elif floater.mother and '-SPEC:*' in floater.mother.get_head().features:
-                return floater
+                if floater == floater.mother.get_head().specifier():
+                    return floater
             # or if its a floating DP
             # This is needed to get arguments to move into a higher EPP position from otherwise legit position (e.g. antanut __ ei Pekka . . .)
             # This rule causes problems elsewhere because it makes it possible to double drop floaters, lets fix this later
-            elif 'D' in floater.get_labels():
-                return floater
+            #elif 'D' in floater.get_labels():
+            #    return floater
 
         # Check if the right edge itself has tail features (e.g. DP at the bottom, floaters/adjuncts)
         if not _ps_iterator.is_primitive() and \
@@ -345,16 +346,15 @@ class Reconstruction():
             # This is LF-requirement: the adjunct must get semantic interpretation
             for head in ps_.left_const.get_feature_vector():
                 if 'FIN' in head.get_labels() or 'D' in head.get_labels():
-                    if not ps_.geometrical_sister().adjunct: # This prevents the creation of <XP><YP>
-                        ps_.adjunct = True
-                        log(f'\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
-                        if not ps_.get_top().LF_legibility_test().all_pass():
-                            # If phi set is available...
-                            if self.promote_phi_set(ps_.left_const):
-                                log(f'\t\t\t\tThe structure is still illicit. Try phi-tailing as a last resort.')
-                                drop_floaters(ps_.get_top())
-                                log(f'\t\t\t\t={ps_.get_top()}')
-                        return True
+                    self.create_adjunct(ps_)
+                    log(f'\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
+                    if not ps_.get_top().LF_legibility_test().all_pass():
+                        # If phi set is available...
+                        if self.promote_phi_set(ps_.left_const):
+                            log(f'\t\t\t\tThe structure is still illicit. Try phi-tailing as a last resort.')
+                            drop_floaters(ps_.get_top())
+                            log(f'\t\t\t\t={ps_.get_top()}')
+                    return True
 
         return False
 
@@ -404,6 +404,8 @@ class Reconstruction():
             #    return False
             ps.adjunct = True
             log(f'\t\t\t\t{ps} was made an adjunct.')
+            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
+                ps.mother.adjunct = True
             return True
 
         # --- Main function begins here --- #

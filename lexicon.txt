@@ -10,7 +10,7 @@ auttanut :: autta-#v#T LANG:FI
 auttaa	:: autta-#v#T/fin LANG:FI
 autta-	:: PF:auttaa LF:help CAT:V !COMP:D LANG:FI
 did     :: CAT:T/fin PF:did LF:did CAT:AUX LANG:EN
-ei	:: PF:ei LF:not	CAT:Neg/fin CAT:FIN +PHI !SPEC:* !COMP:T LANG:FI
+ei	:: PF:ei LF:not	CAT:Neg/fin +PHI !SPEC:* !COMP:T LANG:FI
 Fido	:: Fido-#D LANG:EN
 Fido-	:: PF:Fido LF:Fido CAT:N LANG:EN
 give	:: PF:gave LF:gave CAT:V SPEC:D COMP:D -COMP:T/fin SPEC:P LANG:EN
@@ -19,7 +19,7 @@ heidan- :: PF:heidän LF:theirs CAT:N CAT:PHI LANG:FI
 heitta_pro- :: PF:heitta LF:throw CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
 heittamalla :: heitta_pro-#malla LANG:FI
 hairitsee :: hairitse-#v#T/fin LANG:FI
-hairitse- :: PF:hairitsee LF:disturb CAT:V COMP:D -COMP:FIN LANG:FI
+hairitse- :: PF:hairitsee LF:disturb CAT:V SPEC:D !COMP:D -COMP:FIN LANG:FI
 hairitse :: hairitse-#v#T LANG:FI
 hairita :: hairitse-#v#-ta LANG:FI
 ihaile- :: PF:ihailee LF:admire CAT:V COMP:D -COMP:FIN LANG:FI

@@ -62,6 +62,7 @@ class Pcb_parser():
         self.number_of_ambiguities = 0
         reset_number_of_operations()
         self.name_provider_index = 0
+        self.reconstruction.name_provider_index = 0
 
         set_logging(True)
         self.exit = False

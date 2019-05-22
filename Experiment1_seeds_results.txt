@@ -1,5 +1,5 @@
 BC parser v. 0.9
-2019-05-13 12:11:57.305615
+2019-05-22 14:31:27.190601
 Test sentences from file "Experiment1_seeds.txt".
 Logs into file "Experiment1_seeds_log.txt.
 Lexicon from file "lexicon.txt".
@@ -11,12 +11,12 @@ Lexicon from file "lexicon.txt".
 Score: 0  (Failed: 0, Merge:6, Move: 1 = Ops: 7; Discourse plausibility: -0)
 
 2.  Pekka ihailee Merjaa 
-[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]
+[<D Pekka>:2 [T/fin [<DP>:2 [v [ihailee [D Merjaa]]]]]]
 'D Pekka T __v admire D  .'
 Score: 0  (Failed: 0, Merge:10, Move: 4 = Ops: 14; Discourse plausibility: -0)
 
 3.  Pekka antoi kirjan Merjalle 
-[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+[<D Pekka>:4 [T/fin [<DP>:4 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
 'D Pekka T __v give D book for D Merja .'
 Score: 0  (Failed: 0, Merge:13, Move: 14 = Ops: 27; Discourse plausibility: -0)
 
@@ -28,114 +28,114 @@ Score: 0  (Failed: 0, Merge:13, Move: 14 = Ops: 27; Discourse plausibility: -0)
 Score: 0  (Failed: 0, Merge:7, Move: 3 = Ops: 10; Discourse plausibility: -0)
 
 5.  Pekka ei ihaile Merjaa 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [ihailee [D Merjaa]]]]]]]]
+[<D Pekka>:3 [ei [<DP>:3 [T [<DP>:3 [v [ihailee [D Merjaa]]]]]]]]
 'D Pekka not __T __v admire D  .'
 Score: 0  (Failed: 0, Merge:11, Move: 7 = Ops: 18; Discourse plausibility: -0)
 
 6.  Pekka ei antanut kirjaa Merjalle 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]
+[<D Pekka>:7 [ei [<DP>:7 [T [<DP>:7 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]
 'D Pekka not __T __v give D book for D Merja .'
 Score: 0  (Failed: 0, Merge:14, Move: 23 = Ops: 37; Discourse plausibility: -0)
 
 
 & Group 3. Embedded infinitivals
 7.  Pekka kaski heidan nukkua 
-[<D Pekka>:1 [T/fin [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 nukku]]]]]]]
+[<D Pekka>:4 [T/fin [<DP>:4 [käske [[D heidän]:5 [Ainf [(DP):5 nukku]]]]]]]
 'D Pekka T __ask D theirs to __sleep .'
-Score: 0  (Failed: 0, Merge:11, Move: 10 = Ops: 21; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:11, Move: 8 = Ops: 19; Discourse plausibility: -0)
 
 8.  Pekka kaski heidan ihailla Merjaa 
-[<D Pekka>:1 [T/fin [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [v [ihailee [D Merjaa]]]]]]]]]]
+[<D Pekka>:8 [T/fin [<DP>:8 [käske [[D heidän]:9 [Ainf [(DP):9 [v [ihailee [D Merjaa]]]]]]]]]]
 'D Pekka T __ask D theirs to __v admire D  .'
-Score: 0  (Failed: 0, Merge:15, Move: 18 = Ops: 33; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:15, Move: 16 = Ops: 31; Discourse plausibility: -0)
 
 9.  Pekka kaski heidan antaa kirjan Merjalle 
-[<D Pekka>:1 [T/fin [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]
+[<D Pekka>:16 [T/fin [<DP>:16 [käske [[D heidän]:17 [Ainf [(DP):17 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]
 'D Pekka T __ask D theirs to __v give D book for D Merja .'
-Score: 0  (Failed: 0, Merge:18, Move: 46 = Ops: 64; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:18, Move: 44 = Ops: 62; Discourse plausibility: -0)
 
 
 & Group 4. Adverbial
 10.  Pekka nukkui kuorsaamalla 
-[<D Pekka>:1 [T/fin [<DP>:1 [nukku <malla kuorsaa>]]]]
+[<D Pekka>:3 [T/fin [<DP>:3 [nukku <malla kuorsaa>]]]]
 'D Pekka T __sleep by snore .'
 Score: 0  (Failed: 0, Merge:8, Move: 4 = Ops: 12; Discourse plausibility: -0)
 
 11.  Pekka hairitsee Merjaa kuorsaamalla 
-[<D Pekka>:1 [T/fin [<DP>:1 [v [(DP):2 [hairitsee [[D Merjaa]:2 <malla kuorsaa>]]]]]]]
-'D Pekka T __v __disturb D  by snore .'
-Score: 0  (Failed: 0, Merge:12, Move: 15 = Ops: 27; Discourse plausibility: -0)
+[<D Pekka>:4 [T/fin [<DP>:4 [v [hairitsee [[D Merjaa] <malla kuorsaa>]]]]]]
+'D Pekka T __v disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:12, Move: 14 = Ops: 26; Discourse plausibility: -0)
 
-12. (?) Pekka antoi kirjan Merjalle heittamalla 
-[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <malla heitta>]]]]]]
+12.  Pekka antoi kirjan Merjalle heittamalla 
+[<D Pekka>:6 [T/fin [<DP>:6 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]
 'D Pekka T __v give D book for D Merja by throw .'
-Score: -1  (Failed: 1, Merge:17, Move: 30 = Ops: 47; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:15, Move: 26 = Ops: 41; Discourse plausibility: -0)
 
 
 & Group 5. Negation and adverbial
 13.  Pekka ei nukkunut kuorsaamalla 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [nukku <malla kuorsaa>]]]]]]
+[<D Pekka>:5 [ei [<DP>:5 [T [<DP>:5 [nukku <malla kuorsaa>]]]]]]
 'D Pekka not __T __sleep by snore .'
 Score: 0  (Failed: 0, Merge:9, Move: 8 = Ops: 17; Discourse plausibility: -0)
 
 14.  Pekka ei hairitse Merjaa kuorsaamalla 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [(DP):2 [hairitsee [[D Merjaa]:2 <malla kuorsaa>]]]]]]]]]
-'D Pekka not __T __v __disturb D  by snore .'
-Score: 0  (Failed: 0, Merge:13, Move: 24 = Ops: 37; Discourse plausibility: -0)
+[<D Pekka>:7 [ei [<DP>:7 [T [<DP>:7 [v [hairitsee [[D Merjaa] <malla kuorsaa>]]]]]]]]
+'D Pekka not __T __v disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:13, Move: 23 = Ops: 36; Discourse plausibility: -0)
 
-15. (?) Pekka ei antanut kirjaa Merjalle heittamalla 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <malla heitta>]]]]]]]]
+15.  Pekka ei antanut kirjaa Merjalle heittamalla 
+[<D Pekka>:11 [ei [<DP>:11 [T [<DP>:11 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]
 'D Pekka not __T __v give D book for D Merja by throw .'
-Score: -1  (Failed: 1, Merge:18, Move: 47 = Ops: 65; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:16, Move: 42 = Ops: 58; Discourse plausibility: -0)
 
 
 & Grouop 6. Negated infinitival embedding
 16.  Pekka ei kaskenyt heidan nukkua 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 nukku]]]]]]]]]
+[<D Pekka>:7 [ei [<DP>:7 [T [<DP>:7 [käske [[D heidän]:9 [Ainf [(DP):9 nukku]]]]]]]]]
 'D Pekka not __T __ask D theirs to __sleep .'
-Score: 0  (Failed: 0, Merge:12, Move: 16 = Ops: 28; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:12, Move: 14 = Ops: 26; Discourse plausibility: -0)
 
 17.  Pekka ei kaskenyt heidan ihailla Merjaa 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [v [ihailee [D Merjaa]]]]]]]]]]]]
+[<D Pekka>:13 [ei [<DP>:13 [T [<DP>:13 [käske [[D heidän]:15 [Ainf [(DP):15 [v [ihailee [D Merjaa]]]]]]]]]]]]
 'D Pekka not __T __ask D theirs to __v admire D  .'
-Score: 0  (Failed: 0, Merge:16, Move: 27 = Ops: 43; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:16, Move: 25 = Ops: 41; Discourse plausibility: -0)
 
 18.  Pekka ei kaskenyt heidan antaa kirjaa Merjalle 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]]]
+[<D Pekka>:25 [ei [<DP>:25 [T [<DP>:25 [käske [[D heidän]:27 [Ainf [(DP):27 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]]]
 'D Pekka not __T __ask D theirs to __v give D book for D Merja .'
-Score: 0  (Failed: 0, Merge:19, Move: 65 = Ops: 84; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:19, Move: 63 = Ops: 82; Discourse plausibility: -0)
 
 
 & Group 7. Infinitival embedding with adverbial
 19.  Pekka kaski heidan nukkua kuorsaamalla 
-[<D Pekka>:1 [T/fin [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [nukku <malla kuorsaa>]]]]]]]]
+[<D Pekka>:12 [T/fin [<DP>:12 [käske [[D heidän]:13 [Ainf [(DP):13 [nukku <malla kuorsaa>]]]]]]]]
 'D Pekka T __ask D theirs to __sleep by snore .'
-Score: 0  (Failed: 0, Merge:13, Move: 23 = Ops: 36; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:13, Move: 21 = Ops: 34; Discourse plausibility: -0)
 
 20.  Pekka kaski heidan hairita Merjaa kuorsaamalla 
-[<D Pekka>:1 [T/fin [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [v [(DP):3 [hairitsee [[D Merjaa]:3 <malla kuorsaa>]]]]]]]]]]]
-'D Pekka T __ask D theirs to __v __disturb D  by snore .'
-Score: 0  (Failed: 0, Merge:17, Move: 47 = Ops: 64; Discourse plausibility: -0)
+[<D Pekka>:16 [T/fin [<DP>:16 [käske [[D heidän]:17 [Ainf [(DP):17 [v [hairitsee [[D Merjaa] <malla kuorsaa>]]]]]]]]]]
+'D Pekka T __ask D theirs to __v disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:17, Move: 44 = Ops: 61; Discourse plausibility: -0)
 
-21. (?) Pekka kaski heidan antaa kirjan Merjalle heittamalla 
-[<D Pekka>:1 [T/fin [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <malla heitta>]]]]]]]]]]
+21.  Pekka kaski heidan antaa kirjan Merjalle heittamalla 
+[<D Pekka>:24 [T/fin [<DP>:24 [käske [[D heidän]:25 [Ainf [(DP):25 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]
 'D Pekka T __ask D theirs to __v give D book for D Merja by throw .'
-Score: -1  (Failed: 1, Merge:22, Move: 82 = Ops: 104; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:20, Move: 74 = Ops: 94; Discourse plausibility: -0)
 
 
 & Group 8. Negated infinitival embedding with adverbial
 22.  Pekka ei kaskenyt heidan nukkua kuorsaamalla 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [nukku <malla kuorsaa>]]]]]]]]]]
+[<D Pekka>:19 [ei [<DP>:19 [T [<DP>:19 [käske [[D heidän]:21 [Ainf [(DP):21 [nukku <malla kuorsaa>]]]]]]]]]]
 'D Pekka not __T __ask D theirs to __sleep by snore .'
-Score: 0  (Failed: 0, Merge:14, Move: 35 = Ops: 49; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:14, Move: 33 = Ops: 47; Discourse plausibility: -0)
 
 23.  Pekka ei kaskenyt heidan hairita Merjaa kuorsaamalla 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [v [(DP):3 [hairitsee [[D Merjaa]:3 <malla kuorsaa>]]]]]]]]]]]]]
-'D Pekka not __T __ask D theirs to __v __disturb D  by snore .'
-Score: 0  (Failed: 0, Merge:18, Move: 66 = Ops: 84; Discourse plausibility: -0)
+[<D Pekka>:25 [ei [<DP>:25 [T [<DP>:25 [käske [[D heidän]:27 [Ainf [(DP):27 [v [hairitsee [[D Merjaa] <malla kuorsaa>]]]]]]]]]]]]
+'D Pekka not __T __ask D theirs to __v disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:18, Move: 63 = Ops: 81; Discourse plausibility: -0)
 
-24. (?) Pekka ei kaskenyt heidan antaa kirjaa Merjalle heittamalla 
-[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [<D heidän>:2 [Ainf [<DP>:2 [v [antaa [[[D kirja] <P(lle) [D Merja-]>] <malla heitta>]]]]]]]]]]]]
+24.  Pekka ei kaskenyt heidan antaa kirjaa Merjalle heittamalla 
+[<D Pekka>:37 [ei [<DP>:37 [T [<DP>:37 [käske [[D heidän]:39 [Ainf [(DP):39 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]]]
 'D Pekka not __T __ask D theirs to __v give D book for D Merja by throw .'
-Score: -1  (Failed: 1, Merge:23, Move: 113 = Ops: 136; Discourse plausibility: -0)
+Score: 0  (Failed: 0, Merge:21, Move: 104 = Ops: 125; Discourse plausibility: -0)
 

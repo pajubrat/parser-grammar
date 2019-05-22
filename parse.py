@@ -99,6 +99,8 @@ for sentence in parse_list:
         P.number_of_Moves = 0
         P.number_of_Merges = 0
         P.score = 0
+        P.name_provider_index = 0
+        P.reconstruction.name_provider_index = 0
         P.parse(sentence)
         set_logging(True)
         s = ''

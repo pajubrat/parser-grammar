@@ -156,8 +156,12 @@ class LF:
 
             # 3.6. !SPEC:* heads require a specifier
             if f == '!SPEC:*' and not spec:
-                log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier but needs one.')
-                self.selection_test_result = False
+                # This condition takes care of the curious fact that overt C cancels !SPEC:*
+                if h.get_selector() and 'FIN' in h.get_selector().get_labels():
+                    pass
+                else:
+                    log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier but needs one.')
+                    self.selection_test_result = False
 
             # 3.7. !SPEC:F, head requires specific specifier
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
