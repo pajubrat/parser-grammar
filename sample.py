@@ -1,9 +1,9 @@
 
 import random
 
-test_set_name = 'Experiment1_corpus.txt'
+test_set_name = 'Experiment1_corpus_full.txt'
 sample_file_name = test_set_name[:-4] + '_sample.txt'
-sample_size = 2392
+sample_size = 200000
 sample_list = []
 count = 1
 

@@ -437,7 +437,7 @@ class Reconstruction():
             make_adjunct(ps)
 
     # This will create a head from a specifier that lacks a head
-    def engineer_head_from_specifier(self, features):
+    def engineer_head_from_specifier(self, features, labels):
         """
         This operation spawns a head H from a detected specifier XP that lacks a head.
 
@@ -453,11 +453,14 @@ class Reconstruction():
         new_h = self.lexical_access.PhraseStructure()
 
         # The category of the new head is going to be a copy of criterial feature of Spec
+        # and the label of the original head (inverse feature inheritance)
         # We also create artificial phonological matrix for illustration
         for f in features:
             new_h.features.add('CAT:u' + f)
             new_h.features.add('PF:u' + f)
-            new_h.features.add('CAT:i' + f)
+        if features:
+            for label in labels:
+                new_h.features.add('CAT:' + label)
 
         # We add EPP required features
         new_h.features = self.lexical_access.apply_parameters(
@@ -572,7 +575,7 @@ class Reconstruction():
                         not _ps_spec_iterator.sister().is_primitive() and \
                         _ps_spec_iterator.sister().is_left():
 
-                    # we gather criterial features from the Spec (WH, FOC, REL, TOP)
+                    # we gather a set of criterial features from the Spec (WH, FOC, REL, TOP)
                     criterial_features = _ps_spec_iterator.sister().get_criterial_features()
 
                     # Reset memory if there is intervention
@@ -609,8 +612,11 @@ class Reconstruction():
                                     log(f'\t\t\t\tNew {criterial_features} head was spawned due to '
                                         f'the occurrence of multiple specifiers at {h.get_pf()}')
 
+                                # If we are at finite level, we need to get FIN also to the new head
+                                labels = h.get_labels()
+
                                 # Create and merge the new head, then move the pointer over it so we don't repeat
-                                new_h = self.engineer_head_from_specifier(criterial_features)
+                                new_h = self.engineer_head_from_specifier(criterial_features, labels)
                                 _ps_spec_iterator.merge(new_h, 'left')
 
                                 # Move to the new constituent (otherwise we will loop this)

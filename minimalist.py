@@ -390,7 +390,13 @@ class PhraseStructure:
 
     def get_specifiers(self):
 
-        ps_ = self.mother
+        if not self.is_primitive():
+            return None
+
+        if self.is_right():
+            ps_ = self
+        else:
+            ps_ = self.mother
         list = []
 
         while ps_ and ps_.sister() and (ps_.sister().is_left() and not ps_.sister().is_primitive()):

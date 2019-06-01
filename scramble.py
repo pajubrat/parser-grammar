@@ -6,7 +6,7 @@
 # Imports
 import itertools
 
-scramble_file_list = ['Experiment1_seeds']
+scramble_file_list = ['Experiment2_seeds']
 
 print('Scrambling...')
 

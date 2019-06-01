@@ -1,7 +1,10 @@
 
 #################################################################################
-# This is the main script that should be run when testing the parser
-# Version 2.02
+# Parser-grammar implementing the Phillips cycle
+# Design and main programming: Pauli Brattico
+# Additional coding: Jukka Purma
+# See documentation in the \Documentation folder
+# Version 1.9
 ################################################################################
 
 # Imports
@@ -21,7 +24,7 @@ t = time.time()
 set_logging(True)
 
 #test_set_name = 'Experiment1_corpus.txt'
-test_set_name = 'Experiment1_corpus_sample.txt'
+test_set_name = 'Experiment1_corpus_full_sample.txt'
 lexicon_file_name = 'lexicon.txt'
 log_file_name = test_set_name[:-4] + '_log.txt'
 results_file_name = test_set_name[:-4] + '_results.txt'

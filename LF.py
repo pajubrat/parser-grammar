@@ -65,6 +65,8 @@ class LF:
         h = ps  # Just to keep track of the fact that we have selected primitive head
 
         spec = h.specifier()
+        specs = h.get_specifiers()
+
         comp = h.complement()
         lf_features = sorted(for_lf_interface(h.features))
 
@@ -164,13 +166,30 @@ class LF:
                     self.selection_test_result = False
 
             # 3.7. !SPEC:F, head requires specific specifier
+            # Left adjunct can satisfy this, left non-adjunct must satisfy it
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
-                if not spec:
+                if not specs:
                     log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier {f[6:]} that it requires.')
                     self.selection_test_result = False
                 else:
-                    if f[6:] not in spec.get_labels() and f[7:] not in spec.get_labels():
-                        log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {spec}, needs {f[6:]}')
+                    found = False
+                    for s in specs:
+                        # Suitable left adjunct can satisfy SPEC requirement
+                        if s.adjunct:
+                            if f[6:] in s.get_labels() or f[7:] in s.get_labels():
+                                found = True
+                                break
+                        # Suitable non-adjunct must satisfy SPEC requirement
+                        else:
+                            if f[6:] in s.get_labels() or f[7:] in s.get_labels():
+                                found = True
+                                break
+                            else:
+                                found = False
+                                break
+
+                    if not found:
+                        log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {s}, needs {f[6:]}')
                         self.selection_test_result = False
 
         # 7. Criterial feature legibility test(s)
@@ -247,16 +266,16 @@ class LF:
         antecedent = set()      # Set that contains features that must be present in a legitimate antecedent
         for f in ps.features:   # Populate the set
             if f[:4] == 'ABAR': # Only abar variables implemented for now
-                antecedent.add('CAT:i'+f[5:])
+                antecedent.add('CAT:u'+f[5:])
 
         if not antecedent:      # If everything is interpretable, then we return the constituent itself
             return ps
 
         while ps_:
             if ps_.is_primitive():
-                if ps_.check_features(antecedent):
+                if ps_.check_features(antecedent) and 'FIN' in ps_.get_labels():
                     return ps_
-            elif ps_.left_const.get_head().check_features(antecedent):
+            elif ps_.left_const.get_head().check_features(antecedent) and 'FIN' in ps_.get_labels():
                 return ps_
             ps_ = ps_.walk_upstream()
 

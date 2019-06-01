@@ -141,7 +141,7 @@
 
 8.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -531,7 +531,7 @@
 
 9.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -666,7 +666,7 @@
 
 9.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -836,7 +836,7 @@
 
 7.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -845,10 +845,12 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [T/fin [<D Pekka> käske]]] as left branch because it constitutes illicit structure.
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
 				Avoid [T/fin{V} D] due to local agreement failure.
 				Prioritize [T/fin{V} D] due to complement selection.
-				[[D Pekka] T/fin{V}] + D = -98]
+				[[D Pekka] T/fin{V}] + D = -197]
 				T/fin{V} + D = -42]
 		Ranking completed:
 			1. [T/fin{V}; D]
@@ -874,8 +876,8 @@
 
 		[[D Pekka] [T/fin{V} D{N}]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [T/fin [<D Pekka> [käske [D heidän]]]]] Ainf] due to bad left branch.
-				Reject [[T/fin [käske [D heidän]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [T/fin [<D Pekka> [käske <D heidän>]]]] Ainf] due to bad left branch.
+				Reject [[T/fin [käske <D heidän>]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
 			=[[D Pekka] [T/fin{V} [[D heidän] Ainf]]]
@@ -971,7 +973,7 @@
 
 7.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -980,10 +982,12 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [T/fin [<D Pekka> käske]]] as left branch because it constitutes illicit structure.
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
 				Avoid [T/fin{V} D] due to local agreement failure.
 				Prioritize [T/fin{V} D] due to complement selection.
-				[[D Pekka] T/fin{V}] + D = -98]
+				[[D Pekka] T/fin{V}] + D = -197]
 				T/fin{V} + D = -42]
 		Ranking completed:
 			1. [T/fin{V}; D]
@@ -1009,8 +1013,8 @@
 
 		[[D Pekka] [T/fin{V} D{N}]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [T/fin [<D Pekka> [käske [D heidän]]]]] Ainf] due to bad left branch.
-				Reject [[T/fin [käske [D heidän]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [T/fin [<D Pekka> [käske <D heidän>]]]] Ainf] due to bad left branch.
+				Reject [[T/fin [käske <D heidän>]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
 			=[[D Pekka] [T/fin{V} [[D heidän] Ainf]]]
@@ -1045,7 +1049,7 @@
 
 13.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -1152,7 +1156,7 @@
 
 7.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -1161,10 +1165,12 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [T/fin [<D Pekka> käske]]] as left branch because it constitutes illicit structure.
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
 				Avoid [T/fin{V} D] due to local agreement failure.
 				Prioritize [T/fin{V} D] due to complement selection.
-				[[D Pekka] T/fin{V}] + D = -98]
+				[[D Pekka] T/fin{V}] + D = -197]
 				T/fin{V} + D = -42]
 		Ranking completed:
 			1. [T/fin{V}; D]
@@ -1190,8 +1196,8 @@
 
 		[[D Pekka] [T/fin{V} D{N}]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [T/fin [<D Pekka> [käske [D heidän]]]]] Ainf] due to bad left branch.
-				Reject [[T/fin [käske [D heidän]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [T/fin [<D Pekka> [käske <D heidän>]]]] Ainf] due to bad left branch.
+				Reject [[T/fin [käske <D heidän>]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
 			=[[D Pekka] [T/fin{V} [[D heidän] Ainf]]]
@@ -1509,7 +1515,7 @@
 
 8.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -2011,7 +2017,7 @@
 
 9.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -2185,7 +2191,7 @@
 
 9.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -2418,7 +2424,7 @@
 
 8.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -2427,20 +2433,23 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [ei [<D Pekka> [T [<D Pekka> käske]]]]] as left branch because it constitutes illicit structure.
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
 				An EPP-head "ei" lacks specifier but needs one.
+				käske (käske) is missing complement A/inf
 				An EPP-head "käske" lacks specifier D that it requires.
 				Avoid [ei [T käske]] as left branch because it constitutes illicit structure.
 				Avoid TP as SPEC for D due to unselective SPEC feature.
 				Avoid [T{V} D] due to local agreement failure.
 				Prioritize [T{V} D] due to complement selection.
-				[[D Pekka] [ei T{V}]] + D = -98]
+				[[D Pekka] [ei T{V}]] + D = -197]
 				[ei T{V}] + D = -194]
 				T{V} + D = -38]
 		Ranking completed:
 			1. [T{V}; D]
-			2. [[[D Pekka] [ei T{V}]]; D]
-			3. [[ei T{V}]; D]
+			2. [[ei T{V}]; D]
+			3. [[[D Pekka] [ei T{V}]]; D]
 		Exploring solution number (1) =[T{V} D]
 			T{V} cannot be opened.
 			=[[D Pekka] [ei [T{V} D]]]
@@ -2462,8 +2471,8 @@
 
 		[[D Pekka] [ei [T{V} D{N}]]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske [D heidän]]]]]]] Ainf] due to bad left branch.
-				Reject [[ei [T [käske [D heidän]]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske <D heidän>]]]]]] Ainf] due to bad left branch.
+				Reject [[ei [T [käske <D heidän>]]] Ainf] due to bad left branch.
 				Reject [[T [käske [D heidän]]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
@@ -2581,7 +2590,7 @@
 
 8.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -2590,20 +2599,23 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [ei [<D Pekka> [T [<D Pekka> käske]]]]] as left branch because it constitutes illicit structure.
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
 				An EPP-head "ei" lacks specifier but needs one.
+				käske (käske) is missing complement A/inf
 				An EPP-head "käske" lacks specifier D that it requires.
 				Avoid [ei [T käske]] as left branch because it constitutes illicit structure.
 				Avoid TP as SPEC for D due to unselective SPEC feature.
 				Avoid [T{V} D] due to local agreement failure.
 				Prioritize [T{V} D] due to complement selection.
-				[[D Pekka] [ei T{V}]] + D = -98]
+				[[D Pekka] [ei T{V}]] + D = -197]
 				[ei T{V}] + D = -194]
 				T{V} + D = -38]
 		Ranking completed:
 			1. [T{V}; D]
-			2. [[[D Pekka] [ei T{V}]]; D]
-			3. [[ei T{V}]; D]
+			2. [[ei T{V}]; D]
+			3. [[[D Pekka] [ei T{V}]]; D]
 		Exploring solution number (1) =[T{V} D]
 			T{V} cannot be opened.
 			=[[D Pekka] [ei [T{V} D]]]
@@ -2625,8 +2637,8 @@
 
 		[[D Pekka] [ei [T{V} D{N}]]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske [D heidän]]]]]]] Ainf] due to bad left branch.
-				Reject [[ei [T [käske [D heidän]]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske <D heidän>]]]]]] Ainf] due to bad left branch.
+				Reject [[ei [T [käske <D heidän>]]] Ainf] due to bad left branch.
 				Reject [[T [käske [D heidän]]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
@@ -2662,7 +2674,7 @@
 
 14.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -2791,7 +2803,7 @@
 
 8.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -2800,20 +2812,23 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [ei [<D Pekka> [T [<D Pekka> käske]]]]] as left branch because it constitutes illicit structure.
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
 				An EPP-head "ei" lacks specifier but needs one.
+				käske (käske) is missing complement A/inf
 				An EPP-head "käske" lacks specifier D that it requires.
 				Avoid [ei [T käske]] as left branch because it constitutes illicit structure.
 				Avoid TP as SPEC for D due to unselective SPEC feature.
 				Avoid [T{V} D] due to local agreement failure.
 				Prioritize [T{V} D] due to complement selection.
-				[[D Pekka] [ei T{V}]] + D = -98]
+				[[D Pekka] [ei T{V}]] + D = -197]
 				[ei T{V}] + D = -194]
 				T{V} + D = -38]
 		Ranking completed:
 			1. [T{V}; D]
-			2. [[[D Pekka] [ei T{V}]]; D]
-			3. [[ei T{V}]; D]
+			2. [[ei T{V}]; D]
+			3. [[[D Pekka] [ei T{V}]]; D]
 		Exploring solution number (1) =[T{V} D]
 			T{V} cannot be opened.
 			=[[D Pekka] [ei [T{V} D]]]
@@ -2835,8 +2850,8 @@
 
 		[[D Pekka] [ei [T{V} D{N}]]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske [D heidän]]]]]]] Ainf] due to bad left branch.
-				Reject [[ei [T [käske [D heidän]]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske <D heidän>]]]]]] Ainf] due to bad left branch.
+				Reject [[ei [T [käske <D heidän>]]] Ainf] due to bad left branch.
 				Reject [[T [käske [D heidän]]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
@@ -2872,7 +2887,7 @@
 
 14.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -3055,7 +3070,7 @@
 
 7.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -3064,10 +3079,12 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [T/fin [<D Pekka> käske]]] as left branch because it constitutes illicit structure.
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
 				Avoid [T/fin{V} D] due to local agreement failure.
 				Prioritize [T/fin{V} D] due to complement selection.
-				[[D Pekka] T/fin{V}] + D = -98]
+				[[D Pekka] T/fin{V}] + D = -197]
 				T/fin{V} + D = -42]
 		Ranking completed:
 			1. [T/fin{V}; D]
@@ -3093,8 +3110,8 @@
 
 		[[D Pekka] [T/fin{V} D{N}]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [T/fin [<D Pekka> [käske [D heidän]]]]] Ainf] due to bad left branch.
-				Reject [[T/fin [käske [D heidän]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [T/fin [<D Pekka> [käske <D heidän>]]]] Ainf] due to bad left branch.
+				Reject [[T/fin [käske <D heidän>]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
 			=[[D Pekka] [T/fin{V} [[D heidän] Ainf]]]
@@ -3230,7 +3247,7 @@
 
 7.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -3239,10 +3256,12 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [T/fin [<D Pekka> käske]]] as left branch because it constitutes illicit structure.
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
 				Avoid [T/fin{V} D] due to local agreement failure.
 				Prioritize [T/fin{V} D] due to complement selection.
-				[[D Pekka] T/fin{V}] + D = -98]
+				[[D Pekka] T/fin{V}] + D = -197]
 				T/fin{V} + D = -42]
 		Ranking completed:
 			1. [T/fin{V}; D]
@@ -3268,8 +3287,8 @@
 
 		[[D Pekka] [T/fin{V} D{N}]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [T/fin [<D Pekka> [käske [D heidän]]]]] Ainf] due to bad left branch.
-				Reject [[T/fin [käske [D heidän]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [T/fin [<D Pekka> [käske <D heidän>]]]] Ainf] due to bad left branch.
+				Reject [[T/fin [käske <D heidän>]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
 			=[[D Pekka] [T/fin{V} [[D heidän] Ainf]]]
@@ -3304,7 +3323,7 @@
 
 13.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -3456,7 +3475,7 @@
 
 7.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -3465,10 +3484,12 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [T/fin [<D Pekka> käske]]] as left branch because it constitutes illicit structure.
 				Avoid T/finP as SPEC for D due to unselective SPEC feature.
 				Avoid [T/fin{V} D] due to local agreement failure.
 				Prioritize [T/fin{V} D] due to complement selection.
-				[[D Pekka] T/fin{V}] + D = -98]
+				[[D Pekka] T/fin{V}] + D = -197]
 				T/fin{V} + D = -42]
 		Ranking completed:
 			1. [T/fin{V}; D]
@@ -3494,8 +3515,8 @@
 
 		[[D Pekka] [T/fin{V} D{N}]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [T/fin [<D Pekka> [käske [D heidän]]]]] Ainf] due to bad left branch.
-				Reject [[T/fin [käske [D heidän]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [T/fin [<D Pekka> [käske <D heidän>]]]] Ainf] due to bad left branch.
+				Reject [[T/fin [käske <D heidän>]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
 			=[[D Pekka] [T/fin{V} [[D heidän] Ainf]]]
@@ -3774,7 +3795,7 @@
 
 8.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -3783,20 +3804,23 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [ei [<D Pekka> [T [<D Pekka> käske]]]]] as left branch because it constitutes illicit structure.
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
 				An EPP-head "ei" lacks specifier but needs one.
+				käske (käske) is missing complement A/inf
 				An EPP-head "käske" lacks specifier D that it requires.
 				Avoid [ei [T käske]] as left branch because it constitutes illicit structure.
 				Avoid TP as SPEC for D due to unselective SPEC feature.
 				Avoid [T{V} D] due to local agreement failure.
 				Prioritize [T{V} D] due to complement selection.
-				[[D Pekka] [ei T{V}]] + D = -98]
+				[[D Pekka] [ei T{V}]] + D = -197]
 				[ei T{V}] + D = -194]
 				T{V} + D = -38]
 		Ranking completed:
 			1. [T{V}; D]
-			2. [[[D Pekka] [ei T{V}]]; D]
-			3. [[ei T{V}]; D]
+			2. [[ei T{V}]; D]
+			3. [[[D Pekka] [ei T{V}]]; D]
 		Exploring solution number (1) =[T{V} D]
 			T{V} cannot be opened.
 			=[[D Pekka] [ei [T{V} D]]]
@@ -3818,8 +3842,8 @@
 
 		[[D Pekka] [ei [T{V} D{N}]]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske [D heidän]]]]]]] Ainf] due to bad left branch.
-				Reject [[ei [T [käske [D heidän]]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske <D heidän>]]]]]] Ainf] due to bad left branch.
+				Reject [[ei [T [käske <D heidän>]]] Ainf] due to bad left branch.
 				Reject [[T [käske [D heidän]]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
@@ -3979,7 +4003,7 @@
 
 8.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -3988,20 +4012,23 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [ei [<D Pekka> [T [<D Pekka> käske]]]]] as left branch because it constitutes illicit structure.
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
 				An EPP-head "ei" lacks specifier but needs one.
+				käske (käske) is missing complement A/inf
 				An EPP-head "käske" lacks specifier D that it requires.
 				Avoid [ei [T käske]] as left branch because it constitutes illicit structure.
 				Avoid TP as SPEC for D due to unselective SPEC feature.
 				Avoid [T{V} D] due to local agreement failure.
 				Prioritize [T{V} D] due to complement selection.
-				[[D Pekka] [ei T{V}]] + D = -98]
+				[[D Pekka] [ei T{V}]] + D = -197]
 				[ei T{V}] + D = -194]
 				T{V} + D = -38]
 		Ranking completed:
 			1. [T{V}; D]
-			2. [[[D Pekka] [ei T{V}]]; D]
-			3. [[ei T{V}]; D]
+			2. [[ei T{V}]; D]
+			3. [[[D Pekka] [ei T{V}]]; D]
 		Exploring solution number (1) =[T{V} D]
 			T{V} cannot be opened.
 			=[[D Pekka] [ei [T{V} D]]]
@@ -4023,8 +4050,8 @@
 
 		[[D Pekka] [ei [T{V} D{N}]]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske [D heidän]]]]]]] Ainf] due to bad left branch.
-				Reject [[ei [T [käske [D heidän]]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske <D heidän>]]]]]] Ainf] due to bad left branch.
+				Reject [[ei [T [käske <D heidän>]]] Ainf] due to bad left branch.
 				Reject [[T [käske [D heidän]]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
@@ -4060,7 +4087,7 @@
 
 14.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
@@ -4235,7 +4262,7 @@
 
 8.
 
-		Adding inflectional features {'-FLOAT', 'LANG:FI', 'TAIL:CAT:INF,A/HEAD', '-'} to D
+		Adding inflectional features {'TAIL:CAT:INF,A/HEAD', 'LANG:FI', '-FLOAT', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-FLOAT', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:CAT:INF,A/HEAD']
 
 		Consume "D"
@@ -4244,20 +4271,23 @@
 			Filtering out impossible merge sites...
 			Ranking remaining sites...
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
+				käske (käske) is missing a mandatory complement A/inf
+				Avoid [<D Pekka> [ei [<D Pekka> [T [<D Pekka> käske]]]]] as left branch because it constitutes illicit structure.
 				Avoid Neg/finP as SPEC for D due to unselective SPEC feature.
 				An EPP-head "ei" lacks specifier but needs one.
+				käske (käske) is missing complement A/inf
 				An EPP-head "käske" lacks specifier D that it requires.
 				Avoid [ei [T käske]] as left branch because it constitutes illicit structure.
 				Avoid TP as SPEC for D due to unselective SPEC feature.
 				Avoid [T{V} D] due to local agreement failure.
 				Prioritize [T{V} D] due to complement selection.
-				[[D Pekka] [ei T{V}]] + D = -98]
+				[[D Pekka] [ei T{V}]] + D = -197]
 				[ei T{V}] + D = -194]
 				T{V} + D = -38]
 		Ranking completed:
 			1. [T{V}; D]
-			2. [[[D Pekka] [ei T{V}]]; D]
-			3. [[ei T{V}]; D]
+			2. [[ei T{V}]; D]
+			3. [[[D Pekka] [ei T{V}]]; D]
 		Exploring solution number (1) =[T{V} D]
 			T{V} cannot be opened.
 			=[[D Pekka] [ei [T{V} D]]]
@@ -4279,8 +4309,8 @@
 
 		[[D Pekka] [ei [T{V} D{N}]]] + Ainf
 			Filtering out impossible merge sites...
-				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske [D heidän]]]]]]] Ainf] due to bad left branch.
-				Reject [[ei [T [käske [D heidän]]]] Ainf] due to bad left branch.
+				Reject [[<D Pekka> [ei [<D Pekka> [T [<D Pekka> [käske <D heidän>]]]]]] Ainf] due to bad left branch.
+				Reject [[ei [T [käske <D heidän>]]] Ainf] due to bad left branch.
 				Reject [[T [käske [D heidän]]] Ainf] due to bad left branch.
 		Exploring solution number (1) =[D{N} Ainf]
 			D was opened.
@@ -4316,7 +4346,7 @@
 
 14.
 
-		Adding inflectional features {'TAIL:!COMP:*,-PHI', 'LANG:FI', '-'} to D
+		Adding inflectional features {'LANG:FI', 'TAIL:!COMP:*,-PHI', '-'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '+PHI', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:*', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'TAIL:!COMP:*,-PHI']
 
 		Consume "D"
