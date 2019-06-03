@@ -6,7 +6,7 @@
 # Imports
 import itertools
 
-scramble_file_list = ['Experiment2_seeds']
+scramble_file_list = ['Study1-4_all']
 
 print('Scrambling...')
 
@@ -34,15 +34,15 @@ for input_file_name in scramble_file_list:
                 counter = counter + 1
 
                 # Create alternative sentence with prosodic focus
-                results_file.write('#' + str(counter) + '\n')
-                first = True
-                for word in permutation:
-                    if first:
-                        word = word + '#foc'
-                        first = False
-                    results_file.write(word + ' ')
-                results_file.write('\n')
-                counter = counter + 1
+                #results_file.write('#' + str(counter) + '\n')
+                #first = True
+                #for word in permutation:
+                #    if first:
+                #        word = word + '#foc'
+                #        first = False
+                #    results_file.write(word + ' ')
+                #results_file.write('\n')
+                #counter = counter + 1
         else:
             s = ''
             for word in sentence:

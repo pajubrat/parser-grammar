@@ -23,8 +23,8 @@ t = time.time()
 # disable_all_logging()
 set_logging(True)
 
-#test_set_name = 'Experiment1_corpus.txt'
-test_set_name = 'Experiment1_corpus_full_sample.txt'
+test_set_name = 'Study1-4_whole corpus.txt'
+#test_set_name = 'Experiment1_corpus_full_sample.txt'
 lexicon_file_name = 'lexicon.txt'
 log_file_name = test_set_name[:-4] + '_log.txt'
 results_file_name = test_set_name[:-4] + '_results.txt'

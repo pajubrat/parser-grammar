@@ -9,12 +9,15 @@ ask	:: PF:ask LF:ask CAT:V COMP:INF UNERG !SPEC:D LANG:EN
 auttanut :: autta-#v#T LANG:FI
 auttaa	:: autta-#v#T/fin LANG:FI
 autta-	:: PF:auttaa LF:help CAT:V !COMP:D LANG:FI
+book	:: PF:book LF:book CAT:N -SEM:directional LANG:EN
 did     :: CAT:T/fin PF:did LF:did CAT:AUX LANG:EN
 ei	:: PF:ei LF:not	CAT:Neg/fin +PHI !SPEC:* !COMP:T LANG:FI
 Fido	:: Fido-#D LANG:EN
 Fido-	:: PF:Fido LF:Fido CAT:N LANG:EN
-give	:: PF:gave LF:gave CAT:V SPEC:D COMP:D -COMP:T/fin SPEC:P LANG:EN
-heidan	:: heidan-#D#gen LANG:FI
+give	:: PF:gave LF:gave CAT:V SPEC:D !COMP:D -COMP:T/fin SPEC:P LANG:EN
+gave-	:: PF:gave LF:gave CAT:V SPEC:D !COMP:D -COMP:T/fin SPEC:P LANG:EN
+gave	:: gave-#v#T/fin
+gli		::	il 	PF:gli CAT:D Lheidan	:: heidan-#D#gen LANG:
 heidan- :: PF:heidän LF:theirs CAT:N CAT:PHI LANG:FI  
 heitta_pro- :: PF:heitta LF:throw CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
 heittamalla :: heitta_pro-#malla LANG:FI
@@ -68,6 +71,7 @@ slowly	:: slow-#ly LANG:EN
 slow-	:: PF:slow LF:slow CAT:A LANG:EN
 ly		:: PF:ly LF:ly CAT:ADV LANG:EN
 -ta		::	PF:Ainf LF:to CAT:INF CAT:A/inf PHI:0 LANG:FI
+the     :: PF:the LF:the CAT:D LANG:EN
 to		:: PF:to LF:to CAT:P +SEM:directional LANG:EN
 to.inf	:: PF:to LF:to CAT:INF +PHI LANG:EN
 virtaa  :: virtaa-#T/fin LANG:FI
