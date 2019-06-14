@@ -2,7 +2,7 @@ Parser-grammar v. 1.9x
 
 2019
 
-This project is a computational implementation of a minimalist top-down/left-right parser-grammar of Phillips' (1996) style,
+This project is a computational implementation of a Phillips' (1996) style minimalist top-down/left-right parser-grammar,
 intended to be used as a tool for scientific, linguistic analysis. 
 
 Full documentation can be found from /Documentation folder.
