@@ -1,4 +1,5 @@
 Parser-grammar v. 1.9x
+
 2019
 
 This project is a computational implementation of a minimalist top-down/left-right parser-grammar of Phillips' (1996) style,
