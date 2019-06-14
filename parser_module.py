@@ -73,21 +73,6 @@ class Pcb_parser():
     def __first_pass_parse(self, ps, lst, index):
         """
         Recursive parsing operation that works with current parse, list of words, and a position in the list of words
-
-        The operation takes the current phrase structure PS and a word w, and ranks the possible adjunction sites
-        of w into the right edge of PS. The ranked list is then used as a seed to call this same function recursively.
-
-        The above description is simplification in the following sense:
-
-        i) if w is ambiguous, then the function is called recursively by trying each possible lexical item,
-        ii) if w is a multi-morphemic word, it is first decomposed into a sequence of morphemes
-        (words w1, . . ., wn); the function is then called with a list that substitutes the original word with the
-        decomposed list,
-        iii) if an inflectional suffix is encountered, it is stored into memory and associated as a feature to a new
-        non-inflectional item (head) retrieved from the lexicon,
-        iv) if the list is exhausted, then the result is evaluated and, if accepted, delivered as an output. This
-        terminates parsing if it is set to find only one solution; otherwise it will continue to discover alternative
-        solutions recursively until the whole combinatorial space has been explored.
         """
 
         if self.exit:
@@ -196,20 +181,11 @@ class Pcb_parser():
                     '\n\t\t.\n\t\t.\n\t\t.')
             return
 
-    # This function filters impossible sites
+    # Filters impossible sites
     # It returns the list of possible sites which are then ordered nondeterministically
     def filter(self, ps, w):
         """
         Filters out impossible merge sites, given some phrase structure PS and a new word w.
-
-        The operation checks all nodes at the right edge of PS and examines if w cannot be merged to that node.
-        The purpose is to prune impossible nodes out from the parsing search space. The following conditions are
-        used:
-
-        i) if the w and the lowest head H at the right edge of PS are part of the same word, then only the
-        [H,w] solution is accepted, i.e. H is the only accetable merge site,
-        ii) if the lowest head H does not accept complements of any kind, then [H,w] is ruled out,
-        iii) if [XP,w] results in a left branch XP that is not interpretable at LF, this solution is filtered out.
         """
 
         log('\t\t\tFiltering out impossible merge sites...')
@@ -239,6 +215,9 @@ class Pcb_parser():
 
                 lf_test = dropped.LF_legibility_test()
                 # Conditions for permanent rejection
+                # This is formulated in a cryptic way
+                # Correct formulation: reject permanently if probe-goal test, head integrity or criterial feature test fail
+                # Adjoinable test is because if w is adjoinable, we don't know if XP will be left branch at all.
                 if lf_test.fail() and not (
                         w.is_adjoinable() and
                         lf_test.probe_goal_test_result and
@@ -268,24 +247,6 @@ class Pcb_parser():
     def ranking(self, site_list, w):
         """
         Given a word w, this operation ranks a list of possible merge sites in the order of their plausibility.
-
-        Because all merge sites appearing in the input list are possible in principle, this function determines
-        the whole search space for parsing and thus its computational efficiency. Notice that impossible sites
-        have been pruned by the function filter().
-
-        There are several ways to organize ranking, and the amount of factors that can influence it is unbounded.
-        Here we use the following factors to regulate the ranking:
-
-        i) lexical features SPEC and COMP, both positive and negative,
-        ii) previously satisfied H-COMP relations, specifically we check that they are not broken,
-        iii) violations of topological semantic features between H and w,
-        iv) violations of internal tail-head relations (morphosyntax) between H and w,
-        v) bad properties of the resulting left branch XP, in [XP, w],
-        vi) adverbials are emerged so that their tail-head requirements are met,
-        vii) special set of rules when nothing applies.
-
-        These conditions may be in conflict, in which case ranking is based on their combined input. The current
-        algorithm weights each node on the basis of (i-vii) and then ranks them accordingly.
         """
 
         def get_size(ps):
@@ -317,7 +278,7 @@ class Pcb_parser():
         for i, site in enumerate(site_list, start=1):
 
             # This determines how to order constituents with the same ranking
-            # This method takes the local phrase
+            # This method prioritizes lower sites (e.g., top node scores 0 bonus)
             priority_base = i
 
             priority = 0 + priority_base
@@ -415,6 +376,7 @@ class Pcb_parser():
                     log(f'\t\t\t\tAvoid {dropped.illustrate()} as left branch because it constitutes illicit structure.')
                     avoid_set.add(site)
 
+            # todo this condition is in filter, remove from here
             # Case 6. Word-breaking violations
             # Remove all solutions which would cause phonological words to break apart
             if site.is_primitive() and self.is_word_internal(site):
@@ -482,10 +444,6 @@ class Pcb_parser():
     def transfer_to_LF(self, ps):
         """
         Transfers the syntactic phrase structure into the conceptual-intentional system through the LF-interface.
-
-        If transfer is successful, i.e. if the configuration is interpretable semantically, the function returns
-        true (and the conceptual-intentional system takes over). If it is not successful, the operation returns
-        false. This will generally imply that the solution was rejected and parsing must continue.
         """
         def detached(ps):
             ps.mother = None

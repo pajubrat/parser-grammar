@@ -10,9 +10,6 @@ class PhraseStructure:
     def __init__(self, left_constituent=None, right_constituent=None):
         """"
         Creates a new constituent by Merge or by out of the blue generation
-
-        A new complex constituent is created by Merge(A, B) = [A,B].
-        If no constituents are given, an empty primitive constituent is generated.
         """
 
         # Merge(A,B)
@@ -78,11 +75,6 @@ class PhraseStructure:
     def merge(self, ps, direction='right'):
         """
         Countercyclic Merge
-
-        This operation merges a constituent into an existing phrase structure. It uses the primitive Merge
-        function (__init__) but is able to merge items (countercyclically) inside the phrase structure, as
-        required by the Phillips architecture. It is also used by operations implementing Move and its
-        reverse version drop.
         """
 
         new_ps = None               # The resulting new complex constituent
@@ -118,6 +110,7 @@ class PhraseStructure:
         return new_ps.get_top()
 
     def __mul__(self, ps):
+
         def get_bottom(site):
             ps_ = site
             while ps_.right_const:
@@ -134,15 +127,6 @@ class PhraseStructure:
     def EPP(self):
         """
         A reductive definition for the generalized EPP feature.
-
-        This provides a reductive definition for Chomsky's (2000) generalized EPP as it is realized in the
-        present theory: it is a combination of three things:
-
-        i) SPEC:* feature,
-        ii) !SPEC:* feature,
-        iii) +PHI marking.
-
-        The relevance of (iii) is currently open.
         """
 
         for f in self.features:
@@ -156,18 +140,6 @@ class PhraseStructure:
     def transfer(self, babtize='1'):
         """
         Prepares an altered copy of a phrase for internal merge
-
-        Transfer prepares an altered copy a constituent for the purposes of copying it into another location.
-        The operation relies on a more primitive operation Copy. The following alterations are made to the original constituent:
-
-        i) the original is silenced phonologically, which is determined by a dedicated feature,
-        ii) the original is tagged as being copied, so that it will be excluded from certain later operations,
-        iii) tail features are removed from the original.
-
-        (i) is applies more generally, to null pronouns/elliptic structures for example. It seems that language
-        allows constituents, both simple and complex, to be marked as "irrelevant for PF".
-        (ii-iii) could be reduce to one feature if tail features are always ignored for moved constituents.
-        In this version they are kept separate.
         """
 
         # Removes tail-features (if any) from a constituent
@@ -202,12 +174,6 @@ class PhraseStructure:
     def remove(self):
         """
         Removes a constituent countercyclically from the phrase structure.
-
-        The constituent is removed from the phrase structure, and the leftover hole is repaired. The operation
-        is triggered when the parser tries various merge solutions and determines that they did not work, hence it
-        must cancel the merge operation. An alternative is to use non-tampering operation for testing the legibility
-        of outputs, but this seems simpler and more intuitive way. It is also clear that the parser has the ability
-        to remove constituents.
         """
 
         mother = self.mother
@@ -258,8 +224,6 @@ class PhraseStructure:
     def get_labels(self):
         """
         Returns the set of labels (all label features) of a constituent, complex or simple.
-
-        The operation finds the head of the phrase and returns its labels.
         """
         return self.get_head().get_cats()
 
@@ -268,20 +232,6 @@ class PhraseStructure:
     def get_head(self):
         """
         Returns the head of a phrase (critical part of the labeling algorithm).
-
-        The following head selection algorithm is used:
-        i) The head of a primitive constituent is the constituent itself,
-        ii) if the phrase is complex, but contains primitive constituents (one or two),
-        the head is one of these primitive constituents so that left head is prioritized over right head,
-        iii) if both constituents are complex, then they are searched recursively for heads,
-        so that right constituent is prioritized over left, unless the right-constituent is an adjunct and not
-        searched at all.
-
-        The following properties are noteworthy of this solution. Because merge is asymmetric, we can use
-        this asymmetry in labeling. This makes the asymmetry extremely important. It is a fundamental assumption
-        underlying this theory. The asymmetry is used in an intuitively clear way. The algorithm first looks for
-        primitive heads by going from left to right, and if nothing is found, it examines complex phrases and
-        sweeps back from right to left.
         """
 
         # We look at two cases
@@ -320,16 +270,8 @@ class PhraseStructure:
     def sister(self):
         """
         Finds and returns the (first non-right adjunct) sister of a constituent in a phrase structure.
-
-        The operation uses the following principles:
-        i) if the constituent is a right-adjunct itself, it has no sister (returns None)
-        ii) if the constituent is merged with a right adjunct, it tries to find a sister of the mother (recursively).
-        iii) if there are no right adjuncts, the sister is returned.
-
-        The operation therefore looks the phrase structure as if all right-adjuncts were invisible. It is assumed that
-        right-adjuncts are located in a separate working space ("syntactic dimension"). This property means that
-        this sister relation should be used in connection with selection.
         """
+
         ps_ = self
 
         # Recursive loop that ignores right-adjuncts
@@ -348,18 +290,6 @@ class PhraseStructure:
     def specifier(self):
         """
         Returns the specifier of a constituent (and None if no specifier exists).
-
-        Only primitive heads H can have specifiers. The intuition we pursue here is that specifiers are
-        non-projecting complex phrases to the left of the head. Thus, we have two cases:
-        i) If we have [XP H], then XP is the SPEC of H, i.e. its left complex phrase,
-        ii) If we have [H X(P)], then the SPEC of H is the complex left sister of [H X(P)], i.e. YP in [YP [H X(P)]], and
-        H must project, so that label(H) = label([YP [H XP]]). The latter condition is relevant e.g. if H happens to
-        be inside a right adjunct [YP <H XP>].
-
-        As a consequence, right head has no specifier if its sister is a head too, i.e in [X, H], H has no SPEC,
-        instead H is the complement of X.
-
-        In configuration [XP H], XP will be both COMP (sister) and SPEC of H, so the case is ambiguous.
         """
 
         # Checks that the left aunt node exists
@@ -405,19 +335,11 @@ class PhraseStructure:
 
         return list
 
-
-
-
-
     # Returns the complement of head ('self') if available, otherwise returns None
     # Complement = right sister
     def complement(self):
         """
         Returns the complement of a head.
-
-        Complement is defined as the sister of the head, and sister is defined so that it ignores
-        right adjuncts. See the sister() function. The idea is that most selection relations
-        follow the contours of the sister relation.
         """
 
         # todo, I don't understand why we don't check for primitiveness, this must be checked later.
@@ -430,8 +352,6 @@ class PhraseStructure:
     def geometrical_sister(self):
         """
         Returns the geometrical sister of a constituent. Geometrical sister is determined by Merge.
-
-        In [X(P), Y(P)], XP is the geometrical sister of YP, and YP is the geometrical sister of XP.
         """
 
         if self.mother:
@@ -503,12 +423,6 @@ class PhraseStructure:
     def is_adjoinable(self):
         """
         Returns True if the constituent can be attached to the phrase structure as a non-selected adjunct.
-
-        Adjoinable categories have several properties that non-adjoinable categories do not have. This function
-        forces the distinction enumeratively, because the underlying reason for the property is still unclear. Currently,
-        adjoinable categories are adverb, relative clause, determiner and preposition (adposition). Adjectives will be
-        added later. The distinction has to do with LF, in that these categories (and only these) are interpretable
-        at LF as adjuncts via the tail-head relation.
         """
 
         adjoinable_categories = {'ADV', 'R', 'D', 'P'}
@@ -522,10 +436,8 @@ class PhraseStructure:
     def copy(self):
         """
         Copies a constituent and returns the newly created copy.
-
-        This creates an identical token of a constituent. All features and constituents are copied, and the
-        function is applied recursively if the constituents are itself complex.
         """
+
         ps_ = PhraseStructure()
         if self.left_const:
             ps_.left_const = self.left_const.copy()
@@ -545,9 +457,6 @@ class PhraseStructure:
     def LF_legibility_test(self):
         """
         Checks if the phrase structure, as a detached item, is interpretable at the LF-level
-
-        The construction is send off to LF interface (a separate class/object) for checking. The function that
-        performs checking is lf.test(), lf being an object of the class LF().
         """
         def detached(ps):
             ps.mother = None
@@ -561,12 +470,6 @@ class PhraseStructure:
     def detach(self):
         """
         Detaches the constituent from its mother (i.e. breaks their mother-daughter relation), returns the mother.
-
-        If an operation wants to examine a constituent in isolation from its context, then it can be detached from
-        the phrase structure (often temporarily). There are several operations of this type. The reason for their
-        existence is that often we want to limit the applicability of an operation to certain node so that higher
-        nodes are examined, for example, when we drop constituents inside left branches. We don't want to let them
-        move outside of the left branch, so we detach the phrase structure before the operation is applied.
         """
 
         if self.mother:
@@ -582,32 +485,6 @@ class PhraseStructure:
     def probe(self, probe_label, goal_feature):
         """
         Performs a probe-goal check and returns the goal constituent is match is found.
-
-        Probe-goal operation checks that a feature (goal_feature) can be found from within probe's sister,
-        i.e. c-command domain. The element carrying the feature is called "goal". The operation descends the right edge of
-        the phrase structure and examines each left constituent (complex or primitive) for the existence
-        of the relevant feature, and returns the containing constituent if match is found.
-
-        Criterial features are searched from the whole left constituent whereas all other features are only looked
-        from the head only. The former search is deeper than the latter. It is not clear at present if this feature
-        is truly essential.
-
-        Probing stops if
-        i) we have reached the bottom of the phrase structure (at the right edge), or
-        ii) we encounter a primitive left head that has a designated probe_label feature which is normally the probe's
-        label set. That is, a probe with label C does not look past C, probe with label T does not look past another T.
-        This is based on the relativized minimality system of Rizzi (1990).
-
-        The probe-goal operation is called if a head has feature [PROBE:F], where F is the goal feature. In
-        the standard minimalist theory, F would be an uninterpretable feature. A more general interpretation is used here.
-        It is possible for a lexical head to use this feature to check for the existence of a non-local feature/label,
-        for example, that T/fin exists in the C-command domain of C/fin. This is required because in Finnish Neg can occur
-        between them. Here, then, the probe-goal is equivalent to "nonlocal selection". These checks are performed
-        at the LF-interface. Intuitively: [probe:F, XP] = make sure that feature/label F is inside XP.
-
-        The operation is not currently used in the Chomsky's sense, to match uninterpretable features with
-        interpretable ones. This is due to the fact that agreement is not fully implemented, and because the notion of
-        uninterpretable feature is not defined (it will be later when binding is included).
         """
 
         # Nothing to probe
@@ -649,13 +526,6 @@ class PhraseStructure:
     def get_feature_vector(self):
         """
         Returns the feature vector of a constituent.
-
-        Feature vector is an ordered list of c-commanding primitive constituents,
-        beginning from the original constituent itself, such that the order follows their locality. The notion
-        comes from Salo (2004). Under the current implementation, the vector contains the primitive heads themselves,
-        not just their labels. The operation is called during the tail-head tests. This connects it also with
-        morphosyntax (structural case), as assumed in the original source. The relation is independently needed
-        in order to account for the Finnish long-distance Case assignment.
         """
 
         feature_vector = [self]
@@ -684,10 +554,6 @@ class PhraseStructure:
     def is_finite(self):
         """
         Returns True if the constituent is finite (contains a finite head).
-
-        Finiteness will be assumed to originate from an independent feature [finite], but in this implementation
-        it is part of certain labels, such as T/fin, C/fin and also FORCE. The single-feature theory is not used
-        here because some of the empirical details are still unclear.
         """
         head = self.get_head()
         if 'CAT:FIN' in head.features:
@@ -699,31 +565,6 @@ class PhraseStructure:
     def external_tail_head_test(self):
         """
         Executes the external tail-head test for head H.
-
-        The external tail-head test checks that a constituent can be "linked" with an appropriate head at LF.
-        If it cannot be, returns false.
-
-        If H has no tail features, then the test is vacuous and the operations returns true. If it has
-        tail features, then the operation returns true if and only if the features are matched. That is, unchecked
-        tail features results in a crash. Tail features of H are matched if either i) or ii):
-
-        i) The tail features are found from the head X whose projection contains HP, and HP is not DP (see * below),
-        ii) The tail features are found from a (c-commanding) head X that is in H's feature vector.
-
-        Search is terminated if and only if the feature vector is exhausted or if there is partial feature match;
-        both will lead into crash.
-
-        Condition i) means that HP must be inside a projection from head X that has the relevant features. For example,
-        VP-adverbs can be inside the VP in this sense. The tail-feature is [TAIL:CAT:V]. It can be adjunct, spec or
-        comp. Condition ii) means that the critical feature is found by using feature vectors/c-command. Both i-ii
-        are understood as requirements that are interpreted at LF, by a semantic mechanisms, so they are
-        checked by the parser. The semantic mechanism "links" the phrase to a head.
-
-        DP is excluded from mechanism (i). This is because the grammatical subject must occur at Spec,VP to link with
-        T/fin and not Spec,T/Fin, which would be possible by (i). The reason is because Spec,vP is the position in which
-        it will be associated its thematic role at LF. Adverbials are allowed under (i) in addition to (ii). What this
-        means is that arguments and adjuncts do not behave identically with respect to tailing. This is a flaw in the
-        current theory (Brattico 2016, 2018) which assumes that they should.
         """
         def get_max(ps):
             ps_ = ps
@@ -831,11 +672,6 @@ class PhraseStructure:
     def internal_tail_head_test(self):
         """
         Executes an internal tail-head test.
-
-        Internal tail-head test checks that a constituent H is not c-commanded by a head X that is not allowed in
-        virtue of its tail-features (e.g. *towards he). It uses feature vectors (Salo, 2004) for the purposes of finding
-        possible violations. This operation returns true if there are no violations: it does not require that a link
-        exists between a tail feature and its head. It only detects the existence of wrong combinations.
         """
 
         tail_sets = self.get_tail_sets()
@@ -874,10 +710,6 @@ class PhraseStructure:
     def get_criterial_features(self):
         """
         Returns a set of criterial features found inside a constituent.
-
-        The operation searches the constituent recursively, ignoring right adjuncts, and adds all criterial
-        features to a set and returns the set. Criterial features are of the type [ABAR:F], F being the feature
-        and ABAR designating it as criterial. It is a simple scanning function.
         """
 
         set_ = set()
@@ -899,9 +731,6 @@ class PhraseStructure:
     def contains_feature(self, feature):
         """
         Checks if a constituent contains a head with some feature.
-
-        Searches for feature F recursively from within a constituent, and returns true is found. False otherwise.
-        Features are checked only from primitive heads.
         """
         if self.left_const and self.left_const.contains_feature(feature):
             return True
@@ -919,10 +748,6 @@ class PhraseStructure:
     def walk_downstream(self):
         """
         Returns the next constituent downward at the right edge.
-
-        This function walks downward on the right edge, one constituent at a time. "Right edge" refers to
-        the sequence of right constituents (excluding right adjuncts). Right edge plays a fundamental role in
-        the Phillips-style parser/grammar, because new constituents are merged to the right edge.
         """
 
         if self.is_primitive():
@@ -947,9 +772,6 @@ class PhraseStructure:
     def walk_upstream(self):
         """
         Returns the next constituent at the right edge in upward direction.
-
-        Right edge refers to the chain of right constituents, given some starting point, but ignoring right
-        adjuncts. A left constituent cannot be part of a right edge made up of higher nodes, only lower nodes.
         """
         if self.mother:
             ps_ = self.mother
@@ -1014,10 +836,6 @@ class PhraseStructure:
     def silence_phonologically(self):
         """
         Silences the constituent phonologically.
-
-        Constituents can be silenced phonologically for several reasons and/or ways. Here they are all captured by
-        assuming that constituents can be marked directly as phonologically invisible. This concerns copies, null
-        pronouns, elliptic structures, null objects, and such. Phonologically null elements are visible at LF.
         """
 
         if not self.features:

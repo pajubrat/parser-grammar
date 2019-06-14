@@ -12,11 +12,6 @@ class Morphology():
     def morphological_parse(self, lexical_constituent, lst_branched, index):
         """
         Operation performs morphological parsing for word w.
-
-        Morpheme boundaries must be marked by # in the input. The function separates the morphemes into a list L and
-        substitutes the original multi-morphemic word w with the inverse of the resulting list L in the input string,
-        (w1, w2, a#b#c, w3) = (v1, v2, v3, c, b, a, v3), and puts the index to point 'c'.
-
         """
 
         # Morphological symbols

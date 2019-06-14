@@ -1,0 +1,2005 @@
+BC parser v. 0.9
+2019-06-11 09:45:46.659792
+Test sentences from file "Study4_sample.txt".
+Logs into file "Study4_sample_log.txt.
+Lexicon from file "lexicon.txt".
+1. * ei#foc hairita kuorsaamalla kaskenyt Pekka heidan Merjaa 
+
+2. * kaskenyt antaa kirjaa Merjalle Pekka heidan ei 
+
+3. * heidan#foc Pekka kaskenyt Merjaa kuorsaamalla hairita ei 
+
+4. * heidan#foc kirjaa Merjalle kaskenyt ei heittamalla antaa Pekka 
+
+5. * kaskenyt antaa ei heittamalla Pekka heidan kirjaa Merjalle 
+
+6. * kirjaa heidan antaa ei heittamalla kaskenyt Merjalle Pekka 
+
+7. * ei#foc heittamalla kirjaa heidan Pekka antaa kaskenyt Merjalle 
+
+8. ?* kirjaa#foc Merjalle heidan ei heittamalla Pekka kaskenyt antaa 
+
+9. * heidan#foc Merjalle kaskenyt Pekka heittamalla kirjaa antaa ei 
+
+10. * antaa#foc Merjalle ei Pekka kaskenyt kirjaa heidan 
+
+11. * Merjalle#foc kirjaa heidan kaskenyt Pekka ei antaa heittamalla 
+
+12. * kirjan kaski heittamalla Pekka Merjalle heidan antaa 
+
+13. ?? kaski#foc Merjalle heidan antaa kirjan heittamalla Pekka 
+
+14. * Pekka#foc Merjalle antaa kirjaa heidan kaskenyt ei heittamalla 
+
+15. ?* Merjalle#foc ei heittamalla heidan kaskenyt antaa kirjaa Pekka 
+
+16. ?? kirjaa ei kaskenyt heidan antaa Merjalle heittamalla Pekka 
+
+17. * Pekka#foc antaa heidan Merjalle kirjaa ei heittamalla kaskenyt 
+
+18. * kirjaa#foc kaskenyt ei antaa heidan Pekka Merjalle 
+
+19. * kaskenyt ei Pekka heidan kuorsaamalla nukkua 
+
+20. ?* Merjalle#foc heittamalla ei Pekka heidan kirjaa antaa kaskenyt 
+
+21. * heidan#foc kirjaa Merjalle heittamalla Pekka ei antaa kaskenyt 
+
+22. * Merjalle#foc kaskenyt antaa ei heittamalla heidan kirjaa Pekka 
+
+23. * kaskenyt#foc Pekka kirjaa Merjalle ei antaa heittamalla heidan 
+
+24. ?* Pekka#foc Merjalle kirjaa heidan ei kaskenyt heittamalla antaa 
+
+25. * kaski heittamalla Merjalle kirjan Pekka antaa heidan 
+
+26. * antaa heittamalla Pekka Merjalle kaskenyt ei kirjaa heidan 
+
+27. * hairita#foc kaski Pekka Merjaa kuorsaamalla heidan 
+
+28. * heidan kaskenyt hairita ei Pekka kuorsaamalla Merjaa 
+
+29. * antaa kaski heidan heittamalla Merjalle Pekka kirjan 
+
+30. * Pekka ei antaa kirjaa heittamalla Merjalle heidan kaskenyt 
+
+31. * antaa Pekka heidan ei kirjaa heittamalla kaskenyt Merjalle 
+
+32. * kaskenyt#foc ei kirjaa Pekka antaa Merjalle heittamalla heidan 
+
+33. ?? kirjaa#foc kaskenyt Pekka ei heidan Merjalle antaa 
+
+34. ?? heittamalla#foc ei kaskenyt Pekka heidan Merjalle kirjaa antaa 
+
+35. ?? Pekka#foc kaskenyt ei heidan Merjaa hairita kuorsaamalla 
+
+36. ?* Pekka heidan ei heittamalla kaskenyt kirjaa antaa Merjalle 
+
+37. * heidan Merjalle Pekka antaa kaskenyt ei heittamalla kirjaa 
+
+38. * ei#foc heidan antaa heittamalla kirjaa Merjalle kaskenyt Pekka 
+
+39. * antaa#foc ei heittamalla heidan Pekka kirjaa kaskenyt Merjalle 
+
+40. * ei#foc heittamalla antaa heidan kirjaa Pekka Merjalle kaskenyt 
+
+41. * ei kaskenyt Merjalle antaa heidan Pekka kirjaa heittamalla 
+
+42. ## kaskenyt#foc heidan ei kuorsaamalla Pekka Merjaa hairita 
+
+43. * kaskenyt Pekka kirjaa antaa ei Merjalle heittamalla heidan 
+
+44. * heidan Merjalle kirjaa Pekka antaa heittamalla ei kaskenyt 
+
+45. * ei#foc Merjalle Pekka heidan antaa kaskenyt kirjaa 
+
+46. * Merjalle heittamalla antaa kirjaa ei kaskenyt Pekka heidan 
+
+47. * kaskenyt#foc heidan Pekka kirjaa antaa heittamalla Merjalle ei 
+
+48. * kaskenyt kirjaa Pekka heittamalla Merjalle ei heidan antaa 
+
+49. * kirjan Merjalle heittamalla heidan antaa Pekka kaski 
+
+50. * heidan antaa kaskenyt heittamalla Pekka Merjalle ei kirjaa 
+
+51. * antaa Merjalle Pekka heittamalla kirjaa ei heidan kaskenyt 
+
+52. ?* Pekka#foc hairita kuorsaamalla ei kaskenyt heidan Merjaa 
+
+53. * heidan Pekka antaa kaskenyt heittamalla Merjalle ei kirjaa 
+
+54. * heidan#foc kirjan antaa heittamalla Pekka kaski Merjalle 
+
+55. * heittamalla#foc kaski Merjalle antaa kirjan heidan Pekka 
+
+56. * antaa#foc heidan kirjaa heittamalla kaskenyt Pekka ei Merjalle 
+
+57. * kaskenyt#foc Pekka antaa heidan Merjalle kirjaa ei heittamalla 
+
+58. * kaski Merjalle heidan Pekka kirjan antaa heittamalla 
+
+59. ?* Merjalle#foc heidan antaa ei kirjaa Pekka kaskenyt 
+
+60. * heidan#foc heittamalla Pekka kaskenyt kirjaa antaa Merjalle ei 
+
+61. * kaskenyt#foc kirjaa antaa Merjalle ei heidan Pekka 
+
+62. * kirjaa#foc heittamalla kaskenyt ei heidan Pekka antaa Merjalle 
+
+63. ?* kirjaa heidan Merjalle ei heittamalla kaskenyt Pekka antaa 
+
+64. * Merjalle#foc Pekka kaskenyt antaa heidan ei kirjaa 
+
+65. ?? heidan Merjalle kaski antaa heittamalla kirjan Pekka 
+
+66. * kirjaa kaskenyt heidan antaa ei Merjalle Pekka 
+
+67. * antaa heidan kaskenyt ei Merjalle kirjaa Pekka 
+
+68. * heidan#foc Merjalle heittamalla kaskenyt antaa Pekka kirjaa ei 
+
+69. * ei heittamalla Merjalle kaskenyt heidan Pekka antaa kirjaa 
+
+70. * Merjalle Pekka kaskenyt heidan antaa kirjaa ei 
+
+71. ?* heidan antaa kirjan kaski Pekka Merjalle 
+
+72. ?* heidan heittamalla Merjalle ei kaskenyt antaa kirjaa Pekka 
+
+73. * kaskenyt#foc kirjaa antaa heidan heittamalla ei Pekka Merjalle 
+
+74. * ei kaskenyt kuorsaamalla Pekka heidan Merjaa hairita 
+
+75. * heittamalla#foc Pekka Merjalle antaa heidan kirjaa kaskenyt ei 
+
+76. * Pekka kaskenyt Merjalle kirjaa heidan heittamalla antaa ei 
+
+77. * Pekka kaskenyt antaa Merjalle ei heittamalla kirjaa heidan 
+
+78. ?* kuorsaamalla Pekka hairita heidan ei kaskenyt Merjaa 
+
+79. * kaskenyt Pekka antaa heidan kirjaa ei heittamalla Merjalle 
+
+80. ? antaa#foc kirjan Pekka kaski heidan Merjalle 
+
+81. * heittamalla kaskenyt heidan Pekka Merjalle ei kirjaa antaa 
+
+82. * Merjalle antaa Pekka ei kaskenyt heittamalla kirjaa heidan 
+
+83. * Pekka heittamalla antaa kirjan kaski heidan Merjalle 
+
+84. * kirjaa#foc antaa Pekka Merjalle heidan ei kaskenyt 
+
+85. ?* ei#foc Merjalle antaa kaskenyt kirjaa heidan heittamalla Pekka 
+
+86. * kaskenyt#foc heidan ei kirjaa Merjalle antaa heittamalla Pekka 
+
+87. * kirjaa#foc antaa Pekka heidan heittamalla ei kaskenyt Merjalle 
+
+88. * heittamalla antaa kirjaa kaskenyt heidan Pekka ei Merjalle 
+
+89. * antaa#foc Pekka kirjaa Merjalle kaskenyt ei heidan 
+
+90. * Merjalle#foc kaskenyt Pekka ei heidan antaa kirjaa 
+
+91. ?* ei#foc heidan Pekka kirjaa Merjalle heittamalla antaa kaskenyt 
+
+92. * antaa heidan kirjan kaski Merjalle Pekka 
+
+93. * Pekka#foc kaskenyt Merjalle antaa ei heidan kirjaa heittamalla 
+
+94. * Merjalle#foc kaskenyt antaa heidan kirjaa heittamalla ei Pekka 
+
+95. ?* heittamalla#foc Merjalle kirjan Pekka kaski heidan antaa 
+
+96. * ei#foc Merjalle heittamalla heidan Pekka antaa kaskenyt kirjaa 
+
+97. * Merjalle heidan heittamalla kirjaa Pekka antaa ei kaskenyt 
+
+98. * ei#foc antaa Pekka kirjaa kaskenyt Merjalle heidan heittamalla 
+
+99. * heidan#foc Pekka Merjalle ei antaa kaskenyt heittamalla kirjaa 
+
+100. * Merjalle#foc Pekka heidan kirjaa ei heittamalla kaskenyt antaa 
+
+101. * Merjalle kirjaa Pekka kaskenyt antaa heidan ei 
+
+102. ?* Pekka#foc heidan ei Merjalle antaa kaskenyt kirjaa heittamalla 
+
+103. ?* kirjaa#foc kaskenyt heidan antaa Pekka ei Merjalle heittamalla 
+
+104. ?? heittamalla#foc ei heidan kaskenyt Pekka Merjalle kirjaa antaa 
+
+105. ?* heidan antaa kaskenyt Merjalle Pekka ei kirjaa heittamalla 
+
+106. * Pekka antaa heidan kirjan Merjalle kaski 
+
+107. * Pekka heittamalla Merjalle antaa heidan ei kirjaa kaskenyt 
+
+108. ?* heidan#foc heittamalla Pekka kaski kirjan Merjalle antaa 
+
+109. * kaskenyt#foc antaa kirjaa Merjalle heittamalla ei Pekka heidan 
+
+110. * heidan heittamalla kaskenyt Pekka Merjalle antaa ei kirjaa 
+
+111. ? ei#foc heidan Pekka heittamalla kaskenyt kirjaa antaa Merjalle 
+
+112. * kaskenyt#foc Merjalle kirjaa ei Pekka antaa heidan 
+
+113. * heittamalla#foc kirjan Pekka antaa heidan kaski Merjalle 
+
+114. ?* hairita#foc ei kaskenyt Pekka kuorsaamalla heidan Merjaa 
+
+115. * Pekka heidan kaskenyt Merjalle heittamalla kirjaa antaa ei 
+
+116. ?? heidan#foc Merjalle kirjaa ei heittamalla antaa kaskenyt Pekka 
+
+117. * Pekka#foc heittamalla ei kirjaa Merjalle kaskenyt antaa heidan 
+
+118. ?? ei#foc kirjaa Pekka kaskenyt antaa heidan heittamalla Merjalle 
+
+119. * heidan#foc antaa ei Merjalle kirjaa heittamalla Pekka kaskenyt 
+
+120. ?* kirjaa#foc heidan kaskenyt ei heittamalla Merjalle Pekka antaa 
+
+121. * Pekka#foc Merjalle kirjaa heittamalla antaa ei kaskenyt heidan 
+
+122. * ei#foc Merjalle heittamalla Pekka antaa heidan kaskenyt kirjaa 
+
+123. * Merjalle#foc kirjan antaa heidan Pekka heittamalla kaski 
+
+124. ?* heittamalla ei kirjaa Merjalle Pekka heidan kaskenyt antaa 
+
+125. * kaskenyt heidan Pekka antaa heittamalla Merjalle kirjaa ei 
+
+126. * kaskenyt#foc Merjalle ei antaa heittamalla Pekka heidan kirjaa 
+
+127. * Pekka antaa heittamalla heidan ei Merjalle kirjaa kaskenyt 
+
+128. ?* Pekka kaski Merjalle heittamalla heidan kirjan antaa 
+
+129. ? ei#foc heidan kirjaa antaa Merjalle kaskenyt Pekka heittamalla 
+
+130. * kaskenyt kirjaa Merjalle Pekka antaa heidan ei heittamalla 
+
+131. * antaa kirjaa ei Merjalle heittamalla kaskenyt Pekka heidan 
+
+132. ?? antaa#foc Pekka heittamalla heidan kirjan kaski Merjalle 
+
+133. kuorsaamalla#foc ei Merjaa kaskenyt Pekka heidan hairita 
+
+134. * heittamalla#foc heidan kaskenyt Pekka Merjalle kirjaa antaa ei 
+
+135. ? ei#foc heittamalla Pekka kaskenyt heidan Merjalle antaa kirjaa 
+
+136. * kirjaa#foc Merjalle heittamalla Pekka antaa kaskenyt heidan ei 
+
+137. * Merjalle heittamalla heidan kaskenyt antaa ei kirjaa Pekka 
+
+138. * Pekka kaskenyt heittamalla antaa kirjaa heidan Merjalle ei 
+
+139. * antanut Merjalle heittamalla Pekka kirjaa ei 
+
+140. * ei heidan kirjaa Pekka kaskenyt heittamalla Merjalle antaa 
+
+141. ?* antaa#foc Pekka kirjan heidan kaski Merjalle 
+
+142. * Merjaa#foc kaskenyt hairita kuorsaamalla ei heidan Pekka 
+
+143. * heittamalla kaskenyt heidan Merjalle antaa Pekka ei kirjaa 
+
+144. * kirjaa heittamalla Merjalle kaskenyt antaa Pekka ei heidan 
+
+145. ?? Pekka#foc heittamalla heidan kaski kirjan antaa Merjalle 
+
+146. * kaskenyt#foc heidan kirjaa heittamalla Pekka antaa Merjalle ei 
+
+147. * kaskenyt heidan Merjalle kirjaa antaa heittamalla ei Pekka 
+
+148. ?? kirjaa heittamalla ei Pekka kaskenyt heidan antaa Merjalle 
+
+149. * antaa#foc heidan heittamalla kaskenyt Merjalle ei Pekka kirjaa 
+
+150. * kaskenyt#foc Pekka kirjaa antaa ei heittamalla heidan Merjalle 
+
+151. * antaa Pekka kaskenyt heidan heittamalla kirjaa ei Merjalle 
+
+152. * Pekka#foc heidan kaskenyt antaa ei heittamalla Merjalle kirjaa 
+
+153. ?? ei#foc kaskenyt kirjaa antaa heidan heittamalla Merjalle Pekka 
+
+154. ?? kirjaa#foc ei Merjalle Pekka heittamalla antanut 
+
+155. * kirjaa#foc heittamalla Merjalle Pekka kaskenyt antaa ei heidan 
+
+156. ?* Pekka#foc heittamalla heidan antaa ei kaskenyt Merjalle kirjaa 
+
+157. * Merjalle kirjaa Pekka heidan kaskenyt heittamalla ei antaa 
+
+158. * kaskenyt#foc ei antaa kirjaa Merjalle heittamalla heidan Pekka 
+
+159. * Merjalle antaa ei heittamalla kirjaa Pekka heidan kaskenyt 
+
+160. ?? Merjalle ei kaskenyt kirjaa Pekka heidan antaa heittamalla 
+
+161. ?? ei#foc heidan Merjaa ihailla kaskenyt Pekka 
+
+162. ?* ei#foc kirjaa kaskenyt heidan antaa Pekka Merjalle 
+
+163. ?* kirjaa heittamalla Pekka ei heidan Merjalle kaskenyt antaa 
+
+164. * heidan Merjalle kirjaa kaskenyt Pekka antaa heittamalla ei 
+
+165. * ei kirjaa heidan kaskenyt Pekka Merjalle antaa 
+
+166. * kirjaa#foc heittamalla Pekka kaskenyt ei antaa heidan Merjalle 
+
+167. ?* heidan#foc kirjaa Merjalle Pekka ei antaa kaskenyt 
+
+168. * kirjaa#foc Merjalle Pekka antaa ei kaskenyt heittamalla heidan 
+
+169. * kuorsaamalla#foc heidan Pekka kaskenyt hairita ei Merjaa 
+
+170. ?* kirjaa#foc kaskenyt antaa heidan ei Pekka heittamalla Merjalle 
+
+171. * heittamalla#foc Merjalle antaa Pekka kirjaa heidan ei kaskenyt 
+
+172. * Pekka kaskenyt kirjaa ei Merjalle antaa heidan heittamalla 
+
+173. ?* heittamalla#foc kaskenyt Pekka antaa heidan ei Merjalle kirjaa 
+
+174. * kaski#foc kirjan heidan Pekka heittamalla antaa Merjalle 
+
+175. * heidan#foc Pekka hairita Merjaa kuorsaamalla kaskenyt ei 
+
+176. * heidan kaskenyt antaa ei Pekka heittamalla kirjaa Merjalle 
+
+177. * ei heidan heittamalla Pekka kaskenyt kirjaa antaa Merjalle 
+
+178. * kaskenyt#foc Merjalle heittamalla antaa kirjaa ei Pekka heidan 
+
+179. ?? ei#foc Pekka heittamalla heidan kirjaa kaskenyt Merjalle antaa 
+
+180. *ei antaa kaskenyt heittamalla Pekka kirjaa heidan Merjalle 
+
+181. * kaskenyt heittamalla antaa Pekka heidan kirjaa Merjalle ei 
+
+182. * Pekka heittamalla ei heidan Merjalle antaa kaskenyt kirjaa 
+
+183. * Pekka heittamalla heidan kaskenyt Merjalle kirjaa antaa ei 
+
+184. ?* heidan#foc kaski kirjan antaa Pekka Merjalle 
+
+185. * kirjan#foc heittamalla kaski Pekka antaa Merjalle heidan 
+
+186. * Pekka#foc heittamalla heidan Merjalle ei kaskenyt kirjaa antaa 
+
+187. * heittamalla#foc kirjaa kaskenyt antaa Pekka heidan Merjalle ei 
+
+188. * kaskenyt#foc ei hairita Merjaa heidan kuorsaamalla Pekka 
+
+189. * Merjalle kaskenyt Pekka kirjaa antaa ei heidan 
+
+190. * heidan#foc kaskenyt ihailla Pekka Merjaa ei 
+
+191. * kirjaa#foc antaa Merjalle Pekka kaskenyt ei heidan heittamalla 
+
+192. ?? heidan Merjalle ei Pekka kaskenyt kirjaa antaa 
+
+193. ?* antaa#foc kaski heidan kirjan Merjalle heittamalla Pekka 
+
+194. * kirjaa#foc kaskenyt Merjalle antaa Pekka heidan heittamalla ei 
+
+195. * heidan Merjalle antaa Pekka heittamalla ei kirjaa kaskenyt 
+
+196. * antaa#foc heittamalla Merjalle kaskenyt heidan Pekka kirjaa ei 
+
+197. * heidan#foc antaa kirjaa kaskenyt heittamalla Pekka ei Merjalle 
+
+198. ?* heidan#foc Merjalle heittamalla ei kaskenyt kirjaa Pekka antaa 
+
+199. ?? ei#foc heidan kaskenyt Pekka kirjaa Merjalle antaa 
+
+200. * antaa heittamalla heidan Merjalle kirjaa Pekka kaskenyt ei 
+
+201. ?? kaski#foc heidan antaa Merjalle Pekka heittamalla kirjan 
+
+202. * antaa heidan ei Pekka heittamalla kaskenyt Merjalle kirjaa 
+
+203. ?* heittamalla#foc ei Merjalle heidan Pekka kaskenyt kirjaa antaa 
+
+204. * Pekka Merjalle heittamalla kaskenyt kirjaa antaa heidan ei 
+
+205. ?? ei#foc Pekka heidan kaskenyt hairita kuorsaamalla Merjaa 
+
+206. * kirjaa heittamalla kaskenyt antaa heidan Merjalle ei Pekka 
+
+207. * ei#foc heidan antaa Pekka Merjalle kaskenyt heittamalla kirjaa 
+
+208. * Merjalle#foc heittamalla kirjaa kaskenyt antaa Pekka ei heidan 
+
+209. ?* kaski#foc antaa heidan Pekka heittamalla kirjan Merjalle 
+
+210. * kaskenyt ei heittamalla heidan Merjalle Pekka kirjaa antaa 
+
+211. * kaskenyt#foc kirjaa Pekka ei Merjalle heittamalla heidan antaa 
+
+212. * kirjaa#foc antaa heittamalla Pekka Merjalle heidan kaskenyt ei 
+
+213. * kaskenyt heittamalla Merjalle antaa Pekka heidan ei kirjaa 
+
+214. * kirjaa antanut Merjalle heittamalla Pekka ei 
+
+215. * Merjaa#foc heidan kaskenyt Pekka kuorsaamalla ei hairita 
+
+216. * antaa Pekka Merjalle heidan kirjaa kaskenyt heittamalla ei 
+
+217. * heidan kaskenyt Pekka Merjalle antaa kirjaa ei heittamalla 
+
+218. * ei Pekka heittamalla heidan kaskenyt kirjaa antaa Merjalle 
+
+219. * kaskenyt ei antaa heittamalla Merjalle Pekka heidan kirjaa 
+
+220. * heittamalla#foc antaa Pekka kirjan heidan kaski Merjalle 
+
+221. * Merjalle#foc heittamalla heidan kirjaa kaskenyt antaa Pekka ei 
+
+222. * antaa Pekka heidan heittamalla ei kaskenyt kirjaa Merjalle 
+
+223. * kirjaa#foc heittamalla antaa heidan Pekka Merjalle kaskenyt ei 
+
+224. * kaskenyt#foc kirjaa antaa Merjalle ei heidan Pekka heittamalla 
+
+225. * Pekka#foc ei Merjalle kaskenyt kirjaa heittamalla heidan antaa 
+
+226. * heidan heittamalla kirjaa Merjalle kaskenyt antaa ei Pekka 
+
+227. * Pekka kirjaa kaskenyt heidan antaa Merjalle ei 
+
+228. * heidan#foc kirjaa kaskenyt Pekka heittamalla ei Merjalle antaa 
+
+229. * Pekka kirjaa heidan kaskenyt Merjalle ei antaa heittamalla 
+
+230. * heittamalla#foc antaa ei kirjaa heidan Pekka Merjalle kaskenyt 
+
+231. ?* ei#foc ihailla Pekka kaskenyt Merjaa heidan 
+
+232. * hairita#foc heidan kaskenyt Pekka kuorsaamalla Merjaa ei 
+
+233. * Pekka#foc ei antaa Merjalle kaskenyt kirjaa heidan heittamalla 
+
+234. * heidan#foc kirjaa kaskenyt ei antaa Pekka Merjalle 
+
+235. * heidan#foc antaa kaskenyt ei kirjaa Pekka heittamalla Merjalle 
+
+236. ?* heidan Pekka heittamalla ei kirjaa antaa Merjalle kaskenyt 
+
+237. * Pekka heidan hairita Merjaa ei kaskenyt kuorsaamalla 
+
+238. ?? ei#foc kaskenyt heidan Merjalle Pekka antaa heittamalla kirjaa 
+
+239. * kaskenyt#foc Merjaa hairita kuorsaamalla heidan ei Pekka 
+
+240. * Pekka antaa kirjan kaski heidan heittamalla Merjalle 
+
+241. * heittamalla kaskenyt Pekka ei Merjalle antaa kirjaa heidan 
+
+242. * kaskenyt heittamalla Merjalle antaa Pekka ei kirjaa heidan 
+
+243. * kirjaa#foc ei Pekka antaa heidan heittamalla kaskenyt Merjalle 
+
+244. * antaa#foc Pekka heidan kirjaa kaskenyt heittamalla Merjalle ei 
+
+245. * ei heittamalla kaskenyt heidan antaa Pekka kirjaa Merjalle 
+
+246. * heittamalla Pekka antaa Merjalle heidan kirjaa kaskenyt ei 
+
+247. * kirjaa Pekka ei kaskenyt antaa Merjalle heidan 
+
+248. * antaa Merjalle kirjaa heidan ei kaskenyt Pekka heittamalla 
+
+249. * Merjalle#foc antanut heittamalla kirjaa Pekka ei 
+
+250. * Pekka kirjaa heittamalla ei heidan antaa kaskenyt Merjalle 
+
+251. * antaa heidan Merjalle ei kirjaa kaskenyt heittamalla Pekka 
+
+252. heidan Pekka Merjaa kaski ihailla 
+
+253. * Pekka heittamalla kaskenyt kirjaa ei antaa Merjalle heidan 
+
+254. * Merjalle#foc Pekka kaskenyt kirjaa antaa heittamalla heidan ei 
+
+255. * Merjalle#foc heidan ei antaa kirjaa Pekka kaskenyt heittamalla 
+
+256. * kirjaa#foc kaskenyt Pekka ei antaa Merjalle heidan heittamalla 
+
+257. * ei Merjalle Pekka antaa kirjaa kaskenyt heidan 
+
+258. * Pekka#foc heidan ei heittamalla Merjalle kirjaa antaa kaskenyt 
+
+259. * kaskenyt#foc kuorsaamalla heidan Pekka nukkua ei 
+
+260. * kaskenyt ei heidan heittamalla Pekka antaa Merjalle kirjaa 
+
+261. ?* ei#foc heittamalla Merjalle kirjaa antaa kaskenyt heidan Pekka 
+
+262. * kaskenyt Pekka kuorsaamalla Merjaa hairita ei heidan 
+
+263. * heidan#foc Pekka heittamalla Merjalle ei antaa kirjaa kaskenyt 
+
+264. kirjan#foc antoi heittamalla Merjalle Pekka 
+
+265. ?* kirjaa heittamalla Pekka kaskenyt ei heidan Merjalle antaa 
+
+266. * kaskenyt#foc heidan kirjaa heittamalla ei antaa Merjalle Pekka 
+
+267. * Pekka#foc heittamalla kaskenyt Merjalle ei antaa heidan kirjaa 
+
+268. * Merjalle#foc heidan kirjaa antaa kaskenyt ei Pekka 
+
+269. * ei hairita kaskenyt heidan Pekka Merjaa kuorsaamalla 
+
+270. * kuorsaamalla#foc Merjaa heidan Pekka ei hairita kaskenyt 
+
+271. * heittamalla Pekka antaa kirjaa kaskenyt heidan Merjalle ei 
+
+272. * kaskenyt#foc Merjalle heidan Pekka ei kirjaa antaa heittamalla 
+
+273. * antaa ei Merjalle kirjaa kaskenyt heittamalla Pekka heidan 
+
+274. * kaskenyt heittamalla Merjalle ei antaa Pekka heidan kirjaa 
+
+275. ?* kaskenyt#foc ei heidan kirjaa Pekka Merjalle antaa 
+
+276. ? heittamalla#foc ei heidan kaskenyt antaa Merjalle kirjaa Pekka 
+
+277. * kirjaa#foc kaskenyt heittamalla ei Merjalle heidan Pekka antaa 
+
+278. ?* Merjalle#foc ei heidan Pekka antaa kaskenyt kirjaa 
+
+279. * antaa heittamalla Pekka kirjaa Merjalle ei kaskenyt heidan 
+
+280. ?* heidan#foc Pekka ei antaa kaskenyt Merjalle kirjaa heittamalla 
+
+281. * heidan#foc antaa Merjalle ei kaskenyt heittamalla kirjaa Pekka 
+
+282. * kaskenyt heittamalla ei Merjalle antaa kirjaa Pekka heidan 
+
+283. * kaskenyt#foc kirjaa heittamalla antaa ei Pekka Merjalle heidan 
+
+284. * kirjaa antaa kaskenyt heidan Pekka ei Merjalle 
+
+285. * Merjalle#foc kirjaa ei antaa Pekka kaskenyt heidan heittamalla 
+
+286. * antaa Merjalle heittamalla kaskenyt kirjaa ei Pekka heidan 
+
+287. * ei#foc kaskenyt Merjaa Pekka ihailla heidan 
+
+288. * heittamalla#foc kaskenyt kirjaa heidan Merjalle antaa ei Pekka 
+
+289. * heidan Pekka hairita kuorsaamalla Merjaa kaskenyt ei 
+
+290. * kirjaa#foc antaa kaskenyt heidan ei Pekka Merjalle 
+
+291. * Merjalle kaskenyt antaa Pekka heidan heittamalla ei kirjaa 
+
+292. ?* ei#foc heittamalla Pekka heidan antaa Merjalle kaskenyt kirjaa 
+
+293. ?? heidan#foc kirjaa ei Merjalle heittamalla antaa kaskenyt Pekka 
+
+294. ?* Pekka heittamalla heidan Merjalle ei kirjaa kaskenyt antaa 
+
+295. ?* ei#foc antaa kaskenyt heidan Pekka kirjaa heittamalla Merjalle 
+
+296. * Merjalle#foc Pekka heittamalla antaa kaski kirjan heidan 
+
+297. * antaa Merjalle heidan kaskenyt ei kirjaa heittamalla Pekka 
+
+298. ?* heidan kirjaa antaa heittamalla kaskenyt ei Pekka Merjalle 
+
+299. * nukkua#foc kuorsaamalla heidan ei Pekka kaskenyt 
+
+300. * kirjaa#foc antaa heittamalla ei kaskenyt heidan Pekka Merjalle 
+
+301. ?* ei#foc Pekka antaa kirjaa heidan Merjalle heittamalla kaskenyt 
+
+302. ?* ei#foc kaskenyt heidan kuorsaamalla Merjaa Pekka hairita 
+
+303. * Pekka#foc ei heittamalla kirjaa heidan antaa Merjalle kaskenyt 
+
+304. * ei#foc antaa kirjaa Pekka Merjalle heittamalla kaskenyt heidan 
+
+305. ?* ei#foc kirjaa heidan antaa Pekka kaskenyt Merjalle 
+
+306. * ei#foc Merjalle kirjaa antaa heittamalla Pekka kaskenyt heidan 
+
+307. * kirjaa kaskenyt antaa ei heittamalla heidan Pekka Merjalle 
+
+308. * kirjaa Merjalle kaskenyt heidan heittamalla ei antaa Pekka 
+
+309. ?* kirjaa#foc Merjalle Pekka ei heittamalla antanut 
+
+310. ?? ei#foc heidan kaskenyt Merjaa Pekka ihailla 
+
+311. ?* Pekka#foc kirjan antaa kaski heidan Merjalle heittamalla 
+
+312. * ei Merjalle kaskenyt antaa kirjaa heidan Pekka heittamalla 
+
+313. * kirjaa kaskenyt heittamalla antaa ei Merjalle heidan Pekka 
+
+314. ?* kuorsaamalla heidan ei Pekka Merjaa kaskenyt hairita 
+
+315. * antaa heittamalla ei kaskenyt heidan Merjalle Pekka kirjaa 
+
+316. ## kirjaa#foc antaa Merjalle heidan heittamalla Pekka ei kaskenyt 
+
+317. * heittamalla heidan antaa Pekka kirjaa kaskenyt ei Merjalle 
+
+318. * kaskenyt#foc Pekka heittamalla kirjaa ei Merjalle antaa heidan 
+
+319. * kaskenyt heidan ei Merjalle Pekka kirjaa antaa heittamalla 
+
+320. * heittamalla kirjaa antaa heidan Merjalle kaskenyt Pekka ei 
+
+321. ?* heittamalla kaski heidan antaa Pekka Merjalle kirjan 
+
+322. * ei#foc antaa heidan Pekka heittamalla kaskenyt kirjaa Merjalle 
+
+323. * Merjalle antaa heidan heittamalla kirjaa ei Pekka kaskenyt 
+
+324. * Merjalle#foc antaa ei kirjaa heidan kaskenyt Pekka heittamalla 
+
+325. * hairitse Pekka Merjaa kuorsaamalla ei 
+
+326. * Pekka heittamalla heidan kirjaa Merjalle kaskenyt ei antaa 
+
+327. * kaskenyt Pekka kirjaa antaa ei Merjalle heidan heittamalla 
+
+328. * heidan#foc heittamalla Pekka ei antaa Merjalle kaskenyt kirjaa 
+
+329. * heidan kaskenyt kirjaa ei antaa Merjalle Pekka heittamalla 
+
+330. * heittamalla Pekka kaskenyt heidan Merjalle ei kirjaa antaa 
+
+331. * Merjaa#foc kaski hairita kuorsaamalla Pekka heidan 
+
+332. * antaa ei kirjaa Pekka Merjalle kaskenyt heittamalla heidan 
+
+333. * Pekka#foc Merjalle kaskenyt kirjaa ei antaa heidan 
+
+334. ? heittamalla#foc Merjalle ei Pekka kirjaa antanut 
+
+335. * kirjaa kaskenyt heittamalla Pekka heidan ei Merjalle antaa 
+
+336. * kaskenyt#foc kirjaa heittamalla Merjalle heidan antaa Pekka ei 
+
+337. * heittamalla#foc kirjaa Pekka antaa Merjalle kaskenyt heidan ei 
+
+338. * ei kirjaa kaskenyt heidan antaa heittamalla Merjalle Pekka 
+
+339. * hairita#foc heidan Pekka kaskenyt ei kuorsaamalla Merjaa 
+
+340. * Merjalle#foc kirjaa antaa ei kaskenyt Pekka heidan heittamalla 
+
+341. * Pekka#foc kaskenyt Merjalle heidan kirjaa antaa ei 
+
+342. * heidan antaa kirjan Merjalle kaski Pekka 
+
+343. * Merjaa Pekka hairita heidan kaskenyt ei kuorsaamalla 
+
+344. ?* ei#foc kuorsaamalla Pekka nukkua heidan kaskenyt 
+
+345. * Pekka hairita ei kaskenyt kuorsaamalla Merjaa heidan 
+
+346. * kirjan heittamalla kaski Merjalle Pekka antaa heidan 
+
+347. * antaa ei Pekka heittamalla heidan kaskenyt kirjaa Merjalle 
+
+348. * Pekka#foc antaa kaski Merjalle heittamalla kirjan heidan 
+
+349. * antaa Merjalle ei kaskenyt heidan kirjaa Pekka 
+
+350. * kirjaa#foc Merjalle antaa Pekka ei heidan kaskenyt heittamalla 
+
+351. * heidan ei heittamalla Pekka kirjaa Merjalle antaa kaskenyt 
+
+352. * antaa ei Merjalle heittamalla heidan kaskenyt kirjaa Pekka 
+
+353. * kirjaa heittamalla ei Pekka antaa heidan Merjalle kaskenyt 
+
+354. * Pekka#foc heidan kirjaa kaskenyt ei antaa Merjalle 
+
+355. * Pekka#foc heidan kaskenyt antaa kirjaa Merjalle ei heittamalla 
+
+356. * heidan#foc antaa Merjalle Pekka kaski kirjan heittamalla 
+
+357. * antaa#foc Merjalle Pekka heidan ei kaskenyt kirjaa heittamalla 
+
+358. * ei kirjaa Pekka Merjalle heittamalla antaa heidan kaskenyt 
+
+359. * heidan ei kuorsaamalla Merjaa hairita Pekka kaskenyt 
+
+360. ?? heidan ei kirjaa kaskenyt antaa Pekka Merjalle 
+
+361. * antaa Merjalle kaskenyt kirjaa heidan heittamalla Pekka ei 
+
+362. ?* hairita#foc kuorsaamalla heidan Merjaa Pekka ei kaskenyt 
+
+363. * Pekka kirjaa antaa heidan ei kaskenyt Merjalle 
+
+364. * heidan#foc Pekka kaskenyt heittamalla ei antaa Merjalle kirjaa 
+
+365. * heittamalla Merjalle kirjaa Pekka antaa ei heidan kaskenyt 
+
+366. * Pekka#foc kirjan kaski antaa Merjalle heidan heittamalla 
+
+367. ?* kirjaa ei Pekka kaskenyt heidan Merjalle heittamalla antaa 
+
+368. * kirjaa antaa ei kaskenyt heittamalla Merjalle heidan Pekka 
+
+369. ? kirjaa#foc Pekka antanut ei Merjalle 
+
+370. * heidan#foc Merjaa Pekka kaskenyt ihailla ei 
+
+371. * ei heittamalla kirjaa Pekka kaskenyt heidan Merjalle antaa 
+
+372. * heidan#foc heittamalla Merjalle kaskenyt ei antaa Pekka kirjaa 
+
+373. * heittamalla#foc Merjalle antaa Pekka kaskenyt ei heidan kirjaa 
+
+374. * Merjalle heidan kaskenyt ei antaa kirjaa Pekka heittamalla 
+
+375. * Pekka ei Merjalle heittamalla kirjaa heidan antaa kaskenyt 
+
+376. ?* Merjalle#foc ei heidan antaa kaskenyt Pekka kirjaa heittamalla 
+
+377. * heidan Pekka Merjalle ei kaskenyt kirjaa antaa heittamalla 
+
+378. * heidan Pekka antaa Merjalle kirjan heittamalla kaski 
+
+379. * kaskenyt#foc ei Merjalle antaa Pekka kirjaa heittamalla heidan 
+
+380. * heidan#foc kaskenyt heittamalla Merjalle ei kirjaa Pekka antaa 
+
+381. * Pekka#foc kirjaa heittamalla kaskenyt ei Merjalle heidan antaa 
+
+382. * ei#foc heidan antaa heittamalla kirjaa Pekka Merjalle kaskenyt 
+
+383. * heittamalla#foc antaa kirjaa kaskenyt heidan Merjalle Pekka ei 
+
+384. * heidan Merjalle Pekka kaskenyt ei kirjaa antaa heittamalla 
+
+385. * heidan#foc kaskenyt Pekka antaa kirjaa Merjalle ei 
+
+386. * heidan Merjalle kaskenyt heittamalla Pekka ei kirjaa antaa 
+
+387. * kaskenyt#foc antaa Pekka heittamalla ei heidan Merjalle kirjaa 
+
+388. * antaa heittamalla Pekka Merjalle kirjaa kaskenyt ei heidan 
+
+389. ? Merjalle#foc ei kirjaa antanut Pekka heittamalla 
+
+390. * antaa Pekka kirjaa ei Merjalle kaskenyt heidan heittamalla 
+
+391. * heittamalla Merjalle kirjaa Pekka ei antaa heidan kaskenyt 
+
+392. * antaa heidan kirjaa Merjalle ei kaskenyt Pekka heittamalla 
+
+393. * heittamalla#foc Pekka kaskenyt antaa ei Merjalle heidan kirjaa 
+
+394. * antaa ei kaskenyt heittamalla Merjalle kirjaa heidan Pekka 
+
+395. * antaa Merjalle heittamalla kirjaa Pekka kaskenyt ei heidan 
+
+396. ?* Merjalle#foc ei Pekka antaa kaskenyt heidan kirjaa heittamalla 
+
+397. ? ei#foc Pekka Merjalle kaskenyt heidan antaa kirjaa 
+
+398. * heidan kaskenyt ei heittamalla antaa Pekka Merjalle kirjaa 
+
+399. ?*Merjalle#foc Pekka ei heidan antaa kirjaa kaskenyt 
+
+400. ?* heidan#foc heittamalla antaa Merjalle ei kirjaa Pekka kaskenyt 
+
+401. * ei#foc Merjalle kirjaa heidan Pekka antaa kaskenyt 
+
+402. * heittamalla#foc Merjalle antaa kaskenyt heidan kirjaa ei Pekka 
+
+403. * heittamalla ei antaa kaskenyt Pekka kirjaa heidan Merjalle 
+
+404. ? heidan antaa kaski Pekka Merjalle kirjan 
+
+405. * kirjaa antaa heittamalla kaskenyt Pekka Merjalle ei heidan 
+
+406. * heittamalla#foc kaski kirjan antaa Merjalle Pekka heidan 
+
+407. ?? kaskenyt#foc ei Pekka heidan Merjaa kuorsaamalla hairita 
+
+408. * Merjalle heittamalla heidan kaskenyt Pekka ei kirjaa antaa 
+
+409. * Pekka#foc kaskenyt antaa heidan Merjalle ei heittamalla kirjaa 
+
+410. ?* Merjaa ei ihailla Pekka kaskenyt heidan 
+
+411. * ei kaskenyt Pekka heidan kirjaa Merjalle antaa 
+
+412. ?? heidan#foc kirjaa ei kaskenyt Pekka antaa heittamalla Merjalle 
+
+413. ?? hairita#foc ei heidan Merjaa kaskenyt kuorsaamalla Pekka 
+
+414. * Merjalle heidan kaskenyt antaa kirjaa heittamalla Pekka ei 
+
+415. * Merjalle kaskenyt Pekka heidan heittamalla antaa ei kirjaa 
+
+416. * ei antaa kirjaa Pekka Merjalle heidan kaskenyt heittamalla 
+
+417. * heidan#foc heittamalla Merjalle kirjaa ei Pekka antaa kaskenyt 
+
+418. * kirjaa ei antaa Pekka heidan heittamalla Merjalle kaskenyt 
+
+419. * Pekka kaski antaa kirjan heittamalla Merjalle heidan 
+
+420. nukkunut#foc Pekka ei 
+
+421. * ei kirjaa antaa kaskenyt Merjalle Pekka heidan 
+
+422. ?* hairita Merjaa kuorsaamalla Pekka ei heidan kaskenyt 
+
+423. * antaa#foc kirjaa kaskenyt heidan Pekka ei Merjalle 
+
+424. ?* Pekka#foc ei kirjaa Merjalle heidan kaskenyt antaa 
+
+425. * kirjaa#foc Pekka antaa ei kaskenyt heittamalla Merjalle heidan 
+
+426. * Merjalle#foc antaa heidan kirjaa Pekka kaskenyt ei heittamalla 
+
+427. * heidan kirjaa heittamalla antaa kaskenyt ei Pekka Merjalle 
+
+428. * kaskenyt heittamalla antaa heidan Pekka kirjaa Merjalle ei 
+
+429. * antaa#foc kaskenyt ei kirjaa heittamalla Merjalle Pekka heidan 
+
+430. * kaskenyt antaa heidan ei Merjalle kirjaa Pekka 
+
+431. * heidan heittamalla kirjaa antaa Pekka Merjalle ei kaskenyt 
+
+432. ?* Pekka kirjaa heidan ei kaskenyt Merjalle antaa heittamalla 
+
+433. * heittamalla#foc Pekka Merjalle heidan kaskenyt kirjaa antaa ei 
+
+434. * heittamalla#foc kaskenyt kirjaa heidan Merjalle Pekka ei antaa 
+
+435. * heittamalla#foc heidan Merjalle kaskenyt Pekka kirjaa antaa ei 
+
+436. * heidan#foc antaa Merjalle heittamalla kirjaa Pekka ei kaskenyt 
+
+437. kuorsaamalla Pekka Merjaa hairitsee 
+
+438. * Pekka Merjalle kaskenyt ei antaa kirjaa heidan heittamalla 
+
+439. * antaa#foc heidan heittamalla Pekka kirjaa ei Merjalle kaskenyt 
+
+440. ?? ei#foc kirjaa heidan antaa kaskenyt Merjalle Pekka 
+
+441. * antaa heidan Merjalle Pekka kirjaa kaskenyt heittamalla ei 
+
+442. * heidan#foc kirjaa kaskenyt heittamalla ei Pekka Merjalle antaa 
+
+443. ?* hairita#foc ei heidan Pekka kaskenyt kuorsaamalla Merjaa 
+
+444. * kirjaa Pekka Merjalle heidan heittamalla kaskenyt antaa ei 
+
+445. * kirjaa#foc ei kaskenyt Pekka Merjalle heittamalla antaa heidan 
+
+446. * Pekka kirjaa heidan heittamalla kaskenyt antaa ei Merjalle 
+
+447. ?* kaskenyt#foc Pekka Merjalle ei heidan kirjaa antaa heittamalla 
+
+448. * kaski#foc kirjan antaa heittamalla heidan Pekka Merjalle 
+
+449. * kirjan antaa heidan heittamalla kaski Pekka Merjalle 
+
+450. * heidan Merjalle Pekka kirjaa heittamalla kaskenyt antaa ei 
+
+451. * antaa Merjalle heidan kaskenyt ei Pekka kirjaa 
+
+452. * heittamalla#foc heidan kirjaa kaskenyt Merjalle antaa Pekka ei 
+
+453. * kaskenyt#foc Merjalle kirjaa heidan ei Pekka antaa heittamalla 
+
+454. * kirjaa#foc antaa Pekka heidan ei kaskenyt Merjalle 
+
+455. * ei kirjaa kaskenyt heidan Pekka antaa Merjalle 
+
+456. * antaa kaskenyt ei Pekka kirjaa heittamalla heidan Merjalle 
+
+457. * hairita kaski kuorsaamalla Pekka Merjaa heidan 
+
+458. ?* kirjaa ei heittamalla heidan kaskenyt antaa Merjalle Pekka 
+
+459. * kirjaa#foc Merjalle heittamalla Pekka antaa ei kaskenyt heidan 
+
+460. * antaa heittamalla ei Pekka kirjaa kaskenyt heidan Merjalle 
+
+461. * heidan antaa ei kirjaa heittamalla Merjalle kaskenyt Pekka 
+
+462. * heittamalla Merjalle antaa ei heidan kaskenyt kirjaa Pekka 
+
+463. *? antaa#foc ei kirjaa heidan Merjalle heittamalla Pekka kaskenyt 
+
+464. * Merjalle kirjaa antaa heidan Pekka kaskenyt ei 
+
+465. ?* Merjalle#foc kirjaa ei kaskenyt heidan Pekka antaa heittamalla 
+
+466. * heittamalla#foc Pekka antaa kaskenyt Merjalle heidan ei kirjaa 
+
+467. * Merjalle#foc kaskenyt antaa heidan Pekka kirjaa ei heittamalla 
+
+468. * Merjalle kirjaa heittamalla heidan kaskenyt Pekka ei antaa 
+
+469. * Pekka ei kirjaa Merjalle heittamalla heidan antaa kaskenyt 
+
+470. ?? heittamalla#foc heidan Merjalle antaa kaski Pekka kirjan 
+
+471. * heittamalla#foc ei heidan Merjalle Pekka kaskenyt antaa kirjaa 
+
+472. * antaa#foc heidan Pekka heittamalla ei kirjaa Merjalle kaskenyt 
+
+473. * kirjan#foc Pekka Merjalle heittamalla antaa kaski heidan 
+
+474. * heidan kirjaa antaa heittamalla ei Pekka kaskenyt Merjalle 
+
+475. ## heittamalla ei kaskenyt kirjaa Merjalle Pekka heidan antaa 
+
+476. ? heidan#foc kaski Merjalle Pekka kirjan heittamalla antaa 
+
+477. ?* Merjalle antaa kaskenyt ei kirjaa heidan Pekka heittamalla 
+
+478. * antaa#foc Merjalle heidan heittamalla kirjan Pekka kaski 
+
+479. ?* heidan Merjalle antaa kaskenyt Pekka ei kirjaa heittamalla 
+
+480. * heittamalla#foc heidan kirjan antaa kaski Merjalle Pekka 
+
+481. * Pekka heittamalla kaskenyt ei kirjaa antaa Merjalle heidan 
+
+482. * heittamalla#foc kirjaa kaskenyt heidan Pekka Merjalle ei antaa 
+
+483. * kirjaa heidan heittamalla Merjalle Pekka kaskenyt antaa ei 
+
+484. ?? hairita kaski Pekka heidan kuorsaamalla Merjaa 
+
+485. * kirjaa#foc Pekka Merjalle heidan ei heittamalla kaskenyt antaa 
+
+486. * antaa#foc kaskenyt Merjalle Pekka heittamalla ei kirjaa heidan 
+
+487. * heittamalla heidan Merjalle antaa ei Pekka kaskenyt kirjaa 
+
+488. * Pekka#foc heidan ei antaa Merjalle kaskenyt kirjaa heittamalla 
+
+489. * Pekka#foc antaa Merjalle kaskenyt heidan ei kirjaa 
+
+490. ?* kaskenyt#foc Pekka ei heidan Merjaa ihailla 
+
+491. * antaa#foc Pekka kaskenyt ei Merjalle kirjaa heidan heittamalla 
+
+492. ?? Merjaa#foc ihaile ei Pekka 
+
+493. * kirjaa#foc antaa heidan Pekka heittamalla kaskenyt Merjalle ei 
+
+494. ## ei#foc Pekka kaskenyt antaa Merjalle heidan heittamalla kirjaa 
+
+495. * kaskenyt heidan Pekka Merjalle heittamalla antaa kirjaa ei 
+
+496. ?? heidan#foc kirjaa ei Pekka Merjalle kaskenyt antaa 
+
+497. ?* Pekka ei kaskenyt kirjaa heidan heittamalla Merjalle antaa 
+
+498. * Merjalle#foc kirjaa kaskenyt antaa Pekka heittamalla ei heidan 
+
+499. ?* Pekka#foc ei kaskenyt antaa heittamalla heidan kirjaa Merjalle 
+
+500. * kaskenyt#foc kirjaa antaa ei Merjalle Pekka heittamalla heidan 
+
+501. * heidan ei Merjalle Pekka kirjaa antaa kaskenyt 
+
+502. * kirjaa kaskenyt Pekka antaa heittamalla Merjalle heidan ei 
+
+503. ?? Merjalle kaski Pekka heidan kirjan antaa 
+
+504. * antaa#foc kaskenyt Pekka heidan kirjaa Merjalle ei 
+
+505. * ei#foc kirjaa Merjalle antaa kaskenyt Pekka heidan 
+
+506. * kirjaa Merjalle heittamalla antaa heidan Pekka kaskenyt ei 
+
+507. * Pekka ei antaa Merjalle kaskenyt heittamalla heidan kirjaa 
+
+508. * kaskenyt heidan ei Merjalle heittamalla antaa Pekka kirjaa 
+
+509. * kaskenyt#foc kirjaa ei antaa Merjalle heittamalla heidan Pekka 
+
+510. * kaskenyt#foc ei Pekka Merjalle heidan heittamalla antaa kirjaa 
+
+511. * kaskenyt#foc antaa kirjaa ei heidan Merjalle heittamalla Pekka 
+
+512. * kirjaa#foc heittamalla Pekka kaskenyt heidan Merjalle ei antaa 
+
+513. * Pekka#foc kaskenyt heittamalla Merjalle heidan kirjaa ei antaa 
+
+514. * Pekka#foc ei kirjaa heidan kaskenyt Merjalle heittamalla antaa 
+
+515. * heidan antaa kirjaa heittamalla Merjalle Pekka kaskenyt ei 
+
+516. ## kirjaa ei heidan antaa Merjalle Pekka kaskenyt heittamalla 
+
+517. * heittamalla heidan kirjaa Pekka kaskenyt antaa ei Merjalle 
+
+518. * antaa heidan heittamalla kirjaa Pekka kaskenyt Merjalle ei 
+
+519. * nukkua Pekka heidan ei kaskenyt 
+
+520. * Merjalle#foc antaa ei kirjaa heidan heittamalla Pekka kaskenyt 
+
+521. * kirjaa heittamalla antanut Merjalle Pekka ei 
+
+522. * kaskenyt heidan Pekka Merjalle heittamalla kirjaa ei antaa 
+
+523. * Pekka#foc heittamalla kaskenyt kirjaa heidan ei antaa Merjalle 
+
+524. * kaskenyt heittamalla heidan antaa kirjaa Pekka Merjalle ei 
+
+525. ? ei#foc heidan Pekka kuorsaamalla kaskenyt nukkua 
+
+526. ?* kuorsaamalla#foc heidan hairita Pekka Merjaa kaski 
+
+527. ?? ihailla#foc ei heidan Pekka kaskenyt Merjaa 
+
+528. * kirjaa antaa Merjalle kaskenyt Pekka heidan heittamalla ei 
+
+529. * heidan#foc heittamalla ei antaa Pekka Merjalle kaskenyt kirjaa 
+
+530. * heidan#foc antaa heittamalla Merjalle Pekka kaski kirjan 
+
+531. * Merjalle heittamalla kaski kirjan heidan antaa Pekka 
+
+532. * kaskenyt heidan Pekka antaa kirjaa heittamalla Merjalle ei 
+
+533. * heittamalla heidan kaskenyt ei Merjalle kirjaa antaa Pekka 
+
+534. * antaa kirjaa Merjalle ei heidan Pekka kaskenyt heittamalla 
+
+535. * kaskenyt#foc Merjalle Pekka ei heittamalla kirjaa heidan antaa 
+
+536. * kaskenyt#foc Pekka heittamalla antaa Merjalle kirjaa heidan ei 
+
+537. * heidan kaskenyt Merjalle Pekka kirjaa ei heittamalla antaa 
+
+538. * kuorsaamalla#foc Merjaa kaskenyt hairita Pekka heidan ei 
+
+539. * ei antaa kaskenyt heidan kirjaa heittamalla Merjalle Pekka 
+
+540. * Merjalle heidan Pekka kirjaa ei heittamalla antaa kaskenyt 
+
+541. * heidan heittamalla antaa kirjaa ei kaskenyt Pekka Merjalle 
+
+542. * kaskenyt#foc Merjalle Pekka heidan kirjaa antaa ei heittamalla 
+
+543. * heittamalla#foc heidan kaskenyt antaa kirjaa Pekka ei Merjalle 
+
+544. * kaskenyt#foc heidan Merjalle kirjaa antaa ei Pekka 
+
+545. * Merjaa kuorsaamalla heidan Pekka ei kaskenyt hairita 
+
+546. * antaa#foc ei Merjalle kirjaa kaskenyt Pekka heidan 
+
+547. * kaski heidan heittamalla Merjalle Pekka kirjan antaa 
+
+548. * kirjaa Pekka Merjalle heidan kaskenyt antaa ei 
+
+549. * Merjalle#foc ei Pekka kirjaa antaa kaskenyt heidan 
+
+550. * Merjalle#foc ei kirjaa kaskenyt Pekka heittamalla heidan antaa 
+
+551. * kaskenyt heidan Pekka ei heittamalla kirjaa Merjalle antaa 
+
+552. * ei kaskenyt heittamalla kirjaa Merjalle antaa heidan Pekka 
+
+553. * Merjalle#foc kirjaa kaskenyt antaa Pekka heidan heittamalla ei 
+
+554. * heidan Merjalle heittamalla antaa Pekka ei kaskenyt kirjaa 
+
+555. * Pekka kaskenyt kirjaa ei Merjalle heittamalla antaa heidan 
+
+556. * Merjalle#foc Pekka ei kaskenyt heittamalla antaa kirjaa heidan 
+
+557. * heidan antaa Merjalle heittamalla kaskenyt ei kirjaa Pekka 
+
+558. * Merjaa hairita heidan Pekka kuorsaamalla kaskenyt ei 
+
+559. * Pekka#foc kirjaa heittamalla ei antaa Merjalle kaskenyt heidan 
+
+560. * heittamalla#foc antaa ei Merjalle kaskenyt Pekka kirjaa heidan 
+
+561. * antaa kirjaa heidan Pekka ei Merjalle kaskenyt heittamalla 
+
+562. * kirjan#foc kaski antaa heidan Pekka Merjalle 
+
+563. * kuorsaamalla#foc kaski hairita Merjaa Pekka heidan 
+
+564. * Merjalle ei Pekka kaskenyt heidan antaa kirjaa 
+
+565. ?* Merjaa heidan ei Pekka kaskenyt kuorsaamalla hairita 
+
+566. ? heidan kaski Pekka Merjaa hairita kuorsaamalla 
+
+567. * heidan#foc kaskenyt heittamalla Merjalle antaa ei kirjaa Pekka 
+
+568. * kaskenyt#foc heidan heittamalla Merjalle kirjaa antaa ei Pekka 
+
+569. * Merjalle kaskenyt Pekka heittamalla antaa ei heidan kirjaa 
+
+570. ? Merjalle heidan kaski antaa Pekka kirjan heittamalla 
+
+571. * ei#foc heittamalla kirjaa antaa kaskenyt Merjalle heidan Pekka 
+
+572. * heidan#foc Merjaa kaskenyt kuorsaamalla ei hairita Pekka 
+
+573. * ei#foc heidan Merjalle kirjaa heittamalla Pekka kaskenyt antaa 
+
+574. ?* heidan kaski kirjan antaa Pekka heittamalla Merjalle 
+
+575. * kirjaa#foc kaskenyt heidan antaa heittamalla ei Pekka Merjalle 
+
+576. * hairita Merjaa ei kuorsaamalla Pekka heidan kaskenyt 
+
+577. * Pekka#foc Merjalle ei heidan heittamalla kirjaa antaa kaskenyt 
+
+578. * heittamalla ei kirjaa kaskenyt antaa heidan Merjalle Pekka 
+
+579. * kaskenyt heittamalla antaa heidan Pekka ei kirjaa Merjalle 
+
+580. * kaskenyt#foc heidan kirjaa Pekka ei Merjalle heittamalla antaa 
+
+581. * kaskenyt heittamalla Merjalle kirjaa heidan antaa Pekka ei 
+
+582. * kirjaa Merjalle ei Pekka antaa kaskenyt heidan 
+
+583. * Pekka antaa heittamalla kirjaa heidan kaskenyt Merjalle ei 
+
+584. * ei Merjalle heidan kaskenyt kirjaa Pekka antaa heittamalla 
+
+585. * kirjaa#foc heittamalla Merjalle Pekka antaa kaskenyt ei heidan 
+
+586. * heittamalla#foc ei kaskenyt heidan antaa Merjalle Pekka kirjaa 
+
+587. * heidan#foc heittamalla kirjan kaski Merjalle Pekka antaa 
+
+588. * heittamalla#foc kirjaa kaskenyt ei Pekka Merjalle heidan antaa 
+
+589. * Pekka#foc heittamalla kaskenyt ei antaa Merjalle heidan kirjaa 
+
+590. * ei Pekka Merjalle kaskenyt antaa kirjaa heidan heittamalla 
+
+591. * Pekka kirjaa antaa heidan heittamalla Merjalle kaskenyt ei 
+
+592. * kaski heidan hairita kuorsaamalla Pekka Merjaa 
+
+593. * ei#foc heidan Pekka Merjalle heittamalla kirjaa antaa kaskenyt 
+
+594. * Merjalle#foc kaskenyt Pekka heidan kirjaa heittamalla ei antaa 
+
+595. ? ei#foc heittamalla kaskenyt Pekka antaa heidan kirjaa Merjalle 
+
+596. * heittamalla Merjalle Pekka ei kirjaa heidan antaa kaskenyt 
+
+597. * kirjaa#foc ei antaa heittamalla heidan Pekka Merjalle kaskenyt 
+
+598. * Pekka#foc antaa heidan ei kirjaa kaskenyt heittamalla Merjalle 
+
+599. * antaa kaskenyt Pekka heittamalla ei heidan kirjaa Merjalle 
+
+600. * ei Pekka antaa kaskenyt Merjalle kirjaa heittamalla heidan 
+
+601. * heittamalla antaa kirjaa Pekka ei heidan kaskenyt Merjalle 
+
+602. * ei#foc Merjalle heidan heittamalla kaskenyt Pekka antaa kirjaa 
+
+603. * kirjaa#foc antaa ei heidan Pekka heittamalla Merjalle kaskenyt 
+
+604. * antaa#foc heidan heittamalla Merjalle Pekka kaskenyt ei kirjaa 
+
+605. * Merjalle kirjaa heidan antaa Pekka ei kaskenyt 
+
+606. * Pekka kirjaa kaskenyt Merjalle antaa heidan ei heittamalla 
+
+607. * antaa heidan Pekka kaskenyt kirjaa heittamalla ei Merjalle 
+
+608. * heidan#foc heittamalla kirjaa kaskenyt antaa Merjalle ei Pekka 
+
+609. * kaskenyt Merjalle heittamalla antaa ei kirjaa heidan Pekka 
+
+610. * antaa#foc ei kirjaa Pekka heidan heittamalla Merjalle kaskenyt 
+
+611. * kirjan#foc heittamalla Merjalle Pekka antaa heidan kaski 
+
+612. * kaskenyt heidan Pekka ei kirjaa heittamalla Merjalle antaa 
+
+613. * kaskenyt Pekka heidan ei kirjaa Merjalle heittamalla antaa 
+
+614. * ei Pekka heidan antaa kaskenyt Merjalle kirjaa 
+
+615. * heittamalla#foc heidan Pekka antaa kaskenyt kirjaa ei Merjalle 
+
+616. * heittamalla#foc heidan kirjaa ei kaskenyt Pekka Merjalle antaa 
+
+617. * Merjalle ei Pekka heidan heittamalla kirjaa antaa kaskenyt 
+
+618. * kirjaa#foc heidan Pekka kaskenyt antaa ei Merjalle 
+
+619. * kirjaa#foc ei Merjalle kaskenyt antaa heidan Pekka 
+
+620. * heittamalla#foc Merjalle kirjan kaski Pekka heidan antaa 
+
+621. * heidan#foc kirjaa Pekka kaskenyt ei heittamalla antaa Merjalle 
+
+622. * kaskenyt heittamalla Merjalle kirjaa antaa heidan Pekka ei 
+
+623. * kirjan heidan kaski Pekka antaa heittamalla Merjalle 
+
+624. * heittamalla ei kirjaa antaa Pekka heidan kaskenyt Merjalle 
+
+625. * heidan#foc antaa kirjaa Pekka ei Merjalle kaskenyt heittamalla 
+
+626. * Pekka heittamalla heidan kaski kirjan Merjalle antaa 
+
+627. * Merjalle kaskenyt ei antaa heidan Pekka heittamalla kirjaa 
+
+628. * ei kaskenyt kirjaa Merjalle antaa Pekka heidan heittamalla 
+
+629. * Pekka#foc Merjalle antaa kaskenyt heidan ei heittamalla kirjaa 
+
+630. * antaa#foc kirjaa Pekka heidan heittamalla kaskenyt ei Merjalle 
+
+631. ?* kaski#foc Pekka Merjalle heidan kirjan heittamalla antaa 
+
+632. * Pekka heittamalla kaskenyt Merjalle kirjaa ei antaa heidan 
+
+633. ? Merjalle kirjaa ei kaskenyt heidan antaa Pekka 
+
+634. * kirjaa#foc antaa Pekka heidan kaskenyt heittamalla Merjalle ei 
+
+635. Merjaa#foc ei Pekka ihaile 
+
+636. * heittamalla kirjaa antaa Pekka heidan Merjalle ei kaskenyt 
+
+637. * heittamalla#foc ei antaa heidan Merjalle kaskenyt kirjaa Pekka 
+
+638. * ei heittamalla kirjaa heidan antaa Pekka Merjalle kaskenyt 
+
+639. ? heidan kirjaa Merjalle antaa Pekka kaskenyt ei heittamalla 
+
+640. ?* Pekka#foc heidan ihailla Merjaa ei kaskenyt 
+
+641. * ei heidan kuorsaamalla hairita Pekka Merjaa kaskenyt 
+
+642. * Pekka#foc Merjalle ei heittamalla antaa heidan kaskenyt kirjaa 
+
+643. * heidan#foc ei antaa Pekka kirjaa kaskenyt Merjalle 
+
+644. * ei heidan kirjaa heittamalla antaa kaskenyt Pekka Merjalle 
+
+645. * heidan#foc heittamalla Pekka ei kaskenyt antaa Merjalle kirjaa 
+
+646. * Pekka kirjaa ei heittamalla Merjalle kaskenyt antaa heidan 
+
+647. * heittamalla#foc kirjaa kaskenyt ei heidan antaa Pekka Merjalle 
+
+648. * Merjalle kaski Pekka antaa kirjan heidan heittamalla 
+
+649. * ei#foc heittamalla Merjalle antaa kaskenyt Pekka kirjaa heidan 
+
+650. * heidan kaski kirjan heittamalla Pekka antaa Merjalle 
+
+651. * heidan#foc Merjalle kirjaa ei antaa kaskenyt Pekka 
+
+652. * heittamalla antaa kirjan kaski heidan Merjalle Pekka 
+
+653. * heidan kirjaa Merjalle kaskenyt ei antaa heittamalla Pekka 
+
+654. ei#foc Merjaa kaskenyt heidan Pekka kuorsaamalla hairita 
+
+655. * ei Pekka heidan kaskenyt nukkua 
+
+656. * kaskenyt heidan heittamalla Pekka ei Merjalle antaa kirjaa 
+
+657. * Merjaa kaskenyt ei kuorsaamalla hairita Pekka heidan 
+
+658. * kaskenyt#foc kirjaa Merjalle heidan Pekka antaa heittamalla ei 
+
+659. ?? kirjaa ei Pekka Merjalle antanut 
+
+660. * Merjalle kirjaa Pekka kaskenyt antaa ei heidan heittamalla 
+
+661. * Merjalle#foc heidan kaskenyt Pekka kirjaa ei antaa 
+
+662. ?? heittamalla kirjaa ei Merjalle Pekka antanut 
+
+663. ?* Merjalle#foc heidan Pekka heittamalla kaskenyt ei kirjaa antaa 
+
+664. * ei kaskenyt antaa heittamalla heidan Pekka kirjaa Merjalle 
+
+665. * kaski heittamalla Pekka Merjalle heidan kirjan antaa 
+
+666. * ei#foc kaskenyt antaa Pekka heittamalla Merjalle kirjaa heidan 
+
+667. * kirjaa kaskenyt Merjalle antaa heidan heittamalla Pekka ei 
+
+668. * heidan#foc Pekka Merjalle kirjan antaa heittamalla kaski 
+
+669. * antaa#foc ei Pekka heidan kaskenyt heittamalla kirjaa Merjalle 
+
+670. ?* heittamalla ei heidan Merjalle kaskenyt antaa kirjaa Pekka 
+
+671. * ei#foc Pekka hairita kuorsaamalla kaskenyt heidan Merjaa 
+
+672. * Merjalle#foc kirjaa heidan Pekka kaskenyt heittamalla antaa ei 
+
+673. ?? Merjalle Pekka heidan kirjan kaski antaa 
+
+674. * Merjalle#foc heidan heittamalla antaa kaskenyt kirjaa ei Pekka 
+
+675. ?* heidan#foc kirjaa Merjalle Pekka kaskenyt ei antaa heittamalla 
+
+676. * kaskenyt heidan ei kirjaa Pekka Merjalle heittamalla antaa 
+
+677. * heidan antaa Pekka kaskenyt kirjaa ei Merjalle 
+
+678. * antaa ei Merjalle Pekka kaskenyt heittamalla kirjaa heidan 
+
+679. * antaa#foc heittamalla kaskenyt heidan Pekka Merjalle kirjaa ei 
+
+680. * antaa Merjalle heittamalla kaski heidan kirjan Pekka 
+
+681. ?* antaa#foc heidan kirjan Pekka kaski Merjalle 
+
+682. * kaskenyt kirjaa Pekka heittamalla Merjalle antaa ei heidan 
+
+683. * kaskenyt#foc Pekka hairita kuorsaamalla heidan Merjaa ei 
+
+684. * antaa heidan heittamalla Pekka kirjaa Merjalle ei kaskenyt 
+
+685. ? kirjan Pekka heidan kaski antaa Merjalle heittamalla 
+
+686. * antaa#foc kirjaa kaskenyt heidan Merjalle heittamalla Pekka ei 
+
+687. * heittamalla#foc heidan Pekka kaskenyt antaa Merjalle kirjaa ei 
+
+688. ?* Merjalle kaskenyt ei antaa Pekka heidan kirjaa 
+
+689. * Merjalle heidan kirjan Pekka kaski heittamalla antaa 
+
+690. * heidan#foc kirjaa Pekka heittamalla kaskenyt antaa Merjalle ei 
+
+691. * ei hairitse kuorsaamalla Pekka Merjaa 
+
+692. * heidan#foc Merjalle heittamalla kirjaa kaskenyt ei antaa Pekka 
+
+693. * antaa heittamalla ei Pekka Merjalle kirjaa heidan kaskenyt 
+
+694. * heidan#foc ei Pekka antaa heittamalla kaskenyt Merjalle kirjaa 
+
+695. * heidan heittamalla Pekka antaa kaskenyt Merjalle kirjaa ei 
+
+696. * heittamalla#foc antaa kirjaa kaskenyt ei heidan Pekka Merjalle 
+
+697. * Merjalle Pekka kaskenyt heittamalla heidan ei antaa kirjaa 
+
+698. ## ei#foc Merjalle heittamalla antaa heidan Pekka kirjaa kaskenyt 
+
+699. ?? kuorsaamalla#foc hairita ei kaskenyt Pekka heidan Merjaa 
+
+700. ## antaa#foc Merjalle Pekka heidan ei kirjaa heittamalla kaskenyt 
+
+701. * heittamalla#foc heidan antaa Merjalle Pekka kaskenyt ei kirjaa 
+
+702. * Merjalle heidan kirjaa heittamalla kaskenyt antaa Pekka ei 
+
+703. * antaa#foc Merjalle heidan kirjaa Pekka kaskenyt ei heittamalla 
+
+704. * antaa heidan kirjaa kaskenyt heittamalla Merjalle ei Pekka 
+
+705. ## heittamalla kirjaa ei kaskenyt Merjalle heidan Pekka antaa 
+
+706. ? Pekka#foc heidan ei kaskenyt kirjaa antaa Merjalle 
+
+707. * kaskenyt#foc Pekka antaa heidan Merjalle ei kirjaa 
+
+708. * heidan#foc Pekka kirjaa kaskenyt Merjalle heittamalla antaa ei 
+
+709. * Pekka#foc kirjan kaski heittamalla Merjalle heidan antaa 
+
+710. ?? heittamalla kirjaa kaskenyt ei heidan Merjalle Pekka antaa 
+
+711. * kirjaa#foc kaskenyt antaa Merjalle heidan ei Pekka heittamalla 
+
+712. * heidan kaskenyt heittamalla antaa Merjalle kirjaa ei Pekka 
+
+713. kaski#foc Pekka heidan antaa heittamalla kirjan Merjalle 
+
+714. ?* kirjaa Pekka heidan Merjalle kaskenyt ei antaa heittamalla 
+
+715. * antaa#foc kaskenyt heittamalla Merjalle heidan ei kirjaa Pekka 
+
+716. * antaa#foc Merjalle Pekka heidan kaskenyt kirjaa heittamalla ei 
+
+717. * Merjaa ei Pekka kuorsaamalla hairita kaskenyt heidan 
+
+718. ? antanut#foc Merjalle kirjaa Pekka ei heittamalla 
+
+719. * ei kirjaa heidan Pekka antaa kaskenyt Merjalle 
+
+720. * Pekka#foc kaskenyt kirjaa Merjalle heidan heittamalla ei antaa 
+
+721. ?* heidan#foc kirjaa Pekka ei kaskenyt Merjalle antaa heittamalla 
+
+722. ?? Merjalle#foc heidan antaa kirjaa ei kaskenyt Pekka 
+
+723. * Pekka#foc kirjaa ei heidan heittamalla antaa kaskenyt Merjalle 
+
+724. ? Pekka Merjaa hairitsee kuorsaamalla 
+
+725. * kirjan Merjalle Pekka kaski heittamalla antaa heidan 
+
+726. * heidan Merjalle Pekka kaskenyt kirjaa ei antaa 
+
+727. * heittamalla heidan kirjaa Pekka ei Merjalle antaa kaskenyt 
+
+728. * Merjalle#foc kirjaa Pekka kaskenyt heittamalla antaa ei heidan 
+
+729. * heittamalla#foc Pekka kirjan Merjalle antaa heidan kaski 
+
+730. * Merjalle#foc heittamalla Pekka kaskenyt kirjaa heidan antaa ei 
+
+731. * heidan heittamalla Merjalle ei antaa Pekka kirjaa kaskenyt 
+
+732. * Pekka#foc kirjaa kaskenyt antaa heittamalla heidan Merjalle ei 
+
+733. * heidan#foc antaa Pekka Merjalle heittamalla kirjaa kaskenyt ei 
+
+734. ? ei#foc kaskenyt heidan kirjaa Pekka antaa Merjalle 
+
+735. * heittamalla#foc kaskenyt antaa Merjalle heidan kirjaa Pekka ei 
+
+736. * hairita#foc heidan kaskenyt Merjaa kuorsaamalla Pekka ei 
+
+737. * nukkua heidan kaskenyt Pekka ei 
+
+738. ?? Merjalle Pekka heidan antaa kirjaa ei kaskenyt heittamalla 
+
+739. * heittamalla heidan kaskenyt antaa Merjalle kirjaa Pekka ei 
+
+740. * heidan#foc kirjaa kaskenyt ei heittamalla Merjalle Pekka antaa 
+
+741. * kirjaa#foc Merjalle heidan Pekka kaskenyt antaa ei heittamalla 
+
+742. * kaskenyt#foc heidan kirjaa ei Merjalle Pekka antaa 
+
+743. * kaskenyt Merjalle Pekka heidan ei antaa heittamalla kirjaa 
+
+744. ?? ei#foc Merjalle Pekka kirjaa kaskenyt heittamalla heidan antaa 
+
+745. * Pekka#foc kirjaa Merjalle heidan heittamalla ei antaa kaskenyt 
+
+746. * antaa kirjan Merjalle heittamalla Pekka kaski heidan 
+
+747. * heidan Merjaa Pekka kaskenyt ihailla ei 
+
+748. * antaa heittamalla kirjaa Merjalle ei heidan Pekka kaskenyt 
+
+749. * antaa Pekka kirjan heittamalla heidan Merjalle kaski 
+
+750. ? ei#foc Pekka Merjalle heidan kaskenyt antaa kirjaa 
+
+751. * antaa kaskenyt Merjalle heittamalla kirjaa heidan Pekka ei 
+
+752. * kaski Merjalle heittamalla antaa Pekka heidan kirjan 
+
+753. * heittamalla Merjalle antaa kaskenyt heidan ei kirjaa Pekka 
+
+754. * ei#foc kaskenyt kirjaa Merjalle Pekka heidan heittamalla antaa 
+
+755. * kaskenyt#foc ei Merjalle antaa heittamalla heidan kirjaa Pekka 
+
+756. * Pekka#foc Merjalle kaskenyt ei heittamalla heidan kirjaa antaa 
+
+757. * heittamalla antaa kaski kirjan Merjalle Pekka heidan 
+
+758. ## kuorsaamalla#foc heidan Pekka kaskenyt Merjaa ei hairita 
+
+759. ?? heittamalla Pekka ei heidan kaskenyt kirjaa antaa Merjalle 
+
+760. * kaskenyt#foc Merjalle Pekka antaa kirjaa heidan ei heittamalla 
+
+761. ?? Merjalle#foc Pekka heidan ei kirjaa heittamalla kaskenyt antaa 
+
+762. * heittamalla#foc kirjaa antaa Pekka Merjalle kaskenyt heidan ei 
+
+763. * Merjalle#foc antaa kaskenyt ei Pekka kirjaa heittamalla heidan 
+
+764. * kirjan#foc Pekka heittamalla antaa Merjalle heidan kaski 
+
+765. * heittamalla#foc heidan Merjalle ei kirjaa antaa Pekka kaskenyt 
+
+766. * kaskenyt antaa Merjalle heidan Pekka ei heittamalla kirjaa 
+
+767. * kuorsaamalla hairita kaskenyt heidan ei Merjaa Pekka 
+
+768. * ei#foc kirjaa antaa Pekka kaskenyt Merjalle heidan heittamalla 
+
+769. * Pekka#foc antaa kirjaa Merjalle kaskenyt heidan ei heittamalla 
+
+770. * antaa ei Merjalle Pekka kirjaa heidan kaskenyt heittamalla 
+
+771. * heittamalla#foc kaskenyt Pekka Merjalle ei heidan kirjaa antaa 
+
+772. * kirjaa heidan Merjalle ei heittamalla Pekka antaa kaskenyt 
+
+773. * kirjaa heittamalla heidan Pekka antaa kaskenyt Merjalle ei 
+
+774. * Merjalle kaskenyt ei kirjaa heidan antaa heittamalla Pekka 
+
+775. ?? heidan#foc ei kaskenyt antaa kirjaa Pekka Merjalle heittamalla 
+
+776. * kirjaa#foc heittamalla antaa Pekka kaskenyt heidan Merjalle ei 
+
+777. * kirjaa#foc heittamalla Merjalle heidan kaskenyt antaa Pekka ei 
+
+778. * Merjalle#foc heittamalla Pekka heidan ei kirjaa kaskenyt antaa 
+
+779. ?* Merjalle heittamalla antanut Pekka kirjaa ei 
+
+780. * kirjaa heidan kaskenyt ei antaa heittamalla Merjalle Pekka 
+
+781. ?? Merjalle Pekka antaa kirjan kaski heidan heittamalla 
+
+782. * heittamalla#foc antaa ei Merjalle Pekka kaskenyt kirjaa heidan 
+
+783. ?? ei#foc heittamalla kaskenyt antaa heidan Pekka kirjaa Merjalle 
+
+784. * heittamalla antaa heidan Merjalle kirjaa Pekka kaskenyt ei 
+
+785. ?? kirjaa#foc Merjalle heittamalla antanut ei Pekka 
+
+786. ?* Pekka kaskenyt heidan ei Merjaa hairita kuorsaamalla 
+
+787. * kirjan#foc kaski Merjalle antaa Pekka heidan 
+
+788. ?? Merjalle heidan kaski antaa kirjan heittamalla Pekka 
+
+789. * ei#foc kirjaa kaskenyt heittamalla antaa heidan Pekka Merjalle 
+
+790. * kirjaa kaskenyt ei Pekka Merjalle heidan antaa 
+
+791. ?* kaskenyt#foc Merjalle antaa Pekka heidan ei heittamalla kirjaa 
+
+792. * heittamalla antaa Merjalle kirjan kaski Pekka heidan 
+
+793. * heittamalla#foc Pekka kaskenyt heidan ei antaa Merjalle kirjaa 
+
+794. ?* heittamalla ei kaskenyt kirjaa antaa heidan Merjalle Pekka 
+
+795. * ei heittamalla kirjaa kaskenyt Merjalle Pekka heidan antaa 
+
+796. * Merjalle#foc kirjaa heittamalla ei Pekka antaa heidan kaskenyt 
+
+797. ?* Merjalle ei Pekka heittamalla kaskenyt antaa heidan kirjaa 
+
+798. * kaskenyt heittamalla kirjaa antaa heidan Pekka ei Merjalle 
+
+799. ?* kirjaa heittamalla kaskenyt heidan antaa ei Pekka Merjalle 
+
+800. * Merjalle heittamalla antaa kaskenyt heidan Pekka ei kirjaa 
+
+801. ?* Merjalle#foc ei Pekka heittamalla kaskenyt kirjaa heidan antaa 
+
+802. * antaa Merjalle heittamalla kaski Pekka kirjan heidan 
+
+803. * Merjalle kirjaa heittamalla Pekka kaskenyt antaa ei heidan 
+
+804. ?? kuorsaamalla Pekka hairita heidan kaski Merjaa 
+
+805. ## heidan#foc Pekka kirjan antaa heittamalla kaski Merjalle 
+
+806. * kirjaa#foc heittamalla antaa kaskenyt Pekka ei heidan Merjalle 
+
+807. * ei Pekka kirjaa Merjalle antaa heittamalla kaskenyt heidan 
+
+808. ?* antaa#foc Pekka ei Merjalle kirjaa heidan heittamalla kaskenyt 
+
+809. * heittamalla#foc antaa Merjalle heidan ei kaskenyt Pekka kirjaa 
+
+810. * Merjaa ei kuorsaamalla hairita Pekka kaskenyt heidan 
+
+811. ?* Pekka antaa heidan kaski heittamalla kirjan Merjalle 
+
+812. ?? heidan ei kaskenyt antaa heittamalla kirjaa Merjalle Pekka 
+
+813. * kirjaa heittamalla kaskenyt Pekka heidan antaa Merjalle ei 
+
+814. * kaskenyt Merjalle heittamalla antaa Pekka heidan kirjaa ei 
+
+815. * ei antaa kaskenyt Pekka heidan Merjalle kirjaa 
+
+816. * ei Merjalle kaskenyt Pekka kirjaa heittamalla heidan antaa 
+
+817. * heittamalla#foc kaskenyt Merjalle antaa ei Pekka kirjaa heidan 
+
+818. * Merjalle heittamalla kaskenyt kirjaa ei Pekka antaa heidan 
+
+819. * kaskenyt#foc Pekka kirjaa heittamalla heidan antaa ei Merjalle 
+
+820. * heidan#foc kirjaa Merjalle heittamalla Pekka kaskenyt antaa ei 
+
+821. ?* ei#foc Merjalle antaa heidan Pekka heittamalla kaskenyt kirjaa 
+
+822. * heidan Merjalle kirjaa kaskenyt antaa Pekka ei 
+
+823. * heittamalla Merjalle heidan Pekka kaskenyt ei antaa kirjaa 
+
+824. * kaskenyt#foc antaa heidan Merjalle Pekka heittamalla ei kirjaa 
+
+825. * kirjaa#foc heidan Merjalle antaa heittamalla Pekka kaskenyt ei 
+
+826. ## heittamalla heidan ei kaskenyt kirjaa Merjalle antaa Pekka 
+
+827. * antaa kaskenyt kirjaa ei heidan heittamalla Pekka Merjalle 
+
+828. * antaa Merjalle Pekka heittamalla heidan kirjaa ei kaskenyt 
+
+829. * heidan kaskenyt Merjalle antaa kirjaa ei Pekka 
+
+830. ?* hairita#foc kaski Merjaa kuorsaamalla heidan Pekka 
+
+831. * kaskenyt kirjaa ei Pekka antaa heidan Merjalle heittamalla 
+
+832. kirjaa#foc Pekka ei kaskenyt heidan antaa Merjalle heittamalla 
+
+833. * Merjalle#foc Pekka kirjaa ei antaa kaskenyt heidan heittamalla 
+
+834. * Pekka heittamalla heidan ei kaskenyt Merjalle kirjaa antaa 
+
+835. * heittamalla ei heidan kirjaa Pekka Merjalle antaa kaskenyt 
+
+836. * ei kaskenyt heittamalla antaa Merjalle kirjaa Pekka heidan 
+
+837. * ei#foc heidan kirjaa antaa kaskenyt Pekka heittamalla Merjalle 
+
+838. * kaskenyt#foc antaa heidan kirjaa ei Pekka heittamalla Merjalle 
+
+839. * Merjalle#foc heittamalla ei antaa Pekka heidan kaskenyt kirjaa 
+
+840. * Pekka#foc heidan kaskenyt heittamalla antaa kirjaa Merjalle ei 
+
+841. * antaa ei kaskenyt kirjaa heidan Merjalle Pekka heittamalla 
+
+842. * ei antaa kaskenyt heidan Merjalle Pekka kirjaa heittamalla 
+
+843. * heidan#foc antaa ei heittamalla kirjaa Pekka Merjalle kaskenyt 
+
+844. * Pekka#foc kaskenyt Merjaa hairita ei heidan kuorsaamalla 
+
+845. ?? ei#foc heidan kaskenyt Merjaa kuorsaamalla Pekka hairita 
+
+846. * ei#foc heittamalla antaa Pekka Merjalle heidan kaskenyt kirjaa 
+
+847. * heittamalla#foc kaskenyt antaa kirjaa heidan Pekka ei Merjalle 
+
+848. * kaskenyt ei Pekka kirjaa Merjalle antaa heidan heittamalla 
+
+849. * antaa kirjaa heittamalla ei kaskenyt Pekka heidan Merjalle 
+
+850. * kaskenyt#foc heittamalla heidan Merjalle ei Pekka kirjaa antaa 
+
+851. * heittamalla Pekka kirjaa antaa ei kaskenyt heidan Merjalle 
+
+852. * heidan antaa kirjaa Pekka Merjalle ei kaskenyt 
+
+853. ei#foc Pekka kaskenyt kirjaa heidan antaa heittamalla Merjalle 
+
+854. ?* Merjalle kirjaa heidan ei heittamalla Pekka kaskenyt antaa 
+
+855. * Pekka#foc hairita Merjaa kuorsaamalla kaskenyt heidan ei 
+
+856. * heidan ei Pekka antaa heittamalla kirjaa kaskenyt Merjalle 
+
+857. ?* ei#foc heidan kaskenyt kirjaa Merjalle heittamalla Pekka antaa 
+
+858. * heidan#foc Pekka Merjalle kirjan heittamalla antaa kaski 
+
+859. ?* kirjan#foc Merjalle kaski antaa heidan heittamalla Pekka 
+
+860. ? heittamalla kaski Pekka heidan Merjalle kirjan antaa 
+
+861. * ei#foc Merjalle heidan heittamalla kirjaa Pekka antaa kaskenyt 
+
+862. * kirjaa heittamalla kaskenyt ei Pekka heidan Merjalle antaa 
+
+863. * heittamalla#foc ei kirjaa heidan Pekka antaa Merjalle kaskenyt 
+
+864. * kaskenyt ei heittamalla antaa kirjaa Pekka Merjalle heidan 
+
+865. * Merjalle heittamalla heidan kaskenyt kirjaa Pekka ei antaa 
+
+866. ? ei#foc heidan Pekka kaskenyt Merjalle heittamalla antaa kirjaa 
+
+867. ?* Merjalle#foc heidan Pekka heittamalla ei kirjaa antaa kaskenyt 
+
+868. * ei Merjaa ihailla heidan Pekka kaskenyt 
+
+869. ?? ei#foc kaskenyt kuorsaamalla nukkua heidan Pekka 
+
+870. * kaski#foc antaa Merjalle Pekka heittamalla kirjan heidan 
+
+871. * Merjalle#foc antaa kaskenyt kirjaa ei Pekka heidan heittamalla 
+
+872. ? ei#foc Pekka heidan antaa kirjaa Merjalle kaskenyt 
+
+873. ## Pekka heidan ei kirjaa antaa heittamalla kaskenyt Merjalle 
+
+874. * Merjalle#foc Pekka kirjaa kaskenyt heidan heittamalla antaa ei 
+
+875. * kirjaa#foc Merjalle heittamalla kaskenyt Pekka antaa heidan ei 
+
+876. * antaa#foc heittamalla kirjaa Merjalle Pekka ei heidan kaskenyt 
+
+877. * kaskenyt Merjaa kuorsaamalla Pekka hairita heidan ei 
+
+878. * ei antaa heidan kirjaa kaskenyt Pekka heittamalla Merjalle 
+
+879. ## hairita#foc kaskenyt Pekka heidan Merjaa ei kuorsaamalla 
+
+880. * Merjalle kirjaa heittamalla ei antaa Pekka kaskenyt heidan 
+
+881. * heidan Merjalle heittamalla antaa kirjaa kaskenyt Pekka ei 
+
+882. * heidan#foc heittamalla antaa kaskenyt kirjaa Pekka Merjalle ei 
+
+883. * antaa#foc Pekka Merjalle heittamalla kirjaa heidan kaskenyt ei 
+
+884. * heittamalla#foc Pekka Merjalle ei kirjaa kaskenyt antaa heidan 
+
+885. * hairita#foc kuorsaamalla Pekka kaskenyt ei Merjaa heidan 
+
+886. * Pekka kuorsaamalla hairita ei Merjaa heidan kaskenyt 
+
+887. ?* heidan kirjaa Merjalle Pekka kaskenyt antaa ei heittamalla 
+
+888. * Pekka nukkua ei kaskenyt heidan 
+
+889. ?* ihailla#foc kaskenyt ei Pekka heidan Merjaa 
+
+890. * heidan#foc antaa Merjalle heittamalla kirjaa kaskenyt ei Pekka 
+
+891. ?* heidan#foc hairita kuorsaamalla Pekka kaski Merjaa 
+
+892. * kaskenyt#foc antaa heittamalla Merjalle Pekka ei kirjaa heidan 
+
+893. * kaskenyt heidan antaa Merjalle Pekka ei kirjaa heittamalla 
+
+894. ?* antaa#foc heidan kaskenyt Merjalle ei heittamalla Pekka kirjaa 
+
+895. * heittamalla kaskenyt Merjalle kirjaa heidan antaa ei Pekka 
+
+896. * ei heidan Pekka antaa kaskenyt kirjaa heittamalla Merjalle 
+
+897. * antaa kaskenyt heittamalla kirjaa Pekka Merjalle ei heidan 
+
+898. heittamalla#foc ei heidan Pekka kaskenyt antaa kirjaa Merjalle 
+
+899. * ei hairita heidan Pekka kaskenyt Merjaa kuorsaamalla 
+
+900. * antaa#foc heidan Merjalle kirjaa kaskenyt ei Pekka 
+
+901. * Pekka#foc kaskenyt ei heittamalla Merjalle heidan kirjaa antaa 
+
+902. * kirjaa Merjalle heittamalla Pekka kaskenyt antaa heidan ei 
+
+903. ## Pekka kaski antaa heittamalla kirjan heidan Merjalle 
+
+904. ?? heittamalla kirjaa ei heidan Merjalle kaskenyt antaa Pekka 
+
+905. * ei hairita kuorsaamalla heidan kaskenyt Merjaa Pekka 
+
+906. * kirjaa heittamalla heidan antaa Merjalle ei Pekka kaskenyt 
+
+907. * ei Pekka kaskenyt kirjaa antaa heittamalla heidan Merjalle 
+
+908. * antaa#foc kaskenyt heidan heittamalla ei Pekka Merjalle kirjaa 
+
+909. heidan#foc ei Pekka kaskenyt hairita Merjaa kuorsaamalla 
+
+910. * Pekka#foc antaa kaskenyt Merjalle kirjaa ei heidan 
+
+911. * Merjalle heidan kaskenyt Pekka kirjaa antaa ei heittamalla 
+
+912. * kaskenyt Merjalle heidan ei kirjaa antaa heittamalla Pekka 
+
+913. * heidan kaskenyt Pekka Merjaa kuorsaamalla hairita ei 
+
+914. * antaa#foc Merjalle Pekka kaskenyt heidan ei kirjaa heittamalla 
+
+915. * kuorsaamalla ei Merjaa hairita heidan Pekka kaskenyt 
+
+916. * heittamalla antaa heidan Pekka kaskenyt Merjalle ei kirjaa 
+
+917. * antaa kaskenyt heidan ei Merjalle kirjaa heittamalla Pekka 
+
+918. ?* Merjalle#foc kaskenyt ei kirjaa Pekka heittamalla heidan antaa 
+
+919. * kaskenyt ei antaa heittamalla Pekka heidan kirjaa Merjalle 
+
+920. ?? heittamalla#foc Pekka ei kirjaa kaskenyt heidan antaa Merjalle 
+
+921. * antaa#foc heidan kaskenyt Pekka ei kirjaa heittamalla Merjalle 
+
+922. * Merjalle#foc kirjaa ei heittamalla Pekka kaskenyt heidan antaa 
+
+923. * kaskenyt Pekka heidan kirjaa antaa ei Merjalle heittamalla 
+
+924. * Merjalle Pekka heidan heittamalla ei antaa kirjaa kaskenyt 
+
+925. ?* kirjaa#foc heidan ei antaa Merjalle Pekka kaskenyt 
+
+926. * heittamalla antaa ei Pekka Merjalle kirjaa heidan kaskenyt 
+
+927. ?? kaskenyt#foc ei heidan antaa Merjalle Pekka kirjaa 
+
+928. * Merjalle kaskenyt antaa ei Pekka kirjaa heidan 
+
+929. * Merjalle#foc kaskenyt antaa Pekka heittamalla kirjaa heidan ei 
+
+930. * kirjaa#foc heidan Pekka heittamalla ei antaa kaskenyt Merjalle 
+
+931. * Pekka#foc ei antaa heidan kaskenyt heittamalla Merjalle kirjaa 
+
+932. ?* heittamalla heidan Pekka ei kaskenyt kirjaa antaa Merjalle 
+
+933. * kaskenyt Pekka ei antaa kirjaa heidan Merjalle 
+
+934. ?* Merjalle#foc heidan antaa ei kirjaa heittamalla kaskenyt Pekka 
+
+935. * kaskenyt#foc antaa heidan kirjaa heittamalla Merjalle ei Pekka 
+
+936. ?? kaskenyt#foc ei heittamalla heidan Pekka kirjaa antaa Merjalle 
+
+937. ?? ei#foc heittamalla Merjalle Pekka kirjaa antanut 
+
+938. * heittamalla Merjalle ei antaa heidan Pekka kaskenyt kirjaa 
+
+939. * ei Pekka antaa heittamalla kirjaa kaskenyt heidan Merjalle 
+
+940. * kaskenyt Pekka heidan antaa Merjalle ei heittamalla kirjaa 
+
+941. * Pekka kaskenyt heidan kirjaa antaa heittamalla ei Merjalle 
+
+942. ?* heidan#foc Merjalle Pekka kaskenyt antaa ei kirjaa 
+
+943. ?? heidan ei kuorsaamalla Pekka kaskenyt hairita Merjaa 
+
+944. * kirjaa Merjalle antaa heidan kaskenyt ei Pekka 
+
+945. ?? kirjaa ei Pekka Merjalle kaskenyt heidan heittamalla antaa 
+
+946. * heidan#foc antaa kirjaa kaskenyt Merjalle ei heittamalla Pekka 
+
+947. * Merjalle#foc heittamalla kaskenyt heidan antaa kirjaa Pekka ei 
+
+948. ?? kuorsaamalla heidan Merjaa kaski Pekka hairita 
+
+949. * ei#foc antaa heittamalla Pekka kaskenyt heidan Merjalle kirjaa 
+
+950. ## heidan#foc heittamalla antaa kirjan Merjalle Pekka kaski 
+
+951. * Pekka#foc kaskenyt hairita kuorsaamalla heidan ei Merjaa 
+
+952. * ei#foc Merjalle antaa heittamalla kirjaa kaskenyt heidan Pekka 
+
+953. * antaa#foc kaskenyt Pekka Merjalle heittamalla ei heidan kirjaa 
+
+954. ?* heittamalla#foc heidan kirjaa ei Pekka Merjalle antaa kaskenyt 
+
+955. * Pekka Merjaa hairita kaskenyt heidan ei kuorsaamalla 
+
+956. ## Merjalle heittamalla kirjaa heidan antaa Pekka ei kaskenyt 
+
+957. ?? ei#foc kaskenyt heidan heittamalla kirjaa Pekka Merjalle antaa 
+
+958. * heittamalla heidan Merjalle kirjaa Pekka ei antaa kaskenyt 
+
+959. * Pekka kaskenyt ei ihailla Merjaa heidan 
+
+960. * Pekka#foc heittamalla ei antaa kirjaa kaskenyt heidan Merjalle 
+
+961. * antaa#foc Merjalle kirjaa ei heidan Pekka kaskenyt heittamalla 
+
+962. * kirjaa Merjalle heidan heittamalla Pekka ei antaa kaskenyt 
+
+963. ?* kirjaa#foc ei kaskenyt Pekka heittamalla heidan Merjalle antaa 
+
+964. * heittamalla antaa Merjalle kaskenyt heidan Pekka kirjaa ei 
+
+965. * kuorsaamalla Pekka hairita ei heidan kaskenyt Merjaa 
+
+966. * kaskenyt#foc kirjaa heidan Pekka Merjalle ei antaa 
+
+967. * Pekka kaskenyt antaa heidan kirjaa Merjalle ei heittamalla 
+
+968. * antaa#foc heidan Merjalle ei kaskenyt kirjaa Pekka 
+
+969. * heittamalla#foc Merjalle Pekka kirjaa heidan ei kaskenyt antaa 
+
+970. *? ei#foc Pekka kaskenyt heittamalla heidan Merjalle kirjaa antaa 
+
+971. * ei Pekka Merjalle kirjaa antaa kaskenyt heidan heittamalla 
+
+972. ?* kaskenyt#foc heidan ei Pekka antaa Merjalle heittamalla kirjaa 
+
+973. * Merjaa kaskenyt Pekka kuorsaamalla heidan ei hairita 
+
+974. * kaskenyt#foc kirjaa Merjalle Pekka heidan antaa heittamalla ei 
+
+975. ?* kirjaa#foc heidan Pekka ei antaa kaskenyt heittamalla Merjalle 
+
+976. ?? ei#foc antaa kaskenyt kirjaa heidan Pekka Merjalle 
+
+977. * Merjaa Pekka hairita kaski kuorsaamalla heidan 
+
+978. * Pekka heidan heittamalla ei antaa Merjalle kirjaa kaskenyt 
+
+979. ?? Merjaa#foc Pekka heidan kaski hairita kuorsaamalla 
+
+980. * kaskenyt Merjalle ei Pekka antaa heidan heittamalla kirjaa 
+
+981. ?* ei#foc heidan antaa Merjalle kaskenyt heittamalla Pekka kirjaa 
+
+982. ?? Pekka ei heidan kirjaa antaa Merjalle kaskenyt heittamalla 
+
+983. * heidan#foc heittamalla kirjaa Pekka Merjalle ei antaa kaskenyt 
+
+984. * ei kaskenyt ihailla heidan Pekka Merjaa 
+
+985. * ei heidan Merjalle kaskenyt antaa kirjaa Pekka heittamalla 
+
+986. * antaa Pekka ei kaskenyt kirjaa Merjalle heittamalla heidan 
+
+987. * ei heidan heittamalla Pekka kaskenyt kirjaa Merjalle antaa 
+
+988. * kirjaa#foc heittamalla kaskenyt Pekka ei Merjalle heidan antaa 
+
+989. * kirjaa Merjalle antaa kaskenyt Pekka heittamalla heidan ei 
+
+990. ?* heidan#foc ei kaskenyt heittamalla Pekka kirjaa Merjalle antaa 
+
+991. * Pekka#foc ei kirjaa kaskenyt Merjalle antaa heidan heittamalla 
+
+992. * Pekka Merjalle kaskenyt heittamalla ei heidan antaa kirjaa 
+
+993. * heittamalla#foc kirjaa heidan antaa Pekka Merjalle kaskenyt ei 
+
+994. ?* kaski#foc antaa kirjan Merjalle heittamalla heidan Pekka 
+
+995. * kaski antaa Merjalle kirjan Pekka heidan 
+
+996. * kirjaa#foc kaskenyt Merjalle ei antaa heidan heittamalla Pekka 
+
+997. * Merjalle#foc kaskenyt Pekka heidan kirjaa ei heittamalla antaa 
+
+998. ?* heidan#foc ei kaskenyt kirjaa heittamalla Pekka Merjalle antaa 
+
+999. ?* Pekka#foc heidan kaskenyt ei antaa heittamalla Merjalle kirjaa 
+
+1000. * heittamalla#foc heidan Merjalle kaskenyt antaa ei kirjaa Pekka 
+

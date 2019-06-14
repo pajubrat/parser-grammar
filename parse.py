@@ -1,14 +1,13 @@
 
 #################################################################################
-# Parser-grammar implementing the Phillips cycle
-# Design and main programming: Pauli Brattico
-# Additional coding: Jukka Purma
+# Parser-grammar
+# Based on Brattico, P. (2019). Computational implementation of a top-down grammar.
 # See documentation in the \Documentation folder
 # Version 1.9
+# Programming: Pauli Brattico, Jukka Purma
 ################################################################################
 
 # Imports
-
 import datetime
 from parser_module import Pcb_parser
 from support import disable_all_logging, set_logging, log
@@ -17,19 +16,23 @@ import time
 from LanguageGuesser import LanguageGuesser
 from context import Context
 
-grammaticality_judgement = ['','(?)','?','(?)?', '??', '?(*)', '?*', '##']
-parse_list = []
-t = time.time()
-# disable_all_logging()
-set_logging(True)
+# Name of the corpus file
+test_set_name = 'Study0_whole_corpus_FINAL.txt'
 
-test_set_name = 'Study1-4_whole corpus.txt'
-#test_set_name = 'Experiment1_corpus_full_sample.txt'
+# Additional naming conventions
 lexicon_file_name = 'lexicon.txt'
 log_file_name = test_set_name[:-4] + '_log.txt'
 results_file_name = test_set_name[:-4] + '_results.txt'
 ug_morphemes = 'ug_morphemes.txt'
 redundancy_rules = 'redundancy_rules.txt'
+grammaticality_judgement = ['','?','?','??', '??', '?*', '?*', '##']
+parse_list = []
+t = time.time()
+
+# Set this tag if you want to disable all logging functions
+# disable_all_logging()
+set_logging(True)
+
 
 print('Parsing process initialized.')
 print(datetime.datetime.now())
@@ -37,6 +40,7 @@ print('Loading test sentences from file \"' + test_set_name + '\".')
 print(f'Logs will be written to file {log_file_name}.')
 print(f'Lexicon will be read from file {lexicon_file_name}.')
 
+# Reads the corpus file
 plus_sentences = []
 for line in open(test_set_name):
     line = line.strip()
@@ -76,6 +80,7 @@ print('Loading test sentences from file \"' + test_set_name + '\".')
 print(f'Logs will be written to file {log_file_name}.')
 print('Lexicon will be read from file \"' + test_set_name[:-4] + '_lexicon.lex\".')
 
+# Stamp the output file
 results_file = open(results_file_name, "w")
 results_file.write('BC parser v. 0.9\n')
 results_file.write(str(datetime.datetime.now())+'\n')
@@ -83,40 +88,53 @@ results_file.write(f'Test sentences from file \"{test_set_name}\".\n')
 results_file.write(f'Logs into file \"{log_file_name}.\n')
 results_file.write(f'Lexicon from file \"{lexicon_file_name}\".\n')
 
+# Main parsing loop
 for sentence in parse_list:
     print(str(count))
-    if sentence[0] != '&':
+
+    if sentence[0] != '&':  # Sentences beginning with & will be written to the log file as such
         count = count + 1
         set_logging(True)
         log('\n\n\========================================================================')
         log('# '+str(count))
         log(str(sentence) + '\n\n')
-        # print('\n' + str(count) + '. ' + str(sentence))
-        # print('----------------------------------------------------------------')
         set_logging(False)
         lang = lang_guesser.guess(sentence)
+
+        # Initialize the parser for a language
         P = parsers[lang]
-        log(f'Using lexicon "{lexicon_file_name}".')
-        log(f'Language appears to be {lang}')
         P.number_of_solutions_tried = 0
         P.number_of_Moves = 0
         P.number_of_Merges = 0
         P.score = 0
         P.name_provider_index = 0
         P.reconstruction.name_provider_index = 0
+        log(f'Using lexicon "{lexicon_file_name}".')
+        log(f'Language appears to be {lang}')
+
+        # Parse the sentence
         P.parse(sentence)
+
         set_logging(True)
         s = ''
         for word in sentence:
             s = s + word + ' '
+
+        # If no results were found, the sentence is ungrammatical
         if len(P.result_list) == 0:
             results_file.write(str(count) + '. * ' + s + '\n\n')
+
+        # If results were found, the sentence is grammatical
         else:
+
+            # Marginality estimations are printed here
             if 0 >= P.score >= -6:
                 judgment = grammaticality_judgement[int(round(abs(P.score),0))]
             else:
                 judgment = '##'
-            results_file.write(str(count) + '. ' + judgment + ' ' + s + '\n')
+            results_file.write(str(count) + '. ' + judgment + ' ' + s + '\n\n')
+
+            # Print the result into the results file
             parse = P.result_list[0]
             results_file.write(f'{parse}\n')
             results_file.write('\''+parse.gloss()+'.\'\n')

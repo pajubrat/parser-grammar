@@ -6,7 +6,7 @@
 # Imports
 import itertools
 
-scramble_file_list = ['Study1-4_all']
+scramble_file_list = ['Study4a']
 
 print('Scrambling...')
 
@@ -27,6 +27,7 @@ for input_file_name in scramble_file_list:
             for permutation in itertools.permutations(sentence, len(sentence)):
 
                 # Create sentence without prosodic focus
+                print(str(counter))
                 results_file.write('#' + str(counter) + '\n')
                 for word in permutation:
                     results_file.write(word + ' ')

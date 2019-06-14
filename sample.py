@@ -1,9 +1,9 @@
 
 import random
 
-test_set_name = 'Experiment1_corpus_full.txt'
+test_set_name = 'Study4.txt'
 sample_file_name = test_set_name[:-4] + '_sample.txt'
-sample_size = 200000
+sample_size = 200000  # How many items are read from the input corpus
 sample_list = []
 count = 1
 

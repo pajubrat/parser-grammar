@@ -18,24 +18,6 @@ class Reconstruction():
     def reconstruct(self, ps):
         """
         Performs movement reconstruction.
-
-        The phrase structure is first detached from its context (mother). Then,
-        (i) Head movement reconstruction is applied first,
-        (ii) Floater reconstruction is applied second,
-        (iii) A/A-bar reconstruction.
-
-        (i) Head movement.
-
-        (ii) The right edge of the phrase structure is explored to locate constituents (at left) with tail-head features
-        at their heads that are not satisfied. Once found, the constituent is dropped. Dropping is implemented by
-        going back to the highest node, walking downwards and looking for the first position that would satisfy the
-        tail-features.
-
-        (iii) Walk downwards on the right edge, while locating left heads with the EPP feature. If found, put the
-        phrase from SPEC into M-buffer. Conversely, if we encounter a head that has a SPEC or COMP feature
-        matching with something in M-buffer but missing in the phrase structure, elements are transferred from
-        M-buffer into these positions. The result is that phrases are dropped from SPEC/EPP positions into
-        positions in which they are lexically selected (either SPEC or COMP).
         """
 
         self.number_of_Moves = 0
@@ -95,8 +77,8 @@ class Reconstruction():
                 else:
                     if affix_.specifier():  # If the EPP is satisfied, we accept the solution
                         return True
-                    # If the EPP is not satisfied but there is a primitive head below, we accept the solution
-                    # because the SPEC could be filled in later by movement
+                    # What if the EPP is satisfied later by movement reconstruction?
+                    # First exception: [affix, b], b is primitive
                     elif affix_.sister() and \
                             affix_.sister().is_primitive() and \
                             not affix_.sister().get_affix():
@@ -183,11 +165,6 @@ class Reconstruction():
             elif floater.mother and '-SPEC:*' in floater.mother.get_head().features:
                 if floater == floater.mother.get_head().specifier():
                     return floater
-            # or if its a floating DP
-            # This is needed to get arguments to move into a higher EPP position from otherwise legit position (e.g. antanut __ ei Pekka . . .)
-            # This rule causes problems elsewhere because it makes it possible to double drop floaters, lets fix this later
-            #elif 'D' in floater.get_labels():
-            #    return floater
 
         # Check if the right edge itself has tail features (e.g. DP at the bottom, floaters/adjuncts)
         if not _ps_iterator.is_primitive() and \
@@ -219,8 +196,6 @@ class Reconstruction():
 
         # This downward loop searches a position for the floater
         while ps_iterator_ and not ps_iterator_ == floater and not ps_iterator_.find_me_elsewhere:
-
-            # Lower bound must be the edge of next fin, this condition is missing (not needed for 1.x)
 
             # Create hypothetical structure for testing
             if 'ADV' in floater_copy.get_labels():
@@ -265,7 +240,6 @@ class Reconstruction():
         else:
             return False
 
-
     # Reverse-engineers A-movement and A-bar movement and uses Chesi memory buffer
     def reconstruct_phrasal_movement(self, ps):
         log(f'\t\t\tDropping A-/A-bar movement.')
@@ -288,246 +262,6 @@ class Reconstruction():
             _ps_iterator = _ps_iterator.walk_downstream()
 
         self.try_extraposition(_ps_last_site)
-
-    def target_head(self, _ps_iterator):
-        if _ps_iterator.is_primitive():
-            h = _ps_iterator
-        elif _ps_iterator.left_const.is_primitive():
-            h = _ps_iterator.left_const
-        else:
-            h = None
-        return h
-
-    def try_extraposition(self, ps):
-        # Returns the bottom node on the right edge (not geometrical)
-
-        def get_bottom(ps):
-            iterator_ = ps
-            while iterator_:
-                if iterator_.is_primitive():
-                    return iterator_
-                else:
-                    iterator_ = iterator_.walk_downstream()
-            return
-
-        # Presupposition 1
-        # LF - legibility fails(last resort)
-        if ps.get_top().LF_legibility_test().all_pass():
-            return
-
-        # Presupposition 2
-        # Do this only for referential structures (T/fin, D)
-        if not (ps.get_top().contains_feature('CAT:FIN') or 'D' in ps.get_top().get_labels()):
-            return
-
-        log(f'\t\t\t\tExtraposition will be tried on {ps.get_top()}.')
-        ps_ = get_bottom(ps).mother
-
-        # Find first [H XP] where H is adjoinable and
-        # we have either (i) [XP][HP] or (ii) [X HP] with X not selecting for H
-        while ps_:
-            if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
-                # If its phrase, then we can select HP (=i)
-                if not ps_.sister().is_primitive():
-                    break
-                # If it is head, then we select HP if the head rejects HP as complement (=ii)
-                else:
-                    # Explicit non-selection
-                    if ps_.left_const.get_labels() & ps_.sister().get_not_comps():
-                        break
-                    # Mandatory selection for something else
-                    if ps_.sister().get_mandatory_comps() and not(ps_.left_const.get_labels() & ps_.sister().get_mandatory_comps()):
-                        break
-
-            ps_ = ps_.walk_upstream()
-
-        if ps_:
-            # It only applies this rule if there is a verb (V) or D
-            # This is LF-requirement: the adjunct must get semantic interpretation
-            for head in ps_.left_const.get_feature_vector():
-                if 'FIN' in head.get_labels() or 'D' in head.get_labels():
-                    self.create_adjunct(ps_)
-                    log(f'\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
-                    if not ps_.get_top().LF_legibility_test().all_pass():
-                        # If phi set is available...
-                        if self.promote_phi_set(ps_.left_const):
-                            log(f'\t\t\t\tThe structure is still illicit. Try phi-tailing as a last resort.')
-                            drop_floaters(ps_.get_top())
-                            log(f'\t\t\t\t={ps_.get_top()}')
-                    return True
-
-        return False
-
-    # This locates node XP in [fin XP] or return the highest node if not found
-    # It is required because many operations are restricted by a minimal tense condition
-    # e.g. argument/adjunct float
-    def locate_minimal_tense_edge(self, ps):
-
-        ps_iterator_ = ps
-        node = ps
-
-        # Go upwards to the upper edge of the finite construction
-        while ps_iterator_:
-            node = ps_iterator_
-            if ps_iterator_.sister() \
-                    and 'FIN' in ps_iterator_.get_labels() \
-                    and 'FIN' not in ps_iterator_.sister().get_labels():
-                break
-            ps_iterator_ = ps_iterator_.walk_upstream()
-
-        # we return the right const because that is the upper edge
-        if node.right_const and not node.right_const.adjunct:
-            return node.right_const
-        else:
-            return node
-
-    # Creates an adjunct of a constituent
-    def create_adjunct(self, ps):
-        """
-        Creates an adjunct out of a constituent.
-
-        Adjuncts are marked as such by a specific feature of the constituent. Right adjuncts are processes in a
-        separate syntactic working space. This function sets that feature to true.
-
-        If the sister is already an adjunct, the operation is cancelled. In other words, [<XP>, <YP>] is not possible.
-        This constituent is anomalous in the current system.
-
-        If the constituent is a phrase, it is marked as adjunct and no further steps are taken. If the constituent
-        is a head, then we have to consider how much of the surrounding structure will be eaten into the adjunct. If
-        the head is marked for EPP, we eat the SPEC (if any). If not, we can eat only the complement. The procedure here
-        is complex and must be verified by empirical tests.
-        """
-
-        def make_adjunct(ps):
-            #if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-            #    log(f'\t\t\t\t{ps} cannot be made an adjunct because its sister is an adjunct.')
-            #    return False
-            ps.adjunct = True
-            log(f'\t\t\t\t{ps} was made an adjunct.')
-            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-                ps.mother.adjunct = True
-            return True
-
-        # --- Main function begins here --- #
-
-        head = ps.get_head()
-
-        # If the head is primitive, we must decide how much of the surrounding structure we will eat
-        if ps.is_primitive():
-            # If the adjunct has found an acceptable position, we use !SPEC:* feature
-            if head.external_tail_head_test():
-                if '!SPEC:*' in head.features and head.mother.mother:
-                    make_adjunct(head.mother.mother)
-                    return ps.mother.mother
-                else:
-                    make_adjunct(head.mother)
-                    return ps.mother
-            # If the adjunct is still in wrong position, we eat the specifier if accepted
-            else:
-                # If potential Spec exists and the head accepts specifiers...
-                if head.specifier() and not '-SPEC:*' in head.features and \
-                        not set(head.get_not_specs()).intersection(set(head.specifier().get_labels())):
-                    if head.mother.mother:
-                        make_adjunct(head.mother.mother)
-                    return ps.mother.mother
-                else:
-                    make_adjunct(head.mother)
-                    return ps.mother
-        else:
-            make_adjunct(ps)
-
-    # This will create a head from a specifier that lacks a head
-    def engineer_head_from_specifier(self, features, labels):
-        """
-        This operation spawns a head H from a detected specifier XP that lacks a head.
-
-        The category of the new head will be constructed from the criterial features F... scanned from XP,
-        by creating uninterpretable (uF) and interpretable (iF) copies of the original features (F).
-
-        The uninterpretable feature uF is the probe feature that agrees with F, but does not have
-        semantic effects. The interpretable feature iF represents the scope-marker or the criterial head.
-        Accordingly, a head that is spawned is always a criterial head. Then, other required features
-        are added to the head on the basis of lexical rules (or the language).
-        """
-
-        new_h = self.lexical_access.PhraseStructure()
-
-        # The category of the new head is going to be a copy of criterial feature of Spec
-        # and the label of the original head (inverse feature inheritance)
-        # We also create artificial phonological matrix for illustration
-        for f in features:
-            new_h.features.add('CAT:u' + f)
-            new_h.features.add('PF:u' + f)
-        if features:
-            for label in labels:
-                new_h.features.add('CAT:' + label)
-
-        # We add EPP required features
-        new_h.features = self.lexical_access.apply_parameters(
-            self.lexical_access.apply_redundancy_rules(new_h.features))
-
-        return new_h
-
-    # This will provide unique names when chains are formed
-    # It is used only for output purposes
-    def babtize(self):
-        self.name_provider_index += 1
-        return str(self.name_provider_index)
-
-    # Checks intervention
-    def memory_intervention(self, criterial_features):
-        for constituent in self.memory_buffer:
-            if constituent.get_criterial_features().intersection(criterial_features):
-                return True
-        return False
-
-    # Returns True if a spec-feature of H matches with the category of the head of G
-    def spec_match(self, H, G):
-
-        if 'SPEC:*' in H.features or '!SPEC:*' in H.features:
-            return True
-
-        for f_ in H.for_parsing(H.get_specs()):
-            for g_ in G.get_labels():
-                if f_ == g_:
-                    return True
-        return False
-
-    # This function returns a pointer to a constituent in the memory buffer if it should/could be become SPEC,hP
-    def fit_spec(self, h):
-
-        # Retrieve the list of specifiers for h
-        specs = h.get_specifiers()
-
-        # This is the pointer to memory buffer constituent that is selected for merge
-        # None, if nothing is selected
-        target_const = None
-
-        # To preserve working code I keep here the old and just add the required extra condition;
-        # these can later be merged into one simple code
-
-        # No SPEC situation
-        if not specs:
-            # Select the first possible Spec constituent from memory buffer
-            for const in self.memory_buffer:
-                # Check if SPEC,h could accept the constituent from memory, take the first match
-                if self.spec_match(h, const) and not target_const:
-                    target_const = const
-                # Check if SPEC,h is a EPP position
-                if '+PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
-                    target_const = const
-        # The second option is "tucking in": to insert SPEC and push adjuncts upwards
-        else:
-            if specs[0].adjunct:
-                for const in self.memory_buffer:
-                    # Check if SPEC,h could accept the constituent from memory, take the first match
-                    if self.spec_match(h, const) and not target_const:
-                        target_const = const
-                    # Check if SPEC,h is a EPP position
-                    if '+PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
-                        target_const = const
-
-        return target_const
 
     def fill_spec_from_memory(self, h):
 
@@ -731,15 +465,229 @@ class Reconstruction():
                     head.sister().merge(ps.transfer(self.babtize()), 'right')
                     self.number_of_Moves += 1
 
+
+    def target_head(self, _ps_iterator):
+        if _ps_iterator.is_primitive():
+            h = _ps_iterator
+        elif _ps_iterator.left_const.is_primitive():
+            h = _ps_iterator.left_const
+        else:
+            h = None
+        return h
+
+    def try_extraposition(self, ps):
+        # Returns the bottom node on the right edge (not geometrical)
+
+        def get_bottom(ps):
+            iterator_ = ps
+            while iterator_:
+                if iterator_.is_primitive():
+                    return iterator_
+                else:
+                    iterator_ = iterator_.walk_downstream()
+            return
+
+        # Presupposition 1
+        # LF - legibility fails(last resort)
+        if ps.get_top().LF_legibility_test().all_pass():
+            return
+
+        # Presupposition 2
+        # Do this only for referential structures (T/fin, D)
+        if not (ps.get_top().contains_feature('CAT:FIN') or 'D' in ps.get_top().get_labels()):
+            return
+
+        log(f'\t\t\t\tExtraposition will be tried on {ps.get_top()}.')
+        ps_ = get_bottom(ps).mother
+
+        # Find first [H XP] where H is adjoinable and
+        # we have either (i) [XP][HP] or (ii) [X HP] with X not selecting for H
+        while ps_:
+            if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
+                # If its phrase, then we can select HP (=i)
+                if not ps_.sister().is_primitive():
+                    break
+                # If it is head, then we select HP if the head rejects HP as complement (=ii)
+                else:
+                    # Explicit non-selection
+                    if ps_.left_const.get_labels() & ps_.sister().get_not_comps():
+                        break
+                    # Mandatory selection for something else
+                    if ps_.sister().get_mandatory_comps() and not(ps_.left_const.get_labels() & ps_.sister().get_mandatory_comps()):
+                        break
+
+            ps_ = ps_.walk_upstream()
+
+        if ps_:
+            # This is LF-requirement: the adjunct must get semantic interpretation
+            for head in ps_.left_const.get_feature_vector():
+                if 'FIN' in head.get_labels() or 'D' in head.get_labels():
+                    self.create_adjunct(ps_)
+                    log(f'\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
+                    if not ps_.get_top().LF_legibility_test().all_pass():
+                        # If phi set is available...
+                        if self.promote_phi_set(ps_.left_const):
+                            log(f'\t\t\t\tThe structure is still illicit. Try phi-tailing as a last resort.')
+                            drop_floaters(ps_.get_top())
+                            log(f'\t\t\t\t={ps_.get_top()}')
+                    return True
+
+        return False
+
+
+    def locate_minimal_tense_edge(self, ps):
+
+        ps_iterator_ = ps
+        node = ps
+
+        # Go upwards to the upper edge of the finite construction
+        while ps_iterator_:
+            node = ps_iterator_
+            if ps_iterator_.sister() \
+                    and 'FIN' in ps_iterator_.get_labels() \
+                    and 'FIN' not in ps_iterator_.sister().get_labels():
+                break
+            ps_iterator_ = ps_iterator_.walk_upstream()
+
+        # we return the right const because that is the upper edge
+        if node.right_const and not node.right_const.adjunct:
+            return node.right_const
+        else:
+            return node
+
+    # Creates an adjunct of a constituent
+    def create_adjunct(self, ps):
+        """
+        Creates an adjunct out of a constituent.
+        """
+
+        def make_adjunct(ps):
+            #if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
+            #    log(f'\t\t\t\t{ps} cannot be made an adjunct because its sister is an adjunct.')
+            #    return False
+            ps.adjunct = True
+            log(f'\t\t\t\t{ps} was made an adjunct.')
+            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
+                ps.mother.adjunct = True
+            return True
+
+        # --- Main function begins here --- #
+
+        head = ps.get_head()
+
+        # If the head is primitive, we must decide how much of the surrounding structure we will eat
+        if ps.is_primitive():
+            # If the adjunct has found an acceptable position, we use !SPEC:* feature
+            if head.external_tail_head_test():
+                if '!SPEC:*' in head.features and head.mother.mother:
+                    make_adjunct(head.mother.mother)
+                    return ps.mother.mother
+                else:
+                    make_adjunct(head.mother)
+                    return ps.mother
+            # If the adjunct is still in wrong position, we eat the specifier if accepted
+            else:
+                # If potential Spec exists and the head accepts specifiers...
+                if head.specifier() and not '-SPEC:*' in head.features and \
+                        not set(head.get_not_specs()).intersection(set(head.specifier().get_labels())):
+                    if head.mother.mother:
+                        make_adjunct(head.mother.mother)
+                    return ps.mother.mother
+                else:
+                    make_adjunct(head.mother)
+                    return ps.mother
+        else:
+            make_adjunct(ps)
+
+    # This will create a head from a specifier that lacks a head
+    def engineer_head_from_specifier(self, features, labels):
+        """
+        This operation spawns a head H from a detected specifier XP that lacks a head.
+        """
+
+        new_h = self.lexical_access.PhraseStructure()
+
+        # The category of the new head is going to be a copy of criterial feature of Spec
+        # and the label of the original head (inverse feature inheritance)
+        # We also create artificial phonological matrix for illustration
+        for f in features:
+            new_h.features.add('CAT:u' + f)
+            new_h.features.add('PF:u' + f)
+        if features:
+            for label in labels:
+                new_h.features.add('CAT:' + label)
+
+        # We add EPP required features
+        new_h.features = self.lexical_access.apply_parameters(
+            self.lexical_access.apply_redundancy_rules(new_h.features))
+
+        return new_h
+
+    # This will provide unique names when chains are formed
+    # It is used only for output purposes
+    def babtize(self):
+        self.name_provider_index += 1
+        return str(self.name_provider_index)
+
+    # Checks intervention
+    def memory_intervention(self, criterial_features):
+        for constituent in self.memory_buffer:
+            if constituent.get_criterial_features().intersection(criterial_features):
+                return True
+        return False
+
+    # Returns True if a spec-feature of H matches with the category of the head of G
+    def spec_match(self, H, G):
+
+        if 'SPEC:*' in H.features or '!SPEC:*' in H.features:
+            return True
+
+        for f_ in H.for_parsing(H.get_specs()):
+            for g_ in G.get_labels():
+                if f_ == g_:
+                    return True
+        return False
+
+    # This function returns a pointer to a constituent in the memory buffer if it should/could be become SPEC,hP
+    def fit_spec(self, h):
+
+        # Retrieve the list of specifiers for h
+        specs = h.get_specifiers()
+
+        # This is the pointer to memory buffer constituent that is selected for merge
+        # None, if nothing is selected
+        target_const = None
+
+        # To preserve working code I keep here the old and just add the required extra condition;
+        # these can later be merged into one simple code
+
+        # No SPEC situation
+        if not specs:
+            # Select the first possible Spec constituent from memory buffer
+            for const in self.memory_buffer:
+                # Check if SPEC,h could accept the constituent from memory, take the first match
+                if self.spec_match(h, const) and not target_const:
+                    target_const = const
+                # Check if SPEC,h is an EPP position
+                if '+PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
+                    target_const = const
+        # The second option is "tucking in": to insert SPEC and push adjuncts upwards
+        else:
+            if specs[0].adjunct:
+                for const in self.memory_buffer:
+                    # Check if SPEC,h could accept the constituent from memory, take the first match
+                    if self.spec_match(h, const) and not target_const:
+                        target_const = const
+                    # Check if SPEC,h is a EPP position
+                    if '+PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
+                        target_const = const
+
+        return target_const
+
     # This will promote a phi set (if any) into tail features
     def promote_phi_set(self, ps):
         """
         Promotes the phi-set into the status of a tail feature.
-
-        An argument DP can be floated by allowing its phi-features to function as tail-features. When this happens,
-        the DP will function like an adverb that tries to link with a functional element containing those phi-
-        features. Intuitively, it links DPs with c-commanding heads that share their phi-features. This function
-        must be scrutinized later when we add phi-feature mechanisms more generally.
         """
 
         if ps.get_phi_set():
