@@ -1,9 +1,20 @@
-# parser-grammar
-I will type here various things I encountered while working with v. 1.01, mainly for myself:
+Parser-grammar v. 1.9x
+2019
 
-1. Why functions like get_comps() return lists and not sets? They should return sets, unless there was a good reason for this. Once
-they return sets, many tests are easier to implement by using set intersection. I think all conditions should be implemented in terms of set operations if possible -- but right now I don't remember if there was some reason to use sets.
+This project is a computational implementation of a minimalist top-down/left-right parser-grammar of Phillips' (1996) style,
+intended to be used as a tool for scientific, linguistic analysis. 
 
-2. The way how morphology-lexicon monitors  what are word-internal morphemes is a mess and unintuitive
+Full documentation can be found from /Documentation folder.
 
-3. Should we replace all merge statements with the + notation? Is there are problem here? I would like to do it like an algebra.
+The program is used to test theoretical linguistic hypotheses by means of simulation. In a typical scenario, you will feed the 
+algorithm with a (typically large) linguistic corpus which it parses/analyses, and which you would then compare with some
+"gold standard" analysis. In this way, theoretical ideas can be tested and compared with each other rigorously on a very large set of
+expressions. 
+
+The parser-grammar is based on a theory originally proposed by Phillips (1996), which derives phrase structures in top-down/left-right
+order, thus in a way that is consistent with how humans must comprehend/parse language. The program adds to this the algorithm that 
+performs the actual parsing. It guides the core computational operations of the human language faculty (e.g. Merge, Move) by reading 
+a list of words from the PF-interface. The model has been developed within the framework of the minimalist grammar (Chomsky, 1995, 2000, 2008).
+
+The program was created in connection with a research project led by Prof. Cristiano Chesi (IUSS, Pavia). This version was designed and 
+programmed by Pauli Brattico with some code contributed by Jukka Purma.
