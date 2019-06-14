@@ -9,7 +9,6 @@ class LexicalInterface:
 
     # The interface contains a dictionary which holds the lexical items
     # The lexicon is a combination of language-invariant morphemes (UG_morphemes) and language-specific morphemes
-    # loaded from a file (in JSON format)
     def __init__(self, redundancy_rules_file='redundancy_rules.txt'):
         self.PhraseStructure = minimalist.PhraseStructure
         self.d = defaultdict(list)
@@ -181,6 +180,7 @@ class LexicalInterface:
         # This captures the connection between agreement and optional EPP
         # Select non-finite heads minus v which is special because it assigns thematic role to its Spec
         if '!COMP:*' in features and \
+                not 'CAT:T' in features and \
                 not 'CAT:T/fin' in features and \
                 not 'CAT:C/fin' in features and \
                 not 'CAT:v' in features and \
@@ -188,7 +188,7 @@ class LexicalInterface:
             if Non_Finite_Agreement and not 'CAT:FORCE' in features and not 'CAT:D' in features: # D does not phi-agree, hence it belongs to the second group
                 features.add('SPEC:*')
             else:
-                if not 'CAT:uWH' in features and not 'CAT:uR' in features:
+                if not '+PHI' in features and not 'CAT:uWH' in features and not 'CAT:uR' in features:
                     features.add('-SPEC:*')
                     features.add('-PHI')
 

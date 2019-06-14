@@ -13,17 +13,52 @@ class Logger:
         self.buffer = []
         self.colors = True
         self.operations = 0
+        self.disabled = False
 
 
 log_instance = Logger()
 
 
+def show_results(ps_, result_list, number_of_Merges, number_of_Moves, number_of_solutions_tried):
+    log(f'!--->\t\tTests passed (with {number_of_Merges}/'
+        f'{get_number_of_operations()} operations) <------------------------------------')
+    ps_.tidy_names(1)
+    print(chr(96 + len(result_list)) + '. ' + ps_.show())
+    print(ps_.spellout())
+    print(ps_.illustrate_spellout())
+    print(ps_.illustrate())
+    print(str(number_of_Merges) + ', Moves: ' + str(number_of_Moves)
+          + ', Solutions tried: ' + str(number_of_solutions_tried) + '\n')
+    log_result(ps_)
+    log(ps_.show_primitive_constituents())
+    log(ps_.show_all_vectors())
+    log('\t\t\tChecking if the sentence is ambiguous...')
+
+
+def report_LF_problem(ps_):
+    log('\t\t\tLF-interface condition(s) violated')
+    log(ps_.show_primitive_constituents())
+    log(ps_.show_all_vectors())
+    log('\n\t\tTrying to find other solutions...')
+
+
+def report_tail_head_problem(ps_):
+    log('\t\t\tFinal tail-head check failed.')
+    log(ps_.show_primitive_constituents())
+    log(ps_.show_all_vectors())
+    log('\t\t\tLet\'s find another solution...\n.\n.\n.')
+
+
 def log(text):
-    if log_instance.logging:
+    if log_instance.logging and not log_instance.disabled:
         my_log.info(text)
         log_instance.operations += 1
         if log_instance.use_buffer:
             log_instance.buffer.append(text)
+
+
+def disable_all_logging():
+    log_instance.disabled = True
 
 
 def get_log_buffer():

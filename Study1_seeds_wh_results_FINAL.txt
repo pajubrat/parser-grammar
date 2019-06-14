@@ -1,0 +1,127 @@
+BC parser v. 0.9
+2019-05-24 09:45:04.429289
+Test sentences from file "Experiment1_seeds_wh.txt".
+Logs into file "Experiment1_seeds_wh_log.txt.
+Lexicon from file "lexicon.txt".
+
+& Experiment 2. Ad hoc tests
+1.  kuka nukkui 
+[<D kuka>:1 [T/fin [<DP>:1 nukku]]]
+'D who T __sleep .'
+Score: 0  (Failed: 0, Merge:7, Move: 1 = Ops: 8; Discourse plausibility: -0)
+
+2.  kuka ei nukkunut 
+[<D kuka>:1 [ei [<DP>:1 [T [<DP>:1 nukku]]]]]
+'D who not __T __sleep .'
+Score: 0  (Failed: 0, Merge:8, Move: 3 = Ops: 11; Discourse plausibility: -0)
+
+3.  keta Pekka ihailee 
+[<D ketä>:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 ihailee]]]]]]]
+'D who  D Pekka T __v __admire .'
+Score: 0  (Failed: 0, Merge:11, Move: 3 = Ops: 14; Discourse plausibility: -0)
+
+4.  keta Pekka ei ihaile 
+[<D ketä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [v [<DP>:1 ihailee]]]]]]]]]
+'D who  D Pekka not __T __v __admire .'
+Score: 0  (Failed: 0, Merge:12, Move: 7 = Ops: 19; Discourse plausibility: -0)
+
+5.  mita Pekka antoi Merjalle 
+[<D mitä>:6 [uWH [<D Pekka>:7 [T/fin [<DP>:7 [v [<DP>:6 [antaa <P(lle) [D Merja-]>]]]]]]]]
+'D what  D Pekka T __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:14, Move: 10 = Ops: 24; Discourse plausibility: -0)
+
+6.  mita Pekka ei antanut Merjalle 
+[<D mitä>:9 [uWH [<D Pekka>:10 [ei [<DP>:10 [T [<DP>:10 [v [<DP>:9 [antaa <P(lle) [D Merja-]>]]]]]]]]]]
+'D what  D Pekka not __T __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:15, Move: 17 = Ops: 32; Discourse plausibility: -0)
+
+7.  kenen Pekka kaski nukkua 
+[[D kenen]:5 [uWH [<D Pekka>:4 [T/fin [<DP>:4 [käske [(DP):5 [Ainf [(DP):5 nukku]]]]]]]]]
+'D whose  D Pekka T __ask __to __sleep .'
+Score: 0  (Failed: 0, Merge:12, Move: 6 = Ops: 18; Discourse plausibility: -0)
+
+8.  kenen Pekka ei kaskenyt nukkua 
+[[D kenen]:7 [uWH [<D Pekka>:5 [ei [<DP>:5 [T [<DP>:5 [käske [(DP):7 [Ainf [(DP):7 nukku]]]]]]]]]]]
+'D whose  D Pekka not __T __ask __to __sleep .'
+Score: 0  (Failed: 0, Merge:13, Move: 11 = Ops: 24; Discourse plausibility: -0)
+
+9.  mita Pekka kaski heidan ihailla 
+[<D mitä>:10 [uWH [<D Pekka>:11 [T/fin [<DP>:11 [käske [[D heidän]:12 [Ainf [(DP):12 [v [<DP>:10 ihailee]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __admire .'
+Score: 0  (Failed: 0, Merge:16, Move: 17 = Ops: 33; Discourse plausibility: -0)
+
+10.  mita Pekka ei kaskenyt heidan ihailla 
+[<D mitä>:13 [uWH [<D Pekka>:14 [ei [<DP>:14 [T [<DP>:14 [käske [[D heidän]:16 [Ainf [(DP):16 [v [<DP>:13 ihailee]]]]]]]]]]]]]
+'D what  D Pekka not __T __ask D theirs to __v __admire .'
+Score: 0  (Failed: 0, Merge:17, Move: 28 = Ops: 45; Discourse plausibility: -0)
+
+11.  mita Pekka kaski heidan antaa Merjalle 
+[<D mitä>:20 [uWH [<D Pekka>:21 [T/fin [<DP>:21 [käske [[D heidän]:22 [Ainf [(DP):22 [v [<DP>:20 [antaa <P(lle) [D Merja-]>]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:19, Move: 33 = Ops: 52; Discourse plausibility: -0)
+
+12.  mita Pekka ei kaskenyt heidan antaa Merjalle 
+[<D mitä>:27 [uWH [<D Pekka>:28 [ei [<DP>:28 [T [<DP>:28 [käske [[D heidän]:30 [Ainf [(DP):30 [v [<DP>:27 [antaa <P(lle) [D Merja-]>]]]]]]]]]]]]]]
+'D what  D Pekka not __T __ask D theirs to __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:20, Move: 49 = Ops: 69; Discourse plausibility: -0)
+
+13.  kuka nukkui kuorsaamalla 
+[<D kuka>:3 [T/fin [<DP>:3 [nukku <malla kuorsaa>]]]]
+'D who T __sleep by snore .'
+Score: 0  (Failed: 0, Merge:9, Move: 4 = Ops: 13; Discourse plausibility: -0)
+
+14.  kuka ei nukkunut kuorsaamalla 
+[<D kuka>:5 [ei [<DP>:5 [T [<DP>:5 [nukku <malla kuorsaa>]]]]]]
+'D who not __T __sleep by snore .'
+Score: 0  (Failed: 0, Merge:10, Move: 8 = Ops: 18; Discourse plausibility: -0)
+
+15.  mita Pekka ihailee virtaamalla 
+[<D mitä>:6 [uWH [<D Pekka>:7 [T/fin [<DP>:7 [v [<DP>:6 [ihailee <malla virtaa>]]]]]]]]
+'D what  D Pekka T __v __admire by flow .'
+Score: 0  (Failed: 0, Merge:13, Move: 10 = Ops: 23; Discourse plausibility: -0)
+
+16.  mita Pekka ei ihaile virtaamalla 
+[<D mitä>:9 [uWH [<D Pekka>:10 [ei [<DP>:10 [T [<DP>:10 [v [<DP>:9 [ihailee <malla virtaa>]]]]]]]]]]
+'D what  D Pekka not __T __v __admire by flow .'
+Score: 0  (Failed: 0, Merge:14, Move: 17 = Ops: 31; Discourse plausibility: -0)
+
+17.  kuka antoi kirjan Merjalle heittamalla 
+[<D kuka>:6 [T/fin [<DP>:6 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]
+'D who T __v give D book for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:16, Move: 26 = Ops: 42; Discourse plausibility: -0)
+
+18.  mita Pekka ei antanut Merjalle heittamalla 
+[<D mitä>:17 [uWH [<D Pekka>:18 [ei [<DP>:18 [T [<DP>:18 [v [<DP>:17 [antaa <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]
+'D what  D Pekka not __T __v __give for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:17, Move: 37 = Ops: 54; Discourse plausibility: -0)
+
+19.  kenen Pekka kaski nukkua kuorsaamalla 
+[[D kenen]:15 [uWH [<D Pekka>:14 [T/fin [<DP>:14 [käske [(DP):15 [Ainf [(DP):15 [nukku <malla kuorsaa>]]]]]]]]]]
+'D whose  D Pekka T __ask __to __sleep by snore .'
+Score: 0  (Failed: 0, Merge:14, Move: 21 = Ops: 35; Discourse plausibility: -0)
+
+20.  kenen Pekka ei kaskenyt nukkua kuorsaamalla 
+[[D kenen]:19 [uWH [<D Pekka>:17 [ei [<DP>:17 [T [<DP>:17 [käske [(DP):19 [Ainf [(DP):19 [nukku <malla kuorsaa>]]]]]]]]]]]]
+'D whose  D Pekka not __T __ask __to __sleep by snore .'
+Score: 0  (Failed: 0, Merge:15, Move: 32 = Ops: 47; Discourse plausibility: -0)
+
+21.  mita Pekka kaski heidan ihailla virtaamalla 
+[<D mitä>:20 [uWH [<D Pekka>:21 [T/fin [<DP>:21 [käske [[D heidän]:22 [Ainf [(DP):22 [v [<DP>:20 [ihailee <malla virtaa>]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __admire by flow .'
+Score: 0  (Failed: 0, Merge:18, Move: 33 = Ops: 51; Discourse plausibility: -0)
+
+22.  mita Pekka ei kaskenyt heidan ihailla virtaamalla 
+[<D mitä>:27 [uWH [<D Pekka>:28 [ei [<DP>:28 [T [<DP>:28 [käske [[D heidän]:30 [Ainf [(DP):30 [v [<DP>:27 [ihailee <malla virtaa>]]]]]]]]]]]]]]
+'D what  D Pekka not __T __ask D theirs to __v __admire by flow .'
+Score: 0  (Failed: 0, Merge:19, Move: 49 = Ops: 68; Discourse plausibility: -0)
+
+23.  mita Pekka kaski heidan antaa Merjalle heittamalla 
+[<D mitä>:31 [uWH [<D Pekka>:32 [T/fin [<DP>:32 [käske [[D heidän]:33 [Ainf [(DP):33 [v [<DP>:31 [antaa <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __give for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:21, Move: 64 = Ops: 85; Discourse plausibility: -0)
+
+24.  mita Pekka ei kaskenyt heidan antaa Merjalle heittamalla 
+[<D mitä>:43 [uWH [<D Pekka>:44 [ei [<DP>:44 [T [<DP>:44 [käske [[D heidän]:46 [Ainf [(DP):46 [v [<DP>:43 [antaa <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]]]]]
+'D what  D Pekka not __T __ask D theirs to __v __give for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:22, Move: 91 = Ops: 113; Discourse plausibility: -0)
+

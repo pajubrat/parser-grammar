@@ -17,6 +17,7 @@ class LF:
         self.head_integrity_test_result = True
         self.criterial_feature_test_result = True
         self.semantic_test_result = True
+        self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_crash = False
 
@@ -61,40 +62,54 @@ class LF:
                 self.test(ps.right_const)
             return
 
-        spec = ps.specifier()
-        comp = ps.complement()
-        lf_features = sorted(for_lf_interface(ps.features))
+        h = ps  # Just to keep track of the fact that we have selected primitive head
+
+        spec = h.specifier()
+        specs = h.get_specifiers()
+
+        comp = h.complement()
+        lf_features = sorted(for_lf_interface(h.features))
 
         # 1. Head integrity test
-        if not ps.get_cats():
+        if not h.get_cats():
             log('\t\t\t\tAn uninterpretable grammatical head without lexical category was detected.')
             self.head_integrity_test_result = False
 
         # 2. Probe-goal test
         for f in lf_features:
             if f.startswith('!PROBE:'):
-                if not ps.probe(set(ps.get_cats()), f[7:]):
+                if not h.probe(set(h.get_cats()), f[7:]):
                     log(f'\t\t\t\t{ps} probing for {f[7:]} failed.')
                     self.probe_goal_test_result = False
 
-        # 3. Tail-head test
-        if not ps.internal_tail_head_test():
-            log(f'\t\t\t\t{ps} failed internal tail test.')
+        # 3. Internal tail-head test for case (DPs)
+        if 'D' in h.get_labels() and not h.internal_tail_head_test():
+            log(f'\t\t\t\th{h} failed internal tail test.')
             self.tail_head_test_result = False
 
         # 4. Double Spec test for DP arguments
-        if '2SPEC' not in ps.features:
-            if spec and 'D' in spec.get_labels():
-                aunt = spec.mother and spec.mother.sister()
-                if aunt and 'D' in aunt.get_labels() and not aunt.is_primitive() and not aunt.is_right():
-                    self.head_integrity_test_result = False
-                    log(f'\t\t\t\t{ps} has double specifiers.')
+        if '2SPEC' not in h.features:
+            """
+            Returns False if the head is associated with more than one non-adjunct DP specifier at LF
+            
+            The test ignores adjuncts, non-DPs and DPs that have been moved out from SPEC
+            """
+            count = 0
+            list_ = h.get_specifiers()
+            if list_:
+                for spec_ in list_:
+                    if not spec_.adjunct and 'D' in spec_.get_labels() and not spec_.find_me_elsewhere:
+                        count = count + 1
+
+            if count > 1:
+                self.head_integrity_test_result = False
+                log(f'\t\t\t\t{ps} has double specifiers.')
 
         # 5. Semantic match test between H and Comp,H
         if comp:
-            if not LF.semantic_match(ps, ps.complement()):
+            if not LF.semantic_match(h, h.complement()):
                 self.semantic_test_result = False
-                log(f'\t\t\t\t{ps} fails semantic match with {ps.complement()}')
+                log(f'\t\t\t\t{ps} fails semantic match with {h.complement()}')
 
         # 6. Selection tests
         for f in lf_features:
@@ -102,35 +117,37 @@ class LF:
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
                 if spec and f[6:] in spec.get_labels():
-                    log(f'\t\t\t\t{ps} has unaccetable specifier {spec}.')
-                    self.selection_test_result = False
+                    if not spec.adjunct:
+                        log(f'\t\t\t\t{ps} has unaccetable specifier {spec}.')
+                        self.selection_test_result = False
 
             # 3.2. No specifier of any kind allowed (e.g., English P)
             if f == '-SPEC:*':
                 if spec:
-                    log(f'\t\t\t\t{ps} ({ps.illustrate()}) has a specifier {spec} '
-                        f'but is marked for -EPP behavior.')
-                    self.selection_test_result = False
+                    if not (spec.adjunct and spec.find_me_elsewhere):
+                        log(f'\t\t\t\t{h} ({h.illustrate()}) has a specifier {spec} '
+                            f'but is marked for -EPP behavior.')
+                        self.selection_test_result = False
 
             # 3.3. Obligatory complement
             if f.startswith('!COMP:') and not f == '!COMP:*':
-                if not selected_sister(ps):
-                    log(f'\t\t\t\t{ps} ({ps.illustrate()}) is missing complement {f[6:]}')
+                if not selected_sister(h):
+                    log(f'\t\t\t\t{h} ({h.illustrate()}) is missing complement {f[6:]}')
                     self.selection_test_result = False
                 else:
                     if f[6:] not in selected_sister(ps).get_labels():
-                        log(f'\t\t\t\t{ps} ({ps.illustrate()}) is missing a mandatory complement {f[6:]}')
+                        log(f'\t\t\t\t{h} ({h.illustrate()}) is missing a mandatory complement {f[6:]}')
                         self.selection_test_result = False
 
             # 3.4. Complement restriction
             if f.startswith('-COMP:'):
-                if ps.is_left() and comp and f[6:] in comp.get_labels():
+                if h.is_left() and comp and f[6:] in comp.get_labels():
                     log(f'\t\t\t\t"{ps}\" has wrong complement {comp} {illu(comp.get_labels())}P')
                     self.selection_test_result = False
 
             if f == '-COMP:*':
-                if ps.is_left() and comp:
-                    log(f'\t\t\t\t{ps} does not accept complements.')
+                if h.is_left() and comp:
+                    log(f'\t\t\t\t{h} does not accept complements.')
                     self.selection_test_result = False
 
             # 3.5. !COMP:* heads must have complements (=functional head)
@@ -141,35 +158,69 @@ class LF:
 
             # 3.6. !SPEC:* heads require a specifier
             if f == '!SPEC:*' and not spec:
-                log(f'\t\t\t\tAn EPP-head "{ps}" lacks specifier but needs one.')
-                self.selection_test_result = False
+                # This condition takes care of the curious fact that overt C cancels !SPEC:*
+                if h.get_selector() and 'FIN' in h.get_selector().get_labels():
+                    pass
+                else:
+                    log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier but needs one.')
+                    self.selection_test_result = False
 
-            # 3.7. !SPEC:D, head requires specific specifier
+            # 3.7. !SPEC:F, head requires specific specifier
+            # Left adjunct can satisfy this, left non-adjunct must satisfy it
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
-                if not spec:
-                    log(f'\t\t\t\tAn EPP-head "{ps}" lacks specifier {f[6:]} that it requires.')
+                if not specs:
+                    log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier {f[6:]} that it requires.')
                     self.selection_test_result = False
                 else:
-                    if f[6:] not in spec.get_labels() and f[7:] not in spec.get_labels():
-                        log(f'\t\t\t\tAn EPP-head "{ps}" has wrong specifier, needs {f[6:]}')
+                    found = False
+                    for s in specs:
+                        # Suitable left adjunct can satisfy SPEC requirement
+                        if s.adjunct:
+                            if f[6:] in s.get_labels() or f[7:] in s.get_labels():
+                                found = True
+                                break
+                        # Suitable non-adjunct must satisfy SPEC requirement
+                        else:
+                            if f[6:] in s.get_labels() or f[7:] in s.get_labels():
+                                found = True
+                                break
+                            else:
+                                found = False
+                                break
+
+                    if not found:
+                        log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {s}, needs {f[6:]}')
                         self.selection_test_result = False
 
         # 7. Criterial feature legibility test(s)
         # 7.1 test for relative pronoun
         # For every DP that it not a relative pronoun
-        if 'D' in ps.get_labels() and 'R' not in ps.get_labels() and ps.mother:
+        if 'D' in h.get_labels() and 'R' not in h.get_labels() and h.mother:
             # Check that if there is relative pronoun there is also T/fin
-            if ps.mother.contains_feature('CAT:R') and not ps.mother.contains_feature('CAT:T/fin'):
-                log(f'\t\t\t\tCriterial legibility failed for "{ps}".')
+            if h.mother.contains_feature('CAT:R') and not h.mother.contains_feature('CAT:T/fin'):
+                log(f'\t\t\t\tCriterial legibility failed for "{h}".')
                 self.criterial_feature_test_result = False
 
         # 8. Projection principle test for referential non-adjunct arguments
         # This is not inside the LF-loop because this test cannot rely solely on the LF-selection features, i.e.
         # the EPP feature SPEC:*/!SPEC:* is formal.)
-        for f in ps.features:
+        for f in h.features:
             if (f == 'SPEC:*' or f == '!SPEC:*') and spec and not spec.adjunct and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
                 log(f'\t\t\t\t{spec}" has no thematic role')
                 self.projection_principle_test_result = False
+
+        # 9. Discourse/pragmatic tests
+        # 9.1 This test accumulates discourse violations for each SPEC that cannot (easily) be topicalized
+        list_ = ps.get_specifiers()
+        if list_:
+            if len(list_) > 1:
+                # Discourse penalty for multiple specifiers
+                self.discourse_test_result = self.discourse_test_result + len(list_)*0.5
+                if 'Neg/fin' in ps.get_labels(): # Negation increases the penalty
+                    self.discourse_test_result = self.discourse_test_result + len(list_)
+            for spec in list_:
+                if 'INF' in spec.get_labels():
+                    self.discourse_test_result = self.discourse_test_result + 2
 
     # This function will try to transfer the phrase structure into LF out of syntactic working memory
     def transfer_to_LF(self, ps):
@@ -215,16 +266,16 @@ class LF:
         antecedent = set()      # Set that contains features that must be present in a legitimate antecedent
         for f in ps.features:   # Populate the set
             if f[:4] == 'ABAR': # Only abar variables implemented for now
-                antecedent.add('CAT:i'+f[5:])
+                antecedent.add('CAT:u'+f[5:])
 
         if not antecedent:      # If everything is interpretable, then we return the constituent itself
             return ps
 
         while ps_:
             if ps_.is_primitive():
-                if ps_.check_features(antecedent):
+                if ps_.check_features(antecedent) and 'FIN' in ps_.get_labels():
                     return ps_
-            elif ps_.left_const.get_head().check_features(antecedent):
+            elif ps_.left_const.get_head().check_features(antecedent) and 'FIN' in ps_.get_labels():
                 return ps_
             ps_ = ps_.walk_upstream()
 

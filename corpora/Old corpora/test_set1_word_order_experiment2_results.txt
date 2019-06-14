@@ -1,0 +1,3064 @@
+BC parser v. 0.9
+2019-04-24 16:07:52.124499
+Test sentences from file "test_set1_word_order_experiment2.txt".
+Logs into file "test_set1_word_order_experiment2_log.txt.
+Lexicon from file "test_set1_word_order_experiment2_lexicon.txt".
+1
+['Pekka', 'nukkui']
+[[D Pekka]:1 [T [(DP):1 nukku]]]
+'D Pekka T __sleep .'
+Failed parses 0, Merge operations:6, Move operations: 2
+2
+['nukkui', 'Pekka']
+*Ungrammatical.
+3
+['Pekka', 'ei', 'nukkunut']
+[[D Pekka]:1 [ei [T [(DP):1 nukku]]]]
+'D Pekka not T __sleep .'
+Failed parses 0, Merge operations:7, Move operations: 3
+4
+['Pekka', 'nukkunut', 'ei']
+*Ungrammatical.
+5
+['ei', 'Pekka', 'nukkunut']
+*Ungrammatical.
+6
+['ei', 'nukkunut', 'Pekka']
+*Ungrammatical.
+7
+['nukkunut', 'Pekka', 'ei']
+*Ungrammatical.
+8
+['nukkunut', 'ei', 'Pekka']
+*Ungrammatical.
+9
+['Pekka', 'nukkui', 'virtaamalla']
+*Ungrammatical.
+10
+['Pekka', 'virtaamalla', 'nukkui']
+*Ungrammatical.
+11
+['nukkui', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+12
+['nukkui', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+13
+['virtaamalla', 'Pekka', 'nukkui']
+*Ungrammatical.
+14
+['virtaamalla', 'nukkui', 'Pekka']
+*Ungrammatical.
+15
+['Pekka', 'ei', 'nukkunut', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [nukku <malla virtaa>]]]]]
+'D Pekka not T __sleep by flow .'
+Failed parses 0, Merge operations:9, Move operations: 7
+16
+['Pekka', 'ei', 'virtaamalla', 'nukkunut']
+[[D Pekka]:1 [ei [<malla virtaa>:2 [T [(DP):1 [nukku <ADVP>:2]]]]]]
+'D Pekka not by flow T __sleep __.'
+Failed parses 0, Merge operations:9, Move operations: 6
+17
+['Pekka', 'nukkunut', 'ei', 'virtaamalla']
+*Ungrammatical.
+18
+['Pekka', 'nukkunut', 'virtaamalla', 'ei']
+[[[D Pekka]:1 [T [(DP):1 [nukku <malla virtaa>]]]] ei]
+'D Pekka T __sleep by flow not .'
+Failed parses 0, Merge operations:9, Move operations: 8
+19
+['Pekka', 'virtaamalla', 'ei', 'nukkunut']
+*Ungrammatical.
+20
+['Pekka', 'virtaamalla', 'nukkunut', 'ei']
+*Ungrammatical.
+21
+['ei', 'Pekka', 'nukkunut', 'virtaamalla']
+*Ungrammatical.
+22
+['ei', 'Pekka', 'virtaamalla', 'nukkunut']
+*Ungrammatical.
+23
+['ei', 'nukkunut', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+24
+['ei', 'nukkunut', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+25
+['ei', 'virtaamalla', 'Pekka', 'nukkunut']
+*Ungrammatical.
+26
+['ei', 'virtaamalla', 'nukkunut', 'Pekka']
+*Ungrammatical.
+27
+['nukkunut', 'Pekka', 'ei', 'virtaamalla']
+*Ungrammatical.
+28
+['nukkunut', 'Pekka', 'virtaamalla', 'ei']
+*Ungrammatical.
+29
+['nukkunut', 'ei', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+30
+['nukkunut', 'ei', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+31
+['nukkunut', 'virtaamalla', 'Pekka', 'ei']
+*Ungrammatical.
+32
+['nukkunut', 'virtaamalla', 'ei', 'Pekka']
+*Ungrammatical.
+33
+['virtaamalla', 'Pekka', 'ei', 'nukkunut']
+*Ungrammatical.
+34
+['virtaamalla', 'Pekka', 'nukkunut', 'ei']
+*Ungrammatical.
+35
+['virtaamalla', 'ei', 'Pekka', 'nukkunut']
+[<malla virtaa>:1 [ei [[D Pekka]:2 [T [(DP):2 [nukku <ADVP>:1]]]]]]
+'by flow not D Pekka T __sleep __.'
+Failed parses 0, Merge operations:9, Move operations: 6
+36
+['virtaamalla', 'ei', 'nukkunut', 'Pekka']
+*Ungrammatical.
+37
+['virtaamalla', 'nukkunut', 'Pekka', 'ei']
+*Ungrammatical.
+38
+['virtaamalla', 'nukkunut', 'ei', 'Pekka']
+*Ungrammatical.
+39
+['kuka', 'nukkui']
+[[D kuka]:1 [T [(DP):1 nukku]]]
+'D who T __sleep .'
+Failed parses 0, Merge operations:7, Move operations: 2
+40
+['nukkui', 'kuka']
+*Ungrammatical.
+41
+['kuka', 'ei', 'nukkunut']
+[[D kuka]:1 [ei [T [(DP):1 nukku]]]]
+'D who not T __sleep .'
+Failed parses 0, Merge operations:8, Move operations: 3
+42
+['kuka', 'nukkunut', 'ei']
+*Ungrammatical.
+43
+['ei', 'kuka', 'nukkunut']
+*Ungrammatical.
+44
+['ei', 'nukkunut', 'kuka']
+*Ungrammatical.
+45
+['nukkunut', 'kuka', 'ei']
+*Ungrammatical.
+46
+['nukkunut', 'ei', 'kuka']
+*Ungrammatical.
+47
+['kuka', 'nukkui', 'virtaamalla']
+*Ungrammatical.
+48
+['kuka', 'virtaamalla', 'nukkui']
+*Ungrammatical.
+49
+['nukkui', 'kuka', 'virtaamalla']
+*Ungrammatical.
+50
+['nukkui', 'virtaamalla', 'kuka']
+*Ungrammatical.
+51
+['virtaamalla', 'kuka', 'nukkui']
+*Ungrammatical.
+52
+['virtaamalla', 'nukkui', 'kuka']
+*Ungrammatical.
+53
+['kuka', 'ei', 'nukkunut', 'virtaamalla']
+[[D kuka]:1 [ei [T [(DP):1 [nukku <malla virtaa>]]]]]
+'D who not T __sleep by flow .'
+Failed parses 0, Merge operations:10, Move operations: 7
+54
+['kuka', 'ei', 'virtaamalla', 'nukkunut']
+[[D kuka]:1 [ei [<malla virtaa>:2 [T [(DP):1 [nukku <ADVP>:2]]]]]]
+'D who not by flow T __sleep __.'
+Failed parses 0, Merge operations:10, Move operations: 6
+55
+['kuka', 'nukkunut', 'ei', 'virtaamalla']
+*Ungrammatical.
+56
+['kuka', 'nukkunut', 'virtaamalla', 'ei']
+[[[D kuka]:1 [T [(DP):1 [nukku <malla virtaa>]]]] ei]
+'D who T __sleep by flow not .'
+Failed parses 0, Merge operations:10, Move operations: 8
+57
+['kuka', 'virtaamalla', 'ei', 'nukkunut']
+[[D kuka]:1 [uWH [<malla virtaa>:2 [ei [T [(DP):1 [nukku <ADVP>:2]]]]]]]
+'D who  by flow not T __sleep __.'
+Failed parses 0, Merge operations:10, Move operations: 7
+58
+['kuka', 'virtaamalla', 'nukkunut', 'ei']
+*Ungrammatical.
+59
+['ei', 'kuka', 'nukkunut', 'virtaamalla']
+*Ungrammatical.
+60
+['ei', 'kuka', 'virtaamalla', 'nukkunut']
+*Ungrammatical.
+61
+['ei', 'nukkunut', 'kuka', 'virtaamalla']
+*Ungrammatical.
+62
+['ei', 'nukkunut', 'virtaamalla', 'kuka']
+*Ungrammatical.
+63
+['ei', 'virtaamalla', 'kuka', 'nukkunut']
+*Ungrammatical.
+64
+['ei', 'virtaamalla', 'nukkunut', 'kuka']
+*Ungrammatical.
+65
+['nukkunut', 'kuka', 'ei', 'virtaamalla']
+*Ungrammatical.
+66
+['nukkunut', 'kuka', 'virtaamalla', 'ei']
+*Ungrammatical.
+67
+['nukkunut', 'ei', 'kuka', 'virtaamalla']
+*Ungrammatical.
+68
+['nukkunut', 'ei', 'virtaamalla', 'kuka']
+*Ungrammatical.
+69
+['nukkunut', 'virtaamalla', 'kuka', 'ei']
+*Ungrammatical.
+70
+['nukkunut', 'virtaamalla', 'ei', 'kuka']
+*Ungrammatical.
+71
+['virtaamalla', 'kuka', 'ei', 'nukkunut']
+*Ungrammatical.
+72
+['virtaamalla', 'kuka', 'nukkunut', 'ei']
+*Ungrammatical.
+73
+['virtaamalla', 'ei', 'kuka', 'nukkunut']
+[<malla virtaa>:1 [ei [[D kuka]:2 [T [(DP):2 [nukku <ADVP>:1]]]]]]
+'by flow not D who T __sleep __.'
+Failed parses 0, Merge operations:10, Move operations: 6
+74
+['virtaamalla', 'ei', 'nukkunut', 'kuka']
+*Ungrammatical.
+75
+['virtaamalla', 'nukkunut', 'kuka', 'ei']
+*Ungrammatical.
+76
+['virtaamalla', 'nukkunut', 'ei', 'kuka']
+*Ungrammatical.
+77
+['Pekka', 'ihailee', 'Merjaa']
+[[D Pekka]:1 [T [(DP):1 [v [ihailee [D Merjaa]]]]]]
+'D Pekka T __v admire D  .'
+Failed parses 0, Merge operations:10, Move operations: 4
+78
+['Pekka', 'Merjaa', 'ihailee']
+*Ungrammatical.
+79
+['ihailee', 'Pekka', 'Merjaa']
+*Ungrammatical.
+80
+['ihailee', 'Merjaa', 'Pekka']
+*Ungrammatical.
+81
+['Merjaa', 'Pekka', 'ihailee']
+*Ungrammatical.
+82
+['Merjaa', 'ihailee', 'Pekka']
+*Ungrammatical.
+83
+['Pekka', 'ei', 'ihaile', 'Merjaa']
+[[D Pekka]:1 [ei [T [(DP):1 [v [ihailee [D Merjaa]]]]]]]
+'D Pekka not T __v admire D  .'
+Failed parses 0, Merge operations:11, Move operations: 5
+84
+['Pekka', 'ei', 'Merjaa', 'ihaile']
+*Ungrammatical.
+85
+['Pekka', 'ihaile', 'ei', 'Merjaa']
+*Ungrammatical.
+86
+['Pekka', 'ihaile', 'Merjaa', 'ei']
+*Ungrammatical.
+87
+['Pekka', 'Merjaa', 'ei', 'ihaile']
+*Ungrammatical.
+88
+['Pekka', 'Merjaa', 'ihaile', 'ei']
+*Ungrammatical.
+89
+['ei', 'Pekka', 'ihaile', 'Merjaa']
+*Ungrammatical.
+90
+['ei', 'Pekka', 'Merjaa', 'ihaile']
+*Ungrammatical.
+91
+['ei', 'ihaile', 'Pekka', 'Merjaa']
+*Ungrammatical.
+92
+['ei', 'ihaile', 'Merjaa', 'Pekka']
+*Ungrammatical.
+93
+['ei', 'Merjaa', 'Pekka', 'ihaile']
+*Ungrammatical.
+94
+['ei', 'Merjaa', 'ihaile', 'Pekka']
+*Ungrammatical.
+95
+['ihaile', 'Pekka', 'ei', 'Merjaa']
+*Ungrammatical.
+96
+['ihaile', 'Pekka', 'Merjaa', 'ei']
+*Ungrammatical.
+97
+['ihaile', 'ei', 'Pekka', 'Merjaa']
+*Ungrammatical.
+98
+['ihaile', 'ei', 'Merjaa', 'Pekka']
+*Ungrammatical.
+99
+['ihaile', 'Merjaa', 'Pekka', 'ei']
+*Ungrammatical.
+100
+['ihaile', 'Merjaa', 'ei', 'Pekka']
+*Ungrammatical.
+101
+['Merjaa', 'Pekka', 'ei', 'ihaile']
+*Ungrammatical.
+102
+['Merjaa', 'Pekka', 'ihaile', 'ei']
+*Ungrammatical.
+103
+['Merjaa', 'ei', 'Pekka', 'ihaile']
+*Ungrammatical.
+104
+['Merjaa', 'ei', 'ihaile', 'Pekka']
+*Ungrammatical.
+105
+['Merjaa', 'ihaile', 'Pekka', 'ei']
+*Ungrammatical.
+106
+['Merjaa', 'ihaile', 'ei', 'Pekka']
+*Ungrammatical.
+107
+['Pekka', 'ihailee', 'Merjaa', 'virtaamalla']
+[[D Pekka]:1 [T [(DP):1 [v [ihailee [[D Merjaa] <malla virtaa>]]]]]]
+'D Pekka T __v admire D  by flow .'
+Failed parses 0, Merge operations:12, Move operations: 8
+108
+['Pekka', 'ihailee', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+109
+['Pekka', 'Merjaa', 'ihailee', 'virtaamalla']
+*Ungrammatical.
+110
+['Pekka', 'Merjaa', 'virtaamalla', 'ihailee']
+*Ungrammatical.
+111
+['Pekka', 'virtaamalla', 'ihailee', 'Merjaa']
+*Ungrammatical.
+112
+['Pekka', 'virtaamalla', 'Merjaa', 'ihailee']
+*Ungrammatical.
+113
+['ihailee', 'Pekka', 'Merjaa', 'virtaamalla']
+*Ungrammatical.
+114
+['ihailee', 'Pekka', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+115
+['ihailee', 'Merjaa', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+116
+['ihailee', 'Merjaa', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+117
+['ihailee', 'virtaamalla', 'Pekka', 'Merjaa']
+*Ungrammatical.
+118
+['ihailee', 'virtaamalla', 'Merjaa', 'Pekka']
+*Ungrammatical.
+119
+['Merjaa', 'Pekka', 'ihailee', 'virtaamalla']
+*Ungrammatical.
+120
+['Merjaa', 'Pekka', 'virtaamalla', 'ihailee']
+*Ungrammatical.
+121
+['Merjaa', 'ihailee', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+122
+['Merjaa', 'ihailee', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+123
+['Merjaa', 'virtaamalla', 'Pekka', 'ihailee']
+*Ungrammatical.
+124
+['Merjaa', 'virtaamalla', 'ihailee', 'Pekka']
+*Ungrammatical.
+125
+['virtaamalla', 'Pekka', 'ihailee', 'Merjaa']
+*Ungrammatical.
+126
+['virtaamalla', 'Pekka', 'Merjaa', 'ihailee']
+*Ungrammatical.
+127
+['virtaamalla', 'ihailee', 'Pekka', 'Merjaa']
+*Ungrammatical.
+128
+['virtaamalla', 'ihailee', 'Merjaa', 'Pekka']
+*Ungrammatical.
+129
+['virtaamalla', 'Merjaa', 'Pekka', 'ihailee']
+*Ungrammatical.
+130
+['virtaamalla', 'Merjaa', 'ihailee', 'Pekka']
+*Ungrammatical.
+131
+['Pekka', 'ei', 'ihaile', 'Merjaa', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [v [ihailee [[D Merjaa] <malla virtaa>]]]]]]]
+'D Pekka not T __v admire D  by flow .'
+Failed parses 0, Merge operations:13, Move operations: 9
+132
+['Pekka', 'ei', 'ihaile', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+133
+['Pekka', 'ei', 'Merjaa', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+134
+['Pekka', 'ei', 'Merjaa', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+135
+['Pekka', 'ei', 'virtaamalla', 'ihaile', 'Merjaa']
+*Ungrammatical.
+136
+['Pekka', 'ei', 'virtaamalla', 'Merjaa', 'ihaile']
+*Ungrammatical.
+137
+['Pekka', 'ihaile', 'ei', 'Merjaa', 'virtaamalla']
+*Ungrammatical.
+138
+['Pekka', 'ihaile', 'ei', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+139
+['Pekka', 'ihaile', 'Merjaa', 'ei', 'virtaamalla']
+*Ungrammatical.
+140
+['Pekka', 'ihaile', 'Merjaa', 'virtaamalla', 'ei']
+*Ungrammatical.
+141
+['Pekka', 'ihaile', 'virtaamalla', 'ei', 'Merjaa']
+*Ungrammatical.
+142
+['Pekka', 'ihaile', 'virtaamalla', 'Merjaa', 'ei']
+*Ungrammatical.
+143
+['Pekka', 'Merjaa', 'ei', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+144
+['Pekka', 'Merjaa', 'ei', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+145
+['Pekka', 'Merjaa', 'ihaile', 'ei', 'virtaamalla']
+*Ungrammatical.
+146
+['Pekka', 'Merjaa', 'ihaile', 'virtaamalla', 'ei']
+*Ungrammatical.
+147
+['Pekka', 'Merjaa', 'virtaamalla', 'ei', 'ihaile']
+*Ungrammatical.
+148
+['Pekka', 'Merjaa', 'virtaamalla', 'ihaile', 'ei']
+*Ungrammatical.
+149
+['Pekka', 'virtaamalla', 'ei', 'ihaile', 'Merjaa']
+*Ungrammatical.
+150
+['Pekka', 'virtaamalla', 'ei', 'Merjaa', 'ihaile']
+*Ungrammatical.
+151
+['Pekka', 'virtaamalla', 'ihaile', 'ei', 'Merjaa']
+*Ungrammatical.
+152
+['Pekka', 'virtaamalla', 'ihaile', 'Merjaa', 'ei']
+*Ungrammatical.
+153
+['Pekka', 'virtaamalla', 'Merjaa', 'ei', 'ihaile']
+*Ungrammatical.
+154
+['Pekka', 'virtaamalla', 'Merjaa', 'ihaile', 'ei']
+*Ungrammatical.
+155
+['ei', 'Pekka', 'ihaile', 'Merjaa', 'virtaamalla']
+*Ungrammatical.
+156
+['ei', 'Pekka', 'ihaile', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+157
+['ei', 'Pekka', 'Merjaa', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+158
+['ei', 'Pekka', 'Merjaa', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+159
+['ei', 'Pekka', 'virtaamalla', 'ihaile', 'Merjaa']
+*Ungrammatical.
+160
+['ei', 'Pekka', 'virtaamalla', 'Merjaa', 'ihaile']
+*Ungrammatical.
+161
+['ei', 'ihaile', 'Pekka', 'Merjaa', 'virtaamalla']
+*Ungrammatical.
+162
+['ei', 'ihaile', 'Pekka', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+163
+['ei', 'ihaile', 'Merjaa', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+164
+['ei', 'ihaile', 'Merjaa', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+165
+['ei', 'ihaile', 'virtaamalla', 'Pekka', 'Merjaa']
+*Ungrammatical.
+166
+['ei', 'ihaile', 'virtaamalla', 'Merjaa', 'Pekka']
+*Ungrammatical.
+167
+['ei', 'Merjaa', 'Pekka', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+168
+['ei', 'Merjaa', 'Pekka', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+169
+['ei', 'Merjaa', 'ihaile', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+170
+['ei', 'Merjaa', 'ihaile', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+171
+['ei', 'Merjaa', 'virtaamalla', 'Pekka', 'ihaile']
+*Ungrammatical.
+172
+['ei', 'Merjaa', 'virtaamalla', 'ihaile', 'Pekka']
+*Ungrammatical.
+173
+['ei', 'virtaamalla', 'Pekka', 'ihaile', 'Merjaa']
+*Ungrammatical.
+174
+['ei', 'virtaamalla', 'Pekka', 'Merjaa', 'ihaile']
+*Ungrammatical.
+175
+['ei', 'virtaamalla', 'ihaile', 'Pekka', 'Merjaa']
+*Ungrammatical.
+176
+['ei', 'virtaamalla', 'ihaile', 'Merjaa', 'Pekka']
+*Ungrammatical.
+177
+['ei', 'virtaamalla', 'Merjaa', 'Pekka', 'ihaile']
+*Ungrammatical.
+178
+['ei', 'virtaamalla', 'Merjaa', 'ihaile', 'Pekka']
+*Ungrammatical.
+179
+['ihaile', 'Pekka', 'ei', 'Merjaa', 'virtaamalla']
+*Ungrammatical.
+180
+['ihaile', 'Pekka', 'ei', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+181
+['ihaile', 'Pekka', 'Merjaa', 'ei', 'virtaamalla']
+*Ungrammatical.
+182
+['ihaile', 'Pekka', 'Merjaa', 'virtaamalla', 'ei']
+*Ungrammatical.
+183
+['ihaile', 'Pekka', 'virtaamalla', 'ei', 'Merjaa']
+*Ungrammatical.
+184
+['ihaile', 'Pekka', 'virtaamalla', 'Merjaa', 'ei']
+*Ungrammatical.
+185
+['ihaile', 'ei', 'Pekka', 'Merjaa', 'virtaamalla']
+*Ungrammatical.
+186
+['ihaile', 'ei', 'Pekka', 'virtaamalla', 'Merjaa']
+*Ungrammatical.
+187
+['ihaile', 'ei', 'Merjaa', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+188
+['ihaile', 'ei', 'Merjaa', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+189
+['ihaile', 'ei', 'virtaamalla', 'Pekka', 'Merjaa']
+*Ungrammatical.
+190
+['ihaile', 'ei', 'virtaamalla', 'Merjaa', 'Pekka']
+*Ungrammatical.
+191
+['ihaile', 'Merjaa', 'Pekka', 'ei', 'virtaamalla']
+*Ungrammatical.
+192
+['ihaile', 'Merjaa', 'Pekka', 'virtaamalla', 'ei']
+*Ungrammatical.
+193
+['ihaile', 'Merjaa', 'ei', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+194
+['ihaile', 'Merjaa', 'ei', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+195
+['ihaile', 'Merjaa', 'virtaamalla', 'Pekka', 'ei']
+*Ungrammatical.
+196
+['ihaile', 'Merjaa', 'virtaamalla', 'ei', 'Pekka']
+*Ungrammatical.
+197
+['ihaile', 'virtaamalla', 'Pekka', 'ei', 'Merjaa']
+*Ungrammatical.
+198
+['ihaile', 'virtaamalla', 'Pekka', 'Merjaa', 'ei']
+*Ungrammatical.
+199
+['ihaile', 'virtaamalla', 'ei', 'Pekka', 'Merjaa']
+*Ungrammatical.
+200
+['ihaile', 'virtaamalla', 'ei', 'Merjaa', 'Pekka']
+*Ungrammatical.
+201
+['ihaile', 'virtaamalla', 'Merjaa', 'Pekka', 'ei']
+*Ungrammatical.
+202
+['ihaile', 'virtaamalla', 'Merjaa', 'ei', 'Pekka']
+*Ungrammatical.
+203
+['Merjaa', 'Pekka', 'ei', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+204
+['Merjaa', 'Pekka', 'ei', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+205
+['Merjaa', 'Pekka', 'ihaile', 'ei', 'virtaamalla']
+*Ungrammatical.
+206
+['Merjaa', 'Pekka', 'ihaile', 'virtaamalla', 'ei']
+*Ungrammatical.
+207
+['Merjaa', 'Pekka', 'virtaamalla', 'ei', 'ihaile']
+*Ungrammatical.
+208
+['Merjaa', 'Pekka', 'virtaamalla', 'ihaile', 'ei']
+*Ungrammatical.
+209
+['Merjaa', 'ei', 'Pekka', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+210
+['Merjaa', 'ei', 'Pekka', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+211
+['Merjaa', 'ei', 'ihaile', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+212
+['Merjaa', 'ei', 'ihaile', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+213
+['Merjaa', 'ei', 'virtaamalla', 'Pekka', 'ihaile']
+*Ungrammatical.
+214
+['Merjaa', 'ei', 'virtaamalla', 'ihaile', 'Pekka']
+*Ungrammatical.
+215
+['Merjaa', 'ihaile', 'Pekka', 'ei', 'virtaamalla']
+*Ungrammatical.
+216
+['Merjaa', 'ihaile', 'Pekka', 'virtaamalla', 'ei']
+*Ungrammatical.
+217
+['Merjaa', 'ihaile', 'ei', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+218
+['Merjaa', 'ihaile', 'ei', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+219
+['Merjaa', 'ihaile', 'virtaamalla', 'Pekka', 'ei']
+*Ungrammatical.
+220
+['Merjaa', 'ihaile', 'virtaamalla', 'ei', 'Pekka']
+*Ungrammatical.
+221
+['Merjaa', 'virtaamalla', 'Pekka', 'ei', 'ihaile']
+*Ungrammatical.
+222
+['Merjaa', 'virtaamalla', 'Pekka', 'ihaile', 'ei']
+*Ungrammatical.
+223
+['Merjaa', 'virtaamalla', 'ei', 'Pekka', 'ihaile']
+*Ungrammatical.
+224
+['Merjaa', 'virtaamalla', 'ei', 'ihaile', 'Pekka']
+*Ungrammatical.
+225
+['Merjaa', 'virtaamalla', 'ihaile', 'Pekka', 'ei']
+*Ungrammatical.
+226
+['Merjaa', 'virtaamalla', 'ihaile', 'ei', 'Pekka']
+*Ungrammatical.
+227
+['virtaamalla', 'Pekka', 'ei', 'ihaile', 'Merjaa']
+*Ungrammatical.
+228
+['virtaamalla', 'Pekka', 'ei', 'Merjaa', 'ihaile']
+*Ungrammatical.
+229
+['virtaamalla', 'Pekka', 'ihaile', 'ei', 'Merjaa']
+*Ungrammatical.
+230
+['virtaamalla', 'Pekka', 'ihaile', 'Merjaa', 'ei']
+*Ungrammatical.
+231
+['virtaamalla', 'Pekka', 'Merjaa', 'ei', 'ihaile']
+*Ungrammatical.
+232
+['virtaamalla', 'Pekka', 'Merjaa', 'ihaile', 'ei']
+*Ungrammatical.
+233
+['virtaamalla', 'ei', 'Pekka', 'ihaile', 'Merjaa']
+*Ungrammatical.
+234
+['virtaamalla', 'ei', 'Pekka', 'Merjaa', 'ihaile']
+*Ungrammatical.
+235
+['virtaamalla', 'ei', 'ihaile', 'Pekka', 'Merjaa']
+*Ungrammatical.
+236
+['virtaamalla', 'ei', 'ihaile', 'Merjaa', 'Pekka']
+*Ungrammatical.
+237
+['virtaamalla', 'ei', 'Merjaa', 'Pekka', 'ihaile']
+*Ungrammatical.
+238
+['virtaamalla', 'ei', 'Merjaa', 'ihaile', 'Pekka']
+*Ungrammatical.
+239
+['virtaamalla', 'ihaile', 'Pekka', 'ei', 'Merjaa']
+*Ungrammatical.
+240
+['virtaamalla', 'ihaile', 'Pekka', 'Merjaa', 'ei']
+*Ungrammatical.
+241
+['virtaamalla', 'ihaile', 'ei', 'Pekka', 'Merjaa']
+*Ungrammatical.
+242
+['virtaamalla', 'ihaile', 'ei', 'Merjaa', 'Pekka']
+*Ungrammatical.
+243
+['virtaamalla', 'ihaile', 'Merjaa', 'Pekka', 'ei']
+*Ungrammatical.
+244
+['virtaamalla', 'ihaile', 'Merjaa', 'ei', 'Pekka']
+*Ungrammatical.
+245
+['virtaamalla', 'Merjaa', 'Pekka', 'ei', 'ihaile']
+*Ungrammatical.
+246
+['virtaamalla', 'Merjaa', 'Pekka', 'ihaile', 'ei']
+*Ungrammatical.
+247
+['virtaamalla', 'Merjaa', 'ei', 'Pekka', 'ihaile']
+*Ungrammatical.
+248
+['virtaamalla', 'Merjaa', 'ei', 'ihaile', 'Pekka']
+*Ungrammatical.
+249
+['virtaamalla', 'Merjaa', 'ihaile', 'Pekka', 'ei']
+*Ungrammatical.
+250
+['virtaamalla', 'Merjaa', 'ihaile', 'ei', 'Pekka']
+*Ungrammatical.
+251
+['ketä', 'Pekka', 'ihailee']
+*Ungrammatical.
+252
+['ketä', 'ihailee', 'Pekka']
+*Ungrammatical.
+253
+['Pekka', 'ketä', 'ihailee']
+*Ungrammatical.
+254
+['Pekka', 'ihailee', 'ketä']
+*Ungrammatical.
+255
+['ihailee', 'ketä', 'Pekka']
+*Ungrammatical.
+256
+['ihailee', 'Pekka', 'ketä']
+*Ungrammatical.
+257
+['ketä', 'Pekka', 'ei', 'ihaile']
+*Ungrammatical.
+258
+['ketä', 'Pekka', 'ihaile', 'ei']
+*Ungrammatical.
+259
+['ketä', 'ei', 'Pekka', 'ihaile']
+*Ungrammatical.
+260
+['ketä', 'ei', 'ihaile', 'Pekka']
+*Ungrammatical.
+261
+['ketä', 'ihaile', 'Pekka', 'ei']
+*Ungrammatical.
+262
+['ketä', 'ihaile', 'ei', 'Pekka']
+*Ungrammatical.
+263
+['Pekka', 'ketä', 'ei', 'ihaile']
+*Ungrammatical.
+264
+['Pekka', 'ketä', 'ihaile', 'ei']
+*Ungrammatical.
+265
+['Pekka', 'ei', 'ketä', 'ihaile']
+*Ungrammatical.
+266
+['Pekka', 'ei', 'ihaile', 'ketä']
+*Ungrammatical.
+267
+['Pekka', 'ihaile', 'ketä', 'ei']
+*Ungrammatical.
+268
+['Pekka', 'ihaile', 'ei', 'ketä']
+*Ungrammatical.
+269
+['ei', 'ketä', 'Pekka', 'ihaile']
+*Ungrammatical.
+270
+['ei', 'ketä', 'ihaile', 'Pekka']
+*Ungrammatical.
+271
+['ei', 'Pekka', 'ketä', 'ihaile']
+*Ungrammatical.
+272
+['ei', 'Pekka', 'ihaile', 'ketä']
+*Ungrammatical.
+273
+['ei', 'ihaile', 'ketä', 'Pekka']
+*Ungrammatical.
+274
+['ei', 'ihaile', 'Pekka', 'ketä']
+*Ungrammatical.
+275
+['ihaile', 'ketä', 'Pekka', 'ei']
+*Ungrammatical.
+276
+['ihaile', 'ketä', 'ei', 'Pekka']
+*Ungrammatical.
+277
+['ihaile', 'Pekka', 'ketä', 'ei']
+*Ungrammatical.
+278
+['ihaile', 'Pekka', 'ei', 'ketä']
+*Ungrammatical.
+279
+['ihaile', 'ei', 'ketä', 'Pekka']
+*Ungrammatical.
+280
+['ihaile', 'ei', 'Pekka', 'ketä']
+*Ungrammatical.
+281
+['mitä', 'Pekka', 'ihailee', 'virtaamalla']
+*Ungrammatical.
+282
+['mitä', 'Pekka', 'virtaamalla', 'ihailee']
+*Ungrammatical.
+283
+['mitä', 'ihailee', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+284
+['mitä', 'ihailee', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+285
+['mitä', 'virtaamalla', 'Pekka', 'ihailee']
+*Ungrammatical.
+286
+['mitä', 'virtaamalla', 'ihailee', 'Pekka']
+*Ungrammatical.
+287
+['Pekka', 'mitä', 'ihailee', 'virtaamalla']
+*Ungrammatical.
+288
+['Pekka', 'mitä', 'virtaamalla', 'ihailee']
+*Ungrammatical.
+289
+['Pekka', 'ihailee', 'mitä', 'virtaamalla']
+*Ungrammatical.
+290
+['Pekka', 'ihailee', 'virtaamalla', 'mitä']
+*Ungrammatical.
+291
+['Pekka', 'virtaamalla', 'mitä', 'ihailee']
+*Ungrammatical.
+292
+['Pekka', 'virtaamalla', 'ihailee', 'mitä']
+*Ungrammatical.
+293
+['ihailee', 'mitä', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+294
+['ihailee', 'mitä', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+295
+['ihailee', 'Pekka', 'mitä', 'virtaamalla']
+*Ungrammatical.
+296
+['ihailee', 'Pekka', 'virtaamalla', 'mitä']
+*Ungrammatical.
+297
+['ihailee', 'virtaamalla', 'mitä', 'Pekka']
+*Ungrammatical.
+298
+['ihailee', 'virtaamalla', 'Pekka', 'mitä']
+*Ungrammatical.
+299
+['virtaamalla', 'mitä', 'Pekka', 'ihailee']
+*Ungrammatical.
+300
+['virtaamalla', 'mitä', 'ihailee', 'Pekka']
+*Ungrammatical.
+301
+['virtaamalla', 'Pekka', 'mitä', 'ihailee']
+*Ungrammatical.
+302
+['virtaamalla', 'Pekka', 'ihailee', 'mitä']
+*Ungrammatical.
+303
+['virtaamalla', 'ihailee', 'mitä', 'Pekka']
+*Ungrammatical.
+304
+['virtaamalla', 'ihailee', 'Pekka', 'mitä']
+*Ungrammatical.
+305
+['mitä', 'Pekka', 'ei', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+306
+['mitä', 'Pekka', 'ei', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+307
+['mitä', 'Pekka', 'ihaile', 'ei', 'virtaamalla']
+*Ungrammatical.
+308
+['mitä', 'Pekka', 'ihaile', 'virtaamalla', 'ei']
+*Ungrammatical.
+309
+['mitä', 'Pekka', 'virtaamalla', 'ei', 'ihaile']
+*Ungrammatical.
+310
+['mitä', 'Pekka', 'virtaamalla', 'ihaile', 'ei']
+*Ungrammatical.
+311
+['mitä', 'ei', 'Pekka', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+312
+['mitä', 'ei', 'Pekka', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+313
+['mitä', 'ei', 'ihaile', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+314
+['mitä', 'ei', 'ihaile', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+315
+['mitä', 'ei', 'virtaamalla', 'Pekka', 'ihaile']
+*Ungrammatical.
+316
+['mitä', 'ei', 'virtaamalla', 'ihaile', 'Pekka']
+*Ungrammatical.
+317
+['mitä', 'ihaile', 'Pekka', 'ei', 'virtaamalla']
+*Ungrammatical.
+318
+['mitä', 'ihaile', 'Pekka', 'virtaamalla', 'ei']
+*Ungrammatical.
+319
+['mitä', 'ihaile', 'ei', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+320
+['mitä', 'ihaile', 'ei', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+321
+['mitä', 'ihaile', 'virtaamalla', 'Pekka', 'ei']
+*Ungrammatical.
+322
+['mitä', 'ihaile', 'virtaamalla', 'ei', 'Pekka']
+*Ungrammatical.
+323
+['mitä', 'virtaamalla', 'Pekka', 'ei', 'ihaile']
+*Ungrammatical.
+324
+['mitä', 'virtaamalla', 'Pekka', 'ihaile', 'ei']
+*Ungrammatical.
+325
+['mitä', 'virtaamalla', 'ei', 'Pekka', 'ihaile']
+*Ungrammatical.
+326
+['mitä', 'virtaamalla', 'ei', 'ihaile', 'Pekka']
+*Ungrammatical.
+327
+['mitä', 'virtaamalla', 'ihaile', 'Pekka', 'ei']
+*Ungrammatical.
+328
+['mitä', 'virtaamalla', 'ihaile', 'ei', 'Pekka']
+*Ungrammatical.
+329
+['Pekka', 'mitä', 'ei', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+330
+['Pekka', 'mitä', 'ei', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+331
+['Pekka', 'mitä', 'ihaile', 'ei', 'virtaamalla']
+*Ungrammatical.
+332
+['Pekka', 'mitä', 'ihaile', 'virtaamalla', 'ei']
+*Ungrammatical.
+333
+['Pekka', 'mitä', 'virtaamalla', 'ei', 'ihaile']
+*Ungrammatical.
+334
+['Pekka', 'mitä', 'virtaamalla', 'ihaile', 'ei']
+*Ungrammatical.
+335
+['Pekka', 'ei', 'mitä', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+336
+['Pekka', 'ei', 'mitä', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+337
+['Pekka', 'ei', 'ihaile', 'mitä', 'virtaamalla']
+*Ungrammatical.
+338
+['Pekka', 'ei', 'ihaile', 'virtaamalla', 'mitä']
+*Ungrammatical.
+339
+['Pekka', 'ei', 'virtaamalla', 'mitä', 'ihaile']
+*Ungrammatical.
+340
+['Pekka', 'ei', 'virtaamalla', 'ihaile', 'mitä']
+*Ungrammatical.
+341
+['Pekka', 'ihaile', 'mitä', 'ei', 'virtaamalla']
+*Ungrammatical.
+342
+['Pekka', 'ihaile', 'mitä', 'virtaamalla', 'ei']
+*Ungrammatical.
+343
+['Pekka', 'ihaile', 'ei', 'mitä', 'virtaamalla']
+*Ungrammatical.
+344
+['Pekka', 'ihaile', 'ei', 'virtaamalla', 'mitä']
+*Ungrammatical.
+345
+['Pekka', 'ihaile', 'virtaamalla', 'mitä', 'ei']
+*Ungrammatical.
+346
+['Pekka', 'ihaile', 'virtaamalla', 'ei', 'mitä']
+*Ungrammatical.
+347
+['Pekka', 'virtaamalla', 'mitä', 'ei', 'ihaile']
+*Ungrammatical.
+348
+['Pekka', 'virtaamalla', 'mitä', 'ihaile', 'ei']
+*Ungrammatical.
+349
+['Pekka', 'virtaamalla', 'ei', 'mitä', 'ihaile']
+*Ungrammatical.
+350
+['Pekka', 'virtaamalla', 'ei', 'ihaile', 'mitä']
+*Ungrammatical.
+351
+['Pekka', 'virtaamalla', 'ihaile', 'mitä', 'ei']
+*Ungrammatical.
+352
+['Pekka', 'virtaamalla', 'ihaile', 'ei', 'mitä']
+*Ungrammatical.
+353
+['ei', 'mitä', 'Pekka', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+354
+['ei', 'mitä', 'Pekka', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+355
+['ei', 'mitä', 'ihaile', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+356
+['ei', 'mitä', 'ihaile', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+357
+['ei', 'mitä', 'virtaamalla', 'Pekka', 'ihaile']
+*Ungrammatical.
+358
+['ei', 'mitä', 'virtaamalla', 'ihaile', 'Pekka']
+*Ungrammatical.
+359
+['ei', 'Pekka', 'mitä', 'ihaile', 'virtaamalla']
+*Ungrammatical.
+360
+['ei', 'Pekka', 'mitä', 'virtaamalla', 'ihaile']
+*Ungrammatical.
+361
+['ei', 'Pekka', 'ihaile', 'mitä', 'virtaamalla']
+*Ungrammatical.
+362
+['ei', 'Pekka', 'ihaile', 'virtaamalla', 'mitä']
+*Ungrammatical.
+363
+['ei', 'Pekka', 'virtaamalla', 'mitä', 'ihaile']
+*Ungrammatical.
+364
+['ei', 'Pekka', 'virtaamalla', 'ihaile', 'mitä']
+*Ungrammatical.
+365
+['ei', 'ihaile', 'mitä', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+366
+['ei', 'ihaile', 'mitä', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+367
+['ei', 'ihaile', 'Pekka', 'mitä', 'virtaamalla']
+*Ungrammatical.
+368
+['ei', 'ihaile', 'Pekka', 'virtaamalla', 'mitä']
+*Ungrammatical.
+369
+['ei', 'ihaile', 'virtaamalla', 'mitä', 'Pekka']
+*Ungrammatical.
+370
+['ei', 'ihaile', 'virtaamalla', 'Pekka', 'mitä']
+*Ungrammatical.
+371
+['ei', 'virtaamalla', 'mitä', 'Pekka', 'ihaile']
+*Ungrammatical.
+372
+['ei', 'virtaamalla', 'mitä', 'ihaile', 'Pekka']
+*Ungrammatical.
+373
+['ei', 'virtaamalla', 'Pekka', 'mitä', 'ihaile']
+*Ungrammatical.
+374
+['ei', 'virtaamalla', 'Pekka', 'ihaile', 'mitä']
+*Ungrammatical.
+375
+['ei', 'virtaamalla', 'ihaile', 'mitä', 'Pekka']
+*Ungrammatical.
+376
+['ei', 'virtaamalla', 'ihaile', 'Pekka', 'mitä']
+*Ungrammatical.
+377
+['ihaile', 'mitä', 'Pekka', 'ei', 'virtaamalla']
+*Ungrammatical.
+378
+['ihaile', 'mitä', 'Pekka', 'virtaamalla', 'ei']
+*Ungrammatical.
+379
+['ihaile', 'mitä', 'ei', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+380
+['ihaile', 'mitä', 'ei', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+381
+['ihaile', 'mitä', 'virtaamalla', 'Pekka', 'ei']
+*Ungrammatical.
+382
+['ihaile', 'mitä', 'virtaamalla', 'ei', 'Pekka']
+*Ungrammatical.
+383
+['ihaile', 'Pekka', 'mitä', 'ei', 'virtaamalla']
+*Ungrammatical.
+384
+['ihaile', 'Pekka', 'mitä', 'virtaamalla', 'ei']
+*Ungrammatical.
+385
+['ihaile', 'Pekka', 'ei', 'mitä', 'virtaamalla']
+*Ungrammatical.
+386
+['ihaile', 'Pekka', 'ei', 'virtaamalla', 'mitä']
+*Ungrammatical.
+387
+['ihaile', 'Pekka', 'virtaamalla', 'mitä', 'ei']
+*Ungrammatical.
+388
+['ihaile', 'Pekka', 'virtaamalla', 'ei', 'mitä']
+*Ungrammatical.
+389
+['ihaile', 'ei', 'mitä', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+390
+['ihaile', 'ei', 'mitä', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+391
+['ihaile', 'ei', 'Pekka', 'mitä', 'virtaamalla']
+*Ungrammatical.
+392
+['ihaile', 'ei', 'Pekka', 'virtaamalla', 'mitä']
+*Ungrammatical.
+393
+['ihaile', 'ei', 'virtaamalla', 'mitä', 'Pekka']
+*Ungrammatical.
+394
+['ihaile', 'ei', 'virtaamalla', 'Pekka', 'mitä']
+*Ungrammatical.
+395
+['ihaile', 'virtaamalla', 'mitä', 'Pekka', 'ei']
+*Ungrammatical.
+396
+['ihaile', 'virtaamalla', 'mitä', 'ei', 'Pekka']
+*Ungrammatical.
+397
+['ihaile', 'virtaamalla', 'Pekka', 'mitä', 'ei']
+*Ungrammatical.
+398
+['ihaile', 'virtaamalla', 'Pekka', 'ei', 'mitä']
+*Ungrammatical.
+399
+['ihaile', 'virtaamalla', 'ei', 'mitä', 'Pekka']
+*Ungrammatical.
+400
+['ihaile', 'virtaamalla', 'ei', 'Pekka', 'mitä']
+*Ungrammatical.
+401
+['virtaamalla', 'mitä', 'Pekka', 'ei', 'ihaile']
+*Ungrammatical.
+402
+['virtaamalla', 'mitä', 'Pekka', 'ihaile', 'ei']
+*Ungrammatical.
+403
+['virtaamalla', 'mitä', 'ei', 'Pekka', 'ihaile']
+*Ungrammatical.
+404
+['virtaamalla', 'mitä', 'ei', 'ihaile', 'Pekka']
+*Ungrammatical.
+405
+['virtaamalla', 'mitä', 'ihaile', 'Pekka', 'ei']
+*Ungrammatical.
+406
+['virtaamalla', 'mitä', 'ihaile', 'ei', 'Pekka']
+*Ungrammatical.
+407
+['virtaamalla', 'Pekka', 'mitä', 'ei', 'ihaile']
+*Ungrammatical.
+408
+['virtaamalla', 'Pekka', 'mitä', 'ihaile', 'ei']
+*Ungrammatical.
+409
+['virtaamalla', 'Pekka', 'ei', 'mitä', 'ihaile']
+*Ungrammatical.
+410
+['virtaamalla', 'Pekka', 'ei', 'ihaile', 'mitä']
+*Ungrammatical.
+411
+['virtaamalla', 'Pekka', 'ihaile', 'mitä', 'ei']
+*Ungrammatical.
+412
+['virtaamalla', 'Pekka', 'ihaile', 'ei', 'mitä']
+*Ungrammatical.
+413
+['virtaamalla', 'ei', 'mitä', 'Pekka', 'ihaile']
+*Ungrammatical.
+414
+['virtaamalla', 'ei', 'mitä', 'ihaile', 'Pekka']
+*Ungrammatical.
+415
+['virtaamalla', 'ei', 'Pekka', 'mitä', 'ihaile']
+*Ungrammatical.
+416
+['virtaamalla', 'ei', 'Pekka', 'ihaile', 'mitä']
+*Ungrammatical.
+417
+['virtaamalla', 'ei', 'ihaile', 'mitä', 'Pekka']
+*Ungrammatical.
+418
+['virtaamalla', 'ei', 'ihaile', 'Pekka', 'mitä']
+*Ungrammatical.
+419
+['virtaamalla', 'ihaile', 'mitä', 'Pekka', 'ei']
+*Ungrammatical.
+420
+['virtaamalla', 'ihaile', 'mitä', 'ei', 'Pekka']
+*Ungrammatical.
+421
+['virtaamalla', 'ihaile', 'Pekka', 'mitä', 'ei']
+*Ungrammatical.
+422
+['virtaamalla', 'ihaile', 'Pekka', 'ei', 'mitä']
+*Ungrammatical.
+423
+['virtaamalla', 'ihaile', 'ei', 'mitä', 'Pekka']
+*Ungrammatical.
+424
+['virtaamalla', 'ihaile', 'ei', 'Pekka', 'mitä']
+*Ungrammatical.
+425
+['Pekka', 'antoi', 'kirjan', 'Merjalle']
+[[D Pekka]:1 [T [(DP):1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+'D Pekka T __v give D book for D Merja .'
+Failed parses 0, Merge operations:13, Move operations: 8
+426
+['Pekka', 'antoi', 'Merjalle', 'kirjan']
+[[[D Pekka]:1 [T [(DP):1 [v [<DP>:1 [antaa [P(lle) [D Merja-]]]]]]]] <D kirja>:1]
+'D Pekka T __v __give for D Merja D book .'
+Failed parses 0, Merge operations:13, Move operations: 9
+427
+['Pekka', 'kirjan', 'antoi', 'Merjalle']
+*Ungrammatical.
+428
+['Pekka', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+429
+['Pekka', 'Merjalle', 'antoi', 'kirjan']
+*Ungrammatical.
+430
+['Pekka', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+431
+['antoi', 'Pekka', 'kirjan', 'Merjalle']
+*Ungrammatical.
+432
+['antoi', 'Pekka', 'Merjalle', 'kirjan']
+*Ungrammatical.
+433
+['antoi', 'kirjan', 'Pekka', 'Merjalle']
+*Ungrammatical.
+434
+['antoi', 'kirjan', 'Merjalle', 'Pekka']
+*Ungrammatical.
+435
+['antoi', 'Merjalle', 'Pekka', 'kirjan']
+*Ungrammatical.
+436
+['antoi', 'Merjalle', 'kirjan', 'Pekka']
+*Ungrammatical.
+437
+['kirjan', 'Pekka', 'antoi', 'Merjalle']
+*Ungrammatical.
+438
+['kirjan', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+439
+['kirjan', 'antoi', 'Pekka', 'Merjalle']
+*Ungrammatical.
+440
+['kirjan', 'antoi', 'Merjalle', 'Pekka']
+*Ungrammatical.
+441
+['kirjan', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+442
+['kirjan', 'Merjalle', 'antoi', 'Pekka']
+*Ungrammatical.
+443
+['Merjalle', 'Pekka', 'antoi', 'kirjan']
+*Ungrammatical.
+444
+['Merjalle', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+445
+['Merjalle', 'antoi', 'Pekka', 'kirjan']
+*Ungrammatical.
+446
+['Merjalle', 'antoi', 'kirjan', 'Pekka']
+*Ungrammatical.
+447
+['Merjalle', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+448
+['Merjalle', 'kirjan', 'antoi', 'Pekka']
+*Ungrammatical.
+449
+['Pekka', 'ei', 'antanut', 'kirjaa', 'Merjalle']
+[[D Pekka]:1 [ei [T [(DP):1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]
+'D Pekka not T __v give D book for D Merja .'
+Failed parses 0, Merge operations:14, Move operations: 9
+450
+['Pekka', 'ei', 'antanut', 'Merjalle', 'kirjaa']
+[[D Pekka]:1 [ei [T [(DP):1 [v [antaa [[P(lle) [D Merja-]] <D kirja>]]]]]]]
+'D Pekka not T __v give for D Merja D book .'
+Failed parses 2, Merge operations:18, Move operations: 12
+451
+['Pekka', 'ei', 'kirjaa', 'antanut', 'Merjalle']
+*Ungrammatical.
+452
+['Pekka', 'ei', 'kirjaa', 'Merjalle', 'antanut']
+*Ungrammatical.
+453
+['Pekka', 'ei', 'Merjalle', 'antanut', 'kirjaa']
+*Ungrammatical.
+454
+['Pekka', 'ei', 'Merjalle', 'kirjaa', 'antanut']
+*Ungrammatical.
+455
+['Pekka', 'antanut', 'ei', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+456
+['Pekka', 'antanut', 'ei', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+457
+['Pekka', 'antanut', 'kirjaa', 'ei', 'Merjalle']
+*Ungrammatical.
+458
+['Pekka', 'antanut', 'kirjaa', 'Merjalle', 'ei']
+*Ungrammatical.
+459
+['Pekka', 'antanut', 'Merjalle', 'ei', 'kirjaa']
+*Ungrammatical.
+460
+['Pekka', 'antanut', 'Merjalle', 'kirjaa', 'ei']
+*Ungrammatical.
+461
+['Pekka', 'kirjaa', 'ei', 'antanut', 'Merjalle']
+[[[D Pekka] <D kirja>]:1 [ei [T [(DP):1 [v [antaa [P(lle) [D Merja-]]]]]]]]
+'D Pekka D book not T __v give for D Merja .'
+Failed parses 2, Merge operations:24, Move operations: 21
+462
+['Pekka', 'kirjaa', 'ei', 'Merjalle', 'antanut']
+*Ungrammatical.
+463
+['Pekka', 'kirjaa', 'antanut', 'ei', 'Merjalle']
+*Ungrammatical.
+464
+['Pekka', 'kirjaa', 'antanut', 'Merjalle', 'ei']
+*Ungrammatical.
+465
+['Pekka', 'kirjaa', 'Merjalle', 'ei', 'antanut']
+*Ungrammatical.
+466
+['Pekka', 'kirjaa', 'Merjalle', 'antanut', 'ei']
+*Ungrammatical.
+467
+['Pekka', 'Merjalle', 'ei', 'antanut', 'kirjaa']
+*Ungrammatical.
+468
+['Pekka', 'Merjalle', 'ei', 'kirjaa', 'antanut']
+*Ungrammatical.
+469
+['Pekka', 'Merjalle', 'antanut', 'ei', 'kirjaa']
+*Ungrammatical.
+470
+['Pekka', 'Merjalle', 'antanut', 'kirjaa', 'ei']
+*Ungrammatical.
+471
+['Pekka', 'Merjalle', 'kirjaa', 'ei', 'antanut']
+*Ungrammatical.
+472
+['Pekka', 'Merjalle', 'kirjaa', 'antanut', 'ei']
+*Ungrammatical.
+473
+['ei', 'Pekka', 'antanut', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+474
+['ei', 'Pekka', 'antanut', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+475
+['ei', 'Pekka', 'kirjaa', 'antanut', 'Merjalle']
+*Ungrammatical.
+476
+['ei', 'Pekka', 'kirjaa', 'Merjalle', 'antanut']
+*Ungrammatical.
+477
+['ei', 'Pekka', 'Merjalle', 'antanut', 'kirjaa']
+*Ungrammatical.
+478
+['ei', 'Pekka', 'Merjalle', 'kirjaa', 'antanut']
+*Ungrammatical.
+479
+['ei', 'antanut', 'Pekka', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+480
+['ei', 'antanut', 'Pekka', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+481
+['ei', 'antanut', 'kirjaa', 'Pekka', 'Merjalle']
+*Ungrammatical.
+482
+['ei', 'antanut', 'kirjaa', 'Merjalle', 'Pekka']
+*Ungrammatical.
+483
+['ei', 'antanut', 'Merjalle', 'Pekka', 'kirjaa']
+*Ungrammatical.
+484
+['ei', 'antanut', 'Merjalle', 'kirjaa', 'Pekka']
+*Ungrammatical.
+485
+['ei', 'kirjaa', 'Pekka', 'antanut', 'Merjalle']
+*Ungrammatical.
+486
+['ei', 'kirjaa', 'Pekka', 'Merjalle', 'antanut']
+*Ungrammatical.
+487
+['ei', 'kirjaa', 'antanut', 'Pekka', 'Merjalle']
+*Ungrammatical.
+488
+['ei', 'kirjaa', 'antanut', 'Merjalle', 'Pekka']
+*Ungrammatical.
+489
+['ei', 'kirjaa', 'Merjalle', 'Pekka', 'antanut']
+*Ungrammatical.
+490
+['ei', 'kirjaa', 'Merjalle', 'antanut', 'Pekka']
+*Ungrammatical.
+491
+['ei', 'Merjalle', 'Pekka', 'antanut', 'kirjaa']
+*Ungrammatical.
+492
+['ei', 'Merjalle', 'Pekka', 'kirjaa', 'antanut']
+*Ungrammatical.
+493
+['ei', 'Merjalle', 'antanut', 'Pekka', 'kirjaa']
+*Ungrammatical.
+494
+['ei', 'Merjalle', 'antanut', 'kirjaa', 'Pekka']
+*Ungrammatical.
+495
+['ei', 'Merjalle', 'kirjaa', 'Pekka', 'antanut']
+*Ungrammatical.
+496
+['ei', 'Merjalle', 'kirjaa', 'antanut', 'Pekka']
+*Ungrammatical.
+497
+['antanut', 'Pekka', 'ei', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+498
+['antanut', 'Pekka', 'ei', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+499
+['antanut', 'Pekka', 'kirjaa', 'ei', 'Merjalle']
+*Ungrammatical.
+500
+['antanut', 'Pekka', 'kirjaa', 'Merjalle', 'ei']
+*Ungrammatical.
+501
+['antanut', 'Pekka', 'Merjalle', 'ei', 'kirjaa']
+*Ungrammatical.
+502
+['antanut', 'Pekka', 'Merjalle', 'kirjaa', 'ei']
+*Ungrammatical.
+503
+['antanut', 'ei', 'Pekka', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+504
+['antanut', 'ei', 'Pekka', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+505
+['antanut', 'ei', 'kirjaa', 'Pekka', 'Merjalle']
+*Ungrammatical.
+506
+['antanut', 'ei', 'kirjaa', 'Merjalle', 'Pekka']
+*Ungrammatical.
+507
+['antanut', 'ei', 'Merjalle', 'Pekka', 'kirjaa']
+*Ungrammatical.
+508
+['antanut', 'ei', 'Merjalle', 'kirjaa', 'Pekka']
+*Ungrammatical.
+509
+['antanut', 'kirjaa', 'Pekka', 'ei', 'Merjalle']
+*Ungrammatical.
+510
+['antanut', 'kirjaa', 'Pekka', 'Merjalle', 'ei']
+*Ungrammatical.
+511
+['antanut', 'kirjaa', 'ei', 'Pekka', 'Merjalle']
+*Ungrammatical.
+512
+['antanut', 'kirjaa', 'ei', 'Merjalle', 'Pekka']
+*Ungrammatical.
+513
+['antanut', 'kirjaa', 'Merjalle', 'Pekka', 'ei']
+*Ungrammatical.
+514
+['antanut', 'kirjaa', 'Merjalle', 'ei', 'Pekka']
+*Ungrammatical.
+515
+['antanut', 'Merjalle', 'Pekka', 'ei', 'kirjaa']
+*Ungrammatical.
+516
+['antanut', 'Merjalle', 'Pekka', 'kirjaa', 'ei']
+*Ungrammatical.
+517
+['antanut', 'Merjalle', 'ei', 'Pekka', 'kirjaa']
+*Ungrammatical.
+518
+['antanut', 'Merjalle', 'ei', 'kirjaa', 'Pekka']
+*Ungrammatical.
+519
+['antanut', 'Merjalle', 'kirjaa', 'Pekka', 'ei']
+*Ungrammatical.
+520
+['antanut', 'Merjalle', 'kirjaa', 'ei', 'Pekka']
+*Ungrammatical.
+521
+['kirjaa', 'Pekka', 'ei', 'antanut', 'Merjalle']
+*Ungrammatical.
+522
+['kirjaa', 'Pekka', 'ei', 'Merjalle', 'antanut']
+*Ungrammatical.
+523
+['kirjaa', 'Pekka', 'antanut', 'ei', 'Merjalle']
+*Ungrammatical.
+524
+['kirjaa', 'Pekka', 'antanut', 'Merjalle', 'ei']
+*Ungrammatical.
+525
+['kirjaa', 'Pekka', 'Merjalle', 'ei', 'antanut']
+*Ungrammatical.
+526
+['kirjaa', 'Pekka', 'Merjalle', 'antanut', 'ei']
+*Ungrammatical.
+527
+['kirjaa', 'ei', 'Pekka', 'antanut', 'Merjalle']
+*Ungrammatical.
+528
+['kirjaa', 'ei', 'Pekka', 'Merjalle', 'antanut']
+*Ungrammatical.
+529
+['kirjaa', 'ei', 'antanut', 'Pekka', 'Merjalle']
+*Ungrammatical.
+530
+['kirjaa', 'ei', 'antanut', 'Merjalle', 'Pekka']
+*Ungrammatical.
+531
+['kirjaa', 'ei', 'Merjalle', 'Pekka', 'antanut']
+*Ungrammatical.
+532
+['kirjaa', 'ei', 'Merjalle', 'antanut', 'Pekka']
+*Ungrammatical.
+533
+['kirjaa', 'antanut', 'Pekka', 'ei', 'Merjalle']
+*Ungrammatical.
+534
+['kirjaa', 'antanut', 'Pekka', 'Merjalle', 'ei']
+*Ungrammatical.
+535
+['kirjaa', 'antanut', 'ei', 'Pekka', 'Merjalle']
+*Ungrammatical.
+536
+['kirjaa', 'antanut', 'ei', 'Merjalle', 'Pekka']
+*Ungrammatical.
+537
+['kirjaa', 'antanut', 'Merjalle', 'Pekka', 'ei']
+*Ungrammatical.
+538
+['kirjaa', 'antanut', 'Merjalle', 'ei', 'Pekka']
+*Ungrammatical.
+539
+['kirjaa', 'Merjalle', 'Pekka', 'ei', 'antanut']
+*Ungrammatical.
+540
+['kirjaa', 'Merjalle', 'Pekka', 'antanut', 'ei']
+*Ungrammatical.
+541
+['kirjaa', 'Merjalle', 'ei', 'Pekka', 'antanut']
+*Ungrammatical.
+542
+['kirjaa', 'Merjalle', 'ei', 'antanut', 'Pekka']
+*Ungrammatical.
+543
+['kirjaa', 'Merjalle', 'antanut', 'Pekka', 'ei']
+*Ungrammatical.
+544
+['kirjaa', 'Merjalle', 'antanut', 'ei', 'Pekka']
+*Ungrammatical.
+545
+['Merjalle', 'Pekka', 'ei', 'antanut', 'kirjaa']
+*Ungrammatical.
+546
+['Merjalle', 'Pekka', 'ei', 'kirjaa', 'antanut']
+*Ungrammatical.
+547
+['Merjalle', 'Pekka', 'antanut', 'ei', 'kirjaa']
+*Ungrammatical.
+548
+['Merjalle', 'Pekka', 'antanut', 'kirjaa', 'ei']
+*Ungrammatical.
+549
+['Merjalle', 'Pekka', 'kirjaa', 'ei', 'antanut']
+*Ungrammatical.
+550
+['Merjalle', 'Pekka', 'kirjaa', 'antanut', 'ei']
+*Ungrammatical.
+551
+['Merjalle', 'ei', 'Pekka', 'antanut', 'kirjaa']
+*Ungrammatical.
+552
+['Merjalle', 'ei', 'Pekka', 'kirjaa', 'antanut']
+*Ungrammatical.
+553
+['Merjalle', 'ei', 'antanut', 'Pekka', 'kirjaa']
+*Ungrammatical.
+554
+['Merjalle', 'ei', 'antanut', 'kirjaa', 'Pekka']
+*Ungrammatical.
+555
+['Merjalle', 'ei', 'kirjaa', 'Pekka', 'antanut']
+*Ungrammatical.
+556
+['Merjalle', 'ei', 'kirjaa', 'antanut', 'Pekka']
+*Ungrammatical.
+557
+['Merjalle', 'antanut', 'Pekka', 'ei', 'kirjaa']
+*Ungrammatical.
+558
+['Merjalle', 'antanut', 'Pekka', 'kirjaa', 'ei']
+*Ungrammatical.
+559
+['Merjalle', 'antanut', 'ei', 'Pekka', 'kirjaa']
+*Ungrammatical.
+560
+['Merjalle', 'antanut', 'ei', 'kirjaa', 'Pekka']
+*Ungrammatical.
+561
+['Merjalle', 'antanut', 'kirjaa', 'Pekka', 'ei']
+*Ungrammatical.
+562
+['Merjalle', 'antanut', 'kirjaa', 'ei', 'Pekka']
+*Ungrammatical.
+563
+['Merjalle', 'kirjaa', 'Pekka', 'ei', 'antanut']
+*Ungrammatical.
+564
+['Merjalle', 'kirjaa', 'Pekka', 'antanut', 'ei']
+*Ungrammatical.
+565
+['Merjalle', 'kirjaa', 'ei', 'Pekka', 'antanut']
+*Ungrammatical.
+566
+['Merjalle', 'kirjaa', 'ei', 'antanut', 'Pekka']
+*Ungrammatical.
+567
+['Merjalle', 'kirjaa', 'antanut', 'Pekka', 'ei']
+*Ungrammatical.
+568
+['Merjalle', 'kirjaa', 'antanut', 'ei', 'Pekka']
+*Ungrammatical.
+569
+['Pekka', 'antoi', 'kirjan', 'Merjalle', 'virtaamalla']
+[[D Pekka]:1 [T [(DP):1 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]
+'D Pekka T __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:15, Move operations: 15
+570
+['Pekka', 'antoi', 'kirjan', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+571
+['Pekka', 'antoi', 'Merjalle', 'kirjan', 'virtaamalla']
+[[D Pekka]:1 [T [(DP):1 [v [antaa [[[P(lle) [D Merja-]] <D kirja>] <malla virtaa>]]]]]]
+'D Pekka T __v give for D Merja D book by flow .'
+Failed parses 5, Merge operations:29, Move operations: 33
+572
+['Pekka', 'antoi', 'Merjalle', 'virtaamalla', 'kirjan']
+[[[D Pekka]:1 [T [(DP):1 [v [<DP>:1 [antaa [[P(lle) [D Merja-]] <malla virtaa>]]]]]]] <D kirja>:1]
+'D Pekka T __v __give for D Merja by flow D book .'
+Failed parses 1, Merge operations:17, Move operations: 19
+573
+['Pekka', 'antoi', 'virtaamalla', 'kirjan', 'Merjalle']
+*Ungrammatical.
+574
+['Pekka', 'antoi', 'virtaamalla', 'Merjalle', 'kirjan']
+*Ungrammatical.
+575
+['Pekka', 'kirjan', 'antoi', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+576
+['Pekka', 'kirjan', 'antoi', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+577
+['Pekka', 'kirjan', 'Merjalle', 'antoi', 'virtaamalla']
+*Ungrammatical.
+578
+['Pekka', 'kirjan', 'Merjalle', 'virtaamalla', 'antoi']
+*Ungrammatical.
+579
+['Pekka', 'kirjan', 'virtaamalla', 'antoi', 'Merjalle']
+*Ungrammatical.
+580
+['Pekka', 'kirjan', 'virtaamalla', 'Merjalle', 'antoi']
+*Ungrammatical.
+581
+['Pekka', 'Merjalle', 'antoi', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+582
+['Pekka', 'Merjalle', 'antoi', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+583
+['Pekka', 'Merjalle', 'kirjan', 'antoi', 'virtaamalla']
+*Ungrammatical.
+584
+['Pekka', 'Merjalle', 'kirjan', 'virtaamalla', 'antoi']
+*Ungrammatical.
+585
+['Pekka', 'Merjalle', 'virtaamalla', 'antoi', 'kirjan']
+*Ungrammatical.
+586
+['Pekka', 'Merjalle', 'virtaamalla', 'kirjan', 'antoi']
+*Ungrammatical.
+587
+['Pekka', 'virtaamalla', 'antoi', 'kirjan', 'Merjalle']
+*Ungrammatical.
+588
+['Pekka', 'virtaamalla', 'antoi', 'Merjalle', 'kirjan']
+*Ungrammatical.
+589
+['Pekka', 'virtaamalla', 'kirjan', 'antoi', 'Merjalle']
+*Ungrammatical.
+590
+['Pekka', 'virtaamalla', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+591
+['Pekka', 'virtaamalla', 'Merjalle', 'antoi', 'kirjan']
+*Ungrammatical.
+592
+['Pekka', 'virtaamalla', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+593
+['antoi', 'Pekka', 'kirjan', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+594
+['antoi', 'Pekka', 'kirjan', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+595
+['antoi', 'Pekka', 'Merjalle', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+596
+['antoi', 'Pekka', 'Merjalle', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+597
+['antoi', 'Pekka', 'virtaamalla', 'kirjan', 'Merjalle']
+*Ungrammatical.
+598
+['antoi', 'Pekka', 'virtaamalla', 'Merjalle', 'kirjan']
+*Ungrammatical.
+599
+['antoi', 'kirjan', 'Pekka', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+600
+['antoi', 'kirjan', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+601
+['antoi', 'kirjan', 'Merjalle', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+602
+['antoi', 'kirjan', 'Merjalle', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+603
+['antoi', 'kirjan', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+604
+['antoi', 'kirjan', 'virtaamalla', 'Merjalle', 'Pekka']
+*Ungrammatical.
+605
+['antoi', 'Merjalle', 'Pekka', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+606
+['antoi', 'Merjalle', 'Pekka', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+607
+['antoi', 'Merjalle', 'kirjan', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+608
+['antoi', 'Merjalle', 'kirjan', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+609
+['antoi', 'Merjalle', 'virtaamalla', 'Pekka', 'kirjan']
+*Ungrammatical.
+610
+['antoi', 'Merjalle', 'virtaamalla', 'kirjan', 'Pekka']
+*Ungrammatical.
+611
+['antoi', 'virtaamalla', 'Pekka', 'kirjan', 'Merjalle']
+*Ungrammatical.
+612
+['antoi', 'virtaamalla', 'Pekka', 'Merjalle', 'kirjan']
+*Ungrammatical.
+613
+['antoi', 'virtaamalla', 'kirjan', 'Pekka', 'Merjalle']
+*Ungrammatical.
+614
+['antoi', 'virtaamalla', 'kirjan', 'Merjalle', 'Pekka']
+*Ungrammatical.
+615
+['antoi', 'virtaamalla', 'Merjalle', 'Pekka', 'kirjan']
+*Ungrammatical.
+616
+['antoi', 'virtaamalla', 'Merjalle', 'kirjan', 'Pekka']
+*Ungrammatical.
+617
+['kirjan', 'Pekka', 'antoi', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+618
+['kirjan', 'Pekka', 'antoi', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+619
+['kirjan', 'Pekka', 'Merjalle', 'antoi', 'virtaamalla']
+*Ungrammatical.
+620
+['kirjan', 'Pekka', 'Merjalle', 'virtaamalla', 'antoi']
+*Ungrammatical.
+621
+['kirjan', 'Pekka', 'virtaamalla', 'antoi', 'Merjalle']
+*Ungrammatical.
+622
+['kirjan', 'Pekka', 'virtaamalla', 'Merjalle', 'antoi']
+*Ungrammatical.
+623
+['kirjan', 'antoi', 'Pekka', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+624
+['kirjan', 'antoi', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+625
+['kirjan', 'antoi', 'Merjalle', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+626
+['kirjan', 'antoi', 'Merjalle', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+627
+['kirjan', 'antoi', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+628
+['kirjan', 'antoi', 'virtaamalla', 'Merjalle', 'Pekka']
+*Ungrammatical.
+629
+['kirjan', 'Merjalle', 'Pekka', 'antoi', 'virtaamalla']
+*Ungrammatical.
+630
+['kirjan', 'Merjalle', 'Pekka', 'virtaamalla', 'antoi']
+*Ungrammatical.
+631
+['kirjan', 'Merjalle', 'antoi', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+632
+['kirjan', 'Merjalle', 'antoi', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+633
+['kirjan', 'Merjalle', 'virtaamalla', 'Pekka', 'antoi']
+*Ungrammatical.
+634
+['kirjan', 'Merjalle', 'virtaamalla', 'antoi', 'Pekka']
+*Ungrammatical.
+635
+['kirjan', 'virtaamalla', 'Pekka', 'antoi', 'Merjalle']
+*Ungrammatical.
+636
+['kirjan', 'virtaamalla', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+637
+['kirjan', 'virtaamalla', 'antoi', 'Pekka', 'Merjalle']
+*Ungrammatical.
+638
+['kirjan', 'virtaamalla', 'antoi', 'Merjalle', 'Pekka']
+*Ungrammatical.
+639
+['kirjan', 'virtaamalla', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+640
+['kirjan', 'virtaamalla', 'Merjalle', 'antoi', 'Pekka']
+*Ungrammatical.
+641
+['Merjalle', 'Pekka', 'antoi', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+642
+['Merjalle', 'Pekka', 'antoi', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+643
+['Merjalle', 'Pekka', 'kirjan', 'antoi', 'virtaamalla']
+*Ungrammatical.
+644
+['Merjalle', 'Pekka', 'kirjan', 'virtaamalla', 'antoi']
+*Ungrammatical.
+645
+['Merjalle', 'Pekka', 'virtaamalla', 'antoi', 'kirjan']
+*Ungrammatical.
+646
+['Merjalle', 'Pekka', 'virtaamalla', 'kirjan', 'antoi']
+*Ungrammatical.
+647
+['Merjalle', 'antoi', 'Pekka', 'kirjan', 'virtaamalla']
+*Ungrammatical.
+648
+['Merjalle', 'antoi', 'Pekka', 'virtaamalla', 'kirjan']
+*Ungrammatical.
+649
+['Merjalle', 'antoi', 'kirjan', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+650
+['Merjalle', 'antoi', 'kirjan', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+651
+['Merjalle', 'antoi', 'virtaamalla', 'Pekka', 'kirjan']
+*Ungrammatical.
+652
+['Merjalle', 'antoi', 'virtaamalla', 'kirjan', 'Pekka']
+*Ungrammatical.
+653
+['Merjalle', 'kirjan', 'Pekka', 'antoi', 'virtaamalla']
+*Ungrammatical.
+654
+['Merjalle', 'kirjan', 'Pekka', 'virtaamalla', 'antoi']
+*Ungrammatical.
+655
+['Merjalle', 'kirjan', 'antoi', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+656
+['Merjalle', 'kirjan', 'antoi', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+657
+['Merjalle', 'kirjan', 'virtaamalla', 'Pekka', 'antoi']
+*Ungrammatical.
+658
+['Merjalle', 'kirjan', 'virtaamalla', 'antoi', 'Pekka']
+*Ungrammatical.
+659
+['Merjalle', 'virtaamalla', 'Pekka', 'antoi', 'kirjan']
+*Ungrammatical.
+660
+['Merjalle', 'virtaamalla', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+661
+['Merjalle', 'virtaamalla', 'antoi', 'Pekka', 'kirjan']
+*Ungrammatical.
+662
+['Merjalle', 'virtaamalla', 'antoi', 'kirjan', 'Pekka']
+*Ungrammatical.
+663
+['Merjalle', 'virtaamalla', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+664
+['Merjalle', 'virtaamalla', 'kirjan', 'antoi', 'Pekka']
+*Ungrammatical.
+665
+['virtaamalla', 'Pekka', 'antoi', 'kirjan', 'Merjalle']
+*Ungrammatical.
+666
+['virtaamalla', 'Pekka', 'antoi', 'Merjalle', 'kirjan']
+*Ungrammatical.
+667
+['virtaamalla', 'Pekka', 'kirjan', 'antoi', 'Merjalle']
+*Ungrammatical.
+668
+['virtaamalla', 'Pekka', 'kirjan', 'Merjalle', 'antoi']
+*Ungrammatical.
+669
+['virtaamalla', 'Pekka', 'Merjalle', 'antoi', 'kirjan']
+*Ungrammatical.
+670
+['virtaamalla', 'Pekka', 'Merjalle', 'kirjan', 'antoi']
+*Ungrammatical.
+671
+['virtaamalla', 'antoi', 'Pekka', 'kirjan', 'Merjalle']
+*Ungrammatical.
+672
+['virtaamalla', 'antoi', 'Pekka', 'Merjalle', 'kirjan']
+*Ungrammatical.
+673
+['virtaamalla', 'antoi', 'kirjan', 'Pekka', 'Merjalle']
+*Ungrammatical.
+674
+['virtaamalla', 'antoi', 'kirjan', 'Merjalle', 'Pekka']
+*Ungrammatical.
+675
+['virtaamalla', 'antoi', 'Merjalle', 'Pekka', 'kirjan']
+*Ungrammatical.
+676
+['virtaamalla', 'antoi', 'Merjalle', 'kirjan', 'Pekka']
+*Ungrammatical.
+677
+['virtaamalla', 'kirjan', 'Pekka', 'antoi', 'Merjalle']
+*Ungrammatical.
+678
+['virtaamalla', 'kirjan', 'Pekka', 'Merjalle', 'antoi']
+*Ungrammatical.
+679
+['virtaamalla', 'kirjan', 'antoi', 'Pekka', 'Merjalle']
+*Ungrammatical.
+680
+['virtaamalla', 'kirjan', 'antoi', 'Merjalle', 'Pekka']
+*Ungrammatical.
+681
+['virtaamalla', 'kirjan', 'Merjalle', 'Pekka', 'antoi']
+*Ungrammatical.
+682
+['virtaamalla', 'kirjan', 'Merjalle', 'antoi', 'Pekka']
+*Ungrammatical.
+683
+['virtaamalla', 'Merjalle', 'Pekka', 'antoi', 'kirjan']
+*Ungrammatical.
+684
+['virtaamalla', 'Merjalle', 'Pekka', 'kirjan', 'antoi']
+*Ungrammatical.
+685
+['virtaamalla', 'Merjalle', 'antoi', 'Pekka', 'kirjan']
+*Ungrammatical.
+686
+['virtaamalla', 'Merjalle', 'antoi', 'kirjan', 'Pekka']
+*Ungrammatical.
+687
+['virtaamalla', 'Merjalle', 'kirjan', 'Pekka', 'antoi']
+*Ungrammatical.
+688
+['virtaamalla', 'Merjalle', 'kirjan', 'antoi', 'Pekka']
+*Ungrammatical.
+689
+['Pekka', 'ei', 'antanut', 'kirjaa', 'Merjalle', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [v [antaa [[D kirja] [<P(lle) [D Merja-]> <malla virtaa>]]]]]]]]
+'D Pekka not T __v give D book for D Merja by flow .'
+Failed parses 0, Merge operations:16, Move operations: 16
+690
+['Pekka', 'ei', 'antanut', 'kirjaa', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+691
+['Pekka', 'ei', 'antanut', 'Merjalle', 'kirjaa', 'virtaamalla']
+[[D Pekka]:1 [ei [T [(DP):1 [v [antaa [[[P(lle) [D Merja-]] <D kirja>] <malla virtaa>]]]]]]]
+'D Pekka not T __v give for D Merja D book by flow .'
+Failed parses 4, Merge operations:28, Move operations: 20
+692
+['Pekka', 'ei', 'antanut', 'Merjalle', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+693
+['Pekka', 'ei', 'antanut', 'virtaamalla', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+694
+['Pekka', 'ei', 'antanut', 'virtaamalla', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+695
+['Pekka', 'ei', 'kirjaa', 'antanut', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+696
+['Pekka', 'ei', 'kirjaa', 'antanut', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+697
+['Pekka', 'ei', 'kirjaa', 'Merjalle', 'antanut', 'virtaamalla']
+*Ungrammatical.
+698
+['Pekka', 'ei', 'kirjaa', 'Merjalle', 'virtaamalla', 'antanut']
+*Ungrammatical.
+699
+['Pekka', 'ei', 'kirjaa', 'virtaamalla', 'antanut', 'Merjalle']
+*Ungrammatical.
+700
+['Pekka', 'ei', 'kirjaa', 'virtaamalla', 'Merjalle', 'antanut']
+*Ungrammatical.
+701
+['Pekka', 'ei', 'Merjalle', 'antanut', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+702
+['Pekka', 'ei', 'Merjalle', 'antanut', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+703
+['Pekka', 'ei', 'Merjalle', 'kirjaa', 'antanut', 'virtaamalla']
+*Ungrammatical.
+704
+['Pekka', 'ei', 'Merjalle', 'kirjaa', 'virtaamalla', 'antanut']
+*Ungrammatical.
+705
+['Pekka', 'ei', 'Merjalle', 'virtaamalla', 'antanut', 'kirjaa']
+*Ungrammatical.
+706
+['Pekka', 'ei', 'Merjalle', 'virtaamalla', 'kirjaa', 'antanut']
+*Ungrammatical.
+707
+['Pekka', 'ei', 'virtaamalla', 'antanut', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+708
+['Pekka', 'ei', 'virtaamalla', 'antanut', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+709
+['Pekka', 'ei', 'virtaamalla', 'kirjaa', 'antanut', 'Merjalle']
+*Ungrammatical.
+710
+['Pekka', 'ei', 'virtaamalla', 'kirjaa', 'Merjalle', 'antanut']
+*Ungrammatical.
+711
+['Pekka', 'ei', 'virtaamalla', 'Merjalle', 'antanut', 'kirjaa']
+*Ungrammatical.
+712
+['Pekka', 'ei', 'virtaamalla', 'Merjalle', 'kirjaa', 'antanut']
+*Ungrammatical.
+713
+['Pekka', 'antanut', 'ei', 'kirjaa', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+714
+['Pekka', 'antanut', 'ei', 'kirjaa', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+715
+['Pekka', 'antanut', 'ei', 'Merjalle', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+716
+['Pekka', 'antanut', 'ei', 'Merjalle', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+717
+['Pekka', 'antanut', 'ei', 'virtaamalla', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+718
+['Pekka', 'antanut', 'ei', 'virtaamalla', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+719
+['Pekka', 'antanut', 'kirjaa', 'ei', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+720
+['Pekka', 'antanut', 'kirjaa', 'ei', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+721
+['Pekka', 'antanut', 'kirjaa', 'Merjalle', 'ei', 'virtaamalla']
+*Ungrammatical.
+722
+['Pekka', 'antanut', 'kirjaa', 'Merjalle', 'virtaamalla', 'ei']
+*Ungrammatical.
+723
+['Pekka', 'antanut', 'kirjaa', 'virtaamalla', 'ei', 'Merjalle']
+*Ungrammatical.
+724
+['Pekka', 'antanut', 'kirjaa', 'virtaamalla', 'Merjalle', 'ei']
+*Ungrammatical.
+725
+['Pekka', 'antanut', 'Merjalle', 'ei', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+726
+['Pekka', 'antanut', 'Merjalle', 'ei', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+727
+['Pekka', 'antanut', 'Merjalle', 'kirjaa', 'ei', 'virtaamalla']
+*Ungrammatical.
+728
+['Pekka', 'antanut', 'Merjalle', 'kirjaa', 'virtaamalla', 'ei']
+*Ungrammatical.
+729
+['Pekka', 'antanut', 'Merjalle', 'virtaamalla', 'ei', 'kirjaa']
+*Ungrammatical.
+730
+['Pekka', 'antanut', 'Merjalle', 'virtaamalla', 'kirjaa', 'ei']
+*Ungrammatical.
+731
+['Pekka', 'antanut', 'virtaamalla', 'ei', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+732
+['Pekka', 'antanut', 'virtaamalla', 'ei', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+733
+['Pekka', 'antanut', 'virtaamalla', 'kirjaa', 'ei', 'Merjalle']
+*Ungrammatical.
+734
+['Pekka', 'antanut', 'virtaamalla', 'kirjaa', 'Merjalle', 'ei']
+*Ungrammatical.
+735
+['Pekka', 'antanut', 'virtaamalla', 'Merjalle', 'ei', 'kirjaa']
+*Ungrammatical.
+736
+['Pekka', 'antanut', 'virtaamalla', 'Merjalle', 'kirjaa', 'ei']
+*Ungrammatical.
+737
+['Pekka', 'kirjaa', 'ei', 'antanut', 'Merjalle', 'virtaamalla']
+[[[D Pekka] <D kirja>]:1 [ei [T [(DP):1 [v [antaa [[P(lle) [D Merja-]] <malla virtaa>]]]]]]]
+'D Pekka D book not T __v give for D Merja by flow .'
+Failed parses 6, Merge operations:38, Move operations: 40
+738
+['Pekka', 'kirjaa', 'ei', 'antanut', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+739
+['Pekka', 'kirjaa', 'ei', 'Merjalle', 'antanut', 'virtaamalla']
+*Ungrammatical.
+740
+['Pekka', 'kirjaa', 'ei', 'Merjalle', 'virtaamalla', 'antanut']
+*Ungrammatical.
+741
+['Pekka', 'kirjaa', 'ei', 'virtaamalla', 'antanut', 'Merjalle']
+*Ungrammatical.
+742
+['Pekka', 'kirjaa', 'ei', 'virtaamalla', 'Merjalle', 'antanut']
+*Ungrammatical.
+743
+['Pekka', 'kirjaa', 'antanut', 'ei', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+744
+['Pekka', 'kirjaa', 'antanut', 'ei', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+745
+['Pekka', 'kirjaa', 'antanut', 'Merjalle', 'ei', 'virtaamalla']
+*Ungrammatical.
+746
+['Pekka', 'kirjaa', 'antanut', 'Merjalle', 'virtaamalla', 'ei']
+*Ungrammatical.
+747
+['Pekka', 'kirjaa', 'antanut', 'virtaamalla', 'ei', 'Merjalle']
+*Ungrammatical.
+748
+['Pekka', 'kirjaa', 'antanut', 'virtaamalla', 'Merjalle', 'ei']
+*Ungrammatical.
+749
+['Pekka', 'kirjaa', 'Merjalle', 'ei', 'antanut', 'virtaamalla']
+*Ungrammatical.
+750
+['Pekka', 'kirjaa', 'Merjalle', 'ei', 'virtaamalla', 'antanut']
+*Ungrammatical.
+751
+['Pekka', 'kirjaa', 'Merjalle', 'antanut', 'ei', 'virtaamalla']
+*Ungrammatical.
+752
+['Pekka', 'kirjaa', 'Merjalle', 'antanut', 'virtaamalla', 'ei']
+*Ungrammatical.
+753
+['Pekka', 'kirjaa', 'Merjalle', 'virtaamalla', 'ei', 'antanut']
+*Ungrammatical.
+754
+['Pekka', 'kirjaa', 'Merjalle', 'virtaamalla', 'antanut', 'ei']
+*Ungrammatical.
+755
+['Pekka', 'kirjaa', 'virtaamalla', 'ei', 'antanut', 'Merjalle']
+*Ungrammatical.
+756
+['Pekka', 'kirjaa', 'virtaamalla', 'ei', 'Merjalle', 'antanut']
+*Ungrammatical.
+757
+['Pekka', 'kirjaa', 'virtaamalla', 'antanut', 'ei', 'Merjalle']
+*Ungrammatical.
+758
+['Pekka', 'kirjaa', 'virtaamalla', 'antanut', 'Merjalle', 'ei']
+*Ungrammatical.
+759
+['Pekka', 'kirjaa', 'virtaamalla', 'Merjalle', 'ei', 'antanut']
+*Ungrammatical.
+760
+['Pekka', 'kirjaa', 'virtaamalla', 'Merjalle', 'antanut', 'ei']
+*Ungrammatical.
+761
+['Pekka', 'Merjalle', 'ei', 'antanut', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+762
+['Pekka', 'Merjalle', 'ei', 'antanut', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+763
+['Pekka', 'Merjalle', 'ei', 'kirjaa', 'antanut', 'virtaamalla']
+*Ungrammatical.
+764
+['Pekka', 'Merjalle', 'ei', 'kirjaa', 'virtaamalla', 'antanut']
+*Ungrammatical.
+765
+['Pekka', 'Merjalle', 'ei', 'virtaamalla', 'antanut', 'kirjaa']
+*Ungrammatical.
+766
+['Pekka', 'Merjalle', 'ei', 'virtaamalla', 'kirjaa', 'antanut']
+*Ungrammatical.
+767
+['Pekka', 'Merjalle', 'antanut', 'ei', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+768
+['Pekka', 'Merjalle', 'antanut', 'ei', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+769
+['Pekka', 'Merjalle', 'antanut', 'kirjaa', 'ei', 'virtaamalla']
+*Ungrammatical.
+770
+['Pekka', 'Merjalle', 'antanut', 'kirjaa', 'virtaamalla', 'ei']
+*Ungrammatical.
+771
+['Pekka', 'Merjalle', 'antanut', 'virtaamalla', 'ei', 'kirjaa']
+*Ungrammatical.
+772
+['Pekka', 'Merjalle', 'antanut', 'virtaamalla', 'kirjaa', 'ei']
+*Ungrammatical.
+773
+['Pekka', 'Merjalle', 'kirjaa', 'ei', 'antanut', 'virtaamalla']
+*Ungrammatical.
+774
+['Pekka', 'Merjalle', 'kirjaa', 'ei', 'virtaamalla', 'antanut']
+*Ungrammatical.
+775
+['Pekka', 'Merjalle', 'kirjaa', 'antanut', 'ei', 'virtaamalla']
+*Ungrammatical.
+776
+['Pekka', 'Merjalle', 'kirjaa', 'antanut', 'virtaamalla', 'ei']
+*Ungrammatical.
+777
+['Pekka', 'Merjalle', 'kirjaa', 'virtaamalla', 'ei', 'antanut']
+*Ungrammatical.
+778
+['Pekka', 'Merjalle', 'kirjaa', 'virtaamalla', 'antanut', 'ei']
+*Ungrammatical.
+779
+['Pekka', 'Merjalle', 'virtaamalla', 'ei', 'antanut', 'kirjaa']
+*Ungrammatical.
+780
+['Pekka', 'Merjalle', 'virtaamalla', 'ei', 'kirjaa', 'antanut']
+*Ungrammatical.
+781
+['Pekka', 'Merjalle', 'virtaamalla', 'antanut', 'ei', 'kirjaa']
+*Ungrammatical.
+782
+['Pekka', 'Merjalle', 'virtaamalla', 'antanut', 'kirjaa', 'ei']
+*Ungrammatical.
+783
+['Pekka', 'Merjalle', 'virtaamalla', 'kirjaa', 'ei', 'antanut']
+*Ungrammatical.
+784
+['Pekka', 'Merjalle', 'virtaamalla', 'kirjaa', 'antanut', 'ei']
+*Ungrammatical.
+785
+['Pekka', 'virtaamalla', 'ei', 'antanut', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+786
+['Pekka', 'virtaamalla', 'ei', 'antanut', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+787
+['Pekka', 'virtaamalla', 'ei', 'kirjaa', 'antanut', 'Merjalle']
+*Ungrammatical.
+788
+['Pekka', 'virtaamalla', 'ei', 'kirjaa', 'Merjalle', 'antanut']
+*Ungrammatical.
+789
+['Pekka', 'virtaamalla', 'ei', 'Merjalle', 'antanut', 'kirjaa']
+*Ungrammatical.
+790
+['Pekka', 'virtaamalla', 'ei', 'Merjalle', 'kirjaa', 'antanut']
+*Ungrammatical.
+791
+['Pekka', 'virtaamalla', 'antanut', 'ei', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+792
+['Pekka', 'virtaamalla', 'antanut', 'ei', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+793
+['Pekka', 'virtaamalla', 'antanut', 'kirjaa', 'ei', 'Merjalle']
+*Ungrammatical.
+794
+['Pekka', 'virtaamalla', 'antanut', 'kirjaa', 'Merjalle', 'ei']
+*Ungrammatical.
+795
+['Pekka', 'virtaamalla', 'antanut', 'Merjalle', 'ei', 'kirjaa']
+*Ungrammatical.
+796
+['Pekka', 'virtaamalla', 'antanut', 'Merjalle', 'kirjaa', 'ei']
+*Ungrammatical.
+797
+['Pekka', 'virtaamalla', 'kirjaa', 'ei', 'antanut', 'Merjalle']
+*Ungrammatical.
+798
+['Pekka', 'virtaamalla', 'kirjaa', 'ei', 'Merjalle', 'antanut']
+*Ungrammatical.
+799
+['Pekka', 'virtaamalla', 'kirjaa', 'antanut', 'ei', 'Merjalle']
+*Ungrammatical.
+800
+['Pekka', 'virtaamalla', 'kirjaa', 'antanut', 'Merjalle', 'ei']
+*Ungrammatical.
+801
+['Pekka', 'virtaamalla', 'kirjaa', 'Merjalle', 'ei', 'antanut']
+*Ungrammatical.
+802
+['Pekka', 'virtaamalla', 'kirjaa', 'Merjalle', 'antanut', 'ei']
+*Ungrammatical.
+803
+['Pekka', 'virtaamalla', 'Merjalle', 'ei', 'antanut', 'kirjaa']
+*Ungrammatical.
+804
+['Pekka', 'virtaamalla', 'Merjalle', 'ei', 'kirjaa', 'antanut']
+*Ungrammatical.
+805
+['Pekka', 'virtaamalla', 'Merjalle', 'antanut', 'ei', 'kirjaa']
+*Ungrammatical.
+806
+['Pekka', 'virtaamalla', 'Merjalle', 'antanut', 'kirjaa', 'ei']
+*Ungrammatical.
+807
+['Pekka', 'virtaamalla', 'Merjalle', 'kirjaa', 'ei', 'antanut']
+*Ungrammatical.
+808
+['Pekka', 'virtaamalla', 'Merjalle', 'kirjaa', 'antanut', 'ei']
+*Ungrammatical.
+809
+['ei', 'Pekka', 'antanut', 'kirjaa', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+810
+['ei', 'Pekka', 'antanut', 'kirjaa', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+811
+['ei', 'Pekka', 'antanut', 'Merjalle', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+812
+['ei', 'Pekka', 'antanut', 'Merjalle', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+813
+['ei', 'Pekka', 'antanut', 'virtaamalla', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+814
+['ei', 'Pekka', 'antanut', 'virtaamalla', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+815
+['ei', 'Pekka', 'kirjaa', 'antanut', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+816
+['ei', 'Pekka', 'kirjaa', 'antanut', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+817
+['ei', 'Pekka', 'kirjaa', 'Merjalle', 'antanut', 'virtaamalla']
+*Ungrammatical.
+818
+['ei', 'Pekka', 'kirjaa', 'Merjalle', 'virtaamalla', 'antanut']
+*Ungrammatical.
+819
+['ei', 'Pekka', 'kirjaa', 'virtaamalla', 'antanut', 'Merjalle']
+*Ungrammatical.
+820
+['ei', 'Pekka', 'kirjaa', 'virtaamalla', 'Merjalle', 'antanut']
+*Ungrammatical.
+821
+['ei', 'Pekka', 'Merjalle', 'antanut', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+822
+['ei', 'Pekka', 'Merjalle', 'antanut', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+823
+['ei', 'Pekka', 'Merjalle', 'kirjaa', 'antanut', 'virtaamalla']
+*Ungrammatical.
+824
+['ei', 'Pekka', 'Merjalle', 'kirjaa', 'virtaamalla', 'antanut']
+*Ungrammatical.
+825
+['ei', 'Pekka', 'Merjalle', 'virtaamalla', 'antanut', 'kirjaa']
+*Ungrammatical.
+826
+['ei', 'Pekka', 'Merjalle', 'virtaamalla', 'kirjaa', 'antanut']
+*Ungrammatical.
+827
+['ei', 'Pekka', 'virtaamalla', 'antanut', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+828
+['ei', 'Pekka', 'virtaamalla', 'antanut', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+829
+['ei', 'Pekka', 'virtaamalla', 'kirjaa', 'antanut', 'Merjalle']
+*Ungrammatical.
+830
+['ei', 'Pekka', 'virtaamalla', 'kirjaa', 'Merjalle', 'antanut']
+*Ungrammatical.
+831
+['ei', 'Pekka', 'virtaamalla', 'Merjalle', 'antanut', 'kirjaa']
+*Ungrammatical.
+832
+['ei', 'Pekka', 'virtaamalla', 'Merjalle', 'kirjaa', 'antanut']
+*Ungrammatical.
+833
+['ei', 'antanut', 'Pekka', 'kirjaa', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+834
+['ei', 'antanut', 'Pekka', 'kirjaa', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+835
+['ei', 'antanut', 'Pekka', 'Merjalle', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+836
+['ei', 'antanut', 'Pekka', 'Merjalle', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+837
+['ei', 'antanut', 'Pekka', 'virtaamalla', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+838
+['ei', 'antanut', 'Pekka', 'virtaamalla', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+839
+['ei', 'antanut', 'kirjaa', 'Pekka', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+840
+['ei', 'antanut', 'kirjaa', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+841
+['ei', 'antanut', 'kirjaa', 'Merjalle', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+842
+['ei', 'antanut', 'kirjaa', 'Merjalle', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+843
+['ei', 'antanut', 'kirjaa', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+844
+['ei', 'antanut', 'kirjaa', 'virtaamalla', 'Merjalle', 'Pekka']
+*Ungrammatical.
+845
+['ei', 'antanut', 'Merjalle', 'Pekka', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+846
+['ei', 'antanut', 'Merjalle', 'Pekka', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+847
+['ei', 'antanut', 'Merjalle', 'kirjaa', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+848
+['ei', 'antanut', 'Merjalle', 'kirjaa', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+849
+['ei', 'antanut', 'Merjalle', 'virtaamalla', 'Pekka', 'kirjaa']
+*Ungrammatical.
+850
+['ei', 'antanut', 'Merjalle', 'virtaamalla', 'kirjaa', 'Pekka']
+*Ungrammatical.
+851
+['ei', 'antanut', 'virtaamalla', 'Pekka', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+852
+['ei', 'antanut', 'virtaamalla', 'Pekka', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+853
+['ei', 'antanut', 'virtaamalla', 'kirjaa', 'Pekka', 'Merjalle']
+*Ungrammatical.
+854
+['ei', 'antanut', 'virtaamalla', 'kirjaa', 'Merjalle', 'Pekka']
+*Ungrammatical.
+855
+['ei', 'antanut', 'virtaamalla', 'Merjalle', 'Pekka', 'kirjaa']
+*Ungrammatical.
+856
+['ei', 'antanut', 'virtaamalla', 'Merjalle', 'kirjaa', 'Pekka']
+*Ungrammatical.
+857
+['ei', 'kirjaa', 'Pekka', 'antanut', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+858
+['ei', 'kirjaa', 'Pekka', 'antanut', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+859
+['ei', 'kirjaa', 'Pekka', 'Merjalle', 'antanut', 'virtaamalla']
+*Ungrammatical.
+860
+['ei', 'kirjaa', 'Pekka', 'Merjalle', 'virtaamalla', 'antanut']
+*Ungrammatical.
+861
+['ei', 'kirjaa', 'Pekka', 'virtaamalla', 'antanut', 'Merjalle']
+*Ungrammatical.
+862
+['ei', 'kirjaa', 'Pekka', 'virtaamalla', 'Merjalle', 'antanut']
+*Ungrammatical.
+863
+['ei', 'kirjaa', 'antanut', 'Pekka', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+864
+['ei', 'kirjaa', 'antanut', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+865
+['ei', 'kirjaa', 'antanut', 'Merjalle', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+866
+['ei', 'kirjaa', 'antanut', 'Merjalle', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+867
+['ei', 'kirjaa', 'antanut', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+868
+['ei', 'kirjaa', 'antanut', 'virtaamalla', 'Merjalle', 'Pekka']
+*Ungrammatical.
+869
+['ei', 'kirjaa', 'Merjalle', 'Pekka', 'antanut', 'virtaamalla']
+*Ungrammatical.
+870
+['ei', 'kirjaa', 'Merjalle', 'Pekka', 'virtaamalla', 'antanut']
+*Ungrammatical.
+871
+['ei', 'kirjaa', 'Merjalle', 'antanut', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+872
+['ei', 'kirjaa', 'Merjalle', 'antanut', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+873
+['ei', 'kirjaa', 'Merjalle', 'virtaamalla', 'Pekka', 'antanut']
+*Ungrammatical.
+874
+['ei', 'kirjaa', 'Merjalle', 'virtaamalla', 'antanut', 'Pekka']
+*Ungrammatical.
+875
+['ei', 'kirjaa', 'virtaamalla', 'Pekka', 'antanut', 'Merjalle']
+*Ungrammatical.
+876
+['ei', 'kirjaa', 'virtaamalla', 'Pekka', 'Merjalle', 'antanut']
+*Ungrammatical.
+877
+['ei', 'kirjaa', 'virtaamalla', 'antanut', 'Pekka', 'Merjalle']
+*Ungrammatical.
+878
+['ei', 'kirjaa', 'virtaamalla', 'antanut', 'Merjalle', 'Pekka']
+*Ungrammatical.
+879
+['ei', 'kirjaa', 'virtaamalla', 'Merjalle', 'Pekka', 'antanut']
+*Ungrammatical.
+880
+['ei', 'kirjaa', 'virtaamalla', 'Merjalle', 'antanut', 'Pekka']
+*Ungrammatical.
+881
+['ei', 'Merjalle', 'Pekka', 'antanut', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+882
+['ei', 'Merjalle', 'Pekka', 'antanut', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+883
+['ei', 'Merjalle', 'Pekka', 'kirjaa', 'antanut', 'virtaamalla']
+*Ungrammatical.
+884
+['ei', 'Merjalle', 'Pekka', 'kirjaa', 'virtaamalla', 'antanut']
+*Ungrammatical.
+885
+['ei', 'Merjalle', 'Pekka', 'virtaamalla', 'antanut', 'kirjaa']
+*Ungrammatical.
+886
+['ei', 'Merjalle', 'Pekka', 'virtaamalla', 'kirjaa', 'antanut']
+*Ungrammatical.
+887
+['ei', 'Merjalle', 'antanut', 'Pekka', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+888
+['ei', 'Merjalle', 'antanut', 'Pekka', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+889
+['ei', 'Merjalle', 'antanut', 'kirjaa', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+890
+['ei', 'Merjalle', 'antanut', 'kirjaa', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+891
+['ei', 'Merjalle', 'antanut', 'virtaamalla', 'Pekka', 'kirjaa']
+*Ungrammatical.
+892
+['ei', 'Merjalle', 'antanut', 'virtaamalla', 'kirjaa', 'Pekka']
+*Ungrammatical.
+893
+['ei', 'Merjalle', 'kirjaa', 'Pekka', 'antanut', 'virtaamalla']
+*Ungrammatical.
+894
+['ei', 'Merjalle', 'kirjaa', 'Pekka', 'virtaamalla', 'antanut']
+*Ungrammatical.
+895
+['ei', 'Merjalle', 'kirjaa', 'antanut', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+896
+['ei', 'Merjalle', 'kirjaa', 'antanut', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+897
+['ei', 'Merjalle', 'kirjaa', 'virtaamalla', 'Pekka', 'antanut']
+*Ungrammatical.
+898
+['ei', 'Merjalle', 'kirjaa', 'virtaamalla', 'antanut', 'Pekka']
+*Ungrammatical.
+899
+['ei', 'Merjalle', 'virtaamalla', 'Pekka', 'antanut', 'kirjaa']
+*Ungrammatical.
+900
+['ei', 'Merjalle', 'virtaamalla', 'Pekka', 'kirjaa', 'antanut']
+*Ungrammatical.
+901
+['ei', 'Merjalle', 'virtaamalla', 'antanut', 'Pekka', 'kirjaa']
+*Ungrammatical.
+902
+['ei', 'Merjalle', 'virtaamalla', 'antanut', 'kirjaa', 'Pekka']
+*Ungrammatical.
+903
+['ei', 'Merjalle', 'virtaamalla', 'kirjaa', 'Pekka', 'antanut']
+*Ungrammatical.
+904
+['ei', 'Merjalle', 'virtaamalla', 'kirjaa', 'antanut', 'Pekka']
+*Ungrammatical.
+905
+['ei', 'virtaamalla', 'Pekka', 'antanut', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+906
+['ei', 'virtaamalla', 'Pekka', 'antanut', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+907
+['ei', 'virtaamalla', 'Pekka', 'kirjaa', 'antanut', 'Merjalle']
+*Ungrammatical.
+908
+['ei', 'virtaamalla', 'Pekka', 'kirjaa', 'Merjalle', 'antanut']
+*Ungrammatical.
+909
+['ei', 'virtaamalla', 'Pekka', 'Merjalle', 'antanut', 'kirjaa']
+*Ungrammatical.
+910
+['ei', 'virtaamalla', 'Pekka', 'Merjalle', 'kirjaa', 'antanut']
+*Ungrammatical.
+911
+['ei', 'virtaamalla', 'antanut', 'Pekka', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+912
+['ei', 'virtaamalla', 'antanut', 'Pekka', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+913
+['ei', 'virtaamalla', 'antanut', 'kirjaa', 'Pekka', 'Merjalle']
+*Ungrammatical.
+914
+['ei', 'virtaamalla', 'antanut', 'kirjaa', 'Merjalle', 'Pekka']
+*Ungrammatical.
+915
+['ei', 'virtaamalla', 'antanut', 'Merjalle', 'Pekka', 'kirjaa']
+*Ungrammatical.
+916
+['ei', 'virtaamalla', 'antanut', 'Merjalle', 'kirjaa', 'Pekka']
+*Ungrammatical.
+917
+['ei', 'virtaamalla', 'kirjaa', 'Pekka', 'antanut', 'Merjalle']
+*Ungrammatical.
+918
+['ei', 'virtaamalla', 'kirjaa', 'Pekka', 'Merjalle', 'antanut']
+*Ungrammatical.
+919
+['ei', 'virtaamalla', 'kirjaa', 'antanut', 'Pekka', 'Merjalle']
+*Ungrammatical.
+920
+['ei', 'virtaamalla', 'kirjaa', 'antanut', 'Merjalle', 'Pekka']
+*Ungrammatical.
+921
+['ei', 'virtaamalla', 'kirjaa', 'Merjalle', 'Pekka', 'antanut']
+*Ungrammatical.
+922
+['ei', 'virtaamalla', 'kirjaa', 'Merjalle', 'antanut', 'Pekka']
+*Ungrammatical.
+923
+['ei', 'virtaamalla', 'Merjalle', 'Pekka', 'antanut', 'kirjaa']
+*Ungrammatical.
+924
+['ei', 'virtaamalla', 'Merjalle', 'Pekka', 'kirjaa', 'antanut']
+*Ungrammatical.
+925
+['ei', 'virtaamalla', 'Merjalle', 'antanut', 'Pekka', 'kirjaa']
+*Ungrammatical.
+926
+['ei', 'virtaamalla', 'Merjalle', 'antanut', 'kirjaa', 'Pekka']
+*Ungrammatical.
+927
+['ei', 'virtaamalla', 'Merjalle', 'kirjaa', 'Pekka', 'antanut']
+*Ungrammatical.
+928
+['ei', 'virtaamalla', 'Merjalle', 'kirjaa', 'antanut', 'Pekka']
+*Ungrammatical.
+929
+['antanut', 'Pekka', 'ei', 'kirjaa', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+930
+['antanut', 'Pekka', 'ei', 'kirjaa', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+931
+['antanut', 'Pekka', 'ei', 'Merjalle', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+932
+['antanut', 'Pekka', 'ei', 'Merjalle', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+933
+['antanut', 'Pekka', 'ei', 'virtaamalla', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+934
+['antanut', 'Pekka', 'ei', 'virtaamalla', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+935
+['antanut', 'Pekka', 'kirjaa', 'ei', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+936
+['antanut', 'Pekka', 'kirjaa', 'ei', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+937
+['antanut', 'Pekka', 'kirjaa', 'Merjalle', 'ei', 'virtaamalla']
+*Ungrammatical.
+938
+['antanut', 'Pekka', 'kirjaa', 'Merjalle', 'virtaamalla', 'ei']
+*Ungrammatical.
+939
+['antanut', 'Pekka', 'kirjaa', 'virtaamalla', 'ei', 'Merjalle']
+*Ungrammatical.
+940
+['antanut', 'Pekka', 'kirjaa', 'virtaamalla', 'Merjalle', 'ei']
+*Ungrammatical.
+941
+['antanut', 'Pekka', 'Merjalle', 'ei', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+942
+['antanut', 'Pekka', 'Merjalle', 'ei', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+943
+['antanut', 'Pekka', 'Merjalle', 'kirjaa', 'ei', 'virtaamalla']
+*Ungrammatical.
+944
+['antanut', 'Pekka', 'Merjalle', 'kirjaa', 'virtaamalla', 'ei']
+*Ungrammatical.
+945
+['antanut', 'Pekka', 'Merjalle', 'virtaamalla', 'ei', 'kirjaa']
+*Ungrammatical.
+946
+['antanut', 'Pekka', 'Merjalle', 'virtaamalla', 'kirjaa', 'ei']
+*Ungrammatical.
+947
+['antanut', 'Pekka', 'virtaamalla', 'ei', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+948
+['antanut', 'Pekka', 'virtaamalla', 'ei', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+949
+['antanut', 'Pekka', 'virtaamalla', 'kirjaa', 'ei', 'Merjalle']
+*Ungrammatical.
+950
+['antanut', 'Pekka', 'virtaamalla', 'kirjaa', 'Merjalle', 'ei']
+*Ungrammatical.
+951
+['antanut', 'Pekka', 'virtaamalla', 'Merjalle', 'ei', 'kirjaa']
+*Ungrammatical.
+952
+['antanut', 'Pekka', 'virtaamalla', 'Merjalle', 'kirjaa', 'ei']
+*Ungrammatical.
+953
+['antanut', 'ei', 'Pekka', 'kirjaa', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+954
+['antanut', 'ei', 'Pekka', 'kirjaa', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+955
+['antanut', 'ei', 'Pekka', 'Merjalle', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+956
+['antanut', 'ei', 'Pekka', 'Merjalle', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+957
+['antanut', 'ei', 'Pekka', 'virtaamalla', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+958
+['antanut', 'ei', 'Pekka', 'virtaamalla', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+959
+['antanut', 'ei', 'kirjaa', 'Pekka', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+960
+['antanut', 'ei', 'kirjaa', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+961
+['antanut', 'ei', 'kirjaa', 'Merjalle', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+962
+['antanut', 'ei', 'kirjaa', 'Merjalle', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+963
+['antanut', 'ei', 'kirjaa', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+964
+['antanut', 'ei', 'kirjaa', 'virtaamalla', 'Merjalle', 'Pekka']
+*Ungrammatical.
+965
+['antanut', 'ei', 'Merjalle', 'Pekka', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
+966
+['antanut', 'ei', 'Merjalle', 'Pekka', 'virtaamalla', 'kirjaa']
+*Ungrammatical.
+967
+['antanut', 'ei', 'Merjalle', 'kirjaa', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+968
+['antanut', 'ei', 'Merjalle', 'kirjaa', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+969
+['antanut', 'ei', 'Merjalle', 'virtaamalla', 'Pekka', 'kirjaa']
+*Ungrammatical.
+970
+['antanut', 'ei', 'Merjalle', 'virtaamalla', 'kirjaa', 'Pekka']
+*Ungrammatical.
+971
+['antanut', 'ei', 'virtaamalla', 'Pekka', 'kirjaa', 'Merjalle']
+*Ungrammatical.
+972
+['antanut', 'ei', 'virtaamalla', 'Pekka', 'Merjalle', 'kirjaa']
+*Ungrammatical.
+973
+['antanut', 'ei', 'virtaamalla', 'kirjaa', 'Pekka', 'Merjalle']
+*Ungrammatical.
+974
+['antanut', 'ei', 'virtaamalla', 'kirjaa', 'Merjalle', 'Pekka']
+*Ungrammatical.
+975
+['antanut', 'ei', 'virtaamalla', 'Merjalle', 'Pekka', 'kirjaa']
+*Ungrammatical.
+976
+['antanut', 'ei', 'virtaamalla', 'Merjalle', 'kirjaa', 'Pekka']
+*Ungrammatical.
+977
+['antanut', 'kirjaa', 'Pekka', 'ei', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+978
+['antanut', 'kirjaa', 'Pekka', 'ei', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+979
+['antanut', 'kirjaa', 'Pekka', 'Merjalle', 'ei', 'virtaamalla']
+*Ungrammatical.
+980
+['antanut', 'kirjaa', 'Pekka', 'Merjalle', 'virtaamalla', 'ei']
+*Ungrammatical.
+981
+['antanut', 'kirjaa', 'Pekka', 'virtaamalla', 'ei', 'Merjalle']
+*Ungrammatical.
+982
+['antanut', 'kirjaa', 'Pekka', 'virtaamalla', 'Merjalle', 'ei']
+*Ungrammatical.
+983
+['antanut', 'kirjaa', 'ei', 'Pekka', 'Merjalle', 'virtaamalla']
+*Ungrammatical.
+984
+['antanut', 'kirjaa', 'ei', 'Pekka', 'virtaamalla', 'Merjalle']
+*Ungrammatical.
+985
+['antanut', 'kirjaa', 'ei', 'Merjalle', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+986
+['antanut', 'kirjaa', 'ei', 'Merjalle', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+987
+['antanut', 'kirjaa', 'ei', 'virtaamalla', 'Pekka', 'Merjalle']
+*Ungrammatical.
+988
+['antanut', 'kirjaa', 'ei', 'virtaamalla', 'Merjalle', 'Pekka']
+*Ungrammatical.
+989
+['antanut', 'kirjaa', 'Merjalle', 'Pekka', 'ei', 'virtaamalla']
+*Ungrammatical.
+990
+['antanut', 'kirjaa', 'Merjalle', 'Pekka', 'virtaamalla', 'ei']
+*Ungrammatical.
+991
+['antanut', 'kirjaa', 'Merjalle', 'ei', 'Pekka', 'virtaamalla']
+*Ungrammatical.
+992
+['antanut', 'kirjaa', 'Merjalle', 'ei', 'virtaamalla', 'Pekka']
+*Ungrammatical.
+993
+['antanut', 'kirjaa', 'Merjalle', 'virtaamalla', 'Pekka', 'ei']
+*Ungrammatical.
+994
+['antanut', 'kirjaa', 'Merjalle', 'virtaamalla', 'ei', 'Pekka']
+*Ungrammatical.
+995
+['antanut', 'kirjaa', 'virtaamalla', 'Pekka', 'ei', 'Merjalle']
+*Ungrammatical.
+996
+['antanut', 'kirjaa', 'virtaamalla', 'Pekka', 'Merjalle', 'ei']
+*Ungrammatical.
+997
+['antanut', 'kirjaa', 'virtaamalla', 'ei', 'Pekka', 'Merjalle']
+*Ungrammatical.
+998
+['antanut', 'kirjaa', 'virtaamalla', 'ei', 'Merjalle', 'Pekka']
+*Ungrammatical.
+999
+['antanut', 'kirjaa', 'virtaamalla', 'Merjalle', 'Pekka', 'ei']
+*Ungrammatical.
+1000
+['antanut', 'kirjaa', 'virtaamalla', 'Merjalle', 'ei', 'Pekka']
+*Ungrammatical.
+1001
+['antanut', 'Merjalle', 'Pekka', 'ei', 'kirjaa', 'virtaamalla']
+*Ungrammatical.
