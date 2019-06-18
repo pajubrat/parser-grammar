@@ -4,7 +4,7 @@
 # Based on Brattico, P. (2019). Computational implementation of a top-down grammar.
 # See documentation in the \Documentation folder
 # Version 1.9
-# Programming: Pauli Brattico, Jukka Purma
+# Programming: Pauli Brattico, with additional programming by Jukka Purma
 ################################################################################
 
 # Imports
@@ -21,8 +21,8 @@ test_set_name = 'Study0_whole_corpus_FINAL.txt'
 
 # Additional naming conventions
 lexicon_file_name = 'lexicon.txt'
-log_file_name = test_set_name[:-4] + '_log.txt'
-results_file_name = test_set_name[:-4] + '_results.txt'
+log_file_name = test_set_name[:-4] + '_log_c.txt'
+results_file_name = test_set_name[:-4] + '_results_c.txt'
 ug_morphemes = 'ug_morphemes.txt'
 redundancy_rules = 'redundancy_rules.txt'
 grammaticality_judgement = ['','?','?','??', '??', '?*', '?*', '##']
@@ -30,8 +30,8 @@ parse_list = []
 t = time.time()
 
 # Set this tag if you want to disable all logging functions
-# disable_all_logging()
-set_logging(True)
+disable_all_logging()
+# set_logging(True)
 
 
 print('Parsing process initialized.')
@@ -82,14 +82,18 @@ print('Lexicon will be read from file \"' + test_set_name[:-4] + '_lexicon.lex\"
 
 # Stamp the output file
 results_file = open(results_file_name, "w")
-results_file.write('BC parser v. 0.9\n')
+results_file.write('Parser-Grammar v. 1.9\n')
 results_file.write(str(datetime.datetime.now())+'\n')
 results_file.write(f'Test sentences from file \"{test_set_name}\".\n')
 results_file.write(f'Logs into file \"{log_file_name}.\n')
 results_file.write(f'Lexicon from file \"{lexicon_file_name}\".\n')
 
+# Starting index
+start = 30000
+count = start
+
 # Main parsing loop
-for sentence in parse_list:
+for sentence in parse_list[start:]:
     print(str(count))
 
     if sentence[0] != '&':  # Sentences beginning with & will be written to the log file as such
