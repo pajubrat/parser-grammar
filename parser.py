@@ -9,7 +9,7 @@ from morphology import Morphology
 # 2019
 # V. 1.02
 
-class Pcb_parser():
+class PCBParser():
     def __init__(self, context):
 
         # Contextual variables (language etc.)
