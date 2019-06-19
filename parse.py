@@ -17,11 +17,11 @@ from LanguageGuesser import LanguageGuesser
 from context import Context
 
 
-def run_parse(test_set_name='example/example_test_set.txt',  # Name of the corpus file
-              lexicon_file_name='lexicon.txt',
-              ug_morphemes='ug_morphemes.txt',
-              redundancy_rules='redundancy_rules.txt',
-              start=0):
+def parse_test_set(test_set_name='example/example_test_set.txt',
+                   lexicon_file_name='lexicon.txt',
+                   ug_morphemes='ug_morphemes.txt',
+                   redundancy_rules='redundancy_rules.txt',
+                   start=0):
 
     # Additional naming conventions
     log_file_name = test_set_name[:-4] + '_log_c.txt'
@@ -156,6 +156,6 @@ def run_parse(test_set_name='example/example_test_set.txt',  # Name of the corpu
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        run_parse(test_set_name=sys.argv[1])
+        parse_test_set(test_set_name=sys.argv[1])
     else:
-        run_parse()
+        parse_test_set()
