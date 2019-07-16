@@ -3,7 +3,7 @@
 # Parser-grammar
 # Based on Brattico, P. (2019). Computational implementation of a top-down grammar.
 # See documentation in the \Documentation folder
-# Version 1.9
+# Version 2.1
 # Programming: Pauli Brattico, with additional programming by Jukka Purma
 ################################################################################
 
@@ -17,12 +17,12 @@ from LanguageGuesser import LanguageGuesser
 from context import Context
 
 # Name of the corpus file
-test_set_name = 'Study0_whole_corpus_FINAL.txt'
+test_set_name = 'Gold_standard_corpus.txt'
 
 # Additional naming conventions
 lexicon_file_name = 'lexicon.txt'
-log_file_name = test_set_name[:-4] + '_log_c.txt'
-results_file_name = test_set_name[:-4] + '_results_c.txt'
+log_file_name = test_set_name[:-4] + '_log.txt'
+results_file_name = test_set_name[:-4] + '_results.txt'
 ug_morphemes = 'ug_morphemes.txt'
 redundancy_rules = 'redundancy_rules.txt'
 grammaticality_judgement = ['','?','?','??', '??', '?*', '?*', '##']
@@ -89,7 +89,9 @@ results_file.write(f'Logs into file \"{log_file_name}.\n')
 results_file.write(f'Lexicon from file \"{lexicon_file_name}\".\n')
 
 # Starting index
-start = 30000
+# Sets the index of the sentence in the corpus from which parsing will begin. This makes it possible to parse
+# individual segments of larger corpora.
+start = 0
 count = start
 
 # Main parsing loop
