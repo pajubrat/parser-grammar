@@ -196,19 +196,35 @@ class PhraseStructure:
         Values the phi-features of a primitive head, if unvalued
         """
 
+
         # Values phi_feature f into h (only if matching unvalued feature is found)
         def value(h, phi):
-            if phi:
-                for g in h.features:
-                    if g[-1]=='_':  # We are only concerned with unvalued features
-                        g_ = g[:-1]  # Remove the _
-                        phi_ = phi[:len(g_)]  # match the remaining portion
-                        if g_ == phi_: # Check if the unvalued feature and the tested phi-feature match (minus _)
-                            # Valuation (technically substitution)
-                            h.features.remove(g)
-                            h.features.add(phi)
-                            return True
 
+            def find_unvalued_target(h, phi):
+                # Check if head h accept phi morphosyntactically
+                accepted_features = {f.split('=')[1] for f in h.features if f[:5] == 'INFL='}
+                for infl in accepted_features:
+                    if infl == phi[:len(infl)]:
+                        # Check if there is a corresponding unvalued feature
+                        for g in h.features:
+                            if g[-1] == '_':  # We are only concerned with unvalued features
+                                g_ = g[:-1]  # Remove the _
+                                phi_ = phi[:len(g_)]  # match the remaining portion
+                                if g_ == phi_:  # Check if the unvalued feature and the tested phi-feature match
+                                    return g
+
+                return None
+
+            if phi:
+                # Find a possible target to replace
+                # Target must satisfy two conditions:
+                #   a. It must be morphosyntactically accepted by the host h
+                #   b. The head h must contain a corresponding unvalued feature
+                target = find_unvalued_target(h, phi)
+                if target:
+                    h.features.remove(target)
+                    h.features.add(phi)
+                    return True
             return False
 
         # phi-Agree
@@ -245,19 +261,18 @@ class PhraseStructure:
         h = self
         phi_features = set()
 
-        # Acquire phi-features by phi-Agree if head accepts them (no -MOR)
-        if '-MOR' not in h.features:
-            goal, phi_features = acquire_from_sister(h.sister())    # Acquire phi-features
-            for phi in phi_features:                                #
-                if value(h, phi):
-                    log(f'\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
+        # Acquire phi-features by phi-Agree
+        goal, phi_features = acquire_from_sister(h.sister())    # Acquire phi-features
+        for phi in phi_features:                                #
+            if value(h, phi):
+                log(f'\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
 
         # If there are unvalued features left, try Spec-Agree (currently only local DP at SPEC is accepted)
         if h.is_unvalued():
             goal, phi_features = acquire_from_spec(h)
             for phi in phi_features:
                 if value(h, phi):
-                    log(f'\t\t\t\t{h} hosts ' + str(phi) + f' provided by {goal.mother} at SPEC,{h}P.')
+                    log(f'\t\t\t\t{h} hosts ' + str(phi) + f' provided by {h}.')
 
     def is_unvalued(self):
         for feature in self.features:
@@ -438,7 +453,8 @@ class PhraseStructure:
     def construct_pro(self):
         phi_set = set()
         if '+PHI' in self.features: # Only phi-active head can contain a pro-element
-            if '+VAL' in self.features and '-MOR' in self.features: # Morphologically impoverished heads that require overt valuation cannot construct pro-elements
+            # To construct a pro, inflection must provide both number and person features
+            if '+VAL' in self.features and ('INFL=PHI:NUM' not in self.features or 'INFL=PHI:PER' not in self.features):
                 return None
 
             for f in self.features:

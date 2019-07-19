@@ -183,11 +183,16 @@ class LexicalInterface:
                     features.add('PHI:NUM:_')
                     features.add('PHI:DET:_')
 
-        if 'CAT:T/fin' in features:
-            if not rich_finite_agreement:
-                features.add('-MOR')
+        if 'CAT:T/fin' in features or 'CAT:Neg/fin' in features:
+            if 'LANG:FI' in features:
+                features.add('INFL=PHI:NUM')
+                features.add('INFL=PHI:PER')
+            elif 'LANG:EN' in features:
+                features.add('INFL=PHI:NUM:SG')
+                features.add('INFL=PHI:PER:3')
+                features.add('INLF=PHI:DET')
             else:
-                features.add('+MOR')
+                features.add('INFL=PHI')
 
         # phi/specifier duality
         if '+PHI' in features:
@@ -196,7 +201,7 @@ class LexicalInterface:
                     features.add('-SPEC:*')
             else:
                 features.add('SPEC:*')
-                if '-MOR' in features:
+                if 'INFL=PHI:PER' not in features or 'INFL=PHI:NUM' not in features:
                     features.add('!SPEC:*')
 
         if non_finite_agreement:  # Finnish operator snowballing
