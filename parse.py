@@ -17,7 +17,7 @@ from LanguageGuesser import LanguageGuesser
 from context import Context
 
 # Name of the corpus file
-test_set_name = 'Gold_standard_corpus.txt'
+test_set_name = 'Null_subjects_corpus.txt'
 
 # Additional naming conventions
 lexicon_file_name = 'lexicon.txt'
@@ -30,8 +30,8 @@ parse_list = []
 t = time.time()
 
 # Set this tag if you want to disable all logging functions
-disable_all_logging()
-# set_logging(True)
+# disable_all_logging()
+set_logging(True)
 
 
 print('Parsing process initialized.')

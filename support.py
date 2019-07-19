@@ -24,6 +24,7 @@ def show_results(ps_, result_list, number_of_Merges, number_of_Moves, number_of_
         f'{get_number_of_operations()} operations) <------------------------------------')
     ps_.tidy_names(1)
     print(chr(96 + len(result_list)) + '. ' + ps_.show())
+    print(f'{ps_}')
     print(ps_.spellout())
     print(ps_.illustrate_spellout())
     print(ps_.illustrate())

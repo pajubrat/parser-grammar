@@ -149,50 +149,57 @@ class LexicalInterface:
         if not language_specific:
             features.add(self.language)
 
-        # Parameter 1. Finite agreement
-        if 'LANG:XX' in features:
-            Finite_Agreement = False
-        else: # default
-            Finite_Agreement = True
-
-        # Parameter 2. Strength of phi-agreement
-        if 'LANG:FI' in features:
-            Strong_Phi_Agreement = True
-        else: # default
-            Strong_Phi_Agreement = False
-
-        # Parameter 3. Non-finite agreement
-        if 'LANG:FI' in features:
-            Non_Finite_Agreement = True
+        # Parameter 1. Rich finite agreement
+        if 'LANG:EN' in features:
+            rich_finite_agreement = False
         else:  # default
-            Non_Finite_Agreement = False
+            rich_finite_agreement = True
 
-        # ---Effects of parameters---
-        if Finite_Agreement:
-            if 'CAT:T/fin' in features:
-                features.add('+PHI')
-                features.add('!SPEC:*')
-            if 'CAT:C/fin' in features:
-                features.add('SPEC:*')
+        # Parameter 2. Non-finite agreement (probably not needed anymore)
+        if 'LANG:FI' in features:
+            non_finite_agreement = True
+        else:  # default
+            non_finite_agreement = False
+
+        # Parameter 3, Grammaticalized gender (probably will be just a list of grammaticalized phi-features)
+        if 'LANG:IT' in features:
+            gender = True
         else:
-            pass # East Asian languages?
+            gender = False
 
-        # This captures the connection between agreement and optional EPP
-        # Select non-finite heads minus v which is special because it assigns thematic role to its Spec
-        if '!COMP:*' in features and \
-                not 'CAT:T' in features and \
-                not 'CAT:T/fin' in features and \
-                not 'CAT:C/fin' in features and \
-                not 'CAT:v' in features and \
-                not 'CAT:v/pro' in features:
-            if Non_Finite_Agreement and not 'CAT:FORCE' in features and not 'CAT:D' in features: # D does not phi-agree, hence it belongs to the second group
-                features.add('SPEC:*')
+        # ----- Effects of parameters ----- #
+
+        # Grammaticalized Gender
+        if '!COMP:*' in features:
+            if '+PHI' in features:
+                # What phi-features are grammaticalized is determined here
+                if gender:
+                    features.add('PHI:PER:_')
+                    features.add('PHI:NUM:_')
+                    features.add('PHI:DET:_')
+                    features.add('PHI:GEN:_')
+                else:
+                    features.add('PHI:PER:_')
+                    features.add('PHI:NUM:_')
+                    features.add('PHI:DET:_')
+
+        if 'CAT:T/fin' in features:
+            if not rich_finite_agreement:
+                features.add('-MOR')
             else:
-                if not '+PHI' in features and not 'CAT:uWH' in features and not 'CAT:uR' in features:
-                    features.add('-SPEC:*')
-                    features.add('-PHI')
+                features.add('+MOR')
 
-        if Non_Finite_Agreement:
+        # phi/specifier duality
+        if '+PHI' in features:
+            if '-VAL' in features:
+                if '!SPEC:D' not in features:
+                    features.add('-SPEC:*')
+            else:
+                features.add('SPEC:*')
+                if '-MOR' in features:
+                    features.add('!SPEC:*')
+
+        if non_finite_agreement:  # Finnish operator snowballing
             if 'CAT:uWH' in features and not 'CAT:FORCE' in features:
                     features.add('!SPEC:uWH')
 

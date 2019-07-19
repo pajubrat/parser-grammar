@@ -130,7 +130,7 @@ class PhraseStructure:
         """
 
         for f in self.features:
-            if f == 'SPEC:*' or f == '!SPEC:*':
+            if f == 'SPEC:*' or f == '!SPEC:*' or f == '+PHI' or f == 'PHI:0':
                 return True
         return False
 
@@ -190,85 +190,23 @@ class PhraseStructure:
 
         return
 
-    # Values phi-features either by phi-Agree or by SPEC
-    def acquire_phi(self):
+    def agree(self):
         """
         Values the phi-features of a primitive head, if unvalued
         """
+        if not self.is_primitive():
+            return
 
-        # Values phi_feature f into h (only if matching unvalued feature is found)
-        def value(h, phi):
-            if phi:
-                for g in h.features:
-                    if g[-1]=='_':  # We are only concerned with unvalued features
-                        g_ = g[:-1]  # Remove the _
-                        phi_ = phi[:len(g_)]  # match the remaining portion
-                        if g_ == phi_: # Check if the unvalued feature and the tested phi-feature match (minus _)
-                            # Valuation (technically substitution)
-                            h.features.remove(g)
-                            h.features.add(phi)
-                            return True
 
-            return False
-
-        # phi-Agree
-        # Returns phi-features, if found, and the goal for logging reasons
-        def acquire_from_sister(ps):
-
-            ps_ = ps
-            phi_features = set()
-
-            while ps_:
-                if ps_.left_const and not ps_.is_primitive():
-                    head = ps_.left_const.get_head()
-                    if 'CAT:D' in head.features:
-                        # Collect all valued phi-features
-                        for f in head.features:
-                            if f[:4] == 'PHI:' and f[-1] != '_':
-                                phi_features.add(f)
-                        return head, phi_features  # We only consider the first DP
-                ps_ = ps_.walk_downstream()
-            return ps, []
-
-        def acquire_from_spec(h):
-            if h.specifier() and 'CAT:D' in h.specifier().get_head().features:
-                head = h.specifier().get_head()
-                phi_features = set()
-                for f in head.features:
-                    if f[:4] == 'PHI:' and f[-1] != '_':
-                        phi_features.add(f)
-                return head, phi_features  # We only consider the first DP
-            return None, set()
-
-        # ------------ main function 'acquire_phi()' beings here ----------------#
-
-        h = self
-        phi_features = set()
-
-        # Acquire phi-features by phi-Agree if head accepts them (no -MOR)
-        if '-MOR' not in h.features:
-            goal, phi_features = acquire_from_sister(h.sister())    # Acquire phi-features
-            for phi in phi_features:                                #
-                if value(h, phi):
-                    log(f'\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
-
-        # If there are unvalued features left, try Spec-Agree (currently only local DP at SPEC is accepted)
-        if h.is_unvalued():
-            goal, phi_features = acquire_from_spec(h)
-            for phi in phi_features:
-                if value(h, phi):
-                    log(f'\t\t\t\t{h} hosts ' + str(phi) + f' provided by {goal.mother} at SPEC,{h}P.')
-
-    def is_unvalued(self):
-        for feature in self.features:
-            if feature[:4] == 'PHI:' and feature[-1] == '_':
-                return True
-        return False
-
-    def value_all(self):
+    def value_phi(self):
         """
         Finds unvalued phi-features from heads in 'self' and values them (agree)
         """
+        def is_unvalued(h):
+            for feature in h.features:
+                if feature[:4] == 'PHI:' and feature[-1] == '_':
+                    return True
+            return False
 
         ps_ = self  # set the tarting point
 
@@ -277,9 +215,8 @@ class PhraseStructure:
             if ps_.left_const and ps_.left_const.is_primitive():
                 h = ps_.left_const
                 # and it is not valued...
-                if '-VAL' not in h.features and h.is_unvalued():
-                    log(f'\t\t\t\t{h} has unvalued phi-features')
-                    h.acquire_phi()
+                if is_unvalued(h):
+                    h.agree()
 
             ps_ = ps_.walk_downstream()
 
@@ -399,10 +336,7 @@ class PhraseStructure:
         elif self.is_primitive() and self.is_right() and self.sister() and not self.sister().is_primitive():
             return self.sister()
         else:
-            if self.construct_pro():
-                return self.construct_pro()
-            else:
-                return None
+            return None
 
     def count_specifiers(self):
 
@@ -429,31 +363,7 @@ class PhraseStructure:
             list.append(ps_.sister())
             ps_ = ps_.walk_upstream()
 
-        if not list:
-            if self.construct_pro():
-                list.append(self.construct_pro())
-
         return list
-
-    def construct_pro(self):
-        phi_set = set()
-        if '+PHI' in self.features: # Only phi-active head can contain a pro-element
-            if '+VAL' in self.features and '-MOR' in self.features: # Morphologically impoverished heads that require overt valuation cannot construct pro-elements
-                return None
-
-            for f in self.features:
-                if f[:4] == 'PHI:':
-                    phi_set.add(f)
-            if phi_set:
-                pro = PhraseStructure()
-                pro.features = pro.features | phi_set
-                pro.features.add('CAT:D')
-                pro.features.add('PF:pro')
-                pro.silence_phonologically()
-                pro.find_me_elsewhere = True
-                return pro
-            else:
-                return None
 
     # Returns the complement of head ('self') if available, otherwise returns None
     # Complement = right sister
@@ -722,7 +632,6 @@ class PhraseStructure:
                             return True
                         # If there is PARTIAL match, it is left unchecked
                         elif tail_set & const.features:
-                            # log('tail set ' + str(tail_set) + ' against c-commanding h features ' + str(const.features))
                             return False
 
             return False
@@ -1178,22 +1087,12 @@ class PhraseStructure:
                 if self.adjunct:
                     return '<'+self.get_pf()+'>'
                 else:
-                    if self.construct_pro():
-                        return self.get_pro_type() + ' ' + self.get_pf()
-                    else:
-                        return self.get_pf()
+                    return self.get_pf()
         else:
             if self.adjunct:
                 return f'<{self.left_const} {self.right_const}>' + index_str
             else:
                 return f'[{self.left_const} {self.right_const}]' + index_str
-
-    def get_pro_type(self):
-        if 'PHI:NUM:_' in self.features and 'PHI:PER:_' in self.features and 'PHI:DET:_' in self.features:
-            return 'PRO'
-        if 'PHI:NUM:_' not in self.features and 'PHI:PER:_' not in self.features and 'PHI:DET:_' in self.features:
-            return 'pro/x'
-        return 'pro'
 
     # More detailed output function
     def __repr__(self):

@@ -289,8 +289,7 @@ class Reconstruction():
                 # If there was a tail-head violation, dropping is cancelled
                 ps.geometrical_sister().remove()
 
-    # todo this is such a mess now that I have tried to make it work empirically in a correct way
-    # todo must be revised later. Perhaps use get_specifiers() function
+    # Note: if we use get_specifier(s) function(s), then pro/PRO will fill in SPEC positions of +PHI heads
     def store_specs_into_memory(self, h):
         if h.EPP():
 

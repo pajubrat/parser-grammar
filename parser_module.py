@@ -460,12 +460,14 @@ class Pcb_parser():
         else:
             return False
 
-    # Reverses all movement inside left branches
+    # Reverses all movement inside left branches and values phi-features (when unvalued)
     def reconstruct(self, ps):
         original_mother = ps.mother
         ps.detach()
         R = self.reconstruction
         ps, ops = R.reconstruct(ps)
+        log('\t\t\tReconstructing agreement...')
+        ps.value_all()
         self.number_of_Moves += ops
         if original_mother:
             ps.mother = original_mother

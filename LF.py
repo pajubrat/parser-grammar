@@ -223,6 +223,7 @@ class LF:
                     self.discourse_test_result = self.discourse_test_result + 2
 
     # This function will try to transfer the phrase structure into LF out of syntactic working memory
+    # It represents the "outer edge of LF"
     def transfer_to_LF(self, ps):
         log(f'\t\t\tTrying to transfer {ps} into LF...')
         self.transfer_crash = False
@@ -242,9 +243,7 @@ class LF:
                 self.check_for_transfer(ps.right_const)
             return
 
-        # All variables must be bound before transfer
-        # todo this simplification regards echo questions as ungrammatical
-        # todo my idea is to handle it later with "discourse antecedents" that we need for independent reasons
+        # All variables and uninterpretable phi-features must be bound before transfer
         for f in ps.features:
             if f[:4] == 'ABAR':
                 if not self.bind(ps):
@@ -252,7 +251,8 @@ class LF:
                     self.transfer_crash = True
                 else:
                     log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
-
+            if f[:4] == 'PHI:' and f[-1] == '_':
+                log(f'\t\t\t\t{ps} has uninterpretable ' + f + ' that requires an antecedent.')
         return
 
     # This functions binds a binding operator/antecedent at LF

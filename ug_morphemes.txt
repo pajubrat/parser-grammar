@@ -10,8 +10,8 @@
 
 T/fin   :: CAT:T/fin PF:T/fin LF:T
 v       :: CAT:v PF:v LF:v
-v/pro	:: CAT:v/pro PF:v/pro LF:pro
-C/fin   :: CAT:C/fin PF:C LF:C/fin
+v/pro	:: CAT:v/pro PF:v/pro LF:pro 
+C/fin   :: CAT:C/fin PF:C LF:C/fin 
 T		:: CAT:T PF:T LF:T
 
 # Infinitivals
@@ -29,28 +29,25 @@ pro	:: pro-#D
 pro-	:: PF:(pro) LF:pro CAT:N CAT:PHI
 
 # Phi-features
-1sg	:: 	- PER:1 NUM:sg
-2sg	:: 	- PER:2 NUM:sg
-3sg	::	- PER:3 NUM:sg
-1pl	:: 	- PER:1 NUM:pl
-2pl	::	- PER:2 NUM:pl
-3pl	::	- PER:3 NUM:pl
+sg :: - PHI:NUM:SG
+pl :: - PHI:NUM:PL
+1p :: - PHI:PER:1
+2p :: - PHI:PER:2
+3p :: - PHI:PER:3
+def :: - PHI:DET:DEF
+indef :: - PHI:DET:INDEF
+hum :: - PHI:HUM:HUM
 
-# Finnish accusative is aspectual, but we currently lack the required ASP feature (to be added later)
-asp		:: - TAIL:CAT:v,!COMP:*
-
-nom   	:: - TAIL:CAT:FIN,A/HEAD
-par   	:: - TAIL:!COMP:*,-PHI
-acc		:: - TAIL:!COMP:*,A/HEAD,-PHI
-Pos     :: - CAT:Pos CAT:D
+# Structural Case
+nom   	:: - TAIL:+PHI,+VAL,CAT:FIN
+gen     :: - TAIL:+PHI,+VAL
+par   	:: - TAIL:+PHI,-VAL
+acc		:: - TAIL:+PHI,-VAL
+asp		:: - TAIL:+PHI,+ASP
+pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH
 wh     	:: - CAT:WH
 top    	:: - ABAR:TOP
 foc    	:: - ABAR:FOC
 rel    	:: - CAT:R
 Q		:: - CAT:Q
-
-# This is not correct characterization of the genitive (correct will be TAIL:CAT:PHI, generalized phi-probe)
-# gen     :: - TAIL:CAT:D
-# gen		:: - TAIL:PHI:0,A/HEAD
-gen		:: - TAIL:CAT:INF,A/HEAD -FLOAT
