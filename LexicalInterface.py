@@ -169,30 +169,12 @@ class LexicalInterface:
 
         # ----- Effects of parameters ----- #
 
-        # Grammaticalized Gender
+        # This will add unvalued (uD, up) for each +PHI head
         if '!COMP:*' in features:
             if '+PHI' in features:
-                # What phi-features are grammaticalized is determined here
-                if gender:
-                    features.add('PHI:PER:_')
-                    features.add('PHI:NUM:_')
-                    features.add('PHI:DET:_')
-                    features.add('PHI:GEN:_')
-                else:
-                    features.add('PHI:PER:_')
-                    features.add('PHI:NUM:_')
-                    features.add('PHI:DET:_')
-
-        if 'CAT:T/fin' in features or 'CAT:Neg/fin' in features:
-            if 'LANG:FI' in features:
-                features.add('INFL=PHI:NUM')
-                features.add('INFL=PHI:PER')
-            elif 'LANG:EN' in features:
-                features.add('INFL=PHI:NUM:SG')
-                features.add('INFL=PHI:PER:3')
-                features.add('INLF=PHI:DET')
-            else:
-                features.add('INFL=PHI')
+                features.add('PHI:PER:_')
+                features.add('PHI:NUM:_')
+                features.add('PHI:DET:_')
 
         # phi/specifier duality
         if '+PHI' in features:

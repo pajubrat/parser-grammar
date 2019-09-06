@@ -190,36 +190,47 @@ class PhraseStructure:
 
         return
 
+    # Reconstructs agreement
+    # Checks that phi-agreement dependencies are correct (not implemented in this version)
+    # Processes unvalued uD,up features
+    def agreement_reconstruction(self):
+        """
+        Current implementation: Finds unvalued phi-features from heads in 'self' and values them (agree)
+        """
+        ps_ = self  # set the tarting point
+
+        while ps_:
+            # If there is a primitive head to the left...
+            if ps_.left_const and ps_.left_const.is_primitive():
+                h = ps_.left_const
+                # and it is not valued...
+                if '-VAL' not in h.features and h.is_unvalued():
+                    log(f'\t\t\t\t{h} has unvalued phi-features')
+                    h.acquire_phi()
+
+            ps_ = ps_.walk_downstream()
+
     # Values phi-features either by phi-Agree or by SPEC
     def acquire_phi(self):
         """
         Values the phi-features of a primitive head, if unvalued
         """
-
-
         # Values phi_feature f into h (only if matching unvalued feature is found)
         def value(h, phi):
 
             def find_unvalued_target(h, phi):
-                # Check if head h accept phi morphosyntactically
-                accepted_features = {f.split('=')[1] for f in h.features if f[:5] == 'INFL='}
-                for infl in accepted_features:
-                    if infl == phi[:len(infl)]:
-                        # Check if there is a corresponding unvalued feature
-                        for g in h.features:
-                            if g[-1] == '_':  # We are only concerned with unvalued features
-                                g_ = g[:-1]  # Remove the _
-                                phi_ = phi[:len(g_)]  # match the remaining portion
-                                if g_ == phi_:  # Check if the unvalued feature and the tested phi-feature match
-                                    return g
+                for g in h.features:
+                    if g[-1] == '_':  # We are only concerned with unvalued features
+                        g_ = g[:-1]  # Remove the _
+                        phi_ = phi[:len(g_)]  # match the remaining portion
+                        if g_ == phi_:  # Check if the unvalued feature and the tested phi-feature match
+                            return g
 
                 return None
 
             if phi:
                 # Find a possible target to replace
-                # Target must satisfy two conditions:
-                #   a. It must be morphosyntactically accepted by the host h
-                #   b. The head h must contain a corresponding unvalued feature
+                # The head h must contain a corresponding unvalued feature
                 target = find_unvalued_target(h, phi)
                 if target:
                     h.features.remove(target)
@@ -227,8 +238,10 @@ class PhraseStructure:
                     return True
             return False
 
-        # phi-Agree
+        # phi-Agree via probe-goal
         # Returns phi-features, if found, and the goal for logging reasons
+        # Looks for a left branch DP with D containing valued phi-features
+        # Only consults the closest such element
         def acquire_from_sister(ps):
 
             ps_ = ps
@@ -246,9 +259,13 @@ class PhraseStructure:
                 ps_ = ps_.walk_downstream()
             return ps, []
 
+        # phi-Agree via Spec-Head
+        # Acquires phi-features from SPEC which includes phi-set at the head (from input)
+        # Head features are only consulted if no phrase is found from SPEC
         def acquire_from_spec(h):
             if h.specifier() and 'CAT:D' in h.specifier().get_head().features:
                 head = h.specifier().get_head()
+                log(str(head.features))
                 phi_features = set()
                 for f in head.features:
                     if f[:4] == 'PHI:' and f[-1] != '_':
@@ -280,24 +297,6 @@ class PhraseStructure:
                 return True
         return False
 
-    def value_all(self):
-        """
-        Finds unvalued phi-features from heads in 'self' and values them (agree)
-        """
-
-        ps_ = self  # set the tarting point
-
-        while ps_:
-            # If there is a primitive head to the left...
-            if ps_.left_const and ps_.left_const.is_primitive():
-                h = ps_.left_const
-                # and it is not valued...
-                if '-VAL' not in h.features and h.is_unvalued():
-                    log(f'\t\t\t\t{h} has unvalued phi-features')
-                    h.acquire_phi()
-
-            ps_ = ps_.walk_downstream()
-
     def get_affix_list(self):
         lst = [self]
         iterator_ = self
@@ -310,7 +309,6 @@ class PhraseStructure:
                 iterator_ = None
 
         return lst
-
 
     def get_affix(self):
         if not self.left_const and self.is_primitive():
@@ -413,9 +411,10 @@ class PhraseStructure:
         # A phrasal sister to a right primitive node is its specifier
         elif self.is_primitive() and self.is_right() and self.sister() and not self.sister().is_primitive():
             return self.sister()
+        # If there is no overt phrasal specifier, we try to construct a pro-element
         else:
-            if self.construct_pro():
-                return self.construct_pro()
+            if self.extract_pro():
+                return self.extract_pro()
             else:
                 return None
 
@@ -445,21 +444,23 @@ class PhraseStructure:
             ps_ = ps_.walk_upstream()
 
         if not list:
-            if self.construct_pro():
-                list.append(self.construct_pro())
+            if self.extract_pro():
+                list.append(self.extract_pro())
 
         return list
 
-    def construct_pro(self):
+    # This extracts a pro-element from a primitive head
+    # A pro-element (pronominal element) is reconstructed from agreement features obtained originally from the input
+    # The pro-element will count as a specifier if no phrasal SPEC element is found (by specifier() function).
+    # Return the element if it can be construed
+    def extract_pro(self):
         phi_set = set()
         if '+PHI' in self.features: # Only phi-active head can contain a pro-element
-            # To construct a pro, inflection must provide both number and person features
-            if '+VAL' in self.features and ('INFL=PHI:NUM' not in self.features or 'INFL=PHI:PER' not in self.features):
-                return None
-
             for f in self.features:
                 if f[:4] == 'PHI:':
                     phi_set.add(f)
+            # Here we reconstruct the pro-element and its properties
+            # It is a phonologically silent (D, p)^0 element
             if phi_set:
                 pro = PhraseStructure()
                 pro.features = pro.features | phi_set
@@ -1194,7 +1195,7 @@ class PhraseStructure:
                 if self.adjunct:
                     return '<'+self.get_pf()+'>'
                 else:
-                    if self.construct_pro():
+                    if self.extract_pro():
                         return self.get_pro_type() + ' ' + self.get_pf()
                     else:
                         return self.get_pf()
@@ -1204,6 +1205,10 @@ class PhraseStructure:
             else:
                 return f'[{self.left_const} {self.right_const}]' + index_str
 
+    # This function returns the type of pro-element depending on the valuation of (uD, up) probe
+    # PRO = control pro
+    # pro/x = antecedent requiring pro
+    # pro = little-pro
     def get_pro_type(self):
         if 'PHI:NUM:_' in self.features and 'PHI:PER:_' in self.features and 'PHI:DET:_' in self.features:
             return 'PRO'

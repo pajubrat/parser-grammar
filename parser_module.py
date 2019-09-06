@@ -467,7 +467,7 @@ class Pcb_parser():
         R = self.reconstruction
         ps, ops = R.reconstruct(ps)
         log('\t\t\tReconstructing agreement...')
-        ps.value_all()
+        ps.agreement_reconstruction()
         self.number_of_Moves += ops
         if original_mother:
             ps.mother = original_mother

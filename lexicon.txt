@@ -1,7 +1,7 @@
 ﻿Gianni.nom 	:: Gianni-#D#nom LF:Gianni LANG:IT
 ihaile- :: PF:ihaile- LF:admire CAT:V COMP:D -COMP:FIN LANG:FI
-ihailee :: ihaile-#v#T/fin LANG:FI
-ihailen :: ihaile-#v#T/fin#1p#sg#def 
+ihailee :: ihaile-#v#T/fin#[-V] LANG:FI
+ihailen :: ihaile-#v#T/fin#[-n] 
 like-    :: PF:like LF:like CAT:V !COMP:D LANG:EN
 likes   :: like-#v#T/fin#sg#3p#def LANG:EN
 like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
@@ -11,10 +11,15 @@ mina	:: mina-#D#nom#sg#1p#def#hum
 mina- 	:: PF:mina LF:I CAT:N CAT:PHI LANG:FI 
 Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 Pekka   :: Pekka-#D#nom#sg#3p#def#hum LANG:FIdirectional LF:Merja LANG:FI
+se		:: se-#nom#sg#3p#def LANG:FI
+se-		:: PF:se LF:that CAT:D LANG:FI
 
-
-
-
+[-n]	::	- PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM
+[-t]	::	- PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
+[-V]	::	- PHI:NUM:SG PHI:PER:3
+[-mme]	::	- PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM
+[-tte]	::	- PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
+[-vat]	::	- PHI:NUM:PL PHI:PER:3
 
 to		:: PF:to LF:to CAT:P -VAL +SEM:directional LANG:EN
 ihaile	:: ihaile-#v#T LANG:FI
@@ -323,8 +328,6 @@ scorr-	:: PF:scorr- CAT:V LANG:IT
 scorre	::	scorre-#T/fin LANG:IT
 scorre-	::	PF:scorre CAT:V LANG:IT
 scorrendo	::	scorr-#endo LANG:IT
-se		:: se-#nom LANG:FI
-se-	:: PF:se LF:that CAT:D LANG:FI
 sfocia	::	sfocia-#T/fin LANG:IT
 sfocia-		::	PF:sfocia- CAT:V SPEC:P LANG:IT
 sfociare	::	sfocia-#v/pro#-are LANG:IT
