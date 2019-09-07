@@ -252,16 +252,52 @@ class LF:
                     self.transfer_crash = True
                 else:
                     log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
+
+        # Unvalued phi-features must be matched with antecedents
         unvalued_phi_features = ps.get_unvalued_features()
         if unvalued_phi_features:
             log(f'\t\t\t\t{ps} has uninterpretable features {unvalued_phi_features} that were bound with antecedents:')
-            list_of_antecedents = self.search_phi_antecedent(ps, unvalued_phi_features)
+            list_of_antecedents = self.search_phi_antecedents(ps)
             self.report_to_log(list_of_antecedents)
             # Here we do last resort computations
             # If nothing works, we crash
             if not list_of_antecedents:
                 self.transfer_crash = True
         return
+
+    # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
+    # This function will be unified with the binding function below, but for now I will keep them separate
+    # to be able to focus on one problem at a time
+    def search_phi_antecedents(self, ps):
+        ps_ = ps
+        list_of_antecedents = []
+        while ps_:
+            if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
+                list_of_antecedents.append(ps_.sister())
+            ps_ = ps_.walk_upstream()
+        return list_of_antecedents
+
+    # Evaluates whether 'antecedent' could provide semantic support for 'dependent'
+    def evaluate_antecedent(self, antecedent, dependent):
+        dependent_phi_features = {f for f in dependent.features if f[:4] == 'PHI:'}
+        remains_unchecked = dependent_phi_features.copy()
+        for antecedent_feature in antecedent.get_head().features:
+            if antecedent_feature[:4] == 'PHI:':
+                for dependent_feature in dependent_phi_features:
+                    # Check identical features
+                    if dependent_feature == antecedent_feature:
+                        remains_unchecked.discard(dependent_feature)
+                    # Check unvalued features if they could be valued
+                    else:
+                        if dependent_feature[-1] == '_':
+                            if antecedent_feature[:len(dependent_feature)-1] == dependent_feature[:-1]:
+                                remains_unchecked.discard(dependent_feature)
+
+        # If features remain unchecked, the antecedent is rejected
+        if remains_unchecked:
+            return False
+        else:
+            return True
 
     def report_to_log(self, list_of_antecedents):
         s = ''
@@ -270,37 +306,14 @@ class LF:
             s = s + str(i) + '. ' + a.illustrate() + ' '
             i = i + 1
             if i == 2:
-                s = s + ', alternatives: '
+                s = s + '   (alternatives: '
+        if i > 1:
+            s = s + ')'
         if s:
             log(f'\t\t\t\t\t' + s)
         else:
             log(f'\t\t\t\t\t ??')
         return
-
-    # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
-    # This function will be unified with the binding function below, but for now I will keep them separate
-    # to be able to focus on one problem at a time
-    def search_phi_antecedent(self, ps, unvalued_phi_features):
-        ps_ = ps
-        list_of_antecedents = []
-
-        while ps_:
-            # Find c-commanding label (from head or phrase) that has the relevant features that must also
-            # be LF-interpretable
-            if ps_.sister() and self.lf_interpretable(ps_.sister().get_phi_set()):
-                list_of_antecedents.append(ps_.sister())
-            ps_ = ps_.walk_upstream()
-
-        return list_of_antecedents
-
-    # Checks is the features in the set are interpretable
-    def lf_interpretable(self, feature_set):
-        for f in feature_set:
-            # The "_" symbol indicating an unvalued feature type is never interpretable
-            if f[-1] == '_':
-                return False
-
-        return True
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.
@@ -328,7 +341,6 @@ class LF:
 
         return None             # Nothing was found
 
-    @staticmethod
     def semantic_match(a, b):
 
         a = a.get_head()

@@ -215,7 +215,7 @@ class PhraseStructure:
         """
         Values the phi-features of a primitive head, if unvalued
         """
-        # Values phi_feature f into h (only if matching unvalued feature is found)
+        # Values phi_feature phi into h (only if matching unvalued feature is found)
         def value(h, phi):
 
             def find_unvalued_target(h, phi):
