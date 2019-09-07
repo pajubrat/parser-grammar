@@ -235,6 +235,7 @@ class LF:
             log('\t\t\t\tTransfer to LF successful.')
             return True
 
+    # This function checks if the phrase structure constitutes a legitimate LF-object
     def check_for_transfer(self, ps):
         if ps.has_children():                           # Check primitive constituents only
             if not ps.left_const.find_me_elsewhere:
@@ -251,9 +252,55 @@ class LF:
                     self.transfer_crash = True
                 else:
                     log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
-            if f[:4] == 'PHI:' and f[-1] == '_':
-                log(f'\t\t\t\t{ps} has uninterpretable ' + f + ' that requires an antecedent.')
+        unvalued_phi_features = ps.get_unvalued_features()
+        if unvalued_phi_features:
+            log(f'\t\t\t\t{ps} has uninterpretable features {unvalued_phi_features} that were bound with antecedents:')
+            list_of_antecedents = self.search_phi_antecedent(ps, unvalued_phi_features)
+            self.report_to_log(list_of_antecedents)
+            # Here we do last resort computations
+            # If nothing works, we crash
+            if not list_of_antecedents:
+                self.transfer_crash = True
         return
+
+    def report_to_log(self, list_of_antecedents):
+        s = ''
+        i = 1
+        for a in list_of_antecedents:
+            s = s + str(i) + '. ' + a.illustrate() + ' '
+            i = i + 1
+            if i == 2:
+                s = s + ', alternatives: '
+        if s:
+            log(f'\t\t\t\t\t' + s)
+        else:
+            log(f'\t\t\t\t\t ??')
+        return
+
+    # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
+    # This function will be unified with the binding function below, but for now I will keep them separate
+    # to be able to focus on one problem at a time
+    def search_phi_antecedent(self, ps, unvalued_phi_features):
+        ps_ = ps
+        list_of_antecedents = []
+
+        while ps_:
+            # Find c-commanding label (from head or phrase) that has the relevant features that must also
+            # be LF-interpretable
+            if ps_.sister() and self.lf_interpretable(ps_.sister().get_phi_set()):
+                list_of_antecedents.append(ps_.sister())
+            ps_ = ps_.walk_upstream()
+
+        return list_of_antecedents
+
+    # Checks is the features in the set are interpretable
+    def lf_interpretable(self, feature_set):
+        for f in feature_set:
+            # The "_" symbol indicating an unvalued feature type is never interpretable
+            if f[-1] == '_':
+                return False
+
+        return True
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.

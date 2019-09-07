@@ -1,18 +1,29 @@
-﻿Gianni.nom 	:: Gianni-#D#nom LF:Gianni LANG:IT
-ihaile- :: PF:ihaile- LF:admire CAT:V COMP:D -COMP:FIN LANG:FI
-ihailee :: ihaile-#v#T/fin#[-V] LANG:FI
-ihailen :: ihaile-#v#T/fin#[-n] 
-like-    :: PF:like LF:like CAT:V !COMP:D LANG:EN
+﻿like-   :: PF:like LF:like CAT:V !COMP:D LANG:EN
 likes   :: like-#v#T/fin#sg#3p#def LANG:EN
 like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
-Merja-  :: PF:Merja- CAT:N -SEM:
-Merja   :: Merja-#D#nom#sg#3p#def#hum LANG:FI
+
+ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
+ihailet	:: ihaile-#v#T/fin#[-t] LANG:FI
+ihailee :: ihaile-#v#T/fin#[-V] LANG:FI
+ihailemme :: ihaile-#v#T/fin#[-mme] LANG:FI
+ihailette :: ihaile-#v#T/fin#[-tte] LANG:FI
+ihailevat :: ihaile-#v#T/fin#[-vat] LANG:FI
+ihaile- :: PF:ihaile- LF:admire CAT:V !COMP:D -COMP:FIN LANG:FI
+
 mina	:: mina-#D#nom#sg#1p#def#hum
 mina- 	:: PF:mina LF:I CAT:N CAT:PHI LANG:FI 
-Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
-Pekka   :: Pekka-#D#nom#sg#3p#def#hum LANG:FIdirectional LF:Merja LANG:FI
+sina	:: sina-#D#nom#sg#2p#def#hum
+sina-	:: PF:sina  LF:you CAT:N CAT:PHI LANG:FI
+han		:: han-#D#nom#sg#3p#def#hum
+han-	:: PF:han LF:s/he CAT:N CAT:PHI LANG:FI
+me		:: me-#D#nom#pl#1p#def#hum
+me- 	:: PF:me LF:we CAT:N CAT:PHI LANG:FI
+te		:: te-#D#nom#pl#2p#def#hum
+te- 	:: PF:te LF:you CAT:N CAT:PHI LANG:FI
+he		:: he-#D#nom#pl#3p#def#hum
+he- 	:: PF:he LF:they CAT:N CAT:PHI LANG:FI
 se		:: se-#nom#sg#3p#def LANG:FI
-se-		:: PF:se LF:that CAT:D LANG:FI
+se-		:: PF:se LF:it/that CAT:D LANG:FI
 
 [-n]	::	- PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM
 [-t]	::	- PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
@@ -21,8 +32,22 @@ se-		:: PF:se LF:that CAT:D LANG:FI
 [-tte]	::	- PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
 [-vat]	::	- PHI:NUM:PL PHI:PER:3
 
+Merja-  :: PF:Merja- CAT:N -SEM:
+Merja   :: Merja-#D#nom#sg#3p#def#hum LANG:FI
+Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
+Pekka   :: Pekka-#D#nom#sg#3p#def#hum LANG:FIdirectional LF:Merja LANG:FI
+Gianni.nom 	:: Gianni-#D#nom LF:Gianni LANG:IT
+
+
+
+
+
+
+
+
+#################################################################################
+
 to		:: PF:to LF:to CAT:P -VAL +SEM:directional LANG:EN
-ihaile	:: ihaile-#v#T LANG:FI
 Merjan  :: Merja-#D LANG:FI
 Merjan.foc :: Merja-#D#foc LANG:FI
 asked	:: ask-#T/fin LANG:EN

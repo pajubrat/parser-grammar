@@ -369,6 +369,13 @@ class PhraseStructure:
                     return self.left_const.get_head()
                 return self.right_const.get_head()
 
+    def get_unvalued_features(self):
+        unvalued_phi_set = set()
+        for f in self.features:
+            if f[:4] == 'PHI:' and f[-1] == '_':
+                unvalued_phi_set.add(f)
+        return unvalued_phi_set
+
     # Returns the sister of the constituent X, right adjuncts are invisible
     # [Y <X>], <X> has no sister
     # [X <Y>], X has no sister, looks mother next
@@ -765,22 +772,8 @@ class PhraseStructure:
         return True
 
     def get_phi_set(self):
-
-        # NUM = number: sg, pl
-        # PER = person: 1, 2, 3
-        # GEN = gender: m, f, n
-        # SEN = Sentiency: human, nonhuman, inanimate
-        # HON = Honority: honorofic, nonhonorific
-        phi_labels = {'NUM', 'PER', 'GEN', 'SEN', 'HON'}
-
-        phi_feature_set = set()
-        constituent_ = self.get_head()
-
-        for f in constituent_.features:
-            if f[:3] in phi_labels:
-                phi_feature_set.add(str(f))
-
-        return phi_feature_set
+        head_ = self.get_head()
+        return {f for f in head_.features if f[:4] == 'PHI:'}
 
     def get_bottom_affix(self):
         if not self.is_primitive:
