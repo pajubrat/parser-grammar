@@ -272,11 +272,12 @@ class Reconstruction():
         else:
             ps = h
 
-        # Select the target if applicable
+        # Select the target from memory buffer if applicable
         target_const = self.fit_spec(h)
 
-        # Transfer it from memory buffer into the phrase structure
+        # Transfer it from memory buffer into phrase structure
         if target_const:
+
             # Try to merge it to Spec
             ps.merge(target_const.transfer(self.babtize()), 'left')
             # Check that this does not cause tail-head violations
@@ -651,7 +652,7 @@ class Reconstruction():
     def fit_spec(self, h):
 
         # Retrieve the list of specifiers for h
-        specs = h.get_specifiers()
+        specs = self.get_specifiers(h)
 
         # This is the pointer to memory buffer constituent that is selected for merge
         # None, if nothing is selected
@@ -667,7 +668,7 @@ class Reconstruction():
                 # Check if SPEC,h could accept the constituent from memory, take the first match
                 if self.spec_match(h, const) and not target_const:
                     target_const = const
-                # Check if SPEC,h is an EPP position
+                # Check if SPEC,h is an EPP position todo this no longer work, must be reworked
                 if '+PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
                     target_const = const
         # The second option is "tucking in": to insert SPEC and push adjuncts upwards
@@ -696,3 +697,8 @@ class Reconstruction():
             return True
         else:
             return False
+
+    # get_specifiers() wrapper that implements the smodular interface to the PhraseStructure class
+    def get_specifiers(self, h):
+        specs = h.get_specifiers()
+        return [spec for spec in specs if not spec.is_primitive()]

@@ -236,6 +236,7 @@ class LF:
             return True
 
     # This function checks if the phrase structure constitutes a legitimate LF-object
+    # It is assumed that this represents the output from LF/C-I during an attempt at Transfer
     def check_for_transfer(self, ps):
         if ps.has_children():                           # Check primitive constituents only
             if not ps.left_const.find_me_elsewhere:
@@ -250,11 +251,13 @@ class LF:
                 if not self.bind(ps):
                     log(f'\t\t\t\t{ps}['+f+'] is not properly bound, the expression is uninterpretable.')
                     self.transfer_crash = True
+                    return
                 else:
                     log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
 
         # Unvalued phi-features must be matched with antecedents
         unvalued_phi_features = ps.get_unvalued_features()
+
         if unvalued_phi_features:
             log(f'\t\t\t\t{ps} has uninterpretable features {unvalued_phi_features} that were bound with antecedents:')
             list_of_antecedents = self.search_phi_antecedents(ps)
@@ -263,6 +266,16 @@ class LF:
             # If nothing works, we crash
             if not list_of_antecedents:
                 self.transfer_crash = True
+                return
+
+        # Feature conflicts are not tolerated
+        phi_set = ps.get_phi_set()
+        for phi in phi_set:
+            if phi[-1] == '*':
+                log(f'\t\t\t\t{ps} induces a phi-feature conflict.')
+                self.transfer_crash = True
+                return
+
         return
 
     # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
@@ -282,7 +295,7 @@ class LF:
         dependent_phi_features = {f for f in dependent.features if f[:4] == 'PHI:'}
         remains_unchecked = dependent_phi_features.copy()
         for antecedent_feature in antecedent.get_head().features:
-            if antecedent_feature[:4] == 'PHI:':
+            if antecedent_feature[:4] == 'PHI:' and antecedent_feature[-1] != '_':
                 for dependent_feature in dependent_phi_features:
                     # Check identical features
                     if dependent_feature == antecedent_feature:
@@ -314,6 +327,9 @@ class LF:
         else:
             log(f'\t\t\t\t\t ??')
         return
+
+        # If there were no feature conflicts, return true
+        return True
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.

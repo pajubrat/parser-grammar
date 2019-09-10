@@ -162,9 +162,12 @@ class LexicalInterface:
             non_finite_agreement = False
 
         # Parameter 3, Grammaticalized gender (probably will be just a list of grammaticalized phi-features)
-        if 'LANG:IT' in features:
+        if 'LANG:IT' or 'LANG:EN' in features:
             gender = True
         else:
+            gender = False
+
+        if 'LANG:FI' in features:
             gender = False
 
         # ----- Effects of parameters ----- #
@@ -175,6 +178,8 @@ class LexicalInterface:
                 features.add('PHI:PER:_')
                 features.add('PHI:NUM:_')
                 features.add('PHI:DET:_')
+                if gender:
+                    features.add('PHI:GEN:_')
 
         # phi/specifier duality
         if '+PHI' in features:

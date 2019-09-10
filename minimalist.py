@@ -190,113 +190,6 @@ class PhraseStructure:
 
         return
 
-    # Reconstructs agreement
-    # Checks that phi-agreement dependencies are correct (not implemented in this version)
-    # Processes unvalued uD,up features
-    def agreement_reconstruction(self):
-        """
-        Current implementation: Finds unvalued phi-features from heads in 'self' and values them (agree)
-        """
-        ps_ = self  # set the tarting point
-
-        while ps_:
-            # If there is a primitive head to the left...
-            if ps_.left_const and ps_.left_const.is_primitive():
-                h = ps_.left_const
-                # and it is not valued...
-                if '-VAL' not in h.features and h.is_unvalued():
-                    log(f'\t\t\t\t{h} has unvalued phi-features')
-                    h.acquire_phi()
-
-            ps_ = ps_.walk_downstream()
-
-    # Values phi-features either by phi-Agree or by SPEC
-    def acquire_phi(self):
-        """
-        Values the phi-features of a primitive head, if unvalued
-        """
-        # Values phi_feature phi into h (only if matching unvalued feature is found)
-        def value(h, phi):
-
-            def find_unvalued_target(h, phi):
-                for g in h.features:
-                    if g[-1] == '_':  # We are only concerned with unvalued features
-                        g_ = g[:-1]  # Remove the _
-                        phi_ = phi[:len(g_)]  # match the remaining portion
-                        if g_ == phi_:  # Check if the unvalued feature and the tested phi-feature match
-                            return g
-
-                return None
-
-            if phi:
-                # Find a possible target to replace
-                # The head h must contain a corresponding unvalued feature
-                target = find_unvalued_target(h, phi)
-                if target:
-                    h.features.remove(target)
-                    h.features.add(phi)
-                    return True
-            return False
-
-        # phi-Agree via probe-goal
-        # Returns phi-features, if found, and the goal for logging reasons
-        # Looks for a left branch DP with D containing valued phi-features
-        # Only consults the closest such element
-        def acquire_from_sister(ps):
-
-            ps_ = ps
-            phi_features = set()
-
-            while ps_:
-                if ps_.left_const and not ps_.is_primitive():
-                    head = ps_.left_const.get_head()
-                    if 'CAT:D' in head.features:
-                        # Collect all valued phi-features
-                        for f in head.features:
-                            if f[:4] == 'PHI:' and f[-1] != '_':
-                                phi_features.add(f)
-                        return head, phi_features  # We only consider the first DP
-                ps_ = ps_.walk_downstream()
-            return ps, []
-
-        # phi-Agree via Spec-Head
-        # Acquires phi-features from SPEC which includes phi-set at the head (from input)
-        # Head features are only consulted if no phrase is found from SPEC
-        def acquire_from_spec(h):
-            if h.specifier() and 'CAT:D' in h.specifier().get_head().features:
-                head = h.specifier().get_head()
-                log(str(head.features))
-                phi_features = set()
-                for f in head.features:
-                    if f[:4] == 'PHI:' and f[-1] != '_':
-                        phi_features.add(f)
-                return head, phi_features  # We only consider the first DP
-            return None, set()
-
-        # ------------ main function 'acquire_phi()' beings here ----------------#
-
-        h = self
-        phi_features = set()
-
-        # Acquire phi-features by phi-Agree
-        goal, phi_features = acquire_from_sister(h.sister())    # Acquire phi-features
-        for phi in phi_features:                                #
-            if value(h, phi):
-                log(f'\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
-
-        # If there are unvalued features left, try Spec-Agree (currently only local DP at SPEC is accepted)
-        if h.is_unvalued():
-            goal, phi_features = acquire_from_spec(h)
-            for phi in phi_features:
-                if value(h, phi):
-                    log(f'\t\t\t\t{h} hosts ' + str(phi) + f' provided by {h}.')
-
-    def is_unvalued(self):
-        for feature in self.features:
-            if feature[:4] == 'PHI:' and feature[-1] == '_':
-                return True
-        return False
-
     def get_affix_list(self):
         lst = [self]
         iterator_ = self
@@ -456,15 +349,33 @@ class PhraseStructure:
 
         return list
 
+    # Checks that there is no phi-feature conflicts at 'self'
+    # This is in reality a more general function that checks there are no feature conflicts of any kind
+    # but is definite more narrowly in order not to create unnecessary problems
+    def phi_conflict(self):
+        for f in self.features:
+            if f[:4] == 'PHI:' and f[-1] != '_':  # unvalued phi-feature
+                for g in self.features:
+                    if g[:4] == 'PHI:' and g[-1] != '_':  # another unvalued phi-feature
+                        f_type = f.split(':')[1]
+                        g_type = g.split(':')[1]
+                        f_value = f.split(':')[2]
+                        g_value = g.split(':')[2]
+                        if f_type == g_type and f_value != g_value:
+                            return True
+        return False
+
     # This extracts a pro-element from a primitive head
     # A pro-element (pronominal element) is reconstructed from agreement features obtained originally from the input
     # The pro-element will count as a specifier if no phrasal SPEC element is found (by specifier() function).
     # Return the element if it can be construed
+    # Conditions for pro: use only valued phi-features, cannot use contradicting/conflicting features
     def extract_pro(self):
         phi_set = set()
+
         if '+PHI' in self.features: # Only phi-active head can contain a pro-element
             for f in self.features:
-                if f[:4] == 'PHI:':
+                if f[:4] == 'PHI:':  # Only valued phi-features count as pronouns
                     phi_set.add(f)
             # Here we reconstruct the pro-element and its properties
             # It is a phonologically silent (D, p)^0 element
@@ -475,9 +386,10 @@ class PhraseStructure:
                 pro.features.add('PF:pro')
                 pro.silence_phonologically()
                 pro.find_me_elsewhere = True
-                return pro
-            else:
-                return None
+                # Only a consistent phi-set can create a pronoun
+                if not pro.phi_conflict():
+                    return pro
+            return None
 
     # Returns the complement of head ('self') if available, otherwise returns None
     # Complement = right sister
@@ -758,22 +670,11 @@ class PhraseStructure:
         else:
             return True
 
-    # Not needed yet, but added this for future (if it will be needed)
-    def phi_feature_match(self, ps):
-
-        phi_list_1 = [str(item).split(':') for item in list(self.get_head().get_phi_set())]
-        phi_list_2 = [str(item).split(':') for item in list(ps.get_head().get_phi_set())]
-
-        for (type1, value1) in phi_list_1:
-            for (type2,value2) in phi_list_2:
-                if type1 == type2 and not value1 == value2:
-                    return False
-
-        return True
-
+    # This returns the phi-set of a constituent
+    # This version is only used when promoting a DP into adjunct on the basis of its phi-set (which is wrong)
     def get_phi_set(self):
         head_ = self.get_head()
-        return {f for f in head_.features if f[:4] == 'PHI:'}
+        return {f for f in head_.features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
     def get_bottom_affix(self):
         if not self.is_primitive:

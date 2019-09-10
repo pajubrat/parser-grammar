@@ -4,6 +4,7 @@ from LF import LF
 from operator import itemgetter
 from reconstruction import Reconstruction
 from morphology import Morphology
+from agreement_reconstruction import AgreementReconstruction
 
 # Parser-Grammar
 # 2019
@@ -46,6 +47,7 @@ class Pcb_parser():
         self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
         self.morphology = Morphology(self.context)
         self.reconstruction = Reconstruction(self.context)
+        self.agreement_reconstruction = AgreementReconstruction()
 
     # Preparatory steps.
     def parse(self, lst):
@@ -464,11 +466,15 @@ class Pcb_parser():
     def reconstruct(self, ps):
         original_mother = ps.mother
         ps.detach()
+
         R = self.reconstruction
         ps, ops = R.reconstruct(ps)
-        log('\t\t\tReconstructing agreement...')
-        ps.agreement_reconstruction()
         self.number_of_Moves += ops
+
+        log('\t\t\tReconstructing agreement...')
+        A = self.agreement_reconstruction
+        A.reconstruct(ps)
+
         if original_mother:
             ps.mother = original_mother
 

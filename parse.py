@@ -3,7 +3,7 @@
 # Parser-grammar
 # Based on Brattico, P. (2019). Computational implementation of a top-down grammar.
 # See documentation in the \Documentation folder
-# Version 2.1
+# Version 2.x
 # Programming: Pauli Brattico, with additional programming by Jukka Purma
 ################################################################################
 
@@ -82,7 +82,7 @@ print('Lexicon will be read from file \"' + test_set_name[:-4] + '_lexicon.lex\"
 
 # Stamp the output file
 results_file = open(results_file_name, "w")
-results_file.write('Parser-Grammar v. 1.9\n')
+results_file.write('Parser-Grammar v. 2.x\n')
 results_file.write(str(datetime.datetime.now())+'\n')
 results_file.write(f'Test sentences from file \"{test_set_name}\".\n')
 results_file.write(f'Logs into file \"{log_file_name}.\n')
@@ -152,4 +152,3 @@ for sentence in parse_list[start:]:
         results_file.write('\n'+' '.join(map(str, sentence))+'\n')
 
 print(f'took: {time.time() - t}s.')
-
