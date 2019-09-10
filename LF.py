@@ -255,8 +255,8 @@ class LF:
                 else:
                     log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
 
-        # Unvalued phi-features must be matched with antecedents
-        unvalued_phi_features = ps.get_unvalued_features()
+        # Unvalued phi-features D, NUM, PER must be matched with antecedents
+        unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
 
         if unvalued_phi_features:
             log(f'\t\t\t\t{ps} has uninterpretable features {unvalued_phi_features} that were bound with antecedents:')
@@ -277,6 +277,10 @@ class LF:
                 return
 
         return
+
+    def must_be_valued(self, phi_set):
+        return {phi for phi in phi_set if phi.split(':')[1]=='DET' or phi.split(':')[1]=='PER' or phi.split(':')[1]=='NUM'}
+
 
     # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
     # This function will be unified with the binding function below, but for now I will keep them separate
