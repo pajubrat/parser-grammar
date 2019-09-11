@@ -1090,7 +1090,7 @@ class PhraseStructure:
                     return '<'+self.get_pf()+'>'
                 else:
                     if self.extract_pro():
-                        return self.get_pro_type() + ' ' + self.get_pf()
+                        return self.get_pro_type() + '.' + self.get_pf()
                     else:
                         return self.get_pf()
         else:
@@ -1108,7 +1108,7 @@ class PhraseStructure:
             return 'PRO'
         if 'PHI:NUM:_' not in self.features and 'PHI:PER:_' not in self.features and 'PHI:DET:_' in self.features:
             return 'pro/x'
-        return 'pro'
+        return 'phi'
 
     # More detailed output function
     def __repr__(self):

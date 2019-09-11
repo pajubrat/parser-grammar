@@ -186,14 +186,13 @@ class LexicalInterface:
             if '-VAL' in features:
                 if '!SPEC:D' not in features:
                     features.add('-SPEC:*')
-            else:
-                features.add('SPEC:*')
-                if 'INFL=PHI:PER' not in features or 'INFL=PHI:NUM' not in features:
-                    features.add('!SPEC:*')
+        if '+VAL' in features:
+            features.add('SPEC:*')
+            features.add('!SPEC:*')
 
         if non_finite_agreement:  # Finnish operator snowballing
             if 'CAT:uWH' in features and not 'CAT:FORCE' in features:
-                    features.add('!SPEC:uWH')
+                features.add('!SPEC:uWH')
 
         return self.create_combined_categories(remove_redundancies(features))
 

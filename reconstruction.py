@@ -23,15 +23,17 @@ class Reconstruction():
         self.number_of_Moves = 0
 
         if ps.is_primitive() and ps.has_affix():
-            set_logging(False)
             if self.reconstruct_head_movement(ps.copy()).LF_legibility_test().all_pass():
-                new = self.reconstruct_head_movement(ps)
-                set_logging(True)
-                log(f'\t\t\t{ps} was opened.')
-                return new, self.number_of_Moves
+                if 'CAT:D' in ps.features:
+                    new = self.reconstruct_head_movement(ps)
+                    set_logging(True)
+                    log(f'\t\t\t{ps} was opened.')
+                    return new, self.number_of_Moves
+                else:
+                    log(f'\t\t\t{ps} was not opened because it is not DP.')
             else:
                 set_logging(True)
-                log(f'\t\t\t{ps} cannot be opened.')
+                log(f'\t\t\t{ps} was not opened because it would not constitute a legitimate left branch at LF.')
         else:
             self.reconstruct_head_movement(ps)
             self.reconstruct_floaters(ps)
