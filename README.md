@@ -1,4 +1,5 @@
-Parser-grammar v. 1.9x
+Parser-grammar v. 2.x
+(Versions 2.x include support for agreement, pro-drop and control)
 
 2019
 
