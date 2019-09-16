@@ -348,30 +348,6 @@ class PhraseStructure:
 
         return list
 
-    # todo this has to be redone with the interface-architecture system, this function
-    # todo just makes sure that agreement reconstruction sees post movemen reconstruction PS
-    def get_specifiers_for_agreement_reconstruction(self):
-
-        if not self.is_primitive():
-            return None
-
-        if self.is_right():
-            ps_ = self
-        else:
-            ps_ = self.mother
-        list = []
-
-        while ps_ and ps_.sister() and (ps_.sister().is_left() and not ps_.sister().is_primitive()) and not ps_.sister().find_me_elsewhere:
-            list.append(ps_.sister())
-            ps_ = ps_.walk_upstream()
-
-        if not list:
-            if self.extract_pro():
-                list.append(self.extract_pro())
-
-        return list
-
-
     # Checks that there is no phi-feature conflicts at 'self'
     # This is in reality a more general function that checks there are no feature conflicts of any kind
     # but is definite more narrowly in order not to create unnecessary problems

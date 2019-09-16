@@ -23,7 +23,7 @@ class HeadMovement():
 
         if ps.is_primitive() and ps.has_affix():
             if self.reconstruct_head_movement(ps.copy()).LF_legibility_test().all_pass():
-                if 'CAT:D' in ps.features:
+                if 'CAT:D' in ps.features or 'CAT:P' in ps.features:
                     new = self.reconstruct_head_movement(ps)
                     set_logging(True)
                     log(f'\t\t\t\t\t{ps} was opened into {new}.')

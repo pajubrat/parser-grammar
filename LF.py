@@ -283,7 +283,6 @@ class LF:
     def must_be_valued(self, phi_set):
         return {phi for phi in phi_set if phi.split(':')[1]=='DET' or phi.split(':')[1]=='PER' or phi.split(':')[1]=='NUM'}
 
-
     # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
     # This function will be unified with the binding function below, but for now I will keep them separate
     # to be able to focus on one problem at a time
@@ -291,7 +290,7 @@ class LF:
         ps_ = ps
         list_of_antecedents = []
         while ps_:
-            if self.phase(ps_):
+            if self.phase(ps_) and 'PHI:PER:_' in ps.features:
                 break
             if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
                 list_of_antecedents.append(ps_.sister())

@@ -165,6 +165,7 @@ class FloaterMovement():
 
         head = ps.get_head()
 
+        # todo this has to be rewritted so that it uses projection (label projection) not geometry
         # If the head is primitive, we must decide how much of the surrounding structure we will eat
         if ps.is_primitive():
             # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
@@ -173,7 +174,10 @@ class FloaterMovement():
                     make_adjunct(head.mother.mother)
                     return ps.mother.mother
                 else:
-                    make_adjunct(head.mother)
+                    if head.mother and head.mother.get_head() == head:
+                        make_adjunct(head.mother)
+                    else:
+                        make_adjunct(head)
                     return ps.mother
             # If the adjunct is still in wrong position, we eat the specifier if accepted
             else:
@@ -194,3 +198,8 @@ class FloaterMovement():
     def babtize(self):
         self.name_provider_index += 1
         return str(self.name_provider_index)
+
+# get_specifiers() wrapper that implements the smodular interface to the PhraseStructure class
+    def get_specifiers(self, h):
+        specs = h.get_specifiers()
+        return [spec for spec in specs if not spec.is_primitive()]

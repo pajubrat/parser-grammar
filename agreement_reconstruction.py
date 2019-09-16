@@ -81,8 +81,8 @@ class AgreementReconstruction():
         # Acquires phi-features from SPEC which includes phi-set at the head (from input)
         # Head features are only consulted if no phrase is found from SPEC
         def acquire_from_spec(h):
-            if self.get_specifier(h) and 'CAT:D' in self.get_specifier(h)[0].get_head().features:
-                head = self.get_specifier(h)[0].get_head()
+            if h.get_specifiers() and 'CAT:D' in h.get_specifiers()[0].get_head().features:
+                head = h.get_specifiers()[0].get_head()
                 phi_features = set()
                 for f in head.features:
                     if self.phi(f) and self.valued(f):
@@ -190,7 +190,3 @@ class AgreementReconstruction():
 
     def mark_bad(self, phi):
         return phi + '*'
-
-    # Interface wrapper for agreement module
-    def get_specifier(self, h):
-        return(h.get_specifiers_for_agreement_reconstruction())
