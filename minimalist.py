@@ -128,7 +128,6 @@ class PhraseStructure:
         """
         A reductive definition for the generalized EPP feature.
         """
-
         for f in self.features:
             if f == 'SPEC:*' or f == '!SPEC:*':
                 return True
@@ -348,6 +347,30 @@ class PhraseStructure:
                 list.append(self.extract_pro())
 
         return list
+
+    # todo this has to be redone with the interface-architecture system, this function
+    # todo just makes sure that agreement reconstruction sees post movemen reconstruction PS
+    def get_specifiers_for_agreement_reconstruction(self):
+
+        if not self.is_primitive():
+            return None
+
+        if self.is_right():
+            ps_ = self
+        else:
+            ps_ = self.mother
+        list = []
+
+        while ps_ and ps_.sister() and (ps_.sister().is_left() and not ps_.sister().is_primitive()) and not ps_.sister().find_me_elsewhere:
+            list.append(ps_.sister())
+            ps_ = ps_.walk_upstream()
+
+        if not list:
+            if self.extract_pro():
+                list.append(self.extract_pro())
+
+        return list
+
 
     # Checks that there is no phi-feature conflicts at 'self'
     # This is in reality a more general function that checks there are no feature conflicts of any kind
@@ -817,6 +840,14 @@ class PhraseStructure:
             return ps_
         else:
             return None
+
+    # This notion is currently used only at LF for antecedent search
+    # I suspect that this is a semantically motivated property of the heads and not a phase.
+    def is_phase(self):
+        if 'CAT:v' in self.features or 'CAT:C' in self.features or 'CAT:FORCE' in self.features:
+            return True
+        else:
+            return False
 
     def get_mandatory_comps(self):
         return  {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}

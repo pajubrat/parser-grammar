@@ -202,12 +202,19 @@ class LF:
                 self.criterial_feature_test_result = False
 
         # 8. Projection principle test for referential non-adjunct arguments
-        # This is not inside the LF-loop because this test cannot rely solely on the LF-selection features, i.e.
-        # the EPP feature SPEC:*/!SPEC:* is formal.)
-        for f in h.features:
-            if (f == 'SPEC:*' or f == '!SPEC:*') and spec and not spec.adjunct and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
-                log(f'\t\t\t\t{spec}" has no thematic role')
+        # Check only non-adjunct arguments
+        # It is very interesting if the first condition could reduce to the second, then we dont need
+        # EPP condition anymore (PPs however)
+        if spec and not spec.adjunct and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
+            # They cannot be left to the SPEC of non-thematic head
+            if h.EPP():
+                log(f'\t\t\t\t{spec}" has no thematic role.')
                 self.projection_principle_test_result = False
+            # or to the SPEC of a head that is selected by -PHI head.
+            else:
+                if h.get_selector() and '+PHI' not in h.get_selector().features:
+                    log(f'\t\t\t\t{spec} has no thematic role due to a selecting -PHI head.')
+                    self.projection_principle_test_result = False
 
         # 9. Discourse/pragmatic tests
         # 9.1 This test accumulates discourse violations for each SPEC that cannot (easily) be topicalized
@@ -235,8 +242,9 @@ class LF:
             log('\t\t\t\tTransfer to LF successful.')
             return True
 
-    # This function checks if the phrase structure constitutes a legitimate LF-object
+    # Checks if the phrase structure constitutes a legitimate LF-object
     # It is assumed that this represents the output from LF/C-I during an attempt at Transfer
+    # Checks for (a) binding and (b) null subject/anaphora recovery
     def check_for_transfer(self, ps):
         if ps.has_children():                           # Check primitive constituents only
             if not ps.left_const.find_me_elsewhere:
@@ -255,18 +263,13 @@ class LF:
                 else:
                     log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
 
-        # Unvalued phi-features D, NUM, PER must be matched with antecedents
+        # Unvalued phi-features D, NUM, PER must be matched with antecedents by recovery
         unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
 
         if unvalued_phi_features:
-            log(f'\t\t\t\t{ps} has uninterpretable features {unvalued_phi_features} that were bound with antecedents:')
+            log(f'\t\t\t\t{ps} with {unvalued_phi_features} was associated at LF with:')
             list_of_antecedents = self.search_phi_antecedents(ps)
-            self.report_to_log(list_of_antecedents)
-            # Here we do last resort computations
-            # If nothing works, we crash
-            if not list_of_antecedents:
-                self.transfer_crash = True
-                return
+            self.report_to_log(list_of_antecedents, unvalued_phi_features)
 
         # Feature conflicts are not tolerated
         phi_set = ps.get_phi_set()
@@ -275,7 +278,6 @@ class LF:
                 log(f'\t\t\t\t{ps} induces a phi-feature conflict.')
                 self.transfer_crash = True
                 return
-
         return
 
     def must_be_valued(self, phi_set):
@@ -289,34 +291,43 @@ class LF:
         ps_ = ps
         list_of_antecedents = []
         while ps_:
+            if self.phase(ps_):
+                break
             if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
                 list_of_antecedents.append(ps_.sister())
             ps_ = ps_.walk_upstream()
         return list_of_antecedents
 
-    # Evaluates whether 'antecedent' could provide semantic support for 'dependent'
-    def evaluate_antecedent(self, antecedent, dependent):
-        dependent_phi_features = {f for f in dependent.features if f[:4] == 'PHI:'}
-        remains_unchecked = dependent_phi_features.copy()
-        for antecedent_feature in antecedent.get_head().features:
-            if antecedent_feature[:4] == 'PHI:' and antecedent_feature[-1] != '_':
-                for dependent_feature in dependent_phi_features:
+    # Evaluates whether 'probe' could provide semantic support for 'goal'
+    def evaluate_antecedent(self, probe, goal):
+        goal_phi_features = {f for f in goal.features if f[:4] == 'PHI:'}
+        unchecked_features_at_goal = goal_phi_features.copy()
+        for probe_feature in probe.get_head().features:
+            # Only phi-features can be used for valuation
+            if probe_feature[:4] == 'PHI:' and probe_feature[-1] != '_':
+                for goal_feature in goal_phi_features:
                     # Check identical features
-                    if dependent_feature == antecedent_feature:
-                        remains_unchecked.discard(dependent_feature)
+                    if goal_feature == probe_feature:
+                        unchecked_features_at_goal.discard(goal_feature)  # Check feature
                     # Check unvalued features if they could be valued
                     else:
-                        if dependent_feature[-1] == '_':
-                            if antecedent_feature[:len(dependent_feature)-1] == dependent_feature[:-1]:
-                                remains_unchecked.discard(dependent_feature)
+                        if goal_feature[-1] == '_':
+                            if probe_feature[:len(goal_feature)-1] == goal_feature[:-1]:
+                                unchecked_features_at_goal.discard(goal_feature)  # Check feature
 
         # If features remain unchecked, the antecedent is rejected
-        if remains_unchecked:
+        if unchecked_features_at_goal:  # If unchecked features remain, evaluation is negative
             return False
         else:
             return True
 
-    def report_to_log(self, list_of_antecedents):
+    def phase(self, ps_):
+        if ps_.sister() and ps_.sister().is_phase():
+            return True
+        else:
+            return False
+
+    def report_to_log(self, list_of_antecedents, unvalued_phi_features):
         s = ''
         i = 1
         for a in list_of_antecedents:
@@ -329,11 +340,22 @@ class LF:
         if s:
             log(f'\t\t\t\t\t' + s)
         else:
-            log(f'\t\t\t\t\t ??')
-        return
-
-        # If there were no feature conflicts, return true
+            log(f'\t\t\t\t\t{self.conceptual_intentional_system(unvalued_phi_features)}')
         return True
+
+    # This function will later be moved to its own class that contains discourse computations.
+    # No it is here to speed up processing
+    def conceptual_intentional_system(self, features):
+        generic_criteria = {'PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'}
+        discourse_criteria = {'PHI:DET:_'}
+
+        if features & generic_criteria == generic_criteria:
+            return '(Generic interpretation)'
+        if features & discourse_criteria == discourse_criteria:
+            self.transfer_crash = True
+            return '(Salient discourse antecedent or ungrammatical if not found)'
+        return '(Cannot be interpreted at C-I, ungrammatical)'
+
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.

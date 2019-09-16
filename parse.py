@@ -79,6 +79,9 @@ print()
 print('Loading test sentences from file \"' + test_set_name + '\".')
 print(f'Logs will be written to file {log_file_name}.')
 print('Lexicon will be read from file \"' + test_set_name[:-4] + '_lexicon.lex\".')
+print(f'Lexicon from \"{context.lexicon_file_name}\"')
+print(f'UG morphemes from \"{context.ug_morpheme_file}\"')
+print(f'Redundancy rules from \"{context.redundancy_rule_file}\"')
 
 # Stamp the output file
 results_file = open(results_file_name, "w")

@@ -173,22 +173,18 @@ class LexicalInterface:
         # ----- Effects of parameters ----- #
 
         # This will add unvalued (uD, up) for each +PHI head
-        if '!COMP:*' in features:
-            if '+PHI' in features:
-                features.add('PHI:PER:_')
-                features.add('PHI:NUM:_')
-                features.add('PHI:DET:_')
-                if gender:
-                    features.add('PHI:GEN:_')
+        if '+PHI' in features:
+            features.add('PHI:PER:_')
+            features.add('PHI:NUM:_')
+            features.add('PHI:DET:_')
+            if gender:
+                features.add('PHI:GEN:_')
 
         # phi/specifier duality
         if '+PHI' in features:
-            if '-VAL' in features:
-                if '!SPEC:D' not in features:
-                    features.add('-SPEC:*')
-        if '+VAL' in features:
-            features.add('SPEC:*')
-            features.add('!SPEC:*')
+            if '+VAL' in features:
+                features.add('SPEC:*')
+                features.add('!SPEC:*')
 
         if non_finite_agreement:  # Finnish operator snowballing
             if 'CAT:uWH' in features and not 'CAT:FORCE' in features:

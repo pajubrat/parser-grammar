@@ -13,7 +13,7 @@ class AgreementReconstruction():
         """
         Current implementation: Finds unvalued phi-features from heads in 'self' and values them (inverse Agree)
         """
-        ps_ = ps  # Set the tarting point
+        ps_ = ps  # Set starting point
 
         while ps_:
             # If there is a primitive head to the left...
@@ -21,7 +21,7 @@ class AgreementReconstruction():
                 h = ps_.left_const
                 # and it is not valued...
                 if '-VAL' not in h.features and self.is_unvalued(h):
-                    log(f'\t\t\t\t{h} has unvalued phi-features {h.get_unvalued_features()}')
+                    log(f'\t\t\t\t\t{h} has unvalued phi-features {h.get_unvalued_features()}')
                     self.acquire_phi(h)
             ps_ = ps_.walk_downstream()
 
@@ -65,13 +65,15 @@ class AgreementReconstruction():
 
             while ps_:
                 if ps_.left_const and not ps_.is_primitive():
-                    head = ps_.left_const.get_head()
-                    if 'CAT:D' in head.features:
+                    goal = ps_.left_const.get_head()
+                    if goal.is_phase():
+                        break
+                    if 'CAT:D' in goal.features:
                         # Collect all valued phi-features (ignore unvalued features)
-                        for f in head.features:
+                        for f in goal.features:
                             if self.phi(f) and self.valued(f):
                                 phi_features.add(f)
-                        return head, phi_features  # We only consider the first DP
+                        return goal, phi_features  # We only consider the first DP
                 ps_ = ps_.walk_downstream()
             return ps, []
 
@@ -79,8 +81,8 @@ class AgreementReconstruction():
         # Acquires phi-features from SPEC which includes phi-set at the head (from input)
         # Head features are only consulted if no phrase is found from SPEC
         def acquire_from_spec(h):
-            if h.specifier() and 'CAT:D' in h.specifier().get_head().features:
-                head = h.specifier().get_head()
+            if self.get_specifier(h) and 'CAT:D' in self.get_specifier(h)[0].get_head().features:
+                head = self.get_specifier(h)[0].get_head()
                 phi_features = set()
                 for f in head.features:
                     if self.phi(f) and self.valued(f):
@@ -96,14 +98,14 @@ class AgreementReconstruction():
         goal, phi_features = acquire_from_sister(h.sister())    # Acquire phi-features
         for phi in phi_features:                                #
             if value(h, phi):
-                log(f'\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
+                log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
 
         # If there are unvalued features left, try Spec-Agree (currently only local DP at SPEC is accepted)
         if self.is_unvalued(h):
             goal, phi_features = acquire_from_spec(h)
             for phi in phi_features:
                 if value(h, phi):
-                    log(f'\t\t\t\t{h} acquired ' + str(phi) + f' from (Spec,{h}).')
+                    log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' from (Spec,{h}).')
 
     def get_phi_set(self, ps):
         head_ = ps.get_head()
@@ -153,7 +155,7 @@ class AgreementReconstruction():
 
     def feature_conflict(self, f, phi):
         if self.get_type(f) == self.get_type(phi) and self.get_value(f) != self.get_value(phi) and self.valued(f):
-            log(f'\t\t\t\t\tFeature conflict between {f} and {phi}.')
+            log(f'\t\t\t\t\t\tFeature conflict between {f} and {phi}.')
             return True
         else:
             return False
@@ -181,10 +183,14 @@ class AgreementReconstruction():
                     if g == valued_feature:
                         return True
                 # If matching feature is not found, valuation is not licensed
-                log(f'\t\t\t\tFeature {valued_feature} was not matched in {h}.')
+                log(f'\t\t\t\t\Feature {valued_feature} was not matched in {h}.')
                 return False
         # If type was not matched, then valuation is again possible
         return True
 
     def mark_bad(self, phi):
         return phi + '*'
+
+    # Interface wrapper for agreement module
+    def get_specifier(self, h):
+        return(h.get_specifiers_for_agreement_reconstruction())

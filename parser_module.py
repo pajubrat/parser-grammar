@@ -5,10 +5,11 @@ from operator import itemgetter
 from reconstruction import Reconstruction
 from morphology import Morphology
 from agreement_reconstruction import AgreementReconstruction
+from transfer import Transfer
 
 # Parser-Grammar
 # 2019
-# V. 1.02
+# V. 2.x
 
 class Pcb_parser():
     def __init__(self, context):
@@ -48,6 +49,7 @@ class Pcb_parser():
         self.morphology = Morphology(self.context)
         self.reconstruction = Reconstruction(self.context)
         self.agreement_reconstruction = AgreementReconstruction()
+        self.transfer = Transfer(self.context)
 
     # Preparatory steps.
     def parse(self, lst):
@@ -466,14 +468,10 @@ class Pcb_parser():
     def reconstruct(self, ps):
         original_mother = ps.mother
         ps.detach()
+        context = self.context
 
-        R = self.reconstruction
-        ps, ops = R.reconstruct(ps)
-        self.number_of_Moves += ops
-
-        log('\t\t\tReconstructing agreement...')
-        A = self.agreement_reconstruction
-        A.reconstruct(ps)
+        T = self.transfer
+        ps = T.transfer(ps, context)
 
         if original_mother:
             ps.mother = original_mother
