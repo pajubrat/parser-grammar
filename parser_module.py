@@ -117,7 +117,7 @@ class Pcb_parser():
             # If the item was not recognized, an ad hoc constituent is returned that has CAT:X
             disambiguated_word_list = self.lexicon.access_lexicon(lst[index])
             if len(disambiguated_word_list) > 1:
-                log('\t\tAmbiguous lexical item ' + str(disambiguated_word_list) + 'detected.')
+                log(f'\t\tAmbiguous lexical item \"{lst[index]}\" detected.')
 
             for lexical_constituent in disambiguated_word_list:
                 lst_branched = lst.copy()

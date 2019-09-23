@@ -17,7 +17,6 @@ class FloaterMovement():
 
     def reconstruct(self, ps):
         _ps_iterator = ps.get_top()  # Begin from the top and move downstream
-        log(f'\t\t\tDropping floaters...')
 
         while _ps_iterator:
             floater = self.detect_floater(_ps_iterator)
@@ -26,7 +25,7 @@ class FloaterMovement():
                 self.number_of_Moves += 1
             _ps_iterator = _ps_iterator.walk_downstream()
 
-        log(f'\t\t\t\t= ' + ps.illustrate())
+        log(f'\t\t\t\t\t= ' + ps.illustrate())
 
     def detect_floater(self, _ps_iterator):
         # Check if a phrase at the left requires reconstruction
@@ -39,12 +38,12 @@ class FloaterMovement():
             floater = _ps_iterator.left_const
             # Check if its tail features fail to find a head
             if not floater.get_head().external_tail_head_test():
-                log('\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.get_head().get_tail_sets()))
+                log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.get_head().get_tail_sets()))
                 # Target the floater
                 return floater
             # or if it (constituent with tail features) sits in an EPP SPEC position of a finite clause edge
             elif floater.mother and floater.mother.get_head().EPP() and floater.mother.is_finite():
-                log('\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
+                log('\t\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
                 return floater
             # or if its in a wrong SPEC position
             elif floater.mother and '-SPEC:*' in floater.mother.get_head().features:
@@ -58,15 +57,15 @@ class FloaterMovement():
             floater = _ps_iterator.right_const.get_head()
             # If tail features fail to find a head, the constituent must be dropped
             if not floater.external_tail_head_test():
-                log('\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.get_head().get_tail_sets()))
+                log('\t\t\t\t\t' + floater.illustrate() + ' at the right failed to tail ' + illu(floater.get_head().get_tail_sets()))
                 # This is empirically very contentious matter:
                 # A right DP inside a finite clause with failed tail-test must be an adjunct(?)
                 if ('D' in floater.get_labels() or 'P' in floater.get_labels()) and floater.get_top().contains_feature('CAT:FIN'):
-                    self.create_adjunct(floater)
+                    floater.create_adjunct()
                     return floater.mother
-            else:
-                if 'ADV' in floater.get_labels() and not _ps_iterator.right_const.adjunct:
-                    self.create_adjunct(floater)
+                else:
+                    if 'ADV' in floater.get_labels() and not _ps_iterator.right_const.adjunct:
+                        floater.create_adjunct()
 
     # Drops one floater that is targeted for dropping
     def drop_floater(self, floater, ps):
@@ -93,7 +92,7 @@ class FloaterMovement():
             # Condition 2: we are not reconstructing inside the same projection (does not apply to Adv which are right-adjoined)
             # Condition 3: dropped non-ADV will become the only SPEC
             if self.is_drop_position(ps_iterator_, floater_copy, starting_point):
-                self.create_adjunct(floater)
+                floater.create_adjunct()
                 dropped_floater = floater.transfer(self.babtize())
                 if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
                     ps_iterator_.merge(dropped_floater, 'right')
@@ -101,7 +100,7 @@ class FloaterMovement():
                     ps_iterator_.merge(dropped_floater, 'left')
                 floater_copy.remove()
                 floater.find_me_elsewhere = True
-                log(f'\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped: {ps}')
+                log(f'\t\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped: {ps}')
                 return
             else:
                 floater_copy.remove()
@@ -144,54 +143,6 @@ class FloaterMovement():
             return node.right_const
         else:
             return node
-
-    # Creates an adjunct of a constituent
-    def create_adjunct(self, ps):
-        """
-        Creates an adjunct out of a constituent.
-        """
-
-        def make_adjunct(ps):
-            #if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-            #    log(f'\t\t\t\t{ps} cannot be made an adjunct because its sister is an adjunct.')
-            #    return False
-            ps.adjunct = True
-            log(f'\t\t\t\t{ps} was made an adjunct.')
-            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-                ps.mother.adjunct = True
-            return True
-
-        # --- Main function begins here --- #
-
-        head = ps.get_head()
-
-        # todo this has to be rewritted so that it uses projection (label projection) not geometry
-        # If the head is primitive, we must decide how much of the surrounding structure we will eat
-        if ps.is_primitive():
-            # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
-            if head.external_tail_head_test():
-                if '!SPEC:*' in head.features and head.mother.mother and self.get_specifiers(head):
-                    make_adjunct(head.mother.mother)
-                    return ps.mother.mother
-                else:
-                    if head.mother and head.mother.get_head() == head:
-                        make_adjunct(head.mother)
-                    else:
-                        make_adjunct(head)
-                    return ps.mother
-            # If the adjunct is still in wrong position, we eat the specifier if accepted
-            else:
-                # If potential Spec exists and the head accepts specifiers...
-                if self.get_specifiers(head) and not '-SPEC:*' in head.features and \
-                        not set(head.get_not_specs()).intersection(set(self.get_specifiers(head)[0].get_labels())):
-                    if head.mother.mother:
-                        make_adjunct(head.mother.mother)
-                    return ps.mother.mother
-                else:
-                    make_adjunct(head.mother)
-                    return ps.mother
-        else:
-            make_adjunct(ps)
 
     # This will provide unique names when chains are formed
     # It is used only for output purposes

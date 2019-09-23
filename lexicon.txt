@@ -14,21 +14,11 @@ adorate :: adora-#v#T/fin#[-te] LANG:IT
 adorano :: adora-#v#T/fin#[-no] LANG:IT
 adora-	:: PF:adora LF:admire CAT:V COMP:D LANG:IT
 
+etsii	:: etsi-#v#T/fin#[-V] LANG:FI
+etsi-	:: PF:etsi LF:search CAT:V !COMP:D LANG:FI COMP:D
+
 haluaa 	:: halua-#T/fin#[-V] LANG:FI
-halua- 	:: PF:haluaa LF:want CAT:V COMP:D COMP:A/inf LANG:FI
-
-istuu	:: istu-#T/fin#[-V] LANG:FI
-istu-	:: PF:istuu LF:sit CAT:V LANG:FI
-
-kaskee	:: kaske-#v#T/fin#[-V] LANG:FI
-kaske-	:: PF:kaske LF:order CAT:V COMP:A/inf COMP:INF LANG:FI
-
-like-   :: PF:like LF:like CAT:V !COMP:D LANG:EN
-likes   :: like-#v#T/fin#sg#3p#def LANG:EN
-like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
-
-pyytaa	:: pyyta-#v#T/fin#[-V] LANG:FI
-pyyta-	:: PF:pyyda LF:ask CAT:V LANG:FI
+halua- 	:: PF:haluaa LF:want CAT:V !COMP:* COMP:D COMP:A/inf SEM:internal LANG:FI
 
 ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
 ihailet	:: ihaile-#v#T/fin#[-t] LANG:FI
@@ -38,10 +28,35 @@ ihailette :: ihaile-#v#T/fin#[-tte] LANG:FI
 ihailevat :: ihaile-#v#T/fin#[-vat] LANG:FI
 ihaile- :: PF:ihaile- LF:admire CAT:V !COMP:D -COMP:FIN LANG:FI
 
+is		:: be-#T/fin#[-s] LANG:EN
+be-		:: PF:be LF:be CAT:V CAT:COPULA SPEC:D SPEC:TO/inf -COMP:TO/inf !COMP:* -ARG LANG:EN
+
+juokse-	:: PF:juokse- LF:run CAT:V LANG:FI
+
+istuu	:: istu-#T/fin#[-V] LANG:FI
+istu-	:: PF:istuu LF:sit CAT:V LANG:FI
+
+kaskee	:: kaske-#v#T/fin#[-V] LANG:FI
+kaske-	:: PF:kaske LF:order CAT:V !COMP:A/inf SEM:external LANG:FI
+
 lahtea 	:: lahte-#A/inf LANG:FI
 lahtemaan :: lahte-#MA/inf LANG:FI
+lahtevan :: lahte-#VA/inf LANG:FI
 lahte- 	:: PF:lahtea LF:leave CAT:V SPEC:D COMP:PP LANG:FI
 leave	:: PF:leave LF:leave CAT:V !SPEC:D LANG:EN
+
+like-   :: PF:like LF:like CAT:V !COMP:D LANG:EN
+likes   :: like-#v#T/fin#sg#3p#def LANG:EN
+like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
+
+persuades :: persuade-#v#T/fin#[-s] LANG:EN
+persuade- :: PF:persuade LF:persuade CAT:V COMP:TO/inf SEM:external LANG:EN
+
+promises :: promise-#T/fin#[-s] LANG:EN
+promise- :: PF:promise LF:promise CAT:V SPEC:D COMP:D SEM:internal LANG:EN 
+
+pyytaa	:: pyyta-#v#T/fin#[-V] LANG:FI
+pyyta-	:: PF:pyyda LF:ask CAT:V LANG:FI
 
 mukavasti	:: PF:mukavasti LF:comfortably CAT:ADV LANG:FI
 
@@ -51,6 +66,9 @@ sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE LANG:FI
 said    :: say-#T/fin#[-0] LANG:EN
 say-    :: PF:say LF:say CAT:V SPEC:D !COMP:FORCE LANG:EN
 
+tries	:: try-#T/fin#[-s] LANG:EN
+try-	:: PF:try LF:try CAT:V SPEC:D !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
+
 wants	:: want-#T/fin#[-s] LANG:EN
 want-	:: PF:want LF:want CAT:V SPEC:D COMP:TO/inf LANG:EN
 
@@ -58,6 +76,15 @@ want-	:: PF:want LF:want CAT:V SPEC:D COMP:TO/inf LANG:EN
 
 etta    :: PF:että LF:that CAT:FORCE LANG:FI
 that    :: PF:that LF:that CAT:FORCE LANG:EN
+
+# NOUNS
+
+mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
+
+# ADVERBS
+
+juosten :: juokse-#Cen LANG:FI
+Cen		:: PF:en LF:by CAT:ADV LANG:FI
 
 # PRONOUNS
 
@@ -141,8 +168,8 @@ tama-	:: PF:tama LF:this CAT:N CAT:PHI LANG:FI
 
 # PROPER NAMES
 
-Luisa	::	Luisa-#D#sg#3p#def#hum#f LANG:IT
-Luisa-	::	 PF:Luisa CAT:N -SEM:directional LF:Luisa LANG:IT 
+Luisa	:: Luisa-#D#sg#3p#def#hum#f LANG:IT
+Luisa-	:: PF:Luisa CAT:N -SEM:directional LF:Luisa LANG:IT 
 
 Mary	:: Mary-#D#sg#3p#def#hum#f LANG:EN
 Mary-	:: PF:Mary CAT:N -SEM:directional LF:Mary LANG:EN 
@@ -158,18 +185,20 @@ Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 John 	:: John-#D#sg#3p#def#hum#m LANG:EN
 John-	:: PF:John CAT:N -SEM:directional LF:John LANG:EN
 
-# PARTICLES
+# ARTICLES, DETERMINERS
+a	    ::  PF:a CAT:D LF:a LANG:EN PHI:NUM:SG PHI:PER:3 PHI:DET:INDEF
 
-to_inf	:: PF:to LF:to_inf CAT:INF CAT:TO/inf 
-MA/inf	:: PF:ma LF:to_inf CAT:INF CAT:MA/inf
+# PARTICLES
+to_inf	:: CAT:INF CAT:TO/inf PF:to LF:TO/inf ?ARG
+VA/inf  :: CAT:INF CAT:VA/inf PF:vAn LF:VA 
+
+
 
 #################################################################################
 # STORAGE
 #################################################################################
 
 to		:: PF:to LF:to CAT:P -VAL +SEM:directional LANG:EN
-Merjan  :: Merja-#D LANG:FI
-Merjan.foc :: Merja-#D#foc LANG:FI
 asked	:: ask-#T/fin LANG:EN
 antaa	:: anta-#v#-ta LANG:FI
 anta-   :: PF:antaa LF:give CAT:V SPEC:D !COMP:D -COMP:FIN +SEM:directional LANG:FI
@@ -260,9 +289,6 @@ Seine   :: Seine-#D#nom LANG:FI
 Seine-  :: PF:Seine CAT:N LF:Seine LANG:FI
 Seineä  :: Seine-#D#par LANG:FI
 Senna	::	Senna PF:Senna CAT:N LLF:Senna ANG:IT
-a		::	PF:a CAT:P -EPP +SEM:directional LF:to LANG:IT
-a.D     ::  PF:a CAT:D LF:a LANG:EN
-a_inf	:: PF:a CAT:INF LF:inf LANG:IT
 abbia	::	CAT:T/fin PF:abbia LANG:IT
 about :: PF:about CAT:P LF:about LANG:EN
 adora	::	adora-#v#T/fin LANG:IT

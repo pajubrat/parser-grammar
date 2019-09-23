@@ -32,7 +32,7 @@ class Morphology():
 
         # If we had more than one morpheme, the list will substitute the original multimorphemic word
         if len(lst_) > 1:
-            log(f'\t\tNext word contains multiple morphemes ' + str(lst_[::-1]))
+            log(f'\t\tNext word \"{lst_branched[index]}\" contains multiple morphemes ' + str(lst_[::-1]))
             del lst_branched[index]
             for w_ in lst_:
                 lst_branched.insert(index, w_)

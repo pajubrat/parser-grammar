@@ -372,7 +372,7 @@ class PhraseStructure:
     def extract_pro(self):
         phi_set = set()
 
-        if '+PHI' in self.features: # Only phi-active head can contain a pro-element
+        if 'ARG' in self.features: # Only phi-active head can contain a pro-element
             for f in self.features:
                 if f[:4] == 'PHI:':  # Only valued phi-features count as pronouns
                     phi_set.add(f)
@@ -480,7 +480,7 @@ class PhraseStructure:
         Returns True if the constituent can be attached to the phrase structure as a non-selected adjunct.
         """
 
-        adjoinable_categories = {'ADV', 'R', 'D', 'P'}
+        adjoinable_categories = {'ADV', 'R', 'D', 'P', 'TO/inf'}
         if self.adjunct:
             return True
         if adjoinable_categories.intersection(self.get_labels()):
@@ -508,6 +508,47 @@ class PhraseStructure:
         ps_.find_me_elsewhere = self.find_me_elsewhere
         ps_.identity = self.identity
         return ps_
+
+    # Creates an adjunct of a constituent
+    def create_adjunct(self):
+
+        def make_adjunct(ps):
+            ps.adjunct = True
+            log(f'\t\t\t\t\t\t{ps} was made an adjunct.')
+            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
+                ps.mother.adjunct = True
+            return True
+
+        # --- Main function begins here --- #
+
+        head = self.get_head()
+
+        # If the head is primitive, we must decide how much of the surrounding structure we will eat
+        if self.is_primitive():
+            # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
+            if head.external_tail_head_test():
+                if '!SPEC:*' in head.features and head.mother.mother and self.get_specifiers():
+                    make_adjunct(head.mother.mother)
+                    return self.mother.mother
+                else:
+                    if head.mother and head.mother.get_head() == head:
+                        make_adjunct(head.mother)
+                    else:
+                        make_adjunct(head)
+                    return self.mother
+            # If the adjunct is still in wrong position, we eat the specifier if accepted
+            else:
+                # If potential Spec exists and the head accepts specifiers...
+                if self.get_specifiers() and not '-SPEC:*' in head.features and \
+                        not set(head.get_not_specs()).intersection(set(self.get_specifiers()[0].get_labels())):
+                    if head.mother.mother:
+                        make_adjunct(head.mother.mother)
+                    return self.mother.mother
+                else:
+                    make_adjunct(head.mother)
+                    return self.mother
+        else:
+            make_adjunct(self)
 
     def LF_legibility_test(self):
         """
@@ -596,7 +637,7 @@ class PhraseStructure:
                 and not _ps_iterator.geometrical_sister() == self.complement():
                     feature_vector.append(_ps_iterator.geometrical_sister())
 
-            # Here we don't use upstream walk because we don't wanto to ignore adjuncts
+            # Here we don't use upstream walk because we don't want to ignore adjuncts
             if _ps_iterator.mother:
                 _ps_iterator = _ps_iterator.mother
             else:
@@ -647,18 +688,18 @@ class PhraseStructure:
 
             # Condition ii)
             # Check if goal's tail features can be matched in the feature vector
-            for const in feature_vector:
-                # Ignore the first element which is the goal itself
-                if const is not self:
-                    # If ALL goal's features are matched, the test is accepted
-                    # Notice that we check also internal affixes
-                    for m in const.get_affix_list():
-                        if m.check_features(tail_set):
-                            return True
-                        # If there is PARTIAL match, it is left unchecked
-                        elif tail_set & const.features:
-                            # log('tail set ' + str(tail_set) + ' against c-commanding h features ' + str(const.features))
-                            return False
+            if 'CAT:ADV' not in self.features:
+                for const in feature_vector:
+                    # Ignore the first element which is the goal itself
+                    if const is not self:
+                        # If ALL goal's features are matched, the test is accepted
+                        # Notice that we check also internal affixes
+                        for m in const.get_affix_list():
+                            if m.check_features(tail_set):
+                                return True
+                            # If there is PARTIAL match, it is left unchecked
+                            elif tail_set & const.features:
+                                return False
 
             return False
 
@@ -799,6 +840,13 @@ class PhraseStructure:
 
         return None
 
+    def walk_upstream_geometrically(self):
+
+        if self.mother:
+            return self.mother
+        else:
+            return None
+
     # Walk upstream and ignore right-adjuncts
     def walk_upstream(self):
         """
@@ -820,7 +868,7 @@ class PhraseStructure:
     # This notion is currently used only at LF for antecedent search
     # I suspect that this is a semantically motivated property of the heads and not a phase.
     def is_phase(self):
-        if 'CAT:v' in self.features or 'CAT:C' in self.features or 'CAT:FORCE' in self.features:
+        if 'CAT:v' in self.features or 'CAT:C' in self.features or 'CAT:FORCE' in self.features or 'CAT:COPULA' in self.features:
             return True
         else:
             return False

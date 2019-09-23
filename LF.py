@@ -34,7 +34,6 @@ class LF:
         return not self.all_pass()
 
     # LF-tests that checks LF-legibility for primitive constituents (not phrases)
-    # todo THE CORRECTNESS OF THIS CHANGE HAS TO BE VERIFIED CAREFULLY
     def test(self, ps):
         # Returns the selected sister (if any) of the constituent
         def selected_sister(ps):
@@ -91,7 +90,6 @@ class LF:
         if '2SPEC' not in h.features:
             """
             Returns False if the head is associated with more than one non-adjunct DP specifier at LF
-            
             The test ignores adjuncts, non-DPs and DPs that have been moved out from SPEC
             """
             count = 0
@@ -116,10 +114,11 @@ class LF:
 
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
-                if spec and f[6:] in spec.get_labels():
-                    if not spec.adjunct:
-                        log(f'\t\t\t\t{ps} has unaccetable specifier {spec}.')
-                        self.selection_test_result = False
+                for spec_ in specs:
+                    if spec_ and f[6:] in spec_.get_labels():
+                        if not spec_.adjunct:
+                            log(f'\t\t\t\t{ps} has unaccetable specifier {spec}.')
+                            self.selection_test_result = False
 
             # 3.2. No specifier of any kind allowed (e.g., English P)
             if f == '-SPEC:*':
@@ -136,7 +135,7 @@ class LF:
                     self.selection_test_result = False
                 else:
                     if f[6:] not in selected_sister(ps).get_labels():
-                        log(f'\t\t\t\t{h} ({h.illustrate()}) is missing a mandatory complement {f[6:]}')
+                        log(f'\t\t\t\t\t{h} ({h.illustrate()}) is missing a mandatory complement {f[6:]}')
                         self.selection_test_result = False
 
             # 3.4. Complement restriction
@@ -203,16 +202,14 @@ class LF:
 
         # 8. Projection principle test for referential non-adjunct arguments
         # Check only non-adjunct arguments
-        # It is very interesting if the first condition could reduce to the second, then we dont need
-        # EPP condition anymore (PPs however)
         if spec and not spec.adjunct and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
-            # They cannot be left to the SPEC of non-thematic head
+            # Arguments cannot be left to the SPEC of non-thematic head
             if h.EPP():
                 log(f'\t\t\t\t{spec}" has no thematic role.')
                 self.projection_principle_test_result = False
-            # or to the SPEC of a head that is selected by -PHI head.
+            # or to the SPEC of a head without PHI specification that is c-commanded closest by -ARG.
             else:
-                if h.get_selector() and '+PHI' not in h.get_selector().features:
+                if h.get_selector() and 'ARG' not in h.get_selector().features:
                     log(f'\t\t\t\t{spec} has no thematic role due to a selecting -PHI head.')
                     self.projection_principle_test_result = False
 
@@ -281,7 +278,7 @@ class LF:
         return
 
     def must_be_valued(self, phi_set):
-        return {phi for phi in phi_set if phi.split(':')[1]=='DET' or phi.split(':')[1]=='PER' or phi.split(':')[1]=='NUM'}
+        return {phi for phi in phi_set if phi.split(':')[1] == 'DET' or phi.split(':')[1] == 'PER' or phi.split(':')[1] == 'NUM'}
 
     # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
     # This function will be unified with the binding function below, but for now I will keep them separate
@@ -290,11 +287,11 @@ class LF:
         ps_ = ps
         list_of_antecedents = []
         while ps_:
-            if self.phase(ps_) and 'PHI:PER:_' in ps.features:
+            if ps_.sister() and 'CAT:v' in ps_.sister().features:
                 break
             if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
                 list_of_antecedents.append(ps_.sister())
-            ps_ = ps_.walk_upstream()
+            ps_ = ps_.walk_upstream_geometrically()
         return list_of_antecedents
 
     # Evaluates whether 'probe' could provide semantic support for 'goal'
@@ -320,6 +317,7 @@ class LF:
         else:
             return True
 
+    # Check if the sister is a phase head (v, C, copula, Force)
     def phase(self, ps_):
         if ps_.sister() and ps_.sister().is_phase():
             return True
@@ -354,7 +352,6 @@ class LF:
             self.transfer_crash = True
             return '(Salient discourse antecedent or ungrammatical if not found)'
         return '(Cannot be interpreted at C-I, ungrammatical)'
-
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.

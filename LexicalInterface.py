@@ -100,17 +100,33 @@ class LexicalInterface:
         return word_list
 
     def apply_redundancy_rules(self, feats):
-        def feature_conflict(f_, feat_set):
-            if f_.startswith('-'):
-                if f_[1:] in feat_set:
-                    return True
-            elif '-' + f_ in feat_set:
+
+        def negative_feature(f):
+            if f.startswith('-'):
                 return True
+            return False
+
+        # Prevents new features from redundancy rules to get added if they conflict with a lexical rule
+        # todo suboptimal because F and +F both mean the same must be fixed
+        def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
+
+            # If we try to add a negative feature -F, we reject if there is a positive feature
+            # either +F or F.
+            if negative_feature(new_candidate_feature_to_add):
+                if new_candidate_feature_to_add[1:] in features_from_lexicon:
+                    return True
+            # If we try to add a positive feature, we reject if there is a negative feature
+            if not negative_feature(new_candidate_feature_to_add):
+                if '-' + new_candidate_feature_to_add[1:] in features_from_lexicon:
+                    return True
+            return False
 
         feats = set(feats)
         new_feats = set()
         for feat in feats:
+            # If a feature is found in the redundancy rules
             if feat in self.redundancy_rules:
+                # the rule set from redundancy rules will be transferred
                 new_feats |= set(self.redundancy_rules[feat])
         # order of features added by redundancy rules affects whether they conflict or not. Sorting them here causes
         # that features starting with '-' are added first and possible positive features are then in conflict and get
@@ -172,19 +188,20 @@ class LexicalInterface:
 
         # ----- Effects of parameters ----- #
 
-        # This will add unvalued (uD, up) for each +PHI head
-        if '+PHI' in features:
+        # This will add unvalued (uD, up) for each +ARGG head and promotes ARG also into the status of a label
+        if 'ARG' in features:
+            features.add('CAT:ARG')
             features.add('PHI:PER:_')
             features.add('PHI:NUM:_')
             features.add('PHI:DET:_')
             if gender:
                 features.add('PHI:GEN:_')
-
-        # phi/specifier duality
-        if '+PHI' in features:
-            if '+VAL' in features:
+            if 'VAL' in features:
                 features.add('SPEC:*')
                 features.add('!SPEC:*')
+
+        if '-ARG' in features:
+            features.add('CAT:-ARG')
 
         if non_finite_agreement:  # Finnish operator snowballing
             if 'CAT:uWH' in features and not 'CAT:FORCE' in features:

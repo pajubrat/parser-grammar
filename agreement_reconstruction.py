@@ -19,7 +19,7 @@ class AgreementReconstruction():
             # If there is a primitive head to the left...
             if ps_.left_const and ps_.left_const.is_primitive():
                 h = ps_.left_const
-                # and it is not valued...
+                # and value if needed
                 if '-VAL' not in h.features and self.is_unvalued(h):
                     log(f'\t\t\t\t\t{h} has unvalued phi-features {h.get_unvalued_features()}')
                     self.acquire_phi(h)
