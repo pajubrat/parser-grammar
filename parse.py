@@ -1,11 +1,14 @@
 
 #################################################################################
 # Parser-grammar
-# Based on Brattico, P. (2019). Computational implementation of a top-down grammar.
+# Brattico, P. (2019). Computational implementation of a top-down grammar. Technical documentation.
 # See documentation in the \Documentation folder
 # Version 2.x
-# Programming: Pauli Brattico, with additional programming by Jukka Purma
 ################################################################################
+# List of known things that must be fixed
+#
+# todo The feature ARG is not both ARG and CAT:ARG (part of label). In my view, it must be only the second,
+# todo i.e. a diacritic of the label so that it can be selected
 
 # Imports
 import datetime

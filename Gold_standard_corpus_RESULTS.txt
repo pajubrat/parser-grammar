@@ -1,0 +1,945 @@
+Parser-Grammar v. 1.9
+2019-07-16 09:28:09.108808
+Test sentences from file "Gold_standard_corpus.txt".
+Logs into file "Gold_standard_corpus_log.txt.
+Lexicon from file "lexicon.txt".
+
+& Group 1. Finnish basic canonical finite clause types
+
+& Group 1.1 Declarative clauses
+1.  Pekka nukkui 
+
+[<D Pekka>:1 [T/fin [<DP>:1 nukku]]]
+'D Pekka T __sleep .'
+Score: 0  (Failed: 0, Merge:6, Move: 1 = Ops: 7; Discourse plausibility: -0)
+
+2.  Pekka ihailee Merjaa 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]
+'D Pekka T __v admire D  .'
+Score: 0  (Failed: 0, Merge:10, Move: 4 = Ops: 14; Discourse plausibility: -0)
+
+3.  Pekka antoi kirjan Merjalle 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+'D Pekka T __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:13, Move: 14 = Ops: 27; Discourse plausibility: -0)
+
+
+& Group 1.2. Negative clauses
+4.  Pekka ei nukkunut 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 nukku]]]]]
+'D Pekka not __T __sleep .'
+Score: 0  (Failed: 0, Merge:7, Move: 3 = Ops: 10; Discourse plausibility: -0)
+
+5.  Pekka ei ihaile Merjaa 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [ihailee [D Merjaa]]]]]]]]
+'D Pekka not __T __v admire D  .'
+Score: 0  (Failed: 0, Merge:11, Move: 7 = Ops: 18; Discourse plausibility: -0)
+
+6.  Pekka ei antanut kirjaa Merjalle 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]
+'D Pekka not __T __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:14, Move: 23 = Ops: 37; Discourse plausibility: -0)
+
+
+& Group 1.3. Embedded infinitivals
+7.  Pekka kaski heidan nukkua 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 nukku]]]]]]]
+'D Pekka T __ask D theirs to __sleep .'
+Score: 0  (Failed: 0, Merge:11, Move: 8 = Ops: 19; Discourse plausibility: -0)
+
+8.  Pekka kaski heidan ihailla Merjaa 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [ihailee [D Merjaa]]]]]]]]]]
+'D Pekka T __ask D theirs to __v admire D  .'
+Score: 0  (Failed: 0, Merge:15, Move: 16 = Ops: 31; Discourse plausibility: -0)
+
+9.  Pekka kaski heidan antaa kirjan Merjalle 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]
+'D Pekka T __ask D theirs to __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:18, Move: 44 = Ops: 62; Discourse plausibility: -0)
+
+
+& Group 1.4. Adverbial
+10.  Pekka nukkui kuorsaamalla 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [nukku <malla kuorsaa>]]]]
+'D Pekka T __sleep by snore .'
+Score: 0  (Failed: 0, Merge:8, Move: 4 = Ops: 12; Discourse plausibility: -0)
+
+11.  Pekka hairitsee Merjaa kuorsaamalla 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [hairitsee [[D Merjaa] <malla kuorsaa>]]]]]]
+'D Pekka T __v disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:12, Move: 14 = Ops: 26; Discourse plausibility: -0)
+
+12.  Pekka antoi kirjan Merjalle heittamalla 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]
+'D Pekka T __v give D book for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:15, Move: 26 = Ops: 41; Discourse plausibility: -0)
+
+
+& Group 1.5. Negation and adverbial
+13.  Pekka ei nukkunut kuorsaamalla 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [nukku <malla kuorsaa>]]]]]]
+'D Pekka not __T __sleep by snore .'
+Score: 0  (Failed: 0, Merge:9, Move: 8 = Ops: 17; Discourse plausibility: -0)
+
+14.  Pekka ei hairitse Merjaa kuorsaamalla 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [hairitsee [[D Merjaa] <malla kuorsaa>]]]]]]]]
+'D Pekka not __T __v disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:13, Move: 23 = Ops: 36; Discourse plausibility: -0)
+
+15.  Pekka ei antanut kirjaa Merjalle heittamalla 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]
+'D Pekka not __T __v give D book for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:16, Move: 42 = Ops: 58; Discourse plausibility: -0)
+
+
+& Grouop 1.6. Negated infinitival embedding
+16.  Pekka ei kaskenyt heidan nukkua 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 nukku]]]]]]]]]
+'D Pekka not __T __ask D theirs to __sleep .'
+Score: 0  (Failed: 0, Merge:12, Move: 14 = Ops: 26; Discourse plausibility: -0)
+
+17.  Pekka ei kaskenyt heidan ihailla Merjaa 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [ihailee [D Merjaa]]]]]]]]]]]]
+'D Pekka not __T __ask D theirs to __v admire D  .'
+Score: 0  (Failed: 0, Merge:16, Move: 25 = Ops: 41; Discourse plausibility: -0)
+
+18.  Pekka ei kaskenyt heidan antaa kirjaa Merjalle 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]]]]]]
+'D Pekka not __T __ask D theirs to __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:19, Move: 63 = Ops: 82; Discourse plausibility: -0)
+
+
+& Group 1.7. Infinitival embedding with adverbial
+19.  Pekka kaski heidan nukkua kuorsaamalla 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [nukku <malla kuorsaa>]]]]]]]]
+'D Pekka T __ask D theirs to __sleep by snore .'
+Score: 0  (Failed: 0, Merge:13, Move: 21 = Ops: 34; Discourse plausibility: -0)
+
+20.  Pekka kaski heidan hairita Merjaa kuorsaamalla 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [hairitsee [[D Merjaa] <malla kuorsaa>]]]]]]]]]]
+'D Pekka T __ask D theirs to __v disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:17, Move: 44 = Ops: 61; Discourse plausibility: -0)
+
+21.  Pekka kaski heidan antaa kirjan Merjalle heittamalla 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]
+'D Pekka T __ask D theirs to __v give D book for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:20, Move: 74 = Ops: 94; Discourse plausibility: -0)
+
+
+& Group 1.8. Negated infinitival embedding with adverbial
+22.  Pekka ei kaskenyt heidan nukkua kuorsaamalla 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [nukku <malla kuorsaa>]]]]]]]]]]
+'D Pekka not __T __ask D theirs to __sleep by snore .'
+Score: 0  (Failed: 0, Merge:14, Move: 33 = Ops: 47; Discourse plausibility: -0)
+
+23.  Pekka ei kaskenyt heidan hairita Merjaa kuorsaamalla 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [hairitsee [[D Merjaa] <malla kuorsaa>]]]]]]]]]]]]
+'D Pekka not __T __ask D theirs to __v disturb D  by snore .'
+Score: 0  (Failed: 0, Merge:18, Move: 63 = Ops: 81; Discourse plausibility: -0)
+
+24.  Pekka ei kaskenyt heidan antaa kirjaa Merjalle heittamalla 
+
+[<D Pekka>:1 [ei [<DP>:1 [T [<DP>:1 [käske [[D heidän]:2 [Ainf [(DP):2 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]]]
+'D Pekka not __T __ask D theirs to __v give D book for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:21, Move: 104 = Ops: 125; Discourse plausibility: -0)
+
+
+& Group 2. Finnish basic interrogative clauses
+25.  kuka nukkui 
+
+[<D kuka>:1 [T/fin [<DP>:1 nukku]]]
+'D who T __sleep .'
+Score: 0  (Failed: 0, Merge:7, Move: 1 = Ops: 8; Discourse plausibility: -0)
+
+26.  kuka ei nukkunut 
+
+[<D kuka>:1 [ei [<DP>:1 [T [<DP>:1 nukku]]]]]
+'D who not __T __sleep .'
+Score: 0  (Failed: 0, Merge:8, Move: 3 = Ops: 11; Discourse plausibility: -0)
+
+27.  keta Pekka ihailee 
+
+[<D ketä>:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 ihailee]]]]]]]
+'D who  D Pekka T __v __admire .'
+Score: 0  (Failed: 0, Merge:11, Move: 3 = Ops: 14; Discourse plausibility: -0)
+
+28.  keta Pekka ei ihaile 
+
+[<D ketä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [v [<DP>:1 ihailee]]]]]]]]]
+'D who  D Pekka not __T __v __admire .'
+Score: 0  (Failed: 0, Merge:12, Move: 7 = Ops: 19; Discourse plausibility: -0)
+
+29.  mita Pekka antoi Merjalle 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 [antaa <P(lle) [D Merja-]>]]]]]]]]
+'D what  D Pekka T __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:14, Move: 10 = Ops: 24; Discourse plausibility: -0)
+
+30.  mita Pekka ei antanut Merjalle 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [v [<DP>:1 [antaa <P(lle) [D Merja-]>]]]]]]]]]]
+'D what  D Pekka not __T __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:15, Move: 17 = Ops: 32; Discourse plausibility: -0)
+
+31.  kenen Pekka kaski nukkua 
+
+[[D kenen]:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [käske [(DP):1 [Ainf [(DP):1 nukku]]]]]]]]]
+'D whose  D Pekka T __ask __to __sleep .'
+Score: 0  (Failed: 0, Merge:12, Move: 6 = Ops: 18; Discourse plausibility: -0)
+
+32.  kenen Pekka ei kaskenyt nukkua 
+
+[[D kenen]:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [käske [(DP):1 [Ainf [(DP):1 nukku]]]]]]]]]]]
+'D whose  D Pekka not __T __ask __to __sleep .'
+Score: 0  (Failed: 0, Merge:13, Move: 11 = Ops: 24; Discourse plausibility: -0)
+
+33.  mita Pekka kaski heidan ihailla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 ihailee]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __admire .'
+Score: 0  (Failed: 0, Merge:16, Move: 17 = Ops: 33; Discourse plausibility: -0)
+
+34.  mita Pekka ei kaskenyt heidan ihailla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 ihailee]]]]]]]]]]]]]
+'D what  D Pekka not __T __ask D theirs to __v __admire .'
+Score: 0  (Failed: 0, Merge:17, Move: 28 = Ops: 45; Discourse plausibility: -0)
+
+35.  mita Pekka kaski heidan antaa Merjalle 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [antaa <P(lle) [D Merja-]>]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:19, Move: 33 = Ops: 52; Discourse plausibility: -0)
+
+36.  mita Pekka ei kaskenyt heidan antaa Merjalle 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [antaa <P(lle) [D Merja-]>]]]]]]]]]]]]]]
+'D what  D Pekka not __T __ask D theirs to __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:20, Move: 49 = Ops: 69; Discourse plausibility: -0)
+
+37.  kuka nukkui kuorsaamalla 
+
+[<D kuka>:1 [T/fin [<DP>:1 [nukku <malla kuorsaa>]]]]
+'D who T __sleep by snore .'
+Score: 0  (Failed: 0, Merge:9, Move: 4 = Ops: 13; Discourse plausibility: -0)
+
+38.  kuka ei nukkunut kuorsaamalla 
+
+[<D kuka>:1 [ei [<DP>:1 [T [<DP>:1 [nukku <malla kuorsaa>]]]]]]
+'D who not __T __sleep by snore .'
+Score: 0  (Failed: 0, Merge:10, Move: 8 = Ops: 18; Discourse plausibility: -0)
+
+39.  mita Pekka ihailee virtaamalla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]
+'D what  D Pekka T __v __admire by flow .'
+Score: 0  (Failed: 0, Merge:13, Move: 10 = Ops: 23; Discourse plausibility: -0)
+
+40.  mita Pekka ei ihaile virtaamalla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]]]
+'D what  D Pekka not __T __v __admire by flow .'
+Score: 0  (Failed: 0, Merge:14, Move: 17 = Ops: 31; Discourse plausibility: -0)
+
+41.  kuka antoi kirjan Merjalle heittamalla 
+
+[<D kuka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <<P(lle) [D Merja-]> <malla heitta>>]]]]]]
+'D who T __v give D book for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:16, Move: 26 = Ops: 42; Discourse plausibility: -0)
+
+42.  mita Pekka ei antanut Merjalle heittamalla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [v [<DP>:1 [antaa <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]
+'D what  D Pekka not __T __v __give for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:17, Move: 37 = Ops: 54; Discourse plausibility: -0)
+
+43.  kenen Pekka kaski nukkua kuorsaamalla 
+
+[[D kenen]:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [käske [(DP):1 [Ainf [(DP):1 [nukku <malla kuorsaa>]]]]]]]]]]
+'D whose  D Pekka T __ask __to __sleep by snore .'
+Score: 0  (Failed: 0, Merge:14, Move: 21 = Ops: 35; Discourse plausibility: -0)
+
+44.  kenen Pekka ei kaskenyt nukkua kuorsaamalla 
+
+[[D kenen]:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [käske [(DP):1 [Ainf [(DP):1 [nukku <malla kuorsaa>]]]]]]]]]]]]
+'D whose  D Pekka not __T __ask __to __sleep by snore .'
+Score: 0  (Failed: 0, Merge:15, Move: 32 = Ops: 47; Discourse plausibility: -0)
+
+45.  mita Pekka kaski heidan ihailla virtaamalla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __admire by flow .'
+Score: 0  (Failed: 0, Merge:18, Move: 33 = Ops: 51; Discourse plausibility: -0)
+
+46.  mita Pekka ei kaskenyt heidan ihailla virtaamalla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [ihailee <malla virtaa>]]]]]]]]]]]]]]
+'D what  D Pekka not __T __ask D theirs to __v __admire by flow .'
+Score: 0  (Failed: 0, Merge:19, Move: 49 = Ops: 68; Discourse plausibility: -0)
+
+47.  mita Pekka kaski heidan antaa Merjalle heittamalla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [T/fin [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [antaa <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]]]
+'D what  D Pekka T __ask D theirs to __v __give for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:21, Move: 64 = Ops: 85; Discourse plausibility: -0)
+
+48.  mita Pekka ei kaskenyt heidan antaa Merjalle heittamalla 
+
+[<D mitä>:1 [uWH [<D Pekka>:2 [ei [<DP>:2 [T [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [antaa <<P(lle) [D Merja-]> <malla heitta>>]]]]]]]]]]]]]]
+'D what  D Pekka not __T __ask D theirs to __v __give for D Merja by throw .'
+Score: 0  (Failed: 0, Merge:22, Move: 91 = Ops: 113; Discourse plausibility: -0)
+
+
+& Group 3. Finnish basic finite clauses with noncanonical word orders
+49.  Pekka nukkui 
+
+[<D Pekka>:1 [T/fin [<DP>:1 nukku]]]
+'D Pekka T __sleep .'
+Score: 0  (Failed: 0, Merge:6, Move: 1 = Ops: 7; Discourse plausibility: -0)
+
+50.  Pekka#foc nukkui 
+
+[<D Pekka>:1 [T/fin [<DP>:1 nukku]]]
+'D Pekka T __sleep .'
+Score: 0  (Failed: 0, Merge:7, Move: 1 = Ops: 8; Discourse plausibility: -0)
+
+51. * nukkui Pekka 
+
+52.  nukkui#foc Pekka 
+
+[C [<D Pekka>:1 [T/fin [<DP>:1 nukku]]]]
+'C/fin D Pekka T __sleep .'
+Score: 0  (Failed: 0, Merge:7, Move: 2 = Ops: 9; Discourse plausibility: -0)
+
+53.  Pekka ihailee Merjaa 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]
+'D Pekka T __v admire D  .'
+Score: 0  (Failed: 0, Merge:10, Move: 4 = Ops: 14; Discourse plausibility: -0)
+
+54.  Pekka#foc ihailee Merjaa 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]
+'D Pekka T __v admire D  .'
+Score: 0  (Failed: 0, Merge:11, Move: 4 = Ops: 15; Discourse plausibility: -0)
+
+55. ? Pekka Merjaa ihailee 
+
+[<D Pekka>:1 [<D Merjaa>:2 [T/fin [<DP>:1 [v [<DP>:2 ihailee]]]]]]
+'D Pekka D  T __v __admire .'
+Score: -1.0  (Failed: 0, Merge:10, Move: 4 = Ops: 14; Discourse plausibility: -1.0)
+
+56.  Pekka#foc Merjaa ihailee 
+
+[<D Pekka>:1 [uFOC [<D Merjaa>:2 [T/fin [<DP>:1 [v [<DP>:2 ihailee]]]]]]]
+'D Pekka  D  T __v __admire .'
+Score: 0  (Failed: 0, Merge:11, Move: 4 = Ops: 15; Discourse plausibility: -0)
+
+57. * ihailee Pekka Merjaa 
+
+58.  ihailee#foc Pekka Merjaa 
+
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [ihailee [D Merjaa]]]]]]]
+'C/fin D Pekka T __v admire D  .'
+Score: 0  (Failed: 0, Merge:11, Move: 7 = Ops: 18; Discourse plausibility: -0)
+
+59. * ihailee Merjaa Pekka 
+
+60.  ihailee#foc Merjaa Pekka 
+
+[C [<D Merjaa>:1 [T/fin [<DP>:2 [v [<DP>:1 [ihailee <D Pekka>:2]]]]]]]
+'C/fin D  T __v __admire D Pekka .'
+Score: 0  (Failed: 0, Merge:11, Move: 10 = Ops: 21; Discourse plausibility: -0)
+
+61. ? Merjaa Pekka ihailee 
+
+[<D Merjaa>:1 [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 ihailee]]]]]]
+'D  D Pekka T __v __admire .'
+Score: -1.0  (Failed: 0, Merge:10, Move: 4 = Ops: 14; Discourse plausibility: -1.0)
+
+62.  Merjaa#foc Pekka ihailee 
+
+[<D Merjaa>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 ihailee]]]]]]]
+'D   D Pekka T __v __admire .'
+Score: 0  (Failed: 0, Merge:11, Move: 4 = Ops: 15; Discourse plausibility: -0)
+
+63.  Merjaa ihailee Pekka 
+
+[<D Merjaa>:1 [T/fin [<DP>:2 [v [<DP>:1 [ihailee <D Pekka>:2]]]]]]
+'D  T __v __admire D Pekka .'
+Score: 0  (Failed: 0, Merge:10, Move: 6 = Ops: 16; Discourse plausibility: -0)
+
+64.  Merjaa#foc ihailee Pekka 
+
+[<D Merjaa>:1 [T/fin [<DP>:2 [v [<DP>:1 [ihailee <D Pekka>:2]]]]]]
+'D  T __v __admire D Pekka .'
+Score: 0  (Failed: 0, Merge:11, Move: 6 = Ops: 17; Discourse plausibility: -0)
+
+65.  Pekka antoi kirjan Merjalle 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+'D Pekka T __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:13, Move: 14 = Ops: 27; Discourse plausibility: -0)
+
+66.  Pekka#foc antoi kirjan Merjalle 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]
+'D Pekka T __v give D book for D Merja .'
+Score: 0  (Failed: 0, Merge:14, Move: 14 = Ops: 28; Discourse plausibility: -0)
+
+67.  Pekka antoi Merjalle kirjan 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [[antaa [<P(lle) [D Merja-]>:2 [D kirja]]] <PP>:2]]]]]
+'D Pekka T __v give for D Merja D book __.'
+Score: 0  (Failed: 0, Merge:13, Move: 10 = Ops: 23; Discourse plausibility: -0)
+
+68.  Pekka#foc antoi Merjalle kirjan 
+
+[<D Pekka>:1 [T/fin [<DP>:1 [v [[antaa [<P(lle) [D Merja-]>:2 [D kirja]]] <PP>:2]]]]]
+'D Pekka T __v give for D Merja D book __.'
+Score: 0  (Failed: 0, Merge:14, Move: 10 = Ops: 24; Discourse plausibility: -0)
+
+69. ? Pekka kirjan antoi Merjalle 
+
+[<D Pekka>:1 [<D kirja>:2 [T/fin [<DP>:1 [v [<DP>:2 [antaa <P(lle) [D Merja-]>]]]]]]]
+'D Pekka D book T __v __give for D Merja .'
+Score: -1.0  (Failed: 0, Merge:13, Move: 12 = Ops: 25; Discourse plausibility: -1.0)
+
+70.  Pekka#foc kirjan antoi Merjalle 
+
+[<D Pekka>:1 [uFOC [<D kirja>:2 [T/fin [<DP>:1 [v [<DP>:2 [antaa <P(lle) [D Merja-]>]]]]]]]]
+'D Pekka  D book T __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:14, Move: 12 = Ops: 26; Discourse plausibility: -0)
+
+71. ? Pekka kirjan Merjalle antoi 
+
+[<D Pekka>:1 [<D kirja>:2 [<P(lle) [D Merja-]>:3 [T/fin [<DP>:1 [v [[<DP>:2 antaa] <PP>:3]]]]]]]
+'D Pekka D book for D Merja T __v __give __.'
+Score: -2.5  (Failed: 1, Merge:19, Move: 12 = Ops: 31; Discourse plausibility: -1.5)
+
+72. ? Pekka#foc kirjan Merjalle antoi 
+
+[<D Pekka>:1 [uFOC [<D kirja>:2 [<P(lle) [D Merja-]>:3 [T/fin [<DP>:1 [v [[<DP>:2 antaa] <PP>:3]]]]]]]]
+'D Pekka  D book for D Merja T __v __give __.'
+Score: -2.0  (Failed: 1, Merge:20, Move: 12 = Ops: 32; Discourse plausibility: -1.0)
+
+73. ? Pekka Merjalle antoi kirjan 
+
+[<D Pekka>:1 [<P(lle) [D Merja-]>:2 [T/fin [<DP>:1 [v [[antaa [D kirja]] <PP>:2]]]]]]
+'D Pekka for D Merja T __v give D book __.'
+Score: -1.0  (Failed: 0, Merge:13, Move: 8 = Ops: 21; Discourse plausibility: -1.0)
+
+74.  Pekka#foc Merjalle antoi kirjan 
+
+[<D Pekka>:1 [uFOC [<P(lle) [D Merja-]>:2 [T/fin [<DP>:1 [v [[antaa [D kirja]] <PP>:2]]]]]]]
+'D Pekka  for D Merja T __v give D book __.'
+Score: 0  (Failed: 0, Merge:14, Move: 8 = Ops: 22; Discourse plausibility: -0)
+
+75. ? Pekka Merjalle kirjan antoi 
+
+[<D Pekka>:1 [<P(lle) [D Merja-]>:2 [<D kirja>:3 [T/fin [<DP>:1 [v [<DP>:3 [antaa <PP>:2]]]]]]]]
+'D Pekka for D Merja D book T __v __give __.'
+Score: -1.5  (Failed: 0, Merge:13, Move: 9 = Ops: 22; Discourse plausibility: -1.5)
+
+76. ? Pekka#foc Merjalle kirjan antoi 
+
+[<D Pekka>:1 [uFOC [<P(lle) [D Merja-]>:2 [<D kirja>:3 [T/fin [<DP>:1 [v [<DP>:3 [antaa <PP>:2]]]]]]]]]
+'D Pekka  for D Merja D book T __v __give __.'
+Score: -1.0  (Failed: 0, Merge:14, Move: 9 = Ops: 23; Discourse plausibility: -1.0)
+
+77. * antoi Pekka kirjan Merjalle 
+
+78. ? antoi#foc Pekka kirjan Merjalle 
+
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [antaa [[D kirja] <P(lle) [D Merja-]>]]]]]]]
+'C/fin D Pekka T __v give D book for D Merja .'
+Score: -1  (Failed: 1, Merge:17, Move: 25 = Ops: 42; Discourse plausibility: -0)
+
+79. * antoi Pekka Merjalle kirjan 
+
+80.  antoi#foc Pekka Merjalle kirjan 
+
+[C [<D Pekka>:1 [T/fin [<DP>:1 [v [[antaa [<P(lle) [D Merja-]>:2 [D kirja]]] <PP>:2]]]]]]
+'C/fin D Pekka T __v give for D Merja D book __.'
+Score: 0  (Failed: 0, Merge:14, Move: 15 = Ops: 29; Discourse plausibility: -0)
+
+81. * antoi kirjan Pekka Merjalle 
+
+82. ? antoi#foc kirjan Pekka Merjalle 
+
+[C [<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa <<D Pekka>:2 <P(lle) [D Merja-]>>]]]]]]]
+'C/fin D book T __v __give D Pekka for D Merja .'
+Score: -1  (Failed: 1, Merge:17, Move: 30 = Ops: 47; Discourse plausibility: -0)
+
+83. * antoi kirjan Merjalle Pekka 
+
+84.  antoi#foc kirjan Merjalle Pekka 
+
+[C [<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa <<P(lle) [D Merja-]> <D Pekka>:2>]]]]]]]
+'C/fin D book T __v __give for D Merja D Pekka .'
+Score: 0  (Failed: 0, Merge:14, Move: 22 = Ops: 36; Discourse plausibility: -0)
+
+85. * antoi Merjalle Pekka kirjan 
+
+86. ? antoi#foc Merjalle Pekka kirjan 
+
+[C [<P(lle) [D Merja-]>:1 [T/fin [<DP>:2 [v [[antaa [<D Pekka>:2 [D kirja]]] <PP>:1]]]]]]
+'C/fin for D Merja T __v give D Pekka D book __.'
+Score: -1  (Failed: 1, Merge:16, Move: 23 = Ops: 39; Discourse plausibility: -0)
+
+87. * antoi Merjalle kirjan Pekka 
+
+88. ? antoi#foc Merjalle kirjan Pekka 
+
+[C [<P(lle) [D Merja-]>:1 [T/fin [<DP>:2 [v [[antaa [[D kirja] <D Pekka>:2]] <PP>:1]]]]]]
+'C/fin for D Merja T __v give D book D Pekka __.'
+Score: -1  (Failed: 1, Merge:16, Move: 28 = Ops: 44; Discourse plausibility: -0)
+
+89. ? kirjan Pekka antoi Merjalle 
+
+[<D kirja>:1 [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 [antaa <P(lle) [D Merja-]>]]]]]]]
+'D book D Pekka T __v __give for D Merja .'
+Score: -1.0  (Failed: 0, Merge:13, Move: 11 = Ops: 24; Discourse plausibility: -1.0)
+
+90.  kirjan#foc Pekka antoi Merjalle 
+
+[<D kirja>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [<DP>:1 [antaa <P(lle) [D Merja-]>]]]]]]]]
+'D book  D Pekka T __v __give for D Merja .'
+Score: 0  (Failed: 0, Merge:14, Move: 11 = Ops: 25; Discourse plausibility: -0)
+
+91. ? kirjan Pekka Merjalle antoi 
+
+[<D kirja>:1 [<D Pekka>:2 [<P(lle) [D Merja-]>:3 [T/fin [<DP>:2 [v [[<DP>:1 antaa] <PP>:3]]]]]]]
+'D book D Pekka for D Merja T __v __give __.'
+Score: -2.5  (Failed: 1, Merge:19, Move: 12 = Ops: 31; Discourse plausibility: -1.5)
+
+92. ? kirjan#foc Pekka Merjalle antoi 
+
+[<D kirja>:1 [uFOC [<D Pekka>:2 [<P(lle) [D Merja-]>:3 [T/fin [<DP>:2 [v [[<DP>:1 antaa] <PP>:3]]]]]]]]
+'D book  D Pekka for D Merja T __v __give __.'
+Score: -2.0  (Failed: 1, Merge:20, Move: 12 = Ops: 32; Discourse plausibility: -1.0)
+
+93.  kirjan antoi Pekka Merjalle 
+
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa <<D Pekka>:2 <P(lle) [D Merja-]>>]]]]]]
+'D book T __v __give D Pekka for D Merja .'
+Score: 0  (Failed: 0, Merge:13, Move: 17 = Ops: 30; Discourse plausibility: -0)
+
+94.  kirjan#foc antoi Pekka Merjalle 
+
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa <<D Pekka>:2 <P(lle) [D Merja-]>>]]]]]]
+'D book T __v __give D Pekka for D Merja .'
+Score: 0  (Failed: 0, Merge:14, Move: 17 = Ops: 31; Discourse plausibility: -0)
+
+95.  kirjan antoi Merjalle Pekka 
+
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa <<P(lle) [D Merja-]> <D Pekka>:2>]]]]]]
+'D book T __v __give for D Merja D Pekka .'
+Score: 0  (Failed: 0, Merge:13, Move: 14 = Ops: 27; Discourse plausibility: -0)
+
+96.  kirjan#foc antoi Merjalle Pekka 
+
+[<D kirja>:1 [T/fin [<DP>:2 [v [<DP>:1 [antaa <<P(lle) [D Merja-]> <D Pekka>:2>]]]]]]
+'D book T __v __give for D Merja D Pekka .'
+Score: 0  (Failed: 0, Merge:14, Move: 14 = Ops: 28; Discourse plausibility: -0)
+
+97. ? kirjan Merjalle Pekka antoi 
+
+[<D kirja>:1 [<P(lle) [D Merja-]>:2 [<D Pekka>:3 [T/fin [<DP>:3 [v [[<DP>:1 antaa] <PP>:2]]]]]]]
+'D book for D Merja D Pekka T __v __give __.'
+Score: -1.5  (Failed: 0, Merge:13, Move: 9 = Ops: 22; Discourse plausibility: -1.5)
+
+98. ? kirjan#foc Merjalle Pekka antoi 
+
+[<D kirja>:1 [uFOC [<P(lle) [D Merja-]>:2 [<D Pekka>:3 [T/fin [<DP>:3 [v [[<DP>:1 antaa] <PP>:2]]]]]]]]
+'D book  for D Merja D Pekka T __v __give __.'
+Score: -1.0  (Failed: 0, Merge:14, Move: 9 = Ops: 23; Discourse plausibility: -1.0)
+
+99. ? kirjan Merjalle antoi Pekka 
+
+[<D kirja>:1 [<P(lle) [D Merja-]>:2 [T/fin [<DP>:3 [v [[<DP>:1 [antaa <D Pekka>:3]] <PP>:2]]]]]]
+'D book for D Merja T __v __give D Pekka __.'
+Score: -1.0  (Failed: 0, Merge:13, Move: 11 = Ops: 24; Discourse plausibility: -1.0)
+
+100.  kirjan#foc Merjalle antoi Pekka 
+
+[<D kirja>:1 [uFOC [<P(lle) [D Merja-]>:2 [T/fin [<DP>:3 [v [[<DP>:1 [antaa <D Pekka>:3]] <PP>:2]]]]]]]
+'D book  for D Merja T __v __give D Pekka __.'
+Score: 0  (Failed: 0, Merge:14, Move: 11 = Ops: 25; Discourse plausibility: -0)
+
+101. ? Merjalle Pekka antoi kirjan 
+
+[<P(lle) [D Merja-]>:1 [<D Pekka>:2 [T/fin [<DP>:2 [v [[antaa [D kirja]] <PP>:1]]]]]]
+'for D Merja D Pekka T __v give D book __.'
+Score: -1.0  (Failed: 0, Merge:13, Move: 9 = Ops: 22; Discourse plausibility: -1.0)
+
+102.  Merjalle#foc Pekka antoi kirjan 
+
+[<P(lle) [D Merja-]>:1 [uFOC [<D Pekka>:2 [T/fin [<DP>:2 [v [[antaa [D kirja]] <PP>:1]]]]]]]
+'for D Merja  D Pekka T __v give D book __.'
+Score: 0  (Failed: 0, Merge:14, Move: 9 = Ops: 23; Discourse plausibility: -0)
+
+103. ?? Merjalle Pekka kirjan antoi 
+
+[<P(lle) [D Merja-]>:1 [<D Pekka>:2 [<D kirja>:3 [T/fin [<DP>:2 [v [<DP>:3 [antaa <PP>:1]]]]]]]]
+'for D Merja D Pekka D book T __v __give __.'
+Score: -3.5  (Failed: 2, Merge:21, Move: 19 = Ops: 40; Discourse plausibility: -1.5)
+
+104. ?? Merjalle#foc Pekka kirjan antoi 
+
+[<P(lle) [D Merja-]>:1 [uFOC [<D Pekka>:2 [<D kirja>:3 [T/fin [<DP>:2 [v [<DP>:3 [antaa <PP>:1]]]]]]]]]
+'for D Merja  D Pekka D book T __v __give __.'
+Score: -3.0  (Failed: 2, Merge:22, Move: 19 = Ops: 41; Discourse plausibility: -1.0)
+
+105.  Merjalle antoi Pekka kirjan 
+
+[<P(lle) [D Merja-]>:1 [T/fin [<DP>:2 [v [[antaa [<D Pekka>:2 [D kirja]]] <PP>:1]]]]]
+'for D Merja T __v give D Pekka D book __.'
+Score: 0  (Failed: 0, Merge:13, Move: 12 = Ops: 25; Discourse plausibility: -0)
+
+106.  Merjalle#foc antoi Pekka kirjan 
+
+[<P(lle) [D Merja-]>:1 [T/fin [<DP>:2 [v [[antaa [<D Pekka>:2 [D kirja]]] <PP>:1]]]]]
+'for D Merja T __v give D Pekka D book __.'
+Score: 0  (Failed: 0, Merge:14, Move: 12 = Ops: 26; Discourse plausibility: -0)
+
+107.  Merjalle antoi kirjan Pekka 
+
+[<P(lle) [D Merja-]>:1 [T/fin [<DP>:2 [v [[antaa [[D kirja] <D Pekka>:2]] <PP>:1]]]]]
+'for D Merja T __v give D book D Pekka __.'
+Score: 0  (Failed: 0, Merge:13, Move: 15 = Ops: 28; Discourse plausibility: -0)
+
+108.  Merjalle#foc antoi kirjan Pekka 
+
+[<P(lle) [D Merja-]>:1 [T/fin [<DP>:2 [v [[antaa [[D kirja] <D Pekka>:2]] <PP>:1]]]]]
+'for D Merja T __v give D book D Pekka __.'
+Score: 0  (Failed: 0, Merge:14, Move: 15 = Ops: 29; Discourse plausibility: -0)
+
+109. ?? Merjalle kirjan Pekka antoi 
+
+[<P(lle) [D Merja-]>:1 [<D kirja>:2 [<D Pekka>:3 [T/fin [<DP>:3 [v [<DP>:2 [antaa <PP>:1]]]]]]]]
+'for D Merja D book D Pekka T __v __give __.'
+Score: -3.5  (Failed: 2, Merge:21, Move: 19 = Ops: 40; Discourse plausibility: -1.5)
+
+110. ?? Merjalle#foc kirjan Pekka antoi 
+
+[<P(lle) [D Merja-]>:1 [uFOC [<D kirja>:2 [<D Pekka>:3 [T/fin [<DP>:3 [v [<DP>:2 [antaa <PP>:1]]]]]]]]]
+'for D Merja  D book D Pekka T __v __give __.'
+Score: -3.0  (Failed: 2, Merge:22, Move: 19 = Ops: 41; Discourse plausibility: -1.0)
+
+111. ? Merjalle kirjan antoi Pekka 
+
+[<P(lle) [D Merja-]>:1 [<D kirja>:2 [T/fin [<DP>:3 [v [<DP>:2 [[antaa <D Pekka>:3] <PP>:1]]]]]]]
+'for D Merja D book T __v __give D Pekka __.'
+Score: -1.0  (Failed: 0, Merge:13, Move: 13 = Ops: 26; Discourse plausibility: -1.0)
+
+112.  Merjalle#foc kirjan antoi Pekka 
+
+[<P(lle) [D Merja-]>:1 [uFOC [<D kirja>:2 [T/fin [<DP>:3 [v [<DP>:2 [[antaa <D Pekka>:3] <PP>:1]]]]]]]]
+'for D Merja  D book T __v __give D Pekka __.'
+Score: 0  (Failed: 0, Merge:14, Move: 13 = Ops: 27; Discourse plausibility: -0)
+
+
+& Group 4. A sample of 100 noncanonical finite clauses in Finnish
+113. * ei#foc hairita kuorsaamalla kaskenyt Pekka heidan Merjaa 
+
+114. * kaskenyt antaa kirjaa Merjalle Pekka heidan ei 
+
+115. * heidan#foc Pekka kaskenyt Merjaa kuorsaamalla hairita ei 
+
+116. * heidan#foc kirjaa Merjalle kaskenyt ei heittamalla antaa Pekka 
+
+117. * kaskenyt antaa ei heittamalla Pekka heidan kirjaa Merjalle 
+
+118. ## kirjaa heidan antaa ei heittamalla kaskenyt Merjalle Pekka 
+
+[[[<D kirja>:2 [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:2 antaa]]]]]]:1 [[ei [<malla heitta>:4 [T [<DP>:5 [[käske (INFP):1] <ADVP>:4]]]]] <P(lle) [D Merja-]>:6]] <D Pekka>:5]
+'D book D theirs to __v __give not by throw T __ask ____for D Merja D Pekka .'
+Score: -14.0  (Failed: 11, Merge:51, Move: 98 = Ops: 149; Discourse plausibility: -3.0)
+
+119. * ei#foc heittamalla kirjaa heidan Pekka antaa kaskenyt Merjalle 
+
+120. ?? kirjaa#foc Merjalle heidan ei heittamalla Pekka kaskenyt antaa 
+
+[<D kirja>:1 [uFOC [<P(lle) [D Merja-]>:2 [[D heidän]:3 [ei [<malla heitta>:4 [[D Pekka]:5 [T [(DP):5 [käske [[(DP):3 [Ainf [(DP):3 [v [[<DP>:1 antaa] <PP>:2]]]]] <ADVP>:4]]]]]]]]]]]
+'D book  for D Merja D theirs not by throw D Pekka T __ask __to __v __give ____.'
+Score: -4.0  (Failed: 0, Merge:22, Move: 50 = Ops: 72; Discourse plausibility: -4.0)
+
+121. * heidan#foc Merjalle kaskenyt Pekka heittamalla kirjaa antaa ei 
+
+122. * antaa#foc Merjalle ei Pekka kaskenyt kirjaa heidan 
+
+123. * Merjalle#foc kirjaa heidan kaskenyt Pekka ei antaa heittamalla 
+
+124. * kirjan kaski heittamalla Pekka Merjalle heidan antaa 
+
+125.  kaski#foc Merjalle heidan antaa kirjan heittamalla Pekka 
+
+[C [<P(lle) [D Merja-]>:1 [T/fin [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [[antaa [[D kirja] <<malla heitta> <D Pekka>:2>]] <PP>:1]]]]]]]]]]
+'C/fin for D Merja T __ask D theirs to __v give D book by throw D Pekka __.'
+Score: 0  (Failed: 0, Merge:21, Move: 95 = Ops: 116; Discourse plausibility: -0)
+
+126. * Pekka#foc Merjalle antaa kirjaa heidan kaskenyt ei heittamalla 
+
+127. ? Merjalle#foc ei heittamalla heidan kaskenyt antaa kirjaa Pekka 
+
+[<P(lle) [D Merja-]>:1 [ei [<malla heitta>:2 [[D heidän]:3 [T [<DP>:4 [käske [[(DP):3 [Ainf [(DP):3 [v [[antaa [[D kirja] <D Pekka>:4]] <PP>:1]]]]] <ADVP>:2]]]]]]]]
+'for D Merja not by throw D theirs T __ask __to __v give D book D Pekka ____.'
+Score: -1.0  (Failed: 0, Merge:22, Move: 102 = Ops: 124; Discourse plausibility: -1.0)
+
+128. ? kirjaa ei kaskenyt heidan antaa Merjalle heittamalla Pekka 
+
+[[D kirja]:1 [ei [<DP>:2 [T [<DP>:2 [käske [[D heidän]:3 [[Ainf [(DP):3 [v [(DP):1 [antaa <<P(lle) [D Merja-]> <malla heitta>>]]]]] <D Pekka>:2]]]]]]]]
+'D book not __T __ask D theirs to __v __give for D Merja by throw D Pekka .'
+Score: -1  (Failed: 1, Merge:23, Move: 105 = Ops: 128; Discourse plausibility: -0)
+
+129. * Pekka#foc antaa heidan Merjalle kirjaa ei heittamalla kaskenyt 
+
+130. * kirjaa#foc kaskenyt ei antaa heidan Pekka Merjalle 
+
+131. * kaskenyt ei Pekka heidan kuorsaamalla nukkua 
+
+132. * Merjalle#foc heittamalla ei Pekka heidan kirjaa antaa kaskenyt 
+
+133. * heidan#foc kirjaa Merjalle heittamalla Pekka ei antaa kaskenyt 
+
+134. * Merjalle#foc kaskenyt antaa ei heittamalla heidan kirjaa Pekka 
+
+135. * kaskenyt#foc Pekka kirjaa Merjalle ei antaa heittamalla heidan 
+
+136. * Pekka#foc Merjalle kirjaa heidan ei kaskenyt heittamalla antaa 
+
+137. * kaski heittamalla Merjalle kirjan Pekka antaa heidan 
+
+138. * antaa heittamalla Pekka Merjalle kaskenyt ei kirjaa heidan 
+
+139. * hairita#foc kaski Pekka Merjaa kuorsaamalla heidan 
+
+140. * heidan kaskenyt hairita ei Pekka kuorsaamalla Merjaa 
+
+141. * antaa kaski heidan heittamalla Merjalle Pekka kirjan 
+
+142. * Pekka ei antaa kirjaa heittamalla Merjalle heidan kaskenyt 
+
+143. * antaa Pekka heidan ei kirjaa heittamalla kaskenyt Merjalle 
+
+144. * kaskenyt#foc ei kirjaa Pekka antaa Merjalle heittamalla heidan 
+
+145. * kirjaa#foc kaskenyt Pekka ei heidan Merjalle antaa 
+
+146. ? heittamalla#foc ei kaskenyt Pekka heidan Merjalle kirjaa antaa 
+
+[<malla heitta>:1 [ei [<DP>:2 [T [<DP>:2 [käske [[<D Pekka>:2 [[D heidän]:3 [<P(lle) [D Merja-]>:4 [<D kirja>:5 [Ainf [(DP):3 [v [<DP>:5 [antaa <PP>:4]]]]]]]]] <ADVP>:1]]]]]]]
+'by throw not __T __ask D Pekka D theirs for D Merja D book to __v __give ____.'
+Score: -2.0  (Failed: 0, Merge:22, Move: 87 = Ops: 109; Discourse plausibility: -2.0)
+
+147. * Pekka#foc kaskenyt ei heidan Merjaa hairita kuorsaamalla 
+
+148. ?? Pekka heidan ei heittamalla kaskenyt kirjaa antaa Merjalle 
+
+[<D Pekka>:1 [[D heidän]:2 [ei [<malla heitta>:3 [T [<DP>:1 [käske [[<D kirja>:4 [(DP):2 [Ainf [(DP):2 [v [<DP>:4 [antaa <P(lle) [D Merja-]>]]]]]]] <ADVP>:3]]]]]]]]
+'D Pekka D theirs not by throw T __ask D book __to __v __give for D Merja __.'
+Score: -4.0  (Failed: 0, Merge:21, Move: 82 = Ops: 103; Discourse plausibility: -4.0)
+
+149. * heidan Merjalle Pekka antaa kaskenyt ei heittamalla kirjaa 
+
+150. ## ei#foc heidan antaa heittamalla kirjaa Merjalle kaskenyt Pekka 
+
+[[C [[[D heidän]:2 [Ainf [(DP):2 [v [antaa [[<malla heitta>:3 [D kirja]] <ADVP>:3]]]]]]:1 [ei [[P(lle) [D Merja-]]:4 [T [<DP>:5 [käske [(INFP):1 <PP>:4]]]]]]]] <D Pekka>:5]
+'C/fin D theirs to __v give by throw D book __not for D Merja T __ask ____D Pekka .'
+Score: -9  (Failed: 7, Merge:48, Move: 208 = Ops: 256; Discourse plausibility: -2)
+
+151. * antaa#foc ei heittamalla heidan Pekka kirjaa kaskenyt Merjalle 
+
+152. * ei#foc heittamalla antaa heidan kirjaa Pekka Merjalle kaskenyt 
+
+153. * ei kaskenyt Merjalle antaa heidan Pekka kirjaa heittamalla 
+
+154. ?? kaskenyt#foc heidan ei kuorsaamalla Pekka Merjaa hairita 
+
+[C [[D heidän]:1 [ei [<malla kuorsaa>:2 [T [<DP>:3 [käske [[<D Pekka>:3 [<D Merjaa>:4 [(DP):1 [Ainf [(DP):1 [v [<DP>:4 hairitsee]]]]]]] <ADVP>:2]]]]]]]]
+'C/fin D theirs not by snore T __ask D Pekka D  __to __v __disturb __.'
+Score: -3.5  (Failed: 2, Merge:27, Move: 102 = Ops: 129; Discourse plausibility: -1.5)
+
+155. * kaskenyt Pekka kirjaa antaa ei Merjalle heittamalla heidan 
+
+156. * heidan Merjalle kirjaa Pekka antaa heittamalla ei kaskenyt 
+
+157. * ei#foc Merjalle Pekka heidan antaa kaskenyt kirjaa 
+
+158. * Merjalle heittamalla antaa kirjaa ei kaskenyt Pekka heidan 
+
+159. * kaskenyt#foc heidan Pekka kirjaa antaa heittamalla Merjalle ei 
+
+160. * kaskenyt kirjaa Pekka heittamalla Merjalle ei heidan antaa 
+
+161. ?* kirjan Merjalle heittamalla heidan antaa Pekka kaski 
+
+[[<D kirja>:2 [<[P(lle) [D Merja-]]:4 [malla [heitta (PP):4]]>:3 [[D heidän]:5 [Ainf [(DP):5 [v [<DP>:2 [antaa <ADVP>:3]]]]]]]]:1 [<D Pekka>:6 [T/fin [<DP>:6 [käske (INFP):1]]]]]
+'D book for D Merja by throw __D theirs to __v __give __D Pekka T __ask __.'
+Score: -5.5  (Failed: 1, Merge:24, Move: 54 = Ops: 78; Discourse plausibility: -4.5)
+
+162. * heidan antaa kaskenyt heittamalla Pekka Merjalle ei kirjaa 
+
+163. * antaa Merjalle Pekka heittamalla kirjaa ei heidan kaskenyt 
+
+164. * Pekka#foc hairita kuorsaamalla ei kaskenyt heidan Merjaa 
+
+165. * heidan Pekka antaa kaskenyt heittamalla Merjalle ei kirjaa 
+
+166. ?? heidan#foc kirjan antaa heittamalla Pekka kaski Merjalle 
+
+[[[[D heidän]:2 [uFOC [<D kirja>:3 [Ainf [(DP):2 [v [<DP>:3 [antaa <malla heitta>]]]]]]]]:1 [uFOC [<D Pekka>:4 [T/fin [<DP>:4 [käske (INFP):1]]]]]] <P(lle) [D Merja-]>:5]
+'D theirs  D book to __v __give by throw  D Pekka T __ask __for D Merja .'
+Score: -3  (Failed: 1, Merge:24, Move: 39 = Ops: 63; Discourse plausibility: -2)
+
+167. * heittamalla#foc kaski Merjalle antaa kirjan heidan Pekka 
+
+168. * antaa#foc heidan kirjaa heittamalla kaskenyt Pekka ei Merjalle 
+
+169. * kaskenyt#foc Pekka antaa heidan Merjalle kirjaa ei heittamalla 
+
+170. * kaski Merjalle heidan Pekka kirjan antaa heittamalla 
+
+171. * Merjalle#foc heidan antaa ei kirjaa Pekka kaskenyt 
+
+172. * heidan#foc heittamalla Pekka kaskenyt kirjaa antaa Merjalle ei 
+
+173. * kaskenyt#foc kirjaa antaa Merjalle ei heidan Pekka 
+
+174. * kirjaa#foc heittamalla kaskenyt ei heidan Pekka antaa Merjalle 
+
+175. ?* kirjaa heidan Merjalle ei heittamalla kaskenyt Pekka antaa 
+
+[<D kirja>:1 [[D heidän]:2 [<P(lle) [D Merja-]>:3 [ei [<malla heitta>:4 [T [<DP>:5 [käske [[<D Pekka>:5 [(DP):2 [Ainf [(DP):2 [v [[<DP>:1 antaa] <PP>:3]]]]]] <ADVP>:4]]]]]]]]]
+'D book D theirs for D Merja not by throw T __ask D Pekka __to __v __give ____.'
+Score: -5.5  (Failed: 0, Merge:21, Move: 67 = Ops: 88; Discourse plausibility: -5.5)
+
+176. * Merjalle#foc Pekka kaskenyt antaa heidan ei kirjaa 
+
+177. ? heidan Merjalle kaski antaa heittamalla kirjan Pekka 
+
+[[D heidän]:1 [<P(lle) [D Merja-]>:2 [T/fin [<DP>:3 [käske [[(DP):1 [Ainf [(DP):1 [v [[antaa [<malla heitta>:4 [[D kirja] <D Pekka>:3]]] <PP>:2]]]]] <ADVP>:4]]]]]]
+'D theirs for D Merja T __ask __to __v give by throw D book D Pekka ____.'
+Score: -2.0  (Failed: 1, Merge:22, Move: 67 = Ops: 89; Discourse plausibility: -1.0)
+
+178. * kirjaa kaskenyt heidan antaa ei Merjalle Pekka 
+
+179. * antaa heidan kaskenyt ei Merjalle kirjaa Pekka 
+
+180. * heidan#foc Merjalle heittamalla kaskenyt antaa Pekka kirjaa ei 
+
+181. * ei heittamalla Merjalle kaskenyt heidan Pekka antaa kirjaa 
+
+182. * Merjalle Pekka kaskenyt heidan antaa kirjaa ei 
+
+183. ## heidan antaa kirjan kaski Pekka Merjalle 
+
+[[[[[D heidän]:2 [Ainf [(DP):2 [v [antaa [D kirja]]]]]]:1 [T/fin [<DP>:3 [käske (INFP):1]]]] <D Pekka>:3] <P(lle) [D Merja-]>:4]
+'D theirs to __v give D book T __ask __D Pekka for D Merja .'
+Score: -19  (Failed: 17, Merge:82, Move: 195 = Ops: 277; Discourse plausibility: -2)
+
+184. ?? heidan heittamalla Merjalle ei kaskenyt antaa kirjaa Pekka 
+
+[[D heidän]:1 [<malla heitta>:2 [<P(lle) [D Merja-]>:3 [ei [<DP>:4 [T [<DP>:4 [käske [[(DP):1 [Ainf [(DP):1 [v [[antaa [[D kirja] <D Pekka>:4]] <PP>:3]]]]] <ADVP>:2]]]]]]]]]
+'D theirs by throw for D Merja not __T __ask __to __v give D book D Pekka ____.'
+Score: -4.5  (Failed: 0, Merge:21, Move: 85 = Ops: 106; Discourse plausibility: -4.5)
+
+185. * kaskenyt#foc kirjaa antaa heidan heittamalla ei Pekka Merjalle 
+
+186. * ei kaskenyt kuorsaamalla Pekka heidan Merjaa hairita 
+
+187. * heittamalla#foc Pekka Merjalle antaa heidan kirjaa kaskenyt ei 
+
+188. * Pekka kaskenyt Merjalle kirjaa heidan heittamalla antaa ei 
+
+189. * Pekka kaskenyt antaa Merjalle ei heittamalla kirjaa heidan 
+
+190. * kuorsaamalla Pekka hairita heidan ei kaskenyt Merjaa 
+
+191. * kaskenyt Pekka antaa heidan kirjaa ei heittamalla Merjalle 
+
+192. ? antaa#foc kirjan Pekka kaski heidan Merjalle 
+
+[C [<D kirja>:1 [<D Pekka>:2 [T/fin [<DP>:2 [käske [[D heidän]:3 [Ainf [(DP):3 [v [<DP>:1 [antaa <P(lle) [D Merja-]>]]]]]]]]]]]]
+'C/fin D book D Pekka T __ask D theirs to __v __give for D Merja .'
+Score: -1.0  (Failed: 0, Merge:19, Move: 67 = Ops: 86; Discourse plausibility: -1.0)
+
+193. * heittamalla kaskenyt heidan Pekka Merjalle ei kirjaa antaa 
+
+194. * Merjalle antaa Pekka ei kaskenyt heittamalla kirjaa heidan 
+
+195. * Pekka heittamalla antaa kirjan kaski heidan Merjalle 
+
+196. * kirjaa#foc antaa Pekka Merjalle heidan ei kaskenyt 
+
+197. * ei#foc Merjalle antaa kaskenyt kirjaa heidan heittamalla Pekka 
+
+198. ? kaskenyt#foc heidan ei kirjaa Merjalle antaa heittamalla Pekka 
+
+[C [[D heidän]:1 [ei [<D kirja>:2 [T [<DP>:3 [käske [<P(lle) [D Merja-]>:4 [(DP):1 [Ainf [(DP):1 [v [[<DP>:2 [antaa <<malla heitta> <D Pekka>:3>]] <PP>:4]]]]]]]]]]]]]
+'C/fin D theirs not D book T __ask for D Merja __to __v __give by throw D Pekka __.'
+Score: -1.0  (Failed: 0, Merge:22, Move: 130 = Ops: 152; Discourse plausibility: -1.0)
+
+199. ## kirjaa#foc antaa Pekka heidan heittamalla ei kaskenyt Merjalle 
+
+[[[<D kirja>:2 [Ainf [v [<DP>:2 [antaa [D Pekka]]]]]]:1 [uFOC [[D heidän]:3 [<malla heitta>:4 [ei [<DP>:5 [T [[(DP):3 [käske (INFP):1]] <ADVP>:4]]]]]]]] <P(lle) [D Merja-]>:6]
+'D book to v __give D Pekka  D theirs by throw not __T __ask ____for D Merja .'
+Score: -44.0  (Failed: 39, Merge:178, Move: 472 = Ops: 650; Discourse plausibility: -5.0)
+
+200. * heittamalla antaa kirjaa kaskenyt heidan Pekka ei Merjalle 
+
+201. * antaa#foc Pekka kirjaa Merjalle kaskenyt ei heidan 
+
+202. * Merjalle#foc kaskenyt Pekka ei heidan antaa kirjaa 
+
+203. * ei#foc heidan Pekka kirjaa Merjalle heittamalla antaa kaskenyt 
+
+204. * antaa heidan kirjan kaski Merjalle Pekka 
+
+205. * Pekka#foc kaskenyt Merjalle antaa ei heidan kirjaa heittamalla 
+
+206. * Merjalle#foc kaskenyt antaa heidan kirjaa heittamalla ei Pekka 
+
+207. ## heittamalla#foc Merjalle kirjan Pekka kaski heidan antaa 
+
+[<malla heitta>:1 [uFOC [<P(lle) [D Merja-]>:2 [<D kirja>:3 [<D Pekka>:4 [T/fin [<DP>:4 [käske [[[D heidän]:5 [Ainf [(DP):5 [v [<DP>:3 [antaa <PP>:2]]]]]] <ADVP>:1]]]]]]]]]
+'by throw  for D Merja D book D Pekka T __ask D theirs to __v __give ____.'
+Score: -8.5  (Failed: 7, Merge:64, Move: 149 = Ops: 213; Discourse plausibility: -1.5)
+
+208. * ei#foc Merjalle heittamalla heidan Pekka antaa kaskenyt kirjaa 
+
+209. * Merjalle heidan heittamalla kirjaa Pekka antaa ei kaskenyt 
+
+210. * ei#foc antaa Pekka kirjaa kaskenyt Merjalle heidan heittamalla 
+
+211. * heidan#foc Pekka Merjalle ei antaa kaskenyt heittamalla kirjaa 
+
+212. ## Merjalle#foc Pekka heidan kirjaa ei heittamalla kaskenyt antaa 
+
+[<P(lle) [D Merja-]>:1 [uFOC [<D Pekka>:2 [[D heidän]:3 [<D kirja>:4 [ei [<malla heitta>:5 [T [<DP>:2 [käske [[(DP):3 [Ainf [(DP):3 [v [<DP>:4 [antaa <PP>:1]]]]]] <ADVP>:5]]]]]]]]]]]
+'for D Merja  D Pekka D theirs D book not by throw T __ask __to __v __give ____.'
+Score: -19.5  (Failed: 15, Merge:142, Move: 319 = Ops: 461; Discourse plausibility: -4.5)
+

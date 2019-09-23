@@ -1,0 +1,215 @@
+
+
+\========================================================================
+# 1
+['Pekka', 'yrittaa', 'lahtea']
+
+
+			=None
+
+1.
+		Next word "Pekka" contains multiple morphemes ['$def', '$hum', '$def', '$3p', '$sg', '$nom', '$D', 'Pekka-']
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:DET:DEF'] into working memory.
+
+		Consume "$hum"
+
+			=None
+
+2.
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:HUM:HUM'] into working memory.
+
+		Consume "$def"
+
+			=None
+
+3.
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:DET:DEF'] into working memory.
+
+		Consume "$3p"
+
+			=None
+
+4.
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:PER:3'] into working memory.
+
+		Consume "$sg"
+
+			=None
+
+5.
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:NUM:SG'] into working memory.
+
+		Consume "$nom"
+
+			=None
+
+6.
+		Storing inflectional feature ['-', 'LANG:FI', 'TAIL:ARG,VAL,CAT:FIN'] into working memory.
+
+		Consume "$D"
+
+			=None
+
+7.
+
+		Adding inflectional features {'-', 'PHI:DET:DEF', 'LANG:FI', 'PHI:HUM:HUM', 'PHI:PER:3', 'PHI:NUM:SG', 'TAIL:ARG,VAL,CAT:FIN'} to D
+		= ['!COMP:*', '!PROBE:CAT:N', '!SPEC:*', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:T/fin', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/D/D', 'CAT:ARG/D', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:DET:_', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:NUM:_', 'PHI:PER:3', 'PHI:PER:_', 'SPEC:*', 'TAIL:ARG,VAL,CAT:FIN', 'VAL']
+			=PRO.D
+
+8.
+
+		Consume "Pekka"
+
+		D + Pekka
+			Filtering out impossible merge sites...
+			Sink "Pekka" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[PRO.D*Pekka]
+			=PRO.D{N}
+
+9.
+		Next word "yrittaa" contains multiple morphemes ['$[-V]', '$T/fin', 'yritta-']
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:NUM:SG', 'PHI:PER:3'] into working memory.
+
+		Consume "$T/fin"
+
+			=PRO.D{N}
+
+10.
+
+		Adding inflectional features {'-', 'PHI:NUM:SG', 'PHI:PER:3', 'LANG:FI'} to T/fin
+		= ['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '-', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/FIN/T/T/fin/FIN/T/T/fin', 'CAT:ARG/FIN/T/T/fin', 'CAT:FIN', 'CAT:T', 'CAT:T/fin', 'COMP:D', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'PF:T/fin', 'PHI:DET:_', 'PHI:NUM:SG', 'PHI:NUM:_', 'PHI:PER:3', 'PHI:PER:_', 'SPEC:*', 'SPEC:TO/inf', 'VAL']
+
+		Consume "T/fin"
+
+		D{N} + T/fin
+			Filtering out impossible merge sites...
+		Exploring solution number (1) =[PRO.D{N} T/fin]
+			Transferring PRO.D{N} to LF.
+				head movement reconstruction:
+					Reconstructing head movement for PRO.D{N}.
+					Extracted head "Pekka" from PRO.D and created [PRO.D Pekka]
+					Reconstructing head movement for PRO.D{N}.
+					Extracted head "Pekka" from PRO.D and created [PRO.D Pekka]
+					PRO.D was opened into [PRO.D Pekka].
+				Feature processing:
+				Floater movement reconstruction:
+					= [D Pekka]
+				Phrasal movement reconstruction:
+					Dropping A-/A-bar movement.
+				Agreement reconstruction:
+					PRO.D has unvalued phi-features {'PHI:PER:_', 'PHI:NUM:_', 'PHI:DET:_'}
+					phi.D acquired PHI:DET:DEF from (Spec,phi.D).
+					phi.D acquired PHI:PER:3 from (Spec,phi.D).
+					phi.D acquired PHI:NUM:SG from (Spec,phi.D).
+			=[[phi.D Pekka] PRO.T/fin]
+
+11.
+
+		Consume "yritta"
+
+		[[D Pekka] T/fin] + yritta
+			Filtering out impossible merge sites...
+			Sink "yritta" into T/fin because they are inside the same phonological word.
+		Exploring solution number (1) =[PRO.T/fin*yritta]
+			=[[phi.D Pekka] PRO.T/fin{V}]
+
+12.
+		Next word "lahtea" contains multiple morphemes ['$A/inf', 'lahte-']
+
+		Consume "A/inf"
+
+		[[D Pekka] T/fin{V}] + A/inf
+			Filtering out impossible merge sites...
+				Reject [[<D Pekka> [T/fin [<D Pekka> yritta]]] A/inf] due to bad left branch.
+		Exploring solution number (1) =[PRO.T/fin{V} A/inf]
+			Transferring PRO.T/fin{V} to LF.
+				head movement reconstruction:
+					Reconstructing head movement for PRO.T/fin{V}.
+					Extracted head "PRO.yritta" from PRO.T/fin and created [PRO.T/fin PRO.yritta]
+				PRO.yritta (yritta) is missing complement -ARG
+				PRO.yritta (yritta) is missing complement A/inf
+					PRO.T/fin{V} was not opened because it would not constitute a legitimate left branch at LF.
+				Feature processing:
+				Floater movement reconstruction:
+					= T/fin{V}
+				Phrasal movement reconstruction:
+					Dropping A-/A-bar movement.
+				PRO.T/fin{V} probing for CAT:V failed.
+				A phi-marked head "PRO.T/fin{V}" lacks complement
+					Extraposition will be tried on PRO.T/fin{V}.
+				Agreement reconstruction:
+			=[[phi.D Pekka] [PRO.T/fin{V} A/inf]]
+
+13.
+
+		Consume "lahtea"
+
+		[[D Pekka] [T/fin{V} A/inf]] + lahtea
+			Filtering out impossible merge sites...
+			Sink "lahtea" into A/inf because they are inside the same phonological word.
+		Exploring solution number (1) =[A/inf*lahtea]
+			=[[phi.D Pekka] [PRO.T/fin{V} A/inf{V}]]
+
+14.
+	>>>	Trying candidate parse [[D Pekka] [T/fin{V} A/inf{V}]] (1.)
+		Reconstructing...
+			Transferring [[phi.D Pekka] [PRO.T/fin{V} A/inf{V}]] to LF.
+				head movement reconstruction:
+					Reconstructing head movement for [[phi.D Pekka] [PRO.T/fin{V} A/inf{V}]].
+						Extracted head "PRO.yritta" and reconstructed it = [[phi.D Pekka] [PRO.T/fin [PRO.yritta A/inf{V}]]]
+					Extracted head "PRO.lahtea" from A/inf and created [[phi.D Pekka] [PRO.T/fin [PRO.yritta [A/inf PRO.lahtea]]]]
+				Feature processing:
+					A/inf has neutralized PHI-feature, will be resolved into -ARG due to PRO.yritta
+				Floater movement reconstruction:
+					[D Pekka] failed to tail [ARG][CAT:FIN][VAL]
+						<phi.D Pekka> was made an adjunct.
+					Floater <D Pekka> dropped: [<phi.D Pekka>:2 [PRO.T/fin [<DP>:2 [PRO.yritta [A/inf PRO.lahtea]]]]]
+					= [<D Pekka> [T/fin [<D Pekka> [yritta [A/inf lahtea]]]]]
+				Phrasal movement reconstruction:
+					Dropping A-/A-bar movement.
+				Agreement reconstruction:
+					PRO.T/fin has unvalued phi-features {'PHI:PER:_', 'PHI:NUM:_', 'PHI:DET:_'}
+					phi.T/fin acquired PHI:DET:DEF by phi-Agree from <DP>:2.
+					phi.T/fin acquired PHI:PER:3 by phi-Agree from <DP>:2.
+					phi.T/fin acquired PHI:NUM:SG by phi-Agree from <DP>:2.
+			= [<D Pekka> [T/fin [<D Pekka> [yritta [A/inf lahtea]]]]]
+		Checking LF-interface conditions.
+			Trying to transfer [<phi.D Pekka>:2 [phi.T/fin [<DP>:2 [PRO.yritta [A/inf PRO.lahtea]]]]] into LF...
+				PRO.yritta with {'PHI:PER:_', 'PHI:NUM:_', 'PHI:DET:_'} was associated at LF with:
+					(Generic interpretation)
+				PRO.lahtea with {'PHI:PER:_', 'PHI:NUM:_', 'PHI:DET:_'} was associated at LF with:
+					1. <D Pekka>    (alternatives: 2. T/fin 3. <D Pekka> )
+				Transfer to LF successful.
+!--->		Tests passed (with 14/135 operations) <------------------------------------
+		Solution:
+		[<D Pekka> [T/fin [<D Pekka> [yritta [A/inf lahtea]]]]]
+		Grammar: [<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.yritta [A/inf PRO.lahtea]]]]]
+		Spellout TT/finP = [DP:1 [TT/fin [__:1 [V [INF V]]]]]
+D:['!COMP:*', '!PROBE:CAT:N', '!SPEC:*', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:T/fin', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/D/D', 'CAT:ARG/D', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'SPEC:*', 'VAL']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A']
+T/fin:['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '-', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/FIN/T/T/fin/FIN/T/T/fin', 'CAT:ARG/FIN/T/T/fin', 'CAT:FIN', 'CAT:T', 'CAT:T/fin', 'COMP:D', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'PF:T/fin', 'PHI:DET:DEF', 'PHI:NUM:SG', 'PHI:PER:3', 'SPEC:*', 'SPEC:TO/inf', 'VAL']
+D:['!COMP:*', '!PROBE:CAT:N', '!SPEC:*', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:T/fin', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/D/D', 'CAT:ARG/D', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'SPEC:*', 'TAIL:ARG,VAL,CAT:FIN', 'VAL', 'null']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A', 'null']
+yritta:['!COMP:-ARG', '!COMP:A/inf', '-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', '-VAL', 'ARG', 'CAT:ARG', 'CAT:ARG/V', 'CAT:V', 'COMP:P', 'LANG:EN', 'LF:try', 'PF:yritta', 'PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_', 'SEM:internal', 'SPEC:ADV', 'SPEC:D', 'SPEC:P', 'SPEC:TO/inf']
+A/inf:['!COMP:*', '!PROBE:CAT:V', '-ARG', '-COMP:C/fin', '-COMP:FORCE', '-SPEC:*', '-SPEC:Neg/fin', '-SPEC:T/fin', '-SPEC:V', '?VAL', 'CAT:-ARG', 'CAT:A/inf', 'CAT:A/inf/INF', 'CAT:INF', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:A/inf', 'PF:A/inf']
+lahtea:['-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', '-VAL', 'ARG', 'CAT:ARG', 'CAT:ARG/V', 'CAT:V', 'COMP:P', 'COMP:PP', 'LANG:FI', 'LF:leave', 'PF:lahtea', 'PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_', 'SPEC:ADV', 'SPEC:D', 'SPEC:P', 'SPEC:TO/inf']
+
+D:['!COMP:*', '!PROBE:CAT:N', '!SPEC:*', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:T/fin', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/D/D', 'CAT:ARG/D', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'SPEC:*', 'VAL']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A']
+T/fin:['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '-', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/FIN/T/T/fin/FIN/T/T/fin', 'CAT:ARG/FIN/T/T/fin', 'CAT:FIN', 'CAT:T', 'CAT:T/fin', 'COMP:D', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'PF:T/fin', 'PHI:DET:DEF', 'PHI:NUM:SG', 'PHI:PER:3', 'SPEC:*', 'SPEC:TO/inf', 'VAL']
+D:['!COMP:*', '!PROBE:CAT:N', '!SPEC:*', '-', '-COMP:T/fin', '-COMP:uR', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:T/fin', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/D/D', 'CAT:ARG/D', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'SPEC:*', 'TAIL:ARG,VAL,CAT:FIN', 'VAL', 'null']
+Pekka:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:Pekka', 'PF:Pekka', 'SPEC:A', 'null']
+yritta:['!COMP:-ARG', '!COMP:A/inf', '-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', '-VAL', 'ARG', 'CAT:ARG', 'CAT:ARG/V', 'CAT:V', 'COMP:P', 'LANG:EN', 'LF:try', 'PF:yritta', 'PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_', 'SEM:internal', 'SPEC:ADV', 'SPEC:D', 'SPEC:P', 'SPEC:TO/inf']
+A/inf:['!COMP:*', '!PROBE:CAT:V', '-ARG', '-COMP:C/fin', '-COMP:FORCE', '-SPEC:*', '-SPEC:Neg/fin', '-SPEC:T/fin', '-SPEC:V', '?VAL', 'CAT:-ARG', 'CAT:A/inf', 'CAT:A/inf/INF', 'CAT:INF', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:A/inf', 'PF:A/inf']
+lahtea:['-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', '-VAL', 'ARG', 'CAT:ARG', 'CAT:ARG/V', 'CAT:V', 'COMP:P', 'COMP:PP', 'LANG:FI', 'LF:leave', 'PF:lahtea', 'PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_', 'SPEC:ADV', 'SPEC:D', 'SPEC:P', 'SPEC:TO/inf']
+
+phi.D: [D]
+Pekka: [N, D]
+phi.T/fin: [TT/fin]
+(D): [D, TT/fin]
+(N): [N, D, TT/fin]
+PRO.yritta: [V, TT/fin]
+A/inf: [INF, V, TT/fin]
+PRO.lahtea: [V, INF, V, TT/fin]
+
+			Checking if the sentence is ambiguous...

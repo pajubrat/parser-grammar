@@ -22,13 +22,16 @@ class FeatureProcessing():
         if h.get_selector() and 'SEM:internal' in h.get_selector().features:
             log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into -ARG due to {h.get_selector()}')
             h.features.add('-ARG')
+            h.features.add('CAT:-ARG')
             h.features.add('-SPEC:*')
         elif h.get_selector() and 'SEM:external' in h.get_selector().features:
             log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into +ARG due to {h.get_selector()}')
             h.features.add('ARG')
+            h.features.add('CAT:ARG')
             h.features.add('VAL')
             h.features.discard('?VAL')
             h.features.add('!SPEC:*')
         else:
             h.features.add('ARG')
+            h.features.add('CAT:ARG')
 
