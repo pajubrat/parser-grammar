@@ -10,6 +10,13 @@
 # todo The feature ARG is not both ARG and CAT:ARG (part of label). In my view, it must be only the second,
 # todo i.e. a diacritic of the label so that it can be selected
 
+# todo There is count specifiers function that must be aligned with the rest; the specifier handling is too messy
+# todo and must be all thought out preferable so that we hav single function for all specifier operations,
+# todo and that function will return a list of specifiers
+
+# todo I am using the tag 'find_me_elsewhere_' still to handle modularity, and this must be done in a more
+# todo principled manner. One example is LF check for uPhi which has to stipulate that copied elements do not count
+
 # Imports
 import datetime
 from parser_module import Pcb_parser

@@ -289,7 +289,7 @@ class LF:
         while ps_:
             if ps_.sister() and 'CAT:v' in ps_.sister().features:
                 break
-            if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
+            if ps_.sister() and not ps_.sister().find_me_elsewhere and self.evaluate_antecedent(ps_.sister(), ps):
                 list_of_antecedents.append(ps_.sister())
             ps_ = ps_.walk_upstream_geometrically()
         return list_of_antecedents

@@ -14,6 +14,9 @@ adorate :: adora-#v#T/fin#[-te] LANG:IT
 adorano :: adora-#v#T/fin#[-no] LANG:IT
 adora-	:: PF:adora LF:admire CAT:V COMP:D LANG:IT
 
+asks	:: ask-#v#T/fin#[-s] LANG:EN
+ask-	:: PF:ask LF:ask CAT:V SPEC:D COMP:D SEM:internal LANG:EN
+
 Cen		:: PF:en LF:by CAT:ADV LANG:FI
 
 etsii	:: etsi-#v#T/fin#[-V] LANG:FI
@@ -38,6 +41,9 @@ be-		:: PF:be LF:be CAT:V CAT:COPULA SPEC:D SPEC:TO/inf -COMP:TO/inf !COMP:* -AR
 John 	:: John-#D#sg#3p#def#hum#m LANG:EN
 John-	:: PF:John CAT:N -SEM:directional LF:John LANG:EN
 
+Jukka   :: Jukka-#D#nom#sg#3p#def#hum#def LANG:FI -SEM:directional LANG:FI
+Jukka-  :: PF:Jukka LF:Jukka CAT:N -SEM:directional LANG:FI
+
 juosten :: juokse-#Cen LANG:FI
 juokse-	:: PF:juokse- LF:run CAT:V LANG:FI
 
@@ -46,6 +52,12 @@ istu-	:: PF:istuu LF:sit CAT:V LANG:FI
 
 kaskee	:: kaske-#v#T/fin#[-V] LANG:FI
 kaske-	:: PF:kaske LF:order CAT:V !COMP:A/inf SEM:external LANG:FI
+
+keta	:: keta-#D#wh#par#sg#3p#def#hum LANG:FI
+keta-   :: PF:ketä LF:who CAT:N CAT:PHI LANG:FI
+
+kuka 	:: kuka-#D#wh#nom#sg#3p#def#hum LANG:FI
+kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
 
 lahtea 	:: lahte-#A/inf LANG:FI
 lahtemaan :: lahte-#MA/inf LANG:FI
@@ -72,7 +84,7 @@ mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
 
 mukavasti	:: PF:mukavasti LF:comfortably CAT:ADV LANG:FI
 
-Pekka   :: Pekka-#D#nom#sg#3p#def#hum#def LANG:FIdirectional LF:Merja LANG:FI
+Pekka   :: Pekka-#D#nom#sg#3p#def#hum#def LANG:FI -SEM:directional LF:Merja LANG:FI
 Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 
 persuades :: persuade-#v#T/fin#[-s] LANG:EN
@@ -225,12 +237,9 @@ kaskenyt :: kaske-#T LANG:FI
 kirja-  :: PF:kirja LF:book CAT:N -SEM:directional LANG:FI
 kirjan  :: kirja-#D#asp LANG:FI
 kirjaa	:: kirja-#D#par LANG:FI
-kuka 	:: kuka-#D#wh#nom LANG:FI
-kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
 kuorsaa_pro- :: PF:kuorsaa LF:snore CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
 kuorsaamalla :: kuorsaa_pro-#malla LANG:FI
-keta	:: keta-#D#wh#par LANG:FI
-keta-   :: PF:ketä LF:who CAT:N CAT:PHI LANG:FI
+
 lle     :: PF:P(lle) LF:for CAT:P +SEM:directional TAIL:CAT:V,+SEM:directional LANG:FI
 malla   :: PF:malla LF:by CAT:ADV LANG:FI
 Merjaa	::	Merjaa-#D#par LANG:FI
@@ -398,7 +407,6 @@ kenelle- :: PF:kenelle LF:to_who CAT:N CAT:PHI LANG:FI
 kertoi	:: kertoi-#T/fin LANG:FI
 kertoi- :: PF:kertoi LF:told CAT:V LANG:FI
 kirjaa_DP :: kirja-#D#par LANG:FI
-
 kohti   :: PF:kohti LF:towards -PHI CAT:P !COMP:D +SEM:directional LANG:FI
 kumoutu- :: PF:kumoutui LF:was_rejected CAT:V -COMP:D !SPEC:D LANG:FI
 kumoutui :: kumoutu-#T/fin LANG:FI

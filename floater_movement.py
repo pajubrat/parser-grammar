@@ -21,6 +21,7 @@ class FloaterMovement():
         while _ps_iterator:
             floater = self.detect_floater(_ps_iterator)
             if floater:
+                log(f'\t\t\t\t\tDropping {floater}')
                 self.drop_floater(floater, ps)
                 self.number_of_Moves += 1
             _ps_iterator = _ps_iterator.walk_downstream()
@@ -58,8 +59,6 @@ class FloaterMovement():
             # If tail features fail to find a head, the constituent must be dropped
             if not floater.external_tail_head_test():
                 log('\t\t\t\t\t' + floater.illustrate() + ' at the right failed to tail ' + illu(floater.get_head().get_tail_sets()))
-                # This is empirically very contentious matter:
-                # A right DP inside a finite clause with failed tail-test must be an adjunct(?)
                 if ('D' in floater.get_labels() or 'P' in floater.get_labels()) and floater.get_top().contains_feature('CAT:FIN'):
                     floater.create_adjunct()
                     return floater.mother
@@ -76,6 +75,7 @@ class FloaterMovement():
         # We need to locate the appropriate starting point, XP in [fin XP]
         ps_iterator_ = self.locate_minimal_tense_edge(floater.mother)
 
+        # This is the element we are going to fir into the structure
         floater_copy = floater.copy()
 
         # This downward loop searches a position for the floater
@@ -88,19 +88,23 @@ class FloaterMovement():
                 ps_iterator_.merge(floater_copy, 'left')
 
             # If a suitable position is found, dropping will be executed
-            # Condition 1: tail test succeeds,
-            # Condition 2: we are not reconstructing inside the same projection (does not apply to Adv which are right-adjoined)
+            # Condition 1: tail test succeeds (reason trivial),
+            # Condition 2: we are not reconstructing inside the same projection (does not apply to right-adjoined)
             # Condition 3: dropped non-ADV will become the only SPEC
             if self.is_drop_position(ps_iterator_, floater_copy, starting_point):
-                floater.create_adjunct()
+                if not floater.adjunct:
+                    floater.create_adjunct()
+                # We have found a position and create the actual copy that will be in the new position
                 dropped_floater = floater.transfer(self.babtize())
                 if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
                     ps_iterator_.merge(dropped_floater, 'right')
                 else:
                     ps_iterator_.merge(dropped_floater, 'left')
-                floater_copy.remove()
+                dropped_floater.find_me_elsewhere = False
                 floater.find_me_elsewhere = True
-                log(f'\t\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped: {ps}')
+                floater_copy.remove()
+                log(f'\t\t\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped.')
+                log(f'\t\t\t\t\t\t = {ps}')
                 return
             else:
                 floater_copy.remove()

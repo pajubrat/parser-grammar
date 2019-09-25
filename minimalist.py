@@ -160,7 +160,7 @@ class PhraseStructure:
 
         # take copy
         self_copy = self.copy()             # Copy the constituent
-        self_copy.find_me_elsewhere = False
+        self_copy.find_me_elsewhere = False # Copy is marked for being where it is
         self_copy.silence_phonologically()  # Silence the new constituent phonologically
         self.find_me_elsewhere = True       # Mark that the constituent has been copied
 
@@ -322,7 +322,10 @@ class PhraseStructure:
         ps_ = self.mother
         count = 0
 
-        while ps_ and ps_.sister() and (ps_.sister().is_left() and not ps_.sister().is_primitive()):
+        while ps_ and ps_.sister() and \
+                (ps_.sister().is_left() and \
+                not ps_.sister().is_primitive()) and \
+                ps_.sister().find_me_elsewhere:
             count = count + 1
             ps_ = ps_.walk_upstream()
         return count
@@ -523,7 +526,7 @@ class PhraseStructure:
 
         head = self.get_head()
 
-        # If the head is primitive, we must decide how much of the surrounding structure we will eat
+        # If the head is primitive, we must decide how much of the surrounding structure he will eat
         if self.is_primitive():
             # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
             if head.external_tail_head_test():
@@ -540,8 +543,10 @@ class PhraseStructure:
             else:
                 # If potential Spec exists and the head accepts specifiers...
                 if self.get_specifiers() and not '-SPEC:*' in head.features and \
-                        not set(head.get_not_specs()).intersection(set(self.get_specifiers()[0].get_labels())):
+                        not set(head.get_not_specs()).intersection(set(self.get_specifiers()[0].get_labels())) and \
+                        not self.get_specifiers()[0].is_primitive():
                     if head.mother.mother:
+                        log(f'{head}: {head.get_specifiers()}')
                         make_adjunct(head.mother.mother)
                     return self.mother.mother
                 else:
@@ -1130,6 +1135,10 @@ class PhraseStructure:
             index_str = ':'+self.identity
         else:
             index_str = ''
+
+        # By writing something here you can track which elements are copied in the final solution
+        if self.find_me_elsewhere:
+            index_str = index_str + ''
 
         if self.features and 'null' in self.features:
             if self.adjunct:

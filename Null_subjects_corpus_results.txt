@@ -1,11 +1,491 @@
 Parser-Grammar v. 2.x
-2019-09-23 09:33:36.492505
+2019-09-25 18:57:58.649921
 Test sentences from file "Null_subjects_corpus.txt".
 Logs into file "Null_subjects_corpus_log.txt.
 Lexicon from file "lexicon.txt".
-1.  Pekka yrittaa lahtea 
+
+& Group 1. Test for basic mechanisms without null arguments
+
+& Group 1.1 Finite agreement (Finnish, English, Italian)
+
+& Goupr 1.1.1 Grammatical
+1.  mina ihailen Merjaa 
+
+[<phi.D mina>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]
+'D I T __v admire D  .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+2.  sina ihailet Merjaa 
+
+[<phi.D sina>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]
+'D you T __v admire D  .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+3.  han ihailee Merjaa 
+
+[<phi.D han>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]
+'D s/he T __v admire D  .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+4.  me ihailemme Merjaa 
+
+[<phi.D me>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]
+'D we T __v admire D  .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+5.  te ihailette Merjaa 
+
+[<phi.D te>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]
+'D you T __v admire D  .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+6.  he ihailevat Merjaa 
+
+[<phi.D he>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]
+'D they T __v admire D  .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+7.  I admire Mary 
+
+[[phi.D I]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [phi.D Mary]]]]]]
+'D I T __v admire D Mary .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+8.  you admire Mary 
+
+[[phi.D you]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [phi.D Mary]]]]]]
+'D you T __v admire D Mary .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+9. ?? he admires Mary 
+
+[[phi.D he]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [phi.D Mary]]]]]]
+'D they T __v admire D Mary .'
+Score: -4  (Failed: 4, Merge:53, Move: 0 = Ops: 53; Discourse plausibility: -0)
+
+10.  she admires Mary 
+
+[[phi.D she]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [phi.D Mary]]]]]]
+'D she T __v admire D Mary .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+11.  John admires Mary 
+
+[[phi.D John]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [phi.D Mary]]]]]]
+'D John T __v admire D Mary .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+12.  we admire Mary 
+
+[[phi.D we]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [phi.D Mary]]]]]]
+'D we T __v admire D Mary .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+13.  you_pl admire Mary 
+
+[[phi.D you_pl]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [phi.D Mary]]]]]]
+'D you_pl T __v admire D Mary .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+14.  they admire Mary 
+
+[[phi.D they]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [phi.D Mary]]]]]]
+'D they T __v admire D Mary .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+15.  io adoro Luisa 
+
+[[phi.D I]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D I T __v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+16.  tu adori Luisa 
+
+[[phi.D tu]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D you T __v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+17.  lui adora Luisa 
+
+[[phi.D lui]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D he T __v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+18.  lei adora Luisa 
+
+[[phi.D lei]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D she T __v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+19.  noi adoriamo Luisa 
+
+[[phi.D noi]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D we T __v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+20.  voi adorate Luisa 
+
+[[phi.D voi]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D you_pl T __v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:19, Move: 0 = Ops: 19; Discourse plausibility: -0)
+
+21.  loro adorano Luisa 
+
+[[phi.D loro]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D they T __v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:18, Move: 0 = Ops: 18; Discourse plausibility: -0)
+
+
+& Group 1.1.2 Agreement errors
+22. * mina ihailet Merjaa 
+
+23. * mina ihalee Merjaa 
+
+24. * mina ihailemme Merjaa 
+
+25. * mina ihailette Merjaa 
+
+26. * mina ihailevat Merjaa 
+
+27. * John admire Mary 
+
+28. * we admires Mary 
+
+29. * io adori Luisa 
+
+30. ?? io adora Luisa 
+
+[[phi.D I]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D I T __v admire D Luisa .'
+Score: -4  (Failed: 4, Merge:41, Move: 0 = Ops: 41; Discourse plausibility: -0)
+
+31. ?? io adora Luisa 
+
+[[phi.D I]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [phi.D Luisa]]]]]]
+'D I T __v admire D Luisa .'
+Score: -4  (Failed: 4, Merge:41, Move: 0 = Ops: 41; Discourse plausibility: -0)
+
+32. * io adoriamo Luisa 
+
+33. * io adorate Luisa 
+
+34. * io adorano Luisa 
+
+
+& Group 1.1.3 Agreement and noncanonical word order
+35.  Merjaa ihailen mina 
+
+[<phi.D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <PRO.D mina>:2]]]]]]
+'D  T __v __admire D I .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+36.  Merjaa ihailet sina 
+
+[<phi.D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <PRO.D sina>:2]]]]]]
+'D  T __v __admire D you .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+37.  Merjaa ihailee han 
+
+[<phi.D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <PRO.D han>:2]]]]]]
+'D  T __v __admire D s/he .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+38.  Merjaa ihailemme me 
+
+[<phi.D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <PRO.D me>:2]]]]]]
+'D  T __v __admire D we .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+39.  Merjaa ihailette te 
+
+[<phi.D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <PRO.D te>:2]]]]]]
+'D  T __v __admire D you .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+40.  Merjaa ihailevat he 
+
+[<phi.D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <PRO.D he>:2]]]]]]
+'D  T __v __admire D they .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+
+& Group 1.1.4 Agreement and wh-movement
+41.  kuka ihailee Merjaa 
+
+[<phi.D kuka>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]
+'D who T __v admire D  .'
+Score: 0  (Failed: 0, Merge:21, Move: 0 = Ops: 21; Discourse plausibility: -0)
+
+42.  keta han ihailee 
+
+[<phi.D ketä>:1 [phi.uWH [<phi.D han>:2 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 PRO.ihaile-]]]]]]]
+'D who  D s/he T __v __admire .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+
+& Group 2. pro
+
+& Group 2.1 Finite pro-drop
+43.  ihailen Merjaa 
+
+[phi.T/fin [PRO.v [PRO.ihaile- [phi.D Merja-]]]]
+'T v admire D  .'
+Score: 0  (Failed: 0, Merge:13, Move: 0 = Ops: 13; Discourse plausibility: -0)
+
+44.  ihailet Merjaa 
+
+[phi.T/fin [PRO.v [PRO.ihaile- [phi.D Merja-]]]]
+'T v admire D  .'
+Score: 0  (Failed: 0, Merge:13, Move: 0 = Ops: 13; Discourse plausibility: -0)
+
+45. * ihailee Merjaa 
+
+46.  ihailemme Merjaa 
+
+[phi.T/fin [PRO.v [PRO.ihaile- [phi.D Merja-]]]]
+'T v admire D  .'
+Score: 0  (Failed: 0, Merge:13, Move: 0 = Ops: 13; Discourse plausibility: -0)
+
+47.  ihailette Merjaa 
+
+[phi.T/fin [PRO.v [PRO.ihaile- [phi.D Merja-]]]]
+'T v admire D  .'
+Score: 0  (Failed: 0, Merge:13, Move: 0 = Ops: 13; Discourse plausibility: -0)
+
+48. * ihailevat Merjaa 
+
+49. * admire Mary 
+
+50. * admires Mary 
+
+51.  adori Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [phi.D Luisa]]]]
+'T v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:12, Move: 0 = Ops: 12; Discourse plausibility: -0)
+
+52.  adora Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [phi.D Luisa]]]]
+'T v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:12, Move: 0 = Ops: 12; Discourse plausibility: -0)
+
+53.  adora Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [phi.D Luisa]]]]
+'T v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:12, Move: 0 = Ops: 12; Discourse plausibility: -0)
+
+54.  adoriamo Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [phi.D Luisa]]]]
+'T v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:12, Move: 0 = Ops: 12; Discourse plausibility: -0)
+
+55.  adorate Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [phi.D Luisa]]]]
+'T v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:12, Move: 0 = Ops: 12; Discourse plausibility: -0)
+
+56.  adorano Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [phi.D Luisa]]]]
+'T v admire D Luisa .'
+Score: 0  (Failed: 0, Merge:12, Move: 0 = Ops: 12; Discourse plausibility: -0)
+
+57.  Pekka sanoo etta mina ihailen Merjaa 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [<phi.D mina>:2 [phi.T/fin [<DP>:2 [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]]]]]]
+'D Pekka T __say that D I T __v admire D  .'
+Score: 0  (Failed: 0, Merge:32, Move: 0 = Ops: 32; Discourse plausibility: -0)
+
+58.  Pekka sanoo etta ihailen Merjaa 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [phi.T/fin [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]]]]
+'D Pekka T __say that T v admire D  .'
+Score: 0  (Failed: 0, Merge:25, Move: 0 = Ops: 25; Discourse plausibility: -0)
+
+59.  Pekka sanoo etta ihailee Merjaa 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [pro/x.T/fin [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]]]]
+'D Pekka T __say that T v admire D  .'
+Score: 0  (Failed: 0, Merge:25, Move: 0 = Ops: 25; Discourse plausibility: -0)
+
+60. * mina sanon etta ihailee Merjaa 
+
+61.  Pekka sanoo etta Jukka sanoo etta ihailee Merjaa 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [<phi.D Jukka>:2 [phi.T/fin [<DP>:2 [PRO.sano- [että [pro/x.T/fin [PRO.v [PRO.ihaile- [phi.D Merja-]]]]]]]]]]]]]]
+'D Pekka T __say that D Jukka T __say that T v admire D  .'
+Score: 0  (Failed: 0, Merge:37, Move: 0 = Ops: 37; Discourse plausibility: -0)
+
+62.  we said that I admire Mary 
+
+[[phi.D we]:1 [T/fin [(DP):1 [PRO.say [that [[phi.D I]:2 [T/fin [(DP):2 [PRO.v [PRO.admire [phi.D Mary]]]]]]]]]]]
+'D we T __say that D I T __v admire D Mary .'
+Score: 0  (Failed: 0, Merge:30, Move: 0 = Ops: 30; Discourse plausibility: -0)
+
+63. * John said that admire Mary 
+
+64. * John said that admires Mary 
+
+65.  Merjaa ihailen mina 
+
+[<phi.D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <PRO.D mina>:2]]]]]]
+'D  T __v __admire D I .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+66. ? Merjaa ihailen 
+
+[<PRO.D Merjaa>:1 [PRO.T/fin [PRO.v [<DP>:1 PRO.ihaile-]]]]
+'D  T v __admire .'
+Score: -1  (Failed: 1, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+
+& Group 2.3 third person generics
+67. * Pekka sanoo etta istuu mukavasti 
+
+68. * istuu mukavasti 
+
+69. * tassa istuu mukavasti 
+
+70. * Pekka sanoo etta tassa istuu mukavasti 
+
+
+& Group 3. PRO and control
+
+& Group 3.1. Simple control structures
+71.  Pekka haluaa lahtea 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.haluaa [A/inf PRO.lahtea]]]]]
+'D Pekka T __want A/inf leave .'
+Score: 0  (Failed: 0, Merge:14, Move: 0 = Ops: 14; Discourse plausibility: -0)
+
+72.  Pekka kaskee Merjan lahtea 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.kaske [<phi.D Merja->:2 [A/inf [<DP>:2 PRO.lahtea]]]]]]]]
+'D Pekka T __v order D  A/inf __leave .'
+Score: 0  (Failed: 0, Merge:23, Move: 0 = Ops: 23; Discourse plausibility: -0)
+
+73. * Pekka haluaa Merjan lahtea 
+
+74. * Pekka kaskee lahtea 
+
+75.  Pekka haluaa lahtemaan 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.haluaa [ma PRO.lahtea]]]]]
+'D Pekka T __want MA/inf leave .'
+Score: 0  (Failed: 0, Merge:14, Move: 0 = Ops: 14; Discourse plausibility: -0)
+
+76.  Pekka haluaa Merjan lahtevan 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.haluaa [<phi.D Merja->:2 [phi.vAn [<DP>:2 PRO.lahtea]]]]]]]
+'D Pekka T __want D  VA __leave .'
+Score: 0  (Failed: 0, Merge:22, Move: 0 = Ops: 22; Discourse plausibility: -0)
+
+77. * Pekka yrittaa Merjan lahtevan 
+
+78. * Pekka yrittaa 
+
+79.  Pekka yrittaa lahtea 
 
 [<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.yritta [A/inf PRO.lahtea]]]]]
 'D Pekka T __try A/inf leave .'
 Score: 0  (Failed: 0, Merge:14, Move: 0 = Ops: 14; Discourse plausibility: -0)
+
+80.  John wants to_inf leave 
+
+[[phi.D John]:1 [T/fin [(DP):1 [PRO.want [to PRO.leave]]]]]
+'D John T __want TO/inf leave .'
+Score: 0  (Failed: 0, Merge:13, Move: 0 = Ops: 13; Discourse plausibility: -0)
+
+81.  John wants Mary to_inf leave 
+
+[[phi.D John]:1 [T/fin [(DP):1 [PRO.want [[phi.D Mary] [to PRO.leave]]]]]]
+'D John T __want D Mary TO/inf leave .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+82.  John tries to_inf leave 
+
+[[phi.D John]:1 [T/fin [(DP):1 [PRO.try [to PRO.leave]]]]]
+'D John T __try TO/inf leave .'
+Score: 0  (Failed: 0, Merge:13, Move: 0 = Ops: 13; Discourse plausibility: -0)
+
+83. * John tries Mary to_inf leave 
+
+84.  John asks Mary to_inf leave 
+
+[[phi.D John]:1 [T/fin [(DP):1 [PRO.v [PRO.ask [[phi.D Mary] <to PRO.leave>]]]]]]
+'D John T __v ask D Mary TO/inf leave .'
+Score: 0  (Failed: 0, Merge:21, Move: 0 = Ops: 21; Discourse plausibility: -0)
+
+85.  John persuades Mary to_inf leave 
+
+[[phi.D John]:1 [T/fin [(DP):1 [PRO.v [PRO.persuade [[phi.D Mary]:2 [to [(DP):2 PRO.leave]]]]]]]]
+'D John T __v persuade D Mary TO/inf __leave .'
+Score: 0  (Failed: 0, Merge:21, Move: 0 = Ops: 21; Discourse plausibility: -0)
+
+86. * John persuades to_inf leave 
+
+87.  John promises Mary to_inf leave 
+
+[[phi.D John]:1 [T/fin [(DP):1 [PRO.promise [[phi.D Mary] <to PRO.leave>]]]]]
+'D John T __promise D Mary TO/inf leave .'
+Score: 0  (Failed: 0, Merge:20, Move: 0 = Ops: 20; Discourse plausibility: -0)
+
+88.  John promises to_inf leave 
+
+[[phi.D John]:1 [T/fin [(DP):1 [PRO.promise [to PRO.leave]]]]]
+'D John T __promise TO/inf leave .'
+Score: 0  (Failed: 0, Merge:13, Move: 0 = Ops: 13; Discourse plausibility: -0)
+
+
+& Group 3.2 Control with noncanonical word order
+89.  haluaa lahtea Pekka 
+
+[phi.T/fin [<DP>:1 [PRO.haluaa [A/inf [PRO.lahtea <PRO.D Pekka>:1]]]]]
+'T __want A/inf leave D Pekka .'
+Score: 0  (Failed: 0, Merge:14, Move: 0 = Ops: 14; Discourse plausibility: -0)
+
+90.  kaskee Merjan lahtea Pekka 
+
+[phi.T/fin [<DP>:1 [PRO.v [PRO.kaske [<phi.D Merja->:2 [A/inf [<DP>:2 [PRO.lahtea <PRO.D Pekka>:1]]]]]]]]
+'T __v order D  A/inf __leave D Pekka .'
+Score: 0  (Failed: 0, Merge:23, Move: 0 = Ops: 23; Discourse plausibility: -0)
+
+91. ? kaskee Pekka Merjan lahtea 
+
+[phi.T/fin [<DP>:1 [PRO.v [PRO.kaske [<phi.D Pekka>:1 [<phi.D Merja->:2 [A/inf [<DP>:2 PRO.lahtea]]]]]]]]
+'T __v order D Pekka D  A/inf __leave .'
+Score: -1.0  (Failed: 0, Merge:23, Move: 0 = Ops: 23; Discourse plausibility: -1.0)
+
+92. ? kaskee Merjan Pekka lahtea 
+
+[phi.T/fin [<DP>:1 [PRO.v [PRO.kaske [<phi.D Merja->:2 [<phi.D Pekka>:1 [A/inf [<DP>:2 PRO.lahtea]]]]]]]]
+'T __v order D  D Pekka A/inf __leave .'
+Score: -1.0  (Failed: 0, Merge:23, Move: 0 = Ops: 23; Discourse plausibility: -1.0)
+
+
+& Group 3.2. Arbitrary/generic PRO
+93.  Pekka pyytaa lahtemaan 
+
+[<phi.D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.pyyda [ma PRO.lahtea]]]]]]
+'D Pekka T __v ask MA/inf leave .'
+Score: 0  (Failed: 0, Merge:15, Move: 0 = Ops: 15; Discourse plausibility: -0)
+
+94. ?? to_inf leave is a mistake 
+
+[[to PRO.leave]:1 [T/fin [(INFP):1 [PRO.be [phi.a mistake]]]]]
+'TO/inf leave T __be a mistake .'
+Score: -4  (Failed: 0, Merge:8, Move: 0 = Ops: 8; Discourse plausibility: -4)
+
+
+& Group 3.3. Control into adverbials
+95. ? Pekka etsii Merjaa juosten 
+
+[[phi.D Pekka]:1 [[phi.T/fin [(DP):1 [PRO.v [PRO.etsi [phi.D Merja-]]]]] <en PRO.juokse->]]
+'D Pekka T __v search D  by run .'
+Score: -1  (Failed: 1, Merge:25, Move: 0 = Ops: 25; Discourse plausibility: -0)
 
