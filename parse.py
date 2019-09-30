@@ -1,6 +1,6 @@
 
 #################################################################################
-# Parser-grammar
+# Linear phase parser
 # Brattico, P. (2019). Computational implementation of a top-down grammar. Technical documentation.
 # See documentation in the \Documentation folder
 # Version 2.x
@@ -9,17 +9,19 @@
 #
 # todo The feature ARG is not both ARG and CAT:ARG (part of label). In my view, it must be only the second,
 # todo i.e. a diacritic of the label so that it can be selected
-
+#
 # todo There is count specifiers function that must be aligned with the rest; the specifier handling is too messy
 # todo and must be all thought out preferable so that we hav single function for all specifier operations,
 # todo and that function will return a list of specifiers
-
+#
 # todo I am using the tag 'find_me_elsewhere_' still to handle modularity, and this must be done in a more
 # todo principled manner. One example is LF check for uPhi which has to stipulate that copied elements do not count
+#
+# todo calculcation of the number of operations no longer work, must be redone
 
 # Imports
 import datetime
-from parser_module import Pcb_parser
+from linear_phase_parser import LinearPhaseParser
 from support import disable_all_logging, set_logging, log
 import logging
 import time
@@ -29,39 +31,64 @@ from context import Context
 # Name of the corpus file
 test_set_name = 'Null_subjects_corpus.txt'
 
-# Additional naming conventions
+# Name of the lexicon file
 lexicon_file_name = 'lexicon.txt'
+
+# Name of the log file
 log_file_name = test_set_name[:-4] + '_log.txt'
+
+# Name of the results file
 results_file_name = test_set_name[:-4] + '_results.txt'
+
+# Name of the file containing universal morphemes
 ug_morphemes = 'ug_morphemes.txt'
+
+# Name of the file containing lexical redundancy rules
 redundancy_rules = 'redundancy_rules.txt'
-grammaticality_judgement = ['','?','?','??', '??', '?*', '?*', '##']
+
+# Grammaticality judgment levels
+grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
+
+# List of sentences to be parsed
 parse_list = []
+
+# Current time and date used to stamp the output files
 t = time.time()
 
 # Set this tag if you want to disable all logging functions
 # disable_all_logging()
+
+# Start logging
 set_logging(True)
 
-
+# Output to console before parsing begins
 print('Parsing process initialized.')
 print(datetime.datetime.now())
 print('Loading test sentences from file \"' + test_set_name + '\".')
 print(f'Logs will be written to file {log_file_name}.')
 print(f'Lexicon will be read from file {lexicon_file_name}.')
 
-# Reads the corpus file
+# Read the corpus file
+#   Ignore empty lines and comments
+#   % - This is the only sentence to be parsed
+#   + - This tags the clause to be parsed
+#   Otherwise, all sentences are parsed
 plus_sentences = []
 for line in open(test_set_name):
     line = line.strip()
+
+    # Ignore empty lines and comment lines
     if not line or line.startswith('#'):
         continue
+
+    # If a line begins with %, it will the only item parsed
     if line.startswith('%'):
         parse_list = []
         line = line.lstrip('%')
         parse_list.append([word.strip() for word in line.split()])
         break
-    # Ignore other sentences and parse only those starting with '+'
+
+    # Select lines marked by + for parsing
     elif line.startswith('+'):
         plus_sentences.append([word.strip() for word in line.lstrip('+').split()])
     parse_list.append([word.strip() for word in line.split()])
@@ -78,13 +105,12 @@ for language in lang_guesser.languages:
     context.ug_morpheme_file = ug_morphemes
     context.redundancy_rule_file = redundancy_rules
     context.language = language
-    parsers[language] = Pcb_parser(context)
+    parsers[language] = LinearPhaseParser(context)
 
+# Set up logging functions and parameters
 logging.basicConfig(level=logging.INFO, filename=log_file_name, filemode='w', format='%(message)s')
-# Parses all sentences in parse_list and shows the results
-count = 0
-not_parsed = []
 
+# Print parameters to console
 print()
 print('Loading test sentences from file \"' + test_set_name + '\".')
 print(f'Logs will be written to file {log_file_name}.')
@@ -93,7 +119,7 @@ print(f'Lexicon from \"{context.lexicon_file_name}\"')
 print(f'UG morphemes from \"{context.ug_morpheme_file}\"')
 print(f'Redundancy rules from \"{context.redundancy_rule_file}\"')
 
-# Stamp the output file
+# Create the output file
 results_file = open(results_file_name, "w")
 results_file.write('Parser-Grammar v. 2.x\n')
 results_file.write(str(datetime.datetime.now())+'\n')
@@ -101,39 +127,56 @@ results_file.write(f'Test sentences from file \"{test_set_name}\".\n')
 results_file.write(f'Logs into file \"{log_file_name}.\n')
 results_file.write(f'Lexicon from file \"{lexicon_file_name}\".\n')
 
-# Starting index
+# Prepare
 # Sets the index of the sentence in the corpus from which parsing will begin. This makes it possible to parse
 # individual segments of larger corpora.
 start = 0
 count = start
 
-# Main parsing loop
+# Number of sentences parsed, to be printed to output
+count = 0
+not_parsed = []
+
+# Parsing loop
 for sentence in parse_list[start:]:
     print(str(count))
 
-    if sentence[0] != '&':  # Sentences beginning with & will be written to the log file as such
+    # Sentences beginning with & will be written to the log file as such
+    if sentence[0] != '&':
         count = count + 1
+
+        # Print information to the log
         set_logging(True)
         log('\n\n\========================================================================')
         log('# '+str(count))
         log(str(sentence) + '\n\n')
+        log(f'Using lexicon "{lexicon_file_name}".')
         set_logging(False)
         lang = lang_guesser.guess(sentence)
 
         # Initialize the parser for a language
         P = parsers[lang]
+
+        # These variables count the number of operations (not fully functional in this version)
         P.number_of_solutions_tried = 0
         P.number_of_Moves = 0
         P.number_of_Merges = 0
+
+        # Grammaticality score
         P.score = 0
+
+        # This has to do with the numbering of copies (traces) in the output
         P.name_provider_index = 0
         P.reconstruction.name_provider_index = 0
-        log(f'Using lexicon "{lexicon_file_name}".')
+
+        # Report the language of the input, assumed in the parse
         log(f'Language appears to be {lang}')
 
         # Parse the sentence
+        # The results will be stored in the parser object P
         P.parse(sentence)
 
+        # Print the sentence to the log file
         set_logging(True)
         s = ''
         for word in sentence:
@@ -145,7 +188,6 @@ for sentence in parse_list[start:]:
 
         # If results were found, the sentence is grammatical
         else:
-
             # Marginality estimations are printed here
             if 0 >= P.score >= -6:
                 judgment = grammaticality_judgement[int(round(abs(P.score),0))]
@@ -158,10 +200,10 @@ for sentence in parse_list[start:]:
             results_file.write(f'{parse}\n')
             results_file.write('\''+parse.gloss()+'.\'\n')
             results_file.write('Score: ' + str(P.score) + '  (')
-            results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', Merge:' +
-                               str(P.number_of_Merges) + ', Move: ' + str(P.number_of_Moves) + ' = Ops: ' + str(P.number_of_Moves + P.number_of_Merges) + '; ')
+            results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
             results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
     else:
-        results_file.write('\n'+' '.join(map(str, sentence))+'\n')
+        results_file.write('\n'+' '.join(map(str, sentence))+'\n\n')
 
+# Print the computation time to console
 print(f'took: {time.time() - t}s.')

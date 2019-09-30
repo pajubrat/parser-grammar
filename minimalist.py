@@ -4,13 +4,11 @@ from LF import LF
 
 major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'INF'}
 
+
 class PhraseStructure:
 
-    # Constituent constructor
+    # Constituent constructor, Merge[A B]
     def __init__(self, left_constituent=None, right_constituent=None):
-        """"
-        Creates a new constituent by Merge or by out of the blue generation
-        """
 
         # Merge(A,B)
         self.left_const = left_constituent
@@ -22,20 +20,17 @@ class PhraseStructure:
         self.mother = None
 
         # Default feature set
-        self.features = set()   # Primitive constituents have features
+        self.features = set()   # Feature set
         self.morphology = ''
         self.internal = False   # Tells if the constituent is word-internal
-        self.adjunct = False    # Marks the constituent as an adjunct. For right adjuncts this means the "location"
-                                # of the constituent, so that it is stored into a separate syntactic working space
+        self.adjunct = False    # Marks the constituent as an adjunct
 
         # This tells if the constituent has been re-merged into another position
         # When False, the constituent should in its canonical first-Merge position
+        # This feature will be replaced in a fully modular architecture
         self.find_me_elsewhere = False
 
-        # --- Non-empirical support functions --- #
-
         # This name is used to identify chains for output, it has not other function
-        # It possibly overlaps with "key" below
         self.identity = ''      # A unique handler/name for the constituent
         self.rebaptized = False # Support variable used in the creation of chain numbering
 
@@ -73,9 +68,6 @@ class PhraseStructure:
 
     # Merges 'ps' to 'self' at 'direction, i.e. H.merge(G, 'right'') = [H G]
     def merge(self, ps, direction='right'):
-        """
-        Countercyclic Merge
-        """
 
         new_ps = None               # The resulting new complex constituent
         left = False
@@ -87,7 +79,6 @@ class PhraseStructure:
             else:
                 right = True
 
-        old_mother = self.mother    # Store link between mother and self
         old_mother = self.mother    # Store link between mother and self
 
         # Create new constituent
@@ -123,23 +114,15 @@ class PhraseStructure:
 
         return self.get_top()
 
-    # This is reductive definition for EPP under current feature system
+    # Reductive definition for EPP under current feature system
     def EPP(self):
-        """
-        A reductive definition for the generalized EPP feature.
-        """
         for f in self.features:
             if f == 'SPEC:*' or f == '!SPEC:*':
                 return True
         return False
 
-    # This function copies a constituent and does all other operations required for dropping
-    # Babtize will be the name (index) given to the original and its copy,
-    # and is used for chain identification in output only
+    # Copies a constituent and does all other operations required for dropping
     def transfer(self, babtize='1'):
-        """
-        Prepares an altered copy of a phrase for internal merge
-        """
 
         # Removes tail-features (if any) from a constituent
         def remove_tail_features(ps):
@@ -159,10 +142,10 @@ class PhraseStructure:
             self.identity = babtize
 
         # take copy
-        self_copy = self.copy()             # Copy the constituent
-        self_copy.find_me_elsewhere = False # Copy is marked for being where it is
-        self_copy.silence_phonologically()  # Silence the new constituent phonologically
-        self.find_me_elsewhere = True       # Mark that the constituent has been copied
+        self_copy = self.copy()              # Copy the constituent
+        self_copy.find_me_elsewhere = False  # Copy is marked for being where it is
+        self_copy.silence_phonologically()   # Silence the new constituent phonologically
+        self.find_me_elsewhere = True        # Mark that the constituent has been copied
 
         # neutralize the original
         remove_tail_features(self)         # Remove tail-features from the original
@@ -171,10 +154,6 @@ class PhraseStructure:
 
     # Removes an element from the phrase structure
     def remove(self):
-        """
-        Removes a constituent countercyclically from the phrase structure.
-        """
-
         mother = self.mother
         sister = self.geometrical_sister()
         grandparent = self.mother.mother
@@ -210,9 +189,6 @@ class PhraseStructure:
 
     # This function returns the highest mother node, i.e. identifies the phrase structure that contains 'self'
     def get_top(self):
-        """
-        Returns the highest node in the phrase structure.
-        """
         result = self
         while result.mother:
             result = result.mother
@@ -220,24 +196,17 @@ class PhraseStructure:
 
     # Labeling
     def get_labels(self):
-        """
-        Returns the set of labels (all label features) of a constituent, complex or simple.
-        """
         return self.get_head().get_cats()
 
-    # Labeling algorithm
-    # Looks for the closest primitive head, ignores right adjuncts
+    # Labeling
     def get_head(self):
-        """
-        Returns the head of a phrase (critical part of the labeling algorithm).
-        """
 
-        # We look at two cases
-
-        # Case 1: head can be determined without recursive call
-        # Case 1a: primitive constituent alone is always a head
         if self.is_primitive():
             return self
+
+        # We look at two cases
+        #   Case 1: head can be determined without recursive call
+        #   Case 1a: primitive constituent alone is always a head
 
         # Case 1b: primitive constituent at left
         # [H XP] returns H: primitive constituent only at left is head
@@ -273,10 +242,6 @@ class PhraseStructure:
     # [X <Y>], X has no sister, looks mother next
     # [X Y], [Y, X], both sisters to each other
     def sister(self):
-        """
-        Finds and returns the (first non-right adjunct) sister of a constituent in a phrase structure.
-        """
-
         ps_ = self
 
         # Recursive loop that ignores right-adjuncts
@@ -293,9 +258,6 @@ class PhraseStructure:
 
     # Returns the specifier of head ('self') if available, otherwise returns 'None'
     def specifier(self):
-        """
-        Returns the specifier of a constituent (and None if no specifier exists).
-        """
 
         # Checks that the left aunt node exists
         if self.is_primitive() and \
@@ -318,10 +280,8 @@ class PhraseStructure:
                 return None
 
     def count_specifiers(self):
-
         ps_ = self.mother
         count = 0
-
         while ps_ and ps_.sister() and \
                 (ps_.sister().is_left() and \
                 not ps_.sister().is_primitive()) and \
@@ -331,7 +291,6 @@ class PhraseStructure:
         return count
 
     def get_specifiers(self):
-
         if not self.is_primitive():
             return None
 
