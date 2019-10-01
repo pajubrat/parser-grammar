@@ -7,6 +7,9 @@
 ################################################################################
 # List of known things that must be fixed
 #
+# todo In many places we check left and right branch separately, but we should implement this functionality into
+# todo walk downstream operation
+
 # todo The feature ARG is not both ARG and CAT:ARG (part of label). In my view, it must be only the second,
 # todo i.e. a diacritic of the label so that it can be selected
 #

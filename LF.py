@@ -54,7 +54,7 @@ class LF:
                     return None
 
         # --- test function beings ---#
-        if ps.has_children():
+        if not ps.is_primitive():
             if not ps.left_const.find_me_elsewhere:
                 self.test(ps.left_const)
             if not ps.right_const.find_me_elsewhere:
@@ -243,7 +243,7 @@ class LF:
     # It is assumed that this represents the output from LF/C-I during an attempt at Transfer
     # Checks for (a) binding and (b) null subject/anaphora recovery
     def check_for_transfer(self, ps):
-        if ps.has_children():                           # Check primitive constituents only
+        if not ps.is_primitive():                           # Check primitive constituents only
             if not ps.left_const.find_me_elsewhere:
                 self.check_for_transfer(ps.left_const)
             if not ps.right_const.find_me_elsewhere:
