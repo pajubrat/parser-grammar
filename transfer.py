@@ -9,7 +9,10 @@ from floater_movement import FloaterMovement
 from head_movement import HeadMovement
 from feature_disambiguation import FeatureProcessing
 
+
+# Transfer performs a mapping from phrase structure object into LF-object
 class Transfer():
+
     def __init__(self, context):
         self.context = Context()
         self.movement_module = Reconstruction(context)
@@ -19,6 +22,7 @@ class Transfer():
         self.head_movement_module = HeadMovement(context)
         self.feature_process = FeatureProcessing()
 
+    # Transfer
     def transfer(self, ps, context):
         log(f'\t\t\tTransferring {ps} to LF.')
 
@@ -29,15 +33,25 @@ class Transfer():
         phrasal_movement = self.phrasal_movement_module
         agreement = self.agreement_module
 
-        # Allow each module to operate with the PS representation in a sequence
+        # Allow each module to operate with the phrase tsructure in a sequence
+
+        # Stage 1. Reconstruct head movement
         log('\t\t\t\thead movement reconstruction:')
         ps, ops = head_movement.reconstruct(ps)
+
+        # Stage 2. Reconstruct features
         log('\t\t\t\tFeature processing:')
         feature_process.disambiguate(ps)
+
+        # Stage 3. Reconstruct floater movement
         log('\t\t\t\tFloater movement reconstruction:')
         floater_movement.reconstruct(ps)
+
+        # Stage 4. Reconstruct phrasal movement
         log('\t\t\t\tPhrasal movement reconstruction:')
         phrasal_movement.reconstruct(ps)
+
+        # Stage 5. Reconstruct agreement
         log('\t\t\t\tAgreement reconstruction:')
         agreement.reconstruct(ps)
 

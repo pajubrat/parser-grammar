@@ -14,29 +14,41 @@ class PhrasalMovement():
         self.lexical_access.load_lexicon(context.lexicon_file, context.language)
         self.lexical_access.load_lexicon(context.ug_morpheme_file, context.language, combine=True)
 
-    # Reverse-engineers A-movement and A-bar movement and uses Chesi memory buffer
+    # Definition for A/A'-movement reconstruction
     def reconstruct(self, ps):
         log(f'\t\t\t\t\tDropping A-/A-bar movement.')
         self.memory_buffer = []
         _ps_iterator = ps
         _ps_last_site = _ps_iterator
 
+        # Move downward and target phrases for movement/insertion from memory buffer
         while _ps_iterator:
+
             # Target primitive heads on our way downstream
             h = self.target_head(_ps_iterator)
             if h:
-                # Case 1a. MISSING SPEC, IF ANY, IS FILLED IF SUITABLE PHRASE IS FOUND FROM MEMORY.
+                #
+                # Case 1. Missing SPEC, if any, is filled if suitable phrase is in the memory buffer
+                #
                 self.fill_spec_from_memory(h)
-                # Case 1b. EPP HEAD HAS SPECS THAT ARE STORED INTO MEMORY.
+                #
+                # Case 2. EPP head has SPECs that are stored into memory
+                #
                 self.store_specs_into_memory(h)
-                # Case 1c. MISSING COMP.
+                #
+                # Case 3. Missing complement
+                #
                 self.fill_comp_from_memory(h)
+
             # Walk downwards on the right edge
             _ps_last_site = _ps_iterator
             _ps_iterator = _ps_iterator.walk_downstream()
 
         self.try_extraposition(_ps_last_site)
 
+    #
+    # Case 1. Fill specifier position from memory buffer
+    #
     def fill_spec_from_memory(self, h):
 
         target_const = None
@@ -64,7 +76,9 @@ class PhrasalMovement():
                 # If there was a tail-head violation, dropping is cancelled
                 ps.geometrical_sister().remove()
 
-    # Note: if we use get_specifier(s) function(s), then pro/PRO will fill in SPEC positions of +PHI heads
+    #
+    # Case 2. Store specifier into memory buffer
+    #
     def store_specs_into_memory(self, h):
         if h.EPP():
 
@@ -99,15 +113,21 @@ class PhrasalMovement():
                             log(f'\t\t\t\t\tMoving \"' + _ps_spec_iterator.sister().spellout() + f'\" into memory buffer from SPEC of \"{h}\".')
                         #... if it is a PHI:0 head...
                         else:
+
                             #...we reconstruct  A-movement (a version of phi-agreement)
                             self.A_reconstruct(_ps_spec_iterator.sister())
 
-                    # If we already have processed one Spec, and there is additional non-adjunct phrase, then we might need phantom heads
+                    # If we already have processed one Spec, and there is additional non-adjunct phrase,
+                    # then we might need phantom heads
                     if spec_found:
-                        # If the lower SPEC is adjunct and there are no criterial features in the upper SPEC, we don't do anything
+
+                        # If the lower SPEC is adjunct and there are no criterial features in the upper SPEC,
+                        # we don't do anything
                         if not criterial_features and adjunct_found:
                             adjunct_found = _ps_spec_iterator.sister().adjunct
-                        # If the lower SPEC is not an adjunct, or if there are criterial features in the higher SPEC, we need to spawn a head
+
+                        # If the lower SPEC is not an adjunct, or if there are criterial features in the higher SPEC,
+                        # we need to spawn a head
                         else:
                             # If the second SPEC has no criterial features and is adjunct, we do nothing
                             if not criterial_features and _ps_spec_iterator.sister().adjunct:
@@ -131,7 +151,7 @@ class PhrasalMovement():
                                 _ps_spec_iterator = _ps_spec_iterator.walk_upstream()
                                 if new_h.get_tail_sets():
                                     log('\t\t\t\t\tThe new head has tail features, must be an adjunct floater.')
-                                    self.create_adjunct(new_h)
+                                    new_h.create_adjunct()
 
                                     # Drop inside the right-adjunct
                                     if _ps_spec_iterator.mother:
@@ -157,7 +177,7 @@ class PhrasalMovement():
                             if h.get_tail_sets():
                                 log(f'\t\t\t\t\tTail features ' + illu(
                                     h.get_tail_sets()) + f' were detected at {h}, this must head an adjunct floater.')
-                                self.create_adjunct(h)
+                                h.create_adjunct()
                                 if _ps_spec_iterator.mother:
                                     _ps_spec_iterator = _ps_spec_iterator.mother
 
@@ -174,6 +194,9 @@ class PhrasalMovement():
             if len(list_) > 0:
                 log(f'\t\t\t\t\tMemory buffer: {self.memory_buffer}')
 
+    #
+    # Case 3. Fill complement from memory buffer
+    #
     def fill_comp_from_memory(self, h):
         if h.is_primitive() and not h.complement():
             # If H has comp features
@@ -218,16 +241,13 @@ class PhrasalMovement():
                 # The mismatching complement will be demoted to floater status
                 if h.complement().right_const.is_adjoinable():
                     log('\t\t\t\t\tThe mismatching complement will be trasformed into floater adjunct.')
-                    self.create_adjunct(h.complement().right_const)
+                    h.complement().right_const.create_adjunct()
                 self.memory_buffer.remove(target_const)
                 log(f'\t\t\t\t\tRemaining memory buffer: {self.memory_buffer}')
 
+    # Definition for A-reconstruction
     def A_reconstruct(self, ps):
-        """
-        Implements A-movement from SPEC to the left edge of COMP.
 
-        This is the other side of phi-agreement.
-        """
         if 'CAT:D' in ps.get_head().features:
             if ps.sister() and ps.is_left() and not ps.is_primitive():
                 log(f'\t\t\t\t\t{ps} will undergo A-reconstruction (form of Agree).')
@@ -239,7 +259,7 @@ class PhrasalMovement():
                     head.sister().merge(ps.transfer(self.babtize()), 'right')
                     self.number_of_Moves += 1
 
-
+    # Definition for targeting a head
     def target_head(self, _ps_iterator):
         if _ps_iterator.is_primitive():
             h = _ps_iterator
@@ -249,6 +269,7 @@ class PhrasalMovement():
             h = None
         return h
 
+    # Definition for extraposition
     def try_extraposition(self, ps):
         # Returns the bottom node on the right edge (not geometrical)
 
@@ -296,7 +317,7 @@ class PhrasalMovement():
             # This is LF-requirement: the adjunct must get semantic interpretation
             for head in ps_.left_const.get_feature_vector():
                 if 'FIN' in head.get_labels() or 'D' in head.get_labels():
-                    self.create_adjunct(ps_)
+                    ps_.create_adjunct()
                     log(f'\t\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
                     if not ps_.get_top().LF_legibility_test().all_pass():
                         # If phi set is available...
@@ -308,7 +329,7 @@ class PhrasalMovement():
 
         return False
 
-    # This will create a head from a specifier that lacks a head
+    # Definition for generating a new head
     def engineer_head_from_specifier(self, features, labels):
         """
         This operation spawns a head H from a detected specifier XP that lacks a head.
@@ -338,14 +359,14 @@ class PhrasalMovement():
         self.name_provider_index += 1
         return str(self.name_provider_index)
 
-    # Checks intervention
+    # Definition for intervention
     def memory_intervention(self, criterial_features):
         for constituent in self.memory_buffer:
             if constituent.get_criterial_features().intersection(criterial_features):
                 return True
         return False
 
-    # Returns True if a spec-feature of H matches with the category of the head of G
+    # Definition for spec selection match
     def spec_match(self, H, G):
 
         if 'SPEC:*' in H.features or '!SPEC:*' in H.features:
@@ -394,10 +415,8 @@ class PhrasalMovement():
         return target_const
 
     # This will promote a phi set (if any) into tail features
+    # (Not correct, only relates to Italian postverbal subjects.)
     def promote_phi_set(self, ps):
-        """
-        Promotes the phi-set into the status of a tail feature.
-        """
 
         if ps.get_phi_set():
             new_tail_feature_list = list(ps.get_phi_set())
@@ -407,55 +426,7 @@ class PhrasalMovement():
         else:
             return False
 
-    # get_specifiers() wrapper that implements the smodular interface to the PhraseStructure class
+    # get_specifiers() wrapper that implements the modular interface to the PhraseStructure class
     def get_specifiers(self, h):
         specs = h.get_specifiers()
         return [spec for spec in specs if not spec.is_primitive()]
-
-    # Creates an adjunct of a constituent
-    def create_adjunct(self, ps):
-        """
-        Creates an adjunct out of a constituent.
-        """
-
-        def make_adjunct(ps):
-            # if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-            #    log(f'\t\t\t\t{ps} cannot be made an adjunct because its sister is an adjunct.')
-            #    return False
-            ps.adjunct = True
-            log(f'\t\t\t\t\t{ps} was made an adjunct.')
-            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-                ps.mother.adjunct = True
-            return True
-
-        # --- Main function begins here --- #
-
-        head = ps.get_head()
-
-        # todo this has to be rewritted so that it uses projection (label projection) not geometry
-        # If the head is primitive, we must decide how much of the surrounding structure we will eat
-        if ps.is_primitive():
-            # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
-            if head.external_tail_head_test():
-                if '!SPEC:*' in head.features and head.mother.mother and self.get_specifiers(head):
-                    make_adjunct(head.mother.mother)
-                    return ps.mother.mother
-                else:
-                    if head.mother and head.mother.get_head() == head:
-                        make_adjunct(head.mother)
-                    else:
-                        make_adjunct(head)
-                    return ps.mother
-            # If the adjunct is still in wrong position, we eat the specifier if accepted
-            else:
-                # If potential Spec exists and the head accepts specifiers...
-                if self.get_specifiers(head) and not '-SPEC:*' in head.features and \
-                        not set(head.get_not_specs()).intersection(set(self.get_specifiers(head)[0].get_labels())):
-                    if head.mother.mother:
-                        make_adjunct(head.mother.mother)
-                    return ps.mother.mother
-                else:
-                    make_adjunct(head.mother)
-                    return ps.mother
-        else:
-            make_adjunct(ps)
