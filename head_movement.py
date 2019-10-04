@@ -92,7 +92,7 @@ class HeadMovement():
                     return True # If the affix has no EPP, we accept the solution
                 # If it requires SPEC . . .
                 else:
-                    if affix_.specifier():  # If the EPP is satisfied, we accept the solution
+                    if affix_.get_local_specifier():  # If the EPP is satisfied, we accept the solution
                         return True
                     # What if the EPP is satisfied later by movement reconstruction?
                     # First exception: [affix, b], b is primitive

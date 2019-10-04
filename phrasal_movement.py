@@ -428,5 +428,5 @@ class PhrasalMovement():
 
     # get_specifiers() wrapper that implements the modular interface to the PhraseStructure class
     def get_specifiers(self, h):
-        specs = h.get_specifiers()
+        specs = h.get_generalized_specifiers()
         return [spec for spec in specs if not spec.is_primitive()]

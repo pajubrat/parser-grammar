@@ -252,9 +252,9 @@ class PhraseStructure:
 
         return None
 
-    # Definition for the relation of SPECIFIER
+    # Definition for the relation of LOCAL SPECIFIER
     # (Should be simplified, unified)
-    def specifier(self):
+    def get_local_specifier(self):
 
         # Case 1. Definition for SPEC for a primitive left head
         if self.is_primitive() and \
@@ -293,7 +293,7 @@ class PhraseStructure:
 
     # Returns a list of c-commanding complex left phrases up to the next head
     # (Is used only when creating adjuncts, this must be replaced and/or reduced)
-    def get_specifiers(self):
+    def get_generalized_specifiers(self):
         if not self.is_primitive():
             return None
 
@@ -478,7 +478,7 @@ class PhraseStructure:
 
             # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
             if head.external_tail_head_test():
-                if '!SPEC:*' in head.features and head.mother.mother and self.get_specifiers():
+                if '!SPEC:*' in head.features and head.mother.mother and self.get_generalized_specifiers():
                     make_adjunct(head.mother.mother)
                     return self.mother.mother
                 else:
@@ -491,11 +491,11 @@ class PhraseStructure:
             # If the adjunct is still in wrong position, we eat the specifier if accepted
             else:
                 # If potential Spec exists and the head accepts specifiers...
-                if self.get_specifiers() and not '-SPEC:*' in head.features and \
-                        not set(head.get_not_specs()).intersection(set(self.get_specifiers()[0].get_labels())) and \
-                        not self.get_specifiers()[0].is_primitive():
+                if self.get_generalized_specifiers() and not '-SPEC:*' in head.features and \
+                        not set(head.get_not_specs()).intersection(set(self.get_generalized_specifiers()[0].get_labels())) and \
+                        not self.get_generalized_specifiers()[0].is_primitive():
                     if head.mother.mother:
-                        log(f'{head}: {head.get_specifiers()}')
+                        log(f'{head}: {head.get_generalized_specifiers()}')
                         make_adjunct(head.mother.mother)
                     return self.mother.mother
                 else:

@@ -11,6 +11,7 @@ from feature_disambiguation import FeatureProcessing
 
 
 # Transfer performs a mapping from phrase structure object into LF-object
+# Its function is to repair the first pass parse from errors
 class Transfer():
 
     def __init__(self, context):

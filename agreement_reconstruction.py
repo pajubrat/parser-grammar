@@ -103,8 +103,8 @@ class AgreementReconstruction():
 
             # Condition 1. We examine only the local specifier.
             # Condition 2. It must be a DP.
-            if h.get_specifiers() and 'CAT:D' in h.get_specifiers()[0].get_head().features:
-                head = h.get_specifiers()[0].get_head()
+            if h.get_generalized_specifiers() and 'CAT:D' in h.get_generalized_specifiers()[0].get_head().features:
+                head = h.get_generalized_specifiers()[0].get_head()
                 phi_features = set()
                 for f in head.features:
 
@@ -131,7 +131,7 @@ class AgreementReconstruction():
         # Operation 2. If there are unvalued features left, try Spec-Agree
         #
         if self.is_unvalued(h):
-            # Condition 1. Acquire phi-features from SPEC
+            # Condition 2. Acquire phi-features from SPEC
             goal, phi_features = acquire_from_spec(h)
             for phi in phi_features:
                 if value(h, phi):
