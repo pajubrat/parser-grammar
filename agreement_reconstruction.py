@@ -223,7 +223,7 @@ class AgreementReconstruction():
                         return True
 
                 # If matching feature is not found, valuation is not licensed
-                log(f'\t\t\t\t\Feature {valued_feature} was not matched in {h}.')
+                log(f'\t\t\t\t\tFeature {valued_feature} was not matched in {h} and was marked as bad.')
                 return False
 
         # If type was not matched, then valuation is again possible

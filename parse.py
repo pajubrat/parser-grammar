@@ -1,7 +1,7 @@
 
 #################################################################################
 # Linear phase parser
-# Brattico, P. (2019). Computational implementation of a top-down grammar. Technical documentation.
+# Brattico, P. (2019). Computational implementation of a linear phase parser. Framework and technical documentation (2.x).
 # See documentation in the \Documentation folder
 # Version 2.x
 ################################################################################
@@ -170,7 +170,6 @@ for sentence in parse_list[start:]:
 
         # This has to do with the numbering of copies (traces) in the output
         P.name_provider_index = 0
-        P.reconstruction.name_provider_index = 0
 
         # Report the language of the input, assumed in the parse
         log(f'Language appears to be {lang}')
@@ -202,6 +201,7 @@ for sentence in parse_list[start:]:
             parse = P.result_list[0]
             results_file.write(f'{parse}\n')
             results_file.write('\''+parse.gloss()+'.\'\n')
+            results_file.write(str(P.semantic_interpretation) + '\n')
             results_file.write('Score: ' + str(P.score) + '  (')
             results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
             results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')

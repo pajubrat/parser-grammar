@@ -19,6 +19,9 @@ class LinearPhaseParser():
         # All results (analyses)
         self.result_list = []
 
+        # Semantic interpretation
+        self.semantic_interpretation = set()
+
         # Number of lexical ambiguities detected
         self.number_of_ambiguities = 0
 
@@ -66,7 +69,6 @@ class LinearPhaseParser():
         self.number_of_ambiguities = 0
         reset_number_of_operations()
         self.name_provider_index = 0
-        self.reconstruction.name_provider_index = 0
 
         set_logging(True)
         self.exit = False
@@ -106,13 +108,15 @@ class LinearPhaseParser():
 
             # If the result passes at LF
             if lf.all_pass():
-                if lf.final_tail_check(ps_) and self.transfer_to_LF(ps_):
+                self.semantic_interpretation = self.transfer_to_CI(ps_)
+                if lf.final_tail_check(ps_) and self.semantic_interpretation:
                     self.discourse_plausibility = lf.discourse_test_result
                     self.score = 1 - self.number_of_solutions_tried - self.discourse_plausibility
 
                     # Add the output (phrase structure) to result list
                     self.result_list.append(ps_)
-                    show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried)
+                    show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried, self.semantic_interpretation)
+
                     self.exit = True    # Knock this out if you want to see all solutions
                 else:
                     report_tail_head_problem(ps_)
@@ -501,12 +505,12 @@ class LinearPhaseParser():
         # Return the finished list of ranked adjunction sites
         return adjunction_sites
 
-    def transfer_to_LF(self, ps):
+    def transfer_to_CI(self, ps):
         def detached(ps):
             ps.mother = None
             return ps
         lf = LF()
-        return(lf.transfer_to_LF(detached(ps.copy())))
+        return(lf.transfer_to_CI(detached(ps.copy())))
 
     # Checks if phrase structure XP cannot be broken off from H-XP because
     # H and X were part of the same word. It is used to prevent right merge to XP

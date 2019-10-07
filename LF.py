@@ -6,7 +6,6 @@ from support import log, illu
 def for_lf_interface(features):
     return {f for f in features if f.startswith('!') or f.startswith('-')}
 
-
 class LF:
 
     def __init__(self):
@@ -20,6 +19,10 @@ class LF:
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_crash = False
+
+        # This stores facts concerning semantic interpretation resulting from transfer to CI
+        # The report is a set of strings; later this will be in some formal notation
+        self.semantic_interpretation = set()
 
     def all_pass(self):
         return (self.probe_goal_test_result and
@@ -226,21 +229,20 @@ class LF:
                 if 'INF' in spec.get_labels():
                     self.discourse_test_result = self.discourse_test_result + 2
 
-    # This function will try to transfer the phrase structure into LF out of syntactic working memory
+    # This function will try to transfer the phrase structure into the conceptual-intentional system
     # It represents the "outer edge of LF"
-    def transfer_to_LF(self, ps):
-        log(f'\t\t\tTrying to transfer {ps} into LF...')
+    def transfer_to_CI(self, ps):
+        log(f'\t\t\tTrying to transfer {ps} into Conceptual-Intentional system...')
         self.transfer_crash = False
-        self.check_for_transfer(ps)
-        if self.transfer_crash:
-            log('\t\t\t\tTransfer to LF crashed.')
-            return False
+        self.semantic_interpretation = self.check_for_transfer(ps)
+        if not self.semantic_interpretation:
+            log('\t\t\t\tTransfer to C-I crashed.')
+            return set()
         else:
-            log('\t\t\t\tTransfer to LF successful.')
-            return True
+            log('\t\t\t\tTransfer to C-I successful.')
+            return self.semantic_interpretation
 
-    # Checks if the phrase structure constitutes a legitimate LF-object
-    # It is assumed that this represents the output from LF/C-I during an attempt at Transfer
+    # Checks if the phrase structure constitutes a legitimate CI-object
     # Checks for (a) binding and (b) null subject/anaphora recovery
     def check_for_transfer(self, ps):
         if not ps.is_primitive():                           # Check primitive constituents only
@@ -248,7 +250,11 @@ class LF:
                 self.check_for_transfer(ps.left_const)
             if not ps.right_const.find_me_elsewhere:
                 self.check_for_transfer(ps.right_const)
-            return
+
+            if self.transfer_crash:
+                return set()
+            else:
+                return self.semantic_interpretation
 
         # All variables and uninterpretable phi-features must be bound before transfer
         for f in ps.features:
@@ -256,9 +262,9 @@ class LF:
                 if not self.bind(ps):
                     log(f'\t\t\t\t{ps}['+f+'] is not properly bound, the expression is uninterpretable.')
                     self.transfer_crash = True
-                    return
                 else:
                     log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
+                    self.semantic_interpretation.add(f'\t\t\t\t{ps}['+f+'] was bound to an operator.')
 
         # Unvalued phi-features D, NUM, PER must be matched with antecedents by recovery
         unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
@@ -266,6 +272,12 @@ class LF:
         if unvalued_phi_features:
             log(f'\t\t\t\t{ps} with {unvalued_phi_features} was associated at LF with:')
             list_of_antecedents = self.search_phi_antecedents(ps)
+
+            # Store the results for later reporting
+            if list_of_antecedents:
+                self.semantic_interpretation.add(f'{ps}({list_of_antecedents[0].illustrate()})')
+
+            # Report the results to the log file
             self.report_to_log(list_of_antecedents, unvalued_phi_features)
 
         # Feature conflicts are not tolerated

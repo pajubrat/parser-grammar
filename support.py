@@ -19,7 +19,7 @@ class Logger:
 log_instance = Logger()
 
 
-def show_results(ps_, result_list, number_of_Merges, number_of_Moves, number_of_solutions_tried):
+def show_results(ps_, result_list, number_of_Merges, number_of_Moves, number_of_solutions_tried, semantic_interpretation):
     log(f'!--->\t\tTests passed (with {number_of_Merges}/'
         f'{get_number_of_operations()} operations) <------------------------------------')
     ps_.tidy_names(1)
@@ -28,6 +28,7 @@ def show_results(ps_, result_list, number_of_Merges, number_of_Moves, number_of_
     print(ps_.spellout())
     print(ps_.illustrate_spellout())
     print(ps_.illustrate())
+    print(str(semantic_interpretation))
     print(str(number_of_Merges) + ', Moves: ' + str(number_of_Moves)
           + ', Solutions tried: ' + str(number_of_solutions_tried) + '\n')
     log_result(ps_)

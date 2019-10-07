@@ -499,7 +499,11 @@ class PhraseStructure:
                         make_adjunct(head.mother.mother)
                     return self.mother.mother
                 else:
-                    make_adjunct(head.mother)
+                    # Do not eat a primitive selector
+                    if head.get_selector() and not head.get_selector().is_primitive():
+                        make_adjunct(head.mother)
+                    else:
+                        make_adjunct(head)
                     return self.mother
         else:
             make_adjunct(self)
@@ -622,7 +626,7 @@ class PhraseStructure:
 
             # Condition ii.
             # Check if goal's tail features can be matched in the feature vector
-            # Comment: In the current system, adverbs must always satisfy Condition i.
+            # Comment: In the current system, adverbs cannot satisfy ii.
             if 'CAT:ADV' not in self.features:
                 for const in feature_vector:
 
