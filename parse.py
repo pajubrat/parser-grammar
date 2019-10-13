@@ -180,27 +180,25 @@ for sentence in parse_list[start:]:
 
         # Print the sentence to the log file
         set_logging(True)
-        s = ''
-        for word in sentence:
-            s = s + word + ' '
+        s = ' '.join(sentence)
 
         # If no results were found, the sentence is ungrammatical
         if len(P.result_list) == 0:
-            results_file.write(str(count) + '. * ' + s + '\n\n')
+            results_file.write(f'{count}. * {s}\n\n')
 
         # If results were found, the sentence is grammatical
         else:
             # Marginality estimations are printed here
             if 0 >= P.score >= -6:
-                judgment = grammaticality_judgement[int(round(abs(P.score),0))]
+                judgment = grammaticality_judgement[round(abs(P.score), 0)]
             else:
                 judgment = '##'
-            results_file.write(str(count) + '. ' + judgment + ' ' + s + '\n\n')
+            results_file.write(f'{count}. {judgment} {s}\n\n')
 
             # Print the result into the results file
             parse = P.result_list[0]
             results_file.write(f'{parse}\n')
-            results_file.write('\''+parse.gloss()+'.\'\n')
+            results_file.write(f"'{parse.gloss()}.'\n")
             results_file.write(str(P.semantic_interpretation) + '\n')
             results_file.write('Score: ' + str(P.score) + '  (')
             results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
