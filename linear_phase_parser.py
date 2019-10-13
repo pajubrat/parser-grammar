@@ -50,7 +50,7 @@ class LinearPhaseParser():
         self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
 
         # Access to morphology
-        self.morphology = Morphology(self.context)
+        self.morphology = Morphology(self.lexicon)
 
         # Access to reconstruction
 
@@ -77,142 +77,146 @@ class LinearPhaseParser():
         ps = None
 
         # Start parsing
-        self._first_pass_parse(ps, lst, 0)
+        self._first_pass_parse(ps, list(lst))
+
+    def evaluate_solution(self, ps):
+        self.number_of_solutions_tried += 1
+
+        # The whole sentence has been processed,we test if the result is legitimate
+        log(f'\t>>>\tTrying candidate parse {ps.illustrate()} ({self.number_of_solutions_tried}.)')
+
+        # We try to transfer it to LF
+        log('\t\tReconstructing...')
+        ps_ = self.transfer_to_lf(ps)
+        log('\t\t\t= ' + ps_.illustrate())
+        log(f'\t\tChecking LF-interface conditions.')
+        lf = ps_.LF_legibility_test()
+
+        # If the result passes at LF
+        if lf.all_pass():
+            self.semantic_interpretation = self.transfer_to_CI(ps_)
+            if lf.final_tail_check(ps_) and self.semantic_interpretation:
+                self.discourse_plausibility = lf.discourse_test_result
+                self.score = 1 - self.number_of_solutions_tried - self.discourse_plausibility
+
+                # Add the output (phrase structure) to result list
+                self.result_list.append(ps_)
+                show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves,
+                             self.number_of_solutions_tried, self.semantic_interpretation)
+
+                self.exit = True  # Knock this out if you want to see all solutions
+            else:
+                report_tail_head_problem(ps_)
+        else:
+            report_LF_problem(ps_)
+        return  # This return will send the parser to an unexplored path in the recursive parse tree
 
     # Recursive parsing algorithm
-    def _first_pass_parse(self, ps, lst, index):
+    def _first_pass_parse(self, ps, lst):
 
         if self.exit:
             return
 
         set_logging(True)
-        self.number_of_Merges = self.number_of_Merges + 1
+        self.number_of_Merges += 1
 
         # Print the current state to the log file
         log(f'\t\t\t={ps}')
-        log('\n' + str(self.number_of_Merges) + '.')
+        log(f'\n{self.number_of_Merges}.')
 
         # Test if we have reached at the end of the input list
-        if index == len(lst):
-            self.number_of_solutions_tried = self.number_of_solutions_tried + 1
-
-            # The whole sentence has been processed,we test if the result is legitimate
-            log('\t>>>\t' + f'Trying candidate parse ' + ps.illustrate() + ' ('+str(self.number_of_solutions_tried)+'.)')
-
-            # We try to transfer it to LF
-            log('\t\tReconstructing...')
-            ps_ = self.transfer_to_lf(ps)
-            log('\t\t\t= ' + ps_.illustrate())
-            log(f'\t\tChecking LF-interface conditions.')
-            lf = ps_.LF_legibility_test()
-
-            # If the result passes at LF
-            if lf.all_pass():
-                self.semantic_interpretation = self.transfer_to_CI(ps_)
-                if lf.final_tail_check(ps_) and self.semantic_interpretation:
-                    self.discourse_plausibility = lf.discourse_test_result
-                    self.score = 1 - self.number_of_solutions_tried - self.discourse_plausibility
-
-                    # Add the output (phrase structure) to result list
-                    self.result_list.append(ps_)
-                    show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried, self.semantic_interpretation)
-
-                    self.exit = True    # Knock this out if you want to see all solutions
-                else:
-                    report_tail_head_problem(ps_)
-            else:
-                report_LF_problem(ps_)
-            return  # This return will send the parser to an unexplored path in the recursive parse tree
+        if not lst:
+            return self.evaluate_solution(ps)
 
         # Process next word
-        else:
-            # Initialize morphology
-            m = self.morphology
+        # Initialize morphology
+        m = self.morphology
 
-            # Lexical ambiguity
-            # If the item was not recognized, an ad hoc constituent is returned that has unknown lable CAT:X
-            disambiguated_word_list = self.lexicon.access_lexicon(lst[index])
-            if len(disambiguated_word_list) > 1:
-                log(f'\t\tAmbiguous lexical item \"{lst[index]}\" detected.')
+        # Lexical ambiguity
+        # If the item was not recognized, an ad hoc constituent is returned that has unknown label CAT:X
+        word = lst.pop(0)
+        disambiguated_word_list = self.lexicon.access_lexicon(word)
+        if len(disambiguated_word_list) > 1:
+            log(f'\t\tAmbiguous lexical item "{word}" detected.')
 
-            # We explore all possible lexical items
-            for lexical_constituent in disambiguated_word_list:
-                lst_branched = lst.copy()
+        # We explore all possible lexical items
+        for lexical_constituent in disambiguated_word_list:
+            lst_branched = lst.copy()
 
-                # Morphological decomposition: increases the input list if there are several morphemes
-                # If the word was not recognized (CAT:X), generative morphology will be tried
-                lexical_item, lst_branched = m.morphological_parse(lexical_constituent,
-                                                                   lst_branched,
-                                                                   index)
+            # Morphological decomposition: increases the input list if there are several morphemes
+            # If the word was not recognized (CAT:X), generative morphology will be tried
+            lexical_item, lst_branched = m.morphological_parse(lexical_constituent,
+                                                               lst_branched,
+                                                               word)
 
-                # Read inflectional features (if any) and store them into memory buffer, then consume next word
-                inflection = m.get_inflection(lexical_item)
-                if inflection:
+            # Read inflectional features (if any) and store them into memory buffer, then consume next word
+            inflection = m.get_inflection(lexical_item)
+            if inflection:
 
-                    # Add inflectional features and prosodic features into memory
-                    self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
-                    log('\n\t\tConsume \"' + lst_branched[index + 1] + '\"\n')
-                    if ps:
-                        self._first_pass_parse(ps.copy(), lst_branched, index + 1)
-                    else:
-                        self._first_pass_parse(None, lst_branched, index + 1)
+                # Add inflectional features and prosodic features into memory
+                self.memory_buffer_inflectional_affixes |= inflection
+                log(f'\n\t\tConsume "{lst_branched[0]}"\n')
+                new_ps = None
+                if ps:
+                    new_ps = ps.copy()
+                self._first_pass_parse(new_ps, lst_branched)
+                continue
 
-                # If the item was not inflection, it is a morpheme that must be merged
+            # If the item was not inflection, it is a morpheme that must be merged
+
+            # Unload inflectional suffixes from the memory into the morpheme as features
+            lexical_item = m.set_inflection(lexical_item, self.memory_buffer_inflectional_affixes)
+            self.memory_buffer_inflectional_affixes = set()
+
+            # If there is no prior phrase structure, we create it by using the first word
+            if not ps:
+                self._first_pass_parse(lexical_item.copy(), lst_branched)
+                continue
+
+            # ------------------------------------------------------------------------------------
+            # MAIN PARSER LOOP
+            # ------------------------------------------------------------------------------------
+
+            # Merge the new word (disambiguated lexical item) to the existing phrase structure
+            log(f'\n\t\tConsume "{lexical_item.get_pf()}"\n')
+            log(f'\t\t{ps.illustrate()} + {lexical_item.get_pf()}')
+
+            # Get the merge sites
+            # Impossible merge sites are first filtered out
+            # Possible merge sites are then ranked
+            adjunction_sites = self.ranking(self.filter(ps, lexical_item), lexical_item)
+
+            # Test the adjunction sites in the order of ranking
+            for i, site in enumerate(adjunction_sites, start=1):
+                ps_ = ps.get_top().copy()
+
+                # If the next morpheme was inside the same word as previous, it will be
+                # eaten inside the constituent (will be reconstructed later)
+                if site.get_bottom_affix().internal:
+                    log(f'\t\tExploring solution number ({i}) =' + f'[{site}*{lexical_item.get_pf()}]')
+                    site_ = ps_[ps.index(site)]
+                    new_ps = site_ * lexical_item
+
+                # If the next morpheme was not inside the same word as previous, it will be merged
                 else:
+                    log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lexical_item.get_pf()}]')
+                    site_ = self.transfer_to_lf(ps_[ps.index(site)])
+                    new_ps = site_ + lexical_item
+                self._first_pass_parse(new_ps, lst_branched)
+                if self.exit:
+                    break
 
-                    # Unload inflectional suffixes from the memory into the morpheme as features
-                    lexical_item = m.set_inflection(lexical_item, self.memory_buffer_inflectional_affixes)
-                    self.memory_buffer_inflectional_affixes = set()
+            # ------------------------------------------------------------------------------------
+            #
+            # ------------------------------------------------------------------------------------
 
-                    # If there is no prior phrase structure, we create it by using the first word
-                    if not ps:
-                        self._first_pass_parse(lexical_item.copy(), lst_branched, index + 1)
-
-                    # ------------------------------------------------------------------------------------
-                    # MAIN PARSER LOOP
-                    # ------------------------------------------------------------------------------------
-
-                    # Merge the new word (disambiguated lexical item) to the existing phrase structure
-                    else:
-                        log('\n\t\tConsume \"' + lexical_item.get_pf() + '\"\n')
-                        log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_pf())
-
-                        # Get the merge sites
-                        # Impossible merge sites are first filtered out
-                        # Possible merge sites are then ranked
-                        adjunction_sites = self.ranking(self.filter(ps, lexical_item), lexical_item)
-
-                        # Test the adjunction sites in the order of ranking
-                        for i, site in enumerate(adjunction_sites, start=1):
-                            ps_ = ps.get_top().copy()
-
-                            # If the next morpheme was inside the same word as previous, it will be
-                            # eaten inside the constituent (will be reconstructed later)
-                            if site.get_bottom_affix().internal:
-                                log(f'\t\tExploring solution number ({i}) =' + f'[{site}*{lexical_item.get_pf()}]')
-                                site_ = ps_[ps.index(site)]
-                                new_ps = site_ * lexical_item
-
-                            # If the next morpheme was not inside the same word as previous, it will be merged
-                            else:
-                                log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lexical_item.get_pf()}]')
-                                site_ = self.transfer_to_lf(ps_[ps.index(site)])
-                                new_ps = site_ + lexical_item
-                            self._first_pass_parse(new_ps, lst_branched, index + 1)
-                            if self.exit:
-                                break
-
-                    # ------------------------------------------------------------------------------------
-                    #
-                    # ------------------------------------------------------------------------------------
-
-            # If all solutions in the list have been explored, we backtrack
-            if not self.exit:
-                # All branches for the incoming surface word have been explored
-                log(f'\t\tI have now explored all solutions for \"' + lst[index] + '\".')
-                log('\t\tGoing one step backwards and taking another solution from previous ranking list........'
-                    '\n\t\t.\n\t\t.\n\t\t.')
-            return
+        # If all solutions in the list have been explored, we backtrack
+        if not self.exit:
+            # All branches for the incoming surface word have been explored
+            log(f'\t\tI have now explored all solutions for "{word}".')
+            log('\t\tGoing one step backwards and taking another solution from previous ranking list........'
+                '\n\t\t.\n\t\t.\n\t\t.')
+        return
 
     # Filter impossible sites
     def filter(self, ps, w):

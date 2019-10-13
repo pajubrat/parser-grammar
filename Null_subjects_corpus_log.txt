@@ -53,7 +53,7 @@ Using lexicon "lexicon.txt".
 
 7.
 
-		Adding inflectional features {'-', 'PHI:DET:DEF', 'LANG:FI', 'PHI:HUM:HUM', 'PHI:PER:3', 'PHI:NUM:SG', 'TAIL:ARG,VAL,CAT:FIN'} to D
+		Adding inflectional features {'-', 'LANG:FI', 'TAIL:ARG,VAL,CAT:FIN', 'PHI:NUM:SG', 'PHI:PER:3', 'PHI:HUM:HUM', 'PHI:DET:DEF'} to D
 		= ['!COMP:*', '!PROBE:CAT:N', '-', '-ARG', '-COMP:T/fin', '-COMP:uR', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:T/fin', '-SPEC:V', 'CAT:-ARG', 'CAT:-ARG/-ARG/D/D', 'CAT:-ARG/D', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'TAIL:ARG,VAL,CAT:FIN', 'VAL']
 			=D
 
@@ -77,7 +77,7 @@ Using lexicon "lexicon.txt".
 
 10.
 
-		Adding inflectional features {'-', 'PHI:NUM:SG', 'PHI:PER:3', 'LANG:FI'} to T/fin
+		Adding inflectional features {'PHI:PER:3', '-', 'PHI:NUM:SG', 'LANG:FI'} to T/fin
 		= ['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '-', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/FIN/T/T/fin/FIN/T/T/fin', 'CAT:ARG/FIN/T/T/fin', 'CAT:FIN', 'CAT:T', 'CAT:T/fin', 'COMP:D', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'PF:T/fin', 'PHI:DET:_', 'PHI:NUM:SG', 'PHI:NUM:_', 'PHI:PER:3', 'PHI:PER:_', 'SPEC:*', 'SPEC:TO/inf', 'VAL']
 
 		Consume "T/fin"
@@ -166,16 +166,16 @@ Using lexicon "lexicon.txt".
 				Phrasal movement reconstruction:
 					Dropping A-/A-bar movement.
 				Agreement reconstruction:
-					PRO.T/fin has unvalued phi-features {'PHI:PER:_', 'PHI:NUM:_', 'PHI:DET:_'}
-					phi.T/fin acquired PHI:DET:DEF by phi-Agree from <DP>:2.
+					PRO.T/fin has unvalued phi-features {'PHI:NUM:_', 'PHI:DET:_', 'PHI:PER:_'}
 					phi.T/fin acquired PHI:PER:3 by phi-Agree from <DP>:2.
+					phi.T/fin acquired PHI:DET:DEF by phi-Agree from <DP>:2.
 					phi.T/fin acquired PHI:NUM:SG by phi-Agree from <DP>:2.
 			= [<D Pekka> [T/fin [<D Pekka> [haluaa [A/inf lahtea]]]]]
 		Checking LF-interface conditions.
 			Trying to transfer [<D Pekka>:2 [phi.T/fin [<DP>:2 [PRO.haluaa [A/inf PRO.lahtea]]]]] into Conceptual-Intentional system...
-				PRO.haluaa with {'PHI:PER:_', 'PHI:NUM:_', 'PHI:DET:_'} was associated at LF with:
+				PRO.haluaa with {'PHI:NUM:_', 'PHI:DET:_', 'PHI:PER:_'} was associated at LF with:
 					1. <D Pekka>    (alternatives: 2. T/fin )
-				PRO.lahtea with {'PHI:PER:_', 'PHI:NUM:_', 'PHI:DET:_'} was associated at LF with:
+				PRO.lahtea with {'PHI:NUM:_', 'PHI:DET:_', 'PHI:PER:_'} was associated at LF with:
 					1. <D Pekka>    (alternatives: 2. T/fin )
 				Transfer to C-I successful.
 !--->		Tests passed (with 14/132 operations) <------------------------------------

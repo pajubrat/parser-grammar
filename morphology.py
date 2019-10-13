@@ -3,13 +3,10 @@ from LexicalInterface import LexicalInterface
 from context import Context
 
 class Morphology():
-    def __init__(self, context):
-        self.context = context
-        self.lexicon = LexicalInterface(self.context.redundancy_rules_file)
-        self.lexicon.load_lexicon(self.context.lexicon_file, context.language)
-        self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
+    def __init__(self, lexicon):
+        self.lexicon = lexicon
 
-    def morphological_parse(self, lexical_constituent, lst_branched, index):
+    def morphological_parse(self, lexical_constituent, lst_branched, phonological_input_word):
         """
         Operation performs morphological parsing for word w.
         """
@@ -19,7 +16,6 @@ class Morphology():
         # '$'   internal morpheme boundary, as marked by the morphological parser
         #       In syntax, $ corresponds to 'needs a host word, grab local head.'
 
-        phonological_input_word = lst_branched[index]
         # Create a list of morphemes
         # If the word has not been recognized, its morphology must be computed
         if 'CAT:X' in lexical_constituent.features:
@@ -28,17 +24,18 @@ class Morphology():
 
         word = lexical_constituent.morphology
         word = word.replace("#", "#$")
-        lst_ = word.split("#")
+        morphemes = word.split("#")
+
+        if len(morphemes) == 1:
+            return lexical_constituent, lst_branched
 
         # If we had more than one morpheme, the list will substitute the original multimorphemic word
-        if len(lst_) > 1:
-            log(f'\t\tNext word \"{lst_branched[index]}\" contains multiple morphemes ' + str(lst_[::-1]))
-            del lst_branched[index]
-            for w_ in lst_:
-                lst_branched.insert(index, w_)
+        log(f'\t\tNext word "{phonological_input_word}" contains multiple morphemes {morphemes[::-1]}')
+        for morpheme in morphemes:
+            lst_branched.insert(0, morpheme)
 
         # Take the first morpheme discovered, add prosodic features
-        lexical_item = self.lexicon.access_lexicon(lst_branched[index])[0]
+        lexical_item = self.lexicon.access_lexicon(lst_branched.pop(0))[0]
         return lexical_item, lst_branched
 
     def get_inflection(self, lexical_item):
@@ -72,14 +69,14 @@ class Morphology():
                 labels = second_last_morpheme.get_labels()
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
                     log('\t\t\t\tProsodic feature [foc] interpreted as a C morpheme')
-                    word = word.replace('#foc', '#C/fin') # This meanss that #foc is interpreted as a morpheme
+                    word = word.replace('#foc', '#C/fin') # This means that #foc is interpreted as a morpheme
 
         return word
 
     def extract_morphemes(self, word):
-        list_ = [word]
-        while '#' in list_[0]:
-            list_ = list_[0].split('#') + list_[1:]
-            list_[0] = self.lexicon.access_lexicon(list_[0])[0].morphology
+        morphemes = [word]
+        while '#' in morphemes[0]:
+            morphemes = morphemes[0].split('#') + morphemes[1:]
+            morphemes[0] = self.lexicon.access_lexicon(morphemes[0])[0].morphology
 
-        return list_
+        return morphemes
