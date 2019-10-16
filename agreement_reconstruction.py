@@ -1,6 +1,6 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
-import minimalist
+import phrase_structure
 
 
 class AgreementReconstruction():
@@ -96,23 +96,22 @@ class AgreementReconstruction():
                 ps_ = ps_.walk_downstream()
             return ps, []
 
-        # Operation 2. phi-Agree via Spec-Head
-        # Acquires phi-features from SPEC which includes phi-set at the head (from input)
-        # Head features are only consulted if no phrase is found from SPEC
-        def acquire_from_spec(h):
-
-            # Condition 1. We examine only the local specifier.
-            # Condition 2. It must be a DP.
-            if h.get_generalized_specifiers() and 'CAT:D' in h.get_generalized_specifiers()[0].get_head().features:
-                head = h.get_generalized_specifiers()[0].get_head()
-                phi_features = set()
-                for f in head.features:
-
-                    # Condition 3. Get valued phi-features from DP
-                    if self.phi(f) and self.valued(f):
-                        phi_features.add(f)
-
-                return head, phi_features  # We only consider the first DP
+        # Operation 2. phi-Agree via edge
+        # Acquires phi-features from edge
+        def acquire_from_edge(h):
+            edge_list = h.get_edge()
+            if edge_list:
+                for edge in edge_list:
+                    edge_head = edge.get_head()
+                    # Condition 1. The element must be D(P)
+                    # Condition 2. The element must not have moved away
+                    if 'CAT:D' in edge_head.features and not edge.find_me_elsewhere:
+                        phi_features = set()
+                        for f in edge_head.features:
+                            # Condition 3. Get valued phi-features from DP
+                            if self.phi(f) and self.valued(f):
+                                phi_features.add(f)
+                        return edge_head, phi_features  # We only consider the first DP
             return None, set()
 
         # ------------ main function 'acquire_phi()' beings here ----------------#
@@ -128,14 +127,14 @@ class AgreementReconstruction():
                 log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
 
         #
-        # Operation 2. If there are unvalued features left, try Spec-Agree
+        # Operation 2. If there are unvalued features left, try edge-Agree
         #
         if self.is_unvalued(h):
             # Condition 2. Acquire phi-features from SPEC
-            goal, phi_features = acquire_from_spec(h)
+            goal, phi_features = acquire_from_edge(h)
             for phi in phi_features:
                 if value(h, phi):
-                    log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' from (Spec,{h}).')
+                    log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' from the edge of {h}.')
 
         # --------------- main function ends ---------------------------------------#
 
@@ -190,17 +189,19 @@ class AgreementReconstruction():
     # Definition for feature conflict
     def feature_conflict(self, f, phi):
 
-        # If the type match but value does not, the result is a feature conflict
+        # If the type match but value does not, the result is feature conflict
         if self.get_type(f) == self.get_type(phi) and self.get_value(f) != self.get_value(phi) and self.valued(f):
+
             log(f'\t\t\t\t\t\tFeature conflict between {f} and {phi}.')
             return True
         else:
             return False
 
-    # Checks if head h's unvalued target feature [PHI:F:_] can be valued by phi [PHI:F:V]
-    # Condition 1. If h has only unvalued features, valuation is never blocked
-    # Condition 2. If h has valued features, then if a valued feature of the same type
-    # exists, it must have a matching value.
+    # Checks if the probe ('h') already has valued phi-features (e.g. from agreement suffixes) and if yes,
+    # that a matching (licensing) feature is found
+    # Condition 1. If h has only unvalued features, valuation is never blocked (only check valued features)
+    # Condition 2. If h has valued features, then check if a valued feature of the same type must exist
+    # Thus, valued features are interpreted as licensors.
     def valuation_check(self, h, valued_feature):
 
         # Completely unvalued heads do not raise an error
@@ -211,7 +212,7 @@ class AgreementReconstruction():
         valued_feature_type = self.get_type(valued_feature)
         phi_set = self.get_phi_set(h)
 
-        # Must find a matching valued feature (if such exist)
+        # Must find a matching valued feature from head h (if exists)
         for phi in phi_set:
 
             # If we find an existing feature of the same type...

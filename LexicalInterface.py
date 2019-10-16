@@ -1,4 +1,4 @@
-import minimalist
+import phrase_structure
 import logging
 from collections import defaultdict
 log = logging.getLogger(__name__)
@@ -10,7 +10,7 @@ class LexicalInterface:
     # The interface contains a dictionary which holds the lexical items
     # The lexicon is a combination of language-invariant morphemes (UG_morphemes) and language-specific morphemes
     def __init__(self, redundancy_rules_file='redundancy_rules.txt'):
-        self.PhraseStructure = minimalist.PhraseStructure
+        self.PhraseStructure = phrase_structure.PhraseStructure
         self.d = defaultdict(list)
         self.redundancy_rules = self.load_redundancy_rules(redundancy_rules_file)
         self.language = ''

@@ -1,6 +1,6 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
-import minimalist
+import phrase_structure
 
 
 class FloaterMovement():
@@ -80,7 +80,10 @@ class FloaterMovement():
 
                 # Condition 2a. DP and PP are transformed into adjuncts and marked for reconstruction
                 if ('D' in floater.get_labels() or 'P' in floater.get_labels()) and floater.get_top().contains_feature('CAT:FIN'):
-                    floater.create_adjunct()
+                    if floater.mother:
+                        floater.mother.create_adjunct()
+                    else:
+                        floater.create_adjunct()
                     return floater.mother
 
                 # Condition 2b. If the right branch is ADV, it is transformed into an adjunct, but not reconstructed.

@@ -1,7 +1,6 @@
 
 from support import log, illu
 
-
 # Transforms a set of lexical features to be used in checking LF-interface conditions
 def for_lf_interface(features):
     return {f for f in features if f.startswith('!') or f.startswith('-')}
@@ -18,7 +17,7 @@ class LF:
         self.semantic_test_result = True
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
-        self.transfer_crash = False
+        self.transfer_to_CI_crash = False
 
         # This stores facts concerning semantic interpretation resulting from transfer to CI
         # The report is a set of strings; later this will be in some formal notation
@@ -68,28 +67,35 @@ class LF:
 
         spec = h.get_local_specifier()
         specs = h.get_generalized_specifiers()
-
         comp = h.complement()
         lf_features = sorted(for_lf_interface(h.features))
 
+        #
         # 1. Head integrity test
+        #
         if not h.get_cats():
             log('\t\t\t\tAn uninterpretable grammatical head without lexical category was detected.')
             self.head_integrity_test_result = False
 
+        #
         # 2. Probe-goal test
+        #
         for f in lf_features:
             if f.startswith('!PROBE:'):
                 if not h.probe(set(h.get_cats()), f[7:]):
                     log(f'\t\t\t\t{ps} probing for {f[7:]} failed.')
                     self.probe_goal_test_result = False
 
+        #
         # 3. Internal tail-head test for case (DPs)
+        #
         if 'D' in h.get_labels() and not h.internal_tail_head_test():
             log(f'\t\t\t\th{h} failed internal tail test.')
             self.tail_head_test_result = False
 
+        #
         # 4. Double Spec test for DP arguments
+        #
         if '2SPEC' not in h.features:
             """
             Returns False if the head is associated with more than one non-adjunct DP specifier at LF
@@ -106,13 +112,17 @@ class LF:
                 self.head_integrity_test_result = False
                 log(f'\t\t\t\t{ps} has double specifiers.')
 
+        #
         # 5. Semantic match test between H and Comp,H
+        #
         if comp:
             if not LF.semantic_match(h, h.complement()):
                 self.semantic_test_result = False
                 log(f'\t\t\t\t{ps} fails semantic match with {h.complement()}')
 
+        #
         # 6. Selection tests
+        #
         for f in lf_features:
 
             # 3.1. Specifier selection
@@ -194,7 +204,9 @@ class LF:
                         log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {s}, needs {f[6:]}')
                         self.selection_test_result = False
 
+        #
         # 7. Criterial feature legibility test(s)
+        #
         # 7.1 test for relative pronoun
         # For every DP that it not a relative pronoun
         if 'D' in h.get_labels() and 'R' not in h.get_labels() and h.mother:
@@ -203,12 +215,14 @@ class LF:
                 log(f'\t\t\t\tCriterial legibility failed for "{h}".')
                 self.criterial_feature_test_result = False
 
-        # 8. Projection principle test for referential non-adjunct arguments
+        #
+        # 8. Projection principle test for complex referential non-adjunct arguments
+        #
         # Check only non-adjunct arguments
-        if spec and not spec.adjunct and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
+        if spec and not spec.adjunct and spec.is_complex() and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
             # Arguments cannot be left to the SPEC of non-thematic head
             if h.EPP():
-                log(f'\t\t\t\t{spec}" has no thematic role.')
+                log(f'\t\t\t\t{spec} has no thematic role.')
                 self.projection_principle_test_result = False
             # or to the SPEC of a head without PHI specification that is c-commanded closest by -ARG.
             else:
@@ -216,7 +230,9 @@ class LF:
                     log(f'\t\t\t\t{spec} has no thematic role due to a selecting -PHI head.')
                     self.projection_principle_test_result = False
 
+        #
         # 9. Discourse/pragmatic tests
+        #
         # 9.1 This test accumulates discourse violations for each SPEC that cannot (easily) be topicalized
         list_ = ps.get_generalized_specifiers()
         if list_:
@@ -233,90 +249,150 @@ class LF:
     # It represents the "outer edge of LF"
     def transfer_to_CI(self, ps):
         log(f'\t\t\tTrying to transfer {ps} into Conceptual-Intentional system...')
-        self.transfer_crash = False
+        self.transfer_to_CI_crash = False
+
+        # Construction of semantic interpretation
         self.semantic_interpretation = self.check_for_transfer(ps)
+
+        # If no semantic interpretation results, transfer crashes
         if not self.semantic_interpretation:
             log('\t\t\t\tTransfer to C-I crashed.')
+            self.transfer_to_CI_crash = True
             return set()
         else:
             log('\t\t\t\tTransfer to C-I successful.')
+            self.transfer_to_CI_crash = False
             return self.semantic_interpretation
 
-    # Checks if the phrase structure constitutes a legitimate CI-object
-    # Checks for (a) binding and (b) null subject/anaphora recovery
+    # Attempts to transfer the LF-object into Conceptual-Intentional system
     def check_for_transfer(self, ps):
-        if not ps.is_primitive():                           # Check primitive constituents only
+
+        # Recursion
+        if ps.is_complex():
             if not ps.left_const.find_me_elsewhere:
                 self.check_for_transfer(ps.left_const)
             if not ps.right_const.find_me_elsewhere:
                 self.check_for_transfer(ps.right_const)
 
-            if self.transfer_crash:
+            if self.transfer_to_CI_crash:
                 return set()
             else:
                 return self.semantic_interpretation
 
-        # All variables and uninterpretable phi-features must be bound before transfer
+        #
+        # Transfer condition 1. Operator-variable constructions, binding of variables
+        #
         for f in ps.features:
             if f[:4] == 'ABAR':
                 if not self.bind(ps):
                     log(f'\t\t\t\t{ps}['+f+'] is not properly bound, the expression is uninterpretable.')
-                    self.transfer_crash = True
+                    self.transfer_to_CI_crash = True
                 else:
                     log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
-                    self.semantic_interpretation.add(f'\t\t\t\t{ps}['+f+'] was bound to an operator.')
+                    self.semantic_interpretation.add(f'{ps}['+f+'] was bound to an operator.')
 
-        # Unvalued phi-features D, NUM, PER must be matched with antecedents by recovery
+        #
+        # Transfer condition 2. Antecedents for unvalued phi-features (D, phi)
+        #
         unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
 
         if unvalued_phi_features:
             log(f'\t\t\t\t{ps} with {unvalued_phi_features} was associated at LF with:')
-            list_of_antecedents = self.search_phi_antecedents(ps)
+
+            # Condition. If unvalued features are detected, they must be supplied with antecedents
+            list_of_antecedents = self.search_phi_antecedents(ps, unvalued_phi_features)
 
             # Store the results for later reporting
+            # If antecedents were found, they are stored as such
             if list_of_antecedents:
                 self.semantic_interpretation.add(f'{ps}({list_of_antecedents[0].illustrate()})')
+            else:
+                self.semantic_interpretation.add(self.failed_recovery(unvalued_phi_features))
 
             # Report the results to the log file
             self.report_to_log(list_of_antecedents, unvalued_phi_features)
 
-        # Feature conflicts are not tolerated
+        #
+        # Transfer condition 3. Phi-feature conflicts are not tolerated
+        #
         phi_set = ps.get_phi_set()
         for phi in phi_set:
             if phi[-1] == '*':
                 log(f'\t\t\t\t{ps} induces a phi-feature conflict.')
-                self.transfer_crash = True
+                self.transfer_to_CI_crash = True
                 return
         return
 
     def must_be_valued(self, phi_set):
-        return {phi for phi in phi_set if phi.split(':')[1] == 'DET' or phi.split(':')[1] == 'PER' or phi.split(':')[1] == 'NUM'}
+        return {phi for phi in phi_set if self.relevant_phi_at_LF(phi)}
+
+    # Definition of phi-features that are relevant at LF
+    def relevant_phi_at_LF(self, phi):
+        if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET':
+            return True
+        else:
+            return False
 
     # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
-    # This function will be unified with the binding function below, but for now I will keep them separate
-    # to be able to focus on one problem at a time
-    def search_phi_antecedents(self, ps):
+    def search_phi_antecedents(self, ps, unvalued_phi):
         ps_ = ps
         list_of_antecedents = []
-        while ps_:
-            if ps_.sister() and 'CAT:v' in ps_.sister().features:
-                break
-            if ps_.sister() and not ps_.sister().find_me_elsewhere and self.evaluate_antecedent(ps_.sister(), ps):
-                list_of_antecedents.append(ps_.sister())
-            ps_ = ps_.walk_upstream_geometrically()
-        return list_of_antecedents
+        #
+        # Alternative 1: unvalued per/num features: standard control
+        #
+        if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
+            while ps_:
+                # Termination condition: presence of SEM-external (control boundary)
+                if ps_.sister() and 'SEM:external' in ps_.sister().features:
+                    break
+                # Condition 1. Antecedent must be a sister
+                # Condition 2. The phrase must evaluate as a possible antecedent
+                if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
+                    list_of_antecedents.append(ps_.sister())
+                ps_ = ps_.walk_upstream_geometrically()
+            return list_of_antecedents
+        #
+        # Alternative 2. Only D_ remains unvalued: nonlocal/discourse antecedents
+        #
+        elif 'PHI:DET:_' in unvalued_phi:
+            while ps_:
+                # Termination condition: presence of local specifier
+                # Note: the reason is because any XP containing D can value D_, will be implemented later in this way
+                if ps_.sister() and ps_.sister() == ps.get_local_specifier():
+                    if ps_.sister() and 'CAT:D' not in ps_.sister().get_head().features:
+                        self.semantic_interpretation.add('Generic')
+                        list_of_antecedents.append(ps_.sister())
+                    else:
+                        list_of_antecedents.append(ps_.sister())
+                    break
+                if ps_.sister() and not ps_.sister().find_me_elsewhere and self.evaluate_antecedent(ps_.sister(), ps):
+                    list_of_antecedents.append(ps_.sister())
+                ps_ = ps_.walk_upstream_geometrically()
+            if not list_of_antecedents:
+                log(f'\t\t\t\t\tNo antecedent found, LF-object crashes.')
+                self.transfer_to_CI_crash = True
+            return list_of_antecedents
 
     # Evaluates whether 'probe' could provide semantic support for 'goal'
     def evaluate_antecedent(self, probe, goal):
-        goal_phi_features = {f for f in goal.features if f[:4] == 'PHI:'}
+
+        # A list of all phi-features present at the goal (valued, unvalued)
+        goal_phi_features = {f for f in goal.features if self.relevant_phi_at_LF(f)}
+
+        # A list of unchecked features (all must eventually be checked by the antecedent)
         unchecked_features_at_goal = goal_phi_features.copy()
+
+        # Go through phi-features at the probe
         for probe_feature in probe.get_head().features:
-            # Only phi-features can be used for valuation
+
+            # Only valued phi-features can be used for valuation
             if probe_feature[:4] == 'PHI:' and probe_feature[-1] != '_':
                 for goal_feature in goal_phi_features:
+
                     # Check identical features
                     if goal_feature == probe_feature:
                         unchecked_features_at_goal.discard(goal_feature)  # Check feature
+
                     # Check unvalued features if they could be valued
                     else:
                         if goal_feature[-1] == '_':
@@ -349,21 +425,17 @@ class LF:
         if s:
             log(f'\t\t\t\t\t' + s)
         else:
-            log(f'\t\t\t\t\t{self.conceptual_intentional_system(unvalued_phi_features)}')
+            log(f'\t\t\t\t\t{self.failed_recovery(unvalued_phi_features)}')
         return True
 
     # This function will later be moved to its own class that contains discourse computations.
-    # No it is here to speed up processing
-    def conceptual_intentional_system(self, features):
-        generic_criteria = {'PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'}
-        discourse_criteria = {'PHI:DET:_'}
+    # Now it is here to speed up processing
+    def failed_recovery(self, features):
 
-        if features & generic_criteria == generic_criteria:
-            return '(Generic interpretation)'
-        if features & discourse_criteria == discourse_criteria:
-            self.transfer_crash = True
-            return '(Salient discourse antecedent or ungrammatical if not found)'
-        return '(Cannot be interpreted at C-I, ungrammatical)'
+        if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
+            return 'Generic'
+        else:
+            return 'Cannot be interpreted at C-I'
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.
@@ -423,8 +495,6 @@ class LF:
             else:
                 feature_vector = goal.get_feature_vector()
                 log(f'\t\t\t{goal}<{feature_vector}> failed to tail features {illu(goal.get_tail_sets())}')
-                for head in feature_vector:
-                    log(head.get_pf())
                 return False
 
         else:

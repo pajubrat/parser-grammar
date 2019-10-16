@@ -17,15 +17,15 @@ adora-	:: PF:adora LF:admire CAT:V COMP:D LANG:IT
 asks	:: ask-#v#T/fin#[-s] LANG:EN
 ask-	:: PF:ask LF:ask CAT:V SPEC:D COMP:D SEM:internal LANG:EN
 
-Cen		:: PF:en LF:by CAT:ADV LANG:FI
+Cen		:: PF:en LF:by CAT:ADV -ARG LANG:FI
 
 etsii	:: etsi-#v#T/fin#[-V] LANG:FI
 etsi-	:: PF:etsi LF:search CAT:V !COMP:D LANG:FI COMP:D
 
 etta    :: PF:että LF:that CAT:FORCE LANG:FI
 
-haluaa 	:: halua-#T/fin#[-V] LANG:FI
-haluan	:: halua-#T/fin#[-n] LANG:FI
+haluaa 	:: halua-#v#T/fin#[-V] LANG:FI
+haluan	:: halua-#v#T/fin#[-n] LANG:FI
 halua- 	:: PF:haluaa LF:want CAT:V !COMP:* COMP:D COMP:A/inf SEM:internal LANG:FI
 
 ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
@@ -51,7 +51,7 @@ juokse-	:: PF:juokse- LF:run CAT:V LANG:FI
 istuu	:: istu-#T/fin#[-V] LANG:FI
 istu-	:: PF:istuu LF:sit CAT:V LANG:FI
 
-kaskee	:: kaske-#v#T/fin#[-V] LANG:FI
+kaskee	:: kaske-#v*#T/fin#[-V] LANG:FI
 kaske-	:: PF:kaske LF:order CAT:V !COMP:A/inf SEM:external LANG:FI
 
 keta	:: keta-#D#wh#par#sg#3p#def#hum LANG:FI
@@ -83,18 +83,19 @@ Merja-  :: PF:Merja- CAT:N -SEM:directional LANG:FI
 
 mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
 
-mukavasti	:: PF:mukavasti LF:comfortably CAT:ADV TAIL:CAT:V LANG:FI
+mukavasti :: mukava-#sti
+mukava-	:: PF:mukavasti LF:comfortably CAT:A LANG:FI
 
 Pekka   :: Pekka-#D#nom#sg#3p#def#hum#def LANG:FI -SEM:directional LF:Merja LANG:FI
 Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 
-persuades :: persuade-#v#T/fin#[-s] LANG:EN
+persuades :: persuade-#v*#T/fin#[-s] LANG:EN
 persuade- :: PF:persuade LF:persuade CAT:V COMP:TO/inf SEM:external LANG:EN
 
 promises :: promise-#T/fin#[-s] LANG:EN
 promise- :: PF:promise LF:promise CAT:V SPEC:D COMP:D SEM:internal LANG:EN 
 
-pyytaa	:: pyyta-#v#T/fin#[-V] LANG:FI
+pyytaa	:: pyyta-#v*#T/fin#[-V] LANG:FI
 pyyta-	:: PF:pyyda LF:ask CAT:V LANG:FI
 
 sanon   :: sano-#T/fin#[-n] LANG:FI
@@ -102,6 +103,8 @@ sanoo   :: sano-#T/fin#[-V] LANG:FI
 sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE LANG:FI
 said    :: say-#T/fin#[-0] LANG:EN
 say-    :: PF:say LF:say CAT:V SPEC:D !COMP:FORCE LANG:EN
+
+sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG LANG:FI
 
 tassa	:: tama#P
 tama	:: tama-#D#sg#3p#def
@@ -112,7 +115,7 @@ that    :: PF:that LF:that CAT:FORCE LANG:EN
 tries	:: try-#T/fin#[-s] LANG:EN
 try-	:: PF:try LF:try CAT:V SPEC:D !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
 
-wants	:: want-#T/fin#[-s] LANG:EN
+wants	:: want-#v#T/fin#[-s] LANG:EN
 want-	:: PF:want LF:want CAT:V SPEC:D COMP:TO/inf LANG:EN
 
 yrittaa	:: yritta-#T/fin#[-V] LANG:FI
