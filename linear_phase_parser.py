@@ -115,6 +115,7 @@ class LinearPhaseParser():
 
                     # Add the output (phrase structure) to result list
                     self.result_list.append(ps_)
+                    log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
                     show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried, self.semantic_interpretation)
 
                     self.exit = True    # Knock this out if you want to see all solutions

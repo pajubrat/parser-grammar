@@ -1,6 +1,6 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
-import minimalist
+import phase_structure
 
 class FeatureProcessing():
     def __init__(self):

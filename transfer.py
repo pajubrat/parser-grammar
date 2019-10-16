@@ -1,4 +1,4 @@
-import minimalist
+import phase_structure
 from reconstruction import Reconstruction
 from morphology import Morphology
 from agreement_reconstruction import AgreementReconstruction

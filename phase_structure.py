@@ -291,10 +291,31 @@ class PhraseStructure:
             ps_ = ps_.walk_upstream()
         return count
 
+    # Definition of edge (of head h ('self'))
+    def get_edge(self):
+        if self.is_complex():
+            return None
+
+        if self.is_right():
+            ps_ = self
+        else:
+            ps_ = self.mother
+
+        edge_list = []
+
+        if self.extract_pro():
+            edge_list.append(self.extract_pro())
+
+        while ps_ and ps_.sister() and (ps_.sister().is_left() and ps_.sister().is_complex()):
+            edge_list.append(ps_.sister())
+            ps_ = ps_.walk_upstream()
+
+        return edge_list
+
     # Returns a list of c-commanding complex left phrases up to the next head
     # (Is used only when creating adjuncts, this must be replaced and/or reduced)
     def get_generalized_specifiers(self):
-        if not self.is_primitive():
+        if self.is_complex():
             return None
 
         if self.is_right():
@@ -305,7 +326,7 @@ class PhraseStructure:
         # Specifiers will be collected into this list
         list = []
 
-        while ps_ and ps_.sister() and (ps_.sister().is_left() and not ps_.sister().is_primitive()):
+        while ps_ and ps_.sister() and (ps_.sister().is_left() and ps_.sister().is_complex()):
             list.append(ps_.sister())
             ps_ = ps_.walk_upstream()
 
@@ -356,9 +377,6 @@ class PhraseStructure:
 
                 # Assumption 5. Pro-element is phonologically covert
                 pro.silence_phonologically()
-
-                # Assumption 6. Pro-element is a copy
-                pro.find_me_elsewhere = True
 
                 # Assumption 7. Pro-element can be created only from a consistent phi-set
                 if not pro.phi_conflict():
@@ -440,6 +458,9 @@ class PhraseStructure:
         else:
             return False
 
+    def is_complex(self):
+        return not self.is_primitive()
+
     # Copies a phrase structure
     def copy(self):
         ps_ = PhraseStructure()
@@ -478,10 +499,14 @@ class PhraseStructure:
 
             # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
             if head.external_tail_head_test():
+                # Condition 1. The head requires a mandatory specifier
+                # Condition 2. The specifier exists
                 if '!SPEC:*' in head.features and head.mother.mother and self.get_generalized_specifiers():
+                    # Result. The specifier is eaten inside the adjunct
                     make_adjunct(head.mother.mother)
                     return self.mother.mother
                 else:
+                    # The specifier is not eaten inside the adjunct
                     if head.mother and head.mother.get_head() == head:
                         make_adjunct(head.mother)
                     else:
@@ -490,20 +515,19 @@ class PhraseStructure:
 
             # If the adjunct is still in wrong position, we eat the specifier if accepted
             else:
-                # If potential Spec exists and the head accepts specifiers...
+                # Condition 1. There are specifiers
+                # Condition 2. The head does not reject specifiers
+                # Condition 3. The specifier is accepted by the head
+                # Condition 4. The specifier is not pro/PRO
+                # Condition 5. The head is not marked for -ARG
                 if self.get_generalized_specifiers() and not '-SPEC:*' in head.features and \
                         not set(head.get_not_specs()).intersection(set(self.get_generalized_specifiers()[0].get_labels())) and \
-                        not self.get_generalized_specifiers()[0].is_primitive():
+                        not self.get_generalized_specifiers()[0].is_primitive() and '-ARG' not in self.features:
                     if head.mother.mother:
-                        log(f'{head}: {head.get_generalized_specifiers()}')
                         make_adjunct(head.mother.mother)
                     return self.mother.mother
                 else:
-                    # Do not eat a primitive selector
-                    if head.get_selector() and not head.get_selector().is_primitive():
-                        make_adjunct(head.mother)
-                    else:
-                        make_adjunct(head)
+                    make_adjunct(head.mother)
                     return self.mother
         else:
             make_adjunct(self)
