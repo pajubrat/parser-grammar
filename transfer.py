@@ -1,4 +1,4 @@
-import phase_structure
+import phrase_structure
 from reconstruction import Reconstruction
 from morphology import Morphology
 from agreement_reconstruction import AgreementReconstruction
