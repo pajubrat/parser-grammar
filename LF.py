@@ -252,7 +252,7 @@ class LF:
         self.transfer_to_CI_crash = False
 
         # Construction of semantic interpretation
-        self.semantic_interpretation = self.check_for_transfer(ps)
+        self.semantic_interpretation = sorted(self.check_for_transfer(ps))
 
         # If no semantic interpretation results, transfer crashes
         if not self.semantic_interpretation:
@@ -297,7 +297,7 @@ class LF:
         unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
 
         if unvalued_phi_features:
-            log(f'\t\t\t\t{ps} with {unvalued_phi_features} was associated at LF with:')
+            log(f'\t\t\t\t{ps} with {sorted(unvalued_phi_features)} was associated at LF with:')
 
             # Condition. If unvalued features are detected, they must be supplied with antecedents
             list_of_antecedents = self.search_phi_antecedents(ps, unvalued_phi_features)

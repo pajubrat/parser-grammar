@@ -20,7 +20,7 @@ class AgreementReconstruction():
 
                 # Condition 2. The head requires feature valuation
                 if '-VAL' not in h.features and self.is_unvalued(h):
-                    log(f'\t\t\t\t\t{h} has unvalued phi-features {h.get_unvalued_features()}')
+                    log(f'\t\t\t\t\t{h} has unvalued phi-features {sorted(h.get_unvalued_features())}')
 
                     # The head acquires phi-feature
                     self.acquire_phi(h)
@@ -91,7 +91,7 @@ class AgreementReconstruction():
                         for f in goal.features:
                             if self.phi(f) and self.valued(f):
                                 phi_features.add(f)
-                        return goal, phi_features  # We only consider the first DP
+                        return goal, sorted(phi_features)  # We only consider the first DP
                 ps_ = ps_.walk_downstream()
             return ps_, []
 
@@ -110,7 +110,7 @@ class AgreementReconstruction():
                             # Condition 3. Get valued phi-features from DP
                             if self.phi(f) and self.valued(f):
                                 phi_features.add(f)
-                        return edge_head, phi_features  # We only consider the first DP
+                        return edge_head, sorted(phi_features) # We only consider the first DP
             return None, set()
 
         # ------------ main function 'acquire_phi()' beings here ----------------#

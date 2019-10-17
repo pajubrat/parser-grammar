@@ -37,7 +37,7 @@ class Transfer():
         # Allow each module to operate with the phrase tsructure in a sequence
 
         # Stage 1. Reconstruct head movement
-        log('\t\t\t\thead movement reconstruction:')
+        log('\t\t\t\tHead movement reconstruction:')
         ps, ops = head_movement.reconstruct(ps)
 
         # Stage 2. Reconstruct features
