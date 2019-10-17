@@ -188,7 +188,7 @@ class LexicalInterface:
 
         # ----- Effects of parameters ----- #
 
-        # This will add unvalued (uD, up) for each +ARGG head and promotes ARG also into the status of a label
+        # This will add unvalued (uD, up) for each +ARG head and promotes ARG also into the status of a label
         if 'ARG' in features:
             features.add('CAT:ARG')
             features.add('PHI:PER:_')

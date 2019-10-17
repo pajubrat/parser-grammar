@@ -69,7 +69,6 @@ class AgreementReconstruction():
         # [H [...DP XP]]
         def acquire_from_sister(ps):
 
-            # (This could be defined by means of universal probe-goal search)
             ps_ = ps
             phi_features = set()
 
@@ -94,7 +93,7 @@ class AgreementReconstruction():
                                 phi_features.add(f)
                         return goal, phi_features  # We only consider the first DP
                 ps_ = ps_.walk_downstream()
-            return ps, []
+            return ps_, []
 
         # Operation 2. phi-Agree via edge
         # Acquires phi-features from edge

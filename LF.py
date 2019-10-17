@@ -345,7 +345,7 @@ class LF:
                 # Termination condition: presence of SEM-external (control boundary)
                 if ps_.sister() and 'SEM:external' in ps_.sister().features:
                     break
-                # Condition 1. Antecedent must be a sister
+                # Condition 1. Antecedent must be a sister of the node at the spine we climb up
                 # Condition 2. The phrase must evaluate as a possible antecedent
                 if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
                     list_of_antecedents.append(ps_.sister())
@@ -374,7 +374,7 @@ class LF:
             return list_of_antecedents
 
     # Evaluates whether 'probe' could provide semantic support for 'goal'
-    def evaluate_antecedent(self, probe, goal):
+    def evaluate_antecedent(self, antecedent, goal):
 
         # A list of all phi-features present at the goal (valued, unvalued)
         goal_phi_features = {f for f in goal.features if self.relevant_phi_at_LF(f)}
@@ -383,7 +383,7 @@ class LF:
         unchecked_features_at_goal = goal_phi_features.copy()
 
         # Go through phi-features at the probe
-        for probe_feature in probe.get_head().features:
+        for probe_feature in antecedent.get_head().features:
 
             # Only valued phi-features can be used for valuation
             if probe_feature[:4] == 'PHI:' and probe_feature[-1] != '_':

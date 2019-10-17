@@ -1,5 +1,5 @@
 Parser-Grammar v. 2.x
-2019-10-17 13:40:24.972614
+2019-10-15 15:09:35.874383
 Test sentences from file "Null_subjects_corpus.txt".
 Logs into file "Null_subjects_corpus_log.txt.
 Lexicon from file "lexicon.txt".
@@ -16,7 +16,7 @@ Lexicon from file "lexicon.txt".
 
 [<D mina>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [D Merja-]]]]]]
 'D I T __v admire D  .'
-{'PRO.ihaile-([D Merja-])', 'PRO.v(<D mina>)'}
+{'PRO.v(<D mina>)', 'PRO.ihaile-([D Merja-])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 2.  sina ihailet Merjaa 
@@ -30,14 +30,14 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D han>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [D Merja-]]]]]]
 'D s/he T __v admire D  .'
-{'PRO.ihaile-([D Merja-])', 'PRO.v(<D han>)'}
+{'PRO.v(<D han>)', 'PRO.ihaile-([D Merja-])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 4.  me ihailemme Merjaa 
 
 [<D me>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [D Merja-]]]]]]
 'D we T __v admire D  .'
-{'PRO.ihaile-([D Merja-])', 'PRO.v(<D me>)'}
+{'PRO.v(<D me>)', 'PRO.ihaile-([D Merja-])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 5.  te ihailette Merjaa 
@@ -65,7 +65,7 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [[D you]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [D Mary]]]]]]
 'D you T __v admire D Mary .'
-{'PRO.admire([D Mary])', 'PRO.v([D you])'}
+{'PRO.v([D you])', 'PRO.admire([D Mary])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 9.  he admires Mary 
@@ -86,14 +86,14 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [[D John]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [D Mary]]]]]]
 'D John T __v admire D Mary .'
-{'PRO.admire([D Mary])', 'PRO.v([D John])'}
+{'PRO.v([D John])', 'PRO.admire([D Mary])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 12.  we admire Mary 
 
 [[D we]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [D Mary]]]]]]
 'D we T __v admire D Mary .'
-{'PRO.admire([D Mary])', 'PRO.v([D we])'}
+{'PRO.v([D we])', 'PRO.admire([D Mary])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 13.  you_pl admire Mary 
@@ -107,7 +107,7 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [[D they]:1 [T/fin [(DP):1 [PRO.v [PRO.admire [D Mary]]]]]]
 'D they T __v admire D Mary .'
-{'PRO.admire([D Mary])', 'PRO.v([D they])'}
+{'PRO.v([D they])', 'PRO.admire([D Mary])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 15.  io adoro Luisa 
@@ -121,42 +121,42 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [[D tu]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
 'D you T __v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v([D tu])'}
+{'PRO.v([D tu])', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 17.  lui adora Luisa 
 
 [[D lui]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
 'D he T __v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v([D lui])'}
+{'PRO.v([D lui])', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 18.  lei adora Luisa 
 
 [[D lei]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
 'D she T __v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v([D lei])'}
+{'PRO.v([D lei])', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 19.  noi adoriamo Luisa 
 
 [[D noi]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
 'D we T __v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v([D noi])'}
+{'PRO.v([D noi])', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 20.  voi adorate Luisa 
 
 [[D voi]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
 'D you_pl T __v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v([D voi])'}
+{'PRO.v([D voi])', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 21.  loro adorano Luisa 
 
 [[D loro]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
 'D they T __v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v([D loro])'}
+{'PRO.v([D loro])', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 
@@ -191,35 +191,35 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <D mina>:2]]]]]]
 'D  T __v __admire D I .'
-{'PRO.ihaile-(<D Merja->)', 'PRO.v(<D mina>)'}
+{'PRO.v(<D mina>)', 'PRO.ihaile-(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 34.  Merjaa ihailet sina 
 
 [<D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <D sina>:2]]]]]]
 'D  T __v __admire D you .'
-{'PRO.ihaile-(<D Merja->)', 'PRO.v(<D sina>)'}
+{'PRO.v(<D sina>)', 'PRO.ihaile-(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 35.  Merjaa ihailee han 
 
 [<D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <D han>:2]]]]]]
 'D  T __v __admire D s/he .'
-{'PRO.ihaile-(<D Merja->)', 'PRO.v(<D han>)'}
+{'PRO.v(<D han>)', 'PRO.ihaile-(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 36.  Merjaa ihailemme me 
 
 [<D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <D me>:2]]]]]]
 'D  T __v __admire D we .'
-{'PRO.ihaile-(<D Merja->)', 'PRO.v(<D me>)'}
+{'PRO.v(<D me>)', 'PRO.ihaile-(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 37.  Merjaa ihailette te 
 
 [<D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <D te>:2]]]]]]
 'D  T __v __admire D you .'
-{'PRO.ihaile-(<D Merja->)', 'PRO.v(<D te>)'}
+{'PRO.v(<D te>)', 'PRO.ihaile-(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 38.  Merjaa ihailevat he_FI 
@@ -236,14 +236,14 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D kuka>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.ihaile- [D Merja-]]]]]]
 'D who T __v admire D  .'
-{'PRO.v(<D kuka>)', 'PRO.ihaile-([D Merja-])', '(D)[ABAR:WH] was bound to an operator.'}
+{'(D)[ABAR:WH] was bound to an operator.', 'PRO.v(<D kuka>)', 'PRO.ihaile-([D Merja-])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 40.  keta han ihailee 
 
 [<D ketä>:1 [phi.uWH [<D han>:2 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 PRO.ihaile-]]]]]]]
 'D who  D s/he T __v __admire .'
-{'PRO.ihaile-(<D ketä>)', 'PRO.v(<D han>)', '(D)[ABAR:WH] was bound to an operator.'}
+{'PRO.v(<D han>)', '(D)[ABAR:WH] was bound to an operator.', 'PRO.ihaile-(<D ketä>)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 
@@ -253,7 +253,7 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [[D Pekka]:1 [[phi.T/fin [(DP):1 [PRO.v [PRO.etsi [D Merja-]]]]] <en PRO.juokse->]]
 'D Pekka T __v search D  by run .'
-{'PRO.juokse-([D Pekka])', 'PRO.v([D Pekka])', 'PRO.etsi([D Merja-])'}
+{'PRO.v([D Pekka])', 'PRO.etsi([D Merja-])', 'PRO.juokse-([D Pekka])'}
 Score: -1  (Failed: 1, Discourse plausibility: -0)
 
 42. ? Pekka etsii Merjaa mukavasti 
@@ -309,56 +309,56 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
 'T v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v(T/fin)'}
+{'PRO.v(T/fin)', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 52.  adora Luisa 
 
 [phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
 'T v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v(T/fin)'}
+{'PRO.v(T/fin)', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 53.  adoriamo Luisa 
 
 [phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
 'T v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v(T/fin)'}
+{'PRO.v(T/fin)', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 54.  adorate Luisa 
 
 [phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
 'T v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v(T/fin)'}
+{'PRO.v(T/fin)', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 55.  adorano Luisa 
 
 [phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
 'T v admire D Luisa .'
-{'PRO.adora([D Luisa])', 'PRO.v(T/fin)'}
+{'PRO.v(T/fin)', 'PRO.adora([D Luisa])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 56.  Pekka sanoo etta mina ihailen Merjaa 
 
 [<D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [<D mina>:2 [phi.T/fin [<DP>:2 [PRO.v [PRO.ihaile- [D Merja-]]]]]]]]]]]
 'D Pekka T __say that D I T __v admire D  .'
-{'PRO.v(<D mina>)', 'PRO.ihaile-([D Merja-])', 'PRO.sano-(<D Pekka>)'}
+{'PRO.sano-(<D Pekka>)', 'PRO.v(<D mina>)', 'PRO.ihaile-([D Merja-])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 57.  Pekka sanoo etta ihailen Merjaa 
 
 [<D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [phi.T/fin [PRO.v [PRO.ihaile- [D Merja-]]]]]]]]]
 'D Pekka T __say that T v admire D  .'
-{'PRO.v(T/fin)', 'PRO.ihaile-([D Merja-])', 'PRO.sano-(<D Pekka>)'}
+{'PRO.sano-(<D Pekka>)', 'PRO.v(T/fin)', 'PRO.ihaile-([D Merja-])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 58.  Pekka sanoo etta ihailee Merjaa 
 
 [<D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [pro/x.T/fin [PRO.v [PRO.ihaile- [D Merja-]]]]]]]]]
 'D Pekka T __say that T v admire D  .'
-{'PRO.v(<D Pekka>)', 'PRO.ihaile-([D Merja-])', 'pro/x.T/fin(<D Pekka>)', 'PRO.sano-(<D Pekka>)'}
+{'PRO.sano-(<D Pekka>)', 'pro/x.T/fin(<D Pekka>)', 'PRO.v(<D Pekka>)', 'PRO.ihaile-([D Merja-])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 59. * mina sanon etta ihailee Merjaa 
@@ -367,14 +367,14 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [<D Jukka>:2 [phi.T/fin [<DP>:2 [PRO.sano- [että [pro/x.T/fin [PRO.v [PRO.ihaile- [D Merja-]]]]]]]]]]]]]]
 'D Pekka T __say that D Jukka T __say that T v admire D  .'
-{'pro/x.T/fin(<D Jukka>)', 'PRO.sano-(<D Pekka>)', 'PRO.sano-(<D Jukka>)', 'PRO.v(<D Jukka>)', 'PRO.ihaile-([D Merja-])'}
+{'PRO.sano-(<D Pekka>)', 'PRO.sano-(<D Jukka>)', 'pro/x.T/fin(<D Jukka>)', 'PRO.v(<D Jukka>)', 'PRO.ihaile-([D Merja-])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 61.  we said that I admire Mary 
 
 [[D we]:1 [T/fin [(DP):1 [PRO.say [that [[D I]:2 [T/fin [(DP):2 [PRO.v [PRO.admire [D Mary]]]]]]]]]]]
 'D we T __say that D I T __v admire D Mary .'
-{'PRO.v([D I])', 'PRO.admire([D Mary])', 'PRO.say([D we])'}
+{'PRO.say([D we])', 'PRO.v([D I])', 'PRO.admire([D Mary])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 62. * John said that admire Mary 
@@ -385,14 +385,14 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D Merja->:1 [phi.T/fin [<DP>:2 [PRO.v [<DP>:1 [PRO.ihaile- <D mina>:2]]]]]]
 'D  T __v __admire D I .'
-{'PRO.ihaile-(<D Merja->)', 'PRO.v(<D mina>)'}
+{'PRO.v(<D mina>)', 'PRO.ihaile-(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 65.  Merjaa ihailen 
 
 [<D Merja->:1 [phi.T/fin [PRO.v [<DP>:1 PRO.ihaile-]]]]
 'D  T v __admire .'
-{'PRO.ihaile-(<D Merja->)', 'PRO.v(T/fin)'}
+{'PRO.v(T/fin)', 'PRO.ihaile-(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 
@@ -411,14 +411,14 @@ Score: -2  (Failed: 2, Discourse plausibility: -0)
 
 [[[PRO.P [D tama]]:1 [pro/x.T/fin [(PP):1 PRO.istuu]]] <sti mukavasti>]
 'P D this T __sit by comfortably .'
-{'pro/x.T/fin([P [D tama]])', '(P)([D tama])', 'Generic'}
+{'Generic', 'pro/x.T/fin([P [D tama]])', '(P)([D tama])'}
 Score: -1  (Failed: 1, Discourse plausibility: -0)
 
 69. ? Pekka sanoo etta tassa istuu mukavasti 
 
 [[D Pekka]:1 [[phi.T/fin [(DP):1 [PRO.sano- [että [[PRO.P [D tama]]:2 [pro/x.T/fin [(PP):2 PRO.istuu]]]]]]] <sti mukavasti>]]
 'D Pekka T __say that P D this T __sit by comfortably .'
-{'pro/x.T/fin([P [D tama]])', 'PRO.istuu([D Pekka])', 'PRO.sano-([D Pekka])', '(P)([D tama])', 'Generic'}
+{'PRO.sano-([D Pekka])', 'Generic', 'pro/x.T/fin([P [D tama]])', '(P)([D tama])', 'PRO.istuu([D Pekka])'}
 Score: -2  (Failed: 2, Discourse plausibility: -0)
 
 
@@ -438,7 +438,7 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.v* [PRO.kaske [<D Merja->:2 [A/inf [<DP>:2 PRO.lahtea]]]]]]]]
 'D Pekka T __v* order D  A/inf __leave .'
-{'PRO.v*(<D Pekka>)', 'PRO.lahtea(<D Merja->)', 'Generic'}
+{'PRO.v*(<D Pekka>)', 'Generic', 'PRO.lahtea(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 72. * Pekka haluaa Merjan lahtea 
@@ -456,7 +456,7 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.v [PRO.haluaa [<D Merja->:2 [phi.vAn [<DP>:2 PRO.lahtea]]]]]]]]
 'D Pekka T __v want D  VA __leave .'
-{'PRO.v(<D Pekka>)', 'PRO.lahtea(<D Merja->)', 'PRO.haluaa([<D Merja-> [vAn [<D Merja-> lahtea]]])'}
+{'PRO.v(<D Pekka>)', 'PRO.haluaa([<D Merja-> [vAn [<D Merja-> lahtea]]])', 'PRO.lahtea(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 76. * Pekka yrittaa Merjan lahtevan 
@@ -467,28 +467,28 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.yritta [A/inf PRO.lahtea]]]]]
 'D Pekka T __try A/inf leave .'
-{'PRO.lahtea(<D Pekka>)', 'PRO.yritta(<D Pekka>)'}
+{'PRO.yritta(<D Pekka>)', 'PRO.lahtea(<D Pekka>)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 79.  John wants to_inf leave 
 
 [[D John]:1 [T/fin [(DP):1 [PRO.v [PRO.want [to PRO.leave]]]]]]
 'D John T __v want TO/inf leave .'
-{'PRO.want([D John])', 'PRO.v([D John])', 'PRO.leave([D John])'}
+{'PRO.v([D John])', 'PRO.want([D John])', 'PRO.leave([D John])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 80.  John wants Mary to_inf leave 
 
 [[D John]:1 [T/fin [(DP):1 [PRO.v [PRO.want [[D Mary] [to PRO.leave]]]]]]]
 'D John T __v want D Mary TO/inf leave .'
-{'PRO.want([D John])', 'PRO.leave([D Mary])', 'PRO.v([D John])'}
+{'PRO.v([D John])', 'PRO.want([D John])', 'PRO.leave([D Mary])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 81.  John tries to_inf leave 
 
 [[D John]:1 [T/fin [(DP):1 [PRO.try [to PRO.leave]]]]]
 'D John T __try TO/inf leave .'
-{'PRO.leave([D John])', 'PRO.try([D John])'}
+{'PRO.try([D John])', 'PRO.leave([D John])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 82. * John tries Mary to_inf leave 
@@ -497,14 +497,14 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [[D John]:1 [T/fin [(DP):1 [PRO.v [PRO.ask [[D Mary] <to PRO.leave>]]]]]]
 'D John T __v ask D Mary TO/inf leave .'
-{'PRO.leave([D John])', 'PRO.v([D John])', 'PRO.ask([[D Mary] <to leave>])'}
+{'PRO.v([D John])', 'PRO.ask([[D Mary] <to leave>])', 'PRO.leave([D John])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 84.  John persuades Mary to_inf leave 
 
 [[D John]:1 [T/fin [(DP):1 [PRO.v* [PRO.persuade [[D Mary]:2 [to [(DP):2 PRO.leave]]]]]]]]
 'D John T __v* persuade D Mary TO/inf __leave .'
-{'PRO.leave([D Mary])', 'PRO.v*([D John])', 'Generic'}
+{'PRO.v*([D John])', 'Generic', 'PRO.leave([D Mary])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 85. * John persuades to_inf leave 
@@ -513,7 +513,7 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [[D John]:1 [T/fin [(DP):1 [PRO.promise [[D Mary] <to PRO.leave>]]]]]
 'D John T __promise D Mary TO/inf leave .'
-{'PRO.leave([D John])', 'PRO.promise([[D Mary] <to leave>])'}
+{'PRO.promise([[D Mary] <to leave>])', 'PRO.leave([D John])'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 87.  John promises to_inf leave 
@@ -537,21 +537,21 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [phi.T/fin [<DP>:1 [PRO.v* [PRO.kaske [<D Merja->:2 [A/inf [<DP>:2 [PRO.lahtea <D Pekka>:1]]]]]]]]
 'T __v* order D  A/inf __leave D Pekka .'
-{'PRO.v*(<D Pekka>)', 'PRO.lahtea(<D Merja->)', 'Generic'}
+{'PRO.v*(<D Pekka>)', 'Generic', 'PRO.lahtea(<D Merja->)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 90. ? kaskee Pekka Merjan lahtea 
 
 [phi.T/fin [<DP>:1 [PRO.v* [PRO.kaske [<D Pekka>:1 [<D Merja->:2 [A/inf [<DP>:2 PRO.lahtea]]]]]]]]
 'T __v* order D Pekka D  A/inf __leave .'
-{'PRO.v*(<D Pekka>)', 'PRO.lahtea(<D Merja->)', 'Generic'}
+{'PRO.v*(<D Pekka>)', 'Generic', 'PRO.lahtea(<D Merja->)'}
 Score: -1.0  (Failed: 0, Discourse plausibility: -1.0)
 
 91. ? kaskee Merjan Pekka lahtea 
 
 [phi.T/fin [<DP>:1 [PRO.v* [PRO.kaske [<D Merja->:2 [<D Pekka>:1 [A/inf [<DP>:2 PRO.lahtea]]]]]]]]
 'T __v* order D  D Pekka A/inf __leave .'
-{'PRO.v*(<D Pekka>)', 'PRO.lahtea(<D Merja->)', 'Generic'}
+{'PRO.v*(<D Pekka>)', 'Generic', 'PRO.lahtea(<D Merja->)'}
 Score: -1.0  (Failed: 0, Discourse plausibility: -1.0)
 
 
@@ -568,7 +568,7 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [[to PRO.leave]:1 [T/fin [(INFP):1 [PRO.be [a mistake]]]]]
 'TO/inf leave T __be a mistake .'
-{'PRO.be([a mistake])', 'Generic'}
+{'Generic', 'PRO.be([a mistake])'}
 Score: -4  (Failed: 0, Discourse plausibility: -4)
 
 
@@ -578,7 +578,7 @@ Score: -4  (Failed: 0, Discourse plausibility: -4)
 
 [[D Pekka]:1 [[phi.T/fin [(DP):1 [PRO.v [PRO.etsi [D Merja-]]]]] <en PRO.juokse->]]
 'D Pekka T __v search D  by run .'
-{'PRO.juokse-([D Pekka])', 'PRO.v([D Pekka])', 'PRO.etsi([D Merja-])'}
+{'PRO.v([D Pekka])', 'PRO.etsi([D Merja-])', 'PRO.juokse-([D Pekka])'}
 Score: -1  (Failed: 1, Discourse plausibility: -0)
 
 
@@ -588,7 +588,7 @@ Score: -1  (Failed: 1, Discourse plausibility: -0)
 
 [phi.T/fin [PRO.v [PRO.haluaa [A/inf PRO.lahtea]]]]
 'T v want A/inf leave .'
-{'PRO.lahtea(T/fin)', 'PRO.v(T/fin)', 'PRO.haluaa(T/fin)'}
+{'PRO.v(T/fin)', 'PRO.haluaa(T/fin)', 'PRO.lahtea(T/fin)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 96. * haluaa lahtea 
@@ -597,18 +597,6 @@ Score: 0  (Failed: 0, Discourse plausibility: -0)
 
 [<D Pekka>:1 [phi.T/fin [<DP>:1 [PRO.sano- [että [pro/x.T/fin [PRO.v [PRO.haluaa [A/inf PRO.lahtea]]]]]]]]]
 'D Pekka T __say that T v want A/inf leave .'
-{'PRO.sano-(<D Pekka>)', 'PRO.haluaa(<D Pekka>)', 'PRO.lahtea(<D Pekka>)', 'pro/x.T/fin(<D Pekka>)', 'PRO.v(<D Pekka>)'}
+{'PRO.sano-(<D Pekka>)', 'pro/x.T/fin(<D Pekka>)', 'PRO.v(<D Pekka>)', 'PRO.haluaa(<D Pekka>)', 'PRO.lahtea(<D Pekka>)'}
 Score: 0  (Failed: 0, Discourse plausibility: -0)
-
-
-& Group 5 Miscellanous tests
-
-98.  io adoro* Luisa 
-
-[[D I]:1 [phi.T/fin [(DP):1 [PRO.v [phi.adora [D Luisa]]]]]]
-'D I T __v admire D Luisa .'
-{'PRO.v([adora [D Luisa]])'}
-Score: 0  (Failed: 0, Discourse plausibility: -0)
-
-99. * io adoro** Luisa 
 
