@@ -1,4 +1,4 @@
-import phase_structure
+import phrase_structure
 import json
 import sys
 import logging
@@ -159,7 +159,7 @@ class interface:
 
         if id in self.Dictionary.keys():
             for word in self.Dictionary.get(id):
-                ps = phase_structure.PhraseStructure()
+                ps = phrase_structure.PhraseStructure()
                 ps.features = word.features
                 ps.morphology = word.morphology
 
@@ -170,7 +170,7 @@ class interface:
 
                 word_list.append(ps)
         else:
-            ps = phase_structure.PhraseStructure()
+            ps = phrase_structure.PhraseStructure()
             ps.features = {'PF:?', 'CAT:?'}  # If the word is not found, we will still create it
             ps.morphology = id
             word_list = [ps]

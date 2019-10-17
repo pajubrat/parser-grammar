@@ -1,6 +1,6 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
-import phase_structure
+import phrase_structure
 
 class HeadMovement():
     def __init__(self, context):
