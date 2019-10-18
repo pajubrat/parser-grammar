@@ -10,7 +10,7 @@ from head_movement import HeadMovement
 from feature_disambiguation import FeatureProcessing
 
 
-# Transfer performs a mapping from phrase structure object into LF-object
+# Transfer performs a normalization mapping from phrase structure object into LF-object
 # Its function is to repair the first pass parse from errors
 class Transfer():
 
@@ -34,7 +34,7 @@ class Transfer():
         phrasal_movement = self.phrasal_movement_module
         agreement = self.agreement_module
 
-        # Allow each module to operate with the phrase tsructure in a sequence
+        # Allow each module to operate with the phrase structure in a sequence
 
         # Stage 1. Reconstruct head movement
         log('\t\t\t\tHead movement reconstruction:')
