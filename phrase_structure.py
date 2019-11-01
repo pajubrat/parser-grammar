@@ -1,36 +1,43 @@
-# This modular and class defines basic linguistic competence, i.e. phrase structures and operations on phrase structure
+# This class defines basic linguistic competence, i.e. phrase structures and operations on phrase structure
 from support import log
 from LF import LF
 
 major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'INF'}
 
-# Class phrase structure
+# Definitions and methods for phrase structures
 class PhraseStructure:
 
     # Constituent constructor, Merge[A B]
     def __init__(self, left_constituent=None, right_constituent=None):
 
         # Merge(A,B)
+        # Definition for simple Merge(A, B) that extents the structure
+        # A = left constituent, B = right constituent
+        #
+        # Property 1. Constituents
+        #
         self.left_const = left_constituent
         self.right_const = right_constituent
+        #
+        # Property 2. Mother-of relations
+        #
         if self.left_const:
             self.left_const.mother = self
         if self.right_const:
             self.right_const.mother = self
         self.mother = None
 
-        # Default feature set
-        self.features = set()   # Feature set
+        # Feature are stored as a set of grammatical objects.
+        self.features = set()
         self.morphology = ''
-        self.internal = False   # Tells if the constituent is word-internal
-        self.adjunct = False    # Marks the constituent as an adjunct
+        self.internal = False   # Tells if the constituent is word-internal; a more intuitive implementation is required
+        self.adjunct = False    # Whether the constituent is stored in the secondary working space (i.e. is an adjunct)
 
-        # This tells if the constituent has been re-merged into another position
-        # When False, the constituent should in its canonical first-Merge position
-        # This feature will be replaced in a fully modular architecture
+        # This feature is set if the constituent is copied into another location.
+        # A better implementation would be one in which this property is derived from the modular architecture
         self.find_me_elsewhere = False
 
-        # This name is used to identify chains for output, it has not other function
+        # This name is used to identify chains for output purposes.
         self.identity = ''      # A unique handler/name for the constituent
         self.rebaptized = False # Support variable used in the creation of chain numbering
 
@@ -67,10 +74,11 @@ class PhraseStructure:
         else:
             return None
 
+    # Countercyclic merge
     # Merges 'ps' to 'self' at 'direction, i.e. H.merge(G, 'right'') = [H G]
     def merge(self, ps, direction='right'):
 
-        new_ps = None               # The resulting new complex constituent
+        new_ps = None               # The new complex constituent that will result in the operation
         left = False
         right = False
 
@@ -82,7 +90,9 @@ class PhraseStructure:
 
         old_mother = self.mother    # Store link between mother and self
 
-        # Create new constituent
+        #
+        # Condition 1. Create new constituent
+        #
         if direction == 'left':
             new_ps = PhraseStructure(ps, self)          # An elementary Merge operation
         if direction == 'right':
@@ -92,7 +102,9 @@ class PhraseStructure:
                 new_ps.adjunct = True
                 self.adjunct = False
 
-        # Put the new constituent countercyclically into the tree into the position of original 'self'
+        #
+        # Condition 2. Put the new constituent counter-cyclically into the tree into the position of original 'self'
+        #
         if right:
             old_mother.right_const = new_ps
         if left:
@@ -116,7 +128,7 @@ class PhraseStructure:
 
         return self.get_top()
 
-    # Reductive definition for EPP
+    # Reductive definition for the (weak and strong) EPP
     def EPP(self):
         for f in self.features:
             if f == 'SPEC:*' or f == '!SPEC:*':
@@ -154,7 +166,7 @@ class PhraseStructure:
 
         return self_copy
 
-    # Removes an element from the phrase structure
+    # Definition for an operation that removes an element from the phrase structure
     def remove(self):
         mother = self.mother
         sister = self.geometrical_sister()
@@ -262,7 +274,7 @@ class PhraseStructure:
                 self.mother.sister() and \
                 not self.mother.adjunct and \
                 self.mother.sister().is_left() and \
-                not self.mother.sister().is_primitive():
+                self.mother.sister().is_complex():
             # Checks that the head projects, not the left branch (in which case the head is inside right adjunct)
             if self.mother.mother.get_head() == self.get_head():
                 return self.mother.sister()

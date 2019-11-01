@@ -243,12 +243,19 @@ class LinearPhaseParser():
             # Check the left branch 'site' in Merge(site, W) for LF-legibility
             if not site.is_primitive():
 
-                # Drop all constituents before check
+                #
+                # Presupposition. Drop all constituents before check
+                #
                 set_logging(False)
                 dropped = self.transfer_to_lf(site.copy())
 
                 # Test LF-legibility, only inspect tests which cannot be repaired later
+                # Take the test
                 lf_test = dropped.LF_legibility_test()
+                # Condition for filtering
+                # Condition 1. The LF-legibility test fails
+                # Condition 2. W is not adjoinable
+                # Condition 3. probe-goal test, head-integrity test and criterial feature test all failed.
                 if lf_test.fail() and not (
                         w.is_adjoinable() and  # This condition because Merge(site, W) may be cancelled if W = adjunct
                         lf_test.probe_goal_test_result and
