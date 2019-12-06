@@ -1,7 +1,670 @@
 Linear phase parser v. 3.x
-2019-12-06 08:38:15.359998
+2019-12-06 20:52:51.884388
 Test sentences from file "clitics_corpus.txt".
 Logs into file "clitics_corpus_log.txt.
 Lexicon from file "lexicon.txt".
-1. * loro devono mi#lavare 
+
+& Group 0. Test preparation (basic grammatical functions test)
+
+
+& Group 0.1 Grammatical
+
+
+& Group 0.1.1 Lexical items and argument structures
+
+1.  lavano Luisa 
+
+[phi.T/fin [PRO.v [PRO.lava [D Luisa]]]]
+['PRO.lava([D Luisa])', 'PRO.v(T/fin)']
+
+
+2.  loro lavano Luisa 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.lava [D Luisa]]]]]]
+['PRO.lava([D Luisa])', 'PRO.v([D loro])']
+
+
+3.  loro devono lavare Luisa 
+
+[[D loro]:1 [phi.deva [(DP):1 [phi.are [(DP):1 [PRO.v [PRO.lava [D Luisa]]]]]]]]
+['PRO.lava([D Luisa])', 'PRO.v([D loro])']
+
+
+4.  loro hanno lavato Luisa 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [phi.T/prt [PRO.v [PRO.lava [D Luisa]]]]]]]]
+['PRO.ha([D loro])', 'PRO.lava([D Luisa])', 'PRO.v([D loro])', 'Person feature is missing']
+
+
+5.  io ho lavato Luisa 
+
+[[D io]:1 [phi.T/fin [(DP):1 [PRO.ha [phi.T/prt [PRO.v [PRO.lava [D Luisa]]]]]]]]
+['PRO.ha([D io])', 'PRO.lava([D Luisa])', 'PRO.v([D io])', 'phi.T/prt([D io])']
+
+
+6.  loro hanno voluto lavare Luisa 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [PRO.T/prt [PRO.v [PRO.volu [PRO.are [PRO.v [PRO.lava [D Luisa]]]]]]]]]]]
+['PRO.T/prt([D loro])', 'PRO.are([D loro])', 'PRO.ha([D loro])', 'PRO.lava([D Luisa])', 'PRO.v([D loro])', 'PRO.volu([D loro])']
+
+
+7.  loro stanno lavando Luisa 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.sta [PRO.PRG [PRO.v [PRO.lava [D Luisa]]]]]]]]
+['PRO.PRG([D loro])', 'PRO.lava([D Luisa])', 'PRO.sta([D loro])', 'PRO.v([D loro])']
+
+
+
+& Group 0.1.2 Agreement paradigms and pronouns
+
+8.  io adoro Luisa 
+
+[[D io]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
+['PRO.adora([D Luisa])', 'PRO.v([D io])']
+
+
+9.  tu adori Luisa 
+
+[[D tu]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
+['PRO.adora([D Luisa])', 'PRO.v([D tu])']
+
+
+10.  lui adora Luisa 
+
+[[D lui]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
+['PRO.adora([D Luisa])', 'PRO.v([D lui])']
+
+
+11.  lei adora Luisa 
+
+[[D lei]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
+['PRO.adora([D Luisa])', 'PRO.v([D lei])']
+
+
+12.  noi adoriamo Luisa 
+
+[[D noi]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
+['PRO.adora([D Luisa])', 'PRO.v([D noi])']
+
+
+13.  voi adorate Luisa 
+
+[[D voi]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
+['PRO.adora([D Luisa])', 'PRO.v([D voi])']
+
+
+14.  loro adorano Luisa 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.adora [D Luisa]]]]]]
+['PRO.adora([D Luisa])', 'PRO.v([D loro])']
+
+
+
+& Group 0.1.3 pro-drop tests
+
+15.  adoro Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
+['PRO.adora([D Luisa])', 'PRO.v(T/fin)']
+
+
+16.  adori Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
+['PRO.adora([D Luisa])', 'PRO.v(T/fin)']
+
+
+17.  adora Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
+['PRO.adora([D Luisa])', 'PRO.v(T/fin)']
+
+
+18.  adora Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
+['PRO.adora([D Luisa])', 'PRO.v(T/fin)']
+
+
+19.  adoriamo Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
+['PRO.adora([D Luisa])', 'PRO.v(T/fin)']
+
+
+20.  adorate Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
+['PRO.adora([D Luisa])', 'PRO.v(T/fin)']
+
+
+21.  adorano Luisa 
+
+[phi.T/fin [PRO.v [PRO.adora [D Luisa]]]]
+['PRO.adora([D Luisa])', 'PRO.v(T/fin)']
+
+
+22.  lavano Luisa 
+
+[phi.T/fin [PRO.v [PRO.lava [D Luisa]]]]
+['PRO.lava([D Luisa])', 'PRO.v(T/fin)']
+
+
+23.  devono lavare Luisa 
+
+[phi.deva [PRO.are [PRO.v [PRO.lava [D Luisa]]]]]
+['PRO.are(deva)', 'PRO.lava([D Luisa])', 'PRO.v(deva)']
+
+
+24.  hanno lavato Luisa 
+
+[phi.T/fin [PRO.ha [phi.T/prt [PRO.v [PRO.lava [D Luisa]]]]]]
+['PRO.ha(T/fin)', 'PRO.lava([D Luisa])', 'PRO.v(T/fin)', 'Person feature is missing']
+
+
+25.  ho lavato Luisa 
+
+[phi.T/fin [PRO.ha [phi.T/prt [PRO.v [PRO.lava [D Luisa]]]]]]
+['PRO.ha(T/fin)', 'PRO.lava([D Luisa])', 'PRO.v(T/fin)', 'phi.T/prt(T/fin)']
+
+
+26.  hanno voluto lavare Luisa 
+
+[phi.T/fin [PRO.ha [PRO.T/prt [PRO.v [PRO.volu [PRO.are [PRO.v [PRO.lava [D Luisa]]]]]]]]]
+['PRO.T/prt(T/fin)', 'PRO.are(T/fin)', 'PRO.ha(T/fin)', 'PRO.lava([D Luisa])', 'PRO.v(T/fin)', 'PRO.volu(T/fin)']
+
+
+27.  stanno lavando Luisa 
+
+[phi.T/fin [PRO.sta [PRO.PRG [PRO.v [PRO.lava [D Luisa]]]]]]
+['PRO.PRG(T/fin)', 'PRO.lava([D Luisa])', 'PRO.sta(T/fin)', 'PRO.v(T/fin)']
+
+
+
+& Group 0.2 Ungrammatical
+
+
+& Group 0.2.1 Finie agreement errors
+
+28. * io adori Luisa 
+
+29. * io adora Luisa 
+
+30. * io adorate Luisa 
+
+31. * io adorano Luisa 
+
+
+& Group 0.2.2 Partial agreement errors
+
+32. * loro hanno lavata Luisa 
+
+
+& Group 0.2.3 Word order errors
+
+33. ? loro Luisa lavano 
+
+[[[D loro] <D Luisa>]:1 [phi.T/fin [(DP):1 [PRO.v PRO.lava]]]]
+['PRO.lava([[D loro] <D Luisa>])', 'PRO.v([[D loro] <D Luisa>])']
+
+
+34. ? loro Luisa devono lavare 
+
+[[[D loro] <D Luisa>]:1 [phi.deva [(DP):1 [phi.are [(DP):1 [PRO.v PRO.lava]]]]]]
+['PRO.lava([[D loro] <D Luisa>])', 'PRO.v([[D loro] <D Luisa>])']
+
+
+35.  loro hanno Luisa lavare 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [[D Luisa]:2 [phi.are [(DP):2 [PRO.v PRO.lava]]]]]]]]
+['PRO.ha([[D Luisa] [are [[D Luisa] [v lava]]]])', 'PRO.lava([D Luisa])', 'PRO.v([D Luisa])']
+
+
+36. ? loro Luisa hanno voluto lavare 
+
+[[[D loro] <D Luisa>]:1 [phi.T/fin [(DP):1 [PRO.ha [PRO.T/prt [PRO.v [PRO.volu [PRO.are [PRO.v PRO.lava]]]]]]]]]
+['PRO.T/prt([[D loro] <D Luisa>])', 'PRO.are([[D loro] <D Luisa>])', 'PRO.ha([[D loro] <D Luisa>])', 'PRO.lava([[D loro] <D Luisa>])', 'PRO.v([[D loro] <D Luisa>])', 'PRO.volu([[D loro] <D Luisa>])']
+
+
+37.  loro hanno Luisa voluto lavare 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [[D Luisa]:2 [phi.T/prt [(DP):2 [PRO.v [PRO.volu [PRO.are [PRO.v PRO.lava]]]]]]]]]]]
+['PRO.are([D Luisa])', 'PRO.ha([[D Luisa] [T/prt [[D Luisa] [v [volu [are [v lava]]]]]]])', 'PRO.lava([D Luisa])', 'PRO.v([D Luisa])', 'PRO.volu([D Luisa])']
+
+
+38.  loro hanno voluto Luisa lavare 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [PRO.T/prt [PRO.v [PRO.volu [[D Luisa]:2 [phi.are [(DP):2 [PRO.v PRO.lava]]]]]]]]]]]
+['PRO.T/prt([D loro])', 'PRO.ha([D loro])', 'PRO.lava([D Luisa])', 'PRO.v([D Luisa])', 'PRO.v([D loro])', 'PRO.volu([[D Luisa] [are [[D Luisa] [v lava]]]])']
+
+
+39. ? loro Luisa stanno lavando 
+
+[[[D loro] <D Luisa>]:1 [phi.T/fin [(DP):1 [PRO.sta [PRO.PRG [PRO.v PRO.lava]]]]]]
+['PRO.PRG([[D loro] <D Luisa>])', 'PRO.lava([[D loro] <D Luisa>])', 'PRO.sta([[D loro] <D Luisa>])', 'PRO.v([[D loro] <D Luisa>])']
+
+
+40.  loro stanno Luisa lavando 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.sta [[D Luisa]:2 [phi.PRG [(DP):2 [PRO.v PRO.lava]]]]]]]]
+['PRO.lava([D Luisa])', 'PRO.sta([[D Luisa] [PRG [[D Luisa] [v lava]]]])', 'PRO.v([D Luisa])']
+
+
+
+& Group 1. Direct accusative clitics
+
+
+& Group 1.1 Grammatical (pro-drop and no pro-drop)
+
+41.  loro mi#lavano 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.lava [D mi(cl)]]]]]]
+['PRO.lava([D mi(cl)])', 'PRO.v([D loro])']
+
+
+42.  mi#lavano 
+
+[phi.T/fin [PRO.v [PRO.lava [D mi(cl)]]]]
+['PRO.lava([D mi(cl)])', 'PRO.v(T/fin)']
+
+
+43.  loro la#lavano 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.lava [D la(cl)]]]]]]
+['PRO.lava([D la(cl)])', 'PRO.v([D loro])']
+
+
+44.  la#lavano 
+
+[phi.T/fin [PRO.v [PRO.lava [D la(cl)]]]]
+['PRO.lava([D la(cl)])', 'PRO.v(T/fin)']
+
+
+45.  loro lo#lavano 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.lava [D lo(cl)]]]]]]
+['PRO.lava([D lo(cl)])', 'PRO.v([D loro])']
+
+
+46.  lo#lavano 
+
+[phi.T/fin [PRO.v [PRO.lava [D lo(cl)]]]]
+['PRO.lava([D lo(cl)])', 'PRO.v(T/fin)']
+
+
+
+& Group 1.2 Ungrammatical
+
+47. * loro lavano#mi 
+
+48. * lavano#mi 
+
+49. * loro#mi lavano 
+
+50. * mi#loro lavano 
+
+
+& Group 2 Two-verb structures with direct object clitics
+
+
+& Group 2.1 Grammatical
+
+
+& Group 2.1.1 hanno + lavato
+
+51.  loro mi#hanno lavato 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [[D mi(cl)]:2 [phi.T/prt [PRO.v [PRO.lava (DP):2]]]]]]]]
+['PRO.ha([[D mi(cl)] [T/prt [v [lava [D mi(cl)]]]]])', 'PRO.lava([D mi(cl)])', 'PRO.v(T/prt)']
+
+
+52.  loro la#hanno lavata 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [[D la(cl)]:2 [T/prt [PRO.v [PRO.lava (DP):2]]]]]]]]
+['PRO.ha([[D la(cl)] [T/prt [v [lava [D la(cl)]]]]])', 'PRO.lava([D la(cl)])', 'PRO.v(T/prt)']
+
+
+53.  mi#hanno lavato 
+
+[phi.T/fin [PRO.ha [[D mi(cl)]:1 [phi.T/prt [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.ha([[D mi(cl)] [T/prt [v [lava [D mi(cl)]]]]])', 'PRO.lava([D mi(cl)])', 'PRO.v(T/prt)']
+
+
+54.  la#hanno lavata 
+
+[phi.T/fin [PRO.ha [[D la(cl)]:1 [T/prt [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.ha([[D la(cl)] [T/prt [v [lava [D la(cl)]]]]])', 'PRO.lava([D la(cl)])', 'PRO.v(T/prt)']
+
+
+55.  lo#hanno lavato 
+
+[phi.T/fin [PRO.ha [[D lo(cl)]:1 [phi.T/prt [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.ha([[D lo(cl)] [T/prt [v [lava [D lo(cl)]]]]])', 'PRO.lava([D lo(cl)])', 'PRO.v(T/prt)']
+
+
+
+& Group 2.1.2 devono + lavare
+
+56.  loro mi#devono lavare 
+
+[[D loro]:1 [phi.deva [[D mi(cl)]:2 [phi.are [(DP):1 [PRO.v [PRO.lava (DP):2]]]]]]]
+['PRO.lava([D mi(cl)])', 'PRO.v([D loro])']
+
+
+57.  loro devono lavare#mi 
+
+[[D loro]:1 [phi.deva [[D mi(cl)]:2 [phi.are [(DP):1 [PRO.v [PRO.lava (DP):2]]]]]]]
+['PRO.lava([D mi(cl)])', 'PRO.v([D loro])']
+
+
+58. * loro devono mi#lavare 
+
+59.  loro la#devono lavare 
+
+[[D loro]:1 [phi.deva [[D la(cl)]:2 [phi.are [(DP):1 [PRO.v [PRO.lava (DP):2]]]]]]]
+['PRO.lava([D la(cl)])', 'PRO.v([D loro])']
+
+
+60.  loro devono lavare#la 
+
+[[D loro]:1 [phi.deva [[D la(cl)]:2 [phi.are [(DP):1 [PRO.v [PRO.lava (DP):2]]]]]]]
+['PRO.lava([D la(cl)])', 'PRO.v([D loro])']
+
+
+61. * loro devono la#lavare 
+
+62.  loro lo#devono lavare 
+
+[[D loro]:1 [phi.deva [[D lo(cl)]:2 [phi.are [(DP):1 [PRO.v [PRO.lava (DP):2]]]]]]]
+['PRO.lava([D lo(cl)])', 'PRO.v([D loro])']
+
+
+63.  loro devono lavare#lo 
+
+[[D loro]:1 [phi.deva [[D lo(cl)]:2 [phi.are [(DP):1 [PRO.v [PRO.lava (DP):2]]]]]]]
+['PRO.lava([D lo(cl)])', 'PRO.v([D loro])']
+
+
+64. * loro devono lo#lavare 
+
+
+& Group 2.1.3 stanno + lavando
+
+65.  loro mi#stanno lavando 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.sta [[D mi(cl)]:2 [phi.PRG [PRO.v [PRO.lava (DP):2]]]]]]]]
+['PRO.lava([D mi(cl)])', 'PRO.sta([[D mi(cl)] [PRG [v [lava [D mi(cl)]]]]])', 'PRO.v(PRG)']
+
+
+66.  mi#stanno lavando 
+
+[phi.T/fin [PRO.sta [[D mi(cl)]:1 [phi.PRG [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.lava([D mi(cl)])', 'PRO.sta([[D mi(cl)] [PRG [v [lava [D mi(cl)]]]]])', 'PRO.v(PRG)']
+
+
+67.  la#stanno lavando 
+
+[phi.T/fin [PRO.sta [[D la(cl)]:1 [phi.PRG [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.lava([D la(cl)])', 'PRO.sta([[D la(cl)] [PRG [v [lava [D la(cl)]]]]])', 'PRO.v(PRG)']
+
+
+68.  lo#stanno lavando 
+
+[phi.T/fin [PRO.sta [[D lo(cl)]:1 [phi.PRG [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.lava([D lo(cl)])', 'PRO.sta([[D lo(cl)] [PRG [v [lava [D lo(cl)]]]]])', 'PRO.v(PRG)']
+
+
+69.  loro stanno lavando#mi 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.sta [[D mi(cl)]:2 [phi.PRG [PRO.v [PRO.lava (DP):2]]]]]]]]
+['PRO.lava([D mi(cl)])', 'PRO.sta([[D mi(cl)] [PRG [v [lava [D mi(cl)]]]]])', 'PRO.v(PRG)']
+
+
+70.  stanno lavando#mi 
+
+[phi.T/fin [PRO.sta [[D mi(cl)]:1 [phi.PRG [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.lava([D mi(cl)])', 'PRO.sta([[D mi(cl)] [PRG [v [lava [D mi(cl)]]]]])', 'PRO.v(PRG)']
+
+
+71.  stanno lavando#la 
+
+[phi.T/fin [PRO.sta [[D la(cl)]:1 [phi.PRG [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.lava([D la(cl)])', 'PRO.sta([[D la(cl)] [PRG [v [lava [D la(cl)]]]]])', 'PRO.v(PRG)']
+
+
+72.  stanno lavando#lo 
+
+[phi.T/fin [PRO.sta [[D lo(cl)]:1 [phi.PRG [PRO.v [PRO.lava (DP):1]]]]]]
+['PRO.lava([D lo(cl)])', 'PRO.sta([[D lo(cl)] [PRG [v [lava [D lo(cl)]]]]])', 'PRO.v(PRG)']
+
+
+
+& Group 2.2 Ungrammatical
+
+
+& Group 2.2.1 Clitic in wrong positon
+
+
+& Group 2.2.1.1 hanno + lavato
+
+73. * loro hanno mi#lavato 
+
+74. * loro hanno la#lavato 
+
+75. * hanno mi#lavato 
+
+76. * io sono#mi lavato 
+
+77. * loro hanno lo#lavato 
+
+78. * hanno lo#lavato 
+
+79. * hanno la#lavato 
+
+80. * loro hanno lavato#mi 
+
+81. * loro hanno lavato#la 
+
+82. * loro hanno lavato#lo 
+
+83. * mi#io sono lavato 
+
+84. * io#mi sono lavato 
+
+85. * loro#mi hanno lavato 
+
+86. * la#io sono lavato 
+
+87. * io#la sono lavato 
+
+88. * loro#la hanno lavato 
+
+89. * lo#io sono lavato 
+
+90. * io#lo sono lavato 
+
+91. * loro#lo hanno lavato 
+
+92. * io sono#la lavata 
+
+93. * io sono#lo lavato 
+
+
+& Group 2.2.1.2 devono + lavare
+
+94. * loro devono mi#lavare 
+
+95. * loro#mi devono lavare 
+
+96. * loro devono la#lavare 
+
+97. * loro#la devono lavare 
+
+98. * loro#lo devono lavare 
+
+
+& Group 2.2.1.3 stanno + lavando
+
+99. * loro stanno mi#lavando 
+
+100. * stanno mi#lavando 
+
+101. * stanno la#lavando 
+
+102. * stanno lo#lavando 
+
+103. * loro#mi stanno lavando 
+
+104. * loro#la stanno lavando 
+
+105. * loro#lo stanno lavando 
+
+
+& Group 2.2.2 Agreement errors between CL and V
+
+106. * loro la#hanno lavato 
+
+107. * loro mi#hanno lavata 
+
+108. * loro lo#hanno lavata 
+
+
+& Group 2.2.3 Agreement errors and clitic placement errors
+
+109. * loro hanno la#lavato 
+
+110. * loro hanno lo#lavato 
+
+111. * loro hanno lavato#la 
+
+112. * loro hanno lavato#lo 
+
+
+& Group 2.2.3 Correct clitic placement but wrong word order
+
+113. * mi#hanno loro lavato 
+
+114. * la#hanno loro lavata 
+
+115. ? mi#devono loro lavare 
+
+[phi.deva [[[D mi(cl)] <D loro>]:1 [phi.are [PRO.v [PRO.lava (DP):1]]]]]
+['PRO.lava([[D mi(cl)] <D loro>])', 'PRO.v(are)']
+
+
+116. * devono loro lavare#mi 
+
+117. * devono loro mi#lavare 
+
+118. ? la#devono loro lavare 
+
+[phi.deva [[[D la(cl)] <D loro>]:1 [phi.are [PRO.v [PRO.lava (DP):1]]]]]
+['PRO.lava([[D la(cl)] <D loro>])', 'PRO.v(are)']
+
+
+119. * devono loro lavare#la 
+
+120. * devono loro la#lavare 
+
+121. ? lo#devono loro lavare 
+
+[phi.deva [[[D lo(cl)] <D loro>]:1 [phi.are [PRO.v [PRO.lava (DP):1]]]]]
+['PRO.lava([[D lo(cl)] <D loro>])', 'PRO.v(are)']
+
+
+122. * devono loro lavare#lo 
+
+123. * devono loro lo#lavare 
+
+
+& Group 3 Aux + T/prt + ARE/inf
+
+
+& Group 3.1 Grammatical
+
+124.  loro mi#hanno voluto lavare 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [[D mi(cl)]:2 [phi.T/prt [PRO.v [PRO.volu [(DP):2 [phi.are [PRO.v [PRO.lava (DP):2]]]]]]]]]]]]
+['PRO.ha([[D mi(cl)] [T/prt [v [volu [[D mi(cl)] [are [v [lava [D mi(cl)]]]]]]]]])', 'PRO.lava([D mi(cl)])', 'PRO.v(T/prt)', 'PRO.v(are)', 'PRO.volu([[D mi(cl)] [are [v [lava [D mi(cl)]]]]])']
+
+
+125.  loro hanno voluto lavare#mi 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [PRO.T/prt [PRO.v [PRO.volu [[D mi(cl)]:2 [phi.are [PRO.v [PRO.lava (DP):2]]]]]]]]]]]
+['PRO.T/prt([D loro])', 'PRO.ha([D loro])', 'PRO.lava([D mi(cl)])', 'PRO.v([D loro])', 'PRO.v(are)', 'PRO.volu([[D mi(cl)] [are [v [lava [D mi(cl)]]]]])']
+
+
+126.  mi#hanno voluto lavare 
+
+[phi.T/fin [PRO.ha [[D mi(cl)]:1 [phi.T/prt [PRO.v [PRO.volu [(DP):1 [phi.are [PRO.v [PRO.lava (DP):1]]]]]]]]]]
+['PRO.ha([[D mi(cl)] [T/prt [v [volu [[D mi(cl)] [are [v [lava [D mi(cl)]]]]]]]]])', 'PRO.lava([D mi(cl)])', 'PRO.v(T/prt)', 'PRO.v(are)', 'PRO.volu([[D mi(cl)] [are [v [lava [D mi(cl)]]]]])']
+
+
+127.  hanno voluto lavare#mi 
+
+[phi.T/fin [PRO.ha [PRO.T/prt [PRO.v [PRO.volu [[D mi(cl)]:1 [phi.are [PRO.v [PRO.lava (DP):1]]]]]]]]]
+['PRO.T/prt(T/fin)', 'PRO.ha(T/fin)', 'PRO.lava([D mi(cl)])', 'PRO.v(T/fin)', 'PRO.v(are)', 'PRO.volu([[D mi(cl)] [are [v [lava [D mi(cl)]]]]])']
+
+
+
+& Group 3.2 Ungrammatical
+
+
+& Group 3.2.1 Wrong clitic placemenet
+
+128. * loro hanno mi#voluto lavare 
+
+129. * loro hanno voluto mi#lavare 
+
+130. * loro#mi hanno volute lavare 
+
+131. * mi#loro hanno volute lavere 
+
+132. * hanno mi#voluto lavare 
+
+133. * hanno voluto mi#lavare 
+
+
+& Group 4. Indirect clitics and clitic clusters
+
+
+& Group 4.1 Grammatical indirect (dative) clitics
+
+134.  loro gli#lavano Luisa 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.v [PRO.lava [[PRO.P [D lo(cl)]] <D Luisa>]]]]]]
+['PRO.P([D lo(cl)])', 'PRO.lava([D loro])', 'PRO.v([D loro])']
+
+
+135.  gli#lavano Luisa 
+
+[phi.T/fin [PRO.v [PRO.lava [[PRO.P [D lo(cl)]] <D Luisa>]]]]
+['PRO.P([D lo(cl)])', 'PRO.lava(T/fin)', 'PRO.v(T/fin)']
+
+
+
+& Group 4.2 Clitic clusters
+
+136. ? loro gli#la#hanno lavata 
+
+[[D loro]:1 [phi.T/fin [(DP):1 [PRO.ha [[D la(cl)]:2 [<PRO.P [D lo(cl)]>:3 [T/prt [[PRO.v [PRO.lava (DP):2]] <PP>:3]]]]]]]]
+['(P)([D lo(cl)])', 'PRO.ha([[D la(cl)] [<P [D lo(cl)]> [T/prt [[v [lava [D la(cl)]]] <P [D lo(cl)]>]]]])', 'PRO.lava([D la(cl)])', 'PRO.v(T/prt)']
+
+
+137. ? gli#la#hanno lavata 
+
+[phi.T/fin [PRO.ha [[D la(cl)]:1 [<PRO.P [D lo(cl)]>:2 [T/prt [[PRO.v [PRO.lava (DP):1]] <PP>:2]]]]]]
+['(P)([D lo(cl)])', 'PRO.ha([[D la(cl)] [<P [D lo(cl)]> [T/prt [[v [lava [D la(cl)]]] <P [D lo(cl)]>]]]])', 'PRO.lava([D la(cl)])', 'PRO.v(T/prt)']
+
+
+
+& Group 4.3 Ungrammatical clitic clusters
+
+138. * loro la#gli#hanno lavata 
+
+139. * la#gli#hanno lavata 
+
+140. * loro hanno gli#la#lavata 
+
+141. * hanno gli#la#lavata 
 

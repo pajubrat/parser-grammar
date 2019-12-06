@@ -77,11 +77,12 @@ lahtevan :: lahte-#VA/inf LANG:FI
 lahte- 	:: PF:lahtea LF:leave CAT:V SPEC:D COMP:PP LANG:FI
 
 lavano	:: lava-#v#T/fin#[-no] LANG:IT
-lava-	:: PF:lava LF:wash !COMP:D CAT:V LANG:IT
+lava-	:: PF:lava LF:wash COMP:D CAT:V SPEC:P LANG:IT
 lavato	:: lava-#v#to#sg#m#def LANG:IT
 lavata	:: lava-#v#to#sg#f#def#1p#2p#3p LANG:IT
 lavare	:: lava-#v#ARE/inf LANG:IT
 lavati	:: lava-#v#to#pl LANG:IT
+lavando	:: lava-#v#ndo LANG:IT
 
 leave	:: PF:leave LF:leave CAT:V !SPEC:D LANG:EN
 
@@ -122,6 +123,9 @@ sanoo   :: sano-#T/fin#[-V] LANG:FI
 sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE LANG:FI
 said    :: say-#T/fin#[-0] LANG:EN
 say-    :: PF:say LF:say CAT:V SPEC:D !COMP:FORCE LANG:EN
+
+stanno	:: sta-#T/fin#[-no] LANG:IT
+sta-	:: CAT:V PF:sta LF:stay SPEC:D COMP:PRG
 
 sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG LANG:FI
 
@@ -201,6 +205,9 @@ la		:: la-#D#sg#3p#def#hum#f#cl#acc CAT:CL
 la-		:: PF:la(cl) LF:her CAT:N CAT:PHI CAT:CL LANG:IT
 lo		:: lo-#D#sg#3p#def#hum#m#cl#acc CAT:CL
 lo-		:: PF:lo(cl) LF:him CAT:N CAT:PHI CAT:CL LANG:IT
+gli		:: lo-#D#sg#3p#def#hum#m#cl#P#dat CAT:CL
+ci		:: ci-#D#sg#3p#def#hum#m#cl#dat CAT:CL
+ci-		:: PF:ci LF:there CAT:N CAT:PHI LANG:IT
 
 # AGREEMENT (PHI) SUFFIXES
 # Finnish
@@ -229,3 +236,4 @@ lo-		:: PF:lo(cl) LF:him CAT:N CAT:PHI CAT:CL LANG:IT
 to_inf	:: CAT:INF CAT:TO/inf PF:to LF:TO/inf ?ARG
 VA/inf  :: CAT:INF CAT:VA/inf PF:vAn LF:VA 
 to		:: CAT:T CAT:T/prt PF:T/prt LF:T/prt
+ndo		:: ARG VAL CAT:INF CAT:PRG PF:PRG LF:ing

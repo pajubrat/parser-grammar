@@ -31,7 +31,7 @@ P 	:: CAT:P PF:P LF:P
 # Pronominal items
 pro	:: pro-#D
 pro-	:: PF:(pro) LF:pro CAT:N CAT:PHI
-cl	:: - CAT:CL LEFT:T/fin RIGHT:ARE/inf
+cl	:: - CAT:CL LEFT:CAT:T/fin RIGHT:CAT:ARE/inf RIGHT:CAT:PRG LEFT:CAT:D
 inc	:: - INCORPORATED
 
 # Phi-features
@@ -49,11 +49,12 @@ f	::	- PHI:GEN:F
 n 	::  - PHI:GEN:N
 
 # Structural Case
-nom   	:: - TAIL:ARG,VAL,CAT:FIN
-gen     :: - TAIL:ARG,VAL,CAT:INF
-par   	:: - TAIL:ARG,-VAL
-acc		:: - TAIL:ARG,-VAL -FLOAT
-asp		:: - TAIL:ARG,ASP
+nom   	:: - TAIL:ARG,VAL,CAT:FIN NOM
+gen     :: - TAIL:ARG,VAL,CAT:INF GEN
+par   	:: - TAIL:ARG,-VAL PAR
+acc		:: - TAIL:ARG,-VAL -FLOAT ACC
+dat		:: - TAIL:CAT:v DAT
+asp		:: - TAIL:ARG,ASP ASP
 pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH
 wh     	:: - CAT:WH

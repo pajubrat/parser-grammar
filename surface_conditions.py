@@ -31,17 +31,25 @@ class SurfaceConditions:
 
         clitic_head = test_constituent.get_head()
         if 'CAT:CL' in clitic_head.features:
-            selector = clitic_head.get_selector()
-            left_incorporation_labels = {feature[5:] for feature in clitic_head.features if feature[:5] == 'LEFT:'}
-            right_incorporation_labels = {feature[6:] for feature in clitic_head.features if feature[:6] == 'RIGHT:'}
+            constituent_to_left = self.get_left(clitic_head)
+            left_incorporation_features = {feature[5:] for feature in clitic_head.features if feature[:5] == 'LEFT:'}
+            right_incorporation_features = {feature[6:] for feature in clitic_head.features if feature[:6] == 'RIGHT:'}
 
-            if selector and selector.get_labels() & left_incorporation_labels and 'INCORPORATED' in selector.features:
+            if constituent_to_left and constituent_to_left.get_head().features & left_incorporation_features and 'INCORPORATED' in constituent_to_left.get_head().features:
                 return True
 
-            if test_constituent.get_container_head().get_labels() & right_incorporation_labels and 'INCORPORATED' in clitic_head.features:
+            if test_constituent.get_container_head().features & right_incorporation_features and 'INCORPORATED' in clitic_head.features:
                 return True
 
             return False  # if not licensed
 
         return True  # if not a clitic
+
+    def get_left(self, ps):
+        ps_ = ps
+        while ps_:
+            if ps_.sister() and ps_.sister().is_left():
+                return ps_.sister()
+            ps_ = ps_.walk_upstream()
+        return None
 
