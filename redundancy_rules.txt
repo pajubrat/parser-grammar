@@ -18,16 +18,15 @@
 #			-COMP:*		don't accept complements		(recursion stopper -- not attested?) 
 #			COMP:*		accept anything as complement	(completely ignorant -- not attested?)
 
-#			PHI			Is the head phi-active?
-#			VAL			Does the head value phi-features (+VAL) or use antecedent mechansim (-VAL)
-#			0MOR		Does the head combine with phi-set (+MOR) or not (-MOR)
+#			ARG			Is the head phi-active?
+#			VAL			Does the head value phi-features (VAL) or use antecedent mechansim (-VAL)
 
 # Basic lexical categories
 CAT:FORCE :: -ARG -VAL CAT:FIN !COMP:* -SPEC:* !PROBE:CAT:T/fin
 CAT:C/fin :: -ARG VAL CAT:FIN !COMP:* COMP:T/fin !PROBE:CAT:FIN -SPEC:T/fin -SPEC:C/fin -SPEC:N COMP:Neg/fin
-CAT:T/fin :: CAT:T ARG VAL CAT:FIN !COMP:* COMP:v COMP:V COMP:D !PROBE:CAT:V -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V SPEC:TO/inf
+CAT:T/fin :: CAT:T ARG VAL CAT:FIN !COMP:* COMP:T COMP:v COMP:V COMP:D !PROBE:CAT:V -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V SPEC:TO/inf
 CAT:Neg/fin :: ARG VAL CAT:FIN CAT:NEG COMP:T -SPEC:T -SPEC:T/fin %SPEC:INF
-CAT:T	:: ARG !COMP:* COMP:v COMP:V !PROBE:CAT:V -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:D
+CAT:T	:: ARG VAL !COMP:* COMP:v COMP:V !PROBE:CAT:V -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:D
 CAT:v   :: ARG -VAL !COMP:* COMP:V !PROBE:CAT:V !SPEC:D -SPEC:N
 CAT:V   :: ARG -VAL -SPEC:T/fin -SPEC:FORCE SPEC:ADV -COMP:N -COMP:V SPEC:P COMP:P SPEC:TO/inf
 CAT:D   :: -ARG VAL !COMP:* -SPEC:N -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:CAT:N

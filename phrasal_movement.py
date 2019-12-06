@@ -58,23 +58,37 @@ class PhrasalMovement():
         else:
             ps = h
 
-        # Select the target from memory buffer if applicable
-        target_const = self.fit_spec(h)
+        # Try to fit each element in the memory buffer and select first that matches
+        # Condition 1. Label must be selected
+        # Condition 2. The head should not have non-adjuncts specifiers already
+        # Condition 3. No head-tail violations can occur
+        specs = self.get_specifiers(h)
+        for const in self.memory_buffer:
 
-        # Transfer it from memory buffer into phrase structure
-        if target_const:
+            # Condition 1: h must select the label of the constituent in the memory buffer
+            if self.spec_match(h, const):
 
-            # Try to merge it to Spec
-            ps.merge(target_const.transfer(self.babtize()), 'left')
-            # Check that this does not cause tail-head violations
-            if ps.geometrical_sister().get_head().external_tail_head_test(): # Checks the head of the dropped constituent
-                log(f'\t\t\t\t\tDropping constituent {target_const} from memory buffer into Spec of ' + f'{h}')
-                log(f'\t\t\t\t\tResult {ps.get_top()}')
-                self.memory_buffer.remove(target_const)
-                self.number_of_Moves += 1
-            else:
-                # If there was a tail-head violation, dropping is cancelled
-                ps.geometrical_sister().remove()
+                # Condition 2: h must not have non-adjunct specifiers already
+                if not specs or (specs and specs[0].adjunct):
+
+                    target_const = const
+                    # Condition 3: the constituent must not cause tail violations
+                    # Try to merge it to Spec
+                    # Check that this does not cause tail-head violations
+                    ps.merge(target_const.copy(), 'left')
+                    if ps.geometrical_sister().get_head().external_tail_head_test():  # Checks the head of the dropped constituent
+                        log(f'\t\t\t\t\tDropping constituent {target_const} from memory buffer into Spec of ' + f'{h}')
+                        log(f'\t\t\t\t\tResult {ps.get_top()}')
+                        # Replace the hypothetical candidate with proper chain
+                        ps.geometrical_sister().remove()
+                        new_const = target_const.transfer(self.babtize())
+                        ps.merge(new_const, 'left')
+                        self.memory_buffer.remove(target_const)
+                        self.number_of_Moves += 1
+                        break
+                    else:
+                        # If there was a tail-head violation, dropping is cancelled
+                        ps.geometrical_sister().remove()
 
     #
     # Case 2. Store specifier into memory buffer
@@ -111,6 +125,7 @@ class PhrasalMovement():
                             # ...we put a pointer to the specifier into memory buffer.
                             list_.append(_ps_spec_iterator.sister())
                             log(f'\t\t\t\t\tMoving \"' + _ps_spec_iterator.sister().spellout() + f'\" into memory buffer from SPEC of \"{h}\".')
+
                         #... if it is a PHI:0 head...
                         else:
 
@@ -378,42 +393,6 @@ class PhrasalMovement():
                     return True
         return False
 
-    # This function returns a pointer to a constituent in the memory buffer if it should/could be become SPEC,hP
-    def fit_spec(self, h):
-
-        # Retrieve the list of specifiers for h
-        specs = self.get_specifiers(h)
-
-        # This is the pointer to memory buffer constituent that is selected for merge
-        # None, if nothing is selected
-        target_const = None
-
-        # To preserve working code I keep here the old and just add the required extra condition;
-        # these can later be merged into one simple code
-
-        # No SPEC situation
-        if not specs:
-            # Select the first possible Spec constituent from memory buffer
-            for const in self.memory_buffer:
-                # Check if SPEC,h could accept the constituent from memory, take the first match
-                if self.spec_match(h, const) and not target_const:
-                    target_const = const
-                # Check if SPEC,h is an EPP position todo this no longer work, must be reworked
-                if 'PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
-                    target_const = const
-        # The second option is "tucking in": to insert SPEC and push adjuncts upwards
-        else:
-            if specs[0].adjunct:
-                for const in self.memory_buffer:
-                    # Check if SPEC,h could accept the constituent from memory, take the first match
-                    if self.spec_match(h, const) and not target_const:
-                        target_const = const
-                    # Check if SPEC,h is a EPP position
-                    if 'PHI' in h.features and 'PHI:0' in h.features and 'CAT:D' in const.features and not target_const:
-                        target_const = const
-
-        return target_const
-
     # This will promote a phi set (if any) into tail features
     # (Not correct, only relates to Italian postverbal subjects.)
     def promote_phi_set(self, ps):
@@ -430,3 +409,5 @@ class PhrasalMovement():
     def get_specifiers(self, h):
         specs = h.get_generalized_specifiers()
         return [spec for spec in specs if not spec.is_primitive()]
+
+

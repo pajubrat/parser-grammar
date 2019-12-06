@@ -79,17 +79,26 @@ class LexicalInterface:
         """
         internal = False
         # Word-internal pronouncing is marked by $ by morphological decomposing
-        if key.startswith('$'):
-            key = key[1:]
+        # Here it is removed and converted into a feature
+        internal = False
+        incorporated = False
+        if key.endswith('$'):
+            key = key[:-1]
             internal = True
+        if key.endswith('_'):
+            key = key[:-1]
+            incorporated = True
         if key in self.d:
             word_list = [const.copy() for const in self.d[key]]
             if internal:
                 for const in word_list:
                     # Mark this constituent (if not inflectional) as word-internal,
-                    # so that it's adjunction option is always COMP
+                    # so that it's merge solution is always COMP
                     if const.morphology:
                         const.internal = True
+            if incorporated:
+                for const in word_list:
+                    const.incorporated = True
         else:
             const = self.PhraseStructure()
             const.features = {'PF:?', 'CAT:X'}  # If the word is not found, we will still create it
@@ -188,12 +197,16 @@ class LexicalInterface:
 
         # ----- Effects of parameters ----- #
 
-        # This will add unvalued (uD, up) for each +ARG head and promotes ARG also into the status of a label
+        # This will add unvalued (D_, PHI_) for each +ARG head and promotes ARG also into the status of a label
+        # ARG:  uninterpretable phi-set, unsaturated predicate
+        # VAL:  whether agreement reconstruction can value D_, PHI_
         if 'ARG' in features:
             features.add('CAT:ARG')
-            features.add('PHI:PER:_')
-            features.add('PHI:NUM:_')
             features.add('PHI:DET:_')
+            if 'NO_NUMBER' not in features:
+                features.add('PHI:NUM:_')
+            if 'NO_PERSON' not in features:
+                features.add('PHI:PER:_')
             if gender:
                 features.add('PHI:GEN:_')
             if 'VAL' in features:

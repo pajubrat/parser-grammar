@@ -32,7 +32,7 @@ from LanguageGuesser import LanguageGuesser
 from context import Context
 
 # Name of the corpus file
-test_set_name = 'Null_subjects_corpus.txt'
+test_set_name = 'clitics_corpus.txt'
 
 # Name of the lexicon file
 lexicon_file_name = 'lexicon.txt'
@@ -70,6 +70,8 @@ print(datetime.datetime.now())
 print('Loading test sentences from file \"' + test_set_name + '\".')
 print(f'Logs will be written to file {log_file_name}.')
 print(f'Lexicon will be read from file {lexicon_file_name}.')
+print(f'UG morphemes will be read from {ug_morphemes}')
+print(f'Redundancy rules from {redundancy_rules}')
 
 # Read the corpus file
 #   Ignore empty lines and comments
@@ -115,16 +117,11 @@ logging.basicConfig(level=logging.INFO, filename=log_file_name, filemode='w', fo
 
 # Print parameters to console
 print()
-print('Loading test sentences from file \"' + test_set_name + '\".')
-print(f'Logs will be written to file {log_file_name}.')
-print('Lexicon will be read from file \"' + test_set_name[:-4] + '_lexicon.lex\".')
-print(f'Lexicon from \"{context.lexicon_file_name}\"')
-print(f'UG morphemes from \"{context.ug_morpheme_file}\"')
-print(f'Redundancy rules from \"{context.redundancy_rule_file}\"')
+
 
 # Create the output file
 results_file = open(results_file_name, "w")
-results_file.write('Parser-Grammar v. 2.x\n')
+results_file.write('Linear phase parser v. 3.x\n')
 results_file.write(str(datetime.datetime.now())+'\n')
 results_file.write(f'Test sentences from file \"{test_set_name}\".\n')
 results_file.write(f'Logs into file \"{log_file_name}.\n')
@@ -142,7 +139,7 @@ not_parsed = []
 
 # Parsing loop
 for sentence in parse_list[start:]:
-    print(str(count))
+    print(str(count) + ', ' + f'{sentence}')
 
     # Sentences beginning with & will be written to the log file as such
     if sentence[0] != '&':
@@ -200,11 +197,12 @@ for sentence in parse_list[start:]:
             # Print the result into the results file
             parse = P.result_list[0]
             results_file.write(f'{parse}\n')
-            results_file.write('\''+parse.gloss()+'.\'\n')
+            # results_file.write('\''+parse.gloss()+'.\'\n')
             results_file.write(str(P.semantic_interpretation) + '\n')
-            results_file.write('Score: ' + str(P.score) + '  (')
-            results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
-            results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
+            # results_file.write('Score: ' + str(P.score) + '  (')
+            # results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
+            # results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
+            results_file.write('\n\n')
     else:
         results_file.write('\n'+' '.join(map(str, sentence))+'\n\n')
 

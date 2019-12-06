@@ -103,8 +103,8 @@ class AgreementReconstruction():
                 for edge in edge_list:
                     edge_head = edge.get_head()
                     # Condition 1. The element must be D(P)
-                    # Condition 2. The element must not have moved away
-                    if 'CAT:D' in edge_head.features and not edge.find_me_elsewhere:
+                    # Condition 2. The element must not be an adjunct
+                    if 'CAT:D' in edge_head.features and not edge.adjunct:
                         phi_features = set()
                         for f in edge_head.features:
                             # Condition 3. Get valued phi-features from DP
@@ -117,23 +117,23 @@ class AgreementReconstruction():
 
         phi_features = set()
 
-        #
-        # Operation 1. Acquire phi-features by phi-Agree
-        #
-        goal, phi_features = acquire_from_sister(h.sister())    # Acquire phi-features
-        for phi in phi_features:                                # Try to value
-            if value(h, phi):
-                log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
 
         #
-        # Operation 2. If there are unvalued features left, try edge-Agree
+        # Operation 1. Try edge-Agree
+        #
+        goal, phi_features = acquire_from_edge(h)
+        for phi in phi_features:
+            if value(h, phi):
+                log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' from the edge of {h}.')
+
+        #
+        # Operation 2. Acquire phi-features by phi-Agree
         #
         if self.is_unvalued(h):
-            # Condition 2. Acquire phi-features from SPEC
-            goal, phi_features = acquire_from_edge(h)
-            for phi in phi_features:
+            goal, phi_features = acquire_from_sister(h.sister())  # Acquire phi-features
+            for phi in phi_features:  # Try to value
                 if value(h, phi):
-                    log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' from the edge of {h}.')
+                    log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
 
         # --------------- main function ends ---------------------------------------#
 

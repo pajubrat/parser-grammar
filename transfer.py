@@ -9,7 +9,6 @@ from floater_movement import FloaterMovement
 from head_movement import HeadMovement
 from feature_disambiguation import FeatureProcessing
 
-
 # Transfer performs a normalization mapping from phrase structure object into LF-object
 # Its function is to repair the first pass parse from errors
 class Transfer():
@@ -37,24 +36,29 @@ class Transfer():
         # Allow each module to operate with the phrase structure in a sequence
 
         # Stage 1. Reconstruct head movement
-        log('\t\t\t\tHead movement reconstruction:')
+        log('\t\t\t\t1. Head movement reconstruction:')
         ps, ops = head_movement.reconstruct(ps)
+        log(f'\t\t\t\t\t={ps}')
 
         # Stage 2. Reconstruct features
-        log('\t\t\t\tFeature processing:')
+        log('\t\t\t\t2. Feature processing:')
         feature_process.disambiguate(ps)
+        log(f'\t\t\t\t\t={ps}')
 
         # Stage 3. Reconstruct floater movement
-        log('\t\t\t\tFloater movement reconstruction:')
+        log('\t\t\t\t3. Floater movement reconstruction:')
         floater_movement.reconstruct(ps)
+        log(f'\t\t\t\t\t={ps}')
 
         # Stage 4. Reconstruct phrasal movement
-        log('\t\t\t\tPhrasal movement reconstruction:')
+        log('\t\t\t\t4. Phrasal movement reconstruction:')
         phrasal_movement.reconstruct(ps)
+        log(f'\t\t\t\t\t={ps}')
 
         # Stage 5. Reconstruct agreement
-        log('\t\t\t\tAgreement reconstruction:')
+        log('\t\t\t\t5. Agreement reconstruction:')
         agreement.reconstruct(ps)
+        log(f'\t\t\t\t\t={ps}')
 
         return ps
 

@@ -33,8 +33,6 @@ class FloaterMovement():
                 self.number_of_Moves += 1
             _ps_iterator = _ps_iterator.walk_downstream()
 
-        log(f'\t\t\t\t\t= ' + ps.illustrate())
-
     # Definition for floater that requires reconstruction
     def detect_floater(self, _ps_iterator):
 

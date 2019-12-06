@@ -23,6 +23,9 @@ ask-	:: PF:ask LF:ask CAT:V SPEC:D COMP:D SEM:internal LANG:EN
 
 Cen		:: PF:en LF:by CAT:ADV -ARG LANG:FI
 
+devono :: deva#[-no]
+deva	:: CAT:T/fin PF:deva LF:must !COMP:ARE/inf ARE LANG:IT
+
 etsii	:: etsi-#v#T/fin#[-V] LANG:FI
 etsi-	:: PF:etsi LF:search CAT:V !COMP:D LANG:FI COMP:D
 
@@ -31,6 +34,10 @@ etta    :: PF:että LF:that CAT:FORCE LANG:FI
 haluaa 	:: halua-#v#T/fin#[-V] LANG:FI
 haluan	:: halua-#v#T/fin#[-n] LANG:FI
 halua- 	:: PF:haluaa LF:want CAT:V !COMP:* COMP:D COMP:A/inf SEM:internal LANG:FI
+
+hanno	:: ha-#T/fin#[-no] LANG:IT
+ho		:: ha-#T/fin#[-o] LANG:IT
+ha-		:: CAT:V PF:ha LF:have SPEC:D COMP:T
 
 ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
 ihailet	:: ihaile-#v#T/fin#[-t] LANG:FI
@@ -68,6 +75,14 @@ lahtea 	:: lahte-#A/inf LANG:FI
 lahtemaan :: lahte-#MA/inf LANG:FI
 lahtevan :: lahte-#VA/inf LANG:FI
 lahte- 	:: PF:lahtea LF:leave CAT:V SPEC:D COMP:PP LANG:FI
+
+lavano	:: lava-#v#T/fin#[-no] LANG:IT
+lava-	:: PF:lava LF:wash !COMP:D CAT:V LANG:IT
+lavato	:: lava-#v#to#sg#m#def LANG:IT
+lavata	:: lava-#v#to#sg#f#def#1p#2p#3p LANG:IT
+lavare	:: lava-#v#ARE/inf LANG:IT
+lavati	:: lava-#v#to#pl LANG:IT
+
 leave	:: PF:leave LF:leave CAT:V !SPEC:D LANG:EN
 
 like-   :: PF:like LF:like CAT:V !COMP:D LANG:EN
@@ -119,6 +134,9 @@ that    :: PF:that LF:that CAT:FORCE LANG:EN
 tries	:: try-#T/fin#[-s] LANG:EN
 try-	:: PF:try LF:try CAT:V SPEC:D !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
 
+voluto	:: volu-#v#to LANG:IT
+volu-	:: CAT:V PF:volu LF:want !COMP:*
+
 wants	:: want-#v#T/fin#[-s] LANG:EN
 want-	:: PF:want LF:want CAT:V SPEC:D COMP:TO/inf LANG:EN
 
@@ -161,7 +179,7 @@ it		:: it-#D#sg#3p#def#n LANG:EN
 it-		:: PF:it LF:it/that CAT:D LANG:EN
 
 # Italian
-io		:: I-#D#sg#1p#def#hum#n
+io		:: io-#D#sg#1p#def#hum#n
 io-		:: PF:io LF:I CAT:N CAT:PHI LANG:IT 
 tu		:: tu-#D#sg#2p#def#hum#n
 tu- 	:: PF:tu LF:you CAT:N CAT:PHI LANG:IT
@@ -175,6 +193,14 @@ voi		:: voi-#D#pl#2p#def#hum#n
 voi-	:: PF:voi LF:you_pl CAT:N CAT:PHI LANG:IT
 loro	:: loro-#D#pl#3p#def#n LANG:EN
 loro-	:: PF:loro LF:they CAT:N CAT:PHI LANG:IT
+
+# Italian clitics
+mi		:: mi-#D#sg#1p#def#hum#m#cl#acc CAT:CL
+mi-		:: PF:mi(cl) LF:me CAT:N CAT:PHI CAT:CL LANG:IT
+la		:: la-#D#sg#3p#def#hum#f#cl#acc CAT:CL
+la-		:: PF:la(cl) LF:her CAT:N CAT:PHI CAT:CL LANG:IT
+lo		:: lo-#D#sg#3p#def#hum#m#cl#acc CAT:CL
+lo-		:: PF:lo(cl) LF:him CAT:N CAT:PHI CAT:CL LANG:IT
 
 # AGREEMENT (PHI) SUFFIXES
 # Finnish
@@ -199,7 +225,7 @@ loro-	:: PF:loro LF:they CAT:N CAT:PHI LANG:IT
 
 # PROPER NAMES
 
-
 # PARTICLES
 to_inf	:: CAT:INF CAT:TO/inf PF:to LF:TO/inf ?ARG
 VA/inf  :: CAT:INF CAT:VA/inf PF:vAn LF:VA 
+to		:: CAT:T CAT:T/prt PF:T/prt LF:T/prt

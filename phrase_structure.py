@@ -32,6 +32,7 @@ class PhraseStructure:
         self.morphology = ''
         self.internal = False   # Tells if the constituent is word-internal; a more intuitive implementation is required
         self.adjunct = False    # Whether the constituent is stored in the secondary working space (i.e. is an adjunct)
+        self.incorporated = False  # Tells if the constituent was incorporated
 
         # This feature is set if the constituent is copied into another location.
         # A better implementation would be one in which this property is derived from the modular architecture
@@ -163,7 +164,6 @@ class PhraseStructure:
 
         # Neutralize the original
         remove_tail_features(self)         # Remove tail-features from the original
-
         return self_copy
 
     # Definition for an operation that removes an element from the phrase structure
@@ -322,7 +322,7 @@ class PhraseStructure:
             edge_list.append(ps_.sister())
             ps_ = ps_.walk_upstream()
 
-        return edge_list
+        return edge_list[::-1]
 
     # Returns a list of c-commanding complex left phrases up to the next head
     # (Is used only when creating adjuncts, this must be replaced and/or reduced)
@@ -347,6 +347,12 @@ class PhraseStructure:
                 list.append(self.extract_pro())
 
         return list
+
+    def get_container_head(self):
+        if self.mother:
+            return self.mother.get_head()
+        else:
+            return self.get_head()
 
     # Definition for phi-feature conflict
     def phi_conflict(self):

@@ -1,0 +1,397 @@
+
+
+\========================================================================
+# 1
+['loro', 'devono', 'mi#lavare']
+
+
+Using lexicon "lexicon.txt".
+			=None
+
+1.
+		Decomposing a polymorphemic word loro-#D#pl#3p#def#n.
+		Next word contains multiple morphemes ['n$', 'def$', '3p$', 'pl$', 'D$', 'loro-']
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:GEN:N'] into working memory.
+		Consume "def$"
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:DET:DEF'] into working memory.
+		Consume "3p$"
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:PER:3'] into working memory.
+		Consume "pl$"
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:NUM:PL'] into working memory.
+		Consume "D$"
+
+		Adding inflectional features to D
+			=D
+
+6.
+		Consume "loro"
+
+		D + loro
+			Filtering out impossible merge sites...
+			Sink "loro" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*loro]
+			=D{N}
+
+7.
+		Decomposing a polymorphemic word deva#[-no].
+		Next word contains multiple morphemes ['[-no]$', 'deva']
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:DET:DEF', 'PHI:NUM:PL', 'PHI:PER:3'] into working memory.
+		Consume "deva"
+
+		Adding inflectional features to deva
+		Consume "deva"
+
+		D{N} + deva
+			Filtering out impossible merge sites...
+		Exploring solution number (1) =[D{N} deva]
+			Transferring D{N} to LF.
+				1. Head movement reconstruction:
+					Reconstructing head movement for D{N}.
+					Extracted head "loro" from D and created [D loro]
+					Reconstructing head movement for D{N}.
+					Extracted head "loro" from D and created [D loro]
+					D was opened into [D loro].
+					=[D loro]
+				2. Feature processing:
+					=[D loro]
+				3. Floater movement reconstruction:
+					=[D loro]
+				4. Phrasal movement reconstruction:
+					Dropping A-/A-bar movement.
+					=[D loro]
+				5. Agreement reconstruction:
+					=[D loro]
+			=[[D loro] PRO.deva]
+
+9.
+		Decomposing a polymorphemic word mi#lavare.
+		Next word contains multiple morphemes ['lavare_', 'mi']
+		Decomposing a polymorphemic word lava-#v#ARE/inf.
+		Next word contains multiple morphemes ['inc$', 'ARE/inf$', 'v$', 'lava-']
+		Storing inflectional feature ['-', 'INCORPORATED', 'LANG:EN'] into working memory.
+		Consume "ARE/inf$"
+
+		Adding inflectional features to are
+		Consume "are"
+
+		[[D loro] deva] + are
+			Filtering out impossible merge sites...
+				Reject [[[D loro] deva] PRO.are] due to bad left branch.
+		Exploring solution number (1) =[PRO.deva are]
+			Transferring PRO.deva to LF.
+				1. Head movement reconstruction:
+					=PRO.deva
+				2. Feature processing:
+					=PRO.deva
+				3. Floater movement reconstruction:
+					=PRO.deva
+				4. Phrasal movement reconstruction:
+					Dropping A-/A-bar movement.
+				PRO.deva probing for CAT:V failed.
+				A phi-marked head "PRO.deva" lacks complement
+				PRO.deva (deva) is missing complement ARE/inf
+					Extraposition will be tried on PRO.deva.
+					=PRO.deva
+				5. Agreement reconstruction:
+					=PRO.deva
+			=[[D loro] [PRO.deva PRO.are]]
+
+11.
+		Consume "v"
+
+		[[D loro] [deva are]] + v
+			Filtering out impossible merge sites...
+			Sink "v" into are because they are inside the same phonological word.
+		Exploring solution number (1) =[PRO.are*v]
+			=[[D loro] [PRO.deva PRO.are{v}]]
+
+12.
+		Consume "lava"
+
+		[[D loro] [deva are{v}]] + lava
+			Filtering out impossible merge sites...
+			Sink "lava" into v because they are inside the same phonological word.
+		Exploring solution number (1) =[PRO.are{v}*lava]
+			=[[D loro] [PRO.deva PRO.are{v,V}]]
+
+13.
+		Decomposing a polymorphemic word mi-#D#sg#1p#def#hum#m#cl#acc.
+		Next word contains multiple morphemes ['acc$', 'cl$', 'm$', 'hum$', 'def$', '1p$', 'sg$', 'D$', 'mi-']
+		Storing inflectional feature ['-', '-FLOAT', 'LANG:EN', 'TAIL:ARG,-VAL'] into working memory.
+		Consume "cl$"
+		Storing inflectional feature ['-', 'CAT:CL', 'LANG:EN', 'LEFT:T/fin', 'RIGHT:ARE/inf'] into working memory.
+		Consume "m$"
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:GEN:M'] into working memory.
+		Consume "hum$"
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:HUM:HUM'] into working memory.
+		Consume "def$"
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:DET:DEF'] into working memory.
+		Consume "1p$"
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:PER:1'] into working memory.
+		Consume "sg$"
+		Storing inflectional feature ['-', 'LANG:EN', 'PHI:NUM:SG'] into working memory.
+		Consume "D$"
+
+		Adding inflectional features to D
+		Consume "D"
+
+		[[D loro] [deva are{v,V}]] + D
+			Filtering out impossible merge sites...
+			Ranking remaining sites...
+				Avoid TT/finP as SPEC, D.
+				PRO.lava (lava) is missing complement D
+				Avoid [[D loro] [deva [[D loro] [are [[D loro] [v lava]]]]]] as left branch because it constitutes illicit structure.
+				Avoid TT/finP as SPEC, D.
+				PRO.lava (lava) is missing complement D
+				Avoid [deva [are [v lava]]] as left branch because it constitutes illicit structure.
+				Avoid [are{v,V} D] due to local agreement failure.
+				Prioritize [lava D] due to complement selection.
+				[[D loro] [PRO.deva PRO.are{v,V}]] + D = -197]
+				[PRO.deva PRO.are{v,V}] + D = -194]
+				PRO.are{v,V} + D = 59]
+		Ranking completed:
+			1. [PRO.are{v,V}; D]
+			2. [[PRO.deva PRO.are{v,V}]; D]
+			3. [[[D loro] [PRO.deva PRO.are{v,V}]]; D]
+		Exploring solution number (1) =[PRO.are{v,V} D]
+			Transferring PRO.are{v,V} to LF.
+				1. Head movement reconstruction:
+					=PRO.are{v,V}
+				2. Feature processing:
+					=PRO.are{v,V}
+				3. Floater movement reconstruction:
+					=PRO.are{v,V}
+				4. Phrasal movement reconstruction:
+					Dropping A-/A-bar movement.
+				PRO.are{v,V} probing for CAT:V failed.
+				A phi-marked head "PRO.are{v,V}" lacks complement
+					=PRO.are{v,V}
+				5. Agreement reconstruction:
+					=PRO.are{v,V}
+			=[[D loro] [PRO.deva [PRO.are{v,V} D]]]
+
+21.
+		Consume "mi(cl)"
+
+		[[D loro] [deva [are{v,V} D]]] + mi(cl)
+			Filtering out impossible merge sites...
+			Sink "mi(cl)" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*mi(cl)]
+			=[[D loro] [PRO.deva [PRO.are{v,V} D{N}]]]
+
+22.
+	>>>	Trying candidate parse [[D loro] [deva [are{v,V} D{N}]]] (1.)
+		Checking surface conditions...
+			Surface condition failure.
+
+
+		I have now explored all solutions for "mi-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		Exploring solution number (2) =[[PRO.deva PRO.are{v,V}] D]
+			Transferring [PRO.deva PRO.are{v,V}] to LF.
+				1. Head movement reconstruction:
+					Reconstructing head movement for [PRO.deva PRO.are{v,V}].
+					Extracted head "PRO.v{V}" from PRO.are and created [PRO.deva [PRO.are PRO.v{V}]]
+					Reconstructing head movement for PRO.v{V}.
+					Extracted head "PRO.lava" from PRO.v and created [PRO.deva [PRO.are [PRO.v PRO.lava]]]
+					=[PRO.deva [PRO.are [PRO.v PRO.lava]]]
+				2. Feature processing:
+					=[PRO.deva [PRO.are [PRO.v PRO.lava]]]
+				3. Floater movement reconstruction:
+					=[PRO.deva [PRO.are [PRO.v PRO.lava]]]
+				4. Phrasal movement reconstruction:
+					Dropping A-/A-bar movement.
+				PRO.lava (lava) is missing complement D
+					Extraposition will be tried on [PRO.deva [PRO.are [PRO.v PRO.lava]]].
+					=[PRO.deva [PRO.are [PRO.v PRO.lava]]]
+				5. Agreement reconstruction:
+					PRO.deva has unvalued phi-features ['PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_']
+					phi.deva acquired PHI:DET:DEF from the edge of phi.deva.
+					phi.deva acquired PHI:NUM:PL from the edge of phi.deva.
+					phi.deva acquired PHI:PER:3 from the edge of phi.deva.
+					PRO.are has unvalued phi-features ['PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_']
+					=[phi.deva [PRO.are [PRO.v PRO.lava]]]
+			=[[D loro] [[phi.deva [PRO.are [PRO.v PRO.lava]]] D]]
+
+23.
+		Consume "mi(cl)"
+
+		[[D loro] [[deva [are [v lava]]] D]] + mi(cl)
+			Filtering out impossible merge sites...
+			Sink "mi(cl)" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*mi(cl)]
+			=[[D loro] [[phi.deva [PRO.are [PRO.v PRO.lava]]] D{N}]]
+
+24.
+	>>>	Trying candidate parse [[D loro] [[deva [are [v lava]]] D{N}]] (2.)
+		Checking surface conditions...
+			Surface condition failure.
+
+
+		I have now explored all solutions for "mi-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		Exploring solution number (3) =[[[D loro] [PRO.deva PRO.are{v,V}]] D]
+			Transferring [[D loro] [PRO.deva PRO.are{v,V}]] to LF.
+				1. Head movement reconstruction:
+					Reconstructing head movement for [[D loro] [PRO.deva PRO.are{v,V}]].
+					Extracted head "PRO.v{V}" from PRO.are and created [[D loro] [PRO.deva [PRO.are PRO.v{V}]]]
+					Reconstructing head movement for PRO.v{V}.
+					Extracted head "PRO.lava" from PRO.v and created [[D loro] [PRO.deva [PRO.are [PRO.v PRO.lava]]]]
+					=[[D loro] [PRO.deva [PRO.are [PRO.v PRO.lava]]]]
+				2. Feature processing:
+					=[[D loro] [PRO.deva [PRO.are [PRO.v PRO.lava]]]]
+				3. Floater movement reconstruction:
+					=[[D loro] [PRO.deva [PRO.are [PRO.v PRO.lava]]]]
+				4. Phrasal movement reconstruction:
+					Dropping A-/A-bar movement.
+					Moving "D loro " into memory buffer from SPEC of "PRO.deva".
+					Memory buffer: [[D N]]
+					Dropping constituent [D loro] from memory buffer into Spec of PRO.are
+					Result [[D loro] [PRO.deva [[D loro] [PRO.are [PRO.v PRO.lava]]]]]
+					Moving "____" into memory buffer from SPEC of "PRO.are".
+					Memory buffer: [[D N]]
+					Dropping constituent (DP):5 from memory buffer into Spec of PRO.v
+					Result [[D loro]:5 [PRO.deva [(DP):5 [PRO.are [(DP):5 [PRO.v PRO.lava]]]]]]
+				PRO.lava (lava) is missing complement D
+					Extraposition will be tried on [[D loro]:5 [PRO.deva [(DP):5 [PRO.are [(DP):5 [PRO.v PRO.lava]]]]]].
+					=[[D loro]:5 [PRO.deva [(DP):5 [PRO.are [(DP):5 [PRO.v PRO.lava]]]]]]
+				5. Agreement reconstruction:
+					PRO.deva has unvalued phi-features ['PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_']
+					phi.deva acquired PHI:DET:DEF from the edge of phi.deva.
+					phi.deva acquired PHI:GEN:N from the edge of phi.deva.
+					phi.deva acquired PHI:NUM:PL from the edge of phi.deva.
+					phi.deva acquired PHI:PER:3 from the edge of phi.deva.
+					PRO.are has unvalued phi-features ['PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_']
+					phi.are acquired PHI:DET:DEF from the edge of phi.are.
+					phi.are acquired PHI:GEN:N from the edge of phi.are.
+					phi.are acquired PHI:NUM:PL from the edge of phi.are.
+					phi.are acquired PHI:PER:3 from the edge of phi.are.
+					=[[D loro]:5 [phi.deva [(DP):5 [phi.are [(DP):5 [PRO.v PRO.lava]]]]]]
+			=[[[D loro]:5 [phi.deva [(DP):5 [phi.are [(DP):5 [PRO.v PRO.lava]]]]]] D]
+
+25.
+		Consume "mi(cl)"
+
+		[[[D loro] [deva [[D loro] [are [[D loro] [v lava]]]]]] D] + mi(cl)
+			Filtering out impossible merge sites...
+			Sink "mi(cl)" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*mi(cl)]
+			=[[[D loro]:5 [phi.deva [(DP):5 [phi.are [(DP):5 [PRO.v PRO.lava]]]]]] D{N}]
+
+26.
+	>>>	Trying candidate parse [[[D loro] [deva [[D loro] [are [[D loro] [v lava]]]]]] D{N}] (3.)
+		Checking surface conditions...
+			Surface condition failure.
+
+
+		I have now explored all solutions for "mi-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "D$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "sg$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "1p$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "def$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "hum$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "m$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "cl$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "mi".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "lava-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "v$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "ARE/inf$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "mi#lavare".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "deva".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "devono".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "loro-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "D$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "pl$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "3p$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "def$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "loro".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.

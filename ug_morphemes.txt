@@ -21,6 +21,7 @@ INF		:: CAT:INF PF:INF LF:INF
 A/inf	:: CAT:INF CAT:A/inf PF:A/inf LF:A/inf ?ARG
 TO/inf 	:: CAT:INF CAT:TO/inf PF:TO/inf LF:TO/inf ?ARG
 MA/inf	:: CAT:INF CAT:MA/inf PF:ma LF:MA/inf -ARG
+ARE/inf	:: CAT:INF CAT:ARE/inf PF:are LF:ARE/inf ARG VAL
 
 # These are "generic" determiners and prepositions
 # Notice that they will have the default lexical features 
@@ -30,6 +31,8 @@ P 	:: CAT:P PF:P LF:P
 # Pronominal items
 pro	:: pro-#D
 pro-	:: PF:(pro) LF:pro CAT:N CAT:PHI
+cl	:: - CAT:CL LEFT:T/fin RIGHT:ARE/inf
+inc	:: - INCORPORATED
 
 # Phi-features
 sg :: - PHI:NUM:SG
@@ -49,7 +52,7 @@ n 	::  - PHI:GEN:N
 nom   	:: - TAIL:ARG,VAL,CAT:FIN
 gen     :: - TAIL:ARG,VAL,CAT:INF
 par   	:: - TAIL:ARG,-VAL
-acc		:: - TAIL:ARG,-VAL
+acc		:: - TAIL:ARG,-VAL -FLOAT
 asp		:: - TAIL:ARG,ASP
 pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH
@@ -58,3 +61,5 @@ top    	:: - ABAR:TOP
 foc    	:: - ABAR:FOC
 rel    	:: - CAT:R
 Q		:: - CAT:Q
+
+# Surface features

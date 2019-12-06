@@ -37,6 +37,7 @@ class LF:
 
     # LF-tests that checks LF-legibility for primitive constituents (not phrases)
     def test(self, ps):
+
         # Returns the selected sister (if any) of the constituent
         def selected_sister(ps):
 
@@ -171,7 +172,7 @@ class LF:
             # 3.6. !SPEC:* heads require a specifier
             if f == '!SPEC:*' and not spec:
                 # This condition takes care of the curious fact that overt C cancels !SPEC:*
-                if h.get_selector() and 'FIN' in h.get_selector().get_labels():
+                if h.get_selector() and 'C/fin' in h.get_selector().get_labels():
                     pass
                 else:
                     log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier but needs one.')
@@ -352,7 +353,21 @@ class LF:
                 ps_ = ps_.walk_upstream_geometrically()
             return list_of_antecedents
         #
-        # Alternative 2. Only D_ remains unvalued: nonlocal/discourse antecedents
+        # Alternative 2. Only PER_ remains unvalued
+        #
+        elif 'PHI:PER:_' in unvalued_phi:
+            while ps_:
+                # Termination condition: presence of SEM-external (control boundary)
+                if ps_.sister() and 'SEM:external' in ps_.sister().features:
+                    break
+                # Condition 1. Antecedent must be a sister of the node at the spine we climb up
+                # Condition 2. The phrase must evaluate as a possible antecedent
+                if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
+                    list_of_antecedents.append(ps_.sister())
+                ps_ = ps_.walk_upstream_geometrically()
+            return list_of_antecedents
+        #
+        # Alternative 3. Only D_ remains unvalued: nonlocal/discourse antecedents
         #
         elif 'PHI:DET:_' in unvalued_phi:
             while ps_:
@@ -415,18 +430,19 @@ class LF:
     def report_to_log(self, list_of_antecedents, unvalued_phi_features):
         s = ''
         i = 1
-        for a in list_of_antecedents:
-            s = s + str(i) + '. ' + a.illustrate() + ' '
-            i = i + 1
-            if i == 2:
-                s = s + '   (alternatives: '
-        if i > 1:
-            s = s + ')'
-        if s:
-            log(f'\t\t\t\t\t' + s)
-        else:
-            log(f'\t\t\t\t\t{self.failed_recovery(unvalued_phi_features)}')
-        return True
+        if list_of_antecedents:
+            for a in list_of_antecedents:
+                s = s + str(i) + '. ' + a.illustrate() + ' '
+                i = i + 1
+                if i == 2:
+                    s = s + '   (alternatives: '
+            if i > 1:
+                s = s + ')'
+            if s:
+                log(f'\t\t\t\t\t' + s)
+            else:
+                log(f'\t\t\t\t\t{self.failed_recovery(unvalued_phi_features)}')
+            return True
 
     # This function will later be moved to its own class that contains discourse computations.
     # Now it is here to speed up processing
@@ -435,7 +451,7 @@ class LF:
         if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
             return 'Generic'
         else:
-            return 'Cannot be interpreted at C-I'
+            return 'Person feature is missing'
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.

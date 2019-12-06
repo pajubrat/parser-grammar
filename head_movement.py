@@ -19,25 +19,23 @@ class HeadMovement():
 
         self.number_of_Moves = 0
 
-        # Condition 1. If the target is a complex head, we try to open it into a new left branch
-        if ps.is_primitive() and ps.has_affix():
+        # Condition 1. If the target is a complex primitive D head, we try to open it into a new left branch
+        if ps.is_primitive() and ps.has_affix() and ('CAT:D' in ps.features or 'CAT:P' in ps.features):
 
             # If the element is D or P, it is opened into a new left branch
             if self.reconstruct_head_movement(ps.copy()).LF_legibility_test().all_pass():
-                if 'CAT:D' in ps.features or 'CAT:P' in ps.features:
-                    new = self.reconstruct_head_movement(ps)
-                    set_logging(True)
-                    log(f'\t\t\t\t\t{ps} was opened into {new}.')
-                    return new, self.number_of_Moves
-                else:
-                    log(f'\t\t\t\t\t{ps} was not opened because it is not DP.')
+                new = self.reconstruct_head_movement(ps)
+                set_logging(True)
+                log(f'\t\t\t\t\t{ps} was opened into {new}.')
+                return new, self.number_of_Moves
             else:
                 set_logging(True)
-                log(f'\t\t\t\t\t{ps} was not opened because it would not constitute a legitimate left branch at LF.')
+                log(f'\t\t\t\t\t{ps} was not opened into left branch, it would not constitute a legitimate left branch at LF.')
 
-        # Condition 2. If the target is a phrase, we reconstruct head movement inside it
+        # Condition 2. If the target is a non-D head or phrase, we reconstruct head movement inside it
         else:
-            self.reconstruct_head_movement(ps)
+            if ps.is_complex():
+                ps = self.reconstruct_head_movement(ps)
 
         return ps, self.number_of_Moves
 
@@ -70,6 +68,9 @@ class HeadMovement():
                 ps_.right_const = None
                 top = new_ps
                 log(f'\t\t\t\t\tExtracted head \"{affix}\" from {ps_} and created {new_ps}')
+
+                # We are creating a new phrase structure [A B] and need to return that
+                top = new_ps.get_top()
 
                 # Condition 2b. If the affix has another affix inside, we reconstruct it recursively
                 # This has the effect that all heads are always spread out

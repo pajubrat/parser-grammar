@@ -6,9 +6,9 @@ from reconstruction import Reconstruction
 from morphology import Morphology
 from agreement_reconstruction import AgreementReconstruction
 from transfer import Transfer
+from surface_conditions import SurfaceConditions
 
-# Linear Phase Parser
-# This is the class that defines the parser
+# Defines the Linear Phase (LP) parser
 
 class LinearPhaseParser():
     def __init__(self, context):
@@ -52,11 +52,13 @@ class LinearPhaseParser():
         # Access to morphology
         self.morphology = Morphology(self.context)
 
-        # Access to reconstruction
-
         # Access to transfer (to LF)
-        # This provides the transfer to LF functionality
+        # This provides transfer to LF functionality
         self.transfer = Transfer(self.context)
+
+        # Surface conditions
+        self.surface_conditions_module = SurfaceConditions()
+        self.surface_conditions_pass = True
 
     # This function activates the parser
     # Input is list of words ('lst')
@@ -76,6 +78,9 @@ class LinearPhaseParser():
         # ps = current phrase structure
         ps = None
 
+        # Set flags
+        self.surface_conditions_pass = True
+
         # Start parsing
         self._first_pass_parse(ps, lst, 0)
 
@@ -89,40 +94,55 @@ class LinearPhaseParser():
         self.number_of_Merges = self.number_of_Merges + 1
 
         # Print the current state to the log file
-        log(f'\t\t\t={ps}')
-        log('\n' + str(self.number_of_Merges) + '.')
+        if not self.memory_buffer_inflectional_affixes:
+            log(f'\t\t\t={ps}')
+            log('\n' + str(self.number_of_Merges) + '.')
 
         # Test if we have reached at the end of the input list
         if index == len(lst):
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
 
-            # The whole sentence has been processed,we test if the result is legitimate
+            # The whole sentence has been processed, we test if the result is legitimate
             log('\t>>>\t' + f'Trying candidate parse ' + ps.illustrate() + ' ('+str(self.number_of_solutions_tried)+'.)')
 
-            # We try to transfer it to LF
-            log('\t\tReconstructing...')
-            ps_ = self.transfer_to_lf(ps)
-            log('\t\t\t= ' + ps_.illustrate())
-            log(f'\t\tChecking LF-interface conditions.')
-            lf = ps_.LF_legibility_test()
+            # Check surface conditions and interpretations
+            log('\t\tChecking surface conditions...')
+            S = self.surface_conditions_module
+            S.all_pass = True
+            self.surface_conditions_pass = S.reconstruct(ps)
 
-            # If the result passes at LF
-            if lf.all_pass():
-                self.semantic_interpretation = self.transfer_to_CI(ps_)
-                if lf.final_tail_check(ps_) and self.semantic_interpretation:
-                    self.discourse_plausibility = lf.discourse_test_result
-                    self.score = 1 - self.number_of_solutions_tried - self.discourse_plausibility
+            if self.surface_conditions_pass:
 
-                    # Add the output (phrase structure) to result list
-                    self.result_list.append(ps_)
-                    log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
-                    show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried, self.semantic_interpretation)
+                # We try to transfer it to LF
+                log('\t\tReconstructing...')
+                ps_ = self.transfer_to_lf(ps)
+                log('\t\t\t= ' + ps_.illustrate())
+                log(f'\t\tChecking LF-interface conditions.')
+                lf = ps_.LF_legibility_test()
 
-                    self.exit = True    # Knock this out if you want to see all solutions
+                # If the result passes at LF
+                if lf.all_pass():
+                    self.semantic_interpretation = self.transfer_to_CI(ps_)
+                    if lf.final_tail_check(ps_):
+                        if self.semantic_interpretation:
+                            self.discourse_plausibility = lf.discourse_test_result
+                            self.score = 1 - self.number_of_solutions_tried - self.discourse_plausibility
+
+                            # Add the output (phrase structure) to result list
+                            self.result_list.append(ps_)
+                            log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
+                            show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried, self.semantic_interpretation)
+
+                            self.exit = True    # Knock this out if you want to see all solutions
+                        else:
+                            log('\t\t\tThe sentence cannot be interpreted at LF')
+                    else:
+                        report_tail_head_problem(ps_)
                 else:
-                    report_tail_head_problem(ps_)
+                    report_LF_problem(ps_)
             else:
-                report_LF_problem(ps_)
+                log('\t\t\tSurface condition failure.\n\n')
+
             return  # This return will send the parser to an unexplored path in the recursive parse tree
 
         # Process next word
@@ -131,20 +151,24 @@ class LinearPhaseParser():
             m = self.morphology
 
             # Lexical ambiguity
-            # If the item was not recognized, an ad hoc constituent is returned that has unknown lable CAT:X
+            # If the item was not recognized, an ad hoc constituent is returned that has unknown label CAT:X
             disambiguated_word_list = self.lexicon.access_lexicon(lst[index])
             if len(disambiguated_word_list) > 1:
                 log(f'\t\tAmbiguous lexical item \"{lst[index]}\" detected.')
 
-            # We explore all possible lexical items
+            # Explore all possible lexical items
             for lexical_constituent in disambiguated_word_list:
                 lst_branched = lst.copy()
 
-                # Morphological decomposition: increases the input list if there are several morphemes
-                # If the word was not recognized (CAT:X), generative morphology will be tried
-                lexical_item, lst_branched = m.morphological_parse(lexical_constituent,
-                                                                   lst_branched,
-                                                                   index)
+                lexical_item = lexical_constituent
+                # Morphological decomposition
+                # Condition 1. The lexical item is polymorphemic
+                # Result: insert the morphemes to the input list, return the first lexical item to be processed
+                # Repeat the procedure until the lexical item to be processed does not decompose further
+                while m.is_polymorphemic(lexical_item):
+                    lexical_item, lst_branched = m.morphological_parse(lexical_constituent,
+                                                                       lst_branched,
+                                                                       index)
 
                 # Read inflectional features (if any) and store them into memory buffer, then consume next word
                 inflection = m.get_inflection(lexical_item)
@@ -152,7 +176,7 @@ class LinearPhaseParser():
 
                     # Add inflectional features and prosodic features into memory
                     self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
-                    log('\n\t\tConsume \"' + lst_branched[index + 1] + '\"\n')
+                    log('\t\tConsume \"' + lst_branched[index + 1] + '\"')
                     if ps:
                         self._first_pass_parse(ps.copy(), lst_branched, index + 1)
                     else:
@@ -175,7 +199,7 @@ class LinearPhaseParser():
 
                     # Merge the new word (disambiguated lexical item) to the existing phrase structure
                     else:
-                        log('\n\t\tConsume \"' + lexical_item.get_pf() + '\"\n')
+                        log('\t\tConsume \"' + lexical_item.get_pf() + '\"\n')
                         log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_pf())
 
                         # Get the merge sites
@@ -221,10 +245,11 @@ class LinearPhaseParser():
 
         # Filter condition A.
         # Check if the new word must be inside the last word. If yes, we H-Comp solution will be used
-        if ps.get_bottom().get_bottom_affix().internal:
-            log(f'\t\t\tSink \"{w.get_pf()}\" into {ps.get_bottom().get_pf()}'
+        bottom_element = ps.get_bottom().get_bottom_affix()
+        if bottom_element.internal:
+            log(f'\t\t\tSink \"{w.get_pf()}\" into {bottom_element.get_pf()}'
                 ' because they are inside the same phonological word.')
-            return [ps.get_bottom()] # We return the only possible solution
+            return [ps.get_bottom()]  # We return the only possible solution
 
         # Prepare the list of adjunction sites
         adjunction_sites = []
@@ -237,7 +262,7 @@ class LinearPhaseParser():
             if site.is_primitive():
                 if '-COMP:*' in site.features:
                     log(f'\t\t\t\tReject [{site} {w}] because {site} does not accept complementizers.')
-                    continue  # This moves to the next node and ignores this one from the list
+                    continue  # Do not add this site to the list
 
             # Filter condition C.
             # Check the left branch 'site' in Merge(site, W) for LF-legibility
@@ -263,7 +288,7 @@ class LinearPhaseParser():
                         lf_test.criterial_feature_test_result):
                     set_logging(True)
                     log(f'\t\t\t\tReject [{dropped.illustrate()} {w}] due to bad left branch.')
-                    continue  # Reject this site and start next site
+                    continue  # Do not add this site to the list
 
             set_logging(True)
 
@@ -468,6 +493,10 @@ class LinearPhaseParser():
                         log(f'\t\t\t\tConsidering {site} due to legitimate tail-head configuration.')
                         avoid_set.clear()
                 w_copy.remove()
+
+            #
+            # Case 8. Surface conditions
+            #
 
             adjunction_sites.append((priority, site))
 
