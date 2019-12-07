@@ -428,6 +428,15 @@ class PhraseStructure:
             # Return the local c-commanding head
             return feature_vector[1]
 
+    # Definition of max
+    def get_max(self):
+        ps_ = self
+        last = self
+        while ps_ and ps_.get_head() == self.get_head():
+            last = ps_
+            ps_ = ps_.walk_upstream()
+        return last
+
     # Definition of LEFT
     def is_left(self):
         if self.mother and self.mother.left_const == self:
@@ -1130,7 +1139,8 @@ class PhraseStructure:
             if self.adjunct:
                 return '<'+self.get_cats_string()+'>' + index_str       # Adjuncts are represented as <,>
             else:
-                return '(' + self.get_cats_string() + ')' + index_str   # Regular constituents as [,]
+                return '__' + index_str
+                # return '(' + self.get_cats_string() + ')' + index_str   # Regular constituents as [,]
 
         if self.is_primitive():
             if not self.get_pf():
@@ -1140,7 +1150,8 @@ class PhraseStructure:
                     return '<'+self.get_pf()+'>'
                 else:
                     if self.extract_pro():
-                        return self.get_pro_type() + '.' + self.get_pf()
+                        return self.get_pf()
+                        # return self.get_pro_type() + '.' + self.get_pf()
                     else:
                         return self.get_pf()
         else:

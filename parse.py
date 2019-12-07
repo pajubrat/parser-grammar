@@ -192,17 +192,17 @@ for sentence in parse_list[start:]:
                 judgment = grammaticality_judgement[int(round(abs(P.score),0))]
             else:
                 judgment = '##'
-            results_file.write(str(count) + '. ' + judgment + ' ' + s + '\n\n')
+            results_file.write(str(count) + '. ' + judgment + ' ' + s + '\n')
 
             # Print the result into the results file
             parse = P.result_list[0]
             results_file.write(f'{parse}\n')
             # results_file.write('\''+parse.gloss()+'.\'\n')
-            results_file.write(str(P.semantic_interpretation) + '\n')
+            # results_file.write(str(P.semantic_interpretation) + '\n')
             # results_file.write('Score: ' + str(P.score) + '  (')
             # results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
             # results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
-            results_file.write('\n\n')
+            results_file.write('\n')
     else:
         results_file.write('\n'+' '.join(map(str, sentence))+'\n\n')
 

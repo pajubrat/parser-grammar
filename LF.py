@@ -15,6 +15,7 @@ class LF:
         self.head_integrity_test_result = True
         self.criterial_feature_test_result = True
         self.semantic_test_result = True
+        self.adjunct_test_result = True
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_to_CI_crash = False
@@ -30,7 +31,8 @@ class LF:
                 self.head_integrity_test_result and
                 self.criterial_feature_test_result and
                 self.semantic_test_result and
-                self.projection_principle_test_result)
+                self.projection_principle_test_result and
+                self.adjunct_test_result)
 
     def fail(self):
         return not self.all_pass()
@@ -75,7 +77,7 @@ class LF:
         # 1. Head integrity test
         #
         if not h.get_cats():
-            log('\t\t\t\tAn uninterpretable grammatical head without lexical category was detected.')
+            log('\t\t\t\t\tAn uninterpretable grammatical head without lexical category was detected.')
             self.head_integrity_test_result = False
 
         #
@@ -245,6 +247,17 @@ class LF:
             for spec in list_:
                 if 'INF' in spec.get_labels():
                     self.discourse_test_result = self.discourse_test_result + 2
+
+        #
+        # 10. Adjunct interpretation tests
+        #
+        # Condition 1. A DP right-adjunct cannot be interpreted inside another DP (e.g. [John <Mary>]
+        if 'D' in h.get_labels() and \
+                h.get_max() and h.get_max().adjunct and \
+                h.get_max().is_right() and \
+                h.get_max().mother and 'D' in h.get_max().mother.get_head().get_labels():
+            log(f'\t\t\t\t{h.mother.mother} in uninterpretable.')
+            self.adjunct_test_result = False
 
     # This function will try to transfer the phrase structure into the conceptual-intentional system
     # It represents the "outer edge of LF"
