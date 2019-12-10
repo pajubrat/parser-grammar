@@ -101,7 +101,7 @@ class LexicalInterface:
                     const.incorporated = True
         else:
             const = self.PhraseStructure()
-            const.features = {'PF:?', 'CAT:X'}  # If the word is not found, we will still create it
+            const.features = {'PF:?', 'CAT:?'}  # If the word is not found, we will still create it
             const.morphology = key
             const.internal = internal
             word_list = [const]
@@ -116,7 +116,6 @@ class LexicalInterface:
             return False
 
         # Prevents new features from redundancy rules to get added if they conflict with a lexical rule
-        # todo suboptimal because F and +F both mean the same must be fixed
         def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
 
             # If we try to add a negative feature -F, we reject if there is a positive feature
@@ -126,7 +125,7 @@ class LexicalInterface:
                     return True
             # If we try to add a positive feature, we reject if there is a negative feature
             if not negative_feature(new_candidate_feature_to_add):
-                if '-' + new_candidate_feature_to_add[1:] in features_from_lexicon:
+                if '-' + new_candidate_feature_to_add in features_from_lexicon:
                     return True
             return False
 
@@ -149,7 +148,6 @@ class LexicalInterface:
     # There are certain binary UG parameters that are "mirrored" in the lexicon in the sense that
     # lexical features occur in clusters,
     #
-    # todo, this is not the right way, but it works for now
     def apply_parameters(self, features):
         def remove_redundancies(features):
             new_set = set()

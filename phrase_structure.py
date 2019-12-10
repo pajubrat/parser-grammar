@@ -181,7 +181,23 @@ class PhraseStructure:
             grandparent.left_const = sister
             self.mother = None
 
-    # Return a list of affixes inside a grammatical head
+    # Returns all features of a complex (multiaffical) word
+    def get_all_features_of_complex_word(self):
+
+        if self.is_complex():
+            head = self.get_head()
+        else:
+            head = self
+
+        # Add the features of the highest lexical item
+        complex_word_features = head.features
+
+        # Construct the union of the features of all lexical elements (affixes) inside the complex word
+        for affix in head.get_affix_list():
+            complex_word_features = complex_word_features | affix.features
+        return complex_word_features
+
+    # Return a list of affixes inside a grammatical head (including the head itself)
     def get_affix_list(self):
         lst = [self]
         iterator_ = self
@@ -406,7 +422,8 @@ class PhraseStructure:
         # A complement is a right sister (notice that there is a separate definition for sister())
         if self.sister() and self.sister().is_right():
             return self.sister()
-        return None
+        else:
+            return None
 
     # Definition for geometrical sister
     def geometrical_sister(self):
@@ -455,7 +472,6 @@ class PhraseStructure:
     def is_primitive(self):
         if self.right_const and self.left_const:
             return False
-
         else:
             return True
 

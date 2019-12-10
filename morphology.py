@@ -1,7 +1,5 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
-from context import Context
-from phrase_structure import PhraseStructure
 
 class Morphology():
     def __init__(self, context):
@@ -10,13 +8,13 @@ class Morphology():
         self.lexicon.load_lexicon(self.context.lexicon_file, context.language)
         self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
 
-    # Definition for morphological parsing for lexical item (any constituent from the lexicon)
+    # Definition for morphological parsing for lexical item
     # Condition 1.  If LI is monomorphemic(w), return the same item and input list (i.e. do nothing)
     # Condition 2.  If LI is polymorphemic(W), use morphology field to decompose it
     #               Step 1. Break the morphemes into a list (W = w1#w2#w3 => w1, w2$, w3$)
-    #               Step 2. Follow mirror principle and reverse it (w1, $w2, $w3 => w3$, w2$, w1)
+    #               Step 2. Follow mirror principle and reverse (w1, $w2, $w3 => w3$, w2$, w1)
     #               Step 3. Substitute this list with the original word in the input list
-    #               Step 4. Return the list and Merge-1 the items to the phrase structure
+    #               Step 4. Return the list
     # Condition 3.  From these assumptions it follows that it is possible to receive $W.
     #               In such case, $ will be inherited to the first morpheme ($W = $w1, $w2...)
     #               Furthermore, W will be marked as an incorporated element
@@ -35,9 +33,11 @@ class Morphology():
 
             # Condition 2. Step 1.
             # Create a list of morphemes
-            # Operation 1. Morphophonological operations create a list of morphemes from the multimorphemic input
+            # Operation 1. Morphophonological operations (fusion ect.) create a list of morphemes from the multimorphemic input
             word = next_lexical_item.morphology
             lst_ = self.morphophonological_processing(word, lst_branched[index][0])
+
+            # If the element was incorporated (not affixed), this information will be passed on as a feature
             if next_lexical_item.incorporated:
                 lst_.append('inc$')
 
@@ -89,7 +89,7 @@ class Morphology():
                 labels = second_last_morpheme.get_labels()
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
                     log('\t\t\t\tProsodic feature [foc] interpreted as a C morpheme')
-                    word = word.replace('#foc', '#C/fin') # This means that #foc is interpreted as a morpheme
+                    word = word.replace('#foc', '#C/fin')  # This means that #foc is interpreted as a morpheme
 
         return word
 
@@ -102,14 +102,6 @@ class Morphology():
             list_[0] = self.lexicon.access_lexicon(list_[0])[0].morphology
 
         return list_
-
-    # Definition for possible word if needed
-    def possible_word(self, list_of_morphemes):
-        return True
-
-    # Definition for possible morpheme combinations (used by the possible word function)
-    def possible_morpheme_combination(self, morpheme1, morpheme2):
-        return True
 
     # This function flips the $ sing from the start to end, only because it is more easy to read in this way.
     def flip_boundary(self, lst_):
@@ -124,10 +116,12 @@ class Morphology():
 
         return lst2_
 
+    # Definition for morphophonological processing (fusion etc.)
     def morphophonological_processing(self, word, phon):
 
         morpheme_list = word.split("#")
         s = ''
+        # If either a or b in a#b is morphologically complex, then a#b is deemed a case of incorporation (a_b)
         for index in range(0, len(morpheme_list)-1):
             if self.is_polymorphemic(self.lexicon.access_lexicon(morpheme_list[index])[0]) or\
                     self.is_polymorphemic(self.lexicon.access_lexicon(morpheme_list[index+1])[0]):

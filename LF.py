@@ -43,17 +43,17 @@ class LF:
         # Returns the selected sister (if any) of the constituent
         def selected_sister(ps):
 
-            # Only primitive constituents with sisters can select sisters
-            if ps.is_primitive() and not ps.sister():
+            # Only primitive constituents with geometrical sisters can select sisters
+            if ps.is_primitive() and not ps.geometrical_sister():
                 return None
 
             # H~YP, YP~H => YP is selected sister
-            if not ps.sister().is_primitive():
-                return ps.sister()
+            if ps.geometrical_sister().is_complex():
+                return ps.geometrical_sister()
             else:
                 # H~Y => Y is selected sister
-                if ps.sister().is_right():
-                    return ps.sister()
+                if ps.geometrical_sister().is_right():
+                    return ps.geometrical_sister()
                 else:
                     # Y~H => Y is not selected sister for H
                     return None
@@ -76,7 +76,7 @@ class LF:
         #
         # 1. Head integrity test
         #
-        if not h.get_cats():
+        if not h.get_cats() or 'CAT:?' in h.get_cats():
             log('\t\t\t\t\tAn uninterpretable grammatical head without lexical category was detected.')
             self.head_integrity_test_result = False
 
@@ -93,7 +93,7 @@ class LF:
         # 3. Internal tail-head test for case (DPs)
         #
         if 'D' in h.get_labels() and not h.internal_tail_head_test():
-            log(f'\t\t\t\th{h} failed internal tail test.')
+            log(f'\t\t\t\t{h} failed internal tail test for {h.get_tail_sets()}.')
             self.tail_head_test_result = False
 
         #
@@ -133,7 +133,7 @@ class LF:
                 for spec_ in specs:
                     if spec_ and f[6:] in spec_.get_labels():
                         if not spec_.adjunct:
-                            log(f'\t\t\t\t{ps} has unaccetable specifier {spec}.')
+                            log(f'\t\t\t\t{ps} has unacceptable specifier {spec_}.')
                             self.selection_test_result = False
 
             # 3.2. No specifier of any kind allowed (e.g., English P)
@@ -167,8 +167,8 @@ class LF:
 
             # 3.5. !COMP:* heads must have complements (=functional head)
             if f == '!COMP:*':
-                if not comp:
-                    log(f'\t\t\t\tA phi-marked head "{ps}" lacks complement')
+                if not selected_sister(h):
+                    log(f'\t\t\t\t"{h}" lacks complement.')
                     self.selection_test_result = False
 
             # 3.6. !SPEC:* heads require a specifier
@@ -177,7 +177,7 @@ class LF:
                 if h.get_selector() and 'C/fin' in h.get_selector().get_labels():
                     pass
                 else:
-                    log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier but needs one.')
+                    log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier.')
                     self.selection_test_result = False
 
             # 3.7. !SPEC:F, head requires specific specifier

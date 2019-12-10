@@ -12,38 +12,48 @@ class SurfaceConditions:
         ps_ = ps.get_top()
 
         while ps_:
-            if ps_.is_complex():
-                test_constituent = ps_.left_const
-            else:
-                test_constituent = ps_
-
-            # Ad hoc clitic test (experimental, for testing purposes)
-            if not self.clitic_test(test_constituent):
-                self.all_pass = False
-
+            if ps_.is_complex() and 'CAT:CL' in ps_.left_const.get_head().features:
+                if not self.clitic_test(ps_.left_const):
+                    self.all_pass = False
+            if ps_.is_complex() and 'CAT:CL' in ps_.right_const.get_head().features:
+                if not self.clitic_test(ps_.right_const):
+                    self.all_pass = False
+            if ps_.is_primitive() and 'CAT:CL' in ps_.get_head().features:
+                if not self.clitic_test(ps_):
+                    self.all_pass = False
             ps_ = ps_.walk_downstream()
 
         return self.all_pass
 
-    # Defines the condition for adjacency at the pre-Transfer surface structure
-    # This version is purely ad hoc and stipulative, to test the main idea
+    # Defines the condition for adjacency-based incorporation at the Morphology-Syntax Interface
     def clitic_test(self, test_constituent):
 
         clitic_head = test_constituent.get_head()
-        if 'CAT:CL' in clitic_head.features:
-            constituent_to_left = self.get_left(clitic_head)
-            left_incorporation_features = {feature[5:] for feature in clitic_head.features if feature[:5] == 'LEFT:'}
-            right_incorporation_features = {feature[6:] for feature in clitic_head.features if feature[:6] == 'RIGHT:'}
+        constituent_to_left = self.get_left(clitic_head)
 
-            if constituent_to_left and constituent_to_left.get_head().features & left_incorporation_features and 'INCORPORATED' in constituent_to_left.get_head().features:
+        # Incorporation to left cannot adjoin a word to a complex phrase (D is excluded because DPs are opened at this stage)
+        if constituent_to_left and constituent_to_left.is_complex() and 'D' not in constituent_to_left.get_head().get_labels():
+            log('\t\t\t\tClitic adjoined to complex phrase, not word')
+            return False
+
+        # Collect the incorporation features (which are ultimately morphological properties)
+        left_incorporation_feature_sets = {frozenset(feature[5:].split(",")) for feature in clitic_head.features if feature[:5] == 'LEFT:'}
+        right_incorporation_feature_sets = {frozenset(feature[6:].split(",")) for feature in clitic_head.features if feature[:6] == 'RIGHT:'}
+
+        # Condition 1. X_CL is licensed if X (including all its affixes) can check the left incorporation features of CL
+        for feature_set in left_incorporation_feature_sets:
+            if constituent_to_left and constituent_to_left.get_all_features_of_complex_word() & feature_set == feature_set and 'INCORPORATED' in constituent_to_left.get_head().features:
+                log(f'\t\t\tClitic {test_constituent} left-incorporated to {constituent_to_left}')
                 return True
 
-            if test_constituent.get_container_head().features & right_incorporation_features and 'INCORPORATED' in clitic_head.features:
+        # Condition 1. CL_[..X..] is licensed if X (including all its affixes) can check right incorporation features of CL
+        for feature_set in right_incorporation_feature_sets:
+            if test_constituent.get_container_head().get_all_features_of_complex_word() & feature_set == feature_set and 'INCORPORATED' in clitic_head.features:
+                log(f'\t\t\tClitic {test_constituent} right-incorporated to {test_constituent.get_container_head().get_max()}')
                 return True
 
-            return False  # if not licensed
-
-        return True  # if not a clitic
+        log(f'\t\t\tClitic {test_constituent} not licensed.')
+        return False  # if not licensed
 
     def get_left(self, ps):
         ps_ = ps

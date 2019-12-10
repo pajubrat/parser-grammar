@@ -10,6 +10,7 @@
 			io ho lavato Luisa
 			loro hanno voluto lavare Luisa
 			loro stanno lavando Luisa
+			loro sembrano lavare Luisa
 
 		& Group 0.1.2 Agreement paradigms and pronouns
 
@@ -20,6 +21,8 @@
 			noi adoriamo Luisa
 			voi adorate Luisa
 			loro adorano Luisa
+			
+			io sono Luisa
 
 		& Group 0.1.3 pro-drop tests
 
@@ -38,6 +41,16 @@
 			hanno voluto lavare Luisa
 			stanno lavando Luisa
 
+		& Group 0.1.4 Free word order in Finnish (we should not break these)
+		
+			Pekka ihailee Merjaa
+			Merjaa ihailee Pekka
+			
+		& Group 0.1.5 Control (we should not break these)
+		
+			Pekka haluaa lahtea
+			Pekka kaskee Merjan lahtea
+			
 	& Group 0.2 Ungrammatical
 		& Group 0.2.1 Finie agreement errors
 
@@ -140,6 +153,7 @@
 			lo#io sono lavato	
 			io#lo sono lavato
 			loro#lo hanno lavato
+			mi#loro hanno lavato
 			
 			io sono#la lavata
 			io sono#lo lavato
@@ -179,17 +193,18 @@
 			
 		& Group 2.2.4 Correct clitic placement but wrong word order
 		
+		& Group 2.2.5 Corrct clitic placement but marginal word order
+		
 			mi#hanno loro lavato
 			la#hanno loro lavata
 			mi#devono loro lavare
 			devono loro lavare#mi
-			devono loro mi#lavare
 			la#devono loro lavare
-			devono loro lavare#la
-			devono loro la#lavare
+			devono loro lavare#la	
 			lo#devono loro lavare
 			devono loro lavare#lo
-			devono loro lo#lavare
+		
+			
 		
 & Group 3 Aux + T/prt + ARE/inf
 	& Group 3.1 Grammatical
@@ -205,8 +220,8 @@
 
 			loro hanno mi#voluto lavare
 			loro hanno voluto mi#lavare
-			loro#mi hanno volute lavare
-			mi#loro hanno volute lavere	
+			loro#mi hanno voluto lavare
+			mi#loro hanno voluto lavere	
 			hanno mi#voluto lavare
 			hanno voluto mi#lavare
 		
@@ -216,7 +231,7 @@
 		loro gli#lavano Luisa
 		gli#lavano Luisa
 		
-	& Group 4.2 Clitic clusters
+	& Group 4.2 Grammatical clitic clusters
 	
 		loro gli#la#hanno lavata
 		gli#la#hanno lavata
@@ -227,4 +242,19 @@
 		la#gli#hanno lavata
 		loro hanno gli#la#lavata
 		hanno gli#la#lavata
+
+& Group 5. Reconstruction
+
+	& Group 5.1 Non-reconstructing
+
+		& Group 5.1.1 Grammatical, non-reconstructing
+
+			loro sembrano lavare#mi	
 		
+		& Group 5.1.2 Ungrammatical, reconstructing
+		
+			loro mi#sembrano lavare
+	
+	& Group 5.2 Reconstructing
+	
+		& Group 5.2.1 Grammatical, reconstructing

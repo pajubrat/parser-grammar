@@ -24,7 +24,7 @@ ask-	:: PF:ask LF:ask CAT:V SPEC:D COMP:D SEM:internal LANG:EN
 Cen		:: PF:en LF:by CAT:ADV -ARG LANG:FI
 
 devono :: deva#[-no]
-deva	:: CAT:T/fin PF:deva LF:must !COMP:ARE/inf ARE LANG:IT
+deva	:: CAT:T/fin PF:deva LF:must !COMP:ARE/inf LANG:IT R
 
 etsii	:: etsi-#v#T/fin#[-V] LANG:FI
 etsi-	:: PF:etsi LF:search CAT:V !COMP:D LANG:FI COMP:D
@@ -124,7 +124,13 @@ sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE LANG:FI
 said    :: say-#T/fin#[-0] LANG:EN
 say-    :: PF:say LF:say CAT:V SPEC:D !COMP:FORCE LANG:EN
 
-stanno	:: sta-#T/fin#[-no] LANG:IT
+sembrano :: sembra-#T/fin#[-no] LANG:IT
+sembra-	:: PF:sembra LF:seem -R -ARG -VAL CAT:V SPEC:P -COMP:D !COMP:ARE/inf
+
+sono	:: sono-#T/fin#[-o] LANG:IT
+sono-	:: CAT:V PF:BE LF:BE SPEC:D
+
+stanno	:: sta-#T/fin#[-no] LANG:IT	
 sta-	:: CAT:V PF:sta LF:stay SPEC:D COMP:PRG
 
 sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG LANG:FI
@@ -199,14 +205,14 @@ loro	:: loro-#D#pl#3p#def#n LANG:EN
 loro-	:: PF:loro LF:they CAT:N CAT:PHI LANG:IT
 
 # Italian clitics
-mi		:: mi-#D#sg#1p#def#hum#m#cl#acc CAT:CL
+mi		:: mi-#D#sg#1p#def#hum#m#cl#acc
 mi-		:: PF:mi(cl) LF:me CAT:N CAT:PHI CAT:CL LANG:IT
-la		:: la-#D#sg#3p#def#hum#f#cl#acc CAT:CL
+la		:: la-#D#sg#3p#def#hum#f#cl#acc
 la-		:: PF:la(cl) LF:her CAT:N CAT:PHI CAT:CL LANG:IT
-lo		:: lo-#D#sg#3p#def#hum#m#cl#acc CAT:CL
+lo		:: lo-#D#sg#3p#def#hum#m#cl#acc
 lo-		:: PF:lo(cl) LF:him CAT:N CAT:PHI CAT:CL LANG:IT
-gli		:: lo-#D#sg#3p#def#hum#m#cl#P#dat CAT:CL
-ci		:: ci-#D#sg#3p#def#hum#m#cl#dat CAT:CL
+gli		:: lo-#D#sg#3p#def#hum#m#P#cl#dat
+ci		:: ci-#D#sg#3p#def#hum#m#cl#dat
 ci-		:: PF:ci LF:there CAT:N CAT:PHI LANG:IT
 
 # AGREEMENT (PHI) SUFFIXES
