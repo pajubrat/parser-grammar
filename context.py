@@ -1,6 +1,5 @@
-from LexicalInterface import LexicalInterface
 
-class Context():
+class Context:
     def __init__(self):
         self.lexicon_file = 'lexicon.txt'
         self.ug_morphemes_file = 'ug_morphemes.txt'

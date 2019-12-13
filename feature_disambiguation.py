@@ -3,7 +3,8 @@ from LexicalInterface import LexicalInterface
 import phrase_structure
 
 class FeatureProcessing():
-    def __init__(self):
+    def __init__(self, controlling_parser_process):
+        self.controlling_parser_process = controlling_parser_process
         pass
 
     # Definition for feature inheritance mechanism

@@ -25,12 +25,12 @@ def show_results(ps_, result_list, number_of_Merges, number_of_Moves, number_of_
     ps_.tidy_names(1)
     print(chr(96 + len(result_list)) + '. ' + ps_.show())
     print(f'{ps_}')
-    print(ps_.spellout())
-    print(ps_.illustrate_spellout())
+    # print(ps_.spellout())
+    # print(ps_.illustrate_spellout())
     print(ps_.illustrate())
     print(str(semantic_interpretation))
-    print(str(number_of_Merges) + ', Moves: ' + str(number_of_Moves)
-          + ', Solutions tried: ' + str(number_of_solutions_tried) + '\n')
+    # print(str(number_of_Merges) + ', Moves: ' + str(number_of_Moves)
+    #      + ', Solutions tried: ' + str(number_of_solutions_tried) + '\n')
     log_result(ps_)
     log(ps_.show_primitive_constituents())
     log(ps_.show_all_vectors())
@@ -121,7 +121,6 @@ def log_result(ps):
     log(f'\t\t{ps.illustrate()}')
     log(f'\t\tGrammar: {ps}')
     log(f'\t\tSpellout {ps.show()}')
-    log(ps.show_primitive_constituents())
 
 
 def illu(set):

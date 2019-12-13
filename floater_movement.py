@@ -1,19 +1,19 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
+from adjunct_constructor import AdjunctConstructor
 import phrase_structure
 
-
 class FloaterMovement():
-    def __init__(self, context):
+    def __init__(self, controlling_parser_process):
+        self.controlling_parser_process = controlling_parser_process
         self.name_provider_index = 0
         self.memory_buffer = []
-        self.context = context
         self.number_of_Moves = 0
 
         # Access to the lexicon
-        self.lexical_access = LexicalInterface(context.redundancy_rules_file)
-        self.lexical_access.load_lexicon(context.lexicon_file, context.language)
-        self.lexical_access.load_lexicon(context.ug_morpheme_file, context.language, combine=True)
+        self.lexical_access = LexicalInterface(self.controlling_parser_process)
+        self.lexical_access.load_lexicon(self.controlling_parser_process)
+        self.adjunct_constructor = AdjunctConstructor(self.controlling_parser_process)
 
     # Definition for floater reconstruction
     def reconstruct(self, ps):
@@ -79,15 +79,15 @@ class FloaterMovement():
                 # Condition 2a. DP and PP are transformed into adjuncts and marked for reconstruction
                 if ('D' in floater.get_labels() or 'P' in floater.get_labels()) and floater.get_top().contains_feature('CAT:FIN'):
                     if floater.mother:
-                        floater.mother.create_adjunct()
+                        self.adjunct_constructor.create_adjunct(floater.mother)
                     else:
-                        floater.create_adjunct()
+                        self.adjunct_constructor.create_adjunct(floater)
                     return floater.mother
 
                 # Condition 2b. If the right branch is ADV, it is transformed into an adjunct, but not reconstructed.
                 else:
                     if 'ADV' in floater.get_labels() and not _ps_iterator.right_const.adjunct:
-                        floater.create_adjunct()
+                        self.adjunct_constructor.create_adjunct(floater)
 
     # Definition for floater reconstruction (dropping)
     def drop_floater(self, floater, ps):
@@ -116,7 +116,7 @@ class FloaterMovement():
             # Condition 3: dropped non-ADV will become the only SPEC
             if self.is_drop_position(ps_iterator_, floater_copy, starting_point):
                 if not floater.adjunct:
-                    floater.create_adjunct()
+                    self.adjunct_constructor.create_adjunct(floater)
 
                 # We have found a position and create the actual copy that will be in the new position
                 dropped_floater = floater.transfer(self.babtize())

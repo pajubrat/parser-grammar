@@ -1,18 +1,20 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
+from adjunct_constructor import AdjunctConstructor
 import phrase_structure
 
 class PhrasalMovement():
-    def __init__(self, context):
+    def __init__(self, controlling_parser_process):
+        self.controlling_parser_process = controlling_parser_process
         self.name_provider_index = 0
         self.memory_buffer = []
-        self.context = context
+        self.context = controlling_parser_process
         self.number_of_Moves = 0
 
         # Access to the lexicon
-        self.lexical_access = LexicalInterface(context.redundancy_rules_file)
-        self.lexical_access.load_lexicon(context.lexicon_file, context.language)
-        self.lexical_access.load_lexicon(context.ug_morpheme_file, context.language, combine=True)
+        self.lexical_access = LexicalInterface(self.controlling_parser_process)
+        self.lexical_access.load_lexicon(self.controlling_parser_process)
+        self.adjunct_constructor = AdjunctConstructor(self.controlling_parser_process)
 
     # Definition for A/A'-movement reconstruction
     def reconstruct(self, ps):
@@ -43,8 +45,6 @@ class PhrasalMovement():
             # Walk downwards on the right edge
             _ps_last_site = _ps_iterator
             _ps_iterator = _ps_iterator.walk_downstream()
-
-        self.try_extraposition(_ps_last_site)
 
     #
     # Case 1. Fill specifier position from memory buffer
@@ -166,7 +166,7 @@ class PhrasalMovement():
                                 _ps_spec_iterator = _ps_spec_iterator.walk_upstream()
                                 if new_h.get_tail_sets():
                                     log('\t\t\t\t\tThe new head has tail features, must be an adjunct floater.')
-                                    new_h.create_adjunct()
+                                    self.adjunct_constructor.create_adjunct(new_h)
 
                                     # Drop inside the right-adjunct
                                     if _ps_spec_iterator.mother:
@@ -192,7 +192,7 @@ class PhrasalMovement():
                             if h.get_tail_sets():
                                 log(f'\t\t\t\t\tTail features ' + illu(
                                     h.get_tail_sets()) + f' were detected at {h}, this must head an adjunct floater.')
-                                h.create_adjunct()
+                                self.adjunct_constructor.create_adjunct(h)
                                 if _ps_spec_iterator.mother:
                                     _ps_spec_iterator = _ps_spec_iterator.mother
 
@@ -256,7 +256,7 @@ class PhrasalMovement():
                 # The mismatching complement will be demoted to floater status
                 if h.complement().right_const.is_adjoinable():
                     log('\t\t\t\t\tThe mismatching complement will be trasformed into floater adjunct.')
-                    h.complement().right_const.create_adjunct()
+                    self.adjunct_constructor.create_adjunct(h.complement().right_const)
                 self.memory_buffer.remove(target_const)
                 log(f'\t\t\t\t\tRemaining memory buffer: {self.memory_buffer}')
 
@@ -284,65 +284,6 @@ class PhrasalMovement():
             h = None
         return h
 
-    # Definition for extraposition
-    def try_extraposition(self, ps):
-        # Returns the bottom node on the right edge (not geometrical)
-
-        def get_bottom(ps):
-            iterator_ = ps
-            while iterator_:
-                if iterator_.is_primitive():
-                    return iterator_
-                else:
-                    iterator_ = iterator_.walk_downstream()
-            return
-
-        # Presupposition 1
-        # LF - legibility fails(last resort)
-        if ps.get_top().LF_legibility_test().all_pass():
-            return
-
-        # Presupposition 2
-        # Do this only for referential structures (T/fin, D)
-        if not (ps.get_top().contains_feature('CAT:FIN') or 'D' in ps.get_top().get_labels()):
-            return
-
-        log(f'\t\t\t\t\tExtraposition will be tried on {ps.get_top()}.')
-        ps_ = get_bottom(ps).mother
-
-        # Find first [H XP] where H is adjoinable and
-        # we have either (i) [XP][HP] or (ii) [X HP] with X not selecting for H
-        while ps_:
-            if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
-                # If its phrase, then we can select HP (=i)
-                if not ps_.sister().is_primitive():
-                    break
-                # If it is head, then we select HP if the head rejects HP as complement (=ii)
-                else:
-                    # Explicit non-selection
-                    if ps_.left_const.get_labels() & ps_.sister().get_not_comps():
-                        break
-                    # Mandatory selection for something else
-                    if ps_.sister().get_mandatory_comps() and not(ps_.left_const.get_labels() & ps_.sister().get_mandatory_comps()):
-                        break
-
-            ps_ = ps_.walk_upstream()
-
-        if ps_:
-            # This is LF-requirement: the adjunct must get semantic interpretation
-            for head in ps_.left_const.get_feature_vector():
-                if 'FIN' in head.get_labels() or 'D' in head.get_labels():
-                    ps_.create_adjunct()
-                    log(f'\t\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
-                    if not ps_.get_top().LF_legibility_test().all_pass():
-                        # If phi set is available...
-                        if self.promote_phi_set(ps_.left_const):
-                            log(f'\t\t\t\t\tThe structure is still illicit! Try phi-tailing as a last resort?')
-                            # self.drop_floater(ps_.get_top())
-                            # log(f'\t\t\t\t={ps_.get_top()}')
-                    return True
-
-        return False
 
     # Definition for generating a new head
     def engineer_head_from_specifier(self, features, labels):
@@ -392,18 +333,6 @@ class PhrasalMovement():
                 if f_ == g_:
                     return True
         return False
-
-    # This will promote a phi set (if any) into tail features
-    # (Not correct, only relates to Italian postverbal subjects.)
-    def promote_phi_set(self, ps):
-
-        if ps.get_phi_set():
-            new_tail_feature_list = list(ps.get_phi_set())
-            new_tail_feature = f'TAIL:{",".join([str(f) for f in sorted(new_tail_feature_list)])},!COMP:*'
-            ps.features.add(new_tail_feature)
-            return True
-        else:
-            return False
 
     # get_specifiers() wrapper that implements the modular interface to the PhraseStructure class
     def get_specifiers(self, h):

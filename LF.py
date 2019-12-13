@@ -11,6 +11,7 @@ class LF:
         # Test result variables
         self.probe_goal_test_result = True
         self.selection_test_result = True
+        self.wrong_complement_test_result = True
         self.tail_head_test_result = True
         self.head_integrity_test_result = True
         self.criterial_feature_test_result = True
@@ -32,6 +33,7 @@ class LF:
                 self.criterial_feature_test_result and
                 self.semantic_test_result and
                 self.projection_principle_test_result and
+                self.wrong_complement_test_result and
                 self.adjunct_test_result)
 
     def fail(self):
@@ -159,6 +161,7 @@ class LF:
                 if h.is_left() and comp and f[6:] in comp.get_labels():
                     log(f'\t\t\t\t"{ps}\" has wrong complement {comp} {illu(comp.get_labels())}P')
                     self.selection_test_result = False
+                    self.wrong_complement_test_result = False
 
             if f == '-COMP:*':
                 if h.is_left() and comp:

@@ -2,19 +2,22 @@ from support import set_logging, log, show_results, report_LF_problem, report_ta
 from LexicalInterface import LexicalInterface
 from LF import LF
 from operator import itemgetter
-from reconstruction import Reconstruction
 from morphology import Morphology
 from agreement_reconstruction import AgreementReconstruction
 from transfer import Transfer
 from surface_conditions import SurfaceConditions
 
 # Defines the Linear Phase (LP) parser
+# sentence_context contains cognitive information concerning the sentence context, for example,
+#   language/dialect
+#   Discourse information (topic, focus, communicative intentions)
 
-class LinearPhaseParser():
-    def __init__(self, context):
+
+class LinearPhaseParser:
+    def __init__(self, sentence_context):
 
         # Contextual variables (language etc.)
-        self.context = context
+        self.sentence_context = sentence_context
 
         # All results (analyses)
         self.result_list = []
@@ -45,16 +48,17 @@ class LinearPhaseParser():
         self.name_provider_index = 0
 
         # Access to the lexicon
-        self.lexicon = LexicalInterface(self.context.redundancy_rules_file)
-        self.lexicon.load_lexicon(self.context.lexicon_file, context.language)
-        self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
+        self.lexicon = LexicalInterface(self)
+
+        # Load the language/dialect specific lexicon
+        self.lexicon.load_lexicon(self)
 
         # Access to morphology
-        self.morphology = Morphology(self.context)
+        self.morphology = Morphology(self)
 
         # Access to transfer (to LF)
         # This provides transfer to LF functionality
-        self.transfer = Transfer(self.context)
+        self.transfer = Transfer(self)
 
         # Surface conditions
         self.surface_conditions_module = SurfaceConditions()
@@ -154,7 +158,7 @@ class LinearPhaseParser():
             # If the item was not recognized, an ad hoc constituent is returned that has unknown label CAT:X
             disambiguated_word_list = self.lexicon.access_lexicon(lst[index])
             if len(disambiguated_word_list) > 1:
-                log(f'\t\tAmbiguous lexical item \"{lst[index]}\" detected.')
+                log(f'\t\tAmbiguous lexical item \"{lst[index]}\" detected, {disambiguated_word_list}.')
 
             # Explore all possible lexical items
             for lexical_constituent in disambiguated_word_list:
@@ -173,7 +177,6 @@ class LinearPhaseParser():
                 # Read inflectional features (if any) and store them into memory buffer, then consume next word
                 inflection = m.get_inflection(lexical_item)
                 if inflection:
-
                     # Add inflectional features and prosodic features into memory
                     self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
                     log('\t\tConsume \"' + lst_branched[index + 1] + '\"')
@@ -184,7 +187,6 @@ class LinearPhaseParser():
 
                 # If the item was not inflection, it is a morpheme that must be merged
                 else:
-
                     # Unload inflectional suffixes from the memory into the morpheme as features
                     lexical_item = m.set_inflection(lexical_item, self.memory_buffer_inflectional_affixes)
                     self.memory_buffer_inflectional_affixes = set()
@@ -561,10 +563,9 @@ class LinearPhaseParser():
     def transfer_to_lf(self, ps):
         original_mother = ps.mother
         ps.detach()
-        context = self.context
 
         T = self.transfer
-        ps = T.transfer(ps, context)
+        ps = T.transfer(ps)
 
         if original_mother:
             ps.mother = original_mother

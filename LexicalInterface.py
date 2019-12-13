@@ -1,6 +1,7 @@
 import phrase_structure
 import logging
 from collections import defaultdict
+from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 log = logging.getLogger(__name__)
 
 
@@ -9,15 +10,16 @@ class LexicalInterface:
 
     # The interface contains a dictionary which holds the lexical items
     # The lexicon is a combination of language-invariant morphemes (UG_morphemes) and language-specific morphemes
-    def __init__(self, redundancy_rules_file='redundancy_rules.txt'):
+    def __init__(self, controlling_parser_process):
+        self.controlling_parser_process = controlling_parser_process
         self.PhraseStructure = phrase_structure.PhraseStructure
-        self.d = defaultdict(list)
-        self.redundancy_rules = self.load_redundancy_rules(redundancy_rules_file)
-        self.language = ''
+        self.lexicon_dictionary = defaultdict(list)
+        self.redundancy_rules = self.load_redundancy_rules(self.controlling_parser_process)
+        self.language = self.controlling_parser_process.sentence_context.language
 
-    def load_redundancy_rules(self, file):
+    def load_redundancy_rules(self, controlling_parser_process):
         d = {}
-        for line in open(file):
+        for line in open(controlling_parser_process.sentence_context.redundancy_rules_file):
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
@@ -27,56 +29,75 @@ class LexicalInterface:
             d[key] = feats
         return d
 
-    def load_lexicon(self, file='', language='LANG:EN', combine=False, lines=None):
+    def load_lexicon(self, controlling_parser_process):
+        self.load_lexicon_(controlling_parser_process.sentence_context.lexicon_file)
+        self.load_lexicon_(controlling_parser_process.sentence_context.ug_morphemes_file, True)
+        return self.lexicon_dictionary
 
-        self.language = language
+    def load_lexicon_(self, lexicon_file, combine=False, lines=None):
 
         if not combine:
             # defaultdict is a dict where new entries are automatically empty objects of given type.
             # so in this case when adding new entries we don't have to start a new list of entries
             # but we can immediately append to it, as it is an empty list: self.d[key].append(const)
-            self.d = defaultdict(list)
+            self.lexicon_dictionary = defaultdict(list)
 
         lines = lines or []
-        if file:
-            lines = open(file).readlines()
 
+        # Read the lexicon from the file
+        if lexicon_file:
+            lines = open(lexicon_file).readlines()
+
+        # Go through the lexicon file line by line
         for line in lines:
             line = line.strip()
+
+            # Ignore comments
             if not line or line.startswith('#'):
                 continue
-            key, feats = line.split('::', 1)
+
+            # Split into keys and lexical information
+            key, constituent_features = line.split('::', 1)
             key = key.strip()
-            feats = [f.strip() for f in feats.split()]
-            if '#' in feats[0]:
+
+            # Use space to extract features
+            constituent_features = [f.strip() for f in constituent_features.split()]
+
+            # If the first feature contains morpheme information, we create a special higher level entry
+            if '#' in constituent_features[0]:
                 # This is morphologically complex word, e.g. 'wonder-#T/fin'
                 # lexicon stores an otherwise empty constituent with morphology to show how it decomposes
                 const = self.PhraseStructure()
-                const.morphology = feats[0]
-                const.features = feats[1:]
-                self.d[key].append(const)
-            elif combine and key in self.d:
-                # When combining lexicons (e.g. adding universal morphemes), instead of creating new word entries,
-                # features from new lexicon are added to words found from old lexicon.
-                for const in self.d[key]:
-                    const.features = set(const.features) | set(feats)
+                const.morphology = constituent_features[0]
+                const.features = constituent_features[1:]
+                self.lexicon_dictionary[key].append(const)
+
+            # If we are adding lexical items to existing lexicon, we accumulate features if key exists already
+            elif combine and key in self.lexicon_dictionary:
+                for const in self.lexicon_dictionary[key]:
+                    const.features = set(const.features) | set(constituent_features)
+            # Otherwise we add a new entry
             else:
                 # Creating new word entry
                 const = self.PhraseStructure()
-                # constituents that should have no morphology have feature '-'
-                const.morphology = key if '-' not in feats else ''
-                const.features = self.apply_parameters(self.apply_redundancy_rules(feats))
-                self.d[key].append(const)
+
+                # Constituents that have feature '-' are inflectional and have no morphological decomposition
+                if '-' in constituent_features:
+                    const.morphology = ''
+                else:
+                    const.morphology = key
+
+                # Every new lexical item must be applied (i) redundancy rules and (ii) parameters
+                const.features = self.apply_parameters(self.apply_redundancy_rules(constituent_features))
+                self.lexicon_dictionary[key].append(const)
 
         # Show the lexicon
         # for key, value in self.d.items():
-        #   print(key, str(value[0].features))
-        return self.d
+        #     print(key, str(value[0].features))
+        return self.lexicon_dictionary
 
+    # Accesses the lexicon (lexicon_dictionary) based on a key
     def access_lexicon(self, key):
-        """ This function will take a literal string as input, finds all lexical items that match it and returns
-        copies of them. If the input is not recognized, an ad hoc lexical item is created.
-        """
         internal = False
         # Word-internal pronouncing is marked by $ by morphological decomposing
         # Here it is removed and converted into a feature
@@ -88,8 +109,9 @@ class LexicalInterface:
         if key.endswith('_'):
             key = key[:-1]
             incorporated = True
-        if key in self.d:
-            word_list = [const.copy() for const in self.d[key]]
+        if key in self.lexicon_dictionary:
+            # Copy lexical items from the lexicon
+            word_list = [const.copy() for const in self.lexicon_dictionary[key]]
             if internal:
                 for const in word_list:
                     # Mark this constituent (if not inflectional) as word-internal,
@@ -100,6 +122,7 @@ class LexicalInterface:
                 for const in word_list:
                     const.incorporated = True
         else:
+            # Create placeholder if the item was not recognized
             const = self.PhraseStructure()
             const.features = {'PF:?', 'CAT:?'}  # If the word is not found, we will still create it
             const.morphology = key

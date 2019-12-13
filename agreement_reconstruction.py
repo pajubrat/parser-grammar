@@ -1,6 +1,4 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
-from LexicalInterface import LexicalInterface
-import phrase_structure
 
 
 class AgreementReconstruction():

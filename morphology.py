@@ -1,12 +1,12 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
 
-class Morphology():
-    def __init__(self, context):
-        self.context = context
-        self.lexicon = LexicalInterface(self.context.redundancy_rules_file)
-        self.lexicon.load_lexicon(self.context.lexicon_file, context.language)
-        self.lexicon.load_lexicon(self.context.ug_morphemes_file, context.language, combine=True)
+
+class Morphology:
+    def __init__(self, controlling_parser_process):
+        self.controlling_parser_process = controlling_parser_process
+        self.lexicon = LexicalInterface(self.controlling_parser_process)
+        self.lexicon.load_lexicon(self.controlling_parser_process)
 
     # Definition for morphological parsing for lexical item
     # Condition 1.  If LI is monomorphemic(w), return the same item and input list (i.e. do nothing)
@@ -70,7 +70,7 @@ class Morphology():
 
     def set_inflection(self, lexical_item, inflectional_affixes):
         if inflectional_affixes:
-            log('\n\t\tAdding inflectional features to ' + lexical_item.get_pf())
+            log(f'\t\tAdding inflectional features {inflectional_affixes} to ' + lexical_item.get_pf())
             lexical_item.features = lexical_item.features.union(set(inflectional_affixes))
             lexical_item.features = self.lexicon.create_combined_categories(lexical_item.features)
         return lexical_item

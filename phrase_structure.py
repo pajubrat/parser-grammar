@@ -40,7 +40,7 @@ class PhraseStructure:
 
         # This name is used to identify chains for output purposes.
         self.identity = ''      # A unique handler/name for the constituent
-        self.rebaptized = False # Support variable used in the creation of chain numbering
+        self.rebaptized = False  # Support variable used in the creation of chain numbering
 
     # Returns the node 'item' at the right edge
     # E.g. ps[3] = 3rd node at the right edge
@@ -489,7 +489,7 @@ class PhraseStructure:
 
     # Definition for adjoinable phrase
     def is_adjoinable(self):
-        adjoinable_categories = {'ADV', 'R', 'D', 'P', 'TO/inf'}
+        adjoinable_categories = {'ADV', 'R', 'D', 'P', 'TO/inf', 'ARE/inf'}
 
         # Adjuncts are automatically adjoinable
         if self.adjunct:
@@ -521,59 +521,6 @@ class PhraseStructure:
         ps_.find_me_elsewhere = self.find_me_elsewhere
         ps_.identity = self.identity
         return ps_
-
-    # Transforms a constituent into an adjunct
-    # The nontrivial part is how much surrounding structure to eat inside the adjunct
-    def create_adjunct(self):
-
-        def make_adjunct(ps):
-            ps.adjunct = True
-            log(f'\t\t\t\t\t\t{ps} was made an adjunct.')
-            if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-                ps.mother.adjunct = True
-            return True
-
-        # --- Main function begins here --- #
-
-        head = self.get_head()
-
-        # If the head is primitive, we must decide how much of the surrounding structure he will eat
-        if self.is_primitive():
-
-            # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
-            if head.external_tail_head_test():
-                # Condition 1. The head requires a mandatory specifier
-                # Condition 2. The specifier exists
-                if '!SPEC:*' in head.features and head.mother.mother and self.get_generalized_specifiers():
-                    # Result. The specifier is eaten inside the adjunct
-                    make_adjunct(head.mother.mother)
-                    return self.mother.mother
-                else:
-                    # The specifier is not eaten inside the adjunct
-                    if head.mother and head.mother.get_head() == head:
-                        make_adjunct(head.mother)
-                    else:
-                        make_adjunct(head)
-                    return self.mother
-
-            # If the adjunct is still in wrong position, we eat the specifier if accepted
-            else:
-                # Condition 1. There are specifiers
-                # Condition 2. The head does not reject specifiers
-                # Condition 3. The specifier is accepted by the head
-                # Condition 4. The specifier is not pro/PRO
-                # Condition 5. The head is not marked for -ARG
-                if self.get_generalized_specifiers() and not '-SPEC:*' in head.features and \
-                        not set(head.get_not_specs()).intersection(set(self.get_generalized_specifiers()[0].get_labels())) and \
-                        not self.get_generalized_specifiers()[0].is_primitive() and '-ARG' not in self.features:
-                    if head.mother.mother:
-                        make_adjunct(head.mother.mother)
-                    return self.mother.mother
-                else:
-                    make_adjunct(head.mother)
-                    return self.mother
-        else:
-            make_adjunct(self)
 
     # Definition for LF-legibility
     def LF_legibility_test(self):
@@ -1032,7 +979,7 @@ class PhraseStructure:
     def show_all_vectors(self):
         if not self.is_primitive():
             return self.left_const.show_all_vectors() + self.right_const.show_all_vectors()
-        return f'{self}: {self.get_feature_vector()}\n'
+        return f'{self}: {self.get_feature_vector()};  '
 
     # This function tries to create "informative" representation of the categories of the constituent ps
     def get_cats_string(self):

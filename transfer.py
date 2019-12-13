@@ -1,29 +1,27 @@
 import phrase_structure
-from reconstruction import Reconstruction
-from morphology import Morphology
 from agreement_reconstruction import AgreementReconstruction
 from support import log
-from context import Context
 from phrasal_movement import PhrasalMovement
 from floater_movement import FloaterMovement
 from head_movement import HeadMovement
 from feature_disambiguation import FeatureProcessing
+from extraposition import Extraposition
 
 # Transfer performs a normalization mapping from phrase structure object into LF-object
 # Its function is to repair the first pass parse from errors
 class Transfer():
 
-    def __init__(self, context):
-        self.context = Context()
-        self.movement_module = Reconstruction(context)
+    def __init__(self, controlling_parser_process):
+        self.controlling_parser_process = controlling_parser_process
         self.agreement_module = AgreementReconstruction()
-        self.phrasal_movement_module = PhrasalMovement(context)
-        self.floater_movement_module = FloaterMovement(context)
-        self.head_movement_module = HeadMovement(context)
-        self.feature_process = FeatureProcessing()
+        self.phrasal_movement_module = PhrasalMovement(self.controlling_parser_process)
+        self.floater_movement_module = FloaterMovement(self.controlling_parser_process)
+        self.head_movement_module = HeadMovement(self.controlling_parser_process)
+        self.feature_process = FeatureProcessing(self.controlling_parser_process)
+        self.extraposition = Extraposition(self.controlling_parser_process)
 
     # Transfer
-    def transfer(self, ps, context):
+    def transfer(self, ps):
         log(f'\t\t\tTransferring {ps} to LF.')
 
         # Activate modules
@@ -32,6 +30,7 @@ class Transfer():
         floater_movement = self.floater_movement_module
         phrasal_movement = self.phrasal_movement_module
         agreement = self.agreement_module
+        extraposition = self.extraposition
 
         # Allow each module to operate with the phrase structure in a sequence
 
@@ -43,6 +42,10 @@ class Transfer():
         # Stage 2. Reconstruct features
         log('\t\t\t\t2. Feature processing:')
         feature_process.disambiguate(ps)
+        log(f'\t\t\t\t\t={ps}')
+
+        log('\t\t\t\t3. Extraposition:')
+        extraposition.reconstruct(ps)
         log(f'\t\t\t\t\t={ps}')
 
         # Stage 3. Reconstruct floater movement

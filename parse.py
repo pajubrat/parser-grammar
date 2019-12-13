@@ -105,12 +105,12 @@ if plus_sentences:
 parsers = {}
 lang_guesser = LanguageGuesser(lexicon_file_name)
 for language in lang_guesser.languages:
-    context = Context()
-    context.lexicon_file_name = lexicon_file_name
-    context.ug_morpheme_file = ug_morphemes
-    context.redundancy_rule_file = redundancy_rules
-    context.language = language
-    parsers[language] = LinearPhaseParser(context)
+    sentence_context = Context()
+    sentence_context.lexicon_file_name = lexicon_file_name
+    sentence_context.ug_morpheme_file = ug_morphemes
+    sentence_context.redundancy_rule_file = redundancy_rules
+    sentence_context.language = language
+    parsers[language] = LinearPhaseParser(sentence_context)
 
 # Set up logging functions and parameters
 logging.basicConfig(level=logging.INFO, filename=log_file_name, filemode='w', format='%(message)s')
@@ -154,7 +154,7 @@ for sentence in parse_list[start:]:
         set_logging(False)
         lang = lang_guesser.guess(sentence)
 
-        # Initialize the parser for a language
+        # Initialize the parser for language lang
         P = parsers[lang]
 
         # These variables count the number of operations (not fully functional in this version)
