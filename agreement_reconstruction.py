@@ -1,7 +1,7 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 
 
-class AgreementReconstruction():
+class AgreementReconstruction:
     def __init__(self):
         pass
 
@@ -18,8 +18,6 @@ class AgreementReconstruction():
 
                 # Condition 2. The head requires feature valuation
                 if '-VAL' not in h.features and self.is_unvalued(h):
-                    log(f'\t\t\t\t\t{h} has unvalued phi-features {sorted(h.get_unvalued_features())}')
-
                     # The head acquires phi-feature
                     self.acquire_phi(h)
 

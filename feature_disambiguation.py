@@ -19,7 +19,7 @@ class FeatureProcessing():
                 h = ps_.left_const
                 # ...and it has neutralized agreement features, they are first disambiguated...
                 if '?ARG' in h.features:
-                    log(f'\t\t\t\t\tSolving feature ambiguite for \"{h}\".')
+                    log(f'\t\t\t\t\tSolving feature ambiguities for \"{h}\".')
                     self.resolve_neutralized_feature(h)
             ps_ = ps_.walk_downstream()
 

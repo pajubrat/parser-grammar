@@ -1,5 +1,5 @@
 Linear phase parser v. 3.x
-2019-12-13 11:23:23.020723
+2019-12-13 18:48:03.371951
 Test sentences from file "clitics_corpus.txt".
 Logs into file "clitics_corpus_log.txt.
 Lexicon from file "lexicon.txt".
@@ -36,7 +36,8 @@ Lexicon from file "lexicon.txt".
 8.  loro sembrano lavare Luisa 
 [[D loro]:1 [T/fin [sembra [__:1 [are [__:1 [v [lava [D Luisa]]]]]]]]]
 
-9. * io detesto lavare Luisa 
+9.  io detesto lavare Luisa 
+[[D io]:1 [T/fin [__:1 [v [detest [are [v [lava [D Luisa]]]]]]]]]
 
 10.  lui dorme 
 [[D lui]:1 [T/fin [__:1 dorme]]]
@@ -116,20 +117,19 @@ Lexicon from file "lexicon.txt".
 
 & Group 0.1.4 Free word order in Finnish (we should not break these)
 
-33.  Pekka ihailee Merjaa 
-[<D Pekka>:1 [T/fin [<DP>:1 [v [ihaile- [D Merja-]]]]]]
+33. ? Pekka ihailee Merjaa 
+[<D Pekka>:1 [T/fin [<DP>:1 [<DP>:1 [v [ihaile- [D Merja-]]]]]]]
 
-34.  Merjaa ihailee Pekka 
-[<D Merja->:1 [T/fin [<DP>:2 [v [<DP>:1 [ihaile- <D Pekka>:2]]]]]]
+34. * Merjaa ihailee Pekka 
 
 
 & Group 0.1.5 Control (we should not break these)
 
-35.  Pekka haluaa lahtea 
-[<D Pekka>:1 [T/fin [<DP>:1 [v [haluaa [A/inf lahtea]]]]]]
+35. ? Pekka haluaa lahtea 
+[<D Pekka>:1 [T/fin [<DP>:2 [<DP>:1 [v [haluaa [A/inf lahtea]]]]]]]
 
-36.  Pekka kaskee Merjan lahtea 
-[<D Pekka>:1 [T/fin [<DP>:1 [v* [kaske [<D Merja->:2 [A/inf [<DP>:2 lahtea]]]]]]]]
+36. ? Pekka kaskee Merjan lahtea 
+[<D Pekka>:1 [T/fin [<DP>:2 [<DP>:1 [v* [kaske [<D Merja->:3 [A/inf [<DP>:4 [<DP>:3 lahtea]]]]]]]]]]
 
 
 & Group 0.2 Ungrammatical
@@ -241,22 +241,22 @@ Lexicon from file "lexicon.txt".
 & Group 2.1.2 devono + lavare
 
 68. ? loro mi#devono lavare 
-[[D loro]:1 [deva [<D mi(cl)>:2 [__:1 [are [__:1 [v [<DP>:2 lava]]]]]]]]
+[[D loro]:1 [deva [<D mi(cl)>:2 [__:1 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]]
 
 69. ? loro devono lavare#mi 
-[[D loro]:1 [deva [<D mi(cl)>:2 [__:1 [are [__:1 [v [<DP>:2 lava]]]]]]]]
+[[D loro]:1 [deva [<D mi(cl)>:2 [__:1 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]]
 
 70. ? loro la#devono lavare 
-[[D loro]:1 [deva [<D la(cl)>:2 [__:1 [are [__:1 [v [<DP>:2 lava]]]]]]]]
+[[D loro]:1 [deva [<D la(cl)>:2 [__:1 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]]
 
 71. ? loro devono lavare#la 
-[[D loro]:1 [deva [<D la(cl)>:2 [__:1 [are [__:1 [v [<DP>:2 lava]]]]]]]]
+[[D loro]:1 [deva [<D la(cl)>:2 [__:1 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]]
 
 72. ? loro lo#devono lavare 
-[[D loro]:1 [deva [<D lo(cl)>:2 [__:1 [are [__:1 [v [<DP>:2 lava]]]]]]]]
+[[D loro]:1 [deva [<D lo(cl)>:2 [__:1 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]]
 
 73. ? loro devono lavare#lo 
-[[D loro]:1 [deva [<D lo(cl)>:2 [__:1 [are [__:1 [v [<DP>:2 lava]]]]]]]]
+[[D loro]:1 [deva [<D lo(cl)>:2 [__:1 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]]
 
 
 & Group 2.1.3 stanno + lavando
@@ -401,22 +401,22 @@ Lexicon from file "lexicon.txt".
 125. * la#hanno loro lavata 
 
 126. ? mi#devono loro lavare 
-[deva [<D mi(cl)>:1 [[D loro]:2 [are [__:2 [v [<DP>:1 lava]]]]]]]
+[deva [<D mi(cl)>:1 [[D loro]:2 [are [__:2 [v [<DP>:3 [lava <DP>:1]]]]]]]]
 
 127. ? devono loro lavare#mi 
-[deva [[D loro]:1 [<D mi(cl)>:2 [are [__:1 [v [<DP>:2 lava]]]]]]]
+[deva [[D loro]:1 [<D mi(cl)>:2 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]
 
 128. ? la#devono loro lavare 
-[deva [<D la(cl)>:1 [[D loro]:2 [are [__:2 [v [<DP>:1 lava]]]]]]]
+[deva [<D la(cl)>:1 [[D loro]:2 [are [__:2 [v [<DP>:3 [lava <DP>:1]]]]]]]]
 
 129. ? devono loro lavare#la 
-[deva [[D loro]:1 [<D la(cl)>:2 [are [__:1 [v [<DP>:2 lava]]]]]]]
+[deva [[D loro]:1 [<D la(cl)>:2 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]
 
 130. ? lo#devono loro lavare 
-[deva [<D lo(cl)>:1 [[D loro]:2 [are [__:2 [v [<DP>:1 lava]]]]]]]
+[deva [<D lo(cl)>:1 [[D loro]:2 [are [__:2 [v [<DP>:3 [lava <DP>:1]]]]]]]]
 
 131. ? devono loro lavare#lo 
-[deva [[D loro]:1 [<D lo(cl)>:2 [are [__:1 [v [<DP>:2 lava]]]]]]]
+[deva [[D loro]:1 [<D lo(cl)>:2 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]
 
 
 & Group 3 Aux + T/prt + ARE/inf
@@ -428,13 +428,13 @@ Lexicon from file "lexicon.txt".
 [[D loro]:1 [T/fin [__:1 [ha [[D mi(cl)]:2 [T/prt [v [volu [__:2 [are [v [lava __:2]]]]]]]]]]]]
 
 133.  loro hanno voluto lavare#mi 
-[[D loro]:1 [T/fin [__:1 [ha [T/prt [v [volu <<D mi(cl)>:2 [are [v [<DP>:2 lava]]]>]]]]]]]
+[[D loro]:1 [T/fin [__:1 [ha [T/prt [v [volu [[D mi(cl)]:2 [are [v [lava __:2]]]]]]]]]]]
 
 134.  mi#hanno voluto lavare 
 [T/fin [ha [[D mi(cl)]:1 [T/prt [v [volu [__:1 [are [v [lava __:1]]]]]]]]]]
 
 135.  hanno voluto lavare#mi 
-[T/fin [ha [T/prt [v [volu <<D mi(cl)>:1 [are [v [<DP>:1 lava]]]>]]]]]
+[T/fin [ha [T/prt [v [volu [[D mi(cl)]:1 [are [v [lava __:1]]]]]]]]]
 
 
 & Group 3.2 Ungrammatical
@@ -462,17 +462,16 @@ Lexicon from file "lexicon.txt".
 
 142. * loro gli#lavano Luisa 
 
-143.  gli#lavano Luisa 
-[T/fin [v [lava [[P [D lo(cl)]] <D Luisa>]]]]
+143. * gli#lavano Luisa 
 
 
 & Group 4.2 Grammatical clitic clusters
 
 144. ? loro gli#la#hanno lavata 
-[[D loro]:1 [T/fin [__:1 [ha [[D la(cl)]:2 [<P [D lo(cl)]>:3 [T/prt [[v [lava __:2]] <PP>:3]]]]]]]]
+[[D loro]:1 [T/fin [__:1 [ha [[D la(cl)]:2 [<P [D lo(cl)]>:3 [T/prt [[v [<PP>:3 [lava __:2]]] <PP>:4]]]]]]]]
 
 145. ? gli#la#hanno lavata 
-[T/fin [ha [[D la(cl)]:1 [<P [D lo(cl)]>:2 [T/prt [[v [lava __:1]] <PP>:2]]]]]]
+[T/fin [ha [[D la(cl)]:1 [<P [D lo(cl)]>:2 [T/prt [[v [<PP>:2 [lava __:1]]] <PP>:3]]]]]]
 
 
 & Group 4.3 Ungrammatical clitic clusters
@@ -486,38 +485,39 @@ Lexicon from file "lexicon.txt".
 149. * hanno gli#la#lavata 
 
 
-& Group 5. Reconstruction
+& Group 5. Restructuring
 
 
-& Group 5.1 Non-reconstructing
+& Group 5.1 restructuring
 
 
 & Group 5.1.1 Grammatical
 
-150. * loro sembrano lavare#mi 
+150. ? loro sembrano lavare#mi 
+[[D loro]:1 [T/fin [sembra [<D mi(cl)>:2 [__:1 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]]]
 
 151.  io detesto lavare#lo 
-[[D io]:1 [T/fin [__:1 [v [detest <<D lo(cl)>:2 [are [v [<DP>:2 lava]]]>]]]]]
+[[D io]:1 [T/fin [__:1 [v [detest [[D lo(cl)]:2 [are [v [lava __:2]]]]]]]]]
 
-152. ? Giuseppe spinge Luisa a lavare#lo 
-[[D Giuseppe]:1 [T/fin [__:1 [v [spinge [[D Luisa] <[a [D lo(cl)]]:2 [are [v [__:2 lava]]]>]]]]]]
+152.  Giuseppe spinge Luisa a lavare#lo 
+[[D Giuseppe]:1 [T/fin [__:1 [v [spinge [[D Luisa] <a [<D lo(cl)>:2 [are [v [<DP>:3 [lava <DP>:2]]]]]>]]]]]]
 
 
 & Group 5.1.2 Ungrammatical
 
-153. * loro mi#sembrano lavare 
+153. ? loro mi#sembrano lavare 
+[[D loro]:1 [T/fin [sembra [<D mi(cl)>:2 [__:1 [are [__:1 [v [<DP>:3 [lava <DP>:2]]]]]]]]]]
 
 154.  mi#sembrano lavare 
-[T/fin [sembra <<D mi(cl)>:1 [are [v [<DP>:1 lava]]]>]]
+[T/fin [sembra [<D mi(cl)>:1 [are [v [<DP>:2 [lava <DP>:1]]]]]]]
 
 155.  io lo#detesto lavare 
-[[D io]:1 [T/fin [__:1 [v [detest <<D lo(cl)>:2 [are [v [<DP>:2 lava]]]>]]]]]
+[[D io]:1 [T/fin [__:1 [v [detest [[D lo(cl)]:2 [are [v [lava __:2]]]]]]]]]
 
 156.  lo#detesto lavare 
-[T/fin [v [detest <<D lo(cl)>:1 [are [v [<DP>:1 lava]]]>]]]
+[T/fin [v [detest [[D lo(cl)]:1 [are [v [lava __:1]]]]]]]
 
-157. ? Giuseppe lo#spinge Luisa a lavare 
-[[D Giuseppe]:1 [T/fin [__:1 [v [spinge [[D lo(cl)] <[[D Luisa] a]:2 [are [v [__:2 lava]]]>]]]]]]
+157. * Giuseppe lo#spinge Luisa a lavare 
 
 
 & Group 6. Reflexive clitics
@@ -537,14 +537,11 @@ Lexicon from file "lexicon.txt".
 161.  mi#lavi 
 [T/fin [v [lava [D mi(cl)]]]]
 
-162. ? lui si#lava 
-[[D lui]:1 [T/fin [<DP>:2 [__:1 [v [lava <D si(cl)>:2]]]]]]
+162. * lui si#lava 
 
-163. ? lei si#lava 
-[[D lei]:1 [T/fin [<DP>:2 [__:1 [v [lava <D si(cl)>:2]]]]]]
+163. * lei si#lava 
 
-164.  si#lava 
-[T/fin [<DP>:1 [v [lava <D si(cl)>:1]]]]
+164. * si#lava 
 
 
 & Group 6.2 Simple intransitive si subjects
@@ -554,6 +551,5 @@ Lexicon from file "lexicon.txt".
 
 & Group 6.3 Biclausal si constructions
 
-166. ? si#vuole lavare Luisa 
-[T/fin [<DP>:1 [v [volu [[[D si(cl)]:1 [are [v [lava <DP>:1]]]] <D Luisa>]]]]]
+166. * si#vuole lavare Luisa 
 

@@ -1,6 +1,6 @@
 ﻿dummy	:: dummy
 
-a		 :: CAT:P PF:a LF:to COMP:ARE/inf LANG:IT
+a		 :: CAT:P PF:a LF:to COMP:ARE/inf -SPEC:* -ARG LANG:IT
 
 admire   :: admire-#v#T/fin#[-0] LANG:EN
 admires  :: admire-#v#T/fin#[-s] LANG:EN
@@ -26,7 +26,7 @@ BE-	:: CAT:V PF:BE LF:BE SPEC:D COMP:D COMP:N COMP:A !COMP:*
 Cen		:: PF:en LF:by CAT:ADV -ARG LANG:FI
 
 detesto	:: detest-#v#T/fin#[-o] LANG:IT
-detest-	:: CAT:V PF:detest LF:detest -R -COMP:ARE/inf COMP:D LANG:IT
+detest-	:: CAT:V PF:detest LF:detest -R COMP:D LANG:IT
 
 devono :: deva#[-no]
 deva	:: CAT:T/fin PF:deva LF:must !COMP:ARE/inf LANG:IT
@@ -146,7 +146,7 @@ sembra-	:: PF:sembra LF:seem -R -ARG -VAL CAT:V SPEC:P -COMP:D !COMP:ARE/inf
 sono	:: BE-#T/fin#[-o] LANG:IT
 
 spinge :: spinge-#v#T/fin#[-e] LANG:IT
-spinge- :: CAT:V PF:spinge LF:push !COMP:D LANG:IT
+spinge- :: CAT:V PF:spinge LF:push !COMP:D -COMP:P LANG:IT
 
 stanno	:: sta-#T/fin#[-no] LANG:IT	
 sta-	:: CAT:V PF:sta LF:stay SPEC:D COMP:PRG
@@ -164,7 +164,7 @@ try-	:: PF:try LF:try CAT:V SPEC:D !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal
 
 voluto	:: volu-#v#to LANG:IT
 vuole	:: volu-#v#T/fin#[-e] LANG:IT
-volu-	:: CAT:V PF:volu LF:want !COMP:*
+volu-	:: CAT:V PF:volu -SPEC:* LF:want !COMP:*
 
 wants	:: want-#v#T/fin#[-s] LANG:EN
 want-	:: PF:want LF:want CAT:V SPEC:D COMP:TO/inf LANG:EN

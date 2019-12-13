@@ -18,7 +18,6 @@ class PhrasalMovement():
 
     # Definition for A/A'-movement reconstruction
     def reconstruct(self, ps):
-        log(f'\t\t\t\t\tDropping A-/A-bar movement.')
         self.memory_buffer = []
         _ps_iterator = ps
         _ps_last_site = _ps_iterator
@@ -51,7 +50,7 @@ class PhrasalMovement():
     #
     def fill_spec_from_memory(self, h):
 
-        target_const = None
+        target_const_from_memory_buffer = None
 
         if h.mother and h.is_left():
             ps = h.mother
@@ -63,27 +62,27 @@ class PhrasalMovement():
         # Condition 2. The head should not have non-adjuncts specifiers already
         # Condition 3. No head-tail violations can occur
         specs = self.get_specifiers(h)
-        for const in self.memory_buffer:
+        for constituent_from_memory_buffer in self.memory_buffer:
 
             # Condition 1: h must select the label of the constituent in the memory buffer
-            if self.spec_match(h, const):
+            if self.spec_match(h, constituent_from_memory_buffer):
 
                 # Condition 2: h must not have non-adjunct specifiers already
                 if not specs or (specs and specs[0].adjunct):
 
-                    target_const = const
+                    target_const_from_memory_buffer = constituent_from_memory_buffer
                     # Condition 3: the constituent must not cause tail violations
                     # Try to merge it to Spec
                     # Check that this does not cause tail-head violations
-                    ps.merge(target_const.copy(), 'left')
+                    ps.merge(target_const_from_memory_buffer.copy(), 'left')
                     if ps.geometrical_sister().get_head().external_tail_head_test():  # Checks the head of the dropped constituent
-                        log(f'\t\t\t\t\tDropping constituent {target_const} from memory buffer into Spec of ' + f'{h}')
+                        log(f'\t\t\t\t\tDropping constituent {target_const_from_memory_buffer} from memory buffer into Spec of ' + f'{h}')
                         log(f'\t\t\t\t\tResult {ps.get_top()}')
                         # Replace the hypothetical candidate with proper chain
                         ps.geometrical_sister().remove()
-                        new_const = target_const.transfer(self.babtize())
+                        new_const = target_const_from_memory_buffer.transfer(self.babtize())
                         ps.merge(new_const, 'left')
-                        self.memory_buffer.remove(target_const)
+                        self.memory_buffer.remove(target_const_from_memory_buffer)
                         self.number_of_Moves += 1
                         break
                     else:
@@ -95,7 +94,6 @@ class PhrasalMovement():
     #
     def store_specs_into_memory(self, h):
         if h.EPP():
-
             _ps_iterator = h.mother
 
             # spec-iterator iterated over multiple Specs (if possible) into upward direction
@@ -120,6 +118,7 @@ class PhrasalMovement():
 
                     # ...and it has not been moved already...
                     if not _ps_spec_iterator.sister().find_me_elsewhere:
+
                         # ...and it is not a PHI:0 head...
                         if 'PHI:0' not in h.features:
                             # ...we put a pointer to the specifier into memory buffer.
@@ -128,7 +127,6 @@ class PhrasalMovement():
 
                         #... if it is a PHI:0 head...
                         else:
-
                             #...we reconstruct  A-movement (a version of phi-agreement)
                             self.A_reconstruct(_ps_spec_iterator.sister())
 

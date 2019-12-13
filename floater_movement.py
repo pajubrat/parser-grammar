@@ -3,6 +3,7 @@ from LexicalInterface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
 import phrase_structure
 
+
 class FloaterMovement():
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process
@@ -27,10 +28,8 @@ class FloaterMovement():
             floater = self.detect_floater(_ps_iterator)
             if floater:
                 log(f'\t\t\t\t\tDropping {floater}')
-
                 # Drop the floater
                 self.drop_floater(floater, ps)
-                self.number_of_Moves += 1
             _ps_iterator = _ps_iterator.walk_downstream()
 
     # Definition for floater that requires reconstruction
@@ -119,7 +118,7 @@ class FloaterMovement():
                     self.adjunct_constructor.create_adjunct(floater)
 
                 # We have found a position and create the actual copy that will be in the new position
-                dropped_floater = floater.transfer(self.babtize())
+                dropped_floater = floater.copy().transfer(self.babtize())
 
                 # Adverbs and PPs are adjoined to the right
                 if 'ADV' in floater_copy.get_labels() or 'P' in floater_copy.get_labels():
@@ -129,9 +128,6 @@ class FloaterMovement():
                 else:
                     ps_iterator_.merge(dropped_floater, 'left')
 
-                # The original copy will be marked so that it has been moved
-                dropped_floater.find_me_elsewhere = False
-                floater.find_me_elsewhere = True
                 floater_copy.remove()
                 log(f'\t\t\t\t\t\tFloater ' + dropped_floater.illustrate() + f' dropped.')
                 log(f'\t\t\t\t\t\t = {ps}')

@@ -161,9 +161,9 @@ class PhraseStructure:
         self_copy.find_me_elsewhere = False  # Copy is marked for being where it is
         self_copy.silence_phonologically()   # Silence the new constituent phonologically
         self.find_me_elsewhere = True        # Mark that the constituent has been copied
+                                            # Neutralize the original
+        remove_tail_features(self)           # Remove tail-features from the original
 
-        # Neutralize the original
-        remove_tail_features(self)         # Remove tail-features from the original
         return self_copy
 
     # Definition for an operation that removes an element from the phrase structure
@@ -409,12 +409,17 @@ class PhraseStructure:
                 # Assumption 4. Pro-element is printed out as 'pro'
                 pro.features.add('PF:pro')
 
+                # This is just to make its origin clear, not relevant theoretically
+                pro.features.add('pro')
+
                 # Assumption 5. Pro-element is phonologically covert
                 pro.silence_phonologically()
 
                 # Assumption 7. Pro-element can be created only from a consistent phi-set
                 if not pro.phi_conflict():
                     return pro
+            return None
+        else:
             return None
 
     # Definition for complement

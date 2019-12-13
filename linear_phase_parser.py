@@ -560,12 +560,12 @@ class LinearPhaseParser:
             return False
 
     # Reverses all movement inside left branches and values phi-features (when unvalued)
-    def transfer_to_lf(self, ps):
+    def transfer_to_lf(self, ps, log_embedding=3):
         original_mother = ps.mother
         ps.detach()
 
         T = self.transfer
-        ps = T.transfer(ps)
+        ps = T.transfer(ps, log_embedding)
 
         if original_mother:
             ps.mother = original_mother

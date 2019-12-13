@@ -41,7 +41,6 @@ class HeadMovement:
 
     # Recursive definition of head movement reconstruction (part 2)
     def reconstruct_head_movement(self, ps):
-        log(f'\t\t\t\t\tReconstructing head movement for {ps}.')
         ps_ = ps
         top = ps
 
@@ -57,9 +56,6 @@ class HeadMovement:
                 # Drop the affix
                 if self.drop_head(ps_.right_const, affix):
                     ps_.left_const.right_const = None
-                    log(f'\t\t\t\t\t\tExtracted head \"{affix}\" and reconstructed it = {ps_.get_top()}')
-                else:
-                    log(f'\t\t\t\t\t\tHead reconstruction failed for {affix}.')
 
             # Condition 2. The target is a primitive element
             elif ps_.is_primitive and ps_.has_affix():
@@ -67,7 +63,6 @@ class HeadMovement:
                 new_ps = ps_ + affix
                 ps_.right_const = None
                 top = new_ps
-                log(f'\t\t\t\t\tExtracted head \"{affix}\" from {ps_} and created {new_ps}')
 
                 # We are creating a new phrase structure [A B] and need to return that
                 top = new_ps.get_top()

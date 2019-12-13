@@ -11,12 +11,11 @@ class AdjunctConstructor:
 
         # If the head is primitive, we must decide how much of the surrounding structure he will eat
         if ps.is_primitive():
-
             # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
             if head.external_tail_head_test():
                 # Condition 1. The head requires a mandatory specifier
                 # Condition 2. The specifier exists
-                if '!SPEC:*' in head.features and head.mother.mother and ps.get_generalized_specifiers():
+                if '!SPEC:*' in head.features and head.mother.mother and head.mother.sister() and head.mother.sister().is_complex():
                     # Result. The specifier is eaten inside the adjunct
                     self.make_adjunct(head.mother.mother)
                     return ps.mother.mother
@@ -50,8 +49,8 @@ class AdjunctConstructor:
 
     def make_adjunct(self, ps):
         ps.adjunct = True
+        log(f'\t\t\t\t\t{ps} was made an adjunct.')
         self.transfer_adjunct(ps)
-        log(f'\t\t\t\t\t\t{ps} was made an adjunct.')
         if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
             ps.mother.adjunct = True
         return True
@@ -59,7 +58,8 @@ class AdjunctConstructor:
     def transfer_adjunct(self, ps):
         original_mother = ps.mother
         ps.detach()
-        ps = self.controlling_parser_process.transfer_to_lf(ps)
+        ps = self.controlling_parser_process.transfer_to_lf(ps, 5)
+        log(f'\t\t\t\t\t{ps} was transferred to LF as a phase.')
         if original_mother:
             ps.mother = original_mother
         return ps

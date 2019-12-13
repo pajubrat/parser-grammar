@@ -21,8 +21,10 @@ class Transfer():
         self.extraposition = Extraposition(self.controlling_parser_process)
 
     # Transfer
-    def transfer(self, ps):
-        log(f'\t\t\tTransferring {ps} to LF.')
+    def transfer(self, ps, embedding=3):
+        log_embedding = embedding * '\t'
+
+        log(log_embedding + f'Transferring {ps} to LF.')
 
         # Activate modules
         feature_process = self.feature_process
@@ -32,36 +34,38 @@ class Transfer():
         agreement = self.agreement_module
         extraposition = self.extraposition
 
+        log_embedding = log_embedding + '\t'
+
         # Allow each module to operate with the phrase structure in a sequence
 
         # Stage 1. Reconstruct head movement
-        log('\t\t\t\t1. Head movement reconstruction:')
+        log(log_embedding + '1. Head movement reconstruction:')
         ps, ops = head_movement.reconstruct(ps)
-        log(f'\t\t\t\t\t={ps}')
+        log(log_embedding + f'={ps}')
 
         # Stage 2. Reconstruct features
-        log('\t\t\t\t2. Feature processing:')
+        log(log_embedding + '2. Feature processing:')
         feature_process.disambiguate(ps)
-        log(f'\t\t\t\t\t={ps}')
+        log(log_embedding + f'={ps}')
 
-        log('\t\t\t\t3. Extraposition:')
+        log(log_embedding + '3. Extraposition:')
         extraposition.reconstruct(ps)
-        log(f'\t\t\t\t\t={ps}')
+        log(log_embedding + f'={ps}')
 
         # Stage 3. Reconstruct floater movement
-        log('\t\t\t\t3. Floater movement reconstruction:')
+        log(log_embedding + '4. Floater movement reconstruction:')
         floater_movement.reconstruct(ps)
-        log(f'\t\t\t\t\t={ps}')
+        log(log_embedding + f'={ps}')
 
         # Stage 4. Reconstruct phrasal movement
-        log('\t\t\t\t4. Phrasal movement reconstruction:')
+        log(log_embedding + '5. Phrasal movement reconstruction:')
         phrasal_movement.reconstruct(ps)
-        log(f'\t\t\t\t\t={ps}')
+        log(log_embedding + f'={ps}')
 
         # Stage 5. Reconstruct agreement
-        log('\t\t\t\t5. Agreement reconstruction:')
+        log(log_embedding + '6. Agreement reconstruction:')
         agreement.reconstruct(ps)
-        log(f'\t\t\t\t\t={ps}')
+        log(log_embedding + f'={ps}')
 
         return ps
 

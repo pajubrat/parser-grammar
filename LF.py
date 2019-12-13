@@ -95,7 +95,7 @@ class LF:
         # 3. Internal tail-head test for case (DPs)
         #
         if 'D' in h.get_labels() and not h.internal_tail_head_test():
-            log(f'\t\t\t\t{h} failed internal tail test for {h.get_tail_sets()}.')
+            log(f'\t\t\t\t{h}({h.mother}) failed internal tail test for {h.get_tail_sets()}.')
             self.tail_head_test_result = False
 
         #
@@ -138,11 +138,12 @@ class LF:
                             log(f'\t\t\t\t{ps} has unacceptable specifier {spec_}.')
                             self.selection_test_result = False
 
-            # 3.2. No specifier of any kind allowed (e.g., English P)
+            # 3.2. No specifier of any kind allowed (e.g., English P).
+            #       This excludes pro
             if f == '-SPEC:*':
                 if spec:
-                    if not (spec.adjunct and spec.find_me_elsewhere):
-                        log(f'\t\t\t\t{h} ({h.illustrate()}) has a specifier {spec} '
+                    if not spec.adjunct and not spec.find_me_elsewhere and 'pro' not in spec.features:
+                        log(f'\t\t\t\t{h} ({h.illustrate()}) has a specifier {spec}({spec.features}) '
                             f'but is marked for -EPP behavior.')
                         self.selection_test_result = False
 
@@ -265,11 +266,11 @@ class LF:
     # This function will try to transfer the phrase structure into the conceptual-intentional system
     # It represents the "outer edge of LF"
     def transfer_to_CI(self, ps):
-        log(f'\t\t\tTrying to transfer {ps} into Conceptual-Intentional system...')
+        log(f'\t\t\tTransferring {ps} into Conceptual-Intentional system...')
         self.transfer_to_CI_crash = False
 
         # Construction of semantic interpretation
-        self.semantic_interpretation = sorted(self.check_for_transfer(ps))
+        self.semantic_interpretation = self.check_for_transfer(ps)
 
         # If no semantic interpretation results, transfer crashes
         if not self.semantic_interpretation:
@@ -396,7 +397,7 @@ class LF:
                     else:
                         list_of_antecedents.append(ps_.sister())
                     break
-                if ps_.sister() and not ps_.sister().find_me_elsewhere and self.evaluate_antecedent(ps_.sister(), ps):
+                if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
                     list_of_antecedents.append(ps_.sister())
                 ps_ = ps_.walk_upstream_geometrically()
             if not list_of_antecedents:
@@ -406,6 +407,9 @@ class LF:
 
     # Evaluates whether 'probe' could provide semantic support for 'goal'
     def evaluate_antecedent(self, antecedent, goal):
+
+        if antecedent.find_me_elsewhere:
+            return False
 
         # A list of all phi-features present at the goal (valued, unvalued)
         goal_phi_features = {f for f in goal.features if self.relevant_phi_at_LF(f)}

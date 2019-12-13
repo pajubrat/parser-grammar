@@ -10,63 +10,20 @@ class Extraposition:
         self.controlling_parser_process = controlling_parser_process
 
     def reconstruct(self, ps):
-        set_logging(False)
-        self.LF_access.test(ps)
-        set_logging(True)
 
-        if not self.LF_access.wrong_complement_test_result:
-            log(f'\t\t\t\t\t{ps} contains wrong head selection. Extraposition will be tried.')
-            set_logging(False)
-            self.try_extraposition(ps)
-            set_logging(True)
-
-    # Definition for extraposition
-    # Presupposition 1. LF-legibility fails (checked before call)
-    # Presupposition 2. Only target branches which are "referential" (T/fin, D)
-    # Condition 1. Find first [H XP] from bottom such that
-    # Condition 2. H is adjoinable and
-    # Condition 3. Either (i) [XP][HP] or (ii) [X HP] with X not selecting for H
-
-    def try_extraposition(self, ps):
-        # Returns the bottom node on the right edge (not geometrical)
-
-        # Presupposition 2
         # Extraposition can be attempted only for "referential" structures (T/fin, D)
         if not (ps.get_top().contains_feature('CAT:FIN') or 'D' in ps.get_top().get_labels()):
             return
 
-        log(f'\t\t\t\t\tExtraposition will be tried on {ps.get_top()}.')
-        ps_ = self.get_bottom(ps).mother
+        unselected_head = self.find_selection_violation(ps)
 
-        while ps_:
-            # Condition 1. Find first [H XP] (=ps_) such that
-            # Condition 2. H is adjoinable and
-            if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
-                # If its phrase, then we can select HP (=i)
-                # Condition 3.
-                # Condition (3i) [XP][HP]
-                if not ps_.sister().is_primitive():
-                    break
-                else:
-                    # Condition 3(ii). [X HP] with X not selecting for H (HP = ps_)
-                    if ps_.left_const.get_labels() & ps_.sister().get_not_comps():
-                        break
-            ps_ = ps_.walk_upstream()
+        if unselected_head:
+            self.try_extraposition(unselected_head)
 
-        if ps_:
-            # This is LF-requirement: the adjunct must get semantic interpretation
-            for head in ps_.left_const.get_feature_vector():
-                if 'FIN' in head.get_labels() or 'D' in head.get_labels():
-                    self.adjunct_constructor.create_adjunct(ps_.get_head())
-                    log(f'\t\t\t\t\t{ps_} was made adjunct by an extraposition rule.')
-                    if not ps_.get_top().LF_legibility_test().all_pass():
-                        # If phi set is available...
-                        log(f'\t\t\t\t\tThe structure is still illicit! Try phi-tailing as a last resort?')
-                        # self.drop_floater(ps_.get_top())
-                        # log(f'\t\t\t\t={ps_.get_top()}')
-
-                    return True
-        return False
+    def try_extraposition(self, unselected_head):
+        log(f'\t\t\t\t\tExtraposition will be tried on {unselected_head.mother}.')
+        self.adjunct_constructor.create_adjunct(unselected_head)
+        return True
 
     # This will promote a phi set (if any) into tail features
     # (Not correct, only relates to Italian postverbal subjects.)
@@ -88,4 +45,20 @@ class Extraposition:
             else:
                 iterator_ = iterator_.walk_downstream()
         return
+
+    def find_selection_violation(self, ps):
+        ps_ = ps
+        selectee = None
+        while ps_:
+            if ps_.is_complex():
+                selector = ps_.left_const
+                not_comps = selector.get_not_comps()
+                selectee = ps_.right_const.get_head()
+                if not_comps & selectee.get_labels():
+                    return selectee
+            ps_ = ps_.walk_downstream()
+
+        return None
+
+
 
