@@ -1,5 +1,7 @@
-Parser-grammar v. 2.x
-(Versions 2.x include support for agreement, pro-drop and control)
+Parser-grammar v. 3.x
+(Version 1.x supports pied-piping and operator movement)
+(Version 2.x supports  agreement, pro-drop and control)
+(Version 3.x supports romance clitics 
 
 2019
 
