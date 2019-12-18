@@ -28,8 +28,8 @@ Cen		:: PF:en LF:by CAT:ADV -ARG LANG:FI
 detesto	:: detest-#v#T/fin#[-o] LANG:IT
 detest-	:: CAT:V PF:detest LF:detest -R COMP:D LANG:IT
 
-devono :: deva#[-no]
-deva	:: CAT:T/fin PF:deva LF:must !COMP:ARE/inf LANG:IT
+devono :: deva-#[-no]
+deva-	:: CAT:T/fin PF:sdeva LF:must !COMP:ARE/inf LANG:IT
 
 dorme	:: dorme-#T/fin#[-e] LANG:IT
 dorme-	:: CAT:V SPEC:D PF:dorme LF:sleep
@@ -37,7 +37,7 @@ dorme-	:: CAT:V SPEC:D PF:dorme LF:sleep
 e		:: BE-#T/fin#3p#sg LANG:IT
 
 etsii	:: etsi-#v#T/fin#[-V] LANG:FI
-etsi-	:: PF:etsi LF:search CAT:V !COMP:D LANG:FI COMP:D
+etsi-	:: PF:etsi LF:search WCAT:V !COMP:D LANG:FI COMP:D
 
 etta    :: PF:että LF:that CAT:FORCE LANG:FI
 
