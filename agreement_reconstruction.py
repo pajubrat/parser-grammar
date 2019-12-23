@@ -113,7 +113,6 @@ class AgreementReconstruction:
 
         phi_features = set()
 
-
         #
         # Operation 1. Try edge-Agree
         #

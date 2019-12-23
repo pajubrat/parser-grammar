@@ -26,13 +26,13 @@ BE-	:: CAT:V PF:BE LF:BE SPEC:D COMP:D COMP:N COMP:A !COMP:*
 Cen		:: PF:en LF:by CAT:ADV -ARG LANG:FI
 
 detesto	:: detest-#v#T/fin#[-o] LANG:IT
-detest-	:: CAT:V PF:detest LF:detest -R COMP:D LANG:IT
+detest-	:: CAT:V PF:detest LF:detest SEM:external COMP:D LANG:IT
 
-devono :: deva#[-no]
-deva	:: CAT:T/fin PF:deva LF:must !COMP:ARE/inf LANG:IT
+devono :: deva-#T/fin#[-no]
+deva-	:: CAT:V PF:deva LF:must SPEC:D COMP:ARE/inf SEM:internal -ASP LANG:IT
 
 dorme	:: dorme-#T/fin#[-e] LANG:IT
-dorme-	:: CAT:V SPEC:D PF:dorme LF:sleep
+dorme-	:: CAT:V !SPEC:D PF:dorme LF:sleep
 
 e		:: BE-#T/fin#3p#sg LANG:IT
 
@@ -50,7 +50,7 @@ halua- 	:: PF:haluaa LF:want CAT:V !COMP:* COMP:D COMP:A/inf SEM:internal LANG:F
 
 hanno	:: ha-#T/fin#[-no] LANG:IT
 ho		:: ha-#T/fin#[-o] LANG:IT
-ha-		:: CAT:V PF:ha LF:have SPEC:D COMP:T
+ha-		:: CAT:V PF:ha LF:have SPEC:D COMP:T -ASP SEM:internal LANG:IT
 
 ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
 ihailet	:: ihaile-#v#T/fin#[-t] LANG:FI
@@ -149,7 +149,7 @@ spinge :: spinge-#v#T/fin#[-e] LANG:IT
 spinge- :: CAT:V PF:spinge LF:push !COMP:D -COMP:P LANG:IT
 
 stanno	:: sta-#T/fin#[-no] LANG:IT	
-sta-	:: CAT:V PF:sta LF:stay SPEC:D COMP:PRG
+sta-	:: CAT:V PF:sta LF:stay SEM:internal -ASP SPEC:D COMP:PRG
 
 sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG LANG:FI
 
@@ -164,7 +164,7 @@ try-	:: PF:try LF:try CAT:V SPEC:D !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal
 
 voluto	:: volu-#v#to LANG:IT
 vuole	:: volu-#v#T/fin#[-e] LANG:IT
-volu-	:: CAT:V PF:volu -SPEC:* LF:want !COMP:*
+volu-	:: CAT:V PF:volu -SPEC:* SEM:internal LF:want !COMP:*
 
 wants	:: want-#v#T/fin#[-s] LANG:EN
 want-	:: PF:want LF:want CAT:V SPEC:D COMP:TO/inf LANG:EN
@@ -262,7 +262,3 @@ ci-		:: PF:ci LF:there CAT:N CAT:PHI LANG:IT
 # PROPER NAMES
 
 # PARTICLES
-to_inf	:: CAT:INF CAT:TO/inf PF:to LF:TO/inf ?ARG
-VA/inf  :: CAT:INF CAT:VA/inf PF:vAn LF:VA 
-to		:: CAT:T CAT:T/prt PF:T/prt LF:T/prt
-ndo		:: ARG VAL CAT:INF CAT:PRG PF:PRG LF:ing

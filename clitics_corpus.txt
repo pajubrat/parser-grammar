@@ -53,6 +53,28 @@
 		
 			Pekka haluaa lahtea
 			Pekka kaskee Merjan lahtea
+
+		& Group 0.1.6 post-verbal subjects
+		
+			lavano Luisa loro
+			devono lavare Luisa loro
+			hanno lavato Luisa loro
+			ho lavato Luisa io
+			hanno voluto lavare Luisa loro
+			stanno lavando Luisa loro
+			sembrano lavare Luisa loro 
+			detesto lavare Luisa io
+			dorme lui 
+			spinge Luisa Giuseppe
+
+			adoro Luisa io
+			adori Luisa tu
+			adora Luisa lui
+			adora Luisa lei
+			adoriamo Luisa noi
+			adorate Luisa voi
+			adorano Luisa loro
+			sono Luisa io
 			
 	& Group 0.2 Ungrammatical
 		& Group 0.2.1 Finie agreement errors
@@ -61,7 +83,7 @@
 			io adora Luisa
 			io adorate Luisa
 			io adorano Luisa
-	
+
 		& Group 0.2.2 Partial agreement errors
 
 			loro hanno lavata Luisa
@@ -93,16 +115,20 @@
 		
 		Luisa lo#e
 		Luisa la#e
-
-		lo#detesto
 		
+	& Grammatical postverbal subject orders
+	
+		mi#lavano loro 
+		la#lavano loro
+		lo#lavano loro 
+	
 	& Group 1.2 Ungrammatical
 
 		loro lavano#mi
 		lavano#mi
 		loro#mi lavano	
 		mi#loro lavano
-
+						
 & Group 2 Two-verb structures with direct object clitics
 	& Group 2.1 Grammatical
 		& Group 2.1.1 hanno + lavato
@@ -114,6 +140,9 @@
 			la#hanno lavata
 			lo#hanno lavato
 
+			mi#hanno lavato loro
+			la#hanno lavata loro
+
 		& Group 2.1.2 devono + lavare
 
 			loro mi#devono lavare
@@ -122,6 +151,13 @@
 			loro devono lavare#la
 			loro lo#devono lavare
 			loro devono lavare#lo
+
+			mi#devono lavare loro
+			devono lavare#mi loro
+			la#devono lavare loro
+			devono lavare#la loro
+			lo#devono lavare loro
+			devono lavare#lo loro
 			
 		& Group 2.1.3 stanno + lavando
 		
@@ -134,10 +170,12 @@
 			stanno lavando#mi
 			stanno lavando#la
 			stanno lavando#lo
+
+			mi#stanno lavando loro 
+			stanno lavando#mi loro
 			
 	& Group 2.2 Ungrammatical	
 		& Group 2.2.1 Clitic in wrong positon
-
 			& Group 2.2.1.1 hanno + lavato
 
 			loro hanno mi#lavato
@@ -165,7 +203,29 @@
 			
 			io sono#la lavata
 			io sono#lo lavato
-			
+
+			& Postverbal subject
+
+%			hanno mi#lavato loro
+			hanno la#lavato loro
+			sono#mi lavato io
+			hanno lo#lavato loro
+			hanno lavato#mi loro
+			hanno lavato#la loro
+			hanno lavato#lo loro
+			sono lavato	mi#io 
+			sono lavato io#mi 
+			hanno lavato loro#mi 
+			sono lavato	la#io
+			sono lavato io#la
+			hanno lavato loro#la
+			sono lavato	lo#io
+			sono lavato io#lo
+			hanno lavato loro#lo
+			hanno lavato mi#loro			
+			sono#la lavata io
+			sono#lo lavato io 
+
 			& Group 2.2.1.2 devono + lavare
 			
 			loro devono mi#lavare
@@ -174,6 +234,13 @@
 			loro#la devono lavare
 			loro#lo devono lavare
 			loro#mi devono lavare		
+
+			devono mi#lavare loro
+			devono la#lavare loro
+			devono lo#lavare loro
+			devono lavare loro#la
+			devono lavare loro#lo
+			devono lavare loro#mi
 
 			& Group 2.2.1.3 stanno + lavando
 
@@ -185,12 +252,20 @@
 			loro#mi stanno lavando
 			loro#la stanno lavando
 			loro#lo stanno lavando
-			
+		
+			stanno lavando loro#mi
+			stanno lavando loro#la
+			stanno lavando loro#lo
+		
 		& Group 2.2.2 Agreement errors between CL and V
 
 			loro la#hanno lavato
 			loro mi#hanno lavata
 			loro lo#hanno lavata
+
+			la#hanno lavato loro
+			mi#hanno lavata loro
+			lo#hanno lavata loro
 
 		& Group 2.2.3 Agreement errors and clitic placement errors
 
@@ -198,10 +273,13 @@
 			loro hanno lo#lavato
 			loro hanno lavato#la
 			loro hanno lavato#lo
-			
-		& Group 2.2.4 Correct clitic placement but wrong word order
-		
-		& Group 2.2.5 Corrct clitic placement but marginal word order
+
+			hanno la#lavato loro
+			hanno lo#lavato loro
+			hanno lavato#la loro
+			hanno lavato#lo loro
+					
+		& Group 2.2.5 Corrct clitic placement but subject in wrong position
 		
 			mi#hanno loro lavato
 			la#hanno loro lavata
@@ -221,6 +299,9 @@
 		mi#hanno voluto lavare
 		hanno voluto lavare#mi
 
+		mi#hanno voluto lavare loro
+		hanno voluto lavare#mi loro
+
 	& Group 3.2 Ungrammatical
 		& Group 3.2.1 Wrong clitic placemenet
 
@@ -230,16 +311,23 @@
 			mi#loro hanno voluto lavere	
 			hanno mi#voluto lavare
 			hanno voluto mi#lavare
+
+			hanno mi#voluto lavare loro
+			hanno voluto mi#lavare loro
+			hanno voluto lavare loro#mi
+			hanno voluto lavere	mi#loro 
 		
 & Group 4. Indirect clitics and clitic clusters
 	& Group 4.1 Grammatical indirect (dative) clitics
 	
 		loro gli#lavano Luisa
+		gli#lavano Luisa loro
 		gli#lavano Luisa
 		
 	& Group 4.2 Grammatical clitic clusters
 	
 		loro gli#la#hanno lavata
+		gli#la#hanno lavata loro
 		gli#la#hanno lavata
 		
 	& Group 4.3 Ungrammatical clitic clusters
@@ -249,27 +337,33 @@
 		loro hanno gli#la#lavata
 		hanno gli#la#lavata
 
+		la#gli#hanno lavata loro
+		hanno gli#la#lavata loro
+
 & Group 5. Restructuring
+	& Group 5.1 Grammatical
 
-	& Group 5.1 restructuring
+		loro sembrano lavare#mi
+		io detesto lavare#lo
+		Giuseppe spinge Luisa a lavare#lo
 
-		& Group 5.1.1 Grammatical
-
-			loro sembrano lavare#mi
-			io detesto lavare#lo
-			Giuseppe spinge Luisa a lavare#lo
+		sembrano lavare#mi loro
+		detesto lavare#lo io
+		spinge Luisa a lavare#lo Giuseppe
 			
-		& Group 5.1.2 Ungrammatical
+	& Group 5.2 Ungrammatical
 		
-			loro mi#sembrano lavare
-			mi#sembrano lavare
-			io lo#detesto lavare 
-			lo#detesto lavare
-	
-			Giuseppe lo#spinge Luisa a lavare
-			
-& Group 6. Reflexive clitics
+		loro mi#sembrano lavare
+		mi#sembrano lavare
+		io lo#detesto lavare 
+		lo#detesto lavare
+		Giuseppe lo#spinge Luisa a lavare
 
+		mi#sembrano lavare loro
+		lo#detesto lavare io
+		lo#spinge Luisa a lavare Giuseppe
+		
+& Group 6. Reflexive clitics
 	& Group 6.1 Simple transitive direct object reflexives
 	
 		io mi#lavo
@@ -279,6 +373,11 @@
 		lui si#lava
 		lei si#lava
 		si#lava
+
+		mi#lavo io
+		mi#lavi tu
+		si#lava lui
+		si#lava lei
 	
 	& Group 6.2 Simple intransitive si subjects
 	

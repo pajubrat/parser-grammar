@@ -13,15 +13,17 @@ class Logger:
         self.buffer = []
         self.colors = True
         self.operations = 0
-        self.disabled = False
+        self.disabled = 0
+        self.indent_level = 0
 
 
 log_instance = Logger()
 
 
-def show_results(ps_, result_list, number_of_Merges, number_of_Moves, number_of_solutions_tried, semantic_interpretation):
-    log(f'!--->\t\tTests passed (with {number_of_Merges}/'
-        f'{get_number_of_operations()} operations) <------------------------------------')
+def show_results(ps_, result_list, semantic_interpretation):
+    log('----------------------------------------------------------------------------')
+    log(f'                             All tests passed                              ')
+    log('----------------------------------------------------------------------------')
     ps_.tidy_names(1)
     print(chr(96 + len(result_list)) + '. ' + ps_.show())
     print(f'{ps_}')
@@ -57,6 +59,35 @@ def log(text):
         log_instance.operations += 1
         if log_instance.use_buffer:
             log_instance.buffer.append(text)
+
+
+def disable_logging():
+    log_instance.disabled += 1
+
+
+def is_logging_enabled():
+    if log_instance.disabled == 0:
+        return True
+    else:
+        return False
+
+
+def enable_logging():
+    log_instance.disabled -= 1
+    if log_instance.disabled < 0:
+        log_instance.disabled = 0
+
+
+def indent_log():
+    log_instance.indent_level += 1
+
+
+def unindent_log():
+    log_instance.indent_level -= 1
+
+
+def set_intent_level(level):
+    log_instance.indent_level = level
 
 
 def disable_all_logging():

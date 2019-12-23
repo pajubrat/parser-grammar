@@ -1,10 +1,13 @@
 from phrase_structure import PhraseStructure
-from support import set_logging, log, show_results, report_LF_problem, report_tail_head_problem, reset_number_of_operations, log_result, illu
+from support import set_logging, log, show_results, report_LF_problem, disable_logging, enable_logging, report_tail_head_problem, reset_number_of_operations, log_result, illu
 
 class AdjunctConstructor:
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process
 
+    # Definition for creation of adjuncts
+    # Provided a head, creates an adjunct phrase that includes the complement and specifiers (if any)
+    # The nontrivial part is to decide if potential specifiers are included
     def create_adjunct(self, ps):
 
         head = ps.get_head()
@@ -58,8 +61,10 @@ class AdjunctConstructor:
     def transfer_adjunct(self, ps):
         original_mother = ps.mother
         ps.detach()
+        log(f'\t\t\t\t\t{ps} is transferred to LF as a phase.')
+        disable_logging()
         ps = self.controlling_parser_process.transfer_to_lf(ps, 5)
-        log(f'\t\t\t\t\t{ps} was transferred to LF as a phase.')
+        enable_logging()
         if original_mother:
             ps.mother = original_mother
         return ps

@@ -114,7 +114,6 @@ class LinearPhaseParser:
             S = self.surface_conditions_module
             S.all_pass = True
             self.surface_conditions_pass = S.reconstruct(ps)
-
             if self.surface_conditions_pass:
 
                 # We try to transfer it to LF
@@ -129,13 +128,10 @@ class LinearPhaseParser:
                     self.semantic_interpretation = self.transfer_to_CI(ps_)
                     if lf.final_tail_check(ps_):
                         if self.semantic_interpretation:
-                            self.discourse_plausibility = lf.discourse_test_result
-                            self.score = 1 - self.number_of_solutions_tried - self.discourse_plausibility
-
                             # Add the output (phrase structure) to result list
                             self.result_list.append(ps_)
                             log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
-                            show_results(ps_, self.result_list, self.number_of_Merges, self.number_of_Moves, self.number_of_solutions_tried, self.semantic_interpretation)
+                            show_results(ps_, self.result_list, self.semantic_interpretation)
 
                             self.exit = True    # Knock this out if you want to see all solutions
                         else:
@@ -145,7 +141,7 @@ class LinearPhaseParser:
                 else:
                     report_LF_problem(ps_)
             else:
-                log('\t\t\tSurface condition failure.\n\n')
+                log(f'\t\t\tSurface condition failure.\n\n')
 
             return  # This return will send the parser to an unexplored path in the recursive parse tree
 
@@ -559,15 +555,26 @@ class LinearPhaseParser:
         else:
             return False
 
-    # Reverses all movement inside left branches and values phi-features (when unvalued)
+    # Error correction procedure
     def transfer_to_lf(self, ps, log_embedding=3):
+
         original_mother = ps.mother
         ps.detach()
 
-        T = self.transfer
-        ps = T.transfer(ps, log_embedding)
+        if self.check_transfer_presuppositions(ps):
+            T = self.transfer
+            ps = T.transfer(ps, log_embedding)
+        else:
+            log(f'\t\t\t\tTransfer of {ps} terminated due to input condition violation.')
 
         if original_mother:
             ps.mother = original_mother
 
         return ps
+
+    def check_transfer_presuppositions(self, ps):
+        if 'FIN' in ps.get_head().get_labels() or 'INF' in ps.get_head().get_labels():
+            if not self.surface_conditions_module.reconstruct(ps):
+                return False
+
+        return True

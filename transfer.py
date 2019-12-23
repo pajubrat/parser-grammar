@@ -1,11 +1,12 @@
 import phrase_structure
 from agreement_reconstruction import AgreementReconstruction
-from support import log
+from support import log, enable_logging, disable_logging, is_logging_enabled
 from phrasal_movement import PhrasalMovement
 from floater_movement import FloaterMovement
 from head_movement import HeadMovement
 from feature_disambiguation import FeatureProcessing
 from extraposition import Extraposition
+from surface_conditions import SurfaceConditions
 
 # Transfer performs a normalization mapping from phrase structure object into LF-object
 # Its function is to repair the first pass parse from errors
@@ -19,14 +20,17 @@ class Transfer():
         self.head_movement_module = HeadMovement(self.controlling_parser_process)
         self.feature_process = FeatureProcessing(self.controlling_parser_process)
         self.extraposition = Extraposition(self.controlling_parser_process)
+        self.surface_conditions_module = SurfaceConditions()
 
     # Transfer
     def transfer(self, ps, embedding=3):
         log_embedding = embedding * '\t'
 
-        log(log_embedding + f'Transferring {ps} to LF.')
+        if not is_logging_enabled():
+            log(log_embedding + f'Transferring {ps} to LF.')
 
         # Activate modules
+        surface_conditions = self.surface_conditions_module
         feature_process = self.feature_process
         head_movement = self.head_movement_module
         floater_movement = self.floater_movement_module
@@ -35,8 +39,6 @@ class Transfer():
         extraposition = self.extraposition
 
         log_embedding = log_embedding + '\t'
-
-        # Allow each module to operate with the phrase structure in a sequence
 
         # Stage 1. Reconstruct head movement
         log(log_embedding + '1. Head movement reconstruction:')
@@ -48,24 +50,29 @@ class Transfer():
         feature_process.disambiguate(ps)
         log(log_embedding + f'={ps}')
 
+        # Stage 3. Extraposition
         log(log_embedding + '3. Extraposition:')
         extraposition.reconstruct(ps)
         log(log_embedding + f'={ps}')
 
-        # Stage 3. Reconstruct floater movement
+        # Stage 4. Reconstruct floater movement
         log(log_embedding + '4. Floater movement reconstruction:')
         floater_movement.reconstruct(ps)
         log(log_embedding + f'={ps}')
 
-        # Stage 4. Reconstruct phrasal movement
+        # Stage 5. Reconstruct phrasal movement
         log(log_embedding + '5. Phrasal movement reconstruction:')
         phrasal_movement.reconstruct(ps)
         log(log_embedding + f'={ps}')
 
-        # Stage 5. Reconstruct agreement
+        # Stage 6. Reconstruct agreement
         log(log_embedding + '6. Agreement reconstruction:')
         agreement.reconstruct(ps)
         log(log_embedding + f'={ps}')
+
+        # Stage 7. Last resort extraposition
+        log(log_embedding + '7. Last resort extraposition:')
+        extraposition.last_resort_reconstruct(ps)
 
         return ps
 

@@ -80,7 +80,7 @@ class PhrasalMovement():
                         log(f'\t\t\t\t\tResult {ps.get_top()}')
                         # Replace the hypothetical candidate with proper chain
                         ps.geometrical_sister().remove()
-                        new_const = target_const_from_memory_buffer.transfer(self.babtize())
+                        new_const = target_const_from_memory_buffer.copy_from_memory_buffer(self.babtize())
                         ps.merge(new_const, 'left')
                         self.memory_buffer.remove(target_const_from_memory_buffer)
                         self.number_of_Moves += 1
@@ -222,7 +222,7 @@ class PhrasalMovement():
                             target_const = const
 
                 if target_const:
-                    h.merge(target_const.transfer(self.babtize()), 'right')
+                    h.merge(target_const.copy_from_memory_buffer(self.babtize()), 'right')
                     self.number_of_Moves += 1
                     log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
                         + f') from memory buffer into Comp of {h.get_labels()}.')
@@ -249,11 +249,11 @@ class PhrasalMovement():
                 log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
                     + f') from memory buffer into Comp of {h.get_labels()} '
                     f'due to the presence of mismatching complement {h.complement()}.')
-                h.complement().merge(target_const.transfer(self.babtize()), 'left')
+                h.complement().merge(target_const.copy_from_memory_buffer(self.babtize()), 'left')
                 self.number_of_Moves += 1
                 # The mismatching complement will be demoted to floater status
                 if h.complement().right_const.is_adjoinable():
-                    log('\t\t\t\t\tThe mismatching complement will be trasformed into floater adjunct.')
+                    log('\t\t\t\t\tThe mismatching complement will be transformed into floater adjunct.')
                     self.adjunct_constructor.create_adjunct(h.complement().right_const)
                 self.memory_buffer.remove(target_const)
                 log(f'\t\t\t\t\tRemaining memory buffer: {self.memory_buffer}')
@@ -266,10 +266,10 @@ class PhrasalMovement():
                 log(f'\t\t\t\t\t{ps} will undergo A-reconstruction (form of Agree).')
                 head = ps.sister().get_head()
                 if head.is_left():
-                    head.sister().merge(ps.transfer(self.babtize()), 'left')
+                    head.sister().merge(ps.copy_from_memory_buffer(self.babtize()), 'left')
                     self.number_of_Moves += 1
                 else:
-                    head.sister().merge(ps.transfer(self.babtize()), 'right')
+                    head.sister().merge(ps.copy_from_memory_buffer(self.babtize()), 'right')
                     self.number_of_Moves += 1
 
     # Definition for targeting a head

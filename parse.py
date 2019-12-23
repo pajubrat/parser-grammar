@@ -5,22 +5,6 @@
 # See documentation in the \Documentation folder
 # Version 2.x
 ################################################################################
-# List of known things that must be fixed
-#
-# todo In many places we check left and right branch separately, but we should implement this functionality into
-# todo walk downstream operation
-
-# todo The feature ARG is not both ARG and CAT:ARG (part of label). In my view, it must be only the second,
-# todo i.e. a diacritic of the label so that it can be selected
-#
-# todo There is count specifiers function that must be aligned with the rest; the specifier handling is too messy
-# todo and must be all thought out preferable so that we hav single function for all specifier operations,
-# todo and that function will return a list of specifiers
-#
-# todo I am using the tag 'find_me_elsewhere_' still to handle modularity, and this must be done in a more
-# todo principled manner. One example is LF check for uPhi which has to stipulate that copied elements do not count
-#
-# todo calculcation of the number of operations no longer work, must be redone
 
 # Imports
 import datetime
@@ -196,7 +180,7 @@ for sentence in parse_list[start:]:
 
             # Print the result into the results file
             parse = P.result_list[0]
-            results_file.write(f'{parse}\n')
+            results_file.write(f'\t{parse}\n')
             # results_file.write('\''+parse.gloss()+'.\'\n')
             # results_file.write(str(P.semantic_interpretation) + '\n')
             # results_file.write('Score: ' + str(P.score) + '  (')

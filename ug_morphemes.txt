@@ -9,7 +9,6 @@
 # Important: the keys must refers to UG morphemes, not language specific keys
 
 T/fin   :: CAT:T/fin PF:T/fin LF:T
-T/fin/seem :: CAT:FIN CAT:T/fin/seem COMP:V PF:SEEM LF:T/seem
 v       :: CAT:v PF:v LF:v
 v*		:: CAT:v* CAT:v PF:v* LF:v* SEM:external
 vv		:: CAT:v PF:vv LF:v VAL
@@ -23,6 +22,10 @@ A/inf	:: CAT:INF CAT:A/inf PF:A/inf LF:A/inf ?ARG
 TO/inf 	:: CAT:INF CAT:TO/inf PF:TO/inf LF:TO/inf ?ARG
 MA/inf	:: CAT:INF CAT:MA/inf PF:ma LF:MA/inf -ARG
 ARE/inf	:: CAT:INF CAT:ARE/inf PF:are LF:ARE/inf ?ARG VAL
+to_inf	:: CAT:INF CAT:TO/inf PF:to LF:TO/inf ?ARG
+VA/inf  :: CAT:INF CAT:VA/inf PF:vAn LF:VA 
+to		:: CAT:INF CAT:T CAT:T/prt PF:T/prt LF:T/prt
+ndo		:: CAT:INF ARG VAL CAT:INF CAT:PRG PF:PRG LF:ing
 
 # These are "generic" determiners and prepositions
 # Notice that they will have the default lexical features 
@@ -50,12 +53,12 @@ f	::	- PHI:GEN:F
 n 	::  - PHI:GEN:N
 
 # Structural Case
-nom   	:: - TAIL:ARG,VAL,CAT:FIN NOM
+nom   	:: - TAIL:CAT:FIN,!COMP:*,ARG,VAL NOM
 gen     :: - TAIL:ARG,VAL,CAT:INF GEN
 par   	:: - TAIL:ARG,-VAL PAR
-acc		:: - TAIL:ARG,-VAL ACC
-dat		:: - TAIL:CAT:v DAT
-asp		:: - TAIL:ARG ASP
+acc		:: - TAIL:ASP,!COMP:* ACC -FLOAT
+dat		:: - TAIL:CAT:v,!COMP:* DAT
+asp		:: - TAIL:ASP,!COMP:* ARG ASP
 pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH
 wh     	:: - CAT:WH
@@ -63,5 +66,3 @@ top    	:: - ABAR:TOP
 foc    	:: - ABAR:FOC
 rel    	:: - CAT:R
 Q		:: - CAT:Q
-
-# Surface features

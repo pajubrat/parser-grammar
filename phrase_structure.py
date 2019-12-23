@@ -131,13 +131,13 @@ class PhraseStructure:
 
     # Reductive definition for the (weak and strong) EPP
     def EPP(self):
-        for f in self.features:
-            if f == 'SPEC:*' or f == '!SPEC:*':
-                return True
-        return False
+        if 'SPEC:*' in self.features or '!SPEC:*' in self.features or '-SPEC:*' in self.features:
+            return True
+        else:
+            return False
 
     # Copies a constituent and does all other operations required for reconstruction
-    def transfer(self, babtize='1'):
+    def copy_from_memory_buffer(self, babtize='1'):
 
         # Removes tail-features (if any) from a constituent
         def remove_tail_features(ps):
