@@ -56,7 +56,8 @@ class SurfaceConditions:
         if 'INCORPORATED' in clitic_head.features:
             for feature_set in right_incorporation_feature_sets:
                 if test_constituent.get_container_head().get_all_features_of_complex_word() & feature_set == feature_set:
-                    log(f'\t\t\tClitic {test_constituent} right-incorporated to {test_constituent.get_container_head().get_max()}')
+                    log(f'\t\t\tClitic {test_constituent} right-incorp'
+                        f'orated to {test_constituent.get_container_head().get_max()}')
                     return True
 
         log(f'\t\t\tClitic {test_constituent} not licensed.')
@@ -69,14 +70,14 @@ class SurfaceConditions:
             if 'CAT:V' not in self.get_left(test_constituent).get_all_features_of_complex_word():
                 return True
             else:
-                # Condition 3. The left element is V but has 'SEM:internal'
-                if 'SEM:internal' in self.get_left(test_constituent).get_all_features_of_complex_word():
+                # Condition 3. The left element is V but has 'SEM:internal' and does not have 'ASP'
+                if 'SEM:internal' in self.get_left(test_constituent).get_all_features_of_complex_word() and \
+                        'ASP' not in self.get_left(test_constituent).get_all_features_of_complex_word():
                     return True
                 else:
                     return False
 
         return True
-
 
     def get_left(self, ps):
         ps_ = ps

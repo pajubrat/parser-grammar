@@ -1,7 +1,762 @@
 Linear phase parser v. 3.x
-2019-12-19 20:13:45.223461
+2020-01-13 10:31:59.717519
 Test sentences from file "clitics_corpus.txt".
 Logs into file "clitics_corpus_log.txt.
 Lexicon from file "lexicon.txt".
-1. * hanno mi#lavato loro 
+
+& Group 0. Test preparation (basic grammatical functions test)
+
+
+& Group 0.1 Grammatical
+
+
+& Group 0.1.1 Lexical items and argument structures
+
+1.  lavano Luisa 
+	[T/fin [v [lava [D Luisa]]]]
+
+2.  loro lavano Luisa 
+	[[D loro]:1 [T/fin [__:1 [v [lava [D Luisa]]]]]]
+
+3.  loro devono lavare Luisa 
+	[[D loro]:1 [T/fin [__:1 [deva [are [v [lava [D Luisa]]]]]]]]
+
+4.  loro hanno lavato Luisa 
+	[[D loro]:1 [T/fin [__:1 [ha [T/prt [v [lava [D Luisa]]]]]]]]
+
+5.  io ho lavato Luisa 
+	[[D io]:1 [T/fin [__:1 [ha [T/prt [v [lava [D Luisa]]]]]]]]
+
+6.  loro hanno voluto lavare Luisa 
+	[[D loro]:1 [T/fin [__:1 [ha [T/prt [v [volu [are [v [lava [D Luisa]]]]]]]]]]]
+
+7.  loro stanno lavando Luisa 
+	[[D loro]:1 [T/fin [__:1 [sta [PRG [v [lava [D Luisa]]]]]]]]
+
+8.  loro sembrano lavare Luisa 
+	[[D loro]:1 [T/fin [sembra [__:1 [are [__:1 [v [lava [D Luisa]]]]]]]]]
+
+9.  io detesto lavare Luisa 
+	[[D io]:1 [T/fin [__:1 [v [detest [are [v [lava [D Luisa]]]]]]]]]
+
+10.  lui dorme 
+	[[D lui]:1 [T/fin [__:1 dorme]]]
+
+11.  Giuseppe spinge Luisa 
+	[[D Giuseppe]:1 [T/fin [__:1 [v [spinge [D Luisa]]]]]]
+
+
+& Group 0.1.2 Agreement paradigms and pronouns
+
+12.  io adoro Luisa 
+	[[D io]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+
+13.  tu adori Luisa 
+	[[D tu]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+
+14.  lui adora Luisa 
+	[[D lui]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+
+15.  lei adora Luisa 
+	[[D lei]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+
+16.  noi adoriamo Luisa 
+	[[D noi]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+
+17.  voi adorate Luisa 
+	[[D voi]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+
+18.  loro adorano Luisa 
+	[[D loro]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+
+19.  io sono Luisa 
+	[[D io]:1 [T/fin [__:1 [BE [D Luisa]]]]]
+
+
+& Group 0.1.3 pro-drop tests
+
+20.  adoro Luisa 
+	[T/fin [v [adora [D Luisa]]]]
+
+21.  adori Luisa 
+	[T/fin [v [adora [D Luisa]]]]
+
+22.  adora Luisa 
+	[T/fin [v [adora [D Luisa]]]]
+
+23.  adora Luisa 
+	[T/fin [v [adora [D Luisa]]]]
+
+24.  adoriamo Luisa 
+	[T/fin [v [adora [D Luisa]]]]
+
+25.  adorate Luisa 
+	[T/fin [v [adora [D Luisa]]]]
+
+26.  adorano Luisa 
+	[T/fin [v [adora [D Luisa]]]]
+
+27.  lavano Luisa 
+	[T/fin [v [lava [D Luisa]]]]
+
+28.  devono lavare Luisa 
+	[T/fin [deva [are [v [lava [D Luisa]]]]]]
+
+29.  hanno lavato Luisa 
+	[T/fin [ha [T/prt [v [lava [D Luisa]]]]]]
+
+30.  ho lavato Luisa 
+	[T/fin [ha [T/prt [v [lava [D Luisa]]]]]]
+
+31.  hanno voluto lavare Luisa 
+	[T/fin [ha [T/prt [v [volu [are [v [lava [D Luisa]]]]]]]]]
+
+32.  stanno lavando Luisa 
+	[T/fin [sta [PRG [v [lava [D Luisa]]]]]]
+
+
+& Group 0.1.4 Free word order in Finnish (we should not break these)
+
+33.  Pekka ihailee Merjaa 
+	[<D Pekka>:1 [T/fin [<DP>:1 [v [ihaile- [D Merja-]]]]]]
+
+34.  Merjaa ihailee Pekka 
+	[<D Merja->:1 [T/fin [<DP>:2 [v [<DP>:1 [ihaile- <D Pekka>:2]]]]]]
+
+
+& Group 0.1.5 Control (we should not break these)
+
+35.  Pekka haluaa lahtea 
+	[<D Pekka>:1 [T/fin [<DP>:1 [v [haluaa [A/inf lahtea]]]]]]
+
+36.  Pekka kaskee Merjan lahtea 
+	[<D Pekka>:1 [T/fin [<DP>:1 [v* [kaske [<D Merja->:2 [A/inf [<DP>:2 lahtea]]]]]]]]
+
+
+& Group 0.1.6 post-verbal subjects
+
+37.  lavano Luisa loro 
+	[[T/fin [v [lava [D Luisa]]]] <D loro>]
+
+38.  devono lavare Luisa loro 
+	[T/fin [deva [[are [v [lava [D Luisa]]]] <D loro>]]]
+
+39.  hanno lavato Luisa loro 
+	[[T/fin [ha [T/prt [v [lava [D Luisa]]]]]] <D loro>]
+
+40.  ho lavato Luisa io 
+	[[T/fin [ha [T/prt [v [lava [D Luisa]]]]]] <D io>]
+
+41.  hanno voluto lavare Luisa loro 
+	[T/fin [ha [T/prt [v [volu [[are [v [lava [D Luisa]]]] <D loro>]]]]]]
+
+42.  stanno lavando Luisa loro 
+	[T/fin [sta [[PRG [v [lava [D Luisa]]]] <D loro>]]]
+
+43.  sembrano lavare Luisa loro 
+	[T/fin [sembra [[are [v [lava [D Luisa]]]] <D loro>]]]
+
+44.  detesto lavare Luisa io 
+	[T/fin [v [detest [[are [v [lava [D Luisa]]]] <D io>]]]]
+
+45.  dorme lui 
+	[T/fin [dorme [D lui]]]
+
+46.  spinge Luisa Giuseppe 
+	[[T/fin [v [spinge [D Luisa]]]] <D Giuseppe>]
+
+47.  adoro Luisa io 
+	[[T/fin [v [adora [D Luisa]]]] <D io>]
+
+48.  adori Luisa tu 
+	[[T/fin [v [adora [D Luisa]]]] <D tu>]
+
+49.  adora Luisa lui 
+	[[T/fin [v [adora [D Luisa]]]] <D lui>]
+
+50.  adora Luisa lei 
+	[[T/fin [v [adora [D Luisa]]]] <D lei>]
+
+51.  adoriamo Luisa noi 
+	[[T/fin [v [adora [D Luisa]]]] <D noi>]
+
+52.  adorate Luisa voi 
+	[[T/fin [v [adora [D Luisa]]]] <D voi>]
+
+53.  adorano Luisa loro 
+	[[T/fin [v [adora [D Luisa]]]] <D loro>]
+
+54.  sono Luisa io 
+	[[T/fin [BE [D Luisa]]] <D io>]
+
+
+& Group 0.2 Ungrammatical
+
+
+& Group 0.2.1 Finie agreement errors
+
+55. * io adori Luisa 
+
+56. * io adora Luisa 
+
+57. * io adorate Luisa 
+
+58. * io adorano Luisa 
+
+
+& Group 0.2.2 Partial agreement errors
+
+59. * loro hanno lavata Luisa 
+
+
+& Group 0.2.3 Word order errors
+
+60. * loro Luisa lavano 
+
+61. * loro Luisa devono lavare 
+
+62. * loro hanno Luisa lavare 
+
+63. * loro Luisa hanno voluto lavare 
+
+64. * loro hanno Luisa voluto lavare 
+
+65. * loro hanno voluto Luisa lavare 
+
+66. * loro Luisa stanno lavando 
+
+67. * loro stanno Luisa lavando 
+
+
+& Group 1. Direct accusative clitics
+
+
+& Group 1.1 Grammatical (pro-drop and no pro-drop)
+
+68.  loro mi#lavano 
+	[[D loro]:1 [T/fin [__:1 [v [lava [D mi(cl)]]]]]]
+
+69.  mi#lavano 
+	[T/fin [v [lava [D mi(cl)]]]]
+
+70.  loro la#lavano 
+	[[D loro]:1 [T/fin [__:1 [v [lava [D la(cl)]]]]]]
+
+71.  la#lavano 
+	[T/fin [v [lava [D la(cl)]]]]
+
+72.  loro lo#lavano 
+	[[D loro]:1 [T/fin [__:1 [v [lava [D lo(cl)]]]]]]
+
+73.  lo#lavano 
+	[T/fin [v [lava [D lo(cl)]]]]
+
+74.  Luisa lo#e 
+	[[D Luisa]:1 [T/fin [__:1 [BE [D lo(cl)]]]]]
+
+75.  Luisa la#e 
+	[[D Luisa]:1 [T/fin [__:1 [BE [D la(cl)]]]]]
+
+
+& Grammatical postverbal subject orders
+
+76.  mi#lavano loro 
+	[[T/fin [v [lava [D mi(cl)]]]] <D loro>]
+
+77.  la#lavano loro 
+	[[T/fin [v [lava [D la(cl)]]]] <D loro>]
+
+78.  lo#lavano loro 
+	[[T/fin [v [lava [D lo(cl)]]]] <D loro>]
+
+
+& Group 1.2 Ungrammatical
+
+79. * loro lavano#mi 
+
+80. * lavano#mi 
+
+81. * loro#mi lavano 
+
+82. * mi#loro lavano 
+
+83. * loro lavano mi 
+
+84. * loro mi#lavano Luisa 
+
+
+& Group 2 Two-verb structures with direct object clitics
+
+
+& Group 2.1 Grammatical
+
+
+& Group 2.1.1 hanno + lavato
+
+85.  loro mi#hanno lavato 
+	[[D loro]:1 [T/fin [__:1 [ha [[D mi(cl)]:2 [T/prt [v [lava __:2]]]]]]]]
+
+86.  loro la#hanno lavata 
+	[[D loro]:1 [T/fin [__:1 [ha [[D la(cl)]:2 [T/prt [v [lava __:2]]]]]]]]
+
+87.  mi#hanno lavato 
+	[T/fin [ha [[D mi(cl)]:1 [T/prt [v [lava __:1]]]]]]
+
+88.  la#hanno lavata 
+	[T/fin [ha [[D la(cl)]:1 [T/prt [v [lava __:1]]]]]]
+
+89.  lo#hanno lavato 
+	[T/fin [ha [[D lo(cl)]:1 [T/prt [v [lava __:1]]]]]]
+
+90.  mi#hanno lavato loro 
+	[[T/fin [ha [[D mi(cl)]:1 [T/prt [v [lava __:1]]]]]] <D loro>]
+
+91.  la#hanno lavata loro 
+	[[T/fin [ha [[D la(cl)]:1 [T/prt [v [lava __:1]]]]]] <D loro>]
+
+
+& Group 2.1.2 devono + lavare
+
+92.  loro mi#devono lavare 
+	[[D loro]:1 [T/fin [__:1 [deva [[D mi(cl)]:2 [are [v [lava __:2]]]]]]]]
+
+93.  loro devono lavare#mi 
+	[[D loro]:1 [T/fin [__:1 [deva [[D mi(cl)]:2 [are [v [lava __:2]]]]]]]]
+
+94.  loro la#devono lavare 
+	[[D loro]:1 [T/fin [__:1 [deva [[D la(cl)]:2 [are [v [lava __:2]]]]]]]]
+
+95.  loro devono lavare#la 
+	[[D loro]:1 [T/fin [__:1 [deva [[D la(cl)]:2 [are [v [lava __:2]]]]]]]]
+
+96.  loro lo#devono lavare 
+	[[D loro]:1 [T/fin [__:1 [deva [[D lo(cl)]:2 [are [v [lava __:2]]]]]]]]
+
+97.  loro devono lavare#lo 
+	[[D loro]:1 [T/fin [__:1 [deva [[D lo(cl)]:2 [are [v [lava __:2]]]]]]]]
+
+98.  mi#devono lavare loro 
+	[[T/fin [deva [[D mi(cl)]:1 [are [v [lava __:1]]]]]] <D loro>]
+
+99. * devono lavare#mi loro 
+
+100.  la#devono lavare loro 
+	[[T/fin [deva [[D la(cl)]:1 [are [v [lava __:1]]]]]] <D loro>]
+
+101. * devono lavare#la loro 
+
+102.  lo#devono lavare loro 
+	[[T/fin [deva [[D lo(cl)]:1 [are [v [lava __:1]]]]]] <D loro>]
+
+103. * devono lavare#lo loro 
+
+
+& Group 2.1.3 stanno + lavando
+
+104.  loro mi#stanno lavando 
+	[[D loro]:1 [T/fin [__:1 [sta [[D mi(cl)]:2 [PRG [v [lava __:2]]]]]]]]
+
+105.  mi#stanno lavando 
+	[T/fin [sta [[D mi(cl)]:1 [PRG [v [lava __:1]]]]]]
+
+106.  la#stanno lavando 
+	[T/fin [sta [[D la(cl)]:1 [PRG [v [lava __:1]]]]]]
+
+107.  lo#stanno lavando 
+	[T/fin [sta [[D lo(cl)]:1 [PRG [v [lava __:1]]]]]]
+
+108.  loro stanno lavando#mi 
+	[[D loro]:1 [T/fin [__:1 [sta [[D mi(cl)]:2 [PRG [v [lava __:2]]]]]]]]
+
+109.  stanno lavando#mi 
+	[T/fin [sta [[D mi(cl)]:1 [PRG [v [lava __:1]]]]]]
+
+110.  stanno lavando#la 
+	[T/fin [sta [[D la(cl)]:1 [PRG [v [lava __:1]]]]]]
+
+111.  stanno lavando#lo 
+	[T/fin [sta [[D lo(cl)]:1 [PRG [v [lava __:1]]]]]]
+
+112.  mi#stanno lavando loro 
+	[[T/fin [sta [[D mi(cl)]:1 [PRG [v [lava __:1]]]]]] <D loro>]
+
+113. * stanno lavando#mi loro 
+
+
+& Group 2.2 Ungrammatical
+
+
+& Group 2.2.1 Clitic in wrong positon
+
+
+& Group 2.2.1.1 hanno + lavato
+
+114. * loro hanno mi#lavato 
+
+115. * loro hanno la#lavato 
+
+116. * hanno mi#lavato 
+
+117. * io sono#mi lavato 
+
+118. * loro hanno lo#lavato 
+
+119. * hanno lo#lavato 
+
+120. * hanno la#lavato 
+
+121. * loro hanno lavato#mi 
+
+122. * loro hanno lavato#la 
+
+123. * loro hanno lavato#lo 
+
+124. * mi#io sono lavato 
+
+125. * io#mi sono lavato 
+
+126. * loro#mi hanno lavato 
+
+127. * la#io sono lavato 
+
+128. * io#la sono lavato 
+
+129. * loro#la hanno lavato 
+
+130. * lo#io sono lavato 
+
+131. * io#lo sono lavato 
+
+132. * loro#lo hanno lavato 
+
+133. * mi#loro hanno lavato 
+
+134. * io sono#la lavata 
+
+135. * io sono#lo lavato 
+
+
+& Postverbal subject
+
+136. * hanno mi#lavato loro 
+
+137. * hanno la#lavato loro 
+
+138. * sono#mi lavato io 
+
+139. * hanno lo#lavato loro 
+
+140. * hanno lavato#mi loro 
+
+141. * hanno lavato#la loro 
+
+142. * hanno lavato#lo loro 
+
+143. * sono lavato mi#io 
+
+144. * sono lavato io#mi 
+
+145. * hanno lavato loro#mi 
+
+146. * sono lavato la#io 
+
+147. * sono lavato io#la 
+
+148. * hanno lavato loro#la 
+
+149. * sono lavato lo#io 
+
+150. * sono lavato io#lo 
+
+151. * hanno lavato loro#lo 
+
+152. * hanno lavato mi#loro 
+
+153. * sono#la lavata io 
+
+154. * sono#lo lavato io 
+
+
+& Group 2.2.1.2 devono + lavare
+
+155. * loro devono mi#lavare 
+
+156. * loro devono la#lavare 
+
+157. * loro devono lo#lavare 
+
+158. * loro#la devono lavare 
+
+159. * loro#lo devono lavare 
+
+160. * loro#mi devono lavare 
+
+161. * devono mi#lavare loro 
+
+162. * devono la#lavare loro 
+
+163. * devono lo#lavare loro 
+
+164. * devono lavare loro#la 
+
+165. * devono lavare loro#lo 
+
+166. * devono lavare loro#mi 
+
+
+& Group 2.2.1.3 stanno + lavando
+
+167. * loro stanno mi#lavando 
+
+168. * stanno mi#lavando 
+
+169. * stanno la#lavando 
+
+170. * stanno lo#lavando 
+
+171. * loro#mi stanno lavando 
+
+172. * loro#la stanno lavando 
+
+173. * loro#lo stanno lavando 
+
+174. * stanno lavando loro#mi 
+
+175. * stanno lavando loro#la 
+
+176. * stanno lavando loro#lo 
+
+
+& Group 2.2.2 Agreement errors between CL and V
+
+177. * loro la#hanno lavato 
+
+178. * loro mi#hanno lavata 
+
+179. * loro lo#hanno lavata 
+
+180. * la#hanno lavato loro 
+
+181. * mi#hanno lavata loro 
+
+182. * lo#hanno lavata loro 
+
+
+& Group 2.2.3 Agreement errors and clitic placement errors
+
+183. * loro hanno la#lavato 
+
+184. * loro hanno lo#lavato 
+
+185. * loro hanno lavato#la 
+
+186. * loro hanno lavato#lo 
+
+187. * hanno la#lavato loro 
+
+188. * hanno lo#lavato loro 
+
+189. * hanno lavato#la loro 
+
+190. * hanno lavato#lo loro 
+
+
+& Group 2.2.5 Corrct clitic placement but subject in wrong position
+
+191. * mi#hanno loro lavato 
+
+192. * la#hanno loro lavata 
+
+193. * mi#devono loro lavare 
+
+194. * devono loro lavare#mi 
+
+195. * la#devono loro lavare 
+
+196. * devono loro lavare#la 
+
+197. * lo#devono loro lavare 
+
+198. * devono loro lavare#lo 
+
+
+& Group 3 Aux + T/prt + ARE/inf
+
+
+& Group 3.1 Grammatical
+
+199.  loro mi#hanno voluto lavare 
+	[[D loro]:1 [T/fin [__:1 [ha [[D mi(cl)]:2 [T/prt [v [volu [are [v [lava __:2]]]]]]]]]]]
+
+200.  loro hanno voluto lavare#mi 
+	[[D loro]:1 [T/fin [__:1 [ha [T/prt [v [volu [[D mi(cl)]:2 [are [v [lava __:2]]]]]]]]]]]
+
+201.  mi#hanno voluto lavare 
+	[T/fin [ha [[D mi(cl)]:1 [T/prt [v [volu [are [v [lava __:1]]]]]]]]]
+
+202.  hanno voluto lavare#mi 
+	[T/fin [ha [T/prt [v [volu [[D mi(cl)]:1 [are [v [lava __:1]]]]]]]]]
+
+203. * mi#hanno voluto lavare loro 
+
+204.  hanno voluto lavare#mi loro 
+	[T/fin [ha [T/prt [v [volu [[D mi(cl)] <are [v [lava [D loro]]]>]]]]]]
+
+
+& Group 3.2 Ungrammatical
+
+
+& Group 3.2.1 Wrong clitic placemenet
+
+205. * loro hanno mi#voluto lavare 
+
+206. * loro hanno voluto mi#lavare 
+
+207. * loro#mi hanno voluto lavare 
+
+208. * mi#loro hanno voluto lavere 
+
+209. * hanno mi#voluto lavare 
+
+210. * hanno voluto mi#lavare 
+
+211. * hanno mi#voluto lavare loro 
+
+212. * hanno voluto mi#lavare loro 
+
+213. * hanno voluto lavare loro#mi 
+
+214. * hanno voluto lavere mi#loro 
+
+
+& Group 4. Indirect clitics and clitic clusters
+
+
+& Group 4.1 Grammatical indirect (dative) clitics
+
+215.  loro gli#lavano Luisa 
+	[[D loro]:1 [T/fin [[__:1 [v [lava [<P [D lo(cl)]>:2 [D Luisa]]]]] <PP>:2]]]
+
+216.  gli#lavano Luisa loro 
+	[T/fin [v [[lava [<[P [D lo(cl)]] <D Luisa>>:1 [D loro]]] <PP>:1]]]
+
+217.  gli#lavano Luisa 
+	[T/fin [[v [lava [<P [D lo(cl)]>:1 [D Luisa]]]] <PP>:1]]
+
+
+& Group 4.2 Grammatical clitic clusters
+
+218.  loro gli#la#hanno lavata 
+	[[D loro]:1 [T/fin [__:1 [ha [[D la(cl)]:2 [<P [D lo(cl)]>:3 [T/prt [[v [lava __:2]] <PP>:3]]]]]]]]
+
+219.  gli#la#hanno lavata loro 
+	[[T/fin [ha [[D la(cl)]:1 [<P [D lo(cl)]>:2 [T/prt [[v [lava __:1]] <PP>:2]]]]]] <D loro>]
+
+220.  gli#la#hanno lavata 
+	[T/fin [ha [[D la(cl)]:1 [<P [D lo(cl)]>:2 [T/prt [[v [lava __:1]] <PP>:2]]]]]]
+
+
+& Group 4.3 Ungrammatical clitic clusters
+
+221. * loro la#gli#hanno lavata 
+
+222. * la#gli#hanno lavata 
+
+223. * loro hanno gli#la#lavata 
+
+224. * hanno gli#la#lavata 
+
+225. * la#gli#hanno lavata loro 
+
+226. * hanno gli#la#lavata loro 
+
+
+& Group 5. Restructuring
+
+
+& Group 5.1 Grammatical
+
+227.  loro sembrano lavare#mi 
+	[[D loro]:1 [T/fin [sembra [[D mi(cl)]:2 [are [__:1 [v [lava __:2]]]]]]]]
+
+228.  io detesto lavare#lo 
+	[[D io]:1 [T/fin [__:1 [v [detest [[D lo(cl)]:2 [are [v [lava __:2]]]]]]]]]
+
+229.  Giuseppe spinge Luisa a lavare#lo 
+	[[D Giuseppe]:1 [T/fin [__:1 [v [spinge [[D Luisa] <a [[D lo(cl)]:2 [are [v [lava __:2]]]]>]]]]]]
+
+230. * sembrano lavare#mi loro 
+
+231. * detesto lavare#lo io 
+
+232. * spinge Luisa a lavare#lo Giuseppe 
+
+
+& Group 5.2 Ungrammatical
+
+233. * loro mi#sembrano lavare 
+
+234. * mi#sembrano lavare 
+
+235. * io lo#detesto lavare 
+
+236. * lo#detesto lavare 
+
+237. * Giuseppe lo#spinge Luisa a lavare 
+
+238. * mi#sembrano lavare loro 
+
+239. * lo#detesto lavare io 
+
+240. * lo#spinge Luisa a lavare Giuseppe 
+
+
+& Group 6. Reflexive clitics
+
+
+& Group 6.1 Simple transitive direct object reflexives
+
+241.  io mi#lavo 
+	[[D io]:1 [T/fin [__:1 [v [lava [D mi(cl)]]]]]]
+
+242.  mi#lavo 
+	[T/fin [v [lava [D mi(cl)]]]]
+
+243.  tu mi#lavi 
+	[[D tu]:1 [T/fin [__:1 [v [lava [D mi(cl)]]]]]]
+
+244.  mi#lavi 
+	[T/fin [v [lava [D mi(cl)]]]]
+
+245.  lui si#lava 
+	[[D lui]:1 [T/fin [<DP>:2 [__:1 [v [lava <D si(cl)>:2]]]]]]
+
+246.  lei si#lava 
+	[[D lei]:1 [T/fin [<DP>:2 [__:1 [v [lava <D si(cl)>:2]]]]]]
+
+247.  si#lava 
+	[T/fin [<DP>:1 [v [lava <D si(cl)>:1]]]]
+
+248.  mi#lavo io 
+	[[T/fin [v [lava [D mi(cl)]]]] <D io>]
+
+249.  mi#lavi tu 
+	[[T/fin [v [lava [D mi(cl)]]]] <D tu>]
+
+250.  si#lava lui 
+	[T/fin [<DP>:1 [v [lava [<D si(cl)>:1 [D lui]]]]]]
+
+251.  si#lava lei 
+	[T/fin [<DP>:1 [v [lava [<D si(cl)>:1 [D lei]]]]]]
+
+
+& Group 6.2 Simple intransitive si subjects
+
+252.  si#dorme 
+	[T/fin [<DP>:1 [dorme <D si(cl)>:1]]]
+
+
+& Group 6.3 Biclausal si constructions
+
+253. * si#vuole lavare Luisa 
 
