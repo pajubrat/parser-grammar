@@ -387,6 +387,12 @@ class PhraseStructure:
 
     # This extracts a pro-element from a primitive head
     def extract_pro(self):
+
+        # If the head has found a local subject (has checked it phi-features), then
+        # no pro can be extracted
+        if 'PHI_CHECKED' in self.features:
+            return None
+
         phi_set = set()
 
         # Only phi-active head can contain a pro-element

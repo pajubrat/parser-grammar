@@ -11,10 +11,8 @@
 T/fin   :: CAT:T/fin PF:T/fin LF:T
 v       :: CAT:v PF:v LF:v
 v*		:: CAT:v* CAT:v PF:v* LF:v* SEM:external
-vv		:: CAT:v PF:vv LF:v VAL
-v/pro	:: CAT:v/pro PF:v/pro LF:pro 
-C/fin   :: CAT:C/fin PF:C LF:C/fin 
-T		:: CAT:T PF:T LF:T
+C/fin   :: CAT:C/fin PF:C/fin LF:C/fin 
+T		:: CAT:T PF:T LF:T CAT:FIN
 
 # Infinitivals
 INF		:: CAT:INF PF:INF LF:INF
@@ -53,16 +51,19 @@ f	::	- PHI:GEN:F
 n 	::  - PHI:GEN:N
 
 # Structural Case
-nom   	:: - TAIL:CAT:FIN,!COMP:*,ARG,VAL NOM
-gen     :: - TAIL:ARG,VAL,CAT:INF GEN
-par   	:: - TAIL:ARG,-VAL PAR
-acc		:: - TAIL:ASP,!COMP:* ACC -FLOAT
-dat		:: - TAIL:CAT:v,!COMP:* DAT
-asp		:: - TAIL:ASP,!COMP:* ARG ASP
+nom   	:: - TAIL:CAT:FIN,!COMP:*,ARG,VAL
+gen     :: - TAIL:CAT:INF
+par   	:: - TAIL:ARG,-VAL
+acc		:: - TAIL:ASP,!COMP:* -FLOAT
+dat		:: - TAIL:CAT:v,!COMP:*
+asp		:: - TAIL:ASP,!COMP:*
+
+# Universal feature inventory
 pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH
 wh     	:: - CAT:WH
 top    	:: - ABAR:TOP
 foc    	:: - ABAR:FOC
+c/op	:: - ABAR:C/OP
 rel    	:: - CAT:R
 Q		:: - CAT:Q

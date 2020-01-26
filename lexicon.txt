@@ -36,6 +36,9 @@ dorme-	:: CAT:V !SPEC:D PF:dorme LF:sleep
 
 e		:: BE-#T/fin#3p#sg LANG:IT
 
+ei		:: e-#[-V] LANG:FI
+e-		:: PF:ei LF:neg CAT:Neg/fin CAT:FIN VAL ARG !COMP:* !COMP:T !SPEC:* LANG:FI
+
 etsii	:: etsi-#v#T/fin#[-V] LANG:FI
 etsi-	:: PF:etsi LF:search CAT:V !COMP:D LANG:FI COMP:D
 
@@ -46,6 +49,7 @@ Giuseppe-	:: PF:Giuseppe CAT:N -SEM:directional LF:Giuseppe LANG:IT
 
 haluaa 	:: halua-#v#T/fin#[-V] LANG:FI
 haluan	:: halua-#v#T/fin#[-n] LANG:FI
+halua	:: halua-#v#T LANG:FI
 halua- 	:: PF:haluaa LF:want CAT:V !COMP:* COMP:D COMP:A/inf SEM:internal LANG:FI
 
 hanno	:: ha-#T/fin#[-no] LANG:IT
@@ -58,7 +62,10 @@ ihailee :: ihaile-#v#T/fin#[-V] LANG:FI
 ihailemme :: ihaile-#v#T/fin#[-mme] LANG:FI
 ihailette :: ihaile-#v#T/fin#[-tte] LANG:FI
 ihailevat :: ihaile-#v#T/fin#[-vat] LANG:FI
+ihaile	:: ihaile-#v#T LANG:FI
+ihaillut :: ihaile-#v#T#sg LANG:FI
 ihaile- :: PF:ihaile- LF:admire CAT:V !COMP:D -COMP:FIN LANG:FI
+ihailla	:: ihaile-#v#A/inf LANG:FI
 
 is		:: be-#T/fin#[-s] LANG:EN
 be-		:: PF:be LF:be CAT:V CAT:COPULA SPEC:D SPEC:TO/inf -COMP:TO/inf !COMP:* -ARG LANG:EN
@@ -122,7 +129,11 @@ mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
 mukavasti :: mukava-#sti
 mukava-	:: PF:mukavasti LF:comfortably CAT:A LANG:FI
 
-Pekka   :: Pekka-#D#nom#sg#3p#def#hum#def LANG:FI -SEM:directional LF:Merja LANG:FI
+on'		:: T/fin#[-V] LANG:FI
+o-		:: PF:on LF:be CAT:V -ASP CAT:COPULA COMP:T SPEC:D !COMP:* -ARG LANG:FI
+
+Pekka   :: Pekka-#D#nom#sg#3p#def#hum#def LANG:FI
+Pekan	:: Pekka-#D#gen#sg#3p#def#hum#def LANG:FI
 Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 
 persuades :: persuade-#v*#T/fin#[-s] LANG:EN
@@ -156,6 +167,10 @@ sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG LANG:FI
 tassa	:: tama#P
 tama	:: tama-#D#sg#3p#def
 tama-	:: PF:tama LF:this CAT:N CAT:PHI LANG:FI
+
+taytyy	:: tayty-#T/fin#[-V] LANG:FI
+taydy	:: tayty-#T LANG:FI
+tayty-	:: PF:taytyy LF:must CAT:FIN CAT:V CAT:MODAL !COMP:A/inf -ASP LANG:FI SEM:internal
 
 that    :: PF:that LF:that CAT:FORCE LANG:EN
 

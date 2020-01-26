@@ -1,0 +1,87 @@
+& Group 1. Baseline tests (all declarative clauses, all lexical items used in the tests)	
+	& Group 1.1 Grammatical
+		& Group 1.1.2. Transitive, declarative clauses
+			Pekka ihailee Merjaa
+		
+		& Group 1.1.3. Negative, declarative clauses	
+			Pekka ei ihaile Merjaa
+		
+		& Group 1.1.4. AUX + V	
+			Pekka on' ihaillut Merjaa
+		
+		& Group 1.1.5 want + A/inf	
+			Pekka haluaa ihailla Merjaa
+			
+		& Group 1.1.6 modal + A/inf
+				Pekan taytyy ihailla Merjaa
+		
+		& Group 1.1.7 Neg + Modal + A/inf
+				Pekan ei taydy ihailla Merjaa
+				
+		& Group 1.1.8 Neg + want + A/inf
+				Pekka ei halua ihailla Merjaa
+		
+		& Group 1.1.9 says + that
+				Pekka sanoo etta haluaa ihailla Merjaa
+	
+	& Group 1.2 Ungrammatical
+		
+& Group 2. T-to-C movement
+	& Group 2.1 Grammatical
+		& Group 2.1.1 Local T-to-C movement	
+			ihailee#foc Pekka Merjaa
+			ihailee#C/op Pekka Merjaa
+			ihailee Pekka Merjaa
+
+		& Group 2.1.2 Neg-to-C movement
+			ei#C/op Pekka ihaile Merjaa
+			ei#C/op Pekan taydy ihailla Merjaa
+			ei#C/op Pekka halua ihailla Merjaa
+			
+		& Group 2.1.3 Modal-to-C	
+			taytyy#C/op Pekan ihailla Merjaa
+			
+		& Group 2.1.4 Want-to-C 	
+			haluaa#C/op Pekka ihailla Merjaa
+	
+	& Group 2.2 Ungrammatical
+
+& Group 3. Basic LHM
+	& Group 3.1 Grammatical
+		& Group 3.1.1 Neg-V	
+			ihaile#C/op Pekka ei Merjaa
+			
+		& Group 3.1.2 Aux(BE)-V	
+			on'#C/op Pekka ihaillut Merjaa
+
+		& Group 3.1.3 want-V
+			ihailla#C/op Pekka haluaa Merjaa
+			
+		& Group 3.1.4 must + V
+			ihailla#C/op Pekan taytyy Merjaa
+	
+	& Group3.2 Ungrammatical
+		
+	
+& Group 4. X + Y + V constructions
+	& Group 4.1 Grammatical
+		& Group 4.1.1 Neg + Modal + V
+			taydy#C/op Pekan ei ihailla Merjaa
+			ihailla#C/op Pekan ei taydy Merjaa
+		
+		& Group 4.1.2 Neg + want + V
+			halua#C/op Pekka ei ihailla Merjaa
+			ihailla#C/op Pekka ei halua Merjaa
+	
+	& Group 4.2 Ungrammatical
+
+& Group 5. Super LHM (says that __)
+	& Group 5.1 Grammatical
+		& Group 5.1.1 that + want + A/inf
+		ihailla#C/op Pekka sanoo etta haluaa Merjaa
+		lahtea#C/op Pekka sanoo etta Pekan taytyy
+		
+	& Group 5.2 Ungrammatical
+		haluaa#C/op Pekka sanoo etta ihailla Merjaa
+		ihailee#C/op Pekka sanoo etta Merjaa
+		taytyy#C/op Pekka sanoo etta Pekan ihailla Merjaa

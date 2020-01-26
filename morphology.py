@@ -26,16 +26,15 @@ class Morphology:
         while self.is_polymorphemic(next_lexical_item):
 
             log(f'\t\tDecomposing a polymorphemic word {next_lexical_item.morphology}.')
-            # This disambiguates Finnish #FOC feature -- disabled
-            # if 'CAT:X' in lexical_item.features:
-            #    morphologically_decomposed_input = self.generative_morphology(lexical_item.morphology)
-            #    lexical_item.morphology = morphologically_decomposed_input
+            # Disambiguates Finnish #FOC feature
+            lexical_item.morphology = self.generative_morphology(lexical_item.morphology)
 
             # Condition 2. Step 1.
             # Create a list of morphemes
-            # Operation 1. Morphophonological operations (fusion ect.) create a list of morphemes from the multimorphemic input
+            # Operation 1. Create a list of morphemes from the multimorphemic phonological input string
+            # This operation should deal with surface complexities (fusion, and such)
             word = next_lexical_item.morphology
-            lst_ = self.morphophonological_processing(word, lst_branched[index][0])
+            lst_ = self.morphophonological_processing(word)
 
             # If the element was incorporated (not affixed), this information will be passed on as a feature
             if next_lexical_item.incorporated:
@@ -83,22 +82,28 @@ class Morphology:
 
         # Recognize the presence of the foc feature
         if len(list_) > 1:
-            if 'foc' in list_:
+            if 'foc' in list_ or 'C/op' in list_:
                 # We use the category of second last morpheme as a cue
-                second_last_morpheme = self.lexicon.access_lexicon(list_[-2])[0]
+                second_last_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
                 labels = second_last_morpheme.get_labels()
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
                     log('\t\t\t\tProsodic feature [foc] interpreted as a C morpheme')
                     word = word.replace('#foc', '#C/fin')  # This means that #foc is interpreted as a morpheme
-
+                    word = word.replace('#C/op', '#C/fin')
         return word
 
     # Definition for morpheme decomposition
     # Input is a string, returns a string in which any morpheme is replaced with
     def extract_morphemes(self, word):
+        # First item in the list is the word itself
         list_ = [word]
+
+        # If the word has several morphemes
         while '#' in list_[0]:
+            # Split the first item and insert them into the beginning of the list
             list_ = list_[0].split('#') + list_[1:]
+            # Substitute the first item with the morphemic decomposition
+            # (and continue decomposition if that is complex as well)
             list_[0] = self.lexicon.access_lexicon(list_[0])[0].morphology
 
         return list_
@@ -117,23 +122,11 @@ class Morphology:
         return lst2_
 
     # Definition for morphophonological processing (fusion etc.)
-    def morphophonological_processing(self, word, phon):
+    def morphophonological_processing(self, word):
 
-        morpheme_list = word.split("#")
-        s = ''
-        # If either a or b in a#b is morphologically complex, then a#b is deemed a case of incorporation (a_b)
-        for index in range(0, len(morpheme_list)-1):
-            if self.is_polymorphemic(self.lexicon.access_lexicon(morpheme_list[index])[0]) or\
-                    self.is_polymorphemic(self.lexicon.access_lexicon(morpheme_list[index+1])[0]):
-                s = s + morpheme_list[index] + '_'
-            else:
-                s = s + morpheme_list[index] + '#'
-        s = s + morpheme_list[-1]
+        word = word.replace("#", "#$")
+        return self.flip_boundary(word.split("#"))
 
-        word = s.replace("#", "#$")
-        word = word.replace("_", '#_')
-
-        # Flip $ to the end (for easier readability) and create the new list
-        lst_ = self.flip_boundary(word.split("#"))
-
-        return lst_
+        # CLITIC PROCESSING DELETED
+        # Use special clitic boundary % that marks incorporation
+        # In previous version complex (hierarchical) morpheme triggered the operation, but this interacts with other experiments
