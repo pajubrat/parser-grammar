@@ -1,5 +1,6 @@
 & Group 1. Baseline tests (all declarative clauses, all lexical items used in the tests)	
 	& Group 1.1 Grammatical, Finnish
+	& Group 1.1 Grammatical
 		& Group 1.1.2. Transitive, declarative clauses
 			Pekka ihailee Merjaa
 		
@@ -35,6 +36,7 @@
 		
 & Group 2. T-to-C movement
 	& Group 2.1 Grammatical, Finnish
+	& Group 2.1 Grammatical
 		& Group 2.1.1 Local T-to-C movement	
 			ihailee#foc Pekka Merjaa
 			ihailee#C/op Pekka Merjaa
@@ -60,6 +62,10 @@
 
 & Group 3. Basic LHM
 	& Group 3.1 Grammatical, Finnish
+	& Group 2.2 Ungrammatical
+
+& Group 3. Basic LHM
+	& Group 3.1 Grammatical
 		& Group 3.1.1 Neg-V	
 			ihaile#C/op Pekka ei Merjaa
 			
@@ -81,6 +87,11 @@
 & Group 4. X + Y + V constructions
 
 	& Group 4.1 Grammatical, Finnish
+	& Group3.2 Ungrammatical
+		
+	
+& Group 4. X + Y + V constructions
+	& Group 4.1 Grammatical
 		& Group 4.1.1 Neg + Modal + V
 			taydy#C/op Pekan ei ihailla Merjaa
 			ihailla#C/op Pekan ei taydy Merjaa
@@ -95,6 +106,10 @@
 
 & Group 5. Super LHM (says that __)
 	& Group 5.1 Grammatical, Finnish
+	& Group 4.2 Ungrammatical
+
+& Group 5. Super LHM (says that __)
+	& Group 5.1 Grammatical
 		& Group 5.1.1 that + want + A/inf
 		ihailla#C/op Pekka sanoo etta haluaa Merjaa
 		lahtea#C/op Pekka sanoo etta Pekan taytyy
@@ -105,3 +120,7 @@
 		taytyy#C/op Pekka sanoo etta Pekan ihailla Merjaa
 	
 	& Group 5.3 Ungrammatical, English
+	& Group 5.2 Ungrammatical
+		haluaa#C/op Pekka sanoo etta ihailla Merjaa
+		ihailee#C/op Pekka sanoo etta Merjaa
+		taytyy#C/op Pekka sanoo etta Pekan ihailla Merjaa

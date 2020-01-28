@@ -83,12 +83,16 @@ class Morphology:
         # Recognize the presence of the foc feature
         if len(list_) > 1:
             if 'foc' in list_ or 'C/op' in list_:
+
                 # We select the critical morpheme
                 if len(list_) == 2:
                     critical_morpheme = self.lexicon.access_lexicon(list_[0])[0]
                 else:
                     critical_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
                 labels = critical_morpheme.get_labels()
+                # We use the category of second last morpheme as a cue
+                second_last_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
+                labels = second_last_morpheme.get_labels()
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
                     log('\t\t\t\tProsodic feature [foc] interpreted as a C morpheme')
                     word = word.replace('#foc', '#C/fin')  # This means that #foc is interpreted as a morpheme

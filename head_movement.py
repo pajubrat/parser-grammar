@@ -93,9 +93,12 @@ class HeadMovement:
                 if not affix_.EPP():
                     return True  # If the affix has no EPP, we accept the solution
 
+
                 # If it requires SPEC...
                 else:
 
+                # If it requires SPEC...
+                else:
                     # we accept the solution is the local specifier is complex phrase
                     # (we must ignore pro-solution here)
                     if affix_.get_local_specifier() and affix_.get_local_specifier().is_complex():  # If the EPP is satisfied, we accept the solution
