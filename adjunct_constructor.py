@@ -53,18 +53,29 @@ class AdjunctConstructor:
     def make_adjunct(self, ps):
         ps.adjunct = True
         log(f'\t\t\t\t\t{ps} was made an adjunct.')
+
+        # Adjuncts must be transferred to LF
         self.transfer_adjunct(ps)
+
+        # If we created [<XP>, <XP>], it will be transformed into <<XP>, <XP>>
         if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
             ps.mother.adjunct = True
+
         return True
 
     def transfer_adjunct(self, ps):
+        # Detach the constituent
         original_mother = ps.mother
         ps.detach()
         log(f'\t\t\t\t\t{ps} is transferred to LF as a phase.')
         disable_logging()
+
+        # Transfer to LF
         ps = self.controlling_parser_process.transfer_to_lf(ps, 5)
         enable_logging()
+
+        # Attach back
         if original_mother:
             ps.mother = original_mother
+
         return ps

@@ -161,7 +161,7 @@ class PhraseStructure:
         self_copy.find_me_elsewhere = False  # Copy is marked for being where it is
         self_copy.silence_phonologically()   # Silence the new constituent phonologically
         self.find_me_elsewhere = True        # Mark that the constituent has been copied
-                                            # Neutralize the original
+                                             # Neutralize the original
         remove_tail_features(self)           # Remove tail-features from the original
 
         return self_copy
@@ -387,6 +387,12 @@ class PhraseStructure:
 
     # This extracts a pro-element from a primitive head
     def extract_pro(self):
+
+        # If the head has found a local subject (has checked it phi-features), then
+        # no pro can be extracted
+        if 'PHI_CHECKED' in self.features:
+            return None
+
         phi_set = set()
 
         # Only phi-active head can contain a pro-element
@@ -887,6 +893,19 @@ class PhraseStructure:
             if f[0] == '!' or f[0] == '-':
                 set_of_features.add(f)
         return set_of_features
+
+    # Definition for selection match, i.e. whether self (label) selects for head (label)
+    # This duplicates functionality in the LF class, all this must be unified
+    def selects(self, selectee):
+        selector = self
+        if selector.has_affix():
+            selector = selector.get_bottom_affix()
+
+        # Search positive selection feature
+        if selectee.get_labels() & selector.get_comps():
+            return True
+        else:
+            return False
 
     # Recursive definition for phonological silencing
     def silence_phonologically(self):

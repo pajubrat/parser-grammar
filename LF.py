@@ -68,7 +68,7 @@ class LF:
                 self.test(ps.right_const)
             return
 
-        h = ps  # Just to keep track of the fact that we have selected primitive head
+        h = ps  # keep track of the fact that we have selected primitive head
 
         spec = h.get_local_specifier()
         specs = h.get_generalized_specifiers()
@@ -129,7 +129,6 @@ class LF:
         # 6. Selection tests
         #
         for f in lf_features:
-
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
                 for spec_ in specs:

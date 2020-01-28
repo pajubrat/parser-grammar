@@ -211,52 +211,62 @@ class PhrasalMovement():
     # Case 3. Fill complement from memory buffer
     #
     def fill_comp_from_memory(self, h):
+
+        # Condition 1. H is a primitive head without complement
         if h.is_primitive() and not h.complement():
-            # If H has comp features
+
+            # If (i) H has comp features and
             if h.get_comps():
                 target_const = None
+
+                # (ii) comp features can be satisfied by an element in the memory buffer
                 for const in self.memory_buffer:
-                    for c in h.get_comps():
-                        # If suitable candidate exists in the memory buffer
-                        if c in const.get_labels() and target_const == None:
-                            target_const = const
+                    if h.get_comps() & const.get_labels():
 
-                if target_const:
-                    h.merge(target_const.copy_from_memory_buffer(self.babtize()), 'right')
-                    self.number_of_Moves += 1
-                    log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
-                        + f') from memory buffer into Comp of {h.get_labels()}.')
-                    log(f'\t\t\t\t\tResult {h.get_top()}')
-                    self.memory_buffer.remove(target_const)
-                    log(f'\t\t\t\t\tRemaining items in memory buffer: {self.memory_buffer}')
+                        # then select the first such constituent from the memory buffer
+                        target_const = const
 
-        # The head has a non-matching complement and matching item is found from memory
-        if h.is_left() and h.complement():
-            match_found = False
+                        # Merge the element into COMP,H position
+                        h.merge(target_const.copy_from_memory_buffer(self.babtize()), 'right')
+                        self.number_of_Moves += 1
+                        log(f'\t\t\t\t\tDropp   ing {repr(target_const)}(=' + target_const.spellout()
+                            + f') from memory buffer into Comp of {h.get_labels()}.')
+                        log(f'\t\t\t\t\tResult {h.get_top()}')
+
+                        # Remove the merged element from the memory buffer
+                        self.memory_buffer.remove(target_const)
+                        log(f'\t\t\t\t\tRemaining items in memory buffer: {self.memory_buffer}')
+
+                        # Do not continue search from the memory buffer
+                        break
+
+        #  Condition 2. The head has a non-matching complement
+        if h.is_left() and h.complement() and not (h.get_comps() & h.complement().get_labels()):
+
             target_const = None
-            for label in h.complement().get_labels():
-                for comp in h.get_comps():
-                    if label == comp:
-                        match_found = True  # matching H-comp feature was found => don't bring anything from memory
-            # look if there is something in MB
-            if not match_found:
-                for const in self.memory_buffer:
-                    for comp in h.get_comps():
-                        if comp in const.get_labels() and target_const == None:
-                            target_const = const
 
-            if not match_found and target_const:
-                log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
-                    + f') from memory buffer into Comp of {h.get_labels()} '
-                    f'due to the presence of mismatching complement {h.complement()}.')
-                h.complement().merge(target_const.copy_from_memory_buffer(self.babtize()), 'left')
-                self.number_of_Moves += 1
-                # The mismatching complement will be demoted to floater status
-                if h.complement().right_const.is_adjoinable():
-                    log('\t\t\t\t\tThe mismatching complement will be transformed into floater adjunct.')
-                    self.adjunct_constructor.create_adjunct(h.complement().right_const)
-                self.memory_buffer.remove(target_const)
-                log(f'\t\t\t\t\tRemaining memory buffer: {self.memory_buffer}')
+            # Search the memory buffer
+            for const in self.memory_buffer:
+
+                # If a matching complement is found from the memory buffer
+                if const.get_labels() & h.get_comps():
+                    target_const = const
+
+                    log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
+                        + f') from memory buffer into Comp of {h.get_labels()} '
+                        f'due to the presence of mismatching complement {h.complement()}.')
+
+                    # The constituent from memory buffer will be merged to left of the complement
+                    h.complement().merge(target_const.copy_from_memory_buffer(self.babtize()), 'left')
+                    self.number_of_Moves += 1
+
+                    # Empty the memory buffer
+                    self.memory_buffer.remove(const)
+
+                    # The mismatching complement will be made floater
+                    if h.complement().right_const.is_adjoinable():
+                        log('\t\t\t\t\tThe mismatching complement will be transformed into floater adjunct.')
+                        self.adjunct_constructor.create_adjunct(h.complement().right_const)
 
     # Definition for A-reconstruction
     def A_reconstruct(self, ps):

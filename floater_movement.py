@@ -92,7 +92,7 @@ class FloaterMovement():
     def drop_floater(self, floater, ps):
 
         # Starting point is stored so we don't implement reconstruction inside the same projection (leads into regress)
-        starting_point_vector = floater.get_feature_vector()
+        starting_point_head = floater.get_container_head()
 
         # We need to locate the appropriate starting point, XP in [fin XP]
         ps_iterator_ = self.locate_minimal_tense_edge(floater.mother)
@@ -113,7 +113,7 @@ class FloaterMovement():
             # Condition 1: tail test succeeds,
             # Condition 2: we are not reconstructing inside the same projection (does not apply to right-adjoined)
             # Condition 3: dropped non-ADV will become the only SPEC
-            if self.is_drop_position(ps_iterator_, floater_copy, starting_point_vector):
+            if self.is_drop_position(ps_iterator_, floater_copy, starting_point_head):
                 if not floater.adjunct:
                     self.adjunct_constructor.create_adjunct(floater)
 
@@ -137,7 +137,7 @@ class FloaterMovement():
             ps_iterator_ = ps_iterator_.walk_downstream()
 
     # Definition for a legitimate target position for floater reconstruction
-    def is_drop_position(self, ps_iterator_, floater_copy, starting_point_vector):
+    def is_drop_position(self, ps_iterator_, floater_copy, starting_point_head):
 
         # Condition 1. The position must satisfy the external tail head test
         if floater_copy.get_head().external_tail_head_test():
@@ -151,8 +151,7 @@ class FloaterMovement():
             else:
 
                 # Don't go inside where you started
-                if floater_copy.get_feature_vector() != starting_point_vector:
-
+                if floater_copy.get_container_head() != starting_point_head:
                     # Don't fill in more than one SPEC position
                     # (This should be revised because the function count specifiers is used only here)
                     if ps_iterator_.get_head().count_specifiers() < 2:

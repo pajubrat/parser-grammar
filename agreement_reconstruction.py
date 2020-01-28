@@ -62,7 +62,7 @@ class AgreementReconstruction:
 
         # Operation 1. Acquire phi-feature from sister
         # Looks for the closest left branch DP with D containing valued phi-features inside its sister
-        # [H [...DP XP]]
+        # [H [...DP XP]] and returns the goal and a set of phi-features in it.
         def acquire_from_sister(ps):
 
             ps_ = ps
@@ -106,7 +106,7 @@ class AgreementReconstruction:
                             # Condition 3. Get valued phi-features from DP
                             if self.phi(f) and self.valued(f):
                                 phi_features.add(f)
-                        return edge_head, sorted(phi_features) # We only consider the first DP
+                        return edge_head, sorted(phi_features)  # We only consider the first DP
             return None, set()
 
         # ------------ main function 'acquire_phi()' beings here ----------------#
@@ -120,6 +120,8 @@ class AgreementReconstruction:
         for phi in phi_features:
             if value(h, phi):
                 log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' from the edge of {h}.')
+                # Agreement leads into phi-checking, which prevents pro-extraction from the same head
+                # '*Minä uskon että ihailen minä Merjaa', here T should not project pro because S is present
 
         #
         # Operation 2. Acquire phi-features by phi-Agree
@@ -129,6 +131,8 @@ class AgreementReconstruction:
             for phi in phi_features:  # Try to value
                 if value(h, phi):
                     log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
+                    # Agreement leads into phi-checking
+                    h.features.add('PHI_CHECKED')
 
         # --------------- main function ends ---------------------------------------#
 
