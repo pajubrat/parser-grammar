@@ -32,7 +32,7 @@ class HeadMovement:
                 set_logging(True)
                 log(f'\t\t\t\t\t{ps} was not opened into left branch, it would not constitute a legitimate left branch at LF.')
 
-        # Condition 2. If the target is a non-D head or phrase, we reconstruct head movement inside it
+        # Condition 2. If the target is a non-D head, we reconstruct head movement inside it
         else:
             if ps.is_complex():
                 ps = self.reconstruct_head_movement(ps)
@@ -131,7 +131,6 @@ class HeadMovement:
 
             # Try each solution
             iterator_.merge(affix_, 'left')
-            log(f'{iterator_}')
 
             # If the drop condition is satisfied, then we leave the head and return
             if drop_condition_for_heads(affix_):
@@ -141,7 +140,7 @@ class HeadMovement:
 
                 # Remove the head and go next step downwards
                 affix_.remove()
-                iterator_ = iterator_.walk_downstream()
+                iterator_ = iterator_.walk_downstream('CAT:D')
 
         # Special condition 1: bottom right position
         # Condition 1.1. If the bottom node is complex, we must open it first

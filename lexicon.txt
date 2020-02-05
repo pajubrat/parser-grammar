@@ -61,8 +61,10 @@ ihailette :: ihaile-#v#T/fin#[-tte] LANG:FI
 ihailevat :: ihaile-#v#T/fin#[-vat] LANG:FI
 ihaile	:: ihaile-#v#T LANG:FI
 ihaillut :: ihaile-#v#T#sg LANG:FI
-ihaile- :: PF:ihaile- LF:admire CAT:V !COMP:D -COMP:FIN LANG:FI
 ihailla	:: ihaile-#v#A/inf LANG:FI
+ihailemalla :: ihaile-#v#malla LANG:FI
+ihaile- :: PF:ihaile- LF:admire CAT:V !COMP:D -COMP:FIN LANG:FI
+
 
 is		:: be-#T/fin#[-s] LANG:EN
 be-		:: PF:be LF:be CAT:V CAT:COPULA SPEC:D SPEC:TO/inf -COMP:TO/inf !COMP:* -ARG LANG:EN
@@ -121,6 +123,8 @@ Merjan	:: Merja-#D#gen#sg#3p#def#hum#def LANG:FI
 Merjaa	:: Merja-#D#par#sg#3p#def#hum#def LANG:FI
 Merja-  :: PF:Merja- CAT:N -SEM:directional LANG:FI
 
+malla	:: CAT:ADV PF:malla LF:by COMP:v LANG:FI
+
 mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
 
 mukavasti :: mukava-#sti
@@ -129,12 +133,15 @@ mukava-	:: PF:mukavasti LF:comfortably CAT:A LANG:FI
 on'		:: T/fin#[-V] LANG:FI
 o-		:: PF:on LF:be CAT:V -ASP CAT:COPULA COMP:T SPEC:D !COMP:* -ARG LANG:FI
 
-Pekka   :: Pekka-#D#nom#sg#3p#def#hum#def LANG:FI
-Pekan	:: Pekka-#D#gen#sg#3p#def#hum#def LANG:FI
+Pekka   :: Pekka-#D#nom#sg#3p#def#hum LANG:FI
+Pekan	:: Pekka-#D#gen#sg#3p#def#hum LANG:FI
 Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 
 persuades :: persuade-#v*#T/fin#[-s] LANG:EN
 persuade- :: PF:persuade LF:persuade CAT:V COMP:TO/inf SEM:external LANG:EN
+
+poikien	::	poika-#D#gen#pl#3p#def#hum LANG:FI
+poika-	::	PF:poika LF:boy CAT:N LANG:FI
 
 promises :: promise-#T/fin#[-s] LANG:EN
 promise- :: PF:promise LF:promise CAT:V SPEC:D COMP:D SEM:internal LANG:EN 
@@ -153,6 +160,10 @@ sembra-	:: PF:sembra LF:seem -R -ASP -ARG -VAL CAT:V SPEC:P -COMP:D !COMP:ARE/in
 
 sono	:: BE-#T/fin#[-o] LANG:IT
 
+sopimuksen	:: sopimus-#D#asp#sg#3p#def LANG:FI
+sopimus		:: sopimus-#D#nom#sg#3p#def	LANG:FI
+sopimus-	:: CAT:N PF:sopimus LF:agreement !COMP:A/inf LANG:FI
+
 spinge :: spinge-#v#T/fin#[-e] LANG:IT
 spinge- :: CAT:V PF:spinge LF:push !COMP:D -COMP:P LANG:IT
 
@@ -168,6 +179,9 @@ tama-	:: PF:tama LF:this CAT:N CAT:PHI LANG:FI
 taytyy	:: tayty-#T/fin#[-V] LANG:FI
 taydy	:: tayty-#T LANG:FI
 tayty-	:: PF:taytyy LF:must CAT:FIN CAT:V CAT:MODAL !COMP:A/inf -ASP LANG:FI SEM:internal
+
+teki	:: teke-#v#T/fin#[-V] LANG:FI
+teke-	:: CAT:V !COMP:D -COMP:A/inf -COMP:v PF:teke LF:make LANG:FI
 
 that    :: PF:that LF:that CAT:FORCE LANG:EN
 

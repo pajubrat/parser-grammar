@@ -1,3 +1,4 @@
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 & Group 1. Baseline tests (all declarative clauses, all lexical items used in the tests)	
 	& Group 1.1 Grammatical, Finnish
 	& Group 1.1 Grammatical
@@ -14,17 +15,27 @@
 			Pekka haluaa ihailla Merjaa
 			
 		& Group 1.1.6 modal + A/inf
-				Pekan taytyy ihailla Merjaa
+			Pekan taytyy ihailla Merjaa
 		
 		& Group 1.1.7 Neg + Modal + A/inf
-				Pekan ei taydy ihailla Merjaa
+			Pekan ei taydy ihailla Merjaa
 				
 		& Group 1.1.8 Neg + want + A/inf
-				Pekka ei halua ihailla Merjaa
+			Pekka ei halua ihailla Merjaa
 		
 		& Group 1.1.9 says + that
-				Pekka sanoo etta haluaa ihailla Merjaa
-				
+			Pekka sanoo etta haluaa ihailla Merjaa
+		
+		& Group 1.1.10 Infinitival with thematic GEN subject
+			Pekka kaskee poikien ihailla Merjaa
+			
+		& Group 1.1.11 Adverb tests
+			Pekka istuu ihailemalla Merjaa 
+			
+		& Group 1.1.12 N + A/inf
+			Pekka teki sopimuksen ihailla Merjaa
+				sopimus ihailla Merjaa istuu
+		
 	& Gropu 1.2 Grammatical, English
 		& Group 1.2.1 Transitive, declarative
 			John admires Mary
@@ -33,14 +44,14 @@
 			John wants to' admire' Mary
 	
 	& Group 1.2 Ungrammatical
-		
-& Group 2. T-to-C movement
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&		
+& Group 2. Local T-to-C movement
 	& Group 2.1 Grammatical, Finnish
 	& Group 2.1 Grammatical
 		& Group 2.1.1 Local T-to-C movement	
 			ihailee#foc Pekka Merjaa
 			ihailee#C/op Pekka Merjaa
-			ihailee Pekka Merjaa
 
 		& Group 2.1.2 Neg-to-C movement
 			ei#C/op Pekka ihaile Merjaa
@@ -54,16 +65,15 @@
 			haluaa#C/op Pekka ihailla Merjaa
 	
 	& Group 2.2 Ungrammatical, Finnish
+			ihailee Pekka Merjaa
+			ihailee#C/op Pekka ihailee Merjaa
 	
 	& Group 2.3 Grammatical, English
 	
 	& Group 2.4 Ungrammatical, English
-		admires#C/op John Mary
+		admires John Mary
 
-& Group 3. Basic LHM
-	& Group 3.1 Grammatical, Finnish
-	& Group 2.2 Ungrammatical
-
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 & Group 3. Basic LHM
 	& Group 3.1 Grammatical
 		& Group 3.1.1 Neg-V	
@@ -78,18 +88,14 @@
 		& Group 3.1.4 must + V
 			ihailla#C/op Pekan taytyy Merjaa
 	
-	& Group3.2 Ungrammatical, Finnish
-	
+	& Group 3.2. Ungrammatical, Finnish
+		& Group 3.2.1 long head movement with infinitival subject
+			ihailla#C/op Pekka kaskee poikien Merjaa
+			
 	& Group 3.3 Ungrammatical, English
-%		admire'#C/op John wants to' Mary
+		admire' John wants to' Mary
 
-
-& Group 4. X + Y + V constructions
-
-	& Group 4.1 Grammatical, Finnish
-	& Group3.2 Ungrammatical
-		
-	
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 & Group 4. X + Y + V constructions
 	& Group 4.1 Grammatical
 		& Group 4.1.1 Neg + Modal + V
@@ -104,11 +110,8 @@
 	
 	& Group 4.3 Ungrammatical, English
 
-& Group 5. Super LHM (says that __)
-	& Group 5.1 Grammatical, Finnish
-	& Group 4.2 Ungrammatical
-
-& Group 5. Super LHM (says that __)
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+& Group 5. Super LHM ("says that __")
 	& Group 5.1 Grammatical
 		& Group 5.1.1 that + want + A/inf
 		ihailla#C/op Pekka sanoo etta haluaa Merjaa
@@ -124,3 +127,24 @@
 		haluaa#C/op Pekka sanoo etta ihailla Merjaa
 		ihailee#C/op Pekka sanoo etta Merjaa
 		taytyy#C/op Pekka sanoo etta Pekan ihailla Merjaa
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+& Group 6. VP-fronting
+	& Group 6.1. Grammatical VP-fronting in Finnish
+		ihailla Merjaa Pekka haluaa		
+		ihailla Merjaa#C/op Pekka haluaa
+		Merjaa#C/op ihailla Pekka haluaa
+		tassa#C/op ihailla Merjaa Pekka haluaa
+
+	& Group 6.2 Ungrammatical VP-fronting in Finnish
+		ihailla#C/op Merjaa Pekka haluaa
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+& Group 7. Islands
+	& Group 7.1. Right-adjunct CED
+		ihailemalla#C/op Pekka istuu Merjaa
+	& Group 7.2. Extraction from DP
+		ihailla#C/op Pekka teki sopimuksen Merjaa
+	& Group 7.3, Left branch CED
+%		ihailla#C/op sopimus Merjaa istuu
+	

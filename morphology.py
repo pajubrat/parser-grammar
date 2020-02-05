@@ -90,6 +90,7 @@ class Morphology:
                 else:
                     critical_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
                 labels = critical_morpheme.get_labels()
+
                 # We use the category of second last morpheme as a cue
                 second_last_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
                 labels = second_last_morpheme.get_labels()

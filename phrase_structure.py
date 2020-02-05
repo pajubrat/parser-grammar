@@ -787,9 +787,15 @@ class PhraseStructure:
         return False
 
     # Definition for walking downwards (search) on the right edge
-    def walk_downstream(self):
+    def walk_downstream(self, intervention_feature=None):
 
+        # Condition 1. Primitive constituents cannot be searched further
         if self.is_primitive():
+            return None
+
+        # Condition 2. If [L, XP], L = intervening feature, search cannot go further
+        if intervention_feature and self.left_const.is_primitive() and intervention_feature in self.left_const.features:
+            log(f'\t\t\t\t\t({intervention_feature} intervenes search)')
             return None
 
         # Dodge right adjuncts

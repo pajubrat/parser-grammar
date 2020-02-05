@@ -2,310 +2,345 @@
 
 \========================================================================
 # 1
-["admire'#C/op", 'John', 'wants', "to'", 'Mary']
+['ihailla#C/op', 'sopimus', 'Merjaa', 'istuu']
 
 
 Using lexicon "lexicon.txt".
 			=None
 
 1.
-		Decomposing a polymorphemic word admire'#C/op.
+		Decomposing a polymorphemic word ihailla#C/op.
 				Prosodic feature [foc] interpreted as a C morpheme
-		Next word contains multiple morphemes ['C/fin$', "admire'"]
+		Next word contains multiple morphemes ['C/fin$', 'ihailla']
 			=C/fin
 
 2.
-		Decomposing a polymorphemic word admire-#v.
-		Next word contains multiple morphemes ['v$', 'admire-']
-		Consume "v"
+		Decomposing a polymorphemic word ihaile-#v#A/inf.
+		Next word contains multiple morphemes ['A/inf$', 'v$', 'ihaile-']
+		Consume "A/inf"
 
-		C/fin + v
+		C/fin + A/inf
 			Filtering out impossible merge sites...
-			Sink "v" into C/fin because they are inside the same phonological word.
-		Exploring solution number (1) =[C/fin*v]
-			=C/fin{v}
+			Sink "A/inf" into C/fin because they are inside the same phonological word.
+		Exploring solution number (1) =[C/fin*A/inf]
+			=C/fin{INF}
 
 3.
-		Consume "admire"
-
-		C/fin{v} + admire
-			Filtering out impossible merge sites...
-			Sink "admire" into v because they are inside the same phonological word.
-		Exploring solution number (1) =[C/fin{v}*admire]
-			=C/fin{v,V}
-
-4.
-		Decomposing a polymorphemic word John-#D#sg#3p#def#hum#m.
-		Next word contains multiple morphemes ['m$', 'hum$', 'def$', '3p$', 'sg$', 'D$', 'John-']
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:GEN:M'] into working memory.
-		Consume "hum$"
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:HUM:HUM'] into working memory.
-		Consume "def$"
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:DET:DEF'] into working memory.
-		Consume "3p$"
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:PER:3'] into working memory.
-		Consume "sg$"
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:NUM:SG'] into working memory.
-		Consume "D$"
-		Adding inflectional features {'-', 'PHI:GEN:M', 'PHI:PER:3', 'PHI:DET:DEF', 'PHI:HUM:HUM', 'LANG:EN', 'PHI:NUM:SG'} to D
-		Consume "D"
-
-		C/fin{v,V} + D
-			Filtering out impossible merge sites...
-		Exploring solution number (1) =[C/fin{v,V} D]
-				1. Head movement reconstruction:
-				=C/fin{v,V}
-				2. Feature processing:
-				=C/fin{v,V}
-				3. Extraposition:
-				=C/fin{v,V}
-				4. Floater movement reconstruction:
-				=C/fin{v,V}
-				5. Phrasal movement reconstruction:
-				=C/fin{v,V}
-				6. Agreement reconstruction:
-				=C/fin{v,V}
-				7. Last resort extraposition:
-				C/fin{v,V} probing for CAT:FIN failed.
-				"C/fin{v,V}" lacks complement.
-					Last resort extraposition will be tried on C/fin{v,V}.
-					No suitable node for extraposition found; no action was taken.
-			=[C/fin{v,V} D]
-
-10.
-		Consume "John"
-
-		[C/fin{v,V} D] + John
-			Filtering out impossible merge sites...
-			Sink "John" into D because they are inside the same phonological word.
-		Exploring solution number (1) =[D*John]
-			=[C/fin{v,V} D{N}]
-
-11.
-		Decomposing a polymorphemic word want-#v#T/fin#[-s].
-		Next word contains multiple morphemes ['[-s]$', 'T/fin$', 'v$', 'want-']
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:GEN:F', 'PHI:GEN:M', 'PHI:NUM:SG', 'PHI:PER:3'] into working memory.
-		Consume "T/fin$"
-		Adding inflectional features {'-', 'PHI:NUM:SG', 'LANG:EN', 'PHI:GEN:M', 'PHI:GEN:F', 'PHI:PER:3'} to T/fin
-		Consume "T/fin"
-
-		[C/fin{v,V} D{N}] + T/fin
-			Filtering out impossible merge sites...
-				Reject [[C/fin [[v{V} D] John]] T/fin] due to bad left branch.
-		Exploring solution number (1) =[D{N} T/fin]
-				1. Head movement reconstruction:
-					D was opened into [D John].
-				=[D John]
-				2. Feature processing:
-				=[D John]
-				3. Extraposition:
-				=[D John]
-				4. Floater movement reconstruction:
-				=[D John]
-				5. Phrasal movement reconstruction:
-				=[D John]
-				6. Agreement reconstruction:
-				=[D John]
-				7. Last resort extraposition:
-			=[C/fin{v,V} [[D John] T/fin]]
-
-13.
 		Consume "v"
 
-		[C/fin{v,V} [[D John] T/fin]] + v
+		C/fin{INF} + v
 			Filtering out impossible merge sites...
-			Sink "v" into T/fin because they are inside the same phonological word.
-		Exploring solution number (1) =[T/fin*v]
-			=[C/fin{v,V} [[D John] T/fin{v}]]
+			Sink "v" into A/inf because they are inside the same phonological word.
+		Exploring solution number (1) =[C/fin{INF}*v]
+			=C/fin{INF,v}
 
-14.
-		Consume "want"
+4.
+		Consume "ihaile-"
 
-		[C/fin{v,V} [[D John] T/fin{v}]] + want
+		C/fin{INF,v} + ihaile-
 			Filtering out impossible merge sites...
-			Sink "want" into v because they are inside the same phonological word.
-		Exploring solution number (1) =[T/fin{v}*want]
-			=[C/fin{v,V} [[D John] T/fin{v,V}]]
+			Sink "ihaile-" into v because they are inside the same phonological word.
+		Exploring solution number (1) =[C/fin{INF,v}*ihaile-]
+			=C/fin{INF,v,V}
 
-15.
-		Consume "to"
-
-		[C/fin{v,V} [[D John] T/fin{v,V}]] + to
-			Filtering out impossible merge sites...
-			Ranking remaining sites...
-				"want" lacks complement.
-				Avoid [C/fin [v [admire [[D John] [T/fin [[D John] [v want]]]]]]] as left branch because it constitutes illicit structure.
-				Avoid [[[D John] T/fin{v,V}], to] because the operation breaks up an existing selectional dependency.
-				"want" lacks complement.
-				Avoid [[D John] [T/fin [[D John] [v want]]]] as left branch because it constitutes illicit structure.
-				Prioritize [want to] due to complement selection.
-				[C/fin{v,V} [[D John] T/fin{v,V}]] + to = -98]
-				[[D John] T/fin{v,V}] + to = -194]
-				T/fin{v,V} + to = 106]
-		Ranking completed:
-			1. [T/fin{v,V}; to]
-			2. [[C/fin{v,V} [[D John] T/fin{v,V}]]; to]
-			3. [[[D John] T/fin{v,V}]; to]
-		Exploring solution number (1) =[T/fin{v,V} to]
-				1. Head movement reconstruction:
-				=T/fin{v,V}
-				2. Feature processing:
-				=T/fin{v,V}
-				3. Extraposition:
-				=T/fin{v,V}
-				4. Floater movement reconstruction:
-				=T/fin{v,V}
-				5. Phrasal movement reconstruction:
-				=T/fin{v,V}
-				6. Agreement reconstruction:
-				=T/fin{v,V}
-				7. Last resort extraposition:
-				T/fin{v,V} probing for CAT:V failed.
-				"T/fin{v,V}" lacks complement.
-				An EPP-head "T/fin{v,V}" lacks specifier.
-					Last resort extraposition will be tried on T/fin{v,V}.
-					No suitable node for extraposition found; no action was taken.
-			=[C/fin{v,V} [[D John] [T/fin{v,V} to]]]
-
-16.
-		Decomposing a polymorphemic word Mary-#D#sg#3p#def#hum#f.
-		Next word contains multiple morphemes ['f$', 'hum$', 'def$', '3p$', 'sg$', 'D$', 'Mary-']
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:GEN:F'] into working memory.
-		Consume "hum$"
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:HUM:HUM'] into working memory.
-		Consume "def$"
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:DET:DEF'] into working memory.
+5.
+		Decomposing a polymorphemic word sopimus-#D#nom#sg#3p#def.
+		Next word contains multiple morphemes ['def$', '3p$', 'sg$', 'nom$', 'D$', 'sopimus-']
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:DET:DEF'] into working memory.
 		Consume "3p$"
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:PER:3'] into working memory.
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:PER:3'] into working memory.
 		Consume "sg$"
-		Storing inflectional feature ['-', 'LANG:EN', 'PHI:NUM:SG'] into working memory.
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:NUM:SG'] into working memory.
+		Consume "nom$"
+		Storing inflectional feature ['-', 'LANG:FI', 'TAIL:CAT:FIN,!COMP:*,ARG,VAL'] into working memory.
 		Consume "D$"
-		Adding inflectional features {'-', 'PHI:GEN:F', 'PHI:PER:3', 'PHI:DET:DEF', 'PHI:HUM:HUM', 'LANG:EN', 'PHI:NUM:SG'} to D
+		Adding inflectional features {'PHI:DET:DEF', 'TAIL:CAT:FIN,!COMP:*,ARG,VAL', 'LANG:FI', 'PHI:NUM:SG', '-', 'PHI:PER:3'} to D
 		Consume "D"
 
-		[C/fin{v,V} [[D John] [T/fin{v,V} to]]] + D
+		C/fin{INF,v,V} + D
 			Filtering out impossible merge sites...
-			Ranking remaining sites...
-				"admire" lacks complement.
-				Avoid [C/fin [[D John] [T/fin [[D John] [v [want [to [v admire]]]]]]]] as left branch because it constitutes illicit structure.
-				Avoid TT/finP as SPEC, D.
-				Avoid [[[D John] [T/fin{v,V} to]], D] because the operation breaks up an existing selectional dependency.
-				Avoid TT/finP as SPEC, D.
-				An EPP-head "T/fin" lacks specifier.
-				Avoid [T/fin [v [want to]]] as left branch because it constitutes illicit structure.
-				Avoid to because it could break words.
-				Prioritize to because all solutions were negative.
-				[C/fin{v,V} [[D John] [T/fin{v,V} to]]] + D = -98]
-				[[D John] [T/fin{v,V} to]] + D = -194]
-				[T/fin{v,V} to] + D = -191]
-				to + D = 108]
-		Ranking completed:
-			1. [to; D]
-			2. [[C/fin{v,V} [[D John] [T/fin{v,V} to]]]; D]
-			3. [[T/fin{v,V} to]; D]
-			4. [[[D John] [T/fin{v,V} to]]; D]
-		Exploring solution number (1) =[to D]
+		Exploring solution number (1) =[C/fin{INF,v,V} D]
 				1. Head movement reconstruction:
-				=to
+				=C/fin{INF,v,V}
 				2. Feature processing:
-				=to
+				=C/fin{INF,v,V}
 				3. Extraposition:
-				=to
+				=C/fin{INF,v,V}
 				4. Floater movement reconstruction:
-				=to
+				=C/fin{INF,v,V}
 				5. Phrasal movement reconstruction:
-				=to
+				=C/fin{INF,v,V}
 				6. Agreement reconstruction:
-				=to
+				=C/fin{INF,v,V}
 				7. Last resort extraposition:
-			=[C/fin{v,V} [[D John] [T/fin{v,V} [to D]]]]
+				C/fin{INF,v,V} probing for CAT:FIN failed.
+				"C/fin{INF,v,V}" lacks complement.
+					Last resort extraposition will be tried on C/fin{INF,v,V}.
+					No suitable node for extraposition found; no action was taken.
+			=[C/fin{INF,v,V} D]
+
+10.
+		Consume "sopimus"
+
+		[C/fin{INF,v,V} D] + sopimus
+			Filtering out impossible merge sites...
+			Sink "sopimus" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*sopimus]
+			=[C/fin{INF,v,V} D{N}]
+
+11.
+		Decomposing a polymorphemic word Merja-#D#par#sg#3p#def#hum#def.
+		Next word contains multiple morphemes ['def$', 'hum$', 'def$', '3p$', 'sg$', 'par$', 'D$', 'Merja-']
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:DET:DEF'] into working memory.
+		Consume "hum$"
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:HUM:HUM'] into working memory.
+		Consume "def$"
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:DET:DEF'] into working memory.
+		Consume "3p$"
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:PER:3'] into working memory.
+		Consume "sg$"
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:NUM:SG'] into working memory.
+		Consume "par$"
+		Storing inflectional feature ['-', 'LANG:FI', 'TAIL:ARG,-VAL'] into working memory.
+		Consume "D$"
+		Adding inflectional features {'PHI:DET:DEF', 'TAIL:ARG,-VAL', 'PHI:HUM:HUM', 'LANG:FI', 'PHI:NUM:SG', '-', 'PHI:PER:3'} to D
+		Consume "D"
+
+		[C/fin{INF,v,V} D{N}] + D
+			Filtering out impossible merge sites...
+				Reject [[C/fin [[A/inf{v,V} D] sopimus]] D] due to bad left branch.
+		Exploring solution number (1) =[D{N} D]
+				1. Head movement reconstruction:
+				sopimus (sopimus) is missing complement A/inf
+					D{N} was not opened into left branch, it would not constitute a legitimate left branch at LF.
+				=D{N}
+				2. Feature processing:
+				=D{N}
+				3. Extraposition:
+				=D{N}
+				4. Floater movement reconstruction:
+				=D{N}
+				5. Phrasal movement reconstruction:
+				=D{N}
+				6. Agreement reconstruction:
+				=D{N}
+				7. Last resort extraposition:
+				D{N} probing for CAT:N failed.
+				"D{N}" lacks complement.
+					Last resort extraposition will be tried on D{N}.
+					No suitable node for extraposition found; no action was taken.
+			=[C/fin{INF,v,V} [D{N} D]]
+
+18.
+		Consume "Merja-"
+
+		[C/fin{INF,v,V} [D{N} D]] + Merja-
+			Filtering out impossible merge sites...
+			Sink "Merja-" into D because they are inside the same phonological word.
+		Exploring solution number (1) =[D*Merja-]
+			=[C/fin{INF,v,V} [D{N} D{N}]]
+
+19.
+		Decomposing a polymorphemic word istu-#T/fin#[-V].
+		Next word contains multiple morphemes ['[-V]$', 'T/fin$', 'istu-']
+		Storing inflectional feature ['-', 'LANG:FI', 'PHI:NUM:SG', 'PHI:PER:3'] into working memory.
+		Consume "T/fin$"
+		Adding inflectional features {'LANG:FI', 'PHI:NUM:SG', '-', 'PHI:PER:3'} to T/fin
+		Consume "T/fin"
+
+		[C/fin{INF,v,V} [D{N} D{N}]] + T/fin
+			Filtering out impossible merge sites...
+				Reject [[C/fin [A/inf [v [ihaile- <D [sopimus <D Merja->]>]]]] T/fin] due to bad left branch.
+				Reject [[D [sopimus <D Merja->]] T/fin] due to bad left branch.
+		Exploring solution number (1) =[D{N} T/fin]
+				1. Head movement reconstruction:
+					D was opened into [D Merja-].
+				=[D Merja-]
+				2. Feature processing:
+				=[D Merja-]
+				3. Extraposition:
+				=[D Merja-]
+				4. Floater movement reconstruction:
+				=[D Merja-]
+				5. Phrasal movement reconstruction:
+				=[D Merja-]
+				6. Agreement reconstruction:
+				=[D Merja-]
+				7. Last resort extraposition:
+			=[C/fin{INF,v,V} [D{N} [[D Merja-] T/fin]]]
+
+21.
+		Consume "istuu"
+
+		[C/fin{INF,v,V} [D{N} [[D Merja-] T/fin]]] + istuu
+			Filtering out impossible merge sites...
+			Sink "istuu" into T/fin because they are inside the same phonological word.
+		Exploring solution number (1) =[T/fin*istuu]
+			=[C/fin{INF,v,V} [D{N} [[D Merja-] T/fin{V}]]]
 
 22.
-		Consume "Mary"
-
-		[C/fin{v,V} [[D John] [T/fin{v,V} [to D]]]] + Mary
-			Filtering out impossible merge sites...
-			Sink "Mary" into D because they are inside the same phonological word.
-		Exploring solution number (1) =[D*Mary]
-			=[C/fin{v,V} [[D John] [T/fin{v,V} [to D{N}]]]]
-
-23.
-	>>>	Trying candidate parse [C/fin{v,V} [[D John] [T/fin{v,V} [to D{N}]]]] (1.)
+	>>>	Trying candidate parse [C/fin{INF,v,V} [D{N} [[D Merja-] T/fin{V}]]] (1.)
 		Checking surface conditions...
 		Reconstructing...
 				1. Head movement reconstruction:
-					Target v{V} in C/fin
-[[D John] [T/fin{v,V} [to D{N}]]]
-[T/fin{v,V} [to D{N}]]
-[to D{N}]
-D{N}
-					=[C/fin [[D John] [T/fin{v,V} [to [v{V} D{N}]]]]]
-					Target v{V} in T/fin
-[to [v{V} D{N}]]
-					=[C/fin [[D John] [T/fin [v{V} [to [v{V} D{N}]]]]]]
-					Target want in v
-[to [v{V} D{N}]]
-					=[C/fin [[D John] [T/fin [v [want [to [v{V} D{N}]]]]]]]
-					Target admire in v
-D{N}
-					=[C/fin [[D John] [T/fin [v [want [to [v [admire D{N}]]]]]]]]
-				=[C/fin [[D John] [T/fin [v [want [to [v [admire [D Mary]]]]]]]]]
+					Target A/inf{v,V} in C/fin
+					CAT:D intervenes search
+					Head reconstruction failed for A/inf{v,V}, merged locally as a last resort.
+					Target v{V} in A/inf
+					=[C/fin [A/inf [v{V} [D{N} [[D Merja-] [T/fin istuu]]]]]]
+					Target ihaile- in v
+					=[C/fin [A/inf [v [ihaile- [D{N} [[D Merja-] [T/fin istuu]]]]]]]
+					Target sopimus in D
+					=[C/fin [A/inf [v [ihaile- [D [sopimus [[D Merja-] [T/fin istuu]]]]]]]]
+				=[C/fin [A/inf [v [ihaile- [D [sopimus [[D Merja-] [T/fin istuu]]]]]]]]
 				2. Feature processing:
-					Solving feature ambiguities for "to".
-				=[C/fin [[D John] [T/fin [v [want [to [v [admire [D Mary]]]]]]]]]
+					Solving feature ambiguities for "A/inf".
+				=[C/fin [A/inf [v [ihaile- [D [sopimus [[D Merja-] [T/fin istuu]]]]]]]]
 				3. Extraposition:
-				=[C/fin [[D John] [T/fin [v [want [to [v [admire [D Mary]]]]]]]]]
+					Extraposition will be tried on [T/fin istuu].
+					<[D Merja-] [T/fin istuu]> was made an adjunct.
+					<[D Merja-] [T/fin istuu]> is transferred to LF as a phase.
+				=[C/fin [A/inf [v [ihaile- [D [sopimus <[D Merja-] [T/fin istuu]>]]]]]]
 				4. Floater movement reconstruction:
-				=[C/fin [[D John] [T/fin [v [want [to [v [admire [D Mary]]]]]]]]]
+					D at the right failed to tail [!COMP:*][ARG][CAT:FIN][VAL]
+					<D [sopimus <[D Merja-] [T/fin istuu]>]> was made an adjunct.
+					<D [sopimus <[D Merja-] [T/fin istuu]>]> is transferred to LF as a phase.
+					Dropping <D [sopimus <[D Merja-] [T/fin istuu]>]>
+				=[C/fin [A/inf [v [ihaile- <D [sopimus <[D Merja-] [T/fin istuu]>]>]]]]
 				5. Phrasal movement reconstruction:
-					Moving "D John " into memory buffer from SPEC of "T/fin".
-					Memory buffer: [[D N]]
-					Dropping constituent [D John] from memory buffer into Spec of v
-					Result [C/fin [[D John] [T/fin [[D John] [v [want [to [v [admire [D Mary]]]]]]]]]]
-				=[C/fin [[D John]:9 [T/fin [__:9 [v [want [to [v [admire [D Mary]]]]]]]]]]
+				=[C/fin [A/inf [v [ihaile- <D [sopimus <[D Merja-] [T/fin istuu]>]>]]]]
 				6. Agreement reconstruction:
-					T/fin acquired PHI:DET:DEF from the edge of T/fin.
-					T/fin acquired PHI:GEN:M from the edge of T/fin.
-					T/fin acquired PHI:NUM:SG from the edge of T/fin.
-					T/fin acquired PHI:PER:3 from the edge of T/fin.
-				=[C/fin [[D John]:9 [T/fin [__:9 [v [want [to [v [admire [D Mary]]]]]]]]]]
+				=[C/fin [A/inf [v [ihaile- <D [sopimus <[D Merja-] [T/fin istuu]>]>]]]]
 				7. Last resort extraposition:
-			= [C/fin [[D John] [T/fin [[D John] [v [want [to [v [admire [D Mary]]]]]]]]]]
+				C/fin probing for CAT:FIN failed.
+				D(<D [sopimus <[D Merja-] [T/fin istuu]>]>) failed internal tail test for {frozenset({'!COMP:*', 'ARG', 'VAL', 'CAT:FIN'})}.
+					sopimus (sopimus) is missing a mandatory complement A/inf
+				[D Merja-] has no thematic role.
+					Last resort extraposition will be tried on [C/fin [A/inf [v [ihaile- <D [sopimus <[D Merja-] [T/fin istuu]>]>]]]].
+					No suitable node for extraposition found; no action was taken.
+			= [C/fin [A/inf [v [ihaile- <D [sopimus <[D Merja-] [T/fin istuu]>]>]]]]
 		Checking LF-interface conditions.
-			Transferring [C/fin [[D John]:9 [T/fin [__:9 [v [want [to [v [admire [D Mary]]]]]]]]]] into Conceptual-Intentional system...
-				v with ['PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'] was associated at LF with:
-					1. [D John]    (alternatives: 2. T/fin )
-				want with ['PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'] was associated at LF with:
-					1. [D John]    (alternatives: 2. T/fin )
-				to with ['PHI:NUM:_', 'PHI:PER:_'] was associated at LF with:
-					1. [D John]    (alternatives: 2. T/fin )
-				v with ['PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'] was associated at LF with:
-					1. [D John]    (alternatives: 2. T/fin )
-				admire with ['PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'] was associated at LF with:
-					1. [D Mary]    (alternatives: 2. [D John] 3. T/fin )
-				Transfer to C-I successful.
-				Semantic interpretation/predicates and arguments: {'admire([D Mary])', 'to([D John])', 'v([D John])', 'want([D John])'}
-----------------------------------------------------------------------------------------------------------
-                                              All tests passed                                           
-----------------------------------------------------------------------------------------------------------
-		Solution:
-		[C/fin [[D John] [T/fin [[D John] [v [want [to [v [admire [D Mary]]]]]]]]]]
-		Grammar: [C/fin [[D John]:1 [T/fin [__:1 [v [want [to [v [admire [D Mary]]]]]]]]]]
-		Spellout C/finP = [C/fin [DP:1 [TT/fin [__:1 [v [V [INF [v [V [D N]]]]]]]]]]
-----------------------------------------------------------------------------------------------------------
-C/fin:['!COMP:*', '!PROBE:CAT:FIN', '-ARG', '-SPEC:C/fin', '-SPEC:N', '-SPEC:T/fin', 'CAT:-ARG', 'CAT:-ARG/C/fin/FIN', 'CAT:C/fin', 'CAT:FIN', 'COMP:Neg/fin', 'COMP:T/fin', 'LANG:EN', 'LF:C/fin', 'PF:C/fin', 'VAL']
-D:['!COMP:*', '!PROBE:CAT:N', '-', '-ARG', '-COMP:T/fin', '-COMP:uR', '-SPEC:D', '-SPEC:INF', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:P', '-SPEC:T/fin', '-SPEC:V', 'CAT:-ARG', 'CAT:-ARG/-ARG/D/D', 'CAT:-ARG/D', 'CAT:D', 'COMP:N', 'LANG:EN', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:GEN:M', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'VAL']
-John:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:EN', 'LF:John', 'PF:John', 'SPEC:A']
-T/fin:['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '-', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/FIN/T/T/fin/FIN/T/T/fin', 'CAT:ARG/FIN/T/T/fin', 'CAT:FIN', 'CAT:T', 'CAT:T/fin', 'COMP:D', 'COMP:T', 'COMP:V', 'COMP:v', 'LANG:EN', 'LF:T', 'PF:T/fin', 'PHI:DET:DEF', 'PHI:GEN:F', 'PHI:GEN:M', 'PHI:NUM:SG', 'PHI:PER:3', 'SPEC:*', 'SPEC:TO/inf', 'VAL']
-D:['!COMP:*', '!PROBE:CAT:N', '-', '-ARG', '-COMP:T/fin', '-COMP:uR', '-SPEC:D', '-SPEC:INF', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:P', '-SPEC:T/fin', '-SPEC:V', 'CAT:-ARG', 'CAT:-ARG/-ARG/D/D', 'CAT:-ARG/D', 'CAT:D', 'COMP:N', 'LANG:EN', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:GEN:M', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'VAL', 'null']
-John:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:EN', 'LF:John', 'PF:John', 'SPEC:A', 'null']
-v:['!COMP:*', '!PROBE:CAT:V', '!SPEC:D', '-SPEC:N', '-VAL', 'ARG', 'ASP', 'CAT:ARG', 'CAT:ARG/v', 'CAT:v', 'COMP:V', 'LANG:EN', 'LF:v', 'PF:v', 'PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_']
-want:['!COMP:*', '-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', '-VAL', 'ARG', 'ASP', 'CAT:ARG', 'CAT:ARG/V', 'CAT:V', 'COMP:P', 'COMP:TO/inf', 'LANG:EN', 'LF:want', 'PF:want', 'PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_', 'SPEC:ADV', 'SPEC:D', 'SPEC:P', 'SPEC:TO/inf']
-to:['!SPEC:*', '?VAL', 'ARG', 'CAT:ARG', 'CAT:INF', 'CAT:INF/TO/inf', 'CAT:TO/inf', 'COMP:V', 'COMP:v', 'LANG:EN', 'LF:TO/inf', 'PF:to', 'PHI:NUM:_', 'PHI:PER:_']
-v:['!COMP:*', '!PROBE:CAT:V', '!SPEC:D', '-SPEC:N', '-VAL', 'ARG', 'ASP', 'CAT:ARG', 'CAT:ARG/v', 'CAT:v', 'COMP:V', 'LANG:EN', 'LF:v', 'PF:v', 'PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_']
-admire:['!COMP:*', '-COMP:N', '-COMP:V', '-SPEC:FORCE', '-SPEC:T/fin', '-VAL', 'ARG', 'ASP', 'CAT:ARG', 'CAT:ARG/V', 'CAT:V', 'COMP:P', 'LANG:EN', 'LF:admire', 'PF:admire', 'PHI:DET:_', 'PHI:GEN:_', 'PHI:NUM:_', 'PHI:PER:_', 'SPEC:ADV', 'SPEC:P', 'SPEC:TO/inf']
-D:['!COMP:*', '!PROBE:CAT:N', '-', '-ARG', '-COMP:T/fin', '-COMP:uR', '-SPEC:D', '-SPEC:INF', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:P', '-SPEC:T/fin', '-SPEC:V', 'CAT:-ARG', 'CAT:-ARG/-ARG/D/D', 'CAT:-ARG/D', 'CAT:D', 'COMP:N', 'LANG:EN', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:GEN:F', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'VAL']
-Mary:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:EN', 'LF:Mary', 'PF:Mary', 'SPEC:A']
+				C/fin probing for CAT:FIN failed.
+				D(<D [sopimus <[D Merja-] [T/fin istuu]>]>) failed internal tail test for {frozenset({'!COMP:*', 'ARG', 'VAL', 'CAT:FIN'})}.
+					sopimus (sopimus) is missing a mandatory complement A/inf
+				[D Merja-] has no thematic role.
+			LF-interface condition(s) violated
+C/fin:['!COMP:*', '!PROBE:CAT:FIN', '-ARG', '-SPEC:C/fin', '-SPEC:N', '-SPEC:T/fin', 'CAT:-ARG', 'CAT:-ARG/C/fin/FIN', 'CAT:C/fin', 'CAT:FIN', 'COMP:Neg/fin', 'COMP:T/fin', 'LANG:FI', 'LF:C/fin', 'PF:C/fin', 'VAL']
+A/inf:['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '-COMP:C/fin', '-COMP:FORCE', '-SPEC:Neg/fin', '-SPEC:T/fin', '-SPEC:V', '?VAL', 'ARG', 'CAT:A/inf', 'CAT:A/inf/INF', 'CAT:ARG', 'CAT:INF', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:A/inf', 'PF:A/inf', 'PHI:NUM:_', 'PHI:PER:_']
+v:['!COMP:*', '!PROBE:CAT:V', '!SPEC:D', '-SPEC:N', '-VAL', 'ARG', 'ASP', 'CAT:ARG', 'CAT:ARG/v', 'CAT:v', 'COMP:V', 'LANG:FI', 'LF:v', 'PF:v', 'PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_']
+ihaile-:['!COMP:D', '-COMP:FIN', '-COMP:N', '-COMP:V', '-COMP:v', '-SPEC:FORCE', '-SPEC:T/fin', '-VAL', 'ARG', 'ASP', 'CAT:ARG', 'CAT:ARG/V', 'CAT:V', 'COMP:P', 'LANG:FI', 'LF:admire', 'PF:ihaile-', 'PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_', 'SPEC:ADV', 'SPEC:P', 'SPEC:TO/inf']
+D:['!COMP:*', '!PROBE:CAT:N', '-', '-ARG', '-COMP:T/fin', '-COMP:uR', '-SPEC:D', '-SPEC:INF', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:P', '-SPEC:T/fin', '-SPEC:V', 'CAT:-ARG', 'CAT:-ARG/-ARG/D/D', 'CAT:-ARG/D', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:NUM:SG', 'PHI:PER:3', 'TAIL:CAT:FIN,!COMP:*,ARG,VAL', 'VAL']
+sopimus:['!COMP:A/inf', '-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'LF:agreement', 'PF:sopimus', 'SPEC:A']
+D:['!COMP:*', '!PROBE:CAT:N', '-', '-ARG', '-COMP:T/fin', '-COMP:uR', '-SPEC:D', '-SPEC:INF', '-SPEC:N', '-SPEC:Neg/fin', '-SPEC:P', '-SPEC:T/fin', '-SPEC:V', 'CAT:-ARG', 'CAT:-ARG/-ARG/D/D', 'CAT:-ARG/D', 'CAT:D', 'COMP:N', 'LANG:FI', 'LF:D', 'PF:D', 'PHI:DET:DEF', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3', 'TAIL:ARG,-VAL', 'VAL']
+Merja-:['-COMP:ADV', '-COMP:AUX', '-COMP:D', '-COMP:N', '-COMP:P', '-COMP:T/fin', '-COMP:V', '-COMP:WH', '-COMP:v', '-SEM:directional', '-SPEC:ADV', '-SPEC:C/fin', '-SPEC:FORCE', '-SPEC:INF', '-SPEC:N', '-SPEC:P', '-SPEC:R', '-SPEC:T/fin', '-SPEC:V', '-SPEC:uWH', 'CAT:N', 'COMP:R', 'COMP:R/D', 'COMP:uR', 'LANG:FI', 'PF:Merja-', 'SPEC:A']
+T/fin:['!COMP:*', '!PROBE:CAT:V', '!SPEC:*', '-', '-SPEC:FORCE', '-SPEC:N', '-SPEC:T/fin', '-SPEC:V', '-SPEC:v', 'ARG', 'CAT:ARG', 'CAT:ARG/ARG/FIN/T/T/fin/FIN/T/T/fin', 'CAT:ARG/FIN/T/T/fin', 'CAT:FIN', 'CAT:T', 'CAT:T/fin', 'COMP:D', 'COMP:T', 'COMP:V', 'COMP:v', 'LANG:FI', 'LF:T', 'PF:T/fin', 'PHI:DET:DEF', 'PHI:NUM:SG', 'PHI:PER:3', 'SPEC:*', 'SPEC:TO/inf', 'VAL']
+istuu:['-COMP:N', '-COMP:V', '-COMP:v', '-SPEC:FORCE', '-SPEC:T/fin', '-VAL', 'ARG', 'ASP', 'CAT:ARG', 'CAT:ARG/V', 'CAT:V', 'COMP:P', 'LANG:FI', 'LF:sit', 'PF:istuu', 'PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_', 'SPEC:ADV', 'SPEC:P', 'SPEC:TO/inf']
 
-C/fin: [C/fin];  D: [D, C/fin];  John: [N, D, C/fin];  T/fin: [TT/fin, C/fin];  __: [D, TT/fin, C/fin];  __: [N, D, TT/fin, C/fin];  v: [v, TT/fin, C/fin];  want: [V, v, TT/fin, C/fin];  to: [INF, V, v, TT/fin, C/fin];  v: [v, INF, V, v, TT/fin, C/fin];  admire: [V, v, INF, V, v, TT/fin, C/fin];  D: [D, V, v, INF, V, v, TT/fin, C/fin];  Mary: [N, D, V, v, INF, V, v, TT/fin, C/fin];  
-			Checking if the sentence is ambiguous...
+C/fin: [C/fin];  A/inf: [INF, C/fin];  v: [v, INF, C/fin];  ihaile-: [V, v, INF, C/fin];  D: [D, V, v, INF, C/fin];  sopimus: [N, D, V, v, INF, C/fin];  D: [D, N, D, V, v, INF, C/fin];  Merja-: [N, D, N, D, V, v, INF, C/fin];  T/fin: [TT/fin, N, D, V, v, INF, C/fin];  istuu: [V, TT/fin, N, D, V, v, INF, C/fin];  
+
+		Trying to find other solutions...
+		I have now explored all solutions for "istu-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "T/fin$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "istuu".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "Merja-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "D$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "par$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "sg$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "3p$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "def$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "hum$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "Merjaa".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "sopimus-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "D$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "nom$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "sg$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "3p$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "sopimus".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "ihaile-".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "v$".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "ihailla".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
+		I have now explored all solutions for "ihailla#C/op".
+		Going one step backwards and taking another solution from previous ranking list........
+		.
+		.
+		.
