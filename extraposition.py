@@ -55,11 +55,10 @@ class Extraposition:
                 not_comps = selector.get_not_comps()
                 selectee = ps_.right_const.get_head()
                 if not_comps & selectee.get_labels():
+                    log(f'\t\t\t\t\t{selector} cannot select {selectee}')
                     return selectee
             ps_ = ps_.walk_downstream()
         return None
-
-        # Definition for extraposition
 
     def last_resort_reconstruct(self, ps):
 

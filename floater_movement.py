@@ -9,7 +9,6 @@ class FloaterMovement():
         self.controlling_parser_process = controlling_parser_process
         self.name_provider_index = 0
         self.memory_buffer = []
-        self.number_of_Moves = 0
 
         # Access to the lexicon
         self.lexical_access = LexicalInterface(self.controlling_parser_process)
@@ -19,7 +18,11 @@ class FloaterMovement():
     # Definition for floater reconstruction
     def reconstruct(self, ps):
 
-        # Move downward from the top node
+        # Condition 1. Primitive heads are not reconstructed
+        if ps.is_primitive():
+            return
+
+        # Move downward from top
         _ps_iterator = ps.get_top()
 
         while _ps_iterator:
@@ -66,7 +69,7 @@ class FloaterMovement():
                     return floater
 
         # Special condition: the bottom constituent at the right
-        if not _ps_iterator.is_primitive() and \
+        if _ps_iterator.is_complex() and \
                 _ps_iterator.right_const.get_head().get_tail_sets() and \
                 not '-FLOAT' in _ps_iterator.right_const.get_head().features:
             floater = _ps_iterator.right_const.get_head()
@@ -127,6 +130,9 @@ class FloaterMovement():
                 # Everything else is adjoined to the left
                 else:
                     ps_iterator_.merge(dropped_floater, 'left')
+
+                # Keep record of the computations consumed
+                self.controlling_parser_process.number_of_phrasal_Move += 1
 
                 floater_copy.remove()
                 log(f'\t\t\t\t\t = {ps}')

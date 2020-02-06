@@ -1,7 +1,573 @@
 Linear phase parser v. 3.x
-2020-02-05 10:19:10.234869
+2020-02-06 19:36:23.551029
 Test sentences from file "LHM_corpus.txt".
 Logs into file "LHM_corpus_log.txt.
 Lexicon from file "lexicon.txt".
-1. * ihailla#C/op sopimus Merjaa istuu 
+& Group 1. Baseline tests (all declarative clauses, all lexical items used in the tests)
+
+& Group 1.1 Grammatical, Finnish
+
+& Group 1.1.2. Transitive, declarative clauses
+
+	1. Pekka ihailee Merjaa 
+		[<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja-]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(8), Inflection(12), Consumed(19)
+
+& Group 1.1.3. Negative, declarative clauses
+
+	2. Pekka ei ihaile Merjaa 
+		[[<D Pekka>:1 [ei [<__>:1 [T [v [<__>:2 ihaile-]]]]]] <D Merja->:2]
+		Solutions(3), Merge(11), Move(head)(1), Move(phrasal)(7), Transfer(19), Inflection(12), Consumed(22)
+
+& Group 1.1.4. AUX + past participle
+
+	3. Pekka on' ihaillut Merjaa 
+		[<D Pekka>:1 [T/fin [<__>:1 [T/prt [v [ihaile- [D Merja-]]]]]]]
+		Solutions(1), Merge(7), Move(head)(2), Move(phrasal)(5), Transfer(12), Inflection(13), Consumed(21)
+
+	4. Pekka ei ollut ihaillut Merjaa 
+		[<D Pekka>:1 [ei [<__>:1 [T/prt [T/prt [v [ihaile- [D Merja-]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(2), Move(phrasal)(6), Transfer(18), Inflection(14), Consumed(23)
+
+& Group 1.1.5 want + A/inf
+
+	5. Pekka haluaa ihailla Merjaa 
+		[<D Pekka>:1 [T/fin [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(12), Move(phrasal)(4), Transfer(13), Inflection(12), Consumed(22)
+
+& Group 1.1.6 modal + A/inf
+
+	6. Pekan taytyy ihailla Merjaa 
+		[<D Pekka>:1 [T/fin [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(7), Move(phrasal)(3), Transfer(12), Inflection(12), Consumed(21)
+
+& Group 1.1.7 Neg + Modal + A/inf
+
+	7. Pekan ei taydy ihailla Merjaa 
+		[<D Pekka>:1 [ei [T [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(6), Move(phrasal)(2), Transfer(12), Inflection(12), Consumed(22)
+
+& Group 1.1.8 Neg + want + A/inf
+
+	8. Pekka ei halua ihailla Merjaa 
+		[<D Pekka>:1 [ei [<__>:1 [T [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(7), Move(phrasal)(3), Transfer(14), Inflection(12), Consumed(23)
+
+& Group 1.1.9 says + that
+
+	9. Pekka sanoo etta haluaa ihailla Merjaa 
+		[<D Pekka>:1 [T/fin [<__>:1 [sano- [että [T/fin [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]]
+		Solutions(1), Merge(12), Move(head)(29), Move(phrasal)(6), Transfer(26), Inflection(13), Consumed(26)
+
+& Group 1.1.10 Infinitival with thematic GEN subject
+
+	10. Pekka kaskee poikien ihailla Merjaa 
+		[<D Pekka>:1 [T/fin [<__>:1 [v* [kaske [<D poika>:2 [A/inf [<__>:2 [v [ihaile- [D Merja-]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(16), Move(phrasal)(13), Transfer(30), Inflection(17), Consumed(29)
+
+& Group 1.1.11 Adverb tests
+
+	11. Pekka istuu ihailemalla Merjaa 
+		[[<D Pekka>:1 [T/fin [<__>:1 istuu]]] <malla [v [ihaile- [D Merja-]]]>]
+		Solutions(4), Merge(17), Move(head)(11), Move(phrasal)(7), Transfer(38), Inflection(18), Consumed(33)
+
+	12. Pekka istuu haluamalla ihailla Merjaa 
+		[[<D Pekka>:1 [T/fin [<__>:1 istuu]]] <malla [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]>]
+		Solutions(5), Merge(25), Move(head)(44), Move(phrasal)(10), Transfer(56), Inflection(18), Consumed(40)
+
+& Group 1.1.12 N + A/inf
+
+	13. Pekka teki sopimuksen ihailla Merjaa 
+		[<D Pekka>:1 [T/fin [<__>:1 [v [teke [D [sopimus [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(23), Move(phrasal)(6), Transfer(21), Inflection(16), Consumed(28)
+
+	14. sopimus ihailla Merjaa istuu 
+		[<D [sopimus [A/inf [v [ihaile- [D Merja-]]]]]>:1 [T/fin [<__>:1 istuu]]]
+		Solutions(1), Merge(8), Move(head)(13), Move(phrasal)(1), Transfer(10), Inflection(11), Consumed(20)
+
+& Gropu 1.2 Grammatical, English
+
+& Group 1.2.1 Transitive, declarative
+
+	15. John admires Mary 
+		[[D John]:1 [T/fin [__:1 [v [admire [D Mary]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(18)
+
+	16. John does admire' Mary 
+		[[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]
+		Solutions(1), Merge(6), Move(head)(1), Move(phrasal)(3), Transfer(9), Inflection(10), Consumed(17)
+
+& Group 1.2.5 want + to-infinitival
+
+	17. John wants to' admire' Mary 
+		[[D John]:1 [T/fin [__:1 [v [want [to [v [admire [D Mary]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(15), Move(phrasal)(6), Transfer(15), Inflection(11), Consumed(21)
+
+& Group 2. Local T-to-C movement
+
+& Group 2.1 Grammatical, Finnish
+
+& Group 2.1.1 Local T-to-C movement
+
+	18. ihailee#foc Pekka Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja-]]]]]]]
+		Solutions(1), Merge(7), Move(head)(4), Move(phrasal)(1), Transfer(5), Inflection(13), Consumed(21)
+
+	19. ihailee#C/op Pekka Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja-]]]]]]]
+		Solutions(1), Merge(7), Move(head)(4), Move(phrasal)(1), Transfer(5), Inflection(13), Consumed(21)
+
+& Group 2.1.2 Neg-to-C movement
+
+	20. ei#C/op Pekka ihaile Merjaa 
+		[[C/fin [<D Pekka>:1 [ei [<__>:1 [T [v [<__>:2 ihaile-]]]]]]] <D Merja->:2]
+		Solutions(3), Merge(12), Move(head)(7), Move(phrasal)(6), Transfer(19), Inflection(13), Consumed(24)
+
+	21. ei#C/op Pekan taydy ihailla Merjaa 
+		[C/fin [<D Pekka>:1 [ei [T [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(10), Move(phrasal)(2), Transfer(12), Inflection(13), Consumed(24)
+
+	22. ei#C/op Pekka halua ihailla Merjaa 
+		[C/fin [<D Pekka>:1 [ei [<__>:1 [T [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(11), Move(phrasal)(3), Transfer(14), Inflection(13), Consumed(25)
+
+	23. ei#C/op Pekka ollut ihaillut Merjaa 
+		[C/fin [<D Pekka>:1 [ei [<__>:1 [T/prt [T/prt [v [ihaile- [D Merja-]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(7), Move(phrasal)(8), Transfer(18), Inflection(15), Consumed(25)
+
+& Group 2.1.3 Modal-to-C
+
+	24. taytyy#C/op Pekan ihailla Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(9), Move(phrasal)(5), Transfer(14), Inflection(13), Consumed(23)
+
+& Group 2.1.4 Want-to-C
+
+	25. haluaa#C/op Pekka ihailla Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(12), Move(phrasal)(5), Transfer(12), Inflection(13), Consumed(24)
+
+& Group 2.1.5 Aux-to-C
+
+	26. on'#C/op Pekka ihaillut Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [T/prt [v [ihaile- [D Merja-]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(6), Move(phrasal)(7), Transfer(12), Inflection(14), Consumed(23)
+
+& Group 2.1.5 All constructions (2.1.1-2.1.4) with formal C-feature C/fin
+
+	27. ihailee#C/fin Pekka Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja-]]]]]]]
+		Solutions(1), Merge(7), Move(head)(4), Move(phrasal)(1), Transfer(5), Inflection(12), Consumed(20)
+
+	28. ei#C/fin Pekka ihaile Merjaa 
+		[[C/fin [<D Pekka>:1 [ei [<__>:1 [T [v [<__>:2 ihaile-]]]]]]] <D Merja->:2]
+		Solutions(3), Merge(12), Move(head)(7), Move(phrasal)(6), Transfer(19), Inflection(12), Consumed(23)
+
+	29. taytyy#C/fin Pekan ihailla Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(9), Move(phrasal)(5), Transfer(14), Inflection(12), Consumed(22)
+
+	30. haluaa#C/fin Pekka ihailla Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(12), Move(phrasal)(5), Transfer(12), Inflection(12), Consumed(23)
+
+	31. on'#C/fin Pekka ihaillut Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [T/prt [v [ihaile- [D Merja-]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(6), Move(phrasal)(7), Transfer(12), Inflection(13), Consumed(22)
+
+& Group 2.2 Ungrammatical, Finnish
+
+& Group 2.2.1 V-initial versions
+
+	32. * ihailee Pekka Merjaa 
+
+	33. * ei Pekka ihaile Merjaa 
+
+	34. * taytyy Pekan ihailla Merjaa 
+
+	35. * haluaa Pekka ihailla Merjaa 
+
+	36. * ihailee Pekka ihailee Merjaa 
+
+	37. * on' Pekka ihaillut Merjaa 
+
+& Group 2.3 Grammatical, English
+
+	38. does#C/fin John admire' Mary 
+		[C/fin [[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]]
+		Solutions(1), Merge(7), Move(head)(5), Move(phrasal)(3), Transfer(9), Inflection(10), Consumed(18)
+
+& Group 2.4 Ungrammatical, English
+
+	39. * admire'#C/fin John does Mary 
+
+& Group 3. Basic LHM
+
+& Group 3.1 Grammatical
+
+& Group 3.1.1 Neg-V
+
+	40. ihaile#C/op Pekka ei Merjaa 
+		[[C/fin [<D Pekka>:1 [ei [<__>:1 [T [v [<__>:2 ihaile-]]]]]]] <D Merja->:2]
+		Solutions(2), Merge(10), Move(head)(6), Move(phrasal)(5), Transfer(16), Inflection(13), Consumed(23)
+
+& Group 3.1.2 Aux(BE)-V
+
+	41. ihaillut#C/op Pekka on' Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [T/prt [v [ihaile- [D Merja-]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(6), Move(phrasal)(5), Transfer(11), Inflection(14), Consumed(23)
+
+& Group 3.1.3 want-V
+
+	42. ihailla#C/op Pekka haluaa Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(8), Move(phrasal)(5), Transfer(14), Inflection(13), Consumed(24)
+
+& Group 3.1.4 must + V
+
+	43. ihailla#C/op Pekan taytyy Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(7), Move(phrasal)(3), Transfer(12), Inflection(13), Consumed(23)
+
+& Group 3.2. Ungrammatical, Finnish
+
+& Group 3.2.1 LHM with formal C-feature and without any C-feature
+
+	44. * ihaile#C/fin Pekka ei Merjaa 
+
+	45. * ihaillut#C/fin Pekka on' Merjaa 
+
+	46. * ihailla#C/fin Pekka haluaa Merjaa 
+
+	47. * ihailla#C/fin Pekan taytyy Merjaa 
+
+	48. * ihallut#C/fin Pekka ei ollut Merjaa 
+
+	49. * ihaile Pekka ei Merjaa 
+
+	50. * ihaillut Pekka on' Merjaa 
+
+	51. * ihailla Pekka haluaa Merjaa 
+
+	52. * ihailla Pekan taytyy Merjaa 
+
+	53. * ihallut Pekka ei ollut Merjaa 
+
+& Group 3.2.2 long head movement with infinitival subject
+
+	54. * ihailla#C/op Pekka kaskee poikien Merjaa 
+
+	55. * ihailla#C/fin Pekka kaskee poikien Merjaa 
+
+	56. * ihailla Pekka kaskee poikien Merjaa 
+
+& Group 3.2.3 Long head movement with second auxiliary (only formal C-feature or no C-feature)
+
+	57. * ollut#C/fin Pekka ei ihaillut Merjaa 
+
+	58. * ollut Pekka ei ihaillut Merjaa 
+
+& Group 3.2.4 Aux + prtcpl + prtcpl with locality violation
+
+	59. * ihaillut#C/op Pekka ei ollut Merjaa 
+
+& Group 3.3 Ungrammatical, English
+
+	60. * admire' John wants to' Mary 
+
+& Group 4. X + Y + V constructions
+
+& Group 4.1 Grammatical
+
+& Group 4.1.1 Neg + Modal + V, with Modal moving
+
+	61. taydy#C/op Pekan ei ihailla Merjaa 
+		[C/fin [<D Pekka>:1 [ei [T [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(8), Move(phrasal)(4), Transfer(16), Inflection(13), Consumed(24)
+
+	62. ihailla#C/op Pekan ei taydy Merjaa 
+		[C/fin [<D Pekka>:1 [ei [T [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(10), Move(phrasal)(3), Transfer(18), Inflection(13), Consumed(24)
+
+& Group 4.1.2 Neg + want + V, with want moving
+
+	63. halua#C/op Pekka ei ihailla Merjaa 
+		[C/fin [<D Pekka>:1 [ei [<__>:1 [T [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(9), Move(phrasal)(7), Transfer(18), Inflection(13), Consumed(25)
+
+	64. ihailla#C/op Pekka ei halua Merjaa 
+		[C/fin [<D Pekka>:1 [ei [<__>:1 [T [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(11), Move(phrasal)(5), Transfer(20), Inflection(13), Consumed(25)
+
+& Group 4.2 Ungrammatical
+
+& Group 4.2.1 Neg + Modal + V with only formal C-feature
+
+	65. * taydy#C/fin Pekan ei ihailla Merjaa 
+
+	66. * taydy Pekan ei ihailla Merjaa 
+
+& Group 4.2.2 Neg + want + V with no C-feature
+
+	67. * ihailla#C/fin Pekan ei taydy Merjaa 
+
+	68. * ihailla Pekan ei taydy Merjaa 
+
+& Group 5. Super LHM ("says that __")
+
+& Group 5.1 Grammatical
+
+& Group 5.1.1 that + want + A/inf
+
+	69. ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [sano- [että [<D Pekka>:2 [T/fin [<__>:2 [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]]]]]
+		Solutions(1), Merge(15), Move(head)(30), Move(phrasal)(22), Transfer(56), Inflection(19), Consumed(35)
+
+	70. lahtea#C/op Pekka sanoo etta Pekan taytyy 
+		[C/fin [<D Pekka>:1 [T/fin [<__>:1 [sano- [että [<D Pekka>:2 [T/fin [taytyy [A/inf [<__>:2 lahtea]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(15), Move(phrasal)(8), Transfer(31), Inflection(13), Consumed(25)
+
+& Group 5.2 Ungrammatical, Finnish
+
+& Group 5.2.1 Moving of the embedded finite verb
+
+	71. * haluaa#C/op Pekka sanoo etta ihailla Merjaa 
+
+	72. * ihailee#C/op Pekka sanoo etta Merjaa 
+
+	73. * taytyy#C/op Pekka sanoo etta Pekan ihailla Merjaa 
+
+& Group 5.2.2 Formal C-features or no C-features = V-initial constructions
+
+	74. * ihailla#C/fin Pekka sanoo etta haluaa Merjaa 
+
+	75. * lahtea#C/fin Pekka sanoo etta Pekan taytyy 
+
+	76. * ihailla Pekka sanoo etta haluaa Merjaa 
+
+	77. * lahtea Pekka sanoo etta Pekan taytyy 
+
+& Group 5.3 Ungrammatical
+
+	78. * haluaa#C/op Pekka sanoo etta ihailla Merjaa 
+
+	79. * ihailee#C/op Pekka sanoo etta Merjaa 
+
+	80. * taytyy#C/op Pekka sanoo etta Pekan ihailla Merjaa 
+
+& Group 6. VP-fronting
+
+& Group 6.1. Grammatical VP-fronting in Finnish
+
+	81. ihailla Merjaa Pekka haluaa 
+		[[A/inf [v [ihaile- [D Merja-]]]]:1 [<D Pekka>:2 [T/fin [<__>:2 [v [haluaa __:1]]]]]]
+		Solutions(2), Merge(14), Move(head)(10), Move(phrasal)(3), Transfer(20), Inflection(13), Consumed(27)
+
+	82. ihailla Merjaa#C/op Pekka haluaa 
+		[[A/inf [v [ihaile- [D Merja-]]]]:1 [uC/OP [<D Pekka>:2 [T/fin [<__>:2 [v [haluaa __:1]]]]]]]
+		Solutions(2), Merge(14), Move(head)(10), Move(phrasal)(3), Transfer(20), Inflection(14), Consumed(28)
+
+	83. Merjaa#C/op ihailla Pekka haluaa 
+		[[<D Merja->:2 [A/inf [v [<__>:2 ihaile-]]]]:1 [uC/OP [<D Pekka>:3 [T/fin [<__>:3 [v [haluaa __:1]]]]]]]
+		Solutions(2), Merge(14), Move(head)(6), Move(phrasal)(8), Transfer(23), Inflection(14), Consumed(28)
+
+	84. tassa#C/op ihailla Merjaa Pekka haluaa 
+		[[P [D tama]]:1 [uC/OP [[A/inf [v [ihaile- [D Merja-]]]]:2 [<D Pekka>:3 [T/fin [<__>:3 [v [__:1 [haluaa __:2]]]]]]]]]
+		Solutions(2), Merge(17), Move(head)(16), Move(phrasal)(10), Transfer(30), Inflection(17), Consumed(34)
+
+& Group 6.2 Ungrammatical VP-fronting in Finnish
+
+	85. * ihailla#C/op Merjaa Pekka haluaa 
+
+& Group 7. Islands
+
+& Group 7.1. Right-adjunct CED
+
+	86. * ihailemalla#C/op Pekka istuu Merjaa 
+
+& Group 7.2, Left branch CED
+
+	87. * ihailla#C/op sopimus Merjaa istuu 
+
+& Group 7.3. Extraction from DP
+
+	88. * ihailla#C/op Pekka teki sopimuksen Merjaa 
+
+& Group 8. Head movement inside infinitivals, all ungrammatical
+
+& Group 8.1 Inside DPs
+
+	89. * Pekka teki ihailla sopimuksen Merjaa 
+
+& Group 8.2 Inside AdvPs
+
+	90. * Pekka istuu ihailla haluamalla Merjaa 
+
+	91. * Pekka istuu ihailla#C/op haluamalla Merjaa 
+
+& Group 9. Heads in wrong order, all ungrammatical (Manninen 2003 generalization)
+
+& Group 9.1 Neg + V
+
+	92. * Pekka ihaile ei Merjaa 
+
+& Group 9.2 Neg + Aux + V
+
+	93. * Pekka ollut ei ihaillut Merjaa 
+
+	94. * Pekka ollut ihaillut ei Merjaa 
+
+	95. * Pekka ei ihaillut ollut Merjaa 
+
+	96. * Pekka ei ihaillut ei ollut Merjaa 
+
+	97. * Pekka ihaillut ollut ei Merjaa 
+
+& Group 9.3 Neg + Modal + V
+
+	98. * Pekan taydy ei ihailla Merjaa 
+
+	99. * Pekan taydy ihailla ei Merjaa 
+
+	100. * Pekan ei ihailla taydy Merjaa 
+
+	101. * Pekan ihailla ei taydy Merjaa 
+
+	102. * Pekan ihailla taydy ei Merjaa 
+
+& Group 9.4 Neg + V + V + LHM, with wrong head order
+
+	103. * taydy#C/op Pekan ihailla ei Merjaa 
+
+	104. * ihailla#C/op Pekan taydy ei Merjaa 
+
+	105. * halua#C/op Pekka ihailla ei Merjaa 
+
+	106. * ihailla#C/op Pekka halua ei Merjaa 
+
+& Group 9.5 Head final constructions with two more more verbal elements
+
+	107. * Pekka ihaile Merjaa ei 
+
+	108. * Pekka ei ihaillut Merjaa ollut 
+
+	109. * Pekan ei ihailla Merjaa taydy 
+
+& Group 10. C-features on a wrong head
+
+& Group 10.1 Sentences from §1.1
+
+& Group 10.1.1 C/op on the first in situ V
+
+	110. * C/fin Pekka ihailee#C/op Merjaa 
+
+	111. * C/fin Pekka ei#C/op ihaile Merjaa 
+
+	112. * C/fin Pekka on'#C/op ihaillut Merjaa 
+
+	113. * C/fin Pekka ei#C/op ollut ihaillut Merjaa 
+
+	114. * C/fin Pekka haluaa#C/op ihailla Merjaa 
+
+	115. * C/fin Pekan taytyy#C/op ihailla Merjaa 
+
+	116. * C/fin Pekan ei#C/op taydy ihailla Merjaa 
+
+	117. * C/fin Pekka ei#C/op halua ihailla Merjaa 
+
+	118. * C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa 
+
+	119. * C/fin Pekka kaskee#C/op poikien ihailla Merjaa 
+
+	120. * C/fin Pekka istuu#C/op ihailemalla Merjaa 
+
+	121. * C/fin Pekka istuu#C/op haluamalla ihailla Merjaa 
+
+	122. * C/fin Pekka teki#C/op sopimuksen ihailla Merjaa 
+
+& Group 10.1.2 C/op on the second in situ V
+
+	123. * Pekka ei ihaile#C/op Merjaa 
+
+	124. * Pekka on' ihaillut#C/op Merjaa 
+
+	125. * Pekka ei ollut#C/op ihaillut Merjaa 
+
+	126. * Pekka haluaa ihailla#C/op Merjaa 
+
+	127. * Pekan taytyy ihailla#C/op Merjaa 
+
+	128. * Pekan ei taydy#C/op ihailla Merjaa 
+
+	129. * Pekka ei halua#C/op ihailla Merjaa 
+
+	130. * Pekka kaskee poikien ihailla#C/op Merjaa 
+
+& Group 10.1.3 C/op on the third in situ V
+
+	131. * Pekka ei ollut ihaillut#C/op Merjaa 
+
+	132. * Pekan ei taydy ihailla#C/op Merjaa 
+
+	133. * Pekka ei halua ihailla#C/op Merjaa 
+
+	134. * Pekka sanoo etta haluaa ihailla#C/op Merjaa 
+
+& Group 10.1.4 C/op on in situ adverbial
+
+	135. * Pekka istuu ihailemalla#C/op Merjaa 
+
+	136. * Pekka istuu haluamalla ihailla#C/op Merjaa 
+
+	137. * Pekka teki sopimuksen ihailla#C/op Merjaa 
+
+& Group 11. Problems and open issues
+
+& Group 11.1 How to prevent double-filled SPEC-C
+
+	138. Pekka ihailee#C/op Merjaa 
+		[[<D Pekka>:1 [C/fin [T/fin [<__>:1 [v [<__>:2 ihaile-]]]]]] <D Merja->:2]
+		Solutions(2), Merge(9), Move(head)(1), Move(phrasal)(4), Transfer(11), Inflection(13), Consumed(22)
+
+	139. Pekka ei#C/op ihaile Merjaa 
+		[<D Pekka>:1 [C/fin [ei [<__>:1 [T [v [ihaile- [D Merja-]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(7), Move(phrasal)(1), Transfer(10), Inflection(13), Consumed(22)
+
+	140. Pekka on'#C/op ihaillut Merjaa 
+		[<D Pekka>:1 [C/fin [T/fin [<__>:1 [T/prt [v [ihaile- [D Merja-]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(5), Move(phrasal)(2), Transfer(8), Inflection(14), Consumed(23)
+
+	141. Pekka ei#C/op ollut ihaillut Merjaa 
+		[<D Pekka>:1 [C/fin [ei [<__>:1 [T/prt [T/prt [v [ihaile- [D Merja-]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(9), Move(phrasal)(6), Transfer(18), Inflection(15), Consumed(25)
+
+	142. Pekka haluaa#C/op ihailla Merjaa 
+		[<D Pekka>:1 [C/fin [T/fin [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(7), Move(phrasal)(2), Transfer(9), Inflection(13), Consumed(24)
+
+	143. Pekan taytyy#C/op ihailla Merjaa 
+		[<D Pekka>:1 [C/fin [T/fin [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(6), Move(phrasal)(1), Transfer(8), Inflection(13), Consumed(23)
+
+	144. Pekan ei#C/op taydy ihailla Merjaa 
+		[<D Pekka>:1 [C/fin [ei [T [taytyy [A/inf [<__>:1 [v [ihaile- [D Merja-]]]]]]]]]]
+		Solutions(1), Merge(10), Move(head)(15), Move(phrasal)(3), Transfer(16), Inflection(13), Consumed(24)
+
+	145. Pekka ei#C/op halua ihailla Merjaa 
+		[<D Pekka>:1 [C/fin [ei [<__>:1 [T [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(20), Move(phrasal)(3), Transfer(16), Inflection(13), Consumed(25)
+
+	146. Pekka sanoo#C/op etta haluaa ihailla Merjaa 
+		[<D Pekka>:1 [C/fin [T/fin [<__>:1 [sano- [että [T/fin [v [haluaa [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]]]
+		Solutions(1), Merge(13), Move(head)(38), Move(phrasal)(6), Transfer(26), Inflection(14), Consumed(28)
+
+	147. * Pekka kaskee#C/op poikien ihailla Merjaa 
+
+	148. * Pekka istuu#C/op ihailemalla Merjaa 
+
+	149. * Pekka istuu#C/op haluamalla ihailla Merjaa 
+
+	150. Pekka teki#C/op sopimuksen ihailla Merjaa 
+		[<D Pekka>:1 [C/fin [T/fin [<__>:1 [v [teke [D [sopimus [A/inf [v [ihaile- [D Merja-]]]]]]]]]]]]
+		Solutions(1), Merge(12), Move(head)(26), Move(phrasal)(5), Transfer(20), Inflection(17), Consumed(30)
 

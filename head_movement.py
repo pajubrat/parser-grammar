@@ -8,7 +8,6 @@ class HeadMovement:
         self.controlling_parser_process = controlling_parser_process
         self.name_provider_index = 0
         self.memory_buffer = []
-        self.number_of_Moves = 0
 
         # Access to the lexicon
         self.lexical_access = LexicalInterface(self.controlling_parser_process)
@@ -16,8 +15,6 @@ class HeadMovement:
 
     # Definition of head movement reconstruction (part 1)
     def reconstruct(self, ps):
-
-        self.number_of_Moves = 0
 
         # Condition 1. If the target is a complex primitive D head, we try to open it into a new left branch
         if ps.is_primitive() and ps.has_affix() and ('CAT:D' in ps.features or 'CAT:P' in ps.features):
@@ -27,7 +24,7 @@ class HeadMovement:
                 new = self.reconstruct_head_movement(ps)
                 set_logging(True)
                 log(f'\t\t\t\t\t{ps} was opened into {new}.')
-                return new, self.number_of_Moves
+                return new
             else:
                 set_logging(True)
                 log(f'\t\t\t\t\t{ps} was not opened into left branch, it would not constitute a legitimate left branch at LF.')
@@ -37,7 +34,7 @@ class HeadMovement:
             if ps.is_complex():
                 ps = self.reconstruct_head_movement(ps)
 
-        return ps, self.number_of_Moves
+        return ps
 
     # Recursive definition of head movement reconstruction (part 2)
     def reconstruct_head_movement(self, ps):
@@ -50,6 +47,7 @@ class HeadMovement:
             # Condition 1. The target is a phrase with a complex head at left
             if ps_.left_const and ps_.left_const.is_primitive() and ps_.left_const.has_affix():
 
+                # Set the source head from which we extract
                 source_head = ps_.left_const
 
                 # Get the highest affix out
@@ -58,8 +56,21 @@ class HeadMovement:
 
                 log(f'\t\t\t\t\tTarget {affix} in {source_head}')
 
+                # Condition 2. Intervention feature
+                # Condition 2.1. D-label in the C-system
+                if 'CAT:uC/op' in source_head.features:
+                    intervention_feature = 'CAT:D'  # This is in reality a more general feature, but I don't know what
+                # Condition 2.2. Functional head elsewhere
+                else:
+                    intervention_feature = '!COMP:*'
+
                 # Drop the affix
-                self.drop_head(ps_.right_const, affix)
+
+                # Keep record of the computational operations consumed
+                self.controlling_parser_process.number_of_head_Move += 1
+
+                # Drop the head
+                self.drop_head(ps_.right_const, affix, intervention_feature)
 
             # Condition 2. The target is a primitive element
             elif ps_.is_primitive and ps_.has_affix():
@@ -81,7 +92,7 @@ class HeadMovement:
         return top
 
     # Definition for dropping a head
-    def drop_head(self, ps, affix_):
+    def drop_head(self, ps, affix_, intervention_feature):
 
         # Defines the conditions for dropping a head into a position X
         def drop_condition_for_heads(affix_):
@@ -123,11 +134,18 @@ class HeadMovement:
 
         # --------------- main function ---------------------------------
 
-        iterator_ = ps
+        # This function, although empirically correct, is written in a clumsy way and must cleaned
+        # The logic is: 1. Walk downstream and try each solution to the left
+        #               2. If solution is found, accept it and return
+        #               3. If solution is not found, then we do one of the two things:
+        #                   a. If there was intervention, we use last resort strategy
+        #                   b. If we reached bottom, we can try Merge Right solution, and then (a)
 
-        # walk downwards looking for possible dropping positions
+        iterator_ = ps
+        reached_bottom = False
+
+        # Walk downwards looking for possible dropping positions
         while iterator_:
-            self.number_of_Moves += 1
 
             # Try each solution
             iterator_.merge(affix_, 'left')
@@ -137,34 +155,43 @@ class HeadMovement:
                 log(f'\t\t\t\t\t={ps.get_top()}')
                 return True
             else:
-
                 # Remove the head and go next step downwards
                 affix_.remove()
-                iterator_ = iterator_.walk_downstream('CAT:D')
+                if iterator_.is_primitive():
+                    reached_bottom = True
+                iterator_ = iterator_.walk_downstream(intervention_feature)
 
-        # Special condition 1: bottom right position
-        # Condition 1.1. If the bottom node is complex, we must open it first
-        if ps.get_bottom().has_affix():
-            self.reconstruct_head_movement(ps.get_bottom())
-            # Condition 1.2 If the bottom node was DP, we don't merge to the sister of N but to the DP...
-            if 'CAT:D' in ps.get_bottom().get_labels():
-                ps.get_bottom().mother.merge(affix_, 'right')
+        # If we come here, we have reached the bottom or search was interrupted
+        # If we reached bottom, then we can try Merge Right solution
+        if reached_bottom:
+            # Special condition 1: bottom right position
+            # Condition 1.1 If the node has affix, we must open it first
+            if ps.get_bottom().has_affix():
+                self.reconstruct_head_movement(ps.get_bottom())
+
+                # Condition 1.2 If the bottom node was DP, we don't merge to the sister of N but to the DP...
+                if 'CAT:D' in ps.get_bottom().get_labels():
+                    ps.get_bottom().mother.merge(affix_, 'right')
+                else:
+                    # Condition 1.4. ...Otherwise we merge to the sister.
+                    if intervention_feature not in ps.get_bottom().features:
+                        ps.get_bottom().merge(affix_, 'right')
             else:
-                # Condition 1.2. ...Otherwise we merge to the sister.
-                ps.get_bottom().merge(affix_, 'right')
-        else:
-            # If the bottom node is simple, we try to merge to its right
-            ps.get_bottom().merge(affix_, 'right')
+                # If the bottom node is simple, we try to merge to its right
+                if intervention_feature not in ps.get_bottom().features:
+                    ps.get_bottom().merge(affix_, 'right')
 
-        # Test if the solution is accetable
-        if drop_condition_for_heads(affix_):
-            return True
-        else:
-            # If the solution is not accetable, we remove the candidate
-            affix_.remove()
+            # Special condition 2: if the affix was merged to the right of the bottom node, we check if it is accetable
+            if affix_.mother:
+                # Test if the solution is acceptable
+                if drop_condition_for_heads(affix_):
+                    return True
+                else:
+                    # If the solution is not accetable, we remove the candidate
+                    affix_.remove()
 
-        # Special condition 2: what to do if head reconstruction doesn't find any position?
-        # This will merge it to the local position as a last resort
+        # Special condition 3: No position was found
+        # Merge to the local position as a last resort
         log(f'\t\t\t\t\tHead reconstruction failed for {affix_}, merged locally as a last resort.')
         ps.merge(affix_, 'left')
         # We need to reconstruct head movement for the left branch

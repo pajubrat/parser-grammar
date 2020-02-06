@@ -42,7 +42,7 @@ class Transfer():
 
         # Stage 1. Reconstruct head movement
         log(log_embedding + '1. Head movement reconstruction:')
-        ps, ops = head_movement.reconstruct(ps)
+        ps = head_movement.reconstruct(ps)
         log(log_embedding + f'={ps}')
 
         # Stage 2. Reconstruct features

@@ -102,7 +102,6 @@ logging.basicConfig(level=logging.INFO, filename=log_file_name, filemode='w', fo
 # Print parameters to console
 print()
 
-
 # Create the output file
 results_file = open(results_file_name, "w")
 results_file.write('Linear phase parser v. 3.x\n')
@@ -121,9 +120,9 @@ count = start
 count = 0
 not_parsed = []
 
-# Parsing loop
+# Parsing loop (for all sentences in the corpus)
 for sentence in parse_list[start:]:
-    print(str(count) + ', ' + f'{sentence}')
+    print('\n' + str(count) + ', ' + f'{sentence}')
 
     # Sentences beginning with & will be written to the log file as such
     if sentence[0] != '&':
@@ -133,20 +132,25 @@ for sentence in parse_list[start:]:
         set_logging(True)
         log('\n\n\========================================================================')
         log('# '+str(count))
-        log(str(sentence) + '\n\n')
-        log(f'Using lexicon "{lexicon_file_name}".')
+        log(str(sentence))
+        log(f'Using lexicon "{lexicon_file_name}".\n')
         set_logging(False)
         lang = lang_guesser.guess(sentence)
 
         # Initialize the parser for language lang
         P = parsers[lang]
 
-        # These variables count the number of operations (not fully functional in this version)
+        # Initialize resource metrics
+        P.number_of_Merge = 0
+        P.number_of_head_Move = 0
+        P.number_of_phrasal_Move = 0
+        P.number_of_floating_Move = 0
+        P.number_of_Transfer = 0
+        P.number_of_Agree = 0
         P.number_of_solutions_tried = 0
-        P.number_of_Moves = 0
-        P.number_of_Merges = 0
-
-        # Grammaticality score
+        P.number_of_inflectional_features_processed = 0
+        P.discourse_plausibility = 0
+        P.number_of_items_consumed = 0
         P.score = 0
 
         # This has to do with the numbering of copies (traces) in the output
@@ -167,28 +171,28 @@ for sentence in parse_list[start:]:
 
         # If no results were found, the sentence is ungrammatical
         if len(P.result_list) == 0:
-            results_file.write(str(count) + '. * ' + s + '\n\n')
-
-        # If results were found, the sentence is grammatical
+            results_file.write('\t' + str(count) + '. * ' + s + '\n\n')
         else:
             # Marginality estimations are printed here
             if 0 >= P.score >= -6:
-                judgment = grammaticality_judgement[int(round(abs(P.score),0))]
+                judgment = grammaticality_judgement[int(round(abs(P.score), 0))]
             else:
                 judgment = '##'
-            results_file.write(str(count) + '. ' + judgment + ' ' + s + '\n')
+            results_file.write('\t' + str(count) + '. ' + judgment + s + '\n')
 
             # Print the result into the results file
             parse = P.result_list[0]
-            results_file.write(f'\t{parse}\n')
-            # results_file.write('\''+parse.gloss()+'.\'\n')
-            # results_file.write(str(P.semantic_interpretation) + '\n')
-            # results_file.write('Score: ' + str(P.score) + '  (')
-            # results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
-            # results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
+            results_file.write(f'\t\t{parse}\n')
+            results_file.write(f'\t\tSolutions({P.number_of_solutions_tried}), '
+                               f'Merge({P.number_of_Merge}), '
+                               f'Move(head)({P.number_of_head_Move}), '
+                               f'Move(phrasal)({P.number_of_phrasal_Move}), '
+                               f'Transfer({P.number_of_Transfer}), '
+                               f'Inflection({P.number_of_inflectional_features_processed}), '
+                               f'Consumed({P.number_of_items_consumed})\n')
             results_file.write('\n')
     else:
-        results_file.write('\n'+' '.join(map(str, sentence))+'\n\n')
+        results_file.write(' '.join(map(str, sentence))+'\n\n')
 
 # Print the computation time to console
 print(f'took: {time.time() - t}s.')

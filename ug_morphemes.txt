@@ -13,6 +13,7 @@ v       :: CAT:v PF:v LF:v
 v*		:: CAT:v* CAT:v PF:v* LF:v* SEM:external
 C/fin   :: CAT:C/fin PF:C/fin LF:C/fin 
 T		:: CAT:T PF:T LF:T CAT:FIN
+T/prt 	:: CAT:T/prt PF:T/prt LF:T/prt
 
 # Infinitivals
 INF		:: CAT:INF PF:INF LF:INF
@@ -61,9 +62,10 @@ asp		:: - TAIL:ASP
 # Universal feature inventory
 pos     :: - CAT:Pos CAT:D
 uwh	   	:: - CAT:uWH
-wh     	:: - CAT:WH
-top    	:: - ABAR:TOP
+uC/op	:: - CAT:uC/op
+wh     	:: - CAT:WH ABAR:WH
+top    	:: - ABAR:TOP 
 foc    	:: - ABAR:FOC
 C/op	:: - ABAR:C/OP
-rel    	:: - CAT:R
+rel    	:: - CAT:R ABAR:R
 Q		:: - CAT:Q

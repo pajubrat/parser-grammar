@@ -297,7 +297,7 @@ class LF:
                 return self.semantic_interpretation
 
         #
-        # Transfer condition 1. Operator-variable constructions, binding of variables
+        # Transfer condition 1. Operator-variable constructions, binding of variables (ABAR)
         #
         for f in ps.features:
             if f[:4] == 'ABAR':
@@ -305,7 +305,7 @@ class LF:
                     log(f'\t\t\t\t{ps}['+f+'] is not properly bound, the expression is uninterpretable.')
                     self.transfer_to_CI_crash = True
                 else:
-                    log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.' )
+                    log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.')
                     self.semantic_interpretation.add(f'{ps}['+f+'] was bound to an operator.')
 
         #
@@ -482,7 +482,7 @@ class LF:
 
         antecedent = set()      # Set that contains features that must be present in a legitimate antecedent
         for f in ps.features:   # Populate the set
-            if f[:4] == 'ABAR': # Only abar variables implemented for now
+            if f[:4] == 'ABAR':  # Only abar variables implemented for now
                 antecedent.add('CAT:u'+f[5:])
 
         if not antecedent:      # If everything is interpretable, then we return the constituent itself

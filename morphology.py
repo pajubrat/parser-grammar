@@ -25,7 +25,6 @@ class Morphology:
         # Conditions 1-2
         while self.is_polymorphemic(next_lexical_item):
 
-            log(f'\t\tDecomposing a polymorphemic word {next_lexical_item.morphology}.')
             # Disambiguates Finnish #FOC feature
             lexical_item.morphology = self.generative_morphology(lexical_item.morphology)
 
@@ -42,7 +41,7 @@ class Morphology:
 
             # Condition 2, Step 3.
             # The list will substitute the original multimorphemic word
-            log(f'\t\tNext word contains multiple morphemes ' + str(lst_[::-1]))
+            log(f'\n\t\tNext word contains multiple morphemes ' + str(lst_[::-1]))
             del lst_branched[index]
             # Add the decomposed morphemes to the input list (in reverse order; Mirror Principle)
             for w_ in lst_:
@@ -85,19 +84,16 @@ class Morphology:
             if 'foc' in list_ or 'C/op' in list_:
 
                 # We select the critical morpheme
-                if len(list_) == 2:
+                if len(list_) < 3:
                     critical_morpheme = self.lexicon.access_lexicon(list_[0])[0]
                 else:
                     critical_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
                 labels = critical_morpheme.get_labels()
 
-                # We use the category of second last morpheme as a cue
-                second_last_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
-                labels = second_last_morpheme.get_labels()
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
-                    log('\t\t\t\tProsodic feature [foc] interpreted as a C morpheme')
-                    word = word.replace('#foc', '#C/fin')  # This means that #foc is interpreted as a morpheme
-                    word = word.replace('#C/op', '#C/fin')
+                    log('\t\t\t\tFeature interpreted as a C morpheme with C-feature uC/op (e.g. uWh, uKo)')
+                    word = word.replace('#foc', '#C/fin#uC/op')
+                    word = word.replace('#C/op', '#C/fin#uC/op')
         return word
 
     # Definition for morpheme decomposition

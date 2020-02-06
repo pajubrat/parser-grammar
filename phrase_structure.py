@@ -1130,7 +1130,7 @@ class PhraseStructure:
 
         if self.features and 'null' in self.features:
             if self.adjunct:
-                return '<'+self.get_cats_string()+'>' + index_str       # Adjuncts are represented as <,>
+                return '<__>' + index_str       # Adjuncts are represented as <,>
             else:
                 return '__' + index_str
                 # return '(' + self.get_cats_string() + ')' + index_str   # Regular constituents as [,]

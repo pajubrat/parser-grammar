@@ -9,7 +9,6 @@ class PhrasalMovement():
         self.name_provider_index = 0
         self.memory_buffer = []
         self.context = controlling_parser_process
-        self.number_of_Moves = 0
 
         # Access to the lexicon
         self.lexical_access = LexicalInterface(self.controlling_parser_process)
@@ -83,7 +82,10 @@ class PhrasalMovement():
                         new_const = target_const_from_memory_buffer.copy_from_memory_buffer(self.babtize())
                         ps.merge(new_const, 'left')
                         self.memory_buffer.remove(target_const_from_memory_buffer)
-                        self.number_of_Moves += 1
+
+                        # Keep record of the computations consumed
+                        self.controlling_parser_process.number_of_phrasal_Move += 1
+
                         break
                     else:
                         # If there was a tail-head violation, dropping is cancelled
@@ -228,7 +230,10 @@ class PhrasalMovement():
 
                         # Merge the element into COMP,H position
                         h.merge(target_const.copy_from_memory_buffer(self.babtize()), 'right')
-                        self.number_of_Moves += 1
+
+                        # Keep record of the computations consumed
+                        self.controlling_parser_process.number_of_phrasal_Move += 1
+
                         log(f'\t\t\t\t\tDropp   ing {repr(target_const)}(=' + target_const.spellout()
                             + f') from memory buffer into Comp of {h.get_labels()}.')
                         log(f'\t\t\t\t\tResult {h.get_top()}')
@@ -258,7 +263,9 @@ class PhrasalMovement():
 
                     # The constituent from memory buffer will be merged to left of the complement
                     h.complement().merge(target_const.copy_from_memory_buffer(self.babtize()), 'left')
-                    self.number_of_Moves += 1
+
+                    # Keep record of the computations consumed
+                    self.controlling_parser_process.number_of_phrasal_Move += 1
 
                     # Empty the memory buffer
                     self.memory_buffer.remove(const)
@@ -277,10 +284,15 @@ class PhrasalMovement():
                 head = ps.sister().get_head()
                 if head.is_left():
                     head.sister().merge(ps.copy_from_memory_buffer(self.babtize()), 'left')
-                    self.number_of_Moves += 1
+
+                    # Keep record of the computations consumed
+                    self.controlling_parser_process.number_of_phrasal_Move += 1
+
                 else:
                     head.sister().merge(ps.copy_from_memory_buffer(self.babtize()), 'right')
-                    self.number_of_Moves += 1
+
+                    # Keep record of the computations consumed
+                    self.controlling_parser_process.number_of_phrasal_Move += 1
 
     # Definition for targeting a head
     def target_head(self, _ps_iterator):
@@ -291,7 +303,6 @@ class PhrasalMovement():
         else:
             h = None
         return h
-
 
     # Definition for generating a new head
     def engineer_head_from_specifier(self, features, labels):

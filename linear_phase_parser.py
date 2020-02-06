@@ -34,10 +34,15 @@ class LinearPhaseParser:
         # Local memory buffer for inflectional affixes
         self.memory_buffer_inflectional_affixes = set()
 
-        # This counts the number of computational operations (not fully functional in this version)
-        self.number_of_Merges = 1
-        self.number_of_Moves = 1
+        # Number of computational operations
+        self.number_of_Merge = 0
+        self.number_of_head_Move = 0
+        self.number_of_phrasal_Move = 0
+        self.number_of_floating_Move = 0
+        self.number_of_Transfer = 0
         self.number_of_solutions_tried = 0
+        self.number_of_inflectional_features_processed = 0
+        self.number_of_items_consumed = 0
         self.discourse_plausibility = 0
         self.score = 0
 
@@ -71,8 +76,16 @@ class LinearPhaseParser:
         # Reset parser state before beginning a new sentences
         self.result_list = []
         self.memory_buffer_inflectional_affixes = set()
-        self.number_of_Merges = 0
-        self.number_of_ambiguities = 0
+        self.number_of_Merge = 0
+        self.number_of_head_Move = 0
+        self.number_of_phrasal_Move = 0
+        self.number_of_floating_Move = 0
+        self.number_of_Transfer = 0
+        self.number_of_solutions_tried = 0
+        self.number_of_inflectional_features_processed = 0
+        self.number_of_items_consumed = 0
+        self.discourse_plausibility = 0
+        self.score = 0
         reset_number_of_operations()
         self.name_provider_index = 0
 
@@ -91,23 +104,22 @@ class LinearPhaseParser:
     # Recursive parsing algorithm
     def _first_pass_parse(self, ps, lst, index):
 
+        # If a decision has been made to exist the recursion, it happens here
         if self.exit:
             return
 
         set_logging(True)
-        self.number_of_Merges = self.number_of_Merges + 1
 
         # Print the current state to the log file
         if not self.memory_buffer_inflectional_affixes:
             log(f'\t\t\t={ps}')
-            log('\n' + str(self.number_of_Merges) + '.')
 
         # Test if we have reached at the end of the input list
         if index == len(lst):
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
 
             # The whole sentence has been processed, we test if the result is legitimate
-            log('\t>>>\t' + f'Trying candidate parse ' + ps.illustrate() + ' ('+str(self.number_of_solutions_tried)+'.)')
+            log('\n\t>>>\t' + f'Trying candidate parse ' + ps.illustrate())
 
             # Check surface conditions and interpretations
             log('\t\tChecking surface conditions...')
@@ -116,10 +128,12 @@ class LinearPhaseParser:
             self.surface_conditions_pass = S.reconstruct(ps)
             if self.surface_conditions_pass:
 
-                # We try to transfer it to LF
+                # Transfer to LF
                 log('\t\tReconstructing...')
                 ps_ = self.transfer_to_lf(ps)
                 log('\t\t\t= ' + ps_.illustrate())
+
+                # Check LF-interface conditions
                 log(f'\t\tChecking LF-interface conditions.')
                 lf = ps_.LF_legibility_test()
 
@@ -147,6 +161,10 @@ class LinearPhaseParser:
 
         # Process next word
         else:
+
+            # Record operations
+            self.number_of_items_consumed += 1
+
             # Initialize morphology
             m = self.morphology
 
@@ -175,7 +193,11 @@ class LinearPhaseParser:
                 if inflection:
                     # Add inflectional features and prosodic features into memory
                     self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
-                    log('\t\tConsume \"' + lst_branched[index + 1] + '\"')
+
+                    # Keep record of the consumed operations
+                    self.number_of_inflectional_features_processed = self.number_of_inflectional_features_processed + 1
+
+                    log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lst_branched[index + 1] + '\"')
                     if ps:
                         self._first_pass_parse(ps.copy(), lst_branched, index + 1)
                     else:
@@ -197,7 +219,7 @@ class LinearPhaseParser:
 
                     # Merge the new word (disambiguated lexical item) to the existing phrase structure
                     else:
-                        log('\t\tConsume \"' + lexical_item.get_pf() + '\"\n')
+                        log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lexical_item.get_pf() + '\"\n')
                         log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_pf())
 
                         # Get the merge sites
@@ -209,16 +231,18 @@ class LinearPhaseParser:
                         for i, site in enumerate(adjunction_sites, start=1):
                             ps_ = ps.get_top().copy()
 
+                            # Keep record of the number of Right Merge operations
+                            self.number_of_Merge = self.number_of_Merge + 1
+
                             # If the next morpheme was inside the same word as previous, it will be
                             # eaten inside the constituent (will be reconstructed later)
                             if site.get_bottom_affix().internal:
-                                log(f'\t\tExploring solution number ({i}) =' + f'[{site}*{lexical_item.get_pf()}]')
                                 site_ = ps_[ps.index(site)]
                                 new_ps = site_ * lexical_item
 
                             # If the next morpheme was not inside the same word as previous, it will be merged
                             else:
-                                log(f'\t\tExploring solution number ({i}) =' + f'[{site} {lexical_item.get_pf()}]')
+                                log(f'\t\t\tExploring solution number ({i}) =' + f'[{site} {lexical_item.get_pf()}]')
                                 site_ = self.transfer_to_lf(ps_[ps.index(site)])
                                 new_ps = site_ + lexical_item
                             self._first_pass_parse(new_ps, lst_branched, index + 1)
@@ -558,12 +582,20 @@ class LinearPhaseParser:
     # Error correction procedure
     def transfer_to_lf(self, ps, log_embedding=3):
 
+        # Detach the constituent for transfer
         original_mother = ps.mother
         ps.detach()
 
+        # Check preconditions (surface conditions in the current version) and then initiate transfer
         if self.check_transfer_presuppositions(ps):
+
+            # Keep record of the number of Transfer operations
+            self.number_of_Transfer = self.number_of_Transfer + 1
+
+            # Perform transfer
             T = self.transfer
             ps = T.transfer(ps, log_embedding)
+
         else:
             log(f'\t\t\t\tTransfer of {ps} terminated due to input condition violation.')
 

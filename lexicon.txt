@@ -28,6 +28,8 @@ detest-	:: CAT:V PF:detest LF:detest SEM:external COMP:D LANG:IT
 devono :: deva-#T/fin#[-no]
 deva-	:: CAT:V PF:deva LF:must SPEC:D COMP:ARE/inf SEM:internal -ASP LANG:IT
 
+does	:: CAT:T/fin PHI:PER:3 PHI:NUM:SG PF:does LF:does LANG:EN
+
 dorme	:: dorme-#T/fin#[-e] LANG:IT
 dorme-	:: CAT:V !SPEC:D PF:dorme LF:sleep
 
@@ -47,6 +49,7 @@ Giuseppe-	:: PF:Giuseppe CAT:N -SEM:directional LF:Giuseppe LANG:IT
 haluaa 	:: halua-#v#T/fin#[-V] LANG:FI
 haluan	:: halua-#v#T/fin#[-n] LANG:FI
 halua	:: halua-#v#T LANG:FI
+haluamalla :: halua-#v#malla LANG:FI
 halua- 	:: PF:haluaa LF:want CAT:V !COMP:* COMP:D COMP:A/inf SEM:internal LANG:FI
 
 hanno	:: ha-#T/fin#[-no] LANG:IT
@@ -60,11 +63,10 @@ ihailemme :: ihaile-#v#T/fin#[-mme] LANG:FI
 ihailette :: ihaile-#v#T/fin#[-tte] LANG:FI
 ihailevat :: ihaile-#v#T/fin#[-vat] LANG:FI
 ihaile	:: ihaile-#v#T LANG:FI
-ihaillut :: ihaile-#v#T#sg LANG:FI
+ihaillut :: ihaile-#v#T/prt#sg LANG:FI
 ihailla	:: ihaile-#v#A/inf LANG:FI
 ihailemalla :: ihaile-#v#malla LANG:FI
 ihaile- :: PF:ihaile- LF:admire CAT:V !COMP:D -COMP:FIN LANG:FI
-
 
 is		:: be-#T/fin#[-s] LANG:EN
 be-		:: PF:be LF:be CAT:V CAT:COPULA SPEC:D SPEC:TO/inf -COMP:TO/inf !COMP:* -ARG LANG:EN
@@ -130,6 +132,7 @@ mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
 mukavasti :: mukava-#sti
 mukava-	:: PF:mukavasti LF:comfortably CAT:A LANG:FI
 
+ollut	:: T/prt#[-V] LANG:FI
 on'		:: T/fin#[-V] LANG:FI
 o-		:: PF:on LF:be CAT:V -ASP CAT:COPULA COMP:T SPEC:D !COMP:* -ARG LANG:FI
 
@@ -286,7 +289,3 @@ ci-		:: PF:ci LF:there CAT:N CAT:PHI LANG:IT
 [-iamo]	::	- PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM
 [-te]	::	- PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
 [-no]	::	- PHI:NUM:PL PHI:PER:3 PHI:DET:DEF
-
-# PROPER NAMES
-
-# PARTICLES

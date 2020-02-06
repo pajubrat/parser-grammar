@@ -51,6 +51,12 @@ class AdjunctConstructor:
             self.make_adjunct(ps)
 
     def make_adjunct(self, ps):
+
+        # Condition 1. The whole phrase structure cannot be an adjunct
+        # (Leads into infinite regress on some edge cases)
+        if ps == ps.get_top():
+            return False
+
         ps.adjunct = True
         log(f'\t\t\t\t\t{ps} was made an adjunct.')
 

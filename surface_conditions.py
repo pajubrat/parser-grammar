@@ -8,6 +8,7 @@ class SurfaceConditions:
 
     # Definition for surface reconstruction
     def reconstruct(self, ps):
+
         # Set the iterator
         ps_ = ps.get_top()
 
