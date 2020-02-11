@@ -1,79 +1,165 @@
 & Group 1. Baseline tests (all declarative clauses, all lexical items used in the tests)	
+	
 	& Group 1.1 Grammatical, Finnish
+		
 		& Group 1.1.2. Transitive, declarative clauses
+			
 			Pekka ihailee Merjaa
 		
 		& Group 1.1.3. Negative, declarative clauses	
+			
 			Pekka ei ihaile Merjaa
 		
 		& Group 1.1.4. AUX + past participle	
+			
 			Pekka on' ihaillut Merjaa
 			Pekka ei ollut ihaillut Merjaa
 		
 		& Group 1.1.5 want + A/inf	
+			
 			Pekka haluaa ihailla Merjaa
 			
 		& Group 1.1.6 modal + A/inf
+			
 			Pekan taytyy ihailla Merjaa
 		
 		& Group 1.1.7 Neg + Modal + A/inf
+			
 			Pekan ei taydy ihailla Merjaa
 				
 		& Group 1.1.8 Neg + want + A/inf
+			
 			Pekka ei halua ihailla Merjaa
 		
 		& Group 1.1.9 says + that
+			
 			Pekka sanoo etta haluaa ihailla Merjaa
 		
 		& Group 1.1.10 Infinitival with thematic GEN subject
+			
 			Pekka kaskee poikien ihailla Merjaa
 			
 		& Group 1.1.11 Adverb tests
+			
 			Pekka istuu ihailemalla Merjaa 
 			Pekka istuu haluamalla ihailla Merjaa
 
 		& Group 1.1.12 N + A/inf
+			
 			Pekka teki sopimuksen ihailla Merjaa
-				sopimus ihailla Merjaa istuu
+			sopimus ihailla Merjaa istuu
 		
+		& Group 1.1.13 Noncanonical OVS order
+			
+			Merjaa ihailee Pekka
+			Merjaa ei ihaile Pekka		
+			Merjaa on' ihaillut Pekka
+			Merjaa ei ollut ihaillut Pekka		
+			Merjaa haluaa ihailla Pekka							
+			Merjaa ei halua ihailla Pekka		
+			Merjaa kaskee poikien ihailla Pekka
+
+		& Group 1.1.14 pro-drop sentences
+			
+			ihailen Merjaa
+			haluan ihailla Merjaa
+			
+		& Group 1.1.15 with locative PP argument
+			
+			Pekka ihailee Merjaa tassa
+			Pekka ei ihaile Merjaa tassa
+			Pekka on' ihaillut Merjaa tassa
+			Pekka ei ollut ihaillut Merjaa tassa
+			Pekka haluaa ihailla Merjaa tassa
+			Pekan taytyy ihailla Merjaa tassa
+			Pekan ei taydy ihailla Merjaa tassa
+			Pekka ei halua ihailla Merjaa tassa
+			Pekka sanoo etta haluaa ihailla Merjaa tassa
+			Pekka kaskee poikien ihailla Merjaa tassa
+			
 	& Gropu 1.2 Grammatical, English
+		
 		& Group 1.2.1 Transitive, declarative
+			
 			John admires Mary
 			John does admire' Mary
 		
-		& Group 1.2.5 want + to-infinitival
+		& Group 1.2.2 want + to-infinitival
+			
 			John wants to' admire' Mary
 	
 & Group 2. Local T-to-C movement
+	
 	& Group 2.1 Grammatical, Finnish
+		
 		& Group 2.1.1 Local T-to-C movement	
+			
 			ihailee#foc Pekka Merjaa
 			ihailee#C/op Pekka Merjaa
 
 		& Group 2.1.2 Neg-to-C movement
+			
 			ei#C/op Pekka ihaile Merjaa
 			ei#C/op Pekan taydy ihailla Merjaa
 			ei#C/op Pekka halua ihailla Merjaa
 			ei#C/op Pekka ollut ihaillut Merjaa
 			
 		& Group 2.1.3 Modal-to-C	
+			
 			taytyy#C/op Pekan ihailla Merjaa
 			
 		& Group 2.1.4 Want-to-C 	
+			
 			haluaa#C/op Pekka ihailla Merjaa
 			
 		& Group 2.1.5 Aux-to-C
+			
 			on'#C/op Pekka ihaillut Merjaa
 			
-		& Group 2.1.5 All constructions (2.1.1-2.1.4) with formal C-feature C/fin
+		& Group 2.1.6 All constructions (2.1.1-2.1.5) with formal C-feature C/fin
+			
 			ihailee#C/fin Pekka Merjaa
 			ei#C/fin Pekka ihaile Merjaa
 			taytyy#C/fin Pekan ihailla Merjaa
 			haluaa#C/fin Pekka ihailla Merjaa
 			on'#C/fin Pekka ihaillut Merjaa
 	
+		& Group 2.1.7 All  constructions (2.1.1-2.1.5) with grammatical noncanonical OVS order
+			
+			ihailee#C/op Merjaa Pekka
+			ei#C/op Merjaa ihaile Pekka
+			ei#C/op Merjaa halua ihailla Pekka
+			ei#C/op Merjaa ollut ihaillut Pekka
+			haluaa#C/op Merjaa ihailla Pekka
+			on'#C/op Merjaa ihaillut Pekka
+		
+		& Group 2.1.8 With intervening locative PP argument (excl. postverbal locative)
+			
+			ihailee#C/op tassa Pekka Merjaa
+			ei#C/op tassa Pekka ihaile Merjaa
+			ei#C/op tassa Pekan taydy ihailla Merjaa
+			ei#C/op tassa Pekka halua ihailla Merjaa
+			ei#C/op tassa Pekka ollut ihaillut Merjaa
+			taytyy#C/op tassa Pekan ihailla Merjaa
+			haluaa#C/op tassa Pekka ihailla Merjaa
+			on'#C/op tassa Pekka ihaillut Merjaa
+			
+			ei#C/op Pekka tassa ihaile Merjaa
+			ei#C/op Pekan tassa taydy ihailla Merjaa
+			ei#C/op Pekka tassa halua ihailla Merjaa
+			ei#C/op Pekka tassa ollut ihaillut Merjaa
+			taytyy#C/op Pekan tassa ihailla Merjaa
+			haluaa#C/op Pekka tassa ihailla Merjaa
+			on'#C/op Pekka tassa ihaillut Merjaa
+		
+		& Group 2.1.9 with pro-drop
+			ihailen#C/op Merjaa
+			haluan#C/op ihailla Merjaa
+		
 	& Group 2.2 Ungrammatical, Finnish
+		
 		& Group 2.2.1 V-initial versions
+			
 			ihailee Pekka Merjaa
 			ei Pekka ihaile Merjaa
 			taytyy Pekan ihailla Merjaa
@@ -82,27 +168,59 @@
 			on' Pekka ihaillut Merjaa
 		
 	& Group 2.3 Grammatical, English
+		
 		does#C/fin John admire' Mary
 						
 	& Group 2.4 Ungrammatical, English
+		
 		admire'#C/fin John does Mary
 
 & Group 3. Basic LHM
+	
 	& Group 3.1 Grammatical
-		& Group 3.1.1 Neg-V	
+		
+		& Group 3.1.1 V-over-Neg	
+			
 			ihaile#C/op Pekka ei Merjaa
 			
-		& Group 3.1.2 Aux(BE)-V	
+		& Group 3.1.2 V-over-Aux(BE)	
+			
 			ihaillut#C/op Pekka on' Merjaa
 
-		& Group 3.1.3 want-V
+		& Group 3.1.3 V-over-want
+			
 			ihailla#C/op Pekka haluaa Merjaa
 			
-		& Group 3.1.4 must + V
-			ihailla#C/op Pekan taytyy Merjaa
+		& Group 3.1.4 V-over-must
 			
+			ihailla#C/op Pekan taytyy Merjaa
+		
+		& Group 3.1.5 With noncanonical OVS orders
+			
+			ihaile#C/op Merjaa ei Pekka
+			ihaillut#C/op Merjaa on' Pekka
+			ihailla#C/op Merjaa haluaa Pekka
+			
+		& Group 3.1.6 With pro-drop subject
+			
+			ihailla#C/op haluan Merjaa
+		
+		& Group 3.1.7 With locative PP
+		
+			ihaile#C/op tassa Pekka ei Merjaa
+			ihaillut#C/op tassa Pekka on' Merjaa	
+			ihailla#C/op tassa Pekka haluaa Merjaa	
+			ihailla#C/op tassa Pekan taytyy Merjaa	
+
+			ihaile#C/op Pekka tassa ei Merjaa
+			ihaillut#C/op Pekka tassa on' Merjaa	
+			ihailla#C/op Pekka tassa haluaa Merjaa	
+			ihailla#C/op Pekan tassa taytyy Merjaa				
+	
 	& Group 3.2. Ungrammatical, Finnish
+		
 		& Group 3.2.1 LHM with formal C-feature and without any C-feature
+			
 			ihaile#C/fin Pekka ei Merjaa
 			ihaillut#C/fin Pekka on' Merjaa
 			ihailla#C/fin Pekka haluaa Merjaa	
@@ -116,115 +234,170 @@
 			ihallut Pekka ei ollut Merjaa
 			
 		& Group 3.2.2 long head movement with infinitival subject
+			
 			ihailla#C/op Pekka kaskee poikien Merjaa
 			ihailla#C/fin Pekka kaskee poikien Merjaa
 			ihailla Pekka kaskee poikien Merjaa
 
 		& Group 3.2.3 Long head movement with second auxiliary (only formal C-feature or no C-feature)
+			
 			ollut#C/fin Pekka ei ihaillut Merjaa
 			ollut Pekka ei ihaillut Merjaa
 		
 		& Group 3.2.4 Aux + prtcpl + prtcpl with locality violation
+			
 			ihaillut#C/op Pekka ei ollut Merjaa
 
 	& Group 3.3 Ungrammatical, English
-		admire' John wants to' Mary
+		
+		& Group 3.3.1 LHM in English
+			
+			admire' John wants to' Mary
 
 & Group 4. X + Y + V constructions
+	
 	& Group 4.1 Grammatical
-		& Group 4.1.1 Neg + Modal + V, with Modal moving
+		
+		& Group 4.1.1 Neg + Modal + V, with Modal moving moving
+			
 			taydy#C/op Pekan ei ihailla Merjaa
+
+		& Group 4.1.2 Neg + Modal + V with V moving
+			
 			ihailla#C/op Pekan ei taydy Merjaa
 		
-		& Group 4.1.2 Neg + want + V, with want moving
+		& Group 4.1.3 Neg + want + V, with want moving
+			
 			halua#C/op Pekka ei ihailla Merjaa
 			ihailla#C/op Pekka ei halua Merjaa
+			
+		& Group 4.1.4 With noncanonical OVS orders
+			
+			halua#C/op Merjaa ei ihailla Pekka
+			ihailla#C/op Merjaa ei halua Pekka
 		
 	& Group 4.2 Ungrammatical
+		
 		& Group 4.2.1 Neg + Modal + V with only formal C-feature
+			
 			taydy#C/fin Pekan ei ihailla Merjaa
 			taydy Pekan ei ihailla Merjaa
 
 		& Group 4.2.2 Neg + want + V with no C-feature		
+			
 			ihailla#C/fin Pekan ei taydy Merjaa
 			ihailla	Pekan ei taydy Merjaa
 
 & Group 5. Super LHM ("says that __")
+	
 	& Group 5.1 Grammatical
+		
 		& Group 5.1.1 that + want + A/inf
+		
 		ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa
 		lahtea#C/op Pekka sanoo etta Pekan taytyy
 		
 	& Group 5.2 Ungrammatical, Finnish
+		
 		& Group 5.2.1 Moving of the embedded finite verb
+			
 			haluaa#C/op Pekka sanoo etta ihailla Merjaa
 			ihailee#C/op Pekka sanoo etta Merjaa
 			taytyy#C/op Pekka sanoo etta Pekan ihailla Merjaa
 		
 		& Group 5.2.2 Formal C-features or no C-features = V-initial constructions
+			
 			ihailla#C/fin Pekka sanoo etta haluaa Merjaa
 			lahtea#C/fin Pekka sanoo etta Pekan taytyy
 			ihailla Pekka sanoo etta haluaa Merjaa
 			lahtea Pekka sanoo etta Pekan taytyy
 		
-	& Group 5.3 Ungrammatical
-		haluaa#C/op Pekka sanoo etta ihailla Merjaa
-		ihailee#C/op Pekka sanoo etta Merjaa
-		taytyy#C/op Pekka sanoo etta Pekan ihailla Merjaa
-
 & Group 6. VP-fronting
+	
 	& Group 6.1. Grammatical VP-fronting in Finnish
+		
 		ihailla Merjaa Pekka haluaa		
 		ihailla Merjaa#C/op Pekka haluaa
 		Merjaa#C/op ihailla Pekka haluaa
 		tassa#C/op ihailla Merjaa Pekka haluaa
+		ihailla Merjaa haluan
+
+		ihailla Merjaa Pekka haluaa	tassa
+		Merjaa#C/op ihailla Pekka haluaa tassa
+		ihailla Merjaa haluan tassa
+		
+		ihailla Merjaa haluan
 
 	& Group 6.2 Ungrammatical VP-fronting in Finnish
+		
 		ihailla#C/op Merjaa Pekka haluaa
 
 & Group 7. Islands
+	
 	& Group 7.1. Right-adjunct CED
+		
 		ihailemalla#C/op Pekka istuu Merjaa
+	
 	& Group 7.2, Left branch CED
+		
 		ihailla#C/op sopimus Merjaa istuu
+	
 	& Group 7.3. Extraction from DP
+		
 		ihailla#C/op Pekka teki sopimuksen Merjaa
 
 & Group 8. Head movement inside infinitivals, all ungrammatical
+	
 	& Group 8.1 Inside DPs
+		
 		Pekka teki ihailla sopimuksen Merjaa
+	
 	& Group 8.2 Inside AdvPs
+		
 		Pekka istuu ihailla haluamalla Merjaa
 		Pekka istuu	ihailla#C/op haluamalla Merjaa
 
 & Group 9. Heads in wrong order, all ungrammatical (Manninen 2003 generalization)
+	
 	& Group 9.1 Neg + V
+		
 		Pekka ihaile ei Merjaa
+		
 	& Group 9.2 Neg + Aux + V
+		
 		Pekka ollut ei ihaillut Merjaa
 		Pekka ollut ihaillut ei Merjaa
 		Pekka ei ihaillut ollut Merjaa
 		Pekka ei ihaillut ei ollut Merjaa
 		Pekka ihaillut ollut ei Merjaa
+		
 	& Group 9.3 Neg + Modal + V
+		
 		Pekan taydy ei ihailla Merjaa
 		Pekan taydy ihailla ei Merjaa
 		Pekan ei ihailla taydy Merjaa
 		Pekan ihailla ei taydy Merjaa
 		Pekan ihailla taydy ei Merjaa
+		
 	& Group 9.4 Neg + V + V + LHM, with wrong head order
+		
 		taydy#C/op Pekan ihailla ei  Merjaa
 		ihailla#C/op Pekan taydy ei Merjaa
 		halua#C/op Pekka ihailla ei Merjaa
 		ihailla#C/op Pekka halua ei Merjaa
+		
 	& Group 9.5 Head final constructions with two more more verbal elements
+		
 		Pekka ihaile Merjaa ei 
 		Pekka ei ihaillut Merjaa ollut
 		Pekan ei ihailla Merjaa taydy
 
 & Group 10. C-features on a wrong head
-	& Group 10.1 Sentences from §1.1
-		& Group 10.1.1 C/op on the first in situ V
+	
+	& Group 10.1 Sentences from Group 1.1
+		
+		& Group 10.1.1 C/op on the first in situ V (see group 11.1 for why there is C/fin)
+			
 			C/fin Pekka ihailee#C/op Merjaa
 			C/fin Pekka ei#C/op ihaile Merjaa
 			C/fin Pekka on'#C/op ihaillut Merjaa
@@ -240,6 +413,7 @@
 			C/fin Pekka teki#C/op sopimuksen ihailla Merjaa
 		
 		& Group 10.1.2 C/op on the second in situ V
+			
 			Pekka ei ihaile#C/op Merjaa
 			Pekka on' ihaillut#C/op Merjaa
 			Pekka ei ollut#C/op ihaillut Merjaa
@@ -250,18 +424,22 @@
 			Pekka kaskee poikien ihailla#C/op Merjaa
 		
 		& Group 10.1.3 C/op on the third in situ V
+			
 			Pekka ei ollut ihaillut#C/op Merjaa
 			Pekan ei taydy ihailla#C/op Merjaa
 			Pekka ei halua ihailla#C/op Merjaa
 			Pekka sanoo etta haluaa ihailla#C/op Merjaa
 			
 		& Group 10.1.4 C/op on in situ adverbial
+			
 			Pekka istuu ihailemalla#C/op Merjaa 
 			Pekka istuu haluamalla ihailla#C/op Merjaa
 			Pekka teki sopimuksen ihailla#C/op Merjaa
 
-& Group 11. Problems and open issues
+& Group 11. Problems and open issues (irrelevant to main hypothesis)
+		
 	& Group 11.1 How to prevent double-filled SPEC-C
+			
 			Pekka ihailee#C/op Merjaa
 			Pekka ei#C/op ihaile Merjaa
 			Pekka on'#C/op ihaillut Merjaa
@@ -275,3 +453,13 @@
 			Pekka istuu#C/op ihailemalla Merjaa 
 			Pekka istuu#C/op haluamalla ihailla Merjaa
 			Pekka teki#C/op sopimuksen ihailla Merjaa
+	
+	& Group 11.2 Double object construction
+			
+			Pekka ihailee tassa Merjaa
+			
+	& Group 11.3 VP-fronting with postverbal locative PP 		
+			
+			ihailla Merjaa#C/op Pekka haluaa tassa
+			
+	

@@ -104,7 +104,6 @@ print()
 
 # Create the output file
 results_file = open(results_file_name, "w")
-results_file.write('Linear phase parser v. 3.x\n')
 results_file.write(str(datetime.datetime.now())+'\n')
 results_file.write(f'Test sentences from file \"{test_set_name}\".\n')
 results_file.write(f'Logs into file \"{log_file_name}.\n')

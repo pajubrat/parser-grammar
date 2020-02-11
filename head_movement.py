@@ -100,15 +100,14 @@ class HeadMovement:
             # Check if the head is correctly selected at this position
             if affix_.get_selector() and affix_.get_selector().selects(affix_):
 
-                # If it does not require a SPEC, we accept this position
+                # If it does not require a formal SPEC, we accept this position
                 if not affix_.EPP():
                     return True  # If the affix has no EPP, we accept the solution
 
                 # If it requires SPEC...
                 else:
-                    # we accept the solution is the local specifier is complex phrase
-                    # (we must ignore pro-solution here)
-                    if affix_.get_local_specifier() and affix_.get_local_specifier().is_complex():  # If the EPP is satisfied, we accept the solution
+                    # we accept the solution is the local specifier is found
+                    if affix_.get_local_specifier():
                         return True
 
                     # What if the EPP is satisfied later by movement reconstruction?
@@ -164,22 +163,28 @@ class HeadMovement:
         # If we come here, we have reached the bottom or search was interrupted
         # If we reached bottom, then we can try Merge Right solution
         if reached_bottom:
+
             # Special condition 1: bottom right position
             # Condition 1.1 If the node has affix, we must open it first
             if ps.get_bottom().has_affix():
+
                 self.reconstruct_head_movement(ps.get_bottom())
+                ps = ps.mother  # keep the pointer at [D,N] after D(N) => [D N]
 
                 # Condition 1.2 If the bottom node was DP, we don't merge to the sister of N but to the DP...
                 if 'CAT:D' in ps.get_bottom().get_labels():
                     ps.get_bottom().mother.merge(affix_, 'right')
                 else:
+
                     # Condition 1.4. ...Otherwise we merge to the sister.
                     if intervention_feature not in ps.get_bottom().features:
                         ps.get_bottom().merge(affix_, 'right')
             else:
+
                 # If the bottom node is simple, we try to merge to its right
                 if intervention_feature not in ps.get_bottom().features:
                     ps.get_bottom().merge(affix_, 'right')
+
 
             # Special condition 2: if the affix was merged to the right of the bottom node, we check if it is accetable
             if affix_.mother:
@@ -187,7 +192,7 @@ class HeadMovement:
                 if drop_condition_for_heads(affix_):
                     return True
                 else:
-                    # If the solution is not accetable, we remove the candidate
+                    # If the solution is not acceptable, we remove the candidate
                     affix_.remove()
 
         # Special condition 3: No position was found

@@ -65,10 +65,8 @@ class PhrasalMovement():
 
             # Condition 1: h must select the label of the constituent in the memory buffer
             if self.spec_match(h, constituent_from_memory_buffer):
-
                 # Condition 2: h must not have non-adjunct specifiers already
                 if not specs or (specs and specs[0].adjunct):
-
                     target_const_from_memory_buffer = constituent_from_memory_buffer
                     # Condition 3: the constituent must not cause tail violations
                     # Try to merge it to Spec

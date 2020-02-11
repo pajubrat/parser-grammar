@@ -119,7 +119,7 @@ class LinearPhaseParser:
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
 
             # The whole sentence has been processed, we test if the result is legitimate
-            log('\n\t>>>\t' + f'Trying candidate parse ' + ps.illustrate())
+            log('\n\t>>>\t' + f'Trying candidate spellout structure ' + ps.illustrate())
 
             # Check surface conditions and interpretations
             log('\t\tChecking surface conditions...')

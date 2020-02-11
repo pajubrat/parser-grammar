@@ -43,6 +43,7 @@ class Morphology:
             # The list will substitute the original multimorphemic word
             log(f'\n\t\tNext word contains multiple morphemes ' + str(lst_[::-1]))
             del lst_branched[index]
+
             # Add the decomposed morphemes to the input list (in reverse order; Mirror Principle)
             for w_ in lst_:
                 lst_branched.insert(index, w_)
