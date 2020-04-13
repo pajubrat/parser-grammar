@@ -390,8 +390,10 @@ class PhraseStructure:
 
         # If the head has found a local subject (has checked it phi-features), then
         # no pro can be extracted
-        if 'PHI_CHECKED' in self.features:
-            return None
+        # if 'PHI_CHECKED' in self.features:
+        #   return None
+        # Comment: this is required for Finnish, but produces some wrong results for italian, i.e.
+        # "dorme lui" is ungrammatical because T finds "lui" and nullifying pro, then EPP is unchecked.
 
         phi_set = set()
 
@@ -403,6 +405,7 @@ class PhraseStructure:
                     phi_set.add(f)
             # Construct a pronominal phi-set
             if phi_set:
+
                 # Assumption 1. Pro-element is a constituent
                 pro = PhraseStructure()
 

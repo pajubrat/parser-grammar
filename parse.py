@@ -16,7 +16,7 @@ from LanguageGuesser import LanguageGuesser
 from context import Context
 
 # Name of the corpus file
-test_set_name = 'LHM_corpus.txt'
+test_set_name = 'clitics_corpus.txt'
 
 # Name of the lexicon file
 lexicon_file_name = 'lexicon.txt'

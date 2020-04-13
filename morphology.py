@@ -26,7 +26,7 @@ class Morphology:
         while self.is_polymorphemic(next_lexical_item):
 
             # Disambiguates Finnish #FOC feature
-            lexical_item.morphology = self.generative_morphology(lexical_item.morphology)
+            lexical_item.morphology = self.handle_Cop_feature(lexical_item.morphology)
 
             # Condition 2. Step 1.
             # Create a list of morphemes
@@ -55,7 +55,7 @@ class Morphology:
         return next_lexical_item, lst_branched
 
     def is_polymorphemic(self, lexical_item):
-        if '#' not in lexical_item.morphology:
+        if '#' not in lexical_item.morphology and '=' not in lexical_item.morphology:
             return False
         else:
             return True
@@ -75,7 +75,7 @@ class Morphology:
         return lexical_item
 
     # Definition for generative morphology that only handles FOC disambiguation at present
-    def generative_morphology(self, word):
+    def handle_Cop_feature(self, word):
 
         # Extract morphemes
         list_ = self.extract_morphemes(word)
@@ -95,6 +95,7 @@ class Morphology:
                     log('\t\t\t\tFeature interpreted as a C morpheme with C-feature uC/op (e.g. uWh, uKo)')
                     word = word.replace('#foc', '#C/fin#uC/op')
                     word = word.replace('#C/op', '#C/fin#uC/op')
+
         return word
 
     # Definition for morpheme decomposition
@@ -113,14 +114,14 @@ class Morphology:
 
         return list_
 
-    # This function flips the $ sing from the start to end, only because it is more easy to read in this way.
+    # Flips $ from the start to end, only because it is more easy to read in this way.
     def flip_boundary(self, lst_):
         lst2_ = []
         for w in lst_:
             if w.startswith('$'):
                 lst2_.append(w[1:] + '$')
-            elif w.startswith('_'):
-                lst2_.append(w[1:] + '_')
+            elif w.startswith('='):
+                lst2_.append(w[1:] + '=')
             else:
                 lst2_.append(w)
 
@@ -130,8 +131,5 @@ class Morphology:
     def morphophonological_processing(self, word):
 
         word = word.replace("#", "#$")
+        word = word.replace("=", '#=')
         return self.flip_boundary(word.split("#"))
-
-        # CLITIC PROCESSING DELETED
-        # Use special clitic boundary % that marks incorporation
-        # In previous version complex (hierarchical) morpheme triggered the operation, but this interacts with other experiments

@@ -106,7 +106,7 @@ class LexicalInterface:
         if key.endswith('$'):
             key = key[:-1]
             internal = True
-        if key.endswith('_'):
+        if key.endswith('='):
             key = key[:-1]
             incorporated = True
         if key in self.lexicon_dictionary:

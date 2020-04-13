@@ -1,0 +1,974 @@
+2020-04-07 20:12:02.196637
+Test sentences from file "clitics_corpus.txt".
+Logs into file "clitics_corpus_log.txt.
+Lexicon from file "lexicon.txt".
+& Group 0. Test preparation (basic grammatical functions test)
+
+& Group 0.1 Grammatical
+
+& Group 0.1.1 Lexical items and argument structures
+
+	1. lavano Luisa 
+		[T/fin [v [lava [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	2. loro lavano Luisa 
+		[[D loro]:1 [T/fin [__:1 [v [lava [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(10), Consumed(17)
+
+	3. loro devono lavare Luisa 
+		[[D loro]:1 [T/fin [__:1 [deva [are [v [lava [D Luisa]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(7), Move(phrasal)(5), Transfer(10), Inflection(10), Consumed(19)
+
+	4. loro hanno lavato Luisa 
+		[[D loro]:1 [T/fin [__:1 [ha [T/prt [v [lava [D Luisa]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(7), Move(phrasal)(5), Transfer(10), Inflection(13), Consumed(22)
+
+	5. io ho lavato Luisa 
+		[[D io]:1 [T/fin [__:1 [ha [T/prt [v [lava [D Luisa]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(7), Move(phrasal)(5), Transfer(10), Inflection(14), Consumed(23)
+
+	6. loro hanno voluto lavare Luisa 
+		[[D loro]:1 [T/fin [__:1 [ha [T/prt [v [volu [are [v [lava [D Luisa]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(25), Move(phrasal)(7), Transfer(17), Inflection(10), Consumed(22)
+
+	7. loro stanno lavando Luisa 
+		[[D loro]:1 [T/fin [__:1 [sta [PRG [v [lava [D Luisa]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(7), Move(phrasal)(5), Transfer(10), Inflection(10), Consumed(19)
+
+	8. loro sembrano lavare Luisa 
+		[[D loro]:1 [T/fin [sembra [__:1 [are [__:1 [v [lava [D Luisa]]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(7), Move(phrasal)(6), Transfer(12), Inflection(10), Consumed(19)
+
+	9. io detesto lavare Luisa 
+		[[D io]:1 [T/fin [__:1 [v [detest [are [v [lava [D Luisa]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(12), Move(phrasal)(5), Transfer(10), Inflection(11), Consumed(21)
+
+	10. lui dorme 
+		[[D lui]:1 [T/fin [__:1 dorme]]]
+		Solutions(1), Merge(3), Move(head)(0), Move(phrasal)(1), Transfer(2), Inflection(6), Consumed(10)
+
+	11. Giuseppe spinge Luisa 
+		[[D Giuseppe]:1 [T/fin [__:1 [v [spinge [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(18)
+
+& Group 0.1.2 Agreement paradigms and pronouns
+
+	12. io adoro Luisa 
+		[[D io]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(18)
+
+	13. tu adori Luisa 
+		[[D tu]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(18)
+
+	14. lui adora Luisa 
+		[[D lui]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(18)
+
+	15. lei adora Luisa 
+		[[D lei]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(18)
+
+	16. noi adoriamo Luisa 
+		[[D noi]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(18)
+
+	17. voi adorate Luisa 
+		[[D voi]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(18)
+
+	18. loro adorano Luisa 
+		[[D loro]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(10), Consumed(17)
+
+	19. io sono Luisa 
+		[[D io]:1 [T/fin [__:1 [BE [D Luisa]]]]]
+		Solutions(1), Merge(5), Move(head)(1), Move(phrasal)(3), Transfer(5), Inflection(11), Consumed(17)
+
+& Group 0.1.3 pro-drop tests
+
+	20. adoro Luisa 
+		[T/fin [v [adora [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	21. adori Luisa 
+		[T/fin [v [adora [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	22. adora Luisa 
+		[T/fin [v [adora [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	23. adora Luisa 
+		[T/fin [v [adora [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	24. adoriamo Luisa 
+		[T/fin [v [adora [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	25. adorate Luisa 
+		[T/fin [v [adora [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	26. adorano Luisa 
+		[T/fin [v [adora [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	27. lavano Luisa 
+		[T/fin [v [lava [D Luisa]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+	28. devono lavare Luisa 
+		[T/fin [deva [are [v [lava [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(5), Move(phrasal)(0), Transfer(5), Inflection(6), Consumed(13)
+
+	29. hanno lavato Luisa 
+		[T/fin [ha [T/prt [v [lava [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(5), Move(phrasal)(0), Transfer(5), Inflection(9), Consumed(16)
+
+	30. ho lavato Luisa 
+		[T/fin [ha [T/prt [v [lava [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(5), Move(phrasal)(0), Transfer(5), Inflection(9), Consumed(16)
+
+	31. hanno voluto lavare Luisa 
+		[T/fin [ha [T/prt [v [volu [are [v [lava [D Luisa]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(17), Move(phrasal)(0), Transfer(10), Inflection(6), Consumed(16)
+
+	32. stanno lavando Luisa 
+		[T/fin [sta [PRG [v [lava [D Luisa]]]]]]
+		Solutions(1), Merge(6), Move(head)(5), Move(phrasal)(0), Transfer(5), Inflection(6), Consumed(13)
+
+& Group 0.1.4 Free word order in Finnish (we should not break these)
+
+	33. Pekka ihailee Merjaa 
+		[<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja-]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(8), Inflection(12), Consumed(19)
+
+	34. Merjaa ihailee Pekka 
+		[<D Merja->:1 [T/fin [<__>:2 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(4), Transfer(9), Inflection(12), Consumed(19)
+
+& Group 0.1.5 Control (we should not break these)
+
+	35. Pekka haluaa lahtea 
+		[<D Pekka>:1 [T/fin [<__>:1 [v [haluaa [A/inf lahtea]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(2), Transfer(6), Inflection(6), Consumed(13)
+
+	36. Pekka kaskee Merjan lahtea 
+		[<D Pekka>:1 [T/fin [<__>:1 [v* [kaske [<D Merja->:2 [A/inf [<__>:2 lahtea]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(6), Move(phrasal)(5), Transfer(15), Inflection(12), Consumed(21)
+
+& Group 0.1.6 post-verbal subjects
+
+	37. lavano Luisa loro 
+		[[T/fin [v [lava [D Luisa]]]] <D loro>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(10), Consumed(18)
+
+	38. devono lavare Luisa loro 
+		[T/fin [deva [[are [v [lava [D Luisa]]]] <D loro>]]]
+		Solutions(1), Merge(8), Move(head)(17), Move(phrasal)(0), Transfer(12), Inflection(10), Consumed(19)
+
+	39. hanno lavato Luisa loro 
+		[[T/fin [ha [T/prt [v [lava [D Luisa]]]]]] <D loro>]
+		Solutions(2), Merge(10), Move(head)(18), Move(phrasal)(0), Transfer(15), Inflection(13), Consumed(23)
+
+	40. ho lavato Luisa io 
+		[[T/fin [ha [T/prt [v [lava [D Luisa]]]]]] <D io>]
+		Solutions(2), Merge(10), Move(head)(18), Move(phrasal)(0), Transfer(15), Inflection(14), Consumed(24)
+
+	41. hanno voluto lavare Luisa loro 
+		[T/fin [ha [T/prt [v [volu [[are [v [lava [D Luisa]]]] <D loro>]]]]]]
+		Solutions(1), Merge(11), Move(head)(41), Move(phrasal)(0), Transfer(19), Inflection(10), Consumed(22)
+
+	42. stanno lavando Luisa loro 
+		[T/fin [sta [[PRG [v [lava [D Luisa]]]] <D loro>]]]
+		Solutions(2), Merge(10), Move(head)(18), Move(phrasal)(0), Transfer(15), Inflection(10), Consumed(20)
+
+	43. sembrano lavare Luisa loro 
+		[T/fin [sembra [[are [v [lava [D Luisa]]]] <D loro>]]]
+		Solutions(1), Merge(8), Move(head)(17), Move(phrasal)(0), Transfer(12), Inflection(10), Consumed(19)
+
+	44. detesto lavare Luisa io 
+		[T/fin [v [detest [[are [v [lava [D Luisa]]]] <D io>]]]]
+		Solutions(1), Merge(9), Move(head)(22), Move(phrasal)(0), Transfer(12), Inflection(11), Consumed(21)
+
+	45. dorme lui 
+		[T/fin [dorme [D lui]]]
+		Solutions(1), Merge(3), Move(head)(1), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(10)
+
+	46. spinge Luisa Giuseppe 
+		[[T/fin [v [spinge [D Luisa]]]] <D Giuseppe>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(11), Consumed(19)
+
+	47. adoro Luisa io 
+		[[T/fin [v [adora [D Luisa]]]] <D io>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(11), Consumed(19)
+
+	48. adori Luisa tu 
+		[[T/fin [v [adora [D Luisa]]]] <D tu>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(11), Consumed(19)
+
+	49. adora Luisa lui 
+		[[T/fin [v [adora [D Luisa]]]] <D lui>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(11), Consumed(19)
+
+	50. adora Luisa lei 
+		[[T/fin [v [adora [D Luisa]]]] <D lei>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(11), Consumed(19)
+
+	51. adoriamo Luisa noi 
+		[[T/fin [v [adora [D Luisa]]]] <D noi>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(11), Consumed(19)
+
+	52. adorate Luisa voi 
+		[[T/fin [v [adora [D Luisa]]]] <D voi>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(11), Consumed(19)
+
+	53. adorano Luisa loro 
+		[[T/fin [v [adora [D Luisa]]]] <D loro>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(10), Consumed(18)
+
+	54. sono Luisa io 
+		[[T/fin [BE [D Luisa]]] <D io>]
+		Solutions(2), Merge(7), Move(head)(4), Move(phrasal)(0), Transfer(10), Inflection(11), Consumed(18)
+
+& Group 0.2 Ungrammatical
+
+& Group 0.2.1 Finie agreement errors
+
+	55. * io adori Luisa 
+
+	56. * io adora Luisa 
+
+	57. * io adorate Luisa 
+
+	58. * io adorano Luisa 
+
+& Group 0.2.2 Partial agreement errors
+
+	59. * loro hanno lavata Luisa 
+
+& Group 0.2.3 Word order errors
+
+	60. * loro Luisa lavano 
+
+	61. * loro Luisa devono lavare 
+
+	62. * loro hanno Luisa lavare 
+
+	63. * loro Luisa hanno voluto lavare 
+
+	64. * loro hanno Luisa voluto lavare 
+
+	65. * loro hanno voluto Luisa lavare 
+
+	66. * loro Luisa stanno lavando 
+
+	67. * loro stanno Luisa lavando 
+
+& Group 1. Direct accusative clitics
+
+& Group 1.1 Grammatical (pro-drop and no pro-drop)
+
+	68. loro mi=lavano 
+		[[D loro]:1 [T/fin [__:1 [v [lava [D mi(cl)]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(13), Consumed(20)
+
+	69. mi=lavano 
+		[T/fin [v [lava [D mi(cl)]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(9), Consumed(14)
+
+	70. loro la=lavano 
+		[[D loro]:1 [T/fin [__:1 [v [lava [D la(cl)]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(13), Consumed(20)
+
+	71. la=lavano 
+		[T/fin [v [lava [D la(cl)]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(9), Consumed(14)
+
+	72. loro lo=lavano 
+		[[D loro]:1 [T/fin [__:1 [v [lava [D lo(cl)]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(13), Consumed(20)
+
+	73. lo=lavano 
+		[T/fin [v [lava [D lo(cl)]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(9), Consumed(14)
+
+	74. Luisa lo=e 
+		[[D Luisa]:1 [T/fin [__:1 [BE [D lo(cl)]]]]]
+		Solutions(1), Merge(5), Move(head)(1), Move(phrasal)(3), Transfer(5), Inflection(15), Consumed(21)
+
+	75. Luisa la=e 
+		[[D Luisa]:1 [T/fin [__:1 [BE [D la(cl)]]]]]
+		Solutions(1), Merge(5), Move(head)(1), Move(phrasal)(3), Transfer(5), Inflection(15), Consumed(21)
+
+& Group 1.2 Grammatical postverbal subject orders
+
+	76. mi=lavano loro 
+		[[T/fin [v [lava [D mi(cl)]]]] <D loro>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(13), Consumed(21)
+
+	77. la=lavano loro 
+		[[T/fin [v [lava [D la(cl)]]]] <D loro>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(13), Consumed(21)
+
+	78. lo=lavano loro 
+		[[T/fin [v [lava [D lo(cl)]]]] <D loro>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(13), Consumed(21)
+
+& Group 1.3 Ungrammatical clitic position error
+
+	79. * loro lavano=mi 
+
+	80. * lavano=mi 
+
+	81. * loro=mi lavano 
+
+	82. * mi=loro lavano 
+
+	83. * loro lavano mi 
+
+	84. loro mi=lavano Luisa 
+		[[[D loro]:1 [T/fin [__:1 [v [lava [D mi(cl)]]]]]] <D Luisa>]
+		Solutions(3), Merge(12), Move(head)(14), Move(phrasal)(6), Transfer(18), Inflection(18), Consumed(29)
+
+& Group 1.4 Ungrammatical agreement error
+
+	85. * io mi=lavano 
+
+& Group 1.5 Ungrammatical clitic position error with postverbal order
+
+	86. * lavano=mi loro 
+
+& Group 1.6 Ungrammatical agreement error with postverbal S order
+
+	87. mi=lavano io 
+		[[T/fin [v [lava [D mi(cl)]]]] <D io>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(14), Consumed(22)
+
+& Group 1.7 Ungrammatical agreement error, clitic position error and postverbal order
+
+	88. * lavano=mi io 
+
+& Group 1.8. ungrammatical clitic positioning error with agreement error
+
+	89. * io lavano=mi 
+
+	90. * loro lavano=la 
+
+	91. * lavano=la 
+
+& Group 2 Two-verb structures with direct object clitics
+
+& Group 2.1 Grammatical
+
+& Group 2.1.1 hanno + lavato
+
+	92. loro mi=hanno lavato 
+		[[D loro]:1 [T/fin [__:1 [ha [[D mi(cl)]:2 [T/prt [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(3), Move(phrasal)(5), Transfer(8), Inflection(16), Consumed(25)
+
+	93. loro la=hanno lavata 
+		[[D loro]:1 [T/fin [__:1 [ha [[D la(cl)]:2 [T/prt [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(3), Move(phrasal)(5), Transfer(8), Inflection(19), Consumed(28)
+
+	94. mi=hanno lavato 
+		[T/fin [ha [[D mi(cl)]:1 [T/prt [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(1), Transfer(4), Inflection(12), Consumed(19)
+
+	95. la=hanno lavata 
+		[T/fin [ha [[D la(cl)]:1 [T/prt [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(1), Transfer(4), Inflection(15), Consumed(22)
+
+	96. lo=hanno lavato 
+		[T/fin [ha [[D lo(cl)]:1 [T/prt [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(1), Transfer(4), Inflection(12), Consumed(19)
+
+	97. mi=hanno lavato loro 
+		[[T/fin [ha [[D mi(cl)]:1 [T/prt [v [lava __:1]]]]]] <D loro>]
+		Solutions(2), Merge(10), Move(head)(7), Move(phrasal)(3), Transfer(10), Inflection(16), Consumed(26)
+
+	98. la=hanno lavata loro 
+		[[T/fin [ha [[D la(cl)]:1 [T/prt [v [lava __:1]]]]]] <D loro>]
+		Solutions(2), Merge(10), Move(head)(7), Move(phrasal)(3), Transfer(10), Inflection(19), Consumed(29)
+
+& Group 2.1.2 devono + lavare
+
+	99. loro mi=devono lavare 
+		[[D loro]:1 [T/fin [__:1 [deva [[D mi(cl)]:2 [are [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(5), Move(phrasal)(6), Transfer(11), Inflection(13), Consumed(22)
+
+	100. loro devono lavare=mi 
+		[[D loro]:1 [T/fin [__:1 [deva [[D mi(cl)]:2 [are [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(1), Move(phrasal)(4), Transfer(6), Inflection(13), Consumed(22)
+
+	101. loro la=devono lavare 
+		[[D loro]:1 [T/fin [__:1 [deva [[D la(cl)]:2 [are [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(5), Move(phrasal)(6), Transfer(11), Inflection(13), Consumed(22)
+
+	102. loro devono lavare=la 
+		[[D loro]:1 [T/fin [__:1 [deva [[D la(cl)]:2 [are [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(1), Move(phrasal)(4), Transfer(6), Inflection(13), Consumed(22)
+
+	103. loro lo=devono lavare 
+		[[D loro]:1 [T/fin [__:1 [deva [[D lo(cl)]:2 [are [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(5), Move(phrasal)(6), Transfer(11), Inflection(13), Consumed(22)
+
+	104. loro devono lavare=lo 
+		[[D loro]:1 [T/fin [__:1 [deva [[D lo(cl)]:2 [are [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(1), Move(phrasal)(4), Transfer(6), Inflection(13), Consumed(22)
+
+	105. mi=devono lavare loro 
+		[[T/fin [deva [[D mi(cl)]:1 [are [v [lava __:1]]]]]] <D loro>]
+		Solutions(2), Merge(10), Move(head)(8), Move(phrasal)(3), Transfer(13), Inflection(13), Consumed(23)
+
+	106. devono lavare=mi loro 
+		[T/fin [deva [[[D mi(cl)]:1 [are [v [lava __:1]]]] <D loro>]]]
+		Solutions(2), Merge(10), Move(head)(6), Move(phrasal)(5), Transfer(12), Inflection(13), Consumed(23)
+
+	107. la=devono lavare loro 
+		[[T/fin [deva [[D la(cl)]:1 [are [v [lava __:1]]]]]] <D loro>]
+		Solutions(2), Merge(10), Move(head)(8), Move(phrasal)(3), Transfer(13), Inflection(13), Consumed(23)
+
+	108. devono lavare=la loro 
+		[T/fin [deva [[[D la(cl)]:1 [are [v [lava __:1]]]] <D loro>]]]
+		Solutions(2), Merge(10), Move(head)(6), Move(phrasal)(5), Transfer(12), Inflection(13), Consumed(23)
+
+	109. lo=devono lavare loro 
+		[[T/fin [deva [[D lo(cl)]:1 [are [v [lava __:1]]]]]] <D loro>]
+		Solutions(2), Merge(10), Move(head)(8), Move(phrasal)(3), Transfer(13), Inflection(13), Consumed(23)
+
+	110. devono lavare=lo loro 
+		[T/fin [deva [[[D lo(cl)]:1 [are [v [lava __:1]]]] <D loro>]]]
+		Solutions(2), Merge(10), Move(head)(6), Move(phrasal)(5), Transfer(12), Inflection(13), Consumed(23)
+
+	111. mi=devono lavare 
+		[T/fin [deva [[D mi(cl)]:1 [are [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(3), Move(phrasal)(1), Transfer(6), Inflection(9), Consumed(16)
+
+	112. devono lavare=mi 
+		[T/fin [deva [[D mi(cl)]:1 [are [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(1), Move(phrasal)(1), Transfer(3), Inflection(9), Consumed(16)
+
+	113. la=devono lavare 
+		[T/fin [deva [[D la(cl)]:1 [are [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(3), Move(phrasal)(1), Transfer(6), Inflection(9), Consumed(16)
+
+	114. devono lavare=la 
+		[T/fin [deva [[D la(cl)]:1 [are [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(1), Move(phrasal)(1), Transfer(3), Inflection(9), Consumed(16)
+
+	115. lo=devono lavare 
+		[T/fin [deva [[D lo(cl)]:1 [are [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(3), Move(phrasal)(1), Transfer(6), Inflection(9), Consumed(16)
+
+	116. devono lavare=lo 
+		[T/fin [deva [[D lo(cl)]:1 [are [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(1), Move(phrasal)(1), Transfer(3), Inflection(9), Consumed(16)
+
+& Group 2.1.3 stanno + lavando
+
+	117. loro mi=stanno lavando 
+		[[D loro]:1 [T/fin [__:1 [sta [[D mi(cl)]:2 [PRG [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(3), Move(phrasal)(5), Transfer(8), Inflection(13), Consumed(22)
+
+	118. mi=stanno lavando 
+		[T/fin [sta [[D mi(cl)]:1 [PRG [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(1), Transfer(4), Inflection(9), Consumed(16)
+
+	119. la=stanno lavando 
+		[T/fin [sta [[D la(cl)]:1 [PRG [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(1), Transfer(4), Inflection(9), Consumed(16)
+
+	120. lo=stanno lavando 
+		[T/fin [sta [[D lo(cl)]:1 [PRG [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(1), Transfer(4), Inflection(9), Consumed(16)
+
+	121. loro stanno lavando=mi 
+		[[D loro]:1 [T/fin [__:1 [sta [[D mi(cl)]:2 [PRG [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(1), Move(phrasal)(4), Transfer(6), Inflection(13), Consumed(22)
+
+	122. stanno lavando=mi 
+		[T/fin [sta [[D mi(cl)]:1 [PRG [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(1), Move(phrasal)(1), Transfer(3), Inflection(9), Consumed(16)
+
+	123. stanno lavando=la 
+		[T/fin [sta [[D la(cl)]:1 [PRG [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(1), Move(phrasal)(1), Transfer(3), Inflection(9), Consumed(16)
+
+	124. stanno lavando=lo 
+		[T/fin [sta [[D lo(cl)]:1 [PRG [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(1), Move(phrasal)(1), Transfer(3), Inflection(9), Consumed(16)
+
+	125. mi=stanno lavando loro 
+		[[T/fin [sta [[D mi(cl)]:1 [PRG [v [lava __:1]]]]]] <D loro>]
+		Solutions(2), Merge(10), Move(head)(7), Move(phrasal)(3), Transfer(10), Inflection(13), Consumed(23)
+
+	126. stanno lavando=mi loro 
+		[T/fin [sta [[[D mi(cl)]:1 [PRG [v [lava __:1]]]] <D loro>]]]
+		Solutions(2), Merge(10), Move(head)(6), Move(phrasal)(5), Transfer(11), Inflection(13), Consumed(23)
+
+& Group 2.2 Ungrammatical
+
+& Group 2.2.1 Clitic in wrong positon
+
+& Group 2.2.1.1 hanno + lavato
+
+	127. * loro hanno mi=lavato 
+
+	128. * loro hanno la=lavato 
+
+	129. * hanno mi=lavato 
+
+	130. * io sono=mi lavato 
+
+	131. * loro hanno lo=lavato 
+
+	132. * hanno lo=lavato 
+
+	133. * hanno la=lavato 
+
+	134. * loro hanno lavato=mi 
+
+	135. * loro hanno lavato=la 
+
+	136. * loro hanno lavato=lo 
+
+	137. * mi=io sono lavato 
+
+	138. * io=mi sono lavato 
+
+	139. * loro=mi hanno lavato 
+
+	140. * la=io sono lavato 
+
+	141. * io=la sono lavato 
+
+	142. * loro=la hanno lavato 
+
+	143. * lo=io sono lavato 
+
+	144. * io=lo sono lavato 
+
+	145. * loro=lo hanno lavato 
+
+	146. * mi=loro hanno lavato 
+
+	147. * io sono=la lavata 
+
+	148. * io sono=lo lavato 
+
+& Group 2.2.1.2 Clitic in wrong position with postverbal subject
+
+	149. * hanno mi=lavato loro 
+
+	150. * hanno la=lavato loro 
+
+	151. * sono=mi lavato io 
+
+	152. * hanno lo=lavato loro 
+
+	153. * hanno lavato=mi loro 
+
+	154. * hanno lavato=la loro 
+
+	155. * hanno lavato=lo loro 
+
+	156. * sono lavato mi=io 
+
+	157. * sono lavato io=mi 
+
+	158. * hanno lavato loro=mi 
+
+	159. * sono lavato la=io 
+
+	160. * sono lavato io=la 
+
+	161. * hanno lavato loro=la 
+
+	162. * sono lavato lo=io 
+
+	163. * sono lavato io=lo 
+
+	164. * hanno lavato loro=lo 
+
+	165. * hanno lavato mi=loro 
+
+	166. * sono=la lavata io 
+
+	167. * sono=lo lavato io 
+
+& Group 2.2.1.3 devono + lavare
+
+	168. * loro devono mi=lavare 
+
+	169. * loro devono la=lavare 
+
+	170. * loro devono lo=lavare 
+
+	171. * loro=la devono lavare 
+
+	172. * loro=lo devono lavare 
+
+	173. * loro=mi devono lavare 
+
+	174. * devono mi=lavare loro 
+
+	175. * devono la=lavare loro 
+
+	176. * devono lo=lavare loro 
+
+	177. * devono lavare loro=la 
+
+	178. * devono lavare loro=lo 
+
+	179. * devono lavare loro=mi 
+
+& Group 2.2.1.4 stanno + lavando
+
+	180. * loro stanno mi=lavando 
+
+	181. * stanno mi=lavando 
+
+	182. * stanno la=lavando 
+
+	183. * stanno lo=lavando 
+
+	184. * loro=mi stanno lavando 
+
+	185. * loro=la stanno lavando 
+
+	186. * loro=lo stanno lavando 
+
+	187. * stanno lavando loro=mi 
+
+	188. * stanno lavando loro=la 
+
+	189. * stanno lavando loro=lo 
+
+& Group 2.2.2 Agreement errors between CL and V
+
+	190. * loro la=hanno lavato 
+
+	191. * loro mi=hanno lavata 
+
+	192. * loro lo=hanno lavata 
+
+	193. * la=hanno lavato loro 
+
+	194. * mi=hanno lavata loro 
+
+	195. * lo=hanno lavata loro 
+
+	196. * la=hanno lavato 
+
+	197. * mi=hanno lavata 
+
+	198. * lo=hanno lavata 
+
+& Group 2.2.3 Agreement errors and clitic placement errors
+
+	199. * loro hanno la=lavato 
+
+	200. * loro hanno lo=lavato 
+
+	201. * loro hanno lavato=la 
+
+	202. * loro hanno lavato=lo 
+
+	203. * hanno la=lavato loro 
+
+	204. * hanno lo=lavato loro 
+
+	205. * hanno lavato=la loro 
+
+	206. * hanno lavato=lo loro 
+
+	207. * hanno la=lavato 
+
+	208. * hanno lo=lavato 
+
+	209. * hanno lavato=la 
+
+	210. * hanno lavato=lo 
+
+& Group 2.2.4 Corrct clitic placement but subject in wrong position
+
+	211. * mi=hanno loro lavato 
+
+	212. * la=hanno loro lavata 
+
+	213. * mi=devono loro lavare 
+
+	214. * devono loro lavare=mi 
+
+	215. * la=devono loro lavare 
+
+	216. * devono loro lavare=la 
+
+	217. * lo=devono loro lavare 
+
+	218. * devono loro lavare=lo 
+
+& Group 2.2.5 Ungrammatical agreement error and S position error
+
+	219. * mi=hanno loro lavata 
+
+	220. * la=hanno loro lavato 
+
+& Group 2.2.6 Ungrammatical agreement error, S position erro and clitic position error
+
+	221. * hanno loro mi=lavata 
+
+	222. * hanno loro la=lavato 
+
+& Group 3 Aux + T/prt + ARE/inf
+
+& Group 3.1 Grammatical
+
+	223. loro mi=hanno voluto lavare 
+		[[D loro]:1 [T/fin [__:1 [ha [[D mi(cl)]:2 [T/prt [v [volu [are [v [lava __:2]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(9), Move(phrasal)(7), Transfer(13), Inflection(13), Consumed(25)
+
+	224. loro hanno voluto lavare=mi 
+		[[D loro]:1 [T/fin [__:1 [ha [T/prt [v [volu [[D mi(cl)]:2 [are [v [lava __:2]]]]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(7), Move(phrasal)(6), Transfer(11), Inflection(13), Consumed(25)
+
+	225. mi=hanno voluto lavare 
+		[T/fin [ha [[D mi(cl)]:1 [T/prt [v [volu [are [v [lava __:1]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(6), Move(phrasal)(1), Transfer(7), Inflection(9), Consumed(19)
+
+	226. hanno voluto lavare=mi 
+		[T/fin [ha [T/prt [v [volu [[D mi(cl)]:1 [are [v [lava __:1]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(5), Move(phrasal)(1), Transfer(6), Inflection(9), Consumed(19)
+
+	227. mi=hanno voluto lavare loro 
+		[[T/fin [ha [[D mi(cl)]:1 [T/prt [v [volu [are [v [lava __:1]]]]]]]]] <D loro>]
+		Solutions(2), Merge(13), Move(head)(21), Move(phrasal)(3), Transfer(15), Inflection(13), Consumed(26)
+
+	228. hanno voluto lavare=mi loro 
+		[T/fin [ha [T/prt [v [volu [[D mi(cl)] <are [v [lava [D loro]]]>]]]]]]
+		Solutions(1), Merge(11), Move(head)(17), Move(phrasal)(6), Transfer(14), Inflection(13), Consumed(25)
+
+& Group 3.2 Ungrammatical
+
+& Group 3.2.1 Wrong clitic placemenet
+
+	229. * loro hanno mi=voluto lavare 
+
+	230. * loro hanno voluto mi=lavare 
+
+	231. * loro=mi hanno voluto lavare 
+
+	232. * mi=loro hanno voluto lavere 
+
+	233. * hanno mi=voluto lavare 
+
+	234. * hanno voluto mi=lavare 
+
+	235. * hanno mi=voluto lavare loro 
+
+	236. * hanno voluto mi=lavare loro 
+
+	237. * hanno voluto lavare loro=mi 
+
+	238. * hanno voluto lavere mi=loro 
+
+& Group 3.2.2 Wrong clitic placement with wrong subject position
+
+	239. * hanno mi=voluto loro lavare 
+
+	240. * hanno voluto loro mi=lavare 
+
+	241. * hanno voluto loro=mi lavare 
+
+	242. * hanno voluto mi=loro lavere 
+
+& Group 3.2.3 Wrong clitic placement, wrong subject position, agreement error
+
+	243. * loro hanno la=voluto lavare 
+
+	244. * loro hanno voluto la=lavare 
+
+	245. * loro=la hanno voluto lavare 
+
+	246. * la=loro hanno voluto lavere 
+
+	247. * hanno la=voluto lavare 
+
+	248. * hanno voluto la=lavare 
+
+	249. * hanno la=voluto lavare loro 
+
+	250. * hanno voluto la=lavare loro 
+
+	251. * hanno voluto lavare loro=la 
+
+	252. * hanno voluto lavere la=loro 
+
+	253. * hanno la=voluto loro lavare 
+
+	254. * hanno voluto loro la=lavare 
+
+	255. * hanno voluto loro=la lavare 
+
+	256. * hanno voluto la=loro lavere 
+
+& Group 4. Indirect clitics and clitic clusters
+
+& Group 4.1 Grammatical indirect (dative) clitics
+
+	257. loro gli=lavano Luisa 
+		[[D loro]:1 [T/fin [[__:1 [v [lava [<P [D lo(cl)]>:2 [D Luisa]]]]] <__>:2]]]
+		Solutions(1), Merge(9), Move(head)(10), Move(phrasal)(10), Transfer(15), Inflection(19), Consumed(28)
+
+	258. gli=lavano Luisa loro 
+		[[T/fin [[v [lava [<P [D lo(cl)]>:1 [D Luisa]]]] <__>:1]] <D loro>]
+		Solutions(2), Merge(11), Move(head)(12), Move(phrasal)(6), Transfer(22), Inflection(19), Consumed(29)
+
+	259. gli=lavano Luisa 
+		[T/fin [[v [lava [<P [D lo(cl)]>:1 [D Luisa]]]] <__>:1]]
+		Solutions(1), Merge(7), Move(head)(6), Move(phrasal)(3), Transfer(8), Inflection(15), Consumed(22)
+
+& Group 4.2 Grammatical clitic clusters
+
+	260. loro gli=la=hanno lavata 
+		[[D loro]:1 [T/fin [__:1 [ha [[D la(cl)]:2 [<P [D lo(cl)]>:3 [T/prt [[v [lava __:2]] <__>:3]]]]]]]]
+		Solutions(1), Merge(11), Move(head)(7), Move(phrasal)(8), Transfer(20), Inflection(28), Consumed(39)
+
+	261. gli=la=hanno lavata loro 
+		[[T/fin [ha [[D la(cl)]:1 [<P [D lo(cl)]>:2 [T/prt [[v [lava __:1]] <__>:2]]]]]] <D loro>]
+		Solutions(2), Merge(13), Move(head)(9), Move(phrasal)(7), Transfer(21), Inflection(28), Consumed(40)
+
+	262. gli=la=hanno lavata 
+		[T/fin [ha [[D la(cl)]:1 [<P [D lo(cl)]>:2 [T/prt [[v [lava __:1]] <__>:2]]]]]]
+		Solutions(1), Merge(9), Move(head)(4), Move(phrasal)(2), Transfer(12), Inflection(24), Consumed(33)
+
+& Group 4.3 Ungrammatical clitic clusters
+
+	263. * loro la=gli=hanno lavata 
+
+	264. * la=gli=hanno lavata 
+
+	265. * loro hanno gli=la=lavata 
+
+	266. * hanno gli=la=lavata 
+
+	267. * la=gli=hanno lavata loro 
+
+	268. * hanno gli=la=lavata loro 
+
+& Group 5. Restructuring
+
+& Group 5.1 Grammatical
+
+	269. loro sembrano lavare=mi 
+		[[D loro]:1 [T/fin [sembra [[D mi(cl)]:2 [are [__:1 [v [lava __:2]]]]]]]]
+		Solutions(1), Merge(8), Move(head)(1), Move(phrasal)(2), Transfer(6), Inflection(13), Consumed(22)
+
+	270. io detesto lavare=lo 
+		[[D io]:1 [T/fin [__:1 [v [detest [[D lo(cl)]:2 [are [v [lava __:2]]]]]]]]]
+		Solutions(1), Merge(9), Move(head)(2), Move(phrasal)(4), Transfer(6), Inflection(14), Consumed(24)
+
+	271. Giuseppe spinge Luisa a lavare=lo 
+		[[D Giuseppe]:1 [T/fin [__:1 [v [spinge [[D Luisa] <a [[D lo(cl)]:2 [are [v [lava __:2]]]]>]]]]]]
+		Solutions(1), Merge(12), Move(head)(18), Move(phrasal)(8), Transfer(28), Inflection(19), Consumed(32)
+
+	272. sembrano lavare=mi loro 
+		[T/fin [sembra [[[D mi(cl)]:1 [are [v [lava __:1]]]] <D loro>]]]
+		Solutions(2), Merge(10), Move(head)(6), Move(phrasal)(5), Transfer(12), Inflection(13), Consumed(23)
+
+	273. detesto lavare=lo io 
+		[T/fin [v [detest [[[D lo(cl)]:1 [are [v [lava __:1]]]] <D io>]]]]
+		Solutions(2), Merge(11), Move(head)(10), Move(phrasal)(5), Transfer(12), Inflection(14), Consumed(25)
+
+	274. spinge Luisa a lavare=lo Giuseppe 
+		[[T/fin [v [spinge [[D Luisa] <a [[D lo(cl)]:1 [are [v [lava __:1]]]]>]]]] <D Giuseppe>]
+		Solutions(4), Merge(18), Move(head)(22), Move(phrasal)(14), Transfer(40), Inflection(19), Consumed(35)
+
+	275. sembrano lavare=mi 
+		[T/fin [sembra [[D mi(cl)]:1 [are [v [lava __:1]]]]]]
+		Solutions(1), Merge(6), Move(head)(1), Move(phrasal)(1), Transfer(3), Inflection(9), Consumed(16)
+
+	276. detesto lavare=lo 
+		[T/fin [v [detest [[D lo(cl)]:1 [are [v [lava __:1]]]]]]]
+		Solutions(1), Merge(7), Move(head)(2), Move(phrasal)(1), Transfer(3), Inflection(9), Consumed(17)
+
+	277. spinge Luisa a lavare=lo 
+		[T/fin [v [spinge [[D Luisa] <a [[D lo(cl)]:1 [are [v [lava __:1]]]]>]]]]
+		Solutions(1), Merge(10), Move(head)(10), Move(phrasal)(1), Transfer(19), Inflection(14), Consumed(25)
+
+& Group 5.2 Ungrammatical
+
+	278. * loro mi=sembrano lavare 
+
+	279. * mi=sembrano lavare 
+
+	280. * io lo=detesto lavare 
+
+	281. * lo=detesto lavare 
+
+	282. * Giuseppe lo=spinge Luisa a lavare 
+
+	283. * mi=sembrano lavare loro 
+
+	284. * lo=detesto lavare io 
+
+	285. * lo=spinge Luisa a lavare Giuseppe 
+
+& Group 6. Reflexive clitics
+
+& Group 6.1 Simple transitive direct object reflexives
+
+	286. io mi=lavo 
+		[[D io]:1 [T/fin [__:1 [v [lava [D mi(cl)]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(14), Consumed(21)
+
+	287. mi=lavo 
+		[T/fin [v [lava [D mi(cl)]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(9), Consumed(14)
+
+	288. tu mi=lavi 
+		[[D tu]:1 [T/fin [__:1 [v [lava [D mi(cl)]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(3), Transfer(5), Inflection(14), Consumed(21)
+
+	289. mi=lavi 
+		[T/fin [v [lava [D mi(cl)]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(9), Consumed(14)
+
+	290. lui si=lava 
+		[[D lui]:1 [T/fin [<__>:2 [__:1 [v [lava <D si(cl)>:2]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(4), Transfer(6), Inflection(12), Consumed(19)
+
+	291. lei si=lava 
+		[[D lei]:1 [T/fin [<__>:2 [__:1 [v [lava <D si(cl)>:2]]]]]]
+		Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(4), Transfer(6), Inflection(12), Consumed(19)
+
+	292. si=lava 
+		[T/fin [<__>:1 [v [lava <D si(cl)>:1]]]]
+		Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(1), Transfer(3), Inflection(7), Consumed(12)
+
+	293. mi=lavo io 
+		[[T/fin [v [lava [D mi(cl)]]]] <D io>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(14), Consumed(22)
+
+	294. mi=lavi tu 
+		[[T/fin [v [lava [D mi(cl)]]]] <D tu>]
+		Solutions(2), Merge(8), Move(head)(8), Move(phrasal)(0), Transfer(10), Inflection(14), Consumed(22)
+
+	295. si=lava lui 
+		[T/fin [<__>:1 [v [lava [<D si(cl)>:1 [D lui]]]]]]
+		Solutions(1), Merge(6), Move(head)(6), Move(phrasal)(3), Transfer(9), Inflection(12), Consumed(19)
+
+	296. si=lava lei 
+		[T/fin [<__>:1 [v [lava [<D si(cl)>:1 [D lei]]]]]]
+		Solutions(1), Merge(6), Move(head)(6), Move(phrasal)(3), Transfer(9), Inflection(12), Consumed(19)
+
+& Group 6.2 Simple intransitive si subjects
+
+	297. si=dorme 
+		[T/fin [dorme [D si(cl)]]]
+		Solutions(1), Merge(3), Move(head)(1), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(10)
+

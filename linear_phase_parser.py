@@ -595,7 +595,6 @@ class LinearPhaseParser:
             # Perform transfer
             T = self.transfer
             ps = T.transfer(ps, log_embedding)
-
         else:
             log(f'\t\t\t\tTransfer of {ps} terminated due to input condition violation.')
 
