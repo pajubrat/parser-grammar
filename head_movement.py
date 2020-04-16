@@ -107,7 +107,7 @@ class HeadMovement:
                 # If it requires SPEC...
                 else:
                     # we accept the solution is the local specifier is found
-                    if affix_.get_local_specifier():
+                    if affix_.get_local_edge():
                         return True
 
                     # What if the EPP is satisfied later by movement reconstruction?

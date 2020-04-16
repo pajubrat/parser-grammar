@@ -65,7 +65,7 @@ class FloaterMovement():
 
             # Condition 3. The phrase sits in a wrong SPEC position
             elif floater.mother and '-SPEC:*' in floater.mother.get_head().features:
-                if floater == floater.mother.get_head().get_local_specifier():
+                if floater == floater.mother.get_head().get_local_edge():
                     return floater
 
         # Special condition: the bottom constituent at the right
@@ -203,5 +203,5 @@ class FloaterMovement():
     # get_specifiers() wrapper that implements the modular interface to the PhraseStructure class
     # Must be sorted out
     def get_specifiers(self, h):
-        specs = h.get_generalized_specifiers()
+        specs = h.get_edge()
         return [spec for spec in specs if not spec.is_primitive()]

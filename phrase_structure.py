@@ -282,9 +282,14 @@ class PhraseStructure:
 
     # Definition for the relation of LOCAL SPECIFIER
     # (Should be simplified, unified)
-    def get_local_specifier(self):
+    def get_local_edge(self):
 
         # Case 1. Definition for SPEC for a primitive left head
+        #   Condition 1. H is primitive
+        #   Condition 2. H is left
+        #   Condition 3. There is XP, [XP [H XP]], XP complex and left
+        #   Condition 4. [H XP] is not adjunct
+        #   Condition 5. H projects
         if self.is_primitive() and \
                 self.is_left() and \
                 self.mother.sister() and \
@@ -296,7 +301,7 @@ class PhraseStructure:
                 return self.mother.sister()
 
         # Case 2. Definition for SPEC for a primitive right head
-        elif self.is_primitive() and self.is_right() and self.sister() and not self.sister().is_primitive():
+        elif self.is_primitive() and self.is_right() and self.sister() and self.sister().is_complex():
             return self.sister()
 
         # Case 3. Definition for pro-specifier (if no phrasal specifier exists)
@@ -319,30 +324,8 @@ class PhraseStructure:
             ps_ = ps_.walk_upstream()
         return count
 
-    # Definition of edge (of head h ('self'))
-    def get_edge(self):
-        if self.is_complex():
-            return None
-
-        if self.is_right():
-            ps_ = self
-        else:
-            ps_ = self.mother
-
-        edge_list = []
-
-        if self.extract_pro():
-            edge_list.append(self.extract_pro())
-
-        while ps_ and ps_.sister() and (ps_.sister().is_left() and ps_.sister().is_complex()):
-            edge_list.append(ps_.sister())
-            ps_ = ps_.walk_upstream()
-
-        return edge_list[::-1]
-
     # Returns a list of c-commanding complex left phrases up to the next head
-    # (Is used only when creating adjuncts, this must be replaced and/or reduced)
-    def get_generalized_specifiers(self):
+    def get_edge(self):
         if self.is_complex():
             return None
 
@@ -397,6 +380,11 @@ class PhraseStructure:
 
         phi_set = set()
 
+        # Condition for extracted pro specifier
+        #   Condition 1. H is phi-active (ARG)
+        #   Condition 2. Collect phi-features from H
+        #   Condition 3. Phi-set does not conflict
+
         # Only phi-active head can contain a pro-element
         if 'ARG' in self.features:
             # Collect phi-features
@@ -424,7 +412,7 @@ class PhraseStructure:
                 # Assumption 5. Pro-element is phonologically covert
                 pro.silence_phonologically()
 
-                # Assumption 7. Pro-element can be created only from a consistent phi-set
+                # Condition 3. Pro-element can be created only from a consistent phi-set
                 if not pro.phi_conflict():
                     return pro
             return None

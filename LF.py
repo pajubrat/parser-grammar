@@ -70,8 +70,8 @@ class LF:
 
         h = ps  # keep track of the fact that we have selected primitive head
 
-        spec = h.get_local_specifier()
-        specs = h.get_generalized_specifiers()
+        spec = h.get_local_edge()
+        specs = h.get_edge()
         comp = h.complement()
         lf_features = sorted(for_lf_interface(h.features))
 
@@ -102,12 +102,8 @@ class LF:
         # 4. Double Spec test for DP arguments
         #
         if '2SPEC' not in h.features:
-            """
-            Returns False if the head is associated with more than one non-adjunct DP specifier at LF
-            The test ignores adjuncts, non-DPs and DPs that have been moved out from SPEC
-            """
             count = 0
-            list_ = h.get_generalized_specifiers()
+            list_ = h.get_edge()
             if list_:
                 for spec_ in list_:
                     if not spec_.adjunct and 'D' in spec_.get_labels() and not spec_.find_me_elsewhere:
@@ -192,12 +188,12 @@ class LF:
                 else:
                     found = False
                     for s in specs:
-                        # Suitable left adjunct can satisfy SPEC requirement
+                        # First left adjunct CAN satisfy SPEC requirement
                         if s.adjunct:
                             if f[6:] in s.get_labels() or f[7:] in s.get_labels():
                                 found = True
                                 break
-                        # Suitable non-adjunct must satisfy SPEC requirement
+                        # First non-adjunct MUST satisfy SPEC requirement
                         else:
                             if f[6:] in s.get_labels() or f[7:] in s.get_labels():
                                 found = True
@@ -240,7 +236,7 @@ class LF:
         # 9. Discourse/pragmatic tests
         #
         # 9.1 This test accumulates discourse violations for each SPEC that cannot (easily) be topicalized
-        list_ = ps.get_generalized_specifiers()
+        list_ = ps.get_edge()
         if list_:
             if len(list_) > 1:
                 # Discourse penalty for multiple specifiers
@@ -389,7 +385,7 @@ class LF:
             while ps_:
                 # Termination condition: presence of local specifier
                 # Note: the reason is because any XP containing D can value D_, will be implemented later in this way
-                if ps_.sister() and ps_.sister() == ps.get_local_specifier():
+                if ps_.sister() and ps_.sister() == ps.get_local_edge():
                     if ps_.sister() and 'CAT:D' not in ps_.sister().get_head().features:
                         self.semantic_interpretation.add('Generic')
                         list_of_antecedents.append(ps_.sister())

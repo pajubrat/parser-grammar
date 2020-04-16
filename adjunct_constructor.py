@@ -37,10 +37,10 @@ class AdjunctConstructor:
                 # Condition 3. The specifier is accepted by the head
                 # Condition 4. The specifier is not pro/PRO
                 # Condition 5. The head is not marked for -ARG
-                if ps.get_generalized_specifiers() and not '-SPEC:*' in head.features and \
+                if ps.get_edge() and not '-SPEC:*' in head.features and \
                         not set(head.get_not_specs()).intersection(
-                            set(ps.get_generalized_specifiers()[0].get_labels())) and \
-                        not ps.get_generalized_specifiers()[0].is_primitive() and '-ARG' not in ps.features:
+                            set(ps.get_edge()[0].get_labels())) and \
+                        not ps.get_edge()[0].is_primitive() and '-ARG' not in ps.features:
                     if head.mother.mother:
                         self.make_adjunct(head.mother.mother)
                     return ps.mother.mother

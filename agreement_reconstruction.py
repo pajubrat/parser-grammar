@@ -94,7 +94,7 @@ class AgreementReconstruction:
         # Operation 2. phi-Agree via edge
         # Acquires phi-features from edge
         def acquire_from_edge(h):
-            edge_list = h.get_edge()
+            edge_list = self.get_edge_for_Agree(h)
             if edge_list:
                 for edge in edge_list:
                     edge_head = edge.get_head()
@@ -230,3 +230,32 @@ class AgreementReconstruction:
 
     def mark_bad(self, phi):
         return phi + '*'
+
+    # Definition of edge (of head h ('self'), h must be primitive)
+    def get_edge_for_Agree(self, h):
+
+        # Presupposition 1. h is complex
+        if h.is_complex():
+            return None
+
+        if h.is_right():
+            ps_ = h
+        else:
+            ps_ = h.mother
+
+        edge_list = []
+
+        # Condition 1. If there is pro, include it as the first element
+        if h.extract_pro():
+            edge_list.append(h.extract_pro())
+
+        # Condition 2. Include XPs if and only if
+        #   Condition 2A. XP is left to dominating node
+        #   Condition 2B. XP is complex
+        # until an element is found that does not satisfy 2A-B
+        while ps_ and ps_.sister() and (ps_.sister().is_left() and ps_.sister().is_complex()):
+            edge_list.append(ps_.sister())
+            ps_ = ps_.walk_upstream()
+
+        # Reverse the list (top-down order)
+        return edge_list[::-1]
