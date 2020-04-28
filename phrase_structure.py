@@ -233,21 +233,21 @@ class PhraseStructure:
     # Recursive definition for head (also label) of a phrase structure
     def get_head(self):
 
+        # Case 1. H is primitive, then return H
         if self.is_primitive():
             return self
 
-        # Case 1. [H XP] returns H
-        if not self.is_primitive():
+        # Case 2. H is not primitive
+        else:
+            # Case 2.A [H XP] returns H
             if self.left_const.is_primitive():
                 return self.left_const
 
-        # Case2. {XP H] returns H
-        if not self.is_primitive():
+            # Case 2.B [XP H] returns H
             if self.right_const.is_primitive():
                 return self.right_const
 
-        # Case 3. [XP, YP] = look into YP if it is not an adjunct, otherwise look into XP
-        if not self.is_primitive():
+            # Case 2.C [XP, YP] = look into YP if it is not an adjunct, otherwise look into XP
             if not self.left_const.is_primitive() and not self.right_const.is_primitive():
                 if self.right_const.adjunct:
                     return self.left_const.get_head()
@@ -389,7 +389,7 @@ class PhraseStructure:
         if 'ARG' in self.features:
             # Collect phi-features
             for f in self.features:
-                if f[:4] == 'PHI:':
+                if f[:4] == 'PHI:' and f[-1] != '_':
                     phi_set.add(f)
             # Construct a pronominal phi-set
             if phi_set:

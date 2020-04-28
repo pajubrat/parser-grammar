@@ -11,11 +11,11 @@ class Extraposition:
 
     def reconstruct(self, ps):
 
-        # Extraposition can be attempted only for "referential" structures (T/fin, D)
+        # Presupposition 1. Extraposition can be attempted only for "referential" structures (T/fin, D)
         if not (ps.get_top().contains_feature('CAT:FIN') or 'D' in ps.get_top().get_labels()):
             return
 
-        # Extraposition for unselected heads (i.e. *X selects Y)
+        # Presupposition 2. Extraposition for unselected heads (i.e. *X selects Y)
         unselected_head = self.find_selection_violation(ps)
         if unselected_head:
             self.try_extraposition(unselected_head)
@@ -62,52 +62,62 @@ class Extraposition:
 
     def last_resort_reconstruct(self, ps):
 
-        # Presupposition 1
-        # LF - legibility fails (last resort)
-        if ps.get_top().LF_legibility_test().all_pass():
+        # Presupposition 1. We operate only referential structures (T/fin, D)
+        if not (ps.get_top().contains_feature('CAT:FIN') or 'D' not in ps.get_top().get_labels()):
             return
 
-        # Presupposition 2
-        # Do this only for referential structures (T/fin, D)
-        if not (ps.get_top().contains_feature('CAT:FIN') or 'D' in ps.get_top().get_labels()):
+        # Presupposition 2. LF - legibility fails (last resort)
+        if ps.get_top().LF_legibility_test().all_pass():
             return
 
         log(f'\t\t\t\t\tLast resort extraposition will be tried on {ps.get_top()}.')
 
+        # The operation performs an upstream walk
         ps_ = self.get_bottom(ps).mother
 
-        # Find first [H XP] where H is adjoinable and
-        # we have either (i) [XP][HP] or (ii) [X HP] with X not selecting for H,
-        # then try is HP could be an adjunct
-        while ps_:
-            # If (i), we select HP (=ps_)
-            if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
-                if ps_.sister().is_complex():
-                    break
+        # Promote HP into an adjunct if and only if
+        # Condition 1. HP is the first [H XP] from the bottom where H is adjoinable,
+        # Condition 2. The grammatical context of HP is either
+        #   (i) [XP][HP] or
+        #   (ii) [X HP] with X not selecting for H, if and only if
+        #          a-X has explicit negative selection for H,
+        #          b-X has mandatory election for another label than H
+        # Condition 3. HP is adjoinable
 
-                # (ii) If X HP, then select HP if and only if the head rejects HP as complement
+        while ps_:
+
+            # Condition 2(i), ps_ = [H YP], [XP][H YP]
+            if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
+                if  ps_.sister().is_complex():
+                    break
+                # Condition 2(ii) ps_ = [H YP], [X0 [H YP]]
+                # Select HP if and only if X0 rejects HP as complement
                 else:
-                    # Explicit non-selection
+                    # Condition 2(ii)-a. Explicit negative selection
                     if ps_.left_const.get_labels() & ps_.sister().get_not_comps():
                         break
-                    # Mandatory selection for something else
+                    # Condition 2(ii)-b. Mandatory selection for something else
                     if ps_.sister().get_mandatory_comps() and not (
                             ps_.left_const.get_labels() & ps_.sister().get_mandatory_comps()):
                         break
             ps_ = ps_.walk_upstream()
 
         # If a suitable node was found, we try to turn it into an adjunct
+        # [H XP] will be promoted into an adjunct if and only if
+        # Condition 1. H's feature vector contains FIN or D (redundant)
+        # Condition 2. <H XP> will be LF-interpretable at that position
         if ps_:
-            # Presupposition 1. The adjunct must be interpretable
-            # (This is like presupposition 2 but I will leave it here for now)
+            # The adjunct must be interpretable at this location
             for head in ps_.left_const.get_feature_vector():
+                # Condition 1. H's feature vector must contain FIN or D
                 if 'FIN' in head.get_labels() or 'D' in head.get_labels():
                     self.adjunct_constructor.create_adjunct(ps_)
+                    # Condition 2. <H XP> is interpretable as an adjunct at that location.
                     if not ps_.get_top().LF_legibility_test().all_pass():
-                            log(f'\t\t\t\t\tThe structure is still uninterpretable!')
+                            log(f'\t\t\t\t\tSomething is still wrong. The structure is still uninterpretable.')
                     return True
         else:
-            log(f'\t\t\t\t\tNo suitable node for extraposition found; no action was taken.')
+            log(f'\t\t\t\t\tNo suitable node for extraposition found. No action was taken.')
         return False
 
 

@@ -6,7 +6,7 @@
 # Imports
 import itertools
 
-scramble_file_list = ['Study4a']
+scramble_file_list = ['scramble_corpus']
 
 print('Scrambling...')
 
@@ -28,7 +28,7 @@ for input_file_name in scramble_file_list:
 
                 # Create sentence without prosodic focus
                 print(str(counter))
-                results_file.write('#' + str(counter) + '\n')
+                # results_file.write('#' + str(counter) + '\n')
                 for word in permutation:
                     results_file.write(word + ' ')
                 results_file.write('\n')

@@ -147,7 +147,7 @@ class LinearPhaseParser:
                             log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
                             show_results(ps_, self.result_list, self.semantic_interpretation)
 
-                            self.exit = True    # Knock this out if you want to see all solutions
+                            # self.exit = True    # Knock this out if you want to see all solutions
                         else:
                             log('\t\t\tThe sentence cannot be interpreted at LF')
                     else:
@@ -258,7 +258,7 @@ class LinearPhaseParser:
                 # All branches for the incoming surface word have been explored
                 log(f'\t\tI have now explored all solutions for \"' + lst[index] + '\".')
                 log('\t\tGoing one step backwards and taking another solution from previous ranking list........'
-                    '\n\t\t.\n\t\t.\n\t\t.')
+                    '\n\n\t\t(backtracking...)\n')
             return
 
     # Filter impossible sites
@@ -287,7 +287,8 @@ class LinearPhaseParser:
                     continue  # Do not add this site to the list
 
             # Filter condition C.
-            # Check the left branch 'site' in Merge(site, W) for LF-legibility
+            # Check the left branch 'site' in Merge(site, W) for strong LF-legibility
+            # "Strong LF-legibility" means that at least three tests must fail, see below.
             if not site.is_primitive():
 
                 #

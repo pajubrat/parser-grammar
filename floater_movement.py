@@ -44,11 +44,13 @@ class FloaterMovement():
         # Condition 2: X has not been copied somewhere
         # Condition 3: X has a tail set
         # Condition 4: X has not been prevented from floating around
+        # Condition 5: X has no criterial feature
         if not _ps_iterator.is_primitive() and \
                 not _ps_iterator.left_const.is_primitive() and \
                 not _ps_iterator.left_const.find_me_elsewhere and \
                 _ps_iterator.left_const.get_head().get_tail_sets() and \
-                not '-FLOAT' in _ps_iterator.left_const.get_head().features:
+                not '-FLOAT' in _ps_iterator.left_const.get_head().features and \
+                not _ps_iterator.get_criterial_features():
 
             floater = _ps_iterator.left_const
 

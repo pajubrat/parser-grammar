@@ -5,7 +5,7 @@ a		 :: CAT:P PF:a LF:to COMP:ARE/inf -SPEC:* -ARG LANG:IT
 admire   :: admire-#v#T/fin#[-0] LANG:EN
 admire'	 :: admire-#v LANG:EN
 admires  :: admire-#v#T/fin#[-s] LANG:EN
-admire-  :: PF:admire LF:admire CAT:V !COMP:*
+admire-  :: PF:admire LF:admire CAT:V -SPEC:Neg -COMP:Neg !COMP:* COMP:D
 
 adoro	:: adora-#v#T/fin#[-o] LANG:IT
 adori	:: adora-#v#T/fin#[-i] LANG:IT
@@ -14,6 +14,9 @@ adoriamo :: adora-#v#T/fin#[-iamo] LANG:IT
 adorate :: adora-#v#T/fin#[-te] LANG:IT
 adorano :: adora-#v#T/fin#[-no] LANG:IT
 adora-	:: PF:adora LF:admire CAT:V COMP:D LANG:IT
+
+anta-   :: PF:antaa LF:give CAT:V SPEC:D !COMP:D -COMP:FIN +SEM:directional LANG:FI
+antoi   :: anta-#v#T/fin#[-V] LANG:FI
 
 asks	:: ask-#v#T/fin#[-s] LANG:EN
 ask-	:: PF:ask LF:ask CAT:V SPEC:D COMP:D SEM:internal LANG:EN
@@ -28,7 +31,7 @@ detest-	:: CAT:V PF:detest LF:detest SEM:external COMP:D LANG:IT
 devono :: deva-#T/fin#[-no]
 deva-	:: CAT:V PF:deva LF:must SPEC:D COMP:ARE/inf SEM:internal -ASP LANG:IT
 
-does	:: CAT:T/fin PHI:PER:3 PHI:NUM:SG PF:does LF:does LANG:EN
+does	:: CAT:T/fin PHI:PER:3 PHI:NUM:SG PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does LANG:EN
 
 dorme	:: dorme-#T/fin#[-e] LANG:IT
 dorme-	:: CAT:V !SPEC:D PF:dorme LF:sleep
@@ -89,6 +92,9 @@ kaske-	:: PF:kaske LF:order CAT:V !COMP:A/inf SEM:external LANG:FI
 keta	:: keta-#D#wh#par#sg#3p#def#hum LANG:FI
 keta-   :: PF:ketä LF:who CAT:N CAT:PHI LANG:FI
 
+kirja-  :: PF:kirja LF:book CAT:N -SEM:directional LANG:FI
+kirjan  :: kirja-#D#asp LANG:FI
+
 kuka 	:: kuka-#D#wh#nom#sg#3p#def#hum LANG:FI
 kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
 
@@ -114,6 +120,8 @@ like-   :: PF:like LF:like CAT:V !COMP:D LANG:EN
 likes   :: like-#v#T/fin#sg#3p#def LANG:EN
 like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
 
+lle     :: PF:P(lle) LF:for CAT:P +SEM:directional TAIL:CAT:V,+SEM:directional LANG:FI
+
 Luisa	:: Luisa-#D#sg#3p#def#hum#f LANG:IT
 Luisa-	:: PF:Luisa CAT:N -SEM:directional LF:Luisa LANG:IT 
 
@@ -124,6 +132,7 @@ Merja   :: Merja-#D#nom#sg#3p#def#hum#def LANG:FI
 Merjan	:: Merja-#D#gen#sg#3p#def#hum#def LANG:FI
 Merjaa	:: Merja-#D#par#sg#3p#def#hum#def LANG:FI
 Merja-  :: PF:Merja- CAT:N -SEM:directional LANG:FI
+Merjalle	::	Merja-#D#lle
 
 malla	:: CAT:ADV PF:malla LF:by COMP:v LANG:FI
 
@@ -131,6 +140,8 @@ mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
 
 mukavasti :: mukava-#sti
 mukava-	:: PF:mukavasti LF:comfortably CAT:A LANG:FI
+
+not		:: CAT:Neg LF:not PF:not ARG -VAL -COMP:FIN -SPEC:T/fin SPEC:* -COMP:C -COMP:D !COMP:* LANG:EN
 
 ollut	:: T/prt#[-V] LANG:FI
 on'		:: T/fin#[-V] LANG:FI

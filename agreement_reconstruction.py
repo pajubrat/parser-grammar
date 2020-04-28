@@ -6,9 +6,12 @@ class AgreementReconstruction:
         pass
 
     # Definition for agreement reconstruction
+    # Walk downstream, force head H acquire phi-features if and only if
+    # Condition 1. H is a primitive head to the left AND
+    # Condition 2. H requires feature valuation
     def reconstruct(self, ps):
 
-        # Crawl through the structure in a downward direction
+        # Downstream walk
         ps_ = ps
         while ps_:
 
@@ -19,155 +22,140 @@ class AgreementReconstruction:
                 # Condition 2. The head requires feature valuation
                 if '-VAL' not in h.features and self.is_unvalued(h):
                     # The head acquires phi-feature
+                    log(f'\t\t\t\t\tHead {h}, lacking -VAL, has unvalued phi probe and triggered Agree-1:')
                     self.acquire_phi(h)
 
             ps_ = ps_.walk_downstream()
 
     # Definition for phi-feature acquisition
+    # H (with unvalued phi) acquires phi-features from
+    # Operation 1. The edge (DP specs plus head, in that order)
+    # Operation 2. From the left branch DPs within the sister, up to first target and a phase boundary
     def acquire_phi(self, h):
-
-        # Internal functions
-        # Function 1. Values phi_feature 'phi' into h if matching unvalued feature is found
-        def value(h, phi):
-
-            # Internal function
-            # Definition for unvalued target feature
-            def find_unvalued_target(h, phi):
-                for g in h.features:
-                    if self.unvalued(g):        # We are only concerned with unvalued features
-                        g_ = g[:-1]             # Remove the _
-                        phi_ = phi[:len(g_)]    # Match the remaining portion
-                        if g_ == phi_:          # Check if the unvalued feature and the tested phi-feature match
-                            return g
-                return None
-
-            # Provides a target feature inside h for feature 'phi'
-            target = find_unvalued_target(h, phi)
-            if target:
-
-                # Checks for phi-feature conflicts
-                if not self.valuation_check(h, phi):
-
-                    # In the case of conflict, we mark the feature bad
-                    phi = self.mark_bad(phi)
-
-                # Remove the unvalued version of the phi-feature F:_
-                h.features.remove(target)
-
-                # Add the valued version F:X
-                h.features.add(phi)
-                return True
-
-            return False
-
-        # Operation 1. Acquire phi-feature from sister
-        # Looks for the closest left branch DP with D containing valued phi-features inside its sister
-        # [H [...DP XP]] and returns the goal and a set of phi-features in it.
-        def acquire_from_sister(ps):
-
-            ps_ = ps
-            phi_features = set()
-
-            # Downstream loop
-            while ps_:
-
-                # Condition 1. XP  is left and is not primitive
-                if ps_.left_const and not ps_.is_primitive():
-
-                    goal = ps_.left_const.get_head()
-
-                    # Condition 2. Stop at a phase boundary (no long distance probing)
-                    if goal.is_phase():
-                        break
-
-                    # Condition 3. Look for DPs
-                    if 'CAT:D' in goal.features:
-
-                        # Collect all valued phi-features (ignore unvalued features)
-                        for f in goal.features:
-                            if self.phi(f) and self.valued(f):
-                                phi_features.add(f)
-                        return goal, sorted(phi_features)  # We only consider the first DP
-                ps_ = ps_.walk_downstream()
-            return ps_, []
-
-        # Operation 2. phi-Agree via edge
-        # Acquires phi-features from edge
-        def acquire_from_edge(h):
-            edge_list = self.get_edge_for_Agree(h)
-            if edge_list:
-                for edge in edge_list:
-                    edge_head = edge.get_head()
-                    # Condition 1. The element must be D(P)
-                    # Condition 2. The element must not be an adjunct
-                    if 'CAT:D' in edge_head.features and not edge.adjunct:
-                        phi_features = set()
-                        for f in edge_head.features:
-                            # Condition 3. Get valued phi-features from DP
-                            if self.phi(f) and self.valued(f):
-                                phi_features.add(f)
-                        return edge_head, sorted(phi_features)  # We only consider the first DP
-            return None, set()
-
-        # ------------ main function 'acquire_phi()' beings here ----------------#
-
-        phi_features = set()
 
         #
         # Operation 1. Try edge-Agree
         #
-        goal, phi_features = acquire_from_edge(h)
+        # Pick up the target (goal) and its phi-features
+        goal, phi_features = self.acquire_from_edge(h)
         for phi in phi_features:
-            if value(h, phi):
-                log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' from the edge of {h}.')
+            # Try to value phi-features fromm the goal into the probe head h
+            if self.value(h, phi):
+                log(f'\t\t\t\t\t\t{h} acquired ' + str(phi) + f' from the edge of {h}.')
                 # Agreement leads into phi-checking, which prevents pro-extraction from the same head
-                # '*Minä uskon että ihailen minä Merjaa', here T should not project pro because S is present
 
         #
-        # Operation 2. Acquire phi-features by phi-Agree
+        # Operation 2. Acquire phi-features from sister by sister-Agree
         #
+        # Condition 1. The head has unvalued phi-features after edge-Agree (Operation 1)
         if self.is_unvalued(h):
-            goal, phi_features = acquire_from_sister(h.sister())  # Acquire phi-features
+            goal, phi_features = self.acquire_from_sister(h.sister())  # Acquire phi-features
             for phi in phi_features:  # Try to value
-                if value(h, phi):
-                    log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
+                if self.value(h, phi):
+                    log(f'\t\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
                     # Agreement leads into phi-checking
                     h.features.add('PHI_CHECKED')
 
-        # --------------- main function ends ---------------------------------------#
+    # Definition for sister-Agree
+    # Looks for the closest left branch DP with D containing valued phi-features inside its sister
+    # [H [...DP XP]] and returns the goal and a set of phi-features in it.
+    # ps = sister of the head acquiring phi-features
+    def acquire_from_sister(self, ps):
 
-    # Get a set of phi-features from head
-    def get_phi_set(self, ps):
-        head_ = ps.get_head()
-        return {f for f in head_.features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
+        ps_ = ps
 
-    # Definition for unvalued phi-feature
-    def is_unvalued(self, h):
-        for feature in h.features:
-            if feature[:4] == 'PHI:' and feature[-1] == '_':
-                return True
+        # Downstream loop
+        while ps_:
+
+            # Condition 1. XP is left and is not primitive
+            # [H [XP YP]]
+            if ps_.left_const and ps_.is_complex():
+
+                goal = ps_.left_const.get_head()
+
+                # Condition 2. Stop at a phase boundary (no long distance probing)
+                # Phase is defined as {v, C, Force, BE}, but this is stipulation
+                if goal.is_phase():
+                    break
+
+                # Condition 3. Look for DPs
+                if 'CAT:D' in goal.features:
+
+                    # Collect all valued phi-features (ignore unvalued features)
+                    return goal, sorted({f for f in goal.features if self.phi(f) and self.valued(f)})
+            ps_ = ps_.walk_downstream()
+        return ps_, {}
+
+    # Operation 2. phi-Agree via edge
+    # Acquires phi-features from edge
+    def acquire_from_edge(self, h):
+        edge_list = self.get_edge_for_Agree(h)
+        if edge_list:
+            for edge in edge_list:
+                edge_head = edge.get_head()
+                # Condition 1. The element must be D(P)
+                if 'CAT:D' in edge_head.features:
+                    phi_features = set()
+                    for f in edge_head.features:
+                        # Condition 3. Get valued phi-features from DP
+                        if self.phi(f) and self.valued(f):
+                            phi_features.add(f)
+                    return edge_head, sorted(phi_features)  # We only consider the first DP
+        return None, set()
+
+    # Values unvalued features in a head h with valued feature phi
+    def value(self, h, phi):
+
+        # Provides a target feature set inside h for feature phi
+        # e.g. all [PHI:F:__] is a target for [PHI:F:x]
+        target = self.find_unvalued_target(h, phi)
+        if target:
+
+            # Checks for phi-feature conflicts
+            # In the case of conflict, we mark the feature bad
+            if not self.valuation_check(h, phi):
+                phi = self.mark_bad(phi)
+
+            # Remove the unvalued version of the phi-feature F:_
+            h.features = h.features - target
+
+            # Add the valued version F:X
+            h.features.add(phi)
+            return True
         return False
+
+    # Definition for unvalued target feature
+    # [PHI:F:_] in h is a target for [PHI:F:x] (phi)
+    def find_unvalued_target(self, h, phi):
+        return {f for f in h.features if self.unvalued(f) and f[:-1]==phi[:len(f[:-1])]}
+
+    # Get a set of phi-features from head pf
+    # Condition 1. Feature begins with "PHI:"
+    # Condition 2. It has three parts separated by ":"
+    def get_phi_set(self, ps):
+        return {f for f in ps.get_head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
+
+    # Definition for whether h has unvalued phi-features
+    # Condition 1. Feature begins with "PHI:"
+    # Condition 2. Feature ends with "_"
+    def is_unvalued(self, h):
+        return {f for f in h.features if f[:4] == 'PHI:' and f[-1] == '_'}
 
     # Definition for valued phi-feature
+    # Condition 1. Feature begins with "PHI:"
+    # Condition 2. Feature does not end with "_"
     def is_valued(self, h):
-        for f in h.features:
-            if f[:4] == 'PHI:' and f[-1] != '_':
-                return True
-        return False
+        return {f for f in h.features if f[:4] == 'PHI:' and f[-1] != '_'}
 
     # Definition for unvalued feature
-    def unvalued(self, f):
-        if f[-1] == '_':
-            return True
-        else:
-            return False
+    # Condition 1. Feature ends with "_"
+    def unvalued(self, input_feature):
+        return {f for f in {input_feature} if f[-1] == '_'}
 
     # Definition for valued feature
-    def valued(self, f):
-        if not self.unvalued(f):
-            return True
-        else:
-            return False
+    # Condition 1. Feature is not unvalued
+    def valued(self, input_feature):
+        return {f for f in {input_feature} if not self.unvalued(f)}
 
     # Definition of the phi-feature TYPE
     def get_type(self, f):
@@ -178,51 +166,46 @@ class AgreementReconstruction:
         return f.split(':')[2]
 
     # Definition for PHI-feature
-    def phi(self, f):
-        if f[:4] == 'PHI:':
-            return True
-        else:
-            return False
+    def phi(self, input_feature):
+        return {f for f in {input_feature} if f[:4] == 'PHI:'}
 
     # Definition for feature conflict
     def feature_conflict(self, f, phi):
-
         # If the type match but value does not, the result is feature conflict
         if self.get_type(f) == self.get_type(phi) and self.get_value(f) != self.get_value(phi) and self.valued(f):
-
             log(f'\t\t\t\t\t\tFeature conflict between {f} and {phi}.')
             return True
         else:
             return False
 
-    # Checks if the probe ('h') already has valued phi-features (e.g. from agreement suffixes) and if yes,
-    # that a matching (licensing) feature is found
-    # Condition 1. If h has only unvalued features, valuation is never blocked (only check valued features)
-    # Condition 2. If h has valued features, then check if a valued feature of the same type must exist
-    # Thus, valued features are interpreted as licensors.
+    # Allow valuation if and only if
+    # Condition 1. h has only unvalued features OR
+    # Condition 2. if h has valued feature of the same type, it must have a matching 'type:value'.
     def valuation_check(self, h, valued_feature):
 
-        # Completely unvalued heads do not raise an error
+        # Condition 1.
+        # Completely unvalued (no valued feature) heads do not raise an error
         if not self.is_valued(h):
             return True
 
         # Technical preparations
-        valued_feature_type = self.get_type(valued_feature)
-        phi_set = self.get_phi_set(h)
+        valued_input_feature_type = self.get_type(valued_feature)
+        heads_phi_set = self.get_phi_set(h)
 
+        # Condition 2.
         # Must find a matching valued feature from head h (if exists)
-        for phi in phi_set:
+        for heads_phi_feature in heads_phi_set:
 
             # If we find an existing feature of the same type...
-            if self.valued(phi) and self.get_type(phi) == valued_feature_type:
+            if self.valued(heads_phi_feature) and self.get_type(heads_phi_feature) == valued_input_feature_type:
 
                 # ...then we must also find a matching feature
-                for g in phi_set:
+                for g in heads_phi_set:
                     if g == valued_feature:
                         return True
 
                 # If matching feature is not found, valuation is not licensed
-                log(f'\t\t\t\t\tFeature {valued_feature} was not matched in {h} and was marked as bad.')
+                log(f'\t\t\t\t\t\tFeature {valued_feature} was not matched in {h} and was marked as bad.')
                 return False
 
         # If type was not matched, then valuation is again possible

@@ -119,13 +119,13 @@ class PhrasalMovement():
                     # ...and it has not been moved already...
                     if not _ps_spec_iterator.sister().find_me_elsewhere:
 
-                        # ...and it is not a PHI:0 head...
-                        if 'PHI:0' not in h.features:
+                        # ...and it has criterial features
+                        if criterial_features:
                             # ...we put a pointer to the specifier into memory buffer.
                             list_.append(_ps_spec_iterator.sister())
                             log(f'\t\t\t\t\tMoving \"' + _ps_spec_iterator.sister().spellout() + f'\" into memory buffer from SPEC of \"{h}\".')
 
-                        #... if it is a PHI:0 head...
+                        #... if there are no criterial features
                         else:
                             #...we reconstruct  A-movement (a version of phi-agreement)
                             self.A_reconstruct(_ps_spec_iterator.sister())
@@ -221,6 +221,7 @@ class PhrasalMovement():
 
                 # (ii) comp features can be satisfied by an element in the memory buffer
                 for const in self.memory_buffer:
+
                     if h.get_comps() & const.get_labels():
 
                         # then select the first such constituent from the memory buffer

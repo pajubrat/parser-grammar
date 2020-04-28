@@ -39,7 +39,7 @@ class LF:
     def fail(self):
         return not self.all_pass()
 
-    # LF-tests that checks LF-legibility for primitive constituents (not phrases)
+    # Checks LF-legibility for primitive constituents (not phrases)
     def test(self, ps):
 
         # Returns the selected sister (if any) of the constituent
@@ -49,9 +49,12 @@ class LF:
             if ps.is_primitive() and not ps.geometrical_sister():
                 return None
 
-            # H~YP, YP~H => YP is selected sister
+            # H~YP (YP not adjunct), YP~H (YP left phrase) => YP is selected sister
             if ps.geometrical_sister().is_complex():
-                return ps.geometrical_sister()
+                if ps.geometrical_sister().is_left():
+                    return ps.geometrical_sister()
+                elif ps.geometrical_sister().is_right() and not ps.geometrical_sister().adjunct:
+                    return ps.geometrical_sister()
             else:
                 # H~Y => Y is selected sister
                 if ps.geometrical_sister().is_right():
@@ -128,6 +131,7 @@ class LF:
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
                 for spec_ in specs:
+
                     if spec_ and f[6:] in spec_.get_labels():
                         if not spec_.adjunct:
                             log(f'\t\t\t\t{ps} has unacceptable specifier {spec_}.')
@@ -218,21 +222,31 @@ class LF:
                 self.criterial_feature_test_result = False
 
         #
-        # 8. Projection principle test for complex referential non-adjunct arguments
+        # 8. Projection principle test for referential arguments
         #
-        # Check only non-adjunct arguments
-        if spec and not spec.adjunct and spec.is_complex() and 'D' in spec.get_labels() and not spec.find_me_elsewhere:
-            # Arguments cannot be left to the SPEC of non-thematic head
-            if h.EPP():
-                log(f'\t\t\t\t{spec} has no thematic role.')
-                self.projection_principle_test_result = False
-            # or to the SPEC of a head without PHI specification that is c-commanded closest by -ARG.
-            else:
-                if h.get_selector() and 'ARG' not in h.get_selector().features:
-                    log(f'\t\t\t\t{spec} has no thematic role due to a selecting -PHI head.')
+        # Condition 1. Only target DPs that nave not been copied elsewhere (check LF-positions)
+        if 'D' in h.get_labels() and h.mother and not h.mother.find_me_elsewhere:
+            DP = h.mother
+            # Condition 2. DPs cannot occur at non-thematic SPEC position unless licensed by 'SEM:nonthematic'
+            if DP.get_container_head() and DP in DP.get_container_head().get_edge():
+                container_head = DP.get_container_head()
+                # Condition 2.1 EPP heads
+                if container_head.EPP():
+                    log(f'\t\t\t\t{DP} has no thematic role due to being at SPEC of EPP head.')
+                    self.projection_principle_test_result = False
+                # Condition 2.2 Heads selected by -AGR heads
+                elif container_head.get_selector() and 'ARG' not in container_head.get_selector().features:
+                    log(f'\t\t\t\t{DP} has no thematic role due to a selecting -ARG head.')
+                    self.projection_principle_test_result = False
+                elif 'D' not in container_head.get_specs():
+                    log(f'\t\t\t\t{DP} has no thematic role at the SPEC of {container_head}')
                     self.projection_principle_test_result = False
 
-        #
+            # Condition 3. non-SPEC adjunct DPs must be licensed by 'SEM:nonthematic'
+            elif DP.adjunct and not DP.contains_feature('SEM:nonthematic'):
+                # Condition 3. Nonlicensed Adjunct DPs must be licensed by 'SEM:nonthematic' inside the DP
+                self.projection_principle_test_result = False
+
         # 9. Discourse/pragmatic tests
         #
         # 9.1 This test accumulates discourse violations for each SPEC that cannot (easily) be topicalized
