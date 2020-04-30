@@ -1,0 +1,205 @@
+﻿dummy	:: dummy
+
+a	    ::  PF:a CAT:D LF:a LANG:EN PHI:NUM:SG PHI:PER:3 PHI:DET:INDEF
+
+admire   :: admire-#v#T/fin#[-0] LANG:EN
+admires  :: admire-#v#T/fin#[-s] LANG:EN
+admire-  :: PF:admire LF:admire CAT:V COMP:D
+
+adoro	:: adora-#v#T/fin#[-o] LANG:IT
+adori	:: adora-#v#T/fin#[-i] LANG:IT
+adora	:: adora-#v#T/fin#[-a] LANG:IT
+adoriamo :: adora-#v#T/fin#[-iamo] LANG:IT
+adorate :: adora-#v#T/fin#[-te] LANG:IT
+adorano :: adora-#v#T/fin#[-no] LANG:IT
+adora-	:: PF:adora LF:admire CAT:V COMP:D LANG:IT
+
+adoro*	:: adora-*#v#T/fin#[-o] LANG:IT
+adoro** :: adora-*#vv#T/fin#[-o] LANG:IT
+adora-*	:: PF:adora LF:admire CAT:V COMP:D VAL LANG:IT
+
+asks	:: ask-#v#T/fin#[-s] LANG:EN
+ask-	:: PF:ask LF:ask CAT:V SPEC:D COMP:D SEM:internal LANG:EN
+
+Cen		:: PF:en LF:by CAT:ADV -ARG LANG:FI
+
+etsii	:: etsi-#v#T/fin#[-V] LANG:FI
+etsi-	:: PF:etsi LF:search CAT:V !COMP:D LANG:FI COMP:D
+
+etta    :: PF:että LF:that CAT:FORCE LANG:FI
+
+haluaa 	:: halua-#v#T/fin#[-V] LANG:FI
+haluan	:: halua-#v#T/fin#[-n] LANG:FI
+halua- 	:: PF:haluaa LF:want CAT:V !COMP:* COMP:D COMP:A/inf SEM:internal LANG:FI
+
+ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
+ihailet	:: ihaile-#v#T/fin#[-t] LANG:FI
+ihailee :: ihaile-#v#T/fin#[-V] LANG:FI
+ihailemme :: ihaile-#v#T/fin#[-mme] LANG:FI
+ihailette :: ihaile-#v#T/fin#[-tte] LANG:FI
+ihailevat :: ihaile-#v#T/fin#[-vat] LANG:FI
+ihaile- :: PF:ihaile- LF:admire CAT:V !COMP:D -COMP:FIN LANG:FI
+
+is		:: be-#T/fin#[-s] LANG:EN
+be-		:: PF:be LF:be CAT:V CAT:COPULA SPEC:D SPEC:TO/inf -COMP:TO/inf !COMP:* -ARG LANG:EN
+
+John 	:: John-#D#sg#3p#def#hum#m LANG:EN
+John-	:: PF:John CAT:N -SEM:directional LF:John LANG:EN
+
+Jukka   :: Jukka-#D#nom#sg#3p#def#hum#def LANG:FI -SEM:directional LANG:FI
+Jukka-  :: PF:Jukka LF:Jukka CAT:N -SEM:directional LANG:FI
+
+juosten :: juokse-#Cen LANG:FI
+juokse-	:: PF:juokse- LF:run CAT:V LANG:FI
+
+istuu	:: istu-#T/fin#[-V] LANG:FI
+istu-	:: PF:istuu LF:sit CAT:V LANG:FI
+
+kaskee	:: kaske-#v*#T/fin#[-V] LANG:FI
+kaske-	:: PF:kaske LF:order CAT:V !COMP:A/inf SEM:external LANG:FI
+
+keta	:: keta-#D#wh#par#sg#3p#def#hum LANG:FI
+keta-   :: PF:ketä LF:who CAT:N CAT:PHI LANG:FI
+
+kuka 	:: kuka-#D#wh#nom#sg#3p#def#hum LANG:FI
+kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
+
+lahtea 	:: lahte-#A/inf LANG:FI
+lahtemaan :: lahte-#MA/inf LANG:FI
+lahtevan :: lahte-#VA/inf LANG:FI
+lahte- 	:: PF:lahtea LF:leave CAT:V SPEC:D COMP:PP LANG:FI
+leave	:: PF:leave LF:leave CAT:V !SPEC:D LANG:EN
+
+like-   :: PF:like LF:like CAT:V !COMP:D LANG:EN
+likes   :: like-#v#T/fin#sg#3p#def LANG:EN
+like	:: PF:like LF:like CAT:V !COMP:D LANG:EN
+
+Luisa	:: Luisa-#D#sg#3p#def#hum#f LANG:IT
+Luisa-	:: PF:Luisa CAT:N -SEM:directional LF:Luisa LANG:IT 
+
+Mary	:: Mary-#D#sg#3p#def#hum#f LANG:EN
+Mary-	:: PF:Mary CAT:N -SEM:directional LF:Mary LANG:EN 
+
+Merja   :: Merja-#D#nom#sg#3p#def#hum#def LANG:FI
+Merjan	:: Merja-#D#gen#sg#3p#def#hum#def LANG:FI
+Merjaa	:: Merja-#D#par#sg#3p#def#hum#def LANG:FI
+Merja-  :: PF:Merja- CAT:N -SEM:directional LANG:FI
+
+mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
+
+mukavasti :: mukava-#sti
+mukava-	:: PF:mukavasti LF:comfortably CAT:A LANG:FI
+
+Pekka   :: Pekka-#D#nom#sg#3p#def#hum#def LANG:FI -SEM:directional LF:Merja LANG:FI
+Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
+
+persuades :: persuade-#v*#T/fin#[-s] LANG:EN
+persuade- :: PF:persuade LF:persuade CAT:V COMP:TO/inf SEM:external LANG:EN
+
+promises :: promise-#T/fin#[-s] LANG:EN
+promise- :: PF:promise LF:promise CAT:V SPEC:D COMP:D SEM:internal LANG:EN 
+
+pyytaa	:: pyyta-#v*#T/fin#[-V] LANG:FI
+pyyta-	:: PF:pyyda LF:ask CAT:V LANG:FI
+
+sanon   :: sano-#T/fin#[-n] LANG:FI
+sanoo   :: sano-#T/fin#[-V] LANG:FI
+sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE LANG:FI
+said    :: say-#T/fin#[-0] LANG:EN
+say-    :: PF:say LF:say CAT:V SPEC:D !COMP:FORCE LANG:EN
+
+sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG LANG:FI
+
+tassa	:: tama#P
+tama	:: tama-#D#sg#3p#def
+tama-	:: PF:tama LF:this CAT:N CAT:PHI LANG:FI
+
+that    :: PF:that LF:that CAT:FORCE LANG:EN
+
+tries	:: try-#T/fin#[-s] LANG:EN
+try-	:: PF:try LF:try CAT:V SPEC:D !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
+
+wants	:: want-#v#T/fin#[-s] LANG:EN
+want-	:: PF:want LF:want CAT:V SPEC:D COMP:TO/inf LANG:EN
+
+yrittaa	:: yritta-#T/fin#[-V] LANG:FI
+yritta- :: PF:yritta LF:try CAT:V SPEC:D !COMP:A/inf !COMP:-ARG LANG:EN SEM:internal 
+
+# PRONOUNS
+# Finnish
+mina	:: mina-#D#nom#sg#1p#def#hum
+mina- 	:: PF:mina LF:I CAT:N CAT:PHI LANG:FI 
+sina	:: sina-#D#nom#sg#2p#def#hum
+sina-	:: PF:sina  LF:you CAT:N CAT:PHI LANG:FI
+han		:: han-#D#nom#sg#3p#def#hum
+han-	:: PF:han LF:s/he CAT:N CAT:PHI LANG:FI
+me		:: me-#D#nom#pl#1p#def#hum
+me- 	:: PF:me LF:we CAT:N CAT:PHI LANG:FI
+te		:: te-#D#nom#pl#2p#def#hum
+te- 	:: PF:te LF:you CAT:N CAT:PHI LANG:FI
+he_FI	:: he-#D#nom#pl#3p#def#hum
+he- 	:: PF:he LF:they CAT:N CAT:PHI LANG:FI
+se		:: se-#nom#sg#3p#def LANG:FI
+se-		:: PF:se LF:it/that CAT:D LANG:FI
+
+# English
+I		:: I-#D#sg#1p#def#hum#n
+I- 		:: PF:I LF:I CAT:N CAT:PHI LANG:EN 
+you		:: you-#D#sg#2p#def#hum#n
+you-	:: PF:you LF:you CAT:N CAT:PHI LANG:EN
+he		:: he-#D#sg#3p#def#hum#m
+he-		:: PF:he LF:he CAT:N CAT:PHI LANG:EN
+she		:: she-#D#sg#3p#def#hum#f
+she-	:: PF:she LF:she CAT:N CAT:PHI LANG:EN
+we		:: we-#D#pl#1p#def#hum#n
+we- 	:: PF:we LF:we CAT:N CAT:PHI LANG:EN
+you_pl	:: you_pl-#D#pl#2p#def#hum#n
+you_pl- :: PF:you_pl LF:you_pl CAT:N CAT:PHI LANG:EN
+they	:: they-#D#pl#3p#def#hum#n
+they- 	:: PF:they LF:they CAT:N CAT:PHI LANG:EN
+it		:: it-#D#sg#3p#def#n LANG:EN
+it-		:: PF:it LF:it/that CAT:D LANG:EN
+
+# Italian
+io		:: I-#D#sg#1p#def#hum#n
+io-		:: PF:io LF:I CAT:N CAT:PHI LANG:IT 
+tu		:: tu-#D#sg#2p#def#hum#n
+tu- 	:: PF:tu LF:you CAT:N CAT:PHI LANG:IT
+lui 	:: lui-#D#sg#3p#def#hum#m
+lui-  	:: PF:lui LF:he CAT:N CAT:PHI LANG:IT
+lei 	:: lei-#D#sg#3p#def#hum#f
+lei-	:: PF:lei LF:she CAT:N CAT:PHI LANG:IT
+noi		:: noi-#D#pl#1p#def#hum#n
+noi-	:: PF:noi LF:we CAT:N CAT:PHI LANG:IT
+voi		:: voi-#D#pl#2p#def#hum#n
+voi-	:: PF:voi LF:you_pl CAT:N CAT:PHI LANG:IT
+loro	:: loro-#D#pl#3p#def#n LANG:EN
+loro-	:: PF:loro LF:they CAT:N CAT:PHI LANG:IT
+
+# AGREEMENT (PHI) SUFFIXES
+# Finnish
+[-n]	::	- PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM
+[-t]	::	- PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
+[-V]	::	- PHI:NUM:SG PHI:PER:3
+[-mme]	::	- PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM
+[-tte]	::	- PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
+[-vat]	::	- PHI:NUM:PL PHI:PER:3
+
+# English
+[-s]	::	- PHI:NUM:SG PHI:PER:3 PHI:GEN:M PHI:GEN:F
+[-0]	::  - PHI:NUM:PL PHI:NUM:SG PHI:PER:1 PHI:PER:2 PHI:PER:3 PHI:DET:DEF PHI:GEN:N
+
+# Italian
+[-o]	::	- PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM
+[-i]	::	- PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
+[-a]	::	- PHI:NUM:SG PHI:PER:3 PHI:DET:DEF
+[-iamo]	::	- PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM
+[-te]	::	- PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM
+[-no]	::	- PHI:NUM:PL PHI:PER:3 PHI:DET:DEF
+
+# PROPER NAMES
+
+
+# PARTICLES
+to_inf	:: CAT:INF CAT:TO/inf PF:to LF:TO/inf ?ARG
+VA/inf  :: CAT:INF CAT:VA/inf PF:vAn LF:VA 

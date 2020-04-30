@@ -7,12 +7,6 @@ from agreement_reconstruction import AgreementReconstruction
 from transfer import Transfer
 from surface_conditions import SurfaceConditions
 
-# Defines the Linear Phase (LP) parser
-# sentence_context contains cognitive information concerning the sentence context, for example,
-#   language/dialect
-#   Discourse information (topic, focus, communicative intentions)
-
-
 class LinearPhaseParser:
     def __init__(self, sentence_context):
 

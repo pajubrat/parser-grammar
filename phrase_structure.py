@@ -613,7 +613,16 @@ class PhraseStructure:
             return False
 
     # Definition for the external tail head test
+    # A head H satisfies its tail-feature TAIL:F1...Fn if and only if
+    #   Condition 1. H can establish a tail-head configuration with head K such that
+    #       a)    HP is either inside a projection KP, or
+    #       b)    K occurs in H's feature vector and is the closest that checks at least
+    #             one tail-feature from H,
+    #   AND
+    #   Condition 2. K checks all tail-features from H.
+    #   (Comment:  Condition 1.1.a is applied to adverbials, condition 1.1.b to everything else)
     def external_tail_head_test(self):
+        # Internal function
         def get_max(ps):
             ps_ = ps
             while ps_.mother and ps_.mother.get_head() == self.get_head():
@@ -632,17 +641,19 @@ class PhraseStructure:
 
         feature_vector = self.get_feature_vector()
 
+        # Examine all tail sets
         for tail_set in tail_sets:
 
-            # Condition i.
-            # First check if the constituent is already inside the checking projection (Spec-Head checking)
+            # Condition 1.a) Tail features are checked by a head that contains XP
+            # Applied to everything except non-genitive DPs.
             if get_max(self) and get_max(self).mother and get_max(self).mother.get_head().check_features(tail_set):
+                # mysterious property = option 1.a. is not applied to non-genitive DPs
+                # (It is mysterious because I don't understand it fully, but it is required empirically.)
                 if self.mysterious_property():
                     return True
 
-            # Condition ii.
-            # Check if goal's tail features can be matched in the feature vector
-            # Comment: In the current system, adverbs cannot satisfy ii.
+            # Condition 1.b) Tail features can be matched in the feature vector
+            # Applied to everything besides (right) adverbs
             if 'CAT:ADV' not in self.features:
                 for const in feature_vector:
 
@@ -790,6 +801,7 @@ class PhraseStructure:
             return None
 
         # Dodge right adjuncts
+        # (This seems redundant, as it follow from conditions 1-2 below)
         if self.left_const.is_primitive():
             if not self.right_const.adjunct:
                 return self.right_const

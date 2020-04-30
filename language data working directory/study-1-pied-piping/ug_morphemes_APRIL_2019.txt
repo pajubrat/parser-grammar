@@ -1,0 +1,49 @@
+
+# ======================================================================================
+# Universal language-invariant morphemes are collected here
+# =======================================================================================
+#
+# This collection will be combined with language-specific lexical information downloaded
+# from the file during parsing. The features from the two sets are combined together by set union
+#
+# Important: the keys must refers to UG morphemes, not language specific keys
+
+T/fin   :: CAT:T/fin PF:T LF:T
+v       :: CAT:v PF:v LF:v
+v/pro	:: CAT:v/pro PF:v/pro LF:pro
+C/fin   :: CAT:C/fin PF:C LF:C/fin
+
+# generic non-finite verb head often suffixed (e.g. lavor_are_)
+INF		:: CAT:INF
+
+# These are "generic" determiners and prepositions
+# Notice that they will have the default lexical features 
+D     :: CAT:D PF:D LF:D
+P 		:: CAT:P PF:P LF:P
+
+# Pronominal items
+pro	:: pro-#D
+pro-	:: PF:(pro) LF:pro CAT:N CAT:PHI
+
+# Phi-features
+1sg	:: 	- PER:1 NUM:sg
+2sg	:: 	- PER:2 NUM:sg
+3sg	::	- PER:3 NUM:sg
+1pl	:: 	- PER:1 NUM:pl
+2pl	::	- PER:2 NUM:pl
+3pl	::	- PER:3 NUM:pl
+
+# Finnish accusative is aspectual, but we currently lack the required ASP feature (to be added later)
+asp		:: - TAIL:CAT:v,!COMP:*
+
+nom   	:: - TAIL:CAT:T/fin,!COMP:*
+par   	:: - TAIL:!COMP:*,-PHI
+acc		:: - TAIL:!COMP:*,-PHI
+Pos     :: - CAT:Pos CAT:D
+uwh	   	:: - CAT:uWH
+wh     	:: - CAT:WH
+top    	:: - ABAR:TOP
+foc    	:: - ABAR:FOC
+rel    	:: - CAT:R
+# This is not correct characterization of the genitive
+gen     :: - TAIL:CAT:D

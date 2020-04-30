@@ -1,0 +1,1494 @@
+BC parser v. 0.9
+2019-06-02 12:16:55.119429
+Test sentences from file "Study4_corpus.txt".
+Logs into file "Study4_corpus_log.txt.
+Lexicon from file "lexicon.txt".
+1.  John sleeps 
+[[D John-]:1 [T/fin [(DP):1 sleep]]]
+'D John T __sleep .'
+Score: 0  (Failed: 0, Merge:5, Move: 1 = Ops: 6; Discourse plausibility: -0)
+
+2. * sleeps John 
+
+3.  John likes Mary 
+[[D John-]:1 [T/fin [(DP):1 [v [like [D Mary-]]]]]]
+'D John T __v like D Mary .'
+Score: 0  (Failed: 0, Merge:8, Move: 4 = Ops: 12; Discourse plausibility: -0)
+
+4. * John Mary likes 
+
+5. * likes John Mary 
+
+6. * likes Mary John 
+
+7. * Mary John likes 
+
+8.  Mary likes John 
+[[D Mary-]:1 [T/fin [(DP):1 [v [like [D John-]]]]]]
+'D Mary T __v like D John .'
+Score: 0  (Failed: 0, Merge:8, Move: 4 = Ops: 12; Discourse plausibility: -0)
+
+9.  John gave the book to Mary 
+[[D John-]:1 [T/fin [(DP):1 [v [gave [[the book] <to [D Mary-]>]]]]]]
+'D John T __v gave the book to D Mary .'
+Score: 0  (Failed: 0, Merge:11, Move: 35 = Ops: 46; Discourse plausibility: -0)
+
+10. * John gave the book Mary to 
+
+11. * John gave the to book Mary 
+
+12. * John gave the to Mary book 
+
+13. * John gave the Mary book to 
+
+14. * John gave the Mary to book 
+
+15. * John gave book the to Mary 
+
+16. * John gave book the Mary to 
+
+17. * John gave book to the Mary 
+
+18. * John gave book to Mary the 
+
+19. * John gave book Mary the to 
+
+20. * John gave book Mary to the 
+
+21. * John gave to the book Mary 
+
+22. * John gave to the Mary book 
+
+23. * John gave to book the Mary 
+
+24. * John gave to book Mary the 
+
+25. * John gave to Mary the book 
+
+26. * John gave to Mary book the 
+
+27. * John gave Mary the book to 
+
+28. * John gave Mary the to book 
+
+29. * John gave Mary book the to 
+
+30. * John gave Mary book to the 
+
+31.  John gave Mary to the book 
+[[D John-]:1 [T/fin [(DP):1 [v [gave [[D Mary-] <to [the book]>]]]]]]
+'D John T __v gave D Mary to the book .'
+Score: 0  (Failed: 0, Merge:11, Move: 44 = Ops: 55; Discourse plausibility: -0)
+
+32. * John gave Mary to book the 
+
+33. * John the gave book to Mary 
+
+34. * John the gave book Mary to 
+
+35. * John the gave to book Mary 
+
+36. * John the gave to Mary book 
+
+37. * John the gave Mary book to 
+
+38. * John the gave Mary to book 
+
+39. * John the book gave to Mary 
+
+40. * John the book gave Mary to 
+
+41. * John the book to gave Mary 
+
+42. * John the book to Mary gave 
+
+43. * John the book Mary gave to 
+
+44. * John the book Mary to gave 
+
+45. * John the to gave book Mary 
+
+46. * John the to gave Mary book 
+
+47. * John the to book gave Mary 
+
+48. * John the to book Mary gave 
+
+49. * John the to Mary gave book 
+
+50. * John the to Mary book gave 
+
+51. * John the Mary gave book to 
+
+52. * John the Mary gave to book 
+
+53. * John the Mary book gave to 
+
+54. * John the Mary book to gave 
+
+55. * John the Mary to gave book 
+
+56. * John the Mary to book gave 
+
+57. * John book gave the to Mary 
+
+58. * John book gave the Mary to 
+
+59. * John book gave to the Mary 
+
+60. * John book gave to Mary the 
+
+61. * John book gave Mary the to 
+
+62. * John book gave Mary to the 
+
+63. * John book the gave to Mary 
+
+64. * John book the gave Mary to 
+
+65. * John book the to gave Mary 
+
+66. * John book the to Mary gave 
+
+67. * John book the Mary gave to 
+
+68. * John book the Mary to gave 
+
+69. * John book to gave the Mary 
+
+70. * John book to gave Mary the 
+
+71. * John book to the gave Mary 
+
+72. * John book to the Mary gave 
+
+73. * John book to Mary gave the 
+
+74. * John book to Mary the gave 
+
+75. * John book Mary gave the to 
+
+76. * John book Mary gave to the 
+
+77. * John book Mary the gave to 
+
+78. * John book Mary the to gave 
+
+79. * John book Mary to gave the 
+
+80. * John book Mary to the gave 
+
+81. * John to gave the book Mary 
+
+82. * John to gave the Mary book 
+
+83. * John to gave book the Mary 
+
+84. * John to gave book Mary the 
+
+85. * John to gave Mary the book 
+
+86. * John to gave Mary book the 
+
+87. * John to the gave book Mary 
+
+88. * John to the gave Mary book 
+
+89. * John to the book gave Mary 
+
+90. * John to the book Mary gave 
+
+91. * John to the Mary gave book 
+
+92. * John to the Mary book gave 
+
+93. * John to book gave the Mary 
+
+94. * John to book gave Mary the 
+
+95. * John to book the gave Mary 
+
+96. * John to book the Mary gave 
+
+97. * John to book Mary gave the 
+
+98. * John to book Mary the gave 
+
+99. * John to Mary gave the book 
+
+100. * John to Mary gave book the 
+
+101. * John to Mary the gave book 
+
+102. * John to Mary the book gave 
+
+103. * John to Mary book gave the 
+
+104. * John to Mary book the gave 
+
+105. * John Mary gave the book to 
+
+106. * John Mary gave the to book 
+
+107. * John Mary gave book the to 
+
+108. * John Mary gave book to the 
+
+109. * John Mary gave to the book 
+
+110. * John Mary gave to book the 
+
+111. * John Mary the gave book to 
+
+112. * John Mary the gave to book 
+
+113. * John Mary the book gave to 
+
+114. * John Mary the book to gave 
+
+115. * John Mary the to gave book 
+
+116. * John Mary the to book gave 
+
+117. * John Mary book gave the to 
+
+118. * John Mary book gave to the 
+
+119. * John Mary book the gave to 
+
+120. * John Mary book the to gave 
+
+121. * John Mary book to gave the 
+
+122. * John Mary book to the gave 
+
+123. * John Mary to gave the book 
+
+124. * John Mary to gave book the 
+
+125. * John Mary to the gave book 
+
+126. * John Mary to the book gave 
+
+127. * John Mary to book gave the 
+
+128. * John Mary to book the gave 
+
+129. * gave John the book to Mary 
+
+130. * gave John the book Mary to 
+
+131. * gave John the to book Mary 
+
+132. * gave John the to Mary book 
+
+133. * gave John the Mary book to 
+
+134. * gave John the Mary to book 
+
+135. * gave John book the to Mary 
+
+136. * gave John book the Mary to 
+
+137. * gave John book to the Mary 
+
+138. * gave John book to Mary the 
+
+139. * gave John book Mary the to 
+
+140. * gave John book Mary to the 
+
+141. * gave John to the book Mary 
+
+142. * gave John to the Mary book 
+
+143. * gave John to book the Mary 
+
+144. * gave John to book Mary the 
+
+145. * gave John to Mary the book 
+
+146. * gave John to Mary book the 
+
+147. * gave John Mary the book to 
+
+148. * gave John Mary the to book 
+
+149. * gave John Mary book the to 
+
+150. * gave John Mary book to the 
+
+151. * gave John Mary to the book 
+
+152. * gave John Mary to book the 
+
+153. * gave the John book to Mary 
+
+154. * gave the John book Mary to 
+
+155. * gave the John to book Mary 
+
+156. * gave the John to Mary book 
+
+157. * gave the John Mary book to 
+
+158. * gave the John Mary to book 
+
+159. * gave the book John to Mary 
+
+160. * gave the book John Mary to 
+
+161. * gave the book to John Mary 
+
+162. * gave the book to Mary John 
+
+163. * gave the book Mary John to 
+
+164. * gave the book Mary to John 
+
+165. * gave the to John book Mary 
+
+166. * gave the to John Mary book 
+
+167. * gave the to book John Mary 
+
+168. * gave the to book Mary John 
+
+169. * gave the to Mary John book 
+
+170. * gave the to Mary book John 
+
+171. * gave the Mary John book to 
+
+172. * gave the Mary John to book 
+
+173. * gave the Mary book John to 
+
+174. * gave the Mary book to John 
+
+175. * gave the Mary to John book 
+
+176. * gave the Mary to book John 
+
+177. * gave book John the to Mary 
+
+178. * gave book John the Mary to 
+
+179. * gave book John to the Mary 
+
+180. * gave book John to Mary the 
+
+181. * gave book John Mary the to 
+
+182. * gave book John Mary to the 
+
+183. * gave book the John to Mary 
+
+184. * gave book the John Mary to 
+
+185. * gave book the to John Mary 
+
+186. * gave book the to Mary John 
+
+187. * gave book the Mary John to 
+
+188. * gave book the Mary to John 
+
+189. * gave book to John the Mary 
+
+190. * gave book to John Mary the 
+
+191. * gave book to the John Mary 
+
+192. * gave book to the Mary John 
+
+193. * gave book to Mary John the 
+
+194. * gave book to Mary the John 
+
+195. * gave book Mary John the to 
+
+196. * gave book Mary John to the 
+
+197. * gave book Mary the John to 
+
+198. * gave book Mary the to John 
+
+199. * gave book Mary to John the 
+
+200. * gave book Mary to the John 
+
+201. * gave to John the book Mary 
+
+202. * gave to John the Mary book 
+
+203. * gave to John book the Mary 
+
+204. * gave to John book Mary the 
+
+205. * gave to John Mary the book 
+
+206. * gave to John Mary book the 
+
+207. * gave to the John book Mary 
+
+208. * gave to the John Mary book 
+
+209. * gave to the book John Mary 
+
+210. * gave to the book Mary John 
+
+211. * gave to the Mary John book 
+
+212. * gave to the Mary book John 
+
+213. * gave to book John the Mary 
+
+214. * gave to book John Mary the 
+
+215. * gave to book the John Mary 
+
+216. * gave to book the Mary John 
+
+217. * gave to book Mary John the 
+
+218. * gave to book Mary the John 
+
+219. * gave to Mary John the book 
+
+220. * gave to Mary John book the 
+
+221. * gave to Mary the John book 
+
+222. * gave to Mary the book John 
+
+223. * gave to Mary book John the 
+
+224. * gave to Mary book the John 
+
+225. * gave Mary John the book to 
+
+226. * gave Mary John the to book 
+
+227. * gave Mary John book the to 
+
+228. * gave Mary John book to the 
+
+229. * gave Mary John to the book 
+
+230. * gave Mary John to book the 
+
+231. * gave Mary the John book to 
+
+232. * gave Mary the John to book 
+
+233. * gave Mary the book John to 
+
+234. * gave Mary the book to John 
+
+235. * gave Mary the to John book 
+
+236. * gave Mary the to book John 
+
+237. * gave Mary book John the to 
+
+238. * gave Mary book John to the 
+
+239. * gave Mary book the John to 
+
+240. * gave Mary book the to John 
+
+241. * gave Mary book to John the 
+
+242. * gave Mary book to the John 
+
+243. * gave Mary to John the book 
+
+244. * gave Mary to John book the 
+
+245. * gave Mary to the John book 
+
+246. * gave Mary to the book John 
+
+247. * gave Mary to book John the 
+
+248. * gave Mary to book the John 
+
+249. * the John gave book to Mary 
+
+250. * the John gave book Mary to 
+
+251. * the John gave to book Mary 
+
+252. * the John gave to Mary book 
+
+253. * the John gave Mary book to 
+
+254. * the John gave Mary to book 
+
+255. * the John book gave to Mary 
+
+256. * the John book gave Mary to 
+
+257. * the John book to gave Mary 
+
+258. * the John book to Mary gave 
+
+259. * the John book Mary gave to 
+
+260. * the John book Mary to gave 
+
+261. * the John to gave book Mary 
+
+262. * the John to gave Mary book 
+
+263. * the John to book gave Mary 
+
+264. * the John to book Mary gave 
+
+265. * the John to Mary gave book 
+
+266. * the John to Mary book gave 
+
+267. * the John Mary gave book to 
+
+268. * the John Mary gave to book 
+
+269. * the John Mary book gave to 
+
+270. * the John Mary book to gave 
+
+271. * the John Mary to gave book 
+
+272. * the John Mary to book gave 
+
+273. * the gave John book to Mary 
+
+274. * the gave John book Mary to 
+
+275. * the gave John to book Mary 
+
+276. * the gave John to Mary book 
+
+277. * the gave John Mary book to 
+
+278. * the gave John Mary to book 
+
+279. * the gave book John to Mary 
+
+280. * the gave book John Mary to 
+
+281. * the gave book to John Mary 
+
+282. * the gave book to Mary John 
+
+283. * the gave book Mary John to 
+
+284. * the gave book Mary to John 
+
+285. * the gave to John book Mary 
+
+286. * the gave to John Mary book 
+
+287. * the gave to book John Mary 
+
+288. * the gave to book Mary John 
+
+289. * the gave to Mary John book 
+
+290. * the gave to Mary book John 
+
+291. * the gave Mary John book to 
+
+292. * the gave Mary John to book 
+
+293. * the gave Mary book John to 
+
+294. * the gave Mary book to John 
+
+295. * the gave Mary to John book 
+
+296. * the gave Mary to book John 
+
+297. * the book John gave to Mary 
+
+298. * the book John gave Mary to 
+
+299. * the book John to gave Mary 
+
+300. * the book John to Mary gave 
+
+301. * the book John Mary gave to 
+
+302. * the book John Mary to gave 
+
+303. ## the book gave John to Mary 
+[[the book]:1 [T/fin [(DP):1 [v [gave [[D John-] <to [D Mary-]>]]]]]]
+'the book T __v gave D John to D Mary .'
+Score: -28  (Failed: 28, Merge:83, Move: 104 = Ops: 187; Discourse plausibility: -0)
+
+304. * the book gave John Mary to 
+
+305. * the book gave to John Mary 
+
+306. * the book gave to Mary John 
+
+307. * the book gave Mary John to 
+
+308. ## the book gave Mary to John 
+[[the book]:1 [T/fin [(DP):1 [v [gave [[D Mary-] <to [D John-]>]]]]]]
+'the book T __v gave D Mary to D John .'
+Score: -28  (Failed: 28, Merge:83, Move: 104 = Ops: 187; Discourse plausibility: -0)
+
+309. ## the book to John gave Mary 
+[[the [book <to [D John-]>]]:1 [T/fin [(DP):1 [v [gave [D Mary-]]]]]]
+'the book to D John T __v gave D Mary .'
+Score: -16  (Failed: 16, Merge:80, Move: 110 = Ops: 190; Discourse plausibility: -0)
+
+310. * the book to John Mary gave 
+
+311. * the book to gave John Mary 
+
+312. * the book to gave Mary John 
+
+313. * the book to Mary John gave 
+
+314. ## the book to Mary gave John 
+[[the [book <to [D Mary-]>]]:1 [T/fin [(DP):1 [v [gave [D John-]]]]]]
+'the book to D Mary T __v gave D John .'
+Score: -16  (Failed: 16, Merge:80, Move: 110 = Ops: 190; Discourse plausibility: -0)
+
+315. * the book Mary John gave to 
+
+316. * the book Mary John to gave 
+
+317. * the book Mary gave John to 
+
+318. * the book Mary gave to John 
+
+319. * the book Mary to John gave 
+
+320. * the book Mary to gave John 
+
+321. * the to John gave book Mary 
+
+322. * the to John gave Mary book 
+
+323. * the to John book gave Mary 
+
+324. * the to John book Mary gave 
+
+325. * the to John Mary gave book 
+
+326. * the to John Mary book gave 
+
+327. * the to gave John book Mary 
+
+328. * the to gave John Mary book 
+
+329. * the to gave book John Mary 
+
+330. * the to gave book Mary John 
+
+331. * the to gave Mary John book 
+
+332. * the to gave Mary book John 
+
+333. * the to book John gave Mary 
+
+334. * the to book John Mary gave 
+
+335. * the to book gave John Mary 
+
+336. * the to book gave Mary John 
+
+337. * the to book Mary John gave 
+
+338. * the to book Mary gave John 
+
+339. * the to Mary John gave book 
+
+340. * the to Mary John book gave 
+
+341. * the to Mary gave John book 
+
+342. * the to Mary gave book John 
+
+343. * the to Mary book John gave 
+
+344. * the to Mary book gave John 
+
+345. * the Mary John gave book to 
+
+346. * the Mary John gave to book 
+
+347. * the Mary John book gave to 
+
+348. * the Mary John book to gave 
+
+349. * the Mary John to gave book 
+
+350. * the Mary John to book gave 
+
+351. * the Mary gave John book to 
+
+352. * the Mary gave John to book 
+
+353. * the Mary gave book John to 
+
+354. * the Mary gave book to John 
+
+355. * the Mary gave to John book 
+
+356. * the Mary gave to book John 
+
+357. * the Mary book John gave to 
+
+358. * the Mary book John to gave 
+
+359. * the Mary book gave John to 
+
+360. * the Mary book gave to John 
+
+361. * the Mary book to John gave 
+
+362. * the Mary book to gave John 
+
+363. * the Mary to John gave book 
+
+364. * the Mary to John book gave 
+
+365. * the Mary to gave John book 
+
+366. * the Mary to gave book John 
+
+367. * the Mary to book John gave 
+
+368. * the Mary to book gave John 
+
+369. * book John gave the to Mary 
+
+370. * book John gave the Mary to 
+
+371. * book John gave to the Mary 
+
+372. * book John gave to Mary the 
+
+373. * book John gave Mary the to 
+
+374. * book John gave Mary to the 
+
+375. * book John the gave to Mary 
+
+376. * book John the gave Mary to 
+
+377. * book John the to gave Mary 
+
+378. * book John the to Mary gave 
+
+379. * book John the Mary gave to 
+
+380. * book John the Mary to gave 
+
+381. * book John to gave the Mary 
+
+382. * book John to gave Mary the 
+
+383. * book John to the gave Mary 
+
+384. * book John to the Mary gave 
+
+385. * book John to Mary gave the 
+
+386. * book John to Mary the gave 
+
+387. * book John Mary gave the to 
+
+388. * book John Mary gave to the 
+
+389. * book John Mary the gave to 
+
+390. * book John Mary the to gave 
+
+391. * book John Mary to gave the 
+
+392. * book John Mary to the gave 
+
+393. * book gave John the to Mary 
+
+394. * book gave John the Mary to 
+
+395. * book gave John to the Mary 
+
+396. * book gave John to Mary the 
+
+397. * book gave John Mary the to 
+
+398. * book gave John Mary to the 
+
+399. * book gave the John to Mary 
+
+400. * book gave the John Mary to 
+
+401. * book gave the to John Mary 
+
+402. * book gave the to Mary John 
+
+403. * book gave the Mary John to 
+
+404. * book gave the Mary to John 
+
+405. * book gave to John the Mary 
+
+406. * book gave to John Mary the 
+
+407. * book gave to the John Mary 
+
+408. * book gave to the Mary John 
+
+409. * book gave to Mary John the 
+
+410. * book gave to Mary the John 
+
+411. * book gave Mary John the to 
+
+412. * book gave Mary John to the 
+
+413. * book gave Mary the John to 
+
+414. * book gave Mary the to John 
+
+415. * book gave Mary to John the 
+
+416. * book gave Mary to the John 
+
+417. * book the John gave to Mary 
+
+418. * book the John gave Mary to 
+
+419. * book the John to gave Mary 
+
+420. * book the John to Mary gave 
+
+421. * book the John Mary gave to 
+
+422. * book the John Mary to gave 
+
+423. * book the gave John to Mary 
+
+424. * book the gave John Mary to 
+
+425. * book the gave to John Mary 
+
+426. * book the gave to Mary John 
+
+427. * book the gave Mary John to 
+
+428. * book the gave Mary to John 
+
+429. * book the to John gave Mary 
+
+430. * book the to John Mary gave 
+
+431. * book the to gave John Mary 
+
+432. * book the to gave Mary John 
+
+433. * book the to Mary John gave 
+
+434. * book the to Mary gave John 
+
+435. * book the Mary John gave to 
+
+436. * book the Mary John to gave 
+
+437. * book the Mary gave John to 
+
+438. * book the Mary gave to John 
+
+439. * book the Mary to John gave 
+
+440. * book the Mary to gave John 
+
+441. * book to John gave the Mary 
+
+442. * book to John gave Mary the 
+
+443. * book to John the gave Mary 
+
+444. * book to John the Mary gave 
+
+445. * book to John Mary gave the 
+
+446. * book to John Mary the gave 
+
+447. * book to gave John the Mary 
+
+448. * book to gave John Mary the 
+
+449. * book to gave the John Mary 
+
+450. * book to gave the Mary John 
+
+451. * book to gave Mary John the 
+
+452. * book to gave Mary the John 
+
+453. * book to the John gave Mary 
+
+454. * book to the John Mary gave 
+
+455. * book to the gave John Mary 
+
+456. * book to the gave Mary John 
+
+457. * book to the Mary John gave 
+
+458. * book to the Mary gave John 
+
+459. * book to Mary John gave the 
+
+460. * book to Mary John the gave 
+
+461. * book to Mary gave John the 
+
+462. * book to Mary gave the John 
+
+463. * book to Mary the John gave 
+
+464. * book to Mary the gave John 
+
+465. * book Mary John gave the to 
+
+466. * book Mary John gave to the 
+
+467. * book Mary John the gave to 
+
+468. * book Mary John the to gave 
+
+469. * book Mary John to gave the 
+
+470. * book Mary John to the gave 
+
+471. * book Mary gave John the to 
+
+472. * book Mary gave John to the 
+
+473. * book Mary gave the John to 
+
+474. * book Mary gave the to John 
+
+475. * book Mary gave to John the 
+
+476. * book Mary gave to the John 
+
+477. * book Mary the John gave to 
+
+478. * book Mary the John to gave 
+
+479. * book Mary the gave John to 
+
+480. * book Mary the gave to John 
+
+481. * book Mary the to John gave 
+
+482. * book Mary the to gave John 
+
+483. * book Mary to John gave the 
+
+484. * book Mary to John the gave 
+
+485. * book Mary to gave John the 
+
+486. * book Mary to gave the John 
+
+487. * book Mary to the John gave 
+
+488. * book Mary to the gave John 
+
+489. * to John gave the book Mary 
+
+490. * to John gave the Mary book 
+
+491. * to John gave book the Mary 
+
+492. * to John gave book Mary the 
+
+493. * to John gave Mary the book 
+
+494. * to John gave Mary book the 
+
+495. * to John the gave book Mary 
+
+496. * to John the gave Mary book 
+
+497. * to John the book gave Mary 
+
+498. * to John the book Mary gave 
+
+499. * to John the Mary gave book 
+
+500. * to John the Mary book gave 
+
+501. * to John book gave the Mary 
+
+502. * to John book gave Mary the 
+
+503. * to John book the gave Mary 
+
+504. * to John book the Mary gave 
+
+505. * to John book Mary gave the 
+
+506. * to John book Mary the gave 
+
+507. * to John Mary gave the book 
+
+508. * to John Mary gave book the 
+
+509. * to John Mary the gave book 
+
+510. * to John Mary the book gave 
+
+511. * to John Mary book gave the 
+
+512. * to John Mary book the gave 
+
+513. * to gave John the book Mary 
+
+514. * to gave John the Mary book 
+
+515. * to gave John book the Mary 
+
+516. * to gave John book Mary the 
+
+517. * to gave John Mary the book 
+
+518. * to gave John Mary book the 
+
+519. * to gave the John book Mary 
+
+520. * to gave the John Mary book 
+
+521. * to gave the book John Mary 
+
+522. * to gave the book Mary John 
+
+523. * to gave the Mary John book 
+
+524. * to gave the Mary book John 
+
+525. * to gave book John the Mary 
+
+526. * to gave book John Mary the 
+
+527. * to gave book the John Mary 
+
+528. * to gave book the Mary John 
+
+529. * to gave book Mary John the 
+
+530. * to gave book Mary the John 
+
+531. * to gave Mary John the book 
+
+532. * to gave Mary John book the 
+
+533. * to gave Mary the John book 
+
+534. * to gave Mary the book John 
+
+535. * to gave Mary book John the 
+
+536. * to gave Mary book the John 
+
+537. * to the John gave book Mary 
+
+538. * to the John gave Mary book 
+
+539. * to the John book gave Mary 
+
+540. * to the John book Mary gave 
+
+541. * to the John Mary gave book 
+
+542. * to the John Mary book gave 
+
+543. * to the gave John book Mary 
+
+544. * to the gave John Mary book 
+
+545. * to the gave book John Mary 
+
+546. * to the gave book Mary John 
+
+547. * to the gave Mary John book 
+
+548. * to the gave Mary book John 
+
+549. * to the book John gave Mary 
+
+550. * to the book John Mary gave 
+
+551. * to the book gave John Mary 
+
+552. * to the book gave Mary John 
+
+553. * to the book Mary John gave 
+
+554. * to the book Mary gave John 
+
+555. * to the Mary John gave book 
+
+556. * to the Mary John book gave 
+
+557. * to the Mary gave John book 
+
+558. * to the Mary gave book John 
+
+559. * to the Mary book John gave 
+
+560. * to the Mary book gave John 
+
+561. * to book John gave the Mary 
+
+562. * to book John gave Mary the 
+
+563. * to book John the gave Mary 
+
+564. * to book John the Mary gave 
+
+565. * to book John Mary gave the 
+
+566. * to book John Mary the gave 
+
+567. * to book gave John the Mary 
+
+568. * to book gave John Mary the 
+
+569. * to book gave the John Mary 
+
+570. * to book gave the Mary John 
+
+571. * to book gave Mary John the 
+
+572. * to book gave Mary the John 
+
+573. * to book the John gave Mary 
+
+574. * to book the John Mary gave 
+
+575. * to book the gave John Mary 
+
+576. * to book the gave Mary John 
+
+577. * to book the Mary John gave 
+
+578. * to book the Mary gave John 
+
+579. * to book Mary John gave the 
+
+580. * to book Mary John the gave 
+
+581. * to book Mary gave John the 
+
+582. * to book Mary gave the John 
+
+583. * to book Mary the John gave 
+
+584. * to book Mary the gave John 
+
+585. * to Mary John gave the book 
+
+586. * to Mary John gave book the 
+
+587. * to Mary John the gave book 
+
+588. * to Mary John the book gave 
+
+589. * to Mary John book gave the 
+
+590. * to Mary John book the gave 
+
+591. * to Mary gave John the book 
+
+592. * to Mary gave John book the 
+
+593. * to Mary gave the John book 
+
+594. * to Mary gave the book John 
+
+595. * to Mary gave book John the 
+
+596. * to Mary gave book the John 
+
+597. * to Mary the John gave book 
+
+598. * to Mary the John book gave 
+
+599. * to Mary the gave John book 
+
+600. * to Mary the gave book John 
+
+601. * to Mary the book John gave 
+
+602. * to Mary the book gave John 
+
+603. * to Mary book John gave the 
+
+604. * to Mary book John the gave 
+
+605. * to Mary book gave John the 
+
+606. * to Mary book gave the John 
+
+607. * to Mary book the John gave 
+
+608. * to Mary book the gave John 
+
+609. * Mary John gave the book to 
+
+610. * Mary John gave the to book 
+
+611. * Mary John gave book the to 
+
+612. * Mary John gave book to the 
+
+613. * Mary John gave to the book 
+
+614. * Mary John gave to book the 
+
+615. * Mary John the gave book to 
+
+616. * Mary John the gave to book 
+
+617. * Mary John the book gave to 
+
+618. * Mary John the book to gave 
+
+619. * Mary John the to gave book 
+
+620. * Mary John the to book gave 
+
+621. * Mary John book gave the to 
+
+622. * Mary John book gave to the 
+
+623. * Mary John book the gave to 
+
+624. * Mary John book the to gave 
+
+625. * Mary John book to gave the 
+
+626. * Mary John book to the gave 
+
+627. * Mary John to gave the book 
+
+628. * Mary John to gave book the 
+
+629. * Mary John to the gave book 
+
+630. * Mary John to the book gave 
+
+631. * Mary John to book gave the 
+
+632. * Mary John to book the gave 
+
+633. * Mary gave John the book to 
+
+634. * Mary gave John the to book 
+
+635. * Mary gave John book the to 
+
+636. * Mary gave John book to the 
+
+637.  Mary gave John to the book 
+[[D Mary-]:1 [T/fin [(DP):1 [v [gave [[D John-] <to [the book]>]]]]]]
+'D Mary T __v gave D John to the book .'
+Score: 0  (Failed: 0, Merge:11, Move: 44 = Ops: 55; Discourse plausibility: -0)
+
+638. * Mary gave John to book the 
+
+639. * Mary gave the John book to 
+
+640. * Mary gave the John to book 
+
+641. * Mary gave the book John to 
+
+642.  Mary gave the book to John 
+[[D Mary-]:1 [T/fin [(DP):1 [v [gave [[the book] <to [D John-]>]]]]]]
+'D Mary T __v gave the book to D John .'
+Score: 0  (Failed: 0, Merge:11, Move: 35 = Ops: 46; Discourse plausibility: -0)
+
+643. * Mary gave the to John book 
+
+644. * Mary gave the to book John 
+
+645. * Mary gave book John the to 
+
+646. * Mary gave book John to the 
+
+647. * Mary gave book the John to 
+
+648. * Mary gave book the to John 
+
+649. * Mary gave book to John the 
+
+650. * Mary gave book to the John 
+
+651. * Mary gave to John the book 
+
+652. * Mary gave to John book the 
+
+653. * Mary gave to the John book 
+
+654. * Mary gave to the book John 
+
+655. * Mary gave to book John the 
+
+656. * Mary gave to book the John 
+
+657. * Mary the John gave book to 
+
+658. * Mary the John gave to book 
+
+659. * Mary the John book gave to 
+
+660. * Mary the John book to gave 
+
+661. * Mary the John to gave book 
+
+662. * Mary the John to book gave 
+
+663. * Mary the gave John book to 
+
+664. * Mary the gave John to book 
+
+665. * Mary the gave book John to 
+
+666. * Mary the gave book to John 
+
+667. * Mary the gave to John book 
+
+668. * Mary the gave to book John 
+
+669. * Mary the book John gave to 
+
+670. * Mary the book John to gave 
+
+671. * Mary the book gave John to 
+
+672. * Mary the book gave to John 
+
+673. * Mary the book to John gave 
+
+674. * Mary the book to gave John 
+
+675. * Mary the to John gave book 
+
+676. * Mary the to John book gave 
+
+677. * Mary the to gave John book 
+
+678. * Mary the to gave book John 
+
+679. * Mary the to book John gave 
+
+680. * Mary the to book gave John 
+
+681. * Mary book John gave the to 
+
+682. * Mary book John gave to the 
+
+683. * Mary book John the gave to 
+
+684. * Mary book John the to gave 
+
+685. * Mary book John to gave the 
+
+686. * Mary book John to the gave 
+
+687. * Mary book gave John the to 
+
+688. * Mary book gave John to the 
+
+689. * Mary book gave the John to 
+
+690. * Mary book gave the to John 
+
+691. * Mary book gave to John the 
+
+692. * Mary book gave to the John 
+
+693. * Mary book the John gave to 
+
+694. * Mary book the John to gave 
+
+695. * Mary book the gave John to 
+
+696. * Mary book the gave to John 
+
+697. * Mary book the to John gave 
+
+698. * Mary book the to gave John 
+
+699. * Mary book to John gave the 
+
+700. * Mary book to John the gave 
+
+701. * Mary book to gave John the 
+
+702. * Mary book to gave the John 
+
+703. * Mary book to the John gave 
+
+704. * Mary book to the gave John 
+
+705. * Mary to John gave the book 
+
+706. * Mary to John gave book the 
+
+707. * Mary to John the gave book 
+
+708. * Mary to John the book gave 
+
+709. * Mary to John book gave the 
+
+710. * Mary to John book the gave 
+
+711. * Mary to gave John the book 
+
+712. * Mary to gave John book the 
+
+713. * Mary to gave the John book 
+
+714. * Mary to gave the book John 
+
+715. * Mary to gave book John the 
+
+716. * Mary to gave book the John 
+
+717. * Mary to the John gave book 
+
+718. * Mary to the John book gave 
+
+719. * Mary to the gave John book 
+
+720. * Mary to the gave book John 
+
+721. * Mary to the book John gave 
+
+722. * Mary to the book gave John 
+
+723. * Mary to book John gave the 
+
+724. * Mary to book John the gave 
+
+725. * Mary to book gave John the 
+
+726. * Mary to book gave the John 
+
+727. * Mary to book the John gave 
+
+728. * Mary to book the gave John 
+

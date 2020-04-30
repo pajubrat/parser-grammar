@@ -1,9 +1,9 @@
 
 #################################################################################
 # Linear phase parser
-# Brattico, P. (2019). Computational implementation of a linear phase parser. Framework and technical documentation (2.x).
+# Brattico, P. (2019). Computational implementation of a linear phase parser. Framework and technical documentation.
 # See documentation in the \Documentation folder
-# Version 2.x
+# Version 6.x
 ################################################################################
 
 # Imports
@@ -12,26 +12,42 @@ from linear_phase_parser import LinearPhaseParser
 from support import disable_all_logging, set_logging, log
 import logging
 import time
+from pathlib import Path
 from LanguageGuesser import LanguageGuesser
 from context import Context
 
 # Name of the corpus file
-test_set_name = 'book_corpus.txt'
+# CHANGE TO MATCH THE STUDY
+# Name of the data directory
+data_folder = Path("language data working directory/study-6-book/")
+# Name of the corpus file
+test_corpus_name = "book_corpus.txt"
+
+# file name for the test corpus
+# Created automatically from the corpus file -- do not change
+test_set_name = data_folder / "book_corpus.txt"
+
+# log file (name plus path)
+# Created automatically from the corpus file -- do not change
+log_name = test_corpus_name[:-4] + '_log.txt'
+log_file_name = data_folder / log_name
+
+# results file (name plus path)
+# Created automatically from the corpus file -- do not change
+results_name = test_corpus_name[:-4] + '_results_txt'
+results_file_name = data_folder / results_name
 
 # Name of the lexicon file
-lexicon_file_name = 'lexicon.txt'
-
-# Name of the log file
-log_file_name = test_set_name[:-4] + '_log.txt'
-
-# Name of the results file
-results_file_name = test_set_name[:-4] + '_results.txt'
+# Created automatically from the corpus file -- do not change
+lexicon_file_name = data_folder / 'lexicon.txt'
 
 # Name of the file containing universal morphemes
-ug_morphemes = 'ug_morphemes.txt'
+# Created automatically from the corpus file -- do not change
+ug_morphemes = data_folder / 'ug_morphemes.txt'
 
 # Name of the file containing lexical redundancy rules
-redundancy_rules = 'redundancy_rules.txt'
+# Created automatically from the corpus file -- do not change
+redundancy_rules = data_folder / 'redundancy_rules.txt'
 
 # Grammaticality judgment levels
 grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
@@ -51,7 +67,7 @@ set_logging(True)
 # Output to console before parsing begins
 print('Parsing process initialized.')
 print(datetime.datetime.now())
-print('Loading test sentences from file \"' + test_set_name + '\".')
+print('Loading test sentences from file \"' + str(test_set_name) + '\".')
 print(f'Logs will be written to file {log_file_name}.')
 print(f'Lexicon will be read from file {lexicon_file_name}.')
 print(f'UG morphemes will be read from {ug_morphemes}')
@@ -85,14 +101,15 @@ for line in open(test_set_name):
 if plus_sentences:
     parse_list = plus_sentences
 
-# Prepare parsers for each language found in lexicon
+# Prepare parsers for each language
+# Languages are detected form the lexicon file used in the study
 parsers = {}
 lang_guesser = LanguageGuesser(lexicon_file_name)
 for language in lang_guesser.languages:
     sentence_context = Context()
-    sentence_context.lexicon_file_name = lexicon_file_name
-    sentence_context.ug_morpheme_file = ug_morphemes
-    sentence_context.redundancy_rule_file = redundancy_rules
+    sentence_context.lexicon_file = lexicon_file_name
+    sentence_context.ug_morphemes_file = ug_morphemes
+    sentence_context.redundancy_rules_file = redundancy_rules
     sentence_context.language = language
     parsers[language] = LinearPhaseParser(sentence_context)
 

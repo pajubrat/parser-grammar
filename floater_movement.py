@@ -45,8 +45,8 @@ class FloaterMovement():
         # Condition 3: X has a tail set
         # Condition 4: X has not been prevented from floating around
         # Condition 5: X has no criterial feature
-        if not _ps_iterator.is_primitive() and \
-                not _ps_iterator.left_const.is_primitive() and \
+        if _ps_iterator.is_complex() and \
+                _ps_iterator.left_const.is_complex() and \
                 not _ps_iterator.left_const.find_me_elsewhere and \
                 _ps_iterator.left_const.get_head().get_tail_sets() and \
                 not '-FLOAT' in _ps_iterator.left_const.get_head().features and \
@@ -70,7 +70,11 @@ class FloaterMovement():
                 if floater == floater.mother.get_head().get_local_edge():
                     return floater
 
-        # Special condition: the bottom constituent at the right
+        # Special condition: constituent at the right
+        # [XP YP], XP not potential adjunct, but Y fails tail test,
+        # Y not -FLOAT
+        # They are marked for floating and turned into adjuncts, but ADVs on the right are only turned to adjuncts
+        # for reasons I do not understand
         if _ps_iterator.is_complex() and \
                 _ps_iterator.right_const.get_head().get_tail_sets() and \
                 not '-FLOAT' in _ps_iterator.right_const.get_head().features:
@@ -89,6 +93,7 @@ class FloaterMovement():
                     return floater.mother
 
                 # Condition 2b. If the right branch is ADV, it is transformed into an adjunct, but not reconstructed.
+                # (This must be wrong.)
                 else:
                     if 'ADV' in floater.get_labels() and not _ps_iterator.right_const.adjunct:
                         self.adjunct_constructor.create_adjunct(floater)
