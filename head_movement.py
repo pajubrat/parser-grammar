@@ -17,7 +17,8 @@ class HeadMovement:
     def reconstruct(self, ps):
 
         # Condition 1. If the target is a complex primitive D head, we try to open it into a new left branch
-        if ps.is_primitive() and ps.has_affix() and ('CAT:D' in ps.features or 'CAT:P' in ps.features):
+        if ps.is_primitive() and ps.has_affix() and \
+                ('CAT:D' in ps.features or 'CAT:P' in ps.features or 'CAT:A' in ps.features):
 
             # If the element is D or P, it is opened into a new left branch
             if self.reconstruct_head_movement(ps.copy()).LF_legibility_test().all_pass():

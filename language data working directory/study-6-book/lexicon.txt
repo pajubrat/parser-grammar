@@ -55,6 +55,9 @@ halua	:: halua-#v#T LANG:FI
 haluamalla :: halua-#v#malla LANG:FI
 halua- 	:: PF:haluaa LF:want CAT:V !COMP:* COMP:D COMP:A/inf SEM:internal LANG:FI
 
+hairitsee :: hairitse-#v#T/fin LANG:FI
+hairitse- :: PF:hairitsee LF:disturb CAT:V SPEC:D !COMP:D -COMP:FIN LANG:FI
+
 hanno	:: ha-#T/fin#[-no] LANG:IT
 ho		:: ha-#T/fin#[-o] LANG:IT
 ha-		:: CAT:V PF:ha LF:have SPEC:D COMP:T -ASP SEM:internal LANG:IT
@@ -97,6 +100,9 @@ kirjan  :: kirja-#D#asp LANG:FI
 
 kuka 	:: kuka-#D#wh#nom#sg#3p#def#hum LANG:FI
 kuka-   :: PF:kuka LF:who CAT:N CAT:PHI LANG:FI
+
+kuorsaa- :: PF:kuorsaa LF:snore CAT:V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
+kuorsaamalla :: kuorsaa-#malla LANG:FI
 
 lahtea 	:: lahte-#A/inf LANG:FI
 lahtemaan :: lahte-#MA/inf LANG:FI
@@ -141,7 +147,12 @@ mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
 mukavasti :: mukava-#sti
 mukava-	:: PF:mukavasti LF:comfortably CAT:A LANG:FI
 
+nen		:: CAT:A PF:a LF:ing LANG:FI
+
 not		:: CAT:Neg LF:not PF:not ARG -VAL -COMP:FIN -SPEC:T/fin SPEC:* -COMP:C -COMP:D !COMP:* LANG:EN
+
+nukkui	:: nukku-#T/fin LANG:FI
+nukku-	:: PF:nukku LF:sleep UNERG CAT:V SPEC:D -COMP:T -COMP:T/fin -COMP:Neg/fin LANG:FI
 
 ollut	:: T/prt#[-V] LANG:FI
 on'		:: T/fin#[-V] LANG:FI
@@ -154,8 +165,14 @@ Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 persuades :: persuade-#v*#T/fin#[-s] LANG:EN
 persuade- :: PF:persuade LF:persuade CAT:V COMP:TO/inf SEM:external LANG:EN
 
+pieni	:: pieni-#a0 LANG:FI
+pieni-	:: PF:pieni LF:small CAT:ROOT LANG:FI
+
 poikien	::	poika-#D#gen#pl#3p#def#hum LANG:FI
 poika-	::	PF:poika LF:boy CAT:N LANG:FI
+
+punainen :: puna-#nen LANG:FI
+puna-	:: PF:puna- LF:red CAT:ROOT LANG:FI
 
 promises :: promise-#T/fin#[-s] LANG:EN
 promise- :: PF:promise LF:promise CAT:V SPEC:D COMP:D SEM:internal LANG:EN 
@@ -168,6 +185,8 @@ sanoo   :: sano-#T/fin#[-V] LANG:FI
 sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE LANG:FI
 said    :: say-#T/fin#[-0] LANG:EN
 say-    :: PF:say LF:say CAT:V SPEC:D !COMP:FORCE LANG:EN
+
+se'		:: PF:se LF:the/that CAT:D LANG:DI
 
 sembrano :: sembra-#T/fin#[-no] LANG:IT
 sembra-	:: PF:sembra LF:seem -R -ASP -ARG -VAL CAT:V SPEC:P -COMP:D !COMP:ARE/inf
@@ -186,9 +205,11 @@ sta-	:: CAT:V PF:sta LF:stay SEM:internal -ASP SPEC:D COMP:PRG
 
 sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG LANG:FI
 
-tassa	:: tama#P
+talo	:: PF:talo LF:house CAT:N LANG:FI
+
 tama	:: tama-#D#sg#3p#def
 tama-	:: PF:tama LF:this CAT:N CAT:PHI LANG:FI
+tassa	:: tama#P
 
 taytyy	:: tayty-#T/fin#[-V] LANG:FI
 taydy	:: tayty-#T LANG:FI

@@ -275,7 +275,7 @@ class LF:
     # This function will try to transfer the phrase structure into the conceptual-intentional system
     # It represents the "outer edge of LF"
     def transfer_to_CI(self, ps):
-        log(f'\t\t\tTransferring {ps} into Conceptual-Intentional system...')
+        log(f'\t\t\tTransferring {ps} into the conceptual-intentional system...')
         self.transfer_to_CI_crash = False
 
         # Construction of semantic interpretation
@@ -283,7 +283,7 @@ class LF:
 
         # If no semantic interpretation results, transfer crashes
         if not self.semantic_interpretation:
-            log('\t\t\t\tTransfer to C-I crashed.')
+            log('\t\t\t\tSemantic interpretation failed, transfer to C-I crashed.')
             self.transfer_to_CI_crash = True
             return set()
         else:
@@ -304,6 +304,7 @@ class LF:
             if self.transfer_to_CI_crash:
                 return set()
             else:
+                self.semantic_interpretation.add('Interpretation successful')
                 return self.semantic_interpretation
 
         #
