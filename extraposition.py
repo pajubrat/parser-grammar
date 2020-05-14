@@ -53,8 +53,12 @@ class Extraposition:
             if ps_.is_complex():
                 selector = ps_.left_const
                 not_comps = selector.get_not_comps()
+                mandatory_comps = selector.get_mandatory_comps()
                 selectee = ps_.right_const.get_head()
                 if not_comps & selectee.get_labels():
+                    log(f'\t\t\t\t\t{selector} cannot select {selectee}')
+                    return selectee
+                if mandatory_comps and not (mandatory_comps & selectee.get_labels()):
                     log(f'\t\t\t\t\t{selector} cannot select {selectee}')
                     return selectee
             ps_ = ps_.walk_downstream()

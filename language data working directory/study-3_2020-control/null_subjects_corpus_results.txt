@@ -1,0 +1,648 @@
+2020-05-14 12:26:02.381064
+Test sentences from file "language data working directory\study-3_2020-control\null_subjects_corpus.txt".
+Logs into file "language data working directory\study-3_2020-control\null_subjects_corpus_log.txt.
+Lexicon from file "language data working directory\study-3_2020-control\lexicon.txt".
+& Group 0.1 Example equivalents from the main article
+
+& Example 1
+
+1. John wants to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v [want [to leave]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), to([D John]), v([D John]), want([D John]).
+Solutions(2), Merge(8), Move(head)(6), Move(phrasal)(5), Transfer(12), Inflection(6), Consumed(14)
+
+
+2. John wants Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v [want [[D Mary]:2 [to [__:2 leave]]]]]]]]
+Valued φ: D.3sg, to.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D Mary]), v([D John]), want([D John]).
+Solutions(5), Merge(18), Move(head)(18), Move(phrasal)(12), Transfer(39), Inflection(11), Consumed(26)
+
+
+& Example 2
+
+3. * John asks to_inf leave 
+
+4. John asks Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v [ask [[D Mary]:2 [to [__:2 leave]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, ask([D John]), leave([D Mary]), v([D John]).
+Solutions(5), Merge(18), Move(head)(18), Move(phrasal)(12), Transfer(45), Inflection(11), Consumed(26)
+
+
+& Example 3
+
+5. adoro Luisa 
+
+1. [T/fin [v [adora [D Luisa]]]]
+Valued φ: D.3sg, T/fin.1sg.
+LF-recovery: Interpretation successful, adora([D Luisa]), v(T/fin).
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+
+6. ihailen Merjaa 
+
+1. [T/fin [v [ihaile- [D Merja-]]]]
+Valued φ: D.3sg, T/fin.1sg.
+LF-recovery: Interpretation successful, ihaile-([D Merja-]), v(T/fin).
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(7), Consumed(12)
+
+
+7. * admire Mary 
+
+& Example 4
+
+8. tassa kaskee Merjan lahtea Pekka 
+
+1. [[P [D tama]] [T/fin [<__>:1 [v* [kaske [[D Merja-]:2 [A/inf [__:2 [lahtea <D Pekka>:1]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(7), Merge(27), Move(head)(22), Move(phrasal)(11), Transfer(46), Inflection(22), Consumed(44)
+
+2. [[P [D tama]] [[T/fin [<__>:1 [v* [kaske [[D Merja-]:2 [A/inf [__:2 lahtea]]]]]]] <D Pekka>:1]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(7), Merge(27), Move(head)(22), Move(phrasal)(11), Transfer(46), Inflection(22), Consumed(44)
+
+3. [[[P [D tama]] [T/fin [<__>:1 [v* [kaske [[D Merja-]:2 [A/inf [__:2 lahtea]]]]]]]] <D Pekka>:1]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(7), Merge(27), Move(head)(22), Move(phrasal)(11), Transfer(46), Inflection(22), Consumed(44)
+
+
+& Example 5
+
+9. * ihailee Merjaa 
+
+10. ihailen Merjaa 
+
+1. [T/fin [v [ihaile- [D Merja-]]]]
+Valued φ: D.3sg, T/fin.1sg.
+LF-recovery: Interpretation successful, ihaile-([D Merja-]), v(T/fin).
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(7), Consumed(12)
+
+
+11. Pekka sanoi etta ihailee Merjaa 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [sano- [etta [T/fin [v [ihaile- [D Merja-]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(<D Pekka>), ihaile-([D Merja-]), sano-(<D Pekka>), v(<D Pekka>).
+Solutions(4), Merge(15), Move(head)(12), Move(phrasal)(12), Transfer(30), Inflection(14), Consumed(27)
+
+
+& Example 6
+
+12. John wants to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v [want [to leave]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), to([D John]), v([D John]), want([D John]).
+Solutions(2), Merge(8), Move(head)(6), Move(phrasal)(5), Transfer(12), Inflection(6), Consumed(14)
+
+
+13. * John asks to_inf leave 
+
+14. John wants Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v [want [[D Mary]:2 [to [__:2 leave]]]]]]]]
+Valued φ: D.3sg, to.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D Mary]), v([D John]), want([D John]).
+Solutions(5), Merge(18), Move(head)(18), Move(phrasal)(12), Transfer(39), Inflection(11), Consumed(26)
+
+
+15. John promises Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [promise [[D Mary] <to leave>]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), promise([[D Mary] <to leave>]).
+Solutions(5), Merge(17), Move(head)(9), Move(phrasal)(11), Transfer(40), Inflection(11), Consumed(25)
+
+
+& Example 7
+
+16. Pekka pyytaa lahtemaan 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [v* [pyyda [ma lahtea]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, lahtea(generic), pyyda(clausal argument), v*(<D Pekka>).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(11), Inflection(7), Consumed(15)
+
+
+17. to_inf leave is a mistake 
+
+1. [[to leave] [T/fin [be [a mistake]]]]
+Valued φ: a.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(generic), leave(generic), to([T/fin [be [a mistake]]]).
+Solutions(5), Merge(15), Move(head)(7), Move(phrasal)(0), Transfer(47), Inflection(1), Consumed(13)
+
+
+& Example 8
+
+18. tassa istuu mukavasti 
+
+1. [[[P [D tama]] [T/fin istuu]] <sti mukavasti>]
+Valued φ: D.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), istuu(generic).
+Solutions(2), Merge(8), Move(head)(1), Move(phrasal)(0), Transfer(9), Inflection(4), Consumed(12)
+
+
+& Example 9
+
+19. Pekka haluaa lahtea 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [v [haluaa [A/inf lahtea]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, haluaa(<D Pekka>), lahtea(<D Pekka>), v(<D Pekka>).
+Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(2), Transfer(6), Inflection(7), Consumed(14)
+
+
+20. * Pekka haluaa Merjan lahtea 
+
+& Example 10
+
+21. * Pekka haluaa lahtevan 
+
+22. Pekka haluaa Merjan lahtevan 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [v [haluaa [[D Merja-]:2 [vAn [__:2 lahtea]]]]]]]]
+Valued φ: D.3sg, __.3sg, vAn.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, haluaa([[D Merja-] [vAn [[D Merja-] lahtea]]]), lahtea([D Merja-]), v(<D Pekka>).
+Solutions(2), Merge(12), Move(head)(6), Move(phrasal)(7), Transfer(18), Inflection(13), Consumed(25)
+
+
+& Example 11
+
+23. John admires Mary 
+
+1. [[D John]:1 [T/fin [__:1 [v [admire [D Mary]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, admire([D Mary]), v([D John]).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(8), Inflection(11), Consumed(19)
+
+
+& Example 12
+
+24. ihailen Merjaa 
+
+1. [T/fin [v [ihaile- [D Merja-]]]]
+Valued φ: D.3sg, T/fin.1sg.
+LF-recovery: Interpretation successful, ihaile-([D Merja-]), v(T/fin).
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(7), Consumed(12)
+
+
+& Example 13
+
+25. Pekka sanoo etta ihailee Merjaa 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [sano- [etta [T/fin [v [ihaile- [D Merja-]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(<D Pekka>), ihaile-([D Merja-]), sano-(<D Pekka>), v(<D Pekka>).
+Solutions(4), Merge(15), Move(head)(12), Move(phrasal)(12), Transfer(30), Inflection(14), Consumed(27)
+
+
+& Example 15-16
+
+26. John wants to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v [want [to leave]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), to([D John]), v([D John]), want([D John]).
+Solutions(2), Merge(8), Move(head)(6), Move(phrasal)(5), Transfer(12), Inflection(6), Consumed(14)
+
+
+& Example 17
+
+27. John tries to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [try [to leave]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), try([D John]).
+Solutions(2), Merge(7), Move(head)(3), Move(phrasal)(6), Transfer(12), Inflection(6), Consumed(13)
+
+
+28. * John tries Mary to_inf leave 
+
+& Example 18
+
+29. John tries to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [try [to leave]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), try([D John]).
+Solutions(2), Merge(7), Move(head)(3), Move(phrasal)(6), Transfer(12), Inflection(6), Consumed(13)
+
+
+30. John persuades Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v* [persuade [[D Mary]:2 [to [__:2 leave]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D Mary]), persuade(clausal argument), v*([D John]).
+Solutions(5), Merge(18), Move(head)(18), Move(phrasal)(12), Transfer(39), Inflection(11), Consumed(26)
+
+
+& Example 19
+
+31. John admires Mary 
+
+1. [[D John]:1 [T/fin [__:1 [v [admire [D Mary]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, admire([D Mary]), v([D John]).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(8), Inflection(11), Consumed(19)
+
+
+& Example 20
+
+32. noi adoriamo Luisa 
+
+1. [[D noi]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+Valued φ: __.1pl, D.3sg, T/fin.1pl, D.1pl.
+LF-recovery: Interpretation successful, adora([D Luisa]), v([D noi]).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(8), Inflection(11), Consumed(19)
+
+
+33. * io adorate Luisa 
+
+& Example 21-22
+
+34. we admire Mary 
+
+1. [[D we]:1 [T/fin [__:1 [v [admire [D Mary]]]]]]
+Valued φ: __.1pl, D.3sg, T/fin.1sg, D.1pl.
+LF-recovery: Interpretation successful, admire([D Mary]), v([D we]).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(8), Inflection(11), Consumed(19)
+
+
+& Example 23-24
+
+35. noi adoriamo Luisa 
+
+1. [[D noi]:1 [T/fin [__:1 [v [adora [D Luisa]]]]]]
+Valued φ: __.1pl, D.3sg, T/fin.1pl, D.1pl.
+LF-recovery: Interpretation successful, adora([D Luisa]), v([D noi]).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(8), Inflection(11), Consumed(19)
+
+
+& Example 25
+
+36. kuka ihailee Merjaa 
+
+1. [[D kuka]:1 [T/fin [__:1 [v [ihaile- [D Merja-]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, __[ABAR:WH] was bound to an operator., ihaile-([D Merja-]), v([D kuka]).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(5), Transfer(8), Inflection(13), Consumed(21)
+
+
+& Example 26
+
+37. keta han ihailee 
+
+1. [[D ketÃ¤]:1 [uWH [<D han>:2 [T/fin [<__>:2 [v [ihaile- __:1]]]]]]]
+Valued φ: D.3sg, __.3sg, uWH.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, __[ABAR:WH] was bound to an operator., ihaile-([D ketÃ¤]), v(<D han>).
+Solutions(1), Merge(6), Move(head)(0), Move(phrasal)(2), Transfer(5), Inflection(12), Consumed(19)
+
+
+& Example 27
+
+38. ihailen Merjaa 
+
+1. [T/fin [v [ihaile- [D Merja-]]]]
+Valued φ: D.3sg, T/fin.1sg.
+LF-recovery: Interpretation successful, ihaile-([D Merja-]), v(T/fin).
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(7), Consumed(12)
+
+
+39. * ihailee Merjaa 
+
+40. adora Luisa 
+
+1. [T/fin [v [adora [D Luisa]]]]
+Valued φ: D.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, adora([D Luisa]), v(T/fin).
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(6), Consumed(11)
+
+
+41. * admire Mary 
+
+42. * admires Mary 
+
+& Example 28
+
+43. Pekka sanoo etta ihailee Merjaa 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [sano- [etta [T/fin [v [ihaile- [D Merja-]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(<D Pekka>), ihaile-([D Merja-]), sano-(<D Pekka>), v(<D Pekka>).
+Solutions(4), Merge(15), Move(head)(12), Move(phrasal)(12), Transfer(30), Inflection(14), Consumed(27)
+
+
+44. * Mina sanon etta ihailee Merjaa 
+
+& Example 29
+
+45. Pekka sanoo etta Jukka sanoo etta ihailee Merjaa 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [sano- [etta [<D Jukka>:2 [T/fin [<__>:2 [sano- [etta [T/fin [v [ihaile- [D Merja-]]]]]]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(<D Jukka>), ihaile-([D Merja-]), sano-(<D Jukka>), sano-(<D Pekka>), v(<D Jukka>).
+Solutions(7), Merge(26), Move(head)(43), Move(phrasal)(47), Transfer(92), Inflection(21), Consumed(42)
+
+
+& Example 30
+
+46. Pekka sanoo etta istuu mukavasti 
+
+1. [[D Pekka]:1 [[T/fin [__:1 [sano- [etta [T/fin istuu]]]]] <sti mukavasti>]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(<D Pekka>), istuu(<D Pekka>), sano-(<D Pekka>).
+Solutions(4), Merge(14), Move(head)(11), Move(phrasal)(8), Transfer(31), Inflection(8), Consumed(20)
+
+2. [[<D Pekka>:1 [T/fin [<__>:1 [sano- [etta [T/fin istuu]]]]]] <sti mukavasti>]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(<D Pekka>), istuu(<D Pekka>), sano-(<D Pekka>).
+Solutions(4), Merge(14), Move(head)(11), Move(phrasal)(8), Transfer(31), Inflection(8), Consumed(20)
+
+
+47. * istuu mukavasti 
+
+48. tassa istuu mukavasti 
+
+1. [[[P [D tama]] [T/fin istuu]] <sti mukavasti>]
+Valued φ: D.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), istuu(generic).
+Solutions(2), Merge(8), Move(head)(1), Move(phrasal)(0), Transfer(9), Inflection(4), Consumed(12)
+
+
+49. Pekka sanoo etta tassa istuu mukavasti 
+
+1. [[D Pekka]:1 [[T/fin [__:1 [sano- [etta [[P [D tama]] [T/fin istuu]]]]]] <sti mukavasti>]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), istuu(<D Pekka>), sano-(<D Pekka>).
+Solutions(5), Merge(19), Move(head)(14), Move(phrasal)(10), Transfer(42), Inflection(11), Consumed(27)
+
+2. [[<D Pekka>:1 [T/fin [<__>:1 [sano- [etta [[P [D tama]] [T/fin istuu]]]]]]] <sti mukavasti>]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), istuu(<D Pekka>), sano-(<D Pekka>).
+Solutions(5), Merge(19), Move(head)(14), Move(phrasal)(10), Transfer(42), Inflection(11), Consumed(27)
+
+3. [<D Pekka>:1 [T/fin [<__>:1 [sano- [etta [[[P [D tama]] [T/fin istuu]] <sti mukavasti>]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), istuu(<D Pekka>), sano-(<D Pekka>).
+Solutions(5), Merge(19), Move(head)(14), Move(phrasal)(10), Transfer(42), Inflection(11), Consumed(27)
+
+
+& Example 32
+
+50. * mina haluan 
+
+& Example 33
+
+51. John wants to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v [want [to leave]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), to([D John]), v([D John]), want([D John]).
+Solutions(2), Merge(8), Move(head)(6), Move(phrasal)(5), Transfer(12), Inflection(6), Consumed(14)
+
+
+52. John wants Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v [want [[D Mary]:2 [to [__:2 leave]]]]]]]]
+Valued φ: D.3sg, to.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D Mary]), v([D John]), want([D John]).
+Solutions(5), Merge(18), Move(head)(18), Move(phrasal)(12), Transfer(39), Inflection(11), Consumed(26)
+
+
+& Example 34
+
+53. tassa haluaa lahtea Pekka 
+
+1. [[P [D tama]] [T/fin [<__>:1 [v [haluaa [A/inf [lahtea <D Pekka>:1]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), haluaa(<D Pekka>), lahtea(<D Pekka>), v(<D Pekka>).
+Solutions(3), Merge(13), Move(head)(15), Move(phrasal)(3), Transfer(16), Inflection(10), Consumed(22)
+
+2. [[P [D tama]] [[T/fin [<__>:1 [v [haluaa [A/inf lahtea]]]]] <D Pekka>:1]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), haluaa(<D Pekka>), lahtea(<D Pekka>), v(<D Pekka>).
+Solutions(3), Merge(13), Move(head)(15), Move(phrasal)(3), Transfer(16), Inflection(10), Consumed(22)
+
+3. [[[P [D tama]] [T/fin [<__>:1 [v [haluaa [A/inf lahtea]]]]]] <D Pekka>:1]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), haluaa(<D Pekka>), lahtea(<D Pekka>), v(<D Pekka>).
+Solutions(3), Merge(13), Move(head)(15), Move(phrasal)(3), Transfer(16), Inflection(10), Consumed(22)
+
+
+54. tassa kaskee Merjan lahtea Pekka 
+
+1. [[P [D tama]] [T/fin [<__>:1 [v* [kaske [[D Merja-]:2 [A/inf [__:2 [lahtea <D Pekka>:1]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(7), Merge(27), Move(head)(22), Move(phrasal)(11), Transfer(46), Inflection(22), Consumed(44)
+
+2. [[P [D tama]] [[T/fin [<__>:1 [v* [kaske [[D Merja-]:2 [A/inf [__:2 lahtea]]]]]]] <D Pekka>:1]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(7), Merge(27), Move(head)(22), Move(phrasal)(11), Transfer(46), Inflection(22), Consumed(44)
+
+3. [[[P [D tama]] [T/fin [<__>:1 [v* [kaske [[D Merja-]:2 [A/inf [__:2 lahtea]]]]]]]] <D Pekka>:1]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(7), Merge(27), Move(head)(22), Move(phrasal)(11), Transfer(46), Inflection(22), Consumed(44)
+
+
+55. tassa kaskee Pekka Merjan lahtea 
+
+1. [[P [D tama]] [T/fin [<__>:1 [v* [kaske [<D Pekka>:1 [[D Merja-]:2 [A/inf [__:2 lahtea]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(5), Merge(29), Move(head)(18), Move(phrasal)(13), Transfer(62), Inflection(22), Consumed(48)
+
+
+56. tassa kaskee Merjan Pekka lahtea 
+
+1. [[P [D tama]] [T/fin [<__>:1 [v* [kaske [[D Merja-]:2 [<D Pekka>:1 [A/inf [__:2 lahtea]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, P([D tama]), T/fin(Generic), T/fin([P [D tama]]), kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(5), Merge(29), Move(head)(18), Move(phrasal)(8), Transfer(60), Inflection(22), Consumed(48)
+
+
+& Example 35
+
+57. Pekka haluaa lahtea 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [v [haluaa [A/inf lahtea]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, haluaa(<D Pekka>), lahtea(<D Pekka>), v(<D Pekka>).
+Solutions(1), Merge(6), Move(head)(2), Move(phrasal)(2), Transfer(6), Inflection(7), Consumed(14)
+
+
+58. * Pekka haluaa Merjan lahtea 
+
+59. Pekka kaskee Merjan lahtea 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [v* [kaske [[D Merja-]:2 [A/inf [__:2 lahtea]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, kaske(clausal argument), lahtea([D Merja-]), v*(<D Pekka>).
+Solutions(2), Merge(12), Move(head)(6), Move(phrasal)(6), Transfer(20), Inflection(13), Consumed(25)
+
+
+60. * Pekka kaskee lahtea 
+
+61. * Pekka haluaa Merjan lahtea 
+
+62. * Pekka yrittaa Merjan lahtevan 
+
+63. * Pekka yrittaa lahtevan 
+
+64. * Pekka yrittaa 
+
+65. Pekka uskoo lahtevansa 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [usko [vAn lahtea]]]]]
+Valued φ: D.3sg, __.3sg, vAn.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, lahtea(<D Pekka>), usko(<D Pekka>), vAn(<D Pekka>).
+Solutions(2), Merge(7), Move(head)(1), Move(phrasal)(4), Transfer(11), Inflection(8), Consumed(15)
+
+
+66. * Pekka uskoo lahtevan 
+
+& Example 37
+
+67. John persuades Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v* [persuade [[D Mary]:2 [to [__:2 leave]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D Mary]), persuade(clausal argument), v*([D John]).
+Solutions(5), Merge(18), Move(head)(18), Move(phrasal)(12), Transfer(39), Inflection(11), Consumed(26)
+
+
+68. * John persuades to_inf leave 
+
+69. John promises Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [promise [[D Mary] <to leave>]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), promise([[D Mary] <to leave>]).
+Solutions(5), Merge(17), Move(head)(9), Move(phrasal)(11), Transfer(40), Inflection(11), Consumed(25)
+
+
+70. John promises to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [promise [to leave]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), promise([D John]).
+Solutions(2), Merge(7), Move(head)(3), Move(phrasal)(6), Transfer(12), Inflection(6), Consumed(13)
+
+
+& Example 38
+
+71. John persuades Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [v* [persuade [[D Mary]:2 [to [__:2 leave]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D Mary]), persuade(clausal argument), v*([D John]).
+Solutions(5), Merge(18), Move(head)(18), Move(phrasal)(12), Transfer(39), Inflection(11), Consumed(26)
+
+
+72. John promises Mary to_inf leave 
+
+1. [[D John]:1 [T/fin [__:1 [promise [[D Mary] <to leave>]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, leave([D John]), promise([[D Mary] <to leave>]).
+Solutions(5), Merge(17), Move(head)(9), Move(phrasal)(11), Transfer(40), Inflection(11), Consumed(25)
+
+
+& Example 39
+
+73. Pekka etsii Merjaa juosten 
+
+1. [[D Pekka]:1 [[T/fin [__:1 [v [etsi [D Merja-]]]]] <en juokse->]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, etsi([D Merja-]), juokse-(generic), v(<D Pekka>).
+Solutions(5), Merge(18), Move(head)(14), Move(phrasal)(11), Transfer(38), Inflection(13), Consumed(28)
+
+2. [[<D Pekka>:1 [T/fin [<__>:1 [v [etsi [D Merja-]]]]]] <en juokse->]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, etsi([D Merja-]), juokse-(generic), v(<D Pekka>).
+Solutions(5), Merge(18), Move(head)(14), Move(phrasal)(11), Transfer(38), Inflection(13), Consumed(28)
+
+
+& Example 41
+
+74. to_inf leave is a mistake 
+
+1. [[to leave] [T/fin [be [a mistake]]]]
+Valued φ: a.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(generic), leave(generic), to([T/fin [be [a mistake]]]).
+Solutions(5), Merge(15), Move(head)(7), Move(phrasal)(0), Transfer(47), Inflection(1), Consumed(13)
+
+
+& Example 42
+
+75. Pekka pyytaa lahtemaan 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [v* [pyyda [ma lahtea]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, lahtea(generic), pyyda(clausal argument), v*(<D Pekka>).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(11), Inflection(7), Consumed(15)
+
+
+& Example 44
+
+76. haluan lahtea 
+
+1. [T/fin [v [haluaa [A/inf lahtea]]]]
+Valued φ: T/fin.1sg.
+LF-recovery: Interpretation successful, haluaa(T/fin), lahtea(T/fin), v(T/fin).
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(1), Consumed(6)
+
+
+77. * haluaa lahtea 
+
+78. Pekka sanoo etta haluaa lahtea 
+
+1. [<D Pekka>:1 [T/fin [<__>:1 [sano- [etta [T/fin [v [haluaa [A/inf lahtea]]]]]]]]]
+Valued φ: D.3sg, __.3sg, T/fin.3sg.
+LF-recovery: Interpretation successful, T/fin(<D Pekka>), haluaa(<D Pekka>), lahtea(<D Pekka>), sano-(<D Pekka>), v(<D Pekka>).
+Solutions(1), Merge(9), Move(head)(7), Move(phrasal)(4), Transfer(15), Inflection(8), Consumed(18)
+
+
+& Radical pro-drop (with special verbs admire' and admire'')
+
+79. John admire' Mary 
+
+1. [[D John]:1 [T/fin' [__:1 [v [admire [D Mary]]]]]]
+Valued φ: D.3sg, __.3sg.
+LF-recovery: Interpretation successful, T/fin'(discourse antecedent), admire([D Mary]), v([D John]).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(8), Inflection(10), Consumed(18)
+
+
+80. admire' Mary 
+
+1. [T/fin' [v [admire [D Mary]]]]
+Valued φ: D.3sg.
+LF-recovery: Interpretation successful, T/fin'(discourse antecedent), admire([D Mary]), v(discourse antecedent).
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(5), Consumed(10)
+
+
+81. John admire'' Mary 
+
+1. [[D John]:1 [T/fin'' [__:1 [v [admire [D Mary]]]]]]
+Valued φ: D.3sg, __.3sg.
+LF-recovery: Interpretation successful, admire([D Mary]), v([D John]).
+Solutions(2), Merge(8), Move(head)(2), Move(phrasal)(4), Transfer(8), Inflection(10), Consumed(18)
+
+
+82. admire'' Mary 
+
+1. [T/fin'' [v [admire [D Mary]]]]
+Valued φ: D.3sg.
+LF-recovery: Interpretation successful, admire([D Mary]), v(T/fin'').
+Solutions(1), Merge(4), Move(head)(2), Move(phrasal)(0), Transfer(2), Inflection(5), Consumed(10)
+
+

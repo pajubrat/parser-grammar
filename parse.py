@@ -9,7 +9,7 @@
 # Imports
 import datetime
 from linear_phase_parser import LinearPhaseParser
-from support import disable_all_logging, set_logging, log
+from support import disable_all_logging, set_logging, log, formatted_output
 import logging
 import time
 from pathlib import Path
@@ -19,13 +19,13 @@ from context import Context
 # Name of the corpus file
 # CHANGE TO MATCH THE STUDY
 # Name of the data directory
-data_folder = Path("language data working directory/study-6-book/")
+data_folder = Path("language data working directory/study-3_2020-control/")
 # Name of the corpus file
-test_corpus_name = "book_corpus.txt"
+test_corpus_name = "null_subjects_corpus.txt"
 
 # file name for the test corpus
 # Created automatically from the corpus file -- do not change
-test_set_name = data_folder / "book_corpus.txt"
+test_set_name = data_folder / test_corpus_name
 
 # log file (name plus path)
 # Created automatically from the corpus file -- do not change
@@ -34,7 +34,7 @@ log_file_name = data_folder / log_name
 
 # results file (name plus path)
 # Created automatically from the corpus file -- do not change
-results_name = test_corpus_name[:-4] + '_results_txt'
+results_name = test_corpus_name[:-4] + '_results.txt'
 results_file_name = data_folder / results_name
 
 # Name of the lexicon file
@@ -80,6 +80,11 @@ print(f'Redundancy rules from {redundancy_rules}')
 #   Otherwise, all sentences are parsed
 plus_sentences = []
 for line in open(test_set_name):
+
+    # Symbol "=STOP=" is used to stop reading the corpus file
+    if line.startswith('=STOP='):
+        break
+
     line = line.strip()
 
     # Ignore empty lines and comment lines
@@ -114,13 +119,13 @@ for language in lang_guesser.languages:
     parsers[language] = LinearPhaseParser(sentence_context)
 
 # Set up logging functions and parameters
-logging.basicConfig(level=logging.INFO, filename=log_file_name, filemode='w', format='%(message)s')
+logging.basicConfig(level=logging.INFO, handlers=[logging.FileHandler(log_file_name, 'w', 'utf-8')], format='%(message)s')
 
 # Print parameters to console
 print()
 
 # Create the output file
-results_file = open(results_file_name, "w")
+results_file = open(results_file_name, "w", -1, "utf-8")
 results_file.write(str(datetime.datetime.now())+'\n')
 results_file.write(f'Test sentences from file \"{test_set_name}\".\n')
 results_file.write(f'Logs into file \"{log_file_name}.\n')
@@ -187,25 +192,33 @@ for sentence in parse_list[start:]:
 
         # If no results were found, the sentence is ungrammatical
         if len(P.result_list) == 0:
-            results_file.write('\t' + str(count) + '. * ' + s + '\n\n')
+            results_file.write(str(count) + '. * ' + s + '\n\n')
         else:
             # Marginality estimations are printed here
             if 0 >= P.score >= -6:
                 judgment = grammaticality_judgement[int(round(abs(P.score), 0))]
             else:
                 judgment = '##'
-            results_file.write('\t' + str(count) + '. ' + judgment + s + '\n')
+            results_file.write(str(count) + '. ' + judgment + s + '\n\n')
 
             # Print the result into the results file
-            parse = P.result_list[0]
-            results_file.write(f'\t\t{parse}\n')
-            results_file.write(f'\t\tSolutions({P.number_of_solutions_tried}), '
-                               f'Merge({P.number_of_Merge}), '
-                               f'Move(head)({P.number_of_head_Move}), '
-                               f'Move(phrasal)({P.number_of_phrasal_Move}), '
-                               f'Transfer({P.number_of_Transfer}), '
-                               f'Inflection({P.number_of_inflectional_features_processed}), '
-                               f'Consumed({P.number_of_items_consumed})\n')
+            parse_id = 1
+            for parse in P.result_list:
+                results_file.write(str(parse_id) + f'. {parse}\n')
+                # results_file.write('\''+parse.gloss()+'.\'\n')
+                results_file.write('Valued φ: ' + str(formatted_output(parse.get_valued_phi_set())) + '\n')
+                results_file.write('LF-recovery: ' + str(formatted_output(P.semantic_interpretation)) + '\n')
+                # results_file.write('Score: ' + str(P.score) + '  (')
+                # results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
+                # results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')
+                results_file.write(f'Solutions({P.number_of_solutions_tried}), '
+                                   f'Merge({P.number_of_Merge}), '
+                                   f'Move(head)({P.number_of_head_Move}), '
+                                   f'Move(phrasal)({P.number_of_phrasal_Move}), '
+                                   f'Transfer({P.number_of_Transfer}), '
+                                   f'Inflection({P.number_of_inflectional_features_processed}), '
+                                   f'Consumed({P.number_of_items_consumed})\n\n')
+                parse_id = parse_id + 1
             results_file.write('\n')
     else:
         results_file.write(' '.join(map(str, sentence))+'\n\n')

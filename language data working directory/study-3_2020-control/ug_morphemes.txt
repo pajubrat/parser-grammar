@@ -1,0 +1,61 @@
+
+# ======================================================================================
+# Universal language-invariant morphemes are collected here
+# =======================================================================================
+#
+# This collection will be combined with language-specific lexical information downloaded
+# from the file during parsing. The features from the two sets are combined together by set union
+#
+# Important: the keys must refers to UG morphemes, not language specific keys
+
+T/fin   :: CAT:T/fin PF:T/fin LF:T
+v       :: CAT:v PF:v LF:v
+v*		:: CAT:v* CAT:v PF:v* LF:v* SEM:external
+vv		:: CAT:v PF:vv LF:v VAL
+v/pro	:: CAT:v/pro PF:v/pro LF:pro 
+C/fin   :: CAT:C/fin PF:C LF:C/fin 
+T		:: CAT:T PF:T LF:T
+
+# Infinitivals
+INF		:: CAT:INF PF:INF LF:INF
+A/inf	:: CAT:INF CAT:A/inf PF:A/inf LF:A/inf ?ARG
+TO/inf 	:: CAT:INF CAT:TO/inf PF:TO/inf LF:TO/inf ?ARG
+MA/inf	:: CAT:INF CAT:MA/inf PF:ma LF:MA/inf -ARG
+VA/inf  :: CAT:INF CAT:VA/inf PF:vAn LF:VA
+
+# These are "generic" determiners and prepositions
+# Notice that they will have the default lexical features 
+D   :: CAT:D PF:D LF:D
+P 	:: CAT:P PF:P LF:P
+
+# Pronominal items
+pro	:: pro-#D
+pro-	:: PF:(pro) LF:pro CAT:N CAT:PHI
+
+# Phi-features
+sg :: - PHI:NUM:SG
+pl :: - PHI:NUM:PL
+1p :: - PHI:PER:1
+2p :: - PHI:PER:2
+3p :: - PHI:PER:3
+def :: - PHI:DET:DEF
+indef :: - PHI:DET:INDEF
+hum :: - PHI:HUM:HUM
+nonhum :: -PHI:HUM:NONHUM
+m	::	- PHI:GEN:M
+f	::	- PHI:GEN:F
+n 	::  - PHI:GEN:N
+
+# Structural Case
+nom   	:: - TAIL:ARG,VAL,CAT:FIN
+gen     :: - TAIL:ARG,VAL,CAT:INF -FLOAT
+par   	:: - TAIL:ARG,-VAL
+acc		:: - TAIL:ARG,-VAL
+asp		:: - TAIL:ARG,ASP
+pos     :: - CAT:Pos CAT:D
+uwh	   	:: - CAT:uWH
+wh     	:: - CAT:WH
+top    	:: - ABAR:TOP
+foc    	:: - ABAR:FOC
+rel    	:: - CAT:R
+Q		:: - CAT:Q

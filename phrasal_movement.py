@@ -275,23 +275,35 @@ class PhrasalMovement():
                         self.adjunct_constructor.create_adjunct(h.complement().right_const)
 
     # Definition for A-reconstruction
+    # XP undergoes A-reconstruction if and only if
+    # Condition 1. XP is a DP
+    # Condition 2. XP is inside projection HP and H has a complement into which to reconstruct
+    # Condition 3. XP is in a non-thematic SPEC position
+    # Condition 4. XP has no criterial feature
     def A_reconstruct(self, ps):
 
+        # Condition 1.
         if 'CAT:D' in ps.get_head().features:
+
+            # Condition 2. There is a right sister HP
             if ps.sister() and ps.is_left() and not ps.is_primitive():
-                log(f'\t\t\t\t\t{ps} will undergo A-reconstruction (form of Agree).')
-                head = ps.sister().get_head()
-                if head.is_left():
-                    head.sister().merge(ps.copy_from_memory_buffer(self.babtize()), 'left')
+                log(f'\t\t\t\t\t{ps} will undergo A-reconstruction.')
 
-                    # Keep record of the computations consumed
-                    self.controlling_parser_process.number_of_phrasal_Move += 1
+                # XP will be reconstructed into CompHP, H = head of HP
+                H = ps.sister().get_head()
 
-                else:
-                    head.sister().merge(ps.copy_from_memory_buffer(self.babtize()), 'right')
+                # Reconstruct only if CompHP exists
+                if H.sister():
 
-                    # Keep record of the computations consumed
-                    self.controlling_parser_process.number_of_phrasal_Move += 1
+                    # If [DP [H XP]] then [__ [H [DP XP]]]
+                    if H.is_left():
+                        H.sister().merge(ps.copy_from_memory_buffer(self.babtize()), 'left')
+                        self.controlling_parser_process.number_of_phrasal_Move += 1
+
+                    # If [DP [XP H]] then [__ [[XP DP] H]
+                    else:
+                        H.sister().merge(ps.copy_from_memory_buffer(self.babtize()), 'right')
+                        self.controlling_parser_process.number_of_phrasal_Move += 1
 
     # Definition for targeting a head
     def target_head(self, _ps_iterator):

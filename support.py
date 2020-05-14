@@ -38,6 +38,15 @@ def show_results(ps_, result_list, semantic_interpretation):
     log('\t\t\tChecking if the sentence is ambiguous...')
 
 
+def formatted_output(enumerated_object):
+    output_str = ''
+    delimiter = ', '
+
+    for item in enumerated_object:
+        output_str = output_str + f'{item}' + delimiter
+
+    return output_str[:-2] + '.'
+
 def report_LF_problem(ps_):
     log('\t\t\tLF-interface condition(s) violated')
     log(ps_.show_primitive_constituents())

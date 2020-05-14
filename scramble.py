@@ -5,20 +5,25 @@
 
 # Imports
 import itertools
+from pathlib import Path
 
-scramble_file_list = ['scramble_corpus']
+input_corpus = 'scramble_corpus.txt'
+output_file = input_corpus[:-4] + '_results.txt'
+
+data_folder = Path("language data working directory/Scramble/")
+scramble_file_list = [data_folder / input_corpus]
 
 print('Scrambling...')
 
 for input_file_name in scramble_file_list:
     scramble_list = []
-    for line in open(input_file_name + '.txt'):
+    for line in open(input_file_name):
         line = line.strip()
         if not line or line.startswith('#'):
             continue
         scramble_list.append([word.strip() for word in line.split()])
 
-    output_file_name = input_file_name[:-6] + '_corpus.txt'
+    output_file_name = data_folder / output_file
     results_file = open(output_file_name, "w")
     counter = 1
 

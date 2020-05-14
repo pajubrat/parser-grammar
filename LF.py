@@ -289,7 +289,7 @@ class LF:
         else:
             log('\t\t\t\tTransfer to C-I successful.')
             self.transfer_to_CI_crash = False
-            return self.semantic_interpretation
+            return sorted(self.semantic_interpretation)
 
     # Attempts to transfer the LF-object into Conceptual-Intentional system
     def check_for_transfer(self, ps):
@@ -335,10 +335,10 @@ class LF:
             if list_of_antecedents:
                 self.semantic_interpretation.add(f'{ps}({list_of_antecedents[0].illustrate()})')
             else:
-                self.semantic_interpretation.add(self.failed_recovery(unvalued_phi_features))
+                self.semantic_interpretation.add(f'{ps}(' + self.failed_recovery(ps, unvalued_phi_features) + ')')
 
             # Report the results to the log file
-            self.report_to_log(list_of_antecedents, unvalued_phi_features)
+            self.report_to_log(ps, list_of_antecedents, unvalued_phi_features)
 
         #
         # Transfer condition 3. Phi-feature conflicts are not tolerated
@@ -402,7 +402,7 @@ class LF:
                 # Note: the reason is because any XP containing D can value D_, will be implemented later in this way
                 if ps_.sister() and ps_.sister() == ps.get_local_edge():
                     if ps_.sister() and 'CAT:D' not in ps_.sister().get_head().features:
-                        self.semantic_interpretation.add('Generic')
+                        self.semantic_interpretation.add(f'{ps}(Generic)')
                         list_of_antecedents.append(ps_.sister())
                     else:
                         list_of_antecedents.append(ps_.sister())
@@ -457,7 +457,7 @@ class LF:
         else:
             return False
 
-    def report_to_log(self, list_of_antecedents, unvalued_phi_features):
+    def report_to_log(self, ps, list_of_antecedents, unvalued_phi_features):
         s = ''
         i = 1
         if list_of_antecedents:
@@ -471,17 +471,22 @@ class LF:
             if s:
                 log(f'\t\t\t\t\t' + s)
             else:
-                log(f'\t\t\t\t\t{self.failed_recovery(unvalued_phi_features)}')
+                log(f'\t\t\t\t\t{ps}{self.failed_recovery(ps, unvalued_phi_features)}')
             return True
 
-    # This function will later be moved to its own class that contains discourse computations.
-    # Now it is here to speed up processing
-    def failed_recovery(self, features):
-
+    # Definition for consequences of failed LF-recovery which creates various generic/arbitrary interpretations
+    # Presupposition. LF-recovery fails if and only if no antecedent is found (defined in another function)
+    def failed_recovery(self, ps, features):
         if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
-            return 'Generic'
+            if ps.sister() and ps.sister().is_complex() and \
+                    ('CAT:INF' in ps.sister().get_head().features or 'CAT:FIN' in ps.sister().get_head().features):
+                return 'clausal argument'
+            else:
+                return 'generic'
+        elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
+            return 'discourse antecedent'
         else:
-            return 'Person feature is missing'
+            return 'Cannot be interpreted at C-I.'
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.

@@ -223,11 +223,12 @@ class LexicalInterface:
         # VAL:  whether agreement reconstruction can value D_, PHI_
         if 'ARG' in features:
             features.add('CAT:ARG')
-            features.add('PHI:DET:_')
             if 'NO_NUMBER' not in features:
                 features.add('PHI:NUM:_')
             if 'NO_PERSON' not in features:
                 features.add('PHI:PER:_')
+            if 'NO_DET' not in features:
+                features.add('PHI:DET:_')
             if gender:
                 features.add('PHI:GEN:_')
             if 'VAL' in features:

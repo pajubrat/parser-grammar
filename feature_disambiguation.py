@@ -36,6 +36,7 @@ class FeatureProcessing():
             h.features.add('-ARG')
             h.features.add('CAT:-ARG')
             h.features.add('-SPEC:*')
+            h.features.discard('SPEC:*')
 
         # Condition 2. H selected by head with SEM:external => ARG + !SPEC:* (EPP)
         elif h.get_selector() and 'SEM:external' in h.get_selector().features:
@@ -45,14 +46,11 @@ class FeatureProcessing():
             h.features.add('VAL')
             h.features.discard('?VAL')
             h.features.add('!SPEC:*')
-            h.features.add('PHI:NUM:_')
-            h.features.add('PHI:PER:_')
 
         # Condition 3. If H is selected by neither internal nor external, we assume ARG
         else:
             h.features.add('ARG')
             h.features.add('CAT:ARG')
-            h.features.add('!SPEC:*')
             h.features.add('PHI:NUM:_')
             h.features.add('PHI:PER:_')
 

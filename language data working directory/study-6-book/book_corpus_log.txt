@@ -23,7 +23,7 @@ Using lexicon "language data working directory\study-6-book\lexicon.txt".
 		Storing inflectional feature ['-', 'LANG:FI', 'TAIL:CAT:FIN,!COMP:*,VAL'] into working memory.
 
 	5. Consume "D$"
-		Adding inflectional features {'PHI:HUM:HUM', '-', 'TAIL:CAT:FIN,!COMP:*,VAL', 'PHI:DET:DEF', 'PHI:NUM:SG', 'PHI:PER:3', 'LANG:FI'} to D
+		Adding inflectional features {'-', 'PHI:HUM:HUM', 'TAIL:CAT:FIN,!COMP:*,VAL', 'PHI:DET:DEF', 'PHI:PER:3', 'LANG:FI', 'PHI:NUM:SG'} to D
 			=D
 
 	7. Consume "Pekka"
@@ -89,7 +89,7 @@ Using lexicon "language data working directory\study-6-book\lexicon.txt".
 		Storing inflectional feature ['-', 'LANG:FI', 'TAIL:ARG,-VAL'] into working memory.
 
 	16. Consume "D$"
-		Adding inflectional features {'PHI:HUM:HUM', '-', 'TAIL:ARG,-VAL', 'PHI:DET:DEF', 'PHI:NUM:SG', 'PHI:PER:3', 'LANG:FI'} to D
+		Adding inflectional features {'-', 'PHI:HUM:HUM', 'PHI:DET:DEF', 'TAIL:ARG,-VAL', 'PHI:PER:3', 'LANG:FI', 'PHI:NUM:SG'} to D
 
 	17. Consume "D"
 
@@ -317,7 +317,7 @@ D: [D];  Pekka: [N, D];  T/fin: [TT/fin];  __: [D, TT/fin];  __: [N, D, TT/fin];
 					1. [D Merja-]    (alternatives: 2. <D Pekka> 3. T/fin )
 				kuorsaa with ['PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'] was associated at LF with:
 				Transfer to C-I successful.
-				Semantic interpretation/predicates and arguments: {'Generic', 'hairitsee([D Merja-])', 'Interpretation successful', 'v(<D Pekka>)'}
+				Semantic interpretation/predicates and arguments: {'v(<D Pekka>)', 'Generic', 'hairitsee([D Merja-])', 'Interpretation successful'}
 ----------------------------------------------------------------------------------------------------------
                                               All tests passed                                           
 ----------------------------------------------------------------------------------------------------------
@@ -411,7 +411,7 @@ D: [D];  Pekka: [N, D];  T/fin: [TT/fin];  __: [D, TT/fin];  __: [N, D, TT/fin];
 					1. [D Merja-]    (alternatives: 2. [D Pekka] 3. T/fin )
 				kuorsaa with ['PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'] was associated at LF with:
 				Transfer to C-I successful.
-				Semantic interpretation/predicates and arguments: {'hairitsee([D Merja-])', 'Interpretation successful', 'v([D Pekka])', 'Generic'}
+				Semantic interpretation/predicates and arguments: {'Generic', 'v([D Pekka])', 'hairitsee([D Merja-])', 'Interpretation successful'}
 ----------------------------------------------------------------------------------------------------------
                                               All tests passed                                           
 ----------------------------------------------------------------------------------------------------------
@@ -624,7 +624,7 @@ D: [D];  Pekka: [N, D];  T/fin: [TT/fin];  __: [D, TT/fin];  __: [N, D, TT/fin];
 					1. <D Merja->    (alternatives: 2. <D Pekka> 3. T/fin )
 				kuorsaa with ['PHI:DET:_', 'PHI:NUM:_', 'PHI:PER:_'] was associated at LF with:
 				Transfer to C-I successful.
-				Semantic interpretation/predicates and arguments: {'Generic', 'Interpretation successful', 'hairitsee(<D Merja->)', 'v(<D Pekka>)'}
+				Semantic interpretation/predicates and arguments: {'v(<D Pekka>)', 'Generic', 'hairitsee(<D Merja->)', 'Interpretation successful'}
 ----------------------------------------------------------------------------------------------------------
                                               All tests passed                                           
 ----------------------------------------------------------------------------------------------------------

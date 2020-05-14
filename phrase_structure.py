@@ -131,7 +131,7 @@ class PhraseStructure:
 
     # Reductive definition for the (weak and strong) EPP
     def EPP(self):
-        if 'SPEC:*' in self.features or '!SPEC:*' in self.features or '-SPEC:*' in self.features:
+        if 'SPEC:*' in self.features or '!SPEC:*' in self.features:
             return True
         else:
             return False
@@ -387,10 +387,12 @@ class PhraseStructure:
 
         # Only phi-active head can contain a pro-element
         if 'ARG' in self.features:
-            # Collect phi-features
-            for f in self.features:
-                if f[:4] == 'PHI:' and f[-1] != '_':
-                    phi_set.add(f)
+
+            if 'VAL' in self.features:
+                phi_set = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
+            else:
+                phi_set = {f for f in self.features if f[:4] == 'PHI:'}
+
             # Construct a pronominal phi-set
             if phi_set:
 
@@ -933,6 +935,31 @@ class PhraseStructure:
 
 # Below are support functions that will be moved to the support class and are not part of phrase structure at all
 
+    def get_valued_phi_set(self):
+
+        phi_set = set()
+
+        if self.is_complex():
+            if self.left_const:
+                phi_set = self.left_const.get_valued_phi_set()
+            if self.right_const:
+                phi_set = phi_set | self.right_const.get_valued_phi_set()
+        else:
+            if 'PHI:NUM:SG' in self.features and 'PHI:PER:1' in self.features:
+                phi_set.add(f'{self}.1sg')
+            elif 'PHI:NUM:SG' in self.features and 'PHI:PER:2' in self.features:
+                phi_set.add(f'{self}.2sg')
+            elif 'PHI:NUM:SG' in self.features and 'PHI:PER:3' in self.features:
+                phi_set.add(f'{self}.3sg')
+            elif 'PHI:NUM:PL' in self.features and 'PHI:PER:1' in self.features:
+                phi_set.add(f'{self}.1pl')
+            elif 'PHI:NUM:PL' in self.features and 'PHI:PER:2' in self.features:
+                phi_set.add(f'{self}.2pl')
+            elif 'PHI:NUM:PL' in self.features and 'PHI:PER:3' in self.features:
+                phi_set.add(f'{self}.3pl')
+
+        return phi_set
+
     def show_affix(self):
         i = ''
         if self.is_primitive() and self.right_const:
@@ -1162,11 +1189,11 @@ class PhraseStructure:
     # pro = little-pro
     def get_pro_type(self):
         if 'PHI:NUM:_' in self.features and 'PHI:PER:_' in self.features and 'PHI:DET:_' in self.features:
-            return 'PRO'
+            return '\N{GREEK CAPITAL LETTER PHI}'
         if 'PHI:NUM:_' not in self.features and 'PHI:PER:_' not in self.features and 'PHI:DET:_' in self.features:
-            return 'pro/x'
-        return 'phi'
-
+            return '\N{GREEK SMALL LETTER PHI}/x'
+        return '\N{GREEK SMALL LETTER PHI}'
+		
     # More detailed output function
     def __repr__(self):
         if self.is_primitive():
