@@ -291,7 +291,14 @@ class LF:
             self.transfer_to_CI_crash = False
             return sorted(self.semantic_interpretation)
 
-    # Attempts to transfer the LF-object into Conceptual-Intentional system
+    # Definition for transfer to the conceptual-intentional system
+    # XP is accepted for CI transfer if and only if
+    # Condition 1. Operator-variable constructions satisfy operator binding conditions,
+    # Condition 2. Unvalued phi-features can be linked with antecedents by LF-recovery
+    # Condition 3. There are no phi-feature conflicts
+    #
+    # The operation returns a set of semantic interpretations when successful. It operates at the outer edge of
+    # LF-interface right before the phrase structure is handed over to CI and is not longer inside syntax.
     def check_for_transfer(self, ps):
 
         # Recursion
@@ -301,10 +308,12 @@ class LF:
             if not ps.right_const.find_me_elsewhere:
                 self.check_for_transfer(ps.right_const)
 
+            # If the operation fails, the set of semantic interpretations will be empty
             if self.transfer_to_CI_crash:
                 return set()
             else:
-                self.semantic_interpretation.add('Interpretation successful')
+                # If the operation succeeds, semantic interpretation (set) is send back
+                self.semantic_interpretation.add('Accepted by C-I')
                 return self.semantic_interpretation
 
         #
@@ -320,24 +329,23 @@ class LF:
                     self.semantic_interpretation.add(f'{ps}['+f+'] was bound to an operator.')
 
         #
-        # Transfer condition 2. Antecedents for unvalued phi-features (D, phi)
+        # Transfer condition 2. LF-recovery
         #
+        # Head H requires LF-recovery if and only if
+        # H has phi-features which are a) unvalued and b) must be valued for interpretation
         unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
-
         if unvalued_phi_features:
+
             log(f'\t\t\t\t{ps} with {sorted(unvalued_phi_features)} was associated at LF with:')
 
-            # Condition. If unvalued features are detected, they must be supplied with antecedents
-            list_of_antecedents = self.search_phi_antecedents(ps, unvalued_phi_features)
-
-            # Store the results for later reporting
-            # If antecedents were found, they are stored as such
+            # Provides a list of antecedents and adds the local antecedent to semantic interpretation if available,
+            # otherwise provides an interpretation for a "failed recovery"
+            list_of_antecedents = self.LF_recovery(ps, unvalued_phi_features)
+            # Provide the local antecedent to semantic interpretation (index 0 = local antecedent)
             if list_of_antecedents:
                 self.semantic_interpretation.add(f'{ps}({list_of_antecedents[0].illustrate()})')
             else:
-                self.semantic_interpretation.add(f'{ps}(' + self.failed_recovery(ps, unvalued_phi_features) + ')')
-
-            # Report the results to the log file
+                self.semantic_interpretation.add(f'{ps}(' + self.failed_recovery_outcome(ps, unvalued_phi_features) + ')')
             self.report_to_log(ps, list_of_antecedents, unvalued_phi_features)
 
         #
@@ -354,33 +362,49 @@ class LF:
     def must_be_valued(self, phi_set):
         return {phi for phi in phi_set if self.relevant_phi_at_LF(phi)}
 
-    # Definition of phi-features that are relevant at LF
+    # Definition for phi-features which require antecedents at LF/C-I
+    # Feature PHI requires antecedents at LF/C-I if and only if
+    # Condition 1. PHI is a number feature OR
+    # Condition 2. PHI is a person feature OR
+    # Condition 3. Phi is a D-feature.
     def relevant_phi_at_LF(self, phi):
         if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET':
             return True
         else:
             return False
 
-    # Searches a (prioritized) list of antecedents for a set of unvalued phi-feature
-    def search_phi_antecedents(self, ps, unvalued_phi):
+    # Definition for LF-recovery
+    # [X1...Xn] is a list of possible antecedents for H with unvalued phi-set PHI if and only if
+    # Condition 1. All X1...Xn are sisters of a node that is reached by geometrical upstream walk from H
+    # Condition 2. All X1...Xn are possible antecedents for PHI.
+    # Condition 3. All X1...Xn satisfy special conditions depending on the nature of PHI. Currently:
+    #   a) If PHI contains PHI:NUM:_ and PHI:PER:_, search must terminate at v*; ELSE
+    #   b) If PHI contains PHI:PER:_ but not PHI:NUM:, same as a) (used in radical pro-drop)
+    #   c) If PHI contains PHI:DET but neither PHI:NUM:_ nor PHI:PER:_, search must terminate at first
+    #   phrasal candidate inside H's edge which is recorded as 'generic' if it is not DP; if edge has no
+    #   local specifier, search is uses (1-2). If nothing is found, the derivation crashes.
+    #   Comment: condition c) is relevant for Finnish partial pro-drop (Holmberg hypothesis)
+    # Condition 4. X1...Xn are ordered with respect to locality to H, X1 being the closest. Typically only the
+    # local is used for semantic interpretation, but not necessarily, hence all antecedents are provided here.
+    def LF_recovery(self, ps, unvalued_phi):
         ps_ = ps
         list_of_antecedents = []
         #
-        # Alternative 1: unvalued per/num features: standard control
+        # Alternative 1: H has unvalued per/num features: standard control
         #
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             while ps_:
                 # Termination condition: presence of SEM-external (control boundary)
                 if ps_.sister() and 'SEM:external' in ps_.sister().features:
                     break
-                # Condition 1. Antecedent must be a sister of the node at the spine we climb up
+                # Condition 1. Antecedent must be a sister of the node reached by upstream walk from H
                 # Condition 2. The phrase must evaluate as a possible antecedent
-                if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
-                    list_of_antecedents.append(ps_.sister())
+                if ps_.geometrical_sister() and self.is_possible_antecedent(ps_.geometrical_sister(), ps):
+                    list_of_antecedents.append(ps_.geometrical_sister())
                 ps_ = ps_.walk_upstream_geometrically()
             return list_of_antecedents
         #
-        # Alternative 2. Only PER_ remains unvalued
+        # Alternative 2. Only PER_ remains unvalued: standard control (currently, used in radical pro-drop)
         #
         elif 'PHI:PER:_' in unvalued_phi:
             while ps_:
@@ -389,7 +413,7 @@ class LF:
                     break
                 # Condition 1. Antecedent must be a sister of the node at the spine we climb up
                 # Condition 2. The phrase must evaluate as a possible antecedent
-                if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
+                if ps_.sister() and self.is_possible_antecedent(ps_.sister(), ps):
                     list_of_antecedents.append(ps_.sister())
                 ps_ = ps_.walk_upstream_geometrically()
             return list_of_antecedents
@@ -399,58 +423,71 @@ class LF:
         elif 'PHI:DET:_' in unvalued_phi:
             while ps_:
                 # Termination condition: presence of local specifier
-                # Note: the reason is because any XP containing D can value D_, will be implemented later in this way
+                # Example: tässä istuu mukavasti 'here sit.3sg comfortably'
                 if ps_.sister() and ps_.sister() == ps.get_local_edge():
+                    # If the local candidate is not a DP, it will be interpreted as generic
                     if ps_.sister() and 'CAT:D' not in ps_.sister().get_head().features:
-                        self.semantic_interpretation.add(f'{ps}(Generic)')
+                        self.semantic_interpretation.add(f'{ps}(generic)')
                         list_of_antecedents.append(ps_.sister())
+                    # If the local candidate is DP, it will be the antecedent
                     else:
                         list_of_antecedents.append(ps_.sister())
+                    # Nothing else is searched (currently)
                     break
-                if ps_.sister() and self.evaluate_antecedent(ps_.sister(), ps):
+
+                # If there is no local antecedent inside the edge of H, then we get all antecedents.
+                if ps_.sister() and self.is_possible_antecedent(ps_.sister(), ps):
                     list_of_antecedents.append(ps_.sister())
                 ps_ = ps_.walk_upstream_geometrically()
+
+            # Condition 3c: if no antecedent is found, LF-recovery crashes
             if not list_of_antecedents:
                 log(f'\t\t\t\t\tNo antecedent found, LF-object crashes.')
                 self.transfer_to_CI_crash = True
             return list_of_antecedents
 
-    # Evaluates whether 'probe' could provide semantic support for 'goal'
-    def evaluate_antecedent(self, antecedent, goal):
+    # Defines the category of possible antecedent for a goal head H
+    # X is a possible antecedent for H if and only H
+    # Condition 1. X has not been moved into another position
+    # Condition 2. X check all H's relevant phi-features (valued, unvalued). A valued feature F at X checks
+    # feature G at H if and only if
+    #   a) F = G, or
+    #   b) G is unvalued and F can value G.
+    def is_possible_antecedent(self, antecedent, h):
 
+        # Condition 1. X has not been moved into another position
         if antecedent.find_me_elsewhere:
             return False
 
-        # A list of all phi-features present at the goal (valued, unvalued)
-        goal_phi_features = {f for f in goal.features if self.relevant_phi_at_LF(f)}
+        # Set of relevant phi-features at H (valued and unvalued)
+        h_phi_features = {f for f in h.features if self.relevant_phi_at_LF(f)}
 
-        # A list of unchecked features (all must eventually be checked by the antecedent)
-        unchecked_features_at_goal = goal_phi_features.copy()
+        # Set of unchecked features at H (will be checked by features of the antecedent)
+        unchecked_features_at_h = h_phi_features.copy()
 
-        # Go through phi-features at the probe
-        for probe_feature in antecedent.get_head().features:
+        # Condition 2. Antecedent X can check all H's relevant phi-features.
+        for F in {phi for phi in antecedent.get_head().features if phi[:4] == 'PHI:' and phi[-1] != '_'}:
+            for G in h_phi_features:
 
-            # Only valued phi-features can be used for valuation
-            if probe_feature[:4] == 'PHI:' and probe_feature[-1] != '_':
-                for goal_feature in goal_phi_features:
+                # Condition 2a) Valued feature F at antecedent X checks G at H if F = G.
+                if F == G:
+                    unchecked_features_at_h.discard(G)  # Check feature
 
-                    # Check identical features
-                    if goal_feature == probe_feature:
-                        unchecked_features_at_goal.discard(goal_feature)  # Check feature
-
-                    # Check unvalued features if they could be valued
-                    else:
-                        if goal_feature[-1] == '_':
-                            if probe_feature[:len(goal_feature)-1] == goal_feature[:-1]:
-                                unchecked_features_at_goal.discard(goal_feature)  # Check feature
+                # Condition 2b) Valued feature F at antecedent X checks G at H if F can value G.
+                else:
+                    if G[-1] == '_':
+                        if F[:len(G)-1] == G[:-1]:
+                            unchecked_features_at_h.discard(G)  # Check feature
 
         # If features remain unchecked, the antecedent is rejected
-        if unchecked_features_at_goal:  # If unchecked features remain, evaluation is negative
+        if unchecked_features_at_h:
             return False
         else:
             return True
 
-    # Check if the sister is a phase head (v, C, copula, Force)
+    # Definition for the notion of phrasal phase
+    # XP is a phrasal phase if and only if
+    # Condition 1. XP's sister is a phase head
     def phase(self, ps_):
         if ps_.sister() and ps_.sister().is_phase():
             return True
@@ -471,12 +508,16 @@ class LF:
             if s:
                 log(f'\t\t\t\t\t' + s)
             else:
-                log(f'\t\t\t\t\t{ps}{self.failed_recovery(ps, unvalued_phi_features)}')
+                log(f'\t\t\t\t\t{ps}{self.failed_recovery_outcome(ps, unvalued_phi_features)}')
             return True
 
-    # Definition for consequences of failed LF-recovery which creates various generic/arbitrary interpretations
-    # Presupposition. LF-recovery fails if and only if no antecedent is found (defined in another function)
-    def failed_recovery(self, ps, features):
+    # Definition for failed LF-recovery outcome
+    # Presupposition. LF-recovery fails if and only if no antecedent is found
+    # A failed outcome for LF-recovery for head H depends on unvalued phi-features:
+    #   a) NUM_, PER_: "clausal argument" if the sister is a clause, "generic" otherwise;
+    #   b) PER_: "discourse";
+    #   c) "uninterpretable" otherwise
+    def failed_recovery_outcome(self, ps, features):
         if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
             if ps.sister() and ps.sister().is_complex() and \
                     ('CAT:INF' in ps.sister().get_head().features or 'CAT:FIN' in ps.sister().get_head().features):
@@ -486,7 +527,7 @@ class LF:
         elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
             return 'discourse antecedent'
         else:
-            return 'Cannot be interpreted at C-I.'
+            return 'uninterpretable'
 
     # This functions binds a binding operator/antecedent at LF
     # = element that provides semantic interpretation for 'ps'.

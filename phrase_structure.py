@@ -592,11 +592,11 @@ class PhraseStructure:
         # Go upwards from self and add all heads to the feature vector
         # Ignore complement (i.e. H in [G H])
         while _ps_iterator and _ps_iterator.mother:
-            if _ps_iterator.geometrical_sister() \
-                and _ps_iterator.geometrical_sister().is_primitive() \
-                and _ps_iterator.geometrical_sister().is_left() \
-                and not _ps_iterator.geometrical_sister() == self.complement():
-                    feature_vector.append(_ps_iterator.geometrical_sister())
+            if _ps_iterator.geometrical_sister() and \
+                    _ps_iterator.geometrical_sister().is_primitive() and \
+                    _ps_iterator.geometrical_sister().is_left() and not \
+                    _ps_iterator.geometrical_sister() == self.complement():
+                feature_vector.append(_ps_iterator.geometrical_sister())
 
             # We don't use upstream walk function because we don't want to ignore adjuncts
             if _ps_iterator.mother:

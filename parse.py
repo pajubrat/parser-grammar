@@ -207,7 +207,7 @@ for sentence in parse_list[start:]:
                 results_file.write(str(parse_id) + f'. {parse}\n')
                 # results_file.write('\''+parse.gloss()+'.\'\n')
                 results_file.write('Valued φ: ' + str(formatted_output(parse.get_valued_phi_set())) + '\n')
-                results_file.write('LF-recovery: ' + str(formatted_output(P.semantic_interpretation)) + '\n')
+                results_file.write('Interpretation: ' + str(formatted_output(P.semantic_interpretation)) + '\n')
                 # results_file.write('Score: ' + str(P.score) + '  (')
                 # results_file.write('Failed: ' + str(P.number_of_solutions_tried - 1) + ', ')
                 # results_file.write('Discourse plausibility: -' + str(P.discourse_plausibility) + ')' + '\n\n')

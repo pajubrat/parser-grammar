@@ -21,8 +21,12 @@ adorate :: adora-#v#T/fin#[-te] LANG:IT
 adorano :: adora-#v#T/fin#[-no] LANG:IT
 adora-	:: PF:adora LF:admire CAT:V COMP:D LANG:IT
 
+am		:: BE-#T/fin#[-am] LANG:EN
+
 asks	:: ask-#v#T/fin#[-s] LANG:EN
 ask-	:: PF:ask LF:ask CAT:V SPEC:D !COMP:TO/inf SEM:external LANG:EN
+
+BE-		:: PF:be LF:be CAT:V !COMP:* COMP:D SPEC:D SEM:external
 
 Cen		:: PF:en LF:by CAT:ADV -ARG LANG:FI
 
@@ -102,7 +106,7 @@ Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
 
 persuade :: persuade-#v*#T/fin#[-0] LANG:EN
 persuades :: persuade-#v*#T/fin#[-s] LANG:EN
-persuade- :: PF:persuade LF:persuade !COMP:* CAT:V COMP:TO/inf SEM:external LANG:EN
+persuade- :: PF:persuade LF:persuade !COMP:* CAT:V !COMP:TO/inf SEM:external LANG:EN
 
 promise :: promise-#T/fin#[-0] LANG:EN
 promises :: promise-#T/fin#[-s] LANG:EN
@@ -118,7 +122,7 @@ sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE LANG:FI
 said    :: say-#T/fin LANG:EN
 say-    :: PF:say LF:say CAT:V SPEC:D !COMP:FORCE LANG:EN
 
-sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG LANG:FI
+sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG TAIL:CAT:V LANG:FI
 
 tassa	:: tama#P
 tama	:: tama-#D#sg#3p#def
@@ -157,7 +161,7 @@ se		:: se-#nom#sg#3p#def LANG:FI
 se-		:: PF:se LF:it/that CAT:D LANG:FI
 
 # English
-I		:: I-#D#sg#1p#def#hum#n
+I		:: I-#D#sg#1p#def#hum
 I- 		:: PF:I LF:I CAT:N CAT:PHI LANG:EN 
 you		:: you-#D#sg#2p#def#hum#n
 you-	:: PF:you LF:you CAT:N CAT:PHI LANG:EN
@@ -211,6 +215,7 @@ loro-	:: PF:loro LF:they CAT:N CAT:PHI LANG:IT
 # English
 [-s]	::	- PHI:NUM:SG PHI:PER:3 PHI:GEN:M PHI:GEN:F
 [-0]	::  - PHI:NUM:PL PHI:NUM:SG PHI:PER:1 PHI:PER:2 PHI:PER:3 PHI:DET:DEF PHI:GEN:N
+[-am]	::	- PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:GEN:M PHI:GEN:F
 
 # Italian
 [-o]	::	- PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM

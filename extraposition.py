@@ -92,7 +92,7 @@ class Extraposition:
 
             # Condition 2(i), ps_ = [H YP], [XP][H YP]
             if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
-                if  ps_.sister().is_complex():
+                if ps_.sister().is_complex():
                     break
                 # Condition 2(ii) ps_ = [H YP], [X0 [H YP]]
                 # Select HP if and only if X0 rejects HP as complement
@@ -108,18 +108,16 @@ class Extraposition:
 
         # If a suitable node was found, we try to turn it into an adjunct
         # [H XP] will be promoted into an adjunct if and only if
-        # Condition 1. H's feature vector contains FIN or D (redundant)
         # Condition 2. <H XP> will be LF-interpretable at that position
         if ps_:
+
             # The adjunct must be interpretable at this location
-            for head in ps_.left_const.get_feature_vector():
-                # Condition 1. H's feature vector must contain FIN or D
-                if 'FIN' in head.get_labels() or 'D' in head.get_labels():
-                    self.adjunct_constructor.create_adjunct(ps_)
-                    # Condition 2. <H XP> is interpretable as an adjunct at that location.
-                    if not ps_.get_top().LF_legibility_test().all_pass():
-                            log(f'\t\t\t\t\tSomething is still wrong. The structure is still uninterpretable.')
-                    return True
+            self.adjunct_constructor.create_adjunct(ps_)
+
+            # Condition 2. <H XP> is interpretable as an adjunct at that location.
+            if not ps_.get_top().LF_legibility_test().all_pass():
+                log(f'\t\t\t\t\tSomething is still wrong. The structure is still uninterpretable.')
+            return True
         else:
             log(f'\t\t\t\t\tNo suitable node for extraposition found. No action was taken.')
         return False

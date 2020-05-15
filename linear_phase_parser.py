@@ -7,6 +7,7 @@ from agreement_reconstruction import AgreementReconstruction
 from transfer import Transfer
 from surface_conditions import SurfaceConditions
 
+
 class LinearPhaseParser:
     def __init__(self, sentence_context):
 
@@ -95,52 +96,60 @@ class LinearPhaseParser:
         # Start parsing
         self._first_pass_parse(ps, lst, 0)
 
-    # Recursive parsing algorithm
+    # Definition for the recursive parsing algorithm
     def _first_pass_parse(self, ps, lst, index):
 
-        # If a decision has been made to exist the recursion, it happens here
+        # If self.exit is set to TRUE, recursion ends and control returns to the main parsing function
         if self.exit:
             return
 
         set_logging(True)
 
-        # Print the current state to the log file
         if not self.memory_buffer_inflectional_affixes:
             log(f'\t\t\t={ps}')
 
-        # Test if we have reached at the end of the input list
+        # Definition for what happens when we reach the end of the input
+        # The expression converges (produces a solution) if and only if
+        # Condition 1. The expression passes surface legibility
+        # Condition 2. The expression passes LF-legibility at the LF-interface
+        # Condition 3. The expression can be transferred to the Conceptual-Intentional system
         if index == len(lst):
+
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
+            log('\n\t>>>\t' + f'Trying candidate spell out structure ' + ps.illustrate())
 
-            # The whole sentence has been processed, we test if the result is legitimate
-            log('\n\t>>>\t' + f'Trying candidate spellout structure ' + ps.illustrate())
-
-            # Check surface conditions and interpretations
+            # Condition 1. Test surface legibility
             log('\t\tChecking surface conditions...')
             S = self.surface_conditions_module
             S.all_pass = True
             self.surface_conditions_pass = S.reconstruct(ps)
             if self.surface_conditions_pass:
 
-                # Transfer to LF
+                # Condition 2. The expression passes LF-legibility if and only if
+                # Presuppostion 2a) The expression undergoes final transfer, and then
+                # Condition     2b) The expression satisfies LF-legibility
                 log('\t\tReconstructing...')
+
+                # Presupposition 2a. The expression undergoes final transfer
                 ps_ = self.transfer_to_lf(ps)
                 log('\t\t\t= ' + ps_.illustrate())
-
-                # Check LF-interface conditions
                 log(f'\t\tChecking LF-interface conditions.')
-                lf = ps_.LF_legibility_test()
 
-                # If the result passes at LF
+                # Condition 2b. The expression passes LF-legibility
+                lf = ps_.LF_legibility_test()
                 if lf.all_pass():
+
+                    # Condition 3. The expression can be transferred to the Conceptual-Intentional system
+                    #
+                    # Note: in this version, CI reports back a "semantic interpretation" which must be non-empty
                     self.semantic_interpretation = self.transfer_to_CI(ps_)
                     if lf.final_tail_check(ps_):
+
+                        # CONVERGENCE: OUTPUT IS ACCEPTED.
                         if self.semantic_interpretation:
-                            # Add the output (phrase structure) to result list
                             self.result_list.append(ps_)
                             log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
                             show_results(ps_, self.result_list, self.semantic_interpretation)
-
                             # self.exit = True    # Knock this out if you want to see all solutions
                         else:
                             log('\t\t\tThe sentence cannot be interpreted at LF')
@@ -153,7 +162,14 @@ class LinearPhaseParser:
 
             return  # This return will send the parser to an unexplored path in the recursive parse tree
 
-        # Process next word
+        # Control flow for consuming the next word
+        # Condition 1.  Lexical ambiguity is resolved
+        # Condition 2.  Polymorphemic input words are decomposed and reversed by the mirror principle, the elements
+        #               positioned into the input string
+        # Condition 3.  Inflectional features are stored into temporary memory buffer
+        # Condition 4.  Monomorphemic lexical items
+        #               a)  receive inflectional features (if any) from the memory buffer as features
+        #               b)  are right merged to the existing phrase structure based on (i) filtering and (ii) ranking.
         else:
 
             # Record operations
@@ -162,35 +178,41 @@ class LinearPhaseParser:
             # Initialize morphology
             m = self.morphology
 
-            # Lexical ambiguity
-            # If the item was not recognized, an ad hoc constituent is returned that has unknown label CAT:X
+            # Condition 1. Lexical ambiguity creates a search path for each lexical item
+            #
+            # Disambiguated_word-list contains a list of lexical items retrieved from the surface lexicon on the basis
+            # of the surface item. A lexical item is a set of features. Lexical items can be classified into three
+            # groups:
+            #
+            #   INFLECTIONAL features have morphological special null decomposition marked by -
+            #   MONOMORPHEMIC lexical items have no morphological decomposition, only a set of features
+            #   POLYMORPHEMIC lexical items have morphological decomposition
+            #
             disambiguated_word_list = self.lexicon.access_lexicon(lst[index])
             if len(disambiguated_word_list) > 1:
                 log(f'\t\tAmbiguous lexical item \"{lst[index]}\" detected, {disambiguated_word_list}.')
-
-            # Explore all possible lexical items
             for lexical_constituent in disambiguated_word_list:
+
                 lst_branched = lst.copy()
 
                 lexical_item = lexical_constituent
-                # Morphological decomposition
-                # Condition 1. The lexical item is polymorphemic
-                # Result: insert the morphemes to the input list, return the first lexical item to be processed
-                # Repeat the procedure until the lexical item to be processed does not decompose further
+
+                # Condition 2. Polymorphemic input words are decomposed
+                # The operation takes a polymorphemic lexical item as an input, decomposes it into primitive
+                # items (inflectional features and monomorphemic units), reverses their order, and positions them into the
+                # input string in the reversed order.
                 while m.is_polymorphemic(lexical_item):
                     lexical_item, lst_branched = m.morphological_parse(lexical_constituent,
                                                                        lst_branched,
                                                                        index)
 
-                # Read inflectional features (if any) and store them into memory buffer, then consume next word
+                # Condition 3. Inflectional features are stored into temporary memory buffer
                 inflection = m.get_inflection(lexical_item)
                 if inflection:
+
                     # Add inflectional features and prosodic features into memory
                     self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
-
-                    # Keep record of the consumed operations
                     self.number_of_inflectional_features_processed = self.number_of_inflectional_features_processed + 1
-
                     log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lst_branched[index + 1] + '\"')
                     if ps:
                         self._first_pass_parse(ps.copy(), lst_branched, index + 1)
@@ -199,7 +221,8 @@ class LinearPhaseParser:
 
                 # If the item was not inflection, it is a morpheme that must be merged
                 else:
-                    # Unload inflectional suffixes from the memory into the morpheme as features
+                    # Condition 4a)
+                    # Unload inflectional suffixes from the memory buffer into the morpheme as features
                     lexical_item = m.set_inflection(lexical_item, self.memory_buffer_inflectional_affixes)
                     self.memory_buffer_inflectional_affixes = set()
 
@@ -207,38 +230,38 @@ class LinearPhaseParser:
                     if not ps:
                         self._first_pass_parse(lexical_item.copy(), lst_branched, index + 1)
 
-                    # ------------------------------------------------------------------------------------
-                    # MAIN PARSER LOOP
-                    # ------------------------------------------------------------------------------------
-
-                    # Merge the new word (disambiguated lexical item) to the existing phrase structure
+                    # Condition 4b)
+                    # Right Merge the lexical item to the existing phrase structure
                     else:
                         log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lexical_item.get_pf() + '\"\n')
                         log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_pf())
 
-                        # Get the merge sites
-                        # Impossible merge sites are first filtered out
-                        # Possible merge sites are then ranked
+                        # Impossible merge sites are filtered (i) and the remaining sites are ranked (ii)
                         adjunction_sites = self.ranking(self.filter(ps, lexical_item), lexical_item)
 
-                        # Test the adjunction sites in the order of ranking
+                        # Output from filtering and ranking generate the parsing space
                         for i, site in enumerate(adjunction_sites, start=1):
                             ps_ = ps.get_top().copy()
-
-                            # Keep record of the number of Right Merge operations
                             self.number_of_Merge = self.number_of_Merge + 1
-
-                            # If the next morpheme was inside the same word as previous, it will be
-                            # eaten inside the constituent (will be reconstructed later)
+                            #
+                            # Two options:
+                            #
+                            # A. If the new item was inside the same word as the previous item, a special
+                            # operation is used which creates a complex terminal item.
+                            #
+                            # B. If not, apply Right Merge (substitution to the right edge)
+                            #
+                            # Option A. Create complex terminal item
                             if site.get_bottom_affix().internal:
                                 site_ = ps_[ps.index(site)]
                                 new_ps = site_ * lexical_item
-
-                            # If the next morpheme was not inside the same word as previous, it will be merged
+                            # Option B. Apply Right Merge
                             else:
                                 log(f'\t\t\tExploring solution number ({i}) =' + f'[{site} {lexical_item.get_pf()}]')
                                 site_ = self.transfer_to_lf(ps_[ps.index(site)])
                                 new_ps = site_ + lexical_item
+
+                            # Move to next word
                             self._first_pass_parse(new_ps, lst_branched, index + 1)
                             if self.exit:
                                 break
@@ -255,12 +278,16 @@ class LinearPhaseParser:
                     '\n\n\t\t(backtracking...)\n')
             return
 
-    # Filter impossible sites
+    # Definition for filtering
+    # A solution node N for new item w is filtered out if and only if
+    # Condition 1. New word w was inside the last word, in which case only H-COMP is accepted, the rest are filtered
+    # Condition 2. If N does not accept any complementizer (-COMP:*), [N w] is filtered out
+    # Condition 3. If N does not pass strong LF-legibility test, filter out [N w].
+    # Condition 4. If solution [N w] breaks existing words, it is rejected.
     def filter(self, ps, w):
         log('\t\t\tFiltering out impossible merge sites...')
 
-        # Filter condition A.
-        # Check if the new word must be inside the last word. If yes, we H-Comp solution will be used
+        # Condition 1. New word was inside the last word, in which case only H-COMP is accepted, the rest are filtered
         bottom_element = ps.get_bottom().get_bottom_affix()
         if bottom_element.internal:
             log(f'\t\t\tSink \"{w.get_pf()}\" into {bottom_element.get_pf()}'
@@ -271,33 +298,24 @@ class LinearPhaseParser:
         adjunction_sites = []
 
         # Gather all merge nodes at the right edge of the phrase structure ('ps')
-        for i, site in enumerate(ps, start=1):
+        for i, N in enumerate(ps, start=1):
 
-            # Filter condition B.
-            # If a primitive site does not accept complementizer, it cannot be a target for Merge
-            if site.is_primitive():
-                if '-COMP:*' in site.features:
-                    log(f'\t\t\t\tReject [{site} {w}] because {site} does not accept complementizers.')
-                    continue  # Do not add this site to the list
+            # Condition 2. If N does not accept any complementizer (-COMP:*), [N W] is filtered out
+            if N.is_primitive():
+                if '-COMP:*' in N.features:
+                    log(f'\t\t\t\tReject [{N} {w}] because {N} does not accept complementizers.')
+                    continue
 
-            # Filter condition C.
-            # Check the left branch 'site' in Merge(site, W) for strong LF-legibility
-            # "Strong LF-legibility" means that at least three tests must fail, see below.
-            if not site.is_primitive():
-
-                #
-                # Presupposition. Drop all constituents before check
-                #
+            # Condition 3. If N does not pass strong LF-legibility test, filter out [N W].
+            if not N.is_primitive():
                 set_logging(False)
-                dropped = self.transfer_to_lf(site.copy())
-
-                # Test LF-legibility, only inspect tests which cannot be repaired later
-                # Take the test
+                dropped = self.transfer_to_lf(N.copy())
                 lf_test = dropped.LF_legibility_test()
-                # Condition for filtering
+
+                # XP fails strong LF-legibility if and only if
                 # Condition 1. The LF-legibility test fails
-                # Condition 2. W is not adjoinable
-                # Condition 3. probe-goal test, head-integrity test and criterial feature test all failed.
+                # Condition 2. w is not adjoinable
+                # Condition 3. probe-goal test, head-integrity test and criterial feature test ALL failed.
                 if lf_test.fail() and not (
                         w.is_adjoinable() and  # This condition because Merge(site, W) may be cancelled if W = adjunct
                         lf_test.probe_goal_test_result and
@@ -305,25 +323,23 @@ class LinearPhaseParser:
                         lf_test.criterial_feature_test_result):
                     set_logging(True)
                     log(f'\t\t\t\tReject [{dropped.illustrate()} {w}] due to bad left branch.')
-                    continue  # Do not add this site to the list
+                    continue
 
             set_logging(True)
 
-            # Filter condition D. Word-breaking violations
-            # Remove all solutions which would cause phonological words to break apart
-            if not site.is_primitive() and self.is_word_internal(site):
-                if not w.is_adjoinable(): # Adjoinable phrases cannot be tested because they might become adjuncts later
-                    log(f'\t\t\t\tReject [{repr(site)} {w}] as Spec because it breaks words.')
+            # Condition 4. If solution [N w] breaks existing words, it is rejected.
+            if not N.is_primitive() and self.is_word_internal(N):
+                if not w.is_adjoinable():  # Adjoinable phrases cannot be tested because they might become adjuncts later
+                    log(f'\t\t\t\tReject [{repr(N)} {w}] as Spec because it breaks words.')
                     continue  # reject this site and start next site
 
             # Add the site to the list if it was not filtered out by previous conditions A-D.
-            adjunction_sites.append(site)
+            adjunction_sites.append(N)
 
         # Return the list of possible adjunction sites
         return adjunction_sites
 
-    # This function order the adjunction sites in terms of the plausibility and grammatical possibility
-    # It only affects efficiency, not grammaticality
+    # Definition for the ranking function
     def ranking(self, site_list, w):
 
         # Gives the size of a phrase structure

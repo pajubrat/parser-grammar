@@ -60,6 +60,11 @@ class AdjunctConstructor:
         ps.adjunct = True
         log(f'\t\t\t\t\t{ps} was made an adjunct.')
 
+        head = ps.get_head()
+        if not {f for f in head.features if f[:4] == 'TAIL'}:
+            head.features.add('TAIL:CAT:T')
+            head.features.add('CAT:ADV')
+
         # Adjuncts must be transferred to LF
         self.transfer_adjunct(ps)
 
