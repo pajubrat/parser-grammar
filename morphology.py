@@ -89,7 +89,7 @@ class Morphology:
                     critical_morpheme = self.lexicon.access_lexicon(list_[0])[0]
                 else:
                     critical_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
-                labels = critical_morpheme.get_labels()
+                labels = critical_morpheme.labels()
 
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
                     log('\t\t\t\tFeature interpreted as a C morpheme with C-feature uC/op (e.g. uWh, uKo)')

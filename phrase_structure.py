@@ -4,10 +4,11 @@ from LF import LF
 
 major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'INF'}
 
-# Definitions and methods for phrase structures
+# Definitions and methods for phrase structure
 class PhraseStructure:
 
     # Constituent constructor, Merge[A B]
+    # Definition for cyclic Merge
     def __init__(self, left_constituent=None, right_constituent=None):
 
         # Merge(A,B)
@@ -42,54 +43,29 @@ class PhraseStructure:
         self.identity = ''      # A unique handler/name for the constituent
         self.rebaptized = False  # Support variable used in the creation of chain numbering
 
-    # Returns the node 'item' at the right edge
-    # E.g. ps[3] = 3rd node at the right edge
-    def __getitem__(self, item):
-
-        iterator_ = 0
-        ps_ = self
-        while ps_ and not iterator_ == item:
-            if not ps_.is_primitive():
-                ps_ = ps_.right_const
-                iterator_ = iterator_ + 1
-            else:
-                ps_ = None
-
-        if not ps_:
-            raise IndexError
-        else:
-            return ps_
-
-    # Returns the index of 'site' inside 'self'
-    # The index 0 = top note
-    def index(self, site):
-
-        ps_ = self
-        iterator_ = 0
-        while not ps_ == site and ps_.right_const and not ps_.is_primitive():
-            ps_ = ps_.right_const
-            iterator_ = iterator_ + 1
-
-        if ps_ == site:
-            return iterator_
-        else:
-            return None
-
-    # Countercyclic merge
+    #
+    #
+    # BLock 1. Other structure building operations
+    #
+    #
+    # Definition for countercyclic merge with substitution
     # Merges 'ps' to 'self' at 'direction, i.e. H.merge(G, 'right'') = [H G]
     def merge(self, ps, direction='right'):
 
-        new_ps = None               # The new complex constituent that will result in the operation
+        # Define new complex constituent that will result in the operation
+        new_ps = None
         left = False
         right = False
 
-        if self.mother:             # Determines whether 'self' is left or right
+        # Determines if 'self' is left or right
+        if self.mother:
             if self.is_left():
                 left = True
             else:
                 right = True
 
-        old_mother = self.mother    # Store link between mother and self
+        # Store link between mother and self
+        old_mother = self.mother
 
         #
         # Condition 1. Create new constituent
@@ -112,9 +88,29 @@ class PhraseStructure:
             old_mother.left_const = new_ps
         new_ps.mother = old_mother
 
-        return new_ps.get_top()
+        return new_ps.top()
 
-    # Defines the multiplication operation which merges a head inside another head
+    # Simpler notation for Merge
+    def __add__(self, other):
+        return self.merge(other, 'right')
+
+    # Definition for an operation that removes an element from the phrase structure
+    # Removes the element and seals the hole left behind.
+    def remove(self):
+        mother = self.mother
+        sister = self.geometrical_sister()
+        grandparent = self.mother.mother
+
+        # Seals the leftover hole
+        sister.mother = sister.mother.mother
+        if mother.is_right():
+            grandparent.right_const = sister
+            self.mother = None
+        elif mother.is_left():
+            grandparent.left_const = sister
+            self.mother = None
+
+    # Defines the operation * which merges a head inside another head
     def __mul__(self, ps):
 
         def get_bottom(site):
@@ -127,8 +123,503 @@ class PhraseStructure:
         ps.mother = get_bottom(self)
         get_bottom(self).left_const = None
 
-        return self.get_top()
+        return self.top()
 
+    #
+    #
+    # Block 2. Definitions for basic grammatical relations
+    #
+    #
+
+    # Recursive definition for head (also label) of a phrase structure
+    # Locates the most dominant head from XP when left is prioritized over right
+    def head(self):
+
+        # Case 1. H is primitive, then return H
+        if self.is_primitive():
+            return self
+
+        # Case 2. H is not primitive
+        else:
+            # Case 2.A [H XP] returns H
+            if self.left_const.is_primitive():
+                return self.left_const
+
+            # Case 2.B [XP H] returns H
+            if self.right_const.is_primitive():
+                return self.right_const
+
+            # Case 2.C [XP, YP] = look into YP if it is not an adjunct, otherwise look into XP
+            if not self.left_const.is_primitive() and not self.right_const.is_primitive():
+                if self.right_const.adjunct:
+                    return self.left_const.head()
+                return self.right_const.head()
+
+    # Labeling ( redundant but exists for readability)
+    def labels(self):
+        return self.head().get_cats()
+
+    # Definition for sisterhood
+    # [Y <X>], <X> has no sister
+    # [X <Y>], X has no sister, looks mother next
+    # [X Y], [Y, X], X and Y sisters to each other
+    def sister(self):
+        ps_ = self
+
+        # Recursive loop that ignores right-adjuncts
+        while ps_.mother:
+            if ps_.is_right() and ps_.adjunct:
+                return None
+            if ps_.is_left() and not ps_.mother.right_const.adjunct:
+                return ps_.mother.right_const
+            if ps_.is_right():
+                return ps_.mother.left_const
+            ps_ = ps_.mother
+
+        return None
+
+    # Definition for complex constituent
+    def is_complex(self):
+        return not self.is_primitive()
+
+    # Definition for the relation of local specifier or local edge
+    # XP is a local specifier for head H if and only if
+    # Condition 1. They are in configuration [XP [H YP]], i.e.
+    #   a) H is primitive
+    #   b) H is left
+    #   c) XP is complex
+    #   d) [H YP] is not an adjunct
+    #   e) H projects
+    #       OR
+    # Condition 2. They are in the configuration [XP H]
+    #   a) H is primitive
+    #   b) XP is complex
+    #   c) H is right, XP is left
+    #       OR
+    # Condition 3. XP is a pro inside H.
+    def local_edge(self):
+
+        # Condition 1. Configuration [XP [H YP]]
+        #   a) H is primitive
+        #   b) H is left
+        #   c) There is XP, [XP [H XP]], XP complex and left
+        #   d) [H XP] is not adjunct
+        #   e) H projects
+        if self.is_primitive() and \
+                self.is_left() and \
+                self.mother.sister() and \
+                not self.mother.adjunct and \
+                self.mother.sister().is_left() and \
+                self.mother.sister().is_complex():
+            if self.mother.mother.head() == self.head():
+                return self.mother.sister()
+
+        # Case 2(a-c) Definition for specifier for a primitive right head
+        elif self.is_primitive() and self.is_right() and self.sister() and self.sister().is_complex():
+            return self.sister()
+
+        # Case 3. Definition for pro-specifier (if no phrasal specifier exists)
+        else:
+            if self.extract_pro():
+                return self.extract_pro()
+            else:
+                return None
+
+    # Definition for the notion of edge (also generalized specifier)
+    # A list of element inside the edge of head H, H = head
+    # Condition 1. Collect all complex left sister phrases reached by upstream path from H until the left sister is not complex
+    # Condition 2. If nothing is found, return pro-element if any
+    def edge(self):
+
+        # Presupposition 1. H is not complex
+        if self.is_complex():
+            return None
+
+        if self.is_right():
+            ps_ = self
+        else:
+            ps_ = self.mother
+
+        # Specifiers will be collected into this list
+        list = []
+
+        # Condition 1. Collect all complex left sisters for which there exists an upstream path from H
+        while ps_ and ps_.sister() and (ps_.sister().is_left() and ps_.sister().is_complex()):
+            list.append(ps_.sister())
+            ps_ = ps_.walk_upstream()
+
+        # Condition 2. If nothing is found, try to extract the pro-element
+        if not list:
+            if self.extract_pro():
+                list.append(self.extract_pro())
+
+        return list
+
+    # Definition for complement
+    def complement(self):
+
+        # A complement is a right sister (notice that there is a separate definition for sister())
+        if self.sister() and self.sister().is_right():
+            return self.sister()
+        else:
+            return None
+
+    # Definition for geometrical sister
+    def geometrical_sister(self):
+        if self.mother:
+            if self.is_left():
+                return self.mother.right_const
+            if self.is_right():
+                return self.mother.left_const
+        return None
+
+    # Definition for selector
+    # X is the selector of H if and only if
+    # Condition 1. X is the  element in H's feature vector with index 1
+    def selector(self):
+
+        # Get the feature vector
+        feature_vector = self.feature_vector()
+
+        # If there are no c-commanding heads, we return no selector
+        if len(feature_vector) == 1:
+            return None
+        else:
+            # Condition 1. Return the local c-commanding head
+            return feature_vector[1]
+
+    # Definition of max
+    # XP is the maximum projection from head X if and only if
+    # XP is the highest/last element (by upstream walk) whose head is H
+    def max(self):
+        ps_ = self
+        last = self
+        while ps_ and ps_.head() == self.head():
+            last = ps_
+            ps_ = ps_.walk_upstream()
+        return last
+
+    # Definition of left
+    # X is the left constituent if and only if
+    # Condition 1. X has mother M
+    # Condition 2. X is the left constituent of M.
+    def is_left(self):
+        if self.mother and self.mother.left_const == self:
+            return True
+        else:
+            return False
+
+    # Definition of right
+    # X is the right constituent if and only if
+    # Condition 1. X has mother M
+    # Condition 2. X is the right constituent of M.
+    def is_right(self):
+        if self.mother and self.mother.right_const == self:
+            return True
+        else:
+            return False
+
+    # Definition of primitive constituent
+    # X is a primitive constituent if and only if
+    # X does not have both the left and right constituents
+    def is_primitive(self):
+        if self.right_const and self.left_const:
+            return False
+        else:
+            return True
+
+    # Definition of bottom node
+    # X is a bottom node of structure XP if and only if
+    # Condition 1. X can be reached from XP by moving through its right constituents
+    # Condition 2. X is primitive
+    def bottom(self):
+        ps_ = self
+
+        while not ps_.is_primitive():
+            ps_ = ps_.right_const
+
+        return ps_
+
+    # Definition for walking downwards (search) on the right edge
+    # Condition 1. A primitive constituent has no downstream path
+    # Condition 2. In [L, XP], L = intervening feature, downstream path terminates
+    # Condition 3. In [XP, YP], YP not an adjunct, downward path is XP; YP otherwise
+    # Condition 3'. In [XP, YP], downward path is that constituent whose head/label is the same as [XP, YP]
+    #
+    def walk_downstream(self, intervention_feature=None):
+
+        # Condition 1. Primitive constituents cannot be searched further
+        if self.is_primitive():
+            return None
+
+        # Condition 2. If [L, XP], L = intervening feature, search cannot go further
+        if intervention_feature and self.left_const.is_primitive() and intervention_feature in self.left_const.features:
+            log(f'\t\t\t\t\t({intervention_feature} intervenes search)')
+            return None
+
+        # Condition 3. In [XP, YP], YP not an adjunct, downward path is XP; YP otherwise
+        if self.left_const.is_primitive():
+            if not self.right_const.adjunct:
+                return self.right_const
+            else:
+                return self.left_const
+
+        # Condition 3'. [XP YP]: follow selection
+        if self.head() == self.right_const.head():
+            return self.right_const
+        if self.head() == self.left_const.head():
+            return self.left_const
+
+        return None
+
+    # Definition for geometrical upstream walk
+    # XP can be reached from H by geometrical upstream walk if and only if
+    # XP is the mother of H
+    def walk_upstream_geometrically(self):
+        if self.mother:
+            return self.mother
+        else:
+            return None
+
+    # Definition for upstream walk
+    # XP is reached from H by upstream walk if and only if
+    # XP is the first mother (of mother..) of H whose sister is not right adjunct
+    def walk_upstream(self):
+        if self.mother:
+            ps_ = self.mother
+
+            # Dodge right adjuncts
+            while ps_.right_const.adjunct:
+                if ps_.mother:
+                    ps_ = ps_.mother
+                else:
+                    return ps_
+            return ps_
+        else:
+            return None
+
+    # Definition for the top of XP
+    # T is the top of XP if and only if
+    # Condition 1. T can be reached from XP by following mother path
+    # Condition 2. T does not have mother.
+    def top(self):
+        result = self
+        while result.mother:
+            result = result.mother
+        return result
+
+    # Copies a phrase structure
+    def copy(self):
+        ps_ = PhraseStructure()
+        if self.left_const:
+            ps_.left_const = self.left_const.copy()
+            ps_.left_const.mother = ps_
+        if self.right_const:
+            ps_.right_const = self.right_const.copy()
+            ps_.right_const.mother = ps_
+        if self.features:
+            ps_.features = self.features.copy()
+        ps_.morphology = self.morphology
+        ps_.internal = self.internal
+        ps_.adjunct = self.adjunct
+        ps_.find_me_elsewhere = self.find_me_elsewhere
+        ps_.identity = self.identity
+        return ps_
+
+    #
+    #
+    # Block 3. Nonlocal dependencies and operations
+    #
+    #
+    # Definition for nonlocal selection, i.e. the probe-goal dependency
+    # Probe P establishes a probe-goal relation in relation to feature F with goal G (returned by the function) if and only if
+    # Condition 1. The goal, or its head, has feature F,
+    # Condition 2. There is an downstream path from P to G,
+    # Condition 3. G is left constituent,
+    # Condition 4. No intervention occurs.
+    def probe(self, probe_label, goal_feature):
+
+        if self.is_primitive() and self.is_right():
+            return None
+
+        ps_ = self.sister()
+
+        # Search downward for goals
+        while ps_:
+
+            # Case 1. If we reach the bottom, we check and return from the function
+            if ps_.is_primitive():
+                if goal_feature in ps_.features:
+                    return ps_
+                else:
+                    return None
+
+            # Case 2. If we haven't reached the bottom, we try to match with the constituent at left
+            else:
+                # Check left constituent head for goal feature
+                if ps_.left_const.head().features and goal_feature in ps_.left_const.head().features:
+                    return ps_.left_const
+
+                # Check left constituent for a criterial feature
+                elif goal_feature[:4] == 'TAIL' and goal_feature[5:] in ps_.left_const.get_criterial_features():
+                    return ps_.left_const
+
+                # Walk downstream
+                else:
+                    # Intervention breaks the search (this has not been studied in detail)
+                    if ps_.left_const.is_primitive() and ps_.left_const.features and probe_label.issubset(ps_.left_const.features):
+                        return None
+                    else:
+                        ps_ = ps_.walk_downstream()
+
+    # Definition for the notion of feature vector (from my thesis work)
+    # [H1...Hn] constitutes a feature vector for head X if and only if
+    # Condition 1. each H is a primitive head,
+    # Condition 2. each H is left,
+    # Condition 3. H is not complement to X,
+    # Condition 4. H can be reached from X by upstream walk but not ignoring adjuncts,
+    # Condition 5. [H1...Hn] is ordered by locality, with local elements first,
+    # Condition 6. H1 = X (with index 0)
+    def feature_vector(self):
+
+        # Condition 6.
+        feature_vector = [self]
+
+        # Starting point
+        _ps_iterator = self
+
+        # Upstream path (with adjuncts)
+        while _ps_iterator and _ps_iterator.mother:
+            # Conditions 1-3
+            if _ps_iterator.geometrical_sister() and \
+                    _ps_iterator.geometrical_sister().is_primitive() and \
+                    _ps_iterator.geometrical_sister().is_left() and not \
+                    _ps_iterator.geometrical_sister() == self.complement():
+                feature_vector.append(_ps_iterator.geometrical_sister())
+
+            # Condition 4. H can be reached from X by upstream walk but not ignoring adjuncts
+            if _ps_iterator.mother:
+                _ps_iterator = _ps_iterator.mother
+            else:
+                _ps_iterator = None
+
+        return feature_vector
+
+    # Definition for the external tail head test
+    # A head H satisfies its tail-feature TAIL:F1...Fn if and only if
+    #   Condition 1. H can establish a tail-head configuration with head K such that
+    #       a)    HP is either inside a projection KP, or
+    #       b)    K occurs in H's feature vector and is the closest that checks at least
+    #             one tail-feature from H,
+    #   AND
+    #   Condition 2. K checks all tail-features from H.
+    #   (Comment:  Condition 1.1.a is applied to adverbials, condition 1.1.b to everything else)
+    def external_tail_head_test(self):
+
+        # Internal function
+        def get_max(ps):
+            ps_ = ps
+            while ps_.mother and ps_.mother.head() == self.head():
+                if ps_.mother:
+                    ps_ = ps_.walk_upstream()
+                else:
+                    break
+            return ps_
+
+        #
+        # --- Main function begins here ---#
+        #
+        # Each tail head condition is based on a set, here we collect them all first into a set of sets
+        tail_sets = self.get_tail_sets()
+        if not tail_sets:
+            return True
+
+        feature_vector = self.feature_vector()
+
+        # Examine all tail sets
+        for tail_set in tail_sets:
+
+            # Condition 1.a) Tail features are checked by a head that contains XP
+            # Applied to everything except non-genitive DPs.
+            if get_max(self) and get_max(self).mother and get_max(self).mother.head().check_features(tail_set):
+                # mysterious property = option 1.a. is not applied to non-genitive DPs
+                # (It is mysterious because I don't understand it fully, but it is required empirically.)
+                if self.mysterious_property():
+                    return True
+
+            # Condition 1.b) Tail features can be matched in the feature vector
+            # Applied to everything besides (right) adverbs
+            if 'CAT:ADV' not in self.features:
+                for const in feature_vector:
+
+                    # Ignore the first element which is the goal itself
+                    if const is not self:
+
+                        # If ALL goal's features are matched, the test is accepted
+                        # Notice that we check also internal affixes
+                        for m in const.get_affix_list():
+                            if m.check_features(tail_set):
+                                return True
+
+                            # If there is PARTIAL match, it is left unchecked
+                            elif tail_set & const.features:
+                                return False
+
+            # External tail head test returns false if the tail-head features cannot be matched
+            return False
+
+    # Definition for internal tail head test
+    # Internal tail head test is more lenient than the external version, returns false only if there is partial match
+    def internal_tail_head_test(self):
+
+        # Collect all tail head sets for testing
+        tail_sets = self.get_tail_sets()
+        if not tail_sets:
+            return True
+
+        feature_vector = self.feature_vector()
+
+        for tail_set in tail_sets:
+
+            # Check if goal's tail features can be matched in the feature vector
+            for const in feature_vector:
+
+                # Ignore the first element which is the goal itself
+                if const is not self:
+
+                    # If ALL goal's features are matched, the test is accepted
+                    if const.check_features(tail_set):
+                        return True
+
+                    # If there is PARTIAL match, the test is rejected
+                    # (Intervention)
+                    elif tail_set & const.features:
+                        return False
+
+        # If there there were no overlapping features, this test is accepted
+        return True
+
+    # Recursive definition for contains-feature-F for a phrase
+    # XP contains feature F if and only if
+    # XP contains a head that has F.
+    def contains_feature(self, feature):
+        if self.left_const and self.left_const.contains_feature(feature):
+            return True
+        if self.right_const and self.right_const.contains_feature(feature):
+            return True
+        if self.is_primitive:
+            if feature in self.features:
+                return True
+            else:
+                return False
+
+        return False
+
+    #
+    #
+    # Block 4. Functions which return properties from inside a head
+    #
+    #
     # Reductive definition for the (weak and strong) EPP
     def EPP(self):
         if 'SPEC:*' in self.features or '!SPEC:*' in self.features:
@@ -136,56 +627,12 @@ class PhraseStructure:
         else:
             return False
 
-    # Copies a constituent and does all other operations required for reconstruction
-    def copy_from_memory_buffer(self, babtize='1'):
-
-        # Removes tail-features (if any) from a constituent
-        def remove_tail_features(ps):
-            if not ps.is_primitive():
-                remove_tail_features(ps.left_const)
-                remove_tail_features(ps.right_const)
-            else:
-                remove_set = set()
-                for f in ps.features:
-                    if f[:4] == 'TAIL':
-                        remove_set.add(f)
-                ps.features = ps.features.difference(remove_set)
-
-        # --- Main function begins here --- #
-
-        if self.identity == '':
-            self.identity = babtize
-
-        # Copy
-        self_copy = self.copy()              # Copy the constituent
-        self_copy.find_me_elsewhere = False  # Copy is marked for being where it is
-        self_copy.silence_phonologically()   # Silence the new constituent phonologically
-        self.find_me_elsewhere = True        # Mark that the constituent has been copied
-                                             # Neutralize the original
-        remove_tail_features(self)           # Remove tail-features from the original
-
-        return self_copy
-
-    # Definition for an operation that removes an element from the phrase structure
-    def remove(self):
-        mother = self.mother
-        sister = self.geometrical_sister()
-        grandparent = self.mother.mother
-
-        # Sealing the leftover hole
-        sister.mother = sister.mother.mother
-        if mother.is_right():
-            grandparent.right_const = sister
-            self.mother = None
-        elif mother.is_left():
-            grandparent.left_const = sister
-            self.mother = None
-
-    # Returns all features of a complex (multiaffical) word
+    # Returns the union of features of head and all its affixes
     def get_all_features_of_complex_word(self):
 
+        # Target a head of the phrase if complex
         if self.is_complex():
-            head = self.get_head()
+            head = self.head()
         else:
             head = self
 
@@ -219,41 +666,10 @@ class PhraseStructure:
         else:
             return None
 
-    # Returns the phrase structure containing 'self'
-    def get_top(self):
-        result = self
-        while result.mother:
-            result = result.mother
-        return result
-
-    # Labeling (this is redundant but is here for readability)
-    def get_labels(self):
-        return self.get_head().get_cats()
-
-    # Recursive definition for head (also label) of a phrase structure
-    def get_head(self):
-
-        # Case 1. H is primitive, then return H
-        if self.is_primitive():
-            return self
-
-        # Case 2. H is not primitive
-        else:
-            # Case 2.A [H XP] returns H
-            if self.left_const.is_primitive():
-                return self.left_const
-
-            # Case 2.B [XP H] returns H
-            if self.right_const.is_primitive():
-                return self.right_const
-
-            # Case 2.C [XP, YP] = look into YP if it is not an adjunct, otherwise look into XP
-            if not self.left_const.is_primitive() and not self.right_const.is_primitive():
-                if self.right_const.adjunct:
-                    return self.left_const.get_head()
-                return self.right_const.get_head()
-
     # Returns a set of unvalued phi-features
+    # P is an unvalued phi-feature if and only if
+    # Condition 1. It begins with "PHI"
+    # Condition 2. It ends with "_"
     def get_unvalued_features(self):
         unvalued_phi_set = set()
         for f in self.features:
@@ -261,136 +677,31 @@ class PhraseStructure:
                 unvalued_phi_set.add(f)
         return unvalued_phi_set
 
-    # Definition for the relation of SISTER
-    # [Y <X>], <X> has no sister
-    # [X <Y>], X has no sister, looks mother next
-    # [X Y], [Y, X], both sisters to each other
-    def sister(self):
-        ps_ = self
-
-        # Recursive loop that ignores right-adjuncts
-        while ps_.mother:
-            if ps_.is_right() and ps_.adjunct:
-                return None
-            if ps_.is_left() and not ps_.mother.right_const.adjunct:
-                return ps_.mother.right_const
-            if ps_.is_right():
-                return ps_.mother.left_const
-            ps_ = ps_.mother
-
-        return None
-
-    # Definition for the relation of LOCAL SPECIFIER
-    # (Should be simplified, unified)
-    def get_local_edge(self):
-
-        # Case 1. Definition for SPEC for a primitive left head
-        #   Condition 1. H is primitive
-        #   Condition 2. H is left
-        #   Condition 3. There is XP, [XP [H XP]], XP complex and left
-        #   Condition 4. [H XP] is not adjunct
-        #   Condition 5. H projects
-        if self.is_primitive() and \
-                self.is_left() and \
-                self.mother.sister() and \
-                not self.mother.adjunct and \
-                self.mother.sister().is_left() and \
-                self.mother.sister().is_complex():
-            # Checks that the head projects, not the left branch (in which case the head is inside right adjunct)
-            if self.mother.mother.get_head() == self.get_head():
-                return self.mother.sister()
-
-        # Case 2. Definition for SPEC for a primitive right head
-        elif self.is_primitive() and self.is_right() and self.sister() and self.sister().is_complex():
-            return self.sister()
-
-        # Case 3. Definition for pro-specifier (if no phrasal specifier exists)
-        else:
-            if self.extract_pro():
-                return self.extract_pro()
-            else:
-                return None
-
-    # Counts the number of specifiers
-    # (Is used when reconstructing elements, will be eliminated)
-    def count_specifiers(self):
-        ps_ = self.mother
-        count = 0
-        while ps_ and ps_.sister() and \
-                (ps_.sister().is_left() and \
-                not ps_.sister().is_primitive()) and \
-                ps_.sister().find_me_elsewhere:
-            count = count + 1
-            ps_ = ps_.walk_upstream()
-        return count
-
-    # Returns a list of c-commanding complex left phrases up to the next head
-    def get_edge(self):
-        if self.is_complex():
-            return None
-
-        if self.is_right():
-            ps_ = self
-        else:
-            ps_ = self.mother
-
-        # Specifiers will be collected into this list
-        list = []
-
-        while ps_ and ps_.sister() and (ps_.sister().is_left() and ps_.sister().is_complex()):
-            list.append(ps_.sister())
-            ps_ = ps_.walk_upstream()
-
-        if not list:
-            if self.extract_pro():
-                list.append(self.extract_pro())
-
-        return list
-
-    def get_container_head(self):
-        if self.mother:
-            return self.mother.get_head()
-        else:
-            return self.get_head()
-
-    # Definition for phi-feature conflict
-    def phi_conflict(self):
-        for f in self.features:
-            if f[:4] == 'PHI:' and f[-1] != '_':  # Check only valued phi-features
-                for g in self.features:
-                    if g[:4] == 'PHI:' and g[-1] != '_':  # Check only valued phi-features
-                        f_type = f.split(':')[1]
-                        g_type = g.split(':')[1]
-                        f_value = f.split(':')[2]
-                        g_value = g.split(':')[2]
-                        # If there is a feature type T with two difference values, we have feature conflict
-                        if f_type == g_type and f_value != g_value:
-                            return True
-        return False
-
-    # This extracts a pro-element from a primitive head
+    # Definition for pro-extraction
+    # H has a pro-element if and only if
+    # Condition 1. H is phi-active (+ARG)
+    # Condition 2. H has consistent phi-set.
+    #
+    # P is a pro-element if and only if
+    # Assumption 1. P is a constituent
+    # Assumption 2. P has the phi-features from the host
+    # Assumption 3. P has label D
+    # Assumption 4. P has PF-feature 'PF:pro'
+    # Assumption 5. P is phonologically covert
+    # Assumption 6. P has consistent phi-set (Condition 2).
     def extract_pro(self):
 
-        # If the head has found a local subject (has checked it phi-features), then
-        # no pro can be extracted
-        # if 'PHI_CHECKED' in self.features:
-        #   return None
-        # Comment: this is required for Finnish, but produces some wrong results for italian, i.e.
-        # "dorme lui" is ungrammatical because T finds "lui" and nullifying pro, then EPP is unchecked.
-
         phi_set = set()
-
-        # Condition for extracted pro specifier
-        #   Condition 1. H is phi-active (ARG)
-        #   Condition 2. Collect phi-features from H
-        #   Condition 3. Phi-set does not conflict
-
-        # Only phi-active head can contain a pro-element
+        # Condition 1. Only phi-active head can contain a pro-element
         if 'ARG' in self.features:
 
+            # Condition 2. H has consistent phi-set
+            # Collect the phi-set (features with PHI:)
+            # Heads which require valuation can only construct pro from valued features
             if 'VAL' in self.features:
                 phi_set = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
             else:
+                # Heads marked for -val can generate PRO from unvalued features
                 phi_set = {f for f in self.features if f[:4] == 'PHI:'}
 
             # Construct a pronominal phi-set
@@ -414,73 +725,18 @@ class PhraseStructure:
                 # Assumption 5. Pro-element is phonologically covert
                 pro.silence_phonologically()
 
-                # Condition 3. Pro-element can be created only from a consistent phi-set
+                # Assumption 6/Condition 2. Pro-element can be created only from a consistent phi-set
                 if not pro.phi_conflict():
                     return pro
+
             return None
         else:
             return None
-
-    # Definition for complement
-    def complement(self):
-        # A complement is a right sister (notice that there is a separate definition for sister())
-        if self.sister() and self.sister().is_right():
-            return self.sister()
-        else:
-            return None
-
-    # Definition for geometrical sister
-    def geometrical_sister(self):
-        if self.mother:
-            if self.is_left():
-                return self.mother.right_const
-            if self.is_right():
-                return self.mother.left_const
-        return None
-
-    # Definition for selector
-    def get_selector(self):
-        # Get the feature vector
-        feature_vector = self.get_feature_vector()
-        # If there are no c-commanding heads, we return no selector
-        if len(feature_vector) == 1:
-            return None
-        else:
-            # Return the local c-commanding head
-            return feature_vector[1]
-
-    # Definition of max
-    def get_max(self):
-        ps_ = self
-        last = self
-        while ps_ and ps_.get_head() == self.get_head():
-            last = ps_
-            ps_ = ps_.walk_upstream()
-        return last
-
-    # Definition of LEFT
-    def is_left(self):
-        if self.mother and self.mother.left_const == self:
-            return True
-        else:
-            return False
-
-    # Definition of RIGHT
-    def is_right(self):
-        if self.mother and self.mother.right_const == self:
-            return True
-        else:
-            return False
-
-    # Definition of PRIMITIVE
-    def is_primitive(self):
-        if self.right_const and self.left_const:
-            return False
-        else:
-            return True
 
     # Definition for affix
-    # (Used in connection with complex heads and head movement reconstruction)
+    # X has an affix if and only if X has a right constituent but not left constituent
+    #
+    # Note: the right constituent is the affix
     def has_affix(self):
         if self.right_const and not self.left_const:
             return True
@@ -488,191 +744,25 @@ class PhraseStructure:
             return False
 
     # Definition for the concept of word internal
+    # X is word-internal if and only if it is marked for being internal
     def is_word_internal(self):
         return self.internal
 
     # Definition for adjoinable phrase
+    # XP is an adjoinable phrase if and only if
+    # Condition 1. it belongs to one of the adjoinable categories OR
+    # Condition 2. It is an adjunct
     def is_adjoinable(self):
         adjoinable_categories = {'ADV', 'R', 'D', 'P', 'TO/inf', 'ARE/inf'}
 
-        # Adjuncts are automatically adjoinable
+        # Condition 2. Adjuncts are automatically adjoinable
         if self.adjunct:
             return True
 
-        # A constituent with adjoinable label is adjoinable
-        if adjoinable_categories.intersection(self.get_labels()):
+        # Condition 1. A constituent with adjoinable label is adjoinable
+        if adjoinable_categories.intersection(self.labels()):
             return True
         else:
-            return False
-
-    def is_complex(self):
-        return not self.is_primitive()
-
-    # Copies a phrase structure
-    def copy(self):
-        ps_ = PhraseStructure()
-        if self.left_const:
-            ps_.left_const = self.left_const.copy()
-            ps_.left_const.mother = ps_
-        if self.right_const:
-            ps_.right_const = self.right_const.copy()
-            ps_.right_const.mother = ps_
-        if self.features:
-            ps_.features = self.features.copy()
-        ps_.morphology = self.morphology
-        ps_.internal = self.internal
-        ps_.adjunct = self.adjunct
-        ps_.find_me_elsewhere = self.find_me_elsewhere
-        ps_.identity = self.identity
-        return ps_
-
-    # Definition for LF-legibility
-    def LF_legibility_test(self):
-
-        def detached(ps):
-            ps.mother = None
-            return ps
-
-        lf = LF()
-        lf.test(detached(self.copy()))
-        return lf
-
-    # Separate phrase structure from its host and return the mother (for later reattachment)
-    def detach(self):
-
-        if self.mother:
-            original_mother = self.mother
-            self.mother = None
-        else:
-            original_mother = None
-
-        return original_mother
-
-    # Probe-goal function
-    def probe(self, probe_label, goal_feature):
-
-        if self.is_primitive() and self.is_right():
-            return None
-
-        ps_ = self.sister()
-
-        # Search downward for goals
-        while ps_:
-
-            # Case 1. If we reach the bottom, we check and return from the function
-            if ps_.is_primitive():
-                if goal_feature in ps_.features:
-                    return ps_
-                else:
-                    return None
-
-            # Case 2. If we haven't reached the bottom, we try to match with the constituent at left
-            else:
-                # Check left constituent head for goal feature
-                if ps_.left_const.get_head().features and goal_feature in ps_.left_const.get_head().features:
-                    return ps_.left_const
-
-                # Check left constituent for a criterial feature
-                elif goal_feature[:4] == 'TAIL' and goal_feature[5:] in ps_.left_const.get_criterial_features():
-                    return ps_.left_const
-
-                # Walk downstream
-                else:
-                    # Intervention breaks the search (this has not been studied in detail)
-                    if ps_.left_const.is_primitive() and ps_.left_const.features and probe_label.issubset(ps_.left_const.features):
-                        return None
-                    else:
-                        ps_ = ps_.walk_downstream()
-
-    # Definition for the notion of feature vector (Salo, 2003)
-    def get_feature_vector(self):
-        feature_vector = [self]
-        _ps_iterator = self
-
-        # Go upwards from self and add all heads to the feature vector
-        # Ignore complement (i.e. H in [G H])
-        while _ps_iterator and _ps_iterator.mother:
-            if _ps_iterator.geometrical_sister() and \
-                    _ps_iterator.geometrical_sister().is_primitive() and \
-                    _ps_iterator.geometrical_sister().is_left() and not \
-                    _ps_iterator.geometrical_sister() == self.complement():
-                feature_vector.append(_ps_iterator.geometrical_sister())
-
-            # We don't use upstream walk function because we don't want to ignore adjuncts
-            if _ps_iterator.mother:
-                _ps_iterator = _ps_iterator.mother
-            else:
-                _ps_iterator = None
-
-        return feature_vector
-
-    # Definition for finiteness (trivial)
-    def is_finite(self):
-        head = self.get_head()
-        if 'CAT:FIN' in head.features:
-            return True
-        else:
-            return False
-
-    # Definition for the external tail head test
-    # A head H satisfies its tail-feature TAIL:F1...Fn if and only if
-    #   Condition 1. H can establish a tail-head configuration with head K such that
-    #       a)    HP is either inside a projection KP, or
-    #       b)    K occurs in H's feature vector and is the closest that checks at least
-    #             one tail-feature from H,
-    #   AND
-    #   Condition 2. K checks all tail-features from H.
-    #   (Comment:  Condition 1.1.a is applied to adverbials, condition 1.1.b to everything else)
-    def external_tail_head_test(self):
-        # Internal function
-        def get_max(ps):
-            ps_ = ps
-            while ps_.mother and ps_.mother.get_head() == self.get_head():
-                if ps_.mother:
-                    ps_ = ps_.walk_upstream()
-                else:
-                    break
-            return ps_
-
-        # --- Main function begins here ---#
-
-        # Each tail head condition is based on a set, here we collect them all first into a set of sets
-        tail_sets = self.get_tail_sets()
-        if not tail_sets:
-            return True
-
-        feature_vector = self.get_feature_vector()
-
-        # Examine all tail sets
-        for tail_set in tail_sets:
-
-            # Condition 1.a) Tail features are checked by a head that contains XP
-            # Applied to everything except non-genitive DPs.
-            if get_max(self) and get_max(self).mother and get_max(self).mother.get_head().check_features(tail_set):
-                # mysterious property = option 1.a. is not applied to non-genitive DPs
-                # (It is mysterious because I don't understand it fully, but it is required empirically.)
-                if self.mysterious_property():
-                    return True
-
-            # Condition 1.b) Tail features can be matched in the feature vector
-            # Applied to everything besides (right) adverbs
-            if 'CAT:ADV' not in self.features:
-                for const in feature_vector:
-
-                    # Ignore the first element which is the goal itself
-                    if const is not self:
-
-                        # If ALL goal's features are matched, the test is accepted
-                        # Notice that we check also internal affixes
-                        for m in const.get_affix_list():
-                            if m.check_features(tail_set):
-                                return True
-
-                            # If there is PARTIAL match, it is left unchecked
-                            elif tail_set & const.features:
-                                return False
-
-            # External tail head test returns false if the tail-head features cannot be matched
             return False
 
     # This involves empirical issues that I don't fully understand
@@ -682,9 +772,11 @@ class PhraseStructure:
         else:
             return True
 
-    # Definition for the well-formed phi-set
+    # Definition for well-formed phi-set
+    # {P1...Pn} is a well-formed phi-set if and only if
+    # Condition 1. It contains features with the form 'PHI:T:V'
     def get_phi_set(self):
-        head_ = self.get_head()
+        head_ = self.head()
         return {f for f in head_.features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
     # Definition of bottom affix
@@ -702,7 +794,7 @@ class PhraseStructure:
     def get_tail_sets(self):
 
         tail_features = set()
-        constituent_ = self.get_head()
+        constituent_ = self.head()
 
         for f in constituent_.features:
             if f[:4] == 'TAIL':
@@ -713,47 +805,7 @@ class PhraseStructure:
         else:
             return None
 
-    # Definition for internal tail head test
-    # Internal tail head test is more lenient than the external version, returns false only if there is partial match
-    def internal_tail_head_test(self):
-
-        # Collect all tail head sets for testing
-        tail_sets = self.get_tail_sets()
-        if not tail_sets:
-            return True
-
-        feature_vector = self.get_feature_vector()
-
-        for tail_set in tail_sets:
-
-            # Check if goal's tail features can be matched in the feature vector
-            for const in feature_vector:
-
-                # Ignore the first element which is the goal itself
-                if const is not self:
-
-                    # If ALL goal's features are matched, the test is accepted
-                    if const.check_features(tail_set):
-                        return True
-
-                    # If there is PARTIAL match, the test is rejected
-                    # (Intervention)
-                    elif tail_set & const.features:
-                        return False
-
-        # If there there were no overlapping features, this test is accepted
-        return True
-
-    # Definition of bottom node
-    def get_bottom(self):
-        ps_ = self
-
-        while not ps_.is_primitive():
-            ps_ = ps_.right_const
-
-        return ps_
-
-    # Recusrive definition for criterial features (type ABAR:_) inside phrase
+    # Recursive definition for criterial features (type ABAR:_) inside phrase
     def get_criterial_features(self):
         set_ = set()
 
@@ -762,7 +814,7 @@ class PhraseStructure:
             set_ = set_.union(self.left_const.get_criterial_features())
 
         # Condition 2. Right branch is searched if it is not adjunct and its label is not T/fin
-        if self.right_const and not self.right_const.adjunct and not 'T/fin' in self.right_const.get_labels():
+        if self.right_const and not self.right_const.adjunct and not 'T/fin' in self.right_const.labels():
             set_ = set_.union(self.right_const.get_criterial_features())
 
         # Condition 3. Primitive constituents are examined for criterial features
@@ -776,76 +828,7 @@ class PhraseStructure:
     def check_features(self, feature_set):
         return (feature_set & self.features) == feature_set
 
-    # Recursive definition for contains-feature-F for a phrase
-    def contains_feature(self, feature):
-        if self.left_const and self.left_const.contains_feature(feature):
-            return True
-        if self.right_const and self.right_const.contains_feature(feature):
-            return True
-        if self.is_primitive:
-            if feature in self.features:
-                return True
-            else:
-                return False
-
-        return False
-
-    # Definition for walking downwards (search) on the right edge
-    def walk_downstream(self, intervention_feature=None):
-
-        # Condition 1. Primitive constituents cannot be searched further
-        if self.is_primitive():
-            return None
-
-        # Condition 2. If [L, XP], L = intervening feature, search cannot go further
-        if intervention_feature and self.left_const.is_primitive() and intervention_feature in self.left_const.features:
-            log(f'\t\t\t\t\t({intervention_feature} intervenes search)')
-            return None
-
-        # Dodge right adjuncts
-        # (This seems redundant, as it follow from conditions 1-2 below)
-        if self.left_const.is_primitive():
-            if not self.right_const.adjunct:
-                return self.right_const
-            else:
-                return self.left_const
-
-        # [XP YP]: follow selection
-        # Condition 1. Check right branch
-        if self.get_head() == self.right_const.get_head():
-            return self.right_const
-
-        # Condition 2. Check left branch
-        if self.get_head() == self.left_const.get_head():
-            return self.left_const
-
-        return None
-
-    # Definition for geometrical upstream walk (trivial)
-    def walk_upstream_geometrically(self):
-
-        if self.mother:
-            return self.mother
-        else:
-            return None
-
-    # Definition for upstream walk
-    def walk_upstream(self):
-
-        if self.mother:
-            ps_ = self.mother
-
-            # Dodge right adjuncts
-            while ps_.right_const.adjunct:
-                if ps_.mother:
-                    ps_ = ps_.mother
-                else:
-                    return ps_
-            return ps_
-        else:
-            return None
-
-    # Definition for phase (controversial)
+    # Definition for phase (used by Agree-1)
     def is_phase(self):
         if 'CAT:v' in self.features or 'CAT:C' in self.features or 'CAT:FORCE' in self.features or 'CAT:COPULA' in self.features:
             return True
@@ -882,7 +865,7 @@ class PhraseStructure:
         return {f[4:] for f in self.features if f[:3] == 'CAT'}
 
     # Definition for positive specifier selection
-    def get_specs(self):
+    def specs(self):
         return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
 
     # Definition for negative specifier selection
@@ -896,6 +879,159 @@ class PhraseStructure:
     # Returns features without !
     def for_parsing(self, features):
         return {f[1:] if f.startswith('!') else f for f in features}
+
+    # Return the phonological form of the constituent if any
+    # Does some additional formatting
+    def get_pf(self):
+
+        # We return phonological features but not inflectional features
+        pfs = [f[3:] for f in self.features if f[:2] == 'PF' and f[3:] not in ['NOM', 'ACC', 'PAR', '3sg', 'FOC',
+                                                                               'TOP']]
+        if self.has_affix():
+            affix_str = self.show_affix()
+            return '.'.join(sorted(pfs)) + '{' + affix_str + '}'
+        else:
+            return '.'.join(sorted(pfs))
+
+    def get_lf(self):
+        # We return semantic features
+        lfs = [f[3:] for f in self.features if f[:2] == 'LF']
+        return '.'.join(sorted(lfs))
+
+    #
+    #
+    # Block 5. Unclassified functions
+    #
+    #
+
+    # Returns the node 'item' at the right edge
+    # E.g. ps[3] = 3rd node at the right edge
+    def __getitem__(self, item):
+
+        iterator_ = 0
+        ps_ = self
+        while ps_ and not iterator_ == item:
+            if not ps_.is_primitive():
+                ps_ = ps_.right_const
+                iterator_ = iterator_ + 1
+            else:
+                ps_ = None
+
+        if not ps_:
+            raise IndexError
+        else:
+            return ps_
+
+    # Returns the index of 'site' inside 'self'
+    # The index 0 = top note
+    def index(self, site):
+
+        ps_ = self
+        iterator_ = 0
+        while not ps_ == site and ps_.right_const and not ps_.is_primitive():
+            ps_ = ps_.right_const
+            iterator_ = iterator_ + 1
+
+        if ps_ == site:
+            return iterator_
+        else:
+            return None
+
+    # Copies a constituent and does all other operations required for reconstruction
+    def copy_from_memory_buffer(self, babtize='1'):
+
+        # Removes tail-features (if any) from a constituent
+        def remove_tail_features(ps):
+            if not ps.is_primitive():
+                remove_tail_features(ps.left_const)
+                remove_tail_features(ps.right_const)
+            else:
+                remove_set = set()
+                for f in ps.features:
+                    if f[:4] == 'TAIL':
+                        remove_set.add(f)
+                ps.features = ps.features.difference(remove_set)
+
+        # --- Main function begins here --- #
+
+        if self.identity == '':
+            self.identity = babtize
+
+        # Copy
+        self_copy = self.copy()              # Copy the constituent
+        self_copy.find_me_elsewhere = False  # Copy is marked for being where it is
+        self_copy.silence_phonologically()   # Silence the new constituent phonologically
+        self.find_me_elsewhere = True        # Mark that the constituent has been copied
+                                             # Neutralize the original
+        remove_tail_features(self)           # Remove tail-features from the original
+
+        return self_copy
+
+    # Counts the number of specifiers
+    # (Is used when reconstructing elements, will be eliminated)
+    def count_specifiers(self):
+        ps_ = self.mother
+        count = 0
+        while ps_ and ps_.sister() and \
+                (ps_.sister().is_left() and \
+                not ps_.sister().is_primitive()) and \
+                ps_.sister().find_me_elsewhere:
+            count = count + 1
+            ps_ = ps_.walk_upstream()
+        return count
+
+    def container_head(self):
+        if self.mother:
+            return self.mother.head()
+        else:
+            return self.head()
+
+    # Definition for phi-feature conflict
+    # Element H involves a phi-feature conflict if and only if
+    # Condition 1. H has two phi-features with the same type but different value
+    def phi_conflict(self):
+        for f in self.features:
+            if f[:4] == 'PHI:' and f[-1] != '_':  # Check only valued phi-features
+                for g in self.features:
+                    if g[:4] == 'PHI:' and g[-1] != '_':  # Check only valued phi-features
+                        f_type = f.split(':')[1]
+                        g_type = g.split(':')[1]
+                        f_value = f.split(':')[2]
+                        g_value = g.split(':')[2]
+                        # If there is a feature type T with two difference values, we have feature conflict
+                        if f_type == g_type and f_value != g_value:
+                            return True
+        return False
+
+    # Definition for LF-legibility
+    def LF_legibility_test(self):
+
+        def detached(ps):
+            ps.mother = None
+            return ps
+
+        lf = LF()
+        lf.test(detached(self.copy()))
+        return lf
+
+    # Separate phrase structure from its host and return the mother (for later reattachment)
+    def detach(self):
+
+        if self.mother:
+            original_mother = self.mother
+            self.mother = None
+        else:
+            original_mother = None
+
+        return original_mother
+
+    # Definition for finiteness (trivial)
+    def is_finite(self):
+        head = self.head()
+        if 'CAT:FIN' in head.features:
+            return True
+        else:
+            return False
 
     # Definition of features that are used at LF-interface (only obligatory selection counts)
     def for_LF_interface(self, features):
@@ -913,7 +1049,7 @@ class PhraseStructure:
             selector = selector.get_bottom_affix()
 
         # Search positive selection feature
-        if selectee.get_labels() & selector.get_comps():
+        if selectee.labels() & selector.get_comps():
             return True
         else:
             return False
@@ -933,8 +1069,11 @@ class PhraseStructure:
         if self.right_const:
             self.right_const.silence_phonologically()
 
-# Below are support functions that will be moved to the support class and are not part of phrase structure at all
-
+    #
+    #
+    # Block 6. Support functions
+    #
+    #
     def get_valued_phi_set(self):
 
         phi_set = set()
@@ -958,6 +1097,9 @@ class PhraseStructure:
             elif 'PHI:NUM:PL' in self.features and 'PHI:PER:3' in self.features:
                 phi_set.add(f'{self}.3pl')
 
+        if 'PHI:DET:GEN' in self.features:
+            phi_set.add(f'{self}.generic')
+
         return phi_set
 
     def show_affix(self):
@@ -969,22 +1111,6 @@ class PhraseStructure:
         else:
             i = ''
         return i
-
-    def get_pf(self):
-
-        # We return phonological features but not inflectional features
-        pfs = [f[3:] for f in self.features if f[:2] == 'PF' and f[3:] not in ['NOM', 'ACC', 'PAR', '3sg', 'FOC',
-                                                                               'TOP']]
-        if self.has_affix():
-            affix_str = self.show_affix()
-            return '.'.join(sorted(pfs)) + '{' + affix_str + '}'
-        else:
-            return '.'.join(sorted(pfs))
-
-    def get_lf(self):
-        # We return semantic features
-        lfs = [f[3:] for f in self.features if f[:2] == 'LF']
-        return '.'.join(sorted(lfs))
 
     def show_primitive_constituents(self):
         reply = ''
@@ -1039,11 +1165,11 @@ class PhraseStructure:
     def show_all_vectors(self):
         if not self.is_primitive():
             return self.left_const.show_all_vectors() + self.right_const.show_all_vectors()
-        return f'{self}: {self.get_feature_vector()};  '
+        return f'{self}: {self.feature_vector()};  '
 
     # This function tries to create "informative" representation of the categories of the constituent ps
     def get_cats_string(self):
-        cats = self.get_labels()
+        cats = self.labels()
         major_cats = ''.join(sorted([label for label in cats if label in major_category]))
         if not self.is_primitive():
             suffix = 'P'
@@ -1219,14 +1345,10 @@ class PhraseStructure:
             opener = '['
             closer = ']'
         if self.identity:
-            id_part = f'{self.get_head().get_pf()}:{self.identity}'
+            id_part = f'{self.head().get_pf()}:{self.identity}'
         else:
-            id_part = self.get_head().get_pf()
+            id_part = self.head().get_pf()
         return f'{opener}.{id_part} {self.left_const.simple_tree()} {self.right_const.simple_tree()}{closer}'
-
-    # Simpler notation for Merge
-    def __add__(self, other):
-        return self.merge(other, 'right')
 
     def rebaptize(self, old_name, new_name):
         if self.identity == old_name:
@@ -1244,11 +1366,10 @@ class PhraseStructure:
     # This must be reworked later and move to support?
     def tidy_names(self, counter):
         if self.identity != '' and not self.rebaptized:
-            self.get_top().rebaptize(self.identity, str(counter))
+            self.top().rebaptize(self.identity, str(counter))
             counter = counter + 1
         if self.left_const:
             counter = self.left_const.tidy_names(counter)
         if self.right_const:
             counter = self.right_const.tidy_names(counter)
         return counter
-

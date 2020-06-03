@@ -108,7 +108,7 @@ class LinearPhaseParser:
         if not self.memory_buffer_inflectional_affixes:
             log(f'\t\t\t={ps}')
 
-        # Definition for what happens when we reach the end of the input
+        # Procedure for reaching the end of the input
         # The expression converges (produces a solution) if and only if
         # Condition 1. The expression passes surface legibility
         # Condition 2. The expression passes LF-legibility at the LF-interface
@@ -118,7 +118,7 @@ class LinearPhaseParser:
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
             log('\n\t>>>\t' + f'Trying candidate spell out structure ' + ps.illustrate())
 
-            # Condition 1. Test surface legibility
+            # Condition 1. Teiu st surface legibility
             log('\t\tChecking surface conditions...')
             S = self.surface_conditions_module
             S.all_pass = True
@@ -147,7 +147,7 @@ class LinearPhaseParser:
 
                         # CONVERGENCE: OUTPUT IS ACCEPTED.
                         if self.semantic_interpretation:
-                            self.result_list.append(ps_)
+                            self.result_list.append([ps_, self.semantic_interpretation])
                             log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
                             show_results(ps_, self.result_list, self.semantic_interpretation)
                             # self.exit = True    # Knock this out if you want to see all solutions
@@ -241,7 +241,7 @@ class LinearPhaseParser:
 
                         # Output from filtering and ranking generate the parsing space
                         for i, site in enumerate(adjunction_sites, start=1):
-                            ps_ = ps.get_top().copy()
+                            ps_ = ps.top().copy()
                             self.number_of_Merge = self.number_of_Merge + 1
                             #
                             # Two options:
@@ -288,11 +288,11 @@ class LinearPhaseParser:
         log('\t\t\tFiltering out impossible merge sites...')
 
         # Condition 1. New word was inside the last word, in which case only H-COMP is accepted, the rest are filtered
-        bottom_element = ps.get_bottom().get_bottom_affix()
+        bottom_element = ps.bottom().get_bottom_affix()
         if bottom_element.internal:
             log(f'\t\t\tSink \"{w.get_pf()}\" into {bottom_element.get_pf()}'
                 ' because they are inside the same phonological word.')
-            return [ps.get_bottom()]  # We return the only possible solution
+            return [ps.bottom()]  # We return the only possible solution
 
         # Prepare the list of adjunction sites
         adjunction_sites = []
@@ -360,13 +360,13 @@ class LinearPhaseParser:
         log('\t\t\tRanking remaining sites...')
 
         # This are elements that are required several times and created only once
-        word_specs = w.for_parsing(w.get_specs())
+        word_specs = w.for_parsing(w.specs())
         word_rare_specs = w.for_parsing(w.get_rare_specs())
         word_not_specs = w.for_parsing(w.get_not_specs())
         word_cats = w.get_cats()
         word_tail_set = w.get_tail_sets()
         word_pf = w.get_pf()
-        word_labels = w.get_labels()
+        word_labels = w.labels()
 
         adjunction_sites = []
         avoid_set = set()
@@ -379,7 +379,7 @@ class LinearPhaseParser:
             priority_base = i
 
             priority = 0 + priority_base
-            site_cats = site.get_head().get_cats()
+            site_cats = site.head().get_cats()
 
             #
             # Case 2a. positive SPEC solutions
@@ -402,7 +402,7 @@ class LinearPhaseParser:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 100 * len(word_not_specs & site_cats)
-                log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC, {word_pf}.')
+                log(f'\t\t\t\tAvoid {site.head().get_cats_string()}P as SPEC, {word_pf}.')
                 avoid_set.add(site)
 
             #
@@ -412,7 +412,7 @@ class LinearPhaseParser:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 100
-                log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC for {word_pf} due to unselective SPEC feature.')
+                log(f'\t\t\t\tAvoid {site.head().get_cats_string()}P as SPEC for {word_pf} due to unselective SPEC feature.')
                 avoid_set.add(site)
 
             #
@@ -422,7 +422,7 @@ class LinearPhaseParser:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 1000
-                log(f'\t\t\t\tAvoid {site.get_head().get_cats_string()}P as SPEC for {word_pf} due to rare SPEC feature.')
+                log(f'\t\t\t\tAvoid {site.head().get_cats_string()}P as SPEC for {word_pf} due to rare SPEC feature.')
                 avoid_set.add(site)
 
             #
@@ -434,11 +434,11 @@ class LinearPhaseParser:
             if not site.is_primitive() and site.mother and \
                     site.mother.left_const and site.mother.left_const.is_primitive():
                 # and if H selects for site
-                if site.mother.left_const.get_comps() & site.get_labels():
-                    if 'ADV' not in w.get_labels(): # Adverbs will not break selection because they will be adjuncts
+                if site.mother.left_const.get_comps() & site.labels():
+                    if 'ADV' not in w.labels(): # Adverbs will not break selection because they will be adjuncts
                         # The higher the number the higher the relative ranking will be
                         # This is in part arbitrary and should be considered carefully when aiming for realism
-                        priority = priority + priority_base - 100 * len(site.mother.left_const.get_comps() & site.get_labels())
+                        priority = priority + priority_base - 100 * len(site.mother.left_const.get_comps() & site.labels())
                         log(f'\t\t\t\tAvoid [{site}, {w}] because the operation breaks up an existing selectional dependency.')
                         avoid_set.add(site)
 
@@ -502,7 +502,7 @@ class LinearPhaseParser:
             #
             # Remove all solutions which would cause phonological words to break apart
             if site.is_primitive() and self.is_word_internal(site):
-                if 'ADV' not in w.get_labels():
+                if 'ADV' not in w.labels():
                     priority = priority + priority_base - 100
                     log(f'\t\t\t\tAvoid {site} because it could break words.')
                     avoid_set.add(site)
@@ -516,7 +516,7 @@ class LinearPhaseParser:
                 site.merge(w_copy, 'right')
 
                 # Adverbial attachment is only tested inside finite tense
-                if 'T/fin' in str(w_copy.get_feature_vector()):
+                if 'T/fin' in str(w_copy.feature_vector()):
                     if not w_copy.external_tail_head_test():
                         priority = priority + priority_base - 100
                         log(f'\t\t\t\tAvoid {site} due to tail-head failure.')
@@ -615,7 +615,7 @@ class LinearPhaseParser:
         return ps
 
     def check_transfer_presuppositions(self, ps):
-        if 'FIN' in ps.get_head().get_labels() or 'INF' in ps.get_head().get_labels():
+        if 'FIN' in ps.head().labels() or 'INF' in ps.head().labels():
             if not self.surface_conditions_module.reconstruct(ps):
                 return False
 

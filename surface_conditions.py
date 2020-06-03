@@ -10,7 +10,7 @@ class SurfaceConditions:
     def reconstruct(self, ps):
 
         # Set the iterator
-        ps_ = ps.get_top()
+        ps_ = ps.top()
         self.all_pass = True
 
         # Walk downward and check clitic conditions
@@ -45,9 +45,9 @@ class SurfaceConditions:
             return True
 
         # Condition 1. ps can be a clitic only if its head is a clitic;
-        if 'CAT:CL' in ps.get_head().features:
+        if 'CAT:CL' in ps.head().features:
             # Condition 2.1 If ps has no affixes and (2.2) is internal, then ps is clitic (e.g., D_CL N)
-            if not ps.get_head().has_affix() and ps.get_head().internal:
+            if not ps.head().has_affix() and ps.head().internal:
                 return True
             else:
                 return False
@@ -57,11 +57,11 @@ class SurfaceConditions:
     # Defines the condition for adjacency-based incorporation at the Morphology-Syntax Interface
     def is_clitic_licensed(self, test_constituent):
 
-        clitic_head = test_constituent.get_head()
+        clitic_head = test_constituent.head()
         constituent_to_left = self.get_constituent_to_left_in_linear_order(clitic_head)
 
         # Incorporation to left cannot adjoin a word to a complex phrase (D is excluded because DPs are opened at this stage)
-        if 'INCORPORATED' not in clitic_head.features and constituent_to_left and constituent_to_left.is_complex() and 'D' not in constituent_to_left.get_head().get_labels():
+        if 'INCORPORATED' not in clitic_head.features and constituent_to_left and constituent_to_left.is_complex() and 'D' not in constituent_to_left.get_head().labels():
             log('\t\t\t\tClitic adjoined to complex phrase, not word')
             return False
 
@@ -85,7 +85,7 @@ class SurfaceConditions:
         if 'INCORPORATED' in clitic_head.features and constituent_to_right:
             for feature_set in right_incorporation_feature_sets:
                 if constituent_to_right.get_all_features_of_complex_word() & feature_set == feature_set:
-                    log(f'\t\t\tClitic {test_constituent} right-incorporated to {test_constituent.get_container_head()}')
+                    log(f'\t\t\tClitic {test_constituent} right-incorporated to {test_constituent.container_head()}')
                     return True
 
         log(f'\t\t\tClitic {test_constituent} not licensed.')
@@ -94,7 +94,7 @@ class SurfaceConditions:
     def incorporation_condition(self, test_constituent):
 
         # Condition 1. There is a right sister element that contains label V
-        if test_constituent.is_left() and 'CAT:V' in test_constituent.sister().get_head().get_all_features_of_complex_word():
+        if test_constituent.is_left() and 'CAT:V' in test_constituent.sister().head().get_all_features_of_complex_word():
 
             # Condition 2. The left element is not V
             if 'CAT:V' not in self.get_constituent_to_left_in_linear_order(test_constituent).get_all_features_of_complex_word():

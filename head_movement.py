@@ -81,7 +81,7 @@ class HeadMovement:
                 top = new_ps
 
                 # We are creating a new phrase structure [A B] and need to return that
-                top = new_ps.get_top()
+                top = new_ps.top()
 
                 # Condition 2b. If the affix has another affix inside, we reconstruct it recursively
                 # This has the effect that all heads are always spread out
@@ -99,7 +99,7 @@ class HeadMovement:
         def drop_condition_for_heads(affix_):
 
             # Check if the head is correctly selected at this position
-            if affix_.get_selector() and affix_.get_selector().selects(affix_):
+            if affix_.selector() and affix_.selector().selects(affix_):
 
                 # If it does not require a formal SPEC, we accept this position
                 if not affix_.EPP():
@@ -108,7 +108,7 @@ class HeadMovement:
                 # If it requires SPEC...
                 else:
                     # we accept the solution is the local specifier is found
-                    if affix_.get_local_edge():
+                    if affix_.local_edge():
                         return True
 
                     # What if the EPP is satisfied later by movement reconstruction?
@@ -152,7 +152,7 @@ class HeadMovement:
 
             # If the drop condition is satisfied, then we leave the head and return
             if drop_condition_for_heads(affix_):
-                log(f'\t\t\t\t\t={ps.get_top()}')
+                log(f'\t\t\t\t\t={ps.top()}')
                 return True
             else:
                 # Remove the head and go next step downwards
@@ -167,24 +167,24 @@ class HeadMovement:
 
             # Special condition 1: bottom right position
             # Condition 1.1 If the node has affix, we must open it first
-            if ps.get_bottom().has_affix():
+            if ps.bottom().has_affix():
 
-                self.reconstruct_head_movement(ps.get_bottom())
+                self.reconstruct_head_movement(ps.bottom())
                 ps = ps.mother  # keep the pointer at [D,N] after D(N) => [D N]
 
                 # Condition 1.2 If the bottom node was DP, we don't merge to the sister of N but to the DP...
-                if 'CAT:D' in ps.get_bottom().get_labels():
-                    ps.get_bottom().mother.merge(affix_, 'right')
+                if 'CAT:D' in ps.bottom().labels():
+                    ps.bottom().mother.merge(affix_, 'right')
                 else:
 
                     # Condition 1.4. ...Otherwise we merge to the sister.
-                    if intervention_feature not in ps.get_bottom().features:
-                        ps.get_bottom().merge(affix_, 'right')
+                    if intervention_feature not in ps.bottom().features:
+                        ps.bottom().merge(affix_, 'right')
             else:
 
                 # If the bottom node is simple, we try to merge to its right
-                if intervention_feature not in ps.get_bottom().features:
-                    ps.get_bottom().merge(affix_, 'right')
+                if intervention_feature not in ps.bottom().features:
+                    ps.bottom().merge(affix_, 'right')
 
 
             # Special condition 2: if the affix was merged to the right of the bottom node, we check if it is accetable

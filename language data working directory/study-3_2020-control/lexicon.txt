@@ -79,7 +79,7 @@ lahtevan :: lahte-#VA/inf LANG:FI
 lahte- 	:: PF:lahtea LF:leave CAT:V SPEC:D COMP:PP LANG:FI
 lahtevansa :: lahte-#VA/inf#[-px/3sg] LANG:FI
 
-leave	:: PF:leave LF:leave CAT:V !SPEC:D LANG:EN
+leave	:: PF:leave LF:leave CAT:V !SPEC:D -COMP:TO/inf LANG:EN
 
 like-   :: PF:like LF:like CAT:V !COMP:D LANG:EN
 likes   :: like-#v#T/fin#sg#3p#def LANG:EN
@@ -99,7 +99,7 @@ Merja-  :: PF:Merja- CAT:N -SEM:directional LANG:FI
 mistake	::	PF:mistake LF:mistake CAT:N LANG:EN
 
 mukavasti :: mukava-#sti
-mukava-	:: PF:mukavasti LF:comfortably CAT:A LANG:FI
+mukava-	:: PF:mukava- LF:comfortably CAT:A LANG:FI
 
 Pekka   :: Pekka-#D#nom#sg#3p#def#hum#def LANG:FI -SEM:directional LF:Merja LANG:FI
 Pekka-  :: PF:Pekka LF:Pekka CAT:N -SEM:directional LANG:FI
@@ -108,9 +108,9 @@ persuade :: persuade-#v*#T/fin#[-0] LANG:EN
 persuades :: persuade-#v*#T/fin#[-s] LANG:EN
 persuade- :: PF:persuade LF:persuade !COMP:* CAT:V !COMP:TO/inf SEM:external LANG:EN
 
-promise :: promise-#T/fin#[-0] LANG:EN
-promises :: promise-#T/fin#[-s] LANG:EN
-promise- :: PF:promise LF:promise CAT:V SPEC:D COMP:D COMP:TO/inf LANG:EN SEM:internal
+promise :: promise-#v#T/fin#[-0] LANG:EN
+promises :: promise-#v#T/fin#[-s] LANG:EN
+promise- :: PF:promise LF:promise CAT:V !COMP:* COMP:D COMP:TO/inf LANG:EN SEM:internal
 
 pyytaa	:: pyyta-#v*#T/fin#[-V] LANG:FI
 pyyta-	:: PF:pyyda LF:ask CAT:V LANG:FI
@@ -118,17 +118,19 @@ pyyta-	:: PF:pyyda LF:ask CAT:V LANG:FI
 sanon   :: sano-#T/fin#[-n] LANG:FI
 sanoo   :: sano-#T/fin#[-V] LANG:FI
 sanoi   :: sano-#T/fin#[-V] LANG:FI
-sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE LANG:FI
+sano-   :: PF:sano- LF:say CAT:V SPEC:D !COMP:FORCE -COMP:D LANG:FI
 said    :: say-#T/fin LANG:EN
 say-    :: PF:say LF:say CAT:V SPEC:D !COMP:FORCE LANG:EN
 
-sti		:: PF:sti LF:by !COMP:A CAT:ADV -ARG TAIL:CAT:V LANG:FI
+sti		:: PF:sti LF:by !COMP:A CAT:ADV ARG TAIL:ASP LANG:FI
 
 tassa	:: tama#P
 tama	:: tama-#D#sg#3p#def
 tama-	:: PF:tama LF:this CAT:N CAT:PHI LANG:FI
 
 that    :: PF:that LF:that CAT:FORCE LANG:EN
+
+to_inf	:: CAT:INF CAT:TO/inf PF:to LF:TO/inf ?ARG
 
 tries	:: try-#T/fin#[-s] LANG:EN
 try-	:: PF:try LF:try CAT:V SPEC:D !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
@@ -137,7 +139,7 @@ uskoo	:: usko-#T/fin#[-V] LANG:FI
 usko-	:: PF:usko LF:believe CAT:V SPEC:D COMP:VA/inf LANG:FI
 
 wants	:: want-#v#T/fin#[-s] LANG:EN
-want-	:: PF:want LF:want CAT:V !COMP:* SPEC:D LANG:EN
+want-	:: PF:want LF:want CAT:V !COMP:* SPEC:D -SPEC:TO/inf LANG:EN
 
 yrittaa	:: yritta-#T/fin#[-V] LANG:FI
 yritan	:: yritta-#T/fin#[-n] LANG:FI
@@ -229,4 +231,3 @@ loro-	:: PF:loro LF:they CAT:N CAT:PHI LANG:IT
 
 
 # PARTICLES
-to_inf	:: CAT:INF CAT:TO/inf PF:to LF:TO/inf ?ARG

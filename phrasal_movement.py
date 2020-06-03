@@ -72,9 +72,9 @@ class PhrasalMovement():
                     # Try to merge it to Spec
                     # Check that this does not cause tail-head violations
                     ps.merge(target_const_from_memory_buffer.copy(), 'left')
-                    if ps.geometrical_sister().get_head().external_tail_head_test():  # Checks the head of the dropped constituent
+                    if ps.geometrical_sister().head().external_tail_head_test():  # Checks the head of the dropped constituent
                         log(f'\t\t\t\t\tDropping constituent {target_const_from_memory_buffer} from memory buffer into Spec of ' + f'{h}')
-                        log(f'\t\t\t\t\tResult {ps.get_top()}')
+                        log(f'\t\t\t\t\tResult {ps.top()}')
                         # Replace the hypothetical candidate with proper chain
                         ps.geometrical_sister().remove()
                         new_const = target_const_from_memory_buffer.copy_from_memory_buffer(self.babtize())
@@ -154,7 +154,7 @@ class PhrasalMovement():
                                         f'the occurrence of multiple specifiers at {h.get_pf()}')
 
                                 # If we are at finite level, we need to get FIN also to the new head
-                                labels = h.get_labels()
+                                labels = h.labels()
 
                                 # Create and merge the new head, then move the pointer over it so we don't repeat
                                 new_h = self.engineer_head_from_specifier(criterial_features, labels)
@@ -178,12 +178,12 @@ class PhrasalMovement():
                         adjunct_found = _ps_spec_iterator.sister().adjunct
 
                         if criterial_features:
-                            log(f'\t\t\t\t\tCriterial features {criterial_features} copied to {h.get_labels()}')
+                            log(f'\t\t\t\t\tCriterial features {criterial_features} copied to {h.labels()}')
                             for f in criterial_features:
                                 # Create formal copies of features
                                 h.features.add('CAT:u' + f)
                                 # Add scope marker if needed
-                                if 'FIN' in h.get_labels():
+                                if 'FIN' in h.labels():
                                     h.features.add('CAT:i' + f)
                                 h.features = self.lexical_access.apply_parameters(
                                     self.lexical_access.apply_redundancy_rules(h.features))
@@ -222,7 +222,7 @@ class PhrasalMovement():
                 # (ii) comp features can be satisfied by an element in the memory buffer
                 for const in self.memory_buffer:
 
-                    if h.get_comps() & const.get_labels():
+                    if h.get_comps() & const.labels():
 
                         # then select the first such constituent from the memory buffer
                         target_const = const
@@ -234,8 +234,8 @@ class PhrasalMovement():
                         self.controlling_parser_process.number_of_phrasal_Move += 1
 
                         log(f'\t\t\t\t\tDropp   ing {repr(target_const)}(=' + target_const.spellout()
-                            + f') from memory buffer into Comp of {h.get_labels()}.')
-                        log(f'\t\t\t\t\tResult {h.get_top()}')
+                            + f') from memory buffer into Comp of {h.labels()}.')
+                        log(f'\t\t\t\t\tResult {h.top()}')
 
                         # Remove the merged element from the memory buffer
                         self.memory_buffer.remove(target_const)
@@ -245,7 +245,7 @@ class PhrasalMovement():
                         break
 
         #  Condition 2. The head has a non-matching complement
-        if h.is_left() and h.complement() and not (h.get_comps() & h.complement().get_labels()):
+        if h.is_left() and h.complement() and not (h.get_comps() & h.complement().labels()):
 
             target_const = None
 
@@ -253,11 +253,11 @@ class PhrasalMovement():
             for const in self.memory_buffer:
 
                 # If a matching complement is found from the memory buffer
-                if const.get_labels() & h.get_comps():
+                if const.labels() & h.get_comps():
                     target_const = const
 
                     log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
-                        + f') from memory buffer into Comp of {h.get_labels()} '
+                        + f') from memory buffer into Comp of {h.labels()} '
                         f'due to the presence of mismatching complement {h.complement()}.')
 
                     # The constituent from memory buffer will be merged to left of the complement
@@ -283,14 +283,14 @@ class PhrasalMovement():
     def A_reconstruct(self, ps):
 
         # Condition 1.
-        if 'CAT:D' in ps.get_head().features:
+        if 'CAT:D' in ps.head().features:
 
             # Condition 2. There is a right sister HP
             if ps.sister() and ps.is_left() and not ps.is_primitive():
                 log(f'\t\t\t\t\t{ps} will undergo A-reconstruction.')
 
                 # XP will be reconstructed into CompHP, H = head of HP
-                H = ps.sister().get_head()
+                H = ps.sister().head()
 
                 # Reconstruct only if CompHP exists
                 if H.sister():
@@ -358,15 +358,15 @@ class PhrasalMovement():
         if 'SPEC:*' in H.features or '!SPEC:*' in H.features:
             return True
 
-        for f_ in H.for_parsing(H.get_specs()):
-            for g_ in G.get_labels():
+        for f_ in H.for_parsing(H.specs()):
+            for g_ in G.labels():
                 if f_ == g_:
                     return True
         return False
 
     # get_specifiers() wrapper that implements the modular interface to the PhraseStructure class
     def get_specifiers(self, h):
-        specs = h.get_edge()
+        specs = h.edge()
         return [spec for spec in specs if not spec.is_primitive()]
 
 

@@ -12,7 +12,7 @@ class Extraposition:
     def reconstruct(self, ps):
 
         # Presupposition 1. Extraposition can be attempted only for "referential" structures (T/fin, D)
-        if not (ps.get_top().contains_feature('CAT:FIN') or 'D' in ps.get_top().get_labels()):
+        if not (ps.top().contains_feature('CAT:FIN') or 'D' in ps.top().labels()):
             return
 
         # Presupposition 2. Extraposition for unselected heads (i.e. *X selects Y)
@@ -54,11 +54,11 @@ class Extraposition:
                 selector = ps_.left_const
                 not_comps = selector.get_not_comps()
                 mandatory_comps = selector.get_mandatory_comps()
-                selectee = ps_.right_const.get_head()
-                if not_comps & selectee.get_labels():
+                selectee = ps_.right_const.head()
+                if not_comps & selectee.labels():
                     log(f'\t\t\t\t\t{selector} cannot select {selectee}')
                     return selectee
-                if mandatory_comps and not (mandatory_comps & selectee.get_labels()):
+                if mandatory_comps and not (mandatory_comps & selectee.labels()):
                     log(f'\t\t\t\t\t{selector} cannot select {selectee}')
                     return selectee
             ps_ = ps_.walk_downstream()
@@ -67,14 +67,14 @@ class Extraposition:
     def last_resort_reconstruct(self, ps):
 
         # Presupposition 1. We operate only referential structures (T/fin, D)
-        if not (ps.get_top().contains_feature('CAT:FIN') or 'D' not in ps.get_top().get_labels()):
+        if not (ps.top().contains_feature('CAT:FIN') or 'D' not in ps.top().labels()):
             return
 
         # Presupposition 2. LF - legibility fails (last resort)
-        if ps.get_top().LF_legibility_test().all_pass():
+        if ps.top().LF_legibility_test().all_pass():
             return
 
-        log(f'\t\t\t\t\tLast resort extraposition will be tried on {ps.get_top()}.')
+        log(f'\t\t\t\t\tLast resort extraposition will be tried on {ps.top()}.')
 
         # The operation performs an upstream walk
         ps_ = self.get_bottom(ps).mother
@@ -98,11 +98,11 @@ class Extraposition:
                 # Select HP if and only if X0 rejects HP as complement
                 else:
                     # Condition 2(ii)-a. Explicit negative selection
-                    if ps_.left_const.get_labels() & ps_.sister().get_not_comps():
+                    if ps_.left_const.labels() & ps_.sister().get_not_comps():
                         break
                     # Condition 2(ii)-b. Mandatory selection for something else
                     if ps_.sister().get_mandatory_comps() and not (
-                            ps_.left_const.get_labels() & ps_.sister().get_mandatory_comps()):
+                            ps_.left_const.labels() & ps_.sister().get_mandatory_comps()):
                         break
             ps_ = ps_.walk_upstream()
 
@@ -115,7 +115,7 @@ class Extraposition:
             self.adjunct_constructor.create_adjunct(ps_)
 
             # Condition 2. <H XP> is interpretable as an adjunct at that location.
-            if not ps_.get_top().LF_legibility_test().all_pass():
+            if not ps_.top().LF_legibility_test().all_pass():
                 log(f'\t\t\t\t\tSomething is still wrong. The structure is still uninterpretable.')
             return True
         else:

@@ -31,16 +31,16 @@ class FeatureProcessing():
         h.features.discard('?ARG')
 
         # Condition 1. H selected by head with SEM:internal => -ARG
-        if h.get_selector() and 'SEM:internal' in h.get_selector().features:
-            log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into -ARG due to {h.get_selector()}')
+        if h.selector() and 'SEM:internal' in h.selector().features:
+            log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into -ARG due to {h.selector()}')
             h.features.add('-ARG')
             h.features.add('CAT:-ARG')
             h.features.add('-SPEC:*')
             h.features.discard('SPEC:*')
 
         # Condition 2. H selected by head with SEM:external => ARG + !SPEC:* (EPP)
-        elif h.get_selector() and 'SEM:external' in h.get_selector().features:
-            log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into +ARG due to {h.get_selector()}')
+        elif h.selector() and 'SEM:external' in h.selector().features:
+            log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into +ARG due to {h.selector()}')
             h.features.add('ARG')
             h.features.add('CAT:ARG')
             h.features.add('VAL')

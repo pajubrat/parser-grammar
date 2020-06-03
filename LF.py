@@ -2,8 +2,10 @@
 from support import log, illu
 
 # Transforms a set of lexical features to be used in checking LF-interface conditions
+
 def for_lf_interface(features):
     return {f for f in features if f.startswith('!') or f.startswith('-')}
+
 
 class LF:
 
@@ -42,25 +44,40 @@ class LF:
     # Checks LF-legibility for primitive constituents (not phrases)
     def test(self, ps):
 
-        # Returns the selected sister (if any) of the constituent
-        def selected_sister(ps):
+        # Definition for selected sister of head H
+        # X(P) is the selected sister of H if and only if
+        # Condition 1.  H is primitive and has a sister AND
+        # Condition 2   If X(P) is a complex, then either a) or b)
+        #               a)  X(P) is a right non-adjunct
+        #               b)  X(P) is a left
+        # Condition 3. If X(P) is primitive, then a)
+        #               a)  X(P) is right
+        #
+        # Note: use of sister instead of geometrical sister ensures that is licensed [XP [H <YP>]]
+        def selected_sister(h):
 
-            # Only primitive constituents with geometrical sisters can select sisters
-            if ps.is_primitive() and not ps.geometrical_sister():
+            # Condition 1. H is primitive and has a sister
+            if h.is_primitive() and not h.sister():
                 return None
 
-            # H~YP (YP not adjunct), YP~H (YP left phrase) => YP is selected sister
-            if ps.geometrical_sister().is_complex():
-                if ps.geometrical_sister().is_left():
-                    return ps.geometrical_sister()
-                elif ps.geometrical_sister().is_right() and not ps.geometrical_sister().adjunct:
-                    return ps.geometrical_sister()
+            # Condition 2a-b
+            if h.sister().is_complex():
+
+                # b) X(P) is a left (XP H)
+                if h.sister().is_left():
+                    return h.sister()
+
+                # a) X(P) is a right non-adjunct (H XP)
+                elif h.sister().is_right() and not h.sister().adjunct:
+                    return h.sister()
+
+            # Condition 3. If X(P) is primitive, then it must be right (H X)
             else:
-                # H~Y => Y is selected sister
-                if ps.geometrical_sister().is_right():
-                    return ps.geometrical_sister()
+                if h.sister().is_right():
+                    return h.sister()
                 else:
-                    # Y~H => Y is not selected sister for H
+
+                    # Right primitive head cannot be selected sister (because it must select)
                     return None
 
         # --- test function beings ---#
@@ -73,8 +90,8 @@ class LF:
 
         h = ps  # keep track of the fact that we have selected primitive head
 
-        spec = h.get_local_edge()
-        specs = h.get_edge()
+        spec = h.local_edge()
+        specs = h.edge()
         comp = h.complement()
         lf_features = sorted(for_lf_interface(h.features))
 
@@ -97,7 +114,7 @@ class LF:
         #
         # 3. Internal tail-head test for case (DPs)
         #
-        if 'D' in h.get_labels() and not h.internal_tail_head_test():
+        if 'D' in h.labels() and not h.internal_tail_head_test():
             log(f'\t\t\t\t{h}({h.mother}) failed internal tail test for {h.get_tail_sets()}.')
             self.tail_head_test_result = False
 
@@ -106,10 +123,10 @@ class LF:
         #
         if '2SPEC' not in h.features:
             count = 0
-            list_ = h.get_edge()
+            list_ = h.edge()
             if list_:
                 for spec_ in list_:
-                    if not spec_.adjunct and 'D' in spec_.get_labels() and not spec_.find_me_elsewhere:
+                    if not spec_.adjunct and 'D' in spec_.labels() and not spec_.find_me_elsewhere:
                         count = count + 1
 
             if count > 1:
@@ -132,7 +149,7 @@ class LF:
             if f.startswith('-SPEC:'):
                 for spec_ in specs:
 
-                    if spec_ and f[6:] in spec_.get_labels():
+                    if spec_ and f[6:] in spec_.labels():
                         if not spec_.adjunct:
                             log(f'\t\t\t\t{ps} has unacceptable specifier {spec_}.')
                             self.selection_test_result = False
@@ -152,14 +169,14 @@ class LF:
                     log(f'\t\t\t\t{h} ({h.illustrate()}) is missing complement {f[6:]}')
                     self.selection_test_result = False
                 else:
-                    if f[6:] not in selected_sister(ps).get_labels():
+                    if f[6:] not in selected_sister(ps).labels():
                         log(f'\t\t\t\t\t{h} ({h.illustrate()}) is missing a mandatory complement {f[6:]}')
                         self.selection_test_result = False
 
             # 3.4. Complement restriction
             if f.startswith('-COMP:'):
-                if h.is_left() and comp and f[6:] in comp.get_labels():
-                    log(f'\t\t\t\t"{ps}\" has wrong complement {comp} {illu(comp.get_labels())}P')
+                if h.is_left() and comp and f[6:] in comp.labels():
+                    log(f'\t\t\t\t"{ps}\" has wrong complement {comp} {illu(comp.labels())}P')
                     self.selection_test_result = False
                     self.wrong_complement_test_result = False
 
@@ -176,12 +193,14 @@ class LF:
 
             # 3.6. !SPEC:* heads require a specifier
             if f == '!SPEC:*' and not spec:
+
                 # This condition takes care of the curious fact that overt C cancels !SPEC:*
-                if h.get_selector() and 'C/fin' in h.get_selector().get_labels():
-                    pass
-                else:
-                    log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier.')
-                    self.selection_test_result = False
+                # if h.get_selector() and 'C/fin' in h.get_selector().get_labels():
+                #    pass
+                # else:
+
+                log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier.')
+                self.selection_test_result = False
 
             # 3.7. !SPEC:F, head requires specific specifier
             # Left adjunct can satisfy this, left non-adjunct must satisfy it
@@ -194,12 +213,12 @@ class LF:
                     for s in specs:
                         # First left adjunct CAN satisfy SPEC requirement
                         if s.adjunct:
-                            if f[6:] in s.get_labels() or f[7:] in s.get_labels():
+                            if f[6:] in s.labels() or f[7:] in s.labels():
                                 found = True
                                 break
                         # First non-adjunct MUST satisfy SPEC requirement
                         else:
-                            if f[6:] in s.get_labels() or f[7:] in s.get_labels():
+                            if f[6:] in s.labels() or f[7:] in s.labels():
                                 found = True
                                 break
                             else:
@@ -215,7 +234,7 @@ class LF:
         #
         # 7.1 test for relative pronoun
         # For every DP that it not a relative pronoun
-        if 'D' in h.get_labels() and 'R' not in h.get_labels() and h.mother:
+        if 'D' in h.labels() and 'R' not in h.labels() and h.mother:
             # Check that if there is relative pronoun there is also T/fin
             if h.mother.contains_feature('CAT:R') and not h.mother.contains_feature('CAT:T/fin'):
                 log(f'\t\t\t\tCriterial legibility failed for "{h}".')
@@ -224,23 +243,33 @@ class LF:
         #
         # 8. Projection principle test for referential arguments
         #
-        # Condition 1. Only target DPs that nave not been copied elsewhere (check LF-positions)
-        if 'D' in h.get_labels() and h.mother and not h.mother.find_me_elsewhere:
+        # Condition 1. Only target DPs that have not been copied elsewhere (check LF-positions)
+        if 'D' in h.labels() and h.mother and not h.mother.find_me_elsewhere:
+
+            # This is the DP to be tested
             DP = h.mother
+
             # Condition 2. DPs cannot occur at non-thematic SPEC position unless licensed by 'SEM:nonthematic'
-            if DP.get_container_head() and DP in DP.get_container_head().get_edge():
-                container_head = DP.get_container_head()
+            if DP.container_head() and DP in DP.container_head().edge():
+
+                # The head that contains the DP (and thus assigns it a thematic role)
+                container_head = DP.container_head()
+
                 # Condition 2.1 EPP heads
                 if container_head.EPP():
                     log(f'\t\t\t\t{DP} has no thematic role due to being at SPEC of EPP head.')
                     self.projection_principle_test_result = False
+
                 # Condition 2.2 Heads selected by -AGR heads
-                elif container_head.get_selector() and 'ARG' not in container_head.get_selector().features:
+                elif container_head.selector() and 'ARG' not in container_head.selector().features:
                     log(f'\t\t\t\t{DP} has no thematic role due to a selecting -ARG head.')
                     self.projection_principle_test_result = False
-                elif 'D' not in container_head.get_specs():
-                    log(f'\t\t\t\t{DP} has no thematic role at the SPEC of {container_head}')
-                    self.projection_principle_test_result = False
+
+                # Condition 2.3 The head does not select for a DP specifier
+                elif 'D' not in container_head.specs():
+                    if container_head.sister() != DP:
+                        log(f'\t\t\t\t{DP} has no thematic role at the SPEC of {container_head}')
+                        self.projection_principle_test_result = False
 
             # Condition 3. non-SPEC adjunct DPs must be licensed by 'SEM:nonthematic'
             elif DP.adjunct and not DP.contains_feature('SEM:nonthematic'):
@@ -250,25 +279,25 @@ class LF:
         # 9. Discourse/pragmatic tests
         #
         # 9.1 This test accumulates discourse violations for each SPEC that cannot (easily) be topicalized
-        list_ = ps.get_edge()
+        list_ = ps.edge()
         if list_:
             if len(list_) > 1:
                 # Discourse penalty for multiple specifiers
                 self.discourse_test_result = self.discourse_test_result + len(list_)*0.5
-                if 'Neg/fin' in ps.get_labels(): # Negation increases the penalty
+                if 'Neg/fin' in ps.labels(): # Negation increases the penalty
                     self.discourse_test_result = self.discourse_test_result + len(list_)
             for spec in list_:
-                if 'INF' in spec.get_labels():
+                if 'INF' in spec.labels():
                     self.discourse_test_result = self.discourse_test_result + 2
 
         #
         # 10. Adjunct interpretation tests
         #
         # Condition 1. A DP right-adjunct cannot be interpreted inside another DP (e.g. [John <Mary>]
-        if 'D' in h.get_labels() and \
-                h.get_max() and h.get_max().adjunct and \
-                h.get_max().is_right() and \
-                h.get_max().mother and 'D' in h.get_max().mother.get_head().get_labels():
+        if 'D' in h.labels() and \
+                h.max() and h.max().adjunct and \
+                h.max().is_right() and \
+                h.max().mother and 'D' in h.max().mother.head().labels():
             log(f'\t\t\t\t{h.mother.mother} in uninterpretable.')
             self.adjunct_test_result = False
 
@@ -313,7 +342,7 @@ class LF:
                 return set()
             else:
                 # If the operation succeeds, semantic interpretation (set) is send back
-                self.semantic_interpretation.add('Accepted by C-I')
+                self.semantic_interpretation.add(' ')
                 return self.semantic_interpretation
 
         #
@@ -343,7 +372,7 @@ class LF:
             list_of_antecedents = self.LF_recovery(ps, unvalued_phi_features)
             # Provide the local antecedent to semantic interpretation (index 0 = local antecedent)
             if list_of_antecedents:
-                self.semantic_interpretation.add(f'{ps}({list_of_antecedents[0].illustrate()})')
+                self.semantic_interpretation.add(self.format_antecedent(ps, list_of_antecedents[0]))
             else:
                 self.semantic_interpretation.add(f'{ps}(' + self.failed_recovery_outcome(ps, unvalued_phi_features) + ')')
             self.report_to_log(ps, list_of_antecedents, unvalued_phi_features)
@@ -388,17 +417,23 @@ class LF:
     # local is used for semantic interpretation, but not necessarily, hence all antecedents are provided here.
     def LF_recovery(self, ps, unvalued_phi):
         ps_ = ps
+        head = ps
+
         list_of_antecedents = []
         #
         # Alternative 1: H has unvalued per/num features: standard control
         #
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             while ps_:
-                # Termination condition: presence of SEM-external (control boundary)
+                #
+                # Termination condition: sister is a strong phase head
+                # (Strong phase head = Force or v*)
                 if ps_.sister() and 'SEM:external' in ps_.sister().features:
                     break
-                # Condition 1. Antecedent must be a sister of the node reached by upstream walk from H
-                # Condition 2. The phrase must evaluate as a possible antecedent
+                #
+                # XP is an antecedent is anf only if
+                # Condition 1. Antecedent must be a sister of the node reached by upstream walk from H, and
+                # Condition 2. The phrase must evaluate as a possible antecedent.
                 if ps_.geometrical_sister() and self.is_possible_antecedent(ps_.geometrical_sister(), ps):
                     list_of_antecedents.append(ps_.geometrical_sister())
                 ps_ = ps_.walk_upstream_geometrically()
@@ -408,9 +443,11 @@ class LF:
         #
         elif 'PHI:PER:_' in unvalued_phi:
             while ps_:
+                #
                 # Termination condition: presence of SEM-external (control boundary)
                 if ps_.sister() and 'SEM:external' in ps_.sister().features:
                     break
+                #
                 # Condition 1. Antecedent must be a sister of the node at the spine we climb up
                 # Condition 2. The phrase must evaluate as a possible antecedent
                 if ps_.sister() and self.is_possible_antecedent(ps_.sister(), ps):
@@ -422,19 +459,24 @@ class LF:
         #
         elif 'PHI:DET:_' in unvalued_phi:
             while ps_:
+                #
                 # Termination condition: presence of local specifier
                 # Example: tässä istuu mukavasti 'here sit.3sg comfortably'
-                if ps_.sister() and ps_.sister() == ps.get_local_edge():
+                if ps_.sister() and ps_.sister() == ps.local_edge():
+                    #
                     # If the local candidate is not a DP, it will be interpreted as generic
-                    if ps_.sister() and 'CAT:D' not in ps_.sister().get_head().features:
+                    if ps_.sister() and 'CAT:D' not in ps_.sister().head().features:
                         self.semantic_interpretation.add(f'{ps}(generic)')
                         list_of_antecedents.append(ps_.sister())
+                        head.features.add('PHI:DET:GEN')
+                    #
                     # If the local candidate is DP, it will be the antecedent
                     else:
                         list_of_antecedents.append(ps_.sister())
+                    #
                     # Nothing else is searched (currently)
                     break
-
+                #
                 # If there is no local antecedent inside the edge of H, then we get all antecedents.
                 if ps_.sister() and self.is_possible_antecedent(ps_.sister(), ps):
                     list_of_antecedents.append(ps_.sister())
@@ -466,7 +508,7 @@ class LF:
         unchecked_features_at_h = h_phi_features.copy()
 
         # Condition 2. Antecedent X can check all H's relevant phi-features.
-        for F in {phi for phi in antecedent.get_head().features if phi[:4] == 'PHI:' and phi[-1] != '_'}:
+        for F in {phi for phi in antecedent.head().features if phi[:4] == 'PHI:' and phi[-1] != '_'}:
             for G in h_phi_features:
 
                 # Condition 2a) Valued feature F at antecedent X checks G at H if F = G.
@@ -520,7 +562,7 @@ class LF:
     def failed_recovery_outcome(self, ps, features):
         if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
             if ps.sister() and ps.sister().is_complex() and \
-                    ('CAT:INF' in ps.sister().get_head().features or 'CAT:FIN' in ps.sister().get_head().features):
+                    ('CAT:INF' in ps.sister().head().features or 'CAT:FIN' in ps.sister().head().features):
                 return 'clausal argument'
             else:
                 return 'generic'
@@ -549,7 +591,7 @@ class LF:
             if ps_.is_primitive():
                 if ps_.check_features(antecedent) and 'FIN' in ps_.get_labels():
                     return ps_
-            elif ps_.left_const.get_head().check_features(antecedent) and 'FIN' in ps_.get_labels():
+            elif ps_.left_const.head().check_features(antecedent) and 'FIN' in ps_.labels():
                 return ps_
             ps_ = ps_.walk_upstream()
 
@@ -557,8 +599,8 @@ class LF:
 
     def semantic_match(a, b):
 
-        a = a.get_head()
-        b = b.get_head()
+        a = a.head()
+        b = b.head()
 
         pos_sem_a = {f[5:] for f in a.features if f.startswith('+SEM:')}
         neg_sem_a = {f[5:] for f in a.features if f.startswith('-SEM:')}
@@ -585,7 +627,7 @@ class LF:
             if goal.external_tail_head_test():
                 return True
             else:
-                feature_vector = goal.get_feature_vector()
+                feature_vector = goal.feature_vector()
                 log(f'\t\t\t{goal}<{feature_vector}> failed to tail features {illu(goal.get_tail_sets())}')
                 return False
 
@@ -596,3 +638,36 @@ class LF:
                 return False
         # If we are here, then it means we have [XP YP] that does not allow us to search any further
         return True
+
+    # Provides a more readable alternative reading form for antecedents
+    def format_antecedent(self, trigger, antecedent):
+
+        antecedent_head = antecedent.head()
+
+        arg_str = ''
+        # This is a rudimentary thematic theory that has not yet been implemented
+        # These notions are simply returned as heuristic semantic interpretation to the user, and they have
+        # no effect on anything
+        if trigger.sister() and trigger.is_left() and antecedent == trigger.sister() and antecedent.is_right():
+            prefix = 'Patient of'
+        else:
+            prefix = 'Agent of'
+
+        if 'CAT:D' in antecedent_head.features:
+            if antecedent_head.sister() and 'CAT:N' in antecedent_head.sister().head().features:
+                arg_str = antecedent_head.sister().head().get_pf()
+            else:
+                arg_str = antecedent.illustrate()
+        elif 'CAT:C' in antecedent_head.features or 'CAT:FORCE' in antecedent_head.features and antecedent.is_complex():
+            arg_str = 'C-proposition'
+        elif 'CAT:V' in antecedent_head.features and antecedent.is_complex():
+            arg_str = 'agent of V-event'
+        elif 'CAT:T' in antecedent_head.features:
+            if antecedent.is_complex():
+                arg_str = 'agent of T-event'
+            else:
+                arg_str = f'{sorted(antecedent.get_valued_phi_set())}'
+        else:
+            arg_str = antecedent.illustrate()
+
+        return prefix + f' {trigger}({arg_str})'

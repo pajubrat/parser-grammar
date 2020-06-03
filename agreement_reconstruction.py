@@ -4,6 +4,7 @@ from support import set_logging, log, get_number_of_operations, reset_number_of_
 # It tries to value unvalued phi-features of head H, if any, by Agree-1
 # The function motivation is to locate a DP argument from the surface PF-input
 
+
 class AgreementReconstruction:
     def __init__(self):
         pass
@@ -12,6 +13,8 @@ class AgreementReconstruction:
     # Walk downstream, force any head H to acquire phi-features if and only if
     # Condition 1. H is a primitive head to the left AND
     # Condition 2. H requires feature valuation (VAL)
+    #
+    # Note: Even if H has valued phi, we must Agree-1 to verify that there is no mismatching subject inside sister
     def reconstruct(self, ps):
 
         # Downstream walk
@@ -24,59 +27,62 @@ class AgreementReconstruction:
 
                 # Condition 2. The head requires feature valuation (does not have feature -VAL)
                 # (Thus, VAL is assumed to be the default unless explicitly blocked)
-                if '-VAL' not in h.features and self.is_unvalued(h):
-
+                if '-VAL' not in h.features:
+                    #
                     # The head acquires phi-feature
-                    log(f'\t\t\t\t\tHead {h} has unvalued phi probe and triggered Agree-1:')
+                    #
+                    log(f'\t\t\t\t\tHead {h} triggers Agree-1:')
                     self.acquire_phi(h)
 
             ps_ = ps_.walk_downstream()
 
     # Definition for phi-feature acquisition (Agree-1)
     # H (with unvalued phi) acquires phi-features from
-    # Operation 1. The edge (DP specs plus head, in that order)
-    # Operation 2. From the left branch DPs within the sister, up to first target and a phase boundary
-    # in the order Operation 1 => Operation 2.
+    # (1) ....the left branch DPs within the sister, up to first target and a phase boundary, and
+    # (2) ....the edge (DP specs plus head)...
+    # in the order of Operation 1 => Operation 2.
+    #
+    # Note: order is based on the relationship between case and agreement. Position (1) is the canonical
+    # position for NOM assignment, which is also the canonical position for phi-agreement
+    #
     def acquire_phi(self, h):
 
         #
-        # Operation 1. Try edge-Agree
+        # Operation 1. Head H acquires phi-features from sister
+        #
+        goal, phi_features = self.acquire_from_sister(h.sister())
+        for phi in phi_features:  # Try to value
+            if self.value(h, phi):
+                log(f'\t\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
+                # Agreement leads into phi-checking
+                h.features.add('PHI_CHECKED')
+        #
+        # Operation 2. Try edge-Agree
         #
         # Pick up the target (goal) and its phi-features
-        goal, phi_features = self.acquire_from_edge(h)
-        for phi in phi_features:
-            # Try to value phi-features from the goal into the probe head h
-            if self.value(h, phi):
-                log(f'\t\t\t\t\t\t{h} acquired ' + str(phi) + f' from the edge of {h}.')
-
-        #
-        # Operation 2. Acquire phi-features from sister
-        # H acquires phi-features from the sister if and only if
-        # Condition 1. The head has unvalued phi-features after edge-Agree
         if self.is_unvalued(h):
-            goal, phi_features = self.acquire_from_sister(h.sister())
-            for phi in phi_features:  # Try to value
+            goal, phi_features = self.acquire_from_edge(h)
+            for phi in phi_features:
+                # Try to value phi-features from the goal into the probe head h
                 if self.value(h, phi):
-                    log(f'\t\t\t\t\t\t{h} acquired ' + str(phi) + f' by phi-Agree from {goal.mother}.')
-                    # Agreement leads into phi-checking
-                    h.features.add('PHI_CHECKED')
+                    log(f'\t\t\t\t\t\t{h} acquired ' + str(phi) + f' from the edge of {h}.')
 
     # Definition for phi-acquisition from sister
     # H acquires phi-features from DP inside the sister if and only if
     # Condition 1. DP is the closest left branch DP
     # Condition 2. A phase boundary (v, C, BE, Force) does not intervene the search
-    # Condition 3. D contains valued phi-features other than phi-feature is not [PHI:DET...]
+    # Condition 3. D contains valued phi-features other than [PHI:DET...]
     def acquire_from_sister(self, ps):
 
         # ps = sister of the head acquiring phi-features
         ps_ = ps
 
-        # Downstream loop begins
+        # Downstream loop
         while ps_:
 
             # Condition 1. XP is left and is not primitive
             if ps_.left_const and ps_.is_complex():
-                goal = ps_.left_const.get_head()
+                goal = ps_.left_const.head()
 
                 # Condition 2. Stop at a phase boundary (no long distance probing)
                 # Phase is defined as {v, C, Force, BE}, but this is stipulation
@@ -86,7 +92,7 @@ class AgreementReconstruction:
                 # Condition 3. Look for DPs
                 if 'CAT:D' in goal.features:
 
-                    # Condition 3. Collect all valued phi-features (ignore unvalued features and PHI:DET...)
+                    # Condition 3. Collect all valued phi-features (ignore unvalued features and PHI:DET)
                     return goal, sorted({f for f in goal.features if self.phi(f) and f[:7] != 'PHI:DET' and self.valued(f)})
 
             ps_ = ps_.walk_downstream()
@@ -103,10 +109,10 @@ class AgreementReconstruction:
     def acquire_from_edge(self, h):
 
         # Condition 1. XP is inside the edge
-        edge_list = self.get_edge_for_Agree(h)
+        edge_list = self.edge_for_Agree(h)
         if edge_list:
             for edge in edge_list:
-                edge_head = edge.get_head()
+                edge_head = edge.head()
 
                 # Condition 2. The element must be D(P)
                 if 'CAT:D' in edge_head.features:
@@ -128,14 +134,15 @@ class AgreementReconstruction:
     # Implication 2. If H has a conflicting phi-features, the valued phi-feature is marked bad.
     def value(self, h, phi):
 
+        # Implication 2. If H has a conflicting phi-features, the valued phi-feature is marked bad.
+        if not self.valuation_blocked(h, phi):
+            phi = self.mark_bad(phi)
+            h.features.add(phi)
+            return False
+
         # Condition 1. H has an unvalued phi-feature of the same type, PHI:T:_
         target = self.find_unvalued_target(h, phi)
         if target:
-
-            # Checks for phi-feature conflicts
-            # In the case of conflict, we mark the feature bad
-            if not self.valuation_check(h, phi):
-                phi = self.mark_bad(phi)
 
             # Remove the unvalued version of the phi-feature F:_
             h.features = h.features - target
@@ -143,6 +150,7 @@ class AgreementReconstruction:
             # Add the valued version F:X
             h.features.add(phi)
             return True
+
         return False
 
     # Definition for unvalued target feature
@@ -159,7 +167,7 @@ class AgreementReconstruction:
     # Condition 2. All its members have the same form PHI:...
     # Condition 3. It contains all elements of H that satisfy (1-2)
     def get_phi_set(self, h):
-        return {f for f in h.get_head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
+        return {f for f in h.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
     # Definition for unvalued phi-features of H
     # {phi...} is H's phi-set if and only
@@ -222,10 +230,10 @@ class AgreementReconstruction:
         else:
             return False
 
-    # Head H does not block valuation by feature F
+    # Head H does not block valuation by feature F if and only if
     # Condition 1. H has only unvalued features OR
     # Condition 2. if H has valued feature of the same type, it must also have a matching 'type:value'.
-    def valuation_check(self, h, f):
+    def valuation_blocked(self, h, f):
 
         # Condition 1. Completely unvalued (no valued feature) heads do not raise an error
         if not self.is_valued(h):
@@ -268,7 +276,7 @@ class AgreementReconstruction:
     # Condition 3.  E is ordered top-down
     #
     # Example:      [G [XP [YP [ZP [H_pro WP]]]] returns [XP, YP, ZP, pro]
-    def get_edge_for_Agree(self, h):
+    def edge_for_Agree(self, h):
 
         # Condition 1. h is now complex
         if h.is_complex():

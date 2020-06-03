@@ -10,7 +10,7 @@ class AdjunctConstructor:
     # The nontrivial part is to decide if potential specifiers are included
     def create_adjunct(self, ps):
 
-        head = ps.get_head()
+        head = ps.head()
 
         # If the head is primitive, we must decide how much of the surrounding structure he will eat
         if ps.is_primitive():
@@ -24,7 +24,7 @@ class AdjunctConstructor:
                     return ps.mother.mother
                 else:
                     # The specifier is not eaten inside the adjunct
-                    if head.mother and head.mother.get_head() == head:
+                    if head.mother and head.mother.head() == head:
                         self.make_adjunct(head.mother)
                     else:
                         self.make_adjunct(head)
@@ -37,10 +37,10 @@ class AdjunctConstructor:
                 # Condition 3. The specifier is accepted by the head
                 # Condition 4. The specifier is not pro/PRO
                 # Condition 5. The head is not marked for -ARG
-                if ps.get_edge() and not '-SPEC:*' in head.features and \
+                if ps.edge() and not '-SPEC:*' in head.features and \
                         not set(head.get_not_specs()).intersection(
-                            set(ps.get_edge()[0].get_labels())) and \
-                        not ps.get_edge()[0].is_primitive() and '-ARG' not in ps.features:
+                            set(ps.edge()[0].labels())) and \
+                        not ps.edge()[0].is_primitive() and '-ARG' not in ps.features:
                     if head.mother.mother:
                         self.make_adjunct(head.mother.mother)
                     return ps.mother.mother
@@ -54,13 +54,13 @@ class AdjunctConstructor:
 
         # Condition 1. The whole phrase structure cannot be an adjunct
         # (Leads into infinite regress on some edge cases)
-        if ps == ps.get_top():
+        if ps == ps.top():
             return False
 
         ps.adjunct = True
         log(f'\t\t\t\t\t{ps} was made an adjunct.')
 
-        head = ps.get_head()
+        head = ps.head()
         if not {f for f in head.features if f[:4] == 'TAIL'}:
             head.features.add('TAIL:CAT:T')
             head.features.add('CAT:ADV')

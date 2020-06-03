@@ -29,8 +29,6 @@ def show_results(ps_, result_list, semantic_interpretation):
     print(f'{ps_}')
     print(ps_.illustrate())
     print(str(semantic_interpretation))
-    # print(str(number_of_Merges) + ', Moves: ' + str(number_of_Moves)
-    #      + ', Solutions tried: ' + str(number_of_solutions_tried) + '\n')
     log_result(ps_)
     log('----------------------------------------------------------------------------------------------------------')
     log(ps_.show_primitive_constituents())
@@ -38,14 +36,13 @@ def show_results(ps_, result_list, semantic_interpretation):
     log('\t\t\tChecking if the sentence is ambiguous...')
 
 
-def formatted_output(enumerated_object):
+def formatted_output(enumerated_object, delimiter):
     output_str = ''
-    delimiter = ', '
-
+    enumerated_object = sorted(enumerated_object)
     for item in enumerated_object:
-        output_str = output_str + f'{item}' + delimiter
+        output_str = output_str + '\t' + item + delimiter
 
-    return output_str[:-2] + '.'
+    return output_str
 
 def report_LF_problem(ps_):
     log('\t\t\tLF-interface condition(s) violated')
