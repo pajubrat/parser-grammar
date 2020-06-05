@@ -50,7 +50,7 @@ class Morphology:
 
             # Condition 2, Step 4.
             # Take the first morpheme discovered
-            next_lexical_item = self.lexicon.access_lexicon(lst_branched[index])[0]
+            next_lexical_item = self.lexicon.lexical_retrieval(lst_branched[index])[0]
 
         return next_lexical_item, lst_branched
 
@@ -86,9 +86,9 @@ class Morphology:
 
                 # We select the critical morpheme
                 if len(list_) < 3:
-                    critical_morpheme = self.lexicon.access_lexicon(list_[0])[0]
+                    critical_morpheme = self.lexicon.lexical_retrieval(list_[0])[0]
                 else:
-                    critical_morpheme = self.lexicon.access_lexicon(list_[-3])[0]
+                    critical_morpheme = self.lexicon.lexical_retrieval(list_[-3])[0]
                 labels = critical_morpheme.labels()
 
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
@@ -110,7 +110,7 @@ class Morphology:
             list_ = list_[0].split('#') + list_[1:]
             # Substitute the first item with the morphemic decomposition
             # (and continue decomposition if that is complex as well)
-            list_[0] = self.lexicon.access_lexicon(list_[0])[0].morphology
+            list_[0] = self.lexicon.lexical_retrieval(list_[0])[0].morphology
 
         return list_
 

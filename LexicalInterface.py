@@ -5,35 +5,75 @@ from support import set_logging, log, get_number_of_operations, reset_number_of_
 log = logging.getLogger(__name__)
 
 
-# Lexicon
+# Definition for lexical interface
 class LexicalInterface:
 
-    # The interface contains a dictionary which holds the lexical items
-    # The lexicon is a combination of language-invariant morphemes (UG_morphemes) and language-specific morphemes
+    # The interface contains a dictionary which holds lexical items
+    # The lexicon is a combination of
+    #   1. language-invariant morphemes (UG_morphemes)
+    #   2. language-specific morphemes and
+    #   3. Lexical redundancy rules
+    #
     def __init__(self, controlling_parser_process):
+
+        # Definitions for global, contextual variables
         self.controlling_parser_process = controlling_parser_process
+
+        # Phrase structure objects that will hold lexical items
         self.PhraseStructure = phrase_structure.PhraseStructure
+
+        # Lexicon as dictionary
         self.lexicon_dictionary = defaultdict(list)
+
+        # Redundancy rules
         self.redundancy_rules = self.load_redundancy_rules(self.controlling_parser_process)
+
+        # Language
         self.language = self.controlling_parser_process.sentence_context.language
 
+    # Definition for the process that reads the redundancy rules from a file
+    # Redundancy rules are provided by means of a dictionary such that
+    # KEY = antecedent condition (feature)
+    # VALUE = list of features that are associated with KEY
     def load_redundancy_rules(self, controlling_parser_process):
+
+        # Dictionary that will host the redundancy rules and will be returned
         d = {}
+
+        # Read the lexical redundancy rules from a file, line by line
         for line in open(controlling_parser_process.sentence_context.redundancy_rules_file):
+
+            # Removes leading and trailing whitespace characters
             line = line.strip()
+
+            # Ignores comment lines
             if not line or line.startswith('#'):
                 continue
-            key, feats = line.split('::', 1)
+
+            # Break the line into keys (antecedents) and features
+            key, feature_list = line.split('::', 1)
             key = key.strip()
-            feats = [f.strip() for f in feats.split()]
-            d[key] = feats
+            # The list of features is the list of strings, separated by space, inside
+            feature_list = [f.strip() for f in feature_list.split()]
+
+            # Add the rule into dictionary
+            d[key] = feature_list
+
         return d
 
+    # Definition for process that loads the lexicon into memory
     def load_lexicon(self, controlling_parser_process):
+
+        # Load the language specific lexicon
         self.load_lexicon_(controlling_parser_process.sentence_context.lexicon_file)
+
+        # Load universal morphemes
+        # These are combined with the language-specific lexicon, hence combine=True
         self.load_lexicon_(controlling_parser_process.sentence_context.ug_morphemes_file, True)
+
         return self.lexicon_dictionary
 
+    # Definition for the process that loads the language specific lexicon
     def load_lexicon_(self, lexicon_file, combine=False, lines=None):
 
         if not combine:
@@ -63,8 +103,10 @@ class LexicalInterface:
             # Use space to extract features
             constituent_features = [f.strip() for f in constituent_features.split()]
 
-            # If the first feature contains morpheme information, we create a special higher level entry
+            # Case 1.
+            # The first feature contains morphemic decomposition, we create a special lexical entry
             if '#' in constituent_features[0]:
+
                 # This is morphologically complex word, e.g. 'wonder-#T/fin'
                 # lexicon stores an otherwise empty constituent with morphology to show how it decomposes
                 const = self.PhraseStructure()
@@ -72,57 +114,80 @@ class LexicalInterface:
                 const.features = constituent_features[1:]
                 self.lexicon_dictionary[key].append(const)
 
-            # If we are adding lexical items to existing lexicon, we accumulate features if key exists already
+            # Case 2.
+            # If we are adding lexical items to existing lexicon, and find the same item, we accumulate features
             elif combine and key in self.lexicon_dictionary:
                 for const in self.lexicon_dictionary[key]:
                     const.features = set(const.features) | set(constituent_features)
-            # Otherwise we add a new entry
+
+            # Case 3.
+            # Otherwise we add a new entry which has three properties
+            # Property 1. The lexical item is a constituent (phrase structure object)
+            # Property 2. Feature - means that the item is an inflectional feature
+            # Property 3. Redundancy rules and possible lexical parameters are applied
             else:
-                # Creating new word entry
+
+                # property 1. The lexical item is a constituent (phrase structure object)
                 const = self.PhraseStructure()
 
-                # Constituents that have feature '-' are inflectional and have no morphological decomposition
+                # Property 2. Feature - means that the item is an inflectional feature
                 if '-' in constituent_features:
                     const.morphology = ''
                 else:
                     const.morphology = key
 
-                # Every new lexical item must be applied (i) redundancy rules and (ii) parameters
+                # Property 3. Redundancy rules and possible lexical parameters are applied
                 const.features = self.apply_parameters(self.apply_redundancy_rules(constituent_features))
                 self.lexicon_dictionary[key].append(const)
 
-        # Show the lexicon
-        # for key, value in self.d.items():
-        #     print(key, str(value[0].features))
+        # Return the dictionary
         return self.lexicon_dictionary
 
-    # Accesses the lexicon (lexicon_dictionary) based on a key
-    def access_lexicon(self, key):
-        internal = False
-        # Word-internal pronouncing is marked by $ by morphological decomposing
-        # Here it is removed and converted into a feature
+    # Defines lexical retrieval
+    # A constituent X is retrieved on the basis of key K if and only if
+    # K matches with value X in the lexicon (dictionary)
+    #
+    # Note 1: retrieves several lexical constituent is K is ambiguous
+    # Note 2: PHON/morphology features internal/incorporated are transformed into syntactic features
+    def lexical_retrieval(self, key):
+
+        # Assume that the morpheme is neither internal nor incorporated
+        # Internal and incorporated are features provided by PHON/morphology
         internal = False
         incorporated = False
+
+        # A morpheme symbol that ends with $ is an internal item
         if key.endswith('$'):
             key = key[:-1]
             internal = True
+
+        # A morpheme string that ends with = is an incorporated item
         if key.endswith('='):
             key = key[:-1]
             incorporated = True
+
+        # If the key K is found from the dictionary, it will return a constituent value
         if key in self.lexicon_dictionary:
-            # Copy lexical items from the lexicon
+
+            # Copy lexical items matching with the key from the lexicon
             word_list = [const.copy() for const in self.lexicon_dictionary[key]]
+
+            # If the morpheme was internal, we mark the constituent(s) as internal for syntax
             if internal:
                 for const in word_list:
+
                     # Mark this constituent (if not inflectional) as word-internal,
                     # so that it's merge solution is always COMP
                     if const.morphology:
                         const.internal = True
+
+            # If the morpheme was incorporated, we mark the constituent(s) as incorporated for syntax
             if incorporated:
                 for const in word_list:
                     const.incorporated = True
+
+        # If the morpheme was not found, we create a placeholder item
         else:
-            # Create placeholder if the item was not recognized
             const = self.PhraseStructure()
             const.features = {'PF:?', 'CAT:?'}  # If the word is not found, we will still create it
             const.morphology = key
@@ -131,14 +196,19 @@ class LexicalInterface:
 
         return word_list
 
-    def apply_redundancy_rules(self, feats):
+    # Definition for the application of the redundancy rules
+    # Maps the old feature set (input) into new feature set (output)
+    def apply_redundancy_rules(self, features):
 
+        # Internal definition for the notion of negative feature
         def negative_feature(f):
             if f.startswith('-'):
                 return True
             return False
 
-        # Prevents new features from redundancy rules to get added if they conflict with a lexical rule
+        # Internal definition for feature conflict
+        #
+        # Note: Prevents new features from redundancy rules to get added if they conflict with a lexical rule
         def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
 
             # If we try to add a negative feature -F, we reject if there is a positive feature
@@ -146,30 +216,40 @@ class LexicalInterface:
             if negative_feature(new_candidate_feature_to_add):
                 if new_candidate_feature_to_add[1:] in features_from_lexicon:
                     return True
+
             # If we try to add a positive feature, we reject if there is a negative feature
             if not negative_feature(new_candidate_feature_to_add):
                 if '-' + new_candidate_feature_to_add in features_from_lexicon:
                     return True
             return False
 
-        feats = set(feats)
+        features = set(features)
         new_feats = set()
-        for feat in feats:
-            # If a feature is found in the redundancy rules
-            if feat in self.redundancy_rules:
-                # the rule set from redundancy rules will be transferred
-                new_feats |= set(self.redundancy_rules[feat])
-        # order of features added by redundancy rules affects whether they conflict or not. Sorting them here causes
-        # that features starting with '-' are added first and possible positive features are then in conflict and get
-        # not added.
+
+        for f in self.redundancy_rules:
+            trigger_set = set(f.split())
+            if features & trigger_set:
+                new_feats |= set(self.redundancy_rules[f])
+
+        # Go through every feature in the input list
+        # for f in features:
+
+            # If a feature is found in the redundancy rules dictionary as a key,
+            # We add its features (value) into the list of features (new_feats) to be added
+         #   if f in self.redundancy_rules:
+         #       new_feats |= set(self.redundancy_rules[f])
+
+        # Resolve conflicts in favor of input features
+        # Note: language-specific features outperform redundancy rules
         for new_feat in sorted(new_feats):
-            if not feature_conflict(new_feat, feats):
-                feats.add(new_feat)
-        return feats
+            if not feature_conflict(new_feat, features):
+                features.add(new_feat)
+        return features
 
     # Binary UG parameters
     # There are certain binary UG parameters that are "mirrored" in the lexicon in the sense that
-    # lexical features occur in clusters,
+    # lexical features occur in clusters, but this whole notion is controversial and possibly
+    # inexistent
     #
     def apply_parameters(self, features):
         def remove_redundancies(features):

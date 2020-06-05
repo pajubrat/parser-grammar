@@ -38,9 +38,9 @@ from context import Context
 # Block 2. Define input and output data files and names
 #
 # Define the data directory
-data_folder = Path("language data working directory/study-3_2020-control/")
+data_folder = Path("language data working directory/study-6-linear-phase-theory/")
 # Define the corpus file
-test_corpus_name = "null_subjects_corpus.txt"
+test_corpus_name = "linear_phase_theory_corpus.txt"
 
 # Create a file name for the test corpus
 # Created automatically from the corpus file above -- do not change

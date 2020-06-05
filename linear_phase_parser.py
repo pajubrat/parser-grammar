@@ -188,7 +188,7 @@ class LinearPhaseParser:
             #   MONOMORPHEMIC lexical items have no morphological decomposition, only a set of features
             #   POLYMORPHEMIC lexical items have morphological decomposition
             #
-            disambiguated_word_list = self.lexicon.access_lexicon(lst[index])
+            disambiguated_word_list = self.lexicon.lexical_retrieval(lst[index])
             if len(disambiguated_word_list) > 1:
                 log(f'\t\tAmbiguous lexical item \"{lst[index]}\" detected, {disambiguated_word_list}.')
             for lexical_constituent in disambiguated_word_list:
