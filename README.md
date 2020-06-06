@@ -4,7 +4,7 @@ Parser-grammar v. 3.x
 (Version 3.x supports romance clitics 
 (Versoin 5.x supports long head movement and null arguments (incl. radical pro-drop)
 
-2019
+2020
 
 This project is a computational implementation of a Phillips' (1996) style minimalist top-down/left-right parser-grammar, 
 intended to be used as a tool for scientific, linguistic analysis. 
@@ -17,6 +17,6 @@ algorithm with a (typically large) linguistic corpus which it parses/analyses, a
 set of expressions.
 
 The parser-grammar is based on a theory originally proposed by Phillips (1996), which derives phrase structures in top-down/left-right 
-order, thus in a way that is consistent with how humans must comprehend/parse language. The program adds to this the algorithm and required modifications that performs the actual parsing. It guides the core computational operations of the human language faculty (e.g. Merge, Move) by reading a list of words from the PF-interface. The model has been developed within the framework of the minimalist grammar (Chomsky, 1995, 2000, 2008).
+order, thus in a way that is consistent with how humans must comprehend/parse language. The program adds to this the algorithm and required modifications that performs the actual parsing. It guides the core computational operations of the human language faculty (e.g. Merge, Move, Agree) by reading a list of words from the PF-interface. The model has been developed within the framework of the minimalist grammar (Chomsky, 1995, 2000, 2008).
 
 The program was created in connection with a research project ProGraM-PC: A Processing-friendly Grammatical Model for Parsing and predicting on-line Complexity)" led by Prof. Cristiano Chesi (IUSS, Pavia). This version was designed and programmed by Pauli Brattico with some code contributed by Jukka Purma.
