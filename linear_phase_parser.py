@@ -118,7 +118,7 @@ class LinearPhaseParser:
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
             log('\n\t>>>\t' + f'Trying candidate spell out structure ' + ps.illustrate())
 
-            # Condition 1. Teiu st surface legibility
+            # Condition 1. Test surface legibility
             log('\t\tChecking surface conditions...')
             S = self.surface_conditions_module
             S.all_pass = True

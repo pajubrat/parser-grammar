@@ -512,8 +512,9 @@ class PhraseStructure:
     #       b)    K occurs in H's feature vector and is the closest that checks at least
     #             one tail-feature from H,
     #   AND
-    #   Condition 2. K checks all tail-features from H.
-    #   (Comment:  Condition 1.1.a is applied to adverbials, condition 1.1.b to everything else)
+    #   Condition 2. K checks all tail-features from H and none of the negative features
+    #
+    #   Note:  Condition 1.1.a is applied to adverbials, condition 1.1.b to everything else.
     def external_tail_head_test(self):
 
         # Internal function
@@ -536,16 +537,21 @@ class PhraseStructure:
 
         feature_vector = self.feature_vector()
 
+        # These are used only to make the code more readable
+        complete = True
+        partial = False
+        tests_passed = 0
+
         # Examine all tail sets
         for tail_set in tail_sets:
 
             # Condition 1.a) Tail features are checked by a head that contains XP
             # Applied to everything except non-genitive DPs.
-            if get_max(self) and get_max(self).mother and get_max(self).mother.head().check_features(tail_set):
+            if get_max(self) and get_max(self).mother and get_max(self).mother.head().match_features(tail_set) == 'complete match':
                 # mysterious property = option 1.a. is not applied to non-genitive DPs
                 # (It is mysterious because I don't understand it fully, but it is required empirically.)
                 if self.mysterious_property():
-                    return True
+                    tests_passed = tests_passed + 1
 
             # Condition 1.b) Tail features can be matched in the feature vector
             # Applied to everything besides (right) adverbs
@@ -558,15 +564,26 @@ class PhraseStructure:
                         # If ALL goal's features are matched, the test is accepted
                         # Notice that we check also internal affixes
                         for m in const.get_affix_list():
-                            if m.check_features(tail_set):
-                                return True
 
-                            # If there is PARTIAL match, it is left unchecked
-                            elif tail_set & const.features:
+                            test = m.match_features(tail_set)
+
+                            # Complete match is accepted and stored
+                            if test == 'complete match':
+                                tests_passed = tests_passed + 1
+
+                            # Partial match is not accepted, search is terminated immediately
+                            elif test == 'partial match':
                                 return False
 
-            # External tail head test returns false if the tail-head features cannot be matched
-            return False
+                            # Negative match is not accepted, search is terminated immediately
+                            elif test == 'negative match':
+                                return False
+
+            if tests_passed == len(tail_sets):
+                return True
+
+        # External tail head test returns false if the tail-head features cannot be matched
+        return False
 
     # Definition for internal tail head test
     # Internal tail head test is more lenient than the external version, returns false only if there is partial match
@@ -579,6 +596,11 @@ class PhraseStructure:
 
         feature_vector = self.feature_vector()
 
+        # These are used only to make the code more readable
+        complete = True
+        partial = False
+        tests_passed = 0
+
         for tail_set in tail_sets:
 
             # Check if goal's tail features can be matched in the feature vector
@@ -587,17 +609,36 @@ class PhraseStructure:
                 # Ignore the first element which is the goal itself
                 if const is not self:
 
-                    # If ALL goal's features are matched, the test is accepted
-                    if const.check_features(tail_set):
-                        return True
+                    test = const.match_features(tail_set)
 
-                    # If there is PARTIAL match, the test is rejected
-                    # (Intervention)
-                    elif tail_set & const.features:
+                    # Partial match (some, not all, features are matched) is not accepted, search is terminated immediately
+                    if test == 'partial match':
+                        return False
+
+                    elif test == 'negative match':
                         return False
 
         # If there there were no overlapping features, this test is accepted
         return True
+
+    # Definition for feature match
+    # Head H checks features in set F if and only F
+    # Condition 1. No negative features of F are matched with features in H, and
+    # Condition 2a. All positive features of F are matched with features in H, which is COMPLETE MATCH, or
+    # Condition 2b. Some positive features of F ar matched with features in H, which is PARTIAL MATCH, or
+    # Condition 2c. A negative feature is matched, which is NEGATIVE MATCH.
+    def match_features(self, feature_set):
+
+        positive_features = {feature for feature in feature_set if feature[0] != '-'}
+        negative_features = {feature[1:] for feature in feature_set if feature[0] == '-'}
+
+        if negative_features & self.features:                           # Condition 2c
+            return 'negative match'
+        else:
+            if positive_features & self.features == positive_features:  # Condition 2a
+                return 'complete match'
+            elif positive_features & self.features:                      # Condition 2b
+                return 'partial match'
 
     # Recursive definition for contains-feature-F for a phrase
     # XP contains feature F if and only if
@@ -823,10 +864,6 @@ class PhraseStructure:
                 if f[:5] == 'ABAR:':
                     set_.add(f[5:])
         return set_
-
-    # Definition for feature check: can head H check all features in 'feature_set'
-    def check_features(self, feature_set):
-        return (feature_set & self.features) == feature_set
 
     # Definition for phase (used by Agree-1)
     def is_phase(self):
@@ -1118,7 +1155,7 @@ class PhraseStructure:
             reply += self.left_const.show_primitive_constituents()
             reply += self.right_const.show_primitive_constituents()
         else:
-            reply += f'{self.get_pf()}:{sorted(self.features)}\n'
+            reply += f'{self.get_pf():<10} {sorted(self.features)}\n'
         return reply
 
     def spellout(self):

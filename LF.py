@@ -591,7 +591,7 @@ class LF:
             if ps_.is_primitive():
                 if ps_.check_features(antecedent) and 'FIN' in ps_.get_labels():
                     return ps_
-            elif ps_.left_const.head().check_features(antecedent) and 'FIN' in ps_.labels():
+            elif ps_.left_const.head().match_features(antecedent) and 'FIN' in ps_.labels():
                 return ps_
             ps_ = ps_.walk_upstream()
 

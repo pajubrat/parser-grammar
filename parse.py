@@ -68,6 +68,11 @@ ug_morphemes = data_folder / 'ug_morphemes.txt'
 # Created automatically from the corpus file -- do not change
 redundancy_rules = data_folder / 'redundancy_rules.txt'
 
+# Create a file name for storing the surface vocabulary used in processing
+# Created automatically from the corpus file -- do not change
+saved_vocabulary_name = test_corpus_name[:-4] + '_saved_vocabulary.txt'
+surface_vocabulary_file_name = data_folder / saved_vocabulary_name
+
 #
 # Block 3. Preparations
 #
@@ -270,3 +275,6 @@ for sentence in parse_list[start:]:
 
 # Print the computation time to console
 print(f'took: {time.time() - t}s.')
+
+# Print the surface vocabulary used in the study to a file
+P.lexicon.save_surface_vocabulary(surface_vocabulary_file_name)

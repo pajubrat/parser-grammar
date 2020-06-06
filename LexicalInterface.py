@@ -8,12 +8,13 @@ log = logging.getLogger(__name__)
 # Definition for lexical interface
 class LexicalInterface:
 
-    # The interface contains a dictionary which holds lexical items
+    # The interface contains a dictionary (surface vocabulary) which holds lexical items
     # The lexicon is a combination of
     #   1. language-invariant morphemes (UG_morphemes)
     #   2. language-specific morphemes and
     #   3. Lexical redundancy rules
     #
+    # The dictionary (surface vocabulary) pairs phonological strings (keys) with primitive constituents (values)
     def __init__(self, controlling_parser_process):
 
         # Definitions for global, contextual variables
@@ -23,7 +24,7 @@ class LexicalInterface:
         self.PhraseStructure = phrase_structure.PhraseStructure
 
         # Lexicon as dictionary
-        self.lexicon_dictionary = defaultdict(list)
+        self.surface_vocabulary = defaultdict(list)
 
         # Redundancy rules
         self.redundancy_rules = self.load_redundancy_rules(self.controlling_parser_process)
@@ -71,7 +72,7 @@ class LexicalInterface:
         # These are combined with the language-specific lexicon, hence combine=True
         self.load_lexicon_(controlling_parser_process.sentence_context.ug_morphemes_file, True)
 
-        return self.lexicon_dictionary
+        return self.surface_vocabulary
 
     # Definition for the process that loads the language specific lexicon
     def load_lexicon_(self, lexicon_file, combine=False, lines=None):
@@ -80,7 +81,7 @@ class LexicalInterface:
             # defaultdict is a dict where new entries are automatically empty objects of given type.
             # so in this case when adding new entries we don't have to start a new list of entries
             # but we can immediately append to it, as it is an empty list: self.d[key].append(const)
-            self.lexicon_dictionary = defaultdict(list)
+            self.surface_vocabulary = defaultdict(list)
 
         lines = lines or []
 
@@ -112,12 +113,12 @@ class LexicalInterface:
                 const = self.PhraseStructure()
                 const.morphology = constituent_features[0]
                 const.features = constituent_features[1:]
-                self.lexicon_dictionary[key].append(const)
+                self.surface_vocabulary[key].append(const)
 
             # Case 2.
             # If we are adding lexical items to existing lexicon, and find the same item, we accumulate features
-            elif combine and key in self.lexicon_dictionary:
-                for const in self.lexicon_dictionary[key]:
+            elif combine and key in self.surface_vocabulary:
+                for const in self.surface_vocabulary[key]:
                     const.features = set(const.features) | set(constituent_features)
 
             # Case 3.
@@ -138,10 +139,10 @@ class LexicalInterface:
 
                 # Property 3. Redundancy rules and possible lexical parameters are applied
                 const.features = self.apply_parameters(self.apply_redundancy_rules(constituent_features))
-                self.lexicon_dictionary[key].append(const)
+                self.surface_vocabulary[key].append(const)
 
         # Return the dictionary
-        return self.lexicon_dictionary
+        return self.surface_vocabulary
 
     # Defines lexical retrieval
     # A constituent X is retrieved on the basis of key K if and only if
@@ -167,10 +168,10 @@ class LexicalInterface:
             incorporated = True
 
         # If the key K is found from the dictionary, it will return a constituent value
-        if key in self.lexicon_dictionary:
+        if key in self.surface_vocabulary:
 
             # Copy lexical items matching with the key from the lexicon
-            word_list = [const.copy() for const in self.lexicon_dictionary[key]]
+            word_list = [const.copy() for const in self.surface_vocabulary[key]]
 
             # If the morpheme was internal, we mark the constituent(s) as internal for syntax
             if internal:
@@ -226,18 +227,11 @@ class LexicalInterface:
         features = set(features)
         new_feats = set()
 
+        # Include features of a lexical redundancy rule when the antecedent features are matched
         for f in self.redundancy_rules:
             trigger_set = set(f.split())
-            if features & trigger_set:
+            if features & trigger_set == trigger_set:
                 new_feats |= set(self.redundancy_rules[f])
-
-        # Go through every feature in the input list
-        # for f in features:
-
-            # If a feature is found in the redundancy rules dictionary as a key,
-            # We add its features (value) into the list of features (new_feats) to be added
-         #   if f in self.redundancy_rules:
-         #       new_feats |= set(self.redundancy_rules[f])
 
         # Resolve conflicts in favor of input features
         # Note: language-specific features outperform redundancy rules
@@ -340,3 +334,12 @@ class LexicalInterface:
             features.add('CAT:' + cat_string)
 
         return features
+
+    def save_surface_vocabulary(self, file_name):
+        results_file = open(file_name, "w", -1, "utf-8")
+
+        for key in self.surface_vocabulary:
+            for lexical_item in self.surface_vocabulary[key]:
+                value =str(lexical_item.features)
+                string = f'{key:<15} {value:<10}' + '\n'
+                results_file.write(string)
