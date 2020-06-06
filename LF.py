@@ -271,9 +271,9 @@ class LF:
                         log(f'\t\t\t\t{DP} has no thematic role at the SPEC of {container_head}')
                         self.projection_principle_test_result = False
 
-            # Condition 3. non-SPEC adjunct DPs must be licensed by 'SEM:nonthematic'
-            elif DP.adjunct and not DP.contains_feature('SEM:nonthematic'):
-                # Condition 3. Nonlicensed Adjunct DPs must be licensed by 'SEM:nonthematic' inside the DP
+            # Condition 3. non-SPEC adjunct DPs must be licensed by 'adjoinable'
+            elif DP.adjunct and not DP.contains_feature('adjoinable'):
+                # Condition 3. Nonlicensed Adjunct DPs must be licensed by 'adjoinable' inside the DP
                 self.projection_principle_test_result = False
 
         # 9. Discourse/pragmatic tests
@@ -589,9 +589,9 @@ class LF:
 
         while ps_:
             if ps_.is_primitive():
-                if ps_.check_features(antecedent) and 'FIN' in ps_.get_labels():
+                if ps_.match_features(antecedent) == 'complete match' and 'FIN' in ps_.get_labels():
                     return ps_
-            elif ps_.left_const.head().match_features(antecedent) and 'FIN' in ps_.labels():
+            elif ps_.left_const.head().match_features(antecedent) == 'complete match' and 'FIN' in ps_.labels():
                 return ps_
             ps_ = ps_.walk_upstream()
 

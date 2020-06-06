@@ -49,7 +49,7 @@ class FloaterMovement():
                 _ps_iterator.left_const.is_complex() and \
                 not _ps_iterator.left_const.find_me_elsewhere and \
                 _ps_iterator.left_const.head().get_tail_sets() and \
-                not '-FLOAT' in _ps_iterator.left_const.head().features and \
+                'adjoinable' in _ps_iterator.left_const.head().features and \
                 not _ps_iterator.get_criterial_features():
 
             floater = _ps_iterator.left_const
@@ -77,7 +77,7 @@ class FloaterMovement():
         # for reasons I do not understand
         if _ps_iterator.is_complex() and \
                 _ps_iterator.right_const.head().get_tail_sets() and \
-                not '-FLOAT' in _ps_iterator.right_const.head().features:
+                'adjoinable' in _ps_iterator.right_const.head().features:
             floater = _ps_iterator.right_const.head()
 
             # Condition 1. External tail test fails

@@ -791,17 +791,16 @@ class PhraseStructure:
 
     # Definition for adjoinable phrase
     # XP is an adjoinable phrase if and only if
-    # Condition 1. it belongs to one of the adjoinable categories OR
-    # Condition 2. It is an adjunct
+    #
+    # Condition 1. It is an adjunct
+    # Condition 2. it belongs to one of the adjoinable categories OR
     def is_adjoinable(self):
-        adjoinable_categories = {'ADV', 'R', 'D', 'P', 'TO/inf', 'ARE/inf'}
-
-        # Condition 2. Adjuncts are automatically adjoinable
+        # Condition 1. Adjuncts are automatically adjoinable
         if self.adjunct:
             return True
 
-        # Condition 1. A constituent with adjoinable label is adjoinable
-        if adjoinable_categories.intersection(self.labels()):
+        # Condition 2. A constituent with 'SEM:adjoinable' is adjoinable
+        if 'adjoinable' in self.head().features:
             return True
         else:
             return False

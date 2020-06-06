@@ -316,9 +316,9 @@ class LexicalInterface:
             if 'CAT:uWH' in features and not 'CAT:FORCE' in features:
                 features.add('!SPEC:uWH')
 
-        return self.create_combined_categories(remove_redundancies(features))
+        return self.create_combined_lexical_categories(remove_redundancies(features))
 
-    def create_combined_categories(self, features):
+    def create_combined_lexical_categories(self, features):
 
         cat_string = ''
         # Create a list of categorical features

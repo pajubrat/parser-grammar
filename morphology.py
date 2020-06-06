@@ -70,8 +70,8 @@ class Morphology:
     def set_inflection(self, lexical_item, inflectional_affixes):
         if inflectional_affixes:
             log(f'\t\tAdding inflectional features {inflectional_affixes} to ' + lexical_item.get_pf())
-            lexical_item.features = lexical_item.features.union(set(inflectional_affixes))
-            lexical_item.features = self.lexicon.create_combined_categories(lexical_item.features)
+            lexical_item.features = lexical_item.features | set(inflectional_affixes)
+            lexical_item.features = self.lexicon.create_combined_lexical_categories(lexical_item.features)
         return lexical_item
 
     # Definition for generative morphology that only handles FOC disambiguation at present
