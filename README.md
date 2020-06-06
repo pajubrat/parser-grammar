@@ -2,6 +2,7 @@ Parser-grammar v. 3.x
 (Version 1.x supports pied-piping and operator movement)
 (Version 2.x supports  agreement, pro-drop and control)
 (Version 3.x supports romance clitics 
+(Versoin 5.x supports long head movement and null arguments (incl. radical pro-drop)
 
 2019
 
