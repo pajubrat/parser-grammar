@@ -527,6 +527,15 @@ class PhraseStructure:
                     break
             return ps_
 
+        # Internal function
+        # Definition for negative tail set
+        # Tail set T is negative if and only if it contains a feature that is negative
+        def negative(tail_set):
+            for f in tail_set:
+                if f.startswith('-'):
+                    return True
+            return False
+
         #
         # --- Main function begins here ---#
         #
@@ -536,11 +545,7 @@ class PhraseStructure:
             return True
 
         feature_vector = self.feature_vector()
-
-        # These are used only to make the code more readable
-        complete = True
-        partial = False
-        tests_passed = 0
+        tests_checked = set()
 
         # Examine all tail sets
         for tail_set in tail_sets:
@@ -551,7 +556,7 @@ class PhraseStructure:
                 # mysterious property = option 1.a. is not applied to non-genitive DPs
                 # (It is mysterious because I don't understand it fully, but it is required empirically.)
                 if self.mysterious_property():
-                    tests_passed = tests_passed + 1
+                    tests_checked.add(tail_set)
 
             # Condition 1.b) Tail features can be matched in the feature vector
             # Applied to everything besides (right) adverbs
@@ -569,7 +574,7 @@ class PhraseStructure:
 
                             # Complete match is accepted and stored
                             if test == 'complete match':
-                                tests_passed = tests_passed + 1
+                                tests_checked.add(tail_set)
 
                             # Partial match is not accepted, search is terminated immediately
                             elif test == 'partial match':
@@ -579,8 +584,15 @@ class PhraseStructure:
                             elif test == 'negative match':
                                 return False
 
-            if tests_passed == len(tail_sets):
-                return True
+                # If negative tail_set was not matched, it will be checked
+                if negative(tail_set):
+                    tests_checked.add(tail_set)
+
+        # If all tests have been checked, the tail-head test succeeds
+        if tests_checked & tail_sets == tail_sets:
+            return True
+        else:
+            return False
 
         # External tail head test returns false if the tail-head features cannot be matched
         return False
@@ -595,11 +607,6 @@ class PhraseStructure:
             return True
 
         feature_vector = self.feature_vector()
-
-        # These are used only to make the code more readable
-        complete = True
-        partial = False
-        tests_passed = 0
 
         for tail_set in tail_sets:
 
@@ -627,10 +634,11 @@ class PhraseStructure:
     # Condition 2a. All positive features of F are matched with features in H, which is COMPLETE MATCH, or
     # Condition 2b. Some positive features of F ar matched with features in H, which is PARTIAL MATCH, or
     # Condition 2c. A negative feature is matched, which is NEGATIVE MATCH.
-    def match_features(self, feature_set):
+    def match_features(self, features_to_check):
 
-        positive_features = {feature for feature in feature_set if feature[0] != '-'}
-        negative_features = {feature[1:] for feature in feature_set if feature[0] == '-'}
+        # Partition the set of features into positive and negative features
+        positive_features = {feature for feature in features_to_check if feature[0] != '-'}
+        negative_features = {feature[1:] for feature in features_to_check if feature[0] == '-'}
 
         if negative_features & self.features:                           # Condition 2c
             return 'negative match'

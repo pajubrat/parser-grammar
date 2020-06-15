@@ -225,19 +225,21 @@ class LexicalInterface:
             return False
 
         features = set(features)
-        new_feats = set()
+        new_features_to_add = set()
 
         # Include features of a lexical redundancy rule when the antecedent features are matched
         for f in self.redundancy_rules:
             trigger_set = set(f.split())
             if features & trigger_set == trigger_set:
-                new_feats |= set(self.redundancy_rules[f])
+                new_features_to_add |= set(self.redundancy_rules[f])
 
-        # Resolve conflicts in favor of input features
+        # Resolve conflicts in favor of lexical features
+        # new_feats contains new features from lexical redundancy rule to be added
+        #
         # Note: language-specific features outperform redundancy rules
-        for new_feat in sorted(new_feats):
-            if not feature_conflict(new_feat, features):
-                features.add(new_feat)
+        for new_feature in sorted(new_features_to_add):
+            if not feature_conflict(new_feature, features):
+                features.add(new_feature)
         return features
 
     # Binary UG parameters

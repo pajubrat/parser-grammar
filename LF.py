@@ -44,6 +44,9 @@ class LF:
     # Checks LF-legibility for primitive constituents (not phrases)
     def test(self, ps):
 
+        #
+        # Internal function
+        #
         # Definition for selected sister of head H
         # X(P) is the selected sister of H if and only if
         # Condition 1.  H is primitive and has a sister AND
@@ -81,6 +84,7 @@ class LF:
                     return None
 
         # --- test function beings ---#
+
         if not ps.is_primitive():
             if not ps.left_const.find_me_elsewhere:
                 self.test(ps.left_const)
@@ -88,10 +92,10 @@ class LF:
                 self.test(ps.right_const)
             return
 
-        h = ps  # keep track of the fact that we have selected primitive head
+        h = ps  # keep track of the fact that we are operated with a primitive head
 
-        spec = h.local_edge()
-        specs = h.edge()
+        local_edge = h.local_edge()
+        edge = h.edge()
         comp = h.complement()
         lf_features = sorted(for_lf_interface(h.features))
 
@@ -147,7 +151,7 @@ class LF:
         for f in lf_features:
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
-                for spec_ in specs:
+                for spec_ in edge:
 
                     if spec_ and f[6:] in spec_.labels():
                         if not spec_.adjunct:
@@ -157,9 +161,9 @@ class LF:
             # 3.2. No specifier of any kind allowed (e.g., English P).
             #       This excludes pro
             if f == '-SPEC:*':
-                if spec:
-                    if not spec.adjunct and not spec.find_me_elsewhere and 'pro' not in spec.features:
-                        log(f'\t\t\t\t{h} ({h.illustrate()}) has a specifier {spec}({spec.features}) '
+                if local_edge:
+                    if not local_edge.adjunct and not local_edge.find_me_elsewhere and 'pro' not in local_edge.features:
+                        log(f'\t\t\t\t{h} ({h.illustrate()}) has a specifier {local_edge}({local_edge.features}) '
                             f'but is marked for -EPP behavior.')
                         self.selection_test_result = False
 
@@ -192,7 +196,7 @@ class LF:
                     self.selection_test_result = False
 
             # 3.6. !SPEC:* heads require a specifier
-            if f == '!SPEC:*' and not spec:
+            if f == '!SPEC:*' and not local_edge:
 
                 # This condition takes care of the curious fact that overt C cancels !SPEC:*
                 # if h.get_selector() and 'C/fin' in h.get_selector().get_labels():
@@ -205,12 +209,12 @@ class LF:
             # 3.7. !SPEC:F, head requires specific specifier
             # Left adjunct can satisfy this, left non-adjunct must satisfy it
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
-                if not specs:
+                if not edge:
                     log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier {f[6:]} that it requires.')
                     self.selection_test_result = False
                 else:
                     found = False
-                    for s in specs:
+                    for s in edge:
                         # First left adjunct CAN satisfy SPEC requirement
                         if s.adjunct:
                             if f[6:] in s.labels() or f[7:] in s.labels():
@@ -247,33 +251,32 @@ class LF:
         if 'D' in h.labels() and h.mother and not h.mother.find_me_elsewhere:
 
             # This is the DP to be tested
-            DP = h.mother
+            DP_target = h.mother
 
-            # Condition 2. DPs cannot occur at non-thematic SPEC position unless licensed by 'SEM:nonthematic'
-            if DP.container_head() and DP in DP.container_head().edge():
+            # Condition 2. DPs cannot occur at non-thematic SPEC positions
+            if DP_target.container_head() and DP_target in DP_target.container_head().edge():
 
                 # The head that contains the DP (and thus assigns it a thematic role)
-                container_head = DP.container_head()
+                container_head = DP_target.container_head()
 
                 # Condition 2.1 EPP heads
                 if container_head.EPP():
-                    log(f'\t\t\t\t{DP} has no thematic role due to being at SPEC of EPP head.')
+                    log(f'\t\t\t\t{DP_target} has no thematic role due to being at SPEC of EPP head.')
                     self.projection_principle_test_result = False
 
                 # Condition 2.2 Heads selected by -AGR heads
                 elif container_head.selector() and 'ARG' not in container_head.selector().features:
-                    log(f'\t\t\t\t{DP} has no thematic role due to a selecting -ARG head.')
+                    log(f'\t\t\t\t{DP_target} has no thematic role due to a selecting -ARG head.')
                     self.projection_principle_test_result = False
 
                 # Condition 2.3 The head does not select for a DP specifier
                 elif 'D' not in container_head.specs():
-                    if container_head.sister() != DP:
-                        log(f'\t\t\t\t{DP} has no thematic role at the SPEC of {container_head}')
+                    if container_head.sister() != DP_target:
+                        log(f'\t\t\t\t{DP_target} has no thematic role at the SPEC of {container_head}')
                         self.projection_principle_test_result = False
 
             # Condition 3. non-SPEC adjunct DPs must be licensed by 'adjoinable'
-            elif DP.adjunct and not DP.contains_feature('adjoinable'):
-                # Condition 3. Nonlicensed Adjunct DPs must be licensed by 'adjoinable' inside the DP
+            elif DP_target.adjunct and not DP_target.contains_feature('adjoinable'):
                 self.projection_principle_test_result = False
 
         # 9. Discourse/pragmatic tests
@@ -286,8 +289,8 @@ class LF:
                 self.discourse_test_result = self.discourse_test_result + len(list_)*0.5
                 if 'Neg/fin' in ps.labels(): # Negation increases the penalty
                     self.discourse_test_result = self.discourse_test_result + len(list_)
-            for spec in list_:
-                if 'INF' in spec.labels():
+            for local_edge in list_:
+                if 'INF' in local_edge.labels():
                     self.discourse_test_result = self.discourse_test_result + 2
 
         #
