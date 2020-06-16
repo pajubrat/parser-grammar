@@ -50,6 +50,7 @@ class FloaterMovement():
                 not _ps_iterator.left_const.find_me_elsewhere and \
                 _ps_iterator.left_const.head().get_tail_sets() and \
                 'adjoinable' in _ps_iterator.left_const.head().features and \
+                '-adjoinable' not in _ps_iterator.left_const.head().features and \
                 not _ps_iterator.get_criterial_features():
 
             floater = _ps_iterator.left_const
@@ -195,7 +196,7 @@ class FloaterMovement():
             ps_iterator_ = ps_iterator_.walk_upstream()
 
         # In [X FinP], we return FinP iff FinP is not an adjunct
-        if node.right_const and not node.right_const.adjunct:
+        if node and node.right_const and not node.right_const.adjunct:
             return node.right_const
         else:
             # If FinP is adjunct, then we return [X FinP]

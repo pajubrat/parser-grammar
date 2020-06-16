@@ -288,6 +288,20 @@ class PhraseStructure:
             # Condition 1. Return the local c-commanding head
             return feature_vector[1]
 
+    # Definition for property X has a theta assigner P
+    # X is assigned theta role by P if and only if
+    # Condition 1. X has a primitive sister P OR,
+    # Condition 2. X is at the edge of P.
+    #
+    # Returns P, if any
+    def get_theta_assigner(self):
+        # Condition 1. X has a primitive sister
+        if self.sister() and self.sister().is_primitive():
+            return self.sister
+        # Condition 2. X is at the edge
+        if self.container_head() and self in self.container_head().edge():
+            return self.container_head()
+
     # Definition of max
     # XP is the maximum projection from head X if and only if
     # XP is the highest/last element (by upstream walk) whose head is H
@@ -532,7 +546,7 @@ class PhraseStructure:
         # Tail set T is negative if and only if it contains a feature that is negative
         def negative(tail_set):
             for f in tail_set:
-                if f.startswith('-'):
+                if f.startswith('*'):
                     return True
             return False
 
@@ -550,6 +564,8 @@ class PhraseStructure:
         # Examine all tail sets
         for tail_set in tail_sets:
 
+            exit = False
+
             # Condition 1.a) Tail features are checked by a head that contains XP
             # Applied to everything except non-genitive DPs.
             if get_max(self) and get_max(self).mother and get_max(self).mother.head().match_features(tail_set) == 'complete match':
@@ -563,6 +579,9 @@ class PhraseStructure:
             if 'CAT:ADV' not in self.features:
                 for const in feature_vector:
 
+                    if exit:
+                        break
+
                     # Ignore the first element which is the goal itself
                     if const is not self:
 
@@ -573,8 +592,11 @@ class PhraseStructure:
                             test = m.match_features(tail_set)
 
                             # Complete match is accepted and stored
+                            # No further, nonlocal heads are examined (exit = True)
                             if test == 'complete match':
                                 tests_checked.add(tail_set)
+                                # If complete match is found, we do not test nonlocal heads
+                                exit = True
 
                             # Partial match is not accepted, search is terminated immediately
                             elif test == 'partial match':
@@ -618,6 +640,10 @@ class PhraseStructure:
 
                     test = const.match_features(tail_set)
 
+                    # Complete match is accepted and no futher, nonlocal heads are examined
+                    if test == 'complete match':
+                        break
+
                     # Partial match (some, not all, features are matched) is not accepted, search is terminated immediately
                     if test == 'partial match':
                         return False
@@ -637,8 +663,8 @@ class PhraseStructure:
     def match_features(self, features_to_check):
 
         # Partition the set of features into positive and negative features
-        positive_features = {feature for feature in features_to_check if feature[0] != '-'}
-        negative_features = {feature[1:] for feature in features_to_check if feature[0] == '-'}
+        positive_features = {feature for feature in features_to_check if feature[0] != '*'}
+        negative_features = {feature[1:] for feature in features_to_check if feature[0] == '*'}
 
         if negative_features & self.features:                           # Condition 2c
             return 'negative match'

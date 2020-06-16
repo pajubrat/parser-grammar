@@ -237,7 +237,7 @@ class LexicalInterface:
         # new_feats contains new features from lexical redundancy rule to be added
         #
         # Note: language-specific features outperform redundancy rules
-        for new_feature in sorted(new_features_to_add):
+        for new_feature in new_features_to_add:
             if not feature_conflict(new_feature, features):
                 features.add(new_feature)
         return features

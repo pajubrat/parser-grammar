@@ -275,9 +275,17 @@ class LF:
                         log(f'\t\t\t\t{DP_target} has no thematic role at the SPEC of {container_head}')
                         self.projection_principle_test_result = False
 
-            # Condition 3. non-SPEC adjunct DPs must be licensed by 'adjoinable'
-            elif DP_target.adjunct and not DP_target.contains_feature('adjoinable'):
-                self.projection_principle_test_result = False
+            # Condition 3. Non-SPEC adjunct DPs must be licensed
+            # Condition 3.a) being adjoinable AND
+            # Condition 3.b) if the DP does not have a theta-assigner, it must be licensed by 'SEM:nonthematic'
+            elif DP_target.adjunct:
+                # Condition 3a. DP must be adjoinable
+                if not DP_target.contains_feature('adjoinable'):
+                    self.projection_principle_test_result = False
+                else:
+                    # Condition 3b. If DP does not have a theta-assigner, it must be licensed by 'SEM:nonthematic'
+                    if not DP_target.get_theta_assigner() and not DP_target.contains_feature('SEM:nonreferential'):
+                            self.projection_principle_test_result = False
 
         # 9. Discourse/pragmatic tests
         #
