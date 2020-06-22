@@ -14,9 +14,10 @@ import time
 # Gets a phrase structure object as input
 # file_identifier will be used in the filename for the image
 class Visualizer:
-    def __init__(self, file_identifier='default.png'):
-        self.file_identifier = file_identifier
+    def __init__(self):
+        self.file_identifier = ''
         self.lateral_stretch_needed = True
+        self.stop_after_each_image = False
         pass
 
     # Definition for the drawing function
@@ -28,9 +29,10 @@ class Visualizer:
         while self.lateral_stretch_needed:
             self.lateral_stretch_needed = False
             self.lateral_stretch(ps)
-
-        ProduceGraphicOutput(ps, self.file_identifier)
+        win = ProduceGraphicOutput(ps, self.file_identifier, self.stop_after_each_image)
         pyglet.app.run()
+        if not self.stop_after_each_image:
+            win.close()
 
     def determine_plane_topology(self, ps):
             if ps.left_const:
@@ -120,10 +122,11 @@ class Visualizer:
             self.lateral_stretch(N.left_const)
             self.lateral_stretch(N.right_const)
 
+
 # Definition for the output window behavior
 class ProduceGraphicOutput(pyglet.window.Window):
 
-    def __init__(self, ps, save_image_file_name):
+    def __init__(self, ps, save_image_file_name, stop):
 
         # Define the grid
         self.x_grid = 50
@@ -135,6 +138,10 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.top_node_position = 0
 
         self.file_identifier = save_image_file_name
+
+        self.stop_after_each_image = stop
+
+        self.stop_after_each_image = False
 
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
@@ -186,14 +193,18 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
                 X2 = x_offset + ps.left_const.x * self.x_grid
                 Y2 = y_offset + ps.left_const.y * self.y_grid
-                glLineWidth(2)
+                if abs(ps.x - ps.left_const.x) > 1:
+                    glLineWidth(1)
+                else:
+                    glLineWidth(2)
                 glColor4f(0, 0, 0, 0)
                 glBegin(GL_LINES)
                 glVertex2f(X1, Y1)
                 glVertex2f(X2, Y2)
+                # Adjuncts are marked by double line
                 if ps.left_const.adjunct:
-                    glVertex2f(X1+5, Y1)
-                    glVertex2f(X2+5, Y2)
+                    glVertex2f(X1-5, Y1+1)
+                    glVertex2f(X2-5, Y2+1)
                 glEnd()
                 project_into_plane(ps.left_const)
 
@@ -204,15 +215,20 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 glBegin(GL_LINES)
                 glVertex2f(X1, Y1)
                 glVertex2f(X2, Y2)
+                # Adjuncts are marked by double line
                 if ps.right_const.adjunct:
                     glVertex2f(X1+5, Y1)
                     glVertex2f(X2+5, Y2)
 
                 glEnd()
-
-
                 project_into_plane(ps.right_const)
+                if not self.stop_after_each_image:
+                    pyglet.app.exit()
 
+        #
+        # Main function begins here
+        #
+        #
         x_offset = self.top_node_position
         y_offset = self.height - 50
 
@@ -235,6 +251,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
             left, right, depth = self.get_tree_size(ps.right_const, left, right, depth)
 
         return left, right, depth
+
+
 
 
 

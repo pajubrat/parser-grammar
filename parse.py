@@ -110,7 +110,7 @@ print(f'Redundancy rules from {redundancy_rules}')
 #Initialize the visualizer
 Graphic_output = visualizer.Visualizer()
 image_output = True # Set to False if you don't want to see phrase structure images
-
+Graphic_output.stop_after_each_image = False    # Set True if you want to examine each input on the screen (otherwise they are in png files)
 
 # Read the corpus file
 # Special symbols:
@@ -161,6 +161,7 @@ for language in lang_guesser.languages:
     sentence_context.ug_morphemes_file = ug_morphemes
     sentence_context.redundancy_rules_file = redundancy_rules
     sentence_context.language = language
+    sentence_context.data_folder = data_folder
     parsers[language] = LinearPhaseParser(sentence_context)
 
 # Set up logging functions and parameters
@@ -282,7 +283,8 @@ for sentence in parse_list[start:]:
                 results_file.write('\n')
 
                 if image_output:
-                    Graphic_output.file_identifier = 'image of (' + str(count) + chr(96 + parse_id) + ').png'
+                    file_name = 'image of (' + str(count) + chr(96 + parse_id) + ').png'
+                    Graphic_output.file_identifier = data_folder / file_name
                     Graphic_output.draw(parse)
 
     else:
