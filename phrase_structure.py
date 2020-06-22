@@ -2,7 +2,8 @@
 from support import log
 from LF import LF
 
-major_category = {'N', 'Neg/fin', 'P', 'D', 'C/fin', 'T/fin', 'iWH', 'iR', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'INF'}
+major_category = {'N', 'Neg', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'INF'}
+
 
 # Definitions and methods for phrase structure
 class PhraseStructure:
@@ -42,6 +43,10 @@ class PhraseStructure:
         # This name is used to identify chains for output purposes.
         self.identity = ''      # A unique handler/name for the constituent
         self.rebaptized = False  # Support variable used in the creation of chain numbering
+
+        # Parameters for 2d visualization
+        self.x = 0
+        self.y = 0
 
     #
     #
@@ -1241,11 +1246,11 @@ class PhraseStructure:
     def get_cats_string(self):
         cats = self.labels()
         major_cats = ''.join(sorted([label for label in cats if label in major_category]))
-        if not self.is_primitive():
+        if self.is_complex():
             suffix = 'P'
         else:
             suffix = ''
-        return f'{major_cats}{suffix}'
+        return major_cats + suffix
 
     def show(self, start=True, label_only=False):
 

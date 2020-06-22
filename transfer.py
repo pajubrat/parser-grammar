@@ -65,7 +65,7 @@ class Transfer():
 
         # Stage 4. Reconstruct floater movement
         log(log_embedding + '4. Floater movement reconstruction:')
-        floater_movement.reconstruct(ps)
+        ps = floater_movement.reconstruct(ps)
         log(log_embedding + f'={ps}')
 
         # Stage 5. Reconstruct phrasal movement

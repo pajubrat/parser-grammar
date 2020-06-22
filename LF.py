@@ -152,7 +152,6 @@ class LF:
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
                 for spec_ in edge:
-
                     if spec_ and f[6:] in spec_.labels():
                         if not spec_.adjunct:
                             log(f'\t\t\t\t{ps} has unacceptable specifier {spec_}.')
@@ -206,31 +205,17 @@ class LF:
                 log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier.')
                 self.selection_test_result = False
 
-            # 3.7. !SPEC:F, head requires specific specifier
-            # Left adjunct can satisfy this, left non-adjunct must satisfy it
+            # 3.7. !SPEC:F, head requires specifier with label F
+            # This feature must be satisfied by local edge (local specifier)
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
-                if not edge:
+                if not local_edge:
                     log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier {f[6:]} that it requires.')
                     self.selection_test_result = False
                 else:
-                    found = False
-                    for s in edge:
-                        # First left adjunct CAN satisfy SPEC requirement
-                        if s.adjunct:
-                            if f[6:] in s.labels() or f[7:] in s.labels():
-                                found = True
-                                break
-                        # First non-adjunct MUST satisfy SPEC requirement
-                        else:
-                            if f[6:] in s.labels() or f[7:] in s.labels():
-                                found = True
-                                break
-                            else:
-                                found = False
-                                break
-
-                    if not found:
-                        log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {s}, needs {f[6:]}')
+                    if f[6:] in local_edge.labels() or f[7:] in local_edge.labels():
+                        pass
+                    else:
+                        log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {local_edge}, needs {f[6:]}')
                         self.selection_test_result = False
 
         #
@@ -376,7 +361,7 @@ class LF:
         unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
         if unvalued_phi_features:
 
-            log(f'\t\t\t\t{ps} with {sorted(unvalued_phi_features)} was associated at LF with:')
+            log(f'\t\t\t\t{ps.illustrate()} with {sorted(unvalued_phi_features)} was associated at LF with:')
 
             # Provides a list of antecedents and adds the local antecedent to semantic interpretation if available,
             # otherwise provides an interpretation for a "failed recovery"
@@ -666,7 +651,7 @@ class LF:
 
         if 'CAT:D' in antecedent_head.features:
             if antecedent_head.sister() and 'CAT:N' in antecedent_head.sister().head().features:
-                arg_str = antecedent_head.sister().head().get_pf()
+                arg_str = antecedent_head.sister().head().illustrate()
             else:
                 arg_str = antecedent.illustrate()
         elif 'CAT:C' in antecedent_head.features or 'CAT:FORCE' in antecedent_head.features and antecedent.is_complex():
@@ -681,4 +666,4 @@ class LF:
         else:
             arg_str = antecedent.illustrate()
 
-        return prefix + f' {trigger}({arg_str})'
+        return prefix + f' {trigger.illustrate()}({arg_str})'

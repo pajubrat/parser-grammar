@@ -271,12 +271,6 @@ class LexicalInterface:
         if not language_specific:
             features.add(self.language)
 
-        # Parameter 1. Rich finite agreement
-        if 'LANG:EN' in features:
-            rich_finite_agreement = False
-        else:  # default
-            rich_finite_agreement = True
-
         # Parameter 2. Non-finite agreement (probably not needed anymore)
         if 'LANG:FI' in features:
             non_finite_agreement = True
@@ -317,6 +311,9 @@ class LexicalInterface:
         if non_finite_agreement:  # Finnish operator snowballing
             if 'CAT:uWH' in features and not 'CAT:FORCE' in features:
                 features.add('!SPEC:uWH')
+
+        if 'LANG:EN' in features and 'CAT:T/fin' in features:
+            features.add('!SPEC:D')
 
         return self.create_combined_lexical_categories(remove_redundancies(features))
 

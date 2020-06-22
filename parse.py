@@ -34,6 +34,10 @@ from LanguageGuesser import LanguageGuesser
 # global data structure in the sense that the hearer must be aware of global contextual factors
 from context import Context
 
+# Visualizer
+import visualizer
+import pyglet
+
 #
 # Block 2. Define input and output data files and names
 #
@@ -102,6 +106,11 @@ print(f'Logs will be written to file {log_file_name}.')
 print(f'Lexicon will be read from file {lexicon_file_name}.')
 print(f'UG morphemes will be read from {ug_morphemes}')
 print(f'Redundancy rules from {redundancy_rules}')
+
+#Initialize the visualizer
+Graphic_output = visualizer.Visualizer()
+image_output = True # Set to False if you don't want to see phrase structure images
+
 
 # Read the corpus file
 # Special symbols:
@@ -214,7 +223,7 @@ for sentence in parse_list[start:]:
         # Various output scores
         P.discourse_plausibility = 0        #   Finnish only (study 2)
         P.score = 0                         #   Grammaticality and marginality
-        P.number_of_solutions_tried = 0     #   Number of garden-paths
+        P.number_of_solutions_tried = 0     #   Number of garden paths before first solution
 
         # This has to do with the numbering of copies (traces) in the output
         P.name_provider_index = 0
@@ -267,9 +276,15 @@ for sentence in parse_list[start:]:
                     results_file.write('\t' + chr(96 + parse_id) + f'. {parse}\n')
 
                 # Print additional information concerning the result
+                results_file.write(f'\tGarden paths: {P.number_of_solutions_tried-1}\n')
                 results_file.write('\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
                 parse_id = parse_id + 1
                 results_file.write('\n')
+
+                if image_output:
+                    Graphic_output.file_identifier = 'image of (' + str(count) + chr(96 + parse_id) + ').png'
+                    Graphic_output.draw(parse)
+
     else:
         results_file.write(' '.join(map(str, sentence))+' -------------------------------------------------------\n\n')
 

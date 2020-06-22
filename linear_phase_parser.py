@@ -41,6 +41,10 @@ class LinearPhaseParser:
         self.discourse_plausibility = 0
         self.score = 0
 
+        # Registers when the first solution if found
+        # The first solution is the one corresponding to what a hearer would select under canonical circumstances
+        self.first_solution_found = False
+
         # Stops parsing when the first solution is available
         self.exit = False
 
@@ -80,6 +84,7 @@ class LinearPhaseParser:
         self.number_of_inflectional_features_processed = 0
         self.number_of_items_consumed = 0
         self.discourse_plausibility = 0
+        self.first_solution_found = False
         self.score = 0
         reset_number_of_operations()
         self.name_provider_index = 0
@@ -115,7 +120,10 @@ class LinearPhaseParser:
         # Condition 3. The expression can be transferred to the Conceptual-Intentional system
         if index == len(lst):
 
-            self.number_of_solutions_tried = self.number_of_solutions_tried + 1
+            # Add to the number of solutions found until the first acceptable solution is encountered
+            # This counts the number of garden-path solutions
+            if not self.first_solution_found:
+                self.number_of_solutions_tried = self.number_of_solutions_tried + 1
             log('\n\t>>>\t' + f'Trying candidate spell out structure ' + ps.illustrate())
 
             # Condition 1. Test surface legibility
@@ -150,6 +158,8 @@ class LinearPhaseParser:
                             self.result_list.append([ps_, self.semantic_interpretation])
                             log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
                             show_results(ps_, self.result_list, self.semantic_interpretation)
+                            # Register that a (first) solution has been found
+                            self.first_solution_found = True
                             # self.exit = True    # Knock this out if you want to see all solutions
                         else:
                             log('\t\t\tThe sentence cannot be interpreted at LF')

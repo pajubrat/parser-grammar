@@ -20,7 +20,7 @@ class FloaterMovement():
 
         # Condition 1. Primitive heads are not reconstructed
         if ps.is_primitive():
-            return
+            return ps
 
         # Move downward from top
         _ps_iterator = ps.top()
@@ -34,6 +34,8 @@ class FloaterMovement():
                 # Drop the floater
                 self.drop_floater(floater, ps)
             _ps_iterator = _ps_iterator.walk_downstream()
+
+        return ps.top()  # Return top, because it is possible that an adjunct expands the structure
 
     # Definition for floater that requires reconstruction
     def detect_floater(self, _ps_iterator):
@@ -86,11 +88,8 @@ class FloaterMovement():
                 log('\t\t\t\t\t' + floater.illustrate() + ' at the right failed to tail ' + illu(floater.head().get_tail_sets()))
 
                 # Condition 2a. DP and PP are transformed into adjuncts and marked for reconstruction
-                if ('D' in floater.labels() or 'P' in floater.labels()) and floater.top().contains_feature('CAT:FIN'):
-                    if floater.mother:
-                        self.adjunct_constructor.create_adjunct(floater.mother)
-                    else:
-                        self.adjunct_constructor.create_adjunct(floater)
+                if 'ADV' not in floater.labels() and floater.top().contains_feature('CAT:FIN'):
+                    self.adjunct_constructor.create_adjunct(floater)
                     return floater.mother
 
                 # Condition 2b. If the right branch is ADV, it is transformed into an adjunct, but not reconstructed.

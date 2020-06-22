@@ -11,14 +11,13 @@ class AdjunctConstructor:
     def create_adjunct(self, ps):
 
         head = ps.head()
-
         # If the head is primitive, we must decide how much of the surrounding structure he will eat
         if ps.is_primitive():
-            # If a complex adjunct has found an acceptable position, we use !SPEC:* feature
+            # If a complex adjunct has found an acceptable position, we use SPEC:* feature
             if head.external_tail_head_test():
                 # Condition 1. The head requires a mandatory specifier
                 # Condition 2. The specifier exists
-                if '!SPEC:*' in head.features and head.mother.mother and head.mother.sister() and head.mother.sister().is_complex():
+                if 'SPEC:*' in head.features and head.mother.mother and head.mother.sister() and head.mother.sister().is_complex():
                     # Result. The specifier is eaten inside the adjunct
                     self.make_adjunct(head.mother.mother)
                     return ps.mother.mother
