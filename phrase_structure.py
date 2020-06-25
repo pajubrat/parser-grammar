@@ -479,7 +479,7 @@ class PhraseStructure:
                     return ps_.left_const
 
                 # Check left constituent for a criterial feature
-                elif goal_feature[:4] == 'TAIL' and goal_feature[5:] in ps_.left_const.get_criterial_features():
+                elif goal_feature[:4] == 'TAIL' and goal_feature[5:] in ps_.left_const.scan_criterial_features():
                     return ps_.left_const
 
                 # Walk downstream
@@ -884,16 +884,17 @@ class PhraseStructure:
             return None
 
     # Recursive definition for criterial features (type ABAR:_) inside phrase
-    def get_criterial_features(self):
+    def scan_criterial_features(self):
+
         set_ = set()
 
         # Condition 1. Left branch is searched if it has not been moved
         if self.left_const and not self.left_const.find_me_elsewhere:
-            set_ = set_.union(self.left_const.get_criterial_features())
+            set_ = set_ | self.left_const.scan_criterial_features()
 
         # Condition 2. Right branch is searched if it is not adjunct and its label is not T/fin
         if self.right_const and not self.right_const.adjunct and not 'T/fin' in self.right_const.labels():
-            set_ = set_.union(self.right_const.get_criterial_features())
+            set_ = set_ | self.right_const.scan_criterial_features()
 
         # Condition 3. Primitive constituents are examined for criterial features
         if self.is_primitive():

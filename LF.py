@@ -347,11 +347,11 @@ class LF:
         for f in ps.features:
             if f[:4] == 'ABAR':
                 if not self.bind(ps):
-                    log(f'\t\t\t\t{ps.illustrate()} with feature {f} is not properly bound by an operator.')
+                    log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
                     self.transfer_to_CI_crash = True
                 else:
-                    log(f'\t\t\t\t{ps.illustrate()} with feature {f} was bound to an operator.')
-                    self.semantic_interpretation.add(f'{ps.illustrate} with feature {f} was bound to an operator.')
+                    log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
+                    self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
 
             # This functions binds a binding operator/antecedent at LF
             # = element that provides semantic interpretation for 'ps'.

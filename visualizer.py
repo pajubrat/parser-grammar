@@ -16,18 +16,18 @@ import time
 class Visualizer:
     def __init__(self):
         self.file_identifier = ''
-        self.lateral_stretch_needed = True
+        self.new_lateral_stretch_needed = True
         self.stop_after_each_image = False
         pass
 
     # Definition for the drawing function
     def draw(self, ps):
-        self.lateral_stretch_needed = True
+        self.new_lateral_stretch_needed = True
         ps.x = 0
         ps.y = 0
         self.determine_plane_topology(ps)
-        while self.lateral_stretch_needed:
-            self.lateral_stretch_needed = False
+        while self.new_lateral_stretch_needed:
+            self.new_lateral_stretch_needed = False
             self.lateral_stretch(ps)
         win = ProduceGraphicOutput(ps, self.file_identifier, self.stop_after_each_image)
         pyglet.app.run()
@@ -53,24 +53,17 @@ class Visualizer:
         #
         # Function 1. Returns the amount of lateral conflict observed for N
         def check_lateral_conflicts(N):
+            left_branch_coordinates = get_coordinate_set(N.left_const, set())
+            right_branch_coordinates = get_coordinate_set(N.right_const, set())
 
-            # Retrieve the lateral positions as lists for both [A B] = N
-            left_branch_laterals, right_branch_laterals = get_laterals(N)
+            max_overlap = 1
+            for coordinates_from_left in left_branch_coordinates:
+                for coordinates_from_right in right_branch_coordinates:
+                    if coordinates_from_left[1] == coordinates_from_right[1]:
+                        if coordinates_from_right[0] - coordinates_from_left[0] < max_overlap:
+                            max_overlap = coordinates_from_right[0] - coordinates_from_left[0]
 
-            # The maximum overlap, which determines the amount of lateral stretching needed
-            max_k = 1
-
-            for count, left_lateral in enumerate(left_branch_laterals):
-                # Stop if right branch has no more corresponding elements
-                if len(right_branch_laterals) > count:
-                    # If the current overlap is bigger than any other overlap detected thus far,
-                    if right_branch_laterals[count] - left_lateral < max_k:
-                        max_k = right_branch_laterals[count] - left_lateral
-                else:
-                    break
-
-            # Return the maximum overlap, which we will use to move the branch
-            return max_k
+            return max_overlap
 
         # Function 2. Moves N laterally by k
         def move_laterally(k, N):
@@ -79,27 +72,12 @@ class Visualizer:
                 move_laterally(k, N.left_const)
                 move_laterally(k, N.right_const)
 
-        # Function 3. Returns the laterals in two lists
-        def get_laterals(N):
-
-            left_laterals = []
-            right_laterals = []
-
-            # Get laterals from the left branch
-            iterator_ = N.left_const
-            while iterator_.is_complex():
-                left_laterals.append(iterator_.x)
-                iterator_ = iterator_.right_const
-            left_laterals.append(iterator_.x)
-
-            # Get laterals from the right branch
-            iterator_ = N.right_const
-            while iterator_.is_complex():
-                right_laterals.append(iterator_.x)
-                iterator_ = iterator_.left_const
-            right_laterals.append(iterator_.x)
-
-            return left_laterals, right_laterals
+        def get_coordinate_set(N, coordinate_set):
+            coordinate_set.add((N.x, N.y))
+            if N.is_complex():
+                coordinate_set |= get_coordinate_set(N.left_const, coordinate_set)
+                coordinate_set |= get_coordinate_set(N.right_const, coordinate_set)
+            return coordinate_set
 
         #
         # MAIN FUNCTION BEGINS HERE
@@ -114,9 +92,9 @@ class Visualizer:
             # k > 0:    the smallest space between some N at some y is +k (do not repair)
             k = check_lateral_conflicts(N)
             if k <= 0:
-                # Move K laterally by the amount k
+                # Move K laterally by the amount
                 move_laterally(k-1, N.left_const)
-                self.lateral_stretch_needed = True
+                self.new_lateral_stretch_needed = True
 
             # Check lateral stretch for the two constituents, recursively
             self.lateral_stretch(N.left_const)

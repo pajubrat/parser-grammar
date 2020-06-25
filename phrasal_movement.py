@@ -94,7 +94,10 @@ class PhrasalMovement():
     #
     def store_specs_into_memory(self, h):
         if h.EPP():
-            _ps_iterator = h.mother
+
+            _ps_iterator = h
+            if _ps_iterator.is_left():
+                _ps_iterator = h.mother
 
             # spec-iterator iterated over multiple Specs (if possible) into upward direction
             _ps_spec_iterator = _ps_iterator
@@ -103,14 +106,13 @@ class PhrasalMovement():
             adjunct_found = False
 
             while _ps_spec_iterator:
-
                 # If a phrase is found from left...
                 if _ps_spec_iterator.sister() and \
                         not _ps_spec_iterator.sister().is_primitive() and \
                         _ps_spec_iterator.sister().is_left():
 
                     # we gather a set of criterial features from the Spec (WH, FOC, REL, TOP)
-                    criterial_features = _ps_spec_iterator.sister().get_criterial_features()
+                    criterial_features = _ps_spec_iterator.sister().scan_criterial_features()
 
                     # Reset memory if there is intervention
                     if self.memory_intervention(criterial_features):
@@ -352,7 +354,7 @@ class PhrasalMovement():
     # Definition for intervention
     def memory_intervention(self, criterial_features):
         for constituent in self.memory_buffer:
-            if constituent.get_criterial_features().intersection(criterial_features):
+            if constituent.scan_criterial_features().intersection(criterial_features):
                 return True
         return False
 

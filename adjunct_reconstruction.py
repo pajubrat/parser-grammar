@@ -53,7 +53,7 @@ class FloaterMovement():
                 _ps_iterator.left_const.head().get_tail_sets() and \
                 'adjoinable' in _ps_iterator.left_const.head().features and \
                 '-adjoinable' not in _ps_iterator.left_const.head().features and \
-                not _ps_iterator.get_criterial_features():
+                not _ps_iterator.scan_criterial_features():
 
             floater = _ps_iterator.left_const
 

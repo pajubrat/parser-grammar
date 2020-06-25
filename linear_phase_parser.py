@@ -361,7 +361,9 @@ class LinearPhaseParser:
                 size_ = size_ + get_size(ps.right_const)
             return size_
 
+        #
         # --- main function begins here --- #
+        #
 
         # If there is only one possible site, no ranking is required
         if len(site_list) == 1:
@@ -387,8 +389,8 @@ class LinearPhaseParser:
             # This determines how to order constituents with the same ranking
             # This method prioritizes lower sites (e.g., top node scores 0 bonus)
             priority_base = i
+            priority = priority_base
 
-            priority = 0 + priority_base
             site_cats = site.head().get_cats()
 
             #
