@@ -2,8 +2,7 @@
 from support import log
 from LF import LF
 
-major_category = {'N', 'Neg', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'INF'}
-
+major_category = {'N', 'Neg', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'A/inf', 'VA/inf', 'MA/inf', '0'}
 
 # Definitions and methods for phrase structure
 class PhraseStructure:
@@ -1250,6 +1249,8 @@ class PhraseStructure:
             suffix = 'P'
         else:
             suffix = ''
+        if not major_cats:
+            major_cats = 'X'
         return major_cats + suffix
 
     def show(self, start=True, label_only=False):

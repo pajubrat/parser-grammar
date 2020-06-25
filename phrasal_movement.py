@@ -6,7 +6,7 @@ import phrase_structure
 class PhrasalMovement():
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process
-        self.name_provider_index = 0
+        self.name_provider_index = 1
         self.memory_buffer = []
         self.context = controlling_parser_process
 
@@ -154,7 +154,9 @@ class PhrasalMovement():
                                         f'the occurrence of multiple specifiers at {h.get_pf()}')
 
                                 # If we are at finite level, we need to get FIN also to the new head
-                                labels = h.labels()
+                                labels = []
+                                if 'FIN' in h.labels():
+                                    labels.append('FIN')
 
                                 # Create and merge the new head, then move the pointer over it so we don't repeat
                                 new_h = self.engineer_head_from_specifier(criterial_features, labels)
@@ -181,10 +183,10 @@ class PhrasalMovement():
                             log(f'\t\t\t\t\tCriterial features {criterial_features} copied to {h.labels()}')
                             for f in criterial_features:
                                 # Create formal copies of features
-                                h.features.add('CAT:u' + f)
+                                h.features.add('CAT:' + f + '_')
                                 # Add scope marker if needed
                                 if 'FIN' in h.labels():
-                                    h.features.add('CAT:i' + f)
+                                    h.features.add('CAT:' + f + '*')
                                 h.features = self.lexical_access.apply_parameters(
                                     self.lexical_access.apply_redundancy_rules(h.features))
                             if h.get_tail_sets():
@@ -233,7 +235,7 @@ class PhrasalMovement():
                         # Keep record of the computations consumed
                         self.controlling_parser_process.number_of_phrasal_Move += 1
 
-                        log(f'\t\t\t\t\tDropp   ing {repr(target_const)}(=' + target_const.spellout()
+                        log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
                             + f') from memory buffer into Comp of {h.labels()}.')
                         log(f'\t\t\t\t\tResult {h.top()}')
 
@@ -316,7 +318,7 @@ class PhrasalMovement():
         return h
 
     # Definition for generating a new head
-    def engineer_head_from_specifier(self, features, labels):
+    def engineer_head_from_specifier(self, criterial_features, labels):
         """
         This operation spawns a head H from a detected specifier XP that lacks a head.
         """
@@ -326,12 +328,14 @@ class PhrasalMovement():
         # The category of the new head is going to be a copy of criterial feature of Spec
         # and the label of the original head (inverse feature inheritance)
         # We also create artificial phonological matrix for illustration
-        for f in features:
-            new_h.features.add('CAT:u' + f)
-            new_h.features.add('PF:u' + f)
-        if features:
+        for feature in criterial_features:
+            new_h.features.add('CAT:' + feature + '_')
+            new_h.features.add('PF:' + feature + '_')
+        if criterial_features:
             for label in labels:
                 new_h.features.add('CAT:' + label)
+                if label == 'FIN':
+                    new_h.features.add('CAT:C')
 
         # We add EPP required features
         new_h.features = self.lexical_access.apply_parameters(

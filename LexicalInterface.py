@@ -104,6 +104,10 @@ class LexicalInterface:
             # Use space to extract features
             constituent_features = [f.strip() for f in constituent_features.split()]
 
+            # If language feature is lacking, we add it
+            if not {f for f in constituent_features if f[:4] == 'LANG'}:
+                constituent_features.append(self.language)
+
             # Case 1.
             # The first feature contains morphemic decomposition, we create a special lexical entry
             if '#' in constituent_features[0]:
@@ -222,32 +226,40 @@ class LexicalInterface:
             if not negative_feature(new_candidate_feature_to_add):
                 if '-' + new_candidate_feature_to_add in features_from_lexicon:
                     return True
+
             return False
 
-        features = set(features)
+        feature_set = set(features)
         new_features_to_add = set()
 
         # Include features of a lexical redundancy rule when the antecedent features are matched
         for f in self.redundancy_rules:
             trigger_set = set(f.split())
-            if features & trigger_set == trigger_set:
-                new_features_to_add |= set(self.redundancy_rules[f])
+            if feature_set & trigger_set == trigger_set:
+                new_features_to_add = new_features_to_add | set(self.redundancy_rules[f])
 
         # Resolve conflicts in favor of lexical features
         # new_feats contains new features from lexical redundancy rule to be added
         #
         # Note: language-specific features outperform redundancy rules
+        features_not_blocked_by_specific_lexicon = set()
         for new_feature in new_features_to_add:
-            if not feature_conflict(new_feature, features):
-                features.add(new_feature)
-        return features
+            if not feature_conflict(new_feature, feature_set):
+                features_not_blocked_by_specific_lexicon.add(new_feature)
+        feature_set = feature_set | features_not_blocked_by_specific_lexicon
+
+        return feature_set
 
     # Binary UG parameters
     # There are certain binary UG parameters that are "mirrored" in the lexicon in the sense that
     # lexical features occur in clusters, but this whole notion is controversial and possibly
-    # inexistent
+    # nonexistent
     #
     def apply_parameters(self, features):
+
+        #
+        # Internal function
+        #
         def remove_redundancies(features):
             new_set = set()
             # -SPEC:* eliminates all specific Spec features
@@ -260,6 +272,9 @@ class LexicalInterface:
                 return features
             return new_set
 
+        #
+        # Main function begins here
+        #
         features = set(features)
 
         # Check if the word is language-specific
@@ -267,7 +282,6 @@ class LexicalInterface:
         for f in features:
             if f[:4] == 'LANG':
                 language_specific = True
-
         if not language_specific:
             features.add(self.language)
 
@@ -308,9 +322,10 @@ class LexicalInterface:
         if '-ARG' in features:
             features.add('CAT:-ARG')
 
-        if non_finite_agreement:  # Finnish operator snowballing
-            if 'CAT:uWH' in features and not 'CAT:FORCE' in features:
-                features.add('!SPEC:uWH')
+        # Finnish operator snowballing
+        if non_finite_agreement:
+            if 'CAT:WH_' in features and 'CAT:FORCE' not in features and 'CAT:WH' not in features:
+                features.add('!SPEC:WH_')
 
         if 'LANG:EN' in features and 'CAT:T/fin' in features:
             features.add('!SPEC:D')

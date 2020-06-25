@@ -22,9 +22,6 @@ from support import disable_all_logging, set_logging, log, formatted_output
 # Import logging
 import logging
 
-# Import mechanism to handle folder paths
-from pathlib import Path
-
 # Import language guesser
 from LanguageGuesser import LanguageGuesser
 
@@ -37,6 +34,10 @@ from context import Context
 # Visualizer
 import visualizer
 import pyglet
+
+# file systems
+from pathlib import Path
+
 
 #
 # Block 2. Define input and output data files and names
@@ -87,6 +88,16 @@ grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
 # Empty at first
 parse_list = []
 
+#Initialize the visualizer
+Graphic_output = visualizer.Visualizer()
+image_output = True # Set to False if you don't want to see phrase structure images
+Graphic_output.stop_after_each_image = True    # Set True if you want to examine each input on the screen (otherwise they are in png files)
+p = Path(data_folder / 'phrase_structure_images')
+try:
+    p.mkdir()
+except FileExistsError as exc:
+    pass
+
 # Current time and date used to stamp the output files
 t = time.time()
 
@@ -106,11 +117,6 @@ print(f'Logs will be written to file {log_file_name}.')
 print(f'Lexicon will be read from file {lexicon_file_name}.')
 print(f'UG morphemes will be read from {ug_morphemes}')
 print(f'Redundancy rules from {redundancy_rules}')
-
-#Initialize the visualizer
-Graphic_output = visualizer.Visualizer()
-image_output = True # Set to False if you don't want to see phrase structure images
-Graphic_output.stop_after_each_image = False    # Set True if you want to examine each input on the screen (otherwise they are in png files)
 
 # Read the corpus file
 # Special symbols:
@@ -283,8 +289,8 @@ for sentence in parse_list[start:]:
                 results_file.write('\n')
 
                 if image_output:
-                    file_name = 'image of (' + str(count) + chr(96 + parse_id) + ').png'
-                    Graphic_output.file_identifier = data_folder / file_name
+                    file_name = 'Raw image of (' + str(count) + chr(96 + parse_id) + ').png'
+                    Graphic_output.file_identifier = data_folder / 'phrase_structure_images' / file_name
                     Graphic_output.draw(parse)
 
     else:

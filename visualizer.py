@@ -133,7 +133,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.y_grid = 75
 
         # Define the margins
-        self.margins = 50
+        self.margins = 35
 
         self.top_node_position = 0
 
@@ -141,15 +141,13 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
         self.stop_after_each_image = stop
 
-        self.stop_after_each_image = False
-
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
 
         # Determines how big the tree is and calculates appropriate window size
         left, right, depth = self.get_tree_size(ps, 0, 0, 0)
         width = (right - left) * self.x_grid + self.margins * 2
-        height = abs(depth * 75) + self.margins * 2
+        height = abs(depth * self.y_grid) + self.margins * 2
         self.top_node_position = width/(abs(left) + abs(right)) * abs(left)
         pyglet.window.Window.__init__(self, width=width, height=height)
         glClearColor(1, 1, 1, 1)
@@ -163,7 +161,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
             # Top node position
             X1 = x_offset + ps.x * self.x_grid
-            Y1 = y_offset + ps.y * self.y_grid - self.margins/2
+            Y1 = y_offset + ps.y * self.y_grid
 
             # Get the label for ps
             head = ps.get_cats_string()
@@ -192,7 +190,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             if ps.left_const:
 
                 X2 = x_offset + ps.left_const.x * self.x_grid
-                Y2 = y_offset + ps.left_const.y * self.y_grid
+                Y2 = y_offset + ps.left_const.y * self.y_grid + (self.y_grid-self.x_grid)
                 if abs(ps.x - ps.left_const.x) > 1:
                     glLineWidth(1)
                 else:
@@ -211,7 +209,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             # Right branch line
             if ps.right_const:
                 X2 = x_offset + ps.right_const.x * self.x_grid
-                Y2 = y_offset + ps.right_const.y * self.y_grid
+                Y2 = y_offset + ps.right_const.y * self.y_grid + (self.y_grid-self.x_grid)
                 glBegin(GL_LINES)
                 glVertex2f(X1, Y1)
                 glVertex2f(X2, Y2)

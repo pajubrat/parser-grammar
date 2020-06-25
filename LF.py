@@ -347,11 +347,37 @@ class LF:
         for f in ps.features:
             if f[:4] == 'ABAR':
                 if not self.bind(ps):
-                    log(f'\t\t\t\t{ps}['+f+'] is not properly bound, the expression is uninterpretable.')
+                    log(f'\t\t\t\t{ps.illustrate()} with feature {f} is not properly bound by an operator.')
                     self.transfer_to_CI_crash = True
                 else:
-                    log(f'\t\t\t\t{ps}['+f+'] was bound to an operator.')
-                    self.semantic_interpretation.add(f'{ps}['+f+'] was bound to an operator.')
+                    log(f'\t\t\t\t{ps.illustrate()} with feature {f} was bound to an operator.')
+                    self.semantic_interpretation.add(f'{ps.illustrate} with feature {f} was bound to an operator.')
+
+            # This functions binds a binding operator/antecedent at LF
+            # = element that provides semantic interpretation for 'ps'.
+            # Return the antecedent is found, otherwise None
+            # The type of antecedent depends on uninterpretable features at 'ps'
+
+    def bind(self, ps):
+
+        ps_ = ps
+
+        # Set that contains ABAR-features that must be present in a legitimate antecedent
+        # [ABAR:WH] requires the presence of [CAT:WH_]
+        antecedent = {'CAT:' + feature[5:] + '_' for feature in ps.features if feature[:4] == 'ABAR'}
+        if not antecedent:  # If everything is interpretable, then we return the constituent itself
+            return ps
+
+        while ps_:
+            log(f'{ps_.head().features}')
+            if ps_.is_primitive():
+                if ps_.match_features(antecedent) == 'complete match' and 'FIN' in ps_.labels():
+                    return ps_
+            elif ps_.left_const.head().match_features(antecedent) == 'complete match' and 'FIN' in ps_.left_const.head().labels():
+                return ps_
+            ps_ = ps_.walk_upstream()
+
+        return None  # Nothing was found
 
         #
         # Transfer condition 2. LF-recovery
@@ -567,31 +593,6 @@ class LF:
         else:
             return 'uninterpretable'
 
-    # This functions binds a binding operator/antecedent at LF
-    # = element that provides semantic interpretation for 'ps'.
-    # Return the antecedent is found, otherwise None
-    # The type of antecedent depends on uninterpretable features at 'ps'
-    def bind(self, ps):
-
-        ps_ = ps
-
-        antecedent = set()      # Set that contains features that must be present in a legitimate antecedent
-        for f in ps.features:   # Populate the set
-            if f[:4] == 'ABAR':  # Only abar variables implemented for now
-                antecedent.add('CAT:u'+f[5:])
-
-        if not antecedent:      # If everything is interpretable, then we return the constituent itself
-            return ps
-
-        while ps_:
-            if ps_.is_primitive():
-                if ps_.match_features(antecedent) == 'complete match' and 'FIN' in ps_.get_labels():
-                    return ps_
-            elif ps_.left_const.head().match_features(antecedent) == 'complete match' and 'FIN' in ps_.labels():
-                return ps_
-            ps_ = ps_.walk_upstream()
-
-        return None             # Nothing was found
 
     def semantic_match(a, b):
 

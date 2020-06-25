@@ -15,7 +15,6 @@ class HeadMovement:
 
     # Definition of head movement reconstruction (part 1)
     def reconstruct(self, ps):
-
         # Condition 1. If the target is a complex primitive D head, we try to open it into a new left branch
         if ps.is_primitive() and ps.has_affix() and \
                 ('CAT:D' in ps.features or 'CAT:P' in ps.features or 'CAT:A' in ps.features):
