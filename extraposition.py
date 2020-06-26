@@ -12,7 +12,7 @@ class Extraposition:
     def reconstruct(self, ps):
 
         # Presupposition 1. Extraposition can be attempted only for "referential" structures (T/fin, D)
-        if not (ps.top().contains_feature('CAT:FIN') or 'D' in ps.top().labels()):
+        if not (ps.top().contains_feature('CAT:FIN') or 'D' in ps.top().features):
             return
 
         # Presupposition 2. Extraposition for unselected heads (i.e. *X selects Y)
@@ -55,10 +55,10 @@ class Extraposition:
                 not_comps = selector.get_not_comps()
                 mandatory_comps = selector.get_mandatory_comps()
                 selectee = ps_.right_const.head()
-                if not_comps & selectee.labels():
+                if not_comps & selectee.features:
                     log(f'\t\t\t\t\t{selector} cannot select {selectee}')
                     return selectee
-                if mandatory_comps and not (mandatory_comps & selectee.labels()):
+                if mandatory_comps and not (mandatory_comps & selectee.features):
                     log(f'\t\t\t\t\t{selector} cannot select {selectee}')
                     return selectee
             ps_ = ps_.walk_downstream()
@@ -67,7 +67,7 @@ class Extraposition:
     def last_resort_reconstruct(self, ps):
 
         # Presupposition 1. We operate only referential structures (T/fin, D)
-        if not (ps.top().contains_feature('CAT:FIN') or 'D' not in ps.top().labels()):
+        if not (ps.top().contains_feature('CAT:FIN') or 'D' not in ps.top().features):
             return
 
         # Presupposition 2. LF - legibility fails (last resort)
@@ -98,11 +98,11 @@ class Extraposition:
                 # Select HP if and only if X0 rejects HP as complement
                 else:
                     # Condition 2(ii)-a. Explicit negative selection
-                    if ps_.left_const.labels() & ps_.sister().get_not_comps():
+                    if ps_.left_const.features & ps_.sister().get_not_comps():
                         break
                     # Condition 2(ii)-b. Mandatory selection for something else
                     if ps_.sister().get_mandatory_comps() and not (
-                            ps_.left_const.labels() & ps_.sister().get_mandatory_comps()):
+                            ps_.left_const.features & ps_.sister().get_mandatory_comps()):
                         break
             ps_ = ps_.walk_upstream()
 

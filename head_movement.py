@@ -17,7 +17,7 @@ class HeadMovement:
     def reconstruct(self, ps):
         # Condition 1. If the target is a complex primitive D head, we try to open it into a new left branch
         if ps.is_primitive() and ps.has_affix() and \
-                ('CAT:D' in ps.features or 'CAT:P' in ps.features or 'CAT:A' in ps.features):
+                ('D' in ps.features or 'P' in ps.features or 'A' in ps.features):
 
             # If the element is D or P, it is opened into a new left branch
             if self.reconstruct_head_movement(ps.copy()).LF_legibility_test().all_pass():
@@ -58,8 +58,8 @@ class HeadMovement:
 
                 # Condition 2. Intervention feature
                 # Condition 2.1. D-label in the C-system
-                if 'CAT:uC/op' in source_head.features:
-                    intervention_feature = 'CAT:D'  # This is in reality a more general feature, but I don't know what
+                if 'uC/op' in source_head.features:
+                    intervention_feature = 'D'  # This is in reality a more general feature, but I don't know what
                 # Condition 2.2. Functional head elsewhere
                 else:
                     intervention_feature = '!COMP:*'
@@ -172,7 +172,7 @@ class HeadMovement:
                 ps = ps.mother  # keep the pointer at [D,N] after D(N) => [D N]
 
                 # Condition 1.2 If the bottom node was DP, we don't merge to the sister of N but to the DP...
-                if 'CAT:D' in ps.bottom().labels():
+                if 'D' in ps.bottom().features:
                     ps.bottom().mother.merge(affix_, 'right')
                 else:
 

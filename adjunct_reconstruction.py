@@ -88,14 +88,14 @@ class FloaterMovement():
                 log('\t\t\t\t\t' + floater.illustrate() + ' at the right failed to tail ' + illu(floater.head().get_tail_sets()))
 
                 # Condition 2a. DP and PP are transformed into adjuncts and marked for reconstruction
-                if 'ADV' not in floater.labels() and floater.top().contains_feature('CAT:FIN'):
+                if 'ADV' not in floater.features and floater.top().contains_feature('CAT:FIN'):
                     self.adjunct_constructor.create_adjunct(floater)
                     return floater.mother
 
                 # Condition 2b. If the right branch is ADV, it is transformed into an adjunct, but not reconstructed.
                 # (This must be wrong.)
                 else:
-                    if 'ADV' in floater.labels() and not _ps_iterator.right_const.adjunct:
+                    if 'ADV' in floater.features and not _ps_iterator.right_const.adjunct:
                         self.adjunct_constructor.create_adjunct(floater)
 
     # Definition for floater reconstruction (dropping)
@@ -114,7 +114,7 @@ class FloaterMovement():
         while ps_iterator_ and not ps_iterator_ == floater and not ps_iterator_.find_me_elsewhere:
 
             # Create hypothetical structure for testing
-            if 'ADV' in floater_copy.labels():
+            if 'ADV' in floater_copy.features:
                 ps_iterator_.merge(floater_copy, 'right')
             else:
                 ps_iterator_.merge(floater_copy, 'left')
@@ -131,7 +131,7 @@ class FloaterMovement():
                 dropped_floater = floater.copy_from_memory_buffer(self.babtize())
 
                 # Adverbs and PPs are adjoined to the right
-                if 'ADV' in floater_copy.labels() or 'P' in floater_copy.labels():
+                if 'ADV' in floater_copy.features or 'P' in floater_copy.features:
                     ps_iterator_.merge(dropped_floater, 'right')
 
                 # Everything else is adjoined to the left
@@ -157,7 +157,7 @@ class FloaterMovement():
 
             # Condition 2. Condition for merging to the right: must be AdvP or PP
             # (Lax conditions)
-            if 'ADV' in floater_copy.labels() or 'P' in floater_copy.labels():
+            if 'ADV' in floater_copy.features or 'P' in floater_copy.features:
                 return True
 
             # Condition 3. Condition for merging to the left
@@ -189,8 +189,8 @@ class FloaterMovement():
             # Condition 1. Must be inside FIN
             # Condition 2. The sister cannot be FIN (e.gg V-FIN)
             if ps_iterator_.sister() \
-                    and 'FIN' in ps_iterator_.labels() \
-                    and 'FIN' not in ps_iterator_.sister().labels():
+                    and 'FIN' in ps_iterator_.features \
+                    and 'FIN' not in ps_iterator_.sister().features:
                 break
             ps_iterator_ = ps_iterator_.walk_upstream()
 

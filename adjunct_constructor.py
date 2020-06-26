@@ -38,8 +38,7 @@ class AdjunctConstructor:
                     # Condition 4. The specifier is not pro/PRO
                     # Condition 5. The head is not marked for -ARG
                     if ps.edge() and not '-SPEC:*' in head.features and \
-                            not set(head.get_not_specs()).intersection(
-                                set(ps.edge()[0].labels())) and \
+                            not set(head.get_not_specs()).intersection(set(ps.edge()[0].features)) and \
                             not ps.edge()[0].is_primitive() and '-ARG' not in ps.features:
                         if head.mother.mother:
                             self.make_adjunct(head.mother.mother)

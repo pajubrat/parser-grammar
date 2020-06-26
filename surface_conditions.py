@@ -61,7 +61,7 @@ class SurfaceConditions:
         constituent_to_left = self.get_constituent_to_left_in_linear_order(clitic_head)
 
         # Incorporation to left cannot adjoin a word to a complex phrase (D is excluded because DPs are opened at this stage)
-        if 'INCORPORATED' not in clitic_head.features and constituent_to_left and constituent_to_left.is_complex() and 'D' not in constituent_to_left.get_head().labels():
+        if 'INCORPORATED' not in clitic_head.features and constituent_to_left and constituent_to_left.is_complex() and 'D' not in constituent_to_left.get_head().features:
             log('\t\t\t\tClitic adjoined to complex phrase, not word')
             return False
 

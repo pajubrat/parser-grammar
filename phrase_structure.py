@@ -159,10 +159,6 @@ class PhraseStructure:
                     return self.left_const.head()
                 return self.right_const.head()
 
-    # Labeling ( redundant but exists for readability)
-    def labels(self):
-        return self.head().get_cats()
-
     # Definition for sisterhood
     # [Y <X>], <X> has no sister
     # [X <Y>], X has no sister, looks mother next
@@ -580,7 +576,7 @@ class PhraseStructure:
 
             # Condition 1.b) Tail features can be matched in the feature vector
             # Applied to everything besides (right) adverbs
-            if 'CAT:ADV' not in self.features:
+            if 'ADV' not in self.features:
                 for const in feature_vector:
 
                     if exit:
@@ -620,9 +616,6 @@ class PhraseStructure:
         else:
             return False
 
-        # External tail head test returns false if the tail-head features cannot be matched
-        return False
-
     # Definition for internal tail head test
     # Internal tail head test is more lenient than the external version, returns false only if there is partial match
     def internal_tail_head_test(self):
@@ -644,7 +637,7 @@ class PhraseStructure:
 
                     test = const.match_features(tail_set)
 
-                    # Complete match is accepted and no futher, nonlocal heads are examined
+                    # Complete match is accepted and no further, nonlocal heads are examined
                     if test == 'complete match':
                         break
 
@@ -793,7 +786,7 @@ class PhraseStructure:
                 pro.features = pro.features | phi_set
 
                 # Assumption 3. Pro-element has label D
-                pro.features.add('CAT:D')
+                pro.features.add('D')
 
                 # Assumption 4. Pro-element is printed out as 'pro'
                 pro.features.add('PF:pro')
@@ -845,7 +838,7 @@ class PhraseStructure:
 
     # This involves empirical issues that I don't fully understand
     def mysterious_property(self):
-        if 'CAT:D' in self.features and not 'TAIL:CAT:INF,A/HEAD' in self.features:
+        if 'D' in self.features and not 'TAIL:INF,A/HEAD' in self.features:
             return False
         else:
             return True
@@ -883,6 +876,21 @@ class PhraseStructure:
         else:
             return None
 
+    # Definition for scope-operator that can bind a variable at LF
+    # X is a scope-operator if and only if
+    # Condition 1. X has an operator feature
+    # Condition 2. X is finite (has feature FIN)
+    def is_scope_operator(self):
+        operator_features = {feature for feature in self.features if feature[:2] == 'OP'}
+        if 'FIN' in self.features and operator_features:
+            return True
+        else:
+            return False
+
+    # Returns all operator features from the head H as a set of [OP, VAL] lists
+    def operator_features(self):
+        return {feature.split(':') for feature in self.features if feature[:3] == 'OP:'}
+
     # Recursive definition for criterial features (type ABAR:_) inside phrase
     def scan_criterial_features(self):
 
@@ -893,19 +901,19 @@ class PhraseStructure:
             set_ = set_ | self.left_const.scan_criterial_features()
 
         # Condition 2. Right branch is searched if it is not adjunct and its label is not T/fin
-        if self.right_const and not self.right_const.adjunct and not 'T/fin' in self.right_const.labels():
+        if self.right_const and not self.right_const.adjunct and not 'T/fin' in self.right_const.features:
             set_ = set_ | self.right_const.scan_criterial_features()
 
         # Condition 3. Primitive constituents are examined for criterial features
         if self.is_primitive():
             for f in self.features:
-                if f[:5] == 'ABAR:':
-                    set_.add(f[5:])
+                if f[:3] == 'OP:':
+                    set_.add(f)
         return set_
 
     # Definition for phase (used by Agree-1)
     def is_phase(self):
-        if 'CAT:v' in self.features or 'CAT:C' in self.features or 'CAT:FORCE' in self.features or 'CAT:COPULA' in self.features:
+        if 'v' in self.features or 'C' in self.features or 'FORCE' in self.features or 'COPULA' in self.features:
             return True
         else:
             return False
@@ -934,10 +942,6 @@ class PhraseStructure:
     # Definition for negative complement selection
     def get_not_comps(self):
         return {f[6:] for f in self.features if f[:5] == '-COMP'}
-
-    # Definition for label
-    def get_cats(self):
-        return {f[4:] for f in self.features if f[:3] == 'CAT'}
 
     # Definition for positive specifier selection
     def specs(self):
@@ -1103,7 +1107,7 @@ class PhraseStructure:
     # Definition for finiteness (trivial)
     def is_finite(self):
         head = self.head()
-        if 'CAT:FIN' in head.features:
+        if 'FIN' in head.features:
             return True
         else:
             return False
@@ -1124,7 +1128,7 @@ class PhraseStructure:
             selector = selector.get_bottom_affix()
 
         # Search positive selection feature
-        if selectee.labels() & selector.get_comps():
+        if selectee.features & selector.get_comps():
             return True
         else:
             return False
@@ -1244,8 +1248,7 @@ class PhraseStructure:
 
     # This function tries to create "informative" representation of the categories of the constituent ps
     def get_cats_string(self):
-        cats = self.labels()
-        major_cats = ''.join(sorted([label for label in cats if label in major_category]))
+        major_cats = ''.join(sorted([label for label in self.head().features if label in major_category]))
         if self.is_complex():
             suffix = 'P'
         else:
@@ -1396,7 +1399,7 @@ class PhraseStructure:
         if 'PHI:NUM:_' not in self.features and 'PHI:PER:_' not in self.features and 'PHI:DET:_' in self.features:
             return '\N{GREEK SMALL LETTER PHI}/x'
         return '\N{GREEK SMALL LETTER PHI}'
-		
+
     # More detailed output function
     def __repr__(self):
         if self.is_primitive():

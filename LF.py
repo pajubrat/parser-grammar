@@ -102,7 +102,7 @@ class LF:
         #
         # 1. Head integrity test
         #
-        if not h.get_cats() or 'CAT:?' in h.get_cats():
+        if not h.features or 'CAT:?' in h.features:
             log('\t\t\t\t\tAn uninterpretable grammatical head without lexical category was detected.')
             self.head_integrity_test_result = False
 
@@ -111,14 +111,14 @@ class LF:
         #
         for f in lf_features:
             if f.startswith('!PROBE:'):
-                if not h.probe(set(h.get_cats()), f[7:]):
+                if not h.probe(set(h.features), f[7:]):
                     log(f'\t\t\t\t{ps} probing for {f[7:]} failed.')
                     self.probe_goal_test_result = False
 
         #
         # 3. Internal tail-head test for case (DPs)
         #
-        if 'D' in h.labels() and not h.internal_tail_head_test():
+        if 'D' in h.features and not h.internal_tail_head_test():
             log(f'\t\t\t\t{h}({h.mother}) failed internal tail test for {h.get_tail_sets()}.')
             self.tail_head_test_result = False
 
@@ -130,7 +130,7 @@ class LF:
             list_ = h.edge()
             if list_:
                 for spec_ in list_:
-                    if not spec_.adjunct and 'D' in spec_.labels() and not spec_.find_me_elsewhere:
+                    if not spec_.adjunct and 'D' in spec_.features and not spec_.find_me_elsewhere:
                         count = count + 1
 
             if count > 1:
@@ -152,7 +152,7 @@ class LF:
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
                 for spec_ in edge:
-                    if spec_ and f[6:] in spec_.labels():
+                    if spec_ and f[6:] in spec_.features:
                         if not spec_.adjunct:
                             log(f'\t\t\t\t{ps} has unacceptable specifier {spec_}.')
                             self.selection_test_result = False
@@ -172,14 +172,14 @@ class LF:
                     log(f'\t\t\t\t{h} ({h.illustrate()}) is missing complement {f[6:]}')
                     self.selection_test_result = False
                 else:
-                    if f[6:] not in selected_sister(ps).labels():
+                    if f[6:] not in selected_sister(ps).features:
                         log(f'\t\t\t\t\t{h} ({h.illustrate()}) is missing a mandatory complement {f[6:]}')
                         self.selection_test_result = False
 
             # 3.4. Complement restriction
             if f.startswith('-COMP:'):
-                if h.is_left() and comp and f[6:] in comp.labels():
-                    log(f'\t\t\t\t"{ps}\" has wrong complement {comp} {illu(comp.labels())}P')
+                if h.is_left() and comp and f[6:] in comp.features:
+                    log(f'\t\t\t\t"{ps}\" has wrong complement {comp}.')
                     self.selection_test_result = False
                     self.wrong_complement_test_result = False
 
@@ -212,7 +212,7 @@ class LF:
                     log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier {f[6:]} that it requires.')
                     self.selection_test_result = False
                 else:
-                    if f[6:] in local_edge.labels() or f[7:] in local_edge.labels():
+                    if f[6:] in local_edge.features or f[7:] in local_edge.features:
                         pass
                     else:
                         log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {local_edge}, needs {f[6:]}')
@@ -223,9 +223,9 @@ class LF:
         #
         # 7.1 test for relative pronoun
         # For every DP that it not a relative pronoun
-        if 'D' in h.labels() and 'R' not in h.labels() and h.mother:
+        if 'D' in h.features and 'REL' not in h.features and h.mother:
             # Check that if there is relative pronoun there is also T/fin
-            if h.mother.contains_feature('CAT:R') and not h.mother.contains_feature('CAT:T/fin'):
+            if h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
                 log(f'\t\t\t\tCriterial legibility failed for "{h}".')
                 self.criterial_feature_test_result = False
 
@@ -233,7 +233,7 @@ class LF:
         # 8. Projection principle test for referential arguments
         #
         # Condition 1. Only target DPs that have not been copied elsewhere (check LF-positions)
-        if 'D' in h.labels() and h.mother and not h.mother.find_me_elsewhere:
+        if 'D' in h.features and h.mother and not h.mother.find_me_elsewhere:
 
             # This is the DP to be tested
             DP_target = h.mother
@@ -280,20 +280,20 @@ class LF:
             if len(list_) > 1:
                 # Discourse penalty for multiple specifiers
                 self.discourse_test_result = self.discourse_test_result + len(list_)*0.5
-                if 'Neg/fin' in ps.labels(): # Negation increases the penalty
+                if 'Neg/fin' in ps.features: # Negation increases the penalty
                     self.discourse_test_result = self.discourse_test_result + len(list_)
             for local_edge in list_:
-                if 'INF' in local_edge.labels():
+                if 'INF' in local_edge.features:
                     self.discourse_test_result = self.discourse_test_result + 2
 
         #
         # 10. Adjunct interpretation tests
         #
         # Condition 1. A DP right-adjunct cannot be interpreted inside another DP (e.g. [John <Mary>]
-        if 'D' in h.labels() and \
+        if 'D' in h.features and \
                 h.max() and h.max().adjunct and \
                 h.max().is_right() and \
-                h.max().mother and 'D' in h.max().mother.head().labels():
+                h.max().mother and 'D' in h.max().mother.head().features:
             log(f'\t\t\t\t{h.mother.mother} in uninterpretable.')
             self.adjunct_test_result = False
 
@@ -345,7 +345,7 @@ class LF:
         # Transfer condition 1. Operator-variable constructions, binding of variables (ABAR)
         #
         for f in ps.features:
-            if f[:4] == 'ABAR':
+            if f[:2] == 'OP':
                 if not self.bind(ps):
                     log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
                     self.transfer_to_CI_crash = True
@@ -353,27 +353,23 @@ class LF:
                     log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
                     self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
 
-            # This functions binds a binding operator/antecedent at LF
-            # = element that provides semantic interpretation for 'ps'.
-            # Return the antecedent is found, otherwise None
-            # The type of antecedent depends on uninterpretable features at 'ps'
-
+    # This functions binds a binding operator/antecedent at LF
+    # = element that provides semantic interpretation for 'ps'.
+    # Return the antecedent is found, otherwise None
+    # The type of antecedent depends on uninterpretable features at 'ps'
     def bind(self, ps):
 
         ps_ = ps
 
-        # Set that contains ABAR-features that must be present in a legitimate antecedent
-        # [ABAR:WH] requires the presence of [CAT:WH_]
-        antecedent = {'CAT:' + feature[5:] + '_' for feature in ps.features if feature[:4] == 'ABAR'}
-        if not antecedent:  # If everything is interpretable, then we return the constituent itself
-            return ps
+        # Defines the features required for an antecedent
+        antecedent = {'OP'}
 
         while ps_:
             log(f'{ps_.head().features}')
             if ps_.is_primitive():
-                if ps_.match_features(antecedent) == 'complete match' and 'FIN' in ps_.labels():
+                if ps_.match_features(antecedent) == 'complete match' and 'FIN' in ps_.features:
                     return ps_
-            elif ps_.left_const.head().match_features(antecedent) == 'complete match' and 'FIN' in ps_.left_const.head().labels():
+            elif ps_.left_const.head().match_features(antecedent) == 'complete match' and 'FIN' in ps_.left_const.head().features:
                 return ps_
             ps_ = ps_.walk_upstream()
 
@@ -487,7 +483,7 @@ class LF:
                 if ps_.sister() and ps_.sister() == ps.local_edge():
                     #
                     # If the local candidate is not a DP, it will be interpreted as generic
-                    if ps_.sister() and 'CAT:D' not in ps_.sister().head().features:
+                    if ps_.sister() and 'D' not in ps_.sister().head().features:
                         self.semantic_interpretation.add(f'{ps}(generic)')
                         list_of_antecedents.append(ps_.sister())
                         head.features.add('PHI:DET:GEN')
@@ -650,16 +646,16 @@ class LF:
         else:
             prefix = 'Agent of'
 
-        if 'CAT:D' in antecedent_head.features:
-            if antecedent_head.sister() and 'CAT:N' in antecedent_head.sister().head().features:
+        if 'D' in antecedent_head.features:
+            if antecedent_head.sister() and 'N' in antecedent_head.sister().head().features:
                 arg_str = antecedent_head.sister().head().illustrate()
             else:
                 arg_str = antecedent.illustrate()
-        elif 'CAT:C' in antecedent_head.features or 'CAT:FORCE' in antecedent_head.features and antecedent.is_complex():
+        elif 'C' in antecedent_head.features or 'FORCE' in antecedent_head.features and antecedent.is_complex():
             arg_str = 'C-proposition'
-        elif 'CAT:V' in antecedent_head.features and antecedent.is_complex():
+        elif 'V' in antecedent_head.features and antecedent.is_complex():
             arg_str = 'agent of V-event'
-        elif 'CAT:T' in antecedent_head.features:
+        elif 'T' in antecedent_head.features:
             if antecedent.is_complex():
                 arg_str = 'agent of T-event'
             else:

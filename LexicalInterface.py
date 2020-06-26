@@ -324,30 +324,13 @@ class LexicalInterface:
 
         # Finnish operator snowballing
         if non_finite_agreement:
-            if 'CAT:WH_' in features and 'CAT:FORCE' not in features and 'CAT:WH' not in features:
-                features.add('!SPEC:WH_')
+            if 'OP:_' in features and 'CAT:FORCE' not in features and 'CAT:WH' not in features:
+                features.add('!SPEC:OP:_')
 
         if 'LANG:EN' in features and 'CAT:T/fin' in features:
             features.add('!SPEC:D')
 
-        return self.create_combined_lexical_categories(remove_redundancies(features))
-
-    def create_combined_lexical_categories(self, features):
-
-        cat_string = ''
-        # Create a list of categorical features
-        cc_ = [f[4:] for f in features if f[:4] == 'CAT:']
-        cc_.sort()
-        if cc_:
-            for f in cc_:
-                if len(cat_string) == 0:
-                    cat_string = cat_string + f
-                else:
-                    cat_string = cat_string + '/' + f
-
-            features.add('CAT:' + cat_string)
-
-        return features
+        return remove_redundancies(features)
 
     def save_surface_vocabulary(self, file_name):
         results_file = open(file_name, "w", -1, "utf-8")

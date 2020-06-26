@@ -375,10 +375,9 @@ class LinearPhaseParser:
         word_specs = w.for_parsing(w.specs())
         word_rare_specs = w.for_parsing(w.get_rare_specs())
         word_not_specs = w.for_parsing(w.get_not_specs())
-        word_cats = w.get_cats()
         word_tail_set = w.get_tail_sets()
         word_pf = w.get_pf()
-        word_labels = w.labels()
+        word_labels = w.features
 
         adjunction_sites = []
         avoid_set = set()
@@ -391,17 +390,17 @@ class LinearPhaseParser:
             priority_base = i
             priority = priority_base
 
-            site_cats = site.head().get_cats()
+            site_features = site.head().features
 
             #
             # Case 2a. positive SPEC solutions
             #
             # Check if there are SPEC-w solutions
             # Get all positive SPEC solutions from w
-            if word_specs & site_cats:
+            if word_specs & site_features:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
-                priority = priority + priority_base + 100 * len(word_specs & site_cats)
+                priority = priority + priority_base + 100 * len(word_specs & site_features)
                 log(f'\t\t\t\tPrioritize {site.get_cats_string()} as SPEC,{word_pf}.')
                 avoid_set.clear()
 
@@ -410,10 +409,10 @@ class LinearPhaseParser:
             #
             # Check if there are negative SPEC conditions and avoid them
             # Get negative -SPEC features from w
-            if not site.is_primitive() and (word_not_specs & site_cats):
+            if not site.is_primitive() and (word_not_specs & site_features):
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
-                priority = priority + priority_base - 100 * len(word_not_specs & site_cats)
+                priority = priority + priority_base - 100 * len(word_not_specs & site_features)
                 log(f'\t\t\t\tAvoid {site.head().get_cats_string()}P as SPEC, {word_pf}.')
                 avoid_set.add(site)
 
@@ -430,7 +429,7 @@ class LinearPhaseParser:
             #
             # Avoid rare SPEC solutions
             #
-            if word_rare_specs & site_cats:
+            if word_rare_specs & site_features:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 1000
@@ -446,11 +445,11 @@ class LinearPhaseParser:
             if not site.is_primitive() and site.mother and \
                     site.mother.left_const and site.mother.left_const.is_primitive():
                 # and if H selects for site
-                if site.mother.left_const.get_comps() & site.labels():
-                    if 'ADV' not in w.labels(): # Adverbs will not break selection because they will be adjuncts
+                if site.mother.left_const.get_comps() & site.features:
+                    if 'ADV' not in w.features: # Adverbs will not break selection because they will be adjuncts
                         # The higher the number the higher the relative ranking will be
                         # This is in part arbitrary and should be considered carefully when aiming for realism
-                        priority = priority + priority_base - 100 * len(site.mother.left_const.get_comps() & site.labels())
+                        priority = priority + priority_base - 100 * len(site.mother.left_const.get_comps() & site.features)
                         log(f'\t\t\t\tAvoid [{site}, {w}] because the operation breaks up an existing selectional dependency.')
                         avoid_set.add(site)
 
@@ -474,17 +473,17 @@ class LinearPhaseParser:
                 for m in site.get_affix_list():
 
                     # Check if H selects w and if yes, prioritize this solution
-                    if word_cats & m.for_parsing(m.get_comps()):
+                    if w.features & m.for_parsing(m.get_comps()):
                         priority = priority + priority_base + 100
                         log(f'\t\t\t\tPrioritize [{m.get_pf()} {word_pf}] due to complement selection.')
                         avoid_set.clear()
 
                     # ... if f cannot be merged to the complement, avoid this solution
-                    if word_cats & m.for_parsing(m.get_not_comps()):
+                    if w.features & m.for_parsing(m.get_not_comps()):
                         # This condition has the effect that D{N} will be favored as SPEC
                         # (i.e. neither D nor N will take w as COMP and so negative comp solutions are not examined)
                         if 'CAT:N' not in m.features and 'CAT:D' not in m.features:
-                            priority = priority + priority_base - 100 * len(word_cats & m.for_parsing(m.get_not_comps()))
+                            priority = priority + priority_base - 100 * len(w.features & m.for_parsing(m.get_not_comps()))
                             log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection.')
                             avoid_set.add(site)
 
@@ -514,7 +513,7 @@ class LinearPhaseParser:
             #
             # Remove all solutions which would cause phonological words to break apart
             if site.is_primitive() and self.is_word_internal(site):
-                if 'ADV' not in w.labels():
+                if 'ADV' not in w.features:
                     priority = priority + priority_base - 100
                     log(f'\t\t\t\tAvoid {site} because it could break words.')
                     avoid_set.add(site)
@@ -592,7 +591,7 @@ class LinearPhaseParser:
             ps.mother = None
             return ps
         lf = LF()
-        return(lf.transfer_to_CI(detached(ps.copy())))
+        return lf.transfer_to_CI(detached(ps.copy()))
 
     # Checks if phrase structure XP cannot be broken off from H-XP because
     # H and X were part of the same word. It is used to prevent right merge to XP
@@ -627,7 +626,7 @@ class LinearPhaseParser:
         return ps
 
     def check_transfer_presuppositions(self, ps):
-        if 'FIN' in ps.head().labels() or 'INF' in ps.head().labels():
+        if 'FIN' in ps.head().features or 'INF' in ps.head().features:
             if not self.surface_conditions_module.reconstruct(ps):
                 return False
 

@@ -71,7 +71,6 @@ class Morphology:
         if inflectional_affixes:
             log(f'\t\tAdding inflectional features {inflectional_affixes} to ' + lexical_item.get_pf())
             lexical_item.features = lexical_item.features | set(inflectional_affixes)
-            lexical_item.features = self.lexicon.create_combined_lexical_categories(lexical_item.features)
         return lexical_item
 
     # Definition for generative morphology that only handles FOC disambiguation at present
@@ -89,7 +88,7 @@ class Morphology:
                     critical_morpheme = self.lexicon.lexical_retrieval(list_[0])[0]
                 else:
                     critical_morpheme = self.lexicon.lexical_retrieval(list_[-3])[0]
-                labels = critical_morpheme.labels()
+                labels = critical_morpheme.features
 
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
                     log('\t\t\t\tFeature interpreted as a C morpheme with C-feature uC/op (e.g. uWh, uKo)')

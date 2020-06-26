@@ -111,7 +111,7 @@ class PhrasalMovement():
                         not _ps_spec_iterator.sister().is_primitive() and \
                         _ps_spec_iterator.sister().is_left():
 
-                    # we gather a set of criterial features from the Spec (WH, FOC, REL, TOP)
+                    # we gather a set of criterial features from the Spec (OP:WH, OP:FOC, OP:REL, OP:TOP)
                     criterial_features = _ps_spec_iterator.sister().scan_criterial_features()
 
                     # Reset memory if there is intervention
@@ -157,7 +157,7 @@ class PhrasalMovement():
 
                                 # If we are at finite level, we need to get FIN also to the new head
                                 labels = []
-                                if 'FIN' in h.labels():
+                                if 'FIN' in h.features:
                                     labels.append('FIN')
 
                                 # Create and merge the new head, then move the pointer over it so we don't repeat
@@ -182,13 +182,13 @@ class PhrasalMovement():
                         adjunct_found = _ps_spec_iterator.sister().adjunct
 
                         if criterial_features:
-                            log(f'\t\t\t\t\tCriterial features {criterial_features} copied to {h.labels()}')
+                            log(f'\t\t\t\t\tCriterial features {criterial_features} copied to {h.features}')
                             for f in criterial_features:
                                 # Create formal copies of features
-                                h.features.add('CAT:' + f + '_')
+                                h.features.add(f + '_')
                                 # Add scope marker if needed
-                                if 'FIN' in h.labels():
-                                    h.features.add('CAT:' + f + '*')
+                                if 'FIN' in h.features:
+                                    h.features.add(f + '*')
                                 h.features = self.lexical_access.apply_parameters(
                                     self.lexical_access.apply_redundancy_rules(h.features))
                             if h.get_tail_sets():
@@ -226,7 +226,7 @@ class PhrasalMovement():
                 # (ii) comp features can be satisfied by an element in the memory buffer
                 for const in self.memory_buffer:
 
-                    if h.get_comps() & const.labels():
+                    if h.get_comps() & const.features:
 
                         # then select the first such constituent from the memory buffer
                         target_const = const
@@ -238,7 +238,7 @@ class PhrasalMovement():
                         self.controlling_parser_process.number_of_phrasal_Move += 1
 
                         log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
-                            + f') from memory buffer into Comp of {h.labels()}.')
+                            + f') from memory buffer into Comp of {h.features}.')
                         log(f'\t\t\t\t\tResult {h.top()}')
 
                         # Remove the merged element from the memory buffer
@@ -249,7 +249,7 @@ class PhrasalMovement():
                         break
 
         #  Condition 2. The head has a non-matching complement
-        if h.is_left() and h.complement() and not (h.get_comps() & h.complement().labels()):
+        if h.is_left() and h.complement() and not (h.get_comps() & h.complement().features):
 
             target_const = None
 
@@ -257,11 +257,11 @@ class PhrasalMovement():
             for const in self.memory_buffer:
 
                 # If a matching complement is found from the memory buffer
-                if const.labels() & h.get_comps():
+                if const.features & h.get_comps():
                     target_const = const
 
                     log(f'\t\t\t\t\tDropping {repr(target_const)}(=' + target_const.spellout()
-                        + f') from memory buffer into Comp of {h.labels()} '
+                        + f') from memory buffer into Comp of {h.features} '
                         f'due to the presence of mismatching complement {h.complement()}.')
 
                     # The constituent from memory buffer will be merged to left of the complement
@@ -287,7 +287,7 @@ class PhrasalMovement():
     def A_reconstruct(self, ps):
 
         # Condition 1.
-        if 'CAT:D' in ps.head().features:
+        if 'D' in ps.head().features:
 
             # Condition 2. There is a right sister HP
             if ps.sister() and ps.is_left() and not ps.is_primitive():
@@ -327,17 +327,20 @@ class PhrasalMovement():
 
         new_h = self.lexical_access.PhraseStructure()
 
-        # The category of the new head is going to be a copy of criterial feature of Spec
-        # and the label of the original head (inverse feature inheritance)
-        # We also create artificial phonological matrix for illustration
-        for feature in criterial_features:
-            new_h.features.add('CAT:' + feature + '_')
-            new_h.features.add('PF:' + feature + '_')
+        # Add feature representing the fact that the value comes from the specifier
+        # Note: OP + FIN = scope-marking operator
+        new_h.features.add('OP:_')
+
+        # Add features representing force if FIN
         if criterial_features:
             for label in labels:
-                new_h.features.add('CAT:' + label)
+                new_h.features.add(label)
+                # Force will be created only for FIN-heads
+                # Note: force is represented by [CAT:FORCE:OP:WH], with FORCE:OP:WH being the category string
                 if label == 'FIN':
-                    new_h.features.add('CAT:C')
+                    new_h.features.add('C')
+                    for criterial_feature in criterial_features:
+                        new_h.features.add('FORCE:'+criterial_feature)
 
         # We add EPP required features
         new_h.features = self.lexical_access.apply_parameters(
@@ -365,7 +368,7 @@ class PhrasalMovement():
             return True
 
         for f_ in H.for_parsing(H.specs()):
-            for g_ in G.labels():
+            for g_ in G.features:
                 if f_ == g_:
                     return True
         return False
