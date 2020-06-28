@@ -130,7 +130,7 @@ class LF:
             list_ = h.edge()
             if list_:
                 for spec_ in list_:
-                    if not spec_.adjunct and 'D' in spec_.features and not spec_.find_me_elsewhere:
+                    if not spec_.adjunct and 'D' in spec_.head().features and not spec_.find_me_elsewhere:
                         count = count + 1
 
             if count > 1:
@@ -152,7 +152,7 @@ class LF:
             # 3.1. Specifier selection
             if f.startswith('-SPEC:'):
                 for spec_ in edge:
-                    if spec_ and f[6:] in spec_.features:
+                    if spec_ and f[6:] in spec_.head().features:
                         if not spec_.adjunct:
                             log(f'\t\t\t\t{ps} has unacceptable specifier {spec_}.')
                             self.selection_test_result = False
@@ -161,8 +161,8 @@ class LF:
             #       This excludes pro
             if f == '-SPEC:*':
                 if local_edge:
-                    if not local_edge.adjunct and not local_edge.find_me_elsewhere and 'pro' not in local_edge.features:
-                        log(f'\t\t\t\t{h} ({h.illustrate()}) has a specifier {local_edge}({local_edge.features}) '
+                    if not local_edge.adjunct and not local_edge.find_me_elsewhere and 'pro' not in local_edge.head().features:
+                        log(f'\t\t\t\t{h} ({h.illustrate()}) has a specifier {local_edge}({local_edge.head().features}) '
                             f'but is marked for -EPP behavior.')
                         self.selection_test_result = False
 
@@ -172,13 +172,13 @@ class LF:
                     log(f'\t\t\t\t{h} ({h.illustrate()}) is missing complement {f[6:]}')
                     self.selection_test_result = False
                 else:
-                    if f[6:] not in selected_sister(ps).features:
+                    if f[6:] not in selected_sister(ps).head().features:
                         log(f'\t\t\t\t\t{h} ({h.illustrate()}) is missing a mandatory complement {f[6:]}')
                         self.selection_test_result = False
 
             # 3.4. Complement restriction
             if f.startswith('-COMP:'):
-                if h.is_left() and comp and f[6:] in comp.features:
+                if h.is_left() and comp and f[6:] in comp.head().features:
                     log(f'\t\t\t\t"{ps}\" has wrong complement {comp}.')
                     self.selection_test_result = False
                     self.wrong_complement_test_result = False
@@ -212,7 +212,7 @@ class LF:
                     log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier {f[6:]} that it requires.')
                     self.selection_test_result = False
                 else:
-                    if f[6:] in local_edge.features or f[7:] in local_edge.features:
+                    if f[6:] in local_edge.head().features or f[7:] in local_edge.head().features:
                         pass
                     else:
                         log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {local_edge}, needs {f[6:]}')
@@ -280,10 +280,10 @@ class LF:
             if len(list_) > 1:
                 # Discourse penalty for multiple specifiers
                 self.discourse_test_result = self.discourse_test_result + len(list_)*0.5
-                if 'Neg/fin' in ps.features: # Negation increases the penalty
+                if 'Neg/fin' in ps.head().features: # Negation increases the penalty
                     self.discourse_test_result = self.discourse_test_result + len(list_)
             for local_edge in list_:
-                if 'INF' in local_edge.features:
+                if 'INF' in local_edge.head().features:
                     self.discourse_test_result = self.discourse_test_result + 2
 
         #
@@ -344,36 +344,14 @@ class LF:
         #
         # Transfer condition 1. Operator-variable constructions, binding of variables (ABAR)
         #
-        for f in ps.features:
-            if f[:2] == 'OP':
+        for f in ps.head().features:
+            if f[:3] == 'OP:' and f != 'OP:_':
                 if not self.bind(ps):
                     log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
                     self.transfer_to_CI_crash = True
                 else:
                     log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
                     self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
-
-    # This functions binds a binding operator/antecedent at LF
-    # = element that provides semantic interpretation for 'ps'.
-    # Return the antecedent is found, otherwise None
-    # The type of antecedent depends on uninterpretable features at 'ps'
-    def bind(self, ps):
-
-        ps_ = ps
-
-        # Defines the features required for an antecedent
-        antecedent = {'OP'}
-
-        while ps_:
-            log(f'{ps_.head().features}')
-            if ps_.is_primitive():
-                if ps_.match_features(antecedent) == 'complete match' and 'FIN' in ps_.features:
-                    return ps_
-            elif ps_.left_const.head().match_features(antecedent) == 'complete match' and 'FIN' in ps_.left_const.head().features:
-                return ps_
-            ps_ = ps_.walk_upstream()
-
-        return None  # Nothing was found
 
         #
         # Transfer condition 2. LF-recovery
@@ -382,7 +360,6 @@ class LF:
         # H has phi-features which are a) unvalued and b) must be valued for interpretation
         unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
         if unvalued_phi_features:
-
             log(f'\t\t\t\t{ps.illustrate()} with {sorted(unvalued_phi_features)} was associated at LF with:')
 
             # Provides a list of antecedents and adds the local antecedent to semantic interpretation if available,
@@ -405,6 +382,29 @@ class LF:
                 self.transfer_to_CI_crash = True
                 return
         return
+
+        # This functions binds a binding operator/antecedent at LF
+        # = element that provides semantic interpretation for 'ps'.
+        # Return the antecedent is found, otherwise None
+        # The type of antecedent depends on uninterpretable features at 'ps'
+
+    def bind(self, ps):
+
+        ps_ = ps
+
+        # Defines the features required for an antecedent
+        antecedent = {'OP'}
+
+        while ps_:
+            if ps_.is_primitive():
+                if ps_.match_features(antecedent) == 'complete match' and 'FIN' in ps_.head().features:
+                    return ps_
+            elif ps_.left_const.head().match_features(
+                    antecedent) == 'complete match' and 'FIN' in ps_.left_const.head().features:
+                return ps_
+            ps_ = ps_.walk_upstream()
+
+        return None  # Nothing was found
 
     def must_be_valued(self, phi_set):
         return {phi for phi in phi_set if self.relevant_phi_at_LF(phi)}
@@ -446,7 +446,7 @@ class LF:
                 #
                 # Termination condition: sister is a strong phase head
                 # (Strong phase head = Force or v*)
-                if ps_.sister() and 'SEM:external' in ps_.sister().features:
+                if ps_.sister() and 'SEM:external' in ps_.sister().head().features:
                     break
                 #
                 # XP is an antecedent is anf only if
@@ -463,7 +463,7 @@ class LF:
             while ps_:
                 #
                 # Termination condition: presence of SEM-external (control boundary)
-                if ps_.sister() and 'SEM:external' in ps_.sister().features:
+                if ps_.sister() and 'SEM:external' in ps_.sister().head().features:
                     break
                 #
                 # Condition 1. Antecedent must be a sister of the node at the spine we climb up
@@ -592,14 +592,14 @@ class LF:
 
     def semantic_match(a, b):
 
-        a = a.head()
-        b = b.head()
+        a_head = a.head()
+        b_head = b.head()
 
-        pos_sem_a = {f[5:] for f in a.features if f.startswith('+SEM:')}
-        neg_sem_a = {f[5:] for f in a.features if f.startswith('-SEM:')}
+        pos_sem_a = {f[5:] for f in a_head.features if f.startswith('+SEM:')}
+        neg_sem_a = {f[5:] for f in a_head.features if f.startswith('-SEM:')}
 
-        pos_sem_b = {f[5:] for f in b.features if f.startswith('+SEM:')}
-        neg_sem_b = {f[5:] for f in b.features if f.startswith('-SEM:')}
+        pos_sem_b = {f[5:] for f in b_head.features if f.startswith('+SEM:')}
+        neg_sem_b = {f[5:] for f in b_head.features if f.startswith('-SEM:')}
 
         return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
 

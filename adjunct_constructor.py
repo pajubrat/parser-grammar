@@ -11,17 +11,20 @@ class AdjunctConstructor:
     def create_adjunct(self, ps):
 
         head = ps.head()
+
+        # The phrase must be adjoinable
         if 'adjoinable' in head.features and '-adjoinable' not in head.features:
             # If the head is primitive, we must decide how much of the surrounding structure he will eat
             if ps.is_primitive():
                 # If a complex adjunct has found an acceptable position, we use SPEC:* feature
-                if head.external_tail_head_test():
+                if ps.head().external_tail_head_test():
                     # Condition 1. The head requires a mandatory specifier
                     # Condition 2. The specifier exists
                     if 'SPEC:*' in head.features and head.mother.mother and head.mother.sister() and head.mother.sister().is_complex():
                         # Result. The specifier is eaten inside the adjunct
                         self.make_adjunct(head.mother.mother)
                         return ps.mother.mother
+
                     else:
                         # The specifier is not eaten inside the adjunct
                         if head.mother and head.mother.head() == head:
@@ -54,10 +57,11 @@ class AdjunctConstructor:
         # Condition 1. The whole phrase structure cannot be an adjunct
         # (Leads into infinite regress on some edge cases)
         if ps == ps.top():
+            log(f'\t\t\t\t\tCannot push the whole structure {ps} into the secondary processing stream (adjunct).')
             return False
 
         ps.adjunct = True
-        log(f'\t\t\t\t\t{ps} was made an adjunct.')
+        log(f'\t\t\t\t\t{ps} was pushed into the secondary processing stream (made an adjunct).')
 
         head = ps.head()
         if not {f for f in head.features if f[:4] == 'TAIL'}:

@@ -88,12 +88,12 @@ class FloaterMovement():
                 log('\t\t\t\t\t' + floater.illustrate() + ' at the right failed to tail ' + illu(floater.head().get_tail_sets()))
 
                 # Condition 2a. DP and PP are transformed into adjuncts and marked for reconstruction
-                if 'ADV' not in floater.features and floater.top().contains_feature('CAT:FIN'):
+                if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
                     self.adjunct_constructor.create_adjunct(floater)
                     return floater.mother
 
-                # Condition 2b. If the right branch is ADV, it is transformed into an adjunct, but not reconstructed.
-                # (This must be wrong.)
+                # Condition 2b. If the right branch is ADV, it is transformed into an adjunct but not reconstructed
+                # Note: why not reconstruct?
                 else:
                     if 'ADV' in floater.features and not _ps_iterator.right_const.adjunct:
                         self.adjunct_constructor.create_adjunct(floater)
@@ -110,7 +110,7 @@ class FloaterMovement():
         # This is the element we are going to fit into the structure
         floater_copy = floater.copy()
 
-        # This downward loop searches a position for the floater
+        # Downward loop searches for a position for the floater
         while ps_iterator_ and not ps_iterator_ == floater and not ps_iterator_.find_me_elsewhere:
 
             # Create hypothetical structure for testing
@@ -123,6 +123,7 @@ class FloaterMovement():
             # Condition 1: tail test succeeds,
             # Condition 2: we are not reconstructing inside the same projection (does not apply to right-adjoined)
             # Condition 3: dropped non-ADV will become the only SPEC
+            # Condition 4: the position is not associated with -SPEC:* and -ARG (these are nonthematic)
             if self.is_drop_position(ps_iterator_, floater_copy, starting_point_head):
                 if not floater.adjunct:
                     self.adjunct_constructor.create_adjunct(floater)
@@ -166,9 +167,25 @@ class FloaterMovement():
                 # Don't go inside where you started
                 if floater_copy.container_head() != starting_point_head:
                     # Don't fill in more than one SPEC position
-                    # (This should be revised because the function count specifiers is used only here)
                     if ps_iterator_.head().count_specifiers() < 2:
-                        return True
+                        # Condition 4: the position is not associated with -SPEC:* and -ARG (these are nonthematic)
+                        # If there is no container, we ignore this condition
+                        if floater_copy.container_head():
+                            # Condition 4a. The adjunct is not in a -SPEC:* position
+                            if '-SPEC:*' not in floater_copy.container_head().features:
+                                # If there is no selector, we ignore the next condition
+                                if floater_copy.container_head().selector():
+                                    # Condition 4b. The position is not associated with selecting -ARG
+                                    if '-ARG' not in floater_copy.container_head().selector().features:
+                                        return True
+                                    else:
+                                        return False
+                                else:
+                                    return True
+                            else:
+                                return False
+                        else:
+                            return True
                     else:
                         return False
                 else:

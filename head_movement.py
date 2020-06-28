@@ -15,11 +15,10 @@ class HeadMovement:
 
     # Definition of head movement reconstruction (part 1)
     def reconstruct(self, ps):
-        # Condition 1. If the target is a complex primitive D head, we try to open it into a new left branch
+        # Condition 1. If the target is a complex primitive D, P or A head, we try to open it into a new left branch
         if ps.is_primitive() and ps.has_affix() and \
                 ('D' in ps.features or 'P' in ps.features or 'A' in ps.features):
 
-            # If the element is D or P, it is opened into a new left branch
             if self.reconstruct_head_movement(ps.copy()).LF_legibility_test().all_pass():
                 new = self.reconstruct_head_movement(ps)
                 set_logging(True)
@@ -54,17 +53,15 @@ class HeadMovement:
                 affix = source_head.get_affix()
                 source_head.right_const = None
 
-                log(f'\t\t\t\t\tTarget {affix} in {source_head}')
+                log(f'\t\t\t\t\tTarget {affix} inside complex head {source_head} for head reconstruction.')
 
-                # Condition 2. Intervention feature
+                # Condition 2. Intervention feature (A-bar versus A-system)
                 # Condition 2.1. D-label in the C-system
-                if 'uC/op' in source_head.features:
+                if source_head.has_op_feature():
                     intervention_feature = 'D'  # This is in reality a more general feature, but I don't know what
                 # Condition 2.2. Functional head elsewhere
                 else:
                     intervention_feature = '!COMP:*'
-
-                # Drop the affix
 
                 # Keep record of the computational operations consumed
                 self.controlling_parser_process.number_of_head_Move += 1
@@ -77,7 +74,6 @@ class HeadMovement:
                 affix = ps_.get_affix()
                 new_ps = ps_ + affix
                 ps_.right_const = None
-                top = new_ps
 
                 # We are creating a new phrase structure [A B] and need to return that
                 top = new_ps.top()
@@ -94,24 +90,35 @@ class HeadMovement:
     # Definition for dropping a head
     def drop_head(self, ps, affix_, intervention_feature):
 
-        # Defines the conditions for dropping a head into a position X
+        #
+        # Internal functions
+        #
+        # Defines the conditions for dropping a head H into a position X
+        # Condition 1. H is selected by a higher head in position X and H does not require SPEC
+        # Condition 2. If it does require SPEC, then H has suitable edge/specifier at the position. three exceptions:
+        # Exception A to 2. Finnish third person exception
+        # Exception B to 2. [affix, b], b is primitive
+        # Exception C to 2. If there is complex left sister, we can accept the solution
         def drop_condition_for_heads(affix_):
 
-            # Check if the head is correctly selected at this position
+            # Condition 1. The head is selected at this position by a higher head...
             if affix_.selector() and affix_.selector().selects(affix_):
-
-                # If it does not require a formal SPEC, we accept this position
-                if not affix_.EPP():
+                # ...and does not require a formal SPEC, we accept this position
+                if not affix_.EPP() or ('T/fin' not in affix_.features and 'Neg/fin' not in affix_.features):
                     return True  # If the affix has no EPP, we accept the solution
 
-                # If it requires SPEC...
+                # Condition 2. If it requires SPEC,
                 else:
-                    # we accept the solution is the local specifier is found
+                    # Condition 2a. We accept the solution if the local specifier (incl. pro) is found
                     if affix_.local_edge():
-                        return True
+                        # Exception A. Finnish third person T (deficient agreement does not constitute edge here)
+                        # Note: this follows from a more general principle that I do not know, 3sg is deficient.
+                        if 'pro' in affix_.local_edge().features and 'PHI:PER:3' in affix_.local_edge().features:
+                            return False
+                        else:
+                            return True
 
-                    # What if the EPP is satisfied later by movement reconstruction?
-                    # First exception: [affix, b], b is primitive
+                    # Exception B. [affix, b], b is primitive
                     elif affix_.sister() and \
                             affix_.sister().is_primitive() and \
                             not affix_.sister().get_affix():
@@ -123,7 +130,7 @@ class HeadMovement:
                         return True
                     else:
 
-                        # If there is complex left sister, we can accept the solution
+                        # Exception C. If there is complex left sister, we can accept the solution
                         if affix_.sister() and not affix_.sister().is_primitive() and affix_.sister().is_left():
                             return True
                         else:
@@ -148,7 +155,6 @@ class HeadMovement:
 
             # Try each solution
             iterator_.merge(affix_, 'left')
-
             # If the drop condition is satisfied, then we leave the head and return
             if drop_condition_for_heads(affix_):
                 log(f'\t\t\t\t\t={ps.top()}')
@@ -163,28 +169,20 @@ class HeadMovement:
         # If we come here, we have reached the bottom or search was interrupted
         # If we reached bottom, then we can try Merge Right solution
         if reached_bottom:
-
             # Special condition 1: bottom right position
             # Condition 1.1 If the node has affix, we must open it first
-            if ps.bottom().has_affix():
-
-                self.reconstruct_head_movement(ps.bottom())
-                ps = ps.mother  # keep the pointer at [D,N] after D(N) => [D N]
-
-                # Condition 1.2 If the bottom node was DP, we don't merge to the sister of N but to the DP...
-                if 'D' in ps.bottom().features:
-                    ps.bottom().mother.merge(affix_, 'right')
-                else:
-
-                    # Condition 1.4. ...Otherwise we merge to the sister.
-                    if intervention_feature not in ps.bottom().features:
+            if intervention_feature not in ps.bottom().features:
+                if ps.bottom().has_affix():
+                    self.reconstruct_head_movement(ps.bottom())
+                    ps_ = ps.bottom().mother  # keep the pointer at [D,N] after D(N) => [D N]
+                    if 'D' in ps_.head().features:
+                        ps_.merge(affix_, 'right')
+                    else:
+                        # Condition 1.4. ...Otherwise we merge to the sister.
                         ps.bottom().merge(affix_, 'right')
-            else:
-
-                # If the bottom node is simple, we try to merge to its right
-                if intervention_feature not in ps.bottom().features:
+                else:
+                    # If the bottom node is simple, we try to merge to its right
                     ps.bottom().merge(affix_, 'right')
-
 
             # Special condition 2: if the affix was merged to the right of the bottom node, we check if it is accetable
             if affix_.mother:
@@ -198,6 +196,9 @@ class HeadMovement:
         # Special condition 3: No position was found
         # Merge to the local position as a last resort
         log(f'\t\t\t\t\tHead reconstruction failed for {affix_}, merged locally as a last resort.')
-        ps.merge(affix_, 'left')
+        if ps.right_const:
+            ps.merge(affix_, 'left')
+        else:
+            ps.merge(affix_, 'left')
         # We need to reconstruct head movement for the left branch
         return True

@@ -79,7 +79,7 @@ class Morphology:
         # Extract morphemes
         list_ = self.extract_morphemes(word)
 
-        # Recognize the presence of the foc feature
+        # Recognize the presence of the foc  on a head
         if len(list_) > 1:
             if 'foc' in list_ or 'C/op' in list_:
 
@@ -91,9 +91,10 @@ class Morphology:
                 labels = critical_morpheme.features
 
                 if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
-                    log('\t\t\t\tFeature interpreted as a C morpheme with C-feature uC/op (e.g. uWh, uKo)')
-                    word = word.replace('#foc', '#C/fin#uC/op')
-                    word = word.replace('#C/op', '#C/fin#uC/op')
+                    log('\t\t\t\tFeature interpreted as a C morpheme with C-feature C/op')
+                    word = word.replace('#C/op', '#C/fin#C/op')
+                    word = word.replace('#foc', '#C/fin#C/op')
+
 
         return word
 

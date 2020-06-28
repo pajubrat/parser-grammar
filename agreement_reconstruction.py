@@ -90,7 +90,7 @@ class AgreementReconstruction:
                     break
 
                 # Condition 3. Look for DPs
-                if 'CAT:D' in goal.features:
+                if 'D' in goal.features:
 
                     # Condition 3. Collect all valued phi-features (ignore unvalued features and PHI:DET)
                     return goal, sorted({f for f in goal.features if self.phi(f) and f[:7] != 'PHI:DET' and self.valued(f)})
@@ -115,7 +115,7 @@ class AgreementReconstruction:
                 edge_head = edge.head()
 
                 # Condition 2. The element must be D(P)
-                if 'CAT:D' in edge_head.features:
+                if 'D' in edge_head.features:
 
                     # Condition 3. We acquire valued phi-features
                     phi_features = {f for f in edge_head.features if self.phi(f) and self.valued(f)}

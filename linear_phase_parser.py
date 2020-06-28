@@ -480,12 +480,9 @@ class LinearPhaseParser:
 
                     # ... if f cannot be merged to the complement, avoid this solution
                     if w.features & m.for_parsing(m.get_not_comps()):
-                        # This condition has the effect that D{N} will be favored as SPEC
-                        # (i.e. neither D nor N will take w as COMP and so negative comp solutions are not examined)
-                        if 'CAT:N' not in m.features and 'CAT:D' not in m.features:
-                            priority = priority + priority_base - 100 * len(w.features & m.for_parsing(m.get_not_comps()))
-                            log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection.')
-                            avoid_set.add(site)
+                        priority = priority + priority_base - 100 * len(w.features & m.for_parsing(m.get_not_comps()))
+                        log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection.')
+                        avoid_set.add(site)
 
                     if not LF.semantic_match(m, w):
                         priority = priority + priority_base - 100
@@ -555,7 +552,7 @@ class LinearPhaseParser:
             for priority, site_ in adjunction_sites:
                 if site_.is_adjoinable():
                     size_ = get_size(site_)
-                    if size_ > size and not site_.contains_feature('CAT:T/fin'):
+                    if size_ > size and not site_.contains_feature('T/fin'):
                         set_logging(False)
                         if self.transfer_to_lf(site_.copy()).LF_legibility_test().all_pass():
                             max_site = site_

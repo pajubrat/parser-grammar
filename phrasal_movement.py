@@ -62,7 +62,6 @@ class PhrasalMovement():
         # Condition 3. No head-tail violations can occur
         specs = self.get_specifiers(h)
         for constituent_from_memory_buffer in self.memory_buffer:
-
             # Condition 1: h must select the label of the constituent in the memory buffer
             if self.spec_match(h, constituent_from_memory_buffer):
                 # Condition 2: h must not have non-adjunct specifiers already
@@ -113,12 +112,6 @@ class PhrasalMovement():
 
                     # we gather a set of criterial features from the Spec (OP:WH, OP:FOC, OP:REL, OP:TOP)
                     criterial_features = _ps_spec_iterator.sister().scan_criterial_features()
-
-                    # Reset memory if there is intervention
-                    if self.memory_intervention(criterial_features):
-                        self.memory_buffer = []
-
-                    # ...and it has not been moved already...
                     if not _ps_spec_iterator.sister().find_me_elsewhere:
 
                         # ...and it has criterial features
@@ -127,9 +120,10 @@ class PhrasalMovement():
                             list_.append(_ps_spec_iterator.sister())
                             log(f'\t\t\t\t\tMoving \"' + _ps_spec_iterator.sister().spellout() + f'\" into memory buffer from SPEC of \"{h}\".')
 
-                        #... if there are no criterial features
+                        # ... if there are no criterial features
                         else:
-                            #...we reconstruct  A-movement (a version of phi-agreement)
+                            # ...we reconstruct  A-movement (a version of phi-agreement)
+
                             self.A_reconstruct(_ps_spec_iterator.sister())
 
                     # If we already have processed one Spec, and there is additional non-adjunct phrase,
@@ -141,6 +135,9 @@ class PhrasalMovement():
                         if not criterial_features and adjunct_found:
                             adjunct_found = _ps_spec_iterator.sister().adjunct
 
+                        #
+                        # Spawn head
+                        #
                         # If the lower SPEC is not an adjunct, or if there are criterial features in the higher SPEC,
                         # we need to spawn a head
                         else:
@@ -155,13 +152,8 @@ class PhrasalMovement():
                                     log(f'\t\t\t\t\tNew {criterial_features} head was spawned due to '
                                         f'the occurrence of multiple specifiers at {h.get_pf()}')
 
-                                # If we are at finite level, we need to get FIN also to the new head
-                                labels = []
-                                if 'FIN' in h.features:
-                                    labels.append('FIN')
-
                                 # Create and merge the new head, then move the pointer over it so we don't repeat
-                                new_h = self.engineer_head_from_specifier(criterial_features, labels)
+                                new_h = self.engineer_head_from_specifier(h, criterial_features)
                                 _ps_spec_iterator.merge(new_h, 'left')
 
                                 # Move to the new constituent (otherwise we will loop this)
@@ -174,23 +166,18 @@ class PhrasalMovement():
                                     if _ps_spec_iterator.mother:
                                         _ps_spec_iterator = _ps_spec_iterator.mother  # Move one step up
 
+                    #
+                    # Just one specifier, so we copy the criterial features into it
+                    #
                     else:
-                        # If its just one Spec, copy criterial features
                         spec_found = True  # We register that one head has been found
 
                         # Register if it was an adjunct
                         adjunct_found = _ps_spec_iterator.sister().adjunct
 
                         if criterial_features:
-                            log(f'\t\t\t\t\tCriterial features {criterial_features} copied to {h.features}')
-                            for f in criterial_features:
-                                # Create formal copies of features
-                                h.features.add(f + '_')
-                                # Add scope marker if needed
-                                if 'FIN' in h.features:
-                                    h.features.add(f + '*')
-                                h.features = self.lexical_access.apply_parameters(
-                                    self.lexical_access.apply_redundancy_rules(h.features))
+                            h.features |= self.get_features_for_criterial_head(h, criterial_features)
+                            log(f'\t\t\t\t\tCriterial features {criterial_features} copied to {h}')
                             if h.get_tail_sets():
                                 log(f'\t\t\t\t\tTail features ' + illu(
                                     h.get_tail_sets()) + f' were detected at {h}, this must head an adjunct floater.')
@@ -211,6 +198,21 @@ class PhrasalMovement():
             if len(list_) > 0:
                 log(f'\t\t\t\t\tMemory buffer: {self.memory_buffer}')
 
+    def get_features_for_criterial_head(self, h, criterial_features):
+        feature_set = {'OP:_'}
+        if 'FIN' in h.features:
+            feature_set |= {'OP', 'FIN'}
+            feature_set |= {'FORCE:' + criterial_feature for criterial_feature in criterial_features}
+        return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
+
+    # Definition for generating a new head
+    def engineer_head_from_specifier(self, h, criterial_features):
+        new_h = self.lexical_access.PhraseStructure()
+        new_h.features |= self.get_features_for_criterial_head(h, criterial_features)
+        if 'FIN' in h.features:
+            new_h.features |= {'C', 'PF:C'}
+        return new_h
+
     #
     # Case 3. Fill complement from memory buffer
     #
@@ -221,12 +223,13 @@ class PhrasalMovement():
 
             # If (i) H has comp features and
             if h.get_comps():
+
                 target_const = None
 
                 # (ii) comp features can be satisfied by an element in the memory buffer
                 for const in self.memory_buffer:
 
-                    if h.get_comps() & const.features:
+                    if h.get_comps() & const.head().features:
 
                         # then select the first such constituent from the memory buffer
                         target_const = const
@@ -319,35 +322,6 @@ class PhrasalMovement():
             h = None
         return h
 
-    # Definition for generating a new head
-    def engineer_head_from_specifier(self, criterial_features, labels):
-        """
-        This operation spawns a head H from a detected specifier XP that lacks a head.
-        """
-
-        new_h = self.lexical_access.PhraseStructure()
-
-        # Add feature representing the fact that the value comes from the specifier
-        # Note: OP + FIN = scope-marking operator
-        new_h.features.add('OP:_')
-
-        # Add features representing force if FIN
-        if criterial_features:
-            for label in labels:
-                new_h.features.add(label)
-                # Force will be created only for FIN-heads
-                # Note: force is represented by [CAT:FORCE:OP:WH], with FORCE:OP:WH being the category string
-                if label == 'FIN':
-                    new_h.features.add('C')
-                    for criterial_feature in criterial_features:
-                        new_h.features.add('FORCE:'+criterial_feature)
-
-        # We add EPP required features
-        new_h.features = self.lexical_access.apply_parameters(
-            self.lexical_access.apply_redundancy_rules(new_h.features))
-
-        return new_h
-
     # This will provide unique names when chains are formed
     # It is used only for output purposes
     def babtize(self):
@@ -362,14 +336,15 @@ class PhrasalMovement():
         return False
 
     # Definition for spec selection match
-    def spec_match(self, H, G):
+    # H = head whose SPEC position is tested
+    #
+    def spec_match(self, head, spec):
 
-        if 'SPEC:*' in H.features or '!SPEC:*' in H.features:
+        if 'SPEC:*' in head.features or '!SPEC:*' in head.features:
             return True
-
-        for f_ in H.for_parsing(H.specs()):
-            for g_ in G.features:
-                if f_ == g_:
+        for feature_in_head in head.for_parsing(head.specs()):
+            for feature_in_spec in spec.head().features:
+                if feature_in_head == feature_in_spec:
                     return True
         return False
 

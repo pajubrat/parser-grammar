@@ -13,6 +13,9 @@
 import datetime
 import time
 
+# Command line argument parser
+import sys
+
 # Imports the linear parser module
 from linear_phase_parser import LinearPhaseParser
 
@@ -38,14 +41,14 @@ import pyglet
 # file systems
 from pathlib import Path
 
-
 #
 # Block 2. Define input and output data files and names
 #
 # Define the data directory
-data_folder = Path("language data working directory/study-6-linear-phase-theory/")
+# data_folder = Path("language data working directory/study-6-linear-phase-theory/")
+data_folder = Path("language data working directory/study-4_b-LHM/")
 # Define the corpus file
-test_corpus_name = "linear_phase_theory_corpus.txt"
+test_corpus_name = "LHM_corpus.txt"
 
 # Create a file name for the test corpus
 # Created automatically from the corpus file above -- do not change
@@ -90,8 +93,21 @@ parse_list = []
 
 #Initialize the visualizer
 Graphic_output = visualizer.Visualizer()
-image_output = True # Set to False if you don't want to see phrase structure images
-Graphic_output.stop_after_each_image = True    # Set True if you want to examine each input on the screen (otherwise they are in png files)
+
+# Default values for image generation (image_output) and speed (stop_after)
+Graphic_output.image_output = False
+Graphic_output.stop_after_each_image = False
+Graphic_output.show_words = False
+arguments = set(sys.argv)
+if '/images' in arguments:
+    Graphic_output.image_output = True
+    if '/slow' in arguments:
+        Graphic_output.stop_after_each_image = True
+    if '/words' in arguments:
+        Graphic_output.show_words = True
+    if '/gloss' in arguments:
+        Graphic_output.show_glosses = True
+
 p = Path(data_folder / 'phrase_structure_images')
 try:
     p.mkdir()
@@ -283,15 +299,16 @@ for sentence in parse_list[start:]:
                     results_file.write('\t' + chr(96 + parse_id) + f'. {parse}\n')
 
                 # Print additional information concerning the result
-                results_file.write(f'\tGarden paths: {P.number_of_solutions_tried-1}\n')
+                results_file.write(f'\tGarden paths: {P.number_of_solutions_tried-1} (Merge:{P.number_of_Merge}, A-bar/A Move:{P.number_of_phrasal_Move}, Agree:{P.number_of_Agree})\n')
                 results_file.write('\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
-                parse_id = parse_id + 1
                 results_file.write('\n')
 
-                if image_output:
+                if Graphic_output.image_output:
                     file_name = 'Raw image of (' + str(count) + chr(96 + parse_id) + ').png'
                     Graphic_output.file_identifier = data_folder / 'phrase_structure_images' / file_name
                     Graphic_output.draw(parse)
+
+                parse_id = parse_id + 1
 
     else:
         results_file.write(' '.join(map(str, sentence))+' -------------------------------------------------------\n\n')

@@ -2,7 +2,7 @@
 from support import log
 from LF import LF
 
-major_category = {'N', 'Neg', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'A/inf', 'VA/inf', 'MA/inf', '0'}
+major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 
 # Definitions and methods for phrase structure
 class PhraseStructure:
@@ -743,11 +743,7 @@ class PhraseStructure:
     # Condition 1. It begins with "PHI"
     # Condition 2. It ends with "_"
     def get_unvalued_features(self):
-        unvalued_phi_set = set()
-        for f in self.features:
-            if f[:4] == 'PHI:' and f[-1] == '_':
-                unvalued_phi_set.add(f)
-        return unvalued_phi_set
+        return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
 
     # Definition for pro-extraction
     # H has a pro-element if and only if
@@ -889,7 +885,10 @@ class PhraseStructure:
 
     # Returns all operator features from the head H as a set of [OP, VAL] lists
     def operator_features(self):
-        return {feature.split(':') for feature in self.features if feature[:3] == 'OP:'}
+        return {feature for feature in self.features if feature[:3] == 'OP'}
+
+    def has_op_feature(self):
+        return {feature for feature in self.features if feature[:3] == 'OP'}
 
     # Recursive definition for criterial features (type ABAR:_) inside phrase
     def scan_criterial_features(self):
@@ -901,14 +900,12 @@ class PhraseStructure:
             set_ = set_ | self.left_const.scan_criterial_features()
 
         # Condition 2. Right branch is searched if it is not adjunct and its label is not T/fin
-        if self.right_const and not self.right_const.adjunct and not 'T/fin' in self.right_const.features:
+        if self.right_const and not self.right_const.adjunct and not 'T/fin' in self.right_const.head().features:
             set_ = set_ | self.right_const.scan_criterial_features()
 
         # Condition 3. Primitive constituents are examined for criterial features
         if self.is_primitive():
-            for f in self.features:
-                if f[:3] == 'OP:':
-                    set_.add(f)
+            set_ |= {feature for feature in self.features if feature[:3] == 'OP:'}
         return set_
 
     # Definition for phase (used by Agree-1)
@@ -968,12 +965,12 @@ class PhraseStructure:
                                                                                'TOP']]
         if self.has_affix():
             affix_str = self.show_affix()
-            return '.'.join(sorted(pfs)) + '{' + affix_str + '}'
+            return '.'.join(sorted(pfs)) + '(' + affix_str + ')'
         else:
             return '.'.join(sorted(pfs))
 
+    # Definition for semantic features (access keys to concepts)
     def get_lf(self):
-        # We return semantic features
         lfs = [f[3:] for f in self.features if f[:2] == 'LF']
         return '.'.join(sorted(lfs))
 
@@ -1230,14 +1227,13 @@ class PhraseStructure:
                 pf = pf + self.left_const.gloss()
 
         if self.right_const:
-
             if 'null' in self.right_const.features:
                 pf = pf + '__'
             else:
                 pf = pf + self.right_const.gloss()
 
         if self.is_primitive():
-            pf = pf + self.get_lf() + ' '
+            pf = pf + self.get_lf()
 
         return pf
 
@@ -1248,7 +1244,9 @@ class PhraseStructure:
 
     # This function tries to create "informative" representation of the categories of the constituent ps
     def get_cats_string(self):
-        major_cats = ''.join(sorted([label for label in self.head().features if label in major_category]))
+        major_cats = ''.join(sorted([feature for feature in self.head().features if feature in major_category]))
+        if major_cats == 'Neg/fin':
+            major_cats = 'Neg'
         if self.is_complex():
             suffix = 'P'
         else:

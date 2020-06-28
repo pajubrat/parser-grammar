@@ -18,6 +18,9 @@ class Visualizer:
         self.file_identifier = ''
         self.new_lateral_stretch_needed = True
         self.stop_after_each_image = False
+        self.image_output = False
+        self.show_words = False
+        self.show_glosses = False
         pass
 
     # Definition for the drawing function
@@ -29,7 +32,7 @@ class Visualizer:
         while self.new_lateral_stretch_needed:
             self.new_lateral_stretch_needed = False
             self.lateral_stretch(ps)
-        win = ProduceGraphicOutput(ps, self.file_identifier, self.stop_after_each_image)
+        win = ProduceGraphicOutput(ps, self.file_identifier, self.stop_after_each_image, self.show_words, self.show_glosses)
         pyglet.app.run()
         if not self.stop_after_each_image:
             win.close()
@@ -104,7 +107,7 @@ class Visualizer:
 # Definition for the output window behavior
 class ProduceGraphicOutput(pyglet.window.Window):
 
-    def __init__(self, ps, save_image_file_name, stop):
+    def __init__(self, ps, save_image_file_name, stop, show_words, show_glosses):
 
         # Define the grid
         self.x_grid = 50
@@ -112,15 +115,22 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
         # Define the margins
         self.margins = 35
-
         self.top_node_position = 0
-
         self.file_identifier = save_image_file_name
 
+        # Instruction for drawing output images
         self.stop_after_each_image = stop
+        self.show_words = show_words
+        self.show_glosses = show_glosses
 
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
+
+        if self.show_words:
+            self.margins += 30
+
+        if self.show_glosses:
+            self.margins += 10
 
         # Determines how big the tree is and calculates appropriate window size
         left, right, depth = self.get_tree_size(ps, 0, 0, 0)
@@ -163,6 +173,26 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                           anchor_x='center', anchor_y='center',
                                           color=(1, 1, 1, 255))
                 label2.draw()
+
+            # Add lexical information if required
+            if self.show_words and ps.is_primitive():
+                if ps.get_pf() != ps.get_cats_string():
+                    label3 = pyglet.text.Label(ps.get_pf(),
+                                               font_name='Times New Roman',
+                                               font_size=15,
+                                               x=X1, y=Y1 - 10,
+                                               anchor_x='center', anchor_y='center',
+                                               color=(1, 1, 1, 255))
+                    label3.draw()
+                    if self.show_glosses:
+                        if ps.gloss() != ps.get_cats_string() and ps.gloss() != ps.get_pf():
+                            label4 = pyglet.text.Label('\''+ps.gloss()+'\'',
+                                                       font_name='Times New Roman',
+                                                       font_size=15,
+                                                       x=X1, y=Y1 - 30,
+                                                       anchor_x='center', anchor_y='center',
+                                                       color=(1, 1, 1, 255))
+                            label4.draw()
 
             # Left branch line
             if ps.left_const:

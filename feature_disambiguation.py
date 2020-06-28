@@ -34,7 +34,6 @@ class FeatureProcessing():
         if h.selector() and 'SEM:internal' in h.selector().features:
             log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into -ARG due to {h.selector()}')
             h.features.add('-ARG')
-            h.features.add('CAT:-ARG')
             h.features.add('-SPEC:*')
             h.features.discard('SPEC:*')
 

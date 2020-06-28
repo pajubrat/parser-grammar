@@ -1,9 +1,6 @@
 import phrase_structure
-import logging
-from collections import defaultdict
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
-log = logging.getLogger(__name__)
-
+from collections import defaultdict
 
 # Definition for lexical interface
 class LexicalInterface:
@@ -198,6 +195,7 @@ class LexicalInterface:
             const.morphology = key
             const.internal = internal
             word_list = [const]
+            print(f'Lexical item \"{key}\" not found from the surface vocabulary (will try morphological decomposition)')
 
         return word_list
 
@@ -215,7 +213,6 @@ class LexicalInterface:
         #
         # Note: Prevents new features from redundancy rules to get added if they conflict with a lexical rule
         def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
-
             # If we try to add a negative feature -F, we reject if there is a positive feature
             # either +F or F.
             if negative_feature(new_candidate_feature_to_add):
@@ -236,7 +233,7 @@ class LexicalInterface:
         for f in self.redundancy_rules:
             trigger_set = set(f.split())
             if feature_set & trigger_set == trigger_set:
-                new_features_to_add = new_features_to_add | set(self.redundancy_rules[f])
+                new_features_to_add |= set(self.redundancy_rules[f])
 
         # Resolve conflicts in favor of lexical features
         # new_feats contains new features from lexical redundancy rule to be added
@@ -246,8 +243,7 @@ class LexicalInterface:
         for new_feature in new_features_to_add:
             if not feature_conflict(new_feature, feature_set):
                 features_not_blocked_by_specific_lexicon.add(new_feature)
-        feature_set = feature_set | features_not_blocked_by_specific_lexicon
-
+        feature_set |= features_not_blocked_by_specific_lexicon
         return feature_set
 
     # Binary UG parameters
@@ -256,21 +252,6 @@ class LexicalInterface:
     # nonexistent
     #
     def apply_parameters(self, features):
-
-        #
-        # Internal function
-        #
-        def remove_redundancies(features):
-            new_set = set()
-            # -SPEC:* eliminates all specific Spec features
-            if '-SPEC:*' in features:
-                for f in features:
-                    if not f[:6] == '-SPEC:':
-                        new_set.add(f)
-                new_set.add('-SPEC:*')
-            else:
-                return features
-            return new_set
 
         #
         # Main function begins here
@@ -319,18 +300,15 @@ class LexicalInterface:
                 features.add('SPEC:*')
                 features.add('!SPEC:*')
 
-        if '-ARG' in features:
-            features.add('CAT:-ARG')
-
         # Finnish operator snowballing
         if non_finite_agreement:
-            if 'OP:_' in features and 'CAT:FORCE' not in features and 'CAT:WH' not in features:
+            if 'OP:_' in features and 'FORCE' not in features and 'OP:WH' not in features:
                 features.add('!SPEC:OP:_')
 
-        if 'LANG:EN' in features and 'CAT:T/fin' in features:
+        if 'LANG:EN' in features and 'T/fin' in features:
             features.add('!SPEC:D')
 
-        return remove_redundancies(features)
+        return features
 
     def save_surface_vocabulary(self, file_name):
         results_file = open(file_name, "w", -1, "utf-8")
