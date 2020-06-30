@@ -64,6 +64,11 @@ log_file_name = data_folder / log_name
 results_name = test_corpus_name[:-4] + '_results.txt'
 results_file_name = data_folder / results_name
 
+# Create a file name for grammaticality judgments file
+# Created automatically from the corpus file -- do not change
+grammaticality_judgments_name = test_corpus_name[:-4] + '_grammaticality_judgments.txt'
+grammaticality_judgments_file_name = data_folder / grammaticality_judgments_name
+
 # Create a file name for the lexicon file
 # Created automatically from the corpus file -- do not change
 lexicon_file_name = data_folder / 'lexicon.txt'
@@ -105,7 +110,7 @@ if '/images' in arguments:
         Graphic_output.stop_after_each_image = True
     if '/words' in arguments:
         Graphic_output.show_words = True
-    if '/gloss' in arguments:
+    if '/glosses' in arguments:
         Graphic_output.show_glosses = True
 
 p = Path(data_folder / 'phrase_structure_images')
@@ -196,6 +201,12 @@ results_file.write(f'Test sentences from file \"{test_set_name}\".\n')
 results_file.write(f'Logs into file \"{log_file_name}.\n')
 results_file.write(f'Lexicon from file \"{lexicon_file_name}\".\n')
 
+grammaticality_judgments_file = open(grammaticality_judgments_file_name, "w", -1, "utf-8")
+grammaticality_judgments_file.write(str(datetime.datetime.now())+'\n')
+grammaticality_judgments_file.write(f'Test sentences from file \"{test_set_name}\".\n')
+grammaticality_judgments_file.write(f'Logs into file \"{log_file_name}.\n')
+grammaticality_judgments_file.write(f'Lexicon from file \"{lexicon_file_name}\".\n')
+
 # Sets the index of the sentence in the corpus from which parsing will begin.
 # 0 = start from the beginning
 # This makes it possible to parse individual segments of larger corpora.
@@ -211,7 +222,7 @@ not_parsed = []
 #
 # Parses all  sentences in the corpus
 for sentence in parse_list[start:]:
-    print('\n' + str(count) + ', ' + f'{sentence}')
+    print('\n' + str(count) + '. ' + f'{sentence}')
 
     # Sentences beginning with & will be written to the log file as such
     if sentence[0] != '&':
@@ -244,36 +255,35 @@ for sentence in parse_list[start:]:
         P.number_of_items_consumed = 0
 
         # Various output scores
-        P.discourse_plausibility = 0        #   Finnish only (study 2)
-        P.score = 0                         #   Grammaticality and marginality
-        P.number_of_solutions_tried = 0     #   Number of garden paths before first solution
+        P.discourse_plausibility = 0        # Finnish only (study 2)
+        P.score = 0                         # Grammaticality and marginality
+        P.number_of_solutions_tried = 0     # Number of garden paths before first solution
 
         # This has to do with the numbering of copies (traces) in the output
         P.name_provider_index = 0
 
         # Report the language of the input, assumed in the parse
         log(f'Language appears to be {lang}')
-
-        #
         # Parse the sentence
         # Results will be stored in the parser object P itself (see below)
         #
         P.parse(sentence)
-        #
-        #
-        #
 
         # Print the input sentence to the log file
         set_logging(True)
         s = ''
+
+        # Create string representation for the sentence from the word list
         for word in sentence:
             s = s + word + ' '
 
         # Definition for ungrammaticality
         # Sentence S is ungrammatical if and only if no results were found
         if len(P.result_list) == 0:
+            grammaticality_judgments_file.write(str(count) + '. *' + s + '\n')
             results_file.write(str(count) + '. * ' + s + '\n\n')
         else:
+            grammaticality_judgments_file.write(str(count) + '.  ' + s + '\n')
             # Marginality estimations (if relevant) are printed here
             # grammaticality_judgment refers to the categories '', ?, ??, ?* provided above
             # Graded judgments are not always used
@@ -293,7 +303,6 @@ for sentence in parse_list[start:]:
                 # If there is only one solution, we preface it with its number
                 if number_of_solutions == 1:
                     results_file.write('\t' + f'{parse}\n')
-
                 # if there are several solutions, we separate them by using alphabetic letters a, b, c, ...
                 else:
                     results_file.write('\t' + chr(96 + parse_id) + f'. {parse}\n')
@@ -312,6 +321,9 @@ for sentence in parse_list[start:]:
 
     else:
         results_file.write(' '.join(map(str, sentence))+' -------------------------------------------------------\n\n')
+        grammaticality_judgments_file.write('\n')
+        grammaticality_judgments_file.write(' '.join(map(str, sentence)))
+        grammaticality_judgments_file.write('\n')
 
 # Print the computation time to console
 print(f'took: {time.time() - t}s.')

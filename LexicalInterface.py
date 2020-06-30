@@ -302,8 +302,10 @@ class LexicalInterface:
 
         # Finnish operator snowballing
         if non_finite_agreement:
-            if 'OP:_' in features and 'FORCE' not in features and 'OP:WH' not in features:
-                features.add('!SPEC:OP:_')
+            if 'OP:_' in features and 'FORCE' not in features:
+                operator_features = {'OP:WH', 'OP:TOP', 'OP:FOC'}
+                if not operator_features & features:
+                    features.add('!SPEC:OP:_')
 
         if 'LANG:EN' in features and 'T/fin' in features:
             features.add('!SPEC:D')

@@ -699,6 +699,12 @@ class PhraseStructure:
         else:
             return False
 
+    def finite(self):
+        if 'FIN' in self.features or 'T/fin' in self.features or 'Neg/fin' in self.features:
+            return True
+        else:
+            return False
+
     # Returns the union of features of head and all its affixes
     def get_all_features_of_complex_word(self):
 
@@ -1043,17 +1049,19 @@ class PhraseStructure:
 
         return self_copy
 
-    # Counts the number of specifiers
-    # (Is used when reconstructing elements, will be eliminated)
+    # Counts the number of (in situ non-adjunct) specifiers
     def count_specifiers(self):
         ps_ = self.mother
         count = 0
+        # ---------------- while loop begins ----------------------#
         while ps_ and ps_.sister() and \
                 (ps_.sister().is_left() and \
                 not ps_.sister().is_primitive()) and \
-                ps_.sister().find_me_elsewhere:
+                not ps_.sister().find_me_elsewhere and \
+                not ps_.sister().adjunct:
             count = count + 1
             ps_ = ps_.walk_upstream()
+        # ---------------- while loop ends --------------------------#
         return count
 
     def container_head(self):

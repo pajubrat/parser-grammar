@@ -25,6 +25,7 @@ class FloaterMovement():
         # Move downward from top
         _ps_iterator = ps.top()
 
+        # ---------------------while loop begins----------------------------------#
         while _ps_iterator:
 
             # Detect a floater
@@ -34,6 +35,8 @@ class FloaterMovement():
                 # Drop the floater
                 self.drop_floater(floater, ps)
             _ps_iterator = _ps_iterator.walk_downstream()
+
+        # -------------------while loop ends----------------------------------------#
 
         return ps.top()  # Return top, because it is possible that an adjunct expands the structure
 
@@ -107,9 +110,10 @@ class FloaterMovement():
         # We need to locate the appropriate starting point, XP in [fin XP]
         ps_iterator_ = self.locate_minimal_tense_edge(floater.mother)
 
-        # This is the element we are going to fit into the structure
+        # This is the element we  fit into the structure
         floater_copy = floater.copy()
 
+        # ------------------------------------ while loop begins ------------------------------------#
         # Downward loop searches for a position for the floater
         while ps_iterator_ and not ps_iterator_ == floater and not ps_iterator_.find_me_elsewhere:
 
@@ -149,6 +153,7 @@ class FloaterMovement():
                 floater_copy.remove()
 
             ps_iterator_ = ps_iterator_.walk_downstream()
+        # --------------------------------------- while loop ends --------------------------------------#
 
     # Definition for a legitimate target position for floater reconstruction
     def is_drop_position(self, ps_iterator_, floater_copy, starting_point_head):
@@ -163,15 +168,13 @@ class FloaterMovement():
 
             # Condition 3. Condition for merging to the left
             else:
-
-                # Don't go inside where you started
+                # Condition 3a) Don't go inside where you started
                 if floater_copy.container_head() != starting_point_head:
-                    # Don't fill in more than one SPEC position
+                    # Condition 3b) Don't fill in more than one SPEC position
                     if ps_iterator_.head().count_specifiers() < 2:
-                        # Condition 4: the position is not associated with -SPEC:* and -ARG (these are nonthematic)
-                        # If there is no container, we ignore this condition
+                        # Condition 3c: the position is not associated with nonthematic EPP position (-SPEC:* and -ARG):
                         if floater_copy.container_head():
-                            # Condition 4a. The adjunct is not in a -SPEC:* position
+                            # Condition 3c. The adjunct is not in a -SPEC:* position
                             if '-SPEC:*' not in floater_copy.container_head().features:
                                 # If there is no selector, we ignore the next condition
                                 if floater_copy.container_head().selector():
@@ -183,11 +186,11 @@ class FloaterMovement():
                                 else:
                                     return True
                             else:
-                                return False
+                                return False  # The position is impossible due to -SPEC:*
                         else:
-                            return True
+                            return True  # No container, no other conditions must be checked
                     else:
-                        return False
+                        return False  # More than one specifier
                 else:
                     return False
         else:

@@ -40,14 +40,14 @@ class AdjunctConstructor:
                     # Condition 3. The specifier is accepted by the head
                     # Condition 4. The specifier is not pro/PRO
                     # Condition 5. The head is not marked for -ARG
-                    if ps.edge() and not '-SPEC:*' in head.features and \
-                            not set(head.get_not_specs()).intersection(set(ps.edge()[0].features)) and \
-                            not ps.edge()[0].is_primitive() and '-ARG' not in ps.features:
+                    if ps.edge() and not '-SPEC:*' in ps.head().features and \
+                            not (set(ps.head().get_not_specs()) & set(ps.edge()[0].head().features)) and \
+                            not ps.edge()[0].is_primitive() and '-ARG' not in ps.head().features:
                         if head.mother.mother:
-                            self.make_adjunct(head.mother.mother)
+                            self.make_adjunct(ps.head().mother.mother)
                         return ps.mother.mother
                     else:
-                        self.make_adjunct(head.mother)
+                        self.make_adjunct(ps.head().mother)
                         return ps.mother
             else:
                 self.make_adjunct(ps)
@@ -71,9 +71,12 @@ class AdjunctConstructor:
         # Adjuncts must be transferred to LF
         self.transfer_adjunct(ps)
 
+        # Note. The status of this rule is unclear
+        # It creates wrong output in V DO S, when S is made adjunct; then DP will be made adjunct and it no longer is a complement to V
+        #
         # If we created [<XP>, <XP>], it will be transformed into <<XP>, <XP>>
         if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-            ps.mother.adjunct = True
+            pass # ps.mother.adjunct = True
 
         return True
 
