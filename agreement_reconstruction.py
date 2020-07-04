@@ -18,12 +18,11 @@ class AgreementReconstruction:
     def reconstruct(self, ps):
 
         # Downstream walk
-        ps_ = ps
-        while ps_:
-
+        # ---------------------------- minimal search -------------------------------------- #
+        for node in ps.minimal_search():
             # Condition 1. There is a primitive head to the left
-            if ps_.left_const and ps_.left_const.is_primitive():
-                h = ps_.left_const
+            if node.left_const and node.left_const.is_primitive():
+                h = node.left_const
 
                 # Condition 2. The head requires feature valuation (does not have feature -VAL)
                 # (Thus, VAL is assumed to be the default unless explicitly blocked)
@@ -33,8 +32,7 @@ class AgreementReconstruction:
                     #
                     log(f'\t\t\t\t\tHead {h} triggers Agree-1:')
                     self.acquire_phi(h)
-
-            ps_ = ps_.walk_downstream()
+        # ------------------------------------------------------------------------------------#
 
     # Definition for phi-feature acquisition (Agree-1)
     # H (with unvalued phi) acquires phi-features from
@@ -74,15 +72,19 @@ class AgreementReconstruction:
     # Condition 3. D contains valued phi-features other than [PHI:DET...]
     def acquire_from_sister(self, ps):
 
+        if not ps:
+            return ps, {}
+
         # ps = sister of the head acquiring phi-features
         ps_ = ps
 
-        # Downstream loop
-        while ps_:
 
+        # Downstream loop
+        # ---------------------------- minimal search ----------------------------#
+        for node in ps.minimal_search():
             # Condition 1. XP is left and is not primitive
-            if ps_.left_const and ps_.is_complex():
-                goal = ps_.left_const.head()
+            if node.left_const and node.is_complex():
+                goal = node.left_const.head()
 
                 # Condition 2. Stop at a phase boundary (no long distance probing)
                 # Phase is defined as {v, C, Force, BE}, but this is stipulation
@@ -94,8 +96,7 @@ class AgreementReconstruction:
 
                     # Condition 3. Collect all valued phi-features (ignore unvalued features and PHI:DET)
                     return goal, sorted({f for f in goal.features if self.phi(f) and f[:7] != 'PHI:DET' and self.valued(f)})
-
-            ps_ = ps_.walk_downstream()
+        # ---------------------------------------------------------------------------#
 
         # If search finds nothing,  return an empty set
         return ps_, {}

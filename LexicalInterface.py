@@ -195,7 +195,6 @@ class LexicalInterface:
             const.morphology = key
             const.internal = internal
             word_list = [const]
-            print(f'Lexical item \"{key}\" not found from the surface vocabulary (will try morphological decomposition)')
 
         return word_list
 

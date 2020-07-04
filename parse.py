@@ -36,7 +36,6 @@ from context import Context
 
 # Visualizer
 import visualizer
-import pyglet
 
 # file systems
 from pathlib import Path
@@ -96,23 +95,24 @@ grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
 # Empty at first
 parse_list = []
 
-#Initialize the visualizer
-Graphic_output = visualizer.Visualizer()
+# Initialize the visualizer
 
 # Default values for image generation (image_output) and speed (stop_after)
-Graphic_output.image_output = False
-Graphic_output.stop_after_each_image = False
-Graphic_output.show_words = False
 arguments = set(sys.argv)
 if '/images' in arguments:
+    Graphic_output = visualizer.Visualizer()
     Graphic_output.image_output = True
+    Graphic_output.image_output = False
+    Graphic_output.stop_after_each_image = False
+    Graphic_output.show_words = False
     if '/slow' in arguments:
         Graphic_output.stop_after_each_image = True
     if '/words' in arguments:
         Graphic_output.show_words = True
     if '/glosses' in arguments:
         Graphic_output.show_glosses = True
-
+    if '/sentences' in arguments:
+        Graphic_output.show_sentences = True
 p = Path(data_folder / 'phrase_structure_images')
 try:
     p.mkdir()
@@ -220,7 +220,7 @@ not_parsed = []
 #
 # BLock 4. Parsing loop
 #
-# Parses all  sentences in the corpus
+# Parses all sentences in the corpus
 for sentence in parse_list[start:]:
     print('\n' + str(count) + '. ' + f'{sentence}')
 
@@ -271,27 +271,24 @@ for sentence in parse_list[start:]:
 
         # Print the input sentence to the log file
         set_logging(True)
-        s = ''
+        input_sentence_string = ''
 
         # Create string representation for the sentence from the word list
         for word in sentence:
-            s = s + word + ' '
+            input_sentence_string = input_sentence_string + word + ' '
 
         # Definition for ungrammaticality
         # Sentence S is ungrammatical if and only if no results were found
         if len(P.result_list) == 0:
-            grammaticality_judgments_file.write(str(count) + '. *' + s + '\n')
-            results_file.write(str(count) + '. * ' + s + '\n\n')
+            grammaticality_judgments_file.write(str(count) + '. *' + input_sentence_string + '\n')
+            results_file.write(str(count) + '. * ' + input_sentence_string + '\n\n')
         else:
-            grammaticality_judgments_file.write(str(count) + '.  ' + s + '\n')
-            # Marginality estimations (if relevant) are printed here
-            # grammaticality_judgment refers to the categories '', ?, ??, ?* provided above
-            # Graded judgments are not always used
+            grammaticality_judgments_file.write(str(count) + '.  ' + input_sentence_string + '\n')
             if 0 >= P.score >= -6:
                 judgment = grammaticality_judgement[int(round(abs(P.score), 0))]
             else:
                 judgment = '##'
-            results_file.write(str(count) + '. ' + judgment + s + '\n\n')
+            results_file.write(str(count) + '. ' + judgment + input_sentence_string + '\n\n')
 
             # Print the results into the results file
             parse_id = 1
@@ -312,10 +309,10 @@ for sentence in parse_list[start:]:
                 results_file.write('\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
                 results_file.write('\n')
 
-                if Graphic_output.image_output:
+                if '/images' in arguments:
                     file_name = 'Raw image of (' + str(count) + chr(96 + parse_id) + ').png'
                     Graphic_output.file_identifier = data_folder / 'phrase_structure_images' / file_name
-                    Graphic_output.draw(parse)
+                    Graphic_output.draw(parse, input_sentence_string)
 
                 parse_id = parse_id + 1
 

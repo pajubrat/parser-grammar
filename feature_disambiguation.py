@@ -12,16 +12,17 @@ class FeatureProcessing():
     # Condition 2. Examine only ambiguous features ?F
     # Output. Resolve ambiguous feature ?F
     def disambiguate(self, ps):
-        ps_ = ps
-        while ps_:
+
+        # --------------------------- minimal search ---------------------------------------------#
+        for node in ps.minimal_search():
             # If there is a primitive head to the left...
-            if ps_.left_const and ps_.left_const.is_primitive():
-                h = ps_.left_const
+            if node.left_const and node.left_const.is_primitive():
+                h = node.left_const
                 # ...and it has neutralized agreement features, they are first disambiguated...
                 if '?ARG' in h.features:
                     log(f'\t\t\t\t\tSolving feature ambiguities for \"{h}\".')
                     self.resolve_neutralized_feature(h)
-            ps_ = ps_.walk_downstream()
+        # ----------------------------------------------------------------------------------------#
 
     # Definition for feature inheritance
     # Only applies for features ?F that need resolution

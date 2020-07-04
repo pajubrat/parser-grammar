@@ -114,8 +114,7 @@ class PhraseStructure:
             grandparent.left_const = sister
             self.mother = None
 
-    # Defines the operation * which merges a head inside another head
-    def __mul__(self, ps):
+    def sink(self, ps):
 
         def get_bottom(site):
             ps_ = site
@@ -123,9 +122,11 @@ class PhraseStructure:
                 ps_ = ps_.right_const
             return ps_
 
-        get_bottom(self).right_const = ps
-        ps.mother = get_bottom(self)
-        get_bottom(self).left_const = None
+        bottom = get_bottom(self)
+
+        bottom.right_const = ps
+        ps.mother = bottom
+        bottom.left_const = None
 
         return self.top()
 
@@ -371,7 +372,7 @@ class PhraseStructure:
             log(f'\t\t\t\t\t({intervention_feature} intervenes search)')
             return None
 
-        # Condition 3. In [XP, YP], YP not an adjunct, downward path is XP; YP otherwise
+        # Condition 3. In [X, YP], YP not an adjunct, downward path is XP; YP otherwise
         if self.left_const.is_primitive():
             if not self.right_const.adjunct:
                 return self.right_const
@@ -385,6 +386,45 @@ class PhraseStructure:
             return self.left_const
 
         return None
+
+    def walk_downstream_geometrically(self):
+        if self.is_complex() and self.right_const:
+            return self.right_const
+        else:
+            return None
+
+    def causes_intervention(self, feature, phrase_structure):
+        if self != phrase_structure.minimal_search()[0]:                    # Ignore the first node
+            if feature in self.sister().features:
+                log(f'\t\t\t\t\tFeature {feature} causes HM intervention.')
+                return True
+            else:
+                return False
+
+    def detect(self, property=''):
+        if property == 'complex head':
+            complex_head = None
+            if self.is_primitive() and self.has_affix():
+                complex_head = self
+            elif self.left_const and self.left_const.is_primitive() and self.left_const.has_affix():
+                complex_head = self.left_const
+            return complex_head
+        return None
+
+    def minimal_search(self):
+        return [node for node in self]
+
+    def is_primitive_head(self):
+        if self.is_primitive() and not self.has_affix():
+            return True
+        else:
+            return False
+
+    def is_complex_head(self):
+        if self.is_primitive() and self.has_affix():
+            return True
+        else:
+            return False
 
     # Definition for geometrical upstream walk
     # XP can be reached from H by geometrical upstream walk if and only if
@@ -421,6 +461,24 @@ class PhraseStructure:
         while result.mother:
             result = result.mother
         return result
+
+    def node_at(self, position):
+        ps_ = self.top()
+        for pos in range(0, position):
+                ps_ = ps_.right_const
+        return ps_
+
+    def get_position_on_geometric_right_edge(self):
+        ps_ = self.top()
+        position = 0
+        while ps_:
+            if ps_ == self:
+                return position
+            if ps_.right_const:
+                position = position + 1
+                ps_ = ps_.right_const
+            else:
+                return None
 
     # Copies a phrase structure
     def copy(self):
@@ -985,39 +1043,40 @@ class PhraseStructure:
     # Block 5. Unclassified functions
     #
     #
-
     # Returns the node 'item' at the right edge
     # E.g. ps[3] = 3rd node at the right edge
-    def __getitem__(self, item):
+    def __getitem__(self, position):
 
         iterator_ = 0
         ps_ = self
-        while ps_ and not iterator_ == item:
-            if not ps_.is_primitive():
-                ps_ = ps_.right_const
-                iterator_ = iterator_ + 1
+
+        while ps_:
+            if iterator_ == position:
+                return ps_
+
+            # No more constituents to travel
+            if ps_.is_primitive():
+                raise IndexError
+
+            # ps_ = [X(P) Y(P)], selection must be made
             else:
-                ps_ = None
+                # Take Y if labelling takes Y (ignore left specifiers, adjuncts)
+                if ps_.head() == ps_.right_const.head():
+                     ps_ = ps_.right_const
+                # Labelling picks X in [X Y]
+                else:
+                    # If X is complex, pick it
+                    if ps_.left_const.is_complex():
+                        ps_ = ps_.left_const
+                    else:
+                        # If X is primitive, take Y if it is not adjunct
+                        if ps_.right_const.adjunct:
+                            ps_ = ps_.left_const
+                        # If y is primitive and Y is selected sister, continue with Y
+                        else:
+                            ps_ = ps_.right_const
 
-        if not ps_:
-            raise IndexError
-        else:
-            return ps_
-
-    # Returns the index of 'site' inside 'self'
-    # The index 0 = top note
-    def index(self, site):
-
-        ps_ = self
-        iterator_ = 0
-        while not ps_ == site and ps_.right_const and not ps_.is_primitive():
-            ps_ = ps_.right_const
             iterator_ = iterator_ + 1
-
-        if ps_ == site:
-            return iterator_
-        else:
-            return None
 
     # Copies a constituent and does all other operations required for reconstruction
     def copy_from_memory_buffer(self, babtize='1'):

@@ -250,26 +250,22 @@ class LinearPhaseParser:
                         adjunction_sites = self.ranking(self.filter(ps, lexical_item), lexical_item)
 
                         # Output from filtering and ranking generate the parsing space
-                        for i, site in enumerate(adjunction_sites, start=1):
-                            ps_ = ps.top().copy()
+                        for site in adjunction_sites:
+
                             self.number_of_Merge = self.number_of_Merge + 1
-                            #
-                            # Two options:
-                            #
-                            # A. If the new item was inside the same word as the previous item, a special
-                            # operation is used which creates a complex terminal item.
-                            #
-                            # B. If not, apply Right Merge (substitution to the right edge)
-                            #
+
+                            # Create copy and target site at the new copy
+                            ps_ = ps.top().copy()
+                            site_ = ps_.node_at(site.get_position_on_geometric_right_edge())
+
                             # Option A. Create complex terminal item
-                            if site.get_bottom_affix().internal:
-                                site_ = ps_[ps.index(site)]
-                                new_ps = site_ * lexical_item
+                            if site_.get_bottom_affix().internal:
+                                new_ps = site_.sink(lexical_item)
+
                             # Option B. Apply Right Merge
                             else:
-                                log(f'\t\t\tExploring solution number ({i}) =' + f'[{site} {lexical_item.get_pf()}]')
-                                site_ = self.transfer_to_lf(ps_[ps.index(site)])
-                                new_ps = site_ + lexical_item
+                                log(f'\t\t\tExploring solution [{site_} {lexical_item.get_pf()}]')
+                                new_ps = self.transfer_to_lf(site_) + lexical_item
 
                             # Move to next word
                             self._first_pass_parse(new_ps, lst_branched, index + 1)
@@ -280,12 +276,13 @@ class LinearPhaseParser:
                     #
                     # ------------------------------------------------------------------------------------
 
-            # If all solutions in the list have been explored, we backtrack
+            # If all solutions in the list have been explored,  backtrack
             if not self.exit:
                 # All branches for the incoming surface word have been explored
                 log(f'\t\tI have now explored all solutions for \"' + lst[index] + '\".')
                 log('\t\tGoing one step backwards and taking another solution from previous ranking list........'
                     '\n\n\t\t(backtracking...)\n')
+
             return
 
     # Definition for filtering
@@ -306,22 +303,22 @@ class LinearPhaseParser:
 
         # Prepare the list of adjunction sites
         adjunction_sites = []
-
+        N = ps
         # Gather all merge nodes at the right edge of the phrase structure ('ps')
-        for i, N in enumerate(ps, start=1):
 
+        while N:
+            reject = False
             # Condition 2. If N does not accept any complementizer (-COMP:*), [N W] is filtered out
             if N.is_primitive():
                 if '-COMP:*' in N.features:
+                    set_logging(True)
                     log(f'\t\t\t\tReject [{N} {w}] because {N} does not accept complementizers.')
-                    continue
-
+                    reject = True
             # Condition 3. If N does not pass strong LF-legibility test, filter out [N W].
-            if not N.is_primitive():
+            else:
                 set_logging(False)
                 dropped = self.transfer_to_lf(N.copy())
                 lf_test = dropped.LF_legibility_test()
-
                 # XP fails strong LF-legibility if and only if
                 # Condition 1. The LF-legibility test fails
                 # Condition 2. w is not adjoinable
@@ -333,18 +330,21 @@ class LinearPhaseParser:
                         lf_test.criterial_feature_test_result):
                     set_logging(True)
                     log(f'\t\t\t\tReject [{dropped.illustrate()} {w}] due to bad left branch.')
-                    continue
+                    reject = True
+                else:
+                    # Condition 4. If solution [N w] breaks existing words, it is rejected.
+                    if self.is_word_internal(N):
+                        if not w.is_adjoinable():  # Adjoinable phrases cannot be tested because they might become adjuncts later
+                            set_logging(True)
+                            log(f'\t\t\t\tReject [{repr(N)} {w}] as Spec because it breaks words.')
+                            reject = True
 
-            set_logging(True)
+            #  Add the site to the list if it was not filtered out by previous conditions A-D.
+            if not reject:
+                adjunction_sites.append(N)
 
-            # Condition 4. If solution [N w] breaks existing words, it is rejected.
-            if not N.is_primitive() and self.is_word_internal(N):
-                if not w.is_adjoinable():  # Adjoinable phrases cannot be tested because they might become adjuncts later
-                    log(f'\t\t\t\tReject [{repr(N)} {w}] as Spec because it breaks words.')
-                    continue  # reject this site and start next site
-
-            # Add the site to the list if it was not filtered out by previous conditions A-D.
-            adjunction_sites.append(N)
+            # Geometric downstream walk
+            N = N.walk_downstream_geometrically()
 
         # Return the list of possible adjunction sites
         return adjunction_sites

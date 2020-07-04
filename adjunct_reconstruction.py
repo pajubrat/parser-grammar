@@ -23,20 +23,16 @@ class FloaterMovement():
             return ps
 
         # Move downward from top
-        _ps_iterator = ps.top()
+        phrase_structure = ps.top()
 
-        # ---------------------while loop begins----------------------------------#
-        while _ps_iterator:
-
-            # Detect a floater
-            floater = self.detect_floater(_ps_iterator)
+        # --------------------- minimal search ----------------------------------#
+        for node in phrase_structure.minimal_search():
+            floater = self.detect_floater(node)
             if floater:
                 log(f'\t\t\t\t\tDropping {floater}')
                 # Drop the floater
                 self.drop_floater(floater, ps)
-            _ps_iterator = _ps_iterator.walk_downstream()
-
-        # -------------------while loop ends----------------------------------------#
+        # ----------------------------------------------------------------------#
 
         return ps.top()  # Return top, because it is possible that an adjunct expands the structure
 
@@ -113,47 +109,47 @@ class FloaterMovement():
         # This is the element we  fit into the structure
         floater_copy = floater.copy()
 
-        # ------------------------------------ while loop begins ------------------------------------#
-        # Downward loop searches for a position for the floater
-        while ps_iterator_ and not ps_iterator_ == floater and not ps_iterator_.find_me_elsewhere:
+        # ------------------------------------ minimal search ------------------------------------#
+        if ps_iterator_:
+            for node in ps_iterator_.minimal_search():
+                if node == floater or node.find_me_elsewhere:
+                    break
 
-            # Create hypothetical structure for testing
-            if 'ADV' in floater_copy.features:
-                ps_iterator_.merge(floater_copy, 'right')
-            else:
-                ps_iterator_.merge(floater_copy, 'left')
-
-            # If a suitable position is found, dropping will be executed
-            # Condition 1: tail test succeeds,
-            # Condition 2: we are not reconstructing inside the same projection (does not apply to right-adjoined)
-            # Condition 3: dropped non-ADV will become the only SPEC
-            # Condition 4: the position is not associated with -SPEC:* and -ARG (these are nonthematic)
-            if self.is_drop_position(ps_iterator_, floater_copy, starting_point_head):
-                if not floater.adjunct:
-                    self.adjunct_constructor.create_adjunct(floater)
-
-                # We have found a position and create the actual copy that will be in the new position
-                dropped_floater = floater.copy_from_memory_buffer(self.babtize())
-
-                # Adverbs and PPs are adjoined to the right
-                if 'ADV' in floater_copy.features or 'P' in floater_copy.features:
-                    ps_iterator_.merge(dropped_floater, 'right')
-
-                # Everything else is adjoined to the left
+                # Create hypothetical structure for testing
+                if 'ADV' in floater_copy.features:
+                    node.merge(floater_copy, 'right')
                 else:
-                    ps_iterator_.merge(dropped_floater, 'left')
+                    node.merge(floater_copy, 'left')
 
-                # Keep record of the computations consumed
-                self.controlling_parser_process.number_of_phrasal_Move += 1
+                # If a suitable position is found, dropping will be executed
+                # Condition 1: tail test succeeds,
+                # Condition 2: we are not reconstructing inside the same projection (does not apply to right-adjoined)
+                # Condition 3: dropped non-ADV will become the only SPEC
+                # Condition 4: the position is not associated with -SPEC:* and -ARG (these are nonthematic)
+                if self.is_drop_position(node, floater_copy, starting_point_head):
+                    if not floater.adjunct:
+                        self.adjunct_constructor.create_adjunct(floater)
 
-                floater_copy.remove()
-                log(f'\t\t\t\t\t = {ps}')
-                return
-            else:
-                floater_copy.remove()
+                    # We have found a position and create the actual copy that will be in the new position
+                    dropped_floater = floater.copy_from_memory_buffer(self.babtize())
 
-            ps_iterator_ = ps_iterator_.walk_downstream()
-        # --------------------------------------- while loop ends --------------------------------------#
+                    # Adverbs and PPs are adjoined to the right
+                    if 'ADV' in floater_copy.features or 'P' in floater_copy.features:
+                        node.merge(dropped_floater, 'right')
+
+                    # Everything else is adjoined to the left
+                    else:
+                        node.merge(dropped_floater, 'left')
+
+                    # Keep record of the computations consumed
+                    self.controlling_parser_process.number_of_phrasal_Move += 1
+
+                    floater_copy.remove()
+                    log(f'\t\t\t\t\t = {ps}')
+                    return
+                else:
+                    floater_copy.remove()
+            # ---------------------------------------------------------------------------------------#
 
     # Definition for a legitimate target position for floater reconstruction
     def is_drop_position(self, ps_iterator_, floater_copy, starting_point_head):

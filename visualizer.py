@@ -21,18 +21,21 @@ class Visualizer:
         self.image_output = False
         self.show_words = False
         self.show_glosses = False
+        self.input_sentence_string = ''
+        self.show_sentences = False
         pass
 
     # Definition for the drawing function
-    def draw(self, ps):
+    def draw(self, ps, input_sentence_string):
         self.new_lateral_stretch_needed = True
+        self.input_sentence_string = input_sentence_string
         ps.x = 0
         ps.y = 0
         self.determine_plane_topology(ps)
         while self.new_lateral_stretch_needed:
             self.new_lateral_stretch_needed = False
             self.lateral_stretch(ps)
-        win = ProduceGraphicOutput(ps, self.file_identifier, self.stop_after_each_image, self.show_words, self.show_glosses)
+        win = ProduceGraphicOutput(ps, self.file_identifier, self.input_sentence_string, self.stop_after_each_image, self.show_words, self.show_glosses, self.show_sentences)
         pyglet.app.run()
         if not self.stop_after_each_image:
             win.close()
@@ -107,7 +110,7 @@ class Visualizer:
 # Definition for the output window behavior
 class ProduceGraphicOutput(pyglet.window.Window):
 
-    def __init__(self, ps, save_image_file_name, stop, show_words, show_glosses):
+    def __init__(self, ps, save_image_file_name, input_sentence_string, stop=False, show_words=False, show_glosses=False, show_sentences=False):
 
         # Define the grid
         self.x_grid = 50
@@ -122,6 +125,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.stop_after_each_image = stop
         self.show_words = show_words
         self.show_glosses = show_glosses
+        self.show_sentences = show_sentences
+        self.input_sentence_string = input_sentence_string
 
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
@@ -143,7 +148,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
     def on_draw(self):
 
         glClear(GL_COLOR_BUFFER_BIT)
-
         # Recursive projection function
         def project_into_plane(ps):
 
@@ -193,6 +197,17 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                                        anchor_x='center', anchor_y='center',
                                                        color=(1, 1, 1, 255))
                             label4.draw()
+
+            # Add the original sentence if required
+            if self.show_sentences:
+                label5 = pyglet.text.Label(self.input_sentence_string,
+                                           font_name='Times New Roman',
+                                           font_size=20,
+                                           italic = True,
+                                           x=0, y=0,
+                                           anchor_x='left', anchor_y='bottom',
+                                           color=(1, 1, 1, 255))
+                label5.draw()
 
             # Left branch line
             if ps.left_const:

@@ -21,11 +21,11 @@ class PhrasalMovement():
         _ps_iterator = ps
         _ps_last_site = _ps_iterator
 
-        # Move downward and target phrases for movement/insertion from memory buffer
-        while _ps_iterator:
+        # ------------------------------ minimal search -----------------------------------------------#
+        for node in ps.minimal_search():
 
             # Target primitive heads on our way downstream
-            h = self.target_head(_ps_iterator)
+            h = self.target_head(node)
             if h:
                 #
                 # Case 1. Missing SPEC, if any, is filled if suitable phrase is in the memory buffer
@@ -41,8 +41,9 @@ class PhrasalMovement():
                 self.fill_comp_from_memory(h)
 
             # Walk downwards on the right edge
-            _ps_last_site = _ps_iterator
-            _ps_iterator = _ps_iterator.walk_downstream()
+            _ps_last_site = node
+        # ------------------------------------------------------------------------------------------#
+
 
     #
     # Case 1. Fill specifier position from memory buffer

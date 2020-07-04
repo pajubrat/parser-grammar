@@ -38,30 +38,23 @@ class Extraposition:
             return False
 
     def get_bottom(self, ps):
-        iterator_ = ps
-        while iterator_:
-            if iterator_.is_primitive():
-                return iterator_
-            else:
-                iterator_ = iterator_.walk_downstream()
-        return
+        return ps.minimal_search()[-1]
 
     def find_selection_violation(self, ps):
-        ps_ = ps
-        selectee = None
-        while ps_:
-            if ps_.is_complex():
-                selector = ps_.left_const
+        # ------------------------- minimal search --------------------------------#
+        for node in ps.minimal_search():
+            if node.is_complex():
+                selector = node.left_const
                 not_comps = selector.get_not_comps()
                 mandatory_comps = selector.get_mandatory_comps()
-                selectee = ps_.right_const.head()
+                selectee = node.right_const.head()
                 if not_comps & selectee.features:
                     log(f'\t\t\t\t\t{selector} cannot select {selectee}')
                     return selectee
                 if mandatory_comps and not (mandatory_comps & selectee.features):
                     log(f'\t\t\t\t\t{selector} cannot select {selectee}')
                     return selectee
-            ps_ = ps_.walk_downstream()
+        # --------------------------------------------------------------------------#
         return None
 
     def last_resort_reconstruct(self, ps):
@@ -77,7 +70,7 @@ class Extraposition:
         log(f'\t\t\t\t\tLast resort extraposition will be tried on {ps.top()}.')
 
         # The operation performs an upstream walk
-        ps_ = self.get_bottom(ps).mother
+        node = self.get_bottom(ps).mother
 
         # Promote HP into an adjunct if and only if
         # Condition 1. HP is the first [H XP] from the bottom where H is adjoinable,
@@ -88,34 +81,34 @@ class Extraposition:
         #          b-X has mandatory election for another label than H
         # Condition 3. HP is adjoinable
 
-        while ps_:
-
+        # ------------------------- upstream walk ------------------------------------------------#
+        while node:
             # Condition 2(i), ps_ = [H YP], [XP][H YP]
-            if ps_.left_const.is_primitive() and ps_.left_const.is_adjoinable() and ps_.sister():
-                if ps_.sister().is_complex():
+            if node.left_const.is_primitive() and node.left_const.is_adjoinable() and node.sister():
+                if node.sister().is_complex():
                     break
                 # Condition 2(ii) ps_ = [H YP], [X0 [H YP]]
                 # Select HP if and only if X0 rejects HP as complement
                 else:
                     # Condition 2(ii)-a. Explicit negative selection
-                    if ps_.left_const.features & ps_.sister().get_not_comps():
+                    if node.left_const.features & node.sister().get_not_comps():
                         break
                     # Condition 2(ii)-b. Mandatory selection for something else
-                    if ps_.sister().get_mandatory_comps() and not (
-                            ps_.left_const.features & ps_.sister().get_mandatory_comps()):
+                    if node.sister().get_mandatory_comps() and not (node.left_const.features & node.sister().get_mandatory_comps()):
                         break
-            ps_ = ps_.walk_upstream()
+            node = node.walk_upstream()
+        # -----------------------------------------------------------------------------------------#
 
         # If a suitable node was found, we try to turn it into an adjunct
         # [H XP] will be promoted into an adjunct if and only if
         # Condition 2. <H XP> will be LF-interpretable at that position
-        if ps_:
+        if node:
 
             # The adjunct must be interpretable at this location
-            self.adjunct_constructor.create_adjunct(ps_)
+            self.adjunct_constructor.create_adjunct(node)
 
             # Condition 2. <H XP> is interpretable as an adjunct at that location.
-            if not ps_.top().LF_legibility_test().all_pass():
+            if not node.top().LF_legibility_test().all_pass():
                 log(f'\t\t\t\t\tSomething is still wrong. The structure is still uninterpretable.')
             return True
         else:
