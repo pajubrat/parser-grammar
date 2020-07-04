@@ -274,6 +274,33 @@ class PhraseStructure:
                 return self.mother.left_const
         return None
 
+    def Abar_movable(self):
+        if self.scan_criterial_features():
+            return True
+        elif 'A/inf' in self.head().features:
+            return True
+        else:
+            return False
+
+    def must_have_head(self):
+        if self.adjunct and not self.scan_criterial_features():
+            return False
+        else:
+            return True
+
+    def get_iterator(self):
+        if self.is_left():
+            return self.mother
+        else:
+            return self
+
+    def get_phrasal_left_sister(self):
+        if self.sister() and not self.sister().is_primitive() and self.sister().is_left():
+            return self.sister()
+        else:
+            return None
+
+
     # Definition for selector
     # X is the selector of H if and only if
     # Condition 1. X is the  element in H's feature vector with index 1
