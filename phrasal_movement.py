@@ -145,7 +145,7 @@ class PhrasalMovement():
         #  Condition 2. The head has a non-matching complement
         if h.is_left() and h.complement() and not (h.get_comps() & h.complement().features):
             const = self.hit_from_memory_buffer(h)
-            if const.features & h.get_comps():
+            if const and const.features & h.get_comps():
                 h.complement().merge(const.copy_from_memory_buffer(self.babtize()), 'left')
                 self.controlling_parser_process.number_of_phrasal_Move += 1
                 self.memory_buffer.remove(const)

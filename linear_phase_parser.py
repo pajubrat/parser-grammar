@@ -68,12 +68,12 @@ class LinearPhaseParser:
         self.surface_conditions_module = SurfaceConditions()
         self.surface_conditions_pass = True
 
-    # This function activates the parser
-    # Input is list of words ('lst')
     def parse(self, lst):
-
-        # Reset parser state before beginning a new sentences
+        set_logging(True)
         self.result_list = []
+        self.semantic_interpretation = set()
+        self.number_of_ambiguities = 0
+        self.result_matrix = [[] for i in range(50)]
         self.memory_buffer_inflectional_affixes = set()
         self.number_of_Merge = 0
         self.number_of_head_Move = 0
@@ -84,185 +84,48 @@ class LinearPhaseParser:
         self.number_of_inflectional_features_processed = 0
         self.number_of_items_consumed = 0
         self.discourse_plausibility = 0
-        self.first_solution_found = False
         self.score = 0
-        reset_number_of_operations()
-        self.name_provider_index = 0
-
-        set_logging(True)
+        self.first_solution_found = False
         self.exit = False
-
-        # ps = current phrase structure
-        ps = None
-
-        # Set flags
+        self.name_provider_index = 0
         self.surface_conditions_pass = True
 
-        # Start parsing
-        self._first_pass_parse(ps, lst, 0)
+        self._first_pass_parse(None, lst, 0)
 
-    # Definition for the recursive parsing algorithm
     def _first_pass_parse(self, ps, lst, index):
-
-        # If self.exit is set to TRUE, recursion ends and control returns to the main parsing function
         if self.exit:
             return
-
         set_logging(True)
-
         if not self.memory_buffer_inflectional_affixes:
             log(f'\t\t\t={ps}')
 
-        # Procedure for reaching the end of the input
-        # The expression converges (produces a solution) if and only if
-        # Condition 1. The expression passes surface legibility
-        # Condition 2. The expression passes LF-legibility at the LF-interface
-        # Condition 3. The expression can be transferred to the Conceptual-Intentional system
-        if index == len(lst):
-
-            # Add to the number of solutions found until the first acceptable solution is encountered
-            # This counts the number of garden-path solutions
-            if not self.first_solution_found:
-                self.number_of_solutions_tried = self.number_of_solutions_tried + 1
-            log('\n\t>>>\t' + f'Trying candidate spell out structure ' + ps.illustrate())
-
-            # Condition 1. Test surface legibility
-            log('\t\tChecking surface conditions...')
-            S = self.surface_conditions_module
-            S.all_pass = True
-            self.surface_conditions_pass = S.reconstruct(ps)
-            if self.surface_conditions_pass:
-
-                # Condition 2. The expression passes LF-legibility if and only if
-                # Presuppostion 2a) The expression undergoes final transfer, and then
-                # Condition     2b) The expression satisfies LF-legibility
-                log('\t\tReconstructing...')
-
-                # Presupposition 2a. The expression undergoes final transfer
-                ps_ = self.transfer_to_lf(ps)
-                log('\t\t\t= ' + ps_.illustrate())
-                log(f'\t\tChecking LF-interface conditions.')
-
-                # Condition 2b. The expression passes LF-legibility
-                lf = ps_.LF_legibility_test()
-                if lf.all_pass():
-
-                    # Condition 3. The expression can be transferred to the Conceptual-Intentional system
-                    #
-                    # Note: in this version, CI reports back a "semantic interpretation" which must be non-empty
-                    self.semantic_interpretation = self.transfer_to_CI(ps_)
-                    if lf.final_tail_check(ps_):
-
-                        # CONVERGENCE: OUTPUT IS ACCEPTED.
-                        if self.semantic_interpretation:
-                            self.result_list.append([ps_, self.semantic_interpretation])
-                            log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
-                            show_results(ps_, self.result_list, self.semantic_interpretation)
-                            # Register that a (first) solution has been found
-                            self.first_solution_found = True
-                            # self.exit = True    # Knock this out if you want to see all solutions
-                        else:
-                            log('\t\t\tThe sentence cannot be interpreted at LF')
-                    else:
-                        report_tail_head_problem(ps_)
-                else:
-                    report_LF_problem(ps_)
-            else:
-                log(f'\t\t\tSurface condition failure.\n\n')
-
-            return  # This return will send the parser to an unexplored path in the recursive parse tree
-
-        # Control flow for consuming the next word
-        # Condition 1.  Lexical ambiguity is resolved
-        # Condition 2.  Polymorphemic input words are decomposed and reversed by the mirror principle, the elements
-        #               positioned into the input string
-        # Condition 3.  Inflectional features are stored into temporary memory buffer
-        # Condition 4.  Monomorphemic lexical items
-        #               a)  receive inflectional features (if any) from the memory buffer as features
-        #               b)  are right merged to the existing phrase structure based on (i) filtering and (ii) ranking.
+        if index == len(lst):               # No more words in the input
+            self.complete_processing(ps)    # Finalizes the output, LF-legibility
+            return                          # Complete this parsing branch
         else:
-
-            # Record operations
-            self.number_of_items_consumed += 1
-
-            # Initialize morphology
-            m = self.morphology
-
-            # Condition 1. Lexical ambiguity creates a search path for each lexical item
-            #
-            # Disambiguated_word-list contains a list of lexical items retrieved from the surface lexicon on the basis
-            # of the surface item. A lexical item is a set of features. Lexical items can be classified into three
-            # groups:
-            #
-            #   INFLECTIONAL features have morphological special null decomposition marked by -
-            #   MONOMORPHEMIC lexical items have no morphological decomposition, only a set of features
-            #   POLYMORPHEMIC lexical items have morphological decomposition
-            #
-            disambiguated_word_list = self.lexicon.lexical_retrieval(lst[index])
-            if len(disambiguated_word_list) > 1:
-                log(f'\t\tAmbiguous lexical item \"{lst[index]}\" detected, {disambiguated_word_list}.')
-            for lexical_constituent in disambiguated_word_list:
-
-                lst_branched = lst.copy()
-
-                lexical_item = lexical_constituent
-
-                # Condition 2. Polymorphemic input words are decomposed
-                # The operation takes a polymorphemic lexical item as an input, decomposes it into primitive
-                # items (inflectional features and monomorphemic units), reverses their order, and positions them into the
-                # input string in the reversed order.
-                while m.is_polymorphemic(lexical_item):
-                    lexical_item, lst_branched = m.morphological_parse(lexical_constituent,
-                                                                       lst_branched,
-                                                                       index)
-
-                # Condition 3. Inflectional features are stored into temporary memory buffer
-                inflection = m.get_inflection(lexical_item)
+            for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):  # Branch for lexical ambiguity
+                m = self.morphology
+                lexical_item, lst_branched, inflection = m.decompose(lexical_constituent, lst.copy(), index)    # Morphological decomposition
+                lexical_item = self.process_inflection(inflection, lexical_item, ps, lst_branched, index)       # Process inflection (if any)
+                self.number_of_items_consumed += 1
                 if inflection:
-
-                    # Add inflectional features and prosodic features into memory
-                    self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
-                    self.number_of_inflectional_features_processed = self.number_of_inflectional_features_processed + 1
-                    log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lst_branched[index + 1] + '\"')
-                    if ps:
-                        self._first_pass_parse(ps.copy(), lst_branched, index + 1)
-                    else:
-                        self._first_pass_parse(None, lst_branched, index + 1)
-
-                # If the item was not inflection, it is a morpheme that must be merged
+                    self._first_pass_parse(self.copy(ps), lst_branched, index + 1)
                 else:
-                    # Condition 4a)
-                    # Unload inflectional suffixes from the memory buffer into the morpheme as features
-                    lexical_item = m.set_inflection(lexical_item, self.memory_buffer_inflectional_affixes)
-                    self.memory_buffer_inflectional_affixes = set()
-
-                    # If there is no prior phrase structure, we create it by using the first word
                     if not ps:
                         self._first_pass_parse(lexical_item.copy(), lst_branched, index + 1)
-
-                    # Condition 4b)
-                    # Right Merge the lexical item to the existing phrase structure
                     else:
                         log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lexical_item.get_pf() + '\"\n')
                         log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_pf())
 
-                        # Impossible merge sites are filtered (i) and the remaining sites are ranked (ii)
+                        # ----------------------- consider merge solutions --------------------------------------- #
                         adjunction_sites = self.ranking(self.filter(ps, lexical_item), lexical_item)
-
-                        # Output from filtering and ranking generate the parsing space
                         for site in adjunction_sites:
-
                             self.number_of_Merge = self.number_of_Merge + 1
-
-                            # Create copy and target site at the new copy
                             ps_ = ps.top().copy()
                             site_ = ps_.node_at(site.get_position_on_geometric_right_edge())
 
-                            # Option A. Create complex terminal item
                             if site_.get_bottom_affix().internal:
                                 new_ps = site_.sink(lexical_item)
-
-                            # Option B. Apply Right Merge
                             else:
                                 log(f'\t\t\tExploring solution [{site_} {lexical_item.get_pf()}]')
                                 new_ps = self.transfer_to_lf(site_) + lexical_item
@@ -271,19 +134,69 @@ class LinearPhaseParser:
                             self._first_pass_parse(new_ps, lst_branched, index + 1)
                             if self.exit:
                                 break
-
-                    # ------------------------------------------------------------------------------------
-                    #
-                    # ------------------------------------------------------------------------------------
+                    # --------------------------------------------------------------------------------------------- #
 
             # If all solutions in the list have been explored,  backtrack
             if not self.exit:
-                # All branches for the incoming surface word have been explored
-                log(f'\t\tI have now explored all solutions for \"' + lst[index] + '\".')
-                log('\t\tGoing one step backwards and taking another solution from previous ranking list........'
-                    '\n\n\t\t(backtracking...)\n')
-
+                log('\t\nBacktracking...\n')
             return
+
+    def copy(self, ps):
+        if ps:
+            return ps.copy()
+        else:
+            return None
+
+    def process_inflection(self, inflection, lexical_item, ps, lst_branched, index):
+        if inflection:
+            self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
+            self.number_of_inflectional_features_processed = self.number_of_inflectional_features_processed + 1
+            log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lst_branched[index + 1] + '\"')
+        else:
+            if self.memory_buffer_inflectional_affixes:
+                log(f'\t\tAdding inflectional features {self.memory_buffer_inflectional_affixes} to ' + lexical_item.get_pf())
+                lexical_item.features = lexical_item.features | set(self.memory_buffer_inflectional_affixes)
+                self.memory_buffer_inflectional_affixes = set()
+
+        return lexical_item
+
+    def complete_processing(self, ps):
+        if not self.first_solution_found:
+            self.number_of_solutions_tried = self.number_of_solutions_tried + 1
+        log('\n\t>>>\t' + f'Trying spellout structure ' + ps.illustrate())
+        log('\t\tChecking surface conditions...')
+
+        # SURFACE CONDITIONS
+        S = self.surface_conditions_module
+        if not S.reconstruct(ps):
+            log(f'\t\t\tSurface condition failure.\n\n')
+        else:
+
+            # FINAL TRANSFER
+            log('\t\tReconstructing...')
+            ps_ = self.transfer_to_lf(ps)
+            log('\t\t\t= ' + ps_.illustrate())
+
+            # LF-LEGIBILITY
+            log(f'\t\tChecking LF-interface conditions.')
+            lf = ps_.LF_legibility_test()
+            if not lf.all_pass():
+                report_LF_problem(ps_)
+            else:
+                self.semantic_interpretation = self.transfer_to_CI(ps_)
+
+                # FINAL TAIL-HEAD CHECK
+                if not lf.final_tail_check(ps_):
+                    report_tail_head_problem(ps_)
+                else:
+                    if not self.semantic_interpretation:
+                        log('\t\t\tThe sentence cannot be interpreted at LF.')
+                    else:
+                        self.result_list.append([ps_, self.semantic_interpretation])
+                        log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
+                        show_results(ps_, self.result_list, self.semantic_interpretation)
+                        self.first_solution_found = True
+                        # self.exit = True    # Knock this out if you want to see all solutions
 
     # Definition for filtering
     # A solution node N for new item w is filtered out if and only if

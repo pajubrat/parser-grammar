@@ -196,6 +196,8 @@ class LexicalInterface:
             const.internal = internal
             word_list = [const]
 
+        if len(word_list) > 1:
+            log(f'\t\tAmbiguous lexical item {key}')
         return word_list
 
     # Definition for the application of the redundancy rules

@@ -73,6 +73,14 @@ class Morphology:
             lexical_item.features = lexical_item.features | set(inflectional_affixes)
         return lexical_item
 
+    def decompose(self, lexical_constituent, lst_branched, index):
+        lexical_item = lexical_constituent
+        while self.is_polymorphemic(lexical_item):
+            lexical_item, lst_branched = self.morphological_parse(lexical_constituent,
+                                                               lst_branched,
+                                                               index)
+        return lexical_item, lst_branched, self.get_inflection(lexical_item)
+
     # Definition for generative morphology that only handles FOC disambiguation at present
     def handle_Cop_feature(self, word):
 
