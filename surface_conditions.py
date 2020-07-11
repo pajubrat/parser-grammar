@@ -13,19 +13,19 @@ class SurfaceConditions:
         ps_ = ps.top()
         self.all_pass = True
 
-        # Walk downward and check clitic conditions
-        while ps_:
-            if ps_.is_complex() and self.is_clitic(ps_.left_const):
-                if not self.is_clitic_licensed(ps_.left_const):
+        # ----------------------- minimal search ---------------------------- #
+        for node in ps_:
+            if node.is_complex() and self.is_clitic(node.left_const):
+                if not self.is_clitic_licensed(node.left_const):
                     self.all_pass = False
-            elif ps_.is_complex() and self.is_clitic(ps_.right_const):
-                if not self.is_clitic_licensed(ps_.right_const):
+            elif node.is_complex() and self.is_clitic(node.right_const):
+                if not self.is_clitic_licensed(node.right_const):
                     self.all_pass = False
                 return self.all_pass
-            elif ps_.is_primitive() and self.is_clitic(ps_):
-                if not self.is_clitic_licensed(ps_):
+            elif node.is_primitive() and self.is_clitic(node):
+                if not self.is_clitic_licensed(node):
                     self.all_pass = False
-            ps_ = ps_.walk_downstream()
+        # -------------------------------------------------------------------- #
 
         return self.all_pass
 
@@ -41,11 +41,11 @@ class SurfaceConditions:
     def is_clitic(self, ps):
 
         # Trivial condition. If ps is a clitic, then ps is trivially a clitic
-        if 'CAT:CL' in ps.features:
+        if 'CL' in ps.features:
             return True
 
         # Condition 1. ps can be a clitic only if its head is a clitic;
-        if 'CAT:CL' in ps.head().features:
+        if 'CL' in ps.head().features:
             # Condition 2.1 If ps has no affixes and (2.2) is internal, then ps is clitic (e.g., D_CL N)
             if not ps.head().has_affix() and ps.head().internal:
                 return True
@@ -94,10 +94,10 @@ class SurfaceConditions:
     def incorporation_condition(self, test_constituent):
 
         # Condition 1. There is a right sister element that contains label V
-        if test_constituent.is_left() and 'CAT:V' in test_constituent.sister().head().get_all_features_of_complex_word():
+        if test_constituent.is_left() and 'V' in test_constituent.sister().head().get_all_features_of_complex_word():
 
             # Condition 2. The left element is not V
-            if 'CAT:V' not in self.get_constituent_to_left_in_linear_order(test_constituent).get_all_features_of_complex_word():
+            if 'V' not in self.get_constituent_to_left_in_linear_order(test_constituent).get_all_features_of_complex_word():
                 return True
             else:
                 # Condition 3. The left element is V but has 'SEM:internal' and does not have 'ASP'

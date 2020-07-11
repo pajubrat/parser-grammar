@@ -191,7 +191,7 @@ class LexicalInterface:
         # If the morpheme was not found, we create a placeholder item
         else:
             const = self.PhraseStructure()
-            const.features = {'PF:?', 'CAT:?'}  # If the word is not found, we will still create it
+            const.features = {'PF:?', '?'}  # If the word is not found, we will still create it
             const.morphology = key
             const.internal = internal
             word_list = [const]
@@ -288,7 +288,6 @@ class LexicalInterface:
         # ARG:  uninterpretable phi-set, unsaturated predicate
         # VAL:  whether agreement reconstruction can value D_, PHI_
         if 'ARG' in features:
-            features.add('CAT:ARG')
             if 'NO_NUMBER' not in features:
                 features.add('PHI:NUM:_')
             if 'NO_PERSON' not in features:

@@ -12,7 +12,7 @@ class Extraposition:
     def reconstruct(self, ps):
 
         # Presupposition 1. Extraposition can be attempted only for "referential" structures (T/fin, D)
-        if not (ps.top().contains_feature('CAT:FIN') or 'D' in ps.top().features):
+        if not (ps.top().contains_feature('FIN') or 'D' in ps.top().features):
             return
 
         # Presupposition 2. Extraposition for unselected heads (i.e. *X selects Y)
@@ -24,18 +24,6 @@ class Extraposition:
         log(f'\t\t\t\t\tExtraposition will be tried on {unselected_head.mother}.')
         self.adjunct_constructor.create_adjunct(unselected_head)
         return True
-
-    # This will promote a phi set (if any) into tail features
-    # (Not correct, only relates to Italian postverbal subjects.)
-    def promote_phi_set(self, ps):
-
-        if ps.get_phi_set():
-            new_tail_feature_list = list(ps.get_phi_set())
-            new_tail_feature = f'TAIL:{",".join([str(f) for f in sorted(new_tail_feature_list)])},!COMP:*'
-            ps.features.add(new_tail_feature)
-            return True
-        else:
-            return False
 
     def get_bottom(self, ps):
         return ps.minimal_search()[-1]
@@ -58,28 +46,14 @@ class Extraposition:
         return None
 
     def last_resort_reconstruct(self, ps):
-
-        # Presupposition 1. We operate only referential structures (T/fin, D)
-        if not (ps.top().contains_feature('CAT:FIN') or 'D' not in ps.top().features):
+        if not (ps.top().contains_feature('FIN') or 'D' not in ps.top().features):
             return
-
-        # Presupposition 2. LF - legibility fails (last resort)
         if ps.top().LF_legibility_test().all_pass():
             return
 
         log(f'\t\t\t\t\tLast resort extraposition will be tried on {ps.top()}.')
 
-        # The operation performs an upstream walk
         node = self.get_bottom(ps).mother
-
-        # Promote HP into an adjunct if and only if
-        # Condition 1. HP is the first [H XP] from the bottom where H is adjoinable,
-        # Condition 2. The grammatical context of HP is either
-        #   (i) [XP][HP] or
-        #   (ii) [X HP] with X not selecting for H, if and only if
-        #          a-X has explicit negative selection for H,
-        #          b-X has mandatory election for another label than H
-        # Condition 3. HP is adjoinable
 
         # ------------------------- upstream walk ------------------------------------------------#
         while node:
@@ -99,23 +73,11 @@ class Extraposition:
             node = node.walk_upstream()
         # -----------------------------------------------------------------------------------------#
 
-        # If a suitable node was found, we try to turn it into an adjunct
-        # [H XP] will be promoted into an adjunct if and only if
-        # Condition 2. <H XP> will be LF-interpretable at that position
         if node:
-
-            # The adjunct must be interpretable at this location
             self.adjunct_constructor.create_adjunct(node)
-
-            # Condition 2. <H XP> is interpretable as an adjunct at that location.
             if not node.top().LF_legibility_test().all_pass():
                 log(f'\t\t\t\t\tSomething is still wrong. The structure is still uninterpretable.')
             return True
         else:
             log(f'\t\t\t\t\tNo suitable node for extraposition found. No action was taken.')
         return False
-
-
-
-
-

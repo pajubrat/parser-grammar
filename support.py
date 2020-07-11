@@ -27,7 +27,6 @@ def show_results(ps_, result_list, semantic_interpretation):
     ps_.tidy_names(1)
     print(chr(96 + len(result_list)) + '. ' + ps_.show())
     print(f'{ps_}')
-    print(ps_.illustrate())
     print(str(semantic_interpretation))
     log_result(ps_)
     log('----------------------------------------------------------------------------------------------------------')

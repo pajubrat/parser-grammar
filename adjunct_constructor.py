@@ -6,93 +6,92 @@ class AdjunctConstructor:
         self.controlling_parser_process = controlling_parser_process
 
     # Definition for creation of adjuncts
-    # Provided a head, creates an adjunct phrase that includes the complement and specifiers (if any)
-    # The nontrivial part is to decide if potential specifiers are included
     def create_adjunct(self, ps):
-
-        head = ps.head()
-
-        # The phrase must be adjoinable
-        if 'adjoinable' in head.features and '-adjoinable' not in head.features:
-            # If the head is primitive, we must decide how much of the surrounding structure he will eat
-            if ps.is_primitive():
-                # If a complex adjunct has found an acceptable position, we use SPEC:* feature
-                if ps.head().external_tail_head_test():
-                    # Condition 1. The head requires a mandatory specifier
-                    # Condition 2. The specifier exists
-                    if 'SPEC:*' in head.features and head.mother.mother and head.mother.sister() and head.mother.sister().is_complex():
-                        # Result. The specifier is eaten inside the adjunct
-                        self.make_adjunct(head.mother.mother)
-                        return ps.mother.mother
-
-                    else:
-                        # The specifier is not eaten inside the adjunct
-                        if head.mother and head.mother.head() == head:
-                            self.make_adjunct(head.mother)
-                        else:
-                            self.make_adjunct(head)
-                        return ps.mother
-
-                # If the adjunct is still in wrong position, we eat the specifier if accepted
-                else:
-                    # Condition 1. There are specifiers
-                    # Condition 2. The head does not reject specifiers
-                    # Condition 3. The specifier is accepted by the head
-                    # Condition 4. The specifier is not pro/PRO
-                    # Condition 5. The head is not marked for -ARG
-                    if ps.edge() and not '-SPEC:*' in ps.head().features and \
-                            not (set(ps.head().get_not_specs()) & set(ps.edge()[0].head().features)) and \
-                            not ps.edge()[0].is_primitive() and '-ARG' not in ps.head().features:
-                        if head.mother.mother:
-                            self.make_adjunct(ps.head().mother.mother)
-                        return ps.mother.mother
-                    else:
-                        self.make_adjunct(ps.head().mother)
-                        return ps.mother
-            else:
+        if ps.head().is_adjoinable():
+            if ps.is_complex():
                 self.make_adjunct(ps)
+            else:
+                if self.adjunct_in_correct_position(ps):
+                    self.make_adjunct_with_surrounding_structure(ps)
+                else:
+                    self.make_adjunct_with_surrounding_structure_(ps)
+
+    def make_adjunct_with_surrounding_structure_(self, ps):
+        if self.eat_specifier_(ps):
+                self.make_adjunct_with_specifier(ps)
+                return ps.mother.mother
+        else:
+            self.make_adjunct_with_complement(ps.head())
+            return ps.mother
+
+    def eat_specifier_(self, ps):
+        if ps.head().edge() and \
+                not '-SPEC:*' in ps.head().features and \
+                not (set(ps.head().get_not_specs()) & set(ps.edge()[0].head().features)) and \
+                not ps.edge()[0].is_primitive() and \
+                '-ARG' not in ps.head().features and \
+                ps.head().mother.mother:
+            return True
+        else:
+            return False
+
+    def make_adjunct_with_surrounding_structure(self, ps):
+        if self.eat_specifier(ps):
+            self.make_adjunct_with_specifier(ps.head())
+            return ps.mother.mother
+        else:
+            if self.eat_complement(ps):
+                self.make_adjunct_with_complement(ps)
+            else:
+                self.make_adjunct(ps.head())
+            return ps.mother
+
+    def eat_complement(self, ps):
+        if ps.head().mother and ps.head().mother.head() == ps.head():
+            return True
+        else:
+            return False
+
+    def eat_specifier(self, ps):
+        if '!SPEC:*' in ps.head().features and ps.head().mother.mother and ps.head().mother.sister() and ps.head().mother.sister().is_complex():
+            return True
+        else:
+            return False
+
+    def adjunct_in_correct_position(self, ps):
+        if ps.head().external_tail_head_test():
+            return True
+        else:
+            return False
+
+    def make_adjunct_with_complement(self, ps):
+        self.make_adjunct(ps.head().mother)
+
+    def make_adjunct_with_specifier(self, ps):
+        self.make_adjunct(ps.head().mother.mother)
 
     def make_adjunct(self, ps):
-
-        # Condition 1. The whole phrase structure cannot be an adjunct
-        # (Leads into infinite regress on some edge cases)
         if ps == ps.top():
             log(f'\t\t\t\t\tCannot push the whole structure {ps} into the secondary processing stream (adjunct).')
             return False
-
         ps.adjunct = True
-        log(f'\t\t\t\t\t{ps} was pushed into the secondary processing stream (made an adjunct).')
-
-        head = ps.head()
-        if not {f for f in head.features if f[:4] == 'TAIL'}:
-            head.features.add('TAIL:CAT:T')
-            head.features.add('CAT:ADV')
-
-        # Adjuncts must be transferred to LF
+        log(f'\t\t\t\t\t{ps} was pulled into secondary processing stream (made an adjunct).')
+        self.add_tail_features_if_missing(ps)
         self.transfer_adjunct(ps)
-
-        # Note. The status of this rule is unclear
-        # It creates wrong output in V DO S, when S is made adjunct; then DP will be made adjunct and it no longer is a complement to V
-        #
-        # If we created [<XP>, <XP>], it will be transformed into <<XP>, <XP>>
-        if ps.geometrical_sister() and ps.geometrical_sister().adjunct:
-            pass # ps.mother.adjunct = True
-
         return True
 
+    def add_tail_features_if_missing(self, ps):
+        if not {f for f in ps.head().features if f[:4] == 'TAIL'}:
+            ps.head().features.add('TAIL:T')
+            ps.head().features.add('ADV')
+
     def transfer_adjunct(self, ps):
-        # Detach the constituent
         original_mother = ps.mother
         ps.detach()
         log(f'\t\t\t\t\t{ps} is transferred to LF as a phase.')
         disable_logging()
-
-        # Transfer to LF
         ps = self.controlling_parser_process.transfer_to_lf(ps, 5)
         enable_logging()
-
-        # Attach back
         if original_mother:
             ps.mother = original_mother
-
         return ps

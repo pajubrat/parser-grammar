@@ -22,10 +22,8 @@ class FloaterMovement():
         if ps.is_primitive():
             return ps
 
-        # Move downward from top
-        phrase_structure = ps.top()
-
         # --------------------- minimal search ----------------------------------#
+        phrase_structure = ps.top()
         for node in phrase_structure.minimal_search():
             floater = self.detect_floater(node)
             if floater:
@@ -84,7 +82,7 @@ class FloaterMovement():
 
             # Condition 1. External tail test fails
             if not floater.external_tail_head_test():
-                log('\t\t\t\t\t' + floater.illustrate() + ' at the right failed to tail ' + illu(floater.head().get_tail_sets()))
+                log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
 
                 # Condition 2a. DP and PP are transformed into adjuncts and marked for reconstruction
                 if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):

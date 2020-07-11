@@ -41,6 +41,76 @@ class LF:
     def fail(self):
         return not self.all_pass()
 
+    # Merges with constituents from the syntactic working memory if licensed by selection at LF
+    # Creates LF-legible phrase structures
+    def LFmerge(self, head, controlling_process):
+
+        def hit_from_memory_buffer(h):
+            for const in controlling_process.syntactic_working_memory:
+                if h.get_comps() & const.head().features:
+                    return const
+
+        ps = head.get_specifier_anchor()
+
+        # Try to fill in SPEC by operator
+        if head.has_op_feature():
+            for constituent_in_working_memory in controlling_process.syntactic_working_memory:
+                if constituent_in_working_memory.scan_criterial_features():
+                    if constituent_in_working_memory not in head.edge():
+                        new_const = constituent_in_working_memory.copy_from_memory_buffer(controlling_process.babtize())
+                        ps.merge(new_const, 'left')
+                        log(f'\t\t\t\t\tMerging operator {constituent_in_working_memory} to Spec{head.get_cats_string()}P')
+                        controlling_process.syntactic_working_memory.remove(constituent_in_working_memory)
+                        controlling_process.number_of_phrasal_Move = + 1
+                        break
+
+        # Try to fill in SPEC by thematic selection
+        specs = [spec for spec in head.edge() if not spec.is_primitive()]
+        if not specs or (specs and specs[0].adjunct):
+            for constituent_in_working_memory in controlling_process.syntactic_working_memory:
+                if head.spec_match(constituent_in_working_memory):
+                    if not head.EPP():
+                        ps.merge(constituent_in_working_memory.copy(), 'left')
+                        if ps.geometrical_sister().head().external_tail_head_test():
+                            log(f'\t\t\t\t\tMerging constituent {constituent_in_working_memory} from memory buffer into Spec{head.get_cats_string()}P')
+                            # Replace the hypothetical candidate (above) with proper chain (below) if the solution works
+                            ps.geometrical_sister().remove()
+                            new_const = constituent_in_working_memory.copy_from_memory_buffer(controlling_process.babtize())
+                            ps.merge(new_const, 'left')
+                            controlling_process.syntactic_working_memory.remove(constituent_in_working_memory)
+                            controlling_process.number_of_phrasal_Move =+ 1
+                            log(f'\t\t\t\t\t={ps.top()}')
+                            break
+                        else:
+                            # If there was a tail-head violation, dropping is cancelled
+                            ps.geometrical_sister().remove()
+
+        # Try to fill COMP
+        # Condition 1. H is a primitive head without complements that it needs
+        if head.is_primitive() and not head.complement() and head.get_comps():
+            const = hit_from_memory_buffer(head)
+            if const:
+                head.merge(const.copy_from_memory_buffer(controlling_process.babtize()), 'right')
+                controlling_process.syntactic_working_memory.remove(const)
+                log(f'\t\t\t\t\tMerging {repr(const)}(=' + const.spellout() + f') from memory buffer into Comp{head.get_cats_string()}P.')
+                log(f'\t\t\t\t\tResult {head.top()}')
+                controlling_process.number_of_phrasal_Move = + 1
+
+        #  Condition 2. The head has a non-matching complement
+        if head.is_left() and head.complement() and not (head.get_comps() & head.complement().features):
+            const = hit_from_memory_buffer(head)
+            if const and const.features & head.get_comps():
+                head.complement().merge(const.copy_from_memory_buffer(controlling_process.babtize()), 'left')
+                controlling_process.syntactic_working_memory.remove(const)
+                log(f'\t\t\t\t\tMerging {repr(const)}(=' + const.spellout() + f') from memory buffer into Comp{head.get_cats_string()}P'
+                                                                               f'due to the presence of mismatching complement {head.complement()}.')
+                controlling_process.self.number_of_phrasal_Move = + 1
+                # Mismatching complement will be made floater
+                if head.complement().right_const.is_adjoinable():
+                    log('\t\t\t\t\tThe mismatching complement will be transformed into floater adjunct.')
+                    controlling_process.adjunct_constructor.create_adjunct(head.complement().right_const)
+
+
     # Checks LF-legibility for primitive constituents (not phrases)
     def test(self, ps):
 
@@ -317,13 +387,6 @@ class LF:
             return sorted(self.semantic_interpretation)
 
     # Definition for transfer to the conceptual-intentional system
-    # XP is accepted for CI transfer if and only if
-    # Condition 1. Operator-variable constructions satisfy operator binding conditions,
-    # Condition 2. Unvalued phi-features can be linked with antecedents by LF-recovery
-    # Condition 3. There are no phi-feature conflicts
-    #
-    # The operation returns a set of semantic interpretations when successful. It operates at the outer edge of
-    # LF-interface right before the phrase structure is handed over to CI and is not longer inside syntax.
     def check_for_transfer(self, ps):
 
         # Recursion
@@ -341,17 +404,16 @@ class LF:
                 self.semantic_interpretation.add(' ')
                 return self.semantic_interpretation
 
-        #
         # Transfer condition 1. Operator-variable constructions, binding of variables (ABAR)
-        #
-        for f in ps.head().features:
-            if f[:3] == 'OP:' and f != 'OP:_':
-                if not self.bind(ps):
-                    log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
-                    self.transfer_to_CI_crash = True
-                else:
-                    log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
-                    self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
+        if 'C' not in ps.head().features:
+            for f in ps.head().features:
+                if f[:3] == 'OP:' and f != 'OP:_':
+                    if not self.bind(ps):
+                        log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
+                        self.transfer_to_CI_crash = True
+                    else:
+                        log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
+                        self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
 
         #
         # Transfer condition 2. LF-recovery
@@ -621,7 +683,7 @@ class LF:
                 return True
             else:
                 feature_vector = goal.feature_vector()
-                log(f'\t\t\t{goal}<{feature_vector}> failed to tail features {illu(goal.get_tail_sets())}')
+                log(f'\t\t\t{goal}<{feature_vector}> failed to tail {illu(goal.get_tail_sets())}')
                 return False
 
         else:

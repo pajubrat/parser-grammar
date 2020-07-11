@@ -6,7 +6,7 @@ from morphology import Morphology
 from agreement_reconstruction import AgreementReconstruction
 from transfer import Transfer
 from surface_conditions import SurfaceConditions
-
+from adjunct_constructor import AdjunctConstructor
 
 class LinearPhaseParser:
     def __init__(self, sentence_context):
@@ -14,8 +14,11 @@ class LinearPhaseParser:
         # Contextual variables (language etc.)
         self.sentence_context = sentence_context
 
-        # All results (analyses)
+        # All results (final analyses)
         self.result_list = []
+
+        # All results (spellout structures)
+        self.spellout_result_list = []
 
         # Semantic interpretation
         self.semantic_interpretation = set()
@@ -28,6 +31,12 @@ class LinearPhaseParser:
 
         # Local memory buffer for inflectional affixes
         self.memory_buffer_inflectional_affixes = set()
+
+        # Syntactic working memory
+        self.syntactic_working_memory = []
+
+        # Used to name chains for output purposes
+        self.name_provider_index = 0
 
         # Number of computational operations
         self.number_of_Merge = 0
@@ -68,9 +77,12 @@ class LinearPhaseParser:
         self.surface_conditions_module = SurfaceConditions()
         self.surface_conditions_pass = True
 
+        self.adjunct_constructor = AdjunctConstructor(self)
+
     def parse(self, lst):
         set_logging(True)
         self.result_list = []
+        self.spellout_result_list = []
         self.semantic_interpretation = set()
         self.number_of_ambiguities = 0
         self.result_matrix = [[] for i in range(50)]
@@ -160,7 +172,13 @@ class LinearPhaseParser:
 
         return lexical_item
 
+    # Internal function
+    def babtize(self):
+        self.name_provider_index += 1
+        return str(self.name_provider_index)
+
     def complete_processing(self, ps):
+        spellout_structure = ps.copy()
         if not self.first_solution_found:
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
         log('\n\t>>>\t' + f'Trying spellout structure ' + ps.illustrate())
@@ -178,7 +196,7 @@ class LinearPhaseParser:
             log('\t\t\t= ' + ps_.illustrate())
 
             # LF-LEGIBILITY
-            log(f'\t\tChecking LF-interface conditions.')
+            log(f'\t\tChecking LF-interface conditions...')
             lf = ps_.LF_legibility_test()
             if not lf.all_pass():
                 report_LF_problem(ps_)
@@ -193,6 +211,7 @@ class LinearPhaseParser:
                         log('\t\t\tThe sentence cannot be interpreted at LF.')
                     else:
                         self.result_list.append([ps_, self.semantic_interpretation])
+                        self.spellout_result_list.append(spellout_structure)
                         log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
                         show_results(ps_, self.result_list, self.semantic_interpretation)
                         self.first_solution_found = True
@@ -203,7 +222,7 @@ class LinearPhaseParser:
     # Condition 1. New word w was inside the last word, in which case only H-COMP is accepted, the rest are filtered
     # Condition 2. If N does not accept any complementizer (-COMP:*), [N w] is filtered out
     # Condition 3. If N does not pass strong LF-legibility test, filter out [N w].
-    # Condition 4. If solution [N w] breaks existing words, it is rejected.
+    # Condition 4. If solution [N w] breaks existing words, it is §d.
     def filter(self, ps, w):
         log('\t\t\tFiltering out impossible merge sites...')
 
@@ -231,17 +250,13 @@ class LinearPhaseParser:
             else:
                 set_logging(False)
                 dropped = self.transfer_to_lf(N.copy())
+                set_logging(True)
                 lf_test = dropped.LF_legibility_test()
-                # XP fails strong LF-legibility if and only if
-                # Condition 1. The LF-legibility test fails
-                # Condition 2. w is not adjoinable
-                # Condition 3. probe-goal test, head-integrity test and criterial feature test ALL failed.
                 if lf_test.fail() and not (
-                        w.is_adjoinable() and  # This condition because Merge(site, W) may be cancelled if W = adjunct
+                        w.is_adjoinable() and
                         lf_test.probe_goal_test_result and
                         lf_test.head_integrity_test_result and
                         lf_test.criterial_feature_test_result):
-                    set_logging(True)
                     log(f'\t\t\t\tReject [{dropped.illustrate()} {w}] due to bad left branch.')
                     reject = True
                 else:
