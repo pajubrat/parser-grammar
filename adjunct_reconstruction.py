@@ -28,22 +28,40 @@ class FloaterMovement():
             floater = self.detect_floater(node)
             if floater:
                 log(f'\t\t\t\t\tDropping {floater}')
-                # Drop the floater
                 self.drop_floater(floater, ps)
         # ----------------------------------------------------------------------#
-
         return ps.top()  # Return top, because it is possible that an adjunct expands the structure
 
-    # Definition for floater that requires reconstruction
     def detect_floater(self, _ps_iterator):
+        if self.detect_left_floater(_ps_iterator):
+            floater = _ps_iterator.left_const
+            if not floater.head().external_tail_head_test():
+                log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
+                return floater
+            elif floater.mother and floater.mother.head().EPP() and floater.mother.is_finite():
+                log('\t\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
+                return floater
+            elif floater.mother and '-SPEC:*' in floater.mother.head().features:
+                if floater == floater.mother.head().local_edge():
+                    return floater
+        elif self.detect_right_floater(_ps_iterator):
+            floater = _ps_iterator.right_const.head()
+            if not floater.external_tail_head_test():
+                log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
+                if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
+                    self.adjunct_constructor.create_adjunct(floater)
+                    return floater.mother
+                else:
+                    if 'ADV' in floater.features and not _ps_iterator.right_const.adjunct:
+                        self.adjunct_constructor.create_adjunct(floater)
 
-        # Definition for a potential floater
-        # Presupposition: Current target node is not primitive (=[X Y])
-        # Condition 1: X is complex (heads cannot be floaters)
-        # Condition 2: X has not been copied somewhere
-        # Condition 3: X has a tail set
-        # Condition 4: X has not been prevented from floating around
-        # Condition 5: X has no criterial feature
+    def detect_right_floater(self, _ps_iterator):
+        if _ps_iterator.is_complex() and \
+                _ps_iterator.right_const.head().get_tail_sets() and \
+                'adjoinable' in _ps_iterator.right_const.head().features:
+            return True
+
+    def detect_left_floater(self, _ps_iterator):
         if _ps_iterator.is_complex() and \
                 _ps_iterator.left_const.is_complex() and \
                 not _ps_iterator.left_const.find_me_elsewhere and \
@@ -51,144 +69,69 @@ class FloaterMovement():
                 'adjoinable' in _ps_iterator.left_const.head().features and \
                 '-adjoinable' not in _ps_iterator.left_const.head().features and \
                 not _ps_iterator.scan_criterial_features():
-
-            floater = _ps_iterator.left_const
-
-            # Definition for floater that requires reconstruction
-            # Condition 1. External tail-head test fails
-            if not floater.head().external_tail_head_test():
-                log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
-                return floater
-
-            # Condition 2. The phrase is at EPP SPEC position of a finite clause
-            elif floater.mother and floater.mother.head().EPP() and floater.mother.is_finite():
-                log('\t\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
-                return floater
-
-            # Condition 3. The phrase sits in a wrong SPEC position
-            elif floater.mother and '-SPEC:*' in floater.mother.head().features:
-                if floater == floater.mother.head().local_edge():
-                    return floater
-
-        # Special condition: constituent at the right
-        # [XP YP], XP not potential adjunct, but Y fails tail test,
-        # Y not -FLOAT
-        # They are marked for floating and turned into adjuncts, but ADVs on the right are only turned to adjuncts
-        # for reasons I do not understand
-        if _ps_iterator.is_complex() and \
-                _ps_iterator.right_const.head().get_tail_sets() and \
-                'adjoinable' in _ps_iterator.right_const.head().features:
-            floater = _ps_iterator.right_const.head()
-
-            # Condition 1. External tail test fails
-            if not floater.external_tail_head_test():
-                log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
-
-                # Condition 2a. DP and PP are transformed into adjuncts and marked for reconstruction
-                if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
-                    self.adjunct_constructor.create_adjunct(floater)
-                    return floater.mother
-
-                # Condition 2b. If the right branch is ADV, it is transformed into an adjunct but not reconstructed
-                # Note: why not reconstruct?
-                else:
-                    if 'ADV' in floater.features and not _ps_iterator.right_const.adjunct:
-                        self.adjunct_constructor.create_adjunct(floater)
+            return True
 
     # Definition for floater reconstruction (dropping)
     def drop_floater(self, floater, ps):
-
-        # Starting point is stored so we don't implement reconstruction inside the same projection (leads into regress)
         starting_point_head = floater.container_head()
-
-        # We need to locate the appropriate starting point, XP in [fin XP]
-        ps_iterator_ = self.locate_minimal_tense_edge(floater.mother)
-
-        # This is the element we  fit into the structure
+        ps_iterator_ = self.locate_minimal_tense_edge(floater.mother)   # Starting point, XP in [fin XP]
+        if not ps_iterator_:
+            return
         floater_copy = floater.copy()
 
         # ------------------------------------ minimal search ------------------------------------#
-        if ps_iterator_:
-            for node in ps_iterator_.minimal_search():
-                if node == floater or node.find_me_elsewhere:
-                    break
+        for node in ps_iterator_.minimal_search():
+            if self.termination_condition(node, floater):
+                break
+            self.merge_floater(node, floater_copy)  # Test merge
+            if self.is_drop_position(node, floater_copy, starting_point_head):
+                if not floater.adjunct:
+                    self.adjunct_constructor.create_adjunct(floater)
+                dropped_floater = floater.copy_from_memory_buffer(self.babtize())
+                self.merge_floater(node, dropped_floater)  # Real merge
+                self.controlling_parser_process.number_of_phrasal_Move += 1
+                floater_copy.remove()
+                log(f'\t\t\t\t\t = {ps}')
+                return
+            floater_copy.remove()
+        # ---------------------------------------------------------------------------------------#
 
-                # Create hypothetical structure for testing
-                if 'ADV' in floater_copy.features:
-                    node.merge(floater_copy, 'right')
-                else:
-                    node.merge(floater_copy, 'left')
+    def merge_floater(self, node, floater_copy):
+        if self.right_adjunct(floater_copy):
+            node.merge(floater_copy, 'right')
+        else:
+            node.merge(floater_copy, 'left')
 
-                # If a suitable position is found, dropping will be executed
-                # Condition 1: tail test succeeds,
-                # Condition 2: we are not reconstructing inside the same projection (does not apply to right-adjoined)
-                # Condition 3: dropped non-ADV will become the only SPEC
-                # Condition 4: the position is not associated with -SPEC:* and -ARG (these are nonthematic)
-                if self.is_drop_position(node, floater_copy, starting_point_head):
-                    if not floater.adjunct:
-                        self.adjunct_constructor.create_adjunct(floater)
+    def termination_condition(self, node, floater):
+        if node == floater or node.find_me_elsewhere:
+            return True
 
-                    # We have found a position and create the actual copy that will be in the new position
-                    dropped_floater = floater.copy_from_memory_buffer(self.babtize())
-
-                    # Adverbs and PPs are adjoined to the right
-                    if 'ADV' in floater_copy.features or 'P' in floater_copy.features:
-                        node.merge(dropped_floater, 'right')
-
-                    # Everything else is adjoined to the left
-                    else:
-                        node.merge(dropped_floater, 'left')
-
-                    # Keep record of the computations consumed
-                    self.controlling_parser_process.number_of_phrasal_Move += 1
-
-                    floater_copy.remove()
-                    log(f'\t\t\t\t\t = {ps}')
-                    return
-                else:
-                    floater_copy.remove()
-            # ---------------------------------------------------------------------------------------#
+    def right_adjunct(self, node):
+        if 'ADV' in node.head().features or 'P' in node.head().features:
+            return True
 
     # Definition for a legitimate target position for floater reconstruction
     def is_drop_position(self, ps_iterator_, floater_copy, starting_point_head):
-
-        # Condition 1. The position must satisfy the external tail head test
-        if floater_copy.head().external_tail_head_test():
-
-            # Condition 2. Condition for merging to the right: must be AdvP or PP
-            # (Lax conditions)
-            if 'ADV' in floater_copy.features or 'P' in floater_copy.features:
-                return True
-
-            # Condition 3. Condition for merging to the left
-            else:
-                # Condition 3a) Don't go inside where you started
-                if floater_copy.container_head() != starting_point_head:
-                    # Condition 3b) Don't fill in more than one SPEC position
-                    if ps_iterator_.head().count_specifiers() < 2:
-                        # Condition 3c: the position is not associated with nonthematic EPP position (-SPEC:* and -ARG):
-                        if floater_copy.container_head():
-                            # Condition 3c. The adjunct is not in a -SPEC:* position
-                            if '-SPEC:*' not in floater_copy.container_head().features:
-                                # If there is no selector, we ignore the next condition
-                                if floater_copy.container_head().selector():
-                                    # Condition 4b. The position is not associated with selecting -ARG
-                                    if '-ARG' not in floater_copy.container_head().selector().features:
-                                        return True
-                                    else:
-                                        return False
-                                else:
-                                    return True
-                            else:
-                                return False  # The position is impossible due to -SPEC:*
-                        else:
-                            return True  # No container, no other conditions must be checked
-                    else:
-                        return False  # More than one specifier
-                else:
-                    return False
-        else:
+        if not floater_copy.head().external_tail_head_test():
             return False
+        else:
+            if self.right_adjunct(floater_copy):
+                return True
+            else:
+                if floater_copy.container_head() != starting_point_head and ps_iterator_.head().count_specifiers() < 2:
+                    if floater_copy.container_head():
+                        if '-SPEC:*' not in floater_copy.container_head().features:
+                            if floater_copy.container_head().selector():
+                                if '-ARG' not in floater_copy.container_head().selector().features:
+                                    return True
+                                else:
+                                    return False
+                            else:
+                                return True
+                        else:
+                            return False  # The position is impossible due to -SPEC:*
+                    else:
+                        return True  # No container, no other conditions must be checked
 
     # Definition for minimal tense edge
     def locate_minimal_tense_edge(self, ps):

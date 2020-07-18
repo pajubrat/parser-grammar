@@ -134,10 +134,10 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.phrase_structure = ps
 
         if self.visualizer.show_words:
-            self.margins += 30
+            self.margins += 10
 
         if self.visualizer.nolabels and not self.show_words:
-            self.margins += 30
+            self.margins += 10
 
         if self.visualizer.show_glosses:
             self.margins += 10

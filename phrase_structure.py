@@ -157,6 +157,20 @@ class PhraseStructure:
             ps_ = ps_.mother
         return None
 
+    def selected_sister(self):
+        if self.is_primitive() and not self.sister():
+            return None
+        if self.sister().is_complex():
+            if self.sister().is_left():
+                return self.sister()
+            elif self.sister().is_right() and not self.sister().adjunct:
+                return self.sister()
+        else:
+            if self.sister().is_right():
+                return self.sister()
+            else:
+                return None
+
     # Definition for complex constituent
     def is_complex(self):
         return not self.is_primitive()

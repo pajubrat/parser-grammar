@@ -110,7 +110,6 @@ class LexicalInterface:
             if '#' in constituent_features[0]:
 
                 # This is morphologically complex word, e.g. 'wonder-#T/fin'
-                # lexicon stores an otherwise empty constituent with morphology to show how it decomposes
                 const = self.PhraseStructure()
                 const.morphology = constituent_features[0]
                 const.features = constituent_features[1:]
@@ -124,16 +123,13 @@ class LexicalInterface:
 
             # Case 3.
             # Otherwise we add a new entry which has three properties
-            # Property 1. The lexical item is a constituent (phrase structure object)
-            # Property 2. Feature - means that the item is an inflectional feature
-            # Property 3. Redundancy rules and possible lexical parameters are applied
             else:
 
                 # property 1. The lexical item is a constituent (phrase structure object)
                 const = self.PhraseStructure()
 
                 # Property 2. Feature - means that the item is an inflectional feature
-                if '-' in constituent_features:
+                if 'inflectional' in constituent_features or '-' in constituent_features:
                     const.morphology = ''
                 else:
                     const.morphology = key

@@ -36,8 +36,10 @@ import visualizer
 from pathlib import Path
 
 # Block 2. Define input and output data files and names
-data_folder = Path("language data working directory/study-6-linear-phase-theory")
-test_corpus_name = "linear_phase_theory_corpus.txt"
+data_folder = Path("language data working directory/study-7-structural-case")
+common_working_directory = Path("language data working directory")
+test_corpus_name = "case_corpus.txt"
+
 test_set_name = data_folder / test_corpus_name
 log_name = test_corpus_name[:-4] + '_log.txt'
 log_file_name = data_folder / log_name
@@ -45,9 +47,9 @@ results_name = test_corpus_name[:-4] + '_results.txt'
 results_file_name = data_folder / results_name
 grammaticality_judgments_name = test_corpus_name[:-4] + '_grammaticality_judgments.txt'
 grammaticality_judgments_file_name = data_folder / grammaticality_judgments_name
-lexicon_file_name = data_folder / 'lexicon.txt'
-ug_morphemes = data_folder / 'ug_morphemes.txt'
-redundancy_rules = data_folder / 'redundancy_rules.txt'
+lexicon_file_name = common_working_directory / 'lexicon.txt'
+ug_morphemes = common_working_directory / 'ug_morphemes.txt'
+redundancy_rules = common_working_directory / 'redundancy_rules.txt'
 saved_vocabulary_name = test_corpus_name[:-4] + '_saved_vocabulary.txt'
 surface_vocabulary_file_name = data_folder / saved_vocabulary_name
 
