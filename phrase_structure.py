@@ -171,6 +171,14 @@ class PhraseStructure:
             else:
                 return None
 
+    def size(self):
+        size_ = 1
+        if self.left_const:
+            size_ = size_ + get_size(self.left_const)
+        if self.right_const:
+            size_ = size_ + get_size(self.right_const)
+        return size_
+
     # Definition for complex constituent
     def is_complex(self):
         return not self.is_primitive()
@@ -491,10 +499,8 @@ class PhraseStructure:
 
     def locality_condition(self, tail_set):
         if self.get_max() and self.get_max().mother:
-            # Constituent is inside the projection from head with tail set
             if self.get_max().mother.head().match_features(tail_set) == 'complete match' and self.mysterious_property():
                 return True
-            # Constituent is sister to a head with the tail set
             elif self.get_max().mother.sister() and self.get_max().mother.sister().match_features(tail_set) == 'complete match':
                 return True
 
@@ -503,6 +509,7 @@ class PhraseStructure:
             if const is not self:
                 for m in const.get_affix_list():
                     test = m.match_features(tail_set)
+                    log(f'result is {test}')
                     if test == 'complete match':
                         return True
                     elif test == 'partial match':
@@ -510,7 +517,7 @@ class PhraseStructure:
                     elif test == 'negative match':
                         return False
 
-        # Feature were not cheked against anything
+        # Feature were not checked against anything
         if variation=='external':
             return False    # Strong test: reject (tail set must be checked)
         else:
@@ -519,15 +526,14 @@ class PhraseStructure:
 
     # Definition for feature match
     def match_features(self, features_to_check):
-        # Partition the set of features into positive and negative features
         positive_features = {feature for feature in features_to_check if feature[0] != '*'}
         negative_features = {feature[1:] for feature in features_to_check if feature[0] == '*'}
-        if negative_features & self.features:                           # Condition 2c
+        if negative_features & self.features:
             return 'negative match'
-        else:
-            if positive_features & self.features == positive_features:  # Condition 2a
+        elif positive_features:
+            if positive_features & self.features == positive_features:
                 return 'complete match'
-            elif positive_features & self.features:                      # Condition 2b
+            elif positive_features & self.features:
                 return 'partial match'
 
     # Recursive definition for contains-feature-F for a phrase

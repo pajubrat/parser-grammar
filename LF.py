@@ -212,14 +212,12 @@ class LF:
         ps_ = ps
         while ps_:
             if ps_.is_primitive():
-                if ps_.match_features(operator) == 'complete match' and 'FIN' in ps_.head().features:
+                if ps_.match_features({operator}) == 'complete match' and 'FIN' in ps_.head().features:
                     return ps_
-            elif ps_.left_const.head().match_features(operator) == 'complete match' and \
+            elif ps_.left_const.head().match_features({operator}) == 'complete match' and \
                     'FIN' in ps_.left_const.head().features:
                 return ps_
             ps_ = ps_.walk_upstream()
-        return None  # Nothing was found
-
 
     # This function will try to transfer the phrase structure into the conceptual-intentional system
     def transfer_to_CI(self, ps):
@@ -256,16 +254,23 @@ class LF:
         if tail_sets:
             for tail_set in tail_sets:
                 tailed_head = self.get_target_head(ps, tail_set)
-                if tailed_head:
-                    self.interpret_tailing(ps, tailed_head)
+                self.interpret_tailing(ps, tailed_head)
 
     def interpret_tailing(self, ps, tailed_head):
+        if tailed_head:
+            self.interpret_argument_tailing(ps, tailed_head)
+            self.interpret_adjunct_predication(ps, tailed_head)
+
+    def interpret_argument_tailing(self, ps, tailed_head):
         if 'ASP:BOUNDED' in tailed_head.features:
             self.semantic_interpretation.add('Aspectually bounded')
             if 'PAR' in ps.features:
                 if not self.bind_to_operator(ps, 'POL:NEG'):
                     self.semantic_interpretation.discard('Aspectually bounded')
                     self.semantic_interpretation.add('Aspectually anomalous')
+
+    def interpret_adjunct_predication(self, ps, tailed_head):
+        pass
 
     def get_target_head(self, ps, tail_set):
         for head in ps.feature_vector()[1:]:
@@ -471,28 +476,19 @@ class LF:
     def final_tail_check(goal):
 
         if goal.is_primitive():
-            # Tail-head test for one constituent
-
-            # Case 1
-            # If there are no tail features, the test is trivially accepted
             if not goal.get_tail_sets():
                 return True
-
-            # Case 2
-            # Perform external tail-head test
             if goal.external_tail_head_test():
                 return True
             else:
                 feature_vector = goal.feature_vector()
                 log(f'\t\t\t{goal}<{feature_vector}> failed to tail {illu(goal.get_tail_sets())}')
                 return False
-
         else:
             if not goal.left_const.find_me_elsewhere and not LF.final_tail_check(goal.left_const):
                 return False
             if not goal.right_const.find_me_elsewhere and not LF.final_tail_check(goal.right_const):
                 return False
-        # If we are here, then it means we have [XP YP] that does not allow us to search any further
         return True
 
     # Provides a more readable alternative reading form for antecedents

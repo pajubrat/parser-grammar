@@ -141,12 +141,10 @@ class LinearPhaseParser:
                             else:
                                 log(f'\t\t\tExploring solution [{site_} {lexical_item.get_pf()}]')
                                 new_ps = self.transfer_to_lf(site_) + lexical_item
-
-                            # Move to next word
                             self._first_pass_parse(new_ps, lst_branched, index + 1)
                             if self.exit:
                                 break
-                    # --------------------------------------------------------------------------------------------- #
+                        # ---------------------------------------------------------------------------------------- #
 
             # If all solutions in the list have been explored,  backtrack
             if not self.exit:
@@ -218,11 +216,6 @@ class LinearPhaseParser:
                         # self.exit = True    # Knock this out if you want to see all solutions
 
     # Definition for filtering
-    # A solution node N for new item w is filtered out if and only if
-    # Condition 1. New word w was inside the last word, in which case only H-COMP is accepted, the rest are filtered
-    # Condition 2. If N does not accept any complementizer (-COMP:*), [N w] is filtered out
-    # Condition 3. If N does not pass strong LF-legibility test, filter out [N w].
-    # Condition 4. If solution [N w] breaks existing words, it is §d.
     def filter(self, ps, w):
         log('\t\t\tFiltering out impossible merge sites...')
 
@@ -279,20 +272,6 @@ class LinearPhaseParser:
 
     # Definition for the ranking function
     def ranking(self, site_list, w):
-
-        # Gives the size of a phrase structure
-        def get_size(ps):
-            size_ = 1
-            if ps.left_const:
-                size_ = size_ + get_size(ps.left_const)
-            if ps.right_const:
-                size_ = size_ + get_size(ps.right_const)
-            return size_
-
-        #
-        # --- main function begins here --- #
-        #
-
         # If there is only one possible site, no ranking is required
         if len(site_list) == 1:
             return site_list
@@ -479,7 +458,7 @@ class LinearPhaseParser:
             max_site = None
             for priority, site_ in adjunction_sites:
                 if site_.is_adjoinable():
-                    size_ = get_size(site_)
+                    size_ = site_.size()
                     if size_ > size and not site_.contains_feature('T/fin'):
                         set_logging(False)
                         if self.transfer_to_lf(site_.copy()).LF_legibility_test().all_pass():
