@@ -174,38 +174,34 @@ class PhraseStructure:
     def size(self):
         size_ = 1
         if self.left_const:
-            size_ = size_ + get_size(self.left_const)
+            size_ = size_ + self.left_const.size()
         if self.right_const:
-            size_ = size_ + get_size(self.right_const)
+            size_ = size_ + self.right_const.size()
         return size_
 
     # Definition for complex constituent
     def is_complex(self):
         return not self.is_primitive()
 
-    # Definition for the relation of local specifier or local edge
-    def local_edge(self):
-
-        # Condition 1. Configuration [XP [H YP]]
+    # XP in [XP [H YP]] and [XP H]
+    def local_phrasal_specifier(self):
         if self.is_primitive() and \
                 self.is_left() and \
                 self.mother.sister() and \
                 not self.mother.adjunct and \
                 self.mother.sister().is_left() and \
-                self.mother.sister().is_complex():
-            if self.mother.mother.head() == self.head():
-                return self.mother.sister()
-
-        # Case 2(a-c) Definition for specifier for a primitive right head
-        elif self.is_primitive() and self.is_right() and self.sister() and self.sister().is_complex():
+                self.mother.sister().is_complex() and \
+                self.mother.mother.head() == self.head():
+            return self.mother.sister()
+        if self.is_primitive() and self.is_right() and self.sister() and self.sister().is_complex():
             return self.sister()
 
-        # Case 3. Definition for pro-specifier (if no phrasal specifier exists)
-        else:
-            if self.extract_pro():
-                return self.extract_pro()
-            else:
-                return None
+    # Definition for the relation of local specifier or local edge
+    def local_edge(self):
+        if self.local_phrasal_specifier():
+            return self.local_phrasal_specifier()
+        if self.extract_pro():
+            return self.extract_pro()
 
     # Definition for the notion of edge (also generalized specifier)
     def edge(self):
@@ -509,7 +505,6 @@ class PhraseStructure:
             if const is not self:
                 for m in const.get_affix_list():
                     test = m.match_features(tail_set)
-                    log(f'result is {test}')
                     if test == 'complete match':
                         return True
                     elif test == 'partial match':
@@ -518,16 +513,21 @@ class PhraseStructure:
                         return False
 
         # Feature were not checked against anything
-        if variation=='external':
+        if variation=='external' and not self.negative_features(tail_set):
             return False    # Strong test: reject (tail set must be checked)
         else:
             return True     # Weak test: accept still (only look for violations)
 
+    def negative_features(self, features_to_check):
+        return {feature[1:] for feature in features_to_check if feature[0] == '*'}
+
+    def positive_features(self, features_to_check):
+        return {feature for feature in features_to_check if feature[0] != '*'}
 
     # Definition for feature match
     def match_features(self, features_to_check):
-        positive_features = {feature for feature in features_to_check if feature[0] != '*'}
-        negative_features = {feature[1:] for feature in features_to_check if feature[0] == '*'}
+        positive_features = self.positive_features(features_to_check)
+        negative_features = self.negative_features(features_to_check)
         if negative_features & self.features:
             return 'negative match'
         elif positive_features:
@@ -612,19 +612,24 @@ class PhraseStructure:
     def extract_pro(self):
         if 'ARG' in self.features:
             if 'VAL' in self.features:
-                phi_set = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
+                phi_set = self.valued_phi()
             else:
-                phi_set = {f for f in self.features if f[:4] == 'PHI:'}
+                phi_set = self.all_phi()
             if phi_set:
                 pro = PhraseStructure()
                 pro.features = pro.features | phi_set
                 pro.features.add('D')
                 pro.features.add('PF:pro')
                 pro.features.add('pro')
-                pro.silence_phonologically()
                 if not pro.phi_conflict():
                     return pro
         return None
+
+    def valued_phi(self):
+        return {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
+
+    def all_phi(self):
+        return {f for f in self.features if f[:4] == 'PHI:'}
 
     # Definition for affix
     def has_affix(self):
@@ -709,6 +714,10 @@ class PhraseStructure:
         if self.is_primitive():
             set_ |= {feature for feature in self.features if feature[:3] == 'OP:'}
         return set_
+
+    def is_functional(self):
+        if '!COMP:*' in self.features:
+            return True
 
     # Definition for phase (used by Agree-1)
     def is_phase(self):
@@ -997,7 +1006,6 @@ class PhraseStructure:
         return i
 
     def show_primitive_constituents(self):
-
         def sorted_by_relevance(set):
             first_class = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
             second_class = {feature for feature in set if feature in major_category}

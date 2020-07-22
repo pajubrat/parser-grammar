@@ -243,19 +243,9 @@ class LexicalInterface:
         feature_set |= features_not_blocked_by_specific_lexicon
         return feature_set
 
-    # Binary UG parameters
-    # There are certain binary UG parameters that are "mirrored" in the lexicon in the sense that
-    # lexical features occur in clusters, but this whole notion is controversial and possibly
-    # nonexistent
-    #
     def apply_parameters(self, features):
-
-        #
-        # Main function begins here
-        #
         features = set(features)
 
-        # Check if the word is language-specific
         language_specific = False
         for f in features:
             if f[:4] == 'LANG':
@@ -263,13 +253,11 @@ class LexicalInterface:
         if not language_specific:
             features.add(self.language)
 
-        # Parameter 2. Non-finite agreement (probably not needed anymore)
         if 'LANG:FI' in features:
             non_finite_agreement = True
         else:  # default
             non_finite_agreement = False
 
-        # Parameter 3, Grammaticalized gender (probably will be just a list of grammaticalized phi-features)
         if 'LANG:IT' or 'LANG:EN' in features:
             gender = True
         else:
@@ -279,10 +267,6 @@ class LexicalInterface:
             gender = False
 
         # ----- Effects of parameters ----- #
-
-        # This will add unvalued (D_, PHI_) for each +ARG head and promotes ARG also into the status of a label
-        # ARG:  uninterpretable phi-set, unsaturated predicate
-        # VAL:  whether agreement reconstruction can value D_, PHI_
         if 'ARG' in features:
             if 'NO_NUMBER' not in features:
                 features.add('PHI:NUM:_')

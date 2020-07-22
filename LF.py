@@ -93,7 +93,7 @@ class LF:
                         count = count + 1
             if count > 1:
                 self.head_integrity_test_result = False
-                log(f'\t\t\t\t{ps} has double specifiers.')
+                log(f'\t\t\t\t{h} has double specifiers.')
 
     def semantic_complement_test(self, h):
         if h.complement():
@@ -133,7 +133,6 @@ class LF:
         comp = h.complement()
         local_edge = h.local_edge()
         for f in sorted(for_lf_interface(h.features)):
-            # Specifier selection
             if f.startswith('-SPEC:'):
                 for spec_ in h.edge():
                     if spec_ and f[6:] in spec_.head().features:

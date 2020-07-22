@@ -83,12 +83,12 @@ class FloaterMovement():
         for node in ps_iterator_.minimal_search():
             if self.termination_condition(node, floater):
                 break
-            self.merge_floater(node, floater_copy)  # Test merge
+            self.merge_floater(node, floater_copy)          # Test merge
             if self.is_drop_position(node, floater_copy, starting_point_head):
                 if not floater.adjunct:
                     self.adjunct_constructor.create_adjunct(floater)
                 dropped_floater = floater.copy_from_memory_buffer(self.babtize())
-                self.merge_floater(node, dropped_floater)  # Real merge
+                self.merge_floater(node, dropped_floater)   # Real merge
                 self.controlling_parser_process.number_of_phrasal_Move += 1
                 floater_copy.remove()
                 log(f'\t\t\t\t\t = {ps}')

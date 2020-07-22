@@ -11,7 +11,7 @@ class AgreementReconstruction:
         for node in ps.minimal_search():
             if node.left_const and node.left_const.is_primitive():
                 h = node.left_const
-                if '-VAL' not in h.features:
+                if 'VAL' in h.features:
                     log(f'\t\t\t\t\tHead {h} triggers Agree-1:')
                     self.acquire_phi(h)
         # ------------------------------------------------------------------------------------#
@@ -42,7 +42,7 @@ class AgreementReconstruction:
         for node in ps.minimal_search():
             if node.left_const and node.is_complex():
                 goal = node.left_const.head()
-                if goal.is_phase():
+                if goal.is_functional():
                     break
                 if 'D' in goal.features:
                     return goal, sorted({f for f in goal.features if self.phi(f) and f[:7] != 'PHI:DET' and self.valued(f)})

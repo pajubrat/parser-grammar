@@ -79,16 +79,16 @@ class HeadMovement:
                 log(f'\t\t\t\t\tMust reconstruct {current_node} first.')
                 self.reconstruct_head_movement(current_node)
 
-            # In the case of D(N), => [DP H]
+            # In the case [X Y] = [D N], create [DP H], H = affix.
             if 'D' in current_node.mother.head().features:
                 current_node.mother.merge(affix, 'right')
             else:
-                # [X Y] => [X [Y H]]
-                current_node = current_node.mother.bottom()  # Target Y
+                # [Z(H) [X Y]]
+                current_node = current_node.top().bottom()  # Target Y
                 if intervention_feature not in current_node.features and intervention_feature not in current_node.sister().features:
-                    current_node.merge(affix, 'right')  # [X [Y H]]
+                    current_node.merge(affix, 'right')  # [Z(_) [X [Y H]]]
                 else:
-                    current_node.merge(affix, 'left')   # [X [H Y]]
+                    current_node.merge(affix, 'left')   # [Z(_) [X [H Y]]]
 
             if self.reconstruction_is_successful(affix):
                 return      # Successful chain
@@ -99,30 +99,25 @@ class HeadMovement:
             return
 
     # Defines the conditions for dropping a head H into a position X
-    # Condition 1. H is selected by a higher head in position X and H does not require SPEC, or
-    # Condition 2. If it does require SPEC, then H has suitable edge/specifier at the position, with three exceptions:
-    #   Exception A to 2. Finnish third person exception
-    #   Exception B to 2. [affix, b], b is primitive
     def reconstruction_is_successful(self, affix):
-
-        # Head gap must be selected
         if not self.head_is_selected(affix):
             return False
-        else:
-            # Only finite EPP heads selected by C/fin cause special, because their EPP cannot be satisfied by future operation
-            if not self.head_is_EPP_selected_by_C_fin(affix):
+        if not self.extra_condition(affix):
+            return False
+        return True
+
+    def extra_condition(self, affix):
+        if self.head_is_EPP_selected_by_C_fin(affix):
+            if affix.local_edge():
+                # Exception with Finnish third person forms (ultimate reason unknown)
+                if 'pro' in affix.local_edge().features and 'PHI:PER:3' in affix.local_edge().features:
+                    return False
                 return True
             else:
-                if affix.local_edge():
-                    # Exception with Finnish third person forms (ultimate reason unknown)
-                    if 'pro' in affix.local_edge().features and 'PHI:PER:3' in affix.local_edge().features:
-                        return False
+                # Exception if [Affix, X], Affix finite EPP head and with X  primitive head
+                if affix.sister() and affix.sister().is_primitive_head():
                     return True
-                else:
-                    # Exception if [Affix, X], Affix finite EPP head and with X  primitive head
-                    if affix.sister() and affix.sister().is_primitive_head():
-                        return True
-        return False
+        return True
 
     def get_affix_out(self, node):
         affix = node.get_affix()

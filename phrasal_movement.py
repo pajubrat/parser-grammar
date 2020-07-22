@@ -38,6 +38,7 @@ class PhrasalMovement():
             specifiers_to_add_memory_buffer = []
             iterator = h.get_specifier_anchor()
             count_specifiers = 0
+            # ------------------------ upstream walk------------------------------------------------ #
             while iterator and iterator.get_phrasal_left_sister():
                 spec = iterator.get_phrasal_left_sister()
                 if not spec.find_me_elsewhere:
@@ -45,11 +46,10 @@ class PhrasalMovement():
                         specifiers_to_add_memory_buffer.append(spec)
                         log(f'\t\t\t\t\tMoving \"' + spec.spellout() + f'\" into memory buffer from Spec{h.get_cats_string()}P.')
                     else:
-                        self.A_reconstruct(spec)
+                        iterator = self.A_reconstruct(spec, iterator)
 
                 criterial_features = spec.scan_criterial_features()
 
-                # Case 1: if there already was another spec
                 if count_specifiers > 0:
                     if spec.must_have_head():
                         new_h = self.engineer_head_from_specifier(h, criterial_features)
@@ -59,7 +59,6 @@ class PhrasalMovement():
                         if new_h.get_tail_sets():
                             log('\t\t\t\t\tThe new head has tail features, must be an adjunct floater.')
                             self.adjunct_constructor.create_adjunct(new_h)
-                # Case 2: This is the first spec
                 else:
                     count_specifiers = + 1
                     if criterial_features:
@@ -69,12 +68,11 @@ class PhrasalMovement():
                             log(f'\t\t\t\t\tTail features ' + illu(
                                 h.get_tail_sets()) + f' were detected at {h}, this must head an adjunct floater.')
                             self.adjunct_constructor.create_adjunct(h)
-
                 iterator = iterator.walk_upstream()
+            # --------------------------------------------------------------------------------------------------#
 
             # Add everything into memory buffer
             self.controlling_parser_process.syntactic_working_memory = specifiers_to_add_memory_buffer + self.controlling_parser_process.syntactic_working_memory
-
             if len(specifiers_to_add_memory_buffer) > 0:
                 log(f'\t\t\t\t\tMemory buffer: {self.controlling_parser_process.syntactic_working_memory}')
 
@@ -94,36 +92,34 @@ class PhrasalMovement():
         return new_h
 
     # Definition for A-reconstruction
-    # XP undergoes A-reconstruction if and only if
-    # Condition 1. XP is a DP
-    # Condition 2. XP is inside projection HP and H has a complement into which to reconstruct
-    # Condition 3. XP is in a non-thematic SPEC position
-    # Condition 4. XP has no criterial feature
-    def A_reconstruct(self, ps):
+    def A_reconstruct(self, spec, iterator):
+        if self.candidate_for_A_reconstruction(spec):
+            log(f'\t\t\t\t\t{spec} will undergo A-reconstruction.')
+            iterator = self.reconstruct_inside_next_projection(spec, iterator)
+        return iterator
 
-        # Condition 1.
+    def candidate_for_A_reconstruction(self, ps):
         if 'D' in ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive():
-            log(f'\t\t\t\t\t{ps} will undergo A-reconstruction.')
+            return True
 
-            # XP will be reconstructed into CompHP, H = head of HP
-            H = ps.sister().head()
-
-            # Reconstruct only if CompHP exists
-            if H.sister():
-
-                # If [DP [H XP]] then [__ [H [DP XP]]]
-                if H.is_left():
-                    H.sister().merge(ps.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'left')
+    def reconstruct_inside_next_projection(self, spec, iterator):
+        local_head = spec.sister().head()
+        if local_head.is_right():
+            local_head.merge(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'right')
+            return iterator.mother
+        else:
+            if local_head.sister():
+                if local_head.is_left():
+                    local_head.sister().merge(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()),
+                                              'left')
                     self.controlling_parser_process.number_of_phrasal_Move += 1
-
-                # If [DP [XP H]] then [__ [[XP DP] H]
                 else:
-                    H.sister().merge(ps.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'right')
+                    local_head.sister().merge(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()),
+                                              'right')
                     self.controlling_parser_process.number_of_phrasal_Move += 1
+        return iterator
 
     # Definition for spec selection match
-    # H = head whose SPEC position is tested
-    #
     def spec_match(self, head, spec):
 
         if 'SPEC:*' in head.features or '!SPEC:*' in head.features:
