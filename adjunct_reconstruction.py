@@ -17,8 +17,6 @@ class FloaterMovement():
 
     # Definition for floater reconstruction
     def reconstruct(self, ps):
-
-        # Condition 1. Primitive heads are not reconstructed
         if ps.is_primitive():
             return ps
 
@@ -58,7 +56,8 @@ class FloaterMovement():
     def detect_right_floater(self, _ps_iterator):
         if _ps_iterator.is_complex() and \
                 _ps_iterator.right_const.head().get_tail_sets() and \
-                'adjoinable' in _ps_iterator.right_const.head().features:
+                'adjoinable' in _ps_iterator.right_const.head().features and \
+                '-adjoinable' not in _ps_iterator.right_const.head().features:
             return True
 
     def detect_left_floater(self, _ps_iterator):
@@ -83,12 +82,12 @@ class FloaterMovement():
         for node in ps_iterator_.minimal_search():
             if self.termination_condition(node, floater):
                 break
-            self.merge_floater(node, floater_copy)          # Test merge
+            self.merge_floater(node, floater_copy)
             if self.is_drop_position(node, floater_copy, starting_point_head):
                 if not floater.adjunct:
                     self.adjunct_constructor.create_adjunct(floater)
                 dropped_floater = floater.copy_from_memory_buffer(self.babtize())
-                self.merge_floater(node, dropped_floater)   # Real merge
+                self.merge_floater(node, dropped_floater)
                 self.controlling_parser_process.number_of_phrasal_Move += 1
                 floater_copy.remove()
                 log(f'\t\t\t\t\t = {ps}')
@@ -97,7 +96,7 @@ class FloaterMovement():
         # ---------------------------------------------------------------------------------------#
 
     def merge_floater(self, node, floater_copy):
-        if self.right_adjunct(floater_copy):
+        if self.is_right_adjunct(floater_copy):
             node.merge(floater_copy, 'right')
         else:
             node.merge(floater_copy, 'left')
@@ -106,7 +105,7 @@ class FloaterMovement():
         if node == floater or node.find_me_elsewhere:
             return True
 
-    def right_adjunct(self, node):
+    def is_right_adjunct(self, node):
         if 'ADV' in node.head().features or 'P' in node.head().features:
             return True
 
@@ -115,7 +114,7 @@ class FloaterMovement():
         if not floater_copy.head().external_tail_head_test():
             return False
         else:
-            if self.right_adjunct(floater_copy):
+            if self.is_right_adjunct(floater_copy):
                 return True
             else:
                 if floater_copy.container_head() != starting_point_head and ps_iterator_.head().count_specifiers() < 2:

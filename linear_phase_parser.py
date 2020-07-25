@@ -215,60 +215,51 @@ class LinearPhaseParser:
                         self.first_solution_found = True
                         # self.exit = True    # Knock this out if you want to see all solutions
 
-    # Definition for filtering
     def filter(self, ps, w):
         log('\t\t\tFiltering out impossible merge sites...')
-
-        # Condition 1. New word was inside the last word, in which case only H-COMP is accepted, the rest are filtered
-        bottom_element = ps.bottom().get_bottom_affix()
-        if bottom_element.internal:
-            log(f'\t\t\tSink \"{w.get_pf()}\" into {bottom_element.get_pf()}'
-                ' because they are inside the same phonological word.')
-            return [ps.bottom()]  # We return the only possible solution
-
-        # Prepare the list of adjunction sites
         adjunction_sites = []
         N = ps
-        # Gather all merge nodes at the right edge of the phrase structure ('ps')
+
+        if ps.bottom().get_bottom_affix().internal:
+            log(f'\t\t\tSink \"{w.get_pf()}\" because it belongs to the same word.')
+            return [ps.bottom()]
 
         while N:
             reject = False
-            # Condition 2. If N does not accept any complementizer (-COMP:*), [N W] is filtered out
-            if N.is_primitive():
-                if '-COMP:*' in N.features:
-                    set_logging(True)
-                    log(f'\t\t\t\tReject [{N} {w}] because {N} does not accept complementizers.')
-                    reject = True
-            # Condition 3. If N does not pass strong LF-legibility test, filter out [N W].
-            else:
-                set_logging(False)
-                dropped = self.transfer_to_lf(N.copy())
-                set_logging(True)
-                lf_test = dropped.LF_legibility_test()
-                if lf_test.fail() and not (
-                        w.is_adjoinable() and
-                        lf_test.probe_goal_test_result and
-                        lf_test.head_integrity_test_result and
-                        lf_test.criterial_feature_test_result):
-                    log(f'\t\t\t\tReject [{dropped.illustrate()} {w}] due to bad left branch.')
-                    reject = True
-                else:
-                    # Condition 4. If solution [N w] breaks existing words, it is rejected.
-                    if self.is_word_internal(N):
-                        if not w.is_adjoinable():  # Adjoinable phrases cannot be tested because they might become adjuncts later
-                            set_logging(True)
-                            log(f'\t\t\t\tReject [{repr(N)} {w}] as Spec because it breaks words.')
-                            reject = True
-
-            #  Add the site to the list if it was not filtered out by previous conditions A-D.
+            if self.does_not_accept_any_complementizers(N):
+                log(f'\t\t\t\tReject {N} + {w} because {N} does not accept complementizers.')
+                reject = True
+            elif N.is_complex() and self.bad_left_branch(N, w):
+                log(f'\t\t\t\tReject {N} + {w} due to bad left branch.')
+                reject = True
+            elif self.breaks_words(N, w):
+                log(f'\t\t\t\tReject {N} + {w} because it breaks words.')
+                reject = True
             if not reject:
                 adjunction_sites.append(N)
-
-            # Geometric downstream walk
             N = N.walk_downstream_geometrically()
-
-        # Return the list of possible adjunction sites
         return adjunction_sites
+
+    def bad_left_branch(self, N, w):
+        # set_logging(False)
+        dropped = self.transfer_to_lf(N.copy())
+        lf_test = dropped.LF_legibility_test()
+        set_logging(True)
+        if lf_test.fail() and not (
+                w.is_adjoinable() and
+                lf_test.probe_goal_test_result and
+                lf_test.head_integrity_test_result and
+                lf_test.criterial_feature_test_result):
+            return True
+
+    def does_not_accept_any_complementizers(self, N):
+        if N.is_primitive() and '-COMP:*' in N.features:
+            return True
+
+    def breaks_words(self, N, w):
+        if self.is_word_internal(N):
+            if not w.is_adjoinable():  # Adjoinable phrases cannot be tested because they might become adjuncts later
+                set_logging(True)
 
     # Definition for the ranking function
     def ranking(self, site_list, w):
