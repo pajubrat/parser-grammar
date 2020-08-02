@@ -2,7 +2,7 @@
 from support import log
 from LF import LF
 
-major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
+major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 case_features = {'NOM', 'ACC', 'PAR', 'GEN', '0_ACC', 'n_ACC', 't_ACC', 'DAT', 'POSS'}
 
 # Definitions and methods for phrase structure
@@ -1057,13 +1057,13 @@ class PhraseStructure:
             if 'null' in self.left_const.features:
                 pf = pf + '__'
             else:
-                pf = pf + self.left_const.gloss()
+                pf = pf + self.left_const.gloss() + ' '
 
         if self.right_const:
             if 'null' in self.right_const.features:
                 pf = pf + '__'
             else:
-                pf = pf + self.right_const.gloss()
+                pf = pf + self.right_const.gloss() + ' '
 
         if self.is_primitive():
             pf = pf + self.get_lf()

@@ -62,55 +62,64 @@ class Visualizer:
     def move_node(self, dx, dy, N):
         N.x = N.x + dx
         N.y = N.y + dy
-        if N.is_complex_head():
-            self.move_node(dx, dy, N.right_const)
-        elif N.is_complex():
+        if N.is_complex():
             self.move_node(dx, dy, N.left_const)
             self.move_node(dx, dy, N.right_const)
 
     # Definition for lateral stretch for constituent N (should be the top node)
     def lateral_stretch(self, N):
-
-        # Internal functions
-        def check_lateral_conflicts(N):
-            left_branch_coordinates = get_coordinate_set(N.left_const, set())
-            right_branch_coordinates = get_coordinate_set(N.right_const, set())
-            max_overlap = 1
-            for coordinates_from_left in left_branch_coordinates:
-                for coordinates_from_right in right_branch_coordinates:
-                    if coordinates_from_left[1] == coordinates_from_right[1]:
-                        if coordinates_from_right[0] - coordinates_from_left[0] < max_overlap:
-                            max_overlap = coordinates_from_right[0] - coordinates_from_left[0]
-
-            return max_overlap
-
-        def get_coordinate_set(N, coordinate_set):
-            coordinate_set.add((N.x, N.y))
-            if N.is_complex():
-                coordinate_set |= get_coordinate_set(N.left_const, coordinate_set)
-                coordinate_set |= get_coordinate_set(N.right_const, coordinate_set)
-            return coordinate_set
-
-        # ---------------------------------- Main function -------------------------------------------------#
+        min_move = 0.5
         if N.is_primitive():
-            if N.is_complex_head() and self.spellout:
-                self.move_node(-1, 0, N.right_const)
-                self.lateral_stretch(N.right_const)
             return
         else:
-            # Checks if the the branches conflict and return the amount of lateral overlap
-            # k = 0:    some N at some y occupy the same x (repair  k-1)
-            # k < 0:    some N at some y overlap with the amount -k (repair (k-1)
-            # k > 0:    the smallest space between some N at some y is +k (do not repair)
-            k = check_lateral_conflicts(N)
+            k = self.check_lateral_conflicts(N)
             if k <= 0:
-                # Move K laterally by the amount
-                self.move_node(k-1, 0, N.left_const)
+                self.move_node(k*0.1-min_move, 0, N.left_const)
+                self.move_node(-k*0.1+min_move, 0, N.right_const)
                 self.new_lateral_stretch_needed = True
-
-            # Check lateral stretch for the two constituents, recursively
             self.lateral_stretch(N.left_const)
             self.lateral_stretch(N.right_const)
+
+    def check_lateral_conflicts(self, N):
+        left_branch_coordinates = self.get_coordinate_set(N.left_const, set())
+        right_branch_coordinates = self.get_coordinate_set(N.right_const, set())
+        max_overlap = 1
+        for coordinates_from_left in left_branch_coordinates:
+            for coordinates_from_right in right_branch_coordinates:
+                if coordinates_from_left[1] == coordinates_from_right[1]:                   # Y-axis
+                    if coordinates_from_right[0] - coordinates_from_left[0] < max_overlap:  # X-axis
+                        max_overlap = coordinates_from_right[0] - coordinates_from_left[0]
+        return max_overlap
+
+    def get_coordinate_set(self, N, coordinate_set):
+        min_safety_window = 0.4
+        coordinate_set.add((N.x-min_safety_window, N.y))  # x-coordinate + safety window to prevent text overlap
+        coordinate_set.add((N.x+min_safety_window, N.y))  # x-coordinate + safety window to prevent text overlap
+        if N.is_primitive():
+            if self.show_glosses or self.spellout:
+                coordinate_set |= self.safety_window_coordinate_update(N)
+        else:
+            coordinate_set |= self.get_coordinate_set(N.left_const, coordinate_set)
+            coordinate_set |=self.get_coordinate_set(N.right_const, coordinate_set)
+        return coordinate_set
+
+    def safety_window_coordinate_update(self, N):
+        s = set()
+        for K in N.get_affix_list():
+            pf_width = len(K.get_pf()) / 8
+            gloss_width = len(K.gloss()) / 8
+            s.add((N.x - pf_width, N.y))
+            s.add((N.x + pf_width, N.y))
+            s.add((N.x - gloss_width, N.y))
+            s.add((N.x + gloss_width, N.y))
+            if self.show_glosses and self.spellout and self.number_of_label_lines(N):
+                s.add((N.x - gloss_width / 2, N.y - 1))
+                s.add((N.x + gloss_width / 2, N.y - 1))
+        return s
+
+    def number_of_label_lines(self, N):
+        if len(N.get_pf()) > 1 and len(N.gloss()) > 1:
+            return True
 
 # Definition for the output window behavior
 class ProduceGraphicOutput(pyglet.window.Window):
@@ -165,6 +174,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if symbol == pyglet.window.key.S:
             self.save_image()
             print('Image saved.')
+            self.close()
             return
         elif symbol == pyglet.window.key.R:
             if self.selected_node:
@@ -219,10 +229,11 @@ class ProduceGraphicOutput(pyglet.window.Window):
     # Recursive projection function
     def show_in_window(self, ps):
 
-        # Mother position
+        # Mother node position
         X1 = self.x_offset + ps.x * self.x_grid
         Y1 = self.y_offset + ps.y * self.y_grid
 
+        # Prevent drawing outside of window boundaries
         if X1 < 0:
             X1 = 0
         if Y1 < 0:
@@ -236,18 +247,14 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.draw_selection()
 
         # Phrase structure geometry for daughters
-        if ps.is_complex_head():
-            self.draw_vertical_line(ps, X1, Y1)
+        if ps.left_const:
+            self.draw_left_line(ps, X1, Y1)
+            self.show_in_window(ps.left_const)
+        if ps.right_const and not ps.is_complex_head():
+            self.draw_right_line(ps, X1, Y1)
             self.show_in_window(ps.right_const)
-        else:
-            if ps.left_const:
-                self.draw_left_line(ps, X1, Y1)
-                self.show_in_window(ps.left_const)
-            if ps.right_const:
-                self.draw_right_line(ps, X1, Y1)
-                self.show_in_window(ps.right_const)
-                if not self.visualizer.stop_after_each_image:
-                    pyglet.app.exit()
+            if not self.visualizer.stop_after_each_image:
+                pyglet.app.exit()
 
     def draw_selection(self):
         if self.selected_node:
@@ -279,7 +286,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 label_stack = label_stack + '§' + str(ps.get_case())
 
         return label_stack
-
 
     def draw_right_line(self, ps, X1, Y1):
         X2 = self.x_offset + ps.right_const.x * self.x_grid
@@ -373,7 +379,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             depth = ps.y
         if ps.left_const:
             left, right, depth = self.get_tree_size(ps.left_const, left, right, depth)
-        if ps.right_const:
+        if ps.right_const and not ps.is_complex_head():
             left, right, depth = self.get_tree_size(ps.right_const, left, right, depth)
 
         return left, right, depth
