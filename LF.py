@@ -39,6 +39,17 @@ class LF:
     def fail(self):
         return not self.all_pass()
 
+    def report_lf_status(self):
+        log(f'\t\t\t\tprobe-goal test: {self.probe_goal_test_result}')
+        log(f'\t\t\t\tselection test: {self.selection_test_result}')
+        log(f'\t\t\t\ttail-head test: {self.tail_head_test_result}')
+        log(f'\t\t\t\thead integrity test: {self.head_integrity_test_result}')
+        log(f'\t\t\t\tcriterial test: {self.criterial_feature_test_result}')
+        log(f'\t\t\t\tsemantic test: {self.semantic_test_result}')
+        log(f'\t\t\t\tprojection principle: {self.projection_principle_test_result}')
+        log(f'\t\t\t\tcomplement test: {self.wrong_complement_test_result}')
+        log(f'\t\t\t\tadjunct test: {self.adjunct_test_result}')
+
     # Checks LF-legibility for primitive constituents (not phrases)
     def test(self, ps):
         if ps.is_primitive():
@@ -63,7 +74,7 @@ class LF:
                 h.max() and h.max().adjunct and \
                 h.max().is_right() and \
                 h.max().mother and 'D' in h.max().mother.head().features:
-            log(f'\t\t\t\t{h.mother.mother} in uninterpretable.')
+            log(f'\t\t\t\t{h.mother.mother} in uninterpretable because it is inside DP.')
             self.adjunct_test_result = False
 
     def head_integrity_test(self, h):
@@ -124,10 +135,12 @@ class LF:
                         self.projection_principle_test_result = False
             elif DP_target.adjunct:
                 if not DP_target.contains_feature('adjoinable'):
+                    log(f'\t\t\t\t\{DP_target} has no thematic role and is not adjoinable.')
                     self.projection_principle_test_result = False
                 else:
                     if not DP_target.get_theta_assigner() and not DP_target.contains_feature('SEM:nonreferential'):
-                            self.projection_principle_test_result = False
+                        self.projection_principle_test_result = False
+                        log(f'\t\t\t\t{DP_target} has no thematic role.')
 
     def selection_tests(self, h):
         comp = h.complement()

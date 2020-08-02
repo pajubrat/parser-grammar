@@ -197,7 +197,7 @@ class LinearPhaseParser:
             log(f'\t\tChecking LF-interface conditions...')
             lf = ps_.LF_legibility_test()
             if not lf.all_pass():
-                report_LF_problem(ps_)
+                lf.report_lf_status()
             else:
                 self.semantic_interpretation = self.transfer_to_CI(ps_)
 
@@ -241,7 +241,7 @@ class LinearPhaseParser:
         return adjunction_sites
 
     def bad_left_branch(self, N, w):
-        # set_logging(False)
+        set_logging(False)
         dropped = self.transfer_to_lf(N.copy())
         lf_test = dropped.LF_legibility_test()
         set_logging(True)

@@ -508,7 +508,6 @@ class PhraseStructure:
                     if test == 'complete match':
                         return True
                     elif test == 'partial match':
-                        log(f'\t\t\t\t\tDetected partial tail-head match with {tail_set} against {m}')
                         return False
                     elif test == 'negative match':
                         return False
