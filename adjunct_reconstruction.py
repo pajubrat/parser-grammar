@@ -31,12 +31,20 @@ class FloaterMovement():
         return ps.top()  # Return top, because it is possible that an adjunct expands the structure
 
     def detect_floater(self, _ps_iterator):
+
+        # Internal function
+        # Definition for finiteness (trivial)
+        def is_finite(h):
+            head = h.head()
+            return 'FIN' in head.features
+
+        # Main function
         if self.detect_left_floater(_ps_iterator):
             floater = _ps_iterator.left_const
             if not floater.head().external_tail_head_test():
                 log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
                 return floater
-            elif floater.mother and floater.mother.head().EPP() and floater.mother.is_finite():
+            elif floater.mother and floater.mother.head().EPP() and is_finite(floater.mother):
                 log('\t\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
                 return floater
             elif floater.mother and '-SPEC:*' in floater.mother.head().features:
@@ -97,9 +105,9 @@ class FloaterMovement():
 
     def merge_floater(self, node, floater_copy):
         if self.is_right_adjunct(floater_copy):
-            node.merge(floater_copy, 'right')
+            node.merge_1(floater_copy, 'right')
         else:
-            node.merge(floater_copy, 'left')
+            node.merge_1(floater_copy, 'left')
 
     def termination_condition(self, node, floater):
         if node == floater or node.find_me_elsewhere:
@@ -117,7 +125,7 @@ class FloaterMovement():
             if self.is_right_adjunct(floater_copy):
                 return True
             else:
-                if floater_copy.container_head() != starting_point_head and ps_iterator_.head().count_specifiers() < 2:
+                if floater_copy.container_head() != self.count_specifiers(starting_point_head and ps_iterator_.head()) < 2:
                     if floater_copy.container_head():
                         if '-SPEC:*' not in floater_copy.container_head().features:
                             if floater_copy.container_head().selector():
@@ -168,3 +176,19 @@ class FloaterMovement():
     def get_specifiers(self, h):
         specs = h.edge()
         return [spec for spec in specs if not spec.is_primitive()]
+
+    @staticmethod
+    # Counts the number of (in situ non-adjunct) specifiers
+    def count_specifiers(h):
+        ps_ = h.mother
+        count = 0
+        # ---------------- while loop begins ----------------------#
+        while ps_ and ps_.sister() and \
+                (ps_.sister().is_left() and \
+                not ps_.sister().is_primitive()) and \
+                not ps_.sister().find_me_elsewhere and \
+                not ps_.sister().externalized():
+            count = count + 1
+            ps_ = ps_.walk_upstream()
+        # ---------------- while loop ends --------------------------#
+        return count

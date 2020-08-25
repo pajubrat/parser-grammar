@@ -36,9 +36,9 @@ import visualizer
 from pathlib import Path
 
 # Block 2. Define input and output data files and names
-data_folder = Path("language data working directory/study-7-structural-case")
+data_folder = Path("language data working directory/study-6-linear-phase-theory")
 common_working_directory = Path("language data working directory")
-test_corpus_name = "case_corpus.txt"
+test_corpus_name = "linear_phase_theory_corpus.txt"
 
 test_set_name = data_folder / test_corpus_name
 log_name = test_corpus_name[:-4] + '_log.txt'

@@ -93,8 +93,21 @@ class SurfaceConditions:
 
     def incorporation_condition(self, test_constituent):
 
+        # Internal functions
+        # Returns the union of features of head and all its affixes
+        def get_all_features_of_complex_word(h):
+            if h.is_complex():
+                head = h.head()
+            else:
+                head = h
+            complex_word_features = head.features
+            for affix in head.get_affix_list():
+                complex_word_features = complex_word_features | affix.features
+            return complex_word_features
+
+        # Main function
         # Condition 1. There is a right sister element that contains label V
-        if test_constituent.is_left() and 'V' in test_constituent.sister().head().get_all_features_of_complex_word():
+        if test_constituent.is_left() and 'V' in get_all_features_of_complex_word(test_constituent.sister().head()):
 
             # Condition 2. The left element is not V
             if 'V' not in self.get_constituent_to_left_in_linear_order(test_constituent).get_all_features_of_complex_word():

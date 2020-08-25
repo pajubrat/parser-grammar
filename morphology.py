@@ -69,7 +69,7 @@ class Morphology:
 
     def set_inflection(self, lexical_item, inflectional_affixes):
         if inflectional_affixes:
-            log(f'\t\tAdding inflectional features {inflectional_affixes} to ' + lexical_item.get_pf())
+            log(f'\t\tAdding inflectional features {inflectional_affixes} to ' + lexical_item.get_phonological_string())
             lexical_item.features = lexical_item.features | set(inflectional_affixes)
         return lexical_item
 

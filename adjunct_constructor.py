@@ -27,7 +27,7 @@ class AdjunctConstructor:
     def eat_specifier_(self, ps):
         if ps.head().edge() and \
                 not '-SPEC:*' in ps.head().features and \
-                not (set(ps.head().get_not_specs()) & set(ps.edge()[0].head().features)) and \
+                not (set(ps.head().specifiers_not_licensed()) & set(ps.edge()[0].head().features)) and \
                 not ps.edge()[0].is_primitive() and \
                 '-ARG' not in ps.head().features and \
                 ps.head().mother.mother:

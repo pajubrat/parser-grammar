@@ -1,5 +1,6 @@
 
 from support import log, illu
+from semantics import Semantics
 
 # Transforms a set of lexical features to be used in checking LF-interface conditions
 
@@ -20,6 +21,8 @@ class LF:
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_to_CI_crash = False
+
+        self.semantics = Semantics()
 
         # This stores facts concerning semantic interpretation resulting from transfer to CI
         # The report is a set of strings; later this will be in some formal notation
@@ -71,9 +74,9 @@ class LF:
 
     def adjunct_interpretation_test(self, h):
         if 'D' in h.features and \
-                h.max() and h.max().adjunct and \
-                h.max().is_right() and \
-                h.max().mother and 'D' in h.max().mother.head().features:
+                self.max(h) and self.max(h).adjunct and \
+                self.max(h).is_right() and \
+                self.max(h).mother and 'D' in self.max(h).mother.head().features:
             log(f'\t\t\t\t{h.mother.mother} in uninterpretable because it is inside DP.')
             self.adjunct_test_result = False
 
@@ -107,10 +110,10 @@ class LF:
                 log(f'\t\t\t\t{h} has double specifiers.')
 
     def semantic_complement_test(self, h):
-        if h.complement():
-            if not LF.semantic_match(h, h.complement()):
+        if h.strong_complement():
+            if not LF.semantic_match(h, h.strong_complement()):
                 self.semantic_test_result = False
-                log(f'\t\t\t\t{ps} fails semantic match with {h.complement()}')
+                log(f'\t\t\t\t{h} fails semantic match with {h.strong_complement()}')
 
     def criterial_feature_test(self, h):
         if 'D' in h.features and 'REL' not in h.features and h.mother:
@@ -119,6 +122,16 @@ class LF:
                 self.criterial_feature_test_result = False
 
     def projection_principle(self, h):
+
+        # Inner function
+        # Definition for property X has a theta assigner P
+        def get_theta_assigner(h):
+            if h.sister() and h.sister().is_primitive():
+                return h.sister
+            if h.container_head() and h in h.container_head().edge():
+                return h.container_head()
+
+        # Main function
         if 'D' in h.features and h.mother and not h.mother.find_me_elsewhere:
             DP_target = h.mother
             if DP_target.container_head() and DP_target in DP_target.container_head().edge():
@@ -129,21 +142,21 @@ class LF:
                 elif container_head.selector() and 'ARG' not in container_head.selector().features:
                     log(f'\t\t\t\t{DP_target} has no thematic role due to a selecting -ARG head.')
                     self.projection_principle_test_result = False
-                elif 'D' not in container_head.specs():
+                elif 'D' not in container_head.licensed_specifiers():
                     if container_head.sister() != DP_target:
                         log(f'\t\t\t\t{DP_target} has no thematic role at the SPEC of {container_head}')
                         self.projection_principle_test_result = False
             elif DP_target.adjunct:
                 if not DP_target.contains_feature('adjoinable'):
-                    log(f'\t\t\t\t\{DP_target} has no thematic role and is not adjoinable.')
+                    log(f'\t\t\t\t{DP_target} has no thematic role and is not adjoinable.')
                     self.projection_principle_test_result = False
                 else:
-                    if not DP_target.get_theta_assigner() and not DP_target.contains_feature('SEM:nonreferential'):
+                    if not get_theta_assigner(DP_target) and not DP_target.contains_feature('SEM:nonreferential'):
                         self.projection_principle_test_result = False
                         log(f'\t\t\t\t{DP_target} has no thematic role.')
 
     def selection_tests(self, h):
-        comp = h.complement()
+        comp = h.strong_complement()
         local_edge = h.local_edge()
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('-SPEC:'):
@@ -164,11 +177,11 @@ class LF:
 
             # Obligatory complement
             if f.startswith('!COMP:') and not f == '!COMP:*':
-                if not h.selected_sister():
+                if not self.selected_sister(h):
                     log(f'\t\t\t\t{h} is missing complement {f[6:]}')
                     self.selection_test_result = False
                 else:
-                    if f[6:] not in h.selected_sister().head().features:
+                    if f[6:] not in self.selected_sister(h).head().features:
                         log(f'\t\t\t\t\t{h} is missing a mandatory complement {f[6:]}')
                         self.selection_test_result = False
 
@@ -186,7 +199,7 @@ class LF:
 
             # !COMP:* heads must have complements (=functional head)
             if f == '!COMP:*':
-                if not h.selected_sister():
+                if not self.selected_sister(h):
                     log(f'\t\t\t\t"{h}" lacks complement.')
                     self.selection_test_result = False
 
@@ -208,281 +221,6 @@ class LF:
                         log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {local_edge}, needs {f[6:]}')
                         self.selection_test_result = False
 
-    def bind_variables(self, ps):
-        if 'C' not in ps.head().features:
-            for f in ps.head().features:
-                if f[:3] == 'OP:' and f != 'OP:_':
-                    if not self.bind_to_operator(ps, 'OP'):
-                        log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
-                        self.transfer_to_CI_crash = True
-                    else:
-                        log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
-                        self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
-        return
-
-    def bind_to_operator(self, ps , operator):
-        ps_ = ps
-        while ps_:
-            if ps_.is_primitive():
-                if ps_.match_features({operator}) == 'complete match' and 'FIN' in ps_.head().features:
-                    return ps_
-            elif ps_.left_const.head().match_features({operator}) == 'complete match' and \
-                    'FIN' in ps_.left_const.head().features:
-                return ps_
-            ps_ = ps_.walk_upstream()
-
-    # This function will try to transfer the phrase structure into the conceptual-intentional system
-    def transfer_to_CI(self, ps):
-        log(f'\t\t\tTransferring {ps} into the conceptual-intentional system...')
-        self.transfer_to_CI_crash = False
-        self.semantic_interpretation = self.create_semantic_interpretation(ps)
-        if not self.semantic_interpretation:
-            log('\t\t\t\tSemantic interpretation failed, transfer to C-I crashed.')
-            self.transfer_to_CI_crash = True
-            return set()
-        else:
-            log('\t\t\t\tTransfer to C-I successful.')
-            self.transfer_to_CI_crash = False
-            return sorted(self.semantic_interpretation)
-
-    # Definition for transfer to the conceptual-intentional system
-    def create_semantic_interpretation(self, ps):
-        if ps.is_primitive():
-            self.perform_LF_recovery(ps)
-            self.detect_phi_conflicts(ps)
-            self.interpret_tail_features(ps)
-        else:
-            if not ps.left_const.find_me_elsewhere:
-                self.create_semantic_interpretation(ps.left_const)
-            if not ps.right_const.find_me_elsewhere:
-                self.create_semantic_interpretation(ps.right_const)
-            if self.transfer_to_CI_crash:
-                return set()
-            else:
-                return self.semantic_interpretation | {' '}
-
-    def interpret_tail_features(self, ps):
-        tail_sets = ps.get_tail_sets()
-        if tail_sets:
-            for tail_set in tail_sets:
-                tailed_head = self.get_target_head(ps, tail_set)
-                self.interpret_tailing(ps, tailed_head)
-
-    def interpret_tailing(self, ps, tailed_head):
-        if tailed_head:
-            self.interpret_argument_tailing(ps, tailed_head)
-            self.interpret_adjunct_predication(ps, tailed_head)
-
-    def interpret_argument_tailing(self, ps, tailed_head):
-        if 'ASP:BOUNDED' in tailed_head.features:
-            self.semantic_interpretation.add('Aspectually bounded')
-            if 'PAR' in ps.features:
-                if not self.bind_to_operator(ps, 'POL:NEG'):
-                    self.semantic_interpretation.discard('Aspectually bounded')
-                    self.semantic_interpretation.add('Aspectually anomalous')
-
-    def interpret_adjunct_predication(self, ps, tailed_head):
-        pass
-
-    def get_target_head(self, ps, tail_set):
-        for head in ps.feature_vector()[1:]:
-            if head.match_features(tail_set) == 'complete match':
-                return head
-
-    def perform_LF_recovery(self, ps):
-        unvalued_phi_features = self.must_be_valued(ps.get_unvalued_features())
-        if unvalued_phi_features:
-            log(f'\t\t\t\t{ps.illustrate()} with {sorted(unvalued_phi_features)} was associated at LF with:')
-            list_of_antecedents = self.LF_recovery(ps, unvalued_phi_features)
-            if list_of_antecedents:
-                self.semantic_interpretation.add(self.format_antecedent(ps, list_of_antecedents[0]))
-            else:
-                self.semantic_interpretation.add(f'{ps}(' + self.failed_recovery_outcome(ps, unvalued_phi_features) + ')')
-            self.report_to_log(ps, list_of_antecedents, unvalued_phi_features)
-
-    def detect_phi_conflicts(self, ps):
-        phi_set = ps.get_phi_set()
-        for phi in phi_set:
-            if phi[-1] == '*':
-                log(f'\t\t\t\t{ps} induces a phi-feature conflict.')
-                self.transfer_to_CI_crash = True
-                return
-        return
-
-    def must_be_valued(self, phi_set):
-        return {phi for phi in phi_set if self.relevant_phi_at_LF(phi)}
-
-    # Definition for phi-features which require antecedents at LF/C-I
-    def relevant_phi_at_LF(self, phi):
-        if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET':
-            return True
-        else:
-            return False
-
-    # Definition for LF-recovery
-    def LF_recovery(self, ps, unvalued_phi):
-        ps_ = ps
-        head = ps
-        list_of_antecedents = []
-        #
-        # Alternative 1: H has unvalued per/num features: standard control
-        #
-        if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
-            while ps_:
-                #
-                # Termination condition: sister is a strong phase head
-                # (Strong phase head = Force or v*)
-                if ps_.sister() and 'SEM:external' in ps_.sister().head().features:
-                    break
-                #
-                # XP is an antecedent is anf only if
-                # Condition 1. Antecedent must be a sister of the node reached by upstream walk from H, and
-                # Condition 2. The phrase must evaluate as a possible antecedent.
-                if ps_.geometrical_sister() and self.is_possible_antecedent(ps_.geometrical_sister(), ps):
-                    list_of_antecedents.append(ps_.geometrical_sister())
-                ps_ = ps_.walk_upstream_geometrically()
-            return list_of_antecedents
-        #
-        # Alternative 2. Only PER_ remains unvalued: standard control (currently, used in radical pro-drop)
-        #
-        elif 'PHI:PER:_' in unvalued_phi:
-            while ps_:
-                #
-                # Termination condition: presence of SEM-external (control boundary)
-                if ps_.sister() and 'SEM:external' in ps_.sister().head().features:
-                    break
-                #
-                # Condition 1. Antecedent must be a sister of the node at the spine we climb up
-                # Condition 2. The phrase must evaluate as a possible antecedent
-                if ps_.sister() and self.is_possible_antecedent(ps_.sister(), ps):
-                    list_of_antecedents.append(ps_.sister())
-                ps_ = ps_.walk_upstream_geometrically()
-            return list_of_antecedents
-        #
-        # Alternative 3. Only D_ remains unvalued: nonlocal/discourse antecedents
-        #
-        elif 'PHI:DET:_' in unvalued_phi:
-            while ps_:
-                #
-                # Termination condition: presence of local specifier
-                # Example: tässä istuu mukavasti 'here sit.3sg comfortably'
-                if ps_.sister() and ps_.sister() == ps.local_edge():
-                    #
-                    # If the local candidate is not a DP, it will be interpreted as generic
-                    if ps_.sister() and 'D' not in ps_.sister().head().features:
-                        self.semantic_interpretation.add(f'{ps}(generic)')
-                        list_of_antecedents.append(ps_.sister())
-                        head.features.add('PHI:DET:GEN')
-                    #
-                    # If the local candidate is DP, it will be the antecedent
-                    else:
-                        list_of_antecedents.append(ps_.sister())
-                    #
-                    # Nothing else is searched (currently)
-                    break
-                #
-                # If there is no local antecedent inside the edge of H, then we get all antecedents.
-                if ps_.sister() and self.is_possible_antecedent(ps_.sister(), ps):
-                    list_of_antecedents.append(ps_.sister())
-                ps_ = ps_.walk_upstream_geometrically()
-
-            # Condition 3c: if no antecedent is found, LF-recovery crashes
-            if not list_of_antecedents:
-                log(f'\t\t\t\t\tNo antecedent found, LF-object crashes.')
-                self.transfer_to_CI_crash = True
-            return list_of_antecedents
-
-    # Defines the category of possible antecedent for a goal head H
-    def is_possible_antecedent(self, antecedent, h):
-
-        # Condition 1. X has not been moved into another position
-        if antecedent.find_me_elsewhere:
-            return False
-
-        # Set of relevant phi-features at H (valued and unvalued)
-        h_phi_features = {f for f in h.features if self.relevant_phi_at_LF(f)}
-
-        # Set of unchecked features at H (will be checked by features of the antecedent)
-        unchecked_features_at_h = h_phi_features.copy()
-
-        # Condition 2. Antecedent X can check all H's relevant phi-features.
-        for F in {phi for phi in antecedent.head().features if phi[:4] == 'PHI:' and phi[-1] != '_'}:
-            for G in h_phi_features:
-
-                # Condition 2a) Valued feature F at antecedent X checks G at H if F = G.
-                if F == G:
-                    unchecked_features_at_h.discard(G)  # Check feature
-
-                # Condition 2b) Valued feature F at antecedent X checks G at H if F can value G.
-                else:
-                    if G[-1] == '_':
-                        if F[:len(G)-1] == G[:-1]:
-                            unchecked_features_at_h.discard(G)  # Check feature
-
-        # If features remain unchecked, the antecedent is rejected
-        if unchecked_features_at_h:
-            return False
-        else:
-            return True
-
-    # Definition for the notion of phrasal phase
-    # XP is a phrasal phase if and only if
-    # Condition 1. XP's sister is a phase head
-    def phase(self, ps_):
-        if ps_.sister() and ps_.sister().is_phase():
-            return True
-        else:
-            return False
-
-    def report_to_log(self, ps, list_of_antecedents, unvalued_phi_features):
-        s = ''
-        i = 1
-        if list_of_antecedents:
-            for a in list_of_antecedents:
-                s = s + str(i) + '. ' + a.illustrate() + ' '
-                i = i + 1
-                if i == 2:
-                    s = s + '   (alternatives: '
-            if i > 1:
-                s = s + ')'
-            if s:
-                log(f'\t\t\t\t\t' + s)
-            else:
-                log(f'\t\t\t\t\t{ps}{self.failed_recovery_outcome(ps, unvalued_phi_features)}')
-            return True
-
-    # Definition for failed LF-recovery outcome
-    # Presupposition. LF-recovery fails if and only if no antecedent is found
-    # A failed outcome for LF-recovery for head H depends on unvalued phi-features:
-    #   a) NUM_, PER_: "clausal argument" if the sister is a clause, "generic" otherwise;
-    #   b) PER_: "discourse";
-    #   c) "uninterpretable" otherwise
-    def failed_recovery_outcome(self, ps, features):
-        if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
-            if ps.sister() and ps.sister().is_complex() and \
-                    ('CAT:INF' in ps.sister().head().features or 'CAT:FIN' in ps.sister().head().features):
-                return 'clausal argument'
-            else:
-                return 'generic'
-        elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
-            return 'discourse antecedent'
-        else:
-            return 'uninterpretable'
-
-
-    def semantic_match(a, b):
-
-        a_head = a.head()
-        b_head = b.head()
-
-        pos_sem_a = {f[5:] for f in a_head.features if f.startswith('+SEM:')}
-        neg_sem_a = {f[5:] for f in a_head.features if f.startswith('-SEM:')}
-
-        pos_sem_b = {f[5:] for f in b_head.features if f.startswith('+SEM:')}
-        neg_sem_b = {f[5:] for f in b_head.features if f.startswith('-SEM:')}
-
-        return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
-
     # LF-interface check for the final phrase structure
     @staticmethod
     def final_tail_check(goal):
@@ -503,48 +241,67 @@ class LF:
                 return False
         return True
 
-    # Provides a more readable alternative reading form for antecedents
-    def format_antecedent(self, trigger, antecedent):
+    def bind_variables(self, ps):
+        if 'C' not in ps.head().features:
+            for f in ps.head().features:
+                if f[:3] == 'OP:' and f != 'OP:_':
+                    if not ps.bind_to_operator('OP'):
+                        log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
+                        self.transfer_to_CI_crash = True
+                    else:
+                        log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
+                        self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
+        return
 
-        antecedent_head = antecedent.head()
-
-        arg_str = ''
-        # This is a rudimentary thematic theory that has not yet been implemented
-        # These notions are simply returned as heuristic semantic interpretation to the user, and they have
-        # no effect on anything
-        if trigger.sister() and trigger.is_left() and antecedent == trigger.sister() and antecedent.is_right():
-            prefix = 'Patient of'
+    # This function will try to transfer the phrase structure into the conceptual-intentional system
+    def transfer_to_CI(self, ps):
+        log(f'\t\t\tTransferring {ps} into the conceptual-intentional system...')
+        self.transfer_to_CI_crash = False
+        self.semantic_interpretation = self.semantics.interpret(ps)
+        if not self.semantic_interpretation:
+            log('\t\t\t\tSemantic interpretation failed, transfer to C-I crashed.')
+            self.transfer_to_CI_crash = True
+            return set()
         else:
-            prefix = 'Agent of'
+            log('\t\t\t\tTransfer to C-I successful.')
+            self.transfer_to_CI_crash = False
+            return sorted(self.semantic_interpretation)
 
-        if 'D' in antecedent_head.features:
-            if antecedent_head.sister() and 'N' in antecedent_head.sister().head().features:
-                arg_str = antecedent_head.sister().head().illustrate()
-            else:
-                arg_str = antecedent.illustrate()
-        elif 'C' in antecedent_head.features or 'FORCE' in antecedent_head.features and antecedent.is_complex():
-            arg_str = 'C-proposition'
-        elif 'V' in antecedent_head.features and antecedent.is_complex():
-            arg_str = 'agent of V-event'
-        elif 'T' in antecedent_head.features:
-            if antecedent.is_complex():
-                arg_str = 'agent of T-event'
-            else:
-                arg_str = f'{sorted(antecedent.get_valued_phi_set())}'
-        else:
-            arg_str = antecedent.illustrate()
+    @staticmethod
+    def semantic_match(a, b):
 
-        return prefix + f' {trigger.illustrate()}({arg_str})'
+        a_head = a.head()
+        b_head = b.head()
+
+        pos_sem_a = {f[5:] for f in a_head.features if f.startswith('+SEM:')}
+        neg_sem_a = {f[5:] for f in a_head.features if f.startswith('-SEM:')}
+
+        pos_sem_b = {f[5:] for f in b_head.features if f.startswith('+SEM:')}
+        neg_sem_b = {f[5:] for f in b_head.features if f.startswith('-SEM:')}
+
+        return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
 
     # Merges with constituents from the syntactic working memory if licensed by selection at LF
     def LFmerge(self, head, controlling_process):
 
+        # Internal functions
+        # specifier match
+        def spec_match(h, spec):
+            if 'SPEC:*' in h.features or '!SPEC:*' in h.features:
+                return True
+            for feature_in_head in h.convert_features_for_parsing(h.licensed_specifiers()):
+                for feature_in_spec in spec.head().features:
+                    if feature_in_head == feature_in_spec:
+                        return True
+            return False
+
         def hit_from_memory_buffer(h):
             for const in controlling_process.syntactic_working_memory:
-                if h.get_comps() & const.head().features:
+                if h.licensed_complements() & const.head().features:
                     return const
 
-        ps = head.get_specifier_anchor()
+        # Main function
+        ps = head.get_specifier_sister()
 
         # Try to fill in SPEC by operator
         if head.has_op_feature():
@@ -552,7 +309,7 @@ class LF:
                 if constituent_in_working_memory.scan_criterial_features():
                     if constituent_in_working_memory not in head.edge():
                         new_const = constituent_in_working_memory.copy_from_memory_buffer(controlling_process.babtize())
-                        ps.merge(new_const, 'left')
+                        ps.merge_1(new_const, 'left')
                         log(f'\t\t\t\t\tMerging operator {constituent_in_working_memory} to Spec{head.get_cats_string()}P')
                         controlling_process.syntactic_working_memory.remove(constituent_in_working_memory)
                         controlling_process.number_of_phrasal_Move = + 1
@@ -562,15 +319,15 @@ class LF:
         specs = [spec for spec in head.edge() if not spec.is_primitive()]
         if not specs or (specs and specs[0].adjunct):
             for constituent_in_working_memory in controlling_process.syntactic_working_memory:
-                if head.spec_match(constituent_in_working_memory):
+                if spec_match(head. constituent_in_working_memory):
                     if not head.EPP():
-                        ps.merge(constituent_in_working_memory.copy(), 'left')
+                        ps.merge_1(constituent_in_working_memory.copy(), 'left')
                         if ps.geometrical_sister().head().external_tail_head_test():
                             log(f'\t\t\t\t\tMerging constituent {constituent_in_working_memory} from memory buffer into Spec{head.get_cats_string()}P')
                             # Replace the hypothetical candidate (above) with proper chain (below) if the solution works
                             ps.geometrical_sister().remove()
                             new_const = constituent_in_working_memory.copy_from_memory_buffer(controlling_process.babtize())
-                            ps.merge(new_const, 'left')
+                            ps.merge_1(new_const, 'left')
                             controlling_process.syntactic_working_memory.remove(constituent_in_working_memory)
                             controlling_process.number_of_phrasal_Move =+ 1
                             log(f'\t\t\t\t\t={ps.top()}')
@@ -581,27 +338,55 @@ class LF:
 
         # Try to fill COMP
         # Condition 1. H is a primitive head without complements that it needs
-        if head.is_primitive() and not head.complement() and head.get_comps():
+        if head.is_primitive() and not head.strong_complement() and head.licensed_complements():
             const = hit_from_memory_buffer(head)
             if const:
-                head.merge(const.copy_from_memory_buffer(controlling_process.babtize()), 'right')
+                head.merge_1(const.copy_from_memory_buffer(controlling_process.babtize()), 'right')
                 controlling_process.syntactic_working_memory.remove(const)
-                log(f'\t\t\t\t\tMerging {repr(const)}(=' + const.spellout() + f') from memory buffer into Comp{head.get_cats_string()}P.')
+                log(f'\t\t\t\t\tMerging {const} from memory buffer into Comp{head.get_cats_string()}P.')
                 log(f'\t\t\t\t\tResult {head.top()}')
                 controlling_process.number_of_phrasal_Move = + 1
 
         #  Condition 2. The head has a non-matching complement
-        if head.is_left() and head.complement() and not (head.get_comps() & head.complement().features):
+        if head.is_left() and head.strong_complement() and not (head.licensed_complements() & head.strong_complement().features):
             const = hit_from_memory_buffer(head)
-            if const and const.features & head.get_comps():
-                head.complement().merge(const.copy_from_memory_buffer(controlling_process.babtize()), 'left')
+            if const and const.features & head.licensed_complements():
+                head.strong_complement().merge_1(const.copy_from_memory_buffer(controlling_process.babtize()), 'left')
                 controlling_process.syntactic_working_memory.remove(const)
-                log(f'\t\t\t\t\tMerging {repr(const)}(=' + const.spellout() + f') from memory buffer into Comp{head.get_cats_string()}P'
-                                                                               f'due to the presence of mismatching complement {head.complement()}.')
+                log(f'\t\t\t\t\tMerging {const} from memory buffer into Comp{head.get_cats_string()}P'
+                                                                               f'due to the presence of mismatching complement {head.strong_complement()}.')
                 controlling_process.self.number_of_phrasal_Move = + 1
                 # Mismatching complement will be made floater
-                if head.complement().right_const.is_adjoinable():
+                if head.strong_complement().right_const.is_adjoinable():
                     log('\t\t\t\t\tThe mismatching complement will be transformed into floater adjunct.')
-                    controlling_process.adjunct_constructor.create_adjunct(head.complement().right_const)
+                    controlling_process.adjunct_constructor.create_adjunct(head.strong_complement().right_const)
+
+
+    @staticmethod
+    # Definition for selected sister
+    def selected_sister(head):
+        if head.is_primitive() and not head.sister():
+            return None
+        if head.sister().is_complex():
+            if head.sister().is_left():
+                return head.sister()
+            elif head.sister().is_right() and not head.sister().externalized():
+                return head.sister()
+        else:
+            if head.sister().is_right():
+                return head.sister()
+            else:
+                return None
+    @staticmethod
+    # Definition of max
+    def max(h):
+        ps_ = h
+        last = h
+        while ps_ and ps_.head() == h.head():
+            last = ps_
+            ps_ = ps_.walk_upstream()
+        return last
+
+
 
 

@@ -8,6 +8,8 @@ from pyglet import shapes, window
 from pyglet.gl import GL_POINTS, GL_LINES, glBegin, glEnd, glVertex2f, gl, glLineWidth, glColor4f, glClearColor, \
     glClear, GL_COLOR_BUFFER_BIT
 
+
+case_features = {'NOM', 'ACC', 'PAR', 'GEN', '0_ACC', 'n_ACC', 't_ACC', 'DAT', 'POSS'}
 import phrase_structure
 import time
 
@@ -106,7 +108,7 @@ class Visualizer:
     def safety_window_coordinate_update(self, N):
         s = set()
         for K in N.get_affix_list():
-            pf_width = len(K.get_pf()) / 8
+            pf_width = len(K.get_phonological_string()) / 8
             gloss_width = len(K.gloss()) / 8
             s.add((N.x - pf_width, N.y))
             s.add((N.x + pf_width, N.y))
@@ -118,7 +120,7 @@ class Visualizer:
         return s
 
     def number_of_label_lines(self, N):
-        if len(N.get_pf()) > 1 and len(N.gloss()) > 1:
+        if len(N.get_phonological_string()) > 1 and len(N.gloss()) > 1:
             return True
 
 # Definition for the output window behavior
@@ -266,24 +268,32 @@ class ProduceGraphicOutput(pyglet.window.Window):
             circle.draw()
 
     def determine_label_stack(self, ps):
+        # Internal function
+        def get_case(h):
+            for label in h.features:
+                if label in case_features:
+                    return '[' + label + ']'
+            return ''
+
+        # Main function
         if self.visualizer.nolabels:
-            if ps.get_pf():
-                label_stack = ps.get_pf()
+            if ps.get_phonological_string():
+                label_stack = ps.get_phonological_string()
             else:
                 label_stack = 'X'
         else:
             label_stack = ps.get_cats_string()
 
         if self.visualizer.show_words and ps.is_primitive():
-            if ps.get_pf() != ps.get_cats_string():
-                label_stack = label_stack + '§' + ps.get_pf()
+            if ps.get_phonological_string() != ps.get_cats_string():
+                label_stack = label_stack + '§' + ps.get_phonological_string()
                 if self.visualizer.show_glosses:
-                    if ps.gloss() != ps.get_cats_string() and ps.gloss() != ps.get_pf():
+                    if ps.gloss() != ps.get_cats_string() and ps.gloss() != ps.get_phonological_string():
                         label_stack = label_stack + '§' + '\'' + ps.gloss() + '\''
 
         if self.visualizer.show_cases and ps.is_primitive():
-            if ps.get_case():
-                label_stack = label_stack + '§' + str(ps.get_case())
+            if get_case(ps):
+                label_stack = label_stack + '§' + str(get_case(ps))
 
         return label_stack
 

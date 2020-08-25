@@ -33,8 +33,8 @@ class Extraposition:
         for node in ps.minimal_search():
             if node.is_complex():
                 selector = node.left_const
-                not_comps = selector.get_not_comps()
-                mandatory_comps = selector.get_mandatory_comps()
+                not_comps = selector.complements_not_licensed()
+                mandatory_comps = self.get_mandatory_comps(selector)
                 selectee = node.right_const.head()
                 if not_comps & selectee.features:
                     log(f'\t\t\t\t\t{selector} cannot select {selectee}')
@@ -65,7 +65,7 @@ class Extraposition:
                 # Select HP if and only if X0 rejects HP as complement
                 else:
                     # Condition 2(ii)-a. Explicit negative selection
-                    if node.left_const.features & node.sister().get_not_comps():
+                    if node.left_const.features & node.sister().complements_not_licensed():
                         break
                     # Condition 2(ii)-b. Mandatory selection for something else
                     if node.sister().get_mandatory_comps() and not (node.left_const.features & node.sister().get_mandatory_comps()):
@@ -81,3 +81,8 @@ class Extraposition:
         else:
             log(f'\t\t\t\t\tNo suitable node for extraposition found. No action was taken.')
         return False
+
+    @staticmethod
+    # Definition for mandatory complement selection
+    def get_mandatory_comps(h):
+        return  {f[6:] for f in h.features if f[:5] == '!COMP' and f != '!COMP:*'}

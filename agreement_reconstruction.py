@@ -34,22 +34,24 @@ class AgreementReconstruction:
 
     # Definition for phi-acquisition from sister
     def acquire_from_sister(self, ps):
-        if not ps:
-            return ps, {}
-        ps_ = ps
 
+        # Internal function
+        def is_functional(h):
+            if '!COMP:*' in h.features:
+                return True
+
+        # Main function
         # ---------------------------- minimal search ----------------------------#
         for node in ps.minimal_search():
             if node.left_const and node.is_complex():
                 goal = node.left_const.head()
-                if goal.is_functional():
+                if is_functional(goal):
                     break
                 if 'D' in goal.features:
                     return goal, sorted({f for f in goal.features if self.phi(f) and f[:7] != 'PHI:DET' and self.valued(f)})
         # ---------------------------------------------------------------------------#
 
-        # If search finds nothing,  return an empty set
-        return ps_, {}
+        return ps, {}
 
     # Definition for phi-acquisition from the edge
     def acquire_from_edge(self, h):

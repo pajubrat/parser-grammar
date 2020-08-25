@@ -126,20 +126,20 @@ class LinearPhaseParser:
                     if not ps:
                         self._first_pass_parse(lexical_item.copy(), lst_branched, index + 1)
                     else:
-                        log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lexical_item.get_pf() + '\"\n')
-                        log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_pf())
+                        log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lexical_item.get_phonological_string() + '\"\n')
+                        log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_phonological_string())
 
                         # ----------------------- consider merge solutions --------------------------------------- #
                         adjunction_sites = self.ranking(self.filter(ps, lexical_item), lexical_item)
                         for site in adjunction_sites:
                             self.number_of_Merge = self.number_of_Merge + 1
                             ps_ = ps.top().copy()
-                            site_ = ps_.node_at(site.get_position_on_geometric_right_edge())
+                            site_ = self.node_at(ps_, self.get_position_on_geometric_right_edge(site))
 
-                            if site_.get_bottom_affix().internal:
+                            if site_.bottom_affix().internal:
                                 new_ps = site_.sink(lexical_item)
                             else:
-                                log(f'\t\t\tExploring solution [{site_} {lexical_item.get_pf()}]')
+                                log(f'\t\t\tExploring solution [{site_} {lexical_item.get_phonological_string()}]')
                                 new_ps = self.transfer_to_lf(site_) + lexical_item
                             self._first_pass_parse(new_ps, lst_branched, index + 1)
                             if self.exit:
@@ -164,7 +164,7 @@ class LinearPhaseParser:
             log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lst_branched[index + 1] + '\"')
         else:
             if self.memory_buffer_inflectional_affixes:
-                log(f'\t\tAdding inflectional features {self.memory_buffer_inflectional_affixes} to ' + lexical_item.get_pf())
+                log(f'\t\tAdding inflectional features {self.memory_buffer_inflectional_affixes} to ' + lexical_item.get_phonological_string())
                 lexical_item.features = lexical_item.features | set(self.memory_buffer_inflectional_affixes)
                 self.memory_buffer_inflectional_affixes = set()
 
@@ -218,13 +218,13 @@ class LinearPhaseParser:
     def filter(self, ps, w):
         log('\t\t\tFiltering out impossible merge sites...')
         adjunction_sites = []
-        N = ps
 
-        if ps.bottom().get_bottom_affix().internal:
-            log(f'\t\t\tSink \"{w.get_pf()}\" because it belongs to the same word.')
+        if ps.bottom().bottom_affix().internal:
+            log(f'\t\t\tSink \"{w.get_phonological_string()}\" because it belongs to the same word.')
             return [ps.bottom()]
 
-        while N:
+        #--------------------geometrical minimal search------------------------------
+        for N in ps.geometrical_minimal_search():
             reject = False
             if self.does_not_accept_any_complementizers(N):
                 log(f'\t\t\t\tReject {N} + {w} because {N} does not accept complementizers.')
@@ -237,7 +237,7 @@ class LinearPhaseParser:
                 reject = True
             if not reject:
                 adjunction_sites.append(N)
-            N = N.walk_downstream_geometrically()
+        #-------------------------------------------------------------------------------
         return adjunction_sites
 
     def bad_left_branch(self, N, w):
@@ -270,11 +270,11 @@ class LinearPhaseParser:
         log('\t\t\tRanking remaining sites...')
 
         # This are elements that are required several times and created only once
-        word_specs = w.for_parsing(w.specs())
-        word_rare_specs = w.for_parsing(w.get_rare_specs())
-        word_not_specs = w.for_parsing(w.get_not_specs())
+        word_specs = w.convert_features_for_parsing(w.licensed_specifiers())
+        word_rare_specs = w.convert_features_for_parsing(w.rare_specs())
+        word_not_specs = w.convert_features_for_parsing(w.specifiers_not_licensed())
         word_tail_set = w.get_tail_sets()
-        word_pf = w.get_pf()
+        word_pf = w.get_phonological_string()
         word_labels = w.features
 
         adjunction_sites = []
@@ -343,11 +343,11 @@ class LinearPhaseParser:
             if not site.is_primitive() and site.mother and \
                     site.mother.left_const and site.mother.left_const.is_primitive():
                 # and if H selects for site
-                if site.mother.left_const.get_comps() & site.features:
+                if site.mother.left_const.licensed_complements() & site.features:
                     if 'ADV' not in w.features: # Adverbs will not break selection because they will be adjuncts
                         # The higher the number the higher the relative ranking will be
                         # This is in part arbitrary and should be considered carefully when aiming for realism
-                        priority = priority + priority_base - 100 * len(site.mother.left_const.get_comps() & site.features)
+                        priority = priority + priority_base - 100 * len(site.mother.left_const.licensed_complements() & site.features)
                         log(f'\t\t\t\tAvoid [{site}, {w}] because the operation breaks up an existing selectional dependency.')
                         avoid_set.add(site)
 
@@ -360,10 +360,10 @@ class LinearPhaseParser:
                 # Check that the new constituent has tailing features
                 if word_tail_set:
                     test_word = w.copy()
-                    site.merge(test_word, 'right') # We must merge the constituent in order to see possible violations
+                    site.merge_1(test_word, 'right') # We must merge the constituent in order to see possible violations
                     if not test_word.internal_tail_head_test():
                         priority = priority + priority_base - 50
-                        log(f'\t\t\t\tAvoid [{site.get_pf()} {word_pf}] due to local agreement failure.')
+                        log(f'\t\t\t\tAvoid [{site.get_phonological_string()} {word_pf}] due to local agreement failure.')
                         avoid_set.add(site)
                     test_word.remove()
 
@@ -371,15 +371,15 @@ class LinearPhaseParser:
                 for m in site.get_affix_list():
 
                     # Check if H selects w and if yes, prioritize this solution
-                    if w.features & m.for_parsing(m.get_comps()):
+                    if w.features & m.convert_features_for_parsing(m.licensed_complements()):
                         priority = priority + priority_base + 100
-                        log(f'\t\t\t\tPrioritize [{m.get_pf()} {word_pf}] due to complement selection.')
+                        log(f'\t\t\t\tPrioritize [{m.get_phonological_string()} {word_pf}] due to complement selection.')
                         avoid_set.clear()
 
                     # ... if f cannot be merged to the complement, avoid this solution
-                    if w.features & m.for_parsing(m.get_not_comps()):
-                        priority = priority + priority_base - 100 * len(w.features & m.for_parsing(m.get_not_comps()))
-                        log(f'\t\t\t\tAvoid [{m.get_pf()} {word_pf}] due to complement selection.')
+                    if w.features & m.convert_features_for_parsing(m.complements_not_licensed()):
+                        priority = priority + priority_base - 100 * len(w.features & m.convert_features_for_parsing(m.complements_not_licensed()))
+                        log(f'\t\t\t\tAvoid [{m.get_phonological_string()} {word_pf}] due to complement selection.')
                         avoid_set.add(site)
 
                     if not LF.semantic_match(m, w):
@@ -419,7 +419,7 @@ class LinearPhaseParser:
             if 'ADV' in word_labels and word_tail_set:
                 # Make copies to test merge
                 w_copy = w.copy()
-                site.merge(w_copy, 'right')
+                site.merge_1(w_copy, 'right')
 
                 # Adverbial attachment is only tested inside finite tense
                 if 'T/fin' in str(w_copy.feature_vector()):
@@ -491,7 +491,7 @@ class LinearPhaseParser:
     # Checks if phrase structure XP cannot be broken off from H-XP because
     # H and X were part of the same word. It is used to prevent right merge to XP
     def is_word_internal(self, XP):
-        if XP.mother and XP.sister() and XP.sister().is_primitive() and XP.sister().is_word_internal():
+        if XP.mother and XP.sister() and XP.sister().is_primitive() and XP.sister().internal:
             return True
         else:
             return False
@@ -526,3 +526,23 @@ class LinearPhaseParser:
                 return False
 
         return True
+
+    @staticmethod
+    def node_at(h, position):
+        ps_ = h.top()
+        for pos in range(0, position):
+                ps_ = ps_.right_const
+        return ps_
+
+    @staticmethod
+    def get_position_on_geometric_right_edge(h):
+        ps_ = h.top()
+        position = 0
+        while ps_:
+            if ps_ == h:
+                return position
+            if ps_.right_const:
+                position = position + 1
+                ps_ = ps_.right_const
+            else:
+                return None
