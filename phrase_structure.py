@@ -33,27 +33,174 @@ class PhraseStructure:
 
     #
     #
-    # Block 1. Structure building operations
+    # Block 1. Definitions for basic grammatical relations
     #
     #
-    # Definition for asymmetric countercyclic Merge-1 operation
-    # Merge constituent C into a node in a existing target phrase structure (self), either to its left or right
-    # Suppose we have [X...Y...Z], then Y.Merge_1(H) = [X...[Y H]...Z] and Y.Merge_1(H, 'left') = [X...[H Y]...Z]
+    # Definition of primitive constituent
+    def is_primitive(self):
+        return not (self.right_const and self.left_const)
+
+    # Definition for complex constituent
+    def is_complex(self):
+        return not self.is_primitive()
+
+    # Definition for affix
+    def has_affix(self):
+        return self.right_const and not self.left_const
+
+    # Definition for terminal head (that has no constituents of any kind)
+    def terminal_node(self):
+        return self.is_primitive() and not self.has_affix()
+
+    # Definition for complex head
+    def is_complex_head(self):
+        return self.is_primitive() and self.has_affix()
+
+    # Definition of left
+    def is_left(self):
+        if self.mother and self.mother.left_const == self:
+            return True
+
+    # Definition of right
+    def is_right(self):
+        if self.mother and self.mother.right_const == self:
+            return True
+
+    # Definition for geometrical sister
+    def geometrical_sister(self):
+        if self.is_left():
+            return self.mother.right_const
+        if self.is_right():
+            return self.mother.left_const
+
+    # Definition for sisterhood
+    def sister(self):
+        while self.mother:
+            if self.is_left():
+                if self.geometrical_sister().visible():
+                    return self.geometrical_sister()
+                else:
+                    self = self.mother
+            if self.is_right():
+                if self.visible():
+                    return self.geometrical_sister()
+                else:
+                    return None
+        return None
+
+    # Definition for strong complement (=right sister)
+    def proper_complement(self):
+        if self.sister() and self.sister().is_right():
+            return self.sister()
+
+    # Definition of bottom node
+    def bottom(self):
+        while not self.is_primitive():
+            self = self.right_const
+        return self
+
+    # Definition for externalization
+    def externalized(self):
+        return self.adjunct
+
+    # Opposite of externalization
+    def visible(self):
+        return not self.externalized()
+
+    # Definition for head (also label) of a phrase structure
+    def head(self):
+        if self.is_primitive():
+            return self
+        if self.left_const.is_primitive():
+            return self.left_const
+        if self.right_const.is_primitive():
+            return self.right_const
+        if self.right_const.externalized():
+            return self.left_const.head()
+        return self.right_const.head()
+
+    # Definition for minimal search
+    def minimal_search(self):
+        return [node for node in self]
+
+    # Definition for geometrical minimal search
+    def geometrical_minimal_search(self):
+        search_list = [self]
+        while self.is_complex() and self.right_const:
+            search_list.append(self.right_const)
+            self = self.right_const
+        return search_list
+
+    # Definition for upstream search
+    def upstream_search(self):
+        path = []
+        while self.mother:
+            path.append(self.mother)
+            self = self.mother
+        return path
+
+    # Definition for edge
+    def edge(self):
+        edge = []
+        # -------------- minimal upstream path ----------------------#
+        for node in self.upstream_search():
+            if node.head() != self:
+                break
+            if node.left_const and node.left_const.is_complex():
+                edge.append(node.left_const)
+        #------------------------------------------------------------#
+        if not edge and self.extract_pro():
+            edge.append(self.extract_pro())
+        return edge
+
+    # Definition for local edge
+    def local_edge(self):
+        if self.edge():
+            return self.edge()[0]
+
+    # Definition for container head
+    def container_head(self):
+        if self.mother:
+            return self.mother.head()
+        return self.head()              # Special case if there is no container
+
+    # Definition for upstream walk
+    def walk_upstream(self):
+        while self.mother:
+            self = self.mother
+            if self.right_const.visible():
+                return self
+
+    # Definition for selector
+    def selector(self):
+        if len(self.feature_vector()) > 1:
+            return self.feature_vector()[1]
+
+    def top(self):
+        if not self.mother:
+            return self
+        else:
+            return self.upstream_search()[-1]
+
+    #
+    #
+    # Block 2. Structure building operations
+    #
+    #
+    # Definition for asymmetric countercyclic Merge-1 operation (nontrivial)
     def merge_1(self, C, direction=''):
-        existing_local_structure_at_self = self.local_structure()   # [X...self...Y]
-        A = self.asymmetric_merge(C, direction)                     # A = [self H] or [H self]
-        A.substitute(existing_local_structure_at_self)              # [X...A...Y]
-        return A.top()
+        local_structure = self.local_structure()                # [X...self...Y]
+        new_constituent = self.asymmetric_merge(C, direction)   # A = [self H] or [H self]
+        new_constituent.substitute(local_structure)             # [X...A...Y]
+        return new_constituent.top()
 
     # Definition for standard Merge with symmetry breaking
-    # A.asymmetric_merge(B) = [A B]
-    # A.asymmetric_merge(B, 'left') = [B A]
-    def asymmetric_merge(self, constituent, direction='right'):
+    def asymmetric_merge(self, B, direction='right'):
         if direction == 'left':
-            new_ps = PhraseStructure(constituent, self)
+            new_constituent = PhraseStructure(B, self)
         else:
-            new_ps = PhraseStructure(self, constituent)
-        return new_ps
+            new_constituent = PhraseStructure(self, B)
+        return new_constituent
 
     # Substitute self into local_structure
     def substitute(self, local_structure):
@@ -70,8 +217,7 @@ class PhraseStructure:
         local_structure.left = self.is_left()
         return local_structure
 
-    # Simpler notation for X.Merge_1(Y, right)
-    # X + Y = [X, Y], X a target node in the phrase structure
+    # Abbreviation for X.Merge_1(Y, right)
     def __add__(self, incoming_constituent):
         return self.merge_1(incoming_constituent)
 
@@ -90,234 +236,13 @@ class PhraseStructure:
             self.mother = None                      # detach H
 
     # Definition for sinking
-    # X.sink(ps) = adds ps to X as the bottommost affix
+    # X.sink(ps) = adds ps to X as the bottom affix
     def sink(self, ps):
-
-        # Inner function
-        # Definition for bottom affix
-        def bottom_affix(h):
-            ps_ = h
-            while ps_.right_const:
-                ps_ = ps_.right_const
-            return ps_
-
-        # Main function
-        bottom = bottom_affix(self)
-        bottom.right_const = ps
-        ps.mother = bottom
-        bottom.left_const = None
+        bottom_affix = self.get_affix_list()[-1]
+        bottom_affix.right_const = ps
+        ps.mother = bottom_affix
+        bottom_affix.left_const = None
         return self.top()
-
-    def get_specifier_sister(self):
-        if self.is_left():
-            return self.mother
-        else:
-                return self
-
-    #
-    #
-    # Block 2. Definitions for basic grammatical relations
-    #
-    #
-    # Definition for head (also label) of a phrase structure
-    def head(self):
-        if self.is_primitive():
-            return self
-        else:
-            if self.left_const.is_primitive():
-                return self.left_const
-            if self.right_const.is_primitive():
-                return self.right_const
-            if not self.left_const.is_primitive() and not self.right_const.is_primitive():
-                if self.right_const.externalized():
-                    return self.left_const.head()
-                return self.right_const.head()
-
-    # Definition for sisterhood
-    def sister(self):
-        ps_ = self
-        while ps_.mother:
-            if ps_.is_right() and ps_.externalized():
-                return None
-            if ps_.is_left() and not ps_.mother.right_const.externalized():
-                return ps_.mother.right_const
-            if ps_.is_right():
-                return ps_.mother.left_const
-            ps_ = ps_.mother
-        return None
-
-    def size(self):
-        size_ = 1
-        if self.left_const:
-            size_ = size_ + self.left_const.size()
-        if self.right_const:
-            size_ = size_ + self.right_const.size()
-        return size_
-
-    # Definition for complex constituent
-    def is_complex(self):
-        return not self.is_primitive()
-
-    # Definition for the relation of local specifier or local edge
-    def local_edge(self):
-        # Inner function
-        # XP in [XP [H YP]] and [XP H]
-        def local_phrasal_specifier_(ps):
-            if ps.is_primitive() and \
-                    ps.is_left() and \
-                    ps.mother.sister() and \
-                    not ps.mother.externalized() and \
-                    ps.mother.sister().is_left() and \
-                    ps.mother.sister().is_complex() and \
-                    ps.mother.mother.head() == ps.head():
-                return ps.mother.sister()
-            if ps.is_primitive() and ps.is_right() and ps.sister() and ps.sister().is_complex():
-                return ps.sister()
-
-        # Main function
-        if local_phrasal_specifier_(self):
-            return local_phrasal_specifier_(self)
-        if self.extract_pro():
-            return self.extract_pro()
-
-    # Definition for the notion of edge (also generalized specifier)
-    def edge(self):
-
-        edge = []
-
-        # -------------- minimal upstream path ----------------------#
-        for node in self.upstream_path():
-            if node.left_const and node.left_const.is_complex():
-                edge.append(node.left_const)
-            if node.left_const.is_primitive():
-                break
-        #------------------------------------------------------------#
-
-        # If nothing is found, try to extract the pro-element
-        if not edge and self.extract_pro():
-            edge.append(self.extract_pro())
-
-        return edge
-
-    # Definition for strong complement (=right sister)
-    def strong_complement(self):
-        if self.sister() and self.sister().is_right():
-            return self.sister()
-        else:
-            return None
-
-    # Definition for geometrical sister
-    def geometrical_sister(self):
-        if self.mother:
-            if self.is_left():
-                return self.mother.right_const
-            if self.is_right():
-                return self.mother.left_const
-        return None
-
-    # Definition for selector
-    def selector(self):
-        feature_vector = self.feature_vector()
-        if len(feature_vector) == 1:
-            return None
-        else:
-            return feature_vector[1]
-
-    # Definition of left
-    def is_left(self):
-        if self.mother and self.mother.left_const == self:
-            return True
-        else:
-            return False
-
-    # Definition of right
-    def is_right(self):
-        if self.mother and self.mother.right_const == self:
-            return True
-        else:
-            return False
-
-    # Definition of primitive constituent
-    def is_primitive(self):
-        if self.right_const and self.left_const:
-            return False
-        else:
-            return True
-
-    # Definition of bottom node
-    def bottom(self):
-        ps_ = self
-        while not ps_.is_primitive():
-            ps_ = ps_.right_const
-        return ps_
-
-    # Definition for minimal search
-    def minimal_search(self):
-        return [node for node in self]
-
-    # Definition for geometrical minimal search
-    def geometrical_minimal_search(self):
-        search_list = [self]
-        ps_ = self
-        while ps_.is_complex() and ps_.right_const:
-            search_list.append(ps_.right_const)
-            ps_ = ps_.right_const
-        return search_list
-
-    # Definition for upstream path
-    def upstream_path(self):
-        ps_ = self
-        path = []
-        while ps_.mother:
-            path.append(ps_.mother)
-            ps_ = ps_.mother
-        return path
-
-    # Definition for terminal head (that has no constituents of any kind)
-    def terminal_node(self):
-        if self.is_primitive() and not self.has_affix():
-            return True
-        else:
-            return False
-
-    # Definition for complex head
-    def is_complex_head(self):
-        if self.is_primitive() and self.has_affix():
-            return True
-        else:
-            return False
-
-    # Definition for container head
-    def container_head(self):
-        if self.mother:
-            return self.mother.head()
-        else:
-            return self.head()
-
-    # Definition for upstream walk
-    def walk_upstream(self):
-        if self.mother:
-            ps_ = self.mother
-            # Dodge right adjuncts
-            while ps_.right_const.externalized():
-                if ps_.mother:
-                    ps_ = ps_.mother
-                else:
-                    return ps_
-            return ps_
-        else:
-            return None
-
-    def top(self):
-        if not self.mother:
-            return self
-        else:
-            return self.upstream_path()[-1]
-
-    # Definition for externalization, i.e. whether the constituent has been pulled out to secondary
-    # syntactic working space
-    def externalized(self):
-        return self.adjunct
 
     def copy(self):
         ps_ = PhraseStructure()
@@ -336,127 +261,110 @@ class PhraseStructure:
         ps_.identity = self.identity
         return ps_
 
+    def get_specifier_sister(self):
+        if self.is_left():
+            return self.mother
+        else:
+            return self
+
     #
     # Block 3. Nonlocal dependencies and operations
     #
+    # Definition ffor feature vector
+    def feature_vector(self):
+        return [self] + [node.left_const for node in self.upstream_search() if
+                         node.left_const and node.left_const.is_primitive() and node.left_const != self]
+
     # Definition for probe-goal dependency
-    def probe(self, probe_label, goal_feature):
+    def probe(self, feature, G):
         if self.sister():
             # --------------------- minimal search --------------------------------
             for node in self.sister():
-                    if node.is_primitive():
-                        if goal_feature in node.features:
-                            return node
-                    elif goal_feature in node.left_const.head().features:
-                        return node.left_const
-                    elif goal_feature[:4] == 'TAIL' and goal_feature[5:] in node.left_const.scan_criterial_features():
-                        return node.left_const
-                    elif node.left_const.is_primitive() and node.left_const.features and probe_label.issubset(node.left_const.features):
-                        break
+                if G in node.inside_path().features:
+                    return True
+                if G[:4] == 'TAIL' and G[5:] in node.left_const.scan_criterial_features():
+                    return True
+                if node.intervention(feature):
+                    break
             # -------------------------------------------------------------------------------------------
 
-    def feature_vector(self):
-        feature_vector = [self]
-        #--------------upstream path-------------------------------------#
-        for node in self.upstream_path():
-            if node.left_const.is_primitive() and node.left_const != self:
-                feature_vector.append(node.left_const)
-        #----------------------------------------------------------------#
-        return feature_vector
+    # Definition for path visibility
+    def inside_path(self):
+        if self.is_primitive():
+            return self
+        if self.is_complex:
+            return self.left_const.head()
+
+    # Definition for intervention
+    def intervention(self, feature):
+        feature.issubset(self.inside_path().features)
 
     def bind_to_operator(self, operator):
         # --------------- upstream path ------------------------------------#
-        for node in self.upstream_path():
-            if node.left_const.head().match_features({operator}) == 'complete match' and 'FIN' in node.left_const.head().features:
+        for node in self.upstream_search():
+            if node.inside_path().match_features({operator}) == 'complete match' and 'FIN' in node.inside_path().features:
                 return node
         # ------------------------------------------------------------------#
 
     def external_tail_head_test(self):
-
-        # Internal function
-
         tail_sets = self.get_tail_sets()
-        if not tail_sets:
-            return True
-        else:
-            tests_checked = set()
-            for tail_set in tail_sets:
-                if self.inside_phrase_locality_condition(tail_set):   # Strong test for any tail feature
-                    tests_checked.add(tail_set)
-                if 'ADV' not in self.features:
-                    if self.path_condition(tail_set):                    # Weaker test for everything except ADV
-                        tests_checked.add(tail_set)
-                    else:
-                        return False
-            if tests_checked & tail_sets == tail_sets:  # Check that all tail sets have been checked
-                return True
-            else:
-                return False
+        tests_checked = set()
+        for tail_set in tail_sets:
+            if self.strong_tail_condition(tail_set):
+                tests_checked.add(tail_set)
+            if self.weak_tail_condition(tail_set):
+                tests_checked.add(tail_set)
+        return tests_checked & tail_sets == tail_sets
 
     def internal_tail_head_test(self):
         tail_sets = self.get_tail_sets()
-        if not tail_sets:
-            return True
-        else:
+        if tail_sets:
             for tail_set in tail_sets:
-                if self.path_condition(tail_set, 'internal'):
+                if self.weak_tail_condition(tail_set, 'internal'):
                     return True
                 else:
                     return False
         return True
 
-    def inside_phrase_locality_condition(self, tail_set):
+    def strong_tail_condition(self, tail_set):
+        if self.get_max() and \
+                self.get_max().mother and \
+                self.get_max().mother.head().match_features(tail_set) == 'complete match' and \
+                'D' not in self.features:
+            return True
 
-        # Internal function
-        def get_max(h):
-            ps_ = self
-            while ps_.mother and ps_.mother.head() == self.head():
-                ps_ = ps_.walk_upstream()
-            return ps_
-
-        # This involves empirical issues that I don't understand
-        def mysterious_property(h):
-            return 'D' in h.features and not 'TAIL:INF,A/HEAD' in h.features
-
-        # Main function
-        if get_max(self) and get_max(self).mother:
-            if get_max(self).mother.head().match_features(tail_set) == 'complete match' and mysterious_property(self):
-                return True
-            elif get_max(self).mother.sister() and get_max(self).mother.sister().match_features(
-                    tail_set) == 'complete match':
-                return True
-
-    def path_condition(self, tail_set, variation='external'):
-        # Internal function
-        # Definition for feature match
-        def match_features(h, features_to_check):
-            positive_features = h.positive_features(features_to_check)
-            negative_features = h.negative_features(features_to_check)
-            if negative_features & h.features:
-                return 'negative match'
-            elif positive_features:
-                if positive_features & self.features == positive_features:
-                    return 'complete match'
-                elif positive_features & self.features:
-                    return 'partial match'
-
-        # Main function
-        for const in self.feature_vector():
-            if const is not self:
+    def weak_tail_condition(self, tail_set, variation='external'):
+        if  'ADV' not in self.features and len(self.feature_vector()) > 1:
+            for const in self.feature_vector()[1:]:
                 for m in const.get_affix_list():
-                    test = match_features(m, tail_set)
+                    test = m.match_features(tail_set)
                     if test == 'complete match':
                         return True
                     elif test == 'partial match':
                         return False
                     elif test == 'negative match':
                         return False
-
-        # Feature were not checked against anything
         if variation=='external' and not self.negative_features(tail_set):
             return False    # Strong test: reject (tail set must be checked)
         else:
             return True     # Weak test: accept still (only look for violations)
+
+    def get_max(self):
+        ps_ = self
+        while ps_.mother and ps_.mother.head() == self.head():
+            ps_ = ps_.walk_upstream()
+        return ps_
+
+    def match_features(self, features_to_check):
+        positive_features = self.positive_features(features_to_check)
+        negative_features = self.negative_features(features_to_check)
+        if negative_features & self.features:
+            return 'negative match'
+        elif positive_features:
+            if positive_features & self.features == positive_features:
+                return 'complete match'
+            elif positive_features & self.features:
+                return 'partial match'
 
     def negative_features(self, features_to_check):
         return {feature[1:] for feature in features_to_check if feature[0] == '*'}
@@ -473,8 +381,6 @@ class PhraseStructure:
         if self.is_primitive:
             if feature in self.features:
                 return True
-            else:
-                return False
         return False
 
     #
@@ -491,10 +397,9 @@ class PhraseStructure:
     # Return a list of affixes inside a grammatical head (including the head itself)
     def get_affix_list(self):
         lst = [self]
-        iterator_ = self
-        while iterator_.right_const and not iterator_.left_const:
-            lst.append(iterator_.right_const)
-            iterator_ = iterator_.right_const
+        while self.right_const and not self.left_const:
+            lst.append(self.right_const)
+            self = self.right_const
         return lst
 
     # Definition for pro-extraction
@@ -535,28 +440,13 @@ class PhraseStructure:
                     return pro
         return None
 
-    # Definition for affix
-    def has_affix(self):
-        return self.right_const and not self.left_const
-
     # Definition for adjoinable phrase
     def is_adjoinable(self):
-        if self.externalized() or 'adjoinable' in self.head().features:
-            return True
-        else:
-            return False
+        return self.externalized() or 'adjoinable' in self.head().features
 
     # Definition for tail sets
     def get_tail_sets(self):
-        tail_features = set()
-        constituent_ = self.head()
-        for f in constituent_.features:
-            if f[:4] == 'TAIL':
-                tail_features.add(frozenset((f[5:].split(','))))
-        if tail_features:
-            return tail_features
-        else:
-            return None
+        return {frozenset((feature[5:].split(','))) for feature in self.head().features if feature[:4] == 'TAIL'}
 
     def has_op_feature(self):
         return {feature for feature in self.features if feature[:2] == 'OP'}
@@ -571,7 +461,6 @@ class PhraseStructure:
         if self.is_primitive():
             set_ |= {feature for feature in self.features if feature[:3] == 'OP:'}
         return set_
-
 
     # Definition for negative complement selection
     def complements_not_licensed(self):
@@ -596,8 +485,6 @@ class PhraseStructure:
     # Return the phonological form of the constituent if any
     # Does some additional formatting
     def get_phonological_string(self):
-
-        # Internal function
         def show_affix(self):
             i = ''
             if self.is_primitive() and self.right_const:
@@ -656,46 +543,31 @@ class PhraseStructure:
     # Block 5. Unclassified functions
     #
     #
-    # Returns the node 'item' at the right edge
-    # E.g. ps[3] = 3rd node at the right edge
     def __getitem__(self, position):
-
         iterator_ = 0
         ps_ = self
-
         while ps_:
             if iterator_ == position:
                 return ps_
-
-            # No more constituents to travel
             if ps_.is_primitive():
                 raise IndexError
-
-            # ps_ = [X(P) Y(P)], selection must be made
             else:
-                # Take Y if labelling takes Y (ignore left specifiers, adjuncts)
-                if ps_.head() == ps_.right_const.head():
+                if ps_.head() == ps_.right_const.head():    # [_YP XP YP] = YP
                      ps_ = ps_.right_const
-                # Labelling picks X in [X Y]
                 else:
-                    # If X is complex, pick it
-                    if ps_.left_const.is_complex():
+                    if ps_.left_const.is_complex():         # [_XP XP <YP>] = XP
                         ps_ = ps_.left_const
                     else:
-                        # If X is primitive, take Y if it is not adjunct
-                        if ps_.right_const.adjunct:
+                        if ps_.right_const.adjunct:         # [X <YP>] = X
                             ps_ = ps_.left_const
-                        # If y is primitive and Y is selected sister, continue with Y
                         else:
-                            ps_ = ps_.right_const
-
+                            ps_ = ps_.right_const           # [X Y] = Y
             iterator_ = iterator_ + 1
 
     # Copies a constituent and does all other operations required for reconstruction
     def copy_from_memory_buffer(self, babtize='1'):
 
         # Internal functions
-        # Removes tail-features (if any) from a constituent
         def remove_tail_features(ps):
             if not ps.is_primitive():
                 remove_tail_features(ps.left_const)

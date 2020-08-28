@@ -68,7 +68,7 @@ class Extraposition:
                     if node.left_const.features & node.sister().complements_not_licensed():
                         break
                     # Condition 2(ii)-b. Mandatory selection for something else
-                    if node.sister().get_mandatory_comps() and not (node.left_const.features & node.sister().get_mandatory_comps()):
+                    if self.get_mandatory_comps(node.sister()) and not (node.left_const.features & self.get_mandatory_comps(node.sister())):
                         break
             node = node.walk_upstream()
         # -----------------------------------------------------------------------------------------#

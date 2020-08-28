@@ -449,7 +449,7 @@ class LinearPhaseParser:
             max_site = None
             for priority, site_ in adjunction_sites:
                 if site_.is_adjoinable():
-                    size_ = site_.size()
+                    size_ = size(site_)
                     if size_ > size and not site_.contains_feature('T/fin'):
                         set_logging(False)
                         if self.transfer_to_lf(site_.copy()).LF_legibility_test().all_pass():
@@ -546,3 +546,12 @@ class LinearPhaseParser:
                 ps_ = ps_.right_const
             else:
                 return None
+
+    @ staticmethod
+    def size(constituent):
+        size_ = 1
+        if constituent.left_const:
+            size_ = size_ + constituent.left_const.size()
+        if constituent.right_const:
+            size_ = size_ + constituent.right_const.size()
+        return size_

@@ -15,8 +15,6 @@ class HeadMovement:
 
     # Higher-level function for head movement reconstruction
     def reconstruct(self, phrase_structure):
-
-        # Alternative 1. Open a complex head into independent left branch
         if phrase_structure.is_complex_head():
             if 'D' in phrase_structure.features or 'P' in phrase_structure.features or 'A' in phrase_structure.features:
                 if self.reconstruct_head_movement(phrase_structure.copy()).LF_legibility_test().all_pass():
@@ -27,7 +25,6 @@ class HeadMovement:
                 else:
                     set_logging(True)
                     log(f'\t\t\t\t\t{phrase_structure} was not opened into left branch, it would not constitute a legitimate left branch at LF.')
-            # Note. If the conditions are not satisfies, nothing is done but the same head will be targeted later by Alternative 2.
 
         # Alternative 2. Reconstruct complex phrase
         else:

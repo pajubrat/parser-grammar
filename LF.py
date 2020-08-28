@@ -110,10 +110,10 @@ class LF:
                 log(f'\t\t\t\t{h} has double specifiers.')
 
     def semantic_complement_test(self, h):
-        if h.strong_complement():
-            if not LF.semantic_match(h, h.strong_complement()):
+        if h.proper_complement():
+            if not LF.semantic_match(h, h.proper_complement()):
                 self.semantic_test_result = False
-                log(f'\t\t\t\t{h} fails semantic match with {h.strong_complement()}')
+                log(f'\t\t\t\t{h} fails semantic match with {h.proper_complement()}')
 
     def criterial_feature_test(self, h):
         if 'D' in h.features and 'REL' not in h.features and h.mother:
@@ -156,7 +156,7 @@ class LF:
                         log(f'\t\t\t\t{DP_target} has no thematic role.')
 
     def selection_tests(self, h):
-        comp = h.strong_complement()
+        comp = h.proper_complement()
         local_edge = h.local_edge()
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('-SPEC:'):
@@ -338,7 +338,7 @@ class LF:
 
         # Try to fill COMP
         # Condition 1. H is a primitive head without complements that it needs
-        if head.is_primitive() and not head.strong_complement() and head.licensed_complements():
+        if head.is_primitive() and not head.proper_complement() and head.licensed_complements():
             const = hit_from_memory_buffer(head)
             if const:
                 head.merge_1(const.copy_from_memory_buffer(controlling_process.babtize()), 'right')
@@ -348,18 +348,18 @@ class LF:
                 controlling_process.number_of_phrasal_Move = + 1
 
         #  Condition 2. The head has a non-matching complement
-        if head.is_left() and head.strong_complement() and not (head.licensed_complements() & head.strong_complement().features):
+        if head.is_left() and head.proper_complement() and not (head.licensed_complements() & head.proper_complement().features):
             const = hit_from_memory_buffer(head)
             if const and const.features & head.licensed_complements():
-                head.strong_complement().merge_1(const.copy_from_memory_buffer(controlling_process.babtize()), 'left')
+                head.proper_complement().merge_1(const.copy_from_memory_buffer(controlling_process.babtize()), 'left')
                 controlling_process.syntactic_working_memory.remove(const)
                 log(f'\t\t\t\t\tMerging {const} from memory buffer into Comp{head.get_cats_string()}P'
-                                                                               f'due to the presence of mismatching complement {head.strong_complement()}.')
+                                                                               f'due to the presence of mismatching complement {head.proper_complement()}.')
                 controlling_process.self.number_of_phrasal_Move = + 1
                 # Mismatching complement will be made floater
-                if head.strong_complement().right_const.is_adjoinable():
+                if head.proper_complement().right_const.is_adjoinable():
                     log('\t\t\t\t\tThe mismatching complement will be transformed into floater adjunct.')
-                    controlling_process.adjunct_constructor.create_adjunct(head.strong_complement().right_const)
+                    controlling_process.adjunct_constructor.create_adjunct(head.proper_complement().right_const)
 
 
     @staticmethod
@@ -377,16 +377,13 @@ class LF:
                 return head.sister()
             else:
                 return None
+
     @staticmethod
     # Definition of max
     def max(h):
-        ps_ = h
         last = h
+        ps_ = h
         while ps_ and ps_.head() == h.head():
             last = ps_
             ps_ = ps_.walk_upstream()
         return last
-
-
-
-
