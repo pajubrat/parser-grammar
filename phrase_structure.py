@@ -44,6 +44,16 @@ class PhraseStructure:
     def is_complex(self):
         return not self.is_primitive()
 
+    # Definition of left
+    def is_left(self):
+        if self.mother and self.mother.left_const == self:
+            return True
+
+    # Definition of right
+    def is_right(self):
+        if self.mother and self.mother.right_const == self:
+            return True
+
     # Definition for affix
     def has_affix(self):
         return self.right_const and not self.left_const
@@ -56,22 +66,31 @@ class PhraseStructure:
     def is_complex_head(self):
         return self.is_primitive() and self.has_affix()
 
-    # Definition of left
-    def is_left(self):
-        if self.mother and self.mother.left_const == self:
-            return True
-
-    # Definition of right
-    def is_right(self):
-        if self.mother and self.mother.right_const == self:
-            return True
-
     # Definition for geometrical sister
     def geometrical_sister(self):
         if self.is_left():
             return self.mother.right_const
         if self.is_right():
             return self.mother.left_const
+
+    # Definition for externalization
+    def externalized(self):
+        return self.adjunct
+
+    # Definition of functional (vs. lexical)
+    def is_functional(self):
+        return '!COMP:*' in self.features
+
+    # Definition for left primitive head
+    def left_primitive(self):
+        return self.left_const and self.left_const.is_primitive()
+
+    def left_complex(self):
+        return self.left_const and self.is_complex()
+
+    # Opposite of externalization
+    def visible(self):
+        return not self.externalized()
 
     # Definition for sisterhood
     def sister(self):
@@ -99,14 +118,6 @@ class PhraseStructure:
             self = self.right_const
         return self
 
-    # Definition for externalization
-    def externalized(self):
-        return self.adjunct
-
-    # Opposite of externalization
-    def visible(self):
-        return not self.externalized()
-
     # Definition for head (also label) of a phrase structure
     def head(self):
         if self.is_primitive():
@@ -130,6 +141,27 @@ class PhraseStructure:
             search_list.append(self.right_const)
             self = self.right_const
         return search_list
+
+    def __getitem__(self, position):
+        iterator_ = 0
+        ps_ = self
+        while ps_:
+            if iterator_ == position:
+                return ps_
+            if ps_.is_primitive():
+                raise IndexError
+            else:
+                if ps_.head() == ps_.right_const.head():    # [_YP XP YP] = YP
+                     ps_ = ps_.right_const
+                else:
+                    if ps_.left_const.is_complex():         # [_XP XP <YP>] = XP
+                        ps_ = ps_.left_const
+                    else:
+                        if ps_.right_const.externalized():  # [X <YP>] = X
+                            ps_ = ps_.left_const
+                        else:
+                            ps_ = ps_.right_const           # [X Y] = Y
+            iterator_ = iterator_ + 1
 
     # Definition for upstream search
     def upstream_search(self):
@@ -261,6 +293,15 @@ class PhraseStructure:
         ps_.identity = self.identity
         return ps_
 
+    # Separate phrase structure from its host and return the mother (for later reattachment)
+    def detach(self):
+        if self.mother:
+            original_mother = self.mother
+            self.mother = None
+        else:
+            original_mother = None
+        return original_mother
+
     def get_specifier_sister(self):
         if self.is_left():
             return self.mother
@@ -372,6 +413,10 @@ class PhraseStructure:
     def positive_features(self, features_to_check):
         return {feature for feature in features_to_check if feature[0] != '*'}
 
+    # Definition for tail sets
+    def get_tail_sets(self):
+        return {frozenset((feature[5:].split(','))) for feature in self.head().features if feature[:4] == 'TAIL'}
+
     # Recursive definition for contains-feature-F for a phrase
     def contains_feature(self, feature):
         if self.left_const and self.left_const.contains_feature(feature):
@@ -404,7 +449,6 @@ class PhraseStructure:
 
     # Definition for pro-extraction
     def extract_pro(self):
-
         # Internal functions
         def valued_phi(h):
             return {f for f in h.features if f[:4] == 'PHI:' and f[-1] != '_'}
@@ -440,13 +484,21 @@ class PhraseStructure:
                     return pro
         return None
 
+    # Definition for unvalued phi-features
+    def is_unvalued(self):
+        return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
+
+    # Definition for valued phi-features
+    def is_valued(self):
+        return {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
+
+    # Definition for the notion of phi-set for head H
+    def get_phi_set(self):
+        return {f for f in self.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
+
     # Definition for adjoinable phrase
     def is_adjoinable(self):
         return self.externalized() or 'adjoinable' in self.head().features
-
-    # Definition for tail sets
-    def get_tail_sets(self):
-        return {frozenset((feature[5:].split(','))) for feature in self.head().features if feature[:4] == 'TAIL'}
 
     def has_op_feature(self):
         return {feature for feature in self.features if feature[:2] == 'OP'}
@@ -543,26 +595,6 @@ class PhraseStructure:
     # Block 5. Unclassified functions
     #
     #
-    def __getitem__(self, position):
-        iterator_ = 0
-        ps_ = self
-        while ps_:
-            if iterator_ == position:
-                return ps_
-            if ps_.is_primitive():
-                raise IndexError
-            else:
-                if ps_.head() == ps_.right_const.head():    # [_YP XP YP] = YP
-                     ps_ = ps_.right_const
-                else:
-                    if ps_.left_const.is_complex():         # [_XP XP <YP>] = XP
-                        ps_ = ps_.left_const
-                    else:
-                        if ps_.right_const.adjunct:         # [X <YP>] = X
-                            ps_ = ps_.left_const
-                        else:
-                            ps_ = ps_.right_const           # [X Y] = Y
-            iterator_ = iterator_ + 1
 
     # Copies a constituent and does all other operations required for reconstruction
     def copy_from_memory_buffer(self, babtize='1'):
@@ -603,7 +635,6 @@ class PhraseStructure:
 
         return self_copy
 
-
     # Definition for LF-legibility
     def LF_legibility_test(self):
         def detached(ps):
@@ -612,15 +643,6 @@ class PhraseStructure:
         lf = LF()
         lf.test(detached(self.copy()))
         return lf
-
-    # Separate phrase structure from its host and return the mother (for later reattachment)
-    def detach(self):
-        if self.mother:
-            original_mother = self.mother
-            self.mother = None
-        else:
-            original_mother = None
-        return original_mother
 
     # Definition of features that are used at LF-interface (only obligatory selection counts)
     def for_LF_interface(self, features):
@@ -761,3 +783,11 @@ class PhraseStructure:
         if self.right_const:
             counter = self.right_const.tidy_names(counter)
         return counter
+
+    def size(self):
+        size_ = 1
+        if self.left_const:
+            size_ = size_ + self.left_const.size()
+        if self.right_const:
+            size_ = size_ + self.right_const.size()
+        return size_
