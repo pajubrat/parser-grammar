@@ -86,7 +86,7 @@ class LinearPhaseParser:
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
             m = self.morphology
             # Morphological decomposition
-            lexical_item, lst_branched, inflection = m.decompose(lexical_constituent, lst.copy(), index)
+            lexical_item, lst_branched, inflection = m.morphological_parse(lexical_constituent, lst.copy(), index)
             # Process inflection (if any)
             lexical_item = self.process_inflection(inflection, lexical_item, ps, lst_branched, index)
             self.number_of_items_consumed += 1

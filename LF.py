@@ -3,7 +3,6 @@ from support import log, illu
 from semantics import Semantics
 
 # Transforms a set of lexical features to be used in checking LF-interface conditions
-
 def for_lf_interface(features):
     return {f for f in features if f.startswith('!') or f.startswith('-')}
 
@@ -21,7 +20,6 @@ class LF:
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_to_CI_crash = False
-
         self.semantics = Semantics()
 
         # This stores facts concerning semantic interpretation resulting from transfer to CI

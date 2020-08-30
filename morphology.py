@@ -1,6 +1,9 @@
-from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
+from support import log
 from LexicalInterface import LexicalInterface
 
+
+def verbal_head():
+    return {'V', 'FIN', 'T', 'v', 'INF'}
 
 class Morphology:
     def __init__(self, controlling_parser_process):
@@ -8,57 +11,30 @@ class Morphology:
         self.lexicon = LexicalInterface(self.controlling_parser_process)
         self.lexicon.load_lexicon(self.controlling_parser_process)
 
-    # Definition for morphological parsing for lexical item
-    # Condition 1.  If LI is monomorphemic(w), return the same item and input list (i.e. do nothing)
-    # Condition 2.  If LI is polymorphemic(W), use morphology field to decompose it
-    #               Step 1. Break the morphemes into a list (W = w1#w2#w3 => w1, w2$, w3$)
-    #               Step 2. Follow mirror principle and reverse (w1, $w2, $w3 => w3$, w2$, w1)
-    #               Step 3. Substitute this list with the original word in the input list
-    #               Step 4. Return the list
-    # Condition 3.  From these assumptions it follows that it is possible to receive $W.
-    #               In such case, $ will be inherited to the first morpheme ($W = $w1, $w2...)
-    #               Furthermore, W will be marked as an incorporated element
-    def morphological_parse(self, lexical_item, lst_branched, index):
+    # Definition for morphological parsing for lexical item (set of features)
+    def morphological_parse(self, lexical_item, input_word_list, index):
+        lexical_item_ = lexical_item
+        while self.is_polymorphemic(lexical_item_):
+            lexical_item_ = self.C_op_processing(lexical_item_)
+            morpheme_list = self.decompose(lexical_item_.morphology)
+            morpheme_list = self.handle_incorporation(lexical_item_, morpheme_list)
+            log(f'\n\t\tNext word contains multiple morphemes ' + str(morpheme_list))
+            self.refresh_input_list(input_word_list, morpheme_list, index)
+            lexical_item_ = self.lexicon.lexical_retrieval(input_word_list[index])[0]
+        return lexical_item_, input_word_list, self.get_inflection(lexical_item_)
 
-        next_lexical_item = lexical_item
+    def handle_incorporation(self, lexical_item_, morpheme_list_):
+        if lexical_item_.incorporated:
+            morpheme_list_.append('inc$')
+        return morpheme_list_
 
-        # Conditions 1-2
-        while self.is_polymorphemic(next_lexical_item):
-
-            # Disambiguates Finnish #FOC feature
-            lexical_item.morphology = self.handle_Cop_feature(lexical_item.morphology)
-
-            # Condition 2. Step 1.
-            # Create a list of morphemes
-            # Operation 1. Create a list of morphemes from the multimorphemic phonological input string
-            # This operation should deal with surface complexities (fusion, and such)
-            word = next_lexical_item.morphology
-            lst_ = self.morphophonological_processing(word)
-
-            # If the element was incorporated (not affixed), this information will be passed on as a feature
-            if next_lexical_item.incorporated:
-                lst_.append('inc$')
-
-            # Condition 2, Step 3.
-            # The list will substitute the original multimorphemic word
-            log(f'\n\t\tNext word contains multiple morphemes ' + str(lst_[::-1]))
-            del lst_branched[index]
-
-            # Add the decomposed morphemes to the input list (in reverse order; Mirror Principle)
-            for w_ in lst_:
-                lst_branched.insert(index, w_)
-
-            # Condition 2, Step 4.
-            # Take the first morpheme discovered
-            next_lexical_item = self.lexicon.lexical_retrieval(lst_branched[index])[0]
-
-        return next_lexical_item, lst_branched
+    def refresh_input_list(self, input_word_list, morpheme_list_, index):
+        del input_word_list[index]
+        for w_ in morpheme_list_:
+            input_word_list.insert(index, w_)           # Mirror principle
 
     def is_polymorphemic(self, lexical_item):
-        if '#' not in lexical_item.morphology and '=' not in lexical_item.morphology:
-            return False
-        else:
-            return True
+        return '#' in lexical_item.morphology or '=' in lexical_item.morphology
 
     def get_inflection(self, lexical_item):
         if lexical_item.morphology == '':
@@ -73,53 +49,29 @@ class Morphology:
             lexical_item.features = lexical_item.features | set(inflectional_affixes)
         return lexical_item
 
-    def decompose(self, lexical_constituent, lst_branched, index):
-        lexical_item = lexical_constituent
-        while self.is_polymorphemic(lexical_item):
-            lexical_item, lst_branched = self.morphological_parse(lexical_constituent,
-                                                               lst_branched,
-                                                               index)
-        return lexical_item, lst_branched, self.get_inflection(lexical_item)
+    # C/op processing
+    # Determines whether C/op feature is at the head or not
+    def C_op_processing(self, lexical_item):
+        list_ = self.extract_morphemes(lexical_item.morphology)
+        if len(list_) > 1 and 'foc' in list_ or 'C/op' in list_:
+            critical_morpheme = self.determine_critical_morpheme(list_)
+            if verbal_head() & critical_morpheme.features:
+                log('\t\t\t\tFeature interpreted as a C morpheme with C-feature')
+                lexical_item.morphology.replace('#C/op', '#C/fin#C/op')
+                lexical_item.morphology.replace('#foc', '#C/fin#C/op')
+        return lexical_item
 
-    # Definition for generative morphology that only handles FOC disambiguation at present
-    def handle_Cop_feature(self, word):
-
-        # Extract morphemes
-        list_ = self.extract_morphemes(word)
-
-        # Recognize the presence of the foc  on a head
-        if len(list_) > 1:
-            if 'foc' in list_ or 'C/op' in list_:
-
-                # We select the critical morpheme
-                if len(list_) < 3:
-                    critical_morpheme = self.lexicon.lexical_retrieval(list_[0])[0]
-                else:
-                    critical_morpheme = self.lexicon.lexical_retrieval(list_[-3])[0]
-                labels = critical_morpheme.features
-
-                if 'V' in labels or 'FIN' in labels or 'T' in labels or 'v' in labels or 'INF' in labels:
-                    log('\t\t\t\tFeature interpreted as a C morpheme with C-feature C/op')
-                    word = word.replace('#C/op', '#C/fin#C/op')
-                    word = word.replace('#foc', '#C/fin#C/op')
-
-
-        return word
+    def determine_critical_morpheme(self, list_):
+        if len(list_) < 3:
+            return self.lexicon.lexical_retrieval(list_[0])[0]
+        return self.lexicon.lexical_retrieval(list_[-3])[0]
 
     # Definition for morpheme decomposition
-    # Input is a string, returns a string in which any morpheme is replaced with
     def extract_morphemes(self, word):
-        # First item in the list is the word itself
         list_ = [word]
-
-        # If the word has several morphemes
         while '#' in list_[0]:
-            # Split the first item and insert them into the beginning of the list
             list_ = list_[0].split('#') + list_[1:]
-            # Substitute the first item with the morphemic decomposition
-            # (and continue decomposition if that is complex as well)
             list_[0] = self.lexicon.lexical_retrieval(list_[0])[0].morphology
-
         return list_
 
     # Flips $ from the start to end, only because it is more easy to read in this way.
@@ -132,12 +84,10 @@ class Morphology:
                 lst2_.append(w[1:] + '=')
             else:
                 lst2_.append(w)
-
         return lst2_
 
-    # Definition for morphophonological processing (fusion etc.)
-    def morphophonological_processing(self, word):
-
-        word = word.replace("#", "#$")
-        word = word.replace("=", '#=')
+    # Definition for morphological decomposition (converts string pattern into a list)
+    def decompose(self, word):
+        word.replace("#", "#$")
+        word.replace("=", '#=')
         return self.flip_boundary(word.split("#"))

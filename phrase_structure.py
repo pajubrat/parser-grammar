@@ -496,6 +496,9 @@ class PhraseStructure:
     def get_phi_set(self):
         return {f for f in self.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
+    def get_unvalued_features(self):
+        return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
+
     # Definition for adjoinable phrase
     def is_adjoinable(self):
         return self.externalized() or 'adjoinable' in self.head().features
