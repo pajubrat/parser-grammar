@@ -1,19 +1,24 @@
-from support import log, illu
+from support import log
 
-def relevant_phi_at_LF(phi):
+def semantically_relevant_phi(phi):
     return phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET'
 def get_relevant_phi(h):
-    return {f for f in h.features if relevant_phi_at_LF(f)}
+    return {f for f in h.features if semantically_relevant_phi(f)}
 def must_be_valued(phi_set):
-    return {phi for phi in phi_set if relevant_phi_at_LF(phi)}
+    return {phi for phi in phi_set if semantically_relevant_phi(phi)}
 def check(F, G, unchecked):
     if F == G:
         unchecked.discard(G)
     else:
-        if G[-1] == '_':
-            if F[:len(G) - 1] == G[:-1]:
-                unchecked.discard(G)
-
+        if valued_check(F, G):
+            unchecked.discard(G)
+def valued_check(F, G):
+    if is_unvalued(G):
+        return residuum_identity(F, G)
+def is_unvalued(G):
+    return G[-1] == '_'
+def residuum_identity(F, G):
+    return F[:len(G[:-1])] == G[:-1]
 
 class Semantics:
     def __init__(self):
@@ -34,16 +39,16 @@ class Semantics:
                 return set()
             return self.semantic_interpretation | {' '}
 
-    def perform_LF_recovery(self, ps):
-        unvalued = must_be_valued(ps.get_unvalued_features())
+    def perform_LF_recovery(self, head):
+        unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
-            log(f'\t\t\t\t{ps.illustrate()} with {sorted(unvalued)} was associated at LF with:')
-            list_of_antecedents = self.LF_recovery(ps, unvalued)
+            log(f'\t\t\t\t{head.illustrate()} with {sorted(unvalued)} was associated at LF with:')
+            list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
-                self.semantic_interpretation.add(self.interpret_antecedent(ps, list_of_antecedents[0]))
+                self.semantic_interpretation.add(self.interpret_antecedent(head, list_of_antecedents[0]))
             else:
-                self.semantic_interpretation.add(f'{ps}(' + self.interpret_no_antecedent(ps, unvalued) + ')')
-            self.report_to_log(ps, list_of_antecedents, unvalued)
+                self.semantic_interpretation.add(f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')')
+            self.report_to_log(head, list_of_antecedents, unvalued)
 
     def detect_phi_conflicts(self, ps):
         for phi in ps.get_phi_set():
@@ -68,24 +73,24 @@ class Semantics:
                 return head
 
     # Definition for LF-recovery
-    def LF_recovery(self, ps, unvalued_phi):
+    def LF_recovery(self, head, unvalued_phi):
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             # ----------------------- minimal upstream search -----------------------------------------------#
-            for node in ps.upstream_search():
+            for node in head.upstream_search():
                 if self.recovery_termination(node):
                     break
-                if node.geometrical_sister() and self.is_possible_antecedent(node.geometrical_sister(), ps):
+                if node.geometrical_sister() and self.is_possible_antecedent(node.geometrical_sister(), head):
                     list_of_antecedents.append(node.geometrical_sister())
             # ------------------------------------------------------------------------------------------------#
             return list_of_antecedents
 
         if 'PHI:DET:_' in unvalued_phi:
             # ---------------- minimal search----------------------------------------------------
-            for node in ps.upstream_search():
-                if self.special_local_edge_antecedent_rule(node, ps, list_of_antecedents):
+            for node in head.upstream_search():
+                if self.special_local_edge_antecedent_rule(node, head, list_of_antecedents):
                     break
-                elif node.sister() and self.is_possible_antecedent(node.sister(), ps):
+                elif node.sister() and self.is_possible_antecedent(node.sister(), head):
                     list_of_antecedents.append(node.sister())
             #--------------------------------------------------------------------------------
             return list_of_antecedents
@@ -112,12 +117,12 @@ class Semantics:
         return node.sister() and 'SEM:external' in node.sister().head().features
 
     # Defines the category of possible antecedent for a goal head H
-    def is_possible_antecedent(self, antecedent, h):
+    def is_possible_antecedent(self, antecedent, head):
         if antecedent.find_me_elsewhere:
             return False
-        unchecked = get_relevant_phi(h)
-        for F in h.get_unvalued_features():
-            for G in get_relevant_phi(h):
+        unchecked = get_relevant_phi(head)
+        for F in antecedent.head().get_valued_features():
+            for G in get_relevant_phi(head):
                 check(F, G, unchecked)
         if not unchecked:
             return True
@@ -133,6 +138,7 @@ class Semantics:
         elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
             return 'discourse antecedent'
         else:
+            self.semantic_interpretation_failed = True
             return 'uninterpretable'
 
     # Provides a more fine-grained interpretation for antecedents

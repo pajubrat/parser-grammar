@@ -187,7 +187,7 @@ class LinearPhaseParser:
             if self.does_not_accept_any_complementizers(N):
                 log(f'\t\t\t\tReject {N} + {w} because {N} does not accept complementizers.')
                 continue
-            if N.is_complex() and self.bad_left_branch_condition(N, w):
+            if N.is_complex() and self.bad_left_branch_test(N, w):
                 log(f'\t\t\t\tReject {N} + {w} due to bad left branch.')
                 continue
             if self.breaks_words(N, w):
@@ -197,17 +197,19 @@ class LinearPhaseParser:
         #-------------------------------------------------------------------------------
         return adjunction_sites
 
-    def bad_left_branch_condition(self, N, w):
+    def bad_left_branch_test(self, N, w):
         set_logging(False)
         dropped = self.transfer_to_lf(N.copy())
         lf_test = dropped.LF_legibility_test()
         set_logging(True)
-        if lf_test.fail() and not (
-                w.is_adjoinable() and
-                lf_test.probe_goal_test_result and
-                lf_test.head_integrity_test_result and
-                lf_test.criterial_feature_test_result):
+        if self.left_branch_rejection(lf_test):
             return True
+
+    def left_branch_rejection(self, lf_test):
+        return not (lf_test.probe_goal_test_result and
+                lf_test.head_integrity_test_result and
+                lf_test.selection_test_result and
+                lf_test.wrong_complement_test_result)
 
     def does_not_accept_any_complementizers(self, N):
         if N.is_primitive() and '-COMP:*' in N.features:
@@ -221,6 +223,8 @@ class LinearPhaseParser:
     # Definition for the ranking function
     # This function will be implemented differently
     def ranking(self, site_list, w):
+        if len(site_list) <= 1:
+            return site_list
         log('\t\t\tRanking remaining sites...')
         word_specs = w.convert_features_for_parsing(w.licensed_specifiers())
         word_rare_specs = w.convert_features_for_parsing(w.rare_specs())

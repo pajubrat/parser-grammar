@@ -1,6 +1,4 @@
-from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
-from LexicalInterface import LexicalInterface
-import phrase_structure
+from support import log
 
 class FeatureProcessing():
     def __init__(self, controlling_parser_process):
@@ -9,33 +7,36 @@ class FeatureProcessing():
 
     # Definition for feature inheritance mechanism
     def disambiguate(self, ps):
-
         # --------------------------- minimal search ---------------------------------------------#
         for node in ps.minimal_search():
-            # If there is a primitive head to the left...
             if node.left_const and node.left_const.is_primitive():
-                h = node.left_const
-                # ...and it has neutralized agreement features, they are first disambiguated...
-                if '?ARG' in h.features:
-                    log(f'\t\t\t\t\tSolving feature ambiguities for \"{h}\".')
-                    self.resolve_neutralized_feature(h)
+                if '?ARG' in node.left_const.features:
+                    log(f'\t\t\t\t\tSolving feature ambiguities for \"{node.left_const}\".')
+                    self.resolve_neutralized_feature(node.left_const)
         # ----------------------------------------------------------------------------------------#
 
     # Definition for feature inheritance
     def resolve_neutralized_feature(self, h):
         h.features.discard('?ARG')
-        if h.selector() and 'SEM:internal' in h.selector().features:
-            log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into -ARG due to {h.selector()}')
+        if self.selected_by_SEM_internal(h):
+            log(f'\t\t\t\t\t{h} resolved into -ARG due to {h.selector()}')
             h.features.add('-ARG')
             h.features.add('-SPEC:*')
             h.features.discard('SPEC:*')
-        elif h.selector() and 'SEM:external' in h.selector().features:
-            log(f'\t\t\t\t\t{h} has neutralized PHI-feature, will be resolved into +ARG due to {h.selector()}')
+        elif self.selected_by_SEM_external(h):
+            log(f'\t\t\t\t\t{h} resolved into +ARG due to {h.selector()}')
             h.features.add('ARG')
             h.features.add('VAL')
             h.features.discard('?VAL')
             h.features.add('!SPEC:*')
-        else:
+        else:   # Selected by neither
             h.features.add('ARG')
             h.features.add('PHI:NUM:_')
             h.features.add('PHI:PER:_')
+            h.features.add('SPEC:*')
+
+    def selected_by_SEM_internal(self, h):
+        return h.selector() and 'SEM:internal' in h.selector().features
+
+    def selected_by_SEM_external(self, h):
+        return h.selector() and 'SEM:external' in h.selector().features

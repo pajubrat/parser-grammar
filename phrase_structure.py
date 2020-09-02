@@ -46,13 +46,11 @@ class PhraseStructure:
 
     # Definition of left
     def is_left(self):
-        if self.mother and self.mother.left_const == self:
-            return True
+        return self.mother and self.mother.left_const == self
 
     # Definition of right
     def is_right(self):
-        if self.mother and self.mother.right_const == self:
-            return True
+        return self.mother and self.mother.right_const == self
 
     # Definition for affix
     def has_affix(self):
@@ -178,7 +176,7 @@ class PhraseStructure:
         for node in self.upstream_search():
             if node.head() != self:
                 break
-            if node.left_const and node.left_const.is_complex():
+            if node.left_const and node.left_const.is_complex() and node.left_const.head() != self:
                 edge.append(node.left_const)
         #------------------------------------------------------------#
         if not edge and self.extract_pro():
@@ -194,7 +192,6 @@ class PhraseStructure:
     def container_head(self):
         if self.mother:
             return self.mother.head()
-        return self.head()              # Special case if there is no container
 
     # Definition for upstream walk
     def walk_upstream(self):
@@ -214,7 +211,15 @@ class PhraseStructure:
         else:
             return self.upstream_search()[-1]
 
-    #
+    def missing_complement(self):
+        return self.is_primitive() and not self.proper_complement() and self.licensed_complements()
+
+    def wrong_complement(self):
+        return self.is_left() and self.proper_complement() and self.has_mismatching_complement()
+
+    def complement_match(self, const):
+        return self.licensed_complements() & const.head().features
+
     #
     # Block 2. Structure building operations
     #
@@ -308,10 +313,19 @@ class PhraseStructure:
         else:
             return self
 
+    # Definition for selected sister
+    # A sister, excluding left primitive heads and adjuncts
+    def selected_sister(self):
+        if self.sister():
+            if self.sister().is_primitive() and self.sister().is_right():
+                    return self.sister()
+            if self.sister().is_complex():
+                return self.sister()
+
     #
     # Block 3. Nonlocal dependencies and operations
     #
-    # Definition ffor feature vector
+    # Definition for feature vector
     def feature_vector(self):
         return [self] + [node.left_const for node in self.upstream_search() if
                          node.left_const and node.left_const.is_primitive() and node.left_const != self]
@@ -341,11 +355,11 @@ class PhraseStructure:
         feature.issubset(self.inside_path().features)
 
     def bind_to_operator(self, operator):
-        # --------------- upstream path ------------------------------------#
+        # --------------- upstream path --------------------------------------------------------------------------- #
         for node in self.upstream_search():
             if node.inside_path().match_features({operator}) == 'complete match' and 'FIN' in node.inside_path().features:
                 return node
-        # ------------------------------------------------------------------#
+        # --------------------------------------------------------------------------------------------------------- #
 
     def external_tail_head_test(self):
         tail_sets = self.get_tail_sets()
@@ -368,11 +382,12 @@ class PhraseStructure:
         return True
 
     def strong_tail_condition(self, tail_set):
-        if self.get_max() and \
-                self.get_max().mother and \
-                self.get_max().mother.head().match_features(tail_set) == 'complete match' and \
-                'D' not in self.features:
-            return True
+        if self.get_max() and self.get_max().mother:
+            if self.get_max().mother.head().match_features(tail_set) == 'complete match' and 'D' not in self.features:
+                return True
+            # Licenses HP at [V [DP <H XP>]] by V
+            if self.get_max().mother.sister() and self.get_max().mother.sister().match_features(tail_set) == 'complete match':
+                return True
 
     def weak_tail_condition(self, tail_set, variation='external'):
         if  'ADV' not in self.features and len(self.feature_vector()) > 1:
@@ -392,7 +407,7 @@ class PhraseStructure:
 
     def get_max(self):
         ps_ = self
-        while ps_.mother and ps_.mother.head() == self.head():
+        while ps_ and ps_.mother and ps_.mother.head() == self.head():
             ps_ = ps_.walk_upstream()
         return ps_
 
@@ -489,7 +504,7 @@ class PhraseStructure:
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
 
     # Definition for valued phi-features
-    def is_valued(self):
+    def get_valued_features(self):
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
 
     # Definition for the notion of phi-set for head H
@@ -498,6 +513,10 @@ class PhraseStructure:
 
     def get_unvalued_features(self):
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
+
+    # Definition for mandatory complement selection
+    def get_mandatory_comps(self):
+        return  {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
 
     # Definition for adjoinable phrase
     def is_adjoinable(self):
@@ -520,6 +539,9 @@ class PhraseStructure:
     # Definition for negative complement selection
     def complements_not_licensed(self):
         return {f[6:] for f in self.features if f[:5] == '-COMP'}
+
+    def has_mismatching_complement(self):
+        return not (self.licensed_complements() & self.proper_complement().head().features)
 
     # Definition for positive specifier selection
     def licensed_specifiers(self):

@@ -26,12 +26,15 @@ class LF:
         # The report is a set of strings; later this will be in some formal notation
         self.semantic_interpretation = set()
 
+        self.CPP = None
+
     def all_pass(self):
         return (self.probe_goal_test_result and
                 self.selection_test_result and
                 self.tail_head_test_result and
                 self.head_integrity_test_result and
                 self.criterial_feature_test_result and
+                self.semantic_test_result and
                 self.semantic_test_result and
                 self.projection_principle_test_result and
                 self.wrong_complement_test_result and
@@ -70,11 +73,12 @@ class LF:
             if not ps.right_const.find_me_elsewhere:
                 self.test(ps.right_const)
 
+    # A right DP-adjunct inside DP is uninterpretable
     def adjunct_interpretation_test(self, h):
         if 'D' in h.features and \
-                self.max(h) and self.max(h).adjunct and \
-                self.max(h).is_right() and \
-                self.max(h).mother and 'D' in self.max(h).mother.head().features:
+                h.get_max() and h.get_max().adjunct and \
+                h.get_max().is_right() and \
+                h.get_max().mother and 'D' in h.get_max().mother.head().features:
             log(f'\t\t\t\t{h.mother.mother} in uninterpretable because it is inside DP.')
             self.adjunct_test_result = False
 
@@ -175,11 +179,11 @@ class LF:
 
             # Obligatory complement
             if f.startswith('!COMP:') and not f == '!COMP:*':
-                if not self.selected_sister(h):
+                if not h.selected_sister():
                     log(f'\t\t\t\t{h} is missing complement {f[6:]}')
                     self.selection_test_result = False
                 else:
-                    if f[6:] not in self.selected_sister(h).head().features:
+                    if f[6:] not in h.selected_sister().head().features:
                         log(f'\t\t\t\t\t{h} is missing a mandatory complement {f[6:]}')
                         self.selection_test_result = False
 
@@ -197,7 +201,7 @@ class LF:
 
             # !COMP:* heads must have complements (=functional head)
             if f == '!COMP:*':
-                if not self.selected_sister(h):
+                if not h.selected_sister():
                     log(f'\t\t\t\t"{h}" lacks complement.')
                     self.selection_test_result = False
 
@@ -222,20 +226,14 @@ class LF:
     # LF-interface check for the final phrase structure
     @staticmethod
     def final_tail_check(goal):
-
-        if goal.is_primitive():
-            if not goal.get_tail_sets():
-                return True
-            if goal.external_tail_head_test():
-                return True
-            else:
-                feature_vector = goal.feature_vector()
-                log(f'\t\t\t{goal}<{feature_vector}> failed to tail {illu(goal.get_tail_sets())}')
-                return False
-        else:
+        if goal.is_complex():
             if not goal.left_const.find_me_elsewhere and not LF.final_tail_check(goal.left_const):
                 return False
             if not goal.right_const.find_me_elsewhere and not LF.final_tail_check(goal.right_const):
+                return False
+        if goal.is_primitive():
+            if goal.get_tail_sets() and not goal.external_tail_head_test():
+                log(f'\t\t\t{goal.illustrate()} failed final tail test.')
                 return False
         return True
 
@@ -253,135 +251,98 @@ class LF:
 
     # This function will try to transfer the phrase structure into the conceptual-intentional system
     def transfer_to_CI(self, ps):
-        log(f'\t\t\tTransferring {ps} into the conceptual-intentional system...')
+        log(f'\t\t\tTransferring {ps} into the conceptual-intentional system.')
         self.transfer_to_CI_crash = False
         self.semantic_interpretation = self.semantics.interpret(ps)
         if not self.semantic_interpretation:
-            log('\t\t\t\tSemantic interpretation failed, transfer to C-I crashed.')
+            log('\t\t\t\tSemantic interpretation failed.')
             self.transfer_to_CI_crash = True
             return set()
-        else:
-            log('\t\t\t\tTransfer to C-I successful.')
-            self.transfer_to_CI_crash = False
-            return sorted(self.semantic_interpretation)
+
+        log('\t\t\t\tTransfer to C-I successful.')
+        return sorted(self.semantic_interpretation)
 
     @staticmethod
     def semantic_match(a, b):
-
         a_head = a.head()
         b_head = b.head()
-
         pos_sem_a = {f[5:] for f in a_head.features if f.startswith('+SEM:')}
         neg_sem_a = {f[5:] for f in a_head.features if f.startswith('-SEM:')}
-
         pos_sem_b = {f[5:] for f in b_head.features if f.startswith('+SEM:')}
         neg_sem_b = {f[5:] for f in b_head.features if f.startswith('-SEM:')}
-
         return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
 
     # Merges with constituents from the syntactic working memory if licensed by selection at LF
     def LFmerge(self, head, controlling_process):
+        self.CPP = controlling_process
+        self.try_merge_op(head)
+        self.try_merge_to_spec(head)
+        self.try_merge_to_comp(head)
 
-        # Internal functions
-        # specifier match
-        def spec_match(h, spec):
-            if 'SPEC:*' in h.features or '!SPEC:*' in h.features:
-                return True
-            for feature_in_head in h.convert_features_for_parsing(h.licensed_specifiers()):
-                for feature_in_spec in spec.head().features:
-                    if feature_in_head == feature_in_spec:
-                        return True
-            return False
-
-        def hit_from_memory_buffer(h):
-            for const in controlling_process.syntactic_working_memory:
-                if h.licensed_complements() & const.head().features:
-                    return const
-
-        # Main function
-        ps = head.get_specifier_sister()
-
-        # Try to fill in SPEC by operator
+    # Merge an operator to SPEC
+    def try_merge_op(self, head):
         if head.has_op_feature():
-            for constituent_in_working_memory in controlling_process.syntactic_working_memory:
+            for constituent_in_working_memory in self.CPP.syntactic_working_memory:
                 if constituent_in_working_memory.scan_criterial_features():
                     if constituent_in_working_memory not in head.edge():
-                        new_const = constituent_in_working_memory.copy_from_memory_buffer(controlling_process.babtize())
-                        ps.merge_1(new_const, 'left')
+                        new_const = constituent_in_working_memory.copy_from_memory_buffer(self.CPP.babtize())
+                        head.get_specifier_sister().merge_1(new_const, 'left')
                         log(f'\t\t\t\t\tMerging operator {constituent_in_working_memory} to Spec{head.get_cats_string()}P')
-                        controlling_process.syntactic_working_memory.remove(constituent_in_working_memory)
-                        controlling_process.number_of_phrasal_Move = + 1
+                        self.CPP.syntactic_working_memory.remove(constituent_in_working_memory)
+                        self.CPP.number_of_phrasal_Move = + 1
                         break
 
-        # Try to fill in SPEC by thematic selection
+    # Definition for Spec-Merge
+    def try_merge_to_spec(self, head):
+        if not head.EPP() and self.free_spec_position(head):
+            for constituent_in_working_memory in self.CPP.syntactic_working_memory:
+                if self.specifier_match(head, constituent_in_working_memory):
+                    specifier_sister_node = head.get_specifier_sister()
+                    specifier_sister_node.merge_1(constituent_in_working_memory.copy(), 'left')
+                    if specifier_sister_node.geometrical_sister().head().external_tail_head_test():
+                        log(f'\t\t\t\t\tMerging constituent {constituent_in_working_memory} from memory buffer into Spec{head.get_cats_string()}P')
+                        specifier_sister_node.geometrical_sister().remove()
+                        new_const = constituent_in_working_memory.copy_from_memory_buffer(self.CPP.babtize())
+                        specifier_sister_node.merge_1(new_const, 'left')
+                        self.CPP.syntactic_working_memory.remove(constituent_in_working_memory)
+                        self.CPP.number_of_phrasal_Move =+ 1
+                        log(f'\t\t\t\t\t={specifier_sister_node.top()}')
+                        break
+                    else:
+                        # If there was a tail-head violation, dropping is cancelled
+                        specifier_sister_node.geometrical_sister().remove()
+
+    def specifier_match(self, h, const):
+        if 'SPEC:*' in h.features or '!SPEC:*' in h.features:
+            return True
+        for feature_in_head in h.convert_features_for_parsing(h.licensed_specifiers()):
+            for feature_in_spec in const.head().features:
+                if feature_in_head == feature_in_spec:
+                    return True
+
+    def free_spec_position(self, head):
         specs = [spec for spec in head.edge() if not spec.is_primitive()]
-        if not specs or (specs and specs[0].adjunct):
-            for constituent_in_working_memory in controlling_process.syntactic_working_memory:
-                if spec_match(head. constituent_in_working_memory):
-                    if not head.EPP():
-                        ps.merge_1(constituent_in_working_memory.copy(), 'left')
-                        if ps.geometrical_sister().head().external_tail_head_test():
-                            log(f'\t\t\t\t\tMerging constituent {constituent_in_working_memory} from memory buffer into Spec{head.get_cats_string()}P')
-                            # Replace the hypothetical candidate (above) with proper chain (below) if the solution works
-                            ps.geometrical_sister().remove()
-                            new_const = constituent_in_working_memory.copy_from_memory_buffer(controlling_process.babtize())
-                            ps.merge_1(new_const, 'left')
-                            controlling_process.syntactic_working_memory.remove(constituent_in_working_memory)
-                            controlling_process.number_of_phrasal_Move =+ 1
-                            log(f'\t\t\t\t\t={ps.top()}')
-                            break
-                        else:
-                            # If there was a tail-head violation, dropping is cancelled
-                            ps.geometrical_sister().remove()
+        return not specs or (specs and specs[0].adjunct)
 
-        # Try to fill COMP
-        # Condition 1. H is a primitive head without complements that it needs
-        if head.is_primitive() and not head.proper_complement() and head.licensed_complements():
-            const = hit_from_memory_buffer(head)
-            if const:
-                head.merge_1(const.copy_from_memory_buffer(controlling_process.babtize()), 'right')
-                controlling_process.syntactic_working_memory.remove(const)
-                log(f'\t\t\t\t\tMerging {const} from memory buffer into Comp{head.get_cats_string()}P.')
-                log(f'\t\t\t\t\tResult {head.top()}')
-                controlling_process.number_of_phrasal_Move = + 1
+    # Definition for Comp-Merge
+    def try_merge_to_comp(self, head):
 
-        #  Condition 2. The head has a non-matching complement
-        if head.is_left() and head.proper_complement() and not (head.licensed_complements() & head.proper_complement().features):
-            const = hit_from_memory_buffer(head)
-            if const and const.features & head.licensed_complements():
-                head.proper_complement().merge_1(const.copy_from_memory_buffer(controlling_process.babtize()), 'left')
-                controlling_process.syntactic_working_memory.remove(const)
-                log(f'\t\t\t\t\tMerging {const} from memory buffer into Comp{head.get_cats_string()}P'
-                                                                               f'due to the presence of mismatching complement {head.proper_complement()}.')
-                controlling_process.self.number_of_phrasal_Move = + 1
-                # Mismatching complement will be made floater
-                if head.proper_complement().right_const.is_adjoinable():
-                    log('\t\t\t\t\tThe mismatching complement will be transformed into floater adjunct.')
-                    controlling_process.adjunct_constructor.create_adjunct(head.proper_complement().right_const)
+        if head.missing_complement():
+            for const in self.CPP.syntactic_working_memory:
+                if head.complement_match(const):
+                    head.merge_1(const.copy_from_memory_buffer(self.CPP.babtize()), 'right')
+                    log(f'\t\t\t\t\tMerging {const} from memory buffer into Comp{head.get_cats_string()}P.')
+                    self.CPP.syntactic_working_memory.remove(const)
+                    self.CPP.number_of_phrasal_Move = + 1
+                    break
 
-
-    @staticmethod
-    # Definition for selected sister
-    def selected_sister(head):
-        if head.is_primitive() and not head.sister():
-            return None
-        if head.sister().is_complex():
-            if head.sister().is_left():
-                return head.sister()
-            elif head.sister().is_right() and not head.sister().externalized():
-                return head.sister()
-        else:
-            if head.sister().is_right():
-                return head.sister()
-            else:
-                return None
-
-    @staticmethod
-    # Definition of max
-    def max(h):
-        last = h
-        ps_ = h
-        while ps_ and ps_.head() == h.head():
-            last = ps_
-            ps_ = ps_.walk_upstream()
-        return last
+        if head.wrong_complement():
+            for const in self.CPP.syntactic_working_memory:
+                if head.complement_match(const):
+                    head.proper_complement().merge_1(const.copy_from_memory_buffer(self.CPP.babtize()), 'left')
+                    log(f'\t\t\t\t\tMerging {const} to Comp{head.get_cats_string()}P due to mismatching complement {head.proper_complement()}.')
+                    self.CPP.syntactic_working_memory.remove(const)
+                    self.CPP.number_of_phrasal_Move = + 1
+                    if head.proper_complement().right_const.is_adjoinable():
+                        self.CPP.adjunct_constructor.create_adjunct(head.proper_complement().right_const)
+                    break

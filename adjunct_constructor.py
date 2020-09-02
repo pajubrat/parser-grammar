@@ -1,5 +1,4 @@
-from phrase_structure import PhraseStructure
-from support import set_logging, log, show_results, report_LF_problem, disable_logging, enable_logging, report_tail_head_problem, reset_number_of_operations, log_result, illu
+from support import log, disable_logging, enable_logging
 
 class AdjunctConstructor:
     def __init__(self, controlling_parser_process):
@@ -10,30 +9,11 @@ class AdjunctConstructor:
         if ps.head().is_adjoinable():
             if ps.is_complex():
                 self.make_adjunct(ps)
-            else:
+            if ps.is_primitive():
                 if self.adjunct_in_correct_position(ps):
                     self.make_adjunct_with_surrounding_structure(ps)
                 else:
                     self.make_adjunct_with_surrounding_structure_(ps)
-
-    def make_adjunct_with_surrounding_structure_(self, ps):
-        if self.eat_specifier_(ps):
-                self.make_adjunct_with_specifier(ps)
-                return ps.mother.mother
-        else:
-            self.make_adjunct_with_complement(ps.head())
-            return ps.mother
-
-    def eat_specifier_(self, ps):
-        if ps.head().edge() and \
-                not '-SPEC:*' in ps.head().features and \
-                not (set(ps.head().specifiers_not_licensed()) & set(ps.edge()[0].head().features)) and \
-                not ps.edge()[0].is_primitive() and \
-                '-ARG' not in ps.head().features and \
-                ps.head().mother.mother:
-            return True
-        else:
-            return False
 
     def make_adjunct_with_surrounding_structure(self, ps):
         if self.eat_specifier(ps):
@@ -46,23 +26,34 @@ class AdjunctConstructor:
                 self.make_adjunct(ps.head())
             return ps.mother
 
+    def make_adjunct_with_surrounding_structure_(self, ps):
+        if self.eat_specifier_(ps):
+            self.make_adjunct_with_specifier(ps)
+            return ps.mother.mother
+        else:
+            self.make_adjunct_with_complement(ps.head())
+            return ps.mother
+
+    def eat_specifier_(self, ps):
+        if ps.head().edge() and \
+                not '-SPEC:*' in ps.head().features and \
+                not (set(ps.head().specifiers_not_licensed()) & set(ps.edge()[0].head().features)) and \
+                not ps.edge()[0].is_primitive() and \
+                '-ARG' not in ps.head().features and \
+                ps.head().mother.mother:
+            return True
+
     def eat_complement(self, ps):
         if ps.head().mother and ps.head().mother.head() == ps.head():
             return True
-        else:
-            return False
 
     def eat_specifier(self, ps):
-        if '!SPEC:*' in ps.head().features and ps.head().mother.mother and ps.head().mother.sister() and ps.head().mother.sister().is_complex():
+        if ps.head().EPP() and ps.head().mother.mother and ps.head().mother.sister() and ps.head().mother.sister().is_complex():
             return True
-        else:
-            return False
 
     def adjunct_in_correct_position(self, ps):
         if ps.head().external_tail_head_test():
             return True
-        else:
-            return False
 
     def make_adjunct_with_complement(self, ps):
         self.make_adjunct(ps.head().mother)

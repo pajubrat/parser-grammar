@@ -38,7 +38,7 @@ class PhrasalMovement():
                 if not spec.find_me_elsewhere:
                     if self.Abar_movable(spec):
                         specifiers_to_add_memory_buffer.append(spec)
-                        log(f'\t\t\t\t\tMoving \"' + spec.spellout() + f'\" into memory buffer from Spec{h.get_cats_string()}P.')
+                        log(f'\t\t\t\t\tMoving {spec} into memory buffer from Spec{h.get_cats_string()}P.')
                     else:
                         iterator = self.A_reconstruct(spec, iterator)
 
@@ -63,8 +63,6 @@ class PhrasalMovement():
 
             # Add everything into memory buffer
             self.controlling_parser_process.syntactic_working_memory = specifiers_to_add_memory_buffer + self.controlling_parser_process.syntactic_working_memory
-            if len(specifiers_to_add_memory_buffer) > 0:
-                log(f'\t\t\t\t\tMemory buffer: {self.controlling_parser_process.syntactic_working_memory}')
 
     # Definition for generating a new head
     def engineer_head_from_specifier(self, h, criterial_features):

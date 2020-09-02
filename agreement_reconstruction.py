@@ -32,7 +32,7 @@ class AgreementReconstruction:
     # Definition for phi-feature acquisition (Agree-1)
     def Agree_1(self, head):
 
-        goal, phi_features = self.Agree_1_from_sister(head.sister())
+        goal, phi_features = self.Agree_1_from_sister(head)
         for phi in phi_features:
             self.value(head, goal, phi)
 
@@ -44,18 +44,19 @@ class AgreementReconstruction:
             self.value(head, goal, phi)
 
     # Definition for phi-acquisition from sister
-    def Agree_1_from_sister(self, ps):
-        # ---------------------------- minimal search ----------------------------#
-        for node in ps.minimal_search():
-            if node.left_complex():
-                if node.left_const.head().is_functional():
-                    break
-                if 'D' in node.left_const.head().features:
-                    return node.left_const.head(), \
-                           sorted({f for f in node.left_const.head().features
-                                   if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
-        # ---------------------------------------------------------------------------#
-        return ps, {}
+    def Agree_1_from_sister(self, head):
+        if head.sister():
+            # ---------------------------- minimal search ----------------------------#
+            for node in head.sister().minimal_search():
+                if node.left_complex():
+                    if node.left_const.head().is_functional():
+                        break
+                    if 'D' in node.left_const.head().features:
+                        return node.left_const.head(), \
+                               sorted({f for f in node.left_const.head().features
+                                       if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
+            # ---------------------------------------------------------------------------#
+        return head.sister(), {}    # This line is executed only if nothing is found
 
     # Definition for phi-acquisition from the edge
     def Agree_1_from_edge(self, h):
@@ -68,7 +69,7 @@ class AgreementReconstruction:
 
     # Definition for phi-feature valuation
     def value(self, h, goal, phi):
-        if h.is_valued() and self.valuation_blocked(h, phi):
+        if h.get_valued_features() and self.valuation_blocked(h, phi):
             h.features.add(mark_bad(phi))
         if find_unvalued_target(h, phi):
             h.features = h.features - find_unvalued_target(h, phi)

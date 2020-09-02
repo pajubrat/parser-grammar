@@ -88,6 +88,6 @@ class Morphology:
 
     # Definition for morphological decomposition (converts string pattern into a list)
     def decompose(self, word):
-        word.replace("#", "#$")
-        word.replace("=", '#=')
+        word = word.replace("#", "#$")
+        word = word.replace("=", '#=')
         return self.flip_boundary(word.split("#"))

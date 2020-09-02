@@ -51,6 +51,7 @@ class HeadMovement:
         else:
             # --------------- minimal search -----------------------------------------------#
             phrase_structure = complex_head.sister()
+            node = None
             for node in phrase_structure:
                 if self.causes_intervention(node, intervention_feature, phrase_structure):
                     self.last_resort(phrase_structure, affix)
@@ -61,7 +62,7 @@ class HeadMovement:
                 affix.remove()
             # --------------------------------------------------------------------------------#
             # Still no solution
-            if self.try_manipulate_bottom_node(node, affix):
+            if self.try_manipulate_bottom_node(node, affix, intervention_feature):
                 return
             else:
                 affix.remove()
