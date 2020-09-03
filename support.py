@@ -238,7 +238,7 @@ def illu(set):
             feats += list(f)
         else:
             feats.append(f)
-    return ''.join([f'[{g}]' for g in sorted(feats)])
+    return ''.join([f'[{g}] ' for g in sorted(feats)])
 
 
 def time_me(function):

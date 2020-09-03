@@ -28,20 +28,20 @@ class FloaterMovement():
             floater = ps.left_const
             if not floater.head().external_tail_head_test():
                 log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
-                return floater
+                return floater.get_max()
             if floater.mother and floater.mother.head().EPP() and 'FIN' in floater.mother.head().features:
                 log('\t\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
-                return floater
+                return floater.get_max()
             if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == floater.mother.head().local_edge():
                 log('\t\t\t\t\t' + floater.illustrate() + ' is in an specifier position that cannot be projected.')
-                return floater
+                return floater.get_max()
         if self.detect_right_floater(ps):
             floater = ps.right_const.head()
             if not floater.external_tail_head_test():
                 log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
                 if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
                     self.adjunct_constructor.create_adjunct(floater)
-                    return floater
+                    return floater.get_max()
                 if 'ADV' in floater.features and not ps.right_const.adjunct:
                     self.adjunct_constructor.create_adjunct(floater)
 
@@ -67,7 +67,7 @@ class FloaterMovement():
         starting_point_head = floater.container_head()
         floater_copy = floater.copy()
         # ------------------------------------ minimal search ------------------------------------#
-        for node in self.local_tense_edge(floater.mother).minimal_search():
+        for node in self.local_tense_edge(floater).minimal_search():
             if self.termination_condition(node, floater):
                 break
             self.merge_floater(node, floater_copy)

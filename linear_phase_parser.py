@@ -147,7 +147,8 @@ class LinearPhaseParser:
         spellout_structure = ps.copy()
         if not self.first_solution_found:
             self.number_of_solutions_tried = self.number_of_solutions_tried + 1
-        log('\n\t>>>\t' + f'Trying spellout structure ' + ps.illustrate())
+        log('------------------------------------------------------------------------------------------------------------------------------------------------')
+        log('\n\t>>>\t' + f'Trying spellout structure  ' + ps.illustrate())
         log('\t\tChecking surface conditions...')
         S = self.surface_conditions_module
         if not S.reconstruct(ps):

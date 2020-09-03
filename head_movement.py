@@ -108,6 +108,8 @@ class HeadMovement:
                 # Exception 2. The the structure is [Affix, X], Affix finite EPP head and with X  primitive head
                 if affix.sister() and affix.sister().terminal_node():
                     return True
+                else:
+                    return False
         return True
 
     def get_affix_out(self, node):

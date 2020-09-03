@@ -66,7 +66,6 @@ class LF:
             self.criterial_feature_test(ps)
             self.projection_principle(ps)
             self.adjunct_interpretation_test(ps)
-            self.bind_variables(ps)
         else:
             if not ps.left_const.find_me_elsewhere:
                 self.test(ps.left_const)
@@ -83,7 +82,7 @@ class LF:
             self.adjunct_test_result = False
 
     def head_integrity_test(self, h):
-        if not h.features or 'CAT:?' in h.features:
+        if not h.features or 'CAT:?' in h.features or '?' in h.features:
             log('\t\t\t\t\tAn uninterpretable grammatical head without lexical category was detected.')
             self.head_integrity_test_result = False
 
@@ -111,11 +110,11 @@ class LF:
                 self.head_integrity_test_result = False
                 log(f'\t\t\t\t{h} has double specifiers.')
 
-    def semantic_complement_test(self, h):
-        if h.proper_complement():
-            if not LF.semantic_match(h, h.proper_complement()):
+    def semantic_complement_test(self, head):
+        if head.proper_complement():
+            if not LF.semantic_match(head, head.proper_complement()):
                 self.semantic_test_result = False
-                log(f'\t\t\t\t{h} fails semantic match with {h.proper_complement()}')
+                log(f'\t\t\t\t{head} fails semantic match with {head.proper_complement()}')
 
     def criterial_feature_test(self, h):
         if 'D' in h.features and 'REL' not in h.features and h.mother:
@@ -237,18 +236,6 @@ class LF:
                 return False
         return True
 
-    def bind_variables(self, ps):
-        if 'C' not in ps.head().features:
-            for f in ps.head().features:
-                if f[:3] == 'OP:' and f != 'OP:_':
-                    if not ps.bind_to_operator('OP'):
-                        log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
-                        self.transfer_to_CI_crash = True
-                    else:
-                        log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
-                        self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
-        return
-
     # This function will try to transfer the phrase structure into the conceptual-intentional system
     def transfer_to_CI(self, ps):
         log(f'\t\t\tTransferring {ps} into the conceptual-intentional system.')
@@ -273,44 +260,50 @@ class LF:
         return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
 
     # Merges with constituents from the syntactic working memory if licensed by selection at LF
-    def LFmerge(self, head, controlling_process):
+    def try_LFmerge(self, head, controlling_process):
         self.CPP = controlling_process
-        self.try_merge_op(head)
-        self.try_merge_to_spec(head)
+        # self.try_merge_op(head)
+        self.try_merge_to_left(head)
+        self.try_merge_to_right(head)
         self.try_merge_to_comp(head)
 
-    # Merge an operator to SPEC
-    def try_merge_op(self, head):
-        if head.has_op_feature():
-            for constituent_in_working_memory in self.CPP.syntactic_working_memory:
-                if constituent_in_working_memory.scan_criterial_features():
-                    if constituent_in_working_memory not in head.edge():
-                        new_const = constituent_in_working_memory.copy_from_memory_buffer(self.CPP.babtize())
-                        head.get_specifier_sister().merge_1(new_const, 'left')
-                        log(f'\t\t\t\t\tMerging operator {constituent_in_working_memory} to Spec{head.get_cats_string()}P')
-                        self.CPP.syntactic_working_memory.remove(constituent_in_working_memory)
-                        self.CPP.number_of_phrasal_Move = + 1
-                        break
+    # Definition for right merge
+    def try_merge_to_right(self, head):
+        for constituent in self.CPP.syntactic_working_memory:
+            if 'ADV' in constituent.head().features:
+                target_node = head.get_specifier_sister()
+                target_node.merge_1(constituent.copy(), 'right')
+                target_node.geometrical_sister().adjunct = True
+                if target_node.geometrical_sister().head().external_tail_head_test():
+                    new_const = self.LFMerge(constituent, target_node, 'right')
+                    new_const.adjunct = True
+                    log(f'\t\t\t\t\t={target_node.top()}')
+                    break
+                else:
+                    target_node.geometrical_sister().remove()
 
     # Definition for Spec-Merge
-    def try_merge_to_spec(self, head):
+    def try_merge_to_left(self, head):
         if not head.EPP() and self.free_spec_position(head):
-            for constituent_in_working_memory in self.CPP.syntactic_working_memory:
-                if self.specifier_match(head, constituent_in_working_memory):
-                    specifier_sister_node = head.get_specifier_sister()
-                    specifier_sister_node.merge_1(constituent_in_working_memory.copy(), 'left')
-                    if specifier_sister_node.geometrical_sister().head().external_tail_head_test():
-                        log(f'\t\t\t\t\tMerging constituent {constituent_in_working_memory} from memory buffer into Spec{head.get_cats_string()}P')
-                        specifier_sister_node.geometrical_sister().remove()
-                        new_const = constituent_in_working_memory.copy_from_memory_buffer(self.CPP.babtize())
-                        specifier_sister_node.merge_1(new_const, 'left')
-                        self.CPP.syntactic_working_memory.remove(constituent_in_working_memory)
-                        self.CPP.number_of_phrasal_Move =+ 1
-                        log(f'\t\t\t\t\t={specifier_sister_node.top()}')
+            for constituent in self.CPP.syntactic_working_memory:
+                if self.specifier_match(head, constituent):
+                    target_node = head.get_specifier_sister()
+                    target_node.merge_1(constituent.copy(), 'left')
+                    if target_node.geometrical_sister().head().external_tail_head_test():
+                        self.LFMerge(constituent, target_node, 'left')
+                        log(f'\t\t\t\t\t={target_node.top()}')
                         break
                     else:
-                        # If there was a tail-head violation, dropping is cancelled
-                        specifier_sister_node.geometrical_sister().remove()
+                        target_node.geometrical_sister().remove()
+
+    def LFMerge(self, constituent, target, direction='left'):
+        log(f'\t\t\t\t\tMerging constituent {constituent} {direction} of {target.head()}P')
+        target.geometrical_sister().remove()
+        new_const = constituent.copy_from_memory_buffer(self.CPP.babtize())
+        target.merge_1(new_const, direction)
+        self.CPP.syntactic_working_memory.remove(constituent)
+        self.CPP.number_of_phrasal_Move = + 1
+        return new_const
 
     def specifier_match(self, h, const):
         if 'SPEC:*' in h.features or '!SPEC:*' in h.features:
@@ -339,10 +332,24 @@ class LF:
         if head.wrong_complement():
             for const in self.CPP.syntactic_working_memory:
                 if head.complement_match(const):
+                    old_complement = head.proper_complement()
                     head.proper_complement().merge_1(const.copy_from_memory_buffer(self.CPP.babtize()), 'left')
-                    log(f'\t\t\t\t\tMerging {const} to Comp{head.get_cats_string()}P due to mismatching complement {head.proper_complement()}.')
+                    log(f'\t\t\t\t\tMerging {const} to Comp{head.get_cats_string()}P due to complement mismatch.')
+                    log(f'\t\t\t\t\tExternalizing {old_complement}')
+                    old_complement.adjunct = True
                     self.CPP.syntactic_working_memory.remove(const)
                     self.CPP.number_of_phrasal_Move = + 1
-                    if head.proper_complement().right_const.is_adjoinable():
-                        self.CPP.adjunct_constructor.create_adjunct(head.proper_complement().right_const)
                     break
+
+    # Merge an operator to SPEC
+    def try_merge_op(self, head):
+        if head.has_op_feature():
+            for constituent_in_working_memory in self.CPP.syntactic_working_memory:
+                if constituent_in_working_memory.scan_criterial_features():
+                    if constituent_in_working_memory not in head.edge():
+                        new_const = constituent_in_working_memory.copy_from_memory_buffer(self.CPP.babtize())
+                        head.get_specifier_sister().merge_1(new_const, 'left')
+                        log(f'\t\t\t\t\tMerging operator {constituent_in_working_memory} to Spec{head.get_cats_string()}P')
+                        self.CPP.syntactic_working_memory.remove(constituent_in_working_memory)
+                        self.CPP.number_of_phrasal_Move = + 1
+                        break

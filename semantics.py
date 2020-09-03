@@ -30,6 +30,7 @@ class Semantics:
             self.perform_LF_recovery(ps)
             self.detect_phi_conflicts(ps)
             self.interpret_tail_features(ps)
+            self.bind_variables(ps)
         else:
             if not ps.left_const.find_me_elsewhere:
                 self.interpret(ps.left_const)
@@ -211,3 +212,14 @@ class Semantics:
             else:
                 log(f'\t\t\t\t\t{ps}{self.interpret_no_antecedent(ps, unvalued_phi_features)}')
             return True
+
+    def bind_variables(self, ps):
+        if 'C' not in ps.head().features:
+            for f in ps.head().features:
+                if f[:3] == 'OP:' and f != 'OP:_':
+                    if not ps.bind_to_operator('OP'):
+                        log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
+                        self.semantic_interpretation_failed = True
+                    else:
+                        log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
+                        self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
