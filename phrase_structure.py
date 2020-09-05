@@ -75,6 +75,9 @@ class PhraseStructure:
     def externalized(self):
         return self.adjunct
 
+    def adjoinable(self):
+        return 'adjoinable' in self.features and '-adjoinable' not in self.features
+
     # Definition of functional (vs. lexical)
     def is_functional(self):
         return '!COMP:*' in self.features
@@ -83,12 +86,17 @@ class PhraseStructure:
     def left_primitive(self):
         return self.left_const and self.left_const.is_primitive()
 
+    # Definition for left complex head
     def left_complex(self):
         return self.left_const and self.is_complex()
 
     # Opposite of externalization
     def visible(self):
         return not self.externalized()
+
+    # Definition for adjoinable phrase
+    def is_adjoinable(self):
+        return self.externalized() or 'adjoinable' in self.head().features
 
     # Definition for sisterhood
     def sister(self):
@@ -219,6 +227,18 @@ class PhraseStructure:
 
     def complement_match(self, const):
         return self.licensed_complements() & const.head().features
+
+    def licensed_complements(self):
+        return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}
+
+    def complements_not_licensed(self):
+        return {f[6:] for f in self.features if f[:5] == '-COMP'}
+
+    def has_mismatching_complement(self):
+        return not (self.licensed_complements() & self.proper_complement().head().features)
+
+    def get_mandatory_comps(self):
+        return  {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
 
     #
     # Block 2. Structure building operations
@@ -354,13 +374,6 @@ class PhraseStructure:
     def intervention(self, feature):
         feature.issubset(self.inside_path().features)
 
-    def bind_to_operator(self, operator):
-        # --------------- upstream path --------------------------------------------------------------------------- #
-        for node in self.upstream_search():
-            if node.inside_path().match_features({operator}) == 'complete match' and 'FIN' in node.inside_path().features:
-                return node
-        # --------------------------------------------------------------------------------------------------------- #
-
     def external_tail_head_test(self):
         tail_sets = self.get_tail_sets()
         tests_checked = set()
@@ -405,11 +418,12 @@ class PhraseStructure:
         else:
             return True     # Weak test: accept still (only look for violations)
 
-    def get_max(self):
-        ps_ = self
-        while ps_ and ps_.mother and ps_.mother.head() == self.head():
-            ps_ = ps_.walk_upstream()
-        return ps_
+    def bind_to_operator(self, operator):
+        # --------------- upstream path --------------------------------------------------------------------------- #
+        for node in self.upstream_search():
+            if node.inside_path().match_features({operator}) == 'complete match' and 'FIN' in node.inside_path().features:
+                return node
+        # --------------------------------------------------------------------------------------------------------- #
 
     def match_features(self, features_to_check):
         positive_features = self.positive_features(features_to_check)
@@ -450,9 +464,6 @@ class PhraseStructure:
     #
     def EPP(self):
         return 'SPEC:*' in self.features or '!SPEC:*' in self.features
-
-    def adjoinable(self):
-        return 'adjoinable' in self.features and '-adjoinable' not in self.features
 
     # Return a list of affixes inside a grammatical head (including the head itself)
     def get_affix_list(self):
@@ -511,16 +522,9 @@ class PhraseStructure:
     def get_phi_set(self):
         return {f for f in self.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
+    # Return a list of unvalued features
     def get_unvalued_features(self):
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
-
-    # Definition for mandatory complement selection
-    def get_mandatory_comps(self):
-        return  {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
-
-    # Definition for adjoinable phrase
-    def is_adjoinable(self):
-        return self.externalized() or 'adjoinable' in self.head().features
 
     def has_op_feature(self):
         return {feature for feature in self.features if feature[:2] == 'OP'}
@@ -535,13 +539,6 @@ class PhraseStructure:
         if self.is_primitive():
             set_ |= {feature for feature in self.features if feature[:3] == 'OP:'}
         return set_
-
-    # Definition for negative complement selection
-    def complements_not_licensed(self):
-        return {f[6:] for f in self.features if f[:5] == '-COMP'}
-
-    def has_mismatching_complement(self):
-        return not (self.licensed_complements() & self.proper_complement().head().features)
 
     # Definition for positive specifier selection
     def licensed_specifiers(self):
@@ -684,9 +681,6 @@ class PhraseStructure:
         while ps_.right_const:
             ps_ = ps_.right_const
         return ps_
-
-    def licensed_complements(self):
-        return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}
 
     def illustrate(self):
         if self.is_primitive():
