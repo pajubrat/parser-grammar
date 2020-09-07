@@ -5,7 +5,6 @@ from adjunct_constructor import AdjunctConstructor
 
 class Extraposition:
     def __init__(self, controlling_parser_process):
-        self.LF_access = LF()
         self.adjunct_constructor = AdjunctConstructor(controlling_parser_process)
         self.controlling_parser_process = controlling_parser_process
 
@@ -32,6 +31,7 @@ class Extraposition:
 
     def try_extraposition(self, unselected_head):
         log(f'\t\t\t\t\tExtraposition will be tried on {unselected_head.mother}.')
+        self.controlling_parser_process.consume_resources("Extraposition")
         self.adjunct_constructor.create_adjunct(unselected_head)
 
     # Definition for last resort extraposition
@@ -41,13 +41,14 @@ class Extraposition:
             # ---------------------------- upstream search -----------------------------------------------#
             for node in ps.bottom().upstream_search():
                 if self.possible_extraposition_target(node):
+                    self.controlling_parser_process.consume_resources("Extraposition")
                     self.adjunct_constructor.create_adjunct(node)
                     return True
             # -------------------------------------------------------------------------------------------#
             log(f'\t\t\t\t\tNo suitable node for extraposition found.')
 
     def preconditions_for_extraposition(self, ps):
-        return (ps.top().contains_feature('FIN') or 'D' in ps.top().features) and not ps.top().LF_legibility_test().all_pass()
+        return (ps.top().contains_feature('FIN') or 'D' in ps.top().features) and not self.controlling_parser_process.LF_legibility_test(ps.top())
 
     def possible_extraposition_target(self, node):
         if node.is_complex() and node.left_const.is_primitive() and node.left_const.is_adjoinable() and node.sister():

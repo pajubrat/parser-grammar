@@ -18,8 +18,8 @@ def phi(input_feature):
 
 
 class AgreementReconstruction:
-    def __init__(self):
-        pass
+    def __init__(self, controlling_parsing_process):
+        self.controlling_parsing_process = controlling_parsing_process
 
     # Definition for agreement reconstruction
     def reconstruct(self, ps):
@@ -31,6 +31,8 @@ class AgreementReconstruction:
 
     # Definition for phi-feature acquisition (Agree-1)
     def Agree_1(self, head):
+
+        self.controlling_parsing_process.consume_resources("Agree")
 
         goal, phi_features = self.Agree_1_from_sister(head)
         for phi in phi_features:

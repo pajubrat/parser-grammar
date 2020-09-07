@@ -7,15 +7,9 @@
 # Block 1. Imported modules
 import datetime
 import time
-
-# Command line argument parser
 import sys
-
-# Imports the linear parser module
 from linear_phase_parser import LinearPhaseParser
-
-# Import  support functions
-from support import disable_all_logging, set_logging, log, formatted_output
+from support import set_logging, log, formatted_output, format_resource_output
 
 # Import logging
 import logging
@@ -197,8 +191,8 @@ for sentence in parse_list[start:]:
                     results_file.write('\t' + f'{parse}\n')
                 else:
                     results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-                results_file.write(f'\tGarden paths: {P.number_of_solutions_tried-1} (Merge:{P.number_of_Merge}, A-bar/A Move:{P.number_of_phrasal_Move}, Agree:{P.number_of_Agree})\n')
-                results_file.write('\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
+                results_file.write('\n\t' + format_resource_output(P.resources) + '\n')
+                results_file.write('\n\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
                 results_file.write('\n')
                 if '/images' in arguments:
                     file_name = 'Raw image of (' + str(count) + chr(96 + parse_number) + ').png'

@@ -9,7 +9,6 @@ class PhrasalMovement:
         self.controlling_parser_process.name_provider_index = 1
         self.controlling_parser_process.syntactic_working_memory = []
         self.context = controlling_parser_process
-        self.access_LF = LF()
         self.lexical_access = LexicalInterface(self.controlling_parser_process)
         self.lexical_access.load_lexicon(self.controlling_parser_process)
         self.adjunct_constructor = AdjunctConstructor(self.controlling_parser_process)
@@ -21,7 +20,7 @@ class PhrasalMovement:
         for node in ps.minimal_search():
             if self.visible_head(node):
                 self.pull(self.visible_head(node))
-                self.access_LF.try_LFmerge(self.visible_head(node), self.controlling_parser_process)
+                self.controlling_parser_process.LF.try_LFmerge(self.visible_head(node), self.controlling_parser_process)
         # ---------------------------------------------------------------------------------------------#
 
     def pull(self, head):
@@ -83,6 +82,8 @@ class PhrasalMovement:
         if self.candidate_for_A_reconstruction(spec):
             log(f'\t\t\t\t\t{spec} undergoes A-reconstruction.')
             iterator = self.reconstruct_inside_next_projection(spec, iterator)
+            self.controlling_parser_process.consume_resources("Move Phrase")
+            self.controlling_parser_process.consume_resources("A-Move Phrase")
         return iterator
 
     def candidate_for_A_reconstruction(self, ps):

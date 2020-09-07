@@ -13,7 +13,7 @@ from surface_conditions import SurfaceConditions
 class Transfer():
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process
-        self.agreement_module = AgreementReconstruction()
+        self.agreement_module = AgreementReconstruction(self.controlling_parser_process)
         self.phrasal_movement_module = PhrasalMovement(self.controlling_parser_process)
         self.floater_movement_module = FloaterMovement(self.controlling_parser_process)
         self.head_movement_module = HeadMovement(self.controlling_parser_process)
@@ -36,6 +36,8 @@ class Transfer():
         extraposition = self.extraposition
 
         log_embedding = log_embedding + '\t'
+
+        self.controlling_parser_process.consume_resources("Transfer")
 
         log(log_embedding + '1. Head movement reconstruction:')
         ps = head_movement.reconstruct(ps)

@@ -7,7 +7,7 @@ def for_lf_interface(features):
     return {f for f in features if f.startswith('!') or f.startswith('-')}
 
 class LF:
-    def __init__(self):
+    def __init__(self, controlling_parsing_process):
         # Test result variables
         self.probe_goal_test_result = True
         self.selection_test_result = True
@@ -20,13 +20,13 @@ class LF:
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_to_CI_crash = False
-        self.semantics = Semantics()
+        self.semantics = Semantics(controlling_parsing_process)
 
         # This stores facts concerning semantic interpretation resulting from transfer to CI
         # The report is a set of strings; later this will be in some formal notation
         self.semantic_interpretation = set()
 
-        self.CPP = None
+        self.controlling_parsing_process = controlling_parsing_process
 
     def all_pass(self):
         return (self.probe_goal_test_result and
@@ -54,8 +54,27 @@ class LF:
         log(f'\t\t\t\tcomplement test: {self.wrong_complement_test_result}')
         log(f'\t\t\t\tadjunct test: {self.adjunct_test_result}')
 
-    # Checks LF-legibility for primitive constituents (not phrases)
+    def reset_flags(self):
+        self.probe_goal_test_result = True
+        self.selection_test_result = True
+        self.wrong_complement_test_result = True
+        self.tail_head_test_result = True
+        self.head_integrity_test_result = True
+        self.criterial_feature_test_result = True
+        self.semantic_test_result = True
+        self.adjunct_test_result = True
+        self.discourse_test_result = 0
+        self.projection_principle_test_result = True
+        self.transfer_to_CI_crash = False
+
     def test(self, ps):
+        self.controlling_parsing_process.consume_resources("LF test")
+        if not self._test(ps).all_pass():
+            self.controlling_parsing_process.consume_resources("Failed Transfer")
+        return self
+
+    # Checks LF-legibility for primitive constituents (not phrases)
+    def _test(self, ps):
         if ps.is_primitive():
             self.head_integrity_test(ps)
             self.probe_goal_test(ps)
@@ -68,9 +87,10 @@ class LF:
             self.adjunct_interpretation_test(ps)
         else:
             if not ps.left_const.find_me_elsewhere:
-                self.test(ps.left_const)
+                self._test(ps.left_const)
             if not ps.right_const.find_me_elsewhere:
-                self.test(ps.right_const)
+                self._test(ps.right_const)
+        return self
 
     # A right DP-adjunct inside DP is uninterpretable
     def adjunct_interpretation_test(self, h):
@@ -302,7 +322,8 @@ class LF:
         new_const = constituent.copy_from_memory_buffer(self.CPP.babtize())
         target.merge_1(new_const, direction)
         self.CPP.syntactic_working_memory.remove(constituent)
-        self.CPP.number_of_phrasal_Move = + 1
+        self.CPP.consume_resources("Move Phrase")
+        self.CPP.consume_resources("A-bar Move Phrase")
         return new_const
 
     def specifier_match(self, h, const):
@@ -319,14 +340,13 @@ class LF:
 
     # Definition for Comp-Merge
     def try_merge_to_comp(self, head):
-
         if head.missing_complement():
             for const in self.CPP.syntactic_working_memory:
                 if head.complement_match(const):
-                    head.merge_1(const.copy_from_memory_buffer(self.CPP.babtize()), 'right')
+                    head.LFmerge(const.copy_from_memory_buffer, 'right')
                     log(f'\t\t\t\t\tMerging {const} from memory buffer into Comp{head.get_cats_string()}P.')
                     self.CPP.syntactic_working_memory.remove(const)
-                    self.CPP.number_of_phrasal_Move = + 1
+                    self.CPP.consume_resources("Move Phrase")
                     break
 
         if head.wrong_complement():
@@ -338,7 +358,7 @@ class LF:
                     log(f'\t\t\t\t\tExternalizing {old_complement}')
                     old_complement.adjunct = True
                     self.CPP.syntactic_working_memory.remove(const)
-                    self.CPP.number_of_phrasal_Move = + 1
+                    self.CPP.consume_resources("Move Phrase")
                     break
 
     # Merge an operator to SPEC
@@ -351,5 +371,5 @@ class LF:
                         head.get_specifier_sister().merge_1(new_const, 'left')
                         log(f'\t\t\t\t\tMerging operator {constituent_in_working_memory} to Spec{head.get_cats_string()}P')
                         self.CPP.syntactic_working_memory.remove(constituent_in_working_memory)
-                        self.CPP.number_of_phrasal_Move = + 1
+                        self.CPP.consume_resources("Move Phrase")
                         break

@@ -136,6 +136,12 @@ class PhraseStructure:
             return self.left_const.head()
         return self.right_const.head()
 
+    def get_max(self):
+        ps_ = self
+        while ps_ and ps_.mother and ps_.mother.head() == self.head():
+            ps_ = ps_.walk_upstream()
+        return ps_
+
     # Definition for minimal search
     def minimal_search(self):
         return [node for node in self]
@@ -656,15 +662,6 @@ class PhraseStructure:
         remove_tail_features(self)           # Remove tail-features from the original
 
         return self_copy
-
-    # Definition for LF-legibility
-    def LF_legibility_test(self):
-        def detached(ps):
-            ps.mother = None
-            return ps
-        lf = LF()
-        lf.test(detached(self.copy()))
-        return lf
 
     # Definition of features that are used at LF-interface (only obligatory selection counts)
     def for_LF_interface(self, features):

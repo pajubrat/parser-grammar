@@ -20,7 +20,7 @@ class Logger:
 log_instance = Logger()
 
 
-def show_results(ps_, result_list, semantic_interpretation):
+def show_results(ps_, result_list, semantic_interpretation, resources):
     log('----------------------------------------------------------------------------------------------------------')
     log(f'                                              All tests passed                                           ')
     log('----------------------------------------------------------------------------------------------------------')
@@ -28,6 +28,7 @@ def show_results(ps_, result_list, semantic_interpretation):
     print(chr(96 + len(result_list)) + '. ' + show(ps_))
     print(f'{ps_}')
     print(str(semantic_interpretation))
+    print(f'{resources}')
     log_result(ps_)
     log('----------------------------------------------------------------------------------------------------------')
     log(show_primitive_constituents(ps_))
@@ -81,6 +82,16 @@ def get_pro_type(self):
         return '\N{GREEK SMALL LETTER PHI}/x'
     return '\N{GREEK SMALL LETTER PHI}'
 
+def format_resource_output(consumed_resources):
+    s = ''
+    i = 0
+    for key in consumed_resources:
+        s += f'{key}:{consumed_resources[key]}, '
+        i += 1
+        if i == 7:
+            s += '\n\t'
+            i = 0
+    return s
 
 def formatted_output(enumerated_object, delimiter):
     output_str = ''
@@ -229,7 +240,6 @@ def log_result(ps):
     log(f'\t\t{ps.illustrate()}')
     log(f'\t\tGrammar: {ps}')
     log(f'\t\tSpellout {show(ps)}')
-
 
 def illu(set):
     feats = []

@@ -34,6 +34,7 @@ class FeatureProcessing():
             h.features.add('PHI:NUM:_')
             h.features.add('PHI:PER:_')
             h.features.add('SPEC:*')
+        self.controlling_parser_process.consume_resources("Feature Processing")
 
     def selected_by_SEM_internal(self, h):
         return h.selector() and 'SEM:internal' in h.selector().features

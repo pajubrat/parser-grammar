@@ -3,7 +3,6 @@ from LexicalInterface import LexicalInterface
 from LF import LF
 from operator import itemgetter
 from morphology import Morphology
-from agreement_reconstruction import AgreementReconstruction
 from transfer import Transfer
 from surface_conditions import SurfaceConditions
 from adjunct_constructor import AdjunctConstructor
@@ -26,21 +25,13 @@ class LinearPhaseParser:
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
         self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
         self.morphology = Morphology(self)                      # Access to morphology
-        self.transfer = Transfer(self)                          # Access to transfer (to LF)
+        self.transfer = Transfer(self)                          # Access to transfer
+        self.LF = LF(self)                                      # Access to LF
         self.surface_conditions_module = SurfaceConditions()    # Surface conditions
         self.surface_conditions_pass = True
         self.adjunct_constructor = AdjunctConstructor(self)
-
-        self.number_of_Merge = 0                                # Number of computational operation
-        self.number_of_head_Move = 0
-        self.number_of_phrasal_Move = 0
-        self.number_of_floating_Move = 0
-        self.number_of_Transfer = 0
-        self.number_of_solutions_tried = 0
-        self.number_of_inflectional_features_processed = 0
-        self.number_of_items_consumed = 0
-        self.discourse_plausibility = 0
         self.score = 0
+        self.resources = dict
 
     def parse(self, lst):
         set_logging(True)
@@ -50,61 +41,64 @@ class LinearPhaseParser:
         self.number_of_ambiguities = 0
         self.result_matrix = [[] for i in range(50)]
         self.memory_buffer_inflectional_affixes = set()
-        self.number_of_Merge = 0
-        self.number_of_head_Move = 0
-        self.number_of_phrasal_Move = 0
-        self.number_of_floating_Move = 0
-        self.number_of_Transfer = 0
-        self.number_of_solutions_tried = 0
-        self.number_of_inflectional_features_processed = 0
-        self.number_of_items_consumed = 0
-        self.discourse_plausibility = 0
-        self.score = 0
         self.first_solution_found = False
         self.exit = False
         self.name_provider_index = 0
         self.surface_conditions_pass = True
+        self.resources = {"Garden Paths": 0,
+                          "Merge": 0,
+                          "Move Head": 0,
+                          "Move Phrase": 0,
+                          "A-Move Phrase": 0,
+                          "A-bar Move Phrase": 0,
+                          "Move Adjunct": 0,
+                          "Agree": 0,
+                          "Transfer": 0,
+                          "Items from input": 0,
+                          "Feature Processing": 0,
+                          "Extraposition": 0,
+                          "Inflection": 0,
+                          "Failed Transfer": 0,
+                          "LF recovery": 0,
+                          "LF test": 0}
 
         #-----------------Initiate parsing-------------------
         self._first_pass_parse(None, lst, 0)
         #----------------------------------------------------
 
     def _first_pass_parse(self, ps, lst, index):
-        # You can force the parser to exit if you set this flag somewhere
+        set_logging(True)
+
+        # Force the parser to exit by setting this flag
         if self.exit:
             return
 
-        set_logging(True)
         if not self.memory_buffer_inflectional_affixes:
             log(f'\t\t\t={ps}')
 
         if index == len(lst):               # No more words in the input
             self.complete_processing(ps)    # Finalizes the output
-            return                          # Completes this parsing branch
+            return                          # Completes the parsing branch
 
         # Test each lexical item in the case of lexical ambiguity
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
             m = self.morphology
-            # Morphological decomposition
             lexical_item, lst_branched, inflection = m.morphological_parse(lexical_constituent, lst.copy(), index)
-            # Process inflection (if any)
             lexical_item = self.process_inflection(inflection, lexical_item, ps, lst_branched, index)
-            self.number_of_items_consumed += 1
+            self.consume_resources("Items from input")
             if inflection:
-                # If an inflectional feature was processed, consume next item from the input
                 self._first_pass_parse(self.copy(ps), lst_branched, index + 1)
             else:
                 if not ps:
-                    # If nothing has been constructed, we begin with the lexical item
                     self._first_pass_parse(lexical_item.copy(), lst_branched, index + 1)
                 else:
-                    log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lexical_item.get_phonological_string() + '\"\n')
+                    log(f'\n\t{self.resources["Items from input"]}. Consume \"' + lexical_item.get_phonological_string() + '\"\n')
                     log('\t\t' + ps.illustrate() + ' + ' + lexical_item.get_phonological_string())
 
                     # -------------------------- consider merge solutions ------------------------------------- #
                     adjunction_sites = self.ranking(self.filter(ps, lexical_item), lexical_item)
                     for site in adjunction_sites:
-                        self.number_of_Merge = self.number_of_Merge + 1
+                        self.consume_resources("Merge")
                         ps_ = ps.top().copy()
                         site_ = self.node_at(ps_, self.get_position_on_geometric_right_edge(site))
                         if site_.bottom_affix().internal:
@@ -129,7 +123,7 @@ class LinearPhaseParser:
     def process_inflection(self, inflection, lexical_item, ps, lst_branched, index):
         if inflection:
             self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
-            self.number_of_inflectional_features_processed = self.number_of_inflectional_features_processed + 1
+            self.consume_resources("Inflection")
             log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lst_branched[index + 1] + '\"')
         else:
             if self.memory_buffer_inflectional_affixes:
@@ -145,36 +139,52 @@ class LinearPhaseParser:
 
     def complete_processing(self, ps):
         spellout_structure = ps.copy()
+        self.preparations(ps)
+        if self.surface_condition_violation(ps):
+            self.garden_paths()
+            return
+        ps_ = self.transfer_to_lf(ps)
+        if self.LF_condition_violation(ps_) or self.transfer_to_CI(ps_):
+            self.garden_paths()
+            return
+        self.first_solution_found = True
+        self.report_solution(ps_, spellout_structure)
+
+    def garden_paths(self):
         if not self.first_solution_found:
-            self.number_of_solutions_tried = self.number_of_solutions_tried + 1
+            self.consume_resources("Garden Paths")
+
+    def preparations(self, ps):
         log('------------------------------------------------------------------------------------------------------------------------------------------------')
         log('\n\t>>>\t' + f'Trying spellout structure  ' + ps.illustrate())
+
+    def report_solution(self, ps, spellout_structure):
+        self.result_list.append([ps, self.semantic_interpretation])
+        self.spellout_result_list.append(spellout_structure)
+        log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
+        show_results(ps, self.result_list, self.semantic_interpretation, self.resources)
+        self.first_solution_found = True
+        # self.exit = True    # Knock this out if you want to see all solutions
+
+    def surface_condition_violation(self, ps):
         log('\t\tChecking surface conditions...')
         S = self.surface_conditions_module
         if not S.reconstruct(ps):
             log(f'\t\t\tSurface condition failure.\n\n')
-        else:
-            log('\t\tReconstructing...')
-            ps_ = self.transfer_to_lf(ps)
-            log('\t\t\t= ' + ps_.illustrate())
-            log(f'\t\tChecking LF-interface conditions...')
-            lf = ps_.LF_legibility_test()
-            if not lf.all_pass():
-                lf.report_lf_status()
-            else:
-                self.semantic_interpretation = self.transfer_to_CI(ps_)
-                if not lf.final_tail_check(ps_):
-                    report_tail_head_problem(ps_)
-                else:
-                    if not self.semantic_interpretation:
-                        log('\t\t\tThe sentence cannot be interpreted at LF.')
-                    else:
-                        self.result_list.append([ps_, self.semantic_interpretation])
-                        self.spellout_result_list.append(spellout_structure)
-                        log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
-                        show_results(ps_, self.result_list, self.semantic_interpretation)
-                        self.first_solution_found = True
-                        # self.exit = True    # Knock this out if you want to see all solutions
+            return True
+
+    def LF_condition_violation(self, ps):
+        self.LF.reset_flags()
+        log('\t\tReconstructing...')
+        log('\t\t\t= ' + ps.illustrate())
+        log(f'\t\tChecking LF-interface conditions...')
+        lf = self.LF.test(ps)
+        if not lf.final_tail_check(ps):
+            report_tail_head_problem(ps)
+            return True
+        if not lf.all_pass():
+            lf.report_lf_status()
+            return True
 
     def filter(self, ps, w):
         log('\t\t\tFiltering out impossible merge sites...')
@@ -201,9 +211,9 @@ class LinearPhaseParser:
     def bad_left_branch_test(self, N, w):
         set_logging(False)
         dropped = self.transfer_to_lf(N.copy())
-        lf_test = dropped.LF_legibility_test()
+        lf = self.LF.test(dropped)
         set_logging(True)
-        if self.left_branch_rejection(lf_test):
+        if self.left_branch_rejection(lf):
             return True
 
     def left_branch_rejection(self, lf_test):
@@ -397,8 +407,10 @@ class LinearPhaseParser:
         def detached(ps):
             ps.mother = None
             return ps
-        lf = LF()
-        return lf.transfer_to_CI(detached(ps.copy()))
+        self.semantic_interpretation = self.LF.transfer_to_CI(detached(ps.copy()))
+        if not self.semantic_interpretation:
+            log('\t\t\tThe sentence cannot be interpreted at LF.')
+            return True
 
     # Checks if phrase structure XP cannot be broken off from H-XP because
     # H and X were part of the same word. It is used to prevent right merge to XP
@@ -408,14 +420,11 @@ class LinearPhaseParser:
         else:
             return False
 
-    # Error correction procedure
     def transfer_to_lf(self, ps, log_embedding=3):
         original_mother = ps.mother
         ps.detach()
         if self.check_transfer_presuppositions(ps):
-            self.number_of_Transfer = self.number_of_Transfer + 1
-            T = self.transfer
-            ps = T.transfer(ps, log_embedding)
+            ps = self.transfer.transfer(ps, log_embedding)
         else:
             log(f'\t\t\t\tTransfer of {ps} terminated due to input condition violation.')
         if original_mother:
@@ -447,3 +456,14 @@ class LinearPhaseParser:
                 ps_ = ps_.right_const
             else:
                 return None
+
+    def consume_resources(self, key):
+        if key in self.resources and not self.first_solution_found:
+            self.resources[key] += 1
+
+    # Definition for LF-legibility
+    def LF_legibility_test(self, ps):
+        def detached(ps):
+            ps.mother = None
+            return ps
+        return self.LF.test(detached(ps.copy())).all_pass()

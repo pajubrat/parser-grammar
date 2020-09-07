@@ -76,7 +76,8 @@ class FloaterMovement():
                     self.adjunct_constructor.create_adjunct(floater)
                 dropped_floater = floater.copy_from_memory_buffer(self.babtize())
                 self.merge_floater(node, dropped_floater)
-                self.controlling_parser_process.number_of_phrasal_Move += 1
+                self.controlling_parser_process.consume_resources("Move Adjunct")
+                self.controlling_parser_process.consume_resources("Move Phrase")
                 floater_copy.remove()
                 log(f'\t\t\t\t\t = {ps}')
                 return

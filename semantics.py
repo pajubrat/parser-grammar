@@ -21,9 +21,10 @@ def residuum_identity(F, G):
     return F[:len(G[:-1])] == G[:-1]
 
 class Semantics:
-    def __init__(self):
+    def __init__(self, controlling_parsing_process):
         self.semantic_interpretation = set()
         self.semantic_interpretation_failed = False
+        self.controlling_parsing_process = controlling_parsing_process
 
     def interpret(self, ps):
         if ps.is_primitive():
@@ -75,6 +76,7 @@ class Semantics:
 
     # Definition for LF-recovery
     def LF_recovery(self, head, unvalued_phi):
+        self.controlling_parsing_process.consume_resources("LF recovery")
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             # ----------------------- minimal upstream search -----------------------------------------------#

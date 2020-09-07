@@ -12,16 +12,17 @@ class HeadMovement:
     # Definition for head reconstruction
     def reconstruct(self, ps):
         if ps.is_complex():
-            ps = self.reconstruct_head_movement(ps)
-        elif ps.is_complex_head() and self.left_branch_constituent(ps) and self.LF_legible(ps):
             return self.reconstruct_head_movement(ps)
+        if ps.is_complex_head():
+            if self.left_branch_constituent(ps) and self.controlling_parser_process.LF_legibility_test(self.reconstruct_head_movement(ps.copy())):
+                return self.reconstruct_head_movement(ps)
         return ps
 
     def left_branch_constituent(self, ps):
         return 'D' in ps.features or 'P' in ps.features or 'A' in ps.features
 
     def LF_legible(self, ps):
-        return self.reconstruct_head_movement(ps.copy()).LF_legibility_test().all_pass()
+        return self.controlling_parser_process.LF_legibility_test(ps.copy())
 
      # Detect complex heads requiring reconstruction and reconstruct them
     def reconstruct_head_movement(self, phrase_structure):
@@ -30,7 +31,6 @@ class HeadMovement:
             if self.detect_complex_head(node):
                 complex_head = self.detect_complex_head(node)
                 log(f'\t\t\t\t\tReconstruct {complex_head.right_const} from within {complex_head}.')
-                self.controlling_parser_process.number_of_head_Move += 1
                 intervention_feature = self.determine_intervention_feature(complex_head)
                 self.create_head_chain(complex_head, self.get_affix_out(complex_head), intervention_feature)
                 log(f'\t\t\t\t\t={phrase_structure.top()}')
@@ -58,6 +58,7 @@ class HeadMovement:
                     return
                 node.merge_1(affix, 'left')
                 if self.reconstruction_is_successful(affix):
+                    self.controlling_parser_process.consume_resources("Move Head")
                     return
                 affix.remove()
             # --------------------------------------------------------------------------------#
@@ -87,6 +88,7 @@ class HeadMovement:
             else:
                 node.merge_1(affix, 'left')   # Solution #2 [Z(_) [X [H Y]]]
         if self.reconstruction_is_successful(affix):
+            self.controlling_parser_process.consume_resources("Move Head")
             return True
 
     # Defines conditions for dropping a head H into a position X
@@ -129,9 +131,11 @@ class HeadMovement:
     def last_resort(self, phrase_structure, affix):
         log(f'\t\t\t\t\tHead reconstruction of {affix} failed, merge locally as a last resort.')
         phrase_structure.merge_1(affix, 'left')
+        self.controlling_parser_process.consume_resources("Move Head")
 
     def reconstruct_to_sister(self, complex_head, affix):
         complex_head.merge_1(affix, 'right')                    # If X(Y) => [X Y]
+        self.controlling_parser_process.consume_resources("Move Head")
         if affix.has_affix():                                   # If Y(Z) => reconstruct Y(Z)
             self.reconstruct_head_movement(affix)
 
