@@ -27,6 +27,11 @@ class Semantics:
         self.controlling_parsing_process = controlling_parsing_process
 
     def interpret(self, ps):
+        self.semantic_interpretation = set()
+        self.semantic_interpretation_failed = False
+        return self._interpret(ps)
+
+    def _interpret(self, ps):
         if ps.is_primitive():
             self.perform_LF_recovery(ps)
             self.detect_phi_conflicts(ps)
@@ -34,9 +39,9 @@ class Semantics:
             self.bind_variables(ps)
         else:
             if not ps.left_const.find_me_elsewhere:
-                self.interpret(ps.left_const)
+                self._interpret(ps.left_const)
             if not ps.right_const.find_me_elsewhere:
-                self.interpret(ps.right_const)
+                self._interpret(ps.right_const)
             if self.semantic_interpretation_failed:
                 return set()
             return self.semantic_interpretation | {' '}
@@ -80,7 +85,7 @@ class Semantics:
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             # ----------------------- minimal upstream search -----------------------------------------------#
-            for node in head.upstream_search():
+            for node in [head] + head.upstream_search():
                 if self.recovery_termination(node):
                     break
                 if node.geometrical_sister() and self.is_possible_antecedent(node.geometrical_sister(), head):
@@ -220,8 +225,8 @@ class Semantics:
             for f in ps.head().features:
                 if f[:3] == 'OP:' and f != 'OP:_':
                     if not ps.bind_to_operator('OP'):
-                        log(f'\t\t\t\t{ps} with feature {f} is not properly bound by an operator.')
+                        log(f'\t\t\t\t{ps.illustrate()} with feature {f} is not properly bound by an operator.')
                         self.semantic_interpretation_failed = True
                     else:
-                        log(f'\t\t\t\t{ps} with feature {f} was bound to an operator.')
+                        log(f'\t\t\t\t{ps.illustrate()} with feature {f} was bound to an operator.')
                         self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')

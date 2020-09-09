@@ -1,6 +1,7 @@
 # This file contains ad hoc support functions
 import logging
 import time
+import datetime
 my_log = logging.getLogger(__name__)
 
 major_category = {'N', 'P', 'D', 'C/fin', 'T/fin', 'A', 'v', 'V', 'ADV', 'Q', 'NUM'}
@@ -16,24 +17,7 @@ class Logger:
         self.disabled = 0
         self.indent_level = 0
 
-
 log_instance = Logger()
-
-
-def show_results(ps_, result_list, semantic_interpretation, resources):
-    log('----------------------------------------------------------------------------------------------------------')
-    log(f'                                              All tests passed                                           ')
-    log('----------------------------------------------------------------------------------------------------------')
-    ps_.tidy_names(1)
-    print(chr(96 + len(result_list)) + '. ' + show(ps_))
-    print(f'{ps_}')
-    print(str(semantic_interpretation))
-    print(f'{resources}')
-    log_result(ps_)
-    log('----------------------------------------------------------------------------------------------------------')
-    log(show_primitive_constituents(ps_))
-    log(show_all_vectors(ps_))
-    log('\t\t\tChecking if the sentence is ambiguous...')
 
 def show(self, start=True, label_only=False):
 
@@ -81,25 +65,6 @@ def get_pro_type(self):
     if 'PHI:NUM:_' not in self.features and 'PHI:PER:_' not in self.features and 'PHI:DET:_' in self.features:
         return '\N{GREEK SMALL LETTER PHI}/x'
     return '\N{GREEK SMALL LETTER PHI}'
-
-def format_resource_output(consumed_resources):
-    s = ''
-    i = 0
-    for key in consumed_resources:
-        s += f'{key}:{consumed_resources[key]}, '
-        i += 1
-        if i == 7:
-            s += '\n\t'
-            i = 0
-    return s
-
-def formatted_output(enumerated_object, delimiter):
-    output_str = ''
-    enumerated_object = sorted(enumerated_object)
-    for item in enumerated_object:
-        output_str = output_str + '\t' + item + delimiter
-
-    return output_str
 
 def show_primitive_constituents(self):
     def sorted_by_relevance(set):
@@ -272,3 +237,15 @@ def time_me(function):
         return r
 
     return wrap
+
+def initialize_console(file_names):
+    print('Parsing process initialized.')
+    print(datetime.datetime.now())
+    print(f'Loading test sentences from {file_names["test_corpus_file_name"]}.')
+    print(f'Logs will be written to {file_names["log_file_name"]}.')
+    print(f'Lexicon will be read from {file_names["lexicon_file_name"]}.')
+    print(f'UG morphemes will be read from {file_names["ug_morphemes"]}')
+    print(f'Redundancy will be read from {file_names["redundancy_rules"]}')
+
+def is_comment(sentence):
+    return sentence[0] == '&'

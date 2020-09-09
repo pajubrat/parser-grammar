@@ -1,23 +1,20 @@
 import phrase_structure
-from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
+from support import log
 from collections import defaultdict
 
 # Definition for lexical interface
 class LexicalInterface:
-
-    # The dictionary (surface vocabulary) pairs phonological strings (keys) with primitive constituents (values)
     def __init__(self, controlling_parser_process):
-
         self.controlling_parser_process = controlling_parser_process
         self.PhraseStructure = phrase_structure.PhraseStructure
         self.surface_vocabulary = defaultdict(list)
         self.redundancy_rules = self.load_redundancy_rules(self.controlling_parser_process)
-        self.language = self.controlling_parser_process.sentence_context.language
+        self.language = self.controlling_parser_process.language
 
     # Definition for the process that reads the redundancy rules from a file
     def load_redundancy_rules(self, controlling_parser_process):
         redundancy_rules_dict = {}
-        for line in open(controlling_parser_process.sentence_context.redundancy_rules_file):
+        for line in open(controlling_parser_process.external_source["redundancy_rules"]):
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
@@ -29,8 +26,8 @@ class LexicalInterface:
 
     # Definition for process that loads the lexicon into memory
     def load_lexicon(self, controlling_parser_process):
-        self.load_lexicon_(controlling_parser_process.sentence_context.lexicon_file)
-        self.load_lexicon_(controlling_parser_process.sentence_context.ug_morphemes_file, True)
+        self.load_lexicon_(controlling_parser_process.external_source["lexicon_file_name"])
+        self.load_lexicon_(controlling_parser_process.external_source["ug_morphemes"], True)
         return self.surface_vocabulary
 
     # Definition for the process that loads the language specific lexicon
@@ -196,12 +193,3 @@ class LexicalInterface:
             features.add('!SPEC:D')
 
         return features
-
-    def save_surface_vocabulary(self, file_name):
-        results_file = open(file_name, "w", -1, "utf-8")
-
-        for key in self.surface_vocabulary:
-            for lexical_item in self.surface_vocabulary[key]:
-                value =str(lexical_item.features)
-                string = f'{key:<15} {value:<10}' + '\n'
-                results_file.write(string)

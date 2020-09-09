@@ -6,7 +6,8 @@ def get_type(f):
 def get_value(f):
     return f.split(':')[2]  # Notice that 0 = first element, 1 = second element, 2 = third element
 def unvalued(input_feature):
-    return {f for f in {input_feature} if f[-1] == '_'}
+    if input_feature:
+        return {f for f in {input_feature} if f[-1] == '_'}
 def valued(input_feature):
     return {f for f in {input_feature} if not unvalued(f)}
 def find_unvalued_target(h, phi):

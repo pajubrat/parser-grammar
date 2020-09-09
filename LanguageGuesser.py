@@ -3,7 +3,6 @@ from collections import Counter, defaultdict
 
 
 class LanguageGuesser:
-
     def __init__(self, lexicon_file):
         self.lang_map = defaultdict(list)
         self.languages = set()

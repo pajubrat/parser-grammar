@@ -28,8 +28,33 @@ class Visualizer:
         self.spellout = False
         self.show_tails = False
         self.show_cases = False
+        self.case = False
         self.save_image_file_name = ''
         self.input_sentence_string = ''
+
+    def initialize(self, arguments):
+        if '/images' in arguments:
+            self.image_output = True
+            self.stop_after_each_image = False
+            self.show_words = False
+            self.nolabels = False
+            self.spellout = False
+            self.case = False
+            self.show_sentences = False
+            if '/slow' in arguments:
+                self.stop_after_each_image = True
+            if '/words' in arguments:
+                self.show_words = True
+            if '/glosses' in arguments:
+                self.show_glosses = True
+            if '/sentences' in arguments:
+                self.show_sentences = True
+            if '/nolabels' in arguments:
+                self.nolabels = True
+            if '/spellout' in arguments:
+                self.spellout = True
+            if '/cases' in arguments:
+                self.show_cases = True
 
     # Definition for the drawing function
     def draw(self, ps):

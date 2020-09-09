@@ -1,4 +1,4 @@
-from support import set_logging, log, show_results, report_LF_problem, report_tail_head_problem, reset_number_of_operations, log_result, illu
+from support import set_logging, log, report_LF_problem, report_tail_head_problem, reset_number_of_operations, log_result, illu
 from LexicalInterface import LexicalInterface
 from LF import LF
 from operator import itemgetter
@@ -6,16 +6,20 @@ from morphology import Morphology
 from transfer import Transfer
 from surface_conditions import SurfaceConditions
 from adjunct_constructor import AdjunctConstructor
+from log_functions import log_results
+import time
 
 class LinearPhaseParser:
-    def __init__(self, sentence_context):
-
-        self.sentence_context = sentence_context                # Contextual variables (language etc.)
+    def __init__(self, external_source):
+        self.sentence = ''
+        self.external_source = external_source
+        self.language = ''                                      # Contextual variables (language etc.)
         self.result_list = []                                   # Results (final analyses)
         self.spellout_result_list = []                          # Results (spellout structures)
         self.semantic_interpretation = set()                    # Semantic interpretation
         self.number_of_ambiguities = 0                          # Number of lexical ambiguities detected
-        self.result_matrix = [[] for i in range(50)]            # Support function
+        self.result_matrix = [[] for i in range(50)]            # Result matrix
+        self.execution_time_results = []                        # Execution time
         self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
         self.syntactic_working_memory = []                      # Syntactic working memory
         self.name_provider_index = 0                            # Used to name chains for output purposes
@@ -28,23 +32,34 @@ class LinearPhaseParser:
         self.transfer = Transfer(self)                          # Access to transfer
         self.LF = LF(self)                                      # Access to LF
         self.surface_conditions_module = SurfaceConditions()    # Surface conditions
-        self.surface_conditions_pass = True
-        self.adjunct_constructor = AdjunctConstructor(self)
-        self.score = 0
-        self.resources = dict
+        self.surface_conditions_pass = True                     # Surface conditions
+        self.adjunct_constructor = AdjunctConstructor(self)     # Adjunct constructor
+        self.score = 0                                          # Discourse score
+        self.resources = dict                                   # Resources consumed
+        self.start_time = 0                                     # Calculates execution time
+        self.end_time = 0                                       # Calculates execution time
+        self.number_of_items_consumed = 0
 
-    def parse(self, lst):
-        set_logging(True)
-        self.result_list = []
-        self.spellout_result_list = []
-        self.semantic_interpretation = set()
-        self.number_of_ambiguities = 0
-        self.result_matrix = [[] for i in range(50)]
-        self.memory_buffer_inflectional_affixes = set()
-        self.first_solution_found = False
-        self.exit = False
+    # Definition for parser initialization
+    def initialize(self, language):
+        self.language = language
         self.name_provider_index = 0
-        self.surface_conditions_pass = True
+        self.number_of_items_consumed = 0
+        self.result_list = []  # Results (final analyses)
+        self.spellout_result_list = []  # Results (spellout structures)
+        self.semantic_interpretation = set()  # Semantic interpretation
+        self.number_of_ambiguities = 0  # Number of lexical ambiguities detected
+        self.result_matrix = [[] for i in range(50)]  # Result matrix
+        self.execution_time_results = []  # Execution time
+        self.memory_buffer_inflectional_affixes = set()  # Local memory buffer for inflectional affixes
+        self.syntactic_working_memory = []  # Syntactic working memory
+        self.first_solution_found = False  # Registers when the first solution if found
+        self.exit = False  # Forced exit tag
+        self.name_provider_index = 0  # Index for name provider, for chain identification
+        self.surface_conditions_pass = True  # Surface conditions
+        self.score = 0  # Discourse score
+        self.resources = dict  # Resources consumed
+        self.start_time = time.time()  # Calculates execution time
         self.resources = {"Garden Paths": 0,
                           "Merge": 0,
                           "Move Head": 0,
@@ -62,14 +77,17 @@ class LinearPhaseParser:
                           "LF recovery": 0,
                           "LF test": 0}
 
-        #-----------------Initiate parsing-------------------
+    def parse(self, lst, language):
+        self.sentence = lst
+        self.start_time = time.time()
+        set_logging(True)
+        self.initialize(language)
         self._first_pass_parse(None, lst, 0)
-        #----------------------------------------------------
 
     def _first_pass_parse(self, ps, lst, index):
         set_logging(True)
 
-        # Force the parser to exit by setting this flag
+        # Force the parser to exit by setting this flag in the code
         if self.exit:
             return
 
@@ -141,16 +159,17 @@ class LinearPhaseParser:
         spellout_structure = ps.copy()
         self.preparations(ps)
         if self.surface_condition_violation(ps):
-            self.garden_paths()
+            self.add_garden_path()
             return
         ps_ = self.transfer_to_lf(ps)
         if self.LF_condition_violation(ps_) or self.transfer_to_CI(ps_):
-            self.garden_paths()
+            self.add_garden_path()
             return
         self.first_solution_found = True
+        self.execution_time_results.append(int((time.time() - self.start_time) * 100000))
         self.report_solution(ps_, spellout_structure)
 
-    def garden_paths(self):
+    def add_garden_path(self):
         if not self.first_solution_found:
             self.consume_resources("Garden Paths")
 
@@ -162,8 +181,10 @@ class LinearPhaseParser:
         self.result_list.append([ps, self.semantic_interpretation])
         self.spellout_result_list.append(spellout_structure)
         log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
-        show_results(ps, self.result_list, self.semantic_interpretation, self.resources)
+        log_results(ps, self.sentence)
         self.first_solution_found = True
+        print(f'\n{self.sentence}')
+        print(f'{ps}')
         # self.exit = True    # Knock this out if you want to see all solutions
 
     def surface_condition_violation(self, ps):
@@ -336,7 +357,7 @@ class LinearPhaseParser:
                 dropped = self.transfer_to_lf(site.copy())
                 set_logging(True)
                 # If Transfer results in failures, avoid the solution
-                if dropped.LF_legibility_test().fail():
+                if self.LF_legibility_test(dropped):
                     priority = priority + priority_base - 100
                     log(f'\t\t\t\tAvoid {dropped.illustrate()} as left branch because it constitutes illicit structure.')
                     avoid_set.add(site)
@@ -380,7 +401,7 @@ class LinearPhaseParser:
                     size_ = site_.size()
                     if size_ > size and not site_.contains_feature('T/fin'):
                         set_logging(False)
-                        if self.transfer_to_lf(site_.copy()).LF_legibility_test().all_pass():
+                        if self.LF_legibility_test(self.transfer_to_lf(site_.copy())):
                             max_site = site_
                             max_priority = priority
                             size = size_

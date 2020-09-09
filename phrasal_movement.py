@@ -20,7 +20,7 @@ class PhrasalMovement:
         for node in ps.minimal_search():
             if self.visible_head(node):
                 self.pull(self.visible_head(node))
-                self.controlling_parser_process.LF.try_LFmerge(self.visible_head(node), self.controlling_parser_process)
+                self.controlling_parser_process.LF.try_LFmerge(self.visible_head(node))
         # ---------------------------------------------------------------------------------------------#
 
     def pull(self, head):
@@ -99,11 +99,9 @@ class PhrasalMovement:
             if local_head.sister():
                 # [Y [X ZP]] => [Y [X [Y YP]]]
                 local_head.sister().merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'left')
-                self.controlling_parser_process.number_of_phrasal_Move += 1
             else:
                 # [Y [X <ZP>]] => [Y [X Y] <ZP>]
                 local_head.sister().merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'right')
-                self.controlling_parser_process.number_of_phrasal_Move += 1
         return iterator
 
     @staticmethod

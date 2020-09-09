@@ -176,6 +176,7 @@ class PhraseStructure:
             iterator_ = iterator_ + 1
 
     # Definition for upstream search
+    # Notes. This version excludes the starting node
     def upstream_search(self):
         path = []
         while self.mother:
@@ -638,7 +639,7 @@ class PhraseStructure:
                     if f[:4] == 'TAIL':
                         remove_set.add(f)
                 ps.features = ps.features.difference(remove_set)
-        # Recursive definition for phonological silencing
+
         def silence_phonologically(h):
             if not h.features:
                 h.features = {'null'}
