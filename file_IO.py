@@ -1,5 +1,5 @@
 import datetime
-grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
+from linear_phase_parser import LinearPhaseParser
 
 def format_resource_output(consumed_resources):
     s = ''
@@ -63,35 +63,49 @@ def initialize_grammaticality_judgments_file(file_name):
     grammaticality_judgments_file.write(f'Lexicon from file \"{file_name}\".\n')
     return grammaticality_judgments_file
 
+def initialize_resources_file(external_source):
+    resources_file = open(external_source["resources_file_name"], "w", -1, "utf-8")
+    P = LinearPhaseParser(external_source)
+    P.initialize()
+    resources_file.write("Sentence\t")
+    for key in P.resources:
+        resources_file.write(f'{key}\t')
+    resources_file.write("Execution time (ms)\t\n\n")
+    return resources_file
+
 def initialize_image_folder(path):
     try:
         path.mkdir()
     except FileExistsError as exc:
         pass
 
-def write_results(P, results_file, grammaticality_file, count, sentence):
+def write_results(P, results_file, grammaticality_file, resources_file, count, sentence):
     input_sentence_string = generate_input_sentence_string(sentence)
     if len(P.result_list) == 0:
+        grammaticality_file.write(str(count) + '. * ' + input_sentence_string + '\n\n')
         results_file.write(str(count) + '. *' + input_sentence_string + '\n')
-        results_file.write(str(count) + '. * ' + input_sentence_string + '\n\n')
+        resources_file.write(str(count)+'\n')
     else:
         grammaticality_file.write(str(count) + '.  ' + input_sentence_string + '\n')
-        if 0 >= P.score >= -6:
-            judgment = grammaticality_judgement[int(round(abs(P.score), 0))]
-        else:
-            judgment = '##'
-        results_file.write(str(count) + '. ' + judgment + input_sentence_string + '\n\n')
-        parse_number = 1
+        results_file.write(str(count) + '. ' + P.grammaticality_judgment() + input_sentence_string + '\n\n')
         number_of_solutions = len(P.result_list)
+        parse_number = 1
         for parse, semantic_interpretation in P.result_list:
             if number_of_solutions == 1:
                 results_file.write('\t' + f'{parse}\n')
             else:
                 results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-            results_file.write('\n\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number-1]}ms')
-            results_file.write('\n\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
-            results_file.write('\n')
+                results_file.write('\n\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
+                if parse_number == 1:
+                    results_file.write('\n\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms')
+            if parse_number == 1:
+                resources_file.write(f'{count}\t')
+                for key in P.resources:
+                    resources_file.write(f'{P.resources[key]}\t')
+                resources_file.write(f'{P.execution_time_results[parse_number - 1]}')
+                resources_file.write('\n')
             parse_number = parse_number + 1
+            results_file.write('\n')
 
 def write_images(P, Graphic_output, sentence, data_folder):
     Graphic_output.input_sentence_string = generate_input_sentence_string(sentence)

@@ -7,7 +7,7 @@ from transfer import Transfer
 from surface_conditions import SurfaceConditions
 from adjunct_constructor import AdjunctConstructor
 from log_functions import log_results
-import time
+from time import process_time
 
 class LinearPhaseParser:
     def __init__(self, external_source):
@@ -39,9 +39,10 @@ class LinearPhaseParser:
         self.start_time = 0                                     # Calculates execution time
         self.end_time = 0                                       # Calculates execution time
         self.number_of_items_consumed = 0
+        self.grammaticality_judgement = []
 
     # Definition for parser initialization
-    def initialize(self, language):
+    def initialize(self, language='NO LANGUAGE'):
         self.language = language
         self.name_provider_index = 0
         self.number_of_items_consumed = 0
@@ -59,7 +60,8 @@ class LinearPhaseParser:
         self.surface_conditions_pass = True  # Surface conditions
         self.score = 0  # Discourse score
         self.resources = dict  # Resources consumed
-        self.start_time = time.time()  # Calculates execution time
+        self.start_time = process_time()  # Calculates execution time
+        self.grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
         self.resources = {"Garden Paths": 0,
                           "Merge": 0,
                           "Move Head": 0,
@@ -79,7 +81,7 @@ class LinearPhaseParser:
 
     def parse(self, lst, language):
         self.sentence = lst
-        self.start_time = time.time()
+        self.start_time = process_time()
         set_logging(True)
         self.initialize(language)
         self._first_pass_parse(None, lst, 0)
@@ -166,7 +168,7 @@ class LinearPhaseParser:
             self.add_garden_path()
             return
         self.first_solution_found = True
-        self.execution_time_results.append(int((time.time() - self.start_time) * 100000))
+        self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
         self.report_solution(ps_, spellout_structure)
 
     def add_garden_path(self):
@@ -488,3 +490,9 @@ class LinearPhaseParser:
             ps.mother = None
             return ps
         return self.LF.test(detached(ps.copy())).all_pass()
+
+    def grammaticality_judgment(self):
+        if 0 >= self.score >= -6:
+            return self.grammaticality_judgement[int(round(abs(self.score), 0))]
+        else:
+            return '##'
