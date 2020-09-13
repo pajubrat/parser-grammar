@@ -8,6 +8,7 @@
 import sys
 from file_IO import *
 from linear_phase_parser import LinearPhaseParser
+from linear_phase_parser import LinearPhaseParser
 from log_functions import *
 import logging
 from LanguageGuesser import LanguageGuesser
