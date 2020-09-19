@@ -9,22 +9,23 @@ class AdjunctConstructor:
         if ps.head().is_adjoinable():
             if ps.is_complex():
                 self.make_adjunct(ps)
-            if ps.is_primitive():
+            elif ps.is_primitive():
                 if self.adjunct_in_correct_position(ps):
                     self.make_adjunct_with_surrounding_structure(ps)
                 else:
                     self.make_adjunct_with_surrounding_structure_(ps)
 
+    def has_adjoinable_specifier(self, ps):
+        return ps.head().local_edge() and ps.head().local_edge().contains_feature('OP:REL')
+
     def make_adjunct_with_surrounding_structure(self, ps):
         if self.eat_specifier(ps):
             self.make_adjunct_with_specifier(ps.head())
-            return ps.mother.mother
         else:
             if self.eat_complement(ps):
                 self.make_adjunct_with_complement(ps)
             else:
                 self.make_adjunct(ps.head())
-            return ps.mother
 
     def make_adjunct_with_surrounding_structure_(self, ps):
         if self.eat_specifier_(ps):
@@ -59,6 +60,10 @@ class AdjunctConstructor:
         self.make_adjunct(ps.head().mother)
 
     def make_adjunct_with_specifier(self, ps):
+        for edge in ps.head().edge():
+            if edge.contains_feature('OP:REL'):
+                self.make_adjunct(edge.mother)
+                return
         self.make_adjunct(ps.head().mother.mother)
 
     def make_adjunct(self, ps):
@@ -73,10 +78,11 @@ class AdjunctConstructor:
 
     def add_tail_features_if_missing(self, ps):
         if not {f for f in ps.head().features if f[:4] == 'TAIL'}:
-            ps.head().features.add('TAIL:T')
-            ps.head().features.add('ADV')
+            if 'T' not in ps.head().features:       # TP can only become relative clause, e.g. 'che dorme'
+                ps.head().features.add('TAIL:T')
+                ps.head().features.add('ADV')
 
-    def transfer_adjunct(self, ps):
+    def transfer_adjunct(self, ps ):
         original_mother = ps.mother
         ps.detach()
         log(f'\t\t\t\t\t{ps} is transferred to LF as a phase.')

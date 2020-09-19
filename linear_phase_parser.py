@@ -10,10 +10,10 @@ from log_functions import log_results
 from time import process_time
 
 class LinearPhaseParser:
-    def __init__(self, external_source):
+    def __init__(self, external_source, language=''):
         self.sentence = ''
         self.external_source = external_source
-        self.language = ''                                      # Contextual variables (language etc.)
+        self.language = language                                # Contextual variables (language etc.)
         self.result_list = []                                   # Results (final analyses)
         self.spellout_result_list = []                          # Results (spellout structures)
         self.semantic_interpretation = set()                    # Semantic interpretation
@@ -42,8 +42,7 @@ class LinearPhaseParser:
         self.grammaticality_judgement = []
 
     # Definition for parser initialization
-    def initialize(self, language='NO LANGUAGE'):
-        self.language = language
+    def initialize(self):
         self.name_provider_index = 0
         self.number_of_items_consumed = 0
         self.result_list = []  # Results (final analyses)
@@ -79,11 +78,11 @@ class LinearPhaseParser:
                           "LF recovery": 0,
                           "LF test": 0}
 
-    def parse(self, lst, language):
+    def parse(self, lst):
         self.sentence = lst
         self.start_time = process_time()
         set_logging(True)
-        self.initialize(language)
+        self.initialize()
         self._first_pass_parse(None, lst, 0)
 
     def _first_pass_parse(self, ps, lst, index):

@@ -67,25 +67,30 @@ lang_guesser = LanguageGuesser(external_source["lexicon_file_name"])
 initialize_console(external_source)
 
 
+
 #
+# Prepare parsers for all languages (together with language-specific lexicons)
+parser_for_language = {}
+for language in lang_guesser.languages:
+    parser_for_language[language] = LinearPhaseParser(external_source, language)
+
 #
 # Block 4. Parse
 #
-#
-P = LinearPhaseParser(external_source)                                                  # Activate parser module
+language = 'LANG:EN'                                                                    # Default language
 for sentence in parse_list[start:]:                                                     # Parse each sentence from list
     if is_comment(sentence):                                                            # Do not parse comments
         write_info_line(results_file, grammaticality_judgments_file, sentence)          # Write comments as such
     else:                                                                               # Parse sentence
         language = lang_guesser.guess(sentence)                                         # Guess language
         log_sentence(count, sentence, language)                                         # Log sentence
-        P.parse(sentence, language)                                                     # Parse  sentence
-        write_results(P, results_file, grammaticality_judgments_file, resources_file, count, sentence)  # Write results to file
-        write_images(P, Graphic_output, sentence, data_folder)                          # Write images to file
+        parser_for_language[language].parse(sentence)                                   # Parse  sentence
+        write_results(parser_for_language[language], results_file, grammaticality_judgments_file, resources_file, count, sentence)  # Write results to file
+        write_images(parser_for_language[language], Graphic_output, sentence, data_folder)                          # Write images to file
         count = count + 1                                                               # Count sentences
 
 # Block 5. Closing the operations
 results_file.close()                                                                    # CLose file
 grammaticality_judgments_file.close()                                                   # Close file
 resources_file.close()
-save_surface_vocabulary(external_source["surface_vocabulary_file_name"], P.lexicon.surface_vocabulary)
+save_surface_vocabulary(external_source["surface_vocabulary_file_name"], parser_for_language[language].lexicon.surface_vocabulary)

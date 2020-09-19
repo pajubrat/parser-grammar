@@ -2,7 +2,6 @@ from support import log
 from LF import LF
 from adjunct_constructor import AdjunctConstructor
 
-
 class Extraposition:
     def __init__(self, controlling_parser_process):
         self.adjunct_constructor = AdjunctConstructor(controlling_parser_process)
@@ -42,7 +41,7 @@ class Extraposition:
             for node in ps.bottom().upstream_search():
                 if self.possible_extraposition_target(node):
                     self.controlling_parser_process.consume_resources("Extraposition")
-                    self.adjunct_constructor.create_adjunct(node)
+                    self.adjunct_constructor.create_adjunct(node.head())
                     return True
             # -------------------------------------------------------------------------------------------#
             log(f'\t\t\t\t\tNo suitable node for extraposition found.')

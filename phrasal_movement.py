@@ -49,6 +49,7 @@ class PhrasalMovement:
                 else:
                     count_specifiers = + 1
                     if spec.scan_criterial_features():
+                        log(f'\t\t\t\t\tCriterial features {spec.scan_criterial_features()} copied to {head}.')
                         head.features |= self.get_features_for_criterial_head(head, spec)
                         if head.get_tail_sets():
                             self.adjunct_constructor.create_adjunct(head)
@@ -87,7 +88,8 @@ class PhrasalMovement:
         return iterator
 
     def candidate_for_A_reconstruction(self, ps):
-        return 'D' in ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive()
+        if ps == ps.container_head().local_edge():  # Only local edge can do A-reconstruction
+            return 'D' in ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive()
 
     def reconstruct_inside_next_projection(self, spec, iterator):
         local_head = spec.sister().head()

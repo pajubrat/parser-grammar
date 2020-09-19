@@ -96,6 +96,9 @@ class PhraseStructure:
 
     # Definition for adjoinable phrase
     def is_adjoinable(self):
+        for edge in self.head().edge():
+            if edge.contains_feature('OP:REL'):
+                return True
         return self.externalized() or 'adjoinable' in self.head().features
 
     # Definition for sisterhood
@@ -136,7 +139,7 @@ class PhraseStructure:
             return self.left_const.head()
         return self.right_const.head()
 
-    def get_max(self):
+    def max(self):
         ps_ = self
         while ps_ and ps_.mother and ps_.mother.head() == self.head():
             ps_ = ps_.walk_upstream()
@@ -385,7 +388,7 @@ class PhraseStructure:
         tail_sets = self.get_tail_sets()
         tests_checked = set()
         for tail_set in tail_sets:
-            if self.strong_tail_condition(tail_set):
+            if self.strong_tail_condition(tail_set) and 'A' not in self.features:
                 tests_checked.add(tail_set)
             if self.weak_tail_condition(tail_set):
                 tests_checked.add(tail_set)
@@ -402,12 +405,17 @@ class PhraseStructure:
         return True
 
     def strong_tail_condition(self, tail_set):
-        if self.get_max() and self.get_max().mother:
-            if self.get_max().mother.head().match_features(tail_set) == 'complete match' and 'D' not in self.features:
+        if self.max() and self.max().mother:
+            if self.max().mother.head().match_features(tail_set) == 'complete match' and self.strong_configuration_interpretable():
                 return True
             # Licenses HP at [V [DP <H XP>]] by V
-            if self.get_max().mother.sister() and self.get_max().mother.sister().match_features(tail_set) == 'complete match':
+            if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
                 return True
+
+    def strong_configuration_interpretable(self):
+        if 'D' in self.features and 'OP:REL' not in self.features:
+            return False
+        return True
 
     def weak_tail_condition(self, tail_set, variation='external'):
         if  'ADV' not in self.features and len(self.feature_vector()) > 1:

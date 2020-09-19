@@ -77,7 +77,7 @@ class AgreementReconstruction:
         if find_unvalued_target(h, phi):
             h.features = h.features - find_unvalued_target(h, phi)
             h.features.add(phi)
-            log(f'\t\t\t\t\t\t{h} acquired ' + str(phi) + f' by Agree-1 from {goal.mother}.')
+            log(f'\t\t\t\t\t\t{h} acquired ' + str(phi) + f' by Agree-1 from {goal}.')
             h.features.add('PHI_CHECKED')
 
     # Definition for blocked valuation

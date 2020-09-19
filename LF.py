@@ -189,9 +189,9 @@ class LF:
     # A right DP-adjunct inside DP is uninterpretable
     def adjunct_interpretation_test(self, h):
         if 'D' in h.features and \
-                h.get_max() and h.get_max().adjunct and \
-                h.get_max().is_right() and \
-                h.get_max().mother and 'D' in h.get_max().mother.head().features:
+                h.max() and h.max().adjunct and \
+                h.max().is_right() and \
+                h.max().mother and 'D' in h.max().mother.head().features:
             log(f'\t\t\t\t{h.mother.mother} in uninterpretable because it is inside DP.')
             self.adjunct_test_result = False
 

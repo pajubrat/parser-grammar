@@ -28,20 +28,20 @@ class FloaterMovement():
             floater = ps.left_const
             if not floater.head().external_tail_head_test():
                 log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
-                return floater.get_max()
+                return floater.max()
             if floater.mother and floater.mother.head().EPP() and 'FIN' in floater.mother.head().features:
                 log('\t\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
-                return floater.get_max()
+                return floater.max()
             if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == floater.mother.head().local_edge():
                 log('\t\t\t\t\t' + floater.illustrate() + ' is in an specifier position that cannot be projected.')
-                return floater.get_max()
+                return floater.max()
         if self.detect_right_floater(ps):
             floater = ps.right_const.head()
             if not floater.external_tail_head_test():
                 log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
                 if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
                     self.adjunct_constructor.create_adjunct(floater)
-                    return floater.get_max()
+                    return floater.max()
                 if 'ADV' in floater.features and not ps.right_const.adjunct:
                     self.adjunct_constructor.create_adjunct(floater)
 
@@ -52,6 +52,7 @@ class FloaterMovement():
                 ps.left_const.head().get_tail_sets() and \
                 'adjoinable' in ps.left_const.head().features and \
                 '-adjoinable' not in ps.left_const.head().features and \
+                '-float'not in ps.left_const.head().features and \
                 not ps.scan_criterial_features():
             return True
 
@@ -59,7 +60,8 @@ class FloaterMovement():
         if ps.is_complex() and \
                 ps.right_const.head().get_tail_sets() and \
                 'adjoinable' in ps.right_const.head().features and \
-                '-adjoinable' not in ps.right_const.head().features:
+                '-adjoinable' not in ps.right_const.head().features and \
+                '-float' not in ps.right_const.head().features:
             return True
 
     # Definition for floater reconstruction (dropping)

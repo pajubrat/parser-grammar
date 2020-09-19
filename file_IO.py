@@ -82,7 +82,7 @@ def initialize_image_folder(path):
 def write_results(P, results_file, grammaticality_file, resources_file, count, sentence):
     input_sentence_string = generate_input_sentence_string(sentence)
     if len(P.result_list) == 0:
-        grammaticality_file.write(str(count) + '. * ' + input_sentence_string + '\n\n')
+        grammaticality_file.write(str(count) + '. *' + input_sentence_string + '\n')
         results_file.write(str(count) + '. *' + input_sentence_string + '\n')
         resources_file.write(str(count)+'\n')
     else:
