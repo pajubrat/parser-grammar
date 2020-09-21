@@ -184,8 +184,6 @@ class LinearPhaseParser:
         log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
         log_results(ps, self.sentence)
         self.first_solution_found = True
-        print(f'\n{self.sentence}')
-        print(f'{ps}')
         # self.exit = True    # Knock this out if you want to see all solutions
 
     def surface_condition_violation(self, ps):

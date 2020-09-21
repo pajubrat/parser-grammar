@@ -32,6 +32,9 @@ def read_test_corpus(file_names):
     for line in open(file_names["test_corpus_file_name"]):
         if line.startswith('=STOP='):
             break
+        if line.startswith('=START='):
+            parse_list = []
+            continue
         line = line.strip()
         if not line or line.startswith('#'):
             continue
@@ -43,8 +46,9 @@ def read_test_corpus(file_names):
         elif line.startswith('+'):
             plus_sentences.append([word.strip() for word in line.lstrip('+').split()])
         parse_list.append([word.strip() for word in line.split()])
+
     if plus_sentences:
-        parse_list = plus_sentences
+        return plus_sentences
     return parse_list
 
 def initialize_results_file(file_name):
@@ -81,28 +85,35 @@ def initialize_image_folder(path):
 
 def write_results(P, results_file, grammaticality_file, resources_file, count, sentence):
     input_sentence_string = generate_input_sentence_string(sentence)
+    print('\n')
     if len(P.result_list) == 0:
         grammaticality_file.write(str(count) + '. *' + input_sentence_string + '\n')
         results_file.write(str(count) + '. *' + input_sentence_string + '\n')
+        print((str(count) + '. *' + input_sentence_string))
         resources_file.write(str(count)+'\n')
     else:
         grammaticality_file.write(str(count) + '.  ' + input_sentence_string + '\n')
         results_file.write(str(count) + '. ' + P.grammaticality_judgment() + input_sentence_string + '\n\n')
+        print(str(count) + '. ' + P.grammaticality_judgment() + input_sentence_string + '\n')
         number_of_solutions = len(P.result_list)
         parse_number = 1
         for parse, semantic_interpretation in P.result_list:
             if number_of_solutions == 1:
                 results_file.write('\t' + f'{parse}\n')
+                print('\t' + f'{parse}')
             else:
                 results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-                results_file.write('\n\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
-                if parse_number == 1:
-                    results_file.write('\n\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms')
+                print('\t' + chr(96 + parse_number) + f'. {parse}')
+            results_file.write('\n\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
+            print('\n\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, ' ')))
+            if parse_number == 1:
+                results_file.write('\n\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms\n')
+                print('\n\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms')
             if parse_number == 1:
                 resources_file.write(f'{count}\t')
                 for key in P.resources:
                     resources_file.write(f'{P.resources[key]}\t')
-                resources_file.write(f'{P.execution_time_results[parse_number - 1]}')
+                resources_file.write(f'{P.execution_time_results[parse_number - 1]}\n')
                 resources_file.write('\n')
             parse_number = parse_number + 1
             results_file.write('\n')

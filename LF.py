@@ -237,37 +237,46 @@ class LF:
                 self.criterial_feature_test_result = False
 
     def projection_principle(self, h):
-        # Inner function
-        # Definition for property X has a theta assigner P
-        def get_theta_assigner(h):
-            if h.sister() and h.sister().is_primitive():
-                return h.sister
-            if h.container_head() and h in h.container_head().edge():
-                return h.container_head()
+        if self.projection_principle_applies_to(h):
+            if h.max().container_head() and self.container_assigns_theta_role_to(h):
+                return True
+            else:
+                if h.max().contains_feature('adjoinable') and h.max().contains_feature('SEM:nonreferential'):
+                    return True
+                if self.identify_thematic_role_by_agreement(h):
+                    return True
+            self.projection_principle_test_result = False
+            log(f'\t\t\t\t{h.max()} has no thematic role.')
 
-        # Main function
-        if 'D' in h.features and h.mother and not h.mother.find_me_elsewhere:
-            DP_target = h.mother
-            if DP_target.container_head() and DP_target in DP_target.container_head().edge():
-                container_head = DP_target.container_head()
-                if container_head.EPP():
-                    log(f'\t\t\t\t{DP_target} has no thematic role due to being at SPEC of EPP head.')
-                    self.projection_principle_test_result = False
-                elif container_head.selector() and 'ARG' not in container_head.selector().features:
-                    log(f'\t\t\t\t{DP_target} has no thematic role due to a selecting -ARG head.')
-                    self.projection_principle_test_result = False
-                elif 'D' not in container_head.licensed_specifiers():
-                    if container_head.sister() != DP_target:
-                        log(f'\t\t\t\t{DP_target} has no thematic role at the SPEC of {container_head}')
-                        self.projection_principle_test_result = False
-            elif DP_target.adjunct:
-                if not DP_target.contains_feature('adjoinable'):
-                    log(f'\t\t\t\t{DP_target} has no thematic role and is not adjoinable.')
-                    self.projection_principle_test_result = False
-                else:
-                    if not get_theta_assigner(DP_target) and not DP_target.contains_feature('SEM:nonreferential'):
-                        self.projection_principle_test_result = False
-                        log(f'\t\t\t\t{DP_target} has no thematic role.')
+    def identify_thematic_role_by_agreement(self, h):
+        if h.max().container_head():
+            if h.max().container_head().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
+                if not (h.max().container_head().local_edge() and h.max().container_head().local_edge().is_complex()):
+                    return True
+
+    # Projection principles applies to XP if and only if
+    # XP is a DP
+    # XP has not been moved
+    # XP is not the top node (isolated)
+    def projection_principle_applies_to(self, h):
+        if 'D' in h.features and \
+            h.max() and \
+            not h.max().find_me_elsewhere and \
+            h.max().mother:
+            return True
+
+    def container_assigns_theta_role_to(self, h):
+        if h.is_selected():
+            return True
+        if h.max().get_theta_assigner() and h.max().container_head().local_edge() and h.max() in h.max().container_head().local_edge():
+            if h.max().container_head().EPP():
+                return False
+            if h.max().container_head().selector() and 'ARG' not in h.max().container_head().selector().features:
+                return False
+            if 'D' not in h.max().container_head().licensed_specifiers():
+                if h.max().container_head().sister() != h.max():
+                    return False
+            return True
 
     def selection_tests(self, h):
         comp = h.proper_complement()

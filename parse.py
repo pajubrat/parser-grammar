@@ -69,7 +69,7 @@ initialize_console(external_source)
 
 
 #
-# Prepare parsers for all languages (together with language-specific lexicons)
+# Prepare parsers for all languages (together with the language-specific lexicons)
 parser_for_language = {}
 for language in lang_guesser.languages:
     parser_for_language[language] = LinearPhaseParser(external_source, language)
@@ -84,7 +84,7 @@ for sentence in parse_list[start:]:                                             
     else:                                                                               # Parse sentence
         language = lang_guesser.guess(sentence)                                         # Guess language
         log_sentence(count, sentence, language)                                         # Log sentence
-        parser_for_language[language].parse(sentence)                                   # Parse  sentence
+        parser_for_language[language].parse(sentence)                                   # Parse sentence
         write_results(parser_for_language[language], results_file, grammaticality_judgments_file, resources_file, count, sentence)  # Write results to file
         write_images(parser_for_language[language], Graphic_output, sentence, data_folder)                          # Write images to file
         count = count + 1                                                               # Count sentences

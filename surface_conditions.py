@@ -29,22 +29,9 @@ class SurfaceConditions:
 
         return self.all_pass
 
-    # Defines what constitutes a clitic
-    # Trivial condition: ps is a clitic if ps has 'CAT:CL'
-    # Condition 1: If the head H of ps is a clitic, then ps can be clitic if and only if
-    # Condition 2.1. H has no affixes, and
-    # Condition 2.2. H is internal.
-
-    # Comment:  Conditions (2.1) and (2.2) try to capture the fact that [D N] can be a clitic when D and N are inside
-    #           same phonological word (mi = DP)
-
     def is_clitic(self, ps):
-
-        # Trivial condition. If ps is a clitic, then ps is trivially a clitic
         if 'CL' in ps.features:
             return True
-
-        # Condition 1. ps can be a clitic only if its head is a clitic;
         if 'CL' in ps.head().features:
             # Condition 2.1 If ps has no affixes and (2.2) is internal, then ps is clitic (e.g., D_CL N)
             if not ps.head().has_affix() and ps.head().internal:
@@ -54,14 +41,13 @@ class SurfaceConditions:
         else:
             return False
 
-    # Defines the condition for adjacency-based incorporation at the Morphology-Syntax Interface
     def is_clitic_licensed(self, test_constituent):
 
         clitic_head = test_constituent.head()
         constituent_to_left = self.get_constituent_to_left_in_linear_order(clitic_head)
 
         # Incorporation to left cannot adjoin a word to a complex phrase (D is excluded because DPs are opened at this stage)
-        if 'INCORPORATED' not in clitic_head.features and constituent_to_left and constituent_to_left.is_complex() and 'D' not in constituent_to_left.get_head().features:
+        if 'INCORPORATED' not in clitic_head.features and constituent_to_left and constituent_to_left.is_complex() and 'D' not in constituent_to_left.head().features:
             log('\t\t\t\tClitic adjoined to complex phrase, not word')
             return False
 
@@ -71,10 +57,10 @@ class SurfaceConditions:
 
         # Left incorporation
         # Condition 1. The clitic was left incorporated
-        if constituent_to_left and 'INCORPORATED' in constituent_to_left.get_head().features:
+        if constituent_to_left and 'INCORPORATED' in constituent_to_left.head().features:
             # Condition 2. Left-incorporation features license the operation
             for feature_set in left_incorporation_feature_sets:
-                if constituent_to_left.get_all_features_of_complex_word() & feature_set == feature_set:
+                if constituent_to_left.features_of_complex_word() & feature_set == feature_set:
                     # Condition 3. Incorporation condition: do not incorporate out of a predicate
                     if self.incorporation_condition(test_constituent):
                         log(f'\t\t\tClitic {test_constituent} left-incorporated to {constituent_to_left}')
@@ -84,7 +70,7 @@ class SurfaceConditions:
         constituent_to_right = self.get_constituent_to_right_in_linear_order(test_constituent)
         if 'INCORPORATED' in clitic_head.features and constituent_to_right:
             for feature_set in right_incorporation_feature_sets:
-                if constituent_to_right.get_all_features_of_complex_word() & feature_set == feature_set:
+                if constituent_to_right.features_of_complex_word() & feature_set == feature_set:
                     log(f'\t\t\tClitic {test_constituent} right-incorporated to {test_constituent.container_head()}')
                     return True
 
@@ -92,30 +78,16 @@ class SurfaceConditions:
         return False  # if not licensed
 
     def incorporation_condition(self, test_constituent):
-
-        # Internal functions
-        # Returns the union of features of head and all its affixes
-        def get_all_features_of_complex_word(h):
-            if h.is_complex():
-                head = h.head()
-            else:
-                head = h
-            complex_word_features = head.features
-            for affix in head.get_affix_list():
-                complex_word_features = complex_word_features | affix.features
-            return complex_word_features
-
-        # Main function
         # Condition 1. There is a right sister element that contains label V
-        if test_constituent.is_left() and 'V' in get_all_features_of_complex_word(test_constituent.sister().head()):
+        if test_constituent.is_left() and 'V' in test_constituent.sister().head().features_of_complex_word():
 
             # Condition 2. The left element is not V
-            if 'V' not in self.get_constituent_to_left_in_linear_order(test_constituent).get_all_features_of_complex_word():
+            if 'V' not in self.get_constituent_to_left_in_linear_order(test_constituent).features_of_complex_word():
                 return True
             else:
                 # Condition 3. The left element is V but has 'SEM:internal' and does not have 'ASP'
-                if 'SEM:internal' in self.get_constituent_to_left_in_linear_order(test_constituent).get_all_features_of_complex_word() and \
-                        'ASP' not in self.get_constituent_to_left_in_linear_order(test_constituent).get_all_features_of_complex_word():
+                if 'SEM:internal' in self.get_constituent_to_left_in_linear_order(test_constituent).features_of_complex_word() and \
+                        'ASP' not in self.get_constituent_to_left_in_linear_order(test_constituent).features_of_complex_word():
                     return True
                 else:
                     return False

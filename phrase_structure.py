@@ -94,6 +94,10 @@ class PhraseStructure:
     def visible(self):
         return not self.externalized()
 
+    def is_selected(self):
+        if self.max().sister() and self.max().sister().is_primitive():
+            return True
+
     # Definition for adjoinable phrase
     def is_adjoinable(self):
         for edge in self.head().edge():
@@ -142,7 +146,7 @@ class PhraseStructure:
     def max(self):
         ps_ = self
         while ps_ and ps_.mother and ps_.mother.head() == self.head():
-            ps_ = ps_.walk_upstream()
+            ps_ = ps_.mother
         return ps_
 
     # Definition for minimal search
@@ -249,6 +253,13 @@ class PhraseStructure:
 
     def get_mandatory_comps(self):
         return  {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
+
+    def get_theta_assigner(self):
+        if self.sister() and self.sister().is_primitive():
+            return self.sister
+        if self.container_head() and self.container_head().local_edge():
+            if self in self.container_head().local_edge():
+                return self.container_head()
 
     #
     # Block 2. Structure building operations
@@ -388,7 +399,7 @@ class PhraseStructure:
         tail_sets = self.get_tail_sets()
         tests_checked = set()
         for tail_set in tail_sets:
-            if self.strong_tail_condition(tail_set) and 'A' not in self.features:
+            if self.strong_tail_condition(tail_set):
                 tests_checked.add(tail_set)
             if self.weak_tail_condition(tail_set):
                 tests_checked.add(tail_set)
@@ -405,17 +416,20 @@ class PhraseStructure:
         return True
 
     def strong_tail_condition(self, tail_set):
-        if self.max() and self.max().mother:
-            if self.max().mother.head().match_features(tail_set) == 'complete match' and self.strong_configuration_interpretable():
-                return True
-            # Licenses HP at [V [DP <H XP>]] by V
-            if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
-                return True
+        if self.precondition_for_strong_condition():
+            if self.max() and self.max().mother:
+                if self.max().mother.head().match_features(tail_set) == 'complete match':
+                    return True
+                # Licenses HP at [V [DP <H XP>]] by V
+                if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
+                    return True
 
-    def strong_configuration_interpretable(self):
-        if 'D' in self.features and 'OP:REL' not in self.features:
-            return False
-        return True
+    def precondition_for_strong_condition(self):
+        if 'A' not in self.features and 'D' not in self.features:
+            return True
+        if 'D' in self.features:
+            if self.max().is_right():
+                return True
 
     def weak_tail_condition(self, tail_set, variation='external'):
         if  'ADV' not in self.features and len(self.feature_vector()) > 1:
@@ -487,6 +501,9 @@ class PhraseStructure:
             lst.append(self.right_const)
             self = self.right_const
         return lst
+
+    def features_of_complex_word(h):
+        return {feature for affix in h.get_affix_list() for feature in affix.features}
 
     # Definition for pro-extraction
     def extract_pro(self):
