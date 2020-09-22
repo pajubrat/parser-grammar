@@ -268,7 +268,7 @@ class LF:
     def container_assigns_theta_role_to(self, h):
         if h.is_selected():
             return True
-        if h.max().get_theta_assigner() and h.max().container_head().local_edge() and h.max() in h.max().container_head().local_edge():
+        if h.max().get_theta_assigner() and h.max().container_head().licensed_specifier() and h.max() == h.max().container_head().licensed_specifier():
             if h.max().container_head().EPP():
                 return False
             if h.max().container_head().selector() and 'ARG' not in h.max().container_head().selector().features:

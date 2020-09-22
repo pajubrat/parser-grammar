@@ -210,6 +210,17 @@ class PhraseStructure:
         if self.edge():
             return self.edge()[0]
 
+    def phrasal_edge(self):
+        return [edge for edge in self.edge() if edge.is_complex()]
+
+    # Definition for licensed specifier (for a head)
+    # Note. Local phrasal specifier that has not been externalized
+    def licensed_specifier(self):
+        if self.phrasal_edge():
+            licensed_edge = [edge for edge in self.phrasal_edge() if not edge.externalized()]
+            if licensed_edge:
+                return licensed_edge[0]
+
     # Definition for container head
     def container_head(self):
         if self.mother:
@@ -257,8 +268,8 @@ class PhraseStructure:
     def get_theta_assigner(self):
         if self.sister() and self.sister().is_primitive():
             return self.sister
-        if self.container_head() and self.container_head().local_edge():
-            if self in self.container_head().local_edge():
+        if self.container_head() and self.container_head().licensed_specifier():
+            if self == self.container_head().licensed_specifier():
                 return self.container_head()
 
     #

@@ -97,16 +97,7 @@ class AgreementReconstruction:
 
     # Definition of edge (for Agree-1)
     def edge_for_Agree(self, h):
-        edge_list = []
-        if h.is_complex():
-            return None
-        if h.is_right():
-            ps_ = h
-        else:
-            ps_ = h.mother
+        edge_list = h.phrasal_edge()
         if h.extract_pro():
             edge_list.append(h.extract_pro())
-        while ps_ and ps_.sister() and (ps_.sister().is_left() and ps_.sister().is_complex()):
-            edge_list.append(ps_.sister())
-            ps_ = ps_.walk_upstream()
-        return edge_list[::-1]
+        return edge_list

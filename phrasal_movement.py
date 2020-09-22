@@ -39,7 +39,7 @@ class PhrasalMovement:
                         iterator = self.A_reconstruct(spec, iterator)
 
                 if count_specifiers > 0:
-                    if self.must_have_head(spec):
+                    if self.specifier_phrase_must_have_supporting_head(spec):
                         new_h = self.engineer_head_from_specifier(head, spec)
                         iterator.merge_1(new_h, 'left')
                         iterator = iterator.mother # Prevents looping over the same Spec element
@@ -88,7 +88,7 @@ class PhrasalMovement:
         return iterator
 
     def candidate_for_A_reconstruction(self, ps):
-        if ps == ps.container_head().local_edge():  # Only local edge can do A-reconstruction
+        if ps == ps.container_head().licensed_specifier():
             return 'D' in ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive()
 
     def reconstruct_inside_next_projection(self, spec, iterator):
@@ -120,8 +120,16 @@ class PhrasalMovement:
 
     @staticmethod
     # Definition for phrase that requires a local licensing head (used in connection with A-bar head generation)
-    def must_have_head(h):
-        return not (h.externalized() and not h.scan_criterial_features())
+    def specifier_phrase_must_have_supporting_head(h):
+        # Criterial feature represents a licensing head that must be present
+        if h.scan_criterial_features():
+            return True
+        # Adjuncts do not need licensing heads
+        if h.max().externalized():
+            return False
+        # Bare non-adjunct DPs that are not licensed by the containing head need support
+        if h.max() != h.max().container_head().licensed_specifier():
+            return True
 
     @staticmethod
     def get_phrasal_left_sister(h):

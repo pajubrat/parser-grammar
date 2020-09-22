@@ -26,72 +26,65 @@ class SurfaceConditions:
                 if not self.is_clitic_licensed(node):
                     self.all_pass = False
         # -------------------------------------------------------------------- #
-
         return self.all_pass
 
     def is_clitic(self, ps):
         if 'CL' in ps.features:
             return True
         if 'CL' in ps.head().features:
-            # Condition 2.1 If ps has no affixes and (2.2) is internal, then ps is clitic (e.g., D_CL N)
             if not ps.head().has_affix() and ps.head().internal:
                 return True
-            else:
-                return False
-        else:
-            return False
 
     def is_clitic_licensed(self, test_constituent):
 
-        clitic_head = test_constituent.head()
-        constituent_to_left = self.get_constituent_to_left_in_linear_order(clitic_head)
+        left_incorporation_feature_sets, right_incorporation_feature_sets = self.retrieve_local_context(test_constituent)
 
-        # Incorporation to left cannot adjoin a word to a complex phrase (D is excluded because DPs are opened at this stage)
-        if 'INCORPORATED' not in clitic_head.features and constituent_to_left and constituent_to_left.is_complex() and 'D' not in constituent_to_left.head().features:
+        constituent_to_left = self.get_constituent_to_left_in_linear_order(test_constituent.head())
+        if self.illicit_phrasal_incorporation(test_constituent, constituent_to_left):
             log('\t\t\t\tClitic adjoined to complex phrase, not word')
             return False
 
-        # Collect the incorporation features (which are ultimately morphological properties)
-        left_incorporation_feature_sets = {frozenset(feature[5:].split(",")) for feature in clitic_head.features if feature[:5] == 'LEFT:'}
-        right_incorporation_feature_sets = {frozenset(feature[6:].split(",")) for feature in clitic_head.features if feature[:6] == 'RIGHT:'}
-
-        # Left incorporation
-        # Condition 1. The clitic was left incorporated
         if constituent_to_left and 'INCORPORATED' in constituent_to_left.head().features:
-            # Condition 2. Left-incorporation features license the operation
             for feature_set in left_incorporation_feature_sets:
-                if constituent_to_left.features_of_complex_word() & feature_set == feature_set:
-                    # Condition 3. Incorporation condition: do not incorporate out of a predicate
+                if constituent_to_left.head() and constituent_to_left.head().features_of_complex_word() & feature_set == feature_set:
                     if self.incorporation_condition(test_constituent):
                         log(f'\t\t\tClitic {test_constituent} left-incorporated to {constituent_to_left}')
                         return True
 
-        # Condition 1. Right incorporation. CL_[..X..] is licensed if X (including all its affixes) can check right incorporation features of CL
         constituent_to_right = self.get_constituent_to_right_in_linear_order(test_constituent)
-        if 'INCORPORATED' in clitic_head.features and constituent_to_right:
+        if constituent_to_right and 'INCORPORATED' in test_constituent.head().features and constituent_to_right:
             for feature_set in right_incorporation_feature_sets:
-                if constituent_to_right.features_of_complex_word() & feature_set == feature_set:
+                if constituent_to_right.head() and constituent_to_right.head().features_of_complex_word() & feature_set == feature_set:
                     log(f'\t\t\tClitic {test_constituent} right-incorporated to {test_constituent.container_head()}')
                     return True
 
         log(f'\t\t\tClitic {test_constituent} not licensed.')
-        return False  # if not licensed
+        return False
+
+    def retrieve_local_context(self, test_constituent):
+
+        left_incorporation_feature_sets = {frozenset(feature[5:].split(",")) for feature in test_constituent.head().features if feature[:5] == 'LEFT:'}
+        right_incorporation_feature_sets = {frozenset(feature[6:].split(",")) for feature in test_constituent.head().features if feature[:6] == 'RIGHT:'}
+        return left_incorporation_feature_sets, right_incorporation_feature_sets
+
+
+    def illicit_phrasal_incorporation(self, test_constituent, constituent_to_left):
+        return 'INCORPORATED' not in test_constituent.head().features and \
+               constituent_to_left and \
+               constituent_to_left.is_complex() and \
+               'D' not in constituent_to_left.head().features
+
 
     def incorporation_condition(self, test_constituent):
-        # Condition 1. There is a right sister element that contains label V
         if test_constituent.is_left() and 'V' in test_constituent.sister().head().features_of_complex_word():
-
-            # Condition 2. The left element is not V
-            if 'V' not in self.get_constituent_to_left_in_linear_order(test_constituent).features_of_complex_word():
+            if self.get_constituent_to_left_in_linear_order(test_constituent) and 'V' not in self.get_constituent_to_left_in_linear_order(test_constituent).features_of_complex_word():
                 return True
             else:
-                # Condition 3. The left element is V but has 'SEM:internal' and does not have 'ASP'
-                if 'SEM:internal' in self.get_constituent_to_left_in_linear_order(test_constituent).features_of_complex_word() and \
+                if self.get_constituent_to_left_in_linear_order(test_constituent) and 'SEM:internal' in self.get_constituent_to_left_in_linear_order(test_constituent).features_of_complex_word() and \
                         'ASP' not in self.get_constituent_to_left_in_linear_order(test_constituent).features_of_complex_word():
                     return True
                 else:
                     return False
-
         return True
 
     def get_constituent_to_left_in_linear_order(self, ps):
