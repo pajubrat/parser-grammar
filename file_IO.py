@@ -8,7 +8,7 @@ def format_resource_output(consumed_resources):
         s += f'{key}:{consumed_resources[key]}, '
         i += 1
         if i == 7:
-            s += '\n\t'
+            s += '\n\t\t'
             i = 0
     return s
 
@@ -105,10 +105,10 @@ def write_results(P, results_file, grammaticality_file, resources_file, count, s
                 results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                 print('\t' + chr(96 + parse_number) + f'. {parse}')
             results_file.write('\n\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, '\n')))
-            print('\n\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, ' ')))
+            print('\n\t\tLF_Recovery: ' + str(formatted_output(semantic_interpretation, ' ')))
             if parse_number == 1:
-                results_file.write('\n\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms\n')
-                print('\n\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms')
+                results_file.write('\n\t\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms\n')
+                print('\n\t\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms\n')
             if parse_number == 1:
                 resources_file.write(f'{count}\t')
                 for key in P.resources:

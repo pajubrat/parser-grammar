@@ -225,8 +225,7 @@ class Semantics:
             for f in ps.head().features:
                 if f[:3] == 'OP:' and f != 'OP:_':
                     if not ps.bind_to_operator('OP'):
-                        log(f'\t\t\t\t{ps.illustrate()} with feature {f} is not properly bound by an operator.')
+                        log(f'\t\t\t\t{ps.max().illustrate()} with feature {f} is not properly bound by an operator.')
                         self.semantic_interpretation_failed = True
                     else:
-                        log(f'\t\t\t\t{ps.illustrate()} with feature {f} was bound to an operator.')
-                        self.semantic_interpretation.add(f'{ps} with feature {f} was bound to an operator.')
+                        self.semantic_interpretation.add(f'{ps.max().illustrate()} with feature {f} was bound to an operator.')

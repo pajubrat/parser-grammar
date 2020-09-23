@@ -216,10 +216,19 @@ class PhraseStructure:
     # Definition for licensed specifier (for a head)
     # Note. Local phrasal specifier that has not been externalized
     def licensed_specifier(self):
-        if self.phrasal_edge():
+        edge = self.phrasal_edge()
+        # If there is only one phrasal edge, return it
+        if len(edge) == 1:
+            return edge[0]
+        # If there are many phrases in the edge
+        elif len(edge) > 1:
+            # Return the first non-externalized phrase, if any,
             licensed_edge = [edge for edge in self.phrasal_edge() if not edge.externalized()]
             if licensed_edge:
                 return licensed_edge[0]
+            # if everything has been externalized, return the closest phrase
+            else:
+                return edge[0]
 
     # Definition for container head
     def container_head(self):
@@ -598,6 +607,26 @@ class PhraseStructure:
     # Returns features without !
     def convert_features_for_parsing(self, features):
         return {f[1:] if f.startswith('!') else f for f in features}
+
+    def is_clitic(self):
+        if 'CL' in self.features:
+            return True
+        if 'CL' in self.head().features:
+            if not self.head().has_affix() and self.head().internal:
+                return True
+
+    def quasi_auxiliary(self):
+        return 'SEM:internal' in self.features_of_complex_word() and \
+                'ASP' not in self.features_of_complex_word()
+
+    def incorporation_features(self, direction):
+        if direction == 'left':
+            return {frozenset(feature[5:].split(",")) for feature in self.head().features if feature[:5] == 'LEFT:'}
+        if direction == 'right':
+            return {frozenset(feature[6:].split(",")) for feature in self.head().features if feature[:6] == 'RIGHT:'}
+
+    def get_pf(self):
+        return {feature[3:] for feature in self.features if feature[:3] == 'PF:'}
 
     # Return the phonological form of the constituent if any
     # Does some additional formatting
