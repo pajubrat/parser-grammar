@@ -1,0 +1,74 @@
+
+# ======================================================================================
+# Universal language-invariant morphemes are collected here
+# =======================================================================================
+
+T/fin   :: T/fin PF:T LF:T
+v       :: v PF:v LF:v
+v*		:: v* v PF:v* LF:v* SEM:external
+C/fin   :: C/fin PF:C LF:C/fin 
+T		:: T PF:T LF:T FIN
+T/prt 	:: T/prt PF:T/prt LF:T/prt
+a0		:: A PF:A LF:A
+n		:: N n PF:n LF:n
+impass	:: v ARG PF:impass LF:impass 
+cau		:: v PF:Cau LF:v/Cause
+
+# Infinitivals
+INF			:: INF PF:INF LF:INF
+prtcpl		:: INF T T/prt PF:T/prt LF:T/prt
+# English
+TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:v -VAL ?ARG adjoinable
+# Finnish infinitivals
+A/inf		:: INF A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:Neg/fin ?ARG ?VAL
+ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* VAL -adjoinable 
+ESSA/inf 	:: ADV INF ESSA/inf ?VAL ?ARG SPEC:* TAIL:T PF:essa LF:while
+TUA/inf		:: ADV INF TUA/inf CAL TAIL:T ARG !SPEC:* PF:tua LF:after
+VA/inf  	:: VAL ?ARG INF VA/inf PF:vAn LF:VA -SPEC:N SPEC:*
+MA/ssa		:: MA/inf ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V -VAL ARG adjoinable 
+MA/tta		:: MA/inf ADV PF:matta LF:without_doing -VAL ARG TAIL:T adjoinable
+MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T COMP:v COMP:V -VAL ARG adjoinable
+E/inf		:: PF:en LF:by ADV -ARG LANG:FI
+
+# Italian
+
+
+# Copula
+BE-	:: V COPULA PF:BE LF:BE -ARG SPEC:D !COMP:* -COMP:T/fin
+
+D   :: D PF:D LF:D
+P 	:: P PF:P LF:P
+
+# Pronominal items
+pro		:: pro-#D
+pro-	:: PF:(pro) LF:pro N PHI
+cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL
+inc		:: inflectional INCORPORATED
+
+# Phi-features
+sg 		:: inflectional PHI:NUM:SG
+pl 		:: inflectional PHI:NUM:PL
+1p 		:: inflectional PHI:PER:1
+2p 		:: inflectional PHI:PER:2
+3p 		:: inflectional PHI:PER:3
+def 	:: inflectional PHI:DET:DEF
+indef 	:: inflectional PHI:DET:INDEF
+hum 	:: inflectional PHI:HUM:HUM
+nonhum 	:: inflectional PHI:HUM:NONHUM
+m		::	inflectional PHI:GEN:M
+f		::	inflectional PHI:GEN:F
+
+# Structural Case
+nom   	:: inflectional TAIL:FIN,!COMP:*,VAL
+acc		:: inflectional TAIL:v
+dat		:: inflectional TAIL:!COMP:*,v
+
+# Universal feature inventory
+uC/op	:: inflectional uC/op
+wh     	:: inflectional OP:WH OP:_
+wh_		:: inflectional OP OP:_ FORCE:OP:WH
+top    	:: inflectional OP:TOP 
+foc    	:: inflectional OP:FOC
+C/op	:: inflectional OP:C/OP
+rel    	:: inflectional OP:REL
+Q		:: inflectional OP OP:WH OP:Q

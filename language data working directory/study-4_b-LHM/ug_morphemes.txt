@@ -1,0 +1,74 @@
+
+# ======================================================================================
+# Universal language-invariant morphemes are collected here
+# =======================================================================================
+
+T/fin   :: T/fin PF:T/fin LF:T
+v       :: v PF:v LF:v
+v*		:: v* v PF:v* LF:v* SEM:external
+C/fin   :: C/fin PF:C/fin LF:C/fin 
+T		:: T PF:T LF:T FIN
+T/prt 	:: T/prt PF:T/prt LF:T/prt
+a0		:: A PF:A LF:A
+impass	:: v PF:impass LF:impass 
+
+# Infinitivals
+INF			:: INF PF:INF LF:INF
+prtcpl		:: INF T T/prt PF:T/prt LF:T/prt
+# English
+TO/inf		:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:v -VAL !COMP:* !PROBE:V ?ARG adjoinable
+# Finnish infinitivals
+A/inf		:: INF A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:Neg/fin -SPEC:C/fin ?ARG ?VAL
+ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG VAL adjoinable 
+ESSA/inf 	:: ADV INF ESSA/inf ?VAL ?ARG SPEC:* PF:essa LF:while
+TUA/inf		:: ADV INF TUA/inf CAL ARG !SPEC:* PF:tua LF:after
+VA/inf  		:: INF VA/inf PF:vAn LF:VA !SPEC:* VAL ARG
+MA/ssa		:: MA/inf P PF:massa LF:in_doing TAIL:V -VAL ARG adjoinable 
+MA/tta		:: MA/inf ADV PF:matta LF:without_doing -VAL ARG adjoinable
+MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:V -VAL ARG adjoinable
+E/inf		:: PF:en LF:by ADV -ARG LANG:FI
+
+# Italian
+ndo			:: INF ARG VAL INF PRG PF:PRG LF:ing
+
+# Copula
+BE-	:: V COPULA PF:BE LF:BE -ASP -ARG SPEC:D -COMP:Neg/fin COMP:T COMP:T/prt COMP:D COMP:N COMP:A !COMP:*
+
+# These are "generic" determiners and prepositions
+# Notice that they will have the default lexical features 
+D   :: D PF:D LF:D
+P 	:: P PF:P LF:P
+
+# Pronominal items
+pro	:: pro-#D
+pro-	:: PF:(pro) LF:pro N PHI
+cl	:: - CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL
+inc	:: - INCORPORATED
+
+# Phi-features
+sg :: - PHI:NUM:SG
+pl :: - PHI:NUM:PL
+1p :: - PHI:PER:1
+2p :: - PHI:PER:2
+3p :: - PHI:PER:3
+def :: - PHI:DET:DEF
+indef :: - PHI:DET:INDEF
+hum :: - PHI:HUM:HUM
+nonhum :: -PHI:HUM:NONHUM
+m	::	- PHI:GEN:M
+f	::	- PHI:GEN:F
+n 	::  - PHI:GEN:N
+
+# Structural Case
+nom   	:: - TAIL:FIN,!COMP:*,VAL
+acc		:: - TAIL:ARG,-VAL
+dat		:: - TAIL:v,!COMP:*
+
+# Universal feature inventory
+wh     	:: - OP:WH OP:_
+wh_		:: - OP OP:_ FORCE:OP:WH
+top    	:: - OP:TOP OP:_
+foc    	:: - OP
+C/op	:: - OP
+rel    	:: - OP
+Q		:: - Q

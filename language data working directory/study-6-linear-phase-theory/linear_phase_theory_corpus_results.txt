@@ -1,0 +1,1191 @@
+2020-09-24 09:55:21.374835
+Test sentences from file "language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_results.txt".
+Logs into file "language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_results.txt.
+Lexicon from file "language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_results.txt".
+& Chapter 14 Clitics -------------------------------------------------------
+
+& Standard Italian -------------------------------------------------------
+
+& Simple transitive clause, direct object accusative clitics -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+1. loro mi=lavano 
+
+	[[D loro]:1 [T [__:1 [v [lava [D mi(cl)]]]]]]
+
+	LF_Recovery: 	 
+	Agent of v(loro)
+	Patient of lava(mi(cl))
+
+		Garden Paths:0, Merge:6, Move Head:7, Move Phrase:2, A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:2, Transfer:4, Items from input:19, Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:3, 
+		LF recovery:2, LF test:7, Execution time = 15ms
+
+2. mi=lavano 
+
+	[T [v [lava [D mi(cl)]]]]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of lava(mi(cl))
+
+		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:1, Transfer:2, Items from input:14, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, 
+		LF recovery:2, LF test:3, Execution time = 15ms
+
+3. loro la=lavano 
+
+	[[D loro]:1 [T [__:1 [v [lava [D la(cl)]]]]]]
+
+	LF_Recovery: 	 
+	Agent of v(loro)
+	Patient of lava(la(cl))
+
+		Garden Paths:0, Merge:6, Move Head:7, Move Phrase:2, A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:2, Transfer:4, Items from input:19, Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:3, 
+		LF recovery:2, LF test:7, Execution time = 15ms
+
+4. la=lavano 
+
+	[T [v [lava [D la(cl)]]]]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of lava(la(cl))
+
+		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:1, Transfer:2, Items from input:14, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, 
+		LF recovery:2, LF test:3, Execution time = 15ms
+
+5. loro lo=lavano 
+
+	[[D loro]:1 [T [__:1 [v [lava [D lo(cl)]]]]]]
+
+	LF_Recovery: 	 
+	Agent of v(loro)
+	Patient of lava(lo(cl))
+
+		Garden Paths:0, Merge:6, Move Head:7, Move Phrase:2, A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:2, Transfer:4, Items from input:19, Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:3, 
+		LF recovery:2, LF test:7, Execution time = 31ms
+
+6. lo=lavano 
+
+	[T [v [lava [D lo(cl)]]]]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of lava(lo(cl))
+
+		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:1, Transfer:2, Items from input:14, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, 
+		LF recovery:2, LF test:3, Execution time = 15ms
+
+& Ungrammatical, clitic in wrong position -------------------------------------------------------
+
+7. *loro lavano=mi 
+8. *lavano=mi 
+9. *loro=mi lavano 
+10. *mi=loro lavano 
+11. *loro lavano mi 
+12. *loro mi=lavano Luisa 
+& Ungrammatical, S-V agreement error -------------------------------------------------------
+
+13. *io mi=lavano 
+& Two-verb transitive, direct object accusative clitics -------------------------------------------------------
+
+& hanno + lavato -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+14. loro mi=hanno lavato 
+
+	[[D loro]:1 [T [__:1 [ha [__:1 [<D mi(cl)>:2 [T/prt [__:1 [v [<__>:2 lava]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(loro)
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:8, Move Head:17, Move Phrase:14, A-Move Phrase:13, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:8, Transfer:15, Items from input:24, Feature Processing:0, Extraposition:0, Inflection:15, Failed Transfer:9, 
+		LF recovery:3, LF test:24, Execution time = 62ms
+
+15. loro la=hanno lavata 
+
+	[[D loro]:1 [T [__:1 [ha [__:1 [<D la(cl)>:2 [T/prt [__:1 [v [<__>:2 lava]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(loro)
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:8, Move Head:17, Move Phrase:14, A-Move Phrase:13, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:8, Transfer:15, Items from input:27, Feature Processing:0, Extraposition:0, Inflection:18, Failed Transfer:9, 
+		LF recovery:3, LF test:24, Execution time = 78ms
+
+16. mi=hanno lavato 
+
+	[T [ha [<D mi(cl)>:1 [T/prt [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(['T/prt.1sg'])
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:6, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:8, Items from input:19, Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:5, 
+		LF recovery:3, LF test:12, Execution time = 46ms
+
+17. la=hanno lavata 
+
+	[T [ha [<D la(cl)>:1 [T/prt [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(['T/prt.1sg'])
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:6, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:8, Items from input:22, Feature Processing:0, Extraposition:0, Inflection:15, Failed Transfer:5, 
+		LF recovery:3, LF test:12, Execution time = 46ms
+
+18. lo=hanno lavato 
+
+	[T [ha [<D lo(cl)>:1 [T/prt [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(lo(cl))
+	Agent of v(['T/prt.3sg'])
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:6, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:8, Items from input:19, Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:5, 
+		LF recovery:3, LF test:12, Execution time = 46ms
+
+& Ungrammatical -------------------------------------------------------
+
+19. *loro hanno mi=lavato 
+20. *loro hanno la=lavato 
+21. *hanno mi=lavato 
+22. *io sono=mi lavato 
+23. *loro hanno lo=lavato 
+24. *hanno lo=lavato 
+25. *hanno la=lavato 
+26. *loro hanno lavato=mi 
+27. *loro hanno lavato=la 
+28. *loro hanno lavato=lo 
+29. *mi=io sono lavato 
+30. *io=mi sono lavato 
+31. *loro=mi hanno lavato 
+32. *la=io sono lavato 
+33. *io=la sono lavato 
+34. *loro=la hanno lavato 
+35. *lo=io sono lavato 
+36. *io=lo sono lavato 
+37. *loro=lo hanno lavato 
+38. *mi=loro hanno lavato 
+39. *io sono=la lavata 
+40. *io sono=lo lavato 
+& devono + lavare -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+41. loro mi=devono lavare 
+
+	[[D loro]:1 [T [__:1 [deva [<D mi(cl)>:2 [are [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(loro)
+	Agent of lava(mi(cl))
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:19, Move Phrase:6, A-Move Phrase:5, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:8, Transfer:16, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:9, 
+		LF recovery:3, LF test:27, Execution time = 62ms
+
+42. loro devono lavare=mi 
+
+	[[D loro]:1 [T [__:1 [deva [<D mi(cl)>:2 [are [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(loro)
+	Agent of lava(mi(cl))
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:9, Move Phrase:4, A-Move Phrase:3, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:7, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:3, 
+		LF recovery:3, LF test:14, Execution time = 31ms
+
+43. loro la=devono lavare 
+
+	[[D loro]:1 [T [__:1 [deva [<D la(cl)>:2 [are [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(loro)
+	Agent of lava(la(cl))
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:19, Move Phrase:6, A-Move Phrase:5, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:8, Transfer:16, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:9, 
+		LF recovery:3, LF test:27, Execution time = 62ms
+
+44. loro devono lavare=la 
+
+	[[D loro]:1 [T [__:1 [deva [<D la(cl)>:2 [are [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(loro)
+	Agent of lava(la(cl))
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:9, Move Phrase:4, A-Move Phrase:3, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:7, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:3, 
+		LF recovery:3, LF test:14, Execution time = 31ms
+
+45. loro lo=devono lavare 
+
+	[[D loro]:1 [T [__:1 [deva [<D lo(cl)>:2 [are [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(loro)
+	Agent of lava(lo(cl))
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:19, Move Phrase:6, A-Move Phrase:5, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:8, Transfer:16, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:9, 
+		LF recovery:3, LF test:27, Execution time = 62ms
+
+46. loro devono lavare=lo 
+
+	[[D loro]:1 [T [__:1 [deva [<D lo(cl)>:2 [are [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(loro)
+	Agent of lava(lo(cl))
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:9, Move Phrase:4, A-Move Phrase:3, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:7, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:3, 
+		LF recovery:3, LF test:14, Execution time = 46ms
+
+47. mi=devono lavare 
+
+	[T [deva [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:9, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:5, 
+		LF recovery:3, LF test:15, Execution time = 46ms
+
+48. devono lavare=mi 
+
+	[T [deva [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:4, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:2, 
+		LF recovery:3, LF test:7, Execution time = 31ms
+
+49. la=devono lavare 
+
+	[T [deva [<D la(cl)>:1 [are [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(la(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:9, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:5, 
+		LF recovery:3, LF test:15, Execution time = 31ms
+
+50. devono lavare=la 
+
+	[T [deva [<D la(cl)>:1 [are [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(la(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:4, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:2, 
+		LF recovery:3, LF test:7, Execution time = 31ms
+
+51. lo=devono lavare 
+
+	[T [deva [<D lo(cl)>:1 [are [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(lo(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:9, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:5, 
+		LF recovery:3, LF test:15, Execution time = 46ms
+
+52. devono lavare=lo 
+
+	[T [deva [<D lo(cl)>:1 [are [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(lo(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:4, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:2, 
+		LF recovery:3, LF test:7, Execution time = 31ms
+
+& Ungrammatical -------------------------------------------------------
+
+53. *loro devono mi=lavare 
+54. *loro devono la=lavare 
+55. *loro devono lo=lavare 
+56. *loro=la devono lavare 
+57. *loro=lo devono lavare 
+58. *loro=mi devono lavare 
+59. *devono mi=lavare loro 
+60. *devono la=lavare loro 
+61. *devono lo=lavare loro 
+62. *devono lavare loro=la 
+63. *devono lavare loro=lo 
+64. *devono lavare loro=mi 
+& stanno + lavando -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+65. loro mi=stanno lavando 
+
+	[[D loro]:1 [T [__:1 [sta [<D mi(cl)>:2 [PRG [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of sta(loro)
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:19, Move Phrase:6, A-Move Phrase:5, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:8, Transfer:16, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:9, 
+		LF recovery:3, LF test:27, Execution time = 62ms
+
+66. mi=stanno lavando 
+
+	[T [sta [<D mi(cl)>:1 [PRG [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of sta(['T.3pl'])
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:9, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:5, 
+		LF recovery:3, LF test:15, Execution time = 46ms
+
+67. la=stanno lavando 
+
+	[T [sta [<D la(cl)>:1 [PRG [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of sta(['T.3pl'])
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:9, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:5, 
+		LF recovery:3, LF test:15, Execution time = 46ms
+
+68. lo=stanno lavando 
+
+	[T [sta [<D lo(cl)>:1 [PRG [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(lo(cl))
+	Agent of sta(['T.3pl'])
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:9, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:5, 
+		LF recovery:3, LF test:15, Execution time = 46ms
+
+69. loro stanno lavando=mi 
+
+	[[D loro]:1 [T [__:1 [sta [<D mi(cl)>:2 [PRG [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of sta(loro)
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:9, Move Phrase:4, A-Move Phrase:3, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:7, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:3, 
+		LF recovery:3, LF test:14, Execution time = 46ms
+
+70. stanno lavando=mi 
+
+	[T [sta [<D mi(cl)>:1 [PRG [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of sta(['T.3pl'])
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:4, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:2, 
+		LF recovery:3, LF test:7, Execution time = 31ms
+
+71. stanno lavando=la 
+
+	[T [sta [<D la(cl)>:1 [PRG [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of sta(['T.3pl'])
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:4, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:2, 
+		LF recovery:3, LF test:7, Execution time = 15ms
+
+72. stanno lavando=lo 
+
+	[T [sta [<D lo(cl)>:1 [PRG [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(lo(cl))
+	Agent of sta(['T.3pl'])
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:4, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:2, 
+		LF recovery:3, LF test:7, Execution time = 15ms
+
+& Ungrammatical -------------------------------------------------------
+
+73. *loro stanno mi=lavando 
+74. *stanno mi=lavando 
+75. *stanno la=lavando 
+76. *stanno lo=lavando 
+77. *loro=mi stanno lavando 
+78. *loro=la stanno lavando 
+79. *loro=lo stanno lavando 
+& Three-verb constructions (Aux + T/par + ARE/inf) -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+80. loro mi=hanno voluto lavare 
+
+	[[D loro]:1 [T [__:1 [ha [__:1 [<D mi(cl)>:2 [T/prt [__:1 [v [volu [are [v [<__>:2 lava]]]]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(loro)
+	Agent of volu(loro)
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:11, Move Head:25, Move Phrase:18, A-Move Phrase:17, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:13, Transfer:18, Items from input:26, Feature Processing:1, Extraposition:0, Inflection:14, Failed Transfer:15, 
+		LF recovery:5, LF test:30, Execution time = 93ms
+
+81. loro hanno voluto lavare=mi 
+
+	[[D loro]:1 [T [__:1 [ha [__:1 [T/prt [__:1 [v [volu [<D mi(cl)>:2 [are [v [<__>:2 lava]]]]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(loro)
+	Agent of volu(loro)
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:11, Move Head:17, Move Phrase:11, A-Move Phrase:10, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:9, Transfer:10, Items from input:26, Feature Processing:1, Extraposition:0, Inflection:14, Failed Transfer:9, 
+		LF recovery:5, LF test:20, Execution time = 78ms
+
+82. mi=hanno voluto lavare 
+
+	[T [ha [<D mi(cl)>:1 [T/prt [v [volu [are [v [<__>:1 lava]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(['T/prt.1sg'])
+	Agent of volu(['T/prt.1sg'])
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:9, Move Head:14, Move Phrase:2, A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:7, Transfer:10, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:9, 
+		LF recovery:5, LF test:16, Execution time = 62ms
+
+83. hanno voluto lavare=mi 
+
+	[T [ha [T/prt [v [volu [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of T/prt(['T.3pl'])
+	Agent of ha(['T.3pl'])
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+	Agent of volu(['T.3pl'])
+
+		Garden Paths:0, Merge:9, Move Head:10, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:5, Transfer:6, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:6, 
+		LF recovery:6, LF test:11, Execution time = 46ms
+
+& Ungrammatical -------------------------------------------------------
+
+84. *loro hanno mi=voluto lavare 
+85. *loro hanno voluto mi=lavare 
+86. *loro=mi hanno voluto lavare 
+87. *mi=loro hanno voluto lavere 
+88. *hanno mi=voluto lavare 
+89. *hanno voluto mi=lavare 
+& CL-V agreement in clitic constructions -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+90. loro mi=hanno lavato 
+
+	[[D loro]:1 [T [__:1 [ha [__:1 [<D mi(cl)>:2 [T/prt [__:1 [v [<__>:2 lava]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(loro)
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:8, Move Head:17, Move Phrase:14, A-Move Phrase:13, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:8, Transfer:15, Items from input:24, Feature Processing:0, Extraposition:0, Inflection:15, Failed Transfer:9, 
+		LF recovery:3, LF test:24, Execution time = 62ms
+
+& Ungrammatical -------------------------------------------------------
+
+91. *loro la=hanno lavato 
+92. *loro mi=hanno lavata 
+93. *loro lo=hanno lavata 
+94. *la=hanno lavato loro 
+95. *mi=hanno lavata loro 
+96. *lo=hanno lavata loro 
+& Indirect clitic arguments -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+97. loro gli=lavano Luisa 
+
+	a. [[D loro]:1 [T [__:1 [v [[lava [<P [D lo(cl)]>:2 [D Luisa]]] <__>:2]]]]]
+
+	LF_Recovery: 	 
+	Agent of v(loro)
+	Patient of P(lo(cl))
+	Patient of lava(Luisa)
+
+		Garden Paths:0, Merge:9, Move Head:27, Move Phrase:5, A-Move Phrase:4, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:6, Transfer:10, Items from input:27, Feature Processing:0, Extraposition:0, Inflection:17, Failed Transfer:3, 
+		LF recovery:3, LF test:16, Execution time = 78ms
+
+	b. [[D loro]:1 [T [__:1 [v [[lava [<P [D lo(cl)]>:2 [D Luisa]]] <__>:2]]]]]
+
+	LF_Recovery: 	 
+	Agent of v(loro)
+	Patient of P(lo(cl))
+	Patient of lava(Luisa)
+
+98. gli=lavano Luisa loro 
+
+	a. [[T [v [[lava [<P [D lo(cl)]>:1 [D Luisa]]] <__>:1]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of P(lo(cl))
+	Patient of lava(Luisa)
+
+		Garden Paths:2, Merge:13, Move Head:36, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
+		Agree:7, Transfer:26, Items from input:29, Feature Processing:0, Extraposition:5, Inflection:17, Failed Transfer:13, 
+		LF recovery:3, LF test:34, Execution time = 140ms
+
+	b. [[T [v [[lava [<P [D lo(cl)]>:1 [D Luisa]]] <__>:1]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of P(lo(cl))
+	Patient of lava(Luisa)
+
+99. gli=lavano Luisa 
+
+	a. [T [v [[lava [<P [D lo(cl)]>:1 [D Luisa]]] <__>:1]]]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of P(lo(cl))
+	Patient of lava(Luisa)
+
+		Garden Paths:0, Merge:7, Move Head:15, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:3, Transfer:6, Items from input:22, Feature Processing:0, Extraposition:0, Inflection:14, Failed Transfer:1, 
+		LF recovery:3, LF test:8, Execution time = 46ms
+
+	b. [T [v [[lava [<P [D lo(cl)]>:1 [D Luisa]]] <__>:1]]]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of P(lo(cl))
+	Patient of lava(Luisa)
+
+& Clitic clusters -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+100. loro gli=la=hanno lavata 
+
+	a. [[D loro]:1 [T [__:1 [ha [__:1 [<D la(cl)>:2 [<P [D lo(cl)]>:3 [T/prt [__:1 [v [[<__>:2 lava] <__>:3]]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(loro)
+	Patient of P(lo(cl))
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:11, Move Head:32, Move Phrase:17, A-Move Phrase:15, A-bar Move Phrase:0, Move Adjunct:2, 
+		Agree:11, Transfer:24, Items from input:38, Feature Processing:0, Extraposition:0, Inflection:26, Failed Transfer:12, 
+		LF recovery:4, LF test:32, Execution time = 125ms
+
+	b. [[D loro]:1 [T [__:1 [ha [__:1 [<D la(cl)>:2 [<P [D lo(cl)]>:3 [T/prt [__:1 [v [[<__>:2 lava] <__>:3]]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(loro)
+	Patient of P(lo(cl))
+	Patient of ha(agent of T-event)
+
+101. gli=la=hanno lavata loro 
+
+	a. [[T [ha [<D la(cl)>:1 [<P [D lo(cl)]>:2 [T/prt [v [[<__>:1 lava] <__>:2]]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(['T/prt.1sg'])
+	Patient of P(lo(cl))
+	Patient of ha(agent of T-event)
+
+		Garden Paths:1, Merge:13, Move Head:34, Move Phrase:8, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:8, 
+		Agree:12, Transfer:30, Items from input:39, Feature Processing:0, Extraposition:3, Inflection:26, Failed Transfer:17, 
+		LF recovery:4, LF test:33, Execution time = 156ms
+
+	b. [[T [ha [<D la(cl)>:1 [<P [D lo(cl)]>:2 [T/prt [v [[<__>:1 lava] <__>:2]]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(['T/prt.1sg'])
+	Patient of P(lo(cl))
+	Patient of ha(agent of T-event)
+
+102. gli=la=hanno lavata 
+
+	a. [T [ha [<D la(cl)>:1 [<P [D lo(cl)]>:2 [T/prt [v [[<__>:1 lava] <__>:2]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(['T/prt.1sg'])
+	Patient of P(lo(cl))
+	Patient of ha(agent of T-event)
+
+		Garden Paths:0, Merge:9, Move Head:23, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
+		Agree:6, Transfer:18, Items from input:33, Feature Processing:0, Extraposition:2, Inflection:23, Failed Transfer:11, 
+		LF recovery:4, LF test:19, Execution time = 93ms
+
+	b. [T [ha [<D la(cl)>:1 [<P [D lo(cl)]>:2 [T/prt [v [[<__>:1 lava] <__>:2]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(['T/prt.1sg'])
+	Patient of P(lo(cl))
+	Patient of ha(agent of T-event)
+
+& Ungrammatical -------------------------------------------------------
+
+103. *loro la=gli=hanno lavata 
+104. *la=gli=hanno lavata 
+105. *loro hanno gli=la=lavata 
+106. *hanno gli=la=lavata 
+& Restructuring -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+107. loro sembrano lavare=mi 
+
+	[[D loro]:1 [T [__:1 [sembra [<D mi(cl)>:2 [are [v [<__>:2 lava]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(loro)
+
+		Garden Paths:0, Merge:8, Move Head:8, Move Phrase:3, A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:3, Transfer:6, Items from input:21, Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:5, 
+		LF recovery:2, LF test:12, Execution time = 46ms
+
+108. Giuseppe spinge Luisa a lavare=lo 
+
+	[[[D Giuseppe]:1 [T [__:1 [v [spinge [D Luisa]]]]]] <a [<D lo(cl)>:2 [are [v [<__>:2 lava]]]]>]
+
+	LF_Recovery: 	 
+	Agent of lava(lo(cl))
+	Agent of v(Giuseppe)
+	Agent of v(agent of T-event)
+	Patient of spinge(Luisa)
+
+		Garden Paths:4, Merge:30, Move Head:60, Move Phrase:10, A-Move Phrase:7, A-bar Move Phrase:0, Move Adjunct:3, 
+		Agree:18, Transfer:53, Items from input:62, Feature Processing:5, Extraposition:9, Inflection:35, Failed Transfer:30, 
+		LF recovery:4, LF test:65, Execution time = 281ms
+
+109. sembrano lavare=mi loro 
+
+	[[T [sembra [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, 
+		Agree:13, Transfer:21, Items from input:23, Feature Processing:7, Extraposition:2, Inflection:12, Failed Transfer:7, 
+		LF recovery:2, LF test:26, Execution time = 93ms
+
+110. sembrano lavare=mi 
+
+	[T [sembra [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:0, Merge:6, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:4, Items from input:16, Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:2, 
+		LF recovery:2, LF test:7, Execution time = 31ms
+
+111. spinge Luisa a lavare=lo 
+
+	[[T [v [spinge [D Luisa]]]] <a [<D lo(cl)>:1 [are [v [<__>:1 lava]]]]>]
+
+	LF_Recovery: 	 
+	Agent of lava(lo(cl))
+	Agent of v(['T.3sg'])
+	Agent of v(agent of T-event)
+	Patient of spinge(Luisa)
+
+		Garden Paths:2, Merge:19, Move Head:34, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
+		Agree:10, Transfer:29, Items from input:40, Feature Processing:3, Extraposition:5, Inflection:22, Failed Transfer:13, 
+		LF recovery:4, LF test:34, Execution time = 140ms
+
+& Ungrammatical -------------------------------------------------------
+
+112. *loro mi=sembrano lavare 
+113. *mi=sembrano lavare 
+114. *io lo=detesto lavare 
+115. *lo=detesto lavare 
+116. *Giuseppe lo=spinge Luisa a lavare 
+117. *mi=sembrano lavare loro 
+118. *lo=detesto lavare io 
+119. *lo=spinge Luisa a lavare Giuseppe 
+120. *io detesto lavare=lo 
+121. detesto lavare=lo 
+
+	[T [detest [<D lo(cl)>:1 [are [v [<__>:1 lava]]]]]]
+
+	LF_Recovery: 	 
+	Agent of detest(['T.1sg'])
+	Agent of lava(lo(cl))
+	v(generic)
+
+		Garden Paths:1, Merge:13, Move Head:11, Move Phrase:2, A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:4, Transfer:7, Items from input:33, Feature Processing:2, Extraposition:0, Inflection:18, Failed Transfer:6, 
+		LF recovery:3, LF test:13, Execution time = 46ms
+
+& Reflexive clitics -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+122. io mi=lavo 
+
+	[[D io]:1 [T [__:1 [v [lava [D mi(cl)]]]]]]
+
+	LF_Recovery: 	 
+	Agent of v(io)
+	Patient of lava(mi(cl))
+
+		Garden Paths:0, Merge:6, Move Head:7, Move Phrase:2, A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:2, Transfer:4, Items from input:20, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
+		LF recovery:2, LF test:7, Execution time = 31ms
+
+123. mi=lavo 
+
+	[T [v [lava [D mi(cl)]]]]
+
+	LF_Recovery: 	 
+	Agent of v(['T.1sg'])
+	Patient of lava(mi(cl))
+
+		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:1, Transfer:2, Items from input:14, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, 
+		LF recovery:2, LF test:3, Execution time = 15ms
+
+124. tu mi=lavi 
+
+	[[D tu]:1 [T [__:1 [v [lava [D mi(cl)]]]]]]
+
+	LF_Recovery: 	 
+	Agent of v(tu)
+	Patient of lava(mi(cl))
+
+		Garden Paths:0, Merge:6, Move Head:7, Move Phrase:2, A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:2, Transfer:4, Items from input:20, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
+		LF recovery:2, LF test:7, Execution time = 31ms
+
+125. mi=lavi 
+
+	[T [v [lava [D mi(cl)]]]]
+
+	LF_Recovery: 	 
+	Agent of v(['T.2sg'])
+	Patient of lava(mi(cl))
+
+		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:1, Transfer:2, Items from input:14, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, 
+		LF recovery:2, LF test:3, Execution time = 15ms
+
+126. mi=lavo io 
+
+	[[T [v [lava [D mi(cl)]]]] <D io>]
+
+	LF_Recovery: 	 
+	Agent of v(['T.1sg'])
+	Patient of lava(mi(cl))
+
+		Garden Paths:1, Merge:8, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:4, Transfer:10, Items from input:21, Feature Processing:0, Extraposition:2, Inflection:13, Failed Transfer:4, 
+		LF recovery:2, LF test:17, Execution time = 62ms
+
+127. mi=lavi tu 
+
+	[[T [v [lava [D mi(cl)]]]] <D tu>]
+
+	LF_Recovery: 	 
+	Agent of v(['T.2sg'])
+	Patient of lava(mi(cl))
+
+		Garden Paths:1, Merge:8, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:4, Transfer:10, Items from input:21, Feature Processing:0, Extraposition:2, Inflection:13, Failed Transfer:4, 
+		LF recovery:2, LF test:17, Execution time = 62ms
+
+& Ungrammatical -------------------------------------------------------
+
+& Clitics and word order -------------------------------------------------------
+
+& Postverbal subject constructions -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+& Transitive -------------------------------------------------------
+
+128. mi=lavano loro 
+
+	[[T [v [lava [D mi(cl)]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of lava(mi(cl))
+
+		Garden Paths:1, Merge:8, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:4, Transfer:10, Items from input:20, Feature Processing:0, Extraposition:2, Inflection:12, Failed Transfer:4, 
+		LF recovery:2, LF test:17, Execution time = 62ms
+
+129. la=lavano loro 
+
+	[[T [v [lava [D la(cl)]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of lava(la(cl))
+
+		Garden Paths:1, Merge:8, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:4, Transfer:10, Items from input:20, Feature Processing:0, Extraposition:2, Inflection:12, Failed Transfer:4, 
+		LF recovery:2, LF test:17, Execution time = 46ms
+
+130. lo=lavano loro 
+
+	[[T [v [lava [D lo(cl)]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of v(['T.3pl'])
+	Patient of lava(lo(cl))
+
+		Garden Paths:1, Merge:8, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, 
+		Agree:4, Transfer:10, Items from input:20, Feature Processing:0, Extraposition:2, Inflection:12, Failed Transfer:4, 
+		LF recovery:2, LF test:17, Execution time = 46ms
+
+& Serial verb constructions -------------------------------------------------------
+
+131. mi=hanno lavato loro 
+
+	[[T [ha [<D mi(cl)>:1 [T/prt [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(['T/prt.1sg'])
+	Patient of ha(agent of T-event)
+
+		Garden Paths:1, Merge:10, Move Head:20, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, 
+		Agree:10, Transfer:17, Items from input:25, Feature Processing:0, Extraposition:1, Inflection:15, Failed Transfer:10, 
+		LF recovery:3, LF test:25, Execution time = 93ms
+
+132. la=hanno lavata loro 
+
+	[[T [ha [<D la(cl)>:1 [T/prt [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(la(cl))
+	Agent of v(['T/prt.1sg'])
+	Patient of ha(agent of T-event)
+
+		Garden Paths:1, Merge:10, Move Head:20, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, 
+		Agree:10, Transfer:17, Items from input:28, Feature Processing:0, Extraposition:1, Inflection:18, Failed Transfer:10, 
+		LF recovery:3, LF test:25, Execution time = 93ms
+
+133. mi=devono lavare loro 
+
+	[[T [deva [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, 
+		Agree:11, Transfer:20, Items from input:23, Feature Processing:4, Extraposition:2, Inflection:12, Failed Transfer:10, 
+		LF recovery:3, LF test:31, Execution time = 93ms
+
+134. devono lavare=mi loro 
+
+	[[T [deva [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, 
+		Agree:12, Transfer:21, Items from input:23, Feature Processing:7, Extraposition:2, Inflection:12, Failed Transfer:7, 
+		LF recovery:3, LF test:26, Execution time = 109ms
+
+135. la=devono lavare loro 
+
+	[[T [deva [<D la(cl)>:1 [are [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(la(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, 
+		Agree:11, Transfer:20, Items from input:23, Feature Processing:4, Extraposition:2, Inflection:12, Failed Transfer:10, 
+		LF recovery:3, LF test:31, Execution time = 109ms
+
+136. devono lavare=la loro 
+
+	[[T [deva [<D la(cl)>:1 [are [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(la(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, 
+		Agree:12, Transfer:21, Items from input:23, Feature Processing:7, Extraposition:2, Inflection:12, Failed Transfer:7, 
+		LF recovery:3, LF test:26, Execution time = 93ms
+
+137. lo=devono lavare loro 
+
+	[[T [deva [<D lo(cl)>:1 [are [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(lo(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, 
+		Agree:11, Transfer:20, Items from input:23, Feature Processing:4, Extraposition:2, Inflection:12, Failed Transfer:10, 
+		LF recovery:3, LF test:31, Execution time = 93ms
+
+138. devono lavare=lo loro 
+
+	[[T [deva [<D lo(cl)>:1 [are [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of deva(['T.3pl'])
+	Agent of lava(lo(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, 
+		Agree:12, Transfer:21, Items from input:23, Feature Processing:7, Extraposition:2, Inflection:12, Failed Transfer:7, 
+		LF recovery:3, LF test:26, Execution time = 109ms
+
+139. mi=stanno lavando loro 
+
+	[[T [sta [<D mi(cl)>:1 [PRG [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of sta(['T.3pl'])
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, 
+		Agree:11, Transfer:20, Items from input:23, Feature Processing:4, Extraposition:2, Inflection:12, Failed Transfer:10, 
+		LF recovery:3, LF test:31, Execution time = 93ms
+
+140. stanno lavando=mi loro 
+
+	[[T [sta [<D mi(cl)>:1 [PRG [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of sta(['T.3pl'])
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, 
+		Agree:12, Transfer:21, Items from input:23, Feature Processing:7, Extraposition:2, Inflection:12, Failed Transfer:7, 
+		LF recovery:3, LF test:26, Execution time = 93ms
+
+& Three-verb construction -------------------------------------------------------
+
+141. mi=hanno voluto lavare loro 
+
+	[[T [ha [<D mi(cl)>:1 [T/prt [v [volu [are [v [<__>:1 lava]]]]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(['T/prt.1sg'])
+	Agent of volu(['T/prt.1sg'])
+	Patient of ha(agent of T-event)
+
+		Garden Paths:1, Merge:13, Move Head:35, Move Phrase:5, A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:4, 
+		Agree:18, Transfer:20, Items from input:27, Feature Processing:5, Extraposition:1, Inflection:14, Failed Transfer:15, 
+		LF recovery:5, LF test:30, Execution time = 125ms
+
+142. hanno voluto lavare=mi loro 
+
+	a. [T [ha [[T/prt [v [volu [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]]] [D loro]]]]
+
+	LF_Recovery: 	 
+	Agent of T/prt(loro)
+	Agent of lava(mi(cl))
+	Agent of v(loro)
+	Agent of volu(loro)
+	Patient of ha(loro)
+
+		Garden Paths:1, Merge:13, Move Head:39, Move Phrase:8, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:8, 
+		Agree:20, Transfer:22, Items from input:27, Feature Processing:8, Extraposition:0, Inflection:14, Failed Transfer:8, 
+		LF recovery:6, LF test:31, Execution time = 125ms
+
+	b. [[T [ha [T/prt [v [volu [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of T/prt(['T.3pl'])
+	Agent of ha(['T.3pl'])
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+	Agent of volu(['T.3pl'])
+
+& Reconstruction -------------------------------------------------------
+
+143. sembrano lavare=mi loro 
+
+	[[T [sembra [<D mi(cl)>:1 [are [v [<__>:1 lava]]]]]] <D loro>]
+
+	LF_Recovery: 	 
+	Agent of lava(mi(cl))
+	Agent of v(['T.3pl'])
+
+		Garden Paths:2, Merge:12, Move Head:24, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, 
+		Agree:13, Transfer:21, Items from input:23, Feature Processing:7, Extraposition:2, Inflection:12, Failed Transfer:7, 
+		LF recovery:2, LF test:26, Execution time = 93ms
+
+144. detesto lavare=lo io 
+
+	a. [T [v [detest [[D lo(cl)]:1 [are [__:1 [v [lava [D io]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of detest(['T.1sg'])
+	Agent of v(lo(cl))
+	Patient of lava(io)
+	v(generic)
+
+		Garden Paths:0, Merge:9, Move Head:15, Move Phrase:4, A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:2, 
+		Agree:6, Transfer:9, Items from input:23, Feature Processing:4, Extraposition:0, Inflection:13, Failed Transfer:4, 
+		LF recovery:4, LF test:12, Execution time = 46ms
+
+	b. [[T [detest [<D lo(cl)>:1 [are [v [<__>:1 lava]]]]]] <D io>]
+
+	LF_Recovery: 	 
+	Agent of detest(['T.1sg'])
+	Agent of lava(lo(cl))
+	v(generic)
+
+& Ungrammatical (clitic in wrong place) -------------------------------------------------------
+
+145. *hanno mi=lavato loro 
+146. *hanno la=lavato loro 
+147. *sono=mi lavato io 
+148. *hanno lo=lavato loro 
+149. *hanno lavato=mi loro 
+150. *hanno lavato=la loro 
+151. *hanno lavato=lo loro 
+152. *sono lavato mi=io 
+153. *sono lavato io=mi 
+154. *hanno lavato loro=mi 
+155. *sono lavato la=io 
+156. *sono lavato io=la 
+157. *hanno lavato loro=la 
+158. *sono lavato lo=io 
+159. *sono lavato io=lo 
+160. *hanno lavato loro=lo 
+161. *hanno lavato mi=loro 
+162. *sono=la lavata io 
+163. *sono=lo lavato io 
+164. *loro devono mi=lavare 
+165. *loro devono la=lavare 
+166. *loro devono lo=lavare 
+167. *loro=la devono lavare 
+168. *loro=lo devono lavare 
+169. *loro=mi devono lavare 
+170. *devono mi=lavare loro 
+171. *devono la=lavare loro 
+172. *devono lo=lavare loro 
+173. *devono lavare loro=la 
+174. *devono lavare loro=lo 
+175. *devono lavare loro=mi 
+176. *stanno lavando loro=mi 
+177. *stanno lavando loro=la 
+178. *stanno lavando loro=lo 
+179. *hanno mi=voluto lavare loro 
+180. *hanno voluto mi=lavare loro 
+181. *hanno voluto lavare loro=mi 
+182. *hanno voluto lavere mi=loro 
+183. *mi=sembrano lavare loro 
+184. *lo=detesto lavare io 
+185. *lo=spinge Luisa a lavare Giuseppe 
+& Subject in wrong position -------------------------------------------------------
+
+& Ungrammatical -------------------------------------------------------
+
+186. *mi=hanno loro lavato 
+187. *la=hanno loro lavata 
+188. *mi=devono loro lavare 
+189. *devono loro lavare=mi 
+190. *la=devono loro lavare 
+191. *devono loro lavare=la 
+192. *lo=devono loro lavare 
+193. *devono loro lavare=lo 

@@ -1,0 +1,3320 @@
+2020-07-04 20:01:47.177371
+Test sentences from file "language data working directory\study-4_b-LHM\LHM_corpus.txt".
+Logs into file "language data working directory\study-4_b-LHM\LHM_corpus_log.txt.
+Lexicon from file "language data working directory\study-4_b-LHM\lexicon.txt".
+& Group 0. Abstract tests -------------------------------------------------------
+
+1. a' b' c' d' 
+
+	a. [a [b [c d]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+	b. [a [[b c] d]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+	c. [[a [b c]] d]
+	Garden paths: 0 (Merge:8, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+	d. [[a b] [c d]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+	e. [[[a b] c] d]
+	Garden paths: 0 (Merge:8, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+2. a'' b' c' d' 
+
+	a. [[z [y [x b]]] [c d]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+	b. [[[z [y [x b]]] c] d]
+	Garden paths: 0 (Merge:9, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+	c. [z [y [x [b [c d]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+	d. [[z [y [x [b c]]]] d]
+	Garden paths: 0 (Merge:9, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+
+& Group 1. Baseline tests (all declarative clauses, all lexical items used in the tests) -------------------------------------------------------
+
+& Group 1.1 Grammatical, Finnish -------------------------------------------------------
+
+& Group 1.1.2. Intransitive, transitive, ditransitive declarative clauses -------------------------------------------------------
+
+3. Pekka istuu 
+
+	[<D Pekka>:1 [T/fin [<__>:1 istuu]]]
+	Garden paths: 0 (Merge:3, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of istuu(Pekka)
+
+4. Pekka ihailee Merjaa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 ihaile-]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+5. Pekka myi omaisuutensa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [v [myy [D omaisuuden]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 myy]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+6. Pekka istuu tassa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [istuu [ssa [D tama]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of istuu(Pekka)
+	Patient of ssa(tama)
+
+	b. [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 istuu]]]] <ssa [D tama]>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of istuu(Pekka)
+	Patient of ssa(tama)
+
+7. Pekka antoi avaimen Merjalle 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [antaa [<D avain>:2 <P(lle) [D Merja]>]]]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+	b. [[D Pekka]:1 [[T/fin [__:1 [v [<__>:2 [antaa [D avain]]]]]] <P(lle) [D Merja]>:2]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [antaa [D avain]]]]]]] <P(lle) [D Merja]>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+	d. [[[<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [<__>:3 antaa]]]]]] <D avain>:3] <P(lle) [D Merja]>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+& Group 1.1.3. Negative, declarative clauses -------------------------------------------------------
+
+8. Pekka ei ihaile Merjaa 
+
+	a. [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [[ei [__:1 [T [__:1 [v [<__>:2 ihaile-]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [<__>:2 ihaile-]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:11, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+9. Pekka ei myynyt omaisuuttaan 
+
+	a. [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[D Pekka]:1 [[ei [__:1 [T [__:1 [v [<__>:2 myy]]]]]] <D omaisuuden>:2]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [<__>:2 myy]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:11, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+& Group 1.1.4. AUX + past participle -------------------------------------------------------
+
+10. Pekka on' ihaillut Merjaa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [[T/fin [__:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+11. Pekka ei ollut ihaillut Merjaa 
+
+	a. [<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]]
+	Garden paths: 0 (Merge:22, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [ei [__:1 [[T/prt [__:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]] <D Merja>:2]]]]
+	Garden paths: 0 (Merge:22, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[D Pekka]:1 [[ei [__:1 [T/prt [__:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:22, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	d. [[<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:22, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+12. Pekka on' myynyt omaisuuttaan 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [myy [D omaisuuden]]]]]]]]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[D Pekka]:1 [[T/fin [__:1 [BE [T [v [<__>:2 myy]]]]]] <D omaisuuden>:2]]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [<__>:2 myy]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+& Group 1.1.5 want + A/inf -------------------------------------------------------
+
+13. Pekka haluaa ihailla Merjaa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [[T/fin [__:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+14. Pekka haluaa myyda omaisuuttaan 
+
+	[<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [myy [D omaisuuden]]]]]]]
+	Garden paths: 0 (Merge:17, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+
+& Group 1.1.6 modal + A/inf -------------------------------------------------------
+
+15. Pekan_gen taytyy ihailla Merjaa 
+
+	[[D Pekka]:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:21, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+16. Pekan_gen taytyy myyda omaisuuttaan 
+
+	[[D Pekka]:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:21, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of taytyy(['T/fin.3sg'])
+
+& Group 1.1.7 Neg + Modal + A/inf -------------------------------------------------------
+
+17. Pekan_gen ei taydy ihailla Merjaa 
+
+	[[D Pekka]:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]]
+	Garden paths: 0 (Merge:15, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/prt.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+18. Pekan_gen ei taydy myyda omaisuuttaan 
+
+	[[D Pekka]:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]]]
+	Garden paths: 0 (Merge:14, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of taytyy(['T/prt.3sg'])
+
+& Group 1.1.8 Neg + want + A/inf -------------------------------------------------------
+
+19. Pekka ei halua ihailla Merjaa 
+
+	a. [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+	Garden paths: 0 (Merge:22, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [ei [__:1 [[T [__:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]] <D Merja>:2]]]]
+	Garden paths: 0 (Merge:22, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[D Pekka]:1 [[ei [__:1 [T [__:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:22, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	d. [[<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:22, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+20. Pekka ei halua myyda omaisuuttaan 
+
+	[<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [myy [D omaisuuden]]]]]]]]]
+	Garden paths: 0 (Merge:20, A-bar/A Move:19, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+
+& Group 1.1.9 says + that -------------------------------------------------------
+
+21. Pekka sanoo etta haluaa ihailla Merjaa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:58, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of sano-(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [[T/fin [haluaa [A/inf [v [<__>:2 ihaile-]]]]] <D Merja>:2]]]]]]
+	Garden paths: 0 (Merge:58, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of v(Pekka)
+
+	c. [[D Pekka]:1 [[T/fin [__:1 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:58, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of v(Pekka)
+
+	d. [[<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:58, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of v(Pekka)
+
+22. Pekka sanoo etta haluaa myyda omaisuuttaan 
+
+	[<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [myy [D omaisuuden]]]]]]]]]]
+	Garden paths: 0 (Merge:53, A-bar/A Move:19, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+	Agent of sano-(Pekka)
+
+& Group 1.1.10 Infinitival with thematic GEN subject -------------------------------------------------------
+
+23. Pekka kaskee poikien ihailla Merjaa 
+
+	[<D Pekka>:1 [T/fin [<__>:1 [v* [kaske [[D poika]:2 [A/inf [__:2 [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:28, A-bar/A Move:33, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(poika)
+	Patient of ihaile-(Merja)
+	kaske(generic)
+	v*(generic)
+
+24. Pekka kaskee poikien myyda omaisuuttaan 
+
+	[<D Pekka>:1 [T/fin [<__>:1 [v* [kaske [[D poika]:2 [A/inf [__:2 [myy [D omaisuuden]]]]]]]]]]
+	Garden paths: 0 (Merge:26, A-bar/A Move:31, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(poika)
+	kaske(generic)
+	v*(generic)
+
+& Group 1.1.11 Adverb tests -------------------------------------------------------
+
+25. Pekka elaa ihailemalla Merjaa 
+
+	[<D Pekka>:1 [T/fin [<__>:1 [elaa [malla [v [ihaile- [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:19, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of elaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+26. Pekka elaa haluamalla ihailla Merjaa 
+
+	[<D Pekka>:1 [T/fin [<__>:1 [elaa [malla [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+	Garden paths: 0 (Merge:50, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of elaa(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+& Group 1.1.12 N + A/inf -------------------------------------------------------
+
+27. Pekka teki sopimuksen ihailla Merjaa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [v [teke [D [sopimus [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:28, A-bar/A Move:19, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(sopimus)
+	Agent of v(Pekka)
+	Agent of v(sopimus)
+	Patient of ihaile-(Merja)
+	Patient of teke(sopimus)
+
+	b. [[<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 teke]]]]] <D [sopimus [A/inf [v [ihaile- [D Merja]]]]]>:2]
+	Garden paths: 0 (Merge:28, A-bar/A Move:19, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(sopimus)
+	Agent of teke(sopimus)
+	Agent of v(Pekka)
+	Agent of v(sopimus)
+	Patient of ihaile-(Merja)
+
+28. Pekka teki sopimuksen antaa avaimen Merjalle 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [v [teke [[D [sopimus [A/inf [antaa [<__>:2 [D avain]]]]]] <P(lle) [D Merja]>:2]]]]]]
+	Garden paths: 0 (Merge:95, A-bar/A Move:52, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(sopimus)
+	Agent of P(lle)(sopimus)
+	Agent of antaa(sopimus)
+	Agent of v(Pekka)
+	Patient of teke(sopimus)
+
+	b. [<D Pekka>:1 [T/fin [<__>:1 [v [teke [D [sopimus [[A/inf [antaa [<__>:2 [D avain]]]] <P(lle) [D Merja]>:2]]]]]]]]
+	Garden paths: 0 (Merge:95, A-bar/A Move:52, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(sopimus)
+	Agent of P(lle)(sopimus)
+	Agent of antaa(sopimus)
+	Agent of v(Pekka)
+	Patient of teke(sopimus)
+
+	c. [[D Pekka]:1 [[T/fin [__:1 [v [teke [D [sopimus [A/inf [antaa [<__>:2 [D avain]]]]]]]]]] <P(lle) [D Merja]>:2]]
+	Garden paths: 0 (Merge:95, A-bar/A Move:52, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(sopimus)
+	Agent of P(lle)(sopimus)
+	Agent of antaa(sopimus)
+	Agent of v(Pekka)
+	Patient of teke(sopimus)
+
+	d. [[<D Pekka>:1 [T/fin [<__>:1 [v [teke [D [sopimus [A/inf [antaa [<__>:2 [D avain]]]]]]]]]]] <P(lle) [D Merja]>:2]
+	Garden paths: 0 (Merge:95, A-bar/A Move:52, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(sopimus)
+	Agent of P(lle)(sopimus)
+	Agent of antaa(sopimus)
+	Agent of v(Pekka)
+	Patient of teke(sopimus)
+
+	e. [[<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 teke]]]]] <D [sopimus [A/inf [antaa [[D avain] <P(lle) [D Merja]>]]]]>:2]
+	Garden paths: 0 (Merge:95, A-bar/A Move:52, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(sopimus)
+	Agent of P(lle)(sopimus)
+	Agent of antaa(sopimus)
+	Agent of teke(sopimus)
+	Agent of v(Pekka)
+
+29. sopimus ihailla Merjaa peruuntui 
+
+	[<D [sopimus [A/inf [v [ihaile- [D Merja]]]]]>:1 [T/fin [<__>:1 peruuntui]]]
+	Garden paths: 0 (Merge:14, A-bar/A Move:4, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(sopimus)
+	Agent of peruuntui(sopimus)
+	Agent of v(sopimus)
+	Patient of ihaile-(Merja)
+
+& Group 1.1.13 Noncanonical OVS order -------------------------------------------------------
+
+30. Merjaa ihailee Pekka 
+
+	a. [<D Merja>:1 [T/fin [<__>:2 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [T/fin [<__>:2 [v [<__>:1 ihaile-]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+31. Merjaa ei ihaile Pekka 
+
+	a. [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 ihaile-]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:11, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+32. Merjaa on' ihaillut Pekka 
+
+	a. [<D Merja>:1 [T/fin [<__>:2 [BE [T/prt [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [T/fin [<__>:2 [BE [T/prt [v [<__>:1 ihaile-]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+33. Merjaa ei ollut ihaillut Pekka 
+
+	a. [<D Merja>:1 [ei [<__>:2 [T/prt [<__>:2 [BE [T/prt [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]]
+	Garden paths: 0 (Merge:15, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [ei [<__>:2 [T/prt [<__>:2 [BE [T/prt [v [<__>:1 ihaile-]]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:15, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+34. Merjaa haluaa ihailla Pekka 
+
+	a. [<D Merja>:1 [T/fin [<__>:2 [haluaa [A/inf [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [T/fin [<__>:2 [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+35. Merjaa ei halua ihailla Pekka 
+
+	a. [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [haluaa [A/inf [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]]
+	Garden paths: 0 (Merge:15, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [ei [<__>:2 [T [<__>:2 [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:15, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+36. Merjaa kaskee poikien ihailla Pekka 
+
+	a. [<D Merja>:1 [T/fin [<__>:2 [v* [kaske [[D poika]:3 [A/inf [__:3 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]]]
+	Garden paths: 0 (Merge:28, A-bar/A Move:31, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(poika)
+	kaske(generic)
+	v*(generic)
+
+	b. [[<D Merja>:1 [T/fin [<__>:2 [v* [kaske [[D poika]:3 [A/inf [__:3 [v [<__>:1 ihaile-]]]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:28, A-bar/A Move:31, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(poika)
+	kaske(generic)
+	v*(generic)
+
+& Group 1.1.14 pro-drop sentences -------------------------------------------------------
+
+37. ihailen Merjaa 
+
+	[T/fin [v [ihaile- [D Merja]]]]
+	Garden paths: 0 (Merge:4, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(['T/fin.1sg'])
+	Patient of ihaile-(Merja)
+
+38. haluan ihailla Merjaa 
+
+	a. [T/fin [haluaa [A/inf [v [ihaile- [D Merja]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(['T/fin.1sg'])
+	Agent of v(['T/fin.1sg'])
+	Patient of ihaile-(Merja)
+
+	b. [[T/fin [haluaa [A/inf [v [<__>:1 ihaile-]]]]] <D Merja>:1]
+	Garden paths: 0 (Merge:8, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(['T/fin.1sg'])
+	Agent of ihaile-(Merja)
+	Agent of v(['T/fin.1sg'])
+
+& Group 1.1.15 with locative PP argument -------------------------------------------------------
+
+39. Pekka ihailee Merjaa Helsingissa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [ihaile- [<D Merja>:2 <ssa [D Helsinki]>]]]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(Merja)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [[T/fin [__:1 [<__>:2 [v [ihaile- [D Merja]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	c. [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [v [ihaile- [D Merja]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	d. [[[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [v [<__>:3 ihaile-]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+40. Pekka ei ihaile Merjaa Helsingissa 
+
+	a. [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [<__>:2 [ihaile- [<D Merja>:2 <ssa [D Helsinki]>]]]]]]]]]
+	Garden paths: 0 (Merge:38, A-bar/A Move:47, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ssa(Merja)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [ei [__:1 [[T [__:1 [v [<__>:2 [ihaile- [D Merja]]]]]] <ssa [D Helsinki]>:2]]]]
+	Garden paths: 0 (Merge:38, A-bar/A Move:47, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	c. [[<D Pekka>:1 [ei [<__>:2 [<__>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:38, A-bar/A Move:47, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	d. [[D Pekka]:1 [[ei [__:1 [<__>:2 [T [__:1 [v [ihaile- [D Merja]]]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:38, A-bar/A Move:47, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	e. [[[D Pekka]:1 [[ei [<__>:2 [__:1 [T [__:1 [v [<__>:3 ihaile-]]]]]]] <D Merja>:3]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:38, A-bar/A Move:47, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+
+	f. [[D Pekka]:1 [[[ei [__:1 [<__>:2 [T [__:1 [v [<__>:3 ihaile-]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:38, A-bar/A Move:47, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+
+	g. [[[<D Pekka>:1 [ei [<__>:2 [<__>:1 [T [<__>:1 [v [<__>:3 ihaile-]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:38, A-bar/A Move:47, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+
+41. Pekka on' ihaillut Merjaa Helsingissa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [<__>:2 [ihaile- [<D Merja>:2 <ssa [D Helsinki]>]]]]]]]]]
+	Garden paths: 0 (Merge:61, A-bar/A Move:38, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Merja)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [<D Pekka>:1 [T/fin [<__>:1 [BE [[T/prt [v [ihaile- [D Merja]]]] <ssa [D Helsinki]>]]]]]
+	Garden paths: 0 (Merge:61, A-bar/A Move:38, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	c. [[D Pekka]:1 [[T/fin [__:1 [<__>:2 [BE [T/prt [v [ihaile- [D Merja]]]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:61, A-bar/A Move:38, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	d. [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:61, A-bar/A Move:38, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	e. [[D Pekka]:1 [[[T/fin [__:1 [<__>:2 [BE [T/prt [v [<__>:3 ihaile-]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:61, A-bar/A Move:38, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	f. [[[D Pekka]:1 [[T/fin [<__>:2 [__:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]] <D Merja>:3]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:61, A-bar/A Move:38, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+	g. [[[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:61, A-bar/A Move:38, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+42. Pekka ei ollut ihaillut Merjaa Helsingissa 
+
+	a. [<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [<__>:2 [ihaile- [<D Merja>:2 <ssa [D Helsinki]>]]]]]]]]]]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Merja)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [BE [[T/prt [v [ihaile- [D Merja]]]] <ssa [D Helsinki]>]]]]]]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	c. [[D Pekka]:1 [ei [__:1 [[T/prt [__:1 [<__>:2 [BE [T/prt [v [ihaile- [D Merja]]]]]]]] <ssa [D Helsinki]>:2]]]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	d. [[D Pekka]:1 [[ei [__:1 [<__>:2 [T/prt [__:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	e. [[<D Pekka>:1 [ei [<__>:2 [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	f. [[D Pekka]:1 [ei [__:1 [[[T/prt [__:1 [<__>:2 [BE [T/prt [v [<__>:3 ihaile-]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]]]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	g. [[D Pekka]:1 [[ei [__:1 [<__>:2 [[T/prt [__:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]] <D Merja>:3]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+	h. [[[D Pekka]:1 [ei [<__>:2 [__:1 [[T/prt [__:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]] <D Merja>:3]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+	i. [[[D Pekka]:1 [[ei [<__>:2 [__:1 [T/prt [__:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]]] <D Merja>:3]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+	j. [[D Pekka]:1 [[[ei [__:1 [<__>:2 [T/prt [__:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+	k. [[[<D Pekka>:1 [ei [<__>:2 [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:79, A-bar/A Move:87, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+43. Pekka haluaa ihailla Merjaa Helsingissa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [v [<__>:2 [ihaile- [<D Merja>:2 <ssa [D Helsinki]>]]]]]]]]]
+	Garden paths: 0 (Merge:61, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(Merja)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [<D Pekka>:1 [T/fin [<__>:1 [haluaa [[A/inf [v [ihaile- [D Merja]]]] <ssa [D Helsinki]>]]]]]
+	Garden paths: 0 (Merge:61, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	c. [[D Pekka]:1 [[T/fin [__:1 [<__>:2 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:61, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	d. [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:61, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	e. [[D Pekka]:1 [[[T/fin [__:1 [<__>:2 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:61, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	f. [[[D Pekka]:1 [[T/fin [<__>:2 [__:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]] <D Merja>:3]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:61, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+	g. [[[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:61, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+44. Pekan_gen taytyy ihailla Merjaa Helsingissa 
+
+	a. [[D Pekka]:1 [[T/fin [__:1 [<__>:2 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 2 (Merge:39, A-bar/A Move:65, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(['T/fin.3sg'])
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[[D Pekka]:1 [T/fin [<__>:2 [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 2 (Merge:39, A-bar/A Move:65, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(['T/fin.3sg'])
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+45. Pekka ei halua ihailla Merjaa Helsingissa 
+
+	a. [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [<__>:2 [ihaile- [<D Merja>:2 <ssa [D Helsinki]>]]]]]]]]]]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(Merja)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [[A/inf [v [ihaile- [D Merja]]]] <ssa [D Helsinki]>]]]]]]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	c. [[D Pekka]:1 [ei [__:1 [[T [__:1 [<__>:2 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]] <ssa [D Helsinki]>:2]]]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	d. [[<D Pekka>:1 [ei [<__>:2 [<__>:1 [T [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	e. [[D Pekka]:1 [[ei [__:1 [<__>:2 [T [__:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	f. [[D Pekka]:1 [ei [__:1 [[[T [__:1 [<__>:2 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]]]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	g. [[[D Pekka]:1 [ei [<__>:2 [__:1 [[T [__:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]] <D Merja>:3]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+	h. [[D Pekka]:1 [[ei [__:1 [<__>:2 [[T [__:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]] <D Merja>:3]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+	i. [[[D Pekka]:1 [[ei [<__>:2 [__:1 [T [__:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]]] <D Merja>:3]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+	j. [[D Pekka]:1 [[[ei [__:1 [<__>:2 [T [__:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+	k. [[[<D Pekka>:1 [ei [<__>:2 [<__>:1 [T [<__>:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:79, A-bar/A Move:83, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(agent of T-event)
+	Agent of v(Pekka)
+
+46. Pekka sanoo etta haluaa ihailla Merjaa Helsingissa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [<__>:2 [ihaile- [<D Merja>:2 <ssa [D Helsinki]>]]]]]]]]]]]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of sano-(Pekka)
+	Agent of ssa(Merja)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [T/fin [haluaa [[A/inf [v [ihaile- [D Merja]]]] <ssa [D Helsinki]>]]]]]]]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(['T/fin.3sg'])
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	c. [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [[T/fin [haluaa [A/inf [v [ihaile- [D Merja]]]]]] <ssa [D Helsinki]>]]]]]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	d. [<D Pekka>:1 [T/fin [<__>:1 [sano- [[ettÃ¤ [T/fin [haluaa [A/inf [v [ihaile- [D Merja]]]]]]] <ssa [D Helsinki]>]]]]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	e. [[D Pekka]:1 [[T/fin [__:1 [<__>:2 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	f. [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of sano-(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	g. [<D Pekka>:1 [T/fin [<__>:1 [sano- [[[ettÃ¤ [T/fin [haluaa [A/inf [v [<__>:2 ihaile-]]]]]] <D Merja>:2] <ssa [D Helsinki]>]]]]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	h. [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [[[T/fin [haluaa [A/inf [v [<__>:2 ihaile-]]]]] <D Merja>:2] <ssa [D Helsinki]>]]]]]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	i. [<D Pekka>:1 [T/fin [<__>:1 [sano- [[ettÃ¤ [[T/fin [haluaa [A/inf [v [<__>:2 ihaile-]]]]] <D Merja>:2]] <ssa [D Helsinki]>]]]]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	j. [[D Pekka]:1 [[T/fin [__:1 [<__>:2 [sano- [ettÃ¤ [[T/fin [haluaa [A/inf [v [<__>:3 ihaile-]]]]] <D Merja>:3]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	k. [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [sano- [ettÃ¤ [[T/fin [haluaa [A/inf [v [<__>:3 ihaile-]]]]] <D Merja>:3]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+	l. [[D Pekka]:1 [[[T/fin [__:1 [<__>:2 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	m. [[[D Pekka]:1 [[T/fin [<__>:2 [__:1 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+	n. [[[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [sano- [ettÃ¤ [T/fin [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]]]]] <D Merja>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:229, A-bar/A Move:133, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(Pekka)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of sano-(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+47. Pekka kaskee poikien ihailla Merjaa Helsingissa 
+
+	a. [<D Pekka>:1 [T/fin [<__>:1 [v* [kaske [[D poika]:2 [A/inf [__:2 [v [<__>:3 [ihaile- [<D Merja>:3 <ssa [D Helsinki]>]]]]]]]]]]]]
+	Garden paths: 0 (Merge:97, A-bar/A Move:90, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(Merja)
+	Agent of v(poika)
+	Patient of ihaile-(Merja)
+	kaske(generic)
+	v*(generic)
+
+	b. [<D Pekka>:1 [T/fin [<__>:1 [v* [kaske [[[D poika]:2 [A/inf [__:2 [v [ihaile- [D Merja]]]]]] <ssa [D Helsinki]>]]]]]]
+	Garden paths: 0 (Merge:97, A-bar/A Move:90, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(poika)
+	Patient of ihaile-(Merja)
+	kaske(generic)
+	ssa(generic)
+	v*(generic)
+
+	c. [[D Pekka]:1 [[T/fin [__:1 [<__>:2 [v* [kaske [[D poika]:3 [A/inf [__:3 [v [ihaile- [D Merja]]]]]]]]]]] <ssa [D Helsinki]>:2]]
+	Garden paths: 0 (Merge:97, A-bar/A Move:90, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(poika)
+	Patient of ihaile-(Merja)
+	__(generic)
+	kaske(generic)
+	v*(generic)
+
+	d. [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [v* [kaske [[D poika]:3 [A/inf [__:3 [v [ihaile- [D Merja]]]]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:97, A-bar/A Move:90, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(poika)
+	Patient of ihaile-(Merja)
+	__(generic)
+	kaske(generic)
+	v*(generic)
+
+& Gropu 1.2 Grammatical, English -------------------------------------------------------
+
+& Group 1.2.1 Transitive, declarative -------------------------------------------------------
+
+48. John sleeps 
+
+	[[D John]:1 [T/fin [__:1 sleep]]]
+	Garden paths: 0 (Merge:3, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of sleep(John)
+
+49. John admires Mary 
+
+	[[D John]:1 [T/fin [__:1 [v [admire [D Mary]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:4, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(John)
+	Patient of admire(Mary)
+
+50. John does admire' Mary 
+
+	[[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]
+	Garden paths: 0 (Merge:10, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(John)
+	Patient of admire(Mary)
+
+51. John gave the key to Mary 
+
+	a. [[D John]:1 [T/fin [__:1 [v [give [[the key] <to [D Mary]>]]]]]]
+	Garden paths: 0 (Merge:59, A-bar/A Move:25, Agree:0)
+	LF_Recovery: 	 
+	Agent of give(John)
+	Agent of v(John)
+	Patient of to(Mary)
+
+	b. [[D John]:1 [T/fin [__:1 [v [give [the [key <to [D Mary]>]]]]]]]
+	Garden paths: 0 (Merge:59, A-bar/A Move:25, Agree:0)
+	LF_Recovery: 	 
+	Agent of give(John)
+	Agent of v(John)
+	Patient of to(Mary)
+
+	c. [[[D John]:1 [T/fin [__:1 [v [<__>:2 [give [the key]]]]]]] <to [D Mary]>:2]
+	Garden paths: 0 (Merge:59, A-bar/A Move:25, Agree:0)
+	LF_Recovery: 	 
+	Agent of give(John)
+	Agent of v(John)
+	Patient of to(Mary)
+
+	d. [[D John]:1 [[T/fin [__:1 [v [<__>:2 [give [the key]]]]]] <to [D Mary]>:2]]
+	Garden paths: 0 (Merge:59, A-bar/A Move:25, Agree:0)
+	LF_Recovery: 	 
+	Agent of give(John)
+	Agent of v(John)
+	Patient of to(Mary)
+
+& Group 1.2.2 want + to-infinitival -------------------------------------------------------
+
+52. John wants to_inf admire' Mary 
+
+	[[D John]:1 [T/fin [__:1 [v [want [TO/inf [v [admire [D Mary]]]]]]]]]
+	Garden paths: 0 (Merge:24, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of TO/inf(John)
+	Agent of v(John)
+	Agent of want(John)
+	Patient of admire(Mary)
+
+& Group 2. Local T-to-C movement -------------------------------------------------------
+
+& Group 2.1 Grammatical, Finnish -------------------------------------------------------
+
+& Group 2.1.1 Local T-to-C movement -------------------------------------------------------
+
+53. istuu#foc Pekka 
+
+	[C/fin [<D Pekka>:1 [T/fin [<__>:1 istuu]]]]
+	Garden paths: 0 (Merge:4, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of istuu(Pekka)
+
+54. istuu#C/op Pekka 
+
+	[C/fin [<D Pekka>:1 [T/fin [<__>:1 istuu]]]]
+	Garden paths: 0 (Merge:4, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of istuu(Pekka)
+
+55. ihailee#foc Pekka Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 ihaile-]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+56. ihailee#C/op Pekka Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 ihaile-]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+57. myi#foc Pekka omaisuutensa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [myy [D omaisuuden]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 myy]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+58. myi#C/op Pekka omaisuutensa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [myy [D omaisuuden]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 myy]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+59. antoi#foc Pekka avaimen Merjalle 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [antaa [<D avain>:2 <P(lle) [D Merja]>]]]]]]]]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [antaa [D avain]]]]]]]] <P(lle) [D Merja]>:2]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+	c. [[[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [<__>:3 antaa]]]]]]] <D avain>:3] <P(lle) [D Merja]>:2]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+60. antoi#C/op Pekka avaimen Merjalle 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [antaa [<D avain>:2 <P(lle) [D Merja]>]]]]]]]]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [antaa [D avain]]]]]]]] <P(lle) [D Merja]>:2]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+	c. [[[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [<__>:3 antaa]]]]]]] <D avain>:3] <P(lle) [D Merja]>:2]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+
+& Group 2.1.2 Neg-to-C movement -------------------------------------------------------
+
+61. ei#C/op Pekka ihaile Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+62. ei#C/op Pekan_gen taydy ihailla Merjaa 
+
+	[C/fin [[D Pekka]:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:39, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/prt.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+63. ei#C/op Pekka halua ihailla Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [C/fin [[D Pekka]:1 [ei [__:1 [[T [__:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]] <D Merja>:2]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+64. ei#C/op Pekka ollut ihaillut Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [C/fin [[D Pekka]:1 [ei [__:1 [[T/prt [__:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]] <D Merja>:2]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+65. ei#C/op Pekka myynyt omaisuuttaan 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [<__>:2 myy]]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+66. ei#C/op Pekan_gen taydy myyda omaisuuttaan 
+
+	[C/fin [[D Pekka]:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]]]]
+	Garden paths: 2 (Merge:15, A-bar/A Move:39, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of taytyy(['T/prt.3sg'])
+
+67. ei#C/op Pekka halua myyda omaisuuttaan 
+
+	[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [myy [D omaisuuden]]]]]]]]]]
+	Garden paths: 0 (Merge:21, A-bar/A Move:21, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+
+68. ei#C/op Pekka ollut myynyt omaisuuttaan 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [BE [T [v [myy [D omaisuuden]]]]]]]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [BE [T [v [<__>:2 myy]]]]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	c. [C/fin [[D Pekka]:1 [ei [__:1 [[T/prt [__:1 [BE [T [v [<__>:2 myy]]]]]] <D omaisuuden>:2]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+& Group 2.1.3 Modal-to-C -------------------------------------------------------
+
+69. taytyy#C/op Pekan_gen ihailla Merjaa 
+
+	[C/fin [[D Pekka]:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+70. taytyy#C/op Pekan_gen myyda omaisuuttaan 
+
+	[C/fin [[D Pekka]:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of taytyy(['T/fin.3sg'])
+
+& Group 2.1.4 Want-to-C -------------------------------------------------------
+
+71. haluaa#C/op Pekka ihailla Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+72. haluaa#C/op Pekka myyda omaisuuttaan 
+
+	[C/fin [<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [myy [D omaisuuden]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+
+& Group 2.1.5 Aux-to-C -------------------------------------------------------
+
+73. on'#C/op Pekka ihaillut Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+74. on'#C/op Pekka myynyt omaisuuttaan 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [myy [D omaisuuden]]]]]]]]]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [<__>:2 myy]]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+& Group 2.1.6 All constructions (2.1.1-2.1.5) with formal C-feature C/fin -------------------------------------------------------
+
+75. ihailee#C/fin Pekka Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [ihaile- [D Merja]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 ihaile-]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+76. ei#C/fin Pekka ihaile Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+77. taytyy#C/fin Pekan_gen ihailla Merjaa 
+
+	[C/fin [[D Pekka]:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+78. haluaa#C/fin Pekka ihailla Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+79. on'#C/fin Pekka ihaillut Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+80. myi#C/fin Pekka omaisuuttaan 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [myy [D omaisuuden]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 myy]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+81. ei#C/fin Pekka myynyt omaisuuttaan 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [<__>:2 myy]]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+82. taytyy#C/fin Pekan_gen myyda omaisuuttaan 
+
+	[C/fin [[D Pekka]:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of taytyy(['T/fin.3sg'])
+
+83. haluaa#C/fin Pekka myyda omaisuuttaan 
+
+	[C/fin [<D Pekka>:1 [T/fin [<__>:1 [haluaa [A/inf [myy [D omaisuuden]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+
+84. on'#C/fin Pekka myynyt omaisuuttaan 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [myy [D omaisuuden]]]]]]]]]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [<__>:2 myy]]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+& Group 2.1.7 All constructions (2.1.1-2.1.5) with grammatical noncanonical OVS order -------------------------------------------------------
+
+85. ihailee#C/op Merjaa Pekka 
+
+	a. [[C/fin [<D Merja>:1 [T/fin [<__>:2 [v [<__>:1 ihaile-]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [C/fin [<D Merja>:1 [T/fin [<__>:2 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+86. ei#C/op Merjaa ihaile Pekka 
+
+	a. [C/fin [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+87. ei#C/op Merjaa halua ihailla Pekka 
+
+	a. [C/fin [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [haluaa [A/inf [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]]]
+	Garden paths: 1 (Merge:16, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]]]] <D Pekka>:2]
+	Garden paths: 1 (Merge:16, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+88. ei#C/op Merjaa ollut ihaillut Pekka 
+
+	a. [C/fin [<D Merja>:1 [ei [<__>:2 [T/prt [<__>:2 [BE [T/prt [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Merja>:1 [ei [<__>:2 [T/prt [<__>:2 [BE [T/prt [v [<__>:1 ihaile-]]]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:16, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+89. haluaa#C/op Merjaa ihailla Pekka 
+
+	a. [C/fin [<D Merja>:1 [T/fin [<__>:2 [haluaa [A/inf [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Merja>:1 [T/fin [<__>:2 [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+90. on'#C/op Merjaa ihaillut Pekka 
+
+	a. [C/fin [<D Merja>:1 [T/fin [<__>:2 [BE [T/prt [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Merja>:1 [T/fin [<__>:2 [BE [T/prt [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+91. ei#C/fin omaisuuttaan myynyt Pekka 
+
+	a. [C/fin [<D omaisuuden>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 [myy <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+
+	b. [[C/fin [<D omaisuuden>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 myy]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+
+92. haluaa#C/fin omaisuuttaan myyda Pekka 
+
+	[C/fin [<D omaisuuden>:1 [T/fin [<__>:2 [haluaa [A/inf [myy [<__>:1 <D Pekka>:2]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(omaisuuden)
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+
+93. on'#C/fin Pekka myynyt omaisuuttaan 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [myy [D omaisuuden]]]]]]]]]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [<__>:2 myy]]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:20, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+& Group 2.1.8 With intervening locative PP argument (excl. postverbal locative) -------------------------------------------------------
+
+94. ihailee#C/op Helsingissa Pekka Merjaa 
+
+	a. [C/fin [<ssa [D Helsinki]>:1 [T/fin [<__>:2 [<__>:1 [v [ihaile- [<D Pekka>:2 [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:14, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(<ssa [D Helsinki]>)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+	T/fin(generic)
+
+	b. [[C/fin [<ssa [D Helsinki]>:1 [T/fin [<__>:2 [<__>:1 [v [<__>:3 [ihaile- <D Pekka>:2]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:14, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(<ssa [D Helsinki]>)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	T/fin(generic)
+
+95. ei#C/op Helsingissa Pekka ihaile Merjaa 
+
+	[C/fin [<ssa [D Helsinki]>:1 [ei [[D Pekka]:2 [T [__:2 [v [<__>:1 [ihaile- [D Merja]]]]]]]]]]
+	Garden paths: 3 (Merge:35, A-bar/A Move:29, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ei(<ssa [D Helsinki]>)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+	ei(generic)
+
+96. ei#C/op Helsingissa Pekan_gen taydy ihailla Merjaa 
+
+	[C/fin [<ssa [D Helsinki]>:1 [ei [[D Pekka]:2 [T/prt [__:2 [<__>:1 [taytyy [__:2 [A/inf [__:2 [v [ihaile- [D Merja]]]]]]]]]]]]]]
+	Garden paths: 4 (Merge:36, A-bar/A Move:84, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(['T/prt.3sg'])
+	Agent of taytyy(['T/prt.3sg'])
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+	Patient of ihaile-(Merja)
+	ei(generic)
+
+97. ei#C/op Helsingissa Pekka halua ihailla Merjaa 
+
+	a. [C/fin [<ssa [D Helsinki]>:1 [ei [<D Pekka>:2 [T [<__>:2 [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]]
+	Garden paths: 7 (Merge:74, A-bar/A Move:54, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+	Patient of ihaile-(Merja)
+	ei(generic)
+
+	b. [[C/fin [<ssa [D Helsinki]>:1 [ei [<D Pekka>:2 [T [<__>:2 [<__>:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]]]]] <D Merja>:3]
+	Garden paths: 7 (Merge:74, A-bar/A Move:54, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+	ei(generic)
+
+98. ei#C/op Helsingissa Pekka ollut ihaillut Merjaa 
+
+	a. [C/fin [<ssa [D Helsinki]>:1 [ei [<D Pekka>:2 [T/prt [<__>:2 [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]]]]
+	Garden paths: 7 (Merge:74, A-bar/A Move:58, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+	Patient of ihaile-(Merja)
+	ei(generic)
+
+	b. [[C/fin [<ssa [D Helsinki]>:1 [ei [<D Pekka>:2 [T/prt [<__>:2 [<__>:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]]]]] <D Merja>:3]
+	Garden paths: 7 (Merge:74, A-bar/A Move:58, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+	ei(generic)
+
+99. taytyy#C/op Helsingissa Pekan_gen ihailla Merjaa 
+
+	[C/fin [<ssa [D Helsinki]>:1 [T/fin [<__>:1 [taytyy [[D Pekka]:2 [A/inf [__:2 [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:19, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(<ssa [D Helsinki]>)
+	Agent of ssa(['T/fin.3sg', 'T/fin.generic'])
+	Agent of taytyy(['T/fin.3sg', 'T/fin.generic'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+	T/fin(generic)
+
+100. haluaa#C/op Helsingissa Pekka ihailla Merjaa 
+
+	a. [C/fin [<ssa [D Helsinki]>:1 [T/fin [<__>:2 [<__>:1 [haluaa [<D Pekka>:2 [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(<ssa [D Helsinki]>)
+	Agent of haluaa(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+	T/fin(generic)
+
+	b. [[C/fin [<ssa [D Helsinki]>:1 [T/fin [<__>:2 [<__>:1 [haluaa [<D Pekka>:2 [A/inf [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:18, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(<ssa [D Helsinki]>)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	T/fin(generic)
+
+101. on'#C/op Helsingissa Pekka ihaillut Merjaa 
+
+	a. [C/fin [<ssa [D Helsinki]>:1 [T/fin [<__>:2 [<__>:1 [BE [<D Pekka>:2 [T/prt [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:18, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(<ssa [D Helsinki]>)
+	Agent of ssa(Pekka)
+	Agent of v(['T/prt.3sg'])
+	Patient of ihaile-(Merja)
+	T/fin(generic)
+
+	b. [[C/fin [<ssa [D Helsinki]>:1 [T/fin [<__>:2 [<__>:1 [BE [<D Pekka>:2 [T/prt [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:18, A-bar/A Move:18, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/fin(<ssa [D Helsinki]>)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(['T/prt.3sg'])
+	T/fin(generic)
+
+102. ei#C/op Pekka Helsingissa ihaile Merjaa 
+
+	[C/fin [[D Pekka]:1 [ei [__:1 [<ssa [D Helsinki]>:2 [T [__:1 [v [<__>:2 [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:29, A-bar/A Move:40, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+103. ei#C/op Pekan_gen#top Helsingissa taydy ihailla Merjaa 
+
+	[C/fin [[D Pekka]:1 [ei [[ssa [D Helsinki]] [T/prt [taytyy [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:37, A-bar/A Move:35, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt([ssa [D Helsinki]])
+	Agent of ssa(ei)
+	Agent of taytyy(['T/prt.3sg', 'T/prt.generic'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+	T/prt(generic)
+	__ with feature OP:TOP was bound to an operator.
+
+104. ei#C/op Pekka Helsingissa halua ihailla Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [ei [<ssa [D Helsinki]>:2 [T [<__>:2 [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]]
+	Garden paths: 0 (Merge:64, A-bar/A Move:71, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(<ssa [D Helsinki]>)
+	Agent of haluaa(Pekka)
+	Agent of ssa(['T.3sg', 'T.generic'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+	T(generic)
+
+	b. [C/fin [[D Pekka]:1 [ei [__:1 [<ssa [D Helsinki]>:2 [[T [__:1 [<__>:2 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]] <D Merja>:3]]]]]]
+	Garden paths: 0 (Merge:64, A-bar/A Move:71, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	c. [C/fin [[D Pekka]:1 [ei [__:1 [[<ssa [D Helsinki]>:2 [T [__:1 [<__>:2 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]] <D Merja>:3]]]]]
+	Garden paths: 0 (Merge:64, A-bar/A Move:71, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	d. [[C/fin [<D Pekka>:1 [ei [<ssa [D Helsinki]>:2 [T [<__>:2 [<__>:1 [haluaa [A/inf [v [<__>:3 ihaile-]]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:64, A-bar/A Move:71, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(<ssa [D Helsinki]>)
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T.3sg', 'T.generic'])
+	Agent of v(Pekka)
+	T(generic)
+
+105. ei#C/op Pekka Helsingissa ollut ihaillut Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [ei [<ssa [D Helsinki]>:2 [T/prt [<__>:2 [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]]]]
+	Garden paths: 0 (Merge:64, A-bar/A Move:75, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(<ssa [D Helsinki]>)
+	Agent of T/prt(Pekka)
+	Agent of ssa(['T/prt.3sg', 'T/prt.generic'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+	T/prt(generic)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<ssa [D Helsinki]>:2 [T/prt [<__>:2 [<__>:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:64, A-bar/A Move:75, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(<ssa [D Helsinki]>)
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T/prt.3sg', 'T/prt.generic'])
+	Agent of v(Pekka)
+	T/prt(generic)
+
+	c. [C/fin [[D Pekka]:1 [ei [__:1 [<ssa [D Helsinki]>:2 [[T/prt [__:1 [<__>:2 [BE [T/prt [v [<__>:3 ihaile-]]]]]]] <D Merja>:3]]]]]]
+	Garden paths: 0 (Merge:64, A-bar/A Move:75, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	d. [C/fin [[D Pekka]:1 [ei [__:1 [[<ssa [D Helsinki]>:2 [T/prt [__:1 [<__>:2 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]] <D Merja>:3]]]]]
+	Garden paths: 0 (Merge:64, A-bar/A Move:75, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+106. taytyy#C/op Pekan_gen#top Helsingissa ihailla Merjaa 
+
+	[C/fin [[D Pekka]:1 [T/fin [taytyy [[ssa [D Helsinki]] [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]
+	Garden paths: 0 (Merge:30, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(['T/fin.3sg'])
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+	__ with feature OP:TOP was bound to an operator.
+
+107. haluaa#C/op Pekka Helsingissa ihailla Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [haluaa [<ssa [D Helsinki]>:2 [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:44, A-bar/A Move:26, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [haluaa [<ssa [D Helsinki]>:2 [A/inf [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:44, A-bar/A Move:26, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+108. on'#C/op Pekka Helsingissa ihaillut Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [[ssa [D Helsinki]] [T/prt [v [ihaile- [D Merja]]]]]]]]]]
+	Garden paths: 0 (Merge:44, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [[[ssa [D Helsinki]] [T/prt [v [<__>:2 ihaile-]]]] <D Merja>:2]]]]]]
+	Garden paths: 0 (Merge:44, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	c. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [[ssa [D Helsinki]] [T/prt [v [<__>:2 ihaile-]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:44, A-bar/A Move:23, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+& Group 2.1.9 with pro-drop -------------------------------------------------------
+
+109. ihailen#C/op Merjaa 
+
+	[C/fin [T/fin [v [ihaile- [D Merja]]]]]
+	Garden paths: 0 (Merge:5, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(['T/fin.1sg'])
+	Patient of ihaile-(Merja)
+
+110. haluan#C/op ihailla Merjaa 
+
+	a. [C/fin [T/fin [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(['T/fin.1sg'])
+	Agent of v(['T/fin.1sg'])
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [T/fin [haluaa [A/inf [v [<__>:1 ihaile-]]]]]] <D Merja>:1]
+	Garden paths: 0 (Merge:9, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(['T/fin.1sg'])
+	Agent of ihaile-(Merja)
+	Agent of v(['T/fin.1sg'])
+
+& Group 2.2 Ungrammatical, Finnish -------------------------------------------------------
+
+& Group 2.2.1 V-initial versions -------------------------------------------------------
+
+111. * ihailee Pekka Merjaa 
+
+112. * ei Pekka ihaile Merjaa 
+
+113. * taytyy Pekan_genn ihailla Merjaa 
+
+114. * haluaa Pekka ihailla Merjaa 
+
+115. * ihailee Pekka ihailee Merjaa 
+
+116. * on' Pekka ihaillut Merjaa 
+
+117. * myi Pekka omaisuutensa 
+
+& Group 2.3 Grammatical, English -------------------------------------------------------
+
+118. does#C/fin John admire' Mary 
+
+	[C/fin [[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(John)
+	Patient of admire(Mary)
+
+& Group 2.4 Ungrammatical, English -------------------------------------------------------
+
+119. * admire'#C/fin John does Mary 
+
+& Group 3. Basic LHM -------------------------------------------------------
+
+& Group 3.1 Grammatical -------------------------------------------------------
+
+& Group 3.1.1 V-over-Neg -------------------------------------------------------
+
+120. ihaile#C/op Pekka ei Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+121. myi#C/op Pekka omaisuutensa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [myy [D omaisuuden]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 myy]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+& Group 3.1.2 V-over-Aux(BE) -------------------------------------------------------
+
+122. ihaillut#C/op Pekka on' Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+123. myynyt#C/op Pekka on' omaisuutensa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [myy [D omaisuuden]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [<__>:2 myy]]]]]]]] <D omaisuuden>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+& Group 3.1.3 V-over-want -------------------------------------------------------
+
+124. * ihailla#C/op Pekka haluaa Merjaa 
+
+125. * myyda#C/op Pekka haluaa omaisuutensa 
+
+& Group 3.1.4 V-over-must -------------------------------------------------------
+
+126. ihailla#C/op Pekan_gen taytyy Merjaa 
+
+	[C/fin [[D Pekka]:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+127. myyda#C/op Pekan_gen taytyy omaisuutensa 
+
+	[C/fin [[D Pekka]:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:21, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of taytyy(['T/fin.3sg'])
+
+& Group 3.1.5 With noncanonical OVS orders -------------------------------------------------------
+
+128. ihaile#C/op Merjaa ei Pekka 
+
+	a. [C/fin [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+129. ihaillut#C/op Merjaa on' Pekka 
+
+	a. [C/fin [<D Merja>:1 [T/fin [<__>:2 [BE [T/prt [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Merja>:1 [T/fin [<__>:2 [BE [T/prt [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+130. * ihailla#C/op Merjaa haluaa Pekka 
+
+131. myynyt#C/op omaisuuttaan ei Pekka 
+
+	a. [C/fin [<D omaisuuden>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 [myy <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+
+	b. [[C/fin [<D omaisuuden>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 myy]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:12, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+
+132. myynyt#C/op omaisuuttaan on' Pekka 
+
+	a. [C/fin [<D omaisuuden>:1 [T/fin [<__>:2 [BE [T [v [<__>:1 [myy <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of T/fin(omaisuuden)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D omaisuuden>:1 [T/fin [<__>:2 [BE [T [v [<__>:1 myy]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of T/fin(omaisuuden)
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+
+133. * myyda#C/op omaisuuttaan haluaa Pekka 
+
+& Group 3.1.6 With pro-drop subject -------------------------------------------------------
+
+134. * ihailla#C/op haluan Merjaa 
+
+& Group 3.1.7 With locative PP -------------------------------------------------------
+
+135. ihaile#C/op Helsingissa Pekka ei Merjaa 
+
+	a. [C/fin [<ssa [D Helsinki]>:1 [<D Pekka>:2 [ei [<__>:2 [<__>:1 [T [<__>:2 [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:17, A-bar/A Move:19, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<ssa [D Helsinki]>:1 [<D Pekka>:2 [ei [<__>:2 [<__>:1 [T [<__>:2 [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:17, A-bar/A Move:19, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+
+136. ihaillut#C/op Helsingissa Pekka on' Merjaa 
+
+	a. [C/fin [<ssa [D Helsinki]>:1 [<D Pekka>:2 [T/fin [<__>:2 [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:18, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<ssa [D Helsinki]>:1 [<D Pekka>:2 [T/fin [<__>:2 [<__>:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:18, A-bar/A Move:18, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+137. * ihailla#C/op Helsingissa Pekka haluaa Merjaa 
+
+138. ihailla#C/op Helsingissa Pekan_gen taytyy Merjaa 
+
+	[C/fin [<ssa [D Helsinki]>:1 [[D Pekka]:2 [T/fin [__:2 [<__>:1 [taytyy [__:2 [A/inf [__:2 [v [ihaile- [D Merja]]]]]]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(['T/fin.3sg'])
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+139. ihaile#C/op Pekka Helsingissa ei Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [<ssa [D Helsinki]>:2 [ei [<__>:2 [<__>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:17, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [<ssa [D Helsinki]>:2 [ei [<__>:2 [<__>:1 [T [<__>:1 [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:17, A-bar/A Move:16, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(ei)
+	Agent of ihaile-(Merja)
+	Agent of ssa(ei)
+	Agent of v(Pekka)
+
+140. ihaillut#C/op Pekka Helsingissa on' Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [<ssa [D Helsinki]>:2 [T/fin [<__>:2 [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:18, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [<ssa [D Helsinki]>:2 [T/fin [<__>:2 [<__>:1 [BE [T/prt [v [<__>:3 ihaile-]]]]]]]]]] <D Merja>:3]
+	Garden paths: 0 (Merge:18, A-bar/A Move:18, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+141. * ihailla#C/op Pekka Helsingissa haluaa Merjaa 
+
+142. ihailla#C/op Pekan_gen Helsingissa taytyy Merjaa 
+
+	[C/fin [[D Pekka]:1 [<ssa [D Helsinki]>:2 [T/fin [__:1 [<__>:2 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of ssa(['T/fin.3sg'])
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+143. myi#C/op Pekka omaisuutensa Helsingissa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [myy [<D omaisuuden>:2 <ssa [D Helsinki]>]]]]]]]]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [v [myy [D omaisuuden]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+	c. [[[C/fin [<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [v [<__>:3 myy]]]]]]] <D omaisuuden>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:24, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+144. myynyt#C/op Pekka on' omaisuutensa Helsingissa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [BE [T [v [<__>:2 [myy [<D omaisuuden>:2 <ssa [D Helsinki]>]]]]]]]]]]
+	Garden paths: 0 (Merge:40, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of ssa(Pekka)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [BE [T [v [myy [D omaisuuden]]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:40, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+	c. [[[C/fin [<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [BE [T [v [<__>:3 myy]]]]]]]]] <D omaisuuden>:3] <ssa [D Helsinki]>:2]
+	Garden paths: 0 (Merge:40, A-bar/A Move:24, Agree:0)
+	LF_Recovery: 	 
+	Agent of T(Pekka)
+	Agent of myy(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of v(Pekka)
+
+145. * myyda#C/op Pekka haluaa omaisuutensa Helsingissa 
+
+146. myyda#C/op Pekan_gen taytyy omaisuutensa Helsingissa 
+
+	[[C/fin [[D Pekka]:1 [T/fin [<__>:2 [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]]] <ssa [D Helsinki]>:2]
+	Garden paths: 1 (Merge:39, A-bar/A Move:62, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of ssa(['T/fin.3sg'])
+	Agent of taytyy(['T/fin.3sg'])
+
+& Group 3.2. Ungrammatical, Finnish -------------------------------------------------------
+
+& Group 3.2.1 LHM with formal C-feature and without any C-feature -------------------------------------------------------
+
+147. * ihaile#C/fin Pekka ei Merjaa 
+
+148. * ihaillut#C/fin Pekka on' Merjaa 
+
+149. * ihailla#C/fin Pekka haluaa Merjaa 
+
+150. * ihailla#C/fin Pekan_gen taytyy Merjaa 
+
+151. * ihallut#C/fin Pekka ei ollut Merjaa 
+
+152. * ihaile Pekka ei Merjaa 
+
+153. * ihaillut Pekka on' Merjaa 
+
+154. * ihailla Pekka haluaa Merjaa 
+
+155. * ihailla Pekan_gen taytyy Merjaa 
+
+156. * ihallut Pekka ei ollut Merjaa 
+
+157. * myynyt#C/fin Pekka ei omaisuuttaan 
+
+158. * myynyt#C/fin Pekka on omaisuuttaan 
+
+159. * myyda#C/fin Pekka haluaa omaisuuttaan 
+
+160. * myyda#C/fin Pekan_gen taytyy omaisuuttaan 
+
+161. * myynyt#C/fin Pekka ei ollut omaisuuttaan 
+
+162. * myynyt Pekka ei omaisuuttaan 
+
+163. * myynyt Pekka on omaisuuttaan 
+
+164. * myyda Pekka haluaa omaisuuttaan 
+
+165. * myyda Pekan_gen taytyy omaisuuttaan 
+
+166. * myynyt Pekka ei ollut omaisuuttaan 
+
+& Group 3.2.2 long head movement with infinitival subject (ungrammatical) -------------------------------------------------------
+
+167. * ihailla#C/op Pekka kaskee poikien Merjaa 
+
+168. * ihailla#C/fin Pekka kaskee poikien Merjaa 
+
+169. * ihailla Pekka kaskee poikien Merjaa 
+
+& Group 3.2.3 Long head movement with second auxiliary (only formal C-feature or no C-feature) -------------------------------------------------------
+
+170. * ollut#C/fin Pekka ei ihaillut Merjaa 
+
+171. * ollut Pekka ei ihaillut Merjaa 
+
+& Group 3.2.4 Aux + prtcpl + prtcpl with locality violation -------------------------------------------------------
+
+172. * ihaillut#C/op Pekka ei ollut Merjaa 
+
+& Group 3.3 Ungrammatical, English -------------------------------------------------------
+
+& Group 3.3.1 LHM in English -------------------------------------------------------
+
+173. * admire' John wants to_inf Mary 
+
+174. * to_inf admire' John wants Mary 
+
+175. * to_inf John wants admire' Mary 
+
+176. * admire'#C/fin John wants to_inf Mary 
+
+177. * to_inf#C/fin admire' John wants Mary 
+
+178. * to_inf#C/fin John wants admire' Mary 
+
+& Group 4. X + Y + V constructions -------------------------------------------------------
+
+& Group 4.1 Grammatical -------------------------------------------------------
+
+& Group 4.1.1 Neg + Modal + V, with Modal moving moving (grammaticality status unclear) -------------------------------------------------------
+
+179. taydy#C/op Pekan_gen ei ihailla Merjaa 
+
+	[C/fin [[D Pekka]:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:25, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/prt.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+180. taydy#C/op Pekan_gen ei myyda omaisuuttaan 
+
+	[C/fin [[D Pekka]:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]]]]
+	Garden paths: 0 (Merge:15, A-bar/A Move:25, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of taytyy(['T/prt.3sg'])
+
+& Group 4.1.2 Neg + Modal + V with V moving -------------------------------------------------------
+
+181. ihailla#C/op Pekan_gen ei taydy Merjaa 
+
+	[C/fin [[D Pekka]:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:29, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/prt.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+182. myyda#C/op Pekan_gen ei taydy omaisuuttaan 
+
+	[C/fin [[D Pekka]:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [myy [D omaisuuden]]]]]]]]]]]]
+	Garden paths: 0 (Merge:15, A-bar/A Move:29, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of taytyy(['T/prt.3sg'])
+
+& Group 4.1.3 Neg + want + V, with want moving -------------------------------------------------------
+
+183. halua#C/op Pekka ei ihailla Merjaa 
+
+	a. [C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+184. * ihailla#C/op Pekka ei halua Merjaa 
+
+185. halua#C/op Pekka ei myyda omaisuuttaan 
+
+	[C/fin [<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [myy [D omaisuuden]]]]]]]]]]
+	Garden paths: 0 (Merge:21, A-bar/A Move:18, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+
+186. * myyda#C/op Pekka ei halua omaisuuttaan 
+
+& Group 4.1.4 With noncanonical OVS orders -------------------------------------------------------
+
+187. halua#C/op Merjaa ei ihailla Pekka 
+
+	a. [C/fin [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [haluaa [A/inf [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[C/fin [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:16, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+188. * ihailla#C/op Merjaa ei halua Pekka 
+
+189. halua#C/op omaisuuttaan ei myyda Pekka 
+
+	[C/fin [<D omaisuuden>:1 [ei [<__>:2 [T [<__>:2 [haluaa [A/inf [myy [<__>:1 <D Pekka>:2]]]]]]]]]]
+	Garden paths: 0 (Merge:15, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of myy(Pekka)
+	Patient of ei(agent of T-event)
+
+190. * myyda#C/op omaisuuttaan ei halua Pekka 
+
+& Group 4.2 Ungrammatical -------------------------------------------------------
+
+& Group 4.2.1 Neg + Modal + V with only formal C-feature (ungrammatical) -------------------------------------------------------
+
+191. * taydy#C/fin Pekan_gen ei ihailla Merjaa 
+
+192. * taydy Pekan_gen ei ihailla Merjaa 
+
+193. * taydy#C/fin Pekan_gen ei myyda omaisuuttaan 
+
+194. * taydy Pekan_gen ei myyda omaisuuttaan 
+
+& Group 4.2.2 Neg + want + V with no C-feature -------------------------------------------------------
+
+195. * ihailla#C/fin Pekan_gen ei taydy Merjaa 
+
+196. * ihailla Pekan_gen ei taydy Merjaa 
+
+197. * halua Pekka ei myyda omaisuuttaan 
+
+198. * myyda Pekka ei halua omaisuuttaan 
+
+& Group 5. Super LHM ("says that __") -------------------------------------------------------
+
+& Group 5.1 Grammatical -------------------------------------------------------
+
+& Group 5.1.1 that + want + A/inf -------------------------------------------------------
+
+199. * ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa 
+
+200. lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
+
+	[C/fin [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [[D Pekka]:2 [T/fin [__:2 [taytyy [__:2 [A/inf [__:2 lahtea]]]]]]]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of lahtea(Pekka)
+	Agent of sano-(Pekka)
+	Agent of taytyy(['T/fin.3sg'])
+
+201. * myyda#C/op Pekka sanoo etta Pekka haluaa omaisuutensa 
+
+202. myyda#C/op Pekka sanoo etta Pekan_gen taytyy omaisuutensa 
+
+	a. [C/fin [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [[D Pekka]:2 [T/fin [__:2 [taytyy [__:2 [A/inf [__:2 [myy [D omaisuuden]]]]]]]]]]]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:60, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of sano-(Pekka)
+	Agent of taytyy(['T/fin.3sg'])
+
+	b. [[C/fin [<D Pekka>:1 [T/fin [<__>:1 [sano- [ettÃ¤ [[D Pekka]:2 [T/fin [<__>:3 [__:2 [taytyy [<__>:3 [__:2 [A/inf [<__>:3 [__:2 myy]]]]]]]]]]]]]]]] <D omaisuuden>:3]
+	Garden paths: 0 (Merge:23, A-bar/A Move:60, Agree:0)
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of sano-(Pekka)
+	Agent of taytyy(['T/fin.3sg'])
+
+& Group 5.2 Ungrammatical, Finnish -------------------------------------------------------
+
+& Group 5.2.1 Moving of the embedded finite verb (ungrammatical) -------------------------------------------------------
+
+203. * haluaa#C/op Pekka sanoo etta ihailla Merjaa 
+
+204. * ihailee#C/op Pekka sanoo etta Merjaa 
+
+205. * taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa 
+
+206. * haluaa#C/op Pekka sanoo etta myyda omaisuutensa 
+
+207. * myi#C/op Pekka sanoo etta omaisuutensa 
+
+208. * taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+
+& Group 5.2.2 Formal C-features or no C-features = V-initial constructions (ungrammatical) -------------------------------------------------------
+
+209. * ihailla#C/fin Pekka sanoo etta haluaa Merjaa 
+
+210. * lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy 
+
+211. * ihailla Pekka sanoo etta haluaa Merjaa 
+
+212. * lahtea Pekka sanoo etta Pekan_genan taytyy 
+
+213. * haluaa#C/fin Pekka sanoo etta myyda omaisuutensa 
+
+214. * myi#C/fin Pekka sanoo etta omaisuutensa 
+
+215. * taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+
+216. * haluaa Pekka sanoo etta myyda omaisuutensa 
+
+217. * myi Pekka sanoo etta omaisuutensa 
+
+218. * taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+
+& Group 6. VP-fronting -------------------------------------------------------
+
+& Group 6.1. Grammatical VP-fronting in Finnish -------------------------------------------------------
+
+219. ihailla Merjaa Pekka haluaa 
+
+	[[A/inf [v [ihaile- [D Merja]]]] [<D Pekka>:1 [T/fin [<__>:1 haluaa]]]]
+	Garden paths: 1 (Merge:12, A-bar/A Move:3, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+
+220. ihailla Merjaa#C/op Pekka haluaa 
+
+	[[A/inf [v [ihaile- [D Merja]]]] [<D Pekka>:1 [T/fin [<__>:1 haluaa]]]]
+	Garden paths: 1 (Merge:12, A-bar/A Move:3, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+
+221. Merjaa#C/op ihailla Pekka haluaa 
+
+	[[<D Merja>:1 [A/inf [v [<__>:1 ihaile-]]]] [<D Pekka>:2 [T/fin [<__>:2 haluaa]]]]
+	Garden paths: 1 (Merge:12, A-bar/A Move:7, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(agent of T-event)
+
+222. tassa#C/op ihailla Merjaa Pekka haluaa 
+
+	[<ssa [D tama]>:1 [[A/inf [v [ihaile- [D Merja]]]] [<D Pekka>:2 [T/fin [<__>:2 [<__>:1 haluaa]]]]]]
+	Garden paths: 1 (Merge:29, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+	Patient of ssa(tama)
+
+223. ihailla Merjaa haluan 
+
+	[[A/inf [v [ihaile- [D Merja]]]] [T/fin haluaa]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(['T/fin.1sg'])
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+
+224. ihailla Merjaa Pekka haluaa tassa 
+
+	a. [[A/inf [v [ihaile- [D Merja]]]] [<D Pekka>:1 [T/fin [<__>:1 [haluaa [ssa [D tama]]]]]]]
+	Garden paths: 4 (Merge:33, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+	Patient of ssa(tama)
+
+	b. [[A/inf [v [ihaile- [D Merja]]]] [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 haluaa]]]] <ssa [D tama]>:2]]
+	Garden paths: 4 (Merge:33, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+	Patient of ssa(tama)
+
+	c. [[[A/inf [v [ihaile- [D Merja]]]] [<D Pekka>:1 [T/fin [<__>:2 [<__>:1 haluaa]]]]] <ssa [D tama]>:2]
+	Garden paths: 4 (Merge:33, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+	Patient of ssa(tama)
+
+225. Merjaa#C/op ihailla Pekka haluaa tassa 
+
+	a. [[<D Merja>:1 [A/inf [v [<__>:1 ihaile-]]]] [<D Pekka>:2 [T/fin [<__>:2 [haluaa [ssa [D tama]]]]]]]
+	Garden paths: 4 (Merge:33, A-bar/A Move:32, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(agent of T-event)
+	Patient of ssa(tama)
+
+	b. [[<D Merja>:1 [A/inf [v [<__>:1 ihaile-]]]] [[<D Pekka>:2 [T/fin [<__>:3 [<__>:2 haluaa]]]] <ssa [D tama]>:3]]
+	Garden paths: 4 (Merge:33, A-bar/A Move:32, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(agent of T-event)
+	Patient of ssa(tama)
+
+	c. [[[<D Merja>:1 [A/inf [v [<__>:1 ihaile-]]]] [<D Pekka>:2 [T/fin [<__>:3 [<__>:2 haluaa]]]]] <ssa [D tama]>:3]
+	Garden paths: 4 (Merge:33, A-bar/A Move:32, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(agent of T-event)
+	Patient of ssa(tama)
+
+226. ihailla Merjaa haluan tassa 
+
+	[[[A/inf [v [ihaile- [D Merja]]]] [T/fin [<__>:1 haluaa]]] <ssa [D tama]>:1]
+	Garden paths: 1 (Merge:23, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(['T/fin.1sg'])
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+	Patient of ssa(tama)
+
+227. ihailla Merjaa haluan 
+
+	[[A/inf [v [ihaile- [D Merja]]]] [T/fin haluaa]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(['T/fin.1sg'])
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+
+& Group 6.2 Ungrammatical VP-fronting in Finnish -------------------------------------------------------
+
+228. * ihailla#C/op Merjaa Pekka haluaa 
+
+& Group 7. Islands -------------------------------------------------------
+
+& Group 7.1. Right-adjunct CED -------------------------------------------------------
+
+229. * ihailemalla#C/op Pekka istuu Merjaa 
+
+& Group 7.2, Left branch CED -------------------------------------------------------
+
+230. * ihailla#C/op sopimus Merjaa istuu 
+
+& Group 7.3. Extraction from DP -------------------------------------------------------
+
+231. * ihailla#C/op Pekka teki sopimuksen Merjaa 
+
+& Group 8. Head movement inside infinitivals, all ungrammatical -------------------------------------------------------
+
+& Group 8.1 Inside DPs -------------------------------------------------------
+
+232. * Pekka teki ihailla sopimuksen Merjaa 
+
+233. * Pekka teki myyda sopimuksen omaisuutensa 
+
+& Group 8.2 Inside AdvPs -------------------------------------------------------
+
+234. * Pekka elaa ihailla haluamalla Merjaa 
+
+235. * Pekka elaa ihailla#C/op haluamalla Merjaa 
+
+& Group 9. Heads in wrong order, all ungrammatical (Manninen 2003 generalization) -------------------------------------------------------
+
+& Group 9.1 Neg + V -------------------------------------------------------
+
+236. * Pekka ihaile ei Merjaa 
+
+& Group 9.2 Neg + Aux + V -------------------------------------------------------
+
+237. * Pekka ollut ei ihaillut Merjaa 
+
+238. * Pekka ollut ihaillut ei Merjaa 
+
+239. * Pekka ei ihaillut ollut Merjaa 
+
+240. * Pekka ei ihaillut ei ollut Merjaa 
+
+241. * Pekka ihaillut ollut ei Merjaa 
+
+& Group 9.3 Neg + Modal + V -------------------------------------------------------
+
+242. * Pekan_gen taydy ei ihailla Merjaa 
+
+243. * Pekan_gen taydy ihailla ei Merjaa 
+
+244. * Pekan_gen ei ihailla taydy Merjaa 
+
+245. * Pekan_gen ihailla ei taydy Merjaa 
+
+246. * Pekan_gen ihailla taydy ei Merjaa 
+
+& Group 9.4 Neg + V + V + LHM, with wrong head order -------------------------------------------------------
+
+247. * taydy#C/op Pekan_gen ihailla ei Merjaa 
+
+248. * ihailla#C/op Pekan_gen taydy ei Merjaa 
+
+249. * halua#C/op Pekan_gen Pekka ihailla ei Merjaa 
+
+250. * ihailla#C/op Pekan_gen halua ei Merjaa 
+
+& Group 9.5 Head final constructions with two more more verbal elements -------------------------------------------------------
+
+251. * Pekka ihaile Merjaa ei 
+
+252. * Pekka ei ihaillut Merjaa ollut 
+
+253. * Pekan_gen ei ihailla Merjaa taydy 
+
+& Group 10. C-features on a wrong head -------------------------------------------------------
+
+& Group 10.1 Sentences from Group 1.1 -------------------------------------------------------
+
+& Group 10.1.1 C/op on the first in situ V (see group 11.1 for why there is C/fin) -------------------------------------------------------
+
+254. * C/fin Pekka ihailee#C/op Merjaa 
+
+255. * C/fin Pekka ei#C/op ihaile Merjaa 
+
+256. * C/fin Pekka on'#C/op ihaillut Merjaa 
+
+257. * C/fin Pekka ei#C/op ollut ihaillut Merjaa 
+
+258. * C/fin Pekka haluaa#C/op ihailla Merjaa 
+
+259. * C/fin Pekan_genn taytyy#C/op ihailla Merjaa 
+
+260. * C/fin Pekan_gen ei#C/op taydy ihailla Merjaa 
+
+261. * C/fin Pekka ei#C/op halua ihailla Merjaa 
+
+262. * C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa 
+
+263. * C/fin Pekka kaskee#C/op poikien ihailla Merjaa 
+
+264. * C/fin Pekka istuu#C/op ihailemalla Merjaa 
+
+265. * C/fin Pekka istuu#C/op haluamalla ihailla Merjaa 
+
+266. * C/fin Pekka teki#C/op sopimuksen ihailla Merjaa 
+
+& Group 10.1.2 C/op on the second in situ V -------------------------------------------------------
+
+267. * Pekka ei ihaile#C/op Merjaa 
+
+268. * Pekka on' ihaillut#C/op Merjaa 
+
+269. * Pekka ei ollut#C/op ihaillut Merjaa 
+
+270. * Pekka haluaa ihailla#C/op Merjaa 
+
+271. * Pekan_gen taytyy ihailla#C/op Merjaa 
+
+272. * Pekan_gen ei taydy#C/op ihailla Merjaa 
+
+273. * Pekka ei halua#C/op ihailla Merjaa 
+
+274. * Pekka kaskee poikien ihailla#C/op Merjaa 
+
+& Group 10.1.3 C/op on the third in situ V -------------------------------------------------------
+
+275. * Pekka ei ollut ihaillut#C/op Merjaa 
+
+276. * Pekan_gen ei taydy ihailla#C/op Merjaa 
+
+277. * Pekka ei halua ihailla#C/op Merjaa 
+
+278. * Pekka sanoo etta haluaa ihailla#C/op Merjaa 
+
+& Group 10.1.4 C/op on in situ adverbial -------------------------------------------------------
+
+279. * Pekka istuu ihailemalla#C/op Merjaa 
+
+280. * Pekka istuu haluamalla ihailla#C/op Merjaa 
+
+281. * Pekka teki sopimuksen ihailla#C/op Merjaa 
+
+& Group 11. Problems and open issues (irrelevant to main hypothesis) -------------------------------------------------------
+
+& Group 11.1 How to prevent double-filled SPEC-C -------------------------------------------------------
+
+282. Pekka ihailee#C/op Merjaa 
+
+	[<D Pekka>:1 [C/fin [<D Merja>:2 [T/fin [<__>:1 [v [<__>:2 ihaile-]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+283. * Pekka ei#C/op ihaile Merjaa 
+
+284. * Pekka on'#C/op ihaillut Merjaa 
+
+285. Pekka ei#C/op ollut ihaillut Merjaa 
+
+	a. [<D Pekka>:1 [C/fin [ei [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [[C/fin [__:1 [ei [__:1 [T/prt [__:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [C/fin [ei [<__>:1 [T/prt [<__>:1 [BE [T/prt [v [<__>:2 ihaile-]]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:16, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of T/prt(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+
+286. * Pekka haluaa#C/op ihailla Merjaa 
+
+287. Pekan_gen taytyy#C/op ihailla Merjaa 
+
+	[[D Pekka]:1 [C/fin [__:1 [T/fin [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/fin.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+288. Pekan_gen ei#C/op taydy ihailla Merjaa 
+
+	[[D Pekka]:1 [C/fin [__:1 [ei [__:1 [T/prt [__:1 [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:35, Agree:0)
+	LF_Recovery: 	 
+	Agent of taytyy(['T/prt.3sg'])
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+289. Pekka ei#C/op halua ihailla Merjaa 
+
+	a. [<D Pekka>:1 [C/fin [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [[C/fin [__:1 [ei [__:1 [T [__:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [C/fin [ei [<__>:1 [T [<__>:1 [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:16, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+	Patient of ei(agent of T-event)
+
+290. * Pekka sanoo#C/op etta haluaa ihailla Merjaa 
+
+291. * Pekka kaskee#C/op poikien ihailla Merjaa 
+
+292. * Pekka istuu#C/op ihailemalla Merjaa 
+
+293. * Pekka istuu#C/op haluamalla ihailla Merjaa 
+
+294. * Pekka teki#C/op sopimuksen ihailla Merjaa 
+
+& Group 11.2 Double object construction -------------------------------------------------------
+
+295. Pekka ihailee tassa Merjaa 
+
+	a. [[D Pekka]:1 [[T/fin [__:1 [v [<__>:2 [ihaile- <ssa [D tama]>]]]]] <D Merja>:2]]
+	Garden paths: 1 (Merge:20, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+	Patient of ssa(tama)
+
+	b. [[<D Pekka>:1 [T/fin [<__>:1 [v [<__>:2 [ihaile- <ssa [D tama]>]]]]]] <D Merja>:2]
+	Garden paths: 1 (Merge:20, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+	Patient of ssa(tama)
+
+	c. [[[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 [v [<__>:3 ihaile-]]]]]] <ssa [D tama]>:2] <D Merja>:3]
+	Garden paths: 1 (Merge:20, A-bar/A Move:15, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+	Patient of ssa(tama)
+
+& Group 11.3 VP-fronting with postverbal locative PP -------------------------------------------------------
+
+296. ihailla Merjaa#C/op Pekka haluaa tassa 
+
+	a. [[A/inf [v [ihaile- [D Merja]]]] [<D Pekka>:1 [T/fin [<__>:1 [haluaa [ssa [D tama]]]]]]]
+	Garden paths: 4 (Merge:33, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+	Patient of ssa(tama)
+
+	b. [[A/inf [v [ihaile- [D Merja]]]] [[<D Pekka>:1 [T/fin [<__>:2 [<__>:1 haluaa]]]] <ssa [D tama]>:2]]
+	Garden paths: 4 (Merge:33, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+	Patient of ssa(tama)
+
+	c. [[[A/inf [v [ihaile- [D Merja]]]] [<D Pekka>:1 [T/fin [<__>:2 [<__>:1 haluaa]]]]] <ssa [D tama]>:2]
+	Garden paths: 4 (Merge:33, A-bar/A Move:30, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(agent of T-event)
+	Agent of haluaa(Pekka)
+	Agent of v(agent of T-event)
+	Patient of ihaile-(Merja)
+	Patient of ssa(tama)
+

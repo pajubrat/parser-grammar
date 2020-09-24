@@ -1,0 +1,980 @@
+2020-08-03 09:17:26.234198
+Test sentences from file "language data working directory\study-7-structural-case\case_corpus.txt".
+Logs into file "language data working directory\study-7-structural-case\case_corpus_log.txt.
+Lexicon from file "language data working directory\lexicon.txt".
+& Chapter 2. -------------------------------------------------------
+
+1. Merjaa ihailee Pekka 
+
+	a. [<D Merja>:1 [T [<__>:2 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+& Chapter 4. -------------------------------------------------------
+
+& Chapter 4.3. Nominative and partitive -------------------------------------------------------
+
+& Chapter 4.3.1 Finite clause -------------------------------------------------------
+
+2. Pekka nukkuu 
+
+	[<D Pekka>:1 [T [<__>:1 nukku]]]
+	Garden paths: 0 (Merge:3, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of nukku(Pekka)
+
+3. Pekka ihailee Merjaa 
+
+	a. [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[<D Pekka>:1 [T [<__>:1 [v [<__>:2 ihaile-]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+4. Pekka antoi kirjan Merjalle 
+
+	a. [<D Pekka>:1 [T [<__>:1 [v [antaa [[D kirja] <P(lle) [D Merja]>]]]]]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+	b. [[D Pekka]:1 [[T [__:1 [v [antaa [[D kirja] <__>:2]]]]] <P(lle) [D Merja]>:2]]
+	Garden paths: 0 (Merge:23, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+	c. [[<D Pekka>:1 [T [<__>:1 [v [antaa [[D kirja] <__>:2]]]]]] <P(lle) [D Merja]>:2]
+	Garden paths: 0 (Merge:23, A-bar/A Move:13, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+5. Merjaa ihailee Pekka 
+
+	a. [<D Merja>:1 [T [<__>:2 [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+6. Merjaa halusi ihailla Pekka 
+
+	a. [<D Merja>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 [ihaile- <D Pekka>:2]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+& Chapter 4.3.2 Infinitivals (A-infinitival and malla-infinitival) -------------------------------------------------------
+
+7. Pekka halusi ihailla Merjaa 
+
+	a. [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [[T [__:1 [v [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+	c. [[<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+
+8. Pekka nukahti lukemalla kirjaa 
+
+	[[<D Pekka>:1 [T [<__>:1 nukku]]] <malla [v [luke [D kirja]]]>]
+	Garden paths: 3 (Merge:19, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of luke(agent of T-event)
+	Agent of malla(agent of T-event)
+	Agent of nukku(Pekka)
+	Agent of v(agent of T-event)
+
+& Chapter 4.3.4 Adpositions (P-DP, DP-P) -------------------------------------------------------
+
+9. lahella Pekkaa 
+
+	[lahella [D Pekka]]
+	Garden paths: 1 (Merge:4, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+	Patient of lahella(Pekka)
+
+10. Pekkaa lahella 
+
+	[[D Pekka]:1 [lahella __:1]]
+	Garden paths: 1 (Merge:3, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+	Patient of lahella(Pekka)
+
+& Chapter 4.3.3 Partitive subjects (Experiencer subject) -------------------------------------------------------
+
+11. Pekkaa pelottaa 
+
+	[<D Pekka>:1 [T [Cau [<__>:1 pelkaa]]]]
+	Garden paths: 0 (Merge:4, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Agent of Cau(['T.3sg'])
+	Agent of pelkaa(Pekka)
+
+& Chapter 4.3.4 Numerals (two types) -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+12. ne kaksi sukkaa havisi 
+
+	[[ne [kaksi sukka-]]:1 [T [__:1 havia]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:2, Agree:0)
+	LF_Recovery: 	 
+	Agent of T([ne [kaksi sukka-]])
+	__(generic)
+	havia(generic)
+
+13. ne kahdet sukat havisivat 
+
+	[[ne [kaksi sukka-]]:1 [T [__:1 havia]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:2, Agree:0)
+	LF_Recovery: 	 
+	Agent of T([ne [kaksi sukka-]])
+	havia(generic)
+
+14. ne kaksi sukkaa havisivat 
+
+	[[ne [kaksi sukka-]]:1 [T [__:1 havia]]]
+	Garden paths: 0 (Merge:16, A-bar/A Move:2, Agree:0)
+	LF_Recovery: 	 
+	Agent of T([ne [kaksi sukka-]])
+	__(generic)
+	havia(generic)
+
+15. Pekka loysi ne kaksi sukkaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [loyta- [ne [kaksi sukka-]]]]]]]
+	Garden paths: 1 (Merge:14, A-bar/A Move:9, Agree:0)
+	LF_Recovery: 	 
+	Agent of loyta-(Pekka)
+	Agent of v(Pekka)
+	Aspectually anomalous
+
+16. Pekka sanoi niiden kahden sukan haviavan 
+
+	[<D Pekka>:1 [T [<__>:1 [sano- [[ne [kaksi sukka-]]:2 [vAn [__:2 havia]]]]]]]
+	Garden paths: 2 (Merge:21, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of havia(Pekka)
+	Agent of sano-(Pekka)
+
+& Ungrammatical -------------------------------------------------------
+
+17. * ne kaksi sukan havisi 
+
+18. * ne kahdet sukkaa havisivat 
+
+19. * ne kahdet sukka_0acc havisivat 
+
+20. * ne kahdet sukka havisivat 
+
+21. * Pekka sanoi niiden kaksi sukkaa haviavan 
+
+& Chapter 4.3 Accusative case -------------------------------------------------------
+
+& Aspect -------------------------------------------------------
+
+& Grammatical (aspect-related alterations) -------------------------------------------------------
+
+22. Pekka voitti Merjan 
+
+	a. [<D Pekka>:1 [T [<__>:1 [v [voitta [D Merja]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of voitta(Merja)
+
+	b. [[<D Pekka>:1 [T [<__>:1 [v [<__>:2 voitta]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+23. Pekka voitti Merjaa 
+
+	a. [<D Pekka>:1 [T [<__>:1 [v [voitta [D Merja]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually anomalous
+	Patient of voitta(Merja)
+
+	b. [[<D Pekka>:1 [T [<__>:1 [v [<__>:2 voitta]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually anomalous
+
+24. Pekka tonaisi Merjaa 
+
+	a. [<D Pekka>:1 [T [<__>:1 [v [tonaise [D Merja]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Patient of tonaise(Merja)
+
+	b. [[<D Pekka>:1 [T [<__>:1 [v [<__>:2 tonaise]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of tonaise(Merja)
+	Agent of v(Pekka)
+
+25. Pekka pesi Merjan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [pese [D Merja]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of pese(Merja)
+
+26. Pekka pesi Merjaa 
+
+	a. [<D Pekka>:1 [T [<__>:1 [v [pese [D Merja]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually anomalous
+	Patient of pese(Merja)
+
+	b. [[<D Pekka>:1 [T [<__>:1 [v [<__>:2 pese]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of pese(Merja)
+	Agent of v(Pekka)
+
+	c. [<D Pekka>:1 [T [<__>:1 [v [pese [D Merja]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Patient of pese(Merja)
+
+	d. [[<D Pekka>:1 [T [<__>:1 [v [<__>:2 pese]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:10, Agree:0)
+	LF_Recovery: 	 
+	Agent of pese(Merja)
+	Agent of v(Pekka)
+
+27. Pekka pesi hanet 
+
+	[<D Pekka>:1 [T [<__>:1 [v [pese [D han]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of pese(han)
+
+& Ungrammatical -------------------------------------------------------
+
+28. * Pekka tonaisi Merjan 
+
+29. * Pekka tonaisi Merja 
+
+30. * Pekka tonaisi Merja_0acc 
+
+31. * Pekka tonaisi hanet 
+
+& Aspect and noncanonical reconstruction -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+32. Merjan voitti Pekka 
+
+	a. [<D Merja>:1 [T [<__>:2 [v [<__>:1 [voitta <D Pekka>:2]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 voitta]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+33. Merjan pesi Pekka 
+
+	[<D Merja>:1 [T [<__>:2 [v [pese [<__>:1 <D Pekka>:2]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of pese(Merja)
+
+34. Merjaa pesi Pekka 
+
+	a. [<D Merja>:1 [T [<__>:2 [v [<__>:1 [pese <D Pekka>:2]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of pese(Merja)
+	Agent of v(Pekka)
+
+	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 pese]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of pese(Merja)
+	Agent of v(Pekka)
+
+	c. [<D Merja>:1 [T [<__>:2 [v [<__>:1 [pese <D Pekka>:2]]]]]]
+	Garden paths: 0 (Merge:13, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of pese(Merja)
+	Agent of v(Pekka)
+
+	d. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 pese]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:13, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of pese(Merja)
+	Agent of v(Pekka)
+
+& Ungrammatical -------------------------------------------------------
+
+35. * Merjan tonaisi Pekka 
+
+36. * Merja tonaisi Pekka 
+
+37. * Merja_0acc tonaisi Pekka 
+
+38. * hanet tonaisi Pekka 
+
+& Negation -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+39. Pekka ei voittanut Merjaa 
+
+	a. [<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [v [voitta [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of voitta(Merja)
+
+	b. [[D Pekka]:1 [[ei [__:1 [T/prt [__:1 [v [<__>:2 voitta]]]]]] <D Merja>:2]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+	c. [[<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [v [<__>:2 voitta]]]]]]] <D Merja>:2]
+	Garden paths: 0 (Merge:11, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+& Ungrammatical -------------------------------------------------------
+
+40. * Pekka ei voittanut Merjan 
+
+41. * Pekka ei voittanut Merja 
+
+42. * Pekka ei voittanut Merja_0acc 
+
+43. * Pekka ei voittanut Merjan_gen 
+
+& Noncanonical reconstruction -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+44. Merjaa ei voittanut Pekka 
+
+	a. [<D Merja>:1 [ei [<__>:2 [T/prt [<__>:2 [v [<__>:1 [voitta <D Pekka>:2]]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+	b. [[<D Merja>:1 [ei [<__>:2 [T/prt [<__>:2 [v [<__>:1 voitta]]]]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:11, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+45. Merjaa ei Pekka voittanut 
+
+	[<D Merja>:1 [ei [<D Pekka>:2 [T/prt [<__>:2 [v [<__>:1 voitta]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+46. Pekka ei Merjaa voittanut 
+
+	[<D Pekka>:1 [ei [<D Merja>:2 [T/prt [<__>:1 [v [<__>:2 voitta]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+47. Merjaa Pekka ei voittanut 
+
+	[<D Merja>:1 [<D Pekka>:2 [ei [<__>:2 [T/prt [<__>:2 [v [<__>:1 voitta]]]]]]]]
+	Garden paths: 0 (Merge:7, A-bar/A Move:4, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+48. Pekka Merjaa ei voittanut 
+
+	[<D Pekka>:1 [<D Merja>:2 [ei [<__>:1 [T/prt [<__>:1 [v [<__>:2 voitta]]]]]]]]
+	Garden paths: 0 (Merge:7, A-bar/A Move:4, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Agent of voitta(Merja)
+	Aspectually bounded
+
+& Ungrammatical -------------------------------------------------------
+
+49. * Merjan ei voittanut Pekka 
+
+50. * Merja ei voittanut Pekka 
+
+51. * Merja_0acc ei voittanut Pekka 
+
+52. * Merjan_gen ei voittanut Pekka 
+
+& Accusative and agreement (impersonal passive construction) -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+53. me loysimme avaimen 
+
+	a. [<D me>:1 [T [<__>:1 [v [loyta- [D avain]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of loyta-(me)
+	Agent of v(me)
+	Aspectually bounded
+
+	b. [[<D me>:1 [T [<__>:1 [v [<__>:2 loyta-]]]]] <D avain>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of loyta-(me)
+	Agent of v(me)
+	Aspectually bounded
+
+54. me loydettiin avain_0acc 
+
+	a. [<D me>:1 [T [<__>:1 [impass [loyta- [D avain]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of impass(me)
+	Agent of loyta-(me)
+	Aspectually bounded
+
+	b. [[<D me>:1 [T [<__>:1 [impass [<__>:2 loyta-]]]]] <D avain>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of impass(me)
+	Agent of loyta-(me)
+	Aspectually bounded
+
+& Ungrammatical -------------------------------------------------------
+
+55. * me loydettiin avaimen 
+
+56. * me loysimme avain 
+
+57. * me loysimme avain_0acc 
+
+& Negation and agreement -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+58. me ei' loydetty avainta 
+
+	a. [<D me>:1 [ei [<__>:1 [T/prt [<__>:1 [impass [loyta- [D avain]]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of impass(me)
+	Agent of loyta-(me)
+	Aspectually bounded
+
+	b. [[D me]:1 [[ei [__:1 [T/prt [__:1 [impass [<__>:2 loyta-]]]]]] <D avain>:2]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of impass(me)
+	Agent of loyta-(me)
+	Aspectually bounded
+
+	c. [[<D me>:1 [ei [<__>:1 [T/prt [<__>:1 [impass [<__>:2 loyta-]]]]]]] <D avain>:2]
+	Garden paths: 0 (Merge:11, A-bar/A Move:12, Agree:0)
+	LF_Recovery: 	 
+	Agent of impass(me)
+	Agent of loyta-(me)
+	Aspectually bounded
+
+& Ungrammatical -------------------------------------------------------
+
+59. * me ei' loydetty avain 
+
+60. * me ei' loydetty avaimen 
+
+61. * me ei' loydetty avain_0acc 
+
+& Long-distance effects -------------------------------------------------------
+
+& Grammatical (V + infinitival + object) -------------------------------------------------------
+
+62. Pekka halusi voittaa Merjan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [voitta [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of voitta(Merja)
+
+63. Pekka halusi tonaista Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [tonaise [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Patient of tonaise(Merja)
+
+64. Pekka halusi pesta Merjan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [pese [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:19, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of pese(Merja)
+
+65. Pekka halusi loytaa avaimen 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [loyta- [D avain]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(Pekka)
+	Agent of loyta-(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+66. me haluttiin voittaa Merja_0acc 
+
+	[<D me>:1 [T [<__>:1 [impass [haluaa [A/inf [voitta [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(me)
+	Agent of impass(me)
+	Aspectually bounded
+	Patient of voitta(Merja)
+
+67. me ei' haluttu voittaa Merjaa 
+
+	[<D me>:1 [ei [<__>:1 [T/prt [<__>:1 [impass [haluaa [A/inf [voitta [D Merja]]]]]]]]]]
+	Garden paths: 0 (Merge:15, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(me)
+	Agent of impass(me)
+	Aspectually bounded
+	Patient of voitta(Merja)
+
+68. me halusimme voittaa Merjan 
+
+	[<D me>:1 [T [<__>:1 [v [haluaa [A/inf [voitta [D Merja]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of haluaa(me)
+	Agent of v(me)
+	Aspectually bounded
+	Patient of voitta(Merja)
+
+& Ungrammatical -------------------------------------------------------
+
+69. * me haluttiin voittaa Merjan 
+
+70. * me halusimme voittaa Merja_0acc 
+
+71. * me ei' haluttu voittaa Merja_0acc 
+
+72. * me ei' haluttu voittaa Merjan 
+
+& Chapter 4.5 Genitive as a clausal argument -------------------------------------------------------
+
+& Infinitial subject (A-infinitival and VA-infinitival) -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+73. Pekka kaski Merjan_gen lahtea 
+
+	[<D Pekka>:1 [T [<__>:1 [v* [kaske [[D Merja]:2 [A/inf [__:2 lahtea]]]]]]]]
+	Garden paths: 0 (Merge:12, A-bar/A Move:7, Agree:0)
+	LF_Recovery: 	 
+	Agent of lahtea(Merja)
+	kaske(generic)
+	v*(generic)
+
+74. Pekka sanoi Merjan_gen lahtevan 
+
+	[<D Pekka>:1 [T [<__>:1 [sano- [[D Merja]:2 [vAn [__:2 lahtea]]]]]]]
+	Garden paths: 0 (Merge:11, A-bar/A Move:7, Agree:0)
+	LF_Recovery: 	 
+	Agent of lahtea(Merja)
+	Agent of sano-(Pekka)
+
+75. Pekan_gen taytyy lahtea 
+
+	[[D Pekka]:1 [T [__:1 [taytyy [__:1 [A/inf [__:1 lahtea]]]]]]]
+	Garden paths: 0 (Merge:5, A-bar/A Move:4, Agree:0)
+	LF_Recovery: 	 
+	Agent of A/inf(['T.3sg'])
+	Agent of lahtea(Pekka)
+	Agent of taytyy(['T.3sg'])
+
+& Ungrammatical -------------------------------------------------------
+
+76. * Pekka kaski lahtea Merjan_gen 
+
+77. * Pekka sanoi lahtevan Merjan_gen 
+
+& Possessive -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+78. se Merjan_gen kello havisi 
+
+	[<se [[D Merja]:2 [n [__:2 kello]]]>:1 [T [<__>:1 havia]]]
+	Garden paths: 0 (Merge:10, A-bar/A Move:8, Agree:0)
+	LF_Recovery: 	 
+	Agent of havia(n)
+
+& Ungrammatical -------------------------------------------------------
+
+79. * se kello Merjan_gen havisi 
+
+& Adposition (DP-P, P-DP) -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+80. Merja nukkui Pekan_gen lahella 
+
+	[<D Merja>:1 [T [<__>:1 [nukku [[D Pekka]:2 [lahella __:2]]]]]]
+	Garden paths: 0 (Merge:17, A-bar/A Move:11, Agree:0)
+	LF_Recovery: 	 
+	Patient of nukku([[D Pekka] [lahella [D Pekka]]])
+
+81. Merja nukkui lahella Pekkaa 
+
+	a. [<D Merja>:1 [T [<__>:1 [nukku [lahella [D Pekka]]]]]]
+	Garden paths: 5 (Merge:27, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of nukku(Merja)
+	Patient of lahella(Pekka)
+
+	b. [[<D Merja>:1 [T [<__>:1 nukku]]] <lahella [D Pekka]>]
+	Garden paths: 5 (Merge:27, A-bar/A Move:20, Agree:0)
+	LF_Recovery: 	 
+	Agent of nukku(Merja)
+	Patient of lahella(Pekka)
+
+& Ungrammatical -------------------------------------------------------
+
+82. * Merja nukkui lahella Pekan_gen 
+
+& Genitive possessor and the numeral construction -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+83. ne kaksi Merjan_gen puhelinta havisi 
+
+	[[ne [kaksi [[D Merja]:2 [n [__:2 puhelin]]]]]:1 [T [__:1 havia]]]
+	Garden paths: 0 (Merge:36, A-bar/A Move:26, Agree:0)
+	LF_Recovery: 	 
+	Agent of T([ne [kaksi [[D Merja] [n [[D Merja] puhelin]]]]])
+	Patient of kaksi([[D Merja] [n [[D Merja] puhelin]]])
+	havia(generic)
+
+84. ne Merjan_gen kaksi puhelinta havisi 
+
+	[[ne [[D Merja]:2 [kaksi [__:2 [n [__:2 puhelin]]]]]]:1 [T [__:1 havia]]]
+	Garden paths: 0 (Merge:30, A-bar/A Move:34, Agree:0)
+	LF_Recovery: 	 
+	Agent of T([ne [[D Merja] [kaksi [[D Merja] [n [[D Merja] puhelin]]]]]])
+	Patient of kaksi([[D Merja] [n [[D Merja] puhelin]]])
+	havia(generic)
+
+& Chapter 4.4 Special constructions -------------------------------------------------------
+
+& Chapter 4.4.1 Impersonal passives -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+85. me loysimme avaimen 
+
+	a. [<D me>:1 [T [<__>:1 [v [loyta- [D avain]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of loyta-(me)
+	Agent of v(me)
+	Aspectually bounded
+
+	b. [[<D me>:1 [T [<__>:1 [v [<__>:2 loyta-]]]]] <D avain>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of loyta-(me)
+	Agent of v(me)
+	Aspectually bounded
+
+86. me loydettiin avain_0acc 
+
+	a. [<D me>:1 [T [<__>:1 [impass [loyta- [D avain]]]]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of impass(me)
+	Agent of loyta-(me)
+	Aspectually bounded
+
+	b. [[<D me>:1 [T [<__>:1 [impass [<__>:2 loyta-]]]]] <D avain>:2]
+	Garden paths: 0 (Merge:8, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+	Agent of impass(me)
+	Agent of loyta-(me)
+	Aspectually bounded
+
+87. avain_0acc loydettiin 
+
+	[<D avain>:1 [T [impass [<__>:1 loyta-]]]]
+	Garden paths: 0 (Merge:4, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+	Aspectually bounded
+	T(generic)
+	impass(generic)
+	loyta-(generic)
+
+88. loydettiin avain_0acc 
+
+	[T [impass [loyta- [D avain]]]]
+	Garden paths: 0 (Merge:4, A-bar/A Move:0, Agree:0)
+	LF_Recovery: 	 
+	Aspectually bounded
+	T(discourse antecedent)
+	impass(generic)
+	loyta-(generic)
+
+& Ungrammatical -------------------------------------------------------
+
+89. * me loydettiin avaimen 
+
+90. * me loysimme avain 
+
+& Chapter 4.4.2 Raising construction -------------------------------------------------------
+
+91. Merja nayttaa lahtevan 
+
+	[<D Merja>:1 [T [<__>:1 [naytta [vAn lahtea]]]]]
+	Garden paths: 0 (Merge:5, A-bar/A Move:2, Agree:0)
+	LF_Recovery: 	 
+	Agent of lahtea(Merja)
+	Agent of naytta(Merja)
+
+& Chapter 4.4.3 Copular construction -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+92. Pekka on' Pekka 
+
+	a. [<D Pekka>:1 [T [<__>:1 [BE [D Pekka]]]]]
+	Garden paths: 0 (Merge:7, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+
+	b. [[<D Pekka>:1 [T [<__>:2 [<__>:1 BE]]]] <D Pekka>:2]
+	Garden paths: 0 (Merge:7, A-bar/A Move:5, Agree:0)
+	LF_Recovery: 	 
+
+93. Merjalla on' Pekka 
+
+	[<P(lla) [D Merja]>:1 [T [[BE [D Pekka]] <__>:1]]]
+	Garden paths: 0 (Merge:8, A-bar/A Move:2, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lla)(['T.3sg', 'T.generic'])
+	Agent of T(<P(lla) [D Merja]>)
+	T(generic)
+
+94. Pekka on' Merjalla 
+
+	a. [<D Pekka>:1 [T [[<__>:1 [BE <P(lla) [D Merja]>:2]] <__>:2]]]
+	Garden paths: 0 (Merge:9, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lla)(['T.3sg'])
+
+	b. [[<D Pekka>:1 [T [[<__>:1 BE] <__>:2]]] <P(lla) [D Merja]>:2]
+	Garden paths: 0 (Merge:9, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of P(lla)(['T.3sg'])
+
+& Ungrammatical -------------------------------------------------------
+
+95. * Pekka on' Pekkaa 
+
+96. * Pekka on' Pekan_gen 
+
+& Problems -------------------------------------------------------
+
+97. * Merjalla on' kelloja 
+
+98. Pekka on' 
+
+	[<D Pekka>:1 [T [<__>:1 BE]]]
+	Garden paths: 0 (Merge:3, A-bar/A Move:1, Agree:0)
+	LF_Recovery: 	 
+
+& Chapter 4.5 Adverbials and case-marking -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+99. Pekka nukkui#asp koko paivan 
+
+	[[<D Pekka>:1 [T [<__>:2 [<__>:1 nukku]]]] <koko paiva>:2]
+	Garden paths: 1 (Merge:7, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of nukku(Pekka)
+	Aspectually bounded
+
+100. Pekka nukku-#asp#T/fin#[-V] koko paivan 
+
+	[<D Pekka>:1 [T [<__>:1 [nukku <koko paiva>]]]]
+	Garden paths: 0 (Merge:7, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of nukku(Pekka)
+	Aspectually bounded
+
+101. Pekka ei nukkunut koko paivaa 
+
+	[<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [nukku <koko paiva>]]]]]]
+	Garden paths: 0 (Merge:10, A-bar/A Move:14, Agree:0)
+	LF_Recovery: 	 
+	Agent of nukku(Pekka)
+
+102. me nukuttiin koko paiva 
+
+	[[<D me>:1 [T [<__>:2 [<__>:1 [impass nukku]]]]] <koko paiva>:2]
+	Garden paths: 1 (Merge:8, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of impass(me)
+	Agent of nukku(me)
+	Aspectually bounded
+
+103. Pekka ihailee#asp Merjaa koko paivan 
+
+	a. [<D Pekka>:1 [T [<__>:2 [<__>:1 [v [ihaile- [[D Merja] <koko paiva>:2]]]]]]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of ihaile-(Merja)
+
+	b. [[D Pekka]:1 [[T [__:1 [<__>:2 [v [ihaile- [D Merja]]]]]] <koko paiva>:2]]
+	Garden paths: 0 (Merge:18, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of ihaile-(Merja)
+
+	c. [[<D Pekka>:1 [T [<__>:2 [<__>:1 [v [ihaile- [D Merja]]]]]]] <koko paiva>:2]
+	Garden paths: 0 (Merge:18, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of v(Pekka)
+	Aspectually bounded
+	Patient of ihaile-(Merja)
+
+	d. [[[<D Pekka>:1 [T [<__>:2 [<__>:1 [v [<__>:3 ihaile-]]]]]] <D Merja>:3] <koko paiva>:2]
+	Garden paths: 0 (Merge:18, A-bar/A Move:17, Agree:0)
+	LF_Recovery: 	 
+	Agent of ihaile-(Merja)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+& Ungrammatical -------------------------------------------------------
+
+104. * Pekka nukkui koko paivan 
+
+105. * Pekka ei nukkunut koko paivan 
+
+106. * me nukuttiin koko paivan 
+
+107. * Pekka ihailee Merjaa koko paivan 
+
+108. * Pekka ihailee#asp Merjaa koko paiva 
+
+109. * Pekka ihailee#asp Merjaa koko paivaa 
+
+110. * Pekka ihailee Merjaa koko paivaa 
+
+& Problems -------------------------------------------------------
+
+111. Pekka nukkui koko paivaa 
+
+	[<D Pekka>:1 [T [<__>:1 [nukku <koko paiva>]]]]
+	Garden paths: 0 (Merge:7, A-bar/A Move:6, Agree:0)
+	LF_Recovery: 	 
+	Agent of nukku(Pekka)
+
