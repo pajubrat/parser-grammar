@@ -1,5 +1,5 @@
 from support import log, illu
-from LexicalInterface import LexicalInterface
+from lexical_interface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
 
 

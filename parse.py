@@ -11,7 +11,7 @@ from linear_phase_parser import LinearPhaseParser
 from linear_phase_parser import LinearPhaseParser
 from log_functions import *
 import logging
-from LanguageGuesser import LanguageGuesser
+from language_guesser import LanguageGuesser
 import visualizer
 from pathlib import Path
 from support import is_comment
@@ -86,7 +86,7 @@ for sentence in parse_list[start:]:                                             
         log_sentence(count, sentence, language)                                         # Log sentence
         parser_for_language[language].parse(sentence)                                   # Parse sentence
         write_results(parser_for_language[language], results_file, grammaticality_judgments_file, resources_file, count, sentence)  # Write results to file
-        write_images(parser_for_language[language], Graphic_output, sentence, data_folder)                          # Write images to file
+        write_images(parser_for_language[language], Graphic_output, sentence, data_folder, count)                          # Write images to file
         count = count + 1                                                               # Count sentences
 
 # Block 5. Closing the operations

@@ -1,5 +1,5 @@
 from support import log
-from LexicalInterface import LexicalInterface
+from lexical_interface import LexicalInterface
 
 
 def verbal_head():

@@ -1,5 +1,5 @@
 from support import set_logging, log, report_LF_problem, report_tail_head_problem, reset_number_of_operations, log_result, illu
-from LexicalInterface import LexicalInterface
+from lexical_interface import LexicalInterface
 from LF import LF
 from operator import itemgetter
 from morphology import Morphology

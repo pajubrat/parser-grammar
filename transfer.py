@@ -1,9 +1,9 @@
 import phrase_structure
 from agreement_reconstruction import AgreementReconstruction
 from support import log, enable_logging, disable_logging, is_logging_enabled
-from phrasal_movement import PhrasalMovement
+from phrasal_reconstruction import PhrasalMovement
 from adjunct_reconstruction import FloaterMovement
-from head_movement import HeadMovement
+from head_reconstruction import HeadMovement
 from feature_disambiguation import FeatureProcessing
 from extraposition import Extraposition
 from surface_conditions import SurfaceConditions

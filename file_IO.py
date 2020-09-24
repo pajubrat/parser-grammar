@@ -118,27 +118,23 @@ def write_results(P, results_file, grammaticality_file, resources_file, count, s
             parse_number = parse_number + 1
             results_file.write('\n')
 
-def write_images(P, Graphic_output, sentence, data_folder):
+def write_images(P, Graphic_output, sentence, data_folder, count):
     Graphic_output.input_sentence_string = generate_input_sentence_string(sentence)
     if Graphic_output.image_output:
         parse_number = 1
-        count = 1
         for parse, semantic_interpretation in P.result_list:
             file_name = 'Raw image of (' + str(count) + chr(96 + parse_number) + ').png'
             Graphic_output.file_identifier = data_folder / 'phrase_structure_images' / file_name
             Graphic_output.draw(parse)
             parse_number = parse_number + 1
-            count = count + 1
 
         if Graphic_output.spellout:
             parse_number = 1
-            count = 1
             for spellout in P.spellout_result_list:
                 file_name = 'Raw image of (' + str(count) + chr(96 + parse_number) + ')_spellout.png'
                 Graphic_output.file_identifier = data_folder / 'phrase_structure_images' / file_name
                 Graphic_output.draw(spellout)
-                parse_number = parse_number + 1
-                count = count + 1
+                parse_number =  parse_number + 1
 
 def write_info_line(results_file, grammaticality_judgments_file, sentence):
     results_file.write(' '.join(map(str, sentence)) + ' -------------------------------------------------------\n\n')

@@ -1,5 +1,5 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
-from LexicalInterface import LexicalInterface
+from lexical_interface import LexicalInterface
 
 class HeadMovement:
     def __init__(self, controlling_parser_process):
