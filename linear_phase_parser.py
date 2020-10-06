@@ -143,7 +143,7 @@ class LinearPhaseParser:
         if inflection:
             self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
             self.consume_resources("Inflection")
-            log(f'\n\t{self.number_of_items_consumed}. Consume \"' + lst_branched[index + 1] + '\"')
+            log(f'\n\t{self.resources["Items from input"]}. Consume \"' + lst_branched[index + 1] + '\"')
         else:
             if self.memory_buffer_inflectional_affixes:
                 log(f'\t\tAdding inflectional features {self.memory_buffer_inflectional_affixes} to ' + lexical_item.get_phonological_string())

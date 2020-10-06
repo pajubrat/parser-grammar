@@ -71,9 +71,9 @@ def initialize_resources_file(external_source):
     resources_file = open(external_source["resources_file_name"], "w", -1, "utf-8")
     P = LinearPhaseParser(external_source)
     P.initialize()
-    resources_file.write("Sentence\t")
+    resources_file.write("Sentence,")
     for key in P.resources:
-        resources_file.write(f'{key}\t')
+        resources_file.write(f'{key},')
     resources_file.write("Execution time (ms)\t\n\n")
     return resources_file
 
@@ -110,11 +110,10 @@ def write_results(P, results_file, grammaticality_file, resources_file, count, s
                 results_file.write('\n\t\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms\n')
                 print('\n\t\t' + format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms\n')
             if parse_number == 1:
-                resources_file.write(f'{count}\t')
+                resources_file.write(f'{count},')
                 for key in P.resources:
-                    resources_file.write(f'{P.resources[key]}\t')
+                    resources_file.write(f'{P.resources[key]},')
                 resources_file.write(f'{P.execution_time_results[parse_number - 1]}\n')
-                resources_file.write('\n')
             parse_number = parse_number + 1
             results_file.write('\n')
 

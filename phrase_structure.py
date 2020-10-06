@@ -103,7 +103,7 @@ class PhraseStructure:
         for edge in self.head().edge():
             if edge.contains_feature('OP:REL'):
                 return True
-        return self.externalized() or 'adjoinable' in self.head().features
+        return self.externalized() or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
 
     # Definition for sisterhood
     def sister(self):

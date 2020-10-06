@@ -1,93 +1,69 @@
 
-& Chapter 2
 
-	& Chapter 2.8	
-	
-		& 2.2.1 Grammatical
-		
-			John does not admire' Mary
-
-& Chapter 3 Ad hox tests
-
-	& Chapter 3.1
+& 0 Formal tests
 	
 		a' b'
 		a' b' c'
 		a' b' c' d'
-		John' admires' Mary'
-		a' b' c' d'
-		a' b' c' d'
-		John admires'' Mary
-		John admires'' Mary
-
-& Chapter 4
-
-	& Chapter 4.2
-	
-		John does not admire' Mary
-		John admires Mary
 		
-	& Chapter 4.3
-	
-		keta Pekka ihailee
-		
-& Chapter 6 Basic construction types
+& 1 Basic construction types
 
-	& Chapter 6.3 Basic verb classes
+	&  1.2 Basic verb classes
 	
-		& 6.3.a Intransitive verbs
+		& 1.2.1 Intransitive verbs
 		
 			& Grammatical
 				
-				John sleeps
+				Pekka istuu
 				Pekka lahtee
+				John sleeps
 				lui dorme
 				
 			& Ungrammatical
 				
+				Pekka lahtee Merjan
+				Pekka istuu Merjan
 				John sleeps Mary
 				John John sleeps
-				Pekka lahtee Merjan
 				
-		& 6.3.b Transitive verbs
+		& 1.2.2 Transitive verbs
 		
 			& Grammatical
 				
-				John admires Mary
+				
 				Pekka ihailee Merjaa
 				Pekka loysi Merjan
 				Pekka teki sen kellon
-				
+				John admires Mary
 				Giuseppe spinge Luisa
 				lavano Luisa
 				loro lavano Luisa
 				
 			& Ungrammatical
 			
-				John admires
 				Pekka ihailee
 				Pekka loysi
+				Pekka ihailee Merjaa Merjaa Merjaa
+				Pekka Pekka ihailee Merjaa
+				mina haluan
+				John admires
 				John admires Mary Mary
-				Pekka ihalee Merjaa Merjaa
 				
-		& 6.3.c Ditransitive verbs
+		& 1.2.3 Ditransitive verbs
 		
 			& Grammatical
 			
-				John gave the key to Mary
 				Pekka antoi kirjan Merjalle
+				John gave the key to Mary
 				
 			& Ungrammatical
 
-	& Chapter 6.4 Special finite elements
+	& 1.3 Special finite elements
 	
-		& 6.4.a Aux, Sentential negation
+		& 1.3.1 Aux, Sentential negation
 		
 			& Grammatical
 			
-				John does sleep
-				John does not sleep
-				John does not admire' Mary
 				mina en lahde
 				sina et lahde
 				Pekka ei lahde
@@ -95,70 +71,81 @@
 				te ette lahde
 				he_FI eivat lahde
 				Pekka ei ihaile Merjaa
-				
+				Pekka ei myynyt omaisuuttaan
+				John does sleep
+				John does not sleep
+				John does not admire' Mary
 				loro hanno lavato Luisa
 				io ho lavato Luisa
 				loro hanno voluto lavare Luisa
 				loro stanno lavando Luisa
 				
 			& Ungrammatical		
-			
-				John not does sleep
+
 				sina en lahde
-				sina lahde et
-				
-		& 6.4.b Modals
+				sina lahde et			
+				John not does sleep
+			
+		& 1.3.2 Modals
 		
 			& Grammatical
 			
-				John must sleep
-				John must admire' Mary
 				Pekan_gen taytyy nukkua
 				Pekan_gen taytyy ihailla Merjaa
-				
+				Pekan_gen taytyy myyda omaisuuttaan			
+				John must sleep
+				John must admire' Mary
 				loro devono lavare Luisa
 				
 			& Ungrammatical
 			
+				Pekka taytyy nukkua
+				taytyy Pekan nukkua
 				John does must sleep
 				John must Mary admire' John
 				John must to_inf sleep
-				Pekka taytyy nukkua
-				taytyy Pekan nukkua
 				
-		& Tensed pure auxiliaries
+			& Neg + Modal + V (Finnish)
+			
+				& Grammatical
+			
+					Pekan_gen ei taydy ihailla Merjaa
+					Pekan_gen ei taydy myyda omaisuuttaan
+		
+		& 1.3.3 Tensed pure auxiliaries
 		
 			& Grammatical
 			
-				John does sleep
 				Pekka on' nukkunut
 				Pekka on' ihaillut Merjaa
+				John does sleep
 				
 			& Ungrammatical
 			
 				John does
 				
-		& Seem-constructions
+		& 1.3.4 Seem-constructions
 		
 			& Grammatical
 				
 				loro sembrano lavare Luisa
 				
-	& Chapter 6.4 Infinitival complement clauses
+	& 1.4 Infinitival complement clauses
 	
-		& 6.4.a Basic infinitival constructions (English)
+		& 1.4.1 Basic infinitival constructions (English)
 		
 			& Grammatical
 			
 				John wants to_inf leave
 				John wants Mary to_inf leave
 				John wants to_inf leave Mary
-				
 				io detesto lavare Luisa
 				
 			& Ungrammatical
 			
-		& 6.4.b OC constructions (English)	
+				io detesto Giuseppe lavare Luisa
+			
+		& 1.4.2 OC constructions (English)	
 		
 			& Grammatical
 			
@@ -168,7 +155,7 @@
 			
 				John tries Mary to_inf leave
 				
-		& 6.4.c Finnish deverbal infinitival complements
+		& 1.4.3 Finnish deverbal infinitival complements
 		
 			& A-infinitival 'to do'
 			
@@ -177,12 +164,25 @@
 					Pekka haluaa lahtea
 					Pekka kaskee Merjan_gen lahtea
 					Pekka halusi ihailla Merjaa
+					Pekka kaskee poikien ihailla Merjaa
+					Pekka kaskee poikien myyda omaisuuttaan
+					Pekka ei halua ihailla Merjaa
+					Pekka ei halua myyda omaisuuttaan
 					
 				& Ungrammatical
 				
 					Pekka haluaa Merjan_gen lahtea
 					Pekka haluaa heidan lahtea
-					
+			
+			& Modal + A-infinitival
+			
+				& Grammatical
+				
+					Pekan_gen taytyy ihailla Merjaa
+					Pekan_gen taytyy myyda omaisuuttaan
+					Pekan_gen ei taydy ihailla Merjaa
+					Pekan_gen ei taydy myyda omaisuuttaan			
+
 			& VA-infinitival 'to do'
 			
 				& Grammatical
@@ -193,25 +193,70 @@
 					Pekka sanoo ihailevansa Merjaa
 					Pekka sanoo Merjan_gen lahtevan
 					mina sanon lahtevani
-					Pekka halusi Merja lahtevan 
-					
+
 				& Ungrammatical
 				
 					mina sanon lahtevansa
 					Pekka sanoo ihailevansa
-					
-	& Chapter 6.5 Embedded finite clauses
+					Pekka halusi Merja lahtevan 
+		
+	& 1.5 Nominals
+	
+		& Basic DPs
+		
+			& Grammatical
+		
+				se' talo
+				se' pieni talo
+				se' pieni punainen talo
+				se' punainen pieni talo
+				the little key
+				the little red key
+			
+			& Ungrammatical
+		
+				pieni talo se
+				se talo pieni
+				talo pieni se
+				talo se pieni
+				the key little
+				the key red little
+	
+		& N + A-infinitival
+		
+			& Grammatical
+			
+				Pekka teki sopimuksen ihailla Merjaa
+				Pekka teki sopimuksen antaa avaimen Merjalle
+				se sopimus ihailla Merjaa peruuntui
+	
+	& 1.6 Adpositions
 	
 		& Grammatical
 		
-			John said that Mary sleeps
-			Pekka sanoi etta Merja lahtee
+			lahella Pekkaa
+			Pekkaa lahella
+			Merja nukkui Pekan_gen lahella
+			Merja nukkui lahella Pekkaa
 			
 		& Ungrammatical
 		
-& Chapter 7. Adjunction and adjuncts
+			Merja nukkui lahella Pekan_gen
+				
+	& 1.5 Embedded finite clauses
+	
+		& Grammatical
+		
+			Pekka sanoi etta Merja lahtee		
+			Pekka sanoo etta haluaa ihailla Merjaa
+			Pekka sanoo etta haluaa myyda omaisuuttaan
+			John said that Mary sleeps
+	
+		& Ungrammatical
+		
+& 2 Adjunction and adjuncts
 
-	& Chapter 7.3 Adjuncts inside comprehension pipeline
+	& Chapter 2.1 Adjuncts inside comprehension pipeline
 	
 		& Grammatical
 		
@@ -225,7 +270,7 @@
 			John to Mary gave the key
 			John gave to Mary the key
 			
-	& Chapter 7.4 Adjectives
+	& Chapter 2.3 Adjectives
 	
 		& Grammatical
 		
@@ -245,7 +290,7 @@
 			talo pieni se
 			talo se pieni
 			
-	& Chapter 7.5 Adjunct infinitivals in Finnish
+	& Chapter 2.4 Adjunct infinitivals in Finnish
 	
 		& MA-infinitival 'doing, without doing...'
 		
@@ -255,6 +300,8 @@
 				Pekka naki Merjan_acc lahtematta
 				Pekka naki Merjan_acc lahtemalla
 				Pekka naki Merjan_acc ihailemassa Jukkaa
+				Pekka elaa ihailemalla Merjaa 
+				Pekka elaa haluamalla ihailla Merjaa
 				
 			& Ungrammatical
 			
@@ -301,9 +348,9 @@
 			
 				Pekka lahtee Merjan_gen juosten
 				
-& Chapter 8. A-bar movement and pied-piping
+& 3 A-bar movement and pied-piping
 
-	& Chapter 8.2 Basic interrogatives
+	& Chapter 3.1 Basic interrogatives
 	
 		& Grammatical
 		
@@ -326,7 +373,7 @@
 		
 			Pekka keta ihailee
 			
-	& Chapter 8.3 pied-piping
+	& Chapter 3.2 pied-piping
 	
 		& Grammatical
 		
@@ -341,9 +388,9 @@
 			Seine virtaa kohti mita kaupunkia
 			Seine virtaa mita kaupunkia kohti
 			
-	& Chapter 8.4 Islands
+	& 3.3 Islands
 	
-		& Extraction from left branch and right adjunct (CED-effects)
+		& 3.3.1 Extraction from left branch and right adjunct (CED-effects)
 		
 			& Grammatical
 			
@@ -360,7 +407,7 @@
 				kenen se' kello havisi
 				keta Pekka naki Merjan_acc ihailemassa
 				
-		& Extraction from embedded interrogative (wh-island)
+		& 3.3.2 Extraction from embedded interrogative (wh-island)
 		
 			& Grammatical
 			
@@ -372,7 +419,7 @@
 				who does John ask' whether Mary admires
 				who does John ask' what admires
 				
-		& Extraction from DP
+		& 3.3.3 Extraction from DP
 		
 			& Grammatical
 			
@@ -384,7 +431,7 @@
 				minka Pekka teki sopimuksen ostaa
 				kenen Pekka teki sen kellon
 				
-		& Extraction of embedded subject position
+		& 3.3.4 Extraction of embedded subject position
 		
 			& Grammatical
 			
@@ -394,9 +441,9 @@
 			
 				who does John say' that sleeps
 				
-& Chapter 9. Case
+& 4 Case
 
-	& Finite clause, nominative and partitive
+	& 4.1 Finite clause, nominative and partitive
 	
 		& Grammatical
 		
@@ -419,9 +466,9 @@
 			Merja ihailee Pekan_acc
 			Merja ihailee Pekka_0acc
 			
-	& Finite clause, accusative
+	& 4.2 Finite clause, accusative
 	
-		& Accusative and aspect
+		& 4.2.1 Accusative and aspect
 		
 			& Grammatical
 			
@@ -439,7 +486,7 @@
 				Pekka tonaisi Merja_0acc
 				Pekka tonaisi hanet
 				
-		& Accusative and negation
+		& 4.2.2 Accusative and negation
 		
 			& Grammatical
 			
@@ -452,7 +499,7 @@
 				Pekka ei voittanut Merja_0acc
 				Pekka ei voittanut Merjan_gen
 				
-		& Accusative and agreement
+		& 4.2.3 Accusative and agreement
 		
 			& Grammatical
 			
@@ -465,7 +512,7 @@
 				me loysimme avain
 				me loysimme avain_0acc
 				
-		& Accusative and long-distance effects
+		& 4.2.4 Accusative and long-distance effects
 		
 			& Grammatical
 			
@@ -484,7 +531,7 @@
 				me ei' haluttu voittaa Merja_0acc
 				me ei' haluttu voittaa Merjan
 				
-	& Adpositions
+	& 4.3 Adpositions
 	
 		& Grammatical
 		
@@ -497,7 +544,7 @@
 		
 			Merja nukkui lahella Pekan_gen
 			
-	& Infinitivals
+	& 4.4 Infinitivals
 	
 		& Grammatical
 		
@@ -516,7 +563,7 @@
 			Pekka kaski lahtea Merjan_gen
 			Pekka sanoi lahtevan Merjan_gen
 			
-	& Possessive constructions
+	& 4.5 Possessive constructions
 	
 		& Grammatical
 		
@@ -526,7 +573,7 @@
 		
 			se kello Merjan_gen havisi
 			
-	& Numeral constructions (two types)
+	& 4.6 Numeral constructions (two types)
 	
 		& Grammatical
 		
@@ -544,9 +591,9 @@
 			ne kahdet sukka havisivat
 			Pekka sanoi niiden kaksi sukkaa haviavan
 			
-	& Adverbials, direct object marking
+	& 4.7 Adverbials, direct object marking
 	
-		& MALLA-adverbial
+		& 4.7.1 MALLA-adverbial
 		
 			& Grammatical
 			
@@ -559,7 +606,7 @@
 				Pekka nukahti lukemalla Merja_0acc
 				Pekka nukahti lukemalla Merjan_acc
 				
-	& Adverbial case marking
+	& 4.8 Adverbial case marking
 	
 		& Grammatical
 		
@@ -579,9 +626,9 @@
 			Pekka ihailee#asp Merjaa koko paivaa
 			Pekka ihailee Merjaa koko paivaa	
 			
-	& Special constructions
+	& 4.9 Special constructions
 	
-		& Partitive subjects (psych verbs)
+		& 4.9.1 Partitive subjects (psych verbs)
 		
 			& Grammatical
 			
@@ -595,7 +642,7 @@
 				Merja_0acc pelottaa
 				Merjalle pelottaa
 				
-		& Impersonal passives
+		& 4.9.2 Impersonal passives
 		
 			& Grammatical
 			
@@ -609,7 +656,7 @@
 				me loydettiin avaimen
 				me loysimme avain
 				
-		& Raising construction
+		& 4.9.3 Raising construction
 		
 			& Grammatical
 			
@@ -623,7 +670,7 @@
 				Merja_0acc nayttaa lahtevan
 				Merjalle nayttaa lahtevan
 				
-		& Copula
+		& 4.9.4 Copula
 		
 			& Grammatical
 			
@@ -636,11 +683,27 @@
 				Pekka on' Pekkaa
 				Pekka on' Pekan_gen
 				
-& Chapter 10 Agreement
+& 5 Agreement
 	
-	& Chapter 10.1 Finite S-V agreement
+	& Chapter 5.1 Standard finite S-V agreement
 		
 		& Grammatical
+		
+			mina ihailen Merjaa
+			sina ihailet Merjaa
+			han ihailee Merjaa
+			me ihailemme Merjaa
+			te ihailette Merjaa
+			he_FI ihailevat Merjaa
+		
+			I admire Mary
+			you admire Mary
+			he admires Mary
+			she admires Mary
+			John admires Mary
+			we admire Mary
+			you_pl admire Mary
+			they admire Mary
 		
 			io adoro Luisa
 			tu adori Luisa
@@ -652,16 +715,282 @@
 	
 		& Ungrammatical
 		
+			mina ihailet Merjaa
+			mina ihalee Merjaa
+			mina ihailemme Merjaa
+			mina ihailette Merjaa
+			mina ihailevat Merjaa	
+			sina ihailen Merjaa
+			sina ihalee Merjaa
+			sina ihailemme Merjaa
+			sina ihailette Merjaa
+			sina ihailevat Merjaa		
+			han ihailen Merjaa
+			han ihailet Merjaa
+			han ihailemme Merjaa
+			han ihailette Merjaa
+			han ihailevat Merjaa
+			me ihailen Merjaa
+			me ihailet Merjaa
+			me ihalee Merjaa
+			me ihailette Merjaa
+			me ihailevat Merjaa	
+			te ihailen Merjaa
+			te ihailet Merjaa
+			te ihalee Merjaa
+			te ihailemme Merjaa
+			te ihailevat Merjaa			
+			he_FI ihailen Merjaa
+			he_FI ihailet Merjaa
+			he_FI ihalee Merjaa
+			he_FI ihailemme Merjaa
+			he_FI ihailette Merjaa
+		
+			John admire Mary
+			we admires Mary
+
 			io adori Luisa
 			io adora Luisa
 			io adorate Luisa
 			io adorano Luisa
-	
-& Chapter 11 Pro-drop and control
+			
+	& 5.2 S-V areement with noncanonical word order (Finnish)
+		
+		& Grammatical 
+		
+			mina ihailen Merjaa 
+			mina Merjaa ihailen 
+			Merjaa mina ihailen 
+			Merjaa ihailen mina 
+			sina ihailet Merjaa 
+			sina Merjaa ihailet 
+			Merjaa sina ihailet 
+			Merjaa ihailet sina 
+			han ihailee Merjaa 
+			han Merjaa ihailee 
+			Merjaa han ihailee 
+			Merjaa ihailee han 
+			me ihailemme Merjaa 
+			me Merjaa ihailemme 
+			Merjaa me ihailemme 
+			Merjaa ihailemme me 
+			te ihailette Merjaa 
+			te Merjaa ihailette 
+			Merjaa te ihailette 
+			Merjaa ihailette te 
+			he_FI ihailevat Merjaa 
+			he_FI Merjaa ihailevat 
+			Merjaa he_FI ihailevat 
+			Merjaa ihailevat he_FI 
+		
+		& Ungrammatical
+		
+			ihailen mina Merjaa 
+			ihailen Merjaa mina 
+			ihailet sina Merjaa 
+			ihailet Merjaa sina 
+			ihailee han Merjaa 
+			ihailee Merjaa han
+			ihailemme me Merjaa 
+			ihailemme Merjaa me 
+			ihailette te Merjaa 
+			ihailette Merjaa te 
+			ihailevat he_FI Merjaa 
+			ihailevat Merjaa he_FI
 
-	& Chapter 11.1 Finite pro-drop
+		& Ungrammatical, incorrect SV-agreement with noncanonical order
+		
+			mina ihailet Merjaa 
+			mina Merjaa ihailet 
+			ihailet mina Merjaa 
+			ihailet Merjaa mina 
+			Merjaa mina ihailet 
+			Merjaa ihailet mina 
+			mina ihalee Merjaa 
+			mina Merjaa ihalee 
+			ihalee mina Merjaa 
+			ihalee Merjaa mina 
+			Merjaa mina ihalee 
+			Merjaa ihalee mina 
+			mina ihailemme Merjaa 
+			mina Merjaa ihailemme 
+			ihailemme mina Merjaa 
+			ihailemme Merjaa mina 
+			Merjaa mina ihailemme 
+			Merjaa ihailemme mina 
+			mina ihailette Merjaa 
+			mina Merjaa ihailette 
+			ihailette mina Merjaa 
+			ihailette Merjaa mina 
+			Merjaa mina ihailette 
+			Merjaa ihailette mina 
+			mina ihailevat Merjaa 
+			mina Merjaa ihailevat 
+			ihailevat mina Merjaa 
+			ihailevat Merjaa mina 
+			Merjaa mina ihailevat 
+			Merjaa ihailevat mina 
+			sina ihailen Merjaa 
+			sina Merjaa ihailen 
+			ihailen sina Merjaa 
+			ihailen Merjaa sina 
+			Merjaa sina ihailen 
+			Merjaa ihailen sina 
+			sina ihalee Merjaa 
+			sina Merjaa ihalee 
+			ihalee sina Merjaa 
+			ihalee Merjaa sina 
+			Merjaa sina ihalee 
+			Merjaa ihalee sina 
+			sina ihailemme Merjaa 
+			sina Merjaa ihailemme 
+			ihailemme sina Merjaa 
+			ihailemme Merjaa sina 
+			Merjaa sina ihailemme 
+			Merjaa ihailemme sina 
+			sina ihailette Merjaa 
+			sina Merjaa ihailette 
+			ihailette sina Merjaa 
+			ihailette Merjaa sina 
+			Merjaa sina ihailette 
+			Merjaa ihailette sina 
+			sina ihailevat Merjaa 
+			sina Merjaa ihailevat 
+			ihailevat sina Merjaa 
+			ihailevat Merjaa sina 
+			Merjaa sina ihailevat 
+			Merjaa ihailevat sina 
+			han ihailen Merjaa 
+			han Merjaa ihailen 
+			ihailen han Merjaa 
+			ihailen Merjaa han 
+			Merjaa han ihailen 
+			Merjaa ihailen han 
+			han ihailet Merjaa 
+			han Merjaa ihailet 
+			ihailet han Merjaa 
+			ihailet Merjaa han 
+			Merjaa han ihailet 
+			Merjaa ihailet han 
+			han ihailemme Merjaa 
+			han Merjaa ihailemme 
+			ihailemme han Merjaa 
+			ihailemme Merjaa han 
+			Merjaa han ihailemme 
+			Merjaa ihailemme han 
+			han ihailette Merjaa 
+			han Merjaa ihailette 
+			ihailette han Merjaa 
+			ihailette Merjaa han 
+			Merjaa han ihailette 
+			Merjaa ihailette han 
+			han ihailevat Merjaa 
+			han Merjaa ihailevat 
+			ihailevat han Merjaa 
+			ihailevat Merjaa han 
+			Merjaa han ihailevat 
+			Merjaa ihailevat han 
+			me ihailen Merjaa 
+			me Merjaa ihailen 
+			ihailen me Merjaa 
+			ihailen Merjaa me 
+			Merjaa me ihailen 
+			Merjaa ihailen me 
+			me ihailet Merjaa 
+			me Merjaa ihailet 
+			ihailet me Merjaa 
+			ihailet Merjaa me 
+			Merjaa me ihailet 
+			Merjaa ihailet me 
+			me ihalee Merjaa 
+			me Merjaa ihalee 
+			ihalee me Merjaa 
+			ihalee Merjaa me 
+			Merjaa me ihalee 
+			Merjaa ihalee me 
+			me ihailette Merjaa 
+			me Merjaa ihailette 
+			ihailette me Merjaa 
+			ihailette Merjaa me 
+			Merjaa me ihailette 
+			Merjaa ihailette me 
+			me ihailevat Merjaa 
+			me Merjaa ihailevat 
+			ihailevat me Merjaa 
+			ihailevat Merjaa me 
+			Merjaa me ihailevat 
+			Merjaa ihailevat me 
+			te ihailen Merjaa 
+			te Merjaa ihailen 
+			ihailen te Merjaa 
+			ihailen Merjaa te 
+			Merjaa te ihailen 
+			Merjaa ihailen te 
+			te ihailet Merjaa 
+			te Merjaa ihailet 
+			ihailet te Merjaa 
+			ihailet Merjaa te 
+			Merjaa te ihailet 
+			Merjaa ihailet te 
+			te ihalee Merjaa 
+			te Merjaa ihalee 
+			ihalee te Merjaa 
+			ihalee Merjaa te 
+			Merjaa te ihalee 
+			Merjaa ihalee te 
+			te ihailemme Merjaa 
+			te Merjaa ihailemme 
+			ihailemme te Merjaa 
+			ihailemme Merjaa te 
+			Merjaa te ihailemme 
+			Merjaa ihailemme te 
+			te ihailevat Merjaa 
+			te Merjaa ihailevat 
+			ihailevat te Merjaa 
+			ihailevat Merjaa te 
+			Merjaa te ihailevat 
+			Merjaa ihailevat te 
+			he_FI ihailen Merjaa 
+			he_FI Merjaa ihailen 
+			ihailen he_FI Merjaa 
+			ihailen Merjaa he_FI 
+			Merjaa he_FI ihailen 
+			Merjaa ihailen he_FI 
+			he_FI ihailet Merjaa 
+			he_FI Merjaa ihailet 
+			ihailet he_FI Merjaa 
+			ihailet Merjaa he_FI 
+			Merjaa he_FI ihailet 
+			Merjaa ihailet he_FI 
+			he_FI ihalee Merjaa 
+			he_FI Merjaa ihalee 
+			ihalee he_FI Merjaa 
+			ihalee Merjaa he_FI 
+			Merjaa he_FI ihalee 
+			Merjaa ihalee he_FI 
+			he_FI ihailemme Merjaa 
+			he_FI Merjaa ihailemme 
+			ihailemme he_FI Merjaa 
+			ihailemme Merjaa he_FI 
+			Merjaa he_FI ihailemme 
+			Merjaa ihailemme he_FI 
+			he_FI ihailette Merjaa 
+			he_FI Merjaa ihailette 
+			ihailette he_FI Merjaa 
+			ihailette Merjaa he_FI 
+			Merjaa he_FI ihailette 
+			Merjaa ihailette he_FI 
+	
+& 6 Pro-drop
+
+	& 6.1 Finite pro-drop
 	
 		& Grammatical
+		
+			ihailen Merjaa
+			ihailet Merjaa
+			ihailemme Merjaa
+			ihailette Merjaa
 		
 			adoro Luisa
 			adori Luisa
@@ -677,12 +1006,146 @@
 			ho lavato Luisa
 			hanno voluto lavare Luisa
 			stanno lavando Luisa
+									
+		& Ungrammatical
+		
+			ihailee Merjaa
+			ihailevat Merjaa
+			
+			admire Mary
+			admires Mary				
+			am John
 	
-& Chapter 12 Word order
+	& 6.2 Finite pro-drop with noncanonical word order
+	
+		& Grammatical
+		
+			ihailen Merjaa
+			Merjaa ihailen
+		
+		& Ungrammatical
+	
+			ihailee Merjaa
+			Merjaa ihailee
+			ihailevat Merjaa
+			Merjaa ihailevat
+	
+	& 6.3 Third person pro in Finnish, with and without antecedent
+	
+		& Grammatical
+			
+			Pekka sanoi etta ihailee Merjaa
+			Pekka sanoo etta Jukka sanoo etta ihailee Merjaa
 
-	& Basic transitive clause
+		& Ungrammatical (antecedent missing)
+		
+			ihailee Merjaa
+			Mina sanon etta ihailee Merjaa
+			
+		& Ungrammatical (English)	
+		
+			John said that admire Mary
+			John said that admires Mary				
 
-		& Frozen word order regimen (English)
+& 7 Control
+
+	& 7.1 Partial pro-drop control (only D_ unvalued)
+	
+		& Grammatical
+				
+			Pekka sanoi etta ihailee Merjaa
+			Pekka sanoo etta Jukka sanoo etta ihailee Merjaa
+	
+		& Ungrammatical
+		
+			ihailee Merjaa
+			Mina sanon etta ihailee Merjaa
+	
+	& 7.2 Standard control (phi_, D_ unvalued)
+
+		& 7.2.1 Control into complements
+		
+			& Want-class (no SEM)
+
+				& Grammatical
+				
+					John wants to_inf leave
+					John wants Mary to_inf leave
+				
+			& OC-construction (SEM:internal)
+			
+				& Grammatical
+				
+					Pekka haluaa lahtea
+					John tries to_inf leave
+					John promises to_inf leave
+	
+				& Ungrammatical
+				
+					Pekka haluaa Merjan lahtea
+					John tries Mary to_inf leave
+
+			& Anti-OC construction (SEN:external)
+			
+				& Grammatical
+				
+					Pekka kaskee Merjan lahtea
+					Pekka haluaa Merjan lahtevan	
+					John persuades Mary to_inf leave
+
+				& Ungrammatical
+				
+					Pekka kaskee lahtea
+					Pekka haluaa lahtevan
+					John persuades to_ing leave
+			
+		& 7.2.2 Control into adverbials
+		
+			& Subject control (high adjunct position)
+			
+				& Grammatical
+			
+					Pekka etsii Merjaa juosten
+					John promises Mary to_inf leave
+								
+			& Object control (low adjunct position)
+			
+				& Grammatical
+				
+					John persuades Mary to_inf leave
+					
+				& Ungrammatical
+				
+					John persuades to_inf leave
+					
+		& 7.2.3 Radical pro-drop
+		
+			& Grammatical
+			
+				John admire* Mary
+				admire* Mary
+				John admire** Mary
+				admire** Mary
+	
+		& 7.2.4 Generic interpretation
+		
+			& Null object construction (Finnish)
+			
+				Pekka pyytaa lahtemaan
+			
+			& Generic null subject
+			
+				Pekka sanoo etta istuu mukavasti
+				istuu mukavasti
+				tassa istuu mukavasti
+				Pekka sanoo etta tassa istuu mukavasti
+				to_inf leave is a mistake
+	
+& 8 Word order
+
+	& 8.1 Basic transitive clause
+
+		& 8.1.1 Frozen word order regimen (English)
 		
 			& Grammatical
 			
@@ -696,7 +1159,7 @@
 				admires Mary John 
 				Mary John admires 
 			
-		& Free word order regimen (Finnish)
+		& 8.1.2 Free word order regimen (Finnish)
 		
 			& Grammatical
 			
@@ -705,12 +1168,12 @@
 				Merjaa Pekka ihailee 
 				Merjaa ihailee Pekka 
 			
-			& Ungrammatical
+			& Ungrammatical (verb-initial)
 			
 				ihailee Pekka Merjaa 
 				ihailee Merjaa Pekka 
 
-		& Mixed profile (Italian)
+		& 8.1.3 Mixed profile languages (Italian)
 			
 			& Grammatical
 			
@@ -719,9 +1182,8 @@
 				
 			& Ungrammatical
 			
-				io adoro Luisa 
 				io Luisa adoro 
-				adoro io Luisa 
+				adoro io Luisa
 				Luisa io adoro 
 				Luisa adoro io 
 
@@ -739,16 +1201,669 @@
 					detesto lavare Luisa io
 					dorme lui 
 					spinge Luisa Giuseppe
-
-& Chapter 13 Head movement
-
-=START=
-
-& Chapter 14 Clitics
-
-	& Standard Italian
+					
+	& 8.2 Ditransitives
 	
-		& Simple transitive clause, direct object accusative clitics
+		& 8.2.1 Free word order profile (Finnish)
+		
+			& Grammatical
+			
+				Pekka antoi kirjan Merjalle
+				Pekka antoi Merjalle kirjan 
+				Pekka kirjan antoi Merjalle 
+				Pekka kirjan Merjalle antoi 
+				Pekka Merjalle antoi kirjan 
+				Pekka Merjalle kirjan antoi 
+				kirjan Pekka antoi Merjalle 
+				kirjan Pekka Merjalle antoi 
+				kirjan antoi Pekka Merjalle 
+				kirjan antoi Merjalle Pekka 
+				kirjan Merjalle Pekka antoi 
+				kirjan Merjalle antoi Pekka 
+				Merjalle Pekka antoi kirjan 
+				Merjalle Pekka kirjan antoi 
+				Merjalle antoi Pekka kirjan 
+				Merjalle antoi kirjan Pekka 
+				Merjalle kirjan Pekka antoi 
+				Merjalle kirjan antoi Pekka
+				
+			& Ungrammatical
+			
+				antoi Pekka kirjan Merjalle 
+				antoi Pekka Merjalle kirjan 
+				antoi kirjan Pekka Merjalle 
+				antoi kirjan Merjalle Pekka 
+				antoi Merjalle Pekka kirjan 
+				antoi Merjalle kirjan Pekka 
+				
+		& 8.2.2 Rigid word order profile (English)
+		
+			& Grammatical
+			
+				John gave the key to Mary
+				
+			& Ungrammatical
+				
+				John gave to Mary the key
+				John the key gave to Mary 
+				John the key to Mary gave 
+				John to Mary gave the key 
+				John to Mary the key gave 
+				gave John the key to Mary 
+				gave John to Mary the key 
+				gave the key John to Mary 
+				gave the key to Mary John 
+				gave to Mary John the key 
+				gave to Mary the key John 
+				the key John gave to Mary 
+				the key John to Mary gave 
+				the key gave John to Mary 
+				the key gave to Mary John 
+				the key to Mary John gave 
+				the key to Mary gave John 
+				to Mary John gave the key 
+				to Mary John the key gave 
+				to Mary gave John the key 
+				to Mary gave the key John 
+				to Mary the key John gave 
+				to Mary the key gave John
+			
+			& Grammatical, double object inversion
+			
+				John gave Mary the key
+				John have the key to Mary
+	
+	& 8.3 Neg/Aux + V
+
+		& 8.2.3 Finnish transitive Neg + V
+
+			& Grammatical
+				
+				Pekka ei ihaile Merjaa
+				Pekka ei Merjaa ihaile
+				Pekka Merjaa ei ihaile 				
+				Merjaa Pekka ei ihaile 
+				Merjaa ei Pekka ihaile 
+				Merjaa ei ihaile Pekka 
+			
+			& Ungrammatical
+			
+				Pekka ihaile ei Merjaa 
+				Pekka ihaile Merjaa ei 
+				Pekka Merjaa ihaile ei 
+				ei Pekka ihaile Merjaa 
+				ei Pekka Merjaa ihaile 
+				ei ihaile Pekka Merjaa 
+				ei ihaile Merjaa Pekka 
+				ei Merjaa Pekka ihaile 
+				ei Merjaa ihaile Pekka 
+				ihaile Pekka ei Merjaa 
+				ihaile Pekka Merjaa ei 
+				ihaile ei Pekka Merjaa 
+				ihaile ei Merjaa Pekka 
+				ihaile Merjaa Pekka ei 
+				ihaile Merjaa ei Pekka 
+				Merjaa Pekka ihaile ei 
+				Merjaa ihaile Pekka ei 
+				Merjaa ihaile ei Pekka
+		
+		& 8.2.4 English transitive Aux + V
+			
+			& Grammatical
+			
+				John does admire' Mary
+				Mary does admire' John 				
+			
+			& Ungrammatical
+			
+				John does Mary admire' 
+				John admire' does Mary 
+				John admire' Mary does 
+				John Mary does admire' 
+				John Mary admire' does 
+				does John admire' Mary 
+				does John Mary admire' 
+				does admire' John Mary 
+				does admire' Mary John 
+				does Mary John admire' 
+				does Mary admire' John 
+				admire' John does Mary 
+				admire' John Mary does 
+				admire' does John Mary 
+				admire' does Mary John 
+				admire' Mary John does 
+				admire' Mary does John 
+				Mary John does admire' 
+				Mary John admire' does 
+				Mary does John admire'	
+				Mary admire' John does 
+				Mary admire' does John 
+				
+	& 8.3 Heads in wrong order
+	
+		& Ungrammatical
+		
+			& Group 8.3.1 Neg + V
+		
+				Pekka ihaile ei Merjaa
+		
+			& Group 8.3.2 Neg + Aux + V
+				
+				Pekka ollut ei ihaillut Merjaa
+				Pekka ollut ihaillut ei Merjaa
+				Pekka ei ihaillut ollut Merjaa
+				Pekka ei ihaillut ei ollut Merjaa
+				Pekka ihaillut ollut ei Merjaa
+				
+			& Group 8.3.3 Neg + Modal + V
+				
+				Pekan_gen taydy ei ihailla Merjaa
+				Pekan_gen taydy ihailla ei Merjaa
+				Pekan_gen ei ihailla taydy Merjaa
+				Pekan_gen ihailla ei taydy Merjaa
+				Pekan_gen ihailla taydy ei Merjaa
+				
+			& Group 8.3.4 Neg + V + V + LHM, with wrong head order
+				
+				taydy#C/op Pekan_gen ihailla ei  Merjaa
+				ihailla#C/op Pekan_gen taydy ei Merjaa
+				halua#C/op Pekan_gen Pekka ihailla ei Merjaa
+				ihailla#C/op Pekan_gen halua ei Merjaa
+				
+			& Group 8.3.5 Head final constructions with two more more verbal elements
+				
+				Pekka ihaile Merjaa ei 
+				Pekka ei ihaillut Merjaa ollut
+				Pekan_gen ei ihailla Merjaa taydy
+	
+	& 8.4 Infinitival complements
+	
+		& 8.4.1 Rigid word order (English)
+	
+			& John wants to leave
+			
+				& Grammatical
+
+					John wants to_inf leave 
+				
+				& Ungrammatical
+		
+					John wants leave to_inf 
+					John to_inf wants leave 
+					John to_inf leave wants 
+					John leave wants to_inf 
+					John leave to_inf wants 
+					wants John to_inf leave 
+					wants John leave to_inf 
+					wants to_inf John leave 
+					wants to_inf leave John 
+					wants leave John to_inf 
+					wants leave to_inf John 
+					to_inf John wants leave 
+					to_inf John leave wants 
+					to_inf wants John leave 
+					to_inf wants leave John 
+					to_inf leave John wants 
+					to_inf leave wants John 
+					leave John wants to_inf 
+					leave John to_inf wants 
+					leave wants John to_inf 
+					leave wants to_inf John 
+					leave to_inf John wants 
+					leave to_inf wants John 
+			
+			& John wants Mary to leave
+		
+				& Grammatical
+
+					John wants Mary to_inf leave 
+					Mary wants to_inf leave John
+					Mary wants John to_inf leave
+					
+				& Ungrammatical
+				
+					John wants Mary leave to_inf 
+					John wants to_inf Mary leave 
+					John wants to_inf leave Mary 
+					John wants leave Mary to_inf 
+					John wants leave to_inf Mary 
+					John Mary wants to_inf leave 
+					John Mary wants leave to_inf 
+					John Mary to_inf wants leave 
+					John Mary to_inf leave wants 
+					John Mary leave wants to_inf 
+					John Mary leave to_inf wants 
+					John to_inf wants Mary leave 
+					John to_inf wants leave Mary 
+					John to_inf Mary wants leave 
+					John to_inf Mary leave wants 
+					John to_inf leave wants Mary 
+					John to_inf leave Mary wants 
+					John leave wants Mary to_inf 
+					John leave wants to_inf Mary 
+					John leave Mary wants to_inf 
+					John leave Mary to_inf wants 
+					John leave to_inf wants Mary 
+					John leave to_inf Mary wants 
+					wants John Mary to_inf leave 
+					wants John Mary leave to_inf 
+					wants John to_inf Mary leave 
+					wants John to_inf leave Mary 
+					wants John leave Mary to_inf 
+					wants John leave to_inf Mary 
+					wants Mary John to_inf leave 
+					wants Mary John leave to_inf 
+					wants Mary to_inf John leave 
+					wants Mary to_inf leave John 
+					wants Mary leave John to_inf 
+					wants Mary leave to_inf John 
+					wants to_inf John Mary leave 
+					wants to_inf John leave Mary 
+					wants to_inf Mary John leave 
+					wants to_inf Mary leave John 
+					wants to_inf leave John Mary 
+					wants to_inf leave Mary John 
+					wants leave John Mary to_inf 
+					wants leave John to_inf Mary 
+					wants leave Mary John to_inf 
+					wants leave Mary to_inf John 
+					wants leave to_inf John Mary 
+					wants leave to_inf Mary John 
+					Mary John wants to_inf leave 
+					Mary John wants leave to_inf 
+					Mary John to_inf wants leave 
+					Mary John to_inf leave wants 
+					Mary John leave wants to_inf 
+					Mary John leave to_inf wants  
+					Mary wants John leave to_inf 
+					Mary wants to_inf John leave 
+					Mary wants leave John to_inf 
+					Mary wants leave to_inf John 
+					Mary to_inf John wants leave 
+					Mary to_inf John leave wants 
+					Mary to_inf wants John leave 
+					Mary to_inf wants leave John 
+					Mary to_inf leave John wants 
+					Mary to_inf leave wants John 
+					Mary leave John wants to_inf 
+					Mary leave John to_inf wants 
+					Mary leave wants John to_inf 
+					Mary leave wants to_inf John 
+					Mary leave to_inf John wants 
+					Mary leave to_inf wants John 
+					to_inf John wants Mary leave 
+					to_inf John wants leave Mary 
+					to_inf John Mary wants leave 
+					to_inf John Mary leave wants 
+					to_inf John leave wants Mary 
+					to_inf John leave Mary wants 
+					to_inf wants John Mary leave 
+					to_inf wants John leave Mary 
+					to_inf wants Mary John leave 
+					to_inf wants Mary leave John 
+					to_inf wants leave John Mary 
+					to_inf wants leave Mary John 
+					to_inf Mary John wants leave 
+					to_inf Mary John leave wants 
+					to_inf Mary wants John leave 
+					to_inf Mary wants leave John 
+					to_inf Mary leave John wants 
+					to_inf Mary leave wants John 
+					to_inf leave John wants Mary 
+					to_inf leave John Mary wants 
+					to_inf leave wants John Mary 
+					to_inf leave wants Mary John 
+					to_inf leave Mary John wants 
+					to_inf leave Mary wants John 
+					leave John wants Mary to_inf 
+					leave John wants to_inf Mary 
+					leave John Mary wants to_inf 
+					leave John Mary to_inf wants 
+					leave John to_inf wants Mary 
+					leave John to_inf Mary wants 
+					leave wants John Mary to_inf 
+					leave wants John to_inf Mary 
+					leave wants Mary John to_inf 
+					leave wants Mary to_inf John 
+					leave wants to_inf John Mary 
+					leave wants to_inf Mary John 
+					leave Mary John wants to_inf 
+					leave Mary John to_inf wants 
+					leave Mary wants John to_inf 
+					leave Mary wants to_inf John 
+					leave Mary to_inf John wants 
+					leave Mary to_inf wants John 
+					leave to_inf John wants Mary 
+					leave to_inf John Mary wants 
+					leave to_inf wants John Mary 
+					leave to_inf wants Mary John 
+					leave to_inf Mary John wants 
+					leave to_inf Mary wants John
+		
+		& 8.4.2 Free word order (Finnish)
+		
+			& Pekka haluaa lahtea
+			
+				& Grammatical
+					
+					Pekka haluaa lahtea 					
+					haluaa#C/op Pekka lahtea
+					haluaa#C/op lahtea Pekka
+					
+				& Ungrammatical
+
+					haluaa Pekka lahtea 
+					haluaa lahtea Pekka 
+					lahtea Pekka haluaa 
+					lahtea haluaa Pekka 
+
+					
+			& Pekka kaskee Merjan_gen lahtea
+			
+				& Grammatical
+					
+					Pekka kaskee Merjan_gen lahtea 
+					Pekka Merjan_gen kaskee lahtea 
+					Merjan_gen Pekka kaskee lahtea 
+					Merjan_gen kaskee Pekka lahtea 
+					Merjan_gen kaskee lahtea Pekka
+					kaskee#C/op Pekka Merjan_gen lahtea
+					lahtea#C/op Pekka Merjan_gen kaskee
+
+				& Ungrammatical
+									
+					Pekka kaskee lahtea Merjan_gen 
+					Pekka Merjan_gen lahtea kaskee 
+					Pekka lahtea kaskee Merjan_gen 
+					Pekka lahtea Merjan_gen kaskee 
+					kaskee Pekka Merjan_gen lahtea 
+					kaskee Pekka lahtea Merjan_gen 
+					kaskee Merjan_gen Pekka lahtea 
+					kaskee Merjan_gen lahtea Pekka 
+					kaskee lahtea Pekka Merjan_gen 
+					kaskee lahtea Merjan_gen Pekka 
+					Merjan_gen Pekka lahtea kaskee 
+					Merjan_gen lahtea Pekka kaskee 
+					Merjan_gen lahtea kaskee Pekka 
+					lahtea Pekka kaskee Merjan_gen 
+					lahtea Pekka Merjan_gen kaskee 
+					lahtea kaskee Pekka Merjan_gen 
+					lahtea kaskee Merjan_gen Pekka 
+					lahtea Merjan_gen Pekka kaskee 
+					lahtea Merjan_gen kaskee Pekka
+					
+& 9 Head movement
+	
+	& 9.1 Local HMC-compliant X-to-C movement
+
+		& Grammatical
+
+			& 9.1.1 T-to-C* movement
+			
+				istuu#foc Pekka
+				istuu#C/op Pekka
+				ihailee#foc Pekka Merjaa
+				ihailee#C/op Pekka Merjaa
+				myi#foc Pekka omaisuutensa
+				myi#C/op Pekka omaisuutensa
+				antoi#foc Pekka avaimen Merjalle
+				antoi#C/op Pekka avaimen Merjalle
+
+			& 9.1.2 Neg-to-C* movement
+				
+				ei#C/op Pekka ihaile Merjaa
+				ei#C/op Pekan_gen taydy ihailla Merjaa
+				ei#C/op Pekka halua ihailla Merjaa
+				ei#C/op Pekka ollut ihaillut Merjaa
+				ei#C/op Pekka myynyt omaisuuttaan
+				ei#C/op Pekan_gen taydy myyda omaisuuttaan
+				ei#C/op Pekka halua myyda omaisuuttaan
+				ei#C/op Pekka ollut myynyt omaisuuttaan
+				
+			& 9.1.3 Modal-to-C*	
+				
+				taytyy#C/op Pekan_gen ihailla Merjaa
+				taytyy#C/op Pekan_gen myyda omaisuuttaan
+				
+			& 9.1.4 Want-to-C* 	
+				
+				haluaa#C/op Pekka ihailla Merjaa
+				haluaa#C/op Pekka myyda omaisuuttaan
+				
+			& 9.1.5 Aux-to-C*
+				
+				on'#C/op Pekka ihaillut Merjaa
+				on'#C/op Pekka myynyt omaisuuttaan
+				
+			& 9.1.6 X-to-C, with dormal C-feature C/fin
+				
+				ihailee#C/fin Pekka Merjaa
+				ei#C/fin Pekka ihaile Merjaa
+				taytyy#C/fin Pekan_gen ihailla Merjaa
+				haluaa#C/fin Pekka ihailla Merjaa
+				on'#C/fin Pekka ihaillut Merjaa
+				myi#C/fin Pekka omaisuuttaan
+				ei#C/fin Pekka myynyt omaisuuttaan
+				taytyy#C/fin Pekan_gen myyda omaisuuttaan
+				haluaa#C/fin Pekka myyda omaisuuttaan
+				on'#C/fin Pekka myynyt omaisuuttaan
+				does#C/fin John admire' Mary
+
+		& Ungrammatical (C-feature is missing, V-initial)
+		
+			ihailee Pekka Merjaa
+			ei Pekka ihaile Merjaa
+			taytyy Pekan_genn ihailla Merjaa
+			haluaa Pekka ihailla Merjaa
+			ihailee Pekka ihailee Merjaa
+			on' Pekka ihaillut Merjaa
+			myi Pekka omaisuutensa
+			admire'#C/fin John does Mary
+	
+	& 9.2 Long head movement
+	
+		& Grammatical
+		
+			& 9.2.1 V-over-Neg	
+				
+				ihaile#C/op Pekka ei Merjaa
+				myi#C/op Pekka omaisuutensa
+				
+			& 9.2.2 V-over-Aux(BE)	
+				
+				ihaillut#C/op Pekka on' Merjaa
+				myynyt#C/op Pekka on' omaisuutensa
+
+			& 9.2.3  V-over-want
+				
+				ihailla#C/op Pekka haluaa Merjaa
+				myyda#C/op Pekka haluaa omaisuutensa
+				
+			& 9.2.4  V-over-must
+				
+				ihailla#C/op Pekan_gen taytyy Merjaa
+				myyda#C/op Pekan_gen taytyy omaisuutensa
+			
+			& 9.2.5  With noncanonical OVS orders
+				
+				ihaile#C/op Merjaa ei Pekka
+				ihaillut#C/op Merjaa on' Pekka
+				ihailla#C/op Merjaa haluaa Pekka
+				
+				myynyt#C/op omaisuuttaan ei Pekka
+				myynyt#C/op omaisuuttaan on' Pekka
+				myyda#C/op omaisuuttaan haluaa Pekka
+				
+			& 9.2.6 Neg + Modal + V, with Modal moving moving (grammaticality status unclear)
+				
+				taydy#C/op Pekan_gen ei ihailla Merjaa
+				taydy#C/op Pekan_gen ei myyda omaisuuttaan
+
+			& 9.2.7 Neg + Modal + V with V moving
+				
+				ihailla#C/op Pekan_gen ei taydy Merjaa
+				myyda#C/op Pekan_gen ei taydy omaisuuttaan
+			
+			& 9.2.8 Neg + want + V, with want moving
+				
+				halua#C/op Pekka ei ihailla Merjaa
+				ihailla#C/op Pekka ei halua Merjaa
+				halua#C/op Pekka ei myyda omaisuuttaan
+				myyda#C/op Pekka ei halua omaisuuttaan			
+		
+		& Ungrammatical (English)
+
+			admire' John wants to_inf Mary
+			to_inf admire' John wants Mary
+			to_inf John wants admire' Mary
+			admire'#C/fin John wants to_inf Mary
+			to_inf#C/fin admire' John wants Mary
+			to_inf#C/fin John wants admire' Mary		
+		
+		Ungrammatical (Finnish)
+		
+			& 9.2.9 Long head movement with formal C-feature or with no C-featre
+			
+				ihaile#C/fin Pekka ei Merjaa
+				ihaillut#C/fin Pekka on' Merjaa
+				ihailla#C/fin Pekka haluaa Merjaa	
+				ihailla#C/fin Pekan_gen taytyy Merjaa	
+				ihallut#C/fin Pekka ei ollut Merjaa	
+				ihaile Pekka ei Merjaa
+				ihaillut Pekka on' Merjaa
+				ihailla Pekka haluaa Merjaa	
+				ihailla Pekan_gen taytyy Merjaa	
+				ihallut Pekka ei ollut Merjaa	
+				myynyt#C/fin Pekka ei omaisuuttaan
+				myynyt#C/fin Pekka on omaisuuttaan
+				myyda#C/fin Pekka haluaa omaisuuttaan
+				myyda#C/fin Pekan_gen taytyy omaisuuttaan
+				myynyt#C/fin Pekka ei ollut omaisuuttaan
+				myynyt Pekka ei omaisuuttaan
+				myynyt Pekka on omaisuuttaan
+				myyda Pekka haluaa omaisuuttaan
+				myyda Pekan_gen taytyy omaisuuttaan
+				myynyt Pekka ei ollut omaisuuttaan
+
+			& 9.2.10 long head movement with infinitival subject
+				
+				ihailla#C/op Pekka kaskee poikien Merjaa
+				ihailla#C/fin Pekka kaskee poikien Merjaa
+				ihailla Pekka kaskee poikien Merjaa
+
+			& 9.2.11 Long head movement with second auxiliary
+				
+				ollut#C/fin Pekka ei ihaillut Merjaa
+				ollut Pekka ei ihaillut Merjaa
+			
+			& 9.2.12 Aux + prtcpl + prtcpl with locality violation
+				
+				ihaillut#C/op Pekka ei ollut Merjaa
+				
+			& 9.2.13 Neg + Modal + V with only formal C-feature (ungrammatical)
+			
+				taydy#C/fin Pekan_gen ei ihailla Merjaa
+				taydy Pekan_gen ei ihailla Merjaa
+				taydy#C/fin Pekan_gen ei myyda omaisuuttaan
+				taydy Pekan_gen ei myyda omaisuuttaan
+
+			& 9.2.14 Neg + want + V with no C-feature		
+				
+				ihailla#C/fin Pekan_gen ei taydy Merjaa
+				ihailla	Pekan_gen ei taydy Merjaa
+				halua Pekka ei myyda omaisuuttaan
+				myyda Pekka ei halua omaisuuttaan
+	
+	& 9.3 Super LHM
+	
+		& Grammatical
+			
+			& 9.3.1 that + want + A/inf
+			
+			ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa
+			lahtea#C/op Pekka sanoo etta Pekan_gen taytyy
+			myyda#C/op Pekka sanoo etta Pekka haluaa omaisuutensa
+			myyda#C/op Pekka sanoo etta Pekan_gen taytyy omaisuutensa
+			
+		& Ungrammatical		
+
+			& 9.3.2 Moving of the embedded finite verb (ungrammatical)
+				
+				haluaa#C/op Pekka sanoo etta ihailla Merjaa
+				ihailee#C/op Pekka sanoo etta Merjaa
+				taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa
+				
+				haluaa#C/op Pekka sanoo etta myyda omaisuutensa
+				myi#C/op Pekka sanoo etta omaisuutensa
+				taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa
+				
+			& 9.3.3 Formal C-features or no C-features = V-initial constructions (ungrammatical)
+				
+				ihailla#C/fin Pekka sanoo etta haluaa Merjaa
+				lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy
+				ihailla Pekka sanoo etta haluaa Merjaa
+				lahtea Pekka sanoo etta Pekan_genan taytyy
+				haluaa#C/fin Pekka sanoo etta myyda omaisuutensa
+				myi#C/fin Pekka sanoo etta omaisuutensa
+				taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa
+				haluaa Pekka sanoo etta myyda omaisuutensa
+				myi Pekka sanoo etta omaisuutensa
+				taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa	
+
+	& 9.4 Long head movement and island violations
+	
+		& Ungrammatical
+	
+			& Group 9.4.1 Right-adjunct CED
+			
+				ihailemalla#C/op Pekka istuu Merjaa
+		
+			& Group 9.4.2 Left branch CED
+			
+				ihailla#C/op sopimus Merjaa istuu
+		
+			& Group 9.4.3 Extraction from DP
+			
+				ihailla#C/op Pekka teki sopimuksen Merjaa
+	
+	& 9.5 C-features on wrong heads
+	
+		& Ungrammatical
+								
+			C/fin Pekka ihailee#C/op Merjaa
+			C/fin Pekka ei#C/op ihaile Merjaa
+			C/fin Pekka on'#C/op ihaillut Merjaa
+			C/fin Pekka ei#C/op ollut ihaillut Merjaa
+			C/fin Pekka haluaa#C/op ihailla Merjaa
+			C/fin Pekan_genn taytyy#C/op ihailla Merjaa
+			C/fin Pekan_gen ei#C/op taydy ihailla Merjaa
+			C/fin Pekka ei#C/op halua ihailla Merjaa
+			C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa
+			C/fin Pekka kaskee#C/op poikien ihailla Merjaa
+			C/fin Pekka istuu#C/op ihailemalla Merjaa 
+			C/fin Pekka istuu#C/op haluamalla ihailla Merjaa
+			C/fin Pekka teki#C/op sopimuksen ihailla Merjaa			
+			Pekka ei ihaile#C/op Merjaa
+			Pekka on' ihaillut#C/op Merjaa
+			Pekka ei ollut#C/op ihaillut Merjaa
+			Pekka haluaa ihailla#C/op Merjaa
+			Pekan_gen taytyy ihailla#C/op Merjaa
+			Pekan_gen ei taydy#C/op ihailla Merjaa
+			Pekka ei halua#C/op ihailla Merjaa
+			Pekka kaskee poikien ihailla#C/op Merjaa			
+			Pekka ei ollut ihaillut#C/op Merjaa
+			Pekan_gen ei taydy ihailla#C/op Merjaa
+			Pekka ei halua ihailla#C/op Merjaa
+			Pekka sanoo etta haluaa ihailla#C/op Merjaa			
+			Pekka istuu ihailemalla#C/op Merjaa 
+			Pekka istuu haluamalla ihailla#C/op Merjaa
+			Pekka teki sopimuksen ihailla#C/op Merjaa
+
+& 10 Clitics
+
+	& 10.1 Standard Italian
+	
+		& 10.1.1 Simple transitive clause, direct object accusative clitics
 		
 			& Grammatical
 			
@@ -772,7 +1887,7 @@
 			
 				io mi=lavano
 				
-		& Two-verb transitive, direct object accusative clitics
+		& 10.1.2 Two-verb transitive, direct object accusative clitics
 		
 			& hanno + lavato
 			
@@ -864,7 +1979,7 @@
 					loro=la stanno lavando
 					loro=lo stanno lavando
 					
-		& Three-verb constructions (Aux + T/par + ARE/inf)
+		& 10.1.3 Three-verb constructions (Aux + T/par + ARE/inf)
 		
 			& Grammatical
 			
@@ -882,7 +1997,7 @@
 				hanno mi=voluto lavare
 				hanno voluto mi=lavare
 				
-		& CL-V agreement in clitic constructions
+		& 10.1.4 CL-V agreement in clitic constructions
 		
 			& Grammatical
 			
@@ -897,7 +2012,7 @@
 				mi=hanno lavata loro
 				lo=hanno lavata loro
 				
-		& Indirect clitic arguments
+		& 10.1.5 Indirect clitic arguments
 		
 			& Grammatical
 			
@@ -905,7 +2020,7 @@
 				gli=lavano Luisa loro
 				gli=lavano Luisa
 				
-		& Clitic clusters
+		& 10.1.6 Clitic clusters
 		
 			& Grammatical
 			
@@ -920,7 +2035,7 @@
 				loro hanno gli=la=lavata
 				hanno gli=la=lavata
 				
-		& Restructuring
+		& 10.1.7 Restructuring
 		
 			& Grammatical
 			
@@ -943,7 +2058,7 @@
 				io detesto lavare=lo
 				detesto lavare=lo
 				
-		& Reflexive clitics
+		& 10.1.8 Reflexive clitics
 		
 			& Grammatical
 			
@@ -956,7 +2071,7 @@
 	
 			& Ungrammatical
 		
-		& Clitics and word order
+		& 10.1.9 Clitics and word order
 		
 			& Postverbal subject constructions
 			

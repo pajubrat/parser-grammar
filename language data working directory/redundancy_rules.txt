@@ -24,12 +24,12 @@ NUM		:: COMP:N COMP:n SPEC:*
 MA/lla	::	!COMP:V adjoinable
 
 # Language-specific redundancy rules
-A LANG:EN 	::  -adjoinable
 P LANG:EN	::	-SPEC:*
 T/fin LANG:EN	::	!SPEC:D
 A LANG:IT	:: -float
 
 A LANG:FI 	::  -adjoinable
+A LANG:EN	::	-adjoinable
 WH LANG:FI	::	WH_
 P LANG:FI	::	SPEC:*
 ADV LANG:FI	::	SPEC:*
