@@ -214,7 +214,6 @@ class PhraseStructure:
         return [edge for edge in self.edge() if edge.is_complex()]
 
     # Definition for licensed specifier (for a head)
-    # Note. Local phrasal specifier that has not been externalized
     def licensed_specifier(self):
         edge = self.phrasal_edge()
         # If there is only one phrasal edge, return it
@@ -226,9 +225,11 @@ class PhraseStructure:
             licensed_edge = [edge for edge in self.phrasal_edge() if not edge.externalized()]
             if licensed_edge:
                 return licensed_edge[0]
-            # if everything has been externalized, return the closest phrase
+            # if everything has been externalized, return the closest phrase that has not been moved away
             else:
-                return edge[0]
+                licensed_edge = [edge for edge in self.phrasal_edge() if not edge.find_me_elsewhere]
+                if licensed_edge:
+                    return licensed_edge[0]
 
     # Definition for container head
     def container_head(self):
@@ -419,20 +420,22 @@ class PhraseStructure:
         tail_sets = self.get_tail_sets()
         tests_checked = set()
         for tail_set in tail_sets:
+            # Strong tail condition: Must be inside the projection
             if self.strong_tail_condition(tail_set):
                 tests_checked.add(tail_set)
+            # Weak tail condition: Must find an upstream path
             if self.weak_tail_condition(tail_set):
                 tests_checked.add(tail_set)
         return tests_checked & tail_sets == tail_sets
 
     def internal_tail_head_test(self):
         tail_sets = self.get_tail_sets()
+        tests_checked = set()
         if tail_sets:
             for tail_set in tail_sets:
                 if self.weak_tail_condition(tail_set, 'internal'):
-                    return True
-                else:
-                    return False
+                    tests_checked.add(tail_set)
+            return tests_checked & tail_sets == tail_sets
         return True
 
     def strong_tail_condition(self, tail_set):
@@ -445,11 +448,13 @@ class PhraseStructure:
                     return True
 
     def precondition_for_strong_condition(self):
-        if 'A' not in self.features and 'D' not in self.features:
-            return True
-        if 'D' in self.features:
-            if self.max().is_right():
-                return True
+        # APs are excluded
+        if 'A' in self.head().features:
+            return False
+        # Left DPs are excluded with the exception of genitive marked DPs
+        if 'D' in self.head().features and self.max().is_left() and 'GEN' not in self.head().features:
+            return False
+        return True
 
     def weak_tail_condition(self, tail_set, variation='external'):
         if  'ADV' not in self.features and len(self.feature_vector()) > 1:
@@ -462,6 +467,7 @@ class PhraseStructure:
                         return False
                     elif test == 'negative match':
                         return False
+        # What to do when reaching the top
         if variation=='external' and not self.negative_features(tail_set):
             return False    # Strong test: reject (tail set must be checked)
         else:

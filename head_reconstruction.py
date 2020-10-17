@@ -45,6 +45,8 @@ class HeadMovement:
             return h
 
     # Definition for chain creation
+    # Complex head = original head
+    # Affix = affix that was extracted out
     def create_head_chain(self, complex_head, affix, intervention_feature):
         if self.no_structure_for_reconstruction(complex_head):
             self.reconstruct_to_sister(complex_head, affix)

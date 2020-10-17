@@ -57,8 +57,8 @@ class Morphology:
             critical_morpheme = self.determine_critical_morpheme(list_)
             if verbal_head() & critical_morpheme.features:
                 log('\t\t\t\tFeature interpreted as a C morpheme with C-feature')
-                lexical_item.morphology.replace('#C/op', '#C/fin#C/op')
-                lexical_item.morphology.replace('#foc', '#C/fin#C/op')
+                lexical_item.morphology = lexical_item.morphology.replace('#C/op', '#C/fin#C/op')
+                lexical_item.morphology = lexical_item.morphology.replace('#foc', '#C/fin#C/op')
         return lexical_item
 
     def determine_critical_morpheme(self, list_):

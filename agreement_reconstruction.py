@@ -2,9 +2,9 @@ from support import log
 
 # Abbreviations
 def get_type(f):
-    return f.split(':')[1]  # Notice that 0 = first element, 1 = second element
+    return f.split(':')[1]
 def get_value(f):
-    return f.split(':')[2]  # Notice that 0 = first element, 1 = second element, 2 = third element
+    return f.split(':')[2]
 def unvalued(input_feature):
     if input_feature:
         return {f for f in {input_feature} if f[-1] == '_'}
@@ -32,19 +32,16 @@ class AgreementReconstruction:
 
     # Definition for phi-feature acquisition (Agree-1)
     def Agree_1(self, head):
-
         self.controlling_parsing_process.consume_resources("Agree")
-
         goal, phi_features = self.Agree_1_from_sister(head)
         for phi in phi_features:
             self.value(head, goal, phi)
-
         if not head.is_unvalued():
             return
-
         goal, phi_features = self.Agree_1_from_edge(head)
         for phi in phi_features:
-            self.value(head, goal, phi)
+            if find_unvalued_target(head, phi):
+                self.value(head, goal, phi)
 
     # Definition for phi-acquisition from sister
     def Agree_1_from_sister(self, head):
@@ -52,7 +49,7 @@ class AgreementReconstruction:
             # ---------------------------- minimal search ----------------------------#
             for node in head.sister().minimal_search():
                 if node.left_complex():
-                    if node.left_const.head().is_functional():
+                    if node.left_const.is_functional():
                         break
                     if 'D' in node.left_const.head().features:
                         return node.left_const.head(), \
@@ -77,7 +74,7 @@ class AgreementReconstruction:
         if find_unvalued_target(h, phi):
             h.features = h.features - find_unvalued_target(h, phi)
             h.features.add(phi)
-            log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by Agree-1 from {goal}.')
+            log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by Agree-1 from {goal.mother}.')
             h.features.add('PHI_CHECKED')
 
     # Definition for blocked valuation

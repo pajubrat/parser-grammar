@@ -7,14 +7,14 @@
 # Block 1. Imports
 import sys
 from file_IO import *
-from linear_phase_parser import LinearPhaseParser
-from linear_phase_parser import LinearPhaseParser
+
 from log_functions import *
 import logging
 from language_guesser import LanguageGuesser
 import visualizer
 from pathlib import Path
 from support import is_comment
+from linear_phase_parser import LinearPhaseParser
 
 #
 #

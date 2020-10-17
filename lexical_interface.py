@@ -189,7 +189,4 @@ class LexicalInterface:
                 if not operator_features & features:
                     features.add('!SPEC:OP:_')
 
-        if 'LANG:EN' in features and 'T/fin' in features:
-            features.add('!SPEC:D')
-
         return features

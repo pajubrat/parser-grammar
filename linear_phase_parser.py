@@ -1,4 +1,4 @@
-from support import set_logging, log, report_LF_problem, report_tail_head_problem, reset_number_of_operations, log_result, illu
+from support import set_logging, log, show_primitive_constituents, report_tail_head_problem, show_all_vectors
 from lexical_interface import LexicalInterface
 from LF import LF
 from operator import itemgetter
@@ -130,6 +130,7 @@ class LinearPhaseParser:
                             break
                     # ---------------------------------------------------------------------------------------- #
 
+
         # If all solutions in the list have been explored,  backtrack
         if not self.exit:
             log('\t\nBacktracking...\n')
@@ -146,7 +147,7 @@ class LinearPhaseParser:
             log(f'\n\t{self.resources["Items from input"]}. Consume \"' + lst_branched[index + 1] + '\"')
         else:
             if self.memory_buffer_inflectional_affixes:
-                log(f'\t\tAdding inflectional features {self.memory_buffer_inflectional_affixes} to ' + lexical_item.get_phonological_string())
+                log(f'\t\tAdding inflectional features {sorted(self.memory_buffer_inflectional_affixes)} to ' + lexical_item.get_phonological_string())
                 lexical_item.features = lexical_item.features | set(self.memory_buffer_inflectional_affixes)
                 self.memory_buffer_inflectional_affixes = set()
         return lexical_item
@@ -165,6 +166,7 @@ class LinearPhaseParser:
         ps_ = self.transfer_to_lf(ps)
         if self.LF_condition_violation(ps_) or self.transfer_to_CI(ps_):
             self.add_garden_path()
+            log('\n' + show_primitive_constituents(ps))
             return
         self.first_solution_found = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))

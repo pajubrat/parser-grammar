@@ -116,7 +116,8 @@ class PhrasalMovement:
     @staticmethod
     # Definition for constituent that can implement A-bar move
     def Abar_movable(h):
-        return h.scan_criterial_features() or 'A/inf' in h.head().features
+        return h.scan_criterial_features() or \
+               'A/inf' in h.head().features
 
     @staticmethod
     # Definition for phrase that requires a local licensing head (used in connection with A-bar head generation)

@@ -41,7 +41,7 @@ class Extraposition:
             for node in ps.bottom().upstream_search():
                 if self.possible_extraposition_target(node):
                     self.controlling_parser_process.consume_resources("Extraposition")
-                    self.adjunct_constructor.create_adjunct(node.head())
+                    self.adjunct_constructor.create_adjunct(node)
                     return True
             # -------------------------------------------------------------------------------------------#
             log(f'\t\t\t\t\tNo suitable node for extraposition found.')

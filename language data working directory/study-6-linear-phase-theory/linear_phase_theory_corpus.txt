@@ -262,13 +262,13 @@
 		
 			John gave the key to Mary
 			John moved the key from Mary to John
-			to Mary John gave the key
-			to Mary John moved the key to John
 			
 		& Ungrammatical
 		
 			John to Mary gave the key
 			John gave to Mary the key
+			to Mary John gave the key
+			to Mary John moved the key to John
 			
 	& Chapter 2.3 Adjectives
 	
@@ -428,8 +428,11 @@
 				
 			& Ungrammatical
 			
-				minka Pekka teki sopimuksen ostaa
 				kenen Pekka teki sen kellon
+
+			& PROBLEM: why does D block A-bar reconstruction
+
+				minka Pekka teki sopimuksen ostaa
 				
 		& 3.3.4 Extraction of embedded subject position
 		
@@ -758,6 +761,14 @@
 		
 		& Grammatical 
 		
+			ihailen mina Merjaa 
+			ihailen Merjaa mina 
+			ihailet sina Merjaa 
+			ihailet Merjaa sina 
+			ihailette Merjaa te 
+			ihailemme me Merjaa 
+			ihailemme Merjaa me 
+			ihailette te Merjaa 
 			mina ihailen Merjaa 
 			mina Merjaa ihailen 
 			Merjaa mina ihailen 
@@ -785,16 +796,8 @@
 		
 		& Ungrammatical
 		
-			ihailen mina Merjaa 
-			ihailen Merjaa mina 
-			ihailet sina Merjaa 
-			ihailet Merjaa sina 
 			ihailee han Merjaa 
 			ihailee Merjaa han
-			ihailemme me Merjaa 
-			ihailemme Merjaa me 
-			ihailette te Merjaa 
-			ihailette Merjaa te 
 			ihailevat he_FI Merjaa 
 			ihailevat Merjaa he_FI
 
@@ -1021,14 +1024,17 @@
 		& Grammatical
 		
 			ihailen Merjaa
-			Merjaa ihailen
 		
 		& Ungrammatical
 	
 			ihailee Merjaa
-			Merjaa ihailee
 			ihailevat Merjaa
 			Merjaa ihailevat
+
+		& Problem: Partitive DO wrongly agrees with T
+
+			Merjaa ihailee
+			Merjaa ihailen
 	
 	& 6.3 Third person pro in Finnish, with and without antecedent
 	
@@ -1089,16 +1095,16 @@
 			
 				& Grammatical
 				
-					Pekka kaskee Merjan lahtea
-					Pekka haluaa Merjan lahtevan	
+					Pekka kaskee Merjan_gen lahtea
+					Pekka haluaa Merjan_gen lahtevan	
 					John persuades Mary to_inf leave
 
 				& Ungrammatical
 				
 					Pekka kaskee lahtea
-					Pekka haluaa lahtevan
 					John persuades to_ing leave
-			
+					Pekka haluaa lahtevan
+								
 		& 7.2.2 Control into adverbials
 		
 			& Subject control (high adjunct position)
@@ -1117,16 +1123,7 @@
 				& Ungrammatical
 				
 					John persuades to_inf leave
-					
-		& 7.2.3 Radical pro-drop
-		
-			& Grammatical
-			
-				John admire* Mary
-				admire* Mary
-				John admire** Mary
-				admire** Mary
-	
+						
 		& 7.2.4 Generic interpretation
 		
 			& Null object construction (Finnish)
@@ -1136,11 +1133,14 @@
 			& Generic null subject
 			
 				Pekka sanoo etta istuu mukavasti
-				istuu mukavasti
 				tassa istuu mukavasti
 				Pekka sanoo etta tassa istuu mukavasti
-				to_inf leave is a mistake
-	
+				to_inf leave is a_D mistake
+
+			& Ungrammatical
+			
+				istuu mukavasti
+
 & 8 Word order
 
 	& 8.1 Basic transitive clause
@@ -1200,14 +1200,13 @@
 					sembrano lavare Luisa loro 
 					detesto lavare Luisa io
 					dorme lui 
-					spinge Luisa Giuseppe
 					
 	& 8.2 Ditransitives
 	
 		& 8.2.1 Free word order profile (Finnish)
 		
 			& Grammatical
-			
+	
 				Pekka antoi kirjan Merjalle
 				Pekka antoi Merjalle kirjan 
 				Pekka kirjan antoi Merjalle 
@@ -1241,7 +1240,8 @@
 			& Grammatical
 			
 				John gave the key to Mary
-				
+				the key gave John to Mary 
+		
 			& Ungrammatical
 				
 				John gave to Mary the key
@@ -1257,7 +1257,6 @@
 				gave to Mary the key John 
 				the key John gave to Mary 
 				the key John to Mary gave 
-				the key gave John to Mary 
 				the key gave to Mary John 
 				the key to Mary John gave 
 				the key to Mary gave John 
@@ -1267,12 +1266,7 @@
 				to Mary gave the key John 
 				to Mary the key John gave 
 				to Mary the key gave John
-			
-			& Grammatical, double object inversion
-			
-				John gave Mary the key
-				John have the key to Mary
-	
+
 	& 8.3 Neg/Aux + V
 
 		& 8.2.3 Finnish transitive Neg + V
@@ -1384,7 +1378,8 @@
 			
 				& Grammatical
 
-					John wants to_inf leave 
+					John wants to_inf leave
+					to_inf leave wants John
 				
 				& Ungrammatical
 		
@@ -1404,14 +1399,13 @@
 					to_inf wants John leave 
 					to_inf wants leave John 
 					to_inf leave John wants 
-					to_inf leave wants John 
 					leave John wants to_inf 
 					leave John to_inf wants 
 					leave wants John to_inf 
 					leave wants to_inf John 
 					leave to_inf John wants 
 					leave to_inf wants John 
-			
+	
 			& John wants Mary to leave
 		
 				& Grammatical
@@ -1419,12 +1413,12 @@
 					John wants Mary to_inf leave 
 					Mary wants to_inf leave John
 					Mary wants John to_inf leave
+					John wants to_inf leave Mary
+					to_inf leave Mary wants John
 					
 				& Ungrammatical
 				
 					John wants Mary leave to_inf 
-					John wants to_inf Mary leave 
-					John wants to_inf leave Mary 
 					John wants leave Mary to_inf 
 					John wants leave to_inf Mary 
 					John Mary wants to_inf leave 
@@ -1437,7 +1431,6 @@
 					John to_inf wants leave Mary 
 					John to_inf Mary wants leave 
 					John to_inf Mary leave wants 
-					John to_inf leave wants Mary 
 					John to_inf leave Mary wants 
 					John leave wants Mary to_inf 
 					John leave wants to_inf Mary 
@@ -1476,7 +1469,6 @@
 					Mary John leave wants to_inf 
 					Mary John leave to_inf wants  
 					Mary wants John leave to_inf 
-					Mary wants to_inf John leave 
 					Mary wants leave John to_inf 
 					Mary wants leave to_inf John 
 					Mary to_inf John wants leave 
@@ -1484,7 +1476,6 @@
 					Mary to_inf wants John leave 
 					Mary to_inf wants leave John 
 					Mary to_inf leave John wants 
-					Mary to_inf leave wants John 
 					Mary leave John wants to_inf 
 					Mary leave John to_inf wants 
 					Mary leave wants John to_inf 
@@ -1495,7 +1486,6 @@
 					to_inf John wants leave Mary 
 					to_inf John Mary wants leave 
 					to_inf John Mary leave wants 
-					to_inf John leave wants Mary 
 					to_inf John leave Mary wants 
 					to_inf wants John Mary leave 
 					to_inf wants John leave Mary 
@@ -1508,18 +1498,12 @@
 					to_inf Mary wants John leave 
 					to_inf Mary wants leave John 
 					to_inf Mary leave John wants 
-					to_inf Mary leave wants John 
-					to_inf leave John wants Mary 
 					to_inf leave John Mary wants 
 					to_inf leave wants John Mary 
 					to_inf leave wants Mary John 
 					to_inf leave Mary John wants 
-					to_inf leave Mary wants John 
-					leave John wants Mary to_inf 
-					leave John wants to_inf Mary 
 					leave John Mary wants to_inf 
-					leave John Mary to_inf wants 
-					leave John to_inf wants Mary 
+					leave John Mary to_inf wants
 					leave John to_inf Mary wants 
 					leave wants John Mary to_inf 
 					leave wants John to_inf Mary 
@@ -1529,17 +1513,35 @@
 					leave wants to_inf Mary John 
 					leave Mary John wants to_inf 
 					leave Mary John to_inf wants 
-					leave Mary wants John to_inf 
-					leave Mary wants to_inf John 
 					leave Mary to_inf John wants 
-					leave Mary to_inf wants John 
-					leave to_inf John wants Mary 
 					leave to_inf John Mary wants 
 					leave to_inf wants John Mary 
 					leave to_inf wants Mary John 
-					leave to_inf Mary John wants 
+					leave to_inf Mary John wants
+					leave John wants Mary to_inf
+					leave John wants to_inf Mary
+					leave John to_inf wants Mary
+					leave Mary wants John to_inf
+					leave Mary wants to_inf John
+					leave Mary to_inf wants John
+					leave to_inf John wants Mary 
 					leave to_inf Mary wants John
-		
+			
+				& Problem: in situ version
+				& Solution: to_ing and leave have different antecedent
+	
+					John wants to_inf Mary leave 
+					Mary wants to_inf John leave
+
+				& Problem: grammatical but generic interpretation
+				& Solution: v cannot be antecedented by clause in English
+				
+					John to_inf leave wants Mary 
+					Mary to_inf leave wants John
+					to_inf John leave wants Mary
+					to_inf Mary leave wants John 
+					to_inf leave John wants Mary
+							
 		& 8.4.2 Free word order (Finnish)
 		
 			& Pekka haluaa lahtea
@@ -1548,7 +1550,6 @@
 					
 					Pekka haluaa lahtea 					
 					haluaa#C/op Pekka lahtea
-					haluaa#C/op lahtea Pekka
 					
 				& Ungrammatical
 
@@ -1556,7 +1557,10 @@
 					haluaa lahtea Pekka 
 					lahtea Pekka haluaa 
 					lahtea haluaa Pekka 
+					
+				& Unclear
 
+					haluaa#C/op lahtea Pekka
 					
 			& Pekka kaskee Merjan_gen lahtea
 			
@@ -1569,11 +1573,13 @@
 					Merjan_gen kaskee lahtea Pekka
 					kaskee#C/op Pekka Merjan_gen lahtea
 					lahtea#C/op Pekka Merjan_gen kaskee
+					Merjan_gen lahtea Pekka kaskee 
+					Merjan_gen lahtea kaskee Pekka
+					Pekka Merjan_gen lahtea kaskee 
 
 				& Ungrammatical
 									
 					Pekka kaskee lahtea Merjan_gen 
-					Pekka Merjan_gen lahtea kaskee 
 					Pekka lahtea kaskee Merjan_gen 
 					Pekka lahtea Merjan_gen kaskee 
 					kaskee Pekka Merjan_gen lahtea 
@@ -1583,15 +1589,13 @@
 					kaskee lahtea Pekka Merjan_gen 
 					kaskee lahtea Merjan_gen Pekka 
 					Merjan_gen Pekka lahtea kaskee 
-					Merjan_gen lahtea Pekka kaskee 
-					Merjan_gen lahtea kaskee Pekka 
 					lahtea Pekka kaskee Merjan_gen 
 					lahtea Pekka Merjan_gen kaskee 
 					lahtea kaskee Pekka Merjan_gen 
 					lahtea kaskee Merjan_gen Pekka 
 					lahtea Merjan_gen Pekka kaskee 
 					lahtea Merjan_gen kaskee Pekka
-					
+		
 & 9 Head movement
 	
 	& 9.1 Local HMC-compliant X-to-C movement
@@ -1619,7 +1623,7 @@
 				ei#C/op Pekan_gen taydy myyda omaisuuttaan
 				ei#C/op Pekka halua myyda omaisuuttaan
 				ei#C/op Pekka ollut myynyt omaisuuttaan
-				
+		
 			& 9.1.3 Modal-to-C*	
 				
 				taytyy#C/op Pekan_gen ihailla Merjaa
@@ -1659,7 +1663,9 @@
 			on' Pekka ihaillut Merjaa
 			myi Pekka omaisuutensa
 			admire'#C/fin John does Mary
-	
+
+=START=
+
 	& 9.2 Long head movement
 	
 		& Grammatical

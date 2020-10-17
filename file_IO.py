@@ -1,5 +1,6 @@
 import datetime
 from linear_phase_parser import LinearPhaseParser
+from support import show_primitive_constituents, show_all_vectors
 
 def format_resource_output(consumed_resources):
     s = ''
