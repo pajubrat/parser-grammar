@@ -20,20 +20,18 @@ class LocalFileSystem:
         self.visualizer = Visualizer()
         self.visualizer.initialize(args)
         self.read_config_file()
-        self.test_corpus = self.metadata['test_corpus_file']
-        self.study_folder = self.metadata['study_folder']
         self.folder['data'] = Path("language data working directory")
-        self.folder['study'] = self.folder['data'] / self.study_folder
+        self.folder['study'] = self.folder['data'] / self.metadata['study_folder']
         self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
-        self.external_sources = {"test_corpus_file_name": self.folder['study'] / self.test_corpus,
-                           "log_file_name": self.folder['study'] / (self.test_corpus[:-4] + '_log.txt'),
-                           "results_file_name": self.folder['study'] / (self.test_corpus[:-4] + '_results.txt'),
-                           "grammaticality_judgments_file_name": self.folder['study'] / (self.test_corpus[:-4] + '_grammaticality_judgments.txt'),
-                           "resources_file_name": self.folder['study'] / (self.test_corpus[:-4] + '_resources.txt'),
+        self.external_sources = {"test_corpus_file_name": self.folder['study'] / self.metadata['test_corpus_file'],
+                           "log_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_log.txt'),
+                           "results_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_results.txt'),
+                           "grammaticality_judgments_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
+                           "resources_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_resources.txt'),
                            "lexicon_file_name": self.folder['data'] / 'lexicon.txt',
                            "ug_morphemes": self.folder['data'] / 'ug_morphemes.txt',
                            "redundancy_rules": self.folder['data'] / 'redundancy_rules.txt',
-                           "surface_vocabulary_file_name": self.folder['study'] / (self.test_corpus[:-4] + '_saved_vocabulary.txt')}
+                           "surface_vocabulary_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_saved_vocabulary.txt')}
         self.initialize_image_folder()
         self.initialize_grammaticality_judgments_file()
         self.initialize_results_file()

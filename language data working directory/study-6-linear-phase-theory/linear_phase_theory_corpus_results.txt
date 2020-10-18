@@ -1,10 +1,10 @@
-{'name_of_study': 'Gold Standard 1500', 'author(s)': 'Pauli Brattico', 'year': '2020', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory'}2020-10-18 20:26:02.620492
+{'name_of_study': 'Gold Standard 1500', 'author(s)': 'Pauli Brattico', 'year': '2020', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory'}2020-10-18 20:34:44.634127
 Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
 Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
 Lexicon from language data working directory\lexicon.txt.
 Redundancy rules from language data working directory\redundancy_rules.txt.
 Universal morphemes from language data working directory\ug_morphemes.txt.
-1. istuu#C/op Pekka 
+1. istuu#foc Pekka 
 
 	[C [<D Pekka>:1 [T [<__>:1 istuu]]]]
 
@@ -15,7 +15,18 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Agree:2, Transfer:3, Items from input:12, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
 		LF recovery:1, LF test:4, Execution time = 15ms
 
-2. ihailee#foc Pekka Merjaa 
+2. istuu#C/op Pekka 
+
+	[C [<D Pekka>:1 [T [<__>:1 istuu]]]]
+
+	LF_Recovery: 	 
+	Agent of istuu(Pekka)
+
+		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:3, Items from input:12, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
+		LF recovery:1, LF test:4, Execution time = 31ms
+
+3. ihailee#foc Pekka Merjaa 
 
 	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
 
@@ -27,7 +38,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Agree:4, Transfer:6, Items from input:21, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
 		LF recovery:2, LF test:9, Execution time = 31ms
 
-3. ihailee#C/op Pekka Merjaa 
+4. ihailee#C/op Pekka Merjaa 
 
 	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
 
@@ -37,9 +48,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
 		Agree:4, Transfer:6, Items from input:21, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
-		LF recovery:2, LF test:9, Execution time = 31ms
+		LF recovery:2, LF test:9, Execution time = 15ms
 
-4. myi#foc Pekka omaisuutensa 
+5. myi#foc Pekka omaisuutensa 
 
 	[C [<D Pekka>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]
 
@@ -52,7 +63,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Agree:4, Transfer:6, Items from input:17, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
 		LF recovery:2, LF test:9, Execution time = 15ms
 
-5. myi#C/op Pekka omaisuutensa 
+6. myi#C/op Pekka omaisuutensa 
 
 	[C [<D Pekka>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]
 
@@ -63,9 +74,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
 		Agree:4, Transfer:6, Items from input:17, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
-		LF recovery:2, LF test:9, Execution time = 31ms
+		LF recovery:2, LF test:9, Execution time = 15ms
 
-6. antoi#foc Pekka avaimen Merjalle 
+7. antoi#foc Pekka avaimen Merjalle 
 
 	a. [C [<D Pekka>:1 [T [<__>:1 [v [<__>:2 [antaa [<D avain>:2 [P(lle) [D Merja]]]]]]]]]]
 
@@ -77,7 +88,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 		Garden Paths:0, Merge:10, Move Head:23, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
 		Agree:8, Transfer:16, Items from input:20, Feature Processing:0, Extraposition:2, Inflection:9, Failed Transfer:7, 
-		LF recovery:3, LF test:24, Execution time = 78ms
+		LF recovery:3, LF test:24, Execution time = 62ms
 
 	b. [[C [<D Pekka>:1 [T [<__>:1 [v [[antaa [D avain]] <__>:2]]]]]] <P(lle) [D Merja]>:2]
 
@@ -87,7 +98,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Agent of v(Pekka)
 	Aspectually bounded
 
-7. antoi#C/op Pekka avaimen Merjalle 
+8. antoi#C/op Pekka avaimen Merjalle 
 
 	a. [C [<D Pekka>:1 [T [<__>:1 [v [<__>:2 [antaa [<D avain>:2 [P(lle) [D Merja]]]]]]]]]]
 
@@ -99,7 +110,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 		Garden Paths:0, Merge:10, Move Head:23, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
 		Agree:8, Transfer:16, Items from input:20, Feature Processing:0, Extraposition:2, Inflection:9, Failed Transfer:7, 
-		LF recovery:3, LF test:24, Execution time = 78ms
+		LF recovery:3, LF test:24, Execution time = 46ms
 
 	b. [[C [<D Pekka>:1 [T [<__>:1 [v [[antaa [D avain]] <__>:2]]]]]] <P(lle) [D Merja]>:2]
 
