@@ -14,12 +14,14 @@ class LocalFileSystem:
         self.results_file = None
         self.resources_file = None
         self.visualizer = None
+        self.metadata = {}
 
     def initialize(self, args):
         self.visualizer = Visualizer()
         self.visualizer.initialize(args)
-        self.test_corpus = "linear_phase_theory_corpus.txt"
-        self.study_folder = "study-6-linear-phase-theory"
+        self.read_config_file()
+        self.test_corpus = self.metadata['test_corpus_file']
+        self.study_folder = self.metadata['study_folder']
         self.folder['data'] = Path("language data working directory")
         self.folder['study'] = self.folder['data'] / self.study_folder
         self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
@@ -36,6 +38,17 @@ class LocalFileSystem:
         self.initialize_grammaticality_judgments_file()
         self.initialize_results_file()
         self.initialize_resources_file()
+
+    def read_config_file(self):
+        config_file = open('config.txt')
+        for line in config_file:
+            line = line.strip()
+            line = line.replace('\t', '')
+            line = line.replace('  ', '')
+            key, value = line.split(':', 1)
+            self.metadata[key] = value
+        print(self.metadata)
+        config_file.close()
 
     def initialize_results_file(self):
         self.results_file = open(self.external_sources['results_file_name'], "w", -1, "utf-8")
@@ -110,6 +123,7 @@ class LocalFileSystem:
         return parse_list
 
     def stamp(self, file_handle):
+        file_handle.write(str(self.metadata))
         file_handle.write(str(datetime.datetime.now()) + '\n')
         file_handle.write(f'Test sentences from {self.external_sources["test_corpus_file_name"]}.\n')
         file_handle.write(f'Logs into {self.external_sources["log_file_name"]}.\n')
