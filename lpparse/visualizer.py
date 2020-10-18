@@ -5,13 +5,12 @@
 import pyglet
 import pyglet.window.key
 from pyglet import shapes, window
-from pyglet.gl import GL_POINTS, GL_LINES, glBegin, glEnd, glVertex2f, gl, glLineWidth, glColor4f, glClearColor, \
+from pyglet.gl import GL_LINES, glBegin, glEnd, glVertex2f, gl, glLineWidth, glColor4f, glClearColor, \
     glClear, GL_COLOR_BUFFER_BIT
 
 
 case_features = {'NOM', 'ACC', 'PAR', 'GEN', '0_ACC', 'n_ACC', 't_ACC', 'DAT', 'POSS'}
-import phrase_structure
-import time
+
 
 # Definition for the visualizer
 class Visualizer:

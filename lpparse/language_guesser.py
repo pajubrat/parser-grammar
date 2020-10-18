@@ -18,7 +18,7 @@ class LanguageGuesser:
                     self.lang_map[key].append(feat)
                     self.languages.add(feat)
 
-    def guess(self, sentence):
+    def guess_language(self, sentence):
         hits = Counter()
         for word in sentence:
             for lang in self.lang_map[word]:

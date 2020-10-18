@@ -1,24 +1,111 @@
-2020-10-17 16:44:17.467351
-Test sentences from file "language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_results.txt".
-Logs into file "language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_results.txt.
-Lexicon from file "language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_results.txt".
-1. ihaillut#C/op Pekka on' Merjaa 
+2020-10-18 19:46:05.217756
+Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
+Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
+Lexicon from language data working directory\lexicon.txt.
+Redundancy rules from language data working directory\redundancy_rules.txt.
+Universal morphemes from language data working directory\ug_morphemes.txt.
+1. istuu#C/op Pekka 
 
-	a. [C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
+	[C [<D Pekka>:1 [T [<__>:1 istuu]]]]
 
 	LF_Recovery: 	 
-	Agent of T/prt(Pekka)
+	Agent of istuu(Pekka)
+
+		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
+		Agree:2, Transfer:3, Items from input:12, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
+		LF recovery:1, LF test:4, Execution time = 15ms
+
+2. ihailee#foc Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+	LF_Recovery: 	 
 	Agent of v(Pekka)
 	Patient of ihaile-(Merja)
 
-		Garden Paths:0, Merge:9, Move Head:15, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, 
-		Agree:9, Transfer:12, Items from input:24, Feature Processing:0, Extraposition:0, Inflection:14, Failed Transfer:6, 
-		LF recovery:3, LF test:18, Execution time = 46ms
+		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
+		Agree:4, Transfer:6, Items from input:21, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
+		LF recovery:2, LF test:9, Execution time = 31ms
 
-	b. [C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
+3. ihailee#C/op Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
 
 	LF_Recovery: 	 
-	Agent of T/prt(Pekka)
 	Agent of v(Pekka)
 	Patient of ihaile-(Merja)
+
+		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
+		Agree:4, Transfer:6, Items from input:21, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
+		LF recovery:2, LF test:9, Execution time = 31ms
+
+4. myi#foc Pekka omaisuutensa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
+		Agree:4, Transfer:6, Items from input:17, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
+		LF recovery:2, LF test:9, Execution time = 31ms
+
+5. myi#C/op Pekka omaisuutensa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of myy(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
+		Agree:4, Transfer:6, Items from input:17, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
+		LF recovery:2, LF test:9, Execution time = 31ms
+
+6. antoi#foc Pekka avaimen Merjalle 
+
+	a. [C [<D Pekka>:1 [T [<__>:1 [v [<__>:2 [antaa [<D avain>:2 [P(lle) [D Merja]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+		Garden Paths:0, Merge:10, Move Head:23, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
+		Agree:8, Transfer:16, Items from input:20, Feature Processing:0, Extraposition:2, Inflection:9, Failed Transfer:7, 
+		LF recovery:3, LF test:24, Execution time = 46ms
+
+	b. [[C [<D Pekka>:1 [T [<__>:1 [v [[antaa [D avain]] <__>:2]]]]]] <P(lle) [D Merja]>:2]
+
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+7. antoi#C/op Pekka avaimen Merjalle 
+
+	a. [C [<D Pekka>:1 [T [<__>:1 [v [<__>:2 [antaa [<D avain>:2 [P(lle) [D Merja]]]]]]]]]]
+
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
+
+		Garden Paths:0, Merge:10, Move Head:23, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
+		Agree:8, Transfer:16, Items from input:20, Feature Processing:0, Extraposition:2, Inflection:9, Failed Transfer:7, 
+		LF recovery:3, LF test:24, Execution time = 46ms
+
+	b. [[C [<D Pekka>:1 [T [<__>:1 [v [[antaa [D avain]] <__>:2]]]]]] <P(lle) [D Merja]>:2]
+
+	LF_Recovery: 	 
+	Agent of P(lle)(Pekka)
+	Agent of antaa(Pekka)
+	Agent of v(Pekka)
+	Aspectually bounded
 

@@ -1,10 +1,13 @@
 from support import *
+import logging
 
-def log_sentence(count, sentence, lang):
+def configure_logging(local_file_system):
+    logging.basicConfig(level=logging.INFO, handlers=[logging.FileHandler(local_file_system.external_sources["log_file_name"], 'w', 'utf-8')], format='%(message)s')
+
+def log_sentence(count, sentence):
     log('\n\n\========================================================================')
     log('# ' + str(count))
     log(str(sentence))
-    log(f'Language {lang}')
 
 def log_results(ps_, sentence):
     log('----------------------------------------------------------------------------------------------------------')
