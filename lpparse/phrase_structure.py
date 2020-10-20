@@ -282,6 +282,28 @@ class PhraseStructure:
             if self == self.container_head().licensed_specifier():
                 return self.container_head()
 
+    def get_position_on_geometric_right_edge(self):
+        ps_ = self.top()
+        position = 0
+        while ps_:
+            if ps_ == self:
+                return position
+            if ps_.right_const:
+                position = position + 1
+                ps_ = ps_.right_const
+            else:
+                return None
+        return None
+
+    def node_at(self, position):
+        ps_ = self.top()
+        for pos in range(0, position):
+            ps_ = ps_.right_const
+        return ps_
+
+    def identify_equivalent_node(self, site):
+        return self.node_at(site.get_position_on_geometric_right_edge())
+
     #
     # Block 2. Structure building operations
     #

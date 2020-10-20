@@ -87,7 +87,7 @@ class AdjunctConstructor:
         ps.detach()
         log(f'\t\t\t\t\t{ps} is transferred to LF as a phase.')
         disable_logging()
-        ps = self.controlling_parser_process.transfer_to_lf(ps, 5)
+        ps = self.controlling_parser_process.transfer_to_LF(ps, 5)
         enable_logging()
         if original_mother:
             ps.mother = original_mother
