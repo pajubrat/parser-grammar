@@ -88,9 +88,8 @@ def show_primitive_constituents(self):
         reply += show_primitive_constituents(self.left_const)
         reply += show_primitive_constituents(self.right_const)
     else:
-        reply += f'{self.get_phonological_string():<10} {sorted_by_relevance(self.features)}\n'
+        reply += f'\t\t{self.get_phonological_string():<10} {sorted_by_relevance(self.features)}\n'
     return reply
-
 
 def report_LF_problem(ps_):
     log('\t\t\tLF-interface condition(s) violated')
@@ -113,10 +112,8 @@ def log(text):
         if log_instance.use_buffer:
             log_instance.buffer.append(text)
 
-
 def disable_logging():
     log_instance.disabled += 1
-
 
 def is_logging_enabled():
     if log_instance.disabled == 0:
@@ -124,56 +121,43 @@ def is_logging_enabled():
     else:
         return False
 
-
 def enable_logging():
     log_instance.disabled -= 1
     if log_instance.disabled < 0:
         log_instance.disabled = 0
 
-
 def indent_log():
     log_instance.indent_level += 1
-
 
 def unindent_log():
     log_instance.indent_level -= 1
 
-
 def set_intent_level(level):
     log_instance.indent_level = level
-
 
 def disable_all_logging():
     log_instance.disabled = True
 
-
 def get_log_buffer():
     return log_instance.buffer
-
 
 def clear_log_buffer():
     log_instance.buffer = []
 
-
 def set_log_buffering(value):
     log_instance.use_buffer = value
-
 
 def get_number_of_operations():
     return log_instance.operations
 
-
 def reset_number_of_operations():
     log_instance.operations = 0
-
 
 def set_logging(value):
     log_instance.logging = value
 
-
 def is_logging():
     return log_instance.logging
-
 
 def log_color(text, color_code):
     if log_instance.logging:
@@ -182,29 +166,23 @@ def log_color(text, color_code):
         else:
             my_log.info(text)
 
-
 def log_bold(text):
     log_color(text, '')
-
 
 def log_red(text):
     log_color(text, ';31')
 
-
 def log_blue(text):
     log_color(text, ';34')
-
 
 def log_cyan(text):
     log_color(text, ';36')
 
-
 def log_result(ps):
 
-    log('\t\tSolution:')
-    log(f'\t\t{ps.illustrate()}')
-    log(f'\t\tGrammar: {ps}')
-    log(f'\t\tSpellout {show(ps)}')
+    log(f'\n\t\tSolution:\t\t{ps.illustrate()}')
+    log(f'\n\t\tGrammar:\t\t{ps}')
+    log(f'\n\t\tSpellout\t\t{show(ps)}\n')
 
 def illu(set):
     feats = []

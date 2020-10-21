@@ -11,7 +11,7 @@ class FeatureProcessing():
         for node in ps.minimal_search():
             if node.left_const and node.left_const.is_primitive():
                 if '?ARG' in node.left_const.features:
-                    log(f'\t\t\t\t\tSolving feature ambiguities for \"{node.left_const}\".')
+                    log(f'Solving feature ambiguities for \"{node.left_const}\"...')
                     self.resolve_neutralized_feature(node.left_const)
         # ----------------------------------------------------------------------------------------#
 
@@ -19,12 +19,12 @@ class FeatureProcessing():
     def resolve_neutralized_feature(self, h):
         h.features.discard('?ARG')
         if self.selected_by_SEM_internal(h):
-            log(f'\t\t\t\t\t{h} resolved into -ARG due to {h.selector()}')
+            log(f'{h} resolved into -ARG due to {h.selector()}...')
             h.features.add('-ARG')
             h.features.add('-SPEC:*')
             h.features.discard('SPEC:*')
         elif self.selected_by_SEM_external(h):
-            log(f'\t\t\t\t\t{h} resolved into +ARG due to {h.selector()}')
+            log(f'{h} resolved into +ARG due to {h.selector()}...')
             h.features.add('ARG')
             h.features.add('VAL')
             h.features.discard('?VAL')

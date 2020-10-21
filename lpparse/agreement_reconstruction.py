@@ -74,7 +74,7 @@ class AgreementReconstruction:
         if find_unvalued_target(h, phi):
             h.features = h.features - find_unvalued_target(h, phi)
             h.features.add(phi)
-            log(f'\t\t\t\t\t{h} acquired ' + str(phi) + f' by Agree-1 from {goal.mother}.')
+            log(f'{h} acquired ' + str(phi) + f' by Agree-1 from {goal.mother}...')
             h.features.add('PHI_CHECKED')
 
     # Definition for blocked valuation
@@ -87,8 +87,8 @@ class AgreementReconstruction:
             if type_value_matches:
                 return False
             else:
-                log(f'\t\t\t\t\t\tFeature {f} cannot be valued into {h}. Reason:')
-                log(f'\t\t\t\t\t\t{h} already has a feature with the same type but with different value.')
+                log(f'Feature {f} cannot be valued into {h}. Reason:')
+                log(f'{h} already has a feature with the same type but with different value...')
                 return True
         return False
 

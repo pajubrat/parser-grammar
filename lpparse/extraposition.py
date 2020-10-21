@@ -16,7 +16,7 @@ class Extraposition:
         # ------------------------- minimal search --------------------------------#
         for node in ps.minimal_search():
             if self.selection_violation_at(node):
-                log(f'\t\t\t\t\t{node.left_const} cannot select {node.right_const.head()}')
+                log(f'{node.left_const} cannot select {node.right_const.head()}...')
                 return node.right_const.head()
         # --------------------------------------------------------------------------#
 
@@ -29,14 +29,14 @@ class Extraposition:
             return True
 
     def try_extraposition(self, unselected_head):
-        log(f'\t\t\t\t\tExtraposition will be tried on {unselected_head.mother}.')
+        log(f'Extraposition will be tried on {unselected_head.mother}...')
         self.controlling_parser_process.consume_resources("Extraposition")
         self.adjunct_constructor.create_adjunct(unselected_head)
 
     # Definition for last resort extraposition
     def last_resort_reconstruct(self, ps):
         if self.preconditions_for_extraposition(ps):
-            log(f'\t\t\t\t\tLast resort extraposition will be tried on {ps.top()}.')
+            log(f'Last resort extraposition will be tried on {ps.top()}...')
             # ---------------------------- upstream search -----------------------------------------------#
             for node in ps.bottom().upstream_search():
                 if self.possible_extraposition_target(node):
@@ -44,7 +44,7 @@ class Extraposition:
                     self.adjunct_constructor.create_adjunct(node)
                     return True
             # -------------------------------------------------------------------------------------------#
-            log(f'\t\t\t\t\tNo suitable node for extraposition found.')
+            log(f'No suitable node for extraposition found...')
 
     def preconditions_for_extraposition(self, ps):
         return (ps.top().contains_feature('FIN') or 'D' in ps.top().head().features) and not self.controlling_parser_process.LF_legibility_test(ps.top())

@@ -9,24 +9,25 @@ class PlausibilityMetrics:
         return self.rank_merge_right(self.filter(ps, w))
 
     def filter(self, ps, w):
-        log('\t\t\tFiltering out impossible merge sites...')
+        log('\n\t\t\tFiltering out impossible merge sites...')
         adjunction_sites = []
         if ps.bottom().bottom_affix().internal:
-            log(f'\t\t\tSink \"{w.get_phonological_string()}\" because it belongs to the same word.')
+            log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...Done.\n')
             return [[ps.bottom()], w]
         #--------------------geometrical minimal search------------------------------
         for N in ps.geometrical_minimal_search():
             if self.does_not_accept_any_complementizers(N):
-                log(f'\t\t\t\tReject {N} + {w} because {N} does not accept complementizers.')
+                log(f'Reject {N} + {w} because {N} does not accept complementizers...')
                 continue
             if N.is_complex() and self.bad_left_branch_test(N):
-                log(f'\t\t\t\tReject {N} + {w} due to bad left branch.')
+                log(f'Reject {N} + {w} due to bad left branch...')
                 continue
             if self.breaks_words(N, w):
-                log(f'\t\t\t\tReject {N} + {w} because it breaks words.')
+                log(f'Reject {N} + {w} because it breaks words...')
                 continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------
+        log('Done.\n')
         return [adjunction_sites, w]
 
     # Definition for the ranking function
@@ -59,7 +60,7 @@ class PlausibilityMetrics:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base + 100 * len(word_specs & site_features)
-                log(f'\t\t\t\tPrioritize {site.get_cats_string()} as SPEC,{word_pf}.')
+                log(f'Prioritize {site.get_cats_string()} as SPEC,{word_pf}...')
                 avoid_set.clear()
 
             # Case 2b. Negative Spec solutions
@@ -68,23 +69,21 @@ class PlausibilityMetrics:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 100 * len(word_not_specs & site_features)
-                log(f'\t\t\t\tAvoid {site.head().get_cats_string()}P as SPEC, {word_pf}.')
+                log(f'Avoid {site.head().get_cats_string()}P as SPEC, {word_pf}...')
                 avoid_set.add(site)
             # Avoid all SPEC solutions if there is [-SPEC:*]
             if '*' in word_not_specs:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 100
-                log(
-                    f'\t\t\t\tAvoid {site.head().get_cats_string()}P as SPEC for {word_pf} due to unselective SPEC feature.')
+                log(f'Avoid {site.head().get_cats_string()}P as SPEC for {word_pf} due to unselective SPEC feature...')
                 avoid_set.add(site)
             # Avoid rare SPEC solutions
             if word_rare_specs & site_features:
                 # The higher the number the higher the relative ranking will be
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 1000
-                log(
-                    f'\t\t\t\tAvoid {site.head().get_cats_string()}P as SPEC for {word_pf} due to rare SPEC feature.')
+                log(f'Avoid {site.head().get_cats_string()}P as SPEC for {word_pf} due to rare SPEC feature...')
                 avoid_set.add(site)
 
             # Case 2c. Check if existing H-Comp-relations would be broken, if yes, avoid them
@@ -98,8 +97,7 @@ class PlausibilityMetrics:
                         # This is in part arbitrary and should be considered carefully when aiming for realism
                         priority = priority + priority_base - 100 * len(
                             site.mother.left_const.licensed_complements() & site.features)
-                        log(
-                            f'\t\t\t\tAvoid [{site}, {w}] because the operation breaks up an existing selectional dependency.')
+                        log(f'Avoid [{site}, {w}] because the operation breaks up an existing selectional dependency...')
                         avoid_set.add(site)
 
             # Case 4. Prioritize/avoid Comp solutions
@@ -109,12 +107,10 @@ class PlausibilityMetrics:
                 # Check that the new constituent has tailing features
                 if word_tail_set:
                     test_word = w.copy()
-                    site.merge_1(test_word,
-                                 'right')  # We must merge the constituent in order to see possible violations
+                    site.merge_1(test_word,'right')  # We must merge the constituent in order to see possible violations
                     if not test_word.internal_tail_head_test():
                         priority = priority + priority_base - 50
-                        log(
-                            f'\t\t\t\tAvoid [{site.get_phonological_string()} {word_pf}] due to local agreement failure.')
+                        log(f'Avoid [{site.get_phonological_string()} {word_pf}] due to local agreement failure...')
                         avoid_set.add(site)
                     test_word.remove()
                 # Evaluate Comp selection for all morphemes inside the site
@@ -122,18 +118,17 @@ class PlausibilityMetrics:
                     # Check if H selects w and if yes, prioritize this solution
                     if w.features & m.convert_features_for_parsing(m.licensed_complements()):
                         priority = priority + priority_base + 100
-                        log(
-                            f'\t\t\t\tPrioritize [{m.get_phonological_string()} {word_pf}] due to complement selection.')
+                        log(f'Prioritize [{m.get_phonological_string()} {word_pf}] due to complement selection...')
                         avoid_set.clear()
                     # ... if f cannot be merged to the complement, avoid this solution
                     if w.features & m.convert_features_for_parsing(m.complements_not_licensed()):
                         priority = priority + priority_base - 100 * len(
                             w.features & m.convert_features_for_parsing(m.complements_not_licensed()))
-                        log(f'\t\t\t\tAvoid [{m.get_phonological_string()} {word_pf}] due to complement selection.')
+                        log(f'Avoid [{m.get_phonological_string()} {word_pf}] due to complement selection...')
                         avoid_set.add(site)
                     if not LF.semantic_match(m, w):
                         priority = priority + priority_base - 100
-                        log(f'\t\t\t\tAvoid [{site},{w}] solution due to semantic mismatch.')
+                        log(f'Avoid [{site},{w}] solution due to semantic mismatch...')
                         avoid_set.add(site)
 
             # Case 5. LF-legibility violations
@@ -146,7 +141,7 @@ class PlausibilityMetrics:
                 if self.cpp.LF_legibility_test(dropped):
                     priority = priority + priority_base - 100
                     log(
-                        f'\t\t\t\tAvoid {dropped.illustrate()} as left branch because it constitutes illicit structure.')
+                        f'Avoid {dropped.illustrate()} as left branch because it constitutes illicit structure...')
                     avoid_set.add(site)
 
             # Case 6. Word-breaking violations
@@ -154,7 +149,7 @@ class PlausibilityMetrics:
             if site.is_primitive() and self.cpp.is_word_internal(site):
                 if 'ADV' not in w.features:
                     priority = priority + priority_base - 100
-                    log(f'\t\t\t\tAvoid {site} because it could break words.')
+                    log(f'Avoid {site} because it could break words...')
                     avoid_set.add(site)
 
             # Case 7. Adverbials select legitimate tail-head configurations
@@ -167,11 +162,11 @@ class PlausibilityMetrics:
                 if 'T/fin' in str(w_copy.feature_vector()):
                     if not w_copy.external_tail_head_test():
                         priority = priority + priority_base - 100
-                        log(f'\t\t\t\tAvoid {site} due to tail-head failure.')
+                        log(f'Avoid {site} due to tail-head failure...\n')
                         avoid_set.add(site)
                     else:
                         priority = priority + priority_base + 200
-                        log(f'\t\t\t\tConsidering {site} due to legitimate tail-head configuration.')
+                        log(f'Considering {site} due to legitimate tail-head configuration...')
                         avoid_set.clear()
                 w_copy.remove()
 
@@ -194,21 +189,21 @@ class PlausibilityMetrics:
                                 size = size_
                             set_logging(True)
                 if max_site:
-                    log(f'\t\t\t\tPrioritize {max_site} because all solutions were negative.')
+                    log(f'Prioritize {max_site} because all solutions were negative...')
                     adjunction_sites.remove((max_priority, max_site))
                     adjunction_sites.append((max_priority + 200, max_site))
-            # Print rankings into the log
-            for priority, site in adjunction_sites:
-                log(f'\t\t\t\t{site} + {word_pf} = {priority}]')
+            log('Done.\n')
+
             # Sort based on priority (highest is prioritized)
             adjunction_sites = sorted(adjunction_sites, key=itemgetter(0))
             adjunction_sites = [site for priority, site in adjunction_sites]
             adjunction_sites.reverse()  # Reverse so that highest will be first
             # Print the completed ranking to the logs
-            log(f'\t\tRanking completed:')
+            log(f'\t\t\tResults: ')
             for i, site in enumerate(adjunction_sites, start=1):
-                log(f'\t\t\t{i}. [{site}; {word_pf}]')
+                log(f'{i}. [{site}; {word_pf}] ')
             # Return the finished list of ranked adjunction sites
+            log('.\n')
             return adjunction_sites
 
     def bad_left_branch_test(self, N):

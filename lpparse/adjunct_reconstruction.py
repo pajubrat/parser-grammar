@@ -18,7 +18,7 @@ class FloaterMovement():
         for node in ps.top().minimal_search():
             floater = self.detect_floater(node)
             if floater:
-                log(f'\t\t\t\t\tDropping {floater}')
+                log(f'Dropping {floater}...')
                 self.drop_floater(floater, ps)
         # -------------------------------------------------------------------------------------------#
         return ps.top()  # Return top, because it is possible that an adjunct expands the structure
@@ -27,18 +27,18 @@ class FloaterMovement():
         if self.detect_left_floater(ps):
             floater = ps.left_const
             if not floater.head().external_tail_head_test():
-                log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
+                log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
                 return floater.max()
             if floater.mother and floater.mother.head().EPP() and 'FIN' in floater.mother.head().features:
-                log('\t\t\t\t\t' + floater.illustrate() + ' is in an EPP SPEC position.')
+                log(floater.illustrate() + ' is in an EPP SPEC position...')
                 return floater.max()
             if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == floater.mother.head().local_edge():
-                log('\t\t\t\t\t' + floater.illustrate() + ' is in an specifier position that cannot be projected.')
+                log(floater.illustrate() + ' is in an specifier position that cannot be projected...')
                 return floater.max()
         if self.detect_right_floater(ps):
             floater = ps.right_const.head()
             if not floater.external_tail_head_test():
-                log('\t\t\t\t\t' + floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()))
+                log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
                 if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
                     self.adjunct_constructor.create_adjunct(floater)
                     return floater.max()

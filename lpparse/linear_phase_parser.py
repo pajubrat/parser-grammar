@@ -79,40 +79,49 @@ class LinearPhaseParser:
                           "LF recovery": 0,
                           "LF test": 0}
 
-    def parse(self, lst):
+    def parse(self, count, lst):
         self.sentence = lst
         self.start_time = process_time()
         self.initialize()
         set_logging(True)
-        self._first_pass_parse(None, lst, 0)
+        log('\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+        log(f'\n{count}. {self.sentence}')
+        log(f'\n\n\t 1. {self.sentence}\n')
+        self.parse_new_item(None, lst, 0)
 
-    def _first_pass_parse(self, ps, lst, index):
+    def parse_new_item(self, ps, lst, index):
         set_logging(True)
         # Force the parser to exit by setting this flag in the code
         if self.exit:
             return
-        if not self.memory_buffer_inflectional_affixes:
-            log(f'\t\t\t={ps}')
+
+        if index < len(lst):
+            log(f'\n\t\tNext item: "{lst[index]}". ')
+
         if index == len(lst):               # No more words in the input
             self.complete_processing(ps)    # Finalizes the output
             return                          # Completes the parsing branch
 
+        log('Morphological processing...')
+
         # Try all lexical elements (if ambiguous)
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
-            self.consume_resources("Items from input")
             terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(lexical_constituent, lst.copy(), index)
             terminal_lexical_item = self.process_inflection(inflection, terminal_lexical_item)
+            log('Done.')
             if inflection:
                 if ps:
-                    self._first_pass_parse(ps.copy(), lst_branched, index + 1)
+                    self.parse_new_item(ps.copy(), lst_branched, index + 1)
                 else:
-                    self._first_pass_parse(None, lst_branched, index + 1)
+                    self.parse_new_item(None, lst_branched, index + 1)
             else:
+                self.consume_resources("Items from input")
+                log('\n')
                 if not ps:
-                    self._first_pass_parse(terminal_lexical_item.copy(), lst_branched, index + 1)
+                    self.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
                 else:
-                    log(f'\n\t{self.resources["Items from input"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + '\"\n')
-                    log('\t\t' + ps.illustrate() + ' + ' + terminal_lexical_item.get_phonological_string())
+                    log(f'\n\t{self.resources["Items from input"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + '\": ')
+                    log(ps.illustrate() + ' + ' + terminal_lexical_item.get_phonological_string())
                     # -------------------------- consider merge solutions ------------------------------------- #
                     merge_sites = self.plausibility_metrics.rank_solutions(ps, terminal_lexical_item)
                     for site in merge_sites:
@@ -122,24 +131,29 @@ class LinearPhaseParser:
                         if left_branch_site_.bottom_affix().internal:
                             new_ps = left_branch_site_.sink(terminal_lexical_item)
                         else:
-                            log(f'\t\t\tExploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]')
+                            log(f'\t\t\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
+                            log('Transferring left branch...')
+                            set_logging(False)
                             new_ps = self.transfer_to_LF(left_branch_site_) + terminal_lexical_item
-                        self._first_pass_parse(new_ps, lst_branched, index + 1)
+                            set_logging(True)
+                            log(f'Result: {new_ps}...Done.\n')
+                        self.parse_new_item(new_ps, lst_branched, index + 1)
                         if self.exit:
                             break
                     # ---------------------------------------------------------------------------------------- #
         # If all solutions in the list have been explored,  backtrack
         if not self.exit:
-            log('\t\nBacktracking...\n')
+            log('\n\tBacktracking to previous branching point...')
 
     def process_inflection(self, inflection, lexical_item):
         if inflection:
             self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
             self.consume_resources("Inflection")
-            log(f'\n\t{self.resources["Items from input"]}. Added feature {inflection}.')
+            log(f'Added feature {inflection} into temporary feature working memory...')
         else:
             if self.memory_buffer_inflectional_affixes:
-                log(f'\t\tAdding inflectional features {sorted(self.memory_buffer_inflectional_affixes)} to ' + lexical_item.get_phonological_string())
+                log(f'{lexical_item.get_phonological_string()} is coming next...')
+                log(f'Adding inflectional features {sorted(self.memory_buffer_inflectional_affixes)} to ' + lexical_item.get_phonological_string() + '...')
                 lexical_item.features = lexical_item.features | set(self.memory_buffer_inflectional_affixes)
                 self.memory_buffer_inflectional_affixes = set()
         return lexical_item
@@ -154,12 +168,21 @@ class LinearPhaseParser:
         self.preparations(ps)
         if self.surface_condition_violation(ps):
             self.add_garden_path()
+            log('Failure.\n')
             return
+        log('\t\tTransferring to LF...')
         ps_ = self.transfer_to_LF(ps)
+        log('\t\tDone.\n')
+        log('\t\tLF-legibility check...')
         if self.LF_condition_violation(ps_) or self.interpret_semantically(ps_):
             self.add_garden_path()
-            log('\n' + show_primitive_constituents(ps))
+            log('\t\tLF-legibility test failed.\n')
+            log('\t\tMemory dump:\n')
+            log(show_primitive_constituents(ps))
+            log('\n')
             return
+        log('Done.\n')
+        log('\t\tSolution was accepted!\n')
         self.first_solution_found = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
         self.report_solution(ps_, spellout_structure)
@@ -169,13 +192,13 @@ class LinearPhaseParser:
             self.consume_resources("Garden Paths")
 
     def preparations(self, ps):
-        log('------------------------------------------------------------------------------------------------------------------------------------------------')
-        log('\n\t>>>\t' + f'Trying spellout structure  ' + ps.illustrate())
+        log('\t------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        log(f'\tTrying spellout structure  ' + ps.illustrate() + '\n')
 
     def report_solution(self, ps, spellout_structure):
         self.result_list.append([ps, self.semantic_interpretation])
         self.spellout_result_list.append(spellout_structure)
-        log(f'\t\t\t\tSemantic interpretation/predicates and arguments: {self.semantic_interpretation}')
+        log(f'\t\tSemantic interpretation: {self.semantic_interpretation}')
         log_results(ps, self.sentence)
         self.first_solution_found = True
 
@@ -183,14 +206,13 @@ class LinearPhaseParser:
         log('\t\tChecking surface conditions...')
         S = self.surface_conditions_module
         if not S.reconstruct(ps):
-            log(f'\t\t\tSurface condition failure.\n\n')
+            log(f'Surface condition failure...Done')
             return True
+        log('Done.\n')
 
     def LF_condition_violation(self, ps):
         self.LF.reset_flags()
-        log('\t\tReconstructing...')
-        log('\t\t\t= ' + ps.illustrate())
-        log(f'\t\tChecking LF-interface conditions...')
+        log(f'Checking LF-interface conditions...')
         lf = self.LF.test(ps)
         if not lf.final_tail_check(ps):
             report_tail_head_problem(ps)
@@ -214,7 +236,7 @@ class LinearPhaseParser:
         if self.check_transfer_presuppositions(ps):
             ps = self.transfer.transfer(ps, log_embedding)
         else:
-            log(f'\t\t\t\tTransfer of {ps} terminated due to input condition violation.')
+            log(f'Transfer of {ps} terminated due to input condition violation...')
         if original_mother:
             ps.mother = original_mother
         return ps

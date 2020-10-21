@@ -30,10 +30,10 @@ class HeadMovement:
         for node in phrase_structure:
             if self.detect_complex_head(node):
                 complex_head = self.detect_complex_head(node)
-                log(f'\t\t\t\t\tReconstruct {complex_head.right_const} from within {complex_head}.')
+                log(f'Reconstruct {complex_head.right_const} from within {complex_head}...')
                 intervention_feature = self.determine_intervention_feature(complex_head)
                 self.create_head_chain(complex_head, self.get_affix_out(complex_head), intervention_feature)
-                log(f'\t\t\t\t\t={phrase_structure.top()}')
+                log(f'={phrase_structure.top()}...')
         #------------------------------------------------------------------------------------#
         return phrase_structure.top()
 
@@ -75,7 +75,7 @@ class HeadMovement:
 
         # Case 1. If the bottom node is complex, it must first be reconstructed
         if node.has_affix():
-            log(f'\t\t\t\t\tMust reconstruct {node} first.')
+            log(f'Must reconstruct {node} first...')
             self.reconstruct_head_movement(node)
 
         # Case 2. If the bottom head is DP, we try to make it a specifier of affix
@@ -131,7 +131,7 @@ class HeadMovement:
         return '!COMP:*'
 
     def last_resort(self, phrase_structure, affix):
-        log(f'\t\t\t\t\tHead reconstruction of {affix} failed, merge locally as a last resort.')
+        log(f'Head reconstruction of {affix} failed, merge locally as a last resort...')
         phrase_structure.merge_1(affix, 'left')
         self.controlling_parser_process.consume_resources("Move Head")
 

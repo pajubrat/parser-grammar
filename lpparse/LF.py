@@ -44,15 +44,17 @@ class LF:
         return not self.all_pass()
 
     def report_lf_status(self):
-        log(f'\t\t\t\tprobe-goal test: {self.probe_goal_test_result}')
-        log(f'\t\t\t\tselection test: {self.selection_test_result}')
-        log(f'\t\t\t\ttail-head test: {self.tail_head_test_result}')
-        log(f'\t\t\t\thead integrity test: {self.head_integrity_test_result}')
-        log(f'\t\t\t\tcriterial test: {self.criterial_feature_test_result}')
-        log(f'\t\t\t\tsemantic test: {self.semantic_test_result}')
-        log(f'\t\t\t\tprojection principle: {self.projection_principle_test_result}')
-        log(f'\t\t\t\tcomplement test: {self.wrong_complement_test_result}')
-        log(f'\t\t\t\tadjunct test: {self.adjunct_test_result}')
+        log('LF-legibility test...')
+        log(f'probe-goal test: {self.probe_goal_test_result}...')
+        log(f'selection test: {self.selection_test_result}...')
+        log(f'tail-head test: {self.tail_head_test_result}...')
+        log(f'head integrity test: {self.head_integrity_test_result}...')
+        log(f'criterial test: {self.criterial_feature_test_result}...')
+        log(f'semantic test: {self.semantic_test_result}...')
+        log(f'projection principle: {self.projection_principle_test_result}...')
+        log(f'complement test: {self.wrong_complement_test_result}...')
+        log(f'adjunct test: {self.adjunct_test_result}...')
+        log('Done.\n')
 
     def reset_flags(self):
         self.probe_goal_test_result = True
@@ -96,7 +98,7 @@ class LF:
                 target_node = head.get_specifier_sister()
                 if self.specifier_match(head, constituent_from_MB) and self.tail_match(target_node, constituent_from_MB, 'left'):
                     self.LFMerge(constituent_from_MB, target_node, 'left')
-                    log(f'\t\t\t\t\t={target_node.top()}')
+                    log(f'={target_node.top()}...')
                     break
 
     # Tail_match
@@ -116,7 +118,7 @@ class LF:
             for const in self.controlling_parsing_process.syntactic_working_memory:
                 if head.complement_match(const):
                     self.LFMerge(const, head, 'right')
-                    log(f'\t\t\t\t\t={head.top()}')
+                    log(f'={head.top()}...')
                     self.controlling_parsing_process.consume_resources("Move Phrase")
                     break
 
@@ -126,15 +128,15 @@ class LF:
                 if head.complement_match(const):
                     old_complement = head.proper_complement()
                     head.proper_complement().merge_1(const.copy_from_memory_buffer(self.controlling_parsing_process.babtize()), 'left')
-                    log(f'\t\t\t\t\tMerging {const} to Comp{head.get_cats_string()}P due to complement mismatch.')
-                    log(f'\t\t\t\t\tExternalizing {old_complement}')
+                    log(f'Merging {const} to Comp{head.get_cats_string()}P due to complement mismatch...')
+                    log(f'Externalizing {old_complement}...')
                     old_complement.adjunct = True
                     self.controlling_parsing_process.syntactic_working_memory.remove(const)
                     self.controlling_parsing_process.consume_resources("Move Phrase")
                     break
 
     def LFMerge(self, constituent_from_MB, target, direction='left'):
-        log(f'\t\t\t\t\tMerging {constituent_from_MB} {direction} of {target}')
+        log(f'Merging {constituent_from_MB} {direction} of {target}...')
         new_const = constituent_from_MB.copy_from_memory_buffer(self.controlling_parsing_process.babtize())
         target.merge_1(new_const, direction)
         self.controlling_parsing_process.syntactic_working_memory.remove(constituent_from_MB)
@@ -163,6 +165,7 @@ class LF:
     def test(self, ps):
         self.reset_flags()
         self.controlling_parsing_process.consume_resources("LF test")
+        log('LF-interface test...')
         if not self._test(ps).all_pass():
             self.controlling_parsing_process.consume_resources("Failed Transfer")
         return self
@@ -192,24 +195,24 @@ class LF:
                 h.max() and h.max().adjunct and \
                 h.max().is_right() and \
                 h.max().mother and 'D' in h.max().mother.head().features:
-            log(f'\t\t\t\t{h.mother.mother} in uninterpretable because it is inside DP.')
+            log(f'.{h.mother.mother} in uninterpretable because it is inside DP...')
             self.adjunct_test_result = False
 
     def head_integrity_test(self, h):
         if not h.features or 'CAT:?' in h.features or '?' in h.features:
-            log('\t\t\t\t\tAn uninterpretable grammatical head without lexical category was detected.')
+            log('.An uninterpretable grammatical head without lexical category was detected...')
             self.head_integrity_test_result = False
 
     def probe_goal_test(self, h):
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(set(h.features), f[7:]):
-                    log(f'\t\t\t\t{h} probing for {f[7:]} failed.')
+                    log(f'.{h} probing for {f[7:]} failed...')
                     self.probe_goal_test_result = False
 
     def internal_tail_test(self, h):
         if 'D' in h.features and not h.internal_tail_head_test():
-            log(f'\t\t\t\t{h}({h.mother}) failed internal tail test for {h.get_tail_sets()}.')
+            log(f'.{h}({h.mother}) failed internal tail test for {h.get_tail_sets()}...')
             self.tail_head_test_result = False
 
     def double_spec_filter(self, h):
@@ -222,18 +225,18 @@ class LF:
                         count = count + 1
             if count > 1:
                 self.head_integrity_test_result = False
-                log(f'\t\t\t\t{h} has double specifiers.')
+                log(f'{h} has double specifiers...')
 
     def semantic_complement_test(self, head):
         if head.proper_complement():
             if not LF.semantic_match(head, head.proper_complement()):
                 self.semantic_test_result = False
-                log(f'\t\t\t\t{head} fails semantic match with {head.proper_complement()}')
+                log(f'{head} fails semantic match with {head.proper_complement()}...')
 
     def criterial_feature_test(self, h):
         if 'D' in h.features and 'REL' not in h.features and h.mother:
             if h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
-                log(f'\t\t\t\tCriterial legibility failed for {h}')
+                log(f'Criterial legibility failed for {h}...')
                 self.criterial_feature_test_result = False
 
     def projection_principle(self, h):
@@ -286,7 +289,7 @@ class LF:
                 for spec_ in h.edge():
                     if spec_ and f[6:] in spec_.head().features:
                         if not spec_.adjunct:
-                            log(f'\t\t\t\t{h} has unacceptable specifier {spec_}.')
+                            log(f'{h} has unacceptable specifier {spec_}...')
                             self.selection_test_result = False
 
             # No specifier of any kind allowed (e.g., English P).
@@ -294,54 +297,54 @@ class LF:
             if f == '-SPEC:*':
                 if local_edge:
                     if not local_edge.adjunct and not local_edge.find_me_elsewhere and 'pro' not in local_edge.head().features:
-                        log(f'\t\t\t\t{h} ({h.illustrate()}) has a specifier {local_edge}({local_edge.head().features}) '
-                            f'but is marked for -EPP behavior.')
+                        log(f'{h} ({h.illustrate()}) has a specifier {local_edge}({local_edge.head().features}) '
+                            f'but is marked for -EPP behavior...')
                         self.selection_test_result = False
 
             # Obligatory complement
             if f.startswith('!COMP:') and not f == '!COMP:*':
                 if not h.selected_sister():
-                    log(f'\t\t\t\t{h} is missing complement {f[6:]}')
+                    log(f'.{h} is missing complement {f[6:]}...')
                     self.selection_test_result = False
                 else:
                     if f[6:] not in h.selected_sister().head().features:
-                        log(f'\t\t\t\t\t{h} is missing a mandatory complement {f[6:]}')
+                        log(f'{h} is missing a mandatory complement {f[6:]}...')
                         self.selection_test_result = False
 
             # Complement restriction
             if f.startswith('-COMP:'):
                 if h.is_left() and comp and f[6:] in comp.head().features:
-                    log(f'\t\t\t\t"{h}\" has wrong complement {comp}.')
+                    log(f'"{h}\" has wrong complement {comp}...')
                     self.selection_test_result = False
                     self.wrong_complement_test_result = False
 
             if f == '-COMP:*':
                 if h.is_left() and comp:
-                    log(f'\t\t\t\t{h} does not accept complements.')
+                    log(f'{h} does not accept complements...')
                     self.selection_test_result = False
 
             # !COMP:* heads must have complements (=functional head)
             if f == '!COMP:*':
                 if not h.selected_sister():
-                    log(f'\t\t\t\t"{h}" lacks complement.')
+                    log(f'"{h}" lacks complement...')
                     self.selection_test_result = False
 
             # !SPEC:* heads require a specifier
             if f == '!SPEC:*' and not local_edge:
-                log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier.')
+                log(f'An EPP-head "{h}" lacks specifier...')
                 self.selection_test_result = False
 
             # !SPEC:F, head requires specifier with label F
             # This feature must be satisfied by local edge (local specifier)
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
                 if not local_edge:
-                    log(f'\t\t\t\tAn EPP-head "{h}" lacks specifier {f[6:]} that it requires.')
+                    log(f'An EPP-head "{h}" lacks specifier {f[6:]} that it requires...')
                     self.selection_test_result = False
                 else:
                     if f[6:] in local_edge.head().features or f[7:] in local_edge.head().features:
                         pass
                     else:
-                        log(f'\t\t\t\tAn EPP-head "{h}" has wrong specifier {local_edge}, needs {f[6:]}')
+                        log(f'An EPP-head "{h}" has wrong specifier {local_edge}, needs {f[6:]}...')
                         self.selection_test_result = False
 
     # LF-interface check for the final phrase structure
@@ -354,21 +357,21 @@ class LF:
                 return False
         if goal.is_primitive():
             if goal.get_tail_sets() and not goal.external_tail_head_test():
-                log(f'\t\t\t{goal.illustrate()} failed final tail test.')
+                log(f'{goal.illustrate()} failed final tail test...')
                 return False
         return True
 
     # This function will try to transfer the phrase structure into the conceptual-intentional system
     def transfer_to_CI(self, ps):
-        log(f'\t\t\tTransferring {ps} into the conceptual-intentional system.')
+        log(f'Transferring {ps} into the conceptual-intentional system...')
         self.transfer_to_CI_crash = False
         self.semantic_interpretation = self.semantics.interpret(ps)
         if not self.semantic_interpretation:
-            log('\t\t\t\tSemantic interpretation failed.')
+            log('Semantic interpretation failed...')
             self.transfer_to_CI_crash = True
             return set()
 
-        log('\t\t\t\tTransfer to C-I successful.')
+        log('Transfer to C-I successful...')
         return sorted(self.semantic_interpretation)
 
     @staticmethod

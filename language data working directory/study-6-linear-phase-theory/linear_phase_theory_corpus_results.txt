@@ -1,9 +1,17 @@
-{'name_of_study': 'Gold Standard 1500', 'author(s)': 'Pauli Brattico', 'year': '2020', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory'}2020-10-20 16:18:29.433218
+{'name_of_study': 'Gold Standard 1500', 'author(s)': 'Pauli Brattico', 'year': '2020', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory'}2020-10-21 15:22:03.606621
 Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
 Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
 Lexicon from language data working directory\lexicon.txt.
 Redundancy rules from language data working directory\redundancy_rules.txt.
 Universal morphemes from language data working directory\ug_morphemes.txt.
+& 9 Head movement -------------------------------------------------------
+
+& 9.1 Local HMC-compliant X-to-C movement -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+& 9.1.1 T-to-C* movement -------------------------------------------------------
+
 1. istuu#foc Pekka 
 
 	[C [<D Pekka>:1 [T [<__>:1 istuu]]]]
@@ -12,7 +20,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Agent of istuu(Pekka)
 
 		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
-		Agree:2, Transfer:3, Items from input:12, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
+		Agree:2, Transfer:3, Items from input:5, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
 		LF recovery:1, LF test:4, Execution time = 15ms
 
 2. istuu#C/op Pekka 
@@ -23,8 +31,8 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Agent of istuu(Pekka)
 
 		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
-		Agree:2, Transfer:3, Items from input:12, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
-		LF recovery:1, LF test:4, Execution time = 31ms
+		Agree:2, Transfer:3, Items from input:5, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
+		LF recovery:1, LF test:4, Execution time = 15ms
 
 3. ihailee#foc Pekka Merjaa 
 
@@ -35,8 +43,8 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Patient of ihaile-(Merja)
 
 		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
-		Agree:4, Transfer:6, Items from input:21, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
-		LF recovery:2, LF test:9, Execution time = 15ms
+		Agree:4, Transfer:6, Items from input:8, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
+		LF recovery:2, LF test:9, Execution time = 31ms
 
 4. ihailee#C/op Pekka Merjaa 
 
@@ -47,7 +55,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Patient of ihaile-(Merja)
 
 		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
-		Agree:4, Transfer:6, Items from input:21, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
+		Agree:4, Transfer:6, Items from input:8, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
 		LF recovery:2, LF test:9, Execution time = 31ms
 
 5. myi#foc Pekka omaisuutensa 
@@ -60,8 +68,8 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Aspectually bounded
 
 		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
-		Agree:4, Transfer:6, Items from input:17, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
-		LF recovery:2, LF test:9, Execution time = 46ms
+		Agree:4, Transfer:6, Items from input:8, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
+		LF recovery:2, LF test:9, Execution time = 31ms
 
 6. myi#C/op Pekka omaisuutensa 
 
@@ -73,7 +81,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Aspectually bounded
 
 		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
-		Agree:4, Transfer:6, Items from input:17, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
+		Agree:4, Transfer:6, Items from input:8, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
 		LF recovery:2, LF test:9, Execution time = 31ms
 
 7. antoi#foc Pekka avaimen Merjalle 
@@ -87,7 +95,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Aspectually bounded
 
 		Garden Paths:0, Merge:10, Move Head:21, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
-		Agree:10, Transfer:14, Items from input:20, Feature Processing:0, Extraposition:1, Inflection:9, Failed Transfer:5, 
+		Agree:10, Transfer:14, Items from input:11, Feature Processing:0, Extraposition:1, Inflection:9, Failed Transfer:5, 
 		LF recovery:3, LF test:19, Execution time = 46ms
 
 8. antoi#C/op Pekka avaimen Merjalle 
@@ -101,6 +109,6 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 	Aspectually bounded
 
 		Garden Paths:0, Merge:10, Move Head:21, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
-		Agree:10, Transfer:14, Items from input:20, Feature Processing:0, Extraposition:1, Inflection:9, Failed Transfer:5, 
+		Agree:10, Transfer:14, Items from input:11, Feature Processing:0, Extraposition:1, Inflection:9, Failed Transfer:5, 
 		LF recovery:3, LF test:19, Execution time = 46ms
 

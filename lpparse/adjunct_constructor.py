@@ -68,10 +68,10 @@ class AdjunctConstructor:
 
     def make_adjunct(self, ps):
         if ps == ps.top():
-            log(f'\t\t\t\t\tCannot push the whole structure {ps} into the secondary processing stream (adjunct).')
+            log(f'Cannot push the whole structure {ps} into the secondary processing stream (adjunct)...')
             return False
         ps.adjunct = True
-        log(f'\t\t\t\t\t{ps} was pulled into secondary processing stream (made an adjunct).')
+        log(f'{ps} was pulled into secondary processing stream (made an adjunct)...')
         self.add_tail_features_if_missing(ps)
         self.transfer_adjunct(ps)
         return True
@@ -85,7 +85,7 @@ class AdjunctConstructor:
     def transfer_adjunct(self, ps ):
         original_mother = ps.mother
         ps.detach()
-        log(f'\t\t\t\t\t{ps} is transferred to LF as a phase.')
+        log(f'{ps} is transferred to LF as a phase...')
         disable_logging()
         ps = self.controlling_parser_process.transfer_to_LF(ps, 5)
         enable_logging()

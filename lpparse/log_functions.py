@@ -2,20 +2,14 @@ from support import *
 import logging
 
 def configure_logging(local_file_system):
-    logging.basicConfig(level=logging.INFO, handlers=[logging.FileHandler(local_file_system.external_sources["log_file_name"], 'w', 'utf-8')], format='%(message)s')
-
-def log_sentence(count, sentence):
-    log('\n\n\========================================================================')
-    log('# ' + str(count))
-    log(str(sentence))
+    handler = logging.FileHandler(local_file_system.external_sources["log_file_name"], 'w', 'utf-8')
+    handler.terminator = ''
+    logging.basicConfig(level=logging.INFO, handlers=[handler], format='%(message)s')
 
 def log_results(ps_, sentence):
-    log('----------------------------------------------------------------------------------------------------------')
-    log('                                              All tests passed                                           ')
-    log('----------------------------------------------------------------------------------------------------------')
+    log('\n\t\t---------------------------------------------------------------------------------------------------------------------------------------------------------------------')
     ps_.tidy_names(1)
     log_result(ps_)
-    log('----------------------------------------------------------------------------------------------------------')
+    log('\t\t-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
     log(show_primitive_constituents(ps_))
-    log(show_all_vectors(ps_))
-    log('\t\t\tChecking if the sentence is ambiguous...')
+    log('\n\tChecking if the sentence is ambiguous...\n')

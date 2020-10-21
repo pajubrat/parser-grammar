@@ -18,7 +18,7 @@ class Morphology:
             lexical_item_ = self.C_op_processing(lexical_item_)
             morpheme_list = self.decompose(lexical_item_.morphology)
             morpheme_list = self.handle_incorporation(lexical_item_, morpheme_list)
-            log(f'\n\t\tNext word contains multiple morphemes ' + str(morpheme_list))
+            log(f'Word "{input_word_list[index]}" contains multiple morphemes ' + str(morpheme_list) +'...')
             self.refresh_input_list(input_word_list, morpheme_list, index)
             lexical_item_ = self.lexicon.lexical_retrieval(input_word_list[index])[0]
         return lexical_item_, input_word_list, self.get_inflection(lexical_item_)
@@ -38,14 +38,13 @@ class Morphology:
 
     def get_inflection(self, lexical_item):
         if lexical_item.morphology == '':
-            log(f'\t\tStoring inflectional feature {sorted(lexical_item.features)} into working memory.')
             return lexical_item.features
         else:
             return set()
 
     def set_inflection(self, lexical_item, inflectional_affixes):
         if inflectional_affixes:
-            log(f'\t\tAdding inflectional features {inflectional_affixes} to ' + lexical_item.get_phonological_string())
+            log(f'Adding inflectional features {inflectional_affixes} to ' + lexical_item.get_phonological_string() + '...')
             lexical_item.features = lexical_item.features | set(inflectional_affixes)
         return lexical_item
 
@@ -56,7 +55,7 @@ class Morphology:
         if len(list_) > 1 and 'foc' in list_ or 'C/op' in list_:
             critical_morpheme = self.determine_critical_morpheme(list_)
             if verbal_head() & critical_morpheme.features:
-                log('\t\t\t\tFeature interpreted as a C morpheme with C-feature')
+                log('Feature interpreted as a C morpheme with C-feature...')
                 lexical_item.morphology = lexical_item.morphology.replace('#C/op', '#C/fin#C/op')
                 lexical_item.morphology = lexical_item.morphology.replace('#foc', '#C/fin#C/op')
         return lexical_item

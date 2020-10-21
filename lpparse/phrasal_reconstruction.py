@@ -34,7 +34,7 @@ class PhrasalMovement:
                 if not spec.find_me_elsewhere:
                     if self.Abar_movable(spec):
                         specifiers_to_add_memory_buffer.append(spec)
-                        log(f'\t\t\t\t\tMoving {spec} into memory buffer from Spec{head.get_cats_string()}P.')
+                        log(f'Moving {spec} into memory buffer from Spec{head.get_cats_string()}P...')
                     else:
                         iterator = self.A_reconstruct(spec, iterator)
 
@@ -43,13 +43,13 @@ class PhrasalMovement:
                         new_h = self.engineer_head_from_specifier(head, spec)
                         iterator.merge_1(new_h, 'left')
                         iterator = iterator.mother # Prevents looping over the same Spec element
-                        log(f'\t\t\t\t\tNew head was spawned at {head.get_cats_string()}P')
+                        log(f'New head was spawned at {head.get_cats_string()}P...')
                         if new_h.get_tail_sets():
                             self.adjunct_constructor.create_adjunct(new_h)
                 else:
                     count_specifiers = + 1
                     if spec.scan_criterial_features():
-                        log(f'\t\t\t\t\tCriterial features {spec.scan_criterial_features()} copied to {head}.')
+                        log(f'Criterial features {spec.scan_criterial_features()} copied to {head}...')
                         head.features |= self.get_features_for_criterial_head(head, spec)
                         if head.get_tail_sets():
                             self.adjunct_constructor.create_adjunct(head)
@@ -81,7 +81,7 @@ class PhrasalMovement:
     # Definition for A-reconstruction
     def A_reconstruct(self, spec, iterator):
         if self.candidate_for_A_reconstruction(spec):
-            log(f'\t\t\t\t\t{spec} undergoes A-reconstruction.')
+            log(f'{spec} undergoes A-reconstruction...')
             iterator = self.reconstruct_inside_next_projection(spec, iterator)
             self.controlling_parser_process.consume_resources("Move Phrase")
             self.controlling_parser_process.consume_resources("A-Move Phrase")

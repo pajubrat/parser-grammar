@@ -108,7 +108,7 @@ class LexicalInterface:
             word_list = [const]
 
         if len(word_list) > 1:
-            log(f'\t\tAmbiguous lexical item {phonological_entry}: {[word.get_pf() for word in word_list]}')
+            log(f'{phonological_entry} is {len(word_list)}-way ambiguous...')
         return word_list
 
     # Definition for the application of the redundancy rules

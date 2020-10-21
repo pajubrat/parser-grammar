@@ -39,31 +39,38 @@ class Transfer():
 
         self.controlling_parser_process.consume_resources("Transfer")
 
-        log('\n' + log_embedding + '1. Head movement reconstruction:')
+        log('\n')
+        log(log_embedding + '1. Head movement reconstruction...')
         ps = head_movement.reconstruct(ps)
-        log(log_embedding + f'\t= {ps}')
+        log('Done.\n')
+        log(log_embedding + f'\t= {ps}\n')
 
-        log('\n' + log_embedding + '2. Feature processing:')
+        log(log_embedding + '2. Feature processing...')
         feature_process.disambiguate(ps)
-        log(log_embedding + f'\t= {ps}')
+        log('Done.\n')
+        log(log_embedding + f'\t= {ps}\n')
 
-        log('\n' + log_embedding + '3. Extraposition:')
+        log(log_embedding + '3. Extraposition...')
         extraposition.reconstruct(ps)
-        log(log_embedding + f'\t= {ps}')
+        log('Done.\n')
+        log(log_embedding + f'\t= {ps}\n')
 
-        log('\n' + log_embedding + '4. Floater movement reconstruction:')
+        log(log_embedding + '4. Floater movement reconstruction...')
         ps = floater_movement.reconstruct(ps)
-        log(log_embedding + f'\t= {ps}')
+        log('Done.\n')
+        log(log_embedding + f'\t= {ps}\n')
 
-        log('\n' + log_embedding + '5. Phrasal movement reconstruction:')
+        log(log_embedding + '5. Phrasal movement reconstruction...')
         phrasal_movement.reconstruct(ps)
-        log(log_embedding + f'\t= {ps}')
+        log('Done.\n')
+        log(log_embedding + f'\t= {ps}\n')
 
-        log('\n' + log_embedding + '6. Agreement reconstruction:')
+        log(log_embedding + '6. Agreement reconstruction...')
         agreement.reconstruct(ps)
-        log(log_embedding + f'\t= {ps}')
+        log('Done.\n')
+        log(log_embedding + f'\t= {ps}\n')
 
-        log('\n' + log_embedding + '7. Last resort extraposition:')
+        log(log_embedding + '7. Last resort extraposition...')
         extraposition.last_resort_reconstruct(ps)
-
+        log('Done.\n')
         return ps

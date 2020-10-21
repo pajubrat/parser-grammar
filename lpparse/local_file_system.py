@@ -135,7 +135,6 @@ class LocalFileSystem:
         self.save_resources(parser, count)
         self.print_result_to_console(parser, count, sentence)
         self.save_image(parser, sentence, count)
-        log_sentence(count, sentence)
 
     def save_grammaticality_judgment(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)
