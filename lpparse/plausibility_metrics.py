@@ -12,18 +12,23 @@ class PlausibilityMetrics:
         log('\n\t\t\tFiltering out impossible merge sites...')
         adjunction_sites = []
         if ps.bottom().bottom_affix().internal:
-            log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...Done.\n')
+            log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...')
+            self.cpp.consume_resources('Filter solution')
+            log('Done.\n')
             return [[ps.bottom()], w]
         #--------------------geometrical minimal search------------------------------
         for N in ps.geometrical_minimal_search():
             if self.does_not_accept_any_complementizers(N):
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
+                self.cpp.consume_resources('Filter solution')
                 continue
             if N.is_complex() and self.bad_left_branch_test(N):
                 log(f'Reject {N} + {w} due to bad left branch...')
+                self.cpp.consume_resources('Filter solution')
                 continue
             if self.breaks_words(N, w):
                 log(f'Reject {N} + {w} because it breaks words...')
+                self.cpp.consume_resources('Filter solution')
                 continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------
@@ -61,6 +66,7 @@ class PlausibilityMetrics:
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base + 100 * len(word_specs & site_features)
                 log(f'Prioritize {site.get_cats_string()} as SPEC,{word_pf}...')
+                self.cpp.consume_resources('Rank solution')
                 avoid_set.clear()
 
             # Case 2b. Negative Spec solutions
@@ -70,6 +76,7 @@ class PlausibilityMetrics:
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 100 * len(word_not_specs & site_features)
                 log(f'Avoid {site.head().get_cats_string()}P as SPEC, {word_pf}...')
+                self.cpp.consume_resources('Rank solution')
                 avoid_set.add(site)
             # Avoid all SPEC solutions if there is [-SPEC:*]
             if '*' in word_not_specs:
@@ -77,6 +84,7 @@ class PlausibilityMetrics:
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 100
                 log(f'Avoid {site.head().get_cats_string()}P as SPEC for {word_pf} due to unselective SPEC feature...')
+                self.cpp.consume_resources('Rank solution')
                 avoid_set.add(site)
             # Avoid rare SPEC solutions
             if word_rare_specs & site_features:
@@ -84,6 +92,7 @@ class PlausibilityMetrics:
                 # This is in part arbitrary and should be considered carefully when aiming for realism
                 priority = priority + priority_base - 1000
                 log(f'Avoid {site.head().get_cats_string()}P as SPEC for {word_pf} due to rare SPEC feature...')
+                self.cpp.consume_resources('Rank solution')
                 avoid_set.add(site)
 
             # Case 2c. Check if existing H-Comp-relations would be broken, if yes, avoid them
@@ -98,6 +107,7 @@ class PlausibilityMetrics:
                         priority = priority + priority_base - 100 * len(
                             site.mother.left_const.licensed_complements() & site.features)
                         log(f'Avoid [{site}, {w}] because the operation breaks up an existing selectional dependency...')
+                        self.cpp.consume_resources('Rank solution')
                         avoid_set.add(site)
 
             # Case 4. Prioritize/avoid Comp solutions
@@ -111,6 +121,7 @@ class PlausibilityMetrics:
                     if not test_word.internal_tail_head_test():
                         priority = priority + priority_base - 50
                         log(f'Avoid [{site.get_phonological_string()} {word_pf}] due to local agreement failure...')
+                        self.cpp.consume_resources('Rank solution')
                         avoid_set.add(site)
                     test_word.remove()
                 # Evaluate Comp selection for all morphemes inside the site
@@ -119,16 +130,19 @@ class PlausibilityMetrics:
                     if w.features & m.convert_features_for_parsing(m.licensed_complements()):
                         priority = priority + priority_base + 100
                         log(f'Prioritize [{m.get_phonological_string()} {word_pf}] due to complement selection...')
+                        self.cpp.consume_resources('Rank solution')
                         avoid_set.clear()
                     # ... if f cannot be merged to the complement, avoid this solution
                     if w.features & m.convert_features_for_parsing(m.complements_not_licensed()):
                         priority = priority + priority_base - 100 * len(
                             w.features & m.convert_features_for_parsing(m.complements_not_licensed()))
                         log(f'Avoid [{m.get_phonological_string()} {word_pf}] due to complement selection...')
+                        self.cpp.consume_resources('Rank solution')
                         avoid_set.add(site)
-                    if not LF.semantic_match(m, w):
+                    if not self.cpp.LF.semantic_match(m, w):
                         priority = priority + priority_base - 100
                         log(f'Avoid [{site},{w}] solution due to semantic mismatch...')
+                        self.cpp.consume_resources('Rank solution')
                         avoid_set.add(site)
 
             # Case 5. LF-legibility violations
@@ -142,14 +156,16 @@ class PlausibilityMetrics:
                     priority = priority + priority_base - 100
                     log(
                         f'Avoid {dropped.illustrate()} as left branch because it constitutes illicit structure...')
+                    self.cpp.consume_resources('Rank solution')
                     avoid_set.add(site)
 
             # Case 6. Word-breaking violations
             # Remove all solutions which would cause phonological words to break apart
-            if site.is_primitive() and self.cpp.is_word_internal(site):
+            if site.is_primitive() and self.is_word_internal(site):
                 if 'ADV' not in w.features:
                     priority = priority + priority_base - 100
                     log(f'Avoid {site} because it could break words...')
+                    self.cpp.consume_resources('Rank solution')
                     avoid_set.add(site)
 
             # Case 7. Adverbials select legitimate tail-head configurations
@@ -163,10 +179,12 @@ class PlausibilityMetrics:
                     if not w_copy.external_tail_head_test():
                         priority = priority + priority_base - 100
                         log(f'Avoid {site} due to tail-head failure...\n')
+                        self.cpp.consume_resources('Rank solution')
                         avoid_set.add(site)
                     else:
                         priority = priority + priority_base + 200
                         log(f'Considering {site} due to legitimate tail-head configuration...')
+                        self.cpp.consume_resources('Rank solution')
                         avoid_set.clear()
                 w_copy.remove()
 
@@ -178,6 +196,7 @@ class PlausibilityMetrics:
                 # Search the largest adjoinable and LF-legible attachment site not containing T/fin
                 size = 0
                 max_site = None
+                self.cpp.consume_resources('Rank solution')
                 for priority, site_ in adjunction_sites:
                     if site_.is_adjoinable():
                         size_ = site_.size()
@@ -190,21 +209,23 @@ class PlausibilityMetrics:
                             set_logging(True)
                 if max_site:
                     log(f'Prioritize {max_site} because all solutions were negative...')
+                    self.cpp.consume_resources('Rank solution')
                     adjunction_sites.remove((max_priority, max_site))
                     adjunction_sites.append((max_priority + 200, max_site))
-            log('Done.\n')
 
-            # Sort based on priority (highest is prioritized)
-            adjunction_sites = sorted(adjunction_sites, key=itemgetter(0))
-            adjunction_sites = [site for priority, site in adjunction_sites]
-            adjunction_sites.reverse()  # Reverse so that highest will be first
-            # Print the completed ranking to the logs
-            log(f'\t\t\tResults: ')
-            for i, site in enumerate(adjunction_sites, start=1):
-                log(f'{i}. [{site}; {word_pf}] ')
-            # Return the finished list of ranked adjunction sites
-            log('.\n')
-            return adjunction_sites
+        log('Done.\n')
+
+        # Sort based on priority (highest is prioritized)
+        adjunction_sites = sorted(adjunction_sites, key=itemgetter(0))
+        adjunction_sites = [site for priority, site in adjunction_sites]
+        adjunction_sites.reverse()  # Reverse so that highest will be first
+        # Print the completed ranking to the logs
+        log(f'\t\t\tResults: ')
+        for i, site in enumerate(adjunction_sites, start=1):
+            log(f'({i}) [{site} + {word_pf}] ')
+        # Return the finished list of ranked adjunction sites
+        log('.\n')
+        return adjunction_sites
 
     def bad_left_branch_test(self, N):
         set_logging(False)

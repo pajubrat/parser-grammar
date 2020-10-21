@@ -39,6 +39,7 @@ BE-	:: V COPULA PF:BE LF:BE -ARG SPEC:D !COMP:* COMP:T/prt -COMP:T/fin
 D   :: D PF:D LF:D
 P 	:: P PF:P LF:P
 
+
 # Pronominal items
 pro		:: pro-#D
 pro-	:: PF:(pro) LF:pro N PHI
@@ -61,7 +62,7 @@ f		::	inflectional PHI:GEN:F
 # Structural Case
 nom   	:: inflectional TAIL:FIN,!COMP:*,VAL
 acc		:: inflectional TAIL:v
-dat		:: inflectional TAIL:!COMP:*,v
+dat		:: inflectional TAIL:v
 
 #Aspect markers
 asp			:: inflectional ASP:BOUNDED

@@ -81,7 +81,6 @@ class FloaterMovement():
                 self.controlling_parser_process.consume_resources("Move Adjunct")
                 self.controlling_parser_process.consume_resources("Move Phrase")
                 floater_copy.remove()
-                log(f'\t\t\t\t\t = {ps}')
                 return
             floater_copy.remove()
         # ---------------------------------------------------------------------------------------#

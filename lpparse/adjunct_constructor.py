@@ -78,7 +78,9 @@ class AdjunctConstructor:
 
     def add_tail_features_if_missing(self, ps):
         if not {f for f in ps.head().features if f[:4] == 'TAIL'}:
-            if 'T' not in ps.head().features:       # TP can only become relative clause, e.g. 'che dorme'
+            if 'D' in ps.head().features:
+                ps.head().features.add('TAIL:V')
+            elif 'T' not in ps.head().features:       # TP can only become relative clause, e.g. 'che dorme'
                 ps.head().features.add('TAIL:T')
                 ps.head().features.add('ADV')
 
@@ -87,7 +89,7 @@ class AdjunctConstructor:
         ps.detach()
         log(f'{ps} is transferred to LF as a phase...')
         disable_logging()
-        ps = self.controlling_parser_process.transfer_to_LF(ps, 5)
+        ps = self.controlling_parser_process.transfer_to_LF(ps)
         enable_logging()
         if original_mother:
             ps.mother = original_mother

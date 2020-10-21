@@ -76,7 +76,7 @@ class LocalFileSystem:
         s = ''
         i = 0
         for key in consumed_resources:
-            s += f'{key}:{consumed_resources[key]}, '
+            s += f'{key}:{consumed_resources[key]["n"]}, '
             i += 1
             if i == 7:
                 s += '\n\t\t'
@@ -225,6 +225,5 @@ class LocalFileSystem:
                     print('\t' + chr(96 + parse_number) + f'. {parse}')
                 print('\n\t\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, ' ')))
                 if parse_number == 1:
-                    print('\n\t\t' + self.format_resource_output(
-                        parser.resources) + f'Execution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
+                    print('\n\t\t' + self.format_resource_output(parser.resources) + f'Execution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
                 parse_number = parse_number + 1

@@ -43,34 +43,35 @@ class Transfer():
         log(log_embedding + '1. Head movement reconstruction...')
         ps = head_movement.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '2. Feature processing...')
         feature_process.disambiguate(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '3. Extraposition...')
         extraposition.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '4. Floater movement reconstruction...')
         ps = floater_movement.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '5. Phrasal movement reconstruction...')
         phrasal_movement.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '6. Agreement reconstruction...')
         agreement.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '7. Last resort extraposition...')
         extraposition.last_resort_reconstruct(ps)
         log('Done.\n')
+        log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
         return ps

@@ -49,7 +49,7 @@ class Semantics:
     def perform_LF_recovery(self, head):
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
-            log(f'\t\t\t\t{head.illustrate()} with {sorted(unvalued)} was associated at LF with:')
+            log(f'{head.illustrate()} with {sorted(unvalued)} was associated at LF with: ')
             list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
                 self.semantic_interpretation.add(self.interpret_antecedent(head, list_of_antecedents[0]))
@@ -60,7 +60,7 @@ class Semantics:
     def detect_phi_conflicts(self, ps):
         for phi in ps.get_phi_set():
             if phi[-1] == '*':
-                log(f'\t\t\t\t{ps} induces a phi-feature conflict.')
+                log(f'{ps} induces a phi-feature conflict...')
                 self.semantic_interpretation_failed = True
 
     def interpret_tail_features(self, ps):
@@ -104,7 +104,7 @@ class Semantics:
             return list_of_antecedents
 
         if not list_of_antecedents:
-            log(f'\t\t\t\t\tNo antecedent found, LF-object crashes.')
+            log(f'No antecedent found, LF-object crashes...')
             self.semantic_interpretation_failed = True
             return []
 
@@ -215,9 +215,9 @@ class Semantics:
             if i > 1:
                 s = s + ')'
             if s:
-                log(f'\t\t\t\t\t' + s)
+                log(s)
             else:
-                log(f'\t\t\t\t\t{ps}{self.interpret_no_antecedent(ps, unvalued_phi_features)}')
+                log(f'{ps}{self.interpret_no_antecedent(ps, unvalued_phi_features)}')
             return True
 
     def bind_variables(self, ps):
@@ -225,7 +225,7 @@ class Semantics:
             for f in ps.head().features:
                 if f[:3] == 'OP:' and f != 'OP:_':
                     if not ps.bind_to_operator('OP'):
-                        log(f'\t\t\t\t{ps.max().illustrate()} with feature {f} is not properly bound by an operator.')
+                        log(f'{ps.max().illustrate()} with feature {f} is not properly bound by an operator...')
                         self.semantic_interpretation_failed = True
                     else:
                         self.semantic_interpretation.add(f'{ps.max().illustrate()} with feature {f} was bound to an operator.')

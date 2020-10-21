@@ -26,13 +26,13 @@ class SurfaceConditions:
 
     def is_clitic_licensed(self, test_constituent):
         if self.illicit_phrasal_incorporation(test_constituent):
-            log('\t\t\t\tClitic adjoined to complex phrase, not word')
+            log('Clitic adjoined to complex phrase, not word...')
             return False
         for direction in ['left', 'right']:
             if self.incorporated(test_constituent, direction):
-                log(f'\t\t\tClitic {test_constituent} has been incorporated to {direction}.')
+                log(f'Clitic {test_constituent} has been incorporated to {direction}...')
                 return True
-        log(f'\t\t\tClitic {test_constituent} not licensed.')
+        log(f'Clitic {test_constituent} not licensed...')
 
     # Tests whether {test constituent} could have been incorporated into {direction}
     def incorporated(self, test_constituent, direction):

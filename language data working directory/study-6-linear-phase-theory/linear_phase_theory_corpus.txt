@@ -1135,7 +1135,6 @@
 				Pekka sanoo etta istuu mukavasti
 				tassa istuu mukavasti
 				Pekka sanoo etta tassa istuu mukavasti
-				to_inf leave is a_D mistake
 
 			& Ungrammatical
 			
@@ -1172,34 +1171,6 @@
 			
 				ihailee Pekka Merjaa 
 				ihailee Merjaa Pekka 
-
-		& 8.1.3 Mixed profile languages (Italian)
-			
-			& Grammatical
-			
-				io adoro Luisa
-				adoro Luisa io 
-				
-			& Ungrammatical
-			
-				io Luisa adoro 
-				adoro io Luisa
-				Luisa io adoro 
-				Luisa adoro io 
-
-			& Specific post-verba subject tests (Italian)
-			
-				& Grammatical
-				
-					lavano Luisa loro
-					devono lavare Luisa loro
-					hanno lavato Luisa loro
-					ho lavato Luisa io
-					hanno voluto lavare Luisa loro
-					stanno lavando Luisa loro
-					sembrano lavare Luisa loro 
-					detesto lavare Luisa io
-					dorme lui 
 					
 	& 8.2 Ditransitives
 	
@@ -1367,7 +1338,6 @@
 			& Group 8.3.5 Head final constructions with two more more verbal elements
 				
 				Pekka ihaile Merjaa ei 
-				Pekka ei ihaillut Merjaa ollut
 				Pekan_gen ei ihailla Merjaa taydy
 	
 	& 8.4 Infinitival complements
@@ -1379,7 +1349,6 @@
 				& Grammatical
 
 					John wants to_inf leave
-					to_inf leave wants John
 				
 				& Ungrammatical
 		
@@ -1414,7 +1383,6 @@
 					Mary wants to_inf leave John
 					Mary wants John to_inf leave
 					John wants to_inf leave Mary
-					to_inf leave Mary wants John
 					
 				& Ungrammatical
 				
@@ -1526,6 +1494,11 @@
 					leave Mary to_inf wants John
 					leave to_inf John wants Mary 
 					leave to_inf Mary wants John
+					John to_inf leave wants Mary 
+					Mary to_inf leave wants John
+					to_inf John leave wants Mary
+					to_inf Mary leave wants John 
+					to_inf leave John wants Mary
 			
 				& Problem: in situ version
 				& Solution: to_ing and leave have different antecedent
@@ -1533,14 +1506,6 @@
 					John wants to_inf Mary leave 
 					Mary wants to_inf John leave
 
-				& Problem: grammatical but generic interpretation
-				& Solution: v cannot be antecedented by clause in English
-				
-					John to_inf leave wants Mary 
-					Mary to_inf leave wants John
-					to_inf John leave wants Mary
-					to_inf Mary leave wants John 
-					to_inf leave John wants Mary
 							
 		& 8.4.2 Free word order (Finnish)
 		
@@ -1561,8 +1526,7 @@
 				& Unclear
 
 					haluaa#C/op lahtea Pekka
-					
-			& Pekka kaskee Merjan_gen lahtea
+					Pekka kaskee Merjan_gen lahtea
 			
 				& Grammatical
 					
@@ -1596,8 +1560,6 @@
 					lahtea Merjan_gen Pekka kaskee 
 					lahtea Merjan_gen kaskee Pekka
 				
-=START=
-
 & 9 Head movement
 	
 	& 9.1 Local HMC-compliant X-to-C movement
@@ -1614,7 +1576,6 @@
 				myi#C/op Pekka omaisuutensa
 				antoi#foc Pekka avaimen Merjalle
 				antoi#C/op Pekka avaimen Merjalle
-=STOP=
 				
 			& 9.1.2 Neg-to-C* movement
 				
@@ -1674,7 +1635,6 @@
 			& 9.2.1 V-over-Neg	
 				
 				ihaile#C/op Pekka ei Merjaa
-				myi#C/op Pekka omaisuutensa
 				
 			& 9.2.2 V-over-Aux(BE)	
 				
@@ -1755,8 +1715,11 @@
 			& 9.2.10 long head movement with infinitival subject
 				
 				ihailla#C/op Pekka kaskee poikien Merjaa
-				ihailla#C/fin Pekka kaskee poikien Merjaa
 				ihailla Pekka kaskee poikien Merjaa
+			
+			& Problem: here we again must prevent GEN reconstruction upwards
+
+				ihailla#C/fin Pekka kaskee poikien Merjaa
 
 			& 9.2.11 Long head movement with second auxiliary
 				
@@ -1779,7 +1742,6 @@
 				ihailla#C/fin Pekan_gen ei taydy Merjaa
 				ihailla	Pekan_gen ei taydy Merjaa
 				halua Pekka ei myyda omaisuuttaan
-				myyda Pekka ei halua omaisuuttaan
 	
 	& 9.3 Super LHM
 	
@@ -1788,9 +1750,7 @@
 			& 9.3.1 that + want + A/inf
 			
 			ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa
-			lahtea#C/op Pekka sanoo etta Pekan_gen taytyy
-			myyda#C/op Pekka sanoo etta Pekka haluaa omaisuutensa
-			myyda#C/op Pekka sanoo etta Pekan_gen taytyy omaisuutensa
+	%		lahtea#C/op Pekka sanoo etta Pekan_gen taytyy
 			
 		& Ungrammatical		
 
@@ -1833,7 +1793,7 @@
 			
 				ihailla#C/op Pekka teki sopimuksen Merjaa
 	
-	& 9.5 C-features on wrong heads
+	& Group 9.5 C-features on wrong heads
 	
 		& Ungrammatical
 								
@@ -2015,16 +1975,15 @@
 				loro la=hanno lavato
 				loro mi=hanno lavata
 				loro lo=hanno lavata
-				la=hanno lavato loro
-				mi=hanno lavata loro
-				lo=hanno lavata loro
+				la=hanno lavato 
+				mi=hanno lavata
+				lo=hanno lavata
 				
 		& 10.1.5 Indirect clitic arguments
 		
 			& Grammatical
 			
 				loro gli=lavano Luisa
-				gli=lavano Luisa loro
 				gli=lavano Luisa
 				
 		& 10.1.6 Clitic clusters
@@ -2032,7 +1991,6 @@
 			& Grammatical
 			
 				loro gli=la=hanno lavata
-				gli=la=hanno lavata loro
 				gli=la=hanno lavata
 				
 			& Ungrammatical
@@ -2048,7 +2006,6 @@
 			
 				loro sembrano lavare=mi
 				Giuseppe spinge Luisa a lavare=lo
-				sembrano lavare=mi loro
 				sembrano lavare=mi
 				spinge Luisa a lavare=lo
 				
@@ -2059,11 +2016,8 @@
 				io lo=detesto lavare 
 				lo=detesto lavare
 				Giuseppe lo=spinge Luisa a lavare
-				mi=sembrano lavare loro
-				lo=detesto lavare io
 				lo=spinge Luisa a lavare Giuseppe			
 				io detesto lavare=lo
-				detesto lavare=lo
 				
 		& 10.1.8 Reflexive clitics
 		
@@ -2073,103 +2027,7 @@
 				mi=lavo
 				tu mi=lavi
 				mi=lavi
-				mi=lavo io
-				mi=lavi tu
 	
-			& Ungrammatical
-		
-		& 10.1.9 Clitics and word order
-		
-			& Postverbal subject constructions
-			
-				& Grammatical
-				
-					& Transitive
-					
-						mi=lavano loro 
-						la=lavano loro
-						lo=lavano loro
-						
-					& Serial verb constructions
-					
-						mi=hanno lavato loro
-						la=hanno lavata loro
-						mi=devono lavare loro
-						devono lavare=mi loro
-						la=devono lavare loro
-						devono lavare=la loro
-						lo=devono lavare loro
-						devono lavare=lo loro
-						mi=stanno lavando loro 
-						stanno lavando=mi loro
-
-					& Three-verb construction
-
-						mi=hanno voluto lavare loro
-						hanno voluto lavare=mi loro
-
-					& Reconstruction
-
-						sembrano lavare=mi loro
-						detesto lavare=lo io
-				
-				& Ungrammatical (clitic in wrong place)
-				
-					hanno mi=lavato loro
-					hanno la=lavato loro
-					sono=mi lavato io
-					hanno lo=lavato loro
-					hanno lavato=mi loro
-					hanno lavato=la loro
-					hanno lavato=lo loro
-					sono lavato	mi=io 
-					sono lavato io=mi 
-					hanno lavato loro=mi 
-					sono lavato	la=io
-					sono lavato io=la
-					hanno lavato loro=la
-					sono lavato	lo=io
-					sono lavato io=lo
-					hanno lavato loro=lo
-					hanno lavato mi=loro			
-					sono=la lavata io
-					sono=lo lavato io
-					loro devono mi=lavare
-					loro devono la=lavare
-					loro devono lo=lavare
-					loro=la devono lavare
-					loro=lo devono lavare
-					loro=mi devono lavare		
-					devono mi=lavare loro
-					devono la=lavare loro
-					devono lo=lavare loro
-					devono lavare loro=la
-					devono lavare loro=lo
-					devono lavare loro=mi
-					stanno lavando loro=mi
-					stanno lavando loro=la
-					stanno lavando loro=lo
-					hanno mi=voluto lavare loro
-					hanno voluto mi=lavare loro
-					hanno voluto lavare loro=mi
-					hanno voluto lavere	mi=loro 
-					mi=sembrano lavare loro
-					lo=detesto lavare io
-					lo=spinge Luisa a lavare Giuseppe
-
-			& Subject in wrong position
-			
-				& Ungrammatical
-			
-					mi=hanno loro lavato
-					la=hanno loro lavata
-					mi=devono loro lavare
-					devono loro lavare=mi
-					la=devono loro lavare
-					devono loro lavare=la	
-					lo=devono loro lavare
-					devono loro lavare=lo
-
 =STOP=
 
 		& Italian sono

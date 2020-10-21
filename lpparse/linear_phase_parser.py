@@ -41,6 +41,7 @@ class LinearPhaseParser:
         self.end_time = 0                                       # Calculates execution time
         self.number_of_items_consumed = 0
         self.grammaticality_judgement = []
+        self.time_from_stimulus_onset = 0
 
     # Definition for parser initialization
     def initialize(self):
@@ -62,22 +63,28 @@ class LinearPhaseParser:
         self.resources = dict  # Resources consumed
         self.start_time = process_time()  # Calculates execution time
         self.grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
-        self.resources = {"Garden Paths": 0,
-                          "Merge": 0,
-                          "Move Head": 0,
-                          "Move Phrase": 0,
-                          "A-Move Phrase": 0,
-                          "A-bar Move Phrase": 0,
-                          "Move Adjunct": 0,
-                          "Agree": 0,
-                          "Transfer": 0,
-                          "Items from input": 0,
-                          "Feature Processing": 0,
-                          "Extraposition": 0,
-                          "Inflection": 0,
-                          "Failed Transfer": 0,
-                          "LF recovery": 0,
-                          "LF test": 0}
+        self.time_from_stimulus_onset = 0
+        self.resources = {"Garden Paths": {'ms': 1, 'n': 0},
+                          "Merge": {'ms': 5, 'n': 0},
+                          "Move Head": {'ms': 5, 'n': 0},
+                          "Move Phrase": {'ms': 0, 'n': 0},
+                          "A-Move Phrase": {'ms': 5, 'n': 0},
+                          "A-bar Move Phrase": {'ms': 5, 'n': 0},
+                          "Move Adjunct": {'ms': 15, 'n': 0},
+                          "Agree": {'ms': 5, 'n': 0},
+                          "Transfer": {'ms': 5, 'n': 0},
+                          "Items from input": {'ms': 5, 'n': 0},
+                          "Feature Processing": {'ms': 5, 'n': 0},
+                          "Extraposition": {'ms': 15, 'n': 0},
+                          "Inflection": {'ms': 5, 'n': 0},
+                          "Failed Transfer": {'ms': 15, 'n': 0},
+                          "LF recovery": {'ms': 15, 'n': 0},
+                          "LF test": {'ms': 15, 'n': 0},
+                          "Filter solution": {'ms': 5, 'n': 0},
+                          "Rank solution": {'ms': 5, 'n': 0},
+                          "Lexical retrieval": {'ms': 5, 'n': 0},
+                          "Morphological decomposition": {'ms': 5, 'n': 0}
+                          }
 
     def parse(self, count, lst):
         self.sentence = lst
@@ -102,11 +109,13 @@ class LinearPhaseParser:
             self.complete_processing(ps)    # Finalizes the output
             return                          # Completes the parsing branch
 
-        log('Morphological processing...')
+        self.time_from_stimulus_onset = int(len(lst[index]) * 90)
 
         # Try all lexical elements (if ambiguous)
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
-            terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(lexical_constituent, lst.copy(), index)
+            log('Lexical retrieval...')
+            self.consume_resources('Lexical retrieval')
+            terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
             terminal_lexical_item = self.process_inflection(inflection, terminal_lexical_item)
             log('Done.')
             if inflection:
@@ -120,12 +129,11 @@ class LinearPhaseParser:
                 if not ps:
                     self.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
                 else:
-                    log(f'\n\t{self.resources["Items from input"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + '\": ')
+                    log(f'\n\t{self.resources["Items from input"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
                     log(ps.illustrate() + ' + ' + terminal_lexical_item.get_phonological_string())
                     # -------------------------- consider merge solutions ------------------------------------- #
                     merge_sites = self.plausibility_metrics.rank_solutions(ps, terminal_lexical_item)
                     for site in merge_sites:
-                        self.consume_resources("Merge")
                         ps_ = ps.top().copy()
                         left_branch_site_ = ps_.identify_equivalent_node(site)
                         if left_branch_site_.bottom_affix().internal:
@@ -133,6 +141,7 @@ class LinearPhaseParser:
                         else:
                             log(f'\t\t\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
                             log('Transferring left branch...')
+                            self.consume_resources("Merge")
                             set_logging(False)
                             new_ps = self.transfer_to_LF(left_branch_site_) + terminal_lexical_item
                             set_logging(True)
@@ -182,7 +191,7 @@ class LinearPhaseParser:
             log('\n')
             return
         log('Done.\n')
-        log('\t\tSolution was accepted!\n')
+        log(f'\t\tSolution was accepted ({self.time_from_stimulus_onset}ms).\n')
         self.first_solution_found = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
         self.report_solution(ps_, spellout_structure)
@@ -249,7 +258,10 @@ class LinearPhaseParser:
 
     def consume_resources(self, key):
         if key in self.resources and not self.first_solution_found:
-            self.resources[key] += 1
+            self.time_from_stimulus_onset += self.resources[key]['ms']
+            self.resources[key]['n'] += 1
+            log(f'({self.time_from_stimulus_onset}ms) ')
+
 
     def LF_legibility_test(self, ps):
         def detached(ps):

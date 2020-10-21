@@ -12,9 +12,11 @@ class Morphology:
         self.lexicon.load_lexicon(self.controlling_parser_process)
 
     # Definition for morphological parsing for lexical item (set of features)
-    def morphological_parse(self, lexical_item, input_word_list, index):
+    def morphological_parse(self, controlling_parsing_process, lexical_item, input_word_list, index):
         lexical_item_ = lexical_item
         while self.is_polymorphemic(lexical_item_):
+            log('Morphological decomposition...')
+            controlling_parsing_process.consume_resources('Morphological decomposition')
             lexical_item_ = self.C_op_processing(lexical_item_)
             morpheme_list = self.decompose(lexical_item_.morphology)
             morpheme_list = self.handle_incorporation(lexical_item_, morpheme_list)

@@ -248,8 +248,13 @@ class LF:
                     return True
                 if self.identify_thematic_role_by_agreement(h):
                     return True
+                if self.identify_thematic_role_by_tailing(h):
+                    return True
             self.projection_principle_test_result = False
-            log(f'\t\t\t\t{h.max()} has no thematic role.')
+            log(f'{h.max()} has no thematic role. ')
+
+    def identify_thematic_role_by_tailing(self, h):
+        return False
 
     def identify_thematic_role_by_agreement(self, h):
         if h.max().container_head():
@@ -297,8 +302,7 @@ class LF:
             if f == '-SPEC:*':
                 if local_edge:
                     if not local_edge.adjunct and not local_edge.find_me_elsewhere and 'pro' not in local_edge.head().features:
-                        log(f'{h} ({h.illustrate()}) has a specifier {local_edge}({local_edge.head().features}) '
-                            f'but is marked for -EPP behavior...')
+                        log(f'"{h}" has a specifier {local_edge} but is marked for -EPP behavior...')
                         self.selection_test_result = False
 
             # Obligatory complement
@@ -357,7 +361,7 @@ class LF:
                 return False
         if goal.is_primitive():
             if goal.get_tail_sets() and not goal.external_tail_head_test():
-                log(f'{goal.illustrate()} failed final tail test...')
+                log(f'"{goal.illustrate()}" failed final tail test...')
                 return False
         return True
 

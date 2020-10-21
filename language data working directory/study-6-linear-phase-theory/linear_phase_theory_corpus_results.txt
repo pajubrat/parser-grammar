@@ -1,114 +1,20 @@
-{'name_of_study': 'Gold Standard 1500', 'author(s)': 'Pauli Brattico', 'year': '2020', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory'}2020-10-21 15:22:03.606621
+{'name_of_study': 'Gold Standard 1500', 'author(s)': 'Pauli Brattico', 'year': '2020', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory'}2020-10-21 20:23:06.229045
 Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
 Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
 Lexicon from language data working directory\lexicon.txt.
 Redundancy rules from language data working directory\redundancy_rules.txt.
 Universal morphemes from language data working directory\ug_morphemes.txt.
-& 9 Head movement -------------------------------------------------------
+1. lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
 
-& 9.1 Local HMC-compliant X-to-C movement -------------------------------------------------------
-
-& Grammatical -------------------------------------------------------
-
-& 9.1.1 T-to-C* movement -------------------------------------------------------
-
-1. istuu#foc Pekka 
-
-	[C [<D Pekka>:1 [T [<__>:1 istuu]]]]
+	[C [<D Pekka>:1 [T [<__>:1 [sano- [etta [[D Pekka]:2 [T [__:2 [taytyy [__:2 [A/inf [__:2 lahtea]]]]]]]]]]]]]
 
 	LF_Recovery: 	 
-	Agent of istuu(Pekka)
+	Agent of A/inf(['T.3sg'])
+	Agent of lahtea(Pekka)
+	Agent of sano-(Pekka)
+	Agent of taytyy(['T.3sg'])
 
-		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
-		Agree:2, Transfer:3, Items from input:5, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
-		LF recovery:1, LF test:4, Execution time = 15ms
-
-2. istuu#C/op Pekka 
-
-	[C [<D Pekka>:1 [T [<__>:1 istuu]]]]
-
-	LF_Recovery: 	 
-	Agent of istuu(Pekka)
-
-		Garden Paths:0, Merge:4, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, 
-		Agree:2, Transfer:3, Items from input:5, Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, 
-		LF recovery:1, LF test:4, Execution time = 15ms
-
-3. ihailee#foc Pekka Merjaa 
-
-	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
-
-	LF_Recovery: 	 
-	Agent of v(Pekka)
-	Patient of ihaile-(Merja)
-
-		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
-		Agree:4, Transfer:6, Items from input:8, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
-		LF recovery:2, LF test:9, Execution time = 31ms
-
-4. ihailee#C/op Pekka Merjaa 
-
-	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
-
-	LF_Recovery: 	 
-	Agent of v(Pekka)
-	Patient of ihaile-(Merja)
-
-		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
-		Agree:4, Transfer:6, Items from input:8, Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, 
-		LF recovery:2, LF test:9, Execution time = 31ms
-
-5. myi#foc Pekka omaisuutensa 
-
-	[C [<D Pekka>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]
-
-	LF_Recovery: 	 
-	Agent of myy(Pekka)
-	Agent of v(Pekka)
-	Aspectually bounded
-
-		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
-		Agree:4, Transfer:6, Items from input:8, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
-		LF recovery:2, LF test:9, Execution time = 31ms
-
-6. myi#C/op Pekka omaisuutensa 
-
-	[C [<D Pekka>:1 [T [<__>:1 [v [myy [D omaisuuden]]]]]]]
-
-	LF_Recovery: 	 
-	Agent of myy(Pekka)
-	Agent of v(Pekka)
-	Aspectually bounded
-
-		Garden Paths:0, Merge:7, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, 
-		Agree:4, Transfer:6, Items from input:8, Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:3, 
-		LF recovery:2, LF test:9, Execution time = 31ms
-
-7. antoi#foc Pekka avaimen Merjalle 
-
-	[[C [<D Pekka>:1 [T [<__>:1 [v [[antaa [D avain]] <__>:2]]]]]] <P(lle) [D Merja]>:2]
-
-	LF_Recovery: 	 
-	Agent of P(lle)(Pekka)
-	Agent of antaa(Pekka)
-	Agent of v(Pekka)
-	Aspectually bounded
-
-		Garden Paths:0, Merge:10, Move Head:21, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
-		Agree:10, Transfer:14, Items from input:11, Feature Processing:0, Extraposition:1, Inflection:9, Failed Transfer:5, 
-		LF recovery:3, LF test:19, Execution time = 46ms
-
-8. antoi#C/op Pekka avaimen Merjalle 
-
-	[[C [<D Pekka>:1 [T [<__>:1 [v [[antaa [D avain]] <__>:2]]]]]] <P(lle) [D Merja]>:2]
-
-	LF_Recovery: 	 
-	Agent of P(lle)(Pekka)
-	Agent of antaa(Pekka)
-	Agent of v(Pekka)
-	Aspectually bounded
-
-		Garden Paths:0, Merge:10, Move Head:21, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, 
-		Agree:10, Transfer:14, Items from input:11, Feature Processing:0, Extraposition:1, Inflection:9, Failed Transfer:5, 
-		LF recovery:3, LF test:19, Execution time = 46ms
+		Garden Paths:0, Merge:5, Move Head:29, Move Phrase:11, A-Move Phrase:3, A-bar Move Phrase:0, Move Adjunct:8, 
+		Agree:16, Transfer:25, Items from input:12, Feature Processing:4, Extraposition:3, Inflection:13, Failed Transfer:21, 
+		LF recovery:4, LF test:39, Filter solution:15, Rank solution:5, Lexical retrieval:25, Morphological decomposition:6, Execution time = 93ms
 

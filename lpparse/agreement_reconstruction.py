@@ -48,10 +48,10 @@ class AgreementReconstruction:
         if head.sister():
             # ---------------------------- minimal search ----------------------------#
             for node in head.sister().minimal_search():
+                if node.left_const and node.left_const.is_primitive():
+                    break
                 if node.left_complex():
-                    if node.left_const.is_functional():
-                        break
-                    if 'D' in node.left_const.head().features:
+                    if 'D' in node.left_const.head().features and not node.left_const.find_me_elsewhere:
                         return node.left_const.head(), \
                                sorted({f for f in node.left_const.head().features
                                        if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
