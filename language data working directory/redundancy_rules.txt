@@ -4,8 +4,8 @@
 # Basic lexical categories
 FORCE 	:: -ARG -VAL FIN !COMP:* -SPEC:* !PROBE:T/fin COMP:T/fin COMP:C/fin
 C/fin 	:: -ARG VAL FIN C SPEC:* !COMP:* -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:FIN -SPEC:T/fin -SPEC:C/fin -SPEC:N COMP:Neg/fin
-T/fin 	:: ARG VAL T FIN !COMP:* COMP:T/prt COMP:v COMP:V COMP:D -COMP:INF -COMP:T/fin !PROBE:V SPEC:D -SPEC:N -SPEC:T/fin -SPEC:C/fin -SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
-T/prt 	:: ARG VAL FIN T !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V SPEC:* SPEC:D -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:D
+T/fin 	:: ARG VAL T FIN !COMP:* COMP:T/prt COMP:v COMP:V COMP:D -COMP:INF -COMP:T/fin !PROBE:V SPEC:D -SPEC:N -SPEC:T/fin -SPEC:C/fin -SPEC:Neg -SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
+T/prt 	:: ARG FIN VAL T !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V SPEC:* SPEC:D -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:D
 T 		:: ARG VAL FIN !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V SPEC:D -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:D
 Neg/fin :: ARG VAL FIN NEG COMP:T/prt -SPEC:T -SPEC:T/fin %SPEC:INF SEM:internal
 v   	:: ARG -VAL ASP !COMP:* COMP:V !PROBE:V SPEC:D -SPEC:N
@@ -40,7 +40,7 @@ CLASS:DITR 	:: !COMP:* SPEC:D COMP:D
 # Language-specific redundancy rules
 # English
 P LANG:EN	::	-SPEC:* -float
-T/fin LANG:EN	::	SPEC:D -SPEC:TO/inf
+T/fin LANG:EN	::	!SPEC:D -SPEC:TO/inf
 A LANG:EN	::	-adjoinable
 
 # Italian

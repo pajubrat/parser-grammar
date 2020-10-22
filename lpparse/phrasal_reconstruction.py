@@ -20,7 +20,8 @@ class PhrasalMovement:
         for node in ps.minimal_search():
             if self.visible_head(node):
                 self.pull(self.visible_head(node))
-                self.controlling_parser_process.LF.try_LFmerge(self.visible_head(node))
+                if self.visible_head(node):
+                    self.controlling_parser_process.LF.try_LFmerge(self.visible_head(node))
         # ---------------------------------------------------------------------------------------------#
 
     def pull(self, head):
@@ -36,9 +37,10 @@ class PhrasalMovement:
                         specifiers_to_add_memory_buffer.append(spec)
                         log(f'Moving {spec} into memory buffer from Spec{head.get_cats_string()}P...')
                     else:
-                        iterator = self.A_reconstruct(spec, iterator)
+                        iterator = self.A_reconstruct_(spec, iterator)
 
                 if count_specifiers > 0:
+
                     if self.specifier_phrase_must_have_supporting_head(spec):
                         new_h = self.engineer_head_from_specifier(head, spec)
                         iterator.merge_1(new_h, 'left')
@@ -47,6 +49,7 @@ class PhrasalMovement:
                         if new_h.get_tail_sets():
                             self.adjunct_constructor.create_adjunct(new_h)
                 else:
+
                     count_specifiers = + 1
                     if spec.scan_criterial_features():
                         log(f'Criterial features {spec.scan_criterial_features()} copied to {head}...')
@@ -54,8 +57,8 @@ class PhrasalMovement:
                         if head.get_tail_sets():
                             self.adjunct_constructor.create_adjunct(head)
                 iterator = iterator.walk_upstream()
-            # --------------------------------------------------------------------------------------------------#
 
+            # --------------------------------------------------------------------------------------------------#
             # Add everything into memory buffer
             self.controlling_parser_process.syntactic_working_memory = specifiers_to_add_memory_buffer + self.controlling_parser_process.syntactic_working_memory
 
@@ -78,33 +81,39 @@ class PhrasalMovement:
         else:
             return {'?'}
 
-    # Definition for A-reconstruction
-    def A_reconstruct(self, spec, iterator):
-        if self.candidate_for_A_reconstruction(spec):
-            log(f'{spec} undergoes A-reconstruction...')
-            iterator = self.reconstruct_inside_next_projection(spec, iterator)
-            self.controlling_parser_process.consume_resources("Move Phrase")
-            self.controlling_parser_process.consume_resources("A-Move Phrase")
-        return iterator
-
     def candidate_for_A_reconstruction(self, ps):
         if ps == ps.container_head().licensed_specifier():
             return 'D' in ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive()
 
-    def reconstruct_inside_next_projection(self, spec, iterator):
-        local_head = spec.sister().head()
-        if local_head.is_right():
-            # [Y X] => [Y [X Y]]
-            local_head.merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'right')
+    # THis is the new generalized A-reconstruction
+    # I leave extensive comments because the theory is not optimal
+    def A_reconstruct_(self, spec, iterator):
+        if not self.candidate_for_A_reconstruction(spec):
+            return iterator
+
+        # Special case: [DP H] => [__ [H DP]]
+        if iterator.is_primitive():
+            iterator.merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'right')
             return iterator.mother
-        if local_head.is_left():
-            if local_head.sister():
-                # [Y [X ZP]] => [Y [X [Y YP]]]
-                local_head.sister().merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'left')
-            else:
-                # [Y [X <ZP>]] => [Y [X Y] <ZP>]
-                local_head.sister().merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'right')
+
+        moved_constituent = spec.copy()
+        #-----------------minimal search---------------------------------------------------------------------------#
+        for node in iterator.minimal_search():
+            # Condition 1. No trivial merge [XP [H YP]] => [XP [H YP]]
+            if node != iterator:
+                # Condition 2. No tucking if there is already something, [XP K [YP [H ZP]] =/=> [XP K [__ YP [H ZP]]]
+                if (node.left_const and node.left_const.is_primitive() and node.sister().is_primitive()) or node.is_primitive():
+                    node.merge_1(moved_constituent, 'left')
+                    # Condition 3. Genitives must satisfy additional tail-head test (try remove later)
+                    if 'GEN' in moved_constituent.head().features and not moved_constituent.external_tail_head_test():
+                        moved_constituent.remove()
+                    else:
+                        moved_constituent.remove()
+                        node.merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'left')
+                        break
+        #-----------------------------------------------------------------------------------------------------------#
         return iterator
+
 
     @staticmethod
     def visible_head(h):

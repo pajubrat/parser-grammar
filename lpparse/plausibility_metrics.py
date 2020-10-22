@@ -9,6 +9,7 @@ class PlausibilityMetrics:
         return self.rank_merge_right(self.filter(ps, w))
 
     def filter(self, ps, w):
+        set_logging(True)
         log('\n\t\t\tFiltering out impossible merge sites...')
         adjunction_sites = []
         if ps.bottom().bottom_affix().internal:

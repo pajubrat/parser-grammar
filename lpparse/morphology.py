@@ -63,9 +63,7 @@ class Morphology:
         return lexical_item
 
     def determine_critical_morpheme(self, list_):
-        if len(list_) < 3:
-            return self.lexicon.lexical_retrieval(list_[0])[0]
-        return self.lexicon.lexical_retrieval(list_[-3])[0]
+        return self.lexicon.lexical_retrieval(list_[0])[0]
 
     # Definition for morpheme decomposition
     def extract_morphemes(self, word):

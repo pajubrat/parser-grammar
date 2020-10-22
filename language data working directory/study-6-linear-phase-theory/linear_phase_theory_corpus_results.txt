@@ -1,20 +1,19 @@
-{'name_of_study': 'Gold Standard 1500', 'author(s)': 'Pauli Brattico', 'year': '2020', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory'}2020-10-21 20:23:06.229045
+{'name_of_study': 'Gold Standard 1500', 'author(s)': 'Pauli Brattico', 'year': '2020', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory'}2020-10-22 21:46:06.093363
 Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
 Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
 Lexicon from language data working directory\lexicon.txt.
 Redundancy rules from language data working directory\redundancy_rules.txt.
 Universal morphemes from language data working directory\ug_morphemes.txt.
-1. lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
+1. John tries to_inf leave 
 
-	[C [<D Pekka>:1 [T [<__>:1 [sano- [etta [[D Pekka]:2 [T [__:2 [taytyy [__:2 [A/inf [__:2 lahtea]]]]]]]]]]]]]
+	[[D John]:1 [T [__:1 [try [TO/inf leave]]]]]
 
-	LF_Recovery: 	 
-	Agent of A/inf(['T.3sg'])
-	Agent of lahtea(Pekka)
-	Agent of sano-(Pekka)
-	Agent of taytyy(['T.3sg'])
+	LF_Recovery: ,  
+, Agent of leave(John)
+, Agent of try(John)
 
-		Garden Paths:0, Merge:5, Move Head:29, Move Phrase:11, A-Move Phrase:3, A-bar Move Phrase:0, Move Adjunct:8, 
-		Agree:16, Transfer:25, Items from input:12, Feature Processing:4, Extraposition:3, Inflection:13, Failed Transfer:21, 
-		LF recovery:4, LF test:39, Filter solution:15, Rank solution:5, Lexical retrieval:25, Morphological decomposition:6, Execution time = 93ms
+		Garden Paths:0, Merge:3, Move Head:6, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
+		Move Adjunct:0, Agree:4, Transfer:7, Items from input:6, Feature Processing:1, Extraposition:0, 
+		Inflection:6, Failed Transfer:7, LF recovery:2, LF test:11, Filter solution:5, Rank solution:0, 
+		Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
 

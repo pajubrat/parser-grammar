@@ -180,7 +180,7 @@ class LexicalInterface:
                 features.add('PHI:GEN:_')
             if 'VAL' in features:
                 features.add('SPEC:*')
-                features.add('!SPEC:*')
+                # features.add('!SPEC:*')
 
         # Finnish operator snowballing
         if non_finite_agreement:

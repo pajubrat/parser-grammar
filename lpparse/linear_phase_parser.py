@@ -1,4 +1,4 @@
-from support import set_logging, log, show_primitive_constituents, report_tail_head_problem
+from support import set_logging, log, show_primitive_constituents
 from lexical_interface import LexicalInterface
 from LF import LF
 from morphology import Morphology
@@ -185,7 +185,7 @@ class LinearPhaseParser:
         log('\t\tLF-legibility check...')
         if self.LF_condition_violation(ps_) or self.interpret_semantically(ps_):
             self.add_garden_path()
-            log('\t\tLF-legibility test failed.\n')
+            log('\n\t\tLF-legibility test failed.\n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps))
             log('\n')
@@ -224,7 +224,6 @@ class LinearPhaseParser:
         log(f'Checking LF-interface conditions...')
         lf = self.LF.test(ps)
         if not lf.final_tail_check(ps):
-            report_tail_head_problem(ps)
             return True
         if not lf.all_pass():
             lf.report_lf_status()

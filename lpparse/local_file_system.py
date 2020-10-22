@@ -45,7 +45,8 @@ class LocalFileSystem:
             line = line.replace('  ', '')
             key, value = line.split(':', 1)
             self.metadata[key] = value
-        print(self.metadata)
+        for key in self.metadata:
+            print(self.metadata[key])
         config_file.close()
 
     def initialize_results_file(self):
@@ -77,8 +78,8 @@ class LocalFileSystem:
         i = 0
         for key in consumed_resources:
             s += f'{key}:{consumed_resources[key]["n"]}, '
-            i += 1
-            if i == 7:
+            i += len(key)
+            if i > 60:
                 s += '\n\t\t'
                 i = 0
         return s
@@ -87,7 +88,7 @@ class LocalFileSystem:
         output_str = ''
         enumerated_object = sorted(enumerated_object)
         for item in enumerated_object:
-            output_str = output_str + '\t' + item + delimiter
+            output_str = output_str + ', ' + item + delimiter
         return output_str
 
     def generate_input_sentence_string(self, sentence):
@@ -223,7 +224,7 @@ class LocalFileSystem:
                     print('\t' + f'{parse}')
                 else:
                     print('\t' + chr(96 + parse_number) + f'. {parse}')
-                print('\n\t\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, ' ')))
+                print('\n\t\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, '')))
                 if parse_number == 1:
-                    print('\n\t\t' + self.format_resource_output(parser.resources) + f'Execution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
+                    print('\n\t\t' + self.format_resource_output(parser.resources) + f'\n\t\tExecution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
                 parse_number = parse_number + 1

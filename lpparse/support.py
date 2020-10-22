@@ -97,10 +97,6 @@ def report_LF_problem(ps_):
     log(show_all_vectors(ps_))
     log('\n\t\tTrying to find other solutions...')
 
-
-def report_tail_head_problem(ps_):
-    log('Final tail-head check failed.\n')
-
 def log(text):
     if log_instance.logging and not log_instance.disabled:
         my_log.info(text)

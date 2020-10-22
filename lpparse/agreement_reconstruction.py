@@ -24,7 +24,7 @@ class AgreementReconstruction:
 
     # Definition for agreement reconstruction
     def reconstruct(self, ps):
-        # ---------------------------- minimal search -------------------------------------- #
+        # ---------------------------- minimal search ----------------------------------------#
         for node in ps.minimal_search():
             if node.left_primitive() and 'VAL' in node.left_const.features:
                 self.Agree_1(node.left_const)
@@ -51,7 +51,7 @@ class AgreementReconstruction:
                 if node.left_const and node.left_const.is_primitive():
                     break
                 if node.left_complex():
-                    if 'D' in node.left_const.head().features and not node.left_const.find_me_elsewhere:
+                    if self.agreement_condition(head, node.left_const) and not node.left_const.find_me_elsewhere:
                         return node.left_const.head(), \
                                sorted({f for f in node.left_const.head().features
                                        if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
@@ -59,13 +59,29 @@ class AgreementReconstruction:
         return head.sister(), {}    # This line is executed only if nothing is found
 
     # Definition for phi-acquisition from the edge
-    def Agree_1_from_edge(self, h):
-        if self.edge_for_Agree(h):
-            for e in self.edge_for_Agree(h):
-                if 'D' in e.head().features:
+    def Agree_1_from_edge(self, head):
+        if self.edge_for_Agree(head):
+            for e in self.edge_for_Agree(head):
+                if self.agreement_condition(head, e):
                     phi_features = {f for f in e.head().features if phi(f) and valued(f)}
                     return e.head(), sorted(phi_features)
         return None, {}
+
+    # This condition is not yet correctly implemented
+    # The condition captures the fact that Agree(h, XP) presupposes that h,XP share tail-features (if any).
+    # It currently applies only to Finnish, because the problems associated with the tail-definition for accusative case
+    def agreement_condition(self, head, phrase):
+        if 'D' in phrase.head().features:
+            if self.controlling_parsing_process.language != 'LANG:FI':
+                return True
+            else:
+                if 'pro' in phrase.head().features:
+                    return True
+                else:
+                    tail_sets = phrase.head().get_tail_sets()
+                    for tail_set in tail_sets:
+                        if tail_set & head.features == tail_set:
+                            return True
 
     # Definition for phi-feature valuation
     def value(self, h, goal, phi):

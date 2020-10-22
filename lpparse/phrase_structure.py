@@ -194,13 +194,13 @@ class PhraseStructure:
     # Definition for edge
     def edge(self):
         edge = []
-        # -------------- minimal upstream path ----------------------#
+        # -------------- minimal upstream path ---------------------------------------------#
         for node in self.upstream_search():
             if node.head() != self:
                 break
             if node.left_const and node.left_const.is_complex() and node.left_const.head() != self:
                 edge.append(node.left_const)
-        #------------------------------------------------------------#
+        #------------------------------------------------------------------------------------#
         if not edge and self.extract_pro():
             edge.append(self.extract_pro())
         return edge

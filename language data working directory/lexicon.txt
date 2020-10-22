@@ -302,7 +302,6 @@ must	:: T/fin MODAL COMP:Neg PF:must LF:must LANG:EN
 
 myi 	:: myy-#v#asp#T/fin#[-V] LANG:FI
 myynyt	:: myy-#v#asp#T/prt#sg LANG:FI
-myyda	:: myy-#v#asp#A/inf LANG:FI
 myyda 	:: myy-#v#A/inf LANG:FI
 myy-	:: PF:myy LF:sell V ASP:BOUNDED CLASS:TR COMP:D LANG:FI
 
@@ -310,7 +309,7 @@ naki	:: nake-#v#T/fin#[-V] LANG:FI
 nake-	:: PF:nake LF:see V CLASS:TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA/inf LANG:FI
 
 nayttaa	:: naytta-#T/fin LANG:FI
-naytta- :: PF:naytta LF:seem V SPEC:D !COMP:VA/inf SEM:internal LANG:FI
+naytta- :: PF:naytta LF:seem V -ARG ASP VAL !SPEC:D !COMP:VA/inf SEM:internal LANG:FI
 
 ndo		:: INF ?ARG VAL INF PRG PF:PRG LF:ing
 
@@ -465,7 +464,7 @@ tama-	:: PF:tama LF:this N PHI LANG:FI
 tassa	:: tama#P
 
 taytyy	:: tayty-#T/fin#[-V] LANG:FI
-taydy	:: tayty-#T LANG:FI
+taydy	:: tayty-#T/prt LANG:FI
 tayty-	:: PF:taytyy LF:must FIN V MODAL SPEC:* !COMP:A/inf -ASP LANG:FI
 
 teki	:: teke-#v#T/fin#[-V] LANG:FI

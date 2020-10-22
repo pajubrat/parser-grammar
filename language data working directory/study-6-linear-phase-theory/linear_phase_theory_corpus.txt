@@ -658,12 +658,13 @@
 			
 				me loydettiin avaimen
 				me loysimme avain
-				
+
 		& 4.9.3 Raising construction
-		
+
 			& Grammatical
-			
+									
 				Merja nayttaa lahtevan
+				
 				
 			& Ungrammatical
 			
@@ -672,8 +673,8 @@
 				Merjan_acc nayttaa lahtevan
 				Merja_0acc nayttaa lahtevan
 				Merjalle nayttaa lahtevan
-				
-		& 4.9.4 Copula
+	
+	& 4.9.4 Copula
 		
 			& Grammatical
 			
@@ -685,7 +686,7 @@
 			
 				Pekka on' Pekkaa
 				Pekka on' Pekan_gen
-				
+		
 & 5 Agreement
 	
 	& Chapter 5.1 Standard finite S-V agreement
@@ -1024,18 +1025,18 @@
 		& Grammatical
 		
 			ihailen Merjaa
+			Merjaa ihailen
+			Merjaa ihailevat
 		
 		& Ungrammatical
 	
 			ihailee Merjaa
 			ihailevat Merjaa
-			Merjaa ihailevat
-
-		& Problem: Partitive DO wrongly agrees with T
+			
+		& Unclear case (compare 'Elokuvia katselee mielelaan')
 
 			Merjaa ihailee
-			Merjaa ihailen
-	
+			
 	& 6.3 Third person pro in Finnish, with and without antecedent
 	
 		& Grammatical
@@ -1083,7 +1084,7 @@
 				& Grammatical
 				
 					Pekka haluaa lahtea
-					John tries to_inf leave
+	%				John tries to_inf leave
 					John promises to_inf leave
 	
 				& Ungrammatical
@@ -1103,8 +1104,8 @@
 				
 					Pekka kaskee lahtea
 					John persuades to_ing leave
-					Pekka haluaa lahtevan
-								
+		%			Pekka haluaa lahtevan
+							
 		& 7.2.2 Control into adverbials
 		
 			& Subject control (high adjunct position)
@@ -1506,7 +1507,6 @@
 					John wants to_inf Mary leave 
 					Mary wants to_inf John leave
 
-							
 		& 8.4.2 Free word order (Finnish)
 		
 			& Pekka haluaa lahtea
@@ -1559,7 +1559,7 @@
 					lahtea kaskee Merjan_gen Pekka 
 					lahtea Merjan_gen Pekka kaskee 
 					lahtea Merjan_gen kaskee Pekka
-				
+
 & 9 Head movement
 	
 	& 9.1 Local HMC-compliant X-to-C movement
@@ -1716,9 +1716,6 @@
 				
 				ihailla#C/op Pekka kaskee poikien Merjaa
 				ihailla Pekka kaskee poikien Merjaa
-			
-			& Problem: here we again must prevent GEN reconstruction upwards
-
 				ihailla#C/fin Pekka kaskee poikien Merjaa
 
 			& 9.2.11 Long head movement with second auxiliary
@@ -1750,7 +1747,7 @@
 			& 9.3.1 that + want + A/inf
 			
 			ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa
-	%		lahtea#C/op Pekka sanoo etta Pekan_gen taytyy
+			lahtea#C/op Pekka sanoo etta Pekan_gen taytyy
 			
 		& Ungrammatical		
 

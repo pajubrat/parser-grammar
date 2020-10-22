@@ -54,7 +54,6 @@ class LF:
         log(f'projection principle: {self.projection_principle_test_result}...')
         log(f'complement test: {self.wrong_complement_test_result}...')
         log(f'adjunct test: {self.adjunct_test_result}...')
-        log('Done.\n')
 
     def reset_flags(self):
         self.probe_goal_test_result = True

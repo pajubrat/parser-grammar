@@ -23,7 +23,7 @@ A/inf		:: INF A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:Neg/fin ?ARG ?VAL
 ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* VAL -adjoinable 
 ESSA/inf 	:: ADV INF ESSA/inf ?VAL ?ARG SPEC:* TAIL:T PF:essa LF:while
 TUA/inf		:: ADV INF TUA/inf CAL TAIL:T ARG !SPEC:* PF:tua LF:after
-VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N SPEC:*
+VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N !SPEC:*
 MA/ssa		:: MA/inf ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V -VAL ARG adjoinable 
 MA/tta		:: MA/inf ADV PF:matta LF:without_doing -VAL ARG TAIL:T adjoinable
 MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T COMP:v COMP:V -VAL ARG adjoinable
