@@ -22,7 +22,15 @@ class PhrasalMovement:
                 self.pull(self.visible_head(node))
                 if self.visible_head(node):
                     self.controlling_parser_process.LF.try_LFmerge(self.visible_head(node))
+            if self.intervention(node):
+                break
         # ---------------------------------------------------------------------------------------------#
+
+    def intervention(self, node):
+        if node.left_const and node.left_const.is_primitive() and 'D' in node.left_const.features:
+            if self.controlling_parser_process.syntactic_working_memory:
+                return True
+        return False
 
     def pull(self, head):
         if head.EPP():

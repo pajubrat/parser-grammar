@@ -31,29 +31,15 @@ class Visualizer:
         self.save_image_file_name = ''
         self.input_sentence_string = ''
 
-    def initialize(self, arguments):
-        if '/images' in arguments:
-            self.image_output = True
-            self.stop_after_each_image = False
-            self.show_words = False
-            self.nolabels = False
-            self.spellout = False
-            self.case = False
-            self.show_sentences = False
-            if '/slow' in arguments:
-                self.stop_after_each_image = True
-            if '/words' in arguments:
-                self.show_words = True
-            if '/glosses' in arguments:
-                self.show_glosses = True
-            if '/sentences' in arguments:
-                self.show_sentences = True
-            if '/nolabels' in arguments:
-                self.nolabels = True
-            if '/spellout' in arguments:
-                self.spellout = True
-            if '/cases' in arguments:
-                self.show_cases = True
+    def initialize(self, settings):
+        self.image_output = True
+        self.stop_after_each_image = settings['image_parameter_stop_after_each_image']
+        self.show_words = settings['image_parameter_show_words']
+        self.nolabels = settings['image_parameter_nolabels']
+        self.spellout = settings['image_parameter_spellout']
+        self.case = settings['image_parameter_case']
+        self.show_sentences = settings['image_parameter_show_sentences']
+        self.show_glosses = settings['image_parameter_show_glosses']
 
     # Definition for the drawing function
     def draw(self, ps):
@@ -172,7 +158,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.phrase_structure = ps
         if self.visualizer.show_words:
             self.margins += 10
-        if self.visualizer.nolabels and not self.show_words:
+        if self.visualizer.nolabels and not self.visualizer.show_words:
             self.margins += 10
         if self.visualizer.show_glosses:
             self.margins += 10

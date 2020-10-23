@@ -1,0 +1,1214 @@
+{'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}2020-10-23 17:53:15.152348
+Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
+Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
+Lexicon from language data working directory\lexicon.txt.
+Redundancy rules from language data working directory\redundancy_rules.txt.
+Universal morphemes from language data working directory\ug_morphemes.txt.
+1, a' b' , b,120,  = 120ms.
+2, a' b' c' , b,120,  c,170,  = 290ms.
+3, a' b' c' d' , b,120,  c,170,  d,220,  = 510ms.
+4, Pekka istuu , Pekka,315,  T,360,  istuu,265,  = 940ms.
+5, Pekka lahtee , Pekka,315,  T,360,  lahtea,315,  = 990ms.
+6, John sleeps , John,265,  T,360,  sleep,315,  = 940ms.
+7, lui dorme , lui,215,  T,360,  dorme,315,  = 890ms.
+8, Pekka lahtee Merjan , Pekka,315,  T,360,  lahtea,315,  D,340,  Merja,315,  D,556,  Merja,315,  = 2516ms.
+9, Pekka istuu Merjan , Pekka,315,  T,360,  istuu,265,  D,335,  Merja,315,  D,521,  Merja,315,  = 2426ms.
+10, John sleeps Mary , John,265,  T,360,  sleep,315,  D,265,  Mary,265,  D,416,  Mary,265,  = 2151ms.
+11, John John sleeps , John,265,  D,160,  John,265,  T,620,  sleep,315,  T,441,  sleep,315,  = 2381ms.
+12, Pekka ihailee Merjaa , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1740ms.
+13, Pekka loysi Merjan , Pekka,315,  T,360,  v,115,  loyta-,315,  D,270,  Merja,315,  = 1690ms.
+14, Pekka teki sen kellon , Pekka,315,  T,360,  v,115,  teke,265,  sen,320,  n,355,  kello,365,  kello,555,  = 2650ms.
+15, John admires Mary , John,265,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1605ms.
+16, Giuseppe spinge Luisa , Giuseppe,465,  T,360,  v,115,  spinge,365,  D,235,  Luisa,315,  = 1855ms.
+17, lavano Luisa , v,115,  lava,265,  D,150,  Luisa,315,  = 845ms.
+18, loro lavano Luisa , loro,265,  T,360,  v,115,  lava,265,  D,235,  Luisa,315,  = 1555ms.
+19, Pekka ihailee , Pekka,315,  T,360,  v,115,  ihaile-,365,  = 1155ms.
+20, Pekka loysi , Pekka,315,  T,360,  v,115,  loyta-,315,  = 1105ms.
+21, Pekka ihailee Merjaa Merjaa Merjaa , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  D,570,  Merja,315,  D,1245,  Merja,315,  D,551,  Merja,315,  D,566,  Merja,315,  D,556,  Merja,315,  D,471,  Merja,315,  D,700,  Merja,315,  D,491,  Merja,315,  D,511,  Merja,315,  D,506,  Merja,315,  D,470,  Merja,315,  D,491,  Merja,315,  = 12648ms.
+22, Pekka Pekka ihailee Merjaa , Pekka,315,  D,160,  Pekka,315,  T,620,  v,115,  ihaile-,365,  D,285,  Merja,315,  T,501,  v,115,  ihaile-,365,  D,425,  Merja,315,  = 4211ms.
+23, mina haluan , mina,265,  T,360,  v,115,  haluaa,315,  = 1055ms.
+24, John admires , John,265,  T,360,  v,115,  admire,365,  = 1105ms.
+25, John admires Mary Mary , John,265,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  D,460,  Mary,265,  D,431,  Mary,265,  = 3026ms.
+26, Pekka antoi kirjan Merjalle , Pekka,315,  T,360,  v,115,  antaa,265,  D,270,  kirja,315,  P(lle),815,  D,115,  Merja,315,  = 2885ms.
+27, John gave the key to Mary , John,265,  T,265,  v,115,  give,265,  the,285,  key,370,  to,460,  D,400,  Mary,265,  = 2690ms.
+28, mina en lahde , mina,265,  ei,160,  T,415,  lahtea,315,  = 1155ms.
+29, sina et lahde , sina,265,  ei,160,  T,415,  lahtea,315,  = 1155ms.
+30, Pekka ei lahde , Pekka,315,  ei,160,  T,415,  lahtea,315,  = 1205ms.
+31, me emme lahde , me,165,  ei,160,  T,415,  lahtea,315,  = 1055ms.
+32, te ette lahde , te,165,  ei,160,  T,415,  lahtea,315,  = 1055ms.
+33, he_FI eivat lahde , he,165,  ei,160,  T,415,  lahtea,315,  = 1055ms.
+34, Pekka ei ihaile Merjaa , Pekka,315,  ei,160,  T,465,  v,115,  ihaile-,365,  D,365,  Merja,315,  = 2100ms.
+35, Pekka ei myynyt omaisuuttaan , Pekka,315,  ei,160,  T/prt,460,  v,115,  myy,215,  D,365,  omaisuuden,465,  = 2095ms.
+36, John does sleep , John,265,  does,260,  sleep,375,  = 900ms.
+37, John does not sleep , John,265,  does,260,  not,275,  sleep,455,  = 1255ms.
+38, John does not admire' Mary , John,265,  does,260,  not,275,  v,560,  admire,365,  D,325,  Mary,265,  = 2315ms.
+39, loro hanno lavato Luisa , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  lava,265,  D,340,  Luisa,315,  = 2290ms.
+40, io ho lavato Luisa , io,165,  T,360,  ha,165,  T/prt,465,  v,115,  lava,265,  D,340,  Luisa,315,  = 2190ms.
+41, loro hanno voluto lavare Luisa , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  volu,265,  are,545,  v,115,  lava,265,  D,455,  Luisa,315,  = 3330ms.
+42, loro stanno lavando Luisa , loro,265,  T,360,  sta,215,  PRG,520,  v,115,  lava,265,  D,320,  Luisa,315,  = 2375ms.
+43, sina en lahde , sina,265,  ei,160,  T,415,  lahtea,315,  = 1155ms.
+44, sina lahde et , sina,265,  T,315,  lahtea,315,  ei,335,  ei,516,  = 1746ms.
+45, John not does sleep , John,265,  not,210,  does,260,  sleep,475,  = 1210ms.
+46, Pekan_gen taytyy nukkua , Pekka,315,  T,360,  taytyy,315,  A/inf,435,  nukku,315,  = 1740ms.
+47, Pekan_gen taytyy ihailla Merjaa , Pekka,315,  T,360,  taytyy,315,  A/inf,485,  v,115,  ihaile-,365,  D,310,  Merja,315,  = 2580ms.
+48, Pekan_gen taytyy myyda omaisuuttaan , Pekka,315,  T,360,  taytyy,315,  A/inf,385,  v,115,  myy,215,  D,310,  omaisuuden,465,  = 2480ms.
+49, John must sleep , John,265,  must,260,  sleep,375,  = 900ms.
+50, John must admire' Mary , John,265,  must,260,  v,480,  admire,365,  D,280,  Mary,265,  = 1915ms.
+51, loro devono lavare Luisa , loro,265,  T,360,  deva,265,  are,470,  v,115,  lava,265,  D,320,  Luisa,315,  = 2375ms.
+52, Pekka taytyy nukkua , Pekka,315,  T,360,  taytyy,315,  A/inf,470,  nukku,315,  = 1775ms.
+53, taytyy Pekan nukkua , taytyy,315,  ?,300,  A/inf,420,  nukku,315,  = 1350ms.
+54, John does must sleep , John,265,  does,260,  must,325,  sleep,485,  = 1335ms.
+55, John must Mary admire' John , John,265,  must,260,  D,225,  Mary,265,  v,610,  admire,365,  D,355,  John,265,  D,381,  John,265,  = 3256ms.
+56, John must to_inf sleep , John,265,  must,260,  TO/inf,425,  sleep,455,  = 1405ms.
+57, Pekan_gen ei taydy ihailla Merjaa , Pekka,315,  ei,160,  T/prt,415,  taytyy,315,  A/inf,575,  v,115,  ihaile-,365,  D,415,  Merja,315,  = 2990ms.
+58, Pekan_gen ei taydy myyda omaisuuttaan , Pekka,315,  ei,160,  T/prt,415,  taytyy,315,  A/inf,475,  v,115,  myy,215,  D,415,  omaisuuden,465,  = 2890ms.
+59, Pekka on' nukkunut , Pekka,315,  T,360,  BE,165,  T/prt,590,  nukku,315,  = 1745ms.
+60, Pekka on' ihaillut Merjaa , Pekka,315,  T,360,  BE,165,  T/prt,535,  v,115,  ihaile-,365,  D,375,  Merja,315,  = 2545ms.
+61, John does sleep , John,265,  does,260,  sleep,375,  = 900ms.
+62, John does , John,265,  does,260,  = 525ms.
+63, loro sembrano lavare Luisa , loro,265,  T,360,  sembra,365,  are,435,  v,115,  lava,265,  D,320,  Luisa,315,  = 2440ms.
+64, John wants to_inf leave , John,265,  T,360,  v,115,  want,265,  TO/inf,435,  leave,440,  = 1880ms.
+65, John wants Mary to_inf leave , John,265,  T,360,  v,115,  want,265,  D,235,  Mary,265,  TO/inf,650,  leave,530,  = 2685ms.
+66, John wants to_inf leave Mary , John,265,  T,360,  v,115,  want,265,  TO/inf,435,  leave,440,  D,435,  Mary,265,  D,396,  Mary,265,  = 3241ms.
+67, io detesto lavare Luisa , io,165,  T,360,  v,115,  detest,365,  are,480,  v,115,  lava,265,  D,330,  Luisa,315,  = 2510ms.
+68, io detesto Giuseppe lavare Luisa , io,165,  T,360,  v,115,  detest,365,  D,275,  Giuseppe,465,  are,690,  v,115,  lava,265,  D,390,  Luisa,315,  are,466,  v,115,  lava,265,  D,300,  Luisa,315,  are,451,  v,115,  lava,265,  D,210,  Luisa,315,  D,446,  Giuseppe,465,  are,575,  v,115,  lava,265,  D,270,  Luisa,315,  are,486,  v,115,  lava,265,  D,210,  Luisa,315,  T,360,  detest,365,  D,265,  Giuseppe,465,  are,725,  v,115,  lava,265,  D,380,  Luisa,315,  are,471,  v,115,  lava,265,  D,210,  Luisa,315,  are,446,  v,115,  lava,265,  D,300,  Luisa,315,  D,441,  Giuseppe,465,  are,575,  v,115,  lava,265,  D,270,  Luisa,315,  are,486,  v,115,  lava,265,  D,210,  Luisa,315,  = 20088ms.
+69, John tries to_inf leave , John,265,  T,360,  try,215,  TO/inf,430,  leave,430,  = 1700ms.
+70, John tries Mary to_inf leave , John,265,  T,360,  try,215,  D,230,  Mary,265,  TO/inf,530,  leave,520,  leave,631,  = 3016ms.
+71, Pekka haluaa lahtea , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,475,  lahtea,315,  = 1895ms.
+72, Pekka kaskee Merjan_gen lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  Merja,315,  A/inf,650,  lahtea,315,  = 2655ms.
+73, Pekka halusi ihailla Merjaa , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,525,  v,115,  ihaile-,365,  D,355,  Merja,315,  = 2780ms.
+74, Pekka kaskee poikien ihailla Merjaa , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  poika,315,  A/inf,700,  v,115,  ihaile-,365,  D,420,  Merja,315,  = 3605ms.
+75, Pekka kaskee poikien myyda omaisuuttaan , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  poika,315,  A/inf,600,  v,115,  myy,215,  D,420,  omaisuuden,465,  = 3505ms.
+76, Pekka ei halua ihailla Merjaa , Pekka,315,  ei,160,  T,415,  v,115,  haluaa,315,  A/inf,620,  v,115,  ihaile-,365,  D,465,  Merja,315,  = 3200ms.
+77, Pekka ei halua myyda omaisuuttaan , Pekka,315,  ei,160,  T,415,  v,115,  haluaa,315,  A/inf,520,  v,115,  myy,215,  D,465,  omaisuuden,465,  = 3100ms.
+78, Pekka haluaa Merjan_gen lahtea , Pekka,315,  T,360,  v,115,  haluaa,315,  D,270,  Merja,315,  A/inf,870,  lahtea,315,  A/inf,501,  lahtea,315,  A/inf,486,  lahtea,315,  = 4492ms.
+79, Pekka haluaa heidan lahtea , Pekka,315,  T,360,  v,115,  haluaa,315,  D,270,  he,165,  A/inf,870,  lahtea,315,  A/inf,501,  lahtea,315,  A/inf,486,  lahtea,315,  he,406,  A/inf,870,  lahtea,315,  A/inf,501,  lahtea,315,  A/inf,486,  lahtea,315,  = 7550ms.
+80, Pekan_gen taytyy ihailla Merjaa , Pekka,315,  T,360,  taytyy,315,  A/inf,485,  v,115,  ihaile-,365,  D,310,  Merja,315,  = 2580ms.
+81, Pekan_gen taytyy myyda omaisuuttaan , Pekka,315,  T,360,  taytyy,315,  A/inf,385,  v,115,  myy,215,  D,310,  omaisuuden,465,  = 2480ms.
+82, Pekan_gen ei taydy ihailla Merjaa , Pekka,315,  ei,160,  T/prt,415,  taytyy,315,  A/inf,575,  v,115,  ihaile-,365,  D,415,  Merja,315,  = 2990ms.
+83, Pekan_gen ei taydy myyda omaisuuttaan , Pekka,315,  ei,160,  T/prt,415,  taytyy,315,  A/inf,475,  v,115,  myy,215,  D,415,  omaisuuden,465,  = 2890ms.
+84, Pekka sanoo Merjan_gen lahtevan , Pekka,315,  T,360,  sano-,265,  D,335,  Merja,315,  vAn,950,  lahtea,315,  = 2855ms.
+85, Pekka halusi heidan lahtevan , Pekka,315,  T,360,  v,115,  haluaa,315,  D,270,  he,165,  vAn,970,  lahtea,315,  = 2825ms.
+86, Pekka sanoo lahtevansa , Pekka,315,  T,360,  sano-,265,  vAn,585,  lahtea,315,  = 1840ms.
+87, Pekka sanoo ihailevansa Merjaa , Pekka,315,  T,360,  sano-,265,  vAn,585,  v,115,  ihaile-,365,  D,345,  Merja,315,  = 2665ms.
+88, Pekka sanoo Merjan_gen lahtevan , Pekka,315,  T,360,  sano-,265,  D,335,  Merja,315,  vAn,950,  lahtea,315,  = 2855ms.
+89, mina sanon lahtevani , mina,265,  T,360,  sano-,265,  vAn,585,  lahtea,315,  = 1790ms.
+90, mina sanon lahtevansa , mina,265,  T,360,  sano-,265,  vAn,585,  lahtea,315,  vAn,521,  lahtea,315,  = 2626ms.
+91, Pekka sanoo ihailevansa , Pekka,315,  T,360,  sano-,265,  vAn,585,  v,115,  ihaile-,365,  vAn,561,  v,115,  ihaile-,365,  = 3046ms.
+92, Pekka halusi Merja lahtevan , Pekka,315,  T,360,  v,115,  haluaa,315,  D,270,  Merja,315,  vAn,750,  lahtea,315,  = 2755ms.
+93, se' talo , talo,250,  = 250ms.
+94, se' pieni talo , A,305,  pieni-,315,  talo,320,  = 940ms.
+95, se' pieni punainen talo , A,305,  pieni-,315,  a,525,  puna-,265,  talo,385,  = 1795ms.
+96, se' punainen pieni talo , a,455,  puna-,265,  A,375,  pieni-,315,  talo,385,  = 1795ms.
+97, the little key , A,355,  little-,365,  key,270,  = 990ms.
+98, the little red key , A,355,  little-,365,  A,275,  red,215,  key,315,  = 1525ms.
+99, pieni talo se , pieni-,315,  talo,245,  se,235,  se,281,  = 1076ms.
+100, se talo pieni , talo,250,  A,465,  pieni-,315,  A,366,  pieni-,315,  = 1711ms.
+101, talo pieni se , A,275,  pieni-,315,  se,240,  = 830ms.
+102, talo se pieni , se,170,  A,345,  pieni-,315,  = 830ms.
+103, the key little , key,200,  A,515,  little-,365,  A,416,  little-,365,  = 1861ms.
+104, the key red little , key,200,  A,365,  red,215,  A,395,  little-,365,  A,416,  red,215,  A,470,  little-,365,  = 3006ms.
+105, Pekka teki sopimuksen ihailla Merjaa , Pekka,315,  T,360,  v,115,  teke,265,  D,270,  sopimus,415,  A/inf,655,  v,115,  ihaile-,365,  D,455,  Merja,315,  = 3645ms.
+106, Pekka teki sopimuksen antaa avaimen Merjalle , Pekka,315,  T,360,  v,115,  teke,265,  D,270,  sopimus,415,  A/inf,555,  v,115,  antaa,265,  D,455,  avain,315,  P(lle),1260,  D,115,  Merja,315,  = 5135ms.
+107, se sopimus ihailla Merjaa peruuntui , sopimus,450,  A/inf,445,  v,115,  ihaile-,365,  D,260,  Merja,315,  T,865,  peruuntui,465,  = 3280ms.
+108, lahella Pekkaa , D,120,  Pekka,315,  D,120,  Pekka,315,  = 870ms.
+109, Pekkaa lahella , Pekka,315,  lahella,410,  lahella,511,  = 1236ms.
+110, Merja nukkui Pekan_gen lahella , Merja,315,  T,360,  nukku,315,  D,340,  Pekka,315,  lahella,975,  = 2620ms.
+111, Merja nukkui lahella Pekkaa , Merja,315,  T,360,  nukku,315,  lahella,585,  D,315,  Pekka,315,  lahella,506,  D,190,  Pekka,315,  lahella,666,  D,315,  Pekka,315,  = 4512ms.
+112, Merja nukkui lahella Pekan_gen , Merja,315,  T,360,  nukku,315,  lahella,585,  D,315,  Pekka,315,  lahella,506,  D,190,  Pekka,315,  lahella,646,  D,315,  Pekka,315,  lahella,501,  D,190,  Pekka,315,  = 5498ms.
+113, Pekka sanoi etta Merja lahtee , Pekka,315,  T,360,  sano-,265,  etta,435,  D,345,  Merja,315,  T,700,  lahtea,315,  = 3050ms.
+114, Pekka sanoo etta haluaa ihailla Merjaa , Pekka,315,  T,360,  sano-,265,  etta,435,  T,545,  v,115,  haluaa,315,  A/inf,715,  v,115,  ihaile-,365,  D,575,  Merja,315,  = 4435ms.
+115, Pekka sanoo etta haluaa myyda omaisuuttaan , Pekka,315,  T,360,  sano-,265,  etta,435,  T,545,  v,115,  haluaa,315,  A/inf,615,  v,115,  myy,215,  D,575,  omaisuuden,465,  = 4335ms.
+116, John said that Mary sleeps , John,265,  T,265,  say,215,  that,330,  D,310,  Mary,265,  T,605,  sleep,315,  = 2570ms.
+117, John gave the key to Mary , John,265,  T,265,  v,115,  give,265,  the,285,  key,370,  to,460,  D,400,  Mary,265,  = 2690ms.
+118, John moved the key from Mary to John , John,265,  T,315,  v,115,  move,265,  the,285,  key,370,  from,560,  D,400,  Mary,265,  to,745,  D,370,  John,265,  = 4220ms.
+119, John to Mary gave the key , John,265,  to,160,  D,160,  Mary,265,  T,380,  v,115,  give,265,  the,370,  key,455,  T,586,  v,115,  give,265,  the,555,  key,640,  = 4596ms.
+120, John gave to Mary the key , John,265,  T,265,  v,115,  give,265,  to,235,  D,290,  Mary,265,  the,530,  key,440,  the,606,  key,480,  the,641,  key,270,  = 4667ms.
+121, to Mary John gave the key , D,120,  Mary,265,  D,265,  John,265,  T,525,  v,115,  give,265,  the,285,  key,370,  T,501,  v,115,  give,265,  the,370,  key,455,  D,586,  John,265,  T,570,  v,115,  give,265,  the,385,  key,470,  T,616,  v,115,  give,265,  the,470,  key,555,  = 8858ms.
+122, to Mary John moved the key to John , D,120,  Mary,265,  D,265,  John,265,  T,575,  v,115,  move,265,  the,285,  key,370,  to,425,  D,400,  John,265,  to,376,  D,370,  John,265,  T,421,  v,115,  move,265,  the,370,  key,455,  to,545,  D,485,  John,265,  to,376,  D,475,  John,265,  to,411,  D,260,  John,265,  D,391,  John,265,  T,620,  v,115,  move,265,  the,385,  key,470,  to,615,  D,500,  John,265,  to,391,  D,470,  John,265,  to,441,  D,260,  John,265,  T,406,  v,115,  move,265,  the,470,  key,555,  to,645,  D,585,  John,265,  to,391,  D,575,  John,265,  to,426,  D,330,  John,265,  = 21140ms.
+123, the little key , A,355,  little-,365,  key,270,  = 990ms.
+124, the little red key , A,355,  little-,365,  A,275,  red,215,  key,315,  = 1525ms.
+125, se' talo , talo,250,  = 250ms.
+126, se' pieni talo , A,305,  pieni-,315,  talo,320,  = 940ms.
+127, se' pieni punainen talo , A,305,  pieni-,315,  a,525,  puna-,265,  talo,385,  = 1795ms.
+128, se' punainen pieni talo , a,455,  puna-,265,  A,375,  pieni-,315,  talo,385,  = 1795ms.
+129, the key little , key,200,  A,515,  little-,365,  A,416,  little-,365,  = 1861ms.
+130, the key red little , key,200,  A,365,  red,215,  A,395,  little-,365,  A,416,  red,215,  A,470,  little-,365,  = 3006ms.
+131, pieni talo se , pieni-,315,  talo,245,  se,235,  se,281,  = 1076ms.
+132, se talo pieni , talo,250,  A,465,  pieni-,315,  A,366,  pieni-,315,  = 1711ms.
+133, talo pieni se , A,275,  pieni-,315,  se,240,  = 830ms.
+134, talo se pieni , se,170,  A,345,  pieni-,315,  = 830ms.
+135, Pekka naki Merjan_acc lahtemassa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  massa,975,  lahtea,315,  = 2930ms.
+136, Pekka naki Merjan_acc lahtematta , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  matta,960,  lahtea,315,  matta,521,  lahtea,315,  = 3751ms.
+137, Pekka naki Merjan_acc lahtemalla , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  malla,960,  lahtea,315,  malla,521,  lahtea,315,  = 3751ms.
+138, Pekka naki Merjan_acc ihailemassa Jukkaa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  massa,1025,  v,115,  ihaile-,365,  D,435,  Jukka,315,  = 3895ms.
+139, Pekka elaa ihailemalla Merjaa , Pekka,315,  T,360,  elaa,215,  malla,780,  v,115,  ihaile-,365,  D,340,  Merja,315,  malla,486,  v,115,  ihaile-,365,  D,210,  Merja,315,  = 4296ms.
+140, Pekka elaa haluamalla ihailla Merjaa , Pekka,315,  T,360,  elaa,215,  malla,730,  v,115,  haluaa,315,  A/inf,595,  v,115,  ihaile-,365,  D,435,  Merja,315,  malla,501,  v,115,  haluaa,315,  A/inf,465,  v,115,  ihaile-,365,  D,290,  Merja,315,  = 6356ms.
+141, Pekka naki lahtemassa , Pekka,315,  T,360,  v,115,  nake,265,  massa,675,  lahtea,315,  = 2045ms.
+142, Pekka naki Merjan_gen lahtemassa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  massa,1085,  lahtea,315,  massa,516,  lahtea,315,  massa,491,  lahtea,315,  = 4677ms.
+143, Pekka naki heidan lahtemassa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  he,165,  massa,1085,  lahtea,315,  massa,516,  lahtea,315,  massa,491,  lahtea,315,  he,411,  massa,1085,  lahtea,315,  massa,516,  lahtea,315,  massa,491,  lahtea,315,  = 7975ms.
+144, Pekka naki heidan ihailemassa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  he,165,  massa,1135,  v,115,  ihaile-,365,  massa,571,  v,115,  ihaile-,365,  massa,546,  v,115,  ihaile-,365,  he,466,  massa,1135,  v,115,  ihaile-,365,  massa,571,  v,115,  ihaile-,365,  massa,546,  v,115,  ihaile-,365,  = 9340ms.
+145, Pekka naki Merjan_acc lahtiessa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  essa,910,  lahtea,315,  essa,526,  lahtea,315,  = 3706ms.
+146, Pekka naki Merjan_acc lahtiessaan , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  essa,905,  lahtea,315,  essa,526,  lahtea,315,  = 3701ms.
+147, Pekka naki avaimen_acc Merjan_gen lahtiessa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  avain,315,  D,570,  Merja,315,  essa,1330,  lahtea,315,  essa,531,  lahtea,315,  essa,526,  lahtea,315,  essa,531,  lahtea,315,  D,446,  Merja,315,  essa,970,  lahtea,315,  essa,481,  lahtea,315,  essa,451,  lahtea,315,  = 10311ms.
+148, Pekka naki Merjan_gen lahtiessa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  essa,1020,  lahtea,315,  essa,541,  lahtea,315,  essa,496,  lahtea,315,  = 4642ms.
+149, Pekka naki heidan lahtiessa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  he,165,  essa,1020,  lahtea,315,  essa,541,  lahtea,315,  essa,496,  lahtea,315,  he,416,  essa,1020,  lahtea,315,  essa,541,  lahtea,315,  essa,496,  lahtea,315,  = 7910ms.
+150, Pekka naki lahtiessa , Pekka,315,  T,360,  v,115,  nake,265,  essa,625,  lahtea,315,  = 1995ms.
+151, Pekka naki Merjan_acc lahdettyaan , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  tua,855,  lahtea,315,  tua,511,  lahtea,315,  = 3636ms.
+152, Pekka lahtee Merjan_gen lahdettya , Pekka,315,  T,360,  lahtea,315,  D,340,  Merja,315,  tua,1140,  lahtea,315,  tua,501,  lahtea,315,  tua,521,  lahtea,315,  D,466,  Merja,315,  tua,760,  lahtea,315,  tua,446,  lahtea,315,  = 7369ms.
+153, Pekka lahtee heidan lahdettya , Pekka,315,  T,360,  lahtea,315,  D,340,  he,165,  tua,1140,  lahtea,315,  tua,501,  lahtea,315,  tua,521,  lahtea,315,  he,411,  tua,1140,  lahtea,315,  tua,501,  lahtea,315,  tua,521,  lahtea,315,  D,466,  he,165,  tua,760,  lahtea,315,  tua,446,  lahtea,315,  = 10587ms.
+154, Pekka lahtee heidan ihailtua Merjaa , Pekka,315,  T,360,  lahtea,315,  D,340,  he,165,  tua,1090,  v,115,  ihaile-,365,  D,435,  Merja,315,  tua,511,  v,115,  ihaile-,365,  D,300,  Merja,315,  tua,531,  v,115,  ihaile-,365,  D,210,  Merja,315,  he,421,  tua,1090,  v,115,  ihaile-,365,  D,435,  Merja,315,  tua,511,  v,115,  ihaile-,365,  D,300,  Merja,315,  tua,531,  v,115,  ihaile-,365,  D,210,  Merja,315,  D,476,  he,165,  tua,710,  v,115,  ihaile-,365,  D,210,  Merja,315,  tua,456,  v,115,  ihaile-,365,  D,280,  Merja,315,  = 16727ms.
+155, Pekka nakee Merjan_acc lahdettya , Pekka,315,  ?,310,  D,160,  Merja,315,  tua,605,  lahtea,315,  = 2020ms.
+156, Pekka lahtee heidan ihailtua , Pekka,315,  T,360,  lahtea,315,  D,340,  he,165,  tua,1090,  v,115,  ihaile-,365,  tua,606,  v,115,  ihaile-,365,  tua,576,  v,115,  ihaile-,365,  he,466,  tua,1090,  v,115,  ihaile-,365,  tua,606,  v,115,  ihaile-,365,  tua,576,  v,115,  ihaile-,365,  D,521,  he,165,  tua,710,  v,115,  ihaile-,365,  tua,501,  v,115,  ihaile-,365,  he,486,  tua,710,  v,115,  ihaile-,365,  tua,501,  v,115,  ihaile-,365,  = 14899ms.
+157, Pekka lahtee juosten , Pekka,315,  T,360,  lahtea,315,  en,580,  juokse-,365,  = 1935ms.
+158, Pekka lahtee Merjan_gen juosten , Pekka,315,  T,360,  lahtea,315,  D,340,  Merja,315,  en,1040,  juokse-,365,  en,591,  juokse-,365,  en,581,  juokse-,365,  D,526,  Merja,315,  en,660,  juokse-,365,  en,506,  juokse-,365,  = 7689ms.
+159, keta Pekka ihailee , kuka,265,  D,160,  Pekka,315,  T,620,  v,115,  ihaile-,365,  T,501,  v,115,  ihaile-,365,  = 2821ms.
+160, kuka ihailee Merjaa , kuka,265,  T,360,  v,115,  ihaile-,365,  D,240,  Merja,315,  = 1660ms.
+161, who admires John , who,215,  T,360,  v,115,  admire,365,  D,240,  John,265,  = 1560ms.
+162, who does John admire' , who,215,  does,260,  D,230,  John,265,  v,575,  admire,365,  = 1910ms.
+163, who does_C John admire' , who,215,  C,360,  does,265,  D,240,  John,265,  v,595,  admire,365,  = 2305ms.
+164, admires who John , v,115,  admire,365,  D,150,  who,215,  D,250,  John,265,  = 1360ms.
+165, admires John who , v,115,  admire,365,  D,150,  John,265,  D,250,  who,215,  = 1360ms.
+166, John who admires , John,265,  D,160,  who,215,  T,620,  v,115,  admire,365,  T,496,  v,115,  admire,365,  = 2716ms.
+167, Pekka ihailee keta , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  kuka,265,  = 1690ms.
+168, ihailee keta Pekka , v,115,  ihaile-,365,  D,150,  kuka,265,  D,370,  Pekka,315,  D,496,  Pekka,315,  = 2391ms.
+169, ihailee Pekka keta , v,115,  ihaile-,365,  D,150,  Pekka,315,  D,285,  kuka,265,  = 1495ms.
+170, Pekka keta ihailee , Pekka,315,  D,160,  kuka,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+171, towards which city does_C Seine flow' , which,270,  city,290,  C,570,  does,265,  D,385,  Seine,315,  flow,490,  = 2585ms.
+172, mita kaupunkia kohti Seine virtaa , kaupunki,450,  kohti,455,  D,375,  Seine,315,  T,475,  virtaa,315,  T,446,  virtaa,315,  T,466,  virtaa,315,  D,431,  Seine,315,  T,620,  virtaa,315,  T,446,  virtaa,315,  = 6369ms.
+173, mita kaupunkia kohti virtaamalla Seine saavuttaa meren , kaupunki,450,  kohti,455,  malla,710,  virtaa,315,  D,435,  Seine,315,  T,495,  v,115,  saavutta-,465,  D,240,  meri,265,  T,406,  v,115,  saavutta-,465,  D,345,  meri,265,  = 5856ms.
+174, which city towards does_C Seine flow' , city,250,  towards,505,  C,430,  does,265,  D,545,  Seine,315,  flow,670,  towards,746,  C,360,  does,265,  D,520,  Seine,315,  flow,640,  = 5826ms.
+175, kohti mita kaupunkia Seine virtaa , D,70,  kaupunki,490,  D,535,  Seine,315,  T,695,  virtaa,315,  T,446,  virtaa,315,  D,406,  Seine,315,  T,785,  virtaa,315,  T,461,  virtaa,315,  D,431,  Seine,315,  T,665,  virtaa,315,  T,461,  virtaa,315,  = 8280ms.
+176, Seine virtaa kohti mita kaupunkia , Seine,315,  T,360,  virtaa,315,  kohti,380,  D,230,  kaupunki,650,  = 2250ms.
+177, Seine virtaa mita kaupunkia kohti , Seine,315,  T,360,  virtaa,315,  D,180,  kaupunki,710,  kohti,685,  kohti,781,  = 3346ms.
+178, John moved the key from Mary to John , John,265,  T,315,  v,115,  move,265,  the,285,  key,370,  from,560,  D,400,  Mary,265,  to,745,  D,370,  John,265,  = 4220ms.
+179, Seine saavuttaa meren virtaamalla kohti Pariisia , Seine,315,  T,360,  v,115,  saavutta-,465,  D,235,  meri,265,  malla,940,  virtaa,315,  kohti,575,  D,470,  Pariisi,415,  malla,591,  virtaa,315,  kohti,440,  D,335,  Pariisi,415,  = 6566ms.
+180, se' sopimus ostaa auto raukesi , sopimus,450,  A/inf,345,  v,115,  osta,265,  D,365,  auto,265,  T,865,  raukea,365,  = 3035ms.
+181, se' Merjan_gen kello havisi , D,150,  Merja,315,  n,425,  kello,365,  T,690,  havia,315,  = 2260ms.
+182, Pekka naki Merjan_acc ihailemassa Jukkaa , Pekka,315,  T,360,  v,115,  nake,265,  D,270,  Merja,315,  massa,1025,  v,115,  ihaile-,365,  D,435,  Jukka,315,  = 3895ms.
+183, mita kaupunkia Seine saavuttaa meren virtaamalla kohti , kaupunki,450,  D,465,  Seine,315,  T,620,  v,115,  saavutta-,465,  D,240,  meri,265,  malla,1005,  virtaa,315,  kohti,580,  malla,776,  virtaa,315,  kohti,355,  malla,481,  virtaa,315,  kohti,445,  T,581,  v,115,  saavutta-,465,  D,375,  meri,265,  malla,1120,  virtaa,315,  kohti,710,  malla,901,  virtaa,315,  kohti,365,  malla,501,  virtaa,315,  kohti,525,  malla,651,  virtaa,315,  kohti,440,  D,566,  meri,265,  malla,875,  virtaa,315,  kohti,365,  malla,506,  virtaa,315,  kohti,425,  D,541,  Seine,315,  T,740,  v,115,  saavutta-,465,  D,240,  meri,265,  malla,950,  virtaa,315,  kohti,580,  malla,756,  virtaa,315,  kohti,445,  malla,581,  virtaa,315,  kohti,355,  T,486,  v,115,  saavutta-,465,  D,485,  meri,265,  malla,1200,  virtaa,315,  kohti,895,  malla,1121,  virtaa,315,  kohti,690,  malla,881,  virtaa,315,  kohti,605,  = 34874ms.
+184, mika se' sopimus ostaa raukesi , mika-,265,  se,210,  sopimus,520,  A/inf,465,  v,115,  osta,265,  T,595,  raukea,365,  = 2800ms.
+185, kenen se' kello havisi , kuka,265,  se,210,  n,375,  kello,365,  T,540,  havia,315,  = 2070ms.
+186, keta Pekka naki Merjan_acc ihailemassa , kuka,265,  D,160,  Pekka,315,  T,620,  v,115,  nake,265,  D,345,  Merja,315,  massa,1010,  v,115,  ihaile-,365,  massa,536,  v,115,  ihaile-,365,  massa,496,  v,115,  ihaile-,365,  D,511,  Merja,315,  massa,925,  v,115,  ihaile-,365,  massa,531,  v,115,  ihaile-,365,  T,501,  v,115,  nake,265,  D,480,  Merja,315,  massa,1280,  v,115,  ihaile-,365,  massa,606,  v,115,  ihaile-,365,  massa,496,  v,115,  ihaile-,365,  massa,566,  v,115,  ihaile-,365,  D,531,  Merja,315,  massa,925,  v,115,  ihaile-,365,  massa,531,  v,115,  ihaile-,365,  = 18930ms.
+187, who does John say' that Mary admires , who,215,  does,260,  D,230,  John,265,  say,420,  that,410,  D,440,  Mary,265,  T,745,  v,115,  admire,365,  = 3730ms.
+188, John asks whether Mary admires John , John,265,  T,360,  v,115,  ask,215,  whether,525,  D,320,  Mary,265,  T,615,  v,115,  admire,365,  D,520,  John,265,  = 3945ms.
+189, who does John ask' whether Mary admires , who,215,  does,260,  D,230,  John,265,  ask,420,  whether,615,  D,440,  Mary,265,  T,745,  v,115,  admire,365,  whether,456,  D,370,  Mary,265,  T,670,  v,115,  admire,365,  whether,481,  D,220,  Mary,265,  T,510,  v,115,  admire,365,  = 8132ms.
+190, who does John ask' what admires , who,215,  does,260,  D,230,  John,265,  ask,420,  D,360,  what,265,  T,745,  v,115,  admire,365,  T,516,  v,115,  admire,365,  T,461,  v,115,  admire,365,  T,476,  v,115,  admire,365,  D,471,  what,265,  T,965,  v,115,  admire,365,  T,511,  v,115,  admire,365,  T,551,  v,115,  admire,365,  D,481,  what,265,  T,620,  v,115,  admire,365,  T,496,  v,115,  admire,365,  = 13158ms.
+191, Pekka teki sopimuksen ostaa auton , Pekka,315,  T,360,  v,115,  teke,265,  D,270,  sopimus,415,  A/inf,555,  v,115,  osta,265,  D,455,  auto,265,  = 3395ms.
+192, Pekka teki sen Merjan_gen kellon , Pekka,315,  T,360,  v,115,  teke,265,  sen,320,  D,355,  Merja,315,  n,555,  kello,365,  = 2965ms.
+193, kenen Pekka teki sen kellon , kuka,265,  D,160,  Pekka,315,  T,620,  v,115,  teke,265,  sen,390,  n,320,  kello,365,  kello,520,  sen,661,  n,220,  kello,365,  kello,420,  T,576,  v,115,  teke,265,  sen,580,  n,475,  kello,365,  kello,675,  sen,886,  n,220,  kello,365,  kello,420,  = 9943ms.
+194, minka Pekka teki sopimuksen ostaa , mika-,265,  D,160,  Pekka,315,  T,620,  v,115,  teke,265,  D,345,  sopimus,415,  A/inf,520,  v,115,  osta,265,  D,426,  sopimus,415,  A/inf,470,  v,115,  osta,265,  T,456,  v,115,  teke,265,  D,480,  sopimus,415,  A/inf,680,  v,115,  osta,265,  D,481,  sopimus,415,  A/inf,470,  v,115,  osta,265,  = 9628ms.
+195, John said that Mary sleeps , John,265,  T,265,  say,215,  that,330,  D,310,  Mary,265,  T,605,  sleep,315,  = 2570ms.
+196, who does John say' that sleeps , who,215,  does,260,  D,230,  John,265,  say,420,  that,410,  T,640,  sleep,315,  = 2755ms.
+197, Pekka nukkuu , Pekka,315,  T,360,  nukku,315,  = 990ms.
+198, Merja nukkuu , Merja,315,  T,360,  nukku,315,  = 990ms.
+199, Pekka ihailee Merjaa , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1740ms.
+200, Pekka antoi kirjan Merjalle , Pekka,315,  T,360,  v,115,  antaa,265,  D,270,  kirja,315,  P(lle),815,  D,115,  Merja,315,  = 2885ms.
+201, Pekka ihailee Merja , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1740ms.
+202, Pekka antoi kirja Merjalle , Pekka,315,  T,360,  v,115,  antaa,265,  ?,420,  P(lle),630,  D,115,  Merja,315,  = 2535ms.
+203, Pekka antoi kirjan Merja , Pekka,315,  T,360,  v,115,  antaa,265,  D,270,  kirja,315,  D,565,  Merja,315,  D,516,  Merja,315,  D,506,  Merja,315,  = 4172ms.
+204, Pekka antoi kirja Merja , Pekka,315,  T,360,  v,115,  antaa,265,  ?,420,  D,325,  Merja,315,  = 2115ms.
+205, Merjan_gen nukkuu , Merja,315,  T,360,  nukku,315,  = 990ms.
+206, Merjan_acc nukkuu , Merja,315,  T,360,  nukku,315,  = 990ms.
+207, Merja_0acc nukkuu , Merja,315,  T,360,  nukku,315,  = 990ms.
+208, Merjaa nukkuu , Merja,315,  T,360,  nukku,315,  = 990ms.
+209, Merja ihailee Pekan_gen , Merja,315,  T,360,  v,115,  ihaile-,365,  D,270,  Pekka,315,  = 1740ms.
+210, Merja ihailee Pekan_acc , Merja,315,  T,360,  v,115,  ihaile-,365,  D,270,  Pekka,315,  = 1740ms.
+211, Merja ihailee Pekka_0acc , Merja,315,  T,360,  v,115,  ihaile-,365,  D,270,  Pekka,315,  = 1740ms.
+212, Pekka voitti Merjan , Pekka,315,  T,360,  v,115,  voitta,365,  D,270,  Merja,315,  = 1740ms.
+213, Pekka voitti Merjaa , Pekka,315,  T,360,  v,115,  voitta,365,  D,270,  Merja,315,  = 1740ms.
+214, Pekka tonaisi Merjaa , Pekka,315,  T,360,  v,115,  tonaise,415,  D,270,  Merja,315,  = 1790ms.
+215, Pekka pesi Merjan , Pekka,315,  T,360,  v,115,  pese,265,  D,270,  Merja,315,  = 1640ms.
+216, Pekka pesi Merjaa , Pekka,315,  T,360,  v,115,  pese,265,  D,270,  Merja,315,  = 1640ms.
+217, Pekka pesi hanet , Pekka,315,  T,360,  v,115,  pese,265,  D,270,  han,215,  = 1540ms.
+218, Pekka tonaisi Merjan , Pekka,315,  T,360,  v,115,  tonaise,415,  D,270,  Merja,315,  = 1790ms.
+219, Pekka tonaisi Merja , Pekka,315,  T,360,  v,115,  tonaise,415,  D,270,  Merja,315,  = 1790ms.
+220, Pekka tonaisi Merja_0acc , Pekka,315,  T,360,  v,115,  tonaise,415,  D,270,  Merja,315,  = 1790ms.
+221, Pekka tonaisi hanet , Pekka,315,  T,360,  v,115,  tonaise,415,  D,270,  han,215,  = 1690ms.
+222, Pekka ei voittanut Merjaa , Pekka,315,  ei,160,  T/prt,460,  v,115,  voitta,365,  D,365,  Merja,315,  = 2095ms.
+223, Pekka ei voittanut Merjan , Pekka,315,  ei,160,  T/prt,460,  v,115,  voitta,365,  D,365,  Merja,315,  = 2095ms.
+224, Pekka ei voittanut Merja , Pekka,315,  ei,160,  T/prt,460,  v,115,  voitta,365,  D,365,  Merja,315,  = 2095ms.
+225, Pekka ei voittanut Merja_0acc , Pekka,315,  ei,160,  T/prt,460,  v,115,  voitta,365,  D,365,  Merja,315,  = 2095ms.
+226, Pekka ei voittanut Merjan_gen , Pekka,315,  ei,160,  T/prt,460,  v,115,  voitta,365,  D,365,  Merja,315,  = 2095ms.
+227, me loysimme avaimen , me,165,  T,360,  v,115,  loyta-,315,  D,270,  avain,315,  = 1540ms.
+228, me loydettiin avain_0acc , me,165,  T,360,  impass,365,  loyta-,315,  D,270,  avain,315,  = 1790ms.
+229, me loydettiin avaimen , me,165,  T,360,  impass,365,  loyta-,315,  D,270,  avain,315,  = 1790ms.
+230, me loysimme avain , me,165,  T,360,  v,115,  loyta-,315,  D,270,  avain,315,  = 1540ms.
+231, me loysimme avain_0acc , me,165,  T,360,  v,115,  loyta-,315,  D,270,  avain,315,  = 1540ms.
+232, Pekka halusi voittaa Merjan , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,525,  voitta,365,  D,345,  Merja,315,  = 2655ms.
+233, Pekka halusi tonaista Merjaa , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,575,  tonaise,415,  D,345,  Merja,315,  = 2755ms.
+234, Pekka halusi pesta Merjan , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,425,  pese,265,  D,345,  Merja,315,  = 2455ms.
+235, Pekka halusi loytaa avaimen , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,475,  loyta-,315,  D,345,  avain,315,  = 2555ms.
+236, me haluttiin voittaa Merja_0acc , me,165,  T,360,  impass,365,  haluaa,315,  A/inf,525,  voitta,365,  D,345,  Merja,315,  = 2755ms.
+237, me ei' haluttu voittaa Merjaa , me,165,  ei,210,  T/prt,515,  impass,365,  haluaa,315,  A/inf,620,  voitta,365,  D,450,  Merja,315,  = 3320ms.
+238, me halusimme voittaa Merjan , me,165,  T,360,  v,115,  haluaa,315,  A/inf,525,  voitta,365,  D,345,  Merja,315,  = 2505ms.
+239, me haluttiin voittaa Merjan , me,165,  T,360,  impass,365,  haluaa,315,  A/inf,525,  voitta,365,  D,345,  Merja,315,  = 2755ms.
+240, me halusimme voittaa Merja_0acc , me,165,  T,360,  v,115,  haluaa,315,  A/inf,525,  voitta,365,  D,345,  Merja,315,  = 2505ms.
+241, me ei' haluttu voittaa Merja_0acc , me,165,  ei,210,  T/prt,515,  impass,365,  haluaa,315,  A/inf,620,  voitta,365,  D,450,  Merja,315,  = 3320ms.
+242, me ei' haluttu voittaa Merjan , me,165,  ei,210,  T/prt,515,  impass,365,  haluaa,315,  A/inf,620,  voitta,365,  D,450,  Merja,315,  = 3320ms.
+243, lahella Pekkaa , D,120,  Pekka,315,  D,120,  Pekka,315,  = 870ms.
+244, Pekkaa lahella , Pekka,315,  lahella,410,  lahella,511,  = 1236ms.
+245, Merja nukkui Pekan_gen lahella , Merja,315,  T,360,  nukku,315,  D,340,  Pekka,315,  lahella,975,  = 2620ms.
+246, Merja nukkui lahella Pekkaa , Merja,315,  T,360,  nukku,315,  lahella,585,  D,315,  Pekka,315,  lahella,506,  D,190,  Pekka,315,  lahella,666,  D,315,  Pekka,315,  = 4512ms.
+247, Merja nukkui lahella Pekan_gen , Merja,315,  T,360,  nukku,315,  lahella,585,  D,315,  Pekka,315,  lahella,506,  D,190,  Pekka,315,  lahella,646,  D,315,  Pekka,315,  lahella,501,  D,190,  Pekka,315,  = 5498ms.
+248, Pekka kaski Merjan_gen lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  Merja,315,  A/inf,650,  lahtea,315,  = 2655ms.
+249, Pekka sanoi Merjan_gen lahtevan , Pekka,315,  T,360,  sano-,265,  D,335,  Merja,315,  vAn,950,  lahtea,315,  = 2855ms.
+250, Pekka halusi ihailla Merjaa , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,525,  v,115,  ihaile-,365,  D,355,  Merja,315,  = 2780ms.
+251, Pekka kaski Merja lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  Merja,315,  A/inf,720,  lahtea,315,  = 2725ms.
+252, Pekka kaski Merjaa lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  Merja,315,  A/inf,650,  lahtea,315,  = 2655ms.
+253, Pekka kaski hanet lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  han,215,  A/inf,690,  lahtea,315,  = 2595ms.
+254, Pekka sanoi Merja lahtevan , Pekka,315,  T,360,  sano-,265,  D,330,  Merja,315,  vAn,990,  lahtea,315,  vAn,526,  lahtea,315,  vAn,501,  lahtea,315,  D,461,  Merja,315,  vAn,685,  lahtea,315,  vAn,476,  lahtea,315,  = 7114ms.
+255, Pekka sanoi Merjaa lahtevan , Pekka,315,  T,360,  sano-,265,  D,335,  Merja,315,  vAn,840,  lahtea,315,  vAn,476,  lahtea,315,  vAn,466,  lahtea,315,  D,461,  Merja,315,  vAn,655,  lahtea,315,  vAn,461,  lahtea,315,  = 6839ms.
+256, Pekka sanoi hanet lahtevan , Pekka,315,  T,360,  sano-,265,  D,335,  han,215,  vAn,1030,  lahtea,315,  vAn,511,  lahtea,315,  vAn,501,  lahtea,315,  D,461,  han,215,  vAn,655,  lahtea,315,  vAn,461,  lahtea,315,  = 6899ms.
+257, Pekka kaski lahtea Merjan_gen , Pekka,315,  T,360,  v,115,  kaske,315,  A/inf,475,  lahtea,315,  D,355,  Merja,315,  = 2565ms.
+258, Pekka sanoi lahtevan Merjan_gen , Pekka,315,  T,360,  sano-,265,  vAn,640,  lahtea,315,  D,335,  Merja,315,  vAn,546,  lahtea,315,  D,200,  Merja,315,  = 3921ms.
+259, se Merjan_gen kello havisi , D,150,  Merja,315,  n,425,  kello,365,  T,690,  havia,315,  = 2260ms.
+260, se kello Merjan_gen havisi , n,305,  kello,365,  D,200,  Merja,315,  T,505,  havia,315,  = 2005ms.
+261, ne kaksi sukkaa havisi , kaksi,300,  sukka-,390,  T,605,  havia,315,  = 1610ms.
+262, ne kahdet sukat havisivat , kaksi,350,  sukka-,390,  T,620,  havia,315,  = 1675ms.
+263, ne kaksi sukkaa havisivat , kaksi,300,  sukka-,390,  T,600,  havia,315,  = 1605ms.
+264, Pekka loysi ne kaksi sukkaa , Pekka,315,  T,360,  v,115,  loyta-,315,  ne,270,  kaksi,505,  sukka-,595,  kaksi,936,  sukka-,595,  = 4006ms.
+265, Pekka sanoi niiden kahden sukan haviavan , Pekka,315,  T,360,  sano-,265,  ne,335,  kaksi,545,  sukka-,585,  vAn,1040,  havia,315,  = 3760ms.
+266, ne kaksi sukan havisi , kaksi,300,  sukka-,390,  T,605,  havia,315,  T,371,  havia,315,  T,416,  havia,315,  kaksi,456,  sukka-,390,  T,605,  havia,315,  T,371,  havia,315,  T,416,  havia,315,  = 6210ms.
+267, ne kahdet sukkaa havisivat , kaksi,350,  sukka-,390,  T,620,  havia,315,  T,371,  havia,315,  T,571,  havia,315,  = 3247ms.
+268, ne kahdet sukka_0acc havisivat , kaksi,350,  ?,590,  T,430,  havia,315,  = 1685ms.
+269, ne kahdet sukka havisivat , kaksi,350,  ?,340,  T,430,  havia,315,  = 1435ms.
+270, Pekka sanoi niiden kaksi sukkaa haviavan , Pekka,315,  T,360,  sano-,265,  ne,335,  kaksi,495,  sukka-,585,  vAn,1040,  havia,315,  vAn,416,  havia,315,  vAn,446,  havia,315,  vAn,486,  havia,315,  vAn,476,  havia,315,  kaksi,636,  sukka-,585,  vAn,1040,  havia,315,  vAn,416,  havia,315,  vAn,446,  havia,315,  vAn,486,  havia,315,  vAn,476,  havia,315,  ne,461,  kaksi,370,  sukka-,510,  vAn,745,  havia,315,  vAn,521,  havia,315,  vAn,401,  havia,315,  vAn,471,  havia,315,  kaksi,511,  sukka-,510,  vAn,775,  havia,315,  vAn,401,  havia,315,  vAn,456,  havia,315,  = 20791ms.
+271, Pekka nukahti lukemalla kirjaa , Pekka,315,  T,415,  nukku,315,  malla,680,  v,115,  luke,265,  D,340,  kirja,315,  malla,486,  v,115,  luke,265,  D,210,  kirja,315,  = 4151ms.
+272, Pekka nukahti lukemalla Merjan_gen , Pekka,315,  T,415,  nukku,315,  malla,680,  v,115,  luke,265,  D,340,  Merja,315,  malla,516,  v,115,  luke,265,  D,210,  Merja,315,  = 4181ms.
+273, Pekka nukahti lukemalla Merja , Pekka,315,  T,415,  nukku,315,  malla,680,  v,115,  luke,265,  D,340,  Merja,315,  malla,551,  v,115,  luke,265,  D,210,  Merja,315,  = 4216ms.
+274, Pekka nukahti lukemalla Merja_0acc , Pekka,315,  T,415,  nukku,315,  malla,680,  v,115,  luke,265,  D,340,  Merja,315,  malla,536,  v,115,  luke,265,  D,210,  Merja,315,  = 4201ms.
+275, Pekka nukahti lukemalla Merjan_acc , Pekka,315,  T,415,  nukku,315,  malla,680,  v,115,  luke,265,  D,340,  Merja,315,  malla,536,  v,115,  luke,265,  D,210,  Merja,315,  = 4201ms.
+276, Pekka nukkui#asp koko paivan , Pekka,315,  T,360,  nukku,315,  koko,435,  paiva,645,  koko,831,  paiva,420,  = 3321ms.
+277, Pekka nukku-#asp#T/fin#[-V] koko paivan , Pekka,315,  T,360,  nukku,315,  koko,435,  paiva,645,  = 2070ms.
+278, Pekka ei nukkunut koko paivaa , Pekka,315,  ei,160,  T/prt,510,  nukku,315,  koko,560,  paiva,785,  = 2645ms.
+279, me nukuttiin koko paiva , me,165,  T,360,  impass,365,  nukku,315,  koko,445,  paiva,655,  koko,851,  paiva,420,  = 3576ms.
+280, Pekka ihailee#asp Merjaa koko paivan , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  koko,665,  paiva,625,  koko,841,  paiva,525,  koko,711,  paiva,420,  = 5527ms.
+281, Pekka nukkui koko paivan , Pekka,315,  T,360,  nukku,315,  koko,435,  paiva,645,  koko,831,  paiva,420,  = 3321ms.
+282, Pekka ei nukkunut koko paivan , Pekka,315,  ei,160,  T/prt,510,  nukku,315,  koko,560,  paiva,785,  koko,946,  paiva,525,  koko,681,  paiva,420,  = 5217ms.
+283, me nukuttiin koko paivan , me,165,  T,360,  impass,365,  nukku,315,  koko,445,  paiva,655,  koko,851,  paiva,420,  = 3576ms.
+284, Pekka ihailee Merjaa koko paivan , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  koko,665,  paiva,625,  koko,806,  paiva,525,  koko,711,  paiva,420,  = 5492ms.
+285, Pekka ihailee#asp Merjaa koko paiva , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  koko,665,  paiva,625,  koko,806,  paiva,525,  koko,711,  paiva,420,  = 5492ms.
+286, Pekka ihailee#asp Merjaa koko paivaa , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  koko,665,  paiva,625,  koko,821,  paiva,525,  koko,711,  paiva,420,  = 5507ms.
+287, Pekka ihailee Merjaa koko paivaa , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  koko,665,  paiva,625,  koko,821,  paiva,525,  koko,711,  paiva,420,  = 5507ms.
+288, Merjaa pelottaa , Merja,315,  T,360,  Cau,215,  pelkaa,365,  = 1255ms.
+289, Pekka pelottaa , Pekka,315,  T,360,  Cau,215,  pelkaa,365,  = 1255ms.
+290, Merjan_gen pelottaa , Merja,315,  T,360,  Cau,215,  pelkaa,365,  = 1255ms.
+291, Merjan_acc pelottaa , Merja,315,  T,360,  Cau,215,  pelkaa,365,  = 1255ms.
+292, Merja_0acc pelottaa , Merja,315,  T,360,  Cau,215,  pelkaa,365,  = 1255ms.
+293, Merjalle pelottaa , D,115,  Merja,315,  T,355,  Cau,215,  pelkaa,365,  = 1365ms.
+294, me loysimme avaimen , me,165,  T,360,  v,115,  loyta-,315,  D,270,  avain,315,  = 1540ms.
+295, me loydettiin avain_0acc , me,165,  T,360,  impass,365,  loyta-,315,  D,270,  avain,315,  = 1790ms.
+296, avain_0acc loydettiin , avain,315,  T,360,  impass,365,  loyta-,315,  = 1355ms.
+297, loydettiin avain_0acc , impass,365,  loyta-,315,  D,150,  avain,315,  = 1145ms.
+298, me loydettiin avaimen , me,165,  T,360,  impass,365,  loyta-,315,  D,270,  avain,315,  = 1790ms.
+299, me loysimme avain , me,165,  T,360,  v,115,  loyta-,315,  D,270,  avain,315,  = 1540ms.
+300, Pekka on' Pekka , Pekka,315,  T,360,  BE,165,  D,330,  Pekka,315,  = 1485ms.
+301, Merjalla on' Pekka , D,115,  Merja,315,  T,355,  BE,165,  D,230,  Pekka,315,  = 1495ms.
+302, Pekka on' Merjalla , Pekka,315,  T,360,  BE,165,  P(lla),640,  D,115,  Merja,315,  = 1910ms.
+303, Pekka on' Pekkaa , Pekka,315,  T,360,  BE,165,  D,335,  Pekka,315,  D,521,  Pekka,315,  T,360,  BE,165,  D,335,  Pekka,315,  D,521,  Pekka,315,  = 4337ms.
+304, Pekka on' Pekan_gen , Pekka,315,  T,360,  BE,165,  D,335,  Pekka,315,  D,501,  Pekka,315,  T,360,  BE,165,  D,335,  Pekka,315,  D,501,  Pekka,315,  = 4297ms.
+305, mina ihailen Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+306, sina ihailet Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+307, han ihailee Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+308, me ihailemme Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+309, te ihailette Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+310, he_FI ihailevat Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+311, I admire Mary , I,115,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1455ms.
+312, you admire Mary , you,215,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1555ms.
+313, he admires Mary , he,165,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1505ms.
+314, she admires Mary , she,215,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1555ms.
+315, John admires Mary , John,265,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1605ms.
+316, we admire Mary , we,165,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1505ms.
+317, you_pl admire Mary , you_pl,365,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1705ms.
+318, they admire Mary , they,265,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1605ms.
+319, io adoro Luisa , io,165,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  = 1545ms.
+320, tu adori Luisa , tu,165,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  = 1545ms.
+321, lui adora Luisa , lui,215,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  = 1595ms.
+322, lei adora Luisa , lei,215,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  = 1595ms.
+323, noi adoriamo Luisa , noi,215,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  = 1595ms.
+324, voi adorate Luisa , voi,215,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  = 1595ms.
+325, loro adorano Luisa , loro,265,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  = 1645ms.
+326, mina ihailet Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+327, mina ihalee Merjaa , mina,265,  ?,360,  D,160,  Merja,315,  = 1100ms.
+328, mina ihailemme Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+329, mina ihailette Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+330, mina ihailevat Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+331, sina ihailen Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+332, sina ihalee Merjaa , sina,265,  ?,360,  D,160,  Merja,315,  = 1100ms.
+333, sina ihailemme Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+334, sina ihailette Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+335, sina ihailevat Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+336, han ihailen Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+337, han ihailet Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+338, han ihailemme Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+339, han ihailette Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+340, han ihailevat Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+341, me ihailen Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+342, me ihailet Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+343, me ihalee Merjaa , me,165,  ?,360,  D,160,  Merja,315,  = 1000ms.
+344, me ihailette Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+345, me ihailevat Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+346, te ihailen Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+347, te ihailet Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+348, te ihalee Merjaa , te,165,  ?,360,  D,160,  Merja,315,  = 1000ms.
+349, te ihailemme Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+350, te ihailevat Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+351, he_FI ihailen Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  he,451,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 3466ms.
+352, he_FI ihailet Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  he,451,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 3466ms.
+353, he_FI ihalee Merjaa , he,165,  ?,360,  D,160,  Merja,315,  he,371,  ?,360,  D,160,  Merja,315,  = 2206ms.
+354, he_FI ihailemme Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  he,451,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 3466ms.
+355, he_FI ihailette Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  he,451,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 3466ms.
+356, John admire Mary , John,265,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1605ms.
+357, we admires Mary , we,165,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1505ms.
+358, io adori Luisa , io,165,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  D,441,  Luisa,315,  = 2301ms.
+359, io adora Luisa , io,165,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  D,441,  Luisa,315,  = 2301ms.
+360, io adorate Luisa , io,165,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  D,441,  Luisa,315,  = 2301ms.
+361, io adorano Luisa , io,165,  T,360,  v,115,  adora,315,  D,275,  Luisa,315,  D,441,  Luisa,315,  = 2301ms.
+362, ihailen mina Merjaa , v,115,  ihaile-,365,  D,150,  mina,265,  D,285,  Merja,315,  = 1495ms.
+363, ihailen Merjaa mina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  mina,265,  = 1585ms.
+364, ihailet sina Merjaa , v,115,  ihaile-,365,  D,150,  sina,265,  D,285,  Merja,315,  = 1495ms.
+365, ihailet Merjaa sina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  sina,265,  = 1585ms.
+366, ihailette Merjaa te , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  te,165,  = 1485ms.
+367, ihailemme me Merjaa , v,115,  ihaile-,365,  D,150,  me,165,  D,285,  Merja,315,  = 1395ms.
+368, ihailemme Merjaa me , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  me,165,  = 1485ms.
+369, ihailette te Merjaa , v,115,  ihaile-,365,  D,150,  te,165,  D,285,  Merja,315,  = 1395ms.
+370, mina ihailen Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+371, mina Merjaa ihailen , mina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+372, Merjaa mina ihailen , Merja,315,  D,160,  mina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+373, Merjaa ihailen mina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  mina,265,  = 1765ms.
+374, sina ihailet Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+375, sina Merjaa ihailet , sina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+376, Merjaa sina ihailet , Merja,315,  D,160,  sina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+377, Merjaa ihailet sina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  sina,265,  = 1765ms.
+378, han ihailee Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+379, han Merjaa ihailee , han,215,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+380, Merjaa han ihailee , Merja,315,  D,160,  han,215,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+381, Merjaa ihailee han , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  han,215,  = 1715ms.
+382, me ihailemme Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+383, me Merjaa ihailemme , me,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+384, Merjaa me ihailemme , Merja,315,  D,160,  me,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+385, Merjaa ihailemme me , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  me,165,  = 1665ms.
+386, te ihailette Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+387, te Merjaa ihailette , te,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+388, Merjaa te ihailette , Merja,315,  D,160,  te,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+389, Merjaa ihailette te , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  te,165,  = 1665ms.
+390, he_FI ihailevat Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+391, he_FI Merjaa ihailevat , he,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+392, Merjaa he_FI ihailevat , Merja,315,  D,160,  he,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+393, Merjaa ihailevat he_FI , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  he,165,  = 1665ms.
+394, ihailee han Merjaa , v,115,  ihaile-,365,  D,150,  han,215,  D,285,  Merja,315,  = 1445ms.
+395, ihailee Merjaa han , v,115,  ihaile-,365,  D,150,  Merja,315,  D,370,  han,215,  D,396,  han,215,  = 2141ms.
+396, ihailevat he_FI Merjaa , v,115,  ihaile-,365,  D,150,  he,165,  D,285,  Merja,315,  he,466,  D,285,  Merja,315,  = 2461ms.
+397, ihailevat Merjaa he_FI , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  he,165,  he,316,  D,497,  he,165,  he,306,  = 2769ms.
+398, mina ihailet Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+399, mina Merjaa ihailet , mina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+400, ihailet mina Merjaa , v,115,  ihaile-,365,  D,150,  mina,265,  D,285,  Merja,315,  = 1495ms.
+401, ihailet Merjaa mina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  mina,265,  D,446,  mina,265,  = 2296ms.
+402, Merjaa mina ihailet , Merja,315,  D,160,  mina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+403, Merjaa ihailet mina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  mina,265,  D,511,  mina,265,  = 2541ms.
+404, mina ihalee Merjaa , mina,265,  ?,360,  D,160,  Merja,315,  = 1100ms.
+405, mina Merjaa ihalee , mina,265,  D,160,  Merja,315,  ?,570,  ?,686,  = 1996ms.
+406, ihalee mina Merjaa , D,120,  mina,265,  D,205,  Merja,315,  = 905ms.
+407, ihalee Merjaa mina , D,120,  Merja,315,  D,205,  mina,265,  = 905ms.
+408, Merjaa mina ihalee , Merja,315,  D,160,  mina,265,  ?,570,  ?,686,  = 1996ms.
+409, Merjaa ihalee mina , Merja,315,  ?,360,  D,160,  mina,265,  = 1100ms.
+410, mina ihailemme Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+411, mina Merjaa ihailemme , mina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+412, ihailemme mina Merjaa , v,115,  ihaile-,365,  D,150,  mina,265,  D,285,  Merja,315,  = 1495ms.
+413, ihailemme Merjaa mina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  mina,265,  D,446,  mina,265,  = 2296ms.
+414, Merjaa mina ihailemme , Merja,315,  D,160,  mina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+415, Merjaa ihailemme mina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  mina,265,  D,511,  mina,265,  = 2541ms.
+416, mina ihailette Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+417, mina Merjaa ihailette , mina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+418, ihailette mina Merjaa , v,115,  ihaile-,365,  D,150,  mina,265,  D,285,  Merja,315,  = 1495ms.
+419, ihailette Merjaa mina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  mina,265,  D,446,  mina,265,  = 2296ms.
+420, Merjaa mina ihailette , Merja,315,  D,160,  mina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+421, Merjaa ihailette mina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  mina,265,  D,511,  mina,265,  = 2541ms.
+422, mina ihailevat Merjaa , mina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+423, mina Merjaa ihailevat , mina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+424, ihailevat mina Merjaa , v,115,  ihaile-,365,  D,150,  mina,265,  D,285,  Merja,315,  = 1495ms.
+425, ihailevat Merjaa mina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  mina,265,  D,446,  mina,265,  = 2296ms.
+426, Merjaa mina ihailevat , Merja,315,  D,160,  mina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+427, Merjaa ihailevat mina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  mina,265,  D,511,  mina,265,  = 2541ms.
+428, sina ihailen Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+429, sina Merjaa ihailen , sina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+430, ihailen sina Merjaa , v,115,  ihaile-,365,  D,150,  sina,265,  D,285,  Merja,315,  = 1495ms.
+431, ihailen Merjaa sina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  sina,265,  D,446,  sina,265,  = 2296ms.
+432, Merjaa sina ihailen , Merja,315,  D,160,  sina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+433, Merjaa ihailen sina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  sina,265,  D,511,  sina,265,  = 2541ms.
+434, sina ihalee Merjaa , sina,265,  ?,360,  D,160,  Merja,315,  = 1100ms.
+435, sina Merjaa ihalee , sina,265,  D,160,  Merja,315,  ?,570,  ?,686,  = 1996ms.
+436, ihalee sina Merjaa , D,120,  sina,265,  D,205,  Merja,315,  = 905ms.
+437, ihalee Merjaa sina , D,120,  Merja,315,  D,205,  sina,265,  = 905ms.
+438, Merjaa sina ihalee , Merja,315,  D,160,  sina,265,  ?,570,  ?,686,  = 1996ms.
+439, Merjaa ihalee sina , Merja,315,  ?,360,  D,160,  sina,265,  = 1100ms.
+440, sina ihailemme Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+441, sina Merjaa ihailemme , sina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+442, ihailemme sina Merjaa , v,115,  ihaile-,365,  D,150,  sina,265,  D,285,  Merja,315,  = 1495ms.
+443, ihailemme Merjaa sina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  sina,265,  D,446,  sina,265,  = 2296ms.
+444, Merjaa sina ihailemme , Merja,315,  D,160,  sina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+445, Merjaa ihailemme sina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  sina,265,  D,511,  sina,265,  = 2541ms.
+446, sina ihailette Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+447, sina Merjaa ihailette , sina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+448, ihailette sina Merjaa , v,115,  ihaile-,365,  D,150,  sina,265,  D,285,  Merja,315,  = 1495ms.
+449, ihailette Merjaa sina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  sina,265,  D,446,  sina,265,  = 2296ms.
+450, Merjaa sina ihailette , Merja,315,  D,160,  sina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+451, Merjaa ihailette sina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  sina,265,  D,511,  sina,265,  = 2541ms.
+452, sina ihailevat Merjaa , sina,265,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1690ms.
+453, sina Merjaa ihailevat , sina,265,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+454, ihailevat sina Merjaa , v,115,  ihaile-,365,  D,150,  sina,265,  D,285,  Merja,315,  = 1495ms.
+455, ihailevat Merjaa sina , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  sina,265,  D,446,  sina,265,  = 2296ms.
+456, Merjaa sina ihailevat , Merja,315,  D,160,  sina,265,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2866ms.
+457, Merjaa ihailevat sina , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  sina,265,  D,511,  sina,265,  = 2541ms.
+458, han ihailen Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+459, han Merjaa ihailen , han,215,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+460, ihailen han Merjaa , v,115,  ihaile-,365,  D,150,  han,215,  D,285,  Merja,315,  = 1445ms.
+461, ihailen Merjaa han , v,115,  ihaile-,365,  D,150,  Merja,315,  D,370,  han,215,  D,396,  han,215,  = 2141ms.
+462, Merjaa han ihailen , Merja,315,  D,160,  han,215,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+463, Merjaa ihailen han , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  han,215,  D,461,  han,215,  = 2391ms.
+464, han ihailet Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+465, han Merjaa ihailet , han,215,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+466, ihailet han Merjaa , v,115,  ihaile-,365,  D,150,  han,215,  D,285,  Merja,315,  = 1445ms.
+467, ihailet Merjaa han , v,115,  ihaile-,365,  D,150,  Merja,315,  D,370,  han,215,  D,396,  han,215,  = 2141ms.
+468, Merjaa han ihailet , Merja,315,  D,160,  han,215,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+469, Merjaa ihailet han , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  han,215,  D,461,  han,215,  = 2391ms.
+470, han ihailemme Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+471, han Merjaa ihailemme , han,215,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+472, ihailemme han Merjaa , v,115,  ihaile-,365,  D,150,  han,215,  D,285,  Merja,315,  = 1445ms.
+473, ihailemme Merjaa han , v,115,  ihaile-,365,  D,150,  Merja,315,  D,370,  han,215,  D,396,  han,215,  = 2141ms.
+474, Merjaa han ihailemme , Merja,315,  D,160,  han,215,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+475, Merjaa ihailemme han , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  han,215,  D,461,  han,215,  = 2391ms.
+476, han ihailette Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+477, han Merjaa ihailette , han,215,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+478, ihailette han Merjaa , v,115,  ihaile-,365,  D,150,  han,215,  D,285,  Merja,315,  = 1445ms.
+479, ihailette Merjaa han , v,115,  ihaile-,365,  D,150,  Merja,315,  D,370,  han,215,  D,396,  han,215,  = 2141ms.
+480, Merjaa han ihailette , Merja,315,  D,160,  han,215,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+481, Merjaa ihailette han , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  han,215,  D,461,  han,215,  = 2391ms.
+482, han ihailevat Merjaa , han,215,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1640ms.
+483, han Merjaa ihailevat , han,215,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+484, ihailevat han Merjaa , v,115,  ihaile-,365,  D,150,  han,215,  D,285,  Merja,315,  = 1445ms.
+485, ihailevat Merjaa han , v,115,  ihaile-,365,  D,150,  Merja,315,  D,370,  han,215,  D,396,  han,215,  = 2141ms.
+486, Merjaa han ihailevat , Merja,315,  D,160,  han,215,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2816ms.
+487, Merjaa ihailevat han , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  han,215,  D,461,  han,215,  = 2391ms.
+488, me ihailen Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+489, me Merjaa ihailen , me,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+490, ihailen me Merjaa , v,115,  ihaile-,365,  D,150,  me,165,  D,285,  Merja,315,  = 1395ms.
+491, ihailen Merjaa me , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  me,165,  D,346,  me,165,  = 1996ms.
+492, Merjaa me ihailen , Merja,315,  D,160,  me,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+493, Merjaa ihailen me , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  me,165,  D,411,  me,165,  = 2241ms.
+494, me ihailet Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+495, me Merjaa ihailet , me,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+496, ihailet me Merjaa , v,115,  ihaile-,365,  D,150,  me,165,  D,285,  Merja,315,  = 1395ms.
+497, ihailet Merjaa me , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  me,165,  D,346,  me,165,  = 1996ms.
+498, Merjaa me ihailet , Merja,315,  D,160,  me,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+499, Merjaa ihailet me , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  me,165,  D,411,  me,165,  = 2241ms.
+500, me ihalee Merjaa , me,165,  ?,360,  D,160,  Merja,315,  = 1000ms.
+501, me Merjaa ihalee , me,165,  D,160,  Merja,315,  ?,570,  ?,686,  = 1896ms.
+502, ihalee me Merjaa , D,120,  me,165,  D,205,  Merja,315,  = 805ms.
+503, ihalee Merjaa me , D,120,  Merja,315,  D,205,  me,165,  = 805ms.
+504, Merjaa me ihalee , Merja,315,  D,160,  me,165,  ?,570,  ?,686,  = 1896ms.
+505, Merjaa ihalee me , Merja,315,  ?,360,  D,160,  me,165,  = 1000ms.
+506, me ihailette Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+507, me Merjaa ihailette , me,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+508, ihailette me Merjaa , v,115,  ihaile-,365,  D,150,  me,165,  D,285,  Merja,315,  = 1395ms.
+509, ihailette Merjaa me , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  me,165,  D,346,  me,165,  = 1996ms.
+510, Merjaa me ihailette , Merja,315,  D,160,  me,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+511, Merjaa ihailette me , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  me,165,  D,411,  me,165,  = 2241ms.
+512, me ihailevat Merjaa , me,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+513, me Merjaa ihailevat , me,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+514, ihailevat me Merjaa , v,115,  ihaile-,365,  D,150,  me,165,  D,285,  Merja,315,  = 1395ms.
+515, ihailevat Merjaa me , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  me,165,  D,346,  me,165,  = 1996ms.
+516, Merjaa me ihailevat , Merja,315,  D,160,  me,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+517, Merjaa ihailevat me , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  me,165,  D,411,  me,165,  = 2241ms.
+518, te ihailen Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+519, te Merjaa ihailen , te,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+520, ihailen te Merjaa , v,115,  ihaile-,365,  D,150,  te,165,  D,285,  Merja,315,  = 1395ms.
+521, ihailen Merjaa te , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  te,165,  D,346,  te,165,  = 1996ms.
+522, Merjaa te ihailen , Merja,315,  D,160,  te,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+523, Merjaa ihailen te , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  te,165,  D,411,  te,165,  = 2241ms.
+524, te ihailet Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+525, te Merjaa ihailet , te,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+526, ihailet te Merjaa , v,115,  ihaile-,365,  D,150,  te,165,  D,285,  Merja,315,  = 1395ms.
+527, ihailet Merjaa te , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  te,165,  D,346,  te,165,  = 1996ms.
+528, Merjaa te ihailet , Merja,315,  D,160,  te,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+529, Merjaa ihailet te , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  te,165,  D,411,  te,165,  = 2241ms.
+530, te ihalee Merjaa , te,165,  ?,360,  D,160,  Merja,315,  = 1000ms.
+531, te Merjaa ihalee , te,165,  D,160,  Merja,315,  ?,570,  ?,686,  = 1896ms.
+532, ihalee te Merjaa , D,120,  te,165,  D,205,  Merja,315,  = 805ms.
+533, ihalee Merjaa te , D,120,  Merja,315,  D,205,  te,165,  = 805ms.
+534, Merjaa te ihalee , Merja,315,  D,160,  te,165,  ?,570,  ?,686,  = 1896ms.
+535, Merjaa ihalee te , Merja,315,  ?,360,  D,160,  te,165,  = 1000ms.
+536, te ihailemme Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+537, te Merjaa ihailemme , te,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+538, ihailemme te Merjaa , v,115,  ihaile-,365,  D,150,  te,165,  D,285,  Merja,315,  = 1395ms.
+539, ihailemme Merjaa te , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  te,165,  D,346,  te,165,  = 1996ms.
+540, Merjaa te ihailemme , Merja,315,  D,160,  te,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+541, Merjaa ihailemme te , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  te,165,  D,411,  te,165,  = 2241ms.
+542, te ihailevat Merjaa , te,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1590ms.
+543, te Merjaa ihailevat , te,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+544, ihailevat te Merjaa , v,115,  ihaile-,365,  D,150,  te,165,  D,285,  Merja,315,  = 1395ms.
+545, ihailevat Merjaa te , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  te,165,  D,346,  te,165,  = 1996ms.
+546, Merjaa te ihailevat , Merja,315,  D,160,  te,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2766ms.
+547, Merjaa ihailevat te , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  te,165,  D,411,  te,165,  = 2241ms.
+548, he_FI ihailen Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  he,451,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 3466ms.
+549, he_FI Merjaa ihailen , he,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  he,531,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 5898ms.
+550, ihailen he_FI Merjaa , v,115,  ihaile-,365,  D,150,  he,165,  D,285,  Merja,315,  he,466,  D,285,  Merja,315,  = 2461ms.
+551, ihailen Merjaa he_FI , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  he,165,  he,316,  D,497,  he,165,  he,291,  = 2754ms.
+552, Merjaa he_FI ihailen , Merja,315,  D,160,  he,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  he,531,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 5423ms.
+553, Merjaa ihailen he_FI , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  he,165,  he,351,  D,597,  he,165,  he,291,  = 3069ms.
+554, he_FI ihailet Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  he,451,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 3466ms.
+555, he_FI Merjaa ihailet , he,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  he,531,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 5898ms.
+556, ihailet he_FI Merjaa , v,115,  ihaile-,365,  D,150,  he,165,  D,285,  Merja,315,  he,466,  D,285,  Merja,315,  = 2461ms.
+557, ihailet Merjaa he_FI , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  he,165,  he,316,  D,497,  he,165,  he,291,  = 2754ms.
+558, Merjaa he_FI ihailet , Merja,315,  D,160,  he,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  he,531,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 5423ms.
+559, Merjaa ihailet he_FI , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  he,165,  he,351,  D,597,  he,165,  he,291,  = 3069ms.
+560, he_FI ihalee Merjaa , he,165,  ?,360,  D,160,  Merja,315,  he,371,  ?,360,  D,160,  Merja,315,  = 2206ms.
+561, he_FI Merjaa ihalee , he,165,  D,160,  Merja,315,  ?,570,  ?,686,  he,737,  D,160,  Merja,315,  ?,570,  ?,686,  = 4364ms.
+562, ihalee he_FI Merjaa , D,120,  he,165,  D,205,  Merja,315,  he,371,  D,205,  Merja,315,  = 1696ms.
+563, ihalee Merjaa he_FI , D,120,  Merja,315,  D,205,  he,165,  he,221,  = 1026ms.
+564, Merjaa he_FI ihalee , Merja,315,  D,160,  he,165,  ?,570,  ?,686,  he,737,  ?,570,  ?,686,  = 3889ms.
+565, Merjaa ihalee he_FI , Merja,315,  ?,360,  D,160,  he,165,  he,221,  = 1221ms.
+566, he_FI ihailemme Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  he,451,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 3466ms.
+567, he_FI Merjaa ihailemme , he,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  he,531,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 5898ms.
+568, ihailemme he_FI Merjaa , v,115,  ihaile-,365,  D,150,  he,165,  D,285,  Merja,315,  he,466,  D,285,  Merja,315,  = 2461ms.
+569, ihailemme Merjaa he_FI , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  he,165,  he,316,  D,497,  he,165,  he,291,  = 2754ms.
+570, Merjaa he_FI ihailemme , Merja,315,  D,160,  he,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  he,531,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 5423ms.
+571, Merjaa ihailemme he_FI , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  he,165,  he,351,  D,597,  he,165,  he,291,  = 3069ms.
+572, he_FI ihailette Merjaa , he,165,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  he,451,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 3466ms.
+573, he_FI Merjaa ihailette , he,165,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  he,531,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 5898ms.
+574, ihailette he_FI Merjaa , v,115,  ihaile-,365,  D,150,  he,165,  D,285,  Merja,315,  he,466,  D,285,  Merja,315,  = 2461ms.
+575, ihailette Merjaa he_FI , v,115,  ihaile-,365,  D,150,  Merja,315,  D,375,  he,165,  he,316,  D,497,  he,165,  he,291,  = 2754ms.
+576, Merjaa he_FI ihailette , Merja,315,  D,160,  he,165,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  he,531,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 5423ms.
+577, Merjaa ihailette he_FI , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  he,165,  he,351,  D,597,  he,165,  he,291,  = 3069ms.
+578, ihailen Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+579, ihailet Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+580, ihailemme Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+581, ihailette Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+582, adoro Luisa , v,115,  adora,315,  D,150,  Luisa,315,  = 895ms.
+583, adori Luisa , v,115,  adora,315,  D,150,  Luisa,315,  = 895ms.
+584, adora Luisa , v,115,  adora,315,  D,150,  Luisa,315,  = 895ms.
+585, adora Luisa , v,115,  adora,315,  D,150,  Luisa,315,  = 895ms.
+586, adoriamo Luisa , v,115,  adora,315,  D,150,  Luisa,315,  = 895ms.
+587, adorate Luisa , v,115,  adora,315,  D,150,  Luisa,315,  = 895ms.
+588, adorano Luisa , v,115,  adora,315,  D,150,  Luisa,315,  = 895ms.
+589, lavano Luisa , v,115,  lava,265,  D,150,  Luisa,315,  = 845ms.
+590, devono lavare Luisa , deva,265,  are,355,  v,115,  lava,265,  D,220,  Luisa,315,  = 1535ms.
+591, hanno lavato Luisa , ha,165,  T/prt,350,  v,115,  lava,265,  D,245,  Luisa,315,  = 1455ms.
+592, ho lavato Luisa , ha,165,  T/prt,350,  v,115,  lava,265,  D,245,  Luisa,315,  = 1455ms.
+593, hanno voluto lavare Luisa , ha,165,  T/prt,350,  v,115,  volu,265,  are,450,  v,115,  lava,265,  D,340,  Luisa,315,  = 2380ms.
+594, stanno lavando Luisa , sta,215,  PRG,405,  v,115,  lava,265,  D,220,  Luisa,315,  = 1535ms.
+595, ihailee Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+596, ihailevat Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+597, admire Mary , v,115,  admire,365,  D,150,  Mary,265,  = 895ms.
+598, admires Mary , v,115,  admire,365,  D,150,  Mary,265,  = 895ms.
+599, am John , D,120,  John,265,  = 385ms.
+600, ihailen Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+601, Merjaa ihailen , Merja,315,  T,360,  v,115,  ihaile-,365,  = 1155ms.
+602, Merjaa ihailevat , Merja,315,  T,360,  v,115,  ihaile-,365,  = 1155ms.
+603, ihailee Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+604, ihailevat Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+605, Merjaa ihailee , Merja,315,  T,360,  v,115,  ihaile-,365,  = 1155ms.
+606, Pekka sanoi etta ihailee Merjaa , Pekka,315,  T,360,  sano-,265,  etta,435,  T,545,  v,115,  ihaile-,365,  D,460,  Merja,315,  = 3175ms.
+607, Pekka sanoo etta Jukka sanoo etta ihailee Merjaa , Pekka,315,  T,360,  sano-,265,  etta,435,  D,345,  Jukka,315,  T,700,  sano-,265,  etta,1070,  T,945,  v,115,  ihaile-,365,  D,905,  Merja,315,  = 6715ms.
+608, ihailee Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+609, Mina sanon etta ihailee Merjaa , T,320,  sano-,265,  etta,330,  T,510,  v,115,  ihaile-,365,  D,425,  Merja,315,  = 2645ms.
+610, John said that admire Mary , John,265,  T,265,  say,215,  that,330,  T,510,  v,115,  admire,365,  D,425,  Mary,265,  = 2755ms.
+611, John said that admires Mary , John,265,  T,265,  say,215,  that,330,  T,510,  v,115,  admire,365,  D,425,  Mary,265,  = 2755ms.
+612, Pekka sanoi etta ihailee Merjaa , Pekka,315,  T,360,  sano-,265,  etta,435,  T,545,  v,115,  ihaile-,365,  D,460,  Merja,315,  = 3175ms.
+613, Pekka sanoo etta Jukka sanoo etta ihailee Merjaa , Pekka,315,  T,360,  sano-,265,  etta,435,  D,345,  Jukka,315,  T,700,  sano-,265,  etta,1070,  T,945,  v,115,  ihaile-,365,  D,905,  Merja,315,  = 6715ms.
+614, ihailee Merjaa , v,115,  ihaile-,365,  D,150,  Merja,315,  = 945ms.
+615, Mina sanon etta ihailee Merjaa , T,320,  sano-,265,  etta,330,  T,510,  v,115,  ihaile-,365,  D,425,  Merja,315,  = 2645ms.
+616, John wants to_inf leave , John,265,  T,360,  v,115,  want,265,  TO/inf,435,  leave,440,  = 1880ms.
+617, John wants Mary to_inf leave , John,265,  T,360,  v,115,  want,265,  D,235,  Mary,265,  TO/inf,650,  leave,530,  = 2685ms.
+618, Pekka haluaa lahtea , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,475,  lahtea,315,  = 1895ms.
+619, John tries to_inf leave , John,265,  T,360,  try,215,  TO/inf,430,  leave,430,  = 1700ms.
+620, John promises to_inf leave , John,265,  T,360,  promise,415,  TO/inf,465,  leave,430,  = 1935ms.
+621, Pekka haluaa Merjan lahtea , Pekka,315,  T,360,  v,115,  haluaa,315,  D,270,  Merja,315,  A/inf,760,  lahtea,315,  A/inf,486,  lahtea,315,  A/inf,471,  lahtea,315,  = 4352ms.
+622, John tries Mary to_inf leave , John,265,  T,360,  try,215,  D,230,  Mary,265,  TO/inf,530,  leave,520,  leave,631,  = 3016ms.
+623, Pekka kaskee Merjan_gen lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  Merja,315,  A/inf,650,  lahtea,315,  = 2655ms.
+624, Pekka haluaa Merjan_gen lahtevan , Pekka,315,  T,360,  v,115,  haluaa,315,  D,270,  Merja,315,  vAn,970,  lahtea,315,  = 2975ms.
+625, John persuades Mary to_inf leave , John,265,  T,360,  v,115,  persuade,465,  D,235,  Mary,265,  TO/inf,650,  leave,530,  = 2885ms.
+626, Pekka kaskee lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  A/inf,475,  lahtea,315,  = 1895ms.
+627, John persuades to_ing leave , John,265,  T,360,  v,115,  persuade,465,  ?,435,  leave,440,  = 2080ms.
+628, Pekka haluaa lahtevan , Pekka,315,  T,360,  v,115,  haluaa,315,  vAn,575,  lahtea,315,  = 1995ms.
+629, Pekka etsii Merjaa juosten , Pekka,315,  T,360,  v,115,  etsi,265,  D,270,  Merja,315,  en,810,  juokse-,365,  en,571,  juokse-,365,  en,536,  juokse-,365,  = 4652ms.
+630, John promises Mary to_inf leave , John,265,  T,360,  promise,415,  D,265,  Mary,265,  TO/inf,635,  leave,515,  leave,611,  leave,737,  TO/inf,843,  leave,340,  = 5251ms.
+631, John persuades Mary to_inf leave , John,265,  T,360,  v,115,  persuade,465,  D,235,  Mary,265,  TO/inf,650,  leave,530,  = 2885ms.
+632, John persuades to_inf leave , John,265,  T,360,  v,115,  persuade,465,  TO/inf,435,  leave,440,  = 2080ms.
+633, Pekka pyytaa lahtemaan , Pekka,315,  T,360,  v,115,  pyyda,315,  maan,690,  lahtea,315,  = 2110ms.
+634, Pekka sanoo etta istuu mukavasti , Pekka,315,  T,360,  sano-,265,  etta,435,  T,545,  istuu,265,  sti,930,  mukavasti,365,  = 3480ms.
+635, tassa istuu mukavasti , D,115,  tama,265,  T,355,  istuu,265,  sti,610,  mukavasti,365,  = 1975ms.
+636, Pekka sanoo etta tassa istuu mukavasti , Pekka,315,  T,360,  sano-,265,  etta,435,  P,500,  D,115,  tama,265,  T,650,  istuu,265,  sti,1035,  mukavasti,365,  = 4570ms.
+637, istuu mukavasti , istuu,265,  sti,505,  mukavasti,365,  = 1135ms.
+638, John admires Mary , John,265,  T,360,  v,115,  admire,365,  D,235,  Mary,265,  = 1605ms.
+639, Mary admires John , Mary,265,  T,360,  v,115,  admire,365,  D,235,  John,265,  = 1605ms.
+640, John Mary admires , John,265,  D,160,  Mary,265,  T,620,  v,115,  admire,365,  T,496,  v,115,  admire,365,  = 2766ms.
+641, admires John Mary , v,115,  admire,365,  D,150,  John,265,  D,250,  Mary,265,  = 1410ms.
+642, admires Mary John , v,115,  admire,365,  D,150,  Mary,265,  D,250,  John,265,  = 1410ms.
+643, Mary John admires , Mary,265,  D,160,  John,265,  T,620,  v,115,  admire,365,  T,496,  v,115,  admire,365,  = 2766ms.
+644, Pekka ihailee Merjaa , Pekka,315,  T,360,  v,115,  ihaile-,365,  D,270,  Merja,315,  = 1740ms.
+645, Pekka Merjaa ihailee , Pekka,315,  D,160,  Merja,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2916ms.
+646, Merjaa Pekka ihailee , Merja,315,  D,160,  Pekka,315,  T,620,  v,115,  ihaile-,365,  T,546,  v,115,  ihaile-,365,  = 2916ms.
+647, Merjaa ihailee Pekka , Merja,315,  T,360,  v,115,  ihaile-,365,  D,345,  Pekka,315,  = 1815ms.
+648, ihailee Pekka Merjaa , v,115,  ihaile-,365,  D,150,  Pekka,315,  D,285,  Merja,315,  = 1545ms.
+649, ihailee Merjaa Pekka , v,115,  ihaile-,365,  D,150,  Merja,315,  D,370,  Pekka,315,  D,496,  Pekka,315,  = 2441ms.
+650, Pekka antoi kirjan Merjalle , Pekka,315,  T,360,  v,115,  antaa,265,  D,270,  kirja,315,  P(lle),815,  D,115,  Merja,315,  = 2885ms.
+651, Pekka antoi Merjalle kirjan , Pekka,315,  T,360,  v,115,  antaa,265,  P(lle),575,  D,115,  Merja,315,  D,525,  kirja,315,  = 2900ms.
+652, Pekka kirjan antoi Merjalle , Pekka,315,  D,160,  kirja,315,  T,620,  v,115,  antaa,265,  P(lle),590,  D,115,  Merja,315,  T,506,  v,115,  antaa,265,  P(lle),915,  D,115,  Merja,315,  = 5041ms.
+653, Pekka kirjan Merjalle antoi , Pekka,315,  D,160,  kirja,315,  P(lle),805,  D,115,  Merja,315,  T,455,  v,115,  antaa,265,  = 2860ms.
+654, Pekka Merjalle antoi kirjan , Pekka,315,  P(lle),465,  D,115,  Merja,315,  T,405,  v,115,  antaa,265,  D,395,  kirja,315,  = 2705ms.
+655, Pekka Merjalle kirjan antoi , Pekka,315,  P(lle),465,  D,115,  Merja,315,  D,205,  kirja,315,  T,805,  v,115,  antaa,265,  T,451,  v,115,  antaa,265,  = 3746ms.
+656, kirjan Pekka antoi Merjalle , kirja,315,  D,160,  Pekka,315,  T,620,  v,115,  antaa,265,  P(lle),740,  D,115,  Merja,315,  P(lle),561,  D,115,  Merja,315,  T,466,  v,115,  antaa,265,  P(lle),845,  D,115,  Merja,315,  = 6072ms.
+657, kirjan Pekka Merjalle antoi , kirja,315,  D,160,  Pekka,315,  P(lle),805,  D,115,  Merja,315,  T,455,  v,115,  antaa,265,  = 2860ms.
+658, kirjan antoi Pekka Merjalle , kirja,315,  T,360,  v,115,  antaa,265,  D,345,  Pekka,315,  P(lle),880,  D,115,  Merja,315,  = 3025ms.
+659, kirjan antoi Merjalle Pekka , kirja,315,  T,360,  v,115,  antaa,265,  P(lle),655,  D,115,  Merja,315,  D,525,  Pekka,315,  = 2980ms.
+660, kirjan Merjalle Pekka antoi , kirja,315,  P(lle),465,  D,115,  Merja,315,  D,205,  Pekka,315,  T,730,  v,115,  antaa,265,  T,451,  v,115,  antaa,265,  = 3671ms.
+661, kirjan Merjalle antoi Pekka , kirja,315,  P(lle),465,  D,115,  Merja,315,  T,405,  v,115,  antaa,265,  D,490,  Pekka,315,  D,576,  Pekka,315,  = 3691ms.
+662, Merjalle Pekka antoi kirjan , D,115,  Merja,315,  D,155,  Pekka,315,  T,620,  v,115,  antaa,265,  D,255,  kirja,315,  T,471,  v,115,  antaa,265,  D,410,  kirja,315,  = 4046ms.
+663, Merjalle Pekka kirjan antoi , D,115,  Merja,315,  D,155,  Pekka,315,  D,670,  kirja,315,  T,730,  v,115,  antaa,265,  T,466,  v,115,  antaa,265,  = 3841ms.
+664, Merjalle antoi Pekka kirjan , D,115,  Merja,315,  T,355,  v,115,  antaa,265,  D,255,  Pekka,315,  D,450,  kirja,315,  = 2500ms.
+665, Merjalle antoi kirjan Pekka , D,115,  Merja,315,  T,355,  v,115,  antaa,265,  D,255,  kirja,315,  D,535,  Pekka,315,  = 2585ms.
+666, Merjalle kirjan Pekka antoi , D,115,  Merja,315,  D,155,  kirja,315,  D,590,  Pekka,315,  T,620,  v,115,  antaa,265,  T,416,  v,115,  antaa,265,  D,451,  Pekka,315,  T,730,  v,115,  antaa,265,  T,466,  v,115,  antaa,265,  = 6323ms.
+667, Merjalle kirjan antoi Pekka , D,115,  Merja,315,  D,155,  kirja,315,  T,695,  v,115,  antaa,265,  D,255,  Pekka,315,  T,526,  v,115,  antaa,265,  D,570,  Pekka,315,  D,556,  Pekka,315,  D,491,  Pekka,315,  = 6013ms.
+668, antoi Pekka kirjan Merjalle , v,115,  antaa,265,  D,150,  Pekka,315,  D,285,  kirja,315,  P(lle),1005,  D,115,  Merja,315,  P(lle),586,  D,115,  Merja,315,  P(lle),556,  D,115,  Merja,315,  = 4882ms.
+669, antoi Pekka Merjalle kirjan , v,115,  antaa,265,  D,150,  Pekka,315,  P(lle),590,  D,115,  Merja,315,  D,430,  kirja,315,  D,556,  kirja,315,  = 3481ms.
+670, antoi kirjan Pekka Merjalle , v,115,  antaa,265,  D,150,  kirja,315,  D,370,  Pekka,315,  P(lle),1005,  D,115,  Merja,315,  P(lle),541,  D,115,  Merja,315,  P(lle),556,  D,115,  Merja,315,  D,491,  Pekka,315,  P(lle),655,  D,115,  Merja,315,  P(lle),466,  D,115,  Merja,315,  = 7709ms.
+671, antoi kirjan Merjalle Pekka , v,115,  antaa,265,  D,150,  kirja,315,  P(lle),615,  D,115,  Merja,315,  D,430,  Pekka,315,  D,586,  Pekka,315,  P(lle),501,  D,115,  Merja,315,  D,330,  Pekka,315,  D,466,  Pekka,315,  = 5893ms.
+672, antoi Merjalle Pekka kirjan , v,115,  antaa,265,  P(lle),455,  D,115,  Merja,315,  D,320,  Pekka,315,  D,415,  kirja,315,  D,476,  kirja,315,  D,501,  Pekka,315,  D,870,  kirja,315,  D,551,  kirja,315,  D,516,  kirja,315,  = 7119ms.
+673, antoi Merjalle kirjan Pekka , v,115,  antaa,265,  P(lle),455,  D,115,  Merja,315,  D,320,  kirja,315,  D,415,  Pekka,315,  D,476,  Pekka,315,  D,501,  kirja,315,  D,815,  Pekka,315,  D,516,  Pekka,315,  D,531,  Pekka,315,  = 7044ms.
+674, John gave the key to Mary , John,265,  T,265,  v,115,  give,265,  the,285,  key,370,  to,460,  D,400,  Mary,265,  = 2690ms.
+675, the key gave John to Mary , key,200,  T,415,  v,115,  give,265,  D,235,  John,265,  to,400,  D,330,  Mary,265,  = 2490ms.
+676, John gave to Mary the key , John,265,  T,265,  v,115,  give,265,  to,235,  D,290,  Mary,265,  the,530,  key,440,  the,606,  key,480,  the,641,  key,270,  = 4667ms.
+677, John the key gave to Mary , John,265,  the,210,  key,270,  T,580,  v,115,  give,265,  to,235,  D,290,  Mary,265,  T,376,  v,115,  give,265,  to,320,  D,375,  Mary,265,  T,361,  v,115,  give,265,  to,520,  D,575,  Mary,265,  = 6312ms.
+678, John the key to Mary gave , John,265,  the,210,  key,270,  to,665,  D,350,  Mary,265,  T,730,  v,115,  give,265,  T,376,  v,115,  give,265,  T,396,  v,115,  give,265,  T,446,  v,115,  give,265,  T,446,  v,115,  give,265,  to,456,  D,200,  Mary,265,  T,425,  v,115,  give,265,  T,396,  v,115,  give,265,  to,506,  D,160,  Mary,265,  T,380,  v,115,  give,265,  T,396,  v,115,  give,265,  = 11288ms.
+679, John to Mary gave the key , John,265,  to,160,  D,160,  Mary,265,  T,380,  v,115,  give,265,  the,370,  key,455,  T,586,  v,115,  give,265,  the,555,  key,640,  = 4596ms.
+680, John to Mary the key gave , John,265,  to,160,  D,160,  Mary,265,  the,360,  key,340,  T,685,  v,115,  give,265,  T,371,  v,115,  give,265,  T,356,  v,115,  give,265,  the,481,  key,350,  T,660,  v,115,  give,265,  T,456,  v,115,  give,265,  T,426,  v,115,  give,265,  = 7615ms.
+681, gave John the key to Mary , v,115,  give,265,  D,150,  John,265,  the,300,  key,355,  to,785,  D,485,  Mary,265,  to,411,  D,285,  Mary,265,  to,446,  D,245,  Mary,265,  = 4902ms.
+682, gave John to Mary the key , v,115,  give,265,  D,150,  John,265,  to,250,  D,245,  Mary,265,  the,470,  key,425,  the,591,  key,455,  = 3496ms.
+683, gave the key John to Mary , v,115,  give,265,  the,200,  key,285,  D,395,  John,265,  to,625,  D,285,  Mary,265,  to,451,  D,245,  Mary,265,  D,381,  John,265,  to,670,  D,355,  Mary,265,  to,451,  D,245,  Mary,265,  = 6558ms.
+684, gave the key to Mary John , v,115,  give,265,  the,200,  key,285,  to,340,  D,315,  Mary,265,  D,675,  John,265,  D,436,  John,265,  D,401,  John,265,  D,401,  John,265,  to,411,  D,245,  Mary,265,  D,420,  John,265,  D,436,  John,265,  = 7065ms.
+685, gave to Mary John the key , v,115,  give,265,  to,150,  D,205,  Mary,265,  D,355,  John,265,  the,845,  key,425,  the,621,  key,355,  D,521,  John,265,  the,890,  key,465,  the,661,  key,395,  = 7063ms.
+686, gave to Mary the key John , v,115,  give,265,  to,150,  D,205,  Mary,265,  the,405,  key,355,  D,940,  John,265,  D,396,  John,265,  D,511,  John,265,  the,436,  key,395,  D,980,  John,265,  D,396,  John,265,  D,511,  John,265,  = 7915ms.
+687, the key John gave to Mary , key,200,  D,310,  John,265,  T,525,  v,115,  give,265,  to,235,  D,290,  Mary,265,  T,401,  v,115,  give,265,  to,320,  D,375,  Mary,265,  D,361,  John,265,  T,570,  v,115,  give,265,  to,235,  D,290,  Mary,265,  T,401,  v,115,  give,265,  to,435,  D,490,  Mary,265,  = 8548ms.
+688, the key John to Mary gave , key,200,  D,310,  John,265,  to,500,  D,200,  Mary,265,  T,425,  v,115,  give,265,  T,396,  v,115,  give,265,  to,511,  D,160,  Mary,265,  T,380,  v,115,  give,265,  T,396,  v,115,  give,265,  D,441,  John,265,  to,545,  D,270,  Mary,265,  T,520,  v,115,  give,265,  T,411,  v,115,  give,265,  to,511,  D,160,  Mary,265,  T,380,  v,115,  give,265,  T,396,  v,115,  give,265,  = 11742ms.
+689, the key gave to Mary John , key,200,  T,415,  v,115,  give,265,  to,235,  D,290,  Mary,265,  D,480,  John,265,  D,436,  John,265,  D,431,  John,265,  T,381,  v,115,  give,265,  to,350,  D,405,  Mary,265,  D,565,  John,265,  D,451,  John,265,  = 7254ms.
+690, the key to Mary John gave , key,200,  to,255,  D,230,  Mary,265,  D,585,  John,265,  T,525,  v,115,  give,265,  T,396,  v,115,  give,265,  D,396,  John,265,  T,830,  v,115,  give,265,  T,441,  v,115,  give,265,  T,396,  v,115,  give,265,  D,376,  John,265,  T,785,  v,115,  give,265,  T,441,  v,115,  give,265,  T,396,  v,115,  give,265,  D,376,  John,265,  T,740,  v,115,  give,265,  T,441,  v,115,  give,265,  T,396,  v,115,  give,265,  to,386,  D,160,  Mary,265,  D,310,  John,265,  T,635,  v,115,  give,265,  T,396,  v,115,  give,265,  D,396,  John,265,  T,615,  v,115,  give,265,  T,481,  v,115,  give,265,  = 19404ms.
+691, the key to Mary gave John , key,200,  to,255,  D,230,  Mary,265,  T,615,  v,115,  give,265,  D,235,  John,265,  T,371,  v,115,  give,265,  D,535,  John,265,  T,381,  v,115,  give,265,  D,435,  John,265,  T,381,  v,115,  give,265,  D,335,  John,265,  to,391,  D,160,  Mary,265,  T,380,  v,115,  give,265,  D,320,  John,265,  T,401,  v,115,  give,265,  D,505,  John,265,  = 10530ms.
+692, to Mary John gave the key , D,120,  Mary,265,  D,265,  John,265,  T,525,  v,115,  give,265,  the,285,  key,370,  T,501,  v,115,  give,265,  the,370,  key,455,  D,586,  John,265,  T,570,  v,115,  give,265,  the,385,  key,470,  T,616,  v,115,  give,265,  the,470,  key,555,  = 8858ms.
+693, to Mary John the key gave , D,120,  Mary,265,  D,265,  John,265,  the,720,  key,340,  T,685,  v,115,  give,265,  T,371,  v,115,  give,265,  T,356,  v,115,  give,265,  the,511,  key,270,  T,580,  v,115,  give,265,  T,371,  v,115,  give,265,  T,356,  v,115,  give,265,  D,481,  John,265,  the,765,  key,380,  T,725,  v,115,  give,265,  T,386,  v,115,  give,265,  T,371,  v,115,  give,265,  the,511,  key,310,  T,620,  v,115,  give,265,  T,386,  v,115,  give,265,  T,371,  v,115,  give,265,  = 15606ms.
+694, to Mary gave John the key , D,120,  Mary,265,  T,335,  v,115,  give,265,  D,235,  John,265,  the,390,  key,440,  T,606,  v,115,  give,265,  D,335,  John,265,  the,615,  key,540,  the,716,  key,340,  = 6227ms.
+695, to Mary gave the key John , D,120,  Mary,265,  T,335,  v,115,  give,265,  the,285,  key,370,  D,480,  John,265,  D,396,  John,265,  T,436,  v,115,  give,265,  the,385,  key,470,  D,610,  John,265,  D,411,  John,265,  D,441,  John,265,  = 7089ms.
+696, to Mary the key John gave , D,120,  Mary,265,  the,315,  key,270,  D,820,  John,265,  T,635,  v,115,  give,265,  T,396,  v,115,  give,265,  D,356,  John,265,  T,680,  v,115,  give,265,  T,396,  v,115,  give,265,  D,506,  John,265,  T,525,  v,115,  give,265,  T,396,  v,115,  give,265,  the,396,  key,310,  D,860,  John,265,  T,680,  v,115,  give,265,  T,411,  v,115,  give,265,  D,371,  John,265,  T,725,  v,115,  give,265,  T,411,  v,115,  give,265,  D,506,  John,265,  T,570,  v,115,  give,265,  T,411,  v,115,  give,265,  = 17481ms.
+697, to Mary the key gave John , D,120,  Mary,265,  the,315,  key,270,  T,580,  v,115,  give,265,  D,235,  John,265,  T,376,  v,115,  give,265,  D,320,  John,265,  T,361,  v,115,  give,265,  D,520,  John,265,  the,486,  key,310,  T,620,  v,115,  give,265,  D,335,  John,265,  T,391,  v,115,  give,265,  D,420,  John,265,  T,376,  v,115,  give,265,  D,690,  John,265,  = 10860ms.
+698, Pekka ei ihaile Merjaa , Pekka,315,  ei,160,  T,465,  v,115,  ihaile-,365,  D,365,  Merja,315,  = 2100ms.
+699, Pekka ei Merjaa ihaile , Pekka,315,  ei,160,  D,260,  Merja,315,  T,635,  v,115,  ihaile-,365,  = 2165ms.
+700, Pekka Merjaa ei ihaile , Pekka,315,  D,160,  Merja,315,  ei,370,  T,575,  v,115,  ihaile-,365,  = 2215ms.
+701, Merjaa Pekka ei ihaile , Merja,315,  D,160,  Pekka,315,  ei,370,  T,575,  v,115,  ihaile-,365,  = 2215ms.
+702, Merjaa ei Pekka ihaile , Merja,315,  ei,160,  D,260,  Pekka,315,  T,595,  v,115,  ihaile-,365,  = 2125ms.
+703, Merjaa ei ihaile Pekka , Merja,315,  ei,160,  T,465,  v,115,  ihaile-,365,  D,445,  Pekka,315,  = 2180ms.
+704, Pekka ihaile ei Merjaa , Pekka,315,  T,365,  v,115,  ihaile-,365,  ei,270,  D,385,  Merja,315,  = 2130ms.
+705, Pekka ihaile Merjaa ei , Pekka,315,  T,365,  v,115,  ihaile-,365,  D,270,  Merja,315,  ei,555,  ei,771,  ei,917,  = 3988ms.
+706, Pekka Merjaa ihaile ei , Pekka,315,  D,160,  Merja,315,  T,585,  v,115,  ihaile-,365,  ei,605,  ei,846,  ei,1022,  T,1168,  v,115,  ihaile-,365,  ei,285,  = 6261ms.
+707, ei Pekka ihaile Merjaa , D,150,  Pekka,315,  T,480,  v,115,  ihaile-,365,  D,395,  Merja,315,  = 2135ms.
+708, ei Pekka Merjaa ihaile , D,150,  Pekka,315,  D,275,  Merja,315,  T,720,  v,115,  ihaile-,365,  T,616,  v,115,  ihaile-,365,  = 3351ms.
+709, ei ihaile Pekka Merjaa , T,355,  v,115,  ihaile-,365,  D,240,  Pekka,315,  D,415,  Merja,315,  = 2120ms.
+710, ei ihaile Merjaa Pekka , T,355,  v,115,  ihaile-,365,  D,240,  Merja,315,  D,500,  Pekka,315,  D,501,  Pekka,315,  D,481,  Pekka,315,  = 3817ms.
+711, ei Merjaa Pekka ihaile , D,150,  Merja,315,  D,295,  Pekka,315,  T,720,  v,115,  ihaile-,365,  T,616,  v,115,  ihaile-,365,  = 3371ms.
+712, ei Merjaa ihaile Pekka , D,150,  Merja,315,  T,500,  v,115,  ihaile-,365,  D,535,  Pekka,315,  D,566,  Pekka,315,  D,511,  Pekka,315,  = 4002ms.
+713, ihaile Pekka ei Merjaa , v,115,  ihaile-,365,  D,150,  Pekka,315,  ei,285,  D,400,  Merja,315,  = 1945ms.
+714, ihaile Pekka Merjaa ei , v,115,  ihaile-,365,  D,150,  Pekka,315,  D,285,  Merja,315,  ei,565,  ei,781,  ei,962,  = 3853ms.
+715, ihaile ei Pekka Merjaa , v,115,  ihaile-,365,  ei,150,  D,250,  Pekka,315,  D,420,  Merja,315,  = 1930ms.
+716, ihaile ei Merjaa Pekka , v,115,  ihaile-,365,  ei,150,  D,250,  Merja,315,  D,440,  Pekka,315,  = 1950ms.
+717, ihaile Merjaa Pekka ei , v,115,  ihaile-,365,  D,150,  Merja,315,  D,365,  Pekka,315,  ei,565,  ei,781,  ei,962,  D,1073,  Pekka,315,  ei,435,  ei,551,  = 6307ms.
+718, ihaile Merjaa ei Pekka , v,115,  ihaile-,365,  D,150,  Merja,315,  ei,360,  D,400,  Pekka,315,  ei,501,  D,220,  Pekka,315,  = 3056ms.
+719, Merjaa Pekka ihaile ei , Merja,315,  D,160,  Pekka,315,  T,585,  v,115,  ihaile-,365,  ei,540,  ei,816,  T,962,  v,115,  ihaile-,365,  ei,500,  ei,606,  = 5759ms.
+720, Merjaa ihaile Pekka ei , Merja,315,  T,365,  v,115,  ihaile-,365,  D,340,  Pekka,315,  ei,625,  ei,911,  D,1052,  Pekka,315,  ei,435,  ei,551,  = 5704ms.
+721, Merjaa ihaile ei Pekka , Merja,315,  T,365,  v,115,  ihaile-,365,  ei,350,  D,385,  Pekka,315,  ei,566,  D,220,  Pekka,315,  = 3311ms.
+722, John does admire' Mary , John,265,  does,260,  v,480,  admire,365,  D,280,  Mary,265,  = 1915ms.
+723, Mary does admire' John , Mary,265,  does,260,  v,480,  admire,365,  D,280,  John,265,  = 1915ms.
+724, John admire' does Mary , John,265,  v,415,  admire,365,  does,265,  D,330,  Mary,265,  = 1905ms.
+725, John admire' Mary does , John,265,  v,415,  admire,365,  D,165,  Mary,265,  does,430,  does,541,  does,627,  = 3073ms.
+726, John Mary does admire' , John,265,  D,160,  Mary,265,  does,520,  v,480,  admire,365,  does,491,  v,555,  admire,365,  = 3466ms.
+727, John Mary admire' does , John,265,  D,160,  Mary,265,  v,670,  admire,365,  does,265,  v,401,  admire,365,  does,310,  = 3066ms.
+728, does John admire' Mary , D,150,  John,265,  v,495,  admire,365,  D,245,  Mary,265,  = 1785ms.
+729, does John Mary admire' , D,150,  John,265,  D,240,  Mary,265,  v,785,  admire,365,  v,491,  admire,365,  = 2926ms.
+730, does admire' John Mary , v,405,  admire,365,  D,200,  John,265,  D,400,  Mary,265,  D,401,  Mary,265,  = 2566ms.
+731, does admire' Mary John , v,405,  admire,365,  D,200,  Mary,265,  D,400,  John,265,  D,401,  John,265,  = 2566ms.
+732, does Mary John admire' , D,150,  Mary,265,  D,240,  John,265,  v,785,  admire,365,  v,491,  admire,365,  = 2926ms.
+733, does Mary admire' John , D,150,  Mary,265,  v,495,  admire,365,  D,245,  John,265,  = 1785ms.
+734, admire' John does Mary , admire,365,  D,120,  John,265,  does,355,  D,320,  Mary,265,  does,416,  D,220,  Mary,265,  = 2591ms.
+735, admire' John Mary does , admire,365,  D,120,  John,265,  D,315,  Mary,265,  does,570,  does,711,  D,822,  Mary,265,  does,395,  does,551,  = 4644ms.
+736, admire' does John Mary , admire,365,  does,220,  D,240,  John,265,  D,340,  Mary,265,  = 1695ms.
+737, admire' does Mary John , admire,365,  does,220,  D,240,  Mary,265,  D,340,  John,265,  = 1695ms.
+738, admire' Mary John does , admire,365,  D,120,  Mary,265,  D,315,  John,265,  does,570,  does,711,  D,822,  John,265,  does,395,  does,551,  = 4644ms.
+739, admire' Mary does John , admire,365,  D,120,  Mary,265,  does,355,  D,320,  John,265,  does,416,  D,220,  John,265,  = 2591ms.
+740, Mary John does admire' , Mary,265,  D,160,  John,265,  does,520,  v,480,  admire,365,  does,491,  v,555,  admire,365,  = 3466ms.
+741, Mary John admire' does , Mary,265,  D,160,  John,265,  v,670,  admire,365,  does,265,  v,401,  admire,365,  does,310,  = 3066ms.
+742, Mary does John admire' , Mary,265,  does,260,  D,225,  John,265,  v,610,  admire,365,  = 1990ms.
+743, Mary admire' John does , Mary,265,  v,415,  admire,365,  D,165,  John,265,  does,430,  does,541,  does,627,  = 3073ms.
+744, Mary admire' does John , Mary,265,  v,415,  admire,365,  does,265,  D,330,  John,265,  = 1905ms.
+745, John does Mary admire' , John,265,  does,260,  D,225,  Mary,265,  v,610,  admire,365,  = 1990ms.
+746, Pekka ihaile ei Merjaa , Pekka,315,  T,365,  v,115,  ihaile-,365,  ei,270,  D,385,  Merja,315,  = 2130ms.
+747, Pekka ollut ei ihaillut Merjaa , Pekka,315,  T,110,  ei,225,  T/prt,570,  v,115,  ihaile-,365,  D,495,  Merja,315,  = 2510ms.
+748, Pekka ollut ihaillut ei Merjaa , Pekka,315,  T,110,  T/prt,425,  v,115,  ihaile-,365,  ei,365,  D,495,  Merja,315,  = 2505ms.
+749, Pekka ei ihaillut ollut Merjaa , Pekka,315,  ei,160,  T/prt,460,  v,115,  ihaile-,365,  T,315,  D,495,  Merja,315,  = 2540ms.
+750, Pekka ei ihaillut ei ollut Merjaa , Pekka,315,  ei,160,  T/prt,460,  v,115,  ihaile-,365,  ei,365,  T,445,  D,585,  Merja,315,  = 3125ms.
+751, Pekka ihaillut ollut ei Merjaa , Pekka,315,  T/prt,360,  v,115,  ihaile-,365,  T,220,  ei,385,  D,485,  Merja,315,  = 2560ms.
+752, Pekan_gen taydy ei ihailla Merjaa , Pekka,315,  T/prt,315,  taytyy,315,  ei,230,  A/inf,595,  v,115,  ihaile-,365,  D,455,  Merja,315,  = 3020ms.
+753, Pekan_gen taydy ihailla ei Merjaa , Pekka,315,  T/prt,315,  taytyy,315,  A/inf,485,  v,115,  ihaile-,365,  ei,310,  D,470,  Merja,315,  = 3005ms.
+754, Pekan_gen ei ihailla taydy Merjaa , Pekka,315,  ei,160,  A/inf,515,  v,115,  ihaile-,365,  T/prt,485,  taytyy,315,  D,490,  Merja,315,  = 3075ms.
+755, Pekan_gen ihailla ei taydy Merjaa , Pekka,315,  A/inf,415,  v,115,  ihaile-,365,  ei,175,  T/prt,505,  taytyy,315,  D,465,  Merja,315,  = 2985ms.
+756, Pekan_gen ihailla taydy ei Merjaa , Pekka,315,  A/inf,415,  v,115,  ihaile-,365,  T/prt,330,  taytyy,315,  ei,370,  D,465,  Merja,315,  = 3005ms.
+757, taydy#C/op Pekan_gen ihailla ei Merjaa , T/prt,270,  taytyy,315,  D,150,  Pekka,315,  A/inf,500,  v,115,  ihaile-,365,  ei,295,  D,475,  Merja,315,  = 3115ms.
+758, ihailla#C/op Pekan_gen taydy ei Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T/prt,400,  taytyy,315,  ei,350,  D,460,  Merja,315,  = 3155ms.
+759, halua#C/op Pekan_gen Pekka ihailla ei Merjaa , T,270,  v,115,  haluaa,315,  D,150,  Pekka,315,  D,245,  Pekka,315,  A/inf,885,  v,115,  ihaile-,365,  ei,375,  D,615,  Merja,315,  A/inf,561,  v,115,  ihaile-,365,  ei,285,  D,480,  Merja,315,  A/inf,551,  v,115,  ihaile-,365,  ei,205,  D,350,  Merja,315,  = 8417ms.
+760, ihailla#C/op Pekan_gen halua ei Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,400,  v,115,  haluaa,315,  ei,345,  D,445,  Merja,315,  = 3250ms.
+761, Pekka ihaile Merjaa ei , Pekka,315,  T,365,  v,115,  ihaile-,365,  D,270,  Merja,315,  ei,555,  ei,771,  ei,917,  = 3988ms.
+762, Pekan_gen ei ihailla Merjaa taydy , Pekka,315,  ei,160,  A/inf,515,  v,115,  ihaile-,365,  D,330,  Merja,315,  T/prt,635,  taytyy,315,  T/prt,491,  taytyy,315,  = 3871ms.
+763, John wants to_inf leave , John,265,  T,360,  v,115,  want,265,  TO/inf,435,  leave,440,  = 1880ms.
+764, John wants leave to_inf , John,265,  T,360,  v,115,  want,265,  leave,385,  TO/inf,520,  = 1910ms.
+765, John to_inf wants leave , John,265,  TO/inf,360,  T,415,  v,115,  want,265,  leave,385,  T,491,  v,115,  want,265,  leave,580,  = 3256ms.
+766, John to_inf leave wants , John,265,  TO/inf,360,  leave,360,  T,495,  v,115,  want,265,  T,361,  v,115,  want,265,  T,356,  v,115,  want,265,  leave,446,  T,360,  v,115,  want,265,  = 4523ms.
+767, John leave wants to_inf , John,265,  leave,310,  T,385,  v,115,  want,265,  TO/inf,550,  T,656,  v,115,  want,265,  TO/inf,435,  = 3361ms.
+768, John leave to_inf wants , John,265,  leave,310,  TO/inf,375,  T,400,  v,115,  want,265,  TO/inf,376,  T,360,  v,115,  want,265,  = 2846ms.
+769, wants John to_inf leave , v,115,  want,265,  D,150,  John,265,  TO/inf,450,  leave,445,  leave,561,  = 2251ms.
+770, wants John leave to_inf , v,115,  want,265,  D,150,  John,265,  leave,400,  TO/inf,475,  TO/inf,581,  = 2251ms.
+771, wants to_inf John leave , v,115,  want,265,  TO/inf,350,  D,205,  John,265,  leave,495,  leave,641,  = 2336ms.
+772, wants to_inf leave John , v,115,  want,265,  TO/inf,350,  leave,355,  D,310,  John,265,  D,396,  John,265,  = 2321ms.
+773, wants leave John to_inf , v,115,  want,265,  leave,300,  D,220,  John,265,  TO/inf,530,  TO/inf,641,  = 2336ms.
+774, wants leave to_inf John , v,115,  want,265,  leave,300,  TO/inf,420,  D,260,  John,265,  = 1625ms.
+775, to_inf John wants leave , D,120,  John,265,  T,460,  v,115,  want,265,  leave,385,  T,531,  v,115,  want,265,  leave,490,  = 3011ms.
+776, to_inf John leave wants , D,120,  John,265,  leave,400,  T,360,  v,115,  want,265,  leave,411,  T,550,  v,115,  want,265,  T,356,  v,115,  want,265,  T,376,  v,115,  want,265,  = 4358ms.
+777, to_inf wants John leave , T,320,  v,115,  want,265,  D,255,  John,265,  leave,510,  = 1730ms.
+778, to_inf wants leave John , T,320,  v,115,  want,265,  leave,405,  D,325,  John,265,  = 1695ms.
+779, to_inf leave John wants , leave,270,  D,220,  John,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,356,  John,265,  T,560,  v,115,  want,265,  T,396,  v,115,  want,265,  T,381,  v,115,  want,265,  = 5629ms.
+780, leave John wants to_inf , D,120,  John,265,  T,440,  v,115,  want,265,  TO/inf,535,  T,646,  v,115,  want,265,  TO/inf,435,  = 3201ms.
+781, leave John to_inf wants , D,120,  John,265,  TO/inf,425,  T,440,  v,115,  want,265,  T,446,  v,115,  want,265,  T,371,  v,115,  want,265,  TO/inf,361,  T,360,  v,115,  want,265,  = 4308ms.
+782, leave wants John to_inf , T,320,  v,115,  want,265,  D,250,  John,265,  TO/inf,555,  = 1770ms.
+783, leave wants to_inf John , T,320,  v,115,  want,265,  TO/inf,450,  D,305,  John,265,  = 1720ms.
+784, leave to_inf John wants , TO/inf,320,  D,160,  John,265,  T,525,  v,115,  want,265,  T,386,  v,115,  want,265,  T,381,  v,115,  want,265,  = 3177ms.
+785, leave to_inf wants John , TO/inf,320,  T,360,  v,115,  want,265,  D,360,  John,265,  = 1685ms.
+786, John wants Mary to_inf leave , John,265,  T,360,  v,115,  want,265,  D,235,  Mary,265,  TO/inf,650,  leave,530,  = 2685ms.
+787, Mary wants to_inf leave John , Mary,265,  T,360,  v,115,  want,265,  TO/inf,435,  leave,440,  D,435,  John,265,  D,396,  John,265,  = 3241ms.
+788, Mary wants John to_inf leave , Mary,265,  T,360,  v,115,  want,265,  D,235,  John,265,  TO/inf,650,  leave,530,  = 2685ms.
+789, John wants to_inf leave Mary , John,265,  T,360,  v,115,  want,265,  TO/inf,435,  leave,440,  D,435,  Mary,265,  D,396,  Mary,265,  = 3241ms.
+790, John wants Mary leave to_inf , John,265,  T,360,  v,115,  want,265,  D,235,  Mary,265,  leave,540,  TO/inf,575,  TO/inf,681,  leave,807,  TO/inf,390,  = 4498ms.
+791, John wants leave Mary to_inf , John,265,  T,360,  v,115,  want,265,  leave,385,  D,320,  Mary,265,  TO/inf,635,  TO/inf,746,  = 3356ms.
+792, John wants leave to_inf Mary , John,265,  T,360,  v,115,  want,265,  leave,385,  TO/inf,520,  D,360,  Mary,265,  = 2535ms.
+793, John Mary wants to_inf leave , John,265,  D,160,  Mary,265,  T,620,  v,115,  want,265,  TO/inf,435,  leave,440,  T,576,  v,115,  want,265,  TO/inf,520,  leave,525,  = 4566ms.
+794, John Mary wants leave to_inf , John,265,  D,160,  Mary,265,  T,620,  v,115,  want,265,  leave,385,  TO/inf,520,  T,666,  v,115,  want,265,  leave,470,  TO/inf,620,  = 4731ms.
+795, John Mary to_inf wants leave , John,265,  D,160,  Mary,265,  TO/inf,570,  T,455,  v,115,  want,265,  leave,470,  T,576,  v,115,  want,265,  leave,755,  TO/inf,1006,  T,450,  v,115,  want,265,  leave,580,  T,761,  v,115,  want,265,  leave,385,  = 8218ms.
+796, John Mary to_inf leave wants , John,265,  D,160,  Mary,265,  TO/inf,570,  leave,400,  T,540,  v,115,  want,265,  T,361,  v,115,  want,265,  T,356,  v,115,  want,265,  leave,446,  T,400,  v,115,  want,265,  TO/inf,441,  leave,355,  T,530,  v,115,  want,265,  T,361,  v,115,  want,265,  T,356,  v,115,  want,265,  leave,446,  T,360,  v,115,  want,265,  = 9652ms.
+797, John Mary leave wants to_inf , John,265,  D,160,  Mary,265,  leave,565,  T,410,  v,115,  want,265,  TO/inf,550,  T,656,  v,115,  want,265,  TO/inf,435,  leave,566,  T,425,  v,115,  want,265,  TO/inf,650,  T,756,  v,115,  want,265,  TO/inf,520,  = 7743ms.
+798, John Mary leave to_inf wants , John,265,  D,160,  Mary,265,  leave,565,  TO/inf,400,  T,400,  v,115,  want,265,  TO/inf,376,  T,360,  v,115,  want,265,  leave,486,  TO/inf,415,  T,440,  v,115,  want,265,  TO/inf,376,  T,400,  v,115,  want,265,  = 6428ms.
+799, John to_inf wants Mary leave , John,265,  TO/inf,360,  T,415,  v,115,  want,265,  D,235,  Mary,265,  leave,490,  T,596,  v,115,  want,265,  D,430,  Mary,265,  leave,690,  = 4771ms.
+800, John to_inf wants leave Mary , John,265,  TO/inf,360,  T,415,  v,115,  want,265,  leave,385,  D,320,  Mary,265,  T,376,  v,115,  want,265,  leave,580,  D,500,  Mary,265,  = 4491ms.
+801, John to_inf Mary wants leave , John,265,  TO/inf,360,  D,200,  Mary,265,  T,620,  v,115,  want,265,  leave,385,  T,531,  v,115,  want,265,  leave,470,  D,576,  Mary,265,  T,510,  v,115,  want,265,  leave,470,  T,616,  v,115,  want,265,  leave,665,  = 7718ms.
+802, John to_inf Mary leave wants , John,265,  TO/inf,360,  D,200,  Mary,265,  leave,565,  T,360,  v,115,  want,265,  leave,411,  T,440,  v,115,  want,265,  T,371,  v,115,  want,265,  T,356,  v,115,  want,265,  D,356,  Mary,265,  leave,450,  T,400,  v,115,  want,265,  leave,411,  T,595,  v,115,  want,265,  T,356,  v,115,  want,265,  T,446,  v,115,  want,265,  = 9912ms.
+803, John to_inf leave Mary wants , John,265,  TO/inf,360,  leave,360,  D,315,  Mary,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,356,  Mary,265,  T,595,  v,115,  want,265,  T,396,  v,115,  want,265,  T,456,  v,115,  want,265,  T,361,  v,115,  want,265,  D,451,  Mary,265,  T,835,  v,115,  want,265,  T,426,  v,115,  want,265,  T,396,  v,115,  want,265,  leave,356,  D,160,  Mary,265,  T,485,  v,115,  want,265,  T,376,  v,115,  want,265,  = 13205ms.
+804, John leave wants Mary to_inf , John,265,  leave,310,  T,385,  v,115,  want,265,  D,350,  Mary,265,  TO/inf,660,  T,766,  v,115,  want,265,  D,235,  Mary,265,  TO/inf,540,  = 4801ms.
+805, John leave wants to_inf Mary , John,265,  leave,310,  T,385,  v,115,  want,265,  TO/inf,550,  D,405,  Mary,265,  T,381,  v,115,  want,265,  TO/inf,435,  D,290,  Mary,265,  = 4311ms.
+806, John leave Mary wants to_inf , John,265,  leave,310,  D,175,  Mary,265,  T,505,  v,115,  want,265,  TO/inf,635,  T,746,  v,115,  want,265,  TO/inf,520,  T,616,  v,115,  want,265,  TO/inf,435,  D,526,  Mary,265,  T,620,  v,115,  want,265,  TO/inf,435,  T,566,  v,115,  want,265,  TO/inf,520,  = 9304ms.
+807, John leave Mary to_inf wants , John,265,  leave,310,  D,175,  Mary,265,  TO/inf,490,  T,495,  v,115,  want,265,  T,446,  v,115,  want,265,  T,371,  v,115,  want,265,  T,356,  v,115,  want,265,  TO/inf,361,  T,400,  v,115,  want,265,  TO/inf,451,  T,360,  v,115,  want,265,  D,446,  Mary,265,  TO/inf,570,  T,455,  v,115,  want,265,  T,356,  v,115,  want,265,  TO/inf,516,  T,360,  v,115,  want,265,  = 11133ms.
+808, John leave to_inf wants Mary , John,265,  leave,310,  TO/inf,375,  T,400,  v,115,  want,265,  D,465,  Mary,265,  TO/inf,381,  T,360,  v,115,  want,265,  D,430,  Mary,265,  = 4276ms.
+809, John leave to_inf Mary wants , John,265,  leave,310,  TO/inf,375,  D,200,  Mary,265,  T,600,  v,115,  want,265,  T,386,  v,115,  want,265,  T,381,  v,115,  want,265,  T,366,  v,115,  want,265,  TO/inf,356,  D,160,  Mary,265,  T,510,  v,115,  want,265,  T,396,  v,115,  want,265,  = 7115ms.
+810, wants John Mary to_inf leave , v,115,  want,265,  D,150,  John,265,  D,250,  Mary,265,  TO/inf,695,  leave,485,  leave,601,  TO/inf,777,  leave,440,  leave,556,  = 4864ms.
+811, wants John Mary leave to_inf , v,115,  want,265,  D,150,  John,265,  D,250,  Mary,265,  leave,690,  TO/inf,500,  TO/inf,606,  leave,737,  TO/inf,515,  TO/inf,621,  = 4979ms.
+812, wants John to_inf Mary leave , v,115,  want,265,  D,150,  John,265,  TO/inf,450,  D,285,  Mary,265,  leave,690,  leave,836,  D,942,  Mary,265,  leave,580,  leave,726,  = 5834ms.
+813, wants John to_inf leave Mary , v,115,  want,265,  D,150,  John,265,  TO/inf,450,  leave,445,  D,425,  Mary,265,  D,396,  Mary,265,  D,391,  Mary,265,  leave,396,  D,260,  Mary,265,  = 4618ms.
+814, wants John leave Mary to_inf , v,115,  want,265,  D,150,  John,265,  leave,400,  D,275,  Mary,265,  TO/inf,595,  TO/inf,706,  TO/inf,802,  D,893,  Mary,265,  TO/inf,695,  TO/inf,856,  = 6547ms.
+815, wants John leave to_inf Mary , v,115,  want,265,  D,150,  John,265,  leave,400,  TO/inf,475,  D,300,  Mary,265,  TO/inf,381,  D,245,  Mary,265,  = 3126ms.
+816, wants Mary John to_inf leave , v,115,  want,265,  D,150,  Mary,265,  D,250,  John,265,  TO/inf,695,  leave,485,  leave,601,  TO/inf,777,  leave,440,  leave,556,  = 4864ms.
+817, wants Mary John leave to_inf , v,115,  want,265,  D,150,  Mary,265,  D,250,  John,265,  leave,690,  TO/inf,500,  TO/inf,606,  leave,737,  TO/inf,515,  TO/inf,621,  = 4979ms.
+818, wants Mary to_inf John leave , v,115,  want,265,  D,150,  Mary,265,  TO/inf,450,  D,285,  John,265,  leave,690,  leave,836,  D,942,  John,265,  leave,580,  leave,726,  = 5834ms.
+819, wants Mary to_inf leave John , v,115,  want,265,  D,150,  Mary,265,  TO/inf,450,  leave,445,  D,425,  John,265,  D,396,  John,265,  D,391,  John,265,  leave,396,  D,260,  John,265,  = 4618ms.
+820, wants Mary leave John to_inf , v,115,  want,265,  D,150,  Mary,265,  leave,400,  D,275,  John,265,  TO/inf,595,  TO/inf,706,  TO/inf,802,  D,893,  John,265,  TO/inf,695,  TO/inf,856,  = 6547ms.
+821, wants Mary leave to_inf John , v,115,  want,265,  D,150,  Mary,265,  leave,400,  TO/inf,475,  D,300,  John,265,  TO/inf,381,  D,245,  John,265,  = 3126ms.
+822, wants to_inf John Mary leave , v,115,  want,265,  TO/inf,350,  D,205,  John,265,  D,385,  Mary,265,  leave,690,  leave,836,  D,982,  Mary,265,  leave,745,  leave,881,  = 6249ms.
+823, wants to_inf John leave Mary , v,115,  want,265,  TO/inf,350,  D,205,  John,265,  leave,495,  D,260,  Mary,265,  leave,416,  D,395,  Mary,265,  D,396,  Mary,265,  D,366,  Mary,265,  = 4588ms.
+824, wants to_inf Mary John leave , v,115,  want,265,  TO/inf,350,  D,205,  Mary,265,  D,385,  John,265,  leave,690,  leave,836,  D,982,  John,265,  leave,745,  leave,881,  = 6249ms.
+825, wants to_inf Mary leave John , v,115,  want,265,  TO/inf,350,  D,205,  Mary,265,  leave,495,  D,260,  John,265,  leave,416,  D,395,  John,265,  D,396,  John,265,  D,366,  John,265,  = 4588ms.
+826, wants to_inf leave John Mary , v,115,  want,265,  TO/inf,350,  leave,355,  D,310,  John,265,  D,795,  Mary,265,  D,466,  Mary,265,  D,396,  John,265,  D,485,  Mary,265,  D,436,  Mary,265,  D,406,  Mary,265,  = 6234ms.
+827, wants to_inf leave Mary John , v,115,  want,265,  TO/inf,350,  leave,355,  D,310,  Mary,265,  D,795,  John,265,  D,466,  John,265,  D,396,  Mary,265,  D,485,  John,265,  D,436,  John,265,  D,406,  John,265,  = 6234ms.
+828, wants leave John Mary to_inf , v,115,  want,265,  leave,300,  D,220,  John,265,  D,410,  Mary,265,  TO/inf,755,  TO/inf,931,  D,1042,  Mary,265,  TO/inf,695,  TO/inf,856,  = 6384ms.
+829, wants leave John to_inf Mary , v,115,  want,265,  leave,300,  D,220,  John,265,  TO/inf,530,  D,355,  Mary,265,  D,411,  Mary,265,  D,416,  Mary,265,  TO/inf,401,  D,245,  Mary,265,  = 4583ms.
+830, wants leave Mary John to_inf , v,115,  want,265,  leave,300,  D,220,  Mary,265,  D,410,  John,265,  TO/inf,755,  TO/inf,931,  D,1042,  John,265,  TO/inf,695,  TO/inf,856,  = 6384ms.
+831, wants leave Mary to_inf John , v,115,  want,265,  leave,300,  D,220,  Mary,265,  TO/inf,530,  D,355,  John,265,  D,411,  John,265,  D,416,  John,265,  TO/inf,401,  D,245,  John,265,  = 4583ms.
+832, wants leave to_inf John Mary , v,115,  want,265,  leave,300,  TO/inf,420,  D,260,  John,265,  D,475,  Mary,265,  D,451,  Mary,265,  D,426,  Mary,265,  = 3772ms.
+833, wants leave to_inf Mary John , v,115,  want,265,  leave,300,  TO/inf,420,  D,260,  Mary,265,  D,475,  John,265,  D,451,  John,265,  D,426,  John,265,  = 3772ms.
+834, Mary John wants to_inf leave , Mary,265,  D,160,  John,265,  T,620,  v,115,  want,265,  TO/inf,435,  leave,440,  T,576,  v,115,  want,265,  TO/inf,520,  leave,525,  = 4566ms.
+835, Mary John wants leave to_inf , Mary,265,  D,160,  John,265,  T,620,  v,115,  want,265,  leave,385,  TO/inf,520,  T,666,  v,115,  want,265,  leave,470,  TO/inf,620,  = 4731ms.
+836, Mary John to_inf wants leave , Mary,265,  D,160,  John,265,  TO/inf,570,  T,455,  v,115,  want,265,  leave,470,  T,576,  v,115,  want,265,  leave,755,  TO/inf,1006,  T,450,  v,115,  want,265,  leave,580,  T,761,  v,115,  want,265,  leave,385,  = 8218ms.
+837, Mary John to_inf leave wants , Mary,265,  D,160,  John,265,  TO/inf,570,  leave,400,  T,540,  v,115,  want,265,  T,361,  v,115,  want,265,  T,356,  v,115,  want,265,  leave,446,  T,400,  v,115,  want,265,  TO/inf,441,  leave,355,  T,530,  v,115,  want,265,  T,361,  v,115,  want,265,  T,356,  v,115,  want,265,  leave,446,  T,360,  v,115,  want,265,  = 9652ms.
+838, Mary John leave wants to_inf , Mary,265,  D,160,  John,265,  leave,565,  T,410,  v,115,  want,265,  TO/inf,550,  T,656,  v,115,  want,265,  TO/inf,435,  leave,566,  T,425,  v,115,  want,265,  TO/inf,650,  T,756,  v,115,  want,265,  TO/inf,520,  = 7743ms.
+839, Mary John leave to_inf wants , Mary,265,  D,160,  John,265,  leave,565,  TO/inf,400,  T,400,  v,115,  want,265,  TO/inf,376,  T,360,  v,115,  want,265,  leave,486,  TO/inf,415,  T,440,  v,115,  want,265,  TO/inf,376,  T,400,  v,115,  want,265,  = 6428ms.
+840, Mary wants John leave to_inf , Mary,265,  T,360,  v,115,  want,265,  D,235,  John,265,  leave,540,  TO/inf,575,  TO/inf,681,  leave,807,  TO/inf,390,  = 4498ms.
+841, Mary wants leave John to_inf , Mary,265,  T,360,  v,115,  want,265,  leave,385,  D,320,  John,265,  TO/inf,635,  TO/inf,746,  = 3356ms.
+842, Mary wants leave to_inf John , Mary,265,  T,360,  v,115,  want,265,  leave,385,  TO/inf,520,  D,360,  John,265,  = 2535ms.
+843, Mary to_inf John wants leave , Mary,265,  TO/inf,360,  D,200,  John,265,  T,620,  v,115,  want,265,  leave,385,  T,531,  v,115,  want,265,  leave,470,  D,576,  John,265,  T,510,  v,115,  want,265,  leave,470,  T,616,  v,115,  want,265,  leave,665,  = 7718ms.
+844, Mary to_inf John leave wants , Mary,265,  TO/inf,360,  D,200,  John,265,  leave,565,  T,360,  v,115,  want,265,  leave,411,  T,440,  v,115,  want,265,  T,371,  v,115,  want,265,  T,356,  v,115,  want,265,  D,356,  John,265,  leave,450,  T,400,  v,115,  want,265,  leave,411,  T,595,  v,115,  want,265,  T,356,  v,115,  want,265,  T,446,  v,115,  want,265,  = 9912ms.
+845, Mary to_inf wants John leave , Mary,265,  TO/inf,360,  T,415,  v,115,  want,265,  D,235,  John,265,  leave,490,  T,596,  v,115,  want,265,  D,430,  John,265,  leave,690,  = 4771ms.
+846, Mary to_inf wants leave John , Mary,265,  TO/inf,360,  T,415,  v,115,  want,265,  leave,385,  D,320,  John,265,  T,376,  v,115,  want,265,  leave,580,  D,500,  John,265,  = 4491ms.
+847, Mary to_inf leave John wants , Mary,265,  TO/inf,360,  leave,360,  D,315,  John,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,356,  John,265,  T,595,  v,115,  want,265,  T,396,  v,115,  want,265,  T,456,  v,115,  want,265,  T,361,  v,115,  want,265,  D,451,  John,265,  T,835,  v,115,  want,265,  T,426,  v,115,  want,265,  T,396,  v,115,  want,265,  leave,356,  D,160,  John,265,  T,485,  v,115,  want,265,  T,376,  v,115,  want,265,  = 13205ms.
+848, Mary leave John wants to_inf , Mary,265,  leave,310,  D,175,  John,265,  T,505,  v,115,  want,265,  TO/inf,635,  T,746,  v,115,  want,265,  TO/inf,520,  T,616,  v,115,  want,265,  TO/inf,435,  D,526,  John,265,  T,620,  v,115,  want,265,  TO/inf,435,  T,566,  v,115,  want,265,  TO/inf,520,  = 9304ms.
+849, Mary leave John to_inf wants , Mary,265,  leave,310,  D,175,  John,265,  TO/inf,490,  T,495,  v,115,  want,265,  T,446,  v,115,  want,265,  T,371,  v,115,  want,265,  T,356,  v,115,  want,265,  TO/inf,361,  T,400,  v,115,  want,265,  TO/inf,451,  T,360,  v,115,  want,265,  D,446,  John,265,  TO/inf,570,  T,455,  v,115,  want,265,  T,356,  v,115,  want,265,  TO/inf,516,  T,360,  v,115,  want,265,  = 11133ms.
+850, Mary leave wants John to_inf , Mary,265,  leave,310,  T,385,  v,115,  want,265,  D,350,  John,265,  TO/inf,660,  T,766,  v,115,  want,265,  D,235,  John,265,  TO/inf,540,  = 4801ms.
+851, Mary leave wants to_inf John , Mary,265,  leave,310,  T,385,  v,115,  want,265,  TO/inf,550,  D,405,  John,265,  T,381,  v,115,  want,265,  TO/inf,435,  D,290,  John,265,  = 4311ms.
+852, Mary leave to_inf John wants , Mary,265,  leave,310,  TO/inf,375,  D,200,  John,265,  T,600,  v,115,  want,265,  T,386,  v,115,  want,265,  T,381,  v,115,  want,265,  T,366,  v,115,  want,265,  TO/inf,356,  D,160,  John,265,  T,510,  v,115,  want,265,  T,396,  v,115,  want,265,  = 7115ms.
+853, Mary leave to_inf wants John , Mary,265,  leave,310,  TO/inf,375,  T,400,  v,115,  want,265,  D,465,  John,265,  TO/inf,381,  T,360,  v,115,  want,265,  D,430,  John,265,  = 4276ms.
+854, to_inf John wants Mary leave , D,120,  John,265,  T,460,  v,115,  want,265,  D,235,  Mary,265,  leave,490,  T,636,  v,115,  want,265,  D,340,  Mary,265,  leave,650,  leave,796,  = 5282ms.
+855, to_inf John wants leave Mary , D,120,  John,265,  T,460,  v,115,  want,265,  leave,385,  D,320,  Mary,265,  T,416,  v,115,  want,265,  leave,490,  D,425,  Mary,265,  = 4171ms.
+856, to_inf John Mary wants leave , D,120,  John,265,  D,290,  Mary,265,  T,620,  v,115,  want,265,  leave,385,  T,531,  v,115,  want,265,  leave,470,  D,616,  Mary,265,  T,670,  v,115,  want,265,  leave,490,  T,641,  v,115,  want,265,  leave,575,  = 7723ms.
+857, to_inf John Mary leave wants , D,120,  John,265,  D,290,  Mary,265,  leave,565,  T,360,  v,115,  want,265,  leave,411,  T,440,  v,115,  want,265,  T,371,  v,115,  want,265,  T,356,  v,115,  want,265,  D,396,  Mary,265,  leave,615,  T,630,  v,115,  want,265,  T,356,  v,115,  want,265,  T,376,  v,115,  want,265,  leave,416,  T,470,  v,115,  want,265,  T,376,  v,115,  want,265,  = 10763ms.
+858, to_inf John leave Mary wants , D,120,  John,265,  leave,400,  D,160,  Mary,265,  T,485,  v,115,  want,265,  T,376,  v,115,  want,265,  leave,396,  D,305,  Mary,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,356,  Mary,265,  T,660,  v,115,  want,265,  T,396,  v,115,  want,265,  T,381,  v,115,  want,265,  T,381,  v,115,  want,265,  D,376,  Mary,265,  T,670,  v,115,  want,265,  T,416,  v,115,  want,265,  = 12019ms.
+859, to_inf wants John Mary leave , T,320,  v,115,  want,265,  D,255,  John,265,  D,360,  Mary,265,  leave,835,  leave,986,  = 3666ms.
+860, to_inf wants John leave Mary , T,320,  v,115,  want,265,  D,255,  John,265,  leave,510,  D,380,  Mary,265,  D,381,  Mary,265,  = 3021ms.
+861, to_inf wants Mary John leave , T,320,  v,115,  want,265,  D,255,  Mary,265,  D,360,  John,265,  leave,835,  leave,986,  = 3666ms.
+862, to_inf wants Mary leave John , T,320,  v,115,  want,265,  D,255,  Mary,265,  leave,510,  D,380,  John,265,  D,381,  John,265,  = 3021ms.
+863, to_inf wants leave John Mary , T,320,  v,115,  want,265,  leave,405,  D,325,  John,265,  D,520,  Mary,265,  D,421,  Mary,265,  = 3166ms.
+864, to_inf wants leave Mary John , T,320,  v,115,  want,265,  leave,405,  D,325,  Mary,265,  D,520,  John,265,  D,421,  John,265,  = 3166ms.
+865, to_inf Mary John wants leave , D,120,  Mary,265,  D,290,  John,265,  T,620,  v,115,  want,265,  leave,385,  T,531,  v,115,  want,265,  leave,470,  D,616,  John,265,  T,670,  v,115,  want,265,  leave,490,  T,641,  v,115,  want,265,  leave,575,  = 7723ms.
+866, to_inf Mary John leave wants , D,120,  Mary,265,  D,290,  John,265,  leave,565,  T,360,  v,115,  want,265,  leave,411,  T,440,  v,115,  want,265,  T,371,  v,115,  want,265,  T,356,  v,115,  want,265,  D,396,  John,265,  leave,615,  T,630,  v,115,  want,265,  T,356,  v,115,  want,265,  T,376,  v,115,  want,265,  leave,416,  T,470,  v,115,  want,265,  T,376,  v,115,  want,265,  = 10763ms.
+867, to_inf Mary wants John leave , D,120,  Mary,265,  T,460,  v,115,  want,265,  D,235,  John,265,  leave,490,  T,636,  v,115,  want,265,  D,340,  John,265,  leave,650,  leave,796,  = 5282ms.
+868, to_inf Mary wants leave John , D,120,  Mary,265,  T,460,  v,115,  want,265,  leave,385,  D,320,  John,265,  T,416,  v,115,  want,265,  leave,490,  D,425,  John,265,  = 4171ms.
+869, to_inf Mary leave John wants , D,120,  Mary,265,  leave,400,  D,160,  John,265,  T,485,  v,115,  want,265,  T,376,  v,115,  want,265,  leave,396,  D,305,  John,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,356,  John,265,  T,660,  v,115,  want,265,  T,396,  v,115,  want,265,  T,381,  v,115,  want,265,  T,381,  v,115,  want,265,  D,376,  John,265,  T,670,  v,115,  want,265,  T,416,  v,115,  want,265,  = 12019ms.
+870, to_inf leave John Mary wants , leave,270,  D,220,  John,265,  D,670,  Mary,265,  T,730,  v,115,  want,265,  T,396,  v,115,  want,265,  D,426,  Mary,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,356,  John,265,  D,390,  Mary,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,396,  Mary,265,  T,715,  v,115,  want,265,  T,416,  v,115,  want,265,  D,381,  Mary,265,  T,670,  v,115,  want,265,  T,416,  v,115,  want,265,  = 14139ms.
+871, to_inf leave wants John Mary , leave,270,  T,465,  v,115,  want,265,  D,235,  John,265,  D,340,  Mary,265,  T,396,  v,115,  want,265,  D,355,  John,265,  D,465,  Mary,265,  = 4346ms.
+872, to_inf leave wants Mary John , leave,270,  T,465,  v,115,  want,265,  D,235,  Mary,265,  D,340,  John,265,  T,396,  v,115,  want,265,  D,355,  Mary,265,  D,465,  John,265,  = 4346ms.
+873, to_inf leave Mary John wants , leave,270,  D,220,  Mary,265,  D,670,  John,265,  T,730,  v,115,  want,265,  T,396,  v,115,  want,265,  D,426,  John,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,356,  Mary,265,  D,390,  John,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  D,396,  John,265,  T,715,  v,115,  want,265,  T,416,  v,115,  want,265,  D,381,  John,265,  T,670,  v,115,  want,265,  T,416,  v,115,  want,265,  = 14139ms.
+874, leave John Mary wants to_inf , D,120,  John,265,  D,305,  Mary,265,  T,665,  v,115,  want,265,  TO/inf,535,  T,681,  v,115,  want,265,  TO/inf,620,  D,731,  Mary,265,  T,620,  v,115,  want,265,  TO/inf,435,  T,566,  v,115,  want,265,  TO/inf,520,  = 8113ms.
+875, leave John Mary to_inf wants , D,120,  John,265,  D,305,  Mary,265,  TO/inf,615,  T,495,  v,115,  want,265,  T,371,  v,115,  want,265,  TO/inf,516,  T,490,  v,115,  want,265,  T,446,  v,115,  want,265,  T,371,  v,115,  want,265,  D,361,  Mary,265,  TO/inf,570,  T,455,  v,115,  want,265,  T,356,  v,115,  want,265,  TO/inf,516,  T,360,  v,115,  want,265,  = 10182ms.
+876, leave John to_inf Mary wants , D,120,  John,265,  TO/inf,425,  D,255,  Mary,265,  T,665,  v,115,  want,265,  T,411,  v,115,  want,265,  D,371,  Mary,265,  T,560,  v,115,  want,265,  T,411,  v,115,  want,265,  D,446,  Mary,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  TO/inf,361,  D,160,  Mary,265,  T,510,  v,115,  want,265,  T,396,  v,115,  want,265,  = 10472ms.
+877, leave wants John Mary to_inf , T,320,  v,115,  want,265,  D,250,  John,265,  D,355,  Mary,265,  TO/inf,835,  TO/inf,1011,  = 3681ms.
+878, leave wants John to_inf Mary , T,320,  v,115,  want,265,  D,250,  John,265,  TO/inf,555,  D,385,  Mary,265,  D,411,  Mary,265,  = 3096ms.
+879, leave wants Mary John to_inf , T,320,  v,115,  want,265,  D,250,  Mary,265,  D,355,  John,265,  TO/inf,835,  TO/inf,1011,  = 3681ms.
+880, leave wants Mary to_inf John , T,320,  v,115,  want,265,  D,250,  Mary,265,  TO/inf,555,  D,385,  John,265,  D,411,  John,265,  = 3096ms.
+881, leave wants to_inf John Mary , T,320,  v,115,  want,265,  TO/inf,450,  D,305,  John,265,  D,495,  Mary,265,  D,451,  Mary,265,  = 3196ms.
+882, leave wants to_inf Mary John , T,320,  v,115,  want,265,  TO/inf,450,  D,305,  Mary,265,  D,495,  John,265,  D,451,  John,265,  = 3196ms.
+883, leave Mary John wants to_inf , D,120,  Mary,265,  D,305,  John,265,  T,665,  v,115,  want,265,  TO/inf,535,  T,681,  v,115,  want,265,  TO/inf,620,  D,731,  John,265,  T,620,  v,115,  want,265,  TO/inf,435,  T,566,  v,115,  want,265,  TO/inf,520,  = 8113ms.
+884, leave Mary John to_inf wants , D,120,  Mary,265,  D,305,  John,265,  TO/inf,615,  T,495,  v,115,  want,265,  T,371,  v,115,  want,265,  TO/inf,516,  T,490,  v,115,  want,265,  T,446,  v,115,  want,265,  T,371,  v,115,  want,265,  D,361,  John,265,  TO/inf,570,  T,455,  v,115,  want,265,  T,356,  v,115,  want,265,  TO/inf,516,  T,360,  v,115,  want,265,  = 10182ms.
+885, leave Mary to_inf John wants , D,120,  Mary,265,  TO/inf,425,  D,255,  John,265,  T,665,  v,115,  want,265,  T,411,  v,115,  want,265,  D,371,  John,265,  T,560,  v,115,  want,265,  T,411,  v,115,  want,265,  D,446,  John,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  TO/inf,361,  D,160,  John,265,  T,510,  v,115,  want,265,  T,396,  v,115,  want,265,  = 10472ms.
+886, leave to_inf John Mary wants , TO/inf,320,  D,160,  John,265,  D,365,  Mary,265,  T,665,  v,115,  want,265,  T,411,  v,115,  want,265,  D,411,  Mary,265,  T,720,  v,115,  want,265,  T,416,  v,115,  want,265,  D,386,  Mary,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  = 8210ms.
+887, leave to_inf wants John Mary , TO/inf,320,  T,360,  v,115,  want,265,  D,360,  John,265,  D,470,  Mary,265,  = 2420ms.
+888, leave to_inf wants Mary John , TO/inf,320,  T,360,  v,115,  want,265,  D,360,  Mary,265,  D,470,  John,265,  = 2420ms.
+889, leave to_inf Mary John wants , TO/inf,320,  D,160,  Mary,265,  D,365,  John,265,  T,665,  v,115,  want,265,  T,411,  v,115,  want,265,  D,411,  John,265,  T,720,  v,115,  want,265,  T,416,  v,115,  want,265,  D,386,  John,265,  T,620,  v,115,  want,265,  T,396,  v,115,  want,265,  = 8210ms.
+890, leave John wants Mary to_inf , D,120,  John,265,  T,440,  v,115,  want,265,  D,335,  Mary,265,  TO/inf,755,  TO/inf,896,  T,977,  v,115,  want,265,  D,235,  Mary,265,  TO/inf,540,  = 5853ms.
+891, leave John wants to_inf Mary , D,120,  John,265,  T,440,  v,115,  want,265,  TO/inf,535,  D,390,  Mary,265,  T,386,  v,115,  want,265,  TO/inf,435,  D,290,  Mary,265,  = 4151ms.
+892, leave John to_inf wants Mary , D,120,  John,265,  TO/inf,425,  T,440,  v,115,  want,265,  D,605,  Mary,265,  T,451,  v,115,  want,265,  D,335,  Mary,265,  T,376,  v,115,  want,265,  D,235,  Mary,265,  TO/inf,366,  T,360,  v,115,  want,265,  D,430,  Mary,265,  = 6988ms.
+893, leave Mary wants John to_inf , D,120,  Mary,265,  T,440,  v,115,  want,265,  D,335,  John,265,  TO/inf,755,  TO/inf,896,  T,977,  v,115,  want,265,  D,235,  John,265,  TO/inf,540,  = 5853ms.
+894, leave Mary wants to_inf John , D,120,  Mary,265,  T,440,  v,115,  want,265,  TO/inf,535,  D,390,  John,265,  T,386,  v,115,  want,265,  TO/inf,435,  D,290,  John,265,  = 4151ms.
+895, leave Mary to_inf wants John , D,120,  Mary,265,  TO/inf,425,  T,440,  v,115,  want,265,  D,605,  John,265,  T,451,  v,115,  want,265,  D,335,  John,265,  T,376,  v,115,  want,265,  D,235,  John,265,  TO/inf,366,  T,360,  v,115,  want,265,  D,430,  John,265,  = 6988ms.
+896, leave to_inf John wants Mary , TO/inf,320,  D,160,  John,265,  T,525,  v,115,  want,265,  D,445,  Mary,265,  T,391,  v,115,  want,265,  D,335,  Mary,265,  T,386,  v,115,  want,265,  D,235,  Mary,265,  = 4997ms.
+897, leave to_inf Mary wants John , TO/inf,320,  D,160,  Mary,265,  T,525,  v,115,  want,265,  D,445,  John,265,  T,391,  v,115,  want,265,  D,335,  John,265,  T,386,  v,115,  want,265,  D,235,  John,265,  = 4997ms.
+898, John to_inf leave wants Mary , John,265,  TO/inf,360,  leave,360,  T,495,  v,115,  want,265,  D,235,  Mary,265,  T,366,  v,115,  want,265,  D,320,  Mary,265,  T,361,  v,115,  want,265,  D,530,  Mary,265,  leave,451,  T,360,  v,115,  want,265,  D,350,  Mary,265,  = 7033ms.
+899, Mary to_inf leave wants John , Mary,265,  TO/inf,360,  leave,360,  T,495,  v,115,  want,265,  D,235,  John,265,  T,366,  v,115,  want,265,  D,320,  John,265,  T,361,  v,115,  want,265,  D,530,  John,265,  leave,451,  T,360,  v,115,  want,265,  D,350,  John,265,  = 7033ms.
+900, to_inf John leave wants Mary , D,120,  John,265,  leave,400,  T,360,  v,115,  want,265,  D,350,  Mary,265,  leave,416,  T,550,  v,115,  want,265,  D,235,  Mary,265,  T,361,  v,115,  want,265,  D,455,  Mary,265,  T,381,  v,115,  want,265,  D,340,  Mary,265,  = 6813ms.
+901, to_inf Mary leave wants John , D,120,  Mary,265,  leave,400,  T,360,  v,115,  want,265,  D,350,  John,265,  leave,416,  T,550,  v,115,  want,265,  D,235,  John,265,  T,361,  v,115,  want,265,  D,455,  John,265,  T,381,  v,115,  want,265,  D,340,  John,265,  = 6813ms.
+902, to_inf leave John wants Mary , leave,270,  D,220,  John,265,  T,620,  v,115,  want,265,  D,235,  Mary,265,  T,401,  v,115,  want,265,  D,320,  Mary,265,  D,361,  John,265,  T,560,  v,115,  want,265,  D,235,  Mary,265,  T,401,  v,115,  want,265,  D,440,  Mary,265,  T,386,  v,115,  want,265,  D,340,  Mary,265,  = 8544ms.
+903, John wants to_inf Mary leave , John,265,  T,360,  v,115,  want,265,  TO/inf,435,  D,290,  Mary,265,  leave,620,  = 2615ms.
+904, Mary wants to_inf John leave , Mary,265,  T,360,  v,115,  want,265,  TO/inf,435,  D,290,  John,265,  leave,620,  = 2615ms.
+905, Pekka haluaa lahtea , Pekka,315,  T,360,  v,115,  haluaa,315,  A/inf,475,  lahtea,315,  = 1895ms.
+906, haluaa#C/op Pekka lahtea , T,315,  v,115,  haluaa,315,  D,150,  Pekka,315,  A/inf,500,  lahtea,315,  = 2025ms.
+907, Pekka kaskee Merjan_gen lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  Merja,315,  A/inf,650,  lahtea,315,  = 2655ms.
+908, haluaa Pekka lahtea , v,115,  haluaa,315,  D,150,  Pekka,315,  A/inf,490,  lahtea,315,  = 1700ms.
+909, haluaa lahtea Pekka , v,115,  haluaa,315,  A/inf,355,  lahtea,315,  D,315,  Pekka,315,  D,466,  Pekka,315,  = 2511ms.
+910, lahtea Pekka haluaa , lahtea,315,  D,120,  Pekka,315,  T,415,  v,115,  haluaa,315,  = 1595ms.
+911, lahtea haluaa Pekka , lahtea,315,  T,320,  v,115,  haluaa,315,  D,260,  Pekka,315,  = 1640ms.
+912, haluaa#C/op lahtea Pekka , T,315,  v,115,  haluaa,315,  A/inf,355,  lahtea,315,  D,205,  Pekka,315,  = 1935ms.
+913, Pekka kaskee Merjan_gen lahtea , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  Merja,315,  A/inf,650,  lahtea,315,  = 2655ms.
+914, Pekka Merjan_gen kaskee lahtea , Pekka,315,  D,160,  Merja,315,  T,620,  v,115,  kaske,315,  A/inf,490,  lahtea,315,  T,511,  v,115,  kaske,315,  A/inf,560,  lahtea,315,  = 4461ms.
+915, Merjan_gen Pekka kaskee lahtea , Merja,315,  D,160,  Pekka,315,  T,620,  v,115,  kaske,315,  A/inf,440,  lahtea,315,  T,461,  v,115,  kaske,315,  A/inf,595,  lahtea,315,  = 4396ms.
+916, Merjan_gen kaskee Pekka lahtea , Merja,315,  T,360,  v,115,  kaske,315,  D,235,  Pekka,315,  A/inf,685,  lahtea,315,  = 2655ms.
+917, Merjan_gen kaskee lahtea Pekka , Merja,315,  T,360,  v,115,  kaske,315,  A/inf,440,  lahtea,315,  D,430,  Pekka,315,  = 2605ms.
+918, kaskee#C/op Pekka Merjan_gen lahtea , T,315,  v,115,  kaske,315,  D,150,  Pekka,315,  D,295,  Merja,315,  A/inf,745,  lahtea,315,  = 2880ms.
+919, lahtea#C/op Pekka Merjan_gen kaskee , A/inf,320,  lahtea,315,  D,150,  Pekka,315,  D,245,  Merja,315,  T,770,  v,115,  kaske,315,  T,521,  v,115,  kaske,315,  = 3811ms.
+920, Merjan_gen lahtea Pekka kaskee , Merja,315,  A/inf,365,  lahtea,315,  D,210,  Pekka,315,  T,470,  v,115,  kaske,315,  D,476,  Pekka,315,  T,620,  v,115,  kaske,315,  T,451,  v,115,  kaske,315,  = 5142ms.
+921, Merjan_gen lahtea kaskee Pekka , Merja,315,  A/inf,365,  lahtea,315,  T,415,  v,115,  kaske,315,  D,280,  Pekka,315,  = 2435ms.
+922, Pekka Merjan_gen lahtea kaskee , Pekka,315,  D,160,  Merja,315,  A/inf,575,  lahtea,315,  T,465,  v,115,  kaske,315,  = 2575ms.
+923, Pekka kaskee lahtea Merjan_gen , Pekka,315,  T,360,  v,115,  kaske,315,  A/inf,475,  lahtea,315,  D,355,  Merja,315,  = 2565ms.
+924, Pekka lahtea kaskee Merjan_gen , Pekka,315,  A/inf,365,  lahtea,315,  T,430,  v,115,  kaske,315,  D,340,  Merja,315,  D,501,  Merja,315,  T,431,  v,115,  kaske,315,  D,405,  Merja,315,  = 4907ms.
+925, Pekka lahtea Merjan_gen kaskee , Pekka,315,  A/inf,365,  lahtea,315,  D,245,  Merja,315,  T,620,  v,115,  kaske,315,  T,451,  v,115,  kaske,315,  D,411,  Merja,315,  T,470,  v,115,  kaske,315,  = 5112ms.
+926, kaskee Pekka Merjan_gen lahtea , v,115,  kaske,315,  D,150,  Pekka,315,  D,320,  Merja,315,  A/inf,770,  lahtea,315,  A/inf,556,  lahtea,315,  = 3486ms.
+927, kaskee Pekka lahtea Merjan_gen , v,115,  kaske,315,  D,150,  Pekka,315,  A/inf,525,  lahtea,315,  D,460,  Merja,315,  D,481,  Merja,315,  D,576,  Merja,315,  = 4197ms.
+928, kaskee Merjan_gen Pekka lahtea , v,115,  kaske,315,  D,150,  Merja,315,  D,285,  Pekka,315,  A/inf,735,  lahtea,315,  A/inf,556,  lahtea,315,  = 3416ms.
+929, kaskee Merjan_gen lahtea Pekka , v,115,  kaske,315,  D,150,  Merja,315,  A/inf,490,  lahtea,315,  D,355,  Pekka,315,  D,536,  Pekka,315,  D,571,  Pekka,315,  = 4107ms.
+930, kaskee lahtea Pekka Merjan_gen , v,115,  kaske,315,  A/inf,355,  lahtea,315,  D,220,  Pekka,315,  D,390,  Merja,315,  = 2340ms.
+931, kaskee lahtea Merjan_gen Pekka , v,115,  kaske,315,  A/inf,355,  lahtea,315,  D,220,  Merja,315,  D,355,  Pekka,315,  = 2305ms.
+932, Merjan_gen Pekka lahtea kaskee , Merja,315,  D,160,  Pekka,315,  A/inf,575,  lahtea,315,  T,480,  v,115,  kaske,315,  T,411,  v,115,  kaske,315,  A/inf,536,  lahtea,315,  T,430,  v,115,  kaske,315,  T,411,  v,115,  kaske,315,  = 5983ms.
+933, lahtea Pekka kaskee Merjan_gen , lahtea,315,  D,120,  Pekka,315,  T,415,  v,115,  kaske,315,  D,415,  Merja,315,  = 2325ms.
+934, lahtea Pekka Merjan_gen kaskee , lahtea,315,  D,120,  Pekka,315,  D,215,  Merja,315,  T,675,  v,115,  kaske,315,  T,521,  v,115,  kaske,315,  = 3336ms.
+935, lahtea kaskee Pekka Merjan_gen , lahtea,315,  T,320,  v,115,  kaske,315,  D,260,  Pekka,315,  D,470,  Merja,315,  = 2425ms.
+936, lahtea kaskee Merjan_gen Pekka , lahtea,315,  T,320,  v,115,  kaske,315,  D,260,  Merja,315,  D,435,  Pekka,315,  = 2390ms.
+937, lahtea Merjan_gen Pekka kaskee , lahtea,315,  D,120,  Merja,315,  D,215,  Pekka,315,  T,675,  v,115,  kaske,315,  T,471,  v,115,  kaske,315,  = 3286ms.
+938, lahtea Merjan_gen kaskee Pekka , lahtea,315,  D,120,  Merja,315,  T,415,  v,115,  kaske,315,  D,345,  Pekka,315,  = 2255ms.
+939, istuu#foc Pekka , T,315,  istuu,265,  D,150,  Pekka,315,  = 1045ms.
+940, istuu#C/op Pekka , T,315,  istuu,265,  D,150,  Pekka,315,  = 1045ms.
+941, ihailee#foc Pekka Merjaa , T,315,  v,115,  ihaile-,365,  D,150,  Pekka,315,  D,295,  Merja,315,  = 1870ms.
+942, ihailee#C/op Pekka Merjaa , T,315,  v,115,  ihaile-,365,  D,150,  Pekka,315,  D,295,  Merja,315,  = 1870ms.
+943, myi#foc Pekka omaisuutensa , T,315,  v,115,  myy,215,  D,150,  Pekka,315,  D,295,  omaisuuden,465,  = 1870ms.
+944, myi#C/op Pekka omaisuutensa , T,315,  v,115,  myy,215,  D,150,  Pekka,315,  D,295,  omaisuuden,465,  = 1870ms.
+945, antoi#foc Pekka avaimen Merjalle , T,315,  v,115,  antaa,265,  D,150,  Pekka,315,  D,295,  avain,315,  P(lle),1025,  D,115,  Merja,315,  = 3225ms.
+946, antoi#C/op Pekka avaimen Merjalle , T,315,  v,115,  antaa,265,  D,150,  Pekka,315,  D,295,  avain,315,  P(lle),1025,  D,115,  Merja,315,  = 3225ms.
+947, ei#C/op Pekka ihaile Merjaa , ei,115,  D,150,  Pekka,315,  T,490,  v,115,  ihaile-,365,  D,405,  Merja,315,  = 2270ms.
+948, ei#C/op Pekan_gen taydy ihailla Merjaa , ei,115,  D,150,  Pekka,315,  T/prt,440,  taytyy,315,  A/inf,580,  v,115,  ihaile-,365,  D,420,  Merja,315,  = 3130ms.
+949, ei#C/op Pekka halua ihailla Merjaa , ei,115,  D,150,  Pekka,315,  T,440,  v,115,  haluaa,315,  A/inf,660,  v,115,  ihaile-,365,  D,505,  Merja,315,  = 3410ms.
+950, ei#C/op Pekka ollut ihaillut Merjaa , ei,115,  D,150,  Pekka,315,  T,235,  T/prt,550,  v,115,  ihaile-,365,  D,505,  Merja,315,  = 2665ms.
+951, ei#C/op Pekka myynyt omaisuuttaan , ei,115,  D,150,  Pekka,315,  T/prt,485,  v,115,  myy,215,  D,405,  omaisuuden,465,  = 2265ms.
+952, ei#C/op Pekan_gen taydy myyda omaisuuttaan , ei,115,  D,150,  Pekka,315,  T/prt,440,  taytyy,315,  A/inf,480,  v,115,  myy,215,  D,420,  omaisuuden,465,  = 3030ms.
+953, ei#C/op Pekka halua myyda omaisuuttaan , ei,115,  D,150,  Pekka,315,  T,440,  v,115,  haluaa,315,  A/inf,560,  v,115,  myy,215,  D,505,  omaisuuden,465,  = 3310ms.
+954, ei#C/op Pekka ollut myynyt omaisuuttaan , ei,115,  D,150,  Pekka,315,  T,235,  T/prt,550,  v,115,  myy,215,  D,505,  omaisuuden,465,  = 2665ms.
+955, taytyy#C/op Pekan_gen ihailla Merjaa , T,315,  taytyy,315,  D,150,  Pekka,315,  A/inf,510,  v,115,  ihaile-,365,  D,280,  Merja,315,  = 2680ms.
+956, taytyy#C/op Pekan_gen myyda omaisuuttaan , T,315,  taytyy,315,  D,150,  Pekka,315,  A/inf,410,  v,115,  myy,215,  D,280,  omaisuuden,465,  = 2580ms.
+957, haluaa#C/op Pekka ihailla Merjaa , T,315,  v,115,  haluaa,315,  D,150,  Pekka,315,  A/inf,550,  v,115,  ihaile-,365,  D,320,  Merja,315,  = 2875ms.
+958, haluaa#C/op Pekka myyda omaisuuttaan , T,315,  v,115,  haluaa,315,  D,150,  Pekka,315,  A/inf,450,  v,115,  myy,215,  D,320,  omaisuuden,465,  = 2775ms.
+959, on'#C/op Pekka ihaillut Merjaa , T,315,  BE,165,  D,150,  Pekka,315,  T/prt,570,  v,115,  ihaile-,365,  D,410,  Merja,315,  = 2720ms.
+960, on'#C/op Pekka myynyt omaisuuttaan , T,315,  BE,165,  D,150,  Pekka,315,  T/prt,570,  v,115,  myy,215,  D,410,  omaisuuden,465,  = 2720ms.
+961, ihailee#C/fin Pekka Merjaa , T,315,  v,115,  ihaile-,365,  D,150,  Pekka,315,  D,295,  Merja,315,  = 1870ms.
+962, ei#C/fin Pekka ihaile Merjaa , ei,115,  D,150,  Pekka,315,  T,490,  v,115,  ihaile-,365,  D,405,  Merja,315,  = 2270ms.
+963, taytyy#C/fin Pekan_gen ihailla Merjaa , T,315,  taytyy,315,  D,150,  Pekka,315,  A/inf,510,  v,115,  ihaile-,365,  D,280,  Merja,315,  = 2680ms.
+964, haluaa#C/fin Pekka ihailla Merjaa , T,315,  v,115,  haluaa,315,  D,150,  Pekka,315,  A/inf,550,  v,115,  ihaile-,365,  D,320,  Merja,315,  = 2875ms.
+965, on'#C/fin Pekka ihaillut Merjaa , T,315,  BE,165,  D,150,  Pekka,315,  T/prt,570,  v,115,  ihaile-,365,  D,410,  Merja,315,  = 2720ms.
+966, myi#C/fin Pekka omaisuuttaan , T,315,  v,115,  myy,215,  D,150,  Pekka,315,  D,295,  omaisuuden,465,  = 1870ms.
+967, ei#C/fin Pekka myynyt omaisuuttaan , ei,115,  D,150,  Pekka,315,  T/prt,485,  v,115,  myy,215,  D,405,  omaisuuden,465,  = 2265ms.
+968, taytyy#C/fin Pekan_gen myyda omaisuuttaan , T,315,  taytyy,315,  D,150,  Pekka,315,  A/inf,410,  v,115,  myy,215,  D,280,  omaisuuden,465,  = 2580ms.
+969, haluaa#C/fin Pekka myyda omaisuuttaan , T,315,  v,115,  haluaa,315,  D,150,  Pekka,315,  A/inf,450,  v,115,  myy,215,  D,320,  omaisuuden,465,  = 2775ms.
+970, on'#C/fin Pekka myynyt omaisuuttaan , T,315,  BE,165,  D,150,  Pekka,315,  T/prt,570,  v,115,  myy,215,  D,410,  omaisuuden,465,  = 2720ms.
+971, does#C/fin John admire' Mary , does,215,  D,150,  John,265,  v,505,  admire,365,  D,255,  Mary,265,  = 2020ms.
+972, ihailee Pekka Merjaa , v,115,  ihaile-,365,  D,150,  Pekka,315,  D,285,  Merja,315,  = 1545ms.
+973, ei Pekka ihaile Merjaa , D,150,  Pekka,315,  T,480,  v,115,  ihaile-,365,  D,395,  Merja,315,  = 2135ms.
+974, taytyy Pekan_genn ihailla Merjaa , taytyy,315,  ?,550,  A/inf,470,  v,115,  ihaile-,365,  D,285,  Merja,315,  = 2415ms.
+975, haluaa Pekka ihailla Merjaa , v,115,  haluaa,315,  D,150,  Pekka,315,  A/inf,540,  v,115,  ihaile-,365,  D,310,  Merja,315,  = 2540ms.
+976, ihailee Pekka ihailee Merjaa , v,115,  ihaile-,365,  D,150,  Pekka,315,  T,485,  v,115,  ihaile-,365,  D,420,  Merja,315,  = 2645ms.
+977, on' Pekka ihaillut Merjaa , BE,165,  D,150,  Pekka,315,  T/prt,485,  v,115,  ihaile-,365,  D,400,  Merja,315,  T/prt,501,  v,115,  ihaile-,365,  D,235,  Merja,315,  BE,165,  D,150,  Pekka,315,  T/prt,485,  v,115,  ihaile-,365,  D,400,  Merja,315,  T/prt,501,  v,115,  ihaile-,365,  D,235,  Merja,315,  = 7682ms.
+978, myi Pekka omaisuutensa , v,115,  myy,215,  D,150,  Pekka,315,  D,285,  omaisuuden,465,  = 1545ms.
+979, admire'#C/fin John does Mary , v,370,  admire,365,  D,150,  John,265,  does,345,  D,330,  Mary,265,  = 2090ms.
+980, ihaile#C/op Pekka ei Merjaa , T,320,  v,115,  ihaile-,365,  D,150,  Pekka,315,  ei,245,  D,395,  Merja,315,  = 2220ms.
+981, ihaillut#C/op Pekka on' Merjaa , T/prt,315,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  BE,165,  D,475,  Merja,315,  = 2660ms.
+982, myynyt#C/op Pekka on' omaisuutensa , T/prt,315,  v,115,  myy,215,  D,150,  Pekka,315,  T,445,  BE,165,  D,475,  omaisuuden,465,  = 2660ms.
+983, ihailla#C/op Pekka haluaa Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  v,115,  haluaa,315,  D,415,  Merja,315,  = 2920ms.
+984, myyda#C/op Pekka haluaa omaisuutensa , A/inf,270,  v,115,  myy,215,  D,150,  Pekka,315,  T,445,  v,115,  haluaa,315,  D,415,  omaisuuden,465,  = 2820ms.
+985, ihailla#C/op Pekan_gen taytyy Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  taytyy,315,  D,335,  Merja,315,  = 2725ms.
+986, myyda#C/op Pekan_gen taytyy omaisuutensa , A/inf,270,  v,115,  myy,215,  D,150,  Pekka,315,  T,445,  taytyy,315,  D,335,  omaisuuden,465,  = 2625ms.
+987, ihaile#C/op Merjaa ei Pekka , T,320,  v,115,  ihaile-,365,  D,150,  Merja,315,  ei,245,  D,475,  Pekka,315,  = 2300ms.
+988, ihaillut#C/op Merjaa on' Pekka , T/prt,315,  v,115,  ihaile-,365,  D,150,  Merja,315,  T,445,  BE,165,  D,540,  Pekka,315,  D,571,  Pekka,315,  D,561,  Pekka,315,  = 4487ms.
+989, ihailla#C/op Merjaa haluaa Pekka , A/inf,370,  v,115,  ihaile-,365,  D,150,  Merja,315,  T,445,  v,115,  haluaa,315,  D,480,  Pekka,315,  = 2985ms.
+990, myynyt#C/op omaisuuttaan ei Pekka , T/prt,315,  v,115,  myy,215,  D,150,  omaisuuden,465,  ei,245,  D,475,  Pekka,315,  = 2295ms.
+991, myynyt#C/op omaisuuttaan on' Pekka , T/prt,315,  v,115,  myy,215,  D,150,  omaisuuden,465,  T,445,  BE,165,  D,540,  Pekka,315,  D,571,  Pekka,315,  D,561,  Pekka,315,  = 4487ms.
+992, myyda#C/op omaisuuttaan haluaa Pekka , A/inf,270,  v,115,  myy,215,  D,150,  omaisuuden,465,  T,445,  v,115,  haluaa,315,  D,480,  Pekka,315,  = 2885ms.
+993, taydy#C/op Pekan_gen ei ihailla Merjaa , T/prt,270,  taytyy,315,  D,150,  Pekka,315,  ei,245,  A/inf,610,  v,115,  ihaile-,365,  D,440,  Merja,315,  = 3140ms.
+994, taydy#C/op Pekan_gen ei myyda omaisuuttaan , T/prt,270,  taytyy,315,  D,150,  Pekka,315,  ei,245,  A/inf,510,  v,115,  myy,215,  D,440,  omaisuuden,465,  = 3040ms.
+995, ihailla#C/op Pekan_gen ei taydy Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  ei,245,  T/prt,565,  taytyy,315,  D,430,  Merja,315,  = 3185ms.
+996, myyda#C/op Pekan_gen ei taydy omaisuuttaan , A/inf,270,  v,115,  myy,215,  D,150,  Pekka,315,  ei,245,  T/prt,550,  taytyy,315,  D,430,  omaisuuden,465,  = 3070ms.
+997, halua#C/op Pekka ei ihailla Merjaa , T,270,  v,115,  haluaa,315,  D,150,  Pekka,315,  ei,245,  A/inf,650,  v,115,  ihaile-,365,  D,480,  Merja,315,  = 3335ms.
+998, ihailla#C/op Pekka ei halua Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  ei,245,  T,565,  v,115,  haluaa,315,  D,515,  Merja,315,  = 3385ms.
+999, halua#C/op Pekka ei myyda omaisuuttaan , T,270,  v,115,  haluaa,315,  D,150,  Pekka,315,  ei,245,  A/inf,550,  v,115,  myy,215,  D,480,  omaisuuden,465,  = 3235ms.
+1000, myyda#C/op Pekka ei halua omaisuuttaan , A/inf,270,  v,115,  myy,215,  D,150,  Pekka,315,  ei,245,  T,550,  v,115,  haluaa,315,  D,515,  omaisuuden,465,  = 3270ms.
+1001, admire' John wants to_inf Mary , admire,365,  D,120,  John,265,  T,455,  v,115,  want,265,  TO/inf,540,  D,395,  Mary,265,  T,396,  v,115,  want,265,  TO/inf,435,  D,290,  Mary,265,  = 4551ms.
+1002, to_inf admire' John wants Mary , v,375,  admire,365,  D,170,  John,265,  T,600,  v,115,  want,265,  D,235,  Mary,265,  T,401,  v,115,  want,265,  D,450,  Mary,265,  T,396,  v,115,  want,265,  D,340,  Mary,265,  = 5532ms.
+1003, to_inf John wants admire' Mary , D,120,  John,265,  T,460,  v,115,  want,265,  v,490,  admire,365,  D,330,  Mary,265,  T,421,  v,115,  want,265,  v,595,  admire,365,  D,440,  Mary,265,  = 5141ms.
+1004, admire'#C/fin John wants to_inf Mary , v,370,  admire,365,  D,150,  John,265,  T,445,  v,115,  want,265,  TO/inf,550,  D,405,  Mary,265,  = 3195ms.
+1005, to_inf#C/fin admire' John wants Mary , TO/inf,315,  v,405,  admire,365,  D,205,  John,265,  T,550,  v,115,  want,265,  D,460,  Mary,265,  T,406,  v,115,  want,265,  D,350,  Mary,265,  = 4611ms.
+1006, to_inf#C/fin John wants admire' Mary , TO/inf,315,  D,150,  John,265,  T,445,  v,115,  want,265,  v,605,  admire,365,  D,450,  Mary,265,  = 3240ms.
+1007, Ungrammatical (Finnish) , ?,470,  = 470ms.
+1008, ihaile#C/fin Pekka ei Merjaa , T,320,  v,115,  ihaile-,365,  D,150,  Pekka,315,  ei,245,  D,410,  Merja,315,  = 2235ms.
+1009, ihaillut#C/fin Pekka on' Merjaa , T/prt,315,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  BE,165,  D,490,  Merja,315,  D,576,  Merja,315,  T,445,  BE,165,  D,490,  Merja,315,  D,576,  Merja,315,  = 5872ms.
+1010, ihailla#C/fin Pekka haluaa Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  v,115,  haluaa,315,  D,430,  Merja,315,  = 2935ms.
+1011, ihailla#C/fin Pekan_gen taytyy Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  taytyy,315,  D,350,  Merja,315,  = 2740ms.
+1012, ihallut#C/fin Pekka ei ollut Merjaa , ?,365,  D,150,  Pekka,315,  ei,245,  T,330,  D,465,  Merja,315,  = 2185ms.
+1013, ihaile Pekka ei Merjaa , v,115,  ihaile-,365,  D,150,  Pekka,315,  ei,285,  D,400,  Merja,315,  = 1945ms.
+1014, ihaillut Pekka on' Merjaa , v,115,  ihaile-,365,  D,150,  Pekka,315,  T,485,  BE,165,  D,480,  Merja,315,  D,566,  Merja,315,  T,485,  BE,165,  D,480,  Merja,315,  D,566,  Merja,315,  = 5597ms.
+1015, ihailla Pekka haluaa Merjaa , v,115,  ihaile-,365,  D,120,  Pekka,315,  T,470,  v,115,  haluaa,315,  D,345,  Merja,315,  D,461,  Merja,315,  T,476,  v,115,  haluaa,315,  D,420,  Merja,315,  = 4892ms.
+1016, ihailla Pekan_gen taytyy Merjaa , v,115,  ihaile-,365,  D,120,  Pekka,315,  T,470,  taytyy,315,  D,330,  Merja,315,  D,491,  Merja,315,  T,476,  taytyy,315,  D,340,  Merja,315,  = 4597ms.
+1017, ihallut Pekka ei ollut Merjaa , D,120,  Pekka,315,  ei,205,  T,320,  D,455,  Merja,315,  = 1730ms.
+1018, myynyt#C/fin Pekka ei omaisuuttaan , T/prt,315,  v,115,  myy,215,  D,150,  Pekka,315,  ei,245,  D,410,  omaisuuden,465,  = 2230ms.
+1019, myynyt#C/fin Pekka on omaisuuttaan , T/prt,315,  v,115,  myy,215,  D,150,  Pekka,315,  ?,245,  D,305,  omaisuuden,465,  = 2125ms.
+1020, myyda#C/fin Pekka haluaa omaisuuttaan , A/inf,270,  v,115,  myy,215,  D,150,  Pekka,315,  T,445,  v,115,  haluaa,315,  D,430,  omaisuuden,465,  = 2835ms.
+1021, myyda#C/fin Pekan_gen taytyy omaisuuttaan , A/inf,270,  v,115,  myy,215,  D,150,  Pekka,315,  T,445,  taytyy,315,  D,350,  omaisuuden,465,  = 2640ms.
+1022, myynyt#C/fin Pekka ei ollut omaisuuttaan , T/prt,315,  v,115,  myy,215,  D,150,  Pekka,315,  ei,245,  T,360,  D,495,  omaisuuden,465,  = 2675ms.
+1023, myynyt Pekka ei omaisuuttaan , v,115,  myy,215,  D,150,  Pekka,315,  ei,285,  D,385,  omaisuuden,465,  = 1930ms.
+1024, myynyt Pekka on omaisuuttaan , v,115,  myy,215,  D,150,  Pekka,315,  ?,285,  D,280,  omaisuuden,465,  = 1825ms.
+1025, myyda Pekka haluaa omaisuuttaan , v,115,  myy,215,  D,120,  Pekka,315,  T,470,  v,115,  haluaa,315,  D,345,  omaisuuden,465,  D,611,  omaisuuden,465,  T,626,  v,115,  haluaa,315,  D,420,  omaisuuden,465,  = 5492ms.
+1026, myyda Pekan_gen taytyy omaisuuttaan , v,115,  myy,215,  D,120,  Pekka,315,  T,470,  taytyy,315,  D,330,  omaisuuden,465,  D,641,  omaisuuden,465,  T,626,  taytyy,315,  D,340,  omaisuuden,465,  = 5197ms.
+1027, myynyt Pekka ei ollut omaisuuttaan , v,115,  myy,215,  D,150,  Pekka,315,  ei,285,  T,335,  D,470,  omaisuuden,465,  = 2350ms.
+1028, ihailla#C/op Pekka kaskee poikien Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  v,115,  kaske,315,  D,420,  poika,315,  D,600,  Merja,315,  = 3840ms.
+1029, ihailla Pekka kaskee poikien Merjaa , v,115,  ihaile-,365,  D,120,  Pekka,315,  T,470,  v,115,  kaske,315,  D,340,  poika,315,  D,685,  Merja,315,  D,476,  Merja,315,  D,496,  poika,315,  D,460,  Merja,315,  D,506,  Merja,315,  T,476,  v,115,  kaske,315,  D,420,  poika,315,  D,635,  Merja,315,  = 9259ms.
+1030, ihailla#C/fin Pekka kaskee poikien Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  v,115,  kaske,315,  D,430,  poika,315,  D,645,  Merja,315,  = 3895ms.
+1031, ollut#C/fin Pekka ei ihaillut Merjaa , T,65,  D,150,  Pekka,315,  ei,245,  T/prt,600,  v,115,  ihaile-,365,  D,520,  Merja,315,  = 2690ms.
+1032, ollut Pekka ei ihaillut Merjaa , D,150,  Pekka,315,  ei,240,  T/prt,590,  v,115,  ihaile-,365,  D,510,  Merja,315,  = 2600ms.
+1033, ihaillut#C/op Pekka ei ollut Merjaa , T/prt,315,  v,115,  ihaile-,365,  D,150,  Pekka,315,  ei,245,  T,345,  D,490,  Merja,315,  = 2655ms.
+1034, taydy#C/fin Pekan_gen ei ihailla Merjaa , T/prt,270,  taytyy,315,  D,150,  Pekka,315,  ei,245,  A/inf,660,  v,115,  ihaile-,365,  D,455,  Merja,315,  = 3205ms.
+1035, taydy Pekan_gen ei ihailla Merjaa , taytyy,315,  D,150,  Pekka,315,  ei,280,  A/inf,650,  v,115,  ihaile-,365,  D,445,  Merja,315,  = 2950ms.
+1036, taydy#C/fin Pekan_gen ei myyda omaisuuttaan , T/prt,270,  taytyy,315,  D,150,  Pekka,315,  ei,245,  A/inf,560,  v,115,  myy,215,  D,455,  omaisuuden,465,  = 3105ms.
+1037, taydy Pekan_gen ei myyda omaisuuttaan , taytyy,315,  D,150,  Pekka,315,  ei,280,  A/inf,550,  v,115,  myy,215,  D,445,  omaisuuden,465,  = 2850ms.
+1038, ihailla#C/fin Pekan_gen ei taydy Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  ei,245,  T/prt,565,  taytyy,315,  D,445,  Merja,315,  = 3200ms.
+1039, ihailla Pekan_gen ei taydy Merjaa , v,115,  ihaile-,365,  D,120,  Pekka,315,  ei,355,  T/prt,555,  taytyy,315,  D,435,  Merja,315,  ei,496,  T/prt,375,  taytyy,315,  D,425,  Merja,315,  D,501,  Merja,315,  = 5632ms.
+1040, halua Pekka ei myyda omaisuuttaan , v,115,  haluaa,315,  D,150,  Pekka,315,  ei,285,  A/inf,540,  v,115,  myy,215,  D,450,  omaisuuden,465,  = 2965ms.
+1041, ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  sano-,265,  etta,590,  D,500,  Pekka,315,  T,880,  v,115,  haluaa,315,  D,875,  Merja,315,  = 5930ms.
+1042, lahtea#C/op Pekka sanoo etta Pekan_gen taytyy , A/inf,320,  lahtea,315,  D,150,  Pekka,315,  T,445,  sano-,265,  etta,585,  D,495,  Pekka,315,  T,795,  taytyy,315,  = 4315ms.
+1043, haluaa#C/op Pekka sanoo etta ihailla Merjaa , T,315,  v,115,  haluaa,315,  D,150,  Pekka,315,  T,495,  sano-,265,  etta,590,  A/inf,755,  v,115,  ihaile-,365,  D,600,  Merja,315,  etta,556,  A/inf,570,  v,115,  ihaile-,365,  D,400,  Merja,315,  = 7031ms.
+1044, ihailee#C/op Pekka sanoo etta Merjaa , T,315,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,495,  sano-,265,  etta,590,  D,500,  Merja,315,  etta,541,  D,330,  Merja,315,  = 4611ms.
+1045, taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa , T,315,  taytyy,315,  D,150,  Pekka,315,  T,490,  sano-,265,  etta,585,  D,495,  Pekka,315,  A/inf,850,  v,115,  ihaile-,365,  D,650,  Merja,315,  etta,551,  D,325,  Pekka,315,  A/inf,675,  v,115,  ihaile-,365,  D,465,  Merja,315,  = 8666ms.
+1046, haluaa#C/op Pekka sanoo etta myyda omaisuutensa , T,315,  v,115,  haluaa,315,  D,150,  Pekka,315,  T,495,  sano-,265,  etta,590,  A/inf,655,  v,115,  myy,215,  D,600,  omaisuuden,465,  etta,706,  A/inf,470,  v,115,  myy,215,  D,400,  omaisuuden,465,  = 6981ms.
+1047, myi#C/op Pekka sanoo etta omaisuutensa , T,315,  v,115,  myy,215,  D,150,  Pekka,315,  T,495,  sano-,265,  etta,590,  D,500,  omaisuuden,465,  etta,711,  D,315,  omaisuuden,465,  = 4916ms.
+1048, taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa , T,315,  taytyy,315,  D,150,  Pekka,315,  T,490,  sano-,265,  etta,585,  D,495,  Pekka,315,  A/inf,750,  v,115,  myy,215,  D,650,  omaisuuden,465,  etta,701,  D,325,  Pekka,315,  A/inf,575,  v,115,  myy,215,  D,465,  omaisuuden,465,  = 8616ms.
+1049, ihailla#C/fin Pekka sanoo etta haluaa Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  sano-,265,  etta,590,  T,700,  v,115,  haluaa,315,  D,630,  Merja,315,  etta,556,  T,530,  v,115,  haluaa,315,  D,445,  Merja,315,  = 6966ms.
+1050, lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy , A/inf,320,  lahtea,315,  D,150,  Pekka,315,  T,445,  sano-,265,  etta,585,  D,495,  Pekka,315,  T,795,  taytyy,315,  etta,541,  D,310,  Pekka,315,  T,605,  taytyy,315,  = 6401ms.
+1051, ihailla Pekka sanoo etta haluaa Merjaa , v,115,  ihaile-,365,  D,120,  Pekka,315,  T,470,  sano-,265,  etta,420,  T,510,  v,115,  haluaa,315,  D,545,  Merja,315,  D,481,  Merja,315,  etta,481,  T,420,  v,115,  haluaa,315,  D,320,  Merja,315,  T,451,  sano-,265,  etta,580,  T,690,  v,115,  haluaa,315,  D,620,  Merja,315,  etta,546,  T,520,  v,115,  haluaa,315,  D,435,  Merja,315,  = 12229ms.
+1052, lahtea Pekka sanoo etta Pekan_genan taytyy , lahtea,315,  D,120,  Pekka,315,  T,415,  sano-,265,  etta,575,  ?,935,  T,725,  taytyy,315,  etta,531,  ?,750,  T,540,  taytyy,315,  = 6116ms.
+1053, haluaa#C/fin Pekka sanoo etta myyda omaisuutensa , T,315,  v,115,  haluaa,315,  D,150,  Pekka,315,  T,495,  sano-,265,  etta,590,  A/inf,655,  v,115,  myy,215,  D,600,  omaisuuden,465,  etta,706,  A/inf,470,  v,115,  myy,215,  D,400,  omaisuuden,465,  = 6981ms.
+1054, myi#C/fin Pekka sanoo etta omaisuutensa , T,315,  v,115,  myy,215,  D,150,  Pekka,315,  T,495,  sano-,265,  etta,590,  D,500,  omaisuuden,465,  etta,711,  D,315,  omaisuuden,465,  = 4916ms.
+1055, taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa , T,315,  taytyy,315,  D,150,  Pekka,315,  T,490,  sano-,265,  etta,585,  D,495,  Pekka,315,  A/inf,750,  v,115,  myy,215,  D,650,  omaisuuden,465,  etta,701,  D,325,  Pekka,315,  A/inf,575,  v,115,  myy,215,  D,465,  omaisuuden,465,  = 8616ms.
+1056, haluaa Pekka sanoo etta myyda omaisuutensa , v,115,  haluaa,315,  D,150,  Pekka,315,  T,485,  sano-,265,  etta,580,  A/inf,645,  v,115,  myy,215,  D,590,  omaisuuden,465,  etta,696,  A/inf,460,  v,115,  myy,215,  D,390,  omaisuuden,465,  = 6596ms.
+1057, myi Pekka sanoo etta omaisuutensa , v,115,  myy,215,  D,150,  Pekka,315,  T,485,  sano-,265,  etta,580,  D,490,  omaisuuden,465,  etta,701,  D,305,  omaisuuden,465,  = 4551ms.
+1058, taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa , taytyy,315,  D,150,  Pekka,315,  T,480,  sano-,265,  etta,575,  D,485,  Pekka,315,  A/inf,740,  v,115,  myy,215,  D,640,  omaisuuden,465,  etta,691,  D,315,  Pekka,315,  A/inf,565,  v,115,  myy,215,  D,455,  omaisuuden,465,  = 8211ms.
+1059, ihailemalla#C/op Pekka istuu Merjaa , malla,570,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  istuu,265,  D,535,  Merja,315,  D,586,  Merja,315,  = 3976ms.
+1060, ihailla#C/op sopimus Merjaa istuu , A/inf,370,  v,115,  ihaile-,365,  sopimus,450,  D,215,  Merja,315,  T,505,  istuu,265,  = 2600ms.
+1061, ihailla#C/op Pekka teki sopimuksen Merjaa , A/inf,370,  v,115,  ihaile-,365,  D,150,  Pekka,315,  T,445,  v,115,  teke,265,  D,430,  sopimus,415,  D,565,  Merja,315,  = 3865ms.
+1062, C/fin Pekka ihailee#C/op Merjaa , D,150,  Pekka,315,  C,460,  T,315,  v,115,  ihaile-,365,  D,360,  Merja,315,  = 2395ms.
+1063, C/fin Pekka ei#C/op ihaile Merjaa , D,150,  Pekka,315,  C,460,  ei,115,  T,615,  v,115,  ihaile-,365,  D,440,  Merja,315,  = 2890ms.
+1064, C/fin Pekka on'#C/op ihaillut Merjaa , D,150,  Pekka,315,  C,460,  T,315,  BE,165,  T/prt,595,  v,115,  ihaile-,365,  D,440,  Merja,315,  T/prt,486,  v,115,  ihaile-,365,  D,340,  Merja,315,  T,315,  BE,165,  T/prt,595,  v,115,  ihaile-,365,  D,440,  Merja,315,  T/prt,486,  v,115,  ihaile-,365,  D,340,  Merja,315,  = 8787ms.
+1065, C/fin Pekka ei#C/op ollut ihaillut Merjaa , D,150,  Pekka,315,  C,460,  ei,115,  T,360,  T/prt,635,  v,115,  ihaile-,365,  D,575,  Merja,315,  = 3405ms.
+1066, C/fin Pekka haluaa#C/op ihailla Merjaa , D,150,  Pekka,315,  C,460,  T,315,  v,115,  haluaa,315,  A/inf,615,  v,115,  ihaile-,365,  D,410,  Merja,315,  = 3490ms.
+1067, C/fin Pekan_genn taytyy#C/op ihailla Merjaa , ?,550,  C,395,  T,315,  taytyy,315,  A/inf,590,  v,115,  ihaile-,365,  D,395,  Merja,315,  = 3355ms.
+1068, C/fin Pekan_gen ei#C/op taydy ihailla Merjaa , D,150,  Pekka,315,  C,440,  ei,115,  T/prt,485,  taytyy,315,  A/inf,680,  v,115,  ihaile-,365,  D,565,  Merja,315,  = 3860ms.
+1069, C/fin Pekka ei#C/op halua ihailla Merjaa , D,150,  Pekka,315,  C,460,  ei,115,  T,565,  v,115,  haluaa,315,  A/inf,695,  v,115,  ihaile-,365,  D,585,  Merja,315,  = 4110ms.
+1070, C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa , D,150,  Pekka,315,  C,460,  T,315,  sano-,265,  etta,495,  T,685,  v,115,  haluaa,315,  A/inf,855,  v,115,  ihaile-,365,  D,730,  Merja,315,  T,501,  v,115,  haluaa,315,  A/inf,735,  v,115,  ihaile-,365,  D,595,  Merja,315,  etta,501,  T,495,  v,115,  haluaa,315,  A/inf,665,  v,115,  ihaile-,365,  D,525,  Merja,315,  = 11962ms.
+1071, C/fin Pekka kaskee#C/op poikien ihailla Merjaa , D,150,  Pekka,315,  C,460,  T,315,  v,115,  kaske,315,  D,360,  poika,315,  A/inf,735,  v,115,  ihaile-,365,  D,540,  Merja,315,  = 4415ms.
+1072, C/fin Pekka istuu#C/op ihailemalla Merjaa , D,150,  Pekka,315,  C,460,  T,315,  istuu,265,  malla,835,  v,115,  ihaile-,365,  D,410,  Merja,315,  malla,481,  v,115,  ihaile-,365,  D,360,  Merja,315,  = 5181ms.
+1073, C/fin Pekka istuu#C/op haluamalla ihailla Merjaa , D,150,  Pekka,315,  C,460,  T,315,  istuu,265,  malla,785,  v,115,  haluaa,315,  A/inf,665,  v,115,  ihaile-,365,  D,550,  Merja,315,  malla,496,  v,115,  haluaa,315,  A/inf,615,  v,115,  ihaile-,365,  D,455,  Merja,315,  = 7521ms.
+1074, C/fin Pekka teki#C/op sopimuksen ihailla Merjaa , D,150,  Pekka,315,  C,460,  T,315,  v,115,  teke,265,  D,360,  sopimus,415,  A/inf,760,  v,115,  ihaile-,365,  D,575,  Merja,315,  = 4525ms.
+1075, Pekka ei ihaile#C/op Merjaa , Pekka,315,  ei,160,  C,460,  T,320,  v,115,  ihaile-,365,  D,380,  Merja,315,  = 2430ms.
+1076, Pekka on' ihaillut#C/op Merjaa , Pekka,315,  T,360,  BE,165,  C,525,  T/prt,315,  v,115,  ihaile-,365,  D,425,  Merja,315,  C,511,  T/prt,315,  v,115,  ihaile-,365,  D,260,  Merja,315,  T,360,  BE,165,  C,525,  T/prt,315,  v,115,  ihaile-,365,  D,425,  Merja,315,  C,511,  T/prt,315,  v,115,  ihaile-,365,  D,260,  Merja,315,  = 9247ms.
+1077, Pekka ei ollut#C/op ihaillut Merjaa , Pekka,315,  ei,160,  C,460,  T,65,  T/prt,555,  v,115,  ihaile-,365,  D,460,  Merja,315,  = 2810ms.
+1078, Pekka haluaa ihailla#C/op Merjaa , Pekka,315,  T,360,  v,115,  haluaa,315,  C,470,  A/inf,370,  v,115,  ihaile-,365,  D,405,  Merja,315,  = 3145ms.
+1079, Pekan_gen taytyy ihailla#C/op Merjaa , Pekka,315,  T,360,  taytyy,315,  C,430,  A/inf,370,  v,115,  ihaile-,365,  D,390,  Merja,315,  = 2975ms.
+1080, Pekan_gen ei taydy#C/op ihailla Merjaa , Pekka,315,  ei,160,  C,460,  T/prt,270,  taytyy,315,  A/inf,625,  v,115,  ihaile-,365,  D,430,  Merja,315,  = 3370ms.
+1081, Pekka ei halua#C/op ihailla Merjaa , Pekka,315,  ei,160,  C,460,  T,270,  v,115,  haluaa,315,  A/inf,635,  v,115,  ihaile-,365,  D,430,  Merja,315,  = 3495ms.
+1082, Pekka kaskee poikien ihailla#C/op Merjaa , Pekka,315,  T,360,  v,115,  kaske,315,  D,270,  poika,315,  C,645,  A/inf,370,  v,115,  ihaile-,365,  D,530,  Merja,315,  = 4030ms.
+1083, Pekka ei ollut ihaillut#C/op Merjaa , Pekka,315,  ei,160,  T,210,  C,540,  T/prt,315,  v,115,  ihaile-,365,  D,505,  Merja,315,  = 2840ms.
+1084, Pekan_gen ei taydy ihailla#C/op Merjaa , Pekka,315,  ei,160,  T/prt,415,  taytyy,315,  C,520,  A/inf,370,  v,115,  ihaile-,365,  D,520,  Merja,315,  = 3410ms.
+1085, Pekka ei halua ihailla#C/op Merjaa , Pekka,315,  ei,160,  T,415,  v,115,  haluaa,315,  C,565,  A/inf,370,  v,115,  ihaile-,365,  D,490,  Merja,315,  = 3540ms.
+1086, Pekka sanoo etta haluaa ihailla#C/op Merjaa , Pekka,315,  T,360,  sano-,265,  etta,435,  T,545,  v,115,  haluaa,315,  C,660,  A/inf,370,  v,115,  ihaile-,365,  D,645,  Merja,315,  etta,526,  T,420,  v,115,  haluaa,315,  C,520,  A/inf,370,  v,115,  ihaile-,365,  D,480,  Merja,315,  = 8361ms.
+1087, Pekka istuu ihailemalla#C/op Merjaa , Pekka,315,  T,360,  istuu,265,  C,525,  malla,570,  v,115,  ihaile-,365,  D,395,  Merja,315,  C,511,  malla,570,  v,115,  ihaile-,365,  D,245,  Merja,315,  = 5346ms.
+1088, Pekka istuu haluamalla ihailla#C/op Merjaa , Pekka,315,  T,360,  istuu,265,  malla,730,  v,115,  haluaa,315,  C,540,  A/inf,370,  v,115,  ihaile-,365,  D,555,  Merja,315,  malla,556,  v,115,  haluaa,315,  C,410,  A/inf,370,  v,115,  ihaile-,365,  D,400,  Merja,315,  = 7321ms.
+1089, Pekka teki sopimuksen ihailla#C/op Merjaa , Pekka,315,  T,360,  v,115,  teke,265,  D,270,  sopimus,415,  C,600,  A/inf,370,  v,115,  ihaile-,365,  D,560,  Merja,315,  = 4065ms.
+1090, loro mi=lavano , loro,265,  T,360,  v,115,  lava,265,  D,235,  mi(cl),165,  = 1405ms.
+1091, mi=lavano , v,115,  lava,265,  D,150,  mi(cl),165,  = 695ms.
+1092, loro la=lavano , loro,265,  T,360,  v,115,  lava,265,  D,235,  la(cl),165,  = 1405ms.
+1093, la=lavano , v,115,  lava,265,  D,150,  la(cl),165,  = 695ms.
+1094, loro lo=lavano , loro,265,  T,360,  v,115,  lava,265,  D,235,  lo(cl),165,  = 1405ms.
+1095, lo=lavano , v,115,  lava,265,  D,150,  lo(cl),165,  = 695ms.
+1096, loro lavano=mi , loro,265,  D,160,  mi(cl),165,  T,620,  v,115,  lava,265,  T,396,  v,115,  lava,265,  = 2366ms.
+1097, lavano=mi , mi(cl),165,  T,360,  v,115,  lava,265,  = 905ms.
+1098, loro=mi lavano , mi(cl),165,  D,160,  loro,265,  T,620,  v,115,  lava,265,  T,316,  v,115,  lava,265,  = 2286ms.
+1099, mi=loro lavano , loro,265,  D,160,  mi(cl),165,  T,620,  v,115,  lava,265,  T,396,  v,115,  lava,265,  = 2366ms.
+1100, loro lavano mi , loro,265,  T,360,  v,115,  lava,265,  D,235,  mi(cl),165,  = 1405ms.
+1101, loro mi=lavano Luisa , loro,265,  T,360,  v,115,  lava,265,  D,235,  mi(cl),165,  D,495,  Luisa,315,  D,481,  Luisa,315,  D,466,  Luisa,315,  = 3792ms.
+1102, io mi=lavano , io,165,  T,360,  v,115,  lava,265,  D,235,  mi(cl),165,  = 1305ms.
+1103, loro mi=hanno lavato , loro,265,  T,360,  ha,165,  D,260,  mi(cl),165,  T/prt,685,  v,115,  lava,265,  = 2280ms.
+1104, loro la=hanno lavata , loro,265,  T,360,  ha,165,  D,260,  la(cl),165,  T/prt,685,  v,115,  lava,265,  = 2280ms.
+1105, mi=hanno lavato , ha,165,  D,150,  mi(cl),165,  T/prt,580,  v,115,  lava,265,  = 1440ms.
+1106, la=hanno lavata , ha,165,  D,150,  la(cl),165,  T/prt,580,  v,115,  lava,265,  = 1440ms.
+1107, lo=hanno lavato , ha,165,  D,150,  lo(cl),165,  T/prt,580,  v,115,  lava,265,  = 1440ms.
+1108, loro hanno mi=lavato , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  lava,265,  D,340,  mi(cl),165,  T/prt,201,  v,115,  lava,265,  D,235,  mi(cl),165,  = 3121ms.
+1109, loro hanno la=lavato , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  lava,265,  D,340,  la(cl),165,  T/prt,201,  v,115,  lava,265,  D,235,  la(cl),165,  = 3121ms.
+1110, hanno mi=lavato , ha,165,  T/prt,350,  v,115,  lava,265,  D,245,  mi(cl),165,  = 1305ms.
+1111, io sono=mi lavato , io,165,  D,160,  mi(cl),165,  T,525,  BE,165,  T/prt,520,  v,115,  lava,265,  T/prt,406,  v,115,  lava,265,  T,396,  BE,165,  T/prt,420,  v,115,  lava,265,  = 4227ms.
+1112, loro hanno lo=lavato , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  lava,265,  D,340,  lo(cl),165,  T/prt,201,  v,115,  lava,265,  D,235,  lo(cl),165,  = 3121ms.
+1113, hanno lo=lavato , ha,165,  T/prt,350,  v,115,  lava,265,  D,245,  lo(cl),165,  = 1305ms.
+1114, hanno la=lavato , ha,165,  T/prt,350,  v,115,  lava,265,  D,245,  la(cl),165,  = 1305ms.
+1115, loro hanno lavato=mi , loro,265,  T,360,  ha,165,  D,260,  mi(cl),165,  T/prt,430,  v,115,  lava,265,  D,301,  mi(cl),165,  T/prt,560,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  = 4147ms.
+1116, loro hanno lavato=la , loro,265,  T,360,  ha,165,  D,260,  la(cl),165,  T/prt,430,  v,115,  lava,265,  D,301,  la(cl),165,  T/prt,560,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  = 4147ms.
+1117, loro hanno lavato=lo , loro,265,  T,360,  ha,165,  D,260,  lo(cl),165,  T/prt,430,  v,115,  lava,265,  D,301,  lo(cl),165,  T/prt,560,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  = 4147ms.
+1118, mi=io sono lavato , io,165,  D,160,  mi(cl),165,  T,525,  BE,165,  T/prt,520,  v,115,  lava,265,  T/prt,406,  v,115,  lava,265,  T,396,  BE,165,  T/prt,420,  v,115,  lava,265,  = 4227ms.
+1119, io=mi sono lavato , mi(cl),165,  D,160,  io,165,  T,525,  BE,165,  T/prt,385,  v,115,  lava,265,  T,316,  BE,165,  T/prt,500,  v,115,  lava,265,  T/prt,301,  v,115,  lava,265,  = 3987ms.
+1120, loro=mi hanno lavato , mi(cl),165,  D,160,  loro,265,  T,620,  ha,165,  T/prt,385,  v,115,  lava,265,  T,316,  ha,165,  T/prt,500,  v,115,  lava,265,  T/prt,301,  v,115,  lava,265,  = 4182ms.
+1121, la=io sono lavato , io,165,  D,160,  la(cl),165,  T,525,  BE,165,  T/prt,520,  v,115,  lava,265,  T/prt,406,  v,115,  lava,265,  T,396,  BE,165,  T/prt,420,  v,115,  lava,265,  = 4227ms.
+1122, io=la sono lavato , la(cl),165,  D,160,  io,165,  T,525,  BE,165,  T/prt,385,  v,115,  lava,265,  T,316,  BE,165,  T/prt,500,  v,115,  lava,265,  T/prt,301,  v,115,  lava,265,  = 3987ms.
+1123, loro=la hanno lavato , la(cl),165,  D,160,  loro,265,  T,620,  ha,165,  T/prt,385,  v,115,  lava,265,  T,316,  ha,165,  T/prt,500,  v,115,  lava,265,  T/prt,301,  v,115,  lava,265,  = 4182ms.
+1124, lo=io sono lavato , io,165,  D,160,  lo(cl),165,  T,525,  BE,165,  T/prt,520,  v,115,  lava,265,  T/prt,406,  v,115,  lava,265,  T,396,  BE,165,  T/prt,420,  v,115,  lava,265,  = 4227ms.
+1125, io=lo sono lavato , lo(cl),165,  D,160,  io,165,  T,525,  BE,165,  T/prt,385,  v,115,  lava,265,  T,316,  BE,165,  T/prt,500,  v,115,  lava,265,  T/prt,301,  v,115,  lava,265,  = 3987ms.
+1126, loro=lo hanno lavato , lo(cl),165,  D,160,  loro,265,  T,620,  ha,165,  T/prt,385,  v,115,  lava,265,  T,316,  ha,165,  T/prt,500,  v,115,  lava,265,  T/prt,301,  v,115,  lava,265,  = 4182ms.
+1127, mi=loro hanno lavato , loro,265,  D,160,  mi(cl),165,  T,620,  ha,165,  T/prt,520,  v,115,  lava,265,  T/prt,406,  v,115,  lava,265,  T,396,  ha,165,  T/prt,420,  v,115,  lava,265,  = 4422ms.
+1128, io sono=la lavata , io,165,  D,160,  la(cl),165,  T,525,  BE,165,  T/prt,520,  v,115,  lava,265,  T/prt,406,  v,115,  lava,265,  T,396,  BE,165,  T/prt,420,  v,115,  lava,265,  = 4227ms.
+1129, io sono=lo lavato , io,165,  D,160,  lo(cl),165,  T,525,  BE,165,  T/prt,520,  v,115,  lava,265,  T/prt,406,  v,115,  lava,265,  T,396,  BE,165,  T/prt,420,  v,115,  lava,265,  = 4227ms.
+1130, loro mi=devono lavare , loro,265,  T,360,  deva,265,  D,260,  mi(cl),165,  are,860,  v,115,  lava,265,  = 2555ms.
+1131, loro devono lavare=mi , loro,265,  T,360,  deva,265,  D,260,  mi(cl),165,  are,435,  v,115,  lava,265,  = 2130ms.
+1132, loro la=devono lavare , loro,265,  T,360,  deva,265,  D,260,  la(cl),165,  are,860,  v,115,  lava,265,  = 2555ms.
+1133, loro devono lavare=la , loro,265,  T,360,  deva,265,  D,260,  la(cl),165,  are,435,  v,115,  lava,265,  = 2130ms.
+1134, loro lo=devono lavare , loro,265,  T,360,  deva,265,  D,260,  lo(cl),165,  are,860,  v,115,  lava,265,  = 2555ms.
+1135, loro devono lavare=lo , loro,265,  T,360,  deva,265,  D,260,  lo(cl),165,  are,435,  v,115,  lava,265,  = 2130ms.
+1136, mi=devono lavare , deva,265,  D,150,  mi(cl),165,  are,650,  v,115,  lava,265,  = 1610ms.
+1137, devono lavare=mi , deva,265,  D,150,  mi(cl),165,  are,400,  v,115,  lava,265,  = 1360ms.
+1138, la=devono lavare , deva,265,  D,150,  la(cl),165,  are,650,  v,115,  lava,265,  = 1610ms.
+1139, devono lavare=la , deva,265,  D,150,  la(cl),165,  are,400,  v,115,  lava,265,  = 1360ms.
+1140, lo=devono lavare , deva,265,  D,150,  lo(cl),165,  are,650,  v,115,  lava,265,  = 1610ms.
+1141, devono lavare=lo , deva,265,  D,150,  lo(cl),165,  are,400,  v,115,  lava,265,  = 1360ms.
+1142, loro devono mi=lavare , loro,265,  T,360,  deva,265,  are,565,  v,115,  lava,265,  D,320,  mi(cl),165,  are,201,  v,115,  lava,265,  D,210,  mi(cl),165,  = 3276ms.
+1143, loro devono la=lavare , loro,265,  T,360,  deva,265,  are,565,  v,115,  lava,265,  D,320,  la(cl),165,  are,201,  v,115,  lava,265,  D,210,  la(cl),165,  = 3276ms.
+1144, loro devono lo=lavare , loro,265,  T,360,  deva,265,  are,565,  v,115,  lava,265,  D,320,  lo(cl),165,  are,201,  v,115,  lava,265,  D,210,  lo(cl),165,  = 3276ms.
+1145, loro=la devono lavare , la(cl),165,  D,160,  loro,265,  T,620,  deva,265,  are,390,  v,115,  lava,265,  T,316,  deva,265,  are,505,  v,115,  lava,265,  are,301,  v,115,  lava,265,  = 4392ms.
+1146, loro=lo devono lavare , lo(cl),165,  D,160,  loro,265,  T,620,  deva,265,  are,390,  v,115,  lava,265,  T,316,  deva,265,  are,505,  v,115,  lava,265,  are,301,  v,115,  lava,265,  = 4392ms.
+1147, loro=mi devono lavare , mi(cl),165,  D,160,  loro,265,  T,620,  deva,265,  are,390,  v,115,  lava,265,  T,316,  deva,265,  are,505,  v,115,  lava,265,  are,301,  v,115,  lava,265,  = 4392ms.
+1148, devono mi=lavare loro , deva,265,  are,450,  v,115,  lava,265,  D,220,  mi(cl),165,  D,230,  loro,265,  = 1975ms.
+1149, devono la=lavare loro , deva,265,  are,450,  v,115,  lava,265,  D,220,  la(cl),165,  D,230,  loro,265,  = 1975ms.
+1150, devono lo=lavare loro , deva,265,  are,450,  v,115,  lava,265,  D,220,  lo(cl),165,  D,230,  loro,265,  = 1975ms.
+1151, devono lavare loro=la , deva,265,  are,355,  v,115,  lava,265,  D,220,  la(cl),165,  D,230,  loro,265,  = 1880ms.
+1152, devono lavare loro=lo , deva,265,  are,355,  v,115,  lava,265,  D,220,  lo(cl),165,  D,230,  loro,265,  = 1880ms.
+1153, devono lavare loro=mi , deva,265,  are,355,  v,115,  lava,265,  D,220,  mi(cl),165,  D,230,  loro,265,  = 1880ms.
+1154, loro mi=stanno lavando , loro,265,  T,360,  sta,215,  D,260,  mi(cl),165,  PRG,910,  v,115,  lava,265,  = 2555ms.
+1155, mi=stanno lavando , sta,215,  D,150,  mi(cl),165,  PRG,700,  v,115,  lava,265,  = 1610ms.
+1156, la=stanno lavando , sta,215,  D,150,  la(cl),165,  PRG,700,  v,115,  lava,265,  = 1610ms.
+1157, lo=stanno lavando , sta,215,  D,150,  lo(cl),165,  PRG,700,  v,115,  lava,265,  = 1610ms.
+1158, loro stanno lavando=mi , loro,265,  T,360,  sta,215,  D,260,  mi(cl),165,  PRG,485,  v,115,  lava,265,  = 2130ms.
+1159, stanno lavando=mi , sta,215,  D,150,  mi(cl),165,  PRG,450,  v,115,  lava,265,  = 1360ms.
+1160, stanno lavando=la , sta,215,  D,150,  la(cl),165,  PRG,450,  v,115,  lava,265,  = 1360ms.
+1161, stanno lavando=lo , sta,215,  D,150,  lo(cl),165,  PRG,450,  v,115,  lava,265,  = 1360ms.
+1162, loro stanno mi=lavando , loro,265,  T,360,  sta,215,  PRG,365,  v,115,  lava,265,  D,320,  mi(cl),165,  PRG,201,  v,115,  lava,265,  D,210,  mi(cl),165,  = 3026ms.
+1163, stanno mi=lavando , sta,215,  PRG,250,  v,115,  lava,265,  D,220,  mi(cl),165,  = 1230ms.
+1164, stanno la=lavando , sta,215,  PRG,250,  v,115,  lava,265,  D,220,  la(cl),165,  = 1230ms.
+1165, stanno lo=lavando , sta,215,  PRG,250,  v,115,  lava,265,  D,220,  lo(cl),165,  = 1230ms.
+1166, loro=mi stanno lavando , mi(cl),165,  D,160,  loro,265,  T,620,  sta,215,  PRG,440,  v,115,  lava,265,  T,316,  sta,215,  PRG,555,  v,115,  lava,265,  PRG,301,  v,115,  lava,265,  = 4392ms.
+1167, loro=la stanno lavando , la(cl),165,  D,160,  loro,265,  T,620,  sta,215,  PRG,440,  v,115,  lava,265,  T,316,  sta,215,  PRG,555,  v,115,  lava,265,  PRG,301,  v,115,  lava,265,  = 4392ms.
+1168, loro=lo stanno lavando , lo(cl),165,  D,160,  loro,265,  T,620,  sta,215,  PRG,440,  v,115,  lava,265,  T,316,  sta,215,  PRG,555,  v,115,  lava,265,  PRG,301,  v,115,  lava,265,  = 4392ms.
+1169, loro mi=hanno voluto lavare , loro,265,  T,360,  ha,165,  D,260,  mi(cl),165,  T/prt,685,  v,115,  volu,265,  are,580,  v,115,  lava,265,  = 3240ms.
+1170, loro hanno voluto lavare=mi , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  volu,265,  D,340,  mi(cl),165,  are,470,  v,115,  lava,265,  = 2990ms.
+1171, mi=hanno voluto lavare , ha,165,  D,150,  mi(cl),165,  T/prt,580,  v,115,  volu,265,  are,485,  v,115,  lava,265,  = 2305ms.
+1172, hanno voluto lavare=mi , ha,165,  T/prt,350,  v,115,  volu,265,  D,245,  mi(cl),165,  are,435,  v,115,  lava,265,  = 2120ms.
+1173, loro hanno mi=voluto lavare , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  volu,265,  D,340,  mi(cl),165,  are,470,  v,115,  lava,265,  T/prt,301,  v,115,  volu,265,  D,235,  mi(cl),165,  are,435,  v,115,  lava,265,  = 4886ms.
+1174, loro hanno voluto mi=lavare , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  volu,265,  are,640,  v,115,  lava,265,  D,455,  mi(cl),165,  T/prt,201,  v,115,  volu,265,  are,535,  v,115,  lava,265,  D,330,  mi(cl),165,  = 5266ms.
+1175, loro=mi hanno voluto lavare , mi(cl),165,  D,160,  loro,265,  T,620,  ha,165,  T/prt,385,  v,115,  volu,265,  are,485,  v,115,  lava,265,  T,316,  ha,165,  T/prt,500,  v,115,  volu,265,  are,580,  v,115,  lava,265,  T/prt,301,  v,115,  volu,265,  are,475,  v,115,  lava,265,  = 6862ms.
+1176, mi=loro hanno voluto lavere , loro,265,  D,160,  mi(cl),165,  T,620,  ha,165,  T/prt,520,  v,115,  volu,265,  ?,540,  T/prt,681,  v,115,  volu,265,  ?,435,  T,566,  ha,165,  T/prt,420,  v,115,  volu,265,  ?,515,  = 6357ms.
+1177, hanno mi=voluto lavare , ha,165,  T/prt,350,  v,115,  volu,265,  D,245,  mi(cl),165,  are,435,  v,115,  lava,265,  = 2120ms.
+1178, hanno voluto mi=lavare , ha,165,  T/prt,350,  v,115,  volu,265,  are,545,  v,115,  lava,265,  D,340,  mi(cl),165,  = 2325ms.
+1179, loro mi=hanno lavato , loro,265,  T,360,  ha,165,  D,260,  mi(cl),165,  T/prt,685,  v,115,  lava,265,  = 2280ms.
+1180, loro la=hanno lavato , loro,265,  T,360,  ha,165,  D,260,  la(cl),165,  T/prt,685,  v,115,  lava,265,  T/prt,481,  v,115,  lava,265,  D,381,  la(cl),165,  T/prt,560,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  = 5343ms.
+1181, loro mi=hanno lavata , loro,265,  T,360,  ha,165,  D,260,  mi(cl),165,  T/prt,685,  v,115,  lava,265,  T/prt,481,  v,115,  lava,265,  D,381,  mi(cl),165,  T/prt,560,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  = 5343ms.
+1182, loro lo=hanno lavata , loro,265,  T,360,  ha,165,  D,260,  lo(cl),165,  T/prt,685,  v,115,  lava,265,  T/prt,481,  v,115,  lava,265,  D,381,  lo(cl),165,  T/prt,560,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  = 5343ms.
+1183, la=hanno lavato , ha,165,  D,150,  la(cl),165,  T/prt,580,  v,115,  lava,265,  T/prt,481,  v,115,  lava,265,  = 2301ms.
+1184, mi=hanno lavata , ha,165,  D,150,  mi(cl),165,  T/prt,580,  v,115,  lava,265,  T/prt,481,  v,115,  lava,265,  = 2301ms.
+1185, lo=hanno lavata , ha,165,  D,150,  lo(cl),165,  T/prt,580,  v,115,  lava,265,  T/prt,481,  v,115,  lava,265,  = 2301ms.
+1186, loro gli=lavano Luisa , loro,265,  T,360,  v,115,  lava,265,  a,235,  D,115,  lo(cl),165,  D,445,  Luisa,315,  D,486,  Luisa,315,  D,471,  Luisa,315,  = 3867ms.
+1187, gli=lavano Luisa , v,115,  lava,265,  a,150,  D,115,  lo(cl),165,  D,310,  Luisa,315,  D,486,  Luisa,315,  = 2236ms.
+1188, loro gli=la=hanno lavata , loro,265,  T,360,  ha,165,  D,260,  la(cl),165,  a,495,  D,115,  lo(cl),165,  T/prt,635,  v,115,  lava,265,  = 3005ms.
+1189, gli=la=hanno lavata , ha,165,  D,150,  la(cl),165,  a,390,  D,115,  lo(cl),165,  T/prt,540,  v,115,  lava,265,  = 2070ms.
+1190, loro la=gli=hanno lavata , loro,265,  T,360,  ha,165,  a,270,  D,115,  lo(cl),165,  D,405,  la(cl),165,  T/prt,650,  v,115,  lava,265,  T/prt,346,  v,115,  lava,265,  D,426,  la(cl),165,  T/prt,680,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  a,381,  D,115,  lo(cl),165,  D,295,  la(cl),165,  T/prt,675,  v,115,  lava,265,  T/prt,346,  v,115,  lava,265,  D,411,  la(cl),165,  T/prt,560,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  = 11167ms.
+1191, la=gli=hanno lavata , ha,165,  a,150,  D,115,  lo(cl),165,  D,310,  la(cl),165,  T/prt,615,  v,115,  lava,265,  T/prt,346,  v,115,  lava,265,  D,426,  la(cl),165,  T/prt,560,  v,115,  lava,265,  T/prt,336,  v,115,  lava,265,  = 5038ms.
+1192, loro hanno gli=la=lavata , loro,265,  T,360,  ha,165,  T/prt,465,  v,115,  lava,265,  D,340,  la(cl),165,  a,265,  D,115,  lo(cl),165,  T/prt,201,  v,115,  lava,265,  D,235,  la(cl),165,  a,230,  D,115,  lo(cl),165,  = 4176ms.
+1193, hanno gli=la=lavata , ha,165,  T/prt,350,  v,115,  lava,265,  D,245,  la(cl),165,  a,230,  D,115,  lo(cl),165,  = 1815ms.
+1194, loro sembrano lavare=mi , loro,265,  T,360,  sembra,365,  D,230,  mi(cl),165,  are,435,  v,115,  lava,265,  = 2200ms.
+1195, Giuseppe spinge Luisa a lavare=lo , Giuseppe,465,  T,360,  v,115,  spinge,365,  D,235,  Luisa,315,  a,385,  D,370,  lo(cl),165,  are,535,  v,115,  lava,265,  are,431,  v,115,  lava,265,  a,436,  D,260,  lo(cl),165,  are,650,  v,115,  lava,265,  are,401,  v,115,  lava,265,  a,456,  D,190,  lo(cl),165,  are,535,  v,115,  lava,265,  are,401,  v,115,  lava,265,  = 9680ms.
+1196, sembrano lavare=mi , sembra,365,  D,150,  mi(cl),165,  are,400,  v,115,  lava,265,  = 1460ms.
+1197, spinge Luisa a lavare=lo , v,115,  spinge,365,  D,150,  Luisa,315,  a,255,  D,265,  lo(cl),165,  are,500,  v,115,  lava,265,  are,431,  v,115,  lava,265,  a,436,  D,190,  lo(cl),165,  are,535,  v,115,  lava,265,  are,401,  v,115,  lava,265,  = 5808ms.
+1198, loro mi=sembrano lavare , loro,265,  T,360,  sembra,365,  D,230,  mi(cl),165,  are,645,  v,115,  lava,265,  = 2410ms.
+1199, mi=sembrano lavare , sembra,365,  D,150,  mi(cl),165,  are,505,  v,115,  lava,265,  = 1565ms.
+1200, io lo=detesto lavare , io,165,  T,360,  v,115,  detest,365,  D,275,  lo(cl),165,  are,690,  v,115,  lava,265,  are,311,  v,115,  lava,265,  are,396,  v,115,  lava,265,  D,391,  lo(cl),165,  are,535,  v,115,  lava,265,  are,336,  v,115,  lava,265,  = 6169ms.
+1201, lo=detesto lavare , v,115,  detest,365,  D,150,  lo(cl),165,  are,565,  v,115,  lava,265,  are,311,  v,115,  lava,265,  = 2431ms.
+1202, Giuseppe lo=spinge Luisa a lavare , Giuseppe,465,  T,360,  v,115,  spinge,365,  D,235,  lo(cl),165,  D,495,  Luisa,315,  a,955,  are,615,  v,115,  lava,265,  a,466,  are,575,  v,115,  lava,265,  a,481,  are,465,  v,115,  lava,265,  a,471,  are,395,  v,115,  lava,265,  D,421,  Luisa,315,  a,560,  are,505,  v,115,  lava,265,  a,456,  are,465,  v,115,  lava,265,  a,456,  are,395,  v,115,  lava,265,  D,421,  Luisa,315,  a,340,  are,435,  v,115,  lava,265,  a,456,  are,395,  v,115,  lava,265,  = 16293ms.
+1203, lo=spinge Luisa a lavare Giuseppe , v,115,  spinge,365,  D,150,  lo(cl),165,  D,370,  Luisa,315,  a,700,  are,510,  v,115,  lava,265,  D,460,  Giuseppe,465,  a,671,  are,470,  v,115,  lava,265,  D,635,  Giuseppe,465,  D,671,  Giuseppe,465,  a,681,  are,395,  v,115,  lava,265,  D,295,  Giuseppe,465,  D,626,  Luisa,315,  a,340,  are,435,  v,115,  lava,265,  D,355,  Giuseppe,465,  a,661,  are,395,  v,115,  lava,265,  D,295,  Giuseppe,465,  = 15080ms.
+1204, io detesto lavare=lo , io,165,  T,360,  v,115,  detest,365,  D,275,  lo(cl),165,  are,435,  v,115,  lava,265,  D,441,  lo(cl),165,  are,535,  v,115,  lava,265,  are,456,  v,115,  lava,265,  T,360,  detest,365,  D,265,  lo(cl),165,  are,435,  v,115,  lava,265,  D,431,  lo(cl),165,  are,555,  v,115,  lava,265,  are,456,  v,115,  lava,265,  = 8954ms.
+1205, io mi=lavo , io,165,  T,360,  v,115,  lava,265,  D,235,  mi(cl),165,  = 1305ms.
+1206, mi=lavo , v,115,  lava,265,  D,150,  mi(cl),165,  = 695ms.
+1207, tu mi=lavi , tu,165,  T,360,  v,115,  lava,265,  D,235,  mi(cl),165,  = 1305ms.
+1208, mi=lavi , v,115,  lava,265,  D,150,  mi(cl),165,  = 695ms.

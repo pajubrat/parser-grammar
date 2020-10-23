@@ -79,7 +79,7 @@ class FloaterMovement():
                 dropped_floater = floater.copy_from_memory_buffer(self.babtize())
                 self.merge_floater(node, dropped_floater)
                 self.controlling_parser_process.consume_resources("Move Adjunct")
-                self.controlling_parser_process.consume_resources("Move Phrase")
+                self.controlling_parser_process.consume_resources("Move Phrase", f'{dropped_floater.illustrate()}')
                 floater_copy.remove()
                 return
             floater_copy.remove()

@@ -30,6 +30,7 @@ class LinearPhaseParser:
         self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
         self.morphology = Morphology(self)                      # Access to morphology
         self.transfer = Transfer(self)                          # Access to transfer
+        self.local_file_system = local_file_system              # Access to local file system
         self.LF = LF(self)                                      # Access to LF
         self.surface_conditions_module = SurfaceConditions()    # Surface conditions
         self.surface_conditions_pass = True                     # Surface conditions
@@ -42,6 +43,7 @@ class LinearPhaseParser:
         self.number_of_items_consumed = 0
         self.grammaticality_judgement = []
         self.time_from_stimulus_onset = 0
+        self.time_from_stimulus_onset_for_word = []
 
     # Definition for parser initialization
     def initialize(self):
@@ -64,6 +66,7 @@ class LinearPhaseParser:
         self.start_time = process_time()  # Calculates execution time
         self.grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
         self.time_from_stimulus_onset = 0
+        self.time_from_stimulus_onset_for_word = []
         self.resources = {"Garden Paths": {'ms': 1, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
                           "Move Head": {'ms': 5, 'n': 0},
@@ -73,7 +76,7 @@ class LinearPhaseParser:
                           "Move Adjunct": {'ms': 15, 'n': 0},
                           "Agree": {'ms': 5, 'n': 0},
                           "Transfer": {'ms': 5, 'n': 0},
-                          "Items from input": {'ms': 5, 'n': 0},
+                          "Item streamed into syntax": {'ms': 5, 'n': 0},
                           "Feature Processing": {'ms': 5, 'n': 0},
                           "Extraposition": {'ms': 15, 'n': 0},
                           "Inflection": {'ms': 5, 'n': 0},
@@ -94,6 +97,7 @@ class LinearPhaseParser:
         log('\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
         log(f'\n{count}. {self.sentence}')
         log(f'\n\n\t 1. {self.sentence}\n')
+        self.local_file_system.resource_sequence_file.write(f'\n{count}, {self.local_file_system.generate_input_sentence_string(lst)},  ')
         self.parse_new_item(None, lst, 0)
 
     def parse_new_item(self, ps, lst, index):
@@ -109,12 +113,12 @@ class LinearPhaseParser:
             self.complete_processing(ps)    # Finalizes the output
             return                          # Completes the parsing branch
 
-        self.time_from_stimulus_onset = int(len(lst[index]) * 90)
+        self.time_from_stimulus_onset = int(len(lst[index]) * 50)   # baseline/mean duration for each item
 
         # Try all lexical elements (if ambiguous)
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
             log('Lexical retrieval...')
-            self.consume_resources('Lexical retrieval')
+            self.consume_resources('Lexical retrieval', lst[index])
             terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
             terminal_lexical_item = self.process_inflection(inflection, terminal_lexical_item)
             log('Done.')
@@ -124,12 +128,12 @@ class LinearPhaseParser:
                 else:
                     self.parse_new_item(None, lst_branched, index + 1)
             else:
-                self.consume_resources("Items from input")
+                self.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
                 log('\n')
                 if not ps:
                     self.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
                 else:
-                    log(f'\n\t{self.resources["Items from input"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
+                    log(f'\n\t{self.resources["Item streamed into syntax"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
                     log(ps.illustrate() + ' + ' + terminal_lexical_item.get_phonological_string())
                     # -------------------------- consider merge solutions ------------------------------------- #
                     merge_sites = self.plausibility_metrics.rank_solutions(ps, terminal_lexical_item)
@@ -139,13 +143,15 @@ class LinearPhaseParser:
                         if left_branch_site_.bottom_affix().internal:
                             new_ps = left_branch_site_.sink(terminal_lexical_item)
                         else:
-                            log(f'\t\t\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
+                            log(f'\n\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
                             log('Transferring left branch...')
-                            self.consume_resources("Merge")
+                            self.consume_resources("Merge", f'{terminal_lexical_item}')
                             set_logging(False)
                             new_ps = self.transfer_to_LF(left_branch_site_) + terminal_lexical_item
                             set_logging(True)
                             log(f'Result: {new_ps}...Done.\n')
+                        if not self.first_solution_found:
+                            self.time_from_stimulus_onset_for_word.append((terminal_lexical_item, self.time_from_stimulus_onset))
                         self.parse_new_item(new_ps, lst_branched, index + 1)
                         if self.exit:
                             break
@@ -255,12 +261,13 @@ class LinearPhaseParser:
                 return False
         return True
 
-    def consume_resources(self, key):
+    def consume_resources(self, key, info=''):
         if key in self.resources and not self.first_solution_found:
             self.time_from_stimulus_onset += self.resources[key]['ms']
             self.resources[key]['n'] += 1
             log(f'({self.time_from_stimulus_onset}ms) ')
-
+            if self.local_file_system.settings['datatake_resource_sequence']:
+                self.local_file_system.resource_sequence_file.write(f'{key}({info}),{self.time_from_stimulus_onset},  ')
 
     def LF_legibility_test(self, ps):
         def detached(ps):

@@ -574,7 +574,7 @@ class PhraseStructure:
                                 return True
             return False
 
-        # Main function
+        #-----------------Main function--------------------------
         if 'ARG' in self.features:
             if 'VAL' in self.features:
                 phi_set = valued_phi(self)

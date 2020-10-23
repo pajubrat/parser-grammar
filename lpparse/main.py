@@ -19,7 +19,7 @@ def run_study():
         parser_for[language] = LinearPhaseParser(local_file_system, language)
         parser_for[language].initialize()
 
-    # Parse all sentences from the test corpus
+    # Analyze all sentences from the test corpus
     sentence_number = 1
     for sentence in local_file_system.read_test_corpus():
         if not is_comment(sentence):

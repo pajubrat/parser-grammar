@@ -111,7 +111,7 @@ halua	:: halua-#v#T LANG:FI
 haluamalla :: halua-#v#malla LANG:FI
 haluttiin	:: halua-#impass#T/fin#1p#pl LANG:FI
 haluttu		:: halua-#impass#T/prt LANG:FI
-halua- 	:: PF:haluaa LF:want V ASP:BOUNDED CLASS:TR -SPEC:* COMP:D COMP:A/inf SEM:internal LANG:FI
+halua- 	:: PF:haluaa LF:want V ASP:BOUNDED SEM:internal CLASS:TR -SPEC:* COMP:D COMP:A/inf LANG:FI
 
 hairitsee :: hairitse-#v#T/fin LANG:FI
 hairitse- :: PF:hairitsee LF:disturb V SPEC:D !COMP:D -COMP:FIN LANG:FI
@@ -598,7 +598,7 @@ ci-		:: PF:ci LF:there N PHI_N LANG:IT
 # Finnish infinitival agreement (Px)
 [-ni]	::	inflectional PHI PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-si]	::	inflectional PHI PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[-nsa]	:: 	inflectional PHI PHI:PER:3 LANG:FI
+[-nsa]	:: 	inflectional PHI PHI:PER:3 PHI:NUM:SG LANG:FI
 [-an]	:: 	inflectional PHI PHI:PER:3 LANG:FI
 [-mme]	::	inflectional PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-nne]	::	inflectional PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI

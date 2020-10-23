@@ -87,7 +87,7 @@ class LF:
                 if self.tail_match(target_node, constituent_from_MB, 'right'):
                     new_const = self.LFMerge(constituent_from_MB, target_node, 'right')
                     new_const.adjunct = True
-                    log(f'\t\t\t\t\t={target_node.top()}')
+                    log(f'={target_node.top()}')
                     break
 
     # Definition for Spec-Merge
@@ -118,7 +118,7 @@ class LF:
                 if head.complement_match(const):
                     self.LFMerge(const, head, 'right')
                     log(f'={head.top()}...')
-                    self.controlling_parsing_process.consume_resources("Move Phrase")
+                    self.controlling_parsing_process.consume_resources("Move Phrase", f'{const}')
                     break
 
         # Case 2. Wrong complement
@@ -131,15 +131,15 @@ class LF:
                     log(f'Externalizing {old_complement}...')
                     old_complement.adjunct = True
                     self.controlling_parsing_process.syntactic_working_memory.remove(const)
-                    self.controlling_parsing_process.consume_resources("Move Phrase")
+                    self.controlling_parsing_process.consume_resources("Move Phrase", f'{const}')
                     break
 
     def LFMerge(self, constituent_from_MB, target, direction='left'):
         log(f'Merging {constituent_from_MB} {direction} of {target}...')
         new_const = constituent_from_MB.copy_from_memory_buffer(self.controlling_parsing_process.babtize())
         target.merge_1(new_const, direction)
+        self.controlling_parsing_process.consume_resources("Move Phrase", f'{constituent_from_MB}')
         self.controlling_parsing_process.syntactic_working_memory.remove(constituent_from_MB)
-        self.controlling_parsing_process.consume_resources("Move Phrase")
         self.controlling_parsing_process.consume_resources("A-bar Move Phrase")
         return new_const
 
@@ -163,10 +163,10 @@ class LF:
     # Definition for the LF-interface legibility test
     def test(self, ps):
         self.reset_flags()
-        self.controlling_parsing_process.consume_resources("LF test")
+        self.controlling_parsing_process.consume_resources("LF test", f'{ps}')
         log('LF-interface test...')
         if not self._test(ps).all_pass():
-            self.controlling_parsing_process.consume_resources("Failed Transfer")
+            self.controlling_parsing_process.consume_resources("Failed Transfer", f'{ps}')
         return self
 
     # Recursive LF-legibility test (called from test()

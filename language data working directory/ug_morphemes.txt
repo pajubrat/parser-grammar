@@ -60,9 +60,9 @@ m		::	inflectional PHI:GEN:M
 f		::	inflectional PHI:GEN:F
 
 # Structural Case
-nom   	:: inflectional TAIL:FIN,!COMP:*,VAL
-acc		:: inflectional TAIL:v
-dat		:: inflectional TAIL:v
+nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL
+acc		:: inflectional ACC TAIL:v
+dat		:: inflectional DAT TAIL:v
 
 #Aspect markers
 asp			:: inflectional ASP:BOUNDED

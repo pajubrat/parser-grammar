@@ -14,40 +14,73 @@ class LocalFileSystem:
         self.results_file = None
         self.resources_file = None
         self.visualizer = None
-        self.metadata = {}
+        self.settings = {}
+        self.timings_file = None
+        self.resource_sequence_file = None
 
     def initialize(self, args):
-        self.visualizer = Visualizer()
-        self.visualizer.initialize(args)
-        self.read_config_file()
+        self.read_root_config_file()
         self.folder['data'] = Path("language data working directory")
-        self.folder['study'] = self.folder['data'] / self.metadata['study_folder']
+        self.folder['study'] = self.folder['data'] / self.settings['study_folder']
         self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
-        self.external_sources = {"test_corpus_file_name": self.folder['study'] / self.metadata['test_corpus_file'],
-                           "log_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_log.txt'),
-                           "results_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_results.txt'),
-                           "grammaticality_judgments_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
-                           "resources_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_resources.txt'),
+        self.external_sources = {"test_corpus_file_name": self.folder['study'] / self.settings['test_corpus_file'],
+                           "log_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_log.txt'),
+                           "results_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_results.txt'),
+                           "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
+                           "resources_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resources.txt'),
                            "lexicon_file_name": self.folder['data'] / 'lexicon.txt',
                            "ug_morphemes": self.folder['data'] / 'ug_morphemes.txt',
                            "redundancy_rules": self.folder['data'] / 'redundancy_rules.txt',
-                           "surface_vocabulary_file_name": self.folder['study'] / (self.metadata['test_corpus_file'][:-4] + '_saved_vocabulary.txt')}
+                           "timings_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_timings.txt'),
+                            "resource_sequence_file": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resource_sequence.txt'),
+                           "surface_vocabulary_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_saved_vocabulary.txt')
+                            }
+        self.read_study_config_file()
         self.initialize_image_folder()
         self.initialize_grammaticality_judgments_file()
         self.initialize_results_file()
         self.initialize_resources_file()
+        self.initialize_timings_file()
+        self.initialize_resource_sequence_file()
+        if '/images' in args or self.settings['datatake_images']:
+            self.settings['datatake_images'] = True
+            self.visualizer = Visualizer()
+            self.visualizer.initialize(self.settings)
 
-    def read_config_file(self):
+    def read_root_config_file(self):
         config_file = open('config.txt')
         for line in config_file:
             line = line.strip()
             line = line.replace('\t', '')
             line = line.replace('  ', '')
             key, value = line.split(':', 1)
-            self.metadata[key] = value
-        for key in self.metadata:
-            print(self.metadata[key])
+            self.settings[key] = value
         config_file.close()
+
+    def read_study_config_file(self):
+        config_file = open(self.folder['study'] / 'config_study.txt')
+        for line in config_file:
+            line = line.strip().replace('\t', '').replace(' ', '')
+            key, value = line.split(':', 1)
+            self.settings[key] = value
+        for key in self.settings:
+            if isinstance(self.settings[key], str):
+                if self.settings[key].lower() in {'true', 'yes'}:
+                    self.settings[key] = True
+                elif self.settings[key].lower() in {'false', 'no'}:
+                    self.settings[key] = False
+        for key in self.settings:
+            print(f'{key}: {self.settings[key]}')
+        config_file.close()
+
+
+    def initialize_resource_sequence_file(self):
+        self.resource_sequence_file = open(self.external_sources['resource_sequence_file'], 'w', -1, 'utf-8')
+        self.stamp(self.resource_sequence_file)
+
+    def initialize_timings_file(self):
+        self.timings_file = open(self.external_sources['timings_file_name'], 'w', -1, 'utf-8')
+        self.stamp(self.timings_file)
 
     def initialize_results_file(self):
         self.results_file = open(self.external_sources['results_file_name'], "w", -1, "utf-8")
@@ -62,9 +95,9 @@ class LocalFileSystem:
         self.stamp(self.resources_file)
 
     def add_columns_to_resources_file(self, resources):
-        self.resources_file.write("Sentence,")
+        self.resources_file.write("Sentence,    ")
         for key in resources:
-            self.resources_file.write(f'{key},')
+            self.resources_file.write(f'{key},ms  ')
         self.resources_file.write("Execution time (ms)\t\n\n")
 
     def initialize_image_folder(self):
@@ -122,7 +155,7 @@ class LocalFileSystem:
         return parse_list
 
     def stamp(self, file_handle):
-        file_handle.write(str(self.metadata))
+        file_handle.write(str(self.settings))
         file_handle.write(str(datetime.datetime.now()) + '\n')
         file_handle.write(f'Test sentences from {self.external_sources["test_corpus_file_name"]}.\n')
         file_handle.write(f'Logs into {self.external_sources["log_file_name"]}.\n')
@@ -133,9 +166,21 @@ class LocalFileSystem:
     def save_output(self, parser, count, sentence):
         self.save_grammaticality_judgment(parser, count, sentence)
         self.save_result(parser, count, sentence)
-        self.save_resources(parser, count)
+        if self.settings['datatake_resources']:
+            self.save_resources(parser, count)
+        if self.settings['datatake_timings']:
+            self.save_timings(parser, count, sentence)
         self.print_result_to_console(parser, count, sentence)
-        self.save_image(parser, sentence, count)
+        if self.settings['datatake_images']:
+            self.save_image(parser, sentence, count)
+
+    def save_timings(self, parser, count, sentence):
+        self.timings_file.write(f'{count}, {self.generate_input_sentence_string(sentence)}, ')
+        sum = 0
+        for word, time in parser.time_from_stimulus_onset_for_word:
+            self.timings_file.write(f'{word},{time},  ')
+            sum += time
+        self.timings_file.write(f'= {sum}ms.\n')
 
     def save_grammaticality_judgment(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)
@@ -150,9 +195,9 @@ class LocalFileSystem:
         if len(parser.result_list) == 0:
             self.resources_file.write(str(count) + '\n')
         else:
-            self.resources_file.write(str(count) + ',')
+            self.resources_file.write('Sentence ' + str(count) + ',   ')
             for key in parser.resources:
-                self.resources_file.write(f'{parser.resources[key]},')
+                self.resources_file.write(f'{parser.resources[key]["n"]},{parser.resources[key]["ms"]},  ')
             self.resources_file.write(f'{parser.execution_time_results[0]}\n')
 
     def save_result(self, P, count, sentence):
@@ -210,6 +255,8 @@ class LocalFileSystem:
         self.results_file.close()
         self.grammaticality_judgments_file.close()
         self.resources_file.close()
+        self.timings_file.close()
+        self.resource_sequence_file.close()
 
     def print_result_to_console(self, parser, count, sentence):
         input_sentence_string = self.generate_input_sentence_string(sentence)

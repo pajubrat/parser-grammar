@@ -25,6 +25,7 @@ class Semantics:
         self.semantic_interpretation = set()
         self.semantic_interpretation_failed = False
         self.controlling_parsing_process = controlling_parsing_process
+        self.antecedent_list = []
 
     def interpret(self, ps):
         self.semantic_interpretation = set()
@@ -55,6 +56,7 @@ class Semantics:
                 self.semantic_interpretation.add(self.interpret_antecedent(head, list_of_antecedents[0]))
             else:
                 self.semantic_interpretation.add(f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')')
+            self.antecedent_list.append((head, list_of_antecedents))
             self.report_to_log(head, list_of_antecedents, unvalued)
 
     def detect_phi_conflicts(self, ps):

@@ -35,13 +35,13 @@ class AgreementReconstruction:
         self.controlling_parsing_process.consume_resources("Agree")
         goal, phi_features = self.Agree_1_from_sister(head)
         for phi in phi_features:
-            self.value(head, goal, phi)
+            self.value(head, goal, phi, 'sister')
         if not head.is_unvalued():
             return
         goal, phi_features = self.Agree_1_from_edge(head)
         for phi in phi_features:
             if find_unvalued_target(head, phi):
-                self.value(head, goal, phi)
+                self.value(head, goal, phi, 'edge')
 
     # Definition for phi-acquisition from sister
     def Agree_1_from_sister(self, head):
@@ -51,7 +51,7 @@ class AgreementReconstruction:
                 if node.left_const and node.left_const.is_primitive():
                     break
                 if node.left_complex():
-                    if self.agreement_condition(head, node.left_const) and not node.left_const.find_me_elsewhere:
+                    if self.agreement_condition(head, node.left_const):
                         return node.left_const.head(), \
                                sorted({f for f in node.left_const.head().features
                                        if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
@@ -70,6 +70,7 @@ class AgreementReconstruction:
     # This condition is not yet correctly implemented
     # The condition captures the fact that Agree(h, XP) presupposes that h,XP share tail-features (if any).
     # It currently applies only to Finnish, because the problems associated with the tail-definition for accusative case
+    # Furthermore, the condition is replaced with descriptive stipulation
     def agreement_condition(self, head, phrase):
         if 'D' in phrase.head().features:
             if self.controlling_parsing_process.language != 'LANG:FI':
@@ -78,19 +79,23 @@ class AgreementReconstruction:
                 if 'pro' in phrase.head().features:
                     return True
                 else:
-                    tail_sets = phrase.head().get_tail_sets()
-                    for tail_set in tail_sets:
-                        if tail_set & head.features == tail_set:
-                            return True
+                    # This is a descriptive stipulation that must be replaced wiht a generalization
+                    if 'FIN' in head.features and 'NOM' in phrase.head().features:
+                        return True
+                    if 'INF' in head.features and 'GEN' in phrase.head().features:
+                        return True
 
     # Definition for phi-feature valuation
-    def value(self, h, goal, phi):
+    def value(self, h, goal, phi, location):
         if h.get_valued_features() and self.valuation_blocked(h, phi):
             h.features.add(mark_bad(phi))
         if find_unvalued_target(h, phi):
             h.features = h.features - find_unvalued_target(h, phi)
             h.features.add(phi)
-            log(f'{h} acquired ' + str(phi) + f' by Agree-1 from {goal.mother}...')
+            if goal.mother:
+                log(f'"{h}" acquired ' + str(phi) + f' by Agree-1 from {goal.mother} inside its {location}...')
+            else:
+                log(f'"{h}" acquired ' + str(phi) + f' by Agree-1 from {goal} inside its {location}...')
             h.features.add('PHI_CHECKED')
 
     # Definition for blocked valuation

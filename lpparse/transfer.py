@@ -37,7 +37,7 @@ class Transfer():
 
         log_embedding = log_embedding + '\t'
 
-        self.controlling_parser_process.consume_resources("Transfer")
+        self.controlling_parser_process.consume_resources("Transfer", f'{ps}')
 
         log('\n')
         log(log_embedding + '1. Head movement reconstruction...')

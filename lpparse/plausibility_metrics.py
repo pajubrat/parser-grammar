@@ -14,7 +14,7 @@ class PlausibilityMetrics:
         adjunction_sites = []
         if ps.bottom().bottom_affix().internal:
             log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...')
-            self.cpp.consume_resources('Filter solution')
+            self.cpp.consume_resources('Filter solution', 'sink')
             log('Done.\n')
             return [[ps.bottom()], w]
         #--------------------geometrical minimal search------------------------------
