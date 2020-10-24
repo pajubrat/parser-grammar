@@ -94,11 +94,13 @@ class LocalFileSystem:
         self.resources_file = open(self.external_sources["resources_file_name"], "w", -1, "utf-8")
         self.stamp(self.resources_file)
 
-    def add_columns_to_resources_file(self, resources):
-        self.resources_file.write("Sentence,    ")
+    def add_columns_to_resources_file(self, resources, experimental_group):
+        self.resources_file.write("Sentence, ")
+        for index, group in enumerate(experimental_group):
+            self.resources_file.write(f"Group {index}, ")
         for key in resources:
-            self.resources_file.write(f'{key},ms  ')
-        self.resources_file.write("Execution time (ms)\t\n\n")
+            self.resources_file.write(f'{key},ms,  ')
+        self.resources_file.write("Execution time (ms)\t\n")
 
     def initialize_image_folder(self):
         try:
@@ -131,6 +133,7 @@ class LocalFileSystem:
         return input_sentence_string
 
     def read_test_corpus(self):
+        experimental_group = []
         parse_list = []
         plus_sentences = []
         for line in open(self.external_sources["test_corpus_file_name"]):
@@ -145,29 +148,38 @@ class LocalFileSystem:
             if line.startswith('%'):
                 parse_list = []
                 line = line.lstrip('%')
-                parse_list.append([word.strip() for word in line.split()])
+                parse_list.append(([word.strip() for word in line.split()], experimental_group))
                 break
-            elif line.startswith('+'):
-                plus_sentences.append([word.strip() for word in line.lstrip('+').split()])
-            parse_list.append([word.strip() for word in line.split()])
+            if line.startswith('+'):
+                plus_sentences.append(([word.strip() for word in line.lstrip('+').split()], experimental_group))
+            elif line.startswith('=>'):
+                experimental_group = self.read_experimental_group(line)
+                continue
+            parse_list.append(([word.strip() for word in line.split()], experimental_group))
         if plus_sentences:
             return plus_sentences
         return parse_list
 
-    def stamp(self, file_handle):
-        file_handle.write(str(self.settings))
-        file_handle.write(str(datetime.datetime.now()) + '\n')
-        file_handle.write(f'Test sentences from {self.external_sources["test_corpus_file_name"]}.\n')
-        file_handle.write(f'Logs into {self.external_sources["log_file_name"]}.\n')
-        file_handle.write(f'Lexicon from {self.external_sources["lexicon_file_name"]}.\n')
-        file_handle.write(f'Redundancy rules from {self.external_sources["redundancy_rules"]}.\n')
-        file_handle.write(f'Universal morphemes from {self.external_sources["ug_morphemes"]}.\n')
+    def read_experimental_group(self, line):
+        line = line.strip().replace(' ', '').replace('=>', '')
+        return line.split('.')
 
-    def save_output(self, parser, count, sentence):
+    def stamp(self, file_handle):
+        file_handle.write('#  '+str(self.settings) + '\n')
+        file_handle.write('#  '+str(datetime.datetime.now()) + '\n')
+        file_handle.write('#  '+f'Test sentences from {self.external_sources["test_corpus_file_name"]}.\n')
+        file_handle.write('#  '+f'Logs into {self.external_sources["log_file_name"]}.\n')
+        file_handle.write('#  '+f'Lexicon from {self.external_sources["lexicon_file_name"]}.\n')
+        file_handle.write('#  '+f'Redundancy rules from {self.external_sources["redundancy_rules"]}.\n')
+        file_handle.write('#  '+f'Universal morphemes from {self.external_sources["ug_morphemes"]}.\n')
+        file_handle.write('# \n')
+        file_handle.write('# \n')
+
+    def save_output(self, parser, count, sentence, experimental_group):
         self.save_grammaticality_judgment(parser, count, sentence)
         self.save_result(parser, count, sentence)
         if self.settings['datatake_resources']:
-            self.save_resources(parser, count)
+            self.save_resources(parser, count, experimental_group)
         if self.settings['datatake_timings']:
             self.save_timings(parser, count, sentence)
         self.print_result_to_console(parser, count, sentence)
@@ -179,7 +191,7 @@ class LocalFileSystem:
         sum = 0
         for word, time in parser.time_from_stimulus_onset_for_word:
             self.timings_file.write(f'{word},{time},  ')
-            sum += time
+            sum = sum + time
         self.timings_file.write(f'= {sum}ms.\n')
 
     def save_grammaticality_judgment(self, P, count, sentence):
@@ -189,13 +201,15 @@ class LocalFileSystem:
         else:
             self.grammaticality_judgments_file.write(str(count) + '.  ' + sentence_string + '\n')
 
-    def save_resources(self, parser, count):
+    def save_resources(self, parser, count, experimental_group):
         if count == 1:
-            self.add_columns_to_resources_file(parser.resources)
+            self.add_columns_to_resources_file(parser.resources, experimental_group)
         if len(parser.result_list) == 0:
-            self.resources_file.write(str(count) + '\n')
+            self.resources_file.write(str(count) + ',')
+            self.resources_file.write(','.join(experimental_group) + '\n')
         else:
-            self.resources_file.write('Sentence ' + str(count) + ',   ')
+            self.resources_file.write(str(count) + ',')
+            self.resources_file.write(','.join(experimental_group) + ',          ')
             for key in parser.resources:
                 self.resources_file.write(f'{parser.resources[key]["n"]},{parser.resources[key]["ms"]},  ')
             self.resources_file.write(f'{parser.execution_time_results[0]}\n')

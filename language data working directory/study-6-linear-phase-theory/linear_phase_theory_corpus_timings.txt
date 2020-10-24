@@ -1,9 +1,12 @@
-{'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}2020-10-23 17:53:15.152348
-Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
-Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
-Lexicon from language data working directory\lexicon.txt.
-Redundancy rules from language data working directory\redundancy_rules.txt.
-Universal morphemes from language data working directory\ug_morphemes.txt.
+#  {'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}
+#  2020-10-24 12:10:06.670811
+#  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
+#  Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
+#  Lexicon from language data working directory\lexicon.txt.
+#  Redundancy rules from language data working directory\redundancy_rules.txt.
+#  Universal morphemes from language data working directory\ug_morphemes.txt.
+# 
+# 
 1, a' b' , b,120,  = 120ms.
 2, a' b' c' , b,120,  c,170,  = 290ms.
 3, a' b' c' d' , b,120,  c,170,  d,220,  = 510ms.
@@ -745,10 +748,10 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 739, admire' Mary does John , admire,365,  D,120,  Mary,265,  does,355,  D,320,  John,265,  does,416,  D,220,  John,265,  = 2591ms.
 740, Mary John does admire' , Mary,265,  D,160,  John,265,  does,520,  v,480,  admire,365,  does,491,  v,555,  admire,365,  = 3466ms.
 741, Mary John admire' does , Mary,265,  D,160,  John,265,  v,670,  admire,365,  does,265,  v,401,  admire,365,  does,310,  = 3066ms.
-742, Mary does John admire' , Mary,265,  does,260,  D,225,  John,265,  v,610,  admire,365,  = 1990ms.
-743, Mary admire' John does , Mary,265,  v,415,  admire,365,  D,165,  John,265,  does,430,  does,541,  does,627,  = 3073ms.
-744, Mary admire' does John , Mary,265,  v,415,  admire,365,  does,265,  D,330,  John,265,  = 1905ms.
-745, John does Mary admire' , John,265,  does,260,  D,225,  Mary,265,  v,610,  admire,365,  = 1990ms.
+742, Mary admire' John does , Mary,265,  v,415,  admire,365,  D,165,  John,265,  does,430,  does,541,  does,627,  = 3073ms.
+743, Mary admire' does John , Mary,265,  v,415,  admire,365,  does,265,  D,330,  John,265,  = 1905ms.
+744, John does Mary admire' , John,265,  does,260,  D,225,  Mary,265,  v,610,  admire,365,  = 1990ms.
+745, Mary does John admire' , Mary,265,  does,260,  D,225,  John,265,  v,610,  admire,365,  = 1990ms.
 746, Pekka ihaile ei Merjaa , Pekka,315,  T,365,  v,115,  ihaile-,365,  ei,270,  D,385,  Merja,315,  = 2130ms.
 747, Pekka ollut ei ihaillut Merjaa , Pekka,315,  T,110,  ei,225,  T/prt,570,  v,115,  ihaile-,365,  D,495,  Merja,315,  = 2510ms.
 748, Pekka ollut ihaillut ei Merjaa , Pekka,315,  T,110,  T/prt,425,  v,115,  ihaile-,365,  ei,365,  D,495,  Merja,315,  = 2505ms.

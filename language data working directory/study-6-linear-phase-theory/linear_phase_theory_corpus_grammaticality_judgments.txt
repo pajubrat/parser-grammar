@@ -1,20 +1,25 @@
-{'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}2020-10-23 17:53:15.151849
-Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
-Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
-Lexicon from language data working directory\lexicon.txt.
-Redundancy rules from language data working directory\redundancy_rules.txt.
-Universal morphemes from language data working directory\ug_morphemes.txt.
+#  {'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}
+#  2020-10-24 12:10:06.670326
+#  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
+#  Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
+#  Lexicon from language data working directory\lexicon.txt.
+#  Redundancy rules from language data working directory\redundancy_rules.txt.
+#  Universal morphemes from language data working directory\ug_morphemes.txt.
+# 
+# 
 
 & 0 Formal tests
+
+& Empty lexical items
 1.  a' b' 
 2.  a' b' c' 
 3.  a' b' c' d' 
 
 & 1 Basic construction types
 
-& 1.2 Basic verb classes
+& Basic verb classes
 
-& 1.2.1 Intransitive verbs
+& Intransitive verbs
 
 & Grammatical
 4.  Pekka istuu 
@@ -28,7 +33,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 10. *John sleeps Mary 
 11. *John John sleeps 
 
-& 1.2.2 Transitive verbs
+& Transitive verbs
 
 & Grammatical
 12.  Pekka ihailee Merjaa 
@@ -48,7 +53,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 24. *John admires 
 25. *John admires Mary Mary 
 
-& 1.2.3 Ditransitive verbs
+& Ditransitive verbs
 
 & Grammatical
 26.  Pekka antoi kirjan Merjalle 
@@ -56,9 +61,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & Ungrammatical
 
-& 1.3 Special finite elements
+& Special finite elements
 
-& 1.3.1 Aux, Sentential negation
+& Aux, Sentential negation
 
 & Grammatical
 28.  mina en lahde 
@@ -82,7 +87,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 44. *sina lahde et 
 45. *John not does sleep 
 
-& 1.3.2 Modals
+& Modals
 
 & Grammatical
 46.  Pekan_gen taytyy nukkua 
@@ -105,7 +110,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 57.  Pekan_gen ei taydy ihailla Merjaa 
 58.  Pekan_gen ei taydy myyda omaisuuttaan 
 
-& 1.3.3 Tensed pure auxiliaries
+& Ungrammatical
+
+& Tensed pure auxiliaries
 
 & Grammatical
 59.  Pekka on' nukkunut 
@@ -115,14 +122,16 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical
 62. *John does 
 
-& 1.3.4 Seem-constructions
+& Seem-constructions
 
 & Grammatical
 63.  loro sembrano lavare Luisa 
 
-& 1.4 Infinitival complement clauses
+& Ungrammatical
 
-& 1.4.1 Basic infinitival constructions (English)
+& Infinitival complement clauses
+
+& Basic infinitival constructions (English)
 
 & Grammatical
 64.  John wants to_inf leave 
@@ -133,7 +142,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical
 68. *io detesto Giuseppe lavare Luisa 
 
-& 1.4.2 OC constructions (English)
+& OC constructions (English)
 
 & Grammatical
 69.  John tries to_inf leave 
@@ -141,7 +150,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical
 70. *John tries Mary to_inf leave 
 
-& 1.4.3 Finnish deverbal infinitival complements
+& Finnish deverbal infinitival complements
 
 & A-infinitival 'to do'
 
@@ -166,6 +175,8 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 82.  Pekan_gen ei taydy ihailla Merjaa 
 83.  Pekan_gen ei taydy myyda omaisuuttaan 
 
+& Ungrammatical
+
 & VA-infinitival 'to do'
 
 & Grammatical
@@ -181,7 +192,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 91. *Pekka sanoo ihailevansa 
 92. *Pekka halusi Merja lahtevan 
 
-& 1.5 Nominals
+& Nominals
 
 & Basic DPs
 
@@ -208,7 +219,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 106.  Pekka teki sopimuksen antaa avaimen Merjalle 
 107.  se sopimus ihailla Merjaa peruuntui 
 
-& 1.6 Adpositions
+& Ungrammatical
+
+& Adpositions
 
 & Grammatical
 108.  lahella Pekkaa 
@@ -219,7 +232,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical
 112. *Merja nukkui lahella Pekan_gen 
 
-& 1.5 Embedded finite clauses
+& Embedded finite clauses
 
 & Grammatical
 113.  Pekka sanoi etta Merja lahtee 
@@ -231,7 +244,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 2 Adjunction and adjuncts
 
-& Chapter 2.1 Adjuncts inside comprehension pipeline
+& Adjuncts inside comprehension pipeline
 
 & Grammatical
 117.  John gave the key to Mary 
@@ -243,7 +256,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 121. *to Mary John gave the key 
 122. *to Mary John moved the key to John 
 
-& Chapter 2.3 Adjectives
+& Adjectives
 
 & Grammatical
 123.  the little key 
@@ -261,7 +274,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 133. *talo pieni se 
 134. *talo se pieni 
 
-& Chapter 2.4 Adjunct infinitivals in Finnish
+& Adjunct infinitivals in Finnish
 
 & MA-infinitival 'doing, without doing...'
 
@@ -313,7 +326,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 3 A-bar movement and pied-piping
 
-& Chapter 3.1 Basic interrogatives
+& Basic interrogatives
 
 & Grammatical
 159.  keta Pekka ihailee 
@@ -333,7 +346,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Problems
 170.  Pekka keta ihailee 
 
-& Chapter 3.2 pied-piping
+& Pied-piping
 
 & Grammatical
 171.  towards which city does_C Seine flow' 
@@ -346,9 +359,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 176. *Seine virtaa kohti mita kaupunkia 
 177. *Seine virtaa mita kaupunkia kohti 
 
-& 3.3 Islands
+& Islands
 
-& 3.3.1 Extraction from left branch and right adjunct (CED-effects)
+& Extraction from left branch and right adjunct (CED-effects)
 
 & Grammatical
 178.  John moved the key from Mary to John 
@@ -363,7 +376,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 185. *kenen se' kello havisi 
 186. *keta Pekka naki Merjan_acc ihailemassa 
 
-& 3.3.2 Extraction from embedded interrogative (wh-island)
+& Extraction from embedded interrogative (wh-island)
 
 & Grammatical
 187.  who does John say' that Mary admires 
@@ -373,7 +386,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 189. *who does John ask' whether Mary admires 
 190. *who does John ask' what admires 
 
-& 3.3.3 Extraction from DP
+& Extraction from DP
 
 & Grammatical
 191.  Pekka teki sopimuksen ostaa auton 
@@ -381,11 +394,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & Ungrammatical
 193. *kenen Pekka teki sen kellon 
-
-& PROBLEM: why does D block A-bar reconstruction
 194. *minka Pekka teki sopimuksen ostaa 
 
-& 3.3.4 Extraction of embedded subject position
+& Extraction of embedded subject position
 
 & Grammatical
 195.  John said that Mary sleeps 
@@ -395,7 +406,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 4 Case
 
-& 4.1 Finite clause, nominative and partitive
+& Finite clause, nominative and partitive
 
 & Grammatical
 197.  Pekka nukkuu 
@@ -416,9 +427,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 210. *Merja ihailee Pekan_acc 
 211. *Merja ihailee Pekka_0acc 
 
-& 4.2 Finite clause, accusative
+& Finite clause, accusative
 
-& 4.2.1 Accusative and aspect
+& Accusative and aspect
 
 & Grammatical
 212.  Pekka voitti Merjan 
@@ -434,7 +445,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 220. *Pekka tonaisi Merja_0acc 
 221. *Pekka tonaisi hanet 
 
-& 4.2.2 Accusative and negation
+& Accusative and negation
 
 & Grammatical
 222.  Pekka ei voittanut Merjaa 
@@ -445,7 +456,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 225. *Pekka ei voittanut Merja_0acc 
 226. *Pekka ei voittanut Merjan_gen 
 
-& 4.2.3 Accusative and agreement
+& Accusative and agreement
 
 & Grammatical
 227.  me loysimme avaimen 
@@ -456,7 +467,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 230. *me loysimme avain 
 231. *me loysimme avain_0acc 
 
-& 4.2.4 Accusative and long-distance effects
+& Accusative and long-distance effects
 
 & Grammatical
 232.  Pekka halusi voittaa Merjan 
@@ -473,7 +484,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 241. *me ei' haluttu voittaa Merja_0acc 
 242. *me ei' haluttu voittaa Merjan 
 
-& 4.3 Adpositions
+& Adpositions
 
 & Grammatical
 243.  lahella Pekkaa 
@@ -484,7 +495,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical
 247. *Merja nukkui lahella Pekan_gen 
 
-& 4.4 Infinitivals
+& Infinitivals
 
 & Grammatical
 248.  Pekka kaski Merjan_gen lahtea 
@@ -501,7 +512,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 257. *Pekka kaski lahtea Merjan_gen 
 258. *Pekka sanoi lahtevan Merjan_gen 
 
-& 4.5 Possessive constructions
+& Possessive constructions
 
 & Grammatical
 259.  se Merjan_gen kello havisi 
@@ -509,7 +520,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical
 260. *se kello Merjan_gen havisi 
 
-& 4.6 Numeral constructions (two types)
+& Numeral constructions (two types)
 
 & Grammatical
 261.  ne kaksi sukkaa havisi 
@@ -525,7 +536,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 269. *ne kahdet sukka havisivat 
 270. *Pekka sanoi niiden kaksi sukkaa haviavan 
 
-& 4.7 Adverbials, direct object marking
+& Adverbials, direct object marking
 
 & 4.7.1 MALLA-adverbial
 
@@ -538,7 +549,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 274. *Pekka nukahti lukemalla Merja_0acc 
 275. *Pekka nukahti lukemalla Merjan_acc 
 
-& 4.8 Adverbial case marking
+& Adverbial case marking
 
 & Grammatical
 276.  Pekka nukkui#asp koko paivan 
@@ -556,9 +567,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 286. *Pekka ihailee#asp Merjaa koko paivaa 
 287. *Pekka ihailee Merjaa koko paivaa 
 
-& 4.9 Special constructions
+& Special constructions
 
-& 4.9.1 Partitive subjects (psych verbs)
+& Partitive subjects (psych verbs)
 
 & Grammatical
 288.  Merjaa pelottaa 
@@ -570,7 +581,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 292. *Merja_0acc pelottaa 
 293. *Merjalle pelottaa 
 
-& 4.9.2 Impersonal passives
+& Impersonal passives
 
 & Grammatical
 294.  me loysimme avaimen 
@@ -582,7 +593,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 298. *me loydettiin avaimen 
 299. *me loysimme avain 
 
-& 4.9.4 Copula
+& Copula
 
 & Grammatical
 300.  Pekka on' Pekka 
@@ -595,7 +606,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 5 Agreement
 
-& Chapter 5.1 Standard finite S-V agreement
+& Standard finite S-V agreement
 
 & Grammatical
 305.  mina ihailen Merjaa 
@@ -658,7 +669,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 360. *io adorate Luisa 
 361. *io adorano Luisa 
 
-& 5.2 S-V areement with noncanonical word order (Finnish)
+& S-V areement with noncanonical word order (Finnish)
 
 & Grammatical
 362.  ihailen mina Merjaa 
@@ -884,7 +895,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 6 Pro-drop
 
-& 6.1 Finite pro-drop
+& Finite pro-drop
 
 & Grammatical
 578.  ihailen Merjaa 
@@ -912,7 +923,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 598. *admires Mary 
 599. *am John 
 
-& 6.2 Finite pro-drop with noncanonical word order
+& Finite pro-drop with noncanonical word order
 
 & Grammatical
 600.  ihailen Merjaa 
@@ -926,7 +937,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Unclear case (compare 'Elokuvia katselee mielelaan')
 605.  Merjaa ihailee 
 
-& 6.3 Third person pro in Finnish, with and without antecedent
+& Third person pro in Finnish, with and without antecedent
 
 & Grammatical
 606.  Pekka sanoi etta ihailee Merjaa 
@@ -942,7 +953,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 7 Control
 
-& 7.1 Partial pro-drop control (only D_ unvalued)
+& Partial pro-drop control (only D_ unvalued)
 
 & Grammatical
 612.  Pekka sanoi etta ihailee Merjaa 
@@ -952,9 +963,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 614. *ihailee Merjaa 
 615. *Mina sanon etta ihailee Merjaa 
 
-& 7.2 Standard control (phi_, D_ unvalued)
+& Standard control (phi_, D_ unvalued)
 
-& 7.2.1 Control into complements
+& Control into complements
 
 & Want-class (no SEM)
 
@@ -985,7 +996,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 627. *John persuades to_ing leave 
 628. *Pekka haluaa lahtevan 
 
-& 7.2.2 Control into adverbials
+& Control into adverbials
 
 & Subject control (high adjunct position)
 
@@ -1001,7 +1012,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical
 632. *John persuades to_inf leave 
 
-& 7.2.4 Generic interpretation
+& Generic interpretation
+
+& Grammatical
 
 & Null object construction (Finnish)
 633.  Pekka pyytaa lahtemaan 
@@ -1016,9 +1029,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 8 Word order
 
-& 8.1 Basic transitive clause
+& Basic transitive clause
 
-& 8.1.1 Frozen word order regimen (English)
+& Frozen word order regimen (English)
 
 & Grammatical
 638.  John admires Mary 
@@ -1030,7 +1043,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 642. *admires Mary John 
 643. *Mary John admires 
 
-& 8.1.2 Free word order regimen (Finnish)
+& Free word order regimen (Finnish)
 
 & Grammatical
 644.  Pekka ihailee Merjaa 
@@ -1042,9 +1055,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 648. *ihailee Pekka Merjaa 
 649. *ihailee Merjaa Pekka 
 
-& 8.2 Ditransitives
+& Ditransitives
 
-& 8.2.1 Free word order profile (Finnish)
+& Free word order profile (Finnish)
 
 & Grammatical
 650.  Pekka antoi kirjan Merjalle 
@@ -1074,7 +1087,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 672. *antoi Merjalle Pekka kirjan 
 673. *antoi Merjalle kirjan Pekka 
 
-& 8.2.2 Rigid word order profile (English)
+& Rigid word order profile (English)
 
 & Grammatical
 674.  John gave the key to Mary 
@@ -1104,9 +1117,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 696. *to Mary the key John gave 
 697. *to Mary the key gave John 
 
-& 8.3 Neg/Aux + V
+& Neg/Aux + V
 
-& 8.2.3 Finnish transitive Neg + V
+& Finnish transitive Neg + V
 
 & Grammatical
 698.  Pekka ei ihaile Merjaa 
@@ -1136,7 +1149,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 720. *Merjaa ihaile Pekka ei 
 721. *Merjaa ihaile ei Pekka 
 
-& 8.2.4 English transitive Aux + V
+& English transitive Aux + V
 
 & Grammatical
 722.  John does admire' Mary 
@@ -1161,47 +1174,47 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 739. *admire' Mary does John 
 740. *Mary John does admire' 
 741. *Mary John admire' does 
-742.  Mary does John admire' 
-743. *Mary admire' John does 
-744. *Mary admire' does John 
+742. *Mary admire' John does 
+743. *Mary admire' does John 
 
 & Unclear
-745.  John does Mary admire' 
+744.  John does Mary admire' 
+745.  Mary does John admire' 
 
-& 8.3 Heads in wrong order
+& Heads in wrong order
 
 & Ungrammatical
 
-& Group 8.3.1 Neg + V
+& Neg + V
 746. *Pekka ihaile ei Merjaa 
 
-& Group 8.3.2 Neg + Aux + V
+& Neg + Aux + V
 747. *Pekka ollut ei ihaillut Merjaa 
 748. *Pekka ollut ihaillut ei Merjaa 
 749. *Pekka ei ihaillut ollut Merjaa 
 750. *Pekka ei ihaillut ei ollut Merjaa 
 751. *Pekka ihaillut ollut ei Merjaa 
 
-& Group 8.3.3 Neg + Modal + V
+& Neg + Modal + V
 752. *Pekan_gen taydy ei ihailla Merjaa 
 753. *Pekan_gen taydy ihailla ei Merjaa 
 754. *Pekan_gen ei ihailla taydy Merjaa 
 755. *Pekan_gen ihailla ei taydy Merjaa 
 756. *Pekan_gen ihailla taydy ei Merjaa 
 
-& Group 8.3.4 Neg + V + V + LHM, with wrong head order
+& Neg + V + V + LHM, with wrong head order
 757. *taydy#C/op Pekan_gen ihailla ei Merjaa 
 758. *ihailla#C/op Pekan_gen taydy ei Merjaa 
 759. *halua#C/op Pekan_gen Pekka ihailla ei Merjaa 
 760. *ihailla#C/op Pekan_gen halua ei Merjaa 
 
-& Group 8.3.5 Head final constructions with two more more verbal elements
+& Head final constructions with two more more verbal elements
 761. *Pekka ihaile Merjaa ei 
 762. *Pekan_gen ei ihailla Merjaa taydy 
 
-& 8.4 Infinitival complements
+& Infinitival complements
 
-& 8.4.1 Rigid word order (English)
+& Rigid word order (English)
 
 & John wants to leave
 
@@ -1359,7 +1372,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 903.  John wants to_inf Mary leave 
 904.  Mary wants to_inf John leave 
 
-& 8.4.2 Free word order (Finnish)
+& Free word order (Finnish)
 
 & Pekka haluaa lahtea
 
@@ -1409,11 +1422,11 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 9 Head movement
 
-& 9.1 Local HMC-compliant X-to-C movement
+& Local HMC-compliant X-to-C movement
 
 & Grammatical
 
-& 9.1.1 T-to-C* movement
+& T-to-C* movement
 939.  istuu#foc Pekka 
 940.  istuu#C/op Pekka 
 941.  ihailee#foc Pekka Merjaa 
@@ -1423,7 +1436,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 945.  antoi#foc Pekka avaimen Merjalle 
 946.  antoi#C/op Pekka avaimen Merjalle 
 
-& 9.1.2 Neg-to-C* movement
+& Neg-to-C* movement
 947.  ei#C/op Pekka ihaile Merjaa 
 948.  ei#C/op Pekan_gen taydy ihailla Merjaa 
 949.  ei#C/op Pekka halua ihailla Merjaa 
@@ -1433,19 +1446,19 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 953.  ei#C/op Pekka halua myyda omaisuuttaan 
 954.  ei#C/op Pekka ollut myynyt omaisuuttaan 
 
-& 9.1.3 Modal-to-C*
+& Modal-to-C*
 955.  taytyy#C/op Pekan_gen ihailla Merjaa 
 956.  taytyy#C/op Pekan_gen myyda omaisuuttaan 
 
-& 9.1.4 Want-to-C*
+& Want-to-C*
 957.  haluaa#C/op Pekka ihailla Merjaa 
 958.  haluaa#C/op Pekka myyda omaisuuttaan 
 
-& 9.1.5 Aux-to-C*
+& Aux-to-C*
 959.  on'#C/op Pekka ihaillut Merjaa 
 960.  on'#C/op Pekka myynyt omaisuuttaan 
 
-& 9.1.6 X-to-C, with dormal C-feature C/fin
+& X-to-C, with dormal C-feature C/fin
 961.  ihailee#C/fin Pekka Merjaa 
 962.  ei#C/fin Pekka ihaile Merjaa 
 963.  taytyy#C/fin Pekan_gen ihailla Merjaa 
@@ -1468,26 +1481,26 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 978. *myi Pekka omaisuutensa 
 979. *admire'#C/fin John does Mary 
 
-& 9.2 Long head movement
+& Long head movement
 
 & Grammatical
 
-& 9.2.1 V-over-Neg
+& V-over-Neg
 980.  ihaile#C/op Pekka ei Merjaa 
 
-& 9.2.2 V-over-Aux(BE)
+& V-over-Aux(BE)
 981.  ihaillut#C/op Pekka on' Merjaa 
 982.  myynyt#C/op Pekka on' omaisuutensa 
 
-& 9.2.3 V-over-want
+& V-over-want
 983.  ihailla#C/op Pekka haluaa Merjaa 
 984.  myyda#C/op Pekka haluaa omaisuutensa 
 
-& 9.2.4 V-over-must
+& V-over-must
 985.  ihailla#C/op Pekan_gen taytyy Merjaa 
 986.  myyda#C/op Pekan_gen taytyy omaisuutensa 
 
-& 9.2.5 With noncanonical OVS orders
+& With noncanonical OVS orders
 987.  ihaile#C/op Merjaa ei Pekka 
 988.  ihaillut#C/op Merjaa on' Pekka 
 989.  ihailla#C/op Merjaa haluaa Pekka 
@@ -1495,15 +1508,15 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 991.  myynyt#C/op omaisuuttaan on' Pekka 
 992.  myyda#C/op omaisuuttaan haluaa Pekka 
 
-& 9.2.6 Neg + Modal + V, with Modal moving moving (grammaticality status unclear)
+& Neg + Modal + V, with Modal moving moving (grammaticality status unclear)
 993.  taydy#C/op Pekan_gen ei ihailla Merjaa 
 994.  taydy#C/op Pekan_gen ei myyda omaisuuttaan 
 
-& 9.2.7 Neg + Modal + V with V moving
+& Neg + Modal + V with V moving
 995.  ihailla#C/op Pekan_gen ei taydy Merjaa 
 996.  myyda#C/op Pekan_gen ei taydy omaisuuttaan 
 
-& 9.2.8 Neg + want + V, with want moving
+& Neg + want + V, with want moving
 997.  halua#C/op Pekka ei ihailla Merjaa 
 998.  ihailla#C/op Pekka ei halua Merjaa 
 999.  halua#C/op Pekka ei myyda omaisuuttaan 
@@ -1518,7 +1531,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1006. *to_inf#C/fin John wants admire' Mary 
 1007. *Ungrammatical (Finnish) 
 
-& 9.2.9 Long head movement with formal C-feature or with no C-featre
+& Long head movement with formal C-feature or with no C-featre
 1008. *ihaile#C/fin Pekka ei Merjaa 
 1009. *ihaillut#C/fin Pekka on' Merjaa 
 1010. *ihailla#C/fin Pekka haluaa Merjaa 
@@ -1540,40 +1553,40 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1026. *myyda Pekan_gen taytyy omaisuuttaan 
 1027. *myynyt Pekka ei ollut omaisuuttaan 
 
-& 9.2.10 long head movement with infinitival subject
+& long head movement with infinitival subject
 1028. *ihailla#C/op Pekka kaskee poikien Merjaa 
 1029. *ihailla Pekka kaskee poikien Merjaa 
 1030. *ihailla#C/fin Pekka kaskee poikien Merjaa 
 
-& 9.2.11 Long head movement with second auxiliary
+& Long head movement with second auxiliary
 1031. *ollut#C/fin Pekka ei ihaillut Merjaa 
 1032. *ollut Pekka ei ihaillut Merjaa 
 
-& 9.2.12 Aux + prtcpl + prtcpl with locality violation
+& Aux + prtcpl + prtcpl with locality violation
 1033. *ihaillut#C/op Pekka ei ollut Merjaa 
 
-& 9.2.13 Neg + Modal + V with only formal C-feature (ungrammatical)
+& Neg + Modal + V with only formal C-feature (ungrammatical)
 1034. *taydy#C/fin Pekan_gen ei ihailla Merjaa 
 1035. *taydy Pekan_gen ei ihailla Merjaa 
 1036. *taydy#C/fin Pekan_gen ei myyda omaisuuttaan 
 1037. *taydy Pekan_gen ei myyda omaisuuttaan 
 
-& 9.2.14 Neg + want + V with no C-feature
+& Neg + want + V with no C-feature
 1038. *ihailla#C/fin Pekan_gen ei taydy Merjaa 
 1039. *ihailla Pekan_gen ei taydy Merjaa 
 1040. *halua Pekka ei myyda omaisuuttaan 
 
-& 9.3 Super LHM
+& Super LHM
 
 & Grammatical
 
-& 9.3.1 that + want + A/inf
+& that + want + A/inf
 1041.  ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa 
 1042.  lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
 
 & Ungrammatical
 
-& 9.3.2 Moving of the embedded finite verb (ungrammatical)
+& Moving of the embedded finite verb (ungrammatical)
 1043. *haluaa#C/op Pekka sanoo etta ihailla Merjaa 
 1044. *ihailee#C/op Pekka sanoo etta Merjaa 
 1045. *taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa 
@@ -1581,7 +1594,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1047. *myi#C/op Pekka sanoo etta omaisuutensa 
 1048. *taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa 
 
-& 9.3.3 Formal C-features or no C-features = V-initial constructions (ungrammatical)
+& Formal C-features or no C-features = V-initial constructions (ungrammatical)
 1049. *ihailla#C/fin Pekka sanoo etta haluaa Merjaa 
 1050. *lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy 
 1051. *ihailla Pekka sanoo etta haluaa Merjaa 
@@ -1593,20 +1606,20 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1057. *myi Pekka sanoo etta omaisuutensa 
 1058. *taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa 
 
-& 9.4 Long head movement and island violations
+& Long head movement and island violations
 
 & Ungrammatical
 
-& Group 9.4.1 Right-adjunct CED
+& Right-adjunct CED
 1059. *ihailemalla#C/op Pekka istuu Merjaa 
 
-& Group 9.4.2 Left branch CED
+& Left branch CED
 1060. *ihailla#C/op sopimus Merjaa istuu 
 
-& Group 9.4.3 Extraction from DP
+& Extraction from DP
 1061. *ihailla#C/op Pekka teki sopimuksen Merjaa 
 
-& Group 9.5 C-features on wrong heads
+& C-features on wrong heads
 
 & Ungrammatical
 1062. *C/fin Pekka ihailee#C/op Merjaa 
@@ -1640,9 +1653,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 10 Clitics/incorporation mechanism
 
-& 10.1 Standard Italian
+& Standard Italian
 
-& 10.1.1 Simple transitive clause, direct object accusative clitics
+& Simple transitive clause, direct object accusative clitics
 
 & Grammatical
 1090.  loro mi=lavano 
@@ -1663,7 +1676,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical, S-V agreement error
 1102. *io mi=lavano 
 
-& 10.1.2 Two-verb transitive, direct object accusative clitics
+& Two-verb transitive, direct object accusative clitics
 
 & hanno + lavato
 
@@ -1749,7 +1762,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1167. *loro=la stanno lavando 
 1168. *loro=lo stanno lavando 
 
-& 10.1.3 Three-verb constructions (Aux + T/par + ARE/inf)
+& Three-verb constructions (Aux + T/par + ARE/inf)
 
 & Grammatical
 1169.  loro mi=hanno voluto lavare 
@@ -1765,7 +1778,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1177. *hanno mi=voluto lavare 
 1178. *hanno voluto mi=lavare 
 
-& 10.1.4 CL-V agreement in clitic constructions
+& CL-V agreement in clitic constructions
 
 & Grammatical
 1179.  loro mi=hanno lavato 
@@ -1778,13 +1791,13 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1184. *mi=hanno lavata 
 1185. *lo=hanno lavata 
 
-& 10.1.5 Indirect clitic arguments
+& Indirect clitic arguments
 
 & Grammatical
 1186. *loro gli=lavano Luisa 
 1187. *gli=lavano Luisa 
 
-& 10.1.6 Clitic clusters
+& Clitic clusters
 
 & Grammatical
 1188.  loro gli=la=hanno lavata 
@@ -1796,7 +1809,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1192. *loro hanno gli=la=lavata 
 1193. *hanno gli=la=lavata 
 
-& 10.1.7 Restructuring
+& Restructuring
 
 & Grammatical
 1194.  loro sembrano lavare=mi 
@@ -1813,7 +1826,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1203. *lo=spinge Luisa a lavare Giuseppe 
 1204. *io detesto lavare=lo 
 
-& 10.1.8 Reflexive clitics
+& Reflexive clitics
 
 & Grammatical
 1205.  io mi=lavo 

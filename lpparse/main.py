@@ -21,11 +21,11 @@ def run_study():
 
     # Analyze all sentences from the test corpus
     sentence_number = 1
-    for sentence in local_file_system.read_test_corpus():
+    for sentence, experimental_group in local_file_system.read_test_corpus():
         if not is_comment(sentence):
             language = lang_guesser.guess_language(sentence)
             parser_for[language].parse(sentence_number, sentence)
-            local_file_system.save_output(parser_for[language], sentence_number, sentence)
+            local_file_system.save_output(parser_for[language], sentence_number, sentence, experimental_group)
             sentence_number = sentence_number + 1
         else:
             local_file_system.write_comment_line(sentence)

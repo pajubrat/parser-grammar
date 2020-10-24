@@ -1,10 +1,15 @@
-{'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}2020-10-23 17:53:15.151849
-Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
-Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
-Lexicon from language data working directory\lexicon.txt.
-Redundancy rules from language data working directory\redundancy_rules.txt.
-Universal morphemes from language data working directory\ug_morphemes.txt.
+#  {'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}
+#  2020-10-24 12:10:06.670811
+#  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
+#  Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
+#  Lexicon from language data working directory\lexicon.txt.
+#  Redundancy rules from language data working directory\redundancy_rules.txt.
+#  Universal morphemes from language data working directory\ug_morphemes.txt.
+# 
+# 
 & 0 Formal tests -------------------------------------------------------
+
+& Empty lexical items -------------------------------------------------------
 
 1. a' b' 
 
@@ -41,7 +46,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:0, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:10, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:0, LF recovery:0, LF test:7, Filter solution:0, 
-		Rank solution:6, Lexical retrieval:4, Morphological decomposition:0, Execution time = 0ms
+		Rank solution:6, Lexical retrieval:4, Morphological decomposition:0, Execution time = 15ms
 
 	b. [a [[b c] d]]
 
@@ -61,9 +66,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & 1 Basic construction types -------------------------------------------------------
 
-& 1.2 Basic verb classes -------------------------------------------------------
+& Basic verb classes -------------------------------------------------------
 
-& 1.2.1 Intransitive verbs -------------------------------------------------------
+& Intransitive verbs -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -121,7 +126,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 9. *Pekka istuu Merjan 
 10. *John sleeps Mary 
 11. *John John sleeps 
-& 1.2.2 Transitive verbs -------------------------------------------------------
+& Transitive verbs -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -150,7 +155,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, Execution time = 31ms
 
 14. Pekka teki sen kellon 
 
@@ -164,7 +169,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:4, Move Head:17, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:16, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:15, LF recovery:2, LF test:24, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 78ms
 
 15. John admires Mary 
 
@@ -177,7 +182,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 15ms
 
 16. Giuseppe spinge Luisa 
 
@@ -190,7 +195,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 15ms
 
 17. lavano Luisa 
 
@@ -216,7 +221,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:16, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:16, Morphological decomposition:3, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -227,7 +232,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 23. *mina haluan 
 24. *John admires 
 25. *John admires Mary Mary 
-& 1.2.3 Ditransitive verbs -------------------------------------------------------
+& Ditransitive verbs -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -244,7 +249,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:6, Transfer:14, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:3, LF test:22, Filter solution:7, 
-		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
 
 	b. [[D Pekka]:1 [[T [__:1 [v [[antaa [D kirja]] <__>:2]]]] <P(lle) [D Merja]>:2]]
 
@@ -274,7 +279,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:21, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:9, Transfer:19, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:17, LF recovery:3, LF test:31, Filter solution:12, 
-		Rank solution:10, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:10, Lexical retrieval:20, Morphological decomposition:3, Execution time = 93ms
 
 	b. [[D John]:1 [T [__:1 [v [give [[the key] <to [D Mary]>]]]]]]
 
@@ -285,9 +290,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 & Ungrammatical -------------------------------------------------------
 
-& 1.3 Special finite elements -------------------------------------------------------
+& Special finite elements -------------------------------------------------------
 
-& 1.3.1 Aux, Sentential negation -------------------------------------------------------
+& Aux, Sentential negation -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -313,7 +318,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:6, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:1, Inflection:6, Failed Transfer:3, LF recovery:1, LF test:9, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, Execution time = 15ms
 
 30. Pekka ei lahde 
 
@@ -325,7 +330,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:6, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:1, Inflection:6, Failed Transfer:3, LF recovery:1, LF test:9, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, Execution time = 31ms
 
 31. me emme lahde 
 
@@ -379,7 +384,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:7, Transfer:10, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:1, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:15, Filter solution:7, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 31ms
 
 35. Pekka ei myynyt omaisuuttaan 
 
@@ -460,7 +465,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:8, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:6, LF recovery:3, LF test:14, Filter solution:7, 
-		Rank solution:5, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 41. loro hanno voluto lavare Luisa 
 
@@ -475,7 +480,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:30, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:17, Transfer:12, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:0, Inflection:11, Failed Transfer:12, LF recovery:5, LF test:20, Filter solution:12, 
-		Rank solution:5, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:5, Lexical retrieval:23, Morphological decomposition:5, Execution time = 93ms
 
 42. loro stanno lavando Luisa 
 
@@ -496,7 +501,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 43. *sina en lahde 
 44. *sina lahde et 
 45. *John not does sleep 
-& 1.3.2 Modals -------------------------------------------------------
+& Modals -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -513,7 +518,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:5, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:6, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:4, LF test:7, Filter solution:4, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, Execution time = 31ms
 
 47. Pekan_gen taytyy ihailla Merjaa 
 
@@ -546,7 +551,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:7, Failed Transfer:7, LF recovery:5, LF test:11, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 46ms
 
 49. John must sleep 
 
@@ -558,7 +563,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:2, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:5, Failed Transfer:3, LF recovery:1, LF test:7, Filter solution:2, 
-		Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, Execution time = 15ms
 
 50. John must admire' Mary 
 
@@ -613,7 +618,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:12, Transfer:12, Item streamed into syntax:10, Feature Processing:4, 
 		Extraposition:1, Inflection:12, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 46ms
 
 58. Pekan_gen ei taydy myyda omaisuuttaan 
 
@@ -631,9 +636,11 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:12, Transfer:12, Item streamed into syntax:10, Feature Processing:4, 
 		Extraposition:1, Inflection:7, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, Execution time = 46ms
 
-& 1.3.3 Tensed pure auxiliaries -------------------------------------------------------
+& Ungrammatical -------------------------------------------------------
+
+& Tensed pure auxiliaries -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -648,7 +655,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:6, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:8, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, LF test:12, Filter solution:3, 
-		Rank solution:6, Lexical retrieval:13, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:6, Lexical retrieval:13, Morphological decomposition:3, Execution time = 31ms
 
 	b. [<D Pekka>:1 [T [<__>:1 [BE [T/prt nukku]]]]]
 
@@ -692,7 +699,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical -------------------------------------------------------
 
 62. *John does 
-& 1.3.4 Seem-constructions -------------------------------------------------------
+& Seem-constructions -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -710,9 +717,11 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Extraposition:0, Inflection:9, Failed Transfer:7, LF recovery:3, LF test:11, Filter solution:8, 
 		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 46ms
 
-& 1.4 Infinitival complement clauses -------------------------------------------------------
+& Ungrammatical -------------------------------------------------------
 
-& 1.4.1 Basic infinitival constructions (English) -------------------------------------------------------
+& Infinitival complement clauses -------------------------------------------------------
+
+& Basic infinitival constructions (English) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -744,7 +753,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:25, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:15, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:11, Failed Transfer:7, LF recovery:4, LF test:26, Filter solution:7, 
-		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
 
 	b. [[[D John]:1 [T [__:1 [v [want [D Mary]]]]]] <TO/inf leave>]
 
@@ -767,7 +776,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:5, Move Head:20, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:17, Item streamed into syntax:10, Feature Processing:8, 
 		Extraposition:1, Inflection:11, Failed Transfer:11, LF recovery:4, LF test:23, Filter solution:9, 
-		Rank solution:7, Lexical retrieval:21, Morphological decomposition:3, Execution time = 109ms
+		Rank solution:7, Lexical retrieval:21, Morphological decomposition:3, Execution time = 78ms
 
 67. io detesto lavare Luisa 
 
@@ -781,12 +790,12 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:8, Item streamed into syntax:10, Feature Processing:3, 
 		Extraposition:0, Inflection:10, Failed Transfer:5, LF recovery:4, LF test:13, Filter solution:8, 
-		Rank solution:5, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
 68. *io detesto Giuseppe lavare Luisa 
-& 1.4.2 OC constructions (English) -------------------------------------------------------
+& OC constructions (English) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -801,12 +810,12 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:6, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:6, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:7, LF recovery:2, LF test:11, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
 70. *John tries Mary to_inf leave 
-& 1.4.3 Finnish deverbal infinitival complements -------------------------------------------------------
+& Finnish deverbal infinitival complements -------------------------------------------------------
 
 & A-infinitival 'to do' -------------------------------------------------------
 
@@ -824,7 +833,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:3, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, Execution time = 62ms
 
 72. Pekka kaskee Merjan_gen lahtea 
 
@@ -852,7 +861,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:17, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:10, Item streamed into syntax:10, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:4, LF test:14, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 78ms
 
 74. Pekka kaskee poikien ihailla Merjaa 
 
@@ -867,7 +876,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:27, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:9, Transfer:17, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:2, Inflection:17, Failed Transfer:12, LF recovery:4, LF test:24, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:29, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:29, Morphological decomposition:5, Execution time = 109ms
 
 75. Pekka kaskee poikien myyda omaisuuttaan 
 
@@ -936,7 +945,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:5, LF test:11, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 81. Pekan_gen taytyy myyda omaisuuttaan 
 
@@ -953,7 +962,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:7, Failed Transfer:7, LF recovery:5, LF test:11, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 46ms
 
 82. Pekan_gen ei taydy ihailla Merjaa 
 
@@ -970,7 +979,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:12, Transfer:12, Item streamed into syntax:10, Feature Processing:4, 
 		Extraposition:1, Inflection:12, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 78ms
 
 83. Pekan_gen ei taydy myyda omaisuuttaan 
 
@@ -988,7 +997,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:12, Transfer:12, Item streamed into syntax:10, Feature Processing:4, 
 		Extraposition:1, Inflection:7, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, Execution time = 62ms
+
+& Ungrammatical -------------------------------------------------------
 
 & VA-infinitival 'to do' -------------------------------------------------------
 
@@ -1005,7 +1016,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:16, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:2, LF test:27, Filter solution:4, 
-		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 93ms
 
 85. Pekka halusi heidan lahtevan 
 
@@ -1019,7 +1030,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:23, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:7, Transfer:14, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:11, LF recovery:3, LF test:24, Filter solution:6, 
-		Rank solution:7, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:7, Lexical retrieval:20, Morphological decomposition:4, Execution time = 93ms
 
 	b. [<D Pekka>:1 [T [<__>:1 [v [haluaa [[D he]:2 [vAn [__:2 lahtea]]]]]]]]
 
@@ -1055,7 +1066,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:12, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:5, LF recovery:4, LF test:17, Filter solution:7, 
-		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 109ms
 
 88. Pekka sanoo Merjan_gen lahtevan 
 
@@ -1068,7 +1079,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:16, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:2, LF test:27, Filter solution:4, 
-		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 93ms
 
 89. mina sanon lahtevani 
 
@@ -1088,7 +1099,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 90. *mina sanon lahtevansa 
 91. *Pekka sanoo ihailevansa 
 92. *Pekka halusi Merja lahtevan 
-& 1.5 Nominals -------------------------------------------------------
+& Nominals -------------------------------------------------------
 
 & Basic DPs -------------------------------------------------------
 
@@ -1114,7 +1125,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:4, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:3, LF recovery:0, LF test:6, Filter solution:2, 
-		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 0ms
+		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 15ms
 
 95. se' pieni punainen talo 
 
@@ -1136,7 +1147,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:8, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:1, Inflection:0, Failed Transfer:6, LF recovery:0, LF test:10, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, Execution time = 31ms
 
 97. the little key 
 
@@ -1147,7 +1158,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:4, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:3, LF recovery:0, LF test:6, Filter solution:2, 
-		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 0ms
+		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 15ms
 
 98. the little red key 
 
@@ -1187,7 +1198,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:30, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:6, Transfer:15, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:0, Inflection:16, Failed Transfer:15, LF recovery:5, LF test:23, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:28, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:28, Morphological decomposition:5, Execution time = 93ms
 
 106. Pekka teki sopimuksen antaa avaimen Merjalle 
 
@@ -1205,7 +1216,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:78, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:10, Transfer:30, Item streamed into syntax:15, Feature Processing:14, 
 		Extraposition:1, Inflection:12, Failed Transfer:15, LF recovery:6, LF test:44, Filter solution:15, 
-		Rank solution:21, Lexical retrieval:27, Morphological decomposition:6, Execution time = 171ms
+		Rank solution:21, Lexical retrieval:27, Morphological decomposition:6, Execution time = 203ms
 
 	b. [<D Pekka>:1 [T [<__>:1 [v [teke [D [sopimus [[A/inf [v [[antaa [D avain]] <__>:2]]] <P(lle) [D Merja]>:2]]]]]]]]
 
@@ -1253,9 +1264,11 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:35, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:1, Transfer:18, Item streamed into syntax:9, Feature Processing:12, 
 		Extraposition:0, Inflection:14, Failed Transfer:6, LF recovery:4, LF test:24, Filter solution:7, 
-		Rank solution:15, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:15, Lexical retrieval:23, Morphological decomposition:5, Execution time = 93ms
 
-& 1.6 Adpositions -------------------------------------------------------
+& Ungrammatical -------------------------------------------------------
+
+& Adpositions -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -1281,7 +1294,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:2, Move Head:4, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:4, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:5, Failed Transfer:1, LF recovery:1, LF test:6, Filter solution:1, 
-		Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, Execution time = 31ms
 
 110. Merja nukkui Pekan_gen lahella 
 
@@ -1293,7 +1306,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:19, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:4, Inflection:12, Failed Transfer:9, LF recovery:1, LF test:28, Filter solution:3, 
-		Rank solution:13, Lexical retrieval:19, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:13, Lexical retrieval:19, Morphological decomposition:3, Execution time = 78ms
 
 111. Merja nukkui lahella Pekkaa 
 
@@ -1317,7 +1330,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical -------------------------------------------------------
 
 112. *Merja nukkui lahella Pekan_gen 
-& 1.5 Embedded finite clauses -------------------------------------------------------
+& Embedded finite clauses -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -1332,7 +1345,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:15, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:8, Transfer:21, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:12, LF recovery:2, LF test:31, Filter solution:9, 
-		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 93ms
 
 114. Pekka sanoo etta haluaa ihailla Merjaa 
 
@@ -1348,7 +1361,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:38, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:17, Transfer:23, Item streamed into syntax:13, Feature Processing:5, 
 		Extraposition:0, Inflection:13, Failed Transfer:21, LF recovery:6, LF test:35, Filter solution:16, 
-		Rank solution:5, Lexical retrieval:26, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:5, Lexical retrieval:26, Morphological decomposition:5, Execution time = 125ms
 
 115. Pekka sanoo etta haluaa myyda omaisuuttaan 
 
@@ -1365,7 +1378,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:38, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:17, Transfer:23, Item streamed into syntax:13, Feature Processing:5, 
 		Extraposition:0, Inflection:8, Failed Transfer:21, LF recovery:6, LF test:35, Filter solution:16, 
-		Rank solution:5, Lexical retrieval:21, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:5, Lexical retrieval:21, Morphological decomposition:5, Execution time = 125ms
 
 116. John said that Mary sleeps 
 
@@ -1378,13 +1391,13 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:14, LF recovery:2, LF test:20, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
 & 2 Adjunction and adjuncts -------------------------------------------------------
 
-& Chapter 2.1 Adjuncts inside comprehension pipeline -------------------------------------------------------
+& Adjuncts inside comprehension pipeline -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -1400,7 +1413,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:21, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:9, Transfer:19, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:17, LF recovery:3, LF test:31, Filter solution:12, 
-		Rank solution:10, Lexical retrieval:20, Morphological decomposition:3, Execution time = 93ms
+		Rank solution:10, Lexical retrieval:20, Morphological decomposition:3, Execution time = 109ms
 
 	b. [[D John]:1 [T [__:1 [v [give [[the key] <to [D Mary]>]]]]]]
 
@@ -1422,7 +1435,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:7, Move Head:44, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:39, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:3, Inflection:15, Failed Transfer:24, LF recovery:4, LF test:57, Filter solution:17, 
-		Rank solution:31, Lexical retrieval:28, Morphological decomposition:4, Execution time = 171ms
+		Rank solution:31, Lexical retrieval:28, Morphological decomposition:4, Execution time = 203ms
 
 	b. [[D John]:1 [T [__:1 [v [move [the [key [from [[D Mary] <to [D John]>]]]]]]]]]
 
@@ -1462,7 +1475,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 120. *John gave to Mary the key 
 121. *to Mary John gave the key 
 122. *to Mary John moved the key to John 
-& Chapter 2.3 Adjectives -------------------------------------------------------
+& Adjectives -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -1475,7 +1488,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:4, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:3, LF recovery:0, LF test:6, Filter solution:2, 
-		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 0ms
+		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 15ms
 
 124. the little red key 
 
@@ -1508,7 +1521,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:4, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:3, LF recovery:0, LF test:6, Filter solution:2, 
-		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 0ms
+		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 15ms
 
 127. se' pieni punainen talo 
 
@@ -1540,7 +1553,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 132. *se talo pieni 
 133. *talo pieni se 
 134. *talo se pieni 
-& Chapter 2.4 Adjunct infinitivals in Finnish -------------------------------------------------------
+& Adjunct infinitivals in Finnish -------------------------------------------------------
 
 & MA-infinitival 'doing, without doing...' -------------------------------------------------------
 
@@ -1560,7 +1573,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:23, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:6, Transfer:15, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:12, Failed Transfer:3, LF recovery:4, LF test:24, Filter solution:6, 
-		Rank solution:12, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:12, Lexical retrieval:21, Morphological decomposition:4, Execution time = 78ms
 
 136. Pekka naki Merjan_acc lahtematta 
 
@@ -1576,7 +1589,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:4, Move Head:27, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:19, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:2, Inflection:12, Failed Transfer:5, LF recovery:4, LF test:27, Filter solution:7, 
-		Rank solution:9, Lexical retrieval:22, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:9, Lexical retrieval:22, Morphological decomposition:4, Execution time = 93ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 [v [nake [D Merja]]]]]] <matta lahtea>]
 
@@ -1627,7 +1640,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:35, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:22, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:3, Inflection:18, Failed Transfer:8, LF recovery:5, LF test:30, Filter solution:11, 
-		Rank solution:12, Lexical retrieval:30, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:12, Lexical retrieval:30, Morphological decomposition:5, Execution time = 140ms
 
 139. Pekka elaa ihailemalla Merjaa 
 
@@ -1656,7 +1669,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:7, Move Head:46, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:11, Transfer:31, Item streamed into syntax:19, Feature Processing:7, 
 		Extraposition:0, Inflection:18, Failed Transfer:15, LF recovery:5, LF test:32, Filter solution:20, 
-		Rank solution:3, Lexical retrieval:37, Morphological decomposition:7, Execution time = 125ms
+		Rank solution:3, Lexical retrieval:37, Morphological decomposition:7, Execution time = 140ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1682,7 +1695,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:4, Move Head:27, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:19, Item streamed into syntax:10, Feature Processing:2, 
 		Extraposition:2, Inflection:12, Failed Transfer:5, LF recovery:4, LF test:27, Filter solution:7, 
-		Rank solution:9, Lexical retrieval:22, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:9, Lexical retrieval:22, Morphological decomposition:4, Execution time = 78ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 [v [nake [D Merja]]]]]] <essa lahtea>]
 
@@ -1732,7 +1745,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:6, Merge:11, Move Head:65, Move Phrase:8, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:8, Agree:19, Transfer:65, Item streamed into syntax:19, Feature Processing:7, 
 		Extraposition:18, Inflection:13, Failed Transfer:38, LF recovery:4, LF test:85, Filter solution:14, 
-		Rank solution:18, Lexical retrieval:32, Morphological decomposition:6, Execution time = 281ms
+		Rank solution:18, Lexical retrieval:32, Morphological decomposition:6, Execution time = 312ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 [v [nake [D avain]]]]]] <[D Merja]:2 [essa [__:2 lahtea]]>]
 
@@ -1789,7 +1802,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:4, Merge:8, Move Head:32, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:14, Transfer:44, Item streamed into syntax:14, Feature Processing:0, 
 		Extraposition:9, Inflection:12, Failed Transfer:22, LF recovery:3, LF test:56, Filter solution:9, 
-		Rank solution:14, Lexical retrieval:26, Morphological decomposition:5, Execution time = 156ms
+		Rank solution:14, Lexical retrieval:26, Morphological decomposition:5, Execution time = 234ms
 
 153. Pekka lahtee heidan lahdettya 
 
@@ -1803,7 +1816,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:7, Merge:11, Move Head:52, Move Phrase:11, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:11, Agree:23, Transfer:69, Item streamed into syntax:19, Feature Processing:0, 
 		Extraposition:15, Inflection:11, Failed Transfer:36, LF recovery:3, LF test:87, Filter solution:13, 
-		Rank solution:21, Lexical retrieval:30, Morphological decomposition:6, Execution time = 234ms
+		Rank solution:21, Lexical retrieval:30, Morphological decomposition:6, Execution time = 250ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 lahtea]]] <[D he]:2 [tua [__:2 lahtea]]>]
 
@@ -1854,7 +1867,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:6, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:3, Transfer:8, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:12, Filter solution:3, 
-		Rank solution:3, Lexical retrieval:12, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:3, Lexical retrieval:12, Morphological decomposition:3, Execution time = 46ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 lahtea]]] <en juokse->]
 
@@ -1867,7 +1880,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 158. *Pekka lahtee Merjan_gen juosten 
 & 3 A-bar movement and pied-piping -------------------------------------------------------
 
-& Chapter 3.1 Basic interrogatives -------------------------------------------------------
+& Basic interrogatives -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -1965,7 +1978,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Extraposition:3, Inflection:8, Failed Transfer:8, LF recovery:2, LF test:18, Filter solution:6, 
 		Rank solution:4, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
 
-& Chapter 3.2 pied-piping -------------------------------------------------------
+& Pied-piping -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -1982,7 +1995,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:8, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:1, 
 		Move Adjunct:0, Agree:7, Transfer:18, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:1, Failed Transfer:9, LF recovery:3, LF test:24, Filter solution:6, 
-		Rank solution:9, Lexical retrieval:9, Morphological decomposition:2, Execution time = 62ms
+		Rank solution:9, Lexical retrieval:9, Morphological decomposition:2, Execution time = 46ms
 
 172. mita kaupunkia kohti Seine virtaa 
 
@@ -2014,7 +2027,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:8, Move Head:23, Move Phrase:19, A-Move Phrase:0, A-bar Move Phrase:14, 
 		Move Adjunct:0, Agree:5, Transfer:29, Item streamed into syntax:16, Feature Processing:0, 
 		Extraposition:1, Inflection:5, Failed Transfer:11, LF recovery:6, LF test:39, Filter solution:11, 
-		Rank solution:25, Lexical retrieval:21, Morphological decomposition:7, Execution time = 140ms
+		Rank solution:25, Lexical retrieval:21, Morphological decomposition:7, Execution time = 125ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2022,9 +2035,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 175. *kohti mita kaupunkia Seine virtaa 
 176. *Seine virtaa kohti mita kaupunkia 
 177. *Seine virtaa mita kaupunkia kohti 
-& 3.3 Islands -------------------------------------------------------
+& Islands -------------------------------------------------------
 
-& 3.3.1 Extraction from left branch and right adjunct (CED-effects) -------------------------------------------------------
+& Extraction from left branch and right adjunct (CED-effects) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2041,7 +2054,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:7, Move Head:44, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:39, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:3, Inflection:15, Failed Transfer:24, LF recovery:4, LF test:57, Filter solution:17, 
-		Rank solution:31, Lexical retrieval:28, Morphological decomposition:4, Execution time = 187ms
+		Rank solution:31, Lexical retrieval:28, Morphological decomposition:4, Execution time = 203ms
 
 	b. [[D John]:1 [T [__:1 [v [move [the [key [from [[D Mary] <to [D John]>]]]]]]]]]
 
@@ -2091,7 +2104,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:8, Move Head:49, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:16, Transfer:43, Item streamed into syntax:16, Feature Processing:0, 
 		Extraposition:10, Inflection:4, Failed Transfer:25, LF recovery:6, LF test:43, Filter solution:21, 
-		Rank solution:9, Lexical retrieval:20, Morphological decomposition:6, Execution time = 187ms
+		Rank solution:9, Lexical retrieval:20, Morphological decomposition:6, Execution time = 218ms
 
 	b. [[[D Seine]:1 [T [__:1 [v [saavutta- [D meri]]]]]] <malla [virtaa [kohti [D Pariisi]]]>]
 
@@ -2162,7 +2175,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 184. *mika se' sopimus ostaa raukesi 
 185. *kenen se' kello havisi 
 186. *keta Pekka naki Merjan_acc ihailemassa 
-& 3.3.2 Extraction from embedded interrogative (wh-island) -------------------------------------------------------
+& Extraction from embedded interrogative (wh-island) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2196,13 +2209,13 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:36, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:17, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:0, Inflection:17, Failed Transfer:21, LF recovery:4, LF test:31, Filter solution:16, 
-		Rank solution:5, Lexical retrieval:30, Morphological decomposition:5, Execution time = 156ms
+		Rank solution:5, Lexical retrieval:30, Morphological decomposition:5, Execution time = 109ms
 
 & Ungrammatical -------------------------------------------------------
 
 189. *who does John ask' whether Mary admires 
 190. *who does John ask' what admires 
-& 3.3.3 Extraction from DP -------------------------------------------------------
+& Extraction from DP -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2221,7 +2234,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:30, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:6, Transfer:15, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:0, Inflection:11, Failed Transfer:15, LF recovery:5, LF test:23, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
 
 192. Pekka teki sen Merjan_gen kellon 
 
@@ -2235,15 +2248,13 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:20, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:7, Transfer:18, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:3, Inflection:13, Failed Transfer:14, LF recovery:2, LF test:27, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:4, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
 193. *kenen Pekka teki sen kellon 
-& PROBLEM: why does D block A-bar reconstruction -------------------------------------------------------
-
 194. *minka Pekka teki sopimuksen ostaa 
-& 3.3.4 Extraction of embedded subject position -------------------------------------------------------
+& Extraction of embedded subject position -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2258,14 +2269,14 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:14, LF recovery:2, LF test:20, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
 196. *who does John say' that sleeps 
 & 4 Case -------------------------------------------------------
 
-& 4.1 Finite clause, nominative and partitive -------------------------------------------------------
+& Finite clause, nominative and partitive -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2350,9 +2361,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 209. *Merja ihailee Pekan_gen 
 210. *Merja ihailee Pekan_acc 
 211. *Merja ihailee Pekka_0acc 
-& 4.2 Finite clause, accusative -------------------------------------------------------
+& Finite clause, accusative -------------------------------------------------------
 
-& 4.2.1 Accusative and aspect -------------------------------------------------------
+& Accusative and aspect -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2382,7 +2393,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, Execution time = 31ms
 
 214. Pekka tonaisi Merjaa 
 
@@ -2395,7 +2406,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 215. Pekka pesi Merjan 
 
@@ -2451,7 +2462,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 219. *Pekka tonaisi Merja 
 220. *Pekka tonaisi Merja_0acc 
 221. *Pekka tonaisi hanet 
-& 4.2.2 Accusative and negation -------------------------------------------------------
+& Accusative and negation -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2467,7 +2478,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:7, Transfer:10, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:1, Inflection:14, Failed Transfer:8, LF recovery:2, LF test:15, Filter solution:7, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2475,7 +2486,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 224. *Pekka ei voittanut Merja 
 225. *Pekka ei voittanut Merja_0acc 
 226. *Pekka ei voittanut Merjan_gen 
-& 4.2.3 Accusative and agreement -------------------------------------------------------
+& Accusative and agreement -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2491,7 +2502,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 31ms
 
 228. me loydettiin avain_0acc 
 
@@ -2512,7 +2523,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 229. *me loydettiin avaimen 
 230. *me loysimme avain 
 231. *me loysimme avain_0acc 
-& 4.2.4 Accusative and long-distance effects -------------------------------------------------------
+& Accusative and long-distance effects -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2529,7 +2540,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:10, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:3, LF test:14, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 233. Pekka halusi tonaista Merjaa 
 
@@ -2603,7 +2614,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:12, Transfer:15, Item streamed into syntax:10, Feature Processing:4, 
 		Extraposition:1, Inflection:11, Failed Transfer:14, LF recovery:3, LF test:22, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 78ms
 
 238. me halusimme voittaa Merjan 
 
@@ -2618,7 +2629,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:10, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:3, LF test:14, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2626,7 +2637,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 240. *me halusimme voittaa Merja_0acc 
 241. *me ei' haluttu voittaa Merja_0acc 
 242. *me ei' haluttu voittaa Merjan 
-& 4.3 Adpositions -------------------------------------------------------
+& Adpositions -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2640,7 +2651,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:2, Move Head:2, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:4, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:1, LF test:2, Filter solution:2, 
-		Rank solution:0, Lexical retrieval:16, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:16, Morphological decomposition:2, Execution time = 15ms
 
 244. Pekkaa lahella 
 
@@ -2664,7 +2675,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:19, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:4, Inflection:12, Failed Transfer:9, LF recovery:1, LF test:28, Filter solution:3, 
-		Rank solution:13, Lexical retrieval:19, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:13, Lexical retrieval:19, Morphological decomposition:3, Execution time = 62ms
 
 246. Merja nukkui lahella Pekkaa 
 
@@ -2677,7 +2688,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:2, Merge:7, Move Head:16, Move Phrase:9, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:9, Agree:14, Transfer:30, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:1, Inflection:22, Failed Transfer:16, LF recovery:2, LF test:39, Filter solution:10, 
-		Rank solution:9, Lexical retrieval:34, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:9, Lexical retrieval:34, Morphological decomposition:5, Execution time = 125ms
 
 	b. [[<D Merja>:1 [T [<__>:1 nukku]]] <lahella [D Pekka]>]
 
@@ -2688,7 +2699,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical -------------------------------------------------------
 
 247. *Merja nukkui lahella Pekan_gen 
-& 4.4 Infinitivals -------------------------------------------------------
+& Infinitivals -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2704,7 +2715,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:5, Transfer:12, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:2, Inflection:12, Failed Transfer:7, LF recovery:3, LF test:18, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 249. Pekka sanoi Merjan_gen lahtevan 
 
@@ -2743,7 +2754,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 256. *Pekka sanoi hanet lahtevan 
 257. *Pekka kaski lahtea Merjan_gen 
 258. *Pekka sanoi lahtevan Merjan_gen 
-& 4.5 Possessive constructions -------------------------------------------------------
+& Possessive constructions -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2762,7 +2773,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical -------------------------------------------------------
 
 260. *se kello Merjan_gen havisi 
-& 4.6 Numeral constructions (two types) -------------------------------------------------------
+& Numeral constructions (two types) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2778,7 +2789,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:1, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:12, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:1, Failed Transfer:3, LF recovery:3, LF test:18, Filter solution:2, 
-		Rank solution:10, Lexical retrieval:6, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:10, Lexical retrieval:6, Morphological decomposition:2, Execution time = 15ms
 
 262. ne kahdet sukat havisivat 
 
@@ -2820,7 +2831,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:6, Move Head:24, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:11, Transfer:26, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:25, LF recovery:2, LF test:38, Filter solution:14, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 109ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 93ms
 
 265. Pekka sanoi niiden kahden sukan haviavan 
 
@@ -2834,7 +2845,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:14, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:12, Transfer:30, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:20, LF recovery:3, LF test:46, Filter solution:8, 
-		Rank solution:15, Lexical retrieval:19, Morphological decomposition:6, Execution time = 93ms
+		Rank solution:15, Lexical retrieval:19, Morphological decomposition:6, Execution time = 78ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2843,7 +2854,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 268. *ne kahdet sukka_0acc havisivat 
 269. *ne kahdet sukka havisivat 
 270. *Pekka sanoi niiden kaksi sukkaa haviavan 
-& 4.7 Adverbials, direct object marking -------------------------------------------------------
+& Adverbials, direct object marking -------------------------------------------------------
 
 & 4.7.1 MALLA-adverbial -------------------------------------------------------
 
@@ -2862,7 +2873,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:5, Move Head:20, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:21, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:7, LF recovery:4, LF test:23, Filter solution:11, 
-		Rank solution:3, Lexical retrieval:20, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:3, Lexical retrieval:20, Morphological decomposition:5, Execution time = 93ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2870,7 +2881,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 273. *Pekka nukahti lukemalla Merja 
 274. *Pekka nukahti lukemalla Merja_0acc 
 275. *Pekka nukahti lukemalla Merjan_acc 
-& 4.8 Adverbial case marking -------------------------------------------------------
+& Adverbial case marking -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2910,7 +2921,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:10, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:16, Transfer:22, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:5, Inflection:8, Failed Transfer:14, LF recovery:1, LF test:32, Filter solution:6, 
-		Rank solution:8, Lexical retrieval:15, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:8, Lexical retrieval:15, Morphological decomposition:4, Execution time = 78ms
 
 279. me nukuttiin koko paiva 
 
@@ -2938,7 +2949,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:2, Merge:8, Move Head:32, Move Phrase:9, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:9, Agree:12, Transfer:34, Item streamed into syntax:11, Feature Processing:0, 
 		Extraposition:0, Inflection:16, Failed Transfer:23, LF recovery:2, LF test:52, Filter solution:11, 
-		Rank solution:11, Lexical retrieval:27, Morphological decomposition:7, Execution time = 156ms
+		Rank solution:11, Lexical retrieval:27, Morphological decomposition:7, Execution time = 140ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2949,9 +2960,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 285. *Pekka ihailee#asp Merjaa koko paiva 
 286. *Pekka ihailee#asp Merjaa koko paivaa 
 287. *Pekka ihailee Merjaa koko paivaa 
-& 4.9 Special constructions -------------------------------------------------------
+& Special constructions -------------------------------------------------------
 
-& 4.9.1 Partitive subjects (psych verbs) -------------------------------------------------------
+& Partitive subjects (psych verbs) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2967,7 +2978,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:4, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:1, Transfer:3, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:3, LF test:5, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2976,7 +2987,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 291. *Merjan_acc pelottaa 
 292. *Merja_0acc pelottaa 
 293. *Merjalle pelottaa 
-& 4.9.2 Impersonal passives -------------------------------------------------------
+& Impersonal passives -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -2992,7 +3003,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 31ms
 
 295. me loydettiin avain_0acc 
 
@@ -3006,7 +3017,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 15ms
 
 296. avain_0acc loydettiin 
 
@@ -3042,7 +3053,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 298. *me loydettiin avaimen 
 299. *me loysimme avain 
-& 4.9.4 Copula -------------------------------------------------------
+& Copula -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -3092,7 +3103,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:1, LF test:12, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:13, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:13, Morphological decomposition:3, Execution time = 31ms
 
 	b. [[[<D Pekka>:1 [T [<__>:1 BE]]] <P(lla) [D Merja]>:2] <__>:2]
 
@@ -3115,7 +3126,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 304. *Pekka on' Pekan_gen 
 & 5 Agreement -------------------------------------------------------
 
-& Chapter 5.1 Standard finite S-V agreement -------------------------------------------------------
+& Standard finite S-V agreement -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -3169,7 +3180,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 309. te ihailette Merjaa 
 
@@ -3195,7 +3206,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 	b. [<D he>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]
 
@@ -3214,7 +3225,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 15ms
 
 312. you admire Mary 
 
@@ -3298,7 +3309,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
 
 318. they admire Mary 
 
@@ -3311,7 +3322,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 15ms
 
 319. io adoro Luisa 
 
@@ -3324,7 +3335,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:3, Transfer:5, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, LF test:9, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, Execution time = 78ms
 
 320. tu adori Luisa 
 
@@ -3337,7 +3348,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:3, Transfer:5, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, LF test:9, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, Execution time = 15ms
 
 321. lui adora Luisa 
 
@@ -3350,7 +3361,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:3, Transfer:5, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, LF test:9, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:18, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:18, Morphological decomposition:3, Execution time = 31ms
 
 322. lei adora Luisa 
 
@@ -3442,7 +3453,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 359. *io adora Luisa 
 360. *io adorate Luisa 
 361. *io adorano Luisa 
-& 5.2 S-V areement with noncanonical word order (Finnish) -------------------------------------------------------
+& S-V areement with noncanonical word order (Finnish) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -3457,7 +3468,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:8, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 363. ihailen Merjaa mina 
 
@@ -3502,7 +3513,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:13, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:7, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 	b. [[T [<__>:1 [v [ihaile- [D Merja]]]]] <D sina>:1]
 
@@ -3553,7 +3564,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:13, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:7, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 	b. [[T [<__>:1 [v [ihaile- [D Merja]]]]] <D me>:1]
 
@@ -3572,7 +3583,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:8, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 370. mina ihailen Merjaa 
 
@@ -3669,7 +3680,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
 
 377. Merjaa ihailet sina 
 
@@ -3682,7 +3693,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D sina>:2]
 
@@ -3701,7 +3712,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 379. han Merjaa ihailee 
 
@@ -3727,7 +3738,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
 
 381. Merjaa ihailee han 
 
@@ -3741,7 +3752,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D han>:2]
 
@@ -3761,7 +3772,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 383. me Merjaa ihailemme 
 
@@ -3774,7 +3785,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 93ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
 
 384. Merjaa me ihailemme 
 
@@ -3787,7 +3798,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 93ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
 
 385. Merjaa ihailemme me 
 
@@ -3800,7 +3811,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 15ms
 
 	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D me>:2]
 
@@ -3832,7 +3843,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
 
 388. Merjaa te ihailette 
 
@@ -3845,7 +3856,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
 
 389. Merjaa ihailette te 
 
@@ -3858,7 +3869,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D te>:2]
 
@@ -3915,7 +3926,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
 
 	b. [<D Merja>:1 [<D he>:2 [T [<__>:2 [v [<__>:1 ihaile-]]]]]]
 
@@ -3935,7 +3946,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 	b. [<D Merja>:1 [T [<__>:2 [v [<__>:1 [ihaile- <D he>:2]]]]]]
 
@@ -4148,7 +4159,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 577. *Merjaa ihailette he_FI 
 & 6 Pro-drop -------------------------------------------------------
 
-& 6.1 Finite pro-drop -------------------------------------------------------
+& Finite pro-drop -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -4163,7 +4174,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
 
 579. ihailet Merjaa 
 
@@ -4189,7 +4200,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
 
 581. ihailette Merjaa 
 
@@ -4228,7 +4239,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 31ms
 
 584. adora Luisa 
 
@@ -4254,7 +4265,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 15ms
 
 586. adoriamo Luisa 
 
@@ -4267,7 +4278,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 15ms
 
 587. adorate Luisa 
 
@@ -4350,7 +4361,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:4, LF recovery:4, LF test:6, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 31ms
 
 593. hanno voluto lavare Luisa 
 
@@ -4366,7 +4377,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:10, Transfer:7, Item streamed into syntax:10, Feature Processing:3, 
 		Extraposition:0, Inflection:8, Failed Transfer:8, LF recovery:6, LF test:10, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
 
 594. stanno lavando Luisa 
 
@@ -4389,7 +4400,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 597. *admire Mary 
 598. *admires Mary 
 599. *am John 
-& 6.2 Finite pro-drop with noncanonical word order -------------------------------------------------------
+& Finite pro-drop with noncanonical word order -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -4453,7 +4464,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:3, LF test:5, Filter solution:3, 
 		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
 
-& 6.3 Third person pro in Finnish, with and without antecedent -------------------------------------------------------
+& Third person pro in Finnish, with and without antecedent -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -4498,7 +4509,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 611. *John said that admires Mary 
 & 7 Control -------------------------------------------------------
 
-& 7.1 Partial pro-drop control (only D_ unvalued) -------------------------------------------------------
+& Partial pro-drop control (only D_ unvalued) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -4537,9 +4548,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 614. *ihailee Merjaa 
 615. *Mina sanon etta ihailee Merjaa 
-& 7.2 Standard control (phi_, D_ unvalued) -------------------------------------------------------
+& Standard control (phi_, D_ unvalued) -------------------------------------------------------
 
-& 7.2.1 Control into complements -------------------------------------------------------
+& Control into complements -------------------------------------------------------
 
 & Want-class (no SEM) -------------------------------------------------------
 
@@ -4573,7 +4584,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:25, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:15, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:11, Failed Transfer:7, LF recovery:4, LF test:26, Filter solution:7, 
-		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 93ms
+		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
 
 	b. [[[D John]:1 [T [__:1 [v [want [D Mary]]]]]] <TO/inf leave>]
 
@@ -4599,7 +4610,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:3, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, Execution time = 15ms
 
 619. John tries to_inf leave 
 
@@ -4625,7 +4636,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:5, Transfer:8, Item streamed into syntax:6, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:5, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:12, Morphological decomposition:2, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
 
 	b. [[[D John]:1 [T [__:1 promise]]] <TO/inf leave>]
 
@@ -4654,7 +4665,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:5, Transfer:12, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:2, Inflection:12, Failed Transfer:7, LF recovery:3, LF test:18, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 624. Pekka haluaa Merjan_gen lahtevan 
 
@@ -4668,7 +4679,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:23, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:7, Transfer:14, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:11, LF recovery:3, LF test:24, Filter solution:6, 
-		Rank solution:7, Lexical retrieval:21, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:7, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 625. John persuades Mary to_inf leave 
 
@@ -4682,7 +4693,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:25, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:9, Transfer:15, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:11, Failed Transfer:7, LF recovery:3, LF test:26, Filter solution:7, 
-		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
 
 	b. [[[D John]:1 [T [__:1 [v [persuade [D Mary]]]]]] <TO/inf leave>]
 
@@ -4697,7 +4708,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 626. *Pekka kaskee lahtea 
 627. *John persuades to_ing leave 
 628. *Pekka haluaa lahtevan 
-& 7.2.2 Control into adverbials -------------------------------------------------------
+& Control into adverbials -------------------------------------------------------
 
 & Subject control (high adjunct position) -------------------------------------------------------
 
@@ -4729,7 +4740,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:3, Merge:8, Move Head:22, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:12, Transfer:26, Item streamed into syntax:9, Feature Processing:2, 
 		Extraposition:3, Inflection:11, Failed Transfer:13, LF recovery:3, LF test:38, Filter solution:6, 
-		Rank solution:18, Lexical retrieval:20, Morphological decomposition:3, Execution time = 187ms
+		Rank solution:18, Lexical retrieval:20, Morphological decomposition:3, Execution time = 125ms
 
 & Object control (low adjunct position) -------------------------------------------------------
 
@@ -4747,7 +4758,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:25, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:9, Transfer:15, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:11, Failed Transfer:7, LF recovery:3, LF test:26, Filter solution:7, 
-		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
 
 	b. [[[D John]:1 [T [__:1 [v [persuade [D Mary]]]]]] <TO/inf leave>]
 
@@ -4760,7 +4771,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical -------------------------------------------------------
 
 632. *John persuades to_inf leave 
-& 7.2.4 Generic interpretation -------------------------------------------------------
+& Generic interpretation -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
 
 & Null object construction (Finnish) -------------------------------------------------------
 
@@ -4777,7 +4790,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:3, Transfer:8, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:4, LF test:12, Filter solution:4, 
-		Rank solution:3, Lexical retrieval:13, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:3, Lexical retrieval:13, Morphological decomposition:3, Execution time = 31ms
 
 & Generic null subject -------------------------------------------------------
 
@@ -4793,7 +4806,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:19, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:16, Transfer:21, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:7, LF recovery:3, LF test:33, Filter solution:6, 
-		Rank solution:14, Lexical retrieval:16, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:14, Lexical retrieval:16, Morphological decomposition:4, Execution time = 125ms
 
 	b. [[D Pekka]:1 [[T [__:1 [sano- [etta [T istuu]]]]] <sti mukavasti>]]
 
@@ -4822,7 +4835,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:8, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:3, Transfer:5, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:4, Failed Transfer:1, LF recovery:3, LF test:8, Filter solution:4, 
-		Rank solution:3, Lexical retrieval:11, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:3, Lexical retrieval:11, Morphological decomposition:4, Execution time = 46ms
 
 	b. [[[P [D tama]] [T istuu]] <sti mukavasti>]
 
@@ -4880,9 +4893,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 637. *istuu mukavasti 
 & 8 Word order -------------------------------------------------------
 
-& 8.1 Basic transitive clause -------------------------------------------------------
+& Basic transitive clause -------------------------------------------------------
 
-& 8.1.1 Frozen word order regimen (English) -------------------------------------------------------
+& Frozen word order regimen (English) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -4910,7 +4923,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4918,7 +4931,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 641. *admires John Mary 
 642. *admires Mary John 
 643. *Mary John admires 
-& 8.1.2 Free word order regimen (Finnish) -------------------------------------------------------
+& Free word order regimen (Finnish) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -4959,7 +4972,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
 
 647. Merjaa ihailee Pekka 
 
@@ -4986,9 +4999,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 
 648. *ihailee Pekka Merjaa 
 649. *ihailee Merjaa Pekka 
-& 8.2 Ditransitives -------------------------------------------------------
+& Ditransitives -------------------------------------------------------
 
-& 8.2.1 Free word order profile (Finnish) -------------------------------------------------------
+& Free word order profile (Finnish) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -5005,7 +5018,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:6, Transfer:14, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:3, LF test:22, Filter solution:7, 
-		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
 
 	b. [[D Pekka]:1 [[T [__:1 [v [[antaa [D kirja]] <__>:2]]]] <P(lle) [D Merja]>:2]]
 
@@ -5036,7 +5049,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:25, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:7, Transfer:13, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:3, LF test:20, Filter solution:7, 
-		Rank solution:11, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:11, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 [v [<__>:2 [antaa [P(lle) [D Merja]]]]]]]] <D kirja>:2]
 
@@ -5067,7 +5080,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:5, Move Head:25, Move Phrase:10, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:10, Agree:7, Transfer:27, Item streamed into syntax:15, Feature Processing:0, 
 		Extraposition:3, Inflection:9, Failed Transfer:13, LF recovery:3, LF test:38, Filter solution:11, 
-		Rank solution:14, Lexical retrieval:24, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:14, Lexical retrieval:24, Morphological decomposition:5, Execution time = 125ms
 
 	b. [[D Pekka]:1 [[<D kirja>:2 [T [__:1 [v [[<__>:2 antaa] <__>:3]]]]] <P(lle) [D Merja]>:3]]
 
@@ -5098,7 +5111,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:17, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:1, Transfer:15, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:3, Inflection:8, Failed Transfer:8, LF recovery:3, LF test:20, Filter solution:8, 
-		Rank solution:5, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
 
 654. Pekka Merjalle antoi kirjan 
 
@@ -5143,7 +5156,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:2, Merge:6, Move Head:29, Move Phrase:12, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:12, Agree:9, Transfer:31, Item streamed into syntax:17, Feature Processing:0, 
 		Extraposition:3, Inflection:9, Failed Transfer:22, LF recovery:3, LF test:42, Filter solution:13, 
-		Rank solution:15, Lexical retrieval:26, Morphological decomposition:5, Execution time = 125ms
+		Rank solution:15, Lexical retrieval:26, Morphological decomposition:5, Execution time = 156ms
 
 	b. [[<D kirja>:1 [<D Pekka>:2 [T [<__>:2 [v [[<__>:1 antaa] <__>:3]]]]]] <P(lle) [D Merja]>:3]
 
@@ -5216,7 +5229,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:27, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:15, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:4, LF test:23, Filter solution:6, 
-		Rank solution:17, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:17, Lexical retrieval:18, Morphological decomposition:4, Execution time = 93ms
 
 	b. [[<D kirja>:1 [T [<__>:2 [v [<__>:1 [antaa [P(lle) [D Merja]]]]]]]] <D Pekka>:2]
 
@@ -5290,7 +5303,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:5, Move Head:21, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:5, Transfer:22, Item streamed into syntax:14, Feature Processing:0, 
 		Extraposition:3, Inflection:10, Failed Transfer:15, LF recovery:3, LF test:26, Filter solution:12, 
-		Rank solution:4, Lexical retrieval:24, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:4, Lexical retrieval:24, Morphological decomposition:5, Execution time = 125ms
 
 663. Merjalle Pekka kirjan antoi 
 
@@ -5305,7 +5318,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:1, Merge:4, Move Head:22, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:2, Transfer:27, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:8, Inflection:9, Failed Transfer:18, LF recovery:3, LF test:38, Filter solution:9, 
-		Rank solution:10, Lexical retrieval:21, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:10, Lexical retrieval:21, Morphological decomposition:4, Execution time = 109ms
 
 664. Merjalle antoi Pekka kirjan 
 
@@ -5364,7 +5377,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:3, Merge:7, Move Head:30, Move Phrase:8, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:8, Agree:4, Transfer:40, Item streamed into syntax:18, Feature Processing:0, 
 		Extraposition:12, Inflection:12, Failed Transfer:24, LF recovery:3, LF test:52, Filter solution:14, 
-		Rank solution:16, Lexical retrieval:30, Morphological decomposition:5, Execution time = 156ms
+		Rank solution:16, Lexical retrieval:30, Morphological decomposition:5, Execution time = 187ms
 
 667. Merjalle kirjan antoi Pekka 
 
@@ -5380,7 +5393,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:3, Merge:7, Move Head:32, Move Phrase:17, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:17, Agree:11, Transfer:42, Item streamed into syntax:16, Feature Processing:0, 
 		Extraposition:4, Inflection:14, Failed Transfer:10, LF recovery:4, LF test:49, Filter solution:12, 
-		Rank solution:15, Lexical retrieval:30, Morphological decomposition:5, Execution time = 156ms
+		Rank solution:15, Lexical retrieval:30, Morphological decomposition:5, Execution time = 171ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -5390,7 +5403,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 671. *antoi kirjan Merjalle Pekka 
 672. *antoi Merjalle Pekka kirjan 
 673. *antoi Merjalle kirjan Pekka 
-& 8.2.2 Rigid word order profile (English) -------------------------------------------------------
+& Rigid word order profile (English) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -5454,9 +5467,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 695. *to Mary gave the key John 
 696. *to Mary the key John gave 
 697. *to Mary the key gave John 
-& 8.3 Neg/Aux + V -------------------------------------------------------
+& Neg/Aux + V -------------------------------------------------------
 
-& 8.2.3 Finnish transitive Neg + V -------------------------------------------------------
+& Finnish transitive Neg + V -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -5471,7 +5484,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:7, Transfer:10, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:1, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:15, Filter solution:7, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 699. Pekka ei Merjaa ihaile 
 
@@ -5510,7 +5523,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:8, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:4, Transfer:14, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:4, Inflection:12, Failed Transfer:9, LF recovery:2, LF test:21, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 702. Merjaa ei Pekka ihaile 
 
@@ -5567,7 +5580,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 719. *Merjaa Pekka ihaile ei 
 720. *Merjaa ihaile Pekka ei 
 721. *Merjaa ihaile ei Pekka 
-& 8.2.4 English transitive Aux + V -------------------------------------------------------
+& English transitive Aux + V -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -5595,7 +5608,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:6, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:7, LF recovery:2, LF test:11, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -5617,7 +5630,24 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 739. *admire' Mary does John 
 740. *Mary John does admire' 
 741. *Mary John admire' does 
-742. Mary does John admire' 
+742. *Mary admire' John does 
+743. *Mary admire' does John 
+& Unclear -------------------------------------------------------
+
+744. John does Mary admire' 
+
+	[[D John]:1 [does [[D Mary] [v [__:1 admire]]]]]
+
+	LF_Recovery: ,  
+, Agent of admire(John)
+, Agent of v(Mary)
+
+		Garden Paths:0, Merge:3, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
+		Move Adjunct:0, Agree:4, Transfer:8, Item streamed into syntax:7, Feature Processing:0, 
+		Extraposition:1, Inflection:10, Failed Transfer:7, LF recovery:2, LF test:14, Filter solution:6, 
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
+
+745. Mary does John admire' 
 
 	[[D Mary]:1 [does [[D John] [v [__:1 admire]]]]]
 
@@ -5630,57 +5660,40 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Extraposition:1, Inflection:10, Failed Transfer:7, LF recovery:2, LF test:14, Filter solution:6, 
 		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
 
-743. *Mary admire' John does 
-744. *Mary admire' does John 
-& Unclear -------------------------------------------------------
-
-745. John does Mary admire' 
-
-	[[D John]:1 [does [[D Mary] [v [__:1 admire]]]]]
-
-	LF_Recovery: ,  
-, Agent of admire(John)
-, Agent of v(Mary)
-
-		Garden Paths:0, Merge:3, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
-		Move Adjunct:0, Agree:4, Transfer:8, Item streamed into syntax:7, Feature Processing:0, 
-		Extraposition:1, Inflection:10, Failed Transfer:7, LF recovery:2, LF test:14, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
-
-& 8.3 Heads in wrong order -------------------------------------------------------
+& Heads in wrong order -------------------------------------------------------
 
 & Ungrammatical -------------------------------------------------------
 
-& Group 8.3.1 Neg + V -------------------------------------------------------
+& Neg + V -------------------------------------------------------
 
 746. *Pekka ihaile ei Merjaa 
-& Group 8.3.2 Neg + Aux + V -------------------------------------------------------
+& Neg + Aux + V -------------------------------------------------------
 
 747. *Pekka ollut ei ihaillut Merjaa 
 748. *Pekka ollut ihaillut ei Merjaa 
 749. *Pekka ei ihaillut ollut Merjaa 
 750. *Pekka ei ihaillut ei ollut Merjaa 
 751. *Pekka ihaillut ollut ei Merjaa 
-& Group 8.3.3 Neg + Modal + V -------------------------------------------------------
+& Neg + Modal + V -------------------------------------------------------
 
 752. *Pekan_gen taydy ei ihailla Merjaa 
 753. *Pekan_gen taydy ihailla ei Merjaa 
 754. *Pekan_gen ei ihailla taydy Merjaa 
 755. *Pekan_gen ihailla ei taydy Merjaa 
 756. *Pekan_gen ihailla taydy ei Merjaa 
-& Group 8.3.4 Neg + V + V + LHM, with wrong head order -------------------------------------------------------
+& Neg + V + V + LHM, with wrong head order -------------------------------------------------------
 
 757. *taydy#C/op Pekan_gen ihailla ei Merjaa 
 758. *ihailla#C/op Pekan_gen taydy ei Merjaa 
 759. *halua#C/op Pekan_gen Pekka ihailla ei Merjaa 
 760. *ihailla#C/op Pekan_gen halua ei Merjaa 
-& Group 8.3.5 Head final constructions with two more more verbal elements -------------------------------------------------------
+& Head final constructions with two more more verbal elements -------------------------------------------------------
 
 761. *Pekka ihaile Merjaa ei 
 762. *Pekan_gen ei ihailla Merjaa taydy 
-& 8.4 Infinitival complements -------------------------------------------------------
+& Infinitival complements -------------------------------------------------------
 
-& 8.4.1 Rigid word order (English) -------------------------------------------------------
+& Rigid word order (English) -------------------------------------------------------
 
 & John wants to leave -------------------------------------------------------
 
@@ -5699,7 +5712,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:10, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:7, LF recovery:4, LF test:11, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -5935,7 +5948,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:23, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:13, Item streamed into syntax:9, Feature Processing:6, 
 		Extraposition:0, Inflection:11, Failed Transfer:9, LF recovery:4, LF test:21, Filter solution:8, 
-		Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
 
 904. Mary wants to_inf John leave 
 
@@ -5950,9 +5963,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:23, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:13, Item streamed into syntax:9, Feature Processing:6, 
 		Extraposition:0, Inflection:11, Failed Transfer:9, LF recovery:4, LF test:21, Filter solution:8, 
-		Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
 
-& 8.4.2 Free word order (Finnish) -------------------------------------------------------
+& Free word order (Finnish) -------------------------------------------------------
 
 & Pekka haluaa lahtea -------------------------------------------------------
 
@@ -6103,7 +6116,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:7, Transfer:14, Item streamed into syntax:10, Feature Processing:1, 
 		Extraposition:3, Inflection:13, Failed Transfer:9, LF recovery:3, LF test:21, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 46ms
 
 919. lahtea#C/op Pekka Merjan_gen kaskee 
 
@@ -6149,7 +6162,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:12, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:3, 
 		Move Adjunct:1, Agree:3, Transfer:10, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:1, Inflection:12, Failed Transfer:1, LF recovery:5, LF test:13, Filter solution:5, 
-		Rank solution:9, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:9, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 	b. [[[[D Merja]:2 [A/inf [__:2 lahtea]]]:1 [T [<__>:3 [v [kaske __:1]]]]] <D Pekka>:3]
 
@@ -6174,7 +6187,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:12, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:1, 
 		Move Adjunct:1, Agree:1, Transfer:12, Item streamed into syntax:9, Feature Processing:4, 
 		Extraposition:2, Inflection:12, Failed Transfer:5, LF recovery:4, LF test:16, Filter solution:6, 
-		Rank solution:5, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -6196,11 +6209,11 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 938. *lahtea Merjan_gen kaskee Pekka 
 & 9 Head movement -------------------------------------------------------
 
-& 9.1 Local HMC-compliant X-to-C movement -------------------------------------------------------
+& Local HMC-compliant X-to-C movement -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
-& 9.1.1 T-to-C* movement -------------------------------------------------------
+& T-to-C* movement -------------------------------------------------------
 
 939. istuu#foc Pekka 
 
@@ -6224,7 +6237,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:2, Transfer:3, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:1, LF test:4, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, Execution time = 31ms
 
 941. ihailee#foc Pekka Merjaa 
 
@@ -6250,7 +6263,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:4, Transfer:6, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 943. myi#foc Pekka omaisuutensa 
 
@@ -6264,7 +6277,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:4, Transfer:6, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 31ms
 
 944. myi#C/op Pekka omaisuutensa 
 
@@ -6326,7 +6339,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 , Agent of v(Pekka)
 , Aspectually bounded
 
-& 9.1.2 Neg-to-C* movement -------------------------------------------------------
+& Neg-to-C* movement -------------------------------------------------------
 
 947. ei#C/op Pekka ihaile Merjaa 
 
@@ -6339,7 +6352,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:9, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:13, Failed Transfer:8, LF recovery:2, LF test:16, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 62ms
 
 948. ei#C/op Pekan_gen taydy ihailla Merjaa 
 
@@ -6356,7 +6369,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:12, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:1, Inflection:13, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 62ms
 
 949. ei#C/op Pekka halua ihailla Merjaa 
 
@@ -6370,7 +6383,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:28, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:14, Transfer:17, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:1, Inflection:13, Failed Transfer:14, LF recovery:4, LF test:24, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 93ms
 
 950. ei#C/op Pekka ollut ihaillut Merjaa 
 
@@ -6383,7 +6396,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:16, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:18, Transfer:16, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:1, Inflection:15, Failed Transfer:15, LF recovery:2, LF test:24, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 78ms
 
 951. ei#C/op Pekka myynyt omaisuuttaan 
 
@@ -6415,7 +6428,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:12, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:1, Inflection:8, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 78ms
 
 953. ei#C/op Pekka halua myyda omaisuuttaan 
 
@@ -6430,7 +6443,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:28, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:14, Transfer:17, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:1, Inflection:8, Failed Transfer:14, LF recovery:4, LF test:24, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 93ms
 
 954. ei#C/op Pekka ollut myynyt omaisuuttaan 
 
@@ -6446,7 +6459,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Extraposition:1, Inflection:11, Failed Transfer:15, LF recovery:2, LF test:24, Filter solution:11, 
 		Rank solution:0, Lexical retrieval:21, Morphological decomposition:6, Execution time = 62ms
 
-& 9.1.3 Modal-to-C* -------------------------------------------------------
+& Modal-to-C* -------------------------------------------------------
 
 955. taytyy#C/op Pekan_gen ihailla Merjaa 
 
@@ -6462,7 +6475,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:16, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:6, Transfer:7, Item streamed into syntax:10, Feature Processing:3, 
 		Extraposition:0, Inflection:13, Failed Transfer:6, LF recovery:5, LF test:10, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 46ms
 
 956. taytyy#C/op Pekan_gen myyda omaisuuttaan 
 
@@ -6479,9 +6492,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:16, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:6, Transfer:7, Item streamed into syntax:10, Feature Processing:3, 
 		Extraposition:0, Inflection:8, Failed Transfer:6, LF recovery:5, LF test:10, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, Execution time = 46ms
 
-& 9.1.4 Want-to-C* -------------------------------------------------------
+& Want-to-C* -------------------------------------------------------
 
 957. haluaa#C/op Pekka ihailla Merjaa 
 
@@ -6495,7 +6508,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:13, Failed Transfer:6, LF recovery:4, LF test:13, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, Execution time = 62ms
 
 958. haluaa#C/op Pekka myyda omaisuuttaan 
 
@@ -6510,9 +6523,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:8, Failed Transfer:6, LF recovery:4, LF test:13, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, Execution time = 62ms
 
-& 9.1.5 Aux-to-C* -------------------------------------------------------
+& Aux-to-C* -------------------------------------------------------
 
 959. on'#C/op Pekka ihaillut Merjaa 
 
@@ -6558,7 +6571,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 , Agent of v(Pekka)
 , Aspectually anomalous
 
-& 9.1.6 X-to-C, with dormal C-feature C/fin -------------------------------------------------------
+& X-to-C, with dormal C-feature C/fin -------------------------------------------------------
 
 961. ihailee#C/fin Pekka Merjaa 
 
@@ -6571,7 +6584,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:4, Transfer:6, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 962. ei#C/fin Pekka ihaile Merjaa 
 
@@ -6584,7 +6597,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:9, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:16, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, Execution time = 109ms
 
 963. taytyy#C/fin Pekan_gen ihailla Merjaa 
 
@@ -6614,7 +6627,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:6, LF recovery:4, LF test:13, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
 
 965. on'#C/fin Pekka ihaillut Merjaa 
 
@@ -6679,7 +6692,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:9, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:9, Failed Transfer:8, LF recovery:2, LF test:16, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, Execution time = 62ms
 
 968. taytyy#C/fin Pekan_gen myyda omaisuuttaan 
 
@@ -6765,7 +6778,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:10, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:6, Transfer:7, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:6, LF recovery:2, LF test:10, Filter solution:7, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 46ms
 
 & Ungrammatical (C-feature is missing, V-initial) -------------------------------------------------------
 
@@ -6777,11 +6790,11 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 977. *on' Pekka ihaillut Merjaa 
 978. *myi Pekka omaisuutensa 
 979. *admire'#C/fin John does Mary 
-& 9.2 Long head movement -------------------------------------------------------
+& Long head movement -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
-& 9.2.1 V-over-Neg -------------------------------------------------------
+& V-over-Neg -------------------------------------------------------
 
 980. ihaile#C/op Pekka ei Merjaa 
 
@@ -6796,7 +6809,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Extraposition:1, Inflection:13, Failed Transfer:8, LF recovery:2, LF test:15, Filter solution:8, 
 		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 46ms
 
-& 9.2.2 V-over-Aux(BE) -------------------------------------------------------
+& V-over-Aux(BE) -------------------------------------------------------
 
 981. ihaillut#C/op Pekka on' Merjaa 
 
@@ -6842,7 +6855,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 , Agent of v(Pekka)
 , Aspectually bounded
 
-& 9.2.3 V-over-want -------------------------------------------------------
+& V-over-want -------------------------------------------------------
 
 983. ihailla#C/op Pekka haluaa Merjaa 
 
@@ -6856,7 +6869,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:17, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:2, 
 		Extraposition:0, Inflection:13, Failed Transfer:8, LF recovery:4, LF test:15, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, Execution time = 62ms
 
 984. myyda#C/op Pekka haluaa omaisuutensa 
 
@@ -6871,9 +6884,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:17, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:2, 
 		Extraposition:0, Inflection:8, Failed Transfer:8, LF recovery:4, LF test:15, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, Execution time = 78ms
 
-& 9.2.4 V-over-must -------------------------------------------------------
+& V-over-must -------------------------------------------------------
 
 985. ihailla#C/op Pekan_gen taytyy Merjaa 
 
@@ -6889,7 +6902,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:6, Transfer:7, Item streamed into syntax:10, Feature Processing:2, 
 		Extraposition:0, Inflection:13, Failed Transfer:8, LF recovery:5, LF test:12, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
 
 986. myyda#C/op Pekan_gen taytyy omaisuutensa 
 
@@ -6908,7 +6921,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Extraposition:0, Inflection:8, Failed Transfer:8, LF recovery:5, LF test:12, Filter solution:9, 
 		Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, Execution time = 46ms
 
-& 9.2.5 With noncanonical OVS orders -------------------------------------------------------
+& With noncanonical OVS orders -------------------------------------------------------
 
 987. ihaile#C/op Merjaa ei Pekka 
 
@@ -6922,7 +6935,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:11, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:13, Failed Transfer:6, LF recovery:3, LF test:19, Filter solution:7, 
-		Rank solution:3, Lexical retrieval:22, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:3, Lexical retrieval:22, Morphological decomposition:5, Execution time = 78ms
 
 	b. [[C [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
 
@@ -6944,7 +6957,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:2, Merge:5, Move Head:29, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:22, Transfer:20, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:1, Inflection:14, Failed Transfer:11, LF recovery:8, LF test:29, Filter solution:9, 
-		Rank solution:6, Lexical retrieval:26, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:6, Lexical retrieval:26, Morphological decomposition:5, Execution time = 125ms
 
 	b. [[C [<D Merja>:1 [T [<__>:2 [BE [T/prt [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
 
@@ -6967,7 +6980,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:12, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:13, Failed Transfer:6, LF recovery:5, LF test:18, Filter solution:9, 
-		Rank solution:5, Lexical retrieval:24, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:24, Morphological decomposition:5, Execution time = 93ms
 
 	b. [[C [<D Merja>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]]] <D Pekka>:2]
 
@@ -6990,7 +7003,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:11, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:10, Failed Transfer:6, LF recovery:3, LF test:19, Filter solution:7, 
-		Rank solution:3, Lexical retrieval:19, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:3, Lexical retrieval:19, Morphological decomposition:5, Execution time = 62ms
 
 	b. [[C [<D omaisuuden>:1 [ei [<__>:2 [T/prt [<__>:2 [v [<__>:1 myy]]]]]]]] <D Pekka>:2]
 
@@ -7014,7 +7027,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:2, Merge:5, Move Head:29, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:22, Transfer:20, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:1, Inflection:10, Failed Transfer:11, LF recovery:8, LF test:29, Filter solution:9, 
-		Rank solution:6, Lexical retrieval:22, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:6, Lexical retrieval:22, Morphological decomposition:5, Execution time = 140ms
 
 	b. [[C [<D omaisuuden>:1 [T [<__>:2 [BE [T/prt [v [<__>:1 myy]]]]]]]] <D Pekka>:2]
 
@@ -7038,7 +7051,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:12, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:8, Failed Transfer:6, LF recovery:5, LF test:18, Filter solution:9, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:5, Execution time = 78ms
 
 	b. [[C [<D omaisuuden>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 myy]]]]]]]]] <D Pekka>:2]
 
@@ -7048,7 +7061,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 , Agent of myy(Pekka)
 , Agent of v(Pekka)
 
-& 9.2.6 Neg + Modal + V, with Modal moving moving (grammaticality status unclear) -------------------------------------------------------
+& Neg + Modal + V, with Modal moving moving (grammaticality status unclear) -------------------------------------------------------
 
 993. taydy#C/op Pekan_gen ei ihailla Merjaa 
 
@@ -7065,7 +7078,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:19, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:13, Transfer:12, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:3, Inflection:13, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 93ms
 
 994. taydy#C/op Pekan_gen ei myyda omaisuuttaan 
 
@@ -7083,9 +7096,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:19, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:13, Transfer:12, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:3, Inflection:8, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 78ms
 
-& 9.2.7 Neg + Modal + V with V moving -------------------------------------------------------
+& Neg + Modal + V with V moving -------------------------------------------------------
 
 995. ihailla#C/op Pekan_gen ei taydy Merjaa 
 
@@ -7102,7 +7115,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:18, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:13, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:3, Inflection:13, Failed Transfer:15, LF recovery:6, LF test:21, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 78ms
 
 996. myyda#C/op Pekan_gen ei taydy omaisuuttaan 
 
@@ -7120,9 +7133,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:18, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:13, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:2, Inflection:8, Failed Transfer:15, LF recovery:6, LF test:21, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 78ms
 
-& 9.2.8 Neg + want + V, with want moving -------------------------------------------------------
+& Neg + want + V, with want moving -------------------------------------------------------
 
 997. halua#C/op Pekka ei ihailla Merjaa 
 
@@ -7136,7 +7149,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:13, Transfer:15, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:3, Inflection:13, Failed Transfer:14, LF recovery:4, LF test:22, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 93ms
 
 998. ihailla#C/op Pekka ei halua Merjaa 
 
@@ -7150,7 +7163,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:14, Transfer:16, Item streamed into syntax:12, Feature Processing:3, 
 		Extraposition:3, Inflection:13, Failed Transfer:15, LF recovery:4, LF test:24, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 109ms
 
 999. halua#C/op Pekka ei myyda omaisuuttaan 
 
@@ -7165,7 +7178,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:13, Transfer:15, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:3, Inflection:8, Failed Transfer:14, LF recovery:4, LF test:22, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 93ms
 
 1000. myyda#C/op Pekka ei halua omaisuuttaan 
 
@@ -7180,7 +7193,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:14, Transfer:16, Item streamed into syntax:12, Feature Processing:3, 
 		Extraposition:2, Inflection:8, Failed Transfer:15, LF recovery:4, LF test:24, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 78ms
 
 & Ungrammatical (English) -------------------------------------------------------
 
@@ -7191,7 +7204,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1005. *to_inf#C/fin admire' John wants Mary 
 1006. *to_inf#C/fin John wants admire' Mary 
 1007. *Ungrammatical (Finnish) 
-& 9.2.9 Long head movement with formal C-feature or with no C-featre -------------------------------------------------------
+& Long head movement with formal C-feature or with no C-featre -------------------------------------------------------
 
 1008. *ihaile#C/fin Pekka ei Merjaa 
 1009. *ihaillut#C/fin Pekka on' Merjaa 
@@ -7213,34 +7226,34 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1025. *myyda Pekka haluaa omaisuuttaan 
 1026. *myyda Pekan_gen taytyy omaisuuttaan 
 1027. *myynyt Pekka ei ollut omaisuuttaan 
-& 9.2.10 long head movement with infinitival subject -------------------------------------------------------
+& long head movement with infinitival subject -------------------------------------------------------
 
 1028. *ihailla#C/op Pekka kaskee poikien Merjaa 
 1029. *ihailla Pekka kaskee poikien Merjaa 
 1030. *ihailla#C/fin Pekka kaskee poikien Merjaa 
-& 9.2.11 Long head movement with second auxiliary -------------------------------------------------------
+& Long head movement with second auxiliary -------------------------------------------------------
 
 1031. *ollut#C/fin Pekka ei ihaillut Merjaa 
 1032. *ollut Pekka ei ihaillut Merjaa 
-& 9.2.12 Aux + prtcpl + prtcpl with locality violation -------------------------------------------------------
+& Aux + prtcpl + prtcpl with locality violation -------------------------------------------------------
 
 1033. *ihaillut#C/op Pekka ei ollut Merjaa 
-& 9.2.13 Neg + Modal + V with only formal C-feature (ungrammatical) -------------------------------------------------------
+& Neg + Modal + V with only formal C-feature (ungrammatical) -------------------------------------------------------
 
 1034. *taydy#C/fin Pekan_gen ei ihailla Merjaa 
 1035. *taydy Pekan_gen ei ihailla Merjaa 
 1036. *taydy#C/fin Pekan_gen ei myyda omaisuuttaan 
 1037. *taydy Pekan_gen ei myyda omaisuuttaan 
-& 9.2.14 Neg + want + V with no C-feature -------------------------------------------------------
+& Neg + want + V with no C-feature -------------------------------------------------------
 
 1038. *ihailla#C/fin Pekan_gen ei taydy Merjaa 
 1039. *ihailla Pekan_gen ei taydy Merjaa 
 1040. *halua Pekka ei myyda omaisuuttaan 
-& 9.3 Super LHM -------------------------------------------------------
+& Super LHM -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
-& 9.3.1 that + want + A/inf -------------------------------------------------------
+& that + want + A/inf -------------------------------------------------------
 
 1041. ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa 
 
@@ -7255,7 +7268,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:6, Move Head:51, Move Phrase:16, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:16, Agree:25, Transfer:43, Item streamed into syntax:16, Feature Processing:5, 
 		Extraposition:3, Inflection:19, Failed Transfer:32, LF recovery:5, LF test:62, Filter solution:23, 
-		Rank solution:5, Lexical retrieval:35, Morphological decomposition:7, Execution time = 171ms
+		Rank solution:5, Lexical retrieval:35, Morphological decomposition:7, Execution time = 250ms
 
 1042. lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
 
@@ -7271,11 +7284,11 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:5, Move Head:29, Move Phrase:8, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:8, Agree:16, Transfer:25, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:3, Inflection:13, Failed Transfer:21, LF recovery:5, LF test:39, Filter solution:15, 
-		Rank solution:5, Lexical retrieval:25, Morphological decomposition:6, Execution time = 109ms
+		Rank solution:5, Lexical retrieval:25, Morphological decomposition:6, Execution time = 140ms
 
 & Ungrammatical -------------------------------------------------------
 
-& 9.3.2 Moving of the embedded finite verb (ungrammatical) -------------------------------------------------------
+& Moving of the embedded finite verb (ungrammatical) -------------------------------------------------------
 
 1043. *haluaa#C/op Pekka sanoo etta ihailla Merjaa 
 1044. *ihailee#C/op Pekka sanoo etta Merjaa 
@@ -7283,7 +7296,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1046. *haluaa#C/op Pekka sanoo etta myyda omaisuutensa 
 1047. *myi#C/op Pekka sanoo etta omaisuutensa 
 1048. *taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa 
-& 9.3.3 Formal C-features or no C-features = V-initial constructions (ungrammatical) -------------------------------------------------------
+& Formal C-features or no C-features = V-initial constructions (ungrammatical) -------------------------------------------------------
 
 1049. *ihailla#C/fin Pekka sanoo etta haluaa Merjaa 
 1050. *lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy 
@@ -7295,20 +7308,20 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1056. *haluaa Pekka sanoo etta myyda omaisuutensa 
 1057. *myi Pekka sanoo etta omaisuutensa 
 1058. *taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa 
-& 9.4 Long head movement and island violations -------------------------------------------------------
+& Long head movement and island violations -------------------------------------------------------
 
 & Ungrammatical -------------------------------------------------------
 
-& Group 9.4.1 Right-adjunct CED -------------------------------------------------------
+& Right-adjunct CED -------------------------------------------------------
 
 1059. *ihailemalla#C/op Pekka istuu Merjaa 
-& Group 9.4.2 Left branch CED -------------------------------------------------------
+& Left branch CED -------------------------------------------------------
 
 1060. *ihailla#C/op sopimus Merjaa istuu 
-& Group 9.4.3 Extraction from DP -------------------------------------------------------
+& Extraction from DP -------------------------------------------------------
 
 1061. *ihailla#C/op Pekka teki sopimuksen Merjaa 
-& Group 9.5 C-features on wrong heads -------------------------------------------------------
+& C-features on wrong heads -------------------------------------------------------
 
 & Ungrammatical -------------------------------------------------------
 
@@ -7342,9 +7355,9 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1089. *Pekka teki sopimuksen ihailla#C/op Merjaa 
 & 10 Clitics/incorporation mechanism -------------------------------------------------------
 
-& 10.1 Standard Italian -------------------------------------------------------
+& Standard Italian -------------------------------------------------------
 
-& 10.1.1 Simple transitive clause, direct object accusative clitics -------------------------------------------------------
+& Simple transitive clause, direct object accusative clitics -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -7359,7 +7372,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 46ms
 
 1091. mi=lavano 
 
@@ -7372,7 +7385,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 31ms
 
 1092. loro la=lavano 
 
@@ -7385,7 +7398,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 46ms
 
 1093. la=lavano 
 
@@ -7398,7 +7411,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 31ms
 
 1094. loro lo=lavano 
 
@@ -7437,7 +7450,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 & Ungrammatical, S-V agreement error -------------------------------------------------------
 
 1102. *io mi=lavano 
-& 10.1.2 Two-verb transitive, direct object accusative clitics -------------------------------------------------------
+& Two-verb transitive, direct object accusative clitics -------------------------------------------------------
 
 & hanno + lavato -------------------------------------------------------
 
@@ -7455,7 +7468,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:7, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:14, Failed Transfer:7, LF recovery:3, LF test:21, Filter solution:6, 
-		Rank solution:8, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:8, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
 
 1104. loro la=hanno lavata 
 
@@ -7469,7 +7482,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:7, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:17, Failed Transfer:7, LF recovery:3, LF test:21, Filter solution:6, 
-		Rank solution:8, Lexical retrieval:26, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:8, Lexical retrieval:26, Morphological decomposition:5, Execution time = 78ms
 
 1105. mi=hanno lavato 
 
@@ -7497,7 +7510,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:8, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:14, Failed Transfer:5, LF recovery:3, LF test:12, Filter solution:4, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 1107. lo=hanno lavato 
 
@@ -7511,7 +7524,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:8, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:5, LF recovery:3, LF test:12, Filter solution:4, 
-		Rank solution:4, Lexical retrieval:18, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -7567,7 +7580,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:3, LF test:14, Filter solution:7, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 31ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 46ms
 
 1132. loro la=devono lavare 
 
@@ -7623,7 +7636,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:3, LF test:14, Filter solution:7, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 31ms
 
 1136. mi=devono lavare 
 
@@ -7693,7 +7706,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:9, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:9, Failed Transfer:5, LF recovery:3, LF test:15, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 15ms
+		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 46ms
 
 1141. devono lavare=lo 
 
@@ -7707,7 +7720,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:9, Failed Transfer:2, LF recovery:3, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -7739,7 +7752,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:8, Transfer:16, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:3, LF test:27, Filter solution:5, 
-		Rank solution:11, Lexical retrieval:21, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:11, Lexical retrieval:21, Morphological decomposition:5, Execution time = 78ms
 
 1155. mi=stanno lavando 
 
@@ -7753,7 +7766,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:9, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:9, Failed Transfer:5, LF recovery:3, LF test:15, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 31ms
 
 1156. la=stanno lavando 
 
@@ -7781,7 +7794,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:9, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:9, Failed Transfer:5, LF recovery:3, LF test:15, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 31ms
 
 1158. loro stanno lavando=mi 
 
@@ -7795,7 +7808,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:3, LF test:14, Filter solution:7, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 31ms
 
 1159. stanno lavando=mi 
 
@@ -7848,7 +7861,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1166. *loro=mi stanno lavando 
 1167. *loro=la stanno lavando 
 1168. *loro=lo stanno lavando 
-& 10.1.3 Three-verb constructions (Aux + T/par + ARE/inf) -------------------------------------------------------
+& Three-verb constructions (Aux + T/par + ARE/inf) -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -7865,7 +7878,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:23, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:12, Transfer:16, Item streamed into syntax:12, Feature Processing:1, 
 		Extraposition:0, Inflection:14, Failed Transfer:13, LF recovery:5, LF test:27, Filter solution:11, 
-		Rank solution:8, Lexical retrieval:26, Morphological decomposition:6, Execution time = 93ms
+		Rank solution:8, Lexical retrieval:26, Morphological decomposition:6, Execution time = 156ms
 
 1170. loro hanno voluto lavare=mi 
 
@@ -7880,7 +7893,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:17, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:9, Transfer:10, Item streamed into syntax:12, Feature Processing:1, 
 		Extraposition:0, Inflection:14, Failed Transfer:9, LF recovery:5, LF test:20, Filter solution:12, 
-		Rank solution:5, Lexical retrieval:26, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:5, Lexical retrieval:26, Morphological decomposition:6, Execution time = 62ms
 
 1171. mi=hanno voluto lavare 
 
@@ -7921,7 +7934,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1176. *mi=loro hanno voluto lavere 
 1177. *hanno mi=voluto lavare 
 1178. *hanno voluto mi=lavare 
-& 10.1.4 CL-V agreement in clitic constructions -------------------------------------------------------
+& CL-V agreement in clitic constructions -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -7947,13 +7960,13 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1183. *la=hanno lavato 
 1184. *mi=hanno lavata 
 1185. *lo=hanno lavata 
-& 10.1.5 Indirect clitic arguments -------------------------------------------------------
+& Indirect clitic arguments -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
 1186. *loro gli=lavano Luisa 
 1187. *gli=lavano Luisa 
-& 10.1.6 Clitic clusters -------------------------------------------------------
+& Clitic clusters -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -7969,7 +7982,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:4, Move Head:30, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:10, Transfer:22, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:0, Inflection:25, Failed Transfer:10, LF recovery:3, LF test:29, Filter solution:10, 
-		Rank solution:13, Lexical retrieval:37, Morphological decomposition:6, Execution time = 93ms
+		Rank solution:13, Lexical retrieval:37, Morphological decomposition:6, Execution time = 125ms
 
 1189. gli=la=hanno lavata 
 
@@ -7983,7 +7996,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:3, Move Head:21, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:6, Transfer:15, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:22, Failed Transfer:6, LF recovery:3, LF test:18, Filter solution:7, 
-		Rank solution:9, Lexical retrieval:32, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:9, Lexical retrieval:32, Morphological decomposition:5, Execution time = 78ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -7991,7 +8004,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1191. *la=gli=hanno lavata 
 1192. *loro hanno gli=la=lavata 
 1193. *hanno gli=la=lavata 
-& 10.1.7 Restructuring -------------------------------------------------------
+& Restructuring -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -8021,7 +8034,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:5, Merge:14, Move Head:66, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:19, Transfer:58, Item streamed into syntax:29, Feature Processing:6, 
 		Extraposition:9, Inflection:35, Failed Transfer:32, LF recovery:4, LF test:70, Filter solution:32, 
-		Rank solution:20, Lexical retrieval:64, Morphological decomposition:12, Execution time = 265ms
+		Rank solution:20, Lexical retrieval:64, Morphological decomposition:12, Execution time = 312ms
 
 1196. sembrano lavare=mi 
 
@@ -8034,7 +8047,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:5, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:9, Failed Transfer:2, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 31ms
 
 1197. spinge Luisa a lavare=lo 
 
@@ -8060,7 +8073,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 1202. *Giuseppe lo=spinge Luisa a lavare 
 1203. *lo=spinge Luisa a lavare Giuseppe 
 1204. *io detesto lavare=lo 
-& 10.1.8 Reflexive clitics -------------------------------------------------------
+& Reflexive clitics -------------------------------------------------------
 
 & Grammatical -------------------------------------------------------
 
@@ -8075,7 +8088,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 31ms
 
 1206. mi=lavo 
 
@@ -8088,7 +8101,7 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 15ms
 
 1207. tu mi=lavi 
 
@@ -8114,5 +8127,5 @@ Universal morphemes from language data working directory\ug_morphemes.txt.
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 15ms
 
