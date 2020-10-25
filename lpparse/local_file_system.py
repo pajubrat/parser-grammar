@@ -95,11 +95,11 @@ class LocalFileSystem:
         self.stamp(self.resources_file)
 
     def add_columns_to_resources_file(self, resources, experimental_group):
-        self.resources_file.write("Sentence, ")
+        self.resources_file.write("Sentence,")
         for index, group in enumerate(experimental_group):
-            self.resources_file.write(f"Group {index}, ")
+            self.resources_file.write(f"Group {index},")
         for key in resources:
-            self.resources_file.write(f'{key},ms,  ')
+            self.resources_file.write(f'{key},ms,')
         self.resources_file.write("Execution time (ms)\t\n")
 
     def initialize_image_folder(self):
@@ -209,9 +209,9 @@ class LocalFileSystem:
             self.resources_file.write(','.join(experimental_group) + '\n')
         else:
             self.resources_file.write(str(count) + ',')
-            self.resources_file.write(','.join(experimental_group) + ',          ')
+            self.resources_file.write(','.join(experimental_group) + ',')
             for key in parser.resources:
-                self.resources_file.write(f'{parser.resources[key]["n"]},{parser.resources[key]["ms"]},  ')
+                self.resources_file.write(f'{parser.resources[key]["n"]},{parser.resources[key]["ms"]},')
             self.resources_file.write(f'{parser.execution_time_results[0]}\n')
 
     def save_result(self, P, count, sentence):

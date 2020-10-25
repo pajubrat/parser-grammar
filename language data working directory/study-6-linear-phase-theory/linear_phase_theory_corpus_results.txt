@@ -1,5 +1,5 @@
 #  {'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}
-#  2020-10-24 12:10:06.670811
+#  2020-10-24 14:24:37.135978
 #  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
 #  Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
 #  Lexicon from language data working directory\lexicon.txt.
@@ -31,7 +31,7 @@
 		Garden Paths:0, Merge:2, Move Head:0, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:5, Item streamed into syntax:3, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:0, LF recovery:0, LF test:3, Filter solution:0, 
-		Rank solution:2, Lexical retrieval:3, Morphological decomposition:0, Execution time = 0ms
+		Rank solution:2, Lexical retrieval:3, Morphological decomposition:0, Execution time = 15ms
 
 	b. [[a b] c]
 
@@ -46,7 +46,7 @@
 		Garden Paths:0, Merge:3, Move Head:0, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:10, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:0, LF recovery:0, LF test:7, Filter solution:0, 
-		Rank solution:6, Lexical retrieval:4, Morphological decomposition:0, Execution time = 15ms
+		Rank solution:6, Lexical retrieval:4, Morphological decomposition:0, Execution time = 0ms
 
 	b. [a [[b c] d]]
 
@@ -169,7 +169,7 @@
 		Garden Paths:1, Merge:4, Move Head:17, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:16, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:15, LF recovery:2, LF test:24, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 62ms
 
 15. John admires Mary 
 
@@ -182,7 +182,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 31ms
 
 16. Giuseppe spinge Luisa 
 
@@ -195,7 +195,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 31ms
 
 17. lavano Luisa 
 
@@ -249,7 +249,7 @@
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:6, Transfer:14, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:3, LF test:22, Filter solution:7, 
-		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 93ms
 
 	b. [[D Pekka]:1 [[T [__:1 [v [[antaa [D kirja]] <__>:2]]]] <P(lle) [D Merja]>:2]]
 
@@ -279,7 +279,7 @@
 		Garden Paths:0, Merge:5, Move Head:21, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:9, Transfer:19, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:17, LF recovery:3, LF test:31, Filter solution:12, 
-		Rank solution:10, Lexical retrieval:20, Morphological decomposition:3, Execution time = 93ms
+		Rank solution:10, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
 
 	b. [[D John]:1 [T [__:1 [v [give [[the key] <to [D Mary]>]]]]]]
 
@@ -318,7 +318,7 @@
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:6, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:1, Inflection:6, Failed Transfer:3, LF recovery:1, LF test:9, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, Execution time = 31ms
 
 30. Pekka ei lahde 
 
@@ -330,7 +330,7 @@
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:6, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:1, Inflection:6, Failed Transfer:3, LF recovery:1, LF test:9, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, Execution time = 15ms
 
 31. me emme lahde 
 
@@ -384,7 +384,7 @@
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:7, Transfer:10, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:1, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:15, Filter solution:7, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 35. Pekka ei myynyt omaisuuttaan 
 
@@ -398,7 +398,7 @@
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:7, Transfer:10, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:1, Inflection:9, Failed Transfer:8, LF recovery:2, LF test:15, Filter solution:7, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 31ms
 
 36. John does sleep 
 
@@ -451,7 +451,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:8, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:6, LF recovery:3, LF test:14, Filter solution:7, 
-		Rank solution:5, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 40. io ho lavato Luisa 
 
@@ -465,7 +465,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:8, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:6, LF recovery:3, LF test:14, Filter solution:7, 
-		Rank solution:5, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 41. loro hanno voluto lavare Luisa 
 
@@ -480,7 +480,7 @@
 		Garden Paths:0, Merge:4, Move Head:30, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:17, Transfer:12, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:0, Inflection:11, Failed Transfer:12, LF recovery:5, LF test:20, Filter solution:12, 
-		Rank solution:5, Lexical retrieval:23, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:5, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
 
 42. loro stanno lavando Luisa 
 
@@ -534,7 +534,7 @@
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:5, LF test:11, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 31ms
 
 48. Pekan_gen taytyy myyda omaisuuttaan 
 
@@ -590,7 +590,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:8, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:9, Failed Transfer:5, LF recovery:3, LF test:13, Filter solution:7, 
-		Rank solution:5, Lexical retrieval:18, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:18, Morphological decomposition:4, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -618,7 +618,7 @@
 		Garden Paths:0, Merge:4, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:12, Transfer:12, Item streamed into syntax:10, Feature Processing:4, 
 		Extraposition:1, Inflection:12, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 78ms
 
 58. Pekan_gen ei taydy myyda omaisuuttaan 
 
@@ -636,7 +636,7 @@
 		Garden Paths:0, Merge:4, Move Head:17, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:12, Transfer:12, Item streamed into syntax:10, Feature Processing:4, 
 		Extraposition:1, Inflection:7, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -675,7 +675,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:12, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:6, LF recovery:3, LF test:18, Filter solution:7, 
-		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 62ms
 
 	b. [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]
 
@@ -715,7 +715,7 @@
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:7, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:9, Failed Transfer:7, LF recovery:3, LF test:11, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -861,7 +861,7 @@
 		Garden Paths:0, Merge:3, Move Head:17, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:10, Item streamed into syntax:10, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:4, LF test:14, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 46ms
 
 74. Pekka kaskee poikien ihailla Merjaa 
 
@@ -876,7 +876,7 @@
 		Garden Paths:0, Merge:4, Move Head:27, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:9, Transfer:17, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:2, Inflection:17, Failed Transfer:12, LF recovery:4, LF test:24, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:29, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:0, Lexical retrieval:29, Morphological decomposition:5, Execution time = 78ms
 
 75. Pekka kaskee poikien myyda omaisuuttaan 
 
@@ -906,7 +906,7 @@
 		Garden Paths:0, Merge:4, Move Head:23, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:12, Transfer:15, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:1, Inflection:12, Failed Transfer:14, LF recovery:4, LF test:22, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
 
 77. Pekka ei halua myyda omaisuuttaan 
 
@@ -921,7 +921,7 @@
 		Garden Paths:0, Merge:4, Move Head:23, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:12, Transfer:15, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:1, Inflection:7, Failed Transfer:14, LF recovery:4, LF test:22, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, Execution time = 93ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -945,7 +945,7 @@
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:5, LF test:11, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 81. Pekan_gen taytyy myyda omaisuuttaan 
 
@@ -1016,7 +1016,7 @@
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:16, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:2, LF test:27, Filter solution:4, 
-		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
 
 85. Pekka halusi heidan lahtevan 
 
@@ -1030,7 +1030,7 @@
 		Garden Paths:0, Merge:3, Move Head:23, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:7, Transfer:14, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:11, LF recovery:3, LF test:24, Filter solution:6, 
-		Rank solution:7, Lexical retrieval:20, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:7, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
 
 	b. [<D Pekka>:1 [T [<__>:1 [v [haluaa [[D he]:2 [vAn [__:2 lahtea]]]]]]]]
 
@@ -1051,7 +1051,7 @@
 		Garden Paths:0, Merge:2, Move Head:6, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:8, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:3, LF test:12, Filter solution:3, 
-		Rank solution:5, Lexical retrieval:13, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:13, Morphological decomposition:3, Execution time = 78ms
 
 87. Pekka sanoo ihailevansa Merjaa 
 
@@ -1066,7 +1066,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:12, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:5, LF recovery:4, LF test:17, Filter solution:7, 
-		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 109ms
+		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 46ms
 
 88. Pekka sanoo Merjan_gen lahtevan 
 
@@ -1079,7 +1079,7 @@
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:16, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:2, LF test:27, Filter solution:4, 
-		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
 
 89. mina sanon lahtevani 
 
@@ -1147,7 +1147,7 @@
 		Garden Paths:0, Merge:3, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:8, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:1, Inflection:0, Failed Transfer:6, LF recovery:0, LF test:10, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, Execution time = 0ms
 
 97. the little key 
 
@@ -1158,7 +1158,7 @@
 		Garden Paths:0, Merge:2, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:4, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:3, LF recovery:0, LF test:6, Filter solution:2, 
-		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, Execution time = 0ms
 
 98. the little red key 
 
@@ -1169,7 +1169,7 @@
 		Garden Paths:0, Merge:3, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:0, Transfer:7, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:0, Inflection:0, Failed Transfer:6, LF recovery:0, LF test:10, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, Execution time = 0ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1198,7 +1198,7 @@
 		Garden Paths:0, Merge:4, Move Head:30, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:6, Transfer:15, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:0, Inflection:16, Failed Transfer:15, LF recovery:5, LF test:23, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:28, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:28, Morphological decomposition:5, Execution time = 78ms
 
 106. Pekka teki sopimuksen antaa avaimen Merjalle 
 
@@ -1216,7 +1216,7 @@
 		Garden Paths:0, Merge:5, Move Head:78, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:10, Transfer:30, Item streamed into syntax:15, Feature Processing:14, 
 		Extraposition:1, Inflection:12, Failed Transfer:15, LF recovery:6, LF test:44, Filter solution:15, 
-		Rank solution:21, Lexical retrieval:27, Morphological decomposition:6, Execution time = 203ms
+		Rank solution:21, Lexical retrieval:27, Morphological decomposition:6, Execution time = 171ms
 
 	b. [<D Pekka>:1 [T [<__>:1 [v [teke [D [sopimus [[A/inf [v [[antaa [D avain]] <__>:2]]] <P(lle) [D Merja]>:2]]]]]]]]
 
@@ -1264,7 +1264,7 @@
 		Garden Paths:0, Merge:4, Move Head:35, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:1, Transfer:18, Item streamed into syntax:9, Feature Processing:12, 
 		Extraposition:0, Inflection:14, Failed Transfer:6, LF recovery:4, LF test:24, Filter solution:7, 
-		Rank solution:15, Lexical retrieval:23, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:15, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1294,7 +1294,7 @@
 		Garden Paths:1, Merge:2, Move Head:4, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:4, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:5, Failed Transfer:1, LF recovery:1, LF test:6, Filter solution:1, 
-		Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, Execution time = 0ms
 
 110. Merja nukkui Pekan_gen lahella 
 
@@ -1306,7 +1306,7 @@
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:19, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:4, Inflection:12, Failed Transfer:9, LF recovery:1, LF test:28, Filter solution:3, 
-		Rank solution:13, Lexical retrieval:19, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:13, Lexical retrieval:19, Morphological decomposition:3, Execution time = 62ms
 
 111. Merja nukkui lahella Pekkaa 
 
@@ -1319,7 +1319,7 @@
 		Garden Paths:2, Merge:7, Move Head:16, Move Phrase:9, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:9, Agree:14, Transfer:30, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:1, Inflection:22, Failed Transfer:16, LF recovery:2, LF test:39, Filter solution:10, 
-		Rank solution:9, Lexical retrieval:34, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:9, Lexical retrieval:34, Morphological decomposition:5, Execution time = 125ms
 
 	b. [[<D Merja>:1 [T [<__>:1 nukku]]] <lahella [D Pekka]>]
 
@@ -1345,7 +1345,7 @@
 		Garden Paths:0, Merge:4, Move Head:15, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:8, Transfer:21, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:12, LF recovery:2, LF test:31, Filter solution:9, 
-		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:5, Lexical retrieval:22, Morphological decomposition:4, Execution time = 62ms
 
 114. Pekka sanoo etta haluaa ihailla Merjaa 
 
@@ -1378,7 +1378,7 @@
 		Garden Paths:0, Merge:5, Move Head:38, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:17, Transfer:23, Item streamed into syntax:13, Feature Processing:5, 
 		Extraposition:0, Inflection:8, Failed Transfer:21, LF recovery:6, LF test:35, Filter solution:16, 
-		Rank solution:5, Lexical retrieval:21, Morphological decomposition:5, Execution time = 125ms
+		Rank solution:5, Lexical retrieval:21, Morphological decomposition:5, Execution time = 109ms
 
 116. John said that Mary sleeps 
 
@@ -1391,7 +1391,7 @@
 		Garden Paths:0, Merge:4, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:14, LF recovery:2, LF test:20, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1435,7 +1435,7 @@
 		Garden Paths:0, Merge:7, Move Head:44, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:39, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:3, Inflection:15, Failed Transfer:24, LF recovery:4, LF test:57, Filter solution:17, 
-		Rank solution:31, Lexical retrieval:28, Morphological decomposition:4, Execution time = 203ms
+		Rank solution:31, Lexical retrieval:28, Morphological decomposition:4, Execution time = 156ms
 
 	b. [[D John]:1 [T [__:1 [v [move [the [key [from [[D Mary] <to [D John]>]]]]]]]]]
 
@@ -1573,7 +1573,7 @@
 		Garden Paths:0, Merge:3, Move Head:23, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:6, Transfer:15, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:12, Failed Transfer:3, LF recovery:4, LF test:24, Filter solution:6, 
-		Rank solution:12, Lexical retrieval:21, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:12, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 136. Pekka naki Merjan_acc lahtematta 
 
@@ -1589,7 +1589,7 @@
 		Garden Paths:1, Merge:4, Move Head:27, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:19, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:2, Inflection:12, Failed Transfer:5, LF recovery:4, LF test:27, Filter solution:7, 
-		Rank solution:9, Lexical retrieval:22, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:9, Lexical retrieval:22, Morphological decomposition:4, Execution time = 78ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 [v [nake [D Merja]]]]]] <matta lahtea>]
 
@@ -1614,7 +1614,7 @@
 		Garden Paths:1, Merge:4, Move Head:27, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:19, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:2, Inflection:12, Failed Transfer:5, LF recovery:4, LF test:27, Filter solution:7, 
-		Rank solution:9, Lexical retrieval:22, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:9, Lexical retrieval:22, Morphological decomposition:4, Execution time = 78ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 [v [nake [D Merja]]]]]] <malla lahtea>]
 
@@ -1640,7 +1640,7 @@
 		Garden Paths:0, Merge:4, Move Head:35, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:22, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:3, Inflection:18, Failed Transfer:8, LF recovery:5, LF test:30, Filter solution:11, 
-		Rank solution:12, Lexical retrieval:30, Morphological decomposition:5, Execution time = 140ms
+		Rank solution:12, Lexical retrieval:30, Morphological decomposition:5, Execution time = 93ms
 
 139. Pekka elaa ihailemalla Merjaa 
 
@@ -1654,7 +1654,7 @@
 		Garden Paths:1, Merge:5, Move Head:20, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:21, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:0, Inflection:18, Failed Transfer:7, LF recovery:3, LF test:23, Filter solution:11, 
-		Rank solution:3, Lexical retrieval:31, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:3, Lexical retrieval:31, Morphological decomposition:5, Execution time = 78ms
 
 140. Pekka elaa haluamalla ihailla Merjaa 
 
@@ -1669,7 +1669,7 @@
 		Garden Paths:1, Merge:7, Move Head:46, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:11, Transfer:31, Item streamed into syntax:19, Feature Processing:7, 
 		Extraposition:0, Inflection:18, Failed Transfer:15, LF recovery:5, LF test:32, Filter solution:20, 
-		Rank solution:3, Lexical retrieval:37, Morphological decomposition:7, Execution time = 140ms
+		Rank solution:3, Lexical retrieval:37, Morphological decomposition:7, Execution time = 125ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1745,7 +1745,7 @@
 		Garden Paths:6, Merge:11, Move Head:65, Move Phrase:8, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:8, Agree:19, Transfer:65, Item streamed into syntax:19, Feature Processing:7, 
 		Extraposition:18, Inflection:13, Failed Transfer:38, LF recovery:4, LF test:85, Filter solution:14, 
-		Rank solution:18, Lexical retrieval:32, Morphological decomposition:6, Execution time = 312ms
+		Rank solution:18, Lexical retrieval:32, Morphological decomposition:6, Execution time = 265ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 [v [nake [D avain]]]]]] <[D Merja]:2 [essa [__:2 lahtea]]>]
 
@@ -1802,7 +1802,7 @@
 		Garden Paths:4, Merge:8, Move Head:32, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:14, Transfer:44, Item streamed into syntax:14, Feature Processing:0, 
 		Extraposition:9, Inflection:12, Failed Transfer:22, LF recovery:3, LF test:56, Filter solution:9, 
-		Rank solution:14, Lexical retrieval:26, Morphological decomposition:5, Execution time = 234ms
+		Rank solution:14, Lexical retrieval:26, Morphological decomposition:5, Execution time = 140ms
 
 153. Pekka lahtee heidan lahdettya 
 
@@ -1816,7 +1816,7 @@
 		Garden Paths:7, Merge:11, Move Head:52, Move Phrase:11, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:11, Agree:23, Transfer:69, Item streamed into syntax:19, Feature Processing:0, 
 		Extraposition:15, Inflection:11, Failed Transfer:36, LF recovery:3, LF test:87, Filter solution:13, 
-		Rank solution:21, Lexical retrieval:30, Morphological decomposition:6, Execution time = 250ms
+		Rank solution:21, Lexical retrieval:30, Morphological decomposition:6, Execution time = 218ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 lahtea]]] <[D he]:2 [tua [__:2 lahtea]]>]
 
@@ -1838,7 +1838,7 @@
 		Garden Paths:7, Merge:19, Move Head:102, Move Phrase:13, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:13, Agree:35, Transfer:111, Item streamed into syntax:43, Feature Processing:0, 
 		Extraposition:20, Inflection:59, Failed Transfer:63, LF recovery:4, LF test:116, Filter solution:44, 
-		Rank solution:21, Lexical retrieval:102, Morphological decomposition:14, Execution time = 468ms
+		Rank solution:21, Lexical retrieval:102, Morphological decomposition:14, Execution time = 437ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 lahtea]]] <[D he]:2 [tua [__:2 [v [ihaile- [D Merja]]]]]>]
 
@@ -1867,7 +1867,7 @@
 		Garden Paths:0, Merge:2, Move Head:6, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:3, Transfer:8, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:12, Filter solution:3, 
-		Rank solution:3, Lexical retrieval:12, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:3, Lexical retrieval:12, Morphological decomposition:3, Execution time = 31ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 lahtea]]] <en juokse->]
 
@@ -1896,7 +1896,7 @@
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:2, 
 		Move Adjunct:1, Agree:2, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:8, Failed Transfer:7, LF recovery:2, LF test:17, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:17, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
 
 160. kuka ihailee Merjaa 
 
@@ -1995,7 +1995,7 @@
 		Garden Paths:0, Merge:5, Move Head:8, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:1, 
 		Move Adjunct:0, Agree:7, Transfer:18, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:1, Failed Transfer:9, LF recovery:3, LF test:24, Filter solution:6, 
-		Rank solution:9, Lexical retrieval:9, Morphological decomposition:2, Execution time = 46ms
+		Rank solution:9, Lexical retrieval:9, Morphological decomposition:2, Execution time = 62ms
 
 172. mita kaupunkia kohti Seine virtaa 
 
@@ -2054,7 +2054,7 @@
 		Garden Paths:0, Merge:7, Move Head:44, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:39, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:3, Inflection:15, Failed Transfer:24, LF recovery:4, LF test:57, Filter solution:17, 
-		Rank solution:31, Lexical retrieval:28, Morphological decomposition:4, Execution time = 203ms
+		Rank solution:31, Lexical retrieval:28, Morphological decomposition:4, Execution time = 156ms
 
 	b. [[D John]:1 [T [__:1 [v [move [the [key [from [[D Mary] <to [D John]>]]]]]]]]]
 
@@ -2104,7 +2104,7 @@
 		Garden Paths:1, Merge:8, Move Head:49, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:16, Transfer:43, Item streamed into syntax:16, Feature Processing:0, 
 		Extraposition:10, Inflection:4, Failed Transfer:25, LF recovery:6, LF test:43, Filter solution:21, 
-		Rank solution:9, Lexical retrieval:20, Morphological decomposition:6, Execution time = 218ms
+		Rank solution:9, Lexical retrieval:20, Morphological decomposition:6, Execution time = 171ms
 
 	b. [[[D Seine]:1 [T [__:1 [v [saavutta- [D meri]]]]]] <malla [virtaa [kohti [D Pariisi]]]>]
 
@@ -2131,7 +2131,7 @@
 		Garden Paths:0, Merge:4, Move Head:35, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:17, Item streamed into syntax:9, Feature Processing:12, 
 		Extraposition:0, Inflection:4, Failed Transfer:6, LF recovery:5, LF test:23, Filter solution:7, 
-		Rank solution:15, Lexical retrieval:13, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:15, Lexical retrieval:13, Morphological decomposition:4, Execution time = 78ms
 
 181. se' Merjan_gen kello havisi 
 
@@ -2167,7 +2167,7 @@
 		Garden Paths:0, Merge:4, Move Head:35, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:22, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:3, Inflection:18, Failed Transfer:8, LF recovery:5, LF test:30, Filter solution:11, 
-		Rank solution:12, Lexical retrieval:30, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:12, Lexical retrieval:30, Morphological decomposition:5, Execution time = 93ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2192,7 +2192,7 @@
 		Garden Paths:0, Merge:6, Move Head:15, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:2, 
 		Move Adjunct:0, Agree:11, Transfer:22, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:0, Inflection:16, Failed Transfer:31, LF recovery:3, LF test:39, Filter solution:20, 
-		Rank solution:0, Lexical retrieval:28, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:28, Morphological decomposition:4, Execution time = 78ms
 
 188. John asks whether Mary admires John 
 
@@ -2209,7 +2209,7 @@
 		Garden Paths:0, Merge:5, Move Head:36, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:17, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:0, Inflection:17, Failed Transfer:21, LF recovery:4, LF test:31, Filter solution:16, 
-		Rank solution:5, Lexical retrieval:30, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:5, Lexical retrieval:30, Morphological decomposition:5, Execution time = 93ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2234,7 +2234,7 @@
 		Garden Paths:0, Merge:4, Move Head:30, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:6, Transfer:15, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:0, Inflection:11, Failed Transfer:15, LF recovery:5, LF test:23, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
 
 192. Pekka teki sen Merjan_gen kellon 
 
@@ -2269,7 +2269,7 @@
 		Garden Paths:0, Merge:4, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:14, LF recovery:2, LF test:20, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2290,7 +2290,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:1, Transfer:3, Item streamed into syntax:4, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:0, LF recovery:1, LF test:5, Filter solution:2, 
-		Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, Execution time = 0ms
 
 198. Merja nukkuu 
 
@@ -2330,7 +2330,7 @@
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:6, Transfer:14, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:3, LF test:22, Filter solution:7, 
-		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
 
 	b. [[D Pekka]:1 [[T [__:1 [v [[antaa [D kirja]] <__>:2]]]] <P(lle) [D Merja]>:2]]
 
@@ -2379,7 +2379,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, Execution time = 15ms
 
 213. Pekka voitti Merjaa 
 
@@ -2406,7 +2406,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 215. Pekka pesi Merjan 
 
@@ -2478,7 +2478,7 @@
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:7, Transfer:10, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:1, Inflection:14, Failed Transfer:8, LF recovery:2, LF test:15, Filter solution:7, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 15ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2569,7 +2569,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:10, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:3, LF test:14, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
 
 235. Pekka halusi loytaa avaimen 
 
@@ -2584,7 +2584,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:10, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:7, Failed Transfer:7, LF recovery:3, LF test:14, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, Execution time = 46ms
 
 236. me haluttiin voittaa Merja_0acc 
 
@@ -2614,7 +2614,7 @@
 		Garden Paths:0, Merge:4, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:12, Transfer:15, Item streamed into syntax:10, Feature Processing:4, 
 		Extraposition:1, Inflection:11, Failed Transfer:14, LF recovery:3, LF test:22, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 238. me halusimme voittaa Merjan 
 
@@ -2629,7 +2629,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:10, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:3, LF test:14, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2688,7 +2688,7 @@
 		Garden Paths:2, Merge:7, Move Head:16, Move Phrase:9, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:9, Agree:14, Transfer:30, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:1, Inflection:22, Failed Transfer:16, LF recovery:2, LF test:39, Filter solution:10, 
-		Rank solution:9, Lexical retrieval:34, Morphological decomposition:5, Execution time = 125ms
+		Rank solution:9, Lexical retrieval:34, Morphological decomposition:5, Execution time = 109ms
 
 	b. [[<D Merja>:1 [T [<__>:1 nukku]]] <lahella [D Pekka]>]
 
@@ -2728,7 +2728,7 @@
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:16, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:2, LF test:27, Filter solution:4, 
-		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:12, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
 
 250. Pekka halusi ihailla Merjaa 
 
@@ -2742,7 +2742,7 @@
 		Garden Paths:0, Merge:3, Move Head:17, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:4, Transfer:10, Item streamed into syntax:10, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:7, LF recovery:4, LF test:14, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2768,7 +2768,7 @@
 		Garden Paths:0, Merge:3, Move Head:12, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:10, Transfer:14, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:1, Inflection:10, Failed Transfer:3, LF recovery:1, LF test:22, Filter solution:4, 
-		Rank solution:11, Lexical retrieval:17, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:11, Lexical retrieval:17, Morphological decomposition:4, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2802,7 +2802,7 @@
 		Garden Paths:0, Merge:3, Move Head:1, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:13, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:5, Failed Transfer:3, LF recovery:2, LF test:19, Filter solution:2, 
-		Rank solution:10, Lexical retrieval:10, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:10, Lexical retrieval:10, Morphological decomposition:3, Execution time = 31ms
 
 263. ne kaksi sukkaa havisivat 
 
@@ -2831,7 +2831,7 @@
 		Garden Paths:1, Merge:6, Move Head:24, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:11, Transfer:26, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:25, LF recovery:2, LF test:38, Filter solution:14, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 78ms
 
 265. Pekka sanoi niiden kahden sukan haviavan 
 
@@ -2873,7 +2873,7 @@
 		Garden Paths:1, Merge:5, Move Head:20, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:21, Item streamed into syntax:13, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:7, LF recovery:4, LF test:23, Filter solution:11, 
-		Rank solution:3, Lexical retrieval:20, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:3, Lexical retrieval:20, Morphological decomposition:5, Execution time = 78ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2909,7 +2909,7 @@
 		Garden Paths:0, Merge:3, Move Head:7, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:5, Transfer:15, Item streamed into syntax:6, Feature Processing:0, 
 		Extraposition:3, Inflection:8, Failed Transfer:8, LF recovery:1, LF test:21, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:14, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:14, Morphological decomposition:3, Execution time = 31ms
 
 278. Pekka ei nukkunut koko paivaa 
 
@@ -2921,7 +2921,7 @@
 		Garden Paths:0, Merge:4, Move Head:10, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:16, Transfer:22, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:5, Inflection:8, Failed Transfer:14, LF recovery:1, LF test:32, Filter solution:6, 
-		Rank solution:8, Lexical retrieval:15, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:8, Lexical retrieval:15, Morphological decomposition:4, Execution time = 62ms
 
 279. me nukuttiin koko paiva 
 
@@ -3017,7 +3017,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, Execution time = 31ms
 
 296. avain_0acc loydettiin 
 
@@ -3047,7 +3047,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:3, Failed Transfer:1, LF recovery:3, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:8, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:8, Morphological decomposition:2, Execution time = 0ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -3180,7 +3180,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 309. te ihailette Merjaa 
 
@@ -3238,7 +3238,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 15ms
 
 313. he admires Mary 
 
@@ -3251,7 +3251,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, Execution time = 15ms
 
 	b. [[D he]:1 [T [__:1 [v [admire [D Mary]]]]]]
 
@@ -3322,7 +3322,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
 
 319. io adoro Luisa 
 
@@ -3348,7 +3348,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:3, Transfer:5, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, LF test:9, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
 
 321. lui adora Luisa 
 
@@ -3374,7 +3374,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:3, Transfer:5, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, LF test:9, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:18, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:18, Morphological decomposition:3, Execution time = 31ms
 
 323. noi adoriamo Luisa 
 
@@ -3387,7 +3387,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:3, Transfer:5, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, LF test:9, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
 
 324. voi adorate Luisa 
 
@@ -3468,7 +3468,7 @@
 		Garden Paths:0, Merge:2, Move Head:8, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 363. ihailen Merjaa mina 
 
@@ -3481,7 +3481,7 @@
 		Garden Paths:0, Merge:2, Move Head:13, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:7, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 	b. [[T [<__>:1 [v [ihaile- [D Merja]]]]] <D mina>:1]
 
@@ -3500,7 +3500,7 @@
 		Garden Paths:0, Merge:2, Move Head:8, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 365. ihailet Merjaa sina 
 
@@ -3513,7 +3513,7 @@
 		Garden Paths:0, Merge:2, Move Head:13, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:7, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 	b. [[T [<__>:1 [v [ihaile- [D Merja]]]]] <D sina>:1]
 
@@ -3564,7 +3564,7 @@
 		Garden Paths:0, Merge:2, Move Head:13, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:3, Transfer:7, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:9, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 	b. [[T [<__>:1 [v [ihaile- [D Merja]]]]] <D me>:1]
 
@@ -3609,7 +3609,7 @@
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
 
 372. Merjaa mina ihailen 
 
@@ -3635,7 +3635,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D mina>:2]
 
@@ -3667,7 +3667,7 @@
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 31ms
 
 376. Merjaa sina ihailet 
 
@@ -3712,7 +3712,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
 
 379. han Merjaa ihailee 
 
@@ -3752,7 +3752,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D han>:2]
 
@@ -3798,7 +3798,7 @@
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
 
 385. Merjaa ihailemme me 
 
@@ -3811,7 +3811,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D me>:2]
 
@@ -3856,7 +3856,7 @@
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
 
 389. Merjaa ihailette te 
 
@@ -3869,7 +3869,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:3, Transfer:9, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, LF test:13, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:3, Execution time = 46ms
 
 	b. [[<D Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <D te>:2]
 
@@ -3926,7 +3926,7 @@
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
 
 	b. [<D Merja>:1 [<D he>:2 [T [<__>:2 [v [<__>:1 ihaile-]]]]]]
 
@@ -4174,7 +4174,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
 
 579. ihailet Merjaa 
 
@@ -4200,7 +4200,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
 
 581. ihailette Merjaa 
 
@@ -4226,7 +4226,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 15ms
 
 583. adori Luisa 
 
@@ -4239,7 +4239,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 15ms
 
 584. adora Luisa 
 
@@ -4265,7 +4265,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 0ms
 
 586. adoriamo Luisa 
 
@@ -4291,7 +4291,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, Execution time = 31ms
 
 588. adorano Luisa 
 
@@ -4331,7 +4331,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:4, Item streamed into syntax:7, Feature Processing:2, 
 		Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:3, LF test:5, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, Execution time = 15ms
 
 591. hanno lavato Luisa 
 
@@ -4377,7 +4377,7 @@
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:10, Transfer:7, Item streamed into syntax:10, Feature Processing:3, 
 		Extraposition:0, Inflection:8, Failed Transfer:8, LF recovery:6, LF test:10, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 46ms
 
 594. stanno lavando Luisa 
 
@@ -4415,7 +4415,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
 
 601. Merjaa ihailen 
 
@@ -4428,7 +4428,7 @@
 		Garden Paths:0, Merge:1, Move Head:4, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:1, Transfer:3, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:2, LF test:5, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, Execution time = 31ms
 
 602. Merjaa ihailevat 
 
@@ -4481,7 +4481,7 @@
 		Garden Paths:0, Merge:4, Move Head:18, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:11, Transfer:17, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:13, LF recovery:4, LF test:26, Filter solution:10, 
-		Rank solution:5, Lexical retrieval:23, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:5, Lexical retrieval:23, Morphological decomposition:4, Execution time = 78ms
 
 607. Pekka sanoo etta Jukka sanoo etta ihailee Merjaa 
 
@@ -4497,7 +4497,7 @@
 		Garden Paths:0, Merge:7, Move Head:56, Move Phrase:26, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:26, Agree:41, Transfer:63, Item streamed into syntax:15, Feature Processing:0, 
 		Extraposition:0, Inflection:20, Failed Transfer:37, LF recovery:5, LF test:92, Filter solution:23, 
-		Rank solution:19, Lexical retrieval:35, Morphological decomposition:6, Execution time = 296ms
+		Rank solution:19, Lexical retrieval:35, Morphological decomposition:6, Execution time = 250ms
 
 & Ungrammatical (antecedent missing) -------------------------------------------------------
 
@@ -4542,7 +4542,7 @@
 		Garden Paths:0, Merge:7, Move Head:56, Move Phrase:26, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:26, Agree:41, Transfer:63, Item streamed into syntax:15, Feature Processing:0, 
 		Extraposition:0, Inflection:20, Failed Transfer:37, LF recovery:5, LF test:92, Filter solution:23, 
-		Rank solution:19, Lexical retrieval:35, Morphological decomposition:6, Execution time = 265ms
+		Rank solution:19, Lexical retrieval:35, Morphological decomposition:6, Execution time = 250ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4569,7 +4569,7 @@
 		Garden Paths:0, Merge:3, Move Head:10, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:7, LF recovery:4, LF test:11, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, Execution time = 31ms
 
 617. John wants Mary to_inf leave 
 
@@ -4610,7 +4610,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:2, Transfer:6, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:3, LF test:9, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, Execution time = 31ms
 
 619. John tries to_inf leave 
 
@@ -4693,7 +4693,7 @@
 		Garden Paths:0, Merge:4, Move Head:25, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:9, Transfer:15, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:11, Failed Transfer:7, LF recovery:3, LF test:26, Filter solution:7, 
-		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
 
 	b. [[[D John]:1 [T [__:1 [v [persuade [D Mary]]]]]] <TO/inf leave>]
 
@@ -4726,7 +4726,7 @@
 		Garden Paths:2, Merge:5, Move Head:31, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:23, Item streamed into syntax:11, Feature Processing:0, 
 		Extraposition:4, Inflection:12, Failed Transfer:8, LF recovery:3, LF test:31, Filter solution:8, 
-		Rank solution:9, Lexical retrieval:23, Morphological decomposition:4, Execution time = 109ms
+		Rank solution:9, Lexical retrieval:23, Morphological decomposition:4, Execution time = 93ms
 
 630. John promises Mary to_inf leave 
 
@@ -4740,7 +4740,7 @@
 		Garden Paths:3, Merge:8, Move Head:22, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:12, Transfer:26, Item streamed into syntax:9, Feature Processing:2, 
 		Extraposition:3, Inflection:11, Failed Transfer:13, LF recovery:3, LF test:38, Filter solution:6, 
-		Rank solution:18, Lexical retrieval:20, Morphological decomposition:3, Execution time = 125ms
+		Rank solution:18, Lexical retrieval:20, Morphological decomposition:3, Execution time = 93ms
 
 & Object control (low adjunct position) -------------------------------------------------------
 
@@ -4758,7 +4758,7 @@
 		Garden Paths:0, Merge:4, Move Head:25, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:9, Transfer:15, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:11, Failed Transfer:7, LF recovery:3, LF test:26, Filter solution:7, 
-		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:13, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
 
 	b. [[[D John]:1 [T [__:1 [v [persuade [D Mary]]]]]] <TO/inf leave>]
 
@@ -4806,7 +4806,7 @@
 		Garden Paths:0, Merge:4, Move Head:19, Move Phrase:6, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:6, Agree:16, Transfer:21, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:7, LF recovery:3, LF test:33, Filter solution:6, 
-		Rank solution:14, Lexical retrieval:16, Morphological decomposition:4, Execution time = 125ms
+		Rank solution:14, Lexical retrieval:16, Morphological decomposition:4, Execution time = 78ms
 
 	b. [[D Pekka]:1 [[T [__:1 [sano- [etta [T istuu]]]]] <sti mukavasti>]]
 
@@ -4835,7 +4835,7 @@
 		Garden Paths:0, Merge:2, Move Head:8, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:3, Transfer:5, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:4, Failed Transfer:1, LF recovery:3, LF test:8, Filter solution:4, 
-		Rank solution:3, Lexical retrieval:11, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:3, Lexical retrieval:11, Morphological decomposition:4, Execution time = 31ms
 
 	b. [[[P [D tama]] [T istuu]] <sti mukavasti>]
 
@@ -4959,7 +4959,7 @@
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
 
 646. Merjaa Pekka ihailee 
 
@@ -4972,7 +4972,7 @@
 		Garden Paths:1, Merge:3, Move Head:11, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:2, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:3, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:19, Filter solution:6, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:3, Execution time = 46ms
 
 647. Merjaa ihailee Pekka 
 
@@ -5018,7 +5018,7 @@
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:6, Transfer:14, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:3, LF test:22, Filter solution:7, 
-		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:12, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
 
 	b. [[D Pekka]:1 [[T [__:1 [v [[antaa [D kirja]] <__>:2]]]] <P(lle) [D Merja]>:2]]
 
@@ -5049,7 +5049,7 @@
 		Garden Paths:0, Merge:3, Move Head:25, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:7, Transfer:13, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:3, LF test:20, Filter solution:7, 
-		Rank solution:11, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:11, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
 
 	b. [[<D Pekka>:1 [T [<__>:1 [v [<__>:2 [antaa [P(lle) [D Merja]]]]]]]] <D kirja>:2]
 
@@ -5080,7 +5080,7 @@
 		Garden Paths:1, Merge:5, Move Head:25, Move Phrase:10, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:10, Agree:7, Transfer:27, Item streamed into syntax:15, Feature Processing:0, 
 		Extraposition:3, Inflection:9, Failed Transfer:13, LF recovery:3, LF test:38, Filter solution:11, 
-		Rank solution:14, Lexical retrieval:24, Morphological decomposition:5, Execution time = 125ms
+		Rank solution:14, Lexical retrieval:24, Morphological decomposition:5, Execution time = 93ms
 
 	b. [[D Pekka]:1 [[<D kirja>:2 [T [__:1 [v [[<__>:2 antaa] <__>:3]]]]] <P(lle) [D Merja]>:3]]
 
@@ -5111,7 +5111,7 @@
 		Garden Paths:0, Merge:3, Move Head:17, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:1, Transfer:15, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:3, Inflection:8, Failed Transfer:8, LF recovery:3, LF test:20, Filter solution:8, 
-		Rank solution:5, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:5, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
 
 654. Pekka Merjalle antoi kirjan 
 
@@ -5156,7 +5156,7 @@
 		Garden Paths:2, Merge:6, Move Head:29, Move Phrase:12, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:12, Agree:9, Transfer:31, Item streamed into syntax:17, Feature Processing:0, 
 		Extraposition:3, Inflection:9, Failed Transfer:22, LF recovery:3, LF test:42, Filter solution:13, 
-		Rank solution:15, Lexical retrieval:26, Morphological decomposition:5, Execution time = 156ms
+		Rank solution:15, Lexical retrieval:26, Morphological decomposition:5, Execution time = 125ms
 
 	b. [[<D kirja>:1 [<D Pekka>:2 [T [<__>:2 [v [[<__>:1 antaa] <__>:3]]]]]] <P(lle) [D Merja]>:3]
 
@@ -5195,7 +5195,7 @@
 		Garden Paths:0, Merge:3, Move Head:21, Move Phrase:9, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:9, Agree:6, Transfer:18, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:4, LF test:26, Filter solution:7, 
-		Rank solution:13, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:13, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
 
 	b. [[<D kirja>:1 [T [<__>:2 [v [[<__>:1 [antaa <D Pekka>:2]] <__>:3]]]]] <P(lle) [D Merja]>:3]
 
@@ -5229,7 +5229,7 @@
 		Garden Paths:0, Merge:3, Move Head:27, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:15, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:4, LF test:23, Filter solution:6, 
-		Rank solution:17, Lexical retrieval:18, Morphological decomposition:4, Execution time = 93ms
+		Rank solution:17, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
 
 	b. [[<D kirja>:1 [T [<__>:2 [v [<__>:1 [antaa [P(lle) [D Merja]]]]]]]] <D Pekka>:2]
 
@@ -5271,7 +5271,7 @@
 		Garden Paths:1, Merge:4, Move Head:18, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:2, Transfer:19, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:4, Inflection:9, Failed Transfer:10, LF recovery:3, LF test:24, Filter solution:10, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, Execution time = 93ms
 
 661. kirjan Merjalle antoi Pekka 
 
@@ -5303,7 +5303,7 @@
 		Garden Paths:1, Merge:5, Move Head:21, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:5, Transfer:22, Item streamed into syntax:14, Feature Processing:0, 
 		Extraposition:3, Inflection:10, Failed Transfer:15, LF recovery:3, LF test:26, Filter solution:12, 
-		Rank solution:4, Lexical retrieval:24, Morphological decomposition:5, Execution time = 125ms
+		Rank solution:4, Lexical retrieval:24, Morphological decomposition:5, Execution time = 93ms
 
 663. Merjalle Pekka kirjan antoi 
 
@@ -5318,7 +5318,7 @@
 		Garden Paths:1, Merge:4, Move Head:22, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:2, Transfer:27, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:8, Inflection:9, Failed Transfer:18, LF recovery:3, LF test:38, Filter solution:9, 
-		Rank solution:10, Lexical retrieval:21, Morphological decomposition:4, Execution time = 109ms
+		Rank solution:10, Lexical retrieval:21, Morphological decomposition:4, Execution time = 93ms
 
 664. Merjalle antoi Pekka kirjan 
 
@@ -5352,7 +5352,7 @@
 		Garden Paths:0, Merge:3, Move Head:25, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:6, Transfer:15, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:4, LF test:20, Filter solution:7, 
-		Rank solution:11, Lexical retrieval:18, Morphological decomposition:4, Execution time = 78ms
+		Rank solution:11, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
 
 	b. [[<P(lle) [D Merja]>:1 [T [<__>:2 [v [antaa [[D kirja] <__>:1]]]]]] <D Pekka>:2]
 
@@ -5377,7 +5377,7 @@
 		Garden Paths:3, Merge:7, Move Head:30, Move Phrase:8, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:8, Agree:4, Transfer:40, Item streamed into syntax:18, Feature Processing:0, 
 		Extraposition:12, Inflection:12, Failed Transfer:24, LF recovery:3, LF test:52, Filter solution:14, 
-		Rank solution:16, Lexical retrieval:30, Morphological decomposition:5, Execution time = 187ms
+		Rank solution:16, Lexical retrieval:30, Morphological decomposition:5, Execution time = 156ms
 
 667. Merjalle kirjan antoi Pekka 
 
@@ -5393,7 +5393,7 @@
 		Garden Paths:3, Merge:7, Move Head:32, Move Phrase:17, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:17, Agree:11, Transfer:42, Item streamed into syntax:16, Feature Processing:0, 
 		Extraposition:4, Inflection:14, Failed Transfer:10, LF recovery:4, LF test:49, Filter solution:12, 
-		Rank solution:15, Lexical retrieval:30, Morphological decomposition:5, Execution time = 171ms
+		Rank solution:15, Lexical retrieval:30, Morphological decomposition:5, Execution time = 156ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -5419,7 +5419,7 @@
 		Garden Paths:0, Merge:5, Move Head:21, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:9, Transfer:19, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:17, LF recovery:3, LF test:31, Filter solution:12, 
-		Rank solution:10, Lexical retrieval:20, Morphological decomposition:3, Execution time = 93ms
+		Rank solution:10, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
 
 	b. [[D John]:1 [T [__:1 [v [give [[the key] <to [D Mary]>]]]]]]
 
@@ -5608,7 +5608,7 @@
 		Garden Paths:0, Merge:3, Move Head:6, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:7, LF recovery:2, LF test:11, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -5658,7 +5658,7 @@
 		Garden Paths:0, Merge:3, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:8, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:1, Inflection:10, Failed Transfer:7, LF recovery:2, LF test:14, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, Execution time = 31ms
 
 & Heads in wrong order -------------------------------------------------------
 
@@ -5712,7 +5712,7 @@
 		Garden Paths:0, Merge:3, Move Head:10, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:4, Transfer:7, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:6, Failed Transfer:7, LF recovery:4, LF test:11, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -5816,7 +5816,7 @@
 		Garden Paths:1, Merge:5, Move Head:20, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:8, Transfer:17, Item streamed into syntax:10, Feature Processing:8, 
 		Extraposition:1, Inflection:11, Failed Transfer:11, LF recovery:4, LF test:23, Filter solution:9, 
-		Rank solution:7, Lexical retrieval:21, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:7, Lexical retrieval:21, Morphological decomposition:3, Execution time = 93ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -5948,7 +5948,7 @@
 		Garden Paths:0, Merge:4, Move Head:23, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:13, Item streamed into syntax:9, Feature Processing:6, 
 		Extraposition:0, Inflection:11, Failed Transfer:9, LF recovery:4, LF test:21, Filter solution:8, 
-		Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
+		Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
 
 904. Mary wants to_inf John leave 
 
@@ -5963,7 +5963,7 @@
 		Garden Paths:0, Merge:4, Move Head:23, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:7, Transfer:13, Item streamed into syntax:9, Feature Processing:6, 
 		Extraposition:0, Inflection:11, Failed Transfer:9, LF recovery:4, LF test:21, Filter solution:8, 
-		Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, Execution time = 62ms
+		Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, Execution time = 78ms
 
 & Free word order (Finnish) -------------------------------------------------------
 
@@ -6064,7 +6064,7 @@
 		Garden Paths:1, Merge:5, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:7, Transfer:18, Item streamed into syntax:13, Feature Processing:2, 
 		Extraposition:3, Inflection:12, Failed Transfer:15, LF recovery:3, LF test:27, Filter solution:11, 
-		Rank solution:4, Lexical retrieval:25, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:4, Lexical retrieval:25, Morphological decomposition:5, Execution time = 78ms
 
 916. Merjan_gen kaskee Pekka lahtea 
 
@@ -6116,7 +6116,7 @@
 		Garden Paths:0, Merge:3, Move Head:18, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:7, Transfer:14, Item streamed into syntax:10, Feature Processing:1, 
 		Extraposition:3, Inflection:13, Failed Transfer:9, LF recovery:3, LF test:21, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
 
 919. lahtea#C/op Pekka Merjan_gen kaskee 
 
@@ -6162,7 +6162,7 @@
 		Garden Paths:0, Merge:3, Move Head:12, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:3, 
 		Move Adjunct:1, Agree:3, Transfer:10, Item streamed into syntax:9, Feature Processing:3, 
 		Extraposition:1, Inflection:12, Failed Transfer:1, LF recovery:5, LF test:13, Filter solution:5, 
-		Rank solution:9, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:9, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 	b. [[[[D Merja]:2 [A/inf [__:2 lahtea]]]:1 [T [<__>:3 [v [kaske __:1]]]]] <D Pekka>:3]
 
@@ -6187,7 +6187,7 @@
 		Garden Paths:0, Merge:3, Move Head:12, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:1, 
 		Move Adjunct:1, Agree:1, Transfer:12, Item streamed into syntax:9, Feature Processing:4, 
 		Extraposition:2, Inflection:12, Failed Transfer:5, LF recovery:4, LF test:16, Filter solution:6, 
-		Rank solution:5, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -6237,7 +6237,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:2, Transfer:3, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:1, LF test:4, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, Execution time = 15ms
 
 941. ihailee#foc Pekka Merjaa 
 
@@ -6263,7 +6263,7 @@
 		Garden Paths:0, Merge:2, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:4, Transfer:6, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, Execution time = 31ms
 
 943. myi#foc Pekka omaisuutensa 
 
@@ -6277,7 +6277,7 @@
 		Garden Paths:0, Merge:2, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:4, Transfer:6, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 46ms
 
 944. myi#C/op Pekka omaisuutensa 
 
@@ -6291,7 +6291,7 @@
 		Garden Paths:0, Merge:2, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:4, Transfer:6, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, Execution time = 31ms
 
 945. antoi#foc Pekka avaimen Merjalle 
 
@@ -6306,7 +6306,7 @@
 		Garden Paths:0, Merge:3, Move Head:24, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:8, Transfer:18, Item streamed into syntax:11, Feature Processing:0, 
 		Extraposition:3, Inflection:9, Failed Transfer:9, LF recovery:3, LF test:27, Filter solution:8, 
-		Rank solution:9, Lexical retrieval:20, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:9, Lexical retrieval:20, Morphological decomposition:5, Execution time = 109ms
 
 	b. [[C [<D Pekka>:1 [T [<__>:1 [v [[antaa [D avain]] <__>:2]]]]]] <P(lle) [D Merja]>:2]
 
@@ -6352,7 +6352,7 @@
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:9, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:13, Failed Transfer:8, LF recovery:2, LF test:16, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, Execution time = 46ms
 
 948. ei#C/op Pekan_gen taydy ihailla Merjaa 
 
@@ -6396,7 +6396,7 @@
 		Garden Paths:0, Merge:4, Move Head:16, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:18, Transfer:16, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:1, Inflection:15, Failed Transfer:15, LF recovery:2, LF test:24, Filter solution:11, 
-		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 62ms
 
 951. ei#C/op Pekka myynyt omaisuuttaan 
 
@@ -6428,7 +6428,7 @@
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:12, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:1, Inflection:8, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 62ms
 
 953. ei#C/op Pekka halua myyda omaisuuttaan 
 
@@ -6443,7 +6443,7 @@
 		Garden Paths:0, Merge:4, Move Head:28, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:14, Transfer:17, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:1, Inflection:8, Failed Transfer:14, LF recovery:4, LF test:24, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 78ms
 
 954. ei#C/op Pekka ollut myynyt omaisuuttaan 
 
@@ -6508,7 +6508,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:13, Failed Transfer:6, LF recovery:4, LF test:13, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, Execution time = 46ms
 
 958. haluaa#C/op Pekka myyda omaisuuttaan 
 
@@ -6523,7 +6523,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:8, Failed Transfer:6, LF recovery:4, LF test:13, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, Execution time = 46ms
 
 & Aux-to-C* -------------------------------------------------------
 
@@ -6539,7 +6539,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:11, Transfer:13, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:14, Failed Transfer:6, LF recovery:3, LF test:19, Filter solution:8, 
-		Rank solution:4, Lexical retrieval:24, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:24, Morphological decomposition:5, Execution time = 46ms
 
 	b. [C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
 
@@ -6561,7 +6561,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:11, Transfer:13, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:6, LF recovery:3, LF test:19, Filter solution:8, 
-		Rank solution:4, Lexical retrieval:20, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:20, Morphological decomposition:5, Execution time = 46ms
 
 	b. [C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [myy [D omaisuuden]]]]]]]]]
 
@@ -6584,7 +6584,7 @@
 		Garden Paths:0, Merge:2, Move Head:10, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:4, Transfer:6, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:9, Filter solution:6, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, Execution time = 31ms
 
 962. ei#C/fin Pekka ihaile Merjaa 
 
@@ -6597,7 +6597,7 @@
 		Garden Paths:0, Merge:3, Move Head:13, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:9, Transfer:11, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:12, Failed Transfer:8, LF recovery:2, LF test:16, Filter solution:8, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, Execution time = 109ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, Execution time = 46ms
 
 963. taytyy#C/fin Pekan_gen ihailla Merjaa 
 
@@ -6627,7 +6627,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:12, Failed Transfer:6, LF recovery:4, LF test:13, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 46ms
 
 965. on'#C/fin Pekka ihaillut Merjaa 
 
@@ -6641,7 +6641,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:5, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:5, Agree:11, Transfer:13, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:13, Failed Transfer:6, LF recovery:3, LF test:19, Filter solution:8, 
-		Rank solution:4, Lexical retrieval:23, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:23, Morphological decomposition:5, Execution time = 93ms
 
 	b. [[C [<D Pekka>:1 [T [<__>:1 BE]]]] [T/prt [v [ihaile- [D Merja]]]]]
 
@@ -6778,7 +6778,7 @@
 		Garden Paths:0, Merge:3, Move Head:10, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:6, Transfer:7, Item streamed into syntax:8, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:6, LF recovery:2, LF test:10, Filter solution:7, 
-		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, Execution time = 31ms
 
 & Ungrammatical (C-feature is missing, V-initial) -------------------------------------------------------
 
@@ -6823,7 +6823,7 @@
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:9, Transfer:12, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:14, Failed Transfer:6, LF recovery:3, LF test:18, Filter solution:8, 
-		Rank solution:5, Lexical retrieval:24, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:24, Morphological decomposition:5, Execution time = 31ms
 
 	b. [C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
 
@@ -6845,7 +6845,7 @@
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:9, Transfer:12, Item streamed into syntax:10, Feature Processing:0, 
 		Extraposition:0, Inflection:10, Failed Transfer:6, LF recovery:3, LF test:18, Filter solution:8, 
-		Rank solution:5, Lexical retrieval:20, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:20, Morphological decomposition:5, Execution time = 46ms
 
 	b. [C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [myy [D omaisuuden]]]]]]]]]
 
@@ -6884,7 +6884,7 @@
 		Garden Paths:0, Merge:3, Move Head:17, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:6, Transfer:10, Item streamed into syntax:11, Feature Processing:2, 
 		Extraposition:0, Inflection:8, Failed Transfer:8, LF recovery:4, LF test:15, Filter solution:10, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, Execution time = 46ms
 
 & V-over-must -------------------------------------------------------
 
@@ -6902,7 +6902,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:6, Transfer:7, Item streamed into syntax:10, Feature Processing:2, 
 		Extraposition:0, Inflection:13, Failed Transfer:8, LF recovery:5, LF test:12, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, Execution time = 46ms
 
 986. myyda#C/op Pekan_gen taytyy omaisuutensa 
 
@@ -6935,7 +6935,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:11, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:13, Failed Transfer:6, LF recovery:3, LF test:19, Filter solution:7, 
-		Rank solution:3, Lexical retrieval:22, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:3, Lexical retrieval:22, Morphological decomposition:5, Execution time = 46ms
 
 	b. [[C [<D Merja>:1 [ei [<__>:2 [T [<__>:2 [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
 
@@ -6957,7 +6957,7 @@
 		Garden Paths:2, Merge:5, Move Head:29, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:22, Transfer:20, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:1, Inflection:14, Failed Transfer:11, LF recovery:8, LF test:29, Filter solution:9, 
-		Rank solution:6, Lexical retrieval:26, Morphological decomposition:5, Execution time = 125ms
+		Rank solution:6, Lexical retrieval:26, Morphological decomposition:5, Execution time = 109ms
 
 	b. [[C [<D Merja>:1 [T [<__>:2 [BE [T/prt [v [<__>:1 ihaile-]]]]]]]] <D Pekka>:2]
 
@@ -6980,7 +6980,7 @@
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:12, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:13, Failed Transfer:6, LF recovery:5, LF test:18, Filter solution:9, 
-		Rank solution:5, Lexical retrieval:24, Morphological decomposition:5, Execution time = 93ms
+		Rank solution:5, Lexical retrieval:24, Morphological decomposition:5, Execution time = 62ms
 
 	b. [[C [<D Merja>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]]] <D Pekka>:2]
 
@@ -7003,7 +7003,7 @@
 		Garden Paths:0, Merge:3, Move Head:14, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:11, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:1, Inflection:10, Failed Transfer:6, LF recovery:3, LF test:19, Filter solution:7, 
-		Rank solution:3, Lexical retrieval:19, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:3, Lexical retrieval:19, Morphological decomposition:5, Execution time = 46ms
 
 	b. [[C [<D omaisuuden>:1 [ei [<__>:2 [T/prt [<__>:2 [v [<__>:1 myy]]]]]]]] <D Pekka>:2]
 
@@ -7027,7 +7027,7 @@
 		Garden Paths:2, Merge:5, Move Head:29, Move Phrase:7, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:7, Agree:22, Transfer:20, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:1, Inflection:10, Failed Transfer:11, LF recovery:8, LF test:29, Filter solution:9, 
-		Rank solution:6, Lexical retrieval:22, Morphological decomposition:5, Execution time = 140ms
+		Rank solution:6, Lexical retrieval:22, Morphological decomposition:5, Execution time = 109ms
 
 	b. [[C [<D omaisuuden>:1 [T [<__>:2 [BE [T/prt [v [<__>:1 myy]]]]]]]] <D Pekka>:2]
 
@@ -7051,7 +7051,7 @@
 		Garden Paths:0, Merge:3, Move Head:22, Move Phrase:4, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:4, Agree:8, Transfer:12, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:0, Inflection:8, Failed Transfer:6, LF recovery:5, LF test:18, Filter solution:9, 
-		Rank solution:5, Lexical retrieval:19, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:5, Lexical retrieval:19, Morphological decomposition:5, Execution time = 62ms
 
 	b. [[C [<D omaisuuden>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 myy]]]]]]]]] <D Pekka>:2]
 
@@ -7078,7 +7078,7 @@
 		Garden Paths:0, Merge:4, Move Head:19, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:13, Transfer:12, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:3, Inflection:13, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 62ms
 
 994. taydy#C/op Pekan_gen ei myyda omaisuuttaan 
 
@@ -7096,7 +7096,7 @@
 		Garden Paths:0, Merge:4, Move Head:19, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:13, Transfer:12, Item streamed into syntax:11, Feature Processing:4, 
 		Extraposition:3, Inflection:8, Failed Transfer:14, LF recovery:6, LF test:19, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 62ms
 
 & Neg + Modal + V with V moving -------------------------------------------------------
 
@@ -7115,7 +7115,7 @@
 		Garden Paths:0, Merge:4, Move Head:18, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:13, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:3, Inflection:13, Failed Transfer:15, LF recovery:6, LF test:21, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, Execution time = 62ms
 
 996. myyda#C/op Pekan_gen ei taydy omaisuuttaan 
 
@@ -7133,7 +7133,7 @@
 		Garden Paths:0, Merge:4, Move Head:18, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:14, Transfer:13, Item streamed into syntax:11, Feature Processing:3, 
 		Extraposition:2, Inflection:8, Failed Transfer:15, LF recovery:6, LF test:21, Filter solution:12, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 78ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, Execution time = 62ms
 
 & Neg + want + V, with want moving -------------------------------------------------------
 
@@ -7149,7 +7149,7 @@
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:13, Transfer:15, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:3, Inflection:13, Failed Transfer:14, LF recovery:4, LF test:22, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 62ms
 
 998. ihailla#C/op Pekka ei halua Merjaa 
 
@@ -7163,7 +7163,7 @@
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:14, Transfer:16, Item streamed into syntax:12, Feature Processing:3, 
 		Extraposition:3, Inflection:13, Failed Transfer:15, LF recovery:4, LF test:24, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 109ms
+		Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, Execution time = 78ms
 
 999. halua#C/op Pekka ei myyda omaisuuttaan 
 
@@ -7178,7 +7178,7 @@
 		Garden Paths:0, Merge:4, Move Head:22, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:13, Transfer:15, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:3, Inflection:8, Failed Transfer:14, LF recovery:4, LF test:22, Filter solution:13, 
-		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 93ms
+		Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, Execution time = 78ms
 
 1000. myyda#C/op Pekka ei halua omaisuuttaan 
 
@@ -7268,7 +7268,7 @@
 		Garden Paths:0, Merge:6, Move Head:51, Move Phrase:16, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:16, Agree:25, Transfer:43, Item streamed into syntax:16, Feature Processing:5, 
 		Extraposition:3, Inflection:19, Failed Transfer:32, LF recovery:5, LF test:62, Filter solution:23, 
-		Rank solution:5, Lexical retrieval:35, Morphological decomposition:7, Execution time = 250ms
+		Rank solution:5, Lexical retrieval:35, Morphological decomposition:7, Execution time = 187ms
 
 1042. lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
 
@@ -7284,7 +7284,7 @@
 		Garden Paths:0, Merge:5, Move Head:29, Move Phrase:8, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:8, Agree:16, Transfer:25, Item streamed into syntax:12, Feature Processing:4, 
 		Extraposition:3, Inflection:13, Failed Transfer:21, LF recovery:5, LF test:39, Filter solution:15, 
-		Rank solution:5, Lexical retrieval:25, Morphological decomposition:6, Execution time = 140ms
+		Rank solution:5, Lexical retrieval:25, Morphological decomposition:6, Execution time = 125ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -7372,7 +7372,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 31ms
 
 1091. mi=lavano 
 
@@ -7385,7 +7385,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 15ms
 
 1092. loro la=lavano 
 
@@ -7398,7 +7398,7 @@
 		Garden Paths:0, Merge:2, Move Head:7, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:2, Transfer:4, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, LF test:7, Filter solution:5, 
-		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, Execution time = 93ms
 
 1093. la=lavano 
 
@@ -7411,7 +7411,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 31ms
+		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 15ms
 
 1094. loro lo=lavano 
 
@@ -7437,7 +7437,7 @@
 		Garden Paths:0, Merge:1, Move Head:3, Move Phrase:0, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:0, Agree:1, Transfer:2, Item streamed into syntax:5, Feature Processing:0, 
 		Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, LF test:3, Filter solution:3, 
-		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 15ms
+		Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, Execution time = 31ms
 
 & Ungrammatical, clitic in wrong position -------------------------------------------------------
 
@@ -7482,7 +7482,7 @@
 		Garden Paths:0, Merge:3, Move Head:15, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:7, Transfer:13, Item streamed into syntax:9, Feature Processing:0, 
 		Extraposition:0, Inflection:17, Failed Transfer:7, LF recovery:3, LF test:21, Filter solution:6, 
-		Rank solution:8, Lexical retrieval:26, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:8, Lexical retrieval:26, Morphological decomposition:5, Execution time = 93ms
 
 1105. mi=hanno lavato 
 
@@ -7510,7 +7510,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:8, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:14, Failed Transfer:5, LF recovery:3, LF test:12, Filter solution:4, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, Execution time = 46ms
 
 1107. lo=hanno lavato 
 
@@ -7524,7 +7524,7 @@
 		Garden Paths:0, Merge:2, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:8, Item streamed into syntax:7, Feature Processing:0, 
 		Extraposition:0, Inflection:11, Failed Transfer:5, LF recovery:3, LF test:12, Filter solution:4, 
-		Rank solution:4, Lexical retrieval:18, Morphological decomposition:4, Execution time = 62ms
+		Rank solution:4, Lexical retrieval:18, Morphological decomposition:4, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -7580,7 +7580,7 @@
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:3, LF test:14, Filter solution:7, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 62ms
 
 1132. loro la=devono lavare 
 
@@ -7594,7 +7594,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:8, Transfer:16, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:3, LF test:27, Filter solution:5, 
-		Rank solution:11, Lexical retrieval:21, Morphological decomposition:5, Execution time = 62ms
+		Rank solution:11, Lexical retrieval:21, Morphological decomposition:5, Execution time = 78ms
 
 1133. loro devono lavare=la 
 
@@ -7622,7 +7622,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:8, Transfer:16, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:3, LF test:27, Filter solution:5, 
-		Rank solution:11, Lexical retrieval:21, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:11, Lexical retrieval:21, Morphological decomposition:5, Execution time = 62ms
 
 1135. loro devono lavare=lo 
 
@@ -7678,7 +7678,7 @@
 		Garden Paths:0, Merge:2, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:9, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:9, Failed Transfer:5, LF recovery:3, LF test:15, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 46ms
+		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 31ms
 
 1139. devono lavare=la 
 
@@ -7752,7 +7752,7 @@
 		Garden Paths:0, Merge:3, Move Head:19, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:8, Transfer:16, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:9, LF recovery:3, LF test:27, Filter solution:5, 
-		Rank solution:11, Lexical retrieval:21, Morphological decomposition:5, Execution time = 78ms
+		Rank solution:11, Lexical retrieval:21, Morphological decomposition:5, Execution time = 62ms
 
 1155. mi=stanno lavando 
 
@@ -7766,7 +7766,7 @@
 		Garden Paths:0, Merge:2, Move Head:11, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:9, Item streamed into syntax:7, Feature Processing:1, 
 		Extraposition:0, Inflection:9, Failed Transfer:5, LF recovery:3, LF test:15, Filter solution:4, 
-		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 31ms
+		Rank solution:5, Lexical retrieval:16, Morphological decomposition:4, Execution time = 46ms
 
 1156. la=stanno lavando 
 
@@ -7808,7 +7808,7 @@
 		Garden Paths:0, Merge:3, Move Head:9, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:4, Transfer:7, Item streamed into syntax:9, Feature Processing:1, 
 		Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:3, LF test:14, Filter solution:7, 
-		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 31ms
+		Rank solution:4, Lexical retrieval:21, Morphological decomposition:5, Execution time = 46ms
 
 1159. stanno lavando=mi 
 
@@ -7878,7 +7878,7 @@
 		Garden Paths:0, Merge:4, Move Head:23, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:12, Transfer:16, Item streamed into syntax:12, Feature Processing:1, 
 		Extraposition:0, Inflection:14, Failed Transfer:13, LF recovery:5, LF test:27, Filter solution:11, 
-		Rank solution:8, Lexical retrieval:26, Morphological decomposition:6, Execution time = 156ms
+		Rank solution:8, Lexical retrieval:26, Morphological decomposition:6, Execution time = 93ms
 
 1170. loro hanno voluto lavare=mi 
 
@@ -7893,7 +7893,7 @@
 		Garden Paths:0, Merge:4, Move Head:17, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:9, Transfer:10, Item streamed into syntax:12, Feature Processing:1, 
 		Extraposition:0, Inflection:14, Failed Transfer:9, LF recovery:5, LF test:20, Filter solution:12, 
-		Rank solution:5, Lexical retrieval:26, Morphological decomposition:6, Execution time = 62ms
+		Rank solution:5, Lexical retrieval:26, Morphological decomposition:6, Execution time = 78ms
 
 1171. mi=hanno voluto lavare 
 
@@ -7924,7 +7924,7 @@
 		Garden Paths:0, Merge:3, Move Head:10, Move Phrase:1, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:1, Agree:5, Transfer:6, Item streamed into syntax:10, Feature Processing:1, 
 		Extraposition:0, Inflection:11, Failed Transfer:6, LF recovery:6, LF test:11, Filter solution:9, 
-		Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, Execution time = 46ms
+		Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, Execution time = 109ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -7982,7 +7982,7 @@
 		Garden Paths:0, Merge:4, Move Head:30, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:10, Transfer:22, Item streamed into syntax:12, Feature Processing:0, 
 		Extraposition:0, Inflection:25, Failed Transfer:10, LF recovery:3, LF test:29, Filter solution:10, 
-		Rank solution:13, Lexical retrieval:37, Morphological decomposition:6, Execution time = 125ms
+		Rank solution:13, Lexical retrieval:37, Morphological decomposition:6, Execution time = 140ms
 
 1189. gli=la=hanno lavata 
 
@@ -8034,7 +8034,7 @@
 		Garden Paths:5, Merge:14, Move Head:66, Move Phrase:3, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:3, Agree:19, Transfer:58, Item streamed into syntax:29, Feature Processing:6, 
 		Extraposition:9, Inflection:35, Failed Transfer:32, LF recovery:4, LF test:70, Filter solution:32, 
-		Rank solution:20, Lexical retrieval:64, Morphological decomposition:12, Execution time = 312ms
+		Rank solution:20, Lexical retrieval:64, Morphological decomposition:12, Execution time = 296ms
 
 1196. sembrano lavare=mi 
 
@@ -8062,7 +8062,7 @@
 		Garden Paths:3, Merge:9, Move Head:39, Move Phrase:2, A-Move Phrase:0, A-bar Move Phrase:0, 
 		Move Adjunct:2, Agree:11, Transfer:33, Item streamed into syntax:20, Feature Processing:4, 
 		Extraposition:5, Inflection:22, Failed Transfer:15, LF recovery:4, LF test:38, Filter solution:19, 
-		Rank solution:13, Lexical retrieval:42, Morphological decomposition:8, Execution time = 156ms
+		Rank solution:13, Lexical retrieval:42, Morphological decomposition:8, Execution time = 203ms
 
 & Ungrammatical -------------------------------------------------------
 
