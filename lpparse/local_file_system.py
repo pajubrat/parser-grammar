@@ -95,11 +95,11 @@ class LocalFileSystem:
         self.stamp(self.resources_file)
 
     def add_columns_to_resources_file(self, resources, experimental_group):
-        self.resources_file.write("Sentence,")
+        self.resources_file.write("Number,Sentence,")
         for index, group in enumerate(experimental_group):
             self.resources_file.write(f"Group {index},")
         for key in resources:
-            self.resources_file.write(f'{key},ms,')
+            self.resources_file.write(f'{key},')
         self.resources_file.write("Execution time (ms)\t\n")
 
     def initialize_image_folder(self):
@@ -165,21 +165,21 @@ class LocalFileSystem:
         return line.split('.')
 
     def stamp(self, file_handle):
-        file_handle.write('#  '+str(self.settings) + '\n')
-        file_handle.write('#  '+str(datetime.datetime.now()) + '\n')
-        file_handle.write('#  '+f'Test sentences from {self.external_sources["test_corpus_file_name"]}.\n')
-        file_handle.write('#  '+f'Logs into {self.external_sources["log_file_name"]}.\n')
-        file_handle.write('#  '+f'Lexicon from {self.external_sources["lexicon_file_name"]}.\n')
-        file_handle.write('#  '+f'Redundancy rules from {self.external_sources["redundancy_rules"]}.\n')
-        file_handle.write('#  '+f'Universal morphemes from {self.external_sources["ug_morphemes"]}.\n')
-        file_handle.write('# \n')
-        file_handle.write('# \n')
+        file_handle.write('@  '+str(self.settings) + '\n')
+        file_handle.write('@  '+str(datetime.datetime.now()) + '\n')
+        file_handle.write('@  '+f'Test sentences from {self.external_sources["test_corpus_file_name"]}.\n')
+        file_handle.write('@  '+f'Logs into {self.external_sources["log_file_name"]}.\n')
+        file_handle.write('@  '+f'Lexicon from {self.external_sources["lexicon_file_name"]}.\n')
+        file_handle.write('@  '+f'Redundancy rules from {self.external_sources["redundancy_rules"]}.\n')
+        file_handle.write('@  '+f'Universal morphemes from {self.external_sources["ug_morphemes"]}.\n')
+        file_handle.write('@ \n')
+        file_handle.write('@ \n')
 
     def save_output(self, parser, count, sentence, experimental_group):
         self.save_grammaticality_judgment(parser, count, sentence)
         self.save_result(parser, count, sentence)
         if self.settings['datatake_resources']:
-            self.save_resources(parser, count, experimental_group)
+            self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
         if self.settings['datatake_timings']:
             self.save_timings(parser, count, sentence)
         self.print_result_to_console(parser, count, sentence)
@@ -201,18 +201,18 @@ class LocalFileSystem:
         else:
             self.grammaticality_judgments_file.write(str(count) + '.  ' + sentence_string + '\n')
 
-    def save_resources(self, parser, count, experimental_group):
+    def save_resources(self, parser, count, sentence, experimental_group):
         if count == 1:
             self.add_columns_to_resources_file(parser.resources, experimental_group)
-        if len(parser.result_list) == 0:
-            self.resources_file.write(str(count) + ',')
-            self.resources_file.write(','.join(experimental_group) + '\n')
-        else:
-            self.resources_file.write(str(count) + ',')
-            self.resources_file.write(','.join(experimental_group) + ',')
+        self.resources_file.write(str(count) + ',')
+        self.resources_file.write(f'{sentence},')
+        self.resources_file.write(','.join(experimental_group))
+        self.resources_file.write(',')
+        if len(parser.result_list) > 0:
             for key in parser.resources:
-                self.resources_file.write(f'{parser.resources[key]["n"]},{parser.resources[key]["ms"]},')
-            self.resources_file.write(f'{parser.execution_time_results[0]}\n')
+                self.resources_file.write(f'{parser.resources[key]["n"]},')
+            self.resources_file.write(f'{parser.execution_time_results[0]}')
+        self.resources_file.write('\n')
 
     def save_result(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)

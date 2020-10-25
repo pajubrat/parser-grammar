@@ -8,6 +8,12 @@ major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q
 # Definitions and methods for phrase structure
 class PhraseStructure:
 
+    # This variable counts the number of operations for analytic purposes
+    resources = {"Asymmetric Merge": {"ms":0, "n":0},
+                 "Sink": {"ms":0, "n":0},
+                 "External Tail Test": {"ms":0, "n":0}
+                 }
+
     # Constituent constructor, Merge[A B]
     def __init__(self, left_constituent=None, right_constituent=None):
         self.left_const = left_constituent
@@ -317,6 +323,7 @@ class PhraseStructure:
 
     # Definition for standard Merge with symmetry breaking
     def asymmetric_merge(self, B, direction='right'):
+        self.consume_resources('Asymmetric Merge')
         if direction == 'left':
             new_constituent = PhraseStructure(B, self)
         else:
@@ -359,6 +366,7 @@ class PhraseStructure:
     # Definition for sinking
     # X.sink(ps) = adds ps to X as the bottom affix
     def sink(self, ps):
+        self.consume_resources('Sink')
         bottom_affix = self.get_affix_list()[-1]
         bottom_affix.right_const = ps
         ps.mother = bottom_affix
@@ -439,6 +447,7 @@ class PhraseStructure:
         feature.issubset(self.inside_path().features)
 
     def external_tail_head_test(self):
+        self.consume_resources("External Tail Test")
         tail_sets = self.get_tail_sets()
         tests_checked = set()
         for tail_set in tail_sets:
@@ -901,3 +910,6 @@ class PhraseStructure:
         if self.right_const:
             size_ = size_ + self.right_const.size()
         return size_
+
+    def consume_resources(self, resource_key):
+        PhraseStructure.resources[resource_key]['n'] += 1

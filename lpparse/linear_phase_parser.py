@@ -8,6 +8,7 @@ from adjunct_constructor import AdjunctConstructor
 from log_functions import log_results
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
+from phrase_structure import PhraseStructure
 
 class LinearPhaseParser:
     def __init__(self, local_file_system, language=''):
@@ -67,6 +68,9 @@ class LinearPhaseParser:
         self.grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
         self.time_from_stimulus_onset = 0
         self.time_from_stimulus_onset_for_word = []
+        # Reset  operation counters in the PhraseStructure class
+        for key in PhraseStructure.resources:
+            PhraseStructure.resources[key] = {"ms": 1, "n": 0}
         self.resources = {"Garden Paths": {'ms': 1, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
                           "Move Head": {'ms': 5, 'n': 0},
@@ -86,6 +90,7 @@ class LinearPhaseParser:
                           "Filter solution": {'ms': 5, 'n': 0},
                           "Rank solution": {'ms': 5, 'n': 0},
                           "Lexical retrieval": {'ms': 5, 'n': 0},
+                          "Primitive Merge": {'ms': 1, 'n': 0},
                           "Morphological decomposition": {'ms': 5, 'n': 0}
                           }
 
@@ -142,6 +147,7 @@ class LinearPhaseParser:
                         left_branch_site_ = ps_.identify_equivalent_node(site)
                         if left_branch_site_.bottom_affix().internal:
                             new_ps = left_branch_site_.sink(terminal_lexical_item)
+                            self.consume_resources("Merge", f'{terminal_lexical_item}')
                         else:
                             log(f'\n\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
                             log('Transferring left branch...')
@@ -198,6 +204,7 @@ class LinearPhaseParser:
             return
         log('Done.\n')
         log(f'\t\tSolution was accepted ({self.time_from_stimulus_onset}ms).\n')
+        self.resources.update(PhraseStructure.resources)
         self.first_solution_found = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
         self.report_solution(ps_, spellout_structure)

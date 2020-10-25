@@ -2,7 +2,7 @@
 # 
 # Experimental categories are marked with '=>' and the format is 'a.b.c.d...', where a, b, c, d... are integers referring to the categories.
 # Currently we have a.b with
-# a = construction type (highest classification),
+# a = construction type (highest syntactic classification),
 # b = grammaticality (1 = grammatical, 0 = ungrammatical, 2 = problem or unclear).
 
 & 0 Formal tests
@@ -13,7 +13,7 @@
 			a' b'
 			a' b' c'
 			a' b' c' d'
-
+			
 & 1 Basic construction types
 
 	&  Basic verb classes
@@ -27,7 +27,7 @@
 				Pekka lahtee
 				John sleeps
 				lui dorme
-			
+		
 			=> 1.0
 			& Ungrammatical
 		
@@ -514,7 +514,7 @@
 			& Ungrammatical
 			
 				who does John say' that sleeps
-				
+	
 & 4 Case
 
 	& Finite clause, nominative and partitive
