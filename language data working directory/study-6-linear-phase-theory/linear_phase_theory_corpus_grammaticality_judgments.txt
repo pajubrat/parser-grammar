@@ -1,5 +1,5 @@
 @  {'test_corpus_file': 'linear_phase_theory_corpus.txt', 'study_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': '2020', 'date': 'October', 'datatake_resources': True, 'datatake_resource_sequence': True, 'datatake_timings': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True}
-@  2020-10-25 15:54:24.200444
+@  2020-10-26 21:24:42.475971
 @  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
 @  Logs into language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus_log.txt.
 @  Lexicon from language data working directory\lexicon.txt.
@@ -17,17 +17,17 @@
 
 & 1 Basic construction types
 
-& Basic verb classes
+& Basic verb classes (1.1)
 
 & Intransitive verbs
 
-& Grammatical
+& Grammatical (finite intransitive verbs)
 4.  Pekka istuu 
 5.  Pekka lahtee 
 6.  John sleeps 
 7.  lui dorme 
 
-& Ungrammatical
+& Ungrammatical (finite intransitive verbs)
 8. *Pekka lahtee Merjan 
 9. *Pekka istuu Merjan 
 10. *John sleeps Mary 
@@ -35,7 +35,7 @@
 
 & Transitive verbs
 
-& Grammatical
+& Grammatical (finite transitive verbs)
 12.  Pekka ihailee Merjaa 
 13.  Pekka loysi Merjan 
 14.  Pekka teki sen kellon 
@@ -44,7 +44,7 @@
 17.  lavano Luisa 
 18.  loro lavano Luisa 
 
-& Ungrammatical
+& Ungrammatical (finite transitive verbs)
 19. *Pekka ihailee 
 20. *Pekka loysi 
 21. *Pekka ihailee Merjaa Merjaa Merjaa 
@@ -61,7 +61,7 @@
 
 & Ungrammatical
 
-& Special finite elements
+& Special finite elements (1.2)
 
 & Aux, Sentential negation
 
@@ -111,1725 +111,1734 @@
 58.  Pekan_gen ei taydy myyda omaisuuttaan 
 
 & Ungrammatical
+59. *Pekka ei taydy ihailla Merjaa 
+60. *Pekka en taydy ihailla Merjaa 
+61. *Pekan_gen ei taytyy ihailla Merjaa 
 
 & Tensed pure auxiliaries
 
 & Grammatical
-59.  Pekka on' nukkunut 
-60.  Pekka on' ihaillut Merjaa 
-61.  John does sleep 
+62.  Pekka on' nukkunut 
+63.  Pekka on' ihaillut Merjaa 
+64.  John does sleep 
 
 & Ungrammatical
-62. *John does 
+65. *John does 
 
-& Seem-constructions
-
-& Grammatical
-63.  loro sembrano lavare Luisa 
-
-& Ungrammatical
-
-& Infinitival complement clauses
+& Infinitival complement clauses (1.3)
 
 & Basic infinitival constructions (English)
 
 & Grammatical
-64.  John wants to_inf leave 
-65.  John wants Mary to_inf leave 
-66.  John wants to_inf leave Mary 
-67.  io detesto lavare Luisa 
+66.  John wants to_inf leave 
+67.  John wants Mary to_inf leave 
+68.  John wants to_inf leave Mary 
+69.  io detesto lavare Luisa 
 
 & Ungrammatical
-68. *io detesto Giuseppe lavare Luisa 
+70. *io detesto Giuseppe lavare Luisa 
+71. *John wants leave 
+72. *John wants Mary leave 
+73. *John wants leave Mary 
 
 & OC constructions (English)
 
 & Grammatical
-69.  John tries to_inf leave 
+74.  John tries to_inf leave 
 
 & Ungrammatical
-70. *John tries Mary to_inf leave 
+75. *John tries Mary to_inf leave 
 
 & Finnish deverbal infinitival complements
 
 & A-infinitival 'to do'
 
 & Grammatical
-71.  Pekka haluaa lahtea 
-72.  Pekka kaskee Merjan_gen lahtea 
-73.  Pekka halusi ihailla Merjaa 
-74.  Pekka kaskee poikien ihailla Merjaa 
-75.  Pekka kaskee poikien myyda omaisuuttaan 
-76.  Pekka ei halua ihailla Merjaa 
-77.  Pekka ei halua myyda omaisuuttaan 
+76.  Pekka haluaa lahtea 
+77.  Pekka kaskee Merjan_gen lahtea 
+78.  Pekka halusi ihailla Merjaa 
+79.  Pekka kaskee poikien ihailla Merjaa 
+80.  Pekka kaskee poikien myyda omaisuuttaan 
+81.  Pekka ei halua ihailla Merjaa 
+82.  Pekka ei halua myyda omaisuuttaan 
 
 & Ungrammatical
-78. *Pekka haluaa Merjan_gen lahtea 
-79. *Pekka haluaa heidan lahtea 
+83. *Pekka haluaa Merjan_gen lahtea 
+84. *Pekka haluaa heidan lahtea 
 
 & Modal + A-infinitival
 
 & Grammatical
-80.  Pekan_gen taytyy ihailla Merjaa 
-81.  Pekan_gen taytyy myyda omaisuuttaan 
-82.  Pekan_gen ei taydy ihailla Merjaa 
-83.  Pekan_gen ei taydy myyda omaisuuttaan 
+85.  Pekan_gen taytyy ihailla Merjaa 
+86.  Pekan_gen taytyy myyda omaisuuttaan 
+87.  Pekan_gen ei taydy ihailla Merjaa 
+88.  Pekan_gen ei taydy myyda omaisuuttaan 
 
 & Ungrammatical
+89. *Pekka taytyy ihailla Merjaa 
 
 & VA-infinitival 'to do'
 
 & Grammatical
-84.  Pekka sanoo Merjan_gen lahtevan 
-85.  Pekka halusi heidan lahtevan 
-86.  Pekka sanoo lahtevansa 
-87.  Pekka sanoo ihailevansa Merjaa 
-88.  Pekka sanoo Merjan_gen lahtevan 
-89.  mina sanon lahtevani 
+90.  Pekka sanoo Merjan_gen lahtevan 
+91.  Pekka halusi heidan lahtevan 
+92.  Pekka sanoo lahtevansa 
+93.  Pekka sanoo ihailevansa Merjaa 
+94.  Pekka sanoo Merjan_gen lahtevan 
+95.  mina sanon lahtevani 
 
 & Ungrammatical
-90. *mina sanon lahtevansa 
-91. *Pekka sanoo ihailevansa 
-92. *Pekka halusi Merja lahtevan 
+96. *mina sanon lahtevansa 
+97. *Pekka sanoo ihailevansa 
+98. *Pekka halusi Merja lahtevan 
 
-& Nominals
+& Nominals (1.4)
 
 & Basic DPs
 
 & Grammatical
-93.  se' talo 
-94.  se' pieni talo 
-95.  se' pieni punainen talo 
-96.  se' punainen pieni talo 
-97.  the little key 
-98.  the little red key 
+99.  se' talo 
+100.  se' pieni talo 
+101.  se' pieni punainen talo 
+102.  se' punainen pieni talo 
+103.  the little key 
+104.  the little red key 
 
 & Ungrammatical
-99. *pieni talo se 
-100. *se talo pieni 
-101. *talo pieni se 
-102. *talo se pieni 
-103. *the key little 
-104. *the key red little 
+105. *pieni talo se 
+106. *se talo pieni 
+107. *talo pieni se 
+108. *talo se pieni 
+109. *the key little 
+110. *the key red little 
 
 & N + A-infinitival
 
 & Grammatical
-105.  Pekka teki sopimuksen ihailla Merjaa 
-106.  Pekka teki sopimuksen antaa avaimen Merjalle 
-107.  se sopimus ihailla Merjaa peruuntui 
+111.  Pekka teki sopimuksen ihailla Merjaa 
+112.  Pekka teki sopimuksen antaa avaimen Merjalle 
+113.  se sopimus ihailla Merjaa peruuntui 
 
 & Ungrammatical
 
-& Adpositions
+& Adpositions (1.5)
 
 & Grammatical
-108.  lahella Pekkaa 
-109.  Pekkaa lahella 
-110.  Merja nukkui Pekan_gen lahella 
-111.  Merja nukkui lahella Pekkaa 
+114.  lahella Pekkaa 
+115.  Pekkaa lahella 
+116.  Merja nukkui Pekan_gen lahella 
+117.  Merja nukkui lahella Pekkaa 
 
 & Ungrammatical
-112. *Merja nukkui lahella Pekan_gen 
+118. *Merja nukkui lahella Pekan_gen 
 
-& Embedded finite clauses
+& Embedded finite clauses (1.6)
 
 & Grammatical
-113.  Pekka sanoi etta Merja lahtee 
-114.  Pekka sanoo etta haluaa ihailla Merjaa 
-115.  Pekka sanoo etta haluaa myyda omaisuuttaan 
-116.  John said that Mary sleeps 
+119.  Pekka sanoi etta Merja lahtee 
+120.  Pekka sanoo etta haluaa ihailla Merjaa 
+121.  Pekka sanoo etta haluaa myyda omaisuuttaan 
+122.  John said that Mary sleeps 
 
 & Ungrammatical
+123. *Pekka sanoi etta 
+124. *Pekka sanoi etta Merja 
+125. *John said that 
+126. *John said that Mary 
 
 & 2 Adjunction and adjuncts
 
-& Adjuncts inside comprehension pipeline
+& PP adjuncts (2.1)
 
 & Grammatical
-117.  John gave the key to Mary 
-118.  John moved the key from Mary to John 
+127.  John gave the key to Mary 
+128.  John moved the key from Mary to John 
 
 & Ungrammatical
-119. *John to Mary gave the key 
-120. *John gave to Mary the key 
-121. *to Mary John gave the key 
-122. *to Mary John moved the key to John 
+129. *John to Mary gave the key 
+130. *John gave to Mary the key 
+131. *to Mary John gave the key 
+132. *to Mary John moved the key to John 
 
-& Adjectives
+& Adjectives (2.2)
 
 & Grammatical
-123.  the little key 
-124.  the little red key 
-125.  se' talo 
-126.  se' pieni talo 
-127.  se' pieni punainen talo 
-128.  se' punainen pieni talo 
+133.  the little key 
+134.  the little red key 
+135.  se' talo 
+136.  se' pieni talo 
+137.  se' pieni punainen talo 
+138.  se' punainen pieni talo 
 
 & Ungrammatical
-129. *the key little 
-130. *the key red little 
-131. *pieni talo se 
-132. *se talo pieni 
-133. *talo pieni se 
-134. *talo se pieni 
+139. *the key little 
+140. *the key red little 
+141. *pieni talo se 
+142. *se talo pieni 
+143. *talo pieni se 
+144. *talo se pieni 
 
-& Adjunct infinitivals in Finnish
+& Adjunct infinitivals in Finnish (2.3)
 
 & MA-infinitival 'doing, without doing...'
 
 & Grammatical
-135.  Pekka naki Merjan_acc lahtemassa 
-136.  Pekka naki Merjan_acc lahtematta 
-137.  Pekka naki Merjan_acc lahtemalla 
-138.  Pekka naki Merjan_acc ihailemassa Jukkaa 
-139.  Pekka elaa ihailemalla Merjaa 
-140.  Pekka elaa haluamalla ihailla Merjaa 
+145.  Pekka naki Merjan_acc lahtemassa 
+146.  Pekka naki Merjan_acc lahtematta 
+147.  Pekka naki Merjan_acc lahtemalla 
+148.  Pekka naki Merjan_acc ihailemassa Jukkaa 
+149.  Pekka elaa ihailemalla Merjaa 
+150.  Pekka elaa haluamalla ihailla Merjaa 
 
 & Ungrammatical
-141. *Pekka naki lahtemassa 
-142. *Pekka naki Merjan_gen lahtemassa 
-143. *Pekka naki heidan lahtemassa 
-144. *Pekka naki heidan ihailemassa 
+151. *Pekka naki lahtemassa 
+152. *Pekka naki Merjan_gen lahtemassa 
+153. *Pekka naki heidan lahtemassa 
+154. *Pekka naki heidan ihailemassa 
 
 & ESSA-infinitival 'while doing'
 
 & Grammatical
-145.  Pekka naki Merjan_acc lahtiessa 
-146.  Pekka naki Merjan_acc lahtiessaan 
-147.  Pekka naki avaimen_acc Merjan_gen lahtiessa 
+155.  Pekka naki Merjan_acc lahtiessa 
+156.  Pekka naki Merjan_acc lahtiessaan 
+157.  Pekka naki avaimen_acc Merjan_gen lahtiessa 
 
 & Ungrammatical
-148. *Pekka naki Merjan_gen lahtiessa 
-149. *Pekka naki heidan lahtiessa 
-150. *Pekka naki lahtiessa 
+158. *Pekka naki Merjan_gen lahtiessa 
+159. *Pekka naki heidan lahtiessa 
+160. *Pekka naki lahtiessa 
 
 & TUA-infinitival 'after doing'
 
 & Grammatical
-151.  Pekka naki Merjan_acc lahdettyaan 
-152.  Pekka lahtee Merjan_gen lahdettya 
-153.  Pekka lahtee heidan lahdettya 
-154.  Pekka lahtee heidan ihailtua Merjaa 
+161.  Pekka naki Merjan_acc lahdettyaan 
+162.  Pekka lahtee Merjan_gen lahdettya 
+163.  Pekka lahtee heidan lahdettya 
+164.  Pekka lahtee heidan ihailtua Merjaa 
 
 & Ungrammatical
-155. *Pekka nakee Merjan_acc lahdettya 
-156. *Pekka lahtee heidan ihailtua 
+165. *Pekka nakee Merjan_acc lahdettya 
+166. *Pekka lahtee heidan ihailtua 
 
 & E-infinitival 'by doing'
 
 & Grammatical
-157.  Pekka lahtee juosten 
+167.  Pekka lahtee juosten 
 
 & Ungrammatical
-158. *Pekka lahtee Merjan_gen juosten 
+168. *Pekka lahtee Merjan_gen juosten 
 
 & 3 A-bar movement and pied-piping
 
-& Basic interrogatives
+& Basic interrogatives (3.1)
 
 & Grammatical
-159.  keta Pekka ihailee 
-160.  kuka ihailee Merjaa 
-161.  who admires John 
-162.  who does John admire' 
-163.  who does_C John admire' 
+169.  keta Pekka ihailee 
+170.  kuka ihailee Merjaa 
+171.  who admires John 
+172.  who does John admire' 
+173.  who does_C John admire' 
 
 & Ungrammatical
-164. *admires who John 
-165. *admires John who 
-166. *John who admires 
-167. *Pekka ihailee keta 
-168. *ihailee keta Pekka 
-169. *ihailee Pekka keta 
+174. *admires who John 
+175. *admires John who 
+176. *John who admires 
+177. *Pekka ihailee keta 
+178. *ihailee keta Pekka 
+179. *ihailee Pekka keta 
 
 & Problems
-170.  Pekka keta ihailee 
+180.  Pekka keta ihailee 
 
-& Pied-piping
+& Pied-piping (3.2)
 
 & Grammatical
-171.  towards which city does_C Seine flow' 
-172.  mita kaupunkia kohti Seine virtaa 
-173.  mita kaupunkia kohti virtaamalla Seine saavuttaa meren 
+181.  towards which city does_C Seine flow' 
+182.  mita kaupunkia kohti Seine virtaa 
+183.  mita kaupunkia kohti virtaamalla Seine saavuttaa meren 
 
 & Ungrammatical
-174. *which city towards does_C Seine flow' 
-175. *kohti mita kaupunkia Seine virtaa 
-176. *Seine virtaa kohti mita kaupunkia 
-177. *Seine virtaa mita kaupunkia kohti 
+184. *which city towards does_C Seine flow' 
+185. *kohti mita kaupunkia Seine virtaa 
+186. *Seine virtaa kohti mita kaupunkia 
+187. *Seine virtaa mita kaupunkia kohti 
 
-& Islands
+& Islands (3.3)
 
 & Extraction from left branch and right adjunct (CED-effects)
 
 & Grammatical
-178.  John moved the key from Mary to John 
-179.  Seine saavuttaa meren virtaamalla kohti Pariisia 
-180.  se' sopimus ostaa auto raukesi 
-181.  se' Merjan_gen kello havisi 
-182.  Pekka naki Merjan_acc ihailemassa Jukkaa 
+188.  John moved the key from Mary to John 
+189.  Seine saavuttaa meren virtaamalla kohti Pariisia 
+190.  se' sopimus ostaa auto raukesi 
+191.  se' Merjan_gen kello havisi 
+192.  Pekka naki Merjan_acc ihailemassa Jukkaa 
 
 & Ungrammatical
-183. *mita kaupunkia Seine saavuttaa meren virtaamalla kohti 
-184. *mika se' sopimus ostaa raukesi 
-185. *kenen se' kello havisi 
-186. *keta Pekka naki Merjan_acc ihailemassa 
+193. *mita kaupunkia Seine saavuttaa meren virtaamalla kohti 
+194. *mika se' sopimus ostaa raukesi 
+195. *kenen se' kello havisi 
+196. *keta Pekka naki Merjan_acc ihailemassa 
 
 & Extraction from embedded interrogative (wh-island)
 
 & Grammatical
-187.  who does John say' that Mary admires 
-188.  John asks whether Mary admires John 
+197.  who does John say' that Mary admires 
+198.  John asks whether Mary admires John 
 
 & Ungrammatical
-189. *who does John ask' whether Mary admires 
-190. *who does John ask' what admires 
+199. *who does John ask' whether Mary admires 
+200. *who does John ask' what admires 
 
 & Extraction from DP
 
 & Grammatical
-191.  Pekka teki sopimuksen ostaa auton 
-192.  Pekka teki sen Merjan_gen kellon 
+201.  Pekka teki sopimuksen ostaa auton 
+202.  Pekka teki sen Merjan_gen kellon 
 
 & Ungrammatical
-193. *kenen Pekka teki sen kellon 
-194. *minka Pekka teki sopimuksen ostaa 
+203. *kenen Pekka teki sen kellon 
+204. *minka Pekka teki sopimuksen ostaa 
 
 & Extraction of embedded subject position
 
 & Grammatical
-195.  John said that Mary sleeps 
+205.  John said that Mary sleeps 
 
 & Ungrammatical
-196. *who does John say' that sleeps 
+206. *who does John say' that sleeps 
 
 & 4 Case
 
-& Finite clause, nominative and partitive
+& Finite clause, nominative and partitive (4.1)
 
 & Grammatical
-197.  Pekka nukkuu 
-198.  Merja nukkuu 
-199.  Pekka ihailee Merjaa 
-200.  Pekka antoi kirjan Merjalle 
+207.  Pekka nukkuu 
+208.  Merja nukkuu 
+209.  Pekka ihailee Merjaa 
+210.  Pekka antoi kirjan Merjalle 
 
 & Ungrammatical
-201. *Pekka ihailee Merja 
-202. *Pekka antoi kirja Merjalle 
-203. *Pekka antoi kirjan Merja 
-204. *Pekka antoi kirja Merja 
-205. *Merjan_gen nukkuu 
-206. *Merjan_acc nukkuu 
-207. *Merja_0acc nukkuu 
-208. *Merjaa nukkuu 
-209. *Merja ihailee Pekan_gen 
-210. *Merja ihailee Pekan_acc 
-211. *Merja ihailee Pekka_0acc 
+211. *Pekka ihailee Merja 
+212. *Pekka antoi kirja Merjalle 
+213. *Pekka antoi kirjan Merja 
+214. *Pekka antoi kirja Merja 
+215. *Merjan_gen nukkuu 
+216. *Merjan_acc nukkuu 
+217. *Merja_0acc nukkuu 
+218. *Merjaa nukkuu 
+219. *Merja ihailee Pekan_gen 
+220. *Merja ihailee Pekan_acc 
+221. *Merja ihailee Pekka_0acc 
 
-& Finite clause, accusative
+& Finite clause, accusative (4.2)
 
 & Accusative and aspect
 
 & Grammatical
-212.  Pekka voitti Merjan 
-213.  Pekka voitti Merjaa 
-214.  Pekka tonaisi Merjaa 
-215.  Pekka pesi Merjan 
-216.  Pekka pesi Merjaa 
-217.  Pekka pesi hanet 
+222.  Pekka voitti Merjan 
+223.  Pekka voitti Merjaa 
+224.  Pekka tonaisi Merjaa 
+225.  Pekka pesi Merjan 
+226.  Pekka pesi Merjaa 
+227.  Pekka pesi hanet 
 
 & Ungrammatical
-218. *Pekka tonaisi Merjan 
-219. *Pekka tonaisi Merja 
-220. *Pekka tonaisi Merja_0acc 
-221. *Pekka tonaisi hanet 
+228. *Pekka tonaisi Merjan 
+229. *Pekka tonaisi Merja 
+230. *Pekka tonaisi Merja_0acc 
+231. *Pekka tonaisi hanet 
 
 & Accusative and negation
 
 & Grammatical
-222.  Pekka ei voittanut Merjaa 
+232.  Pekka ei voittanut Merjaa 
 
 & Ungrammatical
-223. *Pekka ei voittanut Merjan 
-224. *Pekka ei voittanut Merja 
-225. *Pekka ei voittanut Merja_0acc 
-226. *Pekka ei voittanut Merjan_gen 
+233. *Pekka ei voittanut Merjan 
+234. *Pekka ei voittanut Merja 
+235. *Pekka ei voittanut Merja_0acc 
+236. *Pekka ei voittanut Merjan_gen 
 
 & Accusative and agreement
 
 & Grammatical
-227.  me loysimme avaimen 
-228.  me loydettiin avain_0acc 
+237.  me loysimme avaimen 
+238.  me loydettiin avain_0acc 
 
 & Ungrammatical
-229. *me loydettiin avaimen 
-230. *me loysimme avain 
-231. *me loysimme avain_0acc 
+239. *me loydettiin avaimen 
+240. *me loysimme avain 
+241. *me loysimme avain_0acc 
 
 & Accusative and long-distance effects
 
 & Grammatical
-232.  Pekka halusi voittaa Merjan 
-233.  Pekka halusi tonaista Merjaa 
-234.  Pekka halusi pesta Merjan 
-235.  Pekka halusi loytaa avaimen 
-236.  me haluttiin voittaa Merja_0acc 
-237.  me ei' haluttu voittaa Merjaa 
-238.  me halusimme voittaa Merjan 
+242.  Pekka halusi voittaa Merjan 
+243.  Pekka halusi tonaista Merjaa 
+244.  Pekka halusi pesta Merjan 
+245.  Pekka halusi loytaa avaimen 
+246.  me haluttiin voittaa Merja_0acc 
+247.  me ei' haluttu voittaa Merjaa 
+248.  me halusimme voittaa Merjan 
 
 & Ungrammatical
-239. *me haluttiin voittaa Merjan 
-240. *me halusimme voittaa Merja_0acc 
-241. *me ei' haluttu voittaa Merja_0acc 
-242. *me ei' haluttu voittaa Merjan 
+249. *me haluttiin voittaa Merjan 
+250. *me halusimme voittaa Merja_0acc 
+251. *me ei' haluttu voittaa Merja_0acc 
+252. *me ei' haluttu voittaa Merjan 
 
-& Adpositions
+& Adpositions (4.3)
 
 & Grammatical
-243.  lahella Pekkaa 
-244.  Pekkaa lahella 
-245.  Merja nukkui Pekan_gen lahella 
-246.  Merja nukkui lahella Pekkaa 
+253.  lahella Pekkaa 
+254.  Pekkaa lahella 
+255.  Merja nukkui Pekan_gen lahella 
+256.  Merja nukkui lahella Pekkaa 
 
 & Ungrammatical
-247. *Merja nukkui lahella Pekan_gen 
+257. *Merja nukkui lahella Pekan_gen 
 
-& Infinitivals
+& Infinitivals (4.4)
 
 & Grammatical
-248.  Pekka kaski Merjan_gen lahtea 
-249.  Pekka sanoi Merjan_gen lahtevan 
-250.  Pekka halusi ihailla Merjaa 
+258.  Pekka kaski Merjan_gen lahtea 
+259.  Pekka sanoi Merjan_gen lahtevan 
+260.  Pekka halusi ihailla Merjaa 
 
 & Ungrammatical
-251. *Pekka kaski Merja lahtea 
-252. *Pekka kaski Merjaa lahtea 
-253. *Pekka kaski hanet lahtea 
-254. *Pekka sanoi Merja lahtevan 
-255. *Pekka sanoi Merjaa lahtevan 
-256. *Pekka sanoi hanet lahtevan 
-257. *Pekka kaski lahtea Merjan_gen 
-258. *Pekka sanoi lahtevan Merjan_gen 
+261. *Pekka kaski Merja lahtea 
+262. *Pekka kaski Merjaa lahtea 
+263. *Pekka kaski hanet lahtea 
+264. *Pekka sanoi Merja lahtevan 
+265. *Pekka sanoi Merjaa lahtevan 
+266. *Pekka sanoi hanet lahtevan 
+267. *Pekka kaski lahtea Merjan_gen 
+268. *Pekka sanoi lahtevan Merjan_gen 
 
-& Possessive constructions
+& Possessive constructions (4.5)
 
 & Grammatical
-259.  se Merjan_gen kello havisi 
+269.  se Merjan_gen kello havisi 
 
 & Ungrammatical
-260. *se kello Merjan_gen havisi 
+270. *se kello Merjan_gen havisi 
 
-& Numeral constructions (two types)
+& Numeral constructions (two types))(4.6)
 
 & Grammatical
-261.  ne kaksi sukkaa havisi 
-262.  ne kahdet sukat havisivat 
-263.  ne kaksi sukkaa havisivat 
-264.  Pekka loysi ne kaksi sukkaa 
-265.  Pekka sanoi niiden kahden sukan haviavan 
+271.  ne kaksi sukkaa havisi 
+272.  ne kahdet sukat havisivat 
+273.  ne kaksi sukkaa havisivat 
+274.  Pekka loysi ne kaksi sukkaa 
+275.  Pekka sanoi niiden kahden sukan haviavan 
 
 & Ungrammatical
-266. *ne kaksi sukan havisi 
-267. *ne kahdet sukkaa havisivat 
-268. *ne kahdet sukka_0acc havisivat 
-269. *ne kahdet sukka havisivat 
-270. *Pekka sanoi niiden kaksi sukkaa haviavan 
+276. *ne kaksi sukan havisi 
+277. *ne kahdet sukkaa havisivat 
+278. *ne kahdet sukka_0acc havisivat 
+279. *ne kahdet sukka havisivat 
+280. *Pekka sanoi niiden kaksi sukkaa haviavan 
 
-& Adverbials, direct object marking
+& Adverbials, direct object marking (4.7)
 
-& 4.7.1 MALLA-adverbial
+& MALLA-adverbial
 
 & Grammatical
-271.  Pekka nukahti lukemalla kirjaa 
+281.  Pekka nukahti lukemalla kirjaa 
 
 & Ungrammatical
-272. *Pekka nukahti lukemalla Merjan_gen 
-273. *Pekka nukahti lukemalla Merja 
-274. *Pekka nukahti lukemalla Merja_0acc 
-275. *Pekka nukahti lukemalla Merjan_acc 
+282. *Pekka nukahti lukemalla Merjan_gen 
+283. *Pekka nukahti lukemalla Merja 
+284. *Pekka nukahti lukemalla Merja_0acc 
+285. *Pekka nukahti lukemalla Merjan_acc 
 
-& Adverbial case marking
+& Adverbial case marking (4.8)
 
 & Grammatical
-276.  Pekka nukkui#asp koko paivan 
-277.  Pekka nukku-#asp#T/fin#[-V] koko paivan 
-278.  Pekka ei nukkunut koko paivaa 
-279.  me nukuttiin koko paiva 
-280.  Pekka ihailee#asp Merjaa koko paivan 
+286.  Pekka nukkui#asp koko paivan 
+287.  Pekka nukku-#asp#T/fin#[-V] koko paivan 
+288.  Pekka ei nukkunut koko paivaa 
+289.  me nukuttiin koko paiva 
+290.  Pekka ihailee#asp Merjaa koko paivan 
 
 & Ungrammatical
-281. *Pekka nukkui koko paivan 
-282. *Pekka ei nukkunut koko paivan 
-283. *me nukuttiin koko paivan 
-284. *Pekka ihailee Merjaa koko paivan 
-285. *Pekka ihailee#asp Merjaa koko paiva 
-286. *Pekka ihailee#asp Merjaa koko paivaa 
-287. *Pekka ihailee Merjaa koko paivaa 
+291. *Pekka nukkui koko paivan 
+292. *Pekka ei nukkunut koko paivan 
+293. *me nukuttiin koko paivan 
+294. *Pekka ihailee Merjaa koko paivan 
+295. *Pekka ihailee#asp Merjaa koko paiva 
+296. *Pekka ihailee#asp Merjaa koko paivaa 
+297. *Pekka ihailee Merjaa koko paivaa 
 
-& Special constructions
+& Special constructions (4.9)
 
 & Partitive subjects (psych verbs)
 
 & Grammatical
-288.  Merjaa pelottaa 
+298.  Merjaa pelottaa 
 
 & Ungrammatical
-289. *Pekka pelottaa 
-290. *Merjan_gen pelottaa 
-291. *Merjan_acc pelottaa 
-292. *Merja_0acc pelottaa 
-293. *Merjalle pelottaa 
+299. *Pekka pelottaa 
+300. *Merjan_gen pelottaa 
+301. *Merjan_acc pelottaa 
+302. *Merja_0acc pelottaa 
+303. *Merjalle pelottaa 
 
 & Impersonal passives
 
 & Grammatical
-294.  me loysimme avaimen 
-295.  me loydettiin avain_0acc 
-296.  avain_0acc loydettiin 
-297.  loydettiin avain_0acc 
+304.  me loysimme avaimen 
+305.  me loydettiin avain_0acc 
+306.  avain_0acc loydettiin 
+307.  loydettiin avain_0acc 
 
 & Ungrammatical
-298. *me loydettiin avaimen 
-299. *me loysimme avain 
+308. *me loydettiin avaimen 
+309. *me loysimme avain 
 
 & Copula
 
 & Grammatical
-300.  Pekka on' Pekka 
-301.  Merjalla on' Pekka 
-302.  Pekka on' Merjalla 
+310.  Pekka on' Pekka 
+311.  Merjalla on' Pekka 
+312.  Pekka on' Merjalla 
 
 & Ungrammatical
-303. *Pekka on' Pekkaa 
-304. *Pekka on' Pekan_gen 
+313. *Pekka on' Pekkaa 
+314. *Pekka on' Pekan_gen 
 
 & 5 Agreement
 
-& Standard finite S-V agreement
+& Standard finite S-V agreement (5.1)
 
 & Grammatical
-305.  mina ihailen Merjaa 
-306.  sina ihailet Merjaa 
-307.  han ihailee Merjaa 
-308.  me ihailemme Merjaa 
-309.  te ihailette Merjaa 
-310.  he_FI ihailevat Merjaa 
-311.  I admire Mary 
-312.  you admire Mary 
-313.  he admires Mary 
-314.  she admires Mary 
-315.  John admires Mary 
-316.  we admire Mary 
-317.  you_pl admire Mary 
-318.  they admire Mary 
-319.  io adoro Luisa 
-320.  tu adori Luisa 
-321.  lui adora Luisa 
-322.  lei adora Luisa 
-323.  noi adoriamo Luisa 
-324.  voi adorate Luisa 
-325.  loro adorano Luisa 
+315.  mina ihailen Merjaa 
+316.  sina ihailet Merjaa 
+317.  han ihailee Merjaa 
+318.  me ihailemme Merjaa 
+319.  te ihailette Merjaa 
+320.  he_FI ihailevat Merjaa 
+321.  I admire Mary 
+322.  you admire Mary 
+323.  he admires Mary 
+324.  she admires Mary 
+325.  John admires Mary 
+326.  we admire Mary 
+327.  you_pl admire Mary 
+328.  they admire Mary 
+329.  io adoro Luisa 
+330.  tu adori Luisa 
+331.  lui adora Luisa 
+332.  lei adora Luisa 
+333.  noi adoriamo Luisa 
+334.  voi adorate Luisa 
+335.  loro adorano Luisa 
 
 & Ungrammatical
-326. *mina ihailet Merjaa 
-327. *mina ihalee Merjaa 
-328. *mina ihailemme Merjaa 
-329. *mina ihailette Merjaa 
-330. *mina ihailevat Merjaa 
-331. *sina ihailen Merjaa 
-332. *sina ihalee Merjaa 
-333. *sina ihailemme Merjaa 
-334. *sina ihailette Merjaa 
-335. *sina ihailevat Merjaa 
-336. *han ihailen Merjaa 
-337. *han ihailet Merjaa 
-338. *han ihailemme Merjaa 
-339. *han ihailette Merjaa 
-340. *han ihailevat Merjaa 
-341. *me ihailen Merjaa 
-342. *me ihailet Merjaa 
-343. *me ihalee Merjaa 
-344. *me ihailette Merjaa 
-345. *me ihailevat Merjaa 
-346. *te ihailen Merjaa 
-347. *te ihailet Merjaa 
-348. *te ihalee Merjaa 
-349. *te ihailemme Merjaa 
-350. *te ihailevat Merjaa 
-351. *he_FI ihailen Merjaa 
-352. *he_FI ihailet Merjaa 
-353. *he_FI ihalee Merjaa 
-354. *he_FI ihailemme Merjaa 
-355. *he_FI ihailette Merjaa 
-356. *John admire Mary 
-357. *we admires Mary 
-358. *io adori Luisa 
-359. *io adora Luisa 
-360. *io adorate Luisa 
-361. *io adorano Luisa 
+336. *mina ihailet Merjaa 
+337. *mina ihalee Merjaa 
+338. *mina ihailemme Merjaa 
+339. *mina ihailette Merjaa 
+340. *mina ihailevat Merjaa 
+341. *sina ihailen Merjaa 
+342. *sina ihalee Merjaa 
+343. *sina ihailemme Merjaa 
+344. *sina ihailette Merjaa 
+345. *sina ihailevat Merjaa 
+346. *han ihailen Merjaa 
+347. *han ihailet Merjaa 
+348. *han ihailemme Merjaa 
+349. *han ihailette Merjaa 
+350. *han ihailevat Merjaa 
+351. *me ihailen Merjaa 
+352. *me ihailet Merjaa 
+353. *me ihalee Merjaa 
+354. *me ihailette Merjaa 
+355. *me ihailevat Merjaa 
+356. *te ihailen Merjaa 
+357. *te ihailet Merjaa 
+358. *te ihalee Merjaa 
+359. *te ihailemme Merjaa 
+360. *te ihailevat Merjaa 
+361. *he_FI ihailen Merjaa 
+362. *he_FI ihailet Merjaa 
+363. *he_FI ihalee Merjaa 
+364. *he_FI ihailemme Merjaa 
+365. *he_FI ihailette Merjaa 
+366. *John admire Mary 
+367. *we admires Mary 
+368. *io adori Luisa 
+369. *io adora Luisa 
+370. *io adorate Luisa 
+371. *io adorano Luisa 
 
-& S-V areement with noncanonical word order (Finnish)
+& S-V areement with noncanonical word order (Finnish)(5.2)
 
 & Grammatical
-362.  ihailen mina Merjaa 
-363.  ihailen Merjaa mina 
-364.  ihailet sina Merjaa 
-365.  ihailet Merjaa sina 
-366.  ihailette Merjaa te 
-367.  ihailemme me Merjaa 
-368.  ihailemme Merjaa me 
-369.  ihailette te Merjaa 
-370.  mina ihailen Merjaa 
-371.  mina Merjaa ihailen 
-372.  Merjaa mina ihailen 
-373.  Merjaa ihailen mina 
-374.  sina ihailet Merjaa 
-375.  sina Merjaa ihailet 
-376.  Merjaa sina ihailet 
-377.  Merjaa ihailet sina 
-378.  han ihailee Merjaa 
-379.  han Merjaa ihailee 
-380.  Merjaa han ihailee 
-381.  Merjaa ihailee han 
-382.  me ihailemme Merjaa 
-383.  me Merjaa ihailemme 
-384.  Merjaa me ihailemme 
-385.  Merjaa ihailemme me 
-386.  te ihailette Merjaa 
-387.  te Merjaa ihailette 
-388.  Merjaa te ihailette 
-389.  Merjaa ihailette te 
-390.  he_FI ihailevat Merjaa 
-391.  he_FI Merjaa ihailevat 
-392.  Merjaa he_FI ihailevat 
-393.  Merjaa ihailevat he_FI 
+372.  ihailen mina Merjaa 
+373.  ihailen Merjaa mina 
+374.  ihailet sina Merjaa 
+375.  ihailet Merjaa sina 
+376.  ihailette Merjaa te 
+377.  ihailemme me Merjaa 
+378.  ihailemme Merjaa me 
+379.  ihailette te Merjaa 
+380.  mina ihailen Merjaa 
+381.  mina Merjaa ihailen 
+382.  Merjaa mina ihailen 
+383.  Merjaa ihailen mina 
+384.  sina ihailet Merjaa 
+385.  sina Merjaa ihailet 
+386.  Merjaa sina ihailet 
+387.  Merjaa ihailet sina 
+388.  han ihailee Merjaa 
+389.  han Merjaa ihailee 
+390.  Merjaa han ihailee 
+391.  Merjaa ihailee han 
+392.  me ihailemme Merjaa 
+393.  me Merjaa ihailemme 
+394.  Merjaa me ihailemme 
+395.  Merjaa ihailemme me 
+396.  te ihailette Merjaa 
+397.  te Merjaa ihailette 
+398.  Merjaa te ihailette 
+399.  Merjaa ihailette te 
+400.  he_FI ihailevat Merjaa 
+401.  he_FI Merjaa ihailevat 
+402.  Merjaa he_FI ihailevat 
+403.  Merjaa ihailevat he_FI 
 
 & Ungrammatical
-394. *ihailee han Merjaa 
-395. *ihailee Merjaa han 
-396. *ihailevat he_FI Merjaa 
-397. *ihailevat Merjaa he_FI 
+404. *ihailee han Merjaa 
+405. *ihailee Merjaa han 
+406. *ihailevat he_FI Merjaa 
+407. *ihailevat Merjaa he_FI 
 
 & Ungrammatical, incorrect SV-agreement with noncanonical order
-398. *mina ihailet Merjaa 
-399. *mina Merjaa ihailet 
-400. *ihailet mina Merjaa 
-401. *ihailet Merjaa mina 
-402. *Merjaa mina ihailet 
-403. *Merjaa ihailet mina 
-404. *mina ihalee Merjaa 
-405. *mina Merjaa ihalee 
-406. *ihalee mina Merjaa 
-407. *ihalee Merjaa mina 
-408. *Merjaa mina ihalee 
-409. *Merjaa ihalee mina 
-410. *mina ihailemme Merjaa 
-411. *mina Merjaa ihailemme 
-412. *ihailemme mina Merjaa 
-413. *ihailemme Merjaa mina 
-414. *Merjaa mina ihailemme 
-415. *Merjaa ihailemme mina 
-416. *mina ihailette Merjaa 
-417. *mina Merjaa ihailette 
-418. *ihailette mina Merjaa 
-419. *ihailette Merjaa mina 
-420. *Merjaa mina ihailette 
-421. *Merjaa ihailette mina 
-422. *mina ihailevat Merjaa 
-423. *mina Merjaa ihailevat 
-424. *ihailevat mina Merjaa 
-425. *ihailevat Merjaa mina 
-426. *Merjaa mina ihailevat 
-427. *Merjaa ihailevat mina 
-428. *sina ihailen Merjaa 
-429. *sina Merjaa ihailen 
-430. *ihailen sina Merjaa 
-431. *ihailen Merjaa sina 
-432. *Merjaa sina ihailen 
-433. *Merjaa ihailen sina 
-434. *sina ihalee Merjaa 
-435. *sina Merjaa ihalee 
-436. *ihalee sina Merjaa 
-437. *ihalee Merjaa sina 
-438. *Merjaa sina ihalee 
-439. *Merjaa ihalee sina 
-440. *sina ihailemme Merjaa 
-441. *sina Merjaa ihailemme 
-442. *ihailemme sina Merjaa 
-443. *ihailemme Merjaa sina 
-444. *Merjaa sina ihailemme 
-445. *Merjaa ihailemme sina 
-446. *sina ihailette Merjaa 
-447. *sina Merjaa ihailette 
-448. *ihailette sina Merjaa 
-449. *ihailette Merjaa sina 
-450. *Merjaa sina ihailette 
-451. *Merjaa ihailette sina 
-452. *sina ihailevat Merjaa 
-453. *sina Merjaa ihailevat 
-454. *ihailevat sina Merjaa 
-455. *ihailevat Merjaa sina 
-456. *Merjaa sina ihailevat 
-457. *Merjaa ihailevat sina 
-458. *han ihailen Merjaa 
-459. *han Merjaa ihailen 
-460. *ihailen han Merjaa 
-461. *ihailen Merjaa han 
-462. *Merjaa han ihailen 
-463. *Merjaa ihailen han 
-464. *han ihailet Merjaa 
-465. *han Merjaa ihailet 
-466. *ihailet han Merjaa 
-467. *ihailet Merjaa han 
-468. *Merjaa han ihailet 
-469. *Merjaa ihailet han 
-470. *han ihailemme Merjaa 
-471. *han Merjaa ihailemme 
-472. *ihailemme han Merjaa 
-473. *ihailemme Merjaa han 
-474. *Merjaa han ihailemme 
-475. *Merjaa ihailemme han 
-476. *han ihailette Merjaa 
-477. *han Merjaa ihailette 
-478. *ihailette han Merjaa 
-479. *ihailette Merjaa han 
-480. *Merjaa han ihailette 
-481. *Merjaa ihailette han 
-482. *han ihailevat Merjaa 
-483. *han Merjaa ihailevat 
-484. *ihailevat han Merjaa 
-485. *ihailevat Merjaa han 
-486. *Merjaa han ihailevat 
-487. *Merjaa ihailevat han 
-488. *me ihailen Merjaa 
-489. *me Merjaa ihailen 
-490. *ihailen me Merjaa 
-491. *ihailen Merjaa me 
-492. *Merjaa me ihailen 
-493. *Merjaa ihailen me 
-494. *me ihailet Merjaa 
-495. *me Merjaa ihailet 
-496. *ihailet me Merjaa 
-497. *ihailet Merjaa me 
-498. *Merjaa me ihailet 
-499. *Merjaa ihailet me 
-500. *me ihalee Merjaa 
-501. *me Merjaa ihalee 
-502. *ihalee me Merjaa 
-503. *ihalee Merjaa me 
-504. *Merjaa me ihalee 
-505. *Merjaa ihalee me 
-506. *me ihailette Merjaa 
-507. *me Merjaa ihailette 
-508. *ihailette me Merjaa 
-509. *ihailette Merjaa me 
-510. *Merjaa me ihailette 
-511. *Merjaa ihailette me 
-512. *me ihailevat Merjaa 
-513. *me Merjaa ihailevat 
-514. *ihailevat me Merjaa 
-515. *ihailevat Merjaa me 
-516. *Merjaa me ihailevat 
-517. *Merjaa ihailevat me 
-518. *te ihailen Merjaa 
-519. *te Merjaa ihailen 
-520. *ihailen te Merjaa 
-521. *ihailen Merjaa te 
-522. *Merjaa te ihailen 
-523. *Merjaa ihailen te 
-524. *te ihailet Merjaa 
-525. *te Merjaa ihailet 
-526. *ihailet te Merjaa 
-527. *ihailet Merjaa te 
-528. *Merjaa te ihailet 
-529. *Merjaa ihailet te 
-530. *te ihalee Merjaa 
-531. *te Merjaa ihalee 
-532. *ihalee te Merjaa 
-533. *ihalee Merjaa te 
-534. *Merjaa te ihalee 
-535. *Merjaa ihalee te 
-536. *te ihailemme Merjaa 
-537. *te Merjaa ihailemme 
-538. *ihailemme te Merjaa 
-539. *ihailemme Merjaa te 
-540. *Merjaa te ihailemme 
-541. *Merjaa ihailemme te 
-542. *te ihailevat Merjaa 
-543. *te Merjaa ihailevat 
-544. *ihailevat te Merjaa 
-545. *ihailevat Merjaa te 
-546. *Merjaa te ihailevat 
-547. *Merjaa ihailevat te 
-548. *he_FI ihailen Merjaa 
-549. *he_FI Merjaa ihailen 
-550. *ihailen he_FI Merjaa 
-551. *ihailen Merjaa he_FI 
-552. *Merjaa he_FI ihailen 
-553. *Merjaa ihailen he_FI 
-554. *he_FI ihailet Merjaa 
-555. *he_FI Merjaa ihailet 
-556. *ihailet he_FI Merjaa 
-557. *ihailet Merjaa he_FI 
-558. *Merjaa he_FI ihailet 
-559. *Merjaa ihailet he_FI 
-560. *he_FI ihalee Merjaa 
-561. *he_FI Merjaa ihalee 
-562. *ihalee he_FI Merjaa 
-563. *ihalee Merjaa he_FI 
-564. *Merjaa he_FI ihalee 
-565. *Merjaa ihalee he_FI 
-566. *he_FI ihailemme Merjaa 
-567. *he_FI Merjaa ihailemme 
-568. *ihailemme he_FI Merjaa 
-569. *ihailemme Merjaa he_FI 
-570. *Merjaa he_FI ihailemme 
-571. *Merjaa ihailemme he_FI 
-572. *he_FI ihailette Merjaa 
-573. *he_FI Merjaa ihailette 
-574. *ihailette he_FI Merjaa 
-575. *ihailette Merjaa he_FI 
-576. *Merjaa he_FI ihailette 
-577. *Merjaa ihailette he_FI 
+408. *mina ihailet Merjaa 
+409. *mina Merjaa ihailet 
+410. *ihailet mina Merjaa 
+411. *ihailet Merjaa mina 
+412. *Merjaa mina ihailet 
+413. *Merjaa ihailet mina 
+414. *mina ihalee Merjaa 
+415. *mina Merjaa ihalee 
+416. *ihalee mina Merjaa 
+417. *ihalee Merjaa mina 
+418. *Merjaa mina ihalee 
+419. *Merjaa ihalee mina 
+420. *mina ihailemme Merjaa 
+421. *mina Merjaa ihailemme 
+422. *ihailemme mina Merjaa 
+423. *ihailemme Merjaa mina 
+424. *Merjaa mina ihailemme 
+425. *Merjaa ihailemme mina 
+426. *mina ihailette Merjaa 
+427. *mina Merjaa ihailette 
+428. *ihailette mina Merjaa 
+429. *ihailette Merjaa mina 
+430. *Merjaa mina ihailette 
+431. *Merjaa ihailette mina 
+432. *mina ihailevat Merjaa 
+433. *mina Merjaa ihailevat 
+434. *ihailevat mina Merjaa 
+435. *ihailevat Merjaa mina 
+436. *Merjaa mina ihailevat 
+437. *Merjaa ihailevat mina 
+438. *sina ihailen Merjaa 
+439. *sina Merjaa ihailen 
+440. *ihailen sina Merjaa 
+441. *ihailen Merjaa sina 
+442. *Merjaa sina ihailen 
+443. *Merjaa ihailen sina 
+444. *sina ihalee Merjaa 
+445. *sina Merjaa ihalee 
+446. *ihalee sina Merjaa 
+447. *ihalee Merjaa sina 
+448. *Merjaa sina ihalee 
+449. *Merjaa ihalee sina 
+450. *sina ihailemme Merjaa 
+451. *sina Merjaa ihailemme 
+452. *ihailemme sina Merjaa 
+453. *ihailemme Merjaa sina 
+454. *Merjaa sina ihailemme 
+455. *Merjaa ihailemme sina 
+456. *sina ihailette Merjaa 
+457. *sina Merjaa ihailette 
+458. *ihailette sina Merjaa 
+459. *ihailette Merjaa sina 
+460. *Merjaa sina ihailette 
+461. *Merjaa ihailette sina 
+462. *sina ihailevat Merjaa 
+463. *sina Merjaa ihailevat 
+464. *ihailevat sina Merjaa 
+465. *ihailevat Merjaa sina 
+466. *Merjaa sina ihailevat 
+467. *Merjaa ihailevat sina 
+468. *han ihailen Merjaa 
+469. *han Merjaa ihailen 
+470. *ihailen han Merjaa 
+471. *ihailen Merjaa han 
+472. *Merjaa han ihailen 
+473. *Merjaa ihailen han 
+474. *han ihailet Merjaa 
+475. *han Merjaa ihailet 
+476. *ihailet han Merjaa 
+477. *ihailet Merjaa han 
+478. *Merjaa han ihailet 
+479. *Merjaa ihailet han 
+480. *han ihailemme Merjaa 
+481. *han Merjaa ihailemme 
+482. *ihailemme han Merjaa 
+483. *ihailemme Merjaa han 
+484. *Merjaa han ihailemme 
+485. *Merjaa ihailemme han 
+486. *han ihailette Merjaa 
+487. *han Merjaa ihailette 
+488. *ihailette han Merjaa 
+489. *ihailette Merjaa han 
+490. *Merjaa han ihailette 
+491. *Merjaa ihailette han 
+492. *han ihailevat Merjaa 
+493. *han Merjaa ihailevat 
+494. *ihailevat han Merjaa 
+495. *ihailevat Merjaa han 
+496. *Merjaa han ihailevat 
+497. *Merjaa ihailevat han 
+498. *me ihailen Merjaa 
+499. *me Merjaa ihailen 
+500. *ihailen me Merjaa 
+501. *ihailen Merjaa me 
+502. *Merjaa me ihailen 
+503. *Merjaa ihailen me 
+504. *me ihailet Merjaa 
+505. *me Merjaa ihailet 
+506. *ihailet me Merjaa 
+507. *ihailet Merjaa me 
+508. *Merjaa me ihailet 
+509. *Merjaa ihailet me 
+510. *me ihalee Merjaa 
+511. *me Merjaa ihalee 
+512. *ihalee me Merjaa 
+513. *ihalee Merjaa me 
+514. *Merjaa me ihalee 
+515. *Merjaa ihalee me 
+516. *me ihailette Merjaa 
+517. *me Merjaa ihailette 
+518. *ihailette me Merjaa 
+519. *ihailette Merjaa me 
+520. *Merjaa me ihailette 
+521. *Merjaa ihailette me 
+522. *me ihailevat Merjaa 
+523. *me Merjaa ihailevat 
+524. *ihailevat me Merjaa 
+525. *ihailevat Merjaa me 
+526. *Merjaa me ihailevat 
+527. *Merjaa ihailevat me 
+528. *te ihailen Merjaa 
+529. *te Merjaa ihailen 
+530. *ihailen te Merjaa 
+531. *ihailen Merjaa te 
+532. *Merjaa te ihailen 
+533. *Merjaa ihailen te 
+534. *te ihailet Merjaa 
+535. *te Merjaa ihailet 
+536. *ihailet te Merjaa 
+537. *ihailet Merjaa te 
+538. *Merjaa te ihailet 
+539. *Merjaa ihailet te 
+540. *te ihalee Merjaa 
+541. *te Merjaa ihalee 
+542. *ihalee te Merjaa 
+543. *ihalee Merjaa te 
+544. *Merjaa te ihalee 
+545. *Merjaa ihalee te 
+546. *te ihailemme Merjaa 
+547. *te Merjaa ihailemme 
+548. *ihailemme te Merjaa 
+549. *ihailemme Merjaa te 
+550. *Merjaa te ihailemme 
+551. *Merjaa ihailemme te 
+552. *te ihailevat Merjaa 
+553. *te Merjaa ihailevat 
+554. *ihailevat te Merjaa 
+555. *ihailevat Merjaa te 
+556. *Merjaa te ihailevat 
+557. *Merjaa ihailevat te 
+558. *he_FI ihailen Merjaa 
+559. *he_FI Merjaa ihailen 
+560. *ihailen he_FI Merjaa 
+561. *ihailen Merjaa he_FI 
+562. *Merjaa he_FI ihailen 
+563. *Merjaa ihailen he_FI 
+564. *he_FI ihailet Merjaa 
+565. *he_FI Merjaa ihailet 
+566. *ihailet he_FI Merjaa 
+567. *ihailet Merjaa he_FI 
+568. *Merjaa he_FI ihailet 
+569. *Merjaa ihailet he_FI 
+570. *he_FI ihalee Merjaa 
+571. *he_FI Merjaa ihalee 
+572. *ihalee he_FI Merjaa 
+573. *ihalee Merjaa he_FI 
+574. *Merjaa he_FI ihalee 
+575. *Merjaa ihalee he_FI 
+576. *he_FI ihailemme Merjaa 
+577. *he_FI Merjaa ihailemme 
+578. *ihailemme he_FI Merjaa 
+579. *ihailemme Merjaa he_FI 
+580. *Merjaa he_FI ihailemme 
+581. *Merjaa ihailemme he_FI 
+582. *he_FI ihailette Merjaa 
+583. *he_FI Merjaa ihailette 
+584. *ihailette he_FI Merjaa 
+585. *ihailette Merjaa he_FI 
+586. *Merjaa he_FI ihailette 
+587. *Merjaa ihailette he_FI 
 
 & 6 Pro-drop
 
-& Finite pro-drop
+& Finite pro-drop (6.1)
 
 & Grammatical
-578.  ihailen Merjaa 
-579.  ihailet Merjaa 
-580.  ihailemme Merjaa 
-581.  ihailette Merjaa 
-582.  adoro Luisa 
-583.  adori Luisa 
-584.  adora Luisa 
-585.  adora Luisa 
-586.  adoriamo Luisa 
-587.  adorate Luisa 
-588.  adorano Luisa 
-589.  lavano Luisa 
-590.  devono lavare Luisa 
-591.  hanno lavato Luisa 
-592.  ho lavato Luisa 
-593.  hanno voluto lavare Luisa 
-594.  stanno lavando Luisa 
+588.  ihailen Merjaa 
+589.  ihailet Merjaa 
+590.  ihailemme Merjaa 
+591.  ihailette Merjaa 
+592.  adoro Luisa 
+593.  adori Luisa 
+594.  adora Luisa 
+595.  adora Luisa 
+596.  adoriamo Luisa 
+597.  adorate Luisa 
+598.  adorano Luisa 
+599.  lavano Luisa 
+600.  devono lavare Luisa 
+601.  hanno lavato Luisa 
+602.  ho lavato Luisa 
+603.  hanno voluto lavare Luisa 
+604.  stanno lavando Luisa 
 
 & Ungrammatical
-595. *ihailee Merjaa 
-596. *ihailevat Merjaa 
-597. *admire Mary 
-598. *admires Mary 
-599. *am John 
+605. *ihailee Merjaa 
+606. *ihailevat Merjaa 
+607. *admire Mary 
+608. *admires Mary 
+609. *am John 
 
-& Finite pro-drop with noncanonical word order
+& Finite pro-drop with noncanonical word order (6.2)
 
 & Grammatical
-600.  ihailen Merjaa 
-601.  Merjaa ihailen 
-602.  Merjaa ihailevat 
+610.  ihailen Merjaa 
+611.  Merjaa ihailen 
+612.  Merjaa ihailevat 
 
 & Ungrammatical
-603. *ihailee Merjaa 
-604. *ihailevat Merjaa 
+613. *ihailee Merjaa 
+614. *ihailevat Merjaa 
 
 & Unclear case (compare 'Elokuvia katselee mielelaan')
-605.  Merjaa ihailee 
+615.  Merjaa ihailee 
 
-& Third person pro in Finnish, with and without antecedent
+& Third person pro in Finnish, with and without antecedent (6.3)
 
 & Grammatical
-606.  Pekka sanoi etta ihailee Merjaa 
-607.  Pekka sanoo etta Jukka sanoo etta ihailee Merjaa 
+616.  Pekka sanoi etta ihailee Merjaa 
+617.  Pekka sanoo etta Jukka sanoo etta ihailee Merjaa 
 
 & Ungrammatical (antecedent missing)
-608. *ihailee Merjaa 
-609. *Mina sanon etta ihailee Merjaa 
+618. *ihailee Merjaa 
+619. *Mina sanon etta ihailee Merjaa 
 
 & Ungrammatical (English)
-610. *John said that admire Mary 
-611. *John said that admires Mary 
+620. *John said that admire Mary 
+621. *John said that admires Mary 
 
 & 7 Control
 
-& Partial pro-drop control (only D_ unvalued)
+& Partial pro-drop control (only D_ unvalued)(7.1)
 
 & Grammatical
-612.  Pekka sanoi etta ihailee Merjaa 
-613.  Pekka sanoo etta Jukka sanoo etta ihailee Merjaa 
+622.  Pekka sanoi etta ihailee Merjaa 
+623.  Pekka sanoo etta Jukka sanoo etta ihailee Merjaa 
 
 & Ungrammatical
-614. *ihailee Merjaa 
-615. *Mina sanon etta ihailee Merjaa 
+624. *ihailee Merjaa 
+625. *Mina sanon etta ihailee Merjaa 
 
-& Standard control (phi_, D_ unvalued)
+& Standard control (phi_, D_ unvalued)(7.2)
 
 & Control into complements
 
 & Want-class (no SEM)
 
 & Grammatical
-616.  John wants to_inf leave 
-617.  John wants Mary to_inf leave 
+626.  John wants to_inf leave 
+627.  John wants Mary to_inf leave 
+
+& Ungrammatical
+628. *John wants 
+629. *John wants to_inf 
+630. *John wants leave 
 
 & OC-construction (SEM:internal)
 
 & Grammatical
-618.  Pekka haluaa lahtea 
-619.  John tries to_inf leave 
-620.  John promises to_inf leave 
+631.  Pekka haluaa lahtea 
+632.  John tries to_inf leave 
+633.  John promises to_inf leave 
 
 & Ungrammatical
-621. *Pekka haluaa Merjan lahtea 
-622. *John tries Mary to_inf leave 
+634. *Pekka haluaa Merjan lahtea 
+635. *John tries Mary to_inf leave 
 
 & Anti-OC construction (SEN:external)
 
 & Grammatical
-623.  Pekka kaskee Merjan_gen lahtea 
-624.  Pekka haluaa Merjan_gen lahtevan 
-625.  John persuades Mary to_inf leave 
+636.  Pekka kaskee Merjan_gen lahtea 
+637.  Pekka haluaa Merjan_gen lahtevan 
+638.  John persuades Mary to_inf leave 
 
 & Ungrammatical
-626. *Pekka kaskee lahtea 
-627. *John persuades to_ing leave 
-628. *Pekka haluaa lahtevan 
+639. *Pekka kaskee lahtea 
+640. *John persuades to_ing leave 
+641. *Pekka haluaa lahtevan 
 
 & Control into adverbials
 
 & Subject control (high adjunct position)
 
 & Grammatical
-629.  Pekka etsii Merjaa juosten 
-630.  John promises Mary to_inf leave 
+642.  Pekka etsii Merjaa juosten 
+643.  John promises Mary to_inf leave 
+
+& Ungrammatical
 
 & Object control (low adjunct position)
 
 & Grammatical
-631.  John persuades Mary to_inf leave 
+644.  John persuades Mary to_inf leave 
 
 & Ungrammatical
-632. *John persuades to_inf leave 
+645. *John persuades to_inf leave 
 
 & Generic interpretation
 
 & Grammatical
 
 & Null object construction (Finnish)
-633.  Pekka pyytaa lahtemaan 
+646.  Pekka pyytaa lahtemaan 
 
 & Generic null subject
-634.  Pekka sanoo etta istuu mukavasti 
-635.  tassa istuu mukavasti 
-636.  Pekka sanoo etta tassa istuu mukavasti 
+647.  Pekka sanoo etta istuu mukavasti 
+648.  tassa istuu mukavasti 
+649.  Pekka sanoo etta tassa istuu mukavasti 
 
 & Ungrammatical
-637. *istuu mukavasti 
+650. *istuu mukavasti 
 
 & 8 Word order
 
-& Basic transitive clause
+& Basic transitive clause (8.1)
 
 & Frozen word order regimen (English)
 
 & Grammatical
-638.  John admires Mary 
-639.  Mary admires John 
+651.  John admires Mary 
+652.  Mary admires John 
 
 & Ungrammatical
-640. *John Mary admires 
-641. *admires John Mary 
-642. *admires Mary John 
-643. *Mary John admires 
+653. *John Mary admires 
+654. *admires John Mary 
+655. *admires Mary John 
+656. *Mary John admires 
 
 & Free word order regimen (Finnish)
 
 & Grammatical
-644.  Pekka ihailee Merjaa 
-645.  Pekka Merjaa ihailee 
-646.  Merjaa Pekka ihailee 
-647.  Merjaa ihailee Pekka 
+657.  Pekka ihailee Merjaa 
+658.  Pekka Merjaa ihailee 
+659.  Merjaa Pekka ihailee 
+660.  Merjaa ihailee Pekka 
 
 & Ungrammatical (verb-initial)
-648. *ihailee Pekka Merjaa 
-649. *ihailee Merjaa Pekka 
+661. *ihailee Pekka Merjaa 
+662. *ihailee Merjaa Pekka 
 
-& Ditransitives
+& Ditransitives (8.2)
 
 & Free word order profile (Finnish)
 
 & Grammatical
-650.  Pekka antoi kirjan Merjalle 
-651.  Pekka antoi Merjalle kirjan 
-652.  Pekka kirjan antoi Merjalle 
-653.  Pekka kirjan Merjalle antoi 
-654.  Pekka Merjalle antoi kirjan 
-655.  Pekka Merjalle kirjan antoi 
-656.  kirjan Pekka antoi Merjalle 
-657.  kirjan Pekka Merjalle antoi 
-658.  kirjan antoi Pekka Merjalle 
-659.  kirjan antoi Merjalle Pekka 
-660.  kirjan Merjalle Pekka antoi 
-661.  kirjan Merjalle antoi Pekka 
-662.  Merjalle Pekka antoi kirjan 
-663.  Merjalle Pekka kirjan antoi 
-664.  Merjalle antoi Pekka kirjan 
-665.  Merjalle antoi kirjan Pekka 
-666.  Merjalle kirjan Pekka antoi 
-667.  Merjalle kirjan antoi Pekka 
+663.  Pekka antoi kirjan Merjalle 
+664.  Pekka antoi Merjalle kirjan 
+665.  Pekka kirjan antoi Merjalle 
+666.  Pekka kirjan Merjalle antoi 
+667.  Pekka Merjalle antoi kirjan 
+668.  Pekka Merjalle kirjan antoi 
+669.  kirjan Pekka antoi Merjalle 
+670.  kirjan Pekka Merjalle antoi 
+671.  kirjan antoi Pekka Merjalle 
+672.  kirjan antoi Merjalle Pekka 
+673.  kirjan Merjalle Pekka antoi 
+674.  kirjan Merjalle antoi Pekka 
+675.  Merjalle Pekka antoi kirjan 
+676.  Merjalle Pekka kirjan antoi 
+677.  Merjalle antoi Pekka kirjan 
+678.  Merjalle antoi kirjan Pekka 
+679.  Merjalle kirjan Pekka antoi 
+680.  Merjalle kirjan antoi Pekka 
 
 & Ungrammatical
-668. *antoi Pekka kirjan Merjalle 
-669. *antoi Pekka Merjalle kirjan 
-670. *antoi kirjan Pekka Merjalle 
-671. *antoi kirjan Merjalle Pekka 
-672. *antoi Merjalle Pekka kirjan 
-673. *antoi Merjalle kirjan Pekka 
+681. *antoi Pekka kirjan Merjalle 
+682. *antoi Pekka Merjalle kirjan 
+683. *antoi kirjan Pekka Merjalle 
+684. *antoi kirjan Merjalle Pekka 
+685. *antoi Merjalle Pekka kirjan 
+686. *antoi Merjalle kirjan Pekka 
 
 & Rigid word order profile (English)
 
 & Grammatical
-674.  John gave the key to Mary 
-675.  the key gave John to Mary 
+687.  John gave the key to Mary 
+688.  the key gave John to Mary 
 
 & Ungrammatical
-676. *John gave to Mary the key 
-677. *John the key gave to Mary 
-678. *John the key to Mary gave 
-679. *John to Mary gave the key 
-680. *John to Mary the key gave 
-681. *gave John the key to Mary 
-682. *gave John to Mary the key 
-683. *gave the key John to Mary 
-684. *gave the key to Mary John 
-685. *gave to Mary John the key 
-686. *gave to Mary the key John 
-687. *the key John gave to Mary 
-688. *the key John to Mary gave 
-689. *the key gave to Mary John 
-690. *the key to Mary John gave 
-691. *the key to Mary gave John 
-692. *to Mary John gave the key 
-693. *to Mary John the key gave 
-694. *to Mary gave John the key 
-695. *to Mary gave the key John 
-696. *to Mary the key John gave 
-697. *to Mary the key gave John 
+689. *John gave to Mary the key 
+690. *John the key gave to Mary 
+691. *John the key to Mary gave 
+692. *John to Mary gave the key 
+693. *John to Mary the key gave 
+694. *gave John the key to Mary 
+695. *gave John to Mary the key 
+696. *gave the key John to Mary 
+697. *gave the key to Mary John 
+698. *gave to Mary John the key 
+699. *gave to Mary the key John 
+700. *the key John gave to Mary 
+701. *the key John to Mary gave 
+702. *the key gave to Mary John 
+703. *the key to Mary John gave 
+704. *the key to Mary gave John 
+705. *to Mary John gave the key 
+706. *to Mary John the key gave 
+707. *to Mary gave John the key 
+708. *to Mary gave the key John 
+709. *to Mary the key John gave 
+710. *to Mary the key gave John 
 
-& Neg/Aux + V
+& Neg/Aux + V (8.3)
 
 & Finnish transitive Neg + V
 
 & Grammatical
-698.  Pekka ei ihaile Merjaa 
-699.  Pekka ei Merjaa ihaile 
-700.  Pekka Merjaa ei ihaile 
-701.  Merjaa Pekka ei ihaile 
-702.  Merjaa ei Pekka ihaile 
-703.  Merjaa ei ihaile Pekka 
+711.  Pekka ei ihaile Merjaa 
+712.  Pekka ei Merjaa ihaile 
+713.  Pekka Merjaa ei ihaile 
+714.  Merjaa Pekka ei ihaile 
+715.  Merjaa ei Pekka ihaile 
+716.  Merjaa ei ihaile Pekka 
 
 & Ungrammatical
-704. *Pekka ihaile ei Merjaa 
-705. *Pekka ihaile Merjaa ei 
-706. *Pekka Merjaa ihaile ei 
-707. *ei Pekka ihaile Merjaa 
-708. *ei Pekka Merjaa ihaile 
-709. *ei ihaile Pekka Merjaa 
-710. *ei ihaile Merjaa Pekka 
-711. *ei Merjaa Pekka ihaile 
-712. *ei Merjaa ihaile Pekka 
-713. *ihaile Pekka ei Merjaa 
-714. *ihaile Pekka Merjaa ei 
-715. *ihaile ei Pekka Merjaa 
-716. *ihaile ei Merjaa Pekka 
-717. *ihaile Merjaa Pekka ei 
-718. *ihaile Merjaa ei Pekka 
-719. *Merjaa Pekka ihaile ei 
-720. *Merjaa ihaile Pekka ei 
-721. *Merjaa ihaile ei Pekka 
+717. *Pekka ihaile ei Merjaa 
+718. *Pekka ihaile Merjaa ei 
+719. *Pekka Merjaa ihaile ei 
+720. *ei Pekka ihaile Merjaa 
+721. *ei Pekka Merjaa ihaile 
+722. *ei ihaile Pekka Merjaa 
+723. *ei ihaile Merjaa Pekka 
+724. *ei Merjaa Pekka ihaile 
+725. *ei Merjaa ihaile Pekka 
+726. *ihaile Pekka ei Merjaa 
+727. *ihaile Pekka Merjaa ei 
+728. *ihaile ei Pekka Merjaa 
+729. *ihaile ei Merjaa Pekka 
+730. *ihaile Merjaa Pekka ei 
+731. *ihaile Merjaa ei Pekka 
+732. *Merjaa Pekka ihaile ei 
+733. *Merjaa ihaile Pekka ei 
+734. *Merjaa ihaile ei Pekka 
 
 & English transitive Aux + V
 
 & Grammatical
-722.  John does admire' Mary 
-723.  Mary does admire' John 
+735.  John does admire' Mary 
+736.  Mary does admire' John 
 
 & Ungrammatical
-724. *John admire' does Mary 
-725. *John admire' Mary does 
-726. *John Mary does admire' 
-727. *John Mary admire' does 
-728. *does John admire' Mary 
-729. *does John Mary admire' 
-730. *does admire' John Mary 
-731. *does admire' Mary John 
-732. *does Mary John admire' 
-733. *does Mary admire' John 
-734. *admire' John does Mary 
-735. *admire' John Mary does 
-736. *admire' does John Mary 
-737. *admire' does Mary John 
-738. *admire' Mary John does 
-739. *admire' Mary does John 
-740. *Mary John does admire' 
-741. *Mary John admire' does 
-742. *Mary admire' John does 
-743. *Mary admire' does John 
+737. *John admire' does Mary 
+738. *John admire' Mary does 
+739. *John Mary does admire' 
+740. *John Mary admire' does 
+741. *does John admire' Mary 
+742. *does John Mary admire' 
+743. *does admire' John Mary 
+744. *does admire' Mary John 
+745. *does Mary John admire' 
+746. *does Mary admire' John 
+747. *admire' John does Mary 
+748. *admire' John Mary does 
+749. *admire' does John Mary 
+750. *admire' does Mary John 
+751. *admire' Mary John does 
+752. *admire' Mary does John 
+753. *Mary John does admire' 
+754. *Mary John admire' does 
+755. *Mary admire' John does 
+756. *Mary admire' does John 
 
 & Unclear
-744.  John does Mary admire' 
-745.  Mary does John admire' 
+757.  John does Mary admire' 
+758.  Mary does John admire' 
 
-& Heads in wrong order
+& Heads in wrong order (8.4)
 
 & Ungrammatical
 
 & Neg + V
-746. *Pekka ihaile ei Merjaa 
+759. *Pekka ihaile ei Merjaa 
 
 & Neg + Aux + V
-747. *Pekka ollut ei ihaillut Merjaa 
-748. *Pekka ollut ihaillut ei Merjaa 
-749. *Pekka ei ihaillut ollut Merjaa 
-750. *Pekka ei ihaillut ei ollut Merjaa 
-751. *Pekka ihaillut ollut ei Merjaa 
+760. *Pekka ollut ei ihaillut Merjaa 
+761. *Pekka ollut ihaillut ei Merjaa 
+762. *Pekka ei ihaillut ollut Merjaa 
+763. *Pekka ei ihaillut ei ollut Merjaa 
+764. *Pekka ihaillut ollut ei Merjaa 
 
 & Neg + Modal + V
-752. *Pekan_gen taydy ei ihailla Merjaa 
-753. *Pekan_gen taydy ihailla ei Merjaa 
-754. *Pekan_gen ei ihailla taydy Merjaa 
-755. *Pekan_gen ihailla ei taydy Merjaa 
-756. *Pekan_gen ihailla taydy ei Merjaa 
+765. *Pekan_gen taydy ei ihailla Merjaa 
+766. *Pekan_gen taydy ihailla ei Merjaa 
+767. *Pekan_gen ei ihailla taydy Merjaa 
+768. *Pekan_gen ihailla ei taydy Merjaa 
+769. *Pekan_gen ihailla taydy ei Merjaa 
 
 & Neg + V + V + LHM, with wrong head order
-757. *taydy#C/op Pekan_gen ihailla ei Merjaa 
-758. *ihailla#C/op Pekan_gen taydy ei Merjaa 
-759. *halua#C/op Pekan_gen Pekka ihailla ei Merjaa 
-760. *ihailla#C/op Pekan_gen halua ei Merjaa 
+770. *taydy#C/op Pekan_gen ihailla ei Merjaa 
+771. *ihailla#C/op Pekan_gen taydy ei Merjaa 
+772. *halua#C/op Pekan_gen Pekka ihailla ei Merjaa 
+773. *ihailla#C/op Pekan_gen halua ei Merjaa 
 
 & Head final constructions with two more more verbal elements
-761. *Pekka ihaile Merjaa ei 
-762. *Pekan_gen ei ihailla Merjaa taydy 
+774. *Pekka ihaile Merjaa ei 
+775. *Pekan_gen ei ihailla Merjaa taydy 
 
-& Infinitival complements
+& Infinitival complements (8.5)
 
 & Rigid word order (English)
 
 & John wants to leave
 
 & Grammatical
-763.  John wants to_inf leave 
+776.  John wants to_inf leave 
 
 & Ungrammatical
-764. *John wants leave to_inf 
-765. *John to_inf wants leave 
-766. *John to_inf leave wants 
-767. *John leave wants to_inf 
-768. *John leave to_inf wants 
-769. *wants John to_inf leave 
-770. *wants John leave to_inf 
-771. *wants to_inf John leave 
-772. *wants to_inf leave John 
-773. *wants leave John to_inf 
-774. *wants leave to_inf John 
-775. *to_inf John wants leave 
-776. *to_inf John leave wants 
-777. *to_inf wants John leave 
-778. *to_inf wants leave John 
-779. *to_inf leave John wants 
-780. *leave John wants to_inf 
-781. *leave John to_inf wants 
-782. *leave wants John to_inf 
-783. *leave wants to_inf John 
-784. *leave to_inf John wants 
-785. *leave to_inf wants John 
+777. *John wants leave to_inf 
+778. *John to_inf wants leave 
+779. *John to_inf leave wants 
+780. *John leave wants to_inf 
+781. *John leave to_inf wants 
+782. *wants John to_inf leave 
+783. *wants John leave to_inf 
+784. *wants to_inf John leave 
+785. *wants to_inf leave John 
+786. *wants leave John to_inf 
+787. *wants leave to_inf John 
+788. *to_inf John wants leave 
+789. *to_inf John leave wants 
+790. *to_inf wants John leave 
+791. *to_inf wants leave John 
+792. *to_inf leave John wants 
+793. *leave John wants to_inf 
+794. *leave John to_inf wants 
+795. *leave wants John to_inf 
+796. *leave wants to_inf John 
+797. *leave to_inf John wants 
+798. *leave to_inf wants John 
 
 & John wants Mary to leave
 
 & Grammatical
-786.  John wants Mary to_inf leave 
-787.  Mary wants to_inf leave John 
-788.  Mary wants John to_inf leave 
-789.  John wants to_inf leave Mary 
+799.  John wants Mary to_inf leave 
+800.  Mary wants to_inf leave John 
+801.  Mary wants John to_inf leave 
+802.  John wants to_inf leave Mary 
 
 & Ungrammatical
-790. *John wants Mary leave to_inf 
-791. *John wants leave Mary to_inf 
-792. *John wants leave to_inf Mary 
-793. *John Mary wants to_inf leave 
-794. *John Mary wants leave to_inf 
-795. *John Mary to_inf wants leave 
-796. *John Mary to_inf leave wants 
-797. *John Mary leave wants to_inf 
-798. *John Mary leave to_inf wants 
-799. *John to_inf wants Mary leave 
-800. *John to_inf wants leave Mary 
-801. *John to_inf Mary wants leave 
-802. *John to_inf Mary leave wants 
-803. *John to_inf leave Mary wants 
-804. *John leave wants Mary to_inf 
-805. *John leave wants to_inf Mary 
-806. *John leave Mary wants to_inf 
-807. *John leave Mary to_inf wants 
-808. *John leave to_inf wants Mary 
-809. *John leave to_inf Mary wants 
-810. *wants John Mary to_inf leave 
-811. *wants John Mary leave to_inf 
-812. *wants John to_inf Mary leave 
-813. *wants John to_inf leave Mary 
-814. *wants John leave Mary to_inf 
-815. *wants John leave to_inf Mary 
-816. *wants Mary John to_inf leave 
-817. *wants Mary John leave to_inf 
-818. *wants Mary to_inf John leave 
-819. *wants Mary to_inf leave John 
-820. *wants Mary leave John to_inf 
-821. *wants Mary leave to_inf John 
-822. *wants to_inf John Mary leave 
-823. *wants to_inf John leave Mary 
-824. *wants to_inf Mary John leave 
-825. *wants to_inf Mary leave John 
-826. *wants to_inf leave John Mary 
-827. *wants to_inf leave Mary John 
-828. *wants leave John Mary to_inf 
-829. *wants leave John to_inf Mary 
-830. *wants leave Mary John to_inf 
-831. *wants leave Mary to_inf John 
-832. *wants leave to_inf John Mary 
-833. *wants leave to_inf Mary John 
-834. *Mary John wants to_inf leave 
-835. *Mary John wants leave to_inf 
-836. *Mary John to_inf wants leave 
-837. *Mary John to_inf leave wants 
-838. *Mary John leave wants to_inf 
-839. *Mary John leave to_inf wants 
-840. *Mary wants John leave to_inf 
-841. *Mary wants leave John to_inf 
-842. *Mary wants leave to_inf John 
-843. *Mary to_inf John wants leave 
-844. *Mary to_inf John leave wants 
-845. *Mary to_inf wants John leave 
-846. *Mary to_inf wants leave John 
-847. *Mary to_inf leave John wants 
-848. *Mary leave John wants to_inf 
-849. *Mary leave John to_inf wants 
-850. *Mary leave wants John to_inf 
-851. *Mary leave wants to_inf John 
-852. *Mary leave to_inf John wants 
-853. *Mary leave to_inf wants John 
-854. *to_inf John wants Mary leave 
-855. *to_inf John wants leave Mary 
-856. *to_inf John Mary wants leave 
-857. *to_inf John Mary leave wants 
-858. *to_inf John leave Mary wants 
-859. *to_inf wants John Mary leave 
-860. *to_inf wants John leave Mary 
-861. *to_inf wants Mary John leave 
-862. *to_inf wants Mary leave John 
-863. *to_inf wants leave John Mary 
-864. *to_inf wants leave Mary John 
-865. *to_inf Mary John wants leave 
-866. *to_inf Mary John leave wants 
-867. *to_inf Mary wants John leave 
-868. *to_inf Mary wants leave John 
-869. *to_inf Mary leave John wants 
-870. *to_inf leave John Mary wants 
-871. *to_inf leave wants John Mary 
-872. *to_inf leave wants Mary John 
-873. *to_inf leave Mary John wants 
-874. *leave John Mary wants to_inf 
-875. *leave John Mary to_inf wants 
-876. *leave John to_inf Mary wants 
-877. *leave wants John Mary to_inf 
-878. *leave wants John to_inf Mary 
-879. *leave wants Mary John to_inf 
-880. *leave wants Mary to_inf John 
-881. *leave wants to_inf John Mary 
-882. *leave wants to_inf Mary John 
-883. *leave Mary John wants to_inf 
-884. *leave Mary John to_inf wants 
-885. *leave Mary to_inf John wants 
-886. *leave to_inf John Mary wants 
-887. *leave to_inf wants John Mary 
-888. *leave to_inf wants Mary John 
-889. *leave to_inf Mary John wants 
-890. *leave John wants Mary to_inf 
-891. *leave John wants to_inf Mary 
-892. *leave John to_inf wants Mary 
-893. *leave Mary wants John to_inf 
-894. *leave Mary wants to_inf John 
-895. *leave Mary to_inf wants John 
-896. *leave to_inf John wants Mary 
-897. *leave to_inf Mary wants John 
-898. *John to_inf leave wants Mary 
-899. *Mary to_inf leave wants John 
-900. *to_inf John leave wants Mary 
-901. *to_inf Mary leave wants John 
-902. *to_inf leave John wants Mary 
+803. *John wants Mary leave to_inf 
+804. *John wants leave Mary to_inf 
+805. *John wants leave to_inf Mary 
+806. *John Mary wants to_inf leave 
+807. *John Mary wants leave to_inf 
+808. *John Mary to_inf wants leave 
+809. *John Mary to_inf leave wants 
+810. *John Mary leave wants to_inf 
+811. *John Mary leave to_inf wants 
+812. *John to_inf wants Mary leave 
+813. *John to_inf wants leave Mary 
+814. *John to_inf Mary wants leave 
+815. *John to_inf Mary leave wants 
+816. *John to_inf leave Mary wants 
+817. *John leave wants Mary to_inf 
+818. *John leave wants to_inf Mary 
+819. *John leave Mary wants to_inf 
+820. *John leave Mary to_inf wants 
+821. *John leave to_inf wants Mary 
+822. *John leave to_inf Mary wants 
+823. *wants John Mary to_inf leave 
+824. *wants John Mary leave to_inf 
+825. *wants John to_inf Mary leave 
+826. *wants John to_inf leave Mary 
+827. *wants John leave Mary to_inf 
+828. *wants John leave to_inf Mary 
+829. *wants Mary John to_inf leave 
+830. *wants Mary John leave to_inf 
+831. *wants Mary to_inf John leave 
+832. *wants Mary to_inf leave John 
+833. *wants Mary leave John to_inf 
+834. *wants Mary leave to_inf John 
+835. *wants to_inf John Mary leave 
+836. *wants to_inf John leave Mary 
+837. *wants to_inf Mary John leave 
+838. *wants to_inf Mary leave John 
+839. *wants to_inf leave John Mary 
+840. *wants to_inf leave Mary John 
+841. *wants leave John Mary to_inf 
+842. *wants leave John to_inf Mary 
+843. *wants leave Mary John to_inf 
+844. *wants leave Mary to_inf John 
+845. *wants leave to_inf John Mary 
+846. *wants leave to_inf Mary John 
+847. *Mary John wants to_inf leave 
+848. *Mary John wants leave to_inf 
+849. *Mary John to_inf wants leave 
+850. *Mary John to_inf leave wants 
+851. *Mary John leave wants to_inf 
+852. *Mary John leave to_inf wants 
+853. *Mary wants John leave to_inf 
+854. *Mary wants leave John to_inf 
+855. *Mary wants leave to_inf John 
+856. *Mary to_inf John wants leave 
+857. *Mary to_inf John leave wants 
+858. *Mary to_inf wants John leave 
+859. *Mary to_inf wants leave John 
+860. *Mary to_inf leave John wants 
+861. *Mary leave John wants to_inf 
+862. *Mary leave John to_inf wants 
+863. *Mary leave wants John to_inf 
+864. *Mary leave wants to_inf John 
+865. *Mary leave to_inf John wants 
+866. *Mary leave to_inf wants John 
+867. *to_inf John wants Mary leave 
+868. *to_inf John wants leave Mary 
+869. *to_inf John Mary wants leave 
+870. *to_inf John Mary leave wants 
+871. *to_inf John leave Mary wants 
+872. *to_inf wants John Mary leave 
+873. *to_inf wants John leave Mary 
+874. *to_inf wants Mary John leave 
+875. *to_inf wants Mary leave John 
+876. *to_inf wants leave John Mary 
+877. *to_inf wants leave Mary John 
+878. *to_inf Mary John wants leave 
+879. *to_inf Mary John leave wants 
+880. *to_inf Mary wants John leave 
+881. *to_inf Mary wants leave John 
+882. *to_inf Mary leave John wants 
+883. *to_inf leave John Mary wants 
+884. *to_inf leave wants John Mary 
+885. *to_inf leave wants Mary John 
+886. *to_inf leave Mary John wants 
+887. *leave John Mary wants to_inf 
+888. *leave John Mary to_inf wants 
+889. *leave John to_inf Mary wants 
+890. *leave wants John Mary to_inf 
+891. *leave wants John to_inf Mary 
+892. *leave wants Mary John to_inf 
+893. *leave wants Mary to_inf John 
+894. *leave wants to_inf John Mary 
+895. *leave wants to_inf Mary John 
+896. *leave Mary John wants to_inf 
+897. *leave Mary John to_inf wants 
+898. *leave Mary to_inf John wants 
+899. *leave to_inf John Mary wants 
+900. *leave to_inf wants John Mary 
+901. *leave to_inf wants Mary John 
+902. *leave to_inf Mary John wants 
+903. *leave John wants Mary to_inf 
+904. *leave John wants to_inf Mary 
+905. *leave John to_inf wants Mary 
+906. *leave Mary wants John to_inf 
+907. *leave Mary wants to_inf John 
+908. *leave Mary to_inf wants John 
+909. *leave to_inf John wants Mary 
+910. *leave to_inf Mary wants John 
+911. *John to_inf leave wants Mary 
+912. *Mary to_inf leave wants John 
+913. *to_inf John leave wants Mary 
+914. *to_inf Mary leave wants John 
+915. *to_inf leave John wants Mary 
 
 & Problem: in situ version
-903.  John wants to_inf Mary leave 
-904.  Mary wants to_inf John leave 
+916.  John wants to_inf Mary leave 
+917.  Mary wants to_inf John leave 
 
 & Free word order (Finnish)
 
 & Pekka haluaa lahtea
 
 & Grammatical
-905.  Pekka haluaa lahtea 
-906.  haluaa#C/op Pekka lahtea 
-907.  Pekka kaskee Merjan_gen lahtea 
+918.  Pekka haluaa lahtea 
+919.  haluaa#C/op Pekka lahtea 
+920.  Pekka kaskee Merjan_gen lahtea 
 
 & Ungrammatical
-908. *haluaa Pekka lahtea 
-909. *haluaa lahtea Pekka 
-910. *lahtea Pekka haluaa 
-911. *lahtea haluaa Pekka 
+921. *haluaa Pekka lahtea 
+922. *haluaa lahtea Pekka 
+923. *lahtea Pekka haluaa 
+924. *lahtea haluaa Pekka 
 
 & Unclear
-912. *haluaa#C/op lahtea Pekka 
+925. *haluaa#C/op lahtea Pekka 
 
 & Grammatical
-913.  Pekka kaskee Merjan_gen lahtea 
-914.  Pekka Merjan_gen kaskee lahtea 
-915.  Merjan_gen Pekka kaskee lahtea 
-916.  Merjan_gen kaskee Pekka lahtea 
-917.  Merjan_gen kaskee lahtea Pekka 
-918.  kaskee#C/op Pekka Merjan_gen lahtea 
-919.  lahtea#C/op Pekka Merjan_gen kaskee 
-920.  Merjan_gen lahtea Pekka kaskee 
-921.  Merjan_gen lahtea kaskee Pekka 
-922.  Pekka Merjan_gen lahtea kaskee 
+926.  Pekka kaskee Merjan_gen lahtea 
+927.  Pekka Merjan_gen kaskee lahtea 
+928.  Merjan_gen Pekka kaskee lahtea 
+929.  Merjan_gen kaskee Pekka lahtea 
+930.  Merjan_gen kaskee lahtea Pekka 
+931.  kaskee#C/op Pekka Merjan_gen lahtea 
+932.  lahtea#C/op Pekka Merjan_gen kaskee 
+933.  Merjan_gen lahtea Pekka kaskee 
+934.  Merjan_gen lahtea kaskee Pekka 
+935.  Pekka Merjan_gen lahtea kaskee 
 
 & Ungrammatical
-923. *Pekka kaskee lahtea Merjan_gen 
-924. *Pekka lahtea kaskee Merjan_gen 
-925. *Pekka lahtea Merjan_gen kaskee 
-926. *kaskee Pekka Merjan_gen lahtea 
-927. *kaskee Pekka lahtea Merjan_gen 
-928. *kaskee Merjan_gen Pekka lahtea 
-929. *kaskee Merjan_gen lahtea Pekka 
-930. *kaskee lahtea Pekka Merjan_gen 
-931. *kaskee lahtea Merjan_gen Pekka 
-932. *Merjan_gen Pekka lahtea kaskee 
-933. *lahtea Pekka kaskee Merjan_gen 
-934. *lahtea Pekka Merjan_gen kaskee 
-935. *lahtea kaskee Pekka Merjan_gen 
-936. *lahtea kaskee Merjan_gen Pekka 
-937. *lahtea Merjan_gen Pekka kaskee 
-938. *lahtea Merjan_gen kaskee Pekka 
+936. *Pekka kaskee lahtea Merjan_gen 
+937. *Pekka lahtea kaskee Merjan_gen 
+938. *Pekka lahtea Merjan_gen kaskee 
+939. *kaskee Pekka Merjan_gen lahtea 
+940. *kaskee Pekka lahtea Merjan_gen 
+941. *kaskee Merjan_gen Pekka lahtea 
+942. *kaskee Merjan_gen lahtea Pekka 
+943. *kaskee lahtea Pekka Merjan_gen 
+944. *kaskee lahtea Merjan_gen Pekka 
+945. *Merjan_gen Pekka lahtea kaskee 
+946. *lahtea Pekka kaskee Merjan_gen 
+947. *lahtea Pekka Merjan_gen kaskee 
+948. *lahtea kaskee Pekka Merjan_gen 
+949. *lahtea kaskee Merjan_gen Pekka 
+950. *lahtea Merjan_gen Pekka kaskee 
+951. *lahtea Merjan_gen kaskee Pekka 
 
 & 9 Head movement
 
-& Local HMC-compliant X-to-C movement
+& Local HMC-compliant X-to-C movement (9.1)
 
 & Grammatical
 
 & T-to-C* movement
-939.  istuu#foc Pekka 
-940.  istuu#C/op Pekka 
-941.  ihailee#foc Pekka Merjaa 
-942.  ihailee#C/op Pekka Merjaa 
-943.  myi#foc Pekka omaisuutensa 
-944.  myi#C/op Pekka omaisuutensa 
-945.  antoi#foc Pekka avaimen Merjalle 
-946.  antoi#C/op Pekka avaimen Merjalle 
+952.  istuu#foc Pekka 
+953.  istuu#C/op Pekka 
+954.  ihailee#foc Pekka Merjaa 
+955.  ihailee#C/op Pekka Merjaa 
+956.  myi#foc Pekka omaisuutensa 
+957.  myi#C/op Pekka omaisuutensa 
+958.  antoi#foc Pekka avaimen Merjalle 
+959.  antoi#C/op Pekka avaimen Merjalle 
 
 & Neg-to-C* movement
-947.  ei#C/op Pekka ihaile Merjaa 
-948.  ei#C/op Pekan_gen taydy ihailla Merjaa 
-949.  ei#C/op Pekka halua ihailla Merjaa 
-950.  ei#C/op Pekka ollut ihaillut Merjaa 
-951.  ei#C/op Pekka myynyt omaisuuttaan 
-952.  ei#C/op Pekan_gen taydy myyda omaisuuttaan 
-953.  ei#C/op Pekka halua myyda omaisuuttaan 
-954.  ei#C/op Pekka ollut myynyt omaisuuttaan 
+960.  ei#C/op Pekka ihaile Merjaa 
+961.  ei#C/op Pekan_gen taydy ihailla Merjaa 
+962.  ei#C/op Pekka halua ihailla Merjaa 
+963.  ei#C/op Pekka ollut ihaillut Merjaa 
+964.  ei#C/op Pekka myynyt omaisuuttaan 
+965.  ei#C/op Pekan_gen taydy myyda omaisuuttaan 
+966.  ei#C/op Pekka halua myyda omaisuuttaan 
+967.  ei#C/op Pekka ollut myynyt omaisuuttaan 
 
 & Modal-to-C*
-955.  taytyy#C/op Pekan_gen ihailla Merjaa 
-956.  taytyy#C/op Pekan_gen myyda omaisuuttaan 
+968.  taytyy#C/op Pekan_gen ihailla Merjaa 
+969.  taytyy#C/op Pekan_gen myyda omaisuuttaan 
 
 & Want-to-C*
-957.  haluaa#C/op Pekka ihailla Merjaa 
-958.  haluaa#C/op Pekka myyda omaisuuttaan 
+970.  haluaa#C/op Pekka ihailla Merjaa 
+971.  haluaa#C/op Pekka myyda omaisuuttaan 
 
 & Aux-to-C*
-959.  on'#C/op Pekka ihaillut Merjaa 
-960.  on'#C/op Pekka myynyt omaisuuttaan 
+972.  on'#C/op Pekka ihaillut Merjaa 
+973.  on'#C/op Pekka myynyt omaisuuttaan 
 
 & X-to-C, with dormal C-feature C/fin
-961.  ihailee#C/fin Pekka Merjaa 
-962.  ei#C/fin Pekka ihaile Merjaa 
-963.  taytyy#C/fin Pekan_gen ihailla Merjaa 
-964.  haluaa#C/fin Pekka ihailla Merjaa 
-965.  on'#C/fin Pekka ihaillut Merjaa 
-966.  myi#C/fin Pekka omaisuuttaan 
-967.  ei#C/fin Pekka myynyt omaisuuttaan 
-968.  taytyy#C/fin Pekan_gen myyda omaisuuttaan 
-969.  haluaa#C/fin Pekka myyda omaisuuttaan 
-970.  on'#C/fin Pekka myynyt omaisuuttaan 
-971.  does#C/fin John admire' Mary 
+974.  ihailee#C/fin Pekka Merjaa 
+975.  ei#C/fin Pekka ihaile Merjaa 
+976.  taytyy#C/fin Pekan_gen ihailla Merjaa 
+977.  haluaa#C/fin Pekka ihailla Merjaa 
+978.  on'#C/fin Pekka ihaillut Merjaa 
+979.  myi#C/fin Pekka omaisuuttaan 
+980.  ei#C/fin Pekka myynyt omaisuuttaan 
+981.  taytyy#C/fin Pekan_gen myyda omaisuuttaan 
+982.  haluaa#C/fin Pekka myyda omaisuuttaan 
+983.  on'#C/fin Pekka myynyt omaisuuttaan 
+984.  does#C/fin John admire' Mary 
 
 & Ungrammatical (C-feature is missing, V-initial)
-972. *ihailee Pekka Merjaa 
-973. *ei Pekka ihaile Merjaa 
-974. *taytyy Pekan_genn ihailla Merjaa 
-975. *haluaa Pekka ihailla Merjaa 
-976. *ihailee Pekka ihailee Merjaa 
-977. *on' Pekka ihaillut Merjaa 
-978. *myi Pekka omaisuutensa 
-979. *admire'#C/fin John does Mary 
+985. *ihailee Pekka Merjaa 
+986. *ei Pekka ihaile Merjaa 
+987. *taytyy Pekan_genn ihailla Merjaa 
+988. *haluaa Pekka ihailla Merjaa 
+989. *ihailee Pekka ihailee Merjaa 
+990. *on' Pekka ihaillut Merjaa 
+991. *myi Pekka omaisuutensa 
+992. *admire'#C/fin John does Mary 
 
-& Long head movement
+& Long head movement (9.2)
 
 & Grammatical
 
 & V-over-Neg
-980.  ihaile#C/op Pekka ei Merjaa 
+993.  ihaile#C/op Pekka ei Merjaa 
 
 & V-over-Aux(BE)
-981.  ihaillut#C/op Pekka on' Merjaa 
-982.  myynyt#C/op Pekka on' omaisuutensa 
+994.  ihaillut#C/op Pekka on' Merjaa 
+995.  myynyt#C/op Pekka on' omaisuutensa 
 
 & V-over-want
-983.  ihailla#C/op Pekka haluaa Merjaa 
-984.  myyda#C/op Pekka haluaa omaisuutensa 
+996.  ihailla#C/op Pekka haluaa Merjaa 
+997.  myyda#C/op Pekka haluaa omaisuutensa 
 
 & V-over-must
-985.  ihailla#C/op Pekan_gen taytyy Merjaa 
-986.  myyda#C/op Pekan_gen taytyy omaisuutensa 
+998.  ihailla#C/op Pekan_gen taytyy Merjaa 
+999.  myyda#C/op Pekan_gen taytyy omaisuutensa 
 
 & With noncanonical OVS orders
-987.  ihaile#C/op Merjaa ei Pekka 
-988.  ihaillut#C/op Merjaa on' Pekka 
-989.  ihailla#C/op Merjaa haluaa Pekka 
-990.  myynyt#C/op omaisuuttaan ei Pekka 
-991.  myynyt#C/op omaisuuttaan on' Pekka 
-992.  myyda#C/op omaisuuttaan haluaa Pekka 
+1000.  ihaile#C/op Merjaa ei Pekka 
+1001.  ihaillut#C/op Merjaa on' Pekka 
+1002.  ihailla#C/op Merjaa haluaa Pekka 
+1003.  myynyt#C/op omaisuuttaan ei Pekka 
+1004.  myynyt#C/op omaisuuttaan on' Pekka 
+1005.  myyda#C/op omaisuuttaan haluaa Pekka 
 
 & Neg + Modal + V, with Modal moving moving (grammaticality status unclear)
-993.  taydy#C/op Pekan_gen ei ihailla Merjaa 
-994.  taydy#C/op Pekan_gen ei myyda omaisuuttaan 
+1006.  taydy#C/op Pekan_gen ei ihailla Merjaa 
+1007.  taydy#C/op Pekan_gen ei myyda omaisuuttaan 
 
 & Neg + Modal + V with V moving
-995.  ihailla#C/op Pekan_gen ei taydy Merjaa 
-996.  myyda#C/op Pekan_gen ei taydy omaisuuttaan 
+1008.  ihailla#C/op Pekan_gen ei taydy Merjaa 
+1009.  myyda#C/op Pekan_gen ei taydy omaisuuttaan 
 
 & Neg + want + V, with want moving
-997.  halua#C/op Pekka ei ihailla Merjaa 
-998.  ihailla#C/op Pekka ei halua Merjaa 
-999.  halua#C/op Pekka ei myyda omaisuuttaan 
-1000.  myyda#C/op Pekka ei halua omaisuuttaan 
+1010.  halua#C/op Pekka ei ihailla Merjaa 
+1011.  ihailla#C/op Pekka ei halua Merjaa 
+1012.  halua#C/op Pekka ei myyda omaisuuttaan 
+1013.  myyda#C/op Pekka ei halua omaisuuttaan 
 
 & Ungrammatical (English)
-1001. *admire' John wants to_inf Mary 
-1002. *to_inf admire' John wants Mary 
-1003. *to_inf John wants admire' Mary 
-1004. *admire'#C/fin John wants to_inf Mary 
-1005. *to_inf#C/fin admire' John wants Mary 
-1006. *to_inf#C/fin John wants admire' Mary 
-1007. *Ungrammatical (Finnish) 
+1014. *admire' John wants to_inf Mary 
+1015. *to_inf admire' John wants Mary 
+1016. *to_inf John wants admire' Mary 
+1017. *admire'#C/fin John wants to_inf Mary 
+1018. *to_inf#C/fin admire' John wants Mary 
+1019. *to_inf#C/fin John wants admire' Mary 
+1020. *Ungrammatical (Finnish) 
 
 & Long head movement with formal C-feature or with no C-featre
-1008. *ihaile#C/fin Pekka ei Merjaa 
-1009. *ihaillut#C/fin Pekka on' Merjaa 
-1010. *ihailla#C/fin Pekka haluaa Merjaa 
-1011. *ihailla#C/fin Pekan_gen taytyy Merjaa 
-1012. *ihallut#C/fin Pekka ei ollut Merjaa 
-1013. *ihaile Pekka ei Merjaa 
-1014. *ihaillut Pekka on' Merjaa 
-1015. *ihailla Pekka haluaa Merjaa 
-1016. *ihailla Pekan_gen taytyy Merjaa 
-1017. *ihallut Pekka ei ollut Merjaa 
-1018. *myynyt#C/fin Pekka ei omaisuuttaan 
-1019. *myynyt#C/fin Pekka on omaisuuttaan 
-1020. *myyda#C/fin Pekka haluaa omaisuuttaan 
-1021. *myyda#C/fin Pekan_gen taytyy omaisuuttaan 
-1022. *myynyt#C/fin Pekka ei ollut omaisuuttaan 
-1023. *myynyt Pekka ei omaisuuttaan 
-1024. *myynyt Pekka on omaisuuttaan 
-1025. *myyda Pekka haluaa omaisuuttaan 
-1026. *myyda Pekan_gen taytyy omaisuuttaan 
-1027. *myynyt Pekka ei ollut omaisuuttaan 
+1021. *ihaile#C/fin Pekka ei Merjaa 
+1022. *ihaillut#C/fin Pekka on' Merjaa 
+1023. *ihailla#C/fin Pekka haluaa Merjaa 
+1024. *ihailla#C/fin Pekan_gen taytyy Merjaa 
+1025. *ihallut#C/fin Pekka ei ollut Merjaa 
+1026. *ihaile Pekka ei Merjaa 
+1027. *ihaillut Pekka on' Merjaa 
+1028. *ihailla Pekka haluaa Merjaa 
+1029. *ihailla Pekan_gen taytyy Merjaa 
+1030. *ihallut Pekka ei ollut Merjaa 
+1031. *myynyt#C/fin Pekka ei omaisuuttaan 
+1032. *myynyt#C/fin Pekka on omaisuuttaan 
+1033. *myyda#C/fin Pekka haluaa omaisuuttaan 
+1034. *myyda#C/fin Pekan_gen taytyy omaisuuttaan 
+1035. *myynyt#C/fin Pekka ei ollut omaisuuttaan 
+1036. *myynyt Pekka ei omaisuuttaan 
+1037. *myynyt Pekka on omaisuuttaan 
+1038. *myyda Pekka haluaa omaisuuttaan 
+1039. *myyda Pekan_gen taytyy omaisuuttaan 
+1040. *myynyt Pekka ei ollut omaisuuttaan 
 
 & long head movement with infinitival subject
-1028. *ihailla#C/op Pekka kaskee poikien Merjaa 
-1029. *ihailla Pekka kaskee poikien Merjaa 
-1030. *ihailla#C/fin Pekka kaskee poikien Merjaa 
+1041. *ihailla#C/op Pekka kaskee poikien Merjaa 
+1042. *ihailla Pekka kaskee poikien Merjaa 
+1043. *ihailla#C/fin Pekka kaskee poikien Merjaa 
 
 & Long head movement with second auxiliary
-1031. *ollut#C/fin Pekka ei ihaillut Merjaa 
-1032. *ollut Pekka ei ihaillut Merjaa 
+1044. *ollut#C/fin Pekka ei ihaillut Merjaa 
+1045. *ollut Pekka ei ihaillut Merjaa 
 
 & Aux + prtcpl + prtcpl with locality violation
-1033. *ihaillut#C/op Pekka ei ollut Merjaa 
+1046. *ihaillut#C/op Pekka ei ollut Merjaa 
 
 & Neg + Modal + V with only formal C-feature (ungrammatical)
-1034. *taydy#C/fin Pekan_gen ei ihailla Merjaa 
-1035. *taydy Pekan_gen ei ihailla Merjaa 
-1036. *taydy#C/fin Pekan_gen ei myyda omaisuuttaan 
-1037. *taydy Pekan_gen ei myyda omaisuuttaan 
+1047. *taydy#C/fin Pekan_gen ei ihailla Merjaa 
+1048. *taydy Pekan_gen ei ihailla Merjaa 
+1049. *taydy#C/fin Pekan_gen ei myyda omaisuuttaan 
+1050. *taydy Pekan_gen ei myyda omaisuuttaan 
 
 & Neg + want + V with no C-feature
-1038. *ihailla#C/fin Pekan_gen ei taydy Merjaa 
-1039. *ihailla Pekan_gen ei taydy Merjaa 
-1040. *halua Pekka ei myyda omaisuuttaan 
+1051. *ihailla#C/fin Pekan_gen ei taydy Merjaa 
+1052. *ihailla Pekan_gen ei taydy Merjaa 
+1053. *halua Pekka ei myyda omaisuuttaan 
 
-& Super LHM
+& Super LHM (9.3)
 
 & Grammatical
 
 & that + want + A/inf
-1041.  ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa 
-1042.  lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
+1054.  ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa 
+1055.  lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
 
 & Ungrammatical
 
 & Moving of the embedded finite verb (ungrammatical)
-1043. *haluaa#C/op Pekka sanoo etta ihailla Merjaa 
-1044. *ihailee#C/op Pekka sanoo etta Merjaa 
-1045. *taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa 
-1046. *haluaa#C/op Pekka sanoo etta myyda omaisuutensa 
-1047. *myi#C/op Pekka sanoo etta omaisuutensa 
-1048. *taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+1056. *haluaa#C/op Pekka sanoo etta ihailla Merjaa 
+1057. *ihailee#C/op Pekka sanoo etta Merjaa 
+1058. *taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa 
+1059. *haluaa#C/op Pekka sanoo etta myyda omaisuutensa 
+1060. *myi#C/op Pekka sanoo etta omaisuutensa 
+1061. *taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa 
 
 & Formal C-features or no C-features = V-initial constructions (ungrammatical)
-1049. *ihailla#C/fin Pekka sanoo etta haluaa Merjaa 
-1050. *lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy 
-1051. *ihailla Pekka sanoo etta haluaa Merjaa 
-1052. *lahtea Pekka sanoo etta Pekan_genan taytyy 
-1053. *haluaa#C/fin Pekka sanoo etta myyda omaisuutensa 
-1054. *myi#C/fin Pekka sanoo etta omaisuutensa 
-1055. *taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa 
-1056. *haluaa Pekka sanoo etta myyda omaisuutensa 
-1057. *myi Pekka sanoo etta omaisuutensa 
-1058. *taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+1062. *ihailla#C/fin Pekka sanoo etta haluaa Merjaa 
+1063. *lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy 
+1064. *ihailla Pekka sanoo etta haluaa Merjaa 
+1065. *lahtea Pekka sanoo etta Pekan_genan taytyy 
+1066. *haluaa#C/fin Pekka sanoo etta myyda omaisuutensa 
+1067. *myi#C/fin Pekka sanoo etta omaisuutensa 
+1068. *taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+1069. *haluaa Pekka sanoo etta myyda omaisuutensa 
+1070. *myi Pekka sanoo etta omaisuutensa 
+1071. *taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa 
 
-& Long head movement and island violations
+& Long head movement and island violations (9.4)
 
 & Ungrammatical
 
 & Right-adjunct CED
-1059. *ihailemalla#C/op Pekka istuu Merjaa 
+1072. *ihailemalla#C/op Pekka istuu Merjaa 
 
 & Left branch CED
-1060. *ihailla#C/op sopimus Merjaa istuu 
+1073. *ihailla#C/op sopimus Merjaa istuu 
 
 & Extraction from DP
-1061. *ihailla#C/op Pekka teki sopimuksen Merjaa 
+1074. *ihailla#C/op Pekka teki sopimuksen Merjaa 
 
-& C-features on wrong heads
+& C-features on wrong heads (9.5)
 
 & Ungrammatical
-1062. *C/fin Pekka ihailee#C/op Merjaa 
-1063. *C/fin Pekka ei#C/op ihaile Merjaa 
-1064. *C/fin Pekka on'#C/op ihaillut Merjaa 
-1065. *C/fin Pekka ei#C/op ollut ihaillut Merjaa 
-1066. *C/fin Pekka haluaa#C/op ihailla Merjaa 
-1067. *C/fin Pekan_genn taytyy#C/op ihailla Merjaa 
-1068. *C/fin Pekan_gen ei#C/op taydy ihailla Merjaa 
-1069. *C/fin Pekka ei#C/op halua ihailla Merjaa 
-1070. *C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa 
-1071. *C/fin Pekka kaskee#C/op poikien ihailla Merjaa 
-1072. *C/fin Pekka istuu#C/op ihailemalla Merjaa 
-1073. *C/fin Pekka istuu#C/op haluamalla ihailla Merjaa 
-1074. *C/fin Pekka teki#C/op sopimuksen ihailla Merjaa 
-1075. *Pekka ei ihaile#C/op Merjaa 
-1076. *Pekka on' ihaillut#C/op Merjaa 
-1077. *Pekka ei ollut#C/op ihaillut Merjaa 
-1078. *Pekka haluaa ihailla#C/op Merjaa 
-1079. *Pekan_gen taytyy ihailla#C/op Merjaa 
-1080. *Pekan_gen ei taydy#C/op ihailla Merjaa 
-1081. *Pekka ei halua#C/op ihailla Merjaa 
-1082. *Pekka kaskee poikien ihailla#C/op Merjaa 
-1083. *Pekka ei ollut ihaillut#C/op Merjaa 
-1084. *Pekan_gen ei taydy ihailla#C/op Merjaa 
-1085. *Pekka ei halua ihailla#C/op Merjaa 
-1086. *Pekka sanoo etta haluaa ihailla#C/op Merjaa 
-1087. *Pekka istuu ihailemalla#C/op Merjaa 
-1088. *Pekka istuu haluamalla ihailla#C/op Merjaa 
-1089. *Pekka teki sopimuksen ihailla#C/op Merjaa 
+1075. *C/fin Pekka ihailee#C/op Merjaa 
+1076. *C/fin Pekka ei#C/op ihaile Merjaa 
+1077. *C/fin Pekka on'#C/op ihaillut Merjaa 
+1078. *C/fin Pekka ei#C/op ollut ihaillut Merjaa 
+1079. *C/fin Pekka haluaa#C/op ihailla Merjaa 
+1080. *C/fin Pekan_genn taytyy#C/op ihailla Merjaa 
+1081. *C/fin Pekan_gen ei#C/op taydy ihailla Merjaa 
+1082. *C/fin Pekka ei#C/op halua ihailla Merjaa 
+1083. *C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa 
+1084. *C/fin Pekka kaskee#C/op poikien ihailla Merjaa 
+1085. *C/fin Pekka istuu#C/op ihailemalla Merjaa 
+1086. *C/fin Pekka istuu#C/op haluamalla ihailla Merjaa 
+1087. *C/fin Pekka teki#C/op sopimuksen ihailla Merjaa 
+1088. *Pekka ei ihaile#C/op Merjaa 
+1089. *Pekka on' ihaillut#C/op Merjaa 
+1090. *Pekka ei ollut#C/op ihaillut Merjaa 
+1091. *Pekka haluaa ihailla#C/op Merjaa 
+1092. *Pekan_gen taytyy ihailla#C/op Merjaa 
+1093. *Pekan_gen ei taydy#C/op ihailla Merjaa 
+1094. *Pekka ei halua#C/op ihailla Merjaa 
+1095. *Pekka kaskee poikien ihailla#C/op Merjaa 
+1096. *Pekka ei ollut ihaillut#C/op Merjaa 
+1097. *Pekan_gen ei taydy ihailla#C/op Merjaa 
+1098. *Pekka ei halua ihailla#C/op Merjaa 
+1099. *Pekka sanoo etta haluaa ihailla#C/op Merjaa 
+1100. *Pekka istuu ihailemalla#C/op Merjaa 
+1101. *Pekka istuu haluamalla ihailla#C/op Merjaa 
+1102. *Pekka teki sopimuksen ihailla#C/op Merjaa 
 
 & 10 Clitics/incorporation mechanism
 
-& Standard Italian
-
-& Simple transitive clause, direct object accusative clitics
+& Simple transitive clause, direct object accusative clitics (10.1)
 
 & Grammatical
-1090.  loro mi=lavano 
-1091.  mi=lavano 
-1092.  loro la=lavano 
-1093.  la=lavano 
-1094.  loro lo=lavano 
-1095.  lo=lavano 
+1103.  loro mi=lavano 
+1104.  mi=lavano 
+1105.  loro la=lavano 
+1106.  la=lavano 
+1107.  loro lo=lavano 
+1108.  lo=lavano 
 
 & Ungrammatical, clitic in wrong position
-1096. *loro lavano=mi 
-1097. *lavano=mi 
-1098. *loro=mi lavano 
-1099. *mi=loro lavano 
-1100. *loro lavano mi 
-1101. *loro mi=lavano Luisa 
+1109. *loro lavano=mi 
+1110. *lavano=mi 
+1111. *loro=mi lavano 
+1112. *mi=loro lavano 
+1113. *loro lavano mi 
+1114. *loro mi=lavano Luisa 
 
 & Ungrammatical, S-V agreement error
-1102. *io mi=lavano 
+1115. *io mi=lavano 
 
-& Two-verb transitive, direct object accusative clitics
+& Two-verb transitive, direct object accusative clitics (10.2)
 
 & hanno + lavato
 
 & Grammatical
-1103.  loro mi=hanno lavato 
-1104.  loro la=hanno lavata 
-1105.  mi=hanno lavato 
-1106.  la=hanno lavata 
-1107.  lo=hanno lavato 
+1116.  loro mi=hanno lavato 
+1117.  loro la=hanno lavata 
+1118.  mi=hanno lavato 
+1119.  la=hanno lavata 
+1120.  lo=hanno lavato 
 
 & Ungrammatical
-1108. *loro hanno mi=lavato 
-1109. *loro hanno la=lavato 
-1110. *hanno mi=lavato 
-1111. *io sono=mi lavato 
-1112. *loro hanno lo=lavato 
-1113. *hanno lo=lavato 
-1114. *hanno la=lavato 
-1115. *loro hanno lavato=mi 
-1116. *loro hanno lavato=la 
-1117. *loro hanno lavato=lo 
-1118. *mi=io sono lavato 
-1119. *io=mi sono lavato 
-1120. *loro=mi hanno lavato 
-1121. *la=io sono lavato 
-1122. *io=la sono lavato 
-1123. *loro=la hanno lavato 
-1124. *lo=io sono lavato 
-1125. *io=lo sono lavato 
-1126. *loro=lo hanno lavato 
-1127. *mi=loro hanno lavato 
-1128. *io sono=la lavata 
-1129. *io sono=lo lavato 
+1121. *loro hanno mi=lavato 
+1122. *loro hanno la=lavato 
+1123. *hanno mi=lavato 
+1124. *io sono=mi lavato 
+1125. *loro hanno lo=lavato 
+1126. *hanno lo=lavato 
+1127. *hanno la=lavato 
+1128. *loro hanno lavato=mi 
+1129. *loro hanno lavato=la 
+1130. *loro hanno lavato=lo 
+1131. *mi=io sono lavato 
+1132. *io=mi sono lavato 
+1133. *loro=mi hanno lavato 
+1134. *la=io sono lavato 
+1135. *io=la sono lavato 
+1136. *loro=la hanno lavato 
+1137. *lo=io sono lavato 
+1138. *io=lo sono lavato 
+1139. *loro=lo hanno lavato 
+1140. *mi=loro hanno lavato 
+1141. *io sono=la lavata 
+1142. *io sono=lo lavato 
 
 & devono + lavare
 
 & Grammatical
-1130.  loro mi=devono lavare 
-1131.  loro devono lavare=mi 
-1132.  loro la=devono lavare 
-1133.  loro devono lavare=la 
-1134.  loro lo=devono lavare 
-1135.  loro devono lavare=lo 
-1136.  mi=devono lavare 
-1137.  devono lavare=mi 
-1138.  la=devono lavare 
-1139.  devono lavare=la 
-1140.  lo=devono lavare 
-1141.  devono lavare=lo 
+1143.  loro mi=devono lavare 
+1144.  loro devono lavare=mi 
+1145.  loro la=devono lavare 
+1146.  loro devono lavare=la 
+1147.  loro lo=devono lavare 
+1148.  loro devono lavare=lo 
+1149.  mi=devono lavare 
+1150.  devono lavare=mi 
+1151.  la=devono lavare 
+1152.  devono lavare=la 
+1153.  lo=devono lavare 
+1154.  devono lavare=lo 
 
 & Ungrammatical
-1142. *loro devono mi=lavare 
-1143. *loro devono la=lavare 
-1144. *loro devono lo=lavare 
-1145. *loro=la devono lavare 
-1146. *loro=lo devono lavare 
-1147. *loro=mi devono lavare 
-1148. *devono mi=lavare loro 
-1149. *devono la=lavare loro 
-1150. *devono lo=lavare loro 
-1151. *devono lavare loro=la 
-1152. *devono lavare loro=lo 
-1153. *devono lavare loro=mi 
+1155. *loro devono mi=lavare 
+1156. *loro devono la=lavare 
+1157. *loro devono lo=lavare 
+1158. *loro=la devono lavare 
+1159. *loro=lo devono lavare 
+1160. *loro=mi devono lavare 
+1161. *devono mi=lavare loro 
+1162. *devono la=lavare loro 
+1163. *devono lo=lavare loro 
+1164. *devono lavare loro=la 
+1165. *devono lavare loro=lo 
+1166. *devono lavare loro=mi 
 
 & stanno + lavando
 
 & Grammatical
-1154.  loro mi=stanno lavando 
-1155.  mi=stanno lavando 
-1156.  la=stanno lavando 
-1157.  lo=stanno lavando 
-1158.  loro stanno lavando=mi 
-1159.  stanno lavando=mi 
-1160.  stanno lavando=la 
-1161.  stanno lavando=lo 
+1167.  loro mi=stanno lavando 
+1168.  mi=stanno lavando 
+1169.  la=stanno lavando 
+1170.  lo=stanno lavando 
+1171.  loro stanno lavando=mi 
+1172.  stanno lavando=mi 
+1173.  stanno lavando=la 
+1174.  stanno lavando=lo 
 
 & Ungrammatical
-1162. *loro stanno mi=lavando 
-1163. *stanno mi=lavando 
-1164. *stanno la=lavando 
-1165. *stanno lo=lavando 
-1166. *loro=mi stanno lavando 
-1167. *loro=la stanno lavando 
-1168. *loro=lo stanno lavando 
+1175. *loro stanno mi=lavando 
+1176. *stanno mi=lavando 
+1177. *stanno la=lavando 
+1178. *stanno lo=lavando 
+1179. *loro=mi stanno lavando 
+1180. *loro=la stanno lavando 
+1181. *loro=lo stanno lavando 
 
-& Three-verb constructions (Aux + T/par + ARE/inf)
+& Three-verb constructions (Aux + T/par + ARE/inf)(10.3)
 
 & Grammatical
-1169.  loro mi=hanno voluto lavare 
-1170.  loro hanno voluto lavare=mi 
-1171.  mi=hanno voluto lavare 
-1172.  hanno voluto lavare=mi 
+1182.  loro mi=hanno voluto lavare 
+1183.  loro hanno voluto lavare=mi 
+1184.  mi=hanno voluto lavare 
+1185.  hanno voluto lavare=mi 
 
 & Ungrammatical
-1173. *loro hanno mi=voluto lavare 
-1174. *loro hanno voluto mi=lavare 
-1175. *loro=mi hanno voluto lavare 
-1176. *mi=loro hanno voluto lavere 
-1177. *hanno mi=voluto lavare 
-1178. *hanno voluto mi=lavare 
+1186. *loro hanno mi=voluto lavare 
+1187. *loro hanno voluto mi=lavare 
+1188. *loro=mi hanno voluto lavare 
+1189. *mi=loro hanno voluto lavere 
+1190. *hanno mi=voluto lavare 
+1191. *hanno voluto mi=lavare 
 
-& CL-V agreement in clitic constructions
+& CL-V agreement in clitic constructions (10.4)
 
 & Grammatical
-1179.  loro mi=hanno lavato 
+1192.  loro mi=hanno lavato 
 
 & Ungrammatical
-1180. *loro la=hanno lavato 
-1181. *loro mi=hanno lavata 
-1182. *loro lo=hanno lavata 
-1183. *la=hanno lavato 
-1184. *mi=hanno lavata 
-1185. *lo=hanno lavata 
+1193. *loro la=hanno lavato 
+1194. *loro mi=hanno lavata 
+1195. *loro lo=hanno lavata 
+1196. *la=hanno lavato 
+1197. *mi=hanno lavata 
+1198. *lo=hanno lavata 
 
-& Indirect clitic arguments
-
-& Grammatical
-1186. *loro gli=lavano Luisa 
-1187. *gli=lavano Luisa 
-
-& Clitic clusters
+& Indirect clitic arguments (10.5)
 
 & Grammatical
-1188.  loro gli=la=hanno lavata 
-1189.  gli=la=hanno lavata 
+1199. *loro gli=lavano Luisa 
+1200. *gli=lavano Luisa 
+
+& Clitic clusters (10.6)
+
+& Grammatical
+1201.  loro gli=la=hanno lavata 
+1202.  gli=la=hanno lavata 
 
 & Ungrammatical
-1190. *loro la=gli=hanno lavata 
-1191. *la=gli=hanno lavata 
-1192. *loro hanno gli=la=lavata 
-1193. *hanno gli=la=lavata 
+1203. *loro la=gli=hanno lavata 
+1204. *la=gli=hanno lavata 
+1205. *loro hanno gli=la=lavata 
+1206. *hanno gli=la=lavata 
 
-& Restructuring
+& Restructuring (10.7)
 
 & Grammatical
-1194.  loro sembrano lavare=mi 
-1195.  Giuseppe spinge Luisa a lavare=lo 
-1196.  sembrano lavare=mi 
-1197.  spinge Luisa a lavare=lo 
+1207.  loro sembrano lavare=mi 
+1208.  Giuseppe spinge Luisa a lavare=lo 
+1209.  sembrano lavare=mi 
+1210.  spinge Luisa a lavare=lo 
 
 & Ungrammatical
-1198. *loro mi=sembrano lavare 
-1199. *mi=sembrano lavare 
-1200. *io lo=detesto lavare 
-1201. *lo=detesto lavare 
-1202. *Giuseppe lo=spinge Luisa a lavare 
-1203. *lo=spinge Luisa a lavare Giuseppe 
-1204. *io detesto lavare=lo 
+1211. *loro mi=sembrano lavare 
+1212. *mi=sembrano lavare 
+1213. *io lo=detesto lavare 
+1214. *lo=detesto lavare 
+1215. *Giuseppe lo=spinge Luisa a lavare 
+1216. *lo=spinge Luisa a lavare Giuseppe 
+1217. *io detesto lavare=lo 
 
-& Reflexive clitics
+& Reflexive clitics (10.8)
 
 & Grammatical
-1205.  io mi=lavo 
-1206.  mi=lavo 
-1207.  tu mi=lavi 
-1208.  mi=lavi 
+1218.  io mi=lavo 
+1219.  mi=lavo 
+1220.  tu mi=lavi 
+1221.  mi=lavi 

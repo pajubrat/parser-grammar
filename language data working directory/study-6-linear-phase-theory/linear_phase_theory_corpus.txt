@@ -3,11 +3,13 @@
 # Experimental categories are marked with '=>' and the format is 'a.b.c.d...', where a, b, c, d... are integers referring to the categories.
 # Currently we have a.b with
 # a = construction type (highest syntactic classification),
-# b = grammaticality (1 = grammatical, 0 = ungrammatical, 2 = problem or unclear).
+# b = construction subtype 
+# c = construction subsubtype
+# d = grammaticality (0 = grammatical, 1 = ungrammatical, 2 = problem or unclear).
 
 & 0 Formal tests
 
-		=> 0.1
+		=> 0.1.1.1
 		& Empty lexical items
 		
 			a' b'
@@ -16,30 +18,30 @@
 			
 & 1 Basic construction types
 
-	&  Basic verb classes
+	&  Basic verb classes (1.1)
 	
 		& Intransitive verbs
 
-			=> 1.1
-			& Grammatical
+			=> 1.1.1.0
+			& Grammatical (finite intransitive verbs)
 			
 				Pekka istuu
 				Pekka lahtee
 				John sleeps
 				lui dorme
 		
-			=> 1.0
-			& Ungrammatical
+			=> 1.1.1.1
+			& Ungrammatical (finite intransitive verbs)
 		
 				Pekka lahtee Merjan
 				Pekka istuu Merjan
 				John sleeps Mary
 				John John sleeps
+				
+		& Transitive verbs 
 
-		& Transitive verbs
-
-			=> 1.1
-			& Grammatical
+			=> 1.1.2.0
+			& Grammatical (finite transitive verbs)
 				
 				Pekka ihailee Merjaa
 				Pekka loysi Merjan
@@ -49,33 +51,34 @@
 				lavano Luisa
 				loro lavano Luisa
 				
-			=> 1.0
-			& Ungrammatical
+			=> 1.1.2.1
+			& Ungrammatical (finite transitive verbs)
 			
 				Pekka ihailee
 				Pekka loysi
 				Pekka ihailee Merjaa Merjaa Merjaa
 				Pekka Pekka ihailee Merjaa
+				Pekka Pekka ihailee Merjaa Merjaa Merjaa
 				mina haluan
 				John admires
 				John admires Mary Mary
 				
 		& Ditransitive verbs
 		
-			=> 1.1
+			=> 1.1.3.0
 			& Grammatical
 			
 				Pekka antoi kirjan Merjalle
 				John gave the key to Mary
 			
-			=> 1.0
+			=> 1.1.3.1
 			& Ungrammatical
 
-	& Special finite elements
+	& Special finite elements (1.2)
 	
 		& Aux, Sentential negation
 		
-			=> 1.1
+			=> 1.2.1.0
 			& Grammatical
 			
 				mina en lahde
@@ -94,7 +97,7 @@
 				loro hanno voluto lavare Luisa
 				loro stanno lavando Luisa
 			
-			=> 1.0
+			=> 1.2.1.1
 			& Ungrammatical		
 
 				sina en lahde
@@ -103,7 +106,7 @@
 			
 		& Modals
 		
-			=> 1.1
+			=> 1.2.2.0
 			& Grammatical
 			
 				Pekan_gen taytyy nukkua
@@ -113,7 +116,7 @@
 				John must admire' Mary
 				loro devono lavare Luisa
 			
-			=> 1.0
+			=> 1.2.2.1
 			& Ungrammatical
 			
 				Pekka taytyy nukkua
@@ -124,45 +127,38 @@
 				
 			& Neg + Modal + V (Finnish)
 			
-				=> 1.1
+				=> 1.2.2.0
 				& Grammatical
 			
 					Pekan_gen ei taydy ihailla Merjaa
 					Pekan_gen ei taydy myyda omaisuuttaan
 				
-				=> 1.0
+				=> 1.2.2.1
 				& Ungrammatical
+				
+					Pekka ei taydy ihailla Merjaa
+					Pekka en taydy ihailla Merjaa
+					Pekan_gen ei taytyy ihailla Merjaa
 		
 		& Tensed pure auxiliaries
 		
-			=> 1.1
+			=> 1.2.3.0
 			& Grammatical
 			
 				Pekka on' nukkunut
 				Pekka on' ihaillut Merjaa
 				John does sleep
 				
-			=> 1.0
+			=> 1.2.3.1
 			& Ungrammatical
 			
 				John does
-				
-		& Seem-constructions
-			
-			=> 1.1
-			& Grammatical
-				
-				loro sembrano lavare Luisa
-			
-			=> 1.0
-			& Ungrammatical
-			
-				
-	& Infinitival complement clauses
+							
+	& Infinitival complement clauses (1.3)
 	
 		& Basic infinitival constructions (English)
 		
-			=> 1.1
+			=> 1.3.1.0
 			& Grammatical
 			
 				John wants to_inf leave
@@ -170,19 +166,22 @@
 				John wants to_inf leave Mary
 				io detesto lavare Luisa
 			
-			=> 1.0
+			=> 1.3.1.1
 			& Ungrammatical
 			
 				io detesto Giuseppe lavare Luisa
+				John wants leave
+				John wants Mary leave
+				John wants leave Mary
 			
 		& OC constructions (English)	
 		
-			=> 1.1
+			=> 1.3.2.0
 			& Grammatical
 			
 				John tries to_inf leave
 			
-			=> 1.0
+			=> 1.3.2.1
 			& Ungrammatical
 			
 				John tries Mary to_inf leave
@@ -191,7 +190,7 @@
 		
 			& A-infinitival 'to do'
 			
-				=> 1.1
+				=> 1.3.3.0
 				& Grammatical
 				
 					Pekka haluaa lahtea
@@ -202,7 +201,7 @@
 					Pekka ei halua ihailla Merjaa
 					Pekka ei halua myyda omaisuuttaan
 				
-				=> 1.0
+				=> 1.3.3.1
 				& Ungrammatical
 				
 					Pekka haluaa Merjan_gen lahtea
@@ -210,7 +209,7 @@
 			
 			& Modal + A-infinitival
 			
-				=> 1.1
+				=> 1.3.4.0
 				& Grammatical
 				
 					Pekan_gen taytyy ihailla Merjaa
@@ -218,11 +217,14 @@
 					Pekan_gen ei taydy ihailla Merjaa
 					Pekan_gen ei taydy myyda omaisuuttaan
 
+				=> 1.3.4.1
 				& Ungrammatical
+				
+					Pekka taytyy ihailla Merjaa
 
 			& VA-infinitival 'to do'
 			
-				=> 1.1
+				=> 1.3.5.0
 				& Grammatical
 				
 					Pekka sanoo Merjan_gen lahtevan
@@ -232,18 +234,18 @@
 					Pekka sanoo Merjan_gen lahtevan
 					mina sanon lahtevani
 
-				=> 1.0
+				=> 1.3.5.1
 				& Ungrammatical
 				
 					mina sanon lahtevansa
 					Pekka sanoo ihailevansa
 					Pekka halusi Merja lahtevan 
 		
-	& Nominals
+	& Nominals (1.4)
 	
 		& Basic DPs
 		
-			=> 1.1
+			=> 1.4.1.0
 			& Grammatical
 		
 				se' talo
@@ -253,7 +255,7 @@
 				the little key
 				the little red key
 			
-			=> 1.0
+			=> 1.4.1.1
 			& Ungrammatical
 		
 				pieni talo se
@@ -265,19 +267,19 @@
 	
 		& N + A-infinitival
 		
-			=> 1.1
+			=> 1.4.2.0
 			& Grammatical
 			
 				Pekka teki sopimuksen ihailla Merjaa
 				Pekka teki sopimuksen antaa avaimen Merjalle
 				se sopimus ihailla Merjaa peruuntui
 			
-			=> 1.0
+			=> 1.4.2.1
 			& Ungrammatical
 	
-	& Adpositions
+	& Adpositions (1.5)
 	
-		=> 1.1
+		=> 1.5.1.0
 		& Grammatical
 		
 			lahella Pekkaa
@@ -285,14 +287,14 @@
 			Merja nukkui Pekan_gen lahella
 			Merja nukkui lahella Pekkaa
 			
-		=> 1.0
+		=> 1.5.1.1
 		& Ungrammatical
 		
 			Merja nukkui lahella Pekan_gen
 				
-	& Embedded finite clauses
+	& Embedded finite clauses (1.6)
 	
-		=> 1.1
+		=> 1.6.1.0
 		& Grammatical
 		
 			Pekka sanoi etta Merja lahtee		
@@ -300,20 +302,25 @@
 			Pekka sanoo etta haluaa myyda omaisuuttaan
 			John said that Mary sleeps
 		
-		=> 1.0
+		=> 1.6.1.1
 		& Ungrammatical
+		
+			Pekka sanoi etta
+			Pekka sanoi etta Merja
+			John said that
+			John said that Mary
 		
 & 2 Adjunction and adjuncts
 
-	& Adjuncts inside comprehension pipeline
+	& PP adjuncts (2.1)
 	
-		=> 2.1
+		=> 2.1.1.0
 		& Grammatical
 		
 			John gave the key to Mary
 			John moved the key from Mary to John
 		
-		=> 2.0
+		=> 2.1.1.1
 		& Ungrammatical
 		
 			John to Mary gave the key
@@ -321,9 +328,9 @@
 			to Mary John gave the key
 			to Mary John moved the key to John
 			
-	& Adjectives
+	& Adjectives (2.2)
 	
-		=> 2.1
+		=> 2.2.1.0
 		& Grammatical
 		
 			the little key
@@ -333,7 +340,7 @@
 			se' pieni punainen talo
 			se' punainen pieni talo
 		
-		=> 2.0
+		=> 2.2.1.1
 		& Ungrammatical
 		
 			the key little
@@ -343,11 +350,11 @@
 			talo pieni se
 			talo se pieni
 			
-	& Adjunct infinitivals in Finnish
+	& Adjunct infinitivals in Finnish (2.3)
 	
 		& MA-infinitival 'doing, without doing...'
 		
-			=> 2.1
+			=> 2.3.1.0
 			& Grammatical
 			
 				Pekka naki Merjan_acc lahtemassa
@@ -357,7 +364,7 @@
 				Pekka elaa ihailemalla Merjaa 
 				Pekka elaa haluamalla ihailla Merjaa
 				
-			=> 2.2
+			=> 2.3.1.1
 			& Ungrammatical
 			
 				Pekka naki lahtemassa
@@ -367,14 +374,14 @@
 				
 		& ESSA-infinitival 'while doing'
 		
-			=> 2.1
+			=> 2.3.2.0
 			& Grammatical
 			
 				Pekka naki Merjan_acc lahtiessa
 				Pekka naki Merjan_acc lahtiessaan
 				Pekka naki avaimen_acc Merjan_gen lahtiessa
 			
-			=> 2.0
+			=> 2.3.2.1
 			& Ungrammatical
 			
 				Pekka naki Merjan_gen lahtiessa
@@ -383,7 +390,7 @@
 				
 		& TUA-infinitival 'after doing'
 		
-			=> 2.1
+			=> 2.3.3.0
 			& Grammatical
 			
 				Pekka naki Merjan_acc lahdettyaan
@@ -391,7 +398,7 @@
 				Pekka lahtee heidan lahdettya
 				Pekka lahtee heidan ihailtua Merjaa
 			
-			=> 2.0			
+			=> 2.3.3.1		
 			& Ungrammatical
 			
 				Pekka nakee Merjan_acc lahdettya
@@ -399,21 +406,21 @@
 				
 		& E-infinitival 'by doing'
 		
-			=> 2.1
+			=> 2.3.4.0
 			& Grammatical
 			
 				Pekka lahtee juosten
 			
-			=> 2.0
+			=> 2.3.4.1
 			& Ungrammatical
 			
 				Pekka lahtee Merjan_gen juosten
 				
 & 3 A-bar movement and pied-piping
 
-	& Basic interrogatives
+	& Basic interrogatives (3.1)
 	
-		=> 3.1
+		=> 3.1.1.0
 		& Grammatical
 		
 			keta Pekka ihailee
@@ -422,7 +429,7 @@
 			who does John admire'
 			who does_C John admire'
 		
-		=> 3.0
+		=> 3.1.1.1
 		& Ungrammatical
 		
 			admires who John
@@ -432,21 +439,21 @@
 			ihailee keta Pekka
 			ihailee Pekka keta
 		
-		=> 3.2
+		=> 3.1.1.2
 		& Problems
 		
 			Pekka keta ihailee
 			
-	& Pied-piping
+	& Pied-piping (3.2)
 
-		=> 3.1
+		=> 3.2.1.0
 		& Grammatical
 		
 			towards which city does_C Seine flow'
 			mita kaupunkia kohti Seine virtaa
 			mita kaupunkia kohti virtaamalla Seine saavuttaa meren
 		
-		=> 3.0
+		=> 3.2.1.1
 		& Ungrammatical
 		
 			which city towards does_C Seine flow'
@@ -454,11 +461,11 @@
 			Seine virtaa kohti mita kaupunkia
 			Seine virtaa mita kaupunkia kohti
 			
-	& Islands
+	& Islands (3.3)
 	
 		& Extraction from left branch and right adjunct (CED-effects)
 	
-			=> 3.1
+			=> 3.3.1.0
 			& Grammatical
 			
 				John moved the key from Mary to John
@@ -467,7 +474,7 @@
 				se' Merjan_gen kello havisi
 				Pekka naki Merjan_acc ihailemassa Jukkaa
 			
-			=> 3.0
+			=> 3.3.1.1
 			& Ungrammatical
 			
 				mita kaupunkia Seine saavuttaa meren virtaamalla kohti 
@@ -477,13 +484,13 @@
 				
 		& Extraction from embedded interrogative (wh-island)
 	
-			=> 3.1
+			=> 3.3.2.0
 			& Grammatical
 			
 				who does John say' that Mary admires
 				John asks whether Mary admires John 
 			
-			=> 3.0
+			=> 3.3.2.1
 			& Ungrammatical
 			
 				who does John ask' whether Mary admires
@@ -491,13 +498,13 @@
 				
 		& Extraction from DP
 			
-			=> 3.1
+			=> 3.3.3.0
 			& Grammatical
 			
 				Pekka teki sopimuksen ostaa auton
 				Pekka teki sen Merjan_gen kellon
 			
-			=> 3.0
+			=> 3.3.3.1
 			& Ungrammatical
 			
 				kenen Pekka teki sen kellon
@@ -505,21 +512,21 @@
 				
 		& Extraction of embedded subject position
 		
-			=> 3.1
+			=> 3.3.4.0
 			& Grammatical
 			
 				John said that Mary sleeps
 			
-			=> 3.0			
+			=> 3.3.4.1		
 			& Ungrammatical
 			
 				who does John say' that sleeps
 	
 & 4 Case
 
-	& Finite clause, nominative and partitive
+	& Finite clause, nominative and partitive (4.1)
 	
-		=> 4.1
+		=> 4.1.1.0
 		& Grammatical
 		
 			Pekka nukkuu
@@ -527,7 +534,7 @@
 			Pekka ihailee Merjaa
 			Pekka antoi kirjan Merjalle
 		
-		=> 4.0
+		=> 4.1.1.1
 		& Ungrammatical
 		
 			Pekka ihailee Merja
@@ -542,11 +549,11 @@
 			Merja ihailee Pekan_acc
 			Merja ihailee Pekka_0acc
 			
-	& Finite clause, accusative
+	& Finite clause, accusative (4.2)
 	
 		& Accusative and aspect
 		
-			=> 4.1
+			=> 4.2.1.0
 			& Grammatical
 			
 				Pekka voitti Merjan
@@ -556,7 +563,7 @@
 				Pekka pesi Merjaa
 				Pekka pesi hanet
 			
-			=> 4.0
+			=> 4.2.1.1
 			& Ungrammatical
 			
 				Pekka tonaisi Merjan
@@ -566,12 +573,12 @@
 				
 		& Accusative and negation
 		
-			=> 4.1
+			=> 4.3.2.0
 			& Grammatical
 			
 				Pekka ei voittanut Merjaa
 			
-			=> 4.0
+			=> 4.3.2.1
 			& Ungrammatical
 			
 				Pekka ei voittanut Merjan
@@ -581,13 +588,13 @@
 				
 		& Accusative and agreement
 		
-			=> 4.1
+			=> 4.3.3.0
 			& Grammatical
 			
 				me loysimme avaimen
 				me loydettiin avain_0acc
 			
-			=> 4.0
+			=> 4.3.3.1
 			& Ungrammatical
 			
 				me loydettiin avaimen
@@ -596,7 +603,7 @@
 				
 		& Accusative and long-distance effects
 		
-			=> 4.1
+			=> 4.3.4.0
 			& Grammatical
 			
 				Pekka halusi voittaa Merjan
@@ -607,7 +614,7 @@
 				me ei' haluttu voittaa Merjaa
 				me halusimme voittaa Merjan
 		
-			=> 4.0
+			=> 4.3.4.1
 			& Ungrammatical
 			
 				me haluttiin voittaa Merjan
@@ -615,9 +622,9 @@
 				me ei' haluttu voittaa Merja_0acc
 				me ei' haluttu voittaa Merjan
 				
-	& Adpositions
+	& Adpositions (4.3)
 	
-		=> 4.1
+		=> 4.3.1.0
 		& Grammatical
 		
 			lahella Pekkaa
@@ -625,21 +632,21 @@
 			Merja nukkui Pekan_gen lahella
 			Merja nukkui lahella Pekkaa
 		
-		=> 4.0
+		=> 4.3.1.1
 		& Ungrammatical
 		
 			Merja nukkui lahella Pekan_gen
 			
-	& Infinitivals
+	& Infinitivals (4.4)
 	
-		=> 4.1
+		=> 4.4.1.0
 		& Grammatical
 		
 			Pekka kaski Merjan_gen lahtea
 			Pekka sanoi Merjan_gen lahtevan
 			Pekka halusi ihailla Merjaa
 		
-		=> 4.0
+		=> 4.4.1.1
 		& Ungrammatical
 		
 			Pekka kaski Merja lahtea
@@ -651,21 +658,21 @@
 			Pekka kaski lahtea Merjan_gen
 			Pekka sanoi lahtevan Merjan_gen
 			
-	& Possessive constructions
+	& Possessive constructions (4.5)
 	
-		=> 4.1
+		=> 4.5.1.0
 		& Grammatical
 		
 			se Merjan_gen kello havisi
 		
-		=> 4.0
+		=> 4.5.1.1
 		& Ungrammatical
 		
 			se kello Merjan_gen havisi
 			
-	& Numeral constructions (two types)
+	& Numeral constructions (two types))(4.6)
 	
-		=> 4.1
+		=> 4.6.1.0
 		& Grammatical
 		
 			ne kaksi sukkaa havisi
@@ -674,7 +681,7 @@
 			Pekka loysi ne kaksi sukkaa
 			Pekka sanoi niiden kahden sukan haviavan
 		
-		=> 4.0
+		=> 4.6.1.1
 		& Ungrammatical
 		
 			ne kaksi sukan havisi
@@ -683,16 +690,16 @@
 			ne kahdet sukka havisivat
 			Pekka sanoi niiden kaksi sukkaa haviavan
 			
-	& Adverbials, direct object marking
+	& Adverbials, direct object marking (4.7)
 	
-		& 4.7.1 MALLA-adverbial
+		& MALLA-adverbial
 	
-			=> 4.1
+			=> 4.7.1.0
 			& Grammatical
 			
 				Pekka nukahti lukemalla kirjaa
 			
-			=> 4.0
+			=> 4.7.1.1
 			& Ungrammatical
 			
 				Pekka nukahti lukemalla Merjan_gen
@@ -700,9 +707,9 @@
 				Pekka nukahti lukemalla Merja_0acc
 				Pekka nukahti lukemalla Merjan_acc
 				
-	& Adverbial case marking
+	& Adverbial case marking (4.8)
 	
-		=> 4.1
+		=> 4.8.1.0
 		& Grammatical
 
 			Pekka nukkui#asp koko paivan
@@ -711,7 +718,7 @@
 			me nukuttiin koko paiva
 			Pekka ihailee#asp Merjaa koko paivan
 		
-		=> 4.0
+		=> 4.8.1.1
 		& Ungrammatical
 		
 			Pekka nukkui koko paivan
@@ -722,16 +729,16 @@
 			Pekka ihailee#asp Merjaa koko paivaa
 			Pekka ihailee Merjaa koko paivaa	
 			
-	& Special constructions
+	& Special constructions (4.9)
 
 		& Partitive subjects (psych verbs)
 		
-			=> 4.1
+			=> 4.9.1.0
 			& Grammatical
 			
 				Merjaa pelottaa
 			
-			=> 4.0
+			=> 4.9.1.1
 			& Ungrammatical
 			
 				Pekka pelottaa
@@ -742,7 +749,7 @@
 				
 		& Impersonal passives
 		
-			=> 4.1
+			=> 4.9.2.0
 			& Grammatical
 			
 				me loysimme avaimen
@@ -750,32 +757,32 @@
 				avain_0acc loydettiin
 				loydettiin avain_0acc
 			
-			=> 4.0
+			=> 4.9.2.1
 			& Ungrammatical
 			
 				me loydettiin avaimen
 				me loysimme avain
 				
-	& Copula
-		
-			=> 4.1
-			& Grammatical
+		& Copula
 			
-				Pekka on' Pekka
-				Merjalla on' Pekka
-				Pekka on' Merjalla
-			
-			=> 4.0			
-			& Ungrammatical
-			
-				Pekka on' Pekkaa
-				Pekka on' Pekan_gen
+				=> 4.9.3.0
+				& Grammatical
+				
+					Pekka on' Pekka
+					Merjalla on' Pekka
+					Pekka on' Merjalla
+				
+				=> 4.9.3.1		
+				& Ungrammatical
+				
+					Pekka on' Pekkaa
+					Pekka on' Pekan_gen
 		
 & 5 Agreement
 	
-	& Standard finite S-V agreement
+	& Standard finite S-V agreement (5.1)
 		
-		=> 5.1
+		=> 5.1.1.0
 		& Grammatical
 		
 			mina ihailen Merjaa
@@ -802,7 +809,7 @@
 			voi adorate Luisa
 			loro adorano Luisa
 			
-		=> 5.0
+		=> 5.1.1.1
 		& Ungrammatical
 		
 			mina ihailet Merjaa
@@ -844,9 +851,9 @@
 			io adorate Luisa
 			io adorano Luisa
 			
-	& S-V areement with noncanonical word order (Finnish)
+	& S-V areement with noncanonical word order (Finnish)(5.2)
 		
-		=> 5.1
+		=> 5.2.1.0
 		& Grammatical 
 		
 			ihailen mina Merjaa 
@@ -882,7 +889,7 @@
 			Merjaa he_FI ihailevat 
 			Merjaa ihailevat he_FI 
 		
-		=> 5.0
+		=> 5.2.1.1
 		& Ungrammatical
 		
 			ihailee han Merjaa 
@@ -890,7 +897,7 @@
 			ihailevat he_FI Merjaa 
 			ihailevat Merjaa he_FI
 
-		=> 5.0
+		=> 5.2.2.1
 		& Ungrammatical, incorrect SV-agreement with noncanonical order
 		
 			mina ihailet Merjaa 
@@ -1076,9 +1083,9 @@
 	
 & 6 Pro-drop
 
-	& Finite pro-drop
+	& Finite pro-drop (6.1)
 	
-		=> 6.1
+		=> 6.1.1.0
 		& Grammatical
 		
 			ihailen Merjaa
@@ -1101,7 +1108,7 @@
 			hanno voluto lavare Luisa
 			stanno lavando Luisa
 		
-		=> 6.0		
+		=> 6.1.1.1	
 		& Ungrammatical
 		
 			ihailee Merjaa
@@ -1111,41 +1118,41 @@
 			admires Mary				
 			am John
 	
-	& Finite pro-drop with noncanonical word order
+	& Finite pro-drop with noncanonical word order (6.2)
 	
-		=> 6.1
+		=> 6.2.1.0
 		& Grammatical
 		
 			ihailen Merjaa
 			Merjaa ihailen
 			Merjaa ihailevat
 		
-		=> 6.0
+		=> 6.2.1.1
 		& Ungrammatical
 	
 			ihailee Merjaa
 			ihailevat Merjaa
 		
-		=> 6.2
+		=> 6.2.1.2
 		& Unclear case (compare 'Elokuvia katselee mielelaan')
 
 			Merjaa ihailee
 			
-	& Third person pro in Finnish, with and without antecedent
+	& Third person pro in Finnish, with and without antecedent (6.3)
 	
-		=> 6.1
+		=> 6.3.1.0
 		& Grammatical
 			
 			Pekka sanoi etta ihailee Merjaa
 			Pekka sanoo etta Jukka sanoo etta ihailee Merjaa
 
-		=> 6.0
+		=> 6.3.1.1
 		& Ungrammatical (antecedent missing)
 		
 			ihailee Merjaa
 			Mina sanon etta ihailee Merjaa
 		
-		=> 6.0
+		=> 6.3.1.1
 		& Ungrammatical (English)	
 		
 			John said that admire Mary
@@ -1153,42 +1160,49 @@
 
 & 7 Control
 
-	& Partial pro-drop control (only D_ unvalued)
+	& Partial pro-drop control (only D_ unvalued)(7.1)
 	
-		=> 7.1
+		=> 7.1.1.0
 		& Grammatical
 				
 			Pekka sanoi etta ihailee Merjaa
 			Pekka sanoo etta Jukka sanoo etta ihailee Merjaa
 	
-		=> 7.0
+		=> 7.1.1.1
 		& Ungrammatical
 		
 			ihailee Merjaa
 			Mina sanon etta ihailee Merjaa
 	
-	& Standard control (phi_, D_ unvalued)
+	& Standard control (phi_, D_ unvalued)(7.2)
 
 		& Control into complements
 		
 			& Want-class (no SEM)
 
-				=> 7.1
+				=> 7.2.1.0
 				& Grammatical
 				
 					John wants to_inf leave
 					John wants Mary to_inf leave
+					
+				=> 7.2.1.1
+				& Ungrammatical
+				
+					John wants
+					John wants to_inf
+					John wants leave
 				
 			& OC-construction (SEM:internal)
 			
-				=> 7.1
+				=> 7.2.2.0
 				& Grammatical
 				
 					Pekka haluaa lahtea
 					John tries to_inf leave
 					John promises to_inf leave
 	
-				=> 7.0
+				=> 7.2.2.1
 				& Ungrammatical
 				
 					Pekka haluaa Merjan lahtea
@@ -1196,14 +1210,14 @@
 
 			& Anti-OC construction (SEN:external)
 			
-				=> 7.1
+				=> 7.2.3.0
 				& Grammatical
 				
 					Pekka kaskee Merjan_gen lahtea
 					Pekka haluaa Merjan_gen lahtevan	
 					John persuades Mary to_inf leave
 
-				=> 7.0
+				=> 7.2.3.1
 				& Ungrammatical
 				
 					Pekka kaskee lahtea
@@ -1214,57 +1228,61 @@
 		
 			& Subject control (high adjunct position)
 			
-				=> 7.1
+				=> 7.3.1.0
 				& Grammatical
 			
 					Pekka etsii Merjaa juosten
 					John promises Mary to_inf leave
+				
+				=> 7.3.1.1
+				& Ungrammatical
 								
 			& Object control (low adjunct position)
 			
-				=> 7.1
+				=> 7.3.2.0
 				& Grammatical
 				
 					John persuades Mary to_inf leave
 				
-				=> 7.0				
+				=> 7.3.2.1			
 				& Ungrammatical
 				
 					John persuades to_inf leave
 						
 		& Generic interpretation
-		
-			=> 7.1
-			& Grammatical
 				
+			& Grammatical
+			
+				=> 7.4.1.0
 				& Null object construction (Finnish)
 				
 					Pekka pyytaa lahtemaan
 				
+				=> 7.4.1.0
 				& Generic null subject
 				
 					Pekka sanoo etta istuu mukavasti
 					tassa istuu mukavasti
 					Pekka sanoo etta tassa istuu mukavasti
 			
-			=> 7.0
+			=> 7.4.1.1
 			& Ungrammatical
 			
 				istuu mukavasti
 
 & 8 Word order
 
-	& Basic transitive clause
+	& Basic transitive clause (8.1)
 
 		& Frozen word order regimen (English)
 		
-			=> 8.1
+			=> 8.1.1.0
 			& Grammatical
 			
 				John admires Mary
 				Mary admires John 
 			
-			=> 8.0
+			=> 8.1.1.1
 			& Ungrammatical
 			
 				John Mary admires 
@@ -1274,7 +1292,7 @@
 			
 		& Free word order regimen (Finnish)
 		
-			=> 8.1
+			=> 8.1.2.0
 			& Grammatical
 			
 				Pekka ihailee Merjaa
@@ -1282,17 +1300,17 @@
 				Merjaa Pekka ihailee 
 				Merjaa ihailee Pekka 
 		
-			=> 8.0
+			=> 8.1.2.1
 			& Ungrammatical (verb-initial)
 			
 				ihailee Pekka Merjaa 
 				ihailee Merjaa Pekka 
 					
-	& Ditransitives
+	& Ditransitives (8.2)
 	
 		& Free word order profile (Finnish)
 		
-			=> 8.1
+			=> 8.2.1.0
 			& Grammatical
 	
 				Pekka antoi kirjan Merjalle
@@ -1314,7 +1332,7 @@
 				Merjalle kirjan Pekka antoi 
 				Merjalle kirjan antoi Pekka
 			
-			=> 8.0
+			=> 8.2.1.1
 			& Ungrammatical
 			
 				antoi Pekka kirjan Merjalle 
@@ -1326,13 +1344,13 @@
 				
 		& Rigid word order profile (English)
 		
-			=> 8.1
+			=> 8.2.1.0
 			& Grammatical
 			
 				John gave the key to Mary
 				the key gave John to Mary 
 		
-			=> 8.0
+			=> 8.2.1.1
 			& Ungrammatical
 				
 				John gave to Mary the key
@@ -1358,11 +1376,11 @@
 				to Mary the key John gave 
 				to Mary the key gave John
 
-	& Neg/Aux + V
+	& Neg/Aux + V (8.3)
 
 		& Finnish transitive Neg + V
 
-			=> 8.1
+			=> 8.3.1.0
 			& Grammatical
 				
 				Pekka ei ihaile Merjaa
@@ -1372,7 +1390,7 @@
 				Merjaa ei Pekka ihaile 
 				Merjaa ei ihaile Pekka 
 		
-			=> 8.0
+			=> 8.3.1.1
 			& Ungrammatical
 			
 				Pekka ihaile ei Merjaa 
@@ -1396,13 +1414,13 @@
 		
 		& English transitive Aux + V
 			
-			=> 8.1
+			=> 8.3.2.0
 			& Grammatical
 			
 				John does admire' Mary
 				Mary does admire' John 				
 			
-			=> 8.0
+			=> 8.3.2.1
 			& Ungrammatical
 			
 				John admire' does Mary 
@@ -1426,21 +1444,22 @@
 				Mary admire' John does 
 				Mary admire' does John 
 				
-			=> 8.2
+			=> 8.3.2.2
 			& Unclear
 				
 				John does Mary admire' 
 				Mary does John admire'	
 				
-	& Heads in wrong order
-	
-		=> 8.0
+	& Heads in wrong order (8.4)
+		
 		& Ungrammatical
 		
+			=> 8.4.1.1
 			& Neg + V
 		
 				Pekka ihaile ei Merjaa
 		
+			=> 8.4.2.1
 			& Neg + Aux + V
 				
 				Pekka ollut ei ihaillut Merjaa
@@ -1449,6 +1468,7 @@
 				Pekka ei ihaillut ei ollut Merjaa
 				Pekka ihaillut ollut ei Merjaa
 				
+			=> 8.4.3.1
 			& Neg + Modal + V
 				
 				Pekan_gen taydy ei ihailla Merjaa
@@ -1456,7 +1476,8 @@
 				Pekan_gen ei ihailla taydy Merjaa
 				Pekan_gen ihailla ei taydy Merjaa
 				Pekan_gen ihailla taydy ei Merjaa
-				
+			
+			=> 8.4.4.1
 			& Neg + V + V + LHM, with wrong head order
 				
 				taydy#C/op Pekan_gen ihailla ei  Merjaa
@@ -1464,23 +1485,24 @@
 				halua#C/op Pekan_gen Pekka ihailla ei Merjaa
 				ihailla#C/op Pekan_gen halua ei Merjaa
 				
+			=> 8.4.5.1
 			& Head final constructions with two more more verbal elements
 				
 				Pekka ihaile Merjaa ei 
 				Pekan_gen ei ihailla Merjaa taydy
 	
-	& Infinitival complements
+	& Infinitival complements (8.5)
 	
 		& Rigid word order (English)
 	
 			& John wants to leave
 			
-				=> 8.1
+				=> 8.5.1.0
 				& Grammatical
 
 					John wants to_inf leave
 				
-				=> 8.2
+				=> 8.5.1.1
 				& Ungrammatical
 		
 					John wants leave to_inf 
@@ -1508,7 +1530,7 @@
 	
 			& John wants Mary to leave
 		
-				=> 8.1
+				=> => 8.5.2.0
 				& Grammatical
 
 					John wants Mary to_inf leave 
@@ -1516,7 +1538,7 @@
 					Mary wants John to_inf leave
 					John wants to_inf leave Mary
 				
-				=> 8.0				
+				=> 8.5.2.1				
 				& Ungrammatical
 				
 					John wants Mary leave to_inf 
@@ -1633,7 +1655,7 @@
 					to_inf Mary leave wants John 
 					to_inf leave John wants Mary
 			
-				=> 8.2
+				=> => 8.5.2.2
 				& Problem: in situ version
 
 					John wants to_inf Mary leave 
@@ -1643,14 +1665,14 @@
 		
 			& Pekka haluaa lahtea
 			
-				=> 8.1
+				=> 8.5.3.0
 				& Grammatical
 					
 					Pekka haluaa lahtea 					
 					haluaa#C/op Pekka lahtea
 					Pekka kaskee Merjan_gen lahtea
 				
-				=> 8.0
+				=> 8.5.3.1
 				& Ungrammatical
 
 					haluaa Pekka lahtea 
@@ -1658,12 +1680,12 @@
 					lahtea Pekka haluaa 
 					lahtea haluaa Pekka 
 				
-				=> 8.2
+				=> 8.5.3.2
 				& Unclear
 
 					haluaa#C/op lahtea Pekka
 
-				=> 8.1
+				=> 8.5.3.0
 				& Grammatical
 					
 					Pekka kaskee Merjan_gen lahtea 
@@ -1677,7 +1699,7 @@
 					Merjan_gen lahtea kaskee Pekka
 					Pekka Merjan_gen lahtea kaskee 
 
-				=> 8.0
+				=> 8.5.3.1
 				& Ungrammatical
 									
 					Pekka kaskee lahtea Merjan_gen 
@@ -1699,11 +1721,11 @@
 
 & 9 Head movement
 	
-	& Local HMC-compliant X-to-C movement
+	& Local HMC-compliant X-to-C movement (9.1)
 
-		=> 9.1
 		& Grammatical
 
+			=> 9.1.1.0
 			& T-to-C* movement
 	
 				istuu#foc Pekka
@@ -1715,6 +1737,7 @@
 				antoi#foc Pekka avaimen Merjalle
 				antoi#C/op Pekka avaimen Merjalle
 				
+			=> 9.1.2.0
 			& Neg-to-C* movement
 				
 				ei#C/op Pekka ihaile Merjaa
@@ -1726,21 +1749,25 @@
 				ei#C/op Pekka halua myyda omaisuuttaan
 				ei#C/op Pekka ollut myynyt omaisuuttaan
 		
+			=> 9.1.3.0
 			& Modal-to-C*	
 				
 				taytyy#C/op Pekan_gen ihailla Merjaa
 				taytyy#C/op Pekan_gen myyda omaisuuttaan
 				
+			=> 9.1.4.0
 			& Want-to-C* 	
 				
 				haluaa#C/op Pekka ihailla Merjaa
 				haluaa#C/op Pekka myyda omaisuuttaan
-				
+			
+			=> 9.1.5.0
 			& Aux-to-C*
 				
 				on'#C/op Pekka ihaillut Merjaa
 				on'#C/op Pekka myynyt omaisuuttaan
 				
+			=> 9.1.6.0
 			& X-to-C, with dormal C-feature C/fin
 				
 				ihailee#C/fin Pekka Merjaa
@@ -1755,7 +1782,7 @@
 				on'#C/fin Pekka myynyt omaisuuttaan
 				does#C/fin John admire' Mary
 
-		=> 9.0
+		=> 9.1.1.1
 		& Ungrammatical (C-feature is missing, V-initial)
 		
 			ihailee Pekka Merjaa
@@ -1767,30 +1794,34 @@
 			myi Pekka omaisuutensa
 			admire'#C/fin John does Mary
 
-	& Long head movement
+	& Long head movement (9.2)
 	
-		=> 9.1
 		& Grammatical
-		
+
+			=> 9.2.1.0
 			& V-over-Neg	
 				
 				ihaile#C/op Pekka ei Merjaa
 				
+			=> 9.2.2.0
 			& V-over-Aux(BE)	
 				
 				ihaillut#C/op Pekka on' Merjaa
 				myynyt#C/op Pekka on' omaisuutensa
 
+			=> 9.2.3.0
 			& V-over-want
 				
 				ihailla#C/op Pekka haluaa Merjaa
 				myyda#C/op Pekka haluaa omaisuutensa
 				
+			=> 9.2.4.0
 			& V-over-must
 				
 				ihailla#C/op Pekan_gen taytyy Merjaa
 				myyda#C/op Pekan_gen taytyy omaisuutensa
 			
+			=> 9.2.5.0
 			& With noncanonical OVS orders
 				
 				ihaile#C/op Merjaa ei Pekka
@@ -1800,17 +1831,20 @@
 				myynyt#C/op omaisuuttaan ei Pekka
 				myynyt#C/op omaisuuttaan on' Pekka
 				myyda#C/op omaisuuttaan haluaa Pekka
-				
+			
+			=> 9.2.6.0
 			& Neg + Modal + V, with Modal moving moving (grammaticality status unclear)
 				
 				taydy#C/op Pekan_gen ei ihailla Merjaa
 				taydy#C/op Pekan_gen ei myyda omaisuuttaan
 
+			=> 9.2.7.0
 			& Neg + Modal + V with V moving
 				
 				ihailla#C/op Pekan_gen ei taydy Merjaa
 				myyda#C/op Pekan_gen ei taydy omaisuuttaan
 			
+			=> 9.2.8.0
 			& Neg + want + V, with want moving
 				
 				halua#C/op Pekka ei ihailla Merjaa
@@ -1818,7 +1852,7 @@
 				halua#C/op Pekka ei myyda omaisuuttaan
 				myyda#C/op Pekka ei halua omaisuuttaan			
 		
-		=> 9.0
+		=> 9.2.1.1
 		& Ungrammatical (English)
 
 			admire' John wants to_inf Mary
@@ -1827,10 +1861,10 @@
 			admire'#C/fin John wants to_inf Mary
 			to_inf#C/fin admire' John wants Mary
 			to_inf#C/fin John wants admire' Mary		
-
-		=> 9.0
+		
 		Ungrammatical (Finnish)
 		
+			=> 9.2.1.1
 			& Long head movement with formal C-feature or with no C-featre
 			
 				ihaile#C/fin Pekka ei Merjaa
@@ -1882,9 +1916,9 @@
 				ihailla	Pekan_gen ei taydy Merjaa
 				halua Pekka ei myyda omaisuuttaan
 	
-	& Super LHM
+	& Super LHM (9.3)
 	
-		=> 9.1
+		=> 9.3.1.0
 		& Grammatical
 			
 			& that + want + A/inf
@@ -1892,7 +1926,7 @@
 			ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa
 			lahtea#C/op Pekka sanoo etta Pekan_gen taytyy
 			
-		=> 9.0
+		=> 9.3.1.1
 		& Ungrammatical		
 
 			& Moving of the embedded finite verb (ungrammatical)
@@ -1918,26 +1952,28 @@
 				myi Pekka sanoo etta omaisuutensa
 				taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa	
 
-	& Long head movement and island violations
+	& Long head movement and island violations (9.4)
 	
-		=> 9.0
 		& Ungrammatical
 	
+			=> 9.4.1.1
 			& Right-adjunct CED
 			
 				ihailemalla#C/op Pekka istuu Merjaa
-		
+	
+			=> 9.4.2.1
 			& Left branch CED
 			
 				ihailla#C/op sopimus Merjaa istuu
 		
+			=> 9.4.3.1
 			& Extraction from DP
 			
 				ihailla#C/op Pekka teki sopimuksen Merjaa
 	
-	& C-features on wrong heads
+	& C-features on wrong heads (9.5)
 	
-		=> 9.0
+		=> 9.5.1.1
 		& Ungrammatical
 								
 			C/fin Pekka ihailee#C/op Merjaa
@@ -1970,222 +2006,220 @@
 			Pekka teki sopimuksen ihailla#C/op Merjaa
 
 & 10 Clitics/incorporation mechanism
-
-	& Standard Italian
 	
-		& Simple transitive clause, direct object accusative clitics
+	& Simple transitive clause, direct object accusative clitics (10.1)
+	
+		=> 10.1.1.0
+		& Grammatical
 		
-			=> 10.1
-			& Grammatical
-			
-				loro mi=lavano
-				mi=lavano
-				loro la=lavano
-				la=lavano
-				loro lo=lavano
-				lo=lavano
-			
-			=> 10.0
-			& Ungrammatical, clitic in wrong position
-			
-				loro lavano=mi
-				lavano=mi
-				loro=mi lavano	
-				mi=loro lavano
-				loro lavano mi
-				loro mi=lavano Luisa
-				
-			=> 10.0
-			& Ungrammatical, S-V agreement error
-			
-				io mi=lavano
-				
-		& Two-verb transitive, direct object accusative clitics
+			loro mi=lavano
+			mi=lavano
+			loro la=lavano
+			la=lavano
+			loro lo=lavano
+			lo=lavano
 		
-			& hanno + lavato
-			
-				=> 10.1
-				& Grammatical
-				
-					loro mi=hanno lavato
-					loro la=hanno lavata
-					mi=hanno lavato
-					la=hanno lavata
-					lo=hanno lavato
-				
-				=> 10.0
-				& Ungrammatical
-				
-					loro hanno mi=lavato
-					loro hanno la=lavato
-					hanno mi=lavato
-					io sono=mi lavato
-					loro hanno lo=lavato
-					hanno lo=lavato
-					hanno la=lavato
-					loro hanno lavato=mi
-					loro hanno lavato=la
-					loro hanno lavato=lo
-					mi=io sono lavato	
-					io=mi sono lavato
-					loro=mi hanno lavato
-					la=io sono lavato	
-					io=la sono lavato
-					loro=la hanno lavato
-					lo=io sono lavato	
-					io=lo sono lavato
-					loro=lo hanno lavato
-					mi=loro hanno lavato
-					io sono=la lavata
-					io sono=lo lavato
-					
-			& devono + lavare
-			
-				=> 10.1
-				& Grammatical
-				
-					loro mi=devono lavare
-					loro devono lavare=mi	
-					loro la=devono lavare
-					loro devono lavare=la
-					loro lo=devono lavare
-					loro devono lavare=lo
-					mi=devono lavare
-					devono lavare=mi	
-					la=devono lavare
-					devono lavare=la
-					lo=devono lavare
-					devono lavare=lo
-				
-				=> 10.0
-				& Ungrammatical
-				
-					loro devono mi=lavare
-					loro devono la=lavare
-					loro devono lo=lavare
-					loro=la devono lavare
-					loro=lo devono lavare
-					loro=mi devono lavare		
-					devono mi=lavare loro
-					devono la=lavare loro
-					devono lo=lavare loro
-					devono lavare loro=la
-					devono lavare loro=lo
-					devono lavare loro=mi
-					
-			& stanno + lavando
-			
-				=> 10.1
-				& Grammatical
-				
-					loro mi=stanno lavando
-					mi=stanno lavando
-					la=stanno lavando
-					lo=stanno lavando
-					loro stanno lavando=mi
-					stanno lavando=mi
-					stanno lavando=la
-					stanno lavando=lo
-				
-				=> 10.0
-				& Ungrammatical
-				
-					loro stanno mi=lavando
-					stanno mi=lavando
-					stanno la=lavando
-					stanno lo=lavando
-					loro=mi stanno lavando
-					loro=la stanno lavando
-					loro=lo stanno lavando
-					
-		& Three-verb constructions (Aux + T/par + ARE/inf)
+		=> 10.1.1.1
+		& Ungrammatical, clitic in wrong position
 		
-			=> 10.1
-			& Grammatical
+			loro lavano=mi
+			lavano=mi
+			loro=mi lavano	
+			mi=loro lavano
+			loro lavano mi
+			loro mi=lavano Luisa
 			
-				loro mi=hanno voluto lavare
-				loro hanno voluto lavare=mi		
-				mi=hanno voluto lavare
-				hanno voluto lavare=mi
-			
-			=> 10.0
-			& Ungrammatical
-			
-				loro hanno mi=voluto lavare
-				loro hanno voluto mi=lavare
-				loro=mi hanno voluto lavare
-				mi=loro hanno voluto lavere	
-				hanno mi=voluto lavare
-				hanno voluto mi=lavare
-				
-		& CL-V agreement in clitic constructions
+		=> 10.1.1.1
+		& Ungrammatical, S-V agreement error
 		
-			=> 10.1
+			io mi=lavano
+			
+	& Two-verb transitive, direct object accusative clitics (10.2)
+	
+		& hanno + lavato
+		
+			=> 10.2.1.0
 			& Grammatical
 			
 				loro mi=hanno lavato
+				loro la=hanno lavata
+				mi=hanno lavato
+				la=hanno lavata
+				lo=hanno lavato
 			
-			=> 10.0
+			=> 10.2.1.1
 			& Ungrammatical
 			
-				loro la=hanno lavato
-				loro mi=hanno lavata
-				loro lo=hanno lavata
-				la=hanno lavato 
-				mi=hanno lavata
-				lo=hanno lavata
+				loro hanno mi=lavato
+				loro hanno la=lavato
+				hanno mi=lavato
+				io sono=mi lavato
+				loro hanno lo=lavato
+				hanno lo=lavato
+				hanno la=lavato
+				loro hanno lavato=mi
+				loro hanno lavato=la
+				loro hanno lavato=lo
+				mi=io sono lavato	
+				io=mi sono lavato
+				loro=mi hanno lavato
+				la=io sono lavato	
+				io=la sono lavato
+				loro=la hanno lavato
+				lo=io sono lavato	
+				io=lo sono lavato
+				loro=lo hanno lavato
+				mi=loro hanno lavato
+				io sono=la lavata
+				io sono=lo lavato
 				
-		& Indirect clitic arguments
+		& devono + lavare
 		
-			=> 10.1
+			=> 10.2.2.0
 			& Grammatical
 			
-				loro gli=lavano Luisa
-				gli=lavano Luisa
-				
-		& Clitic clusters
-		
-			=> 10.1
-			& Grammatical
+				loro mi=devono lavare
+				loro devono lavare=mi	
+				loro la=devono lavare
+				loro devono lavare=la
+				loro lo=devono lavare
+				loro devono lavare=lo
+				mi=devono lavare
+				devono lavare=mi	
+				la=devono lavare
+				devono lavare=la
+				lo=devono lavare
+				devono lavare=lo
 			
-				loro gli=la=hanno lavata
-				gli=la=hanno lavata
-		
-			=> 10.0
+			=> 10.2.2.1
 			& Ungrammatical
 			
-				loro la=gli=hanno lavata
-				la=gli=hanno lavata
-				loro hanno gli=la=lavata
-				hanno gli=la=lavata
+				loro devono mi=lavare
+				loro devono la=lavare
+				loro devono lo=lavare
+				loro=la devono lavare
+				loro=lo devono lavare
+				loro=mi devono lavare		
+				devono mi=lavare loro
+				devono la=lavare loro
+				devono lo=lavare loro
+				devono lavare loro=la
+				devono lavare loro=lo
+				devono lavare loro=mi
 				
-		& Restructuring
+		& stanno + lavando
 		
-			=> 10.1
+			=> 10.2.3.0
 			& Grammatical
 			
-				loro sembrano lavare=mi
-				Giuseppe spinge Luisa a lavare=lo
-				sembrano lavare=mi
-				spinge Luisa a lavare=lo
-		
-			=> 10.0
+				loro mi=stanno lavando
+				mi=stanno lavando
+				la=stanno lavando
+				lo=stanno lavando
+				loro stanno lavando=mi
+				stanno lavando=mi
+				stanno lavando=la
+				stanno lavando=lo
+			
+			=> 10.2.3.1
 			& Ungrammatical
 			
-				loro mi=sembrano lavare
-				mi=sembrano lavare
-				io lo=detesto lavare 
-				lo=detesto lavare
-				Giuseppe lo=spinge Luisa a lavare
-				lo=spinge Luisa a lavare Giuseppe			
-				io detesto lavare=lo
+				loro stanno mi=lavando
+				stanno mi=lavando
+				stanno la=lavando
+				stanno lo=lavando
+				loro=mi stanno lavando
+				loro=la stanno lavando
+				loro=lo stanno lavando
 				
-		& Reflexive clitics
+	& Three-verb constructions (Aux + T/par + ARE/inf)(10.3)
+	
+		=> 10.3.1.0
+		& Grammatical
 		
-			=> 10.1
-			& Grammatical
+			loro mi=hanno voluto lavare
+			loro hanno voluto lavare=mi		
+			mi=hanno voluto lavare
+			hanno voluto lavare=mi
+		
+		=> 10.3.1.1
+		& Ungrammatical
+		
+			loro hanno mi=voluto lavare
+			loro hanno voluto mi=lavare
+			loro=mi hanno voluto lavare
+			mi=loro hanno voluto lavere	
+			hanno mi=voluto lavare
+			hanno voluto mi=lavare
 			
-				io mi=lavo
-				mi=lavo
-				tu mi=lavi
+	& CL-V agreement in clitic constructions (10.4)
+	
+		=> 10.4.1.0
+		& Grammatical
+		
+			loro mi=hanno lavato
+		
+		=> 10.4.1.1
+		& Ungrammatical
+		
+			loro la=hanno lavato
+			loro mi=hanno lavata
+			loro lo=hanno lavata
+			la=hanno lavato 
+			mi=hanno lavata
+			lo=hanno lavata
+			
+	& Indirect clitic arguments (10.5)
+	
+		=> 10.5.1.0
+		& Grammatical
+		
+			loro gli=lavano Luisa
+			gli=lavano Luisa
+			
+	& Clitic clusters (10.6)
+	
+		=> 10.5.1.0
+		& Grammatical
+		
+			loro gli=la=hanno lavata
+			gli=la=hanno lavata
+	
+		=> 10.5.1.1
+		& Ungrammatical
+		
+			loro la=gli=hanno lavata
+			la=gli=hanno lavata
+			loro hanno gli=la=lavata
+			hanno gli=la=lavata
+			
+	& Restructuring (10.7)
+	
+		=> 10.6.1.0
+		& Grammatical
+		
+			loro sembrano lavare=mi
+			Giuseppe spinge Luisa a lavare=lo
+			sembrano lavare=mi
+			spinge Luisa a lavare=lo
+	
+		=> 10.6.1.1
+		& Ungrammatical
+		
+			loro mi=sembrano lavare
+			mi=sembrano lavare
+			io lo=detesto lavare 
+			lo=detesto lavare
+			Giuseppe lo=spinge Luisa a lavare
+			lo=spinge Luisa a lavare Giuseppe			
+			io detesto lavare=lo
+			
+	& Reflexive clitics (10.8)
+	
+		=> 10.7.1.0
+		& Grammatical
+		
+			io mi=lavo
+			mi=lavo
+			tu mi=lavi
 				mi=lavi
