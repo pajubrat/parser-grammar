@@ -4,42 +4,204 @@ from operator import itemgetter
 class PlausibilityMetrics:
     def __init__(self, controlling_parsing_process):
         self.cpp = controlling_parsing_process
+        self.weighted_site_list = []
+        self.word = None
+        self.plausibility_conditions = {}
+        self.word_specs = None
+        self.not_word_specs = None
+        self.rare_word_specs = None
+        self.word_tail_set = None
 
-    def rank_solutions(self, ps, w):
-        return self.rank_merge_right(self.filter(ps, w))
+    def rank_solutions_(self, ps, w):
+        return self.rank_merge_right_(self.filter(ps, w))
 
-    def filter(self, ps, w):
-        set_logging(True)
-        log('\n\t\t\tFiltering out impossible merge sites...')
-        adjunction_sites = []
-        if ps.bottom().bottom_affix().internal:
-            log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...')
-            self.cpp.consume_resources('Filter solution', 'sink')
-            log('Done.\n')
-            return [[ps.bottom()], w]
-        #--------------------geometrical minimal search------------------------------
-        for N in ps.geometrical_minimal_search():
-            if self.does_not_accept_any_complementizers(N):
-                log(f'Reject {N} + {w} because {N} does not accept complementizers...')
-                self.cpp.consume_resources('Filter solution')
-                continue
-            if N.is_complex() and self.bad_left_branch_test(N):
-                log(f'Reject {N} + {w} due to bad left branch...')
-                self.cpp.consume_resources('Filter solution')
-                continue
-            if self.breaks_words(N, w):
-                log(f'Reject {N} + {w} because it breaks words...')
-                self.cpp.consume_resources('Filter solution')
-                continue
-            adjunction_sites.append(N)
-        #-------------------------------------------------------------------------------
+    def positive_spec_selection(self, site):
+        return self.word_specs & site.features
+
+    def negative_spec_selection(self, site):
+        return self.not_word_specs & site.features
+
+    def rare_spec_selection(self, site):
+        return self.rare_word_specs & site.features
+
+    def break_head_comp_relations(self, site):
+        if not site.is_primitive() and site.mother and \
+                site.mother.left_const and site.mother.left_const.is_primitive():
+            if site.mother.left_const.licensed_complements() & site.features:
+                if 'ADV' not in self.word.features:
+                    return True
+
+    def negative_tail_test(self, site):
+        if site.is_primitive():
+            if self.word_tail_set:
+                test_word = self.word.copy()
+                site.merge_1(test_word, 'right')
+                if not test_word.internal_tail_head_test():
+                    test_word.remove()
+                    return True
+                test_word.remove()
+
+    def positive_head_comp_selection(self, site):
+        if site.is_primitive():
+            for m in site.get_affix_list():
+                if self.word.features & m.convert_features_for_parsing(m.licensed_complements()):
+                    return True
+
+    def negative_head_comp_selection(self, site):
+        if site.is_primitive():
+            for m in site.get_affix_list():
+                if self.word.features & m.convert_features_for_parsing(m.complements_not_licensed()):
+                    return True
+
+    def negative_semantic_match(self, site):
+        if site.is_primitive():
+            for m in site.get_affix_list():
+                if not self.cpp.LF.semantic_match(m, self.word):
+                    return True
+
+    def lf_legibility_condition(self, site):
+        if not site.is_primitive():
+            set_logging(False)
+            dropped = self.cpp.transfer_to_LF(site.copy())
+            if self.cpp.LF_legibility_test(dropped):
+                set_logging(True)
+                return True
+            set_logging(True)
+
+    def word_breaking(self, site):
+        if site.is_primitive() and self.is_word_internal(site):
+            if 'ADV' not in self.word.features:
+                return True
+
+    def negative_adverbial_test(self, site):
+        if 'ADV' in self.word.features and self.word_tail_set:
+            w_copy = self.word.copy()
+            site.merge_1(w_copy, 'right')
+            if 'T/fin' in str(w_copy.feature_vector()):
+                if not w_copy.external_tail_head_test():
+                    w_copy.remove()
+                    return True
+            w_copy.remove()
+
+    def positive_adverbial_test(self, site):
+        if 'ADV' in self.word.features and self.word_tail_set:
+            w_copy = self.word.copy()
+            site.merge_1(w_copy, 'right')
+            if 'T/fin' in str(w_copy.feature_vector()):
+                if w_copy.external_tail_head_test():
+                    w_copy.remove()
+                    return True
+            w_copy.remove()
+
+    def phillips_anomaly(self, site_list):
+        return site_list
+
+    def init(self):
+        self.weighted_site_list = []
+        self.word = None
+        self.word_specs = None
+        self.not_word_specs = None
+        self.rare_word_specs = None
+        self.word_tail_set = None
+        self.plausibility_conditions = \
+            {'positive_spec_selection':         {'condition': self.positive_spec_selection,
+                                                 'weight': 100,
+                                                 'log': 'Positive specifier selection...'},
+             'negative_spec_selection':         {'condition': self.negative_spec_selection,
+                                                 'weight': -100,
+                                                 'log': 'Negative specifier selection...'},
+             'rare_spec_selection':             {'condition': self.rare_spec_selection,
+                                                 'weight': -100,
+                                                 'log': 'Rare specifier selection...'},
+             'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
+                                                 'weight': -100,
+                                                 'log': 'Head-complement word breaking condition...'},
+             'negative_tail_test':              {'condition': self.negative_tail_test,
+                                                 'weight': -50,
+                                                 'log': 'Negative tail test condition...'},
+             'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
+                                                 'weight': 100,
+                                                 'log': 'Positive head-complement selection...'},
+             'negative_head_comp_selection':    {'condition': self.negative_head_comp_selection,
+                                                 'weight': -100,
+                                                 'log': 'Negative head-complement selection...'},
+             'negative_semantics_match':        {'condition': self.negative_semantic_match,
+                                                 'weight': -100,
+                                                 'log': 'Semantic mismatch condition...'},
+             'lf_legibility_condition':         {'condition': self.lf_legibility_condition,
+                                                 'weight': -100,
+                                                 'log': 'Negative LF-legibility condition for left branch...'},
+             'word_breaking':                   {'condition': self.word_breaking,
+                                                 'weight': -100,
+                                                 'log': 'Word breaking...'},
+             'negative_adverbial_test':         {'condition': self.negative_adverbial_test,
+                                                 'weight': -100,
+                                                 'log': 'Negative adverbial condition...'},
+             'positive_adverbial_test':         {'condition': self.positive_adverbial_test,
+                                                 'weight': 100,
+                                                 'log': 'Positive adverbial condition...'}
+             }
+
+    def rank_merge_right_(self, sites_and_word_tuple):
+        self.init()                                           # Move this to the object initialization later
+        site_list, word = sites_and_word_tuple
+        self.word = word
+        self.word_specs = word.convert_features_for_parsing(word.licensed_specifiers())
+        self.not_word_specs =  word.convert_features_for_parsing(word.specifiers_not_licensed())
+        self.rare_word_specs = word.convert_features_for_parsing(word.rare_specs())
+        self.word_tail_set = word.get_tail_sets()
+        log('Ranking...The following conditions were applied: ')
+
+        self.weighted_site_list = self.create_baseline_weighting([(site, 0) for site in site_list])
+        calculated_weighted_site_list = []
+        number_of_negative_selection = 0
+        for site, weight in self.weighted_site_list:
+            new_weight = weight
+            for key in self.plausibility_conditions:
+                if self.plausibility_conditions[key]['condition'](site):
+                    self.cpp.consume_resources('Rank solution')
+                    log(self.plausibility_conditions[key]['log'])
+                    new_weight = new_weight + self.plausibility_conditions[key]['weight']
+                    if self.plausibility_conditions[key]['weight'] < 0:
+                        number_of_negative_selection = number_of_negative_selection + 1
+            calculated_weighted_site_list.append((site, new_weight))
+
+        if number_of_negative_selection == len(site_list):
+            calculated_weighted_site_list = self.phillips_anomaly(calculated_weighted_site_list)
+
+        sorted_and_calculated_merge_sites = sorted(calculated_weighted_site_list, key=itemgetter(1))
+        merge_sites = [site for site, priority in sorted_and_calculated_merge_sites]
+        merge_sites.reverse()
         log('Done.\n')
-        return [adjunction_sites, w]
+        log(f'\t\t\tResults: ')
+        for i, site in enumerate(merge_sites, start=1):
+            log(f'({i}) [{site} + {self.word}] ')
+        log('.\n')
 
+        return merge_sites
+
+    def create_baseline_weighting(self, weighted_site_list):
+        new_weighted_site_list = [(site, j) for j, (site, i) in enumerate(weighted_site_list, start=1)]
+        new_weighted_site_list[0] = (new_weighted_site_list[0][0], len(weighted_site_list))
+        new_weighted_site_list[-1] = (new_weighted_site_list[-1][0], len(weighted_site_list)+1)
+        new_weighted_site_list = [(site, weight-1) for site, weight in new_weighted_site_list]
+        return new_weighted_site_list
+
+
+
+
+
+
+
+
+
+
+
+
+# --------------------------- old ranking algorithm --------------------------------------------------#
     # Definition for the ranking function
     def rank_merge_right(self, arg_list):
-        site_list = arg_list[0]
-        w = arg_list[1]
+        site_list, w = arg_list
         if len(site_list) <= 1:
             return site_list
         log('\t\t\tRanking remaining sites...')
@@ -259,4 +421,34 @@ class PlausibilityMetrics:
         else:
             return False
 
+    # Depreciated old solution
+    def rank_solutions(self, ps, w):
+        return self.rank_merge_right(self.filter(ps, w))
+
+    def filter(self, ps, w):
+        set_logging(True)
+        log('\n\t\t\tFiltering...')
+        adjunction_sites = []
+        if ps.bottom().bottom_affix().internal:
+            log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...')
+            self.cpp.consume_resources('Filter solution', 'sink')
+            log('Done.\n')
+            return [[ps.bottom()], w]
+        #--------------------geometrical minimal search------------------------------
+        for N in ps.geometrical_minimal_search():
+            if self.does_not_accept_any_complementizers(N):
+                log(f'Reject {N} + {w} because {N} does not accept complementizers...')
+                self.cpp.consume_resources('Filter solution')
+                continue
+            if N.is_complex() and self.bad_left_branch_test(N):
+                log(f'Reject {N} + {w} due to bad left branch...')
+                self.cpp.consume_resources('Filter solution')
+                continue
+            if self.breaks_words(N, w):
+                log(f'Reject {N} + {w} because it breaks words...')
+                self.cpp.consume_resources('Filter solution')
+                continue
+            adjunction_sites.append(N)
+        #-------------------------------------------------------------------------------
+        return [adjunction_sites, w]
 

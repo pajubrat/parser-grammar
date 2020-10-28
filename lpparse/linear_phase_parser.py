@@ -141,7 +141,7 @@ class LinearPhaseParser:
                     log(f'\n\t{self.resources["Item streamed into syntax"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
                     log(ps.illustrate() + ' + ' + terminal_lexical_item.get_phonological_string())
                     # -------------------------- consider merge solutions ------------------------------------- #
-                    merge_sites = self.plausibility_metrics.rank_solutions(ps, terminal_lexical_item)
+                    merge_sites = self.plausibility_metrics.rank_solutions_(ps, terminal_lexical_item)
                     for site in merge_sites:
                         ps_ = ps.top().copy()
                         left_branch_site_ = ps_.identify_equivalent_node(site)
