@@ -62,6 +62,8 @@ class LocalFileSystem:
         for line in config_file:
             line = line.strip().replace('\t', '').replace(' ', '')
             key, value = line.split(':', 1)
+            if ',' in value:
+                value = value.split(',')
             self.settings[key] = value
         for key in self.settings:
             if isinstance(self.settings[key], str):
@@ -69,6 +71,7 @@ class LocalFileSystem:
                     self.settings[key] = True
                 elif self.settings[key].lower() in {'false', 'no'}:
                     self.settings[key] = False
+
         for key in self.settings:
             print(f'{key}: {self.settings[key]}')
         config_file.close()

@@ -13,7 +13,7 @@ from phrase_structure import PhraseStructure
 class LinearPhaseParser:
     def __init__(self, local_file_system, language=''):
         self.sentence = ''
-        self.external_sources = local_file_system.external_sources
+        self.local_file_system = local_file_system              # Access to file system (e.g., lexicon, settings)
         self.language = language                                # Contextual variables (language etc.)
         self.result_list = []                                   # Results (final analyses)
         self.spellout_result_list = []                          # Results (spellout structures)
@@ -68,7 +68,7 @@ class LinearPhaseParser:
         self.grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
         self.time_from_stimulus_onset = 0
         self.time_from_stimulus_onset_for_word = []
-        # Reset  operation counters in the PhraseStructure class
+        # Reset operation counters in the PhraseStructure class
         for key in PhraseStructure.resources:
             PhraseStructure.resources[key] = {"ms": 1, "n": 0}
         self.resources = {"Garden Paths": {'ms': 1, 'n': 0},
@@ -90,7 +90,6 @@ class LinearPhaseParser:
                           "Filter solution": {'ms': 5, 'n': 0},
                           "Rank solution": {'ms': 5, 'n': 0},
                           "Lexical retrieval": {'ms': 5, 'n': 0},
-                          "Primitive Merge": {'ms': 1, 'n': 0},
                           "Morphological decomposition": {'ms': 5, 'n': 0}
                           }
 
@@ -141,7 +140,7 @@ class LinearPhaseParser:
                     log(f'\n\t{self.resources["Item streamed into syntax"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
                     log(ps.illustrate() + ' + ' + terminal_lexical_item.get_phonological_string())
                     # -------------------------- consider merge solutions ------------------------------------- #
-                    merge_sites = self.plausibility_metrics.rank_solutions_(ps, terminal_lexical_item)
+                    merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
                     for site in merge_sites:
                         ps_ = ps.top().copy()
                         left_branch_site_ = ps_.identify_equivalent_node(site)
@@ -214,7 +213,7 @@ class LinearPhaseParser:
             self.consume_resources("Garden Paths")
 
     def preparations(self, ps):
-        log('\t------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        log('\n\t------------------------------------------------------------------------------------------------------------------------------------------------\n')
         log(f'\tTrying spellout structure  ' + ps.illustrate() + '\n')
 
     def report_solution(self, ps, spellout_structure):

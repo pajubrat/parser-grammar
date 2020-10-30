@@ -14,7 +14,7 @@ class LexicalInterface:
     # Definition for the process that reads the redundancy rules from a file
     def load_redundancy_rules(self, controlling_parser_process):
         redundancy_rules_dict = {}
-        for line in open(controlling_parser_process.external_sources["redundancy_rules"]):
+        for line in open(controlling_parser_process.local_file_system.external_sources["redundancy_rules"]):
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
@@ -26,8 +26,8 @@ class LexicalInterface:
 
     # Definition for process that loads the lexicon into memory
     def load_lexicon(self, controlling_parser_process):
-        self.load_lexicon_(controlling_parser_process.external_sources["lexicon_file_name"])
-        self.load_lexicon_(controlling_parser_process.external_sources["ug_morphemes"], True)
+        self.load_lexicon_(controlling_parser_process.local_file_system.external_sources["lexicon_file_name"])
+        self.load_lexicon_(controlling_parser_process.local_file_system.external_sources["ug_morphemes"], True)
         return self.surface_vocabulary
 
     # Definition for the process that loads the language specific lexicon

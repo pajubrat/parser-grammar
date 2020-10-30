@@ -1,5 +1,10 @@
 from support import set_logging, log
 from operator import itemgetter
+from knockouts import knockout_filter, \
+    knockout_rank_merge_right, \
+    knockout_head_complement_selection, \
+    knockout_spec_head_selection, \
+    knockout_semantic_ranking
 
 class PlausibilityMetrics:
     def __init__(self, controlling_parsing_process):
@@ -12,15 +17,25 @@ class PlausibilityMetrics:
         self.rare_word_specs = None
         self.word_tail_set = None
 
-    def rank_solutions_(self, ps, w):
-        return self.rank_merge_right_(self.filter(ps, w))
+    # Main entry point
+    def filter_and_rank(self, ps, w):
+        log(f'\n\t\tFiltering and ranking merge sites...')
+        merge_sites = self.rank_merge_right_(self.filter(ps, w))
+        log('Done.\n')
+        log(f'\t\tResults: ')
+        for i, site in enumerate(merge_sites, start=1):
+            log(f'({i}) [{site} + {w}] ')
+        return merge_sites
 
+    @knockout_spec_head_selection
     def positive_spec_selection(self, site):
         return self.word_specs & site.features
 
+    @knockout_spec_head_selection
     def negative_spec_selection(self, site):
         return self.not_word_specs & site.features
 
+    @knockout_spec_head_selection
     def rare_spec_selection(self, site):
         return self.rare_word_specs & site.features
 
@@ -41,24 +56,28 @@ class PlausibilityMetrics:
                     return True
                 test_word.remove()
 
+    @knockout_head_complement_selection
     def positive_head_comp_selection(self, site):
         if site.is_primitive():
             for m in site.get_affix_list():
                 if self.word.features & m.convert_features_for_parsing(m.licensed_complements()):
                     return True
 
+    @knockout_head_complement_selection
     def negative_head_comp_selection(self, site):
         if site.is_primitive():
             for m in site.get_affix_list():
                 if self.word.features & m.convert_features_for_parsing(m.complements_not_licensed()):
                     return True
 
+    @knockout_semantic_ranking
     def negative_semantic_match(self, site):
         if site.is_primitive():
             for m in site.get_affix_list():
                 if not self.cpp.LF.semantic_match(m, self.word):
                     return True
 
+    @knockout_semantic_ranking
     def lf_legibility_condition(self, site):
         if not site.is_primitive():
             set_logging(False)
@@ -94,9 +113,9 @@ class PlausibilityMetrics:
             w_copy.remove()
 
     def phillips_anomaly(self, site_list):
-        return site_list
+        return site_list    # Currently not implemented
 
-    def init(self):
+    def initialize(self):
         self.weighted_site_list = []
         self.word = None
         self.word_specs = None
@@ -142,8 +161,9 @@ class PlausibilityMetrics:
                                                  'log': 'Positive adverbial condition...'}
              }
 
+    @knockout_rank_merge_right
     def rank_merge_right_(self, sites_and_word_tuple):
-        self.init()                                           # Move this to the object initialization later
+        self.initialize()                                           # Move this to the object initialization later
         site_list, word = sites_and_word_tuple
         self.word = word
         self.word_specs = word.convert_features_for_parsing(word.licensed_specifiers())
@@ -172,12 +192,6 @@ class PlausibilityMetrics:
         sorted_and_calculated_merge_sites = sorted(calculated_weighted_site_list, key=itemgetter(1))
         merge_sites = [site for site, priority in sorted_and_calculated_merge_sites]
         merge_sites.reverse()
-        log('Done.\n')
-        log(f'\t\t\tResults: ')
-        for i, site in enumerate(merge_sites, start=1):
-            log(f'({i}) [{site} + {self.word}] ')
-        log('.\n')
-
         return merge_sites
 
     def create_baseline_weighting(self, weighted_site_list):
@@ -187,7 +201,33 @@ class PlausibilityMetrics:
         new_weighted_site_list = [(site, weight-1) for site, weight in new_weighted_site_list]
         return new_weighted_site_list
 
-
+    @knockout_filter
+    def filter(self, ps, w):
+        set_logging(True)
+        log('\n\t\t\tFiltering...')
+        adjunction_sites = []
+        if ps.bottom().bottom_affix().internal:
+            log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...')
+            self.cpp.consume_resources('Filter solution', 'sink')
+            log('Done.\n')
+            return [[ps.bottom()], w]
+        #--------------------geometrical minimal search------------------------------
+        for N in ps.geometrical_minimal_search():
+            if self.does_not_accept_any_complementizers(N):
+                log(f'Reject {N} + {w} because {N} does not accept complementizers...')
+                self.cpp.consume_resources('Filter solution')
+                continue
+            if N.is_complex() and self.bad_left_branch_test(N):
+                log(f'Reject {N} + {w} due to bad left branch...')
+                self.cpp.consume_resources('Filter solution')
+                continue
+            if self.breaks_words(N, w):
+                log(f'Reject {N} + {w} because it breaks words...')
+                self.cpp.consume_resources('Filter solution')
+                continue
+            adjunction_sites.append(N)
+        #-------------------------------------------------------------------------------
+        return [adjunction_sites, w]
 
 
 
@@ -425,30 +465,9 @@ class PlausibilityMetrics:
     def rank_solutions(self, ps, w):
         return self.rank_merge_right(self.filter(ps, w))
 
-    def filter(self, ps, w):
-        set_logging(True)
-        log('\n\t\t\tFiltering...')
-        adjunction_sites = []
-        if ps.bottom().bottom_affix().internal:
-            log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...')
-            self.cpp.consume_resources('Filter solution', 'sink')
-            log('Done.\n')
-            return [[ps.bottom()], w]
-        #--------------------geometrical minimal search------------------------------
-        for N in ps.geometrical_minimal_search():
-            if self.does_not_accept_any_complementizers(N):
-                log(f'Reject {N} + {w} because {N} does not accept complementizers...')
-                self.cpp.consume_resources('Filter solution')
-                continue
-            if N.is_complex() and self.bad_left_branch_test(N):
-                log(f'Reject {N} + {w} due to bad left branch...')
-                self.cpp.consume_resources('Filter solution')
-                continue
-            if self.breaks_words(N, w):
-                log(f'Reject {N} + {w} because it breaks words...')
-                self.cpp.consume_resources('Filter solution')
-                continue
-            adjunction_sites.append(N)
-        #-------------------------------------------------------------------------------
-        return [adjunction_sites, w]
+    def no_filter(self, ps, w):
+        return ps.geometrical_minimal_search(), w
 
+    def no_ranking(self, sites_and_word_tuple):
+        site_list, word = sites_and_word_tuple
+        return site_list
