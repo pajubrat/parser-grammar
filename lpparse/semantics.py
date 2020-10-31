@@ -84,6 +84,7 @@ class Semantics:
     # Definition for LF-recovery
     def LF_recovery(self, head, unvalued_phi):
         self.controlling_parsing_process.consume_resources("LF recovery")
+        self.controlling_parsing_process.consume_resources("Phi")
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             # ----------------------- minimal upstream search -----------------------------------------------#

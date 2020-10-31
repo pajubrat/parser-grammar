@@ -4,7 +4,8 @@ from knockouts import knockout_filter, \
     knockout_rank_merge_right, \
     knockout_head_complement_selection, \
     knockout_spec_head_selection, \
-    knockout_semantic_ranking
+    knockout_semantic_ranking, \
+    knockout_create_baseline_weighting
 
 class PlausibilityMetrics:
     def __init__(self, controlling_parsing_process):
@@ -194,8 +195,9 @@ class PlausibilityMetrics:
         merge_sites.reverse()
         return merge_sites
 
+    @knockout_create_baseline_weighting
     def create_baseline_weighting(self, weighted_site_list):
-        new_weighted_site_list = [(site, j) for j, (site, i) in enumerate(weighted_site_list, start=1)]
+        new_weighted_site_list = [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
         new_weighted_site_list[0] = (new_weighted_site_list[0][0], len(weighted_site_list))
         new_weighted_site_list[-1] = (new_weighted_site_list[-1][0], len(weighted_site_list)+1)
         new_weighted_site_list = [(site, weight-1) for site, weight in new_weighted_site_list]

@@ -59,12 +59,14 @@ class LocalFileSystem:
 
     def read_study_config_file(self):
         config_file = open(self.folder['study'] / 'config_study.txt')
+        # Read file into dict
         for line in config_file:
             line = line.strip().replace('\t', '').replace(' ', '')
             key, value = line.split(':', 1)
             if ',' in value:
                 value = value.split(',')
             self.settings[key] = value
+        # Process values based on keys if necessary
         for key in self.settings:
             if isinstance(self.settings[key], str):
                 if self.settings[key].lower() in {'true', 'yes'}:
@@ -75,7 +77,6 @@ class LocalFileSystem:
         for key in self.settings:
             print(f'{key}: {self.settings[key]}')
         config_file.close()
-
 
     def initialize_resource_sequence_file(self):
         self.resource_sequence_file = open(self.external_sources['resource_sequence_file'], 'w', -1, 'utf-8')
@@ -98,7 +99,7 @@ class LocalFileSystem:
         self.stamp(self.resources_file)
 
     def add_columns_to_resources_file(self, resources, experimental_group):
-        self.resources_file.write("Number,Sentence,")
+        self.resources_file.write("Number,Sentence,Study_ID,")
         for index, group in enumerate(experimental_group):
             self.resources_file.write(f"Group {index},")
         for key in resources:
@@ -209,6 +210,7 @@ class LocalFileSystem:
             self.add_columns_to_resources_file(parser.resources, experimental_group)
         self.resources_file.write(str(count) + ',')
         self.resources_file.write(f'{sentence},')
+        self.resources_file.write(f'{self.settings.get("study_id", "0")},')
         self.resources_file.write(','.join(experimental_group))
         self.resources_file.write(',')
         if len(parser.result_list) > 0:

@@ -45,9 +45,13 @@ class LinearPhaseParser:
         self.grammaticality_judgement = []
         self.time_from_stimulus_onset = 0
         self.time_from_stimulus_onset_for_word = []
+        self.only_first_solution = False
 
     # Definition for parser initialization
     def initialize(self):
+        if 'only_file_solution' in self.local_file_system.settings:
+            if self.local_file_system.settings['only_first_solution']:
+                self.only_first_solution = True
         self.name_provider_index = 0
         self.number_of_items_consumed = 0
         self.result_list = []  # Results (final analyses)
@@ -79,6 +83,7 @@ class LinearPhaseParser:
                           "A-bar Move Phrase": {'ms': 5, 'n': 0},
                           "Move Adjunct": {'ms': 15, 'n': 0},
                           "Agree": {'ms': 5, 'n': 0},
+                          "Phi": {'ms': 5, 'n': 0},
                           "Transfer": {'ms': 5, 'n': 0},
                           "Item streamed into syntax": {'ms': 5, 'n': 0},
                           "Feature Processing": {'ms': 5, 'n': 0},
@@ -204,7 +209,8 @@ class LinearPhaseParser:
         log('Done.\n')
         log(f'\t\tSolution was accepted ({self.time_from_stimulus_onset}ms).\n')
         self.resources.update(PhraseStructure.resources)
-        self.first_solution_found = True
+        if self.only_first_solution:
+            self.exit = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
         self.report_solution(ps_, spellout_structure)
 

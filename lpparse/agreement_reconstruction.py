@@ -33,6 +33,7 @@ class AgreementReconstruction:
     # Definition for phi-feature acquisition (Agree-1)
     def Agree_1(self, head):
         self.controlling_parsing_process.consume_resources("Agree")
+        self.controlling_parsing_process.consume_resources("Phi")
         goal, phi_features = self.Agree_1_from_sister(head)
         for phi in phi_features:
             self.value(head, goal, phi, 'sister')

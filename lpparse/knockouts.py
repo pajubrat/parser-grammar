@@ -44,3 +44,12 @@ def knockout_semantic_ranking(funct):
                 return False
         return funct(self, site)
     return knockout
+
+def knockout_create_baseline_weighting(funct):
+    def knockout(self, weighted_list):
+        if 'knockouts' in self.cpp.local_file_system.settings:
+            if 'baseline_weighting' in self.cpp.local_file_system.settings['knockouts']:
+                log(f'Baseline weighting blocked...')
+                return [(site, -j) for j, (site, w) in enumerate(weighted_list, start=1)]
+        return funct(self, weighted_list)
+    return knockout
