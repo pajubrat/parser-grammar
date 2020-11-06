@@ -1,5 +1,3 @@
-import datetime
-from linear_phase_parser import LinearPhaseParser
 from pathlib import Path
 from log_functions import *
 from visualizer import Visualizer
@@ -17,24 +15,29 @@ class LocalFileSystem:
         self.settings = {}
         self.timings_file = None
         self.resource_sequence_file = None
+        self.logger_handle = None
 
-    def initialize(self, args):
-        self.read_root_config_file()
+    def initialize(self, args, folder, file):
+        if folder and file:
+            self.settings['study_folder'] = folder
+            self.settings['test_corpus_file'] = file
+        else:
+            self.read_root_config_file()
         self.folder['data'] = Path("language data working directory")
         self.folder['study'] = self.folder['data'] / self.settings['study_folder']
         self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
         self.external_sources = {"test_corpus_file_name": self.folder['study'] / self.settings['test_corpus_file'],
-                           "log_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_log.txt'),
-                           "results_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_results.txt'),
-                           "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
-                           "resources_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resources.txt'),
-                           "lexicon_file_name": self.folder['data'] / 'lexicon.txt',
-                           "ug_morphemes": self.folder['data'] / 'ug_morphemes.txt',
-                           "redundancy_rules": self.folder['data'] / 'redundancy_rules.txt',
-                           "timings_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_timings.txt'),
-                            "resource_sequence_file": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resource_sequence.txt'),
-                           "surface_vocabulary_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_saved_vocabulary.txt')
-                            }
+                                 "log_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_log.txt'),
+                                 "results_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_results.txt'),
+                                 "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
+                                 "resources_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resources.txt'),
+                                 "lexicon_file_name": self.folder['data'] / 'lexicon.txt',
+                                 "ug_morphemes": self.folder['data'] / 'ug_morphemes.txt',
+                                 "redundancy_rules": self.folder['data'] / 'redundancy_rules.txt',
+                                 "timings_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_timings.txt'),
+                                 "resource_sequence_file": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resource_sequence.txt'),
+                                 "surface_vocabulary_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_saved_vocabulary.txt')
+                                 }
         self.read_study_config_file()
         self.initialize_image_folder()
         self.initialize_grammaticality_judgments_file()
@@ -59,6 +62,7 @@ class LocalFileSystem:
 
     def read_study_config_file(self):
         config_file = open(self.folder['study'] / 'config_study.txt')
+
         # Read file into dict
         for line in config_file:
             line = line.strip().replace('\t', '').replace(' ', '')
@@ -66,6 +70,7 @@ class LocalFileSystem:
             if ',' in value:
                 value = value.split(',')
             self.settings[key] = value
+
         # Process values based on keys if necessary
         for key in self.settings:
             if isinstance(self.settings[key], str):
@@ -276,13 +281,12 @@ class LocalFileSystem:
         self.resources_file.close()
         self.timings_file.close()
         self.resource_sequence_file.close()
+        self.logger_handle.close()
 
     def print_result_to_console(self, parser, count, sentence):
         input_sentence_string = self.generate_input_sentence_string(sentence)
-        if len(parser.result_list) == 0:
-            print('\n' + str(count) + '. *' + input_sentence_string)
-        else:
-            print('\n' + str(count) + '. ' + parser.grammaticality_judgment() + input_sentence_string + '\n')
+        if len(parser.result_list) > 0:
+            print('\n\n\t' + parser.grammaticality_judgment() + input_sentence_string + '\n')
             number_of_solutions = len(parser.result_list)
             parse_number = 1
             for parse, semantic_interpretation in parser.result_list:

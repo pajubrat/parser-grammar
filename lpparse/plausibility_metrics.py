@@ -1,11 +1,9 @@
 from support import set_logging, log
 from operator import itemgetter
 from knockouts import knockout_filter, \
-    knockout_rank_merge_right, \
-    knockout_head_complement_selection, \
-    knockout_spec_head_selection, \
-    knockout_semantic_ranking, \
-    knockout_create_baseline_weighting
+    knockout_extra_ranking, \
+    knockout_lexical_ranking, \
+    knockout_late_closure
 
 class PlausibilityMetrics:
     def __init__(self, controlling_parsing_process):
@@ -28,18 +26,19 @@ class PlausibilityMetrics:
             log(f'({i}) [{site} + {w}] ')
         return merge_sites
 
-    @knockout_spec_head_selection
+    @knockout_lexical_ranking
     def positive_spec_selection(self, site):
         return self.word_specs & site.features
 
-    @knockout_spec_head_selection
+    @knockout_lexical_ranking
     def negative_spec_selection(self, site):
         return self.not_word_specs & site.features
 
-    @knockout_spec_head_selection
+    @knockout_lexical_ranking
     def rare_spec_selection(self, site):
         return self.rare_word_specs & site.features
 
+    @knockout_lexical_ranking
     def break_head_comp_relations(self, site):
         if not site.is_primitive() and site.mother and \
                 site.mother.left_const and site.mother.left_const.is_primitive():
@@ -47,6 +46,7 @@ class PlausibilityMetrics:
                 if 'ADV' not in self.word.features:
                     return True
 
+    @knockout_lexical_ranking
     def negative_tail_test(self, site):
         if site.is_primitive():
             if self.word_tail_set:
@@ -57,42 +57,44 @@ class PlausibilityMetrics:
                     return True
                 test_word.remove()
 
-    @knockout_head_complement_selection
+    @knockout_lexical_ranking
     def positive_head_comp_selection(self, site):
         if site.is_primitive():
             for m in site.get_affix_list():
                 if self.word.features & m.convert_features_for_parsing(m.licensed_complements()):
                     return True
 
-    @knockout_head_complement_selection
+    @knockout_lexical_ranking
     def negative_head_comp_selection(self, site):
         if site.is_primitive():
             for m in site.get_affix_list():
                 if self.word.features & m.convert_features_for_parsing(m.complements_not_licensed()):
                     return True
 
-    @knockout_semantic_ranking
+    @knockout_lexical_ranking
     def negative_semantic_match(self, site):
         if site.is_primitive():
             for m in site.get_affix_list():
                 if not self.cpp.LF.semantic_match(m, self.word):
                     return True
 
-    @knockout_semantic_ranking
+    @knockout_extra_ranking
     def lf_legibility_condition(self, site):
         if not site.is_primitive():
             set_logging(False)
             dropped = self.cpp.transfer_to_LF(site.copy())
-            if self.cpp.LF_legibility_test(dropped):
+            if not self.cpp.LF_legibility_test(dropped):
                 set_logging(True)
                 return True
             set_logging(True)
 
+    @knockout_extra_ranking
     def word_breaking(self, site):
         if site.is_primitive() and self.is_word_internal(site):
             if 'ADV' not in self.word.features:
                 return True
 
+    @knockout_lexical_ranking
     def negative_adverbial_test(self, site):
         if 'ADV' in self.word.features and self.word_tail_set:
             w_copy = self.word.copy()
@@ -103,6 +105,7 @@ class PlausibilityMetrics:
                     return True
             w_copy.remove()
 
+    @knockout_lexical_ranking
     def positive_adverbial_test(self, site):
         if 'ADV' in self.word.features and self.word_tail_set:
             w_copy = self.word.copy()
@@ -162,7 +165,6 @@ class PlausibilityMetrics:
                                                  'log': 'Positive adverbial condition...'}
              }
 
-    @knockout_rank_merge_right
     def rank_merge_right_(self, sites_and_word_tuple):
         self.initialize()                                           # Move this to the object initialization later
         site_list, word = sites_and_word_tuple
@@ -195,7 +197,7 @@ class PlausibilityMetrics:
         merge_sites.reverse()
         return merge_sites
 
-    @knockout_create_baseline_weighting
+    @knockout_late_closure
     def create_baseline_weighting(self, weighted_site_list):
         new_weighted_site_list = [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
         new_weighted_site_list[0] = (new_weighted_site_list[0][0], len(weighted_site_list))

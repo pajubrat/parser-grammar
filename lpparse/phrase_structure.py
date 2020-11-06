@@ -367,7 +367,7 @@ class PhraseStructure:
     # X.sink(ps) = adds ps to X as the bottom affix
     def sink(self, ps):
         self.consume_resources('Sink')
-        bottom_affix = self.get_affix_list()[-1]
+        bottom_affix = self.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
         bottom_affix.right_const = ps
         ps.mother = bottom_affix
         bottom_affix.left_const = None

@@ -151,25 +151,6 @@ def set_logging(value):
 def is_logging():
     return log_instance.logging
 
-def log_color(text, color_code):
-    if log_instance.logging:
-        if log_instance.colors:
-            my_log.info(f'\033[1{color_code}m{text}\033[0m')
-        else:
-            my_log.info(text)
-
-def log_bold(text):
-    log_color(text, '')
-
-def log_red(text):
-    log_color(text, ';31')
-
-def log_blue(text):
-    log_color(text, ';34')
-
-def log_cyan(text):
-    log_color(text, ';36')
-
 def log_result(ps):
 
     log(f'\n\t\tSolution:\t\t{ps.illustrate()}')

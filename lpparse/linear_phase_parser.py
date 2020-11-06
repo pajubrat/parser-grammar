@@ -49,7 +49,7 @@ class LinearPhaseParser:
 
     # Definition for parser initialization
     def initialize(self):
-        if 'only_file_solution' in self.local_file_system.settings:
+        if 'only_first_solution' in self.local_file_system.settings:
             if self.local_file_system.settings['only_first_solution']:
                 self.only_first_solution = True
         self.name_provider_index = 0
@@ -143,14 +143,16 @@ class LinearPhaseParser:
                     self.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
                 else:
                     log(f'\n\t{self.resources["Item streamed into syntax"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
-                    log(ps.illustrate() + ' + ' + terminal_lexical_item.get_phonological_string())
+                    log(f'{ps}' + ' + ' + terminal_lexical_item.get_phonological_string())
                     # -------------------------- consider merge solutions ------------------------------------- #
                     merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
                     for site in merge_sites:
                         ps_ = ps.top().copy()
                         left_branch_site_ = ps_.identify_equivalent_node(site)
                         if left_branch_site_.bottom_affix().internal:
-                            new_ps = left_branch_site_.sink(terminal_lexical_item)
+                            log(f'\n\t\tSinking {terminal_lexical_item} into {left_branch_site_.bottom_affix()} = ')
+                            new_ps = left_branch_site_.bottom_affix().sink(terminal_lexical_item)
+                            log(f'{new_ps.top()}')
                             self.consume_resources("Merge", f'{terminal_lexical_item}')
                         else:
                             log(f'\n\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
@@ -166,6 +168,7 @@ class LinearPhaseParser:
                         if self.exit:
                             break
                     # ---------------------------------------------------------------------------------------- #
+                    print('.', end='', flush=True)
         # If all solutions in the list have been explored,  backtrack
         if not self.exit:
             log('\n\tBacktracking to previous branching point...')

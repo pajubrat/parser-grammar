@@ -12,23 +12,27 @@ class Diagnostics:
     # 4 - no filter
     # 5 - no filter, no ranking
     def run_resource_diagnostics(self):
-        files_to_read = [".\language data working directory\study-6-linear-phase-theory\Study-1\linear_phase_theory_corpus_resources.txt",
-                         ".\language data working directory\study-6-linear-phase-theory\Study-2\linear_phase_theory_corpus_resources.txt",
-                         ".\language data working directory\study-6-linear-phase-theory\Study-3\linear_phase_theory_corpus_resources.txt",
-                         ".\language data working directory\study-6-linear-phase-theory\Study-4\linear_phase_theory_corpus_resources.txt",
-                         ".\language data working directory\study-6-linear-phase-theory\Study-5\linear_phase_theory_corpus_resources.txt",
+        files_to_read = [".\language data working directory\study-6-linear-phase-theory/1 Condition-1-1-1\linear_phase_theory_corpus_resources.txt",
+                         ".\language data working directory\study-6-linear-phase-theory/2 Condition-1-1-0\linear_phase_theory_corpus_resources.txt",
+                         ".\language data working directory\study-6-linear-phase-theory/3 Condition-1-0-1\linear_phase_theory_corpus_resources.txt",
+                         ".\language data working directory\study-6-linear-phase-theory/4 Condition-1-0-0\linear_phase_theory_corpus_resources.txt",
+                         ".\language data working directory\study-6-linear-phase-theory/5 Condition-0-1-1\linear_phase_theory_corpus_resources.txt",
+                         ".\language data working directory\study-6-linear-phase-theory/6 Condition-0-1-0\linear_phase_theory_corpus_resources.txt",
+                         ".\language data working directory\study-6-linear-phase-theory/7 Condition-0-0-1\linear_phase_theory_corpus_resources.txt",
+                         ".\language data working directory\study-6-linear-phase-theory/8 Condition-0-0-0\linear_phase_theory_corpus_resources.txt",
+                         ".\language data working directory\study-6-linear-phase-theory/9 Condition-1-1-1-1\linear_phase_theory_corpus_resources.txt"
                          ]
         self.read_data(files_to_read)
         self.remove_ungrammatical_sentences()
         self.add_combined_metrics()
         self.combine_all_into_one()
-        self.compare_studies(['Merge', 'Move', 'Garden Paths'])
+        self.compare_studies(['Merge', 'Garden Paths'])
 
     def compare_studies(self, resources):
         # Arrange data so that id_vars, value_vars behave like group variables
         d2 = self.data['all'].melt(id_vars='Study_ID', value_vars=resources)
         # Create summary table
-        d3 = d2.groupby(['Study_ID', 'Resource']).mean()
+        d3 = d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=2)
         print(d3)
         # Create plot
         g = sns.barplot(data=d2, x='Resource', y='value', hue='Study_ID', ci=None, palette='Greys')

@@ -5,11 +5,11 @@ from language_guesser import LanguageGuesser
 from support import is_comment
 from linear_phase_parser import LinearPhaseParser
 
-def run_study():
+def run_study(folder='', file=''):
 
     # Prepare file systems and logging
     local_file_system = LocalFileSystem()
-    local_file_system.initialize(set(sys.argv))
+    local_file_system.initialize(set(sys.argv), folder, file)
     configure_logging(local_file_system)
 
     # Prepare parsers for all languages together with their language-specific lexicons
@@ -24,6 +24,7 @@ def run_study():
     for sentence, experimental_group in local_file_system.read_test_corpus():
         if not is_comment(sentence):
             language = lang_guesser.guess_language(sentence)
+            print(f'\n{sentence_number}. {sentence}', end='')
             parser_for[language].parse(sentence_number, sentence)
             local_file_system.save_output(parser_for[language], sentence_number, sentence, experimental_group)
             sentence_number = sentence_number + 1
