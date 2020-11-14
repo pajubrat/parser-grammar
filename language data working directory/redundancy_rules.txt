@@ -4,14 +4,15 @@
 # Basic lexical categories
 FORCE 	:: -ARG -VAL FIN !COMP:* -SPEC:* !PROBE:T/fin COMP:T/fin COMP:C/fin
 C/fin 	:: -ARG VAL FIN C SPEC:* !COMP:* -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:FIN -SPEC:T/fin -SPEC:C/fin -SPEC:N COMP:Neg/fin
-T/fin 	:: ARG VAL T FIN !COMP:* COMP:T/prt COMP:v COMP:V -COMP:INF -COMP:T/fin !PROBE:V SPEC:D -SPEC:N -SPEC:T/fin -SPEC:C/fin -SPEC:Neg -SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
+T/fin 	:: ARG VAL T FIN !COMP:* -SPEC:C COMP:T/prt COMP:v COMP:V -COMP:INF -COMP:T/fin !PROBE:V SPEC:D -SPEC:N -SPEC:T/fin -SPEC:C/fin -SPEC:Neg -SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
 T/prt 	:: ARG FIN VAL T !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V SPEC:* SPEC:D -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:D
 T 		:: ARG VAL FIN !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V SPEC:D -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V
 Neg/fin :: ARG VAL FIN NEG COMP:T/prt -SPEC:T -SPEC:T/fin %SPEC:INF SEM:internal
 v   	:: ARG -VAL ASP !COMP:* COMP:V !PROBE:V SPEC:D -SPEC:N
+D   	:: -ARG OP !COMP:* -COMP:D -COMP:T/fin -SPEC:MA/lla -SPEC:P -SPEC:C -SPEC:INF -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
+D/rel	:: D -ARG OP OP:REL OP:_ !COMP:* SPEC:D -COMP:C/fin -COMP:D SPEC:D -SPEC:MA/lla -SPEC:P -SPEC:C -SPEC:INF -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
+N   	:: COMP:P -COMP:A COMP:C -COMP:AUX -SPEC:FORCE -COMP:C/fin SPEC:A COMP:R COMP:R/D -COMP:N -SPEC:uWH -SPEC:R -SPEC:V -COMP:V -COMP:v -SPEC:INF -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:ADV -COMP:WH
 V   	:: ARG -VAL ASP -SPEC:T/fin -SPEC:FORCE SPEC:ADV -COMP:N -COMP:T/fin -COMP:V -COMP:v SPEC:P COMP:P SPEC:TO/inf
-D   	:: -ARG OP !COMP:* -COMP:D -SPEC:MA/lla -SPEC:P -SPEC:C -SPEC:N -SPEC:INF -SPEC:D -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
-N   	:: COMP:P -COMP:A -COMP:AUX -SPEC:FORCE -COMP:C/fin SPEC:A COMP:R COMP:R/D -COMP:D -COMP:N -SPEC:uWH -SPEC:R -SPEC:V -COMP:V -COMP:v -SPEC:INF -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:ADV -COMP:WH
 P   	:: ARG -VAL !COMP:* COMP:D -COMP:N -COMP:ADV -COMP:T/fin -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:ADV -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:INF -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 ADV 	:: -SPEC:N -SPEC:FORCE -SPEC:Neg/fin -SPEC:T/fin adjoinable
 A 		:: COMP:0 TAIL:D -SPEC:A -SPEC:D adjoinable
@@ -24,12 +25,12 @@ NUM		:: COMP:N COMP:n SPEC:*
 MA/lla	::	!COMP:V adjoinable
 
 # Other lexical categories
-WH  	:: -COMP:C/fin -COMP:ADV
-WH_ 	:: !COMP:* -SPEC:T/fin SPEC:*
-OP:REL   :: -COMP:C/fin adjoinable
+WH  			:: -COMP:C/fin -COMP:ADV
+WH_ 			:: !COMP:* -SPEC:T/fin SPEC:*
+OP:REL   		:: -COMP:C/fin SPEC:D adjoinable
 FORCE:OP:REL	:: adjoinable
-PHI_N	:: -COMP:*
-Q		:: OP OP:WH OP:Q
+PHI_N			:: -COMP:*
+Q				:: OP OP:WH OP:Q
 
 # Verb classes
 CLASS:TR 	:: !COMP:* -COMP:P COMP:D
@@ -39,12 +40,12 @@ CLASS:DITR 	:: !COMP:* SPEC:D COMP:D
 
 # Language-specific redundancy rules
 # English
-P LANG:EN	::	-SPEC:* -float
+P LANG:EN		::	-SPEC:* -float
 T/fin LANG:EN	::	!SPEC:D -SPEC:TO/inf
-A LANG:EN	::	-adjoinable
+A LANG:EN		::	-adjoinable
 
 # Italian
-A LANG:IT	:: -float
+A LANG:IT		:: -float
 T/fin LANG:IT	::	!SPEC:D
 
 # Finnish

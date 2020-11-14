@@ -338,20 +338,43 @@
 		
 			=> 1.7.1.0
 			& Grammatical
-			
-				se mies joka nukkui nukkui
+					
+				se mies joka nukkui lahti
 			
 			=> 1.7.1.1
 			& Ungrammatical
+		
+				se' mies nukkui lahti
+				joka nukkui lahti
+				joka joka nukkui lahti
+			
+			=> 1.7.1.2
+			& Problems (this is the reason D has OP and intervenes)
+			
+				joka nukkui
+				jota Merja ihaili
 		
 		& Object relative clauses (1.7.2)
 			
 			=> 1.7.2.0
 			& Grammatical
 			
+				se' mies jota Merja ihaili lahti
+			
 			=> 1.7.2.1
 			& Ungrammatical
+			
+				se' mies Merja ihaili lahti
+				se' mies jota jota Merja ihaili lahti
 		
+		& Center-embedding (1.7.3)
+		
+			=> 1.7.3.0
+			& Grammatical
+			
+				se' mies jota se' mies ihaili lahti
+			#	se' mies jota se' mies joka nukkui ihaili lahti
+			#	se' mies jota se' mies jota se' mies ihaili ihaili lahti
 		
 & 2 Adjunction and adjuncts
 

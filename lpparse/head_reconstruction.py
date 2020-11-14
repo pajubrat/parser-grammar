@@ -19,7 +19,7 @@ class HeadMovement:
         return ps
 
     def left_branch_constituent(self, ps):
-        return 'D' in ps.features or 'P' in ps.features or 'A' in ps.features
+        return {'D', 'P', 'A', 'D/rel'} & ps.features
 
     def LF_legible(self, ps):
         return self.controlling_parser_process.LF_legibility_test(ps.copy())

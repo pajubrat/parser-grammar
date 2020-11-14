@@ -34,10 +34,10 @@ E/inf		:: PF:en LF:by ADV -ARG -VAL TAIL:T LANG:FI
 
 
 # Copula
-BE-	:: V COPULA PF:BE LF:BE -ARG SPEC:D !COMP:* COMP:T/prt -COMP:T/fin
-
-D   :: D PF:D LF:D
-P 	:: P PF:P LF:P
+BE-		:: V COPULA PF:BE LF:BE -ARG SPEC:D !COMP:* COMP:T/prt -COMP:T/fin
+D		:: D PF:D LF:D
+D/rel	:: D/rel PF:D/rel LF:D/rel
+P		:: P PF:P LF:P
 
 
 # Pronominal items
@@ -74,5 +74,5 @@ wh_		:: inflectional OP OP:_ FORCE:OP:WH
 top    	:: inflectional OP:TOP 
 foc    	:: inflectional OP:FOC
 C/op	:: inflectional OP:C/OP
-rel    	:: inflectional OP:REL
+rel    	:: inflectional OP:REL OP:_
 Q		:: inflectional OP OP:WH OP:Q

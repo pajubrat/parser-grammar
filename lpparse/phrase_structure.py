@@ -624,7 +624,7 @@ class PhraseStructure:
         set_ = set()
         if self.left_const and not self.left_const.find_me_elsewhere:
             set_ = set_ | self.left_const.scan_criterial_features()
-        if self.right_const and not self.right_const.externalized() and not 'T/fin' in self.right_const.head().features:
+        if self.right_const and not self.right_const.externalized() and not {'T/fin', 'C'} & self.right_const.head().features:
             set_ = set_ | self.right_const.scan_criterial_features()
         if self.is_primitive():
             set_ |= {feature for feature in self.features if feature[:3] == 'OP:'}

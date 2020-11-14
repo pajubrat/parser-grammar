@@ -128,8 +128,9 @@ class LF:
                     old_complement = head.proper_complement()
                     head.proper_complement().merge_1(const.copy_from_memory_buffer(self.controlling_parsing_process.babtize()), 'left')
                     log(f'Merging {const} to Comp{head.get_cats_string()}P due to complement mismatch...')
-                    log(f'Externalizing {old_complement}...')
-                    old_complement.adjunct = True
+                    if 'adjoinable' in old_complement.head().features:
+                        log(f'Externalizing {old_complement}...')
+                        old_complement.adjunct = True
                     self.controlling_parsing_process.syntactic_working_memory.remove(const)
                     self.controlling_parsing_process.consume_resources("Move Phrase", f'{const}')
                     break

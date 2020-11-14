@@ -24,20 +24,20 @@ class PlausibilityMetrics:
         log('Done.\n')
         log(f'\t\tResults: ')
         for i, site in enumerate(merge_sites, start=1):
-            log(f'({i}) [{site} + {w}]')
+            log(f'({i}) [{site} + {w}] ')
         return merge_sites
 
     @knockout_lexical_ranking
     def positive_spec_selection(self, site):
-        return site.is_complex() and self.word_specs & site.features
+        return site.is_complex() and self.word_specs & site.head().features
 
     @knockout_lexical_ranking
     def negative_spec_selection(self, site):
-        return site.is_complex() and self.not_word_specs & site.features
+        return site.is_complex() and self.not_word_specs & site.head().features
 
     @knockout_lexical_ranking
     def rare_spec_selection(self, site):
-        return site.is_complex() and self.rare_word_specs & site.features
+        return site.is_complex() and self.rare_word_specs & site.head().features
 
     @knockout_lexical_ranking
     def break_head_comp_relations(self, site):
@@ -246,14 +246,21 @@ class PlausibilityMetrics:
         dropped = self.controlling_parser_process.transfer_to_LF(N.copy())
         lf = self.controlling_parser_process.LF.test(dropped)
         set_logging(True)
-        if self.left_branch_rejection(lf):
+        if self.left_branch_rejection(lf, dropped):
             return True
 
-    def left_branch_rejection(self, lf_test):
-        return not (lf_test.probe_goal_test_result and
+    def left_branch_rejection(self, lf_test, dropped):
+        set_logging(True)
+        test_failed = not (lf_test.probe_goal_test_result and
                 lf_test.head_integrity_test_result and
                 lf_test.selection_test_result and
                 lf_test.wrong_complement_test_result)
+        if test_failed:
+            log(f'Left branch {dropped} failed (diagnostics: Probe-goal/{lf_test.probe_goal_test_result}, '
+                f'Head integrity/{lf_test.head_integrity_test_result}, '
+                f'Selection/{lf_test.selection_test_result}, '
+                f'Wrong complement/{lf_test.wrong_complement_test_result})... ')
+        return test_failed
 
     def does_not_accept_any_complementizers(self, N):
         if N.is_primitive() and '-COMP:*' in N.features:
