@@ -30,6 +30,7 @@ class FeatureProcessing():
             h.features.discard('?VAL')
             h.features.add('!SPEC:*')
         else:   # Selected by neither
+            log(f'{h} resolved to +ARG')
             h.features.add('ARG')
             h.features.add('PHI:NUM:_')
             h.features.add('PHI:PER:_')

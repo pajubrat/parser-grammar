@@ -227,13 +227,13 @@ class PhraseStructure:
             return edge[0]
         # If there are many phrases in the edge
         elif len(edge) > 1:
-            # Return the first non-externalized phrase, if any,
-            licensed_edge = [edge for edge in self.phrasal_edge() if not edge.externalized()]
+            # Return the first non-externalized DP, if any,
+            licensed_edge = [edge for edge in self.phrasal_edge() if 'D' in edge.head().features and not edge.externalized()]
             if licensed_edge:
                 return licensed_edge[0]
             # if everything has been externalized, return the closest phrase that has not been moved away
             else:
-                licensed_edge = [edge for edge in self.phrasal_edge() if not edge.find_me_elsewhere]
+                licensed_edge = [edge for edge in self.phrasal_edge() if 'D' in edge.head().features and not edge.find_me_elsewhere]
                 if licensed_edge:
                     return licensed_edge[0]
 
@@ -464,8 +464,9 @@ class PhraseStructure:
         tests_checked = set()
         if tail_sets:
             for tail_set in tail_sets:
-                if self.weak_tail_condition(tail_set, 'internal'):
-                    tests_checked.add(tail_set)
+                if {'INF', 'ARG'} != tail_set:
+                    if self.weak_tail_condition(tail_set, 'internal'):
+                        tests_checked.add(tail_set)
             return tests_checked & tail_sets == tail_sets
         return True
 
@@ -475,8 +476,8 @@ class PhraseStructure:
                 if self.max().mother.head().match_features(tail_set) == 'complete match':
                     return True
                 # Licenses HP at [V [DP <H XP>]] by V
-                if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
-                    return True
+                #if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
+                #    return True
 
     def precondition_for_strong_condition(self):
         # APs are excluded
@@ -530,7 +531,7 @@ class PhraseStructure:
 
     # Definition for tail sets
     def get_tail_sets(self):
-        return {frozenset((feature[5:].split(','))) for feature in self.head().features if feature[:4] == 'TAIL'}
+        return {frozenset(feature[5:].split(',')) for feature in self.head().features if feature[:4] == 'TAIL'}
 
     # Recursive definition for contains-feature-F for a phrase
     def contains_feature(self, feature):

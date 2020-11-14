@@ -44,6 +44,7 @@ class LinearPhaseParser:
         self.number_of_items_consumed = 0
         self.grammaticality_judgement = []
         self.time_from_stimulus_onset = 0
+        self.total_time_per_sentence = 0
         self.time_from_stimulus_onset_for_word = []
         self.only_first_solution = False
 
@@ -71,11 +72,13 @@ class LinearPhaseParser:
         self.start_time = process_time()  # Calculates execution time
         self.grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
         self.time_from_stimulus_onset = 0
+        self.total_time_per_sentence = 0
         self.time_from_stimulus_onset_for_word = []
         # Reset operation counters in the PhraseStructure class
         for key in PhraseStructure.resources:
             PhraseStructure.resources[key] = {"ms": 1, "n": 0}
-        self.resources = {"Garden Paths": {'ms': 1, 'n': 0},
+        self.resources = {"Total Time": {'ms': 0, 'n': 0},
+                          "Garden Paths": {'ms': 1, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
                           "Move Head": {'ms': 5, 'n': 0},
                           "Move Phrase": {'ms': 0, 'n': 0},
@@ -95,34 +98,40 @@ class LinearPhaseParser:
                           "Filter solution": {'ms': 5, 'n': 0},
                           "Rank solution": {'ms': 5, 'n': 0},
                           "Lexical retrieval": {'ms': 5, 'n': 0},
-                          "Morphological decomposition": {'ms': 5, 'n': 0}
+                          "Morphological decomposition": {'ms': 5, 'n': 0},
+                          "Mean time per word": {'ms': 0, 'n': 0}
                           }
 
     def parse(self, count, lst):
         self.sentence = lst
         self.start_time = process_time()
         self.initialize()
+        self.plausibility_metrics.initialize()  # Here we can parametrize plausibility metrics if needed
         set_logging(True)
         log('\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
         log(f'\n{count}. {self.sentence}')
         log(f'\n\n\t 1. {self.sentence}\n')
         self.local_file_system.resource_sequence_file.write(f'\n{count}, {self.local_file_system.generate_input_sentence_string(lst)},  ')
-        self.parse_new_item(None, lst, 0)
+        if not self.local_file_system.instruction_to_ignore_from_test_corpus:
+            self.parse_new_item(None, lst, 0)
+        else:
+            print('\n(Ignored by user.)')
+            log('\n(Ignored by user.)')
 
     def parse_new_item(self, ps, lst, index):
         set_logging(True)
-        # Force the parser to exit by setting this flag in the code
-        if self.exit:
+        if self.exit:                                                                                                       # Force the parser to exit by setting this flag in the code
             return
 
         if index < len(lst):
             log(f'\n\t\tNext item: "{lst[index]}". ')
 
-        if index == len(lst):               # No more words in the input
-            self.complete_processing(ps)    # Finalizes the output
-            return                          # Completes the parsing branch
+        if index == len(lst):                                                                                               # No more words in the input
+            self.complete_processing(ps)                                                                                    # Finalizes the output
+            return                                                                                                          # Completes the parsing branch
 
-        self.time_from_stimulus_onset = int(len(lst[index]) * 50)   # baseline/mean duration for each item
+        self.time_from_stimulus_onset = int(len(lst[index]) * 25)                                                           # baseline/mean duration for each item
+        self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
         # Try all lexical elements (if ambiguous)
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
@@ -155,7 +164,7 @@ class LinearPhaseParser:
                             log(f'{new_ps.top()}')
                             self.consume_resources("Merge", f'{terminal_lexical_item}')
                         else:
-                            log(f'\n\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
+                            log(f'\n\t\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
                             log('Transferring left branch...')
                             self.consume_resources("Merge", f'{terminal_lexical_item}')
                             set_logging(False)
@@ -210,8 +219,9 @@ class LinearPhaseParser:
             log('\n')
             return
         log('Done.\n')
-        log(f'\t\tSolution was accepted ({self.time_from_stimulus_onset}ms).\n')
+        log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
         self.resources.update(PhraseStructure.resources)
+        self.resources['Mean time per word']['n'] = int(self.resources['Total Time']['n']/len(self.sentence))
         if self.only_first_solution:
             self.exit = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
@@ -279,6 +289,8 @@ class LinearPhaseParser:
     def consume_resources(self, key, info=''):
         if key in self.resources and not self.first_solution_found:
             self.time_from_stimulus_onset += self.resources[key]['ms']
+            if 'Total Time' in self.resources:
+                self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
             log(f'({self.time_from_stimulus_onset}ms) ')
             if self.local_file_system.settings['datatake_resource_sequence']:
