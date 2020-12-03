@@ -28,7 +28,6 @@ anta-   :: PF:antaa LF:give V CLASS:DITR -COMP:FIN +SEM:directional ASP:BOUNDED 
 antoi   :: anta-#v#asp#T/fin#[-V] LANG:FI
 
 asks	:: ask-#v#T/fin#[-s] LANG:EN
-ask'	:: PF:ask LF:ask V SPEC:D COMP:D SEM:internal LANG:EN
 ask-	:: PF:ask LF:ask V SPEC:D COMP:D SEM:internal LANG:EN
 
 avain_0acc	::	avain-#D#[-0_acc]
@@ -320,7 +319,7 @@ myyda 	:: myy-#v#A/inf LANG:FI
 myy-	:: PF:myy LF:sell V ASP:BOUNDED CLASS:TR COMP:D LANG:FI
 
 naki	:: nake-#v#T/fin#[-V] LANG:FI
-nake-	:: PF:nake LF:see V CLASS:TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA/inf LANG:FI
+nake-	:: PF:nake LF:see V CLASS:TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA/tta -COMP:MA/ssa LANG:FI
 
 nayttaa	:: naytta-#T/fin LANG:FI
 naytta- :: PF:naytta LF:seem V -ARG ASP VAL !SPEC:D !COMP:VA/inf SEM:internal LANG:FI
@@ -614,7 +613,7 @@ ci-		:: PF:ci LF:there N PHI_N LANG:IT
 [-ni]	::	inflectional PHI PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-si]	::	inflectional PHI PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-nsa]	:: 	inflectional PHI PHI:PER:3 PHI:NUM:SG LANG:FI
-[-an]	:: 	inflectional PHI PHI:PER:3 LANG:FI
+[-an]	:: 	inflectional PHI PHI:PER:3 PHI:NUM:SG PHI:DET:DET LANG:FI
 [-mme]	::	inflectional PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-nne]	::	inflectional PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 

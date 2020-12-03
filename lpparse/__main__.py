@@ -10,5 +10,5 @@ if __name__ == '__main__':
         diag = Diagnostics()
         diag.run_resource_diagnostics()
     if 'multi' in sys.argv:
-        multistudy.run_multi()
+        multistudy.run_multi(sys.argv)
 

@@ -158,7 +158,7 @@ class LinearPhaseParser:
                     for site in merge_sites:
                         ps_ = ps.top().copy()
                         left_branch_site_ = ps_.identify_equivalent_node(site)
-                        if left_branch_site_.bottom_affix().internal:
+                        if left_branch_site_.bottom_affix().internal and site.is_primitive():
                             log(f'\n\t\tSinking {terminal_lexical_item} into {left_branch_site_.bottom_affix()} = ')
                             new_ps = left_branch_site_.bottom_affix().sink(terminal_lexical_item)
                             log(f'{new_ps.top()}')

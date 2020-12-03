@@ -4,8 +4,8 @@ import sys
 
 def knockout_filter(funct):
     def knockout(self, ps, w):
-        if 'knockouts' in self.controlling_parser_process.local_file_system.settings:
-            if 'filter' in self.controlling_parser_process.local_file_system.settings['knockouts']:
+        if 'filter' in self.controlling_parser_process.local_file_system.settings:
+            if not self.controlling_parser_process.local_file_system.settings['filter']:
                 log(f'Filtering blocked...')
                 return [ps.geometrical_minimal_search(), w]
         return funct(self, ps, w)
@@ -13,17 +13,17 @@ def knockout_filter(funct):
 
 def knockout_lexical_ranking(funct):
     def knockout(self, site):
-        if 'knockouts' in self.controlling_parser_process.local_file_system.settings:
-            if 'lexical_ranking' in self.controlling_parser_process.local_file_system.settings['knockouts']:
-                log(f'Lexical ranking blocked...')
+        if 'lexical_anticipation' in self.controlling_parser_process.local_file_system.settings:
+            if not self.controlling_parser_process.local_file_system.settings['lexical_anticipation']:
+                log(f'Lexical anticipation blocked...')
                 return False
         return funct(self, site)
     return knockout
 
 def knockout_extra_ranking(funct):
     def knockout(self, site):
-        if 'knockouts' in self.controlling_parser_process.local_file_system.settings:
-            if 'extra_ranking' in self.controlling_parser_process.local_file_system.settings['knockouts']:
+        if 'extra_ranking' in self.controlling_parser_process.local_file_system.settings:
+            if not self.controlling_parser_process.local_file_system.settings['extra_ranking']:
                 log(f'Semantic ranking blocked...')
                 return False
         return funct(self, site)

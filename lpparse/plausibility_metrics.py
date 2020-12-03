@@ -165,7 +165,7 @@ class PlausibilityMetrics:
         self.not_word_specs =  word.convert_features_for_parsing(word.specifiers_not_licensed())
         self.rare_word_specs = word.convert_features_for_parsing(word.rare_specs())
         self.word_tail_set = word.get_tail_sets()
-        log('\t\tRanking... ')
+        log('Ranking...')
 
         self.weighted_site_list = self.create_baseline_weighting([(site, 0) for site in site_list])
         calculated_weighted_site_list = []
@@ -220,7 +220,7 @@ class PlausibilityMetrics:
         if ps.bottom().bottom_affix().internal:
             log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...')
             self.controlling_parser_process.consume_resources('Filter solution', 'sink')
-            log('Done.\n')
+            log('Done. ')
             return [[ps.bottom()], w]
         #--------------------geometrical minimal search------------------------------
         for N in ps.geometrical_minimal_search():
@@ -238,7 +238,7 @@ class PlausibilityMetrics:
                 continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------
-        log('Done.\n')
+        log('Done. ')
         return [adjunction_sites, w]
 
     def bad_left_branch_test(self, N):

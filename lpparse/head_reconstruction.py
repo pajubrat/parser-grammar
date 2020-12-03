@@ -14,7 +14,8 @@ class HeadMovement:
         if ps.is_complex():
             return self.reconstruct_head_movement(ps)
         if ps.is_complex_head():
-            if self.left_branch_constituent(ps) and self.controlling_parser_process.LF_legibility_test(self.reconstruct_head_movement(ps.copy())):
+            if self.left_branch_constituent(ps) and \
+                    self.controlling_parser_process.LF_legibility_test(self.reconstruct_head_movement(ps.copy())):
                 return self.reconstruct_head_movement(ps)
         return ps
 

@@ -1,0 +1,1254 @@
+@  {'study_folder': 'study-6-linear-phase-theory/Experiment 2d/53-BU(0)-LA(0)-F(1)/', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 53, 'only_first_solution': True, 'logging': False, 'ignore_ungrammatical_sentences': True, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': False, 'filter': True, 'lexical_anticipation': False, 'closure': 'Random', 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100, 'negative_tail_test': -100, 'break_head_comp_relations': 0, 'lf_legibility_condition': 0}
+@  2020-12-01 17:46:58.315672
+@  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
+@  Logs into language data working directory\study-6-linear-phase-theory\Experiment 2d\53-BU(0)-LA(0)-F(1)\linear_phase_theory_corpus_log.txt.
+@  Lexicon from language data working directory\lexicon.txt.
+@  Redundancy rules from language data working directory\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\ug_morphemes.txt.
+@ 
+@ 
+Number,Sentence,Study_ID,Group 0,Group 1,Group 2,Group 3,Total Time,Garden Paths,Merge,Move Head,Move Phrase,A-Move Phrase,A-bar Move Phrase,Move Adjunct,Agree,Phi,Transfer,Item streamed into syntax,Feature Processing,Extraposition,Inflection,Failed Transfer,LF recovery,LF test,Filter solution,Rank solution,Lexical retrieval,Morphological decomposition,Mean time per word,Asymmetric Merge,Sink,External Tail Test,Execution time (ms)	
+1,a' b' ,53,0,1,1,1,150,0,1,0,0,0,0,0,0,0,2,2,0,0,0,0,0,1,0,0,2,0,75,1,0,0,0
+2,a' b' c' ,53,0,1,1,1,240,0,2,0,0,0,0,0,0,0,4,3,0,0,0,0,0,2,0,0,3,0,80,2,0,0,15
+3,a' b' c' d' ,53,0,1,1,1,330,0,3,0,0,0,0,0,0,0,6,4,0,0,0,0,0,3,0,0,4,0,82,3,0,0,0
+4,a' b' c' d' a' ,53,0,1,1,1,440,0,4,0,0,0,0,0,0,0,9,5,0,0,0,0,0,5,0,0,5,0,88,4,0,0,0
+5,Pekka istuu ,53,1,1,1,0,1360,0,3,3,1,0,0,1,1,2,3,4,0,0,6,0,1,5,2,0,10,2,680,8,2,8,15
+6,Pekka lahtee ,53,1,1,1,0,1410,0,3,3,1,0,0,1,1,2,3,4,0,0,6,0,1,5,2,0,10,2,705,8,2,8,15
+7,John sleeps ,53,1,1,1,0,1325,0,3,3,0,0,0,0,1,2,2,4,0,0,6,0,1,4,2,0,10,2,662,6,2,0,0
+8,lui dorme ,53,1,1,1,0,1250,0,3,3,0,0,0,0,1,2,2,4,0,0,6,0,1,4,2,0,10,2,625,6,2,0,0
+9,Pekka lahtee Merjan ,53,1,1,1,1,
+10,lahtee ,53,1,1,1,1,
+11,Pekka istuu Merjan ,53,1,1,1,1,
+12,istuu ,53,1,1,1,1,
+13,John sleeps Mary ,53,1,1,1,1,
+14,John John sleeps ,53,1,1,1,1,
+15,Pekka ihailee Merjaa ,53,1,1,2,0,2620,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,873,17,4,17,31
+16,Pekka loysi Merjan ,53,1,1,2,0,2655,0,6,7,2,0,0,2,2,4,6,7,0,0,13,3,2,9,5,0,20,3,885,17,4,17,15
+17,Pekka teki sen kellon_N ,53,1,1,2,0,2310,0,6,10,3,0,0,3,4,6,10,7,0,0,7,8,2,15,6,0,14,3,577,25,3,28,31
+18,John admires Mary ,53,1,1,2,0,2315,0,6,7,0,0,0,0,2,4,4,7,0,0,11,3,2,7,5,0,18,3,771,13,4,0,15
+19,Giuseppe spinge Luisa ,53,1,1,2,0,2540,0,6,7,0,0,0,0,2,4,4,7,0,0,11,3,2,7,5,0,18,3,846,13,4,0,31
+20,lavano Luisa ,53,1,1,2,0,1440,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,720,4,3,0,0
+21,loro lavano Luisa ,53,1,1,2,0,2070,0,6,7,0,0,0,0,2,4,4,7,0,0,9,3,2,7,5,0,16,3,690,13,4,0,15
+22,Pekka ihailee ,53,1,1,2,1,
+23,Pekka loysi ,53,1,1,2,1,
+24,ihailee ,53,1,1,2,1,
+25,loysi ,53,1,1,2,1,
+26,Pekka ihailee Merjaa Merjaa Merjaa ,53,1,1,2,1,
+27,Pekka Pekka ihailee Merjaa ,53,1,1,2,1,
+28,Pekka Pekka ihailee Merjaa Merjaa Merjaa ,53,1,1,2,1,
+29,mina haluan ,53,1,1,2,1,
+30,John admires ,53,1,1,2,1,
+31,John admires Mary Mary ,53,1,1,2,1,
+32,admires ,53,1,1,2,1,
+33,admires Mary ,53,1,1,2,1,
+34,Pekka antoi kirjan Merjalle ,53,1,1,3,0,2790,0,9,15,3,0,0,3,5,8,10,10,0,0,8,3,3,14,7,0,18,4,697,39,6,42,31
+35,John gave the key to Mary ,53,1,1,3,0,2970,0,9,19,0,0,0,0,8,11,16,10,0,1,10,16,3,24,11,0,20,3,495,34,4,1,62
+36,John gave the key to ,53,1,1,3,1,
+37,John gave the to Mary ,53,1,1,3,1,
+38,John gave the to ,53,1,1,3,1,
+39,John gave the ,53,1,1,3,1,
+40,John gave to ,53,1,1,3,1,
+41,mina en lahde ,53,1,2,1,0,1465,0,4,3,1,0,0,1,3,4,6,5,0,1,6,3,1,9,3,0,11,3,488,14,2,13,15
+42,sina et lahde ,53,1,2,1,0,1465,0,4,3,1,0,0,1,3,4,6,5,0,1,6,3,1,9,3,0,11,3,488,14,2,13,15
+43,Pekka ei lahde ,53,1,2,1,0,1515,0,4,3,1,0,0,1,3,4,6,5,0,1,6,3,1,9,3,0,11,3,505,14,2,13,15
+44,me emme lahde ,53,1,2,1,0,1415,0,4,3,1,0,0,1,3,4,6,5,0,1,6,3,1,9,3,0,11,3,471,14,2,13,15
+45,te ette lahde ,53,1,2,1,0,1415,0,4,3,1,0,0,1,3,4,6,5,0,1,6,3,1,9,3,0,11,3,471,14,2,13,15
+46,he_FI eivat lahde ,53,1,2,1,0,1590,0,4,3,1,0,0,1,3,4,6,5,0,1,6,3,1,9,3,0,11,3,530,14,2,13,15
+47,Pekka ei ihaile Merjaa ,53,1,2,1,0,2835,0,7,9,2,0,0,2,7,9,10,8,0,1,12,8,2,15,7,0,20,4,708,27,4,22,31
+48,Pekka ei myynyt omaisuuttaan ,53,1,2,1,0,2755,0,7,9,2,0,0,2,7,9,10,8,0,1,9,8,2,15,7,0,17,4,688,27,4,22,31
+49,John does sleep ,53,1,2,1,0,1190,0,3,2,0,0,0,0,2,3,4,4,0,0,5,3,1,7,2,0,9,1,396,7,1,0,15
+50,John does not sleep ,53,1,2,1,0,1500,0,4,2,0,0,0,0,4,6,8,5,0,1,5,7,2,12,4,0,10,1,375,13,1,0,15
+51,John does not admire' Mary ,53,1,2,1,0,2715,0,7,7,0,0,0,0,6,9,12,8,0,1,10,12,3,17,9,0,18,3,543,23,3,0,31
+52,loro hanno lavato Luisa ,53,1,2,1,0,4006,1,13,19,0,0,0,0,10,13,11,13,0,0,16,11,3,18,11,0,29,5,1001,42,8,0,62
+53,io ho lavato Luisa ,53,1,2,1,0,3941,1,13,19,0,0,0,0,10,13,11,13,0,0,17,11,3,18,11,0,30,5,985,42,8,0,62
+54,loro hanno voluto lavare Luisa ,53,1,2,1,0,3600,0,11,29,0,0,0,0,16,21,11,12,4,0,11,12,5,18,12,0,23,5,720,54,7,0,78
+55,loro stanno lavando Luisa ,53,1,2,1,0,3826,1,13,19,0,0,0,0,10,13,11,13,5,0,14,9,3,16,11,0,27,5,956,32,8,0,46
+56,sina en lahde ,53,1,2,1,1,
+57,sina lahde et ,53,1,2,1,1,
+58,Pekka ihaile ei Merjaa ,53,1,2,1,1,
+59,John not does sleep ,53,1,2,1,1,
+60,= 1.2.1.2 ,53,1,2,1,1,
+61,Pekka ihaile Merjaa ,53,1,2,1,1,
+62,Pekan_gen taytyy nukkua ,53,1,2,2,0,2005,0,5,5,0,0,0,0,2,6,4,6,1,0,6,3,4,7,4,0,12,3,668,13,3,5,15
+63,Pekan_gen taytyy ihailla Merjaa ,53,1,2,2,0,3260,0,8,13,0,0,0,0,4,9,7,9,3,0,12,7,5,11,8,0,21,4,815,27,5,10,31
+64,Pekan_gen taytyy myyda omaisuuttaan ,53,1,2,2,0,2860,0,8,13,0,0,0,0,4,9,7,9,3,0,7,7,5,11,8,0,16,4,715,27,5,10,31
+65,John must sleep ,53,1,2,2,0,1190,0,3,2,0,0,0,0,2,3,4,4,0,0,5,3,1,7,2,0,9,1,396,7,1,0,0
+66,John must admire' Mary ,53,1,2,2,0,2360,0,6,6,0,0,0,0,4,6,7,7,0,0,10,7,2,11,6,0,17,3,590,14,3,0,31
+67,loro devono lavare Luisa ,53,1,2,2,0,3826,1,13,19,0,0,0,0,10,13,11,13,5,0,14,9,3,16,11,0,27,5,956,32,8,0,46
+68,Pekka taytyy nukkua ,53,1,2,2,1,
+69,taytyy Pekan nukkua ,53,1,2,2,1,
+70,John does must sleep ,53,1,2,2,1,
+71,John must Mary admire' John ,53,1,2,2,1,
+72,John must to_inf sleep ,53,1,2,2,1,
+73,Pekan_gen ei taydy ihailla Merjaa ,53,1,2,2,0,3610,0,9,17,0,0,0,0,12,18,12,10,4,1,12,14,6,19,11,0,22,5,722,36,5,13,46
+74,Pekan_gen ei taydy myyda omaisuuttaan ,53,1,2,2,0,3210,0,9,17,0,0,0,0,12,18,12,10,4,1,7,14,6,19,11,0,17,5,642,36,5,13,46
+75,Pekka ei taydy ihailla Merjaa ,53,1,2,2,1,
+76,Pekka en taydy ihailla Merjaa ,53,1,2,2,1,
+77,Pekan_gen ei taytyy ihailla Merjaa ,53,1,2,2,1,
+78,Pekka on' nukkunut ,53,1,2,3,0,2316,1,7,7,3,0,0,3,5,7,9,7,0,0,7,3,2,13,4,0,14,3,772,22,4,23,31
+79,Pekka on' ihaillut Merjaa ,53,1,2,3,0,4726,1,13,19,4,0,0,4,10,13,15,13,0,0,19,11,3,22,11,0,32,5,1181,40,8,34,62
+80,John does sleep ,53,1,2,3,0,1190,0,3,2,0,0,0,0,2,3,4,4,0,0,5,3,1,7,2,0,9,1,396,7,1,0,0
+81,John does ,53,1,2,3,1,
+82,John wants to_inf leave ,53,1,3,1,0,2030,0,6,10,0,0,0,0,4,8,7,7,1,0,6,7,4,11,6,0,13,2,507,19,3,0,15
+83,John wants Mary to_inf leave ,53,1,3,1,0,2850,0,8,13,0,0,0,0,4,8,10,9,1,1,11,8,4,14,7,0,20,3,570,23,4,1,31
+84,John wants to_inf leave Mary ,53,1,3,1,0,3236,1,10,18,0,0,0,0,7,11,14,10,5,1,11,11,4,20,9,0,21,3,647,33,5,1,62
+85,io detesto lavare Luisa ,53,1,3,1,0,2805,0,9,17,0,0,0,0,7,11,7,10,3,0,10,5,4,11,8,0,20,4,701,26,6,0,46
+86,io detesto Giuseppe lavare Luisa ,53,1,3,1,1,
+87,John wants leave ,53,1,3,1,1,
+88,John wants Mary leave ,53,1,3,1,1,
+89,John wants leave Mary ,53,1,3,1,1,
+90,John tries to_inf leave ,53,1,3,2,0,1875,0,5,6,0,0,0,0,4,6,7,6,1,0,6,7,2,11,5,0,12,2,468,15,2,0,15
+91,John tries Mary to_inf leave ,53,1,3,2,1,
+92,Pekka haluaa lahtea ,53,1,3,3,0,2035,0,6,7,2,0,0,2,2,5,6,7,1,0,6,3,3,9,5,0,13,3,678,17,4,15,15
+93,Pekka kaskee Merjan_gen lahtea ,53,1,3,3,0,3385,0,8,15,3,0,0,3,5,8,12,9,1,2,12,7,3,18,8,0,21,4,846,32,5,26,31
+94,Pekka halusi ihailla Merjaa ,53,1,3,3,0,3335,0,9,17,3,0,0,3,4,8,10,10,3,0,12,7,4,14,9,0,22,4,833,32,6,24,31
+95,Pekka kaskee poikien ihailla Merjaa ,53,1,3,3,0,4575,0,11,27,4,0,0,4,9,13,17,12,4,2,17,12,4,24,13,0,29,5,915,55,7,38,62
+96,Pekka kaskee poikien myyda omaisuuttaan ,53,1,3,3,0,4175,0,11,27,4,0,0,4,9,13,17,12,4,2,12,12,4,24,13,0,24,5,835,55,7,38,78
+97,Pekka ei halua ihailla Merjaa ,53,1,3,3,0,3675,0,10,23,3,0,0,3,12,16,15,11,4,1,12,14,4,22,12,0,23,5,735,48,6,29,62
+98,Pekka ei halua myyda omaisuuttaan ,53,1,3,3,0,3275,0,10,23,3,0,0,3,12,16,15,11,4,1,7,14,4,22,12,0,18,5,655,48,6,29,62
+99,Pekka haluaa Merjan_gen lahtea ,53,1,3,3,1,
+100,Pekka haluaa heidan lahtea ,53,1,3,3,1,
+101,Pekan_gen taytyy ihailla Merjaa ,53,1,3,4,0,3260,0,8,13,0,0,0,0,4,9,7,9,3,0,12,7,5,11,8,0,21,4,815,27,5,10,31
+102,Pekan_gen taytyy myyda omaisuuttaan ,53,1,3,4,0,2860,0,8,13,0,0,0,0,4,9,7,9,3,0,7,7,5,11,8,0,16,4,715,27,5,10,31
+103,Pekan_gen ei taydy ihailla Merjaa ,53,1,3,4,0,3610,0,9,17,0,0,0,0,12,18,12,10,4,1,12,14,6,19,11,0,22,5,722,36,5,13,46
+104,Pekan_gen ei taydy myyda omaisuuttaan ,53,1,3,4,0,3210,0,9,17,0,0,0,0,12,18,12,10,4,1,7,14,6,19,11,0,17,5,642,36,5,13,46
+105,Pekka taytyy ihailla Merjaa ,53,1,3,4,1,
+106,Pekka sanoo Merjan_gen lahtevan ,53,1,3,5,0,3155,0,7,11,3,0,0,3,5,7,10,8,0,0,12,5,2,16,4,0,20,4,788,28,4,24,31
+107,Pekka halusi heidan lahtevan ,53,1,3,5,0,3140,0,8,15,3,0,0,3,5,8,10,9,0,0,11,7,3,16,6,0,20,4,785,32,5,24,31
+108,Pekka sanoo lahtevansa ,53,1,3,5,0,2486,1,7,7,3,0,0,3,5,8,9,7,0,0,7,3,3,13,4,0,14,3,828,22,4,23,31
+109,Pekka sanoo ihailevansa Merjaa ,53,1,3,5,0,3460,0,8,13,3,0,0,3,7,11,10,9,0,0,13,5,4,14,7,0,22,4,865,28,5,24,31
+110,Pekka sanoo Merjan_gen lahtevan ,53,1,3,5,0,3155,0,7,11,3,0,0,3,5,7,10,8,0,0,12,5,2,16,4,0,20,4,788,28,4,24,31
+111,mina sanon lahtevani ,53,1,3,5,0,2391,1,7,7,3,0,0,3,5,7,9,7,0,0,7,3,2,13,4,0,14,3,797,22,4,23,31
+112,mina sanon lahtevansa ,53,1,3,5,1,
+113,Pekka sanoo ihailevansa ,53,1,3,5,1,
+114,Pekka halusi Merja lahtevan ,53,1,3,5,1,
+115,se' talo ,53,1,4,1,0,270,0,1,0,0,0,0,0,0,0,2,2,0,0,0,1,0,3,0,0,2,0,135,1,0,0,0
+116,se' pieni talo ,53,1,4,1,0,690,0,3,3,0,0,0,0,0,0,4,4,0,0,0,3,0,6,2,0,4,1,230,5,1,3,0
+117,se' pieni punainen talo ,53,1,4,1,0,1225,0,5,7,0,0,0,0,0,0,8,6,0,1,0,6,0,10,5,0,6,2,306,13,2,15,0
+118,se' punainen pieni talo ,53,1,4,1,0,1225,0,5,7,0,0,0,0,0,0,8,6,0,1,0,6,0,10,5,0,6,2,306,13,2,15,15
+119,the little key ,53,1,4,1,0,715,0,3,3,0,0,0,0,0,0,4,4,0,0,0,3,0,6,2,0,4,1,238,5,1,1,0
+120,the little red key ,53,1,4,1,0,1080,0,5,7,0,0,0,0,0,0,7,6,0,0,0,6,0,10,5,0,6,2,270,10,2,2,15
+121,pieni talo se ,53,1,4,1,1,
+122,se talo pieni ,53,1,4,1,1,
+123,talo pieni se ,53,1,4,1,1,
+124,talo se pieni ,53,1,4,1,1,
+125,the key little ,53,1,4,1,1,
+126,the key red little ,53,1,4,1,1,
+127,Pekka teki sopimuksen ihailla Merjaa ,53,1,4,2,0,4510,0,11,30,4,0,0,4,6,11,15,12,4,0,16,15,5,23,13,0,28,5,902,50,7,37,62
+128,Pekka teki sopimuksen antaa avaimen Merjalle ,53,1,4,2,0,4890,0,14,51,6,0,0,6,8,14,23,15,8,1,12,15,6,32,15,0,27,6,815,88,9,77,109
+129,se sopimus ihailla Merjaa peruuntui ,53,1,4,2,0,4002,2,12,26,0,0,0,0,3,8,15,11,8,2,10,10,5,19,9,0,21,4,800,39,6,15,46
+130,lahella_1 Pekkaa ,53,1,5,1,0,1075,0,2,1,0,0,0,0,0,1,2,3,0,0,5,0,1,1,1,0,8,1,537,2,1,2,0
+131,Pekkaa lahella_1 ,53,1,5,1,0,1110,0,2,2,0,0,0,0,0,1,2,3,0,0,5,0,1,3,1,0,8,1,555,6,1,6,0
+132,Merja nukkui Pekan_gen lahella_2 ,53,1,5,1,0,3962,2,10,15,4,0,0,4,8,9,22,9,0,5,12,12,1,31,4,0,21,3,990,40,4,39,62
+133,Merja nukkui lahella_1 Pekkaa ,53,1,5,1,0,2905,0,6,7,3,0,0,3,4,6,10,7,0,0,12,5,2,14,5,0,19,3,726,22,3,24,31
+134,Merja nukkui lahella Pekan_gen ,53,1,5,1,1,
+135,Pekka sanoi etta Merja lahtee ,53,1,6,1,0,3675,0,8,14,5,0,0,5,7,9,19,9,0,0,13,12,2,28,9,0,22,4,735,45,4,57,46
+136,Pekka sanoo etta haluaa ihailla Merjaa ,53,1,6,1,0,7516,1,21,59,6,0,0,6,23,29,33,21,9,0,20,37,6,50,27,0,41,8,1252,92,12,48,171
+137,Pekka sanoo etta haluaa myyda omaisuuttaan ,53,1,6,1,0,4365,0,12,37,5,0,0,5,16,22,21,13,5,0,8,21,6,32,16,0,21,5,727,62,7,38,140
+138,John said that Mary sleeps ,53,1,6,1,0,3055,0,8,14,0,0,0,0,7,9,11,9,0,0,11,14,2,20,10,0,20,4,611,28,4,0,46
+139,Pekka sanoi etta ,53,1,6,1,1,
+140,Pekka sanoi etta Merja ,53,1,6,1,1,
+141,John said that ,53,1,6,1,1,
+142,John said that Mary ,53,1,6,1,1,
+143,se mies joka nukkui lahti ,53,1,7,1,0,8421,6,29,33,10,0,10,0,36,42,51,24,0,24,12,43,6,70,18,0,36,8,1684,82,14,28,187
+144,se' mies nukkui lahti ,53,1,7,1,1,
+145,joka nukkui lahti ,53,1,7,1,1,
+146,joka joka nukkui lahti ,53,1,7,1,1,
+147,joka nukkui ,53,1,7,1,2,
+148,jota Merja ihaili ,53,1,7,1,2,
+149,se' mies jota Merja ihaili lahti ,53,1,7,2,0,22027,12,74,118,56,0,19,24,71,79,150,63,0,63,33,119,8,195,59,0,96,19,3671,341,42,293,593
+150,se' mies Merja ihaili lahti ,53,1,7,2,1,
+151,se' mies jota jota Merja ihaili lahti ,53,1,7,2,1,
+152,John gave the key to Mary ,53,2,1,1,0,2990,0,9,19,0,0,0,0,8,11,16,10,0,0,10,17,3,25,12,0,20,3,498,34,4,1,78
+153,John moved the key from Mary to John ,53,2,1,1,0,8458,3,24,45,0,0,0,0,13,17,56,22,0,7,35,47,4,68,31,0,57,8,1057,76,9,5,218
+154,John to Mary gave the key ,53,2,1,1,1,
+155,John to Mary gave key the ,53,2,1,1,1,
+156,John gave to Mary the key ,53,2,1,1,1,
+157,to Mary John gave the key ,53,2,1,1,1,
+158,to Mary John moved the key to John ,53,2,1,1,1,
+159,the little key ,53,2,2,1,0,715,0,3,3,0,0,0,0,0,0,4,4,0,0,0,3,0,6,2,0,4,1,238,5,1,1,0
+160,the little red key ,53,2,2,1,0,1080,0,5,7,0,0,0,0,0,0,7,6,0,0,0,6,0,10,5,0,6,2,270,10,2,2,15
+161,se' talo ,53,2,2,1,0,270,0,1,0,0,0,0,0,0,0,2,2,0,0,0,1,0,3,0,0,2,0,135,1,0,0,0
+162,se' pieni talo ,53,2,2,1,0,690,0,3,3,0,0,0,0,0,0,4,4,0,0,0,3,0,6,2,0,4,1,230,5,1,3,0
+163,se' pieni punainen talo ,53,2,2,1,0,1225,0,5,7,0,0,0,0,0,0,8,6,0,1,0,6,0,10,5,0,6,2,306,13,2,15,15
+164,se' punainen pieni talo ,53,2,2,1,0,1225,0,5,7,0,0,0,0,0,0,8,6,0,1,0,6,0,10,5,0,6,2,306,13,2,15,15
+165,the key little ,53,2,2,1,1,
+166,the key red little ,53,2,2,1,1,
+167,pieni talo se ,53,2,2,1,1,
+168,se talo pieni ,53,2,2,1,1,
+169,talo pieni se ,53,2,2,1,1,
+170,talo se pieni ,53,2,2,1,1,
+171,Pekka naki Merjan_acc lahtemassa ,53,2,3,1,0,3310,0,8,15,3,0,0,3,4,8,11,9,0,1,12,4,4,16,6,0,21,4,827,38,5,44,31
+172,Pekka naki Merjan_acc lahtematta ,53,2,3,1,0,3270,0,8,14,3,0,0,3,5,9,11,9,0,0,12,3,4,15,6,0,21,4,817,29,5,29,46
+173,Pekka naki Merjan_acc lahtemalla ,53,2,3,1,0,3611,1,10,19,3,0,0,3,6,10,16,10,0,1,12,5,4,19,7,0,22,4,902,53,6,69,62
+174,Pekka naki Merjan_acc ihailemassa Jukkaa ,53,2,3,1,0,6106,1,16,35,5,0,0,5,9,14,25,16,0,3,24,11,5,28,15,0,40,6,1221,92,10,122,93
+175,Pekka elaa ihailemalla Merjaa ,53,2,3,1,0,3045,0,8,9,2,0,0,2,4,7,10,9,0,0,12,2,3,11,6,0,21,4,761,20,5,23,31
+176,Pekka elaa haluamalla ihailla Merjaa ,53,2,3,1,0,3690,0,11,19,2,0,0,2,5,10,14,12,3,0,12,5,5,14,10,0,24,5,738,31,7,25,46
+177,Pekka naki lahtemassa ,53,2,3,1,1,
+178,Pekka naki Merjan_gen lahtemassa ,53,2,3,1,1,
+179,Pekka naki heidan lahtemassa ,53,2,3,1,1,
+180,Pekka naki heidan ihailemassa ,53,2,3,1,1,
+181,Pekka naki Merjan_acc lahtiessa ,53,2,3,2,0,3606,1,10,19,3,0,0,3,6,10,15,10,2,2,12,5,4,19,7,0,22,4,901,49,6,56,62
+182,Pekka naki Merjan_acc lahtiessaan ,53,2,3,2,0,3891,1,10,19,3,0,0,3,6,10,15,10,2,2,13,5,4,19,7,0,23,4,972,49,6,56,46
+183,Pekka naki avaimen_acc Merjan_gen lahtiessa ,53,2,3,2,0,6294,4,20,43,7,0,0,7,13,17,41,17,5,10,13,20,4,51,12,0,30,6,1258,104,11,127,140
+184,Pekka naki Merjan_gen lahtiessa ,53,2,3,2,1,
+185,Pekka naki heidan lahtiessa ,53,2,3,2,1,
+186,Pekka naki lahtiessa ,53,2,3,2,1,
+187,Pekka naki Merjan_acc lahdettyaan ,53,2,3,3,0,
+188,Pekka lahtee Merjan_gen lahdettya ,53,2,3,3,0,3476,1,9,10,2,0,0,2,6,8,14,9,0,2,12,5,2,18,5,0,21,4,869,24,5,27,31
+189,Pekka lahtee heidan lahdettya ,53,2,3,3,0,2920,0,7,8,2,0,0,2,4,6,10,8,0,1,11,2,2,14,4,0,19,4,730,21,4,23,15
+190,Pekka lahtee heidan ihailtua Merjaa ,53,2,3,3,0,5581,1,15,20,2,0,0,2,12,15,22,15,0,3,23,10,3,23,12,0,38,6,1116,40,9,43,62
+191,Pekka nakee Merjan_acc lahdettya ,53,2,3,3,1,
+192,Pekka lahtee heidan ihailtua ,53,2,3,3,1,
+193,Pekka lahtee juosten ,53,2,3,4,0,1945,0,5,5,2,0,0,2,3,5,7,6,0,0,6,0,2,9,3,0,12,3,648,15,3,18,15
+194,Pekka lahtee Merjan_gen juosten ,53,2,3,4,1,
+195,keta Pekka ihailee ,53,3,1,1,0,2556,1,9,10,5,0,2,1,2,4,9,9,0,2,8,5,2,14,6,0,17,3,852,23,6,17,15
+196,kuka ihailee Merjaa ,53,3,1,1,0,2595,0,6,7,2,0,2,0,2,4,4,7,0,0,13,3,2,7,5,0,20,3,865,13,4,5,31
+197,who admires John ,53,3,1,1,0,2250,0,6,7,2,0,2,0,2,4,4,7,0,0,11,3,2,7,5,0,18,3,750,13,4,2,15
+198,who does John admire' ,53,3,1,1,0,2315,0,6,7,2,0,1,0,3,5,7,7,0,0,10,7,2,13,6,0,17,3,578,11,3,0,15
+199,who does_C John admire' ,53,3,1,1,0,2735,0,7,11,2,0,1,0,7,9,7,8,0,0,11,7,2,13,7,0,19,4,683,22,4,0,31
+200,admires who John ,53,3,1,1,1,
+201,admires John who ,53,3,1,1,1,
+202,John who admires ,53,3,1,1,1,
+203,Pekka ihailee keta ,53,3,1,1,1,
+204,ihailee keta Pekka ,53,3,1,1,1,
+205,ihailee Pekka keta ,53,3,1,1,1,
+206,Pekka keta ihailee ,53,3,1,1,2,
+207,towards which city does_C Seine flow' ,53,3,2,1,0,2095,0,7,8,2,0,1,1,7,10,13,8,0,0,2,9,3,17,6,0,10,2,349,33,2,30,78
+208,mita kaupunkia kohti Seine virtaa ,53,3,2,1,0,4654,4,17,16,10,0,5,3,8,11,36,14,0,10,6,26,3,40,10,0,20,6,930,56,7,88,109
+209,mita kaupunkia kohti virtaamalla Seine saavuttaa meren ,53,3,2,1,0,8111,1,21,43,17,0,6,9,16,22,74,21,0,31,8,54,6,77,26,0,29,10,1158,118,10,200,281
+210,which city towards does_C Seine flow' ,53,3,2,1,1,
+211,kohti mita kaupunkia Seine virtaa ,53,3,2,1,1,
+212,Seine virtaa kohti mita kaupunkia ,53,3,2,1,1,
+213,Seine virtaa mita kaupunkia kohti ,53,3,2,1,1,
+214,John moved the key from Mary to John ,53,3,3,1,0,8383,3,24,44,0,0,0,0,13,17,55,22,0,7,35,46,4,65,30,0,57,8,1047,75,9,5,218
+215,Seine saavuttaa meren virtaamalla kohti Pariisia ,53,3,3,1,0,5186,1,16,39,6,0,0,6,12,18,42,16,0,10,5,21,6,38,19,0,21,6,864,132,8,191,156
+216,se' sopimus ostaa auto raukesi ,53,3,3,1,0,3092,2,12,26,0,0,0,0,3,8,15,11,8,2,4,10,5,19,9,0,15,4,618,36,6,0,62
+217,se' Merjan_gen kello havisi ,53,3,3,1,0,2165,0,6,7,0,0,0,0,4,6,8,7,0,1,6,3,2,12,4,0,13,3,541,18,3,4,15
+218,Pekka naki Merjan_acc ihailemassa Jukkaa ,53,3,3,1,0,7582,2,21,45,5,0,0,5,13,18,33,20,0,3,30,15,5,35,20,0,50,7,1516,120,13,160,140
+219,mita kaupunkia Seine saavuttaa meren virtaamalla kohti ,53,3,3,1,1,
+220,mika se' sopimus ostaa raukesi ,53,3,3,1,1,
+221,kenen se' kello havisi ,53,3,3,1,1,
+222,keta Pekka naki Merjan_acc ihailemassa ,53,3,3,1,1,
+223,who does John say' that Mary admires ,53,3,3,2,0,4505,0,11,15,2,0,1,0,10,13,22,12,0,0,16,31,3,39,20,0,28,4,643,24,5,0,62
+224,John asks whether Mary admires John ,53,3,3,2,0,7466,1,20,49,0,0,0,0,18,22,27,20,0,0,28,37,4,48,26,0,48,8,1244,88,11,0,140
+225,who does John ask' whether Mary admires ,53,3,3,2,1,
+226,who does John ask' what admires ,53,3,3,2,1,
+227,Pekka teki sopimuksen ostaa auton ,53,3,3,3,0,3860,0,11,30,4,0,0,4,6,11,15,12,4,0,11,15,5,23,13,0,23,5,772,50,7,37,62
+228,Pekka teki sen Merjan_gen kellon_n ,53,3,3,3,0,3870,0,9,20,4,0,0,4,7,9,18,10,0,3,13,14,2,27,11,0,23,4,774,42,5,42,46
+229,kenen Pekka teki sen kellon_N ,53,3,3,3,1,
+230,minka Pekka teki sopimuksen ostaa ,53,3,3,3,1,
+231,John said that Mary sleeps ,53,3,3,4,0,3055,0,8,14,0,0,0,0,7,9,11,9,0,0,11,14,2,20,10,0,20,4,611,28,4,0,46
+232,who does John say' that sleeps ,53,3,3,4,1,
+233,Pekka nukkuu ,53,4,1,1,0,1410,0,3,3,1,0,0,1,1,2,3,4,0,0,6,0,1,5,2,0,10,2,705,8,2,8,0
+234,Merja nukkuu ,53,4,1,1,0,1520,0,3,3,1,0,0,1,1,2,3,4,0,0,7,0,1,5,2,0,11,2,760,8,2,8,0
+235,Pekka ihailee Merjaa ,53,4,1,1,0,2620,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,873,17,4,17,15
+236,Pekka antoi kirjan Merjalle ,53,4,1,1,0,2825,0,9,15,4,0,0,4,5,8,11,10,0,0,8,3,3,15,7,0,18,4,706,37,6,40,31
+237,Pekka ihailee Merja ,53,4,1,1,1,
+238,Pekka antoi kirja Merjalle ,53,4,1,1,1,
+239,Pekka antoi kirjan Merja ,53,4,1,1,1,
+240,Pekka antoi kirja Merja ,53,4,1,1,1,
+241,Merjan_gen nukkuu ,53,4,1,1,1,
+242,Merjan_acc nukkuu ,53,4,1,1,1,
+243,Merja_0acc nukkuu ,53,4,1,1,1,
+244,Merjaa nukkuu ,53,4,1,1,1,
+245,Merja ihailee Pekan_gen ,53,4,1,1,1,
+246,Merja ihailee Pekan_acc ,53,4,1,1,1,
+247,Merja ihailee Pekka_0acc ,53,4,1,1,1,
+248,Pekka voitti Merjan ,53,4,2,1,0,2705,0,6,7,2,0,0,2,2,4,6,7,0,0,13,3,2,9,5,0,20,3,901,17,4,17,15
+249,Pekka voitti Merjaa ,53,4,2,1,0,2705,0,6,7,2,0,0,2,2,4,6,7,0,0,13,3,2,9,5,0,20,3,901,17,4,17,15
+250,Pekka tonaisi Merjaa ,53,4,2,1,0,2645,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,881,17,4,17,15
+251,Pekka pesi Merjan ,53,4,2,1,0,2495,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,831,17,5,17,15
+252,Pekka pesi Merjaa ,53,4,2,1,0,2495,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,831,17,5,17,15
+253,Pekka pesi hanet ,53,4,2,1,0,2435,0,6,7,2,0,0,2,2,4,6,7,0,0,11,3,2,9,5,0,18,3,811,17,5,17,15
+254,Pekka tonaisi Merjan ,53,4,2,1,1,
+255,Pekka tonaisi Merja ,53,4,2,1,1,
+256,Pekka tonaisi Merja_0acc ,53,4,2,1,1,
+257,Pekka tonaisi hanet ,53,4,2,1,1,
+258,Pekka ei voittanut Merjaa ,53,4,3,2,0,3180,0,7,9,2,0,0,2,7,9,10,8,0,1,14,8,2,15,7,0,22,4,795,27,4,22,31
+259,Pekka ei voittanut Merjan ,53,4,3,2,1,
+260,Pekka ei voittanut Merja ,53,4,3,2,1,
+261,Pekka ei voittanut Merja_0acc ,53,4,3,2,1,
+262,Pekka ei voittanut Merjan_gen ,53,4,3,2,1,
+263,me loysimme avaimen ,53,4,3,3,0,2105,0,6,7,2,0,0,2,2,4,6,7,0,0,8,3,2,9,5,0,15,3,701,17,4,17,31
+264,me loydettiin avain_0acc ,53,4,3,3,0,2355,0,6,7,2,0,0,2,2,4,6,7,0,0,8,3,2,9,5,0,15,3,785,17,4,17,15
+265,me loydettiin avaimen ,53,4,3,3,1,
+266,me loysimme avain ,53,4,3,3,1,
+267,me loysimme avain_0acc ,53,4,3,3,1,
+268,Pekka halusi voittaa Merjan ,53,4,3,4,0,3230,0,8,14,3,0,0,3,4,7,10,9,3,0,12,7,3,14,8,0,21,4,807,29,5,24,46
+269,Pekka halusi tonaista Merjaa ,53,4,3,4,0,3280,0,8,14,3,0,0,3,4,7,10,9,3,0,12,7,3,14,8,0,21,4,820,29,5,24,31
+270,Pekka halusi pesta Merjan ,53,4,3,4,0,3130,0,8,14,3,0,0,3,4,7,10,9,3,0,12,7,3,14,8,0,21,4,782,29,6,24,46
+271,Pekka halusi loytaa avaimen ,53,4,3,4,0,2705,0,8,14,3,0,0,3,4,7,10,9,3,0,7,7,3,14,8,0,16,4,676,29,5,24,31
+272,me haluttiin voittaa Merja_0acc ,53,4,3,4,0,3465,0,8,14,3,0,0,3,4,7,10,9,3,0,13,7,3,14,8,0,22,4,866,29,5,24,46
+273,me ei' haluttu voittaa Merjaa ,53,4,3,4,0,3550,0,9,19,3,0,0,3,12,15,15,10,4,1,11,14,3,22,11,0,21,4,710,44,5,29,46
+274,me halusimme voittaa Merjan ,53,4,3,4,0,3155,0,8,14,3,0,0,3,4,7,10,9,3,0,12,7,3,14,8,0,21,4,788,29,5,24,46
+275,me haluttiin voittaa Merjan ,53,4,3,4,1,
+276,me halusimme voittaa Merja_0acc ,53,4,3,4,1,
+277,me ei' haluttu voittaa Merja_0acc ,53,4,3,4,1,
+278,me ei' haluttu voittaa Merjan ,53,4,3,4,1,
+279,lahella_1 Pekkaa ,53,4,3,1,0,1075,0,2,1,0,0,0,0,0,1,2,3,0,0,5,0,1,1,1,0,8,1,537,2,1,2,0
+280,Pekkaa lahella_1 ,53,4,3,1,0,1110,0,2,2,0,0,0,0,0,1,2,3,0,0,5,0,1,3,1,0,8,1,555,6,1,6,0
+281,Merja nukkui Pekan_gen lahella_2 ,53,4,3,1,0,3075,0,6,10,3,0,0,3,5,6,12,7,0,2,12,5,1,18,3,0,19,3,768,26,3,25,31
+282,Merja nukkui lahella_1 Pekkaa ,53,4,3,1,0,2790,0,6,5,2,0,0,2,2,4,9,7,0,1,12,3,2,11,4,0,19,3,697,16,3,19,15
+283,Merja nukkui lahella Pekan_gen ,53,4,3,1,1,
+284,Pekka kaski Merjan_gen lahtea ,53,4,4,1,0,3360,0,8,15,3,0,0,3,5,8,12,9,1,2,12,7,3,18,8,0,21,4,840,32,5,26,46
+285,Pekka sanoi Merjan_gen lahtevan ,53,4,4,1,0,3466,1,9,14,3,0,0,3,7,9,12,9,0,0,12,8,2,19,5,0,21,4,866,38,5,34,46
+286,Pekka halusi ihailla Merjaa ,53,4,4,1,0,3335,0,9,17,3,0,0,3,4,8,10,10,3,0,12,7,4,14,9,0,22,4,833,32,6,24,31
+287,Pekka kaski Merja lahtea ,53,4,4,1,1,
+288,Pekka kaski Merjaa lahtea ,53,4,4,1,1,
+289,Pekka kaski hanet lahtea ,53,4,4,1,1,
+290,Pekka sanoi Merja lahtevan ,53,4,4,1,1,
+291,Pekka sanoi Merjaa lahtevan ,53,4,4,1,1,
+292,Pekka sanoi hanet lahtevan ,53,4,4,1,1,
+293,Pekka kaski lahtea Merjan_gen ,53,4,4,1,1,
+294,Pekka sanoi lahtevan Merjan_gen ,53,4,4,1,1,
+295,se Merjan_gen kello havisi ,53,4,5,1,0,2125,0,6,7,0,0,0,0,4,6,8,7,0,1,6,3,2,11,4,0,13,3,531,16,3,4,15
+296,se kello Merjan_gen havisi ,53,4,5,1,1,
+297,ne kaksi_1 sukkaa havisi ,53,4,6,1,0,1215,0,4,1,0,0,0,0,1,4,7,5,0,0,1,3,3,9,2,0,6,2,303,6,1,5,15
+298,ne kahdet sukat havisivat ,53,4,6,1,0,2111,1,6,2,1,0,0,1,2,4,10,6,0,1,5,5,2,11,3,0,11,3,527,12,2,19,15
+299,ne kaksi_1 sukkaa havisivat ,53,4,6,1,0,1957,2,8,3,0,0,0,0,3,6,11,7,0,1,2,5,3,13,4,0,9,2,489,10,3,10,15
+300,Pekka loysi ne kaksi_2 sukkaa ,53,4,6,1,0,2875,0,7,14,4,0,0,4,6,8,15,8,0,0,8,14,2,22,9,0,16,3,575,34,3,32,46
+301,Pekka sanoi niiden kahden sukan haviavan ,53,4,6,1,0,4282,2,12,15,6,0,0,6,13,16,26,11,0,0,10,21,3,37,10,0,21,6,713,54,5,59,78
+302,ne kaksi sukan havisi ,53,4,6,1,1,
+303,ne kahdet sukkaa havisivat ,53,4,6,1,1,
+304,ne kahdet sukka_0acc havisivat ,53,4,6,1,1,
+305,ne kahdet sukka havisivat ,53,4,6,1,1,
+306,Pekka sanoi niiden kaksi sukkaa haviavan ,53,4,6,1,1,
+307,Pekka nukahti lukemalla kirjaa ,53,4,7,1,0,2430,0,8,9,2,0,0,2,4,8,10,9,0,0,6,2,4,11,6,0,15,4,607,20,5,23,31
+308,Pekka nukahti lukemalla Merjan_gen ,53,4,7,1,1,
+309,Pekka nukahti lukemalla Merja ,53,4,7,1,1,
+310,Pekka nukahti lukemalla Merja_0acc ,53,4,7,1,1,
+311,Pekka nukahti lukemalla Merjan_acc ,53,4,7,1,1,
+312,Pekka nukkui#asp koko paivan ,53,4,8,1,0,3206,1,7,7,5,0,0,5,6,7,19,7,0,3,9,11,1,26,5,0,16,5,801,33,2,54,46
+313,Pekka ei nukkunut koko paivaa ,53,4,8,1,0,2940,0,6,8,3,0,0,3,12,13,19,7,0,5,8,14,1,27,6,0,15,4,588,33,2,38,46
+314,me nukuttiin koko paiva ,53,4,8,1,0,2235,0,6,6,3,0,0,3,3,5,9,7,0,0,7,3,2,13,4,0,14,3,558,22,3,30,31
+315,Pekka ihailee#asp Merjaa koko paivan ,53,4,8,1,0,5610,5,15,30,10,0,0,10,13,15,40,11,0,1,16,24,2,56,8,0,27,7,1122,108,4,187,156
+316,Pekka nukkui koko paivan ,53,4,8,1,1,
+317,Pekka ei nukkunut koko paivan ,53,4,8,1,1,
+318,me nukuttiin koko paivan ,53,4,8,1,1,
+319,Pekka ihailee Merjaa koko paivan ,53,4,8,1,1,
+320,Pekka ihailee#asp Merjaa koko paiva ,53,4,8,1,1,
+321,Pekka ihailee#asp Merjaa koko paivaa ,53,4,8,1,1,
+322,Pekka ihailee Merjaa koko paivaa ,53,4,8,1,1,
+323,Merjaa pelottaa ,53,4,9,1,0,1785,0,4,4,1,0,0,1,1,4,3,5,0,0,7,0,3,5,3,0,12,2,892,10,3,10,15
+324,Pekka pelottaa ,53,4,9,1,1,
+325,Merjan_gen pelottaa ,53,4,9,1,1,
+326,Merjan_acc pelottaa ,53,4,9,1,1,
+327,Merja_0acc pelottaa ,53,4,9,1,1,
+328,Merjalle pelottaa ,53,4,9,1,1,
+329,me loysimme avaimen ,53,4,9,2,0,2105,0,6,7,2,0,0,2,2,4,6,7,0,0,8,3,2,9,5,0,15,3,701,17,4,17,31
+330,me loydettiin avain_0acc ,53,4,9,2,0,2355,0,6,7,2,0,0,2,2,4,6,7,0,0,8,3,2,9,5,0,15,3,785,17,4,17,15
+331,avain_0acc loydettiin ,53,4,9,2,0,1595,0,4,4,1,0,0,1,1,4,3,5,0,0,3,0,3,5,3,0,8,2,797,10,3,10,0
+332,loydettiin avain_0acc ,53,4,9,2,0,1555,0,4,3,0,0,0,0,1,4,2,5,0,0,3,1,3,3,3,0,8,2,777,4,3,2,0
+333,me loydettiin avaimen ,53,4,9,2,1,
+334,me loysimme avain ,53,4,9,2,1,
+335,Pekka on' Pekka ,53,4,9,3,0,2491,1,7,7,4,0,0,4,4,4,10,7,0,0,11,3,0,14,4,0,18,3,830,27,4,36,31
+336,Merjalla on' Pekka ,53,4,9,3,0,1845,0,6,7,1,0,0,1,2,4,5,7,0,0,6,3,2,6,5,0,13,3,615,16,4,16,15
+337,Pekka on' Merjalla ,53,4,9,3,0,1865,0,6,6,3,0,0,3,3,4,7,7,0,0,6,0,1,9,4,0,13,3,621,18,4,19,15
+338,Pekka on' Pekkaa ,53,4,9,3,1,
+339,Pekka on' Pekan_gen ,53,4,9,3,1,
+340,mina ihailen Merjaa ,53,5,1,1,0,2570,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,856,17,4,17,15
+341,sina ihailet Merjaa ,53,5,1,1,0,2570,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,856,17,4,17,15
+342,han ihailee Merjaa ,53,5,1,1,0,2595,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,865,17,4,17,15
+343,me ihailemme Merjaa ,53,5,1,1,0,2520,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,840,17,4,17,15
+344,te ihailette Merjaa ,53,5,1,1,0,2520,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,840,17,4,17,31
+345,he_FI ihailevat Merjaa ,53,5,1,1,0,2670,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,890,17,4,17,15
+346,I admire Mary ,53,5,1,1,0,2030,0,6,7,0,0,0,0,2,4,4,7,0,0,10,3,2,7,5,0,17,3,676,13,4,0,15
+347,you admire Mary ,53,5,1,1,0,2130,0,6,7,0,0,0,0,2,4,4,7,0,0,10,3,2,7,5,0,17,3,710,13,4,0,15
+348,he admires Mary ,53,5,1,1,0,2215,0,6,7,0,0,0,0,2,4,4,7,0,0,11,3,2,7,5,0,18,3,738,13,4,0,15
+349,she admires Mary ,53,5,1,1,0,2265,0,6,7,0,0,0,0,2,4,4,7,0,0,11,3,2,7,5,0,18,3,755,13,4,0,15
+350,John admires Mary ,53,5,1,1,0,2315,0,6,7,0,0,0,0,2,4,4,7,0,0,11,3,2,7,5,0,18,3,771,13,4,0,31
+351,we admire Mary ,53,5,1,1,0,2080,0,6,7,0,0,0,0,2,4,4,7,0,0,10,3,2,7,5,0,17,3,693,13,4,0,15
+352,you_pl admire Mary ,53,5,1,1,0,2280,0,6,7,0,0,0,0,2,4,4,7,0,0,10,3,2,7,5,0,17,3,760,13,4,0,15
+353,they admire Mary ,53,5,1,1,0,2180,0,6,7,0,0,0,0,2,4,4,7,0,0,10,3,2,7,5,0,17,3,726,13,4,0,31
+354,io adoro Luisa ,53,5,1,1,0,2045,0,6,7,0,0,0,0,2,4,4,7,0,0,10,1,2,7,4,0,17,3,681,13,4,0,15
+355,tu adori Luisa ,53,5,1,1,0,2045,0,6,7,0,0,0,0,2,4,4,7,0,0,10,1,2,7,4,0,17,3,681,13,4,0,15
+356,lui adora Luisa ,53,5,1,1,0,2526,1,8,10,0,0,0,0,3,5,7,8,0,1,11,3,2,11,5,0,19,3,842,19,5,1,31
+357,lei adora Luisa ,53,5,1,1,0,2205,0,6,7,0,0,0,0,2,4,4,7,0,0,11,1,2,7,4,0,18,3,735,13,4,0,15
+358,noi adoriamo Luisa ,53,5,1,1,0,2170,0,6,7,0,0,0,0,2,4,4,7,0,0,10,1,2,7,4,0,17,3,723,13,4,0,15
+359,voi adorate Luisa ,53,5,1,1,0,2145,0,6,7,0,0,0,0,2,4,4,7,0,0,10,1,2,7,4,0,17,3,715,13,4,0,15
+360,loro adorano Luisa ,53,5,1,1,0,2085,0,6,7,0,0,0,0,2,4,4,7,0,0,9,1,2,7,4,0,16,3,695,13,4,0,15
+361,mina ihailet Merjaa ,53,5,1,1,1,
+362,mina ihalee Merjaa ,53,5,1,1,1,
+363,mina ihailemme Merjaa ,53,5,1,1,1,
+364,mina ihailette Merjaa ,53,5,1,1,1,
+365,mina ihailevat Merjaa ,53,5,1,1,1,
+366,sina ihailen Merjaa ,53,5,1,1,1,
+367,sina ihalee Merjaa ,53,5,1,1,1,
+368,sina ihailemme Merjaa ,53,5,1,1,1,
+369,sina ihailette Merjaa ,53,5,1,1,1,
+370,sina ihailevat Merjaa ,53,5,1,1,1,
+371,han ihailen Merjaa ,53,5,1,1,1,
+372,han ihailet Merjaa ,53,5,1,1,1,
+373,han ihailemme Merjaa ,53,5,1,1,1,
+374,han ihailette Merjaa ,53,5,1,1,1,
+375,han ihailevat Merjaa ,53,5,1,1,1,
+376,me ihailen Merjaa ,53,5,1,1,1,
+377,me ihailet Merjaa ,53,5,1,1,1,
+378,me ihalee Merjaa ,53,5,1,1,1,
+379,me ihailette Merjaa ,53,5,1,1,1,
+380,me ihailevat Merjaa ,53,5,1,1,1,
+381,te ihailen Merjaa ,53,5,1,1,1,
+382,te ihailet Merjaa ,53,5,1,1,1,
+383,te ihalee Merjaa ,53,5,1,1,1,
+384,te ihailemme Merjaa ,53,5,1,1,1,
+385,te ihailevat Merjaa ,53,5,1,1,1,
+386,he_FI ihailen Merjaa ,53,5,1,1,1,
+387,he_FI ihailet Merjaa ,53,5,1,1,1,
+388,he_FI ihalee Merjaa ,53,5,1,1,1,
+389,he_FI ihailemme Merjaa ,53,5,1,1,1,
+390,he_FI ihailette Merjaa ,53,5,1,1,1,
+391,John admire Mary ,53,5,1,1,1,
+392,we admires Mary ,53,5,1,1,1,
+393,io adori Luisa ,53,5,1,1,1,
+394,io adora Luisa ,53,5,1,1,1,
+395,io adorate Luisa ,53,5,1,1,1,
+396,io adorano Luisa ,53,5,1,1,1,
+397,ihailen mina Merjaa ,53,5,2,1,0,2575,0,6,8,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,858,16,4,14,31
+398,ihailen Merjaa mina ,53,5,2,1,0,2495,0,6,7,1,0,0,1,3,5,5,7,0,0,12,1,2,7,4,0,19,3,831,13,4,12,31
+399,ihailet sina Merjaa ,53,5,2,1,0,2575,0,6,8,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,858,16,4,14,15
+400,ihailet Merjaa sina ,53,5,2,1,0,2505,0,6,8,1,0,0,1,2,4,5,7,0,0,12,1,2,8,4,0,19,3,835,13,4,10,31
+401,ihailette Merjaa te ,53,5,2,1,0,2445,0,6,7,1,0,0,1,3,5,5,7,0,0,12,1,2,7,4,0,19,3,815,13,4,12,31
+402,ihailemme me Merjaa ,53,5,2,1,0,2525,0,6,8,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,841,16,4,14,15
+403,ihailemme Merjaa me ,53,5,2,1,0,2445,0,6,7,1,0,0,1,3,5,5,7,0,0,12,1,2,7,4,0,19,3,815,13,4,12,31
+404,ihailette te Merjaa ,53,5,2,1,0,2525,0,6,8,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,841,16,4,14,15
+405,mina ihailen Merjaa ,53,5,2,1,0,2570,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,856,17,4,17,15
+406,mina Merjaa ihailen ,53,5,2,1,0,3071,1,9,10,3,0,0,3,2,4,11,9,0,2,12,6,2,16,6,0,21,3,1023,35,6,48,31
+407,Merjaa mina ihailen ,53,5,2,1,0,3071,1,9,10,3,0,0,3,2,4,11,9,0,2,12,6,2,16,6,0,21,3,1023,35,6,48,31
+408,Merjaa ihailen mina ,53,5,2,1,0,2570,0,6,7,3,0,0,3,2,4,7,7,0,0,12,1,2,10,4,0,19,3,856,23,4,28,15
+409,sina ihailet Merjaa ,53,5,2,1,0,2570,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,856,17,4,17,31
+410,sina Merjaa ihailet ,53,5,2,1,0,2590,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,863,24,4,31,15
+411,Merjaa sina ihailet ,53,5,2,1,0,2590,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,863,23,4,29,15
+412,Merjaa ihailet sina ,53,5,2,1,0,2565,0,6,7,3,0,0,3,3,5,7,7,0,0,12,0,2,10,4,0,19,3,855,24,4,30,15
+413,han ihailee Merjaa ,53,5,2,1,0,2595,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,865,17,4,17,15
+414,han Merjaa ihailee ,53,5,2,1,0,2615,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,871,24,4,31,31
+415,Merjaa han ihailee ,53,5,2,1,0,2615,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,871,23,4,29,15
+416,Merjaa ihailee han ,53,5,2,1,0,2615,0,6,7,3,0,0,3,2,5,7,7,0,0,12,1,3,10,4,0,19,3,871,23,4,28,15
+417,me ihailemme Merjaa ,53,5,2,1,0,2520,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,840,17,4,17,31
+418,me Merjaa ihailemme ,53,5,2,1,0,2540,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,846,24,4,31,15
+419,Merjaa me ihailemme ,53,5,2,1,0,2540,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,846,23,4,29,15
+420,Merjaa ihailemme me ,53,5,2,1,0,2515,0,6,7,3,0,0,3,3,5,7,7,0,0,12,0,2,10,4,0,19,3,838,24,4,30,15
+421,te ihailette Merjaa ,53,5,2,1,0,2520,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,840,17,4,17,15
+422,te Merjaa ihailette ,53,5,2,1,0,3021,1,9,10,3,0,0,3,2,4,11,9,0,2,12,6,2,16,6,0,21,3,1007,35,6,48,46
+423,Merjaa te ihailette ,53,5,2,1,0,2540,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,846,23,4,29,15
+424,Merjaa ihailette te ,53,5,2,1,0,2520,0,6,7,3,0,0,3,2,4,7,7,0,0,12,1,2,10,4,0,19,3,840,23,4,28,15
+425,he_FI ihailevat Merjaa ,53,5,2,1,0,2670,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,890,17,4,17,15
+426,he_FI Merjaa ihailevat ,53,5,2,1,0,2690,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,896,24,4,31,15
+427,Merjaa he_FI ihailevat ,53,5,2,1,0,2690,0,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,0,19,3,896,23,4,29,15
+428,Merjaa ihailevat he_FI ,53,5,2,1,0,2685,0,6,7,3,0,0,3,3,6,7,7,0,0,12,0,3,10,4,0,19,3,895,24,4,30,15
+429,ihailee han Merjaa ,53,5,2,1,1,
+430,ihailee Merjaa han ,53,5,2,1,1,
+431,ihailevat he_FI Merjaa ,53,5,2,1,1,
+432,ihailevat Merjaa he_FI ,53,5,2,1,1,
+433,mina ihailet Merjaa ,53,5,2,2,1,
+434,mina Merjaa ihailet ,53,5,2,2,1,
+435,ihailet mina Merjaa ,53,5,2,2,1,
+436,ihailet Merjaa mina ,53,5,2,2,1,
+437,Merjaa mina ihailet ,53,5,2,2,1,
+438,Merjaa ihailet mina ,53,5,2,2,1,
+439,mina ihalee Merjaa ,53,5,2,2,1,
+440,mina Merjaa ihalee ,53,5,2,2,1,
+441,ihalee mina Merjaa ,53,5,2,2,1,
+442,ihalee Merjaa mina ,53,5,2,2,1,
+443,Merjaa mina ihalee ,53,5,2,2,1,
+444,Merjaa ihalee mina ,53,5,2,2,1,
+445,mina ihailemme Merjaa ,53,5,2,2,1,
+446,mina Merjaa ihailemme ,53,5,2,2,1,
+447,ihailemme mina Merjaa ,53,5,2,2,1,
+448,ihailemme Merjaa mina ,53,5,2,2,1,
+449,Merjaa mina ihailemme ,53,5,2,2,1,
+450,Merjaa ihailemme mina ,53,5,2,2,1,
+451,mina ihailette Merjaa ,53,5,2,2,1,
+452,mina Merjaa ihailette ,53,5,2,2,1,
+453,ihailette mina Merjaa ,53,5,2,2,1,
+454,ihailette Merjaa mina ,53,5,2,2,1,
+455,Merjaa mina ihailette ,53,5,2,2,1,
+456,Merjaa ihailette mina ,53,5,2,2,1,
+457,mina ihailevat Merjaa ,53,5,2,2,1,
+458,mina Merjaa ihailevat ,53,5,2,2,1,
+459,ihailevat mina Merjaa ,53,5,2,2,1,
+460,ihailevat Merjaa mina ,53,5,2,2,1,
+461,Merjaa mina ihailevat ,53,5,2,2,1,
+462,Merjaa ihailevat mina ,53,5,2,2,1,
+463,sina ihailen Merjaa ,53,5,2,2,1,
+464,sina Merjaa ihailen ,53,5,2,2,1,
+465,ihailen sina Merjaa ,53,5,2,2,1,
+466,ihailen Merjaa sina ,53,5,2,2,1,
+467,Merjaa sina ihailen ,53,5,2,2,1,
+468,Merjaa ihailen sina ,53,5,2,2,1,
+469,sina ihalee Merjaa ,53,5,2,2,1,
+470,sina Merjaa ihalee ,53,5,2,2,1,
+471,ihalee sina Merjaa ,53,5,2,2,1,
+472,ihalee Merjaa sina ,53,5,2,2,1,
+473,Merjaa sina ihalee ,53,5,2,2,1,
+474,Merjaa ihalee sina ,53,5,2,2,1,
+475,sina ihailemme Merjaa ,53,5,2,2,1,
+476,sina Merjaa ihailemme ,53,5,2,2,1,
+477,ihailemme sina Merjaa ,53,5,2,2,1,
+478,ihailemme Merjaa sina ,53,5,2,2,1,
+479,Merjaa sina ihailemme ,53,5,2,2,1,
+480,Merjaa ihailemme sina ,53,5,2,2,1,
+481,sina ihailette Merjaa ,53,5,2,2,1,
+482,sina Merjaa ihailette ,53,5,2,2,1,
+483,ihailette sina Merjaa ,53,5,2,2,1,
+484,ihailette Merjaa sina ,53,5,2,2,1,
+485,Merjaa sina ihailette ,53,5,2,2,1,
+486,Merjaa ihailette sina ,53,5,2,2,1,
+487,sina ihailevat Merjaa ,53,5,2,2,1,
+488,sina Merjaa ihailevat ,53,5,2,2,1,
+489,ihailevat sina Merjaa ,53,5,2,2,1,
+490,ihailevat Merjaa sina ,53,5,2,2,1,
+491,Merjaa sina ihailevat ,53,5,2,2,1,
+492,Merjaa ihailevat sina ,53,5,2,2,1,
+493,han ihailen Merjaa ,53,5,2,2,1,
+494,han Merjaa ihailen ,53,5,2,2,1,
+495,ihailen han Merjaa ,53,5,2,2,1,
+496,ihailen Merjaa han ,53,5,2,2,1,
+497,Merjaa han ihailen ,53,5,2,2,1,
+498,Merjaa ihailen han ,53,5,2,2,1,
+499,han ihailet Merjaa ,53,5,2,2,1,
+500,han Merjaa ihailet ,53,5,2,2,1,
+501,ihailet han Merjaa ,53,5,2,2,1,
+502,ihailet Merjaa han ,53,5,2,2,1,
+503,Merjaa han ihailet ,53,5,2,2,1,
+504,Merjaa ihailet han ,53,5,2,2,1,
+505,han ihailemme Merjaa ,53,5,2,2,1,
+506,han Merjaa ihailemme ,53,5,2,2,1,
+507,ihailemme han Merjaa ,53,5,2,2,1,
+508,ihailemme Merjaa han ,53,5,2,2,1,
+509,Merjaa han ihailemme ,53,5,2,2,1,
+510,Merjaa ihailemme han ,53,5,2,2,1,
+511,han ihailette Merjaa ,53,5,2,2,1,
+512,han Merjaa ihailette ,53,5,2,2,1,
+513,ihailette han Merjaa ,53,5,2,2,1,
+514,ihailette Merjaa han ,53,5,2,2,1,
+515,Merjaa han ihailette ,53,5,2,2,1,
+516,Merjaa ihailette han ,53,5,2,2,1,
+517,han ihailevat Merjaa ,53,5,2,2,1,
+518,han Merjaa ihailevat ,53,5,2,2,1,
+519,ihailevat han Merjaa ,53,5,2,2,1,
+520,ihailevat Merjaa han ,53,5,2,2,1,
+521,Merjaa han ihailevat ,53,5,2,2,1,
+522,Merjaa ihailevat han ,53,5,2,2,1,
+523,me ihailen Merjaa ,53,5,2,2,1,
+524,me Merjaa ihailen ,53,5,2,2,1,
+525,ihailen me Merjaa ,53,5,2,2,1,
+526,ihailen Merjaa me ,53,5,2,2,1,
+527,Merjaa me ihailen ,53,5,2,2,1,
+528,Merjaa ihailen me ,53,5,2,2,1,
+529,me ihailet Merjaa ,53,5,2,2,1,
+530,me Merjaa ihailet ,53,5,2,2,1,
+531,ihailet me Merjaa ,53,5,2,2,1,
+532,ihailet Merjaa me ,53,5,2,2,1,
+533,Merjaa me ihailet ,53,5,2,2,1,
+534,Merjaa ihailet me ,53,5,2,2,1,
+535,me ihalee Merjaa ,53,5,2,2,1,
+536,me Merjaa ihalee ,53,5,2,2,1,
+537,ihalee me Merjaa ,53,5,2,2,1,
+538,ihalee Merjaa me ,53,5,2,2,1,
+539,Merjaa me ihalee ,53,5,2,2,1,
+540,Merjaa ihalee me ,53,5,2,2,1,
+541,me ihailette Merjaa ,53,5,2,2,1,
+542,me Merjaa ihailette ,53,5,2,2,1,
+543,ihailette me Merjaa ,53,5,2,2,1,
+544,ihailette Merjaa me ,53,5,2,2,1,
+545,Merjaa me ihailette ,53,5,2,2,1,
+546,Merjaa ihailette me ,53,5,2,2,1,
+547,me ihailevat Merjaa ,53,5,2,2,1,
+548,me Merjaa ihailevat ,53,5,2,2,1,
+549,ihailevat me Merjaa ,53,5,2,2,1,
+550,ihailevat Merjaa me ,53,5,2,2,1,
+551,Merjaa me ihailevat ,53,5,2,2,1,
+552,Merjaa ihailevat me ,53,5,2,2,1,
+553,te ihailen Merjaa ,53,5,2,2,1,
+554,te Merjaa ihailen ,53,5,2,2,1,
+555,ihailen te Merjaa ,53,5,2,2,1,
+556,ihailen Merjaa te ,53,5,2,2,1,
+557,Merjaa te ihailen ,53,5,2,2,1,
+558,Merjaa ihailen te ,53,5,2,2,1,
+559,te ihailet Merjaa ,53,5,2,2,1,
+560,te Merjaa ihailet ,53,5,2,2,1,
+561,ihailet te Merjaa ,53,5,2,2,1,
+562,ihailet Merjaa te ,53,5,2,2,1,
+563,Merjaa te ihailet ,53,5,2,2,1,
+564,Merjaa ihailet te ,53,5,2,2,1,
+565,te ihalee Merjaa ,53,5,2,2,1,
+566,te Merjaa ihalee ,53,5,2,2,1,
+567,ihalee te Merjaa ,53,5,2,2,1,
+568,ihalee Merjaa te ,53,5,2,2,1,
+569,Merjaa te ihalee ,53,5,2,2,1,
+570,Merjaa ihalee te ,53,5,2,2,1,
+571,te ihailemme Merjaa ,53,5,2,2,1,
+572,te Merjaa ihailemme ,53,5,2,2,1,
+573,ihailemme te Merjaa ,53,5,2,2,1,
+574,ihailemme Merjaa te ,53,5,2,2,1,
+575,Merjaa te ihailemme ,53,5,2,2,1,
+576,Merjaa ihailemme te ,53,5,2,2,1,
+577,te ihailevat Merjaa ,53,5,2,2,1,
+578,te Merjaa ihailevat ,53,5,2,2,1,
+579,ihailevat te Merjaa ,53,5,2,2,1,
+580,ihailevat Merjaa te ,53,5,2,2,1,
+581,Merjaa te ihailevat ,53,5,2,2,1,
+582,Merjaa ihailevat te ,53,5,2,2,1,
+583,he_FI ihailen Merjaa ,53,5,2,2,1,
+584,he_FI Merjaa ihailen ,53,5,2,2,1,
+585,ihailen he_FI Merjaa ,53,5,2,2,1,
+586,ihailen Merjaa he_FI ,53,5,2,2,1,
+587,Merjaa he_FI ihailen ,53,5,2,2,1,
+588,Merjaa ihailen he_FI ,53,5,2,2,1,
+589,he_FI ihailet Merjaa ,53,5,2,2,1,
+590,he_FI Merjaa ihailet ,53,5,2,2,1,
+591,ihailet he_FI Merjaa ,53,5,2,2,1,
+592,ihailet Merjaa he_FI ,53,5,2,2,1,
+593,Merjaa he_FI ihailet ,53,5,2,2,1,
+594,Merjaa ihailet he_FI ,53,5,2,2,1,
+595,he_FI ihalee Merjaa ,53,5,2,2,1,
+596,he_FI Merjaa ihalee ,53,5,2,2,1,
+597,ihalee he_FI Merjaa ,53,5,2,2,1,
+598,ihalee Merjaa he_FI ,53,5,2,2,1,
+599,Merjaa he_FI ihalee ,53,5,2,2,1,
+600,Merjaa ihalee he_FI ,53,5,2,2,1,
+601,he_FI ihailemme Merjaa ,53,5,2,2,1,
+602,he_FI Merjaa ihailemme ,53,5,2,2,1,
+603,ihailemme he_FI Merjaa ,53,5,2,2,1,
+604,ihailemme Merjaa he_FI ,53,5,2,2,1,
+605,Merjaa he_FI ihailemme ,53,5,2,2,1,
+606,Merjaa ihailemme he_FI ,53,5,2,2,1,
+607,he_FI ihailette Merjaa ,53,5,2,2,1,
+608,he_FI Merjaa ihailette ,53,5,2,2,1,
+609,ihailette he_FI Merjaa ,53,5,2,2,1,
+610,ihailette Merjaa he_FI ,53,5,2,2,1,
+611,Merjaa he_FI ihailette ,53,5,2,2,1,
+612,Merjaa ihailette he_FI ,53,5,2,2,1,
+613,ihailen Merjaa ,53,6,1,1,0,1650,0,4,3,0,0,0,0,1,3,2,5,0,0,7,1,2,3,3,0,12,2,825,4,3,2,15
+614,ihailet Merjaa ,53,6,1,1,0,1650,0,4,3,0,0,0,0,1,3,2,5,0,0,7,1,2,3,3,0,12,2,825,4,3,2,0
+615,ihailemme Merjaa ,53,6,1,1,0,1700,0,4,3,0,0,0,0,1,3,2,5,0,0,7,1,2,3,3,0,12,2,850,4,3,2,15
+616,ihailette Merjaa ,53,6,1,1,0,1700,0,4,3,0,0,0,0,1,3,2,5,0,0,7,1,2,3,3,0,12,2,850,4,3,2,15
+617,adoro Luisa ,53,6,1,1,0,1440,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,720,4,3,0,15
+618,adori Luisa ,53,6,1,1,0,1440,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,720,4,3,0,0
+619,adora Luisa ,53,6,1,1,0,1440,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,720,4,3,0,0
+620,adora Luisa ,53,6,1,1,0,1440,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,720,4,3,0,15
+621,adoriamo Luisa ,53,6,1,1,0,1515,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,757,4,3,0,15
+622,adorate Luisa ,53,6,1,1,0,1490,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,745,4,3,0,0
+623,adorano Luisa ,53,6,1,1,0,1490,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,745,4,3,0,0
+624,lavano Luisa ,53,6,1,1,0,1440,0,4,3,0,0,0,0,1,3,2,5,0,0,6,1,2,3,3,0,11,2,720,4,3,0,15
+625,devono lavare Luisa ,53,6,1,1,0,1910,0,6,7,0,0,0,0,4,7,4,7,2,0,6,3,3,5,5,0,13,3,636,9,4,0,15
+626,hanno lavato Luisa ,53,6,1,1,0,2095,0,6,7,0,0,0,0,4,8,4,7,0,0,8,4,4,6,5,0,15,3,698,9,4,0,31
+627,ho lavato Luisa ,53,6,1,1,0,2020,0,6,7,0,0,0,0,4,8,4,7,0,0,8,4,4,6,5,0,15,3,673,9,4,0,15
+628,hanno voluto lavare Luisa ,53,6,1,1,0,2795,0,9,18,0,0,0,0,10,16,7,10,3,0,8,8,6,10,9,0,18,4,698,21,6,0,46
+629,stanno lavando Luisa ,53,6,1,1,0,1910,0,6,7,0,0,0,0,4,7,4,7,2,0,6,3,3,5,5,0,13,3,636,9,4,0,31
+630,ihailee Merjaa ,53,6,1,1,1,
+631,ihailevat Merjaa ,53,6,1,1,1,
+632,admire Mary ,53,6,1,1,1,
+633,admires Mary ,53,6,1,1,1,
+634,am John ,53,6,1,1,1,
+635,ihailen Merjaa ,53,6,2,1,0,1650,0,4,3,0,0,0,0,1,3,2,5,0,0,7,1,2,3,3,0,12,2,825,4,3,2,0
+636,Merjaa ihailen ,53,6,2,1,0,1690,0,4,4,1,0,0,1,1,3,3,5,0,0,7,0,2,5,3,0,12,2,845,10,3,10,0
+637,Merjaa ihailevat ,53,6,2,1,0,1760,0,4,4,1,0,0,1,1,4,3,5,0,0,7,0,3,5,3,0,12,2,880,10,3,10,15
+638,ihailee Merjaa ,53,6,2,1,1,
+639,ihailevat Merjaa ,53,6,2,1,1,
+640,Merjaa ihailee ,53,6,2,1,2,
+641,Pekka sanoi etta ihailee Merjaa ,53,6,3,1,0,3810,0,9,17,4,0,0,4,10,14,15,10,0,0,13,13,4,23,10,0,23,4,762,37,5,31,62
+642,ihailee Merjaa ,53,6,3,1,1,
+643,Mina sanon etta ihailee Merjaa ,53,6,3,1,1,
+644,John said that admire Mary ,53,6,3,1,1,
+645,John said that admires Mary ,53,6,3,1,1,
+646,Pekka sanoi etta ihailee Merjaa ,53,7,1,1,0,5816,1,15,25,5,0,0,5,14,18,23,15,0,0,20,23,4,35,16,0,35,6,1163,52,8,41,93
+647,ihailee Merjaa ,53,7,1,1,1,
+648,Mina sanon etta ihailee Merjaa ,53,7,1,1,1,
+649,John wants to_inf leave ,53,7,2,1,0,2030,0,6,10,0,0,0,0,4,8,7,7,1,0,6,7,4,11,6,0,13,2,507,19,3,0,31
+650,John wants Mary to_inf leave ,53,7,2,1,0,2850,0,8,13,0,0,0,0,4,8,10,9,1,1,11,8,4,14,7,0,20,3,570,23,4,1,46
+651,John wants ,53,7,2,1,1,
+652,John wants to_inf ,53,7,2,1,1,
+653,John wants leave ,53,7,2,1,1,
+654,Pekka haluaa lahtea ,53,7,2,2,0,2035,0,6,7,2,0,0,2,2,5,6,7,1,0,6,3,3,9,5,0,13,3,678,17,4,15,15
+655,John tries to_inf leave ,53,7,2,2,0,1875,0,5,6,0,0,0,0,4,6,7,6,1,0,6,7,2,11,5,0,12,2,468,15,2,0,31
+656,John promises to_inf leave ,53,7,2,2,0,1955,0,5,4,0,0,0,0,2,5,7,6,1,1,6,3,3,9,3,0,12,2,488,11,2,1,15
+657,Pekka haluaa Merjan lahtea ,53,7,2,2,1,
+658,John tries Mary to_inf leave ,53,7,2,2,1,
+659,Pekka kaskee Merjan_gen lahtea ,53,7,2,3,0,3385,0,8,15,3,0,0,3,5,8,12,9,1,2,12,7,3,18,8,0,21,4,846,32,5,26,31
+660,Pekka haluaa Merjan_gen lahtevan ,53,7,2,3,0,3666,1,10,19,3,0,0,3,7,10,12,10,0,0,12,10,3,19,7,0,22,4,916,43,6,34,46
+661,John persuades Mary to_inf leave ,53,7,2,3,0,3050,0,8,13,0,0,0,0,4,8,10,9,1,1,11,8,4,14,7,0,20,3,610,23,4,1,31
+662,Pekka kaskee lahtea ,53,7,2,3,1,
+663,John persuades to_ing leave ,53,7,2,3,1,
+664,Pekka haluaa lahtevan ,53,7,2,3,1,
+665,Pekka etsii Merjaa juosten ,53,7,3,1,0,3090,0,8,14,2,0,0,2,5,8,10,9,0,0,12,3,3,14,6,0,21,4,772,31,5,31,31
+666,John promises Mary to_inf leave ,53,7,3,1,0,2855,0,7,9,0,0,0,0,4,7,10,8,1,1,11,6,3,14,5,0,19,3,571,19,3,1,31
+667,John persuades Mary to_inf leave ,53,7,3,2,0,3050,0,8,13,0,0,0,0,4,8,10,9,1,1,11,8,4,14,7,0,20,3,610,23,4,1,46
+668,John persuades to_inf leave ,53,7,3,2,1,
+669,Pekka pyytaa lahtemaan ,53,7,4,1,0,2090,0,6,7,2,0,0,2,2,6,6,7,0,0,6,1,4,9,4,0,13,3,696,17,4,17,15
+670,Pekka sanoo etta istuu mukavasti ,53,7,4,1,0,3386,1,10,16,5,0,0,5,15,18,20,10,0,0,7,6,3,27,7,0,17,4,677,41,5,44,62
+671,tassa istuu mukavasti ,53,7,4,1,0,1770,0,6,7,0,0,0,0,3,6,5,7,0,0,4,0,3,6,4,0,11,4,590,9,4,3,15
+672,Pekka sanoo etta tassa istuu mukavasti ,53,7,4,1,0,6958,3,23,44,6,0,0,6,22,26,39,21,0,0,14,29,4,58,21,0,35,10,1159,79,12,58,156
+673,istuu mukavasti ,53,7,4,1,1,
+674,John admires Mary ,53,8,1,1,0,2315,0,6,7,0,0,0,0,2,4,4,7,0,0,11,3,2,7,5,0,18,3,771,13,4,0,15
+675,Mary admires John ,53,8,1,1,0,2315,0,6,7,0,0,0,0,2,4,4,7,0,0,11,3,2,7,5,0,18,3,771,13,4,0,15
+676,John Mary admires ,53,8,1,1,1,
+677,admires John Mary ,53,8,1,1,1,
+678,admires Mary John ,53,8,1,1,1,
+679,Mary John admires ,53,8,1,1,1,
+680,Pekka ihailee Merjaa ,53,8,1,2,0,2620,0,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,0,19,3,873,17,4,17,31
+681,Pekka Merjaa ihailee ,53,8,1,2,0,3121,1,9,10,3,0,0,3,2,4,11,9,0,2,12,6,2,16,6,0,21,3,1040,35,6,48,31
+682,Merjaa Pekka ihailee ,53,8,1,2,0,3121,1,9,10,3,0,0,3,2,4,11,9,0,2,12,6,2,16,6,0,21,3,1040,35,6,48,31
+683,Merjaa ihailee Pekka ,53,8,1,2,0,2640,0,6,7,3,0,0,3,2,5,7,7,0,0,12,1,3,10,4,0,19,3,880,23,4,28,15
+684,ihailee Pekka Merjaa ,53,8,1,2,1,
+685,ihailee Merjaa Pekka ,53,8,1,2,1,
+686,Pekka antoi kirjan Merjalle ,53,8,2,1,0,2825,0,9,15,4,0,0,4,5,8,11,10,0,0,8,3,3,15,7,0,18,4,706,37,6,40,46
+687,Pekka antoi Merjalle kirjan ,53,8,2,1,0,2865,0,9,19,3,0,0,3,4,7,11,10,0,1,8,4,3,16,7,0,18,4,716,34,6,29,46
+688,Pekka kirjan antoi Merjalle ,53,8,2,1,0,2890,0,9,13,5,0,0,5,3,6,13,10,0,1,8,3,3,19,6,0,18,4,722,48,6,64,46
+689,Pekka kirjan Merjalle antoi ,53,8,2,1,0,3986,1,15,24,5,0,0,5,2,5,18,15,0,2,10,9,3,21,13,0,25,5,996,88,10,123,62
+690,Pekka Merjalle antoi kirjan ,53,8,2,1,0,2850,0,9,15,5,0,0,5,3,6,12,10,0,0,8,6,3,13,9,0,18,4,712,52,6,65,93
+691,Pekka Merjalle kirjan antoi ,53,8,2,1,0,3381,1,12,17,5,0,0,5,2,5,17,12,0,3,9,7,3,21,10,0,21,4,845,73,8,109,62
+692,kirjan Pekka antoi Merjalle ,53,8,2,1,0,4562,2,18,24,9,0,0,9,7,10,24,17,0,2,9,17,3,32,13,0,26,5,1140,83,12,111,93
+693,kirjan Pekka Merjalle antoi ,53,8,2,1,0,3986,1,15,24,5,0,0,5,2,5,18,15,0,2,10,9,3,21,13,0,25,5,996,88,10,123,62
+694,kirjan antoi Pekka Merjalle ,53,8,2,1,0,3141,1,12,14,5,0,0,5,5,9,14,12,0,0,8,2,4,18,8,0,20,4,785,50,8,69,46
+695,kirjan antoi Merjalle Pekka ,53,8,2,1,0,2800,0,9,17,3,0,0,3,5,9,10,10,0,0,8,1,4,15,6,0,18,4,700,41,6,43,46
+696,kirjan Merjalle Pekka antoi ,53,8,2,1,0,2850,0,9,14,3,0,0,3,1,4,12,10,0,2,8,5,3,16,8,0,18,4,712,53,6,75,46
+697,kirjan Merjalle antoi Pekka ,53,8,2,1,0,3246,1,11,18,9,0,0,9,5,9,19,11,0,0,8,4,4,20,9,0,19,4,811,82,7,116,62
+698,Merjalle Pekka antoi kirjan ,53,8,2,1,0,2920,0,9,14,5,0,0,5,3,6,13,10,0,1,8,7,3,16,8,0,18,4,730,47,6,58,62
+699,Merjalle Pekka kirjan antoi ,53,8,2,1,0,2905,0,9,13,3,0,0,3,1,4,13,10,0,3,8,6,3,18,7,0,18,4,726,51,6,73,31
+700,Merjalle antoi Pekka kirjan ,53,8,2,1,0,2975,0,9,17,6,0,0,6,4,8,14,10,0,0,8,7,4,16,9,0,18,4,743,48,6,54,62
+701,Merjalle antoi kirjan Pekka ,53,8,2,1,0,2805,0,9,16,4,0,0,4,5,9,11,10,0,0,8,3,4,12,7,0,18,4,701,41,6,44,46
+702,Merjalle kirjan Pekka antoi ,53,8,2,1,0,4572,2,17,22,6,0,0,6,3,6,25,16,0,6,11,13,3,32,12,0,27,5,1143,87,11,128,93
+703,Merjalle kirjan antoi Pekka ,53,8,2,1,0,3632,2,13,20,11,0,0,11,7,11,24,12,0,1,8,4,4,28,8,0,20,4,908,97,8,140,78
+704,antoi Pekka kirjan Merjalle ,53,8,2,1,1,
+705,antoi Pekka Merjalle kirjan ,53,8,2,1,1,
+706,antoi kirjan Pekka Merjalle ,53,8,2,1,1,
+707,antoi kirjan Merjalle Pekka ,53,8,2,1,1,
+708,antoi Merjalle Pekka kirjan ,53,8,2,1,1,
+709,antoi Merjalle kirjan Pekka ,53,8,2,1,1,
+710,John gave the key to Mary ,53,8,2,1,0,3881,1,12,22,0,0,0,0,9,12,21,12,0,2,15,19,3,29,13,0,27,4,646,41,5,2,93
+711,the key gave John to Mary ,53,8,2,1,0,3736,1,12,21,0,0,0,0,7,11,19,12,0,2,15,15,4,25,11,0,27,4,622,38,5,2,62
+712,John gave to Mary the key ,53,8,2,1,1,
+713,John the key gave to Mary ,53,8,2,1,1,
+714,John the key to Mary gave ,53,8,2,1,1,
+715,John to Mary gave the key ,53,8,2,1,1,
+716,John to Mary the key gave ,53,8,2,1,1,
+717,gave John the key to Mary ,53,8,2,1,1,
+718,gave John to Mary the key ,53,8,2,1,1,
+719,gave the key John to Mary ,53,8,2,1,1,
+720,gave the key to Mary John ,53,8,2,1,1,
+721,gave to Mary John the key ,53,8,2,1,1,
+722,gave to Mary the key John ,53,8,2,1,1,
+723,the key John gave to Mary ,53,8,2,1,1,
+724,the key John to Mary gave ,53,8,2,1,1,
+725,the key gave to Mary John ,53,8,2,1,1,
+726,the key to Mary John gave ,53,8,2,1,1,
+727,the key to Mary gave John ,53,8,2,1,1,
+728,to Mary John gave the key ,53,8,2,1,1,
+729,to Mary John the key gave ,53,8,2,1,1,
+730,to Mary gave John the key ,53,8,2,1,1,
+731,to Mary gave the key John ,53,8,2,1,1,
+732,to Mary the key John gave ,53,8,2,1,1,
+733,to Mary the key gave John ,53,8,2,1,1,
+734,Pekka ei ihaile Merjaa ,53,8,3,1,0,2835,0,7,9,2,0,0,2,7,9,10,8,0,1,12,8,2,15,7,0,20,4,708,27,4,22,31
+735,Pekka ei Merjaa ihaile ,53,8,3,1,0,2920,0,7,8,2,0,0,2,5,7,14,8,0,3,12,7,2,20,7,0,20,4,730,40,4,52,31
+736,Pekka Merjaa ei ihaile ,53,8,3,1,0,2860,0,7,7,2,0,0,2,4,6,12,8,0,3,12,7,2,18,6,0,20,4,715,39,4,52,31
+737,Merjaa Pekka ei ihaile ,53,8,3,1,0,2860,0,7,7,2,0,0,2,4,6,12,8,0,3,12,7,2,18,6,0,20,4,715,38,4,50,31
+738,Merjaa ei Pekka ihaile ,53,8,3,1,0,2900,0,7,8,2,0,0,2,5,8,12,8,0,3,12,7,3,18,7,0,20,4,725,34,4,42,31
+739,Merjaa ei ihaile Pekka ,53,8,3,1,0,2860,0,7,9,3,0,0,3,9,12,11,8,0,1,12,5,3,16,6,0,20,4,715,34,4,39,31
+740,Pekka ihaile ei Merjaa ,53,8,3,1,1,
+741,Pekka ihaile Merjaa ei ,53,8,3,1,1,
+742,Pekka Merjaa ihaile ei ,53,8,3,1,1,
+743,ei Pekka ihaile Merjaa ,53,8,3,1,1,
+744,ei Pekka Merjaa ihaile ,53,8,3,1,1,
+745,ei ihaile Pekka Merjaa ,53,8,3,1,1,
+746,ei ihaile Merjaa Pekka ,53,8,3,1,1,
+747,ei Merjaa Pekka ihaile ,53,8,3,1,1,
+748,ei Merjaa ihaile Pekka ,53,8,3,1,1,
+749,ihaile Pekka ei Merjaa ,53,8,3,1,1,
+750,ihaile Pekka Merjaa ei ,53,8,3,1,1,
+751,ihaile ei Pekka Merjaa ,53,8,3,1,1,
+752,ihaile ei Merjaa Pekka ,53,8,3,1,1,
+753,ihaile Merjaa Pekka ei ,53,8,3,1,1,
+754,ihaile Merjaa ei Pekka ,53,8,3,1,1,
+755,Merjaa Pekka ihaile ei ,53,8,3,1,1,
+756,Merjaa ihaile Pekka ei ,53,8,3,1,1,
+757,Merjaa ihaile ei Pekka ,53,8,3,1,1,
+758,John does admire' Mary ,53,8,3,2,0,2360,0,6,6,0,0,0,0,4,6,7,7,0,0,10,7,2,11,6,0,17,3,590,14,3,0,15
+759,Mary does admire' John ,53,8,3,2,0,2360,0,6,6,0,0,0,0,4,6,7,7,0,0,10,7,2,11,6,0,17,3,590,14,3,0,31
+760,John admire' does Mary ,53,8,3,2,1,
+761,John admire' Mary does ,53,8,3,2,1,
+762,John Mary does admire' ,53,8,3,2,1,
+763,John Mary admire' does ,53,8,3,2,1,
+764,does John admire' Mary ,53,8,3,2,1,
+765,does John Mary admire' ,53,8,3,2,1,
+766,does admire' John Mary ,53,8,3,2,1,
+767,does admire' Mary John ,53,8,3,2,1,
+768,does Mary John admire' ,53,8,3,2,1,
+769,does Mary admire' John ,53,8,3,2,1,
+770,admire' John does Mary ,53,8,3,2,1,
+771,admire' John Mary does ,53,8,3,2,1,
+772,admire' does John Mary ,53,8,3,2,1,
+773,admire' does Mary John ,53,8,3,2,1,
+774,admire' Mary John does ,53,8,3,2,1,
+775,admire' Mary does John ,53,8,3,2,1,
+776,Mary John does admire' ,53,8,3,2,1,
+777,Mary John admire' does ,53,8,3,2,1,
+778,Mary admire' John does ,53,8,3,2,1,
+779,Mary admire' does John ,53,8,3,2,1,
+780,John does Mary admire' ,53,8,3,2,2,
+781,Mary does John admire' ,53,8,3,2,2,
+782,Pekka ihaile ei Merjaa ,53,8,4,1,1,
+783,Pekka ollut ei ihaillut Merjaa ,53,8,4,2,1,
+784,Pekka ollut ihaillut ei Merjaa ,53,8,4,2,1,
+785,Pekka ei ihaillut ollut Merjaa ,53,8,4,2,1,
+786,Pekka ei ihaillut ei ollut Merjaa ,53,8,4,2,1,
+787,Pekka ihaillut ollut ei Merjaa ,53,8,4,2,1,
+788,Pekan_gen taydy ei ihailla Merjaa ,53,8,4,3,1,
+789,Pekan_gen taydy ihailla ei Merjaa ,53,8,4,3,1,
+790,Pekan_gen ei ihailla taydy Merjaa ,53,8,4,3,1,
+791,Pekan_gen ihailla ei taydy Merjaa ,53,8,4,3,1,
+792,Pekan_gen ihailla taydy ei Merjaa ,53,8,4,3,1,
+793,taydy#C/op Pekan_gen ihailla ei Merjaa ,53,8,4,4,1,
+794,ihailla#C/op Pekan_gen taydy ei Merjaa ,53,8,4,4,1,
+795,halua#C/op Pekan_gen Pekka ihailla ei Merjaa ,53,8,4,4,1,
+796,ihailla#C/op Pekan_gen halua ei Merjaa ,53,8,4,4,1,
+797,Pekka ihaile Merjaa ei ,53,8,4,5,1,
+798,Pekan_gen ei ihailla Merjaa taydy ,53,8,4,5,1,
+799,John wants to_inf leave ,53,8,5,1,0,2030,0,6,10,0,0,0,0,4,8,7,7,1,0,6,7,4,11,6,0,13,2,507,19,3,0,15
+800,John wants leave to_inf ,53,8,5,1,1,
+801,John to_inf wants leave ,53,8,5,1,1,
+802,John to_inf leave wants ,53,8,5,1,1,
+803,John leave wants to_inf ,53,8,5,1,1,
+804,John leave to_inf wants ,53,8,5,1,1,
+805,wants John to_inf leave ,53,8,5,1,1,
+806,wants John leave to_inf ,53,8,5,1,1,
+807,wants to_inf John leave ,53,8,5,1,1,
+808,wants to_inf leave John ,53,8,5,1,1,
+809,wants leave John to_inf ,53,8,5,1,1,
+810,wants leave to_inf John ,53,8,5,1,1,
+811,to_inf John wants leave ,53,8,5,1,1,
+812,to_inf John leave wants ,53,8,5,1,1,
+813,to_inf wants John leave ,53,8,5,1,1,
+814,to_inf wants leave John ,53,8,5,1,1,
+815,to_inf leave John wants ,53,8,5,1,1,
+816,leave John wants to_inf ,53,8,5,1,1,
+817,leave John to_inf wants ,53,8,5,1,1,
+818,leave wants John to_inf ,53,8,5,1,1,
+819,leave wants to_inf John ,53,8,5,1,1,
+820,leave to_inf John wants ,53,8,5,1,1,
+821,leave to_inf wants John ,53,8,5,1,1,
+822,John wants Mary to_inf leave ,53,8,5,2,0,2930,0,8,18,0,0,0,0,6,10,11,9,1,0,11,7,4,18,7,0,20,3,586,32,4,0,46
+823,Mary wants to_inf leave John ,53,8,5,2,0,3236,1,10,18,0,0,0,0,7,11,14,10,5,1,11,11,4,20,9,0,21,3,647,33,5,1,46
+824,Mary wants John to_inf leave ,53,8,5,2,0,2850,0,8,13,0,0,0,0,4,8,10,9,1,1,11,8,4,14,7,0,20,3,570,23,4,1,46
+825,John wants to_inf leave Mary ,53,8,5,2,0,2935,0,8,15,0,0,0,0,6,10,11,9,4,0,11,9,4,16,8,0,20,3,587,27,4,0,46
+826,John wants Mary leave to_inf ,53,8,5,2,1,
+827,John wants leave Mary to_inf ,53,8,5,2,1,
+828,John wants leave to_inf Mary ,53,8,5,2,1,
+829,John Mary wants to_inf leave ,53,8,5,2,1,
+830,John Mary wants leave to_inf ,53,8,5,2,1,
+831,John Mary to_inf wants leave ,53,8,5,2,1,
+832,John Mary to_inf leave wants ,53,8,5,2,1,
+833,John Mary leave wants to_inf ,53,8,5,2,1,
+834,John Mary leave to_inf wants ,53,8,5,2,1,
+835,John to_inf wants Mary leave ,53,8,5,2,1,
+836,John to_inf wants leave Mary ,53,8,5,2,1,
+837,John to_inf Mary wants leave ,53,8,5,2,1,
+838,John to_inf Mary leave wants ,53,8,5,2,1,
+839,John to_inf leave Mary wants ,53,8,5,2,1,
+840,John leave wants Mary to_inf ,53,8,5,2,1,
+841,John leave wants to_inf Mary ,53,8,5,2,1,
+842,John leave Mary wants to_inf ,53,8,5,2,1,
+843,John leave Mary to_inf wants ,53,8,5,2,1,
+844,John leave to_inf wants Mary ,53,8,5,2,1,
+845,John leave to_inf Mary wants ,53,8,5,2,1,
+846,wants John Mary to_inf leave ,53,8,5,2,1,
+847,wants John Mary leave to_inf ,53,8,5,2,1,
+848,wants John to_inf Mary leave ,53,8,5,2,1,
+849,wants John to_inf leave Mary ,53,8,5,2,1,
+850,wants John leave Mary to_inf ,53,8,5,2,1,
+851,wants John leave to_inf Mary ,53,8,5,2,1,
+852,wants Mary John to_inf leave ,53,8,5,2,1,
+853,wants Mary John leave to_inf ,53,8,5,2,1,
+854,wants Mary to_inf John leave ,53,8,5,2,1,
+855,wants Mary to_inf leave John ,53,8,5,2,1,
+856,wants Mary leave John to_inf ,53,8,5,2,1,
+857,wants Mary leave to_inf John ,53,8,5,2,1,
+858,wants to_inf John Mary leave ,53,8,5,2,1,
+859,wants to_inf John leave Mary ,53,8,5,2,1,
+860,wants to_inf Mary John leave ,53,8,5,2,1,
+861,wants to_inf Mary leave John ,53,8,5,2,1,
+862,wants to_inf leave John Mary ,53,8,5,2,1,
+863,wants to_inf leave Mary John ,53,8,5,2,1,
+864,wants leave John Mary to_inf ,53,8,5,2,1,
+865,wants leave John to_inf Mary ,53,8,5,2,1,
+866,wants leave Mary John to_inf ,53,8,5,2,1,
+867,wants leave Mary to_inf John ,53,8,5,2,1,
+868,wants leave to_inf John Mary ,53,8,5,2,1,
+869,wants leave to_inf Mary John ,53,8,5,2,1,
+870,Mary John wants to_inf leave ,53,8,5,2,1,
+871,Mary John wants leave to_inf ,53,8,5,2,1,
+872,Mary John to_inf wants leave ,53,8,5,2,1,
+873,Mary John to_inf leave wants ,53,8,5,2,1,
+874,Mary John leave wants to_inf ,53,8,5,2,1,
+875,Mary John leave to_inf wants ,53,8,5,2,1,
+876,Mary wants John leave to_inf ,53,8,5,2,1,
+877,Mary wants leave John to_inf ,53,8,5,2,1,
+878,Mary wants leave to_inf John ,53,8,5,2,1,
+879,Mary to_inf John wants leave ,53,8,5,2,1,
+880,Mary to_inf John leave wants ,53,8,5,2,1,
+881,Mary to_inf wants John leave ,53,8,5,2,1,
+882,Mary to_inf wants leave John ,53,8,5,2,1,
+883,Mary to_inf leave John wants ,53,8,5,2,1,
+884,Mary leave John wants to_inf ,53,8,5,2,1,
+885,Mary leave John to_inf wants ,53,8,5,2,1,
+886,Mary leave wants John to_inf ,53,8,5,2,1,
+887,Mary leave wants to_inf John ,53,8,5,2,1,
+888,Mary leave to_inf John wants ,53,8,5,2,1,
+889,Mary leave to_inf wants John ,53,8,5,2,1,
+890,to_inf John wants Mary leave ,53,8,5,2,1,
+891,to_inf John wants leave Mary ,53,8,5,2,1,
+892,to_inf John Mary wants leave ,53,8,5,2,1,
+893,to_inf John Mary leave wants ,53,8,5,2,1,
+894,to_inf John leave Mary wants ,53,8,5,2,1,
+895,to_inf wants John Mary leave ,53,8,5,2,1,
+896,to_inf wants John leave Mary ,53,8,5,2,1,
+897,to_inf wants Mary John leave ,53,8,5,2,1,
+898,to_inf wants Mary leave John ,53,8,5,2,1,
+899,to_inf wants leave John Mary ,53,8,5,2,1,
+900,to_inf wants leave Mary John ,53,8,5,2,1,
+901,to_inf Mary John wants leave ,53,8,5,2,1,
+902,to_inf Mary John leave wants ,53,8,5,2,1,
+903,to_inf Mary wants John leave ,53,8,5,2,1,
+904,to_inf Mary wants leave John ,53,8,5,2,1,
+905,to_inf Mary leave John wants ,53,8,5,2,1,
+906,to_inf leave John Mary wants ,53,8,5,2,1,
+907,to_inf leave wants John Mary ,53,8,5,2,1,
+908,to_inf leave wants Mary John ,53,8,5,2,1,
+909,to_inf leave Mary John wants ,53,8,5,2,1,
+910,leave John Mary wants to_inf ,53,8,5,2,1,
+911,leave John Mary to_inf wants ,53,8,5,2,1,
+912,leave John to_inf Mary wants ,53,8,5,2,1,
+913,leave wants John Mary to_inf ,53,8,5,2,1,
+914,leave wants John to_inf Mary ,53,8,5,2,1,
+915,leave wants Mary John to_inf ,53,8,5,2,1,
+916,leave wants Mary to_inf John ,53,8,5,2,1,
+917,leave wants to_inf John Mary ,53,8,5,2,1,
+918,leave wants to_inf Mary John ,53,8,5,2,1,
+919,leave Mary John wants to_inf ,53,8,5,2,1,
+920,leave Mary John to_inf wants ,53,8,5,2,1,
+921,leave Mary to_inf John wants ,53,8,5,2,1,
+922,leave to_inf John Mary wants ,53,8,5,2,1,
+923,leave to_inf wants John Mary ,53,8,5,2,1,
+924,leave to_inf wants Mary John ,53,8,5,2,1,
+925,leave to_inf Mary John wants ,53,8,5,2,1,
+926,leave John wants Mary to_inf ,53,8,5,2,1,
+927,leave John wants to_inf Mary ,53,8,5,2,1,
+928,leave John to_inf wants Mary ,53,8,5,2,1,
+929,leave Mary wants John to_inf ,53,8,5,2,1,
+930,leave Mary wants to_inf John ,53,8,5,2,1,
+931,leave Mary to_inf wants John ,53,8,5,2,1,
+932,leave to_inf John wants Mary ,53,8,5,2,1,
+933,leave to_inf Mary wants John ,53,8,5,2,1,
+934,John to_inf leave wants Mary ,53,8,5,2,1,
+935,Mary to_inf leave wants John ,53,8,5,2,1,
+936,to_inf John leave wants Mary ,53,8,5,2,1,
+937,to_inf Mary leave wants John ,53,8,5,2,1,
+938,to_inf leave John wants Mary ,53,8,5,2,1,
+939,John wants to_inf Mary leave ,53,8,5,2,2,
+940,Mary wants to_inf John leave ,53,8,5,2,2,
+941,Pekka haluaa lahtea ,53,8,5,3,0,2035,0,6,7,2,0,0,2,2,5,6,7,1,0,6,3,3,9,5,0,13,3,678,17,4,15,46
+942,haluaa#C/op Pekka lahtea ,53,8,5,3,0,2530,0,7,10,2,0,0,2,4,7,6,8,1,0,7,3,3,9,6,0,15,4,843,24,5,19,31
+943,Pekka kaskee Merjan_gen lahtea ,53,8,5,3,0,3385,0,8,15,3,0,0,3,5,8,12,9,1,2,12,7,3,18,8,0,21,4,846,32,5,26,46
+944,haluaa Pekka lahtea ,53,8,5,3,1,
+945,haluaa lahtea Pekka ,53,8,5,3,1,
+946,lahtea Pekka haluaa ,53,8,5,3,1,
+947,lahtea haluaa Pekka ,53,8,5,3,1,
+948,haluaa#C/op lahtea Pekka ,53,8,5,3,2,
+949,Pekka kaskee Merjan_gen lahtea ,53,8,5,3,0,3385,0,8,15,3,0,0,3,5,8,12,9,1,2,12,7,3,18,8,0,21,4,846,32,5,26,46
+950,Pekka Merjan_gen kaskee lahtea ,53,8,5,3,0,3285,0,8,12,2,0,0,2,4,7,10,9,1,1,12,7,3,16,7,0,21,4,821,36,5,33,46
+951,Merjan_gen Pekka kaskee lahtea ,53,8,5,3,0,3320,0,8,12,3,0,0,3,4,7,11,9,1,1,12,7,3,17,7,0,21,4,830,35,5,32,46
+952,Merjan_gen kaskee Pekka lahtea ,53,8,5,3,0,3405,0,8,15,3,0,0,3,5,9,12,9,1,2,12,7,4,18,8,0,21,4,851,36,5,31,62
+953,Merjan_gen kaskee lahtea Pekka ,53,8,5,3,0,3260,0,8,14,1,0,0,1,9,13,8,9,3,0,12,5,4,13,7,0,21,4,815,36,5,22,31
+954,kaskee#C/op Pekka Merjan_gen lahtea ,53,8,5,3,0,4291,1,11,22,4,0,0,4,10,13,16,11,2,3,13,11,3,23,9,0,24,5,1072,58,7,57,78
+955,lahtea#C/op Pekka Merjan_gen kaskee ,53,8,5,3,0,3790,0,9,14,1,0,0,1,5,8,11,10,2,2,13,7,3,17,8,0,23,5,947,45,6,39,46
+956,Merjan_gen lahtea Pekka kaskee ,53,8,5,3,0,
+957,Merjan_gen lahtea kaskee Pekka ,53,8,5,3,0,3090,0,8,9,5,0,2,1,2,7,8,9,2,1,12,1,5,10,5,0,21,4,772,22,5,13,31
+958,Pekka Merjan_gen lahtea kaskee ,53,8,5,3,0,4913,3,19,21,7,0,2,3,4,8,20,17,7,4,13,12,4,23,13,0,30,5,1228,77,12,82,93
+959,Pekka kaskee lahtea Merjan_gen ,53,8,5,3,1,
+960,Pekka lahtea kaskee Merjan_gen ,53,8,5,3,1,
+961,Pekka lahtea Merjan_gen kaskee ,53,8,5,3,1,
+962,kaskee Pekka Merjan_gen lahtea ,53,8,5,3,1,
+963,kaskee Pekka lahtea Merjan_gen ,53,8,5,3,1,
+964,kaskee Merjan_gen Pekka lahtea ,53,8,5,3,1,
+965,kaskee Merjan_gen lahtea Pekka ,53,8,5,3,1,
+966,kaskee lahtea Pekka Merjan_gen ,53,8,5,3,1,
+967,kaskee lahtea Merjan_gen Pekka ,53,8,5,3,1,
+968,Merjan_gen Pekka lahtea kaskee ,53,8,5,3,1,
+969,lahtea Pekka kaskee Merjan_gen ,53,8,5,3,1,
+970,lahtea Pekka Merjan_gen kaskee ,53,8,5,3,1,
+971,lahtea kaskee Pekka Merjan_gen ,53,8,5,3,1,
+972,lahtea kaskee Merjan_gen Pekka ,53,8,5,3,1,
+973,lahtea Merjan_gen Pekka kaskee ,53,8,5,3,1,
+974,lahtea Merjan_gen kaskee Pekka ,53,8,5,3,1,
+975,istuu#foc Pekka ,53,9,1,1,0,1780,0,4,3,1,0,0,1,2,3,3,5,0,0,7,1,1,4,3,0,12,3,890,10,3,10,15
+976,istuu#C/op Pekka ,53,9,1,1,0,1805,0,4,3,1,0,0,1,2,3,3,5,0,0,7,1,1,4,3,0,12,3,902,10,3,10,0
+977,ihailee#foc Pekka Merjaa ,53,9,1,1,0,3115,0,7,10,2,0,0,2,4,6,6,8,0,0,13,3,2,9,6,0,21,4,1038,24,5,21,31
+978,ihailee#C/op Pekka Merjaa ,53,9,1,1,0,3140,0,7,10,2,0,0,2,4,6,6,8,0,0,13,3,2,9,6,0,21,4,1046,24,5,21,15
+979,myi#foc Pekka omaisuutensa ,53,9,1,1,0,2675,0,7,10,2,0,0,2,4,6,6,8,0,0,9,3,2,9,6,0,17,4,891,24,5,21,15
+980,myi#C/op Pekka omaisuutensa ,53,9,1,1,0,2700,0,7,10,2,0,0,2,4,6,6,8,0,0,9,3,2,9,6,0,17,4,900,24,5,21,15
+981,antoi#foc Pekka avaimen Merjalle ,53,9,1,1,0,3380,0,10,18,4,0,0,4,6,9,12,11,0,1,9,5,3,18,8,0,20,5,845,49,7,52,46
+982,antoi#C/op Pekka avaimen Merjalle ,53,9,1,1,0,3405,0,10,18,4,0,0,4,6,9,12,11,0,1,9,5,3,18,8,0,20,5,851,49,7,52,62
+983,ei#C/op Pekka ihaile Merjaa ,53,9,1,2,0,3270,0,8,13,3,0,0,3,9,11,11,9,0,1,13,8,2,16,8,0,22,5,817,41,5,35,46
+984,ei#C/op Pekan_gen taydy ihailla Merjaa ,53,9,1,2,0,4015,0,10,22,0,0,0,0,14,20,12,11,4,1,13,14,6,19,12,0,24,6,803,51,6,17,78
+985,ei#C/op Pekka halua ihailla Merjaa ,53,9,1,2,0,4150,0,11,28,5,0,0,5,14,18,17,12,4,1,13,14,4,24,13,0,25,6,830,69,7,51,93
+986,ei#C/op Pekka ollut ihaillut Merjaa ,53,9,1,2,0,4045,0,9,16,4,0,0,4,18,20,16,10,0,1,15,15,2,24,11,0,25,6,809,61,5,49,78
+987,ei#C/op Pekka myynyt omaisuuttaan ,53,9,1,2,0,3190,0,8,13,3,0,0,3,9,11,11,9,0,1,10,8,2,16,8,0,19,5,797,41,5,35,62
+988,ei#C/op Pekan_gen taydy myyda omaisuuttaan ,53,9,1,2,0,3615,0,10,22,0,0,0,0,14,20,12,11,4,1,8,14,6,19,12,0,19,6,723,51,6,17,62
+989,ei#C/op Pekka halua myyda omaisuuttaan ,53,9,1,2,0,3750,0,11,28,5,0,0,5,14,18,17,12,4,1,8,14,4,24,13,0,20,6,750,69,7,51,140
+990,ei#C/op Pekka ollut myynyt omaisuuttaan ,53,9,1,2,0,3755,0,9,16,4,0,0,4,18,20,16,10,0,1,11,15,2,24,11,0,21,6,751,61,5,49,78
+991,taytyy#C/op Pekan_gen ihailla Merjaa ,53,9,1,3,0,3725,0,9,16,0,0,0,0,6,11,7,10,3,0,13,6,5,10,9,0,23,5,931,35,6,11,46
+992,taytyy#C/op Pekan_gen myyda omaisuuttaan ,53,9,1,3,0,3325,0,9,16,0,0,0,0,6,11,7,10,3,0,8,6,5,10,9,0,18,5,831,35,6,11,46
+993,haluaa#C/op Pekka ihailla Merjaa ,53,9,1,4,0,3795,0,10,19,3,0,0,3,6,10,10,11,3,0,13,6,4,13,10,0,24,5,948,46,7,39,62
+994,haluaa#C/op Pekka myyda omaisuuttaan ,53,9,1,4,0,3395,0,10,19,3,0,0,3,6,10,10,11,3,0,8,6,4,13,10,0,19,5,848,46,7,39,62
+995,on'#C/op Pekka ihaillut Merjaa ,53,9,1,5,0,5201,1,14,24,5,0,0,5,13,16,16,14,0,0,20,11,3,23,12,0,34,6,1300,57,9,49,78
+996,on'#C/op Pekka myynyt omaisuuttaan ,53,9,1,5,0,4671,1,14,24,5,0,0,5,13,16,16,14,0,0,12,11,3,23,12,0,26,6,1167,57,9,49,62
+997,ihailee#C/fin Pekka Merjaa ,53,9,1,6,0,3005,0,7,10,2,0,0,2,4,6,6,8,0,0,12,3,2,9,6,0,20,4,1001,24,5,21,15
+998,ei#C/fin Pekka ihaile Merjaa ,53,9,1,6,0,3135,0,8,13,3,0,0,3,9,11,11,9,0,1,12,8,2,16,8,0,21,5,783,41,5,35,31
+999,taytyy#C/fin Pekan_gen ihailla Merjaa ,53,9,1,6,0,3590,0,9,16,0,0,0,0,6,11,7,10,3,0,12,6,5,10,9,0,22,5,897,35,6,11,46
+1000,haluaa#C/fin Pekka ihailla Merjaa ,53,9,1,6,0,3660,0,10,19,3,0,0,3,6,10,10,11,3,0,12,6,4,13,10,0,23,5,915,46,7,39,31
+1001,on'#C/fin Pekka ihaillut Merjaa ,53,9,1,6,0,3380,0,9,11,2,0,0,2,6,9,8,10,0,0,13,4,3,11,7,0,23,5,845,26,6,21,31
+1002,myi#C/fin Pekka omaisuuttaan ,53,9,1,6,0,2565,0,7,10,2,0,0,2,4,6,6,8,0,0,8,3,2,9,6,0,16,4,855,24,5,21,31
+1003,ei#C/fin Pekka myynyt omaisuuttaan ,53,9,1,6,0,3055,0,8,13,3,0,0,3,9,11,11,9,0,1,9,8,2,16,8,0,18,5,763,41,5,35,31
+1004,taytyy#C/fin Pekan_gen myyda omaisuuttaan ,53,9,1,6,0,3190,0,9,16,0,0,0,0,6,11,7,10,3,0,7,6,5,10,9,0,17,5,797,35,6,11,31
+1005,haluaa#C/fin Pekka myyda omaisuuttaan ,53,9,1,6,0,3260,0,10,19,3,0,0,3,6,10,10,11,3,0,7,6,4,13,10,0,18,5,815,46,7,39,46
+1006,on'#C/fin Pekka myynyt omaisuuttaan ,53,9,1,6,0,3300,0,9,16,4,0,0,4,9,12,11,10,0,0,9,6,3,16,8,0,19,5,825,41,6,37,46
+1007,does#C/fin John admire' Mary ,53,9,1,6,0,2645,0,7,10,0,0,0,0,6,8,7,8,0,0,10,6,2,10,7,0,18,4,661,21,4,0,31
+1008,ihailee Pekka Merjaa ,53,9,1,1,1,
+1009,ei Pekka ihaile Merjaa ,53,9,1,1,1,
+1010,taytyy Pekan_genn ihailla Merjaa ,53,9,1,1,1,
+1011,haluaa Pekka ihailla Merjaa ,53,9,1,1,1,
+1012,ihailee Pekka ihailee Merjaa ,53,9,1,1,1,
+1013,on' Pekka ihaillut Merjaa ,53,9,1,1,1,
+1014,myi Pekka omaisuutensa ,53,9,1,1,1,
+1015,admire'#C/fin John does Mary ,53,9,1,1,1,
+1016,ihaile#C/op Pekka ei Merjaa ,53,9,2,1,0,3315,0,8,11,2,0,0,2,8,10,10,9,0,1,13,8,2,15,8,0,22,5,828,37,5,26,31
+1017,ihaillut#C/op Pekka on' Merjaa ,53,9,2,2,0,4196,1,11,19,4,0,0,4,11,14,14,11,0,2,14,8,3,20,9,0,25,5,1049,50,7,39,62
+1018,myynyt#C/op Pekka on' omaisuutensa ,53,9,2,2,0,3926,1,11,19,4,0,0,4,12,15,14,11,0,1,10,8,3,20,9,0,21,5,981,55,7,50,46
+1019,ihailla#C/op Pekka haluaa Merjaa ,53,9,2,3,0,3865,0,10,17,3,0,0,3,6,10,10,11,2,0,13,8,4,15,10,0,24,5,966,40,7,28,31
+1020,myyda#C/op Pekka haluaa omaisuutensa ,53,9,2,3,0,3415,0,10,17,3,0,0,3,6,10,10,11,2,0,8,8,4,15,10,0,19,5,853,40,7,28,46
+1021,ihailla#C/op Pekan_gen taytyy Merjaa ,53,9,2,4,0,3795,0,9,14,0,0,0,0,6,11,7,10,2,0,13,8,5,12,9,0,23,5,948,34,6,10,31
+1022,myyda#C/op Pekan_gen taytyy omaisuutensa ,53,9,2,4,0,3345,0,9,14,0,0,0,0,6,11,7,10,2,0,8,8,5,12,9,0,18,5,836,34,6,10,46
+1023,ihaile#C/op Merjaa ei Pekka ,53,9,2,5,0,3350,0,8,11,3,0,0,3,11,14,11,9,0,1,13,5,3,16,7,0,22,5,837,45,5,45,31
+1024,ihaillut#C/op Merjaa on' Pekka ,53,9,2,5,0,3825,0,9,14,3,0,0,3,11,15,10,10,0,0,14,5,4,15,7,0,24,5,956,50,6,51,46
+1025,ihailla#C/op Merjaa haluaa Pekka ,53,9,2,5,0,3850,0,10,17,3,0,0,3,6,11,10,11,2,0,13,6,5,15,9,0,24,5,962,55,7,55,31
+1026,myynyt#C/op omaisuuttaan ei Pekka ,53,9,2,5,0,3270,0,8,11,3,0,0,3,11,14,11,9,0,1,10,5,3,16,7,0,19,5,817,45,5,45,46
+1027,myynyt#C/op omaisuuttaan on' Pekka ,53,9,2,5,0,4327,2,13,24,6,0,0,6,18,26,17,12,0,1,10,9,8,24,9,0,22,5,1081,88,8,93,62
+1028,myyda#C/op omaisuuttaan haluaa Pekka ,53,9,2,5,0,3400,0,10,17,3,0,0,3,6,11,10,11,2,0,8,6,5,15,9,0,19,5,850,55,7,55,31
+1029,taydy#C/op Pekan_gen ei ihailla Merjaa ,53,9,2,6,0,4095,0,10,19,0,0,0,0,13,19,12,11,4,3,13,14,6,19,12,0,24,6,819,49,6,16,62
+1030,taydy#C/op Pekan_gen ei myyda omaisuuttaan ,53,9,2,6,0,3695,0,10,19,0,0,0,0,13,19,12,11,4,3,8,14,6,19,12,0,19,6,739,49,6,16,46
+1031,ihailla#C/op Pekan_gen ei taydy Merjaa ,53,9,2,7,0,4195,0,10,18,0,0,0,0,14,20,13,11,3,3,13,15,6,21,12,0,24,6,839,49,6,13,46
+1032,myyda#C/op Pekan_gen ei taydy omaisuuttaan ,53,9,2,7,0,3730,0,10,18,0,0,0,0,14,20,13,11,3,2,8,15,6,21,12,0,19,6,746,49,6,13,46
+1033,halua#C/op Pekka ei ihailla Merjaa ,53,9,2,8,0,4145,0,11,22,3,0,0,3,13,17,15,12,4,3,13,14,4,22,13,0,25,6,829,65,7,46,62
+1034,ihailla#C/op Pekka ei halua Merjaa ,53,9,2,8,0,4250,0,11,22,3,0,0,3,14,18,16,12,3,3,13,15,4,24,13,0,25,6,850,63,7,38,78
+1035,halua#C/op Pekka ei myyda omaisuuttaan ,53,9,2,8,0,3745,0,11,22,3,0,0,3,13,17,15,12,4,3,8,14,4,22,13,0,20,6,749,65,7,46,62
+1036,myyda#C/op Pekka ei halua omaisuuttaan ,53,9,2,8,0,3785,0,11,22,3,0,0,3,14,18,16,12,3,2,8,15,4,24,13,0,20,6,757,63,7,38,62
+1037,admire' John wants to_inf Mary ,53,9,2,1,1,
+1038,to_inf admire' John wants Mary ,53,9,2,1,1,
+1039,to_inf John wants admire' Mary ,53,9,2,1,1,
+1040,admire'#C/fin John wants to_inf Mary ,53,9,2,1,1,
+1041,to_inf#C/fin admire' John wants Mary ,53,9,2,1,1,
+1042,to_inf#C/fin John wants admire' Mary ,53,9,2,1,1,
+1043,Ungrammatical (Finnish) ,53,9,2,1,1,
+1044,ihaile#C/fin Pekka ei Merjaa ,53,9,2,1,1,
+1045,ihaillut#C/fin Pekka on' Merjaa ,53,9,2,1,1,
+1046,ihailla#C/fin Pekka haluaa Merjaa ,53,9,2,1,1,
+1047,ihailla#C/fin Pekan_gen taytyy Merjaa ,53,9,2,1,1,
+1048,ihallut#C/fin Pekka ei ollut Merjaa ,53,9,2,1,1,
+1049,ihaile Pekka ei Merjaa ,53,9,2,1,1,
+1050,ihaillut Pekka on' Merjaa ,53,9,2,1,1,
+1051,ihailla Pekka haluaa Merjaa ,53,9,2,1,1,
+1052,ihailla Pekan_gen taytyy Merjaa ,53,9,2,1,1,
+1053,ihallut Pekka ei ollut Merjaa ,53,9,2,1,1,
+1054,myynyt#C/fin Pekka ei omaisuuttaan ,53,9,2,1,1,
+1055,myynyt#C/fin Pekka on omaisuuttaan ,53,9,2,1,1,
+1056,myyda#C/fin Pekka haluaa omaisuuttaan ,53,9,2,1,1,
+1057,myyda#C/fin Pekan_gen taytyy omaisuuttaan ,53,9,2,1,1,
+1058,myynyt#C/fin Pekka ei ollut omaisuuttaan ,53,9,2,1,1,
+1059,myynyt Pekka ei omaisuuttaan ,53,9,2,1,1,
+1060,myynyt Pekka on omaisuuttaan ,53,9,2,1,1,
+1061,myyda Pekka haluaa omaisuuttaan ,53,9,2,1,1,
+1062,myyda Pekan_gen taytyy omaisuuttaan ,53,9,2,1,1,
+1063,myynyt Pekka ei ollut omaisuuttaan ,53,9,2,1,1,
+1064,ihailla#C/op Pekka kaskee poikien Merjaa ,53,9,2,1,1,
+1065,ihailla Pekka kaskee poikien Merjaa ,53,9,2,1,1,
+1066,ihailla#C/fin Pekka kaskee poikien Merjaa ,53,9,2,1,1,
+1067,ollut#C/fin Pekka ei ihaillut Merjaa ,53,9,2,1,1,
+1068,ollut Pekka ei ihaillut Merjaa ,53,9,2,1,1,
+1069,ihaillut#C/op Pekka ei ollut Merjaa ,53,9,2,1,1,
+1070,taydy#C/fin Pekan_gen ei ihailla Merjaa ,53,9,2,1,1,
+1071,taydy Pekan_gen ei ihailla Merjaa ,53,9,2,1,1,
+1072,taydy#C/fin Pekan_gen ei myyda omaisuuttaan ,53,9,2,1,1,
+1073,taydy Pekan_gen ei myyda omaisuuttaan ,53,9,2,1,1,
+1074,ihailla#C/fin Pekan_gen ei taydy Merjaa ,53,9,2,1,1,
+1075,ihailla Pekan_gen ei taydy Merjaa ,53,9,2,1,1,
+1076,halua Pekka ei myyda omaisuuttaan ,53,9,2,1,1,
+1077,ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa ,53,9,3,1,0,10656,1,23,79,21,0,0,21,34,39,64,23,9,5,31,54,5,93,36,0,54,10,1522,244,13,233,250
+1078,lahtea#C/op Pekka sanoo etta Pekan_gen taytyy ,53,9,3,1,0,7106,1,16,41,8,0,0,8,20,25,33,16,7,3,19,34,5,53,22,0,35,8,1184,122,8,68,125
+1079,haluaa#C/op Pekka sanoo etta ihailla Merjaa ,53,9,3,1,1,
+1080,ihailee#C/op Pekka sanoo etta Merjaa ,53,9,3,1,1,
+1081,taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa ,53,9,3,1,1,
+1082,haluaa#C/op Pekka sanoo etta myyda omaisuutensa ,53,9,3,1,1,
+1083,myi#C/op Pekka sanoo etta omaisuutensa ,53,9,3,1,1,
+1084,taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa ,53,9,3,1,1,
+1085,ihailla#C/fin Pekka sanoo etta haluaa Merjaa ,53,9,3,1,1,
+1086,lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy ,53,9,3,1,1,
+1087,ihailla Pekka sanoo etta haluaa Merjaa ,53,9,3,1,1,
+1088,lahtea Pekka sanoo etta Pekan_genan taytyy ,53,9,3,1,1,
+1089,haluaa#C/fin Pekka sanoo etta myyda omaisuutensa ,53,9,3,1,1,
+1090,myi#C/fin Pekka sanoo etta omaisuutensa ,53,9,3,1,1,
+1091,taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa ,53,9,3,1,1,
+1092,haluaa Pekka sanoo etta myyda omaisuutensa ,53,9,3,1,1,
+1093,myi Pekka sanoo etta omaisuutensa ,53,9,3,1,1,
+1094,taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa ,53,9,3,1,1,
+1095,ihailemalla#C/op Pekka istuu Merjaa ,53,9,4,1,1,
+1096,ihailla#C/op sopimus Merjaa istuu ,53,9,4,2,1,
+1097,ihailla#C/op Pekka teki sopimuksen Merjaa ,53,9,4,3,1,
+1098,C/fin Pekka ihailee#C/op Merjaa ,53,9,5,1,1,
+1099,C/fin Pekka ei#C/op ihaile Merjaa ,53,9,5,1,1,
+1100,C/fin Pekka on'#C/op ihaillut Merjaa ,53,9,5,1,1,
+1101,C/fin Pekka ei#C/op ollut ihaillut Merjaa ,53,9,5,1,1,
+1102,C/fin Pekka haluaa#C/op ihailla Merjaa ,53,9,5,1,1,
+1103,C/fin Pekan_genn taytyy#C/op ihailla Merjaa ,53,9,5,1,1,
+1104,C/fin Pekan_gen ei#C/op taydy ihailla Merjaa ,53,9,5,1,1,
+1105,C/fin Pekka ei#C/op halua ihailla Merjaa ,53,9,5,1,1,
+1106,C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa ,53,9,5,1,1,
+1107,C/fin Pekka kaskee#C/op poikien ihailla Merjaa ,53,9,5,1,1,
+1108,C/fin Pekka istuu#C/op ihailemalla Merjaa ,53,9,5,1,1,
+1109,C/fin Pekka istuu#C/op haluamalla ihailla Merjaa ,53,9,5,1,1,
+1110,C/fin Pekka teki#C/op sopimuksen ihailla Merjaa ,53,9,5,1,1,
+1111,Pekka ei ihaile#C/op Merjaa ,53,9,5,1,1,
+1112,Pekka on' ihaillut#C/op Merjaa ,53,9,5,1,1,
+1113,Pekka ei ollut#C/op ihaillut Merjaa ,53,9,5,1,1,
+1114,Pekka haluaa ihailla#C/op Merjaa ,53,9,5,1,1,
+1115,Pekan_gen taytyy ihailla#C/op Merjaa ,53,9,5,1,1,
+1116,Pekan_gen ei taydy#C/op ihailla Merjaa ,53,9,5,1,1,
+1117,Pekka ei halua#C/op ihailla Merjaa ,53,9,5,1,1,
+1118,Pekka kaskee poikien ihailla#C/op Merjaa ,53,9,5,1,1,
+1119,Pekka ei ollut ihaillut#C/op Merjaa ,53,9,5,1,1,
+1120,Pekan_gen ei taydy ihailla#C/op Merjaa ,53,9,5,1,1,
+1121,Pekka ei halua ihailla#C/op Merjaa ,53,9,5,1,1,
+1122,Pekka sanoo etta haluaa ihailla#C/op Merjaa ,53,9,5,1,1,
+1123,Pekka istuu ihailemalla#C/op Merjaa ,53,9,5,1,1,
+1124,Pekka istuu haluamalla ihailla#C/op Merjaa ,53,9,5,1,1,
+1125,Pekka teki sopimuksen ihailla#C/op Merjaa ,53,9,5,1,1,
+1126,loro mi=lavano ,53,10,1,1,0,2305,0,6,7,0,0,0,0,2,4,4,7,0,0,12,3,2,7,5,0,19,4,1152,13,4,2,15
+1127,mi=lavano ,53,10,1,1,0,1675,0,4,3,0,0,0,0,1,3,2,5,0,0,9,1,2,3,3,0,14,3,1675,4,3,2,15
+1128,loro la=lavano ,53,10,1,1,0,2305,0,6,7,0,0,0,0,2,4,4,7,0,0,12,3,2,7,5,0,19,4,1152,13,4,2,15
+1129,la=lavano ,53,10,1,1,0,1675,0,4,3,0,0,0,0,1,3,2,5,0,0,9,1,2,3,3,0,14,3,1675,4,3,2,15
+1130,loro lo=lavano ,53,10,1,1,0,2305,0,6,7,0,0,0,0,2,4,4,7,0,0,12,3,2,7,5,0,19,4,1152,13,4,2,15
+1131,lo=lavano ,53,10,1,1,0,1675,0,4,3,0,0,0,0,1,3,2,5,0,0,9,1,2,3,3,0,14,3,1675,4,3,2,15
+1132,loro lavano=mi ,53,10,1,1,1,
+1133,lavano=mi ,53,10,1,1,1,
+1134,loro=mi lavano ,53,10,1,1,1,
+1135,mi=loro lavano ,53,10,1,1,1,
+1136,loro lavano mi ,53,10,1,1,1,
+1137,loro mi=lavano Luisa ,53,10,1,1,1,
+1138,io mi=lavano ,53,10,1,1,1,
+1139,loro mi=hanno lavato ,53,10,2,1,0,3431,1,11,16,1,0,0,1,7,10,13,11,0,0,14,8,3,20,8,0,25,5,1143,50,7,37,93
+1140,loro la=hanno lavata ,53,10,2,1,0,3330,0,8,12,1,0,0,1,5,8,10,9,0,0,17,5,3,16,6,0,26,5,1110,40,5,28,31
+1141,mi=hanno lavato ,53,10,2,1,0,2350,0,6,7,1,0,0,1,3,6,6,7,0,0,11,3,3,9,4,0,18,4,1175,17,4,18,31
+1142,la=hanno lavata ,53,10,2,1,0,2630,0,6,7,1,0,0,1,3,6,6,7,0,0,14,3,3,9,4,0,21,4,1315,17,4,18,15
+1143,lo=hanno lavato ,53,10,2,1,0,2350,0,6,7,1,0,0,1,3,6,6,7,0,0,11,3,3,9,4,0,18,4,1175,17,4,18,31
+1144,loro hanno mi=lavato ,53,10,2,1,1,
+1145,loro hanno la=lavato ,53,10,2,1,1,
+1146,hanno mi=lavato ,53,10,2,1,1,
+1147,io sono=mi lavato ,53,10,2,1,1,
+1148,loro hanno lo=lavato ,53,10,2,1,1,
+1149,hanno lo=lavato ,53,10,2,1,1,
+1150,hanno la=lavato ,53,10,2,1,1,
+1151,loro hanno lavato=mi ,53,10,2,1,1,
+1152,loro hanno lavato=la ,53,10,2,1,1,
+1153,loro hanno lavato=lo ,53,10,2,1,1,
+1154,mi=io sono lavato ,53,10,2,1,1,
+1155,io=mi sono lavato ,53,10,2,1,1,
+1156,loro=mi hanno lavato ,53,10,2,1,1,
+1157,la=io sono lavato ,53,10,2,1,1,
+1158,io=la sono lavato ,53,10,2,1,1,
+1159,loro=la hanno lavato ,53,10,2,1,1,
+1160,lo=io sono lavato ,53,10,2,1,1,
+1161,io=lo sono lavato ,53,10,2,1,1,
+1162,loro=lo hanno lavato ,53,10,2,1,1,
+1163,mi=loro hanno lavato ,53,10,2,1,1,
+1164,io sono=la lavata ,53,10,2,1,1,
+1165,io sono=lo lavato ,53,10,2,1,1,
+1166,loro mi=devono lavare ,53,10,2,2,0,4338,3,19,23,1,0,0,1,11,14,20,17,3,0,12,13,3,30,12,0,29,6,1446,69,12,70,78
+1167,loro devono lavare=mi ,53,10,2,2,0,2815,0,8,8,1,0,0,1,3,6,6,9,1,0,12,3,3,12,7,0,21,5,938,23,5,16,15
+1168,loro la=devono lavare ,53,10,2,2,0,3677,2,14,20,1,0,0,1,9,12,16,13,3,0,12,11,3,24,9,0,25,5,1225,57,9,54,62
+1169,loro devono lavare=la ,53,10,2,2,0,2815,0,8,8,1,0,0,1,3,6,6,9,1,0,12,3,3,12,7,0,21,5,938,23,5,16,31
+1170,loro lo=devono lavare ,53,10,2,2,0,3952,2,16,19,1,0,0,1,9,12,17,15,2,0,12,10,3,26,10,0,27,6,1317,58,10,59,62
+1171,loro devono lavare=lo ,53,10,2,2,0,3987,2,16,17,2,0,0,2,8,11,15,15,3,0,12,10,3,25,12,0,27,6,1329,54,10,53,62
+1172,mi=devono lavare ,53,10,2,2,0,2210,0,6,7,1,0,0,1,3,6,6,7,1,0,9,3,3,9,4,0,16,4,1105,19,4,22,31
+1173,devono lavare=mi ,53,10,2,2,0,2190,0,6,5,1,0,0,1,2,5,4,7,1,0,9,2,3,7,5,0,16,4,1095,14,4,14,15
+1174,la=devono lavare ,53,10,2,2,0,2210,0,6,7,1,0,0,1,3,6,6,7,1,0,9,3,3,9,4,0,16,4,1105,19,4,22,15
+1175,devono lavare=la ,53,10,2,2,0,2190,0,6,5,1,0,0,1,2,5,4,7,1,0,9,2,3,7,5,0,16,4,1095,14,4,14,31
+1176,lo=devono lavare ,53,10,2,2,0,2596,1,9,11,1,0,0,1,5,8,9,9,2,0,9,6,3,13,6,0,18,4,1298,27,6,31,31
+1177,devono lavare=lo ,53,10,2,2,0,2190,0,6,5,1,0,0,1,2,5,4,7,1,0,9,2,3,7,5,0,16,4,1095,14,4,14,15
+1178,loro devono mi=lavare ,53,10,2,2,1,
+1179,loro devono la=lavare ,53,10,2,2,1,
+1180,loro devono lo=lavare ,53,10,2,2,1,
+1181,loro=la devono lavare ,53,10,2,2,1,
+1182,loro=lo devono lavare ,53,10,2,2,1,
+1183,loro=mi devono lavare ,53,10,2,2,1,
+1184,devono mi=lavare loro ,53,10,2,2,1,
+1185,devono la=lavare loro ,53,10,2,2,1,
+1186,devono lo=lavare loro ,53,10,2,2,1,
+1187,devono lavare loro=la ,53,10,2,2,1,
+1188,devono lavare loro=lo ,53,10,2,2,1,
+1189,devono lavare loro=mi ,53,10,2,2,1,
+1190,loro mi=stanno lavando ,53,10,2,3,0,3291,1,11,16,1,0,0,1,7,10,13,11,2,0,12,8,3,20,7,0,23,5,1097,46,7,43,46
+1191,mi=stanno lavando ,53,10,2,3,0,2210,0,6,7,1,0,0,1,3,6,6,7,1,0,9,3,3,9,4,0,16,4,1105,19,4,22,31
+1192,la=stanno lavando ,53,10,2,3,0,2596,1,9,11,1,0,0,1,5,8,9,9,2,0,9,6,3,13,6,0,18,4,1298,27,6,31,31
+1193,lo=stanno lavando ,53,10,2,3,0,2596,1,9,11,1,0,0,1,5,8,9,9,2,0,9,6,3,13,6,0,18,4,1298,27,6,31,46
+1194,loro stanno lavando=mi ,53,10,2,3,0,2840,0,8,8,1,0,0,1,3,6,6,9,1,0,12,3,3,12,7,0,21,5,946,23,5,16,15
+1195,stanno lavando=mi ,53,10,2,3,0,2215,0,6,5,1,0,0,1,2,5,4,7,1,0,9,2,3,7,5,0,16,4,1107,14,4,14,15
+1196,stanno lavando=la ,53,10,2,3,0,2215,0,6,5,1,0,0,1,2,5,4,7,1,0,9,2,3,7,5,0,16,4,1107,14,4,14,15
+1197,stanno lavando=lo ,53,10,2,3,0,2215,0,6,5,1,0,0,1,2,5,4,7,1,0,9,2,3,7,5,0,16,4,1107,14,4,14,15
+1198,loro stanno mi=lavando ,53,10,2,3,1,
+1199,stanno mi=lavando ,53,10,2,3,1,
+1200,stanno la=lavando ,53,10,2,3,1,
+1201,stanno lo=lavando ,53,10,2,3,1,
+1202,loro=mi stanno lavando ,53,10,2,3,1,
+1203,loro=la stanno lavando ,53,10,2,3,1,
+1204,loro=lo stanno lavando ,53,10,2,3,1,
+1205,loro mi=hanno voluto lavare ,53,10,3,1,0,3780,0,11,20,1,0,0,1,10,15,13,12,1,0,14,11,5,22,11,0,26,6,945,68,7,52,62
+1206,loro hanno voluto lavare=mi ,53,10,3,1,0,3685,0,11,16,1,0,0,1,8,13,9,12,1,0,14,9,5,18,12,0,26,6,921,43,7,16,46
+1207,mi=hanno voluto lavare ,53,10,3,1,0,2975,0,9,12,1,0,0,1,6,11,8,10,1,0,11,7,5,13,8,0,21,5,991,32,6,33,46
+1208,hanno voluto lavare=mi ,53,10,3,1,0,2975,0,9,10,1,0,0,1,5,11,6,10,1,0,11,6,6,11,9,0,21,5,991,21,6,16,31
+1209,loro hanno mi=voluto lavare ,53,10,3,1,1,
+1210,loro hanno voluto mi=lavare ,53,10,3,1,1,
+1211,loro=mi hanno voluto lavare ,53,10,3,1,1,
+1212,mi=loro hanno voluto lavere ,53,10,3,1,1,
+1213,hanno mi=voluto lavare ,53,10,3,1,1,
+1214,hanno voluto mi=lavare ,53,10,3,1,1,
+1215,loro mi=hanno lavato ,53,10,4,1,0,3050,0,8,12,1,0,0,1,5,8,10,9,0,0,14,5,3,16,6,0,23,5,1016,40,5,28,46
+1216,loro la=hanno lavato ,53,10,4,1,1,
+1217,loro mi=hanno lavata ,53,10,4,1,1,
+1218,loro lo=hanno lavata ,53,10,4,1,1,
+1219,la=hanno lavato ,53,10,4,1,1,
+1220,mi=hanno lavata ,53,10,4,1,1,
+1221,lo=hanno lavata ,53,10,4,1,1,
+1222,loro gli=lavano Luisa ,53,10,5,1,0,
+1223,gli=lavano Luisa ,53,10,5,1,0,
+1224,loro gli=la=hanno lavata ,53,10,5,1,0,9825,5,34,59,4,0,0,4,18,21,42,30,0,0,47,26,3,49,26,0,77,9,3275,206,22,246,203
+1225,gli=la=hanno lavata ,53,10,5,1,0,3895,0,9,16,2,0,0,2,4,7,11,10,0,0,22,4,3,13,7,0,32,5,1947,45,6,57,31
+1226,loro la=gli=hanno lavata ,53,10,5,1,1,
+1227,la=gli=hanno lavata ,53,10,5,1,1,
+1228,loro hanno gli=la=lavata ,53,10,5,1,1,
+1229,hanno gli=la=lavata ,53,10,5,1,1,
+1230,loro sembrano lavare=mi ,53,10,6,1,0,2930,0,8,8,1,0,0,1,3,5,6,9,1,0,12,5,2,12,8,0,21,5,976,23,5,16,15
+1231,Giuseppe spinge Luisa a lavare=lo ,53,10,6,1,0,4841,1,15,22,4,0,0,4,8,12,18,15,2,0,19,7,4,22,11,0,34,6,968,61,9,57,93
+1232,sembrano lavare=mi ,53,10,6,1,0,2270,0,6,5,1,0,0,1,2,4,4,7,1,0,9,2,2,7,5,0,16,4,1135,14,4,14,15
+1233,spinge Luisa a lavare=lo ,53,10,6,1,0,4097,2,16,18,5,0,0,5,8,12,18,15,3,0,14,7,4,19,11,0,29,5,1024,52,10,61,78
+1234,loro mi=sembrano lavare ,53,10,6,1,1,
+1235,mi=sembrano lavare ,53,10,6,1,1,
+1236,io lo=detesto lavare ,53,10,6,1,1,
+1237,lo=detesto lavare ,53,10,6,1,1,
+1238,Giuseppe lo=spinge Luisa a lavare ,53,10,6,1,1,
+1239,lo=spinge Luisa a lavare Giuseppe ,53,10,6,1,1,
+1240,io detesto lavare=lo ,53,10,6,1,1,
+1241,io mi=lavo ,53,10,7,1,0,2240,0,6,7,0,0,0,0,2,4,4,7,0,0,13,3,2,7,5,0,20,4,1120,13,4,2,31
+1242,mi=lavo ,53,10,7,1,0,1600,0,4,3,0,0,0,0,1,3,2,5,0,0,9,1,2,3,3,0,14,3,1600,4,3,2,0
+1243,tu mi=lavi ,53,10,7,1,0,2240,0,6,7,0,0,0,0,2,4,4,7,0,0,13,3,2,7,5,0,20,4,1120,13,4,2,15
+1244,mi=lavi ,53,10,7,1,0,1600,0,4,3,0,0,0,0,1,3,2,5,0,0,9,1,2,3,3,0,14,3,1600,4,3,2,15

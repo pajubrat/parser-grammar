@@ -2,9 +2,9 @@ author: Pauli Brattico
 year: 2020
 date: Novemember
 study_id: 0
-only_first_solution: True
+only_first_solution: False
 logging: True
-ignore_ungrammatical_sentences: True
+ignore_ungrammatical_sentences: False
 
 datatake_resources: True
 datatake_resource_sequence: False
@@ -19,7 +19,10 @@ image_parameter_case: False
 image_parameter_show_sentences: False
 image_parameter_show_glosses: True
 
-closure: Z
+extra_ranking: True
+filter: True
+lexical_anticipation: True
+closure: Bottom-up
 
 positive_spec_selection: 100
 negative_spec_selection: -100

@@ -9,61 +9,99 @@ class Diagnostics:
 
     def run_resource_diagnostics(self):
         # Experiment 1
-        #self.read_data(experiment='1')
-        #self.remove_ungrammatical_sentences(experiment='1')
-        #self.add_combined_metrics(experiment='1')
-        #self.combine_all_into_one(experiment='1')
-        #self.Report_Experiment_1(['Mean time per word', 'Merge', 'Garden Paths'])
+        # self.read_data(experiment='1')
+        # self.remove_ungrammatical_sentences(experiment='1')
+        # self.add_combined_metrics(experiment='1')
+        # self.data_preparation(experiment='1')
+        # self.combine_all_into_one(experiment='1')
+        # self.report_experiment_1(['Mean time per word', 'Merge', 'Garden Paths'])
+        # self.save_problem_sentences(experiment='1', group='1')
 
-        # Experiment 2
-        #self.read_data(experiment='2')
-        #self.remove_ungrammatical_sentences(experiment='2')
-        #self.combine_all_into_one(experiment='2')
-        #self.Experiment_2()
+        # Experiment 1b (random closure algorithm)
+        # self.read_data(experiment='1b')
+        # self.remove_ungrammatical_sentences(experiment='1b')
+        # self.add_combined_metrics(experiment='1b')
+        # self.report_experiment_1b(['Mean time per word', 'Merge', 'Garden Paths'])
 
-        # Experiment 3
-        self.read_data(experiment='3')
-        self.remove_ungrammatical_sentences(experiment='3')
-        self.combine_all_into_one(experiment='3')
-        self.Report_Experiment_3(['Mean time per word', 'Merge', 'Garden Paths'])
-        self.save_problem_sentences(experiment='3')
+        # Experiment 2a
+        # self.read_data(experiment='2a')
+        # self.remove_ungrammatical_sentences(experiment='2a')
+        # self.data_preparation(experiment='2a')
+        # self.combine_all_into_one(experiment='2a')
+        # self.report_experiment_2a(['Mean time per word', 'Merge', 'Garden Paths'])
 
-    def Report_Experiment_3(self, resources):
-        print(self.data_from_experiment['3'])
-        plt.ylim(680, 750)
-        g = sns.barplot(data=self.data_from_experiment['3']['all'], x='Study_ID', y='Mean time per word', ci=68, capsize=.2)
-        plt.show()
-        d2 = self.data_from_experiment['3']['all'].melt(id_vars='Study_ID', value_vars=resources)
-        print(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=2))
+        # Experiment 2b
+        # self.read_data(experiment='2b')
+        # self.remove_ungrammatical_sentences(experiment='2b')
+        # self.data_preparation(experiment='2b')
+        # self.combine_all_into_one(experiment='2b')
+        # self.report_experiment_2b(['Mean time per word', 'Merge', 'Garden Paths'])
 
-    def Report_Experiment_1(self, resources):
+        # Experiment 2c
+        # self.read_data(experiment='2c')
+        # self.remove_ungrammatical_sentences(experiment='2c')
+        # self.combine_all_into_one(experiment='2c')
+        # self.report_experiment_2c(['Mean time per word', 'Merge', 'Garden Paths'])
 
-        # Arrange data so that id_vars, value_vars behave like group variables
-        print(self.data_from_experiment['1'])
+        # Experiment 2d
+        self.read_data(experiment='2d')
+        self.remove_ungrammatical_sentences(experiment='2d')
+        self.combine_all_into_one(experiment='2d')
+        self.report_experiment_2d(['Mean time per word', 'Merge', 'Garden Paths'])
+
+    def report_experiment_1(self, resources):
+        # Produce data
         d2 = self.data_from_experiment['1']['all'].melt(id_vars='Study_ID', value_vars=resources)
-        print(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=2))
-        self.save_problem_sentences(experiment='3')
-
+        print(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=1))
+        # Produce Figure 1
+        plt.ylim(0, 30000)
         sns.set_theme(style="whitegrid")
-        plt.ylim(800, 15000)
-        g = sns.barplot(data=self.data_from_experiment['1']['all'], x='Filter', y='Mean time per word', ci=68, capsize=.2)
-        plt.show()
-        plt.ylim(800, 15000)
-        g = sns.barplot(data=self.data_from_experiment['1']['all'], x='Lexical ranking', y='Mean time per word', ci=68, capsize=.2)
-        plt.show()
-        plt.ylim(800, 15000)
-        g = sns.barplot(data=self.data_from_experiment['1']['all'], x='Late closure', y='Mean time per word', ci=68, capsize=.2)
-        plt.show()
-
-    def Experiment_2(self):
-        print(self.data_from_experiment['2']['all'])
-        plt.ylim(800, 860)
-        g = sns.barplot(data=self.data_from_experiment['2']['all'], x='Study_ID', y='Mean time per word', ci=68, capsize=.2)
+        g = sns.barplot(data=self.data_from_experiment['1']['all'],
+                        x='Lexical anticipation',
+                        y='Mean time per word',
+                        hue='Bottom-up closure',
+                        ci=None,
+                        capsize=.2)
+        fig = g.get_figure()
+        fig.savefig('Figure 1')
         plt.show()
 
-    def save_problem_sentences(self, experiment):
-        df2 = self.data_from_experiment[experiment]['1'].sort_values(by=['Garden Paths', 'Mean time per word'], ascending=False)
-        df2[['Number', 'Sentence', 'Garden Paths', 'Mean time per word']].to_csv('./language data working directory/study-6-linear-phase-theory/Experiment '+experiment+'/problem_sentences.txt')
+    def report_experiment_1b(self, resources):
+        print(self.data_from_experiment['1b']['1'])
+        d2 = self.data_from_experiment['1b']['1'].melt(id_vars='Study_ID', value_vars=resources)
+        print(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=1))
+
+    def report_experiment_2a(self, resources):
+        print(self.data_from_experiment['2a'])
+        g = sns.barplot(data=self.data_from_experiment['2a']['all'],
+                        x='Lexical anticipation Spec',
+                        ci=None,
+                        y='Garden Paths')
+        plt.show()
+        d2 = self.data_from_experiment['2a']['all'].melt(id_vars='Study_ID', value_vars=resources)
+        print(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=2))
+
+        g = sns.barplot(data=self.data_from_experiment['2a']['all'])
+
+    def report_experiment_2b(self, resources):
+        print(f"Mean time per word with lexical anticipation: {self.data_from_experiment['2b']['all']['Mean time per word'].loc[self.data_from_experiment['2b']['all']['Lexical anticipation'] == 1].mean()}")
+        print(f"Mean time per word in the optimal condition: {self.data_from_experiment['2b']['1'].mean()}.")
+        g = sns.barplot(data=self.data_from_experiment['2b']['all'], x='Study_ID', y='Mean time per word')
+        plt.show()
+
+    def report_experiment_2c(self, resources):
+        plt.ylim(750, 950)
+        g = sns.barplot(data=self.data_from_experiment['2c']['all'], x='Study_ID', y='Mean time per word')
+        plt.show()
+
+    def report_experiment_2d(self, resources):
+        g = sns.barplot(data=self.data_from_experiment['2d']['all'], x='Study_ID', y='Mean time per word')
+        plt.show()
+
+
+    def save_problem_sentences(self, experiment, group):
+        df2 = self.data_from_experiment[experiment][group].sort_values(by=['Garden Paths', 'Mean time per word'], ascending=False)
+        df2[['Number', 'Sentence', 'Garden Paths', 'Mean time per word']].to_csv('./language data working directory/study-6-linear-phase-theory/Experiment '+experiment+'a/problem_sentences.txt')
 
     def combine_all_into_one(self, experiment='1'):
         self.data_from_experiment[experiment]['all'] = pd.concat(self.data_from_experiment[experiment])
@@ -73,41 +111,66 @@ class Diagnostics:
         if experiment=='1':
             files_to_read = \
                 [
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/1-1-1-1\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/2-1-1-0\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/3-1-0-1\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/4-1-0-0\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/5-0-1-1\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/6-0-1-0\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/7-0-0-1\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/8-0-0-0\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1/9-1-1-1-1\linear_phase_theory_corpus_resources.txt"
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/01-1-1\linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/02-1-0\linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/03-0-1\linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/04-0-0\linear_phase_theory_corpus_resources.txt"
                 ]
-        if experiment=='2':
+        if experiment=='1b':
             files_to_read = \
                 [
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2/1-Bottom-up\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2/2-Z\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2/3-Random\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2/4-Top-down\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2/5-Sling\linear_phase_theory_corpus_resources.txt"
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/05-0-R\linear_phase_theory_corpus_resources.txt"
                 ]
-        if experiment=='3':
+        if experiment=='2a':
             files_to_read = \
                 [
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-0 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-1 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-2 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-3 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-4 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-5 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-6 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-7 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-8 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-9 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-10 knockouts\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 3/3-11 opposite\linear_phase_theory_corpus_resources.txt"
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/21-spec(1)-comp(1)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/22-spec(1)-comp(1)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/23-spec(1)-comp(1)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/24-spec(1)-comp(1)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/25-spec(1)-comp(0)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/26-spec(1)-comp(0)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/27-spec(1)-comp(0)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/28-spec(1)-comp(0)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/29-spec(0)-comp(1)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/210-spec(0)-comp(1)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/211-spec(0)-comp(1)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/212-spec(0)-comp(1)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/213-spec(0)-comp(0)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/214-spec(0)-comp(0)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/215-spec(0)-comp(0)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
+                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/216-spec(0)-comp(0)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt"
                 ]
+        if experiment=='2b':
+            files_to_read = \
+                [
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/31-Bottom-up/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/32-Z/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/33-Sling/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/34-Random/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/35-Top-down/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/36-Bottom-up-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/37-Z-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/38-Sling-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/39-Random-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/310-Top-down-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt"
+                ]
+        if experiment=='2c':
+            files_to_read = \
+                [
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2c/41-filter-on/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2c/42-filter-off/linear_phase_theory_corpus_resources.txt"
+                ]
+
+        if experiment=='2d':
+            files_to_read = \
+                [
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2d/51-BU(1)-LA(0)-F(0)/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2d/52-BU(0)-LA(1)-F(0)/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2d/53-BU(0)-LA(0)-F(1)/linear_phase_theory_corpus_resources.txt",
+                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2d/54-BU(0)-LA(0)-F(0)/linear_phase_theory_corpus_resources.txt"
+                ]
+
         self.csv_into_data(files_to_read, experiment)
 
     def csv_into_data(self, files_to_read, experiment='1'):
@@ -124,21 +187,46 @@ class Diagnostics:
 
     def remove_ungrammatical_sentences(self, experiment='1'):
         for key in self.data_from_experiment[experiment]:
-            self.data_from_experiment[experiment][key] = self.data_from_experiment[experiment][key][self.data_from_experiment[experiment][key]['Group 3'] == 0]
+            self.data_from_experiment[experiment][key] = self.data_from_experiment[experiment][key][(self.data_from_experiment[experiment][key]['Group 3'] == 0) & (self.data_from_experiment[experiment][key]['Total Time'] > 0)]
 
     def add_combined_metrics(self, experiment='1'):
         for key in self.data_from_experiment[experiment]:
             self.data_from_experiment[experiment][key]['Relative load'] = self.data_from_experiment[experiment][key]['Asymmetric Merge'] / self.data_from_experiment[experiment][key]['Sentence'].str.len()
             self.data_from_experiment[experiment][key]['Move'] = self.data_from_experiment[experiment][key]['Move Phrase'] + self.data_from_experiment[experiment][key]['Move Head']
-            if key in {'1', '2', '3', '4', '9'}:
-                self.data_from_experiment['1'][key]['Filter'] = 1
-            else:
-                self.data_from_experiment['1'][key]['Filter'] = 0
-            if key in {'1', '2', '5', '6', '9'}:
-                self.data_from_experiment['1'][key]['Lexical ranking'] = 1
-            else:
-                self.data_from_experiment['1'][key]['Lexical ranking'] = 0
-            if key in {'1', '3', '5', '7', '9'}:
-                self.data_from_experiment['1'][key]['Late closure'] = 1
-            else:
-                self.data_from_experiment['1'][key]['Late closure'] = 0
+
+    def data_preparation(self, experiment='1'):
+        if experiment=='1':
+            for key in self.data_from_experiment[experiment]:
+                if key in {'1', '2'}:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation'] = 1
+                else:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation'] = 0
+                if key in {'1', '3'}:
+                    self.data_from_experiment[experiment][key]['Bottom-up closure'] = 1
+                else:
+                    self.data_from_experiment[experiment][key]['Bottom-up closure'] = 0
+        if experiment=='2a':
+            for key in self.data_from_experiment[experiment]:
+                if key in {'1', '3', '5', '6', '9', '11', '13', '15'}:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation Case'] = 1
+                else:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation Case'] = 0
+                if key in {'1', '2', '5', '6', '9', '10', '13', '14'}:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation Adj'] = 1
+                else:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation Adj'] = 0
+                if key in {'1', '2', '3', '4', '9', '10', '11', '12'}:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation Comp'] = 1
+                else:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation Comp'] = 0
+                if key in {'1', '2', '3', '4', '5', '6', '7', '8'}:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation Spec'] = 1
+                else:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation Spec'] = 0
+        if experiment=='2b':
+            for key in self.data_from_experiment[experiment]:
+                if key in {'1', '2', '3', '4', '5'}:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation'] = 1
+                else:
+                    self.data_from_experiment[experiment][key]['Lexical anticipation'] = 0
+

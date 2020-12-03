@@ -464,9 +464,8 @@ class PhraseStructure:
         tests_checked = set()
         if tail_sets:
             for tail_set in tail_sets:
-                if {'INF', 'ARG'} != tail_set:
-                    if self.weak_tail_condition(tail_set, 'internal'):
-                        tests_checked.add(tail_set)
+                if self.weak_tail_condition(tail_set, 'internal'):
+                    tests_checked.add(tail_set)
             return tests_checked & tail_sets == tail_sets
         return True
 
@@ -476,8 +475,9 @@ class PhraseStructure:
                 if self.max().mother.head().match_features(tail_set) == 'complete match':
                     return True
                 # Licenses HP at [V [DP <H XP>]] by V
-                #if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
-                #    return True
+                # Pekka V [[Merjan] <ihailemassa Jukkaa>]
+                if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
+                    return True
 
     def precondition_for_strong_condition(self):
         # APs are excluded
