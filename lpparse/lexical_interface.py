@@ -1,6 +1,7 @@
 import phrase_structure
 from support import log
 from collections import defaultdict
+from operator import itemgetter
 
 # Definition for lexical interface
 class LexicalInterface:
@@ -77,6 +78,7 @@ class LexicalInterface:
 
     # Defines lexical retrieval
     def lexical_retrieval(self, phonological_entry):
+
         internal = False
         incorporated = False
 
@@ -108,8 +110,25 @@ class LexicalInterface:
             word_list = [const]
 
         if len(word_list) > 1:
-            log(f'{phonological_entry} is {len(word_list)}-way ambiguous...')
+            word_list = self.rank_lexical_items(word_list)
+            log(f'Word is {len(word_list)}-way ambiguous, we will retrieve: ')
+            for idx, word in enumerate(word_list, start=1):
+                log(f'({idx}) {word.info()}')
+                if word != word_list[-1]:
+                    log(', ')
+            log('...')
+
         return word_list
+
+    def rank_lexical_items(self, word_list):
+        def frequency(word):
+            for f in word.features:
+                if f[:5]=='FREQ:':
+                    return int(f[5:])
+            return 0
+        ranked_list = [(word, frequency(word)) for word in word_list]
+        ranked_list.sort(key=itemgetter(1), reverse=True)
+        return [word for (word, freq) in ranked_list]
 
     # Definition for the application of the redundancy rules
     def apply_redundancy_rules(self, features):

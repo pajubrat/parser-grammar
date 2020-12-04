@@ -120,17 +120,17 @@ class LinearPhaseParser:
 
     def parse_new_item(self, ps, lst, index):
         set_logging(True)
-        if self.exit:                                                                                                       # Force the parser to exit by setting this flag in the code
+        if self.exit:                                                                                               # Force the parser to exit by setting this flag in the code
             return
 
         if index < len(lst):
             log(f'\n\t\tNext item: "{lst[index]}". ')
 
-        if index == len(lst):                                                                                               # No more words in the input
-            self.complete_processing(ps)                                                                                    # Finalizes the output
-            return                                                                                                          # Completes the parsing branch
+        if index == len(lst):                                                                                        # No more words in the input
+            self.complete_processing(ps)                                                                             # Finalizes the output
+            return                                                                                                   # Completes the parsing branch
 
-        self.time_from_stimulus_onset = int(len(lst[index]) * 25)                                                           # baseline/mean duration for each item
+        self.time_from_stimulus_onset = int(len(lst[index]) * 25)                                                    # baseline/mean duration for each item
         self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
         # Try all lexical elements (if ambiguous)
@@ -180,7 +180,7 @@ class LinearPhaseParser:
                     print('.', end='', flush=True)
         # If all solutions in the list have been explored,  backtrack
         if not self.exit:
-            log('\n\tBacktracking to previous branching point...')
+            log(f'\n\t\tExplored {ps}, backtracking to previous branching point...')
 
     def process_inflection(self, inflection, lexical_item):
         if inflection:
@@ -216,7 +216,6 @@ class LinearPhaseParser:
             log('\n\t\tLF-legibility test failed.\n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps))
-            log('\n')
             return
         log('Done.\n')
         log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')

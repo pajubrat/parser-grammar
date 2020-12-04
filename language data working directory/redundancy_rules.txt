@@ -2,7 +2,7 @@
 # Universal lexical redundancy rules
 
 # Basic lexical categories
-FORCE 	:: -ARG -VAL FIN !COMP:* -SPEC:* !PROBE:T/fin COMP:T/fin COMP:C/fin
+FORCE 	:: -ARG -VAL FIN !COMP:* -SPEC:* !PROBE:FIN COMP:T/fin COMP:C/fin
 C/fin 	:: -ARG VAL FIN C SPEC:* !COMP:* -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:FIN -SPEC:T/fin -SPEC:C/fin -SPEC:N COMP:Neg/fin
 T/fin 	:: ARG VAL T FIN !COMP:* -SPEC:C COMP:T/prt COMP:v COMP:V -COMP:INF -COMP:T/fin !PROBE:V SPEC:D -SPEC:N -SPEC:T/fin -SPEC:C/fin -SPEC:Neg -SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
 T/prt 	:: ARG FIN VAL T !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V SPEC:* SPEC:D -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:D
@@ -11,7 +11,7 @@ Neg/fin :: ARG VAL FIN NEG COMP:T/prt -SPEC:T -SPEC:T/fin %SPEC:INF SEM:internal
 v   	:: ARG -VAL ASP !COMP:* COMP:V !PROBE:V SPEC:D -SPEC:N
 D   	:: -ARG OP !COMP:* -COMP:D -COMP:P -COMP:T/fin -SPEC:MA/lla -SPEC:P -SPEC:C -SPEC:INF -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
 D/rel	:: D -ARG OP OP:REL OP:_ !COMP:* -COMP:C/fin -COMP:D -SPEC:MA/lla -SPEC:P -SPEC:C -SPEC:INF -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
-N   	:: COMP:P -COMP:A COMP:C -COMP:AUX -SPEC:FORCE -COMP:C/fin SPEC:A COMP:R COMP:R/D -COMP:N -SPEC:uWH -SPEC:R -SPEC:V -COMP:V -COMP:v -SPEC:INF -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:ADV -COMP:WH
+N   	:: COMP:P -COMP:A COMP:T/prt COMP:C -COMP:AUX -SPEC:FORCE -COMP:C/fin SPEC:A COMP:R COMP:R/D -COMP:N -SPEC:uWH -SPEC:R -SPEC:V -COMP:V -COMP:v -SPEC:INF -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:ADV -COMP:WH
 V   	:: ARG -VAL ASP -SPEC:T/fin -SPEC:FORCE SPEC:ADV -COMP:N -COMP:T/fin -COMP:V -COMP:v SPEC:P COMP:P SPEC:TO/inf
 P   	:: ARG -VAL !COMP:* COMP:D -COMP:N -COMP:ADV -COMP:T/fin -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:ADV -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:INF -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 ADV 	:: -SPEC:N -SPEC:FORCE -SPEC:Neg/fin -SPEC:T/fin adjoinable
@@ -49,6 +49,7 @@ A LANG:IT		:: -float
 T/fin LANG:IT	::	!SPEC:D
 
 # Finnish
+T/fin LANG:FI	::	!SPEC:*
 A LANG:FI 	::  -adjoinable
 WH LANG:FI	::	WH_
 P LANG:FI	::	SPEC:*

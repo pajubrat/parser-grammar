@@ -28,20 +28,54 @@
 			
 				Pekka istuu
 				Pekka lahtee
+				Pekka elaa
+				Pekka juoksee
+				Pekka kuorsaa
+				Pekka nukkui
 				John sleeps
+				John leaves
+				the horse fell
 				lui dorme
 		
 			=> 1.1.1.1
 			& Ungrammatical (finite intransitive verbs)
 		
 				Pekka lahtee Merjan
-				lahtee
+				Pekka elaa Merjan
 				Pekka istuu Merjan
+				Pekka juoksee Merjan
+				Pekka kuorsaa Merjan
+				Pekka nukkui Merjan
+				Pekka lahtee Merja
+				Pekka elaa Merja
+				Pekka istuu Merja
+				Pekka juoksee Merja
+				Pekka kuorsaa Merja
+				Pekka nukkui Merja
+				Pekan istuu
+				Pekan lahtee
+				Pekan elaa
+				Pekan juoksee
+				Pekan kuorsaa
+				Pekan nukkui
+				lahtee
+				elaa
 				istuu
+				juoksee
+				kuorsaa
+				lahtee lahtee
+				istuu Pekka
+				lahtee Pekka
+				elaa Pekka
+				juoksee Pekka
+				kuorsaa Pekka
+				nukkui Pekka
+				sleeps
+				leaves
 				John sleeps Mary
 				John John sleeps
-				
-				
+				lui dorme Luisa
+							
 		& Transitive verbs 
 
 			=> 1.1.2.0
@@ -50,7 +84,18 @@
 				Pekka ihailee Merjaa
 				Pekka loysi Merjan
 				Pekka teki sen kellon_N
+				Pekka etsii Merjaa
+				Pekka haluaa Merjaa
+				Pekka hairitsee Merjaa
+				Pekka lukee kirjaa
+				Pekka pelkaa Merjaa
+				Pekka pesi Merjaa
+				Pekka saavuttaa Merjaa
+				Pekka teki kirjan
+				Pekka tonaisi Merjaa
 				John admires Mary
+				John likes Mary
+				John persuades Mary
 				Giuseppe spinge Luisa
 				lavano Luisa
 				loro lavano Luisa
@@ -60,12 +105,30 @@
 			
 				Pekka ihailee
 				Pekka loysi
+				Pekka teki 
+				Pekka etsii
+				Pekka haluaa
+				Pekka hairitsee
+				Pekka pelkaa
+				Pekka pesi
+				Pekka saavuttaa
+				Pekka teki
+				Pekka tonaisi
 				ihailee
 				loysi
+				teki
+				etsii
+				haluaa
+				hairitsee
+				pelkaa
+				pesi
+				saavuttaa
+				ihailee ihailee
 				Pekka ihailee Merjaa Merjaa Merjaa
 				Pekka Pekka ihailee Merjaa
 				Pekka Pekka ihailee Merjaa Merjaa Merjaa
 				mina haluan
+				Pekka haluaa Merjalle
 				John admires
 				John admires Mary Mary
 				admires
@@ -81,7 +144,9 @@
 			
 			=> 1.1.3.1
 			& Ungrammatical
-			
+				
+				antoi kirjan Merjalle
+				Pekka antoi antoi kirjan Merjalle
 				John gave the key to
 				John gave the to Mary
 				John gave the to
@@ -120,9 +185,11 @@
 				John not does sleep
 			
 			=> 1.2.1.2
-			& Problems
-				
+			& Problems (these problems have to do with ellipsis, partial fragments)
+			
+				Pekan_gen lahtea
 				Pekka ihaile Merjaa
+				etta Merja lahtee
 			
 		& Modals
 		
@@ -179,7 +246,7 @@
 		& Basic infinitival constructions (English)
 		
 			=> 1.3.1.0
-			& Grammatical
+			& Grammatical (want-class)
 			
 				John wants to_inf leave
 				John wants Mary to_inf leave
@@ -191,6 +258,7 @@
 			
 				io detesto Giuseppe lavare Luisa
 				John wants leave
+				John wants to_inf
 				John wants Mary leave
 				John wants leave Mary
 			
@@ -205,6 +273,7 @@
 			& Ungrammatical
 			
 				John tries Mary to_inf leave
+				John tries leave
 				
 		& Finnish deverbal infinitival complements
 		
@@ -226,6 +295,8 @@
 				
 					Pekka haluaa Merjan_gen lahtea
 					Pekka haluaa heidan lahtea
+					Pekka haluaa
+					Pekka haluaa Merjaa lahtea
 			
 			& Modal + A-infinitival
 			
@@ -319,9 +390,15 @@
 			=> 1.6.1.0
 			& Grammatical
 			
-				Pekka sanoi etta Merja lahtee		
+				Pekka sanoi etta Merja lahtee
+				Pekka sanoi etta Merja ihailee Pekkaa
+				Pekka sanoi etta Merja antoi kirjan Merjalle
 				Pekka sanoo etta haluaa ihailla Merjaa
 				Pekka sanoo etta haluaa myyda omaisuuttaan
+				Pekka sanoo etta Pekka ei lahde
+				Pekka sanoo etta mina en lahde
+				Pekka sanoi etta Pekka ei ihaile Merjaa
+				Pekka sanoi etta Pekan_gen taytyy nukkua
 				John said that Mary sleeps
 			
 			=> 1.6.1.1
@@ -329,9 +406,16 @@
 			
 				Pekka sanoi etta
 				Pekka sanoi etta Merja
+				Pekka sanoi Merja lahtee etta
+				etta
 				John said that
 				John said that Mary
-	
+			
+			=> 1.6.1.2
+			& Problems ("that" cannot rule out DP spec when it is an adjunct)
+		
+				Pekka sanoi Merja etta lahtee
+			
 	& Relative clauses (1.7)
 	
 		& Subject relative clauses (1.7.1)
@@ -340,11 +424,12 @@
 			& Grammatical
 					
 				se mies joka nukkui lahti
+				se mies joka nukkui ihailee Merjaa
 			
 			=> 1.7.1.1
 			& Ungrammatical
 		
-				se' mies nukkui lahti
+				se mies nukkui lahti
 				joka nukkui lahti
 				joka joka nukkui lahti
 			
@@ -359,22 +444,40 @@
 			=> 1.7.2.0
 			& Grammatical
 			
-				se' mies jota Merja ihaili lahti
+				se mies jota Merja ihaili lahti
+				se mies jota Merja ihaile ihailee Merjaa
 			
 			=> 1.7.2.1
 			& Ungrammatical
 			
-				se' mies Merja ihaili lahti
-				se' mies jota jota Merja ihaili lahti
+				se mies Merja ihaili lahti
+				se mies jota jota Merja ihaili lahti
 		
 		& Center-embedding (1.7.3)
 		
 			=> 1.7.3.0
 			& Grammatical
 			
-			#	se' mies jota se' mies ihaili lahti
-			#	se' mies jota se' mies joka nukkui ihaili lahti
-			#	se' mies jota se' mies jota se' mies ihaili ihaili lahti
+				# se mies jota se mies ihaili lahti
+				# se mies jota se mies joka nukkui ihaili lahti
+				# se mies jota se mies jota se mies ihaili ihaili lahti
+	
+	& Lexical ambiguity (1.8)
+	
+		& Frequency based ambiguity resolution (1.8.1)
+		
+			=> 1.8.1.0
+			& Grammatical
+				
+				John admires the bank
+			
+		& Grammatical feature based ambiguity resolution (1.8.2)
+		
+			=> 1.8.2.0
+			& Grammatical
+			
+				lahella Pekkaa
+				Pekkaa lahella
 		
 & 2 Adjunction and adjuncts
 
@@ -402,10 +505,10 @@
 		
 			the little key
 			the little red key
-			se' talo
-			se' pieni talo
-			se' pieni punainen talo
-			se' punainen pieni talo
+			se talo
+			se pieni talo
+			se pieni punainen talo
+			se punainen pieni talo
 		
 		=> 2.2.1.1
 		& Ungrammatical
@@ -492,6 +595,23 @@
 		
 			keta Pekka ihailee
 			kuka ihailee Merjaa
+			kuka ei ihaile Merjaa
+			keta Pekka ei ihaile
+			kenen taytyy ihailla Merjaa
+			keta Pekan_gen taytyy ihailla
+			kuka antoi kirjan Merjalle
+			kenen ei taydy ihailla Merjaa
+			keta Pekan_gen ei taydy ihailla
+			kuka kaskee Merjan_gen lahtea
+			kuka halusi ihailla Merjaa		
+			kuka sanoo Merjan_gen lahtevan
+			kuka sanoo lahtevansa
+			kuka teki sopimuksen ihailla Merjaa
+			kuka nukkui lahella_1 Pekkaa
+			kuka sanoi etta Merja lahtee
+			kuka sanoi etta Merja ihailee Pekkaa
+			kuka naki Merjan_acc lahtemassa
+			who wants to_inf leave
 			who admires John
 			who does John admire'
 			who does_C John admire'
@@ -507,10 +627,19 @@
 			ihailee Pekka keta
 		
 		=> 3.1.1.2
-		& Problems
+		& Problems (genitive DP does not mo through Spec,A/inf)
+
+			kenen Pekka kaskee lahtea
+			kenen Pekka sanoo lahtevan
+				
+		& Problems (partitive reconstructs into Spec,A/inf)
+	
+			keta Pekka halusi ihailla
+
+		& Problems ('Pekka' is interpreted as an second Spec TP-adjunct)
 		
 			Pekka keta ihailee
-			
+
 	& Pied-piping (3.2)
 
 		=> 3.2.1.0
@@ -607,7 +736,8 @@
 		
 		=> 4.1.1.1
 		& Ungrammatical
-		
+			
+			Pekkaa nukkuu
 			Pekka ihailee Merja
 			Pekka antoi kirja Merjalle
 			Pekka antoi kirjan Merja
@@ -2291,3 +2421,35 @@
 			mi=lavo
 			tu mi=lavi
 				mi=lavi
+
+& Performance tests (11)
+ 
+	& Relative clauses (11.1)
+	
+		& Subject relative clauses (11.1.1)
+		
+			=> 11.1.1.0					
+			se mies joka nukkui lahti
+			se mies joka nukkui ihailee Merjaa
+					
+		& Object relative clauses (11.1.2)
+			
+			=> 11.1.2.0
+			se mies jota Merja ihaili lahti
+			se mies jota Merja ihaile ihailee Merjaa
+			
+		& Center-embedding (11.1.3)
+		
+			=> 11.1.3.0
+			# se mies jota se mies ihaili lahti
+			# se mies jota se mies joka nukkui ihaili lahti
+			# se mies jota se mies jota se mies ihaili ihaili lahti
+		
+	& Lexical garden-paths (11.2)
+		
+		& Horse raced past the barn
+		
+			=> 11.2.1.0
+			the horse raced past the barn
+			the horse raced past the barn fell
+	

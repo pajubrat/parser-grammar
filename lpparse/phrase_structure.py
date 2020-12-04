@@ -693,6 +693,10 @@ class PhraseStructure:
         lfs = [f[3:] for f in self.features if f[:2] == 'LF']
         return '.'.join(sorted(lfs))
 
+    def info(self):
+        info = [f[5:] for f in self.features if f[:5] == 'INFO:']
+        return '.'.join(sorted(info))
+
     def gloss(self):
         pf = ''
         if self.left_const:

@@ -334,9 +334,10 @@ class LF:
                     self.selection_test_result = False
 
             # !SPEC:* heads require a specifier
-            if f == '!SPEC:*' and not local_edge:
-                log(f'An EPP-head "{h}" lacks specifier...')
-                self.selection_test_result = False
+            if f == '!SPEC:*':
+                if not local_edge:
+                    log(f'An EPP-head "{h}" lacks specifier...')
+                    self.selection_test_result = False
 
             # !SPEC:F, head requires specifier with label F
             # This feature must be satisfied by local edge (local specifier)
