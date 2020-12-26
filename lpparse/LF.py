@@ -35,7 +35,6 @@ class LF:
                 self.head_integrity_test_result and
                 self.criterial_feature_test_result and
                 self.semantic_test_result and
-                self.semantic_test_result and
                 self.projection_principle_test_result and
                 self.wrong_complement_test_result and
                 self.adjunct_test_result)
@@ -181,6 +180,7 @@ class LF:
             self.selection_tests(ps)
             self.criterial_feature_test(ps)
             self.projection_principle(ps)
+            self.semantic_test(ps)
             self.adjunct_interpretation_test(ps)
         else:
             if not ps.left_const.find_me_elsewhere:
@@ -188,6 +188,13 @@ class LF:
             if not ps.right_const.find_me_elsewhere:
                 self._test(ps.right_const)
         return self
+
+    def semantic_test(self, h):
+        pass
+        # This refers to a condition which rules out wrong step [that man who] sleeps]
+        # and for which I haven't found the general rule
+        #if 'D/rel' in h.features and h.mother and h.mother.sister() and 'N' in h.mother.sister().features:  # [N D/rel]
+        #    self.semantic_test_result = False
 
     # A right DP-adjunct inside DP is uninterpretable
     def adjunct_interpretation_test(self, h):

@@ -56,6 +56,9 @@ che-   	:: PF:che LF:who N PHI_N LANG:IT
 chiamato	:: 	chiamata-#T/prt LANG:IT
 chiamata-	::	PF:chiamato LF:called V LANG:IT
 
+claims	::	claim-#T/fin#[-V] LANG:EN
+claim-	::	PF:claim LF:claim V SPEC:D COMP:T/fin -COMP:D
+
 danno	:: PF:danno LF:damage N LANG:IT
 
 del		:: D#di LANG:IT
@@ -77,7 +80,13 @@ does-	:: T/fin PHI:PER:3 PHI:NUM:SG PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does
 dorme	:: dorme-#T/fin#[-e] LANG:IT
 dorme-	:: V !SPEC:D PF:dorme CLASS:INTR LF:sleep
 
+disappeared	::	disappear-#T/fin LANG:EN
+disappear-	::	PF:disappear LF:disappear V CLASS:INTR LANG:EN
+
 e		:: BE-#T/fin#3p#sg LANG:IT
+
+easy	::	easy-#a0 LANG:EN
+easy-	::	PF:easy LF:easy 0 LANG:EN
 
 en		:: e-#[-n] LANG:FI
 et		:: e-#[-t] LANG:FI
@@ -210,6 +219,9 @@ key		:: PF:key LF:key N LANG:EN
 kirjan  :: kirja-#D#[-n_acc] LANG:FI
 kirjaa	:: kirja-#D#[-par] LANG:FI
 kirja-  :: PF:kirja LF:book N -SEM:directional LANG:FI
+
+knows	::	know-#v#T/fin#[-V] LANG:EN
+know-	::	PF:know LF:know V CLASS:TR LANG:EN
 
 kohti	:: PF:kohti LF:towards P TAIL:V LANG:FI
 
@@ -420,12 +432,14 @@ primary	::	PF:primary LF:nurse N LANG:IT
 promises :: promise-#T/fin#[-s] LANG:EN
 promise- :: PF:promise LF:promise V SPEC:D COMP:D SEM:internal LANG:EN 
 
+problem	::	PF:problem LF:problem N LANG:EN
+
 pyytaa	:: pyyta-#v#T/fin#[-V] LANG:FI
 pyyta-	:: PF:pyyda LF:ask V CLASS:TR SEM:external LANG:FI
 
 raced	:: race-#T/fin FREQ:2 INFO:finite_verb LANG:EN  
 raced	:: race-#T/prt FREQ:1 INFO:participle_verb LANG:EN
-race-	:: PF:race LF:race V CLASS:INTR COMP:P LAMG:EN
+race-	:: PF:race LF:race V CLASS:INTR -COMP:T/fin COMP:P LAMG:EN
 
 raukesi	:: raukea-#T/fin#[-V] LANG:FI
 raukea-	:: PF:raukea LF:terminate V LANG:FI
@@ -451,9 +465,6 @@ sala-	:: PF:sala LF:room N LANG:IT
 scoppiati	:: scoppia-#T/prt LANG:IT
 scoppia- 	:: PF:scoppia LF:explode V LANG:IT
 
-sen		:: PF:sen LF:the/that D TAIL:ASP TAIL:PHI TAIL:*POL:NEG LANG:FI
-se		:: PF:se LF:the/that D LANG:FI
-
 sentenza :: PF:sentenza LF:sentence N LANG:IT
 
 Seine	:: Seine-#D#[-nom]
@@ -465,6 +476,8 @@ sembra-	:: PF:sembra LF:seem -ASP -ARG V SPEC:P SPEC:D -COMP:D !COMP:ARE/inf
 sleeps	:: sleep-#T/fin#[-s] LANG:EN
 sleep	:: PF:sleep LF:sleep V CLASS:INTR LANG:EN
 sleep- 	:: PF:sleep LF:sleep V CLASS:INTR LANG:EN
+
+solution	:: PF:solution LF:solution N LANG:EN
 
 sono	:: BE-#T/fin LANG:IT
 sono_pl	:: BE-#T/fin#pl#3p#def#hum LANG:IT
@@ -488,6 +501,9 @@ sukan	:: sukka-#[-gen]
 sukat	:: sukka-#[-nom]#pl
 sukka-	:: PF:sukka- LF:socks N LANG:FI
 
+surprised	::	surprise-#v#T/fin LANG:EN
+surprise-	:: PF:surprise LF:surprise V CLASS:TR -COMP:T/fin LANG:EN
+
 talo	:: PF:talo LF:house N LANG:FI
 
 tama	:: tama-#D#sg#3p#def
@@ -505,7 +521,7 @@ that    :: PF:that LF:that FORCE LANG:EN
 
 the		:: PF:the LF:the D PHI:DEF:DEF LANG:EN
 
-to     	:: PF:to LF:to P +SEM:directional -SPEC:* TAIL:V,+SEM:directional LANG:EN
+to     	:: PF:to LF:to P +SEM:directional -SPEC:* TAIL:V +SEM:directional LANG:EN
 
 to_inf	:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:v -VAL ?ARG adjoinable
 
@@ -567,8 +583,8 @@ te- 	:: PF:te LF:you N PHI_N LANG:FI
 he_FI	:: he_FI-#D#nom#pl#3p#def#hum
 heidan	:: he_FI-#D#pl#3p#def#hum#[-gen]
 he_FI- 	:: PF:he LF:they N PHI_N LANG:FI
-se		:: se-#nom#sg#3p#def LANG:FI
-se-		:: PF:se LF:it/that D LANG:FI
+se		:: PF:se LF:the/that D LANG:FI
+sen		:: PF:sen LF:the/that D TAIL:ASP TAIL:PHI TAIL:*POL:NEG LANG:FI
 
 # English
 I		:: I-#D#sg#1p#def#hum

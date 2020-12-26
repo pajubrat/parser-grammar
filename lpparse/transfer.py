@@ -27,7 +27,6 @@ class Transfer():
         if not is_logging_enabled():
             log(log_embedding + f'Transferring {ps} to LF.')
 
-        surface_conditions = self.surface_conditions_module
         feature_process = self.feature_process
         head_movement = self.head_movement_module
         floater_movement = self.floater_movement_module

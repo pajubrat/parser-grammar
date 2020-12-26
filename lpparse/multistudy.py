@@ -80,12 +80,6 @@ def run_multi(args):
         main.run_study('study-6-linear-phase-theory/Experiment 2b/33-Sling/',
                        'linear_phase_theory_corpus.txt',
                        'study-6-linear-phase-theory')
-        main.run_study('study-6-linear-phase-theory/Experiment 2b/34-Random/',
-                       'linear_phase_theory_corpus.txt',
-                       'study-6-linear-phase-theory')
-        main.run_study('study-6-linear-phase-theory/Experiment 2b/35-Top-down/',
-                       'linear_phase_theory_corpus.txt',
-                       'study-6-linear-phase-theory')
         main.run_study('study-6-linear-phase-theory/Experiment 2b/36-Bottom-up-no-lexical-anticipation/',
                        'linear_phase_theory_corpus.txt',
                        'study-6-linear-phase-theory')
@@ -93,12 +87,6 @@ def run_multi(args):
                        'linear_phase_theory_corpus.txt',
                        'study-6-linear-phase-theory')
         main.run_study('study-6-linear-phase-theory/Experiment 2b/38-Sling-no-lexical-anticipation/',
-                       'linear_phase_theory_corpus.txt',
-                       'study-6-linear-phase-theory')
-        main.run_study('study-6-linear-phase-theory/Experiment 2b/39-Random-no-lexical-anticipation/',
-                       'linear_phase_theory_corpus.txt',
-                       'study-6-linear-phase-theory')
-        main.run_study('study-6-linear-phase-theory/Experiment 2b/310-Top-down-no-lexical-anticipation/',
                        'linear_phase_theory_corpus.txt',
                        'study-6-linear-phase-theory')
 
@@ -124,40 +112,22 @@ def run_multi(args):
                        'linear_phase_theory_corpus.txt',
                        'study-6-linear-phase-theory')
 
-    # Experiment 2
-    #main.run_study('study-6-linear-phase-theory/Experiment 2/1-Bottom-up/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 2/2-Z/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 2/3-Random/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 2/4-Top-down/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 2/5-Sling/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-
-    # Experiment 3
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-0 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-1 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-2 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-3 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-4 knockouts/', 'linear_phase_theory_corpus.txt',
-    #              'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-5 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-6 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-7 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-8 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-9 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-10 knockouts/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
-    #main.run_study('study-6-linear-phase-theory/Experiment 3/3-11 opposite/', 'linear_phase_theory_corpus.txt',
-    #               'study-6-linear-phase-theory')
+    if '3' in args:
+        main.run_study('study-6-linear-phase-theory/Experiment 3/55-Optimal parser/',
+                       'linear_phase_theory_corpus.txt',
+                       'study-6-linear-phase-theory')
+        main.run_study('study-6-linear-phase-theory/Experiment 3/56-Performance/',
+                       'performance_corpus.txt',
+                       'study-6-linear-phase-theory/Experiment 3/56-Performance/')
+        main.run_study('study-6-linear-phase-theory/Experiment 3/57-no_left_branch_principles/',
+                       'performance_corpus.txt',
+                       'study-6-linear-phase-theory/Experiment 3/57-no_left_branch_principles/')
+        main.run_study('study-6-linear-phase-theory/Experiment 3/58-no_left_branch_principles_all/',
+                       'linear_phase_theory_corpus.txt',
+                       'study-6-linear-phase-theory')
+        main.run_study('study-6-linear-phase-theory/Experiment 3/59-Performance with WM/',
+                       'performance_corpus.txt',
+                       'study-6-linear-phase-theory/Experiment 3/59-Performance with WM/')
+        main.run_study('study-6-linear-phase-theory/Experiment 3/60-Optimal parser with WM/',
+                       'linear_phase_theory_corpus.txt',
+                       'study-6-linear-phase-theory')

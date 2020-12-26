@@ -1,0 +1,84 @@
+# Combined corpus, October 2020, Pauli Brattico.
+# 
+# Experimental categories are marked with '=>' and the format is 'a.b.c.d...', where a, b, c, d... are integers referring to the categories.
+# Currently we have a.b.c.d with
+# a = construction type (highest syntactic classification),
+# b = construction subtype 
+# c = construction subsubtype
+# d = grammaticality (0 = grammatical, 1 = ungrammatical, 2 = problem or unclear).
+
+& Test constructions (0)
+
+	& Simple clauses (0.1)
+	
+		=> 0.1.1.0
+		Pekka ihailee Merjaa
+ 
+& Relative clauses (1)
+
+	& Subject relative clauses (1.1)
+	
+		=> 1.1.1.0					
+		se mies joka nukkui lahti
+		se mies joka nukkui ihailee Merjaa
+		se mies joka ihailee Merjaa lahti
+				
+	& Object relative clauses (1.2)
+		
+		=> 1.2.1.0
+		se mies jota Merja ihaili lahti
+		se mies jota Merja ihaili ihailee Merjaa
+		
+	& Center-embedding (1.3)
+	
+		=> 1.3.1.0
+		se mies jota se mies ihaili lahti
+		=> 1.3.2.0
+		se mies jota se mies jota se mies ihaili ihaili lahti
+		=> 1.3.3.0
+		se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili lahti
+		
+	& Center-embedding all levels (1.4)
+	
+		=> 1.4.1.0
+		se mies jota se mies ihaili lahti
+		=> 1.4.2.0
+		se mies jota se mies jota se mies ihaili ihaili lahti
+		=> 1.4.3.0
+		se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili lahti
+		=> 1.4.4.0
+		se mies jota se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili ihaili lahti
+		=> 1.4.5.0
+		se mies jota se mies jota se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili ihaili ihaili lahti
+	
+		
+& Lexical garden-paths (2)
+	
+	& Horse raced past the barn
+	
+		=> 2.1.1.0
+		the horse raced past the barn
+		the horse raced past the barn fell
+	
+	& Head-complement selection
+	
+		=> 2.2.1.0
+		John knows the solution to the problem
+		John knows the solution to the problem disappeared
+		John claims the solution to the problem disappeared
+
+& That the clauses (3)
+
+	=> 3.1.1.0
+	John surprised Mary
+	that John sleeps surprised Mary
+	that that John sleeps surprised Mary surprised John
+
+& Nested A-bar movement (4)
+
+	& Pied-piping (Finnish)
+
+		=> 4.1.1.0
+		towards which city does_C Seine flow'
+		mita kaupunkia kohti Seine virtaa
+		mita kaupunkia kohti virtaamalla Seine saavuttaa meren

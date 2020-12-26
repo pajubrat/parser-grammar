@@ -24,6 +24,7 @@ class PhraseStructure:
             self.right_const.mother = self
         self.mother = None
         self.features = set()
+        self.active_in_syntactic_working_memory = True
         self.morphology = ''
         self.internal = False
         self.adjunct = False
@@ -368,6 +369,7 @@ class PhraseStructure:
     def sink(self, ps):
         self.consume_resources('Sink')
         bottom_affix = self.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
+        bottom_affix.active_in_syntactic_working_memory = True
         bottom_affix.right_const = ps
         ps.mother = bottom_affix
         bottom_affix.left_const = None
@@ -385,6 +387,7 @@ class PhraseStructure:
             ps_.features = self.features.copy()
         ps_.morphology = self.morphology
         ps_.internal = self.internal
+        ps_.active_in_syntactic_working_memory = self.active_in_syntactic_working_memory
         ps_.adjunct = self.adjunct
         ps_.find_me_elsewhere = self.find_me_elsewhere
         ps_.identity = self.identity
@@ -856,8 +859,7 @@ class PhraseStructure:
             index_str = ':'+self.identity
         else:
             index_str = ''
-        # By writing something here you can track which elements are copied in the final solution
-        if self.find_me_elsewhere:
+        if self.find_me_elsewhere:      # By writing something here you can track which elements are copied in the final solution
             index_str = index_str + ''
         if self.features and 'null' in self.features:
             if self.adjunct:
@@ -881,8 +883,10 @@ class PhraseStructure:
             if self.adjunct:
                 return f'<{self.left_const} {self.right_const}>' + index_str
             else:
-                return f'[{self.left_const} {self.right_const}]' + index_str
-
+                if self.active_in_syntactic_working_memory:
+                    return f'[{self.left_const} {self.right_const}]' + index_str
+                else:
+                    return f'[{self.left_const} {self.right_const}]' + index_str
 
     # This function tidies the names for constituents
     def tidy_names(self, counter):

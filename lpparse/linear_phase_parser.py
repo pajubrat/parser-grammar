@@ -55,30 +55,32 @@ class LinearPhaseParser:
                 self.only_first_solution = True
         self.name_provider_index = 0
         self.number_of_items_consumed = 0
-        self.result_list = []  # Results (final analyses)
-        self.spellout_result_list = []  # Results (spellout structures)
-        self.semantic_interpretation = set()  # Semantic interpretation
-        self.number_of_ambiguities = 0  # Number of lexical ambiguities detected
-        self.result_matrix = [[] for i in range(50)]  # Result matrix
-        self.execution_time_results = []  # Execution time
-        self.memory_buffer_inflectional_affixes = set()  # Local memory buffer for inflectional affixes
-        self.syntactic_working_memory = []  # Syntactic working memory
-        self.first_solution_found = False  # Registers when the first solution if found
-        self.exit = False  # Forced exit tag
-        self.name_provider_index = 0  # Index for name provider, for chain identification
-        self.surface_conditions_pass = True  # Surface conditions
-        self.score = 0  # Discourse score
-        self.resources = dict  # Resources consumed
-        self.start_time = process_time()  # Calculates execution time
+        self.result_list = []                                   # Results (final analyses)
+        self.spellout_result_list = []                          # Results (spellout structures)
+        self.semantic_interpretation = set()                    # Semantic interpretation
+        self.number_of_ambiguities = 0                          # Number of lexical ambiguities detected
+        self.result_matrix = [[] for i in range(50)]            # Result matrix
+        self.execution_time_results = []                        # Execution time
+        self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
+        self.syntactic_working_memory = []                      # Syntactic working memory
+        self.first_solution_found = False                       # Registers when the first solution if found
+        self.exit = False                                       # Forced exit tag
+        self.name_provider_index = 0                            # Index for name provider, for chain identification
+        self.surface_conditions_pass = True                     # Surface conditions
+        self.score = 0                                          # Discourse score
+        self.resources = dict                                   # Resources consumed
+        self.start_time = process_time()                        # Calculates execution time
         self.grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
-        self.time_from_stimulus_onset = 0
-        self.total_time_per_sentence = 0
-        self.time_from_stimulus_onset_for_word = []
+        self.time_from_stimulus_onset = 0                       # Counts predicted cognitive time
+        self.total_time_per_sentence = 0                        # Counts predicted cognitive time
+        self.time_from_stimulus_onset_for_word = []             # Count predicted cognitive time
         # Reset operation counters in the PhraseStructure class
         for key in PhraseStructure.resources:
             PhraseStructure.resources[key] = {"ms": 1, "n": 0}
-        self.resources = {"Total Time": {'ms': 0, 'n': 0},
+        self.resources = {"Total Time": {'ms': 0, 'n': 0},     # Count predicted cognitive time
                           "Garden Paths": {'ms': 1, 'n': 0},
+                          "Memory Reactivation": {'ms': 500, 'n' : 0},
+                          "Steps": {'ms': 0, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
                           "Move Head": {'ms': 5, 'n': 0},
                           "Move Phrase": {'ms': 0, 'n': 0},
@@ -109,8 +111,9 @@ class LinearPhaseParser:
         self.plausibility_metrics.initialize()  # Here we can parametrize plausibility metrics if needed
         set_logging(True)
         log('\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
-        log(f'\n{count}. {self.sentence}')
+        log(f'\n#{count}. {self.sentence}')
         log(f'\n\n\t 1. {self.sentence}\n')
+        self.local_file_system.simple_log_file.write(f'\n\n#{count}. {self.sentence}\n')
         self.local_file_system.resource_sequence_file.write(f'\n{count}, {self.local_file_system.generate_input_sentence_string(lst)},  ')
         if not self.local_file_system.instruction_to_ignore_from_test_corpus:
             self.parse_new_item(None, lst, 0)
@@ -131,7 +134,8 @@ class LinearPhaseParser:
             return                                                                                                   # Completes the parsing branch
 
         self.time_from_stimulus_onset = int(len(lst[index]) * 25)                                                    # baseline/mean duration for each item
-        self.resources['Total Time']['n'] += self.time_from_stimulus_onset
+        if not self.first_solution_found:
+            self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
         # Try all lexical elements (if ambiguous)
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
@@ -147,40 +151,63 @@ class LinearPhaseParser:
                     self.parse_new_item(None, lst_branched, index + 1)
             else:
                 self.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
+                log(f'\n\t\tItem enters active working memory.')
+                terminal_lexical_item.active_in_syntactic_working_memory = True  # The element enters active working memory
                 log('\n')
+
                 if not ps:
                     self.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
                 else:
                     log(f'\n\t{self.resources["Item streamed into syntax"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
                     log(f'{ps}' + ' + ' + terminal_lexical_item.get_phonological_string())
+                    self.resources['Steps']['n'] += 1
+                    self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}.\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
                     # -------------------------- consider merge solutions ------------------------------------- #
                     merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
                     for site in merge_sites:
                         ps_ = ps.top().copy()
-                        left_branch_site_ = ps_.identify_equivalent_node(site)
-                        if left_branch_site_.bottom_affix().internal and site.is_primitive():
-                            log(f'\n\t\tSinking {terminal_lexical_item} into {left_branch_site_.bottom_affix()} = ')
-                            new_ps = left_branch_site_.bottom_affix().sink(terminal_lexical_item)
-                            log(f'{new_ps.top()}')
+                        left_branch = ps_.identify_equivalent_node(site)
+                        if 'working_memory' in self.local_file_system.settings:
+                            if self.local_file_system.settings['working_memory']:
+                                if not site.active_in_syntactic_working_memory:
+                                    self.consume_resources("Memory Reactivation", {site})
+                                    log(f'\n\t\tA dormant constituent had to be woken back into syntactic working memory.')
+                                    site.active_in_syntactic_working_memory = True
+                        if left_branch.bottom_affix().internal and site.is_primitive():
+                            log(f'\n\t\tSinking {terminal_lexical_item} into {left_branch.bottom_affix()} = ')
+                            new_constituent = left_branch.bottom_affix().sink(terminal_lexical_item)
+                            log(f'{new_constituent.top()}')
                             self.consume_resources("Merge", f'{terminal_lexical_item}')
                         else:
-                            log(f'\n\t\tNow exploring solution [{left_branch_site_} {terminal_lexical_item.get_phonological_string()}]...')
-                            log('Transferring left branch...')
+                            log(f'\n\t\tNow exploring solution [{left_branch} + {terminal_lexical_item.get_phonological_string()}]...')
+                            log(f'Transferring left branch {left_branch}...')
                             self.consume_resources("Merge", f'{terminal_lexical_item}')
                             set_logging(False)
-                            new_ps = self.transfer_to_LF(left_branch_site_) + terminal_lexical_item
+                            #
+                            #
+                            # Merge (attachment of new element to existing structure)
+                            new_constituent = self.transfer_to_LF(left_branch) + terminal_lexical_item
+                            #
+                            #
+                            #
                             set_logging(True)
-                            log(f'Result: {new_ps}...Done.\n')
+                            log(f'Result: {new_constituent}...Done.\n')
                         if not self.first_solution_found:
                             self.time_from_stimulus_onset_for_word.append((terminal_lexical_item, self.time_from_stimulus_onset))
-                        self.parse_new_item(new_ps, lst_branched, index + 1)
+                        self.put_out_of_working_memory(merge_sites)
+                        self.parse_new_item(new_constituent, lst_branched, index + 1)
                         if self.exit:
                             break
                     # ---------------------------------------------------------------------------------------- #
                     print('.', end='', flush=True)
+
         # If all solutions in the list have been explored,  backtrack
         if not self.exit:
             log(f'\n\t\tExplored {ps}, backtracking to previous branching point...')
+
+    def put_out_of_working_memory(self, merge_sites):
+        for site in merge_sites:
+            site.active_in_syntactic_working_memory = False
 
     def process_inflection(self, inflection, lexical_item):
         if inflection:
@@ -218,13 +245,27 @@ class LinearPhaseParser:
             log(show_primitive_constituents(ps))
             return
         log('Done.\n')
-        log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
-        self.resources.update(PhraseStructure.resources)
-        self.resources['Mean time per word']['n'] = int(self.resources['Total Time']['n']/len(self.sentence))
+        print('X', end='', flush=True)
+        self.consume_resources('Steps')
+        self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_}')
+        self.local_file_system.simple_log_file.write(f'\n\t-------------------------------')
+        if not self.first_solution_found:
+            log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
+            self.first_solution_found = True
+            self.resources['Mean time per word']['n'] = int(self.resources['Total Time']['n'] / self.count_words(self.sentence))
+            self.resources.update(PhraseStructure.resources) # Add phrase resource consumption from class phrase structure
         if self.only_first_solution:
             self.exit = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
         self.report_solution(ps_, spellout_structure)
+
+    # This is needed because we want to count clitics as words
+    def count_words(self, sentence):
+        sentence_ = []
+        for word in sentence:
+            word_ = word.split('=')
+            sentence_ = sentence_ + word_
+        return len(sentence_)
 
     def add_garden_path(self):
         if not self.first_solution_found:
@@ -277,7 +318,16 @@ class LinearPhaseParser:
             log(f'Transfer of {ps} terminated due to input condition violation...')
         if original_mother:
             ps.mother = original_mother
+        self.remove_from_syntactic_working_memory(ps)
         return ps
+
+    def remove_from_syntactic_working_memory(self, ps):
+        ps.active_in_syntactic_working_memory = False
+        if ps.mother and (ps.contains_feature('T/fin') or ps.contains_feature('OP:REL')): # Remove also container if transferred phrase is finite
+            node = ps
+            while node.mother:
+                node = node.mother
+                node.active_in_syntactic_working_memory = False
 
     def check_transfer_presuppositions(self, ps):
         if 'FIN' in ps.head().features or 'INF' in ps.head().features:

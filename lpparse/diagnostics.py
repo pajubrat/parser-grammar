@@ -1,232 +1,573 @@
 import pandas as pd
-from numpy import median
 from matplotlib import pyplot as plt
 import seaborn as sns
+from datetime import datetime
+import numpy as np
+import sys
+
+STUDY_DIRECTORY = './language data working directory/study-6-linear-phase-theory/'
 
 class Diagnostics:
     def __init__(self):
-        self.data_from_experiment = {}          # Dict of dicts {'Experiment': {'Substudy': DataFrame, 'Substudy': DataFrame..., 'all': DataFrame}}
+        self.data = pd.DataFrame()
+        self.log_file = None
 
     def run_resource_diagnostics(self):
-        # Experiment 1
-        # self.read_data(experiment='1')
-        # self.remove_ungrammatical_sentences(experiment='1')
-        # self.add_combined_metrics(experiment='1')
-        # self.data_preparation(experiment='1')
-        # self.combine_all_into_one(experiment='1')
-        # self.report_experiment_1(['Mean time per word', 'Merge', 'Garden Paths'])
-        # self.save_problem_sentences(experiment='1', group='1')
+        self.start_logging()
+        self.prepare_data()
+        self.data_integrity_test()
+        self.report_experiment_1a()       #  Lexical anticipation and locality preference
+        self.report_experiment_2a()       #  Variations of lexical anticipation
+        self.report_experiment_2b()       #  Variations of locality preference
+        self.report_experiment_2c()       #  Left branch filter
+        self.report_experiment_3a()       #  Noncanonical constructions, relative clauses, working memory
 
-        # Experiment 1b (random closure algorithm)
-        # self.read_data(experiment='1b')
-        # self.remove_ungrammatical_sentences(experiment='1b')
-        # self.add_combined_metrics(experiment='1b')
-        # self.report_experiment_1b(['Mean time per word', 'Merge', 'Garden Paths'])
+    def start_logging(self):
+        self.log_file = open(STUDY_DIRECTORY + 'diagnostics_log.txt', 'w')
+        self.log_file.write(f'\nRunnning diagnostics {datetime.now()}')
 
-        # Experiment 2a
-        # self.read_data(experiment='2a')
-        # self.remove_ungrammatical_sentences(experiment='2a')
-        # self.data_preparation(experiment='2a')
-        # self.combine_all_into_one(experiment='2a')
-        # self.report_experiment_2a(['Mean time per word', 'Merge', 'Garden Paths'])
+    def prepare_data(self):
+        self.read_data()
+        self.remove_ungrammatical_sentences()
+        self.add_groups()
 
-        # Experiment 2b
-        # self.read_data(experiment='2b')
-        # self.remove_ungrammatical_sentences(experiment='2b')
-        # self.data_preparation(experiment='2b')
-        # self.combine_all_into_one(experiment='2b')
-        # self.report_experiment_2b(['Mean time per word', 'Merge', 'Garden Paths'])
+    def data_integrity_test(self):
+        self.log_file.write('\nFinal data characteristics:')
+        self.log_file.write(f'\nShape: {self.data.shape}.')
+        self.log_file.write(f'\nColumns: {self.data.columns}.')
+        self.log_file.write(f'\nStudy numbers: {set(self.data["Study_ID"])}')
 
-        # Experiment 2c
-        # self.read_data(experiment='2c')
-        # self.remove_ungrammatical_sentences(experiment='2c')
-        # self.combine_all_into_one(experiment='2c')
-        # self.report_experiment_2c(['Mean time per word', 'Merge', 'Garden Paths'])
+    def read_data(self):
+        files_to_read = \
+            [
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/01-1-1\linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/02-1-0\linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/03-0-1\linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/04-0-0\linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/05-0-R\linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/21-spec(1)-comp(1)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/22-spec(1)-comp(1)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/23-spec(1)-comp(1)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/24-spec(1)-comp(1)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/25-spec(1)-comp(0)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/26-spec(1)-comp(0)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/27-spec(1)-comp(0)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/28-spec(1)-comp(0)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/29-spec(0)-comp(1)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/210-spec(0)-comp(1)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/211-spec(0)-comp(1)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/212-spec(0)-comp(1)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/213-spec(0)-comp(0)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/214-spec(0)-comp(0)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/215-spec(0)-comp(0)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/216-spec(0)-comp(0)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/31-Bottom-up/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/32-Z/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/33-Sling/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/36-Bottom-up-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/37-Z-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/38-Sling-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2c/41-filter-on/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 2c/42-filter-off/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 3/55-Optimal parser/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 3/56-Performance/performance_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 3/58-no_left_branch_principles_all/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 3/59-Performance with WM/performance_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 3/60-Optimal parser with WM/linear_phase_theory_corpus_resources.txt"
+            ]
+        self.log_file.write('\nReading experimental data from files.\nFiles to be read:')
+        for i, file in enumerate(files_to_read):
+            self.log_file.write('\n' + str(i) + '. ' + file)
+        self.csv_into_data(files_to_read)
+        self.log_file.write('\nDone.')
 
-        # Experiment 2d
-        self.read_data(experiment='2d')
-        self.remove_ungrammatical_sentences(experiment='2d')
-        self.combine_all_into_one(experiment='2d')
-        self.report_experiment_2d(['Mean time per word', 'Merge', 'Garden Paths'])
+    def csv_into_data(self, files_to_read):
+        self.log_file.write(f'\nReading data from {len(files_to_read)} files...')
+        data_temp = []
+        for file_number, filename in enumerate(files_to_read, start=1):
+            data_temp.append(self.format_data(pd.read_csv(filename, dtype={'Sentence': str, 'Study_ID': int, 'Group 0': int, 'Group 1': int, 'Group 2': int, 'Group 3': int}, sep=',', comment='@', encoding="utf-8")))
+        self.data = pd.concat(data_temp)
+        self.log_file.write(f'Data shape is {self.data.shape} (Rows x Columns)...')
+        self.log_file.write(f'\nColumns: {self.data.columns}')
 
-    def report_experiment_1(self, resources):
-        # Produce data
-        d2 = self.data_from_experiment['1']['all'].melt(id_vars='Study_ID', value_vars=resources)
-        print(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=1))
-        # Produce Figure 1
+    def format_data(self, data):
+        data = data.fillna(0)
+        for col in data:
+            if col != 'Sentence':
+                data[col] = data[col].astype(int)
+        data.name = 'Resource Consumption per Construction Type'
+        data.columns.name = 'Resource'
+        return data
+
+    def remove_ungrammatical_sentences(self):
+        self.log_file.write(f'\nRemoving ungrammatical sentences and sentences whose processing has failed...')
+        self.data = self.data[(self.data['Group 3'] == 0) & (self.data['Total Time'] > 0)]
+        self.log_file.write(f'New data shape is{self.data.shape}...Done')
+
+    def add_groups(self):
+        def lexical_anticipation(study):
+            return 1 if study in {1, 2, 21, 22, 23, 24, 25, 26, 27, 28, 29, 210, 211, 212, 213, 214, 214, 31, 32, 33, 41, 42, 52} else 0
+        def Locality_Preference(study):
+            return 1 if study in {1, 3, 21, 22, 23, 24, 25, 26, 27, 28, 29, 210, 211, 212, 213, 214, 215, 216, 31, 36} else 0
+        def Lexical_anticipation_Case(study):
+            return 1 if study in {1, 2, 21, 23, 25, 27, 29, 211, 213, 215, 31, 32, 33, 41, 42, 52} else 0
+        def Lexical_anticipation_Adj(study):
+            return 1 if study in {1, 2, 21, 22, 25, 26, 29, 210, 213, 214, 31, 32, 33, 41, 42, 52} else 0
+        def Lexical_anticipation_Comp(study):
+            return 1 if study in {1, 2, 21, 22, 23, 24, 29, 210, 211, 212, 31, 32, 33, 41, 42, 52} else 0
+        def Lexical_anticipation_Spec(study):
+            return 1 if study in {1, 2, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 41, 42, 52} else 0
+
+        self.log_file.write(f'\nAdding group variables...')
+        self.data['Lexical Anticipation'] = [lexical_anticipation(study) for study in self.data['Study_ID']]
+        self.data['Locality Preference'] = [Locality_Preference(study) for study in self.data['Study_ID']]
+        self.data['Lexical Anticipation (Case)'] = [Lexical_anticipation_Case(study) for study in self.data['Study_ID']]
+        self.data['Lexical Anticipation (Adj)'] = [Lexical_anticipation_Adj(study) for study in self.data['Study_ID']]
+        self.data['Lexical Anticipation (Comp)'] = [Lexical_anticipation_Comp(study) for study in self.data['Study_ID']]
+        self.data['Lexical Anticipation (Spec)'] = [Lexical_anticipation_Spec(study) for study in self.data['Study_ID']]
+        self.log_file.write(f'Result is {self.data.shape}...')
+
+    def log_experiment_title(self, experiment):
+        self.log_file.write('\n\n--------------------------------------------------------------------------------------')
+        self.log_file.write(f'\nAnalysis of experiment {experiment}')
+
+    # Experiment 1a
+    # Locality preference and lexical anticipation
+    # Manuscript section 3.4
+    def report_experiment_1a(self):
+        self.log_experiment_title('1a Locality preference and lexical anticipation')
+        data_exp1 = self.data[(self.data['Study_ID'] > 0) & (self.data['Study_ID'] < 6)]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        # Table 2
+        # Mean number of garden paths, grammatical operations (Merge) and mean predicted
+        # word processing time per sentence as a function of independent variables locality
+        # preference and lexical anticipation.
+        d2 = data_exp1.melt(id_vars='Study_ID', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write(f'\nTable 2:')
+        self.log_file.write('\n' + str(d2.groupby(['Study_ID', 'variable']).mean().round(decimals=1)))
+        # Results Figure 1
+        # Mean predicted cognitive time per word (ms) in an incremental parser as a function
+        # of the independent variables locality preference and lexical anticipation.
+        self.log_file.write('\nCreating Results Figure 1...')
+        data_exp1 = self.data[(self.data['Study_ID'] > 0) & (self.data['Study_ID'] < 5)]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        cat = {0: 'No', 1: 'Yes'}
+        data_exp1['Anticipation'] = [cat[value] for value in data_exp1['Lexical Anticipation']]
+        data_exp1['Locality'] = [cat[value] for value in data_exp1['Locality Preference']]
         plt.ylim(0, 30000)
         sns.set_theme(style="whitegrid")
-        g = sns.barplot(data=self.data_from_experiment['1']['all'],
-                        x='Lexical anticipation',
+        g = sns.barplot(data=data_exp1,
+                        x='Anticipation',
                         y='Mean time per word',
-                        hue='Bottom-up closure',
+                        hue='Locality',
+                        ci=None,
+                        palette='Greys')
+        g.set(xlabel='Lexical Anticipation', ylabel='Mean predicted cognitive time per word (ms)')
+        fig = g.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 1')
+        plt.close()
+        self.log_file.write('Done.')
+        d2 = data_exp1.melt(id_vars='Study_ID', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write(f'\nDetailed values:')
+        self.log_file.write('\n' + str(d2.groupby(['Study_ID', 'variable']).mean().round(decimals=1)))
+        # Result Figure 2
+        # Mean predicted processing time for each word as a function of linguistic category
+        # (CA = basic constructions, Adj = adjunction, Wh = wh-movement and pied-piping,
+        # Case = Case assignment, Agr = Agreement, Pro = pro-drop, PRO = control, Word = word order,
+        # Head = head movement, Cl = clitic constructions) when the parser uses both locality
+        # preference and lexical anticipation and only considers grammatical sentences.
+        data_exp1 = self.data[(self.data['Study_ID'] > 0) &
+                              (self.data['Study_ID'] < 5) &
+                              (self.data['Lexical Anticipation'] == 1) &
+                              (self.data['Locality Preference'] == 1)]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        cat = {1: 'CA', 2: 'Adj', 3: 'Wh', 4: 'Case', 5: 'Agr', 6: 'Pro', 7: 'PRO', 8: 'Word', 9: 'Head', 10:'Cl'}
+        data_exp1['Construction'] = [cat[value] for value in data_exp1['Group 0']]
+        self.log_file.write('\nCreating Results Figure 2...')
+        sns.set_theme(style="whitegrid")
+        g = sns.barplot(data=data_exp1,
+                        x='Construction',
+                        y='Mean time per word',
                         ci=None,
                         capsize=.2)
         fig = g.get_figure()
-        fig.savefig('Figure 1')
-        plt.show()
+        g.set(xlabel='Construction', ylabel='Mean predicted cognitive time per word (ms)')
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 2')
+        plt.close()
+        self.log_file.write('Done.')
+        d2 = data_exp1.melt(id_vars='Construction', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write(f'\nDetailed values:')
+        self.log_file.write('\n' + str(d2.groupby(['Construction', 'variable']).mean().round(decimals=1)))
+        self.log_file.write(f'\nMean processing time per word: {round(data_exp1["Mean time per word"].mean(),1)}')
+        # More detailed examination of mean processing time within group Wh (wh-movement and pied-piping)
+        data_exp1 = self.data[(self.data['Study_ID'] > 0) &
+                              (self.data['Study_ID'] < 5) &
+                              (self.data['Lexical Anticipation'] == 1) &
+                              (self.data['Locality Preference'] == 1) &
+                              (self.data['Group 0'] == 3)]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write(f'\nMean predicted cognitive time for each word in basic interrogatives (3.1): {data_exp1[data_exp1["Group 1"] == 1]["Mean time per word"].mean()}.')
+        self.log_file.write(f'\nMean predicted cognitive time for each word in group pied-piping (3.2): {data_exp1[data_exp1["Group 1"] == 2]["Mean time per word"] .mean()}.')
+        self.log_file.write(f'\nMean predicted cognitive time for each word in group extraction (3.3): {data_exp1[data_exp1["Group 1"] == 3]["Mean time per word"] .mean()}.')
+        data_exp1 = self.data[(self.data['Study_ID'] > 0) &
+                              (self.data['Study_ID'] < 5) &
+                              (self.data['Lexical Anticipation'] == 1) &
+                              (self.data['Locality Preference'] == 1)]
+        data_exp2 = data_exp1[(data_exp1["Group 0"] != 3) & (data_exp1["Group 1"] != 2)]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write(f'\nMean word processing without pied-piping (3.2): {round(data_exp2["Mean time per word"].mean(), 1)} '
+                            f'+- {round(data_exp2["Mean time per word"].std(), 1)}')
 
-    def report_experiment_1b(self, resources):
-        print(self.data_from_experiment['1b']['1'])
-        d2 = self.data_from_experiment['1b']['1'].melt(id_vars='Study_ID', value_vars=resources)
-        print(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=1))
+        # Result Figure 3
+        # Distribution of the mean predicted cognitive time per word, as measured for a
+        # realistic parser with lexical anticipation and locality preference.
+        data_exp1 = self.data[(self.data['Study_ID'] > 0) &
+                              (self.data['Study_ID'] < 5) &
+                              (self.data['Lexical Anticipation'] == 1) &
+                              (self.data['Locality Preference'] == 1)]
+        self.log_file.write(f'\n\nVariation values for realistic parser (lexical anticipation and locality preference):')
+        self.log_file.write(f'\n\nMean time per word: ')
+        self.log_file.write(f'Min={data_exp1["Mean time per word"].min()}, '
+                            f'Max={data_exp1["Mean time per word"].max()}, '
+                            f'Mean={data_exp1["Mean time per word"].mean()}, '
+                            f'Median={data_exp1["Mean time per word"].median()},'
+                            f'Std={data_exp1["Mean time per word"].std()}')
+        self.log_file.write('\nCreating Results Figure 3...')
+        g = sns.stripplot(data=data_exp1,
+                        y='Mean time per word',
+                        palette='Greys')
+        g.set(ylim=(0, 10000), ylabel='Mean predicted cognitive time per word (ms)')
+        fig = g.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 3')
+        plt.close()
+        self.log_file.write('Done.')
 
-    def report_experiment_2a(self, resources):
-        print(self.data_from_experiment['2a'])
-        g = sns.barplot(data=self.data_from_experiment['2a']['all'],
-                        x='Lexical anticipation Spec',
+        # Examination of the outliers
+        self.log_file.write('\n\nHard to process outliers:\n')
+        data_sorted = data_exp1.sort_values(by='Mean time per word', ascending=False)[['Sentence', 'Mean time per word']]
+        self.log_file.write(str(data_sorted.head(30)))
+        self.log_file.write('\n\nEasy to process expressions:\n')
+        data_sorted = data_exp1.sort_values(by='Mean time per word', ascending=True)[['Sentence', 'Mean time per word']]
+        self.log_file.write(str(data_sorted.head(30)))
+
+    # Experiment 2a explores different lexical anticipation features (head-comp, head-spec, adjunct, case)
+    # Manuscript section 4.2
+    def report_experiment_2a(self):
+        self.log_experiment_title('2a variations of lexical anticipation')
+        data_exp1 = self.data[((self.data['Study_ID'] >= 21) &
+                               (self.data['Study_ID'] <= 29)) |
+                              ((self.data['Study_ID'] >= 210) &
+                               (self.data['Study_ID'] <= 216))]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        cat = {0: 'No', 1: 'Yes'}
+        data_exp1['Head-complement selection'] = [cat[value] for value in data_exp1['Lexical Anticipation (Comp)']]
+        data_exp1['Case-based selection'] = [cat[value] for value in data_exp1['Lexical Anticipation (Case)']]
+        data_exp1['Head-specifier selection'] = [cat[value] for value in data_exp1['Lexical Anticipation (Spec)']]
+        data_exp1['Adjunct selection'] = [cat[value] for value in data_exp1['Lexical Anticipation (Adj)']]
+        # Result Figure 4
+        # Main effects of head-complement selection (top left), case matching (top right), specifier selection
+        # (bottom left) and adjunct selection (bottom right) in an incremental parser that uses locality preference.
+        self.log_file.write('\nCreating Results Figure 4...')
+        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(10, 8))
+        yaxis = (0, 3500)
+        sns.set_theme(style="whitegrid")
+        h = sns.barplot(data=data_exp1,
+                        x='Head-complement selection',
+                        y='Mean time per word',
                         ci=None,
-                        y='Garden Paths')
-        plt.show()
-        d2 = self.data_from_experiment['2a']['all'].melt(id_vars='Study_ID', value_vars=resources)
-        print(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=2))
+                        palette='Greys', ax=ax1)
+        ax1.set(ylim=yaxis, ylabel='Mean predicted cognitive time per word (ms)')
+        g = sns.barplot(data=data_exp1,
+                        x='Case-based selection',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys', ax=ax2)
+        ax2.set(ylim=yaxis, ylabel='Mean predicted cognitive time per word (ms)')
+        j = sns.barplot(data=data_exp1,
+                        x='Head-specifier selection',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys', ax=ax3)
+        ax3.set(ylim=yaxis, ylabel='Mean predicted cognitive time per word (ms)')
+        i = sns.barplot(data=data_exp1,
+                        x='Adjunct selection',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys', ax=ax4)
+        ax4.set(ylim=yaxis, ylabel='Mean predicted cognitive time per word (ms)')
+        fig = i.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 4')
+        plt.close()
+        self.log_file.write('Done.')
+        d2 = data_exp1.melt(id_vars='Head-complement selection', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write(f'\nDetailed values:')
+        self.log_file.write('\n' + str(d2.groupby(['Head-complement selection', 'variable']).mean().round(decimals=1)))
+        d2 = data_exp1.melt(id_vars='Case-based selection', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write('\n' + str(d2.groupby(['Case-based selection', 'variable']).mean().round(decimals=1)))
+        d2 = data_exp1.melt(id_vars='Head-specifier selection', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write('\n' + str(d2.groupby(['Head-specifier selection', 'variable']).mean().round(decimals=1)))
+        d2 = data_exp1.melt(id_vars='Adjunct selection', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write('\n' + str(d2.groupby(['Adjunct selection', 'variable']).mean().round(decimals=1)))
 
-        g = sns.barplot(data=self.data_from_experiment['2a']['all'])
+    # Experiment 2b explores the three locality preference principles (bottom-up, Z, sling)
+    def report_experiment_2b(self):
+        self.log_experiment_title('2b three locality preference principles')
+        data_exp1 = self.data[((self.data['Study_ID'] >= 31)&(self.data['Study_ID'] <= 33))|
+                               (self.data['Study_ID'] >= 36)&(self.data['Study_ID'] <= 38)]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        cat = {31: 'Bottom-up', 32: 'Z', 33: 'Sling', 36: 'Bottom-up', 37: 'Z', 38: 'Sling'}
+        data_exp1['Locality'] = [cat[value] for value in data_exp1['Study_ID']]
+        self.log_file.write(f'\nSelected studies {sorted(set(data_exp1["Study_ID"]))}.')
+        # Result Figure 5
+        # Comparisons between the three locality mechanisms (from left to right):
+        # bottom-up locality (31), Z-algorithm (32), sling (33), both with (left) and
+        # without lexical anticipation (right). Notice that in order to show the minuscule
+        # differences between the conditions, the scale of the y-axis was changed between
+        # the two results plots.
+        self.log_file.write('\nCreating Results Figure 5...')
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+        sns.set_theme(style="whitegrid")
+        sns.barplot(data=data_exp1[data_exp1['Lexical Anticipation'] == 1],
+                        x='Locality',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys', ax=ax1)
+        ax1.set(ylim=(740, 760), xlabel='Locality mechanism')
+        k = sns.barplot(data=data_exp1[data_exp1['Lexical Anticipation'] == 0],
+                        x='Locality',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys', ax=ax2)
+        ax2.set(ylim=(2400, 2700), xlabel='Locality mechanism')
+        fig = k.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 5')
+        plt.close()
+        self.log_file.write('Done.')
+        self.log_file.write('\nDetailed values:')
+        d2 = data_exp1.melt(id_vars='Locality', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write('\n' + str(d2.groupby(['Locality', 'variable']).mean().round(decimals=1)))
 
-    def report_experiment_2b(self, resources):
-        print(f"Mean time per word with lexical anticipation: {self.data_from_experiment['2b']['all']['Mean time per word'].loc[self.data_from_experiment['2b']['all']['Lexical anticipation'] == 1].mean()}")
-        print(f"Mean time per word in the optimal condition: {self.data_from_experiment['2b']['1'].mean()}.")
-        g = sns.barplot(data=self.data_from_experiment['2b']['all'], x='Study_ID', y='Mean time per word')
-        plt.show()
+    # Experiment 2c explores the left branch filter (on and off, without lexical anticipation and locality preference)
+    # Manuscript section 4.3
+    def report_experiment_2c(self):
+        self.log_experiment_title('2 left branch filter')
+        data_exp1 = self.data[(self.data['Study_ID']==41) | (self.data['Study_ID']==42)]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write(f'\nMean predicted cognitive time per word with left branch filter: {round(self.data[self.data["Study_ID"]==41]["Mean time per word"].mean(), 1)}')
+        self.log_file.write(f'\nMean predicted cognitive time per word without left branch filter: {round(self.data[self.data["Study_ID"] == 42]["Mean time per word"].mean(), 1)}')
 
-    def report_experiment_2c(self, resources):
-        plt.ylim(750, 950)
-        g = sns.barplot(data=self.data_from_experiment['2c']['all'], x='Study_ID', y='Mean time per word')
-        plt.show()
+    # Experiment 3a
+    # Manuscript section 5
+    def report_experiment_3a(self):
+        self.log_experiment_title('3a Benchmark values for the optimal parser')
+        self.log_file.write('\nBenchmark values for the optimal parser:')
+        data_exp1 = self.data[self.data['Study_ID']==55]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write(f'\n{round(data_exp1.mean(),1)}')
 
-    def report_experiment_2d(self, resources):
-        g = sns.barplot(data=self.data_from_experiment['2d']['all'], x='Study_ID', y='Mean time per word')
-        plt.show()
+        self.log_experiment_title('5.2 Garden paths by lexical selection')
+        data_exp1 = self.data[self.data['Study_ID'] == 56]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write('\n Mean time per word:')
+        self.log_file.write('\nJohn knows the solution to the problem: ' + str(data_exp1[data_exp1['Sentence'] == 'John knows the solution to the problem ']['Mean time per word'].mean()))
+        self.log_file.write('\nJohn knows the solution to the problem disappeared: ' + str(data_exp1[data_exp1['Sentence'] == 'John knows the solution to the problem disappeared ']['Mean time per word'].mean()))
+        self.log_file.write('\n Garden Paths:')
+        self.log_file.write('\nJohn knows the solution to the problem: ' + str(data_exp1[data_exp1['Sentence'] == 'John knows the solution to the problem ']['Garden Paths'].mean()))
+        self.log_file.write('\nJohn knows the solution to the problem disappeared: ' + str(data_exp1[data_exp1['Sentence'] == 'John knows the solution to the problem disappeared ']['Garden Paths'].mean()))
+        self.log_file.write('\n Merge:')
+        self.log_file.write('\nJohn knows the solution to the problem: ' + str(data_exp1[data_exp1['Sentence'] == 'John knows the solution to the problem ']['Merge'].mean()))
+        self.log_file.write('\nJohn knows the solution to the problem disappeared: ' + str(data_exp1[data_exp1['Sentence'] == 'John knows the solution to the problem disappeared ']['Merge'].mean()))
+        self.log_file.write('\n\n Mean time per word:')
+        self.log_file.write('\nJohn claims the solution to the problem disappeared: ' + str(data_exp1[data_exp1['Sentence'] == 'John claims the solution to the problem disappeared ']['Mean time per word'].mean()))
+        self.log_file.write('\n Garden Paths:')
+        self.log_file.write('\nJohn claims the solution to the problem disappeared: ' + str(data_exp1[data_exp1['Sentence'] == 'John claims the solution to the problem disappeared ']['Garden Paths'].mean()))
+        self.log_file.write('\n Merge:')
+        self.log_file.write('\nJohn claims the solution to the problem disappeared: ' + str(data_exp1[data_exp1['Sentence'] == 'John claims the solution to the problem disappeared ']['Merge'].mean()))
 
+        # Experiment 5.3 Lexical ambiguity garden paths
+        # Manuscript Section 5.3
+        self.log_experiment_title('5.3 Lexical ambiguity')
+        data_exp1 = self.data[self.data['Study_ID']==56]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write('\n Mean time per word:')
+        self.log_file.write('\nThe horse raced past the barn: '+str(data_exp1[data_exp1['Sentence'] == 'the horse raced past the barn ']['Mean time per word'].mean()))
+        self.log_file.write('\nThe horse raced past the barn fell: ' + str(data_exp1[data_exp1['Sentence'] == 'the horse raced past the barn fell ']['Mean time per word'].mean()))
+        self.log_file.write('\n Garden Paths:')
+        self.log_file.write('\nThe horse raced past the barn: ' + str(data_exp1[data_exp1['Sentence'] == 'the horse raced past the barn ']['Garden Paths'].mean()))
+        self.log_file.write('\nThe horse raced past the barn fell: ' + str(data_exp1[data_exp1['Sentence'] == 'the horse raced past the barn fell ']['Garden Paths'].mean()))
+        self.log_file.write('\n Merge:')
+        self.log_file.write('\nThe horse raced past the barn: ' + str(data_exp1[data_exp1['Sentence'] == 'the horse raced past the barn ']['Merge'].mean()))
+        self.log_file.write('\nThe horse raced past the barn fell: ' + str(data_exp1[data_exp1['Sentence'] == 'the horse raced past the barn fell ']['Merge'].mean()))
 
-    def save_problem_sentences(self, experiment, group):
-        df2 = self.data_from_experiment[experiment][group].sort_values(by=['Garden Paths', 'Mean time per word'], ascending=False)
-        df2[['Number', 'Sentence', 'Garden Paths', 'Mean time per word']].to_csv('./language data working directory/study-6-linear-phase-theory/Experiment '+experiment+'a/problem_sentences.txt')
+        # Manuscript section 5.4
+        self.log_experiment_title('5.4 Nested operator movement')
+        data_exp1 = self.data[self.data['Study_ID'] == 56]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write('\nMita kaupunkia kohti virtaamalla Seine saavuttaa meren, mean time per word: ')
+        self.log_file.write('\n time: ' + str(data_exp1[data_exp1['Sentence'] == 'mita kaupunkia kohti virtaamalla Seine saavuttaa meren ']['Mean time per word'].mean()))
+        self.log_file.write('\n Garden paths: ' + str(data_exp1[data_exp1['Sentence'] == 'mita kaupunkia kohti virtaamalla Seine saavuttaa meren ']['Garden Paths'].mean()))
+        self.log_file.write('\n Merge: ' + str(data_exp1[data_exp1['Sentence'] == 'mita kaupunkia kohti virtaamalla Seine saavuttaa meren ']['Merge'].mean()))
 
-    def combine_all_into_one(self, experiment='1'):
-        self.data_from_experiment[experiment]['all'] = pd.concat(self.data_from_experiment[experiment])
+        # Manuscript section 5.5
+        self.log_experiment_title('5.5 Relative clauses and working memory')
+        data_exp1 = self.data[self.data['Study_ID']==56]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write(str(data_exp1.shape))
+        self.log_file.write('\n\nSubject relative clauses/time per word: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==1)]['Mean time per word'].mean(), 1)))
+        self.log_file.write('\nSubject relative clauses/Garden paths: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==1)]['Garden Paths'].mean(), 1)))
+        self.log_file.write('\nSubject relative clauses/Merge: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==1)]['Merge'].mean(), 1)))
+        self.log_file.write('\n\nObject relative clauses/time per word: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==2)]['Mean time per word'].mean(), 1)))
+        self.log_file.write('\nObject relative clauses/Garden paths: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==2)]['Garden Paths'].mean(), 1)))
+        self.log_file.write('\nObject relative clauses/Merge: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==2)]['Merge'].mean(), 1)))
+        self.log_file.write('\n\nCenter-embedded relative clauses/time per word: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==3)]['Mean time per word'].mean(), 1)))
+        self.log_file.write('\nCenter-embedded clauses/Garden paths: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==3)]['Garden Paths'].mean(), 1)))
+        self.log_file.write('\nCenter-embedded clauses/Merge: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0']==1) & (data_exp1['Group 1']==3)]['Merge'].mean(), 1)))
 
-    def read_data(self, experiment='1'):
-        files_to_read = []
-        if experiment=='1':
-            files_to_read = \
-                [
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/01-1-1\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/02-1-0\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/03-0-1\linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/04-0-0\linear_phase_theory_corpus_resources.txt"
-                ]
-        if experiment=='1b':
-            files_to_read = \
-                [
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 1a/05-0-R\linear_phase_theory_corpus_resources.txt"
-                ]
-        if experiment=='2a':
-            files_to_read = \
-                [
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/21-spec(1)-comp(1)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/22-spec(1)-comp(1)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/23-spec(1)-comp(1)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/24-spec(1)-comp(1)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/25-spec(1)-comp(0)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/26-spec(1)-comp(0)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/27-spec(1)-comp(0)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/28-spec(1)-comp(0)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/29-spec(0)-comp(1)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/210-spec(0)-comp(1)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/211-spec(0)-comp(1)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/212-spec(0)-comp(1)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/213-spec(0)-comp(0)-adj(1)-case(1)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/214-spec(0)-comp(0)-adj(1)-case(0)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/215-spec(0)-comp(0)-adj(0)-case(1)/linear_phase_theory_corpus_resources.txt",
-                ".\language data working directory\study-6-linear-phase-theory/Experiment 2a/216-spec(0)-comp(0)-adj(0)-case(0)/linear_phase_theory_corpus_resources.txt"
-                ]
-        if experiment=='2b':
-            files_to_read = \
-                [
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/31-Bottom-up/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/32-Z/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/33-Sling/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/34-Random/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/35-Top-down/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/36-Bottom-up-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/37-Z-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/38-Sling-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/39-Random-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2b/310-Top-down-no-lexical-anticipation/linear_phase_theory_corpus_resources.txt"
-                ]
-        if experiment=='2c':
-            files_to_read = \
-                [
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2c/41-filter-on/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2c/42-filter-off/linear_phase_theory_corpus_resources.txt"
-                ]
+        self.log_experiment_title('3c left-blind parser')
+        self.log_file.write('\nBenchmark values for the parser without left branch filter and specifier selection:')
+        data_exp1 = self.data[self.data['Study_ID']==58]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        self.log_file.write(f'\n{round(data_exp1.mean(),1)}')
 
-        if experiment=='2d':
-            files_to_read = \
-                [
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2d/51-BU(1)-LA(0)-F(0)/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2d/52-BU(0)-LA(1)-F(0)/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2d/53-BU(0)-LA(0)-F(1)/linear_phase_theory_corpus_resources.txt",
-                    ".\language data working directory\study-6-linear-phase-theory/Experiment 2d/54-BU(0)-LA(0)-F(0)/linear_phase_theory_corpus_resources.txt"
-                ]
+        self.log_experiment_title('3d left-blind parser')
+        data_exp1 = self.data[(self.data['Study_ID']==58) | (self.data['Study_ID']==55)]
+        self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
+        data_exp1['Left blindness'] = 'No'
+        data_exp1.loc[data_exp1.Study_ID==58, 'Left blindness'] = 'Yes'
+        self.log_file.write('\nCreating Results Figure 7')
+        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
+        sns.set_theme(style='whitegrid')
+        h = sns.barplot(data=data_exp1,
+                        x='Left blindness',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys', ax=ax1)
+        ax1.set(ylim=(0, 2000), xlabel='Left blindness', ylabel='Mean predicted cognitive time per word (ms)')
+        fig = h.get_figure()
+        sns.set_theme(style='whitegrid')
+        h = sns.barplot(data=data_exp1,
+                        x='Left blindness',
+                        y='Merge',
+                        ci=None,
+                        palette='Greys', ax=ax2)
+        ax2.set(ylim=(0, 20), xlabel='Left blindness', ylabel='Mean number of attachment operations')
+        fig = h.get_figure()
+        sns.set_theme(style='whitegrid')
+        h = sns.barplot(data=data_exp1,
+                        x='Left blindness',
+                        y='Garden Paths',
+                        ci=None,
+                        palette='Greys', ax=ax3)
+        ax3.set(ylim=(0, 10), xlabel='Left blindness', ylabel='Mean garden paths')
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 7')
+        plt.close()
+        self.log_file.write('Done.')
+        self.log_file.write('\nDetailed valuess:')
+        d2 = data_exp1.melt(id_vars='Left blindness', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write('\n' + str(d2.groupby(['Left blindness', 'variable']).mean().round(decimals=1)))
 
-        self.csv_into_data(files_to_read, experiment)
+        # Experiment 3d relative clauses and working memory
+        # Manuscript section 5.5
+        self.log_experiment_title('3d Relative clauses with working memory')
+        data_exp1 = self.data[self.data['Study_ID'] == 59]
+        self.log_file.write('\n\nSubject relative clauses/time per word: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 1)][
+                                          'Mean time per word'].mean(), 1)))
+        self.log_file.write('\nSubject relative clauses/Garden paths: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 1)][
+                                          'Garden Paths'].mean(), 1)))
+        self.log_file.write('\nSubject relative clauses/Merge: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 1)][
+                                          'Merge'].mean(), 1)))
+        self.log_file.write('\n\nObject relative clauses/time per word: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 2)][
+                                          'Mean time per word'].mean(), 1)))
+        self.log_file.write('\nObject relative clauses/Garden paths: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 2)][
+                                          'Garden Paths'].mean(), 1)))
+        self.log_file.write('\nObject relative clauses/Merge: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 2)][
+                                          'Merge'].mean(), 1)))
+        self.log_file.write('\n\nCenter-embedded relative clauses/time per word: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 3)][
+                                          'Mean time per word'].mean(), 1)))
+        self.log_file.write('\nCenter-embedded clauses/Garden paths: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 3)][
+                                          'Garden Paths'].mean(), 1)))
+        self.log_file.write('\nCenter-embedded clauses/Merge: ' +
+                            str(round(data_exp1.loc[(data_exp1['Group 0'] == 1) & (data_exp1['Group 1'] == 3)][
+                                          'Merge'].mean(), 1)))
 
-    def csv_into_data(self, files_to_read, experiment='1'):
-        self.data_from_experiment[experiment] = {}
-        for i, filename in enumerate(files_to_read, start=1):
-            new_data = pd.read_csv(filename, dtype={'Sentence': str, 'Study_ID': int, 'Group 0': int, 'Group 1': int, 'Group 2': int, 'Group 3': int}, sep=',', comment='@', encoding="utf-8")
-            new_data = new_data.fillna(0)
-            for col in new_data:
-                if col != 'Sentence':
-                    new_data[col] = new_data[col].astype(int)
-            new_data.name = 'Resource Consumption per Construction Type'
-            new_data.columns.name = 'Resource'
-            self.data_from_experiment[experiment][str(i)] = new_data
+        # Test increase of cognitive load as a function of the number of center-embedding
+        # Result Figure 8
+        data_exp1 = self.data[(self.data['Study_ID'] == 59) & (self.data['Group 0'] == 1) & (self.data['Group 1'] == 4)]
+        data_exp1['Mean time per word'] = [value/1000 for value in data_exp1['Mean time per word']]
+        self.log_file.write('\nCreating Results Figure 8...')
+        plt.ylim(0, 250)
+        sns.set_theme(style="whitegrid")
+        g = sns.barplot(data=data_exp1,
+                        x='Group 2',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys')
+        g.set(xlabel='Number of center-embeddings', ylabel='Mean predicted cognitive time per word (s)')
+        fig = g.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 8')
+        plt.close()
+        self.log_file.write('Done.')
+        self.log_file.write('Detailed values:')
+        d2 = data_exp1.melt(id_vars='Group 2', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write('\n' + str(d2.groupby(['Group 2', 'variable']).mean().round(decimals=1)))
 
-    def remove_ungrammatical_sentences(self, experiment='1'):
-        for key in self.data_from_experiment[experiment]:
-            self.data_from_experiment[experiment][key] = self.data_from_experiment[experiment][key][(self.data_from_experiment[experiment][key]['Group 3'] == 0) & (self.data_from_experiment[experiment][key]['Total Time'] > 0)]
+        # Running the whole test corpus with WP
+        # Result Figure 9
+        self.log_experiment_title('3d Test corpus with working memory')
+        data_exp1 = self.data[(self.data['Study_ID'] == 60) | (self.data['Study_ID']==55)]
+        data_exp1['Working memory restraint'] = 'No'
+        data_exp1.loc[data_exp1.Study_ID==60, 'Working memory restraint'] = 'Yes'
+        self.log_file.write('\nCreating Results Figure 9...')
+        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
+        sns.set_theme(style='whitegrid')
+        h = sns.barplot(data=data_exp1,
+                        x='Working memory restraint',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys', ax=ax1)
+        ax1.set(ylim=(500, 1000), xlabel='Working memory barrier', ylabel='Mean predicted cognitive time per word (ms)')
+        fig = h.get_figure()
+        sns.set_theme(style='whitegrid')
+        h = sns.barplot(data=data_exp1,
+                        x='Working memory restraint',
+                        y='Merge',
+                        ci=None,
+                        palette='Greys', ax=ax2)
+        ax2.set(ylim=(5, 10), xlabel='Working memory barrier', ylabel='Mean attachment operations')
+        fig = h.get_figure()
+        h = sns.barplot(data=data_exp1,
+                        x='Working memory restraint',
+                        y='Garden Paths',
+                        ci=None,
+                        palette='Greys', ax=ax3)
+        ax3.set(ylim=(0, 1), xlabel='Working memory barrier', ylabel='Mean garden paths')
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 9')
+        plt.close()
+        self.log_file.write('Done.')
+        d2 = data_exp1.melt(id_vars='Group 2', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
+        self.log_file.write('\n' + str(d2.groupby(['Group 2', 'variable']).mean().round(decimals=1)))
 
-    def add_combined_metrics(self, experiment='1'):
-        for key in self.data_from_experiment[experiment]:
-            self.data_from_experiment[experiment][key]['Relative load'] = self.data_from_experiment[experiment][key]['Asymmetric Merge'] / self.data_from_experiment[experiment][key]['Sentence'].str.len()
-            self.data_from_experiment[experiment][key]['Move'] = self.data_from_experiment[experiment][key]['Move Phrase'] + self.data_from_experiment[experiment][key]['Move Head']
-
-    def data_preparation(self, experiment='1'):
-        if experiment=='1':
-            for key in self.data_from_experiment[experiment]:
-                if key in {'1', '2'}:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation'] = 1
-                else:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation'] = 0
-                if key in {'1', '3'}:
-                    self.data_from_experiment[experiment][key]['Bottom-up closure'] = 1
-                else:
-                    self.data_from_experiment[experiment][key]['Bottom-up closure'] = 0
-        if experiment=='2a':
-            for key in self.data_from_experiment[experiment]:
-                if key in {'1', '3', '5', '6', '9', '11', '13', '15'}:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation Case'] = 1
-                else:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation Case'] = 0
-                if key in {'1', '2', '5', '6', '9', '10', '13', '14'}:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation Adj'] = 1
-                else:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation Adj'] = 0
-                if key in {'1', '2', '3', '4', '9', '10', '11', '12'}:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation Comp'] = 1
-                else:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation Comp'] = 0
-                if key in {'1', '2', '3', '4', '5', '6', '7', '8'}:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation Spec'] = 1
-                else:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation Spec'] = 0
-        if experiment=='2b':
-            for key in self.data_from_experiment[experiment]:
-                if key in {'1', '2', '3', '4', '5'}:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation'] = 1
-                else:
-                    self.data_from_experiment[experiment][key]['Lexical anticipation'] = 0
-
+        data_exp1 = self.data[self.data['Study_ID']==56]
+        data_e = data_exp1[data_exp1['Sentence'] == 'that that John sleeps surprised Mary surprised John ']
+        self.log_file.write('\nthat that -clause...')
+        self.log_file.write('\nGarden paths:' + str(data_e['Garden Paths'].mean()))
+        self.log_file.write('\nMerge:'+ str(data_e["Merge"].mean()))
+        self.log_file.write('\nMean time per word:' + str(data_e["Mean time per word"].mean()))

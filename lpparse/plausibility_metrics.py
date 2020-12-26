@@ -4,7 +4,8 @@ import random
 from knockouts import knockout_filter, \
     knockout_extra_ranking, \
     knockout_lexical_ranking, \
-    knockout_baseline_weighting
+    knockout_baseline_weighting, \
+    knockout_working_memory
 
 class PlausibilityMetrics:
     def __init__(self, controlling_parsing_process):
@@ -19,17 +20,27 @@ class PlausibilityMetrics:
 
     # Main entry point
     def filter_and_rank(self, ps, w):
-        log(f'\n\t\tFiltering and ranking merge sites...')
-        merge_sites = self.rank_merge_right_(self.filter(ps, w))
+        nodes_not_in_active_working_memory = []
+        if self.word_internal(ps, w):
+            all_merge_sites = [ps.bottom()]
+        else:
+            log(f'\n\t\tWorking memory operation...')
+            nodes_in_active_working_memory, nodes_not_in_active_working_memory = self.in_active_working_memory(ps)
+            log(f'\n\t\tFiltering and ranking merge sites...')
+            nodes_available = self.filter(nodes_in_active_working_memory, w)
+            merge_sites = self.rank_merge_right_(nodes_available, w)
+            all_merge_sites = merge_sites + nodes_not_in_active_working_memory
         log('Done.\n')
         log(f'\t\tResults: ')
-        for i, site in enumerate(merge_sites, start=1):
-            log(f'({i}) [{site} + {w}] ')
-        return merge_sites
+        for i, site in enumerate(all_merge_sites, start=1):
+            if nodes_not_in_active_working_memory and site == nodes_not_in_active_working_memory[0]:
+                log('\n\t\t\t\t--------------------------------Working memory boundary-------------------------------------------------')
+            log(f'\n\t\t\t\t({i}) {site}')
+        return all_merge_sites
 
     @knockout_lexical_ranking
     def positive_spec_selection(self, site):
-        return site.is_complex() and self.word_specs & site.head().features
+        return (site.is_complex() or 'D' in site.features) and self.word_specs & site.head().features
 
     @knockout_lexical_ranking
     def negative_spec_selection(self, site):
@@ -128,38 +139,37 @@ class PlausibilityMetrics:
         self.plausibility_conditions = \
             {'positive_spec_selection':         {'condition': self.positive_spec_selection,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('positive_spec_selection', 100),
-                                                 'log': 'Positive specifier selection'},
+                                                 'log': '+spec selection'},
              'negative_spec_selection':         {'condition': self.negative_spec_selection,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_spec_selection', -100),
-                                                 'log': 'Negative specifier selection'},
+                                                 'log': '-spec selection'},
              'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('break_head_comp_relations', -100),
                                                  'log': 'Head-complement word breaking condition'},
              'negative_tail_test':              {'condition': self.negative_tail_test,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_tail_test', -100),
-                                                 'log': 'Negative tail test condition'},
+                                                 'log': '-tail'},
              'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('positive_head_comp_selection', 100),
-                                                 'log': 'Positive head-complement selection'},
+                                                 'log': '+comp selection'},
              'negative_head_comp_selection':    {'condition': self.negative_head_comp_selection,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_head_comp_selection', -100),
-                                                 'log': 'Negative head-complement selection'},
+                                                 'log': '-comp selection'},
              'negative_semantics_match':        {'condition': self.negative_semantic_match,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_semantics_match', -100),
-                                                 'log': 'Semantic mismatch condition'},
+                                                 'log': 'Semantic mismatch'},
              'lf_legibility_condition':         {'condition': self.lf_legibility_condition,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('lf_legibility_condition', -100),
-                                                 'log': 'Negative LF-legibility condition for left branch'},
+                                                 'log': '-LF-legibility for left branch'},
              'negative_adverbial_test':         {'condition': self.negative_adverbial_test,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_adverbial_test', -100),
-                                                 'log': 'Negative adverbial condition'},
+                                                 'log': '-adverbial condition'},
              'positive_adverbial_test':         {'condition': self.positive_adverbial_test,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('positive_adverbial_test', 100),
-                                                 'log': 'Positive adverbial condition'}
+                                                 'log': '+adverbial condition'}
              }
 
-    def rank_merge_right_(self, sites_and_word_tuple):
-        site_list, word = sites_and_word_tuple
+    def rank_merge_right_(self, site_list, word):
         self.word = word
         self.word_specs = word.convert_features_for_parsing(word.licensed_specifiers())
         self.not_word_specs =  word.convert_features_for_parsing(word.specifiers_not_licensed())
@@ -195,35 +205,30 @@ class PlausibilityMetrics:
         if method == 'Random':
             site_w = list(range(len(weighted_site_list)))
             random.shuffle(site_w)
-            log(f'Using random baseline ranking {site_w}...')
+            log(f'Random baseline ranking {site_w}...')
             return [(site, site_w[i]) for i, (site, w) in enumerate(weighted_site_list, start=0)]
         if method == 'Top-down':
-            log(f'Using top-down baseline ranking...')
+            log(f'Top-down baseline ranking...')
             return [(site, -j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
         if method == 'Bottom-up':
-            log(f'Using bottom-up baseline ranking...')
+            log(f'Bottom-up baseline ranking...')
             return [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
         if method == 'Sling':
-            lst = [(site, -j) for j, (site, w) in enumerate(weighted_site_list, start=1)]                                   # Top-down
-            lst[-1] = (lst[-1][0], 1)                                                                                       # Promote the bottom node
-            log(f'Using sling baseline ranking {lst}...')
+            lst = [(site, -j) for j, (site, w) in enumerate(weighted_site_list, start=1)]    # Top-down
+            lst[-1] = (lst[-1][0], 1)                                                        # Promote the bottom node
+            log(f'Sling baseline ranking {lst}...')
             return lst
         else:
             log(f'Closure principle not defined, using default bottom-up baseline ranking...')
             return [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
 
     @knockout_filter
-    def filter(self, ps, w):
+    def filter(self, list_of_sites_in_active_working_memory, w):
         set_logging(True)
         log('Filtering...')
         adjunction_sites = []
-        if ps.bottom().bottom_affix().internal:
-            log(f'Sink \"{w.get_phonological_string()}\" because it belongs to the same word...')
-            self.controlling_parser_process.consume_resources('Filter solution', 'sink')
-            log('Done. ')
-            return [[ps.bottom()], w]
         #--------------------geometrical minimal search------------------------------
-        for N in ps.geometrical_minimal_search():
+        for N in list_of_sites_in_active_working_memory:
             if self.does_not_accept_any_complementizers(N):
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
                 self.controlling_parser_process.consume_resources('Filter solution')
@@ -236,10 +241,36 @@ class PlausibilityMetrics:
                 log(f'Reject {N} + {w} because it breaks words...')
                 self.controlling_parser_process.consume_resources('Filter solution')
                 continue
+            if self.impossible_sequence(N, w):
+                 log(f'Reject {N} + {w} because the sequence is impossible...')
+                 self.controlling_parser_process.consume_resources('Filter solution')
+                 continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------
         log('Done. ')
-        return [adjunction_sites, w]
+        return adjunction_sites
+
+    def word_internal(self, ps, w):
+        if ps.bottom().bottom_affix().internal:
+            log(f'\n\t\tSink \"{w.get_phonological_string()}\" because it belongs to the same word.')
+            self.controlling_parser_process.consume_resources('Filter solution', 'sink')
+            return True
+
+    @knockout_working_memory
+    def in_active_working_memory(self, ps):
+        all_nodes_available = [N for N in ps.geometrical_minimal_search()]
+        nodes_not_in_active_working_memory = []
+        new_nodes_available = all_nodes_available.copy()
+        for N in all_nodes_available:
+            if not N.active_in_syntactic_working_memory:
+                new_nodes_available.remove(N)
+                nodes_not_in_active_working_memory.insert(0, N) # Outside list is stack
+        log(f'{len(new_nodes_available)} nodes currently in active memory.')
+        return new_nodes_available, nodes_not_in_active_working_memory
+
+    def impossible_sequence(self, N, w):
+        if N.is_primitive() and 'T/fin' in N.head().features and 'T/fin' in w.features:
+            return True
 
     def bad_left_branch_test(self, N):
         set_logging(False)
@@ -254,12 +285,14 @@ class PlausibilityMetrics:
         test_failed = not (lf_test.probe_goal_test_result and
                 lf_test.head_integrity_test_result and
                 lf_test.selection_test_result and
-                lf_test.wrong_complement_test_result)
+                lf_test.wrong_complement_test_result and
+                lf_test.semantic_test_result)
         if test_failed:
-            log(f'Left branch {dropped} failed (diagnostics: Probe-goal/{lf_test.probe_goal_test_result}, '
-                f'Head integrity/{lf_test.head_integrity_test_result}, '
-                f'Selection/{lf_test.selection_test_result}, '
-                f'Wrong complement/{lf_test.wrong_complement_test_result})... ')
+            log(f'Left branch {dropped} failed (PG/{lf_test.probe_goal_test_result}, '
+                f'HI/{lf_test.head_integrity_test_result}, '
+                f'S/{lf_test.selection_test_result}, '
+                f'WC/{lf_test.wrong_complement_test_result}, '
+                f'ST/{lf_test.semantic_test_result})... ')
         return test_failed
 
     def does_not_accept_any_complementizers(self, N):

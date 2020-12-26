@@ -1,0 +1,31 @@
+@  {'study_folder': 'study-6-linear-phase-theory/Experiment 3/56-Performance/', 'test_corpus_file': 'performance_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory/Experiment 3/56-Performance/', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 56, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': False, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2020-12-26 16:32:47.305536
+@  Test sentences from language data working directory\study-6-linear-phase-theory\Experiment 3\56-Performance\performance_corpus.txt.
+@  Logs into language data working directory\study-6-linear-phase-theory\Experiment 3\56-Performance\performance_corpus_log.txt.
+@  Lexicon from language data working directory\lexicon.txt.
+@  Redundancy rules from language data working directory\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\ug_morphemes.txt.
+@ 
+@ 
+Number,Sentence,Study_ID,Group 0,Group 1,Group 2,Group 3,Total Time,Garden Paths,Memory Reactivation,Steps,Merge,Move Head,Move Phrase,A-Move Phrase,A-bar Move Phrase,Move Adjunct,Agree,Phi,Transfer,Item streamed into syntax,Feature Processing,Extraposition,Inflection,Failed Transfer,LF recovery,LF test,Filter solution,Rank solution,Lexical retrieval,Morphological decomposition,Mean time per word,Asymmetric Merge,Sink,External Tail Test,Execution time (ms)	
+1,Pekka ihailee Merjaa ,56,0,1,1,0,2635,0,0,7,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,3,19,3,878,18,4,17,46
+2,se mies joka nukkui lahti ,56,1,1,1,0,2770,0,0,8,7,14,7,0,7,0,8,11,17,8,0,0,7,1,3,28,4,7,15,3,554,35,3,12,62
+3,se mies joka nukkui ihailee Merjaa ,56,1,1,1,0,4000,0,0,11,10,18,7,0,7,0,9,13,20,11,0,1,13,4,4,31,7,9,24,4,666,43,5,14,93
+4,se mies joka ihailee Merjaa lahti ,56,1,1,1,0,4846,1,0,12,12,45,12,0,11,1,16,20,30,12,0,6,13,11,4,45,9,11,25,4,807,84,6,39,156
+5,se mies jota Merja ihaili lahti ,56,1,2,1,0,4735,0,0,11,10,31,22,0,7,8,9,13,37,11,0,4,13,13,4,54,7,12,24,4,789,100,5,93,125
+6,se mies jota Merja ihaili ihailee Merjaa ,56,1,2,1,0,5965,0,0,14,13,35,22,0,7,8,10,15,40,14,0,5,19,16,5,57,10,14,33,5,852,108,7,95,171
+7,se mies jota se mies ihaili lahti ,56,1,3,1,0,4020,0,0,11,10,23,14,0,7,0,9,14,38,11,0,4,7,14,5,60,6,14,18,3,574,62,4,5,125
+8,se mies jota se mies jota se mies ihaili ihaili lahti ,56,1,3,1,0,9140,0,0,18,17,57,34,0,17,0,23,31,108,18,0,24,13,66,8,163,14,36,31,5,830,143,7,23,421
+9,se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili lahti ,56,1,3,1,0,16440,0,0,25,24,109,66,0,33,0,43,54,220,25,0,62,19,160,11,320,22,74,44,7,1096,266,10,57,1000
+10,se mies jota se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili ihaili lahti ,56,1,3,1,0,25920,0,0,32,31,179,110,0,55,0,69,83,374,32,0,118,25,296,14,531,30,128,57,9,1364,431,13,107,2078
+11,the horse raced past the barn ,56,2,1,1,0,1655,0,0,8,6,7,0,0,0,0,7,10,15,7,0,0,0,12,3,23,6,6,7,1,275,23,1,0,46
+12,the horse raced past the barn fell ,56,2,1,1,0,10192,12,0,35,45,59,0,0,0,0,61,66,112,35,0,13,0,89,5,161,44,24,35,6,1456,121,16,3,421
+13,John knows the solution to the problem ,56,2,2,1,0,3375,0,0,10,9,26,0,0,0,0,12,15,25,10,0,0,6,24,3,40,15,8,16,2,482,47,3,1,125
+14,John knows the solution to the problem disappeared ,56,2,2,1,0,4891,1,0,13,13,38,0,0,0,0,19,24,40,13,0,1,6,26,5,64,17,13,19,3,611,71,5,2,218
+15,John claims the solution to the problem disappeared ,56,2,2,1,0,5676,1,0,12,12,22,0,0,0,0,20,24,56,12,0,16,6,47,4,81,15,18,18,3,709,57,4,33,218
+16,John surprised Mary ,56,3,1,1,0,2265,0,0,7,6,7,0,0,0,0,2,4,4,7,0,0,10,3,2,7,5,2,17,3,755,13,4,0,15
+17,that John sleeps surprised Mary ,56,3,1,1,0,3280,0,0,10,9,13,0,0,0,0,7,11,11,10,0,0,11,6,4,19,8,4,21,4,656,27,5,0,93
+18,that that John sleeps surprised Mary surprised John ,56,3,1,1,0,7341,1,0,20,20,59,0,0,0,0,26,33,32,20,0,4,21,29,7,57,23,10,41,7,917,92,11,0,203
+19,towards which city does_C Seine flow' ,56,4,1,1,0,5217,2,0,16,17,33,5,0,2,3,30,33,37,16,0,7,4,39,3,57,22,13,20,4,869,119,6,106,171
+20,mita kaupunkia kohti Seine virtaa ,56,4,1,1,0,3903,3,0,12,14,16,14,0,7,3,5,8,28,12,0,4,5,16,3,33,6,10,17,5,780,56,6,61,109
+21,mita kaupunkia kohti virtaamalla Seine saavuttaa meren ,56,4,1,1,0,3625,0,0,12,11,14,14,0,8,3,3,9,21,12,0,1,5,6,6,26,7,11,17,6,517,57,5,59,93

@@ -16,6 +16,7 @@ class LocalFileSystem:
         self.settings = {}
         self.timings_file = None
         self.resource_sequence_file = None
+        self.simple_log_file = None
         self.logger_handle = None
         self.instruction_to_ignore_from_test_corpus = False
 
@@ -32,6 +33,7 @@ class LocalFileSystem:
         self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
         self.external_sources = {"test_corpus_file_name": self.folder['test_corpus'] / self.settings['test_corpus_file'],
                                  "log_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_log.txt'),
+                                 "simple_log_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_simple_log.txt'),
                                  "results_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_results.txt'),
                                  "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
                                  "resources_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resources.txt'),
@@ -48,6 +50,7 @@ class LocalFileSystem:
         self.initialize_results_file()
         self.initialize_resources_file()
         self.initialize_timings_file()
+        self.initialize_simple_log_file()
         self.initialize_resource_sequence_file()
         if '/images' in args or self.settings['datatake_images']:
             self.settings['datatake_images'] = True
@@ -91,6 +94,10 @@ class LocalFileSystem:
         for key in self.settings:
             print(f'{key}: {self.settings[key]}')
         config_file.close()
+
+    def initialize_simple_log_file(self):
+        self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, 'utf-8')
+        self.stamp(self.simple_log_file)
 
     def initialize_resource_sequence_file(self):
         self.resource_sequence_file = open(self.external_sources['resource_sequence_file'], 'w', -1, 'utf-8')

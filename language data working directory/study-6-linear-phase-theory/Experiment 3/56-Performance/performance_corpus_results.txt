@@ -1,0 +1,285 @@
+@  {'study_folder': 'study-6-linear-phase-theory/Experiment 3/56-Performance/', 'test_corpus_file': 'performance_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory/Experiment 3/56-Performance/', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 56, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': False, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2020-12-26 16:32:47.305037
+@  Test sentences from language data working directory\study-6-linear-phase-theory\Experiment 3\56-Performance\performance_corpus.txt.
+@  Logs into language data working directory\study-6-linear-phase-theory\Experiment 3\56-Performance\performance_corpus_log.txt.
+@  Lexicon from language data working directory\lexicon.txt.
+@  Redundancy rules from language data working directory\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\ug_morphemes.txt.
+@ 
+@ 
+& Test constructions (0) -------------------------------------------------------
+
+& Simple clauses (0.1) -------------------------------------------------------
+
+1. Pekka ihailee Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:2635, Garden Paths:0, Memory Reactivation:0, Steps:7, Merge:6, Move Head:7, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:4, Transfer:6, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, 
+	LF test:9, Filter solution:5, Rank solution:3, Lexical retrieval:19, Morphological decomposition:3, 
+	Mean time per word:878, Asymmetric Merge:18, Sink:4, External Tail Test:17, Execution time = 46ms
+
+& Relative clauses (1) -------------------------------------------------------
+
+& Subject relative clauses (1.1) -------------------------------------------------------
+
+2. se mies joka nukkui lahti 
+
+	[[se [mies [[D/rel joka]:2 [T [__:2 nukku]]]]]:1 [T [__:1 lahtea]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Agent of nukku(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , lahtea(generic) 
+
+	Total Time:2770, Garden Paths:0, Memory Reactivation:0, Steps:8, Merge:7, Move Head:14, Move Phrase:7, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:8, Phi:11, Transfer:17, Item streamed into syntax:8, 
+	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:3, 
+	LF test:28, Filter solution:4, Rank solution:7, Lexical retrieval:15, Morphological decomposition:3, 
+	Mean time per word:554, Asymmetric Merge:35, Sink:3, External Tail Test:12, Execution time = 62ms
+
+3. se mies joka nukkui ihailee Merjaa 
+
+	[[se [mies [[D/rel joka]:2 [T [__:2 nukku]]]]]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Agent of nukku(joka) , Patient of ihaile-(Merja) , [D/rel joka] with feature OP:REL was bound to an operator. , v(generic) 
+
+	Total Time:4000, Garden Paths:0, Memory Reactivation:0, Steps:11, Merge:10, Move Head:18, Move Phrase:7, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:9, Phi:13, Transfer:20, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:1, Inflection:13, Failed Transfer:4, LF recovery:4, 
+	LF test:31, Filter solution:7, Rank solution:9, Lexical retrieval:24, Morphological decomposition:4, 
+	Mean time per word:666, Asymmetric Merge:43, Sink:5, External Tail Test:14, Execution time = 93ms
+
+4. se mies joka ihailee Merjaa lahti 
+
+	[[se [mies [[D/rel joka]:2 [T [__:2 [v [ihaile- [D Merja]]]]]]]]:1 [T [__:1 lahtea]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Agent of v(joka) , Patient of ihaile-(Merja) , [D/rel joka] with feature OP:REL was bound to an operator. , lahtea(generic) 
+
+	Total Time:4846, Garden Paths:1, Memory Reactivation:0, Steps:12, Merge:12, Move Head:45, Move Phrase:12, 
+	A-Move Phrase:0, A-bar Move Phrase:11, Move Adjunct:1, Agree:16, Phi:20, Transfer:30, Item streamed into syntax:12, 
+	Feature Processing:0, Extraposition:6, Inflection:13, Failed Transfer:11, LF recovery:4, 
+	LF test:45, Filter solution:9, Rank solution:11, Lexical retrieval:25, Morphological decomposition:4, 
+	Mean time per word:807, Asymmetric Merge:84, Sink:6, External Tail Test:39, Execution time = 156ms
+
+& Object relative clauses (1.2) -------------------------------------------------------
+
+5. se mies jota Merja ihaili lahti 
+
+	[[se [mies [[D/rel joka]:2 [C [<D Merja>:3 [T [<__>:3 [v [ihaile- __:2]]]]]]]]]:1 [T [__:1 lahtea]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Agent of v(Merja) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , lahtea(generic) 
+
+	Total Time:4735, Garden Paths:0, Memory Reactivation:0, Steps:11, Merge:10, Move Head:31, Move Phrase:22, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:8, Agree:9, Phi:13, Transfer:37, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:4, Inflection:13, Failed Transfer:13, LF recovery:4, 
+	LF test:54, Filter solution:7, Rank solution:12, Lexical retrieval:24, Morphological decomposition:4, 
+	Mean time per word:789, Asymmetric Merge:100, Sink:5, External Tail Test:93, Execution time = 125ms
+
+6. se mies jota Merja ihaili ihailee Merjaa 
+
+	[[se [mies [[D/rel joka]:2 [C [<D Merja>:3 [T [<__>:3 [v [ihaile- __:2]]]]]]]]]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Agent of v(Merja) , Patient of ihaile-(Merja) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , v(generic) 
+
+	Total Time:5965, Garden Paths:0, Memory Reactivation:0, Steps:14, Merge:13, Move Head:35, Move Phrase:22, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:8, Agree:10, Phi:15, Transfer:40, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:5, Inflection:19, Failed Transfer:16, LF recovery:5, 
+	LF test:57, Filter solution:10, Rank solution:14, Lexical retrieval:33, Morphological decomposition:5, 
+	Mean time per word:852, Asymmetric Merge:108, Sink:7, External Tail Test:95, Execution time = 171ms
+
+& Center-embedding (1.3) -------------------------------------------------------
+
+7. se mies jota se mies ihaili lahti 
+
+	[[se [mies [[D/rel joka]:2 [C [[se mies]:3 [T [__:3 [v [ihaile- __:2]]]]]]]]]:1 [T [__:1 lahtea]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
+
+	Total Time:4020, Garden Paths:0, Memory Reactivation:0, Steps:11, Merge:10, Move Head:23, Move Phrase:14, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:9, Phi:14, Transfer:38, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:4, Inflection:7, Failed Transfer:14, LF recovery:5, 
+	LF test:60, Filter solution:6, Rank solution:14, Lexical retrieval:18, Morphological decomposition:3, 
+	Mean time per word:574, Asymmetric Merge:62, Sink:4, External Tail Test:5, Execution time = 125ms
+
+8. se mies jota se mies jota se mies ihaili ihaili lahti 
+
+	[[se [mies [[D/rel joka]:2 [C [[se [mies [[D/rel joka]:4 [C [[se mies]:5 [T [__:5 [v [ihaile- __:4]]]]]]]]]:3 [T [__:3 [v [ihaile- __:2]]]]]]]]]:1 [T [__:1 lahtea]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
+
+	Total Time:9140, Garden Paths:0, Memory Reactivation:0, Steps:18, Merge:17, Move Head:57, Move Phrase:34, 
+	A-Move Phrase:0, A-bar Move Phrase:17, Move Adjunct:0, Agree:23, Phi:31, Transfer:108, Item streamed into syntax:18, 
+	Feature Processing:0, Extraposition:24, Inflection:13, Failed Transfer:66, LF recovery:8, 
+	LF test:163, Filter solution:14, Rank solution:36, Lexical retrieval:31, Morphological decomposition:5, 
+	Mean time per word:830, Asymmetric Merge:143, Sink:7, External Tail Test:23, Execution time = 421ms
+
+9. se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili lahti 
+
+	[[se [mies [[D/rel joka]:2 [C [[se [mies [[D/rel joka]:4 [C [[se [mies [[D/rel joka]:6 [C [[se mies]:7 [T [__:7 [v [ihaile- __:6]]]]]]]]]:5 [T [__:5 [v [ihaile- __:4]]]]]]]]]:3 [T [__:3 [v [ihaile- __:2]]]]]]]]]:1 [T [__:1 lahtea]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
+
+	Total Time:16440, Garden Paths:0, Memory Reactivation:0, Steps:25, Merge:24, Move Head:109, Move Phrase:66, 
+	A-Move Phrase:0, A-bar Move Phrase:33, Move Adjunct:0, Agree:43, Phi:54, Transfer:220, Item streamed into syntax:25, 
+	Feature Processing:0, Extraposition:62, Inflection:19, Failed Transfer:160, LF recovery:11, 
+	LF test:320, Filter solution:22, Rank solution:74, Lexical retrieval:44, Morphological decomposition:7, 
+	Mean time per word:1096, Asymmetric Merge:266, Sink:10, External Tail Test:57, Execution time = 1000ms
+
+10. se mies jota se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili ihaili lahti 
+
+	[[se [mies [[D/rel joka]:2 [C [[se [mies [[D/rel joka]:4 [C [[se [mies [[D/rel joka]:6 [C [[se [mies [[D/rel joka]:8 [C [[se mies]:9 [T [__:9 [v [ihaile- __:8]]]]]]]]]:7 [T [__:7 [v [ihaile- __:6]]]]]]]]]:5 [T [__:5 [v [ihaile- __:4]]]]]]]]]:3 [T [__:3 [v [ihaile- __:2]]]]]]]]]:1 [T [__:1 lahtea]]]
+
+	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
+
+	Total Time:25920, Garden Paths:0, Memory Reactivation:0, Steps:32, Merge:31, Move Head:179, Move Phrase:110, 
+	A-Move Phrase:0, A-bar Move Phrase:55, Move Adjunct:0, Agree:69, Phi:83, Transfer:374, Item streamed into syntax:32, 
+	Feature Processing:0, Extraposition:118, Inflection:25, Failed Transfer:296, LF recovery:14, 
+	LF test:531, Filter solution:30, Rank solution:128, Lexical retrieval:57, Morphological decomposition:9, 
+	Mean time per word:1364, Asymmetric Merge:431, Sink:13, External Tail Test:107, Execution time = 2078ms
+
+& Lexical garden-paths (2) -------------------------------------------------------
+
+& Horse raced past the barn -------------------------------------------------------
+
+11. the horse raced past the barn 
+
+	[[the horse]:1 [T [__:1 [race [past [the barn]]]]]]
+
+	LF_Recovery: ,   , T(generic) , past(generic) , race(generic) 
+
+	Total Time:1655, Garden Paths:0, Memory Reactivation:0, Steps:8, Merge:6, Move Head:7, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:7, Phi:10, Transfer:15, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:12, LF recovery:3, 
+	LF test:23, Filter solution:6, Rank solution:6, Lexical retrieval:7, Morphological decomposition:1, 
+	Mean time per word:275, Asymmetric Merge:23, Sink:1, External Tail Test:0, Execution time = 46ms
+
+12. the horse raced past the barn fell 
+
+	[[the [horse [T/prt [race [past [the barn]]]]]]:1 [T [__:1 fell]]]
+
+	LF_Recovery: ,   , T(generic) , __(generic) , fell(generic) 
+
+	Total Time:10192, Garden Paths:12, Memory Reactivation:0, Steps:35, Merge:45, Move Head:59, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:61, Phi:66, Transfer:112, Item streamed into syntax:35, 
+	Feature Processing:0, Extraposition:13, Inflection:0, Failed Transfer:89, LF recovery:5, 
+	LF test:161, Filter solution:44, Rank solution:24, Lexical retrieval:35, Morphological decomposition:6, 
+	Mean time per word:1456, Asymmetric Merge:121, Sink:16, External Tail Test:3, Execution time = 421ms
+
+& Head-complement selection -------------------------------------------------------
+
+13. John knows the solution to the problem 
+
+	[[D John]:1 [T [__:1 [v [know [the [solution [to [the problem]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of know(John) , Agent of to(John) , Agent of v(John) 
+
+	Total Time:3375, Garden Paths:0, Memory Reactivation:0, Steps:10, Merge:9, Move Head:26, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:12, Phi:15, Transfer:25, Item streamed into syntax:10, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:24, LF recovery:3, 
+	LF test:40, Filter solution:15, Rank solution:8, Lexical retrieval:16, Morphological decomposition:2, 
+	Mean time per word:482, Asymmetric Merge:47, Sink:3, External Tail Test:1, Execution time = 125ms
+
+14. John knows the solution to the problem disappeared 
+
+	[[D John]:1 [T [__:1 [v [know [[the [solution [to [the problem]]]]:2 [T [__:2 disappear]]]]]]]]
+
+	LF_Recovery: ,   , Agent of T(John) , Agent of disappear(John) , Agent of know(John) , Agent of to(John) , Agent of v(John) 
+
+	Total Time:4891, Garden Paths:1, Memory Reactivation:0, Steps:13, Merge:13, Move Head:38, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:19, Phi:24, Transfer:40, Item streamed into syntax:13, 
+	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:26, LF recovery:5, 
+	LF test:64, Filter solution:17, Rank solution:13, Lexical retrieval:19, Morphological decomposition:3, 
+	Mean time per word:611, Asymmetric Merge:71, Sink:5, External Tail Test:2, Execution time = 218ms
+
+15. John claims the solution to the problem disappeared 
+
+	[[D John]:1 [T [__:1 [claim [[the [solution [to [the problem]]]]:2 [T [__:2 disappear]]]]]]]
+
+	LF_Recovery: ,   , Agent of T(John) , Agent of claim(John) , Agent of disappear(John) , Agent of to(John) 
+
+	Total Time:5676, Garden Paths:1, Memory Reactivation:0, Steps:12, Merge:12, Move Head:22, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:20, Phi:24, Transfer:56, Item streamed into syntax:12, 
+	Feature Processing:0, Extraposition:16, Inflection:6, Failed Transfer:47, LF recovery:4, 
+	LF test:81, Filter solution:15, Rank solution:18, Lexical retrieval:18, Morphological decomposition:3, 
+	Mean time per word:709, Asymmetric Merge:57, Sink:4, External Tail Test:33, Execution time = 218ms
+
+& That the clauses (3) -------------------------------------------------------
+
+16. John surprised Mary 
+
+	[[D John]:1 [T [__:1 [v [surprise [D Mary]]]]]]
+
+	LF_Recovery: ,   , Agent of v(John) , Patient of surprise(Mary) 
+
+	Total Time:2265, Garden Paths:0, Memory Reactivation:0, Steps:7, Merge:6, Move Head:7, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:3, LF recovery:2, 
+	LF test:7, Filter solution:5, Rank solution:2, Lexical retrieval:17, Morphological decomposition:3, 
+	Mean time per word:755, Asymmetric Merge:13, Sink:4, External Tail Test:0, Execution time = 15ms
+
+17. that John sleeps surprised Mary 
+
+	[[that [[D John]:1 [T [__:1 sleep]]]] [T [v [surprise [D Mary]]]]]
+
+	LF_Recovery: ,   , Agent of sleep(John) , Patient of surprise(Mary) , T(generic) , v(generic) 
+
+	Total Time:3280, Garden Paths:0, Memory Reactivation:0, Steps:10, Merge:9, Move Head:13, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:7, Phi:11, Transfer:11, Item streamed into syntax:10, 
+	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:6, LF recovery:4, 
+	LF test:19, Filter solution:8, Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:656, Asymmetric Merge:27, Sink:5, External Tail Test:0, Execution time = 93ms
+
+18. that that John sleeps surprised Mary surprised John 
+
+	[[that [[that [[D John]:1 [T [__:1 sleep]]]] [T [v [surprise [D Mary]]]]]] [T [v [surprise [D John]]]]]
+
+	LF_Recovery: ,   , Agent of sleep(John) , Patient of surprise(John) , Patient of surprise(Mary) , T(generic) , v(generic) 
+
+	Total Time:7341, Garden Paths:1, Memory Reactivation:0, Steps:20, Merge:20, Move Head:59, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:26, Phi:33, Transfer:32, Item streamed into syntax:20, 
+	Feature Processing:0, Extraposition:4, Inflection:21, Failed Transfer:29, LF recovery:7, 
+	LF test:57, Filter solution:23, Rank solution:10, Lexical retrieval:41, Morphological decomposition:7, 
+	Mean time per word:917, Asymmetric Merge:92, Sink:11, External Tail Test:0, Execution time = 203ms
+
+& Nested A-bar movement (4) -------------------------------------------------------
+
+& Pied-piping (Finnish) -------------------------------------------------------
+
+19. towards which city does_C Seine flow' 
+
+	[[towards [which city]]:1 [C [<D Seine>:2 [does [<__>:2 [__:1 flow]]]]]]
+
+	LF_Recovery: ,   , [which city] with feature OP:WH was bound to an operator. , __(generic) , does(generic) , flow(generic) 
+
+	Total Time:5217, Garden Paths:2, Memory Reactivation:0, Steps:16, Merge:17, Move Head:33, Move Phrase:5, 
+	A-Move Phrase:0, A-bar Move Phrase:2, Move Adjunct:3, Agree:30, Phi:33, Transfer:37, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:7, Inflection:4, Failed Transfer:39, LF recovery:3, 
+	LF test:57, Filter solution:22, Rank solution:13, Lexical retrieval:20, Morphological decomposition:4, 
+	Mean time per word:869, Asymmetric Merge:119, Sink:6, External Tail Test:106, Execution time = 171ms
+
+20. mita kaupunkia kohti Seine virtaa 
+
+	[[[D kaupunki]:2 [kohti __:2]]:1 [C [<D Seine>:3 [T [<__>:3 [__:1 virtaa]]]]]]
+
+	LF_Recovery: ,   , T(generic) , [D kaupunki] with feature OP:WH was bound to an operator. , __(generic) , virtaa(generic) 
+
+	Total Time:3903, Garden Paths:3, Memory Reactivation:0, Steps:12, Merge:14, Move Head:16, Move Phrase:14, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:3, Agree:5, Phi:8, Transfer:28, Item streamed into syntax:12, 
+	Feature Processing:0, Extraposition:4, Inflection:5, Failed Transfer:16, LF recovery:3, 
+	LF test:33, Filter solution:6, Rank solution:10, Lexical retrieval:17, Morphological decomposition:5, 
+	Mean time per word:780, Asymmetric Merge:56, Sink:6, External Tail Test:61, Execution time = 109ms
+
+21. mita kaupunkia kohti virtaamalla Seine saavuttaa meren 
+
+	[[[[D kaupunki]:3 [kohti __:3]]:2 [malla [__:2 virtaa]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [D meri]]]]] <__>:1]]]]
+
+	LF_Recovery: ,   , Aspectually bounded , T(generic) , [D kaupunki] with feature OP:WH was bound to an operator. , __(generic) , saavutta-(generic) , v(generic) 
+
+	Total Time:3625, Garden Paths:0, Memory Reactivation:0, Steps:12, Merge:11, Move Head:14, Move Phrase:14, 
+	A-Move Phrase:0, A-bar Move Phrase:8, Move Adjunct:3, Agree:3, Phi:9, Transfer:21, Item streamed into syntax:12, 
+	Feature Processing:0, Extraposition:1, Inflection:5, Failed Transfer:6, LF recovery:6, 
+	LF test:26, Filter solution:7, Rank solution:11, Lexical retrieval:17, Morphological decomposition:6, 
+	Mean time per word:517, Asymmetric Merge:57, Sink:5, External Tail Test:59, Execution time = 93ms
+
