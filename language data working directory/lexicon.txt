@@ -6,7 +6,7 @@ a_D		:: D PF:D LF:D LANG:EN
 admire   :: admire-#v#T/fin#[-0] LANG:EN
 admire'	 :: admire-#v LANG:EN
 admires  :: admire-#v#T/fin#[-s] LANG:EN
-admire-  :: PF:admire LF:admire V CLASS:TR -SPEC:Neg -COMP:Neg COMP:D
+admire-  :: PF:admire LF:admire V -COMP:T/fin CLASS:TR -SPEC:Neg -COMP:Neg COMP:D
 
 admire* :: admire-#v'#T/fin' LANG:EN
 T/fin*	:: CAT:T/fin PF:T/fin' LF:T -VAL !SPEC:* NO_NUMBER NO_DET
@@ -142,6 +142,10 @@ haviavan	:: havia-#VA/inf LANG:FI
 havisi		:: havia-#T/fin LANG:FI
 havia-		:: PF:havia LF:disappear V CLASS:INTR LANG:FI
 
+Helsingissa	:: Helsinki#ssa LANG:FI
+Helsinki	:: Helsinki-#D LANG:FI
+Helsinki-	:: PF:Helsinki LF:Helsinki N LANG:FI
+
 ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
 ihaili	:: ihaile-#v#T/fin#[-V] LANG:FI
 ihailet	:: ihaile-#v#T/fin#[-t] LANG:FI
@@ -216,6 +220,7 @@ kenen	:: kuka-#D#wh#[-gen] LANG:FI
 
 key		:: PF:key LF:key N LANG:EN
 
+kirja	:: kirja-#D#[-nom] LANG:FI
 kirjan  :: kirja-#D#[-n_acc] LANG:FI
 kirjaa	:: kirja-#D#[-par] LANG:FI
 kirja-  :: PF:kirja LF:book N -SEM:directional LANG:FI
@@ -225,7 +230,7 @@ know-	::	PF:know LF:know V CLASS:TR LANG:EN
 
 kohti	:: PF:kohti LF:towards P TAIL:V LANG:FI
 
-koko	:: PF:koko LF:all D LANG:FI TAIL:T adjoinable
+koko	:: PF:koko LF:all D LANG:FI TAIL:T -COMP:D adjoinable
 
 kuka 	:: kuka-#D#wh#sg#3p#def#hum#[-nom] LANG:FI
 kuka-   :: PF:kuka LF:who N PHI LANG:FI
@@ -270,7 +275,7 @@ lava	:: lava-#v#T/fin#3p#def LANG:IT
 le		:: PF:le LF:D D LANG:IT
 
 leaves	:: leave-#T/fin#[-s] LANG:EN
-leave	:: PF:leave LF:leave V !SPEC:D LANG:EN
+leave	:: PF:leave LF:leave V !SPEC:D -COMP:T/fin LANG:EN
 leave- 	:: PF:leave LF:leave V !SPEC:D -COMP:T/fin LANG:EN
 
 like-   :: PF:like LF:like V !COMP:D LANG:EN
@@ -338,9 +343,10 @@ must	:: T/fin MODAL COMP:Neg PF:must LF:must LANG:EN
 myi 	:: myy-#v#asp#T/fin#[-V] LANG:FI
 myynyt	:: myy-#v#asp#T/prt#sg LANG:FI
 myyda 	:: myy-#v#A/inf LANG:FI
-myy-	:: PF:myy LF:sell V ASP:BOUNDED CLASS:TR COMP:D LANG:FI
+myy-	:: PF:myy LF:sell V ASP:BOUNDED CLASS:TR -COMP:T/fin COMP:D LANG:FI
 
 naki	:: nake-#v#T/fin#[-V] LANG:FI
+nakee	:: nake-#v#T/fin#[-V] LANG:FI
 nake-	:: PF:nake LF:see V CLASS:TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA/tta -COMP:MA/ssa LANG:FI
 
 nayttaa	:: naytta-#T/fin LANG:FI

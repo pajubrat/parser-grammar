@@ -20,7 +20,7 @@ prtcpl		:: INF T T/prt PF:T/prt LF:T/prt
 TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf !COMP:V -COMP:T/fin -SPEC:v -VAL ?ARG adjoinable
 # Finnish infinitivals
 A/inf		:: INF A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:Neg/fin ?ARG ?VAL
-ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* VAL -adjoinable 
+ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* -SPEC:T/fin VAL -adjoinable 
 ESSA/inf 	:: ADV INF ESSA/inf ?VAL ?ARG SPEC:* TAIL:T PF:essa LF:while
 TUA/inf		:: ADV INF TUA/inf VAL TAIL:T ARG !SPEC:* PF:tua LF:after
 VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N !SPEC:*

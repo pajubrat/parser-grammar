@@ -152,6 +152,38 @@
 				John gave the to
 				John gave the
 				John gave to
+		
+		& Intransitive verbs with PP argument
+		
+			=> 1.1.4.0
+			& Grammatical
+			
+				Pekka elaa Helsingissa
+				Pekka istuu Helsingissa
+				Pekka lahtee Helsingissa
+				Pekka elaa Helsingissa
+				Pekka juoksee Helsingissa
+				Pekka kuorsaa Helsingissa
+				Pekka nukkui Helsingissa
+				John sleeps in Helsinki
+			
+			=> 1.1.4.1
+			& Ungrammatical
+				
+				Pekka elaa Helsinki
+		
+		& Two PP arguments/adjuncts
+		
+			=> 1.1.5.0
+			& Grammatical
+			
+				Pekka antoi kirjan Merjalle Helsingissa
+				John gave the key to Mary in Helsinki
+
+			=> 1.1.5.1
+			& Ungrammatical
+			
+				Pekka antoi kirjan Merjalle Helsinki
 
 	& Special finite elements (1.2)
 	
@@ -339,10 +371,10 @@
 			=> 1.4.1.0
 			& Grammatical
 		
-				se' talo
-				se' pieni talo
-				se' pieni punainen talo
-				se' punainen pieni talo
+				se talo
+				se pieni talo
+				se pieni punainen talo
+				se punainen pieni talo
 				the little key
 				the little red key
 			
@@ -377,6 +409,7 @@
 			Pekkaa lahella_1
 			Merja nukkui Pekan_gen lahella_2
 			Merja nukkui lahella_1 Pekkaa
+			Pekka nukkui Helsingissa
 			
 		=> 1.5.1.1
 		& Ungrammatical
@@ -658,16 +691,16 @@
 			
 				John moved the key from Mary to John
 				Seine saavuttaa meren virtaamalla kohti Pariisia
-				se' sopimus ostaa auto raukesi
-				se' Merjan_gen kello havisi
+				se sopimus ostaa auto raukesi
+				se Merjan_gen kello havisi
 				Pekka naki Merjan_acc ihailemassa Jukkaa
 			
 			=> 3.3.1.1
 			& Ungrammatical
 			
 				mita kaupunkia Seine saavuttaa meren virtaamalla kohti 
-				mika se' sopimus ostaa raukesi
-				kenen se' kello havisi
+				mika se sopimus ostaa raukesi
+				kenen se kello havisi
 				keta Pekka naki Merjan_acc ihailemassa
 				
 		& Extraction from embedded interrogative (wh-island)
@@ -1005,12 +1038,12 @@
 		& Ungrammatical
 		
 			mina ihailet Merjaa
-			mina ihalee Merjaa
+			mina ihailee Merjaa
 			mina ihailemme Merjaa
 			mina ihailette Merjaa
 			mina ihailevat Merjaa	
 			sina ihailen Merjaa
-			sina ihalee Merjaa
+			sina ihailee Merjaa
 			sina ihailemme Merjaa
 			sina ihailette Merjaa
 			sina ihailevat Merjaa		
@@ -1021,17 +1054,17 @@
 			han ihailevat Merjaa
 			me ihailen Merjaa
 			me ihailet Merjaa
-			me ihalee Merjaa
+			me ihailee Merjaa
 			me ihailette Merjaa
 			me ihailevat Merjaa	
 			te ihailen Merjaa
 			te ihailet Merjaa
-			te ihalee Merjaa
+			te ihailee Merjaa
 			te ihailemme Merjaa
 			te ihailevat Merjaa			
 			he_FI ihailen Merjaa
 			he_FI ihailet Merjaa
-			he_FI ihalee Merjaa
+			he_FI ihailee Merjaa
 			he_FI ihailemme Merjaa
 			he_FI ihailette Merjaa
 		
@@ -1098,12 +1131,12 @@
 			ihailet Merjaa mina 
 			Merjaa mina ihailet 
 			Merjaa ihailet mina 
-			mina ihalee Merjaa 
-			mina Merjaa ihalee 
+			mina ihailee Merjaa 
+			mina Merjaa ihailee 
 			ihalee mina Merjaa 
 			ihalee Merjaa mina 
-			Merjaa mina ihalee 
-			Merjaa ihalee mina 
+			Merjaa mina ihailee 
+			Merjaa ihailee mina 
 			mina ihailemme Merjaa 
 			mina Merjaa ihailemme 
 			ihailemme mina Merjaa 
@@ -1128,12 +1161,12 @@
 			ihailen Merjaa sina 
 			Merjaa sina ihailen 
 			Merjaa ihailen sina 
-			sina ihalee Merjaa 
-			sina Merjaa ihalee 
-			ihalee sina Merjaa 
-			ihalee Merjaa sina 
-			Merjaa sina ihalee 
-			Merjaa ihalee sina 
+			sina ihailee Merjaa 
+			sina Merjaa ihailee 
+			ihailee sina Merjaa 
+			ihailee Merjaa sina 
+			Merjaa sina ihailee 
+			Merjaa ihailee sina 
 			sina ihailemme Merjaa 
 			sina Merjaa ihailemme 
 			ihailemme sina Merjaa 
@@ -1308,7 +1341,6 @@
 			
 			admire Mary
 			admires Mary				
-			am John
 	
 	& Finite pro-drop with noncanonical word order (6.2)
 	
@@ -1341,7 +1373,7 @@
 		& Ungrammatical (antecedent missing)
 		
 			ihailee Merjaa
-			Mina sanon etta ihailee Merjaa
+			mina sanon etta ihailee Merjaa
 		
 		=> 6.3.1.1
 		& Ungrammatical (English)	
@@ -1411,7 +1443,7 @@
 				& Ungrammatical
 				
 					Pekka kaskee lahtea
-					John persuades to_ing leave
+					John persuades to_inf leave
 					Pekka haluaa lahtevan
 							
 		& Control into adverbials
@@ -2052,7 +2084,7 @@
 			to_inf#C/fin admire' John wants Mary
 			to_inf#C/fin John wants admire' Mary		
 		
-		Ungrammatical (Finnish)
+		& Ungrammatical (Finnish)
 		
 			=> 9.2.1.1
 			& Long head movement with formal C-feature or with no C-featre
@@ -2061,19 +2093,19 @@
 				ihaillut#C/fin Pekka on' Merjaa
 				ihailla#C/fin Pekka haluaa Merjaa	
 				ihailla#C/fin Pekan_gen taytyy Merjaa	
-				ihallut#C/fin Pekka ei ollut Merjaa	
+				ihaillut#C/fin Pekka ei ollut Merjaa	
 				ihaile Pekka ei Merjaa
 				ihaillut Pekka on' Merjaa
 				ihailla Pekka haluaa Merjaa	
 				ihailla Pekan_gen taytyy Merjaa	
 				ihallut Pekka ei ollut Merjaa	
 				myynyt#C/fin Pekka ei omaisuuttaan
-				myynyt#C/fin Pekka on omaisuuttaan
+				myynyt#C/fin Pekka on' omaisuuttaan
 				myyda#C/fin Pekka haluaa omaisuuttaan
 				myyda#C/fin Pekan_gen taytyy omaisuuttaan
 				myynyt#C/fin Pekka ei ollut omaisuuttaan
 				myynyt Pekka ei omaisuuttaan
-				myynyt Pekka on omaisuuttaan
+				myynyt Pekka on' omaisuuttaan
 				myyda Pekka haluaa omaisuuttaan
 				myyda Pekan_gen taytyy omaisuuttaan
 				myynyt Pekka ei ollut omaisuuttaan
@@ -2134,7 +2166,7 @@
 				ihailla#C/fin Pekka sanoo etta haluaa Merjaa
 				lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy
 				ihailla Pekka sanoo etta haluaa Merjaa
-				lahtea Pekka sanoo etta Pekan_genan taytyy
+				lahtea Pekka sanoo etta Pekan_gen taytyy
 				haluaa#C/fin Pekka sanoo etta myyda omaisuutensa
 				myi#C/fin Pekka sanoo etta omaisuutensa
 				taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa

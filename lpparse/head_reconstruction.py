@@ -25,7 +25,7 @@ class HeadMovement:
     def LF_legible(self, ps):
         return self.controlling_parser_process.LF_legibility_test(ps.copy())
 
-     # Detect complex heads requiring reconstruction and reconstruct them
+     # Detect complex heads requiring reconstruction and reconstructs them
     def reconstruct_head_movement(self, phrase_structure):
         # ------------------ minimal search ----------------------------------------------#
         for node in phrase_structure:

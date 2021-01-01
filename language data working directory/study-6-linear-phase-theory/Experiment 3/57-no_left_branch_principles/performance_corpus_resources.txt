@@ -1,5 +1,5 @@
 @  {'study_folder': 'study-6-linear-phase-theory/Experiment 3/57-no_left_branch_principles/', 'test_corpus_file': 'performance_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory/Experiment 3/57-no_left_branch_principles/', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 57, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': False, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'positive_spec_selection': 0, 'negative_spec_selection': 0, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': 0, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2020-12-26 16:32:54.032758
+@  2021-01-01 20:02:16.117962
 @  Test sentences from language data working directory\study-6-linear-phase-theory\Experiment 3\57-no_left_branch_principles\performance_corpus.txt.
 @  Logs into language data working directory\study-6-linear-phase-theory\Experiment 3\57-no_left_branch_principles\performance_corpus_log.txt.
 @  Lexicon from language data working directory\lexicon.txt.
@@ -8,48 +8,48 @@
 @ 
 @ 
 Number,Sentence,Study_ID,Group 0,Group 1,Group 2,Group 3,Total Time,Garden Paths,Memory Reactivation,Steps,Merge,Move Head,Move Phrase,A-Move Phrase,A-bar Move Phrase,Move Adjunct,Agree,Phi,Transfer,Item streamed into syntax,Feature Processing,Extraposition,Inflection,Failed Transfer,LF recovery,LF test,Filter solution,Rank solution,Lexical retrieval,Morphological decomposition,Mean time per word,Asymmetric Merge,Sink,External Tail Test,Execution time (ms)	
-1,se mies joka nukkui lahti ,57,1,1,1,0,3282,2,0,10,11,13,6,0,6,0,11,17,18,10,0,3,7,5,6,26,5,8,17,3,656,34,5,12,93
-2,se mies joka nukkui ihailee Merjaa ,57,1,1,1,0,9532,7,0,24,30,46,6,0,6,0,36,44,58,24,0,18,25,47,8,76,16,23,49,6,1588,119,16,124,328
-3,se mies joka ihailee Merjaa lahti ,57,1,1,1,0,5679,4,0,15,18,43,12,0,11,1,21,29,33,15,0,10,13,18,8,45,9,15,28,4,946,86,9,42,218
-4,se mies jota Merja ihaili lahti ,57,1,2,1,0,5388,3,0,14,16,29,20,0,6,8,15,23,36,14,0,6,13,16,8,49,8,15,27,4,898,99,8,90,203
-5,se mies jota Merja ihaili ihailee Merjaa ,57,1,2,1,0,14857,12,0,35,46,84,39,0,13,13,55,65,100,35,0,28,37,85,10,131,25,38,72,8,2122,266,25,296,671
-6,se mies jota se mies ihaili lahti ,57,1,3,1,0,8349,9,0,23,31,52,13,0,7,0,45,55,64,23,0,23,8,58,10,89,15,28,31,4,1192,107,15,17,375
-7,se mies jota se mies joka nukkui ihaili lahti ,57,1,3,1,0,16591,16,0,37,52,101,24,0,18,0,101,113,149,37,0,74,15,145,12,195,26,56,52,7,1843,192,26,57,984
-8,se mies jota se mies jota se mies ihaili ihaili lahti ,57,1,3,1,0,63033,78,0,135,212,474,153,0,92,0,479,495,570,135,0,360,26,658,16,731,111,203,161,18,5730,906,111,262,5171
-9,the horse raced past the barn ,57,2,1,1,0,9503,28,0,22,48,24,0,0,0,0,28,31,135,21,0,23,0,163,3,178,2,68,21,1,1583,97,2,89,578
-10,the horse raced past the barn fell ,57,2,1,1,0,59050,135,0,210,343,207,0,0,0,0,229,234,561,210,0,118,0,635,5,743,139,252,210,45,8435,572,139,179,3250
-11,John knows the solution to the problem ,57,2,2,1,0,3275,0,0,10,9,22,0,0,0,0,10,13,22,10,0,0,6,24,3,34,3,29,16,2,467,41,3,1,109
-12,John knows the solution to the problem disappeared ,57,2,2,1,0,4937,2,0,14,15,33,0,0,0,0,17,22,33,14,0,1,6,28,5,49,6,34,20,3,617,63,6,3,187
-13,John claims the solution to the problem disappeared ,57,2,2,1,0,85706,136,0,211,346,156,0,0,0,0,183,187,605,211,0,132,6,640,4,752,139,265,217,45,10713,510,139,244,3687
-14,John surprised Mary ,57,3,1,1,0,2270,0,0,7,6,7,0,0,0,0,2,4,4,7,0,0,10,3,2,7,4,4,17,3,756,13,4,0,31
-15,that John sleeps surprised Mary ,57,3,1,1,0,7712,7,0,23,29,50,0,0,0,0,25,29,35,23,0,5,21,38,4,53,16,18,44,6,1542,81,16,5,234
-16,that that John sleeps surprised Mary surprised John ,57,3,1,1,0,101240,135,0,286,420,868,0,0,0,0,350,357,598,286,0,157,211,719,7,887,230,285,497,54,12655,1391,230,118,5562
-17,towards which city does_C Seine flow' ,57,4,1,1,0,11440,25,0,26,50,84,5,0,2,3,71,74,121,26,0,18,4,126,3,177,11,65,30,4,1906,375,11,520,609
-18,mita kaupunkia kohti Seine virtaa ,57,4,1,1,0,3658,3,0,12,14,13,12,0,6,3,5,8,22,12,0,3,5,12,3,25,6,10,17,5,731,52,6,53,93
-19,mita kaupunkia kohti virtaamalla Seine saavuttaa meren ,57,4,1,1,0,3505,0,0,12,11,12,11,0,6,3,3,9,17,12,0,1,5,6,6,20,5,15,17,6,500,52,5,51,93
-20,Pekka ihailee Merjaa ,57,5,1,1,0,2640,0,0,7,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,4,5,19,3,880,18,4,17,15
-21,Pekka ei ihaile Merjaa ,57,5,1,1,0,2860,0,0,8,7,9,2,0,0,2,7,9,10,8,0,1,12,8,2,15,4,8,20,4,715,28,4,22,46
-22,Pekka antoi kirjan Merjalle ,57,5,1,1,0,2890,0,0,10,9,16,4,0,0,4,4,7,11,10,0,0,8,3,3,17,6,9,18,4,722,39,6,38,62
-23,Pekka halusi ihailla Merjaa ,57,5,1,1,0,3365,0,0,10,9,17,3,0,0,3,4,8,10,10,3,0,12,7,4,14,6,9,22,4,841,33,6,24,62
-24,Merjaa ihailee Pekka ,57,5,2,1,0,2650,0,0,7,6,7,3,0,0,3,2,5,7,7,0,0,12,1,3,10,4,2,19,3,883,24,4,28,109
-25,Merjaa ei ihaile Pekka ,57,5,2,1,0,2870,0,0,8,7,9,3,0,0,3,7,10,11,8,0,1,12,6,3,16,4,5,20,4,717,34,4,37,46
-26,kirjan antoi Pekka Merjalle ,57,5,2,1,0,2970,0,0,10,9,16,6,0,0,6,4,8,13,10,0,0,8,3,4,19,6,7,18,4,742,47,6,52,46
+1,se mies joka nukkui lahti ,57,1,1,1,0,3282,2,0,10,11,13,6,0,6,0,11,17,18,10,0,3,7,5,6,26,5,8,17,3,656,34,5,12,62
+2,se mies joka nukkui ihailee Merjaa ,57,1,1,1,0,9532,7,0,24,30,46,6,0,6,0,36,44,58,24,0,18,25,47,8,76,16,23,49,6,1588,119,16,124,250
+3,se mies joka ihailee Merjaa lahti ,57,1,1,1,0,5679,4,0,15,18,43,12,0,11,1,21,29,33,15,0,10,13,18,8,45,9,15,28,4,946,86,9,42,156
+4,se mies jota Merja ihaili lahti ,57,1,2,1,0,5388,3,0,14,16,29,20,0,6,8,15,23,36,14,0,6,13,16,8,49,8,15,27,4,898,99,8,90,125
+5,se mies jota Merja ihaili ihailee Merjaa ,57,1,2,1,0,14857,12,0,35,46,84,39,0,13,13,55,65,100,35,0,28,37,85,10,131,25,38,72,8,2122,266,25,296,500
+6,se mies jota se mies ihaili lahti ,57,1,3,1,0,8349,9,0,23,31,52,13,0,7,0,45,55,64,23,0,23,8,58,10,89,15,28,31,4,1192,107,15,17,265
+7,se mies jota se mies joka nukkui ihaili lahti ,57,1,3,1,0,16591,16,0,37,52,101,24,0,18,0,101,113,149,37,0,74,15,145,12,195,26,56,52,7,1843,192,26,57,765
+8,se mies jota se mies jota se mies ihaili ihaili lahti ,57,1,3,1,0,63033,78,0,135,212,474,153,0,92,0,479,495,570,135,0,360,26,658,16,731,111,203,161,18,5730,906,111,262,4125
+9,the horse raced past the barn ,57,2,1,1,0,9503,28,0,22,48,24,0,0,0,0,28,31,135,21,0,23,0,163,3,178,2,68,21,1,1583,97,2,89,406
+10,the horse raced past the barn fell ,57,2,1,1,0,59050,135,0,210,343,207,0,0,0,0,229,234,561,210,0,118,0,635,5,743,139,252,210,45,8435,572,139,179,2171
+11,John knows the solution to the problem ,57,2,2,1,0,3275,0,0,10,9,22,0,0,0,0,10,13,22,10,0,0,6,24,3,34,3,29,16,2,467,41,3,1,93
+12,John knows the solution to the problem disappeared ,57,2,2,1,0,4937,2,0,14,15,33,0,0,0,0,17,22,33,14,0,1,6,28,5,49,6,34,20,3,617,63,6,3,140
+13,John claims the solution to the problem disappeared ,57,2,2,1,0,85706,136,0,211,346,156,0,0,0,0,183,187,605,211,0,132,6,640,4,752,139,265,217,45,10713,510,139,244,2562
+14,John surprised Mary ,57,3,1,1,0,2270,0,0,7,6,7,0,0,0,0,2,4,4,7,0,0,10,3,2,7,4,4,17,3,756,13,4,0,15
+15,that John sleeps surprised Mary ,57,3,1,1,0,7712,7,0,23,29,50,0,0,0,0,25,29,35,23,0,5,21,38,4,53,16,18,44,6,1542,81,16,5,156
+16,that that John sleeps surprised Mary surprised John ,57,3,1,1,0,101240,135,0,286,420,868,0,0,0,0,350,357,598,286,0,157,211,719,7,887,230,285,497,54,12655,1391,230,118,4078
+17,towards which city does_C Seine flow' ,57,4,1,1,0,11440,25,0,26,50,84,5,0,2,3,71,74,121,26,0,18,4,126,3,177,11,65,30,4,1906,375,11,520,421
+18,mita kaupunkia kohti Seine virtaa ,57,4,1,1,0,3658,3,0,12,14,13,12,0,6,3,5,8,22,12,0,3,5,12,3,25,6,10,17,5,731,52,6,53,62
+19,mita kaupunkia kohti virtaamalla Seine saavuttaa meren ,57,4,1,1,0,3505,0,0,12,11,12,11,0,6,3,3,9,17,12,0,1,5,6,6,20,5,15,17,6,500,52,5,51,46
+20,Pekka ihailee Merjaa ,57,5,1,1,0,2640,0,0,7,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,4,5,19,3,880,18,4,17,31
+21,Pekka ei ihaile Merjaa ,57,5,1,1,0,2860,0,0,8,7,9,2,0,0,2,7,9,10,8,0,1,12,8,2,15,4,8,20,4,715,28,4,22,31
+22,Pekka antoi kirjan Merjalle ,57,5,1,1,0,2890,0,0,10,9,16,4,0,0,4,4,7,11,10,0,0,8,3,3,17,6,9,18,4,722,39,6,38,93
+23,Pekka halusi ihailla Merjaa ,57,5,1,1,0,3365,0,0,10,9,17,3,0,0,3,4,8,10,10,3,0,12,7,4,14,6,9,22,4,841,33,6,24,31
+24,Merjaa ihailee Pekka ,57,5,2,1,0,2650,0,0,7,6,7,3,0,0,3,2,5,7,7,0,0,12,1,3,10,4,2,19,3,883,24,4,28,31
+25,Merjaa ei ihaile Pekka ,57,5,2,1,0,2870,0,0,8,7,9,3,0,0,3,7,10,11,8,0,1,12,6,3,16,4,5,20,4,717,34,4,37,15
+26,kirjan antoi Pekka Merjalle ,57,5,2,1,0,2970,0,0,10,9,16,6,0,0,6,4,8,13,10,0,0,8,3,4,19,6,7,18,4,742,47,6,52,31
 27,kirjan antoi Merjalle Pekka ,57,5,4,1,0,2865,0,0,10,9,19,4,0,0,4,4,8,11,10,0,0,8,1,4,16,6,6,18,4,716,43,6,41,46
-28,Merjalle antoi kirjan Pekka ,57,5,4,1,0,2840,0,0,10,9,17,4,0,0,4,4,8,11,10,0,0,8,3,4,13,6,6,18,4,710,43,6,42,62
-29,Merjaa halusi ihailla Pekka ,57,5,4,1,0,3350,0,0,10,9,17,3,0,0,3,4,9,10,10,3,0,12,5,5,14,6,8,22,4,837,47,6,49,62
-30,Pekka antoi Merjalle kirjan ,57,5,5,1,0,2900,0,0,10,9,19,3,0,0,3,4,7,11,10,0,1,8,4,3,16,6,8,18,4,725,36,6,29,62
-31,Merjalle antoi Pekka kirjan ,57,5,6,1,0,2995,0,0,10,9,17,6,0,0,6,4,8,14,10,0,0,8,7,4,16,6,7,18,4,748,50,6,54,78
-32,Pekka Merjaa ihailee ,57,5,7,1,0,2655,0,0,7,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,3,19,3,885,25,4,31,31
+28,Merjalle antoi kirjan Pekka ,57,5,4,1,0,2840,0,0,10,9,17,4,0,0,4,4,8,11,10,0,0,8,3,4,13,6,6,18,4,710,43,6,42,46
+29,Merjaa halusi ihailla Pekka ,57,5,4,1,0,3350,0,0,10,9,17,3,0,0,3,4,9,10,10,3,0,12,5,5,14,6,8,22,4,837,47,6,49,46
+30,Pekka antoi Merjalle kirjan ,57,5,5,1,0,2900,0,0,10,9,19,3,0,0,3,4,7,11,10,0,1,8,4,3,16,6,8,18,4,725,36,6,29,31
+31,Merjalle antoi Pekka kirjan ,57,5,6,1,0,2995,0,0,10,9,17,6,0,0,6,4,8,14,10,0,0,8,7,4,16,6,7,18,4,748,50,6,54,46
+32,Pekka Merjaa ihailee ,57,5,7,1,0,2655,0,0,7,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,3,19,3,885,25,4,31,15
 33,Merjaa Pekka ihailee ,57,5,7,1,0,2655,0,0,7,6,7,2,0,0,2,1,3,7,7,0,1,12,2,2,11,4,3,19,3,885,24,4,29,15
-34,Pekka Merjalle antoi kirjan ,57,5,7,1,0,2880,0,0,10,9,15,5,0,0,5,3,6,12,10,0,0,8,6,3,13,6,9,18,4,720,54,6,65,78
-35,Merjalle Pekka antoi kirjan ,57,5,7,1,0,2960,0,0,10,9,14,5,0,0,5,3,6,13,10,0,1,8,7,3,16,6,10,18,4,740,49,6,58,62
-36,Pekka Merjaa ei ihaile ,57,5,7,1,0,2870,0,0,8,7,7,2,0,0,2,4,6,12,8,0,3,12,7,2,18,4,4,20,4,717,40,4,52,46
-37,Merjaa Pekka ei ihaile ,57,5,7,1,0,2870,0,0,8,7,7,2,0,0,2,4,6,12,8,0,3,12,7,2,18,4,4,20,4,717,39,4,50,46
-38,Pekka Merjaa halusi ihailla ,57,5,7,1,0,3385,0,0,10,9,13,3,0,0,3,3,7,11,10,1,1,12,7,4,17,6,8,22,4,846,54,6,68,62
-39,Merjaa Pekka halusi ihailla ,57,5,7,1,0,3420,0,0,10,9,13,4,0,0,4,3,7,12,10,1,1,12,7,4,18,6,8,22,4,855,50,6,62,62
-40,Pekka Merjalle kirjan antoi ,57,5,7,2,0,2875,0,0,10,9,14,3,0,0,3,1,4,12,10,0,2,8,4,3,16,6,10,18,4,718,56,6,77,62
-41,Pekka kirjan Merjalle antoi ,57,5,7,2,0,2805,0,0,10,9,15,3,0,0,3,1,4,11,10,0,1,8,4,3,14,6,5,18,4,701,60,6,83,62
-42,kirjan Pekka Merjalle antoi ,57,5,7,2,0,2805,0,0,10,9,15,3,0,0,3,1,4,11,10,0,1,8,4,3,14,6,5,18,4,701,59,6,81,62
-43,kirjan Merjalle Pekka antoi ,57,5,7,2,0,2890,0,0,10,9,14,3,0,0,3,1,4,12,10,0,2,8,5,3,16,6,10,18,4,722,55,6,75,62
-44,Merjalle Pekka kirjan antoi ,57,5,7,2,0,2935,0,0,10,9,13,3,0,0,3,1,4,13,10,0,3,8,6,3,18,6,7,18,4,733,53,6,73,62
-45,Merjalle kirjan Pekka antoi ,57,5,7,2,0,2920,0,0,10,9,13,3,0,0,3,1,4,13,10,0,3,8,5,3,18,6,7,18,4,730,52,6,71,46
+34,Pekka Merjalle antoi kirjan ,57,5,7,1,0,2880,0,0,10,9,15,5,0,0,5,3,6,12,10,0,0,8,6,3,13,6,9,18,4,720,54,6,65,46
+35,Merjalle Pekka antoi kirjan ,57,5,7,1,0,2960,0,0,10,9,14,5,0,0,5,3,6,13,10,0,1,8,7,3,16,6,10,18,4,740,49,6,58,46
+36,Pekka Merjaa ei ihaile ,57,5,7,1,0,2870,0,0,8,7,7,2,0,0,2,4,6,12,8,0,3,12,7,2,18,4,4,20,4,717,40,4,52,31
+37,Merjaa Pekka ei ihaile ,57,5,7,1,0,2870,0,0,8,7,7,2,0,0,2,4,6,12,8,0,3,12,7,2,18,4,4,20,4,717,39,4,50,31
+38,Pekka Merjaa halusi ihailla ,57,5,7,1,0,3385,0,0,10,9,13,3,0,0,3,3,7,11,10,1,1,12,7,4,17,6,8,22,4,846,54,6,68,46
+39,Merjaa Pekka halusi ihailla ,57,5,7,1,0,3420,0,0,10,9,13,4,0,0,4,3,7,12,10,1,1,12,7,4,18,6,8,22,4,855,50,6,62,31
+40,Pekka Merjalle kirjan antoi ,57,5,7,2,0,2875,0,0,10,9,14,3,0,0,3,1,4,12,10,0,2,8,4,3,16,6,10,18,4,718,56,6,77,46
+41,Pekka kirjan Merjalle antoi ,57,5,7,2,0,2805,0,0,10,9,15,3,0,0,3,1,4,11,10,0,1,8,4,3,14,6,5,18,4,701,60,6,83,31
+42,kirjan Pekka Merjalle antoi ,57,5,7,2,0,2805,0,0,10,9,15,3,0,0,3,1,4,11,10,0,1,8,4,3,14,6,5,18,4,701,59,6,81,31
+43,kirjan Merjalle Pekka antoi ,57,5,7,2,0,2890,0,0,10,9,14,3,0,0,3,1,4,12,10,0,2,8,5,3,16,6,10,18,4,722,55,6,75,46
+44,Merjalle Pekka kirjan antoi ,57,5,7,2,0,2935,0,0,10,9,13,3,0,0,3,1,4,13,10,0,3,8,6,3,18,6,7,18,4,733,53,6,73,31
+45,Merjalle kirjan Pekka antoi ,57,5,7,2,0,2920,0,0,10,9,13,3,0,0,3,1,4,13,10,0,3,8,5,3,18,6,7,18,4,730,52,6,71,31

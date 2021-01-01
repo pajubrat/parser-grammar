@@ -161,7 +161,7 @@ class LinearPhaseParser:
                     log(f'\n\t{self.resources["Item streamed into syntax"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
                     log(f'{ps}' + ' + ' + terminal_lexical_item.get_phonological_string())
                     self.resources['Steps']['n'] += 1
-                    self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}.\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
+                    self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
                     # -------------------------- consider merge solutions ------------------------------------- #
                     merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
                     for site in merge_sites:
@@ -247,8 +247,7 @@ class LinearPhaseParser:
         log('Done.\n')
         print('X', end='', flush=True)
         self.consume_resources('Steps')
-        self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_}')
-        self.local_file_system.simple_log_file.write(f'\n\t-------------------------------')
+        self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} (<= accepted)')
         if not self.first_solution_found:
             log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
             self.first_solution_found = True
