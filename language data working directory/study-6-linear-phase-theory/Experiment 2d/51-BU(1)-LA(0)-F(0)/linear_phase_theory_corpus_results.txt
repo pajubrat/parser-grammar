@@ -1,5 +1,5 @@
 @  {'study_folder': 'study-6-linear-phase-theory/Experiment 2d/51-BU(1)-LA(0)-F(0)/', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 51, 'only_first_solution': True, 'logging': False, 'ignore_ungrammatical_sentences': True, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': False, 'filter': False, 'lexical_anticipation': False, 'closure': 'Bottom-up', 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100, 'negative_tail_test': -100, 'break_head_comp_relations': 0, 'lf_legibility_condition': 0}
-@  2021-01-01 19:59:00.781274
+@  2021-01-01 18:56:31.638099
 @  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
 @  Logs into language data working directory\study-6-linear-phase-theory\Experiment 2d\51-BU(1)-LA(0)-F(0)\linear_phase_theory_corpus_log.txt.
 @  Lexicon from language data working directory\lexicon.txt.
@@ -45,7 +45,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:4, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:0, LF recovery:0, 
 	LF test:1, Filter solution:0, Rank solution:0, Lexical retrieval:4, Morphological decomposition:0, 
-	Mean time per word:72, Asymmetric Merge:3, Sink:0, External Tail Test:0, Execution time = 15ms
+	Mean time per word:72, Asymmetric Merge:3, Sink:0, External Tail Test:0, Execution time = 0ms
 
 4. a' b' c' d' a' 
 
@@ -57,7 +57,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:5, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:0, LF recovery:0, 
 	LF test:1, Filter solution:0, Rank solution:0, Lexical retrieval:5, Morphological decomposition:0, 
-	Mean time per word:72, Asymmetric Merge:4, Sink:0, External Tail Test:0, Execution time = 0ms
+	Mean time per word:72, Asymmetric Merge:4, Sink:0, External Tail Test:0, Execution time = 15ms
 
 & 1 Basic construction types -------------------------------------------------------
 
@@ -89,7 +89,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:2, Transfer:3, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:0, LF recovery:1, 
 	LF test:5, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
-	Mean time per word:705, Asymmetric Merge:8, Sink:2, External Tail Test:8, Execution time = 0ms
+	Mean time per word:705, Asymmetric Merge:8, Sink:2, External Tail Test:8, Execution time = 15ms
 
 7. Pekka elaa 
 
@@ -101,7 +101,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:2, Transfer:3, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:0, LF recovery:1, 
 	LF test:5, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
-	Mean time per word:655, Asymmetric Merge:8, Sink:2, External Tail Test:8, Execution time = 0ms
+	Mean time per word:655, Asymmetric Merge:8, Sink:2, External Tail Test:8, Execution time = 15ms
 
 8. Pekka juoksee 
 
@@ -125,7 +125,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:2, Transfer:3, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:0, LF recovery:1, 
 	LF test:5, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
-	Mean time per word:742, Asymmetric Merge:8, Sink:2, External Tail Test:8, Execution time = 0ms
+	Mean time per word:742, Asymmetric Merge:8, Sink:2, External Tail Test:8, Execution time = 15ms
 
 10. Pekka nukkui 
 
@@ -149,7 +149,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:2, Transfer:2, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:0, LF recovery:1, 
 	LF test:4, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
-	Mean time per word:662, Asymmetric Merge:6, Sink:2, External Tail Test:0, Execution time = 0ms
+	Mean time per word:662, Asymmetric Merge:6, Sink:2, External Tail Test:0, Execution time = 15ms
 
 12. John leaves 
 
@@ -161,7 +161,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:2, Transfer:2, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:0, LF recovery:1, 
 	LF test:4, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
-	Mean time per word:662, Asymmetric Merge:6, Sink:2, External Tail Test:0, Execution time = 0ms
+	Mean time per word:662, Asymmetric Merge:6, Sink:2, External Tail Test:0, Execution time = 15ms
 
 13. the horse fell 
 
@@ -203,7 +203,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:831, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:831, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 0ms
 
 51. Pekka loysi Merjan 
 
@@ -215,7 +215,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:843, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:843, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 52. Pekka teki sen kellon_N 
 
@@ -227,7 +227,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:2, LF recovery:2, 
 	LF test:7, Filter solution:3, Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, 
-	Mean time per word:492, Asymmetric Merge:11, Sink:3, External Tail Test:12, Execution time = 15ms
+	Mean time per word:492, Asymmetric Merge:11, Sink:3, External Tail Test:12, Execution time = 125ms
 
 53. Pekka etsii Merjaa 
 
@@ -251,7 +251,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 0ms
+	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
 
 55. Pekka hairitsee Merjaa 
 
@@ -263,7 +263,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:811, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 0ms
+	Mean time per word:811, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
 
 56. Pekka lukee kirjaa 
 
@@ -287,7 +287,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:823, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:823, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 58. Pekka pesi Merjaa 
 
@@ -323,7 +323,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, 
-	Mean time per word:623, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:623, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 46ms
 
 61. Pekka tonaisi Merjaa 
 
@@ -347,7 +347,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:741, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 63. John likes Mary 
 
@@ -359,7 +359,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:765, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:765, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 64. John persuades Mary 
 
@@ -383,7 +383,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:816, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 0ms
+	Mean time per word:816, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 66. lavano Luisa 
 
@@ -395,7 +395,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, 
-	Mean time per word:720, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 0ms
+	Mean time per word:720, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 31ms
 
 67. loro lavano Luisa 
 
@@ -407,7 +407,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:3, 
-	Mean time per word:660, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:660, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 46ms
 
 & Ungrammatical (finite transitive verbs) -------------------------------------------------------
 
@@ -425,7 +425,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:642, Asymmetric Merge:21, Sink:6, External Tail Test:22, Execution time = 15ms
+	Mean time per word:642, Asymmetric Merge:21, Sink:6, External Tail Test:22, Execution time = 62ms
 
 99. John gave the key to Mary 
 
@@ -437,7 +437,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:2, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:375, Asymmetric Merge:12, Sink:4, External Tail Test:1, Execution time = 15ms
+	Mean time per word:375, Asymmetric Merge:12, Sink:4, External Tail Test:1, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -455,7 +455,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:4, 
-	Mean time per word:713, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:713, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 108. Pekka istuu Helsingissa 
 
@@ -467,7 +467,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:4, 
-	Mean time per word:730, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:730, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 109. Pekka lahtee Helsingissa 
 
@@ -479,7 +479,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:4, 
-	Mean time per word:746, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:746, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 46ms
 
 110. Pekka elaa Helsingissa 
 
@@ -491,7 +491,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:4, 
-	Mean time per word:713, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:713, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 111. Pekka juoksee Helsingissa 
 
@@ -503,7 +503,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:8, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:3, LF recovery:2, 
 	LF test:10, Filter solution:6, Rank solution:0, Lexical retrieval:14, Morphological decomposition:5, 
-	Mean time per word:927, Asymmetric Merge:24, Sink:6, External Tail Test:28, Execution time = 15ms
+	Mean time per word:927, Asymmetric Merge:24, Sink:6, External Tail Test:28, Execution time = 46ms
 
 112. Pekka kuorsaa Helsingissa 
 
@@ -515,7 +515,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:8, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:2, 
 	LF test:10, Filter solution:6, Rank solution:0, Lexical retrieval:15, Morphological decomposition:5, 
-	Mean time per word:988, Asymmetric Merge:24, Sink:6, External Tail Test:28, Execution time = 15ms
+	Mean time per word:988, Asymmetric Merge:24, Sink:6, External Tail Test:28, Execution time = 46ms
 
 113. Pekka nukkui Helsingissa 
 
@@ -539,7 +539,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:480, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 15ms
+	Mean time per word:480, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -557,7 +557,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, Agree:4, Phi:8, Transfer:15, Item streamed into syntax:17, 
 	Feature Processing:0, Extraposition:2, Inflection:8, Failed Transfer:5, LF recovery:4, 
 	LF test:17, Filter solution:12, Rank solution:0, Lexical retrieval:25, Morphological decomposition:8, 
-	Mean time per word:940, Asymmetric Merge:61, Sink:12, External Tail Test:73, Execution time = 78ms
+	Mean time per word:940, Asymmetric Merge:61, Sink:12, External Tail Test:73, Execution time = 93ms
 
 117. John gave the key to Mary in Helsinki 
 
@@ -569,7 +569,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:7, Transfer:15, Item streamed into syntax:15, 
 	Feature Processing:0, Extraposition:3, Inflection:10, Failed Transfer:6, LF recovery:4, 
 	LF test:14, Filter solution:7, Rank solution:0, Lexical retrieval:25, Morphological decomposition:4, 
-	Mean time per word:454, Asymmetric Merge:28, Sink:7, External Tail Test:6, Execution time = 62ms
+	Mean time per word:454, Asymmetric Merge:28, Sink:7, External Tail Test:6, Execution time = 109ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -601,7 +601,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:4, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:1, 
 	LF test:6, Filter solution:2, Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, 
-	Mean time per word:450, Asymmetric Merge:11, Sink:2, External Tail Test:8, Execution time = 0ms
+	Mean time per word:450, Asymmetric Merge:11, Sink:2, External Tail Test:8, Execution time = 15ms
 
 121. Pekka ei lahde 
 
@@ -613,7 +613,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:4, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:1, 
 	LF test:6, Filter solution:2, Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, 
-	Mean time per word:466, Asymmetric Merge:11, Sink:2, External Tail Test:8, Execution time = 0ms
+	Mean time per word:466, Asymmetric Merge:11, Sink:2, External Tail Test:8, Execution time = 31ms
 
 122. me emme lahde 
 
@@ -649,7 +649,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:4, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:1, 
 	LF test:6, Filter solution:2, Rank solution:0, Lexical retrieval:11, Morphological decomposition:3, 
-	Mean time per word:491, Asymmetric Merge:11, Sink:2, External Tail Test:8, Execution time = 0ms
+	Mean time per word:491, Asymmetric Merge:11, Sink:2, External Tail Test:8, Execution time = 31ms
 
 125. Pekka ei ihaile Merjaa 
 
@@ -661,7 +661,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:5, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:2, LF recovery:2, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:621, Asymmetric Merge:14, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:621, Asymmetric Merge:14, Sink:4, External Tail Test:10, Execution time = 31ms
 
 126. Pekka ei myynyt omaisuuttaan 
 
@@ -673,7 +673,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:5, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:2, LF recovery:2, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, 
-	Mean time per word:601, Asymmetric Merge:14, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:601, Asymmetric Merge:14, Sink:4, External Tail Test:10, Execution time = 31ms
 
 127. John does sleep 
 
@@ -685,7 +685,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:2, Transfer:3, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:1, LF recovery:1, 
 	LF test:5, Filter solution:1, Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, 
-	Mean time per word:370, Asymmetric Merge:6, Sink:1, External Tail Test:0, Execution time = 0ms
+	Mean time per word:370, Asymmetric Merge:6, Sink:1, External Tail Test:0, Execution time = 15ms
 
 128. John does not sleep 
 
@@ -709,7 +709,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:4, Transfer:5, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:3, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:445, Asymmetric Merge:12, Sink:3, External Tail Test:0, Execution time = 15ms
+	Mean time per word:445, Asymmetric Merge:12, Sink:3, External Tail Test:0, Execution time = 31ms
 
 130. loro hanno lavato Luisa 
 
@@ -721,7 +721,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:2, LF recovery:3, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:627, Asymmetric Merge:15, Sink:5, External Tail Test:0, Execution time = 15ms
+	Mean time per word:627, Asymmetric Merge:15, Sink:5, External Tail Test:0, Execution time = 31ms
 
 131. io ho lavato Luisa 
 
@@ -745,7 +745,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:8, Transfer:5, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:2, LF recovery:5, 
 	LF test:6, Filter solution:7, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:593, Asymmetric Merge:18, Sink:7, External Tail Test:0, Execution time = 31ms
+	Mean time per word:593, Asymmetric Merge:18, Sink:7, External Tail Test:0, Execution time = 46ms
 
 133. loro stanno lavando Luisa 
 
@@ -789,7 +789,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:6, Transfer:4, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:5, 
 	LF test:5, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:743, Asymmetric Merge:14, Sink:5, External Tail Test:6, Execution time = 15ms
+	Mean time per word:743, Asymmetric Merge:14, Sink:5, External Tail Test:6, Execution time = 31ms
 
 143. Pekan_gen taytyy myyda omaisuuttaan 
 
@@ -801,7 +801,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:6, Transfer:4, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:5, 
 	LF test:5, Filter solution:5, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:643, Asymmetric Merge:14, Sink:5, External Tail Test:6, Execution time = 15ms
+	Mean time per word:643, Asymmetric Merge:14, Sink:5, External Tail Test:6, Execution time = 31ms
 
 144. John must sleep 
 
@@ -825,7 +825,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:527, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 15ms
+	Mean time per word:527, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 31ms
 
 146. loro devono lavare Luisa 
 
@@ -837,7 +837,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:5, Filter solution:5, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:585, Asymmetric Merge:11, Sink:5, External Tail Test:0, Execution time = 15ms
+	Mean time per word:585, Asymmetric Merge:11, Sink:5, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -855,7 +855,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:8, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:2, LF recovery:6, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:597, Asymmetric Merge:16, Sink:5, External Tail Test:7, Execution time = 15ms
+	Mean time per word:597, Asymmetric Merge:16, Sink:5, External Tail Test:7, Execution time = 31ms
 
 153. Pekan_gen ei taydy myyda omaisuuttaan 
 
@@ -867,7 +867,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:8, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:7, Failed Transfer:2, LF recovery:6, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, 
-	Mean time per word:517, Asymmetric Merge:16, Sink:5, External Tail Test:7, Execution time = 15ms
+	Mean time per word:517, Asymmetric Merge:16, Sink:5, External Tail Test:7, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -885,7 +885,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:6, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:3, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:635, Asymmetric Merge:10, Sink:3, External Tail Test:8, Execution time = 15ms
+	Mean time per word:635, Asymmetric Merge:10, Sink:3, External Tail Test:8, Execution time = 31ms
 
 158. Pekka on' ihaillut Merjaa 
 
@@ -897,7 +897,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:3, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:735, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:735, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 31ms
 
 159. John does sleep 
 
@@ -929,7 +929,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:4, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, 
-	Mean time per word:440, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 15ms
+	Mean time per word:440, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 31ms
 
 162. John wants Mary to_inf leave 
 
@@ -941,7 +941,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:4, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:504, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:504, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 46ms
 
 163. John wants to_inf leave Mary 
 
@@ -953,7 +953,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:4, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:497, Asymmetric Merge:11, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:497, Asymmetric Merge:11, Sink:4, External Tail Test:0, Execution time = 46ms
 
 164. io detesto lavare Luisa 
 
@@ -965,7 +965,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:6, Transfer:4, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:4, 
 	LF test:5, Filter solution:6, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:630, Asymmetric Merge:12, Sink:6, External Tail Test:0, Execution time = 15ms
+	Mean time per word:630, Asymmetric Merge:12, Sink:6, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -983,7 +983,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:6, 
 	Feature Processing:1, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:2, Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, 
-	Mean time per word:405, Asymmetric Merge:8, Sink:2, External Tail Test:0, Execution time = 0ms
+	Mean time per word:405, Asymmetric Merge:8, Sink:2, External Tail Test:0, Execution time = 15ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1003,7 +1003,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:636, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 15ms
+	Mean time per word:636, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 31ms
 
 174. Pekka kaskee Merjan_gen lahtea 
 
@@ -1015,7 +1015,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 175. Pekka halusi ihailla Merjaa 
 
@@ -1027,7 +1027,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:4, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:14, Sink:6, External Tail Test:10, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:14, Sink:6, External Tail Test:10, Execution time = 46ms
 
 176. Pekka kaskee poikien ihailla Merjaa 
 
@@ -1039,7 +1039,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:17, Failed Transfer:1, LF recovery:4, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:29, Morphological decomposition:5, 
-	Mean time per word:767, Asymmetric Merge:19, Sink:7, External Tail Test:12, Execution time = 15ms
+	Mean time per word:767, Asymmetric Merge:19, Sink:7, External Tail Test:12, Execution time = 31ms
 
 177. Pekka kaskee poikien myyda omaisuuttaan 
 
@@ -1063,7 +1063,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:6, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:2, LF recovery:4, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:591, Asymmetric Merge:17, Sink:6, External Tail Test:10, Execution time = 15ms
+	Mean time per word:591, Asymmetric Merge:17, Sink:6, External Tail Test:10, Execution time = 46ms
 
 179. Pekka ei halua myyda omaisuuttaan 
 
@@ -1117,7 +1117,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:8, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:2, LF recovery:6, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:597, Asymmetric Merge:16, Sink:5, External Tail Test:7, Execution time = 15ms
+	Mean time per word:597, Asymmetric Merge:16, Sink:5, External Tail Test:7, Execution time = 31ms
 
 187. Pekan_gen ei taydy myyda omaisuuttaan 
 
@@ -1129,7 +1129,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:8, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:7, Failed Transfer:2, LF recovery:6, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, 
-	Mean time per word:517, Asymmetric Merge:16, Sink:5, External Tail Test:7, Execution time = 15ms
+	Mean time per word:517, Asymmetric Merge:16, Sink:5, External Tail Test:7, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1147,7 +1147,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:740, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:740, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 190. Pekka halusi heidan lahtevan 
 
@@ -1159,7 +1159,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:700, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:700, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 191. Pekka sanoo lahtevansa 
 
@@ -1171,7 +1171,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:4, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, 
-	Mean time per word:723, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 15ms
+	Mean time per word:723, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 31ms
 
 192. Pekka sanoo ihailevansa Merjaa 
 
@@ -1183,7 +1183,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:7, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:5, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:4, 
-	Mean time per word:806, Asymmetric Merge:14, Sink:6, External Tail Test:10, Execution time = 15ms
+	Mean time per word:806, Asymmetric Merge:14, Sink:6, External Tail Test:10, Execution time = 31ms
 
 193. Pekka sanoo Merjan_gen lahtevan 
 
@@ -1207,7 +1207,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, 
-	Mean time per word:691, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 15ms
+	Mean time per word:691, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1239,7 +1239,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:3, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:1, LF recovery:0, 
 	LF test:4, Filter solution:1, Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, 
-	Mean time per word:196, Asymmetric Merge:4, Sink:1, External Tail Test:1, Execution time = 0ms
+	Mean time per word:196, Asymmetric Merge:4, Sink:1, External Tail Test:1, Execution time = 15ms
 
 200. se pieni punainen talo 
 
@@ -1263,7 +1263,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:4, Item streamed into syntax:6, 
 	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:1, LF recovery:0, 
 	LF test:5, Filter solution:2, Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, 
-	Mean time per word:246, Asymmetric Merge:7, Sink:2, External Tail Test:2, Execution time = 15ms
+	Mean time per word:246, Asymmetric Merge:7, Sink:2, External Tail Test:2, Execution time = 0ms
 
 202. the little key 
 
@@ -1305,7 +1305,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:6, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:16, Failed Transfer:3, LF recovery:5, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:28, Morphological decomposition:5, 
-	Mean time per word:763, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 31ms
+	Mean time per word:763, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 46ms
 
 211. Pekka teki sopimuksen antaa avaimen Merjalle 
 
@@ -1317,7 +1317,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, Agree:2, Phi:8, Transfer:14, Item streamed into syntax:17, 
 	Feature Processing:2, Extraposition:2, Inflection:12, Failed Transfer:5, LF recovery:6, 
 	LF test:14, Filter solution:11, Rank solution:0, Lexical retrieval:29, Morphological decomposition:6, 
-	Mean time per word:730, Asymmetric Merge:53, Sink:11, External Tail Test:64, Execution time = 62ms
+	Mean time per word:730, Asymmetric Merge:53, Sink:11, External Tail Test:64, Execution time = 109ms
 
 212. se sopimus ihailla Merjaa peruuntui 
 
@@ -1329,7 +1329,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:4, Phi:9, Transfer:11, Item streamed into syntax:12, 
 	Feature Processing:4, Extraposition:3, Inflection:10, Failed Transfer:7, LF recovery:5, 
 	LF test:12, Filter solution:7, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:805, Asymmetric Merge:31, Sink:7, External Tail Test:14, Execution time = 46ms
+	Mean time per word:805, Asymmetric Merge:31, Sink:7, External Tail Test:14, Execution time = 78ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1371,7 +1371,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:1, 
 	LF test:8, Filter solution:3, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:678, Asymmetric Merge:13, Sink:3, External Tail Test:9, Execution time = 15ms
+	Mean time per word:678, Asymmetric Merge:13, Sink:3, External Tail Test:9, Execution time = 31ms
 
 216. Merja nukkui lahella_1 Pekkaa 
 
@@ -1383,7 +1383,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:3, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:653, Asymmetric Merge:11, Sink:3, External Tail Test:10, Execution time = 15ms
+	Mean time per word:653, Asymmetric Merge:11, Sink:3, External Tail Test:10, Execution time = 31ms
 
 217. Pekka nukkui Helsingissa 
 
@@ -1395,7 +1395,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:4, 
-	Mean time per word:746, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:746, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1415,7 +1415,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:5, Transfer:7, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:3, 
 	LF test:10, Filter solution:5, Rank solution:0, Lexical retrieval:23, Morphological decomposition:4, 
-	Mean time per word:626, Asymmetric Merge:20, Sink:5, External Tail Test:18, Execution time = 15ms
+	Mean time per word:626, Asymmetric Merge:20, Sink:5, External Tail Test:18, Execution time = 46ms
 
 220. Pekka sanoi etta Merja ihailee Pekkaa 
 
@@ -1427,7 +1427,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:6, Transfer:8, Item streamed into syntax:13, 
 	Feature Processing:0, Extraposition:0, Inflection:18, Failed Transfer:3, LF recovery:4, 
 	LF test:11, Filter solution:7, Rank solution:0, Lexical retrieval:31, Morphological decomposition:5, 
-	Mean time per word:684, Asymmetric Merge:23, Sink:7, External Tail Test:20, Execution time = 31ms
+	Mean time per word:684, Asymmetric Merge:23, Sink:7, External Tail Test:20, Execution time = 62ms
 
 221. Pekka sanoi etta Merja antoi kirjan Merjalle 
 
@@ -1439,7 +1439,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:2, Phi:7, Transfer:10, Item streamed into syntax:16, 
 	Feature Processing:0, Extraposition:0, Inflection:15, Failed Transfer:3, LF recovery:5, 
 	LF test:14, Filter solution:9, Rank solution:0, Lexical retrieval:31, Morphological decomposition:6, 
-	Mean time per word:612, Asymmetric Merge:34, Sink:9, External Tail Test:34, Execution time = 31ms
+	Mean time per word:612, Asymmetric Merge:34, Sink:9, External Tail Test:34, Execution time = 78ms
 
 222. Pekka sanoo etta haluaa ihailla Merjaa 
 
@@ -1451,7 +1451,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:9, Transfer:7, Item streamed into syntax:14, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:7, 
 	LF test:8, Filter solution:8, Rank solution:0, Lexical retrieval:27, Morphological decomposition:5, 
-	Mean time per word:625, Asymmetric Merge:18, Sink:8, External Tail Test:10, Execution time = 15ms
+	Mean time per word:625, Asymmetric Merge:18, Sink:8, External Tail Test:10, Execution time = 62ms
 
 223. Pekka sanoo etta haluaa myyda omaisuuttaan 
 
@@ -1463,7 +1463,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:9, Transfer:7, Item streamed into syntax:14, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:7, 
 	LF test:8, Filter solution:8, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:558, Asymmetric Merge:18, Sink:8, External Tail Test:10, Execution time = 31ms
+	Mean time per word:558, Asymmetric Merge:18, Sink:8, External Tail Test:10, Execution time = 46ms
 
 224. Pekka sanoo etta Pekka ei lahde 
 
@@ -1475,7 +1475,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:6, Transfer:8, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:3, 
 	LF test:11, Filter solution:5, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:501, Asymmetric Merge:23, Sink:5, External Tail Test:18, Execution time = 15ms
+	Mean time per word:501, Asymmetric Merge:23, Sink:5, External Tail Test:18, Execution time = 93ms
 
 225. Pekka sanoo etta mina en lahde 
 
@@ -1487,7 +1487,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:6, Transfer:8, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:3, 
 	LF test:11, Filter solution:5, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:493, Asymmetric Merge:23, Sink:5, External Tail Test:18, Execution time = 15ms
+	Mean time per word:493, Asymmetric Merge:23, Sink:5, External Tail Test:18, Execution time = 62ms
 
 226. Pekka sanoi etta Pekka ei ihaile Merjaa 
 
@@ -1499,7 +1499,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:7, Transfer:9, Item streamed into syntax:14, 
 	Feature Processing:0, Extraposition:0, Inflection:18, Failed Transfer:4, LF recovery:4, 
 	LF test:12, Filter solution:7, Rank solution:0, Lexical retrieval:32, Morphological decomposition:6, 
-	Mean time per word:585, Asymmetric Merge:26, Sink:7, External Tail Test:20, Execution time = 31ms
+	Mean time per word:585, Asymmetric Merge:26, Sink:7, External Tail Test:20, Execution time = 62ms
 
 227. Pekka sanoi etta Pekan_gen taytyy nukkua 
 
@@ -1511,7 +1511,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:8, Transfer:7, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:6, 
 	LF test:10, Filter solution:6, Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, 
-	Mean time per word:588, Asymmetric Merge:22, Sink:6, External Tail Test:12, Execution time = 15ms
+	Mean time per word:588, Asymmetric Merge:22, Sink:6, External Tail Test:12, Execution time = 31ms
 
 228. John said that Mary sleeps 
 
@@ -1545,7 +1545,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:4, Move Adjunct:0, Agree:11, Phi:17, Transfer:15, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:6, Inflection:7, Failed Transfer:9, LF recovery:6, 
 	LF test:19, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:675, Asymmetric Merge:27, Sink:6, External Tail Test:10, Execution time = 62ms
+	Mean time per word:675, Asymmetric Merge:27, Sink:6, External Tail Test:10, Execution time = 109ms
 
 237. se mies joka nukkui ihailee Merjaa 
 
@@ -1557,7 +1557,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:8, Move Adjunct:1, Agree:41, Phi:49, Transfer:60, Item streamed into syntax:32, 
 	Feature Processing:0, Extraposition:25, Inflection:31, Failed Transfer:49, LF recovery:8, 
 	LF test:73, Filter solution:23, Rank solution:0, Lexical retrieval:63, Morphological decomposition:7, 
-	Mean time per word:1913, Asymmetric Merge:162, Sink:23, External Tail Test:217, Execution time = 281ms
+	Mean time per word:1913, Asymmetric Merge:162, Sink:23, External Tail Test:217, Execution time = 546ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1577,7 +1577,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:3, Move Adjunct:5, Agree:14, Phi:22, Transfer:24, Item streamed into syntax:15, 
 	Feature Processing:0, Extraposition:6, Inflection:13, Failed Transfer:13, LF recovery:8, 
 	LF test:30, Filter solution:9, Rank solution:0, Lexical retrieval:28, Morphological decomposition:4, 
-	Mean time per word:829, Asymmetric Merge:69, Sink:9, External Tail Test:59, Execution time = 93ms
+	Mean time per word:829, Asymmetric Merge:69, Sink:9, External Tail Test:59, Execution time = 187ms
 
 244. se mies jota Merja ihailee ihailee Merjaa 
 
@@ -1589,7 +1589,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:12, Move Adjunct:20, Agree:58, Phi:68, Transfer:95, Item streamed into syntax:44, 
 	Feature Processing:0, Extraposition:29, Inflection:43, Failed Transfer:73, LF recovery:10, 
 	LF test:115, Filter solution:33, Rank solution:0, Lexical retrieval:87, Morphological decomposition:9, 
-	Mean time per word:2346, Asymmetric Merge:330, Sink:33, External Tail Test:430, Execution time = 562ms
+	Mean time per word:2346, Asymmetric Merge:330, Sink:33, External Tail Test:430, Execution time = 984ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1609,7 +1609,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:2, LF recovery:2, 
 	LF test:6, Filter solution:3, Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, 
-	Mean time per word:436, Asymmetric Merge:10, Sink:3, External Tail Test:0, Execution time = 15ms
+	Mean time per word:436, Asymmetric Merge:10, Sink:3, External Tail Test:0, Execution time = 31ms
 
 & Grammatical feature based ambiguity resolution (1.8.2) -------------------------------------------------------
 
@@ -1655,7 +1655,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:2, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:375, Asymmetric Merge:12, Sink:4, External Tail Test:1, Execution time = 15ms
+	Mean time per word:375, Asymmetric Merge:12, Sink:4, External Tail Test:1, Execution time = 31ms
 
 251. John moved the key from Mary to John 
 
@@ -1667,7 +1667,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:9, Item streamed into syntax:13, 
 	Feature Processing:0, Extraposition:1, Inflection:15, Failed Transfer:3, LF recovery:4, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:28, Morphological decomposition:4, 
-	Mean time per word:401, Asymmetric Merge:16, Sink:5, External Tail Test:2, Execution time = 31ms
+	Mean time per word:401, Asymmetric Merge:16, Sink:5, External Tail Test:2, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1685,7 +1685,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:3, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:1, LF recovery:0, 
 	LF test:4, Filter solution:1, Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, 
-	Mean time per word:213, Asymmetric Merge:4, Sink:1, External Tail Test:1, Execution time = 0ms
+	Mean time per word:213, Asymmetric Merge:4, Sink:1, External Tail Test:1, Execution time = 15ms
 
 258. the little red key 
 
@@ -1733,7 +1733,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:4, Item streamed into syntax:6, 
 	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:1, LF recovery:0, 
 	LF test:5, Filter solution:2, Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, 
-	Mean time per word:246, Asymmetric Merge:7, Sink:2, External Tail Test:2, Execution time = 0ms
+	Mean time per word:246, Asymmetric Merge:7, Sink:2, External Tail Test:2, Execution time = 15ms
 
 262. se punainen pieni talo 
 
@@ -1745,7 +1745,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:4, Item streamed into syntax:6, 
 	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:1, LF recovery:0, 
 	LF test:5, Filter solution:2, Rank solution:0, Lexical retrieval:6, Morphological decomposition:2, 
-	Mean time per word:246, Asymmetric Merge:7, Sink:2, External Tail Test:2, Execution time = 0ms
+	Mean time per word:246, Asymmetric Merge:7, Sink:2, External Tail Test:2, Execution time = 15ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1765,7 +1765,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:5, Transfer:6, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:1, LF recovery:4, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:753, Asymmetric Merge:14, Sink:5, External Tail Test:14, Execution time = 31ms
+	Mean time per word:753, Asymmetric Merge:14, Sink:5, External Tail Test:14, Execution time = 46ms
 
 270. Pekka naki Merjan_acc lahtematta 
 
@@ -1777,7 +1777,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:11, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:3, LF recovery:4, 
 	LF test:11, Filter solution:6, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:832, Asymmetric Merge:37, Sink:6, External Tail Test:53, Execution time = 31ms
+	Mean time per word:832, Asymmetric Merge:37, Sink:6, External Tail Test:53, Execution time = 62ms
 
 271. Pekka naki Merjan_acc lahtemalla 
 
@@ -1789,7 +1789,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:11, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:3, LF recovery:4, 
 	LF test:11, Filter solution:6, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:832, Asymmetric Merge:37, Sink:6, External Tail Test:53, Execution time = 31ms
+	Mean time per word:832, Asymmetric Merge:37, Sink:6, External Tail Test:53, Execution time = 62ms
 
 272. Pekka naki Merjan_acc ihailemassa Jukkaa 
 
@@ -1801,7 +1801,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:6, Transfer:7, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:1, Inflection:18, Failed Transfer:1, LF recovery:5, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:30, Morphological decomposition:5, 
-	Mean time per word:814, Asymmetric Merge:17, Sink:7, External Tail Test:16, Execution time = 15ms
+	Mean time per word:814, Asymmetric Merge:17, Sink:7, External Tail Test:16, Execution time = 46ms
 
 273. Pekka elaa ihailemalla Merjaa 
 
@@ -1813,7 +1813,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:7, Phi:10, Transfer:20, Item streamed into syntax:15, 
 	Feature Processing:0, Extraposition:3, Inflection:18, Failed Transfer:7, LF recovery:3, 
 	LF test:19, Filter solution:10, Rank solution:0, Lexical retrieval:33, Morphological decomposition:5, 
-	Mean time per word:1235, Asymmetric Merge:54, Sink:10, External Tail Test:76, Execution time = 62ms
+	Mean time per word:1235, Asymmetric Merge:54, Sink:10, External Tail Test:76, Execution time = 109ms
 
 274. Pekka elaa haluamalla ihailla Merjaa 
 
@@ -1825,7 +1825,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:9, Agree:10, Phi:15, Transfer:46, Item streamed into syntax:33, 
 	Feature Processing:10, Extraposition:6, Inflection:30, Failed Transfer:24, LF recovery:5, 
 	LF test:42, Filter solution:24, Rank solution:0, Lexical retrieval:63, Morphological decomposition:9, 
-	Mean time per word:1998, Asymmetric Merge:154, Sink:24, External Tail Test:196, Execution time = 203ms
+	Mean time per word:1998, Asymmetric Merge:154, Sink:24, External Tail Test:196, Execution time = 375ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1843,7 +1843,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:10, Item streamed into syntax:10, 
 	Feature Processing:2, Extraposition:2, Inflection:12, Failed Transfer:3, LF recovery:4, 
 	LF test:11, Filter solution:6, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:831, Asymmetric Merge:33, Sink:6, External Tail Test:40, Execution time = 31ms
+	Mean time per word:831, Asymmetric Merge:33, Sink:6, External Tail Test:40, Execution time = 62ms
 
 280. Pekka naki Merjan_acc lahtiessaan 
 
@@ -1855,7 +1855,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:10, Item streamed into syntax:10, 
 	Feature Processing:2, Extraposition:2, Inflection:13, Failed Transfer:3, LF recovery:4, 
 	LF test:11, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:4, 
-	Mean time per word:902, Asymmetric Merge:33, Sink:6, External Tail Test:40, Execution time = 31ms
+	Mean time per word:902, Asymmetric Merge:33, Sink:6, External Tail Test:40, Execution time = 62ms
 
 281. Pekka naki avaimen_acc Merjan_gen lahtiessa 
 
@@ -1867,7 +1867,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:8, Phi:12, Transfer:26, Item streamed into syntax:17, 
 	Feature Processing:5, Extraposition:6, Inflection:13, Failed Transfer:10, LF recovery:4, 
 	LF test:29, Filter solution:11, Rank solution:0, Lexical retrieval:30, Morphological decomposition:6, 
-	Mean time per word:1096, Asymmetric Merge:76, Sink:11, External Tail Test:99, Execution time = 93ms
+	Mean time per word:1096, Asymmetric Merge:76, Sink:11, External Tail Test:99, Execution time = 171ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1885,7 +1885,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:7, Phi:10, Transfer:11, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:1, Inflection:13, Failed Transfer:3, LF recovery:3, 
 	LF test:11, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:4, 
-	Mean time per word:896, Asymmetric Merge:37, Sink:6, External Tail Test:53, Execution time = 31ms
+	Mean time per word:896, Asymmetric Merge:37, Sink:6, External Tail Test:53, Execution time = 46ms
 
 286. Pekka lahtee Merjan_gen lahdettya 
 
@@ -1897,7 +1897,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:12, Phi:14, Transfer:21, Item streamed into syntax:13, 
 	Feature Processing:0, Extraposition:2, Inflection:12, Failed Transfer:7, LF recovery:2, 
 	LF test:23, Filter solution:8, Rank solution:0, Lexical retrieval:25, Morphological decomposition:5, 
-	Mean time per word:1122, Asymmetric Merge:45, Sink:8, External Tail Test:60, Execution time = 62ms
+	Mean time per word:1122, Asymmetric Merge:45, Sink:8, External Tail Test:60, Execution time = 109ms
 
 287. Pekka lahtee heidan lahdettya 
 
@@ -1909,7 +1909,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:12, Phi:14, Transfer:21, Item streamed into syntax:13, 
 	Feature Processing:0, Extraposition:2, Inflection:11, Failed Transfer:7, LF recovery:2, 
 	LF test:23, Filter solution:8, Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, 
-	Mean time per word:1069, Asymmetric Merge:45, Sink:8, External Tail Test:60, Execution time = 46ms
+	Mean time per word:1069, Asymmetric Merge:45, Sink:8, External Tail Test:60, Execution time = 109ms
 
 288. Pekka lahtee heidan ihailtua Merjaa 
 
@@ -1921,7 +1921,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, Agree:35, Phi:38, Transfer:55, Item streamed into syntax:31, 
 	Feature Processing:0, Extraposition:5, Inflection:35, Failed Transfer:24, LF recovery:3, 
 	LF test:48, Filter solution:22, Rank solution:0, Lexical retrieval:66, Morphological decomposition:9, 
-	Mean time per word:2112, Asymmetric Merge:156, Sink:22, External Tail Test:243, Execution time = 203ms
+	Mean time per word:2112, Asymmetric Merge:156, Sink:22, External Tail Test:243, Execution time = 343ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1939,7 +1939,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:5, Transfer:9, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:10, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:730, Asymmetric Merge:17, Sink:4, External Tail Test:22, Execution time = 15ms
+	Mean time per word:730, Asymmetric Merge:17, Sink:4, External Tail Test:22, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -1959,7 +1959,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:0, LF recovery:2, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
-	Mean time per word:671, Asymmetric Merge:16, Sink:4, External Tail Test:12, Execution time = 15ms
+	Mean time per word:671, Asymmetric Merge:16, Sink:4, External Tail Test:12, Execution time = 31ms
 
 294. kuka ihailee Merjaa 
 
@@ -1971,7 +1971,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:833, Asymmetric Merge:9, Sink:4, External Tail Test:4, Execution time = 15ms
+	Mean time per word:833, Asymmetric Merge:9, Sink:4, External Tail Test:4, Execution time = 31ms
 
 295. kuka ei ihaile Merjaa 
 
@@ -1983,7 +1983,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:627, Asymmetric Merge:10, Sink:4, External Tail Test:4, Execution time = 15ms
+	Mean time per word:627, Asymmetric Merge:10, Sink:4, External Tail Test:4, Execution time = 31ms
 
 296. keta Pekka ei ihaile 
 
@@ -1995,7 +1995,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:1, Agree:2, Phi:4, Transfer:5, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:501, Asymmetric Merge:19, Sink:4, External Tail Test:12, Execution time = 31ms
+	Mean time per word:501, Asymmetric Merge:19, Sink:4, External Tail Test:12, Execution time = 15ms
 
 297. kenen taytyy ihailla Merjaa 
 
@@ -2019,7 +2019,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:1, Phi:6, Transfer:4, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:5, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, 
-	Mean time per word:631, Asymmetric Merge:17, Sink:5, External Tail Test:5, Execution time = 15ms
+	Mean time per word:631, Asymmetric Merge:17, Sink:5, External Tail Test:5, Execution time = 31ms
 
 299. kuka antoi kirjan Merjalle 
 
@@ -2031,7 +2031,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:1, Agree:1, Phi:4, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:6, Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, 
-	Mean time per word:643, Asymmetric Merge:18, Sink:6, External Tail Test:14, Execution time = 15ms
+	Mean time per word:643, Asymmetric Merge:18, Sink:6, External Tail Test:14, Execution time = 46ms
 
 300. kenen ei taydy ihailla Merjaa 
 
@@ -2055,7 +2055,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:2, Phi:8, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:6, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, 
-	Mean time per word:507, Asymmetric Merge:19, Sink:5, External Tail Test:6, Execution time = 15ms
+	Mean time per word:507, Asymmetric Merge:19, Sink:5, External Tail Test:6, Execution time = 31ms
 
 302. kuka kaskee Merjan_gen lahtea 
 
@@ -2067,7 +2067,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:3, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:742, Asymmetric Merge:14, Sink:5, External Tail Test:4, Execution time = 15ms
+	Mean time per word:742, Asymmetric Merge:14, Sink:5, External Tail Test:4, Execution time = 31ms
 
 303. kuka halusi ihailla Merjaa 
 
@@ -2079,7 +2079,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:1, Phi:5, Transfer:4, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:4, 
 	LF test:5, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:4, 
-	Mean time per word:742, Asymmetric Merge:12, Sink:6, External Tail Test:4, Execution time = 15ms
+	Mean time per word:742, Asymmetric Merge:12, Sink:6, External Tail Test:4, Execution time = 31ms
 
 304. kuka sanoo Merjan_gen lahtevan 
 
@@ -2091,7 +2091,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:3, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:14, Sink:5, External Tail Test:4, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:14, Sink:5, External Tail Test:4, Execution time = 31ms
 
 305. kuka sanoo lahtevansa 
 
@@ -2115,7 +2115,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:1, Phi:6, Transfer:5, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:17, Failed Transfer:3, LF recovery:5, 
 	LF test:7, Filter solution:7, Rank solution:0, Lexical retrieval:29, Morphological decomposition:5, 
-	Mean time per word:764, Asymmetric Merge:15, Sink:7, External Tail Test:6, Execution time = 15ms
+	Mean time per word:764, Asymmetric Merge:15, Sink:7, External Tail Test:6, Execution time = 46ms
 
 307. kuka nukkui lahella_1 Pekkaa 
 
@@ -2127,7 +2127,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:627, Asymmetric Merge:9, Sink:3, External Tail Test:4, Execution time = 15ms
+	Mean time per word:627, Asymmetric Merge:9, Sink:3, External Tail Test:4, Execution time = 31ms
 
 308. kuka sanoi etta Merja lahtee 
 
@@ -2139,7 +2139,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:1, Agree:2, Phi:5, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:14, Failed Transfer:2, LF recovery:3, 
 	LF test:9, Filter solution:5, Rank solution:0, Lexical retrieval:24, Morphological decomposition:4, 
-	Mean time per word:627, Asymmetric Merge:18, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:627, Asymmetric Merge:18, Sink:5, External Tail Test:12, Execution time = 46ms
 
 309. kuka sanoi etta Merja ihailee Pekkaa 
 
@@ -2151,7 +2151,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:1, Agree:2, Phi:6, Transfer:7, Item streamed into syntax:13, 
 	Feature Processing:0, Extraposition:0, Inflection:19, Failed Transfer:3, LF recovery:4, 
 	LF test:10, Filter solution:7, Rank solution:0, Lexical retrieval:32, Morphological decomposition:5, 
-	Mean time per word:685, Asymmetric Merge:21, Sink:7, External Tail Test:14, Execution time = 31ms
+	Mean time per word:685, Asymmetric Merge:21, Sink:7, External Tail Test:14, Execution time = 62ms
 
 310. kuka naki Merjan_acc lahtemassa 
 
@@ -2163,7 +2163,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:1, Inflection:13, Failed Transfer:1, LF recovery:4, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:755, Asymmetric Merge:12, Sink:5, External Tail Test:8, Execution time = 15ms
+	Mean time per word:755, Asymmetric Merge:12, Sink:5, External Tail Test:8, Execution time = 31ms
 
 311. who wants to_inf leave 
 
@@ -2175,7 +2175,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:1, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:4, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:13, Morphological decomposition:2, 
-	Mean time per word:422, Asymmetric Merge:9, Sink:3, External Tail Test:1, Execution time = 0ms
+	Mean time per word:422, Asymmetric Merge:9, Sink:3, External Tail Test:1, Execution time = 15ms
 
 312. who admires John 
 
@@ -2187,7 +2187,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:718, Asymmetric Merge:9, Sink:4, External Tail Test:1, Execution time = 15ms
+	Mean time per word:718, Asymmetric Merge:9, Sink:4, External Tail Test:1, Execution time = 46ms
 
 313. who does John admire' 
 
@@ -2211,7 +2211,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, 
-	Mean time per word:612, Asymmetric Merge:13, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:612, Asymmetric Merge:13, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2235,7 +2235,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:2, Move Adjunct:3, Agree:34, Phi:37, Transfer:77, Item streamed into syntax:26, 
 	Feature Processing:0, Extraposition:10, Inflection:4, Failed Transfer:71, LF recovery:3, 
 	LF test:106, Filter solution:11, Rank solution:0, Lexical retrieval:30, Morphological decomposition:4, 
-	Mean time per word:1386, Asymmetric Merge:219, Sink:11, External Tail Test:297, Execution time = 281ms
+	Mean time per word:1386, Asymmetric Merge:219, Sink:11, External Tail Test:297, Execution time = 500ms
 
 326. mita kaupunkia kohti Seine virtaa 
 
@@ -2247,7 +2247,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:9, Move Adjunct:10, Agree:17, Phi:20, Transfer:55, Item streamed into syntax:28, 
 	Feature Processing:0, Extraposition:15, Inflection:9, Failed Transfer:37, LF recovery:3, 
 	LF test:58, Filter solution:18, Rank solution:0, Lexical retrieval:37, Morphological decomposition:9, 
-	Mean time per word:1688, Asymmetric Merge:134, Sink:18, External Tail Test:186, Execution time = 203ms
+	Mean time per word:1688, Asymmetric Merge:134, Sink:18, External Tail Test:186, Execution time = 312ms
 
 327. mita kaupunkia kohti virtaamalla Seine saavuttaa meren 
 
@@ -2259,7 +2259,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:71, Move Adjunct:123, Agree:251, Phi:257, Transfer:765, Item streamed into syntax:294, 
 	Feature Processing:0, Extraposition:220, Inflection:62, Failed Transfer:519, LF recovery:6, 
 	LF test:786, Filter solution:229, Rank solution:0, Lexical retrieval:356, Morphological decomposition:64, 
-	Mean time per word:12266, Asymmetric Merge:2385, Sink:229, External Tail Test:4039, Execution time = 3515ms
+	Mean time per word:12266, Asymmetric Merge:2385, Sink:229, External Tail Test:4039, Execution time = 6359ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2279,7 +2279,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:9, Item streamed into syntax:13, 
 	Feature Processing:0, Extraposition:1, Inflection:15, Failed Transfer:3, LF recovery:4, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:28, Morphological decomposition:4, 
-	Mean time per word:401, Asymmetric Merge:16, Sink:5, External Tail Test:2, Execution time = 31ms
+	Mean time per word:401, Asymmetric Merge:16, Sink:5, External Tail Test:2, Execution time = 62ms
 
 333. Seine saavuttaa meren virtaamalla kohti Pariisia 
 
@@ -2291,7 +2291,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:16, Agree:19, Phi:25, Transfer:76, Item streamed into syntax:32, 
 	Feature Processing:0, Extraposition:19, Inflection:8, Failed Transfer:39, LF recovery:6, 
 	LF test:62, Filter solution:21, Rank solution:0, Lexical retrieval:40, Morphological decomposition:9, 
-	Mean time per word:1689, Asymmetric Merge:284, Sink:21, External Tail Test:479, Execution time = 312ms
+	Mean time per word:1689, Asymmetric Merge:284, Sink:21, External Tail Test:479, Execution time = 531ms
 
 334. se sopimus ostaa auto raukesi 
 
@@ -2303,7 +2303,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:6, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:4, Failed Transfer:1, LF recovery:5, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:4, 
-	Mean time per word:413, Asymmetric Merge:11, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:413, Asymmetric Merge:11, Sink:4, External Tail Test:0, Execution time = 31ms
 
 335. se Merjan_gen kello havisi 
 
@@ -2315,7 +2315,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:6, Phi:8, Transfer:8, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:5, LF recovery:2, 
 	LF test:10, Filter solution:5, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
-	Mean time per word:628, Asymmetric Merge:21, Sink:5, External Tail Test:6, Execution time = 31ms
+	Mean time per word:628, Asymmetric Merge:21, Sink:5, External Tail Test:6, Execution time = 46ms
 
 336. Pekka naki Merjan_acc ihailemassa Jukkaa 
 
@@ -2327,7 +2327,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:6, Transfer:7, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:1, Inflection:18, Failed Transfer:1, LF recovery:5, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:30, Morphological decomposition:5, 
-	Mean time per word:814, Asymmetric Merge:17, Sink:7, External Tail Test:16, Execution time = 31ms
+	Mean time per word:814, Asymmetric Merge:17, Sink:7, External Tail Test:16, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2345,7 +2345,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:0, Agree:2, Phi:5, Transfer:7, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:0, Inflection:16, Failed Transfer:2, LF recovery:3, 
 	LF test:10, Filter solution:5, Rank solution:0, Lexical retrieval:28, Morphological decomposition:4, 
-	Mean time per word:481, Asymmetric Merge:17, Sink:5, External Tail Test:0, Execution time = 31ms
+	Mean time per word:481, Asymmetric Merge:17, Sink:5, External Tail Test:0, Execution time = 46ms
 
 342. John asks whether Mary admires John 
 
@@ -2357,7 +2357,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:6, Transfer:6, Item streamed into syntax:13, 
 	Feature Processing:0, Extraposition:0, Inflection:17, Failed Transfer:3, LF recovery:4, 
 	LF test:9, Filter solution:7, Rank solution:0, Lexical retrieval:30, Morphological decomposition:5, 
-	Mean time per word:629, Asymmetric Merge:18, Sink:7, External Tail Test:0, Execution time = 15ms
+	Mean time per word:629, Asymmetric Merge:18, Sink:7, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2377,7 +2377,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:6, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:5, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:633, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 15ms
+	Mean time per word:633, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 31ms
 
 346. Pekka teki sen Merjan_gen kellon_n 
 
@@ -2407,7 +2407,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:4, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:2, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:509, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:509, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2439,7 +2439,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:2, Transfer:3, Item streamed into syntax:4, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:1, 
 	LF test:5, Filter solution:2, Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, 
-	Mean time per word:760, Asymmetric Merge:8, Sink:2, External Tail Test:8, Execution time = 0ms
+	Mean time per word:760, Asymmetric Merge:8, Sink:2, External Tail Test:8, Execution time = 15ms
 
 353. Pekka ihailee Merjaa 
 
@@ -2451,7 +2451,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:831, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:831, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 354. Pekka antoi kirjan Merjalle 
 
@@ -2463,7 +2463,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:642, Asymmetric Merge:21, Sink:6, External Tail Test:22, Execution time = 15ms
+	Mean time per word:642, Asymmetric Merge:21, Sink:6, External Tail Test:22, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2483,7 +2483,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:860, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:860, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 368. Pekka voitti Merjaa 
 
@@ -2495,7 +2495,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:860, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:860, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 46ms
 
 369. Pekka tonaisi Merjaa 
 
@@ -2519,7 +2519,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:790, Asymmetric Merge:11, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:790, Asymmetric Merge:11, Sink:5, External Tail Test:10, Execution time = 31ms
 
 371. Pekka pesi Merjaa 
 
@@ -2561,7 +2561,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:5, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:14, Failed Transfer:2, LF recovery:2, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:707, Asymmetric Merge:14, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:707, Asymmetric Merge:14, Sink:4, External Tail Test:10, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2579,7 +2579,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
-	Mean time per word:660, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 0ms
+	Mean time per word:660, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 383. me loydettiin avain_0acc 
 
@@ -2591,7 +2591,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
-	Mean time per word:743, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 0ms
+	Mean time per word:743, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2609,7 +2609,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:717, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:717, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 31ms
 
 388. Pekka halusi tonaista Merjaa 
 
@@ -2621,7 +2621,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:730, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:730, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 31ms
 
 389. Pekka halusi pesta Merjan 
 
@@ -2633,7 +2633,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:692, Asymmetric Merge:13, Sink:6, External Tail Test:10, Execution time = 15ms
+	Mean time per word:692, Asymmetric Merge:13, Sink:6, External Tail Test:10, Execution time = 46ms
 
 390. Pekka halusi loytaa avaimen 
 
@@ -2657,7 +2657,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:776, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:776, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 31ms
 
 392. me ei' haluttu voittaa Merjaa 
 
@@ -2669,7 +2669,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:2, LF recovery:3, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:569, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:569, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 393. me halusimme voittaa Merjan 
 
@@ -2681,7 +2681,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:698, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:698, Asymmetric Merge:13, Sink:5, External Tail Test:10, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2711,7 +2711,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:1, Transfer:2, Item streamed into syntax:3, 
 	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:0, LF recovery:1, 
 	LF test:3, Filter solution:1, Rank solution:0, Lexical retrieval:8, Morphological decomposition:1, 
-	Mean time per word:555, Asymmetric Merge:6, Sink:1, External Tail Test:6, Execution time = 0ms
+	Mean time per word:555, Asymmetric Merge:6, Sink:1, External Tail Test:6, Execution time = 15ms
 
 400. Merja nukkui Pekan_gen lahella_2 
 
@@ -2723,7 +2723,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:1, 
 	LF test:8, Filter solution:3, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:678, Asymmetric Merge:13, Sink:3, External Tail Test:9, Execution time = 15ms
+	Mean time per word:678, Asymmetric Merge:13, Sink:3, External Tail Test:9, Execution time = 31ms
 
 401. Merja nukkui lahella_1 Pekkaa 
 
@@ -2735,7 +2735,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:3, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:653, Asymmetric Merge:11, Sink:3, External Tail Test:10, Execution time = 15ms
+	Mean time per word:653, Asymmetric Merge:11, Sink:3, External Tail Test:10, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2753,7 +2753,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:735, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:735, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 404. Pekka sanoi Merjan_gen lahtevan 
 
@@ -2777,7 +2777,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:4, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:14, Sink:6, External Tail Test:10, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:14, Sink:6, External Tail Test:10, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2795,7 +2795,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:6, Phi:8, Transfer:8, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:5, LF recovery:2, 
 	LF test:10, Filter solution:5, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
-	Mean time per word:628, Asymmetric Merge:21, Sink:5, External Tail Test:6, Execution time = 31ms
+	Mean time per word:628, Asymmetric Merge:21, Sink:5, External Tail Test:6, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2813,7 +2813,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:6, Transfer:8, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:1, Inflection:1, Failed Transfer:5, LF recovery:3, 
 	LF test:8, Filter solution:3, Rank solution:0, Lexical retrieval:8, Morphological decomposition:2, 
-	Mean time per word:406, Asymmetric Merge:10, Sink:3, External Tail Test:8, Execution time = 0ms
+	Mean time per word:406, Asymmetric Merge:10, Sink:3, External Tail Test:8, Execution time = 31ms
 
 417. ne kahdet sukat havisivat 
 
@@ -2837,7 +2837,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:6, Transfer:8, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:1, Inflection:2, Failed Transfer:3, LF recovery:3, 
 	LF test:8, Filter solution:3, Rank solution:0, Lexical retrieval:9, Morphological decomposition:2, 
-	Mean time per word:458, Asymmetric Merge:10, Sink:3, External Tail Test:8, Execution time = 15ms
+	Mean time per word:458, Asymmetric Merge:10, Sink:3, External Tail Test:8, Execution time = 46ms
 
 419. Pekka loysi ne kaksi_2 sukkaa 
 
@@ -2861,7 +2861,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:6, Phi:10, Transfer:13, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:1, Inflection:10, Failed Transfer:6, LF recovery:4, 
 	LF test:14, Filter solution:6, Rank solution:0, Lexical retrieval:22, Morphological decomposition:6, 
-	Mean time per word:598, Asymmetric Merge:32, Sink:6, External Tail Test:30, Execution time = 31ms
+	Mean time per word:598, Asymmetric Merge:32, Sink:6, External Tail Test:30, Execution time = 62ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2881,7 +2881,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:7, Phi:11, Transfer:20, Item streamed into syntax:15, 
 	Feature Processing:0, Extraposition:3, Inflection:7, Failed Transfer:7, LF recovery:4, 
 	LF test:19, Filter solution:10, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:944, Asymmetric Merge:54, Sink:10, External Tail Test:76, Execution time = 46ms
+	Mean time per word:944, Asymmetric Merge:54, Sink:10, External Tail Test:76, Execution time = 109ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2899,7 +2899,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, Agree:5, Phi:6, Transfer:19, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:3, Inflection:9, Failed Transfer:12, LF recovery:1, 
 	LF test:24, Filter solution:2, Rank solution:0, Lexical retrieval:16, Morphological decomposition:5, 
-	Mean time per word:789, Asymmetric Merge:36, Sink:2, External Tail Test:68, Execution time = 46ms
+	Mean time per word:789, Asymmetric Merge:36, Sink:2, External Tail Test:68, Execution time = 78ms
 
 432. Pekka ei nukkunut koko paivaa 
 
@@ -2911,7 +2911,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:7, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:1, Inflection:8, Failed Transfer:3, LF recovery:1, 
 	LF test:9, Filter solution:2, Rank solution:0, Lexical retrieval:15, Morphological decomposition:4, 
-	Mean time per word:442, Asymmetric Merge:13, Sink:2, External Tail Test:13, Execution time = 15ms
+	Mean time per word:442, Asymmetric Merge:13, Sink:2, External Tail Test:13, Execution time = 31ms
 
 433. me nukuttiin koko paiva 
 
@@ -2935,7 +2935,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, Agree:4, Phi:6, Transfer:18, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:1, Inflection:14, Failed Transfer:6, LF recovery:2, 
 	LF test:23, Filter solution:4, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:754, Asymmetric Merge:40, Sink:4, External Tail Test:73, Execution time = 46ms
+	Mean time per word:754, Asymmetric Merge:40, Sink:4, External Tail Test:73, Execution time = 93ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -2973,7 +2973,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
-	Mean time per word:660, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:660, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 449. me loydettiin avain_0acc 
 
@@ -3009,7 +3009,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:4, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:3, Failed Transfer:1, LF recovery:3, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:8, Morphological decomposition:2, 
-	Mean time per word:777, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 0ms
+	Mean time per word:777, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 15ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -3027,7 +3027,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:1, Transfer:4, Item streamed into syntax:6, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:0, 
 	LF test:6, Filter solution:3, Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:681, Asymmetric Merge:10, Sink:3, External Tail Test:10, Execution time = 0ms
+	Mean time per word:681, Asymmetric Merge:10, Sink:3, External Tail Test:10, Execution time = 31ms
 
 455. Merjalla on' Pekka 
 
@@ -3051,7 +3051,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:2, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:1, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:595, Asymmetric Merge:13, Sink:4, External Tail Test:12, Execution time = 15ms
+	Mean time per word:595, Asymmetric Merge:13, Sink:4, External Tail Test:12, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -3071,7 +3071,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 460. sina ihailet Merjaa 
 
@@ -3083,7 +3083,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 461. han ihailee Merjaa 
 
@@ -3119,7 +3119,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:798, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:798, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 464. he_FI ihailevat Merjaa 
 
@@ -3143,7 +3143,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:646, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:646, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 466. you admire Mary 
 
@@ -3167,7 +3167,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:708, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:708, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 468. she admires Mary 
 
@@ -3179,7 +3179,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:725, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:725, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 469. John admires Mary 
 
@@ -3215,7 +3215,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:730, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:730, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 472. they admire Mary 
 
@@ -3227,7 +3227,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:696, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 0ms
+	Mean time per word:696, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
 
 473. io adoro Luisa 
 
@@ -3251,7 +3251,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:663, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:663, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 475. lui adora Luisa 
 
@@ -3263,7 +3263,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:716, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:716, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 476. lei adora Luisa 
 
@@ -3275,7 +3275,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:716, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:716, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 46ms
 
 477. noi adoriamo Luisa 
 
@@ -3329,7 +3329,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:10, Sink:4, External Tail Test:8, Execution time = 15ms
+	Mean time per word:815, Asymmetric Merge:10, Sink:4, External Tail Test:8, Execution time = 31ms
 
 517. ihailen Merjaa mina 
 
@@ -3341,7 +3341,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:10, Sink:4, External Tail Test:9, Execution time = 15ms
+	Mean time per word:815, Asymmetric Merge:10, Sink:4, External Tail Test:9, Execution time = 31ms
 
 518. ihailet sina Merjaa 
 
@@ -3353,7 +3353,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:10, Sink:4, External Tail Test:8, Execution time = 15ms
+	Mean time per word:815, Asymmetric Merge:10, Sink:4, External Tail Test:8, Execution time = 31ms
 
 519. ihailet Merjaa sina 
 
@@ -3365,7 +3365,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:10, Sink:4, External Tail Test:9, Execution time = 15ms
+	Mean time per word:815, Asymmetric Merge:10, Sink:4, External Tail Test:9, Execution time = 31ms
 
 520. ihailette Merjaa te 
 
@@ -3377,7 +3377,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:798, Asymmetric Merge:10, Sink:4, External Tail Test:9, Execution time = 15ms
+	Mean time per word:798, Asymmetric Merge:10, Sink:4, External Tail Test:9, Execution time = 46ms
 
 521. ihailemme me Merjaa 
 
@@ -3401,7 +3401,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:798, Asymmetric Merge:10, Sink:4, External Tail Test:9, Execution time = 15ms
+	Mean time per word:798, Asymmetric Merge:10, Sink:4, External Tail Test:9, Execution time = 31ms
 
 523. ihailette te Merjaa 
 
@@ -3413,7 +3413,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:798, Asymmetric Merge:10, Sink:4, External Tail Test:8, Execution time = 15ms
+	Mean time per word:798, Asymmetric Merge:10, Sink:4, External Tail Test:8, Execution time = 31ms
 
 524. mina ihailen Merjaa 
 
@@ -3425,7 +3425,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 525. mina Merjaa ihailen 
 
@@ -3437,7 +3437,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:828, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 15ms
+	Mean time per word:828, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 31ms
 
 526. Merjaa mina ihailen 
 
@@ -3449,7 +3449,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:828, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 15ms
+	Mean time per word:828, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 46ms
 
 527. Merjaa ihailen mina 
 
@@ -3473,7 +3473,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:815, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 529. sina Merjaa ihailet 
 
@@ -3497,7 +3497,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:828, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 15ms
+	Mean time per word:828, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 31ms
 
 531. Merjaa ihailet sina 
 
@@ -3533,7 +3533,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:836, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 15ms
+	Mean time per word:836, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 31ms
 
 534. Merjaa han ihailee 
 
@@ -3545,7 +3545,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:836, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 15ms
+	Mean time per word:836, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 31ms
 
 535. Merjaa ihailee han 
 
@@ -3557,7 +3557,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:4, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:841, Asymmetric Merge:16, Sink:4, External Tail Test:19, Execution time = 15ms
+	Mean time per word:841, Asymmetric Merge:16, Sink:4, External Tail Test:19, Execution time = 31ms
 
 536. me ihailemme Merjaa 
 
@@ -3617,7 +3617,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:798, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 0ms
+	Mean time per word:798, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 541. te Merjaa ihailette 
 
@@ -3629,7 +3629,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:811, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 0ms
+	Mean time per word:811, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 31ms
 
 542. Merjaa te ihailette 
 
@@ -3641,7 +3641,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:811, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 15ms
+	Mean time per word:811, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 31ms
 
 543. Merjaa ihailette te 
 
@@ -3653,7 +3653,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:810, Asymmetric Merge:16, Sink:4, External Tail Test:19, Execution time = 15ms
+	Mean time per word:810, Asymmetric Merge:16, Sink:4, External Tail Test:19, Execution time = 31ms
 
 544. he_FI ihailevat Merjaa 
 
@@ -3677,7 +3677,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:861, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 15ms
+	Mean time per word:861, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 31ms
 
 546. Merjaa he_FI ihailevat 
 
@@ -3689,7 +3689,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:861, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 15ms
+	Mean time per word:861, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 31ms
 
 547. Merjaa ihailevat he_FI 
 
@@ -3747,7 +3747,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, 
-	Mean time per word:850, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 0ms
+	Mean time per word:850, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 15ms
 
 735. ihailette Merjaa 
 
@@ -3759,7 +3759,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, 
-	Mean time per word:850, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 0ms
+	Mean time per word:850, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 15ms
 
 736. adoro Luisa 
 
@@ -3783,7 +3783,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, 
-	Mean time per word:720, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 15ms
+	Mean time per word:720, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 31ms
 
 738. adora Luisa 
 
@@ -3795,7 +3795,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, 
-	Mean time per word:720, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 0ms
+	Mean time per word:720, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 15ms
 
 739. adora Luisa 
 
@@ -3831,7 +3831,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, 
-	Mean time per word:745, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 0ms
+	Mean time per word:745, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 31ms
 
 742. adorano Luisa 
 
@@ -3843,7 +3843,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, 
-	Mean time per word:745, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 0ms
+	Mean time per word:745, Asymmetric Merge:4, Sink:3, External Tail Test:0, Execution time = 15ms
 
 743. lavano Luisa 
 
@@ -3867,7 +3867,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:5, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:3, 
 	LF test:3, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:600, Asymmetric Merge:6, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:600, Asymmetric Merge:6, Sink:4, External Tail Test:0, Execution time = 31ms
 
 745. hanno lavato Luisa 
 
@@ -3891,7 +3891,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:6, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:4, 
 	LF test:4, Filter solution:4, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
-	Mean time per word:638, Asymmetric Merge:6, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:638, Asymmetric Merge:6, Sink:4, External Tail Test:0, Execution time = 31ms
 
 747. hanno voluto lavare Luisa 
 
@@ -3903,7 +3903,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:9, Transfer:4, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:6, 
 	LF test:4, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:611, Asymmetric Merge:9, Sink:6, External Tail Test:0, Execution time = 15ms
+	Mean time per word:611, Asymmetric Merge:9, Sink:6, External Tail Test:0, Execution time = 46ms
 
 748. stanno lavando Luisa 
 
@@ -3915,7 +3915,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:5, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:3, 
 	LF test:3, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:600, Asymmetric Merge:6, Sink:4, External Tail Test:0, Execution time = 0ms
+	Mean time per word:600, Asymmetric Merge:6, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -3957,7 +3957,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:3, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:3, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:2, 
-	Mean time per word:880, Asymmetric Merge:10, Sink:3, External Tail Test:10, Execution time = 0ms
+	Mean time per word:880, Asymmetric Merge:10, Sink:3, External Tail Test:10, Execution time = 15ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -3977,7 +3977,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:7, Transfer:6, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:5, 
 	LF test:8, Filter solution:6, Rank solution:0, Lexical retrieval:24, Morphological decomposition:4, 
-	Mean time per word:656, Asymmetric Merge:15, Sink:6, External Tail Test:10, Execution time = 15ms
+	Mean time per word:656, Asymmetric Merge:15, Sink:6, External Tail Test:10, Execution time = 46ms
 
 & Ungrammatical (antecedent missing) -------------------------------------------------------
 
@@ -4033,7 +4033,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:4, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:504, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:504, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4051,7 +4051,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:636, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 15ms
+	Mean time per word:636, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 109ms
 
 773. John tries to_inf leave 
 
@@ -4093,7 +4093,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 778. Pekka haluaa Merjan_gen lahtevan 
 
@@ -4105,7 +4105,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:752, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:752, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 779. John persuades Mary to_inf leave 
 
@@ -4117,7 +4117,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:3, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:542, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:542, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4137,7 +4137,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:9, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:11, Filter solution:6, Rank solution:0, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:792, Asymmetric Merge:25, Sink:6, External Tail Test:29, Execution time = 31ms
+	Mean time per word:792, Asymmetric Merge:25, Sink:6, External Tail Test:29, Execution time = 46ms
 
 784. John promises Mary to_inf leave 
 
@@ -4149,7 +4149,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:5, Phi:9, Transfer:16, Item streamed into syntax:9, 
 	Feature Processing:2, Extraposition:3, Inflection:11, Failed Transfer:11, LF recovery:4, 
 	LF test:18, Filter solution:3, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:648, Asymmetric Merge:27, Sink:3, External Tail Test:2, Execution time = 46ms
+	Mean time per word:648, Asymmetric Merge:27, Sink:3, External Tail Test:2, Execution time = 93ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4167,7 +4167,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:3, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:542, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:542, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4187,7 +4187,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:4, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:666, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:666, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 31ms
 
 & Generic null subject -------------------------------------------------------
 
@@ -4201,7 +4201,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:3, LF recovery:4, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, 
-	Mean time per word:525, Asymmetric Merge:14, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:525, Asymmetric Merge:14, Sink:5, External Tail Test:10, Execution time = 31ms
 
 789. tassa istuu mukavasti 
 
@@ -4213,7 +4213,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:4, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:4, Failed Transfer:1, LF recovery:3, 
 	LF test:4, Filter solution:4, Rank solution:0, Lexical retrieval:11, Morphological decomposition:4, 
-	Mean time per word:573, Asymmetric Merge:8, Sink:4, External Tail Test:2, Execution time = 0ms
+	Mean time per word:573, Asymmetric Merge:8, Sink:4, External Tail Test:2, Execution time = 15ms
 
 790. Pekka sanoo etta tassa istuu mukavasti 
 
@@ -4225,7 +4225,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:7, Transfer:7, Item streamed into syntax:13, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:3, LF recovery:5, 
 	LF test:9, Filter solution:7, Rank solution:0, Lexical retrieval:23, Morphological decomposition:6, 
-	Mean time per word:555, Asymmetric Merge:19, Sink:7, External Tail Test:10, Execution time = 31ms
+	Mean time per word:555, Asymmetric Merge:19, Sink:7, External Tail Test:10, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4247,7 +4247,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:741, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 0ms
+	Mean time per word:741, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
 
 793. Mary admires John 
 
@@ -4259,7 +4259,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:741, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:9, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4277,7 +4277,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:831, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 0ms
+	Mean time per word:831, Asymmetric Merge:11, Sink:4, External Tail Test:10, Execution time = 15ms
 
 799. Pekka Merjaa ihailee 
 
@@ -4289,7 +4289,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:845, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 0ms
+	Mean time per word:845, Asymmetric Merge:20, Sink:4, External Tail Test:24, Execution time = 31ms
 
 800. Merjaa Pekka ihailee 
 
@@ -4301,7 +4301,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:3, Transfer:5, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:845, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 0ms
+	Mean time per word:845, Asymmetric Merge:19, Sink:4, External Tail Test:22, Execution time = 31ms
 
 801. Merjaa ihailee Pekka 
 
@@ -4333,7 +4333,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:642, Asymmetric Merge:21, Sink:6, External Tail Test:22, Execution time = 15ms
+	Mean time per word:642, Asymmetric Merge:21, Sink:6, External Tail Test:22, Execution time = 31ms
 
 805. Pekka antoi Merjalle kirjan 
 
@@ -4345,7 +4345,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:1, Inflection:8, Failed Transfer:2, LF recovery:3, 
 	LF test:8, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:643, Asymmetric Merge:16, Sink:6, External Tail Test:13, Execution time = 31ms
+	Mean time per word:643, Asymmetric Merge:16, Sink:6, External Tail Test:13, Execution time = 46ms
 
 806. Pekka kirjan antoi Merjalle 
 
@@ -4357,7 +4357,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:642, Asymmetric Merge:23, Sink:6, External Tail Test:26, Execution time = 15ms
+	Mean time per word:642, Asymmetric Merge:23, Sink:6, External Tail Test:26, Execution time = 46ms
 
 807. Pekka kirjan Merjalle antoi 
 
@@ -4369,7 +4369,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:1, Phi:4, Transfer:7, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:0, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:646, Asymmetric Merge:36, Sink:6, External Tail Test:45, Execution time = 31ms
+	Mean time per word:646, Asymmetric Merge:36, Sink:6, External Tail Test:45, Execution time = 62ms
 
 808. Pekka Merjalle antoi kirjan 
 
@@ -4393,7 +4393,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:1, Phi:4, Transfer:7, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:0, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:646, Asymmetric Merge:35, Sink:6, External Tail Test:43, Execution time = 15ms
+	Mean time per word:646, Asymmetric Merge:35, Sink:6, External Tail Test:43, Execution time = 46ms
 
 810. kirjan Pekka antoi Merjalle 
 
@@ -4405,7 +4405,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:642, Asymmetric Merge:22, Sink:6, External Tail Test:24, Execution time = 31ms
+	Mean time per word:642, Asymmetric Merge:22, Sink:6, External Tail Test:24, Execution time = 46ms
 
 811. kirjan Pekka Merjalle antoi 
 
@@ -4417,7 +4417,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:1, Phi:4, Transfer:7, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:0, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:646, Asymmetric Merge:35, Sink:6, External Tail Test:43, Execution time = 31ms
+	Mean time per word:646, Asymmetric Merge:35, Sink:6, External Tail Test:43, Execution time = 46ms
 
 812. kirjan antoi Pekka Merjalle 
 
@@ -4429,7 +4429,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:5, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:4, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:647, Asymmetric Merge:20, Sink:6, External Tail Test:20, Execution time = 15ms
+	Mean time per word:647, Asymmetric Merge:20, Sink:6, External Tail Test:20, Execution time = 46ms
 
 813. kirjan antoi Merjalle Pekka 
 
@@ -4453,7 +4453,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:1, Phi:4, Transfer:7, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:0, LF recovery:3, 
 	LF test:9, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:646, Asymmetric Merge:34, Sink:6, External Tail Test:41, Execution time = 15ms
+	Mean time per word:646, Asymmetric Merge:34, Sink:6, External Tail Test:41, Execution time = 46ms
 
 815. kirjan Merjalle antoi Pekka 
 
@@ -4465,7 +4465,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, Agree:3, Phi:7, Transfer:12, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:4, 
 	LF test:13, Filter solution:7, Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, 
-	Mean time per word:739, Asymmetric Merge:52, Sink:7, External Tail Test:70, Execution time = 31ms
+	Mean time per word:739, Asymmetric Merge:52, Sink:7, External Tail Test:70, Execution time = 78ms
 
 816. Merjalle Pekka antoi kirjan 
 
@@ -4477,7 +4477,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:3, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:636, Asymmetric Merge:24, Sink:6, External Tail Test:25, Execution time = 15ms
+	Mean time per word:636, Asymmetric Merge:24, Sink:6, External Tail Test:25, Execution time = 31ms
 
 817. Merjalle Pekka kirjan antoi 
 
@@ -4501,7 +4501,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:5, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:4, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:641, Asymmetric Merge:22, Sink:6, External Tail Test:21, Execution time = 15ms
+	Mean time per word:641, Asymmetric Merge:22, Sink:6, External Tail Test:21, Execution time = 46ms
 
 819. Merjalle antoi kirjan Pekka 
 
@@ -4513,7 +4513,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:1, Phi:5, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:4, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:641, Asymmetric Merge:22, Sink:6, External Tail Test:22, Execution time = 15ms
+	Mean time per word:641, Asymmetric Merge:22, Sink:6, External Tail Test:22, Execution time = 62ms
 
 820. Merjalle kirjan Pekka antoi 
 
@@ -4537,7 +4537,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:8, Agree:5, Phi:9, Transfer:17, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:4, 
 	LF test:19, Filter solution:8, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:835, Asymmetric Merge:72, Sink:8, External Tail Test:103, Execution time = 93ms
+	Mean time per word:835, Asymmetric Merge:72, Sink:8, External Tail Test:103, Execution time = 140ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4555,7 +4555,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:4, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:2, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:375, Asymmetric Merge:12, Sink:4, External Tail Test:1, Execution time = 15ms
+	Mean time per word:375, Asymmetric Merge:12, Sink:4, External Tail Test:1, Execution time = 31ms
 
 829. the key gave John to Mary 
 
@@ -4567,7 +4567,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:16, Phi:20, Transfer:118, Item streamed into syntax:56, 
 	Feature Processing:0, Extraposition:35, Inflection:60, Failed Transfer:86, LF recovery:4, 
 	LF test:126, Filter solution:37, Rank solution:0, Lexical retrieval:116, Morphological decomposition:13, 
-	Mean time per word:2939, Asymmetric Merge:157, Sink:37, External Tail Test:150, Execution time = 390ms
+	Mean time per word:2939, Asymmetric Merge:157, Sink:37, External Tail Test:150, Execution time = 703ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4599,7 +4599,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:4, Transfer:6, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:9, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:631, Asymmetric Merge:23, Sink:4, External Tail Test:24, Execution time = 15ms
+	Mean time per word:631, Asymmetric Merge:23, Sink:4, External Tail Test:24, Execution time = 31ms
 
 854. Pekka Merjaa ei ihaile 
 
@@ -4611,7 +4611,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:4, Transfer:6, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:9, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:631, Asymmetric Merge:24, Sink:4, External Tail Test:26, Execution time = 15ms
+	Mean time per word:631, Asymmetric Merge:24, Sink:4, External Tail Test:26, Execution time = 31ms
 
 855. Merjaa Pekka ei ihaile 
 
@@ -4623,7 +4623,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:4, Transfer:6, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:9, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:631, Asymmetric Merge:23, Sink:4, External Tail Test:24, Execution time = 15ms
+	Mean time per word:631, Asymmetric Merge:23, Sink:4, External Tail Test:24, Execution time = 31ms
 
 856. Merjaa ei Pekka ihaile 
 
@@ -4635,7 +4635,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:5, Transfer:6, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:636, Asymmetric Merge:22, Sink:4, External Tail Test:26, Execution time = 15ms
+	Mean time per word:636, Asymmetric Merge:22, Sink:4, External Tail Test:26, Execution time = 31ms
 
 857. Merjaa ei ihaile Pekka 
 
@@ -4647,7 +4647,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:5, Transfer:6, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:2, LF recovery:3, 
 	LF test:8, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:635, Asymmetric Merge:20, Sink:4, External Tail Test:21, Execution time = 31ms
+	Mean time per word:635, Asymmetric Merge:20, Sink:4, External Tail Test:21, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4665,7 +4665,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:527, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 15ms
+	Mean time per word:527, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 31ms
 
 877. Mary does admire' John 
 
@@ -4677,7 +4677,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:3, Rank solution:0, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:527, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 15ms
+	Mean time per word:527, Asymmetric Merge:9, Sink:3, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4733,7 +4733,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:4, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:504, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:504, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 31ms
 
 941. Mary wants to_inf leave John 
 
@@ -4757,7 +4757,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:4, 
 	LF test:7, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:504, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:504, Asymmetric Merge:14, Sink:4, External Tail Test:0, Execution time = 31ms
 
 943. John wants to_inf leave Mary 
 
@@ -4769,7 +4769,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:4, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:497, Asymmetric Merge:11, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:497, Asymmetric Merge:11, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4791,7 +4791,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:1, Phi:4, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:6, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:13, Morphological decomposition:3, 
-	Mean time per word:636, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 0ms
+	Mean time per word:636, Asymmetric Merge:11, Sink:4, External Tail Test:8, Execution time = 31ms
 
 1060. haluaa#C/op Pekka lahtea 
 
@@ -4803,7 +4803,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:1, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:15, Morphological decomposition:4, 
-	Mean time per word:795, Asymmetric Merge:14, Sink:5, External Tail Test:10, Execution time = 0ms
+	Mean time per word:795, Asymmetric Merge:14, Sink:5, External Tail Test:10, Execution time = 31ms
 
 1061. Pekka kaskee Merjan_gen lahtea 
 
@@ -4815,7 +4815,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4833,7 +4833,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:16, Sink:5, External Tail Test:10, Execution time = 31ms
 
 1068. Pekka Merjan_gen kaskee lahtea 
 
@@ -4845,7 +4845,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:20, Sink:5, External Tail Test:14, Execution time = 15ms
+	Mean time per word:741, Asymmetric Merge:20, Sink:5, External Tail Test:14, Execution time = 46ms
 
 1069. Merjan_gen Pekka kaskee lahtea 
 
@@ -4857,7 +4857,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:741, Asymmetric Merge:20, Sink:5, External Tail Test:14, Execution time = 31ms
+	Mean time per word:741, Asymmetric Merge:20, Sink:5, External Tail Test:14, Execution time = 46ms
 
 1070. Merjan_gen kaskee Pekka lahtea 
 
@@ -4869,7 +4869,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:4, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:746, Asymmetric Merge:17, Sink:5, External Tail Test:11, Execution time = 15ms
+	Mean time per word:746, Asymmetric Merge:17, Sink:5, External Tail Test:11, Execution time = 31ms
 
 1071. Merjan_gen kaskee lahtea Pekka 
 
@@ -4881,7 +4881,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:6, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:1, Inflection:12, Failed Transfer:1, LF recovery:4, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:746, Asymmetric Merge:18, Sink:5, External Tail Test:14, Execution time = 15ms
+	Mean time per word:746, Asymmetric Merge:18, Sink:5, External Tail Test:14, Execution time = 46ms
 
 1072. kaskee#C/op Pekka Merjan_gen lahtea 
 
@@ -4893,7 +4893,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:860, Asymmetric Merge:19, Sink:6, External Tail Test:12, Execution time = 15ms
+	Mean time per word:860, Asymmetric Merge:19, Sink:6, External Tail Test:12, Execution time = 31ms
 
 1073. lahtea#C/op Pekka Merjan_gen kaskee 
 
@@ -4905,7 +4905,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:860, Asymmetric Merge:25, Sink:6, External Tail Test:16, Execution time = 15ms
+	Mean time per word:860, Asymmetric Merge:25, Sink:6, External Tail Test:16, Execution time = 31ms
 
 1074. Merjan_gen lahtea kaskee Pekka 
 
@@ -4917,7 +4917,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:4, Agree:6, Phi:11, Transfer:17, Item streamed into syntax:15, 
 	Feature Processing:4, Extraposition:2, Inflection:17, Failed Transfer:10, LF recovery:5, 
 	LF test:20, Filter solution:10, Rank solution:0, Lexical retrieval:32, Morphological decomposition:5, 
-	Mean time per word:1233, Asymmetric Merge:56, Sink:10, External Tail Test:58, Execution time = 62ms
+	Mean time per word:1233, Asymmetric Merge:56, Sink:10, External Tail Test:58, Execution time = 125ms
 
 1075. Pekka Merjan_gen lahtea kaskee 
 
@@ -4929,7 +4929,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:1, Move Adjunct:2, Agree:2, Phi:6, Transfer:8, Item streamed into syntax:11, 
 	Feature Processing:2, Extraposition:0, Inflection:12, Failed Transfer:2, LF recovery:4, 
 	LF test:10, Filter solution:7, Rank solution:0, Lexical retrieval:23, Morphological decomposition:4, 
-	Mean time per word:832, Asymmetric Merge:31, Sink:7, External Tail Test:28, Execution time = 31ms
+	Mean time per word:832, Asymmetric Merge:31, Sink:7, External Tail Test:28, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -4963,7 +4963,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:3, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:1, 
 	LF test:4, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, 
-	Mean time per word:902, Asymmetric Merge:10, Sink:3, External Tail Test:10, Execution time = 15ms
+	Mean time per word:902, Asymmetric Merge:10, Sink:3, External Tail Test:10, Execution time = 31ms
 
 1095. ihailee#foc Pekka Merjaa 
 
@@ -4975,7 +4975,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:990, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:990, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 31ms
 
 1096. ihailee#C/op Pekka Merjaa 
 
@@ -4999,7 +4999,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, 
-	Mean time per word:843, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:843, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 31ms
 
 1098. myi#C/op Pekka omaisuutensa 
 
@@ -5011,7 +5011,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, 
-	Mean time per word:851, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:851, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 31ms
 
 1099. antoi#foc Pekka avaimen Merjalle 
 
@@ -5023,7 +5023,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:5, Transfer:6, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:7, Rank solution:0, Lexical retrieval:20, Morphological decomposition:5, 
-	Mean time per word:755, Asymmetric Merge:25, Sink:7, External Tail Test:26, Execution time = 15ms
+	Mean time per word:755, Asymmetric Merge:25, Sink:7, External Tail Test:26, Execution time = 46ms
 
 1100. antoi#C/op Pekka avaimen Merjalle 
 
@@ -5035,7 +5035,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:5, Transfer:6, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:7, Rank solution:0, Lexical retrieval:20, Morphological decomposition:5, 
-	Mean time per word:761, Asymmetric Merge:25, Sink:7, External Tail Test:26, Execution time = 31ms
+	Mean time per word:761, Asymmetric Merge:25, Sink:7, External Tail Test:26, Execution time = 46ms
 
 & Neg-to-C* movement -------------------------------------------------------
 
@@ -5049,7 +5049,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:2, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:715, Asymmetric Merge:17, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:715, Asymmetric Merge:17, Sink:5, External Tail Test:12, Execution time = 31ms
 
 1102. ei#C/op Pekan_gen taydy ihailla Merjaa 
 
@@ -5061,7 +5061,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:9, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:6, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, 
-	Mean time per word:672, Asymmetric Merge:18, Sink:6, External Tail Test:7, Execution time = 15ms
+	Mean time per word:672, Asymmetric Merge:18, Sink:6, External Tail Test:7, Execution time = 31ms
 
 1103. ei#C/op Pekka halua ihailla Merjaa 
 
@@ -5073,7 +5073,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:4, 
 	LF test:7, Filter solution:7, Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, 
-	Mean time per word:666, Asymmetric Merge:20, Sink:7, External Tail Test:12, Execution time = 31ms
+	Mean time per word:666, Asymmetric Merge:20, Sink:7, External Tail Test:12, Execution time = 46ms
 
 1104. ei#C/op Pekka ollut ihaillut Merjaa 
 
@@ -5085,7 +5085,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:4, Phi:6, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:15, Failed Transfer:3, LF recovery:2, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, 
-	Mean time per word:659, Asymmetric Merge:20, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:659, Asymmetric Merge:20, Sink:5, External Tail Test:12, Execution time = 93ms
 
 1105. ei#C/op Pekka myynyt omaisuuttaan 
 
@@ -5109,7 +5109,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:9, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:6, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, 
-	Mean time per word:592, Asymmetric Merge:18, Sink:6, External Tail Test:7, Execution time = 15ms
+	Mean time per word:592, Asymmetric Merge:18, Sink:6, External Tail Test:7, Execution time = 31ms
 
 1107. ei#C/op Pekka halua myyda omaisuuttaan 
 
@@ -5121,7 +5121,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:4, 
 	LF test:7, Filter solution:7, Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, 
-	Mean time per word:586, Asymmetric Merge:20, Sink:7, External Tail Test:12, Execution time = 31ms
+	Mean time per word:586, Asymmetric Merge:20, Sink:7, External Tail Test:12, Execution time = 46ms
 
 1108. ei#C/op Pekka ollut myynyt omaisuuttaan 
 
@@ -5133,7 +5133,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:4, Phi:6, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:6, 
-	Mean time per word:601, Asymmetric Merge:20, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:601, Asymmetric Merge:20, Sink:5, External Tail Test:12, Execution time = 46ms
 
 & Modal-to-C* -------------------------------------------------------
 
@@ -5159,7 +5159,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:7, Transfer:4, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:5, 
 	LF test:5, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, 
-	Mean time per word:762, Asymmetric Merge:16, Sink:6, External Tail Test:6, Execution time = 15ms
+	Mean time per word:762, Asymmetric Merge:16, Sink:6, External Tail Test:6, Execution time = 31ms
 
 & Want-to-C* -------------------------------------------------------
 
@@ -5173,7 +5173,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:4, 
 	LF test:6, Filter solution:7, Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, 
-	Mean time per word:860, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 15ms
+	Mean time per word:860, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 31ms
 
 1112. haluaa#C/op Pekka myyda omaisuuttaan 
 
@@ -5199,7 +5199,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:14, Failed Transfer:2, LF recovery:3, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, 
-	Mean time per word:835, Asymmetric Merge:16, Sink:6, External Tail Test:12, Execution time = 15ms
+	Mean time per word:835, Asymmetric Merge:16, Sink:6, External Tail Test:12, Execution time = 31ms
 
 1114. on'#C/op Pekka myynyt omaisuuttaan 
 
@@ -5211,7 +5211,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:2, LF recovery:3, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:20, Morphological decomposition:5, 
-	Mean time per word:762, Asymmetric Merge:16, Sink:6, External Tail Test:12, Execution time = 15ms
+	Mean time per word:762, Asymmetric Merge:16, Sink:6, External Tail Test:12, Execution time = 31ms
 
 & X-to-C, with dormal C-feature C/fin -------------------------------------------------------
 
@@ -5225,7 +5225,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:953, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 0ms
+	Mean time per word:953, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 15ms
 
 1116. ei#C/fin Pekka ihaile Merjaa 
 
@@ -5237,7 +5237,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:2, LF recovery:2, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, 
-	Mean time per word:681, Asymmetric Merge:17, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:681, Asymmetric Merge:17, Sink:5, External Tail Test:12, Execution time = 31ms
 
 1117. taytyy#C/fin Pekan_gen ihailla Merjaa 
 
@@ -5249,7 +5249,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:7, Transfer:4, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:5, 
 	LF test:5, Filter solution:6, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:828, Asymmetric Merge:16, Sink:6, External Tail Test:6, Execution time = 15ms
+	Mean time per word:828, Asymmetric Merge:16, Sink:6, External Tail Test:6, Execution time = 31ms
 
 1118. haluaa#C/fin Pekka ihailla Merjaa 
 
@@ -5261,7 +5261,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:4, 
 	LF test:6, Filter solution:7, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:826, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 15ms
+	Mean time per word:826, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 46ms
 
 1119. on'#C/fin Pekka ihaillut Merjaa 
 
@@ -5273,7 +5273,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:3, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:801, Asymmetric Merge:16, Sink:6, External Tail Test:12, Execution time = 15ms
+	Mean time per word:801, Asymmetric Merge:16, Sink:6, External Tail Test:12, Execution time = 31ms
 
 1120. myi#C/fin Pekka omaisuuttaan 
 
@@ -5285,7 +5285,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:5, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:806, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 0ms
+	Mean time per word:806, Asymmetric Merge:14, Sink:5, External Tail Test:12, Execution time = 46ms
 
 1121. ei#C/fin Pekka myynyt omaisuuttaan 
 
@@ -5309,7 +5309,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:7, Transfer:4, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:5, 
 	LF test:5, Filter solution:6, Rank solution:0, Lexical retrieval:17, Morphological decomposition:5, 
-	Mean time per word:728, Asymmetric Merge:16, Sink:6, External Tail Test:6, Execution time = 15ms
+	Mean time per word:728, Asymmetric Merge:16, Sink:6, External Tail Test:6, Execution time = 31ms
 
 1123. haluaa#C/fin Pekka myyda omaisuuttaan 
 
@@ -5321,7 +5321,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:4, 
 	LF test:6, Filter solution:7, Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, 
-	Mean time per word:726, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 15ms
+	Mean time per word:726, Asymmetric Merge:17, Sink:7, External Tail Test:12, Execution time = 46ms
 
 1124. on'#C/fin Pekka myynyt omaisuuttaan 
 
@@ -5333,7 +5333,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:2, LF recovery:3, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, 
-	Mean time per word:728, Asymmetric Merge:16, Sink:6, External Tail Test:12, Execution time = 31ms
+	Mean time per word:728, Asymmetric Merge:16, Sink:6, External Tail Test:12, Execution time = 46ms
 
 1125. does#C/fin John admire' Mary 
 
@@ -5345,7 +5345,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:600, Asymmetric Merge:11, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:600, Asymmetric Merge:11, Sink:4, External Tail Test:0, Execution time = 31ms
 
 & Ungrammatical (C-feature is missing, V-initial) -------------------------------------------------------
 
@@ -5365,7 +5365,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:2, 
 	LF test:7, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:740, Asymmetric Merge:18, Sink:5, External Tail Test:12, Execution time = 15ms
+	Mean time per word:740, Asymmetric Merge:18, Sink:5, External Tail Test:12, Execution time = 31ms
 
 & V-over-Aux(BE) -------------------------------------------------------
 
@@ -5379,7 +5379,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:14, Failed Transfer:2, LF recovery:3, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, 
-	Mean time per word:866, Asymmetric Merge:17, Sink:6, External Tail Test:12, Execution time = 15ms
+	Mean time per word:866, Asymmetric Merge:17, Sink:6, External Tail Test:12, Execution time = 31ms
 
 1136. myynyt#C/op Pekka on' omaisuutensa 
 
@@ -5405,7 +5405,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:4, 
 	LF test:7, Filter solution:7, Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, 
-	Mean time per word:873, Asymmetric Merge:18, Sink:7, External Tail Test:12, Execution time = 15ms
+	Mean time per word:873, Asymmetric Merge:18, Sink:7, External Tail Test:12, Execution time = 46ms
 
 1138. myyda#C/op Pekka haluaa omaisuutensa 
 
@@ -5431,7 +5431,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:7, Transfer:4, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:5, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:876, Asymmetric Merge:17, Sink:6, External Tail Test:6, Execution time = 15ms
+	Mean time per word:876, Asymmetric Merge:17, Sink:6, External Tail Test:6, Execution time = 46ms
 
 1140. myyda#C/op Pekan_gen taytyy omaisuutensa 
 
@@ -5443,7 +5443,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:7, Transfer:4, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:5, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:18, Morphological decomposition:5, 
-	Mean time per word:763, Asymmetric Merge:17, Sink:6, External Tail Test:6, Execution time = 15ms
+	Mean time per word:763, Asymmetric Merge:17, Sink:6, External Tail Test:6, Execution time = 31ms
 
 & With noncanonical OVS orders -------------------------------------------------------
 
@@ -5457,7 +5457,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:6, Transfer:6, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:753, Asymmetric Merge:25, Sink:5, External Tail Test:25, Execution time = 15ms
+	Mean time per word:753, Asymmetric Merge:25, Sink:5, External Tail Test:25, Execution time = 31ms
 
 1142. ihaillut#C/op Merjaa on' Pekka 
 
@@ -5469,7 +5469,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, Agree:13, Phi:21, Transfer:13, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:1, Inflection:14, Failed Transfer:5, LF recovery:8, 
 	LF test:17, Filter solution:8, Rank solution:0, Lexical retrieval:26, Morphological decomposition:5, 
-	Mean time per word:1094, Asymmetric Merge:64, Sink:8, External Tail Test:71, Execution time = 46ms
+	Mean time per word:1094, Asymmetric Merge:64, Sink:8, External Tail Test:71, Execution time = 93ms
 
 1143. ihailla#C/op Merjaa haluaa Pekka 
 
@@ -5481,7 +5481,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:7, Transfer:6, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:5, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:24, Morphological decomposition:5, 
-	Mean time per word:887, Asymmetric Merge:27, Sink:7, External Tail Test:29, Execution time = 31ms
+	Mean time per word:887, Asymmetric Merge:27, Sink:7, External Tail Test:29, Execution time = 46ms
 
 1144. myynyt#C/op omaisuuttaan ei Pekka 
 
@@ -5493,7 +5493,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:6, Transfer:6, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:2, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, 
-	Mean time per word:733, Asymmetric Merge:25, Sink:5, External Tail Test:25, Execution time = 15ms
+	Mean time per word:733, Asymmetric Merge:25, Sink:5, External Tail Test:25, Execution time = 31ms
 
 1145. myynyt#C/op omaisuuttaan on' Pekka 
 
@@ -5505,7 +5505,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, Agree:13, Phi:21, Transfer:13, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:1, Inflection:10, Failed Transfer:5, LF recovery:8, 
 	LF test:17, Filter solution:8, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
-	Mean time per word:1009, Asymmetric Merge:64, Sink:8, External Tail Test:71, Execution time = 46ms
+	Mean time per word:1009, Asymmetric Merge:64, Sink:8, External Tail Test:71, Execution time = 109ms
 
 1146. myyda#C/op omaisuuttaan haluaa Pekka 
 
@@ -5517,7 +5517,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:7, Transfer:6, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:5, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:19, Morphological decomposition:5, 
-	Mean time per word:775, Asymmetric Merge:27, Sink:7, External Tail Test:29, Execution time = 15ms
+	Mean time per word:775, Asymmetric Merge:27, Sink:7, External Tail Test:29, Execution time = 46ms
 
 & Neg + Modal + V, with Modal moving moving (grammaticality status unclear) -------------------------------------------------------
 
@@ -5531,7 +5531,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:9, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:6, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, 
-	Mean time per word:687, Asymmetric Merge:19, Sink:6, External Tail Test:7, Execution time = 15ms
+	Mean time per word:687, Asymmetric Merge:19, Sink:6, External Tail Test:7, Execution time = 46ms
 
 1148. taydy#C/op Pekan_gen ei myyda omaisuuttaan 
 
@@ -5543,7 +5543,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:9, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:6, 
 	LF test:6, Filter solution:6, Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, 
-	Mean time per word:607, Asymmetric Merge:19, Sink:6, External Tail Test:7, Execution time = 15ms
+	Mean time per word:607, Asymmetric Merge:19, Sink:6, External Tail Test:7, Execution time = 62ms
 
 & Neg + Modal + V with V moving -------------------------------------------------------
 
@@ -5557,7 +5557,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:9, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:6, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:24, Morphological decomposition:6, 
-	Mean time per word:703, Asymmetric Merge:20, Sink:6, External Tail Test:7, Execution time = 15ms
+	Mean time per word:703, Asymmetric Merge:20, Sink:6, External Tail Test:7, Execution time = 31ms
 
 1150. myyda#C/op Pekan_gen ei taydy omaisuuttaan 
 
@@ -5569,7 +5569,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:9, Transfer:5, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:6, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:19, Morphological decomposition:6, 
-	Mean time per word:613, Asymmetric Merge:20, Sink:6, External Tail Test:7, Execution time = 15ms
+	Mean time per word:613, Asymmetric Merge:20, Sink:6, External Tail Test:7, Execution time = 31ms
 
 & Neg + want + V, with want moving -------------------------------------------------------
 
@@ -5595,7 +5595,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:4, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:25, Morphological decomposition:6, 
-	Mean time per word:697, Asymmetric Merge:22, Sink:7, External Tail Test:12, Execution time = 15ms
+	Mean time per word:697, Asymmetric Merge:22, Sink:7, External Tail Test:12, Execution time = 31ms
 
 1153. halua#C/op Pekka ei myyda omaisuuttaan 
 
@@ -5607,7 +5607,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:2, LF recovery:4, 
 	LF test:7, Filter solution:7, Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, 
-	Mean time per word:601, Asymmetric Merge:21, Sink:7, External Tail Test:12, Execution time = 15ms
+	Mean time per word:601, Asymmetric Merge:21, Sink:7, External Tail Test:12, Execution time = 46ms
 
 1154. myyda#C/op Pekka ei halua omaisuuttaan 
 
@@ -5619,7 +5619,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:7, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:8, Failed Transfer:3, LF recovery:4, 
 	LF test:8, Filter solution:7, Rank solution:0, Lexical retrieval:20, Morphological decomposition:6, 
-	Mean time per word:607, Asymmetric Merge:22, Sink:7, External Tail Test:12, Execution time = 31ms
+	Mean time per word:607, Asymmetric Merge:22, Sink:7, External Tail Test:12, Execution time = 46ms
 
 & Ungrammatical (English) -------------------------------------------------------
 
@@ -5653,7 +5653,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:9, Transfer:9, Item streamed into syntax:17, 
 	Feature Processing:1, Extraposition:0, Inflection:19, Failed Transfer:4, LF recovery:6, 
 	LF test:12, Filter solution:10, Rank solution:0, Lexical retrieval:36, Morphological decomposition:7, 
-	Mean time per word:729, Asymmetric Merge:33, Sink:10, External Tail Test:22, Execution time = 46ms
+	Mean time per word:729, Asymmetric Merge:33, Sink:10, External Tail Test:22, Execution time = 78ms
 
 1195. lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
 
@@ -5665,7 +5665,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:9, Transfer:7, Item streamed into syntax:13, 
 	Feature Processing:1, Extraposition:0, Inflection:13, Failed Transfer:3, LF recovery:6, 
 	LF test:10, Filter solution:7, Rank solution:0, Lexical retrieval:26, Morphological decomposition:6, 
-	Mean time per word:667, Asymmetric Merge:29, Sink:7, External Tail Test:14, Execution time = 15ms
+	Mean time per word:667, Asymmetric Merge:29, Sink:7, External Tail Test:14, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -5703,7 +5703,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, 
-	Mean time per word:738, Asymmetric Merge:9, Sink:4, External Tail Test:2, Execution time = 15ms
+	Mean time per word:738, Asymmetric Merge:9, Sink:4, External Tail Test:2, Execution time = 31ms
 
 1244. mi=lavano 
 
@@ -5727,7 +5727,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:19, Morphological decomposition:4, 
-	Mean time per word:738, Asymmetric Merge:9, Sink:4, External Tail Test:2, Execution time = 15ms
+	Mean time per word:738, Asymmetric Merge:9, Sink:4, External Tail Test:2, Execution time = 31ms
 
 1246. la=lavano 
 
@@ -5739,7 +5739,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, 
-	Mean time per word:837, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 0ms
+	Mean time per word:837, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 15ms
 
 1247. loro lo=lavano 
 
@@ -5763,7 +5763,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:2, Item streamed into syntax:5, 
 	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, 
 	LF test:3, Filter solution:3, Rank solution:0, Lexical retrieval:14, Morphological decomposition:3, 
-	Mean time per word:837, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 0ms
+	Mean time per word:837, Asymmetric Merge:4, Sink:3, External Tail Test:2, Execution time = 15ms
 
 & Ungrammatical, clitic in wrong position -------------------------------------------------------
 
@@ -5785,7 +5785,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:14, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
-	Mean time per word:696, Asymmetric Merge:19, Sink:5, External Tail Test:10, Execution time = 31ms
+	Mean time per word:696, Asymmetric Merge:19, Sink:5, External Tail Test:10, Execution time = 46ms
 
 1257. loro la=hanno lavata 
 
@@ -5797,7 +5797,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:0, Extraposition:0, Inflection:17, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:26, Morphological decomposition:5, 
-	Mean time per word:766, Asymmetric Merge:19, Sink:5, External Tail Test:10, Execution time = 15ms
+	Mean time per word:766, Asymmetric Merge:19, Sink:5, External Tail Test:10, Execution time = 46ms
 
 1258. mi=hanno lavato 
 
@@ -5809,7 +5809,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:18, Morphological decomposition:4, 
-	Mean time per word:748, Asymmetric Merge:12, Sink:4, External Tail Test:10, Execution time = 15ms
+	Mean time per word:748, Asymmetric Merge:12, Sink:4, External Tail Test:10, Execution time = 31ms
 
 1259. la=hanno lavata 
 
@@ -5875,7 +5875,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, 
-	Mean time per word:661, Asymmetric Merge:20, Sink:5, External Tail Test:16, Execution time = 15ms
+	Mean time per word:661, Asymmetric Merge:20, Sink:5, External Tail Test:16, Execution time = 31ms
 
 1286. loro devono lavare=la 
 
@@ -5911,7 +5911,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, 
-	Mean time per word:673, Asymmetric Merge:20, Sink:5, External Tail Test:16, Execution time = 15ms
+	Mean time per word:673, Asymmetric Merge:20, Sink:5, External Tail Test:16, Execution time = 31ms
 
 1289. mi=devono lavare 
 
@@ -5923,7 +5923,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 31ms
 
 1290. devono lavare=mi 
 
@@ -5935,7 +5935,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:718, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:718, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 31ms
 
 1291. la=devono lavare 
 
@@ -5947,7 +5947,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 31ms
 
 1292. devono lavare=la 
 
@@ -5959,7 +5959,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:718, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:718, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 31ms
 
 1293. lo=devono lavare 
 
@@ -5971,7 +5971,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 31ms
 
 1294. devono lavare=lo 
 
@@ -6001,7 +6001,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, 
-	Mean time per word:661, Asymmetric Merge:20, Sink:5, External Tail Test:16, Execution time = 15ms
+	Mean time per word:661, Asymmetric Merge:20, Sink:5, External Tail Test:16, Execution time = 31ms
 
 1308. mi=stanno lavando 
 
@@ -6013,7 +6013,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 31ms
 
 1309. la=stanno lavando 
 
@@ -6025,7 +6025,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 46ms
 
 1310. lo=stanno lavando 
 
@@ -6037,7 +6037,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:3, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:701, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 31ms
 
 1311. loro stanno lavando=mi 
 
@@ -6049,7 +6049,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:5, Transfer:5, Item streamed into syntax:9, 
 	Feature Processing:1, Extraposition:0, Inflection:12, Failed Transfer:1, LF recovery:3, 
 	LF test:8, Filter solution:5, Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, 
-	Mean time per word:680, Asymmetric Merge:20, Sink:5, External Tail Test:16, Execution time = 15ms
+	Mean time per word:680, Asymmetric Merge:20, Sink:5, External Tail Test:16, Execution time = 31ms
 
 1312. stanno lavando=mi 
 
@@ -6103,7 +6103,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:8, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:14, Failed Transfer:2, LF recovery:5, 
 	LF test:9, Filter solution:7, Rank solution:0, Lexical retrieval:26, Morphological decomposition:6, 
-	Mean time per word:654, Asymmetric Merge:25, Sink:7, External Tail Test:16, Execution time = 15ms
+	Mean time per word:654, Asymmetric Merge:25, Sink:7, External Tail Test:16, Execution time = 31ms
 
 1323. loro hanno voluto lavare=mi 
 
@@ -6115,7 +6115,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:8, Transfer:6, Item streamed into syntax:12, 
 	Feature Processing:1, Extraposition:0, Inflection:14, Failed Transfer:2, LF recovery:5, 
 	LF test:9, Filter solution:7, Rank solution:0, Lexical retrieval:26, Morphological decomposition:6, 
-	Mean time per word:664, Asymmetric Merge:27, Sink:7, External Tail Test:16, Execution time = 15ms
+	Mean time per word:664, Asymmetric Merge:27, Sink:7, External Tail Test:16, Execution time = 46ms
 
 1324. mi=hanno voluto lavare 
 
@@ -6127,7 +6127,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:8, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:2, LF recovery:5, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, 
-	Mean time per word:682, Asymmetric Merge:18, Sink:6, External Tail Test:16, Execution time = 15ms
+	Mean time per word:682, Asymmetric Merge:18, Sink:6, External Tail Test:16, Execution time = 46ms
 
 1325. hanno voluto lavare=mi 
 
@@ -6139,7 +6139,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:9, Transfer:5, Item streamed into syntax:10, 
 	Feature Processing:1, Extraposition:0, Inflection:11, Failed Transfer:2, LF recovery:6, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:21, Morphological decomposition:5, 
-	Mean time per word:700, Asymmetric Merge:18, Sink:6, External Tail Test:16, Execution time = 31ms
+	Mean time per word:700, Asymmetric Merge:18, Sink:6, External Tail Test:16, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -6179,7 +6179,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:5, Transfer:7, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:0, Inflection:25, Failed Transfer:1, LF recovery:3, 
 	LF test:9, Filter solution:7, Rank solution:0, Lexical retrieval:37, Morphological decomposition:6, 
-	Mean time per word:843, Asymmetric Merge:31, Sink:7, External Tail Test:23, Execution time = 31ms
+	Mean time per word:843, Asymmetric Merge:31, Sink:7, External Tail Test:23, Execution time = 46ms
 
 1342. gli=la=hanno lavata 
 
@@ -6191,7 +6191,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:5, Transfer:6, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:22, Failed Transfer:1, LF recovery:3, 
 	LF test:7, Filter solution:6, Rank solution:0, Lexical retrieval:32, Morphological decomposition:5, 
-	Mean time per word:918, Asymmetric Merge:24, Sink:6, External Tail Test:23, Execution time = 15ms
+	Mean time per word:918, Asymmetric Merge:24, Sink:6, External Tail Test:23, Execution time = 31ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -6221,7 +6221,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:8, Item streamed into syntax:13, 
 	Feature Processing:1, Extraposition:1, Inflection:19, Failed Transfer:1, LF recovery:4, 
 	LF test:10, Filter solution:7, Rank solution:0, Lexical retrieval:32, Morphological decomposition:6, 
-	Mean time per word:689, Asymmetric Merge:23, Sink:7, External Tail Test:15, Execution time = 31ms
+	Mean time per word:689, Asymmetric Merge:23, Sink:7, External Tail Test:15, Execution time = 109ms
 
 1349. sembrano lavare=mi 
 
@@ -6233,7 +6233,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:1, Extraposition:0, Inflection:9, Failed Transfer:1, LF recovery:2, 
 	LF test:6, Filter solution:4, Rank solution:0, Lexical retrieval:16, Morphological decomposition:4, 
-	Mean time per word:745, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 15ms
+	Mean time per word:745, Asymmetric Merge:14, Sink:4, External Tail Test:14, Execution time = 31ms
 
 1350. spinge Luisa a lavare=lo 
 
@@ -6245,7 +6245,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:6, Transfer:7, Item streamed into syntax:11, 
 	Feature Processing:1, Extraposition:1, Inflection:14, Failed Transfer:1, LF recovery:4, 
 	LF test:8, Filter solution:6, Rank solution:0, Lexical retrieval:25, Morphological decomposition:5, 
-	Mean time per word:635, Asymmetric Merge:18, Sink:6, External Tail Test:15, Execution time = 31ms
+	Mean time per word:635, Asymmetric Merge:18, Sink:6, External Tail Test:15, Execution time = 46ms
 
 & Ungrammatical -------------------------------------------------------
 
@@ -6263,7 +6263,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:716, Asymmetric Merge:9, Sink:4, External Tail Test:2, Execution time = 15ms
+	Mean time per word:716, Asymmetric Merge:9, Sink:4, External Tail Test:2, Execution time = 31ms
 
 1359. mi=lavo 
 
@@ -6287,7 +6287,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:1, Phi:3, Transfer:3, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:1, LF recovery:2, 
 	LF test:5, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:716, Asymmetric Merge:9, Sink:4, External Tail Test:2, Execution time = 15ms
+	Mean time per word:716, Asymmetric Merge:9, Sink:4, External Tail Test:2, Execution time = 31ms
 
 1361. mi=lavi 
 

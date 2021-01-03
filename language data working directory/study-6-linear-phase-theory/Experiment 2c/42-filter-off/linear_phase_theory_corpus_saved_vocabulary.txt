@@ -1,27 +1,27 @@
-ï»¿dummy        {'LANG:EN', 'dummy'}
-a               {'adjoinable', '-COMP:N', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', 'LF:to', '-COMP:ADV', '-SPEC:FORCE', '-SPEC:iWH', '-ARG', 'LANG:IT', '-SPEC:iR', '-VAL', '-SPEC:*', '!COMP:*', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', '-SPEC:Neg/fin', 'PF:a', '-COMP:uWH', 'TAIL:V', 'COMP:ARE/inf', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
-a_D             {'adjoinable', '-COMP:uR', '-SPEC:T/fin', '-ARG', '-COMP:P', 'D', '!COMP:*', 'OP', 'LF:D', '-SPEC:INF', 'PF:D', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', 'LANG:EN', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P'}
+ï»¿dummy        {'dummy', 'LANG:EN'}
+a               {'-COMP:T/fin', 'P', '-ARG', '-SPEC:Neg/fin', '-SPEC:N', 'COMP:ARE/inf', '-SPEC:*', '-SPEC:P', '-SPEC:C', '-VAL', '-SPEC:iR', '-SPEC:T/fin', '-COMP:N', '-COMP:uWH', 'TAIL:V', '-COMP:ADV', '-COMP:T', 'LANG:IT', '!COMP:*', '-COMP:A', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', 'PF:a', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'LF:to', 'COMP:D', '-SPEC:ADV'}
+a_D             {'-SPEC:MA/lla', 'D', 'PF:D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', '-SPEC:P', '-SPEC:T/fin', 'COMP:N', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR', 'LF:D', 'LANG:EN'}
 admire          ['LANG:EN']
 admire'         ['LANG:EN']
 admires         ['LANG:EN']
-admire-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:Neg', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PF:admire', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', '-SPEC:Neg', 'CLASS:TR', 'SPEC:P', '-COMP:T/fin', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'LF:admire', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+admire-         {'PF:admire', 'V', '-SPEC:Neg', '-COMP:T/fin', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', '-COMP:Neg', 'PHI:NUM:_', 'PHI:DET:_', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'LF:admire', 'CLASS:TR', '-SPEC:FORCE', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D', 'LANG:EN'}
 admire*         ['LANG:EN']
-T/fin*          {'NO_NUMBER', 'CAT:T/fin', '!SPEC:*', 'LANG:EN', 'NO_DET', '-VAL', 'LF:T', "PF:T/fin'"}
-v*              {'LANG:EN', 'CAT:v', 'LF:v', 'NO_NUMBER', 'NO_DET', '-VAL', 'PF:v'}
+T/fin*          {'CAT:T/fin', 'NO_DET', 'NO_NUMBER', '-VAL', "PF:T/fin'", 'LF:T', '!SPEC:*', 'LANG:EN'}
+v*              {'NO_DET', 'NO_NUMBER', 'LANG:EN', 'LF:v', 'CAT:v', 'PF:v', '-VAL'}
 admire**        ['LANG:EN']
-T/fin**         {'PHI:PER:3', 'NO_NUMBER', 'CAT:T/fin', '!SPEC:*', 'LANG:EN', 'NO_PERSON', 'NO_DET', "PF:T/fin''", '-VAL', 'LF:T'}
+T/fin**         {'CAT:T/fin', 'NO_DET', 'NO_NUMBER', 'PHI:PER:3', '-VAL', "PF:T/fin''", 'NO_PERSON', 'LF:T', '!SPEC:*', 'LANG:EN'}
 adoro           ['LANG:IT']
 adori           ['LANG:IT']
 adora           ['LANG:IT']
 adoriamo        ['LANG:IT']
 adorate         ['LANG:IT']
 adorano         ['LANG:IT']
-adora-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LANG:IT', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'PF:adora', 'SPEC:TO/inf', 'PHI:GEN:_', 'LF:admire', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+adora-          {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PF:adora', 'PHI:NUM:_', 'PHI:DET:_', 'LANG:IT', '-COMP:v', 'PHI:PER:_', 'ASP', 'LF:admire', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 antaa           ['LANG:FI']
-anta-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-COMP:FIN', 'CLASS:DITR', '-SPEC:T/fin', '+SEM:directional', '-SPEC:FORCE', 'ASP:BOUNDED', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'PF:antaa', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'LF:give', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+anta-           {'V', 'SPEC:TO/inf', 'ARG', 'PF:antaa', 'LF:give', 'CLASS:DITR', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'SPEC:D', 'ASP:BOUNDED', '+SEM:directional', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', '-COMP:FIN', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 antoi           ['LANG:FI']
 asks            ['LANG:EN']
-ask-            {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'SEM:internal', 'SPEC:D', 'LF:ask', 'ARG', 'PHI:GEN:_', 'PF:ask', '-COMP:V', 'PHI:NUM:_'}
+ask-            {'V', 'LF:ask', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', 'PF:ask', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'SPEC:D', 'SEM:internal', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'COMP:D', 'LANG:EN'}
 avain_0acc      ['LANG:EN']
 avain_nom       ['LANG:EN']
 avain           ['LANG:EN']
@@ -29,60 +29,60 @@ avaimen_acc     ['LANG:EN']
 avaimen         ['LANG:EN']
 avaimet         ['LANG:EN']
 avainta         ['LANG:EN']
-avain-          {'LF:key', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', '-SEM:directional', 'COMP:R/D', 'PF:avain', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+avain-          {'N', 'COMP:C', 'PF:avain', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'LF:key', 'COMP:D/rel', '-COMP:v', '-SEM:directional', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 auton           ['LANG:FI']
 auto            ['LANG:FI']
-auto-           {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', '-SEM:directional', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', 'LF:car', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'PF:auto', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-bank            {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:P', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', 'FREQ:1', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', 'LF:bank_inst', 'PF:bank1', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-bank            {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', '-COMP:A', 'COMP:R/D', '-SPEC:R', 'FREQ:2', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', 'LF:bank_river', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', 'PF:bank2', '-SPEC:uWH', 'COMP:uR'}
-barn            {'PF:barn', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', 'LF:barn', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-city            {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LF:city', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', 'PF:city', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+auto-           {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'PF:auto', '-COMP:v', '-SEM:directional', 'LF:car', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
+bank            {'LF:bank_inst', 'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'PF:bank1', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', 'FREQ:1', '-SPEC:uWH', 'LANG:EN'}
+bank            {'PF:bank2', 'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', 'LF:bank_river', '-COMP:N', 'FREQ:2', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
+barn            {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'LF:barn', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', 'PF:barn', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
+city            {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'PF:city', '-COMP:v', 'LF:city', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
 che             ['LANG:IT']
-che-            {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', 'PF:che', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', '-COMP:AUX', 'LF:who', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+che-            {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', 'LF:who', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'PF:che', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 chiamato        ['LANG:IT']
-chiamata-       {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LANG:IT', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'PF:chiamato', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', 'LF:called', '-COMP:V', 'PHI:NUM:_'}
+chiamata-       {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'LF:called', 'LANG:IT', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PF:chiamato', 'PHI:DET:_'}
 claims          ['LANG:EN']
-claim-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:claim', 'PF:claim', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'COMP:T/fin', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:V', 'PHI:NUM:_'}
-danno           {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', 'LF:damage', '-SPEC:C/fin', '-SPEC:T/fin', 'COMP:T/prt', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'PF:danno', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+claim-          {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'LF:claim', 'PHI:PER:_', 'ASP', 'SPEC:P', '-COMP:D', 'PF:claim', '-SPEC:FORCE', 'PHI:GEN:_', 'COMP:T/fin', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+danno           {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', '-SPEC:uWH', 'COMP:D/rel', 'PF:danno', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', 'LF:damage', '-SPEC:ADV'}
 del             ['LANG:IT']
 della           ['LANG:IT']
 detesto         ['LANG:IT']
 detesto         ['LANG:IT']
-detest-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', 'LF:detest', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PF:detest', 'LANG:IT', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'SPEC:TO/inf', 'PHI:GEN:_', 'SEM:internal', 'COMP:ARE/inf', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+detest-         {'V', 'SPEC:TO/inf', 'ARG', 'PF:detest', 'COMP:ARE/inf', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'SEM:internal', 'LANG:IT', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'LF:detest', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 devono          ['LANG:EN']
-deva-           {'SPEC:ADV', '-ASP', 'PHI:PER:_', '-COMP:N', 'LF:must', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LANG:IT', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'SPEC:P', 'SPEC:TO/inf', 'PHI:GEN:_', 'SEM:internal', 'SPEC:D', 'COMP:ARE/inf', 'ARG', 'PF:deva', '-COMP:V', 'PHI:NUM:_'}
-di              {'PHI:NUM:_', 'LF:of', '-COMP:N', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:iWH', '-SPEC:FORCE', '-SPEC:iR', 'PHI:DET:_', 'SPEC:*', '-VAL', '-adjoinable', '!COMP:*', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'ARG', '-SPEC:C', 'PF:di', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
-does            {'PHI:PER:_', '-COMP:INF', 'COMP:V', '-SPEC:T/fin', 'VAL', 'SPEC:*', '!COMP:*', 'COMP:v', 'SPEC:C/fin', '-SPEC:N', '-SPEC:V', 'LANG:EN', 'PHI:GEN:_', 'SPEC:FORCE', 'COMP:Neg', '-SPEC:TO/inf', 'PHI:GEN:M', 'COMP:T/prt', 'T/fin', 'FIN', 'LF:does', 'PHI:DET:_', 'PHI:PER:3', 'PF:does', '-SPEC:Neg', '!PROBE:V', '!SPEC:*', '-COMP:T/fin', 'SPEC:TO/inf', 'SPEC:D', 'ARG', 'T', '-SPEC:C', '-SPEC:v', 'PHI:GEN:F', 'PHI:NUM:_', 'PHI:NUM:SG'}
+deva-           {'V', 'SPEC:TO/inf', 'ARG', 'COMP:ARE/inf', '-COMP:V', '-ASP', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'LF:must', 'SPEC:D', 'SEM:internal', 'PF:deva', 'LANG:IT', '-COMP:v', 'PHI:PER:_', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
+di              {'PF:di', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:C', 'LANG:FI', '-VAL', '-SPEC:iR', 'SPEC:*', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '-COMP:ADV', '-COMP:T', '!COMP:*', '-COMP:A', 'LF:of', 'PHI:PER:_', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', '-adjoinable', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', '-SPEC:ADV'}
+does            {'PHI:NUM:SG', '-COMP:T/fin', 'ARG', 'T', '-SPEC:T/fin', 'PHI:PER:3', '!SPEC:*', 'SPEC:D', 'T/fin', 'PHI:PER:_', 'COMP:T/prt', '-SPEC:TO/inf', 'PHI:GEN:_', '-SPEC:v', 'PF:does', '!PROBE:V', 'LF:does', '-SPEC:Neg', 'SPEC:TO/inf', '-SPEC:N', '-SPEC:C', 'FIN', 'COMP:Neg', '-COMP:INF', 'SPEC:*', 'PHI:NUM:_', 'COMP:V', 'VAL', 'COMP:v', 'PHI:GEN:M', 'SPEC:FORCE', 'SPEC:C/fin', '-SPEC:V', '!COMP:*', 'PHI:GEN:F', 'PHI:DET:_', 'LANG:EN'}
 does_C          ['LANG:EN']
-does-           {'PHI:PER:_', '-COMP:INF', 'COMP:V', '-SPEC:T/fin', 'VAL', 'SPEC:*', '!COMP:*', 'COMP:v', 'SPEC:C/fin', '-SPEC:N', '-SPEC:V', 'LANG:EN', 'PHI:GEN:_', 'SPEC:FORCE', 'COMP:Neg', '-SPEC:TO/inf', 'PHI:GEN:M', 'COMP:T/prt', 'T/fin', 'FIN', 'LF:does', 'PHI:DET:_', 'PHI:PER:3', 'PF:does', '-SPEC:Neg', '!PROBE:V', '!SPEC:*', '-COMP:T/fin', 'SPEC:TO/inf', 'SPEC:D', 'ARG', 'T', '-SPEC:C', '-SPEC:v', 'PHI:GEN:F', 'PHI:NUM:_', 'PHI:NUM:SG'}
+does-           {'PHI:NUM:SG', '-COMP:T/fin', 'ARG', 'T', '-SPEC:T/fin', 'PHI:PER:3', '!SPEC:*', 'SPEC:D', 'T/fin', 'PHI:PER:_', 'COMP:T/prt', '-SPEC:TO/inf', 'PHI:GEN:_', '-SPEC:v', 'PF:does', '!PROBE:V', 'LF:does', '-SPEC:Neg', 'SPEC:TO/inf', '-SPEC:N', '-SPEC:C', 'FIN', 'COMP:Neg', '-COMP:INF', 'SPEC:*', 'PHI:NUM:_', 'COMP:V', 'VAL', 'COMP:v', 'PHI:GEN:M', 'SPEC:FORCE', 'SPEC:C/fin', '-SPEC:V', '!COMP:*', 'PHI:GEN:F', 'PHI:DET:_', 'LANG:EN'}
 dorme           ['LANG:IT']
-dorme-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', 'PF:dorme', '-SPEC:FORCE', 'COMP:P', 'LF:sleep', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', '!SPEC:D', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+dorme-          {'V', 'LF:sleep', 'SPEC:TO/inf', 'ARG', '-COMP:V', '!SPEC:D', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', 'PF:dorme', 'CLASS:INTR', '-SPEC:FORCE', '-COMP:D', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
 disappeared     ['LANG:EN']
-disappear-      {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:disappear', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'PF:disappear', 'CLASS:INTR', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+disappear-      {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', 'PF:disappear', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', '-SPEC:FORCE', '-COMP:D', 'LF:disappear', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
 e               ['LANG:IT']
 easy            ['LANG:EN']
-easy-           {'LANG:EN', 'SPEC:D', '2SPEC', 'PF:easy', 'LF:easy', '0'}
+easy-           {'LF:easy', '0', 'PF:easy', 'SPEC:D', '2SPEC', 'LANG:EN'}
 en              ['LANG:FI']
 et              ['LANG:FI']
 ei              ['LANG:FI']
 emme            ['LANG:FI']
 ette            ['LANG:FI']
 eivat           ['LANG:FI']
-ei'             {'-SPEC:T', 'PHI:PER:_', 'LF:neg', '!COMP:T', 'POL:NEG', 'COMP:T/prt', '-SPEC:T/fin', 'NEG', 'Neg/fin', 'FIN', 'PHI:DET:_', 'VAL', 'SPEC:*', '!COMP:*', '%SPEC:INF', '!SPEC:*', 'PF:ei', 'LANG:FI', 'SEM:internal', 'ARG', 'PHI:NUM:_'}
-e-              {'-SPEC:T', 'PHI:PER:_', 'LF:neg', '!COMP:T', 'POL:NEG', 'COMP:T/prt', '-SPEC:T/fin', 'NEG', 'Neg/fin', 'FIN', 'PHI:DET:_', 'VAL', 'SPEC:*', '!COMP:*', '%SPEC:INF', '!SPEC:*', 'PF:ei', 'LANG:FI', 'SEM:internal', 'ARG', 'PHI:NUM:_'}
+ei'             {'ARG', 'LANG:FI', '%SPEC:INF', 'FIN', 'SPEC:*', 'NEG', '-SPEC:T/fin', 'PHI:NUM:_', '!SPEC:*', 'SEM:internal', 'Neg/fin', 'VAL', 'PHI:PER:_', 'PF:ei', '!COMP:T', 'COMP:T/prt', 'LF:neg', '!COMP:*', '-SPEC:T', 'POL:NEG', 'PHI:DET:_'}
+e-              {'ARG', 'LANG:FI', '%SPEC:INF', 'FIN', 'SPEC:*', 'NEG', '-SPEC:T/fin', 'PHI:NUM:_', '!SPEC:*', 'SEM:internal', 'Neg/fin', 'VAL', 'PHI:PER:_', 'PF:ei', '!COMP:T', 'COMP:T/prt', 'LF:neg', '!COMP:*', '-SPEC:T', 'POL:NEG', 'PHI:DET:_'}
 elaa            ['LANG:FI']
-ela-            {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:elaa', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', '-COMP:D', 'LF:live', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+ela-            {'V', 'SPEC:TO/inf', 'ARG', 'SPEC:ADV', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', 'LF:live', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', '-SPEC:FORCE', '-COMP:D', 'SPEC:P', 'PF:elaa', 'PHI:DET:_'}
 etsii           ['LANG:FI']
-etsi-           {'SPEC:ADV', 'LF:search', '-COMP:N', 'PHI:PER:_', 'COMP:D', 'PF:etsi', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-COMP:P', '-VAL', 'PHI:DET:_', '!COMP:D', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-etta            {'!COMP:*', 'COMP:C/fin', '!PROBE:FIN', '-SPEC:*', 'COMP:T/fin', 'FORCE', 'PF:etta', 'LANG:FI', 'FIN', '-ARG', 'LF:that', '-VAL', '-SPEC:D'}
+etsi-           {'V', 'SPEC:TO/inf', 'ARG', 'PF:etsi', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '!COMP:D', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', 'LF:search', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
+etta            {'-ARG', '-SPEC:*', '!PROBE:FIN', 'COMP:C/fin', 'LANG:FI', '-VAL', 'PF:etta', 'FIN', 'LF:that', '-SPEC:D', '!COMP:*', 'COMP:T/fin', 'FORCE'}
 fell            ['LANG:EN']
-fell-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:fell', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:D', 'LF:fell', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
-flow'           {'SPEC:ADV', 'PHI:PER:_', 'LF:flow', '-COMP:N', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'PF:flow', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-from            {'PHI:NUM:_', 'LF:from', 'adjoinable', '-COMP:N', 'PHI:PER:_', 'PF:from', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:iWH', '-SPEC:FORCE', 'TAIL:V,+SEM:directional', '-SPEC:iR', '-float', '-VAL', 'PHI:DET:_', '-SPEC:*', '!COMP:*', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', '-SPEC:Neg/fin', '-COMP:uWH', 'PHI:GEN:_', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
+fell-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', 'LF:fell', 'SPEC:P', '-SPEC:FORCE', '-COMP:D', 'PHI:GEN:_', 'PF:fell', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+flow'           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', 'PF:flow', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'LF:flow', 'PHI:DET:_', 'LANG:EN'}
+from            {'PF:from', '-float', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:*', '-SPEC:C', '-VAL', '-SPEC:iR', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '-COMP:ADV', '-COMP:T', '!COMP:*', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', 'LF:from', '-SPEC:C/fin', 'TAIL:V,+SEM:directional', '-SPEC:ADV', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'PHI:GEN:_', 'COMP:D', 'LANG:EN'}
 gave            ['LANG:EN']
-give-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-COMP:FIN', 'CLASS:DITR', '-SPEC:T/fin', '+SEM:directional', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'LF:give', 'ARG', 'PF:give', '-COMP:V', 'PHI:NUM:_'}
+give-           {'V', 'SPEC:TO/inf', 'ARG', 'LF:give', 'CLASS:DITR', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'SPEC:D', '+SEM:directional', '-COMP:v', 'PHI:PER:_', 'ASP', 'PF:give', '-SPEC:FORCE', '-COMP:FIN', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D', 'LANG:EN'}
 Giuseppe        ['LANG:IT']
-Giuseppe-       {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'PF:Giuseppe', 'COMP:C', 'COMP:P', '-SPEC:FORCE', '-SEM:directional', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', 'LF:Giuseppe', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+Giuseppe-       {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LANG:IT', '-COMP:v', '-SEM:directional', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'LF:Giuseppe', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', 'PF:Giuseppe', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 haluaa          ['LANG:FI']
 halusi          ['LANG:FI']
 halusimme       ['LANG:FI']
@@ -91,20 +91,20 @@ halua           ['LANG:FI']
 haluamalla      ['LANG:FI']
 haluttiin       ['LANG:FI']
 haluttu         ['LANG:FI']
-halua-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:want', 'COMP:D', 'PF:haluaa', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', '-COMP:P', '-VAL', 'PHI:DET:_', '-SPEC:*', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'SEM:internal', 'ARG', '-COMP:V', 'PHI:NUM:_', 'COMP:A/inf'}
+halua-          {'V', 'SPEC:TO/inf', 'ARG', '-SPEC:*', 'PF:haluaa', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', 'LF:want', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'SEM:internal', 'ASP:BOUNDED', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'COMP:A/inf', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 hairitsee       ['LANG:FI']
-hairitse-       {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:disturb', 'COMP:D', '-COMP:FIN', '-SPEC:T/fin', 'PF:hairitsee', '-SPEC:FORCE', 'COMP:P', '-COMP:P', '-VAL', 'PHI:DET:_', '!COMP:D', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+hairitse-       {'V', 'SPEC:TO/inf', 'ARG', 'SPEC:ADV', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'SPEC:D', '!COMP:D', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', 'LF:disturb', '-COMP:FIN', '!COMP:*', 'SPEC:P', 'PF:hairitsee', 'COMP:D'}
 hanno           ['LANG:IT']
 ho              ['LANG:IT']
-ha-             {'SPEC:ADV', '-ASP', 'PHI:PER:_', '-COMP:N', 'COMP:T', '-SPEC:T/fin', '-SPEC:FORCE', 'LF:have', 'COMP:P', 'LANG:IT', 'PHI:DET:_', 'SPEC:*', '-VAL', 'V', '-COMP:v', 'SPEC:P', 'PF:ha', 'SPEC:TO/inf', 'PHI:GEN:_', 'SEM:internal', 'SPEC:D', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-horse           {'-COMP:N', '-COMP:C/fin', 'PF:horse', 'LF:horse', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+ha-             {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LF:have', '-ASP', '-VAL', 'COMP:P', 'PF:ha', 'SPEC:*', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', 'SEM:internal', 'LANG:IT', '-COMP:v', 'PHI:PER:_', '-SPEC:FORCE', 'PHI:GEN:_', 'COMP:T', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
+horse           {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'PF:horse', 'COMP:D/rel', 'LF:horse', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
 havisivat       ['LANG:FI']
 haviavan        ['LANG:FI']
 havisi          ['LANG:FI']
-havia-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:disappear', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', 'PF:havia', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+havia-          {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', 'PF:havia', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'SPEC:D', 'PHI:NUM:_', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', '-SPEC:FORCE', '-COMP:D', 'LF:disappear', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
 Helsingissa     ['LANG:FI']
 Helsinki        ['LANG:FI']
-Helsinki-       {'-COMP:N', '-COMP:C/fin', 'LF:Helsinki', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', 'PF:Helsinki', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+Helsinki-       {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', '-SPEC:uWH', 'LF:Helsinki', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', 'PF:Helsinki', '-SPEC:ADV'}
 ihailen         ['LANG:FI']
 ihaili          ['LANG:FI']
 ihailet         ['LANG:FI']
@@ -119,67 +119,67 @@ ihaile          ['LANG:FI']
 ihaillut        ['LANG:FI']
 ihailla         ['LANG:FI']
 ihailemalla     ['LANG:FI']
-ihaile-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-COMP:FIN', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-COMP:P', '-VAL', 'PHI:DET:_', '!COMP:D', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'PF:ihaile-', 'LANG:FI', 'SPEC:TO/inf', 'LF:admire', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-il              {'adjoinable', '-COMP:uR', 'PF:il', '-SPEC:T/fin', '-ARG', 'LANG:IT', '-COMP:P', 'D', 'LF:the', '!COMP:*', 'OP', '-SPEC:INF', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P'}
-i               {'adjoinable', '-COMP:uR', 'PF:il', '-SPEC:T/fin', '-ARG', 'LANG:IT', '-COMP:P', 'D', 'LF:the', '!COMP:*', 'OP', '-SPEC:INF', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P'}
-in              {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'PHI:PER:_', '-COMP:T', 'PF:in', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', 'LF:in', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:FORCE', '-SPEC:iWH', 'LANG:IT', '-SPEC:iR', 'PHI:DET:_', '-VAL', '!COMP:*', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', '-SPEC:Neg/fin', '-COMP:uWH', 'PHI:GEN:_', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
-infermieri      {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'LF:nurses', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'PF:infermieri', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+ihaile-         {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'PF:ihaile-', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '!COMP:D', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'LF:admire', 'CLASS:TR', '-SPEC:FORCE', '-COMP:FIN', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
+il              {'-SPEC:MA/lla', 'D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', 'LF:the', '-SPEC:C', '-SPEC:P', 'PF:il', '-SPEC:T/fin', 'COMP:N', 'LANG:IT', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR'}
+i               {'-SPEC:MA/lla', 'D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', 'LF:the', '-SPEC:C', '-SPEC:P', 'PF:il', '-SPEC:T/fin', 'COMP:N', 'LANG:IT', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR'}
+in              {'-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:C', '-VAL', '-SPEC:iR', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '-COMP:ADV', '-COMP:T', 'LANG:IT', 'PF:in', '!COMP:*', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', 'PHI:GEN:_', '-SPEC:v', 'LF:in', '-SPEC:INF', '-SPEC:iWH', 'COMP:D', '-SPEC:ADV'}
+infermieri      {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'PF:infermieri', 'COMP:D/rel', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', 'LF:nurses', '-SPEC:uWH', '-SPEC:ADV'}
 is              ['LANG:EN']
-be-             {'SPEC:ADV', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-COMP:TO/inf', '-ARG', 'LF:be', '-VAL', 'V', 'COPULA', '!COMP:*', '-COMP:v', 'ASP', 'SPEC:P', 'PF:be', 'SPEC:TO/inf', 'LANG:EN', 'SPEC:D', '-COMP:V'}
+be-             {'V', '-COMP:TO/inf', 'SPEC:TO/inf', '-ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'SPEC:D', '-COMP:v', 'PF:be', 'ASP', 'SPEC:P', '-SPEC:FORCE', 'COPULA', '!COMP:*', 'LF:be', 'SPEC:ADV', 'LANG:EN'}
 istuuko         ['LANG:FI']
 istuu           ['LANG:FI']
-istu-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', 'LF:sit', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'PF:istuu', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+istu-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', 'LF:sit', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PF:istuu', 'PHI:PER:_', 'ASP', 'CLASS:INTR', '-SPEC:FORCE', '-COMP:D', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
 John            ['LANG:EN']
-John-           {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', 'PF:John', '-adjoinable', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', '-COMP:V', '-SPEC:uWH', 'COMP:uR', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-SEM:directional', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', 'LF:John', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+John-           {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', '-SEM:directional', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-adjoinable', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'LF:John', 'COMP:C', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'PF:John', '-SPEC:V', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
 joka            ['LANG:FI']
 jota            ['LANG:FI']
-joka-           {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', 'PF:joka', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', 'LF:who', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+joka-           {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'LANG:FI', 'COMP:P', '-SPEC:T/fin', 'PF:joka', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', 'LF:who', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 Jukka           ['LANG:FI', '-SEM:directional', 'LANG:FI']
 Jukkaa          ['LANG:FI', '-SEM:directional']
-Jukka-          {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', 'PF:Jukka', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', '-SEM:directional', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', 'LF:Jukka', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+Jukka-          {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', 'LF:Jukka', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-SEM:directional', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', 'PF:Jukka', '-SPEC:uWH', '-SPEC:ADV'}
 juosten         ['LANG:FI']
 juoksee         ['LANG:FI']
-juokse-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LF:run', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:FI', 'SPEC:TO/inf', 'ARG', 'PF:juokse-', '-COMP:V', 'PHI:NUM:_'}
-kaksi           {'SPEC:*', 'PHI:PER:_', 'TAIL:ARG,VAL,FIN', 'NUM', 'LANG:FI', 'COMP:N', 'LF:two', 'COMP:n', 'ARG', 'PF:kaksi', 'PHI:DET:_', '-VAL', 'PHI:NUM:_', 'PHI:NUM:SG'}
-kaksi           {'TAIL:*POL:NEG', 'NUM', 'LANG:EN', 'COMP:N', 'LF:two', 'COMP:n', 'TAIL:ARG,ASP:BOUNDED', 'PF:kaksi', 'SPEC:*'}
-kaksi_1         {'SPEC:*', 'PHI:PER:_', 'TAIL:ARG,VAL,FIN', 'NUM', 'LANG:FI', 'COMP:N', 'LF:two', 'COMP:n', 'ARG', 'PF:kaksi', 'PHI:DET:_', '-VAL', 'PHI:NUM:_', 'PHI:NUM:SG'}
-kaksi_2         {'TAIL:*POL:NEG', 'NUM', 'LANG:EN', 'COMP:N', 'LF:two', 'COMP:n', 'TAIL:ARG,ASP:BOUNDED', 'PF:kaksi', 'SPEC:*'}
+juokse-         {'V', 'LF:run', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'SPEC:P', 'SPEC:ADV', 'PF:juokse-', 'PHI:DET:_'}
+kaksi           {'NUM', 'PHI:NUM:SG', 'PHI:PER:_', 'ARG', 'PF:kaksi', '-VAL', 'LANG:FI', 'LF:two', 'SPEC:*', 'COMP:n', 'PHI:NUM:_', 'TAIL:ARG,VAL,FIN', 'PHI:DET:_', 'COMP:N'}
+kaksi           {'TAIL:ARG,ASP:BOUNDED', 'NUM', 'COMP:N', 'PF:kaksi', 'LF:two', 'SPEC:*', 'COMP:n', 'TAIL:*POL:NEG', 'LANG:EN'}
+kaksi_1         {'NUM', 'PHI:NUM:SG', 'PHI:PER:_', 'ARG', 'PF:kaksi', '-VAL', 'LANG:FI', 'LF:two', 'SPEC:*', 'COMP:n', 'PHI:NUM:_', 'TAIL:ARG,VAL,FIN', 'PHI:DET:_', 'COMP:N'}
+kaksi_2         {'TAIL:ARG,ASP:BOUNDED', 'NUM', 'COMP:N', 'PF:kaksi', 'LF:two', 'SPEC:*', 'COMP:n', 'TAIL:*POL:NEG', 'LANG:EN'}
 kahdet          ['LANG:FI']
 kahden          ['LANG:FI']
-kaksi-          {'LANG:FI', 'COMP:N', 'LF:two', 'COMP:n', 'SPEC:*', 'PF:kaksi', 'NUM'}
+kaksi-          {'LF:two', 'NUM', 'SPEC:*', 'COMP:n', 'COMP:N', 'PF:kaksi', 'LANG:FI'}
 kaupunkia       ['LANG:EN']
-kaupunki        {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', '-SPEC:FORCE', 'LF:city', 'COMP:R/D', '-COMP:P', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'PF:kaupunki', 'N', '-SPEC:N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+kaupunki        {'N', 'COMP:C', '-COMP:WH', 'PF:kaupunki', 'COMP:uR', '-SPEC:N', '-COMP:VA/inf', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:P', 'LF:city', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 kaski           ['LANG:FI']
 kaskee          ['LANG:FI']
-kaske-          {'SPEC:ADV', 'PHI:NUM:_', 'PHI:PER:_', '-COMP:N', '!COMP:A/inf', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PF:kaske', 'SEM:external', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LF:order'}
+kaske-          {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', 'LF:order', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '!COMP:A/inf', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'SPEC:P', 'SPEC:ADV', 'PF:kaske', 'SEM:external'}
 kellon          ['LANG:FI']
 kellon          ['LANG:FI']
 kellon_n        ['LANG:FI']
 kellon_N        ['LANG:FI']
 kelloja         ['LANG:FI']
 kello           ['LANG:FI']
-kello-          {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LF:watch', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'PF:kello', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-kello0-         {'LANG:FI', 'SPEC:D', '2SPEC', 'LF:watch', '0', 'PF:kello'}
+kello-          {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'LF:watch', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', 'PF:kello', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
+kello0-         {'0', 'PF:kello', 'SPEC:D', '2SPEC', 'LF:watch', 'LANG:FI'}
 keta            ['LANG:FI']
 kenen           ['LANG:FI']
-key             {'LF:key', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', 'PF:key', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+key             {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'LF:key', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'PF:key', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
 kirja           ['LANG:FI']
 kirjan          ['LANG:FI']
 kirjaa          ['LANG:FI']
-kirja-          {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', '-COMP:A', '-SEM:directional', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', 'PF:kirja', '-SPEC:P', '-COMP:V', 'LF:book', '-SPEC:uWH', 'COMP:uR'}
+kirja-          {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'PF:kirja', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'LF:book', 'COMP:D/rel', '-COMP:v', '-SEM:directional', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 knows           ['LANG:EN']
-know-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PF:know', 'LF:know', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-kohti           {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', 'PF:kohti', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:FORCE', '-SPEC:iWH', '-SPEC:iR', 'PHI:DET:_', 'SPEC:*', '-VAL', '!COMP:*', '-SPEC:INF', '-SPEC:N', 'LF:towards', '-SPEC:V', '-COMP:T/fin', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'TAIL:V', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
-koko            {'adjoinable', '-COMP:uR', '-SPEC:T/fin', '-ARG', '-COMP:P', 'D', '!COMP:*', 'OP', '-SPEC:INF', 'PF:koko', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', 'LANG:FI', 'TAIL:T', '-SPEC:Neg/fin', 'LF:all', 'COMP:N', '-COMP:D', '!PROBE:N', '-SPEC:C', '-SPEC:P'}
+know-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PF:know', 'PHI:DET:_', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'LF:know', 'CLASS:TR', '-SPEC:FORCE', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D', 'LANG:EN'}
+kohti           {'-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:C', 'LANG:FI', '-VAL', '-SPEC:iR', 'SPEC:*', 'PF:kohti', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', 'TAIL:V', '-COMP:ADV', '-COMP:T', '!COMP:*', 'LF:towards', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', '-SPEC:ADV'}
+koko            {'-SPEC:MA/lla', 'D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', '-SPEC:P', 'TAIL:T', 'LANG:FI', '-SPEC:T/fin', 'LF:all', 'COMP:N', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'PF:koko', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR'}
 kuka            ['LANG:FI']
-kuka-           {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'PHI', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', 'LF:who', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'PF:kuka', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+kuka-           {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', 'PHI', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', '-SPEC:uWH', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'PF:kuka', 'COMP:R/D', 'LF:who', '-SPEC:ADV'}
 kuorsaa         ['LANG:FI']
 kuorsaamalla    ['LANG:FI']
-kuorsaa-        {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'LF:snore', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', '-COMP:WH', 'SPEC:P', '-COMP:T/fin', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:D', '-COMP:V', 'PF:kuorsaa', 'PHI:NUM:_'}
-lahella         {'PHI:NUM:_', 'PHI:PER:_', '-COMP:FORCE', 'COMP:V', '-COMP:T', '-SPEC:T/fin', '-SPEC:FORCE', '-SPEC:iR', 'VAL', 'SPEC:*', '!COMP:*', 'COMP:v', '-SPEC:N', '!SPEC:D', '-SPEC:V', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'PF:lahella', 'INF', 'adjoinable', '-COMP:N', '-COMP:C/fin', 'COMP:D', '-SPEC:ADV', '-SPEC:C/fin', '-COMP:ADV', '-SPEC:iWH', 'PHI:DET:_', '-SPEC:INF', '!SPEC:*', 'LF:near', '-COMP:T/fin', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
-lahella         {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:iWH', '-SPEC:FORCE', '-SPEC:iR', 'PHI:DET:_', 'SPEC:*', '-VAL', '!COMP:D', '!COMP:*', '-SPEC:INF', '-SPEC:v', '-SPEC:N', 'LF:near', '-SPEC:V', '-COMP:T/fin', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'ARG', '-SPEC:C', '-SPEC:P', 'PF:lahella', 'P', '-COMP:A'}
-lahella_1       {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:iWH', '-SPEC:FORCE', '-SPEC:iR', 'PHI:DET:_', 'SPEC:*', '-VAL', '!COMP:D', '!COMP:*', '-SPEC:INF', '-SPEC:v', '-SPEC:N', 'LF:near', '-SPEC:V', '-COMP:T/fin', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'ARG', '-SPEC:C', '-SPEC:P', 'PF:lahella', 'P', '-COMP:A'}
-lahella_2       {'PHI:NUM:_', 'PHI:PER:_', '-COMP:FORCE', 'COMP:V', '-COMP:T', '-SPEC:T/fin', '-SPEC:FORCE', '-SPEC:iR', 'VAL', 'SPEC:*', '!COMP:*', 'COMP:v', '-SPEC:N', '!SPEC:D', '-SPEC:V', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'PF:lahella', 'INF', 'adjoinable', '-COMP:N', '-COMP:C/fin', 'COMP:D', '-SPEC:ADV', '-SPEC:C/fin', '-COMP:ADV', '-SPEC:iWH', 'PHI:DET:_', '-SPEC:INF', '!SPEC:*', 'LF:near', '-COMP:T/fin', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
+kuorsaa-        {'V', 'PF:kuorsaa', '-COMP:WH', '-COMP:T/fin', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'LF:snore', '-COMP:v', 'PHI:PER:_', 'ASP', '-COMP:D', '-SPEC:FORCE', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
+lahella         {'-COMP:T/fin', 'P', 'LF:near', 'ARG', '-SPEC:Neg/fin', '-SPEC:P', 'LANG:FI', '-SPEC:T/fin', '!SPEC:*', '-COMP:uWH', 'INF', '-COMP:T', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:FORCE', '-SPEC:C/fin', '-COMP:FORCE', '-SPEC:v', '-SPEC:INF', 'COMP:D', '-SPEC:ADV', 'PF:lahella', '-SPEC:N', '-SPEC:C', '!SPEC:D', '-SPEC:iR', 'SPEC:*', '-COMP:N', 'PHI:NUM:_', 'COMP:V', '-COMP:ADV', 'VAL', 'COMP:v', '-SPEC:V', '!COMP:*', '-SPEC:iWH', '-COMP:C/fin', 'PHI:DET:_'}
+lahella         {'PF:lahella', '-COMP:T/fin', 'P', 'LF:near', 'ARG', '-SPEC:Neg/fin', '-SPEC:P', '-SPEC:N', '-SPEC:C', 'LANG:FI', '-VAL', '-SPEC:v', '-SPEC:iR', 'SPEC:*', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '!COMP:D', '-COMP:ADV', '-COMP:T', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', '!COMP:*', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', '-SPEC:ADV'}
+lahella_1       {'PF:lahella', '-COMP:T/fin', 'P', 'LF:near', 'ARG', '-SPEC:Neg/fin', '-SPEC:P', '-SPEC:N', '-SPEC:C', 'LANG:FI', '-VAL', '-SPEC:v', '-SPEC:iR', 'SPEC:*', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '!COMP:D', '-COMP:ADV', '-COMP:T', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', '!COMP:*', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', '-SPEC:ADV'}
+lahella_2       {'-COMP:T/fin', 'P', 'LF:near', 'ARG', '-SPEC:Neg/fin', '-SPEC:P', 'LANG:FI', '-SPEC:T/fin', '!SPEC:*', '-COMP:uWH', 'INF', '-COMP:T', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:FORCE', '-SPEC:C/fin', '-COMP:FORCE', '-SPEC:v', '-SPEC:INF', 'COMP:D', '-SPEC:ADV', 'PF:lahella', '-SPEC:N', '-SPEC:C', '!SPEC:D', '-SPEC:iR', 'SPEC:*', '-COMP:N', 'PHI:NUM:_', 'COMP:V', '-COMP:ADV', 'VAL', 'COMP:v', '-SPEC:V', '!COMP:*', '-SPEC:iWH', '-COMP:C/fin', 'PHI:DET:_'}
 lahtee          ['LANG:FI']
 lahtea          ['LANG:FI']
 lahtemaan       ['LANG:FI']
@@ -195,9 +195,9 @@ lahdettyaan     ['LANG:FI']
 lahdettya       ['LANG:FI']
 lahde           ['LANG:FI']
 lahti           ['LANG:FI']
-lahte-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:lahtea', 'COMP:PP', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LF:leave', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+lahte-          {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'LF:leave', 'PHI:PER:_', 'COMP:PP', 'ASP', 'PF:lahtea', 'CLASS:INTR', '-COMP:D', '-SPEC:FORCE', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
 lavano          ['LANG:IT']
-lava-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LANG:IT', 'PHI:DET:_', '-VAL', 'V', '!COMP:*', '-COMP:v', 'ASP', 'SPEC:P', 'PF:lava', 'SPEC:TO/inf', 'PHI:GEN:_', 'LF:wash', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+lava-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LF:wash', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'LANG:IT', '-COMP:v', 'PHI:PER:_', 'ASP', 'PF:lava', '-SPEC:FORCE', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 lavato          ['LANG:IT']
 lavata          ['LANG:IT']
 lavare          ['LANG:IT']
@@ -206,30 +206,30 @@ lavando         ['LANG:IT']
 lavo            ['LANG:IT']
 lavi            ['LANG:IT']
 lava            ['LANG:IT']
-le              {'adjoinable', '-COMP:uR', 'PF:le', '-SPEC:T/fin', '-ARG', 'LANG:IT', '-COMP:P', 'D', '!COMP:*', 'OP', 'LF:D', '-SPEC:INF', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P'}
+le              {'-SPEC:MA/lla', 'D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', 'PF:le', '-SPEC:P', '-SPEC:T/fin', 'COMP:N', 'LANG:IT', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR', 'LF:D'}
 leaves          ['LANG:EN']
-leave           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LF:leave', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'PF:leave', '!SPEC:D', '-COMP:T/fin', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-leave-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LF:leave', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'PF:leave', '!SPEC:D', '-COMP:T/fin', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-like-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:like', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', '!COMP:D', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', 'PF:like', '-COMP:V', 'PHI:NUM:_'}
+leave           {'V', '-COMP:T/fin', 'SPEC:TO/inf', 'ARG', '-COMP:V', '!SPEC:D', '-VAL', 'PF:leave', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:v', 'LF:leave', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+leave-          {'V', '-COMP:T/fin', 'SPEC:TO/inf', 'ARG', '-COMP:V', '!SPEC:D', '-VAL', 'PF:leave', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:v', 'LF:leave', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+like-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'PF:like', '-VAL', 'LF:like', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '!COMP:D', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
 likes           ['LANG:EN']
-like            {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:like', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', '!COMP:D', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', 'PF:like', '-COMP:V', 'PHI:NUM:_'}
+like            {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'PF:like', '-VAL', 'LF:like', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '!COMP:D', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
 little          ['LANG:EN']
-little-         {'LANG:EN', 'SPEC:D', '2SPEC', 'LF:little', 'PF:little-', '0'}
-lle             {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', 'P', '+SEM:directional', '-SPEC:FORCE', '-SPEC:iWH', 'TAIL:V,+SEM:directional', '-SPEC:iR', 'PHI:DET:_', '-VAL', '-SPEC:*', '!COMP:*', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'ARG', '-SPEC:C', 'PF:P(lle)', '-SPEC:P', '-SPEC:v', 'LF:for', '-COMP:A'}
-lla             {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:iWH', '-SPEC:FORCE', '-SPEC:iR', 'PHI:DET:_', 'SPEC:*', '-VAL', 'LF:by', 'PF:P(lla)', '!COMP:*', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'TAIL:*V', 'LANG:FI', 'TAIL:T', '-SPEC:Neg/fin', '-COMP:uWH', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
+little-         {'0', 'SPEC:D', '2SPEC', 'PF:little-', 'LF:little', 'LANG:EN'}
+lle             {'PF:P(lle)', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:*', '-SPEC:C', 'LANG:FI', '-VAL', '-SPEC:iR', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '-COMP:ADV', '-COMP:T', 'LF:for', '+SEM:directional', '!COMP:*', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', 'TAIL:V,+SEM:directional', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', '-SPEC:ADV'}
+lla             {'LF:by', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:C', 'TAIL:T', 'LANG:FI', '-VAL', '-SPEC:iR', 'SPEC:*', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '-COMP:ADV', '-COMP:T', 'COMP:D', '!COMP:*', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'TAIL:*V', 'PF:P(lla)'}
 Luisa           ['LANG:IT']
-Luisa-          {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LF:Luisa', '-SEM:directional', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', 'PF:Luisa', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+Luisa-          {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LANG:IT', '-COMP:v', '-SEM:directional', '-COMP:A', 'LF:Luisa', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'PF:Luisa', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 lukemalla       ['LANG:FI']
 lukee           ['LANG:FI']
-luke-           {'PF:luke', 'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', 'LF:read', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+luke-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'LF:read', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'PF:luke', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 loydetty        ['LANG:FI']
 loydettiin      ['LANG:FI']
 loysimme        ['LANG:FI']
 loysi           ['LANG:FI']
 loytaa          ['LANG:FI']
-loyta-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', '-COMP:P', '-VAL', 'PHI:DET:_', '!COMP:D', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LF:find', 'LANG:FI', 'SPEC:TO/inf', 'ARG', 'PF:loyta-', '-COMP:V', 'PHI:NUM:_'}
+loyta-          {'V', 'PF:loyta-', 'SPEC:TO/inf', 'ARG', 'LF:find', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'ASP:BOUNDED', '!COMP:D', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 Mary            ['LANG:EN']
-Mary-           {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-adjoinable', '-COMP:v', 'LF:Mary', 'N', '-SPEC:N', '-SPEC:V', 'LANG:EN', '-COMP:V', '-SPEC:uWH', 'COMP:uR', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-SEM:directional', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', 'PF:Mary', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+Mary-           {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', '-SEM:directional', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-adjoinable', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PF:Mary', 'COMP:R', 'LF:Mary', '-SPEC:uWH', 'LANG:EN'}
 Merja           ['LANG:FI']
 Merjan          ['LANG:FI']
 Merjan_acc      ['LANG:FI']
@@ -237,331 +237,331 @@ Merja_0acc      ['LANG:FI']
 Merjan_gen      ['LANG:FI']
 Merjan_poss     ['LANG:FI']
 Merjaa          ['LANG:FI']
-Merja-          {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', 'PF:Merja', '-adjoinable', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', '-COMP:V', '-SPEC:uWH', 'COMP:uR', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-SEM:directional', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'LF:Merja', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+Merja-          {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'LANG:FI', 'COMP:P', '-SPEC:T/fin', '-COMP:v', '-SEM:directional', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-adjoinable', '-SPEC:INF', 'LF:Merja', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PF:Merja', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 Merjalle        ['LANG:EN']
 Merjalla        ['LANG:EN']
-malla           {'adjoinable', 'MA/inf', 'ADV', 'COMP:v', '-SPEC:N', 'LANG:FI', 'TAIL:T', '-SPEC:Neg/fin', '-SPEC:T/fin', 'PF:malla', '-SPEC:FORCE', 'SPEC:*', 'LF:by'}
+malla           {'ADV', 'COMP:v', 'LF:by', 'MA/inf', '-SPEC:Neg/fin', '-SPEC:N', 'adjoinable', 'TAIL:T', 'LANG:FI', '-SPEC:FORCE', 'SPEC:*', 'PF:malla', '-SPEC:T/fin'}
 meren           ['LANG:FI']
-mere-           {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'PF:meri', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', 'LF:ocean', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-mies            {'-COMP:N', '-COMP:C/fin', 'PF:mies', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', 'LF:man', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-mistake         {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', 'PF:mistake', '-SPEC:FORCE', 'LF:mistake', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+mere-           {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', 'PF:meri', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LF:ocean', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
+mies            {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', 'PF:mies', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', 'LF:man', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
+mistake         {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', 'PF:mistake', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', 'LF:mistake', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
 minka           ['LANG:FI']
 mika            ['LANG:FI']
-mika-           {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', 'LF:what', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', 'PF:mika-', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+mika-           {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', 'LF:what', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'PF:mika-', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 mita            ['LANG:FI']
 moved           ['LANG:EN']
 move'           ['LANG:EN']
-move-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', 'LANGN:EN', '-SPEC:T/fin', 'LF:move', '+SEM:directional', '-SPEC:FORCE', 'COMP:P', '-COMP:V', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', 'PF:move', 'PHI:NUM:_'}
+move-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'PF:move', 'LF:move', 'COMP:P', 'LANGN:EN', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '+SEM:directional', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 mukavasti       ['LANG:EN']
-mukava-         {'PF:mukavasti', 'LANG:FI', 'SPEC:D', '2SPEC', 'LF:comfortably', '0'}
-must            {'PHI:PER:_', '-COMP:INF', 'COMP:V', 'LF:must', 'COMP:T/prt', '-SPEC:T/fin', 'T/fin', 'FIN', 'PHI:DET:_', 'VAL', 'SPEC:*', '!COMP:*', 'PF:must', '-SPEC:Neg', 'COMP:v', '!PROBE:V', 'SPEC:C/fin', '-SPEC:N', '-SPEC:V', 'MODAL', '!SPEC:*', 'LANG:EN', '-COMP:T/fin', 'SPEC:TO/inf', 'SPEC:FORCE', 'SPEC:D', 'ARG', 'COMP:Neg', 'T', '-SPEC:C', 'PHI:GEN:_', '-SPEC:v', 'PHI:NUM:_', '-SPEC:TO/inf'}
+mukava-         {'LF:comfortably', '0', 'SPEC:D', '2SPEC', 'PF:mukavasti', 'LANG:FI'}
+must            {'-SPEC:Neg', '-COMP:T/fin', 'ARG', 'SPEC:TO/inf', '-SPEC:N', '-SPEC:C', 'FIN', 'COMP:Neg', 'T', '-COMP:INF', '-SPEC:T/fin', 'PHI:NUM:_', 'SPEC:*', 'LF:must', '!SPEC:*', 'SPEC:D', 'T/fin', 'COMP:V', 'VAL', 'COMP:v', '!COMP:*', 'PHI:PER:_', 'SPEC:FORCE', 'MODAL', 'PF:must', 'SPEC:C/fin', '-SPEC:V', 'COMP:T/prt', '-SPEC:TO/inf', 'PHI:GEN:_', '-SPEC:v', '!PROBE:V', 'PHI:DET:_', 'LANG:EN'}
 myi             ['LANG:FI']
 myynyt          ['LANG:FI']
 myyda           ['LANG:FI']
-myy-            {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', 'LF:sell', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'PF:myy', '-COMP:T/fin', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+myy-            {'V', '-COMP:T/fin', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'ASP:BOUNDED', '-COMP:v', '-COMP:P', 'LF:sell', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D', 'PF:myy'}
 naki            ['LANG:FI']
 nakee           ['LANG:FI']
-nake-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:nake', 'COMP:D', '-COMP:MA/ssa', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', '-COMP:V', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', 'LF:see', '-COMP:v', '!COMP:*', 'ASP', '-COMP:ESSA/inf', 'CLASS:TR', 'SPEC:P', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:MA/tta', 'PHI:NUM:_'}
+nake-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', 'PF:nake', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'ASP:BOUNDED', '-COMP:MA/ssa', '-COMP:ESSA/inf', '-COMP:v', '-COMP:P', 'PHI:PER:_', '-COMP:MA/tta', 'ASP', 'CLASS:TR', 'LF:see', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 nayttaa         ['LANG:FI']
-naytta-         {'SPEC:ADV', '-COMP:N', 'PF:naytta', '-SPEC:T/fin', '!COMP:VA/inf', '-SPEC:FORCE', 'COMP:P', '-ARG', 'VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', '!SPEC:D', 'LF:seem', 'LANG:FI', 'SPEC:TO/inf', 'SEM:internal', '-COMP:V'}
-ndo             {'INF', '!COMP:*', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', 'COMP:v', 'LF:ing', '-SPEC:V', 'PF:PRG', '-COMP:T/fin', 'LANG:EN', '-SPEC:T/fin', '?ARG', 'VAL', 'PRG'}
-ne              {'adjoinable', '-COMP:uR', '-SPEC:T/fin', '-ARG', '-COMP:P', 'D', 'PHI:PER:3', '!COMP:*', 'OP', '-SPEC:INF', 'LF:those', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', 'LANG:FI', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', 'PF:ne', '-COMP:D', '-SPEC:C', 'PHI:NUM:PL', '-SPEC:P'}
+naytta-         {'V', 'SPEC:TO/inf', 'LF:seem', '-ARG', '-COMP:V', '!SPEC:D', 'LANG:FI', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'SEM:internal', 'VAL', 'PF:naytta', '-COMP:v', 'ASP', '-SPEC:FORCE', 'SPEC:P', 'SPEC:ADV', '!COMP:VA/inf'}
+ndo             {'VAL', 'COMP:v', 'PF:PRG', 'LF:ing', '-COMP:T/fin', '-SPEC:V', '-COMP:C/fin', 'PRG', '-COMP:FORCE', '-SPEC:T/fin', '!COMP:*', 'INF', 'COMP:V', '?ARG', 'LANG:EN'}
+ne              {'-SPEC:MA/lla', 'D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', '-SPEC:P', 'LANG:FI', '-SPEC:T/fin', 'PHI:PER:3', 'COMP:N', '-COMP:uR', '!COMP:*', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'LF:those', 'OP', 'PF:ne', '-SPEC:INF', 'PHI:NUM:PL'}
 niiden          ['LANG:EN']
-nen             {'SPEC:*', 'LF:ing', '-SPEC:D', 'LANG:FI', 'PF:a', 'COMP:0', 'TAIL:D', 'A', '-SPEC:A'}
-not             {'LF:not', 'SPEC:*', 'PHI:PER:_', '!COMP:*', 'Neg', 'PF:not', 'POL:NEG', '-COMP:FIN', 'LANG:EN', '-SPEC:T/fin', 'PHI:GEN:_', 'ARG', '-COMP:D', '-COMP:C', 'PHI:DET:_', '-VAL', 'PHI:NUM:_'}
+nen             {'A', 'LF:ing', 'TAIL:D', 'LANG:FI', 'COMP:0', 'PF:a', 'SPEC:*', '-SPEC:D', '-SPEC:A'}
+not             {'-COMP:C', 'Neg', 'PF:not', 'PHI:PER:_', 'ARG', 'LF:not', '-VAL', '-COMP:FIN', '-COMP:D', 'SPEC:*', 'PHI:GEN:_', '-SPEC:T/fin', '!COMP:*', 'PHI:NUM:_', 'POL:NEG', 'PHI:DET:_', 'LANG:EN'}
 nukahti         ['LANG:FI']
 nukkunut        ['LANG:FI']
 nukuttiin       ['LANG:FI']
 nukkua          ['LANG:FI']
 nukkui          ['LANG:FI']
 nukkuu          ['LANG:FI']
-nukku-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-COMP:Neg/fin', '-COMP:T', '-SPEC:T/fin', 'PF:nukku', '-SPEC:FORCE', 'COMP:P', 'LF:sleep', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', '-COMP:T/fin', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+nukku-          {'V', 'LF:sleep', '-COMP:T/fin', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:T', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', '-SPEC:FORCE', '-COMP:D', '-COMP:Neg/fin', 'PF:nukku', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
 ollut           ['LANG:FI']
 on'             ['LANG:FI']
 on'             ['LANG:FI']
 omaisuutensa    ['LANG:FI']
 omaisuuttaan    ['LANG:FI']
-omaisuus-       {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LF:possessions', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', 'PF:omaisuuden', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+omaisuus-       {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', 'LF:possessions', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', 'PF:omaisuuden', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 operatoria      ['LANG:IT']
-operatoria-     {'SPEC:D', '2SPEC', 'PF:operatoria', 'LANG:IT', '0', 'LF:operation'}
+operatoria-     {'LANG:IT', 'PF:operatoria', 'LF:operation', '0', 'SPEC:D', '2SPEC'}
 ostaa           ['LANG:FI']
-osta-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', '-COMP:V', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'ARG', 'LF:buy', 'PF:osta', 'PHI:NUM:_'}
+osta-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'LF:buy', 'PHI:DET:_', 'ASP:BOUNDED', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', 'PF:osta', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 paivan          ['LANG:EN']
 paivaa          ['LANG:EN']
 paiva           ['LANG:EN']
-paiva-          {'-COMP:N', '-COMP:C/fin', 'SEM:nonreferential', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', 'LF:day', '-COMP:VA/inf', 'PF:paiva', 'N', '-SPEC:N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-past            {'PHI:NUM:_', 'PF:past', 'adjoinable', '-COMP:N', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:iWH', '-SPEC:FORCE', '-SPEC:iR', '-float', '-VAL', 'PHI:DET:_', '-SPEC:*', '!COMP:*', '-SPEC:INF', 'LF:past', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', '-SPEC:Neg/fin', '-COMP:uWH', 'PHI:GEN:_', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
+paiva-          {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-SPEC:INF', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', 'LF:day', '-SPEC:R', '-SPEC:V', 'SEM:nonreferential', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', 'PF:paiva', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
+past            {'-float', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', 'PF:past', '-SPEC:P', '-SPEC:*', '-SPEC:C', '-VAL', '-SPEC:iR', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'LF:past', '-COMP:uWH', 'PHI:DET:_', '-COMP:ADV', '-COMP:T', '!COMP:*', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'PHI:GEN:_', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', 'LANG:EN'}
 Pariisia        ['LANG:FI']
-Pariisi-        {'-COMP:N', '-COMP:C/fin', 'PF:Pariisi', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'LF:Paris', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+Pariisi-        {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', 'LF:Paris', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', 'PF:Pariisi', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 Pekkaa          ['LANG:FI']
 Pekka           ['LANG:FI']
 Pekan           ['LANG:EN']
 Pekan_gen       ['LANG:FI']
 Pekan_acc       ['LANG:FI']
 Pekka_0acc      ['LANG:FI']
-Pekka-          {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:P', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', '-SEM:directional', 'COMP:R/D', 'LF:Pekka', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', 'PF:Pekka', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+Pekka-          {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', 'PF:Pekka', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LF:Pekka', '-COMP:v', '-SEM:directional', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 pelottaa        ['LANG:FI']
 pelkaa          ['LANG:FI']
-pelkaa-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:fear', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'ARG', 'PF:pelkaa', '-COMP:V', 'PHI:NUM:_'}
+pelkaa-         {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'COMP:D', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', 'LF:fear', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'PF:pelkaa'}
 persuades       ['LANG:EN']
-persuade-       {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:persuade', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'COMP:TO/inf', 'SEM:external', '-VAL', 'PHI:DET:_', 'V', 'LF:persuade', '!COMP:*', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+persuade-       {'V', 'SPEC:TO/inf', 'ARG', 'COMP:TO/inf', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'LF:persuade', 'PHI:NUM:_', 'PF:persuade', 'PHI:DET:_', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'SEM:external', 'LANG:EN'}
 peruuntui       ['LANG:FI']
-peruuntu-       {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', 'LF:cancelled', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', 'PF:peruuntui', '-COMP:V', 'PHI:NUM:_'}
+peruuntu-       {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', 'PF:peruuntui', '-COMP:v', 'LF:cancelled', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
 pesi            ['LANG:FI']
 pesta           ['LANG:FI']
-pese-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', '-COMP:P', '-VAL', 'PF:pese_asp', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'LF:wash', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-pese-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', 'PF:pese', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'LF:wash', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-petardi         {'LF:firecrackers', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', 'PF:petardi', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+pese-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LF:wash', 'LANG:FI', '-VAL', 'PF:pese_asp', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'ASP:BOUNDED', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
+pese-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LF:wash', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PF:pese', 'PHI:DET:_', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
+petardi         {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', 'PF:petardi', '-COMP:N', 'COMP:R', 'COMP:D/rel', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'LF:firecrackers', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 pieni           ['LANG:FI']
-pieni-          {'LANG:FI', 'LF:small', 'SPEC:D', '2SPEC', '0', 'PF:pieni-'}
+pieni-          {'0', 'SPEC:D', '2SPEC', 'PF:pieni-', 'LF:small', 'LANG:FI'}
 poikien         ['LANG:FI']
-poika-          {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'PF:poika', '-SPEC:T/fin', 'COMP:T/prt', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-COMP:V', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', 'LF:boy', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+poika-          {'N', 'COMP:C', '-COMP:WH', 'LF:boy', 'COMP:uR', '-SPEC:N', '-COMP:VA/inf', '-SPEC:P', '-COMP:V', 'LANG:FI', 'PF:poika', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 puhelinta       ['LANG:FI']
-puhelin-        {'LANG:FI', 'SPEC:D', '2SPEC', 'PF:puhelin', 'LF:phone', '0'}
+puhelin-        {'PF:puhelin', 'LF:phone', '0', 'SPEC:D', '2SPEC', 'LANG:FI'}
 punainen        ['LANG:FI']
-puna-           {'LANG:FI', 'SPEC:D', '2SPEC', 'PF:puna-', 'LF:red', '0'}
-presupposto     {'-COMP:N', '-COMP:C/fin', 'LF:presupposition', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'PF:presupposto', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-primary         {'-COMP:N', '-COMP:C/fin', 'LF:nurse', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'PF:primary', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+puna-           {'LF:red', '0', '2SPEC', 'SPEC:D', 'PF:puna-', 'LANG:FI'}
+presupposto     {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LANG:IT', '-COMP:v', 'LF:presupposition', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'PF:presupposto', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
+primary         {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', 'PF:primary', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LF:nurse', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 promises        ['LANG:EN']
-promise-        {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LF:promise', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'PF:promise', 'LANG:EN', 'SPEC:TO/inf', 'SEM:internal', 'SPEC:D', 'ARG', 'PHI:GEN:_', '-COMP:V', 'PHI:NUM:_'}
-problem         {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', 'PF:problem', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', 'LF:problem', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+promise-        {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'SPEC:D', 'SEM:internal', 'PF:promise', '-COMP:v', 'PHI:PER:_', 'ASP', 'SPEC:P', '-SPEC:FORCE', 'PHI:GEN:_', 'LF:promise', 'SPEC:ADV', 'COMP:D', 'LANG:EN'}
+problem         {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LF:problem', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', 'PF:problem', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
 pyytaa          ['LANG:FI']
-pyyta-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:pyyda', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'SEM:external', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'LF:ask', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+pyyta-          {'V', 'PF:pyyda', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'COMP:D', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'SEM:external', 'LF:ask'}
 raced           ['FREQ:2', 'INFO:finite_verb', 'LANG:EN']
 raced           ['FREQ:1', 'INFO:participle_verb', 'LANG:EN']
-race-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:race', 'PF:race', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', '-COMP:T/fin', 'LANG:EN', 'SPEC:TO/inf', 'LAMG:EN', 'SPEC:D', 'ARG', '-COMP:D', 'PHI:GEN:_', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+race-           {'V', '-COMP:T/fin', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', 'LF:race', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', 'SPEC:P', '-SPEC:FORCE', '-COMP:D', 'PF:race', 'PHI:GEN:_', 'LAMG:EN', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
 raukesi         ['LANG:FI']
-raukea-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', 'LF:terminate', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:FI', 'SPEC:TO/inf', 'PF:raukea', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+raukea-         {'V', 'SPEC:TO/inf', 'ARG', 'LF:terminate', '-COMP:V', 'LANG:FI', 'PF:raukea', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
 red             ['LANG:EN']
-red-            {'LANG:EN', 'SPEC:D', '2SPEC', 'LF:red', '0', 'PF:red'}
+red-            {'PF:red', 'LF:red', '0', 'SPEC:D', '2SPEC', 'LANG:EN'}
 saavuttaa       ['LANG:FI']
-saavutta-       {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:saavutta-', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', 'LF:reach', '-COMP:P', '-VAL', 'PHI:DET:_', '!COMP:D', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+saavutta-       {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '!COMP:D', 'ASP:BOUNDED', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'PF:saavutta-', 'ASP', 'CLASS:TR', 'LF:reach', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
 sanon           ['LANG:FI']
 sanoo           ['LANG:FI']
 sanoi           ['LANG:FI']
-sano-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', 'COMP:FORCE', '-SPEC:FORCE', 'COMP:P', '-COMP:P', '-VAL', 'LF:say', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'PF:sano-', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', 'COMP:VA/inf', '-COMP:V', 'PHI:NUM:_'}
+sano-           {'V', 'SPEC:TO/inf', 'ARG', 'SPEC:ADV', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', 'LF:say', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'SPEC:D', 'COMP:D', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', 'PF:sano-', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'COMP:VA/inf', 'COMP:FORCE'}
 said            ['LANG:EN']
-say'            {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', 'PF:say', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'LF:say', '!COMP:FORCE', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-say-            {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', 'PF:say', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'LF:say', '!COMP:FORCE', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+say'            {'V', 'SPEC:TO/inf', 'ARG', '!COMP:FORCE', '-COMP:V', '-VAL', 'COMP:P', 'LF:say', '-SPEC:T/fin', '-COMP:N', 'PF:say', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+say-            {'V', 'SPEC:TO/inf', 'ARG', '!COMP:FORCE', '-COMP:V', '-VAL', 'COMP:P', 'LF:say', '-SPEC:T/fin', '-COMP:N', 'PF:say', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
 sala            ['LANG:IT']
-sala-           {'-COMP:N', '-COMP:C/fin', 'PF:sala', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', 'LF:room', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+sala-           {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LANG:IT', '-COMP:v', 'LF:room', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', 'PF:sala', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 scoppiati       ['LANG:IT']
-scoppia-        {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:explode', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LANG:IT', '-COMP:V', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', 'PF:scoppia', 'PHI:NUM:_'}
-sentenza        {'-COMP:N', '-COMP:C/fin', 'LF:sentence', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'PF:sentenza', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+scoppia-        {'V', 'LF:explode', 'PF:scoppia', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'LANG:IT', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
+sentenza        {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', 'PF:sentenza', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LANG:IT', '-COMP:v', '-COMP:A', 'LF:sentence', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 Seine           ['LANG:EN']
-Seine-          {'-COMP:N', '-COMP:C/fin', 'PF:Seine', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', 'LF:Seine', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+Seine-          {'N', 'LF:Seine', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'PF:Seine', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
 sembrano        ['LANG:IT']
-sembra-         {'SPEC:ADV', '-ASP', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-ARG', '-VAL', 'V', '-COMP:v', 'SPEC:P', 'PF:sembra', 'LF:seem', 'LANG:EN', 'SPEC:TO/inf', 'SPEC:D', '-COMP:D', '-COMP:V', '!COMP:ARE/inf'}
+sembra-         {'V', 'SPEC:TO/inf', 'LF:seem', '-ARG', '-COMP:V', '-ASP', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', '!COMP:ARE/inf', 'SPEC:D', '-COMP:v', '-COMP:D', '-SPEC:FORCE', 'PF:sembra', 'SPEC:P', 'SPEC:ADV', 'LANG:EN'}
 sleeps          ['LANG:EN']
-sleep           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', 'PF:sleep', '-SPEC:FORCE', 'COMP:P', 'LF:sleep', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
-sleep-          {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', 'PF:sleep', '-SPEC:FORCE', 'COMP:P', 'LF:sleep', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
-solution        {'LF:solution', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', 'PF:solution', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+sleep           {'V', 'LF:sleep', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'PF:sleep', 'COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', '-SPEC:FORCE', '-COMP:D', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+sleep-          {'V', 'LF:sleep', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'PF:sleep', 'COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', '-SPEC:FORCE', '-COMP:D', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+solution        {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'PF:solution', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'LF:solution', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
 sono            ['LANG:IT']
 sono_pl         ['LANG:IT']
 sopimuksen      ['LANG:FI']
 sopimus         ['LANG:FI']
-sopimus-        {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '!COMP:A/inf', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', 'LF:agreement', 'PF:sopimus', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+sopimus-        {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', '!COMP:A/inf', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', 'PF:sopimus', '-SPEC:INF', 'LF:agreement', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 spinge          ['LANG:IT']
-spinge-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:spinge', '-SPEC:T/fin', '-SPEC:FORCE', 'LANG:IT', '-COMP:P', '-VAL', 'PHI:DET:_', '!COMP:D', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LF:push', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-ssa             {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'COMP:n/MA', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', 'LF:in', 'PF:ssa', '-SPEC:T/fin', '-SPEC:FORCE', '-COMP:ADV', '-SPEC:iWH', '-SPEC:iR', 'PHI:DET:_', 'SPEC:*', '-VAL', '!COMP:*', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'TAIL:V', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
+spinge-         {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '!COMP:D', 'LANG:IT', 'LF:push', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'PF:spinge', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
+ssa             {'-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:C', 'LANG:FI', '-VAL', '-SPEC:iR', 'SPEC:*', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', 'TAIL:V', '-COMP:ADV', '-COMP:T', 'PF:ssa', '!COMP:*', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', 'COMP:n/MA', '-SPEC:C/fin', '-SPEC:v', 'LF:in', '-SPEC:INF', '-SPEC:iWH', 'COMP:D', '-SPEC:ADV'}
 stanno          ['LANG:IT']
-sta-            {'SPEC:ADV', '-ASP', 'PHI:PER:_', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'COMP:PRG', '-VAL', 'PHI:DET:_', 'LF:stay', 'V', '-COMP:v', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'SEM:internal', 'SPEC:D', 'ARG', 'PHI:GEN:_', 'PF:sta', '-COMP:V', 'PHI:NUM:_'}
-sti             {'adjoinable', '!COMP:*', 'LF:by', '-SPEC:N', 'LANG:FI', 'TAIL:T', '-SPEC:Neg/fin', '-SPEC:T/fin', '-SPEC:FORCE', '-ARG', 'PF:sti', 'SPEC:*', 'ADV'}
+sta-            {'V', 'SPEC:TO/inf', 'ARG', 'SPEC:ADV', '-COMP:V', '-ASP', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', 'SEM:internal', '-COMP:v', 'COMP:PRG', 'PHI:PER:_', '-SPEC:FORCE', 'PHI:GEN:_', 'PF:sta', 'SPEC:P', 'LF:stay', 'PHI:DET:_', 'LANG:EN'}
+sti             {'ADV', 'LF:by', '-ARG', '-SPEC:Neg/fin', '-SPEC:N', 'adjoinable', 'TAIL:T', 'LANG:FI', '-SPEC:FORCE', 'SPEC:*', 'PF:sti', '-SPEC:T/fin', '!COMP:*'}
 sukkaa          ['LANG:EN']
 sukan           ['LANG:EN']
 sukat           ['LANG:EN']
-sukka-          {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', 'LF:socks', '-SPEC:C/fin', '-SPEC:T/fin', 'PF:sukka-', 'COMP:T/prt', 'COMP:P', '-SPEC:FORCE', 'COMP:C', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+sukka-          {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'PF:sukka-', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LF:socks', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 surprised       ['LANG:EN']
-surprise-       {'SPEC:ADV', 'PF:surprise', '-COMP:N', 'PHI:PER:_', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LF:surprise', '-COMP:T/fin', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-talo            {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', '-COMP:A', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', 'PF:talo', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', 'LF:house', '-SPEC:uWH', 'COMP:uR'}
+surprise-       {'V', '-COMP:T/fin', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'PF:surprise', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'LF:surprise', 'CLASS:TR', '-SPEC:FORCE', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D', 'LANG:EN'}
+talo            {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'LF:house', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'PF:talo'}
 tama            ['LANG:EN']
-tama-           {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'PHI', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', 'LF:this', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'PF:tama', 'N', '-SPEC:N', '-SPEC:V', 'LANG:FI', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+tama-           {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', 'PHI', '-SPEC:N', 'PF:tama', '-SPEC:P', '-COMP:V', 'LANG:FI', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:R/D', 'COMP:D/rel', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', '-SPEC:INF', 'LF:this', '-SPEC:uWH', '-SPEC:ADV'}
 tassa           ['LANG:EN']
 taytyy          ['LANG:FI']
 taydy           ['LANG:FI']
-tayty-          {'SPEC:ADV', '-ASP', 'PHI:PER:_', '-COMP:N', 'LF:must', '!COMP:A/inf', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'FIN', 'PF:taytyy', 'PHI:DET:_', 'SPEC:*', '-VAL', 'V', '-COMP:v', 'SPEC:P', 'MODAL', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+tayty-          {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-ASP', 'LANG:FI', '-VAL', 'FIN', 'SPEC:*', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'LF:must', '!COMP:A/inf', '-COMP:v', 'PHI:PER:_', 'MODAL', 'PF:taytyy', '-SPEC:FORCE', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_'}
 teki            ['LANG:FI']
-teke-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', 'LF:make', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', '-COMP:P', '-VAL', 'PHI:DET:_', '!COMP:D', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'PF:teke', '-COMP:A/inf', 'LANG:FI', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-that            {'PF:that', '!COMP:*', 'COMP:C/fin', '!PROBE:FIN', 'COMP:T/fin', 'FORCE', 'LANG:EN', 'FIN', '-ARG', 'LF:that', '-VAL', '-SPEC:*'}
-the             {'adjoinable', '-COMP:uR', '-SPEC:T/fin', '-ARG', '-COMP:P', 'LF:the', 'D', '!COMP:*', 'OP', '-SPEC:INF', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', 'LANG:EN', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', 'PHI:DEF:DEF', '-COMP:D', '-SPEC:C', 'PF:the', '-SPEC:P'}
-to              {'PHI:NUM:_', 'PHI:PER:_', '-COMP:T', '-SPEC:T/fin', '-SPEC:FORCE', '-SPEC:iR', '-float', '-VAL', '-SPEC:*', '!COMP:*', '-SPEC:N', '-SPEC:V', 'LANG:EN', '-SPEC:Neg/fin', '-COMP:uWH', 'PHI:GEN:_', 'adjoinable', '-COMP:N', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', 'LF:to', '-COMP:ADV', '+SEM:directional', '-SPEC:iWH', 'PHI:DET:_', '-SPEC:INF', 'PF:to', '-COMP:T/fin', 'TAIL:V', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
-to_inf          {'INF', 'PF:TO/inf', 'adjoinable', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', '-SPEC:T/fin', '-VAL', 'LF:TO/inf', '!COMP:*', 'COMP:v', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', '?ARG', 'TO/inf', '-SPEC:v'}
-towards         {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:iWH', '-SPEC:FORCE', '-SPEC:iR', '-float', '-VAL', 'PF:towards', '-SPEC:*', 'PHI:DET:_', '!COMP:*', '-SPEC:INF', '-SPEC:N', 'LF:towards', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', '-SPEC:Neg/fin', '-COMP:uWH', 'PHI:GEN:_', 'TAIL:V', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
+teke-           {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '!COMP:D', 'ASP:BOUNDED', '-COMP:v', '-COMP:P', 'PF:teke', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'LF:make', '-COMP:A/inf', 'COMP:D'}
+that            {'-ARG', '-SPEC:*', '!PROBE:FIN', 'PF:that', '-VAL', 'COMP:C/fin', 'FIN', 'LF:that', '!COMP:*', 'COMP:T/fin', 'FORCE', 'LANG:EN'}
+the             {'-SPEC:MA/lla', 'D', 'PHI:DEF:DEF', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', 'LF:the', '-SPEC:C', '-SPEC:P', '-SPEC:T/fin', 'COMP:N', 'PF:the', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR', 'LANG:EN'}
+to              {'-float', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:P', '-SPEC:*', '-VAL', '-SPEC:T/fin', '-COMP:uWH', 'TAIL:V', '-COMP:T', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:FORCE', '-SPEC:C/fin', 'PHI:GEN:_', '-SPEC:v', '-SPEC:INF', 'COMP:D', '-SPEC:ADV', '-SPEC:N', '-SPEC:C', '-SPEC:iR', '-COMP:N', 'PHI:NUM:_', '-COMP:ADV', 'PF:to', '+SEM:directional', '-SPEC:V', '!COMP:*', '-SPEC:iWH', 'LF:to', 'PHI:DET:_', 'LANG:EN'}
+to_inf          {'TO/inf', '-COMP:T/fin', '-VAL', '-SPEC:v', 'LF:TO/inf', '-SPEC:T/fin', 'COMP:V', 'INF', 'COMP:v', '!COMP:*', 'adjoinable', '-SPEC:V', '-COMP:FORCE', '?ARG', 'PF:TO/inf', '-COMP:C/fin', 'LANG:EN'}
+towards         {'-float', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:*', '-SPEC:C', '-VAL', '-SPEC:iR', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', 'TAIL:V', '-COMP:ADV', '-COMP:T', '!COMP:*', 'LF:towards', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-SPEC:C/fin', 'PF:towards', '-SPEC:ADV', 'PHI:GEN:_', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', 'LANG:EN'}
 tonaisi         ['LANG:FI']
 tonaista        ['LANG:FI']
-tonaise-        {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-COMP:P', 'PF:tonaise', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:FI', 'SPEC:TO/inf', 'ARG', 'LF:nudge', '-COMP:V', 'PHI:NUM:_'}
-tta             {'PHI:NUM:_', 'adjoinable', '-COMP:N', 'COMP:n/MA', 'PHI:PER:_', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', 'LF:without', '-SPEC:FORCE', '-SPEC:iWH', '-SPEC:iR', 'PHI:DET:_', 'SPEC:*', '-VAL', 'ADV', '!COMP:*', 'PF:tta', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:FI', '-SPEC:Neg/fin', '-COMP:uWH', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
+tonaise-        {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '-SPEC:T/fin', 'PF:tonaise', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'LF:nudge', 'CLASS:TR', '-SPEC:FORCE', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D'}
+tta             {'LF:without', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:C', 'LANG:FI', '-VAL', '-SPEC:iR', 'PF:tta', 'SPEC:*', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '-COMP:ADV', '-COMP:T', 'ADV', '!COMP:*', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', 'COMP:n/MA', '-SPEC:C/fin', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', '-SPEC:ADV'}
 tries           ['LANG:EN']
-try-            {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:try', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '!COMP:TO/inf', 'LF:try', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', '!COMP:-ARG', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'SEM:internal', 'SPEC:D', 'ARG', 'PHI:GEN:_', '-COMP:V', 'PHI:NUM:_'}
-verifiche       {'LF:verification', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'COMP:P', '-SPEC:FORCE', 'LANG:IT', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', 'PF:verifiche', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+try-            {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', 'SEM:internal', '!COMP:TO/inf', 'PF:try', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'LF:try', '!COMP:-ARG', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+verifiche       {'N', 'PF:verifiche', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'COMP:R', 'LF:verification', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', '-SPEC:ADV'}
 virtaamalla     ['LANG:FI']
 virtaa          ['LANG:FI']
-virta-          {'SPEC:ADV', 'PHI:PER:_', 'LF:flow', '-COMP:N', '-SPEC:T/fin', '-SPEC:FORCE', 'PF:virtaa', 'COMP:P', 'PHI:DET:_', '-VAL', '!COMP:P', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'CLASS:INTR', 'LANG:FI', 'SPEC:TO/inf', 'SPEC:D', 'ARG', '-COMP:D', '-COMP:MA/inf', '-COMP:V', 'PHI:NUM:_'}
+virta-          {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', 'LANG:FI', '-VAL', 'COMP:P', '!COMP:P', '-SPEC:T/fin', '-COMP:MA/inf', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', 'CLASS:INTR', '-COMP:D', '-SPEC:FORCE', 'PF:virtaa', 'SPEC:P', 'SPEC:ADV', 'LF:flow', 'PHI:DET:_'}
 voluto          ['LANG:IT']
 vuole           ['LANG:IT']
-volu-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'PF:volu', 'LF:want', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', '-SPEC:*', 'V', '!COMP:*', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'SEM:internal', 'PHI:GEN:_', 'ARG', '-COMP:V', 'PHI:NUM:_'}
+volu-           {'V', 'SPEC:TO/inf', 'ARG', '-SPEC:*', '-COMP:V', '-VAL', 'PF:volu', 'COMP:P', 'LF:want', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SEM:internal', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
 voitti          ['LANG:FI']
 voittanut       ['LANG:FI']
 voittaa         ['LANG:FI']
-voitta-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'COMP:D', '-SPEC:T/fin', 'PF:voitta', '-SPEC:FORCE', 'COMP:P', 'ASP:BOUNDED', '-COMP:V', '-COMP:P', '-VAL', 'PHI:DET:_', 'V', '-COMP:v', 'SEM:achievement', 'ASP', 'SPEC:P', 'CLASS:TR', '!COMP:*', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'ARG', 'LF:win', 'PHI:NUM:_'}
+voitta-         {'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', 'ASP:BOUNDED', 'LF:win', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'SEM:achievement', 'ASP', 'CLASS:TR', '-SPEC:FORCE', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'PF:voitta', 'COMP:D', 'LANG:EN'}
 wants           ['LANG:EN']
-want-           {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', 'LF:want', 'COMP:D', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'COMP:TO/inf', '-COMP:P', '-VAL', 'PHI:DET:_', 'PF:want', 'V', '-COMP:v', '!COMP:*', 'ASP', 'SPEC:P', 'CLASS:TR', 'LANG:EN', 'PHI:GEN:_', 'ARG', '-COMP:V', 'PHI:NUM:_', '-SPEC:TO/inf'}
+want-           {'V', 'ARG', '-COMP:V', 'COMP:TO/inf', '-VAL', 'COMP:P', 'LF:want', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'PHI:DET:_', '-COMP:v', '-COMP:P', 'PHI:PER:_', 'ASP', 'CLASS:TR', '-SPEC:FORCE', '-SPEC:TO/inf', 'PF:want', 'PHI:GEN:_', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'COMP:D', 'LANG:EN'}
 what            ['LANG:EN']
-what-           {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'PF:what', 'LANG:EN', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LF:what', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
-which           {'adjoinable', '-COMP:uR', '-SPEC:T/fin', 'LF:which', '-ARG', '-COMP:P', 'D', '!COMP:*', 'OP', '-SPEC:INF', 'PF:which', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', '-SPEC:MA/lla', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P', 'OP:WH'}
+what-           {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', 'LF:what', '-COMP:N', 'COMP:D/rel', 'PF:what', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
+which           {'-SPEC:MA/lla', 'D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', '-SPEC:P', '-SPEC:T/fin', 'LF:which', 'COMP:N', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', 'OP:WH', '-COMP:D', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR', 'PF:which', 'LANG:EN'}
 who             ['LANG:EN']
-who-            {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', 'LF:who', '-SPEC:INF', '-COMP:WH', 'PF:who', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
-whether         {'!PROBE:FIN', 'COMP:C/fin', 'Q', 'LF:whether', 'FIN', '-ARG', '-VAL', '-SPEC:*', '!COMP:*', 'OP', 'COMP:T/fin', 'FORCE', 'LANG:EN', 'OP:Q', 'PF:whether', 'OP:WH'}
+who-            {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'PF:who', '-SPEC:INF', 'COMP:R/D', 'LF:who', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
+whether         {'Q', 'LF:whether', '-ARG', '-SPEC:*', '!PROBE:FIN', '-VAL', 'FIN', 'FORCE', 'PF:whether', 'OP:WH', 'OP', '!COMP:*', 'COMP:T/fin', 'OP:Q', 'COMP:C/fin', 'LANG:EN'}
 yrittaa         ['LANG:FI']
-yritta-         {'SPEC:ADV', 'PHI:PER:_', '-COMP:N', '!COMP:A/inf', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'LF:try', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'PF:yritta', '!COMP:-ARG', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'SEM:internal', 'SPEC:D', 'ARG', 'PHI:GEN:_', '-COMP:V', 'PHI:NUM:_'}
+yritta-         {'PF:yritta', 'V', 'SPEC:TO/inf', 'ARG', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', 'SEM:internal', '!COMP:A/inf', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'LF:try', '!COMP:-ARG', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
 mina            ['LANG:EN']
-mina-           {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'PF:mina', 'LANG:FI', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', 'LF:I', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+mina-           {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'LANG:FI', 'COMP:P', '-SPEC:T/fin', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'PF:mina', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:I', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 sina            ['LANG:EN']
-sina-           {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', 'PF:sina', 'LF:you', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+sina-           {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'LANG:FI', 'PF:sina', 'COMP:P', '-SPEC:T/fin', '-COMP:v', '-COMP:A', 'LF:you', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 han             ['LANG:EN']
-han-            {'SPEC:A', '-SPEC:T/fin', 'LF:s/he', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'PF:han', 'LANG:FI', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+han-            {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'LANG:FI', 'COMP:P', '-SPEC:T/fin', 'LF:s/he', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', 'PF:han', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 hanet           ['LANG:EN']
 me              ['LANG:EN']
-me-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', 'PF:me', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', '-COMP:V', '-SPEC:uWH', 'LF:we', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+me-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'LANG:FI', 'COMP:P', '-SPEC:T/fin', 'LF:we', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'PF:me', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 te              ['LANG:EN']
-te-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', 'LF:you', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', 'PF:te', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+te-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'LANG:FI', 'COMP:P', '-SPEC:T/fin', '-COMP:v', '-COMP:A', 'LF:you', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', 'PF:te', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 he_FI           ['LANG:EN']
 heidan          ['LANG:EN']
-he_FI-          {'PF:he', 'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:FI', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'LF:they', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
-se              {'adjoinable', '-COMP:uR', 'LF:the/that', '-SPEC:T/fin', '-ARG', '-COMP:P', 'D', '!COMP:*', 'OP', '-SPEC:INF', 'PF:se', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', 'LANG:FI', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P'}
-sen             {'adjoinable', '-COMP:uR', 'LF:the/that', '-SPEC:T/fin', '-ARG', '-COMP:P', 'TAIL:ASP', 'D', '!COMP:*', 'OP', '-SPEC:INF', 'TAIL:*POL:NEG', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', 'LANG:FI', 'TAIL:PHI', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P', 'PF:sen'}
+he_FI-          {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'LANG:FI', 'COMP:P', '-SPEC:T/fin', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', 'PF:he', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:they', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
+se              {'-SPEC:MA/lla', 'D', '-COMP:T/fin', 'LF:the/that', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', '-SPEC:P', 'PF:se', 'LANG:FI', '-SPEC:T/fin', 'COMP:N', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR'}
+sen             {'-SPEC:MA/lla', 'D', '-COMP:T/fin', 'LF:the/that', '-ARG', '-SPEC:Neg/fin', 'TAIL:ASP', '-SPEC:C', '-SPEC:P', 'LANG:FI', '-SPEC:T/fin', 'TAIL:*POL:NEG', 'COMP:N', '-COMP:P', 'PF:sen', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'TAIL:PHI', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR'}
 I               ['LANG:EN']
-I-              {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'PF:I', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', 'LF:I', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+I-              {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', 'PF:I', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:I', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
 you             ['LANG:EN']
-you-            {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'PF:you', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', 'LF:you', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+you-            {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', '-COMP:A', 'LF:you', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'PF:you', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
 he              ['LANG:EN']
-he-             {'PF:he', 'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LF:he', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+he-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', 'LF:he', 'PF:he', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
 she             ['LANG:EN']
-she-            {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LF:she', 'LANG:EN', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', 'PF:she', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+she-            {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:she', 'PHI_N', '-SPEC:V', 'COMP:R', 'PF:she', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
 we              ['LANG:EN']
-we-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', '-COMP:V', 'PF:we', '-SPEC:uWH', 'LF:we', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+we-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', 'LF:we', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'PF:we', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
 you_pl          ['LANG:EN']
-you_pl-         {'-COMP:N', '-COMP:C/fin', 'LF:you_pl', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'PHI', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'PF:you_pl', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
+you_pl-         {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', 'PHI', '-SPEC:N', '-SPEC:P', '-COMP:V', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', '-SPEC:uWH', 'COMP:D/rel', 'PF:you_pl', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', 'LF:you_pl', 'LANG:EN'}
 they            ['LANG:EN']
-they-           {'SPEC:A', '-SPEC:T/fin', 'COMP:P', 'PF:they', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'LF:they', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+they-           {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', 'PF:they', '-COMP:N', 'COMP:D/rel', 'LF:they', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
 it              ['LANG:EN']
-it-             {'adjoinable', 'PF:it', '-COMP:uR', '-SPEC:T/fin', '-ARG', '-COMP:P', 'D', '!COMP:*', 'OP', '-SPEC:INF', 'LF:it/that', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', 'LANG:EN', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P'}
+it-             {'-SPEC:MA/lla', 'D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', '-SPEC:P', '-SPEC:T/fin', 'COMP:N', '-COMP:P', '!PROBE:N', 'adjoinable', 'LF:it/that', '-SPEC:V', '-COMP:D', 'PF:it', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR', 'LANG:EN'}
 io              ['LANG:EN']
-io-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', 'LF:I', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', 'PF:io', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+io-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:I', '-SPEC:V', 'PHI_N', 'PF:io', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 tu              ['LANG:EN']
-tu-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', 'PF:tu', '-COMP:*', '-COMP:v', 'LF:you', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+tu-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', 'LF:you', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'PF:tu', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 lui             ['LANG:EN']
-lui-            {'PF:lui', 'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', 'LF:he', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+lui-            {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', 'PF:lui', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', 'LF:he', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 lei             ['LANG:EN']
-lei-            {'SPEC:A', 'PF:lei', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'LF:she', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+lei-            {'N', '-COMP:WH', 'COMP:uR', 'PF:lei', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:she', 'PHI_N', '-SPEC:V', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 noi             ['LANG:EN']
-noi-            {'PF:noi', 'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'LF:we', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+noi-            {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'LF:we', 'LANG:IT', 'PF:noi', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 voi             ['LANG:EN']
-voi-            {'LF:you_pl', 'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', 'PF:voi', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+voi-            {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', 'PF:voi', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', '-SPEC:uWH', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', 'LF:you_pl', 'SPEC:A'}
 loro            ['LANG:EN']
-loro-           {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'LF:they', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', '-COMP:A', 'LANG:IT', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', 'PF:loro'}
+loro-           {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:they', 'PF:loro', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 mi              ['LANG:EN']
-mi-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', 'PF:mi(cl)', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', 'CL', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'LF:me', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+mi-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'CL', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:me', 'PF:mi(cl)', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 la              ['LANG:EN']
-la-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', 'LF:her', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PF:la(cl)', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', 'CL', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+la-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'CL', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'LF:her', '-SPEC:V', 'PHI_N', 'PF:la(cl)', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 lo              ['LANG:EN']
-lo-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'PF:lo(cl)', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', 'LF:him', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', 'CL', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+lo-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', 'CL', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', 'PF:lo(cl)', 'PHI_N', '-SPEC:V', 'LF:him', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 si              ['LANG:EN']
-si-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', 'CAL:CL', 'PF:si(cl)', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', 'LF:3sg', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:A'}
+si-             {'N', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'COMP:P', '-SPEC:T/fin', 'CAL:CL', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'PF:si(cl)', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', 'LF:3sg', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
 gli             ['LANG:EN']
 ci              ['LANG:EN']
-ci-             {'SPEC:A', '-SPEC:T/fin', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:*', '-COMP:v', '-SPEC:N', 'N', '-SPEC:V', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PHI_N', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'LF:there', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'LANG:IT', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', 'COMP:D/rel', 'COMP:R', 'PF:ci', '-SPEC:P', '-COMP:A'}
-[-n]            {'inflectional', 'LANG:FI', 'PHI:DET:DEF', 'PHI', 'PHI:PER:1', 'PHI:HUM:HUM', 'PHI:NUM:SG'}
-[-t]            {'inflectional', 'LANG:FI', 'PHI:DET:DEF', 'PHI:PER:2', 'PHI', 'PHI:HUM:HUM', 'PHI:NUM:SG'}
-[-V]            {'inflectional', 'PHI:PER:3', 'LANG:FI', 'PHI', 'PHI:NUM:SG'}
-[-mme]          {'inflectional', 'LANG:FI', 'PHI:DET:DEF', 'PHI', 'PHI:PER:1', 'PHI:NUM:PL', 'PHI:HUM:HUM'}
-[-mme]          {'inflectional', 'LANG:FI', 'PHI:DET:DEF', 'PHI:PER:1', 'PHI:NUM:PL', 'PHI:HUM:HUM'}
-[-tte]          {'inflectional', 'LANG:FI', 'PHI:PER:2', 'PHI', 'PHI:DET:DEF', 'PHI:NUM:PL', 'PHI:HUM:HUM'}
-[-vat]          {'inflectional', 'PHI:PER:3', 'LANG:FI', 'PHI', 'PHI:NUM:PL'}
-[-ni]           {'inflectional', 'LANG:FI', 'PHI:DET:DEF', 'PHI', 'PHI:PER:1', 'PHI:HUM:HUM', 'PHI:NUM:SG'}
-[-si]           {'inflectional', 'LANG:FI', 'PHI:DET:DEF', 'PHI:PER:2', 'PHI', 'PHI:HUM:HUM', 'PHI:NUM:SG'}
-[-nsa]          {'inflectional', 'PHI:PER:3', 'LANG:FI', 'PHI', 'PHI:NUM:SG'}
-[-an]           {'inflectional', 'PHI:PER:3', 'LANG:FI', 'PHI', 'PHI:DET:DET', 'PHI:NUM:SG'}
-[-nne]          {'inflectional', 'LANG:FI', 'PHI:PER:2', 'PHI:DET:DEF', 'PHI:NUM:PL', 'PHI:HUM:HUM'}
-[-s]            {'inflectional', 'PHI:PER:3', 'LANG:EN', 'PHI', 'PHI:GEN:M', 'PHI:GEN:F', 'PHI:NUM:SG'}
-[-0]            {'inflectional', 'PHI:PER:3', 'PHI:GEN:N', 'PHI:PER:1', 'LANG:EN', 'PHI:PER:2', 'PHI', 'PHI:DET:DEF', 'PHI:NUM:PL', 'PHI:NUM:SG'}
-[-o]            {'inflectional', 'PHI:DET:DEF', 'PHI', 'PHI:PER:1', 'LANG:IT', 'PHI:HUM:HUM', 'PHI:NUM:SG'}
-[-i]            {'inflectional', 'PHI:DET:DEF', 'PHI:PER:2', 'PHI', 'LANG:IT', 'PHI:HUM:HUM', 'PHI:NUM:SG'}
-[-a]            {'inflectional', 'PHI:PER:3', 'PHI:DET:DEF', 'PHI', 'LANG:IT', 'PHI:NUM:SG'}
-[-e]            {'inflectional', 'PHI:PER:3', 'PHI:DET:DEF', 'PHI', 'LANG:IT', 'PHI:NUM:SG'}
-[-iamo]         {'inflectional', 'PHI:DET:DEF', 'PHI', 'PHI:PER:1', 'PHI:NUM:PL', 'LANG:IT', 'PHI:HUM:HUM'}
-[-te]           {'inflectional', 'PHI:PER:2', 'PHI', 'PHI:DET:DEF', 'PHI:NUM:PL', 'LANG:IT', 'PHI:HUM:HUM'}
-[-no]           {'inflectional', 'PHI:PER:3', 'PHI:DET:DEF', 'PHI', 'PHI:NUM:PL', 'LANG:IT'}
-[-nom]          {'inflectional', 'LANG:EN', 'adjoinable', 'TAIL:FIN,ARG,VAL', 'NOM'}
-[-par]          {'inflectional', 'PAR', 'adjoinable', 'LANG:FI', 'TAIL:ARG,-VAL'}
-[-gen]          {'inflectional', 'TAIL:INF,ARG', 'LANG:EN', 'GEN', '-float'}
-gen             {'inflectional', 'TAIL:INF,ARG', 'LANG:EN', 'GEN', '-float'}
-[-n_acc]        {'inflectional', 'LANG:FI', 'adjoinable', 'TAIL:PHI', 'TAIL:ARG,ASP:BOUNDED', 'n-ACC', 'TAIL:*POL:NEG'}
-[-t_acc]        {'inflectional', 'LANG:FI', 'adjoinable', 't-ACC', 'TAIL:ARG,ASP:BOUNDED', 'TAIL:*POL:NEG'}
-[-0_acc]        {'inflectional', 'LANG:FI', 'adjoinable', 'TAIL:ARG,ASP:BOUNDED', '0_ACC', 'TAIL:*POL:NEG', 'TAIL:*PHI'}
-asp             {'inflectional', 'LANG:EN', 'ASP:BOUNDED'}
-a'              {'PF:a', 'a', 'LF:A', 'LANG:X'}
-b'              {'LF:B', 'PF:b', 'LANG:X', 'b'}
-b''             {'LANG:EN', 'PF:b', 'b', 'LF:B', '-COMP:c'}
-c''             {'LANG:EN', 'SPEC:a', 'PF:c', 'LF:C', 'c'}
-c'              {'LANG:X', 'LF:C', 'c', 'PF:c'}
-d'              {'LANG:', 'd', 'LF:D', 'PF:d'}
+ci-             {'N', 'LF:there', '-COMP:WH', 'COMP:uR', '-SPEC:P', 'PF:ci', 'COMP:P', '-SPEC:T/fin', 'LANG:IT', '-COMP:v', '-COMP:A', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', '-COMP:*', '-COMP:VA/inf', '-SPEC:N', '-COMP:V', '-COMP:N', 'COMP:D/rel', '-SPEC:V', 'PHI_N', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'SPEC:A'}
+[-n]            {'LANG:FI', 'PHI:NUM:SG', 'PHI:PER:1', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-t]            {'PHI:PER:2', 'LANG:FI', 'PHI:NUM:SG', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-V]            {'PHI:PER:3', 'PHI:NUM:SG', 'PHI', 'inflectional', 'LANG:FI'}
+[-mme]          {'LANG:FI', 'PHI:NUM:PL', 'PHI:PER:1', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-mme]          {'LANG:FI', 'PHI:PER:1', 'PHI:HUM:HUM', 'PHI:NUM:PL', 'inflectional', 'PHI:DET:DEF'}
+[-tte]          {'PHI:PER:2', 'LANG:FI', 'PHI:NUM:PL', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-vat]          {'PHI:PER:3', 'PHI', 'PHI:NUM:PL', 'inflectional', 'LANG:FI'}
+[-ni]           {'LANG:FI', 'PHI:NUM:SG', 'PHI:PER:1', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-si]           {'PHI:PER:2', 'LANG:FI', 'PHI:NUM:SG', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-nsa]          {'PHI:PER:3', 'PHI:NUM:SG', 'PHI', 'inflectional', 'LANG:FI'}
+[-an]           {'PHI:PER:3', 'PHI:NUM:SG', 'PHI', 'PHI:DET:DET', 'inflectional', 'LANG:FI'}
+[-nne]          {'PHI:PER:2', 'LANG:FI', 'PHI:NUM:PL', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-s]            {'PHI:PER:3', 'PHI:NUM:SG', 'PHI:GEN:M', 'PHI', 'PHI:GEN:F', 'inflectional', 'LANG:EN'}
+[-0]            {'PHI:NUM:SG', 'PHI:PER:1', 'PHI', 'PHI:DET:DEF', 'PHI:PER:2', 'PHI:GEN:N', 'PHI:PER:3', 'PHI:NUM:PL', 'inflectional', 'LANG:EN'}
+[-o]            {'LANG:IT', 'PHI:NUM:SG', 'PHI:PER:1', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-i]            {'LANG:IT', 'PHI:PER:2', 'PHI:NUM:SG', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-a]            {'LANG:IT', 'PHI:PER:3', 'PHI:NUM:SG', 'PHI', 'inflectional', 'PHI:DET:DEF'}
+[-e]            {'LANG:IT', 'PHI:PER:3', 'PHI:NUM:SG', 'PHI', 'inflectional', 'PHI:DET:DEF'}
+[-iamo]         {'LANG:IT', 'PHI:NUM:PL', 'PHI:PER:1', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-te]           {'LANG:IT', 'PHI:PER:2', 'PHI:NUM:PL', 'PHI', 'PHI:HUM:HUM', 'inflectional', 'PHI:DET:DEF'}
+[-no]           {'LANG:IT', 'PHI:PER:3', 'PHI', 'PHI:NUM:PL', 'inflectional', 'PHI:DET:DEF'}
+[-nom]          {'NOM', 'TAIL:FIN,ARG,VAL', 'adjoinable', 'inflectional', 'LANG:EN'}
+[-par]          {'PAR', 'TAIL:ARG,-VAL', 'adjoinable', 'inflectional', 'LANG:FI'}
+[-gen]          {'-float', 'TAIL:INF,ARG', 'GEN', 'inflectional', 'LANG:EN'}
+gen             {'-float', 'TAIL:INF,ARG', 'GEN', 'inflectional', 'LANG:EN'}
+[-n_acc]        {'TAIL:PHI', 'TAIL:ARG,ASP:BOUNDED', 'TAIL:*POL:NEG', 'n-ACC', 'adjoinable', 'inflectional', 'LANG:FI'}
+[-t_acc]        {'TAIL:ARG,ASP:BOUNDED', 't-ACC', 'TAIL:*POL:NEG', 'adjoinable', 'inflectional', 'LANG:FI'}
+[-0_acc]        {'TAIL:*PHI', 'TAIL:ARG,ASP:BOUNDED', '0_ACC', 'TAIL:*POL:NEG', 'adjoinable', 'inflectional', 'LANG:FI'}
+asp             {'inflectional', 'ASP:BOUNDED', 'LANG:EN'}
+a'              {'LF:A', 'PF:a', 'LANG:X', 'a'}
+b'              {'LANG:X', 'PF:b', 'b', 'LF:B'}
+b''             {'PF:b', '-COMP:c', 'b', 'LF:B', 'LANG:EN'}
+c''             {'LF:C', 'PF:c', 'LANG:EN', 'SPEC:a', 'c'}
+c'              {'LF:C', 'LANG:X', 'PF:c', 'c'}
+d'              {'LANG:', 'PF:d', 'd', 'LF:D'}
 a''             ['LANG:EN']
-x'              {'LANG:X', 'LF:X', 'x', 'PF:x'}
-y'              {'PF:y', 'LF:Y', 'LANG:X', 'y'}
-z'              {'LANG:X', 'z', 'LF:Z', 'PF:x'}
-John'           {'LANG:X', 'LF:John', 'PF:John', "N'"}
-admires'        {"V'", 'LF:admires', 'PF:admires', 'LANG:X'}
-admires''       {'SPEC:ADV', 'LF:admires', '-COMP:N', 'PHI:PER:_', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', 'PHI:DET:_', '-VAL', 'V', '-COMP:v', 'ASP', 'SPEC:P', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:D', 'PF:admires', 'ARG', '-COMP:V', 'PHI:NUM:_'}
-Mary'           {'PF:Mary', 'LF:mary', 'LANG:X', "N'"}
-T/fin           {'PHI:NUM:_', 'PHI:PER:_', '-COMP:INF', 'COMP:V', 'COMP:T/prt', '-SPEC:T/fin', 'T/fin', 'FIN', 'PHI:DET:_', 'VAL', 'SPEC:*', '!COMP:*', '-SPEC:Neg', 'COMP:v', '!PROBE:V', 'SPEC:C/fin', '-SPEC:N', '-SPEC:V', '!SPEC:*', '-COMP:T/fin', 'LANG:EN', 'SPEC:TO/inf', 'PHI:GEN:_', 'SPEC:FORCE', 'SPEC:D', 'ARG', 'T', '-SPEC:C', 'PF:T', '-SPEC:v', 'LF:T', '-SPEC:TO/inf'}
-v               {'PHI:NUM:_', 'PHI:PER:_', '!COMP:*', 'ASP', 'COMP:V', '!PROBE:V', 'v', '-SPEC:N', 'LANG:EN', 'PHI:GEN:_', 'LF:v', 'SPEC:D', 'ARG', 'PHI:DET:_', '-VAL', 'PF:v'}
-C/fin           {'-COMP:C/fin', 'C/fin', '!PROBE:FIN', 'PF:C', 'C', '-SPEC:C/fin', '-SPEC:T/fin', 'LF:C/fin', 'FIN', '-COMP:T/prt', '-ARG', 'COMP:Neg/fin', 'SPEC:*', 'VAL', '!COMP:*', '-SPEC:N', 'COMP:T/fin', 'LANG:EN'}
-T               {'PHI:NUM:_', 'PHI:PER:_', 'COMP:V', 'COMP:T/prt', '-SPEC:T/fin', '-SPEC:FORCE', 'FIN', '-COMP:NEG', 'PHI:DET:_', 'VAL', 'SPEC:*', '!COMP:*', '!PROBE:V', 'COMP:v', '-SPEC:N', '-SPEC:V', 'LANG:EN', 'PHI:GEN:_', 'SPEC:D', 'ARG', 'T', 'PF:T', 'LF:T'}
-T/prt           {'PHI:PER:_', 'COMP:V', 'COMP:D', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', '-SPEC:FORCE', 'FIN', '-COMP:NEG', 'PHI:DET:_', 'PF:T/prt', 'SPEC:*', 'VAL', '!COMP:*', 'COMP:v', '!PROBE:V', '-SPEC:N', '-SPEC:V', 'LANG:EN', 'PHI:GEN:_', 'SPEC:D', 'ARG', 'T/prt', 'T', 'LF:T/prt', 'PHI:NUM:_'}
-a0              {'PF:A', 'LF:A', '-SPEC:D', 'LANG:EN', 'COMP:0', 'TAIL:D', 'A', '-SPEC:A', '-adjoinable'}
-n               {'PHI:NUM:_', 'PHI:PER:_', 'COMP:V', 'SPEC:A', '-SPEC:T/fin', 'COMP:0', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', 'VAL', '-SPEC:R', 'SPEC:*', '-COMP:v', '!COMP:*', 'COMP:v', '-SPEC:N', 'N', '-SPEC:V', '!SPEC:D', 'LANG:EN', 'PHI:GEN:_', '-COMP:V', '-SPEC:uWH', 'COMP:uR', 'PF:n', 'LF:n', 'INF', '-COMP:N', '-COMP:C/fin', '-SPEC:ADV', '-SPEC:C/fin', 'COMP:T/prt', 'COMP:C', 'PHI:DET:_', '-COMP:AUX', '-SPEC:INF', '-COMP:WH', '-COMP:VA/inf', '!SPEC:*', 'n', 'COMP:D/rel', 'COMP:R', 'ARG', '-SPEC:P', '-COMP:A'}
-impass          {'PHI:PER:_', '!COMP:*', 'ASP', 'COMP:V', '!PROBE:V', 'v', 'LF:impass', '-SPEC:N', 'LANG:EN', 'PHI:GEN:_', 'SPEC:D', 'ARG', 'PF:impass', 'PHI:DET:_', '-VAL', 'PHI:NUM:_'}
-cau             {'PHI:PER:_', '!COMP:*', 'ASP', 'COMP:V', 'PF:Cau', '!PROBE:V', 'v', '-SPEC:N', 'LANG:EN', 'PHI:GEN:_', 'SPEC:D', 'ARG', 'LF:v/Cause', 'PHI:DET:_', '-VAL', 'PHI:NUM:_'}
-INF             {'INF', '!COMP:*', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', 'COMP:v', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', 'LF:INF', '-SPEC:T/fin', 'PF:INF'}
-prtcpl          {'INF', 'PHI:PER:_', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', 'COMP:D', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', '-SPEC:FORCE', 'FIN', '-COMP:NEG', 'PHI:DET:_', 'PF:T/prt', 'SPEC:*', 'VAL', '!COMP:*', 'COMP:v', '!PROBE:V', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', 'PHI:GEN:_', 'SPEC:D', 'ARG', 'T/prt', 'T', 'LF:T/prt', 'PHI:NUM:_'}
-TO/inf          {'INF', 'PF:TO/inf', 'adjoinable', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', '-SPEC:T/fin', '-VAL', 'LF:TO/inf', '!COMP:*', 'COMP:v', '!COMP:V', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', '?ARG', 'TO/inf', '-SPEC:v'}
-A/inf           {'INF', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', 'LF:A/inf', '-SPEC:T/fin', 'SPEC:*', '!COMP:*', 'PF:A/inf', 'COMP:v', '-SPEC:V', '-COMP:T/fin', '-SPEC:Neg/fin', 'LANG:EN', '?VAL', '?ARG', 'A/inf'}
-ARE/inf         {'INF', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', 'LF:ARE/inf', '-SPEC:T/fin', 'ARE/inf', 'VAL', 'SPEC:*', '-adjoinable', '!COMP:*', 'COMP:v', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', '?ARG', 'PF:are'}
-ESSA/inf        {'INF', 'adjoinable', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', 'PF:essa', '-SPEC:T/fin', '-SPEC:FORCE', 'SPEC:*', 'ADV', '!COMP:*', 'COMP:v', 'LF:while', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', 'TAIL:T', '?VAL', 'ESSA/inf', '-SPEC:Neg/fin', '?ARG'}
-TUA/inf         {'INF', 'adjoinable', 'PHI:PER:_', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', '-SPEC:T/fin', 'PF:tua', '-SPEC:FORCE', 'PHI:DET:_', 'LF:after', 'VAL', 'SPEC:*', 'ADV', '!COMP:*', 'COMP:v', '-SPEC:N', '!SPEC:*', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', 'TAIL:T', '-SPEC:Neg/fin', 'PHI:GEN:_', 'ARG', 'TUA/inf', 'PHI:NUM:_'}
-VA/inf          {'INF', 'PHI:PER:_', 'LF:VA', '-COMP:C/fin', '-COMP:FORCE', 'COMP:V', 'PF:vAn', '-SPEC:T/fin', 'PHI:DET:_', 'VAL', 'SPEC:*', '!COMP:*', 'COMP:v', 'VA/inf', '-SPEC:N', '!SPEC:*', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', 'PHI:GEN:_', 'ARG', 'PHI:NUM:_'}
-MA/ssa          {'adjoinable', 'MA/inf', 'PHI:PER:_', 'COMP:V', '-SPEC:T/fin', '-SPEC:FORCE', 'PF:massa', 'PHI:DET:_', '-VAL', '-SPEC:*', 'ADV', 'MA/ssa', 'COMP:v', '-SPEC:N', 'LANG:EN', '-SPEC:Neg/fin', 'PHI:GEN:_', 'TAIL:V', 'ARG', 'LF:in_doing', 'PHI:NUM:_'}
-MA/tta          {'PHI:NUM:_', 'adjoinable', 'MA/inf', 'PHI:PER:_', '-SPEC:N', 'LANG:EN', 'TAIL:T', 'PF:matta', '-SPEC:Neg/fin', 'ARG', '-SPEC:T/fin', '-SPEC:FORCE', 'PHI:GEN:_', 'PHI:DET:_', 'LF:without_doing', '-VAL', 'ADV'}
-MA/lla          {'PHI:PER:_', 'COMP:V', 'LF:by_doing', '-SPEC:T/fin', 'PF:malla', '-SPEC:FORCE', '-VAL', 'ADV', 'COMP:v', '-SPEC:N', 'LANG:EN', 'TAIL:T', '-SPEC:Neg/fin', 'PHI:GEN:_', 'adjoinable', 'MA/inf', 'PHI:DET:_', 'ARG', 'PHI:NUM:_'}
-MA/inf          {'PHI:PER:_', 'COMP:V', '-SPEC:T/fin', '-SPEC:FORCE', '-VAL', 'ADV', 'COMP:v', '-SPEC:N', 'LANG:EN', '-SPEC:Neg/fin', 'PHI:GEN:_', 'LF:to_do', 'adjoinable', 'MA/inf', 'PHI:DET:_', 'PF:maan', 'TAIL:V', 'ARG', 'PHI:NUM:_'}
-E/inf           {'SPEC:*', 'adjoinable', 'LF:by', 'PF:en', '-SPEC:N', 'LANG:FI', 'TAIL:T', '-SPEC:Neg/fin', '-SPEC:T/fin', '-SPEC:FORCE', '-ARG', '-VAL', 'ADV'}
-BE-             {'SPEC:ADV', '-COMP:N', 'COMP:T/prt', '-SPEC:T/fin', '-SPEC:FORCE', 'COMP:P', '-ARG', '-VAL', 'V', 'COPULA', '!COMP:*', '-COMP:v', 'ASP', 'SPEC:P', 'PF:BE', 'LF:BE', '-COMP:T/fin', 'LANG:EN', 'SPEC:TO/inf', 'SPEC:D', '-COMP:V'}
-D               {'adjoinable', '-COMP:uR', '-SPEC:T/fin', '-ARG', '-COMP:P', 'D', '!COMP:*', 'OP', 'LF:D', '-SPEC:INF', 'PF:D', '-SPEC:V', '-COMP:T/fin', '-SPEC:MA/lla', 'LANG:EN', '-SPEC:Neg/fin', 'COMP:N', '!PROBE:N', '-COMP:D', '-SPEC:C', '-SPEC:P'}
-D/rel           {'adjoinable', 'D/rel', '-COMP:C/fin', '-COMP:uR', 'LF:D/rel', '-SPEC:T/fin', '-ARG', 'D', 'inflectional', '!COMP:*', 'OP', '-SPEC:INF', '-SPEC:V', 'OP:_', '-SPEC:MA/lla', 'LANG:EN', '-SPEC:Neg/fin', '-COMP:T/fin', '!PROBE:N', 'COMP:N', '-COMP:D', 'PF:D/rel', '-SPEC:C', 'OP:REL', '-SPEC:P'}
-P               {'PF:P', 'PHI:NUM:_', 'adjoinable', '-COMP:N', 'PHI:PER:_', 'LF:P', '-COMP:T', '-SPEC:ADV', 'COMP:D', '-SPEC:C/fin', '-SPEC:T/fin', '-COMP:ADV', '-SPEC:iWH', '-SPEC:FORCE', '-SPEC:iR', '-float', '-VAL', 'PHI:DET:_', '-SPEC:*', '!COMP:*', '-SPEC:INF', '-SPEC:N', '-SPEC:V', '-COMP:T/fin', 'LANG:EN', '-SPEC:Neg/fin', '-COMP:uWH', 'PHI:GEN:_', 'ARG', '-SPEC:C', '-SPEC:P', '-SPEC:v', 'P', '-COMP:A'}
+x'              {'PF:x', 'LANG:X', 'x', 'LF:X'}
+y'              {'LF:Y', 'y', 'LANG:X', 'PF:y'}
+z'              {'LF:Z', 'PF:x', 'z', 'LANG:X'}
+John'           {'PF:John', 'LF:John', 'LANG:X', "N'"}
+admires'        {"V'", 'PF:admires', 'LANG:X', 'LF:admires'}
+admires''       {'V', 'LF:admires', 'SPEC:TO/inf', 'ARG', 'PF:admires', '-COMP:V', '-VAL', 'COMP:P', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', 'SPEC:D', '-COMP:v', 'PHI:PER:_', 'ASP', '-SPEC:FORCE', 'PHI:GEN:_', 'SPEC:P', 'SPEC:ADV', 'PHI:DET:_', 'LANG:EN'}
+Mary'           {'LF:mary', 'LANG:X', "N'", 'PF:Mary'}
+T/fin           {'PF:T', '-SPEC:Neg', '-COMP:T/fin', 'ARG', 'SPEC:TO/inf', '-SPEC:N', '-SPEC:C', '-SPEC:v', 'FIN', '-COMP:INF', 'T', 'SPEC:*', '-SPEC:T/fin', 'PHI:NUM:_', '!SPEC:*', 'SPEC:D', 'COMP:V', 'T/fin', 'VAL', 'COMP:v', '!COMP:*', 'PHI:PER:_', 'SPEC:FORCE', 'SPEC:C/fin', '-SPEC:V', 'COMP:T/prt', '-SPEC:TO/inf', 'PHI:GEN:_', 'LF:T', '!PROBE:V', 'PHI:DET:_', 'LANG:EN'}
+v               {'PHI:PER:_', 'ARG', '-SPEC:N', 'ASP', 'COMP:V', 'SPEC:D', 'PF:v', '-VAL', 'v', 'PHI:GEN:_', 'PHI:NUM:_', '!COMP:*', 'LF:v', '!PROBE:V', 'PHI:DET:_', 'LANG:EN'}
+C/fin           {'-ARG', '-SPEC:N', '!PROBE:FIN', 'C', 'FIN', 'SPEC:*', '-SPEC:T/fin', 'VAL', '!COMP:*', 'C/fin', '-COMP:T/prt', 'COMP:Neg/fin', '-SPEC:C/fin', 'PF:C', 'COMP:T/fin', '-COMP:C/fin', 'LF:C/fin', 'LANG:EN'}
+T               {'PF:T', 'ARG', '-SPEC:N', '-COMP:NEG', 'FIN', 'SPEC:*', 'T', '-SPEC:T/fin', 'PHI:NUM:_', 'COMP:V', 'SPEC:D', 'VAL', 'COMP:v', '!COMP:*', 'PHI:PER:_', '-SPEC:V', 'COMP:T/prt', '-SPEC:FORCE', 'PHI:GEN:_', 'LF:T', '!PROBE:V', 'PHI:DET:_', 'LANG:EN'}
+T/prt           {'ARG', '-SPEC:N', '-COMP:NEG', 'FIN', 'T/prt', 'SPEC:*', 'T', '-SPEC:T/fin', 'PHI:NUM:_', 'PHI:DET:_', 'LF:T/prt', 'PF:T/prt', 'COMP:V', 'SPEC:D', 'VAL', 'COMP:v', 'PHI:PER:_', '-SPEC:V', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'PHI:GEN:_', '!COMP:*', '!PROBE:V', 'COMP:D', 'LANG:EN'}
+a0              {'-SPEC:A', 'A', 'TAIL:D', 'COMP:0', '-SPEC:D', '-adjoinable', 'LF:A', 'PF:A', 'LANG:EN'}
+n               {'N', '-COMP:WH', 'ARG', 'COMP:uR', 'PF:n', '-SPEC:P', 'COMP:0', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', 'PHI:DET:_', '!SPEC:*', 'INF', '-COMP:v', '-COMP:A', 'PHI:PER:_', '-SPEC:R', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', 'PHI:GEN:_', '-SPEC:INF', 'COMP:R/D', '-SPEC:ADV', 'COMP:C', 'n', '-SPEC:N', '-COMP:VA/inf', '-COMP:V', '!SPEC:D', 'LF:n', 'SPEC:*', '-COMP:N', 'PHI:NUM:_', 'COMP:V', 'COMP:D/rel', 'VAL', 'COMP:v', '!COMP:*', '-SPEC:V', 'COMP:R', '-COMP:C/fin', '-SPEC:uWH', 'LANG:EN'}
+impass          {'LF:impass', 'PHI:PER:_', 'ARG', '-SPEC:N', 'ASP', 'SPEC:D', 'PF:impass', '-VAL', 'v', 'PHI:GEN:_', 'PHI:NUM:_', '!COMP:*', 'COMP:V', '!PROBE:V', 'PHI:DET:_', 'LANG:EN'}
+cau             {'PHI:PER:_', 'ARG', '-SPEC:N', 'ASP', 'SPEC:D', '-VAL', 'LF:v/Cause', 'PF:Cau', 'v', 'PHI:GEN:_', 'PHI:NUM:_', '!COMP:*', 'COMP:V', '!PROBE:V', 'PHI:DET:_', 'LANG:EN'}
+INF             {'COMP:v', 'LF:INF', '-COMP:T/fin', 'PF:INF', '-SPEC:V', '-COMP:C/fin', '-COMP:FORCE', '-SPEC:T/fin', '!COMP:*', 'COMP:V', 'INF', 'LANG:EN'}
+prtcpl          {'-COMP:T/fin', 'ARG', '-SPEC:N', '-COMP:NEG', 'FIN', 'T/prt', 'T', 'SPEC:*', '-SPEC:T/fin', 'PHI:NUM:_', 'PHI:DET:_', 'LF:T/prt', 'PF:T/prt', 'SPEC:D', 'INF', 'COMP:V', 'VAL', 'COMP:v', 'PHI:PER:_', '-SPEC:V', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-COMP:FORCE', 'PHI:GEN:_', '!COMP:*', '!PROBE:V', '-COMP:C/fin', 'COMP:D', 'LANG:EN'}
+TO/inf          {'PF:TO/inf', 'TO/inf', '-COMP:T/fin', '-VAL', '!COMP:V', '-COMP:C/fin', 'LF:TO/inf', '-SPEC:T/fin', 'COMP:V', 'INF', 'COMP:v', '!COMP:*', 'adjoinable', '-SPEC:V', '-COMP:FORCE', '-SPEC:v', '?ARG', 'LANG:EN'}
+A/inf           {'LF:A/inf', '-COMP:T/fin', '-SPEC:Neg/fin', '?VAL', 'SPEC:*', '-SPEC:T/fin', 'A/inf', 'COMP:V', 'INF', 'COMP:v', '-SPEC:V', '-COMP:FORCE', 'PF:A/inf', '?ARG', '!COMP:*', '-COMP:C/fin', 'LANG:EN'}
+ARE/inf         {'-COMP:T/fin', 'PF:are', 'SPEC:*', '-SPEC:T/fin', 'COMP:V', 'INF', 'VAL', 'COMP:v', 'LF:ARE/inf', '-SPEC:V', 'ARE/inf', '-COMP:FORCE', '?ARG', '-adjoinable', '!COMP:*', '-COMP:C/fin', 'LANG:EN'}
+ESSA/inf        {'LF:while', '-COMP:T/fin', '-SPEC:Neg/fin', '-SPEC:N', '?VAL', 'TAIL:T', '-COMP:C/fin', 'ESSA/inf', 'SPEC:*', 'PF:essa', '-SPEC:T/fin', 'COMP:V', 'INF', 'ADV', 'COMP:v', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-COMP:FORCE', '!COMP:*', '?ARG', 'LANG:EN'}
+TUA/inf         {'TUA/inf', '-COMP:T/fin', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', 'TAIL:T', 'LF:after', 'SPEC:*', '-SPEC:T/fin', 'PHI:NUM:_', '!SPEC:*', 'COMP:V', 'INF', 'ADV', 'VAL', 'PF:tua', 'COMP:v', 'PHI:PER:_', 'adjoinable', '-SPEC:V', '-SPEC:FORCE', '-COMP:FORCE', 'PHI:GEN:_', '!COMP:*', '-COMP:C/fin', 'PHI:DET:_', 'LANG:EN'}
+VA/inf          {'VA/inf', '-COMP:T/fin', 'ARG', '-SPEC:N', 'SPEC:*', '-SPEC:T/fin', 'PHI:NUM:_', '!SPEC:*', 'COMP:V', 'PF:vAn', 'INF', 'VAL', 'COMP:v', 'PHI:PER:_', '-SPEC:V', 'LF:VA', '-COMP:FORCE', 'PHI:GEN:_', '!COMP:*', '-COMP:C/fin', 'PHI:DET:_', 'LANG:EN'}
+MA/ssa          {'MA/inf', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', 'MA/ssa', '-SPEC:*', '-VAL', '-SPEC:T/fin', 'PHI:NUM:_', 'COMP:V', 'TAIL:V', 'ADV', 'PF:massa', 'COMP:v', 'PHI:PER:_', 'adjoinable', '-SPEC:FORCE', 'LF:in_doing', 'PHI:GEN:_', 'PHI:DET:_', 'LANG:EN'}
+MA/tta          {'ADV', 'MA/inf', 'PHI:PER:_', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', 'adjoinable', 'LF:without_doing', 'TAIL:T', '-VAL', '-SPEC:FORCE', 'PF:matta', 'PHI:GEN:_', '-SPEC:T/fin', 'PHI:NUM:_', 'PHI:DET:_', 'LANG:EN'}
+MA/lla          {'MA/inf', 'ARG', '-SPEC:Neg/fin', 'TAIL:T', '-VAL', '-SPEC:T/fin', 'ADV', 'PHI:PER:_', 'adjoinable', '-SPEC:FORCE', 'PHI:GEN:_', '-SPEC:N', 'PHI:NUM:_', 'LF:by_doing', 'COMP:V', 'COMP:v', 'PF:malla', 'PHI:DET:_', 'LANG:EN'}
+MA/inf          {'MA/inf', 'ARG', '-SPEC:Neg/fin', '-VAL', 'PF:maan', '-SPEC:T/fin', 'TAIL:V', 'ADV', 'PHI:PER:_', 'adjoinable', '-SPEC:FORCE', 'PHI:GEN:_', '-SPEC:N', 'PHI:NUM:_', 'COMP:V', 'COMP:v', 'LF:to_do', 'PHI:DET:_', 'LANG:EN'}
+E/inf           {'ADV', 'LF:by', 'PF:en', '-ARG', '-SPEC:Neg/fin', '-SPEC:N', 'adjoinable', 'TAIL:T', '-VAL', 'LANG:FI', '-SPEC:FORCE', 'SPEC:*', '-SPEC:T/fin'}
+BE-             {'V', '-COMP:T/fin', 'SPEC:TO/inf', '-ARG', '-COMP:V', '-VAL', 'COMP:P', 'LF:BE', 'PF:BE', '-SPEC:T/fin', '-COMP:N', 'SPEC:D', '-COMP:v', 'ASP', 'COMP:T/prt', '-SPEC:FORCE', 'COPULA', '!COMP:*', 'SPEC:P', 'SPEC:ADV', 'LANG:EN'}
+D               {'-SPEC:MA/lla', 'D', 'PF:D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', '-SPEC:P', '-SPEC:T/fin', 'COMP:N', '-COMP:P', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR', 'LF:D', 'LANG:EN'}
+D/rel           {'-SPEC:MA/lla', 'D', '-COMP:T/fin', '-ARG', '-SPEC:Neg/fin', '-SPEC:C', '-SPEC:P', 'OP:REL', '-SPEC:T/fin', 'OP:_', 'inflectional', 'D/rel', 'COMP:N', '!PROBE:N', 'adjoinable', '-SPEC:V', '-COMP:D', 'LF:D/rel', 'PF:D/rel', 'OP', '!COMP:*', '-SPEC:INF', '-COMP:uR', '-COMP:C/fin', 'LANG:EN'}
+P               {'-float', '-COMP:T/fin', 'P', 'ARG', '-SPEC:Neg/fin', '-SPEC:N', '-SPEC:P', '-SPEC:*', '-SPEC:C', '-VAL', '-SPEC:iR', '-SPEC:T/fin', '-COMP:N', 'PHI:NUM:_', '-COMP:uWH', 'PHI:DET:_', '-COMP:ADV', 'LF:P', '-COMP:T', '!COMP:*', '-COMP:A', 'PHI:PER:_', 'adjoinable', '-SPEC:V', 'PF:P', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'PHI:GEN:_', '-SPEC:v', '-SPEC:iWH', '-SPEC:INF', 'COMP:D', 'LANG:EN'}
 pro             ['LANG:EN']
-pro-            {'-COMP:N', '-COMP:C/fin', '-SPEC:ADV', 'SPEC:A', '-SPEC:C/fin', 'COMP:T/prt', '-SPEC:T/fin', 'COMP:C', 'PHI', 'COMP:P', '-SPEC:FORCE', 'COMP:R/D', '-SPEC:R', '-COMP:AUX', '-COMP:v', '-SPEC:INF', 'PF:(pro)', '-COMP:WH', '-COMP:VA/inf', '-SPEC:N', 'N', '-SPEC:V', 'LANG:EN', 'LF:pro', 'COMP:D/rel', 'COMP:R', '-SPEC:P', '-COMP:V', '-COMP:A', '-SPEC:uWH', 'COMP:uR'}
-cl              {'inflectional', 'LEFT:T/fin', 'LANG:EN', 'RIGHT:ARE/inf', 'LEFT:D,CL', 'CL', 'RIGHT:PRG'}
-inc             {'inflectional', 'LANG:EN', 'INCORPORATED'}
-sg              {'inflectional', 'LANG:EN', 'PHI:NUM:SG'}
-pl              {'inflectional', 'LANG:EN', 'PHI:NUM:PL'}
-1p              {'inflectional', 'LANG:EN', 'PHI:PER:1'}
-2p              {'inflectional', 'LANG:EN', 'PHI:PER:2'}
-3p              {'inflectional', 'PHI:PER:3', 'LANG:EN'}
-def             {'inflectional', 'LANG:EN', 'PHI:DET:DEF'}
-indef           {'inflectional', 'LANG:EN', 'PHI:DET:INDEF'}
-hum             {'inflectional', 'LANG:EN', 'PHI:HUM:HUM'}
-nonhum          {'inflectional', 'LANG:EN', 'PHI:HUM:NONHUM'}
-m               {'inflectional', 'LANG:EN', 'PHI:GEN:M'}
-f               {'inflectional', 'LANG:EN', 'PHI:GEN:F'}
-nom             {'inflectional', 'TAIL:FIN,!COMP:*,VAL', 'LANG:EN', 'NOM'}
-acc             {'inflectional', 'LANG:EN', 'ACC', 'TAIL:v'}
-dat             {'inflectional', 'LANG:EN', 'DAT', 'TAIL:v'}
-uC/op           {'inflectional', 'LANG:EN', 'uC/op'}
-wh              {'inflectional', 'LANG:EN', 'OP:WH', 'OP:_'}
-wh_             {'inflectional', 'FORCE:OP:WH', 'LANG:EN', 'OP', 'OP:_'}
-top             {'inflectional', 'LANG:EN', 'OP:TOP'}
-foc             {'inflectional', 'OP:FOC', 'LANG:EN'}
-C/op            {'inflectional', 'LANG:EN', 'OP:C/OP'}
-Q               {'inflectional', 'LANG:EN', 'OP:Q', 'OP', 'OP:WH'}
+pro-            {'N', 'COMP:C', '-COMP:WH', '-COMP:VA/inf', 'COMP:uR', 'PHI', '-SPEC:N', '-SPEC:P', '-COMP:V', 'LF:pro', '-COMP:C/fin', 'COMP:P', 'SPEC:A', '-SPEC:T/fin', '-COMP:N', 'COMP:D/rel', 'PF:(pro)', '-COMP:v', '-COMP:A', '-SPEC:R', '-SPEC:V', '-COMP:AUX', 'COMP:T/prt', '-SPEC:FORCE', '-SPEC:C/fin', '-SPEC:ADV', 'COMP:R', '-SPEC:INF', 'COMP:R/D', '-SPEC:uWH', 'LANG:EN'}
+cl              {'RIGHT:ARE/inf', 'LEFT:T/fin', 'CL', 'RIGHT:PRG', 'LEFT:D,CL', 'inflectional', 'LANG:EN'}
+inc             {'LANG:EN', 'inflectional', 'INCORPORATED'}
+sg              {'PHI:NUM:SG', 'inflectional', 'LANG:EN'}
+pl              {'PHI:NUM:PL', 'inflectional', 'LANG:EN'}
+1p              {'LANG:EN', 'inflectional', 'PHI:PER:1'}
+2p              {'PHI:PER:2', 'inflectional', 'LANG:EN'}
+3p              {'PHI:PER:3', 'inflectional', 'LANG:EN'}
+def             {'LANG:EN', 'inflectional', 'PHI:DET:DEF'}
+indef           {'LANG:EN', 'inflectional', 'PHI:DET:INDEF'}
+hum             {'PHI:HUM:HUM', 'inflectional', 'LANG:EN'}
+nonhum          {'PHI:HUM:NONHUM', 'inflectional', 'LANG:EN'}
+m               {'LANG:EN', 'inflectional', 'PHI:GEN:M'}
+f               {'PHI:GEN:F', 'inflectional', 'LANG:EN'}
+nom             {'NOM', 'TAIL:FIN,!COMP:*,VAL', 'inflectional', 'LANG:EN'}
+acc             {'TAIL:v', 'inflectional', 'ACC', 'LANG:EN'}
+dat             {'TAIL:v', 'DAT', 'inflectional', 'LANG:EN'}
+uC/op           {'inflectional', 'uC/op', 'LANG:EN'}
+wh              {'OP:_', 'LANG:EN', 'inflectional', 'OP:WH'}
+wh_             {'OP', 'OP:_', 'FORCE:OP:WH', 'inflectional', 'LANG:EN'}
+top             {'OP:TOP', 'inflectional', 'LANG:EN'}
+foc             {'OP:FOC', 'inflectional', 'LANG:EN'}
+C/op            {'OP:C/OP', 'inflectional', 'LANG:EN'}
+Q               {'OP', 'LANG:EN', 'OP:Q', 'inflectional', 'OP:WH'}

@@ -88,7 +88,13 @@ class Diagnostics:
             data_temp.append(self.format_data(pd.read_csv(filename, dtype={'Sentence': str, 'Study_ID': int, 'Group 0': int, 'Group 1': int, 'Group 2': int, 'Group 3': int}, sep=',', comment='@', encoding="utf-8")))
         self.data = pd.concat(data_temp)
         self.log_file.write(f'Data shape is {self.data.shape} (Rows x Columns)...')
-        self.log_file.write(f'\nColumns: {self.data.columns}')
+        self.log_file.write(f'\nColumns: {self.data[self.data["Study_ID"]==1].columns}')
+        self.log_file.write(f'\nOverall statistics:')
+        self.log_file.write(f'\nNumber of sentences in the test corpus: {len(self.data[self.data["Study_ID"]==1].index)}')
+        for group in range(1, 11):
+            self.log_file.write(f'\n\tGroup {group}: {len(self.data[(self.data["Study_ID"]==1) & (self.data["Group 0"] == group)].index)}')
+            self.log_file.write(f'\n\t\tGrammatical: {len(self.data[(self.data["Study_ID"]==1) & (self.data["Group 3"] == 0) & (self.data["Group 0"] == group)].index)}')
+            self.log_file.write(f'\n\t\tUngrammatical: {len(self.data[(self.data["Study_ID"] == 1) & (self.data["Group 3"] == 1) & (self.data["Group 0"] == group)].index)}')
 
     def format_data(self, data):
         data = data.fillna(0)
@@ -136,7 +142,7 @@ class Diagnostics:
     # Manuscript section 3.4
     def report_experiment_1a(self):
         self.log_experiment_title('1a Locality preference and lexical anticipation')
-        data_exp1 = self.data[(self.data['Study_ID'] > 0) & (self.data['Study_ID'] < 6)]
+        data_exp1 = self.data[(self.data['Study_ID'] > 0) & (self.data['Study_ID'] < 5)]
         self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
         # Table 2
         # Mean number of garden paths, grammatical operations (Merge) and mean predicted
@@ -149,13 +155,12 @@ class Diagnostics:
         # Results Figure 1
         # Mean predicted cognitive time per word (ms) in an incremental parser as a function
         # of the independent variables locality preference and lexical anticipation.
-        self.log_file.write('\nCreating Results Figure 1...')
+        self.log_file.write('\n\nCreating Results Figure 1...')
         data_exp1 = self.data[(self.data['Study_ID'] > 0) & (self.data['Study_ID'] < 5)]
         self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
         cat = {0: 'No', 1: 'Yes'}
         data_exp1['Anticipation'] = [cat[value] for value in data_exp1['Lexical Anticipation']]
         data_exp1['Locality'] = [cat[value] for value in data_exp1['Locality Preference']]
-
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
         sns.set_theme(style="whitegrid")
         h = sns.barplot(data=data_exp1,
@@ -184,8 +189,48 @@ class Diagnostics:
         plt.close()
         self.log_file.write('Done.')
 
+        # Figure 1 results in numbers
         d2 = data_exp1.melt(id_vars='Study_ID', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
         self.log_file.write('\n' + str(d2.groupby(['Study_ID', 'Resource']).max().round(decimals=1)))
+
+        # Processing times over the whole study
+        data_exp1 = self.data[(self.data['Study_ID'] > 0) & (self.data['Study_ID'] < 5)]
+        self.log_file.write(f'\n\nMean predicted processing time over all experimental groups: {round(data_exp1["Mean time per word"].mean(),1)}')
+        self.log_file.write(f'\nMean garden paths all experimental groups: {round(data_exp1["Garden Paths"].mean(), 1)}')
+
+        # Figure 2
+        # Processing time as a function of construction type
+        self.log_file.write('\n\nCreating Result Figure 2...')
+        cat = {1: 'Basic', 2: 'Adjuncts', 3: 'Wh-movement', 4: 'Case', 5: 'Agreement', 6: 'Pro-drop', 7:'Control', 8:'Word order', 9:'Head movement', 10:'Clitics'}
+        data_exp1['Construction'] = [cat[value] for value in data_exp1['Group 0']]
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 10))
+        h = sns.barplot(data=data_exp1, x='Construction', y = 'Mean time per word', ci=None, palette='Greys', ax = ax1)
+        h = sns.barplot(data=data_exp1, x='Construction', y = 'Garden Paths', ci=None, palette='Greys', ax = ax2)
+        ax1.set(ylim=(0, 1400), ylabel='Mean predicted cognitive time per word (ms)')
+        ax2.set(ylim=(0, 10), ylabel='Garden paths')
+        fig = h.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 2')
+        plt.close()
+        self.log_file.write('Done.')
+
+        # Figure 3
+        # Processing time as a function of construction type with lexical anticipation and locality preference
+        self.log_file.write('\n\nCreating Result Figure 3...')
+        data_exp2 = data_exp1[(data_exp1['Lexical Anticipation']==1) & (data_exp1['Locality Preference']==1)]
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 10))
+        h = sns.barplot(data=data_exp2, x='Construction', y = 'Mean time per word', ci=None, palette='Greys', ax = ax1)
+        h = sns.barplot(data=data_exp2, x='Construction', y = 'Garden Paths', ci=None, palette='Greys', ax = ax2)
+        ax1.set(ylim=(0, 1400), ylabel='Mean predicted cognitive time per word (ms)')
+        ax2.set(ylim=(0, 10), ylabel='Garden paths')
+        fig = h.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 3')
+        plt.close()
+        self.log_file.write('Done.')
+
+        # Sentences ordered by the number of garden paths
+        self.log_file.write('\n\nSentences with most garden paths, with a parser that uses both lexical anticipation and locality preference:\n')
+        df = data_exp2.sort_values(by='Garden Paths', ascending=False)
+        self.log_file.write(str(df[['Sentence', 'Garden Paths']].head(42)))
 
         # Result Figure 3
         # Distribution of the mean predicted cognitive time per word, as measured for a
@@ -307,14 +352,52 @@ class Diagnostics:
         self.log_file.write(f'\nMean predicted cognitive time per word with left branch filter: {round(self.data[self.data["Study_ID"]==41]["Mean time per word"].mean(), 1)}')
         self.log_file.write(f'\nMean predicted cognitive time per word without left branch filter: {round(self.data[self.data["Study_ID"] == 42]["Mean time per word"].mean(), 1)}')
 
-    # Experiment 3a
-    # Manuscript section 5
-    def report_experiment_3a(self):
+        # Figure 10
+        # Processing time as a function of construction type with left branch filter on and off
+        self.log_file.write('\n\nCreating Result Figure 10...')
+        cat = {1: 'Basic', 2: 'Adjuncts', 3: 'Wh-movement', 4: 'Case', 5: 'Agreement', 6: 'Pro-drop', 7: 'Control',
+               8: 'Word order', 9: 'Head movement', 10: 'Clitics'}
+        data_exp1['Construction'] = [cat[value] for value in data_exp1['Group 0']]
+        data_exp1['Left branch filter'] = ['Yes' if study_id == 41 else 'No' for study_id in data_exp1['Study_ID']]
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 10))
+        h = sns.barplot(data=data_exp1, x='Construction', y = 'Mean time per word', hue = 'Left branch filter', ci=None, palette='Greys', ax = ax1)
+        h = sns.barplot(data=data_exp1, x='Construction', y = 'Garden Paths', hue = 'Left branch filter', ci=None, palette='Greys', ax = ax2)
+        ax1.set(ylim=(0, 3000), ylabel='Mean predicted cognitive time per word (ms)')
+        ax2.set(ylim=(0, 25), ylabel='Garden paths')
+        fig = h.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 10')
+        plt.close()
+        self.log_file.write('Done.')
+
         self.log_experiment_title('3a Benchmark values for the optimal parser')
         self.log_file.write('\nBenchmark values for the optimal parser:')
         data_exp1 = self.data[self.data['Study_ID']==55]
         self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
-        self.log_file.write(f'\n{round(data_exp1.mean(),1)}')
+
+        # Figure 11
+        # Processing time as a function of construction type two optimal parsers
+        self.log_file.write('\n\nCreating Result Figure 11...')
+        data_exp1 = self.data[(self.data['Study_ID'] == 1) | (self.data['Study_ID']==55)]
+        cat = {1: 'Basic', 2: 'Adjuncts', 3: 'Wh-movement', 4: 'Case', 5: 'Agreement', 6: 'Pro-drop', 7: 'Control',
+               8: 'Word order', 9: 'Head movement', 10: 'Clitics'}
+        data_exp1['Construction'] = [cat[value] for value in data_exp1['Group 0']]
+        data_exp1['Left branch filter'] = ['Yes' if study_id == 55 else 'No' for study_id in data_exp1['Study_ID']]
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 10))
+        h = sns.barplot(data=data_exp1, x='Construction', y='Mean time per word', hue='Left branch filter', ci=None,
+                        palette='Greys', ax=ax1)
+        h = sns.barplot(data=data_exp1, x='Construction', y='Garden Paths', hue='Left branch filter', ci=None,
+                        palette='Greys', ax=ax2)
+        ax1.set(ylim=(0, 1000), ylabel='Mean predicted cognitive time per word (ms)')
+        ax2.set(ylim=(0, 5), ylabel='Garden paths')
+        fig = h.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure 11')
+        plt.close()
+        self.log_file.write('Done.')
+
+    # Experiment 3a
+    # Manuscript section 5
+    def report_experiment_3a(self):
+
 
         self.log_experiment_title('5.2 Garden paths by lexical selection')
         data_exp1 = self.data[self.data['Study_ID'] == 56]
@@ -394,34 +477,6 @@ class Diagnostics:
         self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
         data_exp1['Left blindness'] = 'No'
         data_exp1.loc[data_exp1.Study_ID==58, 'Left blindness'] = 'Yes'
-        self.log_file.write('\nCreating Results Figure 7')
-        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
-        sns.set_theme(style='whitegrid')
-        h = sns.barplot(data=data_exp1,
-                        x='Left blindness',
-                        y='Mean time per word',
-                        ci=None,
-                        palette='Greys', ax=ax1)
-        ax1.set(ylim=(650, 800), xlabel='Left blindness', ylabel='Mean predicted cognitive time per word (ms)')
-        fig = h.get_figure()
-        sns.set_theme(style='whitegrid')
-        h = sns.barplot(data=data_exp1,
-                        x='Left blindness',
-                        y='Merge',
-                        ci=None,
-                        palette='Greys', ax=ax2)
-        ax2.set(ylim=(5, 10), xlabel='Left blindness', ylabel='Mean number of attachment operations')
-        fig = h.get_figure()
-        sns.set_theme(style='whitegrid')
-        h = sns.barplot(data=data_exp1,
-                        x='Left blindness',
-                        y='Garden Paths',
-                        ci=None,
-                        palette='Greys', ax=ax3)
-        ax3.set(ylim=(0, 2), xlabel='Left blindness', ylabel='Mean garden paths')
-        fig.savefig(STUDY_DIRECTORY + 'Result Figure 7')
-        plt.close()
-        self.log_file.write('Done.')
         self.log_file.write('\nDetailed valuess:')
         d2 = data_exp1.melt(id_vars='Left blindness', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
         self.log_file.write('\n' + str(d2.groupby(['Left blindness', 'Resource']).mean().round(decimals=1)))
@@ -461,23 +516,20 @@ class Diagnostics:
         # Test increase of cognitive load as a function of the number of center-embedding
         # Result Figure 8
         data_exp1 = self.data[(self.data['Study_ID'] == 59) & (self.data['Group 0'] == 1) & (self.data['Group 1'] == 4)]
-        data_exp1['Mean time per word'] = [value/1000 for value in data_exp1['Mean time per word']]
+        data_exp1['Mean time per word'] = [value for value in data_exp1['Mean time per word']]
         self.log_file.write('\nCreating Results Figure 8...')
-        plt.ylim(0, 250)
+        plt.ylim(0, 100000)
         sns.set_theme(style="whitegrid")
         g = sns.barplot(data=data_exp1,
                         x='Group 2',
                         y='Mean time per word',
                         ci=None,
                         palette='Greys')
-        g.set(xlabel='Number of center-embeddings', ylabel='Mean predicted cognitive time per word (s)')
+        g.set(xlabel='Number of center-embeddings', ylabel='Mean predicted cognitive time per word (ms)')
         fig = g.get_figure()
         fig.savefig(STUDY_DIRECTORY + 'Result Figure 8')
         plt.close()
         self.log_file.write('Done.')
-        self.log_file.write('Detailed values:')
-        d2 = data_exp1.melt(id_vars='Group 2', value_vars=['Mean time per word', 'Merge', 'Garden Paths'])
-        self.log_file.write('\n' + str(d2.groupby(['Group 2', 'Resource']).mean().round(decimals=1)))
 
         # Running the whole test corpus with WP
         # Result Figure 9
@@ -521,3 +573,12 @@ class Diagnostics:
         self.log_file.write('\nGarden paths:' + str(data_e['Garden Paths'].mean()))
         self.log_file.write('\nMerge:'+ str(data_e["Merge"].mean()))
         self.log_file.write('\nMean time per word:' + str(data_e["Mean time per word"].mean()))
+
+        #
+        # Appendix A
+        # Performance properties of all parser models examined in the study
+        self.log_file.write('\n\nProperties of all parser models:\n')
+        data_exp1 = self.data
+        pd.set_option('display.max_rows', 1000)
+        d2 = data_exp1.melt(id_vars='Study_ID', value_vars=['Mean time per word', 'Merge', 'Garden Paths', 'Asymmetric Merge', 'Move Phrase'])
+        self.log_file.write('\n' + str(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=2)))

@@ -1,6 +1,6 @@
 import phrase_structure
 from agreement_reconstruction import AgreementReconstruction
-from support import log, enable_logging, disable_logging, is_logging_enabled
+from support import log, is_logging_enabled
 from phrasal_reconstruction import PhrasalMovement
 from adjunct_reconstruction import FloaterMovement
 from head_reconstruction import HeadMovement

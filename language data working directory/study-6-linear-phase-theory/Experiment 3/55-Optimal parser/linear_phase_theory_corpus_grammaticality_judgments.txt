@@ -1,5 +1,5 @@
-@  {'study_folder': 'study-6-linear-phase-theory/Experiment 3/55-Optimal parser/', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 55, 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2021-01-01 20:00:44.908488
+@  {'study_folder': 'study-6-linear-phase-theory/Experiment 3/55-Optimal parser/', 'test_corpus_file': 'linear_phase_theory_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 55, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': True, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': False, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-01-02 21:34:46.654094
 @  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
 @  Logs into language data working directory\study-6-linear-phase-theory\Experiment 3\55-Optimal parser\linear_phase_theory_corpus_log.txt.
 @  Lexicon from language data working directory\lexicon.txt.
@@ -192,9 +192,9 @@
 137. *John not does sleep 
 
 & Problems (these problems have to do with ellipsis, partial fragments)
-138.  Pekan_gen lahtea 
-139.  Pekka ihaile Merjaa 
-140.  etta Merja lahtee 
+138. *Pekan_gen lahtea 
+139. *Pekka ihaile Merjaa 
+140. *etta Merja lahtee 
 
 & Modals
 
@@ -371,7 +371,7 @@
 234. *John said that Mary 
 
 & Problems ("that" cannot rule out DP spec when it is an adjunct)
-235.  Pekka sanoi Merja etta lahtee 
+235. *Pekka sanoi Merja etta lahtee 
 
 & Relative clauses (1.7)
 
@@ -387,8 +387,8 @@
 240. *joka joka nukkui lahti 
 
 & Problems (this is the reason D has OP and intervenes)
-241.  joka nukkui 
-242.  jota Merja ihaili 
+241. *joka nukkui 
+242. *jota Merja ihaili 
 
 & Object relative clauses (1.7.2)
 
@@ -540,7 +540,7 @@
 323. *keta Pekka halusi ihailla 
 
 & Problems ('Pekka' is interpreted as an second Spec TP-adjunct)
-324.  Pekka keta ihailee 
+324. *Pekka keta ihailee 
 
 & Pied-piping (3.2)
 
@@ -582,7 +582,7 @@
 343. *who does John ask- whether Mary admires 
 
 & Problems
-344.  who does John ask- what admires 
+344. *who does John ask- what admires 
 
 & Extraction from DP
 
@@ -1132,7 +1132,7 @@
 757. *ihailevat Merjaa 
 
 & Unclear case (compare 'Elokuvia katselee mielelaan')
-758.  Merjaa ihailee 
+758. *Merjaa ihailee 
 
 & Third person pro in Finnish, with and without antecedent (6.3)
 
@@ -1307,7 +1307,7 @@
 838. *gave the key to Mary John 
 839. *gave to Mary John the key 
 840. *gave to Mary the key John 
-841.  the key John gave to Mary 
+841. *the key John gave to Mary 
 842. *the key John to Mary gave 
 843. *the key gave to Mary John 
 844. *the key to Mary John gave 
@@ -1380,8 +1380,8 @@
 897. *Mary admire' does John 
 
 & Unclear
-898.  John does Mary admire' 
-899.  Mary does John admire' 
+898. *John does Mary admire' 
+899. *Mary does John admire' 
 
 & Heads in wrong order (8.4)
 
@@ -1571,8 +1571,8 @@
 1056. *to_inf leave John wants Mary 
 
 & Problem: in situ version
-1057.  John wants to_inf Mary leave 
-1058.  Mary wants to_inf John leave 
+1057. *John wants to_inf Mary leave 
+1058. *Mary wants to_inf John leave 
 
 & Free word order (Finnish)
 

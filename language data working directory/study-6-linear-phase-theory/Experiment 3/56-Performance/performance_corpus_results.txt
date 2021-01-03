@@ -1,5 +1,5 @@
-@  {'study_folder': 'study-6-linear-phase-theory/Experiment 3/56-Performance/', 'test_corpus_file': 'performance_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory/Experiment 3/56-Performance/', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 56, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': False, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2021-01-01 20:02:10.698128
+@  {'test_corpus_file': 'performance_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory/Experiment 3/56-Performance', 'study_folder': 'study-6-linear-phase-theory/Experiment 3/56-Performance', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 56, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': False, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-01-02 22:28:22.101455
 @  Test sentences from language data working directory\study-6-linear-phase-theory\Experiment 3\56-Performance\performance_corpus.txt.
 @  Logs into language data working directory\study-6-linear-phase-theory\Experiment 3\56-Performance\performance_corpus_log.txt.
 @  Lexicon from language data working directory\lexicon.txt.
@@ -21,7 +21,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:2, Phi:4, Transfer:6, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:3, LF recovery:2, 
 	LF test:9, Filter solution:5, Rank solution:3, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:878, Asymmetric Merge:18, Sink:4, External Tail Test:17, Execution time = 15ms
+	Mean time per word:878, Asymmetric Merge:18, Sink:4, External Tail Test:17, Execution time = 46ms
 
 & Relative clauses (1) -------------------------------------------------------
 
@@ -37,7 +37,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:8, Phi:11, Transfer:17, Item streamed into syntax:8, 
 	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:3, 
 	LF test:28, Filter solution:4, Rank solution:7, Lexical retrieval:15, Morphological decomposition:3, 
-	Mean time per word:554, Asymmetric Merge:35, Sink:3, External Tail Test:12, Execution time = 46ms
+	Mean time per word:554, Asymmetric Merge:35, Sink:3, External Tail Test:12, Execution time = 62ms
 
 3. se mies joka nukkui ihailee Merjaa 
 
@@ -49,7 +49,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:9, Phi:13, Transfer:20, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:1, Inflection:13, Failed Transfer:4, LF recovery:4, 
 	LF test:31, Filter solution:7, Rank solution:9, Lexical retrieval:24, Morphological decomposition:4, 
-	Mean time per word:666, Asymmetric Merge:43, Sink:5, External Tail Test:14, Execution time = 62ms
+	Mean time per word:666, Asymmetric Merge:43, Sink:5, External Tail Test:14, Execution time = 78ms
 
 4. se mies joka ihailee Merjaa lahti 
 
@@ -61,7 +61,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:11, Move Adjunct:1, Agree:16, Phi:20, Transfer:30, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:6, Inflection:13, Failed Transfer:11, LF recovery:4, 
 	LF test:45, Filter solution:9, Rank solution:11, Lexical retrieval:25, Morphological decomposition:4, 
-	Mean time per word:807, Asymmetric Merge:84, Sink:6, External Tail Test:39, Execution time = 109ms
+	Mean time per word:807, Asymmetric Merge:84, Sink:6, External Tail Test:39, Execution time = 187ms
 
 & Object relative clauses (1.2) -------------------------------------------------------
 
@@ -75,7 +75,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:8, Agree:9, Phi:13, Transfer:37, Item streamed into syntax:11, 
 	Feature Processing:0, Extraposition:4, Inflection:13, Failed Transfer:13, LF recovery:4, 
 	LF test:54, Filter solution:7, Rank solution:12, Lexical retrieval:24, Morphological decomposition:4, 
-	Mean time per word:789, Asymmetric Merge:100, Sink:5, External Tail Test:93, Execution time = 109ms
+	Mean time per word:789, Asymmetric Merge:100, Sink:5, External Tail Test:93, Execution time = 125ms
 
 6. se mies jota Merja ihaili ihailee Merjaa 
 
@@ -87,7 +87,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:8, Agree:10, Phi:15, Transfer:40, Item streamed into syntax:14, 
 	Feature Processing:0, Extraposition:5, Inflection:19, Failed Transfer:16, LF recovery:5, 
 	LF test:57, Filter solution:10, Rank solution:14, Lexical retrieval:33, Morphological decomposition:5, 
-	Mean time per word:852, Asymmetric Merge:108, Sink:7, External Tail Test:95, Execution time = 140ms
+	Mean time per word:852, Asymmetric Merge:108, Sink:7, External Tail Test:95, Execution time = 156ms
 
 & Center-embedding (1.3) -------------------------------------------------------
 
@@ -113,7 +113,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:17, Move Adjunct:0, Agree:23, Phi:31, Transfer:108, Item streamed into syntax:18, 
 	Feature Processing:0, Extraposition:24, Inflection:13, Failed Transfer:66, LF recovery:8, 
 	LF test:163, Filter solution:14, Rank solution:36, Lexical retrieval:31, Morphological decomposition:5, 
-	Mean time per word:830, Asymmetric Merge:143, Sink:7, External Tail Test:23, Execution time = 343ms
+	Mean time per word:830, Asymmetric Merge:143, Sink:7, External Tail Test:23, Execution time = 406ms
 
 9. se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili lahti 
 
@@ -125,7 +125,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:33, Move Adjunct:0, Agree:43, Phi:54, Transfer:220, Item streamed into syntax:25, 
 	Feature Processing:0, Extraposition:62, Inflection:19, Failed Transfer:160, LF recovery:11, 
 	LF test:320, Filter solution:22, Rank solution:74, Lexical retrieval:44, Morphological decomposition:7, 
-	Mean time per word:1096, Asymmetric Merge:266, Sink:10, External Tail Test:57, Execution time = 859ms
+	Mean time per word:1096, Asymmetric Merge:266, Sink:10, External Tail Test:57, Execution time = 921ms
 
 10. se mies jota se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili ihaili lahti 
 
@@ -137,7 +137,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:55, Move Adjunct:0, Agree:69, Phi:83, Transfer:374, Item streamed into syntax:32, 
 	Feature Processing:0, Extraposition:118, Inflection:25, Failed Transfer:296, LF recovery:14, 
 	LF test:531, Filter solution:30, Rank solution:128, Lexical retrieval:57, Morphological decomposition:9, 
-	Mean time per word:1364, Asymmetric Merge:431, Sink:13, External Tail Test:107, Execution time = 1765ms
+	Mean time per word:1364, Asymmetric Merge:431, Sink:13, External Tail Test:107, Execution time = 1906ms
 
 & Lexical garden-paths (2) -------------------------------------------------------
 
@@ -165,7 +165,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:61, Phi:66, Transfer:112, Item streamed into syntax:35, 
 	Feature Processing:0, Extraposition:13, Inflection:0, Failed Transfer:89, LF recovery:5, 
 	LF test:161, Filter solution:44, Rank solution:24, Lexical retrieval:35, Morphological decomposition:6, 
-	Mean time per word:1456, Asymmetric Merge:121, Sink:16, External Tail Test:3, Execution time = 343ms
+	Mean time per word:1456, Asymmetric Merge:121, Sink:16, External Tail Test:3, Execution time = 453ms
 
 & Head-complement selection -------------------------------------------------------
 
@@ -179,7 +179,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:12, Phi:15, Transfer:25, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:24, LF recovery:3, 
 	LF test:40, Filter solution:15, Rank solution:8, Lexical retrieval:16, Morphological decomposition:2, 
-	Mean time per word:482, Asymmetric Merge:47, Sink:3, External Tail Test:1, Execution time = 93ms
+	Mean time per word:482, Asymmetric Merge:47, Sink:3, External Tail Test:1, Execution time = 140ms
 
 14. John knows the solution to the problem disappeared 
 
@@ -203,7 +203,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:20, Phi:24, Transfer:56, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:16, Inflection:6, Failed Transfer:47, LF recovery:4, 
 	LF test:81, Filter solution:15, Rank solution:18, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:709, Asymmetric Merge:57, Sink:4, External Tail Test:33, Execution time = 171ms
+	Mean time per word:709, Asymmetric Merge:57, Sink:4, External Tail Test:33, Execution time = 187ms
 
 & That the clauses (3) -------------------------------------------------------
 
@@ -217,7 +217,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:7, 
 	Feature Processing:0, Extraposition:0, Inflection:10, Failed Transfer:3, LF recovery:2, 
 	LF test:7, Filter solution:5, Rank solution:2, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:755, Asymmetric Merge:13, Sink:4, External Tail Test:0, Execution time = 15ms
+	Mean time per word:755, Asymmetric Merge:13, Sink:4, External Tail Test:0, Execution time = 31ms
 
 17. that John sleeps surprised Mary 
 
@@ -229,7 +229,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:7, Phi:11, Transfer:11, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:6, LF recovery:4, 
 	LF test:19, Filter solution:8, Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:656, Asymmetric Merge:27, Sink:5, External Tail Test:0, Execution time = 31ms
+	Mean time per word:656, Asymmetric Merge:27, Sink:5, External Tail Test:0, Execution time = 46ms
 
 18. that that John sleeps surprised Mary surprised John 
 
@@ -241,7 +241,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:26, Phi:33, Transfer:32, Item streamed into syntax:20, 
 	Feature Processing:0, Extraposition:4, Inflection:21, Failed Transfer:29, LF recovery:7, 
 	LF test:57, Filter solution:23, Rank solution:10, Lexical retrieval:41, Morphological decomposition:7, 
-	Mean time per word:917, Asymmetric Merge:92, Sink:11, External Tail Test:0, Execution time = 156ms
+	Mean time per word:917, Asymmetric Merge:92, Sink:11, External Tail Test:0, Execution time = 187ms
 
 & Nested A-bar movement (4) -------------------------------------------------------
 
@@ -257,7 +257,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:2, Move Adjunct:3, Agree:30, Phi:33, Transfer:37, Item streamed into syntax:16, 
 	Feature Processing:0, Extraposition:7, Inflection:4, Failed Transfer:39, LF recovery:3, 
 	LF test:57, Filter solution:22, Rank solution:13, Lexical retrieval:20, Morphological decomposition:4, 
-	Mean time per word:869, Asymmetric Merge:119, Sink:6, External Tail Test:106, Execution time = 109ms
+	Mean time per word:869, Asymmetric Merge:119, Sink:6, External Tail Test:106, Execution time = 140ms
 
 20. mita kaupunkia kohti Seine virtaa 
 
@@ -269,7 +269,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:3, Agree:5, Phi:8, Transfer:28, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:4, Inflection:5, Failed Transfer:16, LF recovery:3, 
 	LF test:33, Filter solution:6, Rank solution:10, Lexical retrieval:17, Morphological decomposition:5, 
-	Mean time per word:780, Asymmetric Merge:56, Sink:6, External Tail Test:61, Execution time = 78ms
+	Mean time per word:780, Asymmetric Merge:56, Sink:6, External Tail Test:61, Execution time = 93ms
 
 21. mita kaupunkia kohti virtaamalla Seine saavuttaa meren 
 
@@ -281,5 +281,5 @@
 	A-Move Phrase:0, A-bar Move Phrase:8, Move Adjunct:3, Agree:3, Phi:9, Transfer:21, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:1, Inflection:5, Failed Transfer:6, LF recovery:6, 
 	LF test:26, Filter solution:7, Rank solution:11, Lexical retrieval:17, Morphological decomposition:6, 
-	Mean time per word:517, Asymmetric Merge:57, Sink:5, External Tail Test:59, Execution time = 62ms
+	Mean time per word:517, Asymmetric Merge:57, Sink:5, External Tail Test:59, Execution time = 78ms
 

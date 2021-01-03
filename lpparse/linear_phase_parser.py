@@ -191,6 +191,7 @@ class LinearPhaseParser:
                             #
                             #
                             set_logging(True)
+                            self.remove_from_syntactic_working_memory(left_branch)
                             log(f'Result: {new_constituent}...Done.\n')
                         if not self.first_solution_found:
                             self.time_from_stimulus_onset_for_word.append((terminal_lexical_item, self.time_from_stimulus_onset))
@@ -317,12 +318,11 @@ class LinearPhaseParser:
             log(f'Transfer of {ps} terminated due to input condition violation...')
         if original_mother:
             ps.mother = original_mother
-        self.remove_from_syntactic_working_memory(ps)
         return ps
 
     def remove_from_syntactic_working_memory(self, ps):
         ps.active_in_syntactic_working_memory = False
-        if ps.mother and (ps.contains_feature('T/fin') or ps.contains_feature('OP:REL')): # Remove also container if transferred phrase is finite
+        if ps.mother and ps.contains_feature('T/fin') and ps.contains_feature('OP:REL'): # Remove also container if transferred phrase is finite
             node = ps
             while node.mother:
                 node = node.mother

@@ -1,5 +1,5 @@
-@  {'study_folder': 'study-6-linear-phase-theory/Experiment 3/59-Performance with WM/', 'test_corpus_file': 'performance_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory/Experiment 3/59-Performance with WM/', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 59, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2021-01-01 20:02:54.286853
+@  {'test_corpus_file': 'performance_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory/Experiment 3/59-Performance with WM', 'study_folder': 'study-6-linear-phase-theory/Experiment 3/59-Performance with WM', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 59, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-01-02 23:39:17.429194
 @  Test sentences from language data working directory\study-6-linear-phase-theory\Experiment 3\59-Performance with WM\performance_corpus.txt.
 @  Logs into language data working directory\study-6-linear-phase-theory\Experiment 3\59-Performance with WM\performance_corpus_log.txt.
 @  Lexicon from language data working directory\lexicon.txt.
@@ -33,11 +33,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Agent of nukku(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , lahtea(generic) 
 
-	Total Time:5317, Garden Paths:2, Memory Reactivation:4, Steps:10, Merge:11, Move Head:14, Move Phrase:5, 
-	A-Move Phrase:0, A-bar Move Phrase:5, Move Adjunct:0, Agree:10, Phi:16, Transfer:20, Item streamed into syntax:10, 
-	Feature Processing:0, Extraposition:3, Inflection:7, Failed Transfer:5, LF recovery:6, 
-	LF test:29, Filter solution:6, Rank solution:5, Lexical retrieval:17, Morphological decomposition:3, 
-	Mean time per word:1063, Asymmetric Merge:33, Sink:5, External Tail Test:13, Execution time = 62ms
+	Total Time:2770, Garden Paths:0, Memory Reactivation:0, Steps:8, Merge:7, Move Head:14, Move Phrase:7, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:8, Phi:11, Transfer:17, Item streamed into syntax:8, 
+	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:1, LF recovery:3, 
+	LF test:28, Filter solution:4, Rank solution:7, Lexical retrieval:15, Morphological decomposition:3, 
+	Mean time per word:554, Asymmetric Merge:35, Sink:3, External Tail Test:12, Execution time = 62ms
 
 3. se mies joka nukkui ihailee Merjaa 
 
@@ -45,11 +45,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Agent of nukku(joka) , Patient of ihaile-(Merja) , [D/rel joka] with feature OP:REL was bound to an operator. , v(generic) 
 
-	Total Time:13215, Garden Paths:5, Memory Reactivation:10, Steps:22, Merge:26, Move Head:35, Move Phrase:5, 
-	A-Move Phrase:0, A-bar Move Phrase:5, Move Adjunct:0, Agree:23, Phi:31, Transfer:43, Item streamed into syntax:22, 
-	Feature Processing:0, Extraposition:11, Inflection:25, Failed Transfer:29, LF recovery:8, 
-	LF test:57, Filter solution:18, Rank solution:11, Lexical retrieval:47, Morphological decomposition:6, 
-	Mean time per word:2202, Asymmetric Merge:84, Sink:14, External Tail Test:73, Execution time = 187ms
+	Total Time:3890, Garden Paths:0, Memory Reactivation:0, Steps:11, Merge:10, Move Head:16, Move Phrase:7, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:8, Phi:12, Transfer:18, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:0, Inflection:13, Failed Transfer:2, LF recovery:4, 
+	LF test:29, Filter solution:6, Rank solution:9, Lexical retrieval:24, Morphological decomposition:4, 
+	Mean time per word:648, Asymmetric Merge:39, Sink:5, External Tail Test:14, Execution time = 78ms
 
 4. se mies joka ihailee Merjaa lahti 
 
@@ -57,11 +57,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Agent of v(joka) , Patient of ihaile-(Merja) , [D/rel joka] with feature OP:REL was bound to an operator. , lahtea(generic) 
 
-	Total Time:9394, Garden Paths:4, Memory Reactivation:8, Steps:15, Merge:18, Move Head:35, Move Phrase:7, 
-	A-Move Phrase:0, A-bar Move Phrase:6, Move Adjunct:1, Agree:17, Phi:25, Transfer:30, Item streamed into syntax:15, 
-	Feature Processing:0, Extraposition:8, Inflection:13, Failed Transfer:14, LF recovery:8, 
-	LF test:42, Filter solution:10, Rank solution:8, Lexical retrieval:28, Morphological decomposition:4, 
-	Mean time per word:1565, Asymmetric Merge:68, Sink:9, External Tail Test:37, Execution time = 140ms
+	Total Time:5846, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:12, Move Head:45, Move Phrase:12, 
+	A-Move Phrase:0, A-bar Move Phrase:11, Move Adjunct:1, Agree:16, Phi:20, Transfer:30, Item streamed into syntax:12, 
+	Feature Processing:0, Extraposition:6, Inflection:13, Failed Transfer:11, LF recovery:4, 
+	LF test:45, Filter solution:9, Rank solution:11, Lexical retrieval:25, Morphological decomposition:4, 
+	Mean time per word:974, Asymmetric Merge:84, Sink:6, External Tail Test:39, Execution time = 156ms
 
 & Object relative clauses (1.2) -------------------------------------------------------
 
@@ -71,11 +71,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Agent of v(Merja) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , lahtea(generic) 
 
-	Total Time:6912, Garden Paths:2, Memory Reactivation:4, Steps:13, Merge:14, Move Head:25, Move Phrase:16, 
-	A-Move Phrase:0, A-bar Move Phrase:5, Move Adjunct:6, Agree:11, Phi:19, Transfer:32, Item streamed into syntax:13, 
-	Feature Processing:0, Extraposition:5, Inflection:13, Failed Transfer:11, LF recovery:8, 
-	LF test:45, Filter solution:9, Rank solution:6, Lexical retrieval:26, Morphological decomposition:4, 
-	Mean time per word:1152, Asymmetric Merge:80, Sink:7, External Tail Test:70, Execution time = 109ms
+	Total Time:4735, Garden Paths:0, Memory Reactivation:0, Steps:11, Merge:10, Move Head:31, Move Phrase:22, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:8, Agree:9, Phi:13, Transfer:37, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:4, Inflection:13, Failed Transfer:13, LF recovery:4, 
+	LF test:54, Filter solution:7, Rank solution:12, Lexical retrieval:24, Morphological decomposition:4, 
+	Mean time per word:789, Asymmetric Merge:100, Sink:5, External Tail Test:93, Execution time = 125ms
 
 6. se mies jota Merja ihaili ihailee Merjaa 
 
@@ -83,11 +83,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Agent of v(Merja) , Patient of ihaile-(Merja) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , v(generic) 
 
-	Total Time:14840, Garden Paths:5, Memory Reactivation:10, Steps:25, Merge:29, Move Head:46, Move Phrase:18, 
-	A-Move Phrase:0, A-bar Move Phrase:5, Move Adjunct:8, Agree:24, Phi:34, Transfer:55, Item streamed into syntax:25, 
-	Feature Processing:0, Extraposition:13, Inflection:31, Failed Transfer:35, LF recovery:10, 
-	LF test:73, Filter solution:21, Rank solution:12, Lexical retrieval:56, Morphological decomposition:7, 
-	Mean time per word:2120, Asymmetric Merge:139, Sink:16, External Tail Test:146, Execution time = 250ms
+	Total Time:5855, Garden Paths:0, Memory Reactivation:0, Steps:14, Merge:13, Move Head:33, Move Phrase:22, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:8, Agree:9, Phi:14, Transfer:38, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:4, Inflection:19, Failed Transfer:14, LF recovery:5, 
+	LF test:55, Filter solution:9, Rank solution:14, Lexical retrieval:33, Morphological decomposition:5, 
+	Mean time per word:836, Asymmetric Merge:104, Sink:7, External Tail Test:95, Execution time = 140ms
 
 & Center-embedding (1.3) -------------------------------------------------------
 
@@ -97,11 +97,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
 
-	Total Time:6192, Garden Paths:2, Memory Reactivation:4, Steps:13, Merge:14, Move Head:21, Move Phrase:10, 
-	A-Move Phrase:0, A-bar Move Phrase:5, Move Adjunct:0, Agree:11, Phi:21, Transfer:31, Item streamed into syntax:13, 
-	Feature Processing:0, Extraposition:5, Inflection:7, Failed Transfer:12, LF recovery:10, 
-	LF test:47, Filter solution:8, Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:884, Asymmetric Merge:54, Sink:6, External Tail Test:8, Execution time = 93ms
+	Total Time:4020, Garden Paths:0, Memory Reactivation:0, Steps:11, Merge:10, Move Head:23, Move Phrase:14, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:9, Phi:14, Transfer:38, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:4, Inflection:7, Failed Transfer:14, LF recovery:5, 
+	LF test:60, Filter solution:6, Rank solution:14, Lexical retrieval:18, Morphological decomposition:3, 
+	Mean time per word:574, Asymmetric Merge:62, Sink:4, External Tail Test:5, Execution time = 109ms
 
 8. se mies jota se mies jota se mies ihaili ihaili lahti 
 
@@ -109,11 +109,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
 
-	Total Time:25316, Garden Paths:11, Memory Reactivation:25, Steps:35, Merge:45, Move Head:68, Move Phrase:19, 
-	A-Move Phrase:0, A-bar Move Phrase:11, Move Adjunct:0, Agree:55, Phi:71, Transfer:106, Item streamed into syntax:35, 
-	Feature Processing:0, Extraposition:41, Inflection:15, Failed Transfer:84, LF recovery:16, 
-	LF test:143, Filter solution:30, Rank solution:11, Lexical retrieval:50, Morphological decomposition:7, 
-	Mean time per word:2301, Asymmetric Merge:144, Sink:22, External Tail Test:39, Execution time = 531ms
+	Total Time:13418, Garden Paths:3, Memory Reactivation:7, Steps:21, Merge:23, Move Head:52, Move Phrase:26, 
+	A-Move Phrase:0, A-bar Move Phrase:13, Move Adjunct:0, Agree:25, Phi:41, Transfer:111, Item streamed into syntax:21, 
+	Feature Processing:0, Extraposition:28, Inflection:13, Failed Transfer:71, LF recovery:16, 
+	LF test:162, Filter solution:16, Rank solution:33, Lexical retrieval:34, Morphological decomposition:5, 
+	Mean time per word:1219, Asymmetric Merge:127, Sink:10, External Tail Test:30, Execution time = 468ms
 
 9. se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili lahti 
 
@@ -121,11 +121,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
 
-	Total Time:124105, Garden Paths:60, Memory Reactivation:143, Steps:142, Merge:201, Move Head:295, Move Phrase:108, 
-	A-Move Phrase:0, A-bar Move Phrase:73, Move Adjunct:0, Agree:283, Phi:305, Transfer:453, Item streamed into syntax:142, 
-	Feature Processing:0, Extraposition:239, Inflection:38, Failed Transfer:436, LF recovery:22, 
-	LF test:530, Filter solution:152, Rank solution:15, Lexical retrieval:180, Morphological decomposition:26, 
-	Mean time per word:8273, Asymmetric Merge:639, Sink:108, External Tail Test:213, Execution time = 4046ms
+	Total Time:49926, Garden Paths:21, Memory Reactivation:47, Steps:55, Merge:75, Move Head:138, Move Phrase:55, 
+	A-Move Phrase:0, A-bar Move Phrase:30, Move Adjunct:0, Agree:107, Phi:129, Transfer:295, Item streamed into syntax:55, 
+	Feature Processing:0, Extraposition:112, Inflection:22, Failed Transfer:246, LF recovery:22, 
+	LF test:402, Filter solution:50, Rank solution:62, Lexical retrieval:77, Morphological decomposition:10, 
+	Mean time per word:3328, Asymmetric Merge:305, Sink:37, External Tail Test:107, Execution time = 2000ms
 
 & Center-embedding all levels (1.4) -------------------------------------------------------
 
@@ -135,11 +135,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
 
-	Total Time:6192, Garden Paths:2, Memory Reactivation:4, Steps:13, Merge:14, Move Head:21, Move Phrase:10, 
-	A-Move Phrase:0, A-bar Move Phrase:5, Move Adjunct:0, Agree:11, Phi:21, Transfer:31, Item streamed into syntax:13, 
-	Feature Processing:0, Extraposition:5, Inflection:7, Failed Transfer:12, LF recovery:10, 
-	LF test:47, Filter solution:8, Rank solution:7, Lexical retrieval:20, Morphological decomposition:3, 
-	Mean time per word:884, Asymmetric Merge:54, Sink:6, External Tail Test:8, Execution time = 78ms
+	Total Time:4020, Garden Paths:0, Memory Reactivation:0, Steps:11, Merge:10, Move Head:23, Move Phrase:14, 
+	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:0, Agree:9, Phi:14, Transfer:38, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:4, Inflection:7, Failed Transfer:14, LF recovery:5, 
+	LF test:60, Filter solution:6, Rank solution:14, Lexical retrieval:18, Morphological decomposition:3, 
+	Mean time per word:574, Asymmetric Merge:62, Sink:4, External Tail Test:5, Execution time = 125ms
 
 11. se mies jota se mies jota se mies ihaili ihaili lahti 
 
@@ -147,11 +147,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
 
-	Total Time:25316, Garden Paths:11, Memory Reactivation:25, Steps:35, Merge:45, Move Head:68, Move Phrase:19, 
-	A-Move Phrase:0, A-bar Move Phrase:11, Move Adjunct:0, Agree:55, Phi:71, Transfer:106, Item streamed into syntax:35, 
-	Feature Processing:0, Extraposition:41, Inflection:15, Failed Transfer:84, LF recovery:16, 
-	LF test:143, Filter solution:30, Rank solution:11, Lexical retrieval:50, Morphological decomposition:7, 
-	Mean time per word:2301, Asymmetric Merge:144, Sink:22, External Tail Test:39, Execution time = 546ms
+	Total Time:13418, Garden Paths:3, Memory Reactivation:7, Steps:21, Merge:23, Move Head:52, Move Phrase:26, 
+	A-Move Phrase:0, A-bar Move Phrase:13, Move Adjunct:0, Agree:25, Phi:41, Transfer:111, Item streamed into syntax:21, 
+	Feature Processing:0, Extraposition:28, Inflection:13, Failed Transfer:71, LF recovery:16, 
+	LF test:162, Filter solution:16, Rank solution:33, Lexical retrieval:34, Morphological decomposition:5, 
+	Mean time per word:1219, Asymmetric Merge:127, Sink:10, External Tail Test:30, Execution time = 453ms
 
 12. se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili lahti 
 
@@ -159,11 +159,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
 
-	Total Time:124105, Garden Paths:60, Memory Reactivation:143, Steps:142, Merge:201, Move Head:295, Move Phrase:108, 
-	A-Move Phrase:0, A-bar Move Phrase:73, Move Adjunct:0, Agree:283, Phi:305, Transfer:453, Item streamed into syntax:142, 
-	Feature Processing:0, Extraposition:239, Inflection:38, Failed Transfer:436, LF recovery:22, 
-	LF test:530, Filter solution:152, Rank solution:15, Lexical retrieval:180, Morphological decomposition:26, 
-	Mean time per word:8273, Asymmetric Merge:639, Sink:108, External Tail Test:213, Execution time = 4078ms
+	Total Time:49926, Garden Paths:21, Memory Reactivation:47, Steps:55, Merge:75, Move Head:138, Move Phrase:55, 
+	A-Move Phrase:0, A-bar Move Phrase:30, Move Adjunct:0, Agree:107, Phi:129, Transfer:295, Item streamed into syntax:55, 
+	Feature Processing:0, Extraposition:112, Inflection:22, Failed Transfer:246, LF recovery:22, 
+	LF test:402, Filter solution:50, Rank solution:62, Lexical retrieval:77, Morphological decomposition:10, 
+	Mean time per word:3328, Asymmetric Merge:305, Sink:37, External Tail Test:107, Execution time = 1890ms
 
 13. se mies jota se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili ihaili lahti 
 
@@ -171,11 +171,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
 
-	Total Time:719295, Garden Paths:345, Memory Reactivation:858, Steps:803, Merge:1147, Move Head:1654, Move Phrase:674, 
-	A-Move Phrase:0, A-bar Move Phrase:474, Move Adjunct:0, Agree:1651, Phi:1679, Transfer:2466, Item streamed into syntax:803, 
-	Feature Processing:0, Extraposition:1419, Inflection:167, Failed Transfer:2511, LF recovery:28, 
-	LF test:2697, Filter solution:934, Rank solution:19, Lexical retrieval:970, Morphological decomposition:151, 
-	Mean time per word:37857, Asymmetric Merge:3648, Sink:642, External Tail Test:1246, Execution time = 32406ms
+	Total Time:292847, Garden Paths:157, Memory Reactivation:350, Steps:288, Merge:444, Move Head:638, Move Phrase:241, 
+	A-Move Phrase:0, A-bar Move Phrase:159, Move Adjunct:0, Agree:658, Phi:686, Transfer:1161, Item streamed into syntax:288, 
+	Feature Processing:0, Extraposition:597, Inflection:58, Failed Transfer:1116, LF recovery:28, 
+	LF test:1397, Filter solution:283, Rank solution:101, Lexical retrieval:346, Morphological decomposition:42, 
+	Mean time per word:15413, Asymmetric Merge:1399, Sink:236, External Tail Test:537, Execution time = 13828ms
 
 14. se mies jota se mies jota se mies jota se mies jota se mies jota se mies ihaili ihaili ihaili ihaili ihaili lahti 
 
@@ -183,11 +183,11 @@
 
 	LF_Recovery: ,   , Agent of T(mies) , Patient of ihaile-(joka) , [D/rel joka] with feature OP:REL was bound to an operator. , __(generic) , lahtea(generic) 
 
-	Total Time:4451621, Garden Paths:2061, Memory Reactivation:5310, Steps:5070, Merge:7130, Move Head:10206, Move Phrase:4229, 
-	A-Move Phrase:0, A-bar Move Phrase:2994, Move Adjunct:0, Agree:10164, Phi:10198, Transfer:14949, Item streamed into syntax:5070, 
-	Feature Processing:0, Extraposition:8757, Inflection:1021, Failed Transfer:15384, LF recovery:34, 
-	LF test:16011, Filter solution:6047, Rank solution:23, Lexical retrieval:6091, Morphological decomposition:1001, 
-	Mean time per word:193548, Asymmetric Merge:22572, Sink:4057, External Tail Test:7665, Execution time = 265140ms
+	Total Time:2245297, Garden Paths:1262, Memory Reactivation:2835, Steps:2222, Merge:3483, Move Head:4539, Move Phrase:1753, 
+	A-Move Phrase:0, A-bar Move Phrase:1242, Move Adjunct:0, Agree:5054, Phi:5088, Transfer:7457, Item streamed into syntax:2222, 
+	Feature Processing:0, Extraposition:4312, Inflection:338, Failed Transfer:7488, LF recovery:34, 
+	LF test:8284, Filter solution:2217, Rank solution:150, Lexical retrieval:2560, Morphological decomposition:318, 
+	Mean time per word:97621, Asymmetric Merge:10104, Sink:1892, External Tail Test:3870, Execution time = 132562ms
 
 & Lexical garden-paths (2) -------------------------------------------------------
 
@@ -199,11 +199,11 @@
 
 	LF_Recovery: ,   , T(generic) , past(generic) , race(generic) 
 
-	Total Time:1485, Garden Paths:0, Memory Reactivation:0, Steps:8, Merge:6, Move Head:5, Move Phrase:0, 
-	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:5, Phi:8, Transfer:13, Item streamed into syntax:7, 
-	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:8, LF recovery:3, 
-	LF test:19, Filter solution:4, Rank solution:6, Lexical retrieval:7, Morphological decomposition:1, 
-	Mean time per word:247, Asymmetric Merge:17, Sink:1, External Tail Test:0, Execution time = 15ms
+	Total Time:1655, Garden Paths:0, Memory Reactivation:0, Steps:8, Merge:6, Move Head:7, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:7, Phi:10, Transfer:15, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:12, LF recovery:3, 
+	LF test:23, Filter solution:6, Rank solution:6, Lexical retrieval:7, Morphological decomposition:1, 
+	Mean time per word:275, Asymmetric Merge:23, Sink:1, External Tail Test:0, Execution time = 46ms
 
 16. the horse raced past the barn fell 
 
@@ -211,11 +211,11 @@
 
 	LF_Recovery: ,   , T(generic) , T/prt(generic) , fell(generic) , past(generic) , race(generic) 
 
-	Total Time:48136, Garden Paths:31, Memory Reactivation:61, Steps:67, Merge:96, Move Head:72, Move Phrase:0, 
-	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:81, Phi:86, Transfer:183, Item streamed into syntax:67, 
-	Feature Processing:0, Extraposition:30, Inflection:0, Failed Transfer:156, LF recovery:5, 
-	LF test:239, Filter solution:66, Rank solution:24, Lexical retrieval:67, Morphological decomposition:14, 
-	Mean time per word:6876, Asymmetric Merge:193, Sink:35, External Tail Test:51, Execution time = 562ms
+	Total Time:33981, Garden Paths:21, Memory Reactivation:41, Steps:50, Merge:69, Move Head:64, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:69, Phi:74, Transfer:143, Item streamed into syntax:50, 
+	Feature Processing:0, Extraposition:22, Inflection:0, Failed Transfer:117, LF recovery:5, 
+	LF test:190, Filter solution:54, Rank solution:23, Lexical retrieval:50, Morphological decomposition:9, 
+	Mean time per word:4854, Asymmetric Merge:148, Sink:25, External Tail Test:6, Execution time = 531ms
 
 & Head-complement selection -------------------------------------------------------
 
@@ -225,11 +225,11 @@
 
 	LF_Recovery: ,   , Agent of know(John) , Agent of to(John) , Agent of v(John) 
 
-	Total Time:2990, Garden Paths:0, Memory Reactivation:0, Steps:10, Merge:9, Move Head:16, Move Phrase:0, 
-	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:7, Phi:10, Transfer:20, Item streamed into syntax:10, 
-	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:18, LF recovery:3, 
-	LF test:30, Filter solution:12, Rank solution:7, Lexical retrieval:16, Morphological decomposition:2, 
-	Mean time per word:427, Asymmetric Merge:27, Sink:3, External Tail Test:1, Execution time = 62ms
+	Total Time:3375, Garden Paths:0, Memory Reactivation:0, Steps:10, Merge:9, Move Head:26, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:12, Phi:15, Transfer:25, Item streamed into syntax:10, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:24, LF recovery:3, 
+	LF test:40, Filter solution:15, Rank solution:8, Lexical retrieval:16, Morphological decomposition:2, 
+	Mean time per word:482, Asymmetric Merge:47, Sink:3, External Tail Test:1, Execution time = 109ms
 
 18. John knows the solution to the problem disappeared 
 
@@ -237,11 +237,11 @@
 
 	LF_Recovery: ,   , Agent of T(John) , Agent of disappear(John) , Agent of know(John) , Agent of to(John) , Agent of v(John) 
 
-	Total Time:5391, Garden Paths:1, Memory Reactivation:2, Steps:13, Merge:13, Move Head:24, Move Phrase:0, 
-	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:12, Phi:17, Transfer:33, Item streamed into syntax:13, 
-	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:20, LF recovery:5, 
-	LF test:50, Filter solution:14, Rank solution:11, Lexical retrieval:19, Morphological decomposition:3, 
-	Mean time per word:673, Asymmetric Merge:43, Sink:5, External Tail Test:2, Execution time = 109ms
+	Total Time:5891, Garden Paths:1, Memory Reactivation:2, Steps:13, Merge:13, Move Head:38, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:19, Phi:24, Transfer:40, Item streamed into syntax:13, 
+	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:26, LF recovery:5, 
+	LF test:64, Filter solution:17, Rank solution:13, Lexical retrieval:19, Morphological decomposition:3, 
+	Mean time per word:736, Asymmetric Merge:71, Sink:5, External Tail Test:2, Execution time = 171ms
 
 19. John claims the solution to the problem disappeared 
 
@@ -249,11 +249,11 @@
 
 	LF_Recovery: ,   , Agent of T(John) , Agent of claim(John) , Agent of disappear(John) , Agent of to(John) 
 
-	Total Time:5791, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:12, Move Head:15, Move Phrase:0, 
-	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:13, Phi:17, Transfer:42, Item streamed into syntax:12, 
-	Feature Processing:0, Extraposition:9, Inflection:6, Failed Transfer:30, LF recovery:4, 
-	LF test:60, Filter solution:12, Rank solution:14, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:723, Asymmetric Merge:36, Sink:4, External Tail Test:19, Execution time = 125ms
+	Total Time:6676, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:12, Move Head:22, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:20, Phi:24, Transfer:56, Item streamed into syntax:12, 
+	Feature Processing:0, Extraposition:16, Inflection:6, Failed Transfer:47, LF recovery:4, 
+	LF test:81, Filter solution:15, Rank solution:18, Lexical retrieval:18, Morphological decomposition:3, 
+	Mean time per word:834, Asymmetric Merge:57, Sink:4, External Tail Test:33, Execution time = 203ms
 
 & That the clauses (3) -------------------------------------------------------
 
@@ -279,7 +279,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:7, Phi:11, Transfer:11, Item streamed into syntax:10, 
 	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:6, LF recovery:4, 
 	LF test:19, Filter solution:8, Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, 
-	Mean time per word:656, Asymmetric Merge:27, Sink:5, External Tail Test:0, Execution time = 31ms
+	Mean time per word:656, Asymmetric Merge:27, Sink:5, External Tail Test:0, Execution time = 46ms
 
 22. that that John sleeps surprised Mary surprised John 
 
@@ -287,11 +287,11 @@
 
 	LF_Recovery: ,   , Agent of sleep(John) , Patient of surprise(John) , Patient of surprise(Mary) , T(generic) , v(generic) 
 
-	Total Time:14055, Garden Paths:5, Memory Reactivation:10, Steps:27, Merge:31, Move Head:58, Move Phrase:0, 
-	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:25, Phi:32, Transfer:38, Item streamed into syntax:27, 
-	Feature Processing:0, Extraposition:7, Inflection:26, Failed Transfer:37, LF recovery:7, 
-	LF test:61, Filter solution:27, Rank solution:9, Lexical retrieval:53, Morphological decomposition:8, 
-	Mean time per word:1756, Asymmetric Merge:96, Sink:17, External Tail Test:3, Execution time = 203ms
+	Total Time:8341, Garden Paths:1, Memory Reactivation:2, Steps:20, Merge:20, Move Head:59, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:26, Phi:33, Transfer:32, Item streamed into syntax:20, 
+	Feature Processing:0, Extraposition:4, Inflection:21, Failed Transfer:29, LF recovery:7, 
+	LF test:57, Filter solution:23, Rank solution:10, Lexical retrieval:41, Morphological decomposition:7, 
+	Mean time per word:1042, Asymmetric Merge:92, Sink:11, External Tail Test:0, Execution time = 171ms
 
 & Nested A-bar movement (4) -------------------------------------------------------
 
@@ -303,11 +303,11 @@
 
 	LF_Recovery: ,   , [which city] with feature OP:WH was bound to an operator. , __(generic) , does(generic) , flow(generic) 
 
-	Total Time:11303, Garden Paths:8, Memory Reactivation:11, Steps:18, Merge:25, Move Head:34, Move Phrase:5, 
-	A-Move Phrase:0, A-bar Move Phrase:2, Move Adjunct:3, Agree:29, Phi:32, Transfer:45, Item streamed into syntax:18, 
-	Feature Processing:0, Extraposition:7, Inflection:4, Failed Transfer:45, LF recovery:3, 
-	LF test:66, Filter solution:17, Rank solution:15, Lexical retrieval:22, Morphological decomposition:4, 
-	Mean time per word:1883, Asymmetric Merge:129, Sink:7, External Tail Test:125, Execution time = 140ms
+	Total Time:9259, Garden Paths:4, Memory Reactivation:7, Steps:18, Merge:21, Move Head:36, Move Phrase:5, 
+	A-Move Phrase:0, A-bar Move Phrase:2, Move Adjunct:3, Agree:31, Phi:34, Transfer:42, Item streamed into syntax:18, 
+	Feature Processing:0, Extraposition:7, Inflection:4, Failed Transfer:43, LF recovery:3, 
+	LF test:64, Filter solution:22, Rank solution:15, Lexical retrieval:22, Morphological decomposition:4, 
+	Mean time per word:1543, Asymmetric Merge:133, Sink:7, External Tail Test:129, Execution time = 171ms
 
 24. mita kaupunkia kohti Seine virtaa 
 
@@ -319,7 +319,7 @@
 	A-Move Phrase:0, A-bar Move Phrase:7, Move Adjunct:3, Agree:5, Phi:8, Transfer:28, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:4, Inflection:5, Failed Transfer:16, LF recovery:3, 
 	LF test:33, Filter solution:6, Rank solution:10, Lexical retrieval:17, Morphological decomposition:5, 
-	Mean time per word:1380, Asymmetric Merge:56, Sink:6, External Tail Test:61, Execution time = 78ms
+	Mean time per word:1380, Asymmetric Merge:56, Sink:6, External Tail Test:61, Execution time = 93ms
 
 25. mita kaupunkia kohti virtaamalla Seine saavuttaa meren 
 
@@ -331,5 +331,5 @@
 	A-Move Phrase:0, A-bar Move Phrase:8, Move Adjunct:3, Agree:3, Phi:9, Transfer:21, Item streamed into syntax:12, 
 	Feature Processing:0, Extraposition:1, Inflection:5, Failed Transfer:6, LF recovery:6, 
 	LF test:26, Filter solution:7, Rank solution:11, Lexical retrieval:17, Morphological decomposition:6, 
-	Mean time per word:517, Asymmetric Merge:57, Sink:5, External Tail Test:59, Execution time = 62ms
+	Mean time per word:517, Asymmetric Merge:57, Sink:5, External Tail Test:59, Execution time = 78ms
 
