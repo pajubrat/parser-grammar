@@ -13,20 +13,36 @@ class Morphology:
 
     # Definition for morphological parsing for lexical item (set of features)
     def morphological_parse(self, controlling_parsing_process, lexical_item, input_word_list, index):
-        lexical_item_ = lexical_item
-        while self.is_polymorphemic(lexical_item_):
+        """
+        Processes a polymorphemic word in the input.
+
+        If the lexical item retrieved from the surface lexicon is polymorphemic, it must be decomposed
+        before anything can be merged into the syntactic structure. This function performs the decomposition.
+        It breaks down the polymorphemic unit and embeds it into the existing list of elements. The operation
+        is performed until the element currently under processing is primitive lexical item that can be
+        merged (other elements do not matter as they will be decomposed later when processing moves forward).
+
+        This mechanisms implements several other purely morphological operations.
+
+        """
+        current_lexical_item = lexical_item
+        while self.is_polymorphemic(current_lexical_item):
             log('Morphological decomposition...')
             controlling_parsing_process.consume_resources('Morphological decomposition')
-            lexical_item_ = self.C_op_processing(lexical_item_)
-            morpheme_list = self.decompose(lexical_item_.morphology)
-            morpheme_list = self.handle_incorporation(lexical_item_, morpheme_list)
+
+            # Solves an ambiguity in C_features, i.e. whether they are criterial or head features
+            current_lexical_item = self.C_op_processing(current_lexical_item)
+            # Morphological decomposition based on the lexical entry
+            morpheme_list = self.decompose(current_lexical_item.morphology)
+            # Transfer knowledge of incorporation
+            morpheme_list = self.handle_incorporation(current_lexical_item, morpheme_list)
             log(f'Word "{input_word_list[index]}" contains multiple morphemes ' + str(morpheme_list) +'...')
             self.refresh_input_list(input_word_list, morpheme_list, index)
-            lexical_item_ = self.lexicon.lexical_retrieval(input_word_list[index])[0]
-        return lexical_item_, input_word_list, self.get_inflection(lexical_item_)
+            current_lexical_item = self.lexicon.lexical_retrieval(input_word_list[index])[0]
+        return current_lexical_item, input_word_list, self.get_inflection(current_lexical_item)
 
-    def handle_incorporation(self, lexical_item_, morpheme_list_):
-        if lexical_item_.incorporated:
+    def handle_incorporation(self, current_lexical_item, morpheme_list_):
+        if current_lexical_item.incorporated:
             morpheme_list_.append('inc$')
         return morpheme_list_
 
@@ -85,7 +101,7 @@ class Morphology:
                 lst2_.append(w)
         return lst2_
 
-    # Definition for morphological decomposition (converts string pattern into a list)
+    # Definition for morphological decomposition
     def decompose(self, word):
         word = word.replace("#", "#$")
         word = word.replace("=", '#=')

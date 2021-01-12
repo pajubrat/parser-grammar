@@ -78,11 +78,24 @@ class LexicalInterface:
 
     # Defines lexical retrieval
     def lexical_retrieval(self, phonological_entry):
+        """
+        Retrieves a primitive lexical item (or several) from the surface lexicon based on a phonological form.
+
+        The function retrieves primitive lexical items from the lexicon and performs certain
+        auxiliary operations. If the phonological form is ambiguous, several constituents will be
+        retrieve. The retrieved constituents will be ordered in terms of their overall
+        plausibility, given the context or frequency of use.
+
+        If the lexical element(s) was inside some word, it will be marked
+        as being internal [internal=True]. If the element(s) was a clitic, it will be marked as
+        being incorporated [incorporated=True]. If no lexical element is found, a default
+        item will be created.
+        """
 
         internal = False
         incorporated = False
 
-        # A morpheme symbol that ends with $ is an internal item
+        # A morpheme symbol that ends with $ is a word internal item
         if phonological_entry.endswith('$'):
             phonological_entry = phonological_entry[:-1]
             internal = True
@@ -92,9 +105,10 @@ class LexicalInterface:
             phonological_entry = phonological_entry[:-1]
             incorporated = True
 
-        # If the key K is found from the dictionary, it will return a constituent value
+        # If a matching element is found from the dictionary, it will return a list of constituents
         if phonological_entry in self.surface_vocabulary:
             word_list = [const.copy() for const in self.surface_vocabulary[phonological_entry]]
+            # Add internal/incorporation information to each
             if internal:
                 for const in word_list:
                     if const.morphology:
@@ -102,6 +116,7 @@ class LexicalInterface:
             if incorporated:
                 for const in word_list:
                     const.incorporated = True
+        # Default constituent
         else:
             const = self.PhraseStructure()
             const.features = {'PF:?', '?'}
@@ -121,6 +136,12 @@ class LexicalInterface:
         return word_list
 
     def rank_lexical_items(self, word_list):
+        """
+        Ranks lexical constituents in the case the original phonological word was ambiguous.
+
+        Ranking is based on psycholinguistic principles, word frequency, and other factors. In the current
+        implementation we only make use of frequency.
+        """
         def frequency(word):
             for f in word.features:
                 if f[:5]=='FREQ:':

@@ -47,6 +47,7 @@ class LinearPhaseParser:
         self.total_time_per_sentence = 0
         self.time_from_stimulus_onset_for_word = []
         self.only_first_solution = False
+        self.operations = 0
 
     # Definition for parser initialization
     def initialize(self):
@@ -77,6 +78,7 @@ class LinearPhaseParser:
         # Reset operation counters in the PhraseStructure class
         for key in PhraseStructure.resources:
             PhraseStructure.resources[key] = {"ms": 1, "n": 0}
+        self.operations = 0
         self.resources = {"Total Time": {'ms': 0, 'n': 0},     # Count predicted cognitive time
                           "Garden Paths": {'ms': 1, 'n': 0},
                           "Memory Reactivation": {'ms': 500, 'n' : 0},
@@ -122,18 +124,36 @@ class LinearPhaseParser:
             log('\n(Ignored by user.)')
 
     def parse_new_item(self, ps, lst, index):
-        set_logging(True)
-        if self.exit:                                                                                               # Force the parser to exit by setting this flag in the code
-            return
+        """
+        Attach new element consumed from the input into an existing phrase structure.
 
+        A phonological word with index [index] is targeted in a sentence list [lst].
+        This word will be mapped into a ordered list of lexical items, which are then
+        attached to an existing partial representation [ps]. Attachment order is
+        regulated by cognitive parsing principles. The function is called recursively,
+        so that attachment order and ordered lists of lexical items will regulate
+        backtracking.
+        """
+
+        set_logging(True)
+
+        # We have decided not to explore any more solutions, exit the recursion
+        if self.exit:
+            return
         if index < len(lst):
             log(f'\n\t\tNext item: "{lst[index]}". ')
 
-        if index == len(lst):                                                                                        # No more words in the input
-            self.complete_processing(ps)                                                                             # Finalizes the output
-            return                                                                                                   # Completes the parsing branch
+        # If there are no more words, we attempt to complete processing
+        if index == len(lst):
+            self.complete_processing(ps)
+            return
 
-        self.time_from_stimulus_onset = int(len(lst[index]) * 25)                                                    # baseline/mean duration for each item
+        # Set the amount of cognitive resources (in ms) consumed based on word length
+        self.time_from_stimulus_onset = int(len(lst[index]) * 25)
+
+        # Add the time to total time if we haven't yet found any solutions
+        # Other solutions beyond the first one are not timed, as they do not correspond anything
+        # useful
         if not self.first_solution_found:
             self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
@@ -141,7 +161,10 @@ class LinearPhaseParser:
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
             log('Lexical retrieval...')
             self.consume_resources('Lexical retrieval', lst[index])
+            # Break down a complex phonological word, if anh, into the list of items to be processed, and return the
+            # first terminal lexical constituent from the lexicon to get attached to the syntactic structure
             terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
+            # Process inflection
             terminal_lexical_item = self.process_inflection(inflection, terminal_lexical_item)
             log('Done.')
             if inflection:
@@ -149,6 +172,7 @@ class LinearPhaseParser:
                     self.parse_new_item(ps.copy(), lst_branched, index + 1)
                 else:
                     self.parse_new_item(None, lst_branched, index + 1)
+            # If the next element is a lexical constituent, we try to attache it to the structure
             else:
                 self.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
                 log(f'\n\t\tItem enters active working memory.')
@@ -211,6 +235,13 @@ class LinearPhaseParser:
             site.active_in_syntactic_working_memory = False
 
     def process_inflection(self, inflection, lexical_item):
+        """
+        Processes inflectional features (if any).
+
+        If the input contains inflectional features, they are stored into a temporary memory buffer.
+        If the input does not contain inflectional features, it must be a lexical item. All inflectional
+        morphemes are then discharged inside the lexical item.
+        """
         if inflection:
             self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
             self.consume_resources("Inflection")
@@ -335,6 +366,7 @@ class LinearPhaseParser:
         return True
 
     def consume_resources(self, key, info=''):
+        self.operations += 1
         if key in self.resources and not self.first_solution_found:
             self.time_from_stimulus_onset += self.resources[key]['ms']
             if 'Total Time' in self.resources:
