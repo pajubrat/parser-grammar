@@ -107,6 +107,10 @@ class LinearPhaseParser:
                           }
 
     def parse(self, count, lst):
+        """
+        Begins the parsing process for sentence [lst] which is a list of words.
+        It initializes the parser and then calls for the recursive parsing function.
+        """
         self.sentence = lst
         self.start_time = process_time()
         self.initialize()
@@ -161,9 +165,11 @@ class LinearPhaseParser:
         for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
             log('Lexical retrieval...')
             self.consume_resources('Lexical retrieval', lst[index])
+
             # Break down a complex phonological word, if anh, into the list of items to be processed, and return the
             # first terminal lexical constituent from the lexicon to get attached to the syntactic structure
             terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
+
             # Process inflection
             terminal_lexical_item = self.process_inflection(inflection, terminal_lexical_item)
             log('Done.')
@@ -172,6 +178,7 @@ class LinearPhaseParser:
                     self.parse_new_item(ps.copy(), lst_branched, index + 1)
                 else:
                     self.parse_new_item(None, lst_branched, index + 1)
+
             # If the next element is a lexical constituent, we try to attache it to the structure
             else:
                 self.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
@@ -186,17 +193,25 @@ class LinearPhaseParser:
                     log(f'{ps}' + ' + ' + terminal_lexical_item.get_phonological_string())
                     self.resources['Steps']['n'] += 1
                     self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
-                    # -------------------------- consider merge solutions ------------------------------------- #
+                    #
+                    # -------------------------- Consider merge solutions ------------------------------------- #
+                    #
+                    # Order the target nodes at the right edge of the existing phrase structure
                     merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
+
+                    # Examine each site [site] in the given order
                     for site in merge_sites:
                         ps_ = ps.top().copy()
                         left_branch = ps_.identify_equivalent_node(site)
-                        if 'working_memory' in self.local_file_system.settings:
-                            if self.local_file_system.settings['working_memory']:
-                                if not site.active_in_syntactic_working_memory:
-                                    self.consume_resources("Memory Reactivation", {site})
-                                    log(f'\n\t\tA dormant constituent had to be woken back into syntactic working memory.')
-                                    site.active_in_syntactic_working_memory = True
+
+                        # If site is not in active working memory, it must be activated
+                        if 'working_memory' in self.local_file_system.settings and self.local_file_system.settings['working_memory']:
+                            if not site.active_in_syntactic_working_memory:
+                                self.consume_resources("Memory Reactivation", {site})
+                                log(f'\n\t\tA dormant constituent had to be woken back into syntactic working memory.')
+                                site.active_in_syntactic_working_memory = True
+
+                        # If we are mering word-internal constituents, then there is only one solution, sinking
                         if left_branch.bottom_affix().internal and site.is_primitive():
                             log(f'\n\t\tSinking {terminal_lexical_item} into {left_branch.bottom_affix()} = ')
                             new_constituent = left_branch.bottom_affix().sink(terminal_lexical_item)
@@ -210,11 +225,15 @@ class LinearPhaseParser:
                             #
                             #
                             # Merge (attachment of new element to existing structure)
+                            # Note. All left branches are transferred before Merge (Brattico & Chesi 2020)
                             new_constituent = self.transfer_to_LF(left_branch) + terminal_lexical_item
                             #
                             #
                             #
                             set_logging(True)
+
+                            # The transferred left branch will be removed from active working memory
+                            # because it has been send out.
                             self.remove_from_syntactic_working_memory(left_branch)
                             log(f'Result: {new_constituent}...Done.\n')
                         if not self.first_solution_found:
@@ -224,9 +243,9 @@ class LinearPhaseParser:
                         if self.exit:
                             break
                     # ---------------------------------------------------------------------------------------- #
-                    print('.', end='', flush=True)
+                    print('.', end='', flush=True) # This sends a message to console that something is happening.
 
-        # If all solutions in the list have been explored,  backtrack
+        # If all solutions in the list have been explored, backtrack
         if not self.exit:
             log(f'\n\t\tExplored {ps}, backtracking to previous branching point...')
 
@@ -279,7 +298,7 @@ class LinearPhaseParser:
         log('Done.\n')
         print('X', end='', flush=True)
         self.consume_resources('Steps')
-        self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} (<= accepted)')
+        self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} <= accepted')
         if not self.first_solution_found:
             log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
             self.first_solution_found = True

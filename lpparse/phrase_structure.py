@@ -16,6 +16,20 @@ class PhraseStructure:
 
     # Constituent constructor, Merge[A B]
     def __init__(self, left_constituent=None, right_constituent=None):
+        """
+        Defines the notion of phrase structure constituent.
+
+        A phrase structure constituent has certain axiomatic linguistic properties plus
+        several auxiliary properties that are used to support simulations. The most relevant
+        linguistic properties are its phrase structure geometry and linguistic features (if any).
+        In addition, any constituent can be either inside or outside of the active working memory,
+        and it may be pulled out into an external processing pipeline (adjunct). Finally,
+        the current model keeps track of chain creation by using the feature [find_me_elsewhere] which
+        is tagged to a constituent if it has been moved.
+
+        The standard bottom-up Chomsky-style merge [A B] is part of the constructor, because you can create
+        a new constituent by merging A and B together as its left and right constituents, respectively.
+        """
         self.left_const = left_constituent
         self.right_const = right_constituent
         if self.left_const:
@@ -317,6 +331,15 @@ class PhraseStructure:
     #
     # Definition for asymmetric countercyclic Merge-1 operation (nontrivial)
     def merge_1(self, C, direction=''):
+        """
+        Merges an incoming constituent [C] into an existing node [self] to direction [direction].
+
+        The left-to-right Merge-1 is a more complex operation than the bottom-up merge.
+        It targets some node N at an existing phrase structure and then merges the incoming
+        constituent C either ot left [C N] or to right [N C]. This operation requires that
+        existing phrase structure relations are broken and then repaired, so that the incoming
+        constituent can be weaved into it.
+        """
         local_structure = self.local_structure()                # [X...self...Y]
         new_constituent = self.asymmetric_merge(C, direction)   # A = [self H] or [H self]
         new_constituent.substitute(local_structure)             # [X...A...Y]
@@ -324,6 +347,14 @@ class PhraseStructure:
 
     # Definition for standard Merge with symmetry breaking
     def asymmetric_merge(self, B, direction='right'):
+        """
+        Merges B asymmetrically to [self] into direction [direction]
+
+        The operation creates a complex constituent [A B] such that
+        one of them is the targeted constituent and another is the
+        new merged constituent. [A B] is returned. The operation
+        assumes that A and B are both top nodes.
+        """
         self.consume_resources('Asymmetric Merge')
         if direction == 'left':
             new_constituent = PhraseStructure(B, self)
@@ -333,6 +364,13 @@ class PhraseStructure:
 
     # Substitute self into local_structure
     def substitute(self, local_structure):
+        """
+        Substitutes [self] into the local phrase structure geometry defined by [local_structure].
+
+        Local structure contains information concerning the mother and handedness of some
+        constituent [self] that we substitute with another constituent, e.g. [self B].
+        If [self] was left constituent, then [self B] will also be left constituent, and so on.
+        """
         if local_structure.mother:
             if not local_structure.left:
                 local_structure.mother.right_const = self
@@ -341,6 +379,13 @@ class PhraseStructure:
             self.mother = local_structure.mother
 
     def local_structure(self):
+        """
+        Takes a snapshot of the local structure around some constituent A.
+
+        Two properties are currently registered: A's mother and whether it is left.
+        This information will be used when that constituent is substituted with something else,
+        and thus we can restore the phrase structure geometry.
+        """
         local_structure = namedtuple('local_structure', 'mother left')
         local_structure.mother = self.mother
         local_structure.left = self.is_left()
