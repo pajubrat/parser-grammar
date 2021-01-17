@@ -360,6 +360,14 @@ class LF:
             return True
 
     def container_assigns_theta_role_to(self, h):
+        """
+        Determines whether the head of the projection that contains a constituent (DP) can assign a thematic role to it.
+
+        X assigns a thematic role to HP (DP) if and only if
+        (i) H selects DP as its complement;
+        (ii) DP constitutes a licensed specifier of HP and (ii-a) H is not an EPP head, (ii-b) H has ARG,
+        (ii-c) H's thematic role is not assignment to some other constituent.
+        """
         if h.is_selected():
             return True
         if h.max().get_theta_assigner() and h.max().container_head().licensed_specifier() and h.max() == h.max().container_head().licensed_specifier():
@@ -373,6 +381,9 @@ class LF:
             return True
 
     def selection_tests(self, h):
+        """
+        Checks that  the selection features of [h] are checked.
+        """
         comp = h.proper_complement()
         local_edge = h.local_edge()
         for f in sorted(for_lf_interface(h.features)):
