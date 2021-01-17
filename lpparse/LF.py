@@ -29,6 +29,9 @@ class LF:
         self.controlling_parsing_process = controlling_parsing_process
 
     def all_pass(self):
+        """
+        Returns [True] if and only if all LF-legibility tests pass
+        """
         return (self.probe_goal_test_result and
                 self.selection_test_result and
                 self.tail_head_test_result and
@@ -40,6 +43,9 @@ class LF:
                 self.adjunct_test_result)
 
     def fail(self):
+        """
+        Returns [True] if an LF-test fails.
+        """
         return not self.all_pass()
 
     def report_lf_status(self):
@@ -162,6 +168,11 @@ class LF:
     #
     # Definition for the LF-interface legibility test
     def test(self, ps):
+        """
+        LF-legibility test for the whole constituent [ps].
+
+        This operation tests all lexical items that are part of [ps] recursively.
+        """
         self.reset_flags()
         self.controlling_parsing_process.consume_resources("LF test", f'{ps}')
         log('LF-interface test...')
@@ -169,8 +180,25 @@ class LF:
             self.controlling_parsing_process.consume_resources("Failed Transfer", f'{ps}')
         return self
 
-    # Recursive LF-legibility test (called from test()
+    # Recursive LF-legibility test (called from test())
     def _test(self, ps):
+        """
+        Tests when constituent [ps] satisfies LF-legibility.
+
+        LF-legibility test is applied only to lexical items. If [ps] is a complex constituent,
+        this function is called recursively for its left and right constituents. If [ps] is lexical item,
+        then the following tests are applied:
+
+        head integrity test
+        probe-goal test
+        internal tail test
+        double spec filter
+        semantic complement test
+        selection tests
+        criterial feature test
+        projection principle
+        adjunct interpretation tests
+        """
         if ps.is_primitive():
             self.head_integrity_test(ps)
             self.probe_goal_test(ps)
@@ -180,7 +208,6 @@ class LF:
             self.selection_tests(ps)
             self.criterial_feature_test(ps)
             self.projection_principle(ps)
-            self.semantic_test(ps)
             self.adjunct_interpretation_test(ps)
         else:
             if not ps.left_const.find_me_elsewhere:
@@ -189,15 +216,14 @@ class LF:
                 self._test(ps.right_const)
         return self
 
-    def semantic_test(self, h):
-        pass
-        # This refers to a condition which rules out wrong step [that man who] sleeps]
-        # and for which I haven't found the general rule
-        #if 'D/rel' in h.features and h.mother and h.mother.sister() and 'N' in h.mother.sister().features:  # [N D/rel]
-        #    self.semantic_test_result = False
-
     # A right DP-adjunct inside DP is uninterpretable
     def adjunct_interpretation_test(self, h):
+        """
+        Rules out illegitimate adjunct configurations.
+
+        Currently only rules out right DP-adjuncts inside DPs. A complete solution will examine
+        all illegitimate adjunct attachments on the basis of their tail features.
+        """
         if 'D' in h.features and \
                 h.max() and h.max().adjunct and \
                 h.max().is_right() and \
@@ -206,11 +232,19 @@ class LF:
             self.adjunct_test_result = False
 
     def head_integrity_test(self, h):
+        """
+        Verifies that all lexical items have legitimate features to be interpretable.
+
+        Unrecognized features are ruled out.
+        """
         if not h.features or 'CAT:?' in h.features or '?' in h.features:
             log('.An uninterpretable grammatical head without lexical category was detected...')
             self.head_integrity_test_result = False
 
     def probe_goal_test(self, h):
+        """
+        Checks that all probe-features are matched with a goal.
+        """
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(set(h.features), f[7:]):
@@ -218,11 +252,22 @@ class LF:
                     self.probe_goal_test_result = False
 
     def internal_tail_test(self, h):
+        """
+        Checks that all D-elements satisfy their internal tail tests (in essence case checking)
+        """
         if 'D' in h.features and not h.internal_tail_head_test():
             log(f'.{h}({h.mother}) failed internal tail test for {h.get_tail_sets()}...')
             self.tail_head_test_result = False
 
     def double_spec_filter(self, h):
+        """
+        Checks that no lexical item has two specifiers unless specifically marked by [2SPEC] feature.
+
+        The nontrivial part is how to distinguish the relevant specifiers from adjuncts. This problem
+        is further aggravated by the fact that in some languages, such as Finnish, regular DP arguments
+        can be interpreted as adjuncts. We will also have to take into account whether the element
+        has been moved elsewhere.
+        """
         if '2SPEC' not in h.features:
             count = 0
             list_ = h.edge()
@@ -235,18 +280,41 @@ class LF:
                 log(f'{h} has double specifiers...')
 
     def semantic_complement_test(self, head):
+        """
+        Checks that a head-complement configuration does not violate semantic (SEM) features.
+        """
         if head.proper_complement():
             if not LF.semantic_match(head, head.proper_complement()):
                 self.semantic_test_result = False
                 log(f'{head} fails semantic match with {head.proper_complement()}...')
 
     def criterial_feature_test(self, h):
+        """
+        Checks that criterial features are legitimate.
+
+        Currently this function checks only that we don't have a relative pronoun inside
+        a DP that contains no finite clause. For example, we rule out [the man who].
+        """
         if 'D' in h.features and 'REL' not in h.features and h.mother:
             if h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
                 log(f'Criterial legibility failed for {h}...')
                 self.criterial_feature_test_result = False
 
     def projection_principle(self, h):
+        """
+        Checks that all DP arguments have thematic roles, and that all thematic roles are assigned
+        to some DP.
+
+        The rule is very nontrivial due to the many ways DP argument may and may not be assigned
+        thematic roles. The operation is broken down to several independent components which are
+
+        (i) If the DP is contained inside a projections from a head that assigns a thematic role to it;
+        if not, then we accept the configuration sill if and only if
+        (ii) the DP is adjoinable and can be interpreted as nonreferential (DP adverbs);
+        (iii) its thematic role can be identified by agreement (DP argument is adjunct);
+        (iv) its thematic role can be identified by tailing (not yet implemented).
+
+        """
         if self.projection_principle_applies_to(h):
             if h.max().container_head() and self.container_assigns_theta_role_to(h):
                 return True
@@ -264,16 +332,27 @@ class LF:
         return False
 
     def identify_thematic_role_by_agreement(self, h):
+        """
+        Checks whether a constituent's thematic role can be identified by agreement.
+
+        This happens if DP is inside projection from H and the phi-features between H and DP match, and if
+        the local edge of H is not filled in by a complex phrase (that would block the agreement). The motivation
+        is to project thematic roles to DP-arguments that are adjuncts.
+        """
         if h.max().container_head():
             if h.max().container_head().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
                 if not (h.max().container_head().local_edge() and h.max().container_head().local_edge().is_complex()):
                     return True
 
-    # Projection principles applies to XP if and only if
-    # XP is a DP
-    # XP has not been moved
-    # XP is not the top node (isolated)
     def projection_principle_applies_to(self, h):
+        """
+        Determines whether the projection principles applied to some constituent.
+
+        The projection principle applies H if and only if
+        (i) H is a DP or projects DP
+        (ii) H has not been moved elsewhere
+        (iii) H is not the top node (isolated therefore)
+        """
         if 'D' in h.features and \
             h.max() and \
             not h.max().find_me_elsewhere and \

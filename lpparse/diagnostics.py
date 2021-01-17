@@ -73,7 +73,9 @@ class Diagnostics:
             ".\language data working directory\study-6-linear-phase-theory/Experiment 3/56-Performance/performance_corpus_resources.txt",
             ".\language data working directory\study-6-linear-phase-theory/Experiment 3/58-no_left_branch_principles_all/linear_phase_theory_corpus_resources.txt",
             ".\language data working directory\study-6-linear-phase-theory/Experiment 3/59-Performance with WM/performance_corpus_resources.txt",
-            ".\language data working directory\study-6-linear-phase-theory/Experiment 3/60-Optimal parser with WM/linear_phase_theory_corpus_resources.txt"
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 3/60-Optimal parser with WM/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 4/41-worst-parser-possible/linear_phase_theory_corpus_resources.txt",
+            ".\language data working directory\study-6-linear-phase-theory/Experiment 4/42-Best-parser/linear_phase_theory_corpus_resources.txt"
             ]
         self.log_file.write('\nReading experimental data from files.\nFiles to be read:')
         for i, file in enumerate(files_to_read):
@@ -397,8 +399,6 @@ class Diagnostics:
     # Experiment 3a
     # Manuscript section 5
     def report_experiment_3a(self):
-
-
         self.log_experiment_title('5.2 Garden paths by lexical selection')
         data_exp1 = self.data[self.data['Study_ID'] == 56]
         self.log_file.write(f'\nSelected studies {set(data_exp1["Study_ID"])}.')
@@ -582,3 +582,42 @@ class Diagnostics:
         pd.set_option('display.max_rows', 1000)
         d2 = data_exp1.melt(id_vars='Study_ID', value_vars=['Mean time per word', 'Merge', 'Garden Paths', 'Asymmetric Merge', 'Move Phrase'])
         self.log_file.write('\n' + str(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=2)))
+
+        #
+        # Appendix B
+        # Additional figures and data reported in the book Brattico (2021) The linear phase hypothesis
+        #
+        # Properties of the worst and best parser
+        data_exp1 = self.data[(self.data['Study_ID'] == 42) | (self.data['Study_ID'] == 41)]
+        d2 = data_exp1.melt(id_vars='Study_ID',
+                            value_vars=['Mean time per word', 'Merge', 'Garden Paths', 'Asymmetric Merge',
+                                        'Move Phrase'])
+        self.log_file.write('\n\nAppendix B: worst parser possible.')
+        self.log_file.write('\nMeans\n' + str(d2.groupby(['Study_ID', 'Resource']).mean().round(decimals=2)))
+        self.log_file.write('\nMax values\n' + str(d2.groupby(['Study_ID', 'Resource']).max().round(decimals=2)))
+        self.log_file.write('\nDone.')
+
+        #
+        # Figure B1 -- worst parser versus the best parser
+        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
+        sns.set_theme(style="whitegrid")
+        h = sns.barplot(data=data_exp1,
+                        x='Study_ID',
+                        y='Mean time per word',
+                        ci=None,
+                        palette='Greys', ax=ax1, log=True)
+        ax1.set(ylim=(1, 200000), ylabel='Mean predicted cognitive time per word (ms)')
+        h = sns.barplot(data=data_exp1,
+                        x='Study_ID',
+                        y='Merge',
+                        ci=None,
+                        palette='Greys', ax=ax2, log=True)
+        ax2.set(ylim=(1, 2000), ylabel='Mean number of attachments')
+        h = sns.barplot(data=data_exp1,
+                        x='Study_ID',
+                        y='Garden Paths',
+                        ci=None,
+                        palette='Greys', ax=ax3, log=True)
+        ax3.set(ylim=(1, 2000), ylabel='Mean number of garden paths')
+        fig = h.get_figure()
+        fig.savefig(STUDY_DIRECTORY + 'Result Figure B1')

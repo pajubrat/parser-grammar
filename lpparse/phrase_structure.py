@@ -154,6 +154,9 @@ class PhraseStructure:
 
     # Definition for head (also label) of a phrase structure
     def head(self):
+        """
+        Definition for head (also label) of a phrase structure.
+        """
         if self.is_primitive():
             return self
         if self.left_const.is_primitive():

@@ -1,0 +1,1523 @@
+@  {'test_corpus_file': 'linear_phase_theory_corpus.txt', 'test_corpus_folder': 'study-6-linear-phase-theory', 'study_folder': 'study-6-linear-phase-theory/Experiment 4/41-worst-parser-possible/', 'author': 'PauliBrattico', 'year': 2020, 'date': 'Novemember', 'study_id': 41, 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': True, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': False, 'filter': False, 'lexical_anticipation': False, 'closure': 'Top-down', 'working_memory': True, 'dispersion_filter': False, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': 0, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-01-17 11:16:42.430764
+@  Test sentences from language data working directory\study-6-linear-phase-theory\linear_phase_theory_corpus.txt.
+@  Logs into language data working directory\study-6-linear-phase-theory\Experiment 4\41-worst-parser-possible\linear_phase_theory_corpus_log.txt.
+@  Lexicon from language data working directory\lexicon.txt.
+@  Redundancy rules from language data working directory\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\ug_morphemes.txt.
+@ 
+@ 
+& 0 Formal tests -------------------------------------------------------
+
+& Empty lexical items -------------------------------------------------------
+
+1. a' b' 
+
+	[a b]
+
+	LF_Recovery: ,   
+
+	Total Time:150, Garden Paths:0, Memory Reactivation:0, Steps:2, Merge:1, Move Head:0, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:2, Item streamed into syntax:2, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:0, LF recovery:0, 
+	LF test:1, Filter solution:0, Rank solution:0, Lexical retrieval:2, Morphological decomposition:0, 
+	Mean time per word:75, Asymmetric Merge:1, Sink:0, External Tail Test:0, Execution time = 0ms
+
+2. a' b' c' 
+
+	[[a b] c]
+
+	LF_Recovery: ,   
+
+	Total Time:220, Garden Paths:0, Memory Reactivation:0, Steps:3, Merge:2, Move Head:0, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:3, Item streamed into syntax:3, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:0, LF recovery:0, 
+	LF test:1, Filter solution:0, Rank solution:0, Lexical retrieval:3, Morphological decomposition:0, 
+	Mean time per word:73, Asymmetric Merge:2, Sink:0, External Tail Test:0, Execution time = 15ms
+
+3. a' b' c' d' 
+
+	[[[a b] c] d]
+
+	LF_Recovery: ,   
+
+	Total Time:290, Garden Paths:0, Memory Reactivation:0, Steps:4, Merge:3, Move Head:0, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:4, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:0, LF recovery:0, 
+	LF test:1, Filter solution:0, Rank solution:0, Lexical retrieval:4, Morphological decomposition:0, 
+	Mean time per word:72, Asymmetric Merge:3, Sink:0, External Tail Test:0, Execution time = 0ms
+
+& 1 Basic construction types -------------------------------------------------------
+
+& Basic verb classes (1.1) -------------------------------------------------------
+
+& Intransitive verbs -------------------------------------------------------
+
+& Grammatical (finite intransitive verbs) -------------------------------------------------------
+
+4. Pekka istuu 
+
+	[<D Pekka>:1 [T [<__>:1 istuu]]]
+
+	LF_Recovery: ,   , Agent of istuu(Pekka) 
+
+	Total Time:1976, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:1, 
+	LF test:8, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
+	Mean time per word:988, Asymmetric Merge:12, Sink:2, External Tail Test:14, Execution time = 31ms
+
+5. Pekka lahtee 
+
+	[<D Pekka>:1 [T [<__>:1 lahtea]]]
+
+	LF_Recovery: ,   , Agent of lahtea(Pekka) 
+
+	Total Time:2026, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:1, 
+	LF test:8, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
+	Mean time per word:1013, Asymmetric Merge:12, Sink:2, External Tail Test:14, Execution time = 15ms
+
+6. Pekka elaa 
+
+	[<D Pekka>:1 [T [<__>:1 elaa]]]
+
+	LF_Recovery: ,   , Agent of elaa(Pekka) 
+
+	Total Time:1926, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:1, 
+	LF test:8, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
+	Mean time per word:963, Asymmetric Merge:12, Sink:2, External Tail Test:14, Execution time = 15ms
+
+7. Pekka juoksee 
+
+	[<D Pekka>:1 [T [<__>:1 juokse-]]]
+
+	LF_Recovery: ,   , Agent of juokse-(Pekka) 
+
+	Total Time:1916, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:3, LF recovery:1, 
+	LF test:8, Filter solution:2, Rank solution:0, Lexical retrieval:9, Morphological decomposition:2, 
+	Mean time per word:958, Asymmetric Merge:12, Sink:2, External Tail Test:14, Execution time = 15ms
+
+8. Pekka kuorsaa 
+
+	[<D Pekka>:1 [T [<__>:1 kuorsaa]]]
+
+	LF_Recovery: ,   , Agent of kuorsaa(Pekka) 
+
+	Total Time:2101, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:1, 
+	LF test:8, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
+	Mean time per word:1050, Asymmetric Merge:12, Sink:2, External Tail Test:14, Execution time = 15ms
+
+9. Pekka nukkui 
+
+	[<D Pekka>:1 [T [<__>:1 nukku]]]
+
+	LF_Recovery: ,   , Agent of nukku(Pekka) 
+
+	Total Time:2026, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:1, 
+	LF test:8, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
+	Mean time per word:1013, Asymmetric Merge:12, Sink:2, External Tail Test:14, Execution time = 15ms
+
+10. John sleeps 
+
+	[[D John]:1 [T [__:1 sleep]]]
+
+	LF_Recovery: ,   , Agent of sleep(John) 
+
+	Total Time:1941, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:3, Transfer:4, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:1, 
+	LF test:7, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
+	Mean time per word:970, Asymmetric Merge:8, Sink:2, External Tail Test:0, Execution time = 15ms
+
+11. John leaves 
+
+	[[D John]:1 [T [__:1 leave]]]
+
+	LF_Recovery: ,   , Agent of leave(John) 
+
+	Total Time:1941, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:3, Transfer:4, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:1, 
+	LF test:7, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
+	Mean time per word:970, Asymmetric Merge:8, Sink:2, External Tail Test:0, Execution time = 15ms
+
+12. the horse fell 
+
+	[[the horse]:1 [T [__:1 fell]]]
+
+	LF_Recovery: ,   , T(generic) , fell(generic) 
+
+	Total Time:1251, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:1, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:4, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:4, LF recovery:2, 
+	LF test:7, Filter solution:1, Rank solution:0, Lexical retrieval:4, Morphological decomposition:1, 
+	Mean time per word:417, Asymmetric Merge:7, Sink:1, External Tail Test:0, Execution time = 15ms
+
+13. lui dorme 
+
+	[[D lui]:1 [T [__:1 dorme]]]
+
+	LF_Recovery: ,   , Agent of dorme(lui) 
+
+	Total Time:1866, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:3, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:3, Transfer:4, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:3, LF recovery:1, 
+	LF test:7, Filter solution:2, Rank solution:0, Lexical retrieval:10, Morphological decomposition:2, 
+	Mean time per word:933, Asymmetric Merge:8, Sink:2, External Tail Test:0, Execution time = 15ms
+
+& Ungrammatical (finite intransitive verbs) -------------------------------------------------------
+
+14. *Pekka lahtee Merjan 15. *Pekka elaa Merjan 16. *Pekka istuu Merjan 17. *Pekka juoksee Merjan 18. *Pekka kuorsaa Merjan 19. *Pekka nukkui Merjan 20. *Pekka lahtee Merja 21. *Pekka elaa Merja 22. *Pekka istuu Merja 23. *Pekka juoksee Merja 24. *Pekka kuorsaa Merja 25. *Pekka nukkui Merja 26. *Pekan istuu 27. *Pekan lahtee 28. *Pekan elaa 29. *Pekan juoksee 30. *Pekan kuorsaa 31. *Pekan nukkui 32. *lahtee 33. *elaa 34. *istuu 35. *juoksee 36. *kuorsaa 37. *lahtee lahtee 38. *istuu Pekka 39. *lahtee Pekka 40. *elaa Pekka 41. *juoksee Pekka 42. *kuorsaa Pekka 43. *nukkui Pekka 44. *sleeps 45. *leaves 46. *John sleeps Mary 47. *John John sleeps 48. *lui dorme Luisa & Transitive verbs -------------------------------------------------------
+
+& Grammatical (finite transitive verbs) -------------------------------------------------------
+
+49. Pekka ihailee Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:11571, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:5, Transfer:30, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:24, Failed Transfer:32, LF recovery:2, 
+	LF test:39, Filter solution:9, Rank solution:0, Lexical retrieval:38, Morphological decomposition:5, 
+	Mean time per word:3857, Asymmetric Merge:52, Sink:9, External Tail Test:82, Execution time = 156ms
+
+50. Pekka loysi Merjan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [loyta- [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Aspectually bounded , Patient of loyta-(Merja) 
+
+	Total Time:11616, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:5, Transfer:34, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:25, Failed Transfer:32, LF recovery:2, 
+	LF test:41, Filter solution:9, Rank solution:0, Lexical retrieval:39, Morphological decomposition:5, 
+	Mean time per word:3872, Asymmetric Merge:64, Sink:9, External Tail Test:114, Execution time = 171ms
+
+51. Pekka teki sen kellon_N 
+
+	[<D Pekka>:1 [T [<__>:1 [v [teke [sen kello]]]]]]
+
+	LF_Recovery: ,   , Agent of teke(Pekka) , Agent of v(Pekka) , Aspectually bounded 
+
+	Total Time:10836, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:10, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:5, Transfer:46, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:38, LF recovery:2, 
+	LF test:51, Filter solution:4, Rank solution:0, Lexical retrieval:25, Morphological decomposition:7, 
+	Mean time per word:2709, Asymmetric Merge:87, Sink:4, External Tail Test:196, Execution time = 156ms
+
+52. Pekka etsii Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [etsi [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Patient of etsi(Merja) 
+
+	Total Time:11421, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:5, Transfer:30, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:24, Failed Transfer:32, LF recovery:2, 
+	LF test:39, Filter solution:9, Rank solution:0, Lexical retrieval:38, Morphological decomposition:5, 
+	Mean time per word:3807, Asymmetric Merge:52, Sink:9, External Tail Test:82, Execution time = 187ms
+
+53. Pekka haluaa Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Aspectually anomalous , Patient of haluaa(Merja) 
+
+	Total Time:11481, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:5, Transfer:30, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:24, Failed Transfer:32, LF recovery:2, 
+	LF test:39, Filter solution:9, Rank solution:0, Lexical retrieval:38, Morphological decomposition:5, 
+	Mean time per word:3827, Asymmetric Merge:51, Sink:9, External Tail Test:82, Execution time = 171ms
+
+54. Pekka hairitsee Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [hairitsee [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Patient of hairitsee(Merja) 
+
+	Total Time:11561, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:5, Transfer:30, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:23, Failed Transfer:32, LF recovery:2, 
+	LF test:39, Filter solution:9, Rank solution:0, Lexical retrieval:37, Morphological decomposition:5, 
+	Mean time per word:3853, Asymmetric Merge:52, Sink:9, External Tail Test:82, Execution time = 156ms
+
+55. Pekka lukee kirjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [luke [D kirja]]]]]]
+
+	LF_Recovery: ,   , Agent of luke(Pekka) , Agent of v(Pekka) 
+
+	Total Time:9921, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:5, Transfer:30, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:32, LF recovery:2, 
+	LF test:39, Filter solution:9, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
+	Mean time per word:3307, Asymmetric Merge:52, Sink:9, External Tail Test:82, Execution time = 156ms
+
+56. Pekka pelkaa Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [pelkaa [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Patient of pelkaa(Merja) 
+
+	Total Time:11546, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:5, Transfer:30, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:24, Failed Transfer:32, LF recovery:2, 
+	LF test:39, Filter solution:9, Rank solution:0, Lexical retrieval:38, Morphological decomposition:5, 
+	Mean time per word:3848, Asymmetric Merge:52, Sink:9, External Tail Test:82, Execution time = 140ms
+
+57. Pekka pesi Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [pese_asp [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Aspectually anomalous , Patient of pese_asp(Merja) 
+
+	Total Time:19621, Garden Paths:21, Memory Reactivation:21, Steps:22, Merge:40, Move Head:23, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:53, Item streamed into syntax:21, 
+	Feature Processing:0, Extraposition:0, Inflection:36, Failed Transfer:59, LF recovery:2, 
+	LF test:68, Filter solution:14, Rank solution:0, Lexical retrieval:57, Morphological decomposition:7, 
+	Mean time per word:6540, Asymmetric Merge:83, Sink:15, External Tail Test:140, Execution time = 296ms
+
+58. Pekka saavuttaa Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [saavutta- [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Aspectually anomalous , Patient of saavutta-(Merja) 
+
+	Total Time:11721, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:5, Transfer:30, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:24, Failed Transfer:32, LF recovery:2, 
+	LF test:39, Filter solution:9, Rank solution:0, Lexical retrieval:38, Morphological decomposition:5, 
+	Mean time per word:3907, Asymmetric Merge:52, Sink:9, External Tail Test:82, Execution time = 187ms
+
+59. Pekka teki kirjan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [teke [D kirja]]]]]]
+
+	LF_Recovery: ,   , Agent of teke(Pekka) , Agent of v(Pekka) , Aspectually bounded 
+
+	Total Time:9931, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:5, Transfer:34, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:32, LF recovery:2, 
+	LF test:41, Filter solution:9, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
+	Mean time per word:3310, Asymmetric Merge:64, Sink:9, External Tail Test:114, Execution time = 171ms
+
+60. Pekka tonaisi Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [tonaise [D Merja]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Patient of tonaise(Merja) 
+
+	Total Time:11621, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:3, Phi:5, Transfer:30, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:24, Failed Transfer:32, LF recovery:2, 
+	LF test:39, Filter solution:9, Rank solution:0, Lexical retrieval:38, Morphological decomposition:5, 
+	Mean time per word:3873, Asymmetric Merge:52, Sink:9, External Tail Test:82, Execution time = 171ms
+
+61. John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+	LF_Recovery: ,   , Agent of v(John) , Patient of admire(Mary) 
+
+	Total Time:10896, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:5, Transfer:29, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:2, Inflection:21, Failed Transfer:32, LF recovery:2, 
+	LF test:38, Filter solution:9, Rank solution:0, Lexical retrieval:35, Morphological decomposition:5, 
+	Mean time per word:3632, Asymmetric Merge:33, Sink:9, External Tail Test:2, Execution time = 156ms
+
+62. John likes Mary 
+
+	[[D John]:1 [T [__:1 [v [like [D Mary]]]]]]
+
+	LF_Recovery: ,   , Agent of v(John) , Patient of like(Mary) 
+
+	Total Time:10916, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:5, Transfer:29, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:2, Inflection:23, Failed Transfer:32, LF recovery:2, 
+	LF test:38, Filter solution:9, Rank solution:0, Lexical retrieval:37, Morphological decomposition:5, 
+	Mean time per word:3638, Asymmetric Merge:33, Sink:9, External Tail Test:2, Execution time = 171ms
+
+63. John persuades Mary 
+
+	[[D John]:1 [T [__:1 [v [persuade [D Mary]]]]]]
+
+	LF_Recovery: ,   , Patient of persuade(Mary) , v(generic) 
+
+	Total Time:11046, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:5, Transfer:29, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:2, Inflection:21, Failed Transfer:32, LF recovery:2, 
+	LF test:38, Filter solution:9, Rank solution:0, Lexical retrieval:35, Morphological decomposition:5, 
+	Mean time per word:3682, Asymmetric Merge:33, Sink:9, External Tail Test:2, Execution time = 156ms
+
+64. Giuseppe spinge Luisa 
+
+	[[D Giuseppe]:1 [T [__:1 [v [spinge [D Luisa]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Giuseppe) , Patient of spinge(Luisa) 
+
+	Total Time:11271, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:5, Transfer:29, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:2, Inflection:21, Failed Transfer:32, LF recovery:2, 
+	LF test:38, Filter solution:9, Rank solution:0, Lexical retrieval:35, Morphological decomposition:5, 
+	Mean time per word:3757, Asymmetric Merge:33, Sink:9, External Tail Test:2, Execution time = 171ms
+
+65. lavano Luisa 
+
+	[T [v [lava [D Luisa]]]]
+
+	LF_Recovery: ,   , Agent of v(['T.3pl']) , Patient of lava(Luisa) 
+
+	Total Time:2066, Garden Paths:1, Memory Reactivation:1, Steps:5, Merge:5, Move Head:5, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:5, 
+	Feature Processing:0, Extraposition:0, Inflection:6, Failed Transfer:4, LF recovery:2, 
+	LF test:6, Filter solution:3, Rank solution:0, Lexical retrieval:11, Morphological decomposition:2, 
+	Mean time per word:1033, Asymmetric Merge:7, Sink:3, External Tail Test:0, Execution time = 31ms
+
+66. loro lavano Luisa 
+
+	[[D loro]:1 [T [__:1 [v [lava [D Luisa]]]]]]
+
+	LF_Recovery: ,   , Agent of v(loro) , Patient of lava(Luisa) 
+
+	Total Time:10751, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:5, Transfer:29, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:2, Inflection:19, Failed Transfer:32, LF recovery:2, 
+	LF test:38, Filter solution:9, Rank solution:0, Lexical retrieval:33, Morphological decomposition:5, 
+	Mean time per word:3583, Asymmetric Merge:33, Sink:9, External Tail Test:2, Execution time = 156ms
+
+& Ungrammatical (finite transitive verbs) -------------------------------------------------------
+
+67. *Pekka ihailee 68. *Pekka loysi 69. *Pekka teki 70. *Pekka etsii 71. *Pekka haluaa 72. *Pekka hairitsee 73. *Pekka pelkaa 74. *Pekka pesi 75. *Pekka saavuttaa 76. *Pekka teki 77. *Pekka tonaisi 78. *ihailee 79. *loysi 80. *teki 81. *etsii 82. *haluaa 83. *hairitsee 84. *pelkaa 85. *pesi 86. *saavuttaa 87. *ihailee ihailee 88. *Pekka ihailee Merjaa Merjaa Merjaa 89. *Pekka Pekka ihailee Merjaa 90. *Pekka Pekka ihailee Merjaa Merjaa Merjaa 91. *mina haluan 92. *Pekka haluaa Merjalle 93. *John admires 94. *John admires Mary Mary 95. *admires 96. *admires Mary & Ditransitive verbs -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+97. Pekka antoi kirjan Merjalle 
+
+	[<D Pekka>:1 [T [<__>:1 [v [<__>:2 [antaa [<D kirja>:2 [P(lle) [D Merja]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of P(lle)(Pekka) , Agent of antaa(Pekka) , Agent of v(Pekka) , Aspectually bounded 
+
+	Total Time:145476, Garden Paths:201, Memory Reactivation:201, Steps:131, Merge:331, Move Head:198, Move Phrase:23, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:23, Agree:11, Phi:14, Transfer:562, Item streamed into syntax:131, 
+	Feature Processing:0, Extraposition:58, Inflection:10, Failed Transfer:558, LF recovery:3, 
+	LF test:630, Filter solution:114, Rank solution:0, Lexical retrieval:141, Morphological decomposition:17, 
+	Mean time per word:36369, Asymmetric Merge:1113, Sink:114, External Tail Test:2117, Execution time = 3562ms
+
+98. John gave the key to Mary 
+
+	[[D John]:1 [T [__:1 [v [give [[the key] <to [D Mary]>]]]]]]
+
+	LF_Recovery: ,   , Agent of give(John) , Agent of v(John) , Patient of to(Mary) 
+
+	Total Time:217747, Garden Paths:297, Memory Reactivation:297, Steps:153, Merge:449, Move Head:144, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:8, Phi:11, Transfer:779, Item streamed into syntax:153, 
+	Feature Processing:0, Extraposition:152, Inflection:165, Failed Transfer:819, LF recovery:3, 
+	LF test:896, Filter solution:99, Rank solution:0, Lexical retrieval:318, Morphological decomposition:34, 
+	Mean time per word:36291, Asymmetric Merge:521, Sink:99, External Tail Test:391, Execution time = 4781ms
+
+& Ungrammatical -------------------------------------------------------
+
+99. *antoi kirjan Merjalle 100. *Pekka antoi antoi kirjan Merjalle 101. *John gave the key to 102. *John gave the to Mary 103. *John gave the to 104. *John gave the 105. *John gave to & Intransitive verbs with PP argument -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+106. Pekka elaa Helsingissa 
+
+	[<D Pekka>:1 [T [<__>:1 [elaa [ssa [D Helsinki]]]]]]
+
+	LF_Recovery: ,   , Agent of elaa(Pekka) , Agent of ssa(Pekka) 
+
+	Total Time:13650, Garden Paths:15, Memory Reactivation:15, Steps:16, Merge:30, Move Head:17, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:41, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:4, Inflection:6, Failed Transfer:44, LF recovery:2, 
+	LF test:53, Filter solution:12, Rank solution:0, Lexical retrieval:22, Morphological decomposition:7, 
+	Mean time per word:4550, Asymmetric Merge:61, Sink:12, External Tail Test:93, Execution time = 265ms
+
+107. Pekka istuu Helsingissa 
+
+	[<D Pekka>:1 [T [<__>:1 [istuu [ssa [D Helsinki]]]]]]
+
+	LF_Recovery: ,   , Agent of istuu(Pekka) , Agent of ssa(Pekka) 
+
+	Total Time:13700, Garden Paths:15, Memory Reactivation:15, Steps:16, Merge:30, Move Head:17, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:41, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:4, Inflection:6, Failed Transfer:44, LF recovery:2, 
+	LF test:53, Filter solution:12, Rank solution:0, Lexical retrieval:22, Morphological decomposition:7, 
+	Mean time per word:4566, Asymmetric Merge:61, Sink:12, External Tail Test:93, Execution time = 234ms
+
+108. Pekka lahtee Helsingissa 
+
+	[<D Pekka>:1 [T [<__>:1 [lahtea [ssa [D Helsinki]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(Pekka) , Agent of ssa(Pekka) 
+
+	Total Time:13750, Garden Paths:15, Memory Reactivation:15, Steps:16, Merge:30, Move Head:17, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:41, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:4, Inflection:6, Failed Transfer:44, LF recovery:2, 
+	LF test:53, Filter solution:12, Rank solution:0, Lexical retrieval:22, Morphological decomposition:7, 
+	Mean time per word:4583, Asymmetric Merge:61, Sink:12, External Tail Test:93, Execution time = 234ms
+
+109. Pekka elaa Helsingissa 
+
+	[<D Pekka>:1 [T [<__>:1 [elaa [ssa [D Helsinki]]]]]]
+
+	LF_Recovery: ,   , Agent of elaa(Pekka) , Agent of ssa(Pekka) 
+
+	Total Time:13650, Garden Paths:15, Memory Reactivation:15, Steps:16, Merge:30, Move Head:17, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:41, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:4, Inflection:6, Failed Transfer:44, LF recovery:2, 
+	LF test:53, Filter solution:12, Rank solution:0, Lexical retrieval:22, Morphological decomposition:7, 
+	Mean time per word:4550, Asymmetric Merge:61, Sink:12, External Tail Test:93, Execution time = 234ms
+
+110. Pekka juoksee Helsingissa 
+
+	[[<D Pekka>:1 [T [[<__>:1 juokse-] <__>:2]]] <ssa [D Helsinki]>:2]
+
+	LF_Recovery: ,   , Agent of juokse-(Pekka) , Agent of ssa(['T.3sg']) 
+
+	Total Time:19122, Garden Paths:22, Memory Reactivation:22, Steps:20, Merge:41, Move Head:27, Move Phrase:7, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, Agree:8, Phi:10, Transfer:61, Item streamed into syntax:20, 
+	Feature Processing:0, Extraposition:6, Inflection:5, Failed Transfer:64, LF recovery:2, 
+	LF test:79, Filter solution:16, Rank solution:0, Lexical retrieval:25, Morphological decomposition:8, 
+	Mean time per word:6374, Asymmetric Merge:103, Sink:16, External Tail Test:161, Execution time = 312ms
+
+111. Pekka kuorsaa Helsingissa 
+
+	[[<D Pekka>:1 [T [[<__>:1 kuorsaa] <__>:2]]] <ssa [D Helsinki]>:2]
+
+	LF_Recovery: ,   , Agent of kuorsaa(Pekka) , Agent of ssa(['T.3sg']) 
+
+	Total Time:19307, Garden Paths:22, Memory Reactivation:22, Steps:20, Merge:41, Move Head:27, Move Phrase:7, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:7, Agree:8, Phi:10, Transfer:61, Item streamed into syntax:20, 
+	Feature Processing:0, Extraposition:6, Inflection:6, Failed Transfer:64, LF recovery:2, 
+	LF test:79, Filter solution:16, Rank solution:0, Lexical retrieval:26, Morphological decomposition:8, 
+	Mean time per word:6435, Asymmetric Merge:103, Sink:16, External Tail Test:161, Execution time = 343ms
+
+112. Pekka nukkui Helsingissa 
+
+	[<D Pekka>:1 [T [<__>:1 [nukku [ssa [D Helsinki]]]]]]
+
+	LF_Recovery: ,   , Agent of nukku(Pekka) , Agent of ssa(Pekka) 
+
+	Total Time:13750, Garden Paths:15, Memory Reactivation:15, Steps:16, Merge:30, Move Head:17, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:41, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:4, Inflection:6, Failed Transfer:44, LF recovery:2, 
+	LF test:53, Filter solution:12, Rank solution:0, Lexical retrieval:22, Morphological decomposition:7, 
+	Mean time per word:4583, Asymmetric Merge:61, Sink:12, External Tail Test:93, Execution time = 234ms
+
+113. John sleeps in Helsinki 
+
+	[[D John]:1 [T [__:1 [sleep [in [D Helsinki]]]]]]
+
+	LF_Recovery: ,   , Agent of in(John) , Agent of sleep(John) 
+
+	Total Time:14948, Garden Paths:18, Memory Reactivation:18, Steps:16, Merge:33, Move Head:12, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:4, Phi:6, Transfer:49, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:8, Inflection:6, Failed Transfer:50, LF recovery:2, 
+	LF test:58, Filter solution:9, Rank solution:0, Lexical retrieval:22, Morphological decomposition:5, 
+	Mean time per word:3737, Asymmetric Merge:41, Sink:9, External Tail Test:6, Execution time = 281ms
+
+& Ungrammatical -------------------------------------------------------
+
+114. *Pekka elaa Helsinki & Two PP arguments/adjuncts -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+115. Pekka antoi kirjan Merjalle Helsingissa 
+
+	[[D Pekka]:1 [[T [__:1 [v [[<__>:2 [antaa [<D kirja>:2 [P(lle) [D Merja]]]]] <__>:3]]]] <ssa [D Helsinki]>:3]]
+
+	LF_Recovery: ,   , Agent of P(lle)(Pekka) , Agent of antaa(Pekka) , Agent of ssa(Pekka) , Agent of v(Pekka) , Aspectually bounded 
+
+	Total Time:3030606, Garden Paths:3996, Memory Reactivation:3996, Steps:2321, Merge:6316, Move Head:3695, Move Phrase:237, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:237, Agree:163, Phi:167, Transfer:11157, Item streamed into syntax:2321, 
+	Feature Processing:0, Extraposition:1394, Inflection:10, Failed Transfer:11050, LF recovery:4, 
+	LF test:12354, Filter solution:2102, Rank solution:0, Lexical retrieval:2331, Morphological decomposition:733, 
+	Mean time per word:606121, Asymmetric Merge:23529, Sink:2102, External Tail Test:44991, Execution time = 93406ms
+
+116. John gave the key to Mary in Helsinki 
+
+	[[[D John]:1 [T [__:1 [v [give [[the key] <to [D Mary]>]]]]]] <in [D Helsinki]>]
+
+	LF_Recovery: ,   , Agent of give(John) , Agent of in(agent of T-event) , Agent of v(John) , Patient of to(Mary) 
+
+	Total Time:6454179, Garden Paths:9014, Memory Reactivation:9014, Steps:4090, Merge:13103, Move Head:4172, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:172, Phi:176, Transfer:23259, Item streamed into syntax:4090, 
+	Feature Processing:0, Extraposition:4850, Inflection:165, Failed Transfer:24126, LF recovery:4, 
+	LF test:26388, Filter solution:2860, Rank solution:0, Lexical retrieval:4255, Morphological decomposition:912, 
+	Mean time per word:806772, Asymmetric Merge:14988, Sink:2860, External Tail Test:12063, Execution time = 179718ms
+
+& Ungrammatical -------------------------------------------------------
+
+117. *Pekka antoi kirjan Merjalle Helsinki & Special finite elements (1.2) -------------------------------------------------------
+
+& Aux, Sentential negation -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+118. mina en lahde 
+
+	[<D mina>:1 [ei [<__>:1 [T [<__>:1 lahtea]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(mina) 
+
+	Total Time:3408, Garden Paths:3, Memory Reactivation:3, Steps:6, Merge:8, Move Head:4, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:5, Phi:6, Transfer:11, Item streamed into syntax:6, 
+	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:10, LF recovery:1, 
+	LF test:16, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, 
+	Mean time per word:1136, Asymmetric Merge:21, Sink:3, External Tail Test:23, Execution time = 46ms
+
+119. sina et lahde 
+
+	[<D sina>:1 [ei [<__>:1 [T [<__>:1 lahtea]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(sina) 
+
+	Total Time:3408, Garden Paths:3, Memory Reactivation:3, Steps:6, Merge:8, Move Head:4, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:5, Phi:6, Transfer:11, Item streamed into syntax:6, 
+	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:10, LF recovery:1, 
+	LF test:16, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, 
+	Mean time per word:1136, Asymmetric Merge:21, Sink:3, External Tail Test:23, Execution time = 62ms
+
+120. Pekka ei lahde 
+
+	[<D Pekka>:1 [ei [<__>:1 [T [<__>:1 lahtea]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(Pekka) 
+
+	Total Time:3458, Garden Paths:3, Memory Reactivation:3, Steps:6, Merge:8, Move Head:4, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:5, Phi:6, Transfer:11, Item streamed into syntax:6, 
+	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:10, LF recovery:1, 
+	LF test:16, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, 
+	Mean time per word:1152, Asymmetric Merge:21, Sink:3, External Tail Test:23, Execution time = 46ms
+
+121. me emme lahde 
+
+	[<D me>:1 [ei [<__>:1 [T [<__>:1 lahtea]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(me) 
+
+	Total Time:3358, Garden Paths:3, Memory Reactivation:3, Steps:6, Merge:8, Move Head:4, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:5, Phi:6, Transfer:11, Item streamed into syntax:6, 
+	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:10, LF recovery:1, 
+	LF test:16, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, 
+	Mean time per word:1119, Asymmetric Merge:21, Sink:3, External Tail Test:23, Execution time = 62ms
+
+122. te ette lahde 
+
+	[<D te>:1 [ei [<__>:1 [T [<__>:1 lahtea]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(te) 
+
+	Total Time:3358, Garden Paths:3, Memory Reactivation:3, Steps:6, Merge:8, Move Head:4, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:5, Phi:6, Transfer:11, Item streamed into syntax:6, 
+	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:10, LF recovery:1, 
+	LF test:16, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, 
+	Mean time per word:1119, Asymmetric Merge:21, Sink:3, External Tail Test:23, Execution time = 46ms
+
+123. he_FI eivat lahde 
+
+	[<D he>:1 [ei [<__>:1 [T [<__>:1 lahtea]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(he) 
+
+	Total Time:3533, Garden Paths:3, Memory Reactivation:3, Steps:6, Merge:8, Move Head:4, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:5, Phi:6, Transfer:11, Item streamed into syntax:6, 
+	Feature Processing:0, Extraposition:1, Inflection:6, Failed Transfer:10, LF recovery:1, 
+	LF test:16, Filter solution:3, Rank solution:0, Lexical retrieval:12, Morphological decomposition:3, 
+	Mean time per word:1177, Asymmetric Merge:21, Sink:3, External Tail Test:23, Execution time = 46ms
+
+124. Pekka ei ihaile Merjaa 
+
+	[<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]
+
+	LF_Recovery: ,   , Agent of v(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:38199, Garden Paths:44, Memory Reactivation:44, Steps:35, Merge:78, Move Head:42, Move Phrase:6, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:6, Agree:12, Phi:14, Transfer:113, Item streamed into syntax:35, 
+	Feature Processing:0, Extraposition:2, Inflection:54, Failed Transfer:131, LF recovery:2, 
+	LF test:147, Filter solution:24, Rank solution:0, Lexical retrieval:89, Morphological decomposition:11, 
+	Mean time per word:9549, Asymmetric Merge:243, Sink:24, External Tail Test:443, Execution time = 640ms
+
+125. Pekka ei myynyt omaisuuttaan 
+
+	[<D Pekka>:1 [ei [<__>:1 [T/prt [<__>:1 [v [myy [D omaisuuden]]]]]]]]
+
+	LF_Recovery: ,   , Agent of myy(Pekka) , Agent of v(Pekka) , Aspectually bounded 
+
+	Total Time:36754, Garden Paths:44, Memory Reactivation:44, Steps:35, Merge:78, Move Head:42, Move Phrase:6, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:6, Agree:12, Phi:14, Transfer:113, Item streamed into syntax:35, 
+	Feature Processing:0, Extraposition:2, Inflection:17, Failed Transfer:131, LF recovery:2, 
+	LF test:147, Filter solution:24, Rank solution:0, Lexical retrieval:52, Morphological decomposition:11, 
+	Mean time per word:9188, Asymmetric Merge:243, Sink:24, External Tail Test:443, Execution time = 656ms
+
+126. John does sleep 
+
+	[[D John]:1 [does [__:1 sleep]]]
+
+	LF_Recovery: ,   , Agent of sleep(John) 
+
+	Total Time:1726, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:2, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:4, LF recovery:1, 
+	LF test:8, Filter solution:1, Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, 
+	Mean time per word:575, Asymmetric Merge:8, Sink:1, External Tail Test:0, Execution time = 15ms
+
+127. John does not sleep 
+
+	[[D John]:1 [does [__:1 [not [__:1 sleep]]]]]
+
+	LF_Recovery: ,   , Agent of not(['does.3sg']) , Agent of sleep(John) 
+
+	Total Time:3208, Garden Paths:3, Memory Reactivation:3, Steps:6, Merge:8, Move Head:2, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:5, Transfer:11, Item streamed into syntax:6, 
+	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:10, LF recovery:2, 
+	LF test:14, Filter solution:1, Rank solution:0, Lexical retrieval:11, Morphological decomposition:1, 
+	Mean time per word:802, Asymmetric Merge:14, Sink:1, External Tail Test:0, Execution time = 46ms
+
+128. John does not admire' Mary 
+
+	[[D John]:1 [does [__:1 [not [__:1 [v [admire [D Mary]]]]]]]]
+
+	LF_Recovery: ,   , Agent of not(['does.3sg']) , Agent of v(John) , Patient of admire(Mary) 
+
+	Total Time:55056, Garden Paths:71, Memory Reactivation:71, Steps:45, Merge:115, Move Head:45, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:15, Phi:18, Transfer:173, Item streamed into syntax:45, 
+	Feature Processing:0, Extraposition:16, Inflection:55, Failed Transfer:196, LF recovery:3, 
+	LF test:216, Filter solution:30, Rank solution:0, Lexical retrieval:100, Morphological decomposition:13, 
+	Mean time per word:11011, Asymmetric Merge:155, Sink:30, External Tail Test:16, Execution time = 968ms
+
+129. loro hanno lavato Luisa 
+
+	[[D loro]:1 [T [__:1 [ha [__:1 [T/prt [__:1 [v [lava [D Luisa]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of v(loro) , Patient of ha(agent of T-event) , Patient of lava(Luisa) 
+
+	Total Time:80655, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:19, Phi:22, Transfer:241, Item streamed into syntax:69, 
+	Feature Processing:0, Extraposition:23, Inflection:88, Failed Transfer:291, LF recovery:3, 
+	LF test:316, Filter solution:49, Rank solution:0, Lexical retrieval:157, Morphological decomposition:20, 
+	Mean time per word:20163, Asymmetric Merge:219, Sink:49, External Tail Test:21, Execution time = 1625ms
+
+130. io ho lavato Luisa 
+
+	[[D io]:1 [T [__:1 [ha [__:1 [T/prt [__:1 [v [lava [D Luisa]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of v(io) , Patient of ha(agent of T-event) , Patient of lava(Luisa) 
+
+	Total Time:80590, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:19, Phi:22, Transfer:241, Item streamed into syntax:69, 
+	Feature Processing:0, Extraposition:23, Inflection:89, Failed Transfer:291, LF recovery:3, 
+	LF test:316, Filter solution:49, Rank solution:0, Lexical retrieval:158, Morphological decomposition:20, 
+	Mean time per word:20147, Asymmetric Merge:219, Sink:49, External Tail Test:21, Execution time = 1640ms
+
+131. loro hanno voluto lavare Luisa 
+
+	[[D loro]:1 [T [__:1 [ha [__:1 [T/prt [__:1 [v [volu [are [v [lava [D Luisa]]]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of v(loro) , Agent of volu(loro) , Patient of ha(agent of T-event) , Patient of lava(Luisa) 
+
+	Total Time:1451170, Garden Paths:1885, Memory Reactivation:1885, Steps:1095, Merge:2979, Move Head:1597, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:324, Phi:329, Transfer:4453, Item streamed into syntax:1095, 
+	Feature Processing:263, Extraposition:462, Inflection:1323, Failed Transfer:5253, LF recovery:5, 
+	LF test:5657, Filter solution:812, Rank solution:0, Lexical retrieval:2418, Morphological decomposition:283, 
+	Mean time per word:290234, Asymmetric Merge:3887, Sink:812, External Tail Test:400, Execution time = 36109ms
+
+132. loro stanno lavando Luisa 
+
+	[[D loro]:1 [T [__:1 [sta [PRG [v [lava [D Luisa]]]]]]]]
+
+	LF_Recovery: ,   , Agent of sta(loro) , Agent of v(loro) , Patient of lava(Luisa) 
+
+	Total Time:79880, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:19, Phi:22, Transfer:241, Item streamed into syntax:69, 
+	Feature Processing:15, Extraposition:23, Inflection:84, Failed Transfer:274, LF recovery:3, 
+	LF test:299, Filter solution:49, Rank solution:0, Lexical retrieval:153, Morphological decomposition:20, 
+	Mean time per word:19970, Asymmetric Merge:213, Sink:49, External Tail Test:21, Execution time = 1437ms
+
+& Ungrammatical -------------------------------------------------------
+
+133. *sina en lahde 134. *sina lahde et 135. *Pekka ihaile ei Merjaa 136. *John not does sleep & Problems (these problems have to do with ellipsis, partial fragments) -------------------------------------------------------
+
+137. *Pekan_gen lahtea 138. *Pekka ihaile Merjaa 139. *etta Merja lahtee & Modals -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+140. Pekan_gen taytyy nukkua 
+
+	[[D Pekka]:1 [T [taytyy [__:1 [A/inf [__:1 nukku]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(['T.3sg']) , Agent of T(Pekka) , Agent of nukku(Pekka) , taytyy(generic) 
+
+	Total Time:6146, Garden Paths:6, Memory Reactivation:6, Steps:9, Merge:14, Move Head:7, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:7, Transfer:16, Item streamed into syntax:9, 
+	Feature Processing:3, Extraposition:0, Inflection:6, Failed Transfer:20, LF recovery:4, 
+	LF test:24, Filter solution:5, Rank solution:0, Lexical retrieval:15, Morphological decomposition:4, 
+	Mean time per word:2048, Asymmetric Merge:22, Sink:5, External Tail Test:10, Execution time = 78ms
+
+141. Pekan_gen taytyy ihailla Merjaa 
+
+	[[D Pekka]:1 [T [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(['T.3sg']) , Agent of T(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) , taytyy(generic) 
+
+	Total Time:83340, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:9, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:9, Agree:8, Phi:13, Transfer:253, Item streamed into syntax:69, 
+	Feature Processing:15, Extraposition:2, Inflection:102, Failed Transfer:298, LF recovery:5, 
+	LF test:323, Filter solution:49, Rank solution:0, Lexical retrieval:171, Morphological decomposition:20, 
+	Mean time per word:20835, Asymmetric Merge:412, Sink:49, External Tail Test:682, Execution time = 1546ms
+
+142. Pekan_gen taytyy myyda omaisuuttaan 
+
+	[[D Pekka]:1 [T [taytyy [__:1 [A/inf [__:1 [v [myy [D omaisuuden]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(['T.3sg']) , Agent of T(Pekka) , Agent of myy(Pekka) , Agent of v(Pekka) , Aspectually anomalous , taytyy(generic) 
+
+	Total Time:79890, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:9, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:9, Agree:8, Phi:13, Transfer:253, Item streamed into syntax:69, 
+	Feature Processing:15, Extraposition:2, Inflection:22, Failed Transfer:298, LF recovery:5, 
+	LF test:323, Filter solution:49, Rank solution:0, Lexical retrieval:91, Morphological decomposition:20, 
+	Mean time per word:19972, Asymmetric Merge:412, Sink:49, External Tail Test:682, Execution time = 1453ms
+
+143. John must sleep 
+
+	[[D John]:1 [must [__:1 sleep]]]
+
+	LF_Recovery: ,   , Agent of sleep(John) 
+
+	Total Time:1726, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:2, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:4, LF recovery:1, 
+	LF test:8, Filter solution:1, Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, 
+	Mean time per word:575, Asymmetric Merge:8, Sink:1, External Tail Test:0, Execution time = 31ms
+
+144. John must admire' Mary 
+
+	[[D John]:1 [must [__:1 [v [admire [D Mary]]]]]]
+
+	LF_Recovery: ,   , Agent of v(John) , Patient of admire(Mary) 
+
+	Total Time:17275, Garden Paths:20, Memory Reactivation:20, Steps:18, Merge:37, Move Head:16, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:4, Phi:6, Transfer:51, Item streamed into syntax:18, 
+	Feature Processing:0, Extraposition:4, Inflection:25, Failed Transfer:57, LF recovery:2, 
+	LF test:65, Filter solution:11, Rank solution:0, Lexical retrieval:43, Morphological decomposition:6, 
+	Mean time per word:4318, Asymmetric Merge:47, Sink:11, External Tail Test:4, Execution time = 250ms
+
+145. loro devono lavare Luisa 
+
+	[[D loro]:1 [T [__:1 [deva [are [v [lava [D Luisa]]]]]]]]
+
+	LF_Recovery: ,   , Agent of deva(loro) , Agent of v(loro) , Patient of lava(Luisa) 
+
+	Total Time:79855, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:19, Phi:22, Transfer:241, Item streamed into syntax:69, 
+	Feature Processing:15, Extraposition:23, Inflection:84, Failed Transfer:274, LF recovery:3, 
+	LF test:299, Filter solution:49, Rank solution:0, Lexical retrieval:153, Morphological decomposition:20, 
+	Mean time per word:19963, Asymmetric Merge:213, Sink:49, External Tail Test:21, Execution time = 1500ms
+
+& Ungrammatical -------------------------------------------------------
+
+146. *Pekka taytyy nukkua 147. *taytyy Pekan nukkua 148. *John does must sleep 149. *John must Mary admire' John 150. *John must to_inf sleep & Neg + Modal + V (Finnish) -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+151. Pekan_gen ei taydy ihailla Merjaa 
+
+	[[D Pekka]:1 [ei [T/prt [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(ei) , Agent of ei(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) , T/prt(generic) , taytyy(generic) 
+
+	Total Time:311198, Garden Paths:388, Memory Reactivation:388, Steps:229, Merge:616, Move Head:312, Move Phrase:32, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:32, Agree:60, Phi:66, Transfer:995, Item streamed into syntax:229, 
+	Feature Processing:52, Extraposition:29, Inflection:330, Failed Transfer:1189, LF recovery:6, 
+	LF test:1277, Filter solution:168, Rank solution:0, Lexical retrieval:559, Morphological decomposition:61, 
+	Mean time per word:62239, Asymmetric Merge:1650, Sink:168, External Tail Test:2918, Execution time = 6250ms
+
+152. Pekan_gen ei taydy myyda omaisuuttaan 
+
+	[[D Pekka]:1 [ei [T/prt [taytyy [__:1 [A/inf [__:1 [v [myy [D omaisuuden]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(ei) , Agent of ei(Pekka) , Agent of myy(Pekka) , Agent of v(Pekka) , Aspectually bounded , T/prt(generic) , taytyy(generic) 
+
+	Total Time:300723, Garden Paths:388, Memory Reactivation:388, Steps:229, Merge:616, Move Head:312, Move Phrase:32, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:32, Agree:60, Phi:66, Transfer:995, Item streamed into syntax:229, 
+	Feature Processing:52, Extraposition:29, Inflection:60, Failed Transfer:1189, LF recovery:6, 
+	LF test:1277, Filter solution:168, Rank solution:0, Lexical retrieval:289, Morphological decomposition:61, 
+	Mean time per word:60144, Asymmetric Merge:1650, Sink:168, External Tail Test:2918, Execution time = 6140ms
+
+& Ungrammatical -------------------------------------------------------
+
+153. *Pekka ei taydy ihailla Merjaa 154. *Pekka en taydy ihailla Merjaa 155. *Pekan_gen ei taytyy ihailla Merjaa & Tensed pure auxiliaries -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+156. Pekka on' nukkunut 
+
+	[<D Pekka>:1 [T [<__>:1 [BE [T/prt nukku]]]]]
+
+	LF_Recovery: ,   , Agent of T/prt(Pekka) , Agent of nukku(Pekka) 
+
+	Total Time:6346, Garden Paths:6, Memory Reactivation:6, Steps:9, Merge:14, Move Head:7, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:6, Phi:8, Transfer:17, Item streamed into syntax:9, 
+	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:19, LF recovery:2, 
+	LF test:24, Filter solution:5, Rank solution:0, Lexical retrieval:17, Morphological decomposition:4, 
+	Mean time per word:2115, Asymmetric Merge:26, Sink:5, External Tail Test:26, Execution time = 93ms
+
+157. Pekka on' ihaillut Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]
+
+	LF_Recovery: ,   , Agent of T/prt(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:83675, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:11, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:11, Agree:26, Phi:29, Transfer:253, Item streamed into syntax:69, 
+	Feature Processing:0, Extraposition:2, Inflection:104, Failed Transfer:301, LF recovery:3, 
+	LF test:328, Filter solution:49, Rank solution:0, Lexical retrieval:173, Morphological decomposition:20, 
+	Mean time per word:20918, Asymmetric Merge:477, Sink:49, External Tail Test:915, Execution time = 1625ms
+
+158. John does sleep 
+
+	[[D John]:1 [does [__:1 sleep]]]
+
+	LF_Recovery: ,   , Agent of sleep(John) 
+
+	Total Time:1726, Garden Paths:1, Memory Reactivation:1, Steps:4, Merge:4, Move Head:2, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:3, Transfer:5, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:4, LF recovery:1, 
+	LF test:8, Filter solution:1, Rank solution:0, Lexical retrieval:9, Morphological decomposition:1, 
+	Mean time per word:575, Asymmetric Merge:8, Sink:1, External Tail Test:0, Execution time = 15ms
+
+& Ungrammatical -------------------------------------------------------
+
+159. *John does & Infinitival complement clauses (1.3) -------------------------------------------------------
+
+& Basic infinitival constructions (English) -------------------------------------------------------
+
+& Grammatical (want-class) -------------------------------------------------------
+
+160. John wants to_inf leave 
+
+	[[D John]:1 [T [__:1 [v [want [TO/inf leave]]]]]]
+
+	LF_Recovery: ,   , Agent of TO/inf(John) , Agent of leave(John) , Agent of v(John) , Agent of want(John) 
+
+	Total Time:9541, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:10, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:7, Transfer:34, Item streamed into syntax:14, 
+	Feature Processing:5, Extraposition:2, Inflection:6, Failed Transfer:32, LF recovery:4, 
+	LF test:36, Filter solution:4, Rank solution:0, Lexical retrieval:20, Morphological decomposition:2, 
+	Mean time per word:2385, Asymmetric Merge:33, Sink:4, External Tail Test:2, Execution time = 156ms
+
+161. John wants Mary to_inf leave 
+
+	[[D John]:1 [T [__:1 [v [want [[D Mary]:2 [TO/inf [__:2 leave]]]]]]]]
+
+	LF_Recovery: ,   , Agent of TO/inf(John) , Agent of leave(Mary) , Agent of v(John) , Agent of want(John) 
+
+	Total Time:56391, Garden Paths:76, Memory Reactivation:76, Steps:54, Merge:129, Move Head:33, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:4, Phi:8, Transfer:219, Item streamed into syntax:54, 
+	Feature Processing:28, Extraposition:25, Inflection:21, Failed Transfer:203, LF recovery:4, 
+	LF test:219, Filter solution:9, Rank solution:0, Lexical retrieval:75, Morphological decomposition:5, 
+	Mean time per word:11278, Asymmetric Merge:176, Sink:9, External Tail Test:23, Execution time = 1000ms
+
+162. John wants to_inf leave Mary 
+
+	[[D John]:1 [T [__:1 [v [want [TO/inf [leave [D Mary]]]]]]]]
+
+	LF_Recovery: ,   , Agent of TO/inf(John) , Agent of v(John) , Agent of want(John) , Patient of leave(Mary) 
+
+	Total Time:74393, Garden Paths:98, Memory Reactivation:98, Steps:59, Merge:156, Move Head:63, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:8, Phi:12, Transfer:247, Item streamed into syntax:59, 
+	Feature Processing:31, Extraposition:34, Inflection:66, Failed Transfer:262, LF recovery:4, 
+	LF test:287, Filter solution:37, Rank solution:0, Lexical retrieval:125, Morphological decomposition:14, 
+	Mean time per word:14878, Asymmetric Merge:193, Sink:37, External Tail Test:29, Execution time = 1468ms
+
+163. io detesto lavare Luisa 
+
+	[[D io]:1 [T [__:1 [v [detest [are [v [lava [D Luisa]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of detest(io) , Agent of v(io) , Patient of lava(Luisa) 
+
+	Total Time:139756, Garden Paths:176, Memory Reactivation:176, Steps:119, Merge:294, Move Head:168, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:32, Phi:36, Transfer:422, Item streamed into syntax:119, 
+	Feature Processing:28, Extraposition:40, Inflection:145, Failed Transfer:479, LF recovery:4, 
+	LF test:520, Filter solution:86, Rank solution:0, Lexical retrieval:264, Morphological decomposition:33, 
+	Mean time per word:34939, Asymmetric Merge:381, Sink:86, External Tail Test:37, Execution time = 2750ms
+
+& Ungrammatical -------------------------------------------------------
+
+164. *io detesto Giuseppe lavare Luisa 165. *John wants leave 166. *John wants to_inf 167. *John wants Mary leave 168. *John wants leave Mary & OC constructions (English) -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+169. John tries to_inf leave 
+
+	[[D John]:1 [T [__:1 [try [TO/inf leave]]]]]
+
+	LF_Recovery: ,   , Agent of leave(John) , Agent of try(John) 
+
+	Total Time:5741, Garden Paths:6, Memory Reactivation:6, Steps:9, Merge:14, Move Head:4, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:3, Phi:5, Transfer:20, Item streamed into syntax:9, 
+	Feature Processing:3, Extraposition:1, Inflection:6, Failed Transfer:18, LF recovery:2, 
+	LF test:22, Filter solution:2, Rank solution:0, Lexical retrieval:15, Morphological decomposition:2, 
+	Mean time per word:1435, Asymmetric Merge:19, Sink:2, External Tail Test:1, Execution time = 140ms
+
+& Ungrammatical -------------------------------------------------------
+
+170. *John tries Mary to_inf leave 171. *John tries leave & Finnish deverbal infinitival complements -------------------------------------------------------
+
+& A-infinitival 'to do' -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+172. Pekka haluaa lahtea 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf lahtea]]]]]]
+
+	LF_Recovery: ,   , Agent of haluaa(Pekka) , Agent of lahtea(Pekka) , Agent of v(Pekka) 
+
+	Total Time:9806, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:3, Phi:6, Transfer:28, Item streamed into syntax:14, 
+	Feature Processing:5, Extraposition:0, Inflection:6, Failed Transfer:32, LF recovery:3, 
+	LF test:37, Filter solution:9, Rank solution:0, Lexical retrieval:20, Morphological decomposition:5, 
+	Mean time per word:3268, Asymmetric Merge:40, Sink:9, External Tail Test:31, Execution time = 156ms
+
+173. Pekka kaskee Merjan_gen lahtea 
+
+	[<D Pekka>:1 [T [<__>:1 [v [kaske [[D Merja]:2 [A/inf [__:2 lahtea]]]]]]]]
+
+	LF_Recovery: ,   , Agent of kaske(Pekka) , Agent of lahtea(Merja) , v(generic) 
+
+	Total Time:58131, Garden Paths:76, Memory Reactivation:76, Steps:54, Merge:129, Move Head:61, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:7, Phi:10, Transfer:178, Item streamed into syntax:54, 
+	Feature Processing:28, Extraposition:10, Inflection:24, Failed Transfer:203, LF recovery:3, 
+	LF test:223, Filter solution:37, Rank solution:0, Lexical retrieval:78, Morphological decomposition:17, 
+	Mean time per word:14532, Asymmetric Merge:231, Sink:37, External Tail Test:242, Execution time = 1046ms
+
+174. Pekka halusi ihailla Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of haluaa(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:144401, Garden Paths:176, Memory Reactivation:176, Steps:119, Merge:294, Move Head:168, Move Phrase:18, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:18, Agree:8, Phi:12, Transfer:438, Item streamed into syntax:119, 
+	Feature Processing:28, Extraposition:3, Inflection:174, Failed Transfer:493, LF recovery:4, 
+	LF test:536, Filter solution:86, Rank solution:0, Lexical retrieval:293, Morphological decomposition:33, 
+	Mean time per word:36100, Asymmetric Merge:768, Sink:86, External Tail Test:1421, Execution time = 2968ms
+
+175. Pekka kaskee poikien ihailla Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [kaske [[D poika]:2 [A/inf [__:2 [v [ihaile- [D Merja]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of kaske(Pekka) , Agent of v(poika) , Patient of ihaile-(Merja) , v(generic) 
+
+	Total Time:1156734, Garden Paths:1464, Memory Reactivation:1464, Steps:845, Merge:2308, Move Head:1243, Move Phrase:161, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:161, Agree:83, Phi:87, Transfer:3638, Item streamed into syntax:845, 
+	Feature Processing:200, Extraposition:99, Inflection:1233, Failed Transfer:4081, LF recovery:4, 
+	LF test:4428, Filter solution:626, Rank solution:0, Lexical retrieval:2078, Morphological decomposition:219, 
+	Mean time per word:231346, Asymmetric Merge:6468, Sink:626, External Tail Test:12354, Execution time = 27078ms
+
+176. Pekka kaskee poikien myyda omaisuuttaan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [kaske [[D poika]:2 [A/inf [__:2 [v [myy [D omaisuuden]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of kaske(Pekka) , Agent of myy(poika) , Agent of v(poika) , Aspectually anomalous , v(generic) 
+
+	Total Time:1118059, Garden Paths:1464, Memory Reactivation:1464, Steps:845, Merge:2308, Move Head:1243, Move Phrase:161, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:161, Agree:83, Phi:87, Transfer:3638, Item streamed into syntax:845, 
+	Feature Processing:200, Extraposition:99, Inflection:223, Failed Transfer:4081, LF recovery:4, 
+	LF test:4428, Filter solution:626, Rank solution:0, Lexical retrieval:1068, Morphological decomposition:219, 
+	Mean time per word:223611, Asymmetric Merge:6468, Sink:626, External Tail Test:12354, Execution time = 26296ms
+
+177. Pekka ei halua ihailla Merjaa 
+
+	[<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of haluaa(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:645094, Garden Paths:809, Memory Reactivation:809, Steps:481, Merge:1289, Move Head:689, Move Phrase:86, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:86, Agree:69, Phi:73, Transfer:2024, Item streamed into syntax:481, 
+	Feature Processing:115, Extraposition:33, Inflection:696, Failed Transfer:2340, LF recovery:4, 
+	LF test:2533, Filter solution:355, Rank solution:0, Lexical retrieval:1177, Morphological decomposition:126, 
+	Mean time per word:129018, Asymmetric Merge:4384, Sink:355, External Tail Test:8273, Execution time = 14156ms
+
+178. Pekka ei halua myyda omaisuuttaan 
+
+	[<D Pekka>:1 [ei [<__>:1 [T [<__>:1 [v [haluaa [A/inf [v [myy [D omaisuuden]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of haluaa(Pekka) , Agent of myy(Pekka) , Agent of v(Pekka) , Aspectually bounded 
+
+	Total Time:622519, Garden Paths:809, Memory Reactivation:809, Steps:481, Merge:1289, Move Head:689, Move Phrase:86, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:86, Agree:69, Phi:73, Transfer:2024, Item streamed into syntax:481, 
+	Feature Processing:115, Extraposition:33, Inflection:121, Failed Transfer:2340, LF recovery:4, 
+	LF test:2533, Filter solution:355, Rank solution:0, Lexical retrieval:602, Morphological decomposition:126, 
+	Mean time per word:124503, Asymmetric Merge:4384, Sink:355, External Tail Test:8273, Execution time = 13781ms
+
+& Ungrammatical -------------------------------------------------------
+
+179. *Pekka haluaa Merjan_gen lahtea 180. *Pekka haluaa heidan lahtea 181. *Pekka haluaa 182. *Pekka haluaa Merjaa lahtea & Modal + A-infinitival -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+183. Pekan_gen taytyy ihailla Merjaa 
+
+	[[D Pekka]:1 [T [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(['T.3sg']) , Agent of T(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) , taytyy(generic) 
+
+	Total Time:83340, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:9, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:9, Agree:8, Phi:13, Transfer:253, Item streamed into syntax:69, 
+	Feature Processing:15, Extraposition:2, Inflection:102, Failed Transfer:298, LF recovery:5, 
+	LF test:323, Filter solution:49, Rank solution:0, Lexical retrieval:171, Morphological decomposition:20, 
+	Mean time per word:20835, Asymmetric Merge:412, Sink:49, External Tail Test:682, Execution time = 1531ms
+
+184. Pekan_gen taytyy myyda omaisuuttaan 
+
+	[[D Pekka]:1 [T [taytyy [__:1 [A/inf [__:1 [v [myy [D omaisuuden]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(['T.3sg']) , Agent of T(Pekka) , Agent of myy(Pekka) , Agent of v(Pekka) , Aspectually anomalous , taytyy(generic) 
+
+	Total Time:79890, Garden Paths:100, Memory Reactivation:100, Steps:69, Merge:168, Move Head:89, Move Phrase:9, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:9, Agree:8, Phi:13, Transfer:253, Item streamed into syntax:69, 
+	Feature Processing:15, Extraposition:2, Inflection:22, Failed Transfer:298, LF recovery:5, 
+	LF test:323, Filter solution:49, Rank solution:0, Lexical retrieval:91, Morphological decomposition:20, 
+	Mean time per word:19972, Asymmetric Merge:412, Sink:49, External Tail Test:682, Execution time = 1531ms
+
+185. Pekan_gen ei taydy ihailla Merjaa 
+
+	[[D Pekka]:1 [ei [T/prt [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(ei) , Agent of ei(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) , T/prt(generic) , taytyy(generic) 
+
+	Total Time:311198, Garden Paths:388, Memory Reactivation:388, Steps:229, Merge:616, Move Head:312, Move Phrase:32, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:32, Agree:60, Phi:66, Transfer:995, Item streamed into syntax:229, 
+	Feature Processing:52, Extraposition:29, Inflection:330, Failed Transfer:1189, LF recovery:6, 
+	LF test:1277, Filter solution:168, Rank solution:0, Lexical retrieval:559, Morphological decomposition:61, 
+	Mean time per word:62239, Asymmetric Merge:1650, Sink:168, External Tail Test:2918, Execution time = 6265ms
+
+186. Pekan_gen ei taydy myyda omaisuuttaan 
+
+	[[D Pekka]:1 [ei [T/prt [taytyy [__:1 [A/inf [__:1 [v [myy [D omaisuuden]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(ei) , Agent of ei(Pekka) , Agent of myy(Pekka) , Agent of v(Pekka) , Aspectually bounded , T/prt(generic) , taytyy(generic) 
+
+	Total Time:300723, Garden Paths:388, Memory Reactivation:388, Steps:229, Merge:616, Move Head:312, Move Phrase:32, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:32, Agree:60, Phi:66, Transfer:995, Item streamed into syntax:229, 
+	Feature Processing:52, Extraposition:29, Inflection:60, Failed Transfer:1189, LF recovery:6, 
+	LF test:1277, Filter solution:168, Rank solution:0, Lexical retrieval:289, Morphological decomposition:61, 
+	Mean time per word:60144, Asymmetric Merge:1650, Sink:168, External Tail Test:2918, Execution time = 6015ms
+
+& Ungrammatical -------------------------------------------------------
+
+187. *Pekka taytyy ihailla Merjaa & VA-infinitival 'to do' -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+188. Pekka sanoo Merjan_gen lahtevan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [[D Merja]:2 [vAn [__:2 lahtea]]]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(Merja) , Agent of v(Pekka) , Patient of sano-([[D Merja] [vAn [[D Merja] lahtea]]]) 
+
+	Total Time:58971, Garden Paths:76, Memory Reactivation:76, Steps:54, Merge:129, Move Head:61, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:43, Phi:46, Transfer:173, Item streamed into syntax:54, 
+	Feature Processing:0, Extraposition:20, Inflection:24, Failed Transfer:203, LF recovery:3, 
+	LF test:221, Filter solution:37, Rank solution:0, Lexical retrieval:78, Morphological decomposition:17, 
+	Mean time per word:14742, Asymmetric Merge:231, Sink:37, External Tail Test:235, Execution time = 1125ms
+
+189. Pekka halusi heidan lahtevan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [[D he]:2 [vAn [__:2 lahtea]]]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(he) , Agent of v(Pekka) , Patient of haluaa([[D he] [vAn [[D he] lahtea]]]) 
+
+	Total Time:58416, Garden Paths:76, Memory Reactivation:76, Steps:54, Merge:129, Move Head:61, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:43, Phi:46, Transfer:173, Item streamed into syntax:54, 
+	Feature Processing:0, Extraposition:20, Inflection:21, Failed Transfer:203, LF recovery:3, 
+	LF test:221, Filter solution:37, Rank solution:0, Lexical retrieval:75, Morphological decomposition:17, 
+	Mean time per word:14604, Asymmetric Merge:231, Sink:37, External Tail Test:235, Execution time = 1093ms
+
+190. Pekka sanoo lahtevansa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [vAn lahtea]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(Pekka) , Agent of sano-(Pekka) , Agent of v(Pekka) , Agent of vAn(Pekka) 
+
+	Total Time:10631, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:8, Phi:12, Transfer:28, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:32, LF recovery:4, 
+	LF test:37, Filter solution:9, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
+	Mean time per word:3543, Asymmetric Merge:40, Sink:9, External Tail Test:31, Execution time = 156ms
+
+191. Pekka sanoo ihailevansa Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [vAn [v [ihaile- [D Merja]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of sano-(Pekka) , Agent of v(Pekka) , Agent of vAn(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:145401, Garden Paths:176, Memory Reactivation:176, Steps:119, Merge:294, Move Head:168, Move Phrase:18, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:18, Agree:42, Phi:47, Transfer:438, Item streamed into syntax:119, 
+	Feature Processing:0, Extraposition:3, Inflection:177, Failed Transfer:493, LF recovery:5, 
+	LF test:536, Filter solution:86, Rank solution:0, Lexical retrieval:296, Morphological decomposition:33, 
+	Mean time per word:36350, Asymmetric Merge:762, Sink:86, External Tail Test:1401, Execution time = 3109ms
+
+192. Pekka sanoo Merjan_gen lahtevan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [[D Merja]:2 [vAn [__:2 lahtea]]]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(Merja) , Agent of v(Pekka) , Patient of sano-([[D Merja] [vAn [[D Merja] lahtea]]]) 
+
+	Total Time:58971, Garden Paths:76, Memory Reactivation:76, Steps:54, Merge:129, Move Head:61, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:43, Phi:46, Transfer:173, Item streamed into syntax:54, 
+	Feature Processing:0, Extraposition:20, Inflection:24, Failed Transfer:203, LF recovery:3, 
+	LF test:221, Filter solution:37, Rank solution:0, Lexical retrieval:78, Morphological decomposition:17, 
+	Mean time per word:14742, Asymmetric Merge:231, Sink:37, External Tail Test:235, Execution time = 1109ms
+
+193. mina sanon lahtevani 
+
+	[<D mina>:1 [T [<__>:1 [v [sano- [vAn lahtea]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(vAn) , Agent of v(mina) , Patient of sano-([vAn lahtea]) 
+
+	Total Time:10486, Garden Paths:11, Memory Reactivation:11, Steps:14, Merge:24, Move Head:15, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:8, Phi:11, Transfer:28, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:0, Inflection:9, Failed Transfer:32, LF recovery:3, 
+	LF test:37, Filter solution:9, Rank solution:0, Lexical retrieval:23, Morphological decomposition:5, 
+	Mean time per word:3495, Asymmetric Merge:40, Sink:9, External Tail Test:31, Execution time = 187ms
+
+& Ungrammatical -------------------------------------------------------
+
+194. *mina sanon lahtevansa 195. *Pekka sanoo ihailevansa 196. *Pekka halusi Merja lahtevan & Nominals (1.4) -------------------------------------------------------
+
+& Basic DPs -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+197. se talo 
+
+	[se talo]
+
+	LF_Recovery: ,   
+
+	Total Time:245, Garden Paths:0, Memory Reactivation:0, Steps:2, Merge:1, Move Head:0, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:2, Item streamed into syntax:2, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:1, LF recovery:0, 
+	LF test:3, Filter solution:0, Rank solution:0, Lexical retrieval:2, Morphological decomposition:0, 
+	Mean time per word:122, Asymmetric Merge:1, Sink:0, External Tail Test:0, Execution time = 0ms
+
+198. se pieni talo 
+
+	[se [[A pieni-] talo]]
+
+	LF_Recovery: ,   
+
+	Total Time:1832, Garden Paths:2, Memory Reactivation:2, Steps:5, Merge:6, Move Head:2, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:8, Item streamed into syntax:5, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:4, LF recovery:0, 
+	LF test:7, Filter solution:1, Rank solution:0, Lexical retrieval:5, Morphological decomposition:1, 
+	Mean time per word:610, Asymmetric Merge:7, Sink:1, External Tail Test:3, Execution time = 15ms
+
+199. se pieni punainen talo 
+
+	[se [[A pieni-] [[a puna-] talo]]]
+
+	LF_Recovery: ,   
+
+	Total Time:10595, Garden Paths:15, Memory Reactivation:15, Steps:15, Merge:29, Move Head:11, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:41, Item streamed into syntax:15, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:20, LF recovery:0, 
+	LF test:26, Filter solution:4, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
+	Mean time per word:2648, Asymmetric Merge:36, Sink:4, External Tail Test:32, Execution time = 93ms
+
+200. se punainen pieni talo 
+
+	[se [[a puna-] [[A pieni-] talo]]]
+
+	LF_Recovery: ,   
+
+	Total Time:10570, Garden Paths:15, Memory Reactivation:15, Steps:15, Merge:29, Move Head:11, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:41, Item streamed into syntax:15, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:20, LF recovery:0, 
+	LF test:26, Filter solution:4, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
+	Mean time per word:2642, Asymmetric Merge:36, Sink:4, External Tail Test:32, Execution time = 93ms
+
+201. the little key 
+
+	[the [[A little-] key]]
+
+	LF_Recovery: ,   
+
+	Total Time:1857, Garden Paths:2, Memory Reactivation:2, Steps:5, Merge:6, Move Head:2, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:8, Item streamed into syntax:5, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:4, LF recovery:0, 
+	LF test:7, Filter solution:1, Rank solution:0, Lexical retrieval:5, Morphological decomposition:1, 
+	Mean time per word:619, Asymmetric Merge:7, Sink:1, External Tail Test:3, Execution time = 15ms
+
+202. the little red key 
+
+	[the [[A little-] [[A red] key]]]
+
+	LF_Recovery: ,   
+
+	Total Time:10170, Garden Paths:15, Memory Reactivation:15, Steps:15, Merge:29, Move Head:11, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:0, Transfer:41, Item streamed into syntax:15, 
+	Feature Processing:0, Extraposition:0, Inflection:0, Failed Transfer:20, LF recovery:0, 
+	LF test:26, Filter solution:4, Rank solution:0, Lexical retrieval:15, Morphological decomposition:3, 
+	Mean time per word:2542, Asymmetric Merge:36, Sink:4, External Tail Test:32, Execution time = 93ms
+
+& Ungrammatical -------------------------------------------------------
+
+203. *pieni talo se 204. *se talo pieni 205. *talo pieni se 206. *talo se pieni 207. *the key little 208. *the key red little & N + A-infinitival -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+209. Pekka teki sopimuksen ihailla Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [teke [D [sopimus [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(sopimus) , Agent of v(Pekka) , Agent of v(sopimus) , Aspectually bounded , Patient of ihaile-(Merja) , Patient of teke(sopimus) 
+
+	Total Time:1157189, Garden Paths:1464, Memory Reactivation:1464, Steps:845, Merge:2308, Move Head:1289, Move Phrase:167, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:167, Agree:64, Phi:69, Transfer:3633, Item streamed into syntax:845, 
+	Feature Processing:200, Extraposition:82, Inflection:1230, Failed Transfer:4104, LF recovery:5, 
+	LF test:4441, Filter solution:626, Rank solution:0, Lexical retrieval:2075, Morphological decomposition:219, 
+	Mean time per word:231437, Asymmetric Merge:7098, Sink:626, External Tail Test:13752, Execution time = 27281ms
+
+210. Pekka teki sopimuksen antaa avaimen Merjalle 
+
+	[<D Pekka>:1 [T [<__>:1 [v [teke [D [sopimus [[A/inf [v [[antaa [D avain]] <__>:2]]] <P(lle) [D Merja]>:2]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(sopimus) , Agent of P(lle)(sopimus) , Agent of antaa(sopimus) , Agent of v(Pekka) , Agent of v(sopimus) , Aspectually bounded , Patient of teke(sopimus) 
+
+	Total Time:23225729, Garden Paths:33124, Memory Reactivation:33124, Steps:18089, Merge:51212, Move Head:29732, Move Phrase:2911, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2911, Agree:834, Phi:840, Transfer:91169, Item streamed into syntax:18089, 
+	Feature Processing:597, Extraposition:10112, Inflection:248, Failed Transfer:91030, LF recovery:6, 
+	LF test:101299, Filter solution:16405, Rank solution:0, Lexical retrieval:18337, Morphological decomposition:1684, 
+	Mean time per word:3870954, Asymmetric Merge:200481, Sink:16405, External Tail Test:395172, Execution time = 794000ms
+
+211. se sopimus ihailla Merjaa peruuntui 
+
+	[[se [sopimus [A/inf [v [ihaile- [D Merja]]]]]]:1 [T [__:1 peruuntui]]]
+
+	LF_Recovery: ,   , Agent of A/inf(sopimus) , Agent of T(sopimus) , Agent of v(sopimus) , Patient of ihaile-(Merja) , peruuntui(generic) 
+
+	Total Time:268137, Garden Paths:342, Memory Reactivation:342, Steps:197, Merge:538, Move Head:241, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:179, Phi:184, Transfer:751, Item streamed into syntax:197, 
+	Feature Processing:19, Extraposition:96, Inflection:96, Failed Transfer:944, LF recovery:5, 
+	LF test:995, Filter solution:141, Rank solution:0, Lexical retrieval:293, Morphological decomposition:55, 
+	Mean time per word:53627, Asymmetric Merge:1131, Sink:141, External Tail Test:1091, Execution time = 6921ms
+
+& Ungrammatical -------------------------------------------------------
+
+& Adpositions (1.5) -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+212. lahella_1 Pekkaa 
+
+	[lahella [D Pekka]]
+
+	LF_Recovery: ,   , Patient of lahella(Pekka) 
+
+	Total Time:1621, Garden Paths:1, Memory Reactivation:1, Steps:3, Merge:3, Move Head:1, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:1, Transfer:4, Item streamed into syntax:3, 
+	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:1, LF recovery:1, 
+	LF test:2, Filter solution:1, Rank solution:0, Lexical retrieval:8, Morphological decomposition:1, 
+	Mean time per word:810, Asymmetric Merge:3, Sink:1, External Tail Test:4, Execution time = 15ms
+
+213. Pekkaa lahella_1 
+
+	[[D Pekka]:1 [lahella __:1]]
+
+	LF_Recovery: ,   , Patient of lahella(Pekka) 
+
+	Total Time:1110, Garden Paths:0, Memory Reactivation:0, Steps:3, Merge:2, Move Head:2, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:0, Phi:1, Transfer:2, Item streamed into syntax:3, 
+	Feature Processing:0, Extraposition:0, Inflection:5, Failed Transfer:0, LF recovery:1, 
+	LF test:3, Filter solution:1, Rank solution:0, Lexical retrieval:8, Morphological decomposition:1, 
+	Mean time per word:555, Asymmetric Merge:6, Sink:1, External Tail Test:6, Execution time = 15ms
+
+214. Merja nukkui Pekan_gen lahella_2 
+
+	[<D Merja>:1 [T [<__>:1 [nukku [[D Pekka]:2 [lahella __:2]]]]]]
+
+	LF_Recovery: ,   , Patient of nukku([[D Pekka] [lahella [D Pekka]]]) 
+
+	Total Time:14560, Garden Paths:15, Memory Reactivation:15, Steps:16, Merge:30, Move Head:13, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:10, Phi:11, Transfer:49, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:6, Inflection:17, Failed Transfer:43, LF recovery:1, 
+	LF test:56, Filter solution:5, Rank solution:0, Lexical retrieval:33, Morphological decomposition:4, 
+	Mean time per word:3640, Asymmetric Merge:63, Sink:5, External Tail Test:82, Execution time = 265ms
+
+215. Merja nukkui lahella_1 Pekkaa 
+
+	[<D Merja>:1 [T [<__>:1 [nukku [lahella [D Pekka]]]]]]
+
+	LF_Recovery: ,   , Agent of nukku(Merja) , Patient of lahella(Pekka) 
+
+	Total Time:16313, Garden Paths:18, Memory Reactivation:18, Steps:16, Merge:33, Move Head:12, Move Phrase:5, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, Agree:6, Phi:8, Transfer:54, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:4, Inflection:22, Failed Transfer:53, LF recovery:2, 
+	LF test:63, Filter solution:9, Rank solution:0, Lexical retrieval:38, Morphological decomposition:5, 
+	Mean time per word:4078, Asymmetric Merge:106, Sink:9, External Tail Test:201, Execution time = 265ms
+
+216. Pekka nukkui Helsingissa 
+
+	[<D Pekka>:1 [T [<__>:1 [nukku [ssa [D Helsinki]]]]]]
+
+	LF_Recovery: ,   , Agent of nukku(Pekka) , Agent of ssa(Pekka) 
+
+	Total Time:13750, Garden Paths:15, Memory Reactivation:15, Steps:16, Merge:30, Move Head:17, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:3, Phi:5, Transfer:41, Item streamed into syntax:16, 
+	Feature Processing:0, Extraposition:4, Inflection:6, Failed Transfer:44, LF recovery:2, 
+	LF test:53, Filter solution:12, Rank solution:0, Lexical retrieval:22, Morphological decomposition:7, 
+	Mean time per word:4583, Asymmetric Merge:61, Sink:12, External Tail Test:93, Execution time = 218ms
+
+& Ungrammatical -------------------------------------------------------
+
+217. *Merja nukkui lahella Pekan_gen & Embedded finite THAT-clauses (1.6) -------------------------------------------------------
+
+& THAT-clauses -------------------------------------------------------
+
+& Grammatical -------------------------------------------------------
+
+218. Pekka sanoi etta Merja lahtee 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [<D Merja>:2 [T [<__>:2 lahtea]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(Merja) , Agent of sano-(Pekka) , Agent of v(Pekka) 
+
+	Total Time:192759, Garden Paths:254, Memory Reactivation:254, Steps:146, Merge:399, Move Head:188, Move Phrase:38, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:38, Agree:137, Phi:140, Transfer:619, Item streamed into syntax:146, 
+	Feature Processing:0, Extraposition:29, Inflection:69, Failed Transfer:786, LF recovery:3, 
+	LF test:864, Filter solution:103, Rank solution:0, Lexical retrieval:215, Morphological decomposition:40, 
+	Mean time per word:38551, Asymmetric Merge:1104, Sink:103, External Tail Test:1702, Execution time = 4296ms
+
+219. Pekka sanoi etta Merja ihailee Pekkaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [<D Merja>:2 [T [<__>:2 [v [ihaile- [D Pekka]]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of sano-(Pekka) , Agent of v(Merja) , Agent of v(Pekka) , Patient of ihaile-(Pekka) 
+
+	Total Time:4292090, Garden Paths:5545, Memory Reactivation:5545, Steps:2984, Merge:8528, Move Head:4803, Move Phrase:876, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:876, Agree:1213, Phi:1217, Transfer:13995, Item streamed into syntax:2984, 
+	Feature Processing:0, Extraposition:613, Inflection:3599, Failed Transfer:16781, LF recovery:4, 
+	LF test:18293, Filter solution:2235, Rank solution:0, Lexical retrieval:6583, Morphological decomposition:746, 
+	Mean time per word:715348, Asymmetric Merge:26250, Sink:2235, External Tail Test:53295, Execution time = 121921ms
+
+220. Pekka sanoi etta Merja antoi kirjan Merjalle 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [<D Merja>:2 [T [<__>:2 [v [<__>:3 [antaa [<D kirja>:3 [P(lle) [D Merja]]]]]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of P(lle)(Merja) , Agent of antaa(Merja) , Agent of sano-(Pekka) , Agent of v(Merja) , Agent of v(Pekka) , Aspectually bounded 
+
+	Total Time:95191275, Garden Paths:134795, Memory Reactivation:134795, Steps:71079, Merge:205873, Move Head:124087, Move Phrase:16938, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:16938, Agree:12213, Phi:12218, Transfer:385381, Item streamed into syntax:71079, 
+	Feature Processing:0, Extraposition:45455, Inflection:862, Failed Transfer:395015, LF recovery:5, 
+	LF test:439804, Filter solution:64784, Rank solution:0, Lexical retrieval:71941, Morphological decomposition:6292, 
+	Mean time per word:13598753, Asymmetric Merge:836537, Sink:64784, External Tail Test:1689425, Execution time = 3624109ms
+
+221. Pekka sanoo etta haluaa ihailla Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [T [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of T(Pekka) , Agent of haluaa(Pekka) , Agent of sano-(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:10420623, Garden Paths:13278, Memory Reactivation:13278, Steps:7281, Merge:20558, Move Head:11844, Move Phrase:1587, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1587, Agree:995, Phi:1002, Transfer:32989, Item streamed into syntax:7281, 
+	Feature Processing:1689, Extraposition:1334, Inflection:10421, Failed Transfer:38790, LF recovery:7, 
+	LF test:41897, Filter solution:5449, Rank solution:0, Lexical retrieval:17702, Morphological decomposition:1829, 
+	Mean time per word:1736770, Asymmetric Merge:57607, Sink:5449, External Tail Test:110647, Execution time = 301937ms
+
+222. Pekka sanoo etta haluaa myyda omaisuuttaan 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [T [v [haluaa [A/inf [v [myy [D omaisuuden]]]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of T(Pekka) , Agent of haluaa(Pekka) , Agent of myy(Pekka) , Agent of sano-(Pekka) , Agent of v(Pekka) , Aspectually anomalous 
+
+	Total Time:10101673, Garden Paths:13278, Memory Reactivation:13278, Steps:7281, Merge:20558, Move Head:11844, Move Phrase:1587, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1587, Agree:995, Phi:1002, Transfer:32989, Item streamed into syntax:7281, 
+	Feature Processing:1689, Extraposition:1334, Inflection:1746, Failed Transfer:38790, LF recovery:7, 
+	LF test:41897, Filter solution:5449, Rank solution:0, Lexical retrieval:9027, Morphological decomposition:1829, 
+	Mean time per word:1683612, Asymmetric Merge:57607, Sink:5449, External Tail Test:110647, Execution time = 283359ms
+
+223. Pekka sanoo etta Pekka ei lahde 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [<D Pekka>:2 [ei [<__>:2 [T [<__>:2 lahtea]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(Pekka) , Agent of sano-(Pekka) , Agent of v(Pekka) 
+
+	Total Time:567892, Garden Paths:792, Memory Reactivation:792, Steps:401, Merge:1192, Move Head:442, Move Phrase:120, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:120, Agree:713, Phi:716, Transfer:1895, Item streamed into syntax:401, 
+	Feature Processing:0, Extraposition:111, Inflection:64, Failed Transfer:2506, LF recovery:3, 
+	LF test:2678, Filter solution:271, Rank solution:0, Lexical retrieval:465, Morphological decomposition:127, 
+	Mean time per word:94648, Asymmetric Merge:2943, Sink:271, External Tail Test:4044, Execution time = 13671ms
+
+224. Pekka sanoo etta mina en lahde 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [<D mina>:2 [ei [<__>:2 [T [<__>:2 lahtea]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of lahtea(mina) , Agent of sano-(Pekka) , Agent of v(Pekka) 
+
+	Total Time:567467, Garden Paths:792, Memory Reactivation:792, Steps:401, Merge:1192, Move Head:442, Move Phrase:120, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:120, Agree:713, Phi:716, Transfer:1895, Item streamed into syntax:401, 
+	Feature Processing:0, Extraposition:111, Inflection:64, Failed Transfer:2506, LF recovery:3, 
+	LF test:2678, Filter solution:271, Rank solution:0, Lexical retrieval:465, Morphological decomposition:127, 
+	Mean time per word:94577, Asymmetric Merge:2943, Sink:271, External Tail Test:4044, Execution time = 15296ms
+
+225. Pekka sanoi etta Pekka ei ihaile Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [<D Pekka>:2 [ei [<__>:2 [T [<__>:2 [v [ihaile- [D Merja]]]]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of sano-(Pekka) , Agent of v(Pekka) , Patient of ihaile-(Merja) 
+
+	Total Time:15203685, Garden Paths:19545, Memory Reactivation:19545, Steps:9918, Merge:29462, Move Head:15906, Move Phrase:2785, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2785, Agree:5312, Phi:5316, Transfer:49646, Item streamed into syntax:9918, 
+	Feature Processing:0, Extraposition:2709, Inflection:13912, Failed Transfer:60033, LF recovery:4, 
+	LF test:65076, Filter solution:7480, Rank solution:0, Lexical retrieval:23830, Morphological decomposition:2435, 
+	Mean time per word:2171955, Asymmetric Merge:96340, Sink:7480, External Tail Test:199103, Execution time = 445531ms
+
+226. Pekka sanoi etta Pekan_gen taytyy nukkua 
+
+	[<D Pekka>:1 [T [<__>:1 [v [sano- [etta [[D Pekka]:2 [T [taytyy [__:2 [A/inf [__:2 nukku]]]]]]]]]]]]
+
+	LF_Recovery: ,   , Agent of A/inf(['T.3sg']) , Agent of T(Pekka) , Agent of nukku(Pekka) , Agent of sano-(Pekka) , Agent of taytyy(Pekka) , Agent of v(Pekka) 
+
+	Total Time:1521816, Garden Paths:2131, Memory Reactivation:2131, Steps:1107, Merge:3237, Move Head:1597, Move Phrase:83, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:83, Agree:634, Phi:640, Transfer:4654, Item streamed into syntax:1107, 
+	Feature Processing:706, Extraposition:217, Inflection:64, Failed Transfer:6654, LF recovery:6, 
+	LF test:6776, Filter solution:809, Rank solution:0, Lexical retrieval:1171, Morphological decomposition:295, 
+	Mean time per word:253636, Asymmetric Merge:6110, Sink:809, External Tail Test:6153, Execution time = 39906ms
+
+227. John said that Mary sleeps 
+
+	[[D John]:1 [T [__:1 [say [that [[D Mary]:2 [T [__:2 sleep]]]]]]]]
+
+	LF_Recovery: ,   , Agent of say(John) , Agent of sleep(Mary) 
+
+	Total Time:109646, Garden Paths:146, Memory Reactivation:146, Steps:85, Merge:230, Move Head:91, Move Phrase:0, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:0, Agree:83, Phi:85, Transfer:325, Item streamed into syntax:85, 
+	Feature Processing:0, Extraposition:34, Inflection:39, Failed Transfer:442, LF recovery:2, 
+	LF test:467, Filter solution:59, Rank solution:0, Lexical retrieval:124, Morphological decomposition:24, 
+	Mean time per word:21929, Asymmetric Merge:360, Sink:59, External Tail Test:15, Execution time = 2312ms
+
+& Ungrammatical -------------------------------------------------------
+
+228. *Pekka sanoi etta 229. *Pekka sanoi etta Merja 230. *Pekka sanoi Merja lahtee etta 231. *etta 232. *John said that 233. *John said that Mary & Problems ("that" cannot rule out DP spec when it is an adjunct) -------------------------------------------------------
+
+234. *Pekka sanoi Merja etta lahtee & Relative clauses (1.7) -------------------------------------------------------
+
+& Subject relative clauses (1.7.1) -------------------------------------------------------
+
