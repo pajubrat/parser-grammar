@@ -151,7 +151,8 @@ class LocalFileSystem:
         output_str = ''
         enumerated_object = sorted(enumerated_object)
         for item in enumerated_object:
-            output_str = output_str + ', ' + item + delimiter
+            if item != ' ':
+                output_str = output_str + ' ' + item + delimiter
         return output_str
 
     def generate_input_sentence_string(self, sentence):

@@ -1,4 +1,3 @@
-import phrase_structure
 from agreement_reconstruction import AgreementReconstruction
 from support import log, is_logging_enabled
 from phrasal_reconstruction import PhrasalMovement
@@ -17,22 +16,18 @@ class Transfer():
         self.phrasal_movement_module = PhrasalMovement(self.controlling_parser_process)
         self.floater_movement_module = FloaterMovement(self.controlling_parser_process)
         self.head_movement_module = HeadMovement(self.controlling_parser_process)
-        self.feature_process = FeatureProcessing(self.controlling_parser_process)
-        self.extraposition = Extraposition(self.controlling_parser_process)
+        self.feature_process_module = FeatureProcessing(self.controlling_parser_process)
+        self.extraposition_module = Extraposition(self.controlling_parser_process)
         self.surface_conditions_module = SurfaceConditions()
 
     def transfer(self, ps, embedding=3):
+        """
+        Transfers the spellout structure to the LF-interface.
+        """
 
         log_embedding = embedding * '\t'
         if not is_logging_enabled():
             log(log_embedding + f'Transferring {ps} to LF.')
-
-        feature_process = self.feature_process
-        head_movement = self.head_movement_module
-        floater_movement = self.floater_movement_module
-        phrasal_movement = self.phrasal_movement_module
-        agreement = self.agreement_module
-        extraposition = self.extraposition
 
         log_embedding = log_embedding + '\t'
 
@@ -40,37 +35,37 @@ class Transfer():
 
         log('\n')
         log(log_embedding + '1. Head movement reconstruction...')
-        ps = head_movement.reconstruct(ps)
+        ps = self.head_movement_module.reconstruct(ps)
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '2. Feature processing...')
-        feature_process.disambiguate(ps)
+        self.feature_process_module.disambiguate(ps)
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '3. Extraposition...')
-        extraposition.reconstruct(ps)
+        self.extraposition_module.reconstruct(ps)
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '4. Floater movement reconstruction...')
-        ps = floater_movement.reconstruct(ps)
+        ps = self.floater_movement_module.reconstruct(ps)
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '5. Phrasal movement reconstruction...')
-        phrasal_movement.reconstruct(ps)
+        self.phrasal_movement_module.reconstruct(ps)
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '6. Agreement reconstruction...')
-        agreement.reconstruct(ps)
+        self.agreement_module.reconstruct(ps)
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '7. Last resort extraposition...')
-        extraposition.last_resort_reconstruct(ps)
+        self.extraposition_module.last_resort_reconstruct(ps)
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
         return ps

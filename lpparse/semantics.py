@@ -28,11 +28,23 @@ class Semantics:
         self.antecedent_list = []
 
     def interpret(self, ps):
+        """
+        Generates a semantic interpretation for a phrase structure and assesses if it failed.
+        """
         self.semantic_interpretation = set()
         self.semantic_interpretation_failed = False
         return self._interpret(ps)
 
     def _interpret(self, ps):
+        """
+        Generates a semantic interpretation for a node if it primitive, other calls the function recursively.
+
+        Each lexical item is subjected to several types of semantic interpretation, in this version
+        (i) LF-recovery for predicates that have unsaturated arguments
+        (ii) detection of phi-feature conflicts
+        (iii) tail-feature interpretation
+        (iv) variable binding.
+        """
         if ps.is_primitive():
             self.perform_LF_recovery(ps)
             self.detect_phi_conflicts(ps)
@@ -48,6 +60,9 @@ class Semantics:
             return self.semantic_interpretation | {' '}
 
     def perform_LF_recovery(self, head):
+        """
+        Provides each head [head] with unvalued phi-features an argument
+        """
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
             log(f'{head.illustrate()} with {sorted(unvalued)} was associated at LF with: ')
@@ -60,12 +75,21 @@ class Semantics:
             self.report_to_log(head, list_of_antecedents, unvalued)
 
     def detect_phi_conflicts(self, ps):
+        """
+        Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
+        """
         for phi in ps.get_phi_set():
             if phi[-1] == '*':
                 log(f'{ps} induces a phi-feature conflict...')
                 self.semantic_interpretation_failed = True
 
     def interpret_tail_features(self, ps):
+        """
+        Interprets semantic interpretation relying on tail-features.
+
+        Currently only implements the aspectual ACC-PAR alteration in Finnish aspect.
+        Vainikka (1989), Kiparsky (1997, 2001), Brattico (2020, submitted).
+        """
         for tail_set in ps.get_tail_sets():
             self.interpret_argument_tailing(ps, self.get_tailed_head(ps, tail_set))
 
@@ -83,6 +107,22 @@ class Semantics:
 
     # Definition for LF-recovery
     def LF_recovery(self, head, unvalued_phi):
+        """
+        Associates a head [head] with unvalued phi-features with a list of antecedents.
+
+        The operation relies on an upstream search (forming an upward path) that is based on dominance.
+        Heads of the sisters of the nodes in the upward path are examined and,
+        if the head has all valued phi-features that are missing from the head, then the sister is
+        picked up as a possible antecedent and appended to the list of antecedents.
+
+        Example. "John wants to leave". The predicate "leave" has unvalued [phi_], which triggers
+        upstream search that finds the TP node whose sister is "John". The D head of this
+        constituent [3sg] can value the [phi_] and thus the DP = John will be appended to the list of
+        antecedents. Because it will end up as the first and most local antecedent, it is selected.
+        The rule is modelled after Rosenbaum's (1967) Minimal Distance Principle. See also Lasnik (1991).
+
+        Source: Brattico (2021). Null arguments and the inverse problem. Glossa: A journal for general linguistics.
+        """
         self.controlling_parsing_process.consume_resources("LF recovery")
         self.controlling_parsing_process.consume_resources("Phi")
         list_of_antecedents = []
@@ -129,14 +169,21 @@ class Semantics:
 
     # Defines the category of possible antecedent for a goal head H
     def is_possible_antecedent(self, antecedent, head):
+        """
+        Determines whether a constituent [antecedent] constitutes a suitable antecedent argument for [head].
+
+        Copied constituents are ignored (i.e. are not considered twice). The algorithm targets the head of
+        the antecedent constituent (e.g. D of DP) and examined whether it possess enough valued phi-features to value
+        the unvalued features of the head. If it does, then it will be returned as a possible antecedent.
+        """
         if antecedent.find_me_elsewhere:
-            return False
-        unchecked = get_relevant_phi(head)
+            return False    # Do not consider elements that have been copied elsewhere.
+        unchecked = get_relevant_phi(head)  # Gets the relevant unvalued phi-features from the head
         for F in antecedent.head().get_valued_features():
             for G in get_relevant_phi(head):
                 check(F, G, unchecked)
         if not unchecked:
-            return True
+            return True     # If the antecedent can value all unvalued features of the head, it is accepted.
 
     # Definition for failed LF-recovery outcome
     def interpret_no_antecedent(self, ps, features):
@@ -224,6 +271,11 @@ class Semantics:
             return True
 
     def bind_variables(self, ps):
+        """
+        Binds an operator to a scope-element.
+
+        An operator is a non-C constituent that has valued [OP:XX] feature, with XX being the value.
+        """
         if 'C' not in ps.head().features:
             for f in ps.head().features:
                 if f[:3] == 'OP:' and f != 'OP:_':

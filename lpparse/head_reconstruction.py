@@ -11,22 +11,54 @@ class HeadMovement:
 
     # Definition for head reconstruction
     def reconstruct(self, ps):
+        """
+        Reconstructs all complex heads from phrase structure structure [ps].
+
+        A complex head is by definition a constituent that contains a right constituent and no left constituent.
+        This version separates two situations:
+        (1) [ps] is a complex phrase structure, in which case all complex heads are reconstructed from
+        its right edge after being detected by minimal search.
+        (2) [ps] is a complex head itself which can generate a legitimate left branch all by itself,
+        in which case it will be reconstructed into the left branch. Example: D(N) => [D N]
+
+        Literature: Brattico (submitted). Predicate clefting and long head movement in Finnish.
+        """
         if ps.is_complex():
             return self.reconstruct_head_movement(ps)
-        if ps.is_complex_head():
-            if self.left_branch_constituent(ps) and \
-                    self.controlling_parser_process.LF_legibility_test(self.reconstruct_head_movement(ps.copy())):
-                return self.reconstruct_head_movement(ps)
+        if ps.is_complex_head() and self.left_branch_constituent(ps) and \
+                self.controlling_parser_process.LF_legibility_test(self.reconstruct_head_movement(ps.copy())):
+                    return self.reconstruct_head_movement(ps)
         return ps
 
     def left_branch_constituent(self, ps):
+        """
+        Defines the notion of left branch constituent for head movement by enumeration,
+        contains DP, PP, AP and D/relP.
+        """
         return {'D', 'P', 'A', 'D/rel'} & ps.features
 
     def LF_legible(self, ps):
+        """
+        Tests whether phrase structure [ps] passes LF-legibility.
+
+        This function verifies that head reconstruction of some constituent can generate a structure
+        that can pass all LF-legibility tests. This is a precondition for its being a left branch.
+        """
         return self.controlling_parser_process.LF_legibility_test(ps.copy())
 
      # Detect complex heads requiring reconstruction and reconstructs them
     def reconstruct_head_movement(self, phrase_structure):
+        """
+        Reconstructs all head movement from phrase structure [ps]
+
+        Performs minimal search on the right edge of the phrase structure and detects complex left heads.
+        Once detected, the head is reconstructed. Once reconstructed, the algorithm continues the process
+        from where it left. Minimal search is terminated by intervention feature that is determined by
+        the type of the head, which is used to explain why C-heads tolerate long distance reconstruction
+        while A-heads do not.
+
+        Literature: Brattico, P. (submitted). Predicate clefting and long head movement in Finnish.
+        """
         # ------------------ minimal search ----------------------------------------------#
         for node in phrase_structure:
             if self.detect_complex_head(node):
@@ -40,6 +72,13 @@ class HeadMovement:
 
     @staticmethod
     def detect_complex_head(h):
+        """
+        Detecting whether node h contains a complex head.
+
+        X is a complex head if and only if it is primitive and has an affix. H "contains" such head
+        if and only if H = X or H contains X has a left constituent. This defines the conditions for
+        triggering head reconstruction for X.
+        """
         if h.left_const and h.left_const.is_primitive() and h.left_const.has_affix():
             return h.left_const
         if h.is_primitive() and h.has_affix():
@@ -49,12 +88,20 @@ class HeadMovement:
     # Complex head = original head
     # Affix = affix that was extracted out
     def create_head_chain(self, complex_head, affix, intervention_feature):
+        """
+        Creates a head reconstruction chain for one complex head [complex_head] H.
+
+        If H has no sister XP that reconstruction could use as a target, then H will be
+        reconstructed into its own sister, H(X) = [H X]. Else a minimal search is called for
+        the right edge of its sister XP. If minimal search encounter intervention feature,
+        it will trigger last resort reconstruction.
+        """
         if self.no_structure_for_reconstruction(complex_head):
             self.reconstruct_to_sister(complex_head, affix)
         else:
-            # --------------- minimal search -----------------------------------------------#
             phrase_structure = complex_head.sister()
             node = None
+            # --------------- minimal search -----------------------------------------------#
             for node in phrase_structure:
                 if self.causes_intervention(node, intervention_feature, phrase_structure):
                     self.last_resort(phrase_structure, affix)

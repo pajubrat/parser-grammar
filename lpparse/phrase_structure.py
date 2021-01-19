@@ -209,6 +209,9 @@ class PhraseStructure:
     # Definition for upstream search
     # Notes. This version excludes the starting node
     def upstream_search(self):
+        """
+        Defines an upstream search from a head which is an ordered list of constituents that dominate the head.
+        """
         path = []
         while self.mother:
             path.append(self.mother)
