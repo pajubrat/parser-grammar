@@ -94,7 +94,13 @@ class HeadMovement:
         If H has no sister XP that reconstruction could use as a target, then H will be
         reconstructed into its own sister, H(X) = [H X]. Else a minimal search is called for
         the right edge of its sister XP. If minimal search encounter intervention feature,
-        it will trigger last resort reconstruction.
+        it will trigger last resort reconstruction. If it is allowed to continue, it will
+        try to merge the reconstructed affix into this position and, if the operation succeeds,
+        the affix will remain at that position. If the operation does not succeed, the affix
+        will be removed and the procedure continues. If it reaches the end of the structure,
+        one more solution will be attempted and, if that does not work, then last resort.
+
+        Literature: Brattico, P. (submitted). Predicate clefting and long head movement in Finnish.
         """
         if self.no_structure_for_reconstruction(complex_head):
             self.reconstruct_to_sister(complex_head, affix)
@@ -120,7 +126,11 @@ class HeadMovement:
             self.last_resort(phrase_structure, affix)
 
     def try_manipulate_bottom_node(self, node, affix, intervention_feature):
-
+        """
+        This function handles the edge case when the complex head is the bottom right node.
+        It should be incorporated into the main algorithm at some point, which means that
+        the algorithm cannot be exactly correct as it stands.
+        """
         # Case 1. If the bottom node is complex, it must first be reconstructed
         if node.has_affix():
             log(f'Must reconstruct {node} first...')
@@ -130,7 +140,7 @@ class HeadMovement:
         if 'D' in node.mother.head().features:
             node.mother.merge_1(affix, 'right')
 
-        # Case 3. For all other labels, we try the solutions #1 and #2 below
+        # Case 3. For all other labels, we try solutions #1 and #2 below
         else:
             node = node.top().bottom()
             if intervention_feature not in node.features and intervention_feature not in node.sister().features:
@@ -141,15 +151,35 @@ class HeadMovement:
             self.controlling_parser_process.consume_resources("Move Head")
             return True
 
-    # Defines conditions for dropping a head H into a position X
     def reconstruction_is_successful(self, affix):
-        if not self.head_is_selected(affix):
+        """
+        Defines the condition under which a reconstructed head can remain at position X.
+
+        There are two ways to satisfy this condition. One is if the head is elected by a local head.
+        This is the default and intuitively obvious requirement. Another is the extra condition that
+        takes care of one edge case and which must be assimilated later.
+        """
+        if not self.head_is_selected(affix):    # Default behavior
             return False
-        if not self.extra_condition(affix):
+        if not self.extra_condition(affix):     # One edge case
             return False
         return True
 
     def extra_condition(self, affix):
+        """
+        Takes care of an edge cass that have to do with reconstruction of an EPP head.
+
+        If the reconstructed head is an EPP head selected by finite C, then head reconstruction must
+        eat the EPP specifier argument. In other words, instead of mapping 'C(T) John' into 'C-T-John',
+        we map it into 'C-John-T' and thus check the presence of the argument at SPEC.
+
+        The algorithm allows for two exception to the general rule.
+        (1) Finnish third person pro is not strong enough to count as a subject (Vainikka & Levy observation).
+        (2) No lower structure exist into which reconstruct the EPP head (true edge case)
+
+        Note. It is obvious that something else is going on here. The edge cases correspond to 'added intelligence'
+        that we must ultimately generalize everywhere or the problems must be solved by some other means.
+        """
         if self.head_is_EPP_selected_by_C_fin(self, affix):
             if affix.local_edge():
                 # Exception 1. Finnish third person forms (ultimate reason unknown)
@@ -157,7 +187,7 @@ class HeadMovement:
                     return False
                 return True
             else:
-                # Exception 2. The the structure is [Affix, X], Affix finite EPP head and with X  primitive head
+                # Exception 2. The the structure is [Affix, X], Affix finite EPP head and with X primitive head
                 if affix.sister() and affix.sister().terminal_node():
                     return True
                 else:
@@ -165,25 +195,48 @@ class HeadMovement:
         return True
 
     def get_affix_out(self, node):
+        """
+        Extracts an affix from a complex head.
+
+        The operation does not use copying, by extracts the affix literally from the complex head,
+        leaving nothing inside. The complex head then becomes a terminal node.
+        """
         if node.is_complex_head():
             affix = node.right_const
-            node.right_const = None                  # Head reconstruction is not copying
+            node.right_const = None     # Head reconstruction is not copying
             return affix
         else:
             return node
 
     @staticmethod
     def determine_intervention_feature(node):
+        """
+        Determines the nature of the intervention feature on the basis of the nature of the reconstructed node.
+
+        There are two cases. Case 1: the node has an operator (C*) feature, in which case the intervention feature
+        will be [D]. Case 2: else the intervention feature will be [!COMP:*].
+
+        The empirical effect of this rule is that it separates A-bar head movement (Case 1) from A-head movement (Case 2),
+        as an intervention feature [!COMP:*] means literally all functional heads block reconstruction, making it
+        as local as possible. Using [D] as an intervention feature licenses reconstruction through the right edge
+        unless we attempt to penetrate a DP. This accounts for the DP-island effects in the data. It is stimulative.
+        """
         if node.has_op_feature():
             return 'D'
         return '!COMP:*'
 
     def last_resort(self, phrase_structure, affix):
+        """
+        Last resort solution which merges the reconstructed head locally.
+        """
         log(f'Head reconstruction of {affix} failed, merge locally as a last resort...')
         phrase_structure.merge_1(affix, 'left')
         self.controlling_parser_process.consume_resources("Move Head")
 
     def reconstruct_to_sister(self, complex_head, affix):
+        """
+        Special condition that applies if we are targeting the bottom right node.
+        """
         complex_head.merge_1(affix, 'right')                    # If X(Y) => [X Y]
         self.controlling_parser_process.consume_resources("Move Head")
         if affix.has_affix():                                   # If Y(Z) => reconstruct Y(Z)
@@ -191,11 +244,21 @@ class HeadMovement:
 
     @staticmethod
     def no_structure_for_reconstruction(complex_head):
+        """
+        Defines the situation in which there is no structure into which reconstruct the head.
+        """
         if not complex_head.sister() or complex_head.is_right():
             return True
 
     @staticmethod
     def head_is_selected(affix):
+        """
+        Returns [True] if and only if the head H is selected in the position it occurs in the phrase structure.
+
+        The function works by locating the local selector and checking if it selects for H by means of
+        lexical COMP features. If the selector is missing or it cannot select for H, the function returns
+        [False].
+        """
         def selects(h, selectee):
             if h.has_affix():
                 selector = h.bottom_affix()
@@ -205,10 +268,24 @@ class HeadMovement:
         return affix.selector() and selects(affix.selector(), affix)
 
     @staticmethod
-    def head_is_EPP_selected_by_C_fin(self, affix):
+    def head_is_EPP_selected_by_C_fin(affix):
+        """
+        Defines if the head is selected by C/fin and has the EPP property.
+        """
         return 'C/fin' in affix.selector().features and affix.EPP()
 
     @staticmethod
     def causes_intervention(node, feature, phrase_structure):
+        """
+        Checks if [node] causes intervention by feature [feature].
+
+        The invervention occurs if and only if (i) we are not at the starting point,
+        (ii) the sister of [node] does not have [feature].
+
+        Condition (i) is motivated by the fact that in most cases the relevant intervention feature is
+        present at the starting point, but we want to ignore it. Condition (ii) is motivated by the fact
+        that intervention is caused by primitive sister of node, e.g. H in [H node] causes potential
+        intervention. [Node] is then not penetrated.
+        """
         if node != phrase_structure.minimal_search()[0] and feature in node.sister().features:
             return True
