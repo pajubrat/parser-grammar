@@ -79,10 +79,17 @@ class LF:
     #
     #
     # Merges with constituents from the syntactic working memory if licensed by selection at LF
-    def try_LFmerge(self, head):
-        self.try_merge_to_left(head)
-        self.try_adjoin_right(head)
-        self.try_merge_to_comp(head)
+    def try_LFmerge(self, constituent):
+        """
+        Attempts to merge constituent to the phrase structure [constituent] in such a way that the result would be
+        pass LF-legibility. It is assumed that this operation is used in production and when reconstructing
+        operators. The constituent comes from the memory buffer.
+
+        We attempt merge to left, right adjunction and into complement position, in this order.
+        """
+        self.try_merge_to_left(constituent)
+        self.try_adjoin_right(constituent)
+        self.try_merge_to_comp(constituent)
 
     # Definition for right merge
     def try_adjoin_right(self, head):

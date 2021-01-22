@@ -180,7 +180,7 @@ class HeadMovement:
         Note. It is obvious that something else is going on here. The edge cases correspond to 'added intelligence'
         that we must ultimately generalize everywhere or the problems must be solved by some other means.
         """
-        if self.head_is_EPP_selected_by_C_fin(self, affix):
+        if self.head_is_EPP_selected_by_C_fin(affix):
             if affix.local_edge():
                 # Exception 1. Finnish third person forms (ultimate reason unknown)
                 if 'pro' in affix.local_edge().features and 'PHI:PER:3' in affix.local_edge().features:

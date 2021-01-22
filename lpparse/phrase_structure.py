@@ -242,13 +242,18 @@ class PhraseStructure:
 
     # Definition for licensed specifier (for a head)
     def licensed_specifier(self):
+        """
+        Defines the notion of licensed specifier.
+
+        Corresponds intuitively to prototypical argument specifier that is selected by the head.
+        """
         edge = self.phrasal_edge()
         # If there is only one phrasal edge, return it
         if len(edge) == 1:
             return edge[0]
-        # If there are many phrases in the edge
+        # If there are many phrases in the edge...
         elif len(edge) > 1:
-            # Return the first non-externalized DP, if any,
+            # ...Return the first non-externalized DP, if any.
             licensed_edge = [edge for edge in self.phrasal_edge() if 'D' in edge.head().features and not edge.externalized()]
             if licensed_edge:
                 return licensed_edge[0]

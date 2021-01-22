@@ -140,7 +140,6 @@ class LinearPhaseParser:
         """
 
         set_logging(True)
-
         # We have decided not to explore any more solutions, exit the recursion
         if self.exit:
             return
