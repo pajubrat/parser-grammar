@@ -77,7 +77,7 @@ class PhrasalMovement:
                         iterator = iterator.mother # Prevents looping over the same Spec element
                         log(f'New head was spawned at {head.get_cats_string()}P...')
                         if new_h.get_tail_sets():
-                            self.adjunct_constructor.create_adjunct(new_h)
+                            self.adjunct_constructor.externalize_structure(new_h)
                 else:
                    # We are working with a local specifier, no need to project extra heads
                     count_specifiers = + 1
@@ -85,7 +85,7 @@ class PhrasalMovement:
                         log(f'Criterial features {spec.scan_criterial_features()} copied to {head}...')
                         head.features |= self.get_features_for_criterial_head(head, spec)
                         if head.get_tail_sets():
-                            self.adjunct_constructor.create_adjunct(head)
+                            self.adjunct_constructor.externalize_structure(head)
                 iterator = iterator.walk_upstream()
 
             # --------------------------------------------------------------------------------------------------#

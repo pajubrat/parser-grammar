@@ -128,6 +128,11 @@ class PhraseStructure:
 
     # Definition for sisterhood
     def sister(self):
+        """
+        Defines the grammatical dependency of sisterhood.
+
+        The definition is otherwise trivial with exception that externalized constituents are ignored completely.
+        """
         while self.mother:
             if self.is_left():
                 if self.geometrical_sister().visible():
@@ -152,7 +157,6 @@ class PhraseStructure:
             self = self.right_const
         return self
 
-    # Definition for head (also label) of a phrase structure
     def head(self):
         """
         Definition for head (also label) of a phrase structure.
@@ -506,6 +510,20 @@ class PhraseStructure:
         feature.issubset(self.inside_path().features)
 
     def external_tail_head_test(self):
+        """
+        Checks whether all tail feature sets inside the head [self] are satisfied. If anything is not, returns [False]
+
+        There are currently two conditions: strong and weak. The strong condition requires that the externalized
+        adjunct occurs inside the projection of a head that matches with the tail features. The weak condition
+        requires that there exists an upward path. The fact that we require the two conditions suggests that there is
+        something we haven't captured correctly.
+
+        This function handles all adjuncts but also the free word order phenomenon in Finnish. There is also
+        the curious exception of the genitive case, discussed in the literature.
+
+        Literature: Brattico (2020). Finnish word order: does comprehension matter? Nordic Journal of Linguistics.
+
+        """
         self.consume_resources("External Tail Test")
         tail_sets = self.get_tail_sets()
         tests_checked = set()

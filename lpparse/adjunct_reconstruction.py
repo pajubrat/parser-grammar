@@ -40,10 +40,10 @@ class FloaterMovement():
             if not floater.external_tail_head_test():
                 log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
                 if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
-                    self.adjunct_constructor.create_adjunct(floater)
+                    self.adjunct_constructor.externalize_structure(floater)
                     return floater.max()
                 if 'ADV' in floater.features and not ps.right_const.adjunct:
-                    self.adjunct_constructor.create_adjunct(floater)
+                    self.adjunct_constructor.externalize_structure(floater)
 
     def detect_left_floater(self, ps):
         if ps.is_complex() and \
@@ -75,7 +75,7 @@ class FloaterMovement():
             self.merge_floater(node, floater_copy)
             if self.is_drop_position(node, floater_copy, starting_point_head):
                 if not floater.adjunct:
-                    self.adjunct_constructor.create_adjunct(floater)
+                    self.adjunct_constructor.externalize_structure(floater)
                 dropped_floater = floater.copy_from_memory_buffer(self.babtize())
                 self.merge_floater(node, dropped_floater)
                 self.controlling_parser_process.consume_resources("Move Adjunct")
