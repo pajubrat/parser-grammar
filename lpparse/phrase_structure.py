@@ -210,8 +210,6 @@ class PhraseStructure:
                             ps_ = ps_.right_const           # [X Y] = Y
             iterator_ = iterator_ + 1
 
-    # Definition for upstream search
-    # Notes. This version excludes the starting node
     def upstream_search(self):
         """
         Defines an upstream search from a head which is an ordered list of constituents that dominate the head.
