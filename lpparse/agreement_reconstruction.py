@@ -158,24 +158,41 @@ class AgreementReconstruction:
             h.features.add('PHI_CHECKED')
 
     # Definition for blocked valuation
-    def valuation_blocked(self, h, f):
+    def valuation_blocked(self, head, f):
         """
-        Checks whether valuation by feature [f] is blocked at [h]. This occurs if we attempt to value a head
-        with [PHI:F:V1] with feature [PHI:F:V2] when V1 =/= V2. For example, if a second person subject attempts
-        to value a head that is already marked for first person, then valuation will be blocked.
+        Checks whether valuation by feature [f] is blocked at [h].
+
+        Recall that unvalued phi-features (from lexicon) and valued phi-features from input can coexist in the same
+        head.
+
+        Valuation can only be blocked by existing valued features. If a fully matching valued phi-feature
+        already exists at the head, then the trivial "checking" valuation is not blocked (Condition 2). If a fully
+        matching valued phi-feature does not exist, then a conflicting type-value feature blocks further
+        valuation (Condition 1). If there is neither matching value nor conflicting value, the operation is not
+        blocked (Condition 3).
+
+        Empirical example cases.
+        I + V.1sg       = not blocked, checking valuation (#2)
+        you + V.1sg     = blocked: [PHI:PER:1] blocks valuation by [PHI:PER:2] from the subject
+        I + V.1sg, 2sg  = not blocked, checking valuation (#2), existence of [2sg] does not matter.
+
+        The intuition is that valued phi-features at a head license subjects. If the subject is not licensed,
+        then feature conflict will present it from occurring.
+
         """
-        valued_input_feature_type = get_type(f)
-        heads_phi_set = h.get_phi_set()
+        valued_input_feature_type = get_type(f)                                 # Type of the incoming feature [f]
+        heads_phi_set = head.get_phi_set()                                      # All phi-features at head [h]
         valued_phi_in_h = {phi for phi in heads_phi_set if valued(phi) and get_type(phi) == valued_input_feature_type}
-        if valued_phi_in_h:
-            type_value_matches = {phi for phi in valued_phi_in_h if phi == f}
+        # If phi has no valued features, then valuation cannot be blocked
+        if valued_phi_in_h:                                                     # Condition (1)
+            type_value_matches = {phi for phi in valued_phi_in_h if phi == f}   # Condition (2)
             if type_value_matches:
                 return False
             else:
-                log(f'Feature {f} cannot be valued into {h}. Reason:')
-                log(f'{h} already has a feature with the same type but with different value...')
+                log(f'Feature {f} cannot be valued into {head}. Reason:')
+                log(f'{head} has no matching feature but has a feature with the same type but with different value...')
                 return True
-        return False
+        return False    # Valuation is not blocked
 
     # Definition of edge (for Agree-1)
     def edge_for_Agree(self, h):

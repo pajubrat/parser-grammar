@@ -247,7 +247,7 @@ class LocalFileSystem:
     def save_result(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)
         if len(P.result_list) == 0:
-            self.results_file.write(str(count) + '. *' + sentence_string)
+            self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
         else:
             self.results_file.write(str(count) + '. ' + P.grammaticality_judgment() + sentence_string + '\n\n')
             number_of_solutions = len(P.result_list)

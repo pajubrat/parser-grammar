@@ -117,9 +117,10 @@ class LinearPhaseParser:
         self.plausibility_metrics.initialize()  # Here we can parametrize plausibility metrics if needed
         set_logging(True)
         log('\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
-        log(f'\n#{count}. {self.sentence}')
+        log(f'\n#{count}. {self.local_file_system.generate_input_sentence_string(lst)}')
+        log(f'\n{self.sentence}')
         log(f'\n\n\t 1. {self.sentence}\n')
-        self.local_file_system.simple_log_file.write(f'\n\n#{count}. {self.sentence}\n')
+        self.local_file_system.simple_log_file.write(f'\n\n#{count}. {self.local_file_system.generate_input_sentence_string(lst)} / {self.sentence}\n')
         self.local_file_system.resource_sequence_file.write(f'\n{count}, {self.local_file_system.generate_input_sentence_string(lst)},  ')
         if not self.local_file_system.instruction_to_ignore_from_test_corpus:
             self.parse_new_item(None, lst, 0)
@@ -138,7 +139,6 @@ class LinearPhaseParser:
         so that attachment order and ordered lists of lexical items will regulate
         backtracking.
         """
-
         set_logging(True)
         # We have decided not to explore any more solutions, exit the recursion
         if self.exit:
