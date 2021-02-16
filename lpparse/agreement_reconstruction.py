@@ -85,7 +85,7 @@ class AgreementReconstruction:
         if head.sister():
             # ---------------------------- minimal search ----------------------------#
             for node in head.sister().minimal_search():
-                if self.termination_condition_for_Agree_search(head):
+                if self.termination_condition_for_Agree_search(node):
                     break
                 if node.left_complex():
                     if self.agreement_condition(head, node.left_const):

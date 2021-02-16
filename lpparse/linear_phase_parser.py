@@ -3,9 +3,9 @@ from lexical_interface import LexicalInterface
 from LF import LF
 from morphology import Morphology
 from transfer import Transfer
+from narrow_semantics import NarrowSemantics
 from surface_conditions import SurfaceConditions
 from adjunct_constructor import AdjunctConstructor
-from log_functions import log_results
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
@@ -37,6 +37,7 @@ class LinearPhaseParser:
         self.surface_conditions_pass = True                     # Surface conditions
         self.adjunct_constructor = AdjunctConstructor(self)     # Adjunct constructor
         self.plausibility_metrics = PlausibilityMetrics(self)
+        self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.score = 0                                          # Discourse score
         self.resources = dict                                   # Resources consumed
         self.start_time = 0                                     # Calculates execution time
@@ -49,7 +50,6 @@ class LinearPhaseParser:
         self.only_first_solution = False
         self.operations = 0
 
-    # Definition for parser initialization
     def initialize(self):
         if 'only_first_solution' in self.local_file_system.settings:
             if self.local_file_system.settings['only_first_solution']:
@@ -114,7 +114,8 @@ class LinearPhaseParser:
         self.sentence = lst
         self.start_time = process_time()
         self.initialize()
-        self.plausibility_metrics.initialize()  # Here we can parametrize plausibility metrics if needed
+        self.plausibility_metrics.initialize()  # Here we parametrize plausibility metrics if needed
+        self.narrow_semantics.initialize()      # Initialize narrow semantics
         set_logging(True)
         log('\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
         log(f'\n#{count}. {self.local_file_system.generate_input_sentence_string(lst)}')
@@ -220,21 +221,22 @@ class LinearPhaseParser:
                             log(f'\n\t\tNow exploring solution [{left_branch} + {terminal_lexical_item.get_phonological_string()}]...')
                             log(f'Transferring left branch {left_branch}...')
                             self.consume_resources("Merge", f'{terminal_lexical_item}')
-                            set_logging(False)
                             #
                             #
                             # Merge (attachment of new element to existing structure)
                             # Note. All left branches are transferred before Merge (Brattico & Chesi 2020)
-                            new_constituent = self.transfer_to_LF(left_branch) + terminal_lexical_item
-                            #
-                            #
-                            #
+                            set_logging(False)
+                            transferred_left_branch = self.transfer_to_LF(left_branch)
+                            new_constituent = transferred_left_branch + terminal_lexical_item
                             set_logging(True)
-
+                            self.narrow_semantics.wire_semantics(transferred_left_branch)
                             # The transferred left branch will be removed from active working memory
                             # because it has been send out.
                             self.remove_from_syntactic_working_memory(left_branch)
                             log(f'Result: {new_constituent}...Done.\n')
+                            #
+                            #
+                            #
                         if not self.first_solution_found:
                             self.time_from_stimulus_onset_for_word.append((terminal_lexical_item, self.time_from_stimulus_onset))
                         self.put_out_of_working_memory(merge_sites)
@@ -263,7 +265,7 @@ class LinearPhaseParser:
         if inflection:
             self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
             self.consume_resources("Inflection")
-            log(f'Added feature {inflection} into temporary feature working memory...')
+            log(f'Added feature {sorted(inflection)} into temporary feature working memory...')
         else:
             if self.memory_buffer_inflectional_affixes:
                 log(f'{lexical_item.get_phonological_string()} is coming next...')
@@ -272,7 +274,6 @@ class LinearPhaseParser:
                 self.memory_buffer_inflectional_affixes = set()
         return lexical_item
 
-    # Internal function
     def babtize(self):
         self.name_provider_index += 1
         return str(self.name_provider_index)
@@ -294,21 +295,27 @@ class LinearPhaseParser:
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps))
             return
+        self.consume_resources('Steps')
         log('Done.\n')
         print('X', end='', flush=True)
-        self.consume_resources('Steps')
         self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} <= accepted')
         if not self.first_solution_found:
+            log('\t\tWire narrow semantics...')
+            self.narrow_semantics.wire_semantics(ps)
+            log('Done.\n')
+            log('\t\tComputing attitude semantics and information structure...')
+            self.narrow_semantics.compute_speaker_attitude(ps)
+            self.narrow_semantics.compute_information_structure(ps)
+            log('Done.\n')
             log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
-            self.first_solution_found = True
             self.resources['Mean time per word']['n'] = int(self.resources['Total Time']['n'] / self.count_words(self.sentence))
             self.resources.update(PhraseStructure.resources) # Add phrase resource consumption from class phrase structure
         if self.only_first_solution:
             self.exit = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
         self.report_solution(ps_, spellout_structure)
+        self.first_solution_found = True
 
-    # This is needed because we want to count clitics as words
     def count_words(self, sentence):
         sentence_ = []
         for word in sentence:
@@ -328,7 +335,7 @@ class LinearPhaseParser:
         self.result_list.append([ps, self.semantic_interpretation])
         self.spellout_result_list.append(spellout_structure)
         log(f'\t\tSemantic interpretation: {self.semantic_interpretation}')
-        log_results(ps, self.sentence)
+        self.local_file_system.log_results(self, ps)
         self.first_solution_found = True
 
     def surface_condition_violation(self, ps):

@@ -1,6 +1,5 @@
 import sys
 from local_file_system import LocalFileSystem
-from log_functions import *
 from language_guesser import LanguageGuesser
 from support import is_comment
 from linear_phase_parser import LinearPhaseParser
@@ -10,7 +9,7 @@ def run_study(folder='', file='', test_corpus_folder=''):
     # Prepare file systems and logging
     local_file_system = LocalFileSystem()
     local_file_system.initialize(set(sys.argv), folder, file, test_corpus_folder)
-    configure_logging(local_file_system)
+    local_file_system.configure_logging()
 
     # Prepare parsers for all languages together with their language-specific lexicons
     parser_for = {}

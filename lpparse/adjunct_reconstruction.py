@@ -136,6 +136,7 @@ class FloaterMovement():
                 self.merge_floater(node, dropped_floater)
                 self.controlling_parser_process.consume_resources("Move Adjunct")
                 self.controlling_parser_process.consume_resources("Move Phrase", f'{dropped_floater.illustrate()}')
+                self.controlling_parser_process.narrow_semantics.update_semantics_for_marked_gradient(dropped_floater, starting_point_head)
                 floater_copy.remove()
                 return
             floater_copy.remove()

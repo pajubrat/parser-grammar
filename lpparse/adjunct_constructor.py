@@ -117,7 +117,8 @@ class AdjunctConstructor:
 
         The highest node cannot be externalized. Otherwise this operation applies to anything, so all
         conditions must be secured before this operation is performed. If will also add the missing
-        tail-features (if any) and transfers the structure.
+        tail-features (if any) and transfers the structure. The element is also wired semantically
+        if that has not already taken place.
         """
         if ps == ps.top():
             log(f'Cannot push the whole structure {ps} into the secondary processing stream (adjunct)...')

@@ -263,7 +263,7 @@ class LF:
         Checks that all D-elements satisfy their internal tail tests (in essence case checking)
         """
         if 'D' in h.features and not h.internal_tail_head_test():
-            log(f'.{h}({h.mother}) failed internal tail test for {h.get_tail_sets()}...')
+            log(f'.{h}({h.mother}) failed internal tail test...')
             self.tail_head_test_result = False
 
     def double_spec_filter(self, h):

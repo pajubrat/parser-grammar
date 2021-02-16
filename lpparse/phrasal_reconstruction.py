@@ -82,7 +82,7 @@ class PhrasalMovement:
                    # We are working with a local specifier, no need to project extra heads
                     count_specifiers = + 1
                     if spec.scan_criterial_features():
-                        log(f'Criterial features {spec.scan_criterial_features()} copied to {head}...')
+                        log(f'Criterial features copied to {head}...')
                         head.features |= self.get_features_for_criterial_head(head, spec)
                         if head.get_tail_sets():
                             self.adjunct_constructor.externalize_structure(head)
@@ -109,7 +109,9 @@ class PhrasalMovement:
     def get_features_for_criterial_head(self, head, spec):
         """
         Copied criterial features from a constituent. A criterial feature is one beginning with pattern [op:].
-        They are features that can be understood by the operator system.
+        They are features that can be understood by the operator system. If criterial features are copied into
+        a finite head, then force features are generated in addition representing propositional attitudes.
+        A force feature syntax is [FORCE:F] where F is the criterial feature (e.g. OP:WH).
         """
         criterial_features = spec.scan_criterial_features()
         if criterial_features:

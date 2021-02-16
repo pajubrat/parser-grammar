@@ -627,6 +627,15 @@ class PhraseStructure:
     def EPP(self):
         return 'SPEC:*' in self.features or '!SPEC:*' in self.features
 
+    def finite(self):
+        return 'FIN' in self.head().features or 'C/fin' in self.head().features or 'T/fin' in self.head().features
+
+    def referential(self):
+        """
+        Determines what type of constituents will populate the semantic space by reference
+        """
+        return {'D'} & self.head().features
+
     # Return a list of affixes inside a grammatical head (including the head itself)
     def get_affix_list(self):
         lst = [self]
@@ -640,7 +649,18 @@ class PhraseStructure:
 
     # Definition for pro-extraction
     def extract_pro(self):
-        # Internal functions
+        """
+        Extracts pro-elements from a head [self].
+
+        Pro-elements can be extracted only from predicates, defined by feature [ARG]. Then, if the predicate
+        is marked for agreement reconstruction [VAL], the pro-element is reconstructed from these features;
+        if it is not marked for agreement reconstruction, the pro-element is reconstructed from unvalued phi-features.
+        The latter condition is motivated by the fact that unvalued phi-features are linked with an argument by
+        LF-recovery. Finally, the pro-element, if generated from valued phi-set, must not involve feature conflicts.
+
+        This mechanism generates pro-drop constructions as well as "PRO-drop" constructions by satisfying
+        specifier conditions by both pro and PRO.
+        """
         def valued_phi(h):
             return {f for f in h.features if f[:4] == 'PHI:' and f[-1] != '_'}
         def all_phi(h):

@@ -1,7 +1,9 @@
 from pathlib import Path
 from time import process_time
-from log_functions import *
 from visualizer import Visualizer
+from datetime import datetime
+from support import *
+import logging
 
 class LocalFileSystem:
     def __init__(self):
@@ -259,9 +261,35 @@ class LocalFileSystem:
                     self.results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                 self.results_file.write('\n\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, delimiter=' ')) +'\n')
                 if parse_number == 1:
-                    self.results_file.write('\n\t' + self.format_resource_output(P.resources) + f'Execution time = {P.execution_time_results[parse_number - 1]}ms\n')
+                    self.results_file.write('\n\t' + self.format_resource_output(P.resources) + '\n')
+                    self.results_file.write(f'\n\tInformation structure: {self.format_information_structure(P)}\n')
                 parse_number = parse_number + 1
                 self.results_file.write('\n')
+
+    def format_information_structure(self, P):
+        topics_str = ''
+        neutrals_str = ''
+        focus_str = ''
+        topics, neutrals, focus = P.narrow_semantics.topic_focus_structure
+        if topics:
+            for t in topics:
+                topics_str += P.narrow_semantics.semantic_bookkeeping[t]['Const'] + ', '
+        else:
+            topics_str = 'None'
+        if neutrals:
+            for n in neutrals:
+                neutrals_str += P.narrow_semantics.semantic_bookkeeping[n]['Const'] + ', '
+        else:
+            neutrals_str = 'None'
+        if focus:
+            for f in focus:
+                focus_str += P.narrow_semantics.semantic_bookkeeping[f]['Const'] + ', '
+        else:
+            focus_str = 'None'
+        output_str = 'Marked topics: ' + topics_str + 'Gradient: ' + neutrals_str + 'Marked focus: ' + focus_str
+        if not P.narrow_semantics.information_structure_active:
+            output_str = output_str + '(Masked due to force features)'
+        return output_str
 
     def save_image(self, P, sentence, count):
         self.visualizer.input_sentence_string = self.generate_input_sentence_string(sentence)
@@ -324,6 +352,37 @@ class LocalFileSystem:
                 print('\n\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, '')))
                 if parse_number == 1:
                     print('\n\t' + self.format_resource_output(parser.resources) + f'\n\tExecution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
+                    print(f'\tNarrow semantics:')
+                    self.print_narrow_semantics(parser)
                 parse_number = parse_number + 1
         else:
             print(f'({parser.resources["Garden Paths"]["n"]}gp/{parser.resources["Merge"]["n"]}m/{process_time()-parser.start_time}s)')
+
+    def print_narrow_semantics(self, parser):
+        for key in parser.narrow_semantics.semantic_bookkeeping:
+            print(f'\t{key}: {parser.narrow_semantics.semantic_bookkeeping[key]}')
+        print(f'\tSpeaker attitude: {parser.narrow_semantics.speaker_attitudes}.')
+        print(f'\tTopics: {parser.narrow_semantics.topic_focus_structure}.')
+        print('\n')
+
+    def log_results(self, parser, ps_):
+        log('\n\t\t---------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+        ps_.tidy_names(1)
+        log_result(ps_)
+        log('\t\t-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        log('\t\tLexical features:\n')
+        log(show_primitive_constituents(ps_))
+        log('\t\t-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        if not parser.first_solution_found:
+            log('\t\tSemantic bookkeeping:\n')
+            log(f'\t\t{parser.narrow_semantics.semantic_bookkeeping}\n')
+            log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        log('\n\tChecking if the sentence is ambiguous...\n')
+
+    def configure_logging(self):
+        handler = logging.FileHandler(self.external_sources["log_file_name"], 'w', 'utf-8')
+        handler.terminator = ''
+        logging.basicConfig(level=logging.INFO, handlers=[handler], format='%(message)s')
+        self.logger_handle = handler
+        if 'logging' in self.settings and not self.settings['logging']:
+            disable_all_logging()

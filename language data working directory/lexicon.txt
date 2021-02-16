@@ -30,17 +30,17 @@ antoi   :: anta-#v#asp#T/fin#[-V] LANG:FI
 asks	:: ask-#v#T/fin#[-s] LANG:EN
 ask-	:: PF:ask LF:ask V SPEC:D COMP:D SEM:internal LANG:EN
 
-avain_0acc	::	avain-#D#[-0_acc]
-avain_nom	::	avain-#D#[-nom]
-avain		::	avain-#D#[-nom]
-avaimen_acc	::	avain-#D#[-n_acc]
-avaimen		::	avain-#D#[-n_acc]
-avaimet		::	avain-#D#[-t_acc]#pl
-avainta		::	avain-#D#[-par]
+avain_0acc	::	avain-#D#sg#3p#def#[-0_acc]
+avain_nom	::	avain-#D#sg#3p#def#[-nom]
+avain		::	avain-#D#sg#3p#def#[-nom]
+avaimen_acc	::	avain-#D#sg#3p#def#[-n_acc]
+avaimen		::	avain-#D#sg#3p#def#[-n_acc]
+avaimet		::	avain-#D#pl#3p#def#[-t_acc]#pl
+avainta		::	avain-#D#sg#3p#def#[-par]
 avain-	::	PF:avain LF:key N LANG:FI -SEM:directional
 
-auton	::	auto-#D#[-n_acc] LANG:FI
-auto	::	auto-#D LANG:FI
+auton	::	auto-#D#sg#3p#def#[-n_acc] LANG:FI
+auto	::	auto-#Dsg#3p#def LANG:FI
 auto-	::	PF:auto LF:car N LANG:FI -SEM:directional
 
 bank	::	PF:bank1 LF:bank_inst N FREQ:1 LANG:EN
@@ -143,7 +143,7 @@ havisi		:: havia-#T/fin LANG:FI
 havia-		:: PF:havia LF:disappear V CLASS:INTR LANG:FI
 
 Helsingissa	:: Helsinki#ssa LANG:FI
-Helsinki	:: Helsinki-#D LANG:FI
+Helsinki	:: Helsinki-#D#sg#3p#def LANG:FI
 Helsinki-	:: PF:Helsinki LF:Helsinki N LANG:FI
 
 ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
@@ -210,7 +210,7 @@ kellon	:: kello0-#n#[-n_acc] LANG:FI
 kellon	:: kello-#[-n_acc] LANG:FI
 kellon_n	:: kello0-#n#[-n_acc] LANG:FI
 kellon_N	:: kello-#[-n_acc] LANG:FI
-kelloja	:: kello-#pl#D#[-par] LANG:FI
+kelloja	:: kello-#pl#D#pl#3p#def#[-par] LANG:FI
 kello	:: kello0-#n LANG:FI
 kello-	:: PF:kello LF:watch N LANG:FI
 kello0- :: PF:kello LF:watch 0 LANG:FI
@@ -218,11 +218,11 @@ kello0- :: PF:kello LF:watch 0 LANG:FI
 keta	:: kuka-#D#wh#[-par] LANG:FI
 kenen	:: kuka-#D#wh#[-gen] LANG:FI
 
-key		:: PF:key LF:key N LANG:EN
+key		:: PF:key LF:key N -SEM:directional LANG:EN
 
-kirja	:: kirja-#D#[-nom] LANG:FI
-kirjan  :: kirja-#D#[-n_acc] LANG:FI
-kirjaa	:: kirja-#D#[-par] LANG:FI
+kirja	:: kirja-#D#sg#3p#def#[-nom] LANG:FI
+kirjan  :: kirja-#D#sg#3p#def#[-n_acc] LANG:FI
+kirjaa	:: kirja-#D#sg#3p#def#[-par] LANG:FI
 kirja-  :: PF:kirja LF:book N -SEM:directional LANG:FI
 
 knows	::	know-#v#T/fin#[-V] LANG:EN
@@ -318,7 +318,7 @@ Merjalla	:: 	Merja-#D#lla
 
 malla	:: ADV MA/inf PF:malla LF:by COMP:v TAIL:T LANG:FI
 
-meren	::	mere-#D#[-n_acc] LANG:FI
+meren	::	mere-#D#sg#3p#def#[-n_acc] LANG:FI
 mere-	::	PF:meri LF:ocean N LANG:FI
 
 mies	::	PF:mies LF:man N LANG:FI
@@ -525,7 +525,7 @@ teke-	:: V CLASS:TR !COMP:D -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke LF:make LANG
 
 that    :: PF:that LF:that FORCE LANG:EN
 
-the		:: PF:the LF:the D PHI:DEF:DEF LANG:EN
+the		:: PF:the LF:the D PHI:DET:DEF PHI:PER:3 PHI:NUM:SG LANG:EN
 
 to     	:: PF:to LF:to P +SEM:directional -SPEC:* TAIL:V +SEM:directional LANG:EN
 
@@ -652,7 +652,7 @@ ci-		:: PF:ci LF:there N PHI_N LANG:IT
 [-ni]	::	inflectional PHI PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-si]	::	inflectional PHI PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-nsa]	:: 	inflectional PHI PHI:PER:3 PHI:NUM:SG LANG:FI
-[-an]	:: 	inflectional PHI PHI:PER:3 PHI:NUM:SG PHI:DET:DET LANG:FI
+[-an]	:: 	inflectional PHI PHI:PER:3 PHI:NUM:SG PHI:DET:DEF LANG:FI
 [-mme]	::	inflectional PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-nne]	::	inflectional PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 

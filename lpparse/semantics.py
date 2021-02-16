@@ -65,45 +65,15 @@ class Semantics:
         """
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
-            log(f'{head.illustrate()} with {sorted(unvalued)} was associated at LF with: ')
+            log(f'\"{head.illustrate()}\" with {sorted(unvalued)} was associated at LF with ')
             list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
                 self.semantic_interpretation.add(self.interpret_antecedent(head, list_of_antecedents[0]))
             else:
                 self.semantic_interpretation.add(f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')')
-            self.antecedent_list.append((head, list_of_antecedents))
             self.report_to_log(head, list_of_antecedents, unvalued)
-
-    def detect_phi_conflicts(self, ps):
-        """
-        Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
-        """
-        for phi in ps.get_phi_set():
-            if phi[-1] == '*':
-                log(f'{ps} induces a phi-feature conflict...')
-                self.semantic_interpretation_failed = True
-
-    def interpret_tail_features(self, ps):
-        """
-        Interprets semantic interpretation relying on tail-features.
-
-        Currently only implements the aspectual ACC-PAR alteration in Finnish aspect.
-        Vainikka (1989), Kiparsky (1997, 2001), Brattico (2020, submitted).
-        """
-        for tail_set in ps.get_tail_sets():
-            self.interpret_argument_tailing(ps, self.get_tailed_head(ps, tail_set))
-
-    def interpret_argument_tailing(self, ps, tailed_head):
-        if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
-            if 'PAR' in ps.features and not ps.bind_to_operator('POL:NEG'):
-                    self.semantic_interpretation.add('Aspectually anomalous')
-            else:
-                self.semantic_interpretation.add('Aspectually bounded')
-
-    def get_tailed_head(self, ps, tail_set):
-        for head in ps.feature_vector()[1:]:
-            if head.match_features(tail_set) == 'complete match':
-                return head
+            self.controlling_parsing_process.consume_resources("LF recovery")
+            self.controlling_parsing_process.consume_resources("Phi")
 
     # Definition for LF-recovery
     def LF_recovery(self, head, unvalued_phi):
@@ -123,8 +93,6 @@ class Semantics:
 
         Source: Brattico (2021). Null arguments and the inverse problem. Glossa: A journal for general linguistics.
         """
-        self.controlling_parsing_process.consume_resources("LF recovery")
-        self.controlling_parsing_process.consume_resources("Phi")
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             # ----------------------- minimal upstream search -----------------------------------------------#
@@ -151,23 +119,6 @@ class Semantics:
             self.semantic_interpretation_failed = True
             return []
 
-    # Definition for the special rule
-    # This handles the exceptional antecedent properties of local D-antecedent specifier
-    def special_local_edge_antecedent_rule(self, node, ps, list_of_antecedents):
-        if node.sister() and node.sister() == ps.local_edge():
-            if 'D' not in node.sister().head().features:
-                self.semantic_interpretation.add(f'{ps}(generic)')
-                list_of_antecedents.append(node.sister())
-                ps.features.add('PHI:DET:GEN')
-            else:
-                list_of_antecedents.append(node.sister())
-            return True
-
-    # Definition for LF-recovery termination
-    def recovery_termination(self, node):
-        return node.sister() and 'SEM:external' in node.sister().head().features
-
-    # Defines the category of possible antecedent for a goal head H
     def is_possible_antecedent(self, antecedent, head):
         """
         Determines whether a constituent [antecedent] constitutes a suitable antecedent argument for [head].
@@ -178,7 +129,7 @@ class Semantics:
         """
         if antecedent.find_me_elsewhere:
             return False    # Do not consider elements that have been copied elsewhere.
-        unchecked = get_relevant_phi(head)  # Gets the relevant unvalued phi-features from the head
+        unchecked = get_relevant_phi(head)  # Gets the relevant unvalued phi-features from the head (NUM, PER, DET)
         for F in antecedent.head().get_valued_features():
             for G in get_relevant_phi(head):
                 check(F, G, unchecked)
@@ -253,6 +204,53 @@ class Semantics:
 
         return prefix + f' {trigger.illustrate()}({arg_str})'
 
+    # Definition for the special rule
+    # This handles the exceptional antecedent properties of local D-antecedent specifier
+    def special_local_edge_antecedent_rule(self, node, ps, list_of_antecedents):
+        if node.sister() and node.sister() == ps.local_edge():
+            if 'D' not in node.sister().head().features:
+                self.semantic_interpretation.add(f'{ps}(generic)')
+                list_of_antecedents.append(node.sister())
+                ps.features.add('PHI:DET:GEN')
+            else:
+                list_of_antecedents.append(node.sister())
+            return True
+
+    # Definition for LF-recovery termination
+    def recovery_termination(self, node):
+        return node.sister() and 'SEM:external' in node.sister().features
+
+    def detect_phi_conflicts(self, ps):
+        """
+        Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
+        """
+        for phi in ps.get_phi_set():
+            if phi[-1] == '*':
+                log(f'{ps} induces a phi-feature conflict...')
+                self.semantic_interpretation_failed = True
+
+    def interpret_tail_features(self, ps):
+        """
+        Interprets semantic interpretation relying on tail-features.
+
+        Currently only implements the aspectual ACC-PAR alteration in Finnish aspect.
+        Vainikka (1989), Kiparsky (1997, 2001), Brattico (2020, submitted).
+        """
+        for tail_set in ps.get_tail_sets():
+            self.interpret_argument_tailing(ps, self.get_tailed_head(ps, tail_set))
+
+    def interpret_argument_tailing(self, ps, tailed_head):
+        if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
+            if 'PAR' in ps.features and not ps.bind_to_operator('POL:NEG'):
+                    self.semantic_interpretation.add('Aspectually anomalous')
+            else:
+                self.semantic_interpretation.add('Aspectually bounded')
+
+    def get_tailed_head(self, ps, tail_set):
+        for head in ps.feature_vector()[1:]:
+            if head.match_features(tail_set) == 'complete match':
+                return head
+
     def report_to_log(self, ps, list_of_antecedents, unvalued_phi_features):
         s = ''
         i = 1
@@ -266,9 +264,9 @@ class Semantics:
                 s = s + ')'
             if s:
                 log(s)
-            else:
-                log(f'{ps}{self.interpret_no_antecedent(ps, unvalued_phi_features)}')
-            return True
+        else:
+            log(f'({self.interpret_no_antecedent(ps, unvalued_phi_features)})')
+        log('. ')
 
     def bind_variables(self, ps):
         """
