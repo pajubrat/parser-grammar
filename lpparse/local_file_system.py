@@ -275,17 +275,17 @@ class LocalFileSystem:
             for t in topics:
                 topics_str += P.narrow_semantics.semantic_bookkeeping[t]['Const'] + ', '
         else:
-            topics_str = 'None'
+            topics_str = 'None, '
         if neutrals:
             for n in neutrals:
                 neutrals_str += P.narrow_semantics.semantic_bookkeeping[n]['Const'] + ', '
         else:
-            neutrals_str = 'None'
+            neutrals_str = 'None, '
         if focus:
             for f in focus:
                 focus_str += P.narrow_semantics.semantic_bookkeeping[f]['Const'] + ', '
         else:
-            focus_str = 'None'
+            focus_str = 'None '
         output_str = 'Marked topics: ' + topics_str + 'Gradient: ' + neutrals_str + 'Marked focus: ' + focus_str
         if not P.narrow_semantics.information_structure_active:
             output_str = output_str + '(Masked due to force features)'

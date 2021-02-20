@@ -163,19 +163,19 @@ class Semantics:
                     phi_set = phi_set | get_valued_phi_set(h.right_const)
             else:
                 if 'PHI:NUM:SG' in h.features and 'PHI:PER:1' in h.features:
-                    phi_set.add(f'{h}.1sg')
+                    phi_set.add(f'1sg pro at {h}')
                 elif 'PHI:NUM:SG' in h.features and 'PHI:PER:2' in h.features:
-                    phi_set.add(f'{h}.2sg')
+                    phi_set.add(f'2sg pro at {h}')
                 elif 'PHI:NUM:SG' in h.features and 'PHI:PER:3' in h.features:
-                    phi_set.add(f'{h}.3sg')
+                    phi_set.add(f'3sg pro at {h}')
                 elif 'PHI:NUM:PL' in h.features and 'PHI:PER:1' in h.features:
-                    phi_set.add(f'{h}.1pl')
+                    phi_set.add(f'1pl pro at {h}')
                 elif 'PHI:NUM:PL' in h.features and 'PHI:PER:2' in h.features:
-                    phi_set.add(f'{h}.2pl')
+                    phi_set.add(f'2pl pro at {h}')
                 elif 'PHI:NUM:PL' in h.features and 'PHI:PER:3' in h.features:
-                    phi_set.add(f'{h}.3pl')
+                    phi_set.add(f'3pl pro at {h}')
             if 'PHI:DET:GEN' in h.features:
-                phi_set.add(f'{h}.generic')
+                phi_set.add(f'generic')
             return phi_set
 
         # Main function

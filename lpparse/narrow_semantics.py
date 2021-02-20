@@ -24,7 +24,8 @@ class NarrowSemantics:
         """
         Wires constituents in [ps] recursively with objects inside the semantic space and adds them to semantic bookkeeping.
         Creates an IDX feature for the constituent and creates the corresponding object into the semantic space
-        (semantic bookkeeping). This version is still unable to create co-reference dependencies.
+        (semantic bookkeeping). This version is still unable to create co-reference dependencies. Semantic bookkeeping
+        holds a ranked gradient which records the prominence of the item in the input structure.
 
         Travels on the right edge and wires all referential heads that have not been wired already.
         Right adjuncts are visited separately, after which the right edge travel continues
@@ -43,17 +44,19 @@ class NarrowSemantics:
 
     def create_wiring(self, ps):
         """
-        Wires constituent ps (its head) with an object inside the semantic space
+        Wires constituent ps (its head) with an object inside the semantic space. THis module will later
+        include the binding theory.
         """
         log(f'Wiring semantics for {ps}')
         idx_feature = 'IDX:' + str(self.index_counter)
-        log(f'(IDX:{idx_feature})...')
+        log(f'({idx_feature})...')
         ps.head().features.add(idx_feature)
 
     def add_to_semantic_bookkeeping(self, ps):
         """
         Adds the element to semantic space (semantic bookkeeping)
         """
+        # Ranked gradient that will go into information structure module
         self.semantic_bookkeeping[str(self.index_counter)] = {'Const': f'{ps}', 'Order gradient': self.index_counter}
         if ps.scan_criterial_features():
             self.semantic_bookkeeping[str(self.index_counter)]['Operator'] = True
@@ -67,20 +70,38 @@ class NarrowSemantics:
         return {f[4:] for f in ps.head().features if f[:3] == 'IDX'}
 
     def get_force_features(self, ps):
+        """
+        Returns force features.
+        """
         return {f for f in ps.head().features if f[:5] == 'FORCE'}
 
     def update_semantics_for_marked_gradient(self, floater, starting_point_head):
+        """
+        Allows communication between adjunct reconstruction and semantic bookkeeping.
+
+        When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
+        record the operation, which will be then used by information structure module
+        """
         idx_set = self.get_semantic_wiring(floater)
         if idx_set:
-            feature_vector_set = set(floater.head())
-            if starting_point_head in feature_vector_set:
-                direction = 'Down'
+            feature_vector_set = set(floater.head().feature_vector())   # Take reconstructed floaters feature vector
+            if starting_point_head in feature_vector_set:               # If starting point is in the feature vector,
+                direction = 'Topicalization'                            # then reconstructed was rightward and the
+                log(f'Topicalization...')                               # production movement was leftward
             else:
-                direction = 'Up'
-            value = list(idx_set)[0]
+                direction = 'Focussing'                                 # Starting point was not in the feature vector,
+                log(f'Focussing...')                                    # then reconstruction was leftward and the
+                                                                        # production movement was rightward
+
+            value = list(idx_set)[0]                                    # normally we only have one IDX, this is just
+                                                                        # precaution
             self.update_semantics_for_attribute(value, 'Marked gradient', direction)
 
     def update_semantics_for_attribute(self, sem_object, attribute, value):
+        """
+        Updates attribute:value for semantic object [sem_object]
+        """
+
         if self.semantic_bookkeeping[sem_object]:
             self.semantic_bookkeeping[sem_object][attribute] = value
 
@@ -115,25 +136,35 @@ class NarrowSemantics:
         self.topic_focus_structure = self.create_topic_gradient(self.main_arguments)
 
     def create_topic_gradient(self, main_arguments):
+        """
+        Creates a topic gradient tuple with three items: marked topic list, neutral gradient, and marked focus list
+        """
         marked_topic_lst = []
         topic_lst = []
         marked_focus_lst = []
-        for key in self.semantic_bookkeeping:
-            if key in main_arguments and not self.semantic_bookkeeping[key]['Operator']:
-                topic_lst.append((self.semantic_bookkeeping[key]['Order gradient'], key))
+
+        # Restrict the vision of this module to main arguments and their gradients
+        for idx in self.semantic_bookkeeping:
+            if idx in main_arguments and not self.semantic_bookkeeping[idx]['Operator']:
+                topic_lst.append((self.semantic_bookkeeping[idx]['Order gradient'], idx))
+
+        # Order the arguments by their gradient (in the spellout structure ~ sensory input)
         topic_lst = sorted(topic_lst)
+
+        # Analyze the gradients
+        # Group the arguments into three lists: marked topics, default/neutral gradient, and marked focus
+        # The algorithm works by moving elements from the original topic list into the marked lists.
+        topic_lst_ = topic_lst.copy()
         for topic, idx in topic_lst:
             if 'Marked gradient' in self.semantic_bookkeeping[idx]:
-                if self.semantic_bookkeeping[idx]['Marked gradient'] == 'Up':
-                    marked_topic_lst.append((self.semantic_bookkeeping[idx]['Order gradient'], idx))
-                    topic_lst.remove((self.semantic_bookkeeping[idx]['Order gradient'], idx))
-                if self.semantic_bookkeeping[idx]['Marked gradient'] == 'Down':
-                    marked_focus_lst.append((self.semantic_bookkeeping[idx]['Order gradient'], idx))
-                    topic_lst.remove((self.semantic_bookkeeping[idx]['Order gradient'], idx))
-        marked_topic_lst_ = [topic[1] for topic in marked_topic_lst]
-        topic_lst_ = [topic[1] for topic in topic_lst]
-        marked_focus_lst_ = [topic[1] for topic in marked_focus_lst]
-        return marked_topic_lst_, topic_lst_, marked_focus_lst_
+                if self.semantic_bookkeeping[idx]['Marked gradient'] == 'Topicalization':
+                    marked_topic_lst.append(idx)
+                    topic_lst_.remove((self.semantic_bookkeeping[idx]['Order gradient'], idx))
+                if self.semantic_bookkeeping[idx]['Marked gradient'] == 'Focussing':
+                    marked_focus_lst.append(idx)
+                    topic_lst_.remove((self.semantic_bookkeeping[idx]['Order gradient'], idx))
+        #
+        return marked_topic_lst, [topic[1] for topic in topic_lst_], marked_focus_lst
 
     def operator_argument(self, arg):
         if self.semantic_bookkeeping[arg]:

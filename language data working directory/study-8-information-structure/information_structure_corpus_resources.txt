@@ -1,0 +1,49 @@
+@  {'test_corpus_file': 'information_structure_corpus.txt', 'test_corpus_folder': 'study-8-information-structure', 'study_folder': 'study-8-information-structure/', 'author': 'PauliBrattico', 'year': 2021, 'date': 'February', 'study_id': 1, 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-02-20 12:18:33.370599
+@  Test sentences from language data working directory\study-8-information-structure\information_structure_corpus.txt.
+@  Logs into language data working directory\study-8-information-structure\information_structure_corpus_log.txt.
+@  Lexicon from language data working directory\lexicon.txt.
+@  Redundancy rules from language data working directory\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\ug_morphemes.txt.
+@ 
+@ 
+Number,Sentence,Study_ID,Total Time,Garden Paths,Memory Reactivation,Steps,Merge,Move Head,Move Phrase,A-Move Phrase,A-bar Move Phrase,Move Adjunct,Agree,Phi,Transfer,Item streamed into syntax,Feature Processing,Extraposition,Inflection,Failed Transfer,LF recovery,LF test,Filter solution,Rank solution,Lexical retrieval,Morphological decomposition,Mean time per word,Asymmetric Merge,Sink,External Tail Test,Execution time (ms)	
+1,se talo ihailee Merjaa ,1,,2085,0,0,12,6,5,0,0,0,0,2,5,7,7,0,0,7,4,3,11,4,4,14,2,521,32,7,19,62
+2,Pekka teki sopimuksen ihailla Merjaa ,1,,4535,0,0,12,11,30,4,0,0,4,6,11,15,12,4,0,16,15,5,23,13,5,28,5,907,52,7,37,93
+3,se mies joka nukkui lahti ,1,,2770,0,0,23,7,14,7,0,7,0,8,11,17,8,0,0,7,1,3,28,4,7,15,3,554,96,13,31,109
+4,Pekka sanoi etta Merja lahtee ,1,,3850,0,0,10,9,20,5,0,0,5,7,10,19,10,0,0,13,14,3,28,11,4,23,4,770,52,5,57,62
+5,Pekka sanoi etta Merja ihailee Pekkaa ,1,,5410,0,0,13,12,34,10,0,0,10,13,17,29,13,0,0,18,23,4,42,17,6,31,5,901,91,7,100,109
+6,se talo sanoi etta Merja lahtee ,1,,3230,0,0,25,9,18,1,0,0,1,7,11,18,10,0,0,8,15,4,28,10,5,18,3,538,129,13,111,62
+7,se talo sanoi etta Merja ihailee Pekkaa ,1,,4755,0,0,41,12,32,5,0,0,5,13,18,27,13,0,0,13,24,5,41,16,7,26,4,679,271,24,256,156
+8,keta Pekka ihailee ,1,,2240,0,0,9,6,8,3,0,1,1,1,3,8,7,0,2,8,4,2,13,4,3,15,3,746,25,6,18,31
+9,Pekka ihailee Merjaa ,1,,2635,0,0,7,6,7,2,0,0,2,2,4,6,7,0,0,12,3,2,9,5,3,19,3,878,18,4,17,31
+10,Pekka antoi kirjan Merjalle ,1,,3320,0,0,14,9,22,5,0,0,5,6,9,14,10,0,0,11,3,3,22,7,7,21,4,830,85,10,97,62
+11,Pekka kaskee Merjan_gen lahtea ,1,,3395,0,0,9,8,15,3,0,0,3,5,8,12,9,1,2,12,7,3,18,8,2,21,4,848,33,5,26,62
+12,Pekka kaskee poikien ihailla Merjaa ,1,,4590,0,0,12,11,27,4,0,0,4,9,13,17,12,4,2,17,12,4,24,13,3,29,5,918,57,7,38,93
+13,keta Pekka ihailee ,1,,2240,0,0,9,6,8,3,0,1,1,1,3,8,7,0,2,8,4,2,13,4,3,15,3,746,25,6,18,31
+14,kuka ihailee Merjaa ,1,,2610,0,0,7,6,7,2,0,2,0,2,4,4,7,0,0,13,3,2,7,5,3,20,3,870,14,4,5,31
+15,kuka halusi ihailla Merjaa ,1,,3295,0,0,10,9,17,3,0,3,0,4,8,7,10,3,0,13,7,4,11,9,3,23,4,823,27,6,6,62
+16,Merjaa ihailee Pekka ,1,,2740,0,0,8,6,9,4,0,0,4,3,6,9,7,0,0,12,1,3,13,4,2,19,3,913,45,5,58,46
+17,Merjan_gen kaskee lahtea Pekka ,1,,3360,0,0,10,8,17,1,0,0,1,11,15,9,9,4,0,12,5,4,15,7,5,21,4,840,60,6,40,62
+18,Pekka Merjaa ihailee ,1,,2760,0,0,9,6,8,2,0,0,2,1,3,9,7,0,2,12,4,2,14,4,3,19,3,920,40,6,55,31
+19,Merjaa Pekka ihailee ,1,,2760,0,0,9,6,8,2,0,0,2,1,3,9,7,0,2,12,4,2,14,4,3,19,3,920,40,6,55,31
+20,Pekka Merjalle kirjan antoi ,1,,3270,0,0,12,9,15,3,0,0,3,1,4,14,10,0,3,11,7,3,19,8,7,21,4,817,79,8,116,62
+21,Pekka kirjan Merjalle antoi ,1,,3190,0,0,15,9,16,3,0,0,3,1,4,13,10,0,2,11,6,3,17,8,3,21,4,797,94,10,130,62
+22,Merjalle Pekka kirjan antoi ,1,,3420,0,0,18,9,15,3,0,0,3,1,4,17,10,0,5,11,10,3,24,7,5,21,4,855,121,13,181,46
+23,Merjalle kirjan Pekka antoi ,1,,3425,0,0,18,9,15,3,0,0,3,1,4,17,10,0,5,11,10,3,24,7,6,21,4,856,120,13,180,62
+24,kirjan Pekka Merjalle antoi ,1,,3190,0,0,15,9,16,3,0,0,3,1,4,13,10,0,2,11,6,3,17,8,3,21,4,797,94,10,130,46
+25,kirjan Merjalle Pekka antoi ,1,,3265,0,0,12,9,15,3,0,0,3,1,4,14,10,0,3,11,7,3,19,8,6,21,4,816,79,8,116,62
+26,Merjaa Pekka kaskee poikien ihailla ,1,,
+27,Merjaa Pekka poikien kaskee ihailla ,1,,
+28,Pekka asui Merjaa lahella ,1,,
+29,Pekka asui lahella Merjaa ,1,,
+30,Pekka kaskee poikien Merjaa ihailla ,1,,
+31,Pekka kaskee Merjaa poikien ihailla ,1,,
+32,Pekka lahtee heidan Merjaa ihailtua ,1,,
+33,Pekka sanoi etta Pekkaa ihailee Merja ,1,,5725,0,0,17,12,46,16,0,0,16,19,24,37,13,0,0,18,15,5,54,13,7,31,5,954,223,11,285,187
+34,mita kaupunkia kohti virtaamalla Seine meren saavuttaa ,1,,
+35,kuka Merjaa ihailee ,1,,2785,0,0,9,6,8,2,0,1,1,1,4,8,7,0,2,13,4,3,13,4,3,20,3,928,26,6,20,31
+36,kuka Merjaa halusi ihailla ,1,,3570,0,0,17,9,16,6,0,3,1,4,9,12,10,1,2,13,11,5,20,7,6,23,4,892,83,12,70,62
+37,kuka nukkui Pekkaa lahella_1 ,1,,5367,2,3,9,10,17,4,0,4,0,9,11,21,9,0,3,12,14,2,32,4,9,21,3,1341,63,4,76,78
+38,Merjaa ihailen ,1,,1695,0,0,5,4,4,1,0,0,1,1,3,3,5,0,0,7,0,2,5,3,1,12,2,847,10,3,10,15
+39,Pekka sanoi etta Merjaa ihailee ,1,,4000,0,0,11,10,21,5,0,0,5,7,12,17,11,0,0,13,14,5,26,12,4,24,4,800,50,6,49,78

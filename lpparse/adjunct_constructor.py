@@ -124,7 +124,7 @@ class AdjunctConstructor:
             log(f'Cannot push the whole structure {ps} into the secondary processing stream (adjunct)...')
             return False
         ps.adjunct = True
-        log(f'{ps} was pulled into secondary processing stream (made an adjunct)...')
+        log(f'{ps} was externalized...')
         self.add_tail_features_if_missing(ps)
         self.transfer_adjunct(ps)
         return True
@@ -148,7 +148,7 @@ class AdjunctConstructor:
         """
         original_mother = ps.mother
         ps.detach()
-        log(f'{ps} is transferred to LF as a phase...')
+        log(f'{ps} is transferred to LF...')
         disable_logging()
         ps = self.controlling_parser_process.transfer_to_LF(ps)
         enable_logging()
