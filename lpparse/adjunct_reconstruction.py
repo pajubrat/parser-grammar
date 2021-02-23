@@ -126,7 +126,6 @@ class FloaterMovement():
             starting_point_head = floater.container_head()
         else:
             starting_point_head = None
-        self.controlling_parser_process.narrow_semantics.wire_semantics(floater)
         floater_copy = floater.copy()
         # ------------------------------------ minimal search ------------------------------------#
         for node in self.local_tense_edge(floater).minimal_search():

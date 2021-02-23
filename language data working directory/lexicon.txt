@@ -9,11 +9,11 @@ admires  :: admire-#v#T/fin#[-s] LANG:EN
 admire-  :: PF:admire LF:admire V -COMP:T/fin CLASS:TR -SPEC:Neg -COMP:Neg COMP:D
 
 admire* :: admire-#v'#T/fin' LANG:EN
-T/fin*	:: CAT:T/fin PF:T/fin' LF:T -VAL !SPEC:* NO_NUMBER NO_DET
-v*      :: CAT:v PF:v LF:v -VAL NO_NUMBER NO_DET
+T/fin*	:: T/fin PF:T/fin' LF:T -VAL !SPEC:* NO_NUMBER NO_DET
+v*      :: v PF:v LF:v -VAL NO_NUMBER NO_DET
 
 admire** :: admire-#v'#T/fin'' LANG:EN
-T/fin**	:: CAT:T/fin PF:T/fin'' LF:T -VAL !SPEC:* NO_NUMBER NO_DET NO_PERSON PHI:PER:3
+T/fin**	:: T/fin PF:T/fin'' LF:T -VAL !SPEC:* NO_NUMBER NO_DET NO_PERSON PHI:PER:3
 
 adoro	:: adora-#v#T/fin#[-o] LANG:IT
 adori	:: adora-#v#T/fin#[-i] LANG:IT
@@ -204,7 +204,7 @@ kaupunki	:: PF:kaupunki LF:city N -COMP:P LANG:FI
 
 kaski	:: kaske-#v#T/fin#[-V] LANG:FI
 kaskee	:: kaske-#v#T/fin#[-V] LANG:FI
-kaske-	:: PF:kaske LF:order V !COMP:A/inf SEM:external LANG:FI
+kaske-	:: PF:kaske LF:order V !COMP:A/inf -SPEC:* SEM:external LANG:FI
 
 kellon	:: kello0-#n#[-n_acc] LANG:FI
 kellon	:: kello-#[-n_acc] LANG:FI
@@ -233,11 +233,15 @@ kohti	:: PF:kohti LF:towards P TAIL:V LANG:FI
 koko	:: PF:koko LF:all D LANG:FI TAIL:T -COMP:D adjoinable
 
 kuka 	:: kuka-#D#wh#sg#3p#def#hum#[-nom] LANG:FI
+KUKA	:: kuka-#D#wh#sg#3p#def#hum#[-nom]#[foc] LANG:FI
 kuka-   :: PF:kuka LF:who N PHI LANG:FI
 
 kuorsaa			:: kuorsaa-#T/fin#[-V] LANG:FI
 kuorsaamalla 	:: kuorsaa-#malla LANG:FI
 kuorsaa- 		:: PF:kuorsaa LF:snore V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
+
+kysyi	:: kysy-#v#T/fin#[-V] LANG:EN
+kysy-	:: PF:kysya LF:ask V COMP:FORCE:OP:WH LANG:FI
 
 lahella		::	PF:lahella LF:near P !COMP:* !SPEC:* INF !SPEC:D VAL LANG:FI
 lahella		::	PF:lahella LF:near P !COMP:* !COMP:D LANG:FI
@@ -312,6 +316,7 @@ Merja_0acc	::	Merja-#D#sg#3p#def#hum#def#[-0_acc] LANG:FI
 Merjan_gen	::	Merja-#D#sg#3p#def#hum#def#[-gen] LANG:FI
 Merjan_poss	::	Merja-#D#sg#3p#def#hum#def#[-poss] LANG:FI
 Merjaa		:: Merja-#D#sg#3p#def#hum#def#[-par] LANG:FI
+Merjaahan	:: Merja-#D#sg#3p#def#hum#def#[-par]#[hAn] LANG:FI
 Merja-  	:: PF:Merja LF:Merja N -SEM:directional -adjoinable LANG:FI
 Merjalle	::	Merja-#D#lle
 Merjalla	:: 	Merja-#D#lla
@@ -400,7 +405,10 @@ Pekan		:: Pekka-#D#sg#3p#def#hum#[-n_acc]
 Pekan_gen	:: Pekka-#D#sg#3p#def#hum#[-gen] LANG:FI
 Pekan_acc	::	Pekka-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
 Pekka_0acc	::	Pekka-#D#sg#3p#def#hum#def#[-0_acc] LANG:FI
+Pekkahan	:: Pekka-#D#sg#3p#def#hum#def#[-nom]#[hAn] LANG:FI
+PEKKA		:: Pekka-#D#sg#3p#def#hum#def#[-nom]#[foc]
 Pekka-  	:: PF:Pekka LF:Pekka N -SEM:directional LANG:FI
+
 
 pelottaa	:: pelkaa-#cau#T/fin#[-V] LANG:FI
 pelkaa		:: pelkaa-#v#T/fin#[-V] LANG:FI
@@ -511,6 +519,7 @@ surprised	::	surprise-#v#T/fin LANG:EN
 surprise-	:: PF:surprise LF:surprise V CLASS:TR -COMP:T/fin LANG:EN
 
 talo	:: PF:talo LF:house N LANG:FI
+taloa	:: talo#[-par]
 
 tama	:: tama-#D#sg#3p#def
 tama-	:: PF:tama LF:this N PHI LANG:FI
@@ -589,8 +598,10 @@ te- 	:: PF:te LF:you N PHI_N LANG:FI
 he_FI	:: he_FI-#D#nom#pl#3p#def#hum
 heidan	:: he_FI-#D#pl#3p#def#hum#[-gen]
 he_FI- 	:: PF:he LF:they N PHI_N LANG:FI
-se		:: PF:se LF:the/that D LANG:FI
-sen		:: PF:sen LF:the/that D TAIL:ASP TAIL:PHI TAIL:*POL:NEG LANG:FI
+se		:: se-#[-nom]#sg#3p#def
+sen		:: se-#[-n_acc]#sg#3p#def
+sita	:: se-#[-par]#sg#3p#def
+se-		:: PF:se LF:the/that D LANG:FI
 
 # English
 I		:: I-#D#sg#1p#def#hum
@@ -679,9 +690,14 @@ gen			:: inflectional GEN TAIL:INF,ARG -float
 [-t_acc]	:: inflectional t-ACC TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
 [-0_acc]	:: inflectional 0_ACC TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
 
-
 # ASPECT MARKERS
 asp			:: inflectional ASP:BOUNDED
+
+# FINNISH LEFT PERIPHERAL DISCOURSE FEATURES
+[hAn]		:: inflectional OP:FAM
+[pA]		:: inflectional OP:POL
+[kO]		:: inflectional OP OP:WH OP:Q
+[foc]		:: inflectional OP:FOC
 
 # ARTIFICIAL LEXICAL ITEMS
 a'	:: a PF:a LF:A LANG:X

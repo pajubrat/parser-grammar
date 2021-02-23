@@ -225,7 +225,7 @@ class LexicalInterface:
         # Finnish operator snowballing
         if non_finite_agreement:
             if 'OP:_' in features and 'FORCE' not in features:
-                if not {'OP:WH', 'OP:TOP', 'OP:FOC', 'OP:REL'} & features:
+                if not self.controlling_parser_process.narrow_semantics.operator_variable_module.contains_operator_feature(features):
                     features.add('!SPEC:OP:_')
 
         return features

@@ -262,9 +262,18 @@ class LocalFileSystem:
                 self.results_file.write('\n\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, delimiter=' ')) +'\n')
                 if parse_number == 1:
                     self.results_file.write('\n\t' + self.format_resource_output(P.resources) + '\n')
-                    self.results_file.write(f'\n\tInformation structure: {self.format_information_structure(P)}\n')
+                    self.results_file.write(f'\n\tSpeaker information structure:\n{self.format_information_structure(P)}\n')
+                    self.results_file.write(f'\n\tSemantic interpretation: {self.format_semantic_interpretation(P)}\n')
                 parse_number = parse_number + 1
                 self.results_file.write('\n')
+
+    def format_semantic_interpretation(self, P):
+        output_str = '\n'
+        for semantic_object, data_dict in P.narrow_semantics.semantic_bookkeeping.items():
+            output_str += '\tObject ' + semantic_object + '\n'
+            for item, value in data_dict.items():
+                output_str += '\t\t' + item + ': ' + f'{value}' + '\n'
+        return output_str
 
     def format_information_structure(self, P):
         topics_str = ''
@@ -273,22 +282,22 @@ class LocalFileSystem:
         topics, neutrals, focus = P.narrow_semantics.topic_focus_structure
         if topics:
             for t in topics:
-                topics_str += P.narrow_semantics.semantic_bookkeeping[t]['Const'] + ', '
+                topics_str += P.narrow_semantics.semantic_bookkeeping[t]['Reference']
         else:
             topics_str = 'None, '
         if neutrals:
             for n in neutrals:
-                neutrals_str += P.narrow_semantics.semantic_bookkeeping[n]['Const'] + ', '
+                neutrals_str += P.narrow_semantics.semantic_bookkeeping[n]['Reference']
         else:
             neutrals_str = 'None, '
         if focus:
             for f in focus:
-                focus_str += P.narrow_semantics.semantic_bookkeeping[f]['Const'] + ', '
+                focus_str += P.narrow_semantics.semantic_bookkeeping[f]['Reference']
         else:
             focus_str = 'None '
-        output_str = 'Marked topics: ' + topics_str + 'Gradient: ' + neutrals_str + 'Marked focus: ' + focus_str
+        output_str = '\tMarked topics:\n\t\t' + topics_str + '\n\tGradient:\n\t\t' + neutrals_str + '\n\tMarked focus:\n\t\t' + focus_str
         if not P.narrow_semantics.information_structure_active:
-            output_str = output_str + '(Masked due to force features)'
+            output_str = output_str + '(Force feature is present)'
         return output_str
 
     def save_image(self, P, sentence, count):
@@ -375,7 +384,7 @@ class LocalFileSystem:
         log('\t\t-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
         if not parser.first_solution_found:
             log('\t\tSemantic bookkeeping:\n')
-            log(f'\t\t{parser.narrow_semantics.semantic_bookkeeping}\n')
+            log(f'\t\t{self.format_semantic_interpretation(parser)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
         log('\n\tChecking if the sentence is ambiguous...\n')
 

@@ -13,129 +13,393 @@
 		se talo sanoi etta Merja ihailee Pekkaa
 		keta Pekka ihailee
 
-& 1 All-new canonical sentences 
+=> 1.0.0
+& 1 Left peripheral particles NO
+	
+	=> 1.1.0
+	& 1.1 Clause type MAIN 
+	
+		=> 1.1.1
+		& 1.1.1 Canonical
 
-	& 1.1 Transitive SVO
+			Pekka ihailee Merjaa	
+			Pekka antoi kirjan Merjalle
+			Pekka kaskee Merjan_gen lahtea
+			Pekka kaskee poikien ihailla Merjaa
+			Pekka nukkuu lahella Merjaa
+
+		=> 1.1.2
+		& 1.1.2 Noncanonical
 		
-		Pekka ihailee Merjaa
+			Merjaa ihailee Pekka	
+			Merjan_gen kaskee lahtea Pekka
+			Pekka Merjaa ihailee
+			Merjaa Pekka ihailee
+			se mies Merjaa ihailee
+			Merjaa se mies ihailee
+			Pekka Merjalle kirjan antoi
+			Pekka kirjan Merjalle antoi
+			Merjalle Pekka kirjan antoi
+			Merjalle kirjan Pekka antoi
+			kirjan Pekka Merjalle antoi
+			kirjan Merjalle Pekka antoi
+			Merjaa Pekka poikien kaskee ihailla
+			Merjaa Pekka kaskee poikien ihailla
+			Pekka nukkuu Merjaa lahella
+			Pekka kaskee poikien Merjaa ihailla
+			Pekka kaskee Merjaa poikien ihailla
+			Pekka lahtee heidan Merjaa ihailtua
+	
+	=> 1.2.0
+	& 1.2 Clause type EMBEDDED
+	
+		=> 1.2.1
+		& 1.2.1 Canonical
 		
-	& 1.2 Ditransitive SVO-IO
-	
-		Pekka antoi kirjan Merjalle
-	
-	& 1.3 infinitival complement SVsv
+			Pekka sanoi etta Pekka ihailee Merjaa	
+			Pekka sanoi etta Pekka antoi kirjan Merjalle
+			Pekka sanoi etta Pekka kaskee Merjan_gen lahtea
+			Pekka sanoi etta Pekka kaskee poikien ihailla Merjaa
+			Pekka sanoi etta Pekka nukkuu lahella Merjaa
 
-		Pekka kaskee Merjan_gen lahtea
-		Pekka kaskee poikien ihailla Merjaa
+		=> 1.2.2
+		& 1.2.2 Noncanonical
+
+			Pekka sanoi etta Merjaa ihailee Pekka	
+			Pekka sanoi etta Merjan_gen kaskee lahtea Pekka
+			Pekka sanoi etta Pekka Merjaa ihailee
+			Pekka sanoi etta Merjaa Pekka ihailee
+			Pekka sanoi etta se mies Merjaa ihailee
+			Pekka sanoi etta Merjaa se mies ihailee
+			Pekka sanoi etta Pekka Merjalle kirjan antoi
+			Pekka sanoi etta Pekka kirjan Merjalle antoi
+			Pekka sanoi etta Merjalle Pekka kirjan antoi
+			Pekka sanoi etta Merjalle kirjan Pekka antoi
+			Pekka sanoi etta kirjan Pekka Merjalle antoi
+			Pekka sanoi etta kirjan Merjalle Pekka antoi
+			Pekka sanoi etta Merjaa Pekka poikien kaskee ihailla
+			Pekka sanoi etta Merjaa Pekka kaskee poikien ihailla
+			Pekka sanoi etta Pekka nukkuu Merjaa lahella
+			Pekka sanoi etta Pekka kaskee poikien Merjaa ihailla
+			Pekka sanoi etta Pekka kaskee Merjaa poikien ihailla
+			Pekka sanoi etta Pekka lahtee heidan Merjaa ihailtua
+
+=> 2.0.0
+& 2 Left peripheral particles (wh, foc, pA, hAn, kO) YES
 	
-	& 1.4 Basic interrogatives
-	
-		keta Pekka ihailee
-		kuka ihailee Merjaa
-		kuka halusi ihailla Merjaa
-	
-& 2 OVS inversions
-	
-	& 2.1 Simple transitive OVS sentences
-	
-		Merjaa ihailee Pekka
+	=> 2.1.0
+	2.1 Clause type MAIN
 		
-	& 2.2 Infinitival complements (sVvS)
-	
-		Merjan_gen kaskee lahtea Pekka
-
-& 3 Multi subject/topic constructions
-
-	& 3.1 Transitive SOV, OSV
-	
-		Pekka Merjaa ihailee
-		Merjaa Pekka ihailee
-	
-	& 3.2 Ditransitive (all variants)
-	
-		Pekka Merjalle kirjan antoi
-		Pekka kirjan Merjalle antoi
-		Merjalle Pekka kirjan antoi
-		Merjalle kirjan Pekka antoi
-		kirjan Pekka Merjalle antoi
-		kirjan Merjalle Pekka antoi
-	
-	& 3.3 Infinitival complements
-	
-		Merjaa Pekka kaskee poikien ihailla
-		Merjaa Pekka poikien kaskee ihailla
-
-& 4 Internal topicalization
-
-	& 4.1 Adpositions
-	
-		Pekka asui Merjaa lahella
-		Pekka asui lahella Merjaa
-	
-	& 4.2 A-infinitival
-	
-		Pekka kaskee poikien Merjaa ihailla
-		Pekka kaskee Merjaa poikien ihailla
+		=> 2.1.1
+		& 2.1.1 Canonical
 		
-	& 4.3 Inside adjunct infinitival
-	
-		Pekka lahtee heidan Merjaa ihailtua
-	
-	& 4.4 Inside embedded that-clause (that-OVS)
-	
-		Pekka sanoi etta Pekkaa ihailee Merja
+			& Interrogative wh
+			keta Pekka ihailee
+			kuka ihailee Merjaa
+			kuka halusi ihailla Merjaa
 		
-	& 4.5 In combination with pied-piping
-	
-		mita kaupunkia kohti virtaamalla Seine meren saavuttaa
-		
-& 5 Interaction with A-bar reconstruction
-	
-	& 5.1 Interrogatives with topicalization
-	
-		kuka Merjaa ihailee
-		kuka Merjaa halusi ihailla
-	
-	& 5.2 Interrogatives with internal topicalization
-	
-		kuka nukkui Pekkaa lahella_1
+			& Familiarity particle hAn
+			Pekka#[hAn] ihailee Merjaa
+			Pekkahan ihailee Merjaa
+			Merjaa#[hAn] Pekka ihailee
+			Merjaahan Pekka ihailee
+			
+			& Polarity particle pA
+			Pekka#[pA] ihailee Merjaa
+			Merjaa#[pA] Pekka ihailee
+			
+			& Yes/no question particle kO
+			Pekka#[kO] ihailee Merjaa
+			Merjaa#[kO] Pekka ihailee
+			
+			& Contrastive focus foc  and/or prosodic emphasis
+			Pekka#[foc] ihailee Merjaa
+			PEKKA ihailee Merjaa
+			Merjaa#[foc] Pekka ihailee
+			
+			& Two particle combinations
+			PEKKA#[hAn] ihailee Merjaa
+			PEKKA#[pA] ihailee Merjaa
+			PEKKA#[kO] ihailee Merjaa			
+			Pekka#[pA]#[hAn] ihailee Merjaa
+			Pekka#[kO]#[hAn] ihailee Merjaa
+			kuka#[hAn] ihailee Merjaa
+			kuka#[pA] ihailee Merjaa
+			kuka#[kO] ihailee Merjaa
+			Merjaa#[foc]#[hAn] Pekka ihailee
+			Merjaa#[foc]#[pA] Pekka ihailee
+			Merjaa#[foc]#[kO] Pekka ihailee
+			Merjaa#[foc]#[pA]#[hAn] Pekka ihailee
+			Merjaa#[foc]#[kO]#[hAn] Pekka ihailee
+			keta#[hAn] Pekka ihailee
+			keta#[pA] Pekka ihailee
+			keta#[kO] Pekka ihailee
 
-& 6 Interaction with pro-drop
+			& Three particle combinations
+			PEKKA#[kO]#[hAn] ihailee Merjaa
+			PEKKA#[pA]#[hAn] ihailee Merjaa		
+			kuka#[kO]#[hAn] ihailee Merjaa
+			Merjaa#[foc]#[kO]#[hAn] Pekka ihailee
+			Merjaa#[foc]#[pA]#[hAn] Pekka ihailee
+			keta#[foc]#[kO]#[hAn] Pekka ihailee
+			
+			& All above with pied-piping
+			se talo#[hAn] ihailee Merjaa
+			se talo#[pA] ihailee Merjaa
+			se talo#[kO] ihailee Merjaa
+			se talo#[foc] ihailee Merjaa
+			se talo#[kO]#[hAn] ihailee Merjaa
+			se talo#[pA]#[hAn] ihailee Merjaa
+			se talo#[foc]#[kO]#[hAn] ihailee Merjaa
+			se talo#[foc]#[pA]#[hAn] ihailee Merjaa
+			sita taloa#[hAn] Pekka ihailee
+			sita taloa#[pA] Pekka ihailee
+			sita taloa#[kO] Pekka ihailee
+			sita taloa#[foc] Pekka ihailee
+			sita taloa#[kO]#[hAn] Pekka ihailee
+			sita taloa#[pA]#[hAn] Pekka ihailee
+			sita taloa#[foc]#[kO]#[hAn] Pekka ihailee
+			sita taloa#[foc]#[pA]#[hAn] Pekka ihailee
+			
+		=> 2.1.2
+		& 2.1.2 Noncanonical
 
-	& 6.1 Transitive pro-drop 
+			& Interrogative wh
+			keta ihailee Pekka
+			kuka Merjaa ihailee Merjaa
+			kuka Merjaa halusi ihailla
+		
+			& Familiarity particle hAn
+			Pekka#[hAn] Merjaa ihailee
+			Pekkahan Merjaa ihailee
+			Merjaa#[hAn] ihailee Pekka
+			Merjaahan ihailee Pekka
+			
+			& Polarity particle pA
+			Pekka#[pA] Merjaa ihailee
+			Merjaa#[pA] ihailee Pekka
+			
+			& Yes/no question particle kO
+			Pekka#[kO] Merjaa ihailee
+			Merjaa#[kO] ihailee Pekka
+			
+			& Contrastive focus foc and/or prosodic emphasis
+			Pekka#[foc] Merjaa ihailee
+			PEKKA Merjaa ihailee
+			Merjaa#[foc] ihailee Pekka
+			
+			& Two particle combinations
+			PEKKA#[hAn] Merjaa ihailee
+			PEKKA#[pA] Merjaa ihailee
+			PEKKA#[kO] Merjaa ihailee			
+			Pekka#[pA]#[hAn] Merjaa ihailee
+			Pekka#[kO]#[hAn] Merjaa ihailee
+			kuka#[hAn] Merjaa ihailee
+			kuka#[pA] Merjaa ihailee
+			kuka#[kO] Merjaa ihailee
+			Merjaa#[foc]#[hAn] ihailee Pekka
+			Merjaa#[foc]#[pA] ihailee Pekka
+			Merjaa#[foc]#[kO] ihailee Pekka
+			Merjaa#[foc]#[pA]#[hAn] ihailee Pekka
+			Merjaa#[foc]#[kO]#[hAn] ihailee Pekka
+			keta#[hAn] ihailee Pekka
+			keta#[pA] ihailee Pekka
+			keta#[kO] ihailee Pekka
 
-		Merjaa ihailen
-	
-	& 6.2 In embedded that-clause
-	
-		Pekka sanoi etta Merjaa ihailee
+			& Three particle combinations
+			PEKKA#[kO]#[hAn] Merjaa ihailee
+			PEKKA#[pA]#[hAn] Merjaa ihailee		
+			kuka#[kO]#[hAn] Merjaa ihailee
+			Merjaa#[foc]#[kO]#[hAn] ihailee Pekka
+			Merjaa#[foc]#[pA]#[hAn] ihailee Pekka
+			keta#[foc]#[kO]#[hAn] ihailee Pekka
 
-& 7 Left peripheral (C-cartography) topicalization
+			& All above with pied-piping
+			se talo#[hAn] Merjaa ihailee
+			se talo#[pA] Merjaa ihailee
+			se talo#[kO] Merjaa ihailee
+			se talo#[foc] Merjaa ihailee
+			se talo#[kO]#[hAn] Merjaa ihailee
+			se talo#[pA]#[hAn] Merjaa ihailee
+			se talo#[foc]#[kO]#[hAn] Merjaa ihailee
+			se talo#[foc]#[pA]#[hAn] Merjaa ihailee
+			sita taloa#[hAn] ihailee Pekka
+			sita taloa#[pA] ihailee Pekka
+			sita taloa#[kO] ihailee Pekka
+			sita taloa#[foc] ihailee Pekka
+			sita taloa#[kO]#[hAn] ihailee Pekka
+			sita taloa#[pA]#[hAn] ihailee Pekka
+			sita taloa#[foc]#[kO]#[hAn] ihailee Pekka
+			sita taloa#[foc]#[pA]#[hAn] ihailee Pekka
+			
+	=> 2.2.0
+	& 2.2 Clause type EMBEDDED
 	
-	& 7.1 Phrasal
-	
-		& 7.1.1 Left peripheral discourse features (han, pa, FOC)
+		=> 2.1.1
+		& 2.1.1 Canonical
 		
-		& 7.1.2 Left peripheral discourse features in combination
+			& Interrogative wh
+			Pekka kysyi keta Pekka ihailee
+			Pekka kysyi kuka ihailee Merjaa
+			Pekka kysyi kuka halusi ihailla Merjaa
 		
-		& 7.1.3 Left peripheral discourse features in combination with interrogatives
-		
-		& 7.1.4  Focus in situ and in operator position
-	
-		& 7.1.5 Left peripheral discourse features and free topicalization
-		
-	& 7.2 Head
-		
-		& 7.2.1 Left peripheral discousre features in fronted heads
-	
-	& 7.3 Complex C-cartopgrahy generation
+			& Familiarity particle hAn
+			Pekka sanoi etta Pekka#[hAn] ihailee Merjaa
+			Pekka sanoi etta Pekkahan ihailee Merjaa
+			Pekka sanoi etta Merjaa#[hAn] Pekka ihailee
+			Pekka sanoi etta Merjaahan Pekka ihailee
+			
+			& Polarity particle pA
+			Pekka sanoi etta Pekka#[pA] ihailee Merjaa
+			Pekka sanoi etta Merjaa#[pA] Pekka ihailee
+			
+			& Yes/no question particle kO
+			Pekka kysyi etta Pekka#[kO] ihailee Merjaa
+			Pekka kysyi etta Merjaa#[kO] Pekka ihailee
+			
+			& Contrastive focus foc  and/or prosodic emphasis
+			Pekka sanoi etta Pekka#[foc] ihailee Merjaa
+			Pekka sanoi etta PEKKA ihailee Merjaa
+			Pekka sanoi etta Merjaa#[foc] Pekka ihailee
+			
+			& Two particle combinations
+			Pekka sanoi etta PEKKA#[hAn] ihailee Merjaa
+			Pekka sanoi etta PEKKA#[pA] ihailee Merjaa
+			Pekka kysyi etta PEKKA#[kO] ihailee Merjaa			
+			Pekka sanoi etta Pekka#[pA]#[hAn] ihailee Merjaa
+			Pekka kysyi etta Pekka#[kO]#[hAn] ihailee Merjaa
+			Pekka kysyi etta kuka#[hAn] ihailee Merjaa
+			Pekka kysyi etta kuka#[pA] ihailee Merjaa
+			Pekka kysyi etta kuka#[kO] ihailee Merjaa
+			Pekka sanoi etta Merjaa#[foc]#[hAn] Pekka ihailee
+			Pekka sanoi etta Merjaa#[foc]#[pA] Pekka ihailee
+			Pekka kysyi etta Merjaa#[foc]#[kO] Pekka ihailee
+			Pekka sanoi etta Merjaa#[foc]#[pA]#[hAn] Pekka ihailee
+			Pekka kysyi etta Merjaa#[foc]#[kO]#[hAn] Pekka ihailee
+			Pekka kysyi etta keta#[hAn] Pekka ihailee
+			Pekka kysyi etta keta#[pA] Pekka ihailee
+			Pekka kysyi etta keta#[kO] Pekka ihailee
 
-& 8 Limits of topicalization and focusing
+			& Three particle combinations
+			Pekka kysyi etta PEKKA#[kO]#[hAn] ihailee Merjaa
+			Pekka sanoi etta PEKKA#[pA]#[hAn] ihailee Merjaa		
+			Pekka kysyi etta kuka#[kO]#[hAn] ihailee Merjaa
+			Pekka kysyi etta Merjaa#[foc]#[kO]#[hAn] Pekka ihailee
+			Pekka sanoi etta Merjaa#[foc]#[pA]#[hAn] Pekka ihailee
+			Pekka kysyi etta keta#[foc]#[kO]#[hAn] Pekka ihailee
+			
+			& All above with pied-piping
+			Pekka sanoi etta se talo#[hAn] ihailee Merjaa
+			Pekka sanoi etta se talo#[pA] ihailee Merjaa
+			Pekka kysyi etta se talo#[kO] ihailee Merjaa
+			Pekka sanoi etta se talo#[foc] ihailee Merjaa
+			Pekka kysyi etta se talo#[kO]#[hAn] ihailee Merjaa
+			Pekka sanoi etta se talo#[pA]#[hAn] ihailee Merjaa
+			Pekka kysyi etta se talo#[foc]#[kO]#[hAn] ihailee Merjaa
+			Pekka sanoi etta se talo#[foc]#[pA]#[hAn] ihailee Merjaa
+			Pekka sanoi etta sita taloa#[hAn] Pekka ihailee
+			Pekka sanoi etta sita taloa#[pA] Pekka ihailee
+			Pekka kysyi etta sita taloa#[kO] Pekka ihailee
+			Pekka sanoi etta sita taloa#[foc] Pekka ihailee
+			Pekka kysyi etta sita taloa#[kO]#[hAn] Pekka ihailee
+			Pekka sanoi etta sita taloa#[pA]#[hAn] Pekka ihailee
+			Pekka kysyi etta sita taloa#[foc]#[kO]#[hAn] Pekka ihailee
+			Pekka kysyi etta sita taloa#[foc]#[pA]#[hAn] Pekka ihailee
+			
+		=> 2.1.2
+		& 2.1.2 Noncanonical
 
-	& 8.1 Topicalization from islands (CED effects)
+			& Interrogative wh
+			Pekka kysyi etta keta ihailee Pekka
+			Pekka kysyi etta kuka Merjaa ihailee Merjaa
+			Pekka kysyi etta kuka Merjaa halusi ihailla
+		
+			& Familiarity particle hAn
+			Pekka#[hAn] Merjaa ihailee
+			Pekkahan Merjaa ihailee
+			Merjaa#[hAn] ihailee Pekka
+			Merjaahan ihailee Pekka
+			
+			& Polarity particle pA
+			Pekka#[pA] Merjaa ihailee
+			Merjaa#[pA] ihailee Pekka
+			
+			& Yes/no question particle kO
+			Pekka kysyi etta Pekka#[kO] Merjaa ihailee
+			Pekka kysyi etta Merjaa#[kO] ihailee Pekka
+			
+			& Contrastive focus foc and/or prosodic emphasis
+			Pekka sanoi etta Pekka#[foc] Merjaa ihailee
+			Pekka sanoi etta PEKKA Merjaa ihailee
+			Pekka sanoi etta Merjaa#[foc] ihailee Pekka
+			
+			& Two particle combinations
+			Pekka sanoi etta PEKKA#[hAn] Merjaa ihailee
+			Pekka sanoi etta PEKKA#[pA] Merjaa ihailee
+			Pekka kysyi etta PEKKA#[kO] Merjaa ihailee			
+			Pekka sanoi etta Pekka#[pA]#[hAn] Merjaa ihailee
+			Pekka kysyi etta Pekka#[kO]#[hAn] Merjaa ihailee
+			Pekka sanoi etta kuka#[hAn] Merjaa ihailee
+			Pekka sanoi etta kuka#[pA] Merjaa ihailee
+			Pekka kysyi etta kuka#[kO] Merjaa ihailee
+			Pekka sanoi etta Merjaa#[foc]#[hAn] ihailee Pekka
+			Pekka sanoi etta Merjaa#[foc]#[pA] ihailee Pekka
+			Pekka kysyi etta Merjaa#[foc]#[kO] ihailee Pekka
+			Pekka sanoi etta Merjaa#[foc]#[pA]#[hAn] ihailee Pekka
+			Pekka kysyi etta Merjaa#[foc]#[kO]#[hAn] ihailee Pekka
+			Pekka sanoi etta keta#[hAn] ihailee Pekka
+			Pekka sanoi etta keta#[pA] ihailee Pekka
+			Pekka kysyi etta keta#[kO] ihailee Pekka
+
+			& Three particle combinations
+			Pekka kysyi etta PEKKA#[kO]#[hAn] Merjaa ihailee
+			Pekka sanoi etta PEKKA#[pA]#[hAn] Merjaa ihailee		
+			Pekka kysyi etta kuka#[kO]#[hAn] Merjaa ihailee
+			Pekka kysyi etta Merjaa#[foc]#[kO]#[hAn] ihailee Pekka
+			Pekka sanoi etta Merjaa#[foc]#[pA]#[hAn] ihailee Pekka
+			Pekka kysyi etta keta#[foc]#[kO]#[hAn] ihailee Pekka
+
+			& All above with pied-piping
+			Pekka sanoi etta se talo#[hAn] Merjaa ihailee
+			Pekka sanoi etta se talo#[pA] Merjaa ihailee
+			Pekka kysyi etta se talo#[kO] Merjaa ihailee
+			Pekka sanoi etta se talo#[foc] Merjaa ihailee
+			Pekka kysyi etta se talo#[kO]#[hAn] Merjaa ihailee
+			Pekka sanoi etta se talo#[pA]#[hAn] Merjaa ihailee
+			Pekka kysyi etta se talo#[foc]#[kO]#[hAn] Merjaa ihailee
+			Pekka sanoi etta se talo#[foc]#[pA]#[hAn] Merjaa ihailee
+			Pekka sanoi etta sita taloa#[hAn] ihailee Pekka
+			Pekka sanoi etta sita taloa#[pA] ihailee Pekka
+			Pekka kysyi etta sita taloa#[kO] ihailee Pekka
+			Pekka sanoi etta sita taloa#[foc] ihailee Pekka
+			Pekka kysyi etta sita taloa#[kO]#[hAn] ihailee Pekka
+			Pekka sanoi etta sita taloa#[pA]#[hAn] ihailee Pekka
+			Pekka kysyi etta sita taloa#[foc]#[kO]#[hAn] ihailee Pekka
+			Pekka sanoi etta sita taloa#[foc]#[pA]#[hAn] ihailee Pekka
+		
+		
 	
-	& 8.2 Topicalization from embedded finite clause
+& C-cartopgrahy generation
+
+& Left peripheral features in connection with heads
+
+& Limits of topicalization and focusing
+
+	& Topicalization from islands (CED effects)
 	
-	& 8.3 Focussing into embedded finite clause
+	& Topicalization from embedded finite clause
 	
-	& 8.4 Focussing of the genitive argument
+	& Focussing into embedded finite clause
+	
+	& Focussing of the genitive argument
+
+	& Left peripheral features in situ
+	
+	& Distributed left peripheral features, with or without interrogative at the left edge
+	
+	& Impossible combinations of left peripheral features
+	
+	& Left peripheral features and relativization
+	
+	& Main verb selection of embedded left peripheral features
+	

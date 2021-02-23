@@ -68,4 +68,5 @@ class Transfer:
         self.extraposition_module.last_resort_reconstruct(ps)
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
+
         return ps

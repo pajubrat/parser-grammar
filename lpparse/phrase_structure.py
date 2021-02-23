@@ -242,7 +242,6 @@ class PhraseStructure:
     def phrasal_edge(self):
         return [edge for edge in self.edge() if edge.is_complex()]
 
-    # Definition for licensed specifier (for a head)
     def licensed_specifier(self):
         """
         Defines the notion of licensed specifier.
@@ -580,13 +579,6 @@ class PhraseStructure:
         else:
             return True     # Weak test: accept still (only look for violations)
 
-    def bind_to_operator(self, operator):
-        # --------------- upstream path --------------------------------------------------------------------------- #
-        for node in self.upstream_search():
-            if node.inside_path().match_features({operator}) == 'complete match' and 'FIN' in node.inside_path().features:
-                return node
-        # --------------------------------------------------------------------------------------------------------- #
-
     def match_features(self, features_to_check):
         positive_features = self.positive_features(features_to_check)
         negative_features = self.negative_features(features_to_check)
@@ -634,7 +626,7 @@ class PhraseStructure:
         """
         Determines what type of constituents will populate the semantic space by reference
         """
-        return {'D'} & self.head().features
+        return {'D', 'FORCE'} & self.head().features
 
     # Return a list of affixes inside a grammatical head (including the head itself)
     def get_affix_list(self):
@@ -712,6 +704,10 @@ class PhraseStructure:
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
 
     def has_op_feature(self):
+        """
+        Return True if and only if the element has feature [OP...]. Includes also unvalued operator features and
+        scope marking operators.
+        """
         return {feature for feature in self.features if feature[:2] == 'OP'}
 
     # Recursive definition for criterial features (type ABAR:_) inside phrase

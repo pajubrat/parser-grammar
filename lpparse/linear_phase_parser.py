@@ -27,6 +27,7 @@ class LinearPhaseParser:
         self.first_solution_found = False                       # Registers when the first solution if found
         self.exit = False                                       # Forced exit tag
         self.name_provider_index = 0                            # Index for name provider, for chain identification
+        self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
         self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
         self.morphology = Morphology(self)                      # Access to morphology
@@ -37,7 +38,6 @@ class LinearPhaseParser:
         self.surface_conditions_pass = True                     # Surface conditions
         self.adjunct_constructor = AdjunctConstructor(self)     # Adjunct constructor
         self.plausibility_metrics = PlausibilityMetrics(self)
-        self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.score = 0                                          # Discourse score
         self.resources = dict                                   # Resources consumed
         self.start_time = 0                                     # Calculates execution time
@@ -184,6 +184,7 @@ class LinearPhaseParser:
                 self.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
                 log(f'\n\t\tItem enters active working memory.')
                 terminal_lexical_item.active_in_syntactic_working_memory = True  # The element enters active working memory
+                self.narrow_semantics.wire_semantics(terminal_lexical_item)
                 log('\n')
 
                 if not ps:
@@ -229,9 +230,7 @@ class LinearPhaseParser:
                             transferred_left_branch = self.transfer_to_LF(left_branch)
                             new_constituent = transferred_left_branch + terminal_lexical_item
                             set_logging(True)
-                            self.narrow_semantics.wire_semantics(transferred_left_branch)
-                            # The transferred left branch will be removed from active working memory
-                            # because it has been send out.
+                            self.narrow_semantics.update_references(transferred_left_branch)
                             self.remove_from_syntactic_working_memory(left_branch)
                             log(f'Result: {new_constituent}...Done.\n')
                             #
@@ -302,6 +301,7 @@ class LinearPhaseParser:
         if not self.first_solution_found:
             log('\t\tWire narrow semantics...')
             self.narrow_semantics.wire_semantics(ps)
+            self.narrow_semantics.update_references(ps)
             log('Done.\n')
             log('\t\tComputing attitude semantics and information structure...')
             self.narrow_semantics.compute_speaker_attitude(ps)

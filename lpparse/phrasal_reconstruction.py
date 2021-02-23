@@ -115,7 +115,9 @@ class PhrasalMovement:
         """
         criterial_features = spec.scan_criterial_features()
         if criterial_features:
-            feature_set = {'OP:_'}
+            feature_set = set()
+            if {'OP:WH', 'OP:REL'} & criterial_features:
+                feature_set = {'OP:_'}
             if 'FIN' in head.features:
                 feature_set |= {'OP', 'FIN'}
                 feature_set |= {'FORCE:' + criterial_feature for criterial_feature in criterial_features}

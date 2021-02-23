@@ -1,4 +1,9 @@
 from support import log
+from narrow_semantics import NarrowSemantics
+
+#
+# This class will be slowly dissolved into narrow_semantics and broad_semantics
+#
 
 def semantically_relevant_phi(phi):
     return phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET'
@@ -37,7 +42,7 @@ class Semantics:
 
     def _interpret(self, ps):
         """
-        Generates a semantic interpretation for a node if it primitive, other calls the function recursively.
+        Generates a semantic interpretation for a node if it primitive, otherwise calls the function recursively.
 
         Each lexical item is subjected to several types of semantic interpretation, in this version
         (i) LF-recovery for predicates that have unsaturated arguments
@@ -49,7 +54,10 @@ class Semantics:
             self.perform_LF_recovery(ps)
             self.detect_phi_conflicts(ps)
             self.interpret_tail_features(ps)
-            self.bind_variables(ps)
+            if self.controlling_parsing_process.narrow_semantics.bind_variable(ps):
+                self.semantic_interpretation.add(f'Operator {ps.max().illustrate()} was bound to an operator ')
+            else:
+                self.semantic_interpretation_failed = False
         else:
             if not ps.left_const.find_me_elsewhere:
                 self._interpret(ps.left_const)
@@ -241,7 +249,7 @@ class Semantics:
 
     def interpret_argument_tailing(self, ps, tailed_head):
         if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
-            if 'PAR' in ps.features and not ps.bind_to_operator('POL:NEG'):
+            if 'PAR' in ps.features and not ps.bind_to_scope_operator('POL:NEG'):
                     self.semantic_interpretation.add('Aspectually anomalous')
             else:
                 self.semantic_interpretation.add('Aspectually bounded')
@@ -277,7 +285,7 @@ class Semantics:
         if 'C' not in ps.head().features:
             for f in ps.head().features:
                 if f[:3] == 'OP:' and f != 'OP:_':
-                    if not ps.bind_to_operator('OP'):
+                    if not ps.bind_to_scope_operator('OP'):
                         log(f'{ps.max().illustrate()} with feature {f} is not properly bound by an operator...')
                         self.semantic_interpretation_failed = True
                     else:
