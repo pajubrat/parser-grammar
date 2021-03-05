@@ -1,14 +1,10 @@
 from support import log
-#
-# This class will be slowly dissolved into narrow_semantics and broad_semantics
-#
-
+def must_be_valued(phi_set):
+    return {phi for phi in phi_set if semantically_relevant_phi(phi)}
 def semantically_relevant_phi(phi):
     return phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET'
 def get_relevant_phi(h):
     return {f for f in h.features if semantically_relevant_phi(f)}
-def must_be_valued(phi_set):
-    return {phi for phi in phi_set if semantically_relevant_phi(phi)}
 def check(F, G, unchecked):
     if F == G:
         unchecked.discard(G)
@@ -23,66 +19,29 @@ def is_unvalued(G):
 def residuum_identity(F, G):
     return F[:len(G[:-1])] == G[:-1]
 
-class Semantics:
+class LF_Recovery:
     def __init__(self, controlling_parsing_process):
-        self.semantic_interpretation = set()
-        self.semantic_interpretation_failed = False
         self.controlling_parsing_process = controlling_parsing_process
-        self.antecedent_list = []
+        self.LF_recovery_results = set()
+        self.interpretation_failed = False
 
-    def interpret(self, ps):
-        """
-        Generates a semantic interpretation for a phrase structure and assesses if it failed.
-        """
-        self.semantic_interpretation = set()
-        self.semantic_interpretation_failed = False
-        return self._interpret(ps)
-
-    def _interpret(self, ps):
-        """
-        Generates a semantic interpretation for a node if it primitive, otherwise calls the function recursively.
-
-        Each lexical item is subjected to several types of semantic interpretation, in this version
-        (i) LF-recovery for predicates that have unsaturated arguments
-        (ii) detection of phi-feature conflicts
-        (iii) tail-feature interpretation
-        (iv) variable binding.
-        """
-        if ps.is_primitive():
-            self.perform_LF_recovery(ps)
-            self.detect_phi_conflicts(ps)
-            self.interpret_tail_features(ps)
-            if not self.controlling_parsing_process.narrow_semantics.bind_variable(ps, self.controlling_parsing_process.first_solution_found):
-                self.semantic_interpretation_failed = True
-                return set()
-            if not self.controlling_parsing_process.first_solution_found:
-                if not self.controlling_parsing_process.narrow_semantics.discourse.reconstruct_discourse(ps):
-                    self.semantic_interpretation_failed = True
-                    return set()
-        else:
-            if not ps.left_const.find_me_elsewhere:
-                self._interpret(ps.left_const)
-            if not ps.right_const.find_me_elsewhere:
-                self._interpret(ps.right_const)
-            if self.semantic_interpretation_failed:
-                return set()
-            return self.semantic_interpretation | {' '}
-
-    def perform_LF_recovery(self, head):
+    def perform_LF_recovery(self, head, semantic_interpretation_dict):
         """
         Provides each head [head] with unvalued phi-features an argument
         """
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
+            self.LF_recovery_results = set()
             log(f'\"{head.illustrate()}\" with {sorted(unvalued)} was associated at LF with ')
             list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
-                self.semantic_interpretation.add(self.interpret_antecedent(head, list_of_antecedents[0]))
+                self.LF_recovery_results.add(self.interpret_antecedent(head, list_of_antecedents[0]))
             else:
-                self.semantic_interpretation.add(f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')')
+                self.LF_recovery_results.add(f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')')
             self.report_to_log(head, list_of_antecedents, unvalued)
             self.controlling_parsing_process.consume_resources("LF recovery")
             self.controlling_parsing_process.consume_resources("Phi")
+            semantic_interpretation_dict['Recovery'].append(self.LF_recovery_results)
 
     # Definition for LF-recovery
     def LF_recovery(self, head, unvalued_phi):
@@ -125,7 +84,7 @@ class Semantics:
 
         if not list_of_antecedents:
             log(f'No antecedent found, LF-object crashes...')
-            self.semantic_interpretation_failed = True
+            self.interpretation_failed = True
             return []
 
     def is_possible_antecedent(self, antecedent, head):
@@ -156,7 +115,7 @@ class Semantics:
         elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
             return 'discourse antecedent'
         else:
-            self.semantic_interpretation_failed = True
+            self.interpretation_failed = True
             return 'uninterpretable'
 
     # Provides a more fine-grained interpretation for antecedents
@@ -218,7 +177,7 @@ class Semantics:
     def special_local_edge_antecedent_rule(self, node, ps, list_of_antecedents):
         if node.sister() and node.sister() == ps.local_edge():
             if 'D' not in node.sister().head().features:
-                self.semantic_interpretation.add(f'{ps}(generic)')
+                self.LF_recovery_results.add(f'{ps}(generic)')
                 list_of_antecedents.append(node.sister())
                 ps.features.add('PHI:DET:GEN')
             else:
@@ -228,37 +187,6 @@ class Semantics:
     # Definition for LF-recovery termination
     def recovery_termination(self, node):
         return node.sister() and 'SEM:external' in node.sister().features
-
-    def detect_phi_conflicts(self, ps):
-        """
-        Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
-        """
-        for phi in ps.get_phi_set():
-            if phi[-1] == '*':
-                log(f'{ps} induces a phi-feature conflict...')
-                self.semantic_interpretation_failed = True
-
-    def interpret_tail_features(self, ps):
-        """
-        Interprets semantic interpretation relying on tail-features.
-
-        Currently only implements the aspectual ACC-PAR alteration in Finnish aspect.
-        Vainikka (1989), Kiparsky (1997, 2001), Brattico (2020, submitted).
-        """
-        for tail_set in ps.get_tail_sets():
-            self.interpret_argument_tailing(ps, self.get_tailed_head(ps, tail_set))
-
-    def interpret_argument_tailing(self, ps, tailed_head):
-        if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
-            if 'PAR' in ps.features and not ps.bind_to_scope_operator('POL:NEG'):
-                    self.semantic_interpretation.add('Aspectually anomalous')
-            else:
-                self.semantic_interpretation.add('Aspectually bounded')
-
-    def get_tailed_head(self, ps, tail_set):
-        for head in ps.feature_vector()[1:]:
-            if head.match_features(tail_set) == 'complete match':
-                return head
 
     def report_to_log(self, ps, list_of_antecedents, unvalued_phi_features):
         s = ''
@@ -276,3 +204,4 @@ class Semantics:
         else:
             log(f'({self.interpret_no_antecedent(ps, unvalued_phi_features)})')
         log('. ')
+

@@ -293,7 +293,7 @@ class LinearPhaseParser:
         ps_ = self.transfer_to_LF(ps)
         log('\t\tDone.\n')
         log('\t\tLF-legibility check...')
-        if self.LF_condition_violation(ps_) or self.interpret_semantically(ps_):
+        if self.LF_condition_violation(ps_) or self.narrow_semantics.interpret(ps_):
             self.add_garden_path()
             log('\n\t\tLF-legibility test failed.\n')
             log('\t\tMemory dump:\n')
@@ -309,8 +309,8 @@ class LinearPhaseParser:
             self.narrow_semantics.update_references(ps)
             log('Done.\n')
             log('\t\tComputing attitude semantics and information structure...')
-            self.narrow_semantics.compute_speaker_attitude(ps)
-            self.narrow_semantics.compute_information_structure(ps)
+            self.narrow_semantics.discourse_module.compute_speaker_attitude(ps)
+            self.narrow_semantics.discourse_module.compute_information_structure(ps)
             log('Done.\n')
             log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
             self.resources['Mean time per word']['n'] = int(self.resources['Total Time']['n'] / self.count_words(self.sentence))
@@ -337,9 +337,10 @@ class LinearPhaseParser:
         log(f'\tTrying spellout structure  ' + ps.illustrate() + '\n')
 
     def report_solution(self, ps, spellout_structure):
-        self.result_list.append([ps, self.semantic_interpretation])
+        self.result_list.append([ps, self.narrow_semantics.semantic_interpretation])
         self.spellout_result_list.append(spellout_structure)
-        log(f'\t\tSemantic interpretation: {self.semantic_interpretation}')
+        if not self.first_solution_found:
+            log(f'\t\tSemantic interpretation: {self.narrow_semantics.semantic_interpretation}')
         self.local_file_system.log_results(self, ps)
         self.first_solution_found = True
 
@@ -359,15 +360,6 @@ class LinearPhaseParser:
             return True
         if not lf.all_pass():
             lf.report_lf_status()
-            return True
-
-    def interpret_semantically(self, ps):
-        def detached(ps):
-            ps.mother = None
-            return ps
-        self.semantic_interpretation = self.LF.transfer_to_CI(detached(ps.copy()))
-        if not self.semantic_interpretation:
-            log('\t\t\tThe sentence cannot be interpreted at LF.')
             return True
 
     def transfer_to_LF(self, ps, log_embedding=3):

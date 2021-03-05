@@ -1,6 +1,5 @@
 
 from support import log, illu
-from semantics import Semantics
 
 # Transforms a set of lexical features to be used in checking LF-interface conditions
 def for_lf_interface(features):
@@ -20,12 +19,6 @@ class LF:
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_to_CI_crash = False
-        self.semantics = Semantics(controlling_parsing_process)
-
-        # This stores facts concerning semantic interpretation resulting from transfer to CI
-        # The report is a set of strings; later this will be in some formal notation
-        self.semantic_interpretation = set()
-
         self.controlling_parsing_process = controlling_parsing_process
 
     def all_pass(self):
@@ -478,19 +471,6 @@ class LF:
                 log(f'"{goal.illustrate()}" failed final tail test...')
                 return False
         return True
-
-    # This function will try to transfer the phrase structure into the conceptual-intentional system
-    def transfer_to_CI(self, ps):
-        log(f'Transferring {ps} into the conceptual-intentional system...')
-        self.transfer_to_CI_crash = False
-        self.semantic_interpretation = self.semantics.interpret(ps)
-        if not self.semantic_interpretation:
-            log('Semantic interpretation failed...')
-            self.transfer_to_CI_crash = True
-            return set()
-
-        log('Transfer to C-I successful...')
-        return sorted(self.semantic_interpretation)
 
     @staticmethod
     def semantic_match(a, b):

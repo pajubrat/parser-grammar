@@ -158,12 +158,10 @@ class LocalFileSystem:
                 i = 0
         return s
 
-    def formatted_output(self, enumerated_object, delimiter):
+    def formatted_output(self, semantic_interpretation_dict):
         output_str = ''
-        enumerated_object = sorted(enumerated_object)
-        for item in enumerated_object:
-            if item != ' ':
-                output_str = output_str + ' ' + item + delimiter
+        for key in semantic_interpretation_dict:
+            output_str += '\t' + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
         return output_str
 
     def generate_input_sentence_string(self, sentence):
@@ -272,11 +270,10 @@ class LocalFileSystem:
                 else:
                     self.results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                     self.simple_results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-                self.results_file.write('\n\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, delimiter=' ')) +'\n')
                 if parse_number == 1:
-                    self.results_file.write('\n\t' + self.format_resource_output(P.resources) + '\n')
-                    self.results_file.write(f'\n\tSpeaker information structure:\n{self.format_information_structure(P)}\n')
-                    self.results_file.write(f'\n\tSemantic interpretation: {self.format_semantic_interpretation(P)}\n')
+                    self.results_file.write('\n\tSemantics:\n' + str(self.formatted_output(semantic_interpretation)))
+                    self.results_file.write('\n\tResources:\n\t' + self.format_resource_output(P.resources) + '\n')
+                    self.results_file.write(f'\n\tSemantic objects (language independent): {self.format_semantic_interpretation(P)}\n')
                 parse_number = parse_number + 1
                 self.results_file.write('\n')
                 self.simple_results_file.write('\n')
@@ -299,31 +296,6 @@ class LocalFileSystem:
                     output_str += '\t\t' + item + ': ' + format_lst(value) + '\n'
                 else:
                     output_str += '\t\t' + item + ': ' + f'{value}' + '\n'
-        return output_str
-
-    def format_information_structure(self, P):
-        topics_str = ''
-        neutrals_str = ''
-        focus_str = ''
-        topics, neutrals, focus = P.narrow_semantics.topic_focus_structure
-        if topics:
-            for t in topics:
-                topics_str += P.narrow_semantics.semantic_bookkeeping[t]['Reference'] + ' '
-        else:
-            topics_str = 'None '
-        if neutrals:
-            for n in neutrals:
-                neutrals_str += P.narrow_semantics.semantic_bookkeeping[n]['Reference'] + ' '
-        else:
-            neutrals_str = 'None '
-        if focus:
-            for f in focus:
-                focus_str += P.narrow_semantics.semantic_bookkeeping[f]['Reference'] + ' '
-        else:
-            focus_str = 'None '
-        output_str = '\tMarked topics:\n\t\t' + topics_str + '\n\tGradient:\n\t\t' + neutrals_str + '\n\tMarked focus:\n\t\t' + focus_str
-        if not P.narrow_semantics.information_structure_active:
-            output_str = output_str + '\n\t(Force feature is present)'
         return output_str
 
     def save_image(self, P, sentence, count):
@@ -384,10 +356,10 @@ class LocalFileSystem:
                     print('\t' + f'{parse}')
                 else:
                     print('\t' + chr(96 + parse_number) + f'. {parse}')
-                print('\n\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, '')))
+                print('\n\tSemantics:\n' + str(self.formatted_output(semantic_interpretation)))
                 if parse_number == 1:
                     print('\n\t' + self.format_resource_output(parser.resources) + f'\n\tExecution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
-                    print(f'\tNarrow semantics:')
+                    print(f'\tSemantic objects:')
                     self.print_narrow_semantics(parser)
                 parse_number = parse_number + 1
         else:
@@ -396,8 +368,6 @@ class LocalFileSystem:
     def print_narrow_semantics(self, parser):
         for key in parser.narrow_semantics.semantic_bookkeeping:
             print(f'\t{key}: {parser.narrow_semantics.semantic_bookkeeping[key]}')
-        print(f'\tSpeaker attitude: {parser.narrow_semantics.speaker_attitudes}.')
-        print(f'\tTopics: {parser.narrow_semantics.topic_focus_structure}.')
         print('\n')
 
     def log_results(self, parser, ps_):
@@ -409,6 +379,8 @@ class LocalFileSystem:
         log(show_primitive_constituents(ps_))
         log('\t\t-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
         if not parser.first_solution_found:
+            log('\t\tSemantic interpretation:\n')
+            log(f'\t\t{parser.narrow_semantics.semantic_interpretation}\n')
             log('\t\tSemantic bookkeeping:\n')
             log(f'\t\t{self.format_semantic_interpretation(parser)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')

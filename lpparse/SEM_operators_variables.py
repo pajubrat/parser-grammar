@@ -1,4 +1,6 @@
 
+from support import log
+
 class OperatorVariableModule:
     """
     Interprets operator-variable constructions (operator features), which correspond to the notion
@@ -25,8 +27,51 @@ class OperatorVariableModule:
                     This therefore implies that movement of an operator phrase has occurred
                     To capture edge generalization in Finnish, this implies [!SPEC:OP:_]
     """
-    def __init__(self):
-        pass
+    def __init__(self, narrow_semantics):
+        self.narrow_semantics = narrow_semantics
+        self.interpretation_failed = False
+        self.operator_interpretation = {'OP:WH': 'Interrogative',
+                                         'OP:TOP': 'Topic',
+                                         'OP:FAM': 'Familiarity topic',
+                                         'OP:FOC': 'Contrastive focus',
+                                         'OP:POL': 'Polarity topic',
+                                         'OP:Q': 'Yes/no interrogative',
+                                         'OP:REL': 'Relativization'
+                                         }
+
+    def bind_variable(self, operator_ps, semantic_interpretation):
+        """
+        Binds an operator to a scope-element. An operator is a non-finite constituent that has valued [OP:XX] feature, with XX being the value.
+        It is bound necessarily by a head with [OP:XX][FIN]. Binding projects the proposition into semantic bookkeeping and provides
+        referential index for the scope head.
+        """
+        if 'FIN' not in operator_ps.head().features:
+            feature_set = operator_ps.head().features.copy()
+            for f in feature_set:
+                if self.is_operator_feature(f):
+                    scope_operator_lst = self.bind_to_scope_operator(operator_ps, f)
+                    if not scope_operator_lst:
+                        log(f'{operator_ps.illustrate()} with feature {f} is not properly bound by an operator. ')
+                        self.interpretation_failed = True
+                        break
+                    else:
+                        # Update binding information to semantic interpretation dict
+                        semantic_interpretation['Operator bindings'].append((f'{operator_ps.max().illustrate()}', f'{scope_operator_lst[0]}'))
+
+                        # Update binding information for the operator in semantic bookkeeping
+                        idx = self.narrow_semantics.get_semantic_wiring(operator_ps)
+                        if not idx:
+                            self.narrow_semantics.wire(operator_ps)
+                            idx = self.narrow_semantics.get_semantic_wiring(operator_ps)
+                        self.narrow_semantics.update_semantics_for_attribute(idx, 'Bound by', scope_operator_lst)
+                        self.interpret_and_update_operator_feature(idx, f)
+                        log(f'{operator_ps.illustrate()} was bound by {scope_operator_lst[0]}...')
+
+                        # Create referential index for the proposition and project it to semantic bookkeeping
+                        # Only applies to full propositions, not to relative clauses
+                        if not self.narrow_semantics.controlling_parsing_process.first_solution_found and not self.narrow_semantics.get_semantic_wiring(scope_operator_lst[0]):
+                            if self.full_proposition(scope_operator_lst[0]):
+                                self.narrow_semantics.wire(scope_operator_lst[0])
 
     def bind_to_scope_operator(self, head, operator_feature):
         """
@@ -38,8 +83,6 @@ class OperatorVariableModule:
         # --------------- upstream path --------------------------------------------------------------------------- #
         for node in head.upstream_search():
             target_head = node.inside_path()    # Left primitive constituent of [node] or [node] itself if it is primitive.
-            if target_head != head and self.termination_condition_for_operator_binding(node):
-                break
             if self.is_obligatory_scope_binder(target_head, operator_feature):
                 scope_binder_lst = [target_head]
                 break
@@ -48,9 +91,8 @@ class OperatorVariableModule:
         # --------------------------------------------------------------------------------------------------------- #
         return scope_binder_lst
 
-    def termination_condition_for_operator_binding(self, node):
-        if node.is_complex() and 'D' in node.left_const.features:
-            return True
+    def full_proposition(self, scope_operator):
+        return 'OP:REL' not in scope_operator
 
     def is_operator(self, head):
         """
@@ -89,3 +131,11 @@ class OperatorVariableModule:
         if not set_ and ps.is_primitive():
             set_ = self.get_operator_features(ps.features)
         return set_
+
+    def interpret_and_update_operator_feature(self, idx, f):
+        """
+        Provides English language description for the operator interpretation into semantic bookkeeping
+        """
+        if 'Operator interpretation' not in self.narrow_semantics.semantic_bookkeeping[idx]:
+            self.narrow_semantics.semantic_bookkeeping[idx]['Operator interpretation'] = set()
+        self.narrow_semantics.semantic_bookkeeping[idx]['Operator interpretation'].add(self.operator_interpretation[f])

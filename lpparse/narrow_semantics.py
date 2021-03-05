@@ -1,6 +1,7 @@
 from support import log
-from operator_variable_module import OperatorVariableModule
-from discourse import Discourse
+from SEM_operators_variables import OperatorVariableModule
+from SEM_discourse import Discourse
+from SEM_LF_recovery import LF_Recovery
 
 class NarrowSemantics:
     """
@@ -9,24 +10,15 @@ class NarrowSemantics:
     into account. This class will eventually replace semantics.py module
     """
     def __init__(self, controlling_parsing_process):
+        self.operator_variable_module = OperatorVariableModule(self)
+        self.LF_recovery_module = LF_Recovery(controlling_parsing_process)
+        self.discourse_module = Discourse(self)
         self.semantic_bookkeeping = {}
+        self.semantic_interpretation = {}
+        self.semantic_interpretation_failed = False
         self.index_counter = None
         self.controlling_parsing_process = controlling_parsing_process
-        self.speaker_attitudes = []
-        self.information_structure_active = True
-        self.main_arguments = {}
-        self.topic_focus_structure = ()
-        self.operator_variable_module = OperatorVariableModule()
-        self.discourse = Discourse(self)
-        self.attitudes = {'FORCE:OP:WH': 'Interrogative'}   # These descriptions are only used in outputting results
-        self.operator_interpretation = {'OP:WH': 'Interrogative',
-                                         'OP:TOP': 'Topic',
-                                         'OP:FAM': 'Familiarity topic',
-                                         'OP:FOC': 'Contrastive focus',
-                                         'OP:POL': 'Polarity topic',
-                                         'OP:Q': 'Yes/no interrogative',
-                                         'OP:REL': 'Relativization'
-                                         }
+        self.phi_interpretation_failed = False
         self.semantic_type = {'T/fin':'Proposition',
                               'D': '§Thing',
                               'Q': '§Quantifier',
@@ -53,6 +45,58 @@ class NarrowSemantics:
     def initialize(self):
         self.index_counter = 1
         self.semantic_bookkeeping = {}
+        self.semantic_interpretation_failed = False
+        self.semantic_interpretation = {'Recovery': [],
+                                        'Aspect': [],
+                                        'D-features': [],
+                                        'Operator bindings': [],
+                                        'Speaker attitude': [],
+                                        'Information structure': {'Marked topics': None, 'Neutral gradient': None, 'Marked focus': None}}
+
+    def interpret(self, ps):
+        log(f'\n\t\tTransferring {ps} into the conceptual-intentional system...')
+        self.reset_fail_flags()
+        self._interpret(ps)
+        return self.semantic_interpretation_failed
+
+    def reset_fail_flags(self):
+        self.semantic_interpretation_failed = False
+        self.phi_interpretation_failed = False
+        self.operator_variable_module.interpretation_failed = False
+        self.discourse_module.interpretation_failed = False
+        self.LF_recovery_module.interpretation_failed = False
+
+    def _interpret(self, ps):
+        """
+        Generates a semantic interpretation for a node if it primitive, otherwise calls the function recursively.
+
+        Each lexical item is subjected to several types of semantic interpretation, in this version
+        (i) LF-recovery for predicates that have unsaturated arguments
+        (ii) detection of phi-feature conflicts
+        (iii) tail-feature interpretation
+        (iv) variable binding.
+         """
+        if ps.is_primitive():
+            self.LF_recovery_module.perform_LF_recovery(ps, self.semantic_interpretation)
+            self.detect_phi_conflicts(ps)
+            self.interpret_tail_features(ps)
+            self.operator_variable_module.bind_variable(ps, self.semantic_interpretation)
+            self.discourse_module.reconstruct_discourse(ps, self.semantic_interpretation)
+            if self.failure():
+                return
+        else:
+            if not ps.left_const.find_me_elsewhere:
+                self._interpret(ps.left_const)
+            if not ps.right_const.find_me_elsewhere:
+                self._interpret(ps.right_const)
+
+    def failure(self):
+        if self.LF_recovery_module.interpretation_failed or \
+                self.phi_interpretation_failed or \
+                self.operator_variable_module.interpretation_failed or \
+                self.discourse_module.interpretation_failed:
+            self.semantic_interpretation_failed = True
+            return True
 
     def forget_referent(self, referring_head):
         """
@@ -142,7 +186,7 @@ class NarrowSemantics:
         self.semantic_bookkeeping[idx] = {'Referring constituent': f'{ps}', 'Order gradient': self.index_counter}
         self.semantic_bookkeeping[idx]['Reference'] = f'{ps.illustrate()}'
         self.update_semantic_type(ps)
-        if self.operator_variable_module.scan_criterial_features(ps):
+        if self.operator_variable_module.scan_criterial_features(ps) and 'FIN' not in ps.features:
             self.semantic_bookkeeping[idx]['Operator'] = True
         else:
             self.semantic_bookkeeping[idx]['Operator'] = False
@@ -169,12 +213,6 @@ class NarrowSemantics:
         idx_set = {f[4:] for f in ps.head().features if f[:3] == 'IDX'}
         if idx_set:
             return list(idx_set)[0]
-
-    def get_force_features(self, ps):
-        """
-        Returns force features.
-        """
-        return {f for f in ps.head().features if f[:5] == 'FORCE'}
 
     def update_semantics_for_marked_gradient(self, ps, starting_point_head):
         """
@@ -203,149 +241,33 @@ class NarrowSemantics:
         if self.semantic_bookkeeping[sem_object]:
             self.semantic_bookkeeping[sem_object][attribute] = value
 
-    def compute_speaker_attitude(self, ps):
+    def detect_phi_conflicts(self, ps):
         """
-        Speaker attitude is a relation between the speaker and the finite head of [ps]. It is grammaticalized into
-        [FORCE] features.
-
-        If the head is not finite, no propositional attitudes can be computed by narrow semantics (only by context).
-        If the head is finite, then propositional attitudes are collected into a list by using force features.
-        The default interpretation is declarative (Frege's judgment)
+        Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
         """
-        if not ps.head().finite():
-            log('Not relevant for this expression types...')
-            self.speaker_attitudes = []
-            return
-        if self.get_force_features(ps.head()):
-            # If specific force features exists, then they are used for interpretation
-            for count, force_feature in enumerate(self.get_force_features(ps.head())):
-                if force_feature in self.attitudes:
-                    self.speaker_attitudes = [self.attitudes[force_feature]]
-                    self.information_structure_active = False
-                    log('Attitude determined by the Force feature...')
-        else:
-            # Default value is 'declarative' (judgment)
-            self.speaker_attitudes = ['Declarative']
-            self.information_structure_active = True
-            log('Declarative finite clause...')
+        for phi in ps.get_phi_set():
+            if phi[-1] == '*':
+                log(f'{ps} induces a phi-feature conflict...')
+                self.phi_interpretation_failed = True
 
-    def compute_information_structure(self, ps):
-        self.main_arguments = self.arguments_of_proposition(ps)
-        self.topic_focus_structure = self.create_topic_gradient(self.main_arguments)
-
-    def create_topic_gradient(self, main_arguments):
+    def interpret_tail_features(self, ps):
         """
-        Creates a topic gradient tuple with three items: marked topic list, neutral gradient, and marked focus list.
-        Referential operator expressions are ignored.
+        Interprets semantic interpretation relying on tail-features.
+
+        Currently only implements the aspectual ACC-PAR alteration in Finnish aspect.
+        Vainikka (1989), Kiparsky (1997, 2001), Brattico (2020, submitted).
         """
-        marked_topic_lst = []
-        topic_lst = []
-        marked_focus_lst = []
+        for tail_set in ps.get_tail_sets():
+            self.interpret_argument_tailing(ps, self.get_tailed_head(ps, tail_set))
 
-        # Restrict the vision of this module to main arguments and their gradients, while ignoring operator expressions
-        for idx in self.semantic_bookkeeping:
-            if idx in main_arguments and not self.semantic_bookkeeping[idx]['Operator']:
-                topic_lst.append((self.semantic_bookkeeping[idx]['Order gradient'], idx))
-                self.update_semantics_for_attribute(idx, 'In information structure', True)
-
-        # Order the arguments by their gradient (in the spellout structure ~ sensory input)
-        topic_lst = sorted(topic_lst)
-
-        # Analyze the gradients
-        # Group the arguments into three lists: marked topics, default/neutral gradient, and marked focus
-        # The algorithm works by moving elements from the original topic list into the marked lists.
-        topic_lst_ = topic_lst.copy()
-        for topic, idx in topic_lst:
-            if 'Marked gradient' in self.semantic_bookkeeping[idx]:
-                if self.semantic_bookkeeping[idx]['Marked gradient'] == 'High':
-                    marked_topic_lst.append(idx)
-                    topic_lst_.remove((self.semantic_bookkeeping[idx]['Order gradient'], idx))
-                if self.semantic_bookkeeping[idx]['Marked gradient'] == 'Low':
-                    marked_focus_lst.append(idx)
-                    topic_lst_.remove((self.semantic_bookkeeping[idx]['Order gradient'], idx))
-        return marked_topic_lst, [topic[1] for topic in topic_lst_], marked_focus_lst
-
-    def operator_argument(self, arg):
-        if self.semantic_bookkeeping[arg]:
-            if self.semantic_bookkeeping[arg]['Operator']:
-                return True
-
-    def arguments_of_proposition(self, ps):
-        scope = self.locate_proposition(ps)
-        if not scope:
-            return set()
-        return self.collect_arguments(ps, scope)
-
-    def collect_arguments(self, ps, scope):
-        """
-        Collects the semantic arguments (referential indexes) from [ps] which should express a proposition.
-        Presupposes that referential indexes have been provided by wire_semantics function. Does not explore
-        left branches or go outside of current proposition as defined by feature [FIN] 'finiteness'
-        """
-        arguments = set()
-        if ps.is_complex() and not self.out_of_proposition_scope(ps, scope):
-            arguments.add(self.get_semantic_wiring(ps.left_const))
-            arguments.add(self.get_semantic_wiring(ps.right_const))
-            if ps.right_const.adjunct:
-                arguments = arguments | self.collect_arguments(ps.right_const, scope)
-                arguments = arguments | self.collect_arguments(ps.left_const, scope)
+    def interpret_argument_tailing(self, ps, tailed_head):
+        if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
+            if 'PAR' in ps.features and not ps.bind_to_scope_operator('POL:NEG'):
+                self.semantic_interpretation['Aspect'].append('Aspectually anomalous')
             else:
-                arguments = arguments | self.collect_arguments(ps.right_const, scope)
-        return arguments
+                self.semantic_interpretation['Aspect'].append('Aspectually bounded')
 
-    def out_of_proposition_scope(self, ps, scope):
-        if ps.left_const.is_primitive():
-            if ps.left_const.finite():
-                if ps != scope:
-                    return True
-        if ps.right_const.is_primitive():
-            if ps.right_const.finite():
-                if ps != scope:
-                    return True
-
-    def locate_proposition(self, ps):
-        for node in ps:
-            if node.is_complex() and node.left_const.finite():
-                return node
-
-    def bind_variable(self, operator_ps, first_solution_found):
-        """
-        Binds an operator to a scope-element. An operator is a non-finite constituent that has valued [OP:XX] feature, with XX being the value.
-        It is bound necessarily by a head with [OP:XX][FIN]. Binding projects the proposition into semantic bookkeeping and provides
-        referential index for the scope head.
-        """
-        if 'FIN' not in operator_ps.head().features:
-            feature_set = operator_ps.head().features.copy()
-            for f in feature_set:
-                if self.operator_variable_module.is_operator_feature(f):
-                    scope_operator_lst = self.operator_variable_module.bind_to_scope_operator(operator_ps, f)
-                    if not scope_operator_lst:
-                        log(f'{operator_ps.illustrate()} with feature {f} is not properly bound by an operator. ')
-                        return False
-                    else:
-                        # Update binding information for the operator in semantic bookkeeping
-                        idx = self.get_semantic_wiring(operator_ps)
-                        if not idx:
-                            self.wire(operator_ps)
-                            idx = self.get_semantic_wiring(operator_ps)
-                        self.update_semantics_for_attribute(idx, 'Bound by', scope_operator_lst)
-                        self.interpret_and_update_operator_feature(idx, f)
-                        log(f'{operator_ps.illustrate()} was bound by {scope_operator_lst[0]}...')
-
-                        # Create referential index for the proposition and project it to semantic bookkeeping
-                        # Only applies to full propositions, not to relative clauses
-                        if not first_solution_found and not self.get_semantic_wiring(scope_operator_lst[0]):
-                            if self.full_proposition(scope_operator_lst[0]):
-                                self.wire(scope_operator_lst[0])
-        return True
-
-    def full_proposition(self, scope_operator):
-        return 'OP:REL' not in scope_operator
-
-    def interpret_and_update_operator_feature(self, idx, f):
-        """
-        Provides English language description for the operator interpretation into semantic bookkeeping
-        """
-        if 'Operator interpretation' not in self.semantic_bookkeeping[idx]:
-            self.semantic_bookkeeping[idx]['Operator interpretation'] = set()
-        self.semantic_bookkeeping[idx]['Operator interpretation'].add(self.operator_interpretation[f])
+    def get_tailed_head(self, ps, tail_set):
+        for head in ps.feature_vector()[1:]:
+            if head.match_features(tail_set) == 'complete match':
+                return head
