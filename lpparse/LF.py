@@ -255,7 +255,11 @@ class LF:
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(set(h.features), f[7:]):
-                    log(f'.{h} probing for {f[7:]} failed...')
+                    log(f'{h} probing for [{f[7:]}] failed...')
+                    self.probe_goal_test_result = False
+            if f.startswith('-PROBE:'):
+                if h.probe(set(h.features), f[7:]):
+                    log(f'{h} failed negative probe-test for [{f[7:]}]...')
                     self.probe_goal_test_result = False
 
     def internal_tail_test(self, h):
@@ -315,7 +319,7 @@ class LF:
         The rule is very nontrivial due to the many ways DP argument may and may not be assigned
         thematic roles. The operation is broken down to several independent components which are
 
-        (i) If the DP is contained inside a projections from a head that assigns a thematic role to it;
+        (i) If the DP is contained inside a projection from a head that assigns a thematic role to it;
         if not, then we accept the configuration sill if and only if
         (ii) the DP is adjoinable and can be interpreted as nonreferential (DP adverbs);
         (iii) its thematic role can be identified by agreement (DP argument is adjunct);
@@ -389,7 +393,7 @@ class LF:
 
     def selection_tests(self, h):
         """
-        Checks that  the selection features of [h] are checked.
+        Checks that the selection features of [h] are checked.
         """
         comp = h.proper_complement()
         local_edge = h.local_edge()
@@ -402,12 +406,17 @@ class LF:
                             self.selection_test_result = False
 
             # No specifier of any kind allowed (e.g., English P).
-            # This excludes pro
+            # This excludes pro and adjuncts
             if f == '-SPEC:*':
                 if local_edge:
                     if not local_edge.adjunct and not local_edge.find_me_elsewhere and 'pro' not in local_edge.head().features:
                         log(f'"{h}" has a specifier {local_edge} but is marked for -EPP behavior...')
                         self.selection_test_result = False
+
+            # No edge (second Merge-1) allowed (i.,.e V2 phenomenon, Finnish that)
+            if f == '-EDGE:*' and local_edge:
+                log(f'{h} has {local_edge} but does not accept second Merge-1 [-EDGE:*]')
+                self.selection_test_result = False
 
             # Obligatory complement
             if f.startswith('!COMP:') and not f == '!COMP:*':

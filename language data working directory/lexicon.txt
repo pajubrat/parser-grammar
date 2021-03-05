@@ -241,7 +241,7 @@ kuorsaamalla 	:: kuorsaa-#malla LANG:FI
 kuorsaa- 		:: PF:kuorsaa LF:snore V COMP:P -COMP:WH -COMP:T/fin -COMP:D LANG:FI
 
 kysyi	:: kysy-#v#T/fin#[-V] LANG:EN
-kysy-	:: PF:kysya LF:ask V COMP:FORCE:OP:WH LANG:FI
+kysy-	:: PF:kysya LF:ask V !PROBE:FORCE:OP:WH LANG:FI
 
 lahella		::	PF:lahella LF:near P !COMP:* !SPEC:* INF !SPEC:D VAL LANG:FI
 lahella		::	PF:lahella LF:near P !COMP:* !COMP:D LANG:FI
@@ -309,17 +309,17 @@ loyta-		:: PF:loyta- LF:find V CLASS:TR !COMP:D ASP:BOUNDED LANG:FI
 Mary		:: Mary-#D#sg#3p#def#hum#f LANG:EN
 Mary-		:: PF:Mary N -SEM:directional LF:Mary -adjoinable LANG:EN 
 
-Merja   	::	Merja-#D#sg#3p#def#hum#def#[-nom] LANG:FI
-Merjan		::	Merja-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
-Merjan_acc	::	Merja-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
-Merja_0acc	::	Merja-#D#sg#3p#def#hum#def#[-0_acc] LANG:FI
+Merja   			::	Merja-#D#sg#3p#def#hum#def#[-nom] LANG:FI
+Merjan			::	Merja-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
+Merjan_acc		::	Merja-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
+Merja_0acc		::	Merja-#D#sg#3p#def#hum#def#[-0_acc] LANG:FI
 Merjan_gen	::	Merja-#D#sg#3p#def#hum#def#[-gen] LANG:FI
 Merjan_poss	::	Merja-#D#sg#3p#def#hum#def#[-poss] LANG:FI
-Merjaa		:: Merja-#D#sg#3p#def#hum#def#[-par] LANG:FI
-Merjaahan	:: Merja-#D#sg#3p#def#hum#def#[-par]#[hAn] LANG:FI
-Merja-  	:: PF:Merja LF:Merja N -SEM:directional -adjoinable LANG:FI
-Merjalle	::	Merja-#D#lle
-Merjalla	:: 	Merja-#D#lla
+Merjaa				:: Merja-#D#sg#3p#def#hum#def#[-par] LANG:FI
+Merjaahan		:: Merja-#D#sg#3p#def#hum#def#[-par]#[hAn] LANG:FI
+Merja-  			:: PF:Merja LF:Merja N -SEM:directional -adjoinable LANG:FI
+Merjalle			::	Merja-#D#lle
+Merjalla			:: 	Merja-#D#lla
 
 malla	:: ADV MA/inf PF:malla LF:by COMP:v TAIL:T LANG:FI
 
@@ -409,7 +409,6 @@ Pekkahan	:: Pekka-#D#sg#3p#def#hum#def#[-nom]#[hAn] LANG:FI
 PEKKA		:: Pekka-#D#sg#3p#def#hum#def#[-nom]#[foc]
 Pekka-  	:: PF:Pekka LF:Pekka N -SEM:directional LANG:FI
 
-
 pelottaa	:: pelkaa-#cau#T/fin#[-V] LANG:FI
 pelkaa		:: pelkaa-#v#T/fin#[-V] LANG:FI
 pelkaa-		:: PF:pelkaa LF:fear V CLASS:TR LANG:FI
@@ -464,10 +463,10 @@ red-	:: PF:red LF:red 0 LANG:EN
 saavuttaa	:: saavutta-#v#T/fin#[-V] LANG:FI
 saavutta-	:: PF:saavutta- LF:reach !COMP:D ASP:BOUNDED CLASS:TR V LANG:FI
 
-sanon   :: sano-#v#T/fin#[-n] LANG:FI
-sanoo   :: sano-#v#T/fin#[-V] LANG:FI
-sanoi	:: sano-#v#T/fin#[-V] LANG:FI
-sano-   :: PF:sano- LF:say V SPEC:D CLASS:TR COMP:VA/inf COMP:FORCE LANG:FI
+sanon   :: sano-#T/fin#[-n] LANG:FI
+sanoo   :: sano-#T/fin#[-V] LANG:FI
+sanoi	:: sano-#T/fin#[-V] LANG:FI
+sano-   :: PF:sano- LF:say V SPEC:D -PROBE:FORCE:OP:WH COMP:VA/inf COMP:FORCE LANG:FI
 
 said    :: say-#T/fin LANG:EN
 say'	:: PF:say LF:say V SPEC:D !COMP:FORCE LANG:EN
@@ -532,7 +531,7 @@ tayty-	:: PF:taytyy LF:must FIN V MODAL SPEC:* !COMP:A/inf -ASP LANG:FI
 teki	:: teke-#v#T/fin#[-V] LANG:FI
 teke-	:: V CLASS:TR !COMP:D -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke LF:make LANG:FI
 
-that    :: PF:that LF:that FORCE LANG:EN
+that    :: PF:that LF:that FORCE FORCE:DECL LANG:EN
 
 the		:: PF:the LF:the D PHI:DET:DEF PHI:PER:3 PHI:NUM:SG LANG:EN
 
@@ -696,7 +695,7 @@ asp			:: inflectional ASP:BOUNDED
 # FINNISH LEFT PERIPHERAL DISCOURSE FEATURES
 [hAn]		:: inflectional OP:FAM
 [pA]		:: inflectional OP:POL
-[kO]		:: inflectional OP OP:WH OP:Q
+[kO]		:: inflectional OP OP:Q
 [foc]		:: inflectional OP:FOC
 
 # ARTIFICIAL LEXICAL ITEMS

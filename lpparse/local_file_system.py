@@ -3,6 +3,7 @@ from time import process_time
 from visualizer import Visualizer
 from datetime import datetime
 from support import *
+from phrase_structure import PhraseStructure
 import logging
 
 class LocalFileSystem:
@@ -19,6 +20,7 @@ class LocalFileSystem:
         self.timings_file = None
         self.resource_sequence_file = None
         self.simple_log_file = None
+        self.simple_results_file = None
         self.logger_handle = None
         self.instruction_to_ignore_from_test_corpus = False
 
@@ -40,6 +42,7 @@ class LocalFileSystem:
                                  "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
                                  "resources_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resources.txt'),
                                  "lexicon_file_name": self.folder['data'] / 'lexicon.txt',
+                                 "simple_results_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_simple_results.txt'),
                                  "ug_morphemes": self.folder['data'] / 'ug_morphemes.txt',
                                  "redundancy_rules": self.folder['data'] / 'redundancy_rules.txt',
                                  "timings_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_timings.txt'),
@@ -50,6 +53,7 @@ class LocalFileSystem:
         self.initialize_image_folder()
         self.initialize_grammaticality_judgments_file()
         self.initialize_results_file()
+        self.initialize_simple_results_file()
         self.initialize_resources_file()
         self.initialize_timings_file()
         self.initialize_simple_log_file()
@@ -115,6 +119,11 @@ class LocalFileSystem:
     def initialize_results_file(self):
         self.results_file = open(self.external_sources['results_file_name'], "w", -1, "utf-8")
         self.stamp(self.results_file)
+
+    def initialize_simple_results_file(self):
+        self.simple_results_file = open(self.external_sources['simple_results_file_name'], "w", -1, "utf-8")
+        self.stamp(self.simple_results_file)
+
 
     def initialize_grammaticality_judgments_file(self):
         self.grammaticality_judgments_file = open(self.external_sources["grammaticality_judgments_file_name"], "w", -1, "utf-8")
@@ -250,15 +259,19 @@ class LocalFileSystem:
         sentence_string = self.generate_input_sentence_string(sentence)
         if len(P.result_list) == 0:
             self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
+            self.simple_results_file.write(str(count) + '. *' + sentence_string + '\n\n')
         else:
             self.results_file.write(str(count) + '. ' + P.grammaticality_judgment() + sentence_string + '\n\n')
+            self.simple_results_file.write(str(count) + '. ' + P.grammaticality_judgment() + sentence_string + '\n\n')
             number_of_solutions = len(P.result_list)
             parse_number = 1
             for parse, semantic_interpretation in P.result_list:
                 if number_of_solutions == 1:
                     self.results_file.write('\t' + f'{parse}\n')
+                    self.simple_results_file.write('\t' + f'{parse}\n')
                 else:
                     self.results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
+                    self.simple_results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                 self.results_file.write('\n\tLF_Recovery: ' + str(self.formatted_output(semantic_interpretation, delimiter=' ')) +'\n')
                 if parse_number == 1:
                     self.results_file.write('\n\t' + self.format_resource_output(P.resources) + '\n')
@@ -266,13 +279,26 @@ class LocalFileSystem:
                     self.results_file.write(f'\n\tSemantic interpretation: {self.format_semantic_interpretation(P)}\n')
                 parse_number = parse_number + 1
                 self.results_file.write('\n')
+                self.simple_results_file.write('\n')
 
     def format_semantic_interpretation(self, P):
+        def format_lst(constituent_lst):
+            out_s = ''
+            for c in constituent_lst:
+                out_s += f'{c.illustrate()}' + ','
+            return out_s[:-1]
+
         output_str = '\n'
         for semantic_object, data_dict in P.narrow_semantics.semantic_bookkeeping.items():
-            output_str += '\tObject ' + semantic_object + '\n'
+            output_str += '\tObject ' + semantic_object
+            if 'Semantic type' in P.narrow_semantics.semantic_bookkeeping[semantic_object]:
+                output_str += ' ' + str(P.narrow_semantics.semantic_bookkeeping[semantic_object]['Semantic type'])
+            output_str += '\n'
             for item, value in data_dict.items():
-                output_str += '\t\t' + item + ': ' + f'{value}' + '\n'
+                if isinstance(value, list) and isinstance(value[0], PhraseStructure):
+                    output_str += '\t\t' + item + ': ' + format_lst(value) + '\n'
+                else:
+                    output_str += '\t\t' + item + ': ' + f'{value}' + '\n'
         return output_str
 
     def format_information_structure(self, P):
@@ -282,22 +308,22 @@ class LocalFileSystem:
         topics, neutrals, focus = P.narrow_semantics.topic_focus_structure
         if topics:
             for t in topics:
-                topics_str += P.narrow_semantics.semantic_bookkeeping[t]['Reference']
+                topics_str += P.narrow_semantics.semantic_bookkeeping[t]['Reference'] + ' '
         else:
-            topics_str = 'None, '
+            topics_str = 'None '
         if neutrals:
             for n in neutrals:
-                neutrals_str += P.narrow_semantics.semantic_bookkeeping[n]['Reference']
+                neutrals_str += P.narrow_semantics.semantic_bookkeeping[n]['Reference'] + ' '
         else:
-            neutrals_str = 'None, '
+            neutrals_str = 'None '
         if focus:
             for f in focus:
-                focus_str += P.narrow_semantics.semantic_bookkeeping[f]['Reference']
+                focus_str += P.narrow_semantics.semantic_bookkeeping[f]['Reference'] + ' '
         else:
             focus_str = 'None '
         output_str = '\tMarked topics:\n\t\t' + topics_str + '\n\tGradient:\n\t\t' + neutrals_str + '\n\tMarked focus:\n\t\t' + focus_str
         if not P.narrow_semantics.information_structure_active:
-            output_str = output_str + '(Force feature is present)'
+            output_str = output_str + '\n\t(Force feature is present)'
         return output_str
 
     def save_image(self, P, sentence, count):

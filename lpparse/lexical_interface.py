@@ -186,29 +186,26 @@ class LexicalInterface:
         return feature_set
 
     def apply_parameters(self, features):
+        """
+        This function is being deprecated, only few procedures remain.
+        """
         features = set(features)
         language_specific = False
 
+        # Add language if it is missing
         for f in features:
             if f[:4] == 'LANG':
                 language_specific = True
         if not language_specific:
             features.add(self.language)
 
+        # Ad hoc implementation for Finnish edge generalization
         if 'LANG:FI' in features:
-            non_finite_agreement = True
-        else:  # default
-            non_finite_agreement = False
+            if 'OP:_' in features and 'FORCE' not in features:
+                if not self.controlling_parser_process.narrow_semantics.operator_variable_module.get_operator_features(features):
+                    features.add('!SPEC:OP:_')
 
-        if 'LANG:IT' or 'LANG:EN' in features:
-            gender = True
-        else:
-            gender = False
-
-        if 'LANG:FI' in features:
-            gender = False
-
-        # ----- Effects of parameters ----- #
+        # ARG and VAL feature distribution
         if 'ARG' in features:
             if 'NO_NUMBER' not in features:
                 features.add('PHI:NUM:_')
@@ -216,16 +213,9 @@ class LexicalInterface:
                 features.add('PHI:PER:_')
             if 'NO_DET' not in features:
                 features.add('PHI:DET:_')
-            if gender:
+            if 'LANG:IT' or 'LANG:EN' in features:
                 features.add('PHI:GEN:_')
             if 'VAL' in features:
                 features.add('SPEC:*')
-                # features.add('!SPEC:*')
-
-        # Finnish operator snowballing
-        if non_finite_agreement:
-            if 'OP:_' in features and 'FORCE' not in features:
-                if not self.controlling_parser_process.narrow_semantics.operator_variable_module.contains_operator_feature(features):
-                    features.add('!SPEC:OP:_')
 
         return features

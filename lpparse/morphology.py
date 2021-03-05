@@ -27,36 +27,70 @@ class Morphology:
         """
         current_lexical_item = lexical_item
         while self.is_polymorphemic(current_lexical_item):
-            log('Morphological decomposition...')
-            controlling_parsing_process.consume_resources('Morphological decomposition')
+            # Iterative loop which makes sure that the first item in the decomposition is primitive and can be
+            # send to syntax for Merge-1
+            log(f'Word \"{current_lexical_item.morphology}\" contains multiple morphemes ')
 
             # Solves an ambiguity in C_features, i.e. whether they are criterial or head features
-            current_lexical_item = self.C_op_processing(current_lexical_item)
+            current_lexical_item = self.Aux_inversion(current_lexical_item)
+
             # Morphological decomposition based on the lexical entry
+            # Returns a list of morphemes
             morpheme_list = self.decompose(current_lexical_item.morphology)
+
             # Transfer knowledge of incorporation
             morpheme_list = self.handle_incorporation(current_lexical_item, morpheme_list)
-            log(f'Word "{input_word_list[index]}" contains multiple morphemes ' + str(morpheme_list) +'...')
-            self.refresh_input_list(input_word_list, morpheme_list, index)
+
+            # Apply the morphological mirror principle (should follow automatically from something)
+            self.apply_mirror_principle(input_word_list, morpheme_list, index)
+
+            controlling_parsing_process.consume_resources('Morphological decomposition')
+
+            # Retrieve the first item in the list from the lexicon
+            # Exit the process only if this is primitive (i.e. while-loop)
             current_lexical_item = self.lexicon.lexical_retrieval(input_word_list[index])[0]
-        return current_lexical_item, input_word_list, self.get_inflection(current_lexical_item)
+
+        # Extract infection features if the current element is inflectional feature and not a lexical item
+        inflection_features = self.get_inflection_features(current_lexical_item, input_word_list[index])
+
+        return current_lexical_item, input_word_list, inflection_features
 
     def handle_incorporation(self, current_lexical_item, morpheme_list_):
+        """
+        Adds incorporation feature to the morpheme list if the element was incorporated
+        """
         if current_lexical_item.incorporated:
             morpheme_list_.append('inc$')
         return morpheme_list_
 
-    def refresh_input_list(self, input_word_list, morpheme_list_, index):
+    def apply_mirror_principle(self, input_word_list, morpheme_list_, index):
+        """
+        Applies morphological mirror principle (Baker, Julien)
+        """
         del input_word_list[index]
         for w_ in morpheme_list_:
             input_word_list.insert(index, w_)           # Mirror principle
 
     def is_polymorphemic(self, lexical_item):
+        """
+        Definition for polymorphemic element
+        """
         return '#' in lexical_item.morphology or '=' in lexical_item.morphology
 
-    def get_inflection(self, lexical_item):
-        if lexical_item.morphology == '':
-            return lexical_item.features
+    def get_inflection_features(self, lexical_item, morpheme_string):
+        """
+        Return inflection features if any (empty set if not existing). A stranded inflectional feature is rejected,
+        and interpreted as an unknown morpheme
+        """
+        if 'inflectional' in lexical_item.features:
+            log(f'Inflectional feature {morpheme_string}...')
+            inflection_features = lexical_item.features
+            if inflection_features and not morpheme_string.endswith('$'):
+                log(f'Is stranded... ')
+                lexical_item.features.add('PF:' + morpheme_string)
+                lexical_item.features.add('CAT:?')
+                inflection_features = set()
+            return inflection_features
         else:
             return set()
 
@@ -66,31 +100,56 @@ class Morphology:
             lexical_item.features = lexical_item.features | set(inflectional_affixes)
         return lexical_item
 
-    # C/op processing
-    # Determines whether C/op feature is at the head or not
-    def C_op_processing(self, lexical_item):
-        list_ = self.extract_morphemes(lexical_item.morphology)
-        if len(list_) > 1 and 'foc' in list_ or 'C/op' in list_:
-            critical_morpheme = self.determine_critical_morpheme(list_)
-            if verbal_head() & critical_morpheme.features:
-                log('Feature interpreted as a C morpheme with C-feature...')
-                lexical_item.morphology = lexical_item.morphology.replace('#C/op', '#C/fin#C/op')
-                lexical_item.morphology = lexical_item.morphology.replace('#foc', '#C/fin#C/op')
+    def Aux_inversion(self, lexical_item):
+        """
+        In some cases we must generate extra C/fin head (aux-inversion). This function handles it. Currently only handles
+        Finnish head + operator feature combinations.
+        """
+        decomposition = self.extract_morphemes(lexical_item.morphology)     # Get decomposition
+        if self.lexicon.lexical_retrieval(decomposition[0])[0].verbal():    # Only target verbal heads
+            self.insert_C_head(lexical_item)                                # Add operator head if needed
         return lexical_item
 
-    def determine_critical_morpheme(self, list_):
-        return self.lexicon.lexical_retrieval(list_[0])[0]
+    def insert_C_head(self, lexical_item):
+        """
+        This function generates a null C head as a response to criterial C-features (currently only in Finnish).
+        The operator is assigned feature [V1] = [-EDGE:*] which prevents it from hosting anything at its edge,
+        including adjuncts. It corresponds in some way that is not currently clear to the V1,V2 signatures
+        """
+        m_lst = lexical_item.morphology.split('#')                      # Create morpheme list
+        for i in range(0, len(m_lst)):                                  # Examine x#y pairs
+            if self.recognize_operator_string(m_lst[i]):                # Detect operator boundary x#op, x not operator morpheme
+                new_m_lst = m_lst[0:i] + ['C/fin', 'V1'] + m_lst[i:]    # add C/fin between
+                log(f'C/fin morpheme inserted inside morphology {lexical_item.morphology} => ')
+                lexical_item.morphology = ''                            # Recreate morphology
+                for m in new_m_lst:                                     # ...
+                    lexical_item.morphology += m + '#'                  # ...
+                lexical_item.morphology = lexical_item.morphology[:-1]  # Remove last unnecessary '#'
+                log(f'{lexical_item.morphology}...')
+                break
+
+    def recognize_operator_string(self, string):
+        return {string} & {'[foc]', '[hAn]', '[pA]', '[kO]', 'C/op', '[wh]', 'wh'}
 
     # Definition for morpheme decomposition
     def extract_morphemes(self, word):
+        """
+        Extracts morphemes from [word]. Nontrivial part is recursion: any morpheme may refer to further
+        complex entry. This function decomposes enough so that the first morpheme is primitive, the
+        rest will be decomposed later when processing reaches them.
+        """
         list_ = [word]
         while '#' in list_[0]:
             list_ = list_[0].split('#') + list_[1:]
             list_[0] = self.lexicon.lexical_retrieval(list_[0])[0].morphology
         return list_
 
-    # Flips $ from the start to end, only because it is more easy to read in this way.
+
     def flip_boundary(self, lst_):
+        """
+        Flips $ from the start to end, only because it is more easy to read in this way.
+        Otherwise irrelevant.
+        """
         lst2_ = []
         for w in lst_:
             if w.startswith('$'):
@@ -103,6 +162,11 @@ class Morphology:
 
     # Definition for morphological decomposition
     def decompose(self, word):
+        """
+        Morphological decomposition is performed at # and = and the parts are converted into a list
+        """
         word = word.replace("#", "#$")
         word = word.replace("=", '#=')
-        return self.flip_boundary(word.split("#"))
+        word_ = self.flip_boundary(word.split("#"))
+        log(f'{word_}...')
+        return word_

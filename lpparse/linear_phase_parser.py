@@ -166,11 +166,11 @@ class LinearPhaseParser:
             log('Lexical retrieval...')
             self.consume_resources('Lexical retrieval', lst[index])
 
-            # Break down a complex phonological word, if anh, into the list of items to be processed, and return the
+            # Break down a complex phonological word, if any, into the list of items to be processed, and return the
             # first terminal lexical constituent from the lexicon to get attached to the syntactic structure
             terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
 
-            # Process inflection
+            # Process inflection (store into memory, load from the memory into constituent)
             terminal_lexical_item = self.process_inflection(inflection, terminal_lexical_item)
             log('Done.')
             if inflection:
@@ -182,7 +182,7 @@ class LinearPhaseParser:
             # If the next element is a lexical constituent, we try to attache it to the structure
             else:
                 self.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
-                log(f'\n\t\tItem enters active working memory.')
+                log(f'\n\t\tItem enters active working memory. ')
                 terminal_lexical_item.active_in_syntactic_working_memory = True  # The element enters active working memory
                 self.narrow_semantics.wire_semantics(terminal_lexical_item)
                 log('\n')
@@ -224,6 +224,7 @@ class LinearPhaseParser:
                             self.consume_resources("Merge", f'{terminal_lexical_item}')
                             #
                             #
+                            #
                             # Merge (attachment of new element to existing structure)
                             # Note. All left branches are transferred before Merge (Brattico & Chesi 2020)
                             set_logging(False)
@@ -244,6 +245,9 @@ class LinearPhaseParser:
                             break
                     # ---------------------------------------------------------------------------------------- #
                     print('.', end='', flush=True) # This sends a message to console that something is happening.
+                    # If we backtrack, then the referents constructed on the basis of the current lexical item must be
+                    # deleted from the semantic bookkeeping
+                    self.narrow_semantics.forget_referent(terminal_lexical_item)
 
         # If all solutions in the list have been explored, backtrack
         if not self.exit:
@@ -262,12 +266,13 @@ class LinearPhaseParser:
         morphemes are then discharged inside the lexical item.
         """
         if inflection:
+            if 'inflectional' in inflection:        # Don't copy inflectional marker itself
+                inflection.remove('inflectional')
             self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
             self.consume_resources("Inflection")
-            log(f'Added feature {sorted(inflection)} into temporary feature working memory...')
+            log(f'Added {sorted(inflection)} into memory...')
         else:
             if self.memory_buffer_inflectional_affixes:
-                log(f'{lexical_item.get_phonological_string()} is coming next...')
                 log(f'Adding inflectional features {sorted(self.memory_buffer_inflectional_affixes)} to ' + lexical_item.get_phonological_string() + '...')
                 lexical_item.features = lexical_item.features | set(self.memory_buffer_inflectional_affixes)
                 self.memory_buffer_inflectional_affixes = set()

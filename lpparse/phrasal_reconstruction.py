@@ -81,7 +81,7 @@ class PhrasalMovement:
                 else:
                    # We are working with a local specifier, no need to project extra heads
                     count_specifiers = + 1
-                    if spec.scan_criterial_features():
+                    if self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
                         log(f'Criterial features copied to {head}...')
                         head.features |= self.get_features_for_criterial_head(head, spec)
                         if head.get_tail_sets():
@@ -108,19 +108,30 @@ class PhrasalMovement:
 
     def get_features_for_criterial_head(self, head, spec):
         """
-        Copied criterial features from a constituent. A criterial feature is one beginning with pattern [op:].
-        They are features that can be understood by the operator system. If criterial features are copied into
-        a finite head, then force features are generated in addition representing propositional attitudes.
-        A force feature syntax is [FORCE:F] where F is the criterial feature (e.g. OP:WH).
+        Copied criterial features from a constituent [spec] to [head].
+        A criterial feature begins (by definition) with [OP:].
+
+        The original operator phrase [OP:F] is obligatorily bound by the closest head with [OP:F][FIN] and,
+        if not found, optionally by any head with feature [T/fin] or [T][FIN], with preference on local
+        head.
         """
-        criterial_features = spec.scan_criterial_features()
+        criterial_features = self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
         if criterial_features:
-            feature_set = set()
+
+            # First we copy the criterial features, so that [OP:F][FIN] becomes scope binder
+            feature_set = criterial_features
+
+            # Add finiteness feature (or another feature distinguishing scope marker from the operator itself)
+            feature_set |= {'FIN'}
+
+            # This will be replaced later when a deeper explanation is found. [OP:_] is a movement trigger
             if {'OP:WH', 'OP:REL'} & criterial_features:
-                feature_set = {'OP:_'}
+                feature_set |= {'OP:_'}
+
+            # This will be eliminated later
             if 'FIN' in head.features:
-                feature_set |= {'OP', 'FIN'}
-                feature_set |= {'FORCE:' + criterial_feature for criterial_feature in criterial_features}
+                feature_set |= {'OP'}
+
             return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
         else:
             return {'?'}
@@ -182,22 +193,22 @@ class PhrasalMovement:
         if h.left_const.is_primitive():
             return h.left_const
 
-    @staticmethod
     # Definition for constituent that can implement A-bar move
-    def Abar_movable(h):
+    def Abar_movable(self, h):
         """
         A phrase is A-bar movable (understood by the operator system) if and only if it is marked
         by an operator feature or is an A-infinitival. The latter condition is obviously a stipulation and
         is made on the basis of Finnish VP-fronting data.
         """
-        return h.scan_criterial_features() or \
-               'A/inf' in h.head().features
+        if self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(h):
+            return True
+        if 'A/inf' in h.head().features:
+            return True
 
-    @staticmethod
     # Definition for phrase that requires a local licensing head (used in connection with A-bar head generation)
-    def specifier_phrase_must_have_supporting_head(h):
+    def specifier_phrase_must_have_supporting_head(self, h):
         # Criterial feature represents a licensing head that must be present
-        if h.scan_criterial_features():
+        if self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(h):
             return True
         # Adjuncts do not need licensing heads
         if h.max().externalized():

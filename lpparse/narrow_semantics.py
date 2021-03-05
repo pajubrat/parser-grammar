@@ -1,5 +1,6 @@
 from support import log
 from operator_variable_module import OperatorVariableModule
+from discourse import Discourse
 
 class NarrowSemantics:
     """
@@ -16,6 +17,7 @@ class NarrowSemantics:
         self.main_arguments = {}
         self.topic_focus_structure = ()
         self.operator_variable_module = OperatorVariableModule()
+        self.discourse = Discourse(self)
         self.attitudes = {'FORCE:OP:WH': 'Interrogative'}   # These descriptions are only used in outputting results
         self.operator_interpretation = {'OP:WH': 'Interrogative',
                                          'OP:TOP': 'Topic',
@@ -25,10 +27,44 @@ class NarrowSemantics:
                                          'OP:Q': 'Yes/no interrogative',
                                          'OP:REL': 'Relativization'
                                          }
+        self.semantic_type = {'T/fin':'Proposition',
+                              'D': '§Thing',
+                              'Q': '§Quantifier',
+                              'NUM': '§Quantity',
+                              'NEG': '§Polarity',
+                              'C/fin': '§Proposition',
+                              'C': '§Proposition',
+                              'N': '§Predicate',
+                              'V': '§Predicate',
+                              'A': '§Predicate',
+                              'a': '§Predicate',
+                              'ADV': '§Predicate',
+                              '0': '§Predicate',
+                              'P': '§Topology',
+                              'v': '§Valency',
+                              'T': '§Tense',
+                              'ASP': '§Eventive',
+                              'ARG': '§Unsaturated',
+                              'SEM:internal': '§Internal',
+                              'SEM:external': '§External',
+                              'FORCE': '§Proposition'
+                              }
 
     def initialize(self):
         self.index_counter = 1
         self.semantic_bookkeeping = {}
+
+    def forget_referent(self, referring_head):
+        """
+        Removes an element from the semantic space referred by [referring_head], if any. This function is
+        used during backtracking.
+        """
+        if self.controlling_parsing_process.first_solution_found:
+            return
+        idx = self.get_semantic_wiring(referring_head)
+        if idx:
+            log(f'Removing reference [{idx}] of \"{referring_head.illustrate()}\" from semantic space...')
+            self.semantic_bookkeeping.pop(idx, None)
 
     def update_references(self, ps):
         """
@@ -52,7 +88,7 @@ class NarrowSemantics:
         head = ps.head()
         idx = self.get_semantic_wiring(head)
         if idx:
-            self.semantic_bookkeeping[idx]['Reference'] = f'{head.max()}'
+            self.semantic_bookkeeping[idx]['Reference'] = f'{head.max().illustrate()}'
 
     def wire_semantics(self, ps):
         """
@@ -70,7 +106,7 @@ class NarrowSemantics:
             if ps.right_const.adjunct:
                 self.wire_semantics(ps.right_const) # Visit and wired the externalized right adjuncts
                 self.wire_semantics(ps.left_const)  # Continue from the right edge of the main structure
-            self.try_wire_semantics(ps)
+                self.try_wire_semantics(ps)
             self.wire_semantics(ps.right_const)
         else:
             self.try_wire_semantics(ps)
@@ -80,18 +116,21 @@ class NarrowSemantics:
         Wires semantics for [ps] if possible (ps is referential) and required (no wiring exists)
         """
         if not self.get_semantic_wiring(ps) and ps.head().referential():
-            self.create_wiring(ps)
-            self.add_to_semantic_bookkeeping(ps)
-            self.index_counter += 1  # This will be identifier for the next object
+            self.wire(ps)
+
+    def wire(self, ps):
+        self.create_wiring(ps)
+        self.add_to_semantic_bookkeeping(ps)
+        self.index_counter += 1  # This will be identifier for the next object
 
     def create_wiring(self, ps):
         """
         Wires constituent ps (its head) with an object inside the semantic space. THis module will later
         include the binding theory.
         """
-        log(f'Wiring semantics for {ps}')
+        log(f'Wiring semantics ')
         idx_feature = 'IDX:' + str(self.index_counter)
-        log(f'({idx_feature})...')
+        log(f'[{str(self.index_counter)}] for {ps}...')
         ps.head().features.add(idx_feature)
 
     def add_to_semantic_bookkeeping(self, ps):
@@ -99,12 +138,27 @@ class NarrowSemantics:
         Adds the element to semantic space (semantic bookkeeping)
         """
         # Ranked gradient that will go into information structure module
-        self.semantic_bookkeeping[str(self.index_counter)] = {'Referring constituent': f'{ps}', 'Order gradient': self.index_counter}
-        self.semantic_bookkeeping[str(self.index_counter)]['Reference'] = f'{ps}'
-        if ps.scan_criterial_features():
-            self.semantic_bookkeeping[str(self.index_counter)]['Operator'] = True
+        idx = str(self.index_counter)
+        self.semantic_bookkeeping[idx] = {'Referring constituent': f'{ps}', 'Order gradient': self.index_counter}
+        self.semantic_bookkeeping[idx]['Reference'] = f'{ps.illustrate()}'
+        self.update_semantic_type(ps)
+        if self.operator_variable_module.scan_criterial_features(ps):
+            self.semantic_bookkeeping[idx]['Operator'] = True
         else:
-            self.semantic_bookkeeping[str(self.index_counter)]['Operator'] = False
+            self.semantic_bookkeeping[idx]['Operator'] = False
+
+    def update_semantic_type(self, ps):
+        """
+        If ps has been wired semantically, then its syntactic features are used to update
+        its semantic type inside semantic bookkeeping
+        """
+        idx = self.get_semantic_wiring(ps)
+        if idx:
+            if 'Semantic type' not in self.semantic_bookkeeping[idx]:
+                self.semantic_bookkeeping[idx]['Semantic type'] = set()
+            for f in ps.features:
+                if f in self.semantic_type:
+                    self.semantic_bookkeeping[idx]['Semantic type'].add(self.semantic_type[f])
 
     def get_semantic_wiring(self, ps):
         """
@@ -122,16 +176,16 @@ class NarrowSemantics:
         """
         return {f for f in ps.head().features if f[:5] == 'FORCE'}
 
-    def update_semantics_for_marked_gradient(self, floater, starting_point_head):
+    def update_semantics_for_marked_gradient(self, ps, starting_point_head):
         """
         Allows communication between adjunct reconstruction and semantic bookkeeping.
 
         When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
         record the operation, which will be then used by information structure module
         """
-        idx = self.get_semantic_wiring(floater)
+        idx = self.get_semantic_wiring(ps)
         if idx:
-            feature_vector_set = set(floater.head().feature_vector())   # Take reconstructed floaters feature vector
+            feature_vector_set = set(ps.head().feature_vector())        # Take reconstructed floaters feature vector
             if starting_point_head in feature_vector_set:               # If starting point is in the feature vector,
                 direction = 'High'                                      # then reconstructed was rightward and the
                 log(f'Topicalization...')                               # production movement was leftward
@@ -146,7 +200,6 @@ class NarrowSemantics:
         """
         Updates attribute:value for semantic object [sem_object]
         """
-
         if self.semantic_bookkeeping[sem_object]:
             self.semantic_bookkeeping[sem_object][attribute] = value
 
@@ -255,25 +308,44 @@ class NarrowSemantics:
             if node.is_complex() and node.left_const.finite():
                 return node
 
-    def bind_variable(self, ps):
+    def bind_variable(self, operator_ps, first_solution_found):
         """
-        Binds an operator to a scope-element. An operator is a non-C constituent that has valued [OP:XX] feature, with XX being the value.
+        Binds an operator to a scope-element. An operator is a non-finite constituent that has valued [OP:XX] feature, with XX being the value.
+        It is bound necessarily by a head with [OP:XX][FIN]. Binding projects the proposition into semantic bookkeeping and provides
+        referential index for the scope head.
         """
-        if 'FIN' not in ps.head().features:
-            for f in ps.head().features:
+        if 'FIN' not in operator_ps.head().features:
+            feature_set = operator_ps.head().features.copy()
+            for f in feature_set:
                 if self.operator_variable_module.is_operator_feature(f):
-                    scope_operator = self.operator_variable_module.bind_to_scope_operator(ps, 'OP')
-                    if not scope_operator:
-                        log(f'{ps.max().illustrate()} with feature {f} is not properly bound by an operator...')
+                    scope_operator_lst = self.operator_variable_module.bind_to_scope_operator(operator_ps, f)
+                    if not scope_operator_lst:
+                        log(f'{operator_ps.illustrate()} with feature {f} is not properly bound by an operator. ')
                         return False
                     else:
-                        idx = self.get_semantic_wiring(ps)
-                        if idx:
-                            self.update_semantics_for_attribute(idx, 'Bound by', scope_operator)
-                            self.interpret_and_update_operator_feature(idx, f)
-                        return True
+                        # Update binding information for the operator in semantic bookkeeping
+                        idx = self.get_semantic_wiring(operator_ps)
+                        if not idx:
+                            self.wire(operator_ps)
+                            idx = self.get_semantic_wiring(operator_ps)
+                        self.update_semantics_for_attribute(idx, 'Bound by', scope_operator_lst)
+                        self.interpret_and_update_operator_feature(idx, f)
+                        log(f'{operator_ps.illustrate()} was bound by {scope_operator_lst[0]}...')
+
+                        # Create referential index for the proposition and project it to semantic bookkeeping
+                        # Only applies to full propositions, not to relative clauses
+                        if not first_solution_found and not self.get_semantic_wiring(scope_operator_lst[0]):
+                            if self.full_proposition(scope_operator_lst[0]):
+                                self.wire(scope_operator_lst[0])
+        return True
+
+    def full_proposition(self, scope_operator):
+        return 'OP:REL' not in scope_operator
 
     def interpret_and_update_operator_feature(self, idx, f):
+        """
+        Provides English language description for the operator interpretation into semantic bookkeeping
+        """
         if 'Operator interpretation' not in self.semantic_bookkeeping[idx]:
             self.semantic_bookkeeping[idx]['Operator interpretation'] = set()
         self.semantic_bookkeeping[idx]['Operator interpretation'].add(self.operator_interpretation[f])

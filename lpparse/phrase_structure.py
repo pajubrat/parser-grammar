@@ -497,6 +497,9 @@ class PhraseStructure:
 
     # Definition for path visibility
     def inside_path(self):
+        """
+        A node X is inside path that goes through node N if and only if X is primitive or primitive left constituent.
+        """
         if self.is_primitive():
             return self
         if self.is_complex:
@@ -626,7 +629,10 @@ class PhraseStructure:
         """
         Determines what type of constituents will populate the semantic space by reference
         """
-        return {'D', 'FORCE'} & self.head().features
+        return {'D', 'FORCE', 'P'} & self.head().features
+
+    def verbal(self):
+        return {'V', 'v', 'T', 'T/fin', 'NEG', 'FORCE'} & self.head().features
 
     # Return a list of affixes inside a grammatical head (including the head itself)
     def get_affix_list(self):
@@ -709,17 +715,6 @@ class PhraseStructure:
         scope marking operators.
         """
         return {feature for feature in self.features if feature[:2] == 'OP'}
-
-    # Recursive definition for criterial features (type ABAR:_) inside phrase
-    def scan_criterial_features(self):
-        set_ = set()
-        if self.left_const and not self.left_const.find_me_elsewhere:
-            set_ = set_ | self.left_const.scan_criterial_features()
-        if self.right_const and not self.right_const.externalized() and not {'T/fin', 'C'} & self.right_const.head().features:
-            set_ = set_ | self.right_const.scan_criterial_features()
-        if self.is_primitive():
-            set_ |= {feature for feature in self.features if feature[:3] == 'OP:'}
-        return set_
 
     # Definition for positive specifier selection
     def licensed_specifiers(self):
@@ -906,39 +901,6 @@ class PhraseStructure:
                 return f'[' + prefix\
                        + self.left_const.illustrate() + ' ' \
                        + self.right_const.illustrate() + ']'
-
-    def illustrate_spellout(self):
-
-        if self.identity != '':
-            id_str = ':' + self.identity
-        else:
-            id_str = ''
-
-        if self.is_primitive():
-            if not self.get_phonological_string():
-                return '?'
-            else:
-                if self.adjunct:
-                    return '<' + self.get_phonological_string() + '>'
-                else:
-                    return self.get_phonological_string()
-
-        prefix= ''
-
-        if 'null' in self.features:
-            if self.adjunct:
-                return '<__>' + id_str
-            else:
-                return '__' + id_str
-        else:
-            if self.adjunct:
-                return f'<' + prefix \
-                       + self.left_const.illustrate_spellout() + ' ' \
-                       + self.right_const.illustrate_spellout() + '>' + id_str
-            else:
-                return f'[' + prefix\
-                       + self.left_const.illustrate_spellout() + ' ' \
-                       + self.right_const.illustrate_spellout() + ']' + id_str
 
     #   Standard output function that shows the phrase structure
     def __str__(self):

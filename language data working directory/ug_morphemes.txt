@@ -30,15 +30,11 @@ MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T COMP:v COMP:V -VAL ARG adjoina
 MA/inf		:: MA/inf ADV PF:maan LF:to_do TAIL:V COMP:v COMP:V -VAL ARG
 E/inf		:: PF:en LF:by ADV -ARG -VAL TAIL:T LANG:FI
 
-# Italian
-
-
 # Copula
 BE-		:: V COPULA PF:BE LF:BE -ARG SPEC:D !COMP:* COMP:T/prt -COMP:T/fin
 D		:: D PF:D LF:D
 D/rel	:: D/rel PF:D/rel LF:D/rel adjoinable
 P		:: P PF:P LF:P
-
 
 # Pronominal items
 pro		:: pro-#D
@@ -67,7 +63,10 @@ dat		:: inflectional DAT TAIL:v
 #Aspect markers
 asp			:: inflectional ASP:BOUNDED
 
-# Universal feature inventory
+#Projection features (is this really feature?)
+V1		:: inflectional -EDGE:* -SPEC:*
+
+# Universal operator feature inventory
 uC/op	:: inflectional uC/op
 wh     	:: inflectional OP:WH OP:_
 wh_		:: inflectional OP OP:_ FORCE:OP:WH
@@ -76,5 +75,5 @@ foc    	:: inflectional OP:FOC
 fam		:: inflectional OP:FAM
 pol		:: inflectional OP:POL
 C/op	:: inflectional OP:C/OP
-D/rel   :: inflectional OP:REL OP:_
+d/rel   :: inflectional OP:REL OP:_
 Q		:: inflectional OP OP:WH OP:Q

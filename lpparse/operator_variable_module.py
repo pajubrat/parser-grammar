@@ -21,9 +21,6 @@ class OperatorVariableModule:
     OP:Q    Q       Yes/no operator feature (Finnish -kO)
 
     Scope-marking element which binds the operator:
-    OP      -       Scope-marking operator for all operator features, must be combined with finiteness
-                    This is currently generated from copying criterial features to a head. Alternative is
-                    the question-particles of in situ languages, not currently implemented.
     OP:_    -       Unvalued operator feature which is generated when moved operator is present.
                     This therefore implies that movement of an operator phrase has occurred
                     To capture edge generalization in Finnish, this implies [!SPEC:OP:_]
@@ -31,17 +28,29 @@ class OperatorVariableModule:
     def __init__(self):
         pass
 
-    def bind_to_scope_operator(self, head, operator_feature='OP'):
+    def bind_to_scope_operator(self, head, operator_feature):
         """
-        Finds a binding scope operator for head (it is assumed that head has operator feature). A scope operator
-        can be defined by parameter [operator_feature].
+        Finds a list of binding scope operators for head (it is assumed that head has operator feature).
+        If there is a specifically marked obligatory binder, it alone will be selected; if not, a
+        list of T/fin heads will be returned. Return a list of scope marker constituents.
         """
+        scope_binder_lst = []
         # --------------- upstream path --------------------------------------------------------------------------- #
         for node in head.upstream_search():
-            target_head = node.inside_path()
-            if target_head.match_features({operator_feature}) == 'complete match' and 'FIN' in target_head.features:
-                return target_head
+            target_head = node.inside_path()    # Left primitive constituent of [node] or [node] itself if it is primitive.
+            if target_head != head and self.termination_condition_for_operator_binding(node):
+                break
+            if self.is_obligatory_scope_binder(target_head, operator_feature):
+                scope_binder_lst = [target_head]
+                break
+            if self.is_last_resort_binder(target_head) and 'OVERT_SCOPE' not in head.features:
+                scope_binder_lst.append(target_head)
         # --------------------------------------------------------------------------------------------------------- #
+        return scope_binder_lst
+
+    def termination_condition_for_operator_binding(self, node):
+        if node.is_complex() and 'D' in node.left_const.features:
+            return True
 
     def is_operator(self, head):
         """
@@ -53,5 +62,30 @@ class OperatorVariableModule:
     def is_operator_feature(self, feature):
         return feature[:3] == 'OP:' and feature [-1] != '_'
 
-    def contains_operator_feature(self, features):
+    def get_operator_features(self, features):
         return {f for f in features if self.is_operator_feature(f)}
+
+    def is_obligatory_scope_binder(self, target_head, operator_feature):
+        if {operator_feature, 'FIN'} & target_head.features == {operator_feature, 'FIN'}:
+            return True
+
+    def is_last_resort_binder(self, target_head):
+        if 'T/fin' in target_head.features:
+            return True
+        if {'T', 'FIN'} & target_head.features == {'T', 'FIN'}:
+            return True
+
+    # Recursive definition for criterial features (type ABAR:_) inside phrase
+    def scan_criterial_features(self, ps):
+        """
+        Scans the phrase for criterial features. Once (a set of) criterial features are found from a head,
+        search is terminated.
+        """
+        set_ = set()
+        if ps.left_const and not ps.left_const.find_me_elsewhere:
+            set_ = self.scan_criterial_features(ps.left_const)
+        if not set_ and ps.right_const and not ps.right_const.externalized() and not {'T/fin', 'C'} & ps.right_const.head().features:
+            set_ = self.scan_criterial_features(ps.right_const)
+        if not set_ and ps.is_primitive():
+            set_ = self.get_operator_features(ps.features)
+        return set_

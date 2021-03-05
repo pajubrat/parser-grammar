@@ -2,7 +2,6 @@ from support import log, illu
 from lexical_interface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
 
-
 class FloaterMovement():
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process
@@ -45,24 +44,24 @@ class FloaterMovement():
 
         A potential left or right floater is first recognized by a complex set of properties.
         If the test passes, then there are three cases which trigger reconstruction:
-        (1) XP fails the tail-test;
-        (2) XP sits in an EPP-position;
-        (3) XP sits in a specifier position of a head which does not accept specifiers [-SPEC:*]
+        (2) XP fails the tail-test;
+        (3) XP sits in an EPP-position;
+        (4) XP sits in a specifier position of a head which does not accept specifiers [-SPEC:*]
         """
         if self.detect_left_floater(ps):
             floater = ps.left_const
 
-            # Case (1): XP fails the tail test
+            # Case (2): XP fails the tail test
             if not floater.head().external_tail_head_test():
                 log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
                 return floater.max()
 
-            # Case (2): XP sits in an EPP position;
+            # Case (3): XP sits in an EPP position;
             if floater.mother and floater.mother.head().EPP() and 'FIN' in floater.mother.head().features:
                 log(floater.illustrate() + ' is in an EPP SPEC position...')
                 return floater.max()
 
-            # Case (3): XP sits in a specifier position that does not exist
+            # Case (4): XP sits in a specifier position that does not exist
             if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == floater.mother.head().local_edge():
                 log(floater.illustrate() + ' is in an specifier position that cannot be projected...')
                 return floater.max()
@@ -98,7 +97,7 @@ class FloaterMovement():
                 'adjoinable' in ps.left_const.head().features and \
                 '-adjoinable' not in ps.left_const.head().features and \
                 '-float'not in ps.left_const.head().features and \
-                not ps.scan_criterial_features()
+                not self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(ps)
 
     def detect_right_floater(self, ps):
         """
@@ -127,9 +126,10 @@ class FloaterMovement():
         else:
             starting_point_head = None
         floater_copy = floater.copy()
+        local_tense_edge = self.local_tense_edge(floater)
         # ------------------------------------ minimal search ------------------------------------#
-        for node in self.local_tense_edge(floater).minimal_search():
-            if self.termination_condition(node, floater):
+        for node in local_tense_edge.minimal_search():
+            if self.termination_condition(node, floater, local_tense_edge):
                 break
             self.merge_floater(node, floater_copy) # Right adjuncts to right, left adjuncts to left
             if self.is_drop_position(floater_copy, starting_point_head):
@@ -154,8 +154,26 @@ class FloaterMovement():
         else:
             node.merge_1(floater_copy, 'left')
 
-    def termination_condition(self, node, floater):
-        return node == floater or node.find_me_elsewhere
+    def termination_condition(self, node, floater, local_tense_edge):
+        """
+        Termination condition for adjunct reconstruction (sets up lower locality limit).
+
+        Downward adjunct reconstruction terminates if and only if
+        (1) Reconstruction is attempted into the floater itself (when floater is bottom right phrase), or
+        (2) Reconstruction is attempted into a phrase that has been copied out (when bottom right constituent) or
+        (3) Reconstruction is attempted over finite force boundary or
+        (4) Reconstruction is attempted inside DP.
+        """
+        if node == floater:
+            return True
+        if node.find_me_elsewhere:
+            return True
+        if node.is_complex() and 'FORCE' in node.left_const.features and node.head() != local_tense_edge.head():
+            log(f'Intervention by finiteness at {node}...')
+            return True
+        if node.is_complex() and 'D' in node.left_const.features:
+            log(f'Intervention by D at {node}...')
+            return True
 
     def is_right_adjunct(self, node):
         return 'ADV' in node.head().features or 'P' in node.head().features
@@ -179,23 +197,26 @@ class FloaterMovement():
         Defines conditions for left adjuncts.
         Tests tail features and whether this position can host specifiers ([-SPEC:*]/[-AGR] heads cannot)
         """
-        return floater.head().external_tail_head_test() and self.license_to_specifier_position(floater, starting_point_head)
+        return floater.head().external_tail_head_test() and self.license_floater_position(floater, starting_point_head)
 
-    def license_to_specifier_position(self, floater, starting_point_head):
+    def license_floater_position(self, floater, starting_point_head):
         """
         Determiners whether floater can occur in a given specifier position during reconstruction.
 
-        It can if and only if
-        (1) it does not occur inside any projection from a head or
-        (2) it does not occur its own the starting position or
+        The conditions are the following:
+        (1) the floater does not occur inside a projection from a head at all
+        (2) it does not occur its own the starting position
         (3) the container head is not marked for [-SPEC:*]
         (4) the container head is not selected by head marked for [-ARG]
+        (5) if the floater is DP, it must satisfy LF projection principle (most likely subsumes condition 3)
         """
         if not floater.container_head():
             return True
         if floater.container_head() == starting_point_head:
             return False
         if '-SPEC:*' in floater.container_head().features:
+            return False
+        if 'D' in floater.head().features and not self.controlling_parser_process.LF.projection_principle(floater.head()):
             return False
         if not floater.container_head().selector():
             return True
@@ -207,13 +228,12 @@ class FloaterMovement():
         """
         Determines the minimal tense edge from which adjunct reconstruction begins.
 
-        The minimal tense node is defined as first node N inside projection of a head that as [FIN] but which is
-        not the sister of FinP or head with [FIN]. Thus for example N = [Fin vP] satisfies this condition.
+        The minimal tense node is defined as first node inside projection from T/fin.
         """
         node = ps.top()
         # --------------------------- upstream search ---------------------------------------- #
         for node in ps.upstream_search():
-            if 'FIN' in node.head().features and node.sister() and node.sister().is_primitive() and 'FIN' not in node.sister().head().features:
+            if {'T/fin', 'FORCE'} & node.head().features:
                 break
         # --------------------------------------------------------------------------------------#
         return node

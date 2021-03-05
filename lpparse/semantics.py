@@ -1,6 +1,4 @@
 from support import log
-from narrow_semantics import NarrowSemantics
-
 #
 # This class will be slowly dissolved into narrow_semantics and broad_semantics
 #
@@ -54,10 +52,13 @@ class Semantics:
             self.perform_LF_recovery(ps)
             self.detect_phi_conflicts(ps)
             self.interpret_tail_features(ps)
-            if self.controlling_parsing_process.narrow_semantics.bind_variable(ps):
-                self.semantic_interpretation.add(f'Operator {ps.max().illustrate()} was bound to an operator ')
-            else:
-                self.semantic_interpretation_failed = False
+            if not self.controlling_parsing_process.narrow_semantics.bind_variable(ps, self.controlling_parsing_process.first_solution_found):
+                self.semantic_interpretation_failed = True
+                return set()
+            if not self.controlling_parsing_process.first_solution_found:
+                if not self.controlling_parsing_process.narrow_semantics.discourse.reconstruct_discourse(ps):
+                    self.semantic_interpretation_failed = True
+                    return set()
         else:
             if not ps.left_const.find_me_elsewhere:
                 self._interpret(ps.left_const)
@@ -275,18 +276,3 @@ class Semantics:
         else:
             log(f'({self.interpret_no_antecedent(ps, unvalued_phi_features)})')
         log('. ')
-
-    def bind_variables(self, ps):
-        """
-        Binds an operator to a scope-element.
-
-        An operator is a non-C constituent that has valued [OP:XX] feature, with XX being the value.
-        """
-        if 'C' not in ps.head().features:
-            for f in ps.head().features:
-                if f[:3] == 'OP:' and f != 'OP:_':
-                    if not ps.bind_to_scope_operator('OP'):
-                        log(f'{ps.max().illustrate()} with feature {f} is not properly bound by an operator...')
-                        self.semantic_interpretation_failed = True
-                    else:
-                        self.semantic_interpretation.add(f'{ps.max().illustrate()} with feature {f} was bound to an operator.')

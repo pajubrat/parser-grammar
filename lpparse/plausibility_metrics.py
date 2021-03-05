@@ -116,6 +116,7 @@ class PlausibilityMetrics:
         if site.is_primitive():
             m = site.bottom_affix()
             if self.word.features & m.convert_features_for_parsing(m.complements_not_licensed()):
+                log(f'{self.word.features & m.convert_features_for_parsing(m.complements_not_licensed())}')
                 return True
 
     @knockout_lexical_ranking
@@ -173,22 +174,22 @@ class PlausibilityMetrics:
         self.plausibility_conditions = \
             {'positive_spec_selection':         {'condition': self.positive_spec_selection,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('positive_spec_selection', 100),
-                                                 'log': '+spec selection'},
+                                                 'log': '+Spec selection'},
              'negative_spec_selection':         {'condition': self.negative_spec_selection,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_spec_selection', -100),
-                                                 'log': '-spec selection'},
+                                                 'log': '-Spec selection'},
              'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('break_head_comp_relations', -100),
                                                  'log': 'Head-complement word breaking condition'},
              'negative_tail_test':              {'condition': self.negative_tail_test,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_tail_test', -100),
-                                                 'log': '-tail'},
+                                                 'log': '-Tail'},
              'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('positive_head_comp_selection', 100),
-                                                 'log': '+comp selection'},
+                                                 'log': '+Comp selection'},
              'negative_head_comp_selection':    {'condition': self.negative_head_comp_selection,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_head_comp_selection', -100),
-                                                 'log': '-comp selection'},
+                                                 'log': '-Comp selection'},
              'negative_semantics_match':        {'condition': self.negative_semantic_match,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_semantics_match', -100),
                                                  'log': 'Semantic mismatch'},
@@ -197,10 +198,10 @@ class PlausibilityMetrics:
                                                  'log': '-LF-legibility for left branch'},
              'negative_adverbial_test':         {'condition': self.negative_adverbial_test,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('negative_adverbial_test', -100),
-                                                 'log': '-adverbial condition'},
+                                                 'log': '-Adverbial condition'},
              'positive_adverbial_test':         {'condition': self.positive_adverbial_test,
                                                  'weight': self.controlling_parser_process.local_file_system.settings.get('positive_adverbial_test', 100),
-                                                 'log': '+adverbial condition'}
+                                                 'log': '+Adverbial condition'}
              }
 
     def rank_merge_right_(self, site_list, word):
