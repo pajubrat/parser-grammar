@@ -29,19 +29,21 @@ class LF_Recovery:
         """
         Provides each head [head] with unvalued phi-features an argument
         """
+        if self.controlling_parsing_process.first_solution_found:
+            return
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
-            self.LF_recovery_results = set()
+            self.LF_recovery_result = None
             log(f'\"{head.illustrate()}\" with {sorted(unvalued)} was associated at LF with ')
             list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
-                self.LF_recovery_results.add(self.interpret_antecedent(head, list_of_antecedents[0]))
+                self.LF_recovery_result = self.interpret_antecedent(head, list_of_antecedents[0])
             else:
-                self.LF_recovery_results.add(f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')')
+                self.LF_recovery_result = f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')'
             self.report_to_log(head, list_of_antecedents, unvalued)
             self.controlling_parsing_process.consume_resources("LF recovery")
             self.controlling_parsing_process.consume_resources("Phi")
-            semantic_interpretation_dict['Recovery'].append(self.LF_recovery_results)
+            semantic_interpretation_dict['Recovery'].append(self.LF_recovery_result)
 
     # Definition for LF-recovery
     def LF_recovery(self, head, unvalued_phi):
@@ -115,8 +117,11 @@ class LF_Recovery:
         elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
             return 'discourse antecedent'
         else:
-            self.interpretation_failed = True
-            return 'uninterpretable'
+            if 'T/fin' in ps.head().features or 'Neg/fin' in ps.head().features:    # Finnish EPP ad hoc rule
+                self.interpretation_failed = True                                   # I still don't fully understand this
+                return 'uninterpretable'
+            else:
+                return 'generic'
 
     # Provides a more fine-grained interpretation for antecedents
     def interpret_antecedent(self, trigger, antecedent):
@@ -148,6 +153,7 @@ class LF_Recovery:
 
         # Main function
         antecedent_head = antecedent.head()
+        #[H XP]
         if trigger.sister() and trigger.is_left() and antecedent == trigger.sister() and antecedent.is_right():
             prefix = 'Patient of'
         else:

@@ -59,6 +59,17 @@ class NarrowSemantics:
         self._interpret(ps)
         return self.semantic_interpretation_failed
 
+    def reset_semantic_interpretation(self):
+        log('\n\t\tResetting semantic interpretation...')
+        self.semantic_interpretation = {}
+        self.semantic_interpretation = {'Recovery': [],
+                                        'Aspect': [],
+                                        'D-features': [],
+                                        'Operator bindings': [],
+                                        'Speaker attitude': [],
+                                        'Information structure': {'Marked topics': None, 'Neutral gradient': None,
+                                                                  'Marked focus': None}}
+
     def reset_fail_flags(self):
         self.semantic_interpretation_failed = False
         self.phi_interpretation_failed = False
@@ -262,7 +273,7 @@ class NarrowSemantics:
 
     def interpret_argument_tailing(self, ps, tailed_head):
         if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
-            if 'PAR' in ps.features and not ps.bind_to_scope_operator('POL:NEG'):
+            if 'PAR' in ps.features and not self.operator_variable_module.bind_to_scope_operator(ps, 'POL:NEG'):
                 self.semantic_interpretation['Aspect'].append('Aspectually anomalous')
             else:
                 self.semantic_interpretation['Aspect'].append('Aspectually bounded')

@@ -171,9 +171,9 @@ class FloaterMovement():
         if node.is_complex() and 'FORCE' in node.left_const.features and node.head() != local_tense_edge.head():
             log(f'Intervention by finiteness at {node}...')
             return True
-        if node.is_complex() and 'D' in node.left_const.features:
-            log(f'Intervention by D at {node}...')
-            return True
+        #if node.is_complex() and 'D' in node.left_const.features:
+            #log(f'Intervention by D at {node}...')
+            #return True
 
     def is_right_adjunct(self, node):
         return 'ADV' in node.head().features or 'P' in node.head().features

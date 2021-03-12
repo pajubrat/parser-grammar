@@ -24,7 +24,7 @@ class LocalFileSystem:
         self.logger_handle = None
         self.instruction_to_ignore_from_test_corpus = False
 
-    def initialize(self, args, folder, file, test_corpus_folder):
+    def initialize(self, folder, file, test_corpus_folder):
         if folder and file:
             self.settings['study_folder'] = folder
             self.settings['test_corpus_file'] = file
@@ -58,7 +58,7 @@ class LocalFileSystem:
         self.initialize_timings_file()
         self.initialize_simple_log_file()
         self.initialize_resource_sequence_file()
-        if '/images' in args or self.settings['datatake_images']:
+        if self.settings['datatake_images']:
             self.settings['datatake_images'] = True
             self.visualizer = Visualizer()
             self.visualizer.initialize(self.settings)
@@ -158,10 +158,14 @@ class LocalFileSystem:
                 i = 0
         return s
 
-    def formatted_output(self, semantic_interpretation_dict):
+    def formatted_semantics_output(self, semantic_interpretation_dict, tabs=1):
         output_str = ''
+        tabs_str = '\t'*tabs
         for key in semantic_interpretation_dict:
-            output_str += '\t' + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
+            if isinstance(semantic_interpretation_dict[key], set) or isinstance(semantic_interpretation_dict[key], list):
+                output_str += tabs_str + key + ': ' + str(sorted(semantic_interpretation_dict[key])) + '\n'
+            else:
+                output_str += tabs_str + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
         return output_str
 
     def generate_input_sentence_string(self, sentence):
@@ -240,6 +244,7 @@ class LocalFileSystem:
             self.grammaticality_judgments_file.write(str(count) + '.  ' + sentence_string + '\n')
 
     def save_resources(self, parser, count, sentence, experimental_group):
+        # If this is the first sentence, we add the column line
         if count == 1:
             self.add_columns_to_resources_file(parser.resources, experimental_group)
         self.resources_file.write(str(count) + ',')
@@ -271,7 +276,7 @@ class LocalFileSystem:
                     self.results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                     self.simple_results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                 if parse_number == 1:
-                    self.results_file.write('\n\tSemantics:\n' + str(self.formatted_output(semantic_interpretation)))
+                    self.results_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation)))
                     self.results_file.write('\n\tResources:\n\t' + self.format_resource_output(P.resources) + '\n')
                     self.results_file.write(f'\n\tSemantic objects (language independent): {self.format_semantic_interpretation(P)}\n')
                 parse_number = parse_number + 1
@@ -289,13 +294,16 @@ class LocalFileSystem:
         for semantic_object, data_dict in P.narrow_semantics.semantic_bookkeeping.items():
             output_str += '\tObject ' + semantic_object
             if 'Semantic type' in P.narrow_semantics.semantic_bookkeeping[semantic_object]:
-                output_str += ' ' + str(P.narrow_semantics.semantic_bookkeeping[semantic_object]['Semantic type'])
+                output_str += ' ' + str(sorted(P.narrow_semantics.semantic_bookkeeping[semantic_object]['Semantic type']))
             output_str += '\n'
             for item, value in data_dict.items():
                 if isinstance(value, list) and isinstance(value[0], PhraseStructure):
                     output_str += '\t\t' + item + ': ' + format_lst(value) + '\n'
                 else:
-                    output_str += '\t\t' + item + ': ' + f'{value}' + '\n'
+                    if isinstance(value, set):
+                        output_str += '\t\t' + item + ': ' + f'{sorted(value)}' + '\n'
+                    else:
+                        output_str += '\t\t' + item + ': ' + f'{value}' + '\n'
         return output_str
 
     def save_image(self, P, sentence, count):
@@ -356,7 +364,7 @@ class LocalFileSystem:
                     print('\t' + f'{parse}')
                 else:
                     print('\t' + chr(96 + parse_number) + f'. {parse}')
-                print('\n\tSemantics:\n' + str(self.formatted_output(semantic_interpretation)))
+                print('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation)))
                 if parse_number == 1:
                     print('\n\t' + self.format_resource_output(parser.resources) + f'\n\tExecution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
                     print(f'\tSemantic objects:')
@@ -379,8 +387,6 @@ class LocalFileSystem:
         log(show_primitive_constituents(ps_))
         log('\t\t-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
         if not parser.first_solution_found:
-            log('\t\tSemantic interpretation:\n')
-            log(f'\t\t{parser.narrow_semantics.semantic_interpretation}\n')
             log('\t\tSemantic bookkeeping:\n')
             log(f'\t\t{self.format_semantic_interpretation(parser)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')

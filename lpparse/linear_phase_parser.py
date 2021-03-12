@@ -80,25 +80,25 @@ class LinearPhaseParser:
             PhraseStructure.resources[key] = {"ms": 1, "n": 0}
         self.operations = 0
         self.resources = {"Total Time": {'ms': 0, 'n': 0},     # Count predicted cognitive time
-                          "Garden Paths": {'ms': 1, 'n': 0},
+                          "Garden Paths": {'ms': 0, 'n': 0},
                           "Memory Reactivation": {'ms': 500, 'n' : 0},
                           "Steps": {'ms': 0, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
                           "Move Head": {'ms': 5, 'n': 0},
-                          "Move Phrase": {'ms': 0, 'n': 0},
+                          "Move Phrase": {'ms': 5, 'n': 0},
                           "A-Move Phrase": {'ms': 5, 'n': 0},
                           "A-bar Move Phrase": {'ms': 5, 'n': 0},
-                          "Move Adjunct": {'ms': 15, 'n': 0},
+                          "Move Adjunct": {'ms': 5, 'n': 0},
                           "Agree": {'ms': 5, 'n': 0},
-                          "Phi": {'ms': 5, 'n': 0},
+                          "Phi": {'ms': 0, 'n': 0},
                           "Transfer": {'ms': 5, 'n': 0},
                           "Item streamed into syntax": {'ms': 5, 'n': 0},
                           "Feature Processing": {'ms': 5, 'n': 0},
-                          "Extraposition": {'ms': 15, 'n': 0},
+                          "Extraposition": {'ms': 5, 'n': 0},
                           "Inflection": {'ms': 5, 'n': 0},
-                          "Failed Transfer": {'ms': 15, 'n': 0},
-                          "LF recovery": {'ms': 15, 'n': 0},
-                          "LF test": {'ms': 15, 'n': 0},
+                          "Failed Transfer": {'ms': 5, 'n': 0},
+                          "LF recovery": {'ms': 5, 'n': 0},
+                          "LF test": {'ms': 5, 'n': 0},
                           "Filter solution": {'ms': 5, 'n': 0},
                           "Rank solution": {'ms': 5, 'n': 0},
                           "Lexical retrieval": {'ms': 5, 'n': 0},
@@ -153,7 +153,7 @@ class LinearPhaseParser:
             return
 
         # Set the amount of cognitive resources (in ms) consumed based on word length
-        self.time_from_stimulus_onset = int(len(lst[index]) * 25)
+        self.time_from_stimulus_onset = int(len(lst[index]) * 10)
 
         # Add the time to total time if we haven't yet found any solutions
         # Other solutions beyond the first one are not timed, as they do not correspond anything
@@ -298,6 +298,7 @@ class LinearPhaseParser:
             log('\n\t\tLF-legibility test failed.\n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps))
+            self.narrow_semantics.reset_semantic_interpretation()
             return
         self.consume_resources('Steps')
         log('Done.\n')
@@ -340,7 +341,7 @@ class LinearPhaseParser:
         self.result_list.append([ps, self.narrow_semantics.semantic_interpretation])
         self.spellout_result_list.append(spellout_structure)
         if not self.first_solution_found:
-            log(f'\t\tSemantic interpretation: {self.narrow_semantics.semantic_interpretation}')
+            log(f'\n\t\tSemantic interpretation:\n{self.local_file_system.formatted_semantics_output(self.narrow_semantics.semantic_interpretation, 2)}')
         self.local_file_system.log_results(self, ps)
         self.first_solution_found = True
 

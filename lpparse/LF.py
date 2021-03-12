@@ -330,7 +330,7 @@ class LF:
                 if self.identify_thematic_role_by_tailing(h):
                     return True
             self.projection_principle_test_result = False
-            log(f'{h.max()} has no thematic role. ')
+            log(f'{h.max()} has no thematic role at {h.max().container_head().max()}. ')
 
     def identify_thematic_role_by_tailing(self, h):
         return False

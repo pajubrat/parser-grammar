@@ -4,11 +4,17 @@ from language_guesser import LanguageGuesser
 from support import is_comment
 from linear_phase_parser import LinearPhaseParser
 
-def run_study(folder='', file='', test_corpus_folder=''):
+def run_study(**args):
+
+    print(args)
+    folder = args.get('folder', '')
+    file = args.get('file', '')
+    test_corpus_folder = args.get('test_corpus_folder', '')
+    sentence = args.get('sentence', '')
 
     # Prepare file systems and logging
     local_file_system = LocalFileSystem()
-    local_file_system.initialize(set(sys.argv), folder, file, test_corpus_folder)
+    local_file_system.initialize(folder, file, test_corpus_folder)
     local_file_system.configure_logging()
 
     # Prepare parsers for all languages together with their language-specific lexicons
@@ -18,9 +24,14 @@ def run_study(folder='', file='', test_corpus_folder=''):
         parser_for[language] = LinearPhaseParser(local_file_system, language)
         parser_for[language].initialize()
 
-    # Analyze all sentences from the test corpus
+    # Analyze all sentences from the test corpus (either input sentence or sentences from file)
+    if not sentence:
+        sentences_to_parse = [(s, e) for (s, e) in local_file_system.read_test_corpus()]
+    else:
+        sentences_to_parse = [(sentence, '1')]
+
     sentence_number = 1
-    for sentence, experimental_group in local_file_system.read_test_corpus():
+    for sentence, experimental_group in sentences_to_parse:
         if not is_comment(sentence):
             language = lang_guesser.guess_language(sentence)
             local_file_system.print_sentence_to_console(sentence_number, sentence)

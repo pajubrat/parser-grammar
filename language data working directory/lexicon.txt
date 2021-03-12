@@ -160,7 +160,7 @@ ihaile	:: ihaile-#v#T LANG:FI
 ihaillut :: ihaile-#v#T/prt#sg LANG:FI
 ihailla	:: ihaile-#v#A/inf LANG:FI
 ihailemalla :: ihaile-#v#malla LANG:FI
-ihaile- :: PF:ihaile- LF:admire V CLASS:TR !COMP:D -COMP:FIN LANG:FI
+ihaile- :: PF:ihaile- LF:admire V CLASS:TR SPEC:D !COMP:D -COMP:FIN LANG:FI
 
 il		:: PF:il LF:the D LANG:IT
 i		:: PF:il LF:the D LANG:IT
@@ -348,7 +348,7 @@ must	:: T/fin MODAL COMP:Neg PF:must LF:must LANG:EN
 myi 	:: myy-#v#asp#T/fin#[-V] LANG:FI
 myynyt	:: myy-#v#asp#T/prt#sg LANG:FI
 myyda 	:: myy-#v#A/inf LANG:FI
-myy-	:: PF:myy LF:sell V ASP:BOUNDED CLASS:TR -COMP:T/fin COMP:D LANG:FI
+myy-	:: PF:myy LF:sell V ASP:BOUNDED CLASS:TR -COMP:T/fin -COMP:Neg/fin COMP:D LANG:FI
 
 naki	:: nake-#v#T/fin#[-V] LANG:FI
 nakee	:: nake-#v#T/fin#[-V] LANG:FI
@@ -693,10 +693,10 @@ gen			:: inflectional GEN TAIL:INF,ARG -float
 asp			:: inflectional ASP:BOUNDED
 
 # FINNISH LEFT PERIPHERAL DISCOURSE FEATURES
-[hAn]		:: inflectional OP:FAM
-[pA]		:: inflectional OP:POL
-[kO]		:: inflectional OP OP:Q
-[foc]		:: inflectional OP:FOC
+[hAn]		:: inflectional OP:FAM LANG:FI
+[pA]		:: inflectional OP:POL LANG:FI
+[kO]		:: inflectional OP OP:Q LANG:FI
+[foc]		:: inflectional OP:FOC LANG:FI
 
 # ARTIFICIAL LEXICAL ITEMS
 a'	:: a PF:a LF:A LANG:X

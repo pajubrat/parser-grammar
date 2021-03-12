@@ -36,7 +36,8 @@ class OperatorVariableModule:
                                          'OP:FOC': 'Contrastive focus',
                                          'OP:POL': 'Polarity topic',
                                          'OP:Q': 'Yes/no interrogative',
-                                         'OP:REL': 'Relativization'
+                                         'OP:REL': 'Relativization',
+                                         'OP:C/OP': 'Generic operator'
                                          }
 
     def bind_variable(self, operator_ps, semantic_interpretation):
