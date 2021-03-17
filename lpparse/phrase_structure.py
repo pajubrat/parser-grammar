@@ -121,9 +121,12 @@ class PhraseStructure:
 
     # Definition for adjoinable phrase
     def is_adjoinable(self):
-        for edge in self.head().edge():
-            if edge.contains_feature('OP:REL'):
-                return True
+        # This makes it possible to adjoin TP when is is a relative clause. It produces spurious
+        # relative clause solutions under some circumstances and must be rethought.
+        #
+        #for edge in self.head().edge():
+        #   if edge.contains_feature('OP:REL'):
+        #       return True
         return self.externalized() or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
 
     # Definition for sisterhood
@@ -222,14 +225,21 @@ class PhraseStructure:
 
     # Definition for edge
     def edge(self):
+        """
+        The edge of a head contains all second merge phrases inside its projection, including pro.
+        The pro-element is part of the edge if and only if (1) it exists and (2) there is nothing else in the edge
+        """
         edge = []
         # -------------- minimal upstream path ---------------------------------------------#
         for node in self.upstream_search():
+            # Do not exit own projection
             if node.head() != self:
                 break
+            # Add phrasal second merged left phrases
             if node.left_const and node.left_const.is_complex() and node.left_const.head() != self:
                 edge.append(node.left_const)
         #------------------------------------------------------------------------------------#
+        # Add pro if the edge is otherwise empty
         if not edge and self.extract_pro():
             edge.append(self.extract_pro())
         return edge

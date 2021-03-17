@@ -46,33 +46,34 @@ class OperatorVariableModule:
         It is bound necessarily by a head with [OP:XX][FIN]. Binding projects the proposition into semantic bookkeeping and provides
         referential index for the scope head.
         """
-        if 'FIN' not in operator_ps.head().features:
-            feature_set = operator_ps.head().features.copy()
-            for f in feature_set:
-                if self.is_operator_feature(f):
-                    scope_operator_lst = self.bind_to_scope_operator(operator_ps, f)
-                    if not scope_operator_lst:
-                        log(f'{operator_ps.illustrate()} with feature {f} is not properly bound by an operator. ')
-                        self.interpretation_failed = True
-                        break
-                    else:
-                        # Update binding information to semantic interpretation dict
-                        semantic_interpretation['Operator bindings'].append((f'{operator_ps.max().illustrate()}', f'{scope_operator_lst[0]}'))
+        if 'C' in operator_ps.features or 'C/fin' in operator_ps.features:
+            return
+        feature_set = operator_ps.head().features.copy()
+        for f in feature_set:
+            if self.is_operator_feature(f):
+                scope_operator_lst = self.bind_to_scope_operator(operator_ps, f)
+                if not scope_operator_lst:
+                    log(f'{operator_ps.illustrate()} with feature {f} is not properly bound by an operator. ')
+                    self.interpretation_failed = True
+                    break
+                else:
+                    # Update binding information to semantic interpretation dict
+                    semantic_interpretation['Operator bindings'].append((f'{operator_ps.max().illustrate()}', f'{scope_operator_lst[0]}'))
 
-                        # Update binding information for the operator in semantic bookkeeping
+                    # Update binding information for the operator in semantic bookkeeping
+                    idx = self.narrow_semantics.get_semantic_wiring(operator_ps)
+                    if not idx:
+                        self.narrow_semantics.wire(operator_ps)
                         idx = self.narrow_semantics.get_semantic_wiring(operator_ps)
-                        if not idx:
-                            self.narrow_semantics.wire(operator_ps)
-                            idx = self.narrow_semantics.get_semantic_wiring(operator_ps)
-                        self.narrow_semantics.update_semantics_for_attribute(idx, 'Bound by', scope_operator_lst)
-                        self.interpret_and_update_operator_feature(idx, f)
-                        log(f'{operator_ps.illustrate()} was bound by {scope_operator_lst[0]}...')
+                    self.narrow_semantics.update_semantics_for_attribute(idx, 'Bound by', scope_operator_lst)
+                    self.interpret_and_update_operator_feature(idx, f)
+                    log(f'{operator_ps.illustrate()} was bound by {scope_operator_lst[0]}...')
 
-                        # Create referential index for the proposition and project it to semantic bookkeeping
-                        # Only applies to full propositions, not to relative clauses
-                        if not self.narrow_semantics.controlling_parsing_process.first_solution_found and not self.narrow_semantics.get_semantic_wiring(scope_operator_lst[0]):
-                            if self.full_proposition(scope_operator_lst[0]):
-                                self.narrow_semantics.wire(scope_operator_lst[0])
+                    # Create referential index for the proposition and project it to semantic bookkeeping
+                    # Only applies to full propositions, not to relative clauses
+                    if not self.narrow_semantics.controlling_parsing_process.first_solution_found and not self.narrow_semantics.get_semantic_wiring(scope_operator_lst[0]):
+                        if self.full_proposition(scope_operator_lst[0]):
+                            self.narrow_semantics.wire(scope_operator_lst[0])
 
     def bind_to_scope_operator(self, head, operator_feature):
         """
@@ -137,6 +138,6 @@ class OperatorVariableModule:
         """
         Provides English language description for the operator interpretation into semantic bookkeeping
         """
-        if 'Operator interpretation' not in self.narrow_semantics.semantic_bookkeeping[idx]:
-            self.narrow_semantics.semantic_bookkeeping[idx]['Operator interpretation'] = set()
-        self.narrow_semantics.semantic_bookkeeping[idx]['Operator interpretation'].add(self.operator_interpretation[f])
+        if 'Operator interpretation' not in self.narrow_semantics.discourse_inventory[idx]:
+            self.narrow_semantics.discourse_inventory[idx]['Operator interpretation'] = set()
+        self.narrow_semantics.discourse_inventory[idx]['Operator interpretation'].add(self.operator_interpretation[f])

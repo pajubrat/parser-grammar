@@ -106,7 +106,7 @@ etsi-	:: PF:etsi LF:search V CLASS:TR !COMP:D LANG:FI COMP:D
 etta    :: PF:etta LF:that FORCE -SPEC:D LANG:FI
 
 fell	:: fell-#T/fin LANG:EN
-fell-	:: PF:fell LF:fell V CLASS:INTR LANG:EN
+fell-	:: PF:fell LF:fell !SPEC:D V CLASS:INTR LANG:EN
 
 flow'	:: PF:flow LF:flow V SPEC:D COMP:P LANG:EN
 
@@ -452,7 +452,7 @@ pyyta-	:: PF:pyyda LF:ask V CLASS:TR SEM:external LANG:FI
 
 raced	:: race-#T/fin FREQ:2 INFO:finite_verb LANG:EN  
 raced	:: race-#T/prt FREQ:1 INFO:participle_verb LANG:EN
-race-	:: PF:race LF:race V CLASS:INTR -COMP:T/fin COMP:P LAMG:EN
+race-	:: PF:race LF:race V CLASS:INTR !COMP:* -COMP:T/fin COMP:P LAMG:EN
 
 raukesi	:: raukea-#T/fin#[-V] LANG:FI
 raukea-	:: PF:raukea LF:terminate V LANG:FI
@@ -682,7 +682,9 @@ ci-		:: PF:ci LF:there N PHI_N LANG:IT
 # CASE SUFFIXES
 # Finnish
 [-nom]		:: inflectional NOM TAIL:FIN,ARG,VAL adjoinable
-[-par]   	:: inflectional PAR TAIL:ARG,-VAL adjoinable LANG:FI
+# Here the partitive has locality assumption [!COMP:*], but there is an issue with checking of features like [-ARG] or [?VAL] 
+# that are not correctly related to [TAIL:ARG,-VAL]. This has to be worked out.
+[-par]   	:: inflectional PAR TAIL:ARG,-VAL,!COMP:* adjoinable LANG:FI
 [-gen]		:: inflectional GEN TAIL:INF,ARG -float
 gen			:: inflectional GEN TAIL:INF,ARG -float
 [-n_acc]	:: inflectional n-ACC TAIL:ARG,ASP:BOUNDED TAIL:PHI TAIL:*POL:NEG adjoinable LANG:FI
@@ -695,7 +697,7 @@ asp			:: inflectional ASP:BOUNDED
 # FINNISH LEFT PERIPHERAL DISCOURSE FEATURES
 [hAn]		:: inflectional OP:FAM LANG:FI
 [pA]		:: inflectional OP:POL LANG:FI
-[kO]		:: inflectional OP OP:Q LANG:FI
+[kO]		:: inflectional OP:WH OP:Q FORCE:OP:WH LANG:FI
 [foc]		:: inflectional OP:FOC LANG:FI
 
 # ARTIFICIAL LEXICAL ITEMS

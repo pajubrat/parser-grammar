@@ -291,10 +291,10 @@ class LocalFileSystem:
             return out_s[:-1]
 
         output_str = '\n'
-        for semantic_object, data_dict in P.narrow_semantics.semantic_bookkeeping.items():
+        for semantic_object, data_dict in P.narrow_semantics.discourse_inventory.items():
             output_str += '\tObject ' + semantic_object
-            if 'Semantic type' in P.narrow_semantics.semantic_bookkeeping[semantic_object]:
-                output_str += ' ' + str(sorted(P.narrow_semantics.semantic_bookkeeping[semantic_object]['Semantic type']))
+            if 'Semantic type' in P.narrow_semantics.discourse_inventory[semantic_object]:
+                output_str += ' ' + str(sorted(P.narrow_semantics.discourse_inventory[semantic_object]['Semantic type']))
             output_str += '\n'
             for item, value in data_dict.items():
                 if isinstance(value, list) and isinstance(value[0], PhraseStructure):
@@ -374,8 +374,8 @@ class LocalFileSystem:
             print(f'({parser.resources["Garden Paths"]["n"]}gp/{parser.resources["Merge"]["n"]}m/{process_time()-parser.start_time}s)')
 
     def print_narrow_semantics(self, parser):
-        for key in parser.narrow_semantics.semantic_bookkeeping:
-            print(f'\t{key}: {parser.narrow_semantics.semantic_bookkeeping[key]}')
+        for key in parser.narrow_semantics.discourse_inventory:
+            print(f'\t{key}: {parser.narrow_semantics.discourse_inventory[key]}')
         print('\n')
 
     def log_results(self, parser, ps_):

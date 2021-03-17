@@ -66,7 +66,13 @@ class Extraposition:
             log(f'No suitable node for extraposition found...')
 
     def preconditions_for_extraposition(self, ps):
-        return (ps.top().contains_feature('FIN') or 'D' in ps.top().head().features) and not self.controlling_parser_process.LF_legibility_test(ps.top())
+        """
+        Defines the preconditions on whether part of [ps] could be searched for extraposition.
+        This does not mean that [ps] will be extraposed, but that some part may be
+        """
+        if ps.top().contains_feature('FIN') or 'D' in ps.top().head().features:
+            if not self.controlling_parser_process.LF_legibility_test(ps.top()):
+                return True
 
     def possible_extraposition_target(self, node):
         if node.is_complex() and node.left_const.is_primitive() and node.left_const.is_adjoinable() and node.sister():

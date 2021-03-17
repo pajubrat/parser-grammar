@@ -69,11 +69,11 @@ V1		:: inflectional -EDGE:* -SPEC:*
 # Universal operator feature inventory
 uC/op	:: inflectional uC/op
 wh     	:: inflectional OP:WH OP:_
-wh_		:: inflectional OP OP:_ FORCE:OP:WH
-top    	:: inflectional OP:TOP 
-foc    	:: inflectional OP:FOC
-fam		:: inflectional OP:FAM
-pol		:: inflectional OP:POL
-C/op	:: inflectional OP:C/OP
+wh_		:: inflectional OP OP:_
+top    	:: inflectional OP:TOP D:TOP
+foc    	:: inflectional OP:FOC D:FOC
+fam		:: inflectional OP:FAM D:FAM
+pol		:: inflectional OP:POL D:POL
+C/op	:: inflectional OP:C/OP D:C/OP
 d/rel   :: inflectional OP:REL OP:_
-Q		:: inflectional OP OP:WH OP:Q
+Q		:: inflectional OP OP:WH OP:Q D:WH

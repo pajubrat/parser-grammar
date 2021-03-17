@@ -13,13 +13,13 @@ class NarrowSemantics:
         self.operator_variable_module = OperatorVariableModule(self)
         self.LF_recovery_module = LF_Recovery(controlling_parsing_process)
         self.discourse_module = Discourse(self)
-        self.semantic_bookkeeping = {}
+        self.discourse_inventory = {}
         self.semantic_interpretation = {}
         self.semantic_interpretation_failed = False
         self.index_counter = None
         self.controlling_parsing_process = controlling_parsing_process
         self.phi_interpretation_failed = False
-        self.semantic_type = {'T/fin':'Proposition',
+        self.semantic_type = {'T/fin':'§Proposition',
                               'D': '§Thing',
                               'Q': '§Quantifier',
                               'NUM': '§Quantity',
@@ -32,6 +32,7 @@ class NarrowSemantics:
                               'a': '§Predicate',
                               'ADV': '§Predicate',
                               '0': '§Predicate',
+                              'OP:REL': '§Predicate',
                               'P': '§Topology',
                               'v': '§Valency',
                               'T': '§Tense',
@@ -44,7 +45,7 @@ class NarrowSemantics:
 
     def initialize(self):
         self.index_counter = 1
-        self.semantic_bookkeeping = {}
+        self.discourse_inventory = {}
         self.semantic_interpretation_failed = False
         self.semantic_interpretation = {'Recovery': [],
                                         'Aspect': [],
@@ -119,7 +120,7 @@ class NarrowSemantics:
         idx = self.get_semantic_wiring(referring_head)
         if idx:
             log(f'Removing reference [{idx}] of \"{referring_head.illustrate()}\" from semantic space...')
-            self.semantic_bookkeeping.pop(idx, None)
+            self.discourse_inventory.pop(idx, None)
 
     def update_references(self, ps):
         """
@@ -143,7 +144,7 @@ class NarrowSemantics:
         head = ps.head()
         idx = self.get_semantic_wiring(head)
         if idx:
-            self.semantic_bookkeeping[idx]['Reference'] = f'{head.max().illustrate()}'
+            self.discourse_inventory[idx]['Reference'] = f'{head.max().illustrate()}'
 
     def wire_semantics(self, ps):
         """
@@ -194,26 +195,26 @@ class NarrowSemantics:
         """
         # Ranked gradient that will go into information structure module
         idx = str(self.index_counter)
-        self.semantic_bookkeeping[idx] = {'Referring constituent': f'{ps}', 'Order gradient': self.index_counter}
-        self.semantic_bookkeeping[idx]['Reference'] = f'{ps.illustrate()}'
-        self.update_semantic_type(ps)
+        self.discourse_inventory[idx] = {'Referring constituent': f'{ps}', 'Order gradient': self.index_counter}
+        self.discourse_inventory[idx]['Reference'] = f'{ps.illustrate()}'
+        self.determine_semantic_type(ps)
         if self.operator_variable_module.scan_criterial_features(ps) and 'FIN' not in ps.features:
-            self.semantic_bookkeeping[idx]['Operator'] = True
+            self.discourse_inventory[idx]['Operator'] = True
         else:
-            self.semantic_bookkeeping[idx]['Operator'] = False
+            self.discourse_inventory[idx]['Operator'] = False
 
-    def update_semantic_type(self, ps):
+    def determine_semantic_type(self, ps):
         """
         If ps has been wired semantically, then its syntactic features are used to update
         its semantic type inside semantic bookkeeping
         """
         idx = self.get_semantic_wiring(ps)
         if idx:
-            if 'Semantic type' not in self.semantic_bookkeeping[idx]:
-                self.semantic_bookkeeping[idx]['Semantic type'] = set()
+            if 'Semantic type' not in self.discourse_inventory[idx]:
+                self.discourse_inventory[idx]['Semantic type'] = set()
             for f in ps.features:
                 if f in self.semantic_type:
-                    self.semantic_bookkeeping[idx]['Semantic type'].add(self.semantic_type[f])
+                    self.discourse_inventory[idx]['Semantic type'].add(self.semantic_type[f])
 
     def get_semantic_wiring(self, ps):
         """
@@ -230,7 +231,7 @@ class NarrowSemantics:
         Allows communication between adjunct reconstruction and semantic bookkeeping.
 
         When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
-        record the operation, which will be then used by information structure module
+        record the operation, which will be then used by the information structure module
         """
         idx = self.get_semantic_wiring(ps)
         if idx:
@@ -249,8 +250,8 @@ class NarrowSemantics:
         """
         Updates attribute:value for semantic object [sem_object]
         """
-        if self.semantic_bookkeeping[sem_object]:
-            self.semantic_bookkeeping[sem_object][attribute] = value
+        if self.discourse_inventory[sem_object]:
+            self.discourse_inventory[sem_object][attribute] = value
 
     def detect_phi_conflicts(self, ps):
         """

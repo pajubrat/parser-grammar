@@ -6,7 +6,6 @@ from linear_phase_parser import LinearPhaseParser
 
 def run_study(**args):
 
-    print(args)
     folder = args.get('folder', '')
     file = args.get('file', '')
     test_corpus_folder = args.get('test_corpus_folder', '')

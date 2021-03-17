@@ -4,7 +4,7 @@
 # Basic lexical categories
 FORCE 	:: -ARG -VAL FIN !COMP:* -SPEC:* !PROBE:FIN COMP:T/fin COMP:C/fin
 C/fin 	:: -ARG VAL FIN C SPEC:* !COMP:* -COMP:C/fin -COMP:T/prt COMP:T/fin -COMP:FORCE !PROBE:FIN -SPEC:T/fin -SPEC:C/fin -SPEC:N COMP:Neg/fin
-T/fin 	:: ARG VAL T FIN !COMP:* -SPEC:C COMP:T/prt COMP:v COMP:V -COMP:INF -COMP:T/fin !PROBE:V SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
+T/fin 	:: ARG VAL T FIN !COMP:* -SPEC:C COMP:T/prt -SPEC:T/prt COMP:v COMP:V -COMP:INF -COMP:T/fin !PROBE:V SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf -adjoinable
 T/prt 	:: ARG FIN VAL T !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin SPEC:* SPEC:D -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:D
 T 		:: ARG VAL FIN !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V SPEC:D -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
 Neg/fin :: ARG VAL FIN NEG COMP:T/prt -SPEC:T -SPEC:T/fin %SPEC:INF SEM:internal
@@ -20,24 +20,30 @@ INF		:: !COMP:* COMP:v COMP:V -COMP:T/fin -COMP:FORCE -COMP:C/fin -SPEC:T/fin -S
 n		:: VAL ARG INF !COMP:* COMP:0 COMP:V COMP:v !SPEC:* !SPEC:D
 0		:: SPEC:D 2SPEC
 NUM		:: COMP:N COMP:n SPEC:*
+OP		:: -COMP:OP
 
 # infinitivals
 MA/lla	::	!COMP:V adjoinable
 
 # Other lexical categories
-WH  					:: -COMP:C/fin -COMP:ADV
-WH_ 					:: !COMP:* -SPEC:T/fin SPEC:*
-OP:REL   			:: -COMP:C/fin SPEC:D adjoinable
+WH  			:: -COMP:C/fin -COMP:ADV
+WH_ 			:: !COMP:* -SPEC:T/fin SPEC:*
+OP:REL   		:: -COMP:C/fin SPEC:D adjoinable
 FORCE:OP:REL	:: adjoinable
-PHI_N					:: -COMP:*
-Q							:: OP OP:WH OP:Q
+PHI_N			:: -COMP:*
+Q				:: OP:WH OP:Q
 
 # Connection between operator features and force (language specific)
-OP:WH					:: FORCE:OP:WH
-OP:Q						:: FORCE:OP:WH
-OP:Q LANG:FI		:: OVERT_SCOPE
+OP FIN			:: !1EDGE 
+OP:WH FIN		:: OP:_
+OP:REL FIN		:: OP:_
+OP:WH FIN		:: FORCE:OP:WH
+
+OP:WH			:: D:WH
+OP:Q			:: D:WH
+OP:Q LANG:FI	:: OVERT_SCOPE D:WH
 OP:FAM LANG:FI	:: OVERT_SCOPE D:FAM
-OP:POL LANG:FI	:: OVERT_SCOPE D:FAM
+OP:POL LANG:FI	:: OVERT_SCOPE D:POL
 OP:REL LANG:FI	:: OVERT_SCOPE
 
 # Verb classes

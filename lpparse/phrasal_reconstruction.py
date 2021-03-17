@@ -119,18 +119,9 @@ class PhrasalMovement:
         if criterial_features:
 
             # First we copy the criterial features, so that [OP:F][FIN] becomes scope binder
+            # OP will trigger further language-specific redundancy rules
             feature_set = criterial_features
-
-            # Add finiteness feature (or another feature distinguishing scope marker from the operator itself)
-            feature_set |= {'FIN'}
-
-            # This will be replaced later when a deeper explanation is found. [OP:_] is a movement trigger
-            if {'OP:WH', 'OP:REL'} & criterial_features:
-                feature_set |= {'OP:_'}
-
-            # This will be eliminated later
-            if 'FIN' in head.features:
-                feature_set |= {'OP'}
+            feature_set |= {'OP', 'FIN'}
 
             return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
         else:

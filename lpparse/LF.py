@@ -386,7 +386,7 @@ class LF:
 
     def selection_tests(self, h):
         """
-        Checks that the selection features of [h] are checked.
+        Ensures that the selection features of [h] are checked.
         """
         comp = h.proper_complement()
         local_edge = h.local_edge()
@@ -409,6 +409,10 @@ class LF:
             # No edge (second Merge-1) allowed (i.,.e V2 phenomenon, Finnish that)
             if f == '-EDGE:*' and local_edge:
                 log(f'{h} has {local_edge} but does not accept second Merge-1 [-EDGE:*]')
+                self.selection_test_result = False
+
+            if f == '!1EDGE' and len(h.edge()) > 1:
+                log(f'{h} is only allowed to host one edge element. ')
                 self.selection_test_result = False
 
             # Obligatory complement

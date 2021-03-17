@@ -29,8 +29,6 @@ class LF_Recovery:
         """
         Provides each head [head] with unvalued phi-features an argument
         """
-        if self.controlling_parsing_process.first_solution_found:
-            return
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
             self.LF_recovery_result = None
