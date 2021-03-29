@@ -1,24 +1,26 @@
+#
+# Available arguments
+#
+#   sentence
+#   study_folder
+#   test_corpus_folder
+#   test_corpus_file
+#   lexicon_folder
+
 import main
 import sys
-import multistudy
+
 
 if __name__ == '__main__':
-    if len(sys.argv) == 1:
-        main.run_study()
-        sys.exit()
-    if '-diagnostics' in sys.argv:
-        from diagnostics import Diagnostics
-        diag = Diagnostics()
-        diag.run_resource_diagnostics()
-        sys.exit()
-    if '-diagnostics4' in sys.argv:
-        from diagnostics4 import Diagnostics
-        diag = Diagnostics()
-        diag.run_resource_diagnostics()
-        sys.exit()
-    if '-multi' in sys.argv:
-        multistudy.run_multi(sys.argv)
-        sys.exit()
-
-    # Here we assume that the user has presented a sentence as input
-    main.run_study(sentence=sys.argv[1:])
+    args = {}
+    for i, argument in enumerate(sys.argv):
+        # Ignore the name of the program
+        if i > 0:
+            decomposed_argument_list = argument.split(':')
+            # An argument without key identifier is interpreted as the input sentence
+            if len(decomposed_argument_list) == 1:
+                args['sentence'] = decomposed_argument_list[0]
+            else:
+                args[decomposed_argument_list[0]] = decomposed_argument_list[1]
+    print(args)
+    main.run_study(args)

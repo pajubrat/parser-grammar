@@ -1,3 +1,17 @@
-test_corpus_file:	information_structure_corpus.txt
-test_corpus_folder:	study-8-information-structure
-study_folder:		study-8-information-structure/
+# CONFIG.TXT
+# This file can be used to provide the study parameters. It is optional and can be overridden by providing the same parameters
+# in the function call as input parameters. If nothing is provided, default values are used (which target the /study-0 folder).
+#
+# Format is 'parameter: value' (see examples below)
+#
+# study_folder = the folder which is used to store all results and to read input parameters
+# lexicon_folder = the folder which is used to read the lexicon files (lexicon.txt, redundancy_rules.txt, ug_morphemes.txt)
+# test_corpus_file = the name of the test corpus
+# test_corpus_folder = the folder of the test corpus
+#
+# Note: because the study folder and the corpus folder can be different, it is possile to use the same corpus for several studies
+
+# study_folder:			study-0/
+# lexicon_folder:		lexicons
+# test_corpus_file:		default_corpus.txt
+# test_corpus_folder:	study-0

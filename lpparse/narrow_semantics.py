@@ -1,6 +1,6 @@
 from support import log
 from SEM_operators_variables import OperatorVariableModule
-from SEM_discourse import Discourse
+from SEM_pragmatic_pathway import Discourse
 from SEM_LF_recovery import LF_Recovery
 
 class NarrowSemantics:
@@ -12,7 +12,7 @@ class NarrowSemantics:
     def __init__(self, controlling_parsing_process):
         self.operator_variable_module = OperatorVariableModule(self)
         self.LF_recovery_module = LF_Recovery(controlling_parsing_process)
-        self.discourse_module = Discourse(self)
+        self.pragmatic_pathway = Discourse(self)
         self.discourse_inventory = {}
         self.semantic_interpretation = {}
         self.semantic_interpretation_failed = False
@@ -75,7 +75,7 @@ class NarrowSemantics:
         self.semantic_interpretation_failed = False
         self.phi_interpretation_failed = False
         self.operator_variable_module.interpretation_failed = False
-        self.discourse_module.interpretation_failed = False
+        self.pragmatic_pathway.interpretation_failed = False
         self.LF_recovery_module.interpretation_failed = False
 
     def _interpret(self, ps):
@@ -92,8 +92,8 @@ class NarrowSemantics:
             self.LF_recovery_module.perform_LF_recovery(ps, self.semantic_interpretation)
             self.detect_phi_conflicts(ps)
             self.interpret_tail_features(ps)
-            self.operator_variable_module.bind_variable(ps, self.semantic_interpretation)
-            self.discourse_module.reconstruct_discourse(ps, self.semantic_interpretation)
+            self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
+            self.pragmatic_pathway.reconstruct_discourse(ps, self.semantic_interpretation)
             if self.failure():
                 return
         else:
@@ -106,7 +106,7 @@ class NarrowSemantics:
         if self.LF_recovery_module.interpretation_failed or \
                 self.phi_interpretation_failed or \
                 self.operator_variable_module.interpretation_failed or \
-                self.discourse_module.interpretation_failed:
+                self.pragmatic_pathway.interpretation_failed:
             self.semantic_interpretation_failed = True
             return True
 
@@ -141,6 +141,9 @@ class NarrowSemantics:
                     self.update_references(ps.right_const)
 
     def update_reference(self, ps):
+        """
+        Establishes semantic wiring for [ps] and updates it into discourse inventory
+        """
         head = ps.head()
         idx = self.get_semantic_wiring(head)
         if idx:
@@ -176,7 +179,7 @@ class NarrowSemantics:
 
     def wire(self, ps):
         self.create_wiring(ps)
-        self.add_to_semantic_bookkeeping(ps)
+        self.add_to_discourse_inventory(ps)
         self.index_counter += 1  # This will be identifier for the next object
 
     def create_wiring(self, ps):
@@ -189,13 +192,14 @@ class NarrowSemantics:
         log(f'[{str(self.index_counter)}] for {ps}...')
         ps.head().features.add(idx_feature)
 
-    def add_to_semantic_bookkeeping(self, ps):
+    def add_to_discourse_inventory(self, ps):
         """
         Adds the element to semantic space (semantic bookkeeping)
         """
         # Ranked gradient that will go into information structure module
         idx = str(self.index_counter)
-        self.discourse_inventory[idx] = {'Referring constituent': f'{ps}', 'Order gradient': self.index_counter}
+        self.discourse_inventory[idx] = {'Referring constituent': f'{ps}'}
+        self.pragmatic_pathway.allocate_attention_resources(idx)
         self.discourse_inventory[idx]['Reference'] = f'{ps.illustrate()}'
         self.determine_semantic_type(ps)
         if self.operator_variable_module.scan_criterial_features(ps) and 'FIN' not in ps.features:
@@ -226,33 +230,6 @@ class NarrowSemantics:
         if idx_set:
             return list(idx_set)[0]
 
-    def update_semantics_for_marked_gradient(self, ps, starting_point_head):
-        """
-        Allows communication between adjunct reconstruction and semantic bookkeeping.
-
-        When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
-        record the operation, which will be then used by the information structure module
-        """
-        idx = self.get_semantic_wiring(ps)
-        if idx:
-            feature_vector_set = set(ps.head().feature_vector())        # Take reconstructed floaters feature vector
-            if starting_point_head in feature_vector_set:               # If starting point is in the feature vector,
-                direction = 'High'                                      # then reconstructed was rightward and the
-                log(f'Topicalization...')                               # production movement was leftward
-            else:
-                direction = 'Low'                                       # Starting point was not in the feature vector,
-                log(f'Focussing...')                                    # then reconstruction was leftward and the
-                                                                        # production movement was rightward
-
-            self.update_semantics_for_attribute(idx, 'Marked gradient', direction)
-
-    def update_semantics_for_attribute(self, sem_object, attribute, value):
-        """
-        Updates attribute:value for semantic object [sem_object]
-        """
-        if self.discourse_inventory[sem_object]:
-            self.discourse_inventory[sem_object][attribute] = value
-
     def detect_phi_conflicts(self, ps):
         """
         Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
@@ -274,7 +251,7 @@ class NarrowSemantics:
 
     def interpret_argument_tailing(self, ps, tailed_head):
         if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
-            if 'PAR' in ps.features and not self.operator_variable_module.bind_to_scope_operator(ps, 'POL:NEG'):
+            if 'PAR' in ps.features and not self.operator_variable_module.bind_to_propositional_scope_marker(ps, 'POL:NEG'):
                 self.semantic_interpretation['Aspect'].append('Aspectually anomalous')
             else:
                 self.semantic_interpretation['Aspect'].append('Aspectually bounded')
@@ -283,3 +260,10 @@ class NarrowSemantics:
         for head in ps.feature_vector()[1:]:
             if head.match_features(tail_set) == 'complete match':
                 return head
+
+    def update_semantics_for_attribute(self, sem_object, attribute, value):
+        """
+        Updates attribute:value for semantic object [sem_object]
+        """
+        if self.discourse_inventory[sem_object]:
+            self.discourse_inventory[sem_object][attribute] = value

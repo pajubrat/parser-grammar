@@ -2,7 +2,7 @@ from support import log
 
 class Discourse:
     """
-    This class interprets D-features (discourse features) which express notions that
+    This class defines the pragmatic pathway and interprets D-features (discourse features) which express notions that
     this module understands.
     """
     def __init__(self, narrow_semantics):
@@ -168,6 +168,7 @@ class Discourse:
             log('Not relevant for this expression types...')
             self.narrow_semantics.semantic_interpretation['Speaker attitude'] = []
             return
+
         # If specific force features exists, then they are used for interpretation
         if self.get_force_features(ps.head()):
             for count, force_feature in enumerate(self.get_force_features(ps.head())):
@@ -176,3 +177,27 @@ class Discourse:
         else:
             # Default value is 'declarative' (judgment)
             self.narrow_semantics.semantic_interpretation['Speaker attitude'] = ['Declarative']
+
+    def notify_adjunct_reconstruction_occurred(self, ps, starting_point_head):
+        """
+        Allows communication between adjunct reconstruction and semantic bookkeeping.
+
+        When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
+        record the operation, which will be then used by the information structure module
+        """
+        idx = self.narrow_semantics.get_semantic_wiring(ps)
+        if idx:
+            feature_vector_set = set(ps.head().feature_vector())        # Take reconstructed floaters feature vector
+            if starting_point_head in feature_vector_set:               # If starting point is in the feature vector,
+                direction = 'High'                                      # then reconstructed was rightward and the
+                log(f'Topicalization...')                               # production movement was leftward
+            else:
+                direction = 'Low'                                       # Starting point was not in the feature vector,
+                log(f'Focussing...')                                    # then reconstruction was leftward and the
+                                                                        # production movement was rightward
+
+            self.narrow_semantics.update_semantics_for_attribute(idx, 'Marked gradient', direction)
+
+    def allocate_attention_resources(self, idx):
+        self.narrow_semantics.discourse_inventory[idx]['Order gradient'] = int(idx)
+

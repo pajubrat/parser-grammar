@@ -1,19 +1,17 @@
-import sys
 from local_file_system import LocalFileSystem
 from language_guesser import LanguageGuesser
 from support import is_comment
 from linear_phase_parser import LinearPhaseParser
 
-def run_study(**args):
-
-    folder = args.get('folder', '')
-    file = args.get('file', '')
-    test_corpus_folder = args.get('test_corpus_folder', '')
+def run_study(args):
+    """
+    Executes a study based on input parameters which are provided as a dictionary [args].
+    """
     sentence = args.get('sentence', '')
 
     # Prepare file systems and logging
     local_file_system = LocalFileSystem()
-    local_file_system.initialize(folder, file, test_corpus_folder)
+    local_file_system.initialize(args)
     local_file_system.configure_logging()
 
     # Prepare parsers for all languages together with their language-specific lexicons
@@ -27,7 +25,7 @@ def run_study(**args):
     if not sentence:
         sentences_to_parse = [(s, e) for (s, e) in local_file_system.read_test_corpus()]
     else:
-        sentences_to_parse = [(sentence, '1')]
+        sentences_to_parse = [([word.strip() for word in sentence.split()], '1')]
 
     sentence_number = 1
     for sentence, experimental_group in sentences_to_parse:

@@ -1,0 +1,11 @@
+@  {'sentence': 'John admires Mary', 'study_folder': 'study-0-documentation', 'test_corpus_folder': '', 'test_corpus_file': 'default_corpus.txt', 'lexicon_folder': 'lexicons', 'console_output': 'Full', 'author': 'Unknown author', 'year': 'Unknown year', 'date': 'Unknown date', 'study_id': 1, 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-03-29 14:29:26.556712
+@  Test sentences from language data working directory\default_corpus.txt.
+@  Logs into language data working directory\study-0-documentation\default_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+Number,Sentence,Study_ID,Group 0,Total Time,Garden Paths,Memory Reactivation,Steps,Merge,Move Head,Move Phrase,A-Move Phrase,A-bar Move Phrase,Move Adjunct,Agree,Phi,Transfer,Item streamed into syntax,Feature Processing,Extraposition,Inflection,Failed Transfer,LF recovery,LF test,Filter solution,Rank solution,Lexical retrieval,Morphological decomposition,Mean time per word,Asymmetric Merge,Sink,External Tail Test,Execution time (ms)	
+1,John admires Mary ,1,1,1105,0,0,7,6,7,0,0,0,0,2,4,4,7,0,0,11,3,2,7,5,2,18,3,368,13,4,0,31
