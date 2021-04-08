@@ -86,7 +86,7 @@ class LocalFileSystem:
         # Step 6. Read the configuration file for the particular study
         self.read_study_config_file()
 
-        # Step 7. Initialize the  output files
+        # Step 7. Initialize the output files
         self.initialize_output_files()
 
     def initialize_output_files(self):
