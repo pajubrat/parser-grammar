@@ -69,7 +69,7 @@ class AgreementReconstruction:
         # 2. Valuation of the acquired phi-features to the head
         for phi in phi_features:
             if find_unvalued_target(head, phi):
-                self.value(head, goal, phi, 'edge')
+               self.value(head, goal, phi, 'edge')
 
     # Definition for phi-acquisition from sister
     def Agree_1_from_sister(self, head):

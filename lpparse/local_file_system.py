@@ -30,6 +30,10 @@ class LocalFileSystem:
                                          'study_id': '1',
                                          'only_first_solution': 'False',
                                          'logging': 'True',
+                                         'study_folder': 'language data working directory/',
+                                         'lexicon_folder': 'language data working directory/lexicons/',
+                                         'test_corpus_file': 'default_corpus.txt',
+                                         'test_corpus_folder': 'language data working directory/',
                                          'ignore_ungrammatical_sentences': 'False',
                                          'console_output': 'Full',
                                          'datatake_resources': 'True',
@@ -68,8 +72,8 @@ class LocalFileSystem:
         # Step 0. Initialize dev_logging
         self.initialize_dev_logging()
 
-        # Step 1. Read information from the configuration file (if exists) into settings dict
-        self.read_root_config_file_into_settings()
+        # Step 1. Read the study configuration file
+        self.read_study_config_file(args)
 
         # Step 2. Read input parameters into the settings dict and override Step 1 if there is overlap
         self.read_input_arguments_into_settings(args)
@@ -82,9 +86,6 @@ class LocalFileSystem:
 
         # Step 5. Set up external resources (lexicons, test corpus, and others)
         self.set_external_resources()
-
-        # Step 6. Read the configuration file for the particular study
-        self.read_study_config_file()
 
         # Step 7. Initialize the output files
         self.initialize_output_files()
@@ -151,10 +152,9 @@ class LocalFileSystem:
         Sets folders for various input and output files
         """
         self.dev_log_file.write(f'Setting folders for input and output files: ')
-        self.folder['data'] = Path("language data working directory")
-        self.folder['study'] = self.folder['data'] / self.settings.get('study_folder','study-0')
-        self.folder['test_corpus'] = self.folder['data'] / self.settings.get('test_corpus_folder','study-0')
-        self.folder['lexicon'] = Path(self.folder['data'] / self.settings.get('lexicon_folder', 'lexicons'))
+        self.folder['study'] = Path(self.settings.get('study_folder','language data working directory'))
+        self.folder['test_corpus'] = Path(self.settings.get('test_corpus_folder','language data working directory'))
+        self.folder['lexicon'] = Path(self.settings.get('lexicon_folder', 'language data working directory/lexicons'))
         self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
         self.dev_log_file.write(f'{self.folder}.\n')
 
@@ -190,20 +190,22 @@ class LocalFileSystem:
         except IOError:
             self.dev_log_file.write('No file found.\n')
 
-    def read_study_config_file(self):
+    def read_study_config_file(self, args):
         """
         Reads study configuration file which provides other input parameters.
         """
         self.dev_log_file.write('Reading study configuration file...')
         try:
-            with open(self.folder['study'] / 'config_study.txt') as config_file:
+            with open(args.get('study_folder', '') + 'config_study.txt') as config_file:
                 # Read file into dict
                 for line in config_file:
-                    line = line.strip().replace('\t', '').replace(' ', '')
+                    line = line.strip().replace('\t', '')
                     if line and not line.startswith('#'):
                         key, value = line.split(':', 1)
+                        value = value.strip()
                         if ',' in value:
                             value = value.split(',')
+
                         self.settings[key] = value
                         self.dev_log_file.write(f'{key}: {value}, ')
             config_file.close()
