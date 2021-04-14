@@ -1,0 +1,43 @@
+author: Pauli Brattico
+year: 2021
+date: April
+study_id: 1
+study_folder:			language data working directory/study-4_d-LHM/
+lexicon_folder:			language data working directory/lexicons
+test_corpus_folder:		language data working directory/study-4_d-LHM/
+test_corpus_file:		LHM_corpus.txt
+
+only_first_solution: False
+logging: True
+ignore_ungrammatical_sentences: False
+console_output: Full
+
+datatake_resources: True
+datatake_resource_sequence: False
+datatake_timings: False
+datatake_images: False
+
+image_parameter_stop_after_each_image: False
+image_parameter_show_words: True
+image_parameter_nolabels: False
+image_parameter_spellout: False
+image_parameter_case: False
+image_parameter_show_sentences: True
+image_parameter_show_glosses: True
+
+extra_ranking: True
+filter: True
+lexical_anticipation: True
+closure: Bottom-up
+working_memory: True
+
+positive_spec_selection: 100
+negative_spec_selection: -100
+break_head_comp_relations: -100
+negative_tail_test: -100
+positive_head_comp_selection: 100
+negative_head_comp_selection: -100
+negative_semantics_match: -100
+lf_legibility_condition: -100
+negative_adverbial_test: -100
+positive_adverbial_test: 100

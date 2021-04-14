@@ -1,0 +1,911 @@
+# LHM corpus Brattico March 2021
+# => X.Y: X = Experimental Group, Y = Grammaticality (0 = grammatical, 1 = ungrammatical)
+
+
+=> 0.0
+& Group 0. Abstract tests
+
+	a' b' c' d'
+    a'' b' c' d'
+
+=> 1.0
+& Group 1. Baseline tests (all declarative clauses, all lexical items used in the tests)	
+	
+	& Group 1.1 Grammatical, Finnish
+		
+		& Group 1.1.2. Intransitive, transitive, ditransitive declarative clauses
+			
+			Pekka istuu
+			Pekka ihailee Merjaa
+			Pekka myi omaisuutensa
+			Pekka istuu tassa
+			Pekka antoi avaimen Merjalle
+		
+		& Group 1.1.3. Negative, declarative clauses	
+			
+			Pekka ei ihaile Merjaa
+			Pekka ei myynyt omaisuuttaan
+		
+		& Group 1.1.4. AUX + past participle	
+			
+			Pekka on' ihaillut Merjaa
+			Pekka ei ollut ihaillut Merjaa
+			Pekka on' myynyt omaisuuttaan
+		
+		& Group 1.1.5 want + A/inf	
+			
+			Pekka haluaa ihailla Merjaa
+			Pekka haluaa myyda omaisuuttaan
+			
+		& Group 1.1.6 modal + A/inf
+			
+			Pekan_gen taytyy ihailla Merjaa
+			Pekan_gen taytyy myyda omaisuuttaan
+		
+		& Group 1.1.7 Neg + Modal + A/inf
+			
+			Pekan_gen ei taydy ihailla Merjaa
+			Pekan_gen ei taydy myyda omaisuuttaan
+				
+		& Group 1.1.8 Neg + want + A/inf
+			
+			Pekka ei halua ihailla Merjaa
+			Pekka ei halua myyda omaisuuttaan
+		
+		& Group 1.1.9 says + that
+			
+			Pekka sanoo etta haluaa ihailla Merjaa
+			Pekka sanoo etta haluaa myyda omaisuuttaan
+		
+		& Group 1.1.10 Infinitival with thematic GEN subject
+			
+			Pekka kaskee poikien ihailla Merjaa
+			Pekka kaskee poikien myyda omaisuuttaan
+			
+		& Group 1.1.11 Adverb tests
+			
+			Pekka elaa ihailemalla Merjaa 
+			Pekka elaa haluamalla ihailla Merjaa
+
+		& Group 1.1.12 N + A/inf
+			
+			Pekka teki sopimuksen ihailla Merjaa
+			Pekka teki sopimuksen antaa avaimen Merjalle
+			se sopimus ihailla Merjaa peruuntui
+		
+		& Group 1.1.13 Noncanonical OVS order
+			
+			Merjaa ihailee Pekka
+			Merjaa ei ihaile Pekka		
+			Merjaa on' ihaillut Pekka
+			Merjaa ei ollut ihaillut Pekka		
+			Merjaa haluaa ihailla Pekka									
+			Merjaa kaskee poikien ihailla Pekka
+
+		& Group 1.1.14 pro-drop sentences
+			
+			ihailen Merjaa
+			haluan ihailla Merjaa
+			
+		& Group 1.1.15 with locative PP argument
+			
+			Pekka ihailee Merjaa Helsingissa
+			Pekka ei ihaile Merjaa Helsingissa
+			Pekka on' ihaillut Merjaa Helsingissa
+			Pekka ei ollut ihaillut Merjaa Helsingissa
+			Pekka haluaa ihailla Merjaa Helsingissa
+			Pekan_gen taytyy ihailla Merjaa Helsingissa
+			Pekka ei halua ihailla Merjaa Helsingissa
+			Pekka sanoo etta haluaa ihailla Merjaa Helsingissa
+			Pekka kaskee poikien ihailla Merjaa Helsingissa
+			
+		& Group 1.1.16 C*-features in connection with phrasal pied-piping
+		
+			Pekka#C/op ihailee Merjaa
+			Pekka#[foc] ihailee Merjaa
+			Pekka#[hAn] ihailee Merjaa
+			Pekka#[kO] ihailee Merjaa
+			Pekka#[pA] ihailee Merjaa
+			Pekka#[foc]#[hAn] ihailee Merjaa
+			Pekka#[foc]#[kO] ihailee Merjaa
+			Pekka#[foc]#[pA] ihailee Merjaa
+			Pekka#[kO]#[hAn] ihailee Merjaa
+			Pekka#[pA]#[hAn] ihailee Merjaa
+			Pekka#[foc]#[kO]#[hAn] ihailee Merjaa
+			Pekka#[foc]#[pA]#[hAn] ihailee Merjaa
+			
+			Merjaa#C/op ihailee Pekka
+			Merjaa#[foc] ihailee Pekka
+			Merjaa#[hAn] ihailee Pekka
+			Merjaa#[kO] ihailee Pekka
+			Merjaa#[pA] ihailee Pekka
+			Merjaa#[foc]#[hAn] ihailee Pekka
+			Merjaa#[foc]#[kO] ihailee Pekka
+			Merjaa#[foc]#[pA] ihailee Pekka
+			Merjaa#[kO]#[hAn] ihailee Pekka
+			Merjaa#[pA]#[hAn] ihailee Pekka
+			Merjaa#[foc]#[kO]#[hAn] ihailee Pekka
+			Merjaa#[foc]#[pA]#[hAn] ihailee Pekka
+			
+			Merjaa#C/op Pekka ihailee
+			Merjaa#[foc] Pekka ihailee
+			Merjaa#[hAn] Pekka ihailee
+			Merjaa#[kO] Pekka ihailee
+			Merjaa#[pA] Pekka ihailee
+			Merjaa#[foc]#[hAn] Pekka ihailee
+			Merjaa#[foc]#[kO] Pekka ihailee
+			Merjaa#[foc]#[pA] Pekka ihailee
+			Merjaa#[kO]#[hAn] Pekka ihailee
+			Merjaa#[pA]#[hAn] Pekka ihailee
+			Merjaa#[foc]#[kO]#[hAn] Pekka ihailee
+			Merjaa#[foc]#[pA]#[hAn] Pekka ihailee
+			
+	& Gropu 1.2 Grammatical, English
+		
+		& Group 1.2.1 Transitive, declarative
+			
+			John sleeps
+			John admires Mary
+			John does admire' Mary
+			John gave the key to Mary
+		
+		& Group 1.2.2 want + to-infinitival
+			
+			John wants to_inf admire' Mary
+=> 1.1
+		
+		& Group 1.2.3 Ungrammatical
+		
+			John admires
+
+=> 2.0
+& Group 2. Local T-to-C movement
+	
+	& Group 2.1 Grammatical, Finnish
+		
+		& Group 2.1.1 Local T-to-C movement	
+			
+			istuu#C/op Pekka
+			istuu#[foc] Pekka
+			istuu#[hAn] Pekka
+			istuu#[kO] Pekka
+			istuu#[pA] Pekka
+			istuu#[foc]#[hAn] Pekka
+			istuu#[foc]#[kO] Pekka
+			istuu#[foc]#[pA] Pekka
+			istuu#[kO]#[hAn] Pekka
+			istuu#[pA]#[hAn] Pekka
+			istuu#[foc]#[kO]#[hAn] Pekka
+			istuu#[foc]#[pA]#[hAn] Pekka
+			ihailee#C/op Pekka Merjaa
+			ihailee#[foc] Pekka Merjaa
+			myi#[foc] Pekka omaisuutensa
+			myi#C/op Pekka omaisuutensa
+			antoi#[foc] Pekka avaimen Merjalle
+			antoi#C/op Pekka avaimen Merjalle
+
+		& Group 2.1.2 Neg-to-C movement
+			
+			ei#C/op Pekka ihaile Merjaa
+			ei#[foc] Pekka ihaile Merjaa
+			ei#[hAn] Pekka ihaile Merjaa
+			ei#[kO] Pekka ihaile Merjaa
+			ei#[pA] Pekka ihaile Merjaa
+			ei#[foc]#[hAn] Pekka ihaile Merjaa
+			ei#[foc]#[kO] Pekka ihaile Merjaa
+			ei#[foc]#[pA] Pekka ihaile Merjaa
+			ei#[kO]#[hAn] Pekka ihaile Merjaa
+			ei#[pA]#[hAn] Pekka ihaile Merjaa
+			ei#[foc]#[kO]#[hAn] Pekka ihaile Merjaa
+			ei#[foc]#[pA]#[hAn] Pekka ihaile Merjaa
+			
+			ei#C/op Pekan_gen taydy ihailla Merjaa
+			ei#C/op Pekka halua ihailla Merjaa
+			ei#C/op Pekka ollut ihaillut Merjaa
+			ei#C/op Pekka myynyt omaisuuttaan
+			ei#C/op Pekan_gen taydy myyda omaisuuttaan
+			ei#C/op Pekka halua myyda omaisuuttaan
+			ei#C/op Pekka ollut myynyt omaisuuttaan
+			
+		& Group 2.1.3 Modal-to-C	
+			
+			taytyy#C/op Pekan_gen ihailla Merjaa
+			taytyy#[foc] Pekan_gen ihailla Merjaa
+			taytyy#[hAn] Pekan_gen ihailla Merjaa
+			taytyy#[kO] Pekan_gen ihailla Merjaa
+			taytyy#[pA] Pekan_gen ihailla Merjaa
+			taytyy#[foc]#[hAn] Pekan_gen ihailla Merjaa
+			taytyy#[foc]#[kO] Pekan_gen ihailla Merjaa
+			taytyy#[foc]#[pA] Pekan_gen ihailla Merjaa
+			taytyy#[kO]#[hAn] Pekan_gen ihailla Merjaa
+			taytyy#[pA]#[hAn] Pekan_gen ihailla Merjaa
+			taytyy#[foc]#[kO]#[hAn] Pekan_gen ihailla Merjaa
+			taytyy#[foc]#[pA]#[hAn] Pekan_gen ihailla Merjaa
+			
+			taytyy#C/op Pekan_gen myyda omaisuuttaan
+			
+		& Group 2.1.4 Want-to-C 	
+			
+			haluaa#[foc] Pekka ihailla Merjaa
+			haluaa#[hAn] Pekka ihailla Merjaa
+			haluaa#[kO] Pekka ihailla Merjaa
+			haluaa#[pA] Pekka ihailla Merjaa
+			haluaa#[foc]#[hAn] Pekka ihailla Merjaa
+			haluaa#[foc]#[kO] Pekka ihailla Merjaa
+			haluaa#[foc]#[pA] Pekka ihailla Merjaa
+			haluaa#[kO]#[hAn] Pekka ihailla Merjaa
+			haluaa#[pA]#[hAn] Pekka ihailla Merjaa
+			haluaa#[foc]#[kO]#[hAn] Pekka ihailla Merjaa
+			haluaa#[foc]#[pA]#[hAn] Pekka ihailla Merjaa
+			
+			haluaa#C/op Pekka myyda omaisuuttaan
+			
+		& Group 2.1.5 Aux-to-C
+			
+			on'#C/op Pekka ihaillut Merjaa
+			on'#[foc] Pekka ihaillut Merjaa
+			on'#[hAn] Pekka ihaillut Merjaa
+			on'#[kO] Pekka ihaillut Merjaa
+			on'#[pA] Pekka ihaillut Merjaa
+			on'#[foc]#[hAn] Pekka ihaillut Merjaa
+			on'#[foc]#[kO] Pekka ihaillut Merjaa
+			on'#[foc]#[pA] Pekka ihaillut Merjaa
+			on'#[kO]#[hAn] Pekka ihaillut Merjaa
+			on'#[pA]#[hAn] Pekka ihaillut Merjaa
+			on'#[foc]#[kO]#[hAn] Pekka ihaillut Merjaa
+			on'#[foc]#[pA]#[hAn] Pekka ihaillut Merjaa
+			
+			on'#C/op Pekka myynyt omaisuuttaan
+			
+		& Group 2.1.6 All constructions (2.1.1-2.1.5) with formal C-feature C/fin
+			
+			ihailee#C/fin Pekka Merjaa
+			ei#C/fin Pekka ihaile Merjaa
+			taytyy#C/fin Pekan_gen ihailla Merjaa
+			haluaa#C/fin Pekka ihailla Merjaa
+			on'#C/fin Pekka ihaillut Merjaa
+			myi#C/fin Pekka omaisuuttaan
+			ei#C/fin Pekka myynyt omaisuuttaan
+			taytyy#C/fin Pekan_gen myyda omaisuuttaan
+			haluaa#C/fin Pekka myyda omaisuuttaan
+			on'#C/fin Pekka myynyt omaisuuttaan
+	
+		& Group 2.1.7 All constructions (2.1.1-2.1.5) with grammatical noncanonical OVS order
+			
+			ihailee#C/op Merjaa Pekka
+			ihailee#[foc] Merjaa Pekka
+			ihailee#[hAn] Merjaa Pekka
+			ihailee#[kO] Merjaa Pekka
+			ihailee#[pA] Merjaa Pekka
+			ihailee#[foc]#[hAn] Merjaa Pekka
+			ihailee#[foc]#[kO] Merjaa Pekka
+			ihailee#[foc]#[pA] Merjaa Pekka
+			ihailee#[kO]#[hAn] Merjaa Pekka
+			ihailee#[pA]#[hAn] Merjaa Pekka
+			ihailee#[foc]#[kO]#[hAn] Merjaa Pekka
+			ihailee#[foc]#[pA]#[hAn] Merjaa Pekka
+			
+			ei#C/op Merjaa ihaile Pekka
+			ei#C/op Merjaa ollut ihaillut Pekka
+			haluaa#C/op Merjaa ihailla Pekka
+			on'#C/op Merjaa ihaillut Pekka
+			ei#C/fin omaisuuttaan myynyt Pekka
+			haluaa#C/fin omaisuuttaan myyda Pekka
+			on'#C/fin Pekka myynyt omaisuuttaan
+		
+		& Group 2.1.8 With intervening locative PP argument (excl. postverbal locative)
+			
+			ihailee#C/op Helsingissa Pekka Merjaa
+			ihailee#[foc] Helsingissa Pekka Merjaa
+			ihailee#[hAn] Helsingissa Pekka Merjaa
+			ihailee#[kO] Helsingissa Pekka Merjaa
+			ihailee#[pA] Helsingissa Pekka Merjaa
+			ihailee#[foc]#[hAn] Helsingissa Pekka Merjaa
+			ihailee#[foc]#[kO] Helsingissa Pekka Merjaa
+			ihailee#[foc]#[pA] Helsingissa Pekka Merjaa
+			ihailee#[kO]#[hAn] Helsingissa Pekka Merjaa
+			ihailee#[pA]#[hAn] Helsingissa Pekka Merjaa
+			ihailee#[foc]#[kO]#[hAn] Helsingissa Pekka Merjaa
+			ihailee#[foc]#[pA]#[hAn] Helsingissa Pekka Merjaa
+			
+			ei#C/op Helsingissa Pekan_gen taydy ihailla Merjaa
+			ei#C/op Helsingissa Pekka halua ihailla Merjaa
+			taytyy#C/op Helsingissa Pekan_gen ihailla Merjaa
+			haluaa#C/op Helsingissa Pekka ihailla Merjaa
+			on'#C/op Helsingissa Pekka ihaillut Merjaa	
+			ei#C/op Pekan_gen#top Helsingissa taydy ihailla Merjaa
+			ei#C/op Pekka Helsingissa halua ihailla Merjaa
+			taytyy#C/op Pekan_gen#top Helsingissa ihailla Merjaa
+			haluaa#C/op Pekka Helsingissa ihailla Merjaa
+			on'#C/op Pekka Helsingissa ihaillut Merjaa
+		
+		& Group 2.1.9 with pro-drop
+			
+			ihailen#C/op Merjaa
+			ihailen#[foc] Merjaa
+			ihailen#[hAn] Merjaa
+			ihailen#[kO] Merjaa
+			ihailen#[pA] Merjaa
+			ihailen#[foc]#[hAn] Merjaa
+			ihailen#[foc]#[kO] Merjaa
+			ihailen#[foc]#[pA] Merjaa
+			ihailen#[kO]#[hAn] Merjaa
+			ihailen#[pA]#[hAn] Merjaa
+			ihailen#[foc]#[kO]#[hAn] Merjaa
+			ihailen#[foc]#[pA]#[hAn] Merjaa
+			
+			haluan#C/op ihailla Merjaa
+=> 2.1		
+	& Group 2.2 Ungrammatical, Finnish
+		
+		& Group 2.2.1 V-initial versions
+			
+			ihailee Pekka Merjaa
+			ei Pekka ihaile Merjaa
+			taytyy Pekan_genn ihailla Merjaa
+			haluaa Pekka ihailla Merjaa
+			ihailee Pekka ihailee Merjaa
+		 	on' Pekka ihaillut Merjaa
+			myi Pekka omaisuutensa
+
+=> 2.0			
+	& Group 2.3 Grammatical, English
+		
+		does#C/fin John admire' Mary
+
+=> 2.1		
+	& Group 2.4 Ungrammatical, English
+		
+		admire'#C/fin John does Mary
+
+=> 3.0
+& Group 3. Basic LHM
+	
+	& Group 3.1 Grammatical
+		
+		& Group 3.1.1 V-over-Neg	
+			
+			ihaile#C/op Pekka ei Merjaa
+			ihaile#[foc] Pekka ei Merjaa
+			ihaile#[hAn] Pekka ei Merjaa
+			ihaile#[kO] Pekka ei Merjaa
+			ihaile#[pA] Pekka ei Merjaa
+			ihaile#[foc]#[hAn] Pekka ei Merjaa
+			ihaile#[foc]#[kO] Pekka ei Merjaa
+			ihaile#[foc]#[pA] Pekka ei Merjaa
+			ihaile#[kO]#[hAn] Pekka ei Merjaa
+			ihaile#[pA]#[hAn] Pekka ei Merjaa
+			ihaile#[foc]#[kO]#[hAn] Pekka ei Merjaa
+			ihaile#[foc]#[pA]#[hAn] Pekka ei Merjaa
+			
+			myi#C/op Pekka omaisuutensa
+			
+		& Group 3.1.2 V-over-Aux(BE)	
+			
+			ihaillut#C/op Pekka on' Merjaa
+			ihaillut#[foc] Pekka on' Merjaa
+			ihaillut#[hAn] Pekka on' Merjaa
+			ihaillut#[kO] Pekka on' Merjaa
+			ihaillut#[pA] Pekka on' Merjaa
+			ihaillut#[foc]#[hAn] Pekka on' Merjaa
+			ihaillut#[foc]#[kO] Pekka on' Merjaa
+			ihaillut#[foc]#[pA] Pekka on' Merjaa
+			ihaillut#[kO]#[hAn] Pekka on' Merjaa
+			ihaillut#[pA]#[hAn] Pekka on' Merjaa
+			ihaillut#[foc]#[kO]#[hAn] Pekka on' Merjaa
+			ihaillut#[foc]#[pA]#[hAn] Pekka on' Merjaa
+			
+			myynyt#C/op Pekka on' omaisuutensa
+
+		& Group 3.1.3 V-over-want
+			
+			ihailla#C/op Pekka haluaa Merjaa
+			ihailla#[foc] Pekka haluaa Merjaa
+			ihailla#[hAn] Pekka haluaa Merjaa
+			ihailla#[kO] Pekka haluaa Merjaa
+			ihailla#[pA] Pekka haluaa Merjaa
+			ihailla#[foc]#[hAn] Pekka haluaa Merjaa
+			ihailla#[foc]#[kO] Pekka haluaa Merjaa
+			ihailla#[foc]#[pA] Pekka haluaa Merjaa
+			ihailla#[kO]#[hAn] Pekka haluaa Merjaa
+			ihailla#[pA]#[hAn] Pekka haluaa Merjaa
+			ihailla#[foc]#[kO]#[hAn] Pekka haluaa Merjaa
+			ihailla#[foc]#[pA]#[hAn] Pekka haluaa Merjaa
+			
+			myyda#C/op Pekka haluaa omaisuutensa
+			
+		& Group 3.1.4 V-over-must
+			
+			ihailla#C/op Pekan_gen taytyy Merjaa
+			ihailla#[foc] Pekan_gen taytyy Merjaa
+			ihailla#[hAn] Pekan_gen taytyy Merjaa
+			ihailla#[kO] Pekan_gen taytyy Merjaa
+			ihailla#[pA] Pekan_gen taytyy Merjaa
+			ihailla#[foc]#[hAn] Pekan_gen taytyy Merjaa
+			ihailla#[foc]#[kO] Pekan_gen taytyy Merjaa
+			ihailla#[foc]#[pA] Pekan_gen taytyy Merjaa
+			ihailla#[kO]#[hAn] Pekan_gen taytyy Merjaa
+			ihailla#[pA]#[hAn] Pekan_gen taytyy Merjaa
+			ihailla#[foc]#[kO]#[hAn] Pekan_gen taytyy Merjaa
+			ihailla#[foc]#[pA]#[hAn] Pekan_gen taytyy Merjaa
+			
+			myyda#C/op Pekan_gen taytyy omaisuutensa
+		
+		& Group 3.1.5 With noncanonical OVS orders
+			
+			ihaile#C/op Merjaa ei Pekka
+			ihaile#[foc] Merjaa ei Pekka
+			ihaile#[hAn] Merjaa ei Pekka
+			ihaile#[kO] Merjaa ei Pekka
+			ihaile#[pA] Merjaa ei Pekka
+			ihaile#[foc]#[hAn] Merjaa ei Pekka
+			ihaile#[foc]#[kO] Merjaa ei Pekka
+			ihaile#[foc]#[pA] Merjaa ei Pekka
+			ihaile#[kO]#[hAn] Merjaa ei Pekka
+			ihaile#[pA]#[hAn] Merjaa ei Pekka
+			ihaile#[foc]#[kO]#[hAn] Merjaa ei Pekka
+			ihaile#[foc]#[pA]#[hAn] Merjaa ei Pekka
+			
+			ihaillut#C/op Merjaa on' Pekka
+			ihailla#C/op Merjaa haluaa Pekka
+			
+			myynyt#C/op omaisuuttaan ei Pekka
+			myynyt#C/op omaisuuttaan on' Pekka
+			myyda#C/op omaisuuttaan haluaa Pekka
+			
+		& Group 3.1.6 With pro-drop subject
+			
+			ihailla#C/op haluan Merjaa
+			ihailla#[foc] haluan Merjaa
+			ihailla#[hAn] haluan Merjaa
+			ihailla#[kO] haluan Merjaa
+			ihailla#[pA] haluan Merjaa
+			ihailla#[foc]#[hAn] haluan Merjaa
+			ihailla#[foc]#[kO] haluan Merjaa
+			ihailla#[foc]#[pA] haluan Merjaa
+			ihailla#[kO]#[hAn] haluan Merjaa
+			ihailla#[pA]#[hAn] haluan Merjaa
+			ihailla#[foc]#[kO]#[hAn] haluan Merjaa
+			ihailla#[foc]#[pA]#[hAn] haluan Merjaa
+		
+		& Group 3.1.7 With locative PP
+		
+			ihaile#C/op Helsingissa Pekka ei Merjaa
+			ihaile#[foc] Helsingissa Pekka ei Merjaa
+			ihaile#[hAn] Helsingissa Pekka ei Merjaa
+			ihaile#[kO] Helsingissa Pekka ei Merjaa
+			ihaile#[pA] Helsingissa Pekka ei Merjaa
+			ihaile#[foc]#[hAn] Helsingissa Pekka ei Merjaa
+			ihaile#[foc]#[kO] Helsingissa Pekka ei Merjaa
+			ihaile#[foc]#[pA] Helsingissa Pekka ei Merjaa
+			ihaile#[kO]#[hAn] Helsingissa Pekka ei Merjaa
+			ihaile#[pA]#[hAn] Helsingissa Pekka ei Merjaa
+			ihaile#[foc]#[kO]#[hAn] Helsingissa Pekka ei Merjaa
+			ihaile#[foc]#[pA]#[hAn] Helsingissa Pekka ei Merjaa
+			
+			ihaillut#C/op Helsingissa Pekka on' Merjaa	
+			ihailla#C/op Helsingissa Pekka haluaa Merjaa	
+			ihailla#C/op Helsingissa Pekan_gen taytyy Merjaa	
+
+			ihaile#C/op Pekka Helsingissa ei Merjaa
+			ihaillut#C/op Pekka Helsingissa on' Merjaa	
+			ihailla#C/op Pekka Helsingissa haluaa Merjaa	
+			ihailla#C/op Pekan_gen Helsingissa taytyy Merjaa				
+	
+			myi#C/op Pekka omaisuutensa Helsingissa
+			myynyt#C/op Pekka on' omaisuutensa Helsingissa
+			myyda#C/op Pekka haluaa omaisuutensa Helsingissa
+			myyda#C/op Pekan_gen taytyy omaisuutensa Helsingissa
+
+=> 3.1
+	& Group 3.2. Ungrammatical, Finnish
+		
+		& Group 3.2.1 LHM with formal C-feature and without any C-feature
+		
+			ihaile#C/fin Pekka ei Merjaa
+			ihaillut#C/fin Pekka on' Merjaa
+			ihailla#C/fin Pekka haluaa Merjaa	
+			ihailla#C/fin Pekan_gen taytyy Merjaa	
+			ihallut#C/fin Pekka ei ollut Merjaa	
+			ihaile Pekka ei Merjaa
+			ihaillut Pekka on' Merjaa
+			ihailla Pekka haluaa Merjaa	
+			ihailla Pekan_gen taytyy Merjaa	
+			ihallut Pekka ei ollut Merjaa	
+			myynyt#C/fin Pekka ei omaisuuttaan
+			myynyt#C/fin Pekka on omaisuuttaan
+			myyda#C/fin Pekka haluaa omaisuuttaan
+			myyda#C/fin Pekan_gen taytyy omaisuuttaan
+			myynyt#C/fin Pekka ei ollut omaisuuttaan
+			myynyt Pekka ei omaisuuttaan
+			myynyt Pekka on omaisuuttaan
+			myyda Pekka haluaa omaisuuttaan
+			myyda Pekan_gen taytyy omaisuuttaan
+			myynyt Pekka ei ollut omaisuuttaan
+			
+		& Group 3.2.2 long head movement with infinitival subject (ungrammatical)
+			
+			ihailla#C/op Pekka kaskee poikien Merjaa
+			ihailla#[foc] Pekka kaskee poikien Merjaa
+			ihailla#[hAn] Pekka kaskee poikien Merjaa
+			ihailla#[kO] Pekka kaskee poikien Merjaa
+			ihailla#[pA] Pekka kaskee poikien Merjaa
+			ihailla#[foc]#[hAn] Pekka kaskee poikien Merjaa
+			ihailla#[foc]#[kO] Pekka kaskee poikien Merjaa
+			ihailla#[foc]#[pA] Pekka kaskee poikien Merjaa
+			ihailla#[kO]#[hAn] Pekka kaskee poikien Merjaa
+			ihailla#[pA]#[hAn] Pekka kaskee poikien Merjaa
+			ihailla#[foc]#[kO]#[hAn] Pekka kaskee poikien Merjaa
+			ihailla#[foc]#[pA]#[hAn] Pekka kaskee poikien Merjaa
+			
+			ihailla#C/fin Pekka kaskee poikien Merjaa
+			ihailla Pekka kaskee poikien Merjaa
+
+		& Group 3.2.3 Long head movement with second auxiliary (only formal C-feature or no C-feature)
+			
+			ollut#C/fin Pekka ei ihaillut Merjaa
+			ollut Pekka ei ihaillut Merjaa
+		
+		& Group 3.2.4 Aux + prtcpl + prtcpl with locality violation
+			
+			ihaillut#C/op Pekka ei ollut Merjaa
+
+	& Group 3.3 Ungrammatical, English
+		
+		& Group 3.3.1 LHM in English
+			
+			admire' John wants to_inf Mary
+			to_inf admire' John wants Mary
+			to_inf John wants admire' Mary
+			admire'#C/fin John wants to_inf Mary
+			to_inf#C/fin admire' John wants Mary
+			to_inf#C/fin John wants admire' Mary
+
+=> 4.0
+& Group 4. X + Y + V constructions
+	
+	& Group 4.1 Grammatical
+		
+		& Group 4.1.1 Neg + Modal + V, with Modal moving moving (grammaticality status unclear)
+			
+			taydy#C/op Pekan_gen ei ihailla Merjaa
+			taydy#[foc] Pekan_gen ei ihailla Merjaa
+			taydy#[hAn] Pekan_gen ei ihailla Merjaa
+			taydy#[kO] Pekan_gen ei ihailla Merjaa
+			taydy#[pA] Pekan_gen ei ihailla Merjaa
+			taydy#[foc]#[hAn] Pekan_gen ei ihailla Merjaa
+			taydy#[foc]#[kO] Pekan_gen ei ihailla Merjaa
+			taydy#[foc]#[pA] Pekan_gen ei ihailla Merjaa
+			taydy#[kO]#[hAn] Pekan_gen ei ihailla Merjaa
+			taydy#[pA]#[hAn] Pekan_gen ei ihailla Merjaa
+			taydy#[foc]#[kO]#[hAn] Pekan_gen ei ihailla Merjaa
+			taydy#[foc]#[pA]#[hAn] Pekan_gen ei ihailla Merjaa
+			
+			taydy#C/op Pekan_gen ei myyda omaisuuttaan
+
+		& Group 4.1.2 Neg + Modal + V with V moving
+			
+			ihailla#C/op Pekan_gen ei taydy Merjaa
+			ihailla#[foc] Pekan_gen ei taydy Merjaa
+			ihailla#[hAn] Pekan_gen ei taydy Merjaa
+			ihailla#[kO] Pekan_gen ei taydy Merjaa
+			ihailla#[pA] Pekan_gen ei taydy Merjaa
+			ihailla#[foc]#[hAn] Pekan_gen ei taydy Merjaa
+			ihailla#[foc]#[kO] Pekan_gen ei taydy Merjaa
+			ihailla#[foc]#[pA] Pekan_gen ei taydy Merjaa
+			ihailla#[kO]#[hAn] Pekan_gen ei taydy Merjaa
+			ihailla#[pA]#[hAn] Pekan_gen ei taydy Merjaa
+			ihailla#[foc]#[kO]#[hAn] Pekan_gen ei taydy Merjaa
+			ihailla#[foc]#[pA]#[hAn] Pekan_gen ei taydy Merjaa
+			
+			myyda#C/op Pekan_gen ei taydy omaisuuttaan
+		
+		& Group 4.1.3 Neg + want + V, with want moving
+			
+			halua#C/op Pekka ei ihailla Merjaa
+			halua#[foc] Pekka ei ihailla Merjaa
+			halua#[hAn] Pekka ei ihailla Merjaa
+			halua#[kO] Pekka ei ihailla Merjaa
+			halua#[pA] Pekka ei ihailla Merjaa
+			halua#[foc]#[hAn] Pekka ei ihailla Merjaa
+			halua#[foc]#[kO] Pekka ei ihailla Merjaa
+			halua#[foc]#[pA] Pekka ei ihailla Merjaa
+			halua#[kO]#[hAn] Pekka ei ihailla Merjaa
+			halua#[pA]#[hAn] Pekka ei ihailla Merjaa
+			halua#[foc]#[kO]#[hAn] Pekka ei ihailla Merjaa
+			halua#[foc]#[pA]#[hAn] Pekka ei ihailla Merjaa
+			
+			ihailla#C/op Pekka ei halua Merjaa
+			halua#C/op Pekka ei myyda omaisuuttaan
+			myyda#C/op Pekka ei halua omaisuuttaan
+			
+		& Group 4.1.4 With noncanonical OVS orders
+			
+			halua#C/op Merjaa ei ihailla Pekka
+			halua#[foc] Merjaa ei ihailla Pekka
+			halua#[hAn] Merjaa ei ihailla Pekka
+			halua#[kO] Merjaa ei ihailla Pekka
+			halua#[pA] Merjaa ei ihailla Pekka
+			halua#[foc]#[hAn] Merjaa ei ihailla Pekka
+			halua#[foc]#[kO] Merjaa ei ihailla Pekka
+			halua#[foc]#[pA] Merjaa ei ihailla Pekka
+			halua#[kO]#[hAn] Merjaa ei ihailla Pekka
+			halua#[pA]#[hAn] Merjaa ei ihailla Pekka
+			halua#[foc]#[kO]#[hAn] Merjaa ei ihailla Pekka
+			halua#[foc]#[pA]#[hAn] Merjaa ei ihailla Pekka
+			
+			ihailla#C/op Merjaa ei halua Pekka
+			halua#C/op omaisuuttaan ei myyda Pekka
+			myyda#C/op omaisuuttaan ei halua Pekka
+			
+=> 4.1		
+	& Group 4.2 Ungrammatical
+		
+		& Group 4.2.1 Neg + Modal + V with only formal C-feature (ungrammatical)
+			
+			taydy#C/fin Pekan_gen ei ihailla Merjaa
+			taydy Pekan_gen ei ihailla Merjaa
+			taydy#C/fin Pekan_gen ei myyda omaisuuttaan
+			taydy Pekan_gen ei myyda omaisuuttaan
+
+		& Group 4.2.2 Neg + want + V with no C-feature		
+			
+			ihailla#C/fin Pekan_gen ei taydy Merjaa
+			ihailla	Pekan_gen ei taydy Merjaa
+			halua Pekka ei myyda omaisuuttaan
+			myyda Pekka ei halua omaisuuttaan
+
+=> 5.0
+& Group 5. Super LHM ("says that __")
+	
+	& Group 5.1 Grammatical
+		
+		& Group 5.1.1 that + want + A/inf
+		
+		ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[foc] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[hAn] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[kO] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[pA] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[foc]#[hAn] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[foc]#[kO] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[foc]#[pA] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[kO]#[hAn] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[pA]#[hAn] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[foc]#[kO]#[hAn] Pekka sanoo etta Pekka haluaa Merjaa
+		ihailla#[foc]#[pA]#[hAn] Pekka sanoo etta Pekka haluaa Merjaa
+		
+		lahtea#C/op Pekka sanoo etta Pekan_gen taytyy
+		myyda#C/op Pekka sanoo etta Pekka haluaa omaisuutensa
+		myyda#C/op Pekka sanoo etta Pekan_gen taytyy omaisuutensa
+
+=> 5.1	
+	& Group 5.2 Ungrammatical, Finnish
+		
+		& Group 5.2.1 Moving of the embedded finite verb (ungrammatical)
+		
+			haluaa#C/op Pekka sanoo etta ihailla Merjaa
+			ihailee#C/op Pekka sanoo etta Merjaa
+			taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa
+			
+			haluaa#C/op Pekka sanoo etta myyda omaisuutensa
+			myi#C/op Pekka sanoo etta omaisuutensa
+			taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa
+			
+		& Group 5.2.2 Formal C-features or no C-features = V-initial constructions (ungrammatical)
+			
+			ihailla#C/fin Pekka sanoo etta haluaa Merjaa
+			lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy
+			ihailla Pekka sanoo etta haluaa Merjaa
+			lahtea Pekka sanoo etta Pekan_genan taytyy
+			haluaa#C/fin Pekka sanoo etta myyda omaisuutensa
+			myi#C/fin Pekka sanoo etta omaisuutensa
+			taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa
+			haluaa Pekka sanoo etta myyda omaisuutensa
+			myi Pekka sanoo etta omaisuutensa
+			taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa
+
+=> 6.0
+& Group 6. VP-fronting
+	
+	& Group 6.1. Grammatical VP-fronting in Finnish
+					
+		ihailla Merjaa#C/op Pekka haluaa
+		Merjaa#C/op ihailla Pekka haluaa
+		tassa#C/op ihailla Merjaa Pekka haluaa
+		ihailla Merjaa haluan
+		ihailla#C/op Merjaa Pekka haluaa
+		ihailla Merjaa haluan tassa
+		ihailla Merjaa haluan
+
+=> 6.1
+	& Group 6.2 Ungrammatical VP-fronting in Finnish
+	
+		ihailla Merjaa Pekka haluaa	
+		ihailla Merjaa Pekka haluaa	tassa
+		Merjaa#C/op ihailla Pekka haluaa tassa
+
+=> 7.1	
+& Group 7. Islands
+	
+	& Group 7.1. Right-adjunct CED
+		
+		ihailemalla#C/op Pekka istuu Merjaa
+		ihailemalla#[foc] Pekka istuu Merjaa
+		ihailemalla#[hAn] Pekka istuu Merjaa
+		ihailemalla#[kO] Pekka istuu Merjaa
+		ihailemalla#[pA] Pekka istuu Merjaa
+		ihailemalla#[foc]#[hAn] Pekka istuu Merjaa
+		ihailemalla#[foc]#[kO] Pekka istuu Merjaa
+		ihailemalla#[foc]#[pA] Pekka istuu Merjaa
+		ihailemalla#[kO]#[hAn] Pekka istuu Merjaa
+		ihailemalla#[pA]#[hAn] Pekka istuu Merjaa
+		ihailemalla#[foc]#[kO]#[hAn] Pekka istuu Merjaa
+		ihailemalla#[foc]#[pA]#[hAn] Pekka istuu Merjaa
+		
+	& Group 7.2, Left branch CED
+		
+		ihailla#C/op sopimus Merjaa istuu
+		ihailla#[foc] sopimus Merjaa istuu
+		ihailla#[hAn] sopimus Merjaa istuu
+		ihailla#[kO] sopimus Merjaa istuu
+		ihailla#[pA] sopimus Merjaa istuu
+		ihailla#[foc]#[hAn] sopimus Merjaa istuu
+		ihailla#[foc]#[kO] sopimus Merjaa istuu
+		ihailla#[foc]#[pA] sopimus Merjaa istuu
+		ihailla#[kO]#[hAn] sopimus Merjaa istuu
+		ihailla#[pA]#[hAn] sopimus Merjaa istuu
+		ihailla#[foc]#[kO]#[hAn] sopimus Merjaa istuu
+		ihailla#[foc]#[pA]#[hAn] sopimus Merjaa istuu
+	
+	& Group 7.3. Extraction from DP
+		
+		ihailla#C/op Pekka teki sopimuksen Merjaa
+		ihailla#[foc] Pekka teki sopimuksen Merjaa
+		ihailla#[hAn] Pekka teki sopimuksen Merjaa
+		ihailla#[kO] Pekka teki sopimuksen Merjaa
+		ihailla#[pA] Pekka teki sopimuksen Merjaa
+		ihailla#[foc]#[hAn] Pekka teki sopimuksen Merjaa
+		ihailla#[foc]#[kO] Pekka teki sopimuksen Merjaa
+		ihailla#[foc]#[pA] Pekka teki sopimuksen Merjaa
+		ihailla#[kO]#[hAn] Pekka teki sopimuksen Merjaa
+		ihailla#[pA]#[hAn] Pekka teki sopimuksen Merjaa
+		ihailla#[foc]#[kO]#[hAn] Pekka teki sopimuksen Merjaa
+		ihailla#[foc]#[pA]#[hAn] Pekka teki sopimuksen Merjaa
+
+=> 8.1
+& Group 8. Head movement inside infinitivals, all ungrammatical
+	
+	& Group 8.1 Inside DPs
+		
+		Pekka teki ihailla sopimuksen Merjaa
+		Pekka teki myyda sopimuksen omaisuutensa
+	
+	& Group 8.2 Inside AdvPs
+		
+		Pekka elaa ihailla haluamalla Merjaa
+		Pekka elaa ihailla#C/op haluamalla Merjaa
+
+=> 9.1
+& Group 9. Heads in wrong order, all ungrammatical (Manninen 2003 generalization)
+	
+	& Group 9.1 V + Neg
+		
+		Pekka ihaile ei Merjaa
+		
+	& Group 9.2 Neg + Aux + V
+		
+		Pekka ollut ei ihaillut Merjaa
+		Pekka ollut ihaillut ei Merjaa
+		Pekka ei ihaillut ollut Merjaa
+		Pekka ei ihaillut ei ollut Merjaa
+		Pekka ihaillut ollut ei Merjaa
+		
+	& Group 9.3 Neg + Modal + V
+		
+		Pekan_gen taydy ei ihailla Merjaa
+		Pekan_gen taydy ihailla ei Merjaa
+		Pekan_gen ei ihailla taydy Merjaa
+		Pekan_gen ihailla ei taydy Merjaa
+		Pekan_gen ihailla taydy ei Merjaa
+		
+	& Group 9.4 Neg + V + V + LHM, with wrong head order
+		
+		taydy#C/op Pekan_gen ihailla ei Merjaa
+		taydy#[foc] Pekan_gen ihailla ei Merjaa
+		taydy#[hAn] Pekan_gen ihailla ei Merjaa
+		taydy#[kO] Pekan_gen ihailla ei Merjaa
+		taydy#[pA] Pekan_gen ihailla ei Merjaa
+		taydy#[foc]#[hAn] Pekan_gen ihailla ei Merjaa
+		taydy#[foc]#[kO] Pekan_gen ihailla ei Merjaa
+		taydy#[foc]#[pA] Pekan_gen ihailla ei Merjaa
+		taydy#[kO]#[hAn] Pekan_gen ihailla ei Merjaa
+		taydy#[pA]#[hAn] Pekan_gen ihailla ei Merjaa
+		taydy#[foc]#[kO]#[hAn] Pekan_gen ihailla ei Merjaa
+		taydy#[foc]#[pA]#[hAn] Pekan_gen ihailla ei Merjaa
+		
+		ihailla#C/op Pekan_gen taydy ei Merjaa
+		halua#C/op Pekan_gen Pekka ihailla ei Merjaa
+		ihailla#C/op Pekan_gen halua ei Merjaa
+		
+	& Group 9.5 Head final constructions with two more more verbal elements
+		
+		Pekka ihaile Merjaa ei 
+		Pekka ei ihaillut Merjaa ollut
+		Pekan_gen ei ihailla Merjaa taydy
+
+=> 10.1
+& Group 10. C-features on a wrong head or as prefixed
+	
+	& Group 10.1 Sentences from Group 1.1
+		
+		& Group 10.1.1 C/op on the first in situ V (see group 11.1 for why there is C/fin)
+			
+			C/fin Pekka ihailee#C/op Merjaa
+			C/fin Pekka ei#C/op ihaile Merjaa
+			C/fin Pekka on'#C/op ihaillut Merjaa
+			C/fin Pekka ei#C/op ollut ihaillut Merjaa
+			C/fin Pekka haluaa#C/op ihailla Merjaa
+			C/fin Pekan_genn taytyy#C/op ihailla Merjaa
+			C/fin Pekan_gen ei#C/op taydy ihailla Merjaa
+			C/fin Pekka ei#C/op halua ihailla Merjaa
+			C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa
+			C/fin Pekka kaskee#C/op poikien ihailla Merjaa
+			C/fin Pekka istuu#C/op ihailemalla Merjaa 
+			C/fin Pekka istuu#C/op haluamalla ihailla Merjaa
+			C/fin Pekka teki#C/op sopimuksen ihailla Merjaa
+		
+		& Group 10.1.2 C/op on the second in situ V
+			
+			Pekka ei ihaile#C/op Merjaa
+			Pekka on' ihaillut#C/op Merjaa
+			Pekka ei ollut#C/op ihaillut Merjaa
+			Pekka haluaa ihailla#C/op Merjaa
+			Pekan_gen taytyy ihailla#C/op Merjaa
+			Pekan_gen ei taydy#C/op ihailla Merjaa
+			Pekka ei halua#C/op ihailla Merjaa
+			Pekka kaskee poikien ihailla#C/op Merjaa
+		
+		& Group 10.1.3 C/op on the third in situ V
+			
+			Pekka ei ollut ihaillut#C/op Merjaa
+			Pekan_gen ei taydy ihailla#C/op Merjaa
+			Pekka ei halua ihailla#C/op Merjaa
+			Pekka sanoo etta haluaa ihailla#C/op Merjaa
+			
+		& Group 10.1.4 C/op on in situ adverbial
+			
+			Pekka istuu ihailemalla#C/op Merjaa 
+			Pekka istuu haluamalla ihailla#C/op Merjaa
+			Pekka teki sopimuksen ihailla#C/op Merjaa
+			
+		& Group 11.1 Double-filled SPEC-C
+			
+			Pekka ihailee#C/op Merjaa
+			Pekka ei#C/op ihaile Merjaa
+			Pekka on'#C/op ihaillut Merjaa
+			Pekka ei#C/op ollut ihaillut Merjaa
+			Pekka haluaa#C/op ihailla Merjaa
+			Pekan_gen taytyy#C/op ihailla Merjaa
+			Pekan_gen ei#C/op taydy ihailla Merjaa
+			Pekka ei#C/op halua ihailla Merjaa
+			Pekka sanoo#C/op etta haluaa ihailla Merjaa
+			Pekka kaskee#C/op poikien ihailla Merjaa
+			Pekka istuu#C/op ihailemalla Merjaa 
+			Pekka istuu#C/op haluamalla ihailla Merjaa
+			Pekka teki#C/op sopimuksen ihailla Merjaa
+		
+		& Prefixes, ungrammatical
+		
+			C/op#istuu Pekka
+			[foc]#istuu Pekka
+			[hAn]#istuu Pekka
+			[kO]#istuu Pekka
+			[pA]#istuu Pekka
+			[foc]#[hAn]#istuu Pekka
+			[foc]#[kO]#istuu Pekka
+			[foc]#[pA]#istuu Pekka
+			[kO]#[hAn]#istuu Pekka
+			[pA]#[hAn]#istuu Pekka
+			[foc]#[kO]#[hAn]#istuu Pekka
+			[foc]#[pA]#[hAn]#istuu Pekka

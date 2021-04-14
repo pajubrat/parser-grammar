@@ -381,8 +381,6 @@ omaisuutensa	:: omaisuus-#D#[-n_acc] LANG:FI
 omaisuuttaan	:: omaisuus-#D#[-par] LANG:FI
 omaisuus-		::	PF:omaisuuden LF:possessions N LANG:FI
 
-on'		:: BE-#T/fin#[-V] LANG:FI
-
 operatoria	:: operatoria-#a0 LANG:IT
 operatoria-	:: PF:operatoria LF:operation 0 LANG:IT
 
@@ -466,7 +464,7 @@ saavutta-	:: PF:saavutta- LF:reach !COMP:D ASP:BOUNDED CLASS:TR V LANG:FI
 sanon   :: sano-#T/fin#[-n] LANG:FI
 sanoo   :: sano-#T/fin#[-V] LANG:FI
 sanoi	:: sano-#T/fin#[-V] LANG:FI
-sano-   :: PF:sano- LF:say V SPEC:D -PROBE:FORCE:OP:WH COMP:VA/inf COMP:FORCE LANG:FI
+sano-   :: PF:sano- LF:say V SPEC:D COMP:VA/inf COMP:FORCE LANG:FI
 
 said    :: say-#T/fin LANG:EN
 say'	:: PF:say LF:say V SPEC:D !COMP:FORCE LANG:EN

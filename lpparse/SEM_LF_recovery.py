@@ -27,7 +27,7 @@ class LF_Recovery:
 
     def perform_LF_recovery(self, head, semantic_interpretation_dict):
         """
-        Provides each head [head] with unvalued phi-features an argument
+        Provides each head [head] that has unvalued phi-features an antecedent argument.
         """
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:

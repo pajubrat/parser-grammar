@@ -42,9 +42,9 @@ class OperatorVariableModule:
 
     def bind_operator(self, operator_ps, semantic_interpretation):
         """
-        Binds an operator to a scope-element. An operator is a non-finite constituent that has valued [OP:XX] feature, with XX being the value.
-        It is bound necessarily by a head with [OP:XX][FIN]. Binding projects the proposition into semantic bookkeeping and provides
-        referential index for the scope head.
+        Binds an operator to a scope-element. An operator is a non-finite constituent that has valued [OP:XX] feature,
+        with XX being the value. It is bound necessarily by a head with [OP:XX][FIN]. Binding projects the proposition
+        into semantic bookkeeping and provides referential index for the scope head.
         """
         if 'C' in operator_ps.features or 'C/fin' in operator_ps.features:
             return
@@ -58,7 +58,7 @@ class OperatorVariableModule:
                     break
                 else:
                     # Update binding information to semantic interpretation dict
-                    semantic_interpretation['Operator bindings'].append((f'{operator_ps.max().illustrate()}', f'{scope_marker_lst[0]}'))
+                    semantic_interpretation['Operator bindings'].append((f'{operator_ps.illustrate()}', f'{scope_marker_lst[0]}[{f}]'))
 
                     # Update binding information for the operator in semantic bookkeeping
                     idx = self.narrow_semantics.get_semantic_wiring(operator_ps)
@@ -77,9 +77,9 @@ class OperatorVariableModule:
 
     def bind_to_propositional_scope_marker(self, head, operator_feature):
         """
-        Finds a list of binding scope operators for head (it is assumed that head has operator feature).
+        Finds a list of binding scope operators for [head] (it is assumed that head has operator feature).
         If there is a specifically marked obligatory binder, it alone will be selected; if not, a
-        list of T/fin heads will be returned. Return a list of scope marker constituents.
+        list of T/fin heads will be returned. Returns a list of scope marker constituents.
         """
         scope_binder_lst = []
         # --------------- upstream path --------------------------------------------------------------------------- #

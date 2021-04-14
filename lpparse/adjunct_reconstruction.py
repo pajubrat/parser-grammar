@@ -48,6 +48,7 @@ class FloaterMovement():
         (3) XP sits in an EPP-position;
         (4) XP sits in a specifier position of a head which does not accept specifiers [-SPEC:*]
         """
+
         if self.detect_left_floater(ps):
             floater = ps.left_const
 
@@ -87,7 +88,7 @@ class FloaterMovement():
         (3) XP has not been moved elsewhere;
         (4) X has tail features (tail sets);
         (5) X is adjoinable (and also not -adjoinable);
-        (6) X has not been prevents from floating;
+        (6) X has not been prevented from floating;
         (7) XP does not have criterial features.
         """
         return ps.is_complex() and \
@@ -97,7 +98,7 @@ class FloaterMovement():
                 'adjoinable' in ps.left_const.head().features and \
                 '-adjoinable' not in ps.left_const.head().features and \
                 '-float'not in ps.left_const.head().features and \
-                not self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(ps)
+                not self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(ps.left_const)
 
     def detect_right_floater(self, ps):
         """
@@ -121,6 +122,7 @@ class FloaterMovement():
         tail-feature(s) of the floater can be satisfies and then drops the floater there. The floater is
         also externalized.
         """
+
         if floater.is_left():
             starting_point_head = floater.container_head()
         else:

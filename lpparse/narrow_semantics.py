@@ -7,7 +7,7 @@ class NarrowSemantics:
     """
     Narrow semantics is responsible for creating semantic interpretation for isolated sentences. The result of
     narrow semantic interpretation will be combined with broad semantic interpretation that takes context
-    into account. This class will eventually replace semantics.py module
+    into account.
     """
     def __init__(self, controlling_parsing_process):
         self.operator_variable_module = OperatorVariableModule(self)
@@ -56,12 +56,17 @@ class NarrowSemantics:
 
     def interpret(self, ps):
         log(f'\n\t\tTransferring {ps} into the conceptual-intentional system...')
-        self.reset_fail_flags()
+        self.reset_for_new_interpretation()
         self._interpret(ps)
         return self.semantic_interpretation_failed
 
-    def reset_semantic_interpretation(self):
+    def reset_for_new_interpretation(self):
         log('\n\t\tResetting semantic interpretation...')
+        self.semantic_interpretation_failed = False
+        self.phi_interpretation_failed = False
+        self.operator_variable_module.interpretation_failed = False
+        self.pragmatic_pathway.interpretation_failed = False
+        self.LF_recovery_module.interpretation_failed = False
         self.semantic_interpretation = {}
         self.semantic_interpretation = {'Recovery': [],
                                         'Aspect': [],
@@ -70,13 +75,6 @@ class NarrowSemantics:
                                         'Speaker attitude': [],
                                         'Information structure': {'Marked topics': None, 'Neutral gradient': None,
                                                                   'Marked focus': None}}
-
-    def reset_fail_flags(self):
-        self.semantic_interpretation_failed = False
-        self.phi_interpretation_failed = False
-        self.operator_variable_module.interpretation_failed = False
-        self.pragmatic_pathway.interpretation_failed = False
-        self.LF_recovery_module.interpretation_failed = False
 
     def _interpret(self, ps):
         """
@@ -115,7 +113,7 @@ class NarrowSemantics:
         Removes an element from the semantic space referred by [referring_head], if any. This function is
         used during backtracking.
         """
-        if self.controlling_parsing_process.first_solution_found:
+        if self.controlling_parsing_process.first_solution_found or not referring_head:
             return
         idx = self.get_semantic_wiring(referring_head)
         if idx:

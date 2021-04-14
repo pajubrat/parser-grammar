@@ -26,7 +26,7 @@ class Discourse:
         if not d_features:
             return
         log('\n\t\tInterpreting D-features: ')
-        for f in d_features:
+        for f in sorted(d_features):
             result = self.interpret_discourse_feature(f, ps)
             if not result:
                 self.interpretation_failed = True

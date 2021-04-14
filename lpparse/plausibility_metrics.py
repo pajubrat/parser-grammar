@@ -34,7 +34,9 @@ class PlausibilityMetrics:
         """
         nodes_not_in_active_working_memory = []
 
-        if self.word_internal(ps, w) and self.dispersion_filter_active():
+        if not ps or not w:
+            return []
+        elif self.word_internal(ps, w) and self.dispersion_filter_active():
             all_merge_sites = [ps.bottom()]
         else:
             # Partition the nodes into active and inactive based on syntactic working memory contents
@@ -287,7 +289,7 @@ class PlausibilityMetrics:
 
     def word_internal(self, ps, w):
         if ps.bottom().bottom_affix().internal:
-            log(f'\n\t\tSink \"{w.get_phonological_string()}\" because it belongs to the same word.')
+            log(f'\n\t\tOne solution due to sinking.')
             self.controlling_parser_process.consume_resources('Filter solution', 'sink')
             return True
 

@@ -6,6 +6,7 @@ from transfer import Transfer
 from narrow_semantics import NarrowSemantics
 from surface_conditions import SurfaceConditions
 from adjunct_constructor import AdjunctConstructor
+from lexical_stream import LexicalStream
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
@@ -34,6 +35,7 @@ class LinearPhaseParser:
         self.transfer = Transfer(self)                          # Access to transfer
         self.local_file_system = local_file_system              # Access to local file system
         self.LF = LF(self)                                      # Access to LF
+        self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.surface_conditions_module = SurfaceConditions()    # Surface conditions
         self.surface_conditions_pass = True                     # Surface conditions
         self.adjunct_constructor = AdjunctConstructor(self)     # Adjunct constructor
@@ -131,7 +133,7 @@ class LinearPhaseParser:
 
     def parse_new_item(self, ps, lst, index):
         """
-        Attach new element consumed from the input into an existing phrase structure.
+        Acquire new element from the input and do something with it.
 
         A phonological word with index [index] is targeted in a sentence list [lst].
         This word will be mapped into a ordered list of lexical items, which are then
@@ -140,17 +142,127 @@ class LinearPhaseParser:
         so that attachment order and ordered lists of lexical items will regulate
         backtracking.
         """
+
+        # CIRCUIT BREAKER
+        # Applies if the whole sentence has been processed or if the user has requested exit
+        if self.circuit_breaker(ps, lst, index):
+            return
+
+        # LEXICO-MORPHOLOGICAL MODULE
+        list_of_retrieved_lexical_items_matching_the_phonological_word = self.lexicon.lexical_retrieval(lst[index])
+        for lexical_constituent in list_of_retrieved_lexical_items_matching_the_phonological_word:
+            log('Lexical retrieval...')
+            self.consume_resources('Lexical retrieval', lst[index])
+
+            # Break down a complex phonological word, if any, into the list of items to be processed, and return the
+            # first terminal lexical constituent from the lexicon to get attached to the syntactic structure
+            terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
+
+            # LEXICAL STREAM
+            # Stream the element into the syntactic module
+            terminal_lexical_item = self.lexical_stream.stream_into_syntax(terminal_lexical_item, lst_branched, inflection, ps, index)
+
+            # SYNTACTIC MODULE
+            # Rank solutions
+            merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
+
+            # ---------------------------------------------------------------------------------------------#
+            # Examine each possible solution
+            for site in merge_sites:
+
+                # Target left branch (involves copying for recursive backtracking purposes)
+                left_branch = self.target_left_branch(ps, site)
+
+                # Attach the new item to the partial phrase structure at [left branch]
+                new_constituent = self.attach(left_branch, site, terminal_lexical_item)
+
+                # Call for next item
+                self.put_out_of_working_memory(merge_sites)
+                self.parse_new_item(new_constituent, lst_branched, index + 1)
+
+                if self.stop_looking_for_further_solutions():
+                    break
+            # ---------------------------------------------------------------------------------------- #
+            print('.', end='', flush=True) # This sends a message to console that something is happening.
+            # If we backtrack, then the referents constructed on the basis of the current lexical item must be
+            # deleted from the semantic bookkeeping
+            self.narrow_semantics.forget_referent(terminal_lexical_item)
+
+        # If all solutions in the list have been explored, backtrack
+        if not self.exit:
+            log(f'\n\t\tExplored {ps}, backtracking to previous branching point...')
+
+    def stop_looking_for_further_solutions(self):
+        if self.exit:
+            return True
+
+    def target_left_branch(self, ps, site):
+        ps_ = ps.top().copy()
+        return ps_.identify_equivalent_node(site)
+
+    def attach(self, left_branch, site, terminal_lexical_item):
+
+        # Maintain working memory mechanisms (if the system has been activated)
+        self.maintain_working_memory(site)
+
+        # Sink or attach
+        if self.belong_to_same_word(left_branch, site):
+            new_constituent = self.sink_into_complex_head(left_branch, terminal_lexical_item)
+        else:
+            new_constituent = self.attach_into_phrase(left_branch, terminal_lexical_item)
+
+        if not self.first_solution_found:
+            self.time_from_stimulus_onset_for_word.append((terminal_lexical_item, self.time_from_stimulus_onset))
+
+        return new_constituent
+
+    def belong_to_same_word(self, left_branch, site):
+        if left_branch.bottom_affix().internal and site.is_primitive():
+            return True
+
+    def attach_into_phrase(self, left_branch, terminal_lexical_item):
+        log(f'\n\t\tNow exploring solution [{left_branch} + {terminal_lexical_item.get_phonological_string()}]...')
+        log(f'Transferring left branch {left_branch}...')
+        self.consume_resources("Merge", f'{terminal_lexical_item}')
+        set_logging(False)
+        transferred_left_branch = self.transfer_to_LF(left_branch)
+        new_constituent = transferred_left_branch + terminal_lexical_item
+        set_logging(True)
+        self.narrow_semantics.update_references(transferred_left_branch)
+        # Left branch is transferred and goes out of working memory
+        self.remove_from_syntactic_working_memory(left_branch)
+        log(f'Result: {new_constituent}...Done.\n')
+        return new_constituent
+
+    def sink_into_complex_head(self, left_branch, terminal_lexical_item):
+        log(f'\n\t\tSinking {terminal_lexical_item} into {left_branch.bottom_affix()} = ')
+        new_constituent = left_branch.bottom_affix().sink(terminal_lexical_item)
+        log(f'{new_constituent.top()}')
+        self.consume_resources("Merge", f'{terminal_lexical_item}')
+        return new_constituent
+
+    def maintain_working_memory(self, site):
+        # If site is not in active working memory, it must be activated
+        if 'working_memory' in self.local_file_system.settings and self.local_file_system.settings['working_memory']:
+            if not site.active_in_syntactic_working_memory:
+                self.consume_resources("Memory Reactivation", {site})
+                log(f'\n\t\tA dormant constituent had to be woken back into syntactic working memory.')
+                site.active_in_syntactic_working_memory = True
+
+    def circuit_breaker(self, ps, lst, index):
+
         set_logging(True)
         # We have decided not to explore any more solutions, exit the recursion
         if self.exit:
-            return
+            return True
+
         if index < len(lst):
             log(f'\n\t\tNext item: "{lst[index]}". ')
 
         # If there are no more words, we attempt to complete processing
         if index == len(lst):
             self.complete_processing(ps)
-            return
+            return True
 
         # Set the amount of cognitive resources (in ms) consumed based on word length
         self.time_from_stimulus_onset = int(len(lst[index]) * 10)
@@ -161,122 +273,11 @@ class LinearPhaseParser:
         if not self.first_solution_found:
             self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
-        # Try all lexical elements (if ambiguous)
-        for lexical_constituent in self.lexicon.lexical_retrieval(lst[index]):
-            log('Lexical retrieval...')
-            self.consume_resources('Lexical retrieval', lst[index])
-
-            # Break down a complex phonological word, if any, into the list of items to be processed, and return the
-            # first terminal lexical constituent from the lexicon to get attached to the syntactic structure
-            terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
-
-            # Process inflection (store into memory, load from the memory into constituent)
-            terminal_lexical_item = self.process_inflection(inflection, terminal_lexical_item)
-            log('Done.')
-            if inflection:
-                if ps:
-                    self.parse_new_item(ps.copy(), lst_branched, index + 1)
-                else:
-                    self.parse_new_item(None, lst_branched, index + 1)
-
-            # If the next element is a lexical constituent, we try to attache it to the structure
-            else:
-                self.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
-                log(f'\n\t\tItem enters active working memory. ')
-                terminal_lexical_item.active_in_syntactic_working_memory = True  # The element enters active working memory
-                self.narrow_semantics.wire_semantics(terminal_lexical_item)
-                log('\n')
-
-                if not ps:
-                    self.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
-                else:
-                    log(f'\n\t{self.resources["Item streamed into syntax"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
-                    log(f'{ps}' + ' + ' + terminal_lexical_item.get_phonological_string())
-                    self.resources['Steps']['n'] += 1
-                    self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
-                    #
-                    # -------------------------- Consider merge solutions ------------------------------------- #
-                    #
-                    # Order the target nodes at the right edge of the existing phrase structure
-                    merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
-
-                    # Examine each site [site] in the given order
-                    for site in merge_sites:
-                        ps_ = ps.top().copy()
-                        left_branch = ps_.identify_equivalent_node(site)
-
-                        # If site is not in active working memory, it must be activated
-                        if 'working_memory' in self.local_file_system.settings and self.local_file_system.settings['working_memory']:
-                            if not site.active_in_syntactic_working_memory:
-                                self.consume_resources("Memory Reactivation", {site})
-                                log(f'\n\t\tA dormant constituent had to be woken back into syntactic working memory.')
-                                site.active_in_syntactic_working_memory = True
-
-                        # If we are mering word-internal constituents, then there is only one solution, sinking
-                        if left_branch.bottom_affix().internal and site.is_primitive():
-                            log(f'\n\t\tSinking {terminal_lexical_item} into {left_branch.bottom_affix()} = ')
-                            new_constituent = left_branch.bottom_affix().sink(terminal_lexical_item)
-                            log(f'{new_constituent.top()}')
-                            self.consume_resources("Merge", f'{terminal_lexical_item}')
-                        else:
-                            log(f'\n\t\tNow exploring solution [{left_branch} + {terminal_lexical_item.get_phonological_string()}]...')
-                            log(f'Transferring left branch {left_branch}...')
-                            self.consume_resources("Merge", f'{terminal_lexical_item}')
-                            #
-                            #
-                            #
-                            # Merge (attachment of new element to existing structure)
-                            # Note. All left branches are transferred before Merge (Brattico & Chesi 2020)
-                            set_logging(False)
-                            transferred_left_branch = self.transfer_to_LF(left_branch)
-                            new_constituent = transferred_left_branch + terminal_lexical_item
-                            set_logging(True)
-                            self.narrow_semantics.update_references(transferred_left_branch)
-                            self.remove_from_syntactic_working_memory(left_branch)
-                            log(f'Result: {new_constituent}...Done.\n')
-                            #
-                            #
-                            #
-                        if not self.first_solution_found:
-                            self.time_from_stimulus_onset_for_word.append((terminal_lexical_item, self.time_from_stimulus_onset))
-                        self.put_out_of_working_memory(merge_sites)
-                        self.parse_new_item(new_constituent, lst_branched, index + 1)
-                        if self.exit:
-                            break
-                    # ---------------------------------------------------------------------------------------- #
-                    print('.', end='', flush=True) # This sends a message to console that something is happening.
-                    # If we backtrack, then the referents constructed on the basis of the current lexical item must be
-                    # deleted from the semantic bookkeeping
-                    self.narrow_semantics.forget_referent(terminal_lexical_item)
-
-        # If all solutions in the list have been explored, backtrack
-        if not self.exit:
-            log(f'\n\t\tExplored {ps}, backtracking to previous branching point...')
+        return False
 
     def put_out_of_working_memory(self, merge_sites):
         for site in merge_sites:
             site.active_in_syntactic_working_memory = False
-
-    def process_inflection(self, inflection, lexical_item):
-        """
-        Processes inflectional features (if any).
-
-        If the input contains inflectional features, they are stored into a temporary memory buffer.
-        If the input does not contain inflectional features, it must be a lexical item. All inflectional
-        morphemes are then discharged inside the lexical item.
-        """
-        if inflection:
-            if 'inflectional' in inflection:        # Don't copy inflectional marker itself
-                inflection.remove('inflectional')
-            self.memory_buffer_inflectional_affixes = self.memory_buffer_inflectional_affixes.union(inflection)
-            self.consume_resources("Inflection")
-            log(f'Added {sorted(inflection)} into memory...')
-        else:
-            if self.memory_buffer_inflectional_affixes:
-                log(f'Adding inflectional features {sorted(self.memory_buffer_inflectional_affixes)} to ' + lexical_item.get_phonological_string() + '...')
-                lexical_item.features = lexical_item.features | set(self.memory_buffer_inflectional_affixes)
-                self.memory_buffer_inflectional_affixes = set()
-        return lexical_item
 
     def babtize(self):
         self.name_provider_index += 1
@@ -298,7 +299,7 @@ class LinearPhaseParser:
             log('\n\t\tLF-legibility test failed.\n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps))
-            self.narrow_semantics.reset_semantic_interpretation()
+            self.narrow_semantics.reset_for_new_interpretation()
             return
         self.consume_resources('Steps')
         log('Done.\n')
