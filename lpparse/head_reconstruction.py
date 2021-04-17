@@ -1,6 +1,12 @@
 from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
 from lexical_interface import LexicalInterface
 
+#
+# This class implements the head reconstruction algorithm argued for in
+# Brattico (to appear). Predicate clefting and long head movement in Finnish. Linguistic Inquiry.
+# I will refer to this paper in the comments below.
+#
+
 class HeadMovement:
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process
@@ -14,17 +20,19 @@ class HeadMovement:
         """
         Reconstructs all complex heads from phrase structure structure [ps].
 
-        A complex head is by definition a constituent that contains a right constituent and no left constituent.
+        A complex head is by definition a constituent that contains a right constituent and no left constituent,
+        Principle (63) in the published article.
         This version separates two situations:
         (1) [ps] is a complex phrase structure, in which case all complex heads are reconstructed from
-        its right edge after being detected by minimal search.
+        its right edge after being detected by minimal search (Rule 43A in the article).
         (2) [ps] is a complex head itself which can generate a legitimate left branch all by itself,
         in which case it will be reconstructed into the left branch. Example: D(N) => [D N]
-
-        Literature: Brattico (submitted). Predicate clefting and long head movement in Finnish.
+        (discussed in §4.3)
         """
+        # If the target phrase structure is complex, reconstruct all complex heads inside it
         if ps.is_complex():
             return self.reconstruct_head_movement(ps)
+        # If the argue is a complex head, we have to considerate generating left branch (§4.3)
         if ps.is_complex_head() and self.left_branch_constituent(ps) and \
                 self.controlling_parser_process.LF_legibility_test(self.reconstruct_head_movement(ps.copy())):
                     return self.reconstruct_head_movement(ps)
@@ -33,7 +41,8 @@ class HeadMovement:
     def left_branch_constituent(self, ps):
         """
         Defines the notion of left branch constituent for head movement by enumeration,
-        contains DP, PP, AP and D/relP.
+        contains DP, PP, AP and D/relP. Discussed in §4.3. This is the extra "parsing intelligence"
+        that we have to give to the head reconstruction algorithm
         """
         return {'D', 'P', 'A', 'D/rel'} & ps.features
 
@@ -42,11 +51,11 @@ class HeadMovement:
         Tests whether phrase structure [ps] passes LF-legibility.
 
         This function verifies that head reconstruction of some constituent can generate a structure
-        that can pass all LF-legibility tests. This is a precondition for its being a left branch.
+        that can pass all LF-legibility tests. This is a precondition for its being a left branch. Uses
+        the general LF legibility test that is defined in the linear phase parser class.
         """
         return self.controlling_parser_process.LF_legibility_test(ps.copy())
 
-     # Detect complex heads requiring reconstruction and reconstructs them
     def reconstruct_head_movement(self, phrase_structure):
         """
         Reconstructs all head movement from phrase structure [ps]
@@ -55,9 +64,7 @@ class HeadMovement:
         Once detected, the head is reconstructed. Once reconstructed, the algorithm continues the process
         from where it left. Minimal search is terminated by intervention feature that is determined by
         the type of the head, which is used to explain why C-heads tolerate long distance reconstruction
-        while A-heads do not.
-
-        Literature: Brattico, P. (submitted). Predicate clefting and long head movement in Finnish.
+        while A-heads do not. This implements rules (43A-B).
         """
         # ------------------ minimal search ----------------------------------------------#
         for node in phrase_structure:
@@ -65,6 +72,7 @@ class HeadMovement:
                 complex_head = self.detect_complex_head(node)
                 log(f'Reconstruct {complex_head.right_const} from within {complex_head}...')
                 intervention_feature = self.determine_intervention_feature(complex_head)
+                # Inverse head chain is created here (Rule 43A-B)
                 self.create_head_chain(complex_head, self.get_affix_out(complex_head), intervention_feature)
                 log(f'={phrase_structure.top()}...')
         #------------------------------------------------------------------------------------#
@@ -76,7 +84,7 @@ class HeadMovement:
         Detecting whether node h contains a complex head.
 
         X is a complex head if and only if it is primitive and has an affix. H "contains" such head
-        if and only if H = X or H contains X has a left constituent. This defines the conditions for
+        if and only if H = X or H contains X as a right constituent. This defines the conditions for
         triggering head reconstruction for X.
         """
         if h.left_const and h.left_const.is_primitive() and h.left_const.has_affix():
@@ -94,13 +102,11 @@ class HeadMovement:
         If H has no sister XP that reconstruction could use as a target, then H will be
         reconstructed into its own sister, H(X) = [H X]. Else a minimal search is called for
         the right edge of its sister XP. If minimal search encounter intervention feature,
-        it will trigger last resort reconstruction. If it is allowed to continue, it will
+        it will trigger the last resort reconstruction. If it is allowed to continue, it will
         try to merge the reconstructed affix into this position and, if the operation succeeds,
         the affix will remain at that position. If the operation does not succeed, the affix
         will be removed and the procedure continues. If it reaches the end of the structure,
         one more solution will be attempted and, if that does not work, then last resort.
-
-        Literature: Brattico, P. (submitted). Predicate clefting and long head movement in Finnish.
         """
         if self.no_structure_for_reconstruction(complex_head):
             self.reconstruct_to_sister(complex_head, affix)
@@ -279,7 +285,7 @@ class HeadMovement:
         """
         Checks if [node] causes intervention by feature [feature].
 
-        The invervention occurs if and only if (i) we are not at the starting point,
+        The intervention occurs if and only if (i) we are not at the starting point,
         (ii) the sister of [node] does not have [feature].
 
         Condition (i) is motivated by the fact that in most cases the relevant intervention feature is

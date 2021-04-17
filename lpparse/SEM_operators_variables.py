@@ -12,7 +12,7 @@ class OperatorVariableModule:
     Fregean unsaturation is targeted to a whole proposition P. The resulting predicate is predicated of the
     operator element which can occur either in situ or in the scope position (A-bar position, phrase or head).
 
-    Operator features (in the operator element itself, moved or insitu)
+    Operator features (in the operator element itself, moved or in situ)
     Feature lexicon Explanation
     OP:REL          Relative clause operator feature (pure lambda feature)
     OP:WH   wh      Interrogative operator feature

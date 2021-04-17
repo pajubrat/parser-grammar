@@ -158,17 +158,18 @@ class PhrasalMovement:
             # Condition 1. No trivial merge [XP [H YP]] => [XP [H YP]]
             if node != iterator:
                 # Condition 2. No tucking if there is already something, [XP K [YP [H ZP]] =/=> [XP K [__ YP [H ZP]]]
-                if (node.left_const
-                    and node.left_const.is_primitive()
-                    and node.sister().is_primitive()) \
-                        or node.is_primitive():
+                if (node.left_const and node.left_const.is_primitive() and node.sister().is_primitive()) or node.is_primitive():
+                    # This is the trial merge that is still evaluated for tail features
                     node.merge_1(moved_constituent, 'left')
                     # Condition 3. Genitives must satisfy additional tail-head test (try remove later)
                     if 'GEN' in moved_constituent.head().features and not moved_constituent.external_tail_head_test():
                         moved_constituent.remove()
                     else:
                         moved_constituent.remove()
+                        # Solution has been accepted, this is the permanent baptized merge
                         node.merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'left')
+                        self.controlling_parser_process.consume_resources('A-Move Phrase')
+                        self.controlling_parser_process.consume_resources('Move Phrase')
                         break
         #-----------------------------------------------------------------------------------------------------------#
         return iterator
