@@ -3,7 +3,8 @@ import sys
 
 def run_multi(args):
     sys.exit()
-    # This module does not work currently, must be fixed
+    # This module does not work currently
+    # Must be redone
     if '1' in args:
         # Experiment 1
         main.run_study('study-6-linear-phase-theory/Experiment 1a/01-1-1/',
