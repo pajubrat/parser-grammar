@@ -146,13 +146,15 @@ class HeadMovement:
         if 'D' in node.mother.head().features:
             node.mother.merge_1(affix, 'right')
 
-        # Case 3. For all other labels, we try solutions #1 and #2 below
+        # Case 3. For all other labels, we try solutions #1 and #2 below. The intuitive idea is that solution
+        # [X Affix], X = bottom node, is usually adopted with the exception that if X has an intervention
+        # feature, then the solution honors intervention and is [Affix X] instead. Affix = reconstructing affix.
         else:
             node = node.top().bottom()
             if intervention_feature not in node.features and intervention_feature not in node.sister().features:
-                node.merge_1(affix, 'right')  # Solution #1 [Z(_) [X [Y H]]]
+                node.merge_1(affix, 'right')  # Solution #1 [Z(_) ...[X [Y Affix]]]
             else:
-                node.merge_1(affix, 'left')   # Solution #2 [Z(_) [X [H Y]]]
+                node.merge_1(affix, 'left')   # Solution #2 [Z(_) ...[X [Affix Y]]]
         if self.reconstruction_is_successful(affix):
             self.controlling_parser_process.consume_resources("Move Head")
             return True
@@ -286,7 +288,7 @@ class HeadMovement:
         Checks if [node] causes intervention by feature [feature].
 
         The intervention occurs if and only if (i) we are not at the starting point,
-        (ii) the sister of [node] does not have [feature].
+        (ii) the sister of [node] has [feature].
 
         Condition (i) is motivated by the fact that in most cases the relevant intervention feature is
         present at the starting point, but we want to ignore it. Condition (ii) is motivated by the fact

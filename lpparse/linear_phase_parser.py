@@ -285,7 +285,7 @@ class LinearPhaseParser:
 
     def complete_processing(self, ps):
         spellout_structure = ps.copy()
-        self.preparations(ps)
+        self.preparations(ps)  # Currently just for logging purposes
         if self.surface_condition_violation(ps):
             self.add_garden_path()
             log('Failure.\n')
