@@ -228,7 +228,7 @@ class LinearPhaseParser:
         transferred_left_branch = self.transfer_to_LF(left_branch)
         new_constituent = transferred_left_branch + terminal_lexical_item
         set_logging(True)
-        self.narrow_semantics.update_references(transferred_left_branch)
+        self.narrow_semantics.compositional_semantic_update(transferred_left_branch)
         # Left branch is transferred and goes out of working memory
         self.remove_from_syntactic_working_memory(left_branch)
         log(f'Result: {new_constituent}...Done.\n')
@@ -294,6 +294,7 @@ class LinearPhaseParser:
         ps_ = self.transfer_to_LF(ps)
         log('\t\tDone.\n')
         log('\t\tLF-legibility check...')
+
         if self.LF_condition_violation(ps_) or self.narrow_semantics.interpret(ps_):
             self.add_garden_path()
             log('\n\t\tLF-legibility test failed.\n')
@@ -308,7 +309,7 @@ class LinearPhaseParser:
         if not self.first_solution_found:
             log('\t\tWire narrow semantics...')
             self.narrow_semantics.wire_semantics(ps)
-            self.narrow_semantics.update_references(ps)
+            self.narrow_semantics.compositional_semantic_update(ps)
             log('Done.\n')
             log('\t\tComputing attitude semantics and information structure...')
             self.narrow_semantics.pragmatic_pathway.compute_speaker_attitude(ps)

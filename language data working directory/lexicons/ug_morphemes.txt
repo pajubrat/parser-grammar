@@ -42,18 +42,19 @@ pro-	:: PF:(pro) LF:pro N PHI
 cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL
 inc		:: inflectional INCORPORATED
 
-# Phi-features
-sg 		:: inflectional PHI:NUM:SG
-pl 		:: inflectional PHI:NUM:PL
-1p 		:: inflectional PHI:PER:1
-2p 		:: inflectional PHI:PER:2
-3p 		:: inflectional PHI:PER:3
-def 	:: inflectional PHI:DET:DEF
-indef 	:: inflectional PHI:DET:INDEF
-hum 	:: inflectional PHI:HUM:HUM
-nonhum 	:: inflectional PHI:HUM:NONHUM
-m		::	inflectional PHI:GEN:M
-f		::	inflectional PHI:GEN:F
+# Phi- and D-features
+sg 			:: inflectional PHI:NUM:SG
+pl 			:: inflectional PHI:NUM:PL
+1p 			:: inflectional PHI:PER:1
+2p 			:: inflectional PHI:PER:2
+3p 			:: inflectional PHI:PER:3
+def 		:: inflectional PHI:DET:DEF
+indef 		:: inflectional PHI:DET:INDEF
+hum 		:: inflectional PHI:HUM:HUM
+nonhum 		:: inflectional PHI:HUM:NONHUM
+m			:: inflectional PHI:GEN:M
+f			:: inflectional PHI:GEN:F
+proper_name	:: inflectional D:REF:NAME
 
 # Structural Case
 nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL
@@ -70,10 +71,10 @@ V1		:: inflectional -EDGE:* -SPEC:*
 uC/op	:: inflectional uC/op
 wh     	:: inflectional OP:WH OP:_
 wh_		:: inflectional OP OP:_
-top    	:: inflectional OP:TOP D:TOP
-foc    	:: inflectional OP:FOC D:FOC
-fam		:: inflectional OP:FAM D:FAM
-pol		:: inflectional OP:POL D:POL
-C/op	:: inflectional OP:C/OP D:C/OP
+top    	:: inflectional OP:TOP DIS:TOP
+foc    	:: inflectional OP:FOC DIS:FOC
+fam		:: inflectional OP:FAM DIS:FAM
+pol		:: inflectional OP:POL DIS:POL
+C/op	:: inflectional OP:C/OP DIS:C/OP
 d/rel   :: inflectional OP:REL OP:_
-Q		:: inflectional OP OP:WH OP:Q D:WH
+Q		:: inflectional OP OP:WH OP:Q DIS:WH

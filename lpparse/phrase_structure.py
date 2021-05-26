@@ -742,6 +742,14 @@ class PhraseStructure:
     def convert_features_for_parsing(self, features):
         return {f[1:] if f.startswith('!') else f for f in features}
 
+    def major_category_features(self):
+        cats = set()
+        for f in self.head().features:
+            if f in major_category:
+                cats.add(f)
+        return cats
+
+
     def is_clitic(self):
         if 'CL' in self.features:
             return True
@@ -821,6 +829,7 @@ class PhraseStructure:
         if not major_cats:
             major_cats = 'X'
         return major_cats + suffix
+
 
     #
     #

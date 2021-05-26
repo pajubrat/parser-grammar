@@ -152,10 +152,7 @@ def is_logging():
     return log_instance.logging
 
 def log_result(ps):
-
-    log(f'\n\t\tSolution:\t\t{ps.illustrate()}')
-    log(f'\n\t\tGrammar:\t\t{ps}')
-    log(f'\n\t\tSpellout\t\t{show(ps)}\n')
+    log(f'\n\t\t{ps}')
 
 def illu(set):
     feats = []

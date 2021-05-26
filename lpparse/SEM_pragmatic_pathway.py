@@ -9,12 +9,13 @@ class Discourse:
         self.narrow_semantics = narrow_semantics            # This provides access to semantic bookkeeping
         self.interpretation_failed = False
         self.attitudes = {'FORCE:OP:WH': 'Interrogative'}   # These descriptions are only used in outputting results
+        self.attention_gradient = []
 
     def is_discourse_feature(self, feature):
-        return feature[:2] == 'D:'
+        return feature[:4] == 'DIS:'
 
     def get_discourse_features(self, features):
-        return {feature for feature in features if feature[:2] == 'D:'}
+        return {feature for feature in features if feature[:4] == 'DIS:'}
 
     def reconstruct_discourse(self, ps, semantic_interpretation):
         """
@@ -42,7 +43,7 @@ class Discourse:
         syntactic structure.
         """
         log(f'[{f}] at {ps.max().illustrate()}: ')
-        idx = self.narrow_semantics.get_semantic_wiring(ps)
+        idx = self.narrow_semantics.get_referential_index_tuple(ps)
         if not idx:
             log(f'{ps.max().illustrate()} not wired semantically. ')
             return None
@@ -52,7 +53,7 @@ class Discourse:
         if 'Bound by' not in self.narrow_semantics.discourse_inventory[idx]:
             log(f'{ps.max().illustrate()} not bound by propositional scope operator. ')
             return None
-        binder_idx = self.narrow_semantics.get_semantic_wiring(self.narrow_semantics.discourse_inventory[idx]['Bound by'][0])
+        binder_idx = self.narrow_semantics.get_referential_index_tuple(self.narrow_semantics.discourse_inventory[idx]['Bound by'][0])
         if not binder_idx:
             log('The relevant proposition not available in SEM. ')
             return None
@@ -88,10 +89,10 @@ class Discourse:
         marked_focus_lst = []
 
         # Restrict the vision of this module to main arguments and their gradients, while ignoring operator expressions
-        for idx in self.narrow_semantics.discourse_inventory:
-            if idx in main_arguments and not self.narrow_semantics.discourse_inventory[idx]['Operator']:
-                topic_lst.append((self.narrow_semantics.discourse_inventory[idx]['Order gradient'], idx))
-                self.narrow_semantics.update_semantics_for_attribute(idx, 'In information structure', True)
+        for idx_tuple in self.attention_gradient:
+            if idx_tuple in main_arguments and not self.narrow_semantics.is_operator(idx_tuple):
+                topic_lst.append(idx_tuple)
+                self.narrow_semantics.update_semantics_for_attribute(idx_tuple, 'In information structure', True)
 
         # Order the arguments by their gradient (in the spellout structure ~ sensory input)
         topic_lst = sorted(topic_lst)
@@ -100,17 +101,20 @@ class Discourse:
         # Group the arguments into three lists: marked topics, default/neutral gradient, and marked focus
         # The algorithm works by moving elements from the original topic list into the marked lists.
         topic_lst_ = topic_lst.copy()
-        for topic, idx in topic_lst:
-            if 'Marked gradient' in self.narrow_semantics.discourse_inventory[idx]:
-                if self.narrow_semantics.discourse_inventory[idx]['Marked gradient'] == 'High':
+        for idx in topic_lst:
+            if 'Marked gradient' in self.narrow_semantics.get_semantic_object(idx):
+                if self.narrow_semantics.get_semantic_object(idx)['Marked gradient'] == 'High':
                     marked_topic_lst.append(idx)
-                    topic_lst_.remove((self.narrow_semantics.discourse_inventory[idx]['Order gradient'], idx))
-                if self.narrow_semantics.discourse_inventory[idx]['Marked gradient'] == 'Low':
+                    topic_lst_.remove(idx)
+                if self.narrow_semantics.get_semantic_object(idx)['Marked gradient'] == 'Low':
                     marked_focus_lst.append(idx)
-                    topic_lst_.remove((self.narrow_semantics.discourse_inventory[idx]['Order gradient'], idx))
-        return {'Marked topics': marked_topic_lst, 'Neutral gradient': [topic[1] for topic in topic_lst_], 'Marked focus': marked_focus_lst}
+                    topic_lst_.remove(idx)
+        return {'Marked topics': marked_topic_lst, 'Neutral gradient': topic_lst_, 'Marked focus': marked_focus_lst}
 
     def arguments_of_proposition(self, ps):
+        """
+        Returns a set containing the index tuples (idx, space) of the main arguments of a proposition
+        """
         scope = self.locate_proposition(ps)
         if not scope:
             return set()
@@ -124,8 +128,8 @@ class Discourse:
         """
         arguments = set()
         if ps.is_complex() and not self.out_of_proposition_scope(ps, scope):
-            arguments.add(self.narrow_semantics.get_semantic_wiring(ps.left_const))
-            arguments.add(self.narrow_semantics.get_semantic_wiring(ps.right_const))
+            arguments.add(self.narrow_semantics.get_referential_index_tuple(ps.left_const))
+            arguments.add(self.narrow_semantics.get_referential_index_tuple(ps.right_const))
             if ps.right_const.adjunct:
                 arguments = arguments | self.collect_arguments(ps.right_const, scope)
                 arguments = arguments | self.collect_arguments(ps.left_const, scope)
@@ -185,7 +189,7 @@ class Discourse:
         When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
         record the operation, which will be then used by the information structure module
         """
-        idx = self.narrow_semantics.get_semantic_wiring(ps)
+        idx = self.narrow_semantics.get_referential_index_tuple(ps)
         if idx:
             feature_vector_set = set(ps.head().feature_vector())        # Take reconstructed floaters feature vector
             if starting_point_head in feature_vector_set:               # If starting point is in the feature vector,
@@ -199,5 +203,4 @@ class Discourse:
             self.narrow_semantics.update_semantics_for_attribute(idx, 'Marked gradient', direction)
 
     def allocate_attention_resources(self, idx):
-        self.narrow_semantics.discourse_inventory[idx]['Order gradient'] = int(idx)
-
+        self.attention_gradient.append(idx)

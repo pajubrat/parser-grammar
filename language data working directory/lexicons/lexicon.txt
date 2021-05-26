@@ -116,7 +116,7 @@ gave    :: give-#v#T/fin LANG:EN
 give-   :: PF:give LF:give V CLASS:DITR -COMP:FIN +SEM:directional LANG:EN
 
 Giuseppe	:: Giuseppe-#D#sg#3p#def#hum#m LANG:IT
-Giuseppe-	:: PF:Giuseppe N -SEM:directional LF:Giuseppe LANG:IT 
+Giuseppe-	:: PF:Giuseppe N -SEM:directional LF:Giuseppe D:REF:PROPER_NAME LANG:IT 
 
 haluaa 	:: halua-#v#T/fin#[-V] LANG:FI
 halusi	:: halua-#v#T/fin#[-V] LANG:FI
@@ -144,7 +144,7 @@ havia-		:: PF:havia LF:disappear V CLASS:INTR LANG:FI
 
 Helsingissa	:: Helsinki#ssa LANG:FI
 Helsinki	:: Helsinki-#D#sg#3p#def LANG:FI
-Helsinki-	:: PF:Helsinki LF:Helsinki N LANG:FI
+Helsinki-	:: PF:Helsinki LF:Helsinki N D:REF:PROPER_NAME LANG:FI
 
 ihailen	:: ihaile-#v#T/fin#[-n] LANG:FI
 ihaili	:: ihaile-#v#T/fin#[-V] LANG:FI
@@ -177,7 +177,7 @@ istuu	:: istu-#T/fin#[-V] LANG:FI
 istu-	:: PF:istuu LF:sit V CLASS:INTR LANG:FI
 
 John 	:: John-#D#sg#3p#def#hum#m LANG:EN
-John-	:: PF:John LF:John N -SEM:directional -adjoinable LANG:EN
+John-	:: PF:John LF:John N D:REF:PROPER_NAME -SEM:directional -adjoinable LANG:EN
 
 joka	:: joka-#D/rel#sg#3p#def#hum#[-nom] LANG:FI
 jota	:: joka-#D/rel#sg#3p#def#hum#[-par]	LANG:FI
@@ -185,16 +185,16 @@ joka-   :: PF:joka LF:who N PHI_N LANG:FI
 
 Jukka   :: Jukka-#D#nom#sg#3p#def#hum#def LANG:FI -SEM:directional LANG:FI
 Jukkaa	:: Jukka-#D#sg#3p#def#hum#def#[-par] LANG:FI -SEM:directional 
-Jukka-  :: PF:Jukka LF:Jukka N -SEM:directional LANG:FI
+Jukka-  :: PF:Jukka LF:Jukka N D:REF:PROPER_NAME -SEM:directional LANG:FI
 
 juosten :: juokse-#E/inf LANG:FI
 juoksee	:: juokse-#T/fin LANG:FI
 juokse-	:: PF:juokse- LF:run V LANG:FI
 
-kaksi	:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN PHI:NUM:SG ARG -VAL LANG:FI
-kaksi	:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG
-kaksi_1	:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN PHI:NUM:SG ARG -VAL LANG:FI
-kaksi_2	:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG
+kaksi	:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi_1	:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi	:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED ARG -VAL !COMP:* TAIL:*POL:NEG
+kaksi_2	:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED ARG -VAL !COMP:* TAIL:*POL:NEG
 kahdet	:: kaksi-#pl#[-nom] LANG:FI
 kahden	:: kaksi-#pl#[-gen] LANG:FI
 kaksi-	:: PF:kaksi LF:two NUM LANG:FI
@@ -293,7 +293,7 @@ lle     :: PF:P(lle) LF:for P -SPEC:* +SEM:directional TAIL:V,+SEM:directional L
 lla		:: PF:P(lla) LF:by	P TAIL:T TAIL:*V LANG:FI
 
 Luisa	:: Luisa-#D#sg#3p#def#hum#f LANG:IT
-Luisa-	:: PF:Luisa N -SEM:directional LF:Luisa LANG:IT 
+Luisa-	:: PF:Luisa N -SEM:directional D:REF:PROPER_NAME LF:Luisa LANG:IT 
 
 lukemalla	:: luke-#v#MA/lla LANG:FI
 lukee		:: luke-#v#T/fin#[-V] LANG:FI
@@ -307,19 +307,19 @@ loytaa		:: loyta-#A/inf LANG:FI
 loyta-		:: PF:loyta- LF:find V CLASS:TR !COMP:D ASP:BOUNDED LANG:FI
 
 Mary		:: Mary-#D#sg#3p#def#hum#f LANG:EN
-Mary-		:: PF:Mary N -SEM:directional LF:Mary -adjoinable LANG:EN 
+Mary-		:: PF:Mary N D:REF:PROPER_NAME -SEM:directional LF:Mary -adjoinable LANG:EN 
 
-Merja   			::	Merja-#D#sg#3p#def#hum#def#[-nom] LANG:FI
+Merja   		::	Merja-#D#sg#3p#def#hum#def#[-nom] LANG:FI
 Merjan			::	Merja-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
 Merjan_acc		::	Merja-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
 Merja_0acc		::	Merja-#D#sg#3p#def#hum#def#[-0_acc] LANG:FI
-Merjan_gen	::	Merja-#D#sg#3p#def#hum#def#[-gen] LANG:FI
-Merjan_poss	::	Merja-#D#sg#3p#def#hum#def#[-poss] LANG:FI
-Merjaa				:: Merja-#D#sg#3p#def#hum#def#[-par] LANG:FI
+Merjan_gen		::	Merja-#D#sg#3p#def#hum#def#[-gen] LANG:FI
+Merjan_poss		::	Merja-#D#sg#3p#def#hum#def#[-poss] LANG:FI
+Merjaa			:: Merja-#D#sg#3p#def#hum#def#[-par] LANG:FI
 Merjaahan		:: Merja-#D#sg#3p#def#hum#def#[-par]#[hAn] LANG:FI
-Merja-  			:: PF:Merja LF:Merja N -SEM:directional -adjoinable LANG:FI
-Merjalle			::	Merja-#D#lle
-Merjalla			:: 	Merja-#D#lla
+Merja-  		:: PF:Merja LF:Merja N D:REF:PROPER_NAME -SEM:directional -adjoinable LANG:FI
+Merjalle		::	Merja-#D#lle
+Merjalla		:: 	Merja-#D#lla
 
 malla	:: ADV MA/inf PF:malla LF:by COMP:v TAIL:T LANG:FI
 
@@ -394,7 +394,7 @@ paiva-	:: PF:paiva LF:day N SEM:nonreferential LANG:FI
 
 past	::	PF:past LF:past P LANG:EN
 
-Pariisia	:: Pariisi-#D#[-par] LANG:FI
+Pariisia	:: Pariisi-#D##proper_name#[-par] LANG:FI
 Pariisi-	:: PF:Pariisi LF:Paris N LANG:FI
 
 Pekkaa		:: Pekka-#D#sg#3p#def#hum#[-par] LANG:FI
@@ -405,7 +405,7 @@ Pekan_acc	::	Pekka-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
 Pekka_0acc	::	Pekka-#D#sg#3p#def#hum#def#[-0_acc] LANG:FI
 Pekkahan	:: Pekka-#D#sg#3p#def#hum#def#[-nom]#[hAn] LANG:FI
 PEKKA		:: Pekka-#D#sg#3p#def#hum#def#[-nom]#[foc]
-Pekka-  	:: PF:Pekka LF:Pekka N -SEM:directional LANG:FI
+Pekka-  	:: PF:Pekka LF:Pekka N D:REF:PROPER_NAME -SEM:directional LANG:FI
 
 pelottaa	:: pelkaa-#cau#T/fin#[-V] LANG:FI
 pelkaa		:: pelkaa-#v#T/fin#[-V] LANG:FI
@@ -418,6 +418,7 @@ peruuntui	:: peruuntu-#T/fin#[-V] LANG:FI
 peruuntu-	:: PF:peruuntui LF:cancelled V SPEC:D LANG:FI
 
 pesi	:: pese-#v#T/fin#[-V] LANG:FI
+pesi	:: pese-#v#asp#T/fin#[-V] LANG:FI
 pesta	:: pese-#A/inf LANG:FI
 pese-	:: PF:pese_asp LF:wash V CLASS:TR ASP:BOUNDED LANG:FI
 pese-	:: PF:pese LF:wash V CLASS:TR LANG:FI
@@ -479,7 +480,7 @@ scoppia- 	:: PF:scoppia LF:explode V LANG:IT
 sentenza :: PF:sentenza LF:sentence N LANG:IT
 
 Seine	:: Seine-#D#[-nom]
-Seine-	:: PF:Seine LF:Seine N
+Seine-	:: PF:Seine D:REF:PROPER_NAME LF:Seine N
 
 sembrano :: sembra-#T/fin#[-no] LANG:IT
 sembra-	:: PF:sembra LF:seem -ASP -ARG V SPEC:P SPEC:D -COMP:D !COMP:ARE/inf
@@ -680,9 +681,7 @@ ci-		:: PF:ci LF:there N PHI_N LANG:IT
 # CASE SUFFIXES
 # Finnish
 [-nom]		:: inflectional NOM TAIL:FIN,ARG,VAL adjoinable
-# Here the partitive has locality assumption [!COMP:*], but there is an issue with checking of features like [-ARG] or [?VAL] 
-# that are not correctly related to [TAIL:ARG,-VAL]. This has to be worked out.
-[-par]   	:: inflectional PAR TAIL:ARG,-VAL,!COMP:* adjoinable LANG:FI
+[-par]   	:: inflectional PAR TAIL:ARG,-VAL adjoinable LANG:FI
 [-gen]		:: inflectional GEN TAIL:INF,ARG -float
 gen			:: inflectional GEN TAIL:INF,ARG -float
 [-n_acc]	:: inflectional n-ACC TAIL:ARG,ASP:BOUNDED TAIL:PHI TAIL:*POL:NEG adjoinable LANG:FI

@@ -1,7 +1,6 @@
 from support import log
 from lexical_interface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
-from LF import LF
 
 class PhrasalMovement:
     def __init__(self, controlling_parser_process):

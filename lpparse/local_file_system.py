@@ -430,20 +430,23 @@ class LocalFileSystem:
             return out_s[:-1]
 
         output_str = '\n'
-        for semantic_object, data_dict in P.narrow_semantics.discourse_inventory.items():
-            output_str += '\tObject ' + semantic_object
-            if 'Semantic type' in P.narrow_semantics.discourse_inventory[semantic_object]:
-                output_str += ' ' + str(sorted(P.narrow_semantics.discourse_inventory[semantic_object]['Semantic type']))
-            output_str += '\n'
-            for item, value in data_dict.items():
-                if isinstance(value, list) and isinstance(value[0], PhraseStructure):
-                    output_str += '\t\t' + item + ': ' + format_lst(value) + '\n'
-                else:
-                    if isinstance(value, set):
-                        output_str += '\t\t' + item + ': ' + f'{sorted(value)}' + '\n'
+        if len(P.narrow_semantics.all_inventories()) > 0:
+            for semantic_object, data_dict in sorted(P.narrow_semantics.all_inventories().items()):
+                output_str += '\t\tObject ' + semantic_object
+                if 'Semantic type' in data_dict:
+                    output_str += ' ' + str(sorted(data_dict['Semantic type']))
+                if 'Semantic space' in data_dict:
+                    output_str += ' in ' + data_dict['Semantic space']
+                output_str += '\n'
+                for item, value in data_dict.items():
+                    if isinstance(value, list) and isinstance(value[0], PhraseStructure):
+                        output_str += '\t\t\t' + item + ': ' + format_lst(value) + '\n'
                     else:
-                        output_str += '\t\t' + item + ': ' + f'{value}' + '\n'
-        return output_str
+                        if isinstance(value, set):
+                            output_str += '\t\t\t' + item + ': ' + f'{sorted(value)}' + '\n'
+                        else:
+                            output_str += '\t\t\t' + item + ': ' + f'{value}' + '\n'
+            return output_str
 
     def save_image(self, P, sentence, count):
         """
@@ -514,29 +517,18 @@ class LocalFileSystem:
                     print('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation)))
                     if parse_number == 1:
                         print('\n\t' + self.format_resource_output(parser.resources) + f'\n\tExecution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
-                        print(f'\tDiscourse inventory:')
-                        self.print_discourse_inventory(parser)
                 parse_number = parse_number + 1
         else:
             print(f'({parser.resources["Garden Paths"]["n"]}gp/{parser.resources["Merge"]["n"]}m/{process_time()-parser.start_time}s)')
 
-    def print_discourse_inventory(self, parser):
-        for key in parser.narrow_semantics.discourse_inventory:
-            print(f'\t{key}:')
-            for key2 in parser.narrow_semantics.discourse_inventory[key]:
-                print(f'\t{key2}: {parser.narrow_semantics.discourse_inventory[key][key2]}')
-        print('\n')
-
     def log_results(self, parser, ps_):
-        log('\n\t\t---------------------------------------------------------------------------------------------------------------------------------------------------------------------')
         ps_.tidy_names(1)
         log_result(ps_)
-        log('\t\t-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        log('\n\n')
         log('\t\tLexical features:\n')
         log(show_primitive_constituents(ps_))
-        log('\t\t-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
         if not parser.first_solution_found:
-            log('\t\tSemantic bookkeeping:\n')
+            log('\n\t\tSemantic bookkeeping:')
             log(f'\t\t{self.format_semantic_interpretation(parser)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
         log('\n\tChecking if the sentence is ambiguous...\n')
