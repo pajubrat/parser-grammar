@@ -1,0 +1,302 @@
+@  {'author': 'Pauli Brattico', 'year': 2021, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-7-b-structural-case', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-7-b-structural-case', 'test_corpus_file': 'case_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-05-26 16:55:58.783511
+@  Test sentences from language data working directory\study-7-b-structural-case\case_corpus.txt.
+@  Logs into language data working directory\study-7-b-structural-case\case_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+& 1. Nominative and partitive
+
+& 1.1 Finite clause
+
+& 1.1.1 Grammatical
+
+1.  Pekka nukkuu 
+	'Pekka.NOM sleeps'
+
+2.  Pekka ihailee Merjaa 
+	'Pekka.NOM admires Merja.PAR'
+
+3.  Pekka antoi kirjan Merjalle 
+	'Pekka.NOM gave book.ACC to.Merja'
+
+4.  Merjaa ihailee Pekka 
+	'Merja.PAR admires Pekka.NOM'
+
+5.  Pekka halusi ihailla Merjaa 
+	'Pekka.NOM wanted to.admire Merja.PAR'
+
+& 1.1.2 Grammatical, noncanonical order (case reconstruction tests)
+
+6.  Merjaa ihailee Pekka 
+7.  Merjaa halusi ihailla Pekka 
+8.  Merjaa halusi Pekka ihailla 
+9.  Merjaa Pekka halusi ihailla 
+10.  Pekka Merjaa halusi ihailla 
+11.  Pekka halusi Merjaa ihailla 
+12.  ihailla Merjaa halusi Pekka 
+& 1.1.3 Ungrammatical, wrong case form
+
+13. *Merjaa nukkuu 
+14. *Merja ihailee 
+15. *Merja ihailee Merja 
+16. *antoi kirjan Merjalle 
+17. *Pekka antoi kirja Merjalle 
+18. *Pekka antoi kirja Merja 
+19. *Pekka antoi kirja Merjan 
+20. *Pekka antoi kirja Merjaa 
+21. *Pekka antoi kirjan Merja 
+22. *Pekka antoi kirjan Merjan 
+23. *Pekka antoi kirjan Merjaa 
+24. *Pekkaa antoi kirja Merja 
+25. *Pekkaa antoi kirja Merjan 
+26. *Pekkaa antoi kirja Merjaa 
+27. *Pekka halusi ihailla Merja 
+28. *Pekkaa halusi ihailla Merjaa 
+& 1.1.4 Ungrammatical, extra arguments
+
+29. *Pekka Pekka nukkuu 
+30. *Pekka Pekka ihailee Merjaa 
+31. *Pekka ihailee Merjaa Merjaa 
+32. *Pekka Pekka ihailee Merjaa Merjaa 
+33. *Pekka Pekka antoi kirjan Merjalle 
+34. *Pekka antoi kirjan kirjan Merjalle 
+& 1.1.5 Problems
+
+35.  Pekka antoi kirjan Merjalle Merjalle 
+& 1.2 Infinitivals (A-infinitival and malla-infinitival)
+
+& 1.2.1 Grammatical
+
+36.  Pekka halusi ihailla Merjaa 
+37.  Pekka nukahti lukemalla kirjaa 
+& 1.2.2 Ungrammatical
+
+38. *Pekka halusi ihailla Merja 
+39. *Pekka nukahti lukemalla kirja 
+& 1.3 Adpositions (P-DP, DP-P)
+
+& 1.3.1 Grammatical
+
+40.  lahella Pekkaa 
+41.  Pekkaa lahella 
+& 1.3.2 Ungrammatical
+
+42. *lahella Pekka 
+43. *Pekka lahella 
+& 1.3.3 Ungrammatical, extra argument
+
+44. *lahella Pekkaa Pekkaa 
+45. *Pekkaa Pekkaa lahella 
+46. *lahella Pekka Pekka 
+47. *Pekka Pekka lahella 
+& 1.4 Partitive subjects (Experiencer subject)
+
+& 1.4.1 Grammatical
+
+48.  Pekkaa pelottaa 
+& 1.4.2 Ungrammatical
+
+49. *Pekka pelottaa 
+& 1.5 Numerals (two types)
+
+& 1.5.1 Grammatical
+
+50.  ne kaksi sukkaa havisi 
+51.  ne kahdet sukat havisivat 
+52.  ne kaksi sukkaa havisivat 
+53.  Pekka loysi ne kaksi sukkaa 
+54.  Pekka sanoi niiden kahden sukan haviavan 
+& 1.5.2 Ungrammatical
+
+55. *ne kaksi sukan havisi 
+56. *ne kahdet sukkaa havisivat 
+57. *ne kahdet sukka_0acc havisivat 
+58. *ne kahdet sukka havisivat 
+59. *Pekka sanoi niiden kaksi sukkaa haviavan 
+& 2 Accusative case
+
+& 2.1 Aspect
+
+& 2.1.1 Grammatical (aspect-related alterations)
+
+60.  Pekka voitti Merjan 
+61.  Pekka voitti Merjaa 
+62.  Pekka tonaisi Merjaa 
+63.  Pekka pesi Merjan 
+64.  Pekka pesi Merjaa 
+65.  Pekka pesi hanet 
+& 2.1.2 Ungrammatical
+
+66. *Pekka tonaisi Merjan 
+67. *Pekka tonaisi Merja 
+68. *Pekka tonaisi Merja_0acc 
+69. *Pekka tonaisi hanet 
+& 2.2 Aspect and noncanonical reconstruction
+
+& 2.2.1 Grammatical
+
+70.  Merjan voitti Pekka 
+71.  Merjan pesi Pekka 
+72.  Merjaa pesi Pekka 
+& 2.2.2 Ungrammatical
+
+73. *Merjan tonaisi Pekka 
+74. *Merja tonaisi Pekka 
+75. *Merja_0acc tonaisi Pekka 
+76. *hanet tonaisi Pekka 
+& 2.3 Negation
+
+& 2.3.1 Grammatical
+
+77.  Pekka ei voittanut Merjaa 
+& 2.3.2 Ungrammatical
+
+78. *Pekka ei voittanut Merjan 
+79. *Pekka ei voittanut Merja 
+80. *Pekka ei voittanut Merja_0acc 
+81. *Pekka ei voittanut Merjan_gen 
+& 2.3.3 Grammatical noncanonical reconstruction
+
+82.  Merjaa ei voittanut Pekka 
+83.  Merjaa ei Pekka voittanut 
+84.  Pekka ei Merjaa voittanut 
+85.  Merjaa Pekka ei voittanut 
+86.  Pekka Merjaa ei voittanut 
+& 2.3.4 Ungrammatical noncanonical reconstruction
+
+87. *Merjan ei voittanut Pekka 
+88. *Merja ei voittanut Pekka 
+89. *Merja_0acc ei voittanut Pekka 
+90. *Merjan_gen ei voittanut Pekka 
+& 2.4 Accusative and agreement (impersonal passive construction)
+
+& 2.4.1 Grammatical
+
+91.  me loysimme avaimen 
+92.  me loydettiin avain_0acc 
+& 2.4.2 Ungrammatical
+
+93. *me loydettiin avaimen 
+94. *me loysimme avain 
+95. *me loysimme avain_0acc 
+& 2.5 Negation and agreement
+
+& 2.5.1 Grammatical
+
+96.  me ei' loydetty avainta 
+& 2.5.2 Ungrammatical
+
+97. *me ei' loydetty avain 
+98. *me ei' loydetty avaimen 
+99. *me ei' loydetty avain_0acc 
+& 2.6 Long-distance effects
+
+& 2.6.1 Grammatical (V + infinitival + object)
+
+100.  Pekka halusi voittaa Merjan 
+101.  Pekka halusi tonaista Merjaa 
+102.  Pekka halusi pesta Merjan 
+103.  Pekka halusi loytaa avaimen 
+104.  me haluttiin voittaa Merja_0acc 
+105.  me ei' haluttu voittaa Merjaa 
+106.  me halusimme voittaa Merjan 
+& 2.6.2 Ungrammatical
+
+107. *me haluttiin voittaa Merjan 
+108. *me halusimme voittaa Merja_0acc 
+109. *me ei' haluttu voittaa Merja_0acc 
+110. *me ei' haluttu voittaa Merjan 
+& 3 Genitive as a clausal argument
+
+& 3.1 Infinitial subject (A-infinitival and VA-infinitival)
+
+& 3.1.1 Grammatical
+
+111.  Pekka kaski Merjan_gen lahtea 
+112.  Pekka sanoi Merjan_gen lahtevan 
+113.  Pekan_gen taytyy lahtea 
+& 3.1.2 Ungrammatical
+
+114. *Pekka kaski lahtea Merjan_gen 
+115. *Pekka sanoi lahtevan Merjan_gen 
+& 3.2 Possessive
+
+& 3.2.1 Grammatical
+
+116.  se Merjan_gen kello havisi 
+& 3.2.2 Ungrammatical
+
+117. *se kello Merjan_gen havisi 
+& 3.3 Adposition (DP-P, P-DP)
+
+& 3.3.1 Grammatical
+
+118.  Merja nukkui Pekan_gen lahella 
+119.  Merja nukkui lahella Pekkaa 
+& 3.3.2 Ungrammatical
+
+120. *Merja nukkui lahella Pekan_gen 
+& 3.4 Genitive possessor and the numeral construction
+
+& 3.4.1 Grammatical
+
+121.  ne kaksi Merjan_gen puhelinta havisi 
+122.  ne Merjan_gen kaksi puhelinta havisi 
+& 4 Special constructions
+
+& 4.1 Impersonal passives
+
+& 4.1.1 Grammatical
+
+123.  me loysimme avaimen 
+124.  me loydettiin avain_0acc 
+125.  avain_0acc loydettiin 
+126.  loydettiin avain_0acc 
+& 4.1.2 Ungrammatical
+
+127. *me loydettiin avaimen 
+128. *me loysimme avain 
+& 4.2 Raising construction
+
+& 4.2.1 Grammatical
+
+129. *Merja nayttaa lahtevan 
+& 4.3 Chapter 4.4.3 Copular construction
+
+& 4.3.1 Grammatical
+
+130.  Pekka on' Pekka 
+131.  Merjalla on' Pekka 
+132.  Pekka on' Merjalla 
+& 4.3.2 Ungrammatical
+
+133. *Pekka on' Pekkaa 
+134. *Pekka on' Pekan_gen 
+& 4.3.3 Problems
+
+135. *Merjalla on' kelloja 
+136.  Pekka on' 
+& 5 Adverbials and case-marking
+
+& 5.1 Grammatical
+
+137.  Pekka nukkui#asp koko paivan 
+138.  Pekka nukku-#asp#T/fin#[-V] koko paivan 
+139.  Pekka ei nukkunut koko paivaa 
+140.  me nukuttiin koko paiva 
+141.  Pekka ihailee#asp Merjaa koko paivan 
+& 5.2 Ungrammatical
+
+142. *Pekka nukkui koko paivan 
+143. *Pekka ei nukkunut koko paivan 
+144. *me nukuttiin koko paivan 
+145. *Pekka ihailee Merjaa koko paivan 
+146. *Pekka ihailee#asp Merjaa koko paiva 
+147. *Pekka ihailee#asp Merjaa koko paivaa 
+148. *Pekka ihailee Merjaa koko paivaa 
+& 5.3 Problems
+
+149.  Pekka nukkui koko paivaa 

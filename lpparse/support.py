@@ -196,4 +196,4 @@ def initialize_console(file_names):
     print(f'Redundancy will be read from {file_names["redundancy_rules"]}')
 
 def is_comment(sentence):
-    return sentence[0] == '&'
+    return sentence[0] == '&' or sentence[0].startswith("'")

@@ -471,10 +471,14 @@ class LocalFileSystem:
         self.dev_log_file.write('Done.\n')
 
     def write_comment_line(self, sentence):
-        self.results_file.write(' '.join(map(str, sentence)) + ' -------------------------------------------------------\n\n')
-        self.grammaticality_judgments_file.write('\n')
-        self.grammaticality_judgments_file.write(' '.join(map(str, sentence)))
-        self.grammaticality_judgments_file.write('\n')
+
+        if sentence[0].startswith("'"):
+            s = '\t'
+        else:
+            s = ''
+        self.grammaticality_judgments_file.write(s + ' '.join(map(str, sentence)))
+        self.grammaticality_judgments_file.write('\n\n')
+        self.results_file.write(s + ' '.join(map(str, sentence)) + '\n\n')
 
     def save_surface_vocabulary(self, surface_vocabulary):
         surface_vocabulary_file = open(self.external_sources["surface_vocabulary_file_name"], "w", -1, "utf-8")

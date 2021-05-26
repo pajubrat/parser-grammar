@@ -320,6 +320,7 @@ class LF:
 
         """
         if self.projection_principle_applies_to(h):
+            # If XP is inside a projection from head H and H assigns it a thematic role, then return True
             if h.max().container_head() and self.container_assigns_theta_role_to(h):
                 return True
             else:
@@ -372,15 +373,21 @@ class LF:
         (ii) DP constitutes a licensed specifier of HP and (ii-a) H is not an EPP head, (ii-b) H has ARG,
         (ii-c) H's thematic role is not assignment to some other constituent.
         """
+        # Condition (i)
         if h.is_selected():
             return True
-        if h.max().get_theta_assigner() and h.max().container_head().licensed_specifier() and h.max() == h.max().container_head().licensed_specifier():
-            if h.max().container_head().EPP():
+        # Condition (ii)
+        container_head = h.max().container_head()
+        if h.max().get_theta_assigner() and container_head.licensed_specifier() and h.max() == container_head.licensed_specifier():
+            # Condition (ii-a)
+            if container_head.EPP():
                 return False
-            if h.max().container_head().selector() and 'ARG' not in h.max().container_head().selector().features:
+            # Condition (ii-b)
+            if container_head.selector() and 'ARG' not in container_head.selector().features:
                 return False
-            if 'D' not in h.max().container_head().licensed_specifiers():
-                if h.max().container_head().sister() != h.max():
+            # Condition (ii-c) [DP [H DP]] (unless H assigns both thematic roles)
+            if container_head.sister() != h.max() and 'D' in container_head.sister().head().features:
+                if 'COPULA' not in container_head.features:
                     return False
             return True
 
