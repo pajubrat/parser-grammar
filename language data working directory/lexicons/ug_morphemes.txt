@@ -26,8 +26,8 @@ TUA/inf		:: ADV INF TUA/inf VAL TAIL:T ARG !SPEC:* PF:tua LF:after
 VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N !SPEC:*
 MA/ssa		:: MA/inf MA/ssa ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V -VAL ARG adjoinable 
 MA/tta		:: MA/inf ADV PF:matta LF:without_doing -VAL ARG TAIL:T adjoinable
-MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T COMP:v COMP:V -VAL ARG adjoinable
-MA/inf		:: MA/inf ADV PF:maan LF:to_do TAIL:V COMP:v COMP:V -VAL ARG
+MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T COMP:v COMP:V VAL ARG adjoinable
+MA/inf		:: MA/inf ADV PF:maan LF:to_do TAIL:V COMP:v COMP:V VAL ARG
 E/inf		:: PF:en LF:by ADV -ARG -VAL TAIL:T LANG:FI
 
 # Copula

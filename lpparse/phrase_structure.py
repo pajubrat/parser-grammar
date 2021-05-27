@@ -561,7 +561,7 @@ class PhraseStructure:
             if self.max() and self.max().mother:
                 if self.max().mother.head().match_features(tail_set) == 'complete match':
                     return True
-                # Licenses HP at [V [DP <H XP>]] by V
+                # Licenses HP at [V [YP <H XP>]] by V
                 # Pekka V [[Merjan] <ihailemassa Jukkaa>]
                 if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
                     return True

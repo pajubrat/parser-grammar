@@ -479,7 +479,7 @@ class LF:
                 return False
         if goal.is_primitive():
             if goal.get_tail_sets() and not goal.external_tail_head_test():
-                log(f'"{goal.illustrate()}" failed final tail test...')
+                log(f'"{goal.illustrate()}" failed final tail test for {goal.get_tail_sets()}...')
                 return False
         return True
 

@@ -325,11 +325,11 @@ class PlausibilityMetrics:
                 lf_test.wrong_complement_test_result and
                 lf_test.semantic_test_result)
         if test_failed:
-            log(f'Left branch {dropped} failed (PG/{lf_test.probe_goal_test_result}, '
-                f'HI/{lf_test.head_integrity_test_result}, '
-                f'S/{lf_test.selection_test_result}, '
-                f'WC/{lf_test.wrong_complement_test_result}, '
-                f'ST/{lf_test.semantic_test_result})... ')
+            log(f'Left branch {dropped} failed (Probe-goal/{lf_test.probe_goal_test_result}, '
+                f'Head integrity/{lf_test.head_integrity_test_result}, '
+                f'Selection/{lf_test.selection_test_result}, '
+                f'Wrong complement/{lf_test.wrong_complement_test_result}, '
+                f'Semantics/{lf_test.semantic_test_result})... ')
         return test_failed
 
     def does_not_accept_any_complementizers(self, N):

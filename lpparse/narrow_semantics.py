@@ -70,6 +70,7 @@ class NarrowSemantics:
 
     def initialize(self):
         self.global_cognition.initialize()
+        self.pragmatic_pathway.initialize()
         self.semantic_interpretation_failed = False
         self.semantic_interpretation = {'Recovery': [],
                                         'Aspect': [],
@@ -77,7 +78,7 @@ class NarrowSemantics:
                                         'Operator bindings': [],
                                         'Semantic space': '',
                                         'Speaker attitude': [],
-                                        'Information structure': {'Marked topics': None, 'Neutral gradient': None, 'Marked focus': None}}
+                                        'Information structure': {}}
 
     def interpret(self, ps):
         log(f'\n\t\tTransferring {ps} into the conceptual-intentional system...')

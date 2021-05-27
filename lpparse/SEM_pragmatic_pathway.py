@@ -11,6 +11,10 @@ class Discourse:
         self.attitudes = {'FORCE:OP:WH': 'Interrogative'}   # These descriptions are only used in outputting results
         self.attention_gradient = []
 
+    def initialize(self):
+        self.attention_gradient = []
+        self.interpretation_failed = False
+
     def is_discourse_feature(self, feature):
         return feature[:4] == 'DIS:'
 

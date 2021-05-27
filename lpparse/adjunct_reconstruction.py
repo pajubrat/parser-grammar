@@ -134,6 +134,7 @@ class FloaterMovement():
             if self.termination_condition(node, floater, local_tense_edge):
                 break
             self.merge_floater(node, floater_copy) # Right adjuncts to right, left adjuncts to left
+            self.adjunct_constructor.externalize_structure(floater_copy) # Externalize for testing
             if self.is_drop_position(floater_copy, starting_point_head):
                 if not floater.adjunct:
                     self.adjunct_constructor.externalize_structure(floater)
