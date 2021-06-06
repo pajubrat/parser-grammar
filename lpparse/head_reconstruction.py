@@ -44,7 +44,7 @@ class HeadMovement:
         contains DP, PP, AP and D/relP. Discussed in §4.3. This is the extra "parsing intelligence"
         that we have to give to the head reconstruction algorithm
         """
-        return {'D', 'P', 'A', 'D/rel'} & ps.features
+        return {'φ', 'D', 'P', 'A', 'D/rel'} & ps.features
 
     def LF_legible(self, ps):
         """

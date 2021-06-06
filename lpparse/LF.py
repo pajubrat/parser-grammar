@@ -224,10 +224,10 @@ class LF:
         Currently only rules out right DP-adjuncts inside DPs. A complete solution will examine
         all illegitimate adjunct attachments on the basis of their tail features.
         """
-        if 'D' in h.features and \
+        if 'φ' in h.features and \
                 h.max() and h.max().adjunct and \
                 h.max().is_right() and \
-                h.max().mother and 'D' in h.max().mother.head().features:
+                h.max().mother and 'φ' in h.max().mother.head().features:
             log(f'.{h.mother.mother} in uninterpretable because it is inside DP...')
             self.adjunct_test_result = False
 
@@ -259,7 +259,7 @@ class LF:
         """
         Checks that all D-elements satisfy their internal tail tests (in essence case checking)
         """
-        if 'D' in h.features and not h.internal_tail_head_test():
+        if 'φ' in h.features and not h.internal_tail_head_test():
             log(f'.{h}({h.mother}) failed internal tail test...')
             self.tail_head_test_result = False
 
@@ -277,7 +277,7 @@ class LF:
             list_ = h.edge()
             if list_:
                 for spec_ in list_:
-                    if not spec_.adjunct and 'D' in spec_.head().features and not spec_.find_me_elsewhere:
+                    if not spec_.adjunct and 'φ' in spec_.head().features and not spec_.find_me_elsewhere:
                         count = count + 1
             if count > 1:
                 self.head_integrity_test_result = False
@@ -299,7 +299,7 @@ class LF:
         Currently this function checks only that we don't have a relative pronoun inside
         a DP that contains no finite clause. For example, we rule out [the man who].
         """
-        if 'D' in h.features and 'REL' not in h.features and h.mother:
+        if 'φ' in h.features and 'REL' not in h.features and h.mother:
             if h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
                 log(f'Criterial legibility failed for {h}...')
                 self.criterial_feature_test_result = False
@@ -313,7 +313,7 @@ class LF:
         thematic roles. The operation is broken down to several independent components which are
 
         (i) If the DP is contained inside a projection from a head that assigns a thematic role to it;
-        if not, then we accept the configuration sill if and only if
+        if not, then we accept the configuration still if and only if
         (ii) the DP is adjoinable and can be interpreted as nonreferential (DP adverbs);
         (iii) its thematic role can be identified by agreement (DP argument is adjunct);
         (iv) its thematic role can be identified by tailing (not yet implemented).
@@ -358,7 +358,7 @@ class LF:
         (ii) H has not been moved elsewhere
         (iii) H is not the top node (isolated therefore)
         """
-        if 'D' in h.features and \
+        if {'D', 'φ'} & h.features and \
             h.max() and \
             not h.max().find_me_elsewhere and \
             h.max().mother:
@@ -369,8 +369,8 @@ class LF:
         Determines whether the head of the projection that contains a constituent (DP) can assign a thematic role to it.
 
         X assigns a thematic role to HP (DP) if and only if
-        (i) H selects DP as its complement;
-        (ii) DP constitutes a licensed specifier of HP and (ii-a) H is not an EPP head, (ii-b) H has ARG,
+        (i) H selects DP as its complement; OR
+        (ii) DP constitutes a licensed specifier of HP and (ii-a) H is not an EPP head, (ii-b) H has ARG, (ii-c) assigns theta role
         (ii-c) H's thematic role is not assignment to some other constituent.
         """
         # Condition (i)
@@ -385,8 +385,11 @@ class LF:
             # Condition (ii-b)
             if container_head.selector() and 'ARG' not in container_head.selector().features:
                 return False
+            # Condition (ii-c)
+            if not container_head.assigns_theta_role():
+                return False
             # Condition (ii-c) [DP [H DP]] (unless H assigns both thematic roles)
-            if container_head.sister() != h.max() and 'D' in container_head.sister().head().features:
+            if container_head.sister() != h.max() and {'D', 'φ'} & container_head.sister().head().features:
                 if 'COPULA' not in container_head.features:
                     return False
             return True

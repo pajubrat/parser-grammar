@@ -46,6 +46,7 @@ class NarrowSemantics:
         # Provides semantic types on the basis of linguistic features
         self.semantic_type = {'T/fin':'§Proposition',
                               'D': '§Thing',
+                              'φ': '§Thing',
                               'Q': '§Quantifier',
                               'NUM': '§Quantity',
                               'NEG': '§Polarity',

@@ -24,6 +24,7 @@ class LocalFileSystem:
         self.dev_log_file = None
         self.logger_handle = None
         self.instruction_to_ignore_from_test_corpus = False
+        self.encoding = 'utf8'
         self.default_study_parameters = {'author': 'Unknown author',
                                          'year': 'Unknown year',
                                          'date': 'Unknown date',
@@ -196,7 +197,7 @@ class LocalFileSystem:
         """
         self.dev_log_file.write('Reading study configuration file...')
         try:
-            with open(args.get('study_folder', '') + 'config_study.txt') as config_file:
+            with open(args.get('study_folder', '') + 'config_study.txt', encoding=self.encoding) as config_file:
                 # Read file into dict
                 for line in config_file:
                     line = line.strip().replace('\t', '')
@@ -228,12 +229,12 @@ class LocalFileSystem:
 
     def initialize_simple_log_file(self):
         self.dev_log_file.write('Initializing simple log file...')
-        self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, 'utf-8')
+        self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, encoding=self.encoding)
         self.stamp(self.simple_log_file)
 
     def initialize_resource_sequence_file(self):
         self.dev_log_file.write('Initializing resource sequence file...')
-        self.resource_sequence_file = open(self.external_sources['resource_sequence_file'], 'w', -1, 'utf-8')
+        self.resource_sequence_file = open(self.external_sources['resource_sequence_file'], 'w', -1, encoding=self.encoding)
         self.stamp(self.resource_sequence_file)
 
     def print_sentence_to_console(self, sentence_number, sentence):
@@ -241,27 +242,27 @@ class LocalFileSystem:
 
     def initialize_timings_file(self):
         self.dev_log_file.write('Initializing timings file...')
-        self.timings_file = open(self.external_sources['timings_file_name'], 'w', -1, 'utf-8')
+        self.timings_file = open(self.external_sources['timings_file_name'], 'w', -1, encoding=self.encoding)
         self.stamp(self.timings_file)
 
     def initialize_results_file(self):
         self.dev_log_file.write('Initializing results file...')
-        self.results_file = open(self.external_sources['results_file_name'], "w", -1, "utf-8")
+        self.results_file = open(self.external_sources['results_file_name'], "w", -1, encoding=self.encoding)
         self.stamp(self.results_file)
 
     def initialize_simple_results_file(self):
         self.dev_log_file.write('Initializing simple results file...')
-        self.simple_results_file = open(self.external_sources['simple_results_file_name'], "w", -1, "utf-8")
+        self.simple_results_file = open(self.external_sources['simple_results_file_name'], "w", -1, encoding=self.encoding)
         self.stamp(self.simple_results_file)
 
     def initialize_grammaticality_judgments_file(self):
         self.dev_log_file.write('Initializing grammaticality judgments file...')
-        self.grammaticality_judgments_file = open(self.external_sources["grammaticality_judgments_file_name"], "w", -1, "utf-8")
+        self.grammaticality_judgments_file = open(self.external_sources["grammaticality_judgments_file_name"], "w", -1, encoding=self.encoding)
         self.stamp(self.grammaticality_judgments_file)
 
     def initialize_resources_file(self):
         self.dev_log_file.write('Initializing resources file...')
-        self.resources_file = open(self.external_sources["resources_file_name"], "w", -1, "utf-8")
+        self.resources_file = open(self.external_sources["resources_file_name"], "w", -1, encoding=self.encoding)
         self.stamp(self.resources_file)
 
     def add_columns_to_resources_file(self, resources, experimental_group):
@@ -314,7 +315,7 @@ class LocalFileSystem:
         experimental_group = []
         parse_list = []
         plus_sentences = []
-        for line in open(self.external_sources["test_corpus_file_name"]):
+        for line in open(self.external_sources["test_corpus_file_name"], encoding=self.encoding):
             if line.startswith('=STOP='):
                 break
             if line.startswith('=START='):

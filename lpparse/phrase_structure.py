@@ -3,7 +3,7 @@ from support import log
 from LF import LF
 from collections import namedtuple
 
-major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
+major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 
 # Definitions and methods for phrase structure
 class PhraseStructure:
@@ -265,12 +265,12 @@ class PhraseStructure:
         # If there are many phrases in the edge...
         elif len(edge) > 1:
             # ...Return the first non-externalized DP, if any.
-            licensed_edge = [edge for edge in self.phrasal_edge() if 'D' in edge.head().features and not edge.externalized()]
+            licensed_edge = [edge for edge in self.phrasal_edge() if 'φ' in edge.head().features and not edge.externalized()]
             if licensed_edge:
                 return licensed_edge[0]
             # if everything has been externalized, return the closest phrase that has not been moved away
             else:
-                licensed_edge = [edge for edge in self.phrasal_edge() if 'D' in edge.head().features and not edge.find_me_elsewhere]
+                licensed_edge = [edge for edge in self.phrasal_edge() if 'φ' in edge.head().features and not edge.find_me_elsewhere]
                 if licensed_edge:
                     return licensed_edge[0]
 
@@ -290,6 +290,9 @@ class PhraseStructure:
     def selector(self):
         if len(self.feature_vector()) > 1:
             return self.feature_vector()[1]
+
+    def assigns_theta_role(self):
+        return {'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'} & self.features
 
     def top(self):
         if not self.mother:
@@ -571,7 +574,7 @@ class PhraseStructure:
         if 'A' in self.head().features:
             return False
         # Left DPs are excluded with the exception of genitive marked DPs
-        if 'D' in self.head().features and self.max().is_left() and 'GEN' not in self.head().features:
+        if 'φ' in self.head().features and self.max().is_left() and 'GEN' not in self.head().features:
             return False
         return True
 
@@ -639,7 +642,7 @@ class PhraseStructure:
         """
         Determines what type of constituents will populate the semantic space by reference
         """
-        return {'D', 'FORCE', 'P'} & self.head().features
+        return {'FORCE', 'P', 'φ'} & self.head().features
 
     def verbal(self):
         return {'V', 'v', 'T', 'T/fin', 'NEG', 'FORCE'} & self.head().features
@@ -696,6 +699,7 @@ class PhraseStructure:
             if phi_set:
                 pro = PhraseStructure()
                 pro.features = pro.features | phi_set
+                pro.features.add('φ')
                 pro.features.add('D')
                 pro.features.add('PF:pro')
                 pro.features.add('pro')
@@ -819,7 +823,15 @@ class PhraseStructure:
 
     # This function tries to create "informative" representation of the categories of the constituent ps
     def get_cats_string(self):
-        major_cats = ''.join(sorted([feature for feature in self.head().features if feature in major_category]))
+
+        # Decide which labels to show if there are several
+        features_to_consider = self.head().features
+        if 'φ' in features_to_consider:
+            if {'D', 'NUM', 'D/REL', 'n', 'DET', 'QN'} & features_to_consider:
+                features_to_consider.remove('φ')
+
+        # Create the label string
+        major_cats = ''.join(sorted([feature for feature in features_to_consider if feature in major_category]))
         if major_cats == 'Neg/fin':
             major_cats = 'Neg'
         if self.is_complex():

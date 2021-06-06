@@ -15,7 +15,7 @@ class LexicalInterface:
     # Definition for the process that reads the redundancy rules from a file
     def load_redundancy_rules(self, controlling_parser_process):
         redundancy_rules_dict = {}
-        for line in open(controlling_parser_process.local_file_system.external_sources["redundancy_rules"]):
+        for line in open(controlling_parser_process.local_file_system.external_sources["redundancy_rules"], encoding='utf8'):
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
@@ -40,7 +40,7 @@ class LexicalInterface:
 
         lines = lines or []
         if lexicon_file:
-            lines = open(lexicon_file).readlines()
+            lines = open(lexicon_file, encoding='utf8').readlines()
 
         # Read the lexical file line-by-line
         for line in lines:

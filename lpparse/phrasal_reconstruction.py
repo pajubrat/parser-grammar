@@ -133,7 +133,7 @@ class PhrasalMovement:
         is in essence the local "prioritized" constituent that it targeted by the head for selection and thematic role assignments.
         """
         if ps == ps.container_head().licensed_specifier():
-            return 'D' in ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive()
+            return {'φ'} & ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive()
 
     # THis is the new generalized A-reconstruction
     # I leave extensive comments because the theory is not optimal
