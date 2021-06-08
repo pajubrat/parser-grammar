@@ -312,12 +312,18 @@ class PlausibilityMetrics:
     def left_branch_filter(self, N):
         set_logging(False)
         dropped = self.controlling_parser_process.transfer_to_LF(N.copy())
-        lf = self.controlling_parser_process.LF.test(dropped)
+        lf = self.controlling_parser_process.LF.LF_legibility_test(dropped)
         set_logging(True)
         if self.left_branch_rejection(lf, dropped):
             return True
 
     def left_branch_rejection(self, lf_test, dropped):
+        def report(boolean):
+            if boolean:
+                return 'Passed'
+            else:
+                return 'Failed'
+
         set_logging(True)
         test_failed = not (lf_test.probe_goal_test_result and
                 lf_test.head_integrity_test_result and
@@ -325,11 +331,7 @@ class PlausibilityMetrics:
                 lf_test.wrong_complement_test_result and
                 lf_test.semantic_test_result)
         if test_failed:
-            log(f'Left branch {dropped} failed (Probe-goal/{lf_test.probe_goal_test_result}, '
-                f'Head integrity/{lf_test.head_integrity_test_result}, '
-                f'Selection/{lf_test.selection_test_result}, '
-                f'Wrong complement/{lf_test.wrong_complement_test_result}, '
-                f'Semantics/{lf_test.semantic_test_result})... ')
+            log(f'Left branch {dropped} failed because ' + ','.join(self.controlling_parser_process.LF.test_problem_report) + '. ')
         return test_failed
 
     def does_not_accept_any_complementizers(self, N):

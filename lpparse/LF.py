@@ -1,5 +1,5 @@
 
-from support import log, illu
+from support import log
 
 # Transforms a set of lexical features to be used in checking LF-interface conditions
 def for_lf_interface(features):
@@ -19,6 +19,7 @@ class LF:
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_to_CI_crash = False
+        self.test_problem_report = []
         self.controlling_parsing_process = controlling_parsing_process
 
     def all_pass(self):
@@ -65,6 +66,7 @@ class LF:
         self.discourse_test_result = 0
         self.projection_principle_test_result = True
         self.transfer_to_CI_crash = False
+        self.test_problem_report = []
 
     #
     #
@@ -167,7 +169,7 @@ class LF:
     #
     #
     # Definition for the LF-interface legibility test
-    def test(self, ps):
+    def LF_legibility_test(self, ps):
         """
         LF-legibility test for the whole constituent [ps].
 
@@ -180,7 +182,7 @@ class LF:
             self.controlling_parsing_process.consume_resources("Failed Transfer", f'{ps}')
         return self
 
-    # Recursive LF-legibility test (called from test())
+    # Recursive LF-legibility test (called from LF_legibility_test())
     def _test(self, ps):
         """
         Tests when constituent [ps] satisfies LF-legibility.
@@ -238,7 +240,8 @@ class LF:
         Unrecognized features are ruled out.
         """
         if not h.features or 'CAT:?' in h.features or '?' in h.features:
-            log('.An uninterpretable grammatical head without lexical category was detected...')
+            log('Head without lexical category was detected...')
+            self.test_problem_report.append('Head without lexical category')
             self.head_integrity_test_result = False
 
     def probe_goal_test(self, h):
@@ -248,11 +251,13 @@ class LF:
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(set(h.features), f[7:]):
-                    log(f'{h} probing for [{f[7:]}] failed...')
+                    log(f'{h} probing for {f[7:]} failed...')
+                    self.test_problem_report.append(f'{h} probing for  {f[7:]} failed')
                     self.probe_goal_test_result = False
             if f.startswith('-PROBE:'):
                 if h.probe(set(h.features), f[7:]):
                     log(f'{h} failed negative probe-test for [{f[7:]}]...')
+                    self.test_problem_report.append(f'{h} negative probing for {f[7:]} failed')
                     self.probe_goal_test_result = False
 
     def internal_tail_test(self, h):
@@ -261,6 +266,7 @@ class LF:
         """
         if 'φ' in h.features and not h.internal_tail_head_test():
             log(f'.{h}({h.mother}) failed internal tail test...')
+            self.test_problem_report.append(f'{h} failed internal tail test')
             self.tail_head_test_result = False
 
     def double_spec_filter(self, h):
@@ -282,6 +288,7 @@ class LF:
             if count > 1:
                 self.head_integrity_test_result = False
                 log(f'{h} has double specifiers...')
+                self.test_problem_report.append(f'{h} has double specifiers')
 
     def semantic_complement_test(self, head):
         """
@@ -291,6 +298,7 @@ class LF:
             if not LF.semantic_match(head, head.proper_complement()):
                 self.semantic_test_result = False
                 log(f'{head} fails semantic match with {head.proper_complement()}...')
+                self.test_problem_report.append(f'{head} fails semantic match with {head.proper_complement()}')
 
     def criterial_feature_test(self, h):
         """
@@ -302,6 +310,7 @@ class LF:
         if 'φ' in h.features and 'REL' not in h.features and h.mother:
             if h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
                 log(f'Criterial legibility failed for {h}...')
+                self.test_problem_report.append(f'{h} fails criterial legibility')
                 self.criterial_feature_test_result = False
 
     def projection_principle(self, h):
@@ -331,7 +340,8 @@ class LF:
                 if self.identify_thematic_role_by_tailing(h):
                     return True
             self.projection_principle_test_result = False
-            log(f'{h.max()} has no thematic role at {h.max().container_head().max()}. ')
+            log(f'{h.max()} has no θ role at {h.max().container_head().max()}. ')
+            self.test_problem_report.append(f'{h.max()} has no θ-role')
 
     def identify_thematic_role_by_tailing(self, h):
         return False
@@ -406,6 +416,7 @@ class LF:
                     if spec_ and f[6:] in spec_.head().features:
                         if not spec_.adjunct:
                             log(f'{h} has unacceptable specifier {spec_}...')
+                            self.test_problem_report.append(f'{h} has wrong specifier {spec_}')
                             self.selection_test_result = False
 
             # No specifier of any kind allowed (e.g., English P).
@@ -413,76 +424,87 @@ class LF:
             if f == '-SPEC:*':
                 if local_edge:
                     if not local_edge.adjunct and not local_edge.find_me_elsewhere and 'pro' not in local_edge.head().features:
-                        log(f'"{h}" has a specifier {local_edge} but is marked for -EPP behavior...')
+                        log(f'-EPP head {h} has a specifier {local_edge}...')
+                        self.test_problem_report.append(f'-EPP head {h} has wrong specifier {local_edge}')
                         self.selection_test_result = False
 
             # No edge (second Merge-1) allowed (i.,.e V2 phenomenon, Finnish that)
             if f == '-EDGE:*' and local_edge:
-                log(f'{h} has {local_edge} but does not accept second Merge-1 [-EDGE:*]')
+                log(f'{h} has {local_edge} but has -EDGE:*')
+                self.test_problem_report.append(f'edgeless {h} has specifier {local_edge}')
                 self.selection_test_result = False
 
             if f == '!1EDGE' and len(h.edge()) > 1:
-                log(f'{h} is only allowed to host one edge element. ')
+                log(f'{h} is only allowed to host one edge element...')
+                self.test_problem_report.append(f'{h} can has only one edge element')
                 self.selection_test_result = False
 
             # Obligatory complement
             if f.startswith('!COMP:') and not f == '!COMP:*':
                 if not h.selected_sister():
-                    log(f'.{h} is missing complement {f[6:]}...')
+                    log(f'.{h} misses complement {f[6:]}...')
+                    self.test_problem_report.append(f'{h} misses complement {f[6:]}')
                     self.selection_test_result = False
                 else:
                     if f[6:] not in h.selected_sister().head().features:
-                        log(f'{h} is missing a mandatory complement {f[6:]}...')
+                        log(f'{h} misses complement {f[6:]}...')
+                        self.test_problem_report.append(f'{h} misses complement {f[6:]}')
                         self.selection_test_result = False
 
             # Complement restriction
             if f.startswith('-COMP:'):
                 if h.is_left() and comp and f[6:] in comp.head().features:
                     log(f'"{h}\" has wrong complement {comp}...')
+                    self.test_problem_report.append(f'{h} has wrong complement {comp}')
                     self.selection_test_result = False
                     self.wrong_complement_test_result = False
 
             if f == '-COMP:*':
                 if h.is_left() and comp:
                     log(f'{h} does not accept complements...')
+                    self.test_problem_report.append(f'{h} cannot have a complement')
                     self.selection_test_result = False
 
             # !COMP:* heads must have complements (=functional head)
             if f == '!COMP:*':
                 if not h.selected_sister():
                     log(f'"{h}" lacks complement...')
+                    self.test_problem_report.append(f'{h} lacks a complement')
                     self.selection_test_result = False
 
             # !SPEC:* heads require a specifier
             if f == '!SPEC:*':
                 if not local_edge:
-                    log(f'An EPP-head "{h}" lacks specifier...')
+                    log(f'EPP-head "{h}" lacks specifier...')
+                    self.test_problem_report.append(f'{h} lacks EPP specifier')
                     self.selection_test_result = False
 
             # !SPEC:F, head requires specifier with label F
             # This feature must be satisfied by local edge (local specifier)
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
                 if not local_edge:
-                    log(f'An EPP-head "{h}" lacks specifier {f[6:]} that it requires...')
+                    log(f'EPP-head "{h}" lacks specifier {f[6:]} that it requires...')
+                    self.test_problem_report.append(f'{h} lacks specifier {f[6:]}')
                     self.selection_test_result = False
                 else:
                     if f[6:] in local_edge.head().features or f[7:] in local_edge.head().features:
                         pass
                     else:
-                        log(f'An EPP-head "{h}" has wrong specifier {local_edge}, needs {f[6:]}...')
+                        log(f'An EPP-head "{h}" has wrong specifier {local_edge}...')
+                        self.test_problem_report.append(f'{h} has wrong specifier {local_edge}')
                         self.selection_test_result = False
 
     # LF-interface check for the final phrase structure
-    @staticmethod
-    def final_tail_check(goal):
+    def final_tail_check(self, goal):
         if goal.is_complex():
-            if not goal.left_const.find_me_elsewhere and not LF.final_tail_check(goal.left_const):
+            if not goal.left_const.find_me_elsewhere and not self.final_tail_check(goal.left_const):
                 return False
-            if not goal.right_const.find_me_elsewhere and not LF.final_tail_check(goal.right_const):
+            if not goal.right_const.find_me_elsewhere and not self.final_tail_check(goal.right_const):
                 return False
         if goal.is_primitive():
             if goal.get_tail_sets() and not goal.external_tail_head_test():
                 log(f'"{goal.illustrate()}" failed final tail test for {goal.get_tail_sets()}...')
+                self.test_problem_report.append(f'{goal.illustrate()} failed final tail test')
                 return False
         return True
 

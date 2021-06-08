@@ -358,7 +358,7 @@ class LinearPhaseParser:
     def LF_condition_violation(self, ps):
         self.LF.reset_flags()
         log(f'Checking LF-interface conditions...')
-        lf = self.LF.test(ps)
+        lf = self.LF.LF_legibility_test(ps)
         if not lf.final_tail_check(ps):
             return True
         if not lf.all_pass():
@@ -405,7 +405,7 @@ class LinearPhaseParser:
         def detached(ps):
             ps.mother = None
             return ps
-        return self.LF.test(detached(ps.copy())).all_pass()
+        return self.LF.LF_legibility_test(detached(ps.copy())).all_pass()
 
     def grammaticality_judgment(self):
         if 0 >= self.score >= -6:

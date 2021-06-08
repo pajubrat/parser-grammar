@@ -672,6 +672,7 @@ class PhraseStructure:
         This mechanism generates pro-drop constructions as well as "PRO-drop" constructions by satisfying
         specifier conditions by both pro and PRO.
         """
+        # Internal functions
         def valued_phi(h):
             return {f for f in h.features if f[:4] == 'PHI:' and f[-1] != '_'}
         def all_phi(h):

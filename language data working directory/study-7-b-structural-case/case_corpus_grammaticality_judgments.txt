@@ -1,5 +1,5 @@
 @  {'author': 'Pauli Brattico', 'year': 2021, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-7-b-structural-case', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-7-b-structural-case', 'test_corpus_file': 'case_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2021-06-06 19:21:47.071502
+@  2021-06-08 09:49:04.251170
 @  Test sentences from language data working directory\study-7-b-structural-case\case_corpus.txt.
 @  Logs into language data working directory\study-7-b-structural-case\case_corpus_log.txt.
 @  Lexicon from language data working directory\lexicons\lexicon.txt.
@@ -80,10 +80,10 @@
 21. *Pekka antoi kirjan Merja 
 	'Pekka.NOM gave book.ACC Merja.NOM'
 
-22. *Pekka antoi kirjan Merjan 
+22.  Pekka antoi kirjan Merjan 
 	'Pekka.NOM gave book.ACC Merja.ACC'
 
-23. *Pekka antoi kirjan Merjaa 
+23.  Pekka antoi kirjan Merjaa 
 	'Pekka.NOM gave book.ACC Merja.PAR'
 
 24. *Pekkaa antoi kirja Merja 
@@ -392,125 +392,126 @@
 	'Merja.0ACC not.3sg won.PRTCPL Pekka.NOM'
 
 107. *Merjan_gen ei voittanut Pekka 
-108. *Merja.GEN not.3sg won.PRTCPL Pekka.NOM' 
+	'Merja.GEN not.3sg won.PRTCPL Pekka.NOM'
+
 & 2.3 Accusative and agreement (impersonal passive construction)
 
 & 2.3.1 Grammatical
 
-109.  me loysimme avaimen 
+108.  me loysimme avaimen 
 	'we.NOM found.1PL key.ACC'
 
-110.  me loydettiin avain_0acc 
+109.  me loydettiin avain_0acc 
 	'we.NOM found.IMPASS key.ACC'
 
 & 2.3.2 Noncanonical word order
 
-111.  avaimen loysimme me 
+110.  avaimen loysimme me 
 	'key.ACC found.1PL we.NOM'
 
-112. *avain loydettiin me 
+111.  avain_0acc loydettiin me 
 	'key.0ACC found.IMPASS we.NOM'
 
 & 2.3.3 Ungrammatical
 
-113. *me loydettiin avaimen 
+112. *me loydettiin avaimen 
 	'we.NOM found.IMPASS key.ACC'
 
-114. *me loysimme avain 
+113. *me loysimme avain 
 	'we.NOM found.1PL key.NOM'
 
-115. *me loysimme avain_0acc 
+114. *me loysimme avain_0acc 
 	'we.NOM found.1PL key.0ACC'
 
 & 2.4 Negation and agreement
 
 & 2.4.1 Grammatical
 
-116.  me ei' loydetty avainta 
+115.  me ei' loydetty avainta 
 	'we.NOM not.3sg found.PRTCPL key.PAR'
 
 & 2.4.2 Noncanonical word order
 
-117.  avainta ei' loydetty me 
+116.  avainta ei' loydetty me 
 	'key.PAR not found we.NOM'
 
-118.  avainta me ei' loydetty 
+117.  avainta me ei' loydetty 
 	'key.PAR we.NOM not found'
 
-119.  me ei' avainta loydetty 
+118.  me ei' avainta loydetty 
 	'we.NOM not key.PAR found'
 
 & 2.4.3 Ungrammatical
 
-120. *me ei' loydetty avain 
+119. *me ei' loydetty avain 
 	'we.NOM not found key.NOM'
 
-121. *me ei' loydetty avaimen 
+120. *me ei' loydetty avaimen 
 	'we.NOM not found key.ACC'
 
-122. *me ei' loydetty avain_0acc 
+121. *me ei' loydetty avain_0acc 
 	'we.NOM not found key.0ACC'
 
 & 2.5 Long-distance effects
 
 & 2.5.1 Grammatical (V + infinitival + object)
 
-123.  Pekka halusi voittaa Merjan 
+122.  Pekka halusi voittaa Merjan 
 	'Pekka.NOM wanted to.win Merja.ACC'
 
-124.  Pekka halusi tonaista Merjaa 
+123.  Pekka halusi tonaista Merjaa 
 	'Pekka.NOM wanted to.push Merja.PAR'
 
-125.  Pekka halusi pesta Merjan 
+124.  Pekka halusi pesta Merjan 
 	'Pekka.NOM wanted to.wash Merja.ACC'
 
-126.  Pekka halusi loytaa avaimen 
+125.  Pekka halusi loytaa avaimen 
 	'Pekka.NOM wanted to.find key.ACC'
 
-127.  me haluttiin voittaa Merja_0acc 
+126.  me haluttiin voittaa Merja_0acc 
 	'we.NOM wanted to.win Merja.0ACC'
 
-128.  me ei' haluttu voittaa Merjaa 
+127.  me ei' haluttu voittaa Merjaa 
 	'we.NOM not wanted to.win Merja.PAR'
 
-129.  me halusimme voittaa Merjan 
+128.  me halusimme voittaa Merjan 
 	'we.NOM wanted to.win Merja.ACC'
 
 & 2.5.2 Noncanonical word orders
 
-130.  Merjan halusi voittaa Pekka 
+129.  Merjan halusi voittaa Pekka 
 	'Merja.ACC wanted to.win Pekka.NOM'
 
-131.  Merjaa halusi tonaista Pekka 
+130.  Merjaa halusi tonaista Pekka 
 	'Merja.PAR wanted to.push Pekka.NOM'
 
-132.  Merjan halusi pesta Pekka 
+131.  Merjan halusi pesta Pekka 
 	'Merja.ACC wanted to.wash Pekka.NOM'
 
-133.  avaimen halusi loytaa Pekka 
+132.  avaimen halusi loytaa Pekka 
 	'key.ACC wanted to.find Pekka.NOM'
 
-134.  Merja_0acc haluttiin voittaa me 
+133.  Merja_0acc haluttiin voittaa me 
 	'Merja.0ACC wanted to.win we.NOM'
 
-135.  Merjaa ei' haluttu voittaa me 
+134.  Merjaa ei' haluttu voittaa me 
 	'Merja.PAR not wanted to.win we.NOM'
 
-136.  Merjan halusimme voittaa me 
+135.  Merjan halusimme voittaa me 
 	'Merja.ACC wanted to.win we.NOM'
 
 & 2.5.3 Ungrammatical
 
-137. *me haluttiin voittaa Merjan 
+136. *me haluttiin voittaa Merjan 
 	'we.NOM want.IMPASS to.win Merja.ACC'
 
-138. *me halusimme voittaa Merja_0acc 
+137. *me halusimme voittaa Merja_0acc 
 	'we.NOM wanted to.win Merja.0ACC'
 
-139. *me ei' haluttu voittaa Merja_0acc 
+138. *me ei' haluttu voittaa Merja_0acc 
 	'we.NOM not wanted to.win Merja.0ACC'
 
-140. *me ei' haluttu voittaa Merjan 
+139. *me ei' haluttu voittaa Merjan 
 	'we.NOM not wanted to.win Merja.ACC'
 
 & 3 Genitive as a clausal argument
@@ -519,75 +520,75 @@
 
 & 3.1.1 Grammatical
 
-141.  Pekka kaski Merjan_gen lahtea 
+140.  Pekka kaski Merjan_gen lahtea 
 	'Pekka.NOM asked Merja.GEN to.leave'
 
-142.  Pekka sanoi Merjan_gen lahtevan 
+141.  Pekka sanoi Merjan_gen lahtevan 
 	'Pekka.NOM said Merja.GEN to.leave'
 
-143.  Pekan_gen taytyy lahtea 
+142.  Pekan_gen taytyy lahtea 
 	'Pekka.GEN must.0 to.leave'
 
 & 3.1.2 Ungrammatical
 
-144. *Pekka kaski lahtea Merjan_gen 
+143. *Pekka kaski lahtea Merjan_gen 
 	'Pekka.NOM asked to.leave Merja.GEN'
 
-145. *Pekka sanoi lahtevan Merjan_gen 
+144. *Pekka sanoi lahtevan Merjan_gen 
 	'Pekka.NOM said to.leave Merja.GEN'
 
 & 3.2 Possessive use
 
 & 3.2.1 Grammatical
 
-146. *se Merjan_gen kello havisi 
+145.  se Merjan_gen kello havisi 
 	'that.NOM Merja.GEN watch.NOM disappeared'
 
 & 3.2.2 Ungrammatical
 
-147. *se kello Merjan_gen havisi 
+146. *se kello Merjan_gen havisi 
 	'that.NOM watch.NOM Merja.GEN disappeared''
 
-148. *se kello havisi Merjan_gen 
+147. *se kello havisi Merjan_gen 
 	'that.NOM watch.NOM disappeared Merja.GEN'
 
-149. *Merjan_gen se kello havisi 
+148. *Merjan_gen se kello havisi 
 	'Merja.GEN that.NOM watch.NOM disappeared'
 
 & 3.3 Adposition (DP-P, P-DP)
 
 & 3.3.1 Grammatical
 
-150.  Merja nukkui Pekan_gen lahella 
+149.  Merja nukkui Pekan_gen lahella 
 	'Merja slept Pekka.GEN near'
 
-151.  Merja nukkui lahella Pekkaa 
+150.  Merja nukkui lahella Pekkaa 
 	'Merja.NOM slept near Pekka.PAR'
 
 & 3.3.2 Ungrammatical
 
-152. *Merja nukkui lahella Pekan_gen 
+151. *Merja nukkui lahella Pekan_gen 
 	'Merja slept near Pekka.GEN'
 
 & 3.4 Genitive possessor and the numeral construction
 
 & 3.4.1 Grammatical
 
-153. *ne kaksi Merjan_gen puhelinta havisi 
+152.  ne kaksi Merjan_gen puhelinta havisi 
 	'those.0 two.0 Merja.GEN phone.PAR disappeared'
 
-154. *ne Merjan_gen kaksi puhelinta havisi 
+153.  ne Merjan_gen kaksi puhelinta havisi 
 	'those.0 Merja.GEN two.0 phone.PAR disappeared'
 
 & 3.4.2 Ungrammatical, wrong case
 
-155. *ne kaksi Merjan puhelinta havisi 
+154. *ne kaksi Merjan puhelinta havisi 
 	'those.0 two.0 Merja.ACC phone.PAR disappeared'
 
-156. *ne kaksi Merja puhelinta havisi 
+155. *ne kaksi Merja puhelinta havisi 
 	'those.0 two.0 Merja.NOM phone.PAR disappeared'
 
-157. *ne kaksi Merja_0acc puhelinta havisi 
+156. *ne kaksi Merja_0acc puhelinta havisi 
 	'those.0 two.0 Merja.0ACC phone.PAR disappeared'
 
 & 4 Special constructions
@@ -596,111 +597,111 @@
 
 & 4.1.1 Grammatical
 
-158.  me loysimme avaimen 
+157.  me loysimme avaimen 
 	'we.NOM found.1PL key.ACC'
 
-159.  me loydettiin avain_0acc 
+158.  me loydettiin avain_0acc 
 	'we.NOM found.IMPASS key.0ACC'
 
-160.  avain_0acc loydettiin 
+159.  avain_0acc loydettiin 
 	'key.0ACC found.IMPASS'
 
-161.  loydettiin avain_0acc 
+160.  loydettiin avain_0acc 
 	'found.IMPASS key.0ACC'
 
 & 4.1.2 Ungrammatical
 
-162. *me loydettiin avaimen 
+161. *me loydettiin avaimen 
 	'we.NOM found.IMPASS key.ACC'
 
-163. *me loysimme avain 
+162. *me loysimme avain 
 	'we.NOM found.1PL key.NOM'
 
 & 4.2 Raising construction
 
 & 4.2.1 Grammatical
 
-164. *Merja nayttaa lahtevan 
+163.  Merja nayttaa lahtevan 
 	'Merja.NOM seem to.leave'
 
 & 4.2.2 Ungrammatical, wrong case forms
 
-165. *Merjan nayttaa lahtevan 
+164. *Merjan nayttaa lahtevan 
 	'Merja.ACC seems to.leave'
 
-166. *Merja_0acc nayttaa lahtevan 
+165. *Merja_0acc nayttaa lahtevan 
 	'Merja.0ACC seems to.leave'
 
 & 4.3 Chapter 4.4.3 Copular construction
 
 & 4.3.1 Grammatical
 
-167. *Pekka on' Pekka 
+166.  Pekka on' Pekka 
 	'Pekka.NOM is Pekka.NOM'
 
-168.  Merjalla on' Pekka 
+167.  Merjalla on' Pekka 
 	'Merja.ALL is Pekka.NOM'
 
 & 4.3.2 Ungrammatical
 
-169. *Pekka on' Pekkaa 
+168. *Pekka on' Pekkaa 
 	'Pekka.NOM is Pekka.PAR'
 
-170. *Pekka on' Pekan_gen 
+169. *Pekka on' Pekan_gen 
 	'Pekka.NOM is Pekka.GEN'
 
 & 4.3.3 Problems
 
-171. *Merjalla on' kelloja 
+170. *Merjalla on' kelloja 
 	'Merja.ALL is watch.PAR'
 
-172.  Pekka on' 
+171.  Pekka on' 
 	'Pekka.NOM is'
 
 & 5 Adverbials and case-marking
 
 & 5.1 Grammatical
 
-173.  Pekka nukkui#asp koko paivan 
+172.  Pekka nukkui#asp koko paivan 
 	'Pekka.NOM slept all day.ACC'
 
-174.  Pekka nukku-#asp#T/fin#[-V] koko paivan 
+173.  Pekka nukku-#asp#T/fin#[-V] koko paivan 
 	'Pekka slept all day.ACC'
 
-175.  Pekka ei nukkunut koko paivaa 
+174.  Pekka ei nukkunut koko paivaa 
 	'Pekka not sleep all day.PAR'
 
-176.  me nukuttiin koko paiva 
+175.  me nukuttiin koko paiva 
 	'we.NOM sleep.IMPASS all day.NOM'
 
-177.  Pekka ihailee#asp Merjaa koko paivan 
+176.  Pekka ihailee#asp Merjaa koko paivan 
 	'Pekka.NOM admires Merja.PAR all day.ACC'
 
 & 5.2 Ungrammatical
 
-178. *Pekka nukkui koko paivan 
+177. *Pekka nukkui koko paivan 
 	'Pekka.NOM slept all day.ACC'
 
-179. *Pekka ei nukkunut koko paivan 
+178. *Pekka ei nukkunut koko paivan 
 	'Pekka not sleep all day.ACC'
 
-180. *me nukuttiin koko paivan 
+179. *me nukuttiin koko paivan 
 	'we.NOM sleep.IMPASS all day.ACC'
 
-181. *Pekka ihailee Merjaa koko paivan 
+180. *Pekka ihailee Merjaa koko paivan 
 	'Pekka.NOM admires Merja.PAR all day.ACC'
 
-182. *Pekka ihailee#asp Merjaa koko paiva 
+181. *Pekka ihailee#asp Merjaa koko paiva 
 	'Pekka.NOM admires Merja.PAR all day.NOM'
 
-183. *Pekka ihailee#asp Merjaa koko paivaa 
+182. *Pekka ihailee#asp Merjaa koko paivaa 
 	'Pekka.NOM admires Merja.PAR all day.PAR'
 
-184. *Pekka ihailee Merjaa koko paivaa 
+183. *Pekka ihailee Merjaa koko paivaa 
 	'Pekka.NOM admires Merja.PAR all day.PAR'
 
 & 5.3 Problems
 
-185.  Pekka nukkui koko paivaa 
+184.  Pekka nukkui koko paivaa 
 	'Pekka.NOM sleep all day.PAR'
 
