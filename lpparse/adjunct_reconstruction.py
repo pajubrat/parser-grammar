@@ -1,4 +1,4 @@
-from support import log, illu
+from support import log, illu, set_logging
 from lexical_interface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
 
@@ -167,16 +167,23 @@ class FloaterMovement():
         (3) Reconstruction is attempted over finite force boundary or
         (4) Reconstruction is attempted inside DP.
         """
+        # Condition (1)
         if node == floater:
             return True
+
+        # Condition (2)
         if node.find_me_elsewhere:
             return True
+
+        # Condition (3)
         if node.is_complex() and 'FORCE' in node.left_const.features and node.head() != local_tense_edge.head():
             log(f'Intervention by finiteness at {node}...')
             return True
-        #if node.is_complex() and 'D' in node.left_const.features:
-            #log(f'Intervention by D at {node}...')
-            #return True
+
+        # Condition (4)
+        if node.sister() and node.sister().is_primitive() and 'φ' in node.sister().features:
+            log(f'Intervention by φ at {node}...')
+            return True
 
     def is_right_adjunct(self, node):
         return 'ADV' in node.head().features or 'P' in node.head().features

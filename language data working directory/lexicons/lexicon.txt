@@ -35,6 +35,7 @@ avain_nom	::	avain-#φ#sg#3p#def#[-nom]
 avain		::	avain-#φ#sg#3p#def#[-nom]
 avaimen_acc	::	avain-#φ#sg#3p#def#[-n_acc]
 avaimen		::	avain-#φ#sg#3p#def#[-n_acc]
+avaimen_gen ::	avain-#φ#sg#3p#def#[-gen]
 avaimet		::	avain-#φ#pl#3p#def#[-t_acc]#pl
 avainta		::	avain-#φ#sg#3p#def#[-par]
 avain-		::	PF:avain LF:key N LANG:FI -SEM:directional
@@ -310,6 +311,7 @@ Mary		:: Mary-#D#sg#3p#def#hum#f LANG:EN
 Mary-		:: PF:Mary N D:REF:PROPER_NAME -SEM:directional LF:Mary -adjoinable LANG:EN 
 
 Merja   	::	Merja-#D#sg#3p#def#hum#def#[-nom] LANG:FI
+Merja_nom   ::	Merja-#D#sg#3p#def#hum#def#[-nom] LANG:FI
 Merjan		::	Merja-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
 Merjan_acc	::	Merja-#D#sg#3p#def#hum#def#[-n_acc] LANG:FI
 Merja_0acc	::	Merja-#D#sg#3p#def#hum#def#[-0_acc] LANG:FI
@@ -508,8 +510,11 @@ sta-		:: V PF:sta LF:stay SEM:internal -ASP SPEC:φ COMP:PRG
 
 sti			:: PF:sti LF:by !COMP:* TAIL:T ADV -ARG LANG:FI
 
+sukka		:: sukka-#φ#[-nom]
+sukka_0acc	:: sukka-#φ#[-0_acc]
 sukkaa		:: sukka-#φ#[-par]
 sukan		:: sukka-#φ#[-gen]
+sukan_acc	:: sukka-#φ#[-n_acc]
 sukat		:: sukka-#φ#[-nom]#pl
 sukka-		:: PF:sukka- LF:socks N LANG:FI
 

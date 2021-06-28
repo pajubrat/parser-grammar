@@ -29,7 +29,7 @@ class Morphology:
         while self.is_polymorphemic(current_lexical_item):
             # Iterative loop which makes sure that the first item in the decomposition is primitive and can be
             # send to syntax for Merge-1
-            log(f'Word \"{current_lexical_item.morphology}\" contains multiple morphemes ')
+            log(f'{current_lexical_item.morphology} contains ')
 
             # Solves an ambiguity in C_features, i.e. whether they are criterial or head features
             current_lexical_item = self.Aux_inversion(current_lexical_item)
@@ -96,7 +96,7 @@ class Morphology:
 
     def set_inflection(self, lexical_item, inflectional_affixes):
         if inflectional_affixes:
-            log(f'Adding inflectional features {inflectional_affixes} to ' + lexical_item.get_phonological_string() + '...')
+            log(f'Adding {inflectional_affixes} to ' + lexical_item.get_phonological_string() + '...')
             lexical_item.features = lexical_item.features | set(inflectional_affixes)
         return lexical_item
 

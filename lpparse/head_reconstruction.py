@@ -223,14 +223,9 @@ class HeadMovement:
 
         There are two cases. Case 1: the node has an operator (C*) feature, in which case the intervention feature
         will be [D]. Case 2: else the intervention feature will be [!COMP:*].
-
-        The empirical effect of this rule is that it separates A-bar head movement (Case 1) from A-head movement (Case 2),
-        as an intervention feature [!COMP:*] means literally all functional heads block reconstruction, making it
-        as local as possible. Using [D] as an intervention feature licenses reconstruction through the right edge
-        unless we attempt to penetrate a DP. This accounts for the DP-island effects in the data. It is stimulative.
         """
         if node.has_op_feature():
-            return 'D'
+            return 'φ'
         return '!COMP:*'
 
     def last_resort(self, phrase_structure, affix):

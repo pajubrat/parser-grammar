@@ -19,11 +19,11 @@ A 		:: COMP:0 TAIL:φ -SPEC:A -SPEC:φ
 INF		:: !COMP:* COMP:v COMP:V -COMP:T/fin -COMP:FORCE -COMP:C/fin -SPEC:T/fin -SPEC:V
 n		:: φ VAL ARG INF !COMP:* COMP:0 COMP:V COMP:v !SPEC:* !SPEC:φ
 0		:: SPEC:φ 2SPEC
-NUM		:: φ COMP:φ COMP:N COMP:n SPEC:* -COMP:QN
+NUM		:: φ COMP:φ COMP:N COMP:n -COMP:D SPEC:* -COMP:QN
 OP		:: -COMP:OP
 DET		:: φ COMP:φ -COMP:DET 
 QN		:: φ COMP:φ COMP:N COMP:NUM
-φ		:: COMP:N
+φ		:: COMP:N -VAL
 
 # infinitivals
 MA/lla	::	!COMP:V adjoinable

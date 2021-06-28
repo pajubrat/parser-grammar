@@ -243,7 +243,7 @@ class NarrowSemantics:
 
     def interpret_phi_features(self, global_object_criteria):
         """
-        Converts grammaticalized phi-features into semantic criteria understood by global cognition.
+        Converts grammaticalized phi-features intpectuo semantic criteria understood by global cognition.
         The function is currently implemented as a simple table lookup in order to make it readable.
         This is obviously not the correct version, only an approximation to give away the general idea
         and to make testing possible.
@@ -382,7 +382,7 @@ class NarrowSemantics:
             self.quantifiers_numerals_denotations_module.set_denotation(ps)
         else:
             self.set_default_denotation(ps)
-            log(f'Added {ps} to global discourse inventory.\n')
+            log(f'Added {ps} to global discourse inventory.')
 
     def default_criteria(self, ps):
         default_criteria = {'Referring constituent': f'{ps}',
@@ -480,8 +480,11 @@ class NarrowSemantics:
             self.interpret_argument_tailing(ps, self.get_tailed_head(ps, tail_set))
 
     def interpret_argument_tailing(self, ps, tailed_head):
+        """
+        Interprets argument tailing. ps = head with tail feature, tailed_head = the head that is being tailed.
+        """
         if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
-            if 'PAR' in ps.features and not self.operator_variable_module.bind_to_propositional_scope_marker(ps, 'POL:NEG'):
+            if 'PAR' in ps.features and not ps.in_scope_of({'POL:NEG'}):
                 self.semantic_interpretation['Aspect'].append('Aspectually anomalous')
             else:
                 self.semantic_interpretation['Aspect'].append('Aspectually bounded')

@@ -110,6 +110,9 @@ class OperatorVariableModule:
         return {f for f in features if self.is_operator_feature(f)}
 
     def is_obligatory_scope_binder(self, target_head, operator_feature):
+        """
+        Determines if target_head could constitute the scope marker for operator_feature.
+        """
         if {operator_feature, 'FIN'} & target_head.features == {operator_feature, 'FIN'}:
             return True
 

@@ -40,7 +40,6 @@ class PlausibilityMetrics:
             all_merge_sites = [ps.bottom()]
         else:
             # Partition the nodes into active and inactive based on syntactic working memory contents
-            log(f'\n\t\tWorking memory operation...')
             nodes_in_active_working_memory, nodes_not_in_active_working_memory = self.in_active_working_memory(ps)
 
             # Filter the active nodes
@@ -53,12 +52,11 @@ class PlausibilityMetrics:
             # Create the final list from ranked nodes + inactive nodes
             all_merge_sites = merge_sites + nodes_not_in_active_working_memory
 
-        log('Done.\n')
-        log(f'\t\tResults: ')
+        log('Done.\n\t\tRanking results:')
         for i, site in enumerate(all_merge_sites, start=1):
             if nodes_not_in_active_working_memory and site == nodes_not_in_active_working_memory[0]:
                 log('\n\t\t\t\t--------------------------------Working memory boundary-------------------------------------------------')
-            log(f'\n\t\t\t\t({i}) {site}')
+            log(f'\n\t\t({i}) [{site} + ' + str(w) + ']')
         return all_merge_sites
 
     def dispersion_filter_active(self):
@@ -302,7 +300,6 @@ class PlausibilityMetrics:
             if not N.active_in_syntactic_working_memory:
                 new_nodes_available.remove(N)
                 nodes_not_in_active_working_memory.insert(0, N) # Outside list is stack
-        log(f'{len(new_nodes_available)} nodes currently in active memory.')
         return new_nodes_available, nodes_not_in_active_working_memory
 
     def impossible_sequence(self, N, w):

@@ -1,3 +1,8 @@
+& 0. Preliminaries
+
+	a' b' c' d'
+	a'' b' c' d'
+	John admires Mary
 
 & 1. Nominative and partitive
 	& 1.1 Finite clause
@@ -8,58 +13,186 @@
 			'Pekka.NOM admires Merja.PAR'
 			Pekka antoi kirjan Merjalle
 			'Pekka.NOM gave book.ACC to.Merja'
-			Merjaa ihailee Pekka
-			'Merja.PAR admires Pekka.NOM'
 			Pekka halusi ihailla Merjaa
 			'Pekka.NOM wanted to.admire Merja.PAR'
-		& 1.1.2 Grammatical, noncanonical order (case reconstruction tests)
-			Merjaa ihailee Pekka
-			'Merja.PAR admires Pekka.NOM'
-			Merjaa halusi ihailla Pekka
-			'Merja.PAR wanted to.admire Pekka.NOM'
-			Merjaa halusi Pekka ihailla
-			'Merja.PAR wanted Pekka.NOM to.admire'
-			Merjaa Pekka halusi ihailla
-			'Merja.PAR Pekka.NOM wante to.admire'
-			Pekka Merjaa halusi ihailla
-			'Pekka.NOM Merja.PAR wanted to.admire'
-			Pekka halusi Merjaa ihailla
-			'Pekka.NOM wanted Merja.PAR to.admire'
-			ihailla Merjaa halusi Pekka
-			'to.admire Merja.PAR wanted Pekka.NOM'
-		& 1.1.3 Ungrammatical, wrong case form
-			Merjaa nukkuu
-			'Merja.PAR sleeps'
-			Merja ihailee
-			'Merja.NOM admires'
-			Merja ihailee Merja
-			'Merja.NOM admires Merja.NOM'
-			antoi kirjan Merjalle
-			'give book.ACC to.Merja'
-			Pekka antoi kirja Merjalle
-			'Pekka.NOM gave book.NOM to.Merja'
-			Pekka antoi kirja Merja
-			'Pekka.NOM gave book.NOM Merja.NOM'
-			Pekka antoi kirja Merjan			
-			'Pekka.NOM gave book.NOM Merja.ACC'
-			Pekka antoi kirja Merjaa
-			'Pekka.NOM gave book.NOM Merja.PAR'
-			Pekka antoi kirjan Merja
-			'Pekka.NOM gave book.ACC Merja.NOM'
-			Pekka antoi kirjan Merjan			
-			'Pekka.NOM gave book.ACC Merja.ACC'
-			Pekka antoi kirjan Merjaa
-			'Pekka.NOM gave book.ACC Merja.PAR'
-			Pekkaa antoi kirja Merja
-			'Pekka.PAR gave book.NOM Merja.NOM'
-			Pekkaa antoi kirja Merjan	
-			'Pekka.PAR gave book.NOM Merja.ACC'
-			Pekkaa antoi kirja Merjaa
-			'Pekka.PAR gave book.NOM Merja.PAR'
-			Pekka halusi ihailla Merja
-			'Pekka.NOM wanted to.admire Merja.NOM'
-			Pekkaa halusi ihailla Merjaa
-			'Pekka.PAR wanted to.admire Merja.PAR'
+			
+		& 1.1.2 Noncanonical orders (case reconstruction tests)
+			& 1.1.2.1 Grammatical, transitive clause
+				Pekka ihailee Merjaa 
+				'Pekka.NOM admires Merja.PAR'	
+				Pekka Merjaa ihailee 
+				'Pekka.NOM admires Merja.PAR'
+				Merjaa Pekka ihailee
+				'Merja.PAR Pekka.NOM admires'
+				Merjaa ihailee Pekka 
+				'Merja.PAR admires Pekka.NOM'
+				
+			& 1.1.2.2 Ungrammatical, V-initial
+				ihailee Pekka Merjaa 
+				'admires Pekka.NOM Merja.PAR'
+				ihailee Merjaa Pekka 
+				'admires Merja.PAR Pekka.NOM'
+				
+			& 1.1.2.3 Grammatical, A-infinitival
+				& 1.1.2.3.1 Grammatical, correct V + v order
+					Merjaa halusi ihailla Pekka
+					'Merja.PAR wanted to.admire Pekka.NOM'
+					Merjaa halusi Pekka ihailla 
+					'Merja.PAR wanted Pekka.NOM to.admire'
+					Merjaa Pekka halusi ihailla
+					'Merja.PAR Pekka.NOM wanted to.admire'
+					Pekka Merjaa halusi ihailla 
+					'Pekka.NOM Merja.PAR wanted to.admire'
+					Pekka halusi Merjaa ihailla 
+					'Pekka.NOM wanted Merja.PAR to.admire'
+					Pekka halusi ihailla Merjaa 
+					'Pekka.NOM wanted to.admire Merja.PAR'
+				
+				& 1.1.2.3.2 Grammatical, infinitival (VP) fronting
+					Merjaa ihailla halusi Pekka 
+					'Merja.PAR to.admire wanted Pekka.NOM'
+					ihailla Merjaa halusi Pekka
+					'to.admire Merja.PAR wanted Pekka.NOM'
+					Pekka Merjaa ihailla halusi
+					'Pekka.NOM Merja.PAR to.admire wanted'
+					Pekka ihailla Merjaa halusi 
+					'Pekka.NOM to.admire Merja.PAR wanted'
+				
+			& 1.1.2.4 Ungrammatical
+				& 1.1.2.4.1 Ungrammatical, verb initial clauses
+					halusi Merjaa ihailla Pekka 
+					'wanted Merja.PAR to.admire Pekka.NOM'
+					halusi Merjaa Pekka ihailla 
+					'wanted Merja.PAR Pekka.NOM to.admire'
+					halusi ihailla Merjaa Pekka 
+					'wanted to.admire Merja.PAR Pekka.NOM'
+					halusi ihailla Pekka Merjaa 
+					'wanted to.admire Pekka.NOM Merja.PAR'
+					halusi Pekka Merjaa ihailla 
+					'wanted Pekka.NOM Merja.PAR to.admire'
+					halusi Pekka ihailla Merjaa 
+					'wanted Pekka.NOM to.admire Merja.PAR'
+				
+				& 1.1.2.4.2 Ungrammatical, missing criterial feature
+					Merjaa ihailla Pekka halusi 
+					'Merja.PAR to.admire Pekka.NOM wanted'
+					ihailla Merjaa Pekka halusi 
+					'to.admire Merja.PAR Pekka.NOM wanted'
+				
+				& 1.1.2.4.3 Ungrammatical, wrong head order (evaluation hard)
+					ihailla halusi Merjaa Pekka
+					'to.admire wanted Merja.PAR Pekka.NOM'
+					ihailla halusi Pekka Merjaa 
+					'to.admire wanted Pekka.NOM Merja.PAR'
+				
+				& 1.1.2.4.4 Ungrammatical, discontinuous constituents (evaluation hard)
+					ihailla Pekka Merjaa halusi
+					'to.admire Pekka.NOM Merja.PAR wanted'
+					ihailla Pekka halusi Merjaa
+					'to.admire Pekka.NOM wanted Merja.PAR'
+					Pekka ihailla halusi Merjaa
+					'Pekka.NOM to.admire wanted Merja.PAR'
+					Merjaa Pekka ihailla halusi
+					'Merja.PAR Pekka.NOM to.admire wanted'
+		
+		& 1.1.3 Ungrammatical, wrong case forms, missing arguments
+			& 1.1.3.1 Ungrammatical, missing arguments
+				Merjaa nukkuu
+				'Merja.PAR sleeps'
+				Merjan_gen nukkuu
+				'Merja.GEN sleeps'
+				Merjan_acc nukkuu
+				'Merja.ACC sleeps'
+				Merja_0acc nukkuu
+				'Merja.0ACC sleeps'
+				
+				Merja ihailee
+				'Merja.NOM admires'
+				ihailee
+				'admires'
+				
+				antoi kirjan Merjalle
+				'give book.ACC to.Merja'
+			
+			& 1.1.3.2 Wrong case forms
+				Merja ihailee Merja
+				'Merja.NOM admires Merja.NOM'
+				Merja ihailee Merjan_gen
+				'Merja.NOM admires Merja.GEN'
+				Merja ihailee Merjan_acc
+				'Merja.NOM admires Merja.ACC'
+				Merja ihailee Merja_0acc
+				'Merja.NOM admires Merja.0ACC'
+				
+				Merjaa ihailee Merjaa
+				'Merja.PAR admires Merja.PAR'
+				Merjaa ihailee Merjan_gen
+				'Merja.PAR admires Merja.GEN'
+				Merjaa ihailee Merjan_acc
+				'Merja.PAR admires Merja.ACC'
+				Merjaa ihailee Merja_0acc
+				'Merja.PAR admires Merja.0ACC'
+						
+				Merjan_gen ihailee Merja
+				'Merja.GEN admires Merja.NOM'
+				Merjan_gen ihailee Merjaa
+				'Merja.GEN admires Merja.PAR'
+				Merjan_gen ihailee Merjan_gen
+				'Merja.GEN admires Merja.GEN'			
+				Merjan_gen ihailee Merjan_acc
+				'Merja.GEN admires Merja.ACC'
+				Merjan_gen ihailee Merja_0acc
+				'Merja.GEN admires Merja.0ACC'
+				
+				Merjan_acc ihailee Merja
+				'Merja.ACC admires Merja.NOM'
+				Merjan_acc ihailee Merjaa
+				'Merja.ACC admires Merja.PAR'
+				Merjan_acc ihailee Merjan_gen
+				'Merja.ACC admires Merja.GEN'
+				Merjan_acc ihailee Merjan_acc
+				'Merja.ACC admires Merja.ACC'
+				Merjan_0acc ihailee Merjan_0acc
+				'Merja.0ACC admires Merja.0ACC'
+				
+				Merja_0acc ihailee Merja
+				'Merja.0ACC admires Merja.NOM'
+				Merja_0acc ihailee Merjaa
+				'Merja.0ACC admires Merja.PAR'
+				Merja_0acc ihailee Merjan_gen
+				'Merja.0ACC admires Merja.GEN'
+				Merja_0acc ihailee Merja_gen
+				'Merja.0ACC admires Merja.GEN'
+				Merja_0acc ihailee Merjan_acc
+				'Merja.0ACC admires Merja.ACC'
+				Merja_0acc ihailee Merja_0acc
+				'Merja.0ACC admires Merja.0ACC'
+
+				Pekka antoi kirja Merjalle
+				'Pekka.NOM gave book.NOM to.Merja'
+				Pekka antoi kirja Merja
+				'Pekka.NOM gave book.NOM Merja.NOM'
+				Pekka antoi kirja Merjan			
+				'Pekka.NOM gave book.NOM Merja.ACC'
+				Pekka antoi kirja Merjaa
+				'Pekka.NOM gave book.NOM Merja.PAR'
+				Pekka antoi kirjan Merja
+				'Pekka.NOM gave book.ACC Merja.NOM'
+				Pekka antoi kirjan Merjan			
+				'Pekka.NOM gave book.ACC Merja.ACC'
+				Pekka antoi kirjan Merjaa
+				'Pekka.NOM gave book.ACC Merja.PAR'
+				Pekkaa antoi kirja Merja
+				'Pekka.PAR gave book.NOM Merja.NOM'
+				Pekkaa antoi kirja Merjan	
+				'Pekka.PAR gave book.NOM Merja.ACC'
+				Pekkaa antoi kirja Merjaa
+				'Pekka.PAR gave book.NOM Merja.PAR'
+				Pekka halusi ihailla Merja
+				'Pekka.NOM wanted to.admire Merja.NOM'
+				Pekkaa halusi ihailla Merjaa
+				'Pekka.PAR wanted to.admire Merja.PAR'
+			
 		& 1.1.4 Ungrammatical, extra arguments
 			Pekka Pekka nukkuu
 			'Pekka.NOM Pekka.NOM sleeps'
@@ -73,15 +206,14 @@
 			'Pekka.NOM Pekka.NOM gave book.ACC to.Merja'
 			Pekka antoi kirjan kirjan Merjalle
 			'Pekka.NOM gave book.ACC book.ACC to.Merja'
-		& 1.1.5 Problems (semantics of PP extraposition)
-			Pekka antoi kirjan Merjalle Merjalle
-			'Pekka.NOM gave book.ACC to.Merja to.Merja'
+						
 	& 1.2 Infinitivals (A-infinitival complement and malla-infinitival adjunct)
 		& 1.2.1 Grammatical
 			Pekka halusi ihailla Merjaa
 			'Pekka.NOM wanted to.admire Merja.PAR'
 			Pekka nukahti lukemalla kirjaa
 			'Pekka.NOM slept by.reading book.PAR'
+			
 		& 1.2.2 Grammatical, with noncanonical order and reconstruction
 			Merjaa halusi ihailla Pekka
 			'Merja.PAR wanted to.admire Pekka.NOM'
@@ -93,19 +225,86 @@
 			'by.reading book.PAR slept Pekka.NOM'
 			kirjaa lukemalla nukahti Pekka
 			'book.PAR by.reading slept Pekka.NOM'
+			
 		& 1.2.3 Ungrammatical, with noncanonical order and reconstruction, wrong case forms
+			& 1.2.3.1 A-infinitival, wrong subject case
+			Pekkaa halusi ihailla Merjaa
+			'Pekka.PAR wanted to.admire Merja.PAR'
+			Pekan_gen halusi ihailla Merjaa
+			'Pekka.GEN wanted to.admire Merja.PAR'
+			Pekan_acc halusi ihailla Merjaa
+			'Pekka.ACC wanted to.admire Merja.PAR'
+			Pekka_0acc halusi ihailla Merjaa
+			'Pekka.0ACC wanted to.admire Merja.PAR'
+			
+			& 1.2.3.2 A-infinitival, wrong object case, canonical and noncanonical orders
 			Pekka halusi ihailla Merja
 			'Pekka.NOM wanted to.admire Merja.NOM'
+			Pekka halusi ihailla Merja_0acc
+			'Pekka.NOM wanted to.admire Merja.0ACC'
+			Pekka halusi ihailla Merjan_gen
+			'Pekka.NOM wanted to.admire Merja.GEN'
+			
+			Pekka halusi Merja ihailla
+			'Pekka.NOM wanted Merja.NOM to.admire'
+			Pekka halusi Merja_0acc ihailla
+			'Pekka.NOM wanted Merja.0ACC to.admire'
+			Pekka halusi Merjan_gen ihailla
+			'Pekka.NOM wanted Merja.GEN to.admire'
+			
+			& 1.2.3.3 MALLA-infinitival, wrong subject case, canonical and noncanonical
+			Pekkaa nukahti lukemalla kirjaa
+			'Pekka.PAR slept by.reading book.PAR'
+			Pekan_gen nukahti lukemalla kirjaa
+			'Pekka.GEN slept by.reading book.PAR'
+			Pekan_acc nukahti lukemalla kirjaa
+			'Pekka.ACC slept by.reading book.PAR'
+			Pekka_0acc nukahti lukemalla kirjaa
+			'Pekka.0ACC slept by.reading book.PAR'
+			
+			kirjaa nukahti lukemalla Pekan_gen
+			'book.PAR slept by.reading Pekka.GEN'
+			kirjaa nukahti lukemalla Pekan_acc
+			'book.PAR slept by.reading Pekka.ACC'
+			kirjaa nukahti lukemalla Pekka_0acc
+			'book.PAR slept by.reading Pekka.0ACC'
+			
+			& 1.2.3.4 MALLA-infinitival, wrong object case, canonical and noncanonical
 			Pekka nukahti lukemalla kirja
 			'Pekka.NOM spelt by.reading book.NOM'
+			Pekka nukahti lukemalla kirja_0acc
+			'Pekka.NOM spelt by.reading book.0ACC'
+			Pekka nukahti lukemalla kirjan_gen
+			'Pekka.NOM spelt by.reading book.GEN'
+			
 			lukemalla kirja Pekka nukahti
 			'by.reading book.NOM Pekka.NOM slept'
+			lukemalla kirja_0acc Pekka nukahti
+			'by.reading book.0ACC Pekka.NOM slept'
+			lukemalla kirjan_gen Pekka nukahti
+			'by.reading book.GEN Pekka.NOM slept'
+			
 			kirja lukemalla Pekka nukahti
 			'book.NOM by.reading Pekka.NOM slept'
+			kirja_0acc lukemalla Pekka nukahti
+			'book.0ACC by.reading Pekka.NOM slept'
+			kirjan_gen lukemalla Pekka nukahti
+			'book.GEN by.reading Pekka.NOM slept'
+			
 			lukemalla kirja nukahti Pekka
 			'by.reading book.NOM slept Pekka.NOM'
+			lukemalla kirja_0acc nukahti Pekka
+			'by.reading book.0ACC slept Pekka.NOM'
+			lukemalla kirjan_gen nukahti Pekka
+			'by.reading book.GEN slept Pekka.NOM'
+			
 			kirja lukemalla nukahti Pekka
 			'book.NOM by.reading slept Pekka.NOM'
+			kirja_0acc lukemalla nukahti Pekka
+			'book.0ACC by.reading slept Pekka.NOM'
+			kirjan_gen lukemalla nukahti Pekka
+			'book.GEN by.reading slept Pekka.NOM'
+			
 	& 1.3 Adpositions (P-DP, DP-P)
 		& 1.3.1 Grammatical
 			lahella Pekkaa
@@ -114,6 +313,7 @@
 			'Pekka.PAR near'
 			Pekan_gen lahella
 			'Pekka.GEN near'
+			
 		& 1.3.2 Ungrammatical, wrong case form
 			lahella Pekka
 			'near Pekka.NOM'
@@ -127,6 +327,7 @@
 			'near Pekka.0ACC'
 			Pekka_0acc lahella
 			'Pekka.0ACC near'
+			
 		& 1.3.3 Ungrammatical, due to an extra argument
 			lahella Pekkaa Pekkaa
 			'near Pekka.PAR Pekka.PAR'
@@ -136,20 +337,26 @@
 			'near Pekka.NOM Pekka.NOM'
 			Pekka Pekka lahella
 			'Pekka.NOM Pekka.NOM near'
+			
 		& 1.3.4 Ungrammatical, due to wrong word order
 			lahella Pekan_gen
 			'near Pekka.GEN'
+			
 	& 1.4 Partitive subjects (Experiencer subject)
 		& 1.4.1 Grammatical
 			Pekkaa pelottaa
 			'Pekka.PAR fears'
+			
 		& 1.4.2 Ungrammatical
 			Pekka pelottaa
 			'Pekka.NOM fears'
 			Pekan_gen pelottaa
 			'Pekka.GEN fears'
+			Pekan_acc pelottaa
+			'Pekka.ACC fears'
 			Pekka_0acc pelottaa
 			'Pekka.0ACC fears'
+			
 	& 1.5 Numerals (two types)
 		& 1.5.1 Grammatical
 			ne kaksi sukkaa havisi
@@ -162,17 +369,46 @@
 			'Pekka.NOM found those.0 two.0 sock.SG.PAR'
 			Pekka sanoi niiden kahden sukan haviavan
 			'Pekka.NOM said those.GEN two.GEN sock.GEN to.disappear'
+			kaksi sukkaa havisi
+			'two sock.SG.PAR disappeared'
+			
 		& 1.5.2 Ungrammatical
-			ne kaksi sukan havisi
-			'those.0 two.0 sock.ACC disappeared'
-			ne kahdet sukkaa havisivat
-			'those.0 two.PL.ACC sock.SG.PAR disappeared'
-			ne kahdet sukka_0acc havisivat
-			'those.0 two.PL.ACC sock.0ACC disappeared'
-			ne kahdet sukka havisivat
-			'those.0 two.PL.ACC sock.NOM disappeared'
-			Pekka sanoi niiden kaksi sukkaa haviavan
-			'Pekka.NOM said those.GEN two.0 sock.PAR to.disappear'
+			& 1.5.2.1 Ungrammatical, type 1 'kaksi sukkaa', wrong case
+				ne kaksi sukka havisi
+				'those.0 two.0 sock.NOM disappeared'
+				ne kaksi sukan_gen havisi
+				'those.0 two.0 sock.GEN disappeared'
+				ne kaksi sukan havisi
+				'those.0 two.0 sock.ACC disappeared'
+				ne kaksi sukan_acc havisi
+				'those.0 two.0 sock.0ACC disappeared'
+
+			& 1.5.2.2 Ungrammatical, type 2 'kahdet sukat', wrong case
+				ne kahdet sukkaa havisivat
+				'those.0 two.PL.ACC sock.SG.PAR disappeared'
+				ne kahdet sukan_gen havisivat
+				'those.0 two.PL.ACC sock.SG.GEN disappeared'
+				ne kahdet sukan_acc havisivat
+				'those.0 two.PL.ACC sock.ACC disappeared'
+				ne kahdet sukka_0acc havisivat
+				'those.0 two.PL.ACC sock.0ACC disappeared'
+		
+			& 1.5.2.3 Type 1 in genitive context
+				Pekka sanoi niiden kaksi sukkaa haviavan
+				'Pekka.NOM said those.GEN two.0 sock.PAR to.disappear'
+
+			& 1.5.2.4 Ungrammatical noncanonical orders
+				sukkaa ne kaksi havisi
+				'sock.PAR those two disappeared'
+				kaksi ne sukkaa havisi
+				'two those sock.PAR disappeared'
+				kaksi sukkaa ne havisi
+				'two sock.PAR those disappear'
+			
+			& 1.5.2.5 Problem
+				ne sukkaa kaksi havisi
+				'those sock.PAR two.0 disappear'
+			
 & 2 Accusative case
 	& 2.1 Accusative and aspect
 		& 2.1.1 Grammatical (aspect-related alterations)
@@ -188,15 +424,19 @@
 			'Pekka washed Merja.PAR'
 			Pekka pesi hanet
 			'Pekka washed he.ACC'
-		& 2.1.2 Ungrammatical
-			Pekka tonaisi Merjan
-			'Pekka.NOM pushed Merja.ACC'
+			
+		& 2.1.2 Ungrammatical, wrong direct object case
 			Pekka tonaisi Merja
 			'Pekka.NOM pushed Merja.NOM'
-			Pekka tonaisi Merja_0acc
-			'Pekka.NOM pushed Merja.0ACC'
+			Pekka tonaisi Merjan_gen
+			'Pekka.NOM pushed Merja.GEN'
+			Pekka tonaisi Merjan_acc
+			'Pekka.NOM pushed Merja.ACC'
 			Pekka tonaisi hanet
 			'Pekka.NOM pushed he.ACC'
+			Pekka tonaisi Merja_0acc
+			'Pekka.NOM pushed Merja.0ACC'
+			
 		& 2.1.3 Grammatical, noncanonical word order
 			Merjan voitti Pekka
 			'Merja.ACC won Pekka.NOM'
@@ -204,29 +444,33 @@
 			'Merja.ACC washed Pekka.NOM'
 			Merjaa pesi Pekka
 			'Merja.PAR washed Pekka.NOM'
-		& 2.1.4 Ungrammatical
-			Merjan tonaisi Pekka
-			'Merja.GEN pushed Pekka.NOM'
+			
+		& 2.1.4 Ungrammatical, wrong direct object case
 			Merja tonaisi Pekka
 			'Merja.NOM pushed Pekka.NOM'
+			Merjan tonaisi Pekka
+			'Merja.GEN pushed Pekka.NOM'
 			Merja_0acc tonaisi Pekka
 			'Merja.0ACC pushed Pekka'
 			hanet tonaisi Pekka
 			'he.ACC pushed Pekka.NOM'
+			
 	& 2.2 Accusative and negation
 		& 2.2.1 Grammatical
 			Pekka ei voittanut Merjaa
 			'Pekka.NOM not.3sg won.PRTCPL Merja.PAR'
-		& 2.2.2 Ungrammatical
-			Pekka ei voittanut Merjan
-			'Pekka.NOM not.3sg won.PRTCPL Merja.ACC'
+			
+		& 2.2.2 Ungrammatical, wrong direct object case
 			Pekka ei voittanut Merja
 			'Pekka.NOM not.3sg won.PRTCPL Merja.NOM'
-			Pekka ei voittanut Merja_0acc
-			'Pekka.NOM not.3sg won.PRTCPL Merja.0ACC'
 			Pekka ei voittanut Merjan_gen
 			'Pekka.NOM not.3sg won.PRTCPL Merja.GEN'
-		& 2.2.3 Grammatical noncanonical reconstruction
+			Pekka ei voittanut Merjan
+			'Pekka.NOM not.3sg won.PRTCPL Merja.ACC'
+			Pekka ei voittanut Merja_0acc
+			'Pekka.NOM not.3sg won.PRTCPL Merja.0ACC'
+
+		& 2.2.3 Grammatical, noncanonical order, reconstruction
 			Merjaa ei voittanut Pekka
 			'Merja.PAR not.3sg won.PRTCPL Pekka.NOM'
 			Merjaa ei Pekka voittanut
@@ -237,7 +481,8 @@
 			'Merja.PAR Pekka.NOM not.3sg won.PRTCPL'
 			Pekka Merjaa ei voittanut
 			'Pekka.NOM Merja.PAR not.3sg won.PRTCPL'
-		& 2.2.4 Ungrammatical noncanonical reconstruction
+			
+		& 2.2.4 Ungrammatical noncanonical reconstruction, wrong case forms
 			Merjan ei voittanut Pekka
 			'Merja.ACC not.3sg won.PRTCPL Pekka.NOM'
 			Merja ei voittanut Pekka
@@ -246,28 +491,37 @@
 			'Merja.0ACC not.3sg won.PRTCPL Pekka.NOM'
 			Merjan_gen ei voittanut Pekka
 			'Merja.GEN not.3sg won.PRTCPL Pekka.NOM'
+			
 	& 2.3 Accusative and agreement (impersonal passive construction)
 		& 2.3.1 Grammatical
 			me loysimme avaimen
 			'we.NOM found.1PL key.ACC'
 			me loydettiin avain_0acc
 			'we.NOM found.IMPASS key.ACC'
+			
 		& 2.3.2 Noncanonical word order
 			avaimen loysimme me
 			'key.ACC found.1PL we.NOM'
 			avain_0acc loydettiin me
 			'key.0ACC found.IMPASS we.NOM'
-		& 2.3.3 Ungrammatical
+			
+		& 2.3.3 Ungrammatical, wrong direct object case
 			me loydettiin avaimen
 			'we.NOM found.IMPASS key.ACC'
+			me loydettiin avaimen_gen
+			'we.NOM found.IMPASS key.GEN'
 			me loysimme avain
 			'we.NOM found.1PL key.NOM'
 			me loysimme avain_0acc
 			'we.NOM found.1PL key.0ACC'
+			me loysimme avaimen_gen
+			'we.NOM found.1PL key.GEN'
+			
 	& 2.4 Negation and agreement
 		& 2.4.1 Grammatical
 			me ei' loydetty avainta
 			'we.NOM not.3sg found.PRTCPL key.PAR'
+			
 		& 2.4.2 Noncanonical word order
 			avainta ei' loydetty me
 			'key.PAR not found we.NOM'
@@ -275,13 +529,17 @@
 			'key.PAR we.NOM not found'
 			me ei' avainta loydetty
 			'we.NOM not key.PAR found'
-		& 2.4.3 Ungrammatical
+			
+		& 2.4.3 Ungrammatical, wrong direct object case
 			me ei' loydetty avain
 			'we.NOM not found key.NOM'
+			me ei' loydetty avaimen_gen
+			'we.NOM not found key.GEN'
 			me ei' loydetty avaimen
 			'we.NOM not found key.ACC'
 			me ei' loydetty avain_0acc
 			'we.NOM not found key.0ACC'
+			
 	& 2.5 Long-distance effects
 		& 2.5.1 Grammatical (V + infinitival + object)
 			Pekka halusi voittaa Merjan
@@ -298,6 +556,7 @@
 			'we.NOM not wanted to.win Merja.PAR'
 			me halusimme voittaa Merjan
 			'we.NOM wanted to.win Merja.ACC'
+			
 		& 2.5.2 Noncanonical word orders
 			Merjan halusi voittaa Pekka
 			'Merja.ACC wanted to.win Pekka.NOM'
@@ -313,16 +572,21 @@
 			'Merja.PAR not wanted to.win we.NOM'
 			Merjan halusimme voittaa me
 			'Merja.ACC wanted to.win we.NOM'
-		& 2.5.3 Ungrammatical
-			me haluttiin voittaa Merjan
-			'we.NOM want.IMPASS to.win Merja.ACC'
-			me halusimme voittaa Merja_0acc
-			'we.NOM wanted to.win Merja.0ACC'
-			me ei' haluttu voittaa Merja_0acc
-			'we.NOM not wanted to.win Merja.0ACC'
-			me ei' haluttu voittaa Merjan
-			'we.NOM not wanted to.win Merja.ACC'
-& 3 Genitive as a clausal argument 
+			
+		& 2.5.3 Ungrammatical, wrgon direct object case, nonlocal effect
+			& 2.5.3.1 Agreement tests
+				me haluttiin voittaa Merjan
+				'we.NOM want.IMPASS to.win Merja.ACC'
+				me halusimme voittaa Merja_0acc
+				'we.NOM wanted to.win Merja.0ACC'
+			
+			& 2.5.3.2 Polarity tests
+				me ei' haluttu voittaa Merja_0acc
+				'we.NOM not wanted to.win Merja.0ACC'
+				me ei' haluttu voittaa Merjan
+				'we.NOM not wanted to.win Merja.ACC'
+			
+& 3 Genitive as clausal argument 
 	& 3.1 Infinitial subject (A-infinitival and VA-infinitival)
 		& 3.1.1 Grammatical
 			Pekka kaski Merjan_gen lahtea
@@ -331,44 +595,84 @@
 			'Pekka.NOM said Merja.GEN to.leave'
 			Pekan_gen taytyy lahtea
 			'Pekka.GEN must.0 to.leave'
-		& 3.1.2 Ungrammatical
+			
+		& 3.1.2 Ungrammatical, postverbal genitive
 			Pekka kaski lahtea Merjan_gen
 			'Pekka.NOM asked to.leave Merja.GEN'
 			Pekka sanoi lahtevan Merjan_gen
 			'Pekka.NOM said to.leave Merja.GEN'
+		
+		& 3.1.3 Ungrammatical, wrong infinitival subject case form
+			Pekka kaski Merja lahtea
+			'Pekka.NOM asked Merja.NOM to.leave'
+			Pekka kaski Merjaa lahtea
+			'Pekka.NOM asked Merja.PAR to.leave'
+			Pekka kaski Merjan_acc lahtea
+			'Pekka.NOM asked Merja.ACC to.leave'
+			Pekka kaski Merja_0acc lahtea
+			'Pekka.NOM asked Merja.0ACC to.leave'
+		
+		& 3.1.4 Ungrammatical, wrong infinitival subject case form, wrong position
+			Pekka kaski lahtea Merja
+			'Pekka.NOM asked to.leave Merja.NOM'
+			Pekka kaski lahtea Merjaa
+			'Pekka.NOM asked to.leave Merja.PAR'
+			Pekka kaski lahtea Merjan_acc
+			'Pekka.NOM asked to.leave Merja.ACC'
+			Pekka kaski lahtea Merja_0acc 
+			'Pekka.NOM asked to.leave Merja.0ACC'
+
 	& 3.2 Possessive use
 		& 3.2.1 Grammatical
 			se Merjan_gen kello havisi
 			'that.NOM Merja.GEN watch.NOM disappeared'
-		& 3.2.2 Ungrammatical
+			
+		& 3.2.2 Ungrammatical, genitive argument in wrong position
 			se kello Merjan_gen havisi
 			'that.NOM watch.NOM Merja.GEN disappeared''
 			se kello havisi Merjan_gen
 			'that.NOM watch.NOM disappeared Merja.GEN'
 			Merjan_gen se kello havisi
 			'Merja.GEN that.NOM watch.NOM disappeared'
+			
+		& 3.2.3 Ungrammatical, wrong case form in possessive position
+			se Merja kello havisi
+			'that.NOM Merja.NOM watch.NOM disappeared'
+			se Merjaa kello havisi
+			'that.NOM Merja.PAR watch.NOM disappeared'			
+			se Merjan_acc kello havisi
+			'that.NOM Merja.ACC watch.NOM disappeared'
+			se Merjan_0acc kello havisi
+			'that.NOM Merja.0ACC watch.NOM disappeared'
+
 	& 3.3 Adposition (DP-P, P-DP)
 		& 3.3.1 Grammatical
 			Merja nukkui Pekan_gen lahella
 			'Merja slept Pekka.GEN near'
 			Merja nukkui lahella Pekkaa
 			'Merja.NOM slept near Pekka.PAR'
-		& 3.3.2 Ungrammatical
+			
+		& 3.3.2 Ungrammatical, postpositional genitive argument
 			Merja nukkui lahella Pekan_gen
 			'Merja slept near Pekka.GEN'
+			
 	& 3.4 Genitive possessor and the numeral construction
 		& 3.4.1 Grammatical
 			ne kaksi Merjan_gen puhelinta havisi
 			'those.0 two.0 Merja.GEN phone.PAR disappeared'
 			ne Merjan_gen kaksi puhelinta havisi
 			'those.0 Merja.GEN two.0 phone.PAR disappeared'
+			
 		& 3.4.2 Ungrammatical, wrong case
-			ne kaksi Merjan puhelinta havisi
-			'those.0 two.0 Merja.ACC phone.PAR disappeared'
 			ne kaksi Merja puhelinta havisi
 			'those.0 two.0 Merja.NOM phone.PAR disappeared'
+			ne kaksi Merjaa puhelinta havisi
+			'those.0 two.0 Merja.PAR phone.PAR disappeared'
+			ne kaksi Merjan_acc puhelinta havisi
+			'those.0 two.0 Merja.ACC phone.PAR disappeared'
 			ne kaksi Merja_0acc puhelinta havisi
 			'those.0 two.0 Merja.0ACC phone.PAR disappeared'
+			
 & 4 Special constructions
 	& 4.1 Impersonal passives
 		& 4.1.1 Grammatical
@@ -380,36 +684,53 @@
 			'key.0ACC found.IMPASS'
 			loydettiin avain_0acc
 			'found.IMPASS key.0ACC'
-		& 4.1.2 Ungrammatical
+			
+		& 4.1.2 Ungrammatical, wrong direct object case
 			me loydettiin avaimen
 			'we.NOM found.IMPASS key.ACC'
 			me loysimme avain
 			'we.NOM found.1PL key.NOM'
+			
 	& 4.2 Raising construction
 		& 4.2.1 Grammatical
 			Merja nayttaa lahtevan
 			'Merja.NOM seem to.leave'
-		& 4.2.2 Ungrammatical, wrong case forms
+			
+		& 4.2.2 Ungrammatical, wrong case form
+			Merjaa nayttaa lahtevan
+			'Merja.PAR seem to.leave'
+			Merjan_gen nayttaa lahtevan
+			'Merja.GEN seem to.leave'
 			Merjan nayttaa lahtevan
 			'Merja.ACC seems to.leave'
 			Merja_0acc nayttaa lahtevan
 			'Merja.0ACC seems to.leave'
-	& 4.3 Chapter 4.4.3 Copular construction
+			
+	& 4.3 Copular construction
 		& 4.3.1 Grammatical
 			Pekka on' Pekka
 			'Pekka.NOM is Pekka.NOM'
 			Merjalla on' Pekka
 			'Merja.ALL is Pekka.NOM'
+			
 		& 4.3.2 Ungrammatical
 			Pekka on' Pekkaa
 			'Pekka.NOM is Pekka.PAR'
 			Pekka on' Pekan_gen
 			'Pekka.NOM is Pekka.GEN'
-		& 4.3.3 Problems
-			Merjalla on' kelloja
-			'Merja.ALL is watch.PAR'
-			Pekka on' 
-			'Pekka.NOM is'
+			Pekka on' Pekka_0acc
+			'Pekka.NOM is Pekka.0ACC'
+			Pekka on' Pekan_acc
+			'Pekka.NOM is Pekka.ACC'
+			Pekkaa on Pekka
+			'Pekka.PAR is Pekka.NOM'
+			Pekan_gen on Pekka
+			'Pekka.GEN is Pekka.NOM'
+			Pekan_acc on Pekka
+			'Pekka.ACC is Pekka.NOM'
+			Pekan_0acc on Pekka'
+			'Pekka.0ACC is Pekka.NOM'
+		
 & 5 Adverbials and case-marking
 	& 5.1 Grammatical
 		Pekka nukkui#asp koko paivan
@@ -422,6 +743,7 @@
 		'we.NOM sleep.IMPASS all day.NOM'
 		Pekka ihailee#asp Merjaa koko paivan
 		'Pekka.NOM admires Merja.PAR all day.ACC'
+		
 	& 5.2 Ungrammatical
 		Pekka nukkui koko paivan
 		'Pekka.NOM slept all day.ACC'
@@ -437,6 +759,7 @@
 		'Pekka.NOM admires Merja.PAR all day.PAR'
 		Pekka ihailee Merjaa koko paivaa
 		'Pekka.NOM admires Merja.PAR all day.PAR'
+		
 	& 5.3 Problems
 		Pekka nukkui koko paivaa
-		'Pekka.NOM sleep all day.PAR'
+		'Pekka.NOM slept all day.PAR'

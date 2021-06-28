@@ -20,23 +20,21 @@ class LexicalStream:
         # If the next element is a lexical constituent, we prepare it for syntactic attachment
         else:
             self.controlling_parser_process.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
-            log(f'\n\t\tItem enters active working memory. ')
 
             # The element enters active working memory
             terminal_lexical_item.active_in_syntactic_working_memory = True
 
             # Wire semantics
             self.controlling_parser_process.narrow_semantics.wire_semantics(terminal_lexical_item)
-            log('\n')
 
             # If this was the first element, we have nothing to attach, so we get new element
             if not ps:
+                log('No other elements in active working memory, waiting for the next element.\n')
                 self.controlling_parser_process.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
-
             # If a partial phrase structure exists, we proceed
             else:
-                log(f'\n\t{self.controlling_parser_process.resources["Item streamed into syntax"]["n"]}. Consume \"' + terminal_lexical_item.get_phonological_string() + f'\": ')
-                log(f'{ps}' + ' + ' + terminal_lexical_item.get_phonological_string())
+                log(f'\n\n\t{self.controlling_parser_process.resources["Item streamed into syntax"]["n"]}. Consume ' + terminal_lexical_item.get_phonological_string())
+                # log(f'\t({ps}' + ' + ' + terminal_lexical_item.get_phonological_string() + ')')
                 self.controlling_parser_process.resources['Steps']['n'] += 1
                 self.controlling_parser_process.local_file_system.simple_log_file.write(
                     f'\n{self.controlling_parser_process.resources["Steps"]["n"]}\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
@@ -57,7 +55,7 @@ class LexicalStream:
                 inflection.remove('inflectional')
             self.controlling_parser_process.memory_buffer_inflectional_affixes = self.controlling_parser_process.memory_buffer_inflectional_affixes.union(inflection)
             self.controlling_parser_process.consume_resources("Inflection")
-            log(f'Added {sorted(inflection)} into memory...')
+            log(f'Added {sorted(inflection)} into transient memory buffer...')
         else:
             if self.controlling_parser_process.memory_buffer_inflectional_affixes:
                 log(f'Adding inflectional features {sorted(self.controlling_parser_process.memory_buffer_inflectional_affixes)} to ' + lexical_item.get_phonological_string() + '...')

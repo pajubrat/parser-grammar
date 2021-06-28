@@ -239,6 +239,7 @@ class LinearPhaseParser:
         new_constituent = left_branch.bottom_affix().sink(terminal_lexical_item)
         log(f'{new_constituent.top()}')
         self.consume_resources("Merge", f'{terminal_lexical_item}')
+        log('\n')
         return new_constituent
 
     def maintain_working_memory(self, site):
@@ -257,7 +258,7 @@ class LinearPhaseParser:
             return True
 
         if index < len(lst):
-            log(f'\n\t\tNext item: "{lst[index]}". ')
+            log(f'\n\t\tNext item {lst[index]}. ')
 
         # If there are no more words, we attempt to complete processing
         if index == len(lst):

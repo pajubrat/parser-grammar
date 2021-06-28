@@ -129,6 +129,9 @@ class PhraseStructure:
         #       return True
         return self.externalized() or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
 
+    def constituents(self):
+        return {self.left_const, self.right_const}
+
     # Definition for sisterhood
     def sister(self):
         """
@@ -222,6 +225,14 @@ class PhraseStructure:
             path.append(self.mother)
             self = self.mother
         return path
+
+    def in_scope_of(self, feature_set):
+        upward_path = self.upstream_search()
+        for node in upward_path:
+            for const in node.constituents():
+                if const and const != self and const.is_primitive():
+                    if feature_set & const.features == feature_set:
+                        return True
 
     # Definition for edge
     def edge(self):
@@ -596,8 +607,8 @@ class PhraseStructure:
             return True     # Weak test: accept still (only look for violations)
 
     def match_features(self, features_to_check):
-        positive_features = self.positive_features(features_to_check)
-        negative_features = self.negative_features(features_to_check)
+        positive_features = self.positive_features(features_to_check)   # All features  except negative features
+        negative_features = self.negative_features(features_to_check)   # Features with *
         if negative_features & self.features:
             return 'negative match'
         elif positive_features:
