@@ -36,7 +36,7 @@ class Discourse:
             if not result:
                 self.interpretation_failed = True
                 return
-            semantic_interpretation['D-features'].append(result)
+            semantic_interpretation['D-features'] = result
 
     def interpret_discourse_feature(self, f, ps):
         """
@@ -46,18 +46,25 @@ class Discourse:
         Notice that D-feature interpretation relies on semantic objects, not solely on
         syntactic structure.
         """
+        #
+        return 'Not functional'
+        #
+        # There is a problem below because semantic space was divided between two modules but here it is still
+        # assumed that they are all in the global cognition.
+        #
+
         log(f'[{f}] at {ps.max().illustrate()}: ')
         idx = self.narrow_semantics.get_referential_index_tuple(ps)
         if not idx:
             log(f'{ps.max().illustrate()} not wired semantically. ')
             return None
-        if idx not in self.narrow_semantics.discourse_inventory:
+        if not self.narrow_semantics.get_semantic_object(idx):
             log(f'I have no idea what {ps.max().illustrate()} refers to. ')
             return None
-        if 'Bound by' not in self.narrow_semantics.discourse_inventory[idx]:
+        if 'Bound by' not in self.narrow_semantics.get_semantic_object(idx):
             log(f'{ps.max().illustrate()} not bound by propositional scope operator. ')
             return None
-        binder_idx = self.narrow_semantics.get_referential_index_tuple(self.narrow_semantics.discourse_inventory[idx]['Bound by'][0])
+        binder_idx = self.narrow_semantics.get_referential_index_tuple(self.narrow_semantics.global_cognition.discourse_inventory[idx]['Bound by'][0])
         if not binder_idx:
             log('The relevant proposition not available in SEM. ')
             return None

@@ -334,7 +334,7 @@ class PhraseStructure:
 
     def get_theta_assigner(self):
         if self.sister() and self.sister().is_primitive():
-            return self.sister
+            return self.sister()
         if self.container_head() and self.container_head().licensed_specifier():
             if self == self.container_head().licensed_specifier():
                 return self.container_head()
@@ -837,7 +837,7 @@ class PhraseStructure:
     def get_cats_string(self):
 
         # Decide which labels to show if there are several
-        features_to_consider = self.head().features
+        features_to_consider = set(self.head().features)
         if 'φ' in features_to_consider:
             if {'D', 'NUM', 'D/REL', 'n', 'DET', 'QN'} & features_to_consider:
                 features_to_consider.remove('φ')

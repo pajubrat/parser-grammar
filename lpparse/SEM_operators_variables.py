@@ -141,6 +141,7 @@ class OperatorVariableModule:
         """
         Provides English language description for the operator interpretation into semantic bookkeeping
         """
-        if 'Operator interpretation' not in self.narrow_semantics.discourse_inventory[idx]:
-            self.narrow_semantics.discourse_inventory[idx]['Operator interpretation'] = set()
-        self.narrow_semantics.discourse_inventory[idx]['Operator interpretation'].add(self.operator_interpretation[f])
+        return
+        if 'Operator interpretation' not in self.narrow_semantics.global_cognition.discourse_inventory[idx]:
+            self.narrow_semantics.global_cognition.discourse_inventory[idx]['Operator interpretation'] = set()
+        self.narrow_semantics.global_cognition.discourse_inventory[idx]['Operator interpretation'].add(self.operator_interpretation[f])
