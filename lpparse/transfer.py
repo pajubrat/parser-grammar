@@ -9,6 +9,7 @@ from surface_conditions import SurfaceConditions
 
 # Transfer performs a normalization mapping from phrase structure object into LF-object
 # Its function is to repair the first pass parse from errors
+
 class Transfer:
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process

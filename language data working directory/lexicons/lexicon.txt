@@ -124,7 +124,7 @@ halusi		:: halua-#v#T/fin#[-V] LANG:FI
 halusimme	:: halua-#v#T/fin#[-mme] LANG:FI
 haluan		:: halua-#v#T/fin#[-n] LANG:FI
 halua		:: halua-#v#T LANG:FI
-haluamalla 	:: halua-#v#malla LANG:FI
+haluamalla 	:: halua-#v#MA/lla LANG:FI
 haluttiin	:: halua-#impass#T/fin#1p#pl LANG:FI
 haluttu		:: halua-#impass#T/prt LANG:FI
 halua- 		:: PF:haluaa LF:want V ASP:BOUNDED SEM:internal CLASS:TR -SPEC:* COMP:φ COMP:A/inf LANG:FI
@@ -160,7 +160,7 @@ ihailtua	:: ihaile-#v#TUA/inf LANG:FI
 ihaile		:: ihaile-#v#T LANG:FI
 ihaillut 	:: ihaile-#v#T/prt#sg LANG:FI
 ihailla		:: ihaile-#v#A/inf LANG:FI
-ihailemalla :: ihaile-#v#malla LANG:FI
+ihailemalla :: ihaile-#v#MA/lla LANG:FI
 ihaile- 	:: PF:ihaile- LF:admire V CLASS:TR SPEC:φ !COMP:φ -COMP:FIN LANG:FI
 
 il			:: PF:il LF:the D LANG:IT
@@ -200,7 +200,7 @@ kahdet		:: kaksi-#pl#[-nom] LANG:FI
 kahden		:: kaksi-#pl#[-gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two NUM LANG:FI
 
-kaupunkia	:: kaupunki-#φ#[-par] 
+kaupunkia	:: kaupunki-#φ#[-par]
 kaupunki-	:: PF:kaupunki LF:city N -COMP:P LANG:FI
 
 kaski		:: kaske-#v#T/fin#[-V] LANG:FI
@@ -335,7 +335,7 @@ minka		::	mika-#D#wh#[-n_acc] LANG:FI
 mika		:: mika-#D#wh LANG:FI
 mika-		:: PF:mika- LF:what N LANG:FI
 
-mita		:: D#wh LANG:FI
+mita		:: D#wh#[-par] LANG:FI
 
 moved		:: move-#v#T/fin LANG:EN
 move'		:: move-#v LANG:EN
@@ -350,6 +350,8 @@ myi 		:: myy-#v#asp#T/fin#[-V] LANG:FI
 myynyt		:: myy-#v#asp#T/prt#sg LANG:FI
 myyda 		:: myy-#v#A/inf LANG:FI
 myy-		:: PF:myy LF:sell V ASP:BOUNDED CLASS:TR -COMP:T/fin -COMP:Neg/fin COMP:φ LANG:FI
+
+nainen		::	PF:nainen LF:woman N LANG:FI
 
 naki		:: nake-#v#T/fin#[-V] LANG:FI
 nakee		:: nake-#v#T/fin#[-V] LANG:FI
@@ -521,7 +523,7 @@ sukka-		:: PF:sukka- LF:socks N LANG:FI
 surprised	::	surprise-#v#T/fin LANG:EN
 surprise-	:: PF:surprise LF:surprise V CLASS:TR -COMP:T/fin LANG:EN
 
-talo		:: talo-#φ#[-par]
+talo		:: talo-#φ
 taloa		:: talo-#φ#[-par]
 talona		:: talo-#φ#[-ess]
 taloksi		:: talo-#φ#[-ess]
@@ -605,6 +607,7 @@ he_FI		:: he_FI-#D#nom#pl#3p#def#hum
 heidan		:: he_FI-#D#pl#3p#def#hum#[-gen]
 he_FI- 		:: PF:he LF:they N PHI_N LANG:FI
 se			:: se-#[-nom]#sg#3p#def
+se			:: se-#sg#3p#def
 sen			:: se-#[-n_acc]#sg#3p#def
 sita		:: se-#[-par]#sg#3p#def
 se-			:: PF:se LF:the/that D LANG:FI

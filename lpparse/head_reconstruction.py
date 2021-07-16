@@ -2,7 +2,7 @@ from support import set_logging, log, get_number_of_operations, reset_number_of_
 from lexical_interface import LexicalInterface
 
 #
-# This class implements the head reconstruction algorithm argued for in
+# This class implements the head reconstruction algorithm proposed in
 # Brattico (to appear). Predicate clefting and long head movement in Finnish. Linguistic Inquiry.
 # I will refer to this paper in the comments below.
 #
@@ -20,8 +20,7 @@ class HeadMovement:
         """
         Reconstructs all complex heads from phrase structure structure [ps].
 
-        A complex head is by definition a constituent that contains a right constituent and no left constituent,
-        Principle (63) in the published article.
+        A complex head is by definition a constituent that contains a right constituent and no left constituent.
         This version separates two situations:
         (1) [ps] is a complex phrase structure, in which case all complex heads are reconstructed from
         its right edge after being detected by minimal search (Rule 43A in the article).

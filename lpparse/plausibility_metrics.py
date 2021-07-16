@@ -34,8 +34,11 @@ class PlausibilityMetrics:
         """
         nodes_not_in_active_working_memory = []
 
+        # Input integrity test
         if not ps or not w:
             return []
+
+        # Word internal components are always sank into the bottom word, no need to filter or rank
         elif self.word_internal(ps, w) and self.dispersion_filter_active():
             all_merge_sites = [ps.bottom()]
         else:
@@ -105,11 +108,14 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def positive_head_comp_selection(self, site):
+        """
+        Checks if [site], which must be primitive, selects for a feature (usually label) in the complement.
+        This applies if any morpheme inside [site] satisfies the condition.
+        """
         if site.is_primitive():
             for m in site.get_affix_list():
                 if self.word.features & m.convert_features_for_parsing(m.licensed_complements()):
-                    if 'NOM' not in self.word.features:
-                        return True
+                    return True
 
     @knockout_lexical_ranking
     def negative_head_comp_selection(self, site):
@@ -205,6 +211,11 @@ class PlausibilityMetrics:
              }
 
     def rank_merge_right_(self, site_list, word):
+        """
+        Ranks the sites in [site_list] for word [word], on the basis of heuristic parsing principles.
+        """
+
+        # To speed up processing, we compute relevant notions only once
         self.word = word
         self.word_specs = word.convert_features_for_parsing(word.licensed_specifiers())
         self.not_word_specs =  word.convert_features_for_parsing(word.specifiers_not_licensed())
@@ -212,8 +223,11 @@ class PlausibilityMetrics:
         self.word_tail_set = word.get_tail_sets()
         log('Ranking...')
 
+        # Create baseline default weighting order (default order is decided by input parameters in study config file)
         self.weighted_site_list = self.create_baseline_weighting([(site, 0) for site in site_list])
         calculated_weighted_site_list = []
+
+        # Apply all plausibility conditions (defined as as dict of functions) for each candidate site + word solution
         for site, weight in self.weighted_site_list:
             new_weight = weight
             for key in self.plausibility_conditions:
@@ -223,7 +237,11 @@ class PlausibilityMetrics:
                     self.controlling_parser_process.consume_resources('Rank solution')
                     new_weight = new_weight + self.plausibility_conditions[key]['weight']
             calculated_weighted_site_list.append((site, new_weight))
+
+        # Sort the solutions based on voting
         sorted_and_calculated_merge_sites = sorted(calculated_weighted_site_list, key=itemgetter(1))
+
+        # Eliminate priority weights, as we only need the site list
         merge_sites = [site for site, priority in sorted_and_calculated_merge_sites]
         merge_sites.reverse()
         return merge_sites

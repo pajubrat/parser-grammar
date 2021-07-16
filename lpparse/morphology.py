@@ -114,7 +114,7 @@ class Morphology:
         """
         This function generates a null C head as a response to criterial C-features (currently only in Finnish).
         The operator is assigned feature [V1] = [-EDGE:*] which prevents it from hosting anything at its edge,
-        including adjuncts. It corresponds in some way that is not currently clear to the V2 signatures
+        including adjuncts. It corresponds in some way (that is not currently clear) to the V2 signatures
         """
         m_lst = lexical_item.morphology.split('#')                      # Create morpheme list
         for i in range(0, len(m_lst)):                                  # Examine x#y pairs
@@ -129,7 +129,7 @@ class Morphology:
                 break
 
     def recognize_operator_string(self, string):
-        return {string} & {'[foc]', '[hAn]', '[pA]', '[kO]', 'C/op', '[wh]', 'wh'}
+        return {string} & {'[foc]', 'foc', '[hAn]', '[pA]', '[kO]', 'C/op', '[wh]', 'wh'}
 
     # Definition for morpheme decomposition
     def extract_morphemes(self, word):

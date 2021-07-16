@@ -456,13 +456,12 @@
 			=> 1.7.1.0
 			& Grammatical
 					
-				se mies joka nukkui lahti
-				se mies joka nukkui ihailee Merjaa
+				se nainen joka nukkui lahti
+				se nainen joka nukkui ihailee Merjaa
 			
 			=> 1.7.1.1
 			& Ungrammatical
 		
-				se mies nukkui lahti
 				joka nukkui lahti
 				joka joka nukkui lahti
 			
@@ -477,14 +476,14 @@
 			=> 1.7.2.0
 			& Grammatical
 			
-				se mies jota Merja ihaili lahti
-				se mies jota Merja ihailee ihailee Merjaa
+				se nainen jota Merja ihaili lahti
+				se nainen jota Merja ihailee ihailee Merjaa
 			
 			=> 1.7.2.1
 			& Ungrammatical
 			
-				se mies Merja ihaili lahti
-				se mies jota jota Merja ihaili lahti
+				se nainen Merja ihaili lahti
+				se nainen jota jota Merja ihaili lahti
 		
 	
 	& Lexical ambiguity (1.8)
@@ -673,13 +672,17 @@
 			mita kaupunkia kohti Seine virtaa
 			mita kaupunkia kohti virtaamalla Seine saavuttaa meren
 		
-		=> 3.2.1.1
-		& Ungrammatical
+		=> 3.2.2.0
+		& Echo questions
 		
-			which city towards does_C Seine flow'
 			kohti mita kaupunkia Seine virtaa
 			Seine virtaa kohti mita kaupunkia
 			Seine virtaa mita kaupunkia kohti
+		
+		=> 3.2.3.1
+		& Ungrammatical
+		
+			which city towards does_C Seine flow'
 			
 	& Islands (3.3)
 	
@@ -793,10 +796,10 @@
 				
 				& Single C-feature
 				
-					& Relative clauses	
-					se mies joka nukkui lahti
-					se mies jota Merja ihaili lahti
-					se mies jota ihaili Merja lahti
+					& Relative clauses (currently not functional)	
+					se nainen joka nukkui lahti
+					se nainen jota Merja ihaili lahti
+					se nainen jota ihaili Merja lahti
 				
 					& Interrogative wh
 					keta Pekka ihailee
@@ -2800,7 +2803,7 @@
 				on'#C/op Pekka myynyt omaisuuttaan
 				
 			=> 9.1.6.0
-			& X-to-C, with dormal C-feature C/fin
+			& X-to-C, with formal C-feature C/fin
 				
 				ihailee#C/fin Pekka Merjaa
 				ei#C/fin Pekka ihaile Merjaa

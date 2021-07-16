@@ -379,9 +379,9 @@ class LocalFileSystem:
     def save_grammaticality_judgment(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)
         if len(P.result_list) == 0:
-            self.grammaticality_judgments_file.write(str(count) + '. *' + sentence_string + '\n')
+            self.grammaticality_judgments_file.write(str(count) + '. *' + sentence_string + '\n\n')
         else:
-            self.grammaticality_judgments_file.write(str(count) + '.  ' + sentence_string + '\n')
+            self.grammaticality_judgments_file.write(str(count) + '.  ' + sentence_string + '\n\n')
 
     def save_resources(self, parser, count, sentence, experimental_group):
         # If this is the first sentence, we add the column line

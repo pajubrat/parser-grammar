@@ -250,7 +250,7 @@ class LF:
         """
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
-                if not h.probe(set(h.features), f[7:]):
+                if not h.probe(h.features, f[7:]):
                     log(f'{h} probing for {f[7:]} failed...')
                     self.test_problem_report.append(f'{h} probing for  {f[7:]} failed')
                     self.probe_goal_test_result = False
@@ -364,7 +364,7 @@ class LF:
         Determines whether the projection principles applied to some constituent.
 
         The projection principle applies H if and only if
-        (i) H is a DP or projects DP
+        (i) H is a DP (/phi-phrase) or projects from it
         (ii) H has not been moved elsewhere
         (iii) H is not the top node (isolated therefore)
         """
