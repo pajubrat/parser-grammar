@@ -124,10 +124,16 @@ class HeadMovement:
                 affix.remove()
             # --------------------------------------------------------------------------------#
             # Still no solution
-            if self.try_manipulate_bottom_node(node, affix, intervention_feature):
-                return
+            # Result: True = successful, False = unsuccessful
+            # Expanded_node: when D(N) is expanded, we need to target [D N] = Expanded node next, not D.
+            Result, Expanded_node = self.try_manipulate_bottom_node(node, affix, intervention_feature)
+            if Result:
+                return  # The result is legible, leave it and return
             else:
-                affix.remove()
+                affix.remove()  # The result still fails, we go for last resort with the expanded node
+                if phrase_structure == node:
+                    phrase_structure = Expanded_node
+
             self.last_resort(phrase_structure, affix)
 
     def try_manipulate_bottom_node(self, node, affix, intervention_feature):
@@ -136,15 +142,16 @@ class HeadMovement:
         It should be incorporated into the main algorithm at some point, which means that
         the algorithm cannot be exactly correct as it stands.
         """
-        # Case 1. If the bottom node is complex, it must first be reconstructed
+        expanded_node = node
+        # Case 1. If the bottom node is complex, we try to reconstruct it first
         if node.has_affix():
-            log(f'Must reconstruct {node} first...')
+            log(f'Try reconstruct {node} first...')
             self.reconstruct_head_movement(node)
+            expanded_node = node.mother
 
         # Case 2. If the bottom head is DP, we try to make it a specifier of affix
-        if 'D' in node.mother.head().features:
-            node.mother.merge_1(affix, 'right')
-
+        if 'D' in expanded_node.head().features:
+            expanded_node.merge_1(affix, 'right')
         # Case 3. For all other labels, we try solutions #1 and #2 below. The intuitive idea is that solution
         # [X Affix], X = bottom node, is usually adopted with the exception that if X has an intervention
         # feature, then the solution honors intervention and is [Affix X] instead. Affix = reconstructing affix.
@@ -156,7 +163,8 @@ class HeadMovement:
                 node.merge_1(affix, 'left')   # Solution #2 [Z(_) ...[X [Affix Y]]]
         if self.reconstruction_is_successful(affix):
             self.controlling_parser_process.consume_resources("Move Head")
-            return True
+            return True, expanded_node
+        return False, expanded_node
 
     def reconstruction_is_successful(self, affix):
         """
@@ -231,7 +239,7 @@ class HeadMovement:
         """
         Last resort solution which merges the reconstructed head locally.
         """
-        log(f'Head reconstruction of {affix} failed, merge locally as a last resort...')
+        log(f'Reconstruction of {affix} failed, use last resort...{phrase_structure}')
         phrase_structure.merge_1(affix, 'left')
         self.controlling_parser_process.consume_resources("Move Head")
 

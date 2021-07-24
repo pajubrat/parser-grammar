@@ -101,9 +101,7 @@ class LocalFileSystem:
         self.initialize_results_file()
         self.initialize_simple_results_file()
         self.initialize_resources_file()
-        self.initialize_timings_file()
         self.initialize_simple_log_file()
-        self.initialize_resource_sequence_file()
         if self.settings['datatake_images']:
             self.settings['datatake_images'] = True
             self.visualizer = Visualizer()
@@ -139,8 +137,6 @@ class LocalFileSystem:
                                  "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
                                  "resources_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resources.txt'),
                                  "simple_results_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_simple_results.txt'),
-                                 "timings_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_timings.txt'),
-                                 "resource_sequence_file": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resource_sequence.txt'),
                                  "surface_vocabulary_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_saved_vocabulary.txt'),
                                  "lexicon_file_name": self.folder['lexicon'] / 'lexicon.txt',
                                  "ug_morphemes": self.folder['lexicon'] / 'ug_morphemes.txt',
@@ -232,18 +228,8 @@ class LocalFileSystem:
         self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, encoding=self.encoding)
         self.stamp(self.simple_log_file)
 
-    def initialize_resource_sequence_file(self):
-        self.dev_log_file.write('Initializing resource sequence file...')
-        self.resource_sequence_file = open(self.external_sources['resource_sequence_file'], 'w', -1, encoding=self.encoding)
-        self.stamp(self.resource_sequence_file)
-
     def print_sentence_to_console(self, sentence_number, sentence):
         print(f'\n{sentence_number}. {sentence}', end='')
-
-    def initialize_timings_file(self):
-        self.dev_log_file.write('Initializing timings file...')
-        self.timings_file = open(self.external_sources['timings_file_name'], 'w', -1, encoding=self.encoding)
-        self.stamp(self.timings_file)
 
     def initialize_results_file(self):
         self.dev_log_file.write('Initializing results file...')
@@ -361,20 +347,10 @@ class LocalFileSystem:
         self.save_result(parser, count, sentence)
         if self.settings['datatake_resources']:
             self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
-        if self.settings['datatake_timings']:
-            self.save_timings(parser, count, sentence)
         self.print_result_to_console(parser, count, sentence)
         if self.settings['datatake_images']:
             self.save_image(parser, sentence, count)
         self.dev_log_file.write('Done.\n')
-
-    def save_timings(self, parser, count, sentence):
-        self.timings_file.write(f'{count}, {self.generate_input_sentence_string(sentence)}, ')
-        sum = 0
-        for word, time in parser.time_from_stimulus_onset_for_word:
-            self.timings_file.write(f'{word},{time},  ')
-            sum = sum + time
-        self.timings_file.write(f'= {sum}ms.\n')
 
     def save_grammaticality_judgment(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)
@@ -502,8 +478,6 @@ class LocalFileSystem:
         self.results_file.close()
         self.grammaticality_judgments_file.close()
         self.resources_file.close()
-        self.timings_file.close()
-        self.resource_sequence_file.close()
         self.logger_handle.close()
         self.dev_log_file.write('Done.\n')
 

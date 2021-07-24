@@ -124,7 +124,6 @@ class LinearPhaseParser:
         log(f'\n{self.sentence}')
         log(f'\n\n\t 1. {self.sentence}\n')
         self.local_file_system.simple_log_file.write(f'\n\n#{count}. {self.local_file_system.generate_input_sentence_string(lst)} / {self.sentence}\n')
-        self.local_file_system.resource_sequence_file.write(f'\n{count}, {self.local_file_system.generate_input_sentence_string(lst)},  ')
         if not self.local_file_system.instruction_to_ignore_from_test_corpus:
             self.parse_new_item(None, lst, 0)
         else:
