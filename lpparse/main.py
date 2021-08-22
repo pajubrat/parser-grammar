@@ -23,17 +23,19 @@ def run_study(args):
 
     # Analyze all sentences from the test corpus (either input sentence or sentences from file)
     if not sentence:
-        sentences_to_parse = [(s, e) for (s, e) in local_file_system.read_test_corpus()]
+        sentences_to_parse = [(sentence, group, part_of_conversation) for (sentence, group, part_of_conversation) in local_file_system.read_test_corpus()]
     else:
-        sentences_to_parse = [([word.strip() for word in sentence.split()], '1')]
+        sentences_to_parse = [([word.strip() for word in sentence.split()], '1', False)]
 
     sentence_number = 1
-    for sentence, experimental_group in sentences_to_parse:
+    for sentence, experimental_group, part_of_conversation in sentences_to_parse:
         if not is_comment(sentence):
             language = lang_guesser.guess_language(sentence)
             local_file_system.print_sentence_to_console(sentence_number, sentence)
             parser_for[language].parse(sentence_number, sentence)
-            local_file_system.save_output(parser_for[language], sentence_number, sentence, experimental_group)
+            local_file_system.save_output(parser_for[language], sentence_number, sentence, experimental_group, part_of_conversation)
+            if not part_of_conversation:
+                parser_for[language].narrow_semantics.global_cognition.end_conversation()
             sentence_number = sentence_number + 1
         else:
             local_file_system.parse_and_analyze_comment(sentence)

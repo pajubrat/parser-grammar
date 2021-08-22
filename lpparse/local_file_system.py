@@ -302,25 +302,32 @@ class LocalFileSystem:
         parse_list = []
         plus_sentences = []
         for line in open(self.external_sources["test_corpus_file_name"], encoding=self.encoding):
-            if line.startswith('=STOP='):
+            part_of_conversation = False            # Assume each sentence is isolated conversation
+            if line.startswith('=STOP='):           # Respond to START and STOP
                 break
-            if line.startswith('=START='):
+            if line.startswith('=START='):          # Respond to START and STOP
                 parse_list = []
                 continue
-            line = line.strip()
-            if not line or line.startswith('#'):
+            line = line.strip()                     # Remove spaces around
+            if not line or line.startswith('#'):    # Comments or empty lines are ignored
                 continue
-            if line.startswith('%'):
+            if line.startswith('%'):                # Respond to %, which selects one sentence for processing
                 parse_list = []
                 line = line.lstrip('%')
                 parse_list.append(([word.strip() for word in line.split()], experimental_group))
                 break
-            if line.startswith('+'):
+            if line.startswith('+'):                # Respond to +, which accumulates sentences
                 plus_sentences.append(([word.strip() for word in line.lstrip('+').split()], experimental_group))
-            elif line.startswith('=>'):
+            elif line.startswith('=>'):             # Respond to experimental grouping symbol
                 experimental_group = self.read_experimental_group(line)
                 continue
-            parse_list.append(([word.strip() for word in line.split()], experimental_group))
+            if line.endswith(','):                  # Respond to , which assumes this sentence is part of
+                part_of_conversation = True         # conversation with the next sentence.
+                line = line.rstrip(',')
+            if line.endswith('.'):                  # Respond to . which assumes this sentence is not part of
+                part_of_conversation = False        # conversation with the next sentence.
+                line = line.rstrip('.')             # (Redundant, added for clarity)
+            parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation))
         if plus_sentences:
             return plus_sentences
         self.dev_log_file.write(f'Found {len(parse_list)} sentences. Done.\n')
@@ -341,10 +348,10 @@ class LocalFileSystem:
         file_handle.write('@ \n')
         file_handle.write('@ \n')
 
-    def save_output(self, parser, count, sentence, experimental_group):
+    def save_output(self, parser, count, sentence, experimental_group, part_of_conversation):
         self.dev_log_file.write('Saving output into output files...')
         self.save_grammaticality_judgment(parser, count, sentence)
-        self.save_result(parser, count, sentence)
+        self.save_result(parser, count, sentence, part_of_conversation)
         if self.settings['datatake_resources']:
             self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
         self.print_result_to_console(parser, count, sentence)
@@ -374,7 +381,7 @@ class LocalFileSystem:
             self.resources_file.write(f'{parser.execution_time_results[0]}')
         self.resources_file.write('\n')
 
-    def save_result(self, P, count, sentence):
+    def save_result(self, P, count, sentence, part_of_conversation):
         sentence_string = self.generate_input_sentence_string(sentence)
         if len(P.result_list) == 0:
             self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
@@ -396,7 +403,10 @@ class LocalFileSystem:
                     self.results_file.write('\n\tResources:\n\t' + self.format_resource_output(P.resources) + '\n')
                     self.results_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation(P)}\n')
                 parse_number = parse_number + 1
+                if part_of_conversation:
+                    self.results_file.write('\tConversation continues:\n')
                 self.results_file.write('\n')
+
                 self.simple_results_file.write('\n')
 
     def format_semantic_interpretation(self, P):

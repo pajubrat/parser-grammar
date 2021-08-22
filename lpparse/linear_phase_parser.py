@@ -116,7 +116,7 @@ class LinearPhaseParser:
         self.sentence = lst
         self.start_time = process_time()
         self.initialize()
-        self.plausibility_metrics.initialize()  # Here we parametrize plausibility metrics if needed
+        self.plausibility_metrics.initialize()  # Parametrize plausibility metrics if required
         self.narrow_semantics.initialize()      # Initialize narrow semantics
         set_logging(True)
         log('\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
@@ -220,6 +220,9 @@ class LinearPhaseParser:
             return True
 
     def attach_into_phrase(self, left_branch, terminal_lexical_item):
+        """
+        Attaches an incoming lexical element into a left branch.
+        """
         log(f'\n\t\tNow exploring solution [{left_branch} + {terminal_lexical_item.get_phonological_string()}]...')
         log(f'Transferring left branch {left_branch}...')
         self.consume_resources("Merge", f'{terminal_lexical_item}')
@@ -227,7 +230,7 @@ class LinearPhaseParser:
         transferred_left_branch = self.transfer_to_LF(left_branch)
         new_constituent = transferred_left_branch + terminal_lexical_item
         set_logging(True)
-        self.narrow_semantics.compositional_semantic_update(transferred_left_branch)
+        self.narrow_semantics.compositional_semantics_update(transferred_left_branch)
         # Left branch is transferred and goes out of working memory
         self.remove_from_syntactic_working_memory(left_branch)
         log(f'Result: {new_constituent}...Done.\n')
@@ -294,8 +297,9 @@ class LinearPhaseParser:
         ps_ = self.transfer_to_LF(ps)
         log('\t\tDone.\n')
         log('\t\tLF-legibility check...')
+        self.narrow_semantics.compositional_semantics_update(ps)
 
-        if self.LF_condition_violation(ps_) or self.narrow_semantics.interpret(ps_):
+        if self.LF_condition_violation(ps_) or self.narrow_semantics.global_interpretation(ps_):
             self.add_garden_path()
             log('\n\t\tLF-legibility test failed.\n')
             log('\t\tMemory dump:\n')
@@ -309,7 +313,6 @@ class LinearPhaseParser:
         if not self.first_solution_found:
             log('\t\tWire narrow semantics...')
             self.narrow_semantics.wire_semantics(ps)
-            self.narrow_semantics.compositional_semantic_update(ps)
             log('Done.\n')
             log('\t\tComputing attitude semantics and information structure...')
             self.narrow_semantics.pragmatic_pathway.compute_speaker_attitude(ps)

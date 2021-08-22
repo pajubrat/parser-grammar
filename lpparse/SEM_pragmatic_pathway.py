@@ -64,7 +64,7 @@ class Discourse:
         if 'Bound by' not in self.narrow_semantics.get_semantic_object(idx):
             log(f'{ps.max().illustrate()} not bound by propositional scope operator. ')
             return None
-        binder_idx = self.narrow_semantics.get_referential_index_tuple(self.narrow_semantics.global_cognition.discourse_inventory[idx]['Bound by'][0])
+        binder_idx = self.narrow_semantics.get_referential_index_tuple(self.narrow_semantics.global_cognition.inventory[idx]['Bound by'][0])
         if not binder_idx:
             log('The relevant proposition not available in SEM. ')
             return None
@@ -80,8 +80,8 @@ class Discourse:
         Currently this only checks that the proposition is not a predicate, which makes the
         interpretation impossible.
         """
-        if self.narrow_semantics.discourse_inventory[binder_idx]['Semantic type']:
-            if '§Predicate' in self.narrow_semantics.discourse_inventory[binder_idx]['Semantic type']:
+        if self.narrow_semantics.inventory[binder_idx]['Semantic type']:
+            if '§Predicate' in self.narrow_semantics.inventory[binder_idx]['Semantic type']:
                log(f'Attempting to interpret discourse feature [{f}] at {ps.max().illustrate()} in connection with predicate.')
                return False
         return True
