@@ -88,7 +88,8 @@ class NarrowSemantics:
         """
         log(f'\n\t\tTransferring {ps} into the conceptual-intentional system...')
         self.reset_for_new_interpretation()
-        self._interpret(ps)
+        self.interpret_(ps)
+        self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps)
         return self.semantic_interpretation_failed
 
     def reset_for_new_interpretation(self):
@@ -111,7 +112,7 @@ class NarrowSemantics:
                                         'Information structure': {'Marked topics': None, 'Neutral gradient': None,
                                                                   'Marked focus': None}}
 
-    def _interpret(self, ps):
+    def interpret_(self, ps):
         """
         Generates a semantic interpretation for a node if primitive, otherwise calls the function recursively.
         This function is called only when processing is complete (not for each transfer object).
@@ -134,9 +135,9 @@ class NarrowSemantics:
         else:
             # Recursion
             if not ps.left_const.find_me_elsewhere:
-                self._interpret(ps.left_const)
+                self.interpret_(ps.left_const)
             if not ps.right_const.find_me_elsewhere:
-                self._interpret(ps.right_const)
+                self.interpret_(ps.right_const)
 
     def failure(self):
         """

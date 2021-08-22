@@ -14,6 +14,51 @@ class QuantifiersNumeralsDenotations:
                                   'PHI': self.criterion_phi_features,
                                   }
 
+    def reconstruct_assignments(self, ps):
+        """
+        Wrapper for the recursive assignment generation function
+        """
+        self.narrow_semantics.semantic_interpretation['Assignment structure'] = self.reconstruct_assignments_(ps)
+        print(f'{self.narrow_semantics.semantic_interpretation["Assignment structure"]}')
+
+    def reconstruct_assignments_(self, ps):
+        def get_combined_list(L1, L2):
+            # Removes empty lists
+            if L1 and L2:
+                return [L1, L2]
+            elif L1 and not L2:
+                return L1
+            elif not L1 and L2:
+                return L2
+
+        # --- main function ---#
+        L1 = None
+        L2 = None
+        if not ps.find_me_elsewhere:
+            if ps.is_complex():
+
+                # Recursion
+                L1 = self.reconstruct_assignments_(ps.left_const)
+                L2 = self.reconstruct_assignments_(ps.right_const)
+
+                # Store the combined result into the denotations field of the referential head (if any)
+                if ps.left_const.is_primitive() and self.narrow_semantics.has_referential_index(ps.left_const):
+                    idx, space = self.narrow_semantics.get_referential_index_tuple(ps.left_const)
+                    self.inventory[idx]['Denotations'] = get_combined_list(L1, L2)
+
+            # If the primitive constituent is referential, we generate assignments for it
+            else:
+                if self.narrow_semantics.has_referential_index(ps):
+                    if ps.is_left():
+                        L1 = self.generate_assignments(ps)
+                    else:
+                        L2 = self.generate_assignments(ps)
+
+        return get_combined_list(L1, L2)
+
+    def generate_assignments(self, ps):
+        return [idx for idx in self.narrow_semantics.global_cognition.discourse_inventory.keys()]
+
     def reset(self):
         """
         Discharges the discourse inventory

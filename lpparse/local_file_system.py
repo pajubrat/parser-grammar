@@ -282,7 +282,7 @@ class LocalFileSystem:
         tabs_str = '\t'*tabs
         for key in semantic_interpretation_dict:
             if isinstance(semantic_interpretation_dict[key], set) or isinstance(semantic_interpretation_dict[key], list):
-                output_str += tabs_str + key + ': ' + str(sorted(semantic_interpretation_dict[key])) + '\n'
+                output_str += tabs_str + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
             else:
                 output_str += tabs_str + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
         return output_str
@@ -314,24 +314,33 @@ class LocalFileSystem:
             if line.startswith('%'):                # Respond to %, which selects one sentence for processing
                 parse_list = []
                 line = line.lstrip('%')
-                parse_list.append(([word.strip() for word in line.split()], experimental_group))
+                line = self.clear_line_end(line)
+                parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation))
                 break
             if line.startswith('+'):                # Respond to +, which accumulates sentences
-                plus_sentences.append(([word.strip() for word in line.lstrip('+').split()], experimental_group))
+                line = self.clear_line_end(line)
+                plus_sentences.append(([word.strip() for word in line.lstrip('+').split()], experimental_group, part_of_conversation))
             elif line.startswith('=>'):             # Respond to experimental grouping symbol
                 experimental_group = self.read_experimental_group(line)
                 continue
             if line.endswith(','):                  # Respond to , which assumes this sentence is part of
                 part_of_conversation = True         # conversation with the next sentence.
-                line = line.rstrip(',')
+                line = self.clear_line_end(line)
             if line.endswith('.'):                  # Respond to . which assumes this sentence is not part of
                 part_of_conversation = False        # conversation with the next sentence.
-                line = line.rstrip('.')             # (Redundant, added for clarity)
+                line = self.clear_line_end(line)
             parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation))
         if plus_sentences:
             return plus_sentences
         self.dev_log_file.write(f'Found {len(parse_list)} sentences. Done.\n')
         return parse_list
+
+    def clear_line_end(self, line):
+        if line.endswith(','):
+            line = line.rstrip(',')
+        elif line.endswith('.'):
+            line = line.rstrip('.')
+        return line
 
     def read_experimental_group(self, line):
         line = line.strip().replace(' ', '').replace('=>', '')
