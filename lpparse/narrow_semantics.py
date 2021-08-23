@@ -87,8 +87,13 @@ class NarrowSemantics:
         a completed LF interface object, thus it corresponds to a global semantic interpretation.
         """
         log(f'\n\t\tTransferring {ps} into the conceptual-intentional system...')
+        # Reset the system for new interpretation
         self.reset_for_new_interpretation()
+
+        # Create local interpretations for lexical elements
         self.interpret_(ps)
+
+        # Create global assignments (possible denotations)
         self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps)
         return self.semantic_interpretation_failed
 
@@ -209,10 +214,10 @@ class NarrowSemantics:
         log(f'Interpreting {ps.max()}({space}) compositionally...')
 
         # Get handle to the semantic object (dictionary object)
-        semantic_object_dict = self.get_semantic_object((idx, space))
+        semantic_QND_object = self.get_semantic_object((idx, space))
 
         # Add reference field for readability reasons (not used for other purposes)
-        semantic_object_dict['Reference'] = f'{ps.max().illustrate()}'
+        semantic_QND_object['Reference'] = f'{ps.max().illustrate()}'
 
         # Determine intervention features (major category features of [ps]) which will restrict
         # the operation downstream.
@@ -225,28 +230,11 @@ class NarrowSemantics:
                 break
             # Update the semantic object by using information available at the node. This will
             # add information concerning all phrasal objects adjacent to the minimal search path.
-            semantic_object_dict.update(self.interpret_node(node, semantic_object_dict))
+            semantic_QND_object.update(self.interpret_node(node, semantic_QND_object))
         #---------------------------------------------------------------------------
 
         # Creates new object corresponding to the updated expression to the global semantic space.
-        idx = self.project_global_object_into_discourse_inventory(ps, semantic_object_dict)
-
-        # Determines the denotations set for the updated semantic object
-        self.determine_denotations_set(semantic_object_dict, idx)
-        log('Done.\n\t\t')
-
-    def determine_denotations_set(self, filter_criteria, idx):
-        """
-        Determines the denotations set for the semantic object. The denotations set contains
-        a referential index to all objects inside the global space that could be denoted by
-        this expression. The actual denotations are determined by the global cognition module. A compatible
-        object is one which does not induce any (type, value) mismatch with the semantic object.
-        """
-        log(f'Calculating denotations...')
-        # First, add the new object into the list of denotations (=the default principle)
-        filter_criteria['Denotations'] = {idx}
-        # Second, get and add all compatible semantic objects
-        filter_criteria['Denotations'].update(self.global_cognition.get_compatible_objects(filter_criteria))
+        idx = self.project_global_object_into_discourse_inventory(ps, semantic_QND_object)
 
     def project_global_object_into_discourse_inventory(self, ps, semantic_object):
         """
@@ -259,7 +247,6 @@ class NarrowSemantics:
         self.convert_phi_features_into_semantic_notions(criteria_for_new_global_object)
         idx = self.global_cognition.create_object(criteria_for_new_global_object)
         return idx
-
 
     def convert_phi_features_into_semantic_notions(self, global_object_criteria):
         """

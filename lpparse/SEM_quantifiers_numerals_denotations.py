@@ -7,7 +7,8 @@ class QuantifiersNumeralsDenotations:
     def __init__(self, narrow_semantics):
         self.narrow_semantics = narrow_semantics    # Access to narrow semantics (if needed)
         self.inventory = {}                         # Bookkeeping for fixed denotation sets
-        self.denotations_dict = {}                  # Holds temporary denotations
+        self.one_complete_assignment = {}                        # Assignment dictionary (temporary)
+        self.all_assignments = []                       # Stored and weighted assignments
 
         # All (or many) D-features are associated with a separate interpretation function
         self.criteria_function = {'D:REF:PROPER_NAME': self.criterion_proper_name,
@@ -16,54 +17,87 @@ class QuantifiersNumeralsDenotations:
 
     def reconstruct_assignments(self, ps):
         """
-        Wrapper for the recursive assignment generation function
+        Wrapper for the recursive assignment generation function.
+        1. Referential expressions are provided with denotations lists and are collected into a seed list.
+        2. The seed list is used to create a list of actual assignments.
+        3. Assignments are stored into the QND space object
         """
-        self.narrow_semantics.semantic_interpretation['Assignment structure'] = self.reconstruct_assignments_(ps)
-        print(f'{self.narrow_semantics.semantic_interpretation["Assignment structure"]}')
+        log(f'\n\t\tComputing assignments...')
+        log('Possible denotations: ')
+        referential_constituents_seed_list = self.calculate_possible_denotations_(ps)
+        log('Assignments: ')
+        self.create_assignments_from_denotations_(referential_constituents_seed_list, 0, 0)
+        self.narrow_semantics.semantic_interpretation['Assignments'] = self.all_assignments
 
-    def reconstruct_assignments_(self, ps):
-        def get_combined_list(L1, L2):
-            # Removes empty lists
-            if L1 and L2:
-                return [L1, L2]
-            elif L1 and not L2:
-                return L1
-            elif not L1 and L2:
-                return L2
-
-        # --- main function ---#
-        L1 = None
-        L2 = None
+    def calculate_possible_denotations_(self, ps):
+        """
+        Recursively associated any head with referential index with a denotation list which enumerates
+        all possible denotations for that constituent, given the current contents of the discourse inventory.
+        """
+        L1 = []
+        L2 = []
         if not ps.find_me_elsewhere:
             if ps.is_complex():
-
                 # Recursion
-                L1 = self.reconstruct_assignments_(ps.left_const)
-                L2 = self.reconstruct_assignments_(ps.right_const)
+                L1 = self.calculate_possible_denotations_(ps.left_const)
+                L2 = self.calculate_possible_denotations_(ps.right_const)
 
-                # Store the combined result into the denotations field of the referential head (if any)
-                if ps.left_const.is_primitive() and self.narrow_semantics.has_referential_index(ps.left_const):
-                    idx, space = self.narrow_semantics.get_referential_index_tuple(ps.left_const)
-                    self.inventory[idx]['Denotations'] = get_combined_list(L1, L2)
-
-            # If the primitive constituent is referential, we generate assignments for it
-            else:
+            # Primitive constituent
+            else: # If the primitive constituent is referential, we generate assignments for it
                 if self.narrow_semantics.has_referential_index(ps):
-                    if ps.is_left():
-                        L1 = self.generate_assignments(ps)
-                    else:
-                        L2 = self.generate_assignments(ps)
 
-        return get_combined_list(L1, L2)
+                    # Store the list of possible denotations
+                    idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
+                    self.inventory[idx]['Denotations'] = self.generate_assignments(ps)
+                    log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
+
+                    # Generate entry for the assignment structure dictionary, returned to caller
+                    return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
+
+        # Combine the assignment structures from left and right
+        return L1 + L2
+
+    def create_assignments_from_denotations_(self, referential_constituents_seed_list, c_index, d_index):
+        # Loop through all referential constituents in the assignment_seed
+        for c in range(c_index, len(referential_constituents_seed_list)):
+            idx, const, ps, denotations = referential_constituents_seed_list[c]
+
+            # Loop all denotations for the referential constituent
+            for d in range(d_index, len(denotations)):
+                denotation = denotations[d]
+
+                # Add the denotation to complement_assignment
+                self.one_complete_assignment[idx] = denotation
+
+                # Assignment is stored if and only if all constituents are provided denotation
+                if len(self.one_complete_assignment) == len(referential_constituents_seed_list):
+                    self.all_assignments.append(self.one_complete_assignment.copy())
+                    log(f'{self.format_assignment(self.one_complete_assignment)}')
+                self.create_assignments_from_denotations_(referential_constituents_seed_list, c + 1, d + 1)
 
     def generate_assignments(self, ps):
-        return [idx for idx in self.narrow_semantics.global_cognition.discourse_inventory.keys()]
+        """
+        Generates the denotations set for a semantic QND object
+        """
+        # Get referential index to the QND semantic object
+        idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
+
+        # Get the QND space object which determines the criteria
+        filter_criteria = self.inventory[idx]
+
+        # Get all GLOBAL discourse inventory objects which do not violate the criteria
+        filter_criteria['Denotations'] = self.narrow_semantics.global_cognition.get_compatible_objects(filter_criteria)
+
+        # Return the denotations
+        return filter_criteria['Denotations']
 
     def reset(self):
         """
         Discharges the discourse inventory
         """
         self.inventory = {}
+        self.all_assignments = []
+        self.one_complete_assignment = {}
 
     def is_D_feature(self, feature):
         """
@@ -173,3 +207,9 @@ class QuantifiersNumeralsDenotations:
             criteria['Phi-set'].add(feature)
         else:
             criteria['Phi-set'] = {feature}
+
+    def format_assignment(self, assign):
+        s = ''
+        for i, (idx, denotation) in enumerate(assign.items()):
+            s = s + self.inventory[idx]["Reference"] + '~' + denotation + ', '
+        return s

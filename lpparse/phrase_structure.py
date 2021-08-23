@@ -917,6 +917,9 @@ class PhraseStructure:
         return ps_
 
     def illustrate(self):
+        """
+        Shows the phrase structure without eliminating anything (i.e., reconstruction trace)
+        """
         if self.is_primitive():
             if not self.get_phonological_string():
                 return '?'

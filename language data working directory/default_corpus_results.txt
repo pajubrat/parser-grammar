@@ -1,0 +1,70 @@
+@  {'author': 'Pauli Brattico', 'year': 2021, 'date': 'July', 'study_id': 1, 'study_folder': 'language data working directory/', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/', 'test_corpus_file': 'default_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-08-20 20:20:09.051883
+@  Test sentences from language data working directory\default_corpus.txt.
+@  Logs into language data working directory\default_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+1. John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+	Semantics:
+	Recovery: ['Agent of v(John)', 'Patient of admire(Mary)']
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Information structure: {'Marked topics': [], 'Neutral gradient': [('1', 'QND'), ('3', 'QND')], 'Marked focus': []}
+
+	Resources:
+	Total Time:1125, Garden Paths:0, Memory Reactivation:0, Steps:7, Merge:6, Move Head:7, Move Phrase:2, 
+	A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, 
+	LF test:7, Filter solution:5, Rank solution:2, Lexical retrieval:18, Morphological decomposition:3, 
+	Mean time per word:375, Asymmetric Merge:13, Sink:4, External Tail Test:0, 
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Referring constituent: D
+			Reference: [D John]
+			Semantic space: QND
+			Semantic type: ['§Thing']
+			Operator: None
+			Phi-set: ['PHI:DET:DEF', 'PHI:GEN:M', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3']
+			Proper name: John
+			Denotations: ['2']
+			Denotation weights: {'2': 1}
+			In information structure: True
+		Object 2 ['§Thing'] in GLOBAL
+			Referring constituent: D
+			Reference: [D John]
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+			Operator: None
+			Proper name: John
+			Participant role: Third party
+		Object 3 ['§Thing'] in QND
+			Referring constituent: D
+			Reference: [D Mary]
+			Semantic space: QND
+			Semantic type: ['§Thing']
+			Operator: None
+			Phi-set: ['PHI:DET:DEF', 'PHI:GEN:F', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3']
+			Proper name: Mary
+			Denotations: ['4']
+			Denotation weights: {'4': 1}
+			In information structure: True
+		Object 4 ['§Thing'] in GLOBAL
+			Referring constituent: D
+			Reference: [D Mary]
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+			Operator: None
+			Proper name: Mary
+			Participant role: Third party
+
+

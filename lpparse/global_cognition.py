@@ -41,9 +41,9 @@ class GlobalCognition:
 
     def get_compatible_objects(self, filter_criteria):
         """
-        Returns a set of indexes in the global discourse inventory that match with the filter criteria.
+        Returns a list of indexes in the global discourse inventory that match with the filter criteria.
         """
-        idx_set = set()
+        idx_list = []
         for idx in self.discourse_inventory:
             select_this_item = True
             # Examine all fields in the object in the discourse inventory...
@@ -54,8 +54,8 @@ class GlobalCognition:
                         select_this_item = False  # The object is rejected if a mismatching (field, value) pair is found.
                         break
             if select_this_item:
-                idx_set.add(idx)
-        return idx_set
+                idx_list.append(idx)
+        return idx_list
 
     def select_cognitive_objects(self, cognitive_objects, weights, instructions, strength=1):
         """
