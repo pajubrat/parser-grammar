@@ -1,5 +1,5 @@
 @  {'author': 'Pauli Brattico', 'year': 2021, 'date': 'July', 'study_id': 1, 'study_folder': 'language data working directory/study-10-binding-theory', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-10-binding-theory', 'test_corpus_file': 'binding_theory_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2021-08-24 18:15:59.178109
+@  2021-08-24 18:15:59.179108
 @  Test sentences from language data working directory\study-10-binding-theory\binding_theory_corpus.txt.
 @  Logs into language data working directory\study-10-binding-theory\binding_theory_corpus_log.txt.
 @  Lexicon from language data working directory\lexicons\lexicon.txt.
@@ -22,15 +22,41 @@
 	Assignments: [{'[D John](1)': '2', '[D John](3)': '4'}, {'[D John](1)': '4', '[D John](3)': '4'}, {'[D John](1)': '4', '[D John](3)': '2'}, {'[D John](1)': '4', '[D John](3)': '4'}]
 
 	Discourse inventory: 
-		Object 1 in QND: [D John]
-		Object 2 in GLOBAL: [D John]
-		Object 3 in QND: [D John]
-		Object 4 in GLOBAL: [D John]
+		Object 1 ['§Thing'] in QND
+			Referring constituent: D
+			Reference: [D John]
+			Semantic space: QND
+			Semantic type: ['§Thing']
+			Operator: []
+			Phi-set: ['PHI:DET:DEF', 'PHI:GEN:M', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3']
+			Proper name: John
+			Denotations: ['2', '4']
+			In information structure: True
+		Object 2 ['§Thing'] in GLOBAL
+			Referring constituent: D
+			Reference: [D John]
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+			Operator: []
+			Proper name: John
+			Participant role: Third party
+		Object 3 ['§Thing'] in QND
+			Referring constituent: D
+			Reference: [D John]
+			Semantic space: QND
+			Semantic type: ['§Thing']
+			Operator: []
+			Phi-set: ['PHI:DET:DEF', 'PHI:GEN:M', 'PHI:HUM:HUM', 'PHI:NUM:SG', 'PHI:PER:3']
+			Proper name: John
+			Denotations: ['2', '4']
+			In information structure: True
+		Object 4 ['§Thing'] in GLOBAL
+			Referring constituent: D
+			Reference: [D John]
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+			Operator: []
+			Proper name: John
+			Participant role: Third party
 
-	Resources:
-	Total Time:1125, Garden Paths:0, Memory Reactivation:0, Steps:7, Merge:6, Move Head:7, Move Phrase:2, 
-	A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:0, Agree:2, Phi:4, Transfer:4, Item streamed into syntax:7, 
-	Feature Processing:0, Extraposition:0, Inflection:11, Failed Transfer:3, LF recovery:2, 
-	LF test:7, Filter solution:5, Rank solution:2, Lexical retrieval:18, Morphological decomposition:3, 
-	Mean time per word:375, Asymmetric Merge:13, Sink:4, External Tail Test:0, 
 

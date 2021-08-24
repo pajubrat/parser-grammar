@@ -8,7 +8,19 @@
 # d = grammaticality (0 = grammatical, 1 = ungrammatical, 2 = problem or unclear).
 
 		
-& 0 Basic construction types
+& 1 Single sentences
 
-	John admires Mary
-	Mary admires Bill
+	& 1.1 Proper names
+
+		John admires Mary
+		'Generates two assignments'
+		
+	%	John admires John
+		'Should generate four assignments'
+
+	& 1.2 Pronouns
+	
+& 2 Context generation tests
+
+	John admires Mary,
+	Bill admires John.

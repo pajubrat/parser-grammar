@@ -66,8 +66,9 @@ class QuantifiersNumeralsDenotations:
             for d in range(d_index, len(denotations)):
                 denotation = denotations[d]
 
-                # Add the denotation to complement_assignment
-                self.one_complete_assignment[idx] = denotation
+                # Add the denotation to assignment
+                key_str = self.inventory[idx]['Reference'] + '(' + idx + ')'
+                self.one_complete_assignment[key_str] = denotation
 
                 # Assignment is stored if and only if all constituents are provided denotation
                 if len(self.one_complete_assignment) == len(referential_constituents_seed_list):
@@ -208,8 +209,11 @@ class QuantifiersNumeralsDenotations:
         else:
             criteria['Phi-set'] = {feature}
 
-    def format_assignment(self, assign):
-        s = ''
-        for i, (idx, denotation) in enumerate(assign.items()):
-            s = s + self.inventory[idx]["Reference"] + '~' + denotation + ', '
+    def format_assignment(self, assignment):
+        s = '('
+        for i, (idx, denotation) in enumerate(assignment.items()):
+            s = s + assignment[idx] + '~' + denotation
+            if i < len(assignment) - 1:
+                s = s + ', '
+        s = s + ') '
         return s
