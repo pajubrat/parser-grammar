@@ -57,10 +57,10 @@ m			:: inflectional PHI:GEN:M
 f			:: inflectional PHI:GEN:F
 proper_name	:: inflectional D:REF:NAME
 
-# Structural Case
-nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL
-acc		:: inflectional ACC TAIL:v
-dat		:: inflectional DAT TAIL:v
+# Generic deficient structural cases
+nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL -FLOAT -adjoinable
+acc		:: inflectional ACC TAIL:v -FLOAT -adjoinable
+dat		:: inflectional DAT TAIL:v -FLOAT -adjoinable
 
 #Aspect markers
 asp			:: inflectional ASP:BOUNDED

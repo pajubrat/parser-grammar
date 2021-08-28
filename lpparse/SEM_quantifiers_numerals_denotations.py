@@ -9,6 +9,7 @@ class QuantifiersNumeralsDenotations:
         self.inventory = {}                         # Bookkeeping for fixed denotation sets
         self.one_complete_assignment = {}                        # Assignment dictionary (temporary)
         self.all_assignments = []                       # Stored and weighted assignments
+        self.referential_constituents_feed = []
 
         # All (or many) D-features are associated with a separate interpretation function
         self.criteria_function = {'D:REF:PROPER_NAME': self.criterion_proper_name,
@@ -18,15 +19,18 @@ class QuantifiersNumeralsDenotations:
     def reconstruct_assignments(self, ps):
         """
         Wrapper for the recursive assignment generation function.
-        1. Referential expressions are provided with denotations lists and are collected into a seed list.
-        2. The seed list is used to create a list of actual assignments.
-        3. Assignments are stored into the QND space object
+        1. Referential expressions are provided with denotations lists and are collected into a feed list.
+        2. The feed list is used to create a list of actual assignments.
+        3. Assignments are stored into the QND space object as a assignment list [A1, A2,..., An]
         """
         log(f'\n\t\tComputing assignments...')
         log('Possible denotations: ')
-        referential_constituents_seed_list = self.calculate_possible_denotations_(ps)
+        # List of referential constituents in the LF object, in a list of dicts
+        # with fields (idx, constituent name, link to const object, denotations)
+        self.referential_constituents_feed = self.calculate_possible_denotations_(ps)
         log('Assignments: ')
-        self.create_assignments_from_denotations_(referential_constituents_seed_list, 0, 0)
+        # List of all possible assignments [A1, A2, ..., An] each a dictionary {denoting const, denoted G-element}
+        self.create_assignments_from_denotations_(0, 0, {})
         self.narrow_semantics.semantic_interpretation['Assignments'] = self.all_assignments
 
     def calculate_possible_denotations_(self, ps):
@@ -50,31 +54,42 @@ class QuantifiersNumeralsDenotations:
                     idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
                     self.inventory[idx]['Denotations'] = self.generate_assignments(ps)
                     log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
-
                     # Generate entry for the assignment structure dictionary, returned to caller
                     return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
 
         # Combine the assignment structures from left and right
         return L1 + L2
 
-    def create_assignments_from_denotations_(self, referential_constituents_seed_list, c_index, d_index):
-        # Loop through all referential constituents in the assignment_seed
-        for c in range(c_index, len(referential_constituents_seed_list)):
-            idx, const, ps, denotations = referential_constituents_seed_list[c]
+    def create_assignments_from_denotations_(self, c_index, d_index, one_complete_assignment):
+        """
+        Creates recursively all possible assignments for constituents in referential_constituents_feed and their
+        possible denotations. The position in the recursion is defined by c_index (constituent) and
+        d_index (denotation for that constituent).
+        """
 
-            # Loop all denotations for the referential constituent
-            for d in range(d_index, len(denotations)):
-                denotation = denotations[d]
+        # Get all denotations for the current constituent
+        idx, const, ps, denotations = self.referential_constituents_feed[c_index]
+        denotation = denotations[d_index]
 
-                # Add the denotation to assignment
-                key_str = self.inventory[idx]['Reference'] + '(' + idx + ')'
-                self.one_complete_assignment[key_str] = denotation
+        # Store (constituent, assignment) pair into dictionary
+        key_str = self.inventory[idx]['Reference'] + '(' + idx + ')'
+        one_complete_assignment[key_str] = denotation
 
-                # Assignment is stored if and only if all constituents are provided denotation
-                if len(self.one_complete_assignment) == len(referential_constituents_seed_list):
-                    self.all_assignments.append(self.one_complete_assignment.copy())
-                    log(f'{self.format_assignment(self.one_complete_assignment)}')
-                self.create_assignments_from_denotations_(referential_constituents_seed_list, c + 1, d + 1)
+        # Store complete assignment if all constituents have been provided with assignment
+        # Add weight field which determines how likely this assignment will be
+        if len(one_complete_assignment) == len(self.referential_constituents_feed):
+            weighted_assignment = one_complete_assignment.copy()
+            weighted_assignment['weight'] = 1
+            self.all_assignments.append(weighted_assignment)
+            log(f'{self.format_assignment(weighted_assignment)}')
+
+        # Recursion
+        #   Recurse through all constituents
+        if c_index < len(self.referential_constituents_feed) - 1:
+            self.create_assignments_from_denotations_(c_index + 1, 0, one_complete_assignment.copy())
+        #   Recurse through all denotations
+        if d_index < len(denotations) - 1:
+            self.create_assignments_from_denotations_(c_index, d_index + 1, one_complete_assignment.copy())
 
     def generate_assignments(self, ps):
         """
@@ -114,7 +129,7 @@ class QuantifiersNumeralsDenotations:
         """
         return {feature for feature in ps.head().features if self.is_D_feature(feature)}
 
-    def analyse_D_feature(self, feature):
+    def open_D_feature(self, feature):
         """
         Returns the three components (d, type, value) of a D-feature, if the input
         feature is a D-feature, otherwise returns (None, None, None)
@@ -212,7 +227,9 @@ class QuantifiersNumeralsDenotations:
     def format_assignment(self, assignment):
         s = '('
         for i, (idx, denotation) in enumerate(assignment.items()):
-            s = s + assignment[idx] + '~' + denotation
+            key_str = str(idx)
+            den_str = str(denotation)
+            s = s + key_str + '~' + den_str
             if i < len(assignment) - 1:
                 s = s + ', '
         s = s + ') '
