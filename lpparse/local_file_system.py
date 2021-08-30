@@ -285,14 +285,28 @@ class LocalFileSystem:
                 i = 0
         return s
 
-    def formatted_semantics_output(self, semantic_interpretation_dict, tabs=1):
+    def formatted_semantics_output(self, semantic_interpretation_dict, parser):
         """
         Prepares the semantics dictionary for file output
         """
         output_str = ''
-        tabs_str = '\t'*tabs
+        tabs_str = '\t'
         for key in semantic_interpretation_dict:
-            output_str += tabs_str + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
+            if key == 'Assignments':
+                output_str += tabs_str + key + ': ' + str(self.illustrated(semantic_interpretation_dict[key], parser)) + '\n'
+            else:
+                output_str += tabs_str + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
+        return output_str
+
+    def illustrated(self, semantic_interpretations_list, parser):
+        output_str = ''
+        for assignment in semantic_interpretations_list:
+            output_str += '\n\t'
+            for key, value in assignment.items():
+                if key != 'weight':
+                    output_str += parser.narrow_semantics.quantifiers_numerals_denotations_module.inventory[key]['Reference'] + '(' + key + ') ~ ' + value + ', '
+                else:
+                    output_str += 'Weight ' + str(value)
         return output_str
 
     def generate_input_sentence_string(self, sentence):
@@ -331,7 +345,7 @@ class LocalFileSystem:
             elif line.startswith('=>'):             # Respond to experimental grouping symbol
                 experimental_group = self.read_experimental_group(line)
                 continue
-            if line.endswith(','):                  # Respond to , which assumes this sentence is part of
+            if line.endswith(';'):                  # Respond to , which assumes this sentence is part of
                 part_of_conversation = True         # conversation with the next sentence.
                 line = self.clear_line_end(line)
             if line.endswith('.'):                  # Respond to . which assumes this sentence is not part of
@@ -344,8 +358,8 @@ class LocalFileSystem:
         return parse_list
 
     def clear_line_end(self, line):
-        if line.endswith(','):
-            line = line.rstrip(',')
+        if line.endswith(';'):
+            line = line.rstrip(';')
         elif line.endswith('.'):
             line = line.rstrip('.')
         return line
@@ -371,7 +385,7 @@ class LocalFileSystem:
         self.save_results(parser, count, sentence, part_of_conversation)
         if self.settings['datatake_resources']:
             self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
-        self.print_result_to_console(parser, count, sentence)
+        self.print_result_to_console(parser, sentence)
         if self.settings['datatake_images']:
             self.save_image(parser, sentence, count)
         self.dev_log_file.write('Done.\n')
@@ -398,22 +412,22 @@ class LocalFileSystem:
             self.resources_file.write(f'{parser.execution_time_results[0]}')
         self.resources_file.write('\n')
 
-    def save_results(self, P, count, sentence, part_of_conversation):
+    def save_results(self, parser, count, sentence, part_of_conversation):
         """
         Records the results into several results files (results, simple results, semantics)
         """
         sentence_string = self.generate_input_sentence_string(sentence)
-        if len(P.result_list) == 0:
+        if len(parser.result_list) == 0:
             self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
             self.simple_results_file.write(str(count) + '. *' + sentence_string + '\n\n')
             self.semantics_file.write(str(count) + '. *' + sentence_string + '\n\n')
         else:
-            self.results_file.write(str(count) + '. ' + P.grammaticality_judgment() + sentence_string + '\n\n')
-            self.simple_results_file.write(str(count) + '. ' + P.grammaticality_judgment() + sentence_string + '\n\n')
-            self.semantics_file.write(str(count) + '. ' + P.grammaticality_judgment() + sentence_string + '\n\n')
-            number_of_solutions = len(P.result_list)
+            self.results_file.write(str(count) + '. ' + parser.grammaticality_judgment() + sentence_string + '\n\n')
+            self.simple_results_file.write(str(count) + '. ' + parser.grammaticality_judgment() + sentence_string + '\n\n')
+            self.semantics_file.write(str(count) + '. ' + parser.grammaticality_judgment() + sentence_string + '\n\n')
+            number_of_solutions = len(parser.result_list)
             parse_number = 1
-            for parse, semantic_interpretation in P.result_list:
+            for parse, semantic_interpretation in parser.result_list:
                 if number_of_solutions == 1:
                     self.results_file.write('\t' + f'{parse}\n')
                     self.simple_results_file.write('\t' + f'{parse}\n')
@@ -423,11 +437,11 @@ class LocalFileSystem:
                     self.simple_results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                     self.semantics_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                 if parse_number == 1:
-                    self.results_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation)))
-                    self.results_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation_simple(P)}\n')
-                    self.results_file.write('\tResources:\n\t' + self.format_resource_output(P.resources) + '\n')
-                    self.semantics_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation)))
-                    self.semantics_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation(P)}\n')
+                    self.results_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
+                    self.results_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation_simple(parser)}\n')
+                    self.results_file.write('\tResources:\n\t' + self.format_resource_output(parser.resources) + '\n')
+                    self.semantics_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
+                    self.semantics_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation(parser)}\n')
                 parse_number = parse_number + 1
                 if part_of_conversation:
                     self.results_file.write('\tConversation continues:\n')
@@ -529,7 +543,7 @@ class LocalFileSystem:
         self.logger_handle.close()
         self.dev_log_file.write('Done.\n')
 
-    def print_result_to_console(self, parser, count, sentence):
+    def print_result_to_console(self, parser, sentence):
         input_sentence_string = self.generate_input_sentence_string(sentence)
         if len(parser.result_list) > 0:
             print('\n\n\t' + parser.grammaticality_judgment() + input_sentence_string + '\n')
@@ -541,7 +555,7 @@ class LocalFileSystem:
                 else:
                     print('\t' + chr(96 + parse_number) + f'. {parse}')
                 if self.settings['console_output'] == 'Full':
-                    print('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation)))
+                    print('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
                     if parse_number == 1:
                         print('\n\t' + self.format_resource_output(parser.resources) + f'\n\tExecution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
                 parse_number = parse_number + 1

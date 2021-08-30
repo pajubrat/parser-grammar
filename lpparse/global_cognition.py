@@ -4,7 +4,7 @@ class GlobalCognition:
     def __init__(self):
         self.discourse_inventory = {}
         self.index_counter = 1
-        self.excluded_fields = {'Denotations', 'Semantic space', 'Denotation weights'}
+        self.excluded_fields = {'Denotations', 'Semantic space', 'Denotation weights', 'Reference'}
 
     def end_conversation(self):
         self.discourse_inventory = {}
@@ -42,6 +42,8 @@ class GlobalCognition:
     def get_compatible_objects(self, filter_criteria):
         """
         Returns a list of indexes in the global discourse inventory that match with the filter criteria.
+        Those semantic objects are rejected which induce a type:value mismatch. Thus, missing type does
+        not constitute rejection.
         """
         idx_list = []
         for idx in self.discourse_inventory:
@@ -52,45 +54,24 @@ class GlobalCognition:
                 if field not in self.excluded_fields:
                     if field in filter_criteria and filter_criteria[field] != self.discourse_inventory[idx][field]:
                         select_this_item = False  # The object is rejected if a mismatching (field, value) pair is found.
+                        print(f'{idx}, {field}')
                         break
             if select_this_item:
                 idx_list.append(idx)
         return idx_list
 
-    def select_cognitive_objects(self, cognitive_objects, weights, instructions, strength=1):
+    def general_evaluation(self, mental_object, rule, reference_set):
         """
-        NOT USED IN THE PRESENT IMPLEMENTATION
+        Evaluates whether [mental object] satisfies rules contained in [instructions].
 
-        Selects (ranks) cognitive objects in the set {cognitive_objects} on the basis of input instructions.
-        This is a global cognitive operation that is used to weight and rank alternatives.
+        [Instructions] contains a [rule] and a possible [reference set] of other objects, which together determine
+        whether the mental object satisfies [instructions].
 
-        The set {objects} contains a list of cognitive objects, in this case they are indexes to objects
-        in the global discourse inventory (thus, cognitive objects in current discourse).
-
-        The dictionary {weights} contains the weights of cognitive objects in {objects}. This will be
-        modified by the function.
-
-        Instructions contains a tuple (rule, reference_set) which tells how the weights should be
-        modified. The reference_set contains cognitive objects (possibly overlapping with {objects}) and
-        rule is either NEW or OLD, with the following interpretations:
-
-        NEW against the reference set: weights of objects that are also in the reference set are lowered
-        OLD against the reference set: weights of objects that are also in the reference set are increased
-
-        Strength gives the strength of the modification (1 = full)
+        [Mental object] is a idx handle to a global object. [Reference set] contains a set of idx handles to global
+        objects.
         """
 
-        rule, reference_set = instructions
-
-        for obj in reference_set:
-            if rule == 'NEW':
-                if obj in cognitive_objects:
-                    weights[obj] = weights[obj] * (1 - strength)
-            elif rule == 'OLD':
-                if obj in cognitive_objects:
-                    if strength == 1:
-                        weights[obj] = 1
-                    else:
-                        weights[obj] = weights[obj] * (1 + strength)
-        return weights
-
+        if 'NEW' in rule:
+            return not {mental_object} & reference_set
+        if 'OLD' in rule:
+            return {mental_object} & reference_set

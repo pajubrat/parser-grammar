@@ -446,6 +446,12 @@ class NarrowSemantics:
                 return 'GLOBAL'
         return ''
 
+    def get_referential_index(self, ps):
+        # Get all index tuples from the head
+        idx_tuples_list = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
+        return idx_tuples_list[0][0]
+
+
     def get_referential_index_tuple(self, ps):
         """
         Returns a referential index tuple (idx, space) of some phrase pointing to objects

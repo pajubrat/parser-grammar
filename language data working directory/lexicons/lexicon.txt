@@ -623,9 +623,11 @@ you			:: you-#D#sg#2p#def#hum#pronoun1
 you-		:: PF:you LF:you N PHI_N LANG:EN
 he			:: he-#D#sg#3p#def#hum#m#pronoun1
 him			:: he-#D#sg#3p#def#hum#m#acc#pronoun1
+himself		:: he-#D#sg#3p#def#hum#m#acc#reflexive
 he-			:: PF:he LF:he N PHI_N LANG:EN
 she			:: she-#D#sg#3p#def#hum#f#pronoun1
 her			:: she-#D#sg#3p#def#hum#f#acc#pronoun1
+herself		:: she-#D#sg#3p#def#hum#f#acc#reflexive
 she-		:: PF:she LF:she N PHI_N LANG:EN
 we			:: we-#D#pl#1p#def#hum#pronoun1
 us			:: we-#D#pl#1p#def#hum#acc#pronoun1
@@ -637,7 +639,8 @@ them		:: they-#D#pl#3p#def#hum#acc#pronoun1
 they- 		:: PF:they LF:they N PHI_N LANG:EN
 it			:: it-#D#sg#3p#def#pronoun1 LANG:EN
 it-			:: PF:it LF:it/that D LANG:EN
-pronoun1	:: D:NEW:FIN
+pronoun1	:: inflectional D:NEW:FIN
+reflexive	:: inflectional D:OLD:D
 
 # Italian
 io			:: io-#D#sg#1p#def#hum

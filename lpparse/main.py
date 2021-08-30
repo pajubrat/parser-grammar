@@ -33,7 +33,11 @@ def run_study(args):
             language = lang_guesser.guess_language(sentence)
             local_file_system.print_sentence_to_console(sentence_number, sentence)
             parser_for[language].parse(sentence_number, sentence)
-            local_file_system.save_output(parser_for[language], sentence_number, sentence, experimental_group, part_of_conversation)
+            local_file_system.save_output(parser_for[language],
+                                          sentence_number,
+                                          sentence,
+                                          experimental_group,
+                                          part_of_conversation)
             if not part_of_conversation:
                 parser_for[language].narrow_semantics.global_cognition.end_conversation()
             sentence_number = sentence_number + 1

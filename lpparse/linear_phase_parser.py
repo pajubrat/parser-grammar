@@ -346,7 +346,7 @@ class LinearPhaseParser:
         self.result_list.append([ps, self.narrow_semantics.semantic_interpretation])
         self.spellout_result_list.append(spellout_structure)
         if not self.first_solution_found:
-            log(f'\n\t\tSemantic interpretation:\n{self.local_file_system.formatted_semantics_output(self.narrow_semantics.semantic_interpretation, 2)}')
+            log(f'\n\t\tSemantic interpretation:\n{self.local_file_system.formatted_semantics_output(self.narrow_semantics.semantic_interpretation, self)}')
         self.local_file_system.log_results(self, ps)
         self.first_solution_found = True
 

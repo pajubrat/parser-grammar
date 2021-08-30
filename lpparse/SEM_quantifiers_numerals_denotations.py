@@ -7,9 +7,9 @@ class QuantifiersNumeralsDenotations:
     def __init__(self, narrow_semantics):
         self.narrow_semantics = narrow_semantics    # Access to narrow semantics (if needed)
         self.inventory = {}                         # Bookkeeping for fixed denotation sets
-        self.one_complete_assignment = {}                        # Assignment dictionary (temporary)
-        self.all_assignments = []                       # Stored and weighted assignments
-        self.referential_constituents_feed = []
+        self.one_complete_assignment = {}           # Assignment dictionary (temporary)
+        self.all_assignments = []                   # Stored and weighted assignments
+        self.referential_constituents_feed = []     # list of tuples [(idx, illustrated, ps, denotations)...]
 
         # All (or many) D-features are associated with a separate interpretation function
         self.criteria_function = {'D:REF:PROPER_NAME': self.criterion_proper_name,
@@ -18,53 +18,75 @@ class QuantifiersNumeralsDenotations:
 
     def reconstruct_assignments(self, ps):
         """
-        Wrapper for the recursive assignment generation function.
-        1. Referential expressions are provided with denotations lists and are collected into a feed list.
-        2. The feed list is used to create a list of actual assignments.
-        3. Assignments are stored into the QND space object as a assignment list [A1, A2,..., An]
+        Wrapper for recursive assignment.
+
+        1.  Referential expressions are provided with possible denotation lists, and then the expressions are collected into
+            a feed list called [referential_constituents_feed]. These processes keep within the QND space.
+            For example, pronoun "he" may be associated with possible denotations 'John', 'Paul' and 'Simon', depending
+            on what is currently in the global discourse inventory.
+        2.  The feed is used to create a list of actual assignments, which are stored into semantics results field.
+            An actual assignment is a pairing between QND-handle and a global discourse handle, for example,
+            some particular interpretation for pronoun "he", say 'Paul'.
         """
         log(f'\n\t\tComputing assignments...')
         log('Possible denotations: ')
-        # List of referential constituents in the LF object, in a list of dicts
-        # with fields (idx, constituent name, link to const object, denotations)
+
+        # List of referential constituents in the current LF object,
+        # in a list of tuples (idx, constituent name, link to const object, denotations).
+        # This could be considered an auxiliary structure, the information is available in the original
+        # LF object as well.
         self.referential_constituents_feed = self.calculate_possible_denotations_(ps)
+
+        # Creates recursively the list of all possible assignments, each a dictionary {denoting const: denoted G-element...}
+        # The assignments are stored in to [self.all_assignments]
         log('Assignments: ')
-        # List of all possible assignments [A1, A2, ..., An] each a dictionary {denoting const, denoted G-element}
         self.create_assignments_from_denotations_(0, 0, {})
+
+        # Report results.
         self.narrow_semantics.semantic_interpretation['Assignments'] = self.all_assignments
 
     def calculate_possible_denotations_(self, ps):
         """
-        Recursively associated any head with referential index with a denotation list which enumerates
+        Recursively associate any head (with referential index) with a denotation list which enumerates
         all possible denotations for that constituent, given the current contents of the discourse inventory.
+        For example, "he" ~ ['John', 'Paul', 'Simon']. This information is stored into the QND-entry.
         """
+
+        # These lists are used to compose the referential constituent feed returned by this function
         L1 = []
         L2 = []
+
+        # Copies are ignored
         if not ps.find_me_elsewhere:
             if ps.is_complex():
-                # Recursion
+
+                # Recursion, referential constituent feed composition
                 L1 = self.calculate_possible_denotations_(ps.left_const)
                 L2 = self.calculate_possible_denotations_(ps.right_const)
 
             # Primitive constituent
-            else: # If the primitive constituent is referential, we generate assignments for it
+            else: # If the constituent is referential, we generate assignments for it
                 if self.narrow_semantics.has_referential_index(ps):
 
-                    # Store the list of possible denotations
-                    idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
-                    self.inventory[idx]['Denotations'] = self.generate_assignments(ps)
+                    # Store the list of possible denotations into the QND entry
+                    idx = self.narrow_semantics.get_referential_index(ps)
+                    self.inventory[idx]['Denotations'] = self.generate_all_possible_assignments(ps)
                     log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
-                    # Generate entry for the assignment structure dictionary, returned to caller
+
+                    # Generate entry for the referential constituent feed list, returned to caller
                     return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
 
-        # Combine the assignment structures from left and right
+        # Merge the lists for the construction of the referential constituent feed
         return L1 + L2
 
     def create_assignments_from_denotations_(self, c_index, d_index, one_complete_assignment):
         """
         Creates recursively all possible assignments for constituents in referential_constituents_feed and their
         possible denotations. The position in the recursion is defined by c_index (constituent) and
-        d_index (denotation for that constituent).
+        d_index (denotation for that constituent). For example, if we have "he admirer her", here we generate
+        all possible assignments, e.g. {"he": 'Paul', "her": Mary}, {"he": 'Paul', "her": Paula}, etc.
+
+        Assignments are put into a list [self.all_assignments] of dicts of the form {expression_idx: denotation_idx...}.
         """
 
         # Get all denotations for the current constituent
@@ -72,16 +94,12 @@ class QuantifiersNumeralsDenotations:
         denotation = denotations[d_index]
 
         # Store (constituent, assignment) pair into dictionary
-        key_str = self.inventory[idx]['Reference'] + '(' + idx + ')'
-        one_complete_assignment[key_str] = denotation
+        one_complete_assignment[idx] = denotation
 
         # Store complete assignment if all constituents have been provided with assignment
         # Add weight field which determines how likely this assignment will be
         if len(one_complete_assignment) == len(self.referential_constituents_feed):
-            weighted_assignment = one_complete_assignment.copy()
-            weighted_assignment['weight'] = 1
-            self.all_assignments.append(weighted_assignment)
-            log(f'{self.format_assignment(weighted_assignment)}')
+            self.all_assignments.append(self.calculate_assignment_weight(one_complete_assignment))
 
         # Recursion
         #   Recurse through all constituents
@@ -91,21 +109,82 @@ class QuantifiersNumeralsDenotations:
         if d_index < len(denotations) - 1:
             self.create_assignments_from_denotations_(c_index, d_index + 1, one_complete_assignment.copy())
 
-    def generate_assignments(self, ps):
+    def calculate_assignment_weight(self, complete_assignment):
         """
-        Generates the denotations set for a semantic QND object
+        Calculates grammatical weight for complete assignment, on the basis of grammatical properties and features.
+        For example, assignment "John_1 admires he_1" will be ruled out. Pragmatic weighting will be provided
+        for the output of this function (not implemented).
         """
-        # Get referential index to the QND semantic object
-        idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
+        weighted_assignment = complete_assignment.copy()
+        weighted_assignment['weight'] = 1
+
+        # Examine every expression in the constituent feed
+        for expression in self.referential_constituents_feed:
+            if not self.Binding_Theory(expression, complete_assignment):
+                weighted_assignment['weight'] = 0
+                break
+
+        log(f'{self.format_assignment(weighted_assignment)}')
+        return weighted_assignment
+
+    def Binding_Theory(self, expression, complete_assignment):
+        """
+        Applies binding theory.
+
+        Binding theory is interpreted as a mechanism where semantic assignment is affected by grammaticalized
+        instructions (linguistic features, in traditional terminology) to the global cognitive selection mechanism
+        that handles such operations more generally. Linguistic input constitutes a way to instruct and direct
+        these mechanisms.
+        """
+
+        # Referential index, name, constituent pointer and denotations of the expression (from constituent feed)
+        idx, name, ps, denotations = expression
+
+        # Examine all D-features
+        for feature in list(self.get_D_features(ps)):
+            D, rule, intervention_feature = self.open_D_feature(feature)
+
+            # React only to NEW and OLD features (current implementation)
+            if rule == 'NEW' or rule == 'OLD':
+
+                # Compute reference set, which is the set of global object indexes that are visible for
+                # expression, inside constituent vector limited by intervention feature.
+                # For example, the reference set for X is {1, 2} for "John_1 gave Mary_2 his(X) address",
+                # where the indexes are global discourse inventory objects under assignment.
+                reference_set = self.get_reference_set(ps, intervention_feature, complete_assignment)
+                print(f'{ps.max().illustrate()}, {reference_set}')
+
+                # Inquire whether the object denoted under assignment [complete_assignment[idx]] satisfies
+                # instructions contained in [rule] and [reference set]. This implements the interface to the
+                # global cognitive operation.
+                if not self.narrow_semantics.global_cognition.general_evaluation(complete_assignment[idx], rule, reference_set):
+                    # If not, then we return False, which tells the caller that this assignment does not
+                    # satisfy a D-feature
+                    return False
+
+        return True
+
+    def get_reference_set(self, ps, intervention_feature, complete_assignment):
+        """
+        Returns the reference set for [ps] under assignment, as limited by constituent vector and intervention feature.
+        The reference set for X contains global discourse inventory objects "upward visible" from the point of view of X.
+        For example, in sentence "John_1 admires her(X)", X sees 'John' (as a global object in the discourse inventory).
+        The intervention feature is used to cut upward visibility, for example, at finite boundaries.
+        """
+        return {complete_assignment[self.narrow_semantics.get_referential_index(head)]
+                for head in ps.constituent_vector(intervention_feature)
+                if self.narrow_semantics.has_referential_index(head)}
+
+    def generate_all_possible_assignments(self, ps):
+        """
+        Generates the denotations set for semantic QND object linked with [ps]
+        """
 
         # Get the QND space object which determines the criteria
-        filter_criteria = self.inventory[idx]
+        filter_criteria = self.inventory[self.narrow_semantics.get_referential_index(ps)]
 
-        # Get all GLOBAL discourse inventory objects which do not violate the criteria
-        filter_criteria['Denotations'] = self.narrow_semantics.global_cognition.get_compatible_objects(filter_criteria)
-
-        # Return the denotations
-        return filter_criteria['Denotations']
+        # Return all GLOBAL discourse inventory objects which do not violate the criteria
+        return self.narrow_semantics.global_cognition.get_compatible_objects(filter_criteria)
 
     def reset(self):
         """
@@ -120,7 +199,10 @@ class QuantifiersNumeralsDenotations:
         Recognizes D-features. A D-feature is a feature type that is diverted to this module. It can be one of
         two types, [D:...] or [PHI:...]
         """
-        if feature.split(':')[0] == 'D' or feature.split(':')[0] == 'PHI':
+        feature_list = feature.split(':')
+        if feature_list[0] == 'D' and len(feature_list) == 3:
+            return True
+        if feature_list[0] == 'PHI':
             return True
 
     def get_D_features(self, ps):
@@ -134,11 +216,9 @@ class QuantifiersNumeralsDenotations:
         Returns the three components (d, type, value) of a D-feature, if the input
         feature is a D-feature, otherwise returns (None, None, None)
         """
-        if not self.is_Dfeature(feature):
+        if not self.is_D_feature(feature):
             return None, None, None
         components = feature.split(':')
-        if len(components) != 3:
-            return None, None, None
         return components[0], components[1], components[2]
 
     def recognize(self, head):
@@ -156,15 +236,20 @@ class QuantifiersNumeralsDenotations:
         This function will create a dictionary holding the denotations for the expression [ps] inside the QND space.
         """
 
-        # Create object to QND space
+        # 1. Create object to QND space
+        # 1.1. Create index
         idx = str(self.narrow_semantics.global_cognition.consume_index())
+
+        # 1.1. Create the entry by combining default criteria and properties of the input constituent [ps].
+        # The latter involves a process in which grammaticalized D-features (e.g., phi-features) are translated into
+        # semantic criteria.
         self.inventory[idx] = self.apply_criteria(self.default_criteria(ps), ps)
         log(f'Denotation for {ps} was created into QND space...')
 
     def apply_criteria(self, criteria, ps):
         """
-        Examines all D-features in the head and transforms them into criteria (fields in the QND inventory entry),
-        then adds them into input parameter dict [criteria].
+        Examines all D-features in the head [ps] and translates them into criteria (fields in the QND inventory entry),
+        then adds them into input parameter dict [criteria] that will be returned
         """
         log(f'Applying semantic criteria...')
         for feature in list(self.get_D_features(ps)):
@@ -180,7 +265,8 @@ class QuantifiersNumeralsDenotations:
 
     def default_criteria(self, ps):
         """
-        Definition for default criteria applied to all objects in the QND space
+        Definition for default criteria applied to all objects in the QND space. Some of these fields exist
+        for readability only.
         """
         return {'Referring constituent': f'{ps}',
                       'Reference': f'{ps.illustrate()}',
@@ -204,6 +290,10 @@ class QuantifiersNumeralsDenotations:
     def update_discourse_inventory_compositionally(self, idx, criteria):
         self.inventory[idx].update(criteria)
 
+
+    #
+    # Criteria functions which translate grammatical features into QND semantic properties
+    #
     def criterion_proper_name(self, criteria, ps, feature):
         """
         Criterion function for proper names, which adds the proper name into the QND space inventory entry.

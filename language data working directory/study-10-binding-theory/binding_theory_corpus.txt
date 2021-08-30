@@ -15,12 +15,18 @@
 		John admires Mary
 		'Generates two assignments'
 		
-	%	John admires John
+		John admires John
 		'Should generate four assignments'
 
-	& 1.2 Pronouns
+	& 1.2 Regular (type 1) pronouns
+	
+		John admires him
+	
+	& 1.3 Reflexive pronouns
+	
+	%	John admires himself
 	
 & 2 Context generation tests
 
-	John admires Mary,
+	John admires Mary;
 	Bill admires John.

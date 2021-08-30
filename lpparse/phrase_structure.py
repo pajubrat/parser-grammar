@@ -216,14 +216,21 @@ class PhraseStructure:
                             ps_ = ps_.right_const           # [X Y] = Y
             iterator_ = iterator_ + 1
 
-    def upstream_search(self):
+    def upstream_search(self, intervention_feature=None):
         """
         Defines an upstream search from a head which is an ordered list of constituents that dominate the head.
+        Search is terminated by the intervention feature
         """
+        node = self
         path = []
-        while self.mother:
-            path.append(self.mother)
-            self = self.mother
+        while node.mother:
+            path.append(node.mother)
+            node = node.mother
+
+            # Intervention condition
+            if node.is_complex() and node.left_const.is_primitive() and node.left_const != self and {intervention_feature} & node.left_const.features:
+                break
+
         return path
 
     def in_scope_of(self, feature_set):
@@ -506,6 +513,9 @@ class PhraseStructure:
         return [self] + [node.left_const for node in self.upstream_search() if
                          node.left_const and node.left_const.is_primitive() and node.left_const != self]
 
+    def constituent_vector(self, intervention_feature=None):
+        return [node.left_const.head() for node in self.upstream_search(intervention_feature) if node.head() != self]
+
     # Definition for probe-goal dependency
     def probe(self, feature, G):
         if self.sister():
@@ -522,7 +532,7 @@ class PhraseStructure:
     # Definition for path visibility
     def inside_path(self):
         """
-        A node X is inside path that goes through node N if and only if X is primitive or primitive left constituent.
+        A node X is inside path that goes through node N if and only if X is primitive or primitive head of left constituent.
         """
         if self.is_primitive():
             return self
