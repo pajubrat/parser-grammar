@@ -13,18 +13,28 @@
 	& 1.1 Proper names
 
 		John admires Mary
-		'Generates two assignments'
-		
 		John admires John
-		'Should generate four assignments'
 
 	& 1.2 Regular (type 1) pronouns
 	
+		& 1.2.1 Basic tests
+	
 		John admires him
+	
+		& 1.2.2 Gender mismatches
+		
+	%	John admires herself
 	
 	& 1.3 Reflexive pronouns
 	
-	%	John admires himself
+		John admires himself
+	
+
+& 2	Condition B
+
+	& 2.1 Pronouns inside an embedde context
+	
+		John said that Mary admires him
 	
 & 2 Context generation tests
 

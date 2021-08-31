@@ -26,23 +26,24 @@ class QuantifiersNumeralsDenotations:
             on what is currently in the global discourse inventory.
         2.  The feed is used to create a list of actual assignments, which are stored into semantics results field.
             An actual assignment is a pairing between QND-handle and a global discourse handle, for example,
-            some particular interpretation for pronoun "he", say 'Paul'.
+            some particular interpretation for pronoun "he", say 'Paul'. Complete assignment contains this information
+            for each referential expression in an expression.
         """
         log(f'\n\t\tComputing assignments...')
-        log('Possible denotations: ')
 
-        # List of referential constituents in the current LF object,
+        # Feed is list of referential constituents in the current LF object,
         # in a list of tuples (idx, constituent name, link to const object, denotations).
         # This could be considered an auxiliary structure, the information is available in the original
         # LF object as well.
+        log('Possible denotations: ')
         self.referential_constituents_feed = self.calculate_possible_denotations_(ps)
 
-        # Creates recursively the list of all possible assignments, each a dictionary {denoting const: denoted G-element...}
+        # Creates the list of all possible assignments, each a dictionary {denoting const idx: denoted G-element idx...}
         # The assignments are stored in to [self.all_assignments]
         log('Assignments: ')
         self.create_assignments_from_denotations_(0, 0, {})
 
-        # Report results.
+        # Report results
         self.narrow_semantics.semantic_interpretation['Assignments'] = self.all_assignments
 
     def calculate_possible_denotations_(self, ps):
@@ -67,14 +68,15 @@ class QuantifiersNumeralsDenotations:
             # Primitive constituent
             else: # If the constituent is referential, we generate assignments for it
                 if self.narrow_semantics.has_referential_index(ps):
+                    idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
+                    if space == 'QND':
 
-                    # Store the list of possible denotations into the QND entry
-                    idx = self.narrow_semantics.get_referential_index(ps)
-                    self.inventory[idx]['Denotations'] = self.generate_all_possible_assignments(ps)
-                    log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
+                        # Store the list of possible denotations into the QND entry
+                        self.inventory[idx]['Denotations'] = self.generate_all_possible_assignments(ps)
+                        log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
 
-                    # Generate entry for the referential constituent feed list, returned to caller
-                    return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
+                        # Generate entry for the referential constituent feed list, returned to caller
+                        return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
 
         # Merge the lists for the construction of the referential constituent feed
         return L1 + L2
@@ -99,13 +101,15 @@ class QuantifiersNumeralsDenotations:
         # Store complete assignment if all constituents have been provided with assignment
         # Add weight field which determines how likely this assignment will be
         if len(one_complete_assignment) == len(self.referential_constituents_feed):
-            self.all_assignments.append(self.calculate_assignment_weight(one_complete_assignment))
+            weighted_assignment = self.calculate_assignment_weight(one_complete_assignment)
+            if weighted_assignment:
+                self.all_assignments.append(weighted_assignment)
 
         # Recursion
-        #   Recurse through all constituents
+        # Recurse through all constituents
         if c_index < len(self.referential_constituents_feed) - 1:
             self.create_assignments_from_denotations_(c_index + 1, 0, one_complete_assignment.copy())
-        #   Recurse through all denotations
+        # Recurse through all denotations
         if d_index < len(denotations) - 1:
             self.create_assignments_from_denotations_(c_index, d_index + 1, one_complete_assignment.copy())
 
@@ -121,8 +125,8 @@ class QuantifiersNumeralsDenotations:
         # Examine every expression in the constituent feed
         for expression in self.referential_constituents_feed:
             if not self.Binding_Theory(expression, complete_assignment):
-                weighted_assignment['weight'] = 0
-                break
+                log(f'Assignment {complete_assignment} failed. ')
+                return None
 
         log(f'{self.format_assignment(weighted_assignment)}')
         return weighted_assignment
@@ -152,7 +156,6 @@ class QuantifiersNumeralsDenotations:
                 # For example, the reference set for X is {1, 2} for "John_1 gave Mary_2 his(X) address",
                 # where the indexes are global discourse inventory objects under assignment.
                 reference_set = self.get_reference_set(ps, intervention_feature, complete_assignment)
-                print(f'{ps.max().illustrate()}, {reference_set}')
 
                 # Inquire whether the object denoted under assignment [complete_assignment[idx]] satisfies
                 # instructions contained in [rule] and [reference set]. This implements the interface to the
@@ -290,6 +293,68 @@ class QuantifiersNumeralsDenotations:
     def update_discourse_inventory_compositionally(self, idx, criteria):
         self.inventory[idx].update(criteria)
 
+    def interpret_phi_features(self, phi_set):
+        """
+        Interprets phi-feature set into semantic fields (dict)
+        """
+
+        def match(set1, set2):
+            return set2 == set1 & set2
+
+        semantic_fields = {}
+
+        # Person and number
+        if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:1'}):
+            semantic_fields['Participant role'] = 'Speaker'
+        if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:2'}):
+            semantic_fields['Participant role'] = 'Hearer'
+        if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:1'}):
+            semantic_fields['Participant role'] = 'Speaker and others'
+        if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:2'}):
+            semantic_fields['Participant role'] = 'Hearer and others'
+        if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:3'}):
+            semantic_fields['Participant role'] = 'Third party'
+        if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:3'}):
+            semantic_fields['Participant role'] = 'Third party and others'
+
+        # Gender
+        if match(phi_set, {'PHI:GEN:M'}):
+            semantic_fields['Gender'] = 'M'
+        if match(phi_set, {'PHI:GEN:F'}):
+            semantic_fields['Gender'] = 'F'
+        if match(phi_set, {'PHI:GEN:N'}):
+            semantic_fields['Gender'] = 'N'
+
+        return semantic_fields
+
+    def reconstruct_phi_features(self, global_object):
+
+        def match(set1, set2):
+            return set2 == set1 & set2
+
+        # Person and number
+        if match(global_object['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:1'}):
+            global_object['Participant role'] = 'Speaker'
+        if match(global_object['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:2'}):
+            global_object['Participant role'] = 'Hearer'
+        if match(global_object['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:1'}):
+            global_object['Participant role'] = 'Speaker + others'
+        if match(global_object['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:2'}):
+            global_object['Participant role'] = 'Hearer + others'
+        if match(global_object['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:3'}):
+            global_object['Participant role'] = 'Third party'
+        if match(global_object['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:3'}):
+            global_object['Participant role'] = 'Third party + others'
+
+        # Gender
+        if match(global_object['Phi-set'], {'PHI:GEN:M'}):
+            global_object['Gender'] = 'M'
+        if match(global_object['Phi-set'], {'PHI:GEN:F'}):
+            global_object['Gender'] = 'F'
+        if match(global_object['Phi-set'], {'PHI:GEN:N'}):
+            global_object['Gender'] = 'N'
+
+        del global_object['Phi-set']
 
     #
     # Criteria functions which translate grammatical features into QND semantic properties
@@ -308,11 +373,12 @@ class QuantifiersNumeralsDenotations:
         """
         Criterion function for phi-features, which adds the phi-features into the QND space inventory entry
         """
-        log(f'{feature}, ')
         if 'Phi-set' in criteria:
             criteria['Phi-set'].add(feature)
         else:
             criteria['Phi-set'] = {feature}
+
+        criteria.update(self.interpret_phi_features(criteria['Phi-set']))
 
     def format_assignment(self, assignment):
         s = '('

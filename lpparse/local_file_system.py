@@ -392,10 +392,22 @@ class LocalFileSystem:
 
     def save_grammaticality_judgment(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)
-        if len(P.result_list) == 0:
-            self.grammaticality_judgments_file.write(str(count) + '. *' + sentence_string + '\n\n')
-        else:
-            self.grammaticality_judgments_file.write(str(count) + '.  ' + sentence_string + '\n\n')
+        self.grammaticality_judgments_file.write(str(count) + '. ' + self.judgment_marker(P) + sentence_string + '\n\n')
+
+    def judgment_marker(self, parser):
+
+        # If there were no parsing solutions, the sentence is judged ungrammatical
+        if len(parser.result_list) == 0:
+            return '*'
+
+        # If there were no assignments, the sentence is judged as uninterpretable
+        # (In this version assignments with weight 0 are removed. If we want to preserve them, then
+        # the test below must be rewritten to test that there are some assignments with w > 0 and it will be slower.
+        # Note that assignments with weight 0 can still be found from the log file.)
+        if len(parser.result_list[0][1]['Assignments']) == 0:
+            return '$'
+        return ' '
+
 
     def save_resources(self, parser, count, sentence, experimental_group):
         # If this is the first sentence, we add the column line
@@ -422,9 +434,9 @@ class LocalFileSystem:
             self.simple_results_file.write(str(count) + '. *' + sentence_string + '\n\n')
             self.semantics_file.write(str(count) + '. *' + sentence_string + '\n\n')
         else:
-            self.results_file.write(str(count) + '. ' + parser.grammaticality_judgment() + sentence_string + '\n\n')
-            self.simple_results_file.write(str(count) + '. ' + parser.grammaticality_judgment() + sentence_string + '\n\n')
-            self.semantics_file.write(str(count) + '. ' + parser.grammaticality_judgment() + sentence_string + '\n\n')
+            self.results_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
+            self.simple_results_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
+            self.semantics_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
             number_of_solutions = len(parser.result_list)
             parse_number = 1
             for parse, semantic_interpretation in parser.result_list:
@@ -454,7 +466,7 @@ class LocalFileSystem:
         output_str = '\n'
         if len(P.narrow_semantics.all_inventories()) > 0:
             for semantic_object, data_dict in sorted(P.narrow_semantics.all_inventories().items()):
-                output_str += '\t\tObject ' + semantic_object
+                output_str += '\tObject ' + semantic_object
                 if 'Semantic space' in data_dict:
                     output_str += ' in ' + data_dict['Semantic space'] + ': '
                 if 'Reference' in data_dict:
@@ -546,7 +558,7 @@ class LocalFileSystem:
     def print_result_to_console(self, parser, sentence):
         input_sentence_string = self.generate_input_sentence_string(sentence)
         if len(parser.result_list) > 0:
-            print('\n\n\t' + parser.grammaticality_judgment() + input_sentence_string + '\n')
+            print('\n\n\t' + self.judgment_marker(parser) + input_sentence_string + '\n')
             number_of_solutions = len(parser.result_list)
             parse_number = 1
             for parse, semantic_interpretation in parser.result_list:
@@ -556,23 +568,12 @@ class LocalFileSystem:
                     print('\t' + chr(96 + parse_number) + f'. {parse}')
                 if self.settings['console_output'] == 'Full':
                     print('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
+                    print(f'\tDiscourse inventory: {self.format_semantic_interpretation_simple(parser)}')
                     if parse_number == 1:
                         print('\n\t' + self.format_resource_output(parser.resources) + f'\n\tExecution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
                 parse_number = parse_number + 1
         else:
             print(f'({parser.resources["Garden Paths"]["n"]}gp/{parser.resources["Merge"]["n"]}m/{process_time()-parser.start_time}s)')
-
-    def log_results(self, parser, ps_):
-        ps_.tidy_names(1)
-        log_result(ps_)
-        log('\n\n')
-        log('\t\tLexical features:\n')
-        log(show_primitive_constituents(ps_))
-        if not parser.first_solution_found:
-            log('\n\t\tSemantic bookkeeping:')
-            log(f'\t\t{self.format_semantic_interpretation(parser)}\n')
-            log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
-        log('\n\tChecking if the sentence is ambiguous...\n')
 
     def configure_logging(self):
         handler = logging.FileHandler(self.external_sources["log_file_name"], 'w', 'utf-8')

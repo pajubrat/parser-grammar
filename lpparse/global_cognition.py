@@ -48,10 +48,13 @@ class GlobalCognition:
         idx_list = []
         for idx in self.discourse_inventory:
             select_this_item = True
+
             # Examine all fields in the object in the discourse inventory...
             for field in self.discourse_inventory[idx]:
+
                 # ...with the exception of the excluded fields
                 if field not in self.excluded_fields:
+
                     if field in filter_criteria and filter_criteria[field] != self.discourse_inventory[idx][field]:
                         select_this_item = False  # The object is rejected if a mismatching (field, value) pair is found.
                         print(f'{idx}, {field}')

@@ -226,7 +226,6 @@ class PhraseStructure:
         while node.mother:
             path.append(node.mother)
             node = node.mother
-
             # Intervention condition
             if node.is_complex() and node.left_const.is_primitive() and node.left_const != self and {intervention_feature} & node.left_const.features:
                 break

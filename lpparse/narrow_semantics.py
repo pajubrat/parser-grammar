@@ -95,6 +95,7 @@ class NarrowSemantics:
 
         # Create global assignments (possible denotations)
         self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps)
+
         return self.semantic_interpretation_failed
 
     def reset_for_new_interpretation(self):
@@ -213,7 +214,7 @@ class NarrowSemantics:
         idx, space = self.get_referential_index_tuple(ps)
         log(f'Interpreting {ps.max()}({space}) compositionally...')
 
-        # Get handle to the semantic object (dictionary object)
+        # Get handle to the semantic QND object (dictionary object)
         semantic_QND_object = self.get_semantic_object((idx, space))
 
         # Add reference field for readability reasons (not used for other purposes)
@@ -234,46 +235,22 @@ class NarrowSemantics:
         #---------------------------------------------------------------------------
 
         # Creates new object corresponding to the updated expression to the global semantic space.
-        idx = self.project_global_object_into_discourse_inventory(ps, semantic_QND_object)
+        self.project_global_object_into_discourse_inventory(ps, semantic_QND_object)
 
-    def project_global_object_into_discourse_inventory(self, ps, semantic_object):
+    def project_global_object_into_discourse_inventory(self, ps, semantic_QND_object):
         """
         Projects an object to the global semantic space by using default criteria and criteria from the
         input parameter [semantic object]. Criteria are fields in the semantic object.
         """
         log(f'Creating global inventory object...')
         criteria_for_new_global_object = self.default_criteria(ps)
-        criteria_for_new_global_object.update(semantic_object)
-        self.convert_phi_features_into_semantic_notions(criteria_for_new_global_object)
+        criteria_for_new_global_object.update(semantic_QND_object)
+        criteria_for_new_global_object.pop('Phi-set', None)
         idx = self.global_cognition.create_object(criteria_for_new_global_object)
+        # Interpret phi-features
+        # Transfers phi-features of global object into semantic fields
+
         return idx
-
-    def convert_phi_features_into_semantic_notions(self, global_object_criteria):
-        """
-        Converts grammaticalized phi-features into semantic criteria understood by global cognition.
-        The function is currently implemented as a simple table lookup to make it readable.
-        This is an approximation for testing purposes.
-        """
-        if 'Phi-set' in global_object_criteria:
-            if self.feature_match(global_object_criteria['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:1'}):
-                global_object_criteria['Participant role'] = 'Speaker'
-            if self.feature_match(global_object_criteria['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:2'}):
-                global_object_criteria['Participant role'] = 'Hearer'
-            if self.feature_match(global_object_criteria['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:1'}):
-                global_object_criteria['Participant role'] = 'Speaker + others'
-            if self.feature_match(global_object_criteria['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:2'}):
-                global_object_criteria['Participant role'] = 'Hearer + others'
-            if self.feature_match(global_object_criteria['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:3'}):
-                global_object_criteria['Participant role'] = 'Third party'
-            if self.feature_match(global_object_criteria['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:3'}):
-                global_object_criteria['Participant role'] = 'Third party + others'
-            del global_object_criteria['Phi-set']
-
-    def feature_match(self, set1, set2):
-        """
-        Tests whether features in set2 are inside sets1
-        """
-        return set2 == set1 & set2
 
     def termination_condition(self, node, intervention_feature_set, space, ps):
         """

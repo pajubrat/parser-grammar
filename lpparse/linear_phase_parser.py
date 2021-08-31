@@ -298,7 +298,6 @@ class LinearPhaseParser:
         log('\t\tDone.\n')
         log('\t\tLF-legibility check...')
         self.narrow_semantics.compositional_semantics_update(ps)
-
         if self.LF_condition_violation(ps_) or self.narrow_semantics.global_interpretation(ps_):
             self.add_garden_path()
             log('\n\t\tLF-legibility test failed.\n')
@@ -310,6 +309,8 @@ class LinearPhaseParser:
         log('Done.\n')
         print('X', end='', flush=True)
         self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} <= accepted')
+        if len(self.narrow_semantics.semantic_interpretation['Assignments']) == 0:
+            log('\t\t!! Sentence was judged uninterpretable due to lack of legitimate assignments.\n')
         if not self.first_solution_found:
             log('\t\tWire narrow semantics...')
             self.narrow_semantics.wire_semantics(ps)
@@ -324,7 +325,7 @@ class LinearPhaseParser:
         if self.only_first_solution:
             self.exit = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))
-        self.report_solution(ps_, spellout_structure)
+        self.store_solution(ps_, spellout_structure)
         self.first_solution_found = True
 
     def count_words(self, sentence):
@@ -342,12 +343,20 @@ class LinearPhaseParser:
         log('\n\t------------------------------------------------------------------------------------------------------------------------------------------------\n')
         log(f'\tTrying spellout structure  ' + ps.illustrate() + '\n')
 
-    def report_solution(self, ps, spellout_structure):
+    def store_solution(self, ps, spellout_structure):
         self.result_list.append([ps, self.narrow_semantics.semantic_interpretation])
         self.spellout_result_list.append(spellout_structure)
         if not self.first_solution_found:
-            log(f'\n\t\tSemantic interpretation:\n{self.local_file_system.formatted_semantics_output(self.narrow_semantics.semantic_interpretation, self)}')
-        self.local_file_system.log_results(self, ps)
+            log(f'\n\tSemantic interpretation:\n{self.local_file_system.formatted_semantics_output(self.narrow_semantics.semantic_interpretation, self)}')
+        ps.tidy_names(1)
+        log('\n\n')
+        log('\t\tLexical features:\n')
+        log(show_primitive_constituents(ps))
+        if not self.first_solution_found:
+            log('\n\t\tSemantic bookkeeping:')
+            log(f'\t\t{self.local_file_system.format_semantic_interpretation(self)}\n')
+            log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        log('\n\tChecking if the sentence is ambiguous...\n')
         self.first_solution_found = True
 
     def surface_condition_violation(self, ps):
