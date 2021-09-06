@@ -29,6 +29,15 @@ class QuantifiersNumeralsDenotations:
             some particular interpretation for pronoun "he", say 'Paul'. Complete assignment contains this information
             for each referential expression in an expression.
         """
+
+        # We do not compute assignments for secondary solutions, because they will potentially
+        # generate new confusing objects into the QND/GLOBAL spaces, breaking the conversation
+        # mechanism which presupposes disambiguation.
+        if self.narrow_semantics.controlling_parsing_process.first_solution_found:
+            log('\n\t\tAssignments are not computed for secondary solutions.')
+            self.narrow_semantics.semantic_interpretation['Assignments'] = []
+            return
+
         log(f'\n\t\tComputing assignments...')
 
         # Feed is list of referential constituents in the current LF object,
@@ -60,21 +69,18 @@ class QuantifiersNumeralsDenotations:
         # Copies are ignored
         if not ps.find_me_elsewhere:
             if ps.is_complex():
-
                 # Recursion, referential constituent feed composition
                 L1 = self.calculate_possible_denotations_(ps.left_const)
                 L2 = self.calculate_possible_denotations_(ps.right_const)
 
             # Primitive constituent
-            else: # If the constituent is referential, we generate assignments for it
+            else: # If the constituent is referential and in the QND space, we generate assignments for it
                 if self.narrow_semantics.has_referential_index(ps):
                     idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
                     if space == 'QND':
-
                         # Store the list of possible denotations into the QND entry
                         self.inventory[idx]['Denotations'] = self.generate_all_possible_assignments(ps)
                         log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
-
                         # Generate entry for the referential constituent feed list, returned to caller
                         return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
 
@@ -101,9 +107,7 @@ class QuantifiersNumeralsDenotations:
         # Store complete assignment if all constituents have been provided with assignment
         # Add weight field which determines how likely this assignment will be
         if len(one_complete_assignment) == len(self.referential_constituents_feed):
-            weighted_assignment = self.calculate_assignment_weight(one_complete_assignment)
-            if weighted_assignment:
-                self.all_assignments.append(weighted_assignment)
+            self.all_assignments.append(self.calculate_assignment_weight(one_complete_assignment))
 
         # Recursion
         # Recurse through all constituents
@@ -126,7 +130,7 @@ class QuantifiersNumeralsDenotations:
         for expression in self.referential_constituents_feed:
             if not self.Binding_Theory(expression, complete_assignment):
                 log(f'Assignment {complete_assignment} failed. ')
-                return None
+                weighted_assignment['weight'] = 0
 
         log(f'{self.format_assignment(weighted_assignment)}')
         return weighted_assignment
@@ -149,12 +153,13 @@ class QuantifiersNumeralsDenotations:
             D, rule, intervention_feature = self.open_D_feature(feature)
 
             # React only to NEW and OLD features (current implementation)
-            if rule == 'NEW' or rule == 'OLD':
+            if {rule} & {'NEW', 'OLD'}:
 
                 # Compute reference set, which is the set of global object indexes that are visible for
                 # expression, inside constituent vector limited by intervention feature.
                 # For example, the reference set for X is {1, 2} for "John_1 gave Mary_2 his(X) address",
-                # where the indexes are global discourse inventory objects under assignment.
+                # where the indexes are global discourse inventory objects under assignment. Only expressions
+                # denoting into the QND space are considered
                 reference_set = self.get_reference_set(ps, intervention_feature, complete_assignment)
 
                 # Inquire whether the object denoted under assignment [complete_assignment[idx]] satisfies
@@ -164,7 +169,6 @@ class QuantifiersNumeralsDenotations:
                     # If not, then we return False, which tells the caller that this assignment does not
                     # satisfy a D-feature
                     return False
-
         return True
 
     def get_reference_set(self, ps, intervention_feature, complete_assignment):
@@ -172,11 +176,12 @@ class QuantifiersNumeralsDenotations:
         Returns the reference set for [ps] under assignment, as limited by constituent vector and intervention feature.
         The reference set for X contains global discourse inventory objects "upward visible" from the point of view of X.
         For example, in sentence "John_1 admires her(X)", X sees 'John' (as a global object in the discourse inventory).
-        The intervention feature is used to cut upward visibility, for example, at finite boundaries.
+        The intervention feature cuts upward visibility, for example, at finite boundaries. Only objects
+        from the QND space are considered potential constituents.
         """
         return {complete_assignment[self.narrow_semantics.get_referential_index(head)]
                 for head in ps.constituent_vector(intervention_feature)
-                if self.narrow_semantics.has_referential_index(head)}
+                if self.narrow_semantics.has_referential_index(head) and self.narrow_semantics.is_in_QND_space(head)}
 
     def generate_all_possible_assignments(self, ps):
         """

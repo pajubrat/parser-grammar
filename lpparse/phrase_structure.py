@@ -219,7 +219,7 @@ class PhraseStructure:
     def upstream_search(self, intervention_feature=None):
         """
         Defines an upstream search from a head which is an ordered list of constituents that dominate the head.
-        Search is terminated by the intervention feature
+        Search is terminated by the intervention feature. Head itself is not included.
         """
         node = self
         path = []
@@ -513,7 +513,12 @@ class PhraseStructure:
                          node.left_const and node.left_const.is_primitive() and node.left_const != self]
 
     def constituent_vector(self, intervention_feature=None):
-        return [node.left_const.head() for node in self.upstream_search(intervention_feature) if node.head() != self]
+        """
+        Returns the constituent vector for constituent. Notice that both the constituent itself and all leftover
+        copies are ignored by this function.
+        """
+        return [node.left_const.head() for node in self.upstream_search(intervention_feature)
+                if node.left_const.head() != self and not node.left_const.find_me_elsewhere]
 
     # Definition for probe-goal dependency
     def probe(self, feature, G):

@@ -18,7 +18,7 @@ cau		:: v PF:Cau LF:v/Cause
 INF			:: INF PF:INF LF:INF
 prtcpl		:: INF T T/prt PF:T/prt LF:T/prt
 # English
-TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf !COMP:V -COMP:T/fin -SPEC:v -VAL ?ARG adjoinable
+TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf -COMP:T/fin -SPEC:v -VAL ?ARG adjoinable
 # Finnish infinitivals
 A/inf		:: INF A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:Neg/fin ?ARG -VAL
 ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* -SPEC:T/fin VAL -adjoinable 
@@ -55,7 +55,7 @@ hum 		:: inflectional PHI:HUM:HUM
 nonhum 		:: inflectional PHI:HUM:NONHUM
 m			:: inflectional PHI:GEN:M
 f			:: inflectional PHI:GEN:F
-proper_name	:: inflectional D:REF:NAME
+proper_name	:: inflectional D:REF:NAME D:NEW:$X$
 
 # Generic deficient structural cases
 nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL -FLOAT -adjoinable
@@ -79,3 +79,7 @@ pol		:: inflectional OP:POL DIS:POL
 C/op	:: inflectional OP:C/OP DIS:C/OP
 d/rel   :: inflectional OP:REL OP:_
 Q		:: inflectional OP OP:WH OP:Q DIS:WH
+
+# Miscellanneus items
+# Possessive, as in John's, but status unclear
+poss	:: inflectional POSS

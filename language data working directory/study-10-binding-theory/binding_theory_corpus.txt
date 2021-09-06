@@ -1,42 +1,154 @@
-# Binding theory corpus, August 2021, Pauli Brattico.
-# 
-# Experimental categories are marked with '=>' and the format is 'a.b.c.d...', where a, b, c, d... are integers referring to the categories.
-# Currently we have a.b.c.d with
-# a = construction type (highest syntactic classification),
-# b = construction subtype 
-# c = construction subsubtype
-# d = grammaticality (0 = grammatical, 1 = ungrammatical, 2 = problem or unclear).
+# Binding theory corpus, September 2021, Pauli Brattico
+# Condition A. An anaphor must be locally bound.
+# Condition B. A pronoun must not be locally bound.
+# Condition C. An R-expression can not be bound.
 
+	
+& 1 Proper names
+
+	& 1.1 Grammatical, assignment possible
+	
+		John sleeps
+		Mary sleeps
 		
-& 1 Single sentences
-
-	& 1.1 Proper names
-
 		John admires Mary
+		Mary admires John
 		John admires John
-
-	& 1.2 Regular (type 1) pronouns
-	
-		& 1.2.1 Basic tests
-	
-		John admires him
-	
-		& 1.2.2 Gender mismatches
+		Mary admires Mary
 		
-	%	John admires herself
+	& 1.2 Proper names inside embedded that-context
 	
-	& 1.3 Reflexive pronouns
+		John said that Mary admires Bill
+	
+	& 1.3 Proper names inside embedded infinitival
+	
+		John wants Mary to_inf admire' Bill
+
+	& 1.3 Condition C
+
+		he admires John
+		she admires John
+		
+		he admires Mary
+		she admires Mary
+		
+		he said that John admires Mary
+		he wants John to_inf admire' Mary
+
+& 2 Regular (type 1) pronouns
+
+	& 2.1 Pronouns and proper names (grammatical, Condition B)
+		
+		John admires him
+		John admires her
+		he admires Mary
+		she admires John
+
+	& 2.2 Only pronouns (grammatical, Condition B)
+
+		he admires him
+		she admires her
+		he admires her
+		she admires him
+	
+	& 2.3 *Ungrammatical, wrong case forms (OVS)
+	
+		him admires he
+		him admires she
+		him admires him
+		him admires her
+		her admires he
+		her admires she
+		her admires him
+		her admires her
+	
+	& 2.4 Pronouns inside that-clauses (Condition B)
+	
+		John said that Mary admires Bill
+		John said that Mary admires him
+		John said that he admires Mary
+		he said that John admires Mary
+	
+	& 2.5 Pronouns inside infinitivals
+				
+		John wants Mary to_inf admire' him
+		Mary wants John to_inf admire' her
+		
+		John wants John to_inf admire' him
+		Mary wants Mary to_inf admire' her
+		
+& 3 Reflexive pronouns (Condition A)
+
+	& 3.1 Grammatical, assignment possible
 	
 		John admires himself
+		Mary admires herself
+		
+		he admires himself
+		she admires herself
 	
-
-& 2	Condition B
-
-	& 2.1 Pronouns inside an embedde context
+	& 3.2 *Ungrammatical, gender mismatch, assignment not possible
 	
-		John said that Mary admires him
+		John admires herself
+		Mary admires himself
+		
+		he admires herself
+		she admires himself
+		
+	& 3.3 *Ungrammatical, subject reflexives, assignment not possible
 	
-& 2 Context generation tests
+		himself admires John
+		himself admires Mary
+		himself admires he	
+		himself admires him
+		himself admires she
+		himself admires her
 
-	John admires Mary;
-	Bill admires John.
+		herself admires John
+		herself admires Mary
+		herself admires he	
+		herself admires him
+		herself admires she
+		herself admires her
+	
+	& 3.4 C-command condition
+	
+		& 3.4.1 Grammatical, assignment John ~ he possible
+
+			John='s sister admires him
+		
+		& 3.4.2 Ungrammatical, assignment John ~ himself not possible
+		
+			John='s sister admires himself
+	
+	& 3.4. Reflexives and control
+	
+		& 3.4.1 Local binding inside infinitival
+		
+			John wants Mary to_inf admire' herself
+			
+		& 3.4.2 *Ungrammatical, nonlocal binding out of infinitival
+		
+			John wants Mary to_inf admire' himself
+	
+		& 3.4.3 Binding from infinitival into main clause subject
+		
+			& 3.4.3.1 Grammatical
+			
+				John wants to_inf admire' himself
+				he wants to_inf admire' himself
+				
+				Mary wants to_inf admire' herself
+				she wants to_inf admire' herself
+		
+			& 3.4.3.2 *Ungrammatical, gender mismatch
+	
+				John wants to_inf admire' herself
+				he wants to_inf admire' herself
+	
+& 4. Texts (narrations, conversations, contexts)
+
+	& 4.1 Basic text mechanisms
+	
+		John admires Mary;
+		Bill admires John.

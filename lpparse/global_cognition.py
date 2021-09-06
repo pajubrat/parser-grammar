@@ -54,11 +54,10 @@ class GlobalCognition:
 
                 # ...with the exception of the excluded fields
                 if field not in self.excluded_fields:
-
                     if field in filter_criteria and filter_criteria[field] != self.discourse_inventory[idx][field]:
                         select_this_item = False  # The object is rejected if a mismatching (field, value) pair is found.
-                        print(f'{idx}, {field}')
                         break
+
             if select_this_item:
                 idx_list.append(idx)
         return idx_list
@@ -76,5 +75,6 @@ class GlobalCognition:
 
         if 'NEW' in rule:
             return not {mental_object} & reference_set
+
         if 'OLD' in rule:
             return {mental_object} & reference_set

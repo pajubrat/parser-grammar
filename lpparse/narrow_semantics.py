@@ -79,7 +79,8 @@ class NarrowSemantics:
                                         'Operator bindings': [],
                                         'Semantic space': '',
                                         'Speaker attitude': [],
-                                        'Information structure': {}}
+                                        'Information structure': {},
+                                        'Assignments': []}
 
     def global_interpretation(self, ps):
         """
@@ -214,11 +215,11 @@ class NarrowSemantics:
         idx, space = self.get_referential_index_tuple(ps)
         log(f'Interpreting {ps.max()}({space}) compositionally...')
 
-        # Get handle to the semantic QND object (dictionary object)
-        semantic_QND_object = self.get_semantic_object((idx, space))
+        # Get handle to the semantic object (dictionary object)
+        semantic_object = self.get_semantic_object((idx, space))
 
         # Add reference field for readability reasons (not used for other purposes)
-        semantic_QND_object['Reference'] = f'{ps.max().illustrate()}'
+        semantic_object['Reference'] = f'{ps.max().illustrate()}'
 
         # Determine intervention features (major category features of [ps]) which will restrict
         # the operation downstream.
@@ -231,24 +232,24 @@ class NarrowSemantics:
                 break
             # Update the semantic object by using information available at the node. This will
             # add information concerning all phrasal objects adjacent to the minimal search path.
-            semantic_QND_object.update(self.interpret_node(node, semantic_QND_object))
+            semantic_object.update(self.interpret_node(node, semantic_object))
         #---------------------------------------------------------------------------
 
-        # Creates new object corresponding to the updated expression to the global semantic space.
-        self.project_global_object_into_discourse_inventory(ps, semantic_QND_object)
+        # Creates new object corresponding to the updated expression to the global semantic space if
+        # the semantic object is not already a global object.
+        if space != 'GLOBAL':
+            self.project_global_object_into_discourse_inventory(ps, semantic_object)
 
-    def project_global_object_into_discourse_inventory(self, ps, semantic_QND_object):
+    def project_global_object_into_discourse_inventory(self, ps, semantic_object):
         """
         Projects an object to the global semantic space by using default criteria and criteria from the
         input parameter [semantic object]. Criteria are fields in the semantic object.
         """
         log(f'Creating global inventory object...')
         criteria_for_new_global_object = self.default_criteria(ps)
-        criteria_for_new_global_object.update(semantic_QND_object)
+        criteria_for_new_global_object.update(semantic_object)
         criteria_for_new_global_object.pop('Phi-set', None)
         idx = self.global_cognition.create_object(criteria_for_new_global_object)
-        # Interpret phi-features
-        # Transfers phi-features of global object into semantic fields
 
         return idx
 
@@ -422,6 +423,10 @@ class NarrowSemantics:
             else:
                 return 'GLOBAL'
         return ''
+
+    def is_in_QND_space(self, ps):
+        idx, space = self.get_referential_index_tuple(ps)
+        return space == 'QND'
 
     def get_referential_index(self, ps):
         # Get all index tuples from the head

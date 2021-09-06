@@ -404,7 +404,7 @@ class LocalFileSystem:
         # (In this version assignments with weight 0 are removed. If we want to preserve them, then
         # the test below must be rewritten to test that there are some assignments with w > 0 and it will be slower.
         # Note that assignments with weight 0 can still be found from the log file.)
-        if len(parser.result_list[0][1]['Assignments']) == 0:
+        if not {assignment['weight'] for assignment in parser.result_list[0][1]['Assignments'] if assignment['weight'] > 0}:
             return '$'
         return ' '
 
