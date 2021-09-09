@@ -339,18 +339,18 @@ class LocalFileSystem:
                 line = self.clear_line_end(line)
                 parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation))
                 break
+            if line.endswith(';'):                  # Respond to ; which assumes this sentence is part of
+                part_of_conversation = True         # conversation with the next sentence.
+                line = self.clear_line_end(line)
+            if line.endswith('.'):                  # Respond to . which assumes this sentence is not part of
+                part_of_conversation = False        # conversation with the next sentence.
+                line = self.clear_line_end(line)
             if line.startswith('+'):                # Respond to +, which accumulates sentences
                 line = self.clear_line_end(line)
                 plus_sentences.append(([word.strip() for word in line.lstrip('+').split()], experimental_group, part_of_conversation))
             elif line.startswith('=>'):             # Respond to experimental grouping symbol
                 experimental_group = self.read_experimental_group(line)
                 continue
-            if line.endswith(';'):                  # Respond to , which assumes this sentence is part of
-                part_of_conversation = True         # conversation with the next sentence.
-                line = self.clear_line_end(line)
-            if line.endswith('.'):                  # Respond to . which assumes this sentence is not part of
-                part_of_conversation = False        # conversation with the next sentence.
-                line = self.clear_line_end(line)
             parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation))
         if plus_sentences:
             return plus_sentences

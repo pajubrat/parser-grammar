@@ -323,7 +323,7 @@ class LF:
 
         (i) If the DP is contained inside a projection from a head that assigns a thematic role to it;
         if not, then we accept the configuration still if and only if
-        (ii) the DP is adjoinable and can be interpreted as nonreferential (DP adverbs);
+        (ii) the DP is adjoinable and can be interpreted as non-referential (DP adverbs);
         (iii) its thematic role can be identified by agreement (DP argument is adjunct);
         (iv) its thematic role can be identified by tailing (not yet implemented).
 
@@ -381,7 +381,7 @@ class LF:
         X assigns a thematic role to HP (DP) if and only if
         (i) H selects DP as its complement; OR
         (ii) DP constitutes a licensed specifier of HP and (ii-a) H is not an EPP head, (ii-b) H has ARG, (ii-c) assigns theta role
-        (ii-c) H's thematic role is not assignment to some other constituent.
+        (ii-c) H's thematic role is not assigned to some other constituent.
         """
         # Condition (i)
         if h.is_selected():

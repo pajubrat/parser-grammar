@@ -12,7 +12,7 @@ a0		:: A PF:A LF:A
 n		:: N n PF:n LF:n
 impass	:: v ARG PF:impass LF:impass 
 cau		:: v PF:Cau LF:v/Cause
-φ		:: φ PF:φ LF:φ
+φ		:: φ PF:φ LF:φ VAL ARG INF
 
 # Infinitivals
 INF			:: INF PF:INF LF:INF
@@ -56,6 +56,8 @@ nonhum 		:: inflectional PHI:HUM:NONHUM
 m			:: inflectional PHI:GEN:M
 f			:: inflectional PHI:GEN:F
 proper_name	:: inflectional D:REF:NAME D:NEW:$X$
+pronoun1	:: inflectional D:NEW:D
+reflexive	:: inflectional D:OLD:D
 
 # Generic deficient structural cases
 nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL -FLOAT -adjoinable

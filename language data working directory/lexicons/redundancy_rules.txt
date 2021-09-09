@@ -16,14 +16,14 @@ V   	:: ARG -VAL ASP -SPEC:T/fin -SPEC:FORCE SPEC:ADV -COMP:N -COMP:V -COMP:v SP
 P   	:: ARG -VAL !COMP:* COMP:φ -COMP:N -COMP:ADV -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:ADV -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:INF -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 ADV 	:: -SPEC:N -SPEC:FORCE -SPEC:Neg/fin -SPEC:T/fin adjoinable
 A 		:: COMP:0 TAIL:φ -SPEC:A -SPEC:φ
-INF		:: TAM !COMP:* COMP:v COMP:V -COMP:T/fin !PROBE:V -COMP:FORCE -COMP:C/fin -SPEC:T/fin -SPEC:V
+INF		:: TAM !COMP:* COMP:v COMP:V -COMP:T/fin -COMP:FORCE -COMP:C/fin -SPEC:T/fin -SPEC:V
 n		:: φ VAL ARG INF !COMP:* COMP:0 COMP:V COMP:v !SPEC:* !SPEC:φ
 0		:: SPEC:φ 2SPEC
 NUM		:: φ COMP:φ COMP:N COMP:n -COMP:D SPEC:* -COMP:QN
 OP		:: -COMP:OP
 DET		:: φ COMP:φ -COMP:DET 
 QN		:: φ COMP:φ COMP:N COMP:NUM
-φ		:: COMP:N -SPEC:T COMP:D/rel
+φ		:: COMP:N -SPEC:T COMP:D/rel SPEC:*
 
 # infinitivals
 MA/lla	::	!COMP:V adjoinable

@@ -179,6 +179,7 @@ class QuantifiersNumeralsDenotations:
         The intervention feature cuts upward visibility, for example, at finite boundaries. Only objects
         from the QND space are considered potential constituents.
         """
+
         return {complete_assignment[self.narrow_semantics.get_referential_index(head)]
                 for head in ps.constituent_vector(intervention_feature)
                 if self.narrow_semantics.has_referential_index(head) and self.narrow_semantics.is_in_QND_space(head)}

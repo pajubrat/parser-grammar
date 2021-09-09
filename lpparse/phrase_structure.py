@@ -227,7 +227,10 @@ class PhraseStructure:
             path.append(node.mother)
             node = node.mother
             # Intervention condition
-            if node.is_complex() and node.left_const.is_primitive() and node.left_const != self and {intervention_feature} & node.left_const.features:
+            if node.is_complex() \
+                    and node.left_const.head() != self \
+                    and {intervention_feature} & node.left_const.head().features \
+                    and not node.left_const.find_me_elsewhere:
                 break
 
         return path
