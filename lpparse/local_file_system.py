@@ -465,7 +465,7 @@ class LocalFileSystem:
 
         output_str = '\n'
         if len(P.narrow_semantics.all_inventories()) > 0:
-            for semantic_object, data_dict in sorted(P.narrow_semantics.all_inventories().items()):
+            for semantic_object, data_dict in self.create_inventory_sorting(P.narrow_semantics.all_inventories().items()):
                 output_str += '\tObject ' + semantic_object
                 if 'Semantic space' in data_dict:
                     output_str += ' in ' + data_dict['Semantic space'] + ': '
@@ -482,7 +482,7 @@ class LocalFileSystem:
 
         output_str = '\n'
         if len(P.narrow_semantics.all_inventories()) > 0:
-            for semantic_object, data_dict in sorted(P.narrow_semantics.all_inventories().items()):
+            for semantic_object, data_dict in self.create_inventory_sorting(P.narrow_semantics.all_inventories().items()):
                 output_str += '\t\tObject ' + semantic_object
                 if 'Semantic type' in data_dict:
                     output_str += ' ' + str(sorted(data_dict['Semantic type']))
@@ -498,6 +498,13 @@ class LocalFileSystem:
                         else:
                             output_str += '\t\t\t' + item + ': ' + f'{value}' + '\n'
             return output_str
+
+    def create_inventory_sorting(list, to_be_sorted_dict):
+        lst = [(semantic_object, data_dict) for semantic_object, data_dict in to_be_sorted_dict]
+        lst_GLOBAL = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'GLOBAL']
+        lst_QND = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'QND']
+        lst_PE = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'PE']
+        return lst_QND + lst_PE + lst_GLOBAL
 
     def save_image(self, P, sentence, count):
         """

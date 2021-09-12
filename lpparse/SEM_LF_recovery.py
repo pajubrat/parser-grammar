@@ -20,6 +20,9 @@ def residuum_identity(F, G):
     return F[:len(G[:-1])] == G[:-1]
 
 class LF_Recovery:
+    """
+    Recovery links predicates with arguments.
+    """
     def __init__(self, controlling_parsing_process):
         self.controlling_parsing_process = controlling_parsing_process
         self.LF_recovery_results = set()
@@ -35,7 +38,9 @@ class LF_Recovery:
             log(f'\"{head.illustrate()}\" with {sorted(unvalued)} was associated at LF with ')
             list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
+                # This data structure will hold the results, which will be stored into semantic interpretation
                 self.LF_recovery_result = self.interpret_antecedent(head, list_of_antecedents[0])
+                self.controlling_parsing_process.narrow_semantics.predicates_events_module.link_predicate_to_argument(head, list_of_antecedents)
             else:
                 self.LF_recovery_result = f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')'
             self.report_to_log(head, list_of_antecedents, unvalued)

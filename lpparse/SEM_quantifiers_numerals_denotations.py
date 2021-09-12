@@ -252,7 +252,7 @@ class QuantifiersNumeralsDenotations:
         # 1.1. Create the entry by combining default criteria and properties of the input constituent [ps].
         # The latter involves a process in which grammaticalized D-features (e.g., phi-features) are translated into
         # semantic criteria.
-        self.inventory[idx] = self.apply_criteria(self.default_criteria(ps), ps)
+        self.inventory[idx] = self.apply_criteria(self.narrow_semantics.default_criteria(ps, 'QND'), ps)
         log(f'Denotation for {ps} was created into QND space...')
 
     def apply_criteria(self, criteria, ps):
@@ -272,17 +272,6 @@ class QuantifiersNumeralsDenotations:
         log(f'Done.')
         return criteria
 
-    def default_criteria(self, ps):
-        """
-        Definition for default criteria applied to all objects in the QND space. Some of these fields exist
-        for readability only.
-        """
-        return {'Referring constituent': f'{ps}',
-                      'Reference': f'{ps.illustrate()}',
-                      'Semantic space': 'QND',
-                      'Semantic type': self.narrow_semantics.get_semantic_types(ps),
-                      'Operator': self.is_operator(ps)
-                      }
 
     def is_operator(self, ps):
         """
@@ -296,7 +285,7 @@ class QuantifiersNumeralsDenotations:
     def get_object(self, idx):
         return self.inventory[idx]
 
-    def update_discourse_inventory_compositionally(self, idx, criteria):
+    def update_discourse_inventory(self, idx, criteria):
         self.inventory[idx].update(criteria)
 
     def interpret_phi_features(self, phi_set):
@@ -322,6 +311,11 @@ class QuantifiersNumeralsDenotations:
             semantic_fields['Participant role'] = 'Third party'
         if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:3'}):
             semantic_fields['Participant role'] = 'Third party and others'
+
+        if match(phi_set, {'PHI:HUM:HUM'}):
+            semantic_fields['Humanness'] = 'Human'
+        if match(phi_set, {'PHI:HUM:NONHUM'}):
+            semantic_fields['Humanness'] = 'Nonhuman'
 
         # Gender
         if match(phi_set, {'PHI:GEN:M'}):
@@ -385,6 +379,12 @@ class QuantifiersNumeralsDenotations:
             criteria['Phi-set'] = {feature}
 
         criteria.update(self.interpret_phi_features(criteria['Phi-set']))
+
+    def is_referential(self, ps):
+        """
+        Determines what type of constituents will populate the semantic space by reference
+        """
+        return {'FORCE', 'P', 'φ'} & ps.head().features
 
     def format_assignment(self, assignment):
         s = '('

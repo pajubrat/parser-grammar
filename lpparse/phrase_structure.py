@@ -666,11 +666,6 @@ class PhraseStructure:
     def finite(self):
         return 'FIN' in self.head().features or 'C/fin' in self.head().features or 'T/fin' in self.head().features
 
-    def referential(self):
-        """
-        Determines what type of constituents will populate the semantic space by reference
-        """
-        return {'FORCE', 'P', 'φ'} & self.head().features
 
     def verbal(self):
         return {'V', 'v', 'T', 'T/fin', 'NEG', 'FORCE'} & self.head().features

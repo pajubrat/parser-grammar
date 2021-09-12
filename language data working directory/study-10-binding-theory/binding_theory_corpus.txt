@@ -3,7 +3,34 @@
 # Condition B. A pronoun must not be locally bound.
 # Condition C. An R-expression can not be bound.
 
+% John wants to_inf leave
+
+& 0. Sentences from article, organized by the article flow, for easier reference
+
+	& 0.1 Binding conditions
 	
+		& 0.1.1 Binding Conditions (Section 3.4.3)
+		
+		Pekka ihailee itseään
+		'Pekka.NOM admire.3SG.PRS self.PAR.Px/3sg'
+
+		itseään ihailee Pekka
+		'self.PAR.Px/3sg admire.3SG.PAR Pekka.NOM'
+
+		John admires herself
+		
+		hän ihailee Merjaa
+		'He.NOM admire.3SG.PRS Merja.PAR'
+		
+		Pekka sanoi etta Merja ihailee Jukkaa
+		'Pekka said that Merja.NOM admire.3SG.PRS Jukka.PAR'
+	
+		hänen siskonsa sanoo että Pekka ihailee Merjaa
+		'His sister says that Pekka.NOM admire.3SG.PRS Merja.PAR'
+		
+		John sleeps;
+		John admires Mary.
+
 & 1 Proper names
 
 	& 1.1 Grammatical, assignment possible
@@ -52,11 +79,21 @@
 		
 		hän sanoo että Pekka ihailee Merjaa
 		'He.NOM says that Pekka.NOM admire.3SG.PRS Merja.PAR'
+
+		hänen siskonsa sanoo että Pekka ihailee Merjaa
+		'His sister says that Pekka.NOM admire.3SG.PRS Merja.PAR'
 	
 	& 1.5 Conversations
 	
 		John sleeps;
+		John admires Mary.
+	
+		John sleeps;
 		Mary sleeps.
+	
+	& 1.6 Proper names and subjectless pro-sentences
+	
+	%	ihailen Merjaa
 
 & 2 Regular (type 1) pronouns
 
@@ -66,9 +103,27 @@
 		John admires her
 		he admires Mary
 		she admires John
+		it admires John
+		it admires Mary
+		it admires him
+		it admires her
+		John admires it
+		Mary admires it
+		he admires it
+		she admires it
+		it admires it
 
 		Pekka ihailee häntä
 		'Pekka.NOM admire.3SG.PRS he.PAR'
+
+		Pekka ihailee sitä
+		'Pekka.NOM admire.3SG.PRS it.PAR'
+
+		se ihailee Pekkaa
+		'it.NOM admire.3SG.PRS Pekka.PAR'
+
+		se ihailee sitä
+		'It.NOM admire.3SG.PRS it.PAR'
 
 		John admires he='s sister
 		John admires she='s sister
@@ -85,6 +140,9 @@
 		
 		hän ihailee häntä
 		'He.NOM admire.3SG.PRS he.PAR'
+		
+		se ihailee sitä
+		'it.NOM admire.3SG.PRS it.PAR'
 	
 	& 2.3 *Ungrammatical, wrong case forms (OVS)
 	
@@ -124,10 +182,10 @@
 				
 		John wants Mary to_inf admire' him
 		Mary wants John to_inf admire' her
-		
 		John wants John to_inf admire' him
 		Mary wants Mary to_inf admire' her
-			
+		John wants Mary to_inf admire' it
+		Mary wants John to_inf admire' it
 		John wants him to_inf admire' Mary
 		John wants her to_inf admire' Mary
 		Mary wants him to_inf admire' Mary
@@ -165,6 +223,37 @@
 		John admires Mary;
 		he='s sister sleeps.
 		
+		it sleeps;
+		he admires Mary.
+		
+		it sleeps;
+		he admires her.
+		
+		it sleeps;
+		it admires her.
+	
+	& 2.8 Human vs. nonhuman pronouns 
+
+		John admires Mary;
+		it sleeps
+
+		John admires Mary;
+		he sleeps
+	
+		Pekka ihailee Merjaa;
+		se nukkuu.
+
+		Pekka ihailee Merjaa;
+		hän nukkuu.
+		
+	& 2.9 Grammatical, c-command, assignment 'John ~ he' possible
+
+		John='s sister admires him
+		
+		Pekan_gen sisko ihailee häntä
+		'Pekka.GEN sister.NOM admire.3SG.PRS he.PAR'
+	
+			
 & 3 Reflexive pronouns (Condition A)
 
 	& 3.1 Grammatical, assignment possible
@@ -189,7 +278,12 @@
 		he admires herself
 		she admires himself
 		
-	& 3.3 *Ungrammatical, subject reflexives, assignment not possible
+	& 3.3 *Ungrammatical, human mismatch
+	
+		it admires herself
+		it admires himself
+	
+	& 3.4 *Ungrammatical, subject reflexives, assignment not possible
 	
 		himself admires John
 		himself admires Mary
@@ -197,6 +291,7 @@
 		himself admires him
 		himself admires she
 		himself admires her
+		himself admires it
 
 		herself admires John
 		herself admires Mary
@@ -204,26 +299,33 @@
 		herself admires him
 		herself admires she
 		herself admires her
+		herself admires it
 	
-	& 3.4 C-command condition
+	& 3.5 Reflexives in conversation
 	
-		& 3.4.1 Grammatical, assignment 'John ~ he' possible
-
-			John='s sister admires him
-			
-			Pekan_gen sisko ihailee häntä
-			'Pekka.GEN sister.NOM admire.3SG.PRS he.PAR'
+		John admires Bill;
+		he admires himself.
+	
+		John admires himself;
+		he sleeps.
 		
+		John admires Mary;
+		Bill admires himself.
+	
+	& 3.5 C-command condition
+	
 		& 3.4.2 Ungrammatical, assignment 'John ~ himself' not possible
 		
-			John='s sister admires himself
+			& 3.4.2.1 English
+		
+				John='s sister admires himself
 
 			& 3.4.2.2 Finnish example, grammatical
 				
 				Pekan_gen sisko ihailee itseään
 				'Pekka.GEN sister.NOM admire.3SG.PRS self.PAR.Px/3sg'
 	
-	& 3.5 Reflexives and control
+	& 3.6 Reflexives and control
 	
 		& 3.5.1 Local binding inside infinitival
 		
@@ -275,12 +377,8 @@
 				John wants herself to_inf admire' Mary
 				Mary wants himself to_inf admire' John
 	
-	& 3.6 Ungrammatical reflexive binding from that-clause
+	& 3.7 Ungrammatical reflexive binding from that-clause
 	
 		John said that Mary admires himself
 		Mary said that John admires herself
-	
-	& 3.7 Reflexives and conversation
-	
-		John admires Mary;
-		Bill admires himself.
+		

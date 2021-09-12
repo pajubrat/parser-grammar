@@ -36,7 +36,10 @@ class AgreementReconstruction:
     # Definition for phi-feature acquisition (Agree-1)
     def Agree_1(self, head):
         """
-        Acquires phi-features from local structure for a head with feature [VAL].
+        Acquires phi-features from local structure for a head with feature [VAL]. Links the original predicate
+        with the argument in PE/QND semantic spaces. The rationale for this function is to local arguments
+        for predicates from the surface string and create the required pred-argument structures into
+        semantic spaces.
 
         Agree will first try to acquire phi-features from its sister. If unvalued features remain,
         it will then try to acquire them from the edge. Edge refers to specifiers and to the head itself that
@@ -46,30 +49,30 @@ class AgreementReconstruction:
         Both operations contain two stages. The first is the search and acquisition of the features, and then second
         is the valuation in which the acquired features are used to value unvalued features in the head.
 
-        We know that the purpose of this function is to saturate arguments for predicates, as valued phi-features
-        will prevent LF-recovery from applying. Agree is currently part of the outer edge of transfer, but it could
-        be implemented at the LF-interface as well. The reason it is here is because there is evidence that Agree
-        could apply during transfer and/or be sensitive to more surface properties.
-
-        Literature: Brattico (2021). Null arguments and the inverse problem. Glossa.
+        Literature:
+        Brattico (2021). Null arguments and the inverse problem. Glossa.
+        Brattico (in prep). Cognitive architecture and binding.
         """
         self.controlling_parsing_process.consume_resources("Agree")
         self.controlling_parsing_process.consume_resources("Phi")
 
         # 1. Acquisition of phi-features from the sister
-        goal, phi_features = self.Agree_1_from_sister(head)
-        # 2. Valuation of the acquired phi-features to the head
-        for phi in phi_features:
-            self.value(head, goal, phi, 'sister')
-        if not head.is_unvalued():
-            return
+        goal1, phi_features = self.Agree_1_from_sister(head)
+        if goal1:
+            self.controlling_parsing_process.narrow_semantics.predicates_events_module.link_predicate_to_argument(head, goal1)
+            for phi in phi_features:
+                self.value(head, goal1, phi, 'sister')
+            if not head.is_unvalued():
+                return
 
         # 1. Acquisition of phi-features from the edge
-        goal, phi_features = self.Agree_1_from_edge(head)
-        # 2. Valuation of the acquired phi-features to the head
-        for phi in phi_features:
-            if find_unvalued_target(head, phi):
-               self.value(head, goal, phi, 'edge')
+        goal2, phi_features = self.Agree_1_from_edge(head)
+        if goal2:
+            if not goal1:
+                self.controlling_parsing_process.narrow_semantics.predicatess_module.link_predicate_to_argument(head, goal2)
+            for phi in phi_features:
+                if find_unvalued_target(head, phi):
+                   self.value(head, goal2, phi, 'edge')
 
     # Definition for phi-acquisition from sister
     def Agree_1_from_sister(self, head):

@@ -623,13 +623,13 @@ te- 		:: PF:te LF:you N PHI_N LANG:FI
 he_FI		:: he_FI-#D#nom#pl#3p#def#hum#pronoun1
 heidan		:: he_FI-#D#pl#3p#def#hum#[-gen]
 he_FI- 		:: PF:he LF:they N PHI_N LANG:FI
-se			:: se-#[-nom]#sg#3p#def#pronoun1
-se			:: se-#sg#3p#def#pronoun1
-sen			:: se-#[-n_acc]#sg#3p#def#pronoun1
-sita		:: se-#[-par]#sg#3p#def#pronoun1
-se-			:: PF:se LF:the/that D LANG:FI
-itseään		:: itse-#D#3p#sg#def#hum#m#[-par]#reflexive
-itsensä_gen	:: itse-#D#3p#sg#def#hum#m#[-gen]#reflexive
+se			:: se-#D#[-nom]#sg#3p#def#nonhum#pronoun1
+sen			:: se-#[-n_acc]#sg#3p#def#nonhum#pronoun1
+sitä		:: se-#D#[-par]#sg#3p#def#pronoun1
+se-			:: PF:se LF:it N LANG:FI
+se_D-		:: PF:se LF:the/that D LANG:FI
+itseään		:: itse-#D#3p#sg#def#m#[-par]#reflexive
+itsensä_gen	:: itse-#D#3p#sg#def#m#[-gen]#reflexive
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
 
 # English
@@ -654,8 +654,8 @@ you_pl- 	:: PF:you_pl LF:you_pl N PHI LANG:EN
 they		:: they-#D#pl#3p#def#hum#pronoun1
 them		:: they-#D#pl#3p#def#hum#acc#pronoun1
 they- 		:: PF:they LF:they N PHI_N LANG:EN
-it			:: it-#D#sg#3p#def#pronoun1 LANG:EN
-it-			:: PF:it LF:it/that D LANG:EN
+it			:: it-#D#sg#3p#def#nonhum#pronoun1 LANG:EN
+it-			:: PF:it LF:it/that N LANG:EN
 
 # Italian
 io			:: io-#D#sg#1p#def#hum

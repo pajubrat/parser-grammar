@@ -139,14 +139,20 @@ class Discourse:
         """
         arguments = set()
         if ps.is_complex() and not self.out_of_proposition_scope(ps, scope):
-            arguments.add(self.narrow_semantics.get_referential_index_tuple(ps.left_const))
-            arguments.add(self.narrow_semantics.get_referential_index_tuple(ps.right_const))
+            if self.is_relevant_for_information_structure(ps.left_const):
+                arguments.add(self.narrow_semantics.get_referential_index_tuple(ps.left_const))
+            if self.is_relevant_for_information_structure(ps.right_const):
+                arguments.add(self.narrow_semantics.get_referential_index_tuple(ps.right_const))
             if ps.right_const.adjunct:
                 arguments = arguments | self.collect_arguments(ps.right_const, scope)
                 arguments = arguments | self.collect_arguments(ps.left_const, scope)
             else:
                 arguments = arguments | self.collect_arguments(ps.right_const, scope)
         return arguments
+
+    def is_relevant_for_information_structure(self, ps):
+        idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
+        return space == 'QND'
 
     def out_of_proposition_scope(self, ps, scope):
         if ps.left_const.is_primitive():
