@@ -75,14 +75,13 @@ class QuantifiersNumeralsDenotations:
 
             # Primitive constituent
             else: # If the constituent is referential and in the QND space, we generate assignments for it
-                if self.narrow_semantics.has_referential_index(ps):
-                    idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
-                    if space == 'QND':
-                        # Store the list of possible denotations into the QND entry
-                        self.inventory[idx]['Denotations'] = self.generate_all_possible_assignments(ps)
-                        log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
-                        # Generate entry for the referential constituent feed list, returned to caller
-                        return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
+                if self.narrow_semantics.has_referential_index(ps, 'QND'):
+                    idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
+                    # Store the list of possible denotations into the QND entry
+                    self.inventory[idx]['Denotations'] = self.generate_all_possible_assignments(ps)
+                    log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
+                    # Generate entry for the referential constituent feed list, returned to caller
+                    return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
 
         # Merge the lists for the construction of the referential constituent feed
         return L1 + L2
@@ -180,7 +179,7 @@ class QuantifiersNumeralsDenotations:
         from the QND space are considered potential constituents.
         """
 
-        return {complete_assignment[self.narrow_semantics.get_referential_index(head)]
+        return {complete_assignment[self.narrow_semantics.get_referential_index(head, 'QND')]
                 for head in ps.constituent_vector(intervention_feature)
                 if self.narrow_semantics.has_referential_index(head) and self.narrow_semantics.is_in_QND_space(head)}
 
@@ -190,7 +189,7 @@ class QuantifiersNumeralsDenotations:
         """
 
         # Get the QND space object which determines the criteria
-        filter_criteria = self.inventory[self.narrow_semantics.get_referential_index(ps)]
+        filter_criteria = self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')]
 
         # Return all GLOBAL discourse inventory objects which do not violate the criteria
         return self.narrow_semantics.global_cognition.get_compatible_objects(filter_criteria)
@@ -228,7 +227,9 @@ class QuantifiersNumeralsDenotations:
         if not self.is_D_feature(feature):
             return None, None, None
         components = feature.split(':')
-        return components[0], components[1], components[2]
+        if len(components) == 3:
+            return components[0], components[1], components[2]
+        return None, None, None
 
     def recognize(self, head):
         """
@@ -240,20 +241,20 @@ class QuantifiersNumeralsDenotations:
         """
         return {'D', 'NUM', 'Q', 'DEM', 'n', 'D/rel', 'φ'} & head.features
 
-    def project_QND_entry_into_inventory(self, ps):
+    def project_QND_entry_into_inventory(self, ps, idx):
         """
         This function will create a dictionary holding the denotations for the expression [ps] inside the QND space.
         """
 
-        # 1. Create object to QND space
-        # 1.1. Create index
-        idx = str(self.narrow_semantics.global_cognition.consume_index())
-
-        # 1.1. Create the entry by combining default criteria and properties of the input constituent [ps].
-        # The latter involves a process in which grammaticalized D-features (e.g., phi-features) are translated into
-        # semantic criteria.
         self.inventory[idx] = self.apply_criteria(self.narrow_semantics.default_criteria(ps, 'QND'), ps)
-        log(f'Denotation for {ps} was created into QND space...')
+        log(f'Denotation for {ps} (index {idx}) was created into QND space...')
+
+    def delete_pro(self, head):
+        idx = self.narrow_semantics.get_referential_index(head, 'QND')
+        self.remove_object(idx)
+        for idx, space in self.narrow_semantics.get_referential_index_tuples(head):
+            if space == 'QND':
+                self.narrow_semantics.delete_referential_index_tuple(head, (idx, space))
 
     def apply_criteria(self, criteria, ps):
         """
@@ -261,6 +262,7 @@ class QuantifiersNumeralsDenotations:
         then adds them into input parameter dict [criteria] that will be returned
         """
         log(f'Applying semantic criteria...')
+        criteria['Semantic type'] = {'§Thing'} # Currently all QND objects are §things
         for feature in list(self.get_D_features(ps)):
             feature_type = feature.split(':')[0]
             # If the feature has been associated with criteria function, apply it and store result.
@@ -382,9 +384,41 @@ class QuantifiersNumeralsDenotations:
 
     def is_referential(self, ps):
         """
-        Determines what type of constituents will populate the semantic space by reference
+        Determines what type of constituents will populate the semantic space by reference.
+
+        Current we examine whether the head has (1) enough phi-features or (2) has a referential label. It is unclear
+        if we need latter. The former is needed to link predicates with sufficient phi-features (pro elements)
+        to referents (e.g. "söin leipää").
         """
-        return {'FORCE', 'P', 'φ'} & ps.head().features
+        if self.has_adequate_phi_set(ps):
+            return True
+        if {'FORCE', 'P', 'φ'} & ps.head().features:
+            return True
+
+    def has_adequate_phi_set(self, h):
+        """
+        Determines whether there are enough phi-features in head [h] to process this constituent inside QND module and
+        link it with QND reference. Phi-checked constituents are not linked because this means that the phi-features
+        have been neutralized by an overt argument.
+        """
+        features_detected = {}
+        for f in h.features:
+            if f[:4] == 'PHI:' and f[-1] != '_':    # Check only valued phi-features
+                features_detected[f[:7]] = True              # Record the feature type
+                for g in h.features:
+                    if g[:4] == 'PHI:' and g[-1] != '_':  # Check only valued phi-features
+                        f_type = f.split(':')[1]
+                        g_type = g.split(':')[1]
+                        f_value = f.split(':')[2]
+                        g_value = g.split(':')[2]
+                        # If there is a feature type T with two difference values, we have feature conflict
+                        if f_type == g_type and f_value != g_value:
+                            return False
+        if 'PHI:NUM' in features_detected \
+                and 'PHI:PER' in features_detected \
+                and 'PHI_CHECKED' not in h.features:
+            return True
+
 
     def format_assignment(self, assignment):
         s = '('

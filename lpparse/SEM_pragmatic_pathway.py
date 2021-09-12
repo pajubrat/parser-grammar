@@ -54,7 +54,7 @@ class Discourse:
         #
 
         log(f'[{f}] at {ps.max().illustrate()}: ')
-        idx = self.narrow_semantics.get_referential_index_tuple(ps)
+        idx = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
         if not idx:
             log(f'{ps.max().illustrate()} not wired semantically. ')
             return None
@@ -64,7 +64,7 @@ class Discourse:
         if 'Bound by' not in self.narrow_semantics.get_semantic_object(idx):
             log(f'{ps.max().illustrate()} not bound by propositional scope operator. ')
             return None
-        binder_idx = self.narrow_semantics.get_referential_index_tuple(self.narrow_semantics.global_cognition.inventory[idx]['Bound by'][0])
+        binder_idx = self.narrow_semantics.get_referential_index_tuples(self.narrow_semantics.global_cognition.inventory[idx]['Bound by'][0], 'QND')
         if not binder_idx:
             log('The relevant proposition not available in SEM. ')
             return None
@@ -100,6 +100,7 @@ class Discourse:
         marked_focus_lst = []
 
         # Restrict the vision of this module to main arguments and their gradients, while ignoring operator expressions
+        print(f'{self.attention_gradient}')
         for idx_tuple in self.attention_gradient:
             if idx_tuple in main_arguments and not self.narrow_semantics.is_operator(idx_tuple):
                 topic_lst.append(idx_tuple)
@@ -140,9 +141,9 @@ class Discourse:
         arguments = set()
         if ps.is_complex() and not self.out_of_proposition_scope(ps, scope):
             if self.is_relevant_for_information_structure(ps.left_const):
-                arguments.add(self.narrow_semantics.get_referential_index_tuple(ps.left_const))
+                arguments.add(self.narrow_semantics.get_referential_index_tuples(ps.left_const.head(), 'QND'))
             if self.is_relevant_for_information_structure(ps.right_const):
-                arguments.add(self.narrow_semantics.get_referential_index_tuple(ps.right_const))
+                arguments.add(self.narrow_semantics.get_referential_index_tuples(ps.right_const.head(), 'QND'))
             if ps.right_const.adjunct:
                 arguments = arguments | self.collect_arguments(ps.right_const, scope)
                 arguments = arguments | self.collect_arguments(ps.left_const, scope)
@@ -151,8 +152,7 @@ class Discourse:
         return arguments
 
     def is_relevant_for_information_structure(self, ps):
-        idx, space = self.narrow_semantics.get_referential_index_tuple(ps)
-        return space == 'QND'
+        return self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
     def out_of_proposition_scope(self, ps, scope):
         if ps.left_const.is_primitive():
@@ -206,18 +206,17 @@ class Discourse:
         When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
         record the operation, which will be then used by the information structure module
         """
-        idx = self.narrow_semantics.get_referential_index_tuple(ps)
-        if idx:
-            feature_vector_set = set(ps.head().feature_vector())        # Take reconstructed floaters feature vector
-            if starting_point_head in feature_vector_set:               # If starting point is in the feature vector,
-                direction = 'High'                                      # then reconstructed was rightward and the
-                log(f'Topicalization...')                               # production movement was leftward
-            else:
-                direction = 'Low'                                       # Starting point was not in the feature vector,
-                log(f'Focussing...')                                    # then reconstruction was leftward and the
-                                                                        # production movement was rightward
+        idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
+        feature_vector_set = set(ps.head().feature_vector())        # Take reconstructed floaters feature vector
+        if starting_point_head in feature_vector_set:               # If starting point is in the feature vector,
+            direction = 'High'                                      # then reconstructed was rightward and the
+            log(f'Topicalization...')                               # production movement was leftward
+        else:
+            direction = 'Low'                                       # Starting point was not in the feature vector,
+            log(f'Focussing...')                                    # then reconstruction was leftward and the
+                                                                    # production movement was rightward
 
-            self.narrow_semantics.update_semantics_for_attribute(idx, 'Marked gradient', direction)
+        self.narrow_semantics.update_semantics_for_attribute((idx, space), 'Marked gradient', direction)
 
-    def allocate_attention_resources(self, idx):
-        self.attention_gradient.append(idx)
+    def allocate_attention_resources(self, idx_tuple):
+        self.attention_gradient.append(idx_tuple)

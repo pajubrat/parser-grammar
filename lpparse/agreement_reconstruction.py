@@ -60,6 +60,7 @@ class AgreementReconstruction:
         goal1, phi_features = self.Agree_1_from_sister(head)
         if goal1:
             self.controlling_parsing_process.narrow_semantics.predicates_events_module.link_predicate_to_argument(head, goal1)
+            self.controlling_parsing_process.narrow_semantics.quantifiers_numerals_denotations_module.delete_pro(head)
             for phi in phi_features:
                 self.value(head, goal1, phi, 'sister')
             if not head.is_unvalued():
@@ -70,6 +71,7 @@ class AgreementReconstruction:
         if goal2:
             if not goal1:
                 self.controlling_parsing_process.narrow_semantics.predicatess_module.link_predicate_to_argument(head, goal2)
+                self.controlling_parsing_process.narrow_semantics.predicates_events_module.delete_pro(head)
             for phi in phi_features:
                 if find_unvalued_target(head, phi):
                    self.value(head, goal2, phi, 'edge')

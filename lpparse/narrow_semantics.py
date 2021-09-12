@@ -167,15 +167,15 @@ class NarrowSemantics:
         """
         if self.controlling_parsing_process.first_solution_found or not referring_head:
             return
-        idx, space = self.get_referential_index_tuple(referring_head)
-        if idx:
-            log(f'Removing reference [{idx}] of \"{referring_head.illustrate()}\" from semantic space...')
-            if space == 'GLOBAL':
-                self.global_cognition.remove_object(idx)
-            if space == 'QND':
-                self.quantifiers_numerals_denotations_module.remove_object(idx)
-            if space == 'PE':
-                self.predicates_events_module.remove_object(idx)
+        for idx, space in self.get_referential_index_tuples(referring_head):
+            if idx:
+                log(f'Removing reference [{idx}] of \"{referring_head.illustrate()}\" from semantic space...')
+                if space == 'GLOBAL':
+                    self.global_cognition.remove_object(idx)
+                if space == 'QND':
+                    self.quantifiers_numerals_denotations_module.remove_object(idx)
+                if space == 'PE':
+                    self.predicates_events_module.remove_object(idx)
 
     def compositional_semantics_update(self, ps):
         """
@@ -217,39 +217,41 @@ class NarrowSemantics:
 
         Currently this function collects information about all phrasal modifiers inside [ps].
         """
-        idx, space = self.get_referential_index_tuple(ps)
-        log(f'Interpreting {ps.max()}({space}, {idx}) compositionally...')
+        for idx, space in self.get_referential_index_tuples(ps):
+            log(f'Interpreting {ps.max()}({space}, {idx}) compositionally...')
 
-        # Get handle to the semantic object (dictionary object)
-        semantic_object = self.get_semantic_object((idx, space))
+            # Get handle to the semantic object (dictionary object)
+            semantic_object = self.get_semantic_object((idx, space))
 
-        # Add reference field for readability reasons (not used for other purposes)
-        semantic_object['Reference'] = self.determine_reference_label(ps, space)
+            # Add reference field for readability reasons (not used for other purposes)
+            semantic_object['Reference'] = self.determine_reference_label(ps, space)
 
-        # Determine intervention features (major category features of [ps]) which will restrict
-        # the operation downstream.
-        intervention_feature_set = ps.head().major_category_features()
+            # Determine intervention features (major category features of [ps]) which will restrict
+            # the operation downstream.
+            intervention_feature_set = ps.head().major_category_features()
 
-        # ----- minimal search ----------------------------------------------------
-        for node in ps.max().minimal_search():
-            # Determine if search should be terminated
-            if self.termination_condition(node, intervention_feature_set, space, ps):
-                break
-            # Update the semantic object by using information available at the node. This will
-            # add information concerning all phrasal objects adjacent to the minimal search path.
-            semantic_object.update(self.interpret_node(node, semantic_object))
-        #---------------------------------------------------------------------------
+            # ----- minimal search ----------------------------------------------------
+            for node in ps.max().minimal_search():
+                # Determine if search should be terminated
+                if self.termination_condition(node, intervention_feature_set, space, ps):
+                    break
+                # Update the semantic object by using information available at the node. This will
+                # add information concerning all phrasal objects adjacent to the minimal search path.
+                semantic_object.update(self.interpret_node(node, semantic_object))
+            #---------------------------------------------------------------------------
 
-        # Creates new object corresponding to the updated expression to the global semantic space if
-        # the semantic object is not already a global object.
-        if space != 'GLOBAL':
-            semantic_object['Denotations'] = [str(self.project_global_object_into_discourse_inventory(ps, semantic_object))]
+            # Creates new object corresponding to the updated expression to the global semantic space if
+            # the semantic object is not already a global object.
+            if space != 'GLOBAL':
+                semantic_object['Denotations'] = [str(self.project_global_object_into_discourse_inventory(ps, semantic_object))]
 
     def determine_reference_label(self, ps, space):
         if space == 'PE':
             return f'{ps.illustrate()}'
-        else:
-            return f'{ps.max().illustrate()}'
+        elif space == 'QND' and self.predicates_events_module.is_predicate(ps):
+            return f'pro({ps})'
+
+        return f'{ps.max().illustrate()}'
 
     def project_global_object_into_discourse_inventory(self, ps, semantic_object):
         """
@@ -376,27 +378,26 @@ class NarrowSemantics:
         """
         log(f'Computing semantics for {ps}')
 
-        # Add referential index to the expression
-        self.add_referential_index(ps)
+        # Add referential indexes to the expression
+        self.add_referential_indexes(ps)
 
         # Update discourse inventories (all semantic spaces)
         self.update_discourse_inventories(ps)
 
         # Register the changes inside the pragmatic pathway
-        self.pragmatic_pathway.allocate_attention_resources(self.get_referential_index_tuple(ps))
+        if (None, None) != self.get_referential_index_tuples(ps, 'QND'):
+            self.pragmatic_pathway.allocate_attention_resources(self.get_referential_index_tuples(ps, 'QND'))
 
         log('Done.')
 
     def update_discourse_inventories(self, ps):
-        if 'QND' == self.get_index_space(ps):
-            self.quantifiers_numerals_denotations_module.project_QND_entry_into_inventory(ps)
-            return
-        if 'PE' == self.get_index_space(ps):
-            self.predicates_events_module.project_PE_entry_into_inventory(ps)
-            return
-
-        self.set_default_denotation(ps)
-        log(f'Added {ps} to global discourse inventory.')
+        for idx, space in self.get_referential_index_tuples(ps):
+            if 'QND' in space:
+                self.quantifiers_numerals_denotations_module.project_QND_entry_into_inventory(ps, idx)
+            if 'PE' in space:
+                self.predicates_events_module.project_PE_entry_into_inventory(ps, idx)
+            if 'GLOBAL' in space:
+                self.set_default_denotation(ps)
 
     def set_default_denotation(self, ps):
         self.global_cognition.create_object(self.default_criteria(ps, 'GLOBAL'))
@@ -404,64 +405,69 @@ class NarrowSemantics:
     def get_semantic_types(self, ps):
         return  {self.semantic_type[feature] for feature in ps.head().features if feature in self.semantic_type}
 
-    def add_referential_index(self, ps):
+    def add_referential_indexes(self, ps):
         """
         Wires constituent ps (its head) with an object inside the semantic space.
         """
-        idx_feature = 'IDX:' + str(self.global_cognition.get_index_counter()) + ',' + self.determine_index_space(ps)
-        log(f'({idx_feature})...')
-        ps.head().features.add(idx_feature)
+        for space in self.determine_index_spaces(ps):
+            idx_feature = 'IDX:' + str(self.global_cognition.consume_index()) + ',' + space
+            log(f'({idx_feature}) ')
+            ps.head().features.add(idx_feature)
 
-    def determine_index_space(self, ps):
+    def determine_index_spaces(self, ps):
         """
         Determines the type of index space this element will be mapped. Currently only QND and GLOBAL.
         """
-        if self.quantifiers_numerals_denotations_module.is_referential(ps.head()):
-            return 'QND'
+        space_list = []
         if self.predicates_events_module.is_predicate(ps.head()):
-            return 'PE'
+            space_list.append('PE')
+        if self.quantifiers_numerals_denotations_module.is_referential(ps.head()):
+            space_list.append('QND')
+        if not space_list:
+            space_list = ['GLOBAL']
+        return space_list
 
-        return 'GLOBAL'
 
     def get_index_space(self, ps):
         """
         Determines which semantic space will be linked by the referential index.
         Currently DI is default behavior
         """
-        idx, space = self.get_referential_index_tuple(ps)
-        if idx:
-            if space:
-                return space
-            else:
-                return 'GLOBAL'
-        return ''
+        return {space for idx,space in self.get_referential_index_tuples(ps)}
 
     def is_in_QND_space(self, ps):
-        idx, space = self.get_referential_index_tuple(ps)
+        idx, space = self.get_referential_index_tuples(ps, 'QND')
         return space == 'QND'
 
     def is_in_PE_space(self, ps):
-        idx, space = self.get_referential_index_tuple(ps)
+        idx, space = self.get_referential_index_tuples(ps, 'PE')
         return space == 'PE'
 
-    def get_referential_index(self, ps):
+    def delete_referential_index_tuple(self, head, tpl):
+        idx, space = tpl
+        f = 'IDX:'+idx+','+space
+        head.features.discard(f)
+
+
+    def get_referential_index(self, ps, space_query):
         # Get all index tuples from the head
         idx_tuples_list = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
-        return idx_tuples_list[0][0]
+        return [idx for idx, space in idx_tuples_list if space == space_query][0]
 
-    def get_referential_index_tuple(self, ps):
+    def get_referential_index_tuples(self, ps, space_query=''):
         """
-        Returns a referential index tuple (idx, space) of some phrase pointing to objects
-        in some semantic space, (None, None) if none exists
+        Returns the list of referential index tuple (idx, space). The set is empty if nothing is found
         """
-        
+        idx_lst = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
         # Get all index tuples from the head
-        idx_tuples_list = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
-
-        # Return the first index tuple if any exists
-        if idx_tuples_list:
-            return idx_tuples_list[0]
-        return None, None
+        if space_query == '':
+            return idx_lst
+        else:
+            lst = [(idx, space) for idx, space in idx_lst if space == space_query]
+            if lst:
+                return lst[0]
+            else:
+                return None, None
 
     def get_semantic_object(self, idx_tuple):
         """
@@ -473,7 +479,8 @@ class NarrowSemantics:
             return self.quantifiers_numerals_denotations_module.get_object(idx)
         if space == 'PE':
             return self.predicates_events_module.get_object(idx)
-
+        if space == 'GLOBAL':
+            return self.global_cognition.get_object(idx)
         return self.global_cognition.get_object(idx)
 
     def detect_phi_conflicts(self, ps):
@@ -523,9 +530,8 @@ class NarrowSemantics:
             return
         if space == 'PE':
             self.predicates_events_module.update_discourse_inventory(idx, criteria)
-            return
-
-        self.global_cognition.update_discourse_inventory(idx, criteria)
+        if space == 'GLOBAL':
+            self.global_cognition.update_discourse_inventory(idx, criteria)
 
     def is_operator(self, idx_tuple):
         object_dict = self.get_semantic_object(idx_tuple)
@@ -539,9 +545,13 @@ class NarrowSemantics:
         dict.update(self.predicates_events_module.inventory)
         return dict
 
-    def has_referential_index(self, ps):
-        if self.get_referential_index_tuple(ps) != (None, None):
-            return True
+    def has_referential_index(self, ps, space_query=''):
+        for idx, space in self.get_referential_index_tuples(ps):
+            if space_query == '':
+                return True
+            else:
+                if space == space_query:
+                    return True
 
     def default_criteria(self, ps, space):
         """

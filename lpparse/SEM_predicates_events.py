@@ -17,10 +17,9 @@ class PredicatesEvents:
     def update_discourse_inventory(self, idx, criteria):
         self.inventory[idx].update(criteria)
 
-    def project_PE_entry_into_inventory(self, ps):
-        idx = str(self.narrow_semantics.global_cognition.consume_index())
+    def project_PE_entry_into_inventory(self, ps, idx):
         self.inventory[idx] = self.narrow_semantics.default_criteria(ps, 'PE')
-        log(f'Denotation for {ps} created into PE space...')
+        log(f'Denotation for {ps} (index {idx}) created into PE space...')
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
@@ -37,7 +36,7 @@ class PredicatesEvents:
         matter should be attended in future.
         """
         if self.narrow_semantics.has_referential_index(predicate_head):
-            print(f'{predicate_head}')
             selected_antecedent = list_of_antecedents[0]
-            idx, space = self.narrow_semantics.get_referential_index_tuple(predicate_head)
-            self.inventory[idx]['Argument'] = selected_antecedent.max().illustrate()
+            idx, space = self.narrow_semantics.get_referential_index_tuples(predicate_head, 'PE')
+            if idx:
+                self.inventory[idx]['Argument'] = selected_antecedent.max().illustrate()

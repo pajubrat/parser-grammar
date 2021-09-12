@@ -61,17 +61,17 @@ class OperatorVariableModule:
                     semantic_interpretation['Operator bindings'].append((f'{operator_ps.illustrate()}', f'{scope_marker_lst[0]}[{f}]'))
 
                     # Update binding information for the operator in semantic bookkeeping
-                    idx = self.narrow_semantics.get_referential_index_tuple(operator_ps)
+                    idx = self.narrow_semantics.get_referential_index_tuples(operator_ps, 'QND')
                     if not idx:
                         self.narrow_semantics.wire(operator_ps)
-                        idx = self.narrow_semantics.get_referential_index_tuple(operator_ps)
+                        idx = self.narrow_semantics.get_referential_index_tuples(operator_ps, 'QND')
                     self.narrow_semantics.update_semantics_for_attribute(idx, 'Bound by', scope_marker_lst)
                     self.interpret_and_update_operator_feature(idx, f)
                     log(f'{operator_ps.illustrate()} was bound by {scope_marker_lst[0]}...')
 
                     # Create referential index for the proposition and project it to semantic bookkeeping
                     # Only applies to full propositions, not to relative clauses
-                    if not self.narrow_semantics.controlling_parsing_process.first_solution_found and not self.narrow_semantics.get_referential_index_tuple(scope_marker_lst[0]):
+                    if not self.narrow_semantics.controlling_parsing_process.first_solution_found and not self.narrow_semantics.get_referential_index_tuples(scope_marker_lst[0], 'QND'):
                         if self.full_proposition(scope_marker_lst[0]):
                             self.narrow_semantics.wire(scope_marker_lst[0])
 
