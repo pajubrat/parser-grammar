@@ -47,6 +47,10 @@ class QuantifiersNumeralsDenotations:
         log('Possible denotations: ')
         self.referential_constituents_feed = self.calculate_possible_denotations_(ps)
 
+        if not self.referential_constituents_feed:
+            log('Nothing to assign!')
+            return
+
         # Creates the list of all possible assignments, each a dictionary {denoting const idx: denoted G-element idx...}
         # The assignments are stored in to [self.all_assignments]
         log('Assignments: ')
@@ -127,14 +131,37 @@ class QuantifiersNumeralsDenotations:
 
         # Examine every expression in the constituent feed
         for expression in self.referential_constituents_feed:
-            if not self.Binding_Theory(expression, complete_assignment):
-                log(f'Assignment {complete_assignment} failed. ')
+            if not self.binding_theory_conditions(expression, complete_assignment):
+                log(f'Assignment {complete_assignment} failed due to binding. ')
+                weighted_assignment['weight'] = 0
+            if not self.predication_theory_conditions(expression, complete_assignment):
+                log(f'Assignment {complete_assignment} failed due to predicate theory.')
                 weighted_assignment['weight'] = 0
 
         log(f'{self.format_assignment(weighted_assignment)}')
         return weighted_assignment
 
-    def Binding_Theory(self, expression, complete_assignment):
+    def predication_theory_conditions(self, expression, complete_assignment):
+        idx_QND_predicate, name, ps, denotations = expression
+
+        # If the expression is a predicate linked with an object in PE space
+        if self.narrow_semantics.predicates_relations_events_module.has_PE_index(ps):
+
+            # If it also has an internal reference to an argument (i.e., QND index)
+            if 'REF' in ps.features:
+
+                # If the PE entry contains a pointer to argument, linking the predicate with an argument
+                idx_PE_predicate, space_PE_predicate = self.narrow_semantics.get_referential_index_tuples(ps, 'PE')
+                if 'Argument' in self.narrow_semantics.predicates_relations_events_module.get_object(idx_PE_predicate):
+
+                    # Then the assignment to the predicate (its QND object) must be identical to the assignment
+                    # to the antecedent argument
+                    idx_antecedent = self.narrow_semantics.predicates_relations_events_module.get_object(idx_PE_predicate)['Argument']
+                    if complete_assignment[idx_antecedent] != complete_assignment[idx_QND_predicate]:
+                        return False
+        return True
+
+    def binding_theory_conditions(self, expression, complete_assignment):
         """
         Applies binding theory.
 
@@ -181,7 +208,7 @@ class QuantifiersNumeralsDenotations:
 
         return {complete_assignment[self.narrow_semantics.get_referential_index(head, 'QND')]
                 for head in ps.constituent_vector(intervention_feature)
-                if self.narrow_semantics.has_referential_index(head) and self.narrow_semantics.is_in_QND_space(head)}
+                if self.narrow_semantics.has_referential_index(head) and self.narrow_semantics.exists(head, 'QND')}
 
     def generate_all_possible_assignments(self, ps):
         """
@@ -231,13 +258,14 @@ class QuantifiersNumeralsDenotations:
             return components[0], components[1], components[2]
         return None, None, None
 
-    def recognize(self, head):
+    def recognize_(self, head):
         """
         This function returns True if the module "recognizes" the head. Recognition means
         intuitively that the module is able to interpret the head semantically. A head is currently
         recognized by its lexical category feature, later by the existence of a D-feature.
         The category feature now substitutes for the latter that has not been implemented
         fully.
+        todo This function should be replaced with the new recognize function
         """
         return {'D', 'NUM', 'Q', 'DEM', 'n', 'D/rel', 'φ'} & head.features
 
@@ -248,13 +276,6 @@ class QuantifiersNumeralsDenotations:
 
         self.inventory[idx] = self.apply_criteria(self.narrow_semantics.default_criteria(ps, 'QND'), ps)
         log(f'Denotation for {ps} (index {idx}) was created into QND space...')
-
-    def delete_pro(self, head):
-        idx = self.narrow_semantics.get_referential_index(head, 'QND')
-        self.remove_object(idx)
-        for idx, space in self.narrow_semantics.get_referential_index_tuples(head):
-            if space == 'QND':
-                self.narrow_semantics.delete_referential_index_tuple(head, (idx, space))
 
     def apply_criteria(self, criteria, ps):
         """
@@ -273,7 +294,6 @@ class QuantifiersNumeralsDenotations:
                 self.criteria_function[feature_type](criteria, ps, feature)
         log(f'Done.')
         return criteria
-
 
     def is_operator(self, ps):
         """
@@ -382,18 +402,23 @@ class QuantifiersNumeralsDenotations:
 
         criteria.update(self.interpret_phi_features(criteria['Phi-set']))
 
-    def is_referential(self, ps):
-        """
-        Determines what type of constituents will populate the semantic space by reference.
+    def accept(self, ps):
+        return self.has_adequate_phi_set(ps) or 'φ' in ps.head().features
 
-        Current we examine whether the head has (1) enough phi-features or (2) has a referential label. It is unclear
-        if we need latter. The former is needed to link predicates with sufficient phi-features (pro elements)
-        to referents (e.g. "söin leipää").
+    def present(self, head):
+        if self.narrow_semantics.query['PRE']['Accept'](head):
+            return f'pro({head})'
+        else:
+            return f'{head.max().illustrate()}'
+
+    def detect_phi_conflicts(self, ps):
         """
-        if self.has_adequate_phi_set(ps):
-            return True
-        if {'FORCE', 'P', 'φ'} & ps.head().features:
-            return True
+        Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
+        """
+        for phi in ps.get_phi_set():
+            if phi[-1] == '*':
+                log(f'{ps} induces a phi-feature conflict...')
+                self.narrow_semantics.phi_interpretation_failed = True
 
     def has_adequate_phi_set(self, h):
         """

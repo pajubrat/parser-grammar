@@ -1,15 +1,19 @@
 from support import log
 
 class GlobalCognition:
-    def __init__(self):
-        self.discourse_inventory = {}
+    def __init__(self, narrow_semantics):
+        self.inventory = {}
+        self.narrow_semantics = narrow_semantics
         self.index_counter = 1
-        self.excluded_fields = {'Denotations', 'Semantic space', 'Denotation weights', 'Reference'}
+        self.excluded_fields = {'Denotations', 'Semantic space', 'Denotation weights', 'Reference', 'Referring constituent'}
 
     def end_conversation(self):
-        self.discourse_inventory = {}
+        self.inventory = {}
         self.index_counter = 1
         log('CONVERSATION ENDED.')
+
+    def present(self, head):
+        return f'{head.max().illustrate()}'
 
     def consume_index(self):
         idx = self.index_counter
@@ -20,13 +24,21 @@ class GlobalCognition:
         return self.index_counter
 
     def remove_object(self, idx):
-        self.discourse_inventory.pop(str(idx), None)
+        self.inventory.pop(str(idx), None)
 
     def get_object(self, idx):
-        return self.discourse_inventory[idx]
+        return self.inventory[idx]
 
     def update_discourse_inventory(self, idx, criteria):
-        self.discourse_inventory[str(idx)].update(criteria)
+        self.inventory[str(idx)].update(criteria)
+
+    def project_GLOBAL_entry_into_inventory(self, ps, semantic_object):
+        log(f'Creating global inventory object...')
+        criteria_for_new_global_object = self.narrow_semantics.default_criteria(ps, 'GLOBAL')
+        semantic_object['Semantic space'] = 'GLOBAL'
+        criteria_for_new_global_object.update(semantic_object)
+        criteria_for_new_global_object.pop('Phi-set', None)
+        return self.create_object(criteria_for_new_global_object)
 
     def create_object(self, criteria):
         """
@@ -34,9 +46,8 @@ class GlobalCognition:
         criteria (data fields in the dictionary).
         """
         idx = self.consume_index()
-        self.discourse_inventory[str(idx)] = criteria
-        self.discourse_inventory[str(idx)]['Semantic space'] = 'GLOBAL'
-        log(f'Object [{idx}] was created into global space...')
+        self.inventory[str(idx)] = criteria
+        log(f'Object [{idx}], was created into global space...')
         return str(idx)
 
     def get_compatible_objects(self, filter_criteria):
@@ -46,15 +57,15 @@ class GlobalCognition:
         not constitute rejection.
         """
         idx_list = []
-        for idx in self.discourse_inventory:
+        for idx in self.inventory:
             select_this_item = True
 
             # Examine all fields in the object in the discourse inventory...
-            for field in self.discourse_inventory[idx]:
+            for field in self.inventory[idx]:
 
                 # ...with the exception of the excluded fields
                 if field not in self.excluded_fields:
-                    if field in filter_criteria and filter_criteria[field] != self.discourse_inventory[idx][field]:
+                    if field in filter_criteria and filter_criteria[field] != self.inventory[idx][field]:
                         select_this_item = False  # The object is rejected if a mismatching (field, value) pair is found.
                         break
 

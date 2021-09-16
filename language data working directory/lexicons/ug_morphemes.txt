@@ -56,8 +56,8 @@ nonhum 		:: inflectional PHI:HUM:NONHUM
 m			:: inflectional PHI:GEN:M
 f			:: inflectional PHI:GEN:F
 proper_name	:: inflectional D:REF:NAME D:NEW:$X$
-pronoun1	:: inflectional D:NEW:D
-reflexive	:: inflectional D:OLD:D
+pronoun1	:: inflectional D:NEW:REF
+reflexive	:: inflectional D:OLD:REF
 
 # Generic deficient structural cases
 nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL -FLOAT -adjoinable

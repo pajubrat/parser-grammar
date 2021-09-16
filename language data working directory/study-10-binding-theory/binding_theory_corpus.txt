@@ -3,13 +3,9 @@
 # Condition B. A pronoun must not be locally bound.
 # Condition C. An R-expression can not be bound.
 
-% Pekka ihailee Merjaa
-
-& 0. Sentences from article, organized by the article flow, for easier reference
+& 0. Sentences from the article, organized by the article flow, for easier reference
 
 	& 0.1 Binding conditions
-	
-		& 0.1.1 Binding Conditions (Section 3.4.3)
 		
 		Pekka ihailee itseään
 		'Pekka.NOM admire.3SG.PRS self.PAR.Px/3sg'
@@ -30,7 +26,60 @@
 		
 		John sleeps;
 		John admires Mary.
+		
+	& 0.2 Null pronoun subjects (pro-drop)
+		
+		ihailen Merjaa
+		'admire.1SG.PRS Merja.PAR'
+		
+		ihailen itseäni
+		'admire.1SG.PRS self-PAR-PX/1SG'
 
+		Pekka sanoo että ihailee Merjaa
+		'Pekka says that admire.3SG.PRS Merja.PAR'
+
+		Pekka sanoo että ihailee itseään
+		'Pekka says that admire.3SG.PRS self.PAR.PX/3SG'
+	
+		Pekka sanoo että ihailee häntä
+		'Pekka says that admire.3SG.PRS he.PAR'
+	
+		Pekka sanoo että ihailen häntä
+		'Pekka says that admire.1SG.PRS he.PAR'
+	
+	& 0.3 DP-internal syntax
+	
+		hänen siskonsa nukkuu
+		
+		Pekan_gen sisko ihailee häntä
+		'Pekka.GEN sister.NOM admire.3SG.PRS he.PAR'
+	
+		John admires he='s sister
+	
+		Pekka ihailee hänen siskoaan
+		'Pekka.NOM admire.3SG.PRS he.GEN sister.PAR(Px/3sg)'
+	
+	%	Pekka ihailee kuvaa
+		'Pekka.NOM admire.3SG.PRS picture.PAR'
+		
+		Pekka ihailee kuvaa Merjasta
+		'Pekka.NOM admire.3SG.PRS picture.PAR Merja.ELA'
+	
+	& 0.4 Embedded infinitivals
+	
+		John wants to_inf admire' him
+		John wants to_inf admire' himself
+		
+		Pekka haluaa ihailla häntä
+		Pekka haluaa ihailla itseään
+	
+		Pekka haluaa Merjan_gen ihailevan häntä
+		Pekka haluaa Merjan_gen ihailevan itseään
+	
+	& 0.5 The algorithm
+	
+		a' b' c' d'
+	
 & 1 Proper names
 
 	& 1.1 Grammatical, assignment possible
@@ -93,7 +142,7 @@
 	
 	& 1.6 Proper names and subjectless pro-sentences
 	
-	%	ihailen Merjaa
+		ihailen Merjaa
 
 & 2 Regular (type 1) pronouns
 
@@ -253,7 +302,20 @@
 		Pekan_gen sisko ihailee häntä
 		'Pekka.GEN sister.NOM admire.3SG.PRS he.PAR'
 	
-			
+	& 2.10 Pronouns and null subject sentences
+	
+		Pekka sanoo että ihailee häntä
+		'Pekka says that admire.3SG.PRS he.PAR'
+		
+		Pekka sanoo että ihailen häntä
+		'Pekka says that admire.1SG.PRS he.PAR'
+		
+		hän sanoo että ihailee häntä
+		'He says that admire.3SG.PRS he.PAR'
+		
+		hän sanoo että ihailen häntä
+		'He says that admire.1SG.PRS he.PAR'
+
 & 3 Reflexive pronouns (Condition A)
 
 	& 3.1 Grammatical, assignment possible
@@ -381,4 +443,21 @@
 	
 		John said that Mary admires himself
 		Mary said that John admires herself
+	
+	& 3.8 Reflexives and null subjects
+	
+		& 3.8.1 Grammatical
 		
+			Pekka sanoo että ihailee itseään
+			'Pekka says that admire.3SG.PRS self.PAR.PX/3SG'
+			
+			Pekka sanoo että ihailen itseäni
+			'Pekka says that admire.1SG.PRS self.PAR.PX/1SG'
+
+		& 3.8.2 Ungrammatical, assignment no possible
+		
+			Pekka sanoo että ihailee itseäni
+			'Pekka says that admire.3SG.PRS self.PAR.PX/1SG'
+			
+			Pekka sanoo että ihailen itseään
+			'Pekka says that admire.1SG.PRS self.PAR.PX/3SG'

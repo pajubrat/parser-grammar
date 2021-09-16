@@ -58,9 +58,9 @@ class AgreementReconstruction:
 
         # 1. Acquisition of phi-features from the sister
         goal1, phi_features = self.Agree_1_from_sister(head)
-        if goal1:
-            self.controlling_parsing_process.narrow_semantics.predicates_events_module.link_predicate_to_argument(head, goal1)
-            self.controlling_parsing_process.narrow_semantics.quantifiers_numerals_denotations_module.delete_pro(head)
+        if phi_features:
+            self.controlling_parsing_process.narrow_semantics.predicates_relations_events_module.link_predicate_to_argument(head, goal1)
+            self.controlling_parsing_process.narrow_semantics.delete_pro(head)
             for phi in phi_features:
                 self.value(head, goal1, phi, 'sister')
             if not head.is_unvalued():
@@ -71,7 +71,6 @@ class AgreementReconstruction:
         if goal2:
             if not goal1:
                 self.controlling_parsing_process.narrow_semantics.predicatess_module.link_predicate_to_argument(head, goal2)
-                self.controlling_parsing_process.narrow_semantics.predicates_events_module.delete_pro(head)
             for phi in phi_features:
                 if find_unvalued_target(head, phi):
                    self.value(head, goal2, phi, 'edge')
@@ -125,7 +124,7 @@ class AgreementReconstruction:
         agreement. I do not understand what is behind this empirical generalization. Features [NOM] and [GEN]
         are abbreviations and should be replaced with the corresponding TAIL-features.
         """
-        if 'D' in phrase.head().features:
+        if {'D', 'φ'} & phrase.head().features:
             if self.controlling_parsing_process.language != 'LANG:FI':
                 return True
             else:

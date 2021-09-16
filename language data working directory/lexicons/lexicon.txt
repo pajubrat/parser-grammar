@@ -214,12 +214,12 @@ kaski		:: kaske-#v#T/fin#[-V] LANG:FI
 kaskee		:: kaske-#v#T/fin#[-V] LANG:FI
 kaske-		:: PF:kaske LF:order V !COMP:A/inf -SPEC:* SEM:external LANG:FI
 
-kellon		:: kello0-#n#[-n_acc] LANG:FI
-kellon		:: kello-#[-n_acc] LANG:FI
-kellon_n	:: kello0-#n#[-n_acc] LANG:FI
-kellon_N	:: kello-#[-n_acc] LANG:FI
-kelloja		:: kello-#pl#φ#pl#3p#def#[-par] LANG:FI
-kello		:: kello0-#n LANG:FI
+kellon		:: kello0-#n#nonhum#[-n_acc] LANG:FI
+kellon		:: kello-nonhum##[-n_acc] LANG:FI
+kellon_n	:: kello0-#n#nonhum#[-n_acc] LANG:FI
+kellon_N	:: kello-#nonhum#[-n_acc] LANG:FI
+kelloja		:: kello-#pl#φ#pl#3p#def#nonhum#[-par] LANG:FI
+kello		:: kello0-#n#nonhum# LANG:FI
 kello-		:: PF:kello LF:watch N LANG:FI
 kello0- 	:: PF:kello LF:watch 0 LANG:FI
 
@@ -228,9 +228,9 @@ kenen		:: kuka-#D#wh#[-gen] LANG:FI
 
 key			:: PF:key LF:key N -SEM:directional LANG:EN
 
-kirja		:: kirja-#φ#sg#3p#def#[-nom] LANG:FI
-kirjan  	:: kirja-#φ#sg#3p#def#[-n_acc] LANG:FI
-kirjaa		:: kirja-#φ#sg#3p#def#[-par] LANG:FI
+kirja		:: kirja-#φ#sg#3p#def#nonhum#[-nom] LANG:FI
+kirjan  	:: kirja-#φ#sg#3p#def#nonhum#[-n_acc] LANG:FI
+kirjaa		:: kirja-#φ#sg#3p#def#nonhum#[-par] LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
 
 knows		::	know-#v#T/fin#[-V] LANG:EN
@@ -247,6 +247,9 @@ kuka-   	:: PF:kuka LF:who N PHI LANG:FI
 kuorsaa		:: kuorsaa-#T/fin#[-V] LANG:FI
 kuorsaamalla 	:: kuorsaa-#malla LANG:FI
 kuorsaa- 	:: PF:kuorsaa LF:snore V COMP:P -COMP:WH -COMP:T/fin -COMP:φ LANG:FI
+
+kuvaa		:: kuva-#φ#sg#3p#def#nonhum#[-par] LANG:FI
+kuva-		:: PF:kuva LF:picture N LANG:FI
 
 kysyi		:: kysy-#v#T/fin#[-V] LANG:EN
 kysy-		:: PF:kysya LF:ask V !PROBE:FORCE:OP:WH LANG:FI
@@ -329,6 +332,7 @@ Merjaahan	:: Merja-#D#sg#3p#def#hum#def#proper_name#[-par]#[hAn] LANG:FI
 Merja-  	:: PF:Merja LF:Merja N D:REF:PROPER_NAME -SEM:directional -adjoinable LANG:FI
 Merjalle	::	Merja-#D#lle
 Merjalla	:: 	Merja-#D#lla
+Merjasta	::	Merja-#D#sta
 
 meren		::	mere-#φ#sg#3p#def#[-n_acc] LANG:FI
 mere-		::	PF:meri LF:ocean N LANG:FI
@@ -525,6 +529,8 @@ ssa			:: PF:ssa LF:in P TAIL:V COMP:n/MA LANG:FI
 stanno		:: sta-#T/fin#[-no] LANG:IT	
 sta-		:: V PF:sta LF:stay SEM:internal -ASP SPEC:φ COMP:PRG
 
+sta			:: PF:sta LF:of P LANG:FI
+
 sti			:: PF:sti LF:by !COMP:* TAIL:T ADV -ARG LANG:FI
 
 sukka		:: sukka-#φ#[-nom]
@@ -608,8 +614,10 @@ yritta- 	:: PF:yritta LF:try V SPEC:φ !COMP:A/inf !COMP:-ARG LANG:EN SEM:intern
 # PRONOUNS
 # Finnish
 mina		:: mina-#D#nom#sg#1p#def#hum#pronoun1
+minä		:: mina-#D#nom#sg#1p#def#hum#pronoun1
 mina- 		:: PF:mina LF:I N PHI_N LANG:FI 
 sina		:: sina-#D#nom#sg#2p#def#hum#pronoun1
+sinä		:: sina-#D#nom#sg#2p#def#hum#pronoun1
 sina-		:: PF:sina  LF:you N PHI_N LANG:FI
 han			:: han-#D#[-nom]#sg#3p#def#hum#pronoun1
 hän			:: han-#D#[-nom]#sg#3p#def#hum#pronoun1
@@ -623,14 +631,16 @@ te			:: te-#D#nom#pl#2p#def#hum#pronoun1
 te- 		:: PF:te LF:you N PHI_N LANG:FI
 he_FI		:: he_FI-#D#nom#pl#3p#def#hum#pronoun1
 heidan		:: he_FI-#D#pl#3p#def#hum#[-gen]
+heidän		:: he_FI-#D#pl#3p#def#hum#[-gen]
 he_FI- 		:: PF:he LF:they N PHI_N LANG:FI
 se			:: se-#D#[-nom]#sg#3p#def#nonhum#pronoun1
 sen			:: se-#[-n_acc]#sg#3p#def#nonhum#pronoun1
 sitä		:: se-#D#[-par]#sg#3p#def#pronoun1
 se-			:: PF:se LF:it N LANG:FI
 se_D-		:: PF:se LF:the/that D LANG:FI
-itseään		:: itse-#D#3p#sg#def#m#[-par]#reflexive
-itsensä_gen	:: itse-#D#3p#sg#def#m#[-gen]#reflexive
+itseään		:: itse-#D#3p#sg#def#[-par]#reflexive
+itseäni		:: itse-#D#1p#sg#def#[-par]#reflexive
+itsensä_gen	:: itse-#D#3p#sg#def#[-gen]#reflexive
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
 
 # English

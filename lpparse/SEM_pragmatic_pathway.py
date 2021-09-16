@@ -58,10 +58,10 @@ class Discourse:
         if not idx:
             log(f'{ps.max().illustrate()} not wired semantically. ')
             return None
-        if not self.narrow_semantics.get_semantic_object(idx):
+        if not self.narrow_semantics.query['QND']['Get'](idx):
             log(f'I have no idea what {ps.max().illustrate()} refers to. ')
             return None
-        if 'Bound by' not in self.narrow_semantics.get_semantic_object(idx):
+        if 'Bound by' not in self.narrow_semantics.query['QND']['Get'](idx):
             log(f'{ps.max().illustrate()} not bound by propositional scope operator. ')
             return None
         binder_idx = self.narrow_semantics.get_referential_index_tuples(self.narrow_semantics.global_cognition.inventory[idx]['Bound by'][0], 'QND')
@@ -100,11 +100,11 @@ class Discourse:
         marked_focus_lst = []
 
         # Restrict the vision of this module to main arguments and their gradients, while ignoring operator expressions
-        print(f'{self.attention_gradient}')
         for idx_tuple in self.attention_gradient:
             if idx_tuple in main_arguments and not self.narrow_semantics.is_operator(idx_tuple):
                 topic_lst.append(idx_tuple)
-                self.narrow_semantics.update_semantics_for_attribute(idx_tuple, 'In information structure', True)
+                idx, space = idx_tuple
+                self.narrow_semantics.update_semantics_for_attribute(idx, space, 'In information structure', True)
 
         # Order the arguments by their gradient (in the spellout structure ~ sensory input)
         topic_lst = sorted(topic_lst)
@@ -113,14 +113,16 @@ class Discourse:
         # Group the arguments into three lists: marked topics, default/neutral gradient, and marked focus
         # The algorithm works by moving elements from the original topic list into the marked lists.
         topic_lst_ = topic_lst.copy()
-        for idx in topic_lst:
-            if 'Marked gradient' in self.narrow_semantics.get_semantic_object(idx):
-                if self.narrow_semantics.get_semantic_object(idx)['Marked gradient'] == 'High':
-                    marked_topic_lst.append(idx)
-                    topic_lst_.remove(idx)
-                if self.narrow_semantics.get_semantic_object(idx)['Marked gradient'] == 'Low':
-                    marked_focus_lst.append(idx)
-                    topic_lst_.remove(idx)
+        for idx_tpl in topic_lst:
+            idx, space = idx_tpl
+            semantic_object = self.narrow_semantics.query[space]['Get'](idx)
+            if 'Marked gradient' in semantic_object:
+                if semantic_object['Marked gradient'] == 'High':
+                    marked_topic_lst.append((idx, space))
+                    topic_lst_.remove(idx_tpl)
+                if semantic_object['Marked gradient'] == 'Low':
+                    marked_focus_lst.append(idx_tpl)
+                    topic_lst_.remove(idx_tpl)
         return {'Marked topics': marked_topic_lst, 'Neutral gradient': topic_lst_, 'Marked focus': marked_focus_lst}
 
     def arguments_of_proposition(self, ps):
@@ -206,6 +208,14 @@ class Discourse:
         When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
         record the operation, which will be then used by the information structure module
         """
+
+        # We compute pragmatic information only for the first solution, because
+        # 1) I don't know what it means to compute information structure for secondary solutions;
+        # 2) the algorithm does not work because in order for implement secondary IS computations, we need
+        # to cleanup all semantic information recursively which is not implemented.
+        if self.narrow_semantics.controlling_parsing_process.first_solution_found:
+            return
+
         idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
         feature_vector_set = set(ps.head().feature_vector())        # Take reconstructed floaters feature vector
         if starting_point_head in feature_vector_set:               # If starting point is in the feature vector,
@@ -216,7 +226,7 @@ class Discourse:
             log(f'Focussing...')                                    # then reconstruction was leftward and the
                                                                     # production movement was rightward
 
-        self.narrow_semantics.update_semantics_for_attribute((idx, space), 'Marked gradient', direction)
+        self.narrow_semantics.update_semantics_for_attribute(idx, space, 'Marked gradient', direction)
 
     def allocate_attention_resources(self, idx_tuple):
         self.attention_gradient.append(idx_tuple)

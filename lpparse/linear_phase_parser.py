@@ -178,14 +178,14 @@ class LinearPhaseParser:
                 # Call for next item
                 self.put_out_of_working_memory(merge_sites)
                 self.parse_new_item(new_constituent, lst_branched, index + 1)
-
                 if self.stop_looking_for_further_solutions():
                     break
             # ---------------------------------------------------------------------------------------- #
             print('.', end='', flush=True) # This sends a message to console that something is happening.
             # If we backtrack, then the referents constructed on the basis of the current lexical item must be
             # deleted from the semantic bookkeeping
-            self.narrow_semantics.forget_referent(terminal_lexical_item)
+            if terminal_lexical_item:
+                self.narrow_semantics.forget_referent(terminal_lexical_item)
 
         # If all solutions in the list have been explored, backtrack
         if not self.exit:

@@ -3,7 +3,7 @@ from SEM_operators_variables import OperatorVariableModule
 from SEM_pragmatic_pathway import Discourse
 from SEM_LF_recovery import LF_Recovery
 from SEM_quantifiers_numerals_denotations import QuantifiersNumeralsDenotations
-from SEM_predicates_events import PredicatesEvents
+from SEM_predicates_relations_events import PredicatesRelationsEvents
 from global_cognition import GlobalCognition
 
 class NarrowSemantics:
@@ -34,8 +34,8 @@ class NarrowSemantics:
         self.LF_recovery_module = LF_Recovery(controlling_parsing_process)
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
         self.pragmatic_pathway = Discourse(self)
-        self.predicates_events_module = PredicatesEvents(self)
-        self.global_cognition = GlobalCognition()
+        self.predicates_relations_events_module = PredicatesRelationsEvents(self)
+        self.global_cognition = GlobalCognition(self)
 
         # Discourse inventory maintained by narrow semantics hosting primitive objects
         self.semantic_interpretation = {}
@@ -44,6 +44,26 @@ class NarrowSemantics:
         # Provides unique numerical identifiers to all objects created inside any semantic space
         self.controlling_parsing_process = controlling_parsing_process
         self.phi_interpretation_failed = False
+
+        # Branches processing based on semantic space
+        self.query = \
+            {'GLOBAL': {'Remove': self.global_cognition.remove_object,
+                        'Project': self.global_cognition.project_GLOBAL_entry_into_inventory,
+                        'Get': self.global_cognition.get_object,
+                        'Update': self.global_cognition.update_discourse_inventory,
+                        'Present': self.global_cognition.present},
+             'QND': {'Remove': self.quantifiers_numerals_denotations_module.remove_object,
+                     'Project': self.quantifiers_numerals_denotations_module.project_QND_entry_into_inventory,
+                     'Get': self.quantifiers_numerals_denotations_module.get_object,
+                     'Update': self.quantifiers_numerals_denotations_module.update_discourse_inventory,
+                     'Accept': self.quantifiers_numerals_denotations_module.accept,
+                     'Present': self.quantifiers_numerals_denotations_module.present},
+             'PRE': {'Remove': self.predicates_relations_events_module.remove_object,
+                     'Project': self.predicates_relations_events_module.project_PRE_entry_into_inventory,
+                     'Get': self.predicates_relations_events_module.get_object,
+                     'Update': self.predicates_relations_events_module.update_discourse_inventory,
+                     'Accept': self.predicates_relations_events_module.accept,
+                     'Present': self.predicates_relations_events_module.present}}
 
         # Grammatical features mapped into semantic feature types
         self.semantic_type = {'T/fin':'§Proposition',
@@ -61,7 +81,7 @@ class NarrowSemantics:
                               'ADV': '§Predicate',
                               '0': '§Predicate',
                               'OP:REL': '§Predicate',
-                              'P': '§Topology',
+                              'P': '§Relator',
                               'v': '§Valency',
                               'T': '§Tense',
                               'ASP': '§Eventive',
@@ -74,7 +94,7 @@ class NarrowSemantics:
     def initialize(self):
         self.pragmatic_pathway.initialize()
         self.quantifiers_numerals_denotations_module.reset()
-        self.predicates_events_module.reset()
+        self.predicates_relations_events_module.reset()
         self.semantic_interpretation_failed = False
         self.semantic_interpretation = {'Recovery': [],
                                         'Aspect': [],
@@ -87,8 +107,9 @@ class NarrowSemantics:
 
     def global_interpretation(self, ps):
         """
-        Wrapper function for the recursive semantic interpretation. This interpretation is applied to
-        a completed LF interface object, thus it corresponds to a global semantic interpretation.
+        Wrapper function for recursive semantic interpretation. This interpretation is applied to
+        a completed LF interface object, thus it corresponds to a global semantic interpretation. It will
+        interpret all primitive heads and performs assignment evaluation.
         """
         log(f'\n\t\tTransferring {ps} into the conceptual-intentional system...')
         # Reset the system for new interpretation
@@ -119,6 +140,7 @@ class NarrowSemantics:
                                         'Operator bindings': [],
                                         'Semantic space': '',
                                         'Speaker attitude': [],
+                                        'Assignments': [],
                                         'Information structure': {'Marked topics': None, 'Neutral gradient': None,
                                                                   'Marked focus': None}}
 
@@ -136,10 +158,10 @@ class NarrowSemantics:
         """
         if ps.is_primitive():
             self.LF_recovery_module.perform_LF_recovery(ps, self.semantic_interpretation)
-            self.detect_phi_conflicts(ps)
-            self.interpret_tail_features(ps)
+            self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
             self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
             self.pragmatic_pathway.reconstruct_discourse(ps, self.semantic_interpretation)
+            self.interpret_tail_features(ps)
             if self.failure():
                 return
         else:
@@ -165,17 +187,11 @@ class NarrowSemantics:
         Removes an element from the semantic space referred by [referring_head], if any. This function is
         used during backtracking.
         """
-        if self.controlling_parsing_process.first_solution_found or not referring_head:
+        if self.controlling_parsing_process.first_solution_found:
             return
         for idx, space in self.get_referential_index_tuples(referring_head):
-            if idx:
-                log(f'Removing reference [{idx}] of \"{referring_head.illustrate()}\" from semantic space...')
-                if space == 'GLOBAL':
-                    self.global_cognition.remove_object(idx)
-                if space == 'QND':
-                    self.quantifiers_numerals_denotations_module.remove_object(idx)
-                if space == 'PE':
-                    self.predicates_events_module.remove_object(idx)
+            self.query[space]['Remove'](idx)
+            log(f'Removing [{idx}] of \"{referring_head.illustrate()}\" from {space}...')
 
     def compositional_semantics_update(self, ps):
         """
@@ -188,6 +204,9 @@ class NarrowSemantics:
         referential index, then updates the reference for X on the basis of YP. Updating is done by
         calling compositional_interpretation() which examines the relevant domain inside
         ps.max() by minimal search and applies criterion functions and adds phrasal criteria (if any).
+
+        There is much that remains to be done, but this requires systematic empirical study and data both which
+        are unavailable.
         """
         if self.controlling_parsing_process.first_solution_found:
             return
@@ -213,21 +232,17 @@ class NarrowSemantics:
     def compositional_interpretation(self, ps):
         """
         Implements compositional interpretation on phrases that are headed by elements that are referential
-        (i.e., have referential index) and picks up objects from the global space, directly or indirectly.
+        (i.e., have referential index) and picks up objects from the global space, directly or indirectly. This
+        is performed during compositional semantics update dynamically and incrementally throughout the
+        derivation.
 
-        Currently this function collects information about all phrasal modifiers inside [ps].
         """
+        # Process  all referential indexes
         for idx, space in self.get_referential_index_tuples(ps):
-            log(f'Interpreting {ps.max()}({space}, {idx}) compositionally...')
+            log(f'Interpreting {ps.max()}({space}, {idx})...')
 
-            # Get handle to the semantic object (dictionary object)
-            semantic_object = self.get_semantic_object((idx, space))
-
-            # Add reference field for readability reasons (not used for other purposes)
-            semantic_object['Reference'] = self.determine_reference_label(ps, space)
-
-            # Determine intervention features (major category features of [ps]) which will restrict
-            # the operation downstream.
+            semantic_object = self.query[space]['Get'](idx)
+            semantic_object['Reference'] = self.query[space]['Present'](ps)
             intervention_feature_set = ps.head().major_category_features()
 
             # ----- minimal search ----------------------------------------------------
@@ -240,31 +255,11 @@ class NarrowSemantics:
                 semantic_object.update(self.interpret_node(node, semantic_object))
             #---------------------------------------------------------------------------
 
-            # Creates new object corresponding to the updated expression to the global semantic space if
-            # the semantic object is not already a global object.
-            if space != 'GLOBAL':
-                semantic_object['Denotations'] = [str(self.project_global_object_into_discourse_inventory(ps, semantic_object))]
+            # Creates new object corresponding to the updated expression to the global semantic
+            semantic_object['Denotations'] = [self.query['GLOBAL']['Project'](ps, semantic_object.copy())]
 
-    def determine_reference_label(self, ps, space):
-        if space == 'PE':
-            return f'{ps.illustrate()}'
-        elif space == 'QND' and self.predicates_events_module.is_predicate(ps):
-            return f'pro({ps})'
-
-        return f'{ps.max().illustrate()}'
-
-    def project_global_object_into_discourse_inventory(self, ps, semantic_object):
-        """
-        Projects an object to the global semantic space by using default criteria and criteria from the
-        input parameter [semantic object]. Criteria are fields in the semantic object.
-        """
-        log(f'Creating global inventory object...')
-        criteria_for_new_global_object = self.default_criteria(ps, 'GLOBAL')
-        criteria_for_new_global_object.update(semantic_object)
-        criteria_for_new_global_object.pop('Phi-set', None)
-        idx = self.global_cognition.create_object(criteria_for_new_global_object)
-
-        return idx
+    def projects_referring_nominal_phrase(self, head):
+        return head.features & {'D', 'φ'}
 
     def termination_condition(self, node, intervention_feature_set, space, ps):
         """
@@ -289,11 +284,8 @@ class NarrowSemantics:
 
     def out_of_domain(self, head, space):
         if space == 'QND':
-            if not self.quantifiers_numerals_denotations_module.recognize(head):
-                return True
+            return not self.query['QND']['Accept'](head)
         else:
-            # All other spaces remain unimplemented, hence search into anything else
-            # than QND space will be terminated immediately
             return True
 
     def interpret_node(self, node, semantic_object):
@@ -319,7 +311,8 @@ class NarrowSemantics:
     def add_criteria_from_phrase(self, semantic_object, constituent):
         """
         Adds criteria into [semantic object] from a left or right (adjunct) phrase.
-        Currently adds the phrases as strings, but later we will add the objects.
+        Currently adds the phrases as strings, but later we will add the objects. This function is therefore
+        just a placeholder. The matter remains to be studied.
         """
         if 'Criteria' in semantic_object:
             semantic_object['Criteria'].add(f'{constituent}')
@@ -338,12 +331,12 @@ class NarrowSemantics:
 
     def wire_semantics(self, ps):
         """
-        Wires [ps] recursively. Only primitive constituents are wired.
+        Wires [ps] recursively. Only primitive constituents are wired. Called from complete processing and
+        incrementally during lexical stream
+
         Creates an IDX feature for the constituent and the corresponding object into the semantic space.
         Travels on the right edge and wires all referential heads that have not been wired already.
-        Right adjuncts are visited separately, after which the right edge travel continues
-
-        Called from complete processing and incrementally during lexical stream
+        Right adjuncts are visited separately, after which the right edge travel continues.
         """
         if self.controlling_parsing_process.first_solution_found:
             return
@@ -366,8 +359,7 @@ class NarrowSemantics:
         (2) ps can be understood by one of the semantic modules inside narrow semantics (currently QND, PE)
         """
         if not self.has_referential_index(ps):
-            if self.predicates_events_module.is_predicate(ps) or \
-                    self.quantifiers_numerals_denotations_module.is_referential(ps):
+            if self.query['QND']['Accept'](ps) or self.query['PRE']['Accept'](ps):
                 self.wire(ps)
 
     def wire(self, ps):
@@ -385,6 +377,7 @@ class NarrowSemantics:
         self.update_discourse_inventories(ps)
 
         # Register the changes inside the pragmatic pathway
+        # This implements the early syntax-pragmatics interface
         if (None, None) != self.get_referential_index_tuples(ps, 'QND'):
             self.pragmatic_pathway.allocate_attention_resources(self.get_referential_index_tuples(ps, 'QND'))
 
@@ -392,15 +385,7 @@ class NarrowSemantics:
 
     def update_discourse_inventories(self, ps):
         for idx, space in self.get_referential_index_tuples(ps):
-            if 'QND' in space:
-                self.quantifiers_numerals_denotations_module.project_QND_entry_into_inventory(ps, idx)
-            if 'PE' in space:
-                self.predicates_events_module.project_PE_entry_into_inventory(ps, idx)
-            if 'GLOBAL' in space:
-                self.set_default_denotation(ps)
-
-    def set_default_denotation(self, ps):
-        self.global_cognition.create_object(self.default_criteria(ps, 'GLOBAL'))
+            self.query[space]['Project'](ps, idx)
 
     def get_semantic_types(self, ps):
         return  {self.semantic_type[feature] for feature in ps.head().features if feature in self.semantic_type}
@@ -414,49 +399,49 @@ class NarrowSemantics:
             log(f'({idx_feature}) ')
             ps.head().features.add(idx_feature)
 
+            # This a simple feature which represents the fact that this head has established a referential
+            # link to QND space
+            if space == 'QND':
+                ps.head().features.add('REF')
+
     def determine_index_spaces(self, ps):
         """
-        Determines the type of index space this element will be mapped. Currently only QND and GLOBAL.
+        Determines the type of index space this element will be mapped. Currently QND, PRE and GLOBAL.
         """
         space_list = []
-        if self.predicates_events_module.is_predicate(ps.head()):
-            space_list.append('PE')
-        if self.quantifiers_numerals_denotations_module.is_referential(ps.head()):
-            space_list.append('QND')
+        for space in ['PRE', 'QND']:
+            if self.query[space]['Accept'](ps.head()):
+                space_list.append(space)
+
+        # Default value if nothing else is accepted
         if not space_list:
             space_list = ['GLOBAL']
+
         return space_list
 
+    def delete_pro(self, head):
+        if self.exists(head, 'QND') and not self.projects_referring_nominal_phrase(head):
+            idx, space = self.get_referential_index_tuples(head, 'QND')
+            self.query[space]['Remove'](idx)
+            self.delete_referential_index_tuple(head, idx, space)
 
-    def get_index_space(self, ps):
-        """
-        Determines which semantic space will be linked by the referential index.
-        Currently DI is default behavior
-        """
-        return {space for idx,space in self.get_referential_index_tuples(ps)}
+    def delete_referential_index_tuple(self, head, idx, space):
+        head.features.discard('IDX:'+idx+','+space)
+        head.features.discard('REF')
 
-    def is_in_QND_space(self, ps):
-        idx, space = self.get_referential_index_tuples(ps, 'QND')
-        return space == 'QND'
-
-    def is_in_PE_space(self, ps):
-        idx, space = self.get_referential_index_tuples(ps, 'PE')
-        return space == 'PE'
-
-    def delete_referential_index_tuple(self, head, tpl):
-        idx, space = tpl
-        f = 'IDX:'+idx+','+space
-        head.features.discard(f)
-
-
-    def get_referential_index(self, ps, space_query):
-        # Get all index tuples from the head
+    def get_referential_index(self, ps, space):
         idx_tuples_list = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
-        return [idx for idx, space in idx_tuples_list if space == space_query][0]
+        return [idx for idx, space_ in idx_tuples_list if space_ == space][0]
+
+    def exists(self, head, space):
+        for idx, space_ in self.get_referential_index_tuples(head):
+            if space == space_:
+                return True
 
     def get_referential_index_tuples(self, ps, space_query=''):
         """
-        Returns the list of referential index tuple (idx, space). The set is empty if nothing is found
+        If space query is empty, returns the list of referential index tuple (idx, space).
+        Otherwise returns one referential index from that space (there should be only 1 if space is defined)
         """
         idx_lst = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
         # Get all index tuples from the head
@@ -468,29 +453,6 @@ class NarrowSemantics:
                 return lst[0]
             else:
                 return None, None
-
-    def get_semantic_object(self, idx_tuple):
-        """
-        Returns the semantic object (dict) for the input idx_tuple. This function diverts the processing
-        into one of the semantic spaces on the basis of the index tuple.
-        """
-        idx, space = idx_tuple
-        if space == 'QND':
-            return self.quantifiers_numerals_denotations_module.get_object(idx)
-        if space == 'PE':
-            return self.predicates_events_module.get_object(idx)
-        if space == 'GLOBAL':
-            return self.global_cognition.get_object(idx)
-        return self.global_cognition.get_object(idx)
-
-    def detect_phi_conflicts(self, ps):
-        """
-        Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
-        """
-        for phi in ps.get_phi_set():
-            if phi[-1] == '*':
-                log(f'{ps} induces a phi-feature conflict...')
-                self.phi_interpretation_failed = True
 
     def interpret_tail_features(self, ps):
         """
@@ -517,32 +479,20 @@ class NarrowSemantics:
             if head.match_features(tail_set) == 'complete match':
                 return head
 
-    def update_semantics_for_attribute(self, sem_object, attribute, value):
-        """
-        Updates attribute:value for semantic object [sem_object]
-        """
-        criteria = {attribute: value}
-        (idx, space) = sem_object
-        if not idx:
-            return
-        if space == 'QND':
-            self.quantifiers_numerals_denotations_module.update_discourse_inventory(idx, criteria)
-            return
-        if space == 'PE':
-            self.predicates_events_module.update_discourse_inventory(idx, criteria)
-        if space == 'GLOBAL':
-            self.global_cognition.update_discourse_inventory(idx, criteria)
+    def update_semantics_for_attribute(self, idx, space, attribute, value):
+        self.query[space]['Update'](idx, {attribute: value})
 
     def is_operator(self, idx_tuple):
-        object_dict = self.get_semantic_object(idx_tuple)
+        idx, space = idx_tuple
+        object_dict = self.query[space]['Get'](idx)
         if 'Operator' in object_dict and object_dict['Operator']:
             return True
 
     def all_inventories(self):
         dict = {}
-        dict.update(self.global_cognition.discourse_inventory)
+        dict.update(self.global_cognition.inventory)
         dict.update(self.quantifiers_numerals_denotations_module.inventory)
-        dict.update(self.predicates_events_module.inventory)
+        dict.update(self.predicates_relations_events_module.inventory)
         return dict
 
     def has_referential_index(self, ps, space_query=''):
@@ -559,7 +509,7 @@ class NarrowSemantics:
         for readability only.
         """
         return {'Referring constituent': f'{ps}',
-                      'Reference': self.determine_reference_label(ps, space),
+                      'Reference': self.query[space]['Present'](ps),
                       'Semantic space': space,
                       'Semantic type': self.get_semantic_types(ps),
                       'Operator': self.operator_variable_module.is_operator(ps)

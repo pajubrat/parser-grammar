@@ -466,11 +466,13 @@ class LocalFileSystem:
         output_str = '\n'
         if len(P.narrow_semantics.all_inventories()) > 0:
             for semantic_object, data_dict in self.create_inventory_sorting(P.narrow_semantics.all_inventories().items()):
-                output_str += '\tObject ' + semantic_object
-                if 'Semantic space' in data_dict:
-                    output_str += ' in ' + data_dict['Semantic space'] + ': '
-                if 'Reference' in data_dict:
-                    output_str += data_dict['Reference'] + '\n'
+                if data_dict['Semantic space'] == 'GLOBAL':
+                    if 'Reference' in data_dict and data_dict['Reference'].startswith('['):
+                        output_str += '\tObject ' + semantic_object
+                        if 'Semantic space' in data_dict:
+                            output_str += ' in ' + data_dict['Semantic space'] + ': '
+                        if 'Reference' in data_dict:
+                            output_str += data_dict['Reference'] + '\n'
             return output_str
 
     def format_semantic_interpretation(self, P):

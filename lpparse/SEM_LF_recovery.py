@@ -40,7 +40,7 @@ class LF_Recovery:
             if list_of_antecedents:
                 # This data structure will hold the results, which will be stored into semantic interpretation
                 self.LF_recovery_result = self.interpret_antecedent(head, list_of_antecedents[0])
-                self.controlling_parsing_process.narrow_semantics.predicates_events_module.link_predicate_to_argument(head, list_of_antecedents)
+                self.controlling_parsing_process.narrow_semantics.predicates_relations_events_module.link_predicate_to_argument(head, list_of_antecedents)
             else:
                 self.LF_recovery_result = f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')'
             self.report_to_log(head, list_of_antecedents, unvalued)
