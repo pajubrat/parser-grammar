@@ -11,65 +11,47 @@ class QuantifiersNumeralsDenotations:
         self.all_assignments = []                   # Stored and weighted assignments
         self.referential_constituents_feed = []     # list of tuples [(idx, illustrated, ps, denotations)...]
 
-        # All (or many) D-features are associated with a separate interpretation function
-        self.criteria_function = {'D:REF:PROPER_NAME': self.criterion_proper_name,
-                                  'PHI': self.criterion_phi_features,
-                                  }
+        # Lexical D-features are converted into semantic information by these functions
+        self.criteria_function = {'D:REF:NAME': self.criterion_proper_name,
+                                  'PHI': self.criterion_phi_features}
+
+    def reset(self):
+        self.inventory = {}
+        self.all_assignments = []
+        self.one_complete_assignment = {}
+
+    def accept(self, ps):
+        return self.has_adequate_phi_set(ps) or 'φ' in ps.head().features
+
+    def is_operator(self, ps):
+        return self.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and 'FIN' not in ps.features
+
+    def remove_object(self, idx):
+        self.inventory.pop(idx, None)
+
+    def get_object(self, idx):
+        return self.inventory[idx]
+
+    def update_discourse_inventory(self, idx, criteria):
+        self.inventory[idx].update(criteria)
 
     def reconstruct_assignments(self, ps):
-        """
-        Wrapper for recursive assignment.
-
-        1.  Referential expressions are provided with possible denotation lists, and then the expressions are collected into
-            a feed list called [referential_constituents_feed]. These processes keep within the QND space.
-            For example, pronoun "he" may be associated with possible denotations 'John', 'Paul' and 'Simon', depending
-            on what is currently in the global discourse inventory.
-        2.  The feed is used to create a list of actual assignments, which are stored into semantics results field.
-            An actual assignment is a pairing between QND-handle and a global discourse handle, for example,
-            some particular interpretation for pronoun "he", say 'Paul'. Complete assignment contains this information
-            for each referential expression in an expression.
-        """
-
-        # We do not compute assignments for secondary solutions, because they will potentially
-        # generate new confusing objects into the QND/GLOBAL spaces, breaking the conversation
-        # mechanism which presupposes disambiguation.
         if self.narrow_semantics.controlling_parsing_process.first_solution_found:
-            log('\n\t\tAssignments are not computed for secondary solutions.')
             self.narrow_semantics.semantic_interpretation['Assignments'] = []
             return
 
-        log(f'\n\t\tComputing assignments...')
-
-        # Feed is list of referential constituents in the current LF object,
-        # in a list of tuples (idx, constituent name, link to const object, denotations).
-        # This could be considered an auxiliary structure, the information is available in the original
-        # LF object as well.
-        log('Possible denotations: ')
+        log(f'\n\t\tDenotations:')
         self.referential_constituents_feed = self.calculate_possible_denotations_(ps)
 
+        log(f'\n\t\tAssignments: ')
         if not self.referential_constituents_feed:
-            log('Nothing to assign!')
             return
-
-        # Creates the list of all possible assignments, each a dictionary {denoting const idx: denoted G-element idx...}
-        # The assignments are stored in to [self.all_assignments]
-        log('Assignments: ')
         self.create_assignments_from_denotations_(0, 0, {})
-
-        # Report results
         self.narrow_semantics.semantic_interpretation['Assignments'] = self.all_assignments
 
     def calculate_possible_denotations_(self, ps):
-        """
-        Recursively associate any head (with referential index) with a denotation list which enumerates
-        all possible denotations for that constituent, given the current contents of the discourse inventory.
-        For example, "he" ~ ['John', 'Paul', 'Simon']. This information is stored into the QND-entry.
-        """
-
-        # These lists are used to compose the referential constituent feed returned by this function
         L1 = []
         L2 = []
-
         # Copies are ignored
         if not ps.find_me_elsewhere:
             if ps.is_complex():
@@ -81,25 +63,18 @@ class QuantifiersNumeralsDenotations:
             else: # If the constituent is referential and in the QND space, we generate assignments for it
                 if self.narrow_semantics.has_referential_index(ps, 'QND'):
                     idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
+
                     # Store the list of possible denotations into the QND entry
-                    self.inventory[idx]['Denotations'] = self.generate_all_possible_assignments(ps)
-                    log(f'({self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]}), ')
+                    self.inventory[idx]['Denotations'] = self.create_all_assignments(ps)
+                    log(f'\n\t\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
+
                     # Generate entry for the referential constituent feed list, returned to caller
-                    return [(idx, f'{ps.max().illustrate()}', ps, self.inventory[idx]['Denotations'])]
+                    return [(idx, f'{ps.illustrate()}', ps, self.inventory[idx]['Denotations'])]
 
         # Merge the lists for the construction of the referential constituent feed
         return L1 + L2
 
     def create_assignments_from_denotations_(self, c_index, d_index, one_complete_assignment):
-        """
-        Creates recursively all possible assignments for constituents in referential_constituents_feed and their
-        possible denotations. The position in the recursion is defined by c_index (constituent) and
-        d_index (denotation for that constituent). For example, if we have "he admirer her", here we generate
-        all possible assignments, e.g. {"he": 'Paul', "her": Mary}, {"he": 'Paul', "her": Paula}, etc.
-
-        Assignments are put into a list [self.all_assignments] of dicts of the form {expression_idx: denotation_idx...}.
-        """
-
         # Get all denotations for the current constituent
         idx, const, ps, denotations = self.referential_constituents_feed[c_index]
         denotation = denotations[d_index]
@@ -121,56 +96,42 @@ class QuantifiersNumeralsDenotations:
             self.create_assignments_from_denotations_(c_index, d_index + 1, one_complete_assignment.copy())
 
     def calculate_assignment_weight(self, complete_assignment):
-        """
-        Calculates grammatical weight for complete assignment, on the basis of grammatical properties and features.
-        For example, assignment "John_1 admires he_1" will be ruled out. Pragmatic weighting will be provided
-        for the output of this function (not implemented).
-        """
         weighted_assignment = complete_assignment.copy()
+        log(f'\n\t\t\tAssignment {complete_assignment} ')
         weighted_assignment['weight'] = 1
 
         # Examine every expression in the constituent feed
         for expression in self.referential_constituents_feed:
             if not self.binding_theory_conditions(expression, complete_assignment):
-                log(f'Assignment {complete_assignment} failed due to binding. ')
                 weighted_assignment['weight'] = 0
             if not self.predication_theory_conditions(expression, complete_assignment):
-                log(f'Assignment {complete_assignment} failed due to predicate theory.')
                 weighted_assignment['weight'] = 0
 
-        log(f'{self.format_assignment(weighted_assignment)}')
+        if weighted_assignment['weight'] > 0:
+            log('<= accepted.')
+
         return weighted_assignment
 
     def predication_theory_conditions(self, expression, complete_assignment):
         idx_QND_predicate, name, ps, denotations = expression
+        if self.narrow_semantics.query['PRE']['Accept'](ps) and self.narrow_semantics.query['QND']['Accept'](ps):
 
-        # If the expression is a predicate linked with an object in PE space
-        if self.narrow_semantics.predicates_relations_events_module.has_PE_index(ps):
+            # Take indexes for the predicate
+            idx_pred, space_pred = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
-            # If it also has an internal reference to an argument (i.e., QND index)
-            if 'REF' in ps.features:
+            # Examine all predicate-argument pairs
+            for predicate, argument in self.narrow_semantics.predicate_argument_dependencies:
+                if ps == predicate:
 
-                # If the PE entry contains a pointer to argument, linking the predicate with an argument
-                idx_PE_predicate, space_PE_predicate = self.narrow_semantics.get_referential_index_tuples(ps, 'PE')
-                if 'Argument' in self.narrow_semantics.predicates_relations_events_module.get_object(idx_PE_predicate):
+                    # If match found, take the index from the argument
+                    idx_arg, space_arg = self.narrow_semantics.get_referential_index_tuples(argument, 'QND')
 
-                    # Then the assignment to the predicate (its QND object) must be identical to the assignment
-                    # to the antecedent argument
-                    idx_antecedent = self.narrow_semantics.predicates_relations_events_module.get_object(idx_PE_predicate)['Argument']
-                    if complete_assignment[idx_antecedent] != complete_assignment[idx_QND_predicate]:
+                    # Check that they are assigned to the same element
+                    if complete_assignment[idx_arg] != complete_assignment[idx_pred]:
                         return False
         return True
 
     def binding_theory_conditions(self, expression, complete_assignment):
-        """
-        Applies binding theory.
-
-        Binding theory is interpreted as a mechanism where semantic assignment is affected by grammaticalized
-        instructions (linguistic features, in traditional terminology) to the global cognitive selection mechanism
-        that handles such operations more generally. Linguistic input constitutes a way to instruct and direct
-        these mechanisms.
-        """
-
         # Referential index, name, constituent pointer and denotations of the expression (from constituent feed)
         idx, name, ps, denotations = expression
 
@@ -180,40 +141,19 @@ class QuantifiersNumeralsDenotations:
 
             # React only to NEW and OLD features (current implementation)
             if {rule} & {'NEW', 'OLD'}:
-
-                # Compute reference set, which is the set of global object indexes that are visible for
-                # expression, inside constituent vector limited by intervention feature.
-                # For example, the reference set for X is {1, 2} for "John_1 gave Mary_2 his(X) address",
-                # where the indexes are global discourse inventory objects under assignment. Only expressions
-                # denoting into the QND space are considered
-                reference_set = self.get_reference_set(ps, intervention_feature, complete_assignment)
-
-                # Inquire whether the object denoted under assignment [complete_assignment[idx]] satisfies
-                # instructions contained in [rule] and [reference set]. This implements the interface to the
-                # global cognitive operation.
+                reference_set = self.reference_set(ps, intervention_feature, complete_assignment)
                 if not self.narrow_semantics.global_cognition.general_evaluation(complete_assignment[idx], rule, reference_set):
-                    # If not, then we return False, which tells the caller that this assignment does not
-                    # satisfy a D-feature
                     return False
         return True
 
-    def get_reference_set(self, ps, intervention_feature, complete_assignment):
-        """
-        Returns the reference set for [ps] under assignment, as limited by constituent vector and intervention feature.
-        The reference set for X contains global discourse inventory objects "upward visible" from the point of view of X.
-        For example, in sentence "John_1 admires her(X)", X sees 'John' (as a global object in the discourse inventory).
-        The intervention feature cuts upward visibility, for example, at finite boundaries. Only objects
-        from the QND space are considered potential constituents.
-        """
-
+    def reference_set(self, ps, intervention_feature, complete_assignment):
         return {complete_assignment[self.narrow_semantics.get_referential_index(head, 'QND')]
                 for head in ps.constituent_vector(intervention_feature)
-                if self.narrow_semantics.has_referential_index(head) and self.narrow_semantics.exists(head, 'QND')}
+                if not self.narrow_semantics.query['PRE']['Accept'](head) and
+                self.narrow_semantics.has_referential_index(head) and
+                self.narrow_semantics.exists(head, 'QND')}
 
-    def generate_all_possible_assignments(self, ps):
-        """
-        Generates the denotations set for semantic QND object linked with [ps]
-        """
+    def create_all_assignments(self, ps):
 
         # Get the QND space object which determines the criteria
         filter_criteria = self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')]
@@ -221,19 +161,7 @@ class QuantifiersNumeralsDenotations:
         # Return all GLOBAL discourse inventory objects which do not violate the criteria
         return self.narrow_semantics.global_cognition.get_compatible_objects(filter_criteria)
 
-    def reset(self):
-        """
-        Discharges the discourse inventory
-        """
-        self.inventory = {}
-        self.all_assignments = []
-        self.one_complete_assignment = {}
-
-    def is_D_feature(self, feature):
-        """
-        Recognizes D-features. A D-feature is a feature type that is diverted to this module. It can be one of
-        two types, [D:...] or [PHI:...]
-        """
+    def D_feature(self, feature):
         feature_list = feature.split(':')
         if feature_list[0] == 'D' and len(feature_list) == 3:
             return True
@@ -241,191 +169,89 @@ class QuantifiersNumeralsDenotations:
             return True
 
     def get_D_features(self, ps):
-        """
-        Returns the set of D-features from the head.
-        """
-        return {feature for feature in ps.head().features if self.is_D_feature(feature)}
+        return {feature for feature in ps.head().features if self.D_feature(feature)}
 
     def open_D_feature(self, feature):
-        """
-        Returns the three components (d, type, value) of a D-feature, if the input
-        feature is a D-feature, otherwise returns (None, None, None)
-        """
-        if not self.is_D_feature(feature):
+        if not self.D_feature(feature):
             return None, None, None
         components = feature.split(':')
         if len(components) == 3:
             return components[0], components[1], components[2]
         return None, None, None
 
-    def recognize_(self, head):
-        """
-        This function returns True if the module "recognizes" the head. Recognition means
-        intuitively that the module is able to interpret the head semantically. A head is currently
-        recognized by its lexical category feature, later by the existence of a D-feature.
-        The category feature now substitutes for the latter that has not been implemented
-        fully.
-        todo This function should be replaced with the new recognize function
-        """
-        return {'D', 'NUM', 'Q', 'DEM', 'n', 'D/rel', 'φ'} & head.features
-
-    def project_QND_entry_into_inventory(self, ps, idx):
-        """
-        This function will create a dictionary holding the denotations for the expression [ps] inside the QND space.
-        """
-
+    def project(self, ps, idx):
         self.inventory[idx] = self.apply_criteria(self.narrow_semantics.default_criteria(ps, 'QND'), ps)
-        log(f'Denotation for {ps} (index {idx}) was created into QND space...')
+        log(f'Project ({idx}, QND) for {ps.head().illustrate()}P...')
 
     def apply_criteria(self, criteria, ps):
-        """
-        Examines all D-features in the head [ps] and translates them into criteria (fields in the QND inventory entry),
-        then adds them into input parameter dict [criteria] that will be returned
-        """
-        log(f'Applying semantic criteria...')
-        criteria['Semantic type'] = {'§Thing'} # Currently all QND objects are §things
         for feature in list(self.get_D_features(ps)):
             feature_type = feature.split(':')[0]
-            # If the feature has been associated with criteria function, apply it and store result.
             if feature in self.criteria_function:
                 self.criteria_function[feature](criteria, ps, feature)
-            # If the feature type has been associated with function, apply it and store result.
             elif feature_type in self.criteria_function:
                 self.criteria_function[feature_type](criteria, ps, feature)
-        log(f'Done.')
+        criteria['Semantic type'] = {'§Thing'}
+
         return criteria
 
-    def is_operator(self, ps):
-        """
-        Definition for operator
-        """
-        return self.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and 'FIN' not in ps.features
-
-    def remove_object(self, idx):
-        self.inventory.pop(idx, None)
-
-    def get_object(self, idx):
-        return self.inventory[idx]
-
-    def update_discourse_inventory(self, idx, criteria):
-        self.inventory[idx].update(criteria)
-
-    def interpret_phi_features(self, phi_set):
-        """
-        Interprets phi-feature set into semantic fields (dict)
-        """
-
-        def match(set1, set2):
-            return set2 == set1 & set2
-
-        semantic_fields = {}
-
-        # Person and number
-        if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:1'}):
-            semantic_fields['Participant role'] = 'Speaker'
-        if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:2'}):
-            semantic_fields['Participant role'] = 'Hearer'
-        if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:1'}):
-            semantic_fields['Participant role'] = 'Speaker and others'
-        if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:2'}):
-            semantic_fields['Participant role'] = 'Hearer and others'
-        if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:3'}):
-            semantic_fields['Participant role'] = 'Third party'
-        if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:3'}):
-            semantic_fields['Participant role'] = 'Third party and others'
-
-        if match(phi_set, {'PHI:HUM:HUM'}):
-            semantic_fields['Humanness'] = 'Human'
-        if match(phi_set, {'PHI:HUM:NONHUM'}):
-            semantic_fields['Humanness'] = 'Nonhuman'
-
-        # Gender
-        if match(phi_set, {'PHI:GEN:M'}):
-            semantic_fields['Gender'] = 'M'
-        if match(phi_set, {'PHI:GEN:F'}):
-            semantic_fields['Gender'] = 'F'
-        if match(phi_set, {'PHI:GEN:N'}):
-            semantic_fields['Gender'] = 'N'
-
-        return semantic_fields
-
-    def reconstruct_phi_features(self, global_object):
-
-        def match(set1, set2):
-            return set2 == set1 & set2
-
-        # Person and number
-        if match(global_object['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:1'}):
-            global_object['Participant role'] = 'Speaker'
-        if match(global_object['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:2'}):
-            global_object['Participant role'] = 'Hearer'
-        if match(global_object['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:1'}):
-            global_object['Participant role'] = 'Speaker + others'
-        if match(global_object['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:2'}):
-            global_object['Participant role'] = 'Hearer + others'
-        if match(global_object['Phi-set'], {'PHI:NUM:SG', 'PHI:PER:3'}):
-            global_object['Participant role'] = 'Third party'
-        if match(global_object['Phi-set'], {'PHI:NUM:PL', 'PHI:PER:3'}):
-            global_object['Participant role'] = 'Third party + others'
-
-        # Gender
-        if match(global_object['Phi-set'], {'PHI:GEN:M'}):
-            global_object['Gender'] = 'M'
-        if match(global_object['Phi-set'], {'PHI:GEN:F'}):
-            global_object['Gender'] = 'F'
-        if match(global_object['Phi-set'], {'PHI:GEN:N'}):
-            global_object['Gender'] = 'N'
-
-        del global_object['Phi-set']
-
-    #
-    # Criteria functions which translate grammatical features into QND semantic properties
-    #
     def criterion_proper_name(self, criteria, ps, feature):
-        """
-        Criterion function for proper names, which adds the proper name into the QND space inventory entry.
-        """
-        log(f'{feature}, ')
-        pf_features = sorted(ps.get_pf())
+        pf_features = sorted(ps.sister().get_pf())
         if not pf_features:
             pf_features = ['Unknown name']
         criteria.update({'Proper name': pf_features[0]})
 
     def criterion_phi_features(self, criteria, ps, feature):
-        """
-        Criterion function for phi-features, which adds the phi-features into the QND space inventory entry
-        """
+        def interpret_phi_features(phi_set):
+            def match(set1, set2):
+                return set2 == set1 & set2
+            semantic_fields = {}
+            # Person and number
+            if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:1'}):
+                semantic_fields['Participant role'] = 'Speaker'
+            if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:2'}):
+                semantic_fields['Participant role'] = 'Hearer'
+            if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:1'}):
+                semantic_fields['Participant role'] = 'Speaker and others'
+            if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:2'}):
+                semantic_fields['Participant role'] = 'Hearer and others'
+            if match(phi_set, {'PHI:NUM:SG', 'PHI:PER:3'}):
+                semantic_fields['Participant role'] = 'Third party'
+            if match(phi_set, {'PHI:NUM:PL', 'PHI:PER:3'}):
+                semantic_fields['Participant role'] = 'Third party and others'
+            if match(phi_set, {'PHI:HUM:HUM'}):
+                semantic_fields['Human'] = 'Human'
+            if match(phi_set, {'PHI:HUM:NONHUM'}):
+                semantic_fields['Human'] = 'Nonhuman'
+            if match(phi_set, {'PHI:GEN:M'}):
+                semantic_fields['Gender'] = 'M'
+            if match(phi_set, {'PHI:GEN:F'}):
+                semantic_fields['Gender'] = 'F'
+            if match(phi_set, {'PHI:GEN:N'}):
+                semantic_fields['Gender'] = 'N'
+            return semantic_fields
+
+        #----- main function -----#
         if 'Phi-set' in criteria:
             criteria['Phi-set'].add(feature)
         else:
             criteria['Phi-set'] = {feature}
-
-        criteria.update(self.interpret_phi_features(criteria['Phi-set']))
-
-    def accept(self, ps):
-        return self.has_adequate_phi_set(ps) or 'φ' in ps.head().features
+        criteria.update(interpret_phi_features(criteria['Phi-set']))
 
     def present(self, head):
         if self.narrow_semantics.query['PRE']['Accept'](head):
             return f'pro({head})'
+        elif head.mother:
+            return f'[{head.illustrate()} {head.sister().illustrate()}]'
         else:
-            return f'{head.max().illustrate()}'
+            return f'{head.illustrate}'
 
     def detect_phi_conflicts(self, ps):
-        """
-        Detects phi-feature conflicts inside a head, and marks failed interpretation is found.
-        """
         for phi in ps.get_phi_set():
             if phi[-1] == '*':
                 log(f'{ps} induces a phi-feature conflict...')
                 self.narrow_semantics.phi_interpretation_failed = True
 
     def has_adequate_phi_set(self, h):
-        """
-        Determines whether there are enough phi-features in head [h] to process this constituent inside QND module and
-        link it with QND reference. Phi-checked constituents are not linked because this means that the phi-features
-        have been neutralized by an overt argument.
-        """
         features_detected = {}
         for f in h.features:
             if f[:4] == 'PHI:' and f[-1] != '_':    # Check only valued phi-features
@@ -439,11 +265,8 @@ class QuantifiersNumeralsDenotations:
                         # If there is a feature type T with two difference values, we have feature conflict
                         if f_type == g_type and f_value != g_value:
                             return False
-        if 'PHI:NUM' in features_detected \
-                and 'PHI:PER' in features_detected \
-                and 'PHI_CHECKED' not in h.features:
+        if 'PHI:NUM' in features_detected and 'PHI:PER' in features_detected:
             return True
-
 
     def format_assignment(self, assignment):
         s = '('

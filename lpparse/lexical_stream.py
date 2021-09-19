@@ -24,11 +24,6 @@ class LexicalStream:
             # The element enters active working memory
             terminal_lexical_item.active_in_syntactic_working_memory = True
 
-            # Wire semantics
-            # Note: this is here because we want incremental semantics, which will also feed into
-            # information structure (pragmatic pathway)
-            self.controlling_parser_process.narrow_semantics.wire_semantics(terminal_lexical_item)
-
             # If this was the first element, we have nothing to attach, so we get new element
             if not ps:
                 log('No other elements in active working memory, waiting for the next element.\n')

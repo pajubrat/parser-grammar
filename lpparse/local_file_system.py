@@ -467,7 +467,7 @@ class LocalFileSystem:
         if len(P.narrow_semantics.all_inventories()) > 0:
             for semantic_object, data_dict in self.create_inventory_sorting(P.narrow_semantics.all_inventories().items()):
                 if data_dict['Semantic space'] == 'GLOBAL':
-                    if 'Reference' in data_dict and data_dict['Reference'].startswith('['):
+                    if 'Reference' in data_dict and '§Thing' in data_dict['Semantic type']:
                         output_str += '\tObject ' + semantic_object
                         if 'Semantic space' in data_dict:
                             output_str += ' in ' + data_dict['Semantic space'] + ': '

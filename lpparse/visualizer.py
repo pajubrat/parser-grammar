@@ -262,7 +262,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if ps.left_const:
             self.draw_left_line(ps, X1, Y1)
             self.show_in_window(ps.left_const)
-        if ps.right_const and not ps.is_complex_head():
+        if ps.right_const and not ps.complex_head():
             self.draw_right_line(ps, X1, Y1)
             self.show_in_window(ps.right_const)
             if not self.visualizer.stop_after_each_image:
@@ -399,7 +399,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             depth = ps.y
         if ps.left_const:
             left, right, depth = self.get_tree_size(ps.left_const, left, right, depth)
-        if ps.right_const and not ps.is_complex_head():
+        if ps.right_const and not ps.complex_head():
             left, right, depth = self.get_tree_size(ps.right_const, left, right, depth)
 
         return left, right, depth

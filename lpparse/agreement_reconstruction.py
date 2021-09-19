@@ -23,10 +23,7 @@ class AgreementReconstruction:
         self.controlling_parsing_process = controlling_parsing_process
 
     def reconstruct(self, ps):
-        """
-        Reconstructs agreement by exploring the right edge of the phrase structure. All nodes that have property
-        [VAL] enter into the mechanism.
-        """
+        self.controlling_parsing_process.narrow_semantics.predicate_argument_dependencies = []
         # ---------------------------- minimal search ----------------------------------------#
         for node in ps.minimal_search():
             if node.left_primitive() and 'VAL' in node.left_const.features:
@@ -35,32 +32,15 @@ class AgreementReconstruction:
 
     # Definition for phi-feature acquisition (Agree-1)
     def Agree_1(self, head):
-        """
-        Acquires phi-features from local structure for a head with feature [VAL]. Links the original predicate
-        with the argument in PE/QND semantic spaces. The rationale for this function is to local arguments
-        for predicates from the surface string and create the required pred-argument structures into
-        semantic spaces.
 
-        Agree will first try to acquire phi-features from its sister. If unvalued features remain,
-        it will then try to acquire them from the edge. Edge refers to specifiers and to the head itself that
-        may carry valued phi-features after seeing agreement suffixes in the input or after receiving them
-        from the lexicon.
-
-        Both operations contain two stages. The first is the search and acquisition of the features, and then second
-        is the valuation in which the acquired features are used to value unvalued features in the head.
-
-        Literature:
-        Brattico (2021). Null arguments and the inverse problem. Glossa.
-        Brattico (in prep). Cognitive architecture and binding.
-        """
         self.controlling_parsing_process.consume_resources("Agree")
         self.controlling_parsing_process.consume_resources("Phi")
 
         # 1. Acquisition of phi-features from the sister
         goal1, phi_features = self.Agree_1_from_sister(head)
         if phi_features:
-            self.controlling_parsing_process.narrow_semantics.predicates_relations_events_module.link_predicate_to_argument(head, goal1)
-            self.controlling_parsing_process.narrow_semantics.delete_pro(head)
+            self.controlling_parsing_process.narrow_semantics.predicate_argument_dependencies.append((head, goal1))
+            head.features.add('BLOCK_NS')
             for phi in phi_features:
                 self.value(head, goal1, phi, 'sister')
             if not head.is_unvalued():
@@ -70,22 +50,11 @@ class AgreementReconstruction:
         goal2, phi_features = self.Agree_1_from_edge(head)
         if goal2:
             if not goal1:
-                self.controlling_parsing_process.narrow_semantics.predicatess_module.link_predicate_to_argument(head, goal2)
-            for phi in phi_features:
-                if find_unvalued_target(head, phi):
-                   self.value(head, goal2, phi, 'edge')
+                for phi in phi_features:
+                    if find_unvalued_target(head, phi):
+                       self.value(head, goal2, phi, 'edge')
 
-    # Definition for phi-acquisition from sister
     def Agree_1_from_sister(self, head):
-        """
-        Acquires phi-features from the sister of head [head] (if there is a sister).
-
-        Searches on the right edge while terminating at the first primitive left constituent (no long-distance Agree).
-        If the left constituent is complex and can be exploited for phi-features, then the head of that constituent
-        and its valued phi-features (without PHI:DET) are acquired (returned). A constituent can be exploited for
-        phi-features if it is a DP. In Finnish, with free word order, a special rule is required which ties
-        agreement to case features whose ultimate explanation remains an open problem.
-        """
         if head.sister():
             # ---------------------------- minimal search ----------------------------#
             for node in head.sister().minimal_search():
@@ -139,13 +108,6 @@ class AgreementReconstruction:
 
     # Definition for phi-feature valuation
     def value(self, h, goal, phi, location):
-        """
-        Attempts to values [phi] from [goal] into head [h].
-
-        If there is a feature conflict, then a badness marker will be inserted to signal agreement mismatch.
-        A phi-feature [PHI:F:V] can value [PHI:F:_]. If valuation occurs, a [PHI_CHECKED] feature will be added
-        to the head to signal that the constituent is ready for interpretation.
-        """
 
         # Checks that there is no feature conflicts (agreement mismatches)
         if h.get_valued_features() and self.valuation_blocked(h, phi):

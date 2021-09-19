@@ -203,6 +203,9 @@ class Discourse:
 
     def notify_adjunct_reconstruction_occurred(self, ps, starting_point_head):
         """
+
+        CURRENTLY DISABLED
+
         Allows communication between adjunct reconstruction and semantic bookkeeping.
 
         When constituent is reconstructed by adjunct reconstruction, semantic bookkeeping is updated to
@@ -215,6 +218,7 @@ class Discourse:
         # to cleanup all semantic information recursively which is not implemented.
         if self.narrow_semantics.controlling_parsing_process.first_solution_found:
             return
+        return
 
         idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
         feature_vector_set = set(ps.head().feature_vector())        # Take reconstructed floaters feature vector

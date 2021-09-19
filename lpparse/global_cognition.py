@@ -32,30 +32,23 @@ class GlobalCognition:
     def update_discourse_inventory(self, idx, criteria):
         self.inventory[str(idx)].update(criteria)
 
-    def project_GLOBAL_entry_into_inventory(self, ps, semantic_object):
-        log(f'Creating global inventory object...')
+    def project(self, ps, semantic_object):
+        log(f'Project ')
         criteria_for_new_global_object = self.narrow_semantics.default_criteria(ps, 'GLOBAL')
         semantic_object['Semantic space'] = 'GLOBAL'
         criteria_for_new_global_object.update(semantic_object)
         criteria_for_new_global_object.pop('Phi-set', None)
-        return self.create_object(criteria_for_new_global_object)
+        string = self.create_object(criteria_for_new_global_object)
+        log(f'for {ps.head().illustrate()}P...')
+        return string
 
     def create_object(self, criteria):
-        """
-        Creates a new object into the discourse inventory in the global space on the basis of input
-        criteria (data fields in the dictionary).
-        """
         idx = self.consume_index()
         self.inventory[str(idx)] = criteria
-        log(f'Object [{idx}], was created into global space...')
+        log(f'({idx}, GLOBAL) ')
         return str(idx)
 
     def get_compatible_objects(self, filter_criteria):
-        """
-        Returns a list of indexes in the global discourse inventory that match with the filter criteria.
-        Those semantic objects are rejected which induce a type:value mismatch. Thus, missing type does
-        not constitute rejection.
-        """
         idx_list = []
         for idx in self.inventory:
             select_this_item = True

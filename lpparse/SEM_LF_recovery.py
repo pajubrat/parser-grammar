@@ -20,18 +20,12 @@ def residuum_identity(F, G):
     return F[:len(G[:-1])] == G[:-1]
 
 class LF_Recovery:
-    """
-    Recovery links predicates with arguments.
-    """
     def __init__(self, controlling_parsing_process):
         self.controlling_parsing_process = controlling_parsing_process
         self.LF_recovery_results = set()
         self.interpretation_failed = False
 
     def perform_LF_recovery(self, head, semantic_interpretation_dict):
-        """
-        Provides each head [head] that has unvalued phi-features an antecedent argument.
-        """
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
             self.LF_recovery_result = None
@@ -40,7 +34,7 @@ class LF_Recovery:
             if list_of_antecedents:
                 # This data structure will hold the results, which will be stored into semantic interpretation
                 self.LF_recovery_result = self.interpret_antecedent(head, list_of_antecedents[0])
-                self.controlling_parsing_process.narrow_semantics.predicates_relations_events_module.link_predicate_to_argument(head, list_of_antecedents)
+                self.controlling_parsing_process.narrow_semantics.predicate_argument_dependencies.append((head, list_of_antecedents[0].head()))
             else:
                 self.LF_recovery_result = f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')'
             self.report_to_log(head, list_of_antecedents, unvalued)
@@ -50,22 +44,6 @@ class LF_Recovery:
 
     # Definition for LF-recovery
     def LF_recovery(self, head, unvalued_phi):
-        """
-        Associates a head [head] with unvalued phi-features with a list of antecedents.
-
-        The operation relies on an upstream search (forming an upward path) that is based on dominance.
-        Heads of the sisters of the nodes in the upward path are examined and,
-        if the head has all valued phi-features that are missing from the head, then the sister is
-        picked up as a possible antecedent and appended to the list of antecedents.
-
-        Example. "John wants to leave". The predicate "leave" has unvalued [phi_], which triggers
-        upstream search that finds the TP node whose sister is "John". The D head of this
-        constituent [3sg] can value the [phi_] and thus the DP = John will be appended to the list of
-        antecedents. Because it will end up as the first and most local antecedent, it is selected.
-        The rule is modelled after Rosenbaum's (1967) Minimal Distance Principle. See also Lasnik (1991).
-
-        Source: Brattico (2021). Null arguments and the inverse problem. Glossa: A journal for general linguistics.
-        """
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             # ----------------------- minimal upstream search -----------------------------------------------#

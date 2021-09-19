@@ -82,7 +82,7 @@ class PhraseStructure:
         return self.is_primitive() and not self.has_affix()
 
     # Definition for complex head
-    def is_complex_head(self):
+    def complex_head(self):
         return self.is_primitive() and self.has_affix()
 
     # Definition for geometrical sister
