@@ -67,9 +67,6 @@ class LocalFileSystem:
                                          }
 
     def initialize(self, args):
-        """
-        Initializes and configures the parser and the study
-        """
 
         # Step 0. Initialize dev_logging
         self.initialize_dev_logging()
@@ -93,9 +90,6 @@ class LocalFileSystem:
         self.initialize_output_files()
 
     def initialize_output_files(self):
-        """
-        Initializes various output files so that we can write into them runtime.
-        """
         self.dev_log_file.write('Initializing output files for writing...')
         self.initialize_image_folder()
         self.initialize_grammaticality_judgments_file()
@@ -115,9 +109,6 @@ class LocalFileSystem:
         self.dev_log_file.write(f'Devlogging started at {datetime.datetime.now()}.\n')
 
     def verify_and_check_mandatory_values(self):
-        """
-        Set default values if no value is provided by configuration file or by user parameters.
-        """
         self.dev_log_file.write('Checking and validating settings...')
         self.settings['study_folder'] = self.settings.get('study_folder','')
         self.settings['test_corpus_folder'] = self.settings.get('test_corpus_folder','')
@@ -128,9 +119,6 @@ class LocalFileSystem:
         self.dev_log_file.write(f'Settings: {self.settings}.\n')
 
     def set_external_resources(self):
-        """
-        Sets parameters for various external sources, such as lexicons.
-        """
         self.dev_log_file.write('Setting external sources: ')
         self.external_sources = {"test_corpus_file_name": self.folder['test_corpus'] / self.settings['test_corpus_file'],
                                  "log_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_log.txt'),
@@ -148,9 +136,6 @@ class LocalFileSystem:
         self.dev_log_file.write(f'{self.external_sources}.\n')
 
     def set_folders(self):
-        """
-        Sets folders for various input and output files
-        """
         self.dev_log_file.write(f'Setting folders for input and output files: ')
         self.folder['study'] = Path(self.settings.get('study_folder','language data working directory'))
         self.folder['test_corpus'] = Path(self.settings.get('test_corpus_folder','language data working directory'))
@@ -159,9 +144,6 @@ class LocalFileSystem:
         self.dev_log_file.write(f'{self.folder}.\n')
 
     def read_input_arguments_into_settings(self, args):
-        """
-        Using input arguments as settings, overriding previous values.
-        """
         self.dev_log_file.write('Reading input parameters from the user...')
         for key in args:
             self.settings[key] = args[key]
@@ -169,11 +151,6 @@ class LocalFileSystem:
         self.dev_log_file.write('Done.\n')
 
     def read_root_config_file_into_settings(self):
-        """
-        Populates the settings dict with values obtained from the "config.txt" file. These settings can be
-        overridden by arguments in the function call, so the "config.txt" file also functions as a storage of
-        default values. If the file does not exist, then nothing is done.
-        """
         self.dev_log_file.write(f'Reading root configuration file...')
         try:
             with open('config.txt', 'r') as config_file:
@@ -191,9 +168,6 @@ class LocalFileSystem:
             self.dev_log_file.write('No file found.\n')
 
     def read_study_config_file(self, args):
-        """
-        Reads study configuration file which provides other input parameters.
-        """
         self.dev_log_file.write('Reading study configuration file...')
         try:
             with open(args.get('study_folder', '') + 'config_study.txt', encoding=self.encoding) as config_file:
@@ -211,12 +185,10 @@ class LocalFileSystem:
             config_file.close()
             self.dev_log_file.write('Done.\n')
         except IOError:
-            # Use default values if the study configuration file does not exist
             for key in self.default_study_parameters:
                 self.settings[key] = self.default_study_parameters[key]
             self.dev_log_file.write('Configuration file does not exist, using default values. Done.\n')
 
-        # Coverts boolean strings to booleans and integer strings to integers
         for key in self.settings:
             if isinstance(self.settings[key], str):
                 if self.settings[key].lower() in {'true', 'yes'}:
@@ -261,10 +233,10 @@ class LocalFileSystem:
 
     def add_columns_to_resources_file(self, resources, experimental_group):
         self.dev_log_file.write('Add columns to the resources file...')
-        self.resources_file.write("Number,Sentence,Study_ID,")                                                              # Initial columns
-        for index, group in enumerate(experimental_group):                                                                  # Experimental groups
+        self.resources_file.write("Number,Sentence,Study_ID,")
+        for index, group in enumerate(experimental_group):
             self.resources_file.write(f"Group {index},")
-        for key in resources:                                                                                               # Resources
+        for key in resources:
             self.resources_file.write(f'{key},')
         self.resources_file.write("Execution time (ms)\t\n")
 
@@ -286,9 +258,6 @@ class LocalFileSystem:
         return s
 
     def formatted_semantics_output(self, semantic_interpretation_dict, parser):
-        """
-        Prepares the semantics dictionary for file output
-        """
         output_str = ''
         tabs_str = '\t'
         for key in semantic_interpretation_dict:
@@ -304,7 +273,7 @@ class LocalFileSystem:
             output_str += '\n\t'
             for key, value in assignment.items():
                 if key != 'weight':
-                    output_str += parser.narrow_semantics.quantifiers_numerals_denotations_module.inventory[key]['Reference'] + '(' + key + ') ~ ' + value + ', '
+                    output_str += parser.narrow_semantics.quantifiers_numerals_denotations_module.inventory[key]['Reference'] + ' ~ ' + value + ', '
                 else:
                     output_str += 'Weight ' + str(value)
         return output_str
@@ -316,36 +285,33 @@ class LocalFileSystem:
         return input_sentence_string
 
     def read_test_corpus(self):
-        """
-        Reads a test corpus file into a list [parse_list] of sentences, where each sentence is a list of words.
-        """
         self.dev_log_file.write(f'Reading test corpus file {self.external_sources["test_corpus_file_name"]}...')
         experimental_group = []
         parse_list = []
         plus_sentences = []
         for line in open(self.external_sources["test_corpus_file_name"], encoding=self.encoding):
-            part_of_conversation = False            # Assume each sentence is isolated conversation
-            if line.startswith('=STOP='):           # Respond to START and STOP
+            part_of_conversation = False
+            if line.startswith('=STOP='):
                 break
-            if line.startswith('=START='):          # Respond to START and STOP
+            if line.startswith('=START='):
                 parse_list = []
                 continue
-            line = line.strip()                     # Remove spaces around
-            if not line or line.startswith('#'):    # Comments or empty lines are ignored
+            line = line.strip()
+            if not line or line.startswith('#'):
                 continue
-            if line.startswith('%'):                # Respond to %, which selects one sentence for processing
+            if line.startswith('%'):
                 parse_list = []
                 line = line.lstrip('%')
                 line = self.clear_line_end(line)
                 parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation))
                 break
-            if line.endswith(';'):                  # Respond to ; which assumes this sentence is part of
-                part_of_conversation = True         # conversation with the next sentence.
+            if line.endswith(';'):
+                part_of_conversation = True
                 line = self.clear_line_end(line)
-            if line.endswith('.'):                  # Respond to . which assumes this sentence is not part of
-                part_of_conversation = False        # conversation with the next sentence.
+            if line.endswith('.'):
+                part_of_conversation = False
                 line = self.clear_line_end(line)
-            if line.startswith('+'):                # Respond to +, which accumulates sentences
+            if line.startswith('+'):
                 line = self.clear_line_end(line)
                 plus_sentences.append(([word.strip() for word in line.lstrip('+').split()], experimental_group, part_of_conversation))
             elif line.startswith('=>'):             # Respond to experimental grouping symbol
@@ -395,22 +361,13 @@ class LocalFileSystem:
         self.grammaticality_judgments_file.write(str(count) + '. ' + self.judgment_marker(P) + sentence_string + '\n\n')
 
     def judgment_marker(self, parser):
-
-        # If there were no parsing solutions, the sentence is judged ungrammatical
         if len(parser.result_list) == 0:
             return '*'
-
-        # If there were no assignments, the sentence is judged as uninterpretable
-        # (In this version assignments with weight 0 are removed. If we want to preserve them, then
-        # the test below must be rewritten to test that there are some assignments with w > 0 and it will be slower.
-        # Note that assignments with weight 0 can still be found from the log file.)
         if not {assignment['weight'] for assignment in parser.result_list[0][1]['Assignments'] if assignment['weight'] > 0}:
-            return '$'
+            return '#'
         return ' '
 
-
     def save_resources(self, parser, count, sentence, experimental_group):
-        # If this is the first sentence, we add the column line
         if count == 1:
             self.add_columns_to_resources_file(parser.resources, experimental_group)
         self.resources_file.write(str(count) + ',')
@@ -425,9 +382,6 @@ class LocalFileSystem:
         self.resources_file.write('\n')
 
     def save_results(self, parser, count, sentence, part_of_conversation):
-        """
-        Records the results into several results files (results, simple results, semantics)
-        """
         sentence_string = self.generate_input_sentence_string(sentence)
         if len(parser.result_list) == 0:
             self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
@@ -462,7 +416,6 @@ class LocalFileSystem:
                 self.semantics_file.write('\n')
 
     def format_semantic_interpretation_simple(self, P):
-
         output_str = '\n'
         if len(P.narrow_semantics.all_inventories()) > 0:
             for semantic_object, data_dict in self.create_inventory_sorting(P.narrow_semantics.all_inventories().items()):
@@ -509,9 +462,6 @@ class LocalFileSystem:
         return lst_QND + lst_PE + lst_GLOBAL
 
     def save_image(self, P, sentence, count):
-        """
-        Saves images for each solution
-        """
         self.dev_log_file.write('Creating images for solutions...')
         self.visualizer.input_sentence_string = self.generate_input_sentence_string(sentence)
         if self.visualizer.image_output:
@@ -531,7 +481,6 @@ class LocalFileSystem:
         self.dev_log_file.write('Done.\n')
 
     def write_comment_line(self, sentence):
-
         if sentence[0].startswith("'"):
             s = '\t'
         else:

@@ -5,7 +5,7 @@ class GlobalCognition:
         self.inventory = {}
         self.narrow_semantics = narrow_semantics
         self.index_counter = 1
-        self.excluded_fields = {'Denotations', 'Semantic space', 'Denotation weights', 'Reference', 'Referring constituent'}
+        self.excluded_fields = {'Denotations', 'Semantic space', 'Denotation weights', 'Reference', 'Operator', 'Referring constituent'}
 
     def end_conversation(self):
         self.inventory = {}
@@ -52,33 +52,17 @@ class GlobalCognition:
         idx_list = []
         for idx in self.inventory:
             select_this_item = True
-
-            # Examine all fields in the object in the discourse inventory...
             for field in self.inventory[idx]:
-
-                # ...with the exception of the excluded fields
                 if field not in self.excluded_fields:
                     if field in filter_criteria and filter_criteria[field] != self.inventory[idx][field]:
                         select_this_item = False  # The object is rejected if a mismatching (field, value) pair is found.
                         break
-
             if select_this_item:
                 idx_list.append(idx)
         return idx_list
 
     def general_evaluation(self, mental_object, rule, reference_set):
-        """
-        Evaluates whether [mental object] satisfies rules contained in [instructions].
-
-        [Instructions] contains a [rule] and a possible [reference set] of other objects, which together determine
-        whether the mental object satisfies [instructions].
-
-        [Mental object] is a idx handle to a global object. [Reference set] contains a set of idx handles to global
-        objects.
-        """
-
         if 'NEW' in rule:
             return not {mental_object} & reference_set
-
         if 'OLD' in rule:
             return {mental_object} & reference_set

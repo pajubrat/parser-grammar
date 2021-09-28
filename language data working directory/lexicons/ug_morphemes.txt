@@ -43,7 +43,7 @@ pro-	:: PF:(pro) LF:pro N PHI
 cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL
 inc		:: inflectional INCORPORATED
 
-# Phi- and D-features
+# Phi- and R-features
 sg 			:: inflectional PHI:NUM:SG
 pl 			:: inflectional PHI:NUM:PL
 1p 			:: inflectional PHI:PER:1
@@ -55,9 +55,10 @@ hum 		:: inflectional PHI:HUM:HUM
 nonhum 		:: inflectional PHI:HUM:NONHUM
 m			:: inflectional PHI:GEN:M
 f			:: inflectional PHI:GEN:F
-proper_name	:: inflectional D:REF:NAME D:NEW:$X$
-pronoun1	:: inflectional D:NEW:REF
-reflexive	:: inflectional D:OLD:REF
+proper_name	:: inflectional R:REF:NAME R:NEW:$X$0
+pronoun1	:: inflectional R:NEW:REF
+reflexive	:: inflectional R:OLD:REF
+Rexpression	:: inflectional R:NEW:$X$0
 
 # Generic deficient structural cases
 nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL -FLOAT -adjoinable

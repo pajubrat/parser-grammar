@@ -4,9 +4,6 @@ from support import is_comment
 from linear_phase_parser import LinearPhaseParser
 
 def run_study(args):
-    """
-    Executes a study based on input parameters which are provided as a dictionary args.
-    """
     sentence = args.get('sentence', '')
 
     # Prepare file systems and logging

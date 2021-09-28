@@ -2,8 +2,8 @@ from support import log
 
 class PredicatesRelationsEvents:
     def __init__(self, narrow_semantics):
-        self.narrow_semantics = narrow_semantics    # Access to narrow semantics
-        self.inventory = {}                         # PRE space for semantic objects
+        self.narrow_semantics = narrow_semantics
+        self.inventory = {}
 
     def reset(self):
         self.inventory = {}
@@ -26,23 +26,7 @@ class PredicatesRelationsEvents:
 
     def project(self, ps, idx):
         self.inventory[idx] = self.narrow_semantics.default_criteria(ps, 'PRE')
-        log(f'Project (index {idx}, PRE) for {ps}...')
+        log(f'Project ({idx}, PRE) for {ps}...')
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
-
-    def link_predicate_to_argument(self, predicate_head, list_of_antecedents):
-        if self.narrow_semantics.has_referential_index(predicate_head):
-
-            # We consider only the first (most local) antecedent in this version
-            selected_antecedent = list_of_antecedents[0]
-
-            # Retrieve the index for the predicate in PE space
-            idx, space = self.narrow_semantics.get_referential_index_tuples(predicate_head, 'PRE')
-
-            # Retrieve the index to the argument
-            idx_arg, space_arg = self.narrow_semantics.get_referential_index_tuples(selected_antecedent.head(), 'QND')
-
-            # Add information about the argument
-            if idx:
-                self.inventory[idx]['Argument'] = idx_arg

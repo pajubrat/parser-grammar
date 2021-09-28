@@ -40,7 +40,8 @@ class AgreementReconstruction:
         goal1, phi_features = self.Agree_1_from_sister(head)
         if phi_features:
             self.controlling_parsing_process.narrow_semantics.predicate_argument_dependencies.append((head, goal1))
-            head.features.add('BLOCK_NS')
+            if not {'D', 'φ', 'n'} & head.features: # This is currently stipulation
+                head.features.add('BLOCK_NS')
             for phi in phi_features:
                 self.value(head, goal1, phi, 'sister')
             if not head.is_unvalued():

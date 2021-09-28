@@ -8,12 +8,43 @@
 	& 0.1 Binding conditions
 		
 		Pekka ihailee itseään
-		'Pekka.NOM admire.3SG.PRS self.PAR.Px/3sg'
+		'Pekka.NOM admire.3SG.PRS self.PAR.PX/3SG'
+
+		Pekka ihailee itseäni
+		'Pekka.NOM admire.3SG.PRS self.PAR.PX/3SG'
+
+		minä ihailen itseään
+		'I.NOM admire.1SG.PRS self.PAR.PX/3SG'
+
+		minä ihailen itseäni
+		'I.NOM admire.1SG.PRS self.PAR.PX/1SG'
 
 		itseään ihailee Pekka
 		'self.PAR.Px/3sg admire.3SG.PAR Pekka.NOM'
 
+		itseään#[kO] Pekka ihailee
+
+		Pekka nayttaa lahtevan
+
 		John admires herself
+		
+		Pekka ihailee häntä
+		'Pekka.NOM admire.3SG.PRS he.PAR'
+
+		Pekka ihailee sitä
+		'Pekka.NOM admire.3SG.PRS it.PAR'
+		
+		Pekka sanoi etta Merja ihailee sitä
+		'Pekka.NOM said that Merja.NOM admire.3SG.PRS it.PAR'
+		
+		Pekka ihailee häntä
+		'Pekka.NOM admire.3SG.PRS he.PAR'
+		
+		Pekka sanoo että Merja ihailee häntä
+		'Pekka.NOM says that Merja.NOM admire.3SG.PRS he.PAR'
+		
+		Pekan_gen sisko ihailee häntä
+		'Pekka.GEN sister admire.3SG.PRS he.PAR'
 		
 		hän ihailee Merjaa
 		'He.NOM admire.3SG.PRS Merja.PAR'
@@ -62,7 +93,7 @@
 		Pekka ihailee kuvaa
 		'Pekka.NOM admire.3SG.PRS picture.PAR'
 		
-	%	Pekka ihailee kuvaa Merjasta
+		Pekka ihailee kuvaa Merjasta
 		'Pekka.NOM admire.3SG.PRS picture.PAR Merja.ELA'
 	
 	& 0.4 Embedded infinitivals
@@ -75,11 +106,7 @@
 	
 		Pekka haluaa Merjan_gen ihailevan häntä
 		Pekka haluaa Merjan_gen ihailevan itseään
-	
-	& 0.5 The algorithm
-	
-		a' b' c' d'
-	
+		
 & 1 Proper names
 
 	& 1.1 Grammatical, assignment possible
@@ -295,7 +322,7 @@
 		Pekka ihailee Merjaa;
 		hän nukkuu.
 		
-	& 2.9 Grammatical, c-command, assignment 'John ~ he' possible
+	& 2.9 C-command tests
 
 		John='s sister admires him
 		
@@ -389,21 +416,21 @@
 	
 	& 3.6 Reflexives and control
 	
-		& 3.5.1 Local binding inside infinitival
+		& 3.6.1 Local binding inside infinitival
 		
 			John wants Mary to_inf admire' herself
 			
 			Pekka haluaa Merjan_gen ihailevan itseään
 			'Pekka.NOM want.3SG.PRS Merja.GEN admire.VA/inf self.PAR.Px/3SG'
 			
-		& 3.5.2 *Ungrammatical, nonlocal binding out of infinitival
+		& 3.6.2 *Ungrammatical, nonlocal binding out of infinitival
 		
 			John wants Mary to_inf admire' himself
 			
 			Pekka halusi Merjan_gen ihailevan itseään
 			'Pekka.NOM want.3SG.PRS Merja.GEN admire.VA/inf self.PAR.Px/3SG'
 	
-		& 3.5.3 Binding from infinitival into main clause subject
+		& 3.6.3 Binding from infinitival into main clause subject
 		
 			& 3.5.3.1 Grammatical
 			
@@ -424,7 +451,7 @@
 				John wants to_inf admire' herself
 				he wants to_inf admire' herself
 		
-		& 3.5.5 Reflexive subjects inside infinitivals
+		& 3.6.4 Reflexive subjects inside infinitivals
 		
 			& 3.5.5.1 Grammatical
 					

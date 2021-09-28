@@ -1,18 +1,16 @@
 # This class implements numerical and quantificational cognition
 # It mediates between the syntax-semantics interface and the global discourse inventory
-# Responds to D-features ([D:...], [PHI:...])
+# Responds to R-features ([R:...], [PHI:...])
 from support import log
 
 class QuantifiersNumeralsDenotations:
     def __init__(self, narrow_semantics):
-        self.narrow_semantics = narrow_semantics    # Access to narrow semantics (if needed)
-        self.inventory = {}                         # Bookkeeping for fixed denotation sets
-        self.one_complete_assignment = {}           # Assignment dictionary (temporary)
-        self.all_assignments = []                   # Stored and weighted assignments
-        self.referential_constituents_feed = []     # list of tuples [(idx, illustrated, ps, denotations)...]
-
-        # Lexical D-features are converted into semantic information by these functions
-        self.criteria_function = {'D:REF:NAME': self.criterion_proper_name,
+        self.narrow_semantics = narrow_semantics
+        self.inventory = {}
+        self.one_complete_assignment = {}
+        self.all_assignments = []
+        self.referential_constituents_feed = []
+        self.criteria_function = {'R:REF:NAME': self.criterion_proper_name,
                                   'PHI': self.criterion_phi_features}
 
     def reset(self):
@@ -52,46 +50,26 @@ class QuantifiersNumeralsDenotations:
     def calculate_possible_denotations_(self, ps):
         L1 = []
         L2 = []
-        # Copies are ignored
         if not ps.find_me_elsewhere:
             if ps.is_complex():
-                # Recursion, referential constituent feed composition
                 L1 = self.calculate_possible_denotations_(ps.left_const)
                 L2 = self.calculate_possible_denotations_(ps.right_const)
-
-            # Primitive constituent
-            else: # If the constituent is referential and in the QND space, we generate assignments for it
+            else:
                 if self.narrow_semantics.has_referential_index(ps, 'QND'):
                     idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
-
-                    # Store the list of possible denotations into the QND entry
                     self.inventory[idx]['Denotations'] = self.create_all_assignments(ps)
                     log(f'\n\t\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
-
-                    # Generate entry for the referential constituent feed list, returned to caller
                     return [(idx, f'{ps.illustrate()}', ps, self.inventory[idx]['Denotations'])]
-
-        # Merge the lists for the construction of the referential constituent feed
         return L1 + L2
 
     def create_assignments_from_denotations_(self, c_index, d_index, one_complete_assignment):
-        # Get all denotations for the current constituent
         idx, const, ps, denotations = self.referential_constituents_feed[c_index]
         denotation = denotations[d_index]
-
-        # Store (constituent, assignment) pair into dictionary
         one_complete_assignment[idx] = denotation
-
-        # Store complete assignment if all constituents have been provided with assignment
-        # Add weight field which determines how likely this assignment will be
         if len(one_complete_assignment) == len(self.referential_constituents_feed):
             self.all_assignments.append(self.calculate_assignment_weight(one_complete_assignment))
-
-        # Recursion
-        # Recurse through all constituents
         if c_index < len(self.referential_constituents_feed) - 1:
             self.create_assignments_from_denotations_(c_index + 1, 0, one_complete_assignment.copy())
-        # Recurse through all denotations
         if d_index < len(denotations) - 1:
             self.create_assignments_from_denotations_(c_index, d_index + 1, one_complete_assignment.copy())
 
@@ -99,49 +77,35 @@ class QuantifiersNumeralsDenotations:
         weighted_assignment = complete_assignment.copy()
         log(f'\n\t\t\tAssignment {complete_assignment} ')
         weighted_assignment['weight'] = 1
-
-        # Examine every expression in the constituent feed
         for expression in self.referential_constituents_feed:
             if not self.binding_theory_conditions(expression, complete_assignment):
                 weighted_assignment['weight'] = 0
+                log('rejected by binding.')
             if not self.predication_theory_conditions(expression, complete_assignment):
                 weighted_assignment['weight'] = 0
-
+                log('rejected by predication theory.')
         if weighted_assignment['weight'] > 0:
-            log('<= accepted.')
-
+            log('accepted.')
         return weighted_assignment
 
     def predication_theory_conditions(self, expression, complete_assignment):
         idx_QND_predicate, name, ps, denotations = expression
         if self.narrow_semantics.query['PRE']['Accept'](ps) and self.narrow_semantics.query['QND']['Accept'](ps):
-
-            # Take indexes for the predicate
             idx_pred, space_pred = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
-
-            # Examine all predicate-argument pairs
             for predicate, argument in self.narrow_semantics.predicate_argument_dependencies:
                 if ps == predicate:
-
-                    # If match found, take the index from the argument
                     idx_arg, space_arg = self.narrow_semantics.get_referential_index_tuples(argument, 'QND')
-
-                    # Check that they are assigned to the same element
                     if complete_assignment[idx_arg] != complete_assignment[idx_pred]:
                         return False
         return True
 
     def binding_theory_conditions(self, expression, complete_assignment):
-        # Referential index, name, constituent pointer and denotations of the expression (from constituent feed)
         idx, name, ps, denotations = expression
-
-        # Examine all D-features
-        for feature in list(self.get_D_features(ps)):
-            D, rule, intervention_feature = self.open_D_feature(feature)
-
-            # React only to NEW and OLD features (current implementation)
+        for feature in list(self.get_R_features(ps)):
+            D, rule, intervention_feature = self.open_R_feature(feature)
             if {rule} & {'NEW', 'OLD'}:
                 reference_set = self.reference_set(ps, intervention_feature, complete_assignment)
+                log(f'(R={reference_set}) ')
                 if not self.narrow_semantics.global_cognition.general_evaluation(complete_assignment[idx], rule, reference_set):
                     return False
         return True
@@ -149,30 +113,25 @@ class QuantifiersNumeralsDenotations:
     def reference_set(self, ps, intervention_feature, complete_assignment):
         return {complete_assignment[self.narrow_semantics.get_referential_index(head, 'QND')]
                 for head in ps.constituent_vector(intervention_feature)
-                if not self.narrow_semantics.query['PRE']['Accept'](head) and
-                self.narrow_semantics.has_referential_index(head) and
+                if self.narrow_semantics.has_referential_index(head) and
                 self.narrow_semantics.exists(head, 'QND')}
 
     def create_all_assignments(self, ps):
-
-        # Get the QND space object which determines the criteria
         filter_criteria = self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')]
-
-        # Return all GLOBAL discourse inventory objects which do not violate the criteria
         return self.narrow_semantics.global_cognition.get_compatible_objects(filter_criteria)
 
-    def D_feature(self, feature):
+    def R_feature(self, feature):
         feature_list = feature.split(':')
-        if feature_list[0] == 'D' and len(feature_list) == 3:
+        if feature_list[0] == 'R' and len(feature_list) == 3:
             return True
         if feature_list[0] == 'PHI':
             return True
 
-    def get_D_features(self, ps):
-        return {feature for feature in ps.head().features if self.D_feature(feature)}
+    def get_R_features(self, ps):
+        return {feature for feature in ps.head().features if self.R_feature(feature)}
 
-    def open_D_feature(self, feature):
-        if not self.D_feature(feature):
+    def open_R_feature(self, feature):
+        if not self.R_feature(feature):
             return None, None, None
         components = feature.split(':')
         if len(components) == 3:
@@ -181,10 +140,10 @@ class QuantifiersNumeralsDenotations:
 
     def project(self, ps, idx):
         self.inventory[idx] = self.apply_criteria(self.narrow_semantics.default_criteria(ps, 'QND'), ps)
-        log(f'Project ({idx}, QND) for {ps.head().illustrate()}P...')
+        log(f'Project ({idx}, QND) for {ps.head().illustrate()}P ({ps.head().max().illustrate()})...')
 
     def apply_criteria(self, criteria, ps):
-        for feature in list(self.get_D_features(ps)):
+        for feature in list(self.get_R_features(ps)):
             feature_type = feature.split(':')[0]
             if feature in self.criteria_function:
                 self.criteria_function[feature](criteria, ps, feature)

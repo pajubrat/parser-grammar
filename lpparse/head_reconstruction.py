@@ -49,14 +49,12 @@ class HeadMovement:
                     return
                 affix.remove()
             # --------------------------------------------------------------------------------#
-            # Still no solution
-            # Result: True = successful, False = unsuccessful
-            # Expanded_node: when D(N) is expanded, we need to target [D N] = Expanded node next, not D.
+
             Result, Expanded_node = self.try_manipulate_bottom_node(node, affix, intervention_feature)
             if Result:
-                return  # The result is legible, leave it and return
+                return
             else:
-                affix.remove()  # The result still fails, we go for last resort with the expanded node
+                affix.remove()
                 if phrase_structure == node:
                     phrase_structure = Expanded_node
 
@@ -70,12 +68,9 @@ class HeadMovement:
             self.reconstruct(node)
             expanded_node = node.mother
 
-        # Case 2. If the bottom head is DP, we try to make it a specifier of affix
         if 'D' in expanded_node.head().features:
             expanded_node.merge_1(affix, 'right')
-        # Case 3. For all other labels, we try solutions #1 and #2 below. The intuitive idea is that solution
-        # [X Affix], X = bottom node, is usually adopted with the exception that if X has an intervention
-        # feature, then the solution honors intervention and is [Affix X] instead. Affix = reconstructing affix.
+
         else:
             node = node.top().bottom()
             if intervention_feature not in node.features and intervention_feature not in node.sister().features:

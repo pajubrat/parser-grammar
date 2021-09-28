@@ -5,31 +5,13 @@ from collections import namedtuple
 
 major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 
-# Definitions and methods for phrase structure
 class PhraseStructure:
-
-    # This variable counts the number of operations for analytic purposes
     resources = {"Asymmetric Merge": {"ms":0, "n":0},
                  "Sink": {"ms":0, "n":0},
                  "External Tail Test": {"ms":0, "n":0}
                  }
 
-    # Constituent constructor, Merge[A B]
     def __init__(self, left_constituent=None, right_constituent=None):
-        """
-        Defines the notion of phrase structure constituent.
-
-        A phrase structure constituent has certain axiomatic linguistic properties plus
-        several auxiliary properties that are used to support simulations. The most relevant
-        linguistic properties are its phrase structure geometry and linguistic features (if any).
-        In addition, any constituent can be either inside or outside of the active working memory,
-        and it may be pulled out into an external processing pipeline (adjunct). Finally,
-        the current model keeps track of chain creation by using the feature [find_me_elsewhere] which
-        is tagged to a constituent if it has been moved.
-
-        The standard bottom-up Chomsky-style merge [A B] is part of the constructor, because you can create
-        a new constituent by merging A and B together as its left and right constituents, respectively.
-        """
         self.left_const = left_constituent
         self.right_const = right_constituent
         if self.left_const:
@@ -52,66 +34,48 @@ class PhraseStructure:
             self.adjunct = True
             left_constituent.adjunct = False
 
-    #
-    #
-    # Block 1. Definitions for basic grammatical relations
-    #
-    #
-    # Definition of primitive constituent
     def is_primitive(self):
         return not (self.right_const and self.left_const)
 
-    # Definition for complex constituent
     def is_complex(self):
         return not self.is_primitive()
 
-    # Definition of left
     def is_left(self):
         return self.mother and self.mother.left_const == self
 
-    # Definition of right
     def is_right(self):
         return self.mother and self.mother.right_const == self
 
-    # Definition for affix
     def has_affix(self):
         return self.right_const and not self.left_const
 
-    # Definition for terminal head (that has no constituents of any kind)
     def terminal_node(self):
         return self.is_primitive() and not self.has_affix()
 
-    # Definition for complex head
     def complex_head(self):
         return self.is_primitive() and self.has_affix()
 
-    # Definition for geometrical sister
     def geometrical_sister(self):
         if self.is_left():
             return self.mother.right_const
         if self.is_right():
             return self.mother.left_const
 
-    # Definition for externalization
     def externalized(self):
         return self.adjunct
 
     def adjoinable(self):
         return 'adjoinable' in self.features and '-adjoinable' not in self.features
 
-    # Definition of functional (vs. lexical)
     def is_functional(self):
         return '!COMP:*' in self.features
 
-    # Definition for left primitive head
     def left_primitive(self):
         return self.left_const and self.left_const.is_primitive()
 
-    # Definition for left complex head
     def left_complex(self):
         return self.left_const and self.is_complex()
 
-    # Opposite of externalization
     def visible(self):
         return not self.externalized()
 
@@ -119,26 +83,13 @@ class PhraseStructure:
         if self.max().sister() and self.max().sister().is_primitive():
             return True
 
-    # Definition for adjoinable phrase
     def is_adjoinable(self):
-        # This makes it possible to adjoin TP when is is a relative clause. It produces spurious
-        # relative clause solutions under some circumstances and must be rethought.
-        #
-        #for edge in self.head().edge():
-        #   if edge.contains_feature('OP:REL'):
-        #       return True
         return self.externalized() or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
 
     def constituents(self):
         return {self.left_const, self.right_const}
 
-    # Definition for sisterhood
     def sister(self):
-        """
-        Defines the grammatical dependency of sisterhood.
-
-        The definition is otherwise trivial with exception that externalized constituents are ignored completely.
-        """
         while self.mother:
             if self.is_left():
                 if self.geometrical_sister().visible():
@@ -152,21 +103,16 @@ class PhraseStructure:
                     return None
         return None
 
-    # Definition for strong complement (=right sister)
     def proper_complement(self):
         if self.sister() and self.sister().is_right():
             return self.sister()
 
-    # Definition of bottom node
     def bottom(self):
         while not self.is_primitive():
             self = self.right_const
         return self
 
     def head(self):
-        """
-        Definition for head (also label) of a phrase structure.
-        """
         if self.is_primitive():
             return self
         if self.left_const.is_primitive():
@@ -183,11 +129,9 @@ class PhraseStructure:
             ps_ = ps_.mother
         return ps_
 
-    # Definition for minimal search
     def minimal_search(self):
         return [node for node in self]
 
-    # Definition for geometrical minimal search
     def geometrical_minimal_search(self):
         search_list = [self]
         while self.is_complex() and self.right_const:
@@ -217,10 +161,6 @@ class PhraseStructure:
             iterator_ = iterator_ + 1
 
     def upstream_search(self, intervention_feature=None):
-        """
-        Defines an upstream search from a head which is an ordered list of constituents that dominate the head.
-        Search is terminated by the intervention feature. Head itself is not included.
-        """
         node = self
         path = []
         while node.mother:
@@ -243,12 +183,7 @@ class PhraseStructure:
                     if feature_set & const.features == feature_set:
                         return True
 
-    # Definition for edge
     def edge(self):
-        """
-        The edge of a head contains all second merge phrases inside its projection, including pro.
-        The pro-element is part of the edge if and only if (1) it exists and (2) there is nothing else in the edge
-        """
         edge = []
         # -------------- minimal upstream path ---------------------------------------------#
         for node in self.upstream_search():
@@ -259,12 +194,10 @@ class PhraseStructure:
             if node.left_const and node.left_const.is_complex() and node.left_const.head() != self:
                 edge.append(node.left_const)
         #------------------------------------------------------------------------------------#
-        # Add pro if the edge is otherwise empty
         if not edge and self.extract_pro():
             edge.append(self.extract_pro())
         return edge
 
-    # Definition for local edge
     def local_edge(self):
         if self.edge():
             return self.edge()[0]
@@ -273,11 +206,6 @@ class PhraseStructure:
         return [edge for edge in self.edge() if edge.is_complex()]
 
     def licensed_specifier(self):
-        """
-        Defines the notion of licensed specifier.
-
-        Corresponds intuitively to prototypical argument specifier that is selected by the head.
-        """
         edge = self.phrasal_edge()
         # If there is only one phrasal edge, return it
         if len(edge) == 1:
@@ -294,19 +222,16 @@ class PhraseStructure:
                 if licensed_edge:
                     return licensed_edge[0]
 
-    # Definition for container head
     def container_head(self):
         if self.mother:
             return self.mother.head()
 
-    # Definition for upstream walk
     def walk_upstream(self):
         while self.mother:
             self = self.mother
             if self.right_const.visible():
                 return self
 
-    # Definition for selector
     def selector(self):
         if len(self.feature_vector()) > 1:
             return self.feature_vector()[1]
@@ -370,36 +295,13 @@ class PhraseStructure:
     def identify_equivalent_node(self, site):
         return self.node_at(site.get_position_on_geometric_right_edge())
 
-    #
-    # Block 2. Structure building operations
-    #
-    #
-    # Definition for asymmetric countercyclic Merge-1 operation (nontrivial)
     def merge_1(self, C, direction=''):
-        """
-        Merges an incoming constituent [C] into an existing node [self] to direction [direction].
-
-        The left-to-right Merge-1 is a more complex operation than the bottom-up merge.
-        It targets some node N at an existing phrase structure and then merges the incoming
-        constituent C either ot left [C N] or to right [N C]. This operation requires that
-        existing phrase structure relations are broken and then repaired, so that the incoming
-        constituent can be weaved into it.
-        """
         local_structure = self.local_structure()                # [X...self...Y]
         new_constituent = self.asymmetric_merge(C, direction)   # A = [self H] or [H self]
         new_constituent.substitute(local_structure)             # [X...A...Y]
         return new_constituent.top()
 
-    # Definition for standard Merge with symmetry breaking
     def asymmetric_merge(self, B, direction='right'):
-        """
-        Merges B asymmetrically to [self] into direction [direction]
-
-        The operation creates a complex constituent [A B] such that
-        one of them is the targeted constituent and another is the
-        new merged constituent. [A B] is returned. The operation
-        assumes that A and B are both top nodes.
-        """
         self.consume_resources('Asymmetric Merge')
         if direction == 'left':
             new_constituent = PhraseStructure(B, self)
@@ -407,15 +309,7 @@ class PhraseStructure:
             new_constituent = PhraseStructure(self, B)
         return new_constituent
 
-    # Substitute self into local_structure
     def substitute(self, local_structure):
-        """
-        Substitutes [self] into the local phrase structure geometry defined by [local_structure].
-
-        Local structure contains information concerning the mother and handedness of some
-        constituent [self] that we substitute with another constituent, e.g. [self B].
-        If [self] was left constituent, then [self B] will also be left constituent, and so on.
-        """
         if local_structure.mother:
             if not local_structure.left:
                 local_structure.mother.right_const = self
@@ -424,24 +318,14 @@ class PhraseStructure:
             self.mother = local_structure.mother
 
     def local_structure(self):
-        """
-        Takes a snapshot of the local structure around some constituent A.
-
-        Two properties are currently registered: A's mother and whether it is left.
-        This information will be used when that constituent is substituted with something else,
-        and thus we can restore the phrase structure geometry.
-        """
         local_structure = namedtuple('local_structure', 'mother left')
         local_structure.mother = self.mother
         local_structure.left = self.is_left()
         return local_structure
 
-    # Abbreviation for X.Merge_1(Y, right)
     def __add__(self, incoming_constituent):
         return self.merge_1(incoming_constituent)
 
-    # Definition for an operation that removes an element from the phrase structure
-    # and seals the hole left behind (does not do anything if H is topmost constituent)
     def remove(self):
         if self.mother:
             mother = self.mother                    # {H, X}
@@ -454,8 +338,6 @@ class PhraseStructure:
                 grandparent.left_const = sister     # {X Y} (removed H)
             self.mother = None                      # detach H
 
-    # Definition for sinking
-    # X.sink(ps) = adds ps to X as the bottom affix
     def sink(self, ps):
         self.consume_resources('Sink')
         bottom_affix = self.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
@@ -483,7 +365,6 @@ class PhraseStructure:
         ps_.identity = self.identity
         return ps_
 
-    # Separate phrase structure from its host and return the mother (for later reattachment)
     def detach(self):
         if self.mother:
             original_mother = self.mother
@@ -498,8 +379,6 @@ class PhraseStructure:
         else:
             return self
 
-    # Definition for selected sister
-    # A sister, excluding left primitive heads and adjuncts
     def selected_sister(self):
         if self.sister():
             if self.sister().is_primitive() and self.sister().is_right():
@@ -507,23 +386,14 @@ class PhraseStructure:
             if self.sister().is_complex():
                 return self.sister()
 
-    #
-    # Block 3. Nonlocal dependencies and operations
-    #
-    # Definition for feature vector
     def feature_vector(self):
         return [self] + [node.left_const for node in self.upstream_search() if
                          node.left_const and node.left_const.is_primitive() and node.left_const != self]
 
     def constituent_vector(self, intervention_feature=None):
-        """
-        Returns the constituent vector for constituent. Notice that both the constituent itself and all leftover
-        copies are ignored by this function.
-        """
         return [node.left_const.head() for node in self.upstream_search(intervention_feature)
                 if node.left_const.head() != self and not node.left_const.find_me_elsewhere]
 
-    # Definition for probe-goal dependency
     def probe(self, feature, G):
         if self.sister():
             # --------------------- minimal search --------------------------------
@@ -536,35 +406,16 @@ class PhraseStructure:
                     break
             # -------------------------------------------------------------------------------------------
 
-    # Definition for path visibility
     def inside_path(self):
-        """
-        A node X is inside path that goes through node N if and only if X is primitive or primitive head of left constituent.
-        """
         if self.is_primitive():
             return self
         if self.is_complex:
             return self.left_const.head()
 
-    # Definition for intervention
     def intervention(self, feature):
         feature.issubset(self.inside_path().features)
 
     def external_tail_head_test(self):
-        """
-        Checks whether all tail feature sets inside the head [self] are satisfied. If anything is not, returns [False]
-
-        There are currently two conditions: strong and weak. The strong condition requires that the externalized
-        adjunct occurs inside the projection of a head that matches with the tail features. The weak condition
-        requires that there exists an upward path. The fact that we require the two conditions suggests that there is
-        something we haven't captured correctly.
-
-        This function handles all adjuncts but also the free word order phenomenon in Finnish. There is also
-        the curious exception of the genitive case, discussed in the literature.
-
-        Literature: Brattico (2020). Finnish word order: does comprehension matter? Nordic Journal of Linguistics.
-
-        """
         self.consume_resources("External Tail Test")
         tail_sets = self.get_tail_sets()
         tests_checked = set()
@@ -640,11 +491,9 @@ class PhraseStructure:
     def positive_features(self, features_to_check):
         return {feature for feature in features_to_check if feature[0] != '*'}
 
-    # Definition for tail sets
     def get_tail_sets(self):
         return {frozenset(feature[5:].split(',')) for feature in self.head().features if feature[:4] == 'TAIL'}
 
-    # Recursive definition for contains-feature-F for a phrase
     def contains_feature(self, feature):
         if self.left_const and self.left_const.contains_feature(feature):
             return True
@@ -655,11 +504,6 @@ class PhraseStructure:
                 return True
         return False
 
-    #
-    #
-    # Block 4. Functions which return properties from inside a head
-    #
-    #
     def EPP(self):
         return 'SPEC:*' in self.features or '!SPEC:*' in self.features
 
@@ -670,7 +514,6 @@ class PhraseStructure:
     def verbal(self):
         return {'V', 'v', 'T', 'T/fin', 'NEG', 'FORCE'} & self.head().features
 
-    # Return a list of affixes inside a grammatical head (including the head itself)
     def get_affix_list(self):
         lst = [self]
         while self.right_const and not self.left_const:
@@ -681,21 +524,7 @@ class PhraseStructure:
     def features_of_complex_word(h):
         return {feature for affix in h.get_affix_list() for feature in affix.features}
 
-    # Definition for pro-extraction
     def extract_pro(self):
-        """
-        Extracts pro-elements from a head [self].
-
-        Pro-elements can be extracted only from predicates, defined by feature [ARG]. Then, if the predicate
-        is marked for agreement reconstruction [VAL], the pro-element is reconstructed from these features;
-        if it is not marked for agreement reconstruction, the pro-element is reconstructed from unvalued phi-features.
-        The latter condition is motivated by the fact that unvalued phi-features are linked with an argument by
-        LF-recovery. Finally, the pro-element, if generated from valued phi-set, must not involve feature conflicts.
-
-        This mechanism generates pro-drop constructions as well as "PRO-drop" constructions by satisfying
-        specifier conditions by both pro and PRO.
-        """
-        # Internal functions
         def valued_phi(h):
             return {f for f in h.features if f[:4] == 'PHI:' and f[-1] != '_'}
         def all_phi(h):
@@ -731,42 +560,30 @@ class PhraseStructure:
                     return pro
         return None
 
-    # Definition for unvalued phi-features
     def is_unvalued(self):
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
 
-    # Definition for valued phi-features
     def get_valued_features(self):
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
 
-    # Definition for the notion of phi-set for head H
     def get_phi_set(self):
         return {f for f in self.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
-    # Return a list of unvalued features
     def get_unvalued_features(self):
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
 
     def has_op_feature(self):
-        """
-        Return True if and only if the element has feature [OP...]. Includes also unvalued operator features and
-        scope marking operators.
-        """
         return {feature for feature in self.features if feature[:2] == 'OP'}
 
-    # Definition for positive specifier selection
     def licensed_specifiers(self):
         return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
 
-    # Definition for negative specifier selection
     def specifiers_not_licensed(self):
         return {f[6:] for f in self.features if f[:5] == '-SPEC'}
 
-    # Definition for rate specifier selection (not used)
     def rare_specs(self):
         return {f[6:] for f in self.features if f[:5] == '%SPEC'}
 
-    # Returns features without !
     def convert_features_for_parsing(self, features):
         return {f[1:] if f.startswith('!') else f for f in features}
 
@@ -776,7 +593,6 @@ class PhraseStructure:
             if f in major_category:
                 cats.add(f)
         return cats
-
 
     def is_clitic(self):
         if 'CL' in self.features:
@@ -798,8 +614,6 @@ class PhraseStructure:
     def get_pf(self):
         return {feature[3:] for feature in self.features if feature[:3] == 'PF:'}
 
-    # Return the phonological form of the constituent if any
-    # Does some additional formatting
     def get_phonological_string(self):
         def show_affix(self):
             i = ''
@@ -811,8 +625,6 @@ class PhraseStructure:
                 i = ''
             return i
 
-        # Main function
-        # We return phonological features but not inflectional features
         pfs = [f[3:] for f in self.features if f[:2] == 'PF']
         if self.has_affix():
             affix_str = show_affix(self)
@@ -820,7 +632,6 @@ class PhraseStructure:
         else:
             return '.'.join(sorted(pfs))
 
-    # Definition for semantic features (access keys to concepts)
     def LF_features(self):
         lfs = [f[3:] for f in self.features if f[:2] == 'LF']
         return '.'.join(sorted(lfs))
@@ -845,7 +656,6 @@ class PhraseStructure:
             pf = pf + self.LF_features()
         return pf
 
-    # This function tries to create "informative" representation of the categories of the constituent ps
     def get_cats_string(self):
 
         # Decide which labels to show if there are several
@@ -866,17 +676,8 @@ class PhraseStructure:
             major_cats = 'X'
         return major_cats + suffix
 
-
-    #
-    #
-    # Block 5. Unclassified functions
-    #
-    #
-
-    # Copies a constituent and does all other operations required for reconstruction
     def copy_from_memory_buffer(self, babtize='1'):
 
-        # Internal functions
         def remove_tail_features(ps):
             if not ps.is_primitive():
                 remove_tail_features(ps.left_const)
@@ -898,11 +699,9 @@ class PhraseStructure:
             if h.right_const:
                 silence_phonologically(h.right_const)
 
-        # Main function
         if self.identity == '':
             self.identity = babtize
 
-        # Copy
         self_copy = self.copy()              # Copy the constituent
         self_copy.find_me_elsewhere = False  # Copy is marked for being where it is
         silence_phonologically(self_copy)    # Silence the new constituent phonologically
@@ -912,7 +711,6 @@ class PhraseStructure:
 
         return self_copy
 
-    # Definition of features that are used at LF-interface (only obligatory selection counts)
     def for_LF_interface(self, features):
         set_of_features = set()
         for f in features:
@@ -929,9 +727,6 @@ class PhraseStructure:
         return ps_
 
     def illustrate(self):
-        """
-        Shows the phrase structure without eliminating anything (i.e., reconstruction trace)
-        """
         if self.is_primitive():
             if not self.get_phonological_string():
                 return '?'
@@ -960,21 +755,18 @@ class PhraseStructure:
                        + self.left_const.illustrate() + ' ' \
                        + self.right_const.illustrate() + ']'
 
-    #   Standard output function that shows the phrase structure
     def __str__(self):
-        # This adds a unique name to the constituent if it has one, so we can trace chains in the output
         if self.identity != '':
             index_str = ':'+self.identity
         else:
             index_str = ''
-        if self.find_me_elsewhere:      # By writing something here you can track which elements are copied in the final solution
+        if self.find_me_elsewhere:
             index_str = index_str + ''
         if self.features and 'null' in self.features:
             if self.adjunct:
-                return '<__>' + index_str       # Adjuncts are represented as <,>
+                return '<__>' + index_str
             else:
                 return '__' + index_str
-                # return '(' + self.get_cats_string() + ')' + index_str   # Regular constituents as [,]
         if self.is_primitive():
             if not self.get_phonological_string():
                 return '?'
@@ -996,10 +788,7 @@ class PhraseStructure:
                 else:
                     return f'[{self.left_const} {self.right_const}]' + index_str
 
-    # This function tidies the names for constituents
     def tidy_names(self, counter):
-
-        # Internal function
         def rebaptize(h, old_name, new_name):
             if h.identity == old_name:
                 if not h.rebaptized:
