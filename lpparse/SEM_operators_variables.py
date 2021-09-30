@@ -14,20 +14,44 @@ class OperatorVariableModule:
                                          'OP:REL': 'Relativization',
                                          'OP:C/OP': 'Generic operator'
                                          }
+        self.inventory = {}
 
-    def bind_operator(self, operator_ps, semantic_interpretation):
-        if 'C' in operator_ps.features or 'C/fin' in operator_ps.features:
+    def get_object(self, idx):
+        return self.inventory[idx]
+
+    def accept(self, ps):
+        return {f for f in ps.head().features if f[:3] == 'OP:'} and 'FIN'
+
+    def update(self, idx, criteria):
+        self.inventory[idx].update(criteria)
+
+    def project(self, ps, idx):
+        self.inventory[idx] = self.narrow_semantics.default_criteria(ps, 'OP')
+        self.inventory[idx]['Semantic type'].add('§Operator')
+        log(f'Project ({idx}, OP) for {ps.head().illustrate()}P ({ps.head().max().illustrate()})...')
+
+    def remove_object(self, idx):
+        self.inventory.pop(idx, None)
+
+    def present(self, head):
+        return f'{head.max().illustrate()}'
+
+    def bind_operator(self, ps, semantic_interpretation):
+        if 'C' in ps.features or 'C/fin' in ps.features:
             return
-        for f in operator_ps.head().features:
+        for f in ps.head().features:
             if self.is_operator_feature(f):
-                scope_marker_lst = self.bind_to_propositional_scope_marker(operator_ps, f)
+                scope_marker_lst = self.bind_to_propositional_scope_marker(ps, f)
                 if not scope_marker_lst:
-                    log(f'{operator_ps.illustrate()} with feature {f} is not properly bound by an operator. ')
+                    log(f'{ps.illustrate()} with feature {f} is not properly bound by an operator. ')
                     self.interpretation_failed = True
                     break
                 else:
-                    semantic_interpretation['Operator bindings'].append((f'{operator_ps.illustrate()}', f'{scope_marker_lst[0]}[{f}]'))
-                    # todo: bookkeeping into QND/G spaces? Or separate OP space?
+                    scope_marker = scope_marker_lst[0]
+                    semantic_interpretation['Operator bindings'].append((f'{ps.illustrate()}', f'{scope_marker}[{f}]'))
+                    idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'OP')
+                    if idx:
+                        self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = scope_marker
 
     def bind_to_propositional_scope_marker(self, head, operator_feature):
         scope_binder_lst = []

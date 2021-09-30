@@ -18,7 +18,7 @@ class LexicalStream:
             terminal_lexical_item.active_in_syntactic_working_memory = True
 
             #
-            # Notify the pragmatic pathway
+            # Allocate attentional resources
             self.controlling_parser_process.narrow_semantics.pragmatic_pathway.allocate_attention(terminal_lexical_item)
             #
 

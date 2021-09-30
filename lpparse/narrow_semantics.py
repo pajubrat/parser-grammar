@@ -43,7 +43,13 @@ class NarrowSemantics:
                      'Get': self.predicates_relations_events_module.get_object,
                      'Update': self.predicates_relations_events_module.update_discourse_inventory,
                      'Accept': self.predicates_relations_events_module.accept,
-                     'Present': self.predicates_relations_events_module.present}}
+                     'Present': self.predicates_relations_events_module.present},
+             'OP':  {'Remove': self.operator_variable_module.remove_object,
+                     'Project': self.operator_variable_module.project,
+                     'Get': self.operator_variable_module.get_object,
+                     'Update': self.operator_variable_module.update,
+                     'Accept': self.operator_variable_module.accept,
+                     'Present': self.operator_variable_module.present}}
 
         # Grammatical features mapped into semantic feature types
         self.semantic_type = {'T/fin':'§Proposition',
@@ -115,9 +121,9 @@ class NarrowSemantics:
         if ps.is_primitive():
             self.LF_recovery_module.perform_LF_recovery(ps, self.semantic_interpretation)
             self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
-            self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
             self.interpret_tail_features(ps)
             self.create_narrow_semantics(ps)
+            self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
             self.pragmatic_pathway.pragmatic_processing(ps, self.semantic_interpretation)
             if self.failure():
                 return
@@ -135,7 +141,7 @@ class NarrowSemantics:
                    'BLOCK_NS' not in ps.features
 
         if preconditions(ps):
-            for space in ['PRE', 'QND']:
+            for space in ['PRE', 'QND', 'OP']:
                 if self.query[space]['Accept'](ps.head()):
                     log(f'\n\t\t\tNarrow semantics for {ps.head().illustrate()}P: ')
                     idx = str(self.global_cognition.consume_index())
@@ -147,6 +153,7 @@ class NarrowSemantics:
                     # For heuristic purposes so that referential arguments are recognized by BT
                     if space == 'QND':
                         ps.head().features.add('REF')
+
         ps.features.discard('BLOCK_NS')
 
     def transform_for_global_inventory(self, semantic_object):
@@ -215,6 +222,7 @@ class NarrowSemantics:
         dict.update(self.global_cognition.inventory)
         dict.update(self.quantifiers_numerals_denotations_module.inventory)
         dict.update(self.predicates_relations_events_module.inventory)
+        dict.update(self.operator_variable_module.inventory)
         return dict
 
     def has_referential_index(self, ps, space_query=''):

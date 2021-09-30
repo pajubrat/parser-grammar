@@ -11,13 +11,13 @@ class Discourse:
         self.attitudes = {'FORCE:OP:WH': 'Interrogative'}
         self.attention_gradient = []
         self.index_counter = 0
-        self.records_of_incremental_processing = {}  # Trace of incremental processing
+        self.records_of_attentional_processing = {}  # Traces of attentional allocation
 
     def initialize(self):
         self.attention_gradient = []
         self.interpretation_failed = False
         self.index_counter = 0
-        self.records_of_incremental_processing = {}
+        self.records_of_attentional_processing = {}
 
     def consume_index(self):
         self.index_counter += 1
@@ -28,7 +28,7 @@ class Discourse:
             idx = self.get_inventory_index(ps)
             feature = '*IDX:'+str(idx)
             ps.features.discard(feature)
-            self.records_of_incremental_processing.pop(idx)
+            self.records_of_attentional_processing.pop(idx)
 
     def is_discourse_feature(self, feature):
         return feature[:4] == 'DIS:'
@@ -52,8 +52,8 @@ class Discourse:
     def refresh_inventory(self, ps):
         idx = self.get_inventory_index(ps)
         if not ps.find_me_elsewhere and idx:
-            self.records_of_incremental_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
-            self.records_of_incremental_processing[idx]['Constituent'] = ps.head()
+            self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
+            self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
     def interpret_discourse_features(self, ps):
         d_features = self.get_discourse_features(ps.features)
@@ -68,9 +68,8 @@ class Discourse:
         return results
 
     def interpret_discourse_feature(self, f, ps):
-        return 'Not functional'
         log(f'[{f}] at {ps.max().illustrate()}: ')
-        idx = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
+        idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
         if not idx:
             log(f'{ps.max().illustrate()} not wired semantically. ')
             return None
@@ -79,23 +78,13 @@ class Discourse:
             return None
         if 'Bound by' not in self.narrow_semantics.query['QND']['Get'](idx):
             log(f'{ps.max().illustrate()} not bound by propositional scope operator. ')
-            return None
-        binder_idx = self.narrow_semantics.get_referential_index_tuples(self.narrow_semantics.global_cognition.inventory[idx]['Bound by'][0], 'QND')
-        if not binder_idx:
-            log('The relevant proposition not available in SEM. ')
-            return None
-        if not self.interpret_D_feature_inside_proposition(binder_idx, ps, f):
-            log(f'Interpretation failed.')
-            return None
-        log(f'Interpreted successfully with semantic object [{idx}].')
-        return f'{ps.max().illustrate()}', f, idx       # This information will be marked to SEM
+            # return None
 
-    def interpret_D_feature_inside_proposition(self, binder_idx, ps, f):
-        if self.narrow_semantics.inventory[binder_idx]['Semantic type']:
-            if '§Predicate' in self.narrow_semantics.inventory[binder_idx]['Semantic type']:
-               log(f'Attempting to interpret discourse feature [{f}] at {ps.max().illustrate()} in connection with predicate.')
-               return False
-        return True
+        # Here we need to add the mechanism for excluding relative clauses i.e. only interpret them inside
+        # full proposition
+
+        log(f'Interpreted successfully with semantic object [{idx}].')
+        return f'{ps.max().illustrate()}', f, idx
 
     def calculate_information_structure(self, ps, semantic_interpretation):
         if 'FIN' in ps.head().features:
@@ -104,11 +93,12 @@ class Discourse:
             log('Done. ')
 
     def create_topic_gradient(self, constituents_in_information_structure):
+
         marked_topic_lst = []
         topic_lst = []
         marked_focus_lst = []
 
-        topic_gradient = {key: val for key, val in sorted(self.records_of_incremental_processing.items(), key = lambda ele: ele[0])}
+        topic_gradient = {key: val for key, val in sorted(self.records_of_attentional_processing.items(), key = lambda ele: ele[0])}
 
         for key in topic_gradient:
             if topic_gradient[key]['Constituent'] in constituents_in_information_structure:
@@ -165,21 +155,19 @@ class Discourse:
 
     def compute_speaker_attitude(self, ps):
         if not ps.head().finite():
-            log('Not relevant for this expression types...')
+            log('Not relevant for this expression type...')
             self.narrow_semantics.semantic_interpretation['Speaker attitude'] = []
             return
 
-        # If specific force features exists, then they are used for interpretation
         if self.get_force_features(ps.head()):
             for count, force_feature in enumerate(self.get_force_features(ps.head())):
                 if force_feature in self.attitudes:
                     self.narrow_semantics.semantic_interpretation['Speaker attitude'].append(self.attitudes[force_feature])
         else:
-            # Default value is 'declarative' (judgment)
             self.narrow_semantics.semantic_interpretation['Speaker attitude'] = ['Declarative']
 
-    def notify_adjunct_reconstruction_occurred(self, ps, starting_point_head):
-        if self.narrow_semantics.controlling_parsing_process.first_solution_found and self.get_inventory_index(ps.head()):
+    def unexpected_order_occurred(self, ps, starting_point_head):
+        if self.narrow_semantics.controlling_parsing_process.first_solution_found or not self.get_inventory_index(ps.head()):
             return
 
         idx = self.get_inventory_index(ps.head())
@@ -190,13 +178,13 @@ class Discourse:
         else:
             direction = 'Low'
             log(f'Focussing...')
-        self.records_of_incremental_processing[idx]['Marked gradient'] = direction
+        self.records_of_attentional_processing[idx]['Marked gradient'] = direction
 
     def allocate_attention(self, head):
-        if self.included_in_attention_mechanism(head):
+        if self.included_in_attention_mechanism(head):  # This is arbitrary and only limits the scope of the current theory
             idx = self.consume_index()
             head.features.add('*IDX:'+str(idx))
-            self.records_of_incremental_processing[str(idx)] = {'Order':idx, 'Name': f'{head}'}
+            self.records_of_attentional_processing[str(idx)] = {'Order':idx, 'Name': f'{head}'}
 
     def included_in_attention_mechanism(self, head):
         return {'D', 'φ', 'P'} & head.features
