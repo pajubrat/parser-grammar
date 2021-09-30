@@ -158,6 +158,7 @@ class LinearPhaseParser:
                     break
             # ---------------------------------------------------------------------------------------- #
             print('.', end='', flush=True)
+            self.narrow_semantics.pragmatic_pathway.forget_object(terminal_lexical_item)
 
         if not self.exit:
             log(f'\n\t\tExplored {ps}, backtracking to previous branching point...')

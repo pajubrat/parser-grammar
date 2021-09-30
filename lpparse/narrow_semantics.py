@@ -8,7 +8,6 @@ from global_cognition import GlobalCognition
 
 class NarrowSemantics:
     def __init__(self, controlling_parsing_process):
-        # Separate modules responding to different features in the linguistic input
         self.operator_variable_module = OperatorVariableModule(self)
         self.LF_recovery_module = LF_Recovery(controlling_parsing_process)
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
@@ -109,6 +108,7 @@ class NarrowSemantics:
         self.reset_for_new_interpretation()
         self.interpret_(ps)
         self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps)
+        self.pragmatic_pathway.calculate_information_structure(ps, self.semantic_interpretation)
         return self.semantic_interpretation_failed
 
     def interpret_(self, ps):
@@ -116,9 +116,9 @@ class NarrowSemantics:
             self.LF_recovery_module.perform_LF_recovery(ps, self.semantic_interpretation)
             self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
             self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
-            self.pragmatic_pathway.reconstruct_discourse(ps, self.semantic_interpretation)
             self.interpret_tail_features(ps)
             self.create_narrow_semantics(ps)
+            self.pragmatic_pathway.pragmatic_processing(ps, self.semantic_interpretation)
             if self.failure():
                 return
         else:
@@ -232,3 +232,7 @@ class NarrowSemantics:
                       'Semantic type': self.get_semantic_types(ps),
                       'Operator': self.operator_variable_module.is_operator(ps)
                       }
+
+    def incremental_interpretation(self, head):
+        self.extraneous_virtual_semantics.project(head)
+        self.pragmatic_pathway.allocate_attention_resources(head)
