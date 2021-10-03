@@ -9,17 +9,13 @@ class HeadMovement:
         self.lexical_access = LexicalInterface(self.controlling_parser_process)
         self.lexical_access.load_lexicon(self.controlling_parser_process)
 
-    def LF_legible(self, ps):
-        return self.controlling_parser_process.LF_legibility_test(ps.copy())
-
     def reconstruct(self, phrase_structure):
         # ------------------ minimal search ----------------------------------------------#
         for node in phrase_structure:
             if self.detect_complex_head(node):
                 complex_head = self.detect_complex_head(node)
-                log(f'Reconstruct {complex_head.right_const} from within {complex_head}...')
+                log(f'Reconstruct {complex_head.right_const} from {complex_head}...')
                 intervention_feature = self.determine_intervention_feature(complex_head)
-                # Inverse head chain is created here (Rule 43A-B)
                 self.create_head_chain(complex_head, self.get_affix_out(complex_head), intervention_feature)
                 log(f'={phrase_structure.top()}...')
         #------------------------------------------------------------------------------------#
@@ -27,9 +23,9 @@ class HeadMovement:
 
     @staticmethod
     def detect_complex_head(h):
-        if h.left_const and h.left_const.is_primitive() and h.left_const.has_affix():
+        if h.left_const and h.left_const.is_primitive() and h.left_const.has_affix():   # [X(Y) Z]
             return h.left_const
-        if h.is_primitive() and h.has_affix():
+        if h.is_primitive() and h.has_affix():                                          # [Z X(Y)]
             return h
 
     def create_head_chain(self, complex_head, affix, intervention_feature):

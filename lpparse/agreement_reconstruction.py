@@ -1,6 +1,5 @@
 from support import log
 
-# Abbreviations and simple pattern recognition algorithms
 def get_type(f):
     return f.split(':')[1]
 def get_value(f):
@@ -26,11 +25,10 @@ class AgreementReconstruction:
         self.controlling_parsing_process.narrow_semantics.predicate_argument_dependencies = []
         # ---------------------------- minimal search ----------------------------------------#
         for node in ps.minimal_search():
-            if node.left_primitive() and 'VAL' in node.left_const.features:
+            if node.left_const and node.left_const.is_primitive() and 'VAL' in node.left_const.features:
                 self.Agree_1(node.left_const)
         # ------------------------------------------------------------------------------------#
 
-    # Definition for phi-feature acquisition (Agree-1)
     def Agree_1(self, head):
 
         self.controlling_parsing_process.consume_resources("Agree")
@@ -67,12 +65,11 @@ class AgreementReconstruction:
                                sorted({f for f in node.left_const.head().features
                                        if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
             # ---------------------------------------------------------------------------#
-        return head.sister(), {}    # This line is executed only if nothing is found
+        return head.sister(), {}
 
     def termination_condition_for_Agree_search(self, node):
         return node.left_const and node.left_const.is_primitive()
 
-    # Definition for phi-acquisition from the edge
     def Agree_1_from_edge(self, head):
         if self.edge_for_Agree(head):
             for e in self.edge_for_Agree(head):
@@ -82,18 +79,6 @@ class AgreementReconstruction:
         return None, {}
 
     def agreement_condition(self, head, phrase):
-        """
-        Defines whether [phrase] can donate phi-features to [head].
-
-        The general procedure is that we look if the head of the phrase has feature [D], thus we assume that
-        D-elements can donate phi-features and thus saturate argument positions of predicates.
-
-        There is currently an exceptional rule for Finnish which states the generalization that only
-        nominative and genitive DPs can donate phi-features. This rule is needed because due to the free
-        word order partitive and accusative DPs may occur in agreement configurations and wrongly trigger
-        agreement. I do not understand what is behind this empirical generalization. Features [NOM] and [GEN]
-        are abbreviations and should be replaced with the corresponding TAIL-features.
-        """
         if {'D', 'φ'} & phrase.head().features:
             if self.controlling_parsing_process.language != 'LANG:FI':
                 return True
@@ -101,20 +86,16 @@ class AgreementReconstruction:
                 if 'pro' in phrase.head().features:
                     return True
                 else:
-                    # This is a descriptive stipulation that must be replaced with a generalization
                     if 'FIN' in head.features and 'NOM' in phrase.head().features:
                         return True
                     if 'INF' in head.features and 'GEN' in phrase.head().features:
                         return True
 
-    # Definition for phi-feature valuation
     def value(self, h, goal, phi, location):
 
-        # Checks that there is no feature conflicts (agreement mismatches)
         if h.get_valued_features() and self.valuation_blocked(h, phi):
             h.features.add(mark_bad(phi))
 
-        # Performs valuation by [PHI:F:V] for a matching unvalued feature [PHI:F:_]
         if find_unvalued_target(h, phi):
             h.features = h.features - find_unvalued_target(h, phi)
             h.features.add(phi)
@@ -124,44 +105,21 @@ class AgreementReconstruction:
                 log(f'{h} acquired ' + str(phi) + f' from {goal} inside its {location}...')
             h.features.add('PHI_CHECKED')
 
-    # Definition for blocked valuation
     def valuation_blocked(self, head, f):
-        """
-        Checks whether valuation by feature [f] is blocked at [h].
-
-        Recall that unvalued phi-features (from lexicon) and valued phi-features from input can coexist in the same
-        head.
-
-        Valuation can only be blocked by existing valued features. If a fully matching valued phi-feature
-        already exists at the head, then the trivial "checking" valuation is not blocked (Condition 2). If a fully
-        matching valued phi-feature does not exist, then a conflicting type-value feature blocks further
-        valuation (Condition 1). If there is neither matching value nor conflicting value, the operation is not
-        blocked (Condition 3).
-
-        Empirical example cases.
-        I + V.1sg       = not blocked, checking valuation (#2)
-        you + V.1sg     = blocked: [PHI:PER:1] blocks valuation by [PHI:PER:2] from the subject
-        I + V.1sg, 2sg  = not blocked, checking valuation (#2), existence of [2sg] does not matter.
-
-        The intuition is that valued phi-features at a head license subjects. If the subject is not licensed,
-        then feature conflict will present it from occurring.
-
-        """
-        valued_input_feature_type = get_type(f)                                 # Type of the incoming feature [f]
-        heads_phi_set = head.get_phi_set()                                      # All phi-features at head [h]
+        valued_input_feature_type = get_type(f)
+        heads_phi_set = head.get_phi_set()
         valued_phi_in_h = {phi for phi in heads_phi_set if valued(phi) and get_type(phi) == valued_input_feature_type}
-        # If phi has no valued features, then valuation cannot be blocked
-        if valued_phi_in_h:                                                     # Condition (1)
-            type_value_matches = {phi for phi in valued_phi_in_h if phi == f}   # Condition (2)
+
+        if valued_phi_in_h:
+            type_value_matches = {phi for phi in valued_phi_in_h if phi == f}
             if type_value_matches:
                 return False
             else:
                 log(f'Feature {f} cannot be valued into {head}. Reason:')
                 log(f'{head} has no matching feature but has a feature with the same type but with different value...')
                 return True
-        return False    # Valuation is not blocked
+        return False
 
-    # Definition of edge (for Agree-1)
     def edge_for_Agree(self, h):
         edge_list = h.phrasal_edge()
         if h.extract_pro():

@@ -29,5 +29,4 @@ if __name__ == '__main__':
                 else:
                     # Create the entry into the argument dictionary, args[type] = value
                     args[decomposed_argument_list[0]] = decomposed_argument_list[1]
-        print(args)
         main.run_study(args)

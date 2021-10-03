@@ -47,7 +47,7 @@ class LF_Recovery:
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             # ----------------------- minimal upstream search -----------------------------------------------#
-            for node in [head] + head.upstream_search():
+            for node in [head] + head.upward_path():
                 if self.recovery_termination(node):
                     break
                 if node.geometrical_sister() and self.is_possible_antecedent(node.geometrical_sister(), head):
@@ -57,7 +57,7 @@ class LF_Recovery:
 
         if 'PHI:DET:_' in unvalued_phi:
             # ---------------- minimal search----------------------------------------------------
-            for node in head.upstream_search():
+            for node in head.upward_path():
                 if self.special_local_edge_antecedent_rule(node, head, list_of_antecedents):
                     break
                 elif node.sister() and self.is_possible_antecedent(node.sister(), head):

@@ -57,7 +57,7 @@ class Extraposition:
         if self.preconditions_for_extraposition(ps):
             log(f'Last resort extraposition will be tried on {ps.top()}...')
             # ---------------------------- upstream search -----------------------------------------------#
-            for node in ps.bottom().upstream_search():
+            for node in ps.bottom().upward_path():
                 if self.possible_extraposition_target(node):
                     self.controlling_parser_process.consume_resources("Extraposition")
                     self.adjunct_constructor.externalize_structure(node)

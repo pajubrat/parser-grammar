@@ -17,7 +17,7 @@ class SurfaceConditions:
         lexical stream, but this requires then that we posit a processing buffer between lexico-morphological
         component and syntax that hosts the lexical stream, possibly for each word at a time. Then we can formulate the
         incorporation tests inside that pipeline. To be useful there should be some other independent reasons why
-        this structure should exist.
+        this structure exists.
         """
         # ----------------------- minimal search ---------------------------- #
         ps_ = ps.top()
@@ -93,7 +93,7 @@ class SurfaceConditions:
         """
         if direction=='left':
             if self.clitic_is_between_two_verbs(test_constituent, host):
-                if not host.quasi_auxiliary():
+                if not host.is_quasi_auxiliary():
                     return False
         return True
 

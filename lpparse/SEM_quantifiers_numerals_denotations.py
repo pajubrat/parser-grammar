@@ -57,7 +57,7 @@ class QuantifiersNumeralsDenotations:
             else:
                 if self.narrow_semantics.has_referential_index(ps, 'QND'):
                     idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
-                    self.inventory[idx]['Denotations'] = self.create_all_assignments(ps)
+                    self.inventory[idx]['Denotations'] = self.create_all_denotations(ps)
                     log(f'\n\t\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
                     return [(idx, f'{ps.illustrate()}', ps, self.inventory[idx]['Denotations'])]
         return L1 + L2
@@ -116,9 +116,8 @@ class QuantifiersNumeralsDenotations:
                 if self.narrow_semantics.has_referential_index(head) and
                 self.narrow_semantics.exists(head, 'QND')}
 
-    def create_all_assignments(self, ps):
-        filter_criteria = self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')]
-        return self.narrow_semantics.global_cognition.get_compatible_objects(filter_criteria)
+    def create_all_denotations(self, ps):
+        return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')])
 
     def R_feature(self, feature):
         feature_list = feature.split(':')

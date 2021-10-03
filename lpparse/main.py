@@ -20,7 +20,9 @@ def run_study(args):
 
     # Analyze all sentences from the test corpus (either input sentence or sentences from file)
     if not sentence:
-        sentences_to_parse = [(sentence, group, part_of_conversation) for (sentence, group, part_of_conversation) in local_file_system.read_test_corpus()]
+        sentences_to_parse = [(sentence, group, part_of_conversation)
+                              for (sentence, group, part_of_conversation)
+                              in local_file_system.read_test_corpus()]
     else:
         sentences_to_parse = [([word.strip() for word in sentence.split()], '1', False)]
 

@@ -7,9 +7,6 @@ from feature_disambiguation import FeatureProcessing
 from extraposition import Extraposition
 from surface_conditions import SurfaceConditions
 
-# Transfer performs a normalization mapping from phrase structure object into LF-object
-# Its function is to repair the first pass parse from errors
-
 class Transfer:
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process
@@ -22,10 +19,6 @@ class Transfer:
         self.surface_conditions_module = SurfaceConditions()
 
     def transfer(self, ps, embedding=3):
-        """
-        Transfers the spellout structure to the LF-interface.
-        """
-
         log_embedding = embedding * '\t'
         if not is_logging_enabled():
             log(log_embedding + f'Transferring {ps} to LF.')

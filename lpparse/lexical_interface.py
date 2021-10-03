@@ -12,7 +12,6 @@ class LexicalInterface:
         self.redundancy_rules = self.load_redundancy_rules(self.controlling_parser_process)
         self.language = self.controlling_parser_process.language
 
-    # Definition for the process that reads the redundancy rules from a file
     def load_redundancy_rules(self, controlling_parser_process):
         redundancy_rules_dict = {}
         for line in open(controlling_parser_process.local_file_system.external_sources["redundancy_rules"], encoding='utf8'):
@@ -25,13 +24,11 @@ class LexicalInterface:
             redundancy_rules_dict[antecedent_trigger] = feature_list
         return redundancy_rules_dict
 
-    # Definition for process that loads the lexicon into memory
     def load_lexicon(self, controlling_parser_process):
         self.load_lexicon_(controlling_parser_process.local_file_system.external_sources["lexicon_file_name"])
         self.load_lexicon_(controlling_parser_process.local_file_system.external_sources["ug_morphemes"], True)
         return self.surface_vocabulary
 
-    # Definition for the process that loads the language specific lexicon
     def load_lexicon_(self, lexicon_file, combine=False, lines=None):
 
         # Determines if we create the dictionary anew or add to an existing one
@@ -78,20 +75,6 @@ class LexicalInterface:
 
     # Defines lexical retrieval
     def lexical_retrieval(self, phonological_entry):
-        """
-        Retrieves a primitive lexical item (or several) from the surface lexicon based on a phonological form.
-
-        The function retrieves primitive lexical items from the lexicon and performs certain
-        auxiliary operations. If the phonological form is ambiguous, several constituents will be
-        retrieve. The retrieved constituents will be ordered in terms of their overall
-        plausibility, given the context or frequency of use.
-
-        If the lexical element(s) was inside some word, it will be marked
-        as being internal [internal=True]. If the element(s) was a clitic, it will be marked as
-        being incorporated [incorporated=True]. If no lexical element is found, a default
-        item will be created.
-        """
-
         internal = False
         incorporated = False
 
@@ -136,12 +119,6 @@ class LexicalInterface:
         return word_list
 
     def rank_lexical_items(self, word_list):
-        """
-        Ranks lexical constituents in the case the original phonological word was ambiguous.
-
-        Ranking is based on psycholinguistic principles, word frequency, and other factors. In the current
-        implementation we only make use of frequency.
-        """
         def frequency(word):
             for f in word.features:
                 if f[:5]=='FREQ:':
@@ -151,7 +128,6 @@ class LexicalInterface:
         ranked_list.sort(key=itemgetter(1), reverse=True)
         return [word for (word, freq) in ranked_list]
 
-    # Definition for the application of the redundancy rules
     def apply_redundancy_rules(self, features):
 
         # Internal definition for the notion of negative feature
@@ -167,6 +143,8 @@ class LexicalInterface:
             if not negative_feature(new_candidate_feature_to_add):
                 if '-' + new_candidate_feature_to_add in features_from_lexicon:
                     return True
+
+        # ---- main function -----#
 
         feature_set = set(features)
         new_features_to_add = set()
@@ -186,9 +164,6 @@ class LexicalInterface:
         return feature_set
 
     def apply_parameters(self, features):
-        """
-        This function is being deprecated, only few procedures remain.
-        """
         features = set(features)
         language_specific = False
 

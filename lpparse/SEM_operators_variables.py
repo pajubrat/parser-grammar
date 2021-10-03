@@ -37,7 +37,7 @@ class OperatorVariableModule:
         return f'{head.max().illustrate()}'
 
     def bind_operator(self, ps, semantic_interpretation):
-        if 'C' in ps.features or 'C/fin' in ps.features:
+        if 'C' in ps.features or 'C/fin' in ps.features:        #Exclude self-referencing operators
             return
         for f in ps.head().features:
             if self.is_operator_feature(f):
@@ -56,7 +56,7 @@ class OperatorVariableModule:
     def bind_to_propositional_scope_marker(self, head, operator_feature):
         scope_binder_lst = []
         # --------------- upstream path --------------------------------------------------------------------------- #
-        for node in head.upstream_search():
+        for node in head.upward_path():
             target_head = node.inside_path()    # Left primitive constituent of [node] or [node] itself if it is primitive.
             if self.is_obligatory_scope_binder(target_head, operator_feature):
                 scope_binder_lst = [target_head]

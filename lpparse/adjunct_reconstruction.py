@@ -146,7 +146,7 @@ class FloaterMovement():
     def local_tense_edge(self, ps):
         node = ps.top()
         # --------------------------- upstream search ---------------------------------------- #
-        for node in ps.upstream_search():
+        for node in ps.upward_path():
             if {'T/fin', 'FORCE'} & node.head().features:
                 break
         # --------------------------------------------------------------------------------------#

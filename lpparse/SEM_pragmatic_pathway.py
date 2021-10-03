@@ -1,10 +1,6 @@
 from support import log
 
 class Discourse:
-    """
-    This class defines the pragmatic pathway and interprets D-features (discourse features) which express notions that
-    this module understands.
-    """
     def __init__(self, narrow_semantics):
         self.narrow_semantics = narrow_semantics
         self.interpretation_failed = False
@@ -43,19 +39,14 @@ class Discourse:
         else:
             return None
 
-    def pragmatic_processing(self, ps, semantic_interpretation):
-        log('Calculating pragmatic discourse features ')
-        semantic_interpretation['D-features'] = self.interpret_discourse_features(ps)
-        self.refresh_inventory(ps)
-        log('Done. ')
-
     def refresh_inventory(self, ps):
         idx = self.get_inventory_index(ps)
         if not ps.find_me_elsewhere and idx:
             self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
             self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
-    def interpret_discourse_features(self, ps):
+    def interpret_discourse_features(self, ps, semantic_interpretation):
+        log('Calculating pragmatic discourse features ')
         d_features = self.get_discourse_features(ps.features)
         results = []
         for f in sorted(d_features):
@@ -65,7 +56,9 @@ class Discourse:
                 self.interpretation_failed = True
                 return []
             results.append(result)
-        return results
+        semantic_interpretation['D-features'] =  results
+        self.refresh_inventory(ps)
+        log('Done. ')
 
     def interpret_discourse_feature(self, f, ps):
         log(f'[{f}] at {ps.max().illustrate()}: ')

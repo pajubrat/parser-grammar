@@ -238,8 +238,6 @@ class LinearPhaseParser:
         self.time_from_stimulus_onset = int(len(lst[index]) * 10)
 
         # Add the time to total time if we haven't yet found any solutions
-        # Other solutions beyond the first one are not timed, as they do not correspond anything
-        # useful
         if not self.first_solution_found:
             self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
@@ -264,7 +262,7 @@ class LinearPhaseParser:
         ps_ = self.transfer_to_LF(ps)
         log('\t\tDone.\n')
         log('\t\tLF-legibility check...')
-        if self.LF_condition_violation(ps_) or self.narrow_semantics.global_interpretation(ps_):
+        if self.LF_condition_violation(ps_) or self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path()
             log('\n\t\tLF-legibility test failed.\n')
             log('\t\tMemory dump:\n')
@@ -377,9 +375,3 @@ class LinearPhaseParser:
             ps.mother = None
             return ps
         return self.LF.LF_legibility_test(detached(ps.copy())).all_pass()
-
-    def grammaticality_judgment(self):
-        if 0 >= self.score >= -6:
-            return self.grammaticality_judgement[int(round(abs(self.score), 0))]
-        else:
-            return '##'

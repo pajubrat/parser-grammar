@@ -67,13 +67,6 @@ class PlausibilityMetrics:
         return solutions
 
     def dispersion_filter_active(self):
-        """
-        Return [True] if dispersion filtering has not been specified or if it is set to [True].
-
-        If two morphemes A, B occurred inside the same phonological word in the input they can
-        only be parsed into a configuration consistent with this fact. In the current model this
-        means that they are merged as sisters.
-        """
         if 'dispersion_filter' not in self.controlling_parser_process.local_file_system.settings:
             return True
         else:
@@ -112,10 +105,6 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def positive_head_comp_selection(self, site):
-        """
-        Checks if [site], which must be primitive, selects for a feature (usually label) in the complement.
-        This applies if any morpheme inside [site] satisfies the condition.
-        """
         if site.is_primitive():
             for m in site.get_affix_list():
                 if self.word.features & m.convert_features_for_parsing(m.licensed_complements()):
@@ -354,8 +343,6 @@ class PlausibilityMetrics:
             if not w.is_adjoinable():  # Adjoinable phrases cannot be tested because they might become adjuncts later
                 set_logging(True)
 
-    # Checks if phrase structure XP cannot be broken off from H-XP because
-    # H and X were part of the same word. It is used to prevent right merge to XP
     def is_word_internal(self, XP):
         if XP.mother and XP.sister() and XP.sister().is_primitive() and XP.sister().internal:
             return True
