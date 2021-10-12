@@ -70,8 +70,10 @@ class NarrowSemantics:
                               'SEM:external': '§External',
                               'FORCE': '§Proposition'
                               }
+        self.interface_access = {}
 
     def initialize(self):
+        self.interface_access = {}
         self.pragmatic_pathway.initialize()
         self.quantifiers_numerals_denotations_module.reset()
         self.predicates_relations_events_module.reset()

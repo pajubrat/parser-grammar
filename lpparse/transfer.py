@@ -17,6 +17,7 @@ class Transfer:
         self.feature_process_module = FeatureProcessing(self.controlling_parser_process)
         self.extraposition_module = Extraposition(self.controlling_parser_process)
         self.surface_conditions_module = SurfaceConditions()
+        self.narrow_semantics = controlling_parser_process.narrow_semantics
 
     def transfer(self, ps, embedding=3):
         log_embedding = embedding * '\t'
@@ -26,10 +27,12 @@ class Transfer:
         log_embedding = log_embedding + '\t'
 
         self.controlling_parser_process.consume_resources("Transfer", f'{ps}')
+        self.send_to_semantic_interface(ps, 'spellout structure')
 
         log('\n')
         log(log_embedding + '1. Head movement reconstruction...')
         ps = self.head_movement_module.reconstruct(ps)
+
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
@@ -40,11 +43,13 @@ class Transfer:
 
         log(log_embedding + '3. Extraposition...')
         self.extraposition_module.reconstruct(ps)
+        self.send_to_semantic_interface(ps, 'surface structure')
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         log(log_embedding + '4. Floater movement reconstruction...')
         ps = self.floater_movement_module.reconstruct(ps)
+        self.send_to_semantic_interface(ps, 's-structure')
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
@@ -60,7 +65,11 @@ class Transfer:
 
         log(log_embedding + '7. Last resort extraposition...')
         self.extraposition_module.last_resort_reconstruct(ps)
+        self.send_to_semantic_interface(ps, 'LF interface')
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
 
         return ps
+
+    def send_to_semantic_interface(self, ps, level):
+        self.narrow_semantics.interface_access[level] = ps

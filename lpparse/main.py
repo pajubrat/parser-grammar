@@ -6,19 +6,16 @@ from linear_phase_parser import LinearPhaseParser
 def run_study(args):
     sentence = args.get('sentence', '')
 
-    # Prepare file systems and logging
     local_file_system = LocalFileSystem()
     local_file_system.initialize(args)
     local_file_system.configure_logging()
 
-    # Prepare parsers for all languages together with their language-specific lexicons
     parser_for = {}
     lang_guesser = LanguageGuesser(local_file_system.external_sources["lexicon_file_name"])
     for language in lang_guesser.languages:
         parser_for[language] = LinearPhaseParser(local_file_system, language)
         parser_for[language].initialize()
 
-    # Analyze all sentences from the test corpus (either input sentence or sentences from file)
     if not sentence:
         sentences_to_parse = [(sentence, group, part_of_conversation)
                               for (sentence, group, part_of_conversation)
