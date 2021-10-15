@@ -76,7 +76,7 @@ class LinearPhaseParser:
         self.grammaticality_judgement = ['', '?', '?', '??', '??', '?*', '?*', '##']
         self.time_from_stimulus_onset = 0                       # Counts predicted cognitive time
         self.total_time_per_sentence = 0                        # Counts predicted cognitive time
-        self.time_from_stimulus_onset_for_word = []             # Count predicted cognitive time
+        self.time_from_stimulus_onset_for_word = []             # Counts predicted cognitive time
         # Reset operation counters in the PhraseStructure class
         for key in PhraseStructure.resources:
             PhraseStructure.resources[key] = {"ms": 1, "n": 0}

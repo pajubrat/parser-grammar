@@ -70,10 +70,12 @@ class NarrowSemantics:
                               'SEM:external': '§External',
                               'FORCE': '§Proposition'
                               }
-        self.interface_access = {}
+
+        # This dictionary implements syntax-semantics interfaces as assumed in the multiple interface hypothesis
+        self.access_interface = {}
 
     def initialize(self):
-        self.interface_access = {}
+        self.access_interface = {}
         self.pragmatic_pathway.initialize()
         self.quantifiers_numerals_denotations_module.reset()
         self.predicates_relations_events_module.reset()
@@ -94,7 +96,6 @@ class NarrowSemantics:
         self.operator_variable_module.interpretation_failed = False
         self.pragmatic_pathway.interpretation_failed = False
         self.LF_recovery_module.interpretation_failed = False
-        self.semantic_interpretation = {}
         self.semantic_interpretation = {'Recovery': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -111,6 +112,7 @@ class NarrowSemantics:
         self.interpret_(ps)
         self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps)
         self.pragmatic_pathway.calculate_information_structure(ps, self.semantic_interpretation)
+        self.document_interface_content_for_user()
         return self.semantic_interpretation_failed
 
     def interpret_(self, ps):
@@ -154,6 +156,9 @@ class NarrowSemantics:
         filtered_object = semantic_object.copy()
         filtered_object.pop('Phi-set', None)
         return filtered_object
+
+    def document_interface_content_for_user(self):
+        self.semantic_interpretation.update(self.access_interface)
 
     def failure(self):
         if self.LF_recovery_module.interpretation_failed or \

@@ -4,6 +4,7 @@ from support import log
 class LexicalStream:
     def __init__(self, controlling_parsing_process):
         self.controlling_parser_process = controlling_parsing_process
+        self.id = 0
 
     def stream_into_syntax(self, terminal_lexical_item, lst_branched, inflection, ps, index):
         terminal_lexical_item = self.process_inflection(inflection, terminal_lexical_item)
@@ -16,6 +17,10 @@ class LexicalStream:
         else:
             self.controlling_parser_process.consume_resources("Item streamed into syntax", f'{terminal_lexical_item}')
             terminal_lexical_item.active_in_syntactic_working_memory = True
+
+            #
+            # Add identity feature
+            self.add_ID(terminal_lexical_item)
 
             #
             # Allocate attentional resources
@@ -45,3 +50,10 @@ class LexicalStream:
                 lexical_item.features = lexical_item.features | set(self.controlling_parser_process.memory_buffer_inflectional_affixes)
                 self.controlling_parser_process.memory_buffer_inflectional_affixes = set()
         return lexical_item
+
+    def add_ID(self, lexical_item):
+        lexical_item.features.add('#'+str(self.consume_id()))
+
+    def consume_id(self):
+        self.id += 1
+        return self.id

@@ -68,6 +68,7 @@ def get_pro_type(self):
 
 def show_primitive_constituents(self):
     def sorted_by_relevance(set):
+        id_class = {feature for feature in set if feature[0] == '#'}
         first_class = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
         second_class = {feature for feature in set if feature in major_category}
         third_class = {feature for feature in set if feature in {'VAL', '-VAL', 'ARG', '-ARG', 'ASP', 'INF'}}
@@ -75,7 +76,8 @@ def show_primitive_constituents(self):
         fifth_class = {feature for feature in set if feature[:3] == 'SEM'}
         sixth_class = {feature for feature in set if feature[:4] == 'TAIL'}
         residuum = set - first_class - second_class - third_class - fourth_class - fifth_class - sixth_class
-        return sorted(first_class) + \
+        return sorted(id_class) + \
+               sorted(first_class) + \
                sorted(second_class) + \
                sorted(third_class) + \
                sorted(fourth_class) + \

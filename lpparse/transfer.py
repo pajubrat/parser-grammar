@@ -43,15 +43,15 @@ class Transfer:
 
         log(log_embedding + '3. Extraposition...')
         self.extraposition_module.reconstruct(ps)
-        self.send_to_semantic_interface(ps, 'surface structure')
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
+        self.send_to_semantic_interface(ps, 'surface structure')
 
         log(log_embedding + '4. Floater movement reconstruction...')
         ps = self.floater_movement_module.reconstruct(ps)
-        self.send_to_semantic_interface(ps, 's-structure')
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
+        self.send_to_semantic_interface(ps, 's-structure')
 
         log(log_embedding + '5. Phrasal movement reconstruction...')
         self.phrasal_movement_module.reconstruct(ps)
@@ -65,11 +65,11 @@ class Transfer:
 
         log(log_embedding + '7. Last resort extraposition...')
         self.extraposition_module.last_resort_reconstruct(ps)
-        self.send_to_semantic_interface(ps, 'LF interface')
         log('Done.\n')
         log(log_embedding + f'\t= {ps}(' + str(self.controlling_parser_process.time_from_stimulus_onset) + 'ms).\n')
+        self.send_to_semantic_interface(ps, 'LF structure')
 
         return ps
 
     def send_to_semantic_interface(self, ps, level):
-        self.narrow_semantics.interface_access[level] = ps
+        self.narrow_semantics.access_interface[level] = ps.copy()

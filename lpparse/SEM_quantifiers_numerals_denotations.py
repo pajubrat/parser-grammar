@@ -102,7 +102,7 @@ class QuantifiersNumeralsDenotations:
     def binding_theory_conditions(self, expression, complete_assignment):
         idx, name, ps, denotations = expression
         for feature in list(self.get_R_features(ps)):
-            D, rule, intervention_feature = self.open_R_feature(feature)
+            D, rule, intervention_feature, interface = self.open_R_feature(feature)
             if {rule} & {'NEW', 'OLD'}:
                 reference_set = self.reference_set(ps, intervention_feature, complete_assignment)
                 log(f'(R={reference_set}) ')
@@ -121,7 +121,7 @@ class QuantifiersNumeralsDenotations:
 
     def R_feature(self, feature):
         feature_list = feature.split(':')
-        if feature_list[0] == 'R' and len(feature_list) == 3:
+        if feature_list[0] == 'R':
             return True
         if feature_list[0] == 'PHI':
             return True
@@ -130,12 +130,15 @@ class QuantifiersNumeralsDenotations:
         return {feature for feature in ps.head().features if self.R_feature(feature)}
 
     def open_R_feature(self, feature):
-        if not self.R_feature(feature):
-            return None, None, None
-        components = feature.split(':')
-        if len(components) == 3:
-            return components[0], components[1], components[2]
-        return None, None, None
+        if not self.R_feature(feature) or len(feature.split(':')) != 3:
+            return None, None, None, None
+        if '/' in feature:
+            feature_, interface = feature.split('/')
+        else:
+            feature_ = feature
+            interface = 'LF structure'
+        component = feature_.split(':')
+        return component[0], component[1], component[2], interface
 
     def project(self, ps, idx):
         self.inventory[idx] = self.apply_criteria(self.narrow_semantics.default_criteria(ps, 'QND'), ps)
