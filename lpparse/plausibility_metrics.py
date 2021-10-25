@@ -9,7 +9,7 @@ from knockouts import knockout_filter, \
 
 class PlausibilityMetrics:
     def __init__(self, controlling_parsing_process):
-        self.controlling_parser_process = controlling_parsing_process
+        self.brain_model = controlling_parsing_process
         self.weighted_site_list = []
         self.word = None
         self.plausibility_conditions = {}
@@ -67,10 +67,10 @@ class PlausibilityMetrics:
         return solutions
 
     def dispersion_filter_active(self):
-        if 'dispersion_filter' not in self.controlling_parser_process.local_file_system.settings:
+        if 'dispersion_filter' not in self.brain_model.local_file_system.settings:
             return True
         else:
-            return self.controlling_parser_process.local_file_system.settings['dispersion_filter']
+            return self.brain_model.local_file_system.settings['dispersion_filter']
 
     @knockout_lexical_ranking
     def positive_spec_selection(self, site):
@@ -122,15 +122,15 @@ class PlausibilityMetrics:
     def negative_semantic_match(self, site):
         if site.is_primitive():
             m = site.bottom_affix()
-            if not self.controlling_parser_process.LF.semantic_match(m, self.word):
+            if not self.brain_model.LF.semantic_match(m, self.word):
                 return True
 
     @knockout_extra_ranking
     def lf_legibility_condition(self, site):
         if not site.is_primitive():
             set_logging(False)
-            dropped = self.controlling_parser_process.transfer_to_LF(site.copy())
-            if not self.controlling_parser_process.LF_legibility_test(dropped):
+            dropped, output_from_interfaces = self.brain_model.transfer_to_LF(site.copy())
+            if not self.brain_model.LF_legibility_test(dropped):
                 set_logging(True)
                 return True
             set_logging(True)
@@ -172,34 +172,34 @@ class PlausibilityMetrics:
         self.word_tail_set = None
         self.plausibility_conditions = \
             {'positive_spec_selection':         {'condition': self.positive_spec_selection,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('positive_spec_selection', 100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('positive_spec_selection', 100),
                                                  'log': '+Spec selection'},
              'negative_spec_selection':         {'condition': self.negative_spec_selection,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('negative_spec_selection', -100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_spec_selection', -100),
                                                  'log': '-Spec selection'},
              'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('break_head_comp_relations', -100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('break_head_comp_relations', -100),
                                                  'log': 'Head-complement word breaking condition'},
              'negative_tail_test':              {'condition': self.negative_tail_test,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('negative_tail_test', -100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_tail_test', -100),
                                                  'log': '-Tail'},
              'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('positive_head_comp_selection', 100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('positive_head_comp_selection', 100),
                                                  'log': '+Comp selection'},
              'negative_head_comp_selection':    {'condition': self.negative_head_comp_selection,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('negative_head_comp_selection', -100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_head_comp_selection', -100),
                                                  'log': '-Comp selection'},
              'negative_semantics_match':        {'condition': self.negative_semantic_match,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('negative_semantics_match', -100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_semantics_match', -100),
                                                  'log': 'Semantic mismatch'},
              'lf_legibility_condition':         {'condition': self.lf_legibility_condition,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('lf_legibility_condition', -100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('lf_legibility_condition', -100),
                                                  'log': '-LF-legibility for left branch'},
              'negative_adverbial_test':         {'condition': self.negative_adverbial_test,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('negative_adverbial_test', -100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_adverbial_test', -100),
                                                  'log': '-Adverbial condition'},
              'positive_adverbial_test':         {'condition': self.positive_adverbial_test,
-                                                 'weight': self.controlling_parser_process.local_file_system.settings.get('positive_adverbial_test', 100),
+                                                 'weight': self.brain_model.local_file_system.settings.get('positive_adverbial_test', 100),
                                                  'log': '+Adverbial condition'}
              }
 
@@ -222,7 +222,7 @@ class PlausibilityMetrics:
                 if self.plausibility_conditions[key]['condition'](site):
                     log(self.plausibility_conditions[key]['log'] + f' for {site}...')
                     log('('+str(self.plausibility_conditions[key]['weight'])+') ')
-                    self.controlling_parser_process.consume_resources('Rank solution')
+                    self.brain_model.consume_resources('Rank solution')
                     new_weight = new_weight + self.plausibility_conditions[key]['weight']
             calculated_weighted_site_list.append((site, new_weight))
 
@@ -269,19 +269,19 @@ class PlausibilityMetrics:
         for N in list_of_sites_in_active_working_memory:
             if self.does_not_accept_any_complementizers(N):
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
-                self.controlling_parser_process.consume_resources('Filter solution')
+                self.brain_model.consume_resources('Filter solution')
                 continue
             if N.is_complex() and self.left_branch_filter(N):
                 log(f'Reject {N} + {w} due to bad left branch...')
-                self.controlling_parser_process.consume_resources('Filter solution')
+                self.brain_model.consume_resources('Filter solution')
                 continue
             if self.word_breaking_filter(N, w):
                 log(f'Reject {N} + {w} because it breaks words...')
-                self.controlling_parser_process.consume_resources('Filter solution')
+                self.brain_model.consume_resources('Filter solution')
                 continue
             if self.impossible_sequence(N, w):
                  log(f'Reject {N} + {w} because the sequence is impossible...')
-                 self.controlling_parser_process.consume_resources('Filter solution')
+                 self.brain_model.consume_resources('Filter solution')
                  continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------
@@ -291,7 +291,7 @@ class PlausibilityMetrics:
     def word_internal(self, ps, w):
         if ps.bottom().bottom_affix().internal:
             log(f'\n\t\tOne solution due to sinking.')
-            self.controlling_parser_process.consume_resources('Filter solution', 'sink')
+            self.brain_model.consume_resources('Filter solution', 'sink')
             return True
 
     @knockout_working_memory
@@ -311,8 +311,8 @@ class PlausibilityMetrics:
 
     def left_branch_filter(self, N):
         set_logging(False)
-        dropped = self.controlling_parser_process.transfer_to_LF(N.copy())
-        lf = self.controlling_parser_process.LF.LF_legibility_test(dropped)
+        dropped, output_from_interfaces = self.brain_model.transfer_to_LF(N.copy())
+        lf = self.brain_model.LF.LF_legibility_test(dropped)
         set_logging(True)
         if self.left_branch_rejection(lf, dropped):
             return True
@@ -331,7 +331,7 @@ class PlausibilityMetrics:
                 lf_test.wrong_complement_test_result and
                 lf_test.semantic_test_result)
         if test_failed:
-            log(f'Left branch {dropped} failed because ' + ','.join(self.controlling_parser_process.LF.test_problem_report) + '. ')
+            log(f'Left branch {dropped} failed because ' + ','.join(self.brain_model.LF.test_problem_report) + '. ')
         return test_failed
 
     def does_not_accept_any_complementizers(self, N):

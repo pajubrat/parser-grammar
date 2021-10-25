@@ -34,7 +34,7 @@ class QuantifiersNumeralsDenotations:
         self.inventory[idx].update(criteria)
 
     def reconstruct_assignments(self, ps):
-        if self.narrow_semantics.controlling_parsing_process.first_solution_found:
+        if self.narrow_semantics.brain_model.first_solution_found:
             self.narrow_semantics.semantic_interpretation['Assignments'] = []
             return
 

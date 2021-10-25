@@ -5,7 +5,7 @@ from adjunct_constructor import AdjunctConstructor
 class Extraposition:
     def __init__(self, controlling_parser_process):
         self.adjunct_constructor = AdjunctConstructor(controlling_parser_process)
-        self.controlling_parser_process = controlling_parser_process
+        self.brain_model = controlling_parser_process
 
     def reconstruct(self, ps):
         """
@@ -49,7 +49,7 @@ class Extraposition:
 
     def try_extraposition(self, unselected_head):
         log(f'Extraposition will be tried on {unselected_head.mother}...')
-        self.controlling_parser_process.consume_resources("Extraposition")
+        self.brain_model.consume_resources("Extraposition")
         self.adjunct_constructor.externalize_structure(unselected_head)
 
     # Definition for last resort extraposition
@@ -59,7 +59,7 @@ class Extraposition:
             # ---------------------------- upstream search -----------------------------------------------#
             for node in ps.bottom().upward_path():
                 if self.possible_extraposition_target(node):
-                    self.controlling_parser_process.consume_resources("Extraposition")
+                    self.brain_model.consume_resources("Extraposition")
                     self.adjunct_constructor.externalize_structure(node)
                     return True
             # -------------------------------------------------------------------------------------------#
@@ -71,7 +71,7 @@ class Extraposition:
         This does not mean that [ps] will be extraposed, but that some part may be
         """
         if ps.top().contains_feature('FIN') or {'D','φ'} & ps.top().head().features:
-            if not self.controlling_parser_process.LF_legibility_test(ps.top()):
+            if not self.brain_model.LF_legibility_test(ps.top()):
                 return True
 
     def possible_extraposition_target(self, node):

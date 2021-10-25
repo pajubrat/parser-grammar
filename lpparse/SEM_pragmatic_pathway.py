@@ -4,7 +4,7 @@ class Discourse:
     def __init__(self, narrow_semantics):
         self.narrow_semantics = narrow_semantics
         self.interpretation_failed = False
-        self.attitudes = {'FORCE:OP:WH': 'Interrogative'}
+        self.attitudes = {'FORCE:WH': 'Interrogative'}
         self.attention_gradient = []
         self.index_counter = 0
         self.records_of_attentional_processing = {}  # Traces of attentional allocation
@@ -45,15 +45,19 @@ class Discourse:
             self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
             self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
+
+    #
+    # todo knocked out currently
+    #
     def interpret_discourse_features(self, ps, semantic_interpretation):
-        log('Calculating pragmatic discourse features ')
+        log('\n\t\t\tCalculating pragmatic discourse features ')
         d_features = self.get_discourse_features(ps.features)
         results = []
         for f in sorted(d_features):
             log(f'[{f}], ')
             result = self.interpret_discourse_feature(f, ps)
             if not result:
-                self.interpretation_failed = True
+                # self.interpretation_failed = True
                 return []
             results.append(result)
         semantic_interpretation['D-features'] =  results
@@ -61,13 +65,13 @@ class Discourse:
         log('Done. ')
 
     def interpret_discourse_feature(self, f, ps):
-        log(f'[{f}] at {ps.max().illustrate()}: ')
+        log(f'at {ps.illustrate()}: ')
         idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
         if not idx:
-            log(f'{ps.max().illustrate()} not wired semantically. ')
+            log(f'{ps.illustrate()} not wired semantically (operation knocked out). ')
             return None
         if not self.narrow_semantics.query['QND']['Get'](idx):
-            log(f'I have no idea what {ps.max().illustrate()} refers to. ')
+            log(f'I have no idea what {ps.illustrate()} refers to. ')
             return None
         if 'Bound by' not in self.narrow_semantics.query['QND']['Get'](idx):
             log(f'{ps.max().illustrate()} not bound by propositional scope operator. ')
@@ -79,10 +83,11 @@ class Discourse:
         log(f'Interpreted successfully with semantic object [{idx}].')
         return f'{ps.max().illustrate()}', f, idx
 
-    def calculate_information_structure(self, ps, semantic_interpretation):
-        if 'FIN' in ps.head().features:
-            log('Calculating information structure...')
-            semantic_interpretation['Information structure'] = self.create_topic_gradient(self.arguments_of_proposition(ps))
+    def calculate_information_structure(self, root_node, semantic_interpretation):
+        if 'FIN' in root_node.head().features:
+            log('\n\t\tCalculating information structure...')
+            semantic_interpretation['Information structure'] = self.create_topic_gradient(self.arguments_of_proposition(root_node))
+            self.compute_speaker_attitude(root_node)
             log('Done. ')
 
     def create_topic_gradient(self, constituents_in_information_structure):
@@ -147,10 +152,6 @@ class Discourse:
         return {f for f in ps.head().features if f[:5] == 'FORCE'}
 
     def compute_speaker_attitude(self, ps):
-        if not ps.head().finite():
-            log('Not relevant for this expression type...')
-            self.narrow_semantics.semantic_interpretation['Speaker attitude'] = []
-            return
 
         if self.get_force_features(ps.head()):
             for count, force_feature in enumerate(self.get_force_features(ps.head())):
@@ -160,7 +161,7 @@ class Discourse:
             self.narrow_semantics.semantic_interpretation['Speaker attitude'] = ['Declarative']
 
     def unexpected_order_occurred(self, ps, starting_point_head):
-        if self.narrow_semantics.controlling_parsing_process.first_solution_found or not self.get_inventory_index(ps.head()):
+        if self.narrow_semantics.brain_model.first_solution_found or not self.get_inventory_index(ps.head()):
             return
 
         idx = self.get_inventory_index(ps.head())

@@ -193,7 +193,7 @@ class LinearPhaseParser:
         self.consume_resources("Merge", f'{terminal_lexical_item}')
         set_logging(False)
         if transfer:
-            new_left_branch = self.transfer_to_LF(left_branch)
+            new_left_branch, output_from_interfaces = self.transfer_to_LF(left_branch)
         else:
             new_left_branch = left_branch
 
@@ -259,14 +259,14 @@ class LinearPhaseParser:
             log('Failure.\n')
             return
         log('\t\tTransferring to LF...')
-        ps_ = self.transfer_to_LF(ps)
+        ps_, self.narrow_semantics.access_interface = self.transfer_to_LF(ps)
         log('\t\tDone.\n')
         log('\t\tLF-legibility check...')
         if self.LF_condition_violation(ps_) or self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path()
             log('\n\t\tLF-legibility test failed.\n')
             log('\t\tMemory dump:\n')
-            log(show_primitive_constituents(ps))
+            log(show_primitive_constituents(ps_))
             self.narrow_semantics.reset_for_new_interpretation()
             return
         self.consume_resources('Steps')
@@ -337,13 +337,14 @@ class LinearPhaseParser:
     def transfer_to_LF(self, ps, log_embedding=3):
         original_mother = ps.mother
         ps.detach()
+        output_from_interfaces = {}
         if self.check_transfer_presuppositions(ps):
-            ps = self.transfer.transfer(ps, log_embedding)
+            ps, output_from_interfaces = self.transfer.transfer(ps, log_embedding)
         else:
             log(f'Transfer of {ps} terminated due to input condition violation...')
         if original_mother:
             ps.mother = original_mother
-        return ps
+        return ps, output_from_interfaces
 
     def remove_from_syntactic_working_memory(self, ps):
         ps.active_in_syntactic_working_memory = False

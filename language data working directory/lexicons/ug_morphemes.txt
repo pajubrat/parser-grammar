@@ -55,10 +55,11 @@ hum 		:: inflectional PHI:HUM:HUM
 nonhum 		:: inflectional PHI:HUM:NONHUM
 m			:: inflectional PHI:GEN:M
 f			:: inflectional PHI:GEN:F
-proper_name	:: inflectional R:REF:NAME R:NEW:$X$0
+proper_name	:: inflectional R:REF:NAME R:NEW:$$$/SUR
 pronoun1	:: inflectional R:NEW:REF
 reflexive	:: inflectional R:OLD:REF
-Rexpression	:: inflectional R:NEW:$X$0
+Rexpression	:: inflectional R:NEW:$$$/SUR
+demanaphora	:: inflectional R:OLD:$$$/SUR
 
 # Generic deficient structural cases
 nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL -FLOAT -adjoinable
@@ -73,7 +74,8 @@ V1		:: inflectional -EDGE:* -SPEC:*
 
 # Universal operator feature inventory
 uC/op	:: inflectional uC/op
-wh     	:: inflectional OP:WH OP:_
+wh     	:: inflectional OP OP:WH OP:_
+WH		:: inflectional FORCE:WH
 wh_		:: inflectional OP OP:_
 top    	:: inflectional OP:TOP DIS:TOP
 foc    	:: inflectional OP:FOC DIS:FOC
@@ -81,7 +83,7 @@ fam		:: inflectional OP:FAM DIS:FAM
 pol		:: inflectional OP:POL DIS:POL
 C/op	:: inflectional OP:C/OP DIS:C/OP
 d/rel   :: inflectional OP:REL OP:_
-Q		:: inflectional OP OP:WH OP:Q DIS:WH
+Q		:: inflectional OP OP:WH OP:Q FORCE:WH DIS:WH
 
 # Miscellanneus items
 # Possessive, as in John's, but status unclear

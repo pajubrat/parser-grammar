@@ -3,11 +3,11 @@ from lexical_interface import LexicalInterface
 
 class HeadMovement:
     def __init__(self, controlling_parser_process):
-        self.controlling_parser_process = controlling_parser_process
+        self.brain_model = controlling_parser_process
         self.name_provider_index = 0
         self.memory_buffer = []
-        self.lexical_access = LexicalInterface(self.controlling_parser_process)
-        self.lexical_access.load_lexicon(self.controlling_parser_process)
+        self.lexical_access = LexicalInterface(self.brain_model)
+        self.lexical_access.load_lexicon(self.brain_model)
 
     def reconstruct(self, phrase_structure):
         # ------------------ minimal search ----------------------------------------------#
@@ -41,7 +41,7 @@ class HeadMovement:
                     return
                 node.merge_1(affix, 'left')
                 if self.reconstruction_is_successful(affix):
-                    self.controlling_parser_process.consume_resources("Move Head")
+                    self.brain_model.consume_resources("Move Head")
                     return
                 affix.remove()
             # --------------------------------------------------------------------------------#
@@ -74,7 +74,7 @@ class HeadMovement:
             else:
                 node.merge_1(affix, 'left')   # Solution #2 [Z(_) ...[X [Affix Y]]]
         if self.reconstruction_is_successful(affix):
-            self.controlling_parser_process.consume_resources("Move Head")
+            self.brain_model.consume_resources("Move Head")
             return True, expanded_node
         return False, expanded_node
 
@@ -108,20 +108,19 @@ class HeadMovement:
         else:
             return node
 
-    @staticmethod
-    def determine_intervention_feature(node):
-        if node.has_op_feature():
+    def determine_intervention_feature(self, head):
+        if head.has_op_feature() and self.brain_model.narrow_semantics.is_concept(head):
             return 'φ'
         return '!COMP:*'
 
     def last_resort(self, phrase_structure, affix):
         log(f'Reconstruction of {affix} failed, use last resort...{phrase_structure}')
         phrase_structure.merge_1(affix, 'left')
-        self.controlling_parser_process.consume_resources("Move Head")
+        self.brain_model.consume_resources("Move Head")
 
     def reconstruct_to_sister(self, complex_head, affix):
         complex_head.merge_1(affix, 'right')                    # If X(Y) => [X Y]
-        self.controlling_parser_process.consume_resources("Move Head")
+        self.brain_model.consume_resources("Move Head")
         if affix.has_affix():                                   # If Y(Z) => reconstruct Y(Z)
             self.reconstruct(affix)
 

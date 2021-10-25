@@ -7,29 +7,17 @@ def verbal_head():
 
 class Morphology:
     def __init__(self, controlling_parser_process):
-        self.controlling_parser_process = controlling_parser_process
-        self.lexicon = LexicalInterface(self.controlling_parser_process)
-        self.lexicon.load_lexicon(self.controlling_parser_process)
+        self.brain_model = controlling_parser_process
+        self.lexicon = LexicalInterface(self.brain_model)
+        self.lexicon.load_lexicon(self.brain_model)
 
     # Definition for morphological parsing for lexical item (set of features)
     def morphological_parse(self, controlling_parsing_process, lexical_item, input_word_list, index):
-        """
-        Processes a polymorphemic word in the input.
-
-        If the lexical item retrieved from the surface lexicon is polymorphemic, it must be decomposed
-        before anything can be merged into the syntactic structure. This function performs the decomposition.
-        It breaks down the polymorphemic unit and embeds it into the existing list of elements. The operation
-        is performed until the element currently under processing is primitive lexical item that can be
-        merged (other elements do not matter as they will be decomposed later when processing moves forward).
-
-        This mechanisms implements several other purely morphological operations.
-
-        """
         current_lexical_item = lexical_item
         while self.is_polymorphemic(current_lexical_item):
             # Iterative loop which makes sure that the first item in the decomposition is primitive and can be
             # send to syntax for Merge-1
-            log(f'{current_lexical_item.morphology} contains ')
+            log(f'{current_lexical_item.morphology}: ')
 
             # Solves an ambiguity in C_features, i.e. whether they are criterial or head features
             current_lexical_item = self.Aux_inversion(current_lexical_item)
@@ -56,9 +44,6 @@ class Morphology:
         return current_lexical_item, input_word_list, inflection_features
 
     def handle_incorporation(self, current_lexical_item, morpheme_list_):
-        """
-        Adds incorporation feature to the morpheme list if the element was incorporated
-        """
         if current_lexical_item.incorporated:
             morpheme_list_.append('inc$')
         return morpheme_list_
@@ -72,16 +57,9 @@ class Morphology:
             input_word_list.insert(index, w_)           # Mirror principle
 
     def is_polymorphemic(self, lexical_item):
-        """
-        Definition for polymorphemic element
-        """
         return '#' in lexical_item.morphology or '=' in lexical_item.morphology
 
     def get_inflection_features(self, lexical_item, morpheme_string):
-        """
-        Return inflection features if any (empty set if not existing). A stranded inflectional feature is rejected,
-        and interpreted as an unknown morpheme
-        """
         if 'inflectional' in lexical_item.features:
             log(f'Inflectional feature {morpheme_string}...')
             inflection_features = lexical_item.features
@@ -103,11 +81,13 @@ class Morphology:
     def Aux_inversion(self, lexical_item):
         """
         In some cases we must generate extra C/fin head (aux-inversion). This function handles it. Currently only handles
-        Finnish head + operator feature combinations.
+        Finnish head + operator feature combinations. This is implemented by some more general operation which
+        is unknown at present.
         """
-        decomposition = self.extract_morphemes(lexical_item.morphology)     # Get decomposition
-        if self.lexicon.lexical_retrieval(decomposition[0])[0].verbal():    # Only target verbal heads
-            self.insert_C_head(lexical_item)                                # Add operator head if needed
+        decomposition = self.extract_morphemes(lexical_item.morphology)
+        m = self.lexicon.lexical_retrieval(decomposition[0])[0]
+        if m.verbal() and 'LANG:FI' in m.features:
+            self.insert_C_head(lexical_item)
         return lexical_item
 
     def insert_C_head(self, lexical_item):
@@ -120,7 +100,7 @@ class Morphology:
         for i in range(0, len(m_lst)):                                  # Examine x#y pairs
             if self.recognize_operator_string(m_lst[i]):                # Detect operator boundary x#op, x not operator morpheme
                 new_m_lst = m_lst + ['C/fin', 'V1'] + m_lst[i:]         # add C/fin
-                log(f'C/fin morpheme inserted inside morphology {lexical_item.morphology} => ')
+                log(f'C generated = ')
                 lexical_item.morphology = ''                            # Recreate morphology
                 for m in new_m_lst:                                     # ...
                     lexical_item.morphology += m + '#'                  # ...

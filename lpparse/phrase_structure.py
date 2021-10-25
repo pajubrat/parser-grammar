@@ -37,7 +37,6 @@ class PhraseStructure:
     #
     # Phrase structure geometry
     #
-
     def is_primitive(self):
         return not (self.right_const and self.left_const)
 
@@ -134,6 +133,13 @@ class PhraseStructure:
     #
     # Definitions for heads and terminal elements
     #
+
+    def get_id(self):
+        for f in self.features:
+            if f[0] == '#':
+                return f
+        return None
+
     def has_affix(self):
         return self.right_const and not self.left_const
 
@@ -372,6 +378,22 @@ class PhraseStructure:
                 return True
         return False
 
+    def find_occurrences_from(self, ps):
+        def find_(identity, ps):
+            chain = []
+            if ps.is_complex():
+                chain = chain + find_(identity, ps.left_const)
+                chain = chain + find_(identity, ps.right_const)
+            else:
+                if identity in ps.features:
+                    return [ps]
+                if ps.complex_head():
+                    chain = chain + find_(identity, ps.right_const)
+            return chain
+
+        identity = self.get_id()  # Returns the identity symbol (#1, ...)
+        return find_(identity, ps)
+
     #
     # Minimal search
     #
@@ -432,7 +454,7 @@ class PhraseStructure:
             iterator_ = iterator_ + 1
 
     #
-    # Upward looking dependencies (todo these must be unified)
+    # Upward looking dependencies (todo must be unified)
     #
     def upward_path(self, intervention_feature=None):
         def intervention (node, intervention_feature):

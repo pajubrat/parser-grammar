@@ -21,7 +21,7 @@ def residuum_identity(F, G):
 
 class LF_Recovery:
     def __init__(self, controlling_parsing_process):
-        self.controlling_parsing_process = controlling_parsing_process
+        self.brain_model = controlling_parsing_process
         self.LF_recovery_results = set()
         self.interpretation_failed = False
 
@@ -29,17 +29,17 @@ class LF_Recovery:
         unvalued = must_be_valued(head.get_unvalued_features())
         if unvalued:
             self.LF_recovery_result = None
-            log(f'\"{head.illustrate()}\" with {sorted(unvalued)} was associated at LF with ')
+            log(f'\n\t\t\t\"{head.illustrate()}\" with {sorted(unvalued)} was associated at LF with ')
             list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
                 # This data structure will hold the results, which will be stored into semantic interpretation
                 self.LF_recovery_result = self.interpret_antecedent(head, list_of_antecedents[0])
-                self.controlling_parsing_process.narrow_semantics.predicate_argument_dependencies.append((head, list_of_antecedents[0].head()))
+                self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, list_of_antecedents[0].head()))
             else:
                 self.LF_recovery_result = f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')'
             self.report_to_log(head, list_of_antecedents, unvalued)
-            self.controlling_parsing_process.consume_resources("LF recovery")
-            self.controlling_parsing_process.consume_resources("Phi")
+            self.brain_model.consume_resources("LF recovery")
+            self.brain_model.consume_resources("Phi")
             semantic_interpretation_dict['Recovery'].append(self.LF_recovery_result)
 
     # Definition for LF-recovery

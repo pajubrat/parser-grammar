@@ -19,10 +19,10 @@ def phi(input_feature):
 
 class AgreementReconstruction:
     def __init__(self, controlling_parsing_process):
-        self.controlling_parsing_process = controlling_parsing_process
+        self.brain_model = controlling_parsing_process
 
     def reconstruct(self, ps):
-        self.controlling_parsing_process.narrow_semantics.predicate_argument_dependencies = []
+        self.brain_model.narrow_semantics.predicate_argument_dependencies = []
         # ---------------------------- minimal search ----------------------------------------#
         for node in ps.minimal_search():
             if node.left_const and node.left_const.is_primitive() and 'VAL' in node.left_const.features:
@@ -31,13 +31,13 @@ class AgreementReconstruction:
 
     def Agree_1(self, head):
 
-        self.controlling_parsing_process.consume_resources("Agree")
-        self.controlling_parsing_process.consume_resources("Phi")
+        self.brain_model.consume_resources("Agree")
+        self.brain_model.consume_resources("Phi")
 
         # 1. Acquisition of phi-features from the sister
         goal1, phi_features = self.Agree_1_from_sister(head)
         if phi_features:
-            self.controlling_parsing_process.narrow_semantics.predicate_argument_dependencies.append((head, goal1))
+            self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, goal1))
             if not {'D', 'φ', 'n'} & head.features: # This is currently stipulation
                 head.features.add('BLOCK_NS')
             for phi in phi_features:
@@ -80,7 +80,7 @@ class AgreementReconstruction:
 
     def agreement_condition(self, head, phrase):
         if {'D', 'φ'} & phrase.head().features:
-            if self.controlling_parsing_process.language != 'LANG:FI':
+            if self.brain_model.language != 'LANG:FI':
                 return True
             else:
                 if 'pro' in phrase.head().features:

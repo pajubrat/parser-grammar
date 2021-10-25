@@ -20,7 +20,7 @@ class OperatorVariableModule:
         return self.inventory[idx]
 
     def accept(self, ps):
-        return {f for f in ps.head().features if f[:3] == 'OP:'} and 'FIN'
+        return {f for f in ps.head().features if f[:3] == 'OP:'}
 
     def update(self, idx, criteria):
         self.inventory[idx].update(criteria)
@@ -36,22 +36,49 @@ class OperatorVariableModule:
     def present(self, head):
         return f'{head.max().illustrate()}'
 
-    def bind_operator(self, ps, semantic_interpretation):
-        if 'C' in ps.features or 'C/fin' in ps.features:        #Exclude self-referencing operators
+    def bind_operator(self, head, semantic_interpretation):
+        if 'C' in head.features or 'C/fin' in head.features:
             return
-        for f in ps.head().features:
-            if self.is_operator_feature(f):
-                scope_marker_lst = self.bind_to_propositional_scope_marker(ps, f)
+        for operator_feature in head.features:
+            if self.is_operator_feature(operator_feature):
+                scope_marker_lst = self.bind_to_propositional_scope_marker(head, operator_feature)
                 if not scope_marker_lst:
-                    log(f'{ps.illustrate()} with feature {f} is not properly bound by an operator. ')
+                    log(f'{head.illustrate()} with feature {operator_feature} is not properly bound by an operator. ')
                     self.interpretation_failed = True
                     break
                 else:
                     scope_marker = scope_marker_lst[0]
-                    semantic_interpretation['Operator bindings'].append((f'{ps.illustrate()}', f'{scope_marker}[{f}]'))
-                    idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'OP')
+                    semantic_interpretation['Operator bindings'].append((f'{head.illustrate()}', f'{scope_marker}[{operator_feature}]'))
+                    self.interpret_operator_at_lexical_item(operator_feature, head, semantic_interpretation)
+                    idx, space = self.narrow_semantics.get_referential_index_tuples(head, 'OP')
                     if idx:
                         self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = scope_marker
+
+    def interpret_operator_at_lexical_item(self, operator_feature, head, semantic_interpretation):
+        """
+        Interprets the operator feature at head. Currently implements two functions:
+        A. Targets the complex predicate that is headed by head and submits it for semantic interpretation.
+        B. Examines if the operator is reflexive
+        """
+
+        log(f'\n\t\t\tInterpreting operator feature {operator_feature} at ')
+        heads = head.find_occurrences_from(self.narrow_semantics.access_interface['spellout structure'])
+        if heads:
+            head = heads[0]     # We consider only the first occurrence (there should be only one)
+            log(f'{head}. ')
+            if self.narrow_semantics.is_concept(head):
+                if 'Predicates targeted by operator interpretation' not in semantic_interpretation:
+                    semantic_interpretation['Predicates targeted by operator interpretation'] = [f'[{operator_feature}] at {head}']
+                else:
+                    semantic_interpretation['Predicates targeted by operator interpretation'].append(f'[{operator_feature}] at {head}')
+            else:
+                log(f'Not enough lexical content. ')
+        else:
+            log(f'{head}, predicate not found from spellout structure.')    # This should never occur
+
+        if self.reflexive_operator_binding(head):
+            log('Verum focus interpretation. ')
+            semantic_interpretation['Verum focus interpretation'] = True
 
     def bind_to_propositional_scope_marker(self, head, operator_feature):
         scope_binder_lst = []
@@ -66,6 +93,9 @@ class OperatorVariableModule:
         # --------------------------------------------------------------------------------------------------------- #
         return scope_binder_lst
 
+    def reflexive_operator_binding(self, ps):
+        return 'FIN' in ps.features
+
     def full_proposition(self, scope_operator):
         return 'OP:REL' not in scope_operator
 
@@ -73,7 +103,7 @@ class OperatorVariableModule:
         return {f for f in head.features if f[:3] == 'OP:' and f[-1] != '_'}
 
     def is_operator_feature(self, feature):
-        return feature[:3] == 'OP:' and feature [-1] != '_'
+        return feature[:2] == 'OP' and feature [-1] != '_'
 
     def get_operator_features(self, features):
         return {f for f in features if self.is_operator_feature(f)}

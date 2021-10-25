@@ -4,29 +4,29 @@ from adjunct_constructor import AdjunctConstructor
 
 class PhrasalMovement:
     def __init__(self, controlling_parser_process):
-        self.controlling_parser_process = controlling_parser_process
-        self.controlling_parser_process.name_provider_index = 1
-        self.controlling_parser_process.syntactic_working_memory = []
+        self.brain_model = controlling_parser_process
+        self.brain_model.name_provider_index = 1
+        self.brain_model.syntactic_working_memory = []
         self.context = controlling_parser_process
-        self.lexical_access = LexicalInterface(self.controlling_parser_process)
-        self.lexical_access.load_lexicon(self.controlling_parser_process)
-        self.adjunct_constructor = AdjunctConstructor(self.controlling_parser_process)
+        self.lexical_access = LexicalInterface(self.brain_model)
+        self.lexical_access.load_lexicon(self.brain_model)
+        self.adjunct_constructor = AdjunctConstructor(self.brain_model)
 
     def reconstruct(self, ps):
-        self.controlling_parser_process.syntactic_working_memory = []
+        self.brain_model.syntactic_working_memory = []
         # ------------------------------ minimal search -----------------------------------------------#
         for node in ps.minimal_search():
             if self.visible_head(node):
                 self.pull_into_working_memory(self.visible_head(node))
                 if self.visible_head(node):
-                    self.controlling_parser_process.LF.try_LFmerge(self.visible_head(node))
+                    self.brain_model.LF.try_LFmerge(self.visible_head(node))
             if self.intervention(node):
                 break
         # ---------------------------------------------------------------------------------------------#
 
     def intervention(self, node):
         if node.left_const and node.left_const.is_primitive() and 'D' in node.left_const.features:
-            if self.controlling_parser_process.syntactic_working_memory:
+            if self.brain_model.syntactic_working_memory:
                 return True
         return False
 
@@ -57,7 +57,7 @@ class PhrasalMovement:
                 else:
                    # We are working with a local specifier, no need to project extra heads
                     count_specifiers = + 1
-                    if self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
+                    if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
                         log(f'Criterial features copied to {head}...')
                         head.features |= self.get_features_for_criterial_head(head, spec)
                         if head.get_tail_sets():
@@ -65,7 +65,7 @@ class PhrasalMovement:
                 iterator = iterator.walk_upstream()
 
             # --------------------------------------------------------------------------------------------------#
-            self.controlling_parser_process.syntactic_working_memory = specifiers_to_add_memory_buffer + self.controlling_parser_process.syntactic_working_memory
+            self.brain_model.syntactic_working_memory = specifiers_to_add_memory_buffer + self.brain_model.syntactic_working_memory
 
     def engineer_head_from_specifier(self, head, spec):
         new_h = self.lexical_access.PhraseStructure()
@@ -75,7 +75,7 @@ class PhrasalMovement:
         return new_h
 
     def get_features_for_criterial_head(self, head, spec):
-        criterial_features = self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
+        criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
         if criterial_features:
             feature_set = criterial_features
             feature_set |= {'OP', 'FIN'}
@@ -96,7 +96,7 @@ class PhrasalMovement:
 
         # Special case: [DP H] => [__ [H DP]]
         if iterator.is_primitive():
-            iterator.merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'right')
+            iterator.merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'right')
             return iterator.mother
 
         moved_constituent = spec.copy()
@@ -110,9 +110,9 @@ class PhrasalMovement:
                         moved_constituent.remove()
                     else:
                         moved_constituent.remove()
-                        node.merge_1(spec.copy_from_memory_buffer(self.controlling_parser_process.babtize()), 'left')
-                        self.controlling_parser_process.consume_resources('A-Move Phrase')
-                        self.controlling_parser_process.consume_resources('Move Phrase')
+                        node.merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'left')
+                        self.brain_model.consume_resources('A-Move Phrase')
+                        self.brain_model.consume_resources('Move Phrase')
                         break
         #-----------------------------------------------------------------------------------------------------------#
         return iterator
@@ -126,14 +126,14 @@ class PhrasalMovement:
             return h.left_const
 
     def Abar_movable(self, h):
-        if self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(h):
+        if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(h):
             return True
         if 'A/inf' in h.head().features:
             return True
 
 
     def specifier_phrase_must_have_supporting_head(self, h):
-        if self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(h):
+        if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(h):
             return True
         if h.max().externalized():
             return False

@@ -17,7 +17,7 @@ class NarrowSemantics:
         self.semantic_interpretation = {}
         self.semantic_interpretation_failed = False
         self.predicate_argument_dependencies = []
-        self.controlling_parsing_process = controlling_parsing_process
+        self.brain_model = controlling_parsing_process
         self.phi_interpretation_failed = False
         self.query = \
             {'GLOBAL': {'Remove': self.global_cognition.remove_object,
@@ -106,12 +106,12 @@ class NarrowSemantics:
                                         'Information structure': {'Marked topics': None, 'Neutral gradient': None,
                                                                   'Marked focus': None}}
 
-    def postsyntactic_semantic_interpretation(self, ps):
-        log(f'\n\t\tInterpreting {ps.head()}P globally:')
+    def postsyntactic_semantic_interpretation(self, root_node):
+        log(f'\n\t\tInterpreting {root_node.head()}P globally:')
         self.reset_for_new_interpretation()
-        self.interpret_(ps)
-        self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps)
-        self.pragmatic_pathway.calculate_information_structure(ps, self.semantic_interpretation)
+        self.interpret_(root_node) # Recursive interpretation for each lexical item
+        self.quantifiers_numerals_denotations_module.reconstruct_assignments(root_node)
+        self.pragmatic_pathway.calculate_information_structure(root_node, self.semantic_interpretation)
         self.document_interface_content_for_user()
         return self.semantic_interpretation_failed
 
@@ -133,7 +133,7 @@ class NarrowSemantics:
 
     def inventory_projection(self, ps):
         def preconditions(ps):
-            return not self.controlling_parsing_process.first_solution_found and \
+            return not self.brain_model.first_solution_found and \
                    not ps.find_me_elsewhere and \
                    'BLOCK_NS' not in ps.features
 
@@ -166,6 +166,20 @@ class NarrowSemantics:
                 self.operator_variable_module.interpretation_failed or \
                 self.pragmatic_pathway.interpretation_failed:
             self.semantic_interpretation_failed = True
+            return True
+
+    def is_concept(self, head):
+        """
+        Defines the class of items that can be mapped to a "concept" or "conceptual content" in the conceptual-intentional system.
+        """
+        lst = head.get_affix_list()
+        for m in lst:
+            if self.expresses_concept(m):
+                return True
+
+    def expresses_concept(self, head):
+        if {'N', 'Neg', 'P', 'D', 'A', 'V', 'ADV', 'Q', 'NUM', '0'} & head.features and \
+                {'COPULA', 'T/prt'} not in head.features:
             return True
 
     def get_referential_index(self, ps, space):
