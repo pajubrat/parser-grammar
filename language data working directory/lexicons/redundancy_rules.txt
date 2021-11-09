@@ -4,7 +4,7 @@
 # Basic lexical categories
 FORCE 	:: -ARG -VAL FIN !COMP:* -SPEC:* !PROBE:FIN COMP:T/fin COMP:C/fin
 C/fin 	:: -ARG VAL FIN C SPEC:* !COMP:* -COMP:C/fin -COMP:T/prt COMP:T/fin -COMP:FORCE !PROBE:FIN -SPEC:T/fin -SPEC:C/fin -SPEC:N COMP:Neg/fin
-T/fin 	:: ARG VAL T FIN !COMP:* -SPEC:C COMP:T/prt -SPEC:T/prt COMP:v COMP:V -COMP:INF -COMP:T/fin !PROBE:V SPEC:φ SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf -adjoinable
+T/fin 	:: ARG VAL T FIN !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:INF -COMP:T/fin !PROBE:V SPEC:φ SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf -adjoinable
 T/prt 	:: ARG FIN VAL T !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin SPEC:* SPEC:φ -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V COMP:φ
 T 		:: ARG TAM VAL FIN !COMP:* COMP:v COMP:V COMP:T/prt -COMP:D -COMP:NEG !PROBE:V SPEC:φ -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
 Neg/fin :: ARG VAL FIN NEG COMP:T/prt -SPEC:T -SPEC:T/fin %SPEC:INF SEM:internal
@@ -24,6 +24,8 @@ OP		:: -COMP:OP
 DET		:: φ COMP:φ -COMP:DET 
 QN		:: φ COMP:φ COMP:N COMP:NUM
 φ		:: COMP:N -SPEC:T COMP:D/rel SPEC:*
+
+N LANG:FI	:: -COMP:T/prt
 
 # infinitivals
 MA/lla	::	!COMP:V adjoinable

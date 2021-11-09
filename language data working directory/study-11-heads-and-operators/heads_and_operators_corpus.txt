@@ -2,6 +2,133 @@
 
 & 0. Baseline sentences
 
+	& 0.0 Sentences from the manuscript
+
+		& 0.0.1 Chapter 5
+	
+			a' b' c' d'
+			a'' b' c' d'
+
+	
+& 1. Morphological decomposition (6.1)
+
+	& Grammatical
+
+		John admires Mary
+	
+	& Ungrammatical
+	
+		admires John Mary
+		John Mary admires
+		John admires
+		admires John
+		John admires Mary Mary
+
+& 2. Local head movement (6.2)
+
+	& 2.1 English Aux-to-C
+
+		& 2.1.1 Gammatical
+
+			does John admire Mary
+			John does admire Mary
+			does#C/fin John admire Mary
+		
+		& 2.1.2 Ugrammatical
+		
+			admires John Mary
+			admire John Mary
+			does admire John Mary
+			John admire does Mary
+			admire John does Mary
+			does John Mary
+			John does
+			does John
+			
+			John#C/fin does admire Mary
+			John does admire#C/fin Mary
+		
+		& 2.1.3 Problems (CP-complementarity)
+		
+			John does#C/fin admire Mary
+			John admires#C/fin Mary
+		
+	& 2.2 Finnish T-to-C
+	
+		& 2.2.1 Grammatical
+		
+			on#[kO] Pekka ihaillut Merjaa
+			ihailee#[kO] Pekka Merjaa
+		
+		& 2.2.2 Ungrammatical
+		
+			Pekka on#[kO] ihaillut Merjaa
+			Pekka ihaillut on#[kO] Merjaa
+			Pekka ihaillut Merjaa on#[kO]
+		
+			on Pekka ihaillut Merjaa
+			ihailee Pekka Merjaa
+
+& 3. Long head movement (LHM)
+
+	& 3.1 Impossible LHM derivations in English
+	
+		& 3.1.1 Verb initial constructions
+	
+			admires John Mary
+			does_T John admire Mary
+	
+			admires#C/fin John Mary
+			does#C/fin John admire Mary
+	
+		& 3.1.2 Hypothetical LHM constructions
+			
+			admire#C/fin John does Mary
+			admire#C/fin John wants to_inf Mary
+	
+	& 3.2 LHM derivations in Finnish
+	
+		& 3.2.1 V-to-C, over one finite element
+	
+			ihaile#[kO] Pekka ei Merjaa
+			ihailla#[kO] Pekka haluaa Merjaa
+			ihailla#[kO] Pekan_gen taytyy Merjaa
+			ihaillut#[kO] Pekka on Merjaa
+		
+		& 3.2.2 V-to-C, over several elements
+		
+			ihailla#[kO] Pekka ei halua Merjaa
+			ihailla#[kO] Pekan_gen ei taydy Merjaa
+			ihailla#[kO] Pekka sanoo etta Pekka haluaa Merjaa
+			lahtea#[kO] Pekka sanoo etta Pekan_gen taytyy
+		
+		& 3.2.3 Sandiwch constructions
+		
+			taydy#[kO] Pekan_gen ei ihailla Merjaa
+			halua#[kO] Pekka ei ihailla Merjaa
+		
+		& 3.2.4 Minimality
+		
+			haluaa#[kO] Pekka sanoo etta ihailla Merjaa
+			ei#[kO] Merja sanoo etta Pekka ihaile Merjaa
+
+			ollut#[kO] Pekka ei ihaillut Merjaa
+
+		& Intervention (6.3)
+		
+			& DP-island (intervention by phi)
+		
+				ihailla#[kO] Pekka teki sopimuksen Merjaa
+
+			& Operator islands (intervention by OP)
+			
+				Jukka sanoi etta haluaa#[hAn] Pekka ihailla Merjaa
+				ihailla#[kO] Jukka sanoi etta haluaa#[hAn] Pekka Merjaa
+
+			& Phrasal intervention is not calculated correcly
+			
+				ihailla#[kO] Jukka kysyi etta kuka haluaa Merjaa
+		
 	& 0.1 Intransitives (lexicon and constructions)
 	
 		Pekka istuu

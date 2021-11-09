@@ -130,6 +130,9 @@ class PhraseStructure:
         else:
             return self.upward_path()[-1]
 
+    def root(self):
+        return not self.mother
+
     #
     # Definitions for heads and terminal elements
     #

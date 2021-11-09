@@ -55,12 +55,6 @@ class OperatorVariableModule:
                         self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = scope_marker
 
     def interpret_operator_at_lexical_item(self, operator_feature, head, semantic_interpretation):
-        """
-        Interprets the operator feature at head. Currently implements two functions:
-        A. Targets the complex predicate that is headed by head and submits it for semantic interpretation.
-        B. Examines if the operator is reflexive
-        """
-
         log(f'\n\t\t\tInterpreting operator feature {operator_feature} at ')
         heads = head.find_occurrences_from(self.narrow_semantics.access_interface['spellout structure'])
         if heads:

@@ -50,7 +50,7 @@ class Discourse:
     # todo knocked out currently
     #
     def interpret_discourse_features(self, ps, semantic_interpretation):
-        log('\n\t\t\tCalculating pragmatic discourse features ')
+        log('\n\t\t\tCalculating pragmatic discourse features... ')
         d_features = self.get_discourse_features(ps.features)
         results = []
         for f in sorted(d_features):

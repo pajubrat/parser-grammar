@@ -81,7 +81,8 @@ deva-		:: V PF:deva LF:must SPEC:φ COMP:ARE/inf SEM:internal -ASP LANG:IT
 di			:: PF:di LF:of P -adjoinable LANG:FI
 
 does		:: T/fin PHI:PER:3 PHI:NUM:SG PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does LANG:EN
-does_C		:: does-#wh#C/fin#WH LANG:EN
+does_C		:: does-#C/fin#WH LANG:EN
+does_T		:: T/fin PHI:PER:3 PHI:NUM:SG PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does LANG:EN
 does		:: does-#wh#C/fin#WH LANG:EN
 does-		:: T/fin PHI:PER:3 PHI:NUM:SG PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does LANG:EN
 
@@ -773,7 +774,7 @@ d'			:: d PF:d LF:D LANG:
 a''			:: x'#y'#z'
 x'			:: x PF:x LF:X LANG:X
 y'			:: y PF:y LF:Y LANG:X
-z'			:: z PF:x LF:Z LANG:X	
+z'			:: z PF:z LF:Z LANG:X
 John'		:: N' PF:John LF:John LANG:X
 admires'	:: V' PF:admires LF:admires LANG:X
 admires'' 	:: V SPEC:φ PF:admires LF:admires LANG:EN
