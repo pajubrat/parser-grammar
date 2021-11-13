@@ -45,43 +45,26 @@ class Discourse:
             self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
             self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
-
-    #
-    # todo knocked out currently
-    #
     def interpret_discourse_features(self, ps, semantic_interpretation):
-        log('\n\t\t\tCalculating pragmatic discourse features... ')
         d_features = self.get_discourse_features(ps.features)
-        results = []
+        if d_features:
+            log('\n\t\t\tInterpreting ')
         for f in sorted(d_features):
-            log(f'[{f}], ')
+            log(f'[{f}] at {ps}...')
             result = self.interpret_discourse_feature(f, ps)
             if not result:
-                # self.interpretation_failed = True
                 return []
-            results.append(result)
-        semantic_interpretation['D-features'] =  results
+            semantic_interpretation['DIS-features'].append(result)
         self.refresh_inventory(ps)
         log('Done. ')
 
     def interpret_discourse_feature(self, f, ps):
-        log(f'at {ps.illustrate()}: ')
-        idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
-        if not idx:
-            log(f'{ps.illustrate()} not wired semantically (operation knocked out). ')
-            return None
-        if not self.narrow_semantics.query['QND']['Get'](idx):
-            log(f'I have no idea what {ps.illustrate()} refers to. ')
-            return None
-        if 'Bound by' not in self.narrow_semantics.query['QND']['Get'](idx):
-            log(f'{ps.max().illustrate()} not bound by propositional scope operator. ')
-            # return None
-
-        # Here we need to add the mechanism for excluding relative clauses i.e. only interpret them inside
-        # full proposition
-
-        log(f'Interpreted successfully with semantic object [{idx}].')
-        return f'{ps.max().illustrate()}', f, idx
+        """
+        This operation must be rethought completely. I think we should not do this in connection with compositional
+        global interpretation but instead in the same way we calculate the information structure. We will also need
+        to think about how to represent propositions semantically.
+        """
+        return f, f'{ps.illustrate()}'
 
     def calculate_information_structure(self, root_node, semantic_interpretation):
         if 'FIN' in root_node.head().features:
@@ -100,6 +83,7 @@ class Discourse:
 
         for key in topic_gradient:
             if topic_gradient[key]['Constituent'] in constituents_in_information_structure:
+
                 if 'Marked gradient' in topic_gradient[key]:
                     if topic_gradient[key]['Marked gradient'] == 'High':
                         marked_topic_lst.append(topic_gradient[key]['Name'])
@@ -107,6 +91,7 @@ class Discourse:
                         marked_focus_lst.append(topic_gradient[key]['Name'])
                 else:
                     topic_lst.append(topic_gradient[key]['Name'])
+
         return {'Marked topics': marked_topic_lst, 'Neutral gradient': topic_lst, 'Marked focus': marked_focus_lst}
 
     def arguments_of_proposition(self, ps):
@@ -118,9 +103,9 @@ class Discourse:
     def collect_arguments(self, ps, scope):
         arguments = set()
         if ps.is_complex() and not self.out_of_proposition_scope(ps, scope):
-            if self.is_relevant_for_information_structure(ps.left_const):
+            if self.is_relevant_for_information_structure(ps.left_const.head()):
                 arguments.add(ps.left_const.head())
-            if self.is_relevant_for_information_structure(ps.right_const):
+            if self.is_relevant_for_information_structure(ps.right_const.head()):
                 arguments.add(ps.right_const.head())
             if ps.right_const.adjunct:
                 arguments = arguments | self.collect_arguments(ps.right_const, scope)
@@ -130,12 +115,12 @@ class Discourse:
         return arguments
 
     def is_relevant_for_information_structure(self, ps):
-        return self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
+        return (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
     def out_of_proposition_scope(self, ps, scope):
         if ps.left_const.is_primitive():
             if ps.left_const.finite():
-                if {'C', 'T/fin', 'FORCE'} & ps.left_const.features:
+                if {'T/fin'} & ps.left_const.features:
                     if ps != scope:
                         return True
         if ps.right_const.is_primitive():
@@ -145,7 +130,7 @@ class Discourse:
 
     def locate_proposition(self, ps):
         for node in ps:
-            if node.is_complex() and node.left_const.finite():
+            if node.is_complex() and'T/fin' in node.left_const.features:
                 return node
 
     def get_force_features(self, ps):

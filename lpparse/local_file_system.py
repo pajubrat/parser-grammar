@@ -459,7 +459,7 @@ class LocalFileSystem:
         lst_GLOBAL = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'GLOBAL']
         lst_QND = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'QND']
         lst_OP = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'OP']
-        lst_PE = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'PE']
+        lst_PE = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'PRE']
         return lst_QND + lst_PE + lst_OP + lst_GLOBAL
 
     def save_image(self, P, sentence, count):

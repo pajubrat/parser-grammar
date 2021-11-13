@@ -50,11 +50,13 @@ class LexicalInterface:
             if not {f for f in lexical_features if f[:4] == 'LANG'}:
                 lexical_features.append(self.language)
 
+            lexical_features.append('PHON')
+
             # If the word is complex, we treat it differently
             if '#' in lexical_features[0]:
                 const = self.PhraseStructure()
                 const.morphology = lexical_features[0]
-                const.features = lexical_features[1:]
+                const.features = set(lexical_features[1:])
                 self.surface_vocabulary[phonological_entry].append(const)
 
             # If we are adding to existing lexicon, and find the same item, we accumulate features
@@ -91,6 +93,7 @@ class LexicalInterface:
         # If a matching element is found from the dictionary, it will return a list of constituents
         if phonological_entry in self.surface_vocabulary:
             word_list = [const.copy() for const in self.surface_vocabulary[phonological_entry]]
+
             # Add internal/incorporation information to each
             if internal:
                 for const in word_list:
@@ -99,6 +102,8 @@ class LexicalInterface:
             if incorporated:
                 for const in word_list:
                     const.incorporated = True
+
+
         # Default constituent
         else:
             const = self.PhraseStructure()

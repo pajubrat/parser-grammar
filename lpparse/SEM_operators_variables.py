@@ -37,13 +37,13 @@ class OperatorVariableModule:
         return f'{head.max().illustrate()}'
 
     def bind_operator(self, head, semantic_interpretation):
-        if 'C' in head.features or 'C/fin' in head.features:
+        if 'C' in head.features or 'C/fin' in head.features or 'OP:_' in head.features:
             return
         for operator_feature in head.features:
             if self.is_operator_feature(operator_feature):
                 scope_marker_lst = self.bind_to_propositional_scope_marker(head, operator_feature)
                 if not scope_marker_lst:
-                    log(f'{head.illustrate()} with feature {operator_feature} is not properly bound by an operator. ')
+                    log(f'\n\t\t\t{head.illustrate()} with feature {operator_feature} is not properly bound by an operator. ')
                     self.interpretation_failed = True
                     break
                 else:
@@ -55,7 +55,7 @@ class OperatorVariableModule:
                         self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = scope_marker
 
     def interpret_operator_at_lexical_item(self, operator_feature, head, semantic_interpretation):
-        log(f'\n\t\t\tInterpreting operator feature {operator_feature} at ')
+        log(f'\n\t\t\tInterpreting {operator_feature} at ')
         heads = head.find_occurrences_from(self.narrow_semantics.access_interface['spellout structure'])
         if heads:
             head = heads[0]     # We consider only the first occurrence (there should be only one)

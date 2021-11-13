@@ -46,6 +46,7 @@ class HeadMovement:
                 if self.reconstruction_is_successful(affix):
                     self.brain_model.consume_resources("Move Head")
                     return affix
+
                 affix.remove()
             # --------------------------------------------------------------------------------#
             node.merge_1(affix, 'right')

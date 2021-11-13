@@ -485,7 +485,7 @@ saavutta-	:: PF:saavutta- LF:reach !COMP:φ ASP:BOUNDED CLASS:TR V LANG:FI
 sanon   	:: sano-#T/fin#[-n] LANG:FI
 sanoo   	:: sano-#T/fin#[-V] LANG:FI
 sanoi		:: sano-#T/fin#[-V] LANG:FI
-sano-   	:: PF:sano- LF:say V SPEC:φ COMP:VA/inf COMP:FORCE LANG:FI
+sano-   	:: PF:sano- LF:say V SPEC:φ COMP:VA/inf COMP:FORCE -PROBE:FORCE:WH LANG:FI
 
 said    	:: say-#T/fin LANG:EN
 say'		:: PF:say LF:say V SPEC:φ !COMP:FORCE LANG:EN
@@ -555,7 +555,10 @@ taloksi		:: talo-#φ#[-ess]
 talo-		:: PF:talo LF:house N LANG:FI
 
 tama		:: tama-#D#sg#3p#def
+tätä		:: D#sg#3p#def#[-par]
 tama-		:: PF:tama LF:this N PHI LANG:FI
+tämä-		:: PF:tämä LF:this N PHI LANG:FI
+
 tassa		:: tama#P
 
 taytyy		:: tayty-#T/fin#[-V] LANG:FI
@@ -761,7 +764,7 @@ asp			:: inflectional ASP:BOUNDED
 # FINNISH LEFT PERIPHERAL DISCOURSE FEATURES
 [hAn]		:: inflectional OP:FAM LANG:FI
 [pA]		:: inflectional OP:POL LANG:FI
-[kO]		:: inflectional OP:WH OP:Q FORCE:WH LANG:FI
+[kO]		:: inflectional OP:WH OP:Q LANG:FI
 [foc]		:: inflectional OP:FOC LANG:FI
 
 # ARTIFICIAL LEXICAL ITEMS

@@ -59,7 +59,7 @@ class PhrasalMovement:
                     count_specifiers = + 1
                     if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
                         log(f'Criterial features copied to {head}...')
-                        head.features |= self.get_features_for_criterial_head(head, spec)
+                        head.features |= self.get_features_for_criterial_head(spec)
                         if head.get_tail_sets():
                             self.adjunct_constructor.externalize_structure(head)
                 iterator = iterator.walk_upstream()
@@ -69,17 +69,16 @@ class PhrasalMovement:
 
     def engineer_head_from_specifier(self, head, spec):
         new_h = self.lexical_access.PhraseStructure()
-        new_h.features |= self.get_features_for_criterial_head(head, spec)
+        new_h.features |= self.get_features_for_criterial_head(spec)
         if 'FIN' in head.features:
             new_h.features |= {'C', 'PF:C'}
         return new_h
 
-    def get_features_for_criterial_head(self, head, spec):
+    def get_features_for_criterial_head(self, spec):
         criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
         if criterial_features:
             feature_set = criterial_features
-            feature_set |= {'OP', 'FIN'}
-
+            feature_set |= {'FIN', 'OP:_'}
             return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
         else:
             return {'?'}

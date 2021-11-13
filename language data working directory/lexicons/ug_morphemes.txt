@@ -69,20 +69,17 @@ dat		:: inflectional DAT TAIL:v -FLOAT -adjoinable
 #Aspect markers
 asp			:: inflectional ASP:BOUNDED
 
-#Projection features (is this really feature?)
-V1		:: inflectional -EDGE:* -SPEC:*
-
 # Universal operator feature inventory
 uC/op	:: inflectional uC/op
-wh     	:: inflectional OP OP:WH OP:_
+wh     	:: inflectional OP:WH
 WH		:: inflectional FORCE:WH
-wh_		:: inflectional OP OP:_
+wh_		:: inflectional OP
 top    	:: inflectional OP:TOP DIS:TOP
 foc    	:: inflectional OP:FOC DIS:FOC
 fam		:: inflectional OP:FAM DIS:FAM
 pol		:: inflectional OP:POL DIS:POL
 C/op	:: inflectional OP:C/OP DIS:C/OP
-d/rel   :: inflectional OP:REL OP:_
+d/rel   :: inflectional OP:REL
 Q		:: inflectional OP OP:WH OP:Q FORCE:WH DIS:WH
 
 # Miscellanneus items

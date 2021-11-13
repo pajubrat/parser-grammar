@@ -4,6 +4,7 @@ from support import log
 class LexicalStream:
     def __init__(self, controlling_parsing_process):
         self.controlling_parser_process = controlling_parsing_process
+        self.lexicon = self.controlling_parser_process.lexicon
         self.id = 0
 
     def stream_into_syntax(self, terminal_lexical_item, lst_branched, inflection, ps, index):
@@ -47,7 +48,7 @@ class LexicalStream:
         else:
             if self.controlling_parser_process.memory_buffer_inflectional_affixes:
                 log(f'Adding inflectional features {sorted(self.controlling_parser_process.memory_buffer_inflectional_affixes)} to ' + lexical_item.get_phonological_string() + '...')
-                lexical_item.features = lexical_item.features | set(self.controlling_parser_process.memory_buffer_inflectional_affixes)
+                lexical_item.features = self.lexicon.apply_redundancy_rules(lexical_item.features | set(self.controlling_parser_process.memory_buffer_inflectional_affixes))
                 self.controlling_parser_process.memory_buffer_inflectional_affixes = set()
         return lexical_item
 

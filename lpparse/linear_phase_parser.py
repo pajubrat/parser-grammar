@@ -141,7 +141,7 @@ class LinearPhaseParser:
             # MORPHOLOGY
             terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
 
-            # LEXICAL STREAM
+            # LEXICAL ACCESS AND STREAM
             terminal_lexical_item = self.lexical_stream.stream_into_syntax(terminal_lexical_item, lst_branched, inflection, ps, index)
 
             # SYNTACTIC MODULE

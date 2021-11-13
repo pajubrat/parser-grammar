@@ -11,7 +11,7 @@ Neg/fin :: ARG VAL FIN NEG COMP:T/prt -SPEC:T -SPEC:T/fin %SPEC:INF SEM:internal
 v   	:: ARG -VAL ASP !COMP:* COMP:V !PROBE:V SPEC:φ -SPEC:N
 D   	:: φ -ARG !COMP:* -COMP:P -COMP:T/fin -SPEC:MA/lla -SPEC:P -EDGE:* -SPEC:C -SPEC:INF -SPEC:V COMP:n COMP:N COMP:φ -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
 D/rel	:: φ D -ARG OP OP:REL OP:_ !COMP:* -COMP:C/fin -COMP:φ -SPEC:MA/lla -SPEC:P -SPEC:C -SPEC:INF -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
-N   	:: -COMP:D COMP:D/rel COMP:P COMP:D/rel -COMP:VA/inf -COMP:A COMP:T/prt COMP:C -COMP:AUX -SPEC:FORCE -COMP:C/fin SPEC:A COMP:R COMP:R/D -COMP:N -SPEC:uWH -SPEC:R -SPEC:V -COMP:V -COMP:v -SPEC:INF -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:ADV -COMP:WH
+N   	:: -COMP:D COMP:D/rel COMP:P COMP:D/rel -COMP:VA/inf -COMP:A -COMP:T/fin COMP:T/prt COMP:C -COMP:AUX -SPEC:FORCE -COMP:C/fin SPEC:A COMP:R COMP:R/D -COMP:N -SPEC:uWH -SPEC:R -SPEC:V -COMP:V -COMP:v -SPEC:INF -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:ADV -COMP:WH
 V   	:: ARG -VAL ASP -SPEC:T/fin -SPEC:FORCE SPEC:ADV -COMP:N -COMP:V -COMP:v SPEC:P COMP:P SPEC:TO/inf
 P   	:: ARG -VAL !COMP:* COMP:φ -COMP:N -COMP:ADV -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:ADV -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:INF -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 ADV 	:: -SPEC:N -SPEC:FORCE -SPEC:Neg/fin -SPEC:T/fin adjoinable
@@ -24,6 +24,10 @@ OP		:: -COMP:OP
 DET		:: φ COMP:φ -COMP:DET 
 QN		:: φ COMP:φ COMP:N COMP:NUM
 φ		:: COMP:N -SPEC:T COMP:D/rel SPEC:*
+
+
+#CP-complementary (assume opposite for V2 languages)
+C/fin PHON	:: -EDGE:* -SPEC:*
 
 N LANG:FI	:: -COMP:T/prt
 
@@ -40,9 +44,8 @@ Q				:: OP:WH OP:Q
 
 # Connection between operator features and force (language specific)
 OP FIN			:: !1EDGE 
-OP:WH FIN		:: OP:_
-OP:REL FIN		:: OP:_
 OP:WH FIN		:: FORCE:WH
+OP:Q FIN		:: FORCE:WH
 
 OP:WH			:: DIS:WH
 OP:Q			:: DIS:WH
