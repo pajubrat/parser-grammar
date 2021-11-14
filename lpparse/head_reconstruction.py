@@ -40,20 +40,26 @@ class HeadMovement:
             for node in phrase_structure:
                 if self.causes_intervention(node, intervention_feature_set, phrase_structure):
                     log(f'{node.sister()} causes intervention with {intervention_feature_set}...')
-                    self.last_resort(phrase_structure, affix)
-                    return affix
+                    break
                 node.merge_1(affix, 'left')
                 if self.reconstruction_is_successful(affix):
                     self.brain_model.consume_resources("Move Head")
                     return affix
-
                 affix.remove()
             # --------------------------------------------------------------------------------#
+            log(f'Try Merge-1 right...')
             node.merge_1(affix, 'right')
             if self.reconstruction_is_successful(affix):
                 self.brain_model.consume_resources("Move Head")
                 return affix
+            affix.remove()
+            phrase_structure.merge_1(affix, 'right')
+            if self.reconstruction_is_successful(affix):
+                self.brain_model.consume_resources("Move Head")
+                return affix
+            affix.remove()
 
+            log(f'Use last resort...')
             self.last_resort(phrase_structure, affix)
             return affix
 
@@ -66,7 +72,7 @@ class HeadMovement:
 
     def extra_condition(self, affix):
         if self.head_is_EPP_selected_by_C_fin(affix):
-            if affix.local_edge():
+            if affix.local_edge() and affix.local_edge().head().features & affix.licensed_specifiers():
                 # Exception 1. Finnish third person forms (ultimate reason unknown)
                 if 'pro' in affix.local_edge().features and 'PHI:PER:3' in affix.local_edge().features:
                     return False

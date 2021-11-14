@@ -358,7 +358,7 @@ class LocalFileSystem:
 
     def save_grammaticality_judgment(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)
-        self.grammaticality_judgments_file.write(str(count) + '. ' + self.judgment_marker(P) + sentence_string + '\n\n')
+        self.grammaticality_judgments_file.write('\n'+str(count) + '. ' + self.judgment_marker(P) + sentence_string + '\n')
 
     def judgment_marker(self, parser):
         if len(parser.result_list) == 0:
@@ -482,12 +482,14 @@ class LocalFileSystem:
         self.dev_log_file.write('Done.\n')
 
     def write_comment_line(self, sentence):
+        if sentence[0].startswith("&"):
+            self.grammaticality_judgments_file.write('\n')
         if sentence[0].startswith("'"):
             s = '\t'
         else:
             s = ''
         self.grammaticality_judgments_file.write(s + ' '.join(map(str, sentence)))
-        self.grammaticality_judgments_file.write('\n\n')
+        self.grammaticality_judgments_file.write('\n')
         self.results_file.write(s + ' '.join(map(str, sentence)) + '\n\n')
 
     def save_surface_vocabulary(self, surface_vocabulary):

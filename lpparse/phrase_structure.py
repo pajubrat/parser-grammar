@@ -337,6 +337,9 @@ class PhraseStructure:
     def licensed_complements(self):
         return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}
 
+    def licensed_specifiers(self):
+        return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
+
     def complements_not_licensed(self):
         return {f[6:] for f in self.features if f[:5] == '-COMP'}
 
