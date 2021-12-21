@@ -1,0 +1,561 @@
+@  {'author': 'Pauli Brattico', 'year': 2021, 'date': 'September', 'study_id': 1, 'study_folder': 'language data working directory/study-11-heads-and-operators', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-11-heads-and-operators', 'test_corpus_file': 'heads_and_operators_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-12-21 08:58:32.358593
+@  Test sentences from language data working directory\study-11-heads-and-operators\heads_and_operators_corpus.txt.
+@  Logs into language data working directory\study-11-heads-and-operators\heads_and_operators_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+1. #a' b' c' d' 
+
+	a. [a [b [c d]]]
+
+	b. [a [[b c] d]]
+
+	c. [[a [b c]] d]
+
+	d. [[[a b] c] d]
+
+	e. [[a b] [c d]]
+
+2. #a'' b' c' d' 
+
+	a. [z [y [x [b [c d]]]]]
+
+	b. [z [y [x [[b c] d]]]]
+
+	c. [[z [y [x [b c]]]] d]
+
+	d. [[[z [y [x b]]] c] d]
+
+	e. [[z [y [x b]]] [c d]]
+
+	f. [[[z [y x]] b] [c d]]
+
+	g. [[[[z [y x]] b] c] d]
+
+	h. [[z [y x]] [[b c] d]]
+
+	i. [[z [y x]] [b [c d]]]
+
+	j. [[[z [y x]] [b c]] d]
+
+3.  Pekka istuu 
+
+	[<D Pekka>:1 [T [<__>:1 istuu]]]
+
+4.  John sleeps 
+
+	[[D John]:1 [T [__:1 sleep]]]
+
+5.  Pekka ihailee Merjaa 
+
+	a. [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D Pekka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+6.  John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+7.  Pekka ei ihaile Merjaa 
+
+	a. [<D Pekka>:1 [ei [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+	b. [<D Pekka>:1 [ei [[T [<__>:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]]
+
+8.  Pekka ei ollut ihaillut Merjaa 
+
+	a. [<D Pekka>:1 [ei [T [T/prt [<__>:1 [v [ihaile- [D Merja]]]]]]]]
+
+	b. [<D Pekka>:1 [ei [T [[T/prt [<__>:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]]]
+
+9.  Pekka on ihaillut Merjaa 
+
+	a. [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]
+
+	b. [<D Pekka>:1 [T [<__>:1 [BE [[T/prt [v [<__>:2 ihaile-]]] <D Merja>:2]]]]]
+
+10.  Pekka haluaa ihailla Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]
+
+11.  Pekan_gen taytyy ihailla Merjaa 
+
+	[[D Pekka]:1 [T [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]
+
+12.  John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+13. *admires John Mary 
+
+14. *John Mary admires 
+
+15. *John admires 
+
+16. *admires John 
+
+17. *John admires Mary Mary 
+
+18.  does John admire Mary 
+
+	[C [[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]]
+
+19.  John does admire Mary 
+
+	[[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]
+
+20.  does#C/fin John admire Mary 
+
+	[C [[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]]
+
+21. *admires John Mary 
+
+22. *admire John Mary 
+
+23. *does admire John Mary 
+
+24. *John admire does Mary 
+
+25. *admire John does Mary 
+
+26. *does John Mary 
+
+27. *John does 
+
+28. *does John 
+
+29. *John#C/fin does admire Mary 
+
+30. *John does admire#C/fin Mary 
+
+31.  on#[kO] Pekka ihaillut Merjaa 
+
+	a. [C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
+
+	b. [C [<D Pekka>:1 [T [<__>:1 [BE [[T/prt [v [<__>:2 ihaile-]]] <D Merja>:2]]]]]]
+
+32.  ihailee#[kO] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+33. *Pekka on#[kO] ihaillut Merjaa 
+
+34. *Pekka ihaillut on#[kO] Merjaa 
+
+35. *Pekka ihaillut Merjaa on#[kO] 
+
+36. *Pekka ihailee#[kO] Merjaa 
+
+37. *on#[kO] ihaillut#[kO] Pekka Merjaa 
+
+38. *on#[kO] Pekka ihaillut#[kO] Merjaa 
+
+39. *on Pekka ihaillut Merjaa 
+
+40. *ihailee Pekka Merjaa 
+
+41.  ei#[kO] Pekka ihaile Merjaa 
+
+	a. [C [<D Pekka>:1 [ei [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]
+
+	b. [C [<D Pekka>:1 [ei [[T [<__>:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]]]
+
+42. *Pekka ei#[kO] ihaile Merjaa 
+
+43. *Pekka ei ihaile#[kO] Merjaa 
+
+44.  taytyy#[kO] Pekan_gen ihailla Merjaa 
+
+	[C [[D Pekka]:1 [T [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]
+
+45. *Pekan_gen taytyy#[kO] ihailla Merjaa 
+
+46.  Pekan_gen ei taydy ihailla Merjaa 
+
+	[[D Pekka]:1 [ei [T/prt [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]
+
+47.  ei#[kO] Pekan_gen taydy ihailla Merjaa 
+
+	[C [[D Pekka]:1 [ei [T/prt [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]
+
+48. *Pekan_gen ei#[kO] taydy ihailla Merjaa 
+
+49. *Pekan_gen ei taydy#[kO] ihailla Merjaa 
+
+50.  istuu#[kO] Pekka 
+
+	[C [<D Pekka>:1 [T [<__>:1 istuu]]]]
+
+51.  does John admire Mary 
+
+	[C [[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]]
+
+52.  on#[kO] Pekka ihaillut Merjaa 
+
+	a. [C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
+
+	b. [C [<D Pekka>:1 [T [<__>:1 [BE [[T/prt [v [<__>:2 ihaile-]]] <D Merja>:2]]]]]]
+
+53.  ihailla#[kO] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+54. *admires John Mary 
+
+55. *does_T John admire Mary 
+
+56.  admires#C/fin John Mary 
+
+	[C [[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]]
+
+57.  does#C/fin John admire Mary 
+
+	[C [[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]]
+
+58.  admire#C/fin John does Mary 
+
+	[C [[D John]:1 [does [[D Mary] [v [__:1 admire]]]]]]
+
+59.  admire#C/fin John wants to_inf Mary 
+
+	[C [[D John]:1 [T [[v [want [TO/inf [D Mary]]]] [v [__:1 admire]]]]]]
+
+60.  ihaile#[kO] Pekka ei Merjaa 
+
+	[C [<D Pekka>:1 [ei [T [<__>:1 [v [ihaile- [D Merja]]]]]]]]
+
+61.  ihailla#[kO] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+62.  ihailla#[kO] Pekan_gen taytyy Merjaa 
+
+	[C [[D Pekka]:1 [T [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]
+
+63.  ihaillut#[kO] Pekka on Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [BE [T/prt [v [ihaile- [D Merja]]]]]]]]]
+
+64.  ihailla#[kO] Pekka ei halua Merjaa 
+
+	[C [<D Pekka>:1 [ei [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+
+65.  ihailla#[kO] Pekan_gen ei taydy Merjaa 
+
+	[C [[D Pekka]:1 [ei [T/prt [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]
+
+66.  ihailla#[kO] Pekka sanoo etta Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [sano- [etta [<D Pekka>:2 [T [<__>:2 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]]]]]
+
+67.  lahtea#[kO] Pekka sanoo etta Pekan_gen taytyy 
+
+	[C [<D Pekka>:1 [T [<__>:1 [sano- [etta [[D Pekka]:2 [T [taytyy [__:2 [A/inf [__:2 lahtea]]]]]]]]]]]]
+
+68.  taydy#[kO] Pekan_gen ei ihailla Merjaa 
+
+	[C [[D Pekka]:1 [ei [T/prt [taytyy [__:1 [A/inf [__:1 [v [ihaile- [D Merja]]]]]]]]]]]
+
+69.  halua#[kO] Pekka ei ihailla Merjaa 
+
+	[C [<D Pekka>:1 [ei [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+
+70. *haluaa#[kO] Pekka sanoo etta ihailla Merjaa 
+
+71. *ei#[kO] Merja sanoo etta Pekka ihaile Merjaa 
+
+72. *taytyy#[kO] Merja sanoo etta Pekan_gen ihailla Merjaa 
+
+73. *ollut#[kO] Pekka ei ihaillut Merjaa 
+
+74.  Pekka istuu ihailemalla Merjaa 
+
+	a. [[<D Pekka>:1 [T [<__>:1 istuu]]] <malla [v [ihaile- [D Merja]]]>]
+
+	b. [[D Pekka]:1 [[T [__:1 istuu]] <malla [v [ihaile- [D Merja]]]>]]
+
+75.  sopimus ihailla Merjaa istuu 
+
+	[[φ [sopimus [A/inf [v [ihaile- [D Merja]]]]]]:1 [T [__:1 istuu]]]
+
+76. *ihailemalla#[kO] Pekka istuu Merjaa 
+
+77. *ihailla#[kO] sopimus Merjaa istuu 
+
+78.  Pekka teki sopimuksen ihailla Merjaa 
+
+	[<D Pekka>:1 [T [<__>:1 [v [teke [φ [sopimus [A/inf [v [ihaile- [D Merja]]]]]]]]]]]
+
+79. *ihailla#[kO] Pekka teki sopimuksen Merjaa 
+
+80.  Jukka sanoi etta haluaa#[hAn] Pekka ihailla Merjaa 
+
+	[[D Jukka]:1 [T [__:1 [sano- [etta [C [<D Pekka>:2 [T [<__>:2 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]]]]]
+
+81. *ihailla#[kO] Jukka sanoi etta haluaa#[hAn] Pekka Merjaa 
+
+82.  ihailla#[kO] Jukka kysyi etta kuka haluaa Merjaa 
+
+	[C [[D Jukka]:1 [T [__:1 [v [kysya [etta [[D kuka]:2 [T [__:2 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]]]]]]]
+
+83.  ihailee#[hAn] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+84.  ihailee#[pA] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+85.  ihailee#[kO] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+86.  ihailee#[foc] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+87.  ihailee#[foc]#[hAn] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+88.  ihailee#[foc]#[pA] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+89.  ihailee#[foc]#[kO] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+90.  ihailee#[kO]#[hAn] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+91.  ihailee#[pA]#[hAn] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+92.  ihailee#[foc]#[kO]#[hAn] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+93.  ihailee#[foc]#[pA]#[hAn] Pekka Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [ihaile- [D Merja]]]]]]]
+
+94.  ihailla#[hAn] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+95.  ihailla#[pA] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+96.  ihailla#[kO] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+97.  ihailla#[foc] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+98.  ihailla#[foc]#[hAn] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+99.  ihailla#[foc]#[pA] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+100.  ihailla#[foc]#[kO] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+101.  ihailla#[kO]#[hAn] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+102.  ihailla#[pA]#[hAn] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+103.  ihailla#[foc]#[kO]#[hAn] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+104.  ihailla#[foc]#[pA]#[hAn] Pekka haluaa Merjaa 
+
+	[C [<D Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]]]]]
+
+105.  Jukka kysyi etta ihailee#[kO] Pekka Merjaa 
+
+	[[D Jukka]:1 [T [__:1 [v [kysya [etta [C [<D Pekka>:2 [T [<__>:2 [v [ihaile- [D Merja]]]]]]]]]]]]]
+
+106.  Jukka sanoi etta ihailee#[hAn] Pekka Merjaa 
+
+	[[D Jukka]:1 [T [__:1 [sano- [etta [C [<D Pekka>:2 [T [<__>:2 [v [ihaile- [D Merja]]]]]]]]]]]]
+
+107.  Jukka sanoi etta ihailee#[pA] Pekka Merjaa 
+
+	[[D Jukka]:1 [T [__:1 [sano- [etta [C [<D Pekka>:2 [T [<__>:2 [v [ihaile- [D Merja]]]]]]]]]]]]
+
+108.  Jukka sanoi etta ihailee#[foc] Pekka Merjaa 
+
+	[[D Jukka]:1 [T [__:1 [sano- [etta [C [<D Pekka>:2 [T [<__>:2 [v [ihaile- [D Merja]]]]]]]]]]]]
+
+109. *Jukka sanoi etta ihailee#[kO] Pekka Merjaa 
+
+110. *Jukka kysyi etta ihailee#[hAn] Pekka Merjaa 
+
+111. *Jukka kysyi etta ihailee#[pA] Pekka Merjaa 
+
+112. *Jukka kysyi etta ihailee#[foc] Pekka Merjaa 
+
+113.  kuka ihailee Merjaa 
+
+	a. [[D kuka]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D kuka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+114.  keta Pekka ihailee 
+
+	[[D kuka]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+115.  Pekka#[kO] ihailee Merjaa 
+
+	a. [[D Pekka]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D Pekka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+116.  Pekka#[hAn] ihailee Merjaa 
+
+	a. [[D Pekka]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D Pekka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+117.  Merjaa#[kO] Pekka ihailee 
+
+	[[D Merja]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+118.  se#[kO] talo ihailee Merjaa 
+
+	a. [[D [se [φ talo]]]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D [se [φ talo]]]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+119.  se talo#[kO] ihailee Merjaa 
+
+	a. [[D [se [φ talo]]]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D [se [φ talo]]]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+120.  sitä taloa#[kO] Pekka ihailee 
+
+	[[D [se [φ talo]]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+121.  sitä#[kO] taloa Pekka ihailee 
+
+	[[D [se [φ talo]]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+122.  tätä#[kO] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+123.  tätä#[hAn] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+124.  tätä#[pA] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+125.  tätä#[kO] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+126.  tätä#[foc] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+127.  tätä#[foc]#[hAn] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+128.  tätä#[foc]#[pA] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+129.  tätä#[foc]#[kO] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+130.  tätä#[kO]#[hAn] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+131.  tätä#[pA]#[hAn] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+132.  tätä#[foc]#[kO]#[hAn] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+133.  tätä#[foc]#[pA]#[hAn] taloa Pekka ihailee 
+
+	[[D [φ talo]]:1 [C [<D Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+134.  kuka#[kO] ihailee Merjaa 
+
+	a. [[D kuka]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D kuka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+135.  kuka#[hAn] ihailee Merjaa 
+
+	a. [[D kuka]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D kuka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+136.  kuka#[kO]#[hAn] ihailee Merjaa 
+
+	a. [[D kuka]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D kuka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+137.  kuka#[pA] ihailee Merjaa 
+
+	a. [[D kuka]:1 [T [__:1 [v [ihaile- [D Merja]]]]]]
+
+	b. [[D kuka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <D Merja>:2]]
+
+138.  John does admire Mary 
+
+	[[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]
+
+139.  who does John admire 
+
+	[[D who]:1 [does [[D John] [v [admire __:1]]]]]
+
+140. *Pekka ihailee#[kO] Merjaa 
+
+141. *Pekan_gen taytyy#[kO] ihailla Merjaa 
+
+142. *Pekka teki ihailla sopimuksen Merjaa 
+
+143. *Pekka teki ihailla#[kO] sopimuksen Merjaa 
+
+144. *Pekka teki ihailla sopimuksen Merjaa 
+
+145.  Pekka elaa haluamalla ihailla Merjaa 
+
+	a. [[<D Pekka>:1 [T [<__>:1 elaa]]] <malla [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]>]
+
+	b. [[D Pekka]:1 [[T [__:1 elaa]] <malla [v [haluaa [A/inf [v [ihaile- [D Merja]]]]]]>]]
+
+146. *Pekka elaa ihailla#[kO] haluamalla Merjaa 
+
+147. *Pekka elaa ihailla haluamalla Merjaa 
+

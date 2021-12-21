@@ -47,20 +47,8 @@ class HeadMovement:
                     return affix
                 affix.remove()
             # --------------------------------------------------------------------------------#
-            log(f'Try Merge-1 right...')
-            node.merge_1(affix, 'right')
-            if self.reconstruction_is_successful(affix):
-                self.brain_model.consume_resources("Move Head")
-                return affix
-            affix.remove()
-            phrase_structure.merge_1(affix, 'right')
-            if self.reconstruction_is_successful(affix):
-                self.brain_model.consume_resources("Move Head")
-                return affix
-            affix.remove()
-
-            log(f'Use last resort...')
-            self.last_resort(phrase_structure, affix)
+            if not self.consider_right_merge(affix, node, phrase_structure):
+                self.last_resort(phrase_structure, affix)
             return affix
 
     def reconstruction_is_successful(self, affix):
@@ -70,9 +58,35 @@ class HeadMovement:
             return False
         return True
 
+    def consider_right_merge(self, affix, node, phrase_structure):
+        """
+        I am not able to reduce these conditions away, although it is clear that there must be a way.
+        They handle only few cases. Suppose X(Y) and Z is bottom right node. The main algorithm will explore [Y Z]
+        and the first component of this function will then try (X__)...[Z Y] = Merge right. The problem is that
+        this solution is not part of minimal search since it depends on the direction of Merge.
+
+        The second condition tries to merge to the top right corner which computes 'nukkuu#kO Pekka __' where
+        the finite T must capture the DP but this requires Merge to the right.
+        """
+        # Condition 1.
+        log(f'Try Merge bottom right node...')
+        node.merge_1(affix, 'right')
+        if self.reconstruction_is_successful(affix):
+            self.brain_model.consume_resources("Move Head")
+            return True
+        affix.remove()
+        # Condition 2.
+        log(f'Try Merge top right corner...')
+        phrase_structure.merge_1(affix, 'right')
+        if self.reconstruction_is_successful(affix):
+            self.brain_model.consume_resources("Move Head")
+            return True
+        affix.remove()
+        return False
+
     def extra_condition(self, affix):
         if self.head_is_EPP_selected_by_C_fin(affix):
-            if affix.local_edge() and affix.local_edge().head().features & affix.licensed_specifiers():
+            if affix.local_edge(): # and affix.local_edge().head().features & affix.licensed_specifiers():
                 # Exception 1. Finnish third person forms (ultimate reason unknown)
                 if 'pro' in affix.local_edge().features and 'PHI:PER:3' in affix.local_edge().features:
                     return False
@@ -99,7 +113,7 @@ class HeadMovement:
         return {'!COMP:*'}
 
     def last_resort(self, phrase_structure, affix):
-        log(f'Reconstruction of {affix} failed, use last resort...{phrase_structure}')
+        log(f'Failed, using last resort...{phrase_structure}')
         phrase_structure.merge_1(affix, 'left')
         self.brain_model.consume_resources("Move Head")
 

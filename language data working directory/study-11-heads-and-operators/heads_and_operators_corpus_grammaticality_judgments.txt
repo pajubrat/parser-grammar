@@ -1,5 +1,5 @@
 @  {'author': 'Pauli Brattico', 'year': 2021, 'date': 'September', 'study_id': 1, 'study_folder': 'language data working directory/study-11-heads-and-operators', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-11-heads-and-operators', 'test_corpus_file': 'heads_and_operators_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2021-11-14 17:52:08.655661
+@  2021-12-21 08:58:32.358094
 @  Test sentences from language data working directory\study-11-heads-and-operators\heads_and_operators_corpus.txt.
 @  Logs into language data working directory\study-11-heads-and-operators\heads_and_operators_corpus_log.txt.
 @  Lexicon from language data working directory\lexicons\lexicon.txt.
@@ -16,48 +16,60 @@
 
 1. #a' b' c' d' 
 
+2. #a'' b' c' d' 
+
 & 0.1 Intransitives
 
-2.  Pekka istuu 
+3.  Pekka istuu 
 	'Pekka.NOM sit.PRS.3SG'
+
+4.  John sleeps 
 
 & 0.1 Transitive clauses
 
-3.  Pekka ihailee Merjaa 
+5.  Pekka ihailee Merjaa 
 	'Pekka.NOM admire.PRS.3SG Merja.PAR'
 
-4.  John admires Mary 
+6.  John admires Mary 
 
-& 0.2 Neg + participle
+& 0.2 Negative transitive clauses
 
-5.  Pekka ei ollut ihaillut Merjaa 
+7.  Pekka ei ihaile Merjaa 
+	'Pekka.NOM not.3SG admire Merja.PAR'
+
+8.  Pekka ei ollut ihaillut Merjaa 
 	'Pekka.NOM not.3SG be.PST.PRTCPL admire.PST.PRTCPL Merja.PAR'
 
-6.  Pekka on ihaillut Merjaa 
+9.  Pekka on ihaillut Merjaa 
 	'Pekka.NOM be.PRS.3SG admire.PST.PRTCPL Merja.PAR'
 
 & 0.3 want + admires
 
-7.  Pekka haluaa ihailla Merjaa 
+10.  Pekka haluaa ihailla Merjaa 
 	'Pekka.NOM want.PRS.3SG admire.A/INF Merja.PAR'
+
+& 0.3 Modal
+
+11.  Pekan_gen taytyy ihailla Merjaa 
+	'Pekka.GEN must.0 admire.A/INF Merja.PAR'
 
 & 1. Morphological decomposition (6.1)
 
 & Grammatical
 
-8.  John admires Mary 
+12.  John admires Mary 
 
 & Ungrammatical
 
-9. *admires John Mary 
+13. *admires John Mary 
 
-10. *John Mary admires 
+14. *John Mary admires 
 
-11. *John admires 
+15. *John admires 
 
-12. *admires John 
+16. *admires John 
 
-13. *John admires Mary Mary 
+17. *John admires Mary Mary 
 
 & 2. Local head movement (6.2)
 
@@ -65,78 +77,134 @@
 
 & 2.1.1 Gammatical
 
-14.  does John admire Mary 
+18.  does John admire Mary 
 
-15.  John does admire Mary 
+19.  John does admire Mary 
 
-16.  does#C/fin John admire Mary 
+20.  does#C/fin John admire Mary 
 
 & 2.1.2 Ugrammatical
 
-17. *admires John Mary 
+21. *admires John Mary 
 
-18. *admire John Mary 
+22. *admire John Mary 
 
-19. *does admire John Mary 
+23. *does admire John Mary 
 
-20. *John admire does Mary 
+24. *John admire does Mary 
 
-21. *admire John does Mary 
+25. *admire John does Mary 
 
-22. *does John Mary 
+26. *does John Mary 
 
-23. *John does 
+27. *John does 
 
-24. *does John 
+28. *does John 
 
-25. *John#C/fin does admire Mary 
+29. *John#C/fin does admire Mary 
 
-26. *John does admire#C/fin Mary 
+30. *John does admire#C/fin Mary 
 
 & 2.2 Finnish T-to-C
 
 & 2.2.1 Grammatical
 
-27.  on#[kO] Pekka ihaillut Merjaa 
+31.  on#[kO] Pekka ihaillut Merjaa 
 	'be.PRS.3SG.Q Pekka.NOM __ admire.PST.PRTCPL Merja.PAR'
 
-28.  ihailee#[kO] Pekka Merjaa 
+32.  ihailee#[kO] Pekka Merjaa 
 	'admire.PRS.3SG.Q Pekka.NOM __ Merja.PAR'
 
 & 2.2.2 Ungrammatical
 
-29. *Pekka on#[kO] ihaillut Merjaa 
+33. *Pekka on#[kO] ihaillut Merjaa 
 	'Pekka.NOM be.PRS.3sg.Q admire.PST.PRTCPL Merja.PAR'
 
-30. *Pekka ihaillut on#[kO] Merjaa 
+34. *Pekka ihaillut on#[kO] Merjaa 
 	'Pekka.NOM admire.PST.PRTCPL be.PRS.3SG.Q Merja.PAR'
 
-31. *Pekka ihaillut Merjaa on#[kO] 
-	'Pekka.NOM admire.PST.PRTCPL Merja.PAR be.PRS.3SG.Q'
+35. *Pekka ihaillut Merjaa on#[kO] 
+	'Pekka.NOM admire.PST.PRTCPL Merja.PAR be.PRS.3SG.Q
 
-32. *on Pekka ihaillut Merjaa 
+36. *Pekka ihailee#[kO] Merjaa 
+	'Pekka.NOM admire.PRS.3SG.Q Merja.PAR'
+
+37. *on#[kO] ihaillut#[kO] Pekka Merjaa 
+	'be.PRS.3SG.Q admire.PRS.3SG.Q Pekka.NOM Merja.PAR'
+
+38. *on#[kO] Pekka ihaillut#[kO] Merjaa 
+	'be.PRS.3SG.Q Pekka.NOM admire.PST.PRTCPL.Q Merja.PAR'
+
+39. *on Pekka ihaillut Merjaa 
 	'be.PRS.3SG Pekka.NOM admire.PST.PRTCPL Merja.PAR'
 
-33. *ihailee Pekka Merjaa 
+40. *ihailee Pekka Merjaa 
 	'admire.PRS.3SG Pekka.NOM Merja.PAR'
 
-& 2.3 Verum focus interpretation tests
+& 2.3 Local (HMC compliant) X-to-C movement, special elements Neg and Modal
 
-& 2.3.1 Verum focus interpretation possible (with operator interpretation), Grammatical
+& 2.3.1 Negation
 
-34.  istuu#[kO] Pekka 
+& 2.3.1.1 Grammatical
+
+41.  ei#[kO] Pekka ihaile Merjaa 
+	'not.3SG.Q Pekka.NOM admire Merja.PAR'
+
+& 2.3.1.2 Ungrammatical (Q-in-situ)
+
+42. *Pekka ei#[kO] ihaile Merjaa 
+	'Pekka.NOM not.3SG.Q admire Merja.PAR'
+
+43. *Pekka ei ihaile#[kO] Merjaa 
+	'Pekka.NOM not.3SG admire.Q Merja.PAR'
+
+& 2.3.2 Modal
+
+& 2.3.2.1 Grammatical
+
+44.  taytyy#[kO] Pekan_gen ihailla Merjaa 
+	'must.0.Q Pekka.GEN admire Merja.PAR'
+
+& 2.3.2.2 Ungrammatical (Q-in situ)
+
+45. *Pekan_gen taytyy#[kO] ihailla Merjaa 
+	'Pekka.GEN must.0.Q admire Merja.PAR'
+
+& 2.3.3 Negation + modal
+
+& 2.3.3.1 Grammatical
+
+46.  Pekan_gen ei taydy ihailla Merjaa 
+	'Pekka.GEN not.3SG must admire.A/INF Merja.PAR'
+
+47.  ei#[kO] Pekan_gen taydy ihailla Merjaa 
+	'not.3SG.Q Pekka.GEN must.0 admire.A/INF Merja.PAR'
+
+& 2.3.3.2 Ungrammatical (Q-in situ)
+
+48. *Pekan_gen ei#[kO] taydy ihailla Merjaa 
+	'Pekka.GEN not.3SG.Q must.0 admire.A/INF Merja.PAR'
+
+49. *Pekan_gen ei taydy#[kO] ihailla Merjaa 
+	'Pekka.GEN not.3SG.Q must.0 admire.A/INF Merja.PAR'
+
+& 2.4 Verum focus interpretation tests
+
+& 2.4.1 Verum focus interpretation possible (with operator interpretation), grammatical
+
+50.  istuu#[kO] Pekka 
 	'set.PRS.3SG#Q Pekka.NOM __'
 
-& 2.3.2 Verum focus interpretation necessary (no operator interpretation), Grammatical
+& 2.4.2 Verum focus interpretation necessary (no operator interpretation), grammatical
 
-35.  does John admire Mary 
+51.  does John admire Mary 
 
-36.  on#[kO] Pekka ihaillut Merjaa 
+52.  on#[kO] Pekka ihaillut Merjaa 
 	'be.PRS.3SG#Q Pekka.NOM __ admire.PST.PRTCPL Merja.PAR'
 
-& 2.3.3 Verum focus interpretation impossible (only operator interpretation), Grammatical
+& 2.4.3 Verum focus interpretation impossible (only operator interpretation), Grammatical
 
-37.  ihailla#[kO] Pekka haluaa Merjaa 
+53.  ihailla#[kO] Pekka haluaa Merjaa 
 	'admire.A/INF#Q Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
 & 3. Long head movement (LHM)
@@ -145,87 +213,94 @@
 
 & 3.1.1 Verb initial constructions, ungrammatical
 
-38. *admires John Mary 
+54. *admires John Mary 
 
-39. *does_T John admire Mary 
+55. *does_T John admire Mary 
 
 & 3.1.2 Hypothetical English* with main verb inversion, grammatical
 
-40.  admires#C/fin John Mary 
+56.  admires#C/fin John Mary 
 
-41.  does#C/fin John admire Mary 
+57.  does#C/fin John admire Mary 
 
 & 3.1.2 Hypothetical LHM constructions, ungrammatical
 
-42.  admire#C/fin John does Mary 
+58.  admire#C/fin John does Mary 
 
-43.  admire#C/fin John wants to_inf Mary 
+59.  admire#C/fin John wants to_inf Mary 
 
 & 3.2 LHM derivations in Finnish
 
 & 3.2.1 V-to-C, over one finite element, grammatical
 
-44.  ihaile#[kO] Pekka ei Merjaa 
+60.  ihaile#[kO] Pekka ei Merjaa 
 	'admire.Q Pekka.NOM not.3SG __ Merja.PAR'
 
-45.  ihailla#[kO] Pekka haluaa Merjaa 
+61.  ihailla#[kO] Pekka haluaa Merjaa 
 	'admire.Q Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-46.  ihailla#[kO] Pekan_gen taytyy Merjaa 
+62.  ihailla#[kO] Pekan_gen taytyy Merjaa 
 	'admire.Q Pekka.GEN must.0 __ Merja.PAR'
 
-47.  ihaillut#[kO] Pekka on Merjaa 
+63.  ihaillut#[kO] Pekka on Merjaa 
 	'admire.PST.PRTCPL.Q Pekka.NOM be.PRS.3SG __ Merja.PAR'
 
 & 3.2.2 V-to-C, over several elements, grammatical
 
-48.  ihailla#[kO] Pekka ei halua Merjaa 
+64.  ihailla#[kO] Pekka ei halua Merjaa 
 	'admire.A/INF.Q Pekka.NOM not.3SG want __ Merja.PAR'
 
-49.  ihailla#[kO] Pekan_gen ei taydy Merjaa 
+65.  ihailla#[kO] Pekan_gen ei taydy Merjaa 
 	'admire.A/INF.Q Pekka.GEN not.3SG must.0 __ Merja.PAR'
 
-50.  ihailla#[kO] Pekka sanoo etta Pekka haluaa Merjaa 
+66.  ihailla#[kO] Pekka sanoo etta Pekka haluaa Merjaa 
 	'admire.A/INF.Q Pekka.NOM says that Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-51.  lahtea#[kO] Pekka sanoo etta Pekan_gen taytyy 
+67.  lahtea#[kO] Pekka sanoo etta Pekan_gen taytyy 
 	'leave.A/INF.Q Pekka.NOM says that Pekka.GEN must.0 __'
 
 & 3.2.3 Sandwiches, grammatical
 
-52.  taydy#[kO] Pekan_gen ei ihailla Merjaa 
+68.  taydy#[kO] Pekan_gen ei ihailla Merjaa 
 	'must.0.Q Pekka.GEN not.3SG __ admire.A/INF Merja.PAR'
 
-53.  halua#[kO] Pekka ei ihailla Merjaa 
+69.  halua#[kO] Pekka ei ihailla Merjaa 
 	'want.A/INF.Q Pekka.NOM not.3SG __ admire.A/INF Merja.PAR'
 
 & 3.2.4 Minimality, ungrammatical
 
-54. *haluaa#[kO] Pekka sanoo etta __ ihailla Merjaa 
-	'want.PRS.3SG.Q Pekka.NOM says that admire.A/INF Merja.PAR'
+& 3.2.4.1 Finite elements from embedded clause
 
-55. *ei#[kO] Merja sanoo etta Pekka ihaile Merjaa 
+70. *haluaa#[kO] Pekka sanoo etta ihailla Merjaa 
+	'want.PRS.3SG.Q Pekka.NOM says that __ admire.A/INF Merja.PAR'
+
+71. *ei#[kO] Merja sanoo etta Pekka ihaile Merjaa 
 	'not.3SG.Q Merja.NOM says that Pekka.NOM __ admire Merja.PAR'
 
-56. *ollut#[kO] Pekka ei ihaillut Merjaa 
+72. *taytyy#[kO] Merja sanoo etta Pekan_gen ihailla Merjaa 
+	'must.0.Q Merja.NOM says that Pekka.GEN __ admire.A/INF Merja.PAr'
+
+& 3.2.4.2 Nonlocal aux reconstruction
+
+73. *ollut#[kO] Pekka ei ihaillut Merjaa 
 	'be.PST.PRTCPL.Q Pekka.NOM not.3SG __ admire.PST.PRTCPL Merja.PAR'
 
 & 3.2.5 CED effects
 
 & 3.2.5.1 Grammatical baseline construction
 
-57.  Pekka istuu ihailemalla Merjaa 
+74.  Pekka istuu ihailemalla Merjaa 
 	'Pekka.NOM sit.PRS.3SG admire.MA/INF Merja.PAR'
 
-58.  sopimus ihailla Merjaa istuu 
+75.  sopimus ihailla Merjaa istuu 
 	'agreement admire.A/INF Merja.PAR sit.PRS.3SG'
 
 & 3.2.5.2 Ungrammatical
 
-59. *ihailemalla#[kO] Pekka istuu Merjaa 
+76. *ihailemalla#[kO] Pekka istuu Merjaa 
 	'admire.MA/INF.Q Pekka.NOM sit.PRS.3SG __ Merja.PAR'
 
-60. *ihailla#[kO] sopimus Merjaa istuu 
+77. *ihailla#[kO] sopimus Merjaa istuu 
 	'admire.A/INF.Q agreement __ Merja.PAR sit.PRS.3SG'
 
 & 3.2.6 Intervention (6.3)
@@ -234,29 +309,29 @@
 
 & 3.2.6.1.1 Grammatical baseline construction
 
-61.  Pekka teki sopimuksen ihailla Merjaa 
+78.  Pekka teki sopimuksen ihailla Merjaa 
 	'Pekka.NOM made agreement admire.A/INF Merja.PAR'
 
 & 3.2.6.1.2 Ungrammatical DP-island
 
-62. *ihailla#[kO] Pekka teki sopimuksen Merjaa 
+79. *ihailla#[kO] Pekka teki sopimuksen Merjaa 
 	'admire.A/INF.Q Pekka.NOM made agreement __ Merja.PAR'
 
 & 3.2.6.2 Operator islands (intervention by OP)
 
 & 3.2.6.2.1 Grammatical baseline construction
 
-63.  Jukka sanoi etta haluaa#[hAn] Pekka ihailla Merjaa 
+80.  Jukka sanoi etta haluaa#[hAn] Pekka ihailla Merjaa 
 	'Jukka.NOM said that want.PRS.3SG.FAM Pekka.NOM admire.A/INF Merja.PAR'
 
 & 3.2.6.2.2 Ungrammatical operator island
 
-64. *ihailla#[kO] Jukka sanoi etta haluaa#[hAn] Pekka Merjaa 
+81. *ihailla#[kO] Jukka sanoi etta haluaa#[hAn] Pekka Merjaa 
 	'admire.A/INF.Q Jukka.NOM said that want.PRS.3SG.FAM Pekka.NOM __ Merja.PAR'
 
 & 3.2.6.3 Phrasal intervention is not calculated correcly
 
-65.  ihailla#[kO] Jukka kysyi etta kuka haluaa Merjaa 
+82.  ihailla#[kO] Jukka kysyi etta kuka haluaa Merjaa 
 	'admire.A/INF.Q Jukka.NOM asked that who.NOM want.PRS.3SG __ Merja.PAR'
 
 & 4. C-feature catalog
@@ -265,187 +340,205 @@
 
 & 4.1.1 Local T-to-C movement, grammatical
 
-66.  ihailee#[hAn] Pekka Merjaa 
+83.  ihailee#[hAn] Pekka Merjaa 
 	'admire.PRS.3SG.FAM Pekka.NOM __ Merja.PAR'
 
-67.  ihailee#[pA] Pekka Merjaa 
+84.  ihailee#[pA] Pekka Merjaa 
 	'admire.PRS.3SG.POL Pekka.NOM __ Merja.PAR'
 
-68.  ihailee#[kO] Pekka Merjaa 
+85.  ihailee#[kO] Pekka Merjaa 
 	'admire.PRS.3SG.Q Pekka.NOM __ Merja.PAR'
 
-69.  ihailee#[foc] Pekka Merjaa 
+86.  ihailee#[foc] Pekka Merjaa 
 	'admire.PRS.3SG.FOC Pekka.NOM __ Merja.PAR'
 
-70.  ihailee#[foc]#[hAn] Pekka Merjaa 
+87.  ihailee#[foc]#[hAn] Pekka Merjaa 
 	'admire.PRS.3SG.FOC.FAM Pekka.NOM __ Merja.PAR'
 
-71.  ihailee#[foc]#[pA] Pekka Merjaa 
+88.  ihailee#[foc]#[pA] Pekka Merjaa 
 	'admire.PRS.3SG.FOC.POL Pekka.NOM __ Merja.PAR'
 
-72.  ihailee#[foc]#[kO] Pekka Merjaa 
+89.  ihailee#[foc]#[kO] Pekka Merjaa 
 	'admire.PRS.3SG.FOC.Q Pekka.NOM __ Merja.PAR'
 
-73.  ihailee#[kO]#[hAn] Pekka Merjaa 
+90.  ihailee#[kO]#[hAn] Pekka Merjaa 
 	'admire.PRS.3SG.Q.FAM Pekka.NOM __ Merja.PAR'
 
-74.  ihailee#[pA]#[hAn] Pekka Merjaa 
+91.  ihailee#[pA]#[hAn] Pekka Merjaa 
 	'admire.PRS.3SG.POL.FAM Pekka.NOM __ Merja.PAR'
 
-75.  ihailee#[foc]#[kO]#[hAn] Pekka Merjaa 
+92.  ihailee#[foc]#[kO]#[hAn] Pekka Merjaa 
 	'admire.PRS.3SG.FOC.Q.FAM Pekka.NOM __ Merja.PAR'
 
-76.  ihailee#[foc]#[pA]#[hAn] Pekka Merjaa 
+93.  ihailee#[foc]#[pA]#[hAn] Pekka Merjaa 
 	'admire.PRS.3SG.FOC.POL.FAM Pekka.NOM __ Merja.PAR'
 
 & 4.1.2 Nonlocal A/inf-to-C movement, grammatical
 
-77.  ihailla#[hAn] Pekka haluaa Merjaa 
+94.  ihailla#[hAn] Pekka haluaa Merjaa 
 	'admire.A/INF.FAM Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-78.  ihailla#[pA] Pekka haluaa Merjaa 
+95.  ihailla#[pA] Pekka haluaa Merjaa 
 	'admire.A/INF.POL Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-79.  ihailla#[kO] Pekka haluaa Merjaa 
+96.  ihailla#[kO] Pekka haluaa Merjaa 
 	'admire.A/INF.Q Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-80.  ihailla#[foc] Pekka haluaa Merjaa 
+97.  ihailla#[foc] Pekka haluaa Merjaa 
 	'admire.A/INF.FOC Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-81.  ihailla#[foc]#[hAn] Pekka haluaa Merjaa 
+98.  ihailla#[foc]#[hAn] Pekka haluaa Merjaa 
 	'admire.A/INF.FOC.FAM Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-82.  ihailla#[foc]#[pA] Pekka haluaa Merjaa 
+99.  ihailla#[foc]#[pA] Pekka haluaa Merjaa 
 	'admire.A/INF.FOC.POL Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-83.  ihailla#[foc]#[kO] Pekka haluaa Merjaa 
+100.  ihailla#[foc]#[kO] Pekka haluaa Merjaa 
 	'admire.A/INF.FOC.Q Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-84.  ihailla#[kO]#[hAn] Pekka haluaa Merjaa 
+101.  ihailla#[kO]#[hAn] Pekka haluaa Merjaa 
 	'admire.A/INF.Q.FAM Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-85.  ihailla#[pA]#[hAn] Pekka haluaa Merjaa 
+102.  ihailla#[pA]#[hAn] Pekka haluaa Merjaa 
 	'admire.A/INF.POL.FAM Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-86.  ihailla#[foc]#[kO]#[hAn] Pekka haluaa Merjaa 
+103.  ihailla#[foc]#[kO]#[hAn] Pekka haluaa Merjaa 
 	'admire.A/INF.FOC.Q.FAM Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
-87.  ihailla#[foc]#[pA]#[hAn] Pekka haluaa Merjaa 
+104.  ihailla#[foc]#[pA]#[hAn] Pekka haluaa Merjaa 
 	'admire.A/INF.FOC.POL.FAM Pekka.NOM want.PRS.3SG __ Merja.PAR'
 
 & 4.1.3 Selection tests
 
 & 4.1.3.1 Grammatical selection
 
-88.  Jukka kysyi etta ihailee#[kO] Pekka Merjaa 
+105.  Jukka kysyi etta ihailee#[kO] Pekka Merjaa 
 	'Jukka.NOM asked that admire.PRS.3SG.Q Pekka.NOM __ Merja.PAR'
 
-89.  Jukka sanoi etta ihailee#[hAn] Pekka Merjaa 
+106.  Jukka sanoi etta ihailee#[hAn] Pekka Merjaa 
 	'Jukka.NOM said that admire.PRS.3SG.FAM Pekka.NOM __ Merja.PAR'
 
-90.  Jukka sanoi etta ihailee#[pA] Pekka Merjaa 
+107.  Jukka sanoi etta ihailee#[pA] Pekka Merjaa 
 	'Jukka.NOM said that admire.PRS.3SG.POL Pekka.NOM __ Merja.PAR'
 
-91.  Jukka sanoi etta ihailee#[foc] Pekka Merjaa 
+108.  Jukka sanoi etta ihailee#[foc] Pekka Merjaa 
 	'Jukka.NOM said that admire.PRS.3SG.FOC Pekka.NOM __ Merja.PAR'
 
 & 4.1.3.2 Ungrammatical selection
 
-92. *Jukka sanoi etta ihailee#[kO] Pekka Merjaa 
+109. *Jukka sanoi etta ihailee#[kO] Pekka Merjaa 
 	'Jukka.NOM said that admire.PRS.3SG.Q Pekka.NOM __ Merja.PAR'
 
-93. *Jukka kysyi etta ihailee#[hAn] Pekka Merjaa 
+110. *Jukka kysyi etta ihailee#[hAn] Pekka Merjaa 
 	'Jukka.NOM asked that admire.PRS.3SG.FAM Pekka.NOM __ Merja.PAR'
 
-94. *Jukka kysyi etta ihailee#[pA] Pekka Merjaa 
+111. *Jukka kysyi etta ihailee#[pA] Pekka Merjaa 
 	'Jukka.NOM asked that admire.PRS.3SG.POL Pekka.NOM __ Merja.PAR'
 
-95. *Jukka kysyi etta ihailee#[foc] Pekka Merjaa 
+112. *Jukka kysyi etta ihailee#[foc] Pekka Merjaa 
 	'Jukka.NOM asked that admire.PRS.3SG.FOC Pekka.NOM __ Merja.PAR'
 
 & 4.2 In connection with phrasal reconstruction
 
 & 4.2.1 Interrogative pronouns without pied-piping, grammatical
 
-96.  kuka ihailee Merjaa 
+113.  kuka ihailee Merjaa 
 	'who.NOM admire.PRS.3SG Merja.PAR'
 
-97.  keta Pekka ihailee 
+114.  keta Pekka ihailee 
 	'who.PAR Pekka.NOM admire.PRS.3SG __'
 
-98.  Pekka#[kO] ihailee Merjaa 
+115.  Pekka#[kO] ihailee Merjaa 
 	'Pekka.NOM.Q admire.PRS.3SG Merja.PAR'
 
-99.  Pekka#[hAn] ihailee Merjaa 
+116.  Pekka#[hAn] ihailee Merjaa 
 	'Pekka.NOM.FAM admire.PRS.3SG Merja.PAR'
 
-100.  Merjaa#[kO] Pekka ihailee 
+117.  Merjaa#[kO] Pekka ihailee 
 	'Merja.PAR.Q Pekka.NOM admire.PRS.3SG __'
 
 & 4.2.2 Interrogatives with pied-piping, grammatical
 
-101.  se#[kO] talo ihailee Merjaa 
+118.  se#[kO] talo ihailee Merjaa 
 	'that.NOM house.NOM admire.PRS.3SG Merja.PAR'
 
-102.  se talo#[kO] ihailee Merjaa 
+119.  se talo#[kO] ihailee Merjaa 
 	'that.NOM house.NOM.Q admire.PRS.3SG Merja.PAR'
 
-103.  sitä taloa#[kO] Pekka ihailee 
+120.  sitä taloa#[kO] Pekka ihailee 
 	'that.PAR house.PAR.Q Pekka.NOM admire.PRS.3SG __'
 
-104.  sitä#[kO] taloa Pekka ihailee 
+121.  sitä#[kO] taloa Pekka ihailee 
 	'that.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-105.  tätä#[kO] taloa Pekka ihailee 
+122.  tätä#[kO] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
 & 4.2.3 All combinations, phrasal reconstruction, grammatical
 
-106.  tätä#[hAn] taloa Pekka ihailee 
+123.  tätä#[hAn] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-107.  tätä#[pA] taloa Pekka ihailee 
+124.  tätä#[pA] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-108.  tätä#[kO] taloa Pekka ihailee 
+125.  tätä#[kO] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-109.  tätä#[foc] taloa Pekka ihailee 
+126.  tätä#[foc] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-110.  tätä#[foc]#[hAn] taloa Pekka ihailee 
+127.  tätä#[foc]#[hAn] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-111.  tätä#[foc]#[pA] taloa Pekka ihailee 
+128.  tätä#[foc]#[pA] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-112.  tätä#[foc]#[kO] taloa Pekka ihailee 
+129.  tätä#[foc]#[kO] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-113.  tätä#[kO]#[hAn] taloa Pekka ihailee 
+130.  tätä#[kO]#[hAn] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-114.  tätä#[pA]#[hAn] taloa Pekka ihailee 
+131.  tätä#[pA]#[hAn] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-115.  tätä#[foc]#[kO]#[hAn] taloa Pekka ihailee 
+132.  tätä#[foc]#[kO]#[hAn] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
 
-116.  tätä#[foc]#[pA]#[hAn] taloa Pekka ihailee 
+133.  tätä#[foc]#[pA]#[hAn] taloa Pekka ihailee 
 	'this.PAR.Q house.PAR Pekka.NOM admire.PRS.3SG __'
+
+& 4.2.4 Interrogative pronoun together with left peripheral elements
+
+134.  kuka#[kO] ihailee Merjaa 
+	'who.NOM.Q admire.PRS.3SG Merja.PAR'
+
+135.  kuka#[hAn] ihailee Merjaa 
+	'who.NOM.FAM admire.PRS.3SG Merja.PAR'
+
+136.  kuka#[kO]#[hAn] ihailee Merjaa 
+	'who.NOM.Q.FAM admire.PRS.3SG Merja.PAR'
+
+137.  kuka#[pA] ihailee Merjaa 
+	'who.NOM.POL admire.PRS.3SG Merja.PAR'
 
 & 5. Further tests
 
 & 5.1 CP complementarity
 
-117.  John does admire Mary 
+& 5.1.1 Grammatical (check double filled CP is not possible)
 
-118.  who does John admire 
+138.  John does admire Mary 
 
-119. *Pekka ihailee#[kO] Merjaa 
+139.  who does John admire 
+
+& 5.1.2 Ungrammatical (double filled CP)
+
+140. *Pekka ihailee#[kO] Merjaa 
 	'Pekka.NOM admire.PRS.3SG.Q Merja.PAR'
 
-120. *Pekan_gen taytyy#[kO] ihailla Merjaa 
+141. *Pekan_gen taytyy#[kO] ihailla Merjaa 
 	'Pekka.GEN must.0.Q admire.A/INF Merja.PAR'
 
 & 5.2 Head movement inside adverbals (ungrammatical)
@@ -454,22 +547,28 @@
 
 & Group 5.2.1.1 Grammatical baseline construction
 
-121. *Pekka teki ihailla sopimuksen Merjaa 
+142. *Pekka teki ihailla sopimuksen Merjaa 
 	'Pekka.NOM made admire.A/INF agreement __ Merja.PAR'
 
-& Group 5.2.1.2 Ungrammatical head movement
+& Group 5.2.1.2 Ungrammatical head movement (with and without Q)
 
-122. *Pekka teki ihailla#[kO] sopimuksen Merjaa 
+143. *Pekka teki ihailla#[kO] sopimuksen Merjaa 
 	'Pekka.NOM made admire.A/INF.Q agreement __ Merja.PAR'
+
+144. *Pekka teki ihailla sopimuksen Merjaa 
+	'Pekka.NOM made admire agreement __ Merja.PAR'
 
 & Group 5.2.2 Inside AdvPs
 
 & Group 5.2.2.1 Grammatical baseline construction
 
-123. *Pekka elaa ihailla haluamalla Merjaa 
-	'Pekka.NOM live.PRS.3SG admire.A/INF want.MA/INF __ Merja.PAR'
+145.  Pekka elaa haluamalla ihailla Merjaa 
+	'Pekka.NOM live.PRS.3SG want.MA/INF admire.A/INF Merja.PAR'
 
-& Group 5.2.2.2 Ungrammatical head movement
+& Group 5.2.2.2 Ungrammatical head movement (with and without Q)
 
-124. *Pekka elaa ihailla#[kO] haluamalla Merjaa 
+146. *Pekka elaa ihailla#[kO] haluamalla Merjaa 
 	'Pekka.NOM live.PRS.3SG admire.A/INF.Q want.MA/INF __ Merja.PAR'
+
+147. *Pekka elaa ihailla haluamalla Merjaa 
+	'Pekka.NOM live.PRS.3SG admire.A/INF want.MA/INF __ Merja.PAR'

@@ -178,8 +178,8 @@ class NarrowSemantics:
                 return True
 
     def expresses_concept(self, head):
-        if {'N', 'Neg', 'P', 'D', 'A', 'V', 'ADV', 'Q', 'NUM', '0'} & head.features and \
-                {'COPULA', 'T/prt'} not in head.features:
+        if {'N', 'NEG', 'P', 'D', 'A', 'V', 'ADV', 'Q', 'NUM', '0'} & head.features and \
+                'COPULA' not in head.features and 'T/prt' not in head.features:
             return True
 
     def get_referential_index(self, ps, space):

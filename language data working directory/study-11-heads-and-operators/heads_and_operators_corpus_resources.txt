@@ -1,0 +1,157 @@
+@  {'author': 'Pauli Brattico', 'year': 2021, 'date': 'September', 'study_id': 1, 'study_folder': 'language data working directory/study-11-heads-and-operators', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-11-heads-and-operators', 'test_corpus_file': 'heads_and_operators_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2021-12-21 08:58:32.358593
+@  Test sentences from language data working directory\study-11-heads-and-operators\heads_and_operators_corpus.txt.
+@  Logs into language data working directory\study-11-heads-and-operators\heads_and_operators_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+Number,Sentence,Study_ID,Total Time,Garden Paths,Memory Reactivation,Steps,Merge,Move Head,Move Phrase,A-Move Phrase,A-bar Move Phrase,Move Adjunct,Agree,Phi,Transfer,Item streamed into syntax,Feature Processing,Extraposition,Inflection,Failed Transfer,LF recovery,LF test,Filter solution,Rank solution,Lexical retrieval,Morphological decomposition,Mean time per word,Asymmetric Merge,Sink,External Tail Test,Execution time (ms)	
+1,a' b' c' d' ,1,,220,0,0,5,3,0,0,0,0,0,0,0,10,4,0,0,0,0,0,7,0,0,4,0,55,8,0,0,15
+2,a'' b' c' d' ,1,,370,0,0,10,5,10,0,0,0,0,0,0,9,6,0,0,0,0,0,7,2,0,6,1,92,94,2,0,15
+3,Pekka istuu ,1,,795,0,0,5,3,0,1,0,0,1,1,3,6,4,0,0,7,0,2,7,2,2,11,2,397,10,3,9,31
+4,John sleeps ,1,,655,0,0,5,3,0,1,1,0,0,1,3,2,4,0,0,7,0,2,3,2,2,11,2,327,8,3,0,15
+5,Pekka ihailee Merjaa ,1,,1535,0,0,13,6,2,2,0,0,2,2,5,11,7,0,0,14,2,3,13,5,4,21,3,511,51,9,50,46
+6,John admires Mary ,1,,1120,0,0,13,6,2,2,2,0,0,2,5,3,7,0,0,12,2,3,5,5,3,19,3,373,36,9,13,31
+7,Pekka ei ihaile Merjaa ,1,,1680,0,0,15,7,2,2,0,0,2,7,11,19,8,0,1,14,7,4,23,7,3,22,4,420,63,9,64,109
+8,Pekka ei ollut ihaillut Merjaa ,1,,2055,0,0,17,8,2,3,0,0,3,15,20,29,9,0,1,15,14,5,36,10,3,24,4,411,79,9,79,93
+9,Pekka on ihaillut Merjaa ,1,,1925,0,0,33,8,5,4,0,0,4,8,12,22,9,0,0,15,4,4,27,7,6,24,4,481,171,24,169,62
+10,Pekka haluaa ihailla Merjaa ,1,,1915,0,0,29,9,8,3,0,0,3,4,9,17,10,3,0,14,6,5,21,9,5,24,4,478,133,21,94,78
+11,Pekan_gen taytyy ihailla Merjaa ,1,,1790,0,0,27,8,5,4,4,0,0,4,9,5,9,3,0,14,6,5,9,8,5,23,4,447,102,19,45,62
+12,John admires Mary ,1,,1120,0,0,13,6,2,2,2,0,0,2,5,3,7,0,0,12,2,3,5,5,3,19,3,373,36,9,13,46
+13,admires John Mary ,1,,
+14,John Mary admires ,1,,
+15,John admires ,1,,
+16,admires John ,1,,
+17,John admires Mary Mary ,1,,
+18,does John admire Mary ,1,,15930,12,18,67,49,33,13,13,0,0,54,57,63,42,0,23,51,68,3,90,45,16,93,14,3982,274,46,55,437
+19,John does admire Mary ,1,,1265,0,0,63,6,1,2,2,0,0,5,8,7,8,0,0,12,9,3,12,8,4,20,4,316,255,41,40,46
+20,does#C/fin John admire Mary ,1,,6045,4,6,90,21,19,8,8,0,0,28,31,19,19,0,5,22,25,3,31,20,7,41,7,1511,439,63,48,171
+21,admires John Mary ,1,,
+22,admire John Mary ,1,,
+23,does admire John Mary ,1,,
+24,John admire does Mary ,1,,
+25,admire John does Mary ,1,,
+26,does John Mary ,1,,
+27,John does ,1,,
+28,does John ,1,,
+29,John#C/fin does admire Mary ,1,,
+30,John does admire#C/fin Mary ,1,,
+31,on#[kO] Pekka ihaillut Merjaa ,1,,2240,0,0,40,9,8,5,0,0,5,11,15,26,10,0,0,17,4,4,31,8,8,27,5,560,279,30,328,78
+32,ihailee#[kO] Pekka Merjaa ,1,,1835,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,16,2,3,13,6,5,24,4,611,61,9,69,46
+33,Pekka on#[kO] ihaillut Merjaa ,1,,
+34,Pekka ihaillut on#[kO] Merjaa ,1,,
+35,Pekka ihaillut Merjaa on#[kO] ,1,,
+36,Pekka ihailee#[kO] Merjaa ,1,,
+37,on#[kO] ihaillut#[kO] Pekka Merjaa ,1,,
+38,on#[kO] Pekka ihaillut#[kO] Merjaa ,1,,
+39,on Pekka ihaillut Merjaa ,1,,
+40,ihailee Pekka Merjaa ,1,,
+41,ei#[kO] Pekka ihaile Merjaa ,1,,2000,0,0,27,8,5,3,0,0,3,9,13,25,9,0,1,16,6,4,29,8,4,25,5,500,190,19,234,78
+42,Pekka ei#[kO] ihaile Merjaa ,1,,
+43,Pekka ei ihaile#[kO] Merjaa ,1,,
+44,taytyy#[kO] Pekan_gen ihailla Merjaa ,1,,2065,0,0,28,9,7,5,5,0,0,6,11,5,10,3,0,16,5,5,8,9,3,26,5,516,132,20,53,62
+45,Pekan_gen taytyy#[kO] ihailla Merjaa ,1,,
+46,Pekan_gen ei taydy ihailla Merjaa ,1,,1950,0,0,29,9,6,4,4,0,0,12,18,10,10,4,1,14,13,6,17,11,4,24,5,390,119,19,42,78
+47,ei#[kO] Pekan_gen taydy ihailla Merjaa ,1,,2225,0,0,55,10,10,6,6,0,0,14,20,9,11,4,1,16,12,6,16,12,7,27,6,445,311,39,108,78
+48,Pekan_gen ei#[kO] taydy ihailla Merjaa ,1,,
+49,Pekan_gen ei taydy#[kO] ihailla Merjaa ,1,,
+50,istuu#[kO] Pekka ,1,,1050,0,0,6,4,1,1,0,0,1,2,4,5,5,0,0,9,0,2,6,3,2,14,3,525,20,4,19,15
+51,does John admire Mary ,1,,15930,12,18,67,49,33,13,13,0,0,54,57,63,42,0,23,51,68,3,90,45,16,93,14,3982,274,46,55,390
+52,on#[kO] Pekka ihaillut Merjaa ,1,,2240,0,0,40,9,8,5,0,0,5,11,15,26,10,0,0,17,4,4,31,8,8,27,5,560,279,30,328,78
+53,ihailla#[kO] Pekka haluaa Merjaa ,1,,2270,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,16,6,5,27,10,6,27,5,567,243,21,299,78
+54,admires John Mary ,1,,
+55,does_T John admire Mary ,1,,
+56,admires#C/fin John Mary ,1,,1295,0,0,13,7,4,2,2,0,0,4,7,3,8,0,0,12,2,3,5,6,3,20,4,431,44,9,10,31
+57,does#C/fin John admire Mary ,1,,6045,4,6,90,21,19,8,8,0,0,28,31,19,19,0,5,22,25,3,31,20,7,41,7,1511,439,63,48,171
+58,admire#C/fin John does Mary ,1,,15905,12,16,68,50,44,21,21,0,0,61,64,71,42,0,30,64,85,3,107,48,12,106,16,3976,385,41,45,484
+59,admire#C/fin John wants to_inf Mary ,1,,13635,8,10,72,53,82,25,25,0,0,62,67,74,47,6,21,61,105,5,112,67,13,108,17,2727,395,41,9,687
+60,ihaile#[kO] Pekka ei Merjaa ,1,,2050,0,0,17,8,7,3,0,0,3,9,13,25,9,0,1,16,7,4,29,8,3,25,5,512,132,9,169,78
+61,ihailla#[kO] Pekka haluaa Merjaa ,1,,2270,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,16,6,5,27,10,6,27,5,567,243,21,299,78
+62,ihailla#[kO] Pekan_gen taytyy Merjaa ,1,,2090,0,0,25,9,8,4,4,0,0,6,11,5,10,3,0,16,6,5,9,9,5,26,5,522,137,17,77,62
+63,ihaillut#[kO] Pekka on Merjaa ,1,,2305,0,0,27,9,6,4,0,0,4,12,16,25,10,0,4,17,7,4,30,8,7,27,5,576,291,19,419,93
+64,ihailla#[kO] Pekka ei halua Merjaa ,1,,2590,0,0,33,11,12,3,0,0,3,14,20,42,12,4,3,16,13,6,49,13,5,28,6,518,309,21,367,125
+65,ihailla#[kO] Pekan_gen ei taydy Merjaa ,1,,2285,0,0,29,10,11,4,4,0,0,14,20,11,11,4,3,16,13,6,18,12,5,27,6,457,180,17,89,93
+66,ihailla#[kO] Pekka sanoo etta Pekka haluaa Merjaa ,1,,4430,0,0,185,15,28,16,0,0,16,25,32,102,16,6,3,23,29,7,119,23,10,39,7,632,3273,129,5161,250
+67,lahtea#[kO] Pekka sanoo etta Pekan_gen taytyy ,1,,3100,0,0,92,11,18,11,2,0,9,18,24,58,12,6,1,16,17,6,71,14,8,28,6,516,746,58,571,171
+68,taydy#[kO] Pekan_gen ei ihailla Merjaa ,1,,2240,0,0,32,10,8,4,4,0,0,14,20,10,11,4,4,16,13,6,17,12,4,27,6,448,174,20,69,78
+69,halua#[kO] Pekka ei ihailla Merjaa ,1,,2555,0,0,33,11,12,5,1,0,4,14,20,39,12,4,3,16,13,6,46,13,4,28,6,511,265,21,257,125
+70,haluaa#[kO] Pekka sanoo etta ihailla Merjaa ,1,,
+71,ei#[kO] Merja sanoo etta Pekka ihaile Merjaa ,1,,
+72,taytyy#[kO] Merja sanoo etta Pekan_gen ihailla Merjaa ,1,,
+73,ollut#[kO] Pekka ei ihaillut Merjaa ,1,,
+74,Pekka istuu ihailemalla Merjaa ,1,,1865,0,0,34,8,2,3,0,0,3,7,12,20,9,0,0,14,2,5,22,6,7,23,4,466,177,25,215,62
+75,sopimus ihailla Merjaa istuu ,1,,8790,5,10,28,25,28,12,11,0,1,15,21,36,21,14,10,20,25,6,45,19,12,41,7,2197,144,20,69,218
+76,ihailemalla#[kO] Pekka istuu Merjaa ,1,,
+77,ihailla#[kO] sopimus Merjaa istuu ,1,,
+78,Pekka teki sopimuksen ihailla Merjaa ,1,,5875,2,4,57,18,26,12,5,0,7,22,29,49,17,9,4,25,28,7,59,20,9,42,6,1175,483,41,524,218
+79,ihailla#[kO] Pekka teki sopimuksen Merjaa ,1,,
+80,Jukka sanoi etta haluaa#[hAn] Pekka ihailla Merjaa ,1,,4025,0,0,206,15,30,17,8,0,9,35,42,60,16,6,0,24,28,7,76,23,8,40,7,575,2472,150,2362,234
+81,ihailla#[kO] Jukka sanoi etta haluaa#[hAn] Pekka Merjaa ,1,,
+82,ihailla#[kO] Jukka kysyi etta kuka haluaa Merjaa ,1,,3660,0,0,125,16,38,15,9,6,0,24,32,31,17,6,3,24,31,8,47,25,8,41,7,522,1429,85,1031,218
+83,ihailee#[hAn] Pekka Merjaa ,1,,1855,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,16,2,3,13,6,5,24,4,618,61,9,69,46
+84,ihailee#[pA] Pekka Merjaa ,1,,1835,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,16,2,3,13,6,5,24,4,611,61,9,69,31
+85,ihailee#[kO] Pekka Merjaa ,1,,1835,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,16,2,3,13,6,5,24,4,611,61,9,69,46
+86,ihailee#[foc] Pekka Merjaa ,1,,1855,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,16,2,3,13,6,5,24,4,618,61,9,69,31
+87,ihailee#[foc]#[hAn] Pekka Merjaa ,1,,2055,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,18,2,3,13,6,5,26,4,685,61,9,69,46
+88,ihailee#[foc]#[pA] Pekka Merjaa ,1,,2035,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,18,2,3,13,6,5,26,4,678,61,9,69,46
+89,ihailee#[foc]#[kO] Pekka Merjaa ,1,,2035,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,18,2,3,13,6,5,26,4,678,61,9,69,46
+90,ihailee#[kO]#[hAn] Pekka Merjaa ,1,,2025,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,18,2,3,13,6,5,26,4,675,61,9,69,46
+91,ihailee#[pA]#[hAn] Pekka Merjaa ,1,,2025,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,18,2,3,13,6,5,26,4,675,61,9,69,46
+92,ihailee#[foc]#[kO]#[hAn] Pekka Merjaa ,1,,2225,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,20,2,3,13,6,5,28,4,741,61,9,69,46
+93,ihailee#[foc]#[pA]#[hAn] Pekka Merjaa ,1,,2225,0,0,13,7,4,2,0,0,2,4,7,11,8,0,0,20,2,3,13,6,5,28,4,741,61,9,69,46
+94,ihailla#[hAn] Pekka haluaa Merjaa ,1,,2290,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,16,6,5,27,10,6,27,5,572,243,21,299,78
+95,ihailla#[pA] Pekka haluaa Merjaa ,1,,2270,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,16,6,5,27,10,6,27,5,567,243,21,299,78
+96,ihailla#[kO] Pekka haluaa Merjaa ,1,,2270,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,16,6,5,27,10,6,27,5,567,243,21,299,78
+97,ihailla#[foc] Pekka haluaa Merjaa ,1,,2290,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,16,6,5,27,10,6,27,5,572,243,21,299,78
+98,ihailla#[foc]#[hAn] Pekka haluaa Merjaa ,1,,2490,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,18,6,5,27,10,6,29,5,622,243,21,299,62
+99,ihailla#[foc]#[pA] Pekka haluaa Merjaa ,1,,2470,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,18,6,5,27,10,6,29,5,617,243,21,299,78
+100,ihailla#[foc]#[kO] Pekka haluaa Merjaa ,1,,2470,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,18,6,5,27,10,6,29,5,617,243,21,299,78
+101,ihailla#[kO]#[hAn] Pekka haluaa Merjaa ,1,,2460,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,18,6,5,27,10,6,29,5,615,243,21,299,78
+102,ihailla#[pA]#[hAn] Pekka haluaa Merjaa ,1,,2460,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,18,6,5,27,10,6,29,5,615,243,21,299,78
+103,ihailla#[foc]#[kO]#[hAn] Pekka haluaa Merjaa ,1,,2660,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,20,6,5,27,10,6,31,5,665,243,21,299,78
+104,ihailla#[foc]#[pA]#[hAn] Pekka haluaa Merjaa ,1,,2660,0,0,29,10,9,3,0,0,3,6,11,23,11,3,0,20,6,5,27,10,6,31,5,665,243,21,299,78
+105,Jukka kysyi etta ihailee#[kO] Pekka Merjaa ,1,,3310,0,0,61,13,21,10,5,0,5,24,30,34,14,0,0,24,21,6,45,18,8,38,6,551,606,41,550,156
+106,Jukka sanoi etta ihailee#[hAn] Pekka Merjaa ,1,,3270,0,0,90,12,14,11,6,0,5,25,30,35,13,0,0,24,19,5,47,16,9,37,6,545,830,62,870,156
+107,Jukka sanoi etta ihailee#[pA] Pekka Merjaa ,1,,3250,0,0,90,12,14,11,6,0,5,25,30,35,13,0,0,24,19,5,47,16,9,37,6,541,830,62,870,156
+108,Jukka sanoi etta ihailee#[foc] Pekka Merjaa ,1,,3270,0,0,90,12,14,11,6,0,5,25,30,35,13,0,0,24,19,5,47,16,9,37,6,545,830,62,870,140
+109,Jukka sanoi etta ihailee#[kO] Pekka Merjaa ,1,,
+110,Jukka kysyi etta ihailee#[hAn] Pekka Merjaa ,1,,
+111,Jukka kysyi etta ihailee#[pA] Pekka Merjaa ,1,,
+112,Jukka kysyi etta ihailee#[foc] Pekka Merjaa ,1,,
+113,kuka ihailee Merjaa ,1,,1345,0,0,13,6,2,2,0,2,0,2,5,3,7,0,0,14,2,3,5,5,4,21,3,448,44,9,32,46
+114,keta Pekka ihailee ,1,,1190,0,0,19,6,0,2,0,1,1,1,4,11,7,0,0,9,4,3,14,4,6,16,3,396,58,15,49,46
+115,Pekka#[kO] ihailee Merjaa ,1,,1570,0,0,13,6,2,2,0,2,0,2,5,3,7,0,0,15,2,3,5,5,4,22,4,523,44,9,32,31
+116,Pekka#[hAn] ihailee Merjaa ,1,,1580,0,0,13,6,2,2,0,2,0,2,5,3,7,0,0,15,2,3,5,5,4,22,4,526,44,9,32,31
+117,Merjaa#[kO] Pekka ihailee ,1,,1665,0,0,19,6,0,2,0,1,1,1,4,11,7,0,0,15,4,3,14,4,6,22,4,555,58,15,49,46
+118,se#[kO] talo ihailee Merjaa ,1,,13520,8,16,41,35,15,19,4,10,3,30,34,56,28,0,4,37,34,4,73,24,14,65,9,3380,204,31,145,281
+119,se talo#[kO] ihailee Merjaa ,1,,13820,8,16,41,35,15,21,6,9,6,30,34,81,28,0,4,37,34,4,98,24,14,65,9,3455,232,31,200,312
+120,sitä taloa#[kO] Pekka ihailee ,1,,17915,11,22,63,49,12,25,12,6,7,51,55,137,39,0,32,24,74,4,163,31,25,63,9,4478,299,53,330,468
+121,sitä#[kO] taloa Pekka ihailee ,1,,15185,9,18,57,43,12,15,2,7,6,60,64,106,35,0,30,24,65,4,128,29,21,59,9,3796,256,47,306,390
+122,tätä#[kO] taloa Pekka ihailee ,1,,1555,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,13,5,4,19,4,7,21,5,388,112,24,127,62
+123,tätä#[hAn] taloa Pekka ihailee ,1,,1565,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,13,5,4,19,4,7,21,5,391,112,24,127,62
+124,tätä#[pA] taloa Pekka ihailee ,1,,1555,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,13,5,4,19,4,7,21,5,388,112,24,127,62
+125,tätä#[kO] taloa Pekka ihailee ,1,,1555,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,13,5,4,19,4,7,21,5,388,112,24,127,46
+126,tätä#[foc] taloa Pekka ihailee ,1,,1565,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,13,5,4,19,4,7,21,5,391,112,24,127,46
+127,tätä#[foc]#[hAn] taloa Pekka ihailee ,1,,1695,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,14,5,4,19,4,7,22,5,423,112,24,127,62
+128,tätä#[foc]#[pA] taloa Pekka ihailee ,1,,1685,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,14,5,4,19,4,7,22,5,421,112,24,127,62
+129,tätä#[foc]#[kO] taloa Pekka ihailee ,1,,1685,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,14,5,4,19,4,7,22,5,421,112,24,127,46
+130,tätä#[kO]#[hAn] taloa Pekka ihailee ,1,,1675,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,14,5,4,19,4,7,22,5,418,112,24,127,46
+131,tätä#[pA]#[hAn] taloa Pekka ihailee ,1,,1675,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,14,5,4,19,4,7,22,5,418,112,24,127,62
+132,tätä#[foc]#[kO]#[hAn] taloa Pekka ihailee ,1,,1805,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,15,5,4,19,4,7,23,5,451,112,24,127,46
+133,tätä#[foc]#[pA]#[hAn] taloa Pekka ihailee ,1,,1805,0,0,30,7,0,2,0,1,1,6,10,14,8,0,0,15,5,4,19,4,7,23,5,451,112,24,127,62
+134,kuka#[kO] ihailee Merjaa ,1,,1450,0,0,13,6,2,2,0,2,0,2,5,3,7,0,0,15,2,3,5,5,4,22,4,483,44,9,32,46
+135,kuka#[hAn] ihailee Merjaa ,1,,1460,0,0,13,6,2,2,0,2,0,2,5,3,7,0,0,15,2,3,5,5,4,22,4,486,44,9,32,31
+136,kuka#[kO]#[hAn] ihailee Merjaa ,1,,1570,0,0,13,6,2,2,0,2,0,2,5,3,7,0,0,16,2,3,5,5,4,23,4,523,44,9,32,31
+137,kuka#[pA] ihailee Merjaa ,1,,1450,0,0,13,6,2,2,0,2,0,2,5,3,7,0,0,15,2,3,5,5,4,22,4,483,44,9,32,31
+138,John does admire Mary ,1,,1265,0,0,63,6,1,2,2,0,0,5,8,7,8,0,0,12,9,3,12,8,4,20,4,316,255,41,40,46
+139,who does John admire ,1,,2660,2,2,64,12,1,5,1,2,0,9,12,12,12,0,2,12,15,3,20,12,6,24,4,665,244,45,44,93
+140,Pekka ihailee#[kO] Merjaa ,1,,
+141,Pekan_gen taytyy#[kO] ihailla Merjaa ,1,,
+142,Pekka teki ihailla sopimuksen Merjaa ,1,,
+143,Pekka teki ihailla#[kO] sopimuksen Merjaa ,1,,
+144,Pekka teki ihailla sopimuksen Merjaa ,1,,
+145,Pekka elaa haluamalla ihailla Merjaa ,1,,2175,0,0,86,11,8,3,0,0,3,10,17,23,12,3,0,14,5,7,25,10,8,26,5,435,574,65,618,78
+146,Pekka elaa ihailla#[kO] haluamalla Merjaa ,1,,
+147,Pekka elaa ihailla haluamalla Merjaa ,1,,
