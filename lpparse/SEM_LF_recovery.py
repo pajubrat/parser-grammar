@@ -47,21 +47,24 @@ class LF_Recovery:
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             # ----------------------- minimal upstream search -----------------------------------------------#
-            for node in [head] + head.upward_path():
+            if head.is_primitive() and head.is_left() and head.sister().is_complex():
+                if self.is_possible_antecedent(head.sister(), head):
+                    list_of_antecedents.append(head.sister())
+            for node in head.constituent_vector():
                 if self.recovery_termination(node):
                     break
-                if node.geometrical_sister() and self.is_possible_antecedent(node.geometrical_sister(), head):
-                    list_of_antecedents.append(node.geometrical_sister())
+                if self.is_possible_antecedent(node, head):
+                    list_of_antecedents.append(node)
             # ------------------------------------------------------------------------------------------------#
             return list_of_antecedents
 
         if 'PHI:DET:_' in unvalued_phi:
             # ---------------- minimal search----------------------------------------------------
-            for node in head.upward_path():
-                if self.special_local_edge_antecedent_rule(node, head, list_of_antecedents):
+            for const in head.constituent_vector():
+                if self.special_local_edge_antecedent_rule(const, head, list_of_antecedents):
                     break
-                elif node.sister() and self.is_possible_antecedent(node.sister(), head):
-                    list_of_antecedents.append(node.sister())
+                elif self.is_possible_antecedent(const, head):
+                    list_of_antecedents.append(const)
             #--------------------------------------------------------------------------------
             return list_of_antecedents
 
@@ -161,19 +164,19 @@ class LF_Recovery:
 
     # Definition for the special rule
     # This handles the exceptional antecedent properties of local D-antecedent specifier
-    def special_local_edge_antecedent_rule(self, node, ps, list_of_antecedents):
-        if node.sister() and node.sister() == ps.local_edge():
-            if 'D' not in node.sister().head().features:
+    def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
+        if const == ps.constituent_vector('for edge')[0]:
+            if 'D' not in const.head().features:
                 self.LF_recovery_results.add(f'{ps}(generic)')
-                list_of_antecedents.append(node.sister())
+                list_of_antecedents.append(const)
                 ps.features.add('PHI:DET:GEN')
             else:
-                list_of_antecedents.append(node.sister())
+                list_of_antecedents.append(const)
             return True
 
     # Definition for LF-recovery termination
     def recovery_termination(self, node):
-        return node.sister() and 'SEM:external' in node.sister().features
+        return 'SEM:external' in node.features
 
     def report_to_log(self, ps, list_of_antecedents, unvalued_phi_features):
         s = ''

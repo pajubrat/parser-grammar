@@ -86,9 +86,9 @@ class HeadMovement:
 
     def extra_condition(self, affix):
         if self.head_is_EPP_selected_by_C_fin(affix):
-            if affix.local_edge(): # and affix.local_edge().head().features & affix.licensed_specifiers():
+            if affix.constituent_vector('for edge'): # and affix.local_edge().head().features & affix.licensed_specifiers():
                 # Exception 1. Finnish third person forms (ultimate reason unknown)
-                if 'pro' in affix.local_edge().features and 'PHI:PER:3' in affix.local_edge().features:
+                if 'pro' in affix.constituent_vector('for edge')[0].features and 'PHI:PER:3' in affix.constituent_vector('for edge')[0].features:
                     return False
                 return True
             else:

@@ -105,16 +105,16 @@ class QuantifiersNumeralsDenotations:
             D, rule, intervention_feature, interface = self.open_R_feature(feature)
             if {rule} & {'NEW', 'OLD'}:
                 reference_set = self.reference_set(ps, intervention_feature, complete_assignment)
-                log(f'(R={reference_set}) ')
                 if not self.narrow_semantics.global_cognition.general_evaluation(complete_assignment[idx], rule, reference_set):
                     return False
         return True
 
     def reference_set(self, ps, intervention_feature, complete_assignment):
-        return {complete_assignment[self.narrow_semantics.get_referential_index(head, 'QND')]
-                for head in ps.constituent_vector(intervention_feature)
-                if self.narrow_semantics.has_referential_index(head) and
-                self.narrow_semantics.exists(head, 'QND')}
+        return {complete_assignment[self.narrow_semantics.get_referential_index(const.head(), 'QND')]
+                for const in ps.constituent_vector(intervention_feature)
+                if self.narrow_semantics.has_referential_index(const.head()) and
+                self.narrow_semantics.exists(const.head(), 'QND') and const.head() != ps
+                and not const.find_me_elsewhere}
 
     def create_all_denotations(self, ps):
         return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')])

@@ -71,11 +71,13 @@ class AgreementReconstruction:
         return node.left_const and node.left_const.is_primitive()
 
     def Agree_1_from_edge(self, head):
-        if self.edge_for_Agree(head):
-            for e in self.edge_for_Agree(head):
-                if self.agreement_condition(head, e):
-                    phi_features = {f for f in e.head().features if phi(f) and valued(f)}
-                    return e.head(), sorted(phi_features)
+        edge = head.constituent_vector('for edge')
+        if head.extract_pro():
+            edge.append(head.extract_pro())
+        for e in edge:
+            if self.agreement_condition(head, e):
+                phi_features = {f for f in e.head().features if phi(f) and valued(f)}
+                return e.head(), sorted(phi_features)
         return None, {}
 
     def agreement_condition(self, head, phrase):
@@ -119,9 +121,3 @@ class AgreementReconstruction:
                 log(f'{head} has no matching feature but has a feature with the same type but with different value...')
                 return True
         return False
-
-    def edge_for_Agree(self, h):
-        edge_list = h.phrasal_edge()
-        if h.extract_pro():
-            edge_list.append(h.extract_pro())
-        return edge_list

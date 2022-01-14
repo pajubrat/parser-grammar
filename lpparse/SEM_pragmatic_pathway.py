@@ -150,7 +150,7 @@ class Discourse:
             return
 
         idx = self.get_inventory_index(ps.head())
-        feature_vector_set = set(ps.head().feature_vector())
+        feature_vector_set = {const for const in ps.head().constituent_vector() if const.is_primitive()}
         if starting_point_head in feature_vector_set:
             direction = 'High'
             log(f'Topicalization...')

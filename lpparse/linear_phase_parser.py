@@ -168,8 +168,29 @@ class LinearPhaseParser:
             return True
 
     def target_left_branch(self, ps, site):
+        def identify_equivalent_node(ps, site):
+            def node_at(ps, position):
+                ps_ = ps.top()
+                for pos in range(0, position):
+                    ps_ = ps_.right_const
+                return ps_
+            def get_position_on_geometric_right_edge(node):
+                ps_ = node.top()
+                position = 0
+                while ps_:
+                    if ps_ == node:
+                        return position
+                    if ps_.right_const:
+                        position = position + 1
+                        ps_ = ps_.right_const
+                    else:
+                        return None
+                return None
+
+            return node_at(ps, get_position_on_geometric_right_edge(site))
+
         ps_ = ps.top().copy()
-        return ps_.identify_equivalent_node(site)
+        return identify_equivalent_node(ps_, site)
 
     def attach(self, left_branch, site, terminal_lexical_item, transfer):
         self.maintain_working_memory(site)
@@ -367,7 +388,6 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'({self.time_from_stimulus_onset}ms) ')
             if self.local_file_system.settings['datatake_resource_sequence']:
                 self.local_file_system.resource_sequence_file.write(f'{key}({info}),{self.time_from_stimulus_onset},  ')
 

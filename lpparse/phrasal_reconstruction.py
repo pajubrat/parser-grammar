@@ -31,6 +31,13 @@ class PhrasalMovement:
         return False
 
     def pull_into_working_memory(self, head):
+
+        def walk_upstream(node):
+            while node.mother:
+                node = node.mother
+                if node.right_const.visible():
+                    return node
+
         if head.EPP():
             specifiers_to_add_memory_buffer = []
             iterator = head.specifier_sister()
@@ -62,7 +69,7 @@ class PhrasalMovement:
                         head.features |= self.get_features_for_criterial_head(spec)
                         if head.get_tail_sets():
                             self.adjunct_constructor.externalize_structure(head)
-                iterator = iterator.walk_upstream()
+                iterator = walk_upstream(iterator)
 
             # --------------------------------------------------------------------------------------------------#
             self.brain_model.syntactic_working_memory = specifiers_to_add_memory_buffer + self.brain_model.syntactic_working_memory
@@ -84,7 +91,7 @@ class PhrasalMovement:
             return {'?'}
 
     def candidate_for_A_reconstruction(self, ps):
-        if ps == ps.container_head().licensed_specifier():
+        if ps == ps.container_head().licensed_phrasal_specifier():
             return {'φ'} & ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive()
 
     def A_reconstruct(self, spec, iterator):
@@ -136,7 +143,7 @@ class PhrasalMovement:
             return True
         if h.max().externalized():
             return False
-        if h.max() != h.max().container_head().licensed_specifier():
+        if h.max() != h.max().container_head().licensed_phrasal_specifier():
             return True
 
     @staticmethod

@@ -113,12 +113,18 @@ class SurfaceConditions:
         It is very suspicious that we need these properties here, because what we are doing is formulating the trivial
         property of left versus right at the sensory input by relying on the geometrical properties of the spellout structure.
         """
+        def walk_upstream(node):
+            while node.mother:
+                node = node.mother
+                if node.right_const.visible():
+                    return node
+
         if direction=='left':
             ps_ = head
             while ps_:
                 if ps_.sister() and ps_.sister().is_left():
                     return ps_.sister()
-                ps_ = ps_.walk_upstream()
+                ps_ = walk_upstream(ps_)
             return None
         if direction=='right':
             ps_ = head.max()
@@ -128,7 +134,7 @@ class SurfaceConditions:
                         return ps_.sister()
                     else:
                         return self.left_edge(ps_)
-                ps_ = ps_.walk_upstream()
+                ps_ = walk_upstream(ps_)
             return None
 
     # Recursive definition for left edge of a constituent

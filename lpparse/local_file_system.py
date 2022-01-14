@@ -444,7 +444,7 @@ class LocalFileSystem:
                 if 'Semantic space' in data_dict:
                     output_str += ' in ' + data_dict['Semantic space']
                 output_str += '\n'
-                for item, value in data_dict.items():
+                for item, value in sorted(data_dict.items()):
                     if isinstance(value, list) and isinstance(value[0], PhraseStructure):
                         output_str += '\t\t\t' + item + ': ' + format_lst(value) + '\n'
                     else:

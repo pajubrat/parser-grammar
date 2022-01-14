@@ -37,7 +37,7 @@ class FloaterMovement():
                 return floater.max()
 
             # Case (4): XP sits in a specifier position that does not exist
-            if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == floater.mother.head().local_edge():
+            if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == floater.mother.head().constituent_vector('for edge')[0]:
                 log(floater.illustrate() + ' is in an specifier position that cannot be projected...')
                 return floater.max()
 

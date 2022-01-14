@@ -50,11 +50,6 @@ def show(self, start=True, label_only=False):
 
         return f'{s}[{left} {right}]' + id_str
 
-def show_all_vectors(h):
-    if not h.is_primitive():
-        return show_all_vectors(h.left_const) + show_all_vectors(h.right_const)
-    return f'{h}: {h.feature_vector()};  '
-
 # This function returns the type of pro-element depending on the valuation of (uD, up) probe
 # PRO = control pro
 # pro/x = antecedent requiring pro
@@ -92,12 +87,6 @@ def show_primitive_constituents(self):
     else:
         reply += f'\t\t{self.get_phonological_string():<10} {sorted_by_relevance(self.features)}\n'
     return reply
-
-def report_LF_problem(ps_):
-    log('\t\t\tLF-interface condition(s) violated')
-    log(show_primitive_constituents(ps_))
-    log(show_all_vectors(ps_))
-    log('\n\t\tTrying to find other solutions...')
 
 def log(text):
     if log_instance.logging and not log_instance.disabled:

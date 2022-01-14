@@ -143,7 +143,7 @@ class LF:
                     return True
 
     def free_spec_position(self, head):
-        specs = [spec for spec in head.edge() if not spec.is_primitive()]
+        specs = [spec for spec in head.constituent_vector('for edge') if not spec.is_primitive()]
         return not specs or (specs and specs[0].adjunct)
 
     def LF_legibility_test(self, ps):
@@ -208,7 +208,7 @@ class LF:
     def double_spec_filter(self, h):
         if '2SPEC' not in h.features:
             count = 0
-            list_ = h.edge()
+            list_ = h.constituent_vector('for edge')
             if list_:
                 for spec_ in list_:
                     if not spec_.adjunct and 'φ' in spec_.head().features and not spec_.find_me_elsewhere:
@@ -254,7 +254,7 @@ class LF:
     def identify_thematic_role_by_agreement(self, h):
         if h.max().container_head():
             if h.max().container_head().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
-                if not (h.max().container_head().local_edge() and h.max().container_head().local_edge().is_complex()):
+                if not (h.max().container_head().constituent_vector('for edge') and h.max().container_head().constituent_vector('for edge')[0].is_complex()):
                     return True
 
     def projection_principle_applies_to(self, h):
@@ -270,7 +270,7 @@ class LF:
             return True
         # Condition (ii)
         container_head = h.max().container_head()
-        if h.max().get_theta_assigner() and container_head.licensed_specifier() and h.max() == container_head.licensed_specifier():
+        if h.max().get_theta_assigner() and container_head.licensed_phrasal_specifier() and h.max() == container_head.licensed_phrasal_specifier():
             # Condition (ii-a)
             if container_head.EPP():
                 return False
@@ -288,10 +288,12 @@ class LF:
 
     def selection_tests(self, h):
         comp = h.proper_complement()
-        local_edge = h.local_edge()
+        local_edge = None
+        if h.constituent_vector('for edge'):
+            local_edge = h.constituent_vector('for edge')[0]
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('-SPEC:'):
-                for spec_ in h.edge():
+                for spec_ in h.constituent_vector('for edge'):
                     if spec_ and f[6:] in spec_.head().features:
                         if not spec_.adjunct:
                             log(f'{h} has unacceptable specifier {spec_}...')
@@ -313,7 +315,7 @@ class LF:
                 self.test_problem_report.append(f'edgeless {h} has specifier {local_edge}')
                 self.selection_test_result = False
 
-            if f == '!1EDGE' and len(h.edge()) > 1:
+            if f == '!1EDGE' and len(h.constituent_vector('for edge')) > 1:
                 log(f'{h} is only allowed to host one edge element...')
                 self.test_problem_report.append(f'{h} can has only one edge element')
                 self.selection_test_result = False
@@ -381,7 +383,7 @@ class LF:
                 return False
         if goal.is_primitive():
             if goal.get_tail_sets() and not goal.external_tail_head_test():
-                log(f'"{goal.illustrate()}" failed final tail test for {goal.get_tail_sets()}...')
+                log(f'"{goal.illustrate()}" failed final tail test...')
                 self.test_problem_report.append(f'{goal.illustrate()} failed final tail test')
                 return False
         return True

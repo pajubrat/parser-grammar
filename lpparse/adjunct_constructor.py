@@ -55,15 +55,15 @@ class AdjunctConstructor:
         (5) H cannot have [-ARG] feature;
         (6) There must exists node [X(P) [H YP]].
         """
-        return ps.head().edge() and \
+        return ps.head().constituent_vector('for edge') and \
                 not '-SPEC:*' in ps.head().features and \
-                not (set(ps.head().specifiers_not_licensed()) & set(ps.edge()[0].head().features)) and \
-                not ps.edge()[0].is_primitive() and \
+                not (set(ps.head().specifiers_not_licensed()) & set(ps.constituent_vector('for edge')[0].head().features)) and \
+                not ps.constituent_vector('for edge')[0].is_primitive() and \
                 '-ARG' not in ps.head().features and \
                 ps.head().mother.mother
 
     def has_adjoinable_specifier(self, ps):
-        return ps.head().local_edge() and ps.head().local_edge().contains_feature('OP:REL')
+        return ps.head().constituent_vector('for edge')[0] and ps.head().constituent_vector('for edge')[0].contains_feature('OP:REL')
 
     def condition_for_externalize_with_complement(self, ps):
         return ps.head().mother and ps.head().mother.head() == ps.head()
@@ -75,7 +75,7 @@ class AdjunctConstructor:
         self.externalize(ps.head().mother)
 
     def externalize_with_specifier(self, ps):
-        for edge in ps.head().edge():
+        for edge in ps.head().constituent_vector('for edge'):
             if edge.contains_feature('OP:REL'):
                 self.externalize(edge.mother)
                 return

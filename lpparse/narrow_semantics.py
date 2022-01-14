@@ -203,13 +203,17 @@ class NarrowSemantics:
                 return None, None
 
     def interpret_tail_features(self, ps):
+        def in_scope_of(ps, feature_set):
+            for const in ps.constituent_vector():
+                if feature_set & const.features == feature_set:
+                    return True
         def get_tailed_head(ps, tail_set):
-            for head in ps.feature_vector()[1:]:
-                if head.match_features(tail_set) == 'complete match':
-                    return head
+            for const in ps.constituent_vector():
+                if const.is_primitive() and const.match_features(tail_set) == 'complete match':
+                    return const
         def interpret_argument_tailing(ps, tailed_head):
             if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
-                if 'PAR' in ps.features and not ps.in_scope_of({'POL:NEG'}):
+                if 'PAR' in ps.features and not in_scope_of(ps, {'POL:NEG'}):
                     self.semantic_interpretation['Aspect'].append('Aspectually anomalous')
                 else:
                     self.semantic_interpretation['Aspect'].append('Aspectually bounded')

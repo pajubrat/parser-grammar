@@ -125,10 +125,10 @@ class PhraseStructure:
         return self
 
     def top(self):
-        if not self.mother:
-            return self
-        else:
-            return self.upward_path()[-1]
+        node = self
+        while node.mother:
+            node = node.mother
+        return node
 
     def root(self):
         return not self.mother
@@ -370,9 +370,8 @@ class PhraseStructure:
     def get_theta_assigner(self):
         if self.sister() and self.sister().is_primitive():
             return self.sister()
-        if self.container_head() and self.container_head().licensed_specifier():
-            if self == self.container_head().licensed_specifier():
-                return self.container_head()
+        if self.container_head() and self.container_head().constituent_vector('for edge') and self == self.container_head().constituent_vector('for edge')[0]:
+            return self.container_head()
 
     def contains_feature(self, feature):
         if self.left_const and self.left_const.contains_feature(feature):
@@ -459,151 +458,50 @@ class PhraseStructure:
 
             iterator_ = iterator_ + 1
 
-    #
-    # Upward looking dependencies (todo must be unified)
-    #
-    def upward_path(self, intervention_feature=None):
-        def intervention (node, intervention_feature):
-            if node.is_complex() and node.left_const.head() != self and {intervention_feature} & node.left_const.head().features and not node.left_const.find_me_elsewhere:
-                return True
-
-        upward_path = []
-        node = self
-        while node.mother:
-            upward_path.append(node.mother)
-            node = node.mother
-            if intervention(node, intervention_feature):
-                break
-        return upward_path
-
-    def constituent_vector(self, intervention_feature=None):
-        return [node.left_const.head() for node in self.upward_path(intervention_feature)
-                if node.left_const.head() != self and not node.left_const.find_me_elsewhere]
-
     def inside_path(self):
         if self.is_primitive():
             return self
         if self.is_complex:
             return self.left_const.head()
 
-    def feature_vector(self):
-        return [self] + [node.left_const for node in self.upward_path() if
-                         node.left_const and node.left_const.is_primitive() and node.left_const != self]
+    #
+    # Upward looking dependencies
+    #
+    def upward_path(self, intervention_feature=None):
+        def feature_intervention (self, node, intervention_feature):
+            if not node.left_const.find_me_elsewhere and {intervention_feature} & node.left_const.head().features:
+                return True
+        def dodge_adjunct (node):
+            return not (node.mother.right_const.adjunct and node.is_left())
 
-    def in_scope_of(self, feature_set):
-        for node in self.upward_path():
-            for const in {node.left_const, node.right_const}:
-                if const and const != self and const.is_primitive():
-                    if feature_set & const.features == feature_set:
-                        return True
-
-    def edge(self):
-        edge = []
-        # -------------- minimal upstream path ---------------------------------------------#
-        for node in self.upward_path():
-            # Do not exit own projection
-            if node.head() != self:
+        upward_path = []
+        node = self
+        while node.mother:
+            if intervention_feature == 'for edge' and node.mother.head() != self:
                 break
-            # Add phrasal second merged left phrases
-            if node.left_const and node.left_const.is_complex() and node.left_const.head() != self:
-                edge.append(node.left_const)
-        #------------------------------------------------------------------------------------#
-        if not edge and self.extract_pro():
-            edge.append(self.extract_pro())
-        return edge
+            if node.mother.left_const != self and dodge_adjunct(node):
+                upward_path.append(node.mother)
+            node = node.mother
+            if node.left_const.head() != self and feature_intervention(self, node, intervention_feature):
+                break
 
+        if intervention_feature == 'for edge' and not upward_path and self.extract_pro():
+            upward_path.append(self.extract_pro())
 
-    def extract_pro(self):
-        def valued_phi(h):
-            return {f for f in h.features if f[:4] == 'PHI:' and f[-1] != '_'}
-        def all_phi(h):
-            return {f for f in h.features if f[:4] == 'PHI:'}
-        def phi_conflict(h):
-            for f in self.features:
-                if f[:4] == 'PHI:' and f[-1] != '_':  # Check only valued phi-features
-                    for g in h.features:
-                        if g[:4] == 'PHI:' and g[-1] != '_':  # Check only valued phi-features
-                            f_type = f.split(':')[1]
-                            g_type = g.split(':')[1]
-                            f_value = f.split(':')[2]
-                            g_value = g.split(':')[2]
-                            # If there is a feature type T with two difference values, we have feature conflict
-                            if f_type == g_type and f_value != g_value:
-                                return True
-            return False
+        return upward_path
 
-        #-----------------Main function--------------------------
-        if 'ARG' in self.features:
-            if 'VAL' in self.features:
-                phi_set = valued_phi(self)
-            else:
-                phi_set = all_phi(self)
-            if phi_set:
-                pro = PhraseStructure()
-                pro.features = pro.features | phi_set
-                pro.features.add('φ')
-                pro.features.add('D')
-                pro.features.add('PF:pro')
-                pro.features.add('pro')
-                if not phi_conflict(pro):
-                    return pro
-        return None
-
-    def local_edge(self):
-        if self.edge():
-            return self.edge()[0]
-
-    def phrasal_edge(self):
-        return [edge for edge in self.edge() if edge.is_complex()]
-
-    def licensed_specifier(self):
-        edge = self.phrasal_edge()
-        # If there is only one phrasal edge, return it
-        if len(edge) == 1:
-            return edge[0]
-        # If there are many phrases in the edge...
-        elif len(edge) > 1:
-            # ...Return the first non-externalized DP, if any.
-            licensed_edge = [edge for edge in self.phrasal_edge() if 'φ' in edge.head().features and not edge.externalized()]
-            if licensed_edge:
-                return licensed_edge[0]
-            # if everything has been externalized, return the closest phrase that has not been moved away
-            else:
-                licensed_edge = [edge for edge in self.phrasal_edge() if 'φ' in edge.head().features and not edge.find_me_elsewhere]
-                if licensed_edge:
-                    return licensed_edge[0]
-
-    def walk_upstream(self):
-        while self.mother:
-            self = self.mother
-            if self.right_const.visible():
-                return self
+    def constituent_vector(self, intervention_feature=None):
+        return [node.left_const if node.is_complex() else node for node in self.upward_path(intervention_feature)]
 
     def selector(self):
-        if len(self.feature_vector()) > 1:
-            return self.feature_vector()[1]
+        return next((const for const in self.constituent_vector() if const.is_primitive()), None)
 
-    def get_position_on_geometric_right_edge(self):
-        ps_ = self.top()
-        position = 0
-        while ps_:
-            if ps_ == self:
-                return position
-            if ps_.right_const:
-                position = position + 1
-                ps_ = ps_.right_const
-            else:
-                return None
-        return None
+    def licensed_phrasal_specifier(self):
+        return next((edge for edge in self.constituent_vector('for edge')
+                     if edge.is_complex() and 'φ' in edge.head().features and not edge.externalized()),
+                    next((edge for edge in self.constituent_vector('for edge')
+                          if edge.is_complex() and 'φ' in edge.head().features and not edge.find_me_elsewhere), None))
 
-    def node_at(self, position):
-        ps_ = self.top()
-        for pos in range(0, position):
-            ps_ = ps_.right_const
-        return ps_
-
-    def identify_equivalent_node(self, site):
-        return self.node_at(site.get_position_on_geometric_right_edge())
 
     #
     # Tail processing
@@ -651,16 +549,17 @@ class PhraseStructure:
         return True
 
     def weak_tail_condition(self, tail_set, variation='external'):
-        if  'ADV' not in self.features and len(self.feature_vector()) > 1:
-            for const in self.feature_vector()[1:]:
-                for m in const.get_affix_list():
-                    test = m.match_features(tail_set)
-                    if test == 'complete match':
-                        return True
-                    elif test == 'partial match':
-                        return False
-                    elif test == 'negative match':
-                        return False
+        if  'ADV' not in self.features and self.constituent_vector():
+            for const in self.constituent_vector():
+                if const.is_primitive():
+                    for m in const.get_affix_list():
+                        test = m.match_features(tail_set)
+                        if test == 'complete match':
+                            return True
+                        elif test == 'partial match':
+                            return False
+                        elif test == 'negative match':
+                            return False
         # What to do when reaching the top
         if variation=='external' and not self.negative_features(tail_set):
             return False    # Strong test: reject (tail set must be checked)
@@ -686,6 +585,42 @@ class PhraseStructure:
 
     def get_tail_sets(self):
         return {frozenset(feature[5:].split(',')) for feature in self.head().features if feature[:4] == 'TAIL'}
+
+    def extract_pro(self):
+        def valued_phi(h):
+            return {f for f in h.features if f[:4] == 'PHI:' and f[-1] != '_'}
+        def all_phi(h):
+            return {f for f in h.features if f[:4] == 'PHI:'}
+        def phi_conflict(h):
+            for f in self.features:
+                if f[:4] == 'PHI:' and f[-1] != '_':  # Check only valued phi-features
+                    for g in h.features:
+                        if g[:4] == 'PHI:' and g[-1] != '_':  # Check only valued phi-features
+                            f_type = f.split(':')[1]
+                            g_type = g.split(':')[1]
+                            f_value = f.split(':')[2]
+                            g_value = g.split(':')[2]
+                            # If there is a feature type T with two difference values, we have feature conflict
+                            if f_type == g_type and f_value != g_value:
+                                return True
+            return False
+
+        #-----------------Main function--------------------------
+        if 'ARG' in self.features:
+            if 'VAL' in self.features:
+                phi_set = valued_phi(self)
+            else:
+                phi_set = all_phi(self)
+            if phi_set:
+                pro = PhraseStructure()
+                pro.features = pro.features | phi_set
+                pro.features.add('φ')
+                pro.features.add('D')
+                pro.features.add('PF:pro')
+                pro.features.add('pro')
+                if not phi_conflict(pro):
+                    return pro
+        return None
 
     #
     # Support functions
