@@ -468,7 +468,7 @@ class PhraseStructure:
     # Upward looking dependencies
     #
     def upward_path(self, intervention_feature=None):
-        def feature_intervention (self, node, intervention_feature):
+        def feature_intervention (node, intervention_feature):
             if not node.left_const.find_me_elsewhere and {intervention_feature} & node.left_const.head().features:
                 return True
         def dodge_adjunct (node):
@@ -476,13 +476,14 @@ class PhraseStructure:
 
         upward_path = []
         node = self
+
         while node.mother:
             if intervention_feature == 'for edge' and node.mother.head() != self:
                 break
             if node.mother.left_const != self and dodge_adjunct(node):
                 upward_path.append(node.mother)
             node = node.mother
-            if node.left_const.head() != self and feature_intervention(self, node, intervention_feature):
+            if node.left_const.head() != self and feature_intervention(node, intervention_feature):
                 break
 
         if intervention_feature == 'for edge' and not upward_path and self.extract_pro():

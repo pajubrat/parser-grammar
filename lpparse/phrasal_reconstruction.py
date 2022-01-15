@@ -16,72 +16,53 @@ class PhrasalMovement:
         self.brain_model.syntactic_working_memory = []
         # ------------------------------ minimal search -----------------------------------------------#
         for node in ps.minimal_search():
-            if self.visible_head(node):
-                self.pull_into_working_memory(self.visible_head(node))
-                if self.visible_head(node):
-                    self.brain_model.LF.try_LFmerge(self.visible_head(node))
+            if self.get_local_head(node) and self.get_local_head(node).EPP():
+                self.pull_into_working_memory(self.get_local_head(node))
+            if self.get_local_head(node):
+                self.brain_model.LF.try_LFmerge(self.get_local_head(node))
             if self.intervention(node):
                 break
         # ---------------------------------------------------------------------------------------------#
 
     def intervention(self, node):
-        if node.left_const and node.left_const.is_primitive() and 'D' in node.left_const.features:
-            if self.brain_model.syntactic_working_memory:
-                return True
-        return False
+        if node.left_const and \
+                node.left_const.is_primitive() and \
+                'D' in node.left_const.features and \
+                self.brain_model.syntactic_working_memory:
+                    return True
 
     def pull_into_working_memory(self, head):
+        for i, spec in enumerate([const for const in head.constituent_vector('for edge') if const.is_complex()]):
+            if self.Abar_movable(spec, head):
+                self.brain_model.syntactic_working_memory = self.brain_model.syntactic_working_memory + [spec]
+            else:
+                self.A_reconstruct(spec)
+            self.process_criterial_features(i, spec, head)
 
-        def walk_upstream(node):
-            while node.mother:
-                node = node.mother
-                if node.right_const.visible():
-                    return node
+    def process_criterial_features(self, i, spec, head):
+        def consider_externalization(head):
+            if head.get_tail_sets():
+                self.adjunct_constructor.externalize_structure(head)
 
-        if head.EPP():
-            specifiers_to_add_memory_buffer = []
-            iterator = head.specifier_sister()
-            count_specifiers = 0
-            # ------------------------ upstream walk------------------------------------------------ #
-            while iterator and self.get_phrasal_left_sister(iterator):  # Examine all specifiers
-                spec = self.get_phrasal_left_sister(iterator)           # Obtain a handle to the specifier phrase
-                if not spec.find_me_elsewhere:                          # React to it if it has not been moved already
-                    if self.Abar_movable(spec):                         # Determine if the sister is operator phrase
-                        specifiers_to_add_memory_buffer.append(spec)
-                        log(f'Moving {spec} into memory buffer from Spec{head.get_cats_string()}P...')
-                    else:
-                        iterator = self.A_reconstruct(spec, iterator)  # A-reconstruction is applied if there are no cr-features
-
-                if count_specifiers > 0:    # This handles the case if we are finding the second or more specifiers.
-                    # If there are several operator specifiers, then we need to project a supporting phonologically null head
-                    if self.specifier_phrase_must_have_supporting_head(spec):
-                        new_h = self.engineer_head_from_specifier(head, spec)
-                        iterator.merge_1(new_h, 'left')
-                        iterator = iterator.mother # Prevents looping over the same Spec element
-                        log(f'New head was spawned at {head.get_cats_string()}P...')
-                        if new_h.get_tail_sets():
-                            self.adjunct_constructor.externalize_structure(new_h)
-                else:
-                   # We are working with a local specifier, no need to project extra heads
-                    count_specifiers = + 1
-                    if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
-                        log(f'Criterial features copied to {head}...')
-                        head.features |= self.get_features_for_criterial_head(spec)
-                        if head.get_tail_sets():
-                            self.adjunct_constructor.externalize_structure(head)
-                iterator = walk_upstream(iterator)
-
-            # --------------------------------------------------------------------------------------------------#
-            self.brain_model.syntactic_working_memory = specifiers_to_add_memory_buffer + self.brain_model.syntactic_working_memory
+        if i == 0:
+            if not spec.find_me_elsewhere and self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
+                head.features |= self.get_features_for_criterial_head(spec, head)
+                consider_externalization(head)
+        else:
+            if self.specifier_phrase_must_have_supporting_head(spec):
+                new_h = self.engineer_head_from_specifier(head, spec)
+                spec.sister().merge_1(new_h, 'left')
+                consider_externalization(new_h)
 
     def engineer_head_from_specifier(self, head, spec):
+        log(f'New head was spawned at {head.get_cats_string()}P...')
         new_h = self.lexical_access.PhraseStructure()
-        new_h.features |= self.get_features_for_criterial_head(spec)
+        new_h.features |= self.get_features_for_criterial_head(spec, head)
         if 'FIN' in head.features:
             new_h.features |= {'C', 'PF:C'}
         return new_h
 
-    def get_features_for_criterial_head(self, spec):
+    def get_features_for_criterial_head(self, spec, head):
         criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
         if criterial_features:
             feature_set = criterial_features
@@ -90,53 +71,55 @@ class PhrasalMovement:
         else:
             return {'?'}
 
-    def candidate_for_A_reconstruction(self, ps):
-        if ps == ps.container_head().licensed_phrasal_specifier():
-            return {'φ'} & ps.head().features and ps.sister() and ps.is_left() and not ps.is_primitive()
+    def A_reconstruct(self, spec):
+        def candidate_for_A_reconstruction(ps):
+            return ps == ps.container_head().licensed_phrasal_specifier() and \
+                   {'φ'} & ps.head().features and \
+                   ps.sister() and \
+                   ps.is_left() and \
+                   not ps.is_primitive()
 
-    def A_reconstruct(self, spec, iterator):
+        def target_location_for_A_reconstruction(node):
+            # Two cases: (a) [XP1 [Y [__1 [Z WP]] or (b) [XP1 X [__1 Y]]]
+            return (node.left_const and
+                    node.left_const.is_primitive() and
+                    node.sister().is_primitive()) or \
+                   node.is_primitive()
 
-        # Left DPs that are licensed specifiers can be A-reconstructed
-        if not self.candidate_for_A_reconstruction(spec):
-            return iterator
+        def ad_hoc_genitive_filter(node, moved_constituent):
+            node.merge_1(moved_constituent, 'left')
+            if 'GEN' in moved_constituent.head().features and not moved_constituent.external_tail_head_test():
+                value = False
+            else:
+                value = True
+            moved_constituent.remove()
+            return value
 
-        # Special case: [DP H] => [__ [H DP]]
-        if iterator.is_primitive():
-            iterator.merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'right')
-            return iterator.mother
+        if candidate_for_A_reconstruction(spec):
+            # Special case: [DP H] => [__ [H DP]]
+            if spec.sister().is_primitive():
+                spec.sister().merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'right')
+                return
 
-        moved_constituent = spec.copy()
-        #-----------------minimal search---------------------------------------------------------------------------#
-        for node in iterator.minimal_search():
-            if node != iterator:
-                if (node.left_const and node.left_const.is_primitive() and node.sister().is_primitive()) or node.is_primitive():
-                    node.merge_1(moved_constituent, 'left')
-                    # This genitive rule is ad hoc
-                    if 'GEN' in moved_constituent.head().features and not moved_constituent.external_tail_head_test():
-                        moved_constituent.remove()
-                    else:
-                        moved_constituent.remove()
-                        node.merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'left')
-                        self.brain_model.consume_resources('A-Move Phrase')
-                        self.brain_model.consume_resources('Move Phrase')
-                        break
-        #-----------------------------------------------------------------------------------------------------------#
-        return iterator
-
+            #-----------------minimal search---------------------------------------------------------------------------#
+            for node in spec.sister().minimal_search()[1:]:
+                if target_location_for_A_reconstruction(node) and ad_hoc_genitive_filter(node, spec.copy()):
+                    node.merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'left')
+                    self.brain_model.consume_resources('A-Move Phrase')
+                    self.brain_model.consume_resources('Move Phrase')
+                    break
+            #-----------------------------------------------------------------------------------------------------------#
 
     @staticmethod
-    def visible_head(h):
+    def get_local_head(h):
         if h.is_primitive():
             return h
         if h.left_const.is_primitive():
             return h.left_const
 
-    def Abar_movable(self, h):
-        if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(h):
+    def Abar_movable(self, spec, head):
+        if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec) or 'A/inf' in spec.head().features:
             return True
-        if 'A/inf' in h.head().features:
-            return True
-
 
     def specifier_phrase_must_have_supporting_head(self, h):
         if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(h):

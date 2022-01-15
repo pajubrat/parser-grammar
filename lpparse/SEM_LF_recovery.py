@@ -44,12 +44,15 @@ class LF_Recovery:
 
     # Definition for LF-recovery
     def LF_recovery(self, head, unvalued_phi):
-        list_of_antecedents = []
-        if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
-            # ----------------------- minimal upstream search -----------------------------------------------#
+        def add_complement_to_list_of_antecedents(head, list_of_antecedents):
             if head.is_primitive() and head.is_left() and head.sister().is_complex():
                 if self.is_possible_antecedent(head.sister(), head):
                     list_of_antecedents.append(head.sister())
+
+        list_of_antecedents = []
+        if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
+            add_complement_to_list_of_antecedents(head, list_of_antecedents)
+            # ----------------------- minimal upstream search -----------------------------------------------#
             for node in head.constituent_vector():
                 if self.recovery_termination(node):
                     break
