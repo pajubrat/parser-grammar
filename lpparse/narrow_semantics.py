@@ -169,16 +169,13 @@ class NarrowSemantics:
             return True
 
     def is_concept(self, head):
-        """
-        Defines the class of items that can be mapped to a "concept" or "conceptual content" in the conceptual-intentional system.
-        """
         lst = head.get_affix_list()
         for m in lst:
             if self.expresses_concept(m):
                 return True
 
     def expresses_concept(self, head):
-        if {'N', 'NEG', 'P', 'D', 'A', 'V', 'ADV', 'Q', 'NUM', '0'} & head.features and \
+        if {'N', 'NEG', 'P', 'D', 'φ', 'A', 'V', 'ADV', 'Q', 'NUM', '0'} & head.features and \
                 'COPULA' not in head.features and 'T/prt' not in head.features:
             return True
 
@@ -204,13 +201,11 @@ class NarrowSemantics:
 
     def interpret_tail_features(self, ps):
         def in_scope_of(ps, feature_set):
-            for const in ps.constituent_vector():
-                if feature_set & const.features == feature_set:
-                    return True
+            return next((const for const in ps.working_memory_path() if feature_set.issubset(const.features)), None)
+
         def get_tailed_head(ps, tail_set):
-            for const in ps.constituent_vector():
-                if const.is_primitive() and const.match_features(tail_set) == 'complete match':
-                    return const
+            return next((const for const in ps.working_memory_path() if const.is_primitive() and const.match_features(tail_set) == 'complete match'), None)
+
         def interpret_argument_tailing(ps, tailed_head):
             if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
                 if 'PAR' in ps.features and not in_scope_of(ps, {'POL:NEG'}):

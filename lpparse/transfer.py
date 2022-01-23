@@ -35,38 +35,38 @@ class Transfer:
         ps = self.head_movement_module.reconstruct(ps)
         output_to_interfaces['surface structure'] = ps.copy()
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}(' + str(self.brain_model.time_from_stimulus_onset) + 'ms).\n')
+        log(log_embedding + f'\t= {ps}\n')
 
         log(log_embedding + '2. Feature processing...')
         self.feature_process_module.disambiguate(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}(' + str(self.brain_model.time_from_stimulus_onset) + 'ms).\n')
+        log(log_embedding + f'\t= {ps}\n')
 
         log(log_embedding + '3. Extraposition...')
         self.extraposition_module.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}(' + str(self.brain_model.time_from_stimulus_onset) + 'ms).\n')
+        log(log_embedding + f'\t= {ps}\n')
 
         log(log_embedding + '4. Floater movement reconstruction...')
         ps = self.floater_movement_module.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}(' + str(self.brain_model.time_from_stimulus_onset) + 'ms).\n')
+        log(log_embedding + f'\t= {ps}\n')
         output_to_interfaces['s-structure'] = ps.copy()
 
         log(log_embedding + '5. Phrasal movement reconstruction...')
         self.phrasal_movement_module.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}(' + str(self.brain_model.time_from_stimulus_onset) + 'ms).\n')
+        log(log_embedding + f'\t= {ps}\n')
 
         log(log_embedding + '6. Agreement reconstruction...')
         self.agreement_module.reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}(' + str(self.brain_model.time_from_stimulus_onset) + 'ms).\n')
+        log(log_embedding + f'\t= {ps}\n')
 
         log(log_embedding + '7. Last resort extraposition...')
         self.extraposition_module.last_resort_reconstruct(ps)
         log('Done.\n')
-        log(log_embedding + f'\t= {ps}(' + str(self.brain_model.time_from_stimulus_onset) + 'ms).\n')
+        log(log_embedding + f'\t= {ps}\n')
         output_to_interfaces['LF structure'] = ps.copy()
 
         return ps, output_to_interfaces

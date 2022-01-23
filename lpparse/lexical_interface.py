@@ -77,6 +77,7 @@ class LexicalInterface:
 
     # Defines lexical retrieval
     def lexical_retrieval(self, phonological_entry):
+        log(f'\"{phonological_entry}\": ')
         internal = False
         incorporated = False
 
@@ -91,6 +92,7 @@ class LexicalInterface:
             incorporated = True
 
         # If a matching element is found from the dictionary, it will return a list of constituents
+        # These constituents contain raw morphological strings
         if phonological_entry in self.surface_vocabulary:
             word_list = [const.copy() for const in self.surface_vocabulary[phonological_entry]]
 
@@ -103,7 +105,6 @@ class LexicalInterface:
                 for const in word_list:
                     const.incorporated = True
 
-
         # Default constituent
         else:
             const = self.PhraseStructure()
@@ -114,12 +115,9 @@ class LexicalInterface:
 
         if len(word_list) > 1:
             word_list = self.rank_lexical_items(word_list)
-            log(f'Word is {len(word_list)}-way ambiguous, we will retrieve: ')
             for idx, word in enumerate(word_list, start=1):
-                log(f'({idx}) {word.info()}')
-                if word != word_list[-1]:
-                    log(', ')
-            log('...')
+                log(f'\n\t\t\t({idx}) {word.morphology}')
+            log('\n\t\t')
 
         return word_list
 

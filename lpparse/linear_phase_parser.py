@@ -133,9 +133,9 @@ class LinearPhaseParser:
             return
 
         # LEXICAL AMBIGUITY
+        log('Lexical retrieval for ')
         list_of_retrieved_lexical_items_matching_the_phonological_word = self.lexicon.lexical_retrieval(lst[index])
         for lexical_constituent in list_of_retrieved_lexical_items_matching_the_phonological_word:
-            log('Lexical retrieval...')
             self.consume_resources('Lexical retrieval', lst[index])
 
             # MORPHOLOGY
@@ -148,7 +148,6 @@ class LinearPhaseParser:
             merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
 
             # ---------------------------------------------------------------------------------------------#
-            # Examine each possible solution
             for site, transfer in merge_sites:
                 left_branch = self.target_left_branch(ps, site)
                 new_constituent = self.attach(left_branch, site, terminal_lexical_item, transfer)
@@ -248,7 +247,7 @@ class LinearPhaseParser:
             return True
 
         if index < len(lst):
-            log(f'\n\t\tNext item {lst[index]}. ')
+            log(f'\n\t\tNext item: {lst[index]}. ')
 
         # If there are no more words, we attempt to complete processing
         if index == len(lst):
@@ -297,7 +296,7 @@ class LinearPhaseParser:
         if len(self.narrow_semantics.semantic_interpretation['Assignments']) == 0:
             log('\t\t!! Sentence was judged uninterpretable due to lack of legitimate assignments.\n')
         if not self.first_solution_found:
-            log(f'\t\tSolution was accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
+            log(f'\t\tSolution accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.++\n')
             self.resources['Mean time per word']['n'] = int(self.resources['Total Time']['n'] / self.count_words(self.sentence))
             self.resources.update(PhraseStructure.resources) # Add phrase resource consumption from class phrase structure
         if self.only_first_solution:

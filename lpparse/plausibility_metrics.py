@@ -42,7 +42,7 @@ class PlausibilityMetrics:
             if nodes_not_in_active_working_memory and site == nodes_not_in_active_working_memory[0]:
                 log('\n\t\t\t\t--------------------------------Working memory boundary-------------------------------------------------')
             if transfer:
-                log(f'\n\t\t({i}) [{site}\'+ ' + str(w) + ']')
+                log(f'\n\t\t({i}) [{site}↓+ ' + str(w) + ']')
             else:
                 log(f'\n\t\t({i}) [{site} + ' + str(w) + ']')
 

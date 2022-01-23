@@ -42,7 +42,7 @@ class OperatorVariableModule:
         for operator_feature in head.features:
             if self.is_operator_feature(operator_feature):
                 scope_marker_lst = self.bind_to_propositional_scope_marker(head, operator_feature)
-                if not scope_marker_lst:
+                if scope_marker_lst == [None] or scope_marker_lst == []:
                     log(f'\n\t\t\t{head.illustrate()} with feature {operator_feature} is not properly bound by an operator. ')
                     self.interpretation_failed = True
                     break
@@ -70,28 +70,15 @@ class OperatorVariableModule:
         else:
             log(f'{head}, predicate not found from spellout structure.')    # This should never occur
 
-        if self.reflexive_operator_binding(head):
+        if 'FIN' in head.features: #Reflexive operator interpretation
             log('Verum focus interpretation. ')
             semantic_interpretation['Verum focus interpretation'] = True
 
     def bind_to_propositional_scope_marker(self, head, operator_feature):
-        scope_binder_lst = []
-        # --------------- upstream path --------------------------------------------------------------------------- #
-        for node in head.upward_path():
-            target_head = node.inside_path()    # Left primitive constituent of [node] or [node] itself if it is primitive.
-            if self.is_obligatory_scope_binder(target_head, operator_feature):
-                scope_binder_lst = [target_head]
-                break
-            if self.is_last_resort_binder(target_head) and 'OVERT_SCOPE' not in head.features:
-                scope_binder_lst.append(target_head)
-        # --------------------------------------------------------------------------------------------------------- #
-        return scope_binder_lst
-
-    def reflexive_operator_binding(self, ps):
-        return 'FIN' in ps.features
-
-    def full_proposition(self, scope_operator):
-        return 'OP:REL' not in scope_operator
+        local_mandatory_binder = next((node for node in head.working_memory_path() if {operator_feature, 'FIN'}.issubset(node.features)), None)
+        if not local_mandatory_binder and 'OVERT_SCOPE' not in head.features:
+            return [node for node in head.working_memory_path() if {'T', 'FIN'}.issubset(node.features) or {'C', 'FIN'}.issubset(node.features)]
+        return [local_mandatory_binder]
 
     def is_operator(self, head):
         return {f for f in head.features if f[:3] == 'OP:' and f[-1] != '_'}
@@ -102,22 +89,11 @@ class OperatorVariableModule:
     def get_operator_features(self, features):
         return {f for f in features if self.is_operator_feature(f)}
 
-    def is_obligatory_scope_binder(self, target_head, operator_feature):
-        if {operator_feature, 'FIN'} & target_head.features == {operator_feature, 'FIN'}:
-            return True
-
-    def is_last_resort_binder(self, target_head):
-        if 'T/fin' in target_head.features:
-            return True
-        if {'T', 'FIN'} & target_head.features == {'T', 'FIN'}:
-            return True
-
-    # Recursive definition for criterial features (type ABAR:_) inside phrase
     def scan_criterial_features(self, ps):
         set_ = set()
         if ps.left_const and not ps.left_const.find_me_elsewhere:
             set_ = self.scan_criterial_features(ps.left_const)
-        if not set_ and ps.right_const and not ps.right_const.externalized() and not {'T/fin', 'C'} & ps.right_const.head().features:
+        if not set_ and ps.right_const and not ps.right_const.adjunct and not {'T/fin', 'C'} & ps.right_const.head().features:
             set_ = self.scan_criterial_features(ps.right_const)
         if not set_ and ps.is_primitive():
             set_ = self.get_operator_features(ps.features)

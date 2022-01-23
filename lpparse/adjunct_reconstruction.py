@@ -37,7 +37,7 @@ class FloaterMovement():
                 return floater.max()
 
             # Case (4): XP sits in a specifier position that does not exist
-            if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == floater.mother.head().constituent_vector('for edge')[0]:
+            if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == next((const for const in floater.mother.head().working_memory_edge()), None):
                 log(floater.illustrate() + ' is in an specifier position that cannot be projected...')
                 return floater.max()
 
@@ -59,7 +59,7 @@ class FloaterMovement():
                 ps.left_const.head().get_tail_sets() and \
                 'adjoinable' in ps.left_const.head().features and \
                 '-adjoinable' not in ps.left_const.head().features and \
-                '-float'not in ps.left_const.head().features and \
+                '-float' not in ps.left_const.head().features and \
                 not self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(ps.left_const)
 
     def detect_right_floater(self, ps):
@@ -144,13 +144,7 @@ class FloaterMovement():
             return True
 
     def local_tense_edge(self, ps):
-        node = ps.top()
-        # --------------------------- upstream search ---------------------------------------- #
-        for node in ps.upward_path():
-            if {'T/fin', 'FORCE'} & node.head().features:
-                break
-        # --------------------------------------------------------------------------------------#
-        return node
+        return next((node.mother for node in ps.working_memory_path() if {'T/fin', 'FORCE'} & node.features), ps.top())
 
     def babtize(self):
         self.name_provider_index += 1

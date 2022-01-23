@@ -81,9 +81,9 @@ class QuantifiersNumeralsDenotations:
             if not self.binding_theory_conditions(expression, complete_assignment):
                 weighted_assignment['weight'] = 0
                 log('rejected by binding.')
-            if not self.predication_theory_conditions(expression, complete_assignment):
-                weighted_assignment['weight'] = 0
-                log('rejected by predication theory.')
+            #if not self.predication_theory_conditions(expression, complete_assignment):
+            #    weighted_assignment['weight'] = 0
+             #   log('rejected by predication theory.')
         if weighted_assignment['weight'] > 0:
             log('accepted.')
         return weighted_assignment
@@ -111,7 +111,7 @@ class QuantifiersNumeralsDenotations:
 
     def reference_set(self, ps, intervention_feature, complete_assignment):
         return {complete_assignment[self.narrow_semantics.get_referential_index(const.head(), 'QND')]
-                for const in ps.constituent_vector(intervention_feature)
+                for const in ps.working_memory_path({intervention_feature})
                 if self.narrow_semantics.has_referential_index(const.head()) and
                 self.narrow_semantics.exists(const.head(), 'QND') and const.head() != ps
                 and not const.find_me_elsewhere}
@@ -201,7 +201,7 @@ class QuantifiersNumeralsDenotations:
     def present(self, head):
         if self.narrow_semantics.query['PRE']['Accept'](head):
             return f'pro({head})'
-        elif head.mother:
+        elif head.mother and head.sister():
             return f'[{head.illustrate()} {head.sister().illustrate()}]'
         else:
             return f'{head.illustrate}'
@@ -209,7 +209,7 @@ class QuantifiersNumeralsDenotations:
     def detect_phi_conflicts(self, ps):
         for phi in ps.get_phi_set():
             if phi[-1] == '*':
-                log(f'{ps} induces a phi-feature conflict...')
+                log(f'{ps.illustrate()} induces a phi-feature conflict...')
                 self.narrow_semantics.phi_interpretation_failed = True
 
     def has_adequate_phi_set(self, h):

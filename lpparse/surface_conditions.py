@@ -116,7 +116,7 @@ class SurfaceConditions:
         def walk_upstream(node):
             while node.mother:
                 node = node.mother
-                if node.right_const.visible():
+                if not node.right_const.adjunct:
                     return node
 
         if direction=='left':

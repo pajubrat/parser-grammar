@@ -2,6 +2,7 @@
 from support import log
 from LF import LF
 from collections import namedtuple
+from itertools import takewhile
 
 major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 
@@ -30,7 +31,7 @@ class PhraseStructure:
         self.rebaptized = False
         self.x = 0
         self.y = 0
-        if left_constituent and left_constituent.externalized() and left_constituent.is_primitive():
+        if left_constituent and left_constituent.adjunct and left_constituent.is_primitive():
             self.adjunct = True
             left_constituent.adjunct = False
 
@@ -38,10 +39,22 @@ class PhraseStructure:
     # Phrase structure geometry
     #
     def is_primitive(self):
-        return not (self.right_const and self.left_const)
+        if not (self.right_const and self.left_const):
+            return True
 
     def is_complex(self):
-        return not self.is_primitive()
+        return self.right_const and self.left_const
+
+    def head(self):
+        if self.is_primitive():
+            return self
+        if self.left_const.is_primitive():
+            return self.left_const
+        if self.right_const.is_primitive():
+            return self.right_const
+        if self.right_const.adjunct:
+            return self.left_const.head()
+        return self.right_const.head()
 
     def is_left(self):
         return self.mother and self.mother.left_const == self
@@ -55,15 +68,6 @@ class PhraseStructure:
         if self.is_right():
             return self.mother.left_const
 
-    def specifier_sister(self):
-        if self.is_left():
-            return self.mother
-        else:
-            return self
-
-    def left_complex(self):
-        return self.left_const and self.is_complex()
-
     def proper_complement(self):
         if self.sister() and self.sister().is_right():
             return self.sister()
@@ -72,41 +76,24 @@ class PhraseStructure:
         if self.mother:
             return self.mother.head()
 
-    def externalized(self):
-        return self.adjunct
-
     def is_adjoinable(self):
-        return self.externalized() or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
-
-    def visible(self):
-        return not self.externalized()
-
-    def head(self):
-        if self.is_primitive():
-            return self
-        if self.left_const.is_primitive():
-            return self.left_const
-        if self.right_const.is_primitive():
-            return self.right_const
-        if self.right_const.externalized():
-            return self.left_const.head()
-        return self.right_const.head()
+        return self.adjunct or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
 
     def max(self):
-        ps_ = self
-        while ps_ and ps_.mother and ps_.mother.head() == self.head():
-            ps_ = ps_.mother
-        return ps_
+        node = self
+        while node and node.mother and node.mother.head() == self.head():
+            node = node.mother
+        return node
 
     def sister(self):
         while self.mother:
             if self.is_left():
-                if self.geometrical_sister().visible():
+                if not self.geometrical_sister().adjunct:
                     return self.geometrical_sister()
                 else:
                     self = self.mother
             if self.is_right():
-                if self.visible():
+                if not self.adjunct:
                     return self.geometrical_sister()
                 else:
                     return None
@@ -114,9 +101,9 @@ class PhraseStructure:
 
     def selected_sister(self):
         if self.sister():
-            if self.sister().is_primitive() and self.sister().is_right():
-                    return self.sister()
             if self.sister().is_complex():
+                return self.sister()
+            if self.sister().is_primitive() and self.sister().is_right():
                 return self.sister()
 
     def bottom(self):
@@ -370,7 +357,7 @@ class PhraseStructure:
     def get_theta_assigner(self):
         if self.sister() and self.sister().is_primitive():
             return self.sister()
-        if self.container_head() and self.container_head().constituent_vector('for edge') and self == self.container_head().constituent_vector('for edge')[0]:
+        if self.container_head() and self.container_head().working_memory_edge() and self == self.container_head().working_memory_edge()[0]:
             return self.container_head()
 
     def contains_feature(self, feature):
@@ -448,7 +435,7 @@ class PhraseStructure:
 
                     # Rule 3. If the left node is a primitive projecting head, we follow selection unless the right constituent is an adjunct
                     else:
-                        if ps_.right_const.externalized():  # [X <YP>] = X
+                        if ps_.right_const.adjunct:  # [X <YP>] = X
                             ps_ = ps_.left_const
                         else:
                             ps_ = ps_.right_const           # [X Y] = Y
@@ -467,42 +454,41 @@ class PhraseStructure:
     #
     # Upward looking dependencies
     #
-    def upward_path(self, intervention_feature=None):
-        def feature_intervention (node, intervention_feature):
-            if not node.left_const.find_me_elsewhere and {intervention_feature} & node.left_const.head().features:
-                return True
-        def dodge_adjunct (node):
-            return not (node.mother.right_const.adjunct and node.is_left())
+    def working_memory_path(probe, intervention_set=None):
+        node = probe.mother
+        working_memory = []
+        #=============================================
+        while node:
+            if node.left_const != probe:
+                working_memory.append(node.left_const)
+                if node.intervention(intervention_set):
+                    break
+            node = node.walk_upwards()
+        #==============================================
+        return working_memory
 
-        upward_path = []
-        node = self
+    def intervention(self, intervention_set):
+        return intervention_set and not self.left_const.find_me_elsewhere and intervention_set.issubset(self.left_const.head().features)
 
-        while node.mother:
-            if intervention_feature == 'for edge' and node.mother.head() != self:
-                break
-            if node.mother.left_const != self and dodge_adjunct(node):
-                upward_path.append(node.mother)
+    def working_memory_edge(probe):
+        if probe.extract_pro():
+            return list(takewhile(lambda x:x.mother.head() == probe, probe.working_memory_path())) + [probe.extract_pro()]
+        return list(takewhile(lambda x:x.mother.head() == probe, probe.working_memory_path()))
+
+    def walk_upwards(self):
+        node = self.mother
+        while node and node.right_const.adjunct:
             node = node.mother
-            if node.left_const.head() != self and feature_intervention(node, intervention_feature):
-                break
-
-        if intervention_feature == 'for edge' and not upward_path and self.extract_pro():
-            upward_path.append(self.extract_pro())
-
-        return upward_path
-
-    def constituent_vector(self, intervention_feature=None):
-        return [node.left_const if node.is_complex() else node for node in self.upward_path(intervention_feature)]
+        return node
 
     def selector(self):
-        return next((const for const in self.constituent_vector() if const.is_primitive()), None)
+        return next((const for const in self.working_memory_path() if const.is_primitive()), None)
 
     def licensed_phrasal_specifier(self):
-        return next((edge for edge in self.constituent_vector('for edge')
-                     if edge.is_complex() and 'φ' in edge.head().features and not edge.externalized()),
-                    next((edge for edge in self.constituent_vector('for edge')
-                          if edge.is_complex() and 'φ' in edge.head().features and not edge.find_me_elsewhere), None))
-
+        return next((spec for spec in self.working_memory_edge()
+                     if spec.is_complex() and 'φ' in spec.head().features and not spec.adjunct),
+                    next((spec for spec in self.working_memory_edge()
+                          if spec.is_complex() and 'φ' in spec.head().features and not spec.find_me_elsewhere), None))
 
     #
     # Tail processing
@@ -550,8 +536,8 @@ class PhraseStructure:
         return True
 
     def weak_tail_condition(self, tail_set, variation='external'):
-        if  'ADV' not in self.features and self.constituent_vector():
-            for const in self.constituent_vector():
+        if  'ADV' not in self.features:
+            for const in self.working_memory_path():
                 if const.is_primitive():
                     for m in const.get_affix_list():
                         test = m.match_features(tail_set)
@@ -588,10 +574,6 @@ class PhraseStructure:
         return {frozenset(feature[5:].split(',')) for feature in self.head().features if feature[:4] == 'TAIL'}
 
     def extract_pro(self):
-        def valued_phi(h):
-            return {f for f in h.features if f[:4] == 'PHI:' and f[-1] != '_'}
-        def all_phi(h):
-            return {f for f in h.features if f[:4] == 'PHI:'}
         def phi_conflict(h):
             for f in self.features:
                 if f[:4] == 'PHI:' and f[-1] != '_':  # Check only valued phi-features
@@ -609,9 +591,9 @@ class PhraseStructure:
         #-----------------Main function--------------------------
         if 'ARG' in self.features:
             if 'VAL' in self.features:
-                phi_set = valued_phi(self)
+                phi_set = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
             else:
-                phi_set = all_phi(self)
+                phi_set = {f for f in self.features if f[:4] == 'PHI:'}
             if phi_set:
                 pro = PhraseStructure()
                 pro.features = pro.features | phi_set

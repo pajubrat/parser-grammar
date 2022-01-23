@@ -1,4 +1,4 @@
-from support import log
+from support import log, set_logging
 from lexical_interface import LexicalInterface
 
 
@@ -15,9 +15,6 @@ class Morphology:
     def morphological_parse(self, controlling_parsing_process, lexical_item, input_word_list, index):
         current_lexical_item = lexical_item
         while self.is_polymorphemic(current_lexical_item):
-            # Iterative loop which makes sure that the first item in the decomposition is primitive and can be
-            # send to syntax for Merge-1
-            log(f'{current_lexical_item.morphology}: ')
 
             # Solves an ambiguity in C_features, i.e. whether they are criterial or head features
             current_lexical_item = self.Aux_inversion(current_lexical_item)
@@ -32,10 +29,19 @@ class Morphology:
             # Apply the morphological mirror principle (should follow automatically from something)
             self.apply_mirror_principle(input_word_list, morpheme_list, index)
 
+            # Log
+            log(f'Morphological decomposition for {current_lexical_item.morphology}: <')
+            for i, w in enumerate(morpheme_list):
+                log(f'{w}')
+                if i < len(morpheme_list) - 1:
+                    log(',')
+            log('>. ')
+
             controlling_parsing_process.consume_resources('Morphological decomposition')
 
             # Retrieve the first item in the list from the lexicon
             # Exit the process only if this is primitive (i.e. while-loop)
+            log(f'\n\t\tNext item: ')
             current_lexical_item = self.lexicon.lexical_retrieval(input_word_list[index])[0]
 
         # Extract infection features if the current element is inflectional feature and not a lexical item
@@ -49,9 +55,6 @@ class Morphology:
         return morpheme_list_
 
     def apply_mirror_principle(self, input_word_list, morpheme_list_, index):
-        """
-        Applies morphological mirror principle (Baker, Julien)
-        """
         del input_word_list[index]
         for w_ in morpheme_list_:
             input_word_list.insert(index, w_)           # Mirror principle
@@ -79,20 +82,18 @@ class Morphology:
         return lexical_item
 
     def Aux_inversion(self, lexical_item):
-        """
-        In some cases we must generate extra C/fin head (aux-inversion). This function handles it. Currently only handles
-        Finnish head + operator feature combinations. This is implemented by some more general operation which
-        is unknown at present.
-        """
+        set_logging(False)
         decomposition = self.extract_morphemes(lexical_item.morphology)
         m = self.lexicon.lexical_retrieval(decomposition[0])[0]
         if m.verbal() and 'LANG:FI' in m.features:
             self.insert_C_head(lexical_item)
+        set_logging(True)
         return lexical_item
 
     def insert_C_head(self, lexical_item):
         """
-        This function generates a null C head as a response to criterial C-features (currently only in Finnish).
+        This function generates a null C head as a response to criterial C-features.
+        To understand this we need to study other languages than Finnish
         """
         m_lst = lexical_item.morphology.split('#')                      # Create morpheme list
         for i in range(0, len(m_lst)):                                  # Examine x#y pairs
@@ -111,11 +112,6 @@ class Morphology:
 
     # Definition for morpheme decomposition
     def extract_morphemes(self, word):
-        """
-        Extracts morphemes from [word]. Nontrivial part is recursion: any morpheme may refer to further
-        complex entry. This function decomposes enough so that the first morpheme is primitive, the
-        rest will be decomposed later when processing reaches them.
-        """
         list_ = [word]
         while '#' in list_[0]:
             list_ = list_[0].split('#') + list_[1:]
@@ -140,11 +136,7 @@ class Morphology:
 
     # Definition for morphological decomposition
     def decompose(self, word):
-        """
-        Morphological decomposition is performed at # and = and the parts are converted into a list
-        """
         word = word.replace("#", "#$")
         word = word.replace("=", '#=')
         word_ = self.flip_boundary(word.split("#"))
-        log(f'{word_}...')
         return word_

@@ -76,7 +76,7 @@ class LF:
     def try_adjoin_right(self, head):
         for constituent_from_MB in self.controlling_parsing_process.syntactic_working_memory:
             if 'ADV' in constituent_from_MB.head().features:
-                target_node = head.specifier_sister()
+                target_node = self.specifier_sister(head)
                 if self.tail_match(target_node, constituent_from_MB, 'right'):
                     new_const = self.LFMerge(constituent_from_MB, target_node, 'right')
                     new_const.adjunct = True
@@ -86,11 +86,17 @@ class LF:
     def try_merge_to_left(self, head):
         if not head.EPP() and self.free_spec_position(head):
             for constituent_from_MB in self.controlling_parsing_process.syntactic_working_memory:
-                target_node = head.specifier_sister()
+                target_node = self.specifier_sister(head)
                 if self.specifier_match(head, constituent_from_MB) and self.tail_match(target_node, constituent_from_MB, 'left'):
                     self.LFMerge(constituent_from_MB, target_node, 'left')
                     log(f'={target_node.top()}...')
                     break
+
+    def specifier_sister(self, head):
+        if head.is_left():
+            return head.mother
+        else:
+            return head
 
     def tail_match(self, target_node, constituent_from_MB, direction):
         target_node.merge_1(constituent_from_MB.copy(), direction)                      # Test merge
@@ -143,8 +149,8 @@ class LF:
                     return True
 
     def free_spec_position(self, head):
-        specs = [spec for spec in head.constituent_vector('for edge') if not spec.is_primitive()]
-        return not specs or (specs and specs[0].adjunct)
+        specs = [spec for spec in head.working_memory_edge() if spec.is_complex()]
+        return (not specs) or (specs and specs[0].adjunct)
 
     def LF_legibility_test(self, ps):
         self.reset_flags()
@@ -190,7 +196,7 @@ class LF:
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(h.features, f[7:]):
-                    log(f'{h} probing for {f[7:]} failed...')
+                    log(f'{h.illustrate()} probing for {f[7:]} failed...')
                     self.test_problem_report.append(f'{h} probing for  {f[7:]} failed')
                     self.probe_goal_test_result = False
             if f.startswith('-PROBE:'):
@@ -206,14 +212,12 @@ class LF:
             self.tail_head_test_result = False
 
     def double_spec_filter(self, h):
-        if '2SPEC' not in h.features:
-            count = 0
-            list_ = h.constituent_vector('for edge')
-            if list_:
-                for spec_ in list_:
-                    if not spec_.adjunct and 'φ' in spec_.head().features and not spec_.find_me_elsewhere:
-                        count = count + 1
-            if count > 1:
+        if '2SPEC' not in h.features and \
+                len([spec for spec in h.working_memory_edge() if
+                     not spec.adjunct and
+                     spec.is_complex() and
+                     'φ' in spec.head().features and
+                     not spec.find_me_elsewhere]) > 1:
                 self.head_integrity_test_result = False
                 log(f'{h} has double specifiers...')
                 self.test_problem_report.append(f'{h} has double specifiers')
@@ -245,7 +249,7 @@ class LF:
                 if self.identify_thematic_role_by_tailing(h):
                     return True
             self.projection_principle_test_result = False
-            log(f'{h.max()} has no θ role at {h.max().container_head().max()}. ')
+            log(f'{h.max().illustrate()} has no θ role inside {h.max().container_head().max().illustrate()}. ')
             self.test_problem_report.append(f'{h.max()} has no θ-role')
 
     def identify_thematic_role_by_tailing(self, h):
@@ -254,7 +258,7 @@ class LF:
     def identify_thematic_role_by_agreement(self, h):
         if h.max().container_head():
             if h.max().container_head().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
-                if not (h.max().container_head().constituent_vector('for edge') and h.max().container_head().constituent_vector('for edge')[0].is_complex()):
+                if not (h.max().container_head().working_memory_edge() and next((const for const in h.max().container_head().working_memory_edge()), None).is_complex()):
                     return True
 
     def projection_principle_applies_to(self, h):
@@ -288,12 +292,10 @@ class LF:
 
     def selection_tests(self, h):
         comp = h.proper_complement()
-        local_edge = None
-        if h.constituent_vector('for edge'):
-            local_edge = h.constituent_vector('for edge')[0]
+        local_edge = next((const for const in h.working_memory_edge()), None)
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('-SPEC:'):
-                for spec_ in h.constituent_vector('for edge'):
+                for spec_ in h.working_memory_edge():
                     if spec_ and f[6:] in spec_.head().features:
                         if not spec_.adjunct:
                             log(f'{h} has unacceptable specifier {spec_}...')
@@ -315,7 +317,7 @@ class LF:
                 self.test_problem_report.append(f'edgeless {h} has specifier {local_edge}')
                 self.selection_test_result = False
 
-            if f == '!1EDGE' and len(h.constituent_vector('for edge')) > 1:
+            if f == '!1EDGE' and len([const for const in h.working_memory_edge() if const.is_complex()]) > 1:
                 log(f'{h} is only allowed to host one edge element...')
                 self.test_problem_report.append(f'{h} can has only one edge element')
                 self.selection_test_result = False
@@ -335,7 +337,7 @@ class LF:
             # Complement restriction
             if f.startswith('-COMP:'):
                 if h.is_left() and comp and f[6:] in comp.head().features:
-                    log(f'"{h}\" has wrong complement {comp}...')
+                    log(f'{h} has wrong complement {comp}...')
                     self.test_problem_report.append(f'{h} has wrong complement {comp}')
                     self.selection_test_result = False
                     self.wrong_complement_test_result = False
@@ -349,14 +351,14 @@ class LF:
             # !COMP:* heads must have complements (=functional head)
             if f == '!COMP:*':
                 if not h.selected_sister():
-                    log(f'"{h}" lacks complement...')
+                    log(f'{h} lacks complement...')
                     self.test_problem_report.append(f'{h} lacks a complement')
                     self.selection_test_result = False
 
             # !SPEC:* heads require a specifier
             if f == '!SPEC:*':
                 if not local_edge:
-                    log(f'EPP-head "{h}" lacks specifier...')
+                    log(f'EPP-head {h} lacks specifier...')
                     self.test_problem_report.append(f'{h} lacks EPP specifier')
                     self.selection_test_result = False
 
@@ -364,14 +366,14 @@ class LF:
             # This feature must be satisfied by local edge (local specifier)
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
                 if not local_edge:
-                    log(f'EPP-head "{h}" lacks specifier {f[6:]} that it requires...')
+                    log(f'EPP-head {h} lacks specifier {f[6:]} that it requires...')
                     self.test_problem_report.append(f'{h} lacks specifier {f[6:]}')
                     self.selection_test_result = False
                 else:
                     if f[6:] in local_edge.head().features or f[7:] in local_edge.head().features:
                         pass
                     else:
-                        log(f'An EPP-head "{h}" has wrong specifier {local_edge}...')
+                        log(f'An EPP-head {h} has wrong specifier {local_edge}...')
                         self.test_problem_report.append(f'{h} has wrong specifier {local_edge}')
                         self.selection_test_result = False
 
@@ -383,7 +385,7 @@ class LF:
                 return False
         if goal.is_primitive():
             if goal.get_tail_sets() and not goal.external_tail_head_test():
-                log(f'"{goal.illustrate()}" failed final tail test...')
+                log(f'{goal.illustrate()} failed final tail test...')
                 self.test_problem_report.append(f'{goal.illustrate()} failed final tail test')
                 return False
         return True

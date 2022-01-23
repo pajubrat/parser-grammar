@@ -51,31 +51,16 @@ class HeadMovement:
                 self.last_resort(phrase_structure, affix)
             return affix
 
-    def reconstruction_is_successful(self, affix):
-        if not self.head_is_selected(affix):    # Default behavior
-            return False
-        if not self.extra_condition(affix):     # One edge case
-            return False
-        return True
+    def reconstruction_is_successful(self, reconstructed_affix):
+        return self.head_is_selected(reconstructed_affix) and self.extra_condition(reconstructed_affix)
 
     def consider_right_merge(self, affix, node, phrase_structure):
-        """
-        I am not able to reduce these conditions away, although it is clear that there must be a way.
-        They handle only few cases. Suppose X(Y) and Z is bottom right node. The main algorithm will explore [Y Z]
-        and the first component of this function will then try (X__)...[Z Y] = Merge right. The problem is that
-        this solution is not part of minimal search since it depends on the direction of Merge.
-
-        The second condition tries to merge to the top right corner which computes 'nukkuu#kO Pekka __' where
-        the finite T must capture the DP but this requires Merge to the right.
-        """
-        # Condition 1.
         log(f'Try Merge bottom right node...')
         node.merge_1(affix, 'right')
         if self.reconstruction_is_successful(affix):
             self.brain_model.consume_resources("Move Head")
             return True
         affix.remove()
-        # Condition 2.
         log(f'Try Merge top right corner...')
         phrase_structure.merge_1(affix, 'right')
         if self.reconstruction_is_successful(affix):
@@ -85,18 +70,9 @@ class HeadMovement:
         return False
 
     def extra_condition(self, affix):
-        if self.head_is_EPP_selected_by_C_fin(affix):
-            if affix.constituent_vector('for edge'): # and affix.local_edge().head().features & affix.licensed_specifiers():
-                # Exception 1. Finnish third person forms (ultimate reason unknown)
-                if 'pro' in affix.constituent_vector('for edge')[0].features and 'PHI:PER:3' in affix.constituent_vector('for edge')[0].features:
-                    return False
-                return True
-            else:
-                # Exception 2. The the structure is [Affix, X], Affix finite EPP head and with X primitive head
-                if affix.sister() and affix.sister().terminal_node():
-                    return True
-                else:
-                    return False
+        if 'C/fin' in affix.selector().features and affix.EPP():
+            if not [const for const in affix.working_memory_edge() if const.is_complex()]:  # This version excludes pro-subjects
+                return False
         return True
 
     def get_affix_out(self, node):
@@ -131,10 +107,6 @@ class HeadMovement:
                 selector = h
             return selectee.features & selector.licensed_complements()
         return affix.selector() and selects(affix.selector(), affix)
-
-    @staticmethod
-    def head_is_EPP_selected_by_C_fin(affix):
-        return 'C/fin' in affix.selector().features and affix.EPP()
 
     @staticmethod
     def causes_intervention(node, feature_set, phrase_structure):

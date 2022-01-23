@@ -27,17 +27,18 @@ class PhrasalMovement:
     def intervention(self, node):
         if node.left_const and \
                 node.left_const.is_primitive() and \
-                'D' in node.left_const.features and \
+                'φ' in node.left_const.features and \
                 self.brain_model.syntactic_working_memory:
                     return True
 
     def pull_into_working_memory(self, head):
-        for i, spec in enumerate([const for const in head.constituent_vector('for edge') if const.is_complex()]):
-            if self.Abar_movable(spec, head):
-                self.brain_model.syntactic_working_memory = self.brain_model.syntactic_working_memory + [spec]
-            else:
-                self.A_reconstruct(spec)
-            self.process_criterial_features(i, spec, head)
+        for i, spec in enumerate([const for const in head.working_memory_edge()]):
+            if not spec.find_me_elsewhere:
+                if self.Abar_movable(spec, head):
+                    self.brain_model.syntactic_working_memory = self.brain_model.syntactic_working_memory + [spec]
+                else:
+                    self.A_reconstruct(spec)
+                self.process_criterial_features(i, spec, head)
 
     def process_criterial_features(self, i, spec, head):
         def consider_externalization(head):
@@ -49,7 +50,7 @@ class PhrasalMovement:
                 head.features |= self.get_features_for_criterial_head(spec, head)
                 consider_externalization(head)
         else:
-            if self.specifier_phrase_must_have_supporting_head(spec):
+            if self.specifier_phrase_must_have_supporting_head(spec, head):
                 new_h = self.engineer_head_from_specifier(head, spec)
                 spec.sister().merge_1(new_h, 'left')
                 consider_externalization(new_h)
@@ -72,12 +73,13 @@ class PhrasalMovement:
             return {'?'}
 
     def A_reconstruct(self, spec):
-        def candidate_for_A_reconstruction(ps):
-            return ps == ps.container_head().licensed_phrasal_specifier() and \
-                   {'φ'} & ps.head().features and \
-                   ps.sister() and \
-                   ps.is_left() and \
-                   not ps.is_primitive()
+        def candidate_for_A_reconstruction(spec):
+            return spec.is_complex() and \
+                   spec == spec.container_head().licensed_phrasal_specifier() and \
+                   'φ' in spec.head().features and \
+                   spec.sister() and \
+                   spec.is_left() and \
+                   not spec.is_primitive()
 
         def target_location_for_A_reconstruction(node):
             # Two cases: (a) [XP1 [Y [__1 [Z WP]] or (b) [XP1 X [__1 Y]]]
@@ -111,22 +113,24 @@ class PhrasalMovement:
             #-----------------------------------------------------------------------------------------------------------#
 
     @staticmethod
-    def get_local_head(h):
-        if h.is_primitive():
-            return h
-        if h.left_const.is_primitive():
-            return h.left_const
+    def get_local_head(node):
+        if node.is_primitive():
+            return node
+        if node.left_const.is_primitive():
+            return node.left_const
 
     def Abar_movable(self, spec, head):
         if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec) or 'A/inf' in spec.head().features:
             return True
 
-    def specifier_phrase_must_have_supporting_head(self, h):
-        if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(h):
-            return True
-        if h.max().externalized():
+    def specifier_phrase_must_have_supporting_head(self, spec, head):
+        if spec.is_primitive():
             return False
-        if h.max() != h.max().container_head().licensed_phrasal_specifier():
+        if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
+            return True
+        if spec.max().adjunct:
+            return False
+        if spec.max() != spec.max().container_head().licensed_phrasal_specifier():
             return True
 
     @staticmethod

@@ -364,7 +364,7 @@ class LocalFileSystem:
         if len(parser.result_list) == 0:
             return '*'
         if not {assignment['weight'] for assignment in parser.result_list[0][1]['Assignments'] if assignment['weight'] > 0}:
-            return '#'
+            return '*' # Change this if you want to have different marking for sentences without assignment
         return ' '
 
     def save_resources(self, parser, count, sentence, experimental_group):

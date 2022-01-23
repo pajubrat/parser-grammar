@@ -53,7 +53,7 @@ class LF_Recovery:
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             add_complement_to_list_of_antecedents(head, list_of_antecedents)
             # ----------------------- minimal upstream search -----------------------------------------------#
-            for node in head.constituent_vector():
+            for node in head.working_memory_path():
                 if self.recovery_termination(node):
                     break
                 if self.is_possible_antecedent(node, head):
@@ -63,27 +63,32 @@ class LF_Recovery:
 
         if 'PHI:DET:_' in unvalued_phi:
             # ---------------- minimal search----------------------------------------------------
-            for const in head.constituent_vector():
+            for const in [node for node in head.working_memory_path()]:
                 if self.special_local_edge_antecedent_rule(const, head, list_of_antecedents):
                     break
                 elif self.is_possible_antecedent(const, head):
                     list_of_antecedents.append(const)
             #--------------------------------------------------------------------------------
-            return list_of_antecedents
 
         if not list_of_antecedents:
             log(f'No antecedent found, LF-object crashes...')
             self.interpretation_failed = True
             return []
+        return list_of_antecedents
+
+    # Definition for the special rule
+    # This handles the exceptional antecedent properties of local D-antecedent specifier
+    def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
+        if ps.working_memory_edge() and const == next((const for const in ps.working_memory_edge()), None):
+            if 'D' not in const.head().features:
+                self.LF_recovery_results.add(f'{ps}(generic)')
+                list_of_antecedents.append(const)
+                ps.features.add('PHI:DET:GEN')
+            else:
+                list_of_antecedents.append(const)
+            return True
 
     def is_possible_antecedent(self, antecedent, head):
-        """
-        Determines whether a constituent [antecedent] constitutes a suitable antecedent argument for [head].
-
-        Copied constituents are ignored (i.e. are not considered twice). The algorithm targets the head of
-        the antecedent constituent (e.g. D of DP) and examined whether it possess enough valued phi-features to value
-        the unvalued features of the head. If it does, then it will be returned as a possible antecedent.
-        """
         if antecedent.find_me_elsewhere:
             return False    # Do not consider elements that have been copied elsewhere.
         unchecked = get_relevant_phi(head)  # Gets the relevant unvalued phi-features from the head (NUM, PER, DET)
@@ -164,18 +169,6 @@ class LF_Recovery:
             arg_str = antecedent.illustrate()
 
         return prefix + f' {trigger.illustrate()}({arg_str})'
-
-    # Definition for the special rule
-    # This handles the exceptional antecedent properties of local D-antecedent specifier
-    def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
-        if const == ps.constituent_vector('for edge')[0]:
-            if 'D' not in const.head().features:
-                self.LF_recovery_results.add(f'{ps}(generic)')
-                list_of_antecedents.append(const)
-                ps.features.add('PHI:DET:GEN')
-            else:
-                list_of_antecedents.append(const)
-            return True
 
     # Definition for LF-recovery termination
     def recovery_termination(self, node):

@@ -9,8 +9,6 @@ def unvalued(input_feature):
         return {f for f in {input_feature} if f[-1] == '_'}
 def valued(input_feature):
     return {f for f in {input_feature} if not unvalued(f)}
-def find_unvalued_target(h, phi):
-    return {f for f in h.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}
 def mark_bad(phi):
     return phi + '*'
 def phi(input_feature):
@@ -35,71 +33,61 @@ class AgreementReconstruction:
         self.brain_model.consume_resources("Phi")
 
         # 1. Acquisition of phi-features from the sister
-        goal1, phi_features = self.Agree_1_from_sister(head)
-        if phi_features:
-            self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, goal1))
-            if not {'D', 'φ', 'n'} & head.features: # This is currently stipulation
-                head.features.add('BLOCK_NS')
-            for phi in phi_features:
-                self.value(head, goal1, phi, 'sister')
-            if not head.is_unvalued():
-                return
+        if head.sister():
+            goal1, phi_features = self.Agree_1_from_sister(head)
+            if phi_features:
+                self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, goal1))
+                if not {'D', 'φ', 'n'} & head.features: # This is currently stipulation
+                    head.features.add('BLOCK_NS')
+                for phi in phi_features:
+                    self.value(head, goal1, phi, 'sister')
+                if not head.is_unvalued():
+                    return
 
         # 1. Acquisition of phi-features from the edge
         goal2, phi_features = self.Agree_1_from_edge(head)
         if goal2:
-            if not goal1:
-                for phi in phi_features:
-                    if find_unvalued_target(head, phi):
-                       self.value(head, goal2, phi, 'edge')
+            for phi in phi_features:
+                if {f for f in head.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}:
+                   self.value(head, goal2, phi, 'edge')
 
     def Agree_1_from_sister(self, head):
-        if head.sister():
-            # ---------------------------- minimal search ----------------------------#
-            for node in head.sister().minimal_search():
-                if self.termination_condition_for_Agree_search(node):
+        #===========================================================
+        for node in head.sister().minimal_search():
+            if node.left_const:
+                if node.left_const.is_complex() and self.agreement_condition(head, node.left_const):
+                    return node.left_const.head(),sorted({f for f in node.left_const.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
+                else:
                     break
-                if node.left_complex():
-                    if self.agreement_condition(head, node.left_const):
-                        return node.left_const.head(), \
-                               sorted({f for f in node.left_const.head().features
-                                       if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
-            # ---------------------------------------------------------------------------#
-        return head.sister(), {}
-
-    def termination_condition_for_Agree_search(self, node):
-        return node.left_const and node.left_const.is_primitive()
+        return None, None
+        #===========================================================
 
     def Agree_1_from_edge(self, head):
-        edge = head.constituent_vector('for edge')
-        if head.extract_pro():
-            edge.append(head.extract_pro())
-        for e in edge:
-            if self.agreement_condition(head, e):
-                phi_features = {f for f in e.head().features if phi(f) and valued(f)}
-                return e.head(), sorted(phi_features)
-        return None, {}
+        return next(((const.head(), sorted({f for f in const.head().features if phi(f) and valued(f)}))
+                     for const in head.working_memory_edge()
+                     if self.agreement_condition(head, const)), (None, {}))
 
-    def agreement_condition(self, head, phrase):
-        if {'D', 'φ'} & phrase.head().features:
+    def agreement_condition(self, head, const):
+        if {'D', 'φ'} & const.head().features:
             if self.brain_model.language != 'LANG:FI':
                 return True
             else:
-                if 'pro' in phrase.head().features:
+                if 'pro' in const.head().features:
                     return True
                 else:
-                    if 'FIN' in head.features and 'NOM' in phrase.head().features:
+                    if 'FIN' in head.features and 'NOM' in const.head().features:
                         return True
-                    if 'INF' in head.features and 'GEN' in phrase.head().features:
+                    if 'INF' in head.features and 'GEN' in const.head().features:
                         return True
 
     def value(self, h, goal, phi, location):
-
+        log(f'Value {h.illustrate()} by {goal.illustrate()} with {phi} from {location}...')
         if h.get_valued_features() and self.valuation_blocked(h, phi):
+            log(f'Valuation of {h} was blocked for {phi}...')
             h.features.add(mark_bad(phi))
 
-        if find_unvalued_target(h, phi):
-            h.features = h.features - find_unvalued_target(h, phi)
+        if {f for f in h.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}:
+            h.features = h.features - {f for f in h.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}
             h.features.add(phi)
             if goal.mother:
                 log(f'{h} acquired ' + str(phi) + f' from {goal.mother} inside its {location}...')
@@ -117,7 +105,6 @@ class AgreementReconstruction:
             if type_value_matches:
                 return False
             else:
-                log(f'Feature {f} cannot be valued into {head}. Reason:')
-                log(f'{head} has no matching feature but has a feature with the same type but with different value...')
+                log(f'Feature {f} cannot be valued into {head}.')
                 return True
         return False
