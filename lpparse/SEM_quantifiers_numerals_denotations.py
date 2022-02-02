@@ -80,7 +80,7 @@ class QuantifiersNumeralsDenotations:
         for expression in self.referential_constituents_feed:
             if not self.binding_theory_conditions(expression, complete_assignment):
                 weighted_assignment['weight'] = 0
-                log('rejected by binding.')
+                log('Rejected by binding.')
             #if not self.predication_theory_conditions(expression, complete_assignment):
             #    weighted_assignment['weight'] = 0
              #   log('rejected by predication theory.')

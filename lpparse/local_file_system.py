@@ -533,8 +533,6 @@ class LocalFileSystem:
                     if parse_number == 1:
                         print('\n\t' + self.format_resource_output(parser.resources) + f'\n\tExecution time = {parser.execution_time_results[parse_number - 1]}ms.\n')
                 parse_number = parse_number + 1
-        else:
-            print(f'({parser.resources["Garden Paths"]["n"]}gp/{parser.resources["Merge"]["n"]}m/{process_time()-parser.start_time}s)')
 
     def configure_logging(self):
         handler = logging.FileHandler(self.external_sources["log_file_name"], 'w', 'utf-8')

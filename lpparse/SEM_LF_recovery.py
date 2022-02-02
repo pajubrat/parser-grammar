@@ -3,7 +3,7 @@ def must_be_valued(phi_set):
     return {phi for phi in phi_set if semantically_relevant_phi(phi)}
 def semantically_relevant_phi(phi):
     return phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET'
-def get_relevant_phi(h):
+def get_semantically_relevant_phi(h):
     return {f for f in h.features if semantically_relevant_phi(f)}
 def check(F, G, unchecked):
     if F == G:
@@ -63,7 +63,7 @@ class LF_Recovery:
 
         if 'PHI:DET:_' in unvalued_phi:
             # ---------------- minimal search----------------------------------------------------
-            for const in [node for node in head.working_memory_path()]:
+            for const in head.working_memory_path():
                 if self.special_local_edge_antecedent_rule(const, head, list_of_antecedents):
                     break
                 elif self.is_possible_antecedent(const, head):
@@ -72,7 +72,10 @@ class LF_Recovery:
 
         if not list_of_antecedents:
             log(f'No antecedent found, LF-object crashes...')
-            self.interpretation_failed = True
+            # I do not know how to model LF recovery for φ-heads, hence this problem does not
+            # crash the derivation
+            if 'φ' not in head.features:
+                self.interpretation_failed = True
             return []
         return list_of_antecedents
 
@@ -89,11 +92,9 @@ class LF_Recovery:
             return True
 
     def is_possible_antecedent(self, antecedent, head):
-        if antecedent.find_me_elsewhere:
-            return False    # Do not consider elements that have been copied elsewhere.
-        unchecked = get_relevant_phi(head)  # Gets the relevant unvalued phi-features from the head (NUM, PER, DET)
+        unchecked = get_semantically_relevant_phi(head)  # Gets the relevant phi-features from the head (NUM, PER, DET)
         for F in antecedent.head().get_valued_features():
-            for G in get_relevant_phi(head):
+            for G in get_semantically_relevant_phi(head):
                 check(F, G, unchecked)
         if not unchecked:
             return True     # If the antecedent can value all unvalued features of the head, it is accepted.

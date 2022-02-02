@@ -10,7 +10,7 @@ class AdjunctConstructor:
             if ps.is_complex():
                 self.externalize(ps)
             # Complex externalization: primitive lexical item is externalized and must take some structure with it.
-            # This is the nontrivial part that takes most of the lines here.
+            # This is the nontrivial part.
             elif ps.is_primitive():
                 if self.adjunct_in_correct_position(ps):
                     self.externalize_with_extra_structure_rule_1(ps) # Simple rule
@@ -39,22 +39,9 @@ class AdjunctConstructor:
             return ps.mother
 
     def condition_for_externalization_with_specifier_rule_1(self, ps):
-        return ps.head().EPP() and ps.head().mother.mother and ps.head().mother.sister() and ps.head().mother.sister().is_complex()
+        return '!SPEC:*' in ps.head().features and ps.head().mother.mother and ps.head().mother.sister() and ps.head().mother.sister().is_complex()
 
     def condition_for_externalization_with_specifier_rule_2(self, ps):
-        """
-        Rule 2 determining whether [ps] must take its specifier to the other side during externalization.
-        Rule 2 is complex. The intuitive idea is to look whether the putative specifier XP could be licensed by H.
-        Suppose the head is H and XP is what looks to be its specifier. Then [XP [H YP]] will be externalized
-        if and only if
-
-        (1) H must have edge that can be taken;
-        (2) H cannot have a feature that prevents it from having a specifier;
-        (3) XP cannot have a feature that H does not license;
-        (4) XP cannot be primitive head;
-        (5) H cannot have [-ARG] feature;
-        (6) There must exists node [X(P) [H YP]].
-        """
         return ps.head().working_memory_edge() and \
                not '-SPEC:*' in ps.head().features and \
                not (set(ps.head().specifiers_not_licensed()) & set(next((const for const in ps.head().working_memory_edge()), None).head().features)) and \
@@ -85,7 +72,7 @@ class AdjunctConstructor:
 
     def externalize(self, ps):
         if ps == ps.top():
-            log(f'Cannot push the whole structure {ps} into the secondary processing stream (adjunct)...')
+            log(f'Cannot externalize the whole structure {ps}...')
             return False
         ps.adjunct = True
         self.add_tail_features_if_missing(ps)

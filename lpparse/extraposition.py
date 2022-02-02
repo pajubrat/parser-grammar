@@ -26,7 +26,7 @@ class Extraposition:
 
     def last_resort_reconstruct(self, ps):
         if self.preconditions_for_extraposition(ps):
-            log(f'Last resort extraposition will be tried on {ps.top()}...')
+            log(f'Last resort extraposition on {ps.head().illustrate()}P...')
             target = next((node for node in ps.bottom().working_memory_path() if self.possible_extraposition_target(node)), None)
             if target:
                 self.brain_model.consume_resources("Extraposition")

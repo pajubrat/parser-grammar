@@ -18,13 +18,13 @@ cau		:: v PF:Cau LF:v/Cause
 INF			:: INF PF:INF LF:INF
 prtcpl		:: INF T T/prt PF:T/prt LF:T/prt
 # English
-TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf -COMP:T/fin -SPEC:v -VAL ?ARG adjoinable
+TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:T -COMP:T/fin -SPEC:v -VAL ?ARG adjoinable
 # Finnish infinitivals
 A/inf		:: INF A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:N -SPEC:Neg/fin ?ARG -VAL
 ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* -SPEC:T/fin VAL -adjoinable 
 ESSA/inf 	:: ADV INF ESSA/inf ?VAL ?ARG SPEC:* TAIL:T PF:essa LF:while
 TUA/inf		:: ADV INF TUA/inf VAL TAIL:T ARG !SPEC:* PF:tua LF:after
-VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N SPEC:*
+VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N !SPEC:*
 MA/ssa		:: MA/inf MA/ssa ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V -VAL ARG adjoinable 
 MA/tta		:: MA/inf ADV PF:matta LF:without_doing -VAL ARG TAIL:T adjoinable
 MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T COMP:v COMP:V VAL ARG adjoinable
@@ -40,7 +40,7 @@ P		:: P PF:P LF:P
 # Pronominal items
 pro		:: pro-#D
 pro-	:: PF:(pro) LF:pro N PHI
-cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL
+cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL LANG:IT
 inc		:: inflectional INCORPORATED
 
 # Phi- and R-features
@@ -64,8 +64,8 @@ demanaphora	:: inflectional R:OLD:$$$/SUR
 # Generic deficient structural cases
 nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL -FLOAT -adjoinable
 acc		:: inflectional ACC TAIL:v
-dat		:: inflectional DAT TAIL:v
-acc_it	:: inflectional TAIL:v
+dat		:: inflectional DAT TAIL:T LANG:IT
+acc_it	:: inflectional TAIL:v LANG:IT
 
 #Aspect markers
 asp		:: inflectional ASP:BOUNDED

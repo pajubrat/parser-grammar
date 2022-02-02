@@ -136,7 +136,7 @@ class FloaterMovement():
             return False
         if '-SPEC:*' in floater.container_head().features:
             return False
-        if 'φ' in floater.head().features and not self.controlling_parser_process.LF.projection_principle(floater.head()):
+        if 'φ' in floater.head().features and not self.controlling_parser_process.LF.projection_principle(floater.head(), 'weak'):
             return False
         if not floater.container_head().selector():
             return True

@@ -2,10 +2,11 @@
 
 's			:: PF:D('s) LF:possessive D PHI:DET:DEF R:NEW:$X$ POSS
 
-a			:: P PF:a LF:to TAIL:V COMP:ARE/inf -SPEC:* -ARG LANG:ITIT
+a_IT		:: P PF:a LF:to TAIL:T COMP:ARE/inf -SPEC:* ADV -ARG LANG:IT
 a_D			:: D PF:D LF:D LANG:EN
 
 admire  	:: admire-#v#T/fin#[-0] LANG:EN
+admire_fin	:: admire-#v#T/fin#[-0] LANG:EN
 admire		:: admire-#v LANG:EN
 admire'	 	:: admire-#v LANG:EN
 admires  	:: admire-#v#T/fin#[-s] LANG:EN
@@ -314,28 +315,28 @@ lukee		:: luke-#v#T/fin#[-V] LANG:FI
 luke-		:: PF:luke LF:read V CLASS:TR LANG:FI
 
 loydetty	:: loyta-#impass#asp#T/prt LANG:FI
-loydettiin	:: loyta-#impass#asp#T/fin#pl LANG:FI
+loydettiin	:: loyta-#impass#asp#T/fin#pl#1p#def LANG:FI
 loysimme	:: loyta-#v#asp#T/fin#[-mme] LANG:FI
 loysi		:: loyta-#v#asp#T/fin#[-V] LANG:FI
 loytaa		:: loyta-#A/inf LANG:FI
 loyta-		:: PF:loyta- LF:find V CLASS:TR !COMP:φ ASP:BOUNDED LANG:FI
 
-Mary		:: Mary-#D#sg#3p#def#hum#f LANG:EN
+Mary		:: Mary-#φ#sg#3p#def#hum#f LANG:EN
 Mary-		:: PF:Mary N R:REF:PROPER_NAME -SEM:directional LF:Mary -adjoinable LANG:EN 
 
-Merja   	::	Merja-#D#sg#3p#def#hum#def#proper_name#[-nom] LANG:FI
-Merja_nom   ::	Merja-#D#sg#3p#def#hum#def#proper_name#[-nom] LANG:FI
-Merjan		::	Merja-#D#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
-Merjan_acc	::	Merja-#D#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
-Merja_0acc	::	Merja-#D#sg#3p#def#hum#def#proper_name#[-0_acc] LANG:FI
-Merjan_gen	::	Merja-#D#sg#3p#def#hum#def#proper_name#[-gen] LANG:FI
-Merjan_poss	::	Merja-#D#sg#3p#def#hum#def#proper_name#[-poss] LANG:FI
-Merjaa		:: Merja-#D#sg#3p#def#hum#def#proper_name#[-par] LANG:FI
-Merjaahan	:: Merja-#D#sg#3p#def#hum#def#proper_name#[-par]#[hAn] LANG:FI
+Merja   	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-nom] LANG:FI
+Merja_nom   ::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-nom] LANG:FI
+Merjan		::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
+Merjan_acc	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
+Merja_0acc	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-0_acc] LANG:FI
+Merjan_gen	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-gen] LANG:FI
+Merjan_poss	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-poss] LANG:FI
+Merjaa		:: Merja-#φ#sg#3p#def#hum#def#proper_name#[-par] LANG:FI
+Merjaahan	:: Merja-#φ#sg#3p#def#hum#def#proper_name#[-par]#[hAn] LANG:FI
 Merja-  	:: PF:Merja LF:Merja N R:REF:PROPER_NAME -SEM:directional -adjoinable LANG:FI
-Merjalle	::	Merja-#D#sg#3p#def#hum#def#proper_name#lle
-Merjalla	:: 	Merja-#D#sg#3p#def#hum#def#proper_name#lla
-Merjasta	::	Merja-#D#sg#3p#def#hum#def#proper_name#sta
+Merjalle	::	Merja-#φ#sg#3p#def#hum#def#proper_name#lle
+Merjalla	:: 	Merja-#φ#sg#3p#def#hum#def#proper_name#lla
+Merjasta	::	Merja-#φ#sg#3p#def#hum#def#proper_name#sta
 
 meren		::	mere-#φ#sg#3p#def#[-n_acc] LANG:FI
 mere-		::	PF:meri LF:ocean N LANG:FI
@@ -398,8 +399,8 @@ ollut		:: T PF:T LF:T LANG:FI
 on'			:: BE-#T/fin#[-V] LANG:FI
 on			:: BE-#T/fin#[-V] LANG:FI
 
-omaisuutensa	:: omaisuus-#D#[-n_acc] LANG:FI
-omaisuuttaan	:: omaisuus-#D#[-par] LANG:FI
+omaisuutensa	:: omaisuus-#D#def#sg#3p#[-n_acc] LANG:FI
+omaisuuttaan	:: omaisuus-#D#def#sg#3p#[-par] LANG:FI
 omaisuus-		::	PF:omaisuuden LF:possessions N LANG:FI
 
 operatoria	:: operatoria-#a0 LANG:IT
@@ -418,14 +419,14 @@ past		::	PF:past LF:past P LANG:EN
 Pariisia	:: Pariisi-#D#proper_name#[-par] LANG:FI
 Pariisi-	:: PF:Pariisi LF:Paris N LANG:FI
 
-Pekkaa		:: Pekka-#D#sg#3p#def#hum#proper_name#[-par] LANG:FI
-Pekka   	:: Pekka-#D#sg#3p#def#hum#proper_name#[-nom] LANG:FI
-Pekan		:: Pekka-#D#sg#3p#def#hum#proper_name#[-n_acc]
-Pekan_gen	:: Pekka-#D#sg#3p#def#hum#proper_name#[-gen] LANG:FI
-Pekan_acc	::	Pekka-#D#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
-Pekka_0acc	::	Pekka-#D#sg#3p#def#hum#def#proper_name#[-0_acc] LANG:FI
-Pekkahan	:: Pekka-#D#sg#3p#def#hum#def#proper_name#[-nom]#[hAn] LANG:FI
-PEKKA		:: Pekka-#D#sg#3p#def#hum#def#proper_name#[-nom]#[foc]
+Pekkaa		:: Pekka-#φ#sg#3p#def#hum#proper_name#[-par] LANG:FI
+Pekka   	:: Pekka-#φ#sg#3p#def#hum#proper_name#[-nom] LANG:FI
+Pekan		:: Pekka-#φ#sg#3p#def#hum#proper_name#[-n_acc]
+Pekan_gen	:: Pekka-#φ#sg#3p#def#hum#proper_name#[-gen] LANG:FI
+Pekan_acc	::	Pekka-#φ#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
+Pekka_0acc	::	Pekka-#φ#sg#3p#def#hum#def#proper_name#[-0_acc] LANG:FI
+Pekkahan	:: Pekka-#φ#sg#3p#def#hum#def#proper_name#[-nom]#[hAn] LANG:FI
+PEKKA		:: Pekka-#φ#sg#3p#def#hum#def#proper_name#[-nom]#[foc]
 Pekka-  	:: PF:Pekka LF:Pekka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 
 pelottaa	:: pelkaa-#cau#T/fin#[-V] LANG:FI
@@ -462,7 +463,7 @@ presupposto	:: PF:presupposto LF:presupposition N LANG:IT
 
 primary		::	PF:primary LF:nurse N LANG:IT
 
-promises 	:: promise-#T/fin#[-s] LANG:EN
+promises 	:: promise-#v#T/fin#[-s] LANG:EN
 promise- 	:: PF:promise LF:promise V SPEC:φ COMP:φ SEM:internal LANG:EN 
 
 problem		::	PF:problem LF:problem N LANG:EN
@@ -706,7 +707,7 @@ lo			:: lo-#D#sg#3p#def#hum#m#cl#acc_it
 lo-			:: PF:lo(cl) LF:him N PHI_N CL LANG:IT
 si			:: si-#D#3p#def#cl#nom
 si-			:: PF:si(cl) LF:3sg N PHI_N CAL:CL LANG:IT
-gli			:: lo-#D#sg#3p#def#hum#m#a#cl#dat
+gli			:: lo-#D#sg#3p#def#hum#m#a_IT#cl#dat
 ci			:: ci-#D#sg#3p#def#hum#m#cl#dat
 ci-			:: PF:ci LF:there N PHI_N LANG:IT
 

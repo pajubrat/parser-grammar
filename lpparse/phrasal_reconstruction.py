@@ -25,11 +25,12 @@ class PhrasalMovement:
         # ---------------------------------------------------------------------------------------------#
 
     def intervention(self, node):
-        if node.left_const and \
-                node.left_const.is_primitive() and \
-                'φ' in node.left_const.features and \
-                self.brain_model.syntactic_working_memory:
-                    return True
+        if node.left_const:
+            if node.left_const.is_primitive():
+                if 'φ' in node.left_const.features:
+                    if self.brain_model.syntactic_working_memory:
+                        log(f'{node.left_const}')
+                        return True
 
     def pull_into_working_memory(self, head):
         for i, spec in enumerate([const for const in head.working_memory_edge()]):
@@ -59,7 +60,7 @@ class PhrasalMovement:
         log(f'New head was spawned at {head.get_cats_string()}P...')
         new_h = self.lexical_access.PhraseStructure()
         new_h.features |= self.get_features_for_criterial_head(spec, head)
-        if 'FIN' in head.features:
+        if 'FIN' in new_h.features:
             new_h.features |= {'C', 'PF:C'}
         return new_h
 
@@ -97,6 +98,9 @@ class PhrasalMovement:
             moved_constituent.remove()
             return value
 
+        def intervention(node):
+            return node.left_const and 'φ' in node.left_const.features
+
         if candidate_for_A_reconstruction(spec):
             # Special case: [DP H] => [__ [H DP]]
             if spec.sister().is_primitive():
@@ -109,6 +113,8 @@ class PhrasalMovement:
                     node.merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'left')
                     self.brain_model.consume_resources('A-Move Phrase')
                     self.brain_model.consume_resources('Move Phrase')
+                    break
+                if intervention(node):
                     break
             #-----------------------------------------------------------------------------------------------------------#
 

@@ -39,7 +39,7 @@ class HeadMovement:
             # --------------- minimal search -------------------------------------------------#
             for node in phrase_structure:
                 if self.causes_intervention(node, intervention_feature_set, phrase_structure):
-                    log(f'{node.sister()} causes intervention with {intervention_feature_set}...')
+                    log(f'{node.sister()} causes intervention...')
                     break
                 node.merge_1(affix, 'left')
                 if self.reconstruction_is_successful(affix):
@@ -55,13 +55,14 @@ class HeadMovement:
         return self.head_is_selected(reconstructed_affix) and self.extra_condition(reconstructed_affix)
 
     def consider_right_merge(self, affix, node, phrase_structure):
-        log(f'Try Merge bottom right node...')
-        node.merge_1(affix, 'right')
-        if self.reconstruction_is_successful(affix):
-            self.brain_model.consume_resources("Move Head")
-            return True
-        affix.remove()
-        log(f'Try Merge top right corner...')
+        if node.is_primitive():
+            log(f'Try bottom right ')
+            node.merge_1(affix, 'right')
+            if self.reconstruction_is_successful(affix):
+                self.brain_model.consume_resources("Move Head")
+                return True
+            affix.remove()
+        log(f'and top right ')
         phrase_structure.merge_1(affix, 'right')
         if self.reconstruction_is_successful(affix):
             self.brain_model.consume_resources("Move Head")

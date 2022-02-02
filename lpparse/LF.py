@@ -236,10 +236,10 @@ class LF:
                 self.test_problem_report.append(f'{h} fails criterial legibility')
                 self.criterial_feature_test_result = False
 
-    def projection_principle(self, h):
+    def projection_principle(self, h, test_strength='strong'):
         if self.projection_principle_applies_to(h):
             # If XP is inside a projection from head H and H assigns it a thematic role, then return True
-            if h.max().container_head() and self.container_assigns_theta_role_to(h):
+            if h.max().container_head() and self.container_assigns_theta_role_to(h, test_strength):
                 return True
             else:
                 if h.max().contains_feature('adjoinable') and h.max().contains_feature('SEM:nonreferential'):
@@ -268,25 +268,26 @@ class LF:
             h.max().mother:
             return True
 
-    def container_assigns_theta_role_to(self, h):
-        # Condition (i)
+    def container_assigns_theta_role_to(self, h, test_strength):
+        # (i) H receives a thematic role if it is selected
         if h.is_selected():
             return True
-        # Condition (ii)
         container_head = h.max().container_head()
+        # (ii) Thematic assignment to specifier position
         if h.max().get_theta_assigner() and container_head.licensed_phrasal_specifier() and h.max() == container_head.licensed_phrasal_specifier():
-            # Condition (ii-a)
+            # (ii-1) H does not receive a thematic role from an EPP head
             if container_head.EPP():
                 return False
-            # Condition (ii-b)
+            # (ii-2) H does not receive a thematic role from a sandwich position [K[-arg]...H...]
+            # This is the strange thematic nullifying observed in OC constructions
             if container_head.selector() and 'ARG' not in container_head.selector().features:
                 return False
-            # Condition (ii-c)
+            # (ii-3) H does not receive a thematic role from heads K... that do not assign thematic roles
             if not container_head.assigns_theta_role():
                 return False
-            # Condition (ii-c) [DP [H DP]] (unless H assigns both thematic roles)
+            # Condition (ii-4) One head K cannot assign two roles unless otherwise stated [DP1 [K DP2]]
             if container_head.sister() != h.max() and {'D', 'φ'} & container_head.sister().head().features:
-                if 'COPULA' not in container_head.features:
+                if 'COPULA' not in container_head.features and test_strength == 'strong':
                     return False
             return True
 
@@ -299,14 +300,14 @@ class LF:
                     if spec_ and f[6:] in spec_.head().features:
                         if not spec_.adjunct:
                             log(f'{h} has unacceptable specifier {spec_}...')
-                            self.test_problem_report.append(f'{h} has wrong specifier {spec_}')
+                            self.test_problem_report.append(f'{h} has wrong specifier {spec_.illustrate()} ({f})')
                             self.selection_test_result = False
 
             # No specifier of any kind allowed (e.g., English P).
             # This excludes pro and adjuncts
             if f == '-SPEC:*':
                 if local_edge:
-                    if not local_edge.adjunct and not local_edge.find_me_elsewhere and 'pro' not in local_edge.head().features:
+                    if not local_edge.adjunct and 'pro' not in local_edge.head().features:
                         log(f'-EPP head {h} has a specifier {local_edge}...')
                         self.test_problem_report.append(f'-EPP head {h} has wrong specifier {local_edge}')
                         self.selection_test_result = False

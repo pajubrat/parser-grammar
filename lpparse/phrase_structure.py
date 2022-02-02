@@ -454,12 +454,12 @@ class PhraseStructure:
     #
     # Upward looking dependencies
     #
-    def working_memory_path(probe, intervention_set=None):
-        node = probe.mother
+    def working_memory_path(self, intervention_set=None):
+        node = self.mother
         working_memory = []
         #=============================================
         while node:
-            if node.left_const != probe:
+            if node.left_const.head() != self:
                 working_memory.append(node.left_const)
                 if node.intervention(intervention_set):
                     break
@@ -477,8 +477,9 @@ class PhraseStructure:
 
     def walk_upwards(self):
         node = self.mother
-        while node and node.right_const.adjunct:
-            node = node.mother
+        if self.is_left():
+            while node and node.right_const.adjunct:
+                node = node.mother
         return node
 
     def selector(self):
@@ -527,7 +528,6 @@ class PhraseStructure:
                     return True
 
     def precondition_for_strong_condition(self):
-        # APs are excluded
         if 'A' in self.head().features:
             return False
         # Left DPs are excluded with the exception of genitive marked DPs
@@ -670,18 +670,6 @@ class PhraseStructure:
         return major_cats + suffix
 
     def copy_from_memory_buffer(self, babtize='1'):
-
-        def remove_tail_features(ps):
-            if not ps.is_primitive():
-                remove_tail_features(ps.left_const)
-                remove_tail_features(ps.right_const)
-            else:
-                remove_set = set()
-                for f in ps.features:
-                    if f[:4] == 'TAIL':
-                        remove_set.add(f)
-                ps.features = ps.features.difference(remove_set)
-
         def silence_phonologically(h):
             if not h.features:
                 h.features = {'null'}
@@ -694,14 +682,10 @@ class PhraseStructure:
 
         if self.identity == '':
             self.identity = babtize
-
         self_copy = self.copy()              # Copy the constituent
         self_copy.find_me_elsewhere = False  # Copy is marked for being where it is
         silence_phonologically(self_copy)    # Silence the new constituent phonologically
         self.find_me_elsewhere = True        # Mark that the constituent has been copied
-                                             # Neutralize the original
-        remove_tail_features(self)           # Remove tail-features from the original
-
         return self_copy
 
     def for_LF_interface(self, features):
