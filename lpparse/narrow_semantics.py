@@ -150,7 +150,7 @@ class NarrowSemantics:
                     if space == 'QND':
                         ps.head().features.add('REF')
 
-        ps.features.discard('BLOCK_NS')
+        # ps.features.discard('BLOCK_NS')
 
     def transform_for_global(self, semantic_object):
         filtered_object = semantic_object.copy()

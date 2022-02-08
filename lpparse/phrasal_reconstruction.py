@@ -33,7 +33,7 @@ class PhrasalMovement:
                         return True
 
     def pull_into_working_memory(self, head):
-        for i, spec in enumerate([const for const in head.working_memory_edge()]):
+        for i, spec in enumerate(head.edge()):
             if not spec.find_me_elsewhere:
                 if self.Abar_movable(spec, head):
                     self.brain_model.syntactic_working_memory = self.brain_model.syntactic_working_memory + [spec]
@@ -83,6 +83,7 @@ class PhrasalMovement:
                    not spec.is_primitive()
 
         def target_location_for_A_reconstruction(node):
+            # Sandwich mechanism
             # Two cases: (a) [XP1 [Y [__1 [Z WP]] or (b) [XP1 X [__1 Y]]]
             return (node.left_const and
                     node.left_const.is_primitive() and
@@ -136,7 +137,7 @@ class PhrasalMovement:
             return True
         if spec.max().adjunct:
             return False
-        if spec.max() != spec.max().container_head().licensed_phrasal_specifier():
+        if spec.max().container_head() and spec.max() != spec.max().container_head().licensed_phrasal_specifier():
             return True
 
     @staticmethod

@@ -42,15 +42,15 @@ class AdjunctConstructor:
         return '!SPEC:*' in ps.head().features and ps.head().mother.mother and ps.head().mother.sister() and ps.head().mother.sister().is_complex()
 
     def condition_for_externalization_with_specifier_rule_2(self, ps):
-        return ps.head().working_memory_edge() and \
+        return ps.head().edge() and \
                not '-SPEC:*' in ps.head().features and \
-               not (set(ps.head().specifiers_not_licensed()) & set(next((const for const in ps.head().working_memory_edge()), None).head().features)) and \
-               not next((const for const in ps.working_memory_edge()), None).is_primitive() and \
+               not (set(ps.head().specifiers_not_licensed()) & set(next((const for const in ps.head().edge()), None).head().features)) and \
+               not next((const for const in ps.edge()), None).is_primitive() and \
                 '-ARG' not in ps.head().features and \
                ps.head().mother.mother
 
     def has_adjoinable_specifier(self, ps):
-        local_head = next((const for const in ps.head().working_memory_edge()), None)
+        local_head = next((const for const in ps.head().edge()), None)
         if local_head:
             return local_head.contains_feature('OP:REL')
 
@@ -64,7 +64,7 @@ class AdjunctConstructor:
         self.externalize(ps.head().mother)
 
     def externalize_with_specifier(self, ps):
-        for edge in ps.head().working_memory_edge():
+        for edge in ps.head().edge():
             if edge.contains_feature('OP:REL'):
                 self.externalize(edge.mother)
                 return

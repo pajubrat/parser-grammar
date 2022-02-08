@@ -81,22 +81,37 @@ class QuantifiersNumeralsDenotations:
             if not self.binding_theory_conditions(expression, complete_assignment):
                 weighted_assignment['weight'] = 0
                 log('Rejected by binding.')
-            #if not self.predication_theory_conditions(expression, complete_assignment):
-            #    weighted_assignment['weight'] = 0
-             #   log('rejected by predication theory.')
+            if not self.predication_theory_conditions(expression, complete_assignment):
+                weighted_assignment['weight'] = 0
+                log('rejected by predication theory.')
         if weighted_assignment['weight'] > 0:
             log('accepted.')
         return weighted_assignment
 
     def predication_theory_conditions(self, expression, complete_assignment):
         idx_QND_predicate, name, ps, denotations = expression
+
+        # Apply the condition only to heads which have both predicate and referential argument interpretations
         if self.narrow_semantics.query['PRE']['Accept'](ps) and self.narrow_semantics.query['QND']['Accept'](ps):
+
+            # Get referential interpretation from the predicate
             idx_pred, space_pred = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
-            for predicate, argument in self.narrow_semantics.predicate_argument_dependencies:
-                if ps == predicate:
-                    idx_arg, space_arg = self.narrow_semantics.get_referential_index_tuples(argument, 'QND')
-                    if complete_assignment[idx_arg] != complete_assignment[idx_pred]:
-                        return False
+
+            if idx_pred:
+                # Examine if the predicate has been linked with an argument
+                for predicate, argument in self.narrow_semantics.predicate_argument_dependencies:
+                    if ps == predicate:
+
+                        # Get referential interpretation from the argument
+                        idx_arg, space_arg = self.narrow_semantics.get_referential_index_tuples(argument, 'QND')
+
+                        # Predicate theory only applies if the argument is linked with a reference
+                        # (This condition is violated exceptionally if the linked argument is EPP-related filler)
+                        if idx_arg:
+
+                            # Check that the predicate reference and the argument are the same
+                            if complete_assignment[idx_arg] != complete_assignment[idx_pred]:
+                                return False
         return True
 
     def binding_theory_conditions(self, expression, complete_assignment):
@@ -110,11 +125,18 @@ class QuantifiersNumeralsDenotations:
         return True
 
     def reference_set(self, ps, intervention_feature, complete_assignment):
-        return {complete_assignment[self.narrow_semantics.get_referential_index(const.head(), 'QND')]
-                for const in ps.working_memory_path({intervention_feature})
-                if self.narrow_semantics.has_referential_index(const.head()) and
-                self.narrow_semantics.exists(const.head(), 'QND') and const.head() != ps
-                and not const.find_me_elsewhere}
+        reference_set = set()
+        for const in (node for node in ps.working_memory_path() if
+                      self.narrow_semantics.has_referential_index(node.head()) and
+                      self.narrow_semantics.exists(node.head(), 'QND') and
+                      node.head() != ps and
+                      not node.find_me_elsewhere):
+            reference_set.add(complete_assignment[self.narrow_semantics.get_referential_index(const.head(), 'QND')])
+            if intervention_feature and \
+                    not const.find_me_elsewhere and \
+                    {intervention_feature}.issubset(const.head().features):
+                break
+        return reference_set
 
     def create_all_denotations(self, ps):
         return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')])

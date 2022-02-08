@@ -109,7 +109,7 @@ class LF:
     def try_merge_to_comp(self, head):
 
         # Case 1. missing complement
-        if head.missing_complement():
+        if head.is_primitive() and not head.proper_complement() and head.licensed_complements():
             for const in self.controlling_parsing_process.syntactic_working_memory:
                 if head.complement_match(const):
                     self.LFMerge(const, head, 'right')
@@ -118,7 +118,7 @@ class LF:
                     break
 
         # Case 2. Wrong complement
-        if head.wrong_complement():
+        if head.is_left() and head.proper_complement() and not (head.licensed_complements() & head.proper_complement().head().features):
             for const in self.controlling_parsing_process.syntactic_working_memory:
                 if head.complement_match(const):
                     old_complement = head.proper_complement()
@@ -149,7 +149,7 @@ class LF:
                     return True
 
     def free_spec_position(self, head):
-        specs = [spec for spec in head.working_memory_edge() if spec.is_complex()]
+        specs = head.edge()
         return (not specs) or (specs and specs[0].adjunct)
 
     def LF_legibility_test(self, ps):
@@ -213,9 +213,8 @@ class LF:
 
     def double_spec_filter(self, h):
         if '2SPEC' not in h.features and \
-                len([spec for spec in h.working_memory_edge() if
+                len([spec for spec in h.edge() if
                      not spec.adjunct and
-                     spec.is_complex() and
                      'φ' in spec.head().features and
                      not spec.find_me_elsewhere]) > 1:
                 self.head_integrity_test_result = False
@@ -258,7 +257,7 @@ class LF:
     def identify_thematic_role_by_agreement(self, h):
         if h.max().container_head():
             if h.max().container_head().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
-                if not (h.max().container_head().working_memory_edge() and next((const for const in h.max().container_head().working_memory_edge()), None).is_complex()):
+                if not (h.max().container_head().edge() and next((const for const in h.max().container_head().edge()), None).is_complex()):
                     return True
 
     def projection_principle_applies_to(self, h):
@@ -269,12 +268,19 @@ class LF:
             return True
 
     def container_assigns_theta_role_to(self, h, test_strength):
+        def get_theta_assigner(node):
+            if node.sister() and node.sister().is_primitive():
+                return node.sister()
+            if node.container_head() and node.container_head().edge() and node == \
+                    node.container_head().edge()[0]:
+                return node.container_head()
+
         # (i) H receives a thematic role if it is selected
-        if h.is_selected():
+        if h.max().sister() and h.max().sister().is_primitive():
             return True
         container_head = h.max().container_head()
         # (ii) Thematic assignment to specifier position
-        if h.max().get_theta_assigner() and container_head.licensed_phrasal_specifier() and h.max() == container_head.licensed_phrasal_specifier():
+        if get_theta_assigner(h.max()) and container_head.licensed_phrasal_specifier() and h.max() == container_head.licensed_phrasal_specifier():
             # (ii-1) H does not receive a thematic role from an EPP head
             if container_head.EPP():
                 return False
@@ -283,7 +289,7 @@ class LF:
             if container_head.selector() and 'ARG' not in container_head.selector().features:
                 return False
             # (ii-3) H does not receive a thematic role from heads K... that do not assign thematic roles
-            if not container_head.assigns_theta_role():
+            if not {'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'} & container_head.features:
                 return False
             # Condition (ii-4) One head K cannot assign two roles unless otherwise stated [DP1 [K DP2]]
             if container_head.sister() != h.max() and {'D', 'φ'} & container_head.sister().head().features:
@@ -293,10 +299,10 @@ class LF:
 
     def selection_tests(self, h):
         comp = h.proper_complement()
-        local_edge = next((const for const in h.working_memory_edge()), None)
+        local_edge = next((const for const in h.edge()), h.extract_pro())
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('-SPEC:'):
-                for spec_ in h.working_memory_edge():
+                for spec_ in h.edge():
                     if spec_ and f[6:] in spec_.head().features:
                         if not spec_.adjunct:
                             log(f'{h} has unacceptable specifier {spec_}...')
@@ -318,7 +324,7 @@ class LF:
                 self.test_problem_report.append(f'edgeless {h} has specifier {local_edge}')
                 self.selection_test_result = False
 
-            if f == '!1EDGE' and len([const for const in h.working_memory_edge() if const.is_complex()]) > 1:
+            if f == '!1EDGE' and len(h.edge()) > 1:
                 log(f'{h} is only allowed to host one edge element...')
                 self.test_problem_report.append(f'{h} can has only one edge element')
                 self.selection_test_result = False

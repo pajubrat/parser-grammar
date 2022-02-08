@@ -33,8 +33,12 @@ E/inf		:: PF:en LF:by ADV -ARG -VAL TAIL:T LANG:FI
 
 # Copula
 BE-		:: V COPULA PF:BE LF:BE -ARG COMP:φ SPEC:φ !COMP:* COMP:T/prt -COMP:T/fin
-D		:: D φ PF:D LF:D
+
+# D-elements
+D		:: φ PF:D LF:D R:NEW:$$$/SUR
 D/rel	:: D/rel φ PF:D/rel LF:D/rel adjoinable
+D/pro	:: D φ PF:D LF:D adjoinable R:NEW:REF -R:NEW:$$$/SUR
+D/refl 	:: D φ PF:D LF:D adjoinable R:OLD:REF -R:NEW:$$$/SUR
 P		:: P PF:P LF:P
 
 # Pronominal items
@@ -56,6 +60,7 @@ nonhum 		:: inflectional PHI:HUM:NONHUM
 m			:: inflectional PHI:GEN:M
 f			:: inflectional PHI:GEN:F
 proper_name	:: inflectional R:REF:NAME R:NEW:$$$/SUR
+r_expression	:: inflectional R:REF:NAME R:NEW:$$$/SUR
 pronoun1	:: inflectional R:NEW:REF
 reflexive	:: inflectional R:OLD:REF
 Rexpression	:: inflectional R:NEW:$$$/SUR

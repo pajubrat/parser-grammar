@@ -72,7 +72,7 @@ class HeadMovement:
 
     def extra_condition(self, affix):
         if 'C/fin' in affix.selector().features and affix.EPP():
-            if not [const for const in affix.working_memory_edge() if const.is_complex()]:  # This version excludes pro-subjects
+            if not affix.edge():
                 return False
         return True
 
@@ -85,7 +85,7 @@ class HeadMovement:
             return node
 
     def determine_intervention_features(self, head):
-        if head.has_op_feature() and self.brain_model.narrow_semantics.is_concept(head):
+        if {feature for feature in head.features if feature[:2] == 'OP'} and self.brain_model.narrow_semantics.is_concept(head):
             return {'φ'} | set(self.brain_model.narrow_semantics.operator_variable_module.operator_interpretation.keys())
         return {'!COMP:*'}
 

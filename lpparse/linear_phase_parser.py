@@ -166,30 +166,14 @@ class LinearPhaseParser:
         if self.exit:
             return True
 
-    def target_left_branch(self, ps, site):
-        def identify_equivalent_node(ps, site):
-            def node_at(ps, position):
-                ps_ = ps.top()
-                for pos in range(0, position):
-                    ps_ = ps_.right_const
-                return ps_
-            def get_position_on_geometric_right_edge(node):
-                ps_ = node.top()
-                position = 0
-                while ps_:
-                    if ps_ == node:
-                        return position
-                    if ps_.right_const:
-                        position = position + 1
-                        ps_ = ps_.right_const
-                    else:
-                        return None
-                return None
-
-            return node_at(ps, get_position_on_geometric_right_edge(site))
-
-        ps_ = ps.top().copy()
-        return identify_equivalent_node(ps_, site)
+    def target_left_branch(self, old_ps_node, targeted_site):
+        new_ps = old_ps_node.top().copy()
+        old_ps_node = targeted_site.top()
+        position = 0
+        while old_ps_node != targeted_site:
+            position = position + 1
+            old_ps_node = old_ps_node.right_const
+        return new_ps[position]
 
     def attach(self, left_branch, site, terminal_lexical_item, transfer):
         self.maintain_working_memory(site)

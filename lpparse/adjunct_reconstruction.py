@@ -29,17 +29,17 @@ class FloaterMovement():
             # Case (2): XP fails the tail test
             if not floater.head().external_tail_head_test():
                 log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
-                return floater.max()
+                return floater.head().max()
 
             # Case (3): XP sits in an EPP position;
             if floater.mother and floater.mother.head().EPP() and 'FIN' in floater.mother.head().features:
                 log(floater.illustrate() + ' is in an EPP SPEC position...')
-                return floater.max()
+                return floater.head().max()
 
             # Case (4): XP sits in a specifier position that does not exist
-            if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == next((const for const in floater.mother.head().working_memory_edge()), None):
+            if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == next((const for const in floater.mother.head().edge()), None):
                 log(floater.illustrate() + ' is in an specifier position that cannot be projected...')
-                return floater.max()
+                return floater.head().max()
 
         # Right floater
         if self.detect_right_floater(ps):
@@ -48,7 +48,7 @@ class FloaterMovement():
                 log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
                 if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
                     self.adjunct_constructor.externalize_structure(floater)
-                    return floater.max()
+                    return floater.head().max()
                 if 'ADV' in floater.features and not ps.right_const.adjunct:
                     self.adjunct_constructor.externalize_structure(floater)
 

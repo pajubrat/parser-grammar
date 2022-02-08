@@ -79,11 +79,8 @@ class PhraseStructure:
     def is_adjoinable(self):
         return self.adjunct or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
 
-    def max(self):
-        node = self
-        while node and node.mother and node.mother.head() == self.head():
-            node = node.mother
-        return node
+    def max(probe):
+        return [probe, *probe.edge()][-1].mother
 
     def sister(self):
         while self.mother:
@@ -133,18 +130,8 @@ class PhraseStructure:
     def has_affix(self):
         return self.right_const and not self.left_const
 
-    def terminal_node(self):
-        return self.is_primitive() and not self.has_affix()
-
     def complex_head(self):
         return self.is_primitive() and self.has_affix()
-
-    def is_functional(self):
-        return '!COMP:*' in self.features
-
-    def is_selected(self):
-        if self.max().sister() and self.max().sister().is_primitive():
-            return True
 
     def EPP(self):
         return 'SPEC:*' in self.features or '!SPEC:*' in self.features
@@ -174,12 +161,6 @@ class PhraseStructure:
     def get_phi_set(self):
         return {f for f in self.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
-    def get_unvalued_features(self):
-        return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
-
-    def has_op_feature(self):
-        return {feature for feature in self.features if feature[:2] == 'OP'}
-
     def licensed_specifiers(self):
         return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
 
@@ -192,33 +173,12 @@ class PhraseStructure:
     def convert_features_for_parsing(self, features):
         return {f[1:] if f.startswith('!') else f for f in features}
 
-    def LF_features(self):
-        lfs = [f[3:] for f in self.features if f[:2] == 'LF']
-        return '.'.join(sorted(lfs))
-
-    def major_category_features(self):
-        cats = set()
-        for f in self.head().features:
-            if f in major_category:
-                cats.add(f)
-        return cats
-
     def is_clitic(self):
         if 'CL' in self.features:
             return True
         if 'CL' in self.head().features:
             if not self.head().has_affix() and self.head().internal:
                 return True
-
-    def is_quasi_auxiliary(self):
-        return 'SEM:internal' in self.features_of_complex_word() and \
-                'ASP' not in self.features_of_complex_word()
-
-    def incorporation_features(self, direction):
-        if direction == 'left':
-            return {frozenset(feature[5:].split(",")) for feature in self.head().features if feature[:5] == 'LEFT:'}
-        if direction == 'right':
-            return {frozenset(feature[6:].split(",")) for feature in self.head().features if feature[:6] == 'RIGHT:'}
 
     def bottom_affix(self):
         if not self.is_primitive:
@@ -227,9 +187,6 @@ class PhraseStructure:
         while ps_.right_const:
             ps_ = ps_.right_const
         return ps_
-
-    def assigns_theta_role(self):
-        return {'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'} & self.features
 
     #
     # Structure building
@@ -261,9 +218,6 @@ class PhraseStructure:
         local_structure.mother = self.mother
         local_structure.left = self.is_left()
         return local_structure
-
-    def __add__(self, incoming_constituent):
-        return self.merge_1(incoming_constituent)
 
     def remove(self):
         if self.mother:
@@ -315,8 +269,6 @@ class PhraseStructure:
     #
     # Properties relating lexical features with phrase structure geometry
     #
-    def wrong_complement(self):
-        return self.is_left() and self.proper_complement() and self.has_mismatching_complement()
 
     def complement_match(self, const):
         return self.licensed_complements() & const.head().features
@@ -329,9 +281,6 @@ class PhraseStructure:
 
     def complements_not_licensed(self):
         return {f[6:] for f in self.features if f[:5] == '-COMP'}
-
-    def has_mismatching_complement(self):
-        return not (self.licensed_complements() & self.proper_complement().head().features)
 
     def get_mandatory_comps(self):
         return  {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
@@ -350,15 +299,6 @@ class PhraseStructure:
                 if intervention(node, feature):
                     break
             # -------------------------------------------------------------------------
-
-    def missing_complement(self):
-        return self.is_primitive() and not self.proper_complement() and self.licensed_complements()
-
-    def get_theta_assigner(self):
-        if self.sister() and self.sister().is_primitive():
-            return self.sister()
-        if self.container_head() and self.container_head().working_memory_edge() and self == self.container_head().working_memory_edge()[0]:
-            return self.container_head()
 
     def contains_feature(self, feature):
         if self.left_const and self.left_const.contains_feature(feature):
@@ -386,6 +326,9 @@ class PhraseStructure:
         identity = self.get_id()  # Returns the identity symbol (#1, ...)
         return find_(identity, ps)
 
+    def __add__(self, incoming_constituent):
+        return self.merge_1(incoming_constituent)
+
     #
     # Minimal search
     #
@@ -399,51 +342,27 @@ class PhraseStructure:
             self = self.right_const
         return search_list
 
+    #
+    # Minimal search
+    #
     def __getitem__(self, position):
-        """
-        This function provides unique ordering (ordinal number) for all nodes in the minimal search path. It can be
-        used when iterating over any phrase structure. Minimal search applied to X(P) descends to the head (label) X and
-        then goes into X's selected complement, so it follows heads and selection.
-        """
-        iterator_ = 0
+        iter_ = 0
         ps_ = self
-        while ps_:
-
-            # This will stop the iteration if we have determined the position argument, i.e. get the nth node.
-            if iterator_ == position:
-                return ps_
-
-            # This will end the iteration if we have reached a primitive node. We cannot descend any further.
+        while iter_ != position:
             if ps_.is_primitive():
                 raise IndexError
-
-            # This will take case of complex nodes [_Z X(P) Y(P)].
+            if ps_.head() == ps_.right_const.head():
+                 ps_ = ps_.right_const
             else:
-
-                # Rule 1. If the right constituent projects, we select it.
-                if ps_.head() == ps_.right_const.head():    # [_YP XP Y(P)] = YP
-                     ps_ = ps_.right_const
-
-                # If not, then the left node is projecting.
+                if ps_.left_const.is_complex():
+                    ps_ = ps_.left_const
                 else:
-
-                    # Rule 2. If the left node is complex, we go for it and follow labelling
-                    if ps_.left_const.is_complex():         # [_XP XP <YP>] = XP
+                    if ps_.right_const.adjunct:
                         ps_ = ps_.left_const
-
-                    # Rules 1-2 give us "select A in {_A A, B}."
-
-                    # Rule 3. If the left node is a primitive projecting head, we follow selection unless the right constituent is an adjunct
                     else:
-                        if ps_.right_const.adjunct:  # [X <YP>] = X
-                            ps_ = ps_.left_const
-                        else:
-                            ps_ = ps_.right_const           # [X Y] = Y
-
-                    # Rule 3 establishes that if label following gives us dead end (primitive left head), we follow its
-                    # proper complement (selection) if that exists.
-
-            iterator_ = iterator_ + 1
+                        ps_ = ps_.right_const
+            iter_ = iter_ + 1
+        return ps_
 
     def inside_path(self):
         if self.is_primitive():
@@ -454,26 +373,16 @@ class PhraseStructure:
     #
     # Upward looking dependencies
     #
-    def working_memory_path(self, intervention_set=None):
-        node = self.mother
+    def working_memory_path(probe):
+        node = probe.mother
         working_memory = []
         #=============================================
         while node:
-            if node.left_const.head() != self:
+            if node.left_const.head() != probe:
                 working_memory.append(node.left_const)
-                if node.intervention(intervention_set):
-                    break
             node = node.walk_upwards()
         #==============================================
         return working_memory
-
-    def intervention(self, intervention_set):
-        return intervention_set and not self.left_const.find_me_elsewhere and intervention_set.issubset(self.left_const.head().features)
-
-    def working_memory_edge(probe):
-        if probe.extract_pro():
-            return list(takewhile(lambda x:x.mother.head() == probe, probe.working_memory_path())) + [probe.extract_pro()]
-        return list(takewhile(lambda x:x.mother.head() == probe, probe.working_memory_path()))
 
     def walk_upwards(self):
         node = self.mother
@@ -482,14 +391,17 @@ class PhraseStructure:
                 node = node.mother
         return node
 
+    def edge(probe):
+        return list(takewhile(lambda x:x.mother.head() == probe, probe.working_memory_path()))
+
     def selector(self):
         return next((const for const in self.working_memory_path() if const.is_primitive()), None)
 
     def licensed_phrasal_specifier(self):
-        return next((spec for spec in self.working_memory_edge()
-                     if spec.is_complex() and 'φ' in spec.head().features and not spec.adjunct),
-                    next((spec for spec in self.working_memory_edge()
-                          if spec.is_complex() and 'φ' in spec.head().features and not spec.find_me_elsewhere), None))
+        return next((spec for spec in self.edge()
+                     if 'φ' in spec.head().features and not spec.adjunct),
+                    next((spec for spec in self.edge()
+                          if 'φ' in spec.head().features and not spec.find_me_elsewhere), None))
 
     #
     # Tail processing
@@ -499,10 +411,10 @@ class PhraseStructure:
         tail_sets = self.get_tail_sets()
         tests_checked = set()
         for tail_set in tail_sets:
-            # Strong tail condition: Must be inside the projection
+            # Strong tail condition (inside same projection)
             if self.strong_tail_condition(tail_set):
                 tests_checked.add(tail_set)
-            # Weak tail condition: Must find an upstream path
+            # Weak tail condition (upward path)
             if self.weak_tail_condition(tail_set):
                 tests_checked.add(tail_set)
         return tests_checked & tail_sets == tail_sets
@@ -522,15 +434,12 @@ class PhraseStructure:
             if self.max() and self.max().mother:
                 if self.max().mother.head().match_features(tail_set) == 'complete match':
                     return True
-                # Licenses HP at [V [YP <H XP>]] by V
-                # Pekka V [[Merjan] <ihailemassa Jukkaa>]
                 if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
                     return True
 
     def precondition_for_strong_condition(self):
         if 'A' in self.head().features:
             return False
-        # Left DPs are excluded with the exception of genitive marked DPs
         if 'φ' in self.head().features and self.max().is_left() and 'GEN' not in self.head().features:
             return False
         return True
@@ -547,7 +456,6 @@ class PhraseStructure:
                             return False
                         elif test == 'negative match':
                             return False
-        # What to do when reaching the top
         if variation=='external' and not self.negative_features(tail_set):
             return False    # Strong test: reject (tail set must be checked)
         else:
@@ -634,6 +542,9 @@ class PhraseStructure:
         return '.'.join(sorted(info))
 
     def gloss(self):
+        def LF_features(head):
+            lfs = [f[3:] for f in head.features if f[:2] == 'LF']
+            return '.'.join(sorted(lfs))
         pf = ''
         if self.left_const:
             if 'null' in self.left_const.features:
@@ -646,7 +557,7 @@ class PhraseStructure:
             else:
                 pf = pf + self.right_const.gloss() + ' '
         if self.is_primitive():
-            pf = pf + self.LF_features()
+            pf = pf + LF_features(self)
         return pf
 
     def get_cats_string(self):

@@ -49,7 +49,9 @@ class AgreementReconstruction:
         if goal2:
             for phi in phi_features:
                 if {f for f in head.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}:
-                   self.value(head, goal2, phi, 'edge')
+                    self.value(head, goal2, phi, 'edge')
+            if not {'D', 'φ', 'n'} & head.features and 'pro' not in goal2.features:
+                head.features.add('BLOCK_NS')
 
     def Agree_1_from_sister(self, head):
         #===========================================================
@@ -63,9 +65,9 @@ class AgreementReconstruction:
         #===========================================================
 
     def Agree_1_from_edge(self, head):
+        edge = [const for const in head.edge()] + [head.extract_pro()]
         return next(((const.head(), sorted({f for f in const.head().features if phi(f) and valued(f)}))
-                     for const in head.working_memory_edge()
-                     if self.agreement_condition(head, const)), (None, {}))
+                     for const in edge if const and self.agreement_condition(head, const)), (None, {}))
 
     def agreement_condition(self, head, const):
         if {'D', 'φ'} & const.head().features:
@@ -81,7 +83,6 @@ class AgreementReconstruction:
                         return True
 
     def value(self, h, goal, phi, location):
-        log(f'Value {h.illustrate()} by {goal.illustrate()} with {phi} from {location}...')
         if h.get_valued_features() and self.valuation_blocked(h, phi):
             log(f'Valuation of {h} was blocked for {phi}...')
             h.features.add(mark_bad(phi))

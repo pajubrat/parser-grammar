@@ -1,4 +1,6 @@
 from support import log
+from itertools import takewhile
+
 def must_be_valued(phi_set):
     return {phi for phi in phi_set if semantically_relevant_phi(phi)}
 def semantically_relevant_phi(phi):
@@ -26,10 +28,10 @@ class LF_Recovery:
         self.interpretation_failed = False
 
     def perform_LF_recovery(self, head, semantic_interpretation_dict):
-        unvalued = must_be_valued(head.get_unvalued_features())
+        unvalued = must_be_valued({f for f in head.features if f[:4] == 'PHI:' and f[-1] == '_'})
         if unvalued:
             self.LF_recovery_result = None
-            log(f'\n\t\t\t\"{head.illustrate()}\" with {sorted(unvalued)} was associated at LF with ')
+            log(f'\n\t\t\t\"{head.illustrate()}\" with {sorted(unvalued)} was associated with ')
             list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
                 # This data structure will hold the results, which will be stored into semantic interpretation
@@ -43,30 +45,27 @@ class LF_Recovery:
             semantic_interpretation_dict['Recovery'].append(self.LF_recovery_result)
 
     # Definition for LF-recovery
-    def LF_recovery(self, head, unvalued_phi):
-        def add_complement_to_list_of_antecedents(head, list_of_antecedents):
-            if head.is_primitive() and head.is_left() and head.sister().is_complex():
-                if self.is_possible_antecedent(head.sister(), head):
-                    list_of_antecedents.append(head.sister())
+    def LF_recovery(self, probe, unvalued_phi):
 
         list_of_antecedents = []
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
-            add_complement_to_list_of_antecedents(head, list_of_antecedents)
-            # ----------------------- minimal upstream search -----------------------------------------------#
-            for node in head.working_memory_path():
-                if self.recovery_termination(node):
-                    break
-                if self.is_possible_antecedent(node, head):
-                    list_of_antecedents.append(node)
-            # ------------------------------------------------------------------------------------------------#
-            return list_of_antecedents
+
+            # Complement antecedent (if available)
+            if probe.is_primitive() and probe.is_left() and probe.sister().is_complex():
+                if self.is_possible_antecedent(probe.sister(), probe):
+                    return [probe.sister()]
+
+            # Antecedent from upward path
+            working_memory = list(takewhile(self.recovery_termination, probe.working_memory_path()))
+            antecedent = next((const for const in working_memory if self.is_possible_antecedent(const, probe)), None)
+            return [antecedent]
 
         if 'PHI:DET:_' in unvalued_phi:
             # ---------------- minimal search----------------------------------------------------
-            for const in head.working_memory_path():
-                if self.special_local_edge_antecedent_rule(const, head, list_of_antecedents):
+            for const in probe.working_memory_path():
+                if self.special_local_edge_antecedent_rule(const, probe, list_of_antecedents):
                     break
-                elif self.is_possible_antecedent(const, head):
+                elif self.is_possible_antecedent(const, probe):
                     list_of_antecedents.append(const)
             #--------------------------------------------------------------------------------
 
@@ -74,7 +73,7 @@ class LF_Recovery:
             log(f'No antecedent found, LF-object crashes...')
             # I do not know how to model LF recovery for φ-heads, hence this problem does not
             # crash the derivation
-            if 'φ' not in head.features:
+            if 'φ' not in probe.features:
                 self.interpretation_failed = True
             return []
         return list_of_antecedents
@@ -82,7 +81,7 @@ class LF_Recovery:
     # Definition for the special rule
     # This handles the exceptional antecedent properties of local D-antecedent specifier
     def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
-        if ps.working_memory_edge() and const == next((const for const in ps.working_memory_edge()), None):
+        if ps.edge() and const == next((const for const in ps.edge()), None):
             if 'D' not in const.head().features:
                 self.LF_recovery_results.add(f'{ps}(generic)')
                 list_of_antecedents.append(const)
@@ -96,6 +95,7 @@ class LF_Recovery:
         for F in antecedent.head().get_valued_features():
             for G in get_semantically_relevant_phi(head):
                 check(F, G, unchecked)
+        log(f'!{antecedent.head().get_valued_features()}')
         if not unchecked:
             return True     # If the antecedent can value all unvalued features of the head, it is accepted.
 
@@ -173,7 +173,7 @@ class LF_Recovery:
 
     # Definition for LF-recovery termination
     def recovery_termination(self, node):
-        return 'SEM:external' in node.features
+        return not 'SEM:external' in node.features
 
     def report_to_log(self, ps, list_of_antecedents, unvalued_phi_features):
         s = ''

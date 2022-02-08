@@ -79,21 +79,25 @@ class SurfaceConditions:
                 return True
 
     def clitic_is_licensed(self, test_constituent, direction, host):
-        """
-        Tests if {test constituent} can be incorporated into {direction} into {host} by using lexical features.
-        """
-        for feature_set in test_constituent.incorporation_features(direction):
+        def incorporation_features(node, direction):
+            if direction == 'left':
+                return {frozenset(feature[5:].split(",")) for feature in node.head().features if feature[:5] == 'LEFT:'}
+            if direction == 'right':
+                return {frozenset(feature[6:].split(",")) for feature in node.head().features if
+                        feature[:6] == 'RIGHT:'}
+
+        for feature_set in incorporation_features(test_constituent, direction):
             if host.head().features_of_complex_word() & feature_set == feature_set:
                 if self.climbing_condition(test_constituent, direction, host):
                     return True
 
     def climbing_condition(self, test_constituent, direction, host):
-        """
-        Definition for the clitic climbing condition.
-        """
+        def is_quasi_auxiliary(host):
+            return 'SEM:internal' in host.features_of_complex_word() and \
+                   'ASP' not in host.features_of_complex_word()
         if direction=='left':
             if self.clitic_is_between_two_verbs(test_constituent, host):
-                if not host.is_quasi_auxiliary():
+                if not is_quasi_auxiliary(host):
                     return False
         return True
 
