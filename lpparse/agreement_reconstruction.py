@@ -65,9 +65,9 @@ class AgreementReconstruction:
         #===========================================================
 
     def Agree_1_from_edge(self, head):
-        edge = [const for const in head.edge()] + [head.extract_pro()]
         return next(((const.head(), sorted({f for f in const.head().features if phi(f) and valued(f)}))
-                     for const in edge if const and self.agreement_condition(head, const)), (None, {}))
+                     for const in [const for const in head.edge()] + [head.extract_pro()] if
+                     const and self.agreement_condition(head, const)), (None, {}))
 
     def agreement_condition(self, head, const):
         if {'D', 'φ'} & const.head().features:

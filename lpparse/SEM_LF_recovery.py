@@ -34,7 +34,6 @@ class LF_Recovery:
             log(f'\n\t\t\t\"{head.illustrate()}\" with {sorted(unvalued)} was associated with ')
             list_of_antecedents = self.LF_recovery(head, unvalued)
             if list_of_antecedents:
-                # This data structure will hold the results, which will be stored into semantic interpretation
                 self.LF_recovery_result = self.interpret_antecedent(head, list_of_antecedents[0])
                 self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, list_of_antecedents[0].head()))
             else:
@@ -58,7 +57,8 @@ class LF_Recovery:
             # Antecedent from upward path
             working_memory = list(takewhile(self.recovery_termination, probe.working_memory_path()))
             antecedent = next((const for const in working_memory if self.is_possible_antecedent(const, probe)), None)
-            return [antecedent]
+            if antecedent:
+                return [antecedent]
 
         if 'PHI:DET:_' in unvalued_phi:
             # ---------------- minimal search----------------------------------------------------
@@ -70,16 +70,15 @@ class LF_Recovery:
             #--------------------------------------------------------------------------------
 
         if not list_of_antecedents:
-            log(f'No antecedent found, LF-object crashes...')
+            log(f'nothing. ')
             # I do not know how to model LF recovery for φ-heads, hence this problem does not
             # crash the derivation
             if 'φ' not in probe.features:
                 self.interpretation_failed = True
-            return []
+                return None
+
         return list_of_antecedents
 
-    # Definition for the special rule
-    # This handles the exceptional antecedent properties of local D-antecedent specifier
     def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
         if ps.edge() and const == next((const for const in ps.edge()), None):
             if 'D' not in const.head().features:
@@ -91,30 +90,29 @@ class LF_Recovery:
             return True
 
     def is_possible_antecedent(self, antecedent, head):
-        unchecked = get_semantically_relevant_phi(head)  # Gets the relevant phi-features from the head (NUM, PER, DET)
+        unchecked = get_semantically_relevant_phi(head)
         for F in antecedent.head().get_valued_features():
             for G in get_semantically_relevant_phi(head):
                 check(F, G, unchecked)
-        log(f'!{antecedent.head().get_valued_features()}')
         if not unchecked:
-            return True     # If the antecedent can value all unvalued features of the head, it is accepted.
+            return True
 
     # Definition for failed LF-recovery outcome
     def interpret_no_antecedent(self, ps, features):
         if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
             if ps.sister() and ps.sister().is_complex() and \
                     ('CAT:INF' in ps.sister().head().features or 'CAT:FIN' in ps.sister().head().features):
-                return 'clausal argument'
+                return 'Clausal argument'
             else:
-                return 'generic'
+                return 'Generic'
         elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
-            return 'discourse antecedent'
+            return 'Discourse antecedent'
         else:
             if 'T/fin' in ps.head().features or 'Neg/fin' in ps.head().features:    # Finnish EPP ad hoc rule
                 self.interpretation_failed = True                                   # I still don't fully understand this
-                return 'uninterpretable'
+                return 'Uninterpretable'
             else:
-                return 'generic'
+                return 'Generic'
 
     # Provides a more fine-grained interpretation for antecedents
     def interpret_antecedent(self, trigger, antecedent):
