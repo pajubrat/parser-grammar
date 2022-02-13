@@ -1,5 +1,9 @@
 from support import log
 
+
+def is_unvalued(head):
+    return {f for f in head.features if f[:4] == 'PHI:' and f[-1] == '_'}
+
 def get_type(f):
     return f.split(':')[1]
 def get_value(f):
@@ -22,7 +26,7 @@ class AgreementReconstruction:
     def reconstruct(self, ps):
         self.brain_model.narrow_semantics.predicate_argument_dependencies = []
         # ---------------------------- minimal search ----------------------------------------#
-        for node in ps.minimal_search():
+        for node in ps:
             if node.left_const and node.left_const.is_primitive() and 'VAL' in node.left_const.features:
                 self.Agree_1(node.left_const)
         # ------------------------------------------------------------------------------------#
@@ -41,7 +45,7 @@ class AgreementReconstruction:
                     head.features.add('BLOCK_NS')
                 for phi in phi_features:
                     self.value(head, goal1, phi, 'sister')
-                if not head.is_unvalued():
+                if not is_unvalued(head):
                     return
 
         # 1. Acquisition of phi-features from the edge
@@ -55,7 +59,7 @@ class AgreementReconstruction:
 
     def Agree_1_from_sister(self, head):
         #===========================================================
-        for node in head.sister().minimal_search():
+        for node in head.sister():
             if node.left_const:
                 if node.left_const.is_complex() and self.agreement_condition(head, node.left_const):
                     return node.left_const.head(),sorted({f for f in node.left_const.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})

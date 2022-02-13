@@ -8,7 +8,7 @@ class FeatureProcessing():
     # Definition for feature inheritance mechanism
     def disambiguate(self, ps):
         # --------------------------- minimal search ---------------------------------------------#
-        for node in ps.minimal_search():
+        for node in ps:
             if node.left_const and node.left_const.is_primitive():
                 if '?ARG' in node.left_const.features:
                     log(f'Solving feature ambiguities for \"{node.left_const}\"...')

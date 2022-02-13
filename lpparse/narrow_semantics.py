@@ -169,8 +169,7 @@ class NarrowSemantics:
             return True
 
     def is_concept(self, head):
-        lst = head.get_affix_list()
-        for m in lst:
+        for m in head.get_affix_list():
             if self.expresses_concept(m):
                 return True
 

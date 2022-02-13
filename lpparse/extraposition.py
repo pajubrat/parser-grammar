@@ -9,14 +9,14 @@ class Extraposition:
 
     def reconstruct(self, ps):
         if ps.top().contains_feature('FIN') or 'D' in ps.top().features:
-            head_violating_selection = next((node.right_const.head() for node in ps.minimal_search() if self.selection_violation_at(node)), None)
+            head_violating_selection = next((node.right_const.head() for node in ps if self.selection_violation_at(node)), None)
             if head_violating_selection:
                 self.try_extraposition(head_violating_selection)
 
     def selection_violation_at(self, node):
         if node.is_complex():
             if node.left_const.complements_not_licensed() & node.right_const.head().features or \
-                    node.left_const.get_mandatory_comps() and not (node.left_const.get_mandatory_comps() & node.right_const.head().features):
+                    self.get_mandatory_comps(node.left_const) and not (self.get_mandatory_comps(node.left_const) & node.right_const.head().features):
                 return True
 
     def try_extraposition(self, unselected_head):
@@ -46,5 +46,8 @@ class Extraposition:
             if node.mother.sister().is_primitive():
                 if node.features & node.mother.sister().complements_not_licensed():
                     return True
-                if node.mother.sister().get_mandatory_comps() and not (node.features & node.mother.sister().get_mandatory_comps()):
+                if self.get_mandatory_comps(node.mother.sister()) and not (node.features & self.get_mandatory_comps(node.mother.sister())):
                     return True
+
+    def get_mandatory_comps(self, node):
+        return  {f[6:] for f in node.features if f[:5] == '!COMP' and f != '!COMP:*'}

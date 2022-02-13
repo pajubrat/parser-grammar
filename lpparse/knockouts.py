@@ -7,7 +7,7 @@ def knockout_working_memory(funct):
             if self.brain_model.local_file_system.settings['working_memory']:
                 return funct(self, ps)
         log(f'Working memory system is off-line...')
-        return [N for N in ps.geometrical_minimal_search()], [] # Return all nodes inside working memory
+        return [N for N in self.geometrical_minimal_search(ps)], [] # Return all nodes inside working memory
     return knockout
 
 def knockout_filter(funct):

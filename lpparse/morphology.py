@@ -82,10 +82,12 @@ class Morphology:
         return lexical_item
 
     def Aux_inversion(self, lexical_item):
+        def verbal(head):
+            return {'V', 'v', 'T', 'T/fin', 'NEG', 'FORCE'} & head.head().features
         set_logging(False)
         decomposition = self.extract_morphemes(lexical_item.morphology)
         m = self.lexicon.lexical_retrieval(decomposition[0])[0]
-        if m.verbal() and 'LANG:FI' in m.features:
+        if verbal(m) and 'LANG:FI' in m.features:
             self.insert_C_head(lexical_item)
         set_logging(True)
         return lexical_item

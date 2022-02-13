@@ -118,13 +118,16 @@ class Discourse:
         return (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
     def out_of_proposition_scope(self, ps, scope):
+        def finite(head):
+            return 'FIN' in head.head().features or 'C/fin' in head.head().features or 'T/fin' in head.head().features
+
         if ps.left_const.is_primitive():
-            if ps.left_const.finite():
+            if finite(ps.left_const):
                 if {'T/fin'} & ps.left_const.features:
                     if ps != scope:
                         return True
         if ps.right_const.is_primitive():
-            if ps.right_const.finite():
+            if finite(ps.right_const):
                 if ps != scope:
                     return True
 

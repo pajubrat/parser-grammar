@@ -94,14 +94,10 @@ class PhraseStructure:
                     return self.geometrical_sister()
                 else:
                     return None
-        return None
 
     def selected_sister(self):
-        if self.sister():
-            if self.sister().is_complex():
-                return self.sister()
-            if self.sister().is_primitive() and self.sister().is_right():
-                return self.sister()
+        if self.sister() and (self.sister().is_complex() or (self.sister().is_primitive() and self.sister().is_right())):
+            return self.sister()
 
     def bottom(self):
         while not self.is_primitive():
@@ -109,23 +105,17 @@ class PhraseStructure:
         return self
 
     def top(self):
-        node = self
-        while node.mother:
-            node = node.mother
-        return node
-
-    def root(self):
-        return not self.mother
+        while self.mother:
+            self = self.mother
+        return self
 
     #
     # Definitions for heads and terminal elements
     #
-
     def get_id(self):
         for f in self.features:
             if f[0] == '#':
                 return f
-        return None
 
     def has_affix(self):
         return self.right_const and not self.left_const
@@ -136,12 +126,6 @@ class PhraseStructure:
     def EPP(self):
         return 'SPEC:*' in self.features or '!SPEC:*' in self.features
 
-    def finite(self):
-        return 'FIN' in self.head().features or 'C/fin' in self.head().features or 'T/fin' in self.head().features
-
-    def verbal(self):
-        return {'V', 'v', 'T', 'T/fin', 'NEG', 'FORCE'} & self.head().features
-
     def get_affix_list(self):
         lst = [self]
         while self.right_const and not self.left_const:
@@ -151,9 +135,6 @@ class PhraseStructure:
 
     def features_of_complex_word(h):
         return {feature for affix in h.get_affix_list() for feature in affix.features}
-
-    def is_unvalued(self):
-        return {f for f in self.features if f[:4] == 'PHI:' and f[-1] == '_'}
 
     def get_valued_features(self):
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
@@ -176,17 +157,14 @@ class PhraseStructure:
     def is_clitic(self):
         if 'CL' in self.features:
             return True
-        if 'CL' in self.head().features:
-            if not self.head().has_affix() and self.head().internal:
-                return True
+        if 'CL' in self.head().features and not self.head().has_affix() and self.head().internal:
+            return True
 
     def bottom_affix(self):
-        if not self.is_primitive:
-            return None
-        ps_ = self
-        while ps_.right_const:
-            ps_ = ps_.right_const
-        return ps_
+        if self.is_primitive:
+            while self.right_const:
+                self = self.right_const
+            return self
 
     #
     # Structure building
@@ -269,7 +247,6 @@ class PhraseStructure:
     #
     # Properties relating lexical features with phrase structure geometry
     #
-
     def complement_match(self, const):
         return self.licensed_complements() & const.head().features
 
@@ -282,21 +259,20 @@ class PhraseStructure:
     def complements_not_licensed(self):
         return {f[6:] for f in self.features if f[:5] == '-COMP'}
 
-    def get_mandatory_comps(self):
-        return  {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
-
     def probe(self, feature, G):
-        def intervention(node, feature):
-            feature.issubset(node.inside_path().features)
+        def inside_path(node):
+            if node.is_primitive():
+                return node
+            return node.left_const.head()
 
         if self.sister():
             # --------------------- minimal search --------------------------------
             for node in self.sister():
-                if G in node.inside_path().features:
+                if G in inside_path(node).features:
                     return True
                 if G[:4] == 'TAIL' and G[5:] in node.left_const.scan_criterial_features():
                     return True
-                if intervention(node, feature):
+                if feature.issubset(inside_path(node).features):
                     break
             # -------------------------------------------------------------------------
 
@@ -308,7 +284,6 @@ class PhraseStructure:
         if self.is_primitive:
             if feature in self.features:
                 return True
-        return False
 
     def find_occurrences_from(self, ps):
         def find_(identity, ps):
@@ -330,20 +305,7 @@ class PhraseStructure:
         return self.merge_1(incoming_constituent)
 
     #
-    # Minimal search
-    #
-    def minimal_search(self):
-        return [node for node in self]      # See __getitem__ function for current implementation
-
-    def geometrical_minimal_search(self):
-        search_list = [self]
-        while self.is_complex() and self.right_const:
-            search_list.append(self.right_const)
-            self = self.right_const
-        return search_list
-
-    #
-    # Minimal search
+    # Working memory related operations
     #
     def __getitem__(self, position):
         iter_ = 0
@@ -364,15 +326,6 @@ class PhraseStructure:
             iter_ = iter_ + 1
         return ps_
 
-    def inside_path(self):
-        if self.is_primitive():
-            return self
-        if self.is_complex:
-            return self.left_const.head()
-
-    #
-    # Upward looking dependencies
-    #
     def working_memory_path(probe):
         node = probe.mother
         working_memory = []
@@ -411,7 +364,7 @@ class PhraseStructure:
         tail_sets = self.get_tail_sets()
         tests_checked = set()
         for tail_set in tail_sets:
-            # Strong tail condition (inside same projection)
+            # Strong tail condition (inside same projection, applies to right adjuncts like ADV and PPs)
             if self.strong_tail_condition(tail_set):
                 tests_checked.add(tail_set)
             # Weak tail condition (upward path)
@@ -494,7 +447,6 @@ class PhraseStructure:
                             # If there is a feature type T with two difference values, we have feature conflict
                             if f_type == g_type and f_value != g_value:
                                 return True
-            return False
 
         #-----------------Main function--------------------------
         if 'ARG' in self.features:
@@ -511,8 +463,6 @@ class PhraseStructure:
                 pro.features.add('pro')
                 if not phi_conflict(pro):
                     return pro
-        return None
-
     #
     # Support functions
     #

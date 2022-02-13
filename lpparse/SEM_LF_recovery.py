@@ -13,6 +13,7 @@ def check(F, G, unchecked):
     else:
         if valued_check(F, G):
             unchecked.discard(G)
+    return unchecked
 def valued_check(F, G):
     if is_unvalued(G):
         return residuum_identity(F, G)
@@ -30,54 +31,42 @@ class LF_Recovery:
     def perform_LF_recovery(self, head, semantic_interpretation_dict):
         unvalued = must_be_valued({f for f in head.features if f[:4] == 'PHI:' and f[-1] == '_'})
         if unvalued:
-            self.LF_recovery_result = None
-            log(f'\n\t\t\t\"{head.illustrate()}\" with {sorted(unvalued)} was associated with ')
-            list_of_antecedents = self.LF_recovery(head, unvalued)
-            if list_of_antecedents:
-                self.LF_recovery_result = self.interpret_antecedent(head, list_of_antecedents[0])
-                self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, list_of_antecedents[0].head()))
-            else:
-                self.LF_recovery_result = f'{head}(' + self.interpret_no_antecedent(head, unvalued) + ')'
-            self.report_to_log(head, list_of_antecedents, unvalued)
-            self.brain_model.consume_resources("LF recovery")
-            self.brain_model.consume_resources("Phi")
-            semantic_interpretation_dict['Recovery'].append(self.LF_recovery_result)
+            self.interpret_antecedent(self.LF_recovery(head, unvalued), head, unvalued, semantic_interpretation_dict)
 
-    # Definition for LF-recovery
     def LF_recovery(self, probe, unvalued_phi):
-
+        log(f'\n\t\t\t\"{probe.illustrate()}\" with {sorted(unvalued_phi)} was associated with ')
         list_of_antecedents = []
+        working_memory = []
+
+        # Standard control
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
-
-            # Complement antecedent (if available)
             if probe.is_primitive() and probe.is_left() and probe.sister().is_complex():
-                if self.is_possible_antecedent(probe.sister(), probe):
-                    return [probe.sister()]
-
-            # Antecedent from upward path
-            working_memory = list(takewhile(self.recovery_termination, probe.working_memory_path()))
+                working_memory.append(probe.sister())
+            working_memory.extend(list(takewhile(self.recovery_termination, probe.working_memory_path())))
             antecedent = next((const for const in working_memory if self.is_possible_antecedent(const, probe)), None)
             if antecedent:
                 return [antecedent]
 
+        # Finite control in Finnish
         if 'PHI:DET:_' in unvalued_phi:
             # ---------------- minimal search----------------------------------------------------
             for const in probe.working_memory_path():
                 if self.special_local_edge_antecedent_rule(const, probe, list_of_antecedents):
                     break
-                elif self.is_possible_antecedent(const, probe):
+                if self.is_possible_antecedent(const, probe):
                     list_of_antecedents.append(const)
-            #--------------------------------------------------------------------------------
+            #------------------------------------------------------------------------------------
 
+        # One exception due to the lack of analysis of φ control
         if not list_of_antecedents:
             log(f'nothing. ')
-            # I do not know how to model LF recovery for φ-heads, hence this problem does not
-            # crash the derivation
             if 'φ' not in probe.features:
                 self.interpretation_failed = True
                 return None
-
         return list_of_antecedents
+
+    def recovery_termination(self, node):
+        return not 'SEM:external' in node.features
 
     def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
         if ps.edge() and const == next((const for const in ps.edge()), None):
@@ -93,31 +82,23 @@ class LF_Recovery:
         unchecked = get_semantically_relevant_phi(head)
         for F in antecedent.head().get_valued_features():
             for G in get_semantically_relevant_phi(head):
-                check(F, G, unchecked)
+                unchecked = check(F, G, unchecked)
         if not unchecked:
             return True
 
-    # Definition for failed LF-recovery outcome
-    def interpret_no_antecedent(self, ps, features):
-        if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
-            if ps.sister() and ps.sister().is_complex() and \
-                    ('CAT:INF' in ps.sister().head().features or 'CAT:FIN' in ps.sister().head().features):
-                return 'Clausal argument'
-            else:
-                return 'Generic'
-        elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
-            return 'Discourse antecedent'
+    def interpret_antecedent(self, list_of_antecedents, probe, unvalued, semantic_interpretation_dict):
+        self.LF_recovery_results = set()
+        if list_of_antecedents:
+            self.LF_recovery_results.add(self.antecedent_exists(probe, list_of_antecedents[0]))
+            self.brain_model.narrow_semantics.predicate_argument_dependencies.append((probe, list_of_antecedents[0].head()))
+            semantic_interpretation_dict['Recovery'].append(self.LF_recovery_results)
         else:
-            if 'T/fin' in ps.head().features or 'Neg/fin' in ps.head().features:    # Finnish EPP ad hoc rule
-                self.interpretation_failed = True                                   # I still don't fully understand this
-                return 'Uninterpretable'
-            else:
-                return 'Generic'
+            self.LF_recovery_results.add(f'{probe}(' + self.antecedent_does_not_exist(probe, unvalued) + ')')
+        self.report_to_log(probe, list_of_antecedents, unvalued)
+        self.brain_model.consume_resources("LF recovery")
+        self.brain_model.consume_resources("Phi")
 
-    # Provides a more fine-grained interpretation for antecedents
-    def interpret_antecedent(self, trigger, antecedent):
-
-        # Internal function
+    def antecedent_exists(self, trigger, antecedent):
         def get_valued_phi_set(h):
             phi_set = set()
             if h.is_complex():
@@ -142,9 +123,7 @@ class LF_Recovery:
                 phi_set.add(f'generic')
             return phi_set
 
-        # Main function
         antecedent_head = antecedent.head()
-        #[H XP]
         if trigger.sister() and trigger.is_left() and antecedent == trigger.sister() and antecedent.is_right():
             prefix = 'Patient of'
         else:
@@ -169,9 +148,22 @@ class LF_Recovery:
 
         return prefix + f' {trigger.illustrate()}({arg_str})'
 
-    # Definition for LF-recovery termination
-    def recovery_termination(self, node):
-        return not 'SEM:external' in node.features
+
+    def antecedent_does_not_exist(self, ps, features):
+        if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
+            if ps.sister() and ps.sister().is_complex() and \
+                    ('CAT:INF' in ps.sister().head().features or 'CAT:FIN' in ps.sister().head().features):
+                return 'Clausal argument'
+            else:
+                return 'Generic'
+        elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:
+            return 'Discourse antecedent'
+        else:
+            if 'T/fin' in ps.head().features or 'Neg/fin' in ps.head().features:    # Finnish EPP ad hoc rule
+                self.interpretation_failed = True                                   # I still don't fully understand this
+                return 'Uninterpretable'
+            else:
+                return 'Generic'
 
     def report_to_log(self, ps, list_of_antecedents, unvalued_phi_features):
         s = ''
@@ -187,6 +179,5 @@ class LF_Recovery:
             if s:
                 log(s)
         else:
-            log(f'({self.interpret_no_antecedent(ps, unvalued_phi_features)})')
+            log(f'({self.antecedent_does_not_exist(ps, unvalued_phi_features)})')
         log('. ')
-

@@ -11,37 +11,30 @@ class FloaterMovement():
         self.lexical_access.load_lexicon(self.controlling_parser_process)
         self.adjunct_constructor = AdjunctConstructor(self.controlling_parser_process)
 
-    # Definition for floater reconstruction
     def reconstruct(self, ps):
-        # ------------------------------------ minimal search ----------------------------------------#
-        for node in ps.top().minimal_search():
-            floater = self.detect_floater(node)
-            if floater:
-                log(f'Dropping {floater}...')
-                self.drop_floater(floater, ps)
-        # -------------------------------------------------------------------------------------------#
-        return ps.top()  # Return top, because it is possible that an adjunct expands the structure
+        for node in ps.top():
+            self.drop_floater(self.get_floater_if_present(node))
+        return ps.top()
 
-    def detect_floater(self, ps):
+    def get_floater_if_present(self, ps):
         if self.detect_left_floater(ps):
             floater = ps.left_const
 
-            # Case (2): XP fails the tail test
+            # Case (1): XP fails the tail test
             if not floater.head().external_tail_head_test():
                 log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
                 return floater.head().max()
 
-            # Case (3): XP sits in an EPP position;
+            # Case (2): XP sits in an EPP position;
             if floater.mother and floater.mother.head().EPP() and 'FIN' in floater.mother.head().features:
                 log(floater.illustrate() + ' is in an EPP SPEC position...')
                 return floater.head().max()
 
-            # Case (4): XP sits in a specifier position that does not exist
+            # Case (3): XP sits in a specifier position that does not exist
             if floater.mother and '-SPEC:*' in floater.mother.head().features and floater == next((const for const in floater.mother.head().edge()), None):
                 log(floater.illustrate() + ' is in an specifier position that cannot be projected...')
                 return floater.head().max()
 
-        # Right floater
         if self.detect_right_floater(ps):
             floater = ps.right_const.head()
             if not floater.external_tail_head_test():
@@ -65,35 +58,38 @@ class FloaterMovement():
     def detect_right_floater(self, ps):
         return ps.is_complex() and \
                 ps.right_const.head().get_tail_sets() and \
-                'adjoinable' in ps.right_const.head().features and \
+                not ps.right_const.find_me_elsewhere and \
+               'adjoinable' in ps.right_const.head().features and \
                 '-adjoinable' not in ps.right_const.head().features and \
                 '-float' not in ps.right_const.head().features
 
-    def drop_floater(self, floater, ps):
-        if floater.is_left():
-            starting_point_head = floater.container_head()
-        else:
-            starting_point_head = None
-        floater_copy = floater.copy()
-        local_tense_edge = self.local_tense_edge(floater)
-        # ------------------------------------ minimal search ------------------------------------#
-        for node in local_tense_edge.minimal_search():
-            if self.termination_condition(node, floater, local_tense_edge):
-                break
-            self.merge_floater(node, floater_copy) # Right adjuncts to right, left adjuncts to left
-            self.adjunct_constructor.externalize_structure(floater_copy) # Externalize for testing
-            if self.is_drop_position(floater_copy, starting_point_head):
-                if not floater.adjunct:
-                    self.adjunct_constructor.externalize_structure(floater)
-                dropped_floater = floater.copy_from_memory_buffer(self.babtize())
-                self.merge_floater(node, dropped_floater)
-                self.controlling_parser_process.consume_resources("Move Adjunct")
-                self.controlling_parser_process.consume_resources("Move Phrase", f'{dropped_floater.illustrate()}')
-                self.controlling_parser_process.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point_head)
+    def drop_floater(self, floater):
+        if floater:
+            log(f'Reconstructing {floater}...')
+            if floater.is_left():
+                starting_point_head = floater.container_head()
+            else:
+                starting_point_head = None
+            floater_copy = floater.copy()
+            local_tense_edge = self.local_tense_edge(floater)
+            # ------------------------------------ minimal search ------------------------------------#
+            for node in local_tense_edge:
+                if self.termination_condition(node, floater, local_tense_edge):
+                    break
+                self.merge_floater(node, floater_copy) # Right adjuncts to right, left adjuncts to left
+                self.adjunct_constructor.externalize_structure(floater_copy) # Externalize for testing
+                if self.is_drop_position(floater_copy, starting_point_head):
+                    if not floater.adjunct:
+                        self.adjunct_constructor.externalize_structure(floater)
+                    dropped_floater = floater.copy_from_memory_buffer(self.babtize())
+                    self.merge_floater(node, dropped_floater)
+                    self.controlling_parser_process.consume_resources("Move Adjunct")
+                    self.controlling_parser_process.consume_resources("Move Phrase", f'{dropped_floater.illustrate()}')
+                    self.controlling_parser_process.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point_head)
+                    floater_copy.remove()
+                    return
                 floater_copy.remove()
-                return
-            floater_copy.remove()
-        # ---------------------------------------------------------------------------------------#
+            # ---------------------------------------------------------------------------------------#
 
     def merge_floater(self, node, floater_copy):
         if self.is_right_adjunct(floater_copy):
