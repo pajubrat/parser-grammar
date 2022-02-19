@@ -50,7 +50,7 @@ class Discourse:
         if d_features:
             log('\n\t\t\tInterpreting ')
         for f in sorted(d_features):
-            log(f'[{f}] at {ps}...')
+            log(f'[{f}] at {ps.illustrate()}...')
             result = self.interpret_discourse_feature(f, ps)
             if not result:
                 return []

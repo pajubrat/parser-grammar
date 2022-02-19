@@ -37,47 +37,47 @@ class OperatorVariableModule:
         return f'{head.max().illustrate()}'
 
     def bind_operator(self, head, semantic_interpretation):
-        if 'C' in head.features or 'C/fin' in head.features or 'OP:_' in head.features:
-            return
-        for operator_feature in head.features:
-            if self.is_operator_feature(operator_feature):
+        if not self.scope_marker(head):
+            for operator_feature in [feature for feature in head.features if self.is_operator_feature(feature)]:
                 scope_marker_lst = self.bind_to_propositional_scope_marker(head, operator_feature)
-                if scope_marker_lst == [None] or scope_marker_lst == []:
-                    log(f'\n\t\t\t{head.illustrate()} with feature {operator_feature} is not properly bound by an operator. ')
-                    self.interpretation_failed = True
-                    break
-                else:
-                    scope_marker = scope_marker_lst[0]
-                    semantic_interpretation['Operator bindings'].append((f'{head.illustrate()}', f'{scope_marker}[{operator_feature}]'))
+                if len(scope_marker_lst) > 0:
+                    semantic_interpretation['Operator bindings'].append((f'{head.illustrate()}', f'by {scope_marker_lst[0]}[{operator_feature}]'))
                     self.interpret_operator_at_lexical_item(operator_feature, head, semantic_interpretation)
                     idx, space = self.narrow_semantics.get_referential_index_tuples(head, 'OP')
                     if idx:
-                        self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = scope_marker
+                        self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = scope_marker_lst[0]
+                else:
+                    log(f'\n\t\t\t!! {head.illustrate()} with {operator_feature} is not bound by an operator. ')
+                    self.interpretation_failed = True
+                    break
+
+    def scope_marker(self, head):
+        return 'C' in head.features or 'C/fin'  in head.features or  'OP:_' in head.features
 
     def interpret_operator_at_lexical_item(self, operator_feature, head, semantic_interpretation):
-        log(f'\n\t\t\tInterpreting {operator_feature} at ')
-        heads = head.find_occurrences_from(self.narrow_semantics.access_interface['spellout structure'])
-        if heads:
-            head = heads[0]     # We consider only the first occurrence (there should be only one)
-            log(f'{head}. ')
-            if self.narrow_semantics.is_concept(head):
-                if 'Predicates targeted by operator interpretation' not in semantic_interpretation:
-                    semantic_interpretation['Predicates targeted by operator interpretation'] = [f'[{operator_feature}] at {head}']
-                else:
-                    semantic_interpretation['Predicates targeted by operator interpretation'].append(f'[{operator_feature}] at {head}')
+        log(f'\n\t\t\tInterpreting [{operator_feature}] at ')
+        head_chain = head.find_occurrences_from(self.narrow_semantics.access_interface['spellout structure'])
+        log(f'{head_chain[0].illustrate()}. ')
+        if self.narrow_semantics.is_concept(head_chain[0]):
+            log('Interpretation successful.')
+            if 'Predicates targeted by operator interpretation' not in semantic_interpretation:
+                semantic_interpretation['Predicates targeted by operator interpretation'] = [f'[{operator_feature}] at {head_chain[0]}']
             else:
-                log(f'Not enough lexical content. ')
+                semantic_interpretation['Predicates targeted by operator interpretation'].append(f'[{operator_feature}] at {head_chain[0]}')
         else:
-            log(f'{head}, predicate not found from spellout structure.')    # This should never occur
+            log('Not enough lexical content. ')
 
-        if 'FIN' in head.features: #Reflexive operator interpretation
+        if 'FIN' in head_chain[0].features: #Reflexive operator interpretation
             log('Verum focus interpretation. ')
             semantic_interpretation['Verum focus interpretation'] = True
 
     def bind_to_propositional_scope_marker(self, head, operator_feature):
         local_mandatory_binder = next((node for node in head.working_memory_path() if {operator_feature, 'FIN'}.issubset(node.features)), None)
-        if not local_mandatory_binder and 'OVERT_SCOPE' not in head.features:
-            return [node for node in head.working_memory_path() if {'T', 'FIN'}.issubset(node.features) or {'C', 'FIN'}.issubset(node.features)]
+        if not local_mandatory_binder:
+            if 'OVERT_SCOPE' not in head.features:
+                return [node for node in head.working_memory_path() if {'T', 'FIN'}.issubset(node.features) or {'C', 'FIN'}.issubset(node.features)]
+            else:
+                return []
         return [local_mandatory_binder]
 
     def is_operator(self, head):
