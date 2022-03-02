@@ -58,7 +58,7 @@ class AdjunctConstructor:
         return ps.head().mother and ps.head().mother.head() == ps.head()
 
     def adjunct_in_correct_position(self, ps):
-        return ps.head().external_tail_head_test()
+        return ps.head().tail_test()
 
     def externalize_with_complement(self, ps):
         self.externalize(ps.head().mother)

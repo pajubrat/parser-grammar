@@ -1,16 +1,15 @@
 # This class defines basic linguistic competence, i.e. phrase structures and operations on phrase structure
-from support import log
-from LF import LF
 from collections import namedtuple
 from itertools import takewhile
 
 major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 
+Result = namedtuple('Result', 'match_occurred outcome')
+
 #class phrase structure
 class PhraseStructure:
     resources = {"Asymmetric Merge": {"ms":0, "n":0},
-                 "Sink": {"ms":0, "n":0},
-                 "External Tail Test": {"ms":0, "n":0}
+                 "Sink": {"ms":0, "n":0}
                  }
 
     def __init__(self, left_constituent=None, right_constituent=None):
@@ -360,71 +359,30 @@ class PhraseStructure:
     #
     # Tail processing
     #
-    def external_tail_head_test(self):
-        self.consume_resources("External Tail Test")
-        tail_sets = self.get_tail_sets()
-        tests_checked = set()
-        for tail_set in tail_sets:
-            # Strong tail condition (inside same projection, applies to right adjuncts like ADV and PPs)
-            if self.strong_tail_condition(tail_set):
-                tests_checked.add(tail_set)
-            # Weak tail condition (upward path)
-            if self.weak_tail_condition(tail_set):
-                tests_checked.add(tail_set)
-        return tests_checked & tail_sets == tail_sets
-
-    def internal_tail_head_test(self):
-        tail_sets = self.get_tail_sets()
-        tests_checked = set()
-        if tail_sets:
-            for tail_set in tail_sets:
-                if self.weak_tail_condition(tail_set, 'internal'):
-                    tests_checked.add(tail_set)
-            return tests_checked & tail_sets == tail_sets
-        return True
+    def tail_test(self, type='check all'):
+        return self.get_tail_sets() == {tail_set for tail_set in self.get_tail_sets() if (type == 'weak test' or self.strong_tail_condition(tail_set)) or self.weak_tail_condition(tail_set, type)}
 
     def strong_tail_condition(self, tail_set):
-        if self.precondition_for_strong_condition():
-            if self.max() and self.max().mother:
-                if self.max().mother.head().match_features(tail_set) == 'complete match':
-                    return True
-                if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set) == 'complete match':
-                    return True
+        if 'A' not in self.head().features:  # Adjectives cannot satisfy strong condition
+            if 'φ' not in self.head().features or \
+                    not self.max().is_left() or \
+                    'GEN' in self.head().features:  # Arguments, with few exceptions, cannot satisfy strong condition
+                return self.max().container_head() and \
+                       (self.max().container_head().match_features(tail_set).outcome or
+                        self.max().mother.sister() and
+                        self.max().mother.sister().match_features(tail_set).outcome)
 
-    def precondition_for_strong_condition(self):
-        if 'A' in self.head().features:
-            return False
-        if 'φ' in self.head().features and self.max().is_left() and 'GEN' not in self.head().features:
-            return False
-        return True
-
-    def weak_tail_condition(self, tail_set, variation='external'):
-        if  'ADV' not in self.features:
-            for const in self.working_memory_path():
-                if const.is_primitive():
-                    for m in const.get_affix_list():
-                        test = m.match_features(tail_set)
-                        if test == 'complete match':
-                            return True
-                        elif test == 'partial match':
-                            return False
-                        elif test == 'negative match':
-                            return False
-        if variation=='external' and not self.negative_features(tail_set):
-            return False    # Strong test: reject (tail set must be checked)
-        else:
-            return True     # Weak test: accept still (only look for violations)
+    def weak_tail_condition(self, tail_set, type):
+        if 'ADV' not in self.features:  # Adverbials cannot satisfy weak condition
+            affixes_in_path = (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list())
+            return next((affix.match_features(tail_set).outcome for affix in affixes_in_path if affix.match_features(tail_set).match_occurred), type == 'weak test' or self.negative_features(tail_set))
 
     def match_features(self, features_to_check):
-        positive_features = self.positive_features(features_to_check)   # All features  except negative features
-        negative_features = self.negative_features(features_to_check)   # Features with *
-        if negative_features & self.features:
-            return 'negative match'
-        elif positive_features:
-            if positive_features & self.features == positive_features:
-                return 'complete match'
-            elif positive_features & self.features:
-                return 'partial match'
+        if self.negative_features(features_to_check) & self.features:
+            return Result(True, False)  # Match occurred, outcome negative
+        if self.positive_features(features_to_check) & self.features:
+            return Result(True, self.positive_features(features_to_check).issubset(self.features))  # Match occurred, outcome negative (partial match)/positive (full match)
+        return Result(False, None)  # No match occurred, no outcome (usually evaluates into False)
 
     def negative_features(self, features_to_check):
         return {feature[1:] for feature in features_to_check if feature[0] == '*'}

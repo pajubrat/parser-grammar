@@ -98,7 +98,7 @@ class PlausibilityMetrics:
             if self.word_tail_set:
                 test_word = self.word.copy()
                 site.merge_1(test_word, 'right')
-                if not test_word.internal_tail_head_test():
+                if not test_word.tail_test('weak test'):
                     test_word.remove()
                     return True
                 test_word.remove()
@@ -142,7 +142,7 @@ class PlausibilityMetrics:
             site.merge_1(w_copy, 'right')
             # If external tail head test fails and the site itself does not match with the tail features,
             # the negative adverbial test is true
-            if not w_copy.external_tail_head_test():
+            if not w_copy.tail_test():
                 if not self.sister_tail_head_test(site, w_copy):
                     w_copy.remove()
                     return True
@@ -158,7 +158,7 @@ class PlausibilityMetrics:
         if 'ADV' in self.word.features and self.word_tail_set and site.is_complex():
             w_copy = self.word.copy()
             site.merge_1(w_copy, 'right')
-            if w_copy.external_tail_head_test() or self.sister_tail_head_test(site, w_copy):
+            if w_copy.tail_test() or self.sister_tail_head_test(site, w_copy):
                 w_copy.remove()
                 return True
             w_copy.remove()

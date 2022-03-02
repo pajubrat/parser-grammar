@@ -102,7 +102,7 @@ class LF:
         target_node.merge_1(constituent_from_MB.copy(), direction)                      # Test merge
         if direction == 'right':                                                        # Presupposition
             target_node.geometrical_sister().adjunct = True
-        result = target_node.geometrical_sister().head().external_tail_head_test()      # Test
+        result = target_node.geometrical_sister().head().tail_test()      # Test
         target_node.geometrical_sister().remove()                                       # Remove trial unit
         return result
 
@@ -206,7 +206,7 @@ class LF:
                     self.probe_goal_test_result = False
 
     def internal_tail_test(self, h):
-        if 'φ' in h.features and not h.internal_tail_head_test():
+        if 'φ' in h.features and not h.tail_test('weak test'):
             log(f'.{h}({h.mother}) failed internal tail test...')
             self.test_problem_report.append(f'{h} failed internal tail test')
             self.tail_head_test_result = False
@@ -391,7 +391,7 @@ class LF:
             if not goal.right_const.find_me_elsewhere and not self.final_tail_check(goal.right_const):
                 return False
         if goal.is_primitive():
-            if goal.get_tail_sets() and not goal.external_tail_head_test():
+            if goal.get_tail_sets() and not goal.tail_test():
                 log(f'{goal.illustrate()} failed final tail test...')
                 self.test_problem_report.append(f'{goal.illustrate()} failed final tail test')
                 return False

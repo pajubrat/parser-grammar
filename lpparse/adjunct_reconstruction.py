@@ -21,7 +21,7 @@ class FloaterMovement():
             floater = ps.left_const
 
             # Case (1): XP fails the tail test
-            if not floater.head().external_tail_head_test():
+            if not floater.head().tail_test():
                 log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
                 return floater.head().max()
 
@@ -37,7 +37,7 @@ class FloaterMovement():
 
         if self.detect_right_floater(ps):
             floater = ps.right_const.head()
-            if not floater.external_tail_head_test():
+            if not floater.tail_test():
                 log(floater.illustrate() + ' failed to tail ' + illu(floater.head().get_tail_sets()) + '...')
                 if 'ADV' not in floater.features and floater.top().contains_feature('FIN'):
                     self.adjunct_constructor.externalize_structure(floater)
@@ -120,10 +120,10 @@ class FloaterMovement():
                 self.conditions_for_left_adjuncts(floater_copy, starting_point_head)
 
     def conditions_for_right_adjuncts(self, floater):
-        return floater.head().external_tail_head_test() and self.is_right_adjunct(floater)
+        return floater.head().tail_test() and self.is_right_adjunct(floater)
 
     def conditions_for_left_adjuncts(self, floater, starting_point_head):
-        return floater.head().external_tail_head_test() and self.license_floater_position(floater, starting_point_head)
+        return floater.head().tail_test() and self.license_floater_position(floater, starting_point_head)
 
     def license_floater_position(self, floater, starting_point_head):
         if not floater.container_head():

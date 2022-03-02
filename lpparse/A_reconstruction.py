@@ -41,7 +41,7 @@ class A_reconstruction:
     def ad_hoc_genitive_filter(self, node, moved_constituent):
         if 'GEN' in moved_constituent.head().features:
             node.merge_1(moved_constituent, 'left')
-            if not moved_constituent.external_tail_head_test():
+            if not moved_constituent.tail_test():
                 moved_constituent.remove()
                 return True
             moved_constituent.remove()
