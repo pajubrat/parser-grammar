@@ -164,7 +164,7 @@ class QuantifiersNumeralsDenotations:
 
     def project(self, ps, idx):
         self.inventory[idx] = self.apply_criteria(self.narrow_semantics.default_criteria(ps, 'QND'), ps)
-        log(f'Project ({idx}, QND) for {ps.head().illustrate()}P ({ps.head().max().illustrate()})...')
+        log(f'{ps.head().max().illustrate()}: ({idx}, QND)')
 
     def apply_criteria(self, criteria, ps):
         for feature in list(self.get_R_features(ps)):
@@ -174,7 +174,6 @@ class QuantifiersNumeralsDenotations:
             elif feature_type in self.criteria_function:
                 self.criteria_function[feature_type](criteria, ps, feature)
         criteria['Semantic type'] = {'§Thing'}
-
         return criteria
 
     def criterion_proper_name(self, criteria, ps, feature):

@@ -98,7 +98,7 @@ class PlausibilityMetrics:
             if self.word_tail_set:
                 test_word = self.word.copy()
                 site.merge_1(test_word, 'right')
-                if not test_word.tail_test('weak test'):
+                if not test_word.internal_tail_test():
                     test_word.remove()
                     return True
                 test_word.remove()
@@ -319,27 +319,19 @@ class PlausibilityMetrics:
     def left_branch_filter(self, N):
         set_logging(False)
         dropped, output_from_interfaces = self.brain_model.transfer_to_LF(N.copy())
-        lf = self.brain_model.LF.LF_legibility_test(dropped)
+        self.brain_model.LF.LF_legibility_test(dropped)
         set_logging(True)
-        if self.left_branch_rejection(lf, dropped):
+        if self.left_branch_rejection(dropped):
             return True
 
-    def left_branch_rejection(self, lf_test, dropped):
-        def report(boolean):
-            if boolean:
-                return 'Passed'
-            else:
-                return 'Failed'
-
+    def left_branch_rejection(self, dropped):
         set_logging(True)
-        test_failed = not (lf_test.probe_goal_test_result and
-                lf_test.head_integrity_test_result and
-                lf_test.selection_test_result and
-                lf_test.wrong_complement_test_result and
-                lf_test.semantic_test_result)
-        if test_failed:
-            log(f'Left branch {dropped} failed because ' + ','.join(self.brain_model.LF.test_problem_report) + '. ')
-        return test_failed
+        test_bank = self.brain_model.LF.LF_legibility_tests
+        if not (test_bank['probe_goal_test']['success'] and
+                test_bank['head_integrity_test']['success'] and
+                test_bank['selection_tests']['success'] and
+                test_bank['semantic_complement_test']['success']):
+            return True
 
     def does_not_accept_any_complementizers(self, N):
         if N.is_primitive() and '-COMP:*' in N.features:

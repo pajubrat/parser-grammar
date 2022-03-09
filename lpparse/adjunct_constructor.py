@@ -6,11 +6,8 @@ class AdjunctConstructor:
 
     def externalize_structure(self, ps):
         if ps.head().is_adjoinable():
-            # Simple externalization: we change the constituency relation to that of adjunction.
             if ps.is_complex():
                 self.externalize(ps)
-            # Complex externalization: primitive lexical item is externalized and must take some structure with it.
-            # This is the nontrivial part.
             elif ps.is_primitive():
                 if self.adjunct_in_correct_position(ps):
                     self.externalize_with_extra_structure_rule_1(ps) # Simple rule
@@ -88,11 +85,14 @@ class AdjunctConstructor:
                 ps.head().features.add('ADV')
 
     def transfer_adjunct(self, ps):
-        original_mother = ps.mother
-        ps.detach()
+        original_mother, is_right = ps.detach()
         disable_logging()
         ps, output_from_interfaces = self.controlling_parser_process.transfer_to_LF(ps)
         enable_logging()
         if original_mother:
             ps.mother = original_mother
+            if is_right:
+                ps.mother.right_const = ps
+            else:
+                ps.mother.left_const = ps
         return ps

@@ -46,6 +46,7 @@ class Discourse:
             self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
     def interpret_discourse_features(self, ps, semantic_interpretation):
+        self.refresh_inventory(ps)
         d_features = self.get_discourse_features(ps.features)
         if d_features:
             log('\n\t\t\tInterpreting ')
@@ -55,15 +56,9 @@ class Discourse:
             if not result:
                 return []
             semantic_interpretation['DIS-features'].append(result)
-        self.refresh_inventory(ps)
-        log('Done. ')
+
 
     def interpret_discourse_feature(self, f, ps):
-        """
-        This operation must be rethought completely. I think we should not do this in connection with compositional
-        global interpretation but instead in the same way we calculate the information structure. We will also need
-        to think about how to represent propositions semantically.
-        """
         return f, f'{ps.illustrate()}'
 
     def calculate_information_structure(self, root_node, semantic_interpretation):
@@ -71,7 +66,6 @@ class Discourse:
             log('\n\t\tCalculating information structure...')
             semantic_interpretation['Information structure'] = self.create_topic_gradient(self.arguments_of_proposition(root_node))
             self.compute_speaker_attitude(root_node)
-            log('Done. ')
 
     def create_topic_gradient(self, constituents_in_information_structure):
 
@@ -79,11 +73,14 @@ class Discourse:
         topic_lst = []
         marked_focus_lst = []
 
-        topic_gradient = {key: val for key, val in sorted(self.records_of_attentional_processing.items(), key = lambda ele: ele[0])}
+        topic_gradient = {key: val for key, val in sorted(self.records_of_attentional_processing.items(), key=lambda ele: ele[0])}
+
+        for key, val in self.records_of_attentional_processing.items():
+            log(f'{key},{val}')
 
         for key in topic_gradient:
-            if topic_gradient[key]['Constituent'] in constituents_in_information_structure:
 
+            if topic_gradient[key]['Constituent'] in constituents_in_information_structure:
                 if 'Marked gradient' in topic_gradient[key]:
                     if topic_gradient[key]['Marked gradient'] == 'High':
                         marked_topic_lst.append(topic_gradient[key]['Name'])
@@ -91,7 +88,6 @@ class Discourse:
                         marked_focus_lst.append(topic_gradient[key]['Name'])
                 else:
                     topic_lst.append(topic_gradient[key]['Name'])
-
         return {'Marked topics': marked_topic_lst, 'Neutral gradient': topic_lst, 'Marked focus': marked_focus_lst}
 
     def arguments_of_proposition(self, ps):
@@ -115,6 +111,8 @@ class Discourse:
         return arguments
 
     def is_relevant_for_information_structure(self, ps):
+        if 'T/fin' in ps.head().features:
+            return False
         return (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
     def out_of_proposition_scope(self, ps, scope):
@@ -140,7 +138,6 @@ class Discourse:
         return {f for f in ps.head().features if f[:5] == 'FORCE'}
 
     def compute_speaker_attitude(self, ps):
-
         if self.get_force_features(ps.head()):
             for count, force_feature in enumerate(self.get_force_features(ps.head())):
                 if force_feature in self.attitudes:
@@ -153,8 +150,7 @@ class Discourse:
             return
 
         idx = self.get_inventory_index(ps.head())
-        feature_vector_set = {const for const in ps.head().working_memory_path() if const.is_primitive()}
-        if starting_point_head in feature_vector_set:
+        if starting_point_head in {const for const in ps.head().working_memory_path() if const.is_primitive()}:
             direction = 'High'
             log(f'Topicalization...')
         else:
@@ -163,10 +159,7 @@ class Discourse:
         self.records_of_attentional_processing[idx]['Marked gradient'] = direction
 
     def allocate_attention(self, head):
-        if self.included_in_attention_mechanism(head):  # This is arbitrary and only limits the scope of the current theory
+        if {'D', 'φ', 'P'} & head.features:  # This is arbitrary and only limits the scope of the current theory
             idx = self.consume_index()
             head.features.add('*IDX:'+str(idx))
             self.records_of_attentional_processing[str(idx)] = {'Order':idx, 'Name': f'{head}'}
-
-    def included_in_attention_mechanism(self, head):
-        return {'D', 'φ', 'P'} & head.features

@@ -33,19 +33,17 @@ class GlobalCognition:
         self.inventory[str(idx)].update(criteria)
 
     def project(self, ps, semantic_object):
-        log(f'Project ')
         criteria_for_new_global_object = self.narrow_semantics.default_criteria(ps, 'GLOBAL')
         semantic_object['Semantic space'] = 'GLOBAL'
         criteria_for_new_global_object.update(semantic_object)
         criteria_for_new_global_object.pop('Phi-set', None)
         string = self.create_object(criteria_for_new_global_object)
-        log(f'for {ps.head().illustrate()}P...')
         return string
 
     def create_object(self, criteria):
         idx = self.consume_index()
         self.inventory[str(idx)] = criteria
-        log(f'({idx}, GLOBAL) ')
+        log(f'({idx}, GLOBAL)')
         return str(idx)
 
     def get_compatible_objects(self, filter_criteria):

@@ -107,13 +107,13 @@ class NarrowSemantics:
                                                                   'Marked focus': None}}
 
     def postsyntactic_semantic_interpretation(self, root_node):
-        log(f'\n\t\tInterpreting {root_node.head()}P globally:')
+        log(f'\n\t\tInterpreting {root_node.head()}P globally: ')
         self.reset_for_new_interpretation()
-        self.interpret_(root_node) # Recursive interpretation for each lexical item
+        self.interpret_(root_node)
         self.quantifiers_numerals_denotations_module.reconstruct_assignments(root_node)
         self.pragmatic_pathway.calculate_information_structure(root_node, self.semantic_interpretation)
         self.document_interface_content_for_user()
-        return self.semantic_interpretation_failed
+        return not self.semantic_interpretation_failed
 
     def interpret_(self, ps):
         if ps.is_primitive():
@@ -140,17 +140,15 @@ class NarrowSemantics:
         if preconditions(ps):
             for space in self.semantic_spaces:
                 if self.query[space]['Accept'](ps.head()):
-                    log(f'\n\t\t\tNarrow semantics for {ps.head().illustrate()}P: ')
                     idx = str(self.global_cognition.consume_index())
                     ps.head().features.add('IDX:' + idx + ',' + space)
+                    log('\n\t\t\tProject ')
                     self.query[space]['Project'](ps, idx)
                     self.query[space]['Denotation'] = self.query['GLOBAL']['Project'](ps, self.transform_for_global(self.query[space]['Get'](idx)))
 
                     # For heuristic purposes so that referential arguments are recognized by BT
                     if space == 'QND':
                         ps.head().features.add('REF')
-
-        # ps.features.discard('BLOCK_NS')
 
     def transform_for_global(self, semantic_object):
         filtered_object = semantic_object.copy()

@@ -28,7 +28,7 @@ class PhrasalMovement:
         # ---------------------------------------------------------------------------------------------#
 
     def intervention(self, node):
-        return node.left_const and 'φ' in node.left_const.features and self.brain_model.syntactic_working_memory
+        return (node.left_const and 'φ' in node.left_const.features and self.brain_model.syntactic_working_memory) or node.find_me_elsewhere
 
     def pull_into_working_memory(self, head):
         for i, spec in enumerate(head.edge()):
@@ -79,7 +79,7 @@ class PhrasalMovement:
             return node.left_const
 
     def Abar_movable(self, spec, head):
-        return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec) or 'A/inf' in spec.head().features
+        return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
 
     def specifier_phrase_must_have_supporting_head(self, spec, head):
         if spec.is_primitive():

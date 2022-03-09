@@ -28,7 +28,7 @@ class OperatorVariableModule:
     def project(self, ps, idx):
         self.inventory[idx] = self.narrow_semantics.default_criteria(ps, 'OP')
         self.inventory[idx]['Semantic type'].add('§Operator')
-        log(f'Project ({idx}, OP) for {ps.head().illustrate()}P ({ps.head().max().illustrate()})...')
+        log(f'{ps.max().illustrate()}: ({idx}, OP)')
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)

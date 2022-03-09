@@ -26,7 +26,7 @@ class PredicatesRelationsEvents:
 
     def project(self, ps, idx):
         self.inventory[idx] = self.narrow_semantics.default_criteria(ps, 'PRE')
-        log(f'Project ({idx}, PRE) for {ps}...')
+        log(f'predicate \'{ps.illustrate()}\': ({idx}, PRE)')
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
