@@ -265,7 +265,7 @@ class LinearPhaseParser:
         log('\t\tTransferring to LF...')
         ps_, self.narrow_semantics.access_interface = self.transfer_to_LF(ps)
         log('\t\tDone.\n')
-        log('\t\tLF-legibility check...')
+        log('\t\tLF-legibility check: ')
         if not self.LF.LF_legibility_test(ps) or not self.LF.final_tail_check(ps) or not self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path()
             log('\n\t\tLF-legibility failed.\n')
@@ -334,7 +334,7 @@ class LinearPhaseParser:
         if self.check_transfer_presuppositions(ps):
             ps, output_from_interfaces = self.transfer.transfer(ps, log_embedding)
         else:
-            log(f'Transfer of {ps} terminated due to input condition violation...')
+            log(f'Transfer of {ps} terminated due to input condition violation. ')
         if original_mother:
             ps.mother = original_mother
         return ps, output_from_interfaces
@@ -367,5 +367,4 @@ class LinearPhaseParser:
         def detached(ps):
             ps.mother = None
             return ps
-        self.LF.LF_legibility_test(detached(ps.copy()))
-        return self.LF.all_pass()
+        return self.LF.LF_legibility_test(detached(ps.copy()))

@@ -8,43 +8,39 @@ def for_lf_interface(features):
 class LF:
     def __init__(self, controlling_parsing_process):
         self.controlling_parsing_process = controlling_parsing_process
-        self.LF_legibility_tests = {'head_integrity_test': {'run': self.head_integrity_test, 'success': True},
-                                    'probe_goal_test': {'run': self.probe_goal_test, 'success': True},
-                                    'internal_tail_test': {'run': self.internal_tail_test, 'success': True},
-                                    'double_spec_filter': {'run': self.double_spec_filter, 'success': True},
-                                    'semantic_complement_test': {'run': self.semantic_complement_test, 'success': True},
-                                    'selection_tests': {'run': self.selection_tests, 'success': True},
-                                    'criterial_feature_test': {'run': self.criterial_feature_test, 'success': True},
-                                    'projection_principle': {'run': self.projection_principle, 'success': True},
-                                    'adjunct_interpretation_test': {'run': self.adjunct_interpretation_test, 'success': True}
-                                    }
+        self.LF_legibility_tests = [self.selection_tests,
+                                    self.projection_principle,
+                                    self.head_integrity_test,
+                                    self.probe_goal_test,
+                                    self.semantic_complement_test,
+                                    self.internal_tail_test,
+                                    self.double_spec_filter,
+                                    self.criterial_feature_test,
+                                    self.adjunct_interpretation_test]
 
-    def LF_legibility_test(self, ps):
+        self.active_test_battery = self.LF_legibility_tests
+
+    def LF_legibility_test(self, ps, special_test_battery=None):
         log('LF-interface test: ')
-        for test in self.LF_legibility_tests.values():
-            test['success'] = True
+        if special_test_battery:
+            self.active_test_battery = special_test_battery
+        else:
+            self.active_test_battery = self.LF_legibility_tests
         self.controlling_parsing_process.consume_resources("LF test", f'{ps}')
-        return self.test_recursively(ps)
+        return self.pass_LF_legibility(ps)
 
-    def test_recursively(self, ps):
+    def pass_LF_legibility(self, ps):
         if ps.is_primitive():
-            for test in self.LF_legibility_tests.keys():
-                if not self.LF_legibility_tests[test]['run'](ps):
-                    self.LF_legibility_tests[test]['success'] = False
-                    return False  # Exit recursion when one test fails
+            for test in self.active_test_battery:
+                if not test(ps):
+                    return False
         else:
             if not ps.left_const.find_me_elsewhere:
-                if not self.test_recursively(ps.left_const):
-                    return False  # Exit recursion when one test fails
+                if not self.pass_LF_legibility(ps.left_const):
+                    return False
             if not ps.right_const.find_me_elsewhere:
-                if not self.test_recursively(ps.right_const):
-                    return False  # Exit recursion when one test fails
-        return True
-
-    def all_pass(self):
-        for test in self.LF_legibility_tests.keys():
-            if not self.LF_legibility_tests[test]['success']:
-                return False
+                if not self.pass_LF_legibility(ps.right_const):
+                    return False
         return True
 
     def adjunct_interpretation_test(self, h):
@@ -52,13 +48,13 @@ class LF:
                 h.max() and h.max().adjunct and \
                 h.max().is_right() and \
                 h.max().mother and 'φ' in h.max().mother.head().features:
-            log(f'.{h.mother.mother} in uninterpretable because it is inside DP...')
+            log(f'.{h.mother.mother} in uninterpretable because it is inside DP. ')
             return False
         return True
 
     def head_integrity_test(self, h):
         if not h.features or 'CAT:?' in h.features or '?' in h.features:
-            log('Head without lexical category was detected...')
+            log('Head without lexical category. ')
             return False
         return True
 
@@ -66,17 +62,17 @@ class LF:
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(h.features, f[7:]):
-                    log(f'{h.illustrate()} probing for {f[7:]} failed...')
+                    log(f'{h.illustrate()} probing for {f[7:]} failed. ')
                     return False
             if f.startswith('-PROBE:'):
                 if h.probe(set(h.features), f[7:]):
-                    log(f'{h} failed negative probe-test for [{f[7:]}]...')
+                    log(f'{h} failed negative probe-test for [{f[7:]}]. ')
                     return False
         return True
 
     def internal_tail_test(self, h):
         if 'φ' in h.features and not h.internal_tail_test():
-            log(f'.{h}({h.mother}) failed internal tail test...')
+            log(f'.{h}({h.mother}) failed internal tail test. ')
             return False
         return True
 
@@ -86,21 +82,21 @@ class LF:
                      not spec.adjunct and
                      'φ' in spec.head().features and
                      not spec.find_me_elsewhere]) > 1:
-                log(f'{h} has double specifiers...')
+                log(f'{h} has double specifiers. ')
                 return False
         return True
 
     def semantic_complement_test(self, head):
         if head.proper_complement():
             if not LF.semantic_match(head, head.proper_complement()):
-                log(f'{head} fails semantic match with {head.proper_complement()}...')
+                log(f'{head} fails semantic match with {head.proper_complement()}. ')
                 return False
         return True
 
     def criterial_feature_test(self, h):
         if 'φ' in h.features and 'REL' not in h.features and h.mother:
             if h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
-                log(f'Criterial legibility failed for {h}...')
+                log(f'Criterial legibility failed for {h}. ')
                 return False
         return True
 
@@ -169,7 +165,7 @@ class LF:
                 for spec_ in h.edge():
                     if spec_ and f[6:] in spec_.head().features:
                         if not spec_.adjunct:
-                            log(f'{h} has unacceptable specifier {spec_}...')
+                            log(f'{h} has unacceptable specifier {spec_}. ')
                             return False
 
             # No specifier of any kind allowed (e.g., English P).
@@ -177,7 +173,7 @@ class LF:
             if f == '-SPEC:*':
                 if local_edge:
                     if not local_edge.adjunct and 'pro' not in local_edge.head().features:
-                        log(f'-EPP head {h} has a specifier {local_edge}...')
+                        log(f'-EPP head {h} has a specifier {local_edge}. ')
                         return False
 
             # No edge (second Merge-1) allowed (i.,.e V2 phenomenon, Finnish that)
@@ -186,53 +182,53 @@ class LF:
                 return False
 
             if f == '!1EDGE' and len(h.edge()) > 1:
-                log(f'{h} is only allowed to host one edge element...')
+                log(f'{h} is only allowed to host one edge element. ')
                 return False
 
             # Obligatory complement
             if f.startswith('!COMP:') and not f == '!COMP:*':
                 if not h.selected_sister():
-                    log(f'.{h} misses complement {f[6:]}...')
+                    log(f'.{h} misses complement {f[6:]}. ')
                     return False
                 else:
                     if f[6:] not in h.selected_sister().head().features:
-                        log(f'{h} misses complement {f[6:]}...')
+                        log(f'{h} misses complement {f[6:]}. ')
                         return False
 
             # Complement restriction
             if f.startswith('-COMP:'):
                 if h.is_left() and comp and f[6:] in comp.head().features:
-                    log(f'{h} has wrong complement {comp}...')
+                    log(f'{h} has wrong complement {comp}. ')
                     return False
 
             if f == '-COMP:*':
                 if h.is_left() and comp:
-                    log(f'{h} does not accept complements...')
+                    log(f'{h} does not accept complements. ')
                     return False
 
             # !COMP:* heads must have complements (=functional head)
             if f == '!COMP:*':
                 if not h.selected_sister():
-                    log(f'{h} lacks complement...')
+                    log(f'{h} lacks complement. ')
                     return False
 
             # !SPEC:* heads require a specifier
             if f == '!SPEC:*':
                 if not local_edge:
-                    log(f'EPP-head {h} lacks specifier...')
+                    log(f'EPP-head {h} lacks specifier. ')
                     return False
 
             # !SPEC:F, head requires specifier with label F
             # This feature must be satisfied by local edge (local specifier)
             if f.startswith('!SPEC:') and not f == '!SPEC:*':
                 if not local_edge:
-                    log(f'EPP-head {h} lacks specifier {f[6:]} that it requires...')
+                    log(f'EPP-head {h} lacks specifier {f[6:]} that it requires. ')
                     return False
                 else:
                     if f[6:] in local_edge.head().features or f[7:] in local_edge.head().features:
                         pass
                     else:
-                        log(f'An EPP-head {h} has wrong specifier {local_edge}...')
+                        log(f'An EPP-head {h} has wrong specifier {local_edge}. ')
                         return False
         return True
 
@@ -244,7 +240,7 @@ class LF:
                 return False
         if goal.is_primitive():
             if goal.get_tail_sets() and not goal.tail_test():
-                log(f'{goal.illustrate()} failed final tail test...')
+                log(f'{goal.illustrate()} failed final tail test. ')
                 return False
         return True
 
@@ -269,9 +265,9 @@ class LF:
                 if head.complement_match(const):
                     old_complement = head.proper_complement()
                     head.proper_complement().merge_1(const.copy_from_memory_buffer(self.controlling_parsing_process.babtize()), 'left')
-                    log(f'Merging {const} to Comp{head.get_cats_string()}P due to complement mismatch...')
+                    log(f'Merging {const} to Comp{head.get_cats_string()}P due to complement mismatch. ')
                     if 'adjoinable' in old_complement.head().features:
-                        log(f'Externalizing {old_complement}...')
+                        log(f'Externalizing {old_complement}. ')
                         old_complement.adjunct = True
                     self.controlling_parsing_process.syntactic_working_memory.remove(const)
                     self.controlling_parsing_process.consume_resources("Move Phrase", f'{const}')

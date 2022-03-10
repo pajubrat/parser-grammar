@@ -17,6 +17,10 @@ class PlausibilityMetrics:
         self.not_word_specs = None
         self.rare_word_specs = None
         self.word_tail_set = None
+        self.left_branch_filter_test_battery = [self.brain_model.LF.selection_tests,
+                                                self.brain_model.LF.semantic_complement_test,
+                                                self.brain_model.LF.probe_goal_test,
+                                                self.brain_model.LF.head_integrity_test]
 
     # Main entry point
     def filter_and_rank(self, ps, w):
@@ -319,19 +323,9 @@ class PlausibilityMetrics:
     def left_branch_filter(self, N):
         set_logging(False)
         dropped, output_from_interfaces = self.brain_model.transfer_to_LF(N.copy())
-        self.brain_model.LF.LF_legibility_test(dropped)
+        left_branch_passes_LF = self.brain_model.LF.LF_legibility_test(dropped, self.left_branch_filter_test_battery)
         set_logging(True)
-        if self.left_branch_rejection(dropped):
-            return True
-
-    def left_branch_rejection(self, dropped):
-        set_logging(True)
-        test_bank = self.brain_model.LF.LF_legibility_tests
-        if not (test_bank['probe_goal_test']['success'] and
-                test_bank['head_integrity_test']['success'] and
-                test_bank['selection_tests']['success'] and
-                test_bank['semantic_complement_test']['success']):
-            return True
+        return not left_branch_passes_LF
 
     def does_not_accept_any_complementizers(self, N):
         if N.is_primitive() and '-COMP:*' in N.features:
