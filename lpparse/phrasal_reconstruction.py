@@ -88,5 +88,5 @@ class PhrasalMovement:
             return True
         if spec.max().adjunct:
             return False
-        if spec.max().container_head() and spec.max() != spec.max().container_head().licensed_phrasal_specifier():
+        if spec.max().container() and spec.max() != spec.max().container().licensed_phrasal_specifier():
             return True

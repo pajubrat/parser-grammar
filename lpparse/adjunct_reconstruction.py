@@ -24,8 +24,8 @@ class FloaterMovement():
             if not H.tail_test():
                 log(ps.left_const.illustrate() + ' failed ' + illu(H.get_tail_sets()) + '...')
                 return ps.left_const
-            if ps.left_const.container_head():
-                J = ps.left_const.container_head()
+            if ps.left_const.container():
+                J = ps.left_const.container()
                 if (J.EPP() and 'FIN' in J.features) or ('-SPEC:*' in J.features and ps.left_const == next((const for const in J.edge()), None)):
                     return ps.left_const
 
@@ -59,7 +59,7 @@ class FloaterMovement():
 
         log(f'Reconstructing {original_floater}...')
         if original_floater.is_left():
-            starting_point_head = original_floater.container_head()
+            starting_point_head = original_floater.container()
         else:
             starting_point_head = None
         test_item = original_floater.copy()
@@ -107,17 +107,17 @@ class FloaterMovement():
         if test_item.head().tail_test():
             if 'GEN' in test_item.head().features:
                 return True
-            if not test_item.container_head():
+            if not test_item.container():
                 return True
-            if test_item.container_head() == starting_point_head:
+            if test_item.container() == starting_point_head:
                 return False
-            if '-SPEC:*' in test_item.container_head().features:
+            if '-SPEC:*' in test_item.container().features:
                 return False
             if 'φ' in test_item.head().features and not self.controlling_parser_process.LF.projection_principle(test_item.head(), 'weak'):
                 return False
-            if not test_item.container_head().selector():
+            if not test_item.container().selector():
                 return True
-            if '-ARG' not in test_item.container_head().selector().features:
+            if '-ARG' not in test_item.container().selector().features:
                 return True
 
     def local_tense_edge(self, ps):

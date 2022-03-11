@@ -13,7 +13,6 @@ class LF:
                                     self.head_integrity_test,
                                     self.probe_goal_test,
                                     self.semantic_complement_test,
-                                    self.internal_tail_test,
                                     self.double_spec_filter,
                                     self.criterial_feature_test,
                                     self.adjunct_interpretation_test]
@@ -103,21 +102,21 @@ class LF:
     def projection_principle(self, h, test_strength='strong'):
         if self.projection_principle_applies_to(h):
             # If XP is inside a projection from head H and H assigns it a thematic role, then return True
-            if h.max().container_head() and self.container_assigns_theta_role_to(h, test_strength):
+            if h.max().container() and self.container_assigns_theta_role_to(h, test_strength):
                 return True
             else:
                 if h.max().contains_feature('adjoinable') and h.max().contains_feature('SEM:nonreferential'):
                     return True
                 if self.identify_thematic_role_by_agreement(h):
                     return True
-            log(f'{h.max().illustrate()} has no θ role inside {h.max().container_head().max().illustrate()}. ')
+            log(f'{h.max().illustrate()} has no θ role inside {h.max().container().max().illustrate()}. ')
             return False
         return True
 
     def identify_thematic_role_by_agreement(self, h):
-        if h.max().container_head():
-            if h.max().container_head().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
-                if not (h.max().container_head().edge() and next((const for const in h.max().container_head().edge()), None).is_complex()):
+        if h.max().container():
+            if h.max().container().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
+                if not (h.max().container().edge() and next((const for const in h.max().container().edge()), None).is_complex()):
                     return True
 
     def projection_principle_applies_to(self, h):
@@ -131,14 +130,14 @@ class LF:
         def get_theta_assigner(node):
             if node.sister() and node.sister().is_primitive():
                 return node.sister()
-            if node.container_head() and node.container_head().edge() and node == \
-                    node.container_head().edge()[0]:
-                return node.container_head()
+            if node.container() and node.container().edge() and node == \
+                    node.container().edge()[0]:
+                return node.container()
 
         # (i) H receives a thematic role if it is selected
         if h.max().sister() and h.max().sister().is_primitive():
             return True
-        container_head = h.max().container_head()
+        container_head = h.max().container()
         # (ii) Thematic assignment to specifier position
         if get_theta_assigner(h.max()) and container_head.licensed_phrasal_specifier() and h.max() == container_head.licensed_phrasal_specifier():
             # (ii-1) H does not receive a thematic role from an EPP head

@@ -22,14 +22,14 @@ TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:T -COMP:T/fin -SPEC:v -VAL ?ARG
 # Finnish infinitivals
 A/inf		:: INF A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:N -SPEC:Neg/fin ?ARG -VAL
 ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* -SPEC:T/fin VAL -adjoinable 
-ESSA/inf 	:: ADV INF ESSA/inf ?VAL ?ARG SPEC:* TAIL:T PF:essa LF:while
-TUA/inf		:: ADV INF TUA/inf VAL TAIL:T ARG !SPEC:* PF:tua LF:after
+ESSA/inf 	:: ADV INF ESSA/inf ?VAL ?ARG SPEC:* TAIL:T,$NO_W PF:essa LF:while
+TUA/inf		:: ADV INF TUA/inf VAL TAIL:T,$NO_W ARG !SPEC:* PF:tua LF:after
 VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N !SPEC:*
-MA/ssa		:: MA/inf MA/ssa ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V -VAL ARG adjoinable 
-MA/tta		:: MA/inf ADV PF:matta LF:without_doing -VAL ARG TAIL:T adjoinable
-MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T COMP:v COMP:V VAL ARG adjoinable
-MA/inf		:: MA/inf ADV PF:maan LF:to_do TAIL:V COMP:v COMP:V VAL ARG
-E/inf		:: PF:en LF:by ADV -ARG -VAL TAIL:T LANG:FI
+MA/ssa		:: MA/inf MA/ssa ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V,$NO_W -VAL ARG adjoinable 
+MA/tta		:: MA/inf ADV PF:matta LF:without_doing -VAL ARG TAIL:T,$NO_W adjoinable
+MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T,$NO_W COMP:v COMP:V VAL ARG adjoinable
+MA/inf		:: MA/inf ADV PF:maan LF:to_do TAIL:V,$NO_W COMP:v COMP:V VAL ARG
+E/inf		:: PF:en LF:by ADV -ARG -VAL TAIL:T,$NO_W LANG:FI
 
 # Copula
 BE-		:: V COPULA PF:BE LF:BE -ARG COMP:φ SPEC:φ !COMP:* COMP:T/prt -COMP:T/fin
@@ -67,10 +67,10 @@ Rexpression	:: inflectional R:NEW:$$$/SUR
 demanaphora	:: inflectional R:OLD:$$$/SUR
 
 # Generic deficient structural cases
-nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL -FLOAT -adjoinable
-acc		:: inflectional ACC TAIL:v
+nom   	:: inflectional NOM TAIL:FIN,!COMP:*,VAL,$NO_S -FLOAT -adjoinable
+acc		:: inflectional ACC TAIL:v,$NO_S
 dat		:: inflectional DAT TAIL:T LANG:IT
-acc_it	:: inflectional TAIL:v LANG:IT
+acc_it	:: inflectional TAIL:v,$NO_S LANG:IT
 
 #Aspect markers
 asp		:: inflectional ASP:BOUNDED

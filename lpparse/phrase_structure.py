@@ -73,7 +73,7 @@ class PhraseStructure:
         if self.sister() and self.sister().is_right():
             return self.sister()
 
-    def container_head(self):
+    def container(self):
         if self.mother:
             return self.mother.head()
 
@@ -358,57 +358,39 @@ class PhraseStructure:
     #
     # Tail processing
     #
-
     def tail_test(self):
         checked = {tail_set for tail_set in self.get_tail_sets() if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
         return self.get_tail_sets() == checked
 
-    def internal_tail_test(self):
-        checked = {tail_set for tail_set in self.get_tail_sets() if self.weak_tail_condition(tail_set, 'internal')}
-        return checked == self.get_tail_sets()
-
     def strong_tail_condition(self, tail_set):
-        if self.precondition_for_strong_condition():
-            if self.max() and self.max().mother:
-                if self.max().mother.head().match_features(tail_set).outcome:
-                    return True
-                if self.max().mother.sister() and self.max().mother.sister().match_features(tail_set).outcome:
-                    return True
+        if '$NO_S' not in tail_set and self.max() and self.max().mother:
+            return self.max().container().match_features(tail_set).outcome or \
+                   (self.max().mother.sister() and self.max().mother.sister().match_features(tail_set).outcome)
 
-    def precondition_for_strong_condition(self):
-        if 'A' in self.head().features:
-            return False
-        if 'φ' in self.head().features and 'GEN' not in self.head().features:
-            return False
-        return True
-
-    def weak_tail_condition(self, tail_set, variation='external'):
-        if 'ADV' not in self.features:
+    def weak_tail_condition(self, tail_set):
+        if '$NO_W' not in tail_set:
             for m in (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list()):
                 test = m.match_features(tail_set)
                 if test.match_occurred:
                     return test.outcome
-        if variation=='external' and not self.negative_features(tail_set):
-            return False    # Strong test: reject (tail set must be checked)
-        else:
-            return True     # Weak test: accept still (only look for violations)
+            if self.negative_features(tail_set):    # Unchecked negative features will pass the test
+                return True
 
     def match_features(self, features_to_check):
         if self.negative_features(features_to_check) & self.features:
             return Result(True, False)  # Match occurred, outcome negative
         if self.positive_features(features_to_check) & self.features:
-            return Result(True, self.positive_features(features_to_check).issubset(
-                self.features))  # Match occurred, outcome negative (partial match)/positive (full match)
+            return Result(True, self.positive_features(features_to_check).issubset(self.features))  # Match occurred, outcome negative (partial match)/positive (full match)
         return Result(False, None)  # No match occurred, no outcome (usually evaluates into False)
 
     def negative_features(self, features_to_check):
         return {feature[1:] for feature in features_to_check if feature[0] == '*'}
 
     def positive_features(self, features_to_check):
-        return {feature for feature in features_to_check if feature[0] != '*'}
+        return {feature for feature in features_to_check if feature[0] != '*' and feature[0] != '$'}
 
     def get_tail_sets(self):
-        return {frozenset(feature[5:].split(',')) for feature in self.head().features if feature[:4] == 'TAIL'}
+        return {frozenset(f[5:].split(',')) for f in self.features if f[:4] == 'TAIL'}
 
     def extract_pro(self):
         def phi_conflict(h):

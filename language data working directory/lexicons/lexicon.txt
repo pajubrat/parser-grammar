@@ -203,10 +203,10 @@ juosten 	:: juokse-#E/inf LANG:FI
 juoksee		:: juokse-#T/fin LANG:FI
 juokse-		:: PF:juokse- LF:run V LANG:FI
 
-kaksi		:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi_1		:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi		:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED ARG -VAL !COMP:* TAIL:*POL:NEG
-kaksi_2		:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED ARG -VAL !COMP:* TAIL:*POL:NEG
+kaksi		:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN,$NO_S PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi_1		:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN,$NO_S PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi		:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED,$NO_S ARG -VAL !COMP:* TAIL:*POL:NEG
+kaksi_2		:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED,$NO_S ARG -VAL !COMP:* TAIL:*POL:NEG
 kahdet		:: kaksi-#pl#[-nom] LANG:FI
 kahden		:: kaksi-#pl#[-gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two NUM LANG:FI
@@ -537,7 +537,7 @@ sta-		:: V PF:sta LF:stay SEM:internal -ASP SPEC:φ COMP:PRG
 
 sta			:: PF:sta LF:of P TAIL:V LANG:FI
 
-sti			:: PF:sti LF:by !COMP:* TAIL:T ADV -ARG LANG:FI
+sti			:: PF:sti LF:by !COMP:* TAIL:T,$NO_W ADV -ARG LANG:FI
 
 sukka		:: sukka-#φ#r_expression#[-nom]
 sukka_0acc	:: sukka-#φ#r_expression#[-0_acc]
@@ -745,13 +745,13 @@ ci-			:: PF:ci LF:there N PHI_N LANG:IT
 # Finnish
 # Morphological cases
 # A. Structural
-[-nom]		:: inflectional NOM TAIL:FIN,ARG,VAL adjoinable
-[-par]   	:: inflectional PAR TAIL:ARG,-VAL adjoinable LANG:FI
+[-nom]		:: inflectional NOM TAIL:FIN,ARG,VAL,$NO_S adjoinable
+[-par]   	:: inflectional PAR TAIL:ARG,-VAL,$NO_S adjoinable LANG:FI
 [-gen]		:: inflectional GEN TAIL:INF,ARG adjoinable
 gen			:: inflectional GEN TAIL:INF,ARG adjoinable
-[-n_acc]	:: inflectional n-ACC TAIL:ARG,ASP:BOUNDED TAIL:PHI TAIL:*POL:NEG adjoinable LANG:FI
-[-t_acc]	:: inflectional t-ACC TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
-[-0_acc]	:: inflectional 0_ACC TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
+[-n_acc]	:: inflectional n-ACC TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
+[-t_acc]	:: inflectional t-ACC TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
+[-0_acc]	:: inflectional 0_ACC TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S TAIL:*PHI,$NO_S adjoinable LANG:FI
 # B. Semantic cases
 [-ess]     	:: inflectional PF:na LF:as TAIL:V LANG:FI #essiivi
 [-trs]		:: inflectional PF:ksi LF:to TAIL:V LANG:FI #translatiivi

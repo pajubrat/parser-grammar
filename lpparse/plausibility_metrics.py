@@ -97,17 +97,6 @@ class PlausibilityMetrics:
                     return True
 
     @knockout_lexical_ranking
-    def negative_tail_test(self, site):
-        if site.is_primitive():
-            if self.word_tail_set:
-                test_word = self.word.copy()
-                site.merge_1(test_word, 'right')
-                if not test_word.internal_tail_test():
-                    test_word.remove()
-                    return True
-                test_word.remove()
-
-    @knockout_lexical_ranking
     def positive_head_comp_selection(self, site):
         if site.is_primitive():
             for m in site.get_affix_list():
@@ -184,9 +173,6 @@ class PlausibilityMetrics:
              'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
                                                  'weight': self.brain_model.local_file_system.settings.get('break_head_comp_relations', -100),
                                                  'log': 'Head-complement word breaking condition'},
-             'negative_tail_test':              {'condition': self.negative_tail_test,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_tail_test', -100),
-                                                 'log': '-Tail'},
              'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
                                                  'weight': self.brain_model.local_file_system.settings.get('positive_head_comp_selection', 100),
                                                  'log': '+Comp selection'},
