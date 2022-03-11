@@ -66,26 +66,12 @@ class LocalFileSystem:
                                          }
 
     def initialize(self, args):
-
-        # Step 0. Initialize dev_logging
         self.initialize_dev_logging()
-
-        # Step 1. Read the study configuration file
         self.read_study_config_file(args)
-
-        # Step 2. Read input parameters into the settings dict and override Step 1 if there is overlap
         self.read_input_arguments_into_settings(args)
-
-        # Step 3. Verify and check that mandatory values exist, if not, populate with default study
         self.verify_and_check_mandatory_values()
-
-        # Step 4. Set up folder locations for various resources
         self.set_folders()
-
-        # Step 5. Set up external resources (lexicons, test corpus, and others)
         self.set_external_resources()
-
-        # Step 7. Initialize the output files
         self.initialize_output_files()
 
     def initialize_output_files(self):
