@@ -60,7 +60,7 @@ class LF_Recovery:
         # One exception due to the lack of analysis of φ control
         if not list_of_antecedents:
             log(f'nothing. ')
-            if 'φ' not in probe.features:
+            if 'φ' not in probe.features and 'T/prt' not in probe.features:
                 self.interpretation_failed = True
                 return None
         return list_of_antecedents

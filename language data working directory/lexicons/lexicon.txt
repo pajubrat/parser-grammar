@@ -136,7 +136,7 @@ halua		:: halua-#v#T LANG:FI
 haluamalla 	:: halua-#v#MA/lla LANG:FI
 haluttiin	:: halua-#impass#T/fin#1p#pl LANG:FI
 haluttu		:: halua-#impass#T/prt LANG:FI
-halua- 		:: PF:haluaa LF:want V ASP:BOUNDED SEM:internal CLASS:TR -SPEC:* COMP:φ COMP:A/inf LANG:FI
+halua- 		:: PF:haluaa LF:want V ASP:BOUNDED SEM:internal CLASS:TR -SPEC:D -SPEC:φ SPEC:A/inf COMP:φ COMP:A/inf LANG:FI
 
 hairitsee 	:: hairitse-#v#T/fin LANG:FI
 hairitse- 	:: PF:hairitsee LF:disturb CLASS:TR V SPEC:φ !COMP:φ -COMP:FIN LANG:FI
@@ -242,7 +242,7 @@ know-		::	PF:know LF:know V CLASS:TR LANG:EN
 
 kohti		:: PF:kohti LF:towards P TAIL:V LANG:FI
 
-koko		:: PF:koko LF:all D LANG:FI TAIL:T COMP:φ adjoinable
+koko		:: PF:koko LF:all D LANG:FI TAIL:T,$NO_S COMP:φ adjoinable
 
 kuka 		:: kuka-#D#wh#sg#3p#def#hum#[-nom] LANG:FI
 KUKA		:: kuka-#D#wh#sg#3p#def#hum#[-nom]#[foc] LANG:FI
@@ -633,7 +633,7 @@ hän			:: han-#D/pro#[-nom]#sg#3p#def#hum
 häntä		:: han-#D/pro#[-par]#sg#3p#def#hum
 hänen		:: han-#D/pro#sg#3p#def#hum#[-gen]
 han-		:: PF:hän LF:s/he N PHI_N LANG:FI
-hanet		:: han-#D/proD#[-t_acc]#sg#3p#def#hum
+hanet		:: han-#D/pro#[-t_acc]#sg#3p#def#hum
 me_FI		:: me-#D/pro#[-nom]#pl#1p#def#hum
 me			:: me-#D/pro#[-nom]#pl#1p#def#hum
 me- 		:: PF:me LF:we N PHI_N LANG:FI

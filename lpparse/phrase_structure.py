@@ -359,8 +359,11 @@ class PhraseStructure:
     # Tail processing
     #
     def tail_test(self):
-        checked = {tail_set for tail_set in self.get_tail_sets() if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
-        return self.get_tail_sets() == checked
+        positive_features = {f for f in self.get_tail_sets() if self.positive_features(f)}
+        negative_features = {f for f in self.get_tail_sets() if self.negative_features(f)}
+        checked_positive_features = {tail_set for tail_set in positive_features if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
+        checked_negative_features = {tail_set for tail_set in negative_features if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
+        return positive_features == checked_positive_features and not checked_negative_features
 
     def strong_tail_condition(self, tail_set):
         if '$NO_S' not in tail_set and self.max() and self.max().mother:
@@ -374,11 +377,11 @@ class PhraseStructure:
                 if test.match_occurred:
                     return test.outcome
             if self.negative_features(tail_set):    # Unchecked negative features will pass the test
-                return True
+                return False
 
     def match_features(self, features_to_check):
         if self.negative_features(features_to_check) & self.features:
-            return Result(True, False)  # Match occurred, outcome negative
+            return Result(True, True)  # Match occurred, outcome positive
         if self.positive_features(features_to_check) & self.features:
             return Result(True, self.positive_features(features_to_check).issubset(self.features))  # Match occurred, outcome negative (partial match)/positive (full match)
         return Result(False, None)  # No match occurred, no outcome (usually evaluates into False)

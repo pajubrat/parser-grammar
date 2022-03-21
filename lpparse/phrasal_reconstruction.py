@@ -1,8 +1,7 @@
-from support import log, set_logging
+from support import log
 from lexical_interface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
 from A_reconstruction import A_reconstruction
-import time
 
 class PhrasalMovement:
     def __init__(self, controlling_parser_process):
@@ -28,12 +27,13 @@ class PhrasalMovement:
         # ---------------------------------------------------------------------------------------------#
 
     def intervention(self, node):
-        return (node.left_const and 'φ' in node.left_const.features and self.brain_model.syntactic_working_memory) or node.find_me_elsewhere
+        return (node.left_const and 'φ' in node.left_const.features and self.brain_model.syntactic_working_memory) or \
+               node.find_me_elsewhere
 
     def pull_into_working_memory(self, head):
         for i, spec in enumerate(head.edge()):
             if not spec.find_me_elsewhere:
-                if self.Abar_movable(spec, head):
+                if self.Abar_movable(spec):
                     self.brain_model.syntactic_working_memory = self.brain_model.syntactic_working_memory + [spec]
                 else:
                     self.A.reconstruct(spec)
@@ -46,10 +46,10 @@ class PhrasalMovement:
 
         if i == 0:
             if not spec.find_me_elsewhere and self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
-                head.features |= self.get_features_for_criterial_head(spec, head)
+                head.features |= self.get_features_for_criterial_head(spec)
                 consider_externalization(head)
         else:
-            if self.specifier_phrase_must_have_supporting_head(spec, head):
+            if self.specifier_phrase_must_have_supporting_head(spec):
                 new_h = self.engineer_head_from_specifier(head, spec)
                 spec.sister().merge_1(new_h, 'left')
                 consider_externalization(new_h)
@@ -57,12 +57,12 @@ class PhrasalMovement:
     def engineer_head_from_specifier(self, head, spec):
         log(f'New head was spawned at {head.get_cats_string()}P...')
         new_h = self.lexical_access.PhraseStructure()
-        new_h.features |= self.get_features_for_criterial_head(spec, head)
+        new_h.features |= self.get_features_for_criterial_head(spec)
         if 'FIN' in new_h.features:
             new_h.features |= {'C', 'PF:C'}
         return new_h
 
-    def get_features_for_criterial_head(self, spec, head):
+    def get_features_for_criterial_head(self, spec):
         criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
         if criterial_features:
             feature_set = criterial_features
@@ -78,10 +78,10 @@ class PhrasalMovement:
         if node.left_const.is_primitive():
             return node.left_const
 
-    def Abar_movable(self, spec, head):
+    def Abar_movable(self, spec):
         return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
 
-    def specifier_phrase_must_have_supporting_head(self, spec, head):
+    def specifier_phrase_must_have_supporting_head(self, spec):
         if spec.is_primitive():
             return False
         if self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec):

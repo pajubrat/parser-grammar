@@ -265,7 +265,8 @@ class LinearPhaseParser:
         log('\t\tTransferring to LF...')
         ps_, self.narrow_semantics.access_interface = self.transfer_to_LF(ps)
         log('\t\tDone.\n')
-        log('\t\tLF-legibility check: ')
+        ps = ps.top()  # If transfer expands the structure, we need to get to the top
+        log(f'\t\tLF-legibility check: ')
         if not self.LF.LF_legibility_test(ps) or not self.LF.final_tail_check(ps) or not self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path()
             log('\n\t\tLF-legibility failed.\n')

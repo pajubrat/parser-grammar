@@ -33,13 +33,6 @@ class LexicalStream:
                 self.controlling_parser_process.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
             else:
                 log(f'\n\n\t{self.controlling_parser_process.resources["Item streamed into syntax"]["n"]}.\tConsume /' + terminal_lexical_item.get_phonological_string()+'/ ')
-                log('\n\t\t(')
-                for i, word in enumerate(lst_branched):
-                    if i == index:
-                        log(f'===> {word} <=== ')
-                    else:
-                        log(f'{word} ')
-                log(')')
                 self.controlling_parser_process.resources['Steps']['n'] += 1
                 self.controlling_parser_process.local_file_system.simple_log_file.write(
                     f'\n{self.controlling_parser_process.resources["Steps"]["n"]}\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')

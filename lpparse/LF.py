@@ -20,7 +20,6 @@ class LF:
         self.active_test_battery = self.LF_legibility_tests
 
     def LF_legibility_test(self, ps, special_test_battery=None):
-        log('LF-interface test: ')
         if special_test_battery:
             self.active_test_battery = special_test_battery
         else:
@@ -109,7 +108,7 @@ class LF:
                     return True
                 if self.identify_thematic_role_by_agreement(h):
                     return True
-            log(f'{h.max().illustrate()} has no θ role inside {h.max().container().max().illustrate()}. ')
+            log(f'{h.max().illustrate()} has no θ role in {h.max().container().max()}. ')
             return False
         return True
 
@@ -143,12 +142,10 @@ class LF:
             # (ii-1) H does not receive a thematic role from an EPP head
             if container_head.EPP():
                 return False
-            # (ii-2) H does not receive a thematic role from a sandwich position [K[-arg]...H...]
-            # This is the strange thematic nullifying observed in OC constructions
             if container_head.selector() and 'ARG' not in container_head.selector().features:
                 return False
             # (ii-3) H does not receive a thematic role from heads K... that do not assign thematic roles
-            if not {'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'} & container_head.features:
+            if not {'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'} & container_head.features or {'-SPEC:φ'} & container_head.features:
                 return False
             # Condition (ii-4) One head K cannot assign two roles unless otherwise stated [DP1 [K DP2]]
             if container_head.sister() != h.max() and {'D', 'φ'} & container_head.sister().head().features:

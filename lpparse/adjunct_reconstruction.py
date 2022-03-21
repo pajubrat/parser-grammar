@@ -16,13 +16,15 @@ class FloaterMovement():
             f = self.get_floater(node)
             if f:
                 self.drop_floater(f)
+                if f.is_right():
+                    break
         return ps.top()
 
     def get_floater(self, ps):
         if self.detect_floater(ps.left_const):
             H = ps.left_const.head()
             if not H.tail_test():
-                log(ps.left_const.illustrate() + ' failed ' + illu(H.get_tail_sets()) + '...')
+                log(ps.left_const.illustrate() + ' failed ' + illu(H.get_tail_sets()) + '. ')
                 return ps.left_const
             if ps.left_const.container():
                 J = ps.left_const.container()
@@ -32,7 +34,7 @@ class FloaterMovement():
         if self.detect_floater(ps.right_const):
             H = ps.right_const.head()
             if not H.tail_test():
-                log(ps.right_const.illustrate() + ' failed ' + illu(H.get_tail_sets()) + '...')
+                log(ps.right_const.illustrate() + ' failed ' + illu(H.get_tail_sets()) + '. ')
                 if 'ADV' not in H.features and H.top().contains_feature('FIN'):
                     self.adjunct_constructor.externalize_structure(H)
                     if not ps.right_const.head().tail_test():
@@ -105,7 +107,7 @@ class FloaterMovement():
 
     def conditions_for_left_adjuncts(self, test_item, starting_point_head):
         if test_item.head().tail_test():
-            if 'GEN' in test_item.head().features:
+            if 'GEN' in test_item.head().features and 'φ' not in test_item.container().features:
                 return True
             if not test_item.container():
                 return True
@@ -119,6 +121,7 @@ class FloaterMovement():
                 return True
             if '-ARG' not in test_item.container().selector().features:
                 return True
+            return True
 
     def local_tense_edge(self, ps):
         return next((node.mother for node in ps.working_memory_path() if {'T/fin', 'FORCE'} & node.features), ps.top())

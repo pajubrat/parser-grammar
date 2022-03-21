@@ -30,20 +30,17 @@ class Discourse:
         return feature[:4] == 'DIS:'
 
     def get_discourse_features(self, features):
-        return {feature for feature in features if feature[:4] == 'DIS:'}
+        return {f for f in features if f[:4] == 'DIS:'}
 
     def get_inventory_index(self, ps):
-        lst = [f.split(':')[1] for f in ps.features if f[:4] == '*IDX']
-        if lst:
-            return lst[0]
-        else:
-            return None
+        return next((f.split(':')[1] for f in ps.features if f[:4] == '*IDX'), None)
 
     def refresh_inventory(self, ps):
-        idx = self.get_inventory_index(ps)
-        if not ps.find_me_elsewhere and idx:
-            self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
-            self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
+        if not ps.find_me_elsewhere:
+            idx = self.get_inventory_index(ps)
+            if idx:
+                self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
+                self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
     def interpret_discourse_features(self, ps, semantic_interpretation):
         self.refresh_inventory(ps)
@@ -57,7 +54,6 @@ class Discourse:
                 return []
             semantic_interpretation['DIS-features'].append(result)
 
-
     def interpret_discourse_feature(self, f, ps):
         return f, f'{ps.illustrate()}'
 
@@ -68,18 +64,11 @@ class Discourse:
             self.compute_speaker_attitude(root_node)
 
     def create_topic_gradient(self, constituents_in_information_structure):
-
         marked_topic_lst = []
         topic_lst = []
         marked_focus_lst = []
-
         topic_gradient = {key: val for key, val in sorted(self.records_of_attentional_processing.items(), key=lambda ele: ele[0])}
-
-        for key, val in self.records_of_attentional_processing.items():
-            log(f'{key},{val}')
-
         for key in topic_gradient:
-
             if topic_gradient[key]['Constituent'] in constituents_in_information_structure:
                 if 'Marked gradient' in topic_gradient[key]:
                     if topic_gradient[key]['Marked gradient'] == 'High':
@@ -130,9 +119,7 @@ class Discourse:
                     return True
 
     def locate_proposition(self, ps):
-        for node in ps:
-            if node.is_complex() and'T/fin' in node.left_const.features:
-                return node
+        return next((node for node in ps if node.is_complex() and 'T/fin' in node.left_const.features), None)
 
     def get_force_features(self, ps):
         return {f for f in ps.head().features if f[:5] == 'FORCE'}

@@ -1,9 +1,7 @@
 from support import log
 
-
 def is_unvalued(head):
     return {f for f in head.features if f[:4] == 'PHI:' and f[-1] == '_'}
-
 def get_type(f):
     return f.split(':')[1]
 def get_value(f):
@@ -18,7 +16,6 @@ def mark_bad(phi):
 def phi(input_feature):
     return {f for f in {input_feature} if f[:4] == 'PHI:'}
 
-
 class AgreementReconstruction:
     def __init__(self, controlling_parsing_process):
         self.brain_model = controlling_parsing_process
@@ -32,28 +29,25 @@ class AgreementReconstruction:
         # ------------------------------------------------------------------------------------#
 
     def Agree_1(self, head):
-
         self.brain_model.consume_resources("Agree")
         self.brain_model.consume_resources("Phi")
 
-        # 1. Acquisition of phi-features from the sister
         if head.sister():
-            goal1, phi_features = self.Agree_1_from_sister(head)
-            if phi_features:
-                self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, goal1))
+            goal, phi = self.Agree_1_from_sister(head)
+            if phi:
+                self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, goal))
                 if not {'D', 'φ', 'n'} & head.features: # This is currently stipulation
                     head.features.add('BLOCK_NS')
-                for phi in phi_features:
-                    self.value(head, goal1, phi, 'sister')
+                for p in phi:
+                    self.value(head, goal, p, 'sister')
                 if not is_unvalued(head):
                     return
 
-        # 1. Acquisition of phi-features from the edge
-        goal2, phi_features = self.Agree_1_from_edge(head)
+        goal2, phi = self.Agree_1_from_edge(head)
         if goal2:
-            for phi in phi_features:
-                if {f for f in head.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}:
-                    self.value(head, goal2, phi, 'edge')
+            for p in phi:
+                if {f for f in head.features if unvalued(f) and f[:-1] == p[:len(f[:-1])]}:
+                    self.value(head, goal2, p, 'edge')
             if not {'D', 'φ', 'n'} & head.features and 'pro' not in goal2.features:
                 head.features.add('BLOCK_NS')
 
@@ -62,7 +56,7 @@ class AgreementReconstruction:
         for node in head.sister():
             if node.left_const:
                 if node.left_const.is_complex() and self.agreement_condition(head, node.left_const):
-                    return node.left_const.head(),sorted({f for f in node.left_const.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
+                    return node.left_const.head(), sorted({f for f in node.left_const.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
                 else:
                     break
         return None, None
