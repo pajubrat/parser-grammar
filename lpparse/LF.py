@@ -194,7 +194,7 @@ class LF:
             # Complement restriction
             if f.startswith('-COMP:'):
                 if h.is_left() and comp and f[6:] in comp.head().features:
-                    log(f'{h} has wrong complement {comp}. ')
+                    log(f'{h.illustrate()} has wrong complement {comp.illustrate()}. ')
                     return False
 
             if f == '-COMP:*':
@@ -236,7 +236,7 @@ class LF:
                 return False
         if goal.is_primitive():
             if goal.get_tail_sets() and not goal.tail_test():
-                log(f'{goal.illustrate()} failed final tail test. ')
+                log(f'\'{goal.illustrate()}\' failed final tail test. ')
                 return False
         return True
 

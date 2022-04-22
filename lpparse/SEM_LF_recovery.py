@@ -70,7 +70,7 @@ class LF_Recovery:
 
     def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
         if ps.edge() and const == next((const for const in ps.edge()), None):
-            if 'D' not in const.head().features:
+            if not {'D', 'φ'} & const.head().features:
                 self.LF_recovery_results.add(f'{ps}(generic)')
                 list_of_antecedents.append(const)
                 ps.features.add('PHI:DET:GEN')

@@ -1,0 +1,975 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'February', 'study_id': 1, 'study_folder': 'language data working directory/study-7-c-structural-case', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-7-c-structural-case', 'test_corpus_file': 'case_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': True, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': True, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-04-01 11:28:10.416156
+@  Test sentences from language data working directory\study-7-c-structural-case\case_corpus.txt.
+@  Logs into language data working directory\study-7-c-structural-case\case_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+1. *a' b' c' d' 
+
+	a. [a [b [c d]]]
+
+	b. [a [[b c] d]]
+
+	c. [[a [b c]] d]
+
+	d. [[[a b] c] d]
+
+	e. [[a b] [c d]]
+
+2. *a'' b' c' d' 
+
+	a. [z [y [x [b [c d]]]]]
+
+	b. [z [y [x [[b c] d]]]]
+
+	c. [[z [y [x [b c]]]] d]
+
+	d. [[[z [y [x b]]] c] d]
+
+	e. [[z [y [x b]]] [c d]]
+
+	f. [[[z [y x]] b] [c d]]
+
+	g. [[[[z [y x]] b] c] d]
+
+	h. [[z [y x]] [[b c] d]]
+
+	i. [[z [y x]] [b [c d]]]
+
+	j. [[[z [y x]] [b c]] d]
+
+3.  John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [φ Mary]]]]]]
+
+4.  Pekka nukkuu 
+
+	[<φ Pekka>:1 [T [<__>:1 nukku]]]
+
+5.  Pekka ihailee Merjaa 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <φ Merja>:2]]
+
+6.  Pekka antoi kirjan Merjalle 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [<__>:2 [antaa [<φ kirja>:2 [P(lle) [φ Merja]]]]]]]]]
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [[antaa [φ kirja]] <__>:2]]]] <P(lle) [φ Merja]>:2]]
+
+	c. [[<φ Pekka>:1 [T [<__>:1 [v [[antaa [φ kirja]] <__>:2]]]]] <P(lle) [φ Merja]>:2]
+
+	d. [[φ Pekka]:1 [[[T [__:1 [v [[<__>:2 antaa] <__>:3]]]] <φ kirja>:2] <P(lle) [φ Merja]>:3]]
+
+	e. [[[φ Pekka]:1 [[T [__:1 [v [[<__>:2 antaa] <__>:3]]]] <φ kirja>:2]] <P(lle) [φ Merja]>:3]
+
+7.  Pekka halusi ihailla Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [φ Merja]]]]]]]]]
+
+8.  Pekka ihailee Merjaa 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <φ Merja>:2]]
+
+9.  Pekka Merjaa ihailee 
+
+	[<φ Pekka>:1 [<φ Merja>:2 [T [<__>:1 [v [<__>:2 ihaile-]]]]]]
+
+10.  Merjaa Pekka ihailee 
+
+	[<φ Merja>:1 [<φ Pekka>:2 [T [<__>:2 [v [<__>:1 ihaile-]]]]]]
+
+11.  Merjaa ihailee Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [ihaile- <φ Pekka>:2]]]]]]
+
+	b. [[φ Merja]:1 [[T [<__>:2 [v [__:1 ihaile-]]]] <φ Pekka>:2]]
+
+	c. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <φ Pekka>:2]
+
+12. *ihailee Pekka Merjaa 
+
+13. *ihailee Merjaa Pekka 
+
+14.  Merjaa halusi ihailla Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 [ihaile- <φ Pekka>:2]]]]]]]]]
+
+	b. [[<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]] <φ Pekka>:2]
+
+15.  Merjaa halusi Pekka ihailla 
+
+	[<φ Merja>:1 [T [<__>:2 [v [haluaa [<φ Pekka>:2 [A/inf [v [<__>:1 ihaile-]]]]]]]]]
+
+16.  Merjaa Pekka halusi ihailla 
+
+	[<φ Merja>:1 [<φ Pekka>:2 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]]]
+
+17.  Pekka Merjaa halusi ihailla 
+
+	[<φ Pekka>:1 [<φ Merja>:2 [T [<__>:1 [v [haluaa [A/inf [v [<__>:2 ihaile-]]]]]]]]]
+
+18.  Pekka halusi Merjaa ihailla 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [<φ Merja>:2 [A/inf [v [<__>:2 ihaile-]]]]]]]]]
+
+19.  Pekka halusi ihailla Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [φ Merja]]]]]]]]]
+
+20.  Merjaa ihailla halusi Pekka 
+
+	a. [[<φ Merja>:2 [A/inf [v [<__>:2 ihaile-]]]]:1 [T [<__>:3 [v [__:1 [haluaa <φ Pekka>:3]]]]]]
+
+	b. [[<φ Merja>:2 [A/inf [v [<__>:2 ihaile-]]]]:1 [[T [<__>:3 [v [__:1 haluaa]]]] <φ Pekka>:3]]
+
+21.  ihailla Merjaa halusi Pekka 
+
+	a. [[A/inf [v [ihaile- [φ Merja]]]]:1 [T [<__>:2 [v [__:1 [haluaa <φ Pekka>:2]]]]]]
+
+	b. [[A/inf [v [ihaile- [φ Merja]]]]:1 [[T [<__>:2 [v [__:1 haluaa]]]] <φ Pekka>:2]]
+
+22.  Pekka Merjaa ihailla halusi 
+
+	[<φ Pekka>:1 [[<φ Merja>:3 [A/inf [v [<__>:3 ihaile-]]]]:2 [T [<__>:1 [v [__:2 haluaa]]]]]]
+
+23.  Pekka ihailla Merjaa halusi 
+
+	[<φ Pekka>:1 [[A/inf [v [ihaile- [φ Merja]]]]:2 [T [<__>:1 [v [__:2 haluaa]]]]]]
+
+24. *halusi Merjaa ihailla Pekka 
+
+25. *halusi Merjaa Pekka ihailla 
+
+26. *halusi ihailla Merjaa Pekka 
+
+27. *halusi ihailla Pekka Merjaa 
+
+28. *halusi Pekka Merjaa ihailla 
+
+29. *halusi Pekka ihailla Merjaa 
+
+30.  Merjaa ihailla Pekka halusi 
+
+	[[<φ Merja>:2 [A/inf [v [<__>:2 ihaile-]]]]:1 [<φ Pekka>:3 [T [<__>:3 [v [__:1 haluaa]]]]]]
+
+31.  ihailla Merjaa Pekka halusi 
+
+	[[A/inf [v [ihaile- [φ Merja]]]]:1 [<φ Pekka>:2 [T [<__>:2 [v [__:1 haluaa]]]]]]
+
+32. *ihailla halusi Merjaa Pekka 
+
+33. *ihailla halusi Pekka Merjaa 
+
+34. *ihailla Pekka Merjaa halusi 
+
+35. *ihailla Pekka halusi Merjaa 
+
+36. *Pekka ihailla halusi Merjaa 
+
+37. *Merjaa Pekka ihailla halusi 
+
+38. *Merjaa nukkuu 
+
+39. *Merjan_gen nukkuu 
+
+40. *Merjan_acc nukkuu 
+
+41. *Merja_0acc nukkuu 
+
+42. *Merja ihailee 
+
+43. *ihailee 
+
+44. *antoi kirjan Merjalle 
+
+45. *Merja ihailee Merja 
+
+46. *Merja ihailee Merjan_gen 
+
+47. *Merja ihailee Merjan_acc 
+
+48. *Merja ihailee Merja_0acc 
+
+49. *Merjaa ihailee Merjaa 
+
+50. *Merjaa ihailee Merjan_gen 
+
+51. *Merjaa ihailee Merjan_acc 
+
+52. *Merjaa ihailee Merja_0acc 
+
+53. *Merjan_gen ihailee Merja 
+
+54. *Merjan_gen ihailee Merjaa 
+
+55. *Merjan_gen ihailee Merjan_gen 
+
+56. *Merjan_gen ihailee Merjan_acc 
+
+57. *Merjan_gen ihailee Merja_0acc 
+
+58. *Merjan_acc ihailee Merja 
+
+59. *Merjan_acc ihailee Merjaa 
+
+60. *Merjan_acc ihailee Merjan_gen 
+
+61. *Merjan_acc ihailee Merjan_acc 
+
+62. *Merjan_acc ihailee Merja_0acc 
+
+63. *Merja_0acc ihailee Merja 
+
+64. *Merja_0acc ihailee Merjaa 
+
+65. *Merja_0acc ihailee Merjan_gen 
+
+66. *Merja_0acc ihailee Merjan_acc 
+
+67. *Merja_0acc ihailee Merja_0acc 
+
+68. *Pekka antoi kirja Merjalle 
+
+69. *Pekka antoi kirja Merja 
+
+70. *Pekka antoi kirja Merjan 
+
+71. *Pekka antoi kirja Merjaa 
+
+72. *Pekka antoi kirjan Merja 
+
+73. *Pekka antoi kirjan Merjan 
+
+74. *Pekka antoi kirjan Merjaa 
+
+75. *Pekkaa antoi kirja Merja 
+
+76. *Pekkaa antoi kirja Merjan 
+
+77. *Pekkaa antoi kirja Merjaa 
+
+78. *Pekka halusi ihailla Merja 
+
+79. *Pekkaa halusi ihailla Merjaa 
+
+80. *Pekka Pekka nukkuu 
+
+81. *Pekka Pekka ihailee Merjaa 
+
+82. *Pekka ihailee Merjaa Merjaa 
+
+83. *Pekka Pekka ihailee Merjaa Merjaa 
+
+84. *Pekka Pekka antoi kirjan Merjalle 
+
+85. *Pekka antoi kirjan kirjan Merjalle 
+
+86.  Pekka halusi ihailla Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [v [ihaile- [φ Merja]]]]]]]]]
+
+87.  Pekka nukahti lukemalla kirjaa 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <malla [v [luke [φ kirja]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <malla [v [luke [φ kirja]]]>]
+
+88.  Merjaa halusi ihailla Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 [ihaile- <φ Pekka>:2]]]]]]]]]
+
+	b. [[<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [v [<__>:1 ihaile-]]]]]]]] <φ Pekka>:2]
+
+89.  lukemalla kirjaa Pekka nukahti 
+
+	[[<malla [v [luke [φ kirja]]]>:1 [<φ Pekka>:2 [T [<__>:2 nukku]]]] <__>:1]
+
+90.  kirjaa lukemalla Pekka nukahti 
+
+	[[<<φ kirja>:2 [malla [v [<__>:2 luke]]]>:1 [<φ Pekka>:3 [T [<__>:3 nukku]]]] <__>:1]
+
+91.  lukemalla kirjaa nukahti Pekka 
+
+	a. [[<malla [v [luke [φ kirja]]]>:1 [T [<__>:2 [nukku <φ Pekka>:2]]]] <__>:1]
+
+	b. [[[<malla [v [luke [φ kirja]]]>:1 [T [<__>:2 nukku]]] <__>:1] <φ Pekka>:2]
+
+92.  kirjaa lukemalla nukahti Pekka 
+
+	a. [[<<φ kirja>:2 [malla [v [<__>:2 luke]]]>:1 [T [<__>:3 [nukku <φ Pekka>:3]]]] <__>:1]
+
+	b. [[<φ kirja>:1 [malla [v [<__>:1 luke]]]] [[T [<__>:2 nukku]] <φ Pekka>:2]]
+
+	c. [[[<<φ kirja>:2 [malla [v [<__>:2 luke]]]>:1 [T [<__>:3 nukku]]] <__>:1] <φ Pekka>:3]
+
+93. *Pekkaa halusi ihailla Merjaa 
+
+94. *Pekan_gen halusi ihailla Merjaa 
+
+95. *Pekan_acc halusi ihailla Merjaa 
+
+96. *Pekka_0acc halusi ihailla Merjaa 
+
+97. *Pekka halusi ihailla Merja 
+
+98. *Pekka halusi ihailla Merja_0acc 
+
+99. *Pekka halusi ihailla Merjan_gen 
+
+100. *Pekka halusi Merja ihailla 
+
+101. *Pekka halusi Merja_0acc ihailla 
+
+102. *Pekka halusi Merjan_gen ihailla 
+
+103. *Pekkaa nukahti lukemalla kirjaa 
+
+104. *Pekan_gen nukahti lukemalla kirjaa 
+
+105. *Pekan_acc nukahti lukemalla kirjaa 
+
+106. *Pekka_0acc nukahti lukemalla kirjaa 
+
+107. *kirjaa nukahti lukemalla Pekan_gen 
+
+108. *kirjaa nukahti lukemalla Pekan_acc 
+
+109. *kirjaa nukahti lukemalla Pekka_0acc 
+
+110. *Pekka nukahti lukemalla kirja 
+
+111. *Pekka nukahti lukemalla kirja_0acc 
+
+112. *Pekka nukahti lukemalla kirjan_gen 
+
+113. *lukemalla kirja Pekka nukahti 
+
+114. *lukemalla kirja_0acc Pekka nukahti 
+
+115. *lukemalla kirjan_gen Pekka nukahti 
+
+116. *kirja lukemalla Pekka nukahti 
+
+117. *kirja_0acc lukemalla Pekka nukahti 
+
+118. *kirjan_gen lukemalla Pekka nukahti 
+
+119. *lukemalla kirja nukahti Pekka 
+
+120. *lukemalla kirja_0acc nukahti Pekka 
+
+121. *lukemalla kirjan_gen nukahti Pekka 
+
+122. *kirja lukemalla nukahti Pekka 
+
+123. *kirja_0acc lukemalla nukahti Pekka 
+
+124. *kirjan_gen lukemalla nukahti Pekka 
+
+125.  lahella Pekkaa 
+
+	[lahella [φ Pekka]]
+
+126.  Pekkaa lahella 
+
+	[[φ Pekka]:1 [lahella __:1]]
+
+127.  Pekan_gen lahella 
+
+	[[φ Pekka]:1 [lahella __:1]]
+
+128. *lahella Pekka 
+
+129. *Pekka lahella 
+
+130. *lahella Pekan_acc 
+
+131. *Pekan_acc lahella 
+
+132. *lahella Pekka_0acc 
+
+133. *Pekka_0acc lahella 
+
+134. *lahella Pekkaa Pekkaa 
+
+135. *Pekkaa Pekkaa lahella 
+
+136. *lahella Pekka Pekka 
+
+137. *Pekka Pekka lahella 
+
+138. *lahella Pekan_gen 
+
+139.  Pekkaa pelottaa 
+
+	[<φ Pekka>:1 [T [Cau [<__>:1 pelkaa]]]]
+
+140. *Pekka pelottaa 
+
+141. *Pekan_gen pelottaa 
+
+142. *Pekan_acc pelottaa 
+
+143. *Pekka_0acc pelottaa 
+
+144.  ne kaksi sukkaa havisi 
+
+	[[ne [kaksi [φ sukka-]]]:1 [T [__:1 havia]]]
+
+145.  ne kahdet sukat havisivat 
+
+	[[ne [kaksi [φ sukka-]]]:1 [T [__:1 havia]]]
+
+146.  ne kaksi sukkaa havisivat 
+
+	[[ne [kaksi [φ sukka-]]]:1 [T [__:1 havia]]]
+
+147.  Pekka loysi ne kaksi sukkaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [loyta- [ne [kaksi [φ sukka-]]]]]]]]
+
+148.  Pekka sanoi niiden kahden sukan haviavan 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [[ne [kaksi [φ sukka-]]]:2 [vAn [__:2 havia]]]]]]]
+
+149.  kaksi sukkaa havisi 
+
+	[[kaksi [φ sukka-]]:1 [T [__:1 havia]]]
+
+150. *ne kaksi sukka havisi 
+
+151. *ne kaksi sukan_gen havisi 
+
+152. *ne kaksi sukan havisi 
+
+153. *ne kaksi sukan_acc havisi 
+
+154. *ne kahdet sukkaa havisivat 
+
+155. *ne kahdet sukan_gen havisivat 
+
+156. *ne kahdet sukan_acc havisivat 
+
+157. *ne kahdet sukka_0acc havisivat 
+
+158. *Pekka sanoi niiden kaksi sukkaa haviavan 
+
+159. *sukkaa ne kaksi havisi 
+
+160. *kaksi ne sukkaa havisi 
+
+161. *kaksi sukkaa ne havisi 
+
+162.  ne sukkaa kaksi havisi 
+
+	[[ne [[φ sukka-]:2 [kaksi __:2]]]:1 [T [__:1 havia]]]
+
+163.  Pekka voitti Merjan 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [voitta [φ Merja]]]]]]
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 voitta]]]] <φ Merja>:2]]
+
+164.  Pekka voitti Merjaa 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [voitta [φ Merja]]]]]]
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 voitta]]]] <φ Merja>:2]]
+
+165.  Pekka tonaisi Merjaa 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [tonaise [φ Merja]]]]]]
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 tonaise]]]] <φ Merja>:2]]
+
+166.  Pekka pesi Merjan 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [pese_asp [φ Merja]]]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [v [pese_asp [φ Merja]]]]]]
+
+	c. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 pese_asp]]]] <φ Merja>:2]]
+
+	d. [<φ Pekka>:1 [T [<__>:1 [v [<__>:2 [pese <φ Merja>:2]]]]]]
+
+	e. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 pese]]]] <φ Merja>:2]]
+
+167.  Pekka pesi Merjaa 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [pese_asp [φ Merja]]]]]]
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 pese_asp]]]] <φ Merja>:2]]
+
+	c. [<φ Pekka>:1 [T [<__>:1 [v [pese [φ Merja]]]]]]
+
+	d. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 pese]]]] <φ Merja>:2]]
+
+	e. [<φ Pekka>:1 [T [<__>:1 [v [pese_asp [φ Merja]]]]]]
+
+	f. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 pese_asp]]]] <φ Merja>:2]]
+
+	g. [<φ Pekka>:1 [T [<__>:1 [v [pese [φ Merja]]]]]]
+
+	h. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 pese]]]] <φ Merja>:2]]
+
+168.  Pekka pesi hanet 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [pese_asp [D hän]]]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [v [pese_asp [D hän]]]]]]
+
+	c. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 pese_asp]]]] <D hän>:2]]
+
+	d. [<φ Pekka>:1 [T [<__>:1 [v [<__>:2 [pese <D hän>:2]]]]]]
+
+	e. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 pese]]]] <D hän>:2]]
+
+169. *Pekka tonaisi Merja 
+
+170. *Pekka tonaisi Merjan_gen 
+
+171. *Pekka tonaisi Merjan_acc 
+
+172. *Pekka tonaisi hanet 
+
+173. *Pekka tonaisi Merja_0acc 
+
+174.  Merjan voitti Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [voitta <φ Pekka>:2]]]]]]
+
+	b. [[φ Merja]:1 [[T [<__>:2 [v [__:1 voitta]]]] <φ Pekka>:2]]
+
+	c. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 voitta]]]]] <φ Pekka>:2]
+
+175.  Merjan pesi Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [pese_asp <φ Pekka>:2]]]]]]
+
+	b. [[φ Merja]:1 [[T [<__>:2 [v [__:1 pese_asp]]]] <φ Pekka>:2]]
+
+	c. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 pese_asp]]]]] <φ Pekka>:2]
+
+	d. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 pese]]]]] <φ Pekka>:2]
+
+	e. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [pese <φ Pekka>:2]]]]]]
+
+	f. [[φ Merja]:1 [[T [<__>:2 [v [__:1 pese]]]] <φ Pekka>:2]]
+
+176.  Merjaa pesi Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [pese_asp <φ Pekka>:2]]]]]]
+
+	b. [[φ Merja]:1 [[T [<__>:2 [v [__:1 pese_asp]]]] <φ Pekka>:2]]
+
+	c. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 pese_asp]]]]] <φ Pekka>:2]
+
+	d. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 pese]]]]] <φ Pekka>:2]
+
+	e. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [pese <φ Pekka>:2]]]]]]
+
+	f. [[φ Merja]:1 [[T [<__>:2 [v [__:1 pese]]]] <φ Pekka>:2]]
+
+	g. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [pese_asp <φ Pekka>:2]]]]]]
+
+	h. [[φ Merja]:1 [[T [<__>:2 [v [__:1 pese_asp]]]] <φ Pekka>:2]]
+
+	i. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 pese_asp]]]]] <φ Pekka>:2]
+
+	j. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 pese]]]]] <φ Pekka>:2]
+
+	k. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [pese <φ Pekka>:2]]]]]]
+
+	l. [[φ Merja]:1 [[T [<__>:2 [v [__:1 pese]]]] <φ Pekka>:2]]
+
+177. *Merja tonaisi Pekka 
+
+178. *Merjan tonaisi Pekka 
+
+179. *Merja_0acc tonaisi Pekka 
+
+180. *hanet tonaisi Pekka 
+
+181.  Pekka ei voittanut Merjaa 
+
+	a. [<φ Pekka>:1 [ei [T/prt [<__>:1 [v [voitta [φ Merja]]]]]]]
+
+	b. [<φ Pekka>:1 [ei [[T/prt [<__>:1 [v [<__>:2 voitta]]]] <φ Merja>:2]]]
+
+182. *Pekka ei voittanut Merja 
+
+183. *Pekka ei voittanut Merjan_gen 
+
+184. *Pekka ei voittanut Merjan 
+
+185. *Pekka ei voittanut Merja_0acc 
+
+186.  Merjaa ei voittanut Pekka 
+
+	[<φ Merja>:1 [ei [T/prt [<__>:2 [v [<__>:1 [voitta <φ Pekka>:2]]]]]]]
+
+187.  Merjaa ei Pekka voittanut 
+
+	[<φ Merja>:1 [ei [<φ Pekka>:2 [T/prt [<__>:2 [v [<__>:1 voitta]]]]]]]
+
+188.  Pekka ei Merjaa voittanut 
+
+	[<φ Pekka>:1 [ei [<φ Merja>:2 [T/prt [<__>:1 [v [<__>:2 voitta]]]]]]]
+
+189.  Merjaa Pekka ei voittanut 
+
+	[<φ Merja>:1 [<φ Pekka>:2 [ei [T/prt [<__>:2 [v [<__>:1 voitta]]]]]]]
+
+190.  Pekka Merjaa ei voittanut 
+
+	[<φ Pekka>:1 [<φ Merja>:2 [ei [T/prt [<__>:1 [v [<__>:2 voitta]]]]]]]
+
+191. *Merjan ei voittanut Pekka 
+
+192. *Merja ei voittanut Pekka 
+
+193. *Merja_0acc ei voittanut Pekka 
+
+194. *Merjan_gen ei voittanut Pekka 
+
+195.  me loysimme avaimen 
+
+	a. [<D me>:1 [T [<__>:1 [v [loyta- [φ avain]]]]]]
+
+	b. [[D me]:1 [[T [__:1 [v [<__>:2 loyta-]]]] <φ avain>:2]]
+
+196.  me loydettiin avain_0acc 
+
+	a. [<D me>:1 [T [<__>:1 [impass [loyta- [φ avain]]]]]]
+
+	b. [[D me]:1 [[T [__:1 [impass [<__>:2 loyta-]]]] <φ avain>:2]]
+
+197.  avaimen loysimme me 
+
+	a. [<φ avain>:1 [T [<__>:2 [v [<__>:1 [loyta- <D me>:2]]]]]]
+
+	b. [[φ avain]:1 [[T [<__>:2 [v [__:1 loyta-]]]] <D me>:2]]
+
+	c. [[<φ avain>:1 [T [<__>:2 [v [<__>:1 loyta-]]]]] <D me>:2]
+
+198.  avain_0acc loydettiin me 
+
+	a. [<φ avain>:1 [T [<__>:2 [impass [<__>:1 [loyta- <D me>:2]]]]]]
+
+	b. [[φ avain]:1 [[T [<__>:2 [impass [__:1 loyta-]]]] <D me>:2]]
+
+	c. [[<φ avain>:1 [T [<__>:2 [impass [<__>:1 loyta-]]]]] <D me>:2]
+
+199. *me loydettiin avaimen 
+
+200. *me loydettiin avaimen_gen 
+
+201. *me loysimme avain 
+
+202. *me loysimme avain_0acc 
+
+203. *me loysimme avaimen_gen 
+
+204.  me ei' loydetty avainta 
+
+	a. [<D me>:1 [ei [T/prt [<__>:1 [impass [loyta- [φ avain]]]]]]]
+
+	b. [<D me>:1 [ei [[T/prt [<__>:1 [impass [<__>:2 loyta-]]]] <φ avain>:2]]]
+
+205.  avainta ei' loydetty me 
+
+	a. [<φ avain>:1 [ei [T/prt [<__>:2 [impass [<__>:1 [loyta- <D me>:2]]]]]]]
+
+	b. [[<φ avain>:1 [ei [T/prt [<__>:2 [impass [<__>:1 loyta-]]]]]] <D me>:2]
+
+206.  avainta me ei' loydetty 
+
+	[<φ avain>:1 [<D me>:2 [ei [T/prt [<__>:2 [impass [<__>:1 loyta-]]]]]]]
+
+207.  me ei' avainta loydetty 
+
+	[<D me>:1 [ei [<φ avain>:2 [T/prt [<__>:1 [impass [<__>:2 loyta-]]]]]]]
+
+208. *me_FI ei' loydetty avain 
+
+209. *me ei' loydetty avaimen_gen 
+
+210. *me ei' loydetty avaimen 
+
+211. *me ei' loydetty avain_0acc 
+
+212.  Pekka halusi voittaa Merjan 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [voitta [φ Merja]]]]]]]]
+
+213.  Pekka halusi tonaista Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [tonaise [φ Merja]]]]]]]]
+
+214.  Pekka halusi pesta Merjan 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [pese_asp [φ Merja]]]]]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [[<__>:2 pese] <φ Merja>:2]]]]]]]
+
+215.  Pekka halusi loytaa avaimen 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [A/inf [loyta- [φ avain]]]]]]]]
+
+216.  me haluttiin voittaa Merja_0acc 
+
+	[<D me>:1 [T [<__>:1 [impass [haluaa [A/inf [voitta [φ Merja]]]]]]]]
+
+217.  me ei' haluttu voittaa Merjaa 
+
+	[<D me>:1 [ei [T/prt [<__>:1 [impass [haluaa [A/inf [voitta [φ Merja]]]]]]]]]
+
+218.  me halusimme voittaa Merjan 
+
+	[<D me>:1 [T [<__>:1 [v [haluaa [A/inf [voitta [φ Merja]]]]]]]]
+
+219.  Merjan halusi voittaa Pekka 
+
+	[[<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [<__>:1 voitta]]]]]]] <φ Pekka>:2]
+
+220.  Merjaa halusi tonaista Pekka 
+
+	[[<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [<__>:1 tonaise]]]]]]] <φ Pekka>:2]
+
+221.  Merjan halusi pesta Pekka 
+
+	a. [[<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [<__>:1 pese_asp]]]]]]] <φ Pekka>:2]
+
+	b. [[<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [<__>:1 pese]]]]]]] <φ Pekka>:2]
+
+222.  avaimen halusi loytaa Pekka 
+
+	[[<φ avain>:1 [T [<__>:2 [v [haluaa [A/inf [<__>:1 loyta-]]]]]]] <φ Pekka>:2]
+
+223.  Merja_0acc haluttiin voittaa me 
+
+	[[<φ Merja>:1 [T [<__>:2 [impass [haluaa [A/inf [<__>:1 voitta]]]]]]] <D me>:2]
+
+224.  Merjaa ei' haluttu voittaa me 
+
+	[[<φ Merja>:1 [ei [T/prt [<__>:2 [impass [haluaa [A/inf [<__>:1 voitta]]]]]]]] <D me>:2]
+
+225.  Merjan halusimme voittaa me 
+
+	[[<φ Merja>:1 [T [<__>:2 [v [haluaa [A/inf [<__>:1 voitta]]]]]]] <D me>:2]
+
+226. *me haluttiin voittaa Merjan 
+
+227. *me halusimme voittaa Merja_0acc 
+
+228. *me ei' haluttu voittaa Merja_0acc 
+
+229. *me ei' haluttu voittaa Merjan 
+
+230.  Pekka kaski Merjan_gen lahtea 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [kaske [[φ Merja]:2 [A/inf [__:2 lahtea]]]]]]]]
+
+231.  Pekka sanoi Merjan_gen lahtevan 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [[φ Merja]:2 [vAn [__:2 lahtea]]]]]]]
+
+232.  Pekan_gen taytyy lahtea 
+
+	[<φ Pekka>:1 [T [taytyy [<__>:1 [A/inf [<__>:1 lahtea]]]]]]
+
+233. *Pekka kaski lahtea Merjan_gen 
+
+234.  Pekka sanoi lahtevan Merjan_gen 
+
+	a. [[φ Pekka]:1 [[T [__:1 [sano- [<__>:2 [vAn [<__>:2 lahtea]]]]]] <φ Merja>:2]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [sano- [<__>:2 [vAn [<__>:2 lahtea]]]]]]] <φ Merja>:2]
+
+235. *Pekka kaski Merja lahtea 
+
+236. *Pekka kaski Merjaa lahtea 
+
+237. *Pekka kaski Merjan_acc lahtea 
+
+238. *Pekka kaski Merja_0acc lahtea 
+
+239. *Pekka kaski lahtea Merja 
+
+240. *Pekka kaski lahtea Merjaa 
+
+241. *Pekka kaski lahtea Merjan_acc 
+
+242. *Pekka kaski lahtea Merja_0acc 
+
+243.  se Merjan_gen kello havisi 
+
+	a. [<se [[φ Merja]:2 [φ [__:2 kello]]]>:1 [T [<__>:1 havia]]]
+
+	b. [[[se [φ Merja]]:2 [φ [__:2 kello]]]:1 [T [__:1 havia]]]
+
+	c. [[se [[φ Merja]:2 [φ [__:2 kello]]]]:1 [T [__:1 havia]]]
+
+244. *se kello Merjan_gen havisi 
+
+245. *se kello havisi Merjan_gen 
+
+246. *Merjan_gen se kello havisi 
+
+247. *se Merja kello havisi 
+
+248. *se Merjaa kello havisi 
+
+249. *se Merjan_acc kello havisi 
+
+250. *se Merja_0acc kello havisi 
+
+251.  Merja nukkui Pekan_gen lahella 
+
+	a. [<φ Merja>:1 [T [<__>:1 [nukku [[φ Pekka]:2 [lahella __:2]]]]]]
+
+	b. [[<φ Merja>:1 [T [<__>:1 nukku]]] <[φ Pekka]:2 [lahella __:2]>]
+
+252.  Merja nukkui lahella Pekkaa 
+
+	a. [<φ Merja>:1 [T [<__>:1 [nukku [lahella [φ Pekka]]]]]]
+
+	b. [[<φ Merja>:1 [T [<__>:1 nukku]]] <lahella [φ Pekka]>]
+
+253. *Merja nukkui lahella Pekan_gen 
+
+254.  ne kaksi Merjan_gen puhelinta havisi 
+
+	[[ne [kaksi [[φ Merja]:2 [n [__:2 puhelin]]]]]:1 [T [__:1 havia]]]
+
+255.  ne Merjan_gen kaksi puhelinta havisi 
+
+	a. [[[ne [φ Merja]]:2 [kaksi [__:2 [n [__:2 puhelin]]]]]:1 [T [__:1 havia]]]
+
+	b. [[ne [[φ Merja]:2 [kaksi [__:2 [n [__:2 puhelin]]]]]]:1 [T [__:1 havia]]]
+
+256. *ne kaksi Merja puhelinta havisi 
+
+257. *ne kaksi Merjaa puhelinta havisi 
+
+258. *ne kaksi Merjan_acc puhelinta havisi 
+
+259. *ne kaksi Merja_0acc puhelinta havisi 
+
+260.  me loysimme avaimen 
+
+	a. [<D me>:1 [T [<__>:1 [v [loyta- [φ avain]]]]]]
+
+	b. [[D me]:1 [[T [__:1 [v [<__>:2 loyta-]]]] <φ avain>:2]]
+
+261.  me loydettiin avain_0acc 
+
+	a. [<D me>:1 [T [<__>:1 [impass [loyta- [φ avain]]]]]]
+
+	b. [[D me]:1 [[T [__:1 [impass [<__>:2 loyta-]]]] <φ avain>:2]]
+
+262.  avain_0acc loydettiin 
+
+	[<φ avain>:1 [T [impass [<__>:1 loyta-]]]]
+
+263.  loydettiin avain_0acc 
+
+	a. [T [impass [loyta- [φ avain]]]]
+
+	b. [[T [impass [<__>:1 loyta-]]] <φ avain>:1]
+
+264. *me loydettiin avaimen 
+
+265. *me loysimme avain 
+
+266.  Merja nayttaa lahtevan 
+
+	[<φ Merja>:1 [T [<__>:1 [naytta [vAn lahtea]]]]]
+
+267. *Merjaa nayttaa lahtevan 
+
+268. *Merjan_gen nayttaa lahtevan 
+
+269. *Merjan nayttaa lahtevan 
+
+270. *Merja_0acc nayttaa lahtevan 
+
+271.  Pekka on' Pekka 
+
+	[<φ Pekka>:1 [T [<__>:1 [BE [φ Pekka]]]]]
+
+272.  Merjalla on' Pekka 
+
+	a. [[<P(lla) [φ Merja]>:1 [T [BE [φ Pekka]]]] <__>:1]
+
+	b. [[P(lla) [φ Merja]] [[T [<__>:1 BE]] <φ Pekka>:1]]
+
+273. *Pekka on' Pekkaa 
+
+274. *Pekka on' Pekan_gen 
+
+275. *Pekka on' Pekka_0acc 
+
+276. *Pekka on' Pekan_acc 
+
+277. *Pekkaa on Pekka 
+
+278. *Pekan_gen on Pekka 
+
+279. *Pekan_acc on Pekka 
+
+280. *Pekka_0acc on Pekka 
+
+281.  Pekka nukkui#asp koko paivan 
+
+	a. [[φ Pekka]:1 [[T [<__>:2 [__:1 nukku]]] <koko [φ paiva]>:2]]
+
+	b. [[<φ Pekka>:1 [T [<__>:2 [<__>:1 nukku]]]] <koko [φ paiva]>:2]
+
+282.  Pekka nukku-#asp#T/fin#[-V] koko paivan 
+
+	[<φ Pekka>:1 [T [<__>:1 [nukku <koko [φ paiva]>]]]]
+
+283.  Pekka ei nukkunut koko paivaa 
+
+	[<φ Pekka>:1 [ei [T/prt [<__>:1 [nukku <koko [φ paiva]>]]]]]
+
+284.  me nukuttiin koko paiva 
+
+	a. [[<D me>:1 [T [<__>:2 [<__>:1 [impass nukku]]]]] <koko [φ paiva]>:2]
+
+	b. [[D I]:1 [[T [<__>:2 [impass [__:1 nukku]]]] <koko [φ paiva]>:2]]
+
+	c. [[<D I>:1 [T [<__>:2 [impass [<__>:1 nukku]]]]] <koko [φ paiva]>:2]
+
+285.  Pekka ihailee#asp Merjaa koko paivan 
+
+	a. [[<φ Pekka>:1 [T [<__>:2 [<__>:1 [v [ihaile- [φ Merja]]]]]]] <koko [φ paiva]>:2]
+
+	b. [[[φ Pekka]:1 [[T [<__>:2 [__:1 [v [<__>:3 ihaile-]]]]] <φ Merja>:3]] <koko [φ paiva]>:2]
+
+286. *Pekka nukkui koko paivan 
+
+287. *Pekka ei nukkunut koko paivan 
+
+288. *me nukuttiin koko paivan 
+
+289. *Pekka ihailee Merjaa koko paivan 
+
+290. *Pekka ihailee#asp Merjaa koko paiva 
+
+291. *Pekka ihailee#asp Merjaa koko paivaa 
+
+292. *Pekka ihailee Merjaa koko paivaa 
+
+293.  Pekka nukkui koko paivaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [nukku <koko [φ paiva]>]]]]
+

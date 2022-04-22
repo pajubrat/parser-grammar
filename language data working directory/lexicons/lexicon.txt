@@ -203,10 +203,10 @@ juosten 	:: juokse-#E/inf LANG:FI
 juoksee		:: juokse-#T/fin LANG:FI
 juokse-		:: PF:juokse- LF:run V LANG:FI
 
-kaksi		:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN,$NO_S PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi_1		:: PF:kaksi LF:two NUM TAIL:ARG,VAL,FIN,$NO_S PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi		:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED,$NO_S ARG -VAL !COMP:* TAIL:*POL:NEG
-kaksi_2		:: PF:kaksi LF:two NUM TAIL:ARG,ASP:BOUNDED,$NO_S ARG -VAL !COMP:* TAIL:*POL:NEG
+kaksi		:: PF:kaksi LF:two NUM NOM TAIL:ARG,VAL,FIN,$NO_S PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi_1		:: PF:kaksi LF:two NUM NOM TAIL:ARG,VAL,FIN,$NO_S PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi		:: PF:kaksi LF:two NUM ACC TAIL:ARG,ASP:BOUNDED,$NO_S ARG -VAL !COMP:* TAIL:*POL:NEG
+kaksi_2		:: PF:kaksi LF:two NUM ACC TAIL:ARG,ASP:BOUNDED,$NO_S ARG -VAL !COMP:* TAIL:*POL:NEG
 kahdet		:: kaksi-#pl#[-nom] LANG:FI
 kahden		:: kaksi-#pl#[-gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two NUM LANG:FI
@@ -223,7 +223,7 @@ kellon		:: kello-#[-n_acc] LANG:FI
 kellon_n	:: kello0-#φ#r_expression#[-n_acc] LANG:FI
 kellon_N	:: kello-#[-n_acc] LANG:FI
 kelloja		:: kello-#pl#φ#pl#3p#def#r_expression#[-par] LANG:FI
-kello		:: kello0-#φ#r_expression LANG:FI
+kello		:: kello-#φ#r_expression LANG:FI
 kello-		:: PF:kello LF:watch N LANG:FI
 kello0- 	:: PF:kello LF:watch 0 LANG:FI
 
@@ -233,7 +233,9 @@ kenen		:: kuka-#D#wh#[-gen] LANG:FI
 key			:: PF:key LF:key N -SEM:directional LANG:EN
 
 kirja		:: kirja-#φ#sg#3p#def#r_expression#[-nom] LANG:FI
+kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[-0_acc] LANG:FI
 kirjan  	:: kirja-#φ#sg#3p#def#r_expression#[-n_acc] LANG:FI
+kirjan_gen  :: kirja-#φ#sg#3p#def#r_expression#[-gen] LANG:FI
 kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[-par] LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
 
@@ -543,6 +545,7 @@ sukka		:: sukka-#φ#r_expression#[-nom]
 sukka_0acc	:: sukka-#φ#r_expression#[-0_acc]
 sukkaa		:: sukka-#φ#r_expression#[-par]
 sukan		:: sukka-#φ#r_expression#[-gen]
+sukan_gen	:: sukka-#φ#r_expression#[-gen]
 sukan_acc	:: sukka-#φ#r_expression#[-n_acc]
 sukat		:: sukka-#φ#r_expression#[-nom]#pl
 sukka-		:: PF:sukka- LF:socks N LANG:FI
@@ -749,9 +752,9 @@ ci-			:: PF:ci LF:there N PHI_N LANG:IT
 [-par]   	:: inflectional PAR TAIL:ARG,-VAL,$NO_S adjoinable LANG:FI
 [-gen]		:: inflectional GEN TAIL:INF,ARG adjoinable
 gen			:: inflectional GEN TAIL:INF,ARG adjoinable
-[-n_acc]	:: inflectional n-ACC TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
-[-t_acc]	:: inflectional t-ACC TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
-[-0_acc]	:: inflectional 0_ACC TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S TAIL:*PHI,$NO_S adjoinable LANG:FI
+[-n_acc]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
+[-t_acc]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
+[-0_acc]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S TAIL:*PHI,$NO_S adjoinable LANG:FI
 # B. Semantic cases
 [-ess]     	:: inflectional PF:na LF:as TAIL:V LANG:FI #essiivi
 [-trs]		:: inflectional PF:ksi LF:to TAIL:V LANG:FI #translatiivi

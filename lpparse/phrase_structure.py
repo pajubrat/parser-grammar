@@ -9,8 +9,10 @@ Result = namedtuple('Result', 'match_occurred outcome')
 
 #class phrase structure
 class PhraseStructure:
-    resources = {"Asymmetric Merge": {"ms":0, "n":0},
-                 "Sink": {"ms":0, "n":0}
+    resources = {"Asymmetric Merge": {"ms": 0, "n": 0},
+                 "Sink": {"ms": 0, "n": 0},
+                 "Tail test": {"ms": 0, "n": 0},
+                 "Case checking": {"ms": 0, "n": 0}
                  }
 
     def __init__(self, left_constituent=None, right_constituent=None):
@@ -363,6 +365,7 @@ class PhraseStructure:
         negative_features = {f for f in self.get_tail_sets() if self.negative_features(f)}
         checked_positive_features = {tail_set for tail_set in positive_features if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
         checked_negative_features = {tail_set for tail_set in negative_features if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
+        self.consume_resources('Tail test')
         return positive_features == checked_positive_features and not checked_negative_features
 
     def strong_tail_condition(self, tail_set):
@@ -372,6 +375,8 @@ class PhraseStructure:
 
     def weak_tail_condition(self, tail_set):
         if '$NO_W' not in tail_set:
+            if {'φ', 'D'} & self.features:
+                self.consume_resources('Case checking')
             for m in (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list()):
                 test = m.match_features(tail_set)
                 if test.match_occurred:

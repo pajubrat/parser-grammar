@@ -9,7 +9,7 @@ from pyglet.gl import GL_LINES, glBegin, glEnd, glVertex2f, gl, glLineWidth, glC
     glClear, GL_COLOR_BUFFER_BIT
 
 
-case_features = {'NOM', 'ACC', 'PAR', 'GEN', '0_ACC', 'n_ACC', 't_ACC', 'DAT', 'POSS'}
+case_features = {'NOM', 'ACC', 'PAR', 'GEN', 'ACC(0)', 'ACC(n)', 'ACC(t)', 'DAT', 'POSS'}
 
 
 # Definition for the visualizer
@@ -26,7 +26,6 @@ class Visualizer:
         self.nolabels = False
         self.spellout = False
         self.show_tails = False
-        self.show_cases = False
         self.case = False
         self.save_image_file_name = ''
         self.input_sentence_string = ''
@@ -301,7 +300,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
                     if ps.gloss() != ps.get_cats_string() and ps.gloss() != ps.get_phonological_string():
                         label_stack = label_stack + '§' + '\'' + ps.gloss() + '\''
 
-        if self.visualizer.show_cases and ps.is_primitive():
+        if self.visualizer.case and ps.is_primitive():
             if get_case(ps):
                 label_stack = label_stack + '§' + str(get_case(ps))
 
@@ -380,9 +379,13 @@ class ProduceGraphicOutput(pyglet.window.Window):
             bold = False
 
         for i, label in enumerate(label_stack):
+            if i == 0:
+                font_size = 20
+            else:
+                font_size = 15
             label_ = pyglet.text.Label(label,
                                       font_name='Times New Roman',
-                                      font_size=20,
+                                      font_size=font_size,
                                       bold=bold,
                                       x=X1, y=Y1 + 12 - line_position,
                                       anchor_x='center', anchor_y='center',

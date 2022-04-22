@@ -201,18 +201,20 @@ class NarrowSemantics:
             return next((const for const in ps.working_memory_path() if feature_set.issubset(const.features)), None)
 
         def get_tailed_head(ps, tail_set):
-            return next((const for const in ps.working_memory_path() if const.is_primitive() and const.match_features(tail_set) == 'complete match'), None)
+            return next((const for const in ps.working_memory_path() if const.is_primitive() and const.match_features(tail_set).match_occurred and const.match_features(tail_set).outcome), None)
 
         def interpret_argument_tailing(ps, tailed_head):
-            if tailed_head and 'ASP:BOUNDED' in tailed_head.features:
-                if 'PAR' in ps.features and not in_scope_of(ps, {'POL:NEG'}):
-                    self.semantic_interpretation['Aspect'].append('Aspectually anomalous')
-                else:
-                    self.semantic_interpretation['Aspect'].append('Aspectually bounded')
+            if tailed_head:
+                if 'ASP:BOUNDED' in tailed_head.features:
+                    if 'PAR' in ps.features and not in_scope_of(ps, {'POL:NEG'}):
+                        self.semantic_interpretation['Aspect'].append('Aspectually anomalous')
+                    else:
+                        self.semantic_interpretation['Aspect'].append('Aspectually bounded')
 
-        # ------------ main function ------------ #
+        # ------------ main function ----------------------------------- #
         for tail_set in ps.get_tail_sets():
             interpret_argument_tailing(ps, get_tailed_head(ps, tail_set))
+        # -------------------------------------------------------------- #
 
     def all_inventories(self):
         dict = {}
