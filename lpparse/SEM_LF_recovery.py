@@ -129,7 +129,7 @@ class LF_Recovery:
         else:
             prefix = 'Agent of'
 
-        if 'D' in antecedent_head.features:
+        if {'D','φ'} & antecedent_head.features:
             if antecedent_head.sister() and 'N' in antecedent_head.sister().head().features:
                 arg_str = antecedent_head.sister().head().illustrate()
             else:

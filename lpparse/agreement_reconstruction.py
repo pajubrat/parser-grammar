@@ -4,8 +4,6 @@ def is_unvalued(head):
     return {f for f in head.features if f[:4] == 'PHI:' and f[-1] == '_'}
 def get_type(f):
     return f.split(':')[1]
-def get_value(f):
-    return f.split(':')[2]
 def unvalued(input_feature):
     if input_feature:
         return {f for f in {input_feature} if f[-1] == '_'}
@@ -106,4 +104,3 @@ class AgreementReconstruction:
             else:
                 log(f'Feature {f} cannot be valued into {head}.')
                 return True
-        return False

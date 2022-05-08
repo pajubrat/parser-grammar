@@ -17,7 +17,7 @@ class PlausibilityMetrics:
         self.not_word_specs = None
         self.rare_word_specs = None
         self.word_tail_set = None
-        self.left_branch_filter_test_battery = [self.brain_model.LF.selection_tests,
+        self.left_branch_filter_test_battery = [self.brain_model.LF.selection_test,
                                                 self.brain_model.LF.semantic_complement_test,
                                                 self.brain_model.LF.probe_goal_test,
                                                 self.brain_model.LF.head_integrity_test]

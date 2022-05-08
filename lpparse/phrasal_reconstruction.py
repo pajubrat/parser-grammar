@@ -58,15 +58,13 @@ class PhrasalMovement:
         log(f'New head was spawned at {head.get_cats_string()}P...')
         new_h = self.lexical_access.PhraseStructure()
         new_h.features |= self.get_features_for_criterial_head(spec)
-        if 'FIN' in new_h.features:
-            new_h.features |= {'C', 'PF:C'}
         return new_h
 
     def get_features_for_criterial_head(self, spec):
         criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
         if criterial_features:
             feature_set = criterial_features
-            feature_set |= {'FIN', 'OP:_'}
+            feature_set |= {'FIN', 'OP:_', 'C', 'PF:C'}
             return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
         else:
             return {'?'}

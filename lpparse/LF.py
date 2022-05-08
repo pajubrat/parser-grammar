@@ -8,7 +8,7 @@ def for_lf_interface(features):
 class LF:
     def __init__(self, controlling_parsing_process):
         self.controlling_parsing_process = controlling_parsing_process
-        self.LF_legibility_tests = [self.selection_tests,
+        self.LF_legibility_tests = [self.selection_test,
                                     self.projection_principle,
                                     self.head_integrity_test,
                                     self.probe_goal_test,
@@ -18,6 +18,19 @@ class LF:
                                     self.adjunct_interpretation_test]
 
         self.active_test_battery = self.LF_legibility_tests
+
+        self.local_edge = None
+
+        self.selection_tests = [self.selection__negative_specifier,
+                                self.selection__unselective_negative_specifier,
+                                self.selection__unselective_negative_edge,
+                                self.selection__negative_one_edge,
+                                self.selection__positive_obligatory_complement,
+                                self.selection__negative_complement,
+                                self.selection__unselective_negative_complement,
+                                self.selection__positive_unselective_complement,
+                                self.selection__positive_obligatory_specifier,
+                                self.selection__unselective_positive_specifier]
 
     def LF_legibility_test(self, ps, special_test_battery=None):
         if special_test_battery:
@@ -29,8 +42,9 @@ class LF:
 
     def pass_LF_legibility(self, ps):
         if ps.is_primitive():
-            for test in self.active_test_battery:
-                if not test(ps):
+            self.local_edge = next((const for const in ps.edge()), ps.extract_pro())
+            for LF_test in self.active_test_battery:
+                if not LF_test(ps):
                     return False
         else:
             if not ps.left_const.find_me_elsewhere:
@@ -51,10 +65,9 @@ class LF:
         return True
 
     def head_integrity_test(self, h):
-        if not h.features or 'CAT:?' in h.features or '?' in h.features:
-            log('Head without lexical category. ')
-            return False
-        return True
+        if h.features and 'CAT:?' not in h.features and '?' not in h.features:
+            return True
+        log('Head without lexical category. ')
 
     def probe_goal_test(self, h):
         for f in sorted(for_lf_interface(h.features)):
@@ -66,12 +79,6 @@ class LF:
                 if h.probe(set(h.features), f[7:]):
                     log(f'{h} failed negative probe-test for [{f[7:]}]. ')
                     return False
-        return True
-
-    def internal_tail_test(self, h):
-        if 'φ' in h.features and not h.internal_tail_test():
-            log(f'.{h}({h.mother}) failed internal tail test. ')
-            return False
         return True
 
     def double_spec_filter(self, h):
@@ -153,81 +160,6 @@ class LF:
                     return False
             return True
 
-    def selection_tests(self, h):
-        comp = h.proper_complement()
-        local_edge = next((const for const in h.edge()), h.extract_pro())
-        for f in sorted(for_lf_interface(h.features)):
-            if f.startswith('-SPEC:'):
-                for spec_ in h.edge():
-                    if spec_ and f[6:] in spec_.head().features:
-                        if not spec_.adjunct:
-                            log(f'{h} has unacceptable specifier {spec_}. ')
-                            return False
-
-            # No specifier of any kind allowed (e.g., English P).
-            # This excludes pro and adjuncts
-            if f == '-SPEC:*':
-                if local_edge:
-                    if not local_edge.adjunct and 'pro' not in local_edge.head().features:
-                        log(f'-EPP head {h} has a specifier {local_edge}. ')
-                        return False
-
-            # No edge (second Merge-1) allowed (i.,.e V2 phenomenon, Finnish that)
-            if f == '-EDGE:*' and local_edge:
-                log(f'{h} has {local_edge} but has -EDGE:*')
-                return False
-
-            if f == '!1EDGE' and len(h.edge()) > 1:
-                log(f'{h} is only allowed to host one edge element. ')
-                return False
-
-            # Obligatory complement
-            if f.startswith('!COMP:') and not f == '!COMP:*':
-                if not h.selected_sister():
-                    log(f'.{h} misses complement {f[6:]}. ')
-                    return False
-                else:
-                    if f[6:] not in h.selected_sister().head().features:
-                        log(f'{h} misses complement {f[6:]}. ')
-                        return False
-
-            # Complement restriction
-            if f.startswith('-COMP:'):
-                if h.is_left() and comp and f[6:] in comp.head().features:
-                    log(f'{h.illustrate()} has wrong complement {comp.illustrate()}. ')
-                    return False
-
-            if f == '-COMP:*':
-                if h.is_left() and comp:
-                    log(f'{h} does not accept complements. ')
-                    return False
-
-            # !COMP:* heads must have complements (=functional head)
-            if f == '!COMP:*':
-                if not h.selected_sister():
-                    log(f'{h} lacks complement. ')
-                    return False
-
-            # !SPEC:* heads require a specifier
-            if f == '!SPEC:*':
-                if not local_edge:
-                    log(f'EPP-head {h} lacks specifier. ')
-                    return False
-
-            # !SPEC:F, head requires specifier with label F
-            # This feature must be satisfied by local edge (local specifier)
-            if f.startswith('!SPEC:') and not f == '!SPEC:*':
-                if not local_edge:
-                    log(f'EPP-head {h} lacks specifier {f[6:]} that it requires. ')
-                    return False
-                else:
-                    if f[6:] in local_edge.head().features or f[7:] in local_edge.head().features:
-                        pass
-                    else:
-                        log(f'An EPP-head {h} has wrong specifier {local_edge}. ')
-                        return False
-        return True
-
     def final_tail_check(self, goal):
         if goal.is_complex():
             if not goal.left_const.find_me_elsewhere and not self.final_tail_check(goal.left_const):
@@ -239,6 +171,95 @@ class LF:
                 log(f'\'{goal.illustrate()}\' failed final tail test. ')
                 return False
         return True
+
+    # Selection tests ----------------------------------------------------------
+
+    def selection_test(self, head):
+        return next((test(head, lexical_feature) for lexical_feature in sorted(for_lf_interface(head.features))
+                     for test in self.selection_tests if not test(head, lexical_feature)), True)
+
+    def selection__negative_specifier(self, head, lexical_feature):
+        if lexical_feature.startswith('-SPEC:'):
+            for spec_ in head.edge():
+                if spec_ and lexical_feature[6:] in spec_.head().features:
+                    if not spec_.adjunct:
+                        log(f'{head} has unacceptable specifier {spec_}. ')
+                        return False
+        return True
+
+    def selection__unselective_negative_specifier(self, head, lexical_feature):
+        if lexical_feature == '-SPEC:*':
+            if self.local_edge:
+                if not self.local_edge.adjunct and 'pro' not in self.local_edge.head().features:
+                    log(f'-EPP head {head} has a specifier {self.local_edge}. ')
+                    return False
+        return True
+
+    def selection__unselective_negative_edge(self, head, lexical_feature):
+        if lexical_feature == '-EDGE:*' and self.local_edge:
+            log(f'{head} has {self.local_edge} but has -EDGE:*')
+            return False
+        return True
+
+    def selection__negative_one_edge(self, head, lexical_feature):
+        if lexical_feature == '!1EDGE' and len(head.edge()) > 1:
+            log(f'{head} is only allowed to host one edge element. ')
+            return False
+        return True
+
+    def selection__positive_obligatory_specifier(self, head, lexical_feature):
+        if lexical_feature == '!SPEC:*':
+            if not self.local_edge:
+                log(f'EPP-head {head} lacks specifier. ')
+                return False
+        return True
+
+    def selection__unselective_positive_specifier(self, head, lexical_feature):
+        if lexical_feature.startswith('!SPEC:') and not lexical_feature == '!SPEC:*':
+            if not self.local_edge:
+                log(f'EPP-head {head} lacks specifier {lexical_feature[6:]} that it requires. ')
+                return False
+            else:
+                if lexical_feature[6:] in self.local_edge.head().features or lexical_feature[7:] in self.local_edge.head().features:
+                    pass
+                else:
+                    log(f'An EPP-head {head} has wrong specifier {self.local_edge}. ')
+                    return False
+        return True
+
+    def selection__positive_obligatory_complement(self, head, lexical_feature):
+        if lexical_feature.startswith('!COMP:') and not lexical_feature == '!COMP:*':
+            if not head.selected_sister():
+                log(f'.{head} misses complement {lexical_feature[6:]}. ')
+                return False
+            else:
+                if lexical_feature[6:] not in head.selected_sister().head().features:
+                    log(f'{head} misses complement {lexical_feature[6:]}. ')
+                    return False
+        return True
+
+    def selection__negative_complement(self, head, lexical_feature):
+        if lexical_feature.startswith('-COMP:'):
+            if head.is_left() and head.proper_complement() and lexical_feature[6:] in head.proper_complement().head().features:
+                log(f'{head.illustrate()} has wrong complement {head.proper_complement().illustrate()}. ')
+                return False
+        return True
+
+    def selection__unselective_negative_complement(self, head, lexical_feature):
+        if lexical_feature == '-COMP:*':
+            if head.is_left() and head.proper_complement():
+                log(f'{head} does not accept complements. ')
+                return False
+        return True
+
+    def selection__positive_unselective_complement(self, head, lexical_feature):
+        if lexical_feature == '!COMP:*':
+            if not head.selected_sister():
+                log(f'{head} lacks complement. ')
+                return False
+        return True
+
+    # end of selection tests -------------------------------------------------------------
 
     #
     # LF Merge operations

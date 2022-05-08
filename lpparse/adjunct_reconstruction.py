@@ -107,9 +107,9 @@ class FloaterMovement():
 
     def conditions_for_left_adjuncts(self, test_item, starting_point_head):
         if test_item.head().tail_test():
-            if 'GEN' in test_item.head().features and 'φ' not in test_item.container().features:
-                return True
             if not test_item.container():
+                return True
+            if 'GEN' in test_item.head().features and 'φ' not in test_item.container().features:
                 return True
             if test_item.container() == starting_point_head:
                 return False
@@ -117,10 +117,6 @@ class FloaterMovement():
                 return False
             if 'φ' in test_item.head().features and not self.controlling_parser_process.LF.projection_principle(test_item.head(), 'weak'):
                 return False
-            if not test_item.container().selector():
-                return True
-            if '-ARG' not in test_item.container().selector().features:
-                return True
             return True
 
     def local_tense_edge(self, ps):
