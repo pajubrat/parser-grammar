@@ -20,16 +20,18 @@ prtcpl		:: INF T T/prt PF:T/prt LF:T/prt
 # English
 TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:T -COMP:T/fin -SPEC:v -VAL ?ARG adjoinable
 # Finnish infinitivals
-A/inf		:: INF A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:N -SPEC:Neg/fin ?ARG ?VAL
+A/inf		:: INF -PHI A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:N -SPEC:Neg/fin ?ARG
 ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* -SPEC:T/fin VAL -adjoinable 
-ESSA/inf 	:: ADV INF ESSA/inf ?VAL ?ARG SPEC:* TAIL:T,$NO_W PF:essa LF:while
+ESSA/inf 	:: ADV INF ESSA/inf VAL ?ARG SPEC:* TAIL:T,$NO_W PF:essa LF:while
 TUA/inf		:: ADV INF TUA/inf VAL TAIL:T,$NO_W ARG !SPEC:* PF:tua LF:after
-VA/inf  	:: VAL ?ARG INF VA/inf PF:vAn LF:VA -SPEC:N SPEC:*
-MA/ssa		:: MA/inf MA/ssa ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V,$NO_W -VAL ARG adjoinable 
-MA/tta		:: MA/inf ADV PF:matta LF:without_doing -VAL ARG TAIL:T,$NO_W adjoinable
-MA/lla		:: MA/inf ADV PF:malla LF:by_doing TAIL:T,$NO_W COMP:v COMP:V VAL ARG adjoinable
-MA/inf		:: MA/inf ADV PF:maan LF:to_do TAIL:V,$NO_W COMP:v COMP:V VAL ARG
-E/inf		:: PF:en LF:by ADV -ARG -VAL TAIL:T,$NO_W LANG:FI
+KSE/inf		:: ADV INF VAL TAIL:T,$NO_W ARG !SPEC:* PF:kse LF:in_order_to
+VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N !SPEC:*
+MA/ssa		:: MA/inf MA/ssa ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V,$NO_W -PHI ARG adjoinable 
+MA/tta		:: MA/inf ADV PF:matta -SPEC:* LF:without_doing -PHI ARG TAIL:T,$NO_W adjoinable
+MA/lla		:: MA/inf ADV PF:malla -SPEC:* LF:by_doing TAIL:T,$NO_W COMP:v COMP:V ARG adjoinable
+MA/an		:: MA/inf ADV PF:maan -SPEC:* LF:to_do TAIL:V,$NO_W COMP:v COMP:V ARG
+MA/sta		:: MA/inf ADV PF:masta -SPEC:* LF:without_doing COMP:v -SPEC:* COMP:V TAIL:V,$NO_W -PHI ARG adjoinable 
+E/inf		:: PF:en LF:by ADV -ARG -PHI TAIL:T,$NO_W LANG:FI
 
 # Copula
 BE-		:: V COPULA PF:BE LF:BE -ARG COMP:φ SPEC:φ !COMP:* COMP:T/prt -COMP:T/fin

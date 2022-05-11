@@ -65,9 +65,16 @@ class LF:
         return True
 
     def head_integrity_test(self, h):
-        if h.features and 'CAT:?' not in h.features and '?' not in h.features:
-            return True
-        log('Head without lexical category. ')
+        if h.features:
+            if {'CAT:?', '?'} & h.features:
+                log('Head without lexical category. ')
+                return False
+            for f in h.features:
+                for g in h.features:
+                    if f[0] == '-' and f[1:] == g:
+                        log(f'Head {h.illustrate()} triggers feature conflict between {f} and {g}.')
+                        return False
+        return True
 
     def probe_goal_test(self, h):
         for f in sorted(for_lf_interface(h.features)):
@@ -230,7 +237,7 @@ class LF:
     def selection__positive_obligatory_complement(self, head, lexical_feature):
         if lexical_feature.startswith('!COMP:') and not lexical_feature == '!COMP:*':
             if not head.selected_sister():
-                log(f'.{head} misses complement {lexical_feature[6:]}. ')
+                log(f' Head {head} lacks mandatory complement {lexical_feature[6:]}. ')
                 return False
             else:
                 if lexical_feature[6:] not in head.selected_sister().head().features:
@@ -255,7 +262,7 @@ class LF:
     def selection__positive_unselective_complement(self, head, lexical_feature):
         if lexical_feature == '!COMP:*':
             if not head.selected_sister():
-                log(f'{head} lacks complement. ')
+                log(f'Head \'{head}\' lacks complement. ')
                 return False
         return True
 

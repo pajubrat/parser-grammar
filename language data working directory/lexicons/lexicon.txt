@@ -136,7 +136,7 @@ halua		:: halua-#v#T LANG:FI
 haluamalla 	:: halua-#v#MA/lla LANG:FI
 haluttiin	:: halua-#impass#T/fin#1p#pl LANG:FI
 haluttu		:: halua-#impass#T/prt LANG:FI
-halua- 		:: PF:haluaa LF:want V ASP:BOUNDED SEM:internal CLASS:TR -SPEC:D -SPEC:φ SPEC:A/inf COMP:φ COMP:A/inf LANG:FI
+halua- 		:: PF:haluaa LF:want V ASP:BOUNDED SEM:internal CLASS:TR -SPEC:D -SPEC:φ SPEC:A/inf COMP:φ COMP:A/inf -COMP:pro LANG:FI
 
 hairitsee 	:: hairitse-#v#T/fin LANG:FI
 hairitse- 	:: PF:hairitsee LF:disturb CLASS:TR V SPEC:φ !COMP:φ -COMP:FIN LANG:FI
@@ -218,6 +218,11 @@ kaski		:: kaske-#v#T/fin#[-V] LANG:FI
 kaskee		:: kaske-#v#T/fin#[-V] LANG:FI
 kaske-		:: PF:kaske LF:order V !COMP:A/inf SEM:external LANG:FI
 
+käski		:: käske-#v#T/fin#[-V] LANG:FI
+käskee		:: käske-#v#T/fin#[-V] LANG:FI
+käske-		:: PF:käske LF:order V !COMP:A/inf SEM:external LANG:FI
+
+
 kellon		:: kello0-#φ#r_expression#[-n_acc] LANG:FI
 kellon		:: kello-#[-n_acc] LANG:FI
 kellon_n	:: kello0-#φ#r_expression#[-n_acc] LANG:FI
@@ -281,6 +286,27 @@ lahdettya	:: lahte-#TUA/inf LANG:FI
 lahde		:: lahte-#T LANG:FI
 lahti		:: lahte-#T/fin#[-V] LANG:FI
 lahte- 		:: PF:lahtea LF:leave CLASS:INTR V SPEC:φ -COMP:φ COMP:PP LANG:FI
+lähtee		:: lähte-#T/fin#[-V] LANG:FI
+lähteä 		:: lähte-#A/inf LANG:FI
+lähtemään 	:: lähte-#MA/inf LANG:FI
+lähtevän 	:: lähte-#VA/inf LANG:FI
+lähtevänsa 	:: lähte-#VA/inf#[-nsa] LANG:FI
+lähteväni 	:: lähte-#VA/inf#[-ni] LANG:FI
+lähtemässä 	:: lähte-#MA/ssa LANG:FI
+lähtemästä	:: lähte-#MA/sta LANG:FI
+lähtemättä	:: lähte-#MA/tta LANG:FI
+lähtemällä	:: lähte-#MA/lla LANG:FI
+lähtemään	:: lähte-#MA/an LANG:FI
+lähteäkseen	:: lähte-#KSE/inf#[en] LANG:FI
+lähtien		:: lähte-#E/inf LANG:FI
+lähtiessä	:: lähte-#ESSA/inf LANG:FI
+lähtiessään	:: lähte-#ESSA/inf#[-an] LANG:FI
+lähdettyään	:: lähte-#TUA/inf#[-an] LANG:FI
+lähdettyä	:: lähte-#TUA/inf LANG:FI
+lähde		:: lähte-#T LANG:FI
+lähti		:: lähte-#T/fin#[-V] LANG:FI
+lähte- 		:: PF:lähteä LF:leave CLASS:INTR V SPEC:φ -COMP:φ COMP:P LANG:FI
+
 
 lavano		:: lava-#v#T/fin#[-no] LANG:IT
 lava-		:: PF:lava LF:wash !COMP:* COMP:φ V SPEC:P LANG:IT
@@ -372,6 +398,7 @@ nainen		::	nainen-#φ#nonhum#r_expression#[-nom]
 nainen-		::	PF:nainen LF:woman N LANG:FI
 
 naki		:: nake-#v#T/fin#[-V] LANG:FI
+näki		:: nake-#v#T/fin#[-V] LANG:FI
 nakee		:: nake-#v#T/fin#[-V] LANG:FI
 nake-		:: PF:nake LF:see V CLASS:TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA/tta -COMP:MA/ssa LANG:FI
 
@@ -592,6 +619,9 @@ tta			:: PF:tta LF:without P COMP:n/MA ADV LANG:FI
 tries		:: try-#T/fin#[-s] LANG:EN
 try-		:: PF:try LF:try V SPEC:φ !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
 
+uskoi		:: usko-#T/fin#[-V] LANG:FI
+usko-   	:: PF:usko- LF:believe V -COMP:A/inf SPEC:φ SPEC:D COMP:VA/inf COMP:FORCE -PROBE:FORCE:WH LANG:FI
+
 verifiche	::	PF:verifiche LF:verification N LANG:IT
 
 virtaamalla	:: virta-#MA/lla LANG:FI
@@ -634,7 +664,8 @@ sina-		:: PF:sina  LF:you N PHI_N LANG:FI
 han			:: han-#D/pro#[-nom]#sg#3p#def#hum
 hän			:: han-#D/pro#[-nom]#sg#3p#def#hum
 häntä		:: han-#D/pro#[-par]#sg#3p#def#hum
-hänen		:: han-#D/pro#sg#3p#def#hum#[-gen]
+hänen		:: han-#D/pro#[-gen]#sg#3p#def#hum
+hänet		:: han-#D/pro#[acc(t)]#sg#3p#def#hum
 han-		:: PF:hän LF:s/he N PHI_N LANG:FI
 hanet		:: han-#D/pro#[-t_acc]#sg#3p#def#hum
 me_FI		:: me-#D/pro#[-nom]#pl#1p#def#hum
@@ -724,12 +755,24 @@ ci-			:: PF:ci LF:there N PHI_N LANG:IT
 [-vat]		::	inflectional PHI PHI:NUM:PL PHI:PER:3 LANG:FI
 
 # Finnish infinitival agreement (Px)
-[-ni]		::	inflectional PHI PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[-si]		::	inflectional PHI PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[-nsa]		:: 	inflectional PHI PHI:PER:3 PHI:NUM:SG LANG:FI
-[-an]		:: 	inflectional PHI PHI:PER:3 PHI:NUM:SG PHI:DET:DEF LANG:FI
-[-mme]		::	inflectional PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[-nne]		::	inflectional PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[-ni]		::	inflectional PHI pro PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[-si]		::	inflectional PHI pro PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[-nsa]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[-nsä]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[-an]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[-än]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[-en]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[-mme]		::	inflectional PHI pro PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[nne]		::	inflectional PHI pro PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[ni]		::	inflectional PHI pro PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[si]		::	inflectional PHI pro PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[nsa]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[nsä]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[an]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[än]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[en]		:: 	inflectional PHI pro PHI:PER:3 PHI:NUM:SG LANG:FI
+[mme]		::	inflectional PHI pro PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[nne]		::	inflectional PHI pro PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 
 # English
 [-s]		::	inflectional PHI PHI:NUM:SG PHI:PER:3 PHI:GEN:M PHI:GEN:F LANG:EN
@@ -749,12 +792,15 @@ ci-			:: PF:ci LF:there N PHI_N LANG:IT
 # Morphological cases
 # A. Structural
 [-nom]		:: inflectional NOM TAIL:FIN,ARG,VAL,$NO_S adjoinable
-[-par]   	:: inflectional PAR TAIL:ARG,-VAL,$NO_S adjoinable LANG:FI
+[-par]   	:: inflectional PAR TAIL:ARG,-PHI,$NO_S adjoinable LANG:FI
 [-gen]		:: inflectional GEN TAIL:INF,ARG adjoinable
 gen			:: inflectional GEN TAIL:INF,ARG adjoinable
 [-n_acc]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
+[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
 [-t_acc]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
+[acc(t)]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
 [-0_acc]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S TAIL:*PHI,$NO_S adjoinable LANG:FI
+[acc(0)]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S TAIL:*PHI,$NO_S adjoinable LANG:FI
 # B. Semantic cases
 [-ess]     	:: inflectional PF:na LF:as TAIL:V LANG:FI #essiivi
 [-trs]		:: inflectional PF:ksi LF:to TAIL:V LANG:FI #translatiivi

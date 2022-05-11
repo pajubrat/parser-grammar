@@ -1,7 +1,6 @@
 # This class defines basic linguistic competence, i.e. phrase structures and operations on phrase structure
 from collections import namedtuple
 from itertools import takewhile
-from support import log
 
 major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 

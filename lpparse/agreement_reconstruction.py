@@ -1,18 +1,20 @@
 from support import log
 
 def is_unvalued(head):
-    return {f for f in head.features if f[:4] == 'PHI:' and f[-1] == '_'}
+    for f in head.features:
+        if unvalued(f):
+            return True
+
+def unvalued(f):
+    return f[:4] == 'PHI:' and f[-1] == '_'
+def valued(f):
+    return not unvalued(f)
+def mark_bad(p):
+    return p + '*'
+def phi(f):
+    return f[:4] == 'PHI:'
 def get_type(f):
     return f.split(':')[1]
-def unvalued(input_feature):
-    if input_feature:
-        return {f for f in {input_feature} if f[-1] == '_'}
-def valued(input_feature):
-    return {f for f in {input_feature} if not unvalued(f)}
-def mark_bad(phi):
-    return phi + '*'
-def phi(input_feature):
-    return {f for f in {input_feature} if f[:4] == 'PHI:'}
 
 class AgreementReconstruction:
     def __init__(self, controlling_parsing_process):
@@ -26,34 +28,35 @@ class AgreementReconstruction:
                 self.Agree_1(node.left_const)
         # ------------------------------------------------------------------------------------#
 
-    def Agree_1(self, head):
+    def Agree_1(self, probe):
         self.brain_model.consume_resources("Agree")
         self.brain_model.consume_resources("Phi")
 
-        if head.sister():
-            goal, phi = self.Agree_1_from_sister(head)
+        if probe.sister():
+            goal, phi = self.Agree_1_from_sister(probe)
             if phi:
-                self.brain_model.narrow_semantics.predicate_argument_dependencies.append((head, goal))
-                if not {'D', 'φ', 'n'} & head.features: # This is currently stipulation
-                    head.features.add('BLOCK_NS')
+                self.brain_model.narrow_semantics.predicate_argument_dependencies.append((probe, goal))
+                probe.features.add('-pro')
+                if not {'D', 'φ', 'n'} & probe.features: # This is currently stipulation
+                    probe.features.add('BLOCK_NS')
                 for p in phi:
-                    self.value(head, goal, p, 'sister')
-                if not is_unvalued(head):
+                    self.value(probe, goal, p, 'sister')
+                if not is_unvalued(probe):
                     return
 
-        goal2, phi = self.Agree_1_from_edge(head)
+        goal2, phi = self.Agree_1_from_edge(probe)
         if goal2:
             for p in phi:
-                if {f for f in head.features if unvalued(f) and f[:-1] == p[:len(f[:-1])]}:
-                    self.value(head, goal2, p, 'edge')
-            if not {'D', 'φ', 'n'} & head.features and 'pro' not in goal2.features:
-                head.features.add('BLOCK_NS')
+                if {f for f in probe.features if unvalued(f) and f[:-1] == p[:len(f[:-1])]}:
+                    self.value(probe, goal2, p, 'edge')
+            if not {'D', 'φ', 'n'} & probe.features and 'pro' not in goal2.features:
+                probe.features.add('BLOCK_NS')
 
-    def Agree_1_from_sister(self, head):
+    def Agree_1_from_sister(self, probe):
         #===========================================================
-        for node in head.sister():
+        for node in probe.sister():
             if node.left_const:
-                if node.left_const.is_complex() and self.agreement_condition(head, node.left_const):
+                if node.left_const.is_complex() and self.agreement_condition(probe, node.left_const):
                     return node.left_const.head(), sorted({f for f in node.left_const.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
                 else:
                     break
@@ -65,17 +68,17 @@ class AgreementReconstruction:
                      for const in [const for const in head.edge()] + [head.extract_pro()] if
                      const and self.agreement_condition(head, const)), (None, {}))
 
-    def agreement_condition(self, head, const):
-        if {'D', 'φ'} & const.head().features:
+    def agreement_condition(self, probe, goal):
+        if {'D', 'φ'} & goal.head().features:
             if self.brain_model.language != 'LANG:FI':
                 return True
             else:
-                if 'pro' in const.head().features:
+                if 'pro' in goal.head().features:
                     return True
                 else:
-                    if 'FIN' in head.features and 'NOM' in const.head().features:
+                    if 'FIN' in probe.features and 'NOM' in goal.head().features:
                         return True
-                    if 'INF' in head.features and 'GEN' in const.head().features:
+                    if 'INF' in probe.features and 'GEN' in goal.head().features:
                         return True
 
     def value(self, h, goal, phi, location):

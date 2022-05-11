@@ -132,13 +132,9 @@ class LexicalInterface:
         return [word for (word, freq) in ranked_list]
 
     def apply_redundancy_rules(self, features):
-
-        # Internal definition for the notion of negative feature
         def negative_feature(f):
             if f.startswith('-'):
                 return True
-
-        # Internal definition for feature conflict
         def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
             if negative_feature(new_candidate_feature_to_add):
                 if new_candidate_feature_to_add[1:] in features_from_lexicon:
@@ -148,7 +144,6 @@ class LexicalInterface:
                     return True
 
         # ---- main function -----#
-
         feature_set = set(features)
         new_features_to_add = set()
 

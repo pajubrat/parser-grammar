@@ -26,8 +26,9 @@ class FeatureProcessing():
         elif self.selected_by_SEM_external(h):
             log(f'{h} resolved into +ARG due to {h.selector()}...')
             h.features.add('ARG')
-            h.features.add('VAL')
-            h.features.discard('?VAL')
+            if '?VAL' in h.features:
+                h.features.add('VAL')
+                h.features.discard('?VAL')
             h.features.add('!SPEC:*')
         else:   # Selected by neither
             log(f'{h} resolved to +ARG...')
