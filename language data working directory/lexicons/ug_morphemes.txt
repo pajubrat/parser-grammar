@@ -17,21 +17,25 @@ cau		:: v PF:Cau LF:v/Cause
 # Infinitivals
 INF			:: INF PF:INF LF:INF
 prtcpl		:: INF T T/prt PF:T/prt LF:T/prt
+
 # English
 TO/inf 		:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:T -COMP:T/fin -SPEC:v -VAL ?ARG adjoinable
+
 # Finnish infinitivals
-A/inf		:: INF -PHI A/inf PF:A/inf LF:A/inf SPEC:* -SPEC:N -SPEC:Neg/fin ?ARG
+A/inf		:: A/inf 	INF -PHI 	?ARG	 								PF:(t)A LF:A/inf -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI
+VA/inf  	:: VA/inf 	INF T    VAL ARG  	!SPEC:* 						PF:vAn LF:VA -SPEC:N LANG:FI
+ESSA/inf 	:: ESSA/inf	INF ADV  VAL ARG 			TAIL:T,$NO_W 			PF:essa LF:while LANG:FI
+TUA/inf		:: TUA/inf	INF ADV  VAL ARG 	!SPEC:* TAIL:T,$NO_W 			PF:tua LF:after LANG:FI
+KSE/inf		:: KSE/inf	INF ADV  VAL ARG 			TAIL:T,$NO_W 			PF:kse LF:in_order_to LANG:FI
+E/inf		:: E/inf 	INF ADV -PHI ARG 	-SPEC:*	TAIL:T,$NO_W 			PF:en LF:by LANG:FI
+MA/ssa		:: MA/ssa	INF ADV -PHI ARG 	-SPEC:* TAIL:CLASS/TR,$NO_W 	PF:massa LF:in_doing LANG:FI
+MA/tta		:: MA/tta	INF ADV -PHI ARG 	-SPEC:* TAIL:T,$NO_W 			PF:matta LF:without_doing LANG:FI
+MA/lla		:: MA/lla	INF ADV -PHI ARG 	-SPEC:* TAIL:T,$NO_W 			PF:malla LF:by_doing COMP:v COMP:V LANG:FI
+MA/sta		:: MA/sta	INF ADV -PHI ARG 	-SPEC:* TAIL:CLASS/TR,SEMCLASS_denied_event,$NO_W PF:masta LF:without_doing LANG:FI
+MA/an		:: MA/an	INF		-PHI ARG 	-SPEC:* TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:maan LF:to_do SEM/desired_event LANG:FI
+
+# Italian
 ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ?ARG SPEC:* -SPEC:T/fin VAL -adjoinable 
-ESSA/inf 	:: ADV INF ESSA/inf VAL ?ARG SPEC:* TAIL:T,$NO_W PF:essa LF:while
-TUA/inf		:: ADV INF TUA/inf VAL TAIL:T,$NO_W ARG !SPEC:* PF:tua LF:after
-KSE/inf		:: ADV INF VAL TAIL:T,$NO_W ARG !SPEC:* PF:kse LF:in_order_to
-VA/inf  	:: VAL ARG INF VA/inf PF:vAn LF:VA -SPEC:N !SPEC:*
-MA/ssa		:: MA/inf MA/ssa ADV COMP:v -SPEC:* COMP:V PF:massa LF:in_doing TAIL:V,$NO_W -PHI ARG adjoinable 
-MA/tta		:: MA/inf ADV PF:matta -SPEC:* LF:without_doing -PHI ARG TAIL:T,$NO_W adjoinable
-MA/lla		:: MA/inf ADV PF:malla -SPEC:* LF:by_doing TAIL:T,$NO_W COMP:v COMP:V ARG adjoinable
-MA/an		:: MA/inf ADV PF:maan -SPEC:* LF:to_do TAIL:V,$NO_W COMP:v COMP:V ARG
-MA/sta		:: MA/inf ADV PF:masta -SPEC:* LF:without_doing COMP:v -SPEC:* COMP:V TAIL:V,$NO_W -PHI ARG adjoinable 
-E/inf		:: PF:en LF:by ADV -ARG -PHI TAIL:T,$NO_W LANG:FI
 
 # Copula
 BE-		:: V COPULA PF:BE LF:BE -ARG COMP:φ SPEC:φ !COMP:* COMP:T/prt -COMP:T/fin

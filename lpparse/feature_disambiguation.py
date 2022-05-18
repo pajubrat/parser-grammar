@@ -20,7 +20,6 @@ class FeatureProcessing():
         h.features.discard('?ARG')
         if self.selected_by_SEM_internal(h):
             log(f'{h} resolved into -ARG due to {h.selector()}...')
-            h.features.add('-ARG')
             h.features.add('-SPEC:*')
             h.features.discard('SPEC:*')
         elif self.selected_by_SEM_external(h):
