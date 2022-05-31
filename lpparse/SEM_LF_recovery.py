@@ -66,7 +66,7 @@ class LF_Recovery:
         return list_of_antecedents
 
     def recovery_termination(self, node):
-        return not 'SEM:external' in node.features
+        return 'SEM:external' not in node.features
 
     def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
         if ps.edge() and const == next((const for const in ps.edge()), None):

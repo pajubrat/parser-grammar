@@ -1,0 +1,2943 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-13-infinitivals', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-13-infinitivals', 'test_corpus_file': 'infinitivals_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': True, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-05-23 11:45:44.339799
+@  Test sentences from language data working directory\study-13-infinitivals\infinitivals_corpus.txt.
+@  Logs into language data working directory\study-13-infinitivals\infinitivals_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+& 0. Preliminaries (presuppositions of the study)
+
+& 0.1 Case mechanisms
+
+& 0.1.1 Nominative and partitive
+
+1.  Pekka ihailee Merjaa 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of ihaile-(Merja)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ Merja]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) φ(N)]]
+	surface structure: [[φ Pekka] [T [v [ihaile- [φ Merja]]]]]
+	s-structure: [<φ Pekka>:2 [T [<__>:2 [v [ihaile- [φ Merja]]]]]]
+	LF structure: [<φ Pekka>:2 [T [<__>:2 [v [ihaile- [φ Merja]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1560, Garden Paths:0, Memory Reactivation:0, Steps:13, Merge:6, Move Head:2, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:12, Phi:14, Transfer:11, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:14, Failed Transfer:0, LF recovery:2, 
+	LF test:13, Filter solution:5, Rank solution:2, Lexical retrieval:21, Morphological decomposition:3, 
+	Mean time per word:520, Asymmetric Merge:45, Sink:9, Tail test:46, Case checking:46, 
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <φ Merja>:2]]
+
+	'Pekka.nom admire.prs.3sg Merja.par'
+
+& 0.1.2 Nominative and t-accusative
+
+2.  Pekka näki hänet 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) D(N)]]
+	surface structure: [[φ Pekka] [T [v [nake [D hän]]]]]
+	s-structure: [<φ Pekka>:5 [T [<__>:5 [v [nake [D hän]]]]]]
+	LF structure: [<φ Pekka>:5 [T [<__>:5 [v [nake [D hän]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1385, Garden Paths:0, Memory Reactivation:0, Steps:13, Merge:6, Move Head:2, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:11, Phi:13, Transfer:11, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
+	LF test:13, Filter solution:5, Rank solution:2, Lexical retrieval:19, Morphological decomposition:3, 
+	Mean time per word:461, Asymmetric Merge:44, Sink:9, Tail test:44, Case checking:66, 
+
+	'Pekka.nom saw he.acc(t)'
+
+& 0.2 Verb classes
+
+& 0.2.1 -OC verb
+
+3.  Pekka käski hänen lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [kaske [[D hän]:2 [(t)A [__:2 lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of kaske(Pekka)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 10, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] (t)A(V)]]]
+	surface structure: [[φ Pekka] [T [v [kaske [[D hän] [(t)A lähte-]]]]]]
+	s-structure: [<φ Pekka>:8 [T [<__>:8 [v [kaske [[D hän] [(t)A lähte-]]]]]]]
+	LF structure: [<φ Pekka>:8 [T [<__>:8 [v [kaske [[D hän]:1 [(t)A [__:1 lähte-]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1855, Garden Paths:0, Memory Reactivation:0, Steps:25, Merge:8, Move Head:6, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:17, Phi:20, Transfer:31, Item streamed into syntax:9, 
+	Feature Processing:1, Extraposition:2, Inflection:12, Failed Transfer:0, LF recovery:3, 
+	LF test:35, Filter solution:8, Rank solution:2, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:463, Asymmetric Merge:148, Sink:17, Tail test:173, Case checking:166, 
+
+	'Pekka.nom order.pst.3sg he.gen leave.A/inf'
+
+4. *Pekka käski lähteä 
+
+	'Pekka.nom order.pst.3sg leave.A/inf'
+
+& 0.2.2 OC verb
+
+5.  Pekka halusi lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of haluaa(Pekka)'}, {'Agent of lähte-(Pekka)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) (t)A(V)]]
+	surface structure: [[φ Pekka] [T [v [haluaa [(t)A lähte-]]]]]
+	s-structure: [<φ Pekka>:15 [T [<__>:15 [v [haluaa [(t)A lähte-]]]]]]
+	LF structure: [<φ Pekka>:15 [T [<__>:15 [v [haluaa [(t)A lähte-]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:1155, Garden Paths:0, Memory Reactivation:0, Steps:13, Merge:6, Move Head:2, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:11, Phi:14, Transfer:11, Item streamed into syntax:7, 
+	Feature Processing:1, Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:3, 
+	LF test:13, Filter solution:5, Rank solution:2, Lexical retrieval:14, Morphological decomposition:3, 
+	Mean time per word:385, Asymmetric Merge:39, Sink:9, Tail test:24, Case checking:24, 
+
+	'Pekka.nom want.pst.3sg leave.A/inf'
+
+6. *Pekka halusi hänen lähteä 
+
+	'Pekka.nom want.pst.3sg he.gen leave.A/inf'
+
+& 0.2.3 Proposition-selection verb
+
+7.  Pekka uskoi hänen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [usko- [[D hän]:2 [vAn [__:2 lähte-]]]]]]]
+
+	Semantics:
+	Recovery: [{'Patient of usko-(agent of T-event)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 6, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 6, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(V) [[D hän] vAn(V)]]]
+	surface structure: [[φ Pekka] [T [usko- [[D hän] [vAn lähte-]]]]]
+	s-structure: [<φ Pekka>:25 [T [<__>:25 [usko- [[D hän] [vAn lähte-]]]]]]
+	LF structure: [<φ Pekka>:25 [T [<__>:25 [usko- [[D hän]:1 [vAn [__:1 lähte-]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1830, Garden Paths:0, Memory Reactivation:0, Steps:27, Merge:7, Move Head:4, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:19, Phi:21, Transfer:32, Item streamed into syntax:8, 
+	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
+	LF test:37, Filter solution:6, Rank solution:5, Lexical retrieval:20, Morphological decomposition:4, 
+	Mean time per word:457, Asymmetric Merge:184, Sink:19, Tail test:243, Case checking:236, 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.VA/inf'
+
+8. *Pekka uskoi 
+
+	'Pekka.nom believe.pst.3sg'
+
+& 0.2.4 Intransitive
+
+9.  Pekka nukkui 
+
+	[<φ Pekka>:1 [T [<__>:1 nukku]]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] T(V)]
+	surface structure: [[φ Pekka] [T nukku]]
+	s-structure: [<φ Pekka>:30 [T [<__>:30 nukku]]]
+	LF structure: [<φ Pekka>:30 [T [<__>:30 nukku]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:830, Garden Paths:0, Memory Reactivation:0, Steps:5, Merge:3, Move Head:0, Move Phrase:1, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:1, Agree:6, Phi:7, Transfer:6, Item streamed into syntax:4, 
+	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:1, 
+	LF test:7, Filter solution:2, Rank solution:1, Lexical retrieval:11, Morphological decomposition:2, 
+	Mean time per word:415, Asymmetric Merge:10, Sink:3, Tail test:8, Case checking:8, 
+
+	'Pekka.nom sleep.pst.3sg'
+
+10. *Pekka nukkui hänet 
+
+	'Pekka.nom sleep.pst.3sg he.acc(t)'
+
+& 1. A-infinitival
+
+& (Vainikka: TA-infinitive; traditional: 1st infinitive, short form)
+
+& 1.1 Selected by -OC verb (external, käski 'ordered')
+
+& 1.1.1 Embedded Subject present (without PX)
+
+11.  Pekka käski hänen lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [kaske [[D hän]:2 [(t)A [__:2 lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of kaske(Pekka)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 10, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] (t)A(V)]]]
+	surface structure: [[φ Pekka] [T [v [kaske [[D hän] [(t)A lähte-]]]]]]
+	s-structure: [<φ Pekka>:37 [T [<__>:37 [v [kaske [[D hän] [(t)A lähte-]]]]]]]
+	LF structure: [<φ Pekka>:37 [T [<__>:37 [v [kaske [[D hän]:1 [(t)A [__:1 lähte-]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1855, Garden Paths:0, Memory Reactivation:0, Steps:25, Merge:8, Move Head:6, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:17, Phi:20, Transfer:31, Item streamed into syntax:9, 
+	Feature Processing:1, Extraposition:2, Inflection:12, Failed Transfer:0, LF recovery:3, 
+	LF test:35, Filter solution:8, Rank solution:2, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:463, Asymmetric Merge:148, Sink:17, Tail test:173, Case checking:166, 
+
+	'Pekka.nom order.pst.3sg he.gen leave.A/inf'
+
+& 1.1.2 Embedded Subject present (with PX)
+
+12. *Pekka käski hänen lähteänsä 
+
+	'Pekka.nom order.pst.3sg he.gen leave.A/inf.px/3sg'
+
+13. *Pekka käski hänen lähteä#[nsä] 
+
+	'Pekka.nom order.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.1.3 Embedded Subject absent (without PX)
+
+14. *Pekka käski lähteä 
+
+	'Pekka.nom order.pst.3sg leave.A/inf'
+
+& 1.1.4 Embedded Subject absent (with PX)
+
+15. *Pekka käski lähteä#[nsä] 
+
+	'Pekka.nom order.pst.3sg leave.A/inf-Px/3sg'
+
+& 1.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 1.2.1 Embedded Subject present (without PX)
+
+16. *Pekka halusi hänen lähteä 
+
+	'Pekka.nom want.pst.3sg he.gen leave.A/inf'
+
+& 1.2.2 Embedded Subject present (with PX)
+
+17. *Pekka halusi hänen lähteä#[nsä] 
+
+	'Pekka.nom want.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.2.3 Embedded Subject absent (without PX)
+
+18.  Pekka halusi lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of haluaa(Pekka)'}, {'Agent of lähte-(Pekka)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) (t)A(V)]]
+	surface structure: [[φ Pekka] [T [v [haluaa [(t)A lähte-]]]]]
+	s-structure: [<φ Pekka>:73 [T [<__>:73 [v [haluaa [(t)A lähte-]]]]]]
+	LF structure: [<φ Pekka>:73 [T [<__>:73 [v [haluaa [(t)A lähte-]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:1155, Garden Paths:0, Memory Reactivation:0, Steps:13, Merge:6, Move Head:2, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:11, Phi:14, Transfer:11, Item streamed into syntax:7, 
+	Feature Processing:1, Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:3, 
+	LF test:13, Filter solution:5, Rank solution:2, Lexical retrieval:14, Morphological decomposition:3, 
+	Mean time per word:385, Asymmetric Merge:39, Sink:9, Tail test:24, Case checking:24, 
+
+	'Pekka.nom want.pst.3sg leave.A/inf'
+
+& 1.2.4 Embedded Subject absent (with PX)
+
+19. *Pekka halusi lähteä#[nsä] 
+
+	'Pekka.nom want.pst.3sg leave.A/inf-px/3sg'
+
+& 1.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 1.3.1 Embedded Subject present (without PX)
+
+20. *Pekka uskoi hänen lähteä 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.A/inf'
+
+& 1.3.2 Embedded Subject present (with PX)
+
+21. *Pekka uskoi hänen lähteä#[nsä] 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.3.3 Embedded Subject absent (without PX)
+
+22. *Pekka uskoi lähteä 
+
+	'Pekka.nom believe.pst.3sg leave.A/inf'
+
+& 1.3.4 Embedded Subject absent (with PX)
+
+23. *Pekka uskoi lähteä#[nsä] 
+
+	'Pekka.nom believe.pst.3sg leave.A/inf-px/3sg'
+
+& 1.4 In adjunct position (not selected)
+
+& 1.4.1 Embedded Subject present (without PX)
+
+24. *Pekka näki hänet hänen lähteä 
+
+	'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.A/inf]'
+
+& 1.4.2 Embedded Subject present (with PX)
+
+25. *Pekka näki hänet hänen lähteä#[nsä] 
+
+	'Pekka see.pst.3sg he.acc(t) [he.gen leave.A/inf-px/3sg]
+
+& 1.4.3 Embedded Subject absent (without PX)
+
+26. *Pekka näki hänet lähteä 
+
+	'Pekka.nom see.pst.3sg he.acc(t) [leave.A/inf]
+
+& 1.4.4 Embedded Subject absent (with PX)
+
+27. *Pekka näki hänet hänen lähteä#[nsä] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.A/inf-px/3sg]'
+
+& 1.5 In connection with intransitive main verb (not selected)
+
+& 1.5.1 Embedded Subject present (without PX)
+
+28. *Pekka nukkui hänen lähteä 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.A/inf'
+
+& 1.5.2 Embedded Subject present (with PX)
+
+29. *Pekka nukkui hänen lähteä#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.5.3 Embedded Subject absent (without PX)
+
+30. *Pekka nukkui lähteä 
+
+	'Pekka.nom sleep.pst.3sg leave.A/inf'
+
+& 1.5.4 Embedded Subject present (with PX)
+
+31. *Pekka nukkui lähteä#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg leave.A/inf-px/3sg'
+
+& 2. VA-infinitival
+
+& (Vainikka: clausal complement infinitival; traditional: participle)
+
+& 2.1 Selected by -OC verb (external, käski 'ordered')
+
+& 2.1.1 Embedded Subject present (without PX)
+
+32. *Pekka käski hänen lähtevän 
+
+	'Pekka.nom order.pst.3sg he.gen leave.VA/inf'
+
+& 2.1.2 Embedded Subject present (with PX)
+
+33. *Pekka käski hänen lähtevän#[nsä] 
+
+	'Pekka.nom order.pst.3sg he.gen leave.VA/inf.px/3sg'
+
+& 2.1.3 Embedded Subject absent (without PX)
+
+34. *Pekka käski lähtevän 
+
+	'Pekka.nom order.pst.3sg leave.VA/inf'
+
+& 2.1.4 Embedded Subject absent (with PX)
+
+35. *Pekka käski lähtevän#[nsa] 
+
+	'Pekka.nom order.pst.3sg leave.VA/inf-px/3sg'
+
+& 2.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 2.2.1 Embedded Subject present (without PX)
+
+36.  Pekka halusi hänen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [[D hän]:2 [vAn [__:2 lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of haluaa(agent of T-event)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] vAn(V)]]]
+	surface structure: [[φ Pekka] [T [v [haluaa [[D hän] [vAn lähte-]]]]]]
+	s-structure: [<φ Pekka>:198 [T [<__>:198 [v [haluaa [[D hän] [vAn lähte-]]]]]]]
+	LF structure: [<φ Pekka>:198 [T [<__>:198 [v [haluaa [[D hän]:1 [vAn [__:1 lähte-]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1865, Garden Paths:0, Memory Reactivation:0, Steps:25, Merge:8, Move Head:6, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:18, Phi:21, Transfer:29, Item streamed into syntax:9, 
+	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:3, 
+	LF test:33, Filter solution:8, Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:466, Asymmetric Merge:148, Sink:17, Tail test:169, Case checking:162, 
+
+	'Pekka.nom want.pst.3sg he.gen leave.VA/inf'
+
+& 2.2.2 Embedded Subject present (with PX)
+
+37. *Pekka halusi hänen lähtevän#[nsä] 
+
+	'Pekka.nom want.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.2.3 Embedded Subject absent (without PX)
+
+38. *Pekka halusi lähtevän 
+
+	'Pekka.nom want.pst.3sg leave.VA/inf'
+
+& 2.2.4 Embedded Subject absent (with PX)
+
+39. *Pekka halusi lähtevän#[nsä] 
+
+	'Pekka.nom want.pst.3sg leave.VA/inf-px/3sg'
+
+& 2.3 Selected by proposition-taking verb (+/-external, uskoi 'believed')
+
+& 2.3.1 Embedded Subject present (without PX)
+
+40.  Pekka uskoi hänen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [usko- [[D hän]:2 [vAn [__:2 lähte-]]]]]]]
+
+	Semantics:
+	Recovery: [{'Patient of usko-(agent of T-event)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 6, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 6, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(V) [[D hän] vAn(V)]]]
+	surface structure: [[φ Pekka] [T [usko- [[D hän] [vAn lähte-]]]]]
+	s-structure: [<φ Pekka>:214 [T [<__>:214 [usko- [[D hän] [vAn lähte-]]]]]]
+	LF structure: [<φ Pekka>:214 [T [<__>:214 [usko- [[D hän]:1 [vAn [__:1 lähte-]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1830, Garden Paths:0, Memory Reactivation:0, Steps:27, Merge:7, Move Head:4, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:19, Phi:21, Transfer:32, Item streamed into syntax:8, 
+	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:2, 
+	LF test:37, Filter solution:6, Rank solution:5, Lexical retrieval:20, Morphological decomposition:4, 
+	Mean time per word:457, Asymmetric Merge:184, Sink:19, Tail test:243, Case checking:236, 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.VA/inf'
+
+& 2.3.2 Embedded Subject present (with PX)
+
+41. *Pekka uskoi hänen lähtevän#[nsä] 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.3.3 Embedded Subject absent (without PX)
+
+42. *Pekka uskoi lähtevän 
+
+	'Pekka.nom believe.pst.3sg leave.VA/inf'
+
+& 2.3.4 Embedded Subject absent (with PX)
+
+43.  Pekka uskoi lähtevän#[nsä] 
+
+	[<φ Pekka>:1 [T [<__>:1 [usko- [vAn lähte-]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of usko-(Pekka)'}, {'Agent of vAn(Pekka)'}, {'Agent of lähte-(Pekka)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(vAn) ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 2, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 8, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(V) vAn(V)]]
+	surface structure: [[φ Pekka] [T [usko- [vAn lähte-]]]]
+	s-structure: [<φ Pekka>:227 [T [<__>:227 [usko- [vAn lähte-]]]]]
+	LF structure: [<φ Pekka>:227 [T [<__>:227 [usko- [vAn lähte-]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(vAn)
+
+	Resources:
+	Total Time:1265, Garden Paths:0, Memory Reactivation:0, Steps:11, Merge:5, Move Head:1, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:12, Phi:15, Transfer:11, Item streamed into syntax:6, 
+	Feature Processing:0, Extraposition:0, Inflection:8, Failed Transfer:0, LF recovery:3, 
+	LF test:13, Filter solution:4, Rank solution:2, Lexical retrieval:14, Morphological decomposition:4, 
+	Mean time per word:421, Asymmetric Merge:33, Sink:7, Tail test:24, Case checking:24, 
+
+	'Pekka.nom believe.pst.3sg leave.VA/inf-px/3sg
+
+& 2.4 In adjunct position (not selected)
+
+& 2.4.1 Embedded Subject present (without PX)
+
+44. *Pekka näki hänet hänen lähtevän 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.VA/inf'
+
+& 2.4.2 Embedded Subject present (with PX)
+
+45. *Pekka näki hänet hänen lähtevän#[nsä] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.VA/inf-px/3sg'
+
+& 2.4.3 Embedded Subject absent (without PX)
+
+46. *Pekka näki hänet lähtevän 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.VA/inf'
+
+& 2.4.4 Embedded Subject absent (with PX)
+
+47. *Pekka näki hänet hänen lähtevän#[nsä] 
+
+	'Pekka see.pst.3sg he.acc(t) he.gen leave.VA/inf-px/3sg
+
+& 2.5 In connection with intransitive main verb (not selected)
+
+& 2.5.1 Embedded Subject present (without PX)
+
+48. *Pekka nukkui hänen lähtevän 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.VA/inf'
+
+& 2.5.2 Embedded Subject present (with PX)
+
+49. *Pekka nukkui hänen lähtevän#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.5.3 Embedded Subject absent (without PX)
+
+50. *Pekka nukkui lähtevän 
+
+	'Pekka.nom sleep.pst.3sg leave.VA/inf'
+
+& 2.5.4 Embedded Subject present (with PX)
+
+51. *Pekka nukkui lähtevän#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg leave.VA/inf-px/3sg'
+
+& 3. MA-infinitival
+
+& (Vainikka: MA-infinitive; traditional: 3rd infinitive)
+
+& 3.1 Selected by -OC verb (external, käski 'ordered')
+
+& 3.1.1 Embedded Subject present (without PX)
+
+52. *Pekka käski hänen lähtemässä 
+
+	'Pekka.nom order.pst.3sg he.gen leave.MA/ssa'
+
+53. *Pekka käski hänen lähtemään 
+
+	'Pekka.nom order.pst.3sg he.gen leave.MA/an'
+
+54. *Pekka käski hänen lähtemästä 
+
+	'Pekka.nom order.pst.3sg he.gen leave.MA/sta'
+
+55. *Pekka käski hänen lähtemällä 
+
+	'Pekka.nom order.pst.3sg he.gen leave.MA/lla'
+
+56. *Pekka käski hänen lähtemättä 
+
+	'Pekka.nom order.pst.3sg he.gen leave.MA/tta'
+
+& 3.1.2 Embedded Subject present (with PX)
+
+57. *Pekka käski hänen lähtemässä#[nsä] 
+
+	'Pekka.nom order.pst.3sg he.gen leave.MA/ssa-px/3sg'
+
+58. *Pekka käski hänen lähtemään#[nsä] 
+
+	'Pekka.nom order he.gen leave.MA/an-px/3sg'
+
+59. *Pekka käski hänen lähtemästä#[nsä] 
+
+	'Pekka.nom order.pst.3sg he.gen leave.MA/sta-px/3sg'
+
+60. *Pekka käski hänen lähtemällä#[nsä] 
+
+	'Pekka.nom order he.gen leave.MA/lla-px/3sg'
+
+61. *Pekka käski hänen lähtemättä#[än] 
+
+	'Pekka.nom order.pst.3sg he.gen leave.MA/tta-px/3sg
+
+& 3.1.3 Embedded Subject absent (without PX)
+
+62. *Pekka käski lähtemässä 
+
+	'Pekka.nom order.pst.3sg leave.MA/ssa'
+
+63.  Pekka käski lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [kaske [maan lähte-]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of kaske(Pekka)'}, {'Agent of maan(Pekka)'}, {'Agent of lähte-(Pekka)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) maan(V)]]
+	surface structure: [[φ Pekka] [T [v [kaske [maan lähte-]]]]]
+	s-structure: [<φ Pekka>:393 [T [<__>:393 [v [kaske [maan lähte-]]]]]]
+	LF structure: [<φ Pekka>:393 [T [<__>:393 [v [kaske [maan lähte-]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:1175, Garden Paths:0, Memory Reactivation:0, Steps:13, Merge:6, Move Head:2, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:11, Phi:15, Transfer:11, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:4, 
+	LF test:13, Filter solution:5, Rank solution:2, Lexical retrieval:14, Morphological decomposition:3, 
+	Mean time per word:391, Asymmetric Merge:38, Sink:9, Tail test:25, Case checking:24, 
+
+	'Pekka.nom order leave.MA/inf'
+
+64. *Pekka käski lähtemässä 
+
+	'Pekka.nom order.pst.3sg leave.MA/ssa'
+
+65. *Pekka käski lähtemällä 
+
+	'Pekka.nom order.pst.3sg leave.MA/lla'
+
+66. *Pekka käski lähtemättä 
+
+	'Pekka.nom order leave.MA/tta'
+
+& 3.1.4 Embedded Subject absent (with PX)
+
+67. *Pekka käski lähtemässä#[än] 
+
+	'Pekka.nom order.pst.3sg leave.MA/ssa-px/3sg'
+
+68. *Pekka käski lähtemään#[nsä] 
+
+	'Pekka.nom order.pst.3st leave.MA/an-px/3sg'
+
+69. *Pekka käski lähtemässä#[än] 
+
+	'Pekka.nom order.pst.3sg leave.MA/ssa-px/3sg'
+
+70. *Pekka käski lähtemällä#[än] 
+
+	'Pekka.nom order leave.MA/lla-px/3sg'
+
+71. *Pekka käski lähtemättä#[än] 
+
+	'Pekka.nom order leave.MA/tta-px/3sg'
+
+& 3.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 3.2.1 Embedded Subject present (without PX)
+
+72. *Pekka halusi hänen lähtemässä 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/ssa'
+
+73. *Pekka halusi hänen lähtemään 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/an'
+
+74. *Pekka halusi hänen lähtemästä 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/sta'
+
+75. *Pekka halusi hänen lähtemällä 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/lla'
+
+76. *Pekka halusi hänen lähtemättä 
+
+	'Pekka want.pst.3sg he.gen leave.MA/tta'
+
+& 3.2.2 Embedded Subject present (with PX)
+
+77. *Pekka halusi hänen lähtemässä#[än] 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/ssa-px/3sg'
+
+78. *Pekka halusi hänen lähtemään#[nsä] 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/an-px/3sg'
+
+79. *Pekka halusi hänen lähtemästä#[än] 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/sta-px/3sg'
+
+80. *Pekka halusi hänen lähtemällä#[än] 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/lla-px/3sg'
+
+81. *Pekka halusi hänen lähtemättä#[än] 
+
+	'Pekka.nom want.pst.3sg he.gen leave.MA/tta-px/3sg'
+
+& 3.2.3 Embedded Subject absent (without PX)
+
+82. *Pekka halusi lähtemässä 
+
+	'Pekka.nom want.pst.3sg leave.MA/ssa'
+
+83.  Pekka halusi lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [maan lähte-]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of haluaa(Pekka)'}, {'Agent of maan(Pekka)'}, {'Agent of lähte-(Pekka)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) maan(V)]]
+	surface structure: [[φ Pekka] [T [v [haluaa [maan lähte-]]]]]
+	s-structure: [<φ Pekka>:487 [T [<__>:487 [v [haluaa [maan lähte-]]]]]]
+	LF structure: [<φ Pekka>:487 [T [<__>:487 [v [haluaa [maan lähte-]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:1180, Garden Paths:0, Memory Reactivation:0, Steps:13, Merge:6, Move Head:2, Move Phrase:2, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:2, Agree:11, Phi:15, Transfer:11, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:0, Inflection:7, Failed Transfer:0, LF recovery:4, 
+	LF test:13, Filter solution:5, Rank solution:1, Lexical retrieval:14, Morphological decomposition:3, 
+	Mean time per word:393, Asymmetric Merge:38, Sink:9, Tail test:25, Case checking:24, 
+
+	'Pekka.nom want.pst.3sg leave.MA/an'
+
+84. *Pekka halusi lähtemästä 
+
+	'Pekka.nom want.pst.3sg leava.MA/sta'
+
+85. *Pekka halusi lähtemällä 
+
+	'Pekka want leave.MA/lla'
+
+86. *Pekka halusi lähtemättä 
+
+	'Pekka want.pst.3sg leave.MA/tta'
+
+& 3.2.4 Embedded Subject absent (with PX)
+
+87. *Pekka halusi lähtemässä#[än] 
+
+	'Pekka want.pst.3sg leave.MA/ssa-px/3sg'
+
+88. *Pekka halusi lähtemään#[nsä] 
+
+	'Pekka want.pst.3sg leave.MA/an-px/3sg'
+
+89. *Pekka halusi lähtemästä#[än] 
+
+	'Pekka.nom want.pst.3sg leave.MA/sta-px/3sg'
+
+90. *Pekka halusi lähtemällä#[än] 
+
+	'Pekka.nom want.pst.3sg leave.MA/lla-px/3sg'
+
+91. *Pekka halusi lähtemättä#[än] 
+
+	'Pekka.nom want.pst.3sg leave.MA/tta-px/3sg'
+
+& 3.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 3.3.1 Embedded Subject present (without PX)
+
+92. *Pekka uskoi hänen lähtemässä 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.MA/ssa'
+
+93. *Pekka uskoi hänen lähtemään 
+
+	'Pekka.nom believe.pst.3sg he-gen leave.MA/an'
+
+94. *Pekka uskoi hänen lähtemästä 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.MA/sta'
+
+95. *Pekka uskoi hänen lähtemällä 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.MA/lla'
+
+96. *Pekka uskoi hänen lähtemättä 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.MA/tta'
+
+& 3.3.2 Embedded Subject present (with PX)
+
+97. *Pekka uskoi hänen lähtemässä#[än] 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.MA/ssa-px/3sg'
+
+98. *Pekka uskoi hänen lähtemään#[nsä] 
+
+	'Pekka believe.pst.3sg he.gen leave.MA/an-px/3sg'
+
+99. *Pekka uskoi hänen lähtemästä#[än] 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.MA/sta-px/3sg'
+
+100. *Pekka uskoi hänen lähtemällä#[än] 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.MA/lla-px/3sg'
+
+101. *Pekka uskoi hänen lähtemättä#[än] 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.MA/tta-px/3sg'
+
+& 3.3.3 Embedded Subject absent (without PX)
+
+102. *Pekka uskoi lähtemässä 
+
+	'Pekka.nom believe.pst.3sg leave.MA/ssa'
+
+103. *Pekka uskoi lähtemään 
+
+	'Pekka.nom believe.pst.3sg leave.MA/an'
+
+104. *Pekka uskoi lähtemästä 
+
+	'Pekka.nom believe.pst.3sg leave.MA/sta'
+
+105. *Pekka uskoi lähtemällä 
+
+	'Pekka.nom believe.pst.3sg leave.MA/lla'
+
+106. *Pekka uskoi lähtemättä 
+
+	'Pekka.nom believe.pst.3sg leave.MA/tta'
+
+& 3.3.4 Embedded Subject absent (with PX)
+
+107. *Pekka uskoi lähtemässä#[än] 
+
+	'Pekka.nom believe.pst.3sg leave.MA/ssa-px/3sg'
+
+108. *Pekka uskoi lähtemään#[nsä] 
+
+	'Pekka.nom believe.pst.3sg leave.MA/an-px/3sg'
+
+109. *Pekka uskoi lähtemästä#[än] 
+
+	'Pekka.nom believe.pst.3sg leave.MA/sta-px/3sg'
+
+110. *Pekka uskoi lähtemällä#[än] 
+
+	'Pekka.nom believe.pst.3sg leave.MA/lla-px/3sg'
+
+111. *Pekka uskoi lähtemättä#[än] 
+
+	'Pekka.nom believe.pst.3sg leave.MA/tta-px/3sg'
+
+& 3.4 In adjunct position (not selected)
+
+& 3.4.1 Embedded Subject present (without PX)
+
+112. *Pekka näki hänet hänen lähtemässä 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/ssa'
+
+113. *Pekka näki hänet hänen lähtemään 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/an'
+
+114. *Pekka näki hänet hänen lähtemästä 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/sta'
+
+115. *Pekka esti häntä hänen lähtemästä 
+
+	'Pekka.nom prevent he.par he.gen leave.MA/sta'
+
+116. *Pekka näki hänet hänen lähtemällä 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/lla'
+
+117. *Pekka näki hänet hänen lähtemättä 
+
+	'Pekka see he.acc(t) he.gen leave.MA/tta'
+
+& 3.4.2 Embedded Subject present (with PX)
+
+118. *Pekka näki hänet hänen lähtemässä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/ssa-px/3sg'
+
+119. *Pekka näki hänet hänen lähtemään#[nsä] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/an-px/3sg'
+
+120. *Pekka näki hänet hänen lähtemästä#[än] 
+
+	'Pekka.nom see he.acc(t) he.gen leave.MA/sta-px/3sg'
+
+121. *Pekka esti häntä hänen lähtemästä#[än] 
+
+	'Pekka.nom prevent he.par he.gen leave.MA/sta-px/3sg'
+
+122. *Pekka näki hänet hänen lähtemällä#[än] 
+
+	'Pekka.nom see he.acc(t) he.gen leave.MA/lla-px/3sg'
+
+123. *Pekka näki hänet hänen lähtemättä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/tta-px/3sg'
+
+& 3.4.3 Embedded Subject absent (without PX)
+
+124.  Pekka näki hänet lähtemässä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [nake [[D hän] <massa lähte->]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of massa(hän)'}, {'Agent of lähte-(hän)'}]
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] massa(V)]]]
+	surface structure: [[φ Pekka] [T [v [nake [[D hän] [massa lähte-]]]]]]
+	s-structure: [<φ Pekka>:909 [T [<__>:909 [v [nake [[D hän] <massa lähte->]]]]]]
+	LF structure: [<φ Pekka>:909 [T [<__>:909 [v [nake [[D hän] <massa lähte->]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1900, Garden Paths:0, Memory Reactivation:0, Steps:28, Merge:8, Move Head:10, Move Phrase:4, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, Agree:23, Phi:27, Transfer:25, Item streamed into syntax:9, 
+	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:0, LF recovery:4, 
+	LF test:30, Filter solution:6, Rank solution:7, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:475, Asymmetric Merge:179, Sink:20, Tail test:234, Case checking:304, 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/ssa'
+
+125. *Pekka näki hänet lähtemään 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/an'
+
+126. *Pekka näki häntä lähtemään 
+
+	'Pekka.nom see.pst.3sg he.par leave.MA/an'
+
+127.  Pekka pyysi häntä lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [<__>:2 [pyyda [<D hän>:2 [maan lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of pyyda(hän)'}, {'Agent of maan(hän)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 6, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 6, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': ['<D hän>']}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] maan(V)]]]
+	surface structure: [[φ Pekka] [T [v [pyyda [[D hän] [maan lähte-]]]]]]
+	s-structure: [<φ Pekka>:940 [T [<__>:940 [v [<__>:941 [pyyda [<D hän>:941 [maan lähte-]]]]]]]]
+	LF structure: [<φ Pekka>:940 [T [<__>:940 [v [<__>:941 [pyyda [<D hän>:941 [maan lähte-]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1925, Garden Paths:0, Memory Reactivation:0, Steps:31, Merge:8, Move Head:10, Move Phrase:5, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:5, Agree:23, Phi:27, Transfer:29, Item streamed into syntax:9, 
+	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:4, 
+	LF test:35, Filter solution:6, Rank solution:4, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:481, Asymmetric Merge:233, Sink:23, Tail test:274, Case checking:273, 
+
+	'Pekka asked he.par leave.MA/an'
+
+128. *Pekka näki hänet lähtemästä 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/sta'
+
+129.  Pekka esti häntä lähtemästä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [esta [[D hän] <masta lähte->]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of esta(hän)'}, {'Agent of masta(hän)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] masta(V)]]]
+	surface structure: [[φ Pekka] [T [v [esta [[D hän] [masta lähte-]]]]]]
+	s-structure: [<φ Pekka>:965 [T [<__>:965 [v [esta [[D hän] <masta lähte->]]]]]]
+	LF structure: [<φ Pekka>:965 [T [<__>:965 [v [esta [[D hän] <masta lähte->]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1880, Garden Paths:0, Memory Reactivation:0, Steps:31, Merge:8, Move Head:10, Move Phrase:4, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:4, Agree:23, Phi:27, Transfer:25, Item streamed into syntax:9, 
+	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:0, LF recovery:4, 
+	LF test:30, Filter solution:6, Rank solution:7, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:470, Asymmetric Merge:245, Sink:23, Tail test:343, Case checking:286, 
+
+	'Pekka.nom prevent.pst.3sg he.par leave.MA/sta'
+
+130.  Pekka näki hänet lähtemällä 
+
+	a. [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <malla lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of malla(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, Weight 0
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T [v [nake [D hän]]]] malla(V)]]
+	surface structure: [[φ Pekka] [[T [v [nake [D hän]]]] [malla lähte-]]]
+	s-structure: [[φ Pekka] [[T [v [nake [D hän]]]] <malla lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <malla lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:4295, Garden Paths:2, Memory Reactivation:4, Steps:28, Merge:12, Move Head:15, Move Phrase:6, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:5, Agree:34, Phi:38, Transfer:38, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:0, LF recovery:4, 
+	LF test:43, Filter solution:8, Rank solution:6, Lexical retrieval:23, Morphological decomposition:4, 
+	Mean time per word:1073, Asymmetric Merge:173, Sink:20, Tail test:223, Case checking:280, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]] <malla lähte->]
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/lla'
+
+131.  Pekka näki hänet lähtemättä 
+
+	a. [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <matta lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of matta(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, Weight 0
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T [v [nake [D hän]]]] matta(V)]]
+	surface structure: [[φ Pekka] [[T [v [nake [D hän]]]] [matta lähte-]]]
+	s-structure: [[φ Pekka] [[T [v [nake [D hän]]]] <matta lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <matta lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:4295, Garden Paths:2, Memory Reactivation:4, Steps:28, Merge:12, Move Head:15, Move Phrase:6, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:5, Agree:34, Phi:38, Transfer:38, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:0, LF recovery:4, 
+	LF test:43, Filter solution:8, Rank solution:6, Lexical retrieval:23, Morphological decomposition:4, 
+	Mean time per word:1073, Asymmetric Merge:173, Sink:20, Tail test:223, Case checking:280, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]] <matta lähte->]
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/tta'
+
+& 3.4.4 Embedded Subject absent (with PX)
+
+132. *Pekka näki hänet lähtemässä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/ssa-px/3sg'
+
+133. *Pekka näki hänet lähtemään#[nsä] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/an-px/3sg'
+
+134. *Pekka näki hänet lähtemästä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/sta-px/3sg'
+
+135. *Pekka esti häntä lähtemästä#[nsä] 
+
+	'Pekka.nom prevent.pst.3sg he.par leave.MA/sta-px/3sg'
+
+136. *Pekka näki hänet lähtemällä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/lla-px/3sg'
+
+137. *Pekka näki hänet lähtemättä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.MA/tta-px/3sg'
+
+& 3.5 In connection with intransitive main verb (not selected)
+
+& 3.5.1 Embedded Subject present (without PX)
+
+138. *Pekka nukkui hänen lähtemässä 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/ssa'
+
+139. *Pekka nukkui hänen lähtemään 
+
+	'Pekka.nom sleep.pst.3sg e.gen leave.MA/an'
+
+140. *Pekka nukkui hänen lähtemästä 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/sta'
+
+141. *Pekka nukkui hänen lähtemällä 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/lla'
+
+142. *Pekka nukkui hänen lähtemättä 
+
+	'Pekka sleep.pst.3sg he.gen leave.MA/tta'
+
+& 3.5.2 Embedded Subject present (with PX)
+
+143. *Pekka nukkui hänen lähtemässä#[än] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/ssa-px/3sg'
+
+144. *Pekka nukkui hänen lähtemään#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/an-px/3sg'
+
+145. *Pekka nukkui hänen lähtemästä#[än] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/sta-px/3sg'
+
+146. *Pekka nukkui hänen lähtemästä#[än] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/sta-px/3sg'
+
+147. *Pekka nukkui hänen lähtemällä#[än] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/lla-px/3sg'
+
+148. *Pekka nukkui hänen lähtemättä#[än] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.MA/tta-px/3sg'
+
+& 3.5.3 Embedded Subject absent (without PX)
+
+149. *Pekka nukkui lähtemässä 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/ssa'
+
+150. *Pekka nukkui lähtemään 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/an'
+
+151. *Pekka nukkui lähtemästä 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/sta'
+
+152.  Pekka nukkui lähtemällä 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <malla lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of malla(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] malla(V)]]
+	surface structure: [[φ Pekka] [[T nukku] [malla lähte-]]]
+	s-structure: [[φ Pekka] [[T nukku] <malla lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 nukku]] <malla lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:2445, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:7, Move Head:1, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:22, Phi:25, Transfer:24, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:1, Inflection:7, Failed Transfer:0, LF recovery:3, 
+	LF test:26, Filter solution:4, Rank solution:4, Lexical retrieval:14, Morphological decomposition:3, 
+	Mean time per word:815, Asymmetric Merge:49, Sink:8, Tail test:57, Case checking:40, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <malla lähte->]
+
+	'Pekka.nom sleep.pst.3sg leave.MA/lla'
+
+153.  Pekka nukkui lähtemättä 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <matta lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of matta(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] matta(V)]]
+	surface structure: [[φ Pekka] [[T nukku] [matta lähte-]]]
+	s-structure: [[φ Pekka] [[T nukku] <matta lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 nukku]] <matta lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:2445, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:7, Move Head:1, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:22, Phi:25, Transfer:24, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:1, Inflection:7, Failed Transfer:0, LF recovery:3, 
+	LF test:26, Filter solution:4, Rank solution:4, Lexical retrieval:14, Morphological decomposition:3, 
+	Mean time per word:815, Asymmetric Merge:49, Sink:8, Tail test:57, Case checking:40, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <matta lähte->]
+
+	'Pekka.nom sleep.pst.3sg leave.MA/tta'
+
+& 3.5.4 Embedded Subject absent (with PX)
+
+154. *Pekka nukkui lähtemässä#[än] 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/ssa-px/3sg'
+
+155. *Pekka nukkui lähtemään#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/an-px/3sg'
+
+156. *Pekka nukkui lähtemästä#[än] 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/sta-px/3sg'
+
+157. *Pekka nukkui lähtemästä#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/sta-px/3sg'
+
+158. *Pekka nukkui lähtemällä#[än] 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/lla-px/3sg'
+
+159. *Pekka nukkui lähtemättä#[än] 
+
+	'Pekka.nom sleep.pst.3sg leave.MA/tta-px/3sg'
+
+& 4. E-infinitival
+
+& (Vainikka: archaic, not covered; traditional: variation of 2nd infinite)
+
+& 4.1 Selected by -OC verb (external, käski 'ordered')
+
+& 4.1.1 Embedded Subject present (without PX)
+
+160. *Pekka käski hänen lähtien 
+
+	'Pekka.nom order.pst.3sg [he.gen leave.E/inf]'
+
+& 4.1.2 Embedded Subject present (with PX)
+
+161. *Pekka käski hänen lähtien#[nsä] 
+
+	'Pekka.nom order.pst.3sg [he.gen leave.E/inf-px/3sg]'
+
+& 4.1.3 Embedded Subject absent (without PX)
+
+162. *Pekka käski lähtien 
+
+	'Pekka.nom order.pst.3sg leave-E/inf'
+
+& 4.1.4 Embedded Subject absent (with PX)
+
+163. *Pekka käski lähtien#[nsä] 
+
+	'Pekka.nom order.pst.3sg leave.E/inf-px/3sg'
+
+& 4.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 4.2.1 Embedded Subject present (without PX)
+
+164. *Pekka halusi hänen lähtien 
+
+	'Pekka.nom want.pst.3sg he.gen leave.E/inf'
+
+& 4.2.2 Embedded Subject present (with PX)
+
+165. *Pekka halusi hänen lähtien#[nsä] 
+
+	'Pekka.nom want.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.2.3 Embedded Subject absent (without PX)
+
+166. *Pekka halusi lähtien 
+
+	'Pekka.nom want.pst.3sg leave.E/inf'
+
+& 4.2.4 Embedded Subject absent (with PX)
+
+167. *Pekka halusi lähtien#[nsä] 
+
+	'Pekka.nom want.pst.3sg leave.E/inf-px/3sg'
+
+& 4.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 4.3.1 Embedded Subject present (without PX)
+
+168. *Pekka uskoi hänen lähtien 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.E/inf'
+
+& 4.3.2 Embedded Subject present (with PX)
+
+169. *Pekka uskoi hänen lähtien#[nsä] 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.3.3 Embedded Subject absent (without PX)
+
+170. *Pekka uskoi lähtien 
+
+	'Pekka.nom believe.pst.3sg leave.E/inf'
+
+& 4.3.4 Embedded Subject absent (with PX)
+
+171. *Pekka uskoi lähtien#[nsä] 
+
+	'Pekka.nom believe.pst.3sg leave.E/inf-px/3sg'
+
+& 4.4 In adjunct position (not selected)
+
+& 4.4.1 Embedded Subject present (without PX)
+
+172. *Pekka näki hänet hänen lähtien 
+
+	'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.E/inf]'
+
+& 4.4.2 Embedded Subject present (with PX)
+
+173. *Pekka näki hänet hänen lähtien#[nsä] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.E/inf-px/3sg'
+
+& 4.4.3 Embedded Subject absent (without PX)
+
+174.  Pekka näki hänet lähtien 
+
+	a. [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <en lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of en(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, Weight 0
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T [v [nake [D hän]]]] en(V)]]
+	surface structure: [[φ Pekka] [[T [v [nake [D hän]]]] [en lähte-]]]
+	s-structure: [[φ Pekka] [[T [v [nake [D hän]]]] <en lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <en lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:4265, Garden Paths:2, Memory Reactivation:4, Steps:28, Merge:12, Move Head:15, Move Phrase:6, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:5, Agree:34, Phi:38, Transfer:38, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:1, Inflection:12, Failed Transfer:0, LF recovery:4, 
+	LF test:43, Filter solution:8, Rank solution:6, Lexical retrieval:23, Morphological decomposition:4, 
+	Mean time per word:1066, Asymmetric Merge:173, Sink:20, Tail test:223, Case checking:280, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]] <en lähte->]
+
+	'Pekka see.pst.3sg he.acc(t) leave.E/inf'
+
+& 4.4.4 Embedded Subject absent (with PX)
+
+175. *Pekka näki hänet lähtien#[nsä] 
+
+	'Pekka see.pst.3sg he.acc(t) he.gen leave.E/inf-px/3sg'
+
+& 4.5 In connection with intransitive main verb (not selected)
+
+& 4.5.1 Embedded Subject present (without PX)
+
+176. *Pekka nukkui hänen lähtien 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.E/inf'
+
+& 4.5.2 Embedded Subject present (with PX)
+
+177. *Pekka nukkui hänen lähtien#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.5.3 Embedded Subject absent (without PX)
+
+178.  Pekka nukkui lähtien 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <en lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of en(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] en(V)]]
+	surface structure: [[φ Pekka] [[T nukku] [en lähte-]]]
+	s-structure: [[φ Pekka] [[T nukku] <en lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 nukku]] <en lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:2415, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:7, Move Head:1, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:22, Phi:25, Transfer:24, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:1, Inflection:7, Failed Transfer:0, LF recovery:3, 
+	LF test:26, Filter solution:4, Rank solution:4, Lexical retrieval:14, Morphological decomposition:3, 
+	Mean time per word:805, Asymmetric Merge:49, Sink:8, Tail test:57, Case checking:40, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <en lähte->]
+
+	'Pekka.nom sleep.pst.3sg leave.E/inf'
+
+& 4.5.4 Embedded Subject present (with PX)
+
+179. *Pekka nukkui lähtien#[nsä] 
+
+	'Pekka.nom sleep.pst.3sg leave.E/inf-px/3sg'
+
+& 5. ESSA-infinitival
+
+& (Vainikka: temporal adjunct, traditional: 2nd infinitival)
+
+& 5.1 Selected by -OC verb (external, käski 'ordered')
+
+& 5.1.1 Embedded Subject present (without PX)
+
+180. *Pekka käski hänen lähtiessä 
+
+	'Pekka.nom order.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.1.2 Embedded Subject present (with PX)
+
+181. *Pekka käski hänen lähtiessä#[än] 
+
+	'Pekka.nom order.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.1.3 Embedded Subject absent (without PX)
+
+182. *Pekka käski lähtiessä 
+
+	'Pekka.nom order.pst.3sg leave.ESSA/inf'
+
+& 5.1.4 Embedded Subject absent (with PX)
+
+183. *Pekka käski lähtiessä#[än] 
+
+	'Pekka.nom order.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 5.2.1 Embedded Subject present (without PX)
+
+184. *Pekka halusi hänen lähtiessä 
+
+	'Pekka.nom want.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.2.2 Embedded Subject present (with PX)
+
+185. *Pekka halusi hänen lähtiessä#[än] 
+
+	'Pekka.nom want.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.2.3 Embedded Subject absent (without PX)
+
+186. *Pekka halusi lähtiessä 
+
+	'Pekka.nom want.pst.3sg leave.ESSA/inf'
+
+& 5.2.4 Embedded Subject absent (with PX)
+
+187. *Pekka halusi lähtiessä#[än] 
+
+	'Pekka.nom want.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 5.3.1 Embedded Subject present (without PX)
+
+188. *Pekka uskoi hänen lähtiessä 
+
+	'Pekka.nom believe.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.3.2 Embedded Subject present (with PX)
+
+189. *Pekka uskoi hänen lähtiessä#[än] 
+
+	'Pekka.nom believe.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.3.3 Embedded Subject absent (without PX)
+
+190. *Pekka uskoi lähtiessä 
+
+	'Pekka.nom believe.pst.3sg leave.ESSA/inf'
+
+& 5.3.4 Embedded Subject absent (with PX)
+
+191. *Pekka uskoi lähtiessä#[än] 
+
+	'Pekka.nom believe.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.4 In adjunct position (not selected)
+
+& 5.4.1 Embedded Subject present (without PX)
+
+192.  Pekka näki hänet hänen lähtiessä 
+
+	a. [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <[D hän]:2 [essa [__:2 lähte-]]>]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of lähte-(hän)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D hän] ~ 8, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D hän] ~ 10, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 8, [D hän] ~ 8, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 8, [D hän] ~ 10, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 10, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 10, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 10, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 8, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 8, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D hän] ~ 8, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D hän] ~ 10, Weight 0
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]', '[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T [v [nake [D hän]]]] [[D hän] essa(V)]]]
+	surface structure: [[φ Pekka] [[T [v [nake [D hän]]]] [[D hän] [essa lähte-]]]]
+	s-structure: [[φ Pekka] [[T [v [nake [D hän]]]] <[D hän]:7 [essa [__:7 lähte-]]>]]
+	LF structure: [[φ Pekka]:8 [[T [__:8 [v [nake [D hän]]]]] <[D hän]:7 [essa [__:7 lähte-]]>]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 10 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:16520, Garden Paths:10, Memory Reactivation:20, Steps:79, Merge:34, Move Head:47, Move Phrase:21, 
+	A-Move Phrase:8, A-bar Move Phrase:0, Move Adjunct:13, Agree:107, Phi:110, Transfer:235, Item streamed into syntax:25, 
+	Feature Processing:0, Extraposition:14, Inflection:17, Failed Transfer:0, LF recovery:3, 
+	LF test:247, Filter solution:19, Rank solution:19, Lexical retrieval:42, Morphological decomposition:7, 
+	Mean time per word:3304, Asymmetric Merge:851, Sink:60, Tail test:1597, Case checking:1854, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]] <[D hän]:2 [essa [__:2 lähte-]]>]
+
+	'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.ESSA/inf]'
+
+& 5.4.2 Embedded Subject present (with PX)
+
+193. *Pekka näki hänet hänen lähtiessä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.ESSA/inf-px/3sg'
+
+& 5.4.3 Embedded Subject absent (without PX)
+
+194.  Pekka näki hänet lähtiessä 
+
+	a. [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <essa lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of essa(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, Weight 0
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T [v [nake [D hän]]]] essa(V)]]
+	surface structure: [[φ Pekka] [[T [v [nake [D hän]]]] [essa lähte-]]]
+	s-structure: [[φ Pekka] [[T [v [nake [D hän]]]] <essa lähte->]]
+	LF structure: [[φ Pekka]:2 [[T [__:2 [v [nake [D hän]]]]] <essa lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:4395, Garden Paths:2, Memory Reactivation:4, Steps:28, Merge:12, Move Head:15, Move Phrase:7, 
+	A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:5, Agree:38, Phi:42, Transfer:46, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:2, Inflection:12, Failed Transfer:0, LF recovery:4, 
+	LF test:50, Filter solution:8, Rank solution:6, Lexical retrieval:23, Morphological decomposition:4, 
+	Mean time per word:1098, Asymmetric Merge:202, Sink:20, Tail test:279, Case checking:369, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]] <essa lähte->]
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.ESSA/inf'
+
+& 5.4.4 Embedded Subject absent (with PX)
+
+195. *Pekka näki hänet hänen lähtiessä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.ESSA/inf-px/3sg'
+
+& 5.5 In connection with intransitive main verb (not selected)
+
+& 5.5.1 Embedded Subject present (without PX)
+
+196.  Pekka nukkui hänen lähtiessä 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <[D hän]:2 [essa [__:2 lähte-]]>]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 6, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 6, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] [[D hän] essa(V)]]]
+	surface structure: [[φ Pekka] [[T nukku] [[D hän] [essa lähte-]]]]
+	s-structure: [[φ Pekka] [[T nukku] <[D hän]:2 [essa [__:2 lähte-]]>]]
+	LF structure: [[φ Pekka]:3 [[T [__:3 nukku]] <[D hän]:2 [essa [__:2 lähte-]]>]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:7565, Garden Paths:4, Memory Reactivation:8, Steps:34, Merge:17, Move Head:9, Move Phrase:10, 
+	A-Move Phrase:3, A-bar Move Phrase:0, Move Adjunct:7, Agree:59, Phi:61, Transfer:115, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:8, Inflection:12, Failed Transfer:0, LF recovery:2, 
+	LF test:123, Filter solution:9, Rank solution:12, Lexical retrieval:26, Morphological decomposition:5, 
+	Mean time per word:1891, Asymmetric Merge:274, Sink:25, Tail test:460, Case checking:373, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <[D hän]:2 [essa [__:2 lähte-]]>]
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.ESSA/inf'
+
+& 5.5.2 Embedded Subject present (with PX)
+
+197. *Pekka nukkui hänen lähtiessä#[än] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 5.5.3 Embedded Subject absent (without PX)
+
+198.  Pekka nukkui lähtiessä 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <essa lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of essa(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] essa(V)]]
+	surface structure: [[φ Pekka] [[T nukku] [essa lähte-]]]
+	s-structure: [[φ Pekka] [[T nukku] <essa lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 nukku]] <essa lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:2445, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:7, Move Head:1, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:24, Phi:27, Transfer:24, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:1, Inflection:7, Failed Transfer:0, LF recovery:3, 
+	LF test:26, Filter solution:4, Rank solution:4, Lexical retrieval:14, Morphological decomposition:3, 
+	Mean time per word:815, Asymmetric Merge:49, Sink:8, Tail test:57, Case checking:40, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <essa lähte->]
+
+	'Pekka.nom sleep.pst.3sg leave.A/inf'
+
+& 5.5.4 Embedded Subject present (with PX)
+
+199.  Pekka nukkui lähtiessä#[än] 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <essa lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of essa(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(essa) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(essa) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(essa) ~ 2, Weight 1
+	[φ Pekka] ~ 8, pro(essa) ~ 8, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] essa(V)]]
+	surface structure: [[φ Pekka] [[T nukku] [essa lähte-]]]
+	s-structure: [[φ Pekka] [[T nukku] <essa lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 nukku]] <essa lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(essa)
+
+	Resources:
+	Total Time:2600, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:7, Move Head:1, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:24, Phi:27, Transfer:24, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:1, Inflection:8, Failed Transfer:0, LF recovery:3, 
+	LF test:26, Filter solution:4, Rank solution:4, Lexical retrieval:15, Morphological decomposition:4, 
+	Mean time per word:866, Asymmetric Merge:49, Sink:8, Tail test:57, Case checking:40, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <essa lähte->]
+
+	'Pekka.nom sleep.pst.3sg leave.A/inf-px/3sg'
+
+& 6. TUA-infinitival
+
+& (Vainikka: temporal adjunct, traditional: past participle)
+
+& 6.1 Selected by -OC verb (external, käski 'ordered')
+
+& 6.1.1 Embedded Subject present (without PX)
+
+200. *Pekka käski hänen lähdettyä 
+
+	'Pekka.nom see.pst.3sg [he.gen leave.TUA]'
+
+& 6.1.2 Embedded Subject present (with PX)
+
+201. *Pekka käski hänen lähdettyä#[än] 
+
+	'Pekka.nom order.pst.3sg he.gen leave.TUA-px/3sg'
+
+& 6.1.3 Embedded Subject absent (without PX)
+
+202. *Pekka käski lähdettyä 
+
+	'Pekka.nom order.pst.3sg leave.TUA'
+
+& 6.1.4 Embedded Subject absent (with PX)
+
+203. *Pekka käski lähdettyä#[än] 
+
+	'Pekka.nom order.pst.3sg leave.TUA-px/3sg'
+
+& 6.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 6.2.1 Embedded Subject present (without PX)
+
+204. *Pekka halusi hänen lähdettyä 
+
+	'Pekka.nom want.pst.3sg [he.gen leave.TUA]'
+
+& 6.2.2 Embedded Subject present (with PX)
+
+205. *Pekka halusi hänen lähdettyä#[än] 
+
+	'Pekka.nom want.pst.3sg [he.gen leave.TUA-px/3sg]'
+
+& 6.2.3 Embedded Subject absent (without PX)
+
+206. *Pekka halusi lähdettyä 
+
+	'Pekka.nom want.pst.3sg leave.TUA'
+
+& 6.2.4 Embedded Subject absent (with PX)
+
+207. *Pekka halusi lähdettyä#[än] 
+
+	'Pekka.nom want.pst.3sg leave.TUA-px/3sg'
+
+& 6.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 6.3.1 Embedded Subject present (without PX)
+
+208. *Pekka uskoi hänen lähdettyä 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.TUA/inf'
+
+& 6.3.2 Embedded Subject present (with PX)
+
+209. *Pekka uskoi hänen lähdettyä#[än] 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.TUA/inf-px/3sg'
+
+& 6.3.3 Embedded Subject absent (without PX)
+
+210. *Pekka uskoi lähdettyä 
+
+	'Pekka.nom believe.pst.3sg leave.TUA/inf'
+
+& 6.3.4 Embedded Subject absent (with PX)
+
+211. *Pekka uskoi lähdettyä#[än] 
+
+	'Pekka.nom believe.pst.3sg leave.TUA/inf-px/3sg'
+
+& 6.4 In adjunct position (not selected)
+
+& 6.4.1 Embedded Subject present (without PX)
+
+212.  Pekka näki hänet hänen lähdettyä 
+
+	a. [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <[D hän]:2 [tua [__:2 lähte-]]>]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of lähte-(hän)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D hän] ~ 8, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D hän] ~ 10, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 8, [D hän] ~ 8, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 8, [D hän] ~ 10, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 10, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 10, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 10, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 8, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 8, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D hän] ~ 2, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D hän] ~ 8, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D hän] ~ 10, Weight 0
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]', '[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T [v [nake [D hän]]]] [[D hän] tua(V)]]]
+	surface structure: [[φ Pekka] [[T [v [nake [D hän]]]] [[D hän] [tua lähte-]]]]
+	s-structure: [[φ Pekka] [[T [v [nake [D hän]]]] <[D hän]:7 [tua [__:7 lähte-]]>]]
+	LF structure: [[φ Pekka]:8 [[T [__:8 [v [nake [D hän]]]]] <[D hän]:7 [tua [__:7 lähte-]]>]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 10 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:16520, Garden Paths:10, Memory Reactivation:20, Steps:79, Merge:34, Move Head:47, Move Phrase:21, 
+	A-Move Phrase:8, A-bar Move Phrase:0, Move Adjunct:13, Agree:107, Phi:110, Transfer:235, Item streamed into syntax:25, 
+	Feature Processing:0, Extraposition:14, Inflection:17, Failed Transfer:0, LF recovery:3, 
+	LF test:247, Filter solution:19, Rank solution:19, Lexical retrieval:42, Morphological decomposition:7, 
+	Mean time per word:3304, Asymmetric Merge:857, Sink:60, Tail test:1623, Case checking:1884, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]] <[D hän]:2 [tua [__:2 lähte-]]>]
+
+	'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.TUA]'
+
+& 6.4.2 Embedded Subject present (with PX)
+
+213. *Pekka näki hänet hänen lähdettyä#[än] 
+
+	'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.TUA/inf-px/3sg]'
+
+& 6.4.3 Embedded Subject absent (without PX)
+
+214. *Pekka näki hänet lähdettyä 
+
+	'Pekka.nom see.pst.3sg he.acc(t) leave.TUA'
+
+& 6.4.4 Embedded Subject absent (with PX)
+
+215.  Pekka näki hänet lähdettyä#[än] 
+
+	a. [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <tua lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of tua(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, pro(tua) ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, pro(tua) ~ 8, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, pro(tua) ~ 12, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(tua) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(tua) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(tua) ~ 12, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 12, pro(tua) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 12, pro(tua) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 12, pro(tua) ~ 12, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, pro(tua) ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, pro(tua) ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, pro(tua) ~ 12, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, pro(tua) ~ 2, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 8, pro(tua) ~ 8, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 8, pro(tua) ~ 12, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 12, pro(tua) ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 12, pro(tua) ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 12, pro(tua) ~ 12, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 2, pro(tua) ~ 2, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 2, pro(tua) ~ 8, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 2, pro(tua) ~ 12, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 8, pro(tua) ~ 2, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 8, pro(tua) ~ 8, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 8, pro(tua) ~ 12, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 12, pro(tua) ~ 2, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 12, pro(tua) ~ 8, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 12, pro(tua) ~ 12, Weight 0
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T [v [nake [D hän]]]] tua(V)]]
+	surface structure: [[φ Pekka] [[T [v [nake [D hän]]]] [tua lähte-]]]
+	s-structure: [[φ Pekka] [[T [v [nake [D hän]]]] <tua lähte->]]
+	LF structure: [[φ Pekka]:2 [[T [__:2 [v [nake [D hän]]]]] <tua lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 12 in GLOBAL: pro(tua)
+
+	Resources:
+	Total Time:4550, Garden Paths:2, Memory Reactivation:4, Steps:28, Merge:12, Move Head:15, Move Phrase:7, 
+	A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:5, Agree:38, Phi:42, Transfer:46, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:2, Inflection:13, Failed Transfer:0, LF recovery:4, 
+	LF test:50, Filter solution:8, Rank solution:6, Lexical retrieval:24, Morphological decomposition:5, 
+	Mean time per word:1137, Asymmetric Merge:204, Sink:20, Tail test:287, Case checking:377, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]] <tua lähte->]
+
+	'Pekka.nom see.pst.3sg he.acc(t) [eave.TUA/inf-px/3sg]'
+
+& 6.5 In connection with intransitive main verb (not selected)
+
+& 6.5.1 Embedded Subject present (without PX)
+
+216.  Pekka nukkui hänen lähdettyä 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <[D hän]:2 [tua [__:2 lähte-]]>]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of lähte-(hän)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 6, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 6, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] [[D hän] tua(V)]]]
+	surface structure: [[φ Pekka] [[T nukku] [[D hän] [tua lähte-]]]]
+	s-structure: [[φ Pekka] [[T nukku] <[D hän]:3 [tua [__:3 lähte-]]>]]
+	LF structure: [[φ Pekka]:4 [[T [__:4 nukku]] <[D hän]:3 [tua [__:3 lähte-]]>]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:7505, Garden Paths:4, Memory Reactivation:8, Steps:34, Merge:17, Move Head:9, Move Phrase:11, 
+	A-Move Phrase:4, A-bar Move Phrase:0, Move Adjunct:7, Agree:59, Phi:61, Transfer:108, Item streamed into syntax:14, 
+	Feature Processing:0, Extraposition:8, Inflection:12, Failed Transfer:0, LF recovery:2, 
+	LF test:116, Filter solution:9, Rank solution:12, Lexical retrieval:26, Morphological decomposition:5, 
+	Mean time per word:1876, Asymmetric Merge:269, Sink:25, Tail test:452, Case checking:356, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <[D hän]:2 [tua [__:2 lähte-]]>]
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.TUA/inf'
+
+& 6.5.2 Embedded Subject present (with PX)
+
+217. *Pekka nukkui hänen lähdettyä#[än] 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.TUA/inf-px/3sg'
+
+& 6.5.3 Embedded Subject absent (without PX)
+
+218. *Pekka nukkui lähdettyä 
+
+	'Pekka.nom sleep.pst.3sg leave.TUA/inf'
+
+& 6.5.4 Embedded Subject present (with PX)
+
+219.  Pekka nukkui lähdettyä#[än] 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <tua lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of tua(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(tua) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(tua) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(tua) ~ 2, Weight 1
+	[φ Pekka] ~ 8, pro(tua) ~ 8, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] tua(V)]]
+	surface structure: [[φ Pekka] [[T nukku] [tua lähte-]]]
+	s-structure: [[φ Pekka] [[T nukku] <tua lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 nukku]] <tua lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(tua)
+
+	Resources:
+	Total Time:2600, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:7, Move Head:1, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:24, Phi:27, Transfer:24, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:1, Inflection:8, Failed Transfer:0, LF recovery:3, 
+	LF test:26, Filter solution:4, Rank solution:4, Lexical retrieval:15, Morphological decomposition:4, 
+	Mean time per word:866, Asymmetric Merge:49, Sink:8, Tail test:57, Case checking:40, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <tua lähte->]
+
+	'Pekka.nom sleep.pst.3sg leave.TUA/inf-px/3sg'
+
+& 7. KSE-infinitival
+
+& (Vainikka: rationale adjunct, traditional: 1st infinitival, long form)
+
+& 7.1 Selected by -OC verb (external, käski 'ordered')
+
+& 7.1.1 Embedded Subject present (without PX)
+
+220. *Pekka käski hänen lähteäkse 
+
+	'Pekka order.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.1.2 Embedded Subject present (with PX)
+
+221. *Pekka käski hänen lähteäkseen 
+
+	'Pekka.nom order.pst.3sg he.gen leave.KSE/inf.px/3sg'
+
+& 7.1.3 Embedded Subject absent (without PX)
+
+222. *Pekka käski lähteäkse 
+
+	'Pekka order.pst.3sg *leave.KSE/inf'
+
+& 7.1.4 Embedded Subject absent (with PX)
+
+223. *Pekka käski lähteäkseen 
+
+	'Pekka order.pst.3sg leave.KSE/inf.px/3sg'
+
+& 7.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 7.2.1 Embedded Subject present (without PX)
+
+224. *Pekka halusi hänen lähteäkse 
+
+	'Pekka.nom want.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.2.2 Embedded Subject present (with PX)
+
+225. *Pekka halusi hänen lähteäkseen 
+
+	'Pekka.nom want.pst.3sg he.gen leave.KSE/inf.px/3sg
+
+& 7.2.3 Embedded Subject absent (without PX)
+
+226. *Pekka halusi lähteäkse 
+
+	'Pekka.nom want.pst.3sg *leave.KSE/inf'
+
+& 7.2.4 Embedded Subject absent (with PX)
+
+227. *Pekka halusi lähteäkseen 
+
+	'Pekka.nom want.pst.3sg leave.KSE/inf.px/3sg
+
+& 7.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 7.3.1 Embedded Subject present (without PX)
+
+228. *Pekka uskoi hänen lähteäkse 
+
+	'Pekka.nom believe.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.3.2 Embedded Subject present (with PX)
+
+229. *Pekka uskoi hänen lähteäkseen 
+
+	'Pekka.nom believe.pst.3sg he.gen leave.KSE/inf-px/3sg'
+
+& 7.3.3 Embedded Subject absent (without PX)
+
+230. *Pekka uskoi lähteäkse 
+
+	'Pekka.nom believe.pst.3sg *leave.KSE/inf
+
+& 7.3.4 Embedded Subject absent (with PX)
+
+231. *Pekka uskoi lähteäkseen 
+
+	'Pekka.nom believe.pst.3sg [leave.KSE/inf.px/3sg]'
+
+& 7.4 In adjunct position (not selected)
+
+& 7.4.1 Embedded Subject present (without PX)
+
+232. *Pekka näki hänet hänen lähteäkse 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen *leave.KSE/inf'
+
+& 7.4.2 Embedded Subject present (with PX)
+
+233. *Pekka näki hänet hänen lähteäkseen 
+
+	'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.KSE/inf.px/3sg
+
+& 7.4.3 Embedded Subject absent (without PX)
+
+234. *Pekka näki lähteäkse 
+
+	'Pekka.nom see.pst.3sg leave.KSE/inf'
+
+& 7.4.4 Embedded Subject absent (with PX)
+
+235.  Pekka näki hänet lähteäkseen 
+
+	a. [[φ Pekka]:1 [[T [__:1 [v [nake [D hän]]]]] <kse lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Patient of nake(hän)'}, {'Agent of kse(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: ['Aspectually bounded']
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, pro(kse) ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, pro(kse) ~ 8, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, pro(kse) ~ 12, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(kse) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(kse) ~ 12, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 12, pro(kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 12, pro(kse) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 12, pro(kse) ~ 12, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, pro(kse) ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, pro(kse) ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, pro(kse) ~ 12, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 8, pro(kse) ~ 2, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 8, pro(kse) ~ 8, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 8, pro(kse) ~ 12, Weight 0
+	[φ Pekka] ~ 8, [D hän] ~ 12, pro(kse) ~ 2, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 12, pro(kse) ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 12, pro(kse) ~ 12, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 2, pro(kse) ~ 2, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 2, pro(kse) ~ 8, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 2, pro(kse) ~ 12, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 8, pro(kse) ~ 2, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 8, pro(kse) ~ 8, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 8, pro(kse) ~ 12, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 12, pro(kse) ~ 2, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 12, pro(kse) ~ 8, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 12, pro(kse) ~ 12, Weight 0
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[D hän]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T [v [nake [D hän]]]] kse(V)]]
+	surface structure: [[φ Pekka] [[T [v [nake [D hän]]]] [kse lähte-]]]
+	s-structure: [[φ Pekka] [[T [v [nake [D hän]]]] <kse lähte->]]
+	LF structure: [[φ Pekka]:2 [[T [__:2 [v [nake [D hän]]]]] <kse lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 12 in GLOBAL: pro(kse)
+
+	Resources:
+	Total Time:4505, Garden Paths:2, Memory Reactivation:4, Steps:28, Merge:12, Move Head:15, Move Phrase:7, 
+	A-Move Phrase:2, A-bar Move Phrase:0, Move Adjunct:5, Agree:38, Phi:42, Transfer:46, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:2, Inflection:13, Failed Transfer:0, LF recovery:4, 
+	LF test:50, Filter solution:8, Rank solution:6, Lexical retrieval:24, Morphological decomposition:4, 
+	Mean time per word:1126, Asymmetric Merge:202, Sink:20, Tail test:279, Case checking:369, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 [v [nake [D hän]]]]]] <kse lähte->]
+
+	'Pekka.nom see.pst.3sg e.gen leave.KSE/inf.px/3sg'
+
+& 7.5 In connection with intransitive main verb (not selected)
+
+& 7.5.1 Embedded Subject present (without PX)
+
+236. *Pekka nukkui hänen lähteäkse 
+
+	'Pekka.nom sleep.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.5.2 Embedded Subject present (with PX)
+
+237. *Pekka nukkui hänen lähteäkseen 
+
+	'Pekka.nom sleep.pst.3sg he.gen leave.KSE/inf-px/3sg'
+
+& 7.5.3 Embedded Subject absent (without PX)
+
+238. *Pekka nukkui lähteäkse 
+
+	'Pekka.nom sleep.pst.3sg *leave.KSE/inf'
+
+& 7.5.4 Embedded Subject present (with PX)
+
+239.  Pekka nukkui lähteäkseen 
+
+	a. [[φ Pekka]:1 [[T [__:1 nukku]] <kse lähte->]]
+
+	Semantics:
+	Recovery: [{'Agent of nukku(Pekka)'}, {'Agent of kse(agent of T-event)'}, {'Agent of lähte-(agent of T-event)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(kse) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(kse) ~ 2, Weight 1
+	[φ Pekka] ~ 8, pro(kse) ~ 8, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [[T nukku] kse(V)]]
+	surface structure: [[φ Pekka] [[T nukku] [kse lähte-]]]
+	s-structure: [[φ Pekka] [[T nukku] <kse lähte->]]
+	LF structure: [[φ Pekka]:1 [[T [__:1 nukku]] <kse lähte->]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(kse)
+
+	Resources:
+	Total Time:2555, Garden Paths:1, Memory Reactivation:2, Steps:12, Merge:7, Move Head:1, Move Phrase:4, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:3, Agree:24, Phi:27, Transfer:24, Item streamed into syntax:7, 
+	Feature Processing:0, Extraposition:1, Inflection:8, Failed Transfer:0, LF recovery:3, 
+	LF test:26, Filter solution:4, Rank solution:4, Lexical retrieval:15, Morphological decomposition:3, 
+	Mean time per word:851, Asymmetric Merge:49, Sink:8, Tail test:57, Case checking:40, 
+
+	b. [[<φ Pekka>:1 [T [<__>:1 nukku]]] <kse lähte->]
+
+	'Pekka.nom sleep.pst.3sg leave.KSE/inf-px/3sg'
+
+& 8. Additional topics
+
+& 8.1 Word order
+
+& 8.1.1 A-infinitival, noncanonical order
+
+240.  Pekka halusi ihailla Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [(t)A [v [ihaile- [φ Merja]]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of haluaa(Pekka)'}, {'Agent of v(Pekka)'}, {'Patient of ihaile-(Merja)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 12, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ Merja]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [(t)A(v,V) φ(N)]]]
+	surface structure: [[φ Pekka] [T [v [haluaa [(t)A [v [ihaile- [φ Merja]]]]]]]]
+	s-structure: [<φ Pekka>:1772 [T [<__>:1772 [v [haluaa [(t)A [v [ihaile- [φ Merja]]]]]]]]]
+	LF structure: [<φ Pekka>:1772 [T [<__>:1772 [v [haluaa [(t)A [v [ihaile- [φ Merja]]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 12 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1940, Garden Paths:0, Memory Reactivation:0, Steps:29, Merge:9, Move Head:8, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:18, Phi:22, Transfer:17, Item streamed into syntax:10, 
+	Feature Processing:3, Extraposition:0, Inflection:14, Failed Transfer:0, LF recovery:4, 
+	LF test:21, Filter solution:9, Rank solution:3, Lexical retrieval:24, Morphological decomposition:4, 
+	Mean time per word:485, Asymmetric Merge:131, Sink:21, Tail test:116, Case checking:116, 
+
+	'Pekka.nom want.pst.3sg admire.a/inf Merja.par'
+
+241.  Merjaa halusi ihailla Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [v [haluaa [(t)A [v [<__>:1 [ihaile- <φ Pekka>:2]]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of T(Merja)'}, {'Agent of v(Pekka)'}, {'Agent of haluaa(Pekka)'}, {'Agent of v(Pekka)'}, {'Agent of ihaile-(Merja)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 10, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': ['<φ Pekka>']}
+	spellout structure: [[φ Merja] [T(v,V) [(t)A(v,V) φ(N)]]]
+	surface structure: [[φ Merja] [T [v [haluaa [(t)A [v [ihaile- [φ Pekka]]]]]]]]
+	s-structure: [<φ Merja>:1779 [T [<__>:1780 [v [haluaa [(t)A [v [<__>:1779 [ihaile- <φ Pekka>:1780]]]]]]]]]
+	LF structure: [<φ Merja>:1779 [T [<__>:1780 [v [haluaa [(t)A [v [<__>:1779 [ihaile- <φ Pekka>:1780]]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:2400, Garden Paths:0, Memory Reactivation:0, Steps:36, Merge:9, Move Head:10, Move Phrase:6, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:6, Agree:44, Phi:49, Transfer:44, Item streamed into syntax:10, 
+	Feature Processing:4, Extraposition:0, Inflection:14, Failed Transfer:0, LF recovery:5, 
+	LF test:50, Filter solution:7, Rank solution:5, Lexical retrieval:24, Morphological decomposition:4, 
+	Mean time per word:600, Asymmetric Merge:230, Sink:27, Tail test:292, Case checking:292, 
+
+	b. [[<φ Merja>:1 [T [<__>:2 [v [haluaa [(t)A [v [<__>:1 ihaile-]]]]]]]] <φ Pekka>:2]
+
+	'Merja.par want.pst.3sg admire.a/inf Pekka.nom'
+
+& 8.2. VA-infinitival, noncanonical order
+
+242.  Pekka uskoi ihailevan#[nsa] Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [usko- [vAn [v [ihaile- [φ Merja]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of usko-(Pekka)'}, {'Agent of vAn(Pekka)'}, {'Agent of v(Pekka)'}, {'Patient of ihaile-(Merja)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(vAn) ~ 2, [φ Merja] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(vAn) ~ 2, [φ Merja] ~ 14, Weight 1
+	[φ Pekka] ~ 2, pro(vAn) ~ 8, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 8, [φ Merja] ~ 14, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 14, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 14, [φ Merja] ~ 14, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 2, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 2, [φ Merja] ~ 14, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 8, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 8, [φ Merja] ~ 14, Weight 1
+	[φ Pekka] ~ 8, pro(vAn) ~ 14, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 14, [φ Merja] ~ 14, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ Merja]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(V) [vAn(v,V) φ(N)]]]
+	surface structure: [[φ Pekka] [T [usko- [vAn [v [ihaile- [φ Merja]]]]]]]
+	s-structure: [<φ Pekka>:1793 [T [<__>:1793 [usko- [vAn [v [ihaile- [φ Merja]]]]]]]]
+	LF structure: [<φ Pekka>:1793 [T [<__>:1793 [usko- [vAn [v [ihaile- [φ Merja]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(vAn)
+	Object 14 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:2050, Garden Paths:0, Memory Reactivation:0, Steps:27, Merge:8, Move Head:5, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:21, Phi:25, Transfer:17, Item streamed into syntax:9, 
+	Feature Processing:0, Extraposition:0, Inflection:15, Failed Transfer:0, LF recovery:4, 
+	LF test:21, Filter solution:8, Rank solution:3, Lexical retrieval:24, Morphological decomposition:5, 
+	Mean time per word:512, Asymmetric Merge:118, Sink:19, Tail test:97, Case checking:96, 
+
+	'Pekka.nom believe.pst.3sg admire-va/inf-px/3sg Merja-par'
+
+243.  Merjaa uskoi ihailevan#[nsa] Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [usko- [vAn [v [<__>:1 [ihaile- <φ Pekka>:2]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of T(Merja)'}, {'Agent of usko-(Pekka)'}, {'Agent of vAn(Pekka)'}, {'Agent of v(Pekka)'}, {'Agent of ihaile-(Merja)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(vAn) ~ 2, [φ Merja] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(vAn) ~ 2, [φ Merja] ~ 12, Weight 1
+	[φ Pekka] ~ 2, pro(vAn) ~ 8, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 8, [φ Merja] ~ 12, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 12, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 12, [φ Merja] ~ 12, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 2, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 2, [φ Merja] ~ 12, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 8, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 8, [φ Merja] ~ 12, Weight 1
+	[φ Pekka] ~ 8, pro(vAn) ~ 12, [φ Merja] ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 12, [φ Merja] ~ 12, Weight 0
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': ['<φ Pekka>']}
+	spellout structure: [[φ Merja] [T(V) [vAn(v,V) φ(N)]]]
+	surface structure: [[φ Merja] [T [usko- [vAn [v [ihaile- [φ Pekka]]]]]]]
+	s-structure: [<φ Merja>:1798 [T [<__>:1799 [usko- [vAn [v [<__>:1798 [ihaile- <φ Pekka>:1799]]]]]]]]
+	LF structure: [<φ Merja>:1798 [T [<__>:1799 [usko- [vAn [v [<__>:1798 [ihaile- <φ Pekka>:1799]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(vAn)
+	Object 12 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:2325, Garden Paths:0, Memory Reactivation:0, Steps:28, Merge:8, Move Head:6, Move Phrase:5, 
+	A-Move Phrase:1, A-bar Move Phrase:0, Move Adjunct:4, Agree:37, Phi:42, Transfer:33, Item streamed into syntax:9, 
+	Feature Processing:0, Extraposition:0, Inflection:15, Failed Transfer:0, LF recovery:5, 
+	LF test:38, Filter solution:7, Rank solution:4, Lexical retrieval:24, Morphological decomposition:5, 
+	Mean time per word:581, Asymmetric Merge:170, Sink:20, Tail test:196, Case checking:193, 
+
+	b. [[<φ Merja>:1 [T [<__>:2 [usko- [vAn [v [<__>:1 ihaile-]]]]]]] <φ Pekka>:2]
+
+	'Merja-par believe.pst.3sg admire-va/inf-px/3sg Pekka.nom'
+
+& 8.2 Binding
+
+244.  Pekka halusi ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [haluaa [(t)A [v [ihaile- [D itse]]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of haluaa(Pekka)'}, {'Agent of v(Pekka)'}, {'Patient of ihaile-(itse)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 12, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 12, [D itse] ~ 12, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D itse]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [(t)A(v,V) D(N)]]]
+	surface structure: [[φ Pekka] [T [v [haluaa [(t)A [v [ihaile- [D itse]]]]]]]]
+	s-structure: [<φ Pekka>:1809 [T [<__>:1809 [v [haluaa [(t)A [v [ihaile- [D itse]]]]]]]]]
+	LF structure: [<φ Pekka>:1809 [T [<__>:1809 [v [haluaa [(t)A [v [ihaile- [D itse]]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 12 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:1755, Garden Paths:0, Memory Reactivation:0, Steps:29, Merge:9, Move Head:8, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:17, Phi:21, Transfer:17, Item streamed into syntax:10, 
+	Feature Processing:3, Extraposition:0, Inflection:11, Failed Transfer:0, LF recovery:4, 
+	LF test:21, Filter solution:9, Rank solution:3, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:438, Asymmetric Merge:127, Sink:21, Tail test:95, Case checking:94, 
+
+	'Pekka.nom want.pst.3sg admire.a/inf self.par'
+
+245.  Pekka kaski Merjan_gen ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [kaske [[φ Merja]:2 [(t)A [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of kaske(Pekka)'}, {'Agent of v(Merja)'}, {'Patient of ihaile-(itse)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 10, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [φ Merja] ~ 10, [D itse] ~ 10, Weight 1
+	[φ Pekka] ~ 2, [φ Merja] ~ 10, [D itse] ~ 16, Weight 0
+	[φ Pekka] ~ 2, [φ Merja] ~ 16, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [φ Merja] ~ 16, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 2, [φ Merja] ~ 16, [D itse] ~ 16, Weight 1
+	[φ Pekka] ~ 16, [φ Merja] ~ 10, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 16, [φ Merja] ~ 10, [D itse] ~ 10, Weight 1
+	[φ Pekka] ~ 16, [φ Merja] ~ 10, [D itse] ~ 16, Weight 0
+	[φ Pekka] ~ 16, [φ Merja] ~ 16, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 16, [φ Merja] ~ 16, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 16, [φ Merja] ~ 16, [D itse] ~ 16, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ Merja]', '[D itse]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[φ Merja] [(t)A(v,V) D(N)]]]]
+	surface structure: [[φ Pekka] [T [v [kaske [[φ Merja] [(t)A [v [ihaile- [D itse]]]]]]]]]
+	s-structure: [<φ Pekka>:1815 [T [<__>:1815 [v [kaske [[φ Merja] [(t)A [v [ihaile- [D itse]]]]]]]]]]
+	LF structure: [<φ Pekka>:1815 [T [<__>:1815 [v [kaske [[φ Merja]:4 [(t)A [__:4 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [φ Merja]
+	Object 16 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:2760, Garden Paths:0, Memory Reactivation:0, Steps:57, Merge:11, Move Head:12, Move Phrase:8, 
+	A-Move Phrase:4, A-bar Move Phrase:0, Move Adjunct:4, Agree:37, Phi:41, Transfer:38, Item streamed into syntax:12, 
+	Feature Processing:4, Extraposition:2, Inflection:18, Failed Transfer:0, LF recovery:4, 
+	LF test:44, Filter solution:13, Rank solution:4, Lexical retrieval:30, Morphological decomposition:5, 
+	Mean time per word:552, Asymmetric Merge:411, Sink:41, Tail test:448, Case checking:423, 
+
+	'Pekka.nom order.pst.3sg Merja.gen admire.a/inf self.par'
+
+246.  Pekka kaski hänen ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [kaske [[D hän]:2 [(t)A [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of v(Pekka)'}, {'Agent of kaske(Pekka)'}, {'Agent of v(hän)'}, {'Patient of ihaile-(itse)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D itse] ~ 16, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D itse] ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D itse] ~ 16, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 16, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 16, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 16, [D itse] ~ 16, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 2, [D itse] ~ 16, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 10, [D itse] ~ 16, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 16, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 16, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 10, [D hän] ~ 16, [D itse] ~ 16, Weight 1
+	[φ Pekka] ~ 16, [D hän] ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 16, [D hän] ~ 2, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 16, [D hän] ~ 2, [D itse] ~ 16, Weight 0
+	[φ Pekka] ~ 16, [D hän] ~ 10, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 16, [D hän] ~ 10, [D itse] ~ 10, Weight 1
+	[φ Pekka] ~ 16, [D hän] ~ 10, [D itse] ~ 16, Weight 0
+	[φ Pekka] ~ 16, [D hän] ~ 16, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 16, [D hän] ~ 16, [D itse] ~ 10, Weight 0
+	[φ Pekka] ~ 16, [D hän] ~ 16, [D itse] ~ 16, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]', '[D itse]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] [(t)A(v,V) D(N)]]]]
+	surface structure: [[φ Pekka] [T [v [kaske [[D hän] [(t)A [v [ihaile- [D itse]]]]]]]]]
+	s-structure: [<φ Pekka>:1829 [T [<__>:1829 [v [kaske [[D hän] [(t)A [v [ihaile- [D itse]]]]]]]]]]
+	LF structure: [<φ Pekka>:1829 [T [<__>:1829 [v [kaske [[D hän]:4 [(t)A [__:4 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [D hän]
+	Object 16 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:2505, Garden Paths:0, Memory Reactivation:0, Steps:57, Merge:11, Move Head:12, Move Phrase:8, 
+	A-Move Phrase:4, A-bar Move Phrase:0, Move Adjunct:4, Agree:23, Phi:27, Transfer:38, Item streamed into syntax:12, 
+	Feature Processing:4, Extraposition:2, Inflection:16, Failed Transfer:0, LF recovery:4, 
+	LF test:44, Filter solution:13, Rank solution:3, Lexical retrieval:28, Morphological decomposition:5, 
+	Mean time per word:501, Asymmetric Merge:411, Sink:41, Tail test:448, Case checking:423, 
+
+	'Pekka.nom order.pst.3sg he.gen admire.a/inf self.par'
+
+247.  Pekka uskoi ihailevansa itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [usko- [vAn [v [ihaile- [D itse]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Agent of usko-(Pekka)'}, {'Agent of vAn(Pekka)'}, {'Agent of v(Pekka)'}, {'Patient of ihaile-(itse)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(vAn) ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(vAn) ~ 2, [D itse] ~ 8, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 2, [D itse] ~ 14, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 8, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 8, [D itse] ~ 8, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 8, [D itse] ~ 14, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 14, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 14, [D itse] ~ 8, Weight 0
+	[φ Pekka] ~ 2, pro(vAn) ~ 14, [D itse] ~ 14, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 2, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 2, [D itse] ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 2, [D itse] ~ 14, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 8, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(vAn) ~ 8, [D itse] ~ 14, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 14, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 14, [D itse] ~ 8, Weight 0
+	[φ Pekka] ~ 8, pro(vAn) ~ 14, [D itse] ~ 14, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 2, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 2, [D itse] ~ 8, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 2, [D itse] ~ 14, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 8, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 8, [D itse] ~ 8, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 8, [D itse] ~ 14, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 14, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 14, [D itse] ~ 8, Weight 0
+	[φ Pekka] ~ 14, pro(vAn) ~ 14, [D itse] ~ 14, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D itse]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(V) [vAn(v,V) D(N)]]]
+	surface structure: [[φ Pekka] [T [usko- [vAn [v [ihaile- [D itse]]]]]]]
+	s-structure: [<φ Pekka>:1842 [T [<__>:1842 [usko- [vAn [v [ihaile- [D itse]]]]]]]]
+	LF structure: [<φ Pekka>:1842 [T [<__>:1842 [usko- [vAn [v [ihaile- [D itse]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(vAn)
+	Object 14 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:1800, Garden Paths:0, Memory Reactivation:0, Steps:27, Merge:8, Move Head:5, Move Phrase:3, 
+	A-Move Phrase:0, A-bar Move Phrase:0, Move Adjunct:3, Agree:20, Phi:24, Transfer:17, Item streamed into syntax:9, 
+	Feature Processing:0, Extraposition:0, Inflection:12, Failed Transfer:0, LF recovery:4, 
+	LF test:21, Filter solution:8, Rank solution:3, Lexical retrieval:21, Morphological decomposition:4, 
+	Mean time per word:450, Asymmetric Merge:116, Sink:19, Tail test:97, Case checking:96, 
+
+	'Pekka.nom believe.pst.3sg admire.va/inf self.par'
+
+248.  Pekka uskoi Merjan_gen ihailevan itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [usko- [[φ Merja]:2 [vAn [__:2 [v [ihaile- [D itse]]]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Patient of usko-(agent of T-event)'}, {'Agent of v(Merja)'}, {'Patient of ihaile-(itse)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 6, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [φ Merja] ~ 6, [D itse] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [φ Merja] ~ 6, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 2, [φ Merja] ~ 12, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [φ Merja] ~ 12, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 2, [φ Merja] ~ 12, [D itse] ~ 12, Weight 1
+	[φ Pekka] ~ 12, [φ Merja] ~ 6, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 12, [φ Merja] ~ 6, [D itse] ~ 6, Weight 1
+	[φ Pekka] ~ 12, [φ Merja] ~ 6, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 12, [φ Merja] ~ 12, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 12, [φ Merja] ~ 12, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 12, [φ Merja] ~ 12, [D itse] ~ 12, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ Merja]', '[D itse]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(V) [[φ Merja] [vAn(v,V) D(N)]]]]
+	surface structure: [[φ Pekka] [T [usko- [[φ Merja] [vAn [v [ihaile- [D itse]]]]]]]]
+	s-structure: [<φ Pekka>:1848 [T [<__>:1848 [usko- [[φ Merja] [vAn [v [ihaile- [D itse]]]]]]]]]
+	LF structure: [<φ Pekka>:1848 [T [<__>:1848 [usko- [[φ Merja]:4 [vAn [__:4 [v [ihaile- [D itse]]]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [φ Merja]
+	Object 12 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:2715, Garden Paths:0, Memory Reactivation:0, Steps:81, Merge:10, Move Head:8, Move Phrase:8, 
+	A-Move Phrase:4, A-bar Move Phrase:0, Move Adjunct:4, Agree:42, Phi:45, Transfer:39, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:0, Inflection:18, Failed Transfer:0, LF recovery:3, 
+	LF test:46, Filter solution:11, Rank solution:5, Lexical retrieval:29, Morphological decomposition:5, 
+	Mean time per word:543, Asymmetric Merge:574, Sink:61, Tail test:690, Case checking:664, 
+
+	'Pekka.nom believe.pst.3sg Merja.gen admire.va/inf self.par'
+
+249.  Pekka uskoi hänen ihailevan itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [usko- [[D hän]:2 [vAn [__:2 [v [ihaile- [D itse]]]]]]]]]]
+
+	Semantics:
+	Recovery: [{'Patient of usko-(agent of T-event)'}, {'Agent of v(hän)'}, {'Patient of ihaile-(itse)'}]
+	Aspect: []
+	DIS-features: []
+	Operator bindings: []
+	Semantic space: 
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 2, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 6, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 6, [D itse] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 6, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 12, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 12, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 2, [D hän] ~ 12, [D itse] ~ 12, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 6, [D hän] ~ 2, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 6, [D hän] ~ 2, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 6, [D hän] ~ 6, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 6, [D hän] ~ 6, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 6, [D hän] ~ 6, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 6, [D hän] ~ 12, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 6, [D hän] ~ 12, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 6, [D hän] ~ 12, [D itse] ~ 12, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 2, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 2, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 6, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 6, [D itse] ~ 6, Weight 1
+	[φ Pekka] ~ 12, [D hän] ~ 6, [D itse] ~ 12, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 12, [D itse] ~ 2, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 12, [D itse] ~ 6, Weight 0
+	[φ Pekka] ~ 12, [D hän] ~ 12, [D itse] ~ 12, Weight 0
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D hän]', '[D itse]'], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(V) [[D hän] [vAn(v,V) D(N)]]]]
+	surface structure: [[φ Pekka] [T [usko- [[D hän] [vAn [v [ihaile- [D itse]]]]]]]]
+	s-structure: [<φ Pekka>:1865 [T [<__>:1865 [usko- [[D hän] [vAn [v [ihaile- [D itse]]]]]]]]]
+	LF structure: [<φ Pekka>:1865 [T [<__>:1865 [usko- [[D hän]:4 [vAn [__:4 [v [ihaile- [D itse]]]]]]]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [D hän]
+	Object 12 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:2470, Garden Paths:0, Memory Reactivation:0, Steps:79, Merge:10, Move Head:8, Move Phrase:8, 
+	A-Move Phrase:4, A-bar Move Phrase:0, Move Adjunct:4, Agree:28, Phi:31, Transfer:39, Item streamed into syntax:11, 
+	Feature Processing:0, Extraposition:0, Inflection:16, Failed Transfer:0, LF recovery:3, 
+	LF test:46, Filter solution:11, Rank solution:6, Lexical retrieval:27, Morphological decomposition:5, 
+	Mean time per word:494, Asymmetric Merge:553, Sink:59, Tail test:658, Case checking:632, 
+
+	'Pekka.nom believe.pst.3sg he.gen admire.va/inf self.par'
+

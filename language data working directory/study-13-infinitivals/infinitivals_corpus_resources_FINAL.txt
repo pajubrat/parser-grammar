@@ -1,0 +1,259 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-13-infinitivals', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-13-infinitivals', 'test_corpus_file': 'infinitivals_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': True, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-05-23 11:45:44.339799
+@  Test sentences from language data working directory\study-13-infinitivals\infinitivals_corpus.txt.
+@  Logs into language data working directory\study-13-infinitivals\infinitivals_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+Number,Sentence,Study_ID,Total Time,Garden Paths,Memory Reactivation,Steps,Merge,Move Head,Move Phrase,A-Move Phrase,A-bar Move Phrase,Move Adjunct,Agree,Phi,Transfer,Item streamed into syntax,Feature Processing,Extraposition,Inflection,Failed Transfer,LF recovery,LF test,Filter solution,Rank solution,Lexical retrieval,Morphological decomposition,Mean time per word,Asymmetric Merge,Sink,Tail test,Case checking,Execution time (ms)	
+1,Pekka ihailee Merjaa ,1,,1560,0,0,13,6,2,2,0,0,2,12,14,11,7,0,0,14,0,2,13,5,2,21,3,520,45,9,46,46,78
+2,Pekka näki hänet ,1,,1385,0,0,13,6,2,2,0,0,2,11,13,11,7,0,0,12,0,2,13,5,2,19,3,461,44,9,44,66,46
+3,Pekka käski hänen lähteä ,1,,1855,0,0,25,8,6,4,1,0,3,17,20,31,9,1,2,12,0,3,35,8,2,21,4,463,148,17,173,166,93
+4,Pekka käski lähteä ,1,,
+5,Pekka halusi lähteä ,1,,1155,0,0,13,6,2,2,0,0,2,11,14,11,7,1,0,7,0,3,13,5,2,14,3,385,39,9,24,24,46
+6,Pekka halusi hänen lähteä ,1,,
+7,Pekka uskoi hänen lähtevän ,1,,1830,0,0,27,7,4,4,1,0,3,19,21,32,8,0,0,12,0,2,37,6,5,20,4,457,184,19,243,236,78
+8,Pekka uskoi ,1,,
+9,Pekka nukkui ,1,,830,0,0,5,3,0,1,0,0,1,6,7,6,4,0,0,7,0,1,7,2,1,11,2,415,10,3,8,8,15
+10,Pekka nukkui hänet ,1,,
+11,Pekka käski hänen lähteä ,1,,1855,0,0,25,8,6,4,1,0,3,17,20,31,9,1,2,12,0,3,35,8,2,21,4,463,148,17,173,166,93
+12,Pekka käski hänen lähteänsä ,1,,
+13,Pekka käski hänen lähteä#[nsä] ,1,,
+14,Pekka käski lähteä ,1,,
+15,Pekka käski lähteä#[nsä] ,1,,
+16,Pekka halusi hänen lähteä ,1,,
+17,Pekka halusi hänen lähteä#[nsä] ,1,,
+18,Pekka halusi lähteä ,1,,1155,0,0,13,6,2,2,0,0,2,11,14,11,7,1,0,7,0,3,13,5,2,14,3,385,39,9,24,24,46
+19,Pekka halusi lähteä#[nsä] ,1,,
+20,Pekka uskoi hänen lähteä ,1,,
+21,Pekka uskoi hänen lähteä#[nsä] ,1,,
+22,Pekka uskoi lähteä ,1,,
+23,Pekka uskoi lähteä#[nsä] ,1,,
+24,Pekka näki hänet hänen lähteä ,1,,
+25,Pekka näki hänet hänen lähteä#[nsä] ,1,,
+26,Pekka näki hänet lähteä ,1,,
+27,Pekka näki hänet hänen lähteä#[nsä] ,1,,
+28,Pekka nukkui hänen lähteä ,1,,
+29,Pekka nukkui hänen lähteä#[nsä] ,1,,
+30,Pekka nukkui lähteä ,1,,
+31,Pekka nukkui lähteä#[nsä] ,1,,
+32,Pekka käski hänen lähtevän ,1,,
+33,Pekka käski hänen lähtevän#[nsä] ,1,,
+34,Pekka käski lähtevän ,1,,
+35,Pekka käski lähtevän#[nsa] ,1,,
+36,Pekka halusi hänen lähtevän ,1,,1865,0,0,25,8,6,4,1,0,3,18,21,29,9,0,0,12,0,3,33,8,4,21,4,466,148,17,169,162,93
+37,Pekka halusi hänen lähtevän#[nsä] ,1,,
+38,Pekka halusi lähtevän ,1,,
+39,Pekka halusi lähtevän#[nsä] ,1,,
+40,Pekka uskoi hänen lähtevän ,1,,1830,0,0,27,7,4,4,1,0,3,19,21,32,8,0,0,12,0,2,37,6,5,20,4,457,184,19,243,236,78
+41,Pekka uskoi hänen lähtevän#[nsä] ,1,,
+42,Pekka uskoi lähtevän ,1,,
+43,Pekka uskoi lähtevän#[nsä] ,1,,1265,0,0,11,5,1,2,0,0,2,12,15,11,6,0,0,8,0,3,13,4,2,14,4,421,33,7,24,24,46
+44,Pekka näki hänet hänen lähtevän ,1,,
+45,Pekka näki hänet hänen lähtevän#[nsä] ,1,,
+46,Pekka näki hänet lähtevän ,1,,
+47,Pekka näki hänet hänen lähtevän#[nsä] ,1,,
+48,Pekka nukkui hänen lähtevän ,1,,
+49,Pekka nukkui hänen lähtevän#[nsä] ,1,,
+50,Pekka nukkui lähtevän ,1,,
+51,Pekka nukkui lähtevän#[nsä] ,1,,
+52,Pekka käski hänen lähtemässä ,1,,
+53,Pekka käski hänen lähtemään ,1,,
+54,Pekka käski hänen lähtemästä ,1,,
+55,Pekka käski hänen lähtemällä ,1,,
+56,Pekka käski hänen lähtemättä ,1,,
+57,Pekka käski hänen lähtemässä#[nsä] ,1,,
+58,Pekka käski hänen lähtemään#[nsä] ,1,,
+59,Pekka käski hänen lähtemästä#[nsä] ,1,,
+60,Pekka käski hänen lähtemällä#[nsä] ,1,,
+61,Pekka käski hänen lähtemättä#[än] ,1,,
+62,Pekka käski lähtemässä ,1,,
+63,Pekka käski lähtemään ,1,,1175,0,0,13,6,2,2,0,0,2,11,15,11,7,0,0,7,0,4,13,5,2,14,3,391,38,9,25,24,46
+64,Pekka käski lähtemässä ,1,,
+65,Pekka käski lähtemällä ,1,,
+66,Pekka käski lähtemättä ,1,,
+67,Pekka käski lähtemässä#[än] ,1,,
+68,Pekka käski lähtemään#[nsä] ,1,,
+69,Pekka käski lähtemässä#[än] ,1,,
+70,Pekka käski lähtemällä#[än] ,1,,
+71,Pekka käski lähtemättä#[än] ,1,,
+72,Pekka halusi hänen lähtemässä ,1,,
+73,Pekka halusi hänen lähtemään ,1,,
+74,Pekka halusi hänen lähtemästä ,1,,
+75,Pekka halusi hänen lähtemällä ,1,,
+76,Pekka halusi hänen lähtemättä ,1,,
+77,Pekka halusi hänen lähtemässä#[än] ,1,,
+78,Pekka halusi hänen lähtemään#[nsä] ,1,,
+79,Pekka halusi hänen lähtemästä#[än] ,1,,
+80,Pekka halusi hänen lähtemällä#[än] ,1,,
+81,Pekka halusi hänen lähtemättä#[än] ,1,,
+82,Pekka halusi lähtemässä ,1,,
+83,Pekka halusi lähtemään ,1,,1180,0,0,13,6,2,2,0,0,2,11,15,11,7,0,0,7,0,4,13,5,1,14,3,393,38,9,25,24,46
+84,Pekka halusi lähtemästä ,1,,
+85,Pekka halusi lähtemällä ,1,,
+86,Pekka halusi lähtemättä ,1,,
+87,Pekka halusi lähtemässä#[än] ,1,,
+88,Pekka halusi lähtemään#[nsä] ,1,,
+89,Pekka halusi lähtemästä#[än] ,1,,
+90,Pekka halusi lähtemällä#[än] ,1,,
+91,Pekka halusi lähtemättä#[än] ,1,,
+92,Pekka uskoi hänen lähtemässä ,1,,
+93,Pekka uskoi hänen lähtemään ,1,,
+94,Pekka uskoi hänen lähtemästä ,1,,
+95,Pekka uskoi hänen lähtemällä ,1,,
+96,Pekka uskoi hänen lähtemättä ,1,,
+97,Pekka uskoi hänen lähtemässä#[än] ,1,,
+98,Pekka uskoi hänen lähtemään#[nsä] ,1,,
+99,Pekka uskoi hänen lähtemästä#[än] ,1,,
+100,Pekka uskoi hänen lähtemällä#[än] ,1,,
+101,Pekka uskoi hänen lähtemättä#[än] ,1,,
+102,Pekka uskoi lähtemässä ,1,,
+103,Pekka uskoi lähtemään ,1,,
+104,Pekka uskoi lähtemästä ,1,,
+105,Pekka uskoi lähtemällä ,1,,
+106,Pekka uskoi lähtemättä ,1,,
+107,Pekka uskoi lähtemässä#[än] ,1,,
+108,Pekka uskoi lähtemään#[nsä] ,1,,
+109,Pekka uskoi lähtemästä#[än] ,1,,
+110,Pekka uskoi lähtemällä#[än] ,1,,
+111,Pekka uskoi lähtemättä#[än] ,1,,
+112,Pekka näki hänet hänen lähtemässä ,1,,
+113,Pekka näki hänet hänen lähtemään ,1,,
+114,Pekka näki hänet hänen lähtemästä ,1,,
+115,Pekka esti häntä hänen lähtemästä ,1,,
+116,Pekka näki hänet hänen lähtemällä ,1,,
+117,Pekka näki hänet hänen lähtemättä ,1,,
+118,Pekka näki hänet hänen lähtemässä#[än] ,1,,
+119,Pekka näki hänet hänen lähtemään#[nsä] ,1,,
+120,Pekka näki hänet hänen lähtemästä#[än] ,1,,
+121,Pekka esti häntä hänen lähtemästä#[än] ,1,,
+122,Pekka näki hänet hänen lähtemällä#[än] ,1,,
+123,Pekka näki hänet hänen lähtemättä#[än] ,1,,
+124,Pekka näki hänet lähtemässä ,1,,1900,0,0,28,8,10,4,0,0,4,23,27,25,9,0,1,12,0,4,30,6,7,21,4,475,179,20,234,304,125
+125,Pekka näki hänet lähtemään ,1,,
+126,Pekka näki häntä lähtemään ,1,,
+127,Pekka pyysi häntä lähtemään ,1,,1925,0,0,31,8,10,5,0,0,5,23,27,29,9,0,0,12,0,4,35,6,4,21,4,481,233,23,274,273,109
+128,Pekka näki hänet lähtemästä ,1,,
+129,Pekka esti häntä lähtemästä ,1,,1880,0,0,31,8,10,4,0,0,4,23,27,25,9,0,1,12,0,4,30,6,7,21,4,470,245,23,343,286,93
+130,Pekka näki hänet lähtemällä ,1,,4295,2,4,28,12,15,6,1,0,5,34,38,38,11,0,1,12,0,4,43,8,6,23,4,1073,173,20,223,280,140
+131,Pekka näki hänet lähtemättä ,1,,4295,2,4,28,12,15,6,1,0,5,34,38,38,11,0,1,12,0,4,43,8,6,23,4,1073,173,20,223,280,156
+132,Pekka näki hänet lähtemässä#[än] ,1,,
+133,Pekka näki hänet lähtemään#[nsä] ,1,,
+134,Pekka näki hänet lähtemästä#[än] ,1,,
+135,Pekka esti häntä lähtemästä#[nsä] ,1,,
+136,Pekka näki hänet lähtemällä#[än] ,1,,
+137,Pekka näki hänet lähtemättä#[än] ,1,,
+138,Pekka nukkui hänen lähtemässä ,1,,
+139,Pekka nukkui hänen lähtemään ,1,,
+140,Pekka nukkui hänen lähtemästä ,1,,
+141,Pekka nukkui hänen lähtemällä ,1,,
+142,Pekka nukkui hänen lähtemättä ,1,,
+143,Pekka nukkui hänen lähtemässä#[än] ,1,,
+144,Pekka nukkui hänen lähtemään#[nsä] ,1,,
+145,Pekka nukkui hänen lähtemästä#[än] ,1,,
+146,Pekka nukkui hänen lähtemästä#[än] ,1,,
+147,Pekka nukkui hänen lähtemällä#[än] ,1,,
+148,Pekka nukkui hänen lähtemättä#[än] ,1,,
+149,Pekka nukkui lähtemässä ,1,,
+150,Pekka nukkui lähtemään ,1,,
+151,Pekka nukkui lähtemästä ,1,,
+152,Pekka nukkui lähtemällä ,1,,2445,1,2,12,7,1,4,1,0,3,22,25,24,7,0,1,7,0,3,26,4,4,14,3,815,49,8,57,40,62
+153,Pekka nukkui lähtemättä ,1,,2445,1,2,12,7,1,4,1,0,3,22,25,24,7,0,1,7,0,3,26,4,4,14,3,815,49,8,57,40,78
+154,Pekka nukkui lähtemässä#[än] ,1,,
+155,Pekka nukkui lähtemään#[nsä] ,1,,
+156,Pekka nukkui lähtemästä#[än] ,1,,
+157,Pekka nukkui lähtemästä#[nsä] ,1,,
+158,Pekka nukkui lähtemällä#[än] ,1,,
+159,Pekka nukkui lähtemättä#[än] ,1,,
+160,Pekka käski hänen lähtien ,1,,
+161,Pekka käski hänen lähtien#[nsä] ,1,,
+162,Pekka käski lähtien ,1,,
+163,Pekka käski lähtien#[nsä] ,1,,
+164,Pekka halusi hänen lähtien ,1,,
+165,Pekka halusi hänen lähtien#[nsä] ,1,,
+166,Pekka halusi lähtien ,1,,
+167,Pekka halusi lähtien#[nsä] ,1,,
+168,Pekka uskoi hänen lähtien ,1,,
+169,Pekka uskoi hänen lähtien#[nsä] ,1,,
+170,Pekka uskoi lähtien ,1,,
+171,Pekka uskoi lähtien#[nsä] ,1,,
+172,Pekka näki hänet hänen lähtien ,1,,
+173,Pekka näki hänet hänen lähtien#[nsä] ,1,,
+174,Pekka näki hänet lähtien ,1,,4265,2,4,28,12,15,6,1,0,5,34,38,38,11,0,1,12,0,4,43,8,6,23,4,1066,173,20,223,280,156
+175,Pekka näki hänet lähtien#[nsä] ,1,,
+176,Pekka nukkui hänen lähtien ,1,,
+177,Pekka nukkui hänen lähtien#[nsä] ,1,,
+178,Pekka nukkui lähtien ,1,,2415,1,2,12,7,1,4,1,0,3,22,25,24,7,0,1,7,0,3,26,4,4,14,3,805,49,8,57,40,62
+179,Pekka nukkui lähtien#[nsä] ,1,,
+180,Pekka käski hänen lähtiessä ,1,,
+181,Pekka käski hänen lähtiessä#[än] ,1,,
+182,Pekka käski lähtiessä ,1,,
+183,Pekka käski lähtiessä#[än] ,1,,
+184,Pekka halusi hänen lähtiessä ,1,,
+185,Pekka halusi hänen lähtiessä#[än] ,1,,
+186,Pekka halusi lähtiessä ,1,,
+187,Pekka halusi lähtiessä#[än] ,1,,
+188,Pekka uskoi hänen lähtiessä ,1,,
+189,Pekka uskoi hänen lähtiessä#[än] ,1,,
+190,Pekka uskoi lähtiessä ,1,,
+191,Pekka uskoi lähtiessä#[än] ,1,,
+192,Pekka näki hänet hänen lähtiessä ,1,,16520,10,20,79,34,47,21,8,0,13,107,110,235,25,0,14,17,0,3,247,19,19,42,7,3304,851,60,1597,1854,656
+193,Pekka näki hänet hänen lähtiessä#[än] ,1,,
+194,Pekka näki hänet lähtiessä ,1,,4395,2,4,28,12,15,7,2,0,5,38,42,46,11,0,2,12,0,4,50,8,6,23,4,1098,202,20,279,369,156
+195,Pekka näki hänet hänen lähtiessä#[än] ,1,,
+196,Pekka nukkui hänen lähtiessä ,1,,7565,4,8,34,17,9,10,3,0,7,59,61,115,14,0,8,12,0,2,123,9,12,26,5,1891,274,25,460,373,265
+197,Pekka nukkui hänen lähtiessä#[än] ,1,,
+198,Pekka nukkui lähtiessä ,1,,2445,1,2,12,7,1,4,1,0,3,24,27,24,7,0,1,7,0,3,26,4,4,14,3,815,49,8,57,40,62
+199,Pekka nukkui lähtiessä#[än] ,1,,2600,1,2,12,7,1,4,1,0,3,24,27,24,7,0,1,8,0,3,26,4,4,15,4,866,49,8,57,40,78
+200,Pekka käski hänen lähdettyä ,1,,
+201,Pekka käski hänen lähdettyä#[än] ,1,,
+202,Pekka käski lähdettyä ,1,,
+203,Pekka käski lähdettyä#[än] ,1,,
+204,Pekka halusi hänen lähdettyä ,1,,
+205,Pekka halusi hänen lähdettyä#[än] ,1,,
+206,Pekka halusi lähdettyä ,1,,
+207,Pekka halusi lähdettyä#[än] ,1,,
+208,Pekka uskoi hänen lähdettyä ,1,,
+209,Pekka uskoi hänen lähdettyä#[än] ,1,,
+210,Pekka uskoi lähdettyä ,1,,
+211,Pekka uskoi lähdettyä#[än] ,1,,
+212,Pekka näki hänet hänen lähdettyä ,1,,16520,10,20,79,34,47,21,8,0,13,107,110,235,25,0,14,17,0,3,247,19,19,42,7,3304,857,60,1623,1884,640
+213,Pekka näki hänet hänen lähdettyä#[än] ,1,,
+214,Pekka näki hänet lähdettyä ,1,,
+215,Pekka näki hänet lähdettyä#[än] ,1,,4550,2,4,28,12,15,7,2,0,5,38,42,46,11,0,2,13,0,4,50,8,6,24,5,1137,204,20,287,377,156
+216,Pekka nukkui hänen lähdettyä ,1,,7505,4,8,34,17,9,11,4,0,7,59,61,108,14,0,8,12,0,2,116,9,12,26,5,1876,269,25,452,356,265
+217,Pekka nukkui hänen lähdettyä#[än] ,1,,
+218,Pekka nukkui lähdettyä ,1,,
+219,Pekka nukkui lähdettyä#[än] ,1,,2600,1,2,12,7,1,4,1,0,3,24,27,24,7,0,1,8,0,3,26,4,4,15,4,866,49,8,57,40,78
+220,Pekka käski hänen lähteäkse ,1,,
+221,Pekka käski hänen lähteäkseen ,1,,
+222,Pekka käski lähteäkse ,1,,
+223,Pekka käski lähteäkseen ,1,,
+224,Pekka halusi hänen lähteäkse ,1,,
+225,Pekka halusi hänen lähteäkseen ,1,,
+226,Pekka halusi lähteäkse ,1,,
+227,Pekka halusi lähteäkseen ,1,,
+228,Pekka uskoi hänen lähteäkse ,1,,
+229,Pekka uskoi hänen lähteäkseen ,1,,
+230,Pekka uskoi lähteäkse ,1,,
+231,Pekka uskoi lähteäkseen ,1,,
+232,Pekka näki hänet hänen lähteäkse ,1,,
+233,Pekka näki hänet hänen lähteäkseen ,1,,
+234,Pekka näki lähteäkse ,1,,
+235,Pekka näki hänet lähteäkseen ,1,,4505,2,4,28,12,15,7,2,0,5,38,42,46,11,0,2,13,0,4,50,8,6,24,4,1126,202,20,279,369,156
+236,Pekka nukkui hänen lähteäkse ,1,,
+237,Pekka nukkui hänen lähteäkseen ,1,,
+238,Pekka nukkui lähteäkse ,1,,
+239,Pekka nukkui lähteäkseen ,1,,2555,1,2,12,7,1,4,1,0,3,24,27,24,7,0,1,8,0,3,26,4,4,15,3,851,49,8,57,40,78
+240,Pekka halusi ihailla Merjaa ,1,,1940,0,0,29,9,8,3,0,0,3,18,22,17,10,3,0,14,0,4,21,9,3,24,4,485,131,21,116,116,78
+241,Merjaa halusi ihailla Pekka ,1,,2400,0,0,36,9,10,6,0,0,6,44,49,44,10,4,0,14,0,5,50,7,5,24,4,600,230,27,292,292,140
+242,Pekka uskoi ihailevan#[nsa] Merjaa ,1,,2050,0,0,27,8,5,3,0,0,3,21,25,17,9,0,0,15,0,4,21,8,3,24,5,512,118,19,97,96,78
+243,Merjaa uskoi ihailevan#[nsa] Pekka ,1,,2325,0,0,28,8,6,5,1,0,4,37,42,33,9,0,0,15,0,5,38,7,4,24,5,581,170,20,196,193,109
+244,Pekka halusi ihailla itseään ,1,,1755,0,0,29,9,8,3,0,0,3,17,21,17,10,3,0,11,0,4,21,9,3,21,4,438,127,21,95,94,78
+245,Pekka kaski Merjan_gen ihailla itseään ,1,,2760,0,0,57,11,12,8,4,0,4,37,41,38,12,4,2,18,0,4,44,13,4,30,5,552,411,41,448,423,140
+246,Pekka kaski hänen ihailla itseään ,1,,2505,0,0,57,11,12,8,4,0,4,23,27,38,12,4,2,16,0,4,44,13,3,28,5,501,411,41,448,423,125
+247,Pekka uskoi ihailevansa itseään ,1,,1800,0,0,27,8,5,3,0,0,3,20,24,17,9,0,0,12,0,4,21,8,3,21,4,450,116,19,97,96,78
+248,Pekka uskoi Merjan_gen ihailevan itseään ,1,,2715,0,0,81,10,8,8,4,0,4,42,45,39,11,0,0,18,0,3,46,11,5,29,5,543,574,61,690,664,140
+249,Pekka uskoi hänen ihailevan itseään ,1,,2470,0,0,79,10,8,8,4,0,4,28,31,39,11,0,0,16,0,3,46,11,6,27,5,494,553,59,658,632,140
