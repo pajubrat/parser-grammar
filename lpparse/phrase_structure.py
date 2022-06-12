@@ -81,8 +81,14 @@ class PhraseStructure:
     def is_adjoinable(self):
         return self.adjunct or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
 
+    def is_referential(self):
+        return {'φ', 'D'} & self.features
+
     def max(probe):
-        return [probe, *probe.edge()][-1].mother
+        p = probe
+        while p.mother and p.mother.head() == probe:
+            p = p.mother
+        return p
 
     def sister(self):
         while self.mother:
@@ -125,8 +131,8 @@ class PhraseStructure:
     def complex_head(self):
         return self.is_primitive() and self.has_affix()
 
-    def EPP(self):
-        return 'SPEC:*' in self.features or '!SPEC:*' in self.features
+    def E(self):
+        return {'E', '!E'} & self.features
 
     def get_affix_list(self):
         lst = [self]
@@ -326,13 +332,15 @@ class PhraseStructure:
             iter_ = iter_ + 1
         return ps_
 
-    def working_memory_path(probe):
+    def working_memory_path(probe, intervention_feature=''):
         node = probe.mother
         working_memory = []
         #=============================================
         while node:
             if node.left_const.head() != probe:
                 working_memory.append(node.left_const)
+                if intervention_feature and probe.intervention(node, intervention_feature):
+                    break
             node = node.walk_upwards()
         #==============================================
         return working_memory
@@ -343,6 +351,9 @@ class PhraseStructure:
             while node and node.right_const.adjunct:
                 node = node.mother
         return node
+
+    def intervention(self, node, intervention_feature):
+        return intervention_feature in node.left_const.features
 
     def edge(probe):
         return list(takewhile(lambda x:x.mother.head() == probe, probe.working_memory_path()))
@@ -374,7 +385,7 @@ class PhraseStructure:
 
     def weak_tail_condition(self, tail_set):
         if '$NO_W' not in tail_set:
-            if {'φ', 'D'} & self.features:
+            if self.is_referential():
                 self.consume_resources('Case checking')
             for m in (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list()):
                 test = m.match_features(tail_set)
@@ -415,7 +426,7 @@ class PhraseStructure:
 
         #-----------------Main function--------------------------
         if 'ARG' in self.features:
-            if 'VAL' in self.features:
+            if self.E():
                 phi_set = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
             else:
                 phi_set = {f for f in self.features if f[:4] == 'PHI:'}

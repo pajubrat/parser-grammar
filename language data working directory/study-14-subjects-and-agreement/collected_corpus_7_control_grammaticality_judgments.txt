@@ -1,0 +1,134 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'collected_corpus_7_control.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'logging': True, 'datatake_images': False, 'datatake_full': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': True, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-06-12 18:52:49.603209
+@  Test sentences from language data working directory\study-14-subjects-and-agreement\collected_corpus_7_control.txt.
+@  Logs into language data working directory\study-14-subjects-and-agreement\collected_corpus_7_control_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+
+& 7 Control
+
+& Partial pro-drop control (only D_ unvalued)(7.1)
+
+& Grammatical
+
+1. *Pekka sanoi että ihailee Merjaa 
+	'Pekka.nom said that admire.prs.3sg Merja.par'
+
+& Ungrammatical
+
+2. *ihailee Merjaa 
+	'admire.prs.3sg Merja.par'
+
+3. *minä sanon että ihailee Merjaa 
+	'I.nom said that admire.prs.3sg Merja.par'
+
+& Standard control (phi_, D_ unvalued)(7.2)
+
+& Control into complements
+
+& Want-class (no SEM)
+
+& Grammatical
+
+4.  John wants to_inf leave 
+
+5.  John wants Mary to_inf leave 
+
+& Ungrammatical
+
+6. *John wants 
+
+7. *John wants to_inf 
+
+8. *John wants leave 
+
+& OC-construction (SEM:internal)
+
+& Grammatical
+
+9.  Pekka haluaa lähteä 
+	'Pekka.nom want.prs.3sg leave.a/inf'
+
+10.  John tries to_inf leave 
+
+11.  John promises to_inf leave 
+
+& Ungrammatical
+
+12. *Pekka haluaa Merjan lähteä 
+	'Pekka.nom want.prs.3sg Merja.gen leave.a/inf'
+
+13. *John tries Mary to_inf leave 
+
+& Anti-OC construction (SEN:external)
+
+& Grammatical
+
+14.  Pekka käskee Merjan_gen lähteä 
+	'Pekka.nom order.prs.3sg Merja.gen leave.a/inf'
+
+15.  Pekka haluaa Merjan_gen lähtevän 
+	'Pekka.nom want.prs.3sg Merja.gen leave.va/inf'
+
+16.  John persuades Mary to_inf leave 
+
+& Ungrammatical
+
+17. *Pekka käskee lähteä 
+	'Pekka.nom order.prs.3sg leave.a/inf'
+
+18. *John persuades to_inf leave 
+
+19. *Pekka haluaa lähtevän 
+	'Pekka.nom want.prs.3sg leave.va/inf'
+
+& Control into adverbials (7.2.4)
+
+& Subject control (high adjunct position)
+
+& Grammatical
+
+20.  Pekka etsii Merjaa juosten 
+	'Pekka.nom search.prs.3sg Merja.par run.e/inf (by running)'
+
+21.  John promises Mary to_inf leave 
+
+& Ungrammatical
+
+& Object control (low adjunct position)
+
+& Grammatical
+
+22.  John persuades Mary to_inf leave 
+
+& Ungrammatical
+
+23. *John persuades to_inf leave 
+
+& Generic interpretation (7.3)
+
+& Grammatical
+
+& Null object construction (Finnish)
+
+24.  Pekka pyytää lähtemään 
+	'Pekka.nom ask.prs.3sg leave.ma/inf (to leave)'
+
+& Generic null subject
+
+25. *Pekka sanoo että istuu mukavasti 
+	'Pekka.nom says that sit.prs.3sg comfortably'
+
+26.  tässä istuu mukavasti 
+	'here sit.prs.3sg comfortably'
+
+27. *Pekka sanoo etta tässä istuu mukavasti 
+	'Pekka says that here sit.prs.3sg comfortably'
+
+& Ungrammatical
+
+28. *istuu mukavasti 
+	'sit.prs.3sg comfortably'

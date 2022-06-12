@@ -22,11 +22,11 @@ class AgreementReconstruction:
 
     def reconstruct(self, ps):
         self.brain_model.narrow_semantics.predicate_argument_dependencies = []
-        # ---------------------------- minimal search ----------------------------------------#
+        # ---------------------------- minimal search ---------------------------------------------------------------#
         for node in ps:
-            if node.left_const and node.left_const.is_primitive() and 'VAL' in node.left_const.features:
+            if node.left_const and node.left_const.is_primitive() and node.left_const.E():
                 self.Agree_1(node.left_const)
-        # ------------------------------------------------------------------------------------#
+        # -----------------------------------------------------------------------------------------------------------#
 
     def Agree_1(self, probe):
         self.brain_model.consume_resources("Agree")
@@ -69,13 +69,17 @@ class AgreementReconstruction:
                      const and self.agreement_condition(head, const)), (None, {}))
 
     def agreement_condition(self, probe, goal):
-        if {'D', 'φ'} & goal.head().features:
-            if self.brain_model.language != 'LANG:FI':
+        if goal.head().is_referential():
+            if 'LANG:FI' not in goal.head().features:
                 return True
             else:
+                # Stipulation due to lack of detailed studies of NP syntax (this is about possessive agreement)
+                if 'φ' in probe.features and 'DAT' in goal.head().features:
+                    return False
                 if 'pro' in goal.head().features:
                     return True
                 else:
+                    # Stipulation
                     if 'FIN' in probe.features and 'NOM' in goal.head().features:
                         return True
                     if 'INF' in probe.features and 'GEN' in goal.head().features:

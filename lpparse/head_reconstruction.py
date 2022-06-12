@@ -65,7 +65,7 @@ class HeadMovement:
             affix.remove()
 
     def extra_condition_violation(self, affix):
-        return 'C/fin' in affix.selector().features and affix.EPP() and not affix.edge()
+        return 'C/fin' in affix.selector().features and affix.E() and not affix.edge()
 
     def get_affix_out(self, node):
         affix = node.right_const

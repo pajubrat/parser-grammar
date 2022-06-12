@@ -13,7 +13,10 @@ class AdjunctConstructor:
 
     def externalize_head(self, head, tail_test):
         if (tail_test and '!SPEC:*' in head.features and head.edge()) or (not tail_test and self.capture_specifier_rule(head)):
-            self.externalize(head.mother.mother)  # Externalize with specifier
+            if head.is_right():
+                self.externalize(head.mother)
+            else:
+                self.externalize(head.mother.mother)  # Externalize with specifier
         else:
             self.externalize(head.mother)  # Externalize without specifier
 

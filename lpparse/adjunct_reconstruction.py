@@ -28,7 +28,7 @@ class FloaterMovement():
                 return ps.left_const
             if ps.left_const.container():
                 J = ps.left_const.container()
-                if (J.EPP() and 'FIN' in J.features) or ('-SPEC:*' in J.features and ps.left_const == next((const for const in J.edge()), None)):
+                if (J.E() and 'FIN' in J.features) or ('-SPEC:*' in J.features and ps.left_const == next((const for const in J.edge()), None)):
                     return ps.left_const
 
         if self.detect_floater(ps.right_const):
@@ -120,7 +120,7 @@ class FloaterMovement():
             return True
 
     def local_tense_edge(self, ps):
-        return next((node.mother for node in ps.working_memory_path() if {'T/fin', 'FORCE'} & node.features), ps.top())
+        return next((node.mother for node in ps.working_memory_path('FORCE') if {'T/fin', 'FORCE'} & node.features), ps.top())
 
     def babtize(self):
         self.name_provider_index += 1

@@ -61,6 +61,7 @@ class Discourse:
         if 'FIN' in root_node.head().features:
             log('\n\t\tCalculating information structure...')
             semantic_interpretation['Information structure'] = self.create_topic_gradient(self.arguments_of_proposition(root_node))
+            log(f'{semantic_interpretation["Information structure"]}')
             self.compute_speaker_attitude(root_node)
 
     def create_topic_gradient(self, constituents_in_information_structure):

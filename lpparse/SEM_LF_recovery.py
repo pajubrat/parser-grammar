@@ -60,9 +60,10 @@ class LF_Recovery:
         # One exception due to the lack of analysis of φ control
         if not list_of_antecedents:
             log(f'nothing. ')
-            if 'φ' not in probe.features and 'T/prt' not in probe.features:
-                self.interpretation_failed = True
+            if not {'φ', 'T/prt', 'MODAL'} & probe.features:
+                # self.interpretation_failed = True
                 return None
+
         return list_of_antecedents
 
     def recovery_termination(self, node):
@@ -70,7 +71,7 @@ class LF_Recovery:
 
     def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
         if ps.edge() and const == next((const for const in ps.edge()), None):
-            if not {'D', 'φ'} & const.head().features:
+            if not const.head().is_referential():
                 self.LF_recovery_results.add(f'{ps}(generic)')
                 list_of_antecedents.append(const)
                 ps.features.add('PHI:DET:GEN')
@@ -129,7 +130,7 @@ class LF_Recovery:
         else:
             prefix = 'Agent of'
 
-        if {'D','φ'} & antecedent_head.features:
+        if antecedent_head.is_referential():
             if antecedent_head.sister() and 'N' in antecedent_head.sister().head().features:
                 arg_str = antecedent_head.sister().head().illustrate()
             else:
@@ -161,7 +162,7 @@ class LF_Recovery:
         else:
             if 'T/fin' in ps.head().features or 'Neg/fin' in ps.head().features:    # Finnish EPP ad hoc rule
                 self.interpretation_failed = True                                   # I still don't fully understand this
-                return 'Uninterpretable'
+                return 'Uninterpretable, interpretation failed.'
             else:
                 return 'Generic'
 

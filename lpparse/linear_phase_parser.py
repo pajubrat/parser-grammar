@@ -119,7 +119,8 @@ class LinearPhaseParser:
         log(f'\n#{count}. {self.local_file_system.generate_input_sentence_string(lst)}')
         log(f'\n{self.sentence}')
         log(f'\n\n\t 1. {self.sentence}\n')
-        self.local_file_system.simple_log_file.write(f'\n\n#{count}. {self.local_file_system.generate_input_sentence_string(lst)} / {self.sentence}\n')
+        if self.local_file_system.settings['datatake_full']:
+            self.local_file_system.simple_log_file.write(f'\n\n#{count}. {self.local_file_system.generate_input_sentence_string(lst)} / {self.sentence}\n')
         if not self.local_file_system.instruction_to_ignore_from_test_corpus:
             self.parse_new_item(None, lst, 0)
         else:
@@ -269,7 +270,7 @@ class LinearPhaseParser:
         log(f'\t\tLF-legibility check: ')
         if not self.LF.LF_legibility_test(ps) or not self.LF.final_tail_check(ps) or not self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path()
-            log('\n\t\tLF-legibility failed.\n')
+            log('\n\t\tLF-legibility failed}.\n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps_))
             self.narrow_semantics.reset_for_new_interpretation()
@@ -277,7 +278,8 @@ class LinearPhaseParser:
         self.consume_resources('Steps')
         log('Done.\n')
         print('X', end='', flush=True)
-        self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} <= accepted')
+        if self.local_file_system.settings['datatake_full']:
+            self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} <= accepted')
         if len(self.narrow_semantics.semantic_interpretation['Assignments']) == 0:
             log('\t\t!! Sentence was judged uninterpretable due to lack of legitimate assignments.\n')
         if not self.first_solution_found:
@@ -361,7 +363,7 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            if self.local_file_system.settings['datatake_resource_sequence']:
+            if self.local_file_system.settings['datatake_full']:
                 self.local_file_system.resource_sequence_file.write(f'{key}({info}),{self.time_from_stimulus_onset},  ')
 
     def LF_legibility_test(self, ps):

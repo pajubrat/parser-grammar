@@ -1,0 +1,587 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'collected_corpus_5_agreement.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'logging': True, 'datatake_images': False, 'datatake_full': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': True, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-06-12 18:45:39.236152
+@  Test sentences from language data working directory\study-14-subjects-and-agreement\collected_corpus_5_agreement.txt.
+@  Logs into language data working directory\study-14-subjects-and-agreement\collected_corpus_5_agreement_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+
+& 5 Agreement
+
+& Standard finite S-V agreement (5.1)
+
+& Grammatical
+
+1.  minä ihailen Merjaa 
+	'I.nom admire.prs.1sg Merja.par'
+
+2.  sinä ihailet Merjaa 
+	'you.nom admire.prs.2sg Merja.par'
+
+3.  hän ihailee Merjaa 
+	'he.nom admire.prs.3sg Merja.par'
+
+4.  me ihailemme Merjaa 
+	'we.nom admire.prs.1pl Merja.par'
+
+5.  te ihailette Merjaa 
+	'you.nom admire.prs.2pl Merja.par'
+
+6.  he_FI ihailevat Merjaa 
+	'he.nom admire.prs.3pl Merja.par'
+
+7.  I admire Mary 
+
+8.  you admire Mary 
+
+9.  he admires Mary 
+
+10.  she admires Mary 
+
+11.  John admires Mary 
+
+12.  we admire Mary 
+
+13.  you_pl admire Mary 
+
+14.  they admire Mary 
+
+15.  io adoro Luisa 
+
+16.  tu adori Luisa 
+
+17.  lui adora Luisa 
+
+18.  lei adora Luisa 
+
+19.  noi adoriamo Luisa 
+
+20.  voi adorate Luisa 
+
+21.  loro adorano Luisa 
+
+& Ungrammatical
+
+22. *minä ihailet Merjaa 
+	'I.nom admire.2sg Merja.par'
+
+23. *minä ihailee Merjaa 
+	'I.nom admire.3sg Merja.par'
+
+24. *minä ihailemme Merjaa 
+	'I.nom admire.1pl Merja.par'
+
+25. *minä ihailette Merjaa 
+	'I.nom admire.2pl Merja.par'
+
+26. *minä ihailevat Merjaa 
+	'I.nom admire.3pl Merja.par'
+
+27. *sinä ihailen Merjaa 
+
+28. *sinä ihailee Merjaa 
+
+29. *sinä ihailemme Merjaa 
+
+30. *sinä ihailette Merjaa 
+
+31. *sinä ihailevat Merjaa 
+	'you.nom admire.1sg/3sg/1pl/2pl/3pl Merja.par'
+
+32. *hän ihailen Merjaa 
+
+33. *hän ihailet Merjaa 
+
+34. *hän ihailemme Merjaa 
+
+35. *hän ihailette Merjaa 
+
+36. *hän ihailevat Merjaa 
+	'he.nom admire.1sg/2sg/1pl/2pl/3pl Merja.par'
+
+37. *me ihailen Merjaa 
+
+38. *me ihailet Merjaa 
+
+39. *me ihailee Merjaa 
+
+40. *me ihailette Merjaa 
+
+41. *me ihailevat Merjaa 
+	'we.nom admire.1sg/2sg/3sg/2pl/3pl Merja.par'
+
+42. *te ihailen Merjaa 
+
+43. *te ihailet Merjaa 
+
+44. *te ihailee Merjaa 
+
+45. *te ihailemme Merjaa 
+
+46. *te ihailevat Merjaa 
+	'you.pl.nom admire.1sg/2sg/3sg/1pl/3pl Merja.par'
+
+47. *he_FI ihailen Merjaa 
+
+48. *he_FI ihailet Merjaa 
+
+49. *he_FI ihailee Merjaa 
+
+50. *he_FI ihailemme Merjaa 
+
+51. *he_FI ihailette Merjaa 
+	'he.nom admire.1sg/2sg/3sg/1pl/2pl Merja.par'
+
+52. *John admire_fin Mary 
+
+53. *we admires Mary 
+
+54. *io adori Luisa 
+
+55. *io adora Luisa 
+
+56. *io adorate Luisa 
+
+57. *io adorano Luisa 
+
+& S-V areement with noncanonical word order (Finnish)(5.2)
+
+& Grammatical
+
+58.  ihailen minä Merjaa 
+
+59.  ihailen Merjaa minä 
+
+60.  ihailet sinä Merjaa 
+
+61.  ihailet Merjaa sinä 
+
+62.  ihailette Merjaa te 
+
+63.  ihailemme me Merjaa 
+
+64.  ihailemme Merjaa me 
+
+65.  ihailette te Merjaa 
+
+66.  minä ihailen Merjaa 
+
+67.  minä Merjaa ihailen 
+
+68.  Merjaa minä ihailen 
+
+69.  Merjaa ihailen minä 
+
+70.  sinä ihailet Merjaa 
+
+71.  sinä Merjaa ihailet 
+
+72.  Merjaa sinä ihailet 
+
+73.  Merjaa ihailet sinä 
+
+74.  hän ihailee Merjaa 
+
+75.  hän Merjaa ihailee 
+
+76.  Merjaa hän ihailee 
+
+77.  Merjaa ihailee hän 
+
+78.  me ihailemme Merjaa 
+
+79.  me Merjaa ihailemme 
+
+80.  Merjaa me ihailemme 
+
+81.  Merjaa ihailemme me 
+
+82.  te ihailette Merjaa 
+
+83.  te Merjaa ihailette 
+
+84.  Merjaa te ihailette 
+
+85.  Merjaa ihailette te 
+
+86.  he_FI ihailevat Merjaa 
+
+87.  he_FI Merjaa ihailevat 
+
+88.  Merjaa he_FI ihailevat 
+
+89.  Merjaa ihailevat he_FI 
+
+& Ungrammatical
+
+90. *ihailee hän Merjaa 
+
+91. *ihailee Merjaa hän 
+
+92. *ihailevat he_FI Merjaa 
+
+93. *ihailevat Merjaa he_FI 
+
+& Ungrammatical, incorrect SV-agreement with noncanonical order
+
+94. *minä ihailet Merjaa 
+
+95. *minä Merjaa ihailet 
+
+96. *ihailet minä Merjaa 
+
+97. *ihailet Merjaa minä 
+
+98. *Merjaa minä ihailet 
+
+99. *Merjaa ihailet minä 
+
+100. *minä ihailee Merjaa 
+
+101. *minä Merjaa ihailee 
+
+102. *ihailee minä Merjaa 
+
+103. *ihailee Merjaa minä 
+
+104. *Merjaa minä ihailee 
+
+105. *Merjaa ihailee minä 
+
+106. *minä ihailemme Merjaa 
+
+107. *minä Merjaa ihailemme 
+
+108. *ihailemme minä Merjaa 
+
+109. *ihailemme Merjaa minä 
+
+110. *Merjaa minä ihailemme 
+
+111. *Merjaa ihailemme minä 
+
+112. *minä ihailette Merjaa 
+
+113. *minä Merjaa ihailette 
+
+114. *ihailette minä Merjaa 
+
+115. *ihailette Merjaa minä 
+
+116. *Merjaa minä ihailette 
+
+117. *Merjaa ihailette minä 
+
+118. *minä ihailevat Merjaa 
+
+119. *minä Merjaa ihailevat 
+
+120. *ihailevat minä Merjaa 
+
+121. *ihailevat Merjaa minä 
+
+122. *Merjaa minä ihailevat 
+
+123. *Merjaa ihailevat minä 
+
+124. *sinä ihailen Merjaa 
+
+125. *sinä Merjaa ihailen 
+
+126. *ihailen sinä Merjaa 
+
+127. *ihailen Merjaa sinä 
+
+128. *Merjaa sinä ihailen 
+
+129. *Merjaa ihailen sinä 
+
+130. *sinä ihailee Merjaa 
+
+131. *sinä Merjaa ihailee 
+
+132. *ihailee sinä Merjaa 
+
+133. *ihailee Merjaa sinä 
+
+134. *Merjaa sinä ihailee 
+
+135. *Merjaa ihailee sinä 
+
+136. *sinä ihailemme Merjaa 
+
+137. *sinä Merjaa ihailemme 
+
+138. *ihailemme sinä Merjaa 
+
+139. *ihailemme Merjaa sinä 
+
+140. *Merjaa sinä ihailemme 
+
+141. *Merjaa ihailemme sinä 
+
+142. *sinä ihailette Merjaa 
+
+143. *sinä Merjaa ihailette 
+
+144. *ihailette sinä Merjaa 
+
+145. *ihailette Merjaa sinä 
+
+146. *Merjaa sinä ihailette 
+
+147. *Merjaa ihailette sinä 
+
+148. *sinä ihailevat Merjaa 
+
+149. *sinä Merjaa ihailevat 
+
+150. *ihailevat sinä Merjaa 
+
+151. *ihailevat Merjaa sinä 
+
+152. *Merjaa sinä ihailevat 
+
+153. *Merjaa ihailevat sinä 
+
+154. *hän ihailen Merjaa 
+
+155. *hän Merjaa ihailen 
+
+156. *ihailen hän Merjaa 
+
+157. *ihailen Merjaa hän 
+
+158. *Merjaa hän ihailen 
+
+159. *Merjaa ihailen hän 
+
+160. *hän ihailet Merjaa 
+
+161. *hän Merjaa ihailet 
+
+162. *ihailet hän Merjaa 
+
+163. *ihailet Merjaa hän 
+
+164. *Merjaa hän ihailet 
+
+165. *Merjaa ihailet hän 
+
+166. *hän ihailemme Merjaa 
+
+167. *hän Merjaa ihailemme 
+
+168. *ihailemme hän Merjaa 
+
+169. *ihailemme Merjaa hän 
+
+170. *Merjaa hän ihailemme 
+
+171. *Merjaa ihailemme hän 
+
+172. *hän ihailette Merjaa 
+
+173. *hän Merjaa ihailette 
+
+174. *ihailette hän Merjaa 
+
+175. *ihailette Merjaa hän 
+
+176. *Merjaa hän ihailette 
+
+177. *Merjaa ihailette hän 
+
+178. *hän ihailevat Merjaa 
+
+179. *hän Merjaa ihailevat 
+
+180. *ihailevat hän Merjaa 
+
+181. *ihailevat Merjaa hän 
+
+182. *Merjaa hän ihailevat 
+
+183. *Merjaa ihailevat hän 
+
+184. *me_FI ihailen Merjaa 
+
+185. *me_FI Merjaa ihailen 
+
+186. *ihailen me_FI Merjaa 
+
+187. *ihailen Merjaa me_FI 
+
+188. *Merjaa me_FI ihailen 
+
+189. *Merjaa ihailen me_FI 
+
+190. *me_FI ihailet Merjaa 
+
+191. *me_FI Merjaa ihailet 
+
+192. *ihailet me_FI Merjaa 
+
+193. *ihailet Merjaa me_FI 
+
+194. *Merjaa me_FI ihailet 
+
+195. *Merjaa ihailet me_FI 
+
+196. *me_FI ihailee Merjaa 
+
+197. *me_FI Merjaa ihailee 
+
+198. *ihailee me_FI Merjaa 
+
+199. *ihailee Merjaa me_FI 
+
+200. *Merjaa me_FI ihailee 
+
+201. *Merjaa ihailee me_FI 
+
+202. *me_FI ihailette Merjaa 
+
+203. *me_FI Merjaa ihailette 
+
+204. *ihailette me_FI Merjaa 
+
+205. *ihailette Merjaa me_FI 
+
+206. *Merjaa me_FI ihailette 
+
+207. *Merjaa ihailette me_FI 
+
+208. *me_FI ihailevat Merjaa 
+
+209. *me_FI Merjaa ihailevat 
+
+210. *ihailevat me_FI Merjaa 
+
+211. *ihailevat Merjaa me_FI 
+
+212. *Merjaa me_FI ihailevat 
+
+213. *Merjaa ihailevat me_FI 
+
+214. *te ihailen Merjaa 
+
+215. *te Merjaa ihailen 
+
+216. *ihailen te Merjaa 
+
+217. *ihailen Merjaa te 
+
+218. *Merjaa te ihailen 
+
+219. *Merjaa ihailen te 
+
+220. *te ihailet Merjaa 
+
+221. *te Merjaa ihailet 
+
+222. *ihailet te Merjaa 
+
+223. *ihailet Merjaa te 
+
+224. *Merjaa te ihailet 
+
+225. *Merjaa ihailet te 
+
+226. *te ihailee Merjaa 
+
+227. *te Merjaa ihailee 
+
+228. *ihailee te Merjaa 
+
+229. *ihailee Merjaa te 
+
+230. *Merjaa te ihailee 
+
+231. *Merjaa ihailee te 
+
+232. *te ihailemme Merjaa 
+
+233. *te Merjaa ihailemme 
+
+234. *ihailemme te Merjaa 
+
+235. *ihailemme Merjaa te 
+
+236. *Merjaa te ihailemme 
+
+237. *Merjaa ihailemme te 
+
+238. *te ihailevat Merjaa 
+
+239. *te Merjaa ihailevat 
+
+240. *ihailevat te Merjaa 
+
+241. *ihailevat Merjaa te 
+
+242. *Merjaa te ihailevat 
+
+243. *Merjaa ihailevat te 
+
+244. *he_FI ihailen Merjaa 
+
+245. *he_FI Merjaa ihailen 
+
+246. *ihailen he_FI Merjaa 
+
+247. *ihailen Merjaa he_FI 
+
+248. *Merjaa he_FI ihailen 
+
+249. *Merjaa ihailen he_FI 
+
+250. *he_FI ihailet Merjaa 
+
+251. *he_FI Merjaa ihailet 
+
+252. *ihailet he_FI Merjaa 
+
+253. *ihailet Merjaa he_FI 
+
+254. *Merjaa he_FI ihailet 
+
+255. *Merjaa ihailet he_FI 
+
+256. *he_FI ihailee Merjaa 
+
+257. *he_FI Merjaa ihailee 
+
+258. *ihailee he_FI Merjaa 
+
+259. *ihailee Merjaa he_FI 
+
+260. *Merjaa he_FI ihailee 
+
+261. *Merjaa ihailee he_FI 
+
+262. *he_FI ihailemme Merjaa 
+
+263. *he_FI Merjaa ihailemme 
+
+264. *ihailemme he_FI Merjaa 
+
+265. *ihailemme Merjaa he_FI 
+
+266. *Merjaa he_FI ihailemme 
+
+267. *Merjaa ihailemme he_FI 
+
+268. *he_FI ihailette Merjaa 
+
+269. *he_FI Merjaa ihailette 
+
+270. *ihailette he_FI Merjaa 
+
+271. *ihailette Merjaa he_FI 
+
+272. *Merjaa he_FI ihailette 
+
+273. *Merjaa ihailette he_FI 

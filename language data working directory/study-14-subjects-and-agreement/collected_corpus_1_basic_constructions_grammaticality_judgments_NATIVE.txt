@@ -1,0 +1,766 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'collected_corpus_1_basic_constructions.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'logging': True, 'datatake_images': False, 'datatake_full': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': True, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-06-12 10:48:31.266024
+@  Test sentences from language data working directory\study-14-subjects-and-agreement\collected_corpus_1_basic_constructions.txt.
+@  Logs into language data working directory\study-14-subjects-and-agreement\collected_corpus_1_basic_constructions_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+
+& 1 Basic construction types
+
+& Basic verb classes (1.1)
+
+& Intransitive verbs
+
+& Grammatical (finite intransitive verbs)
+
+1.  Pekka istuu 
+	'Pekka.nom sit.prs.3sg'
+
+2.  Pekka lähtee 
+	'Pekka.nom leave.prs.3sg'
+
+3.  Pekka elää 
+	'Pekka.nom live.prs.3sg'
+
+4.  Pekka juoksee 
+	'Pekka.nom run.prs.3sg'
+
+5.  Pekka kuorsaa 
+	'Pekka snor.prs.3sg'
+
+6.  Pekka nukkui 
+	'Pekka.nom sleep.pst.3sg'
+
+7.  John sleeps 
+
+8.  John leaves 
+
+9.  the horse fell 
+
+10.  lui dorme 
+	'He sleeps'
+
+& Ungrammatical (finite intransitive verbs)
+
+11. *Pekka lähtee Merjan 
+	'Pekka.nom depart.prs.3sg Merja.acc'
+
+12. *Pekka elää Merjan 
+	'Pekka.nom live.prs.3sg Merja.acc'
+
+13. *Pekka istuu Merjan 
+	'Pekka.nom sit.prs.3sg Merja.acc'
+
+14. *Pekka juoksee Merjan 
+	'Pekka.nom run.prs.3sg Merja.acc'
+
+15. *Pekka kuorsaa Merjan 
+	'Pekka.nom snor.prs.3sg Merja.acc'
+
+16. *Pekka nukkui Merjan 
+	'Pekka.nom sleep.pst.3sg Merja.acc'
+
+17. *Pekka lähtee Merja 
+	'Pekka.nom leave.prs.3sg Merja.nom'
+
+18. *Pekka elää Merja 
+	'Pekka.nom live.prs.3sg Merja.nom'
+
+19. *Pekka istuu Merja 
+	'Pekka.nom sit.prs.3sg Merja.nom'
+
+20. *Pekka juoksee Merja 
+	'Pekka.nom run.prs.3sg Merja.nom'
+
+21. *Pekka kuorsaa Merja 
+	'Pekka.nom snor.prs.3sg Merja.nom'
+
+22. *Pekka nukkui Merja 
+	'Pekka.nom sleep.prs.3sg Merja.nom'
+
+23. *Pekan istuu 
+	'Pekka.acc/gen sit.prs.3sg'
+
+24. *Pekan lähtee 
+	'Pekka.acc/gen leave.prs.3sg'
+
+25. *Pekan elää 
+	'Pekka.acc/gen live.prs.3sg'
+
+26. *Pekan juoksee 
+	'Pekka.acc/gen run.prs.3sg'
+
+27. *Pekan kuorsaa 
+	'Pekka.acc/gen snor.prs.3sg'
+
+28. *Pekan nukkui 
+	'Pekka.acc/gen sleep.pst.3sg'
+
+29. *lähtee 
+	'leave.prs.3sg'
+
+30. *elää 
+	'live.prs.3sg'
+
+31. *istuu 
+	'sit.prs.3sg'
+
+32. *juoksee 
+	'run.prs.3sg'
+
+33. *kuorsaa 
+	'snor.prs.3sg'
+
+34. *lähtee lähtee 
+	'leave.prs.3sg leave.prs.3sg'
+
+35. *istuu Pekka 
+	'sit.prs.3sg Pekka.nom'
+
+36. *lähtee Pekka 
+	'leave.prs.3sg Pekka.nom'
+
+37. *elää Pekka 
+	'live.prs.3sg Pekka.nom'
+
+38. *juoksee Pekka 
+	'run.prs.3sg Pekka.nom'
+
+39. *kuorsaa Pekka 
+	'snor.prs.3sg Pekka.nom'
+
+40. *nukkui Pekka 
+	'sleep.pst.3sg Pekka.nom'
+
+41. *sleeps 
+
+42. *leaves 
+
+43. *John sleeps Mary 
+
+44. *John John sleeps 
+
+45. *lui dorme Luisa 
+	'He sleeps Luisa'
+
+& Transitive verbs
+
+& Grammatical (finite transitive verbs)
+
+46.  Pekka ihailee Merjaa 
+	'Pekka.nom admire.prs.3sg Merja.par'
+
+47.  Pekka ihailee Pekkaa 
+	'Pekka.nom admire.prs.3sg Pekka.par'
+
+48.  Pekka löysi Merjan 
+	'Pekka.nom find.pst.3sg Merja.acc/gen'
+
+49.  Pekka teki sen kellon_N 
+	'Pekka.nom make.pst.3sg that watch'
+
+50.  Pekka etsii Merjaa 
+	'Pekka.nom search.prs.3sg Merja.par'
+
+51.  Pekka haluaa Merjaa 
+	'Pekka.nom want.prs.3sg Merja.par'
+
+52.  Pekka häiritsee Merjaa 
+	'Pekka.nom disturb.prs.3sg Merja.par'
+
+53.  Pekka lukee kirjaa 
+	'Pekka read.prs.3sg book.par'
+
+54.  Pekka pelkää Merjaa 
+	'Pekka fear.prs.3sg Merja.par'
+
+55.  Pekka pesi Merjaa 
+	'Pekka.nom wash.pst.3sg Merja.par'
+
+56.  Pekka saavuttaa Merjaa 
+	'Pekka.nom reach.prs.3sg Merja.par'
+
+57.  Pekka teki kirjan 
+	'Pekka make.pst.3sg book.acc/gen'
+
+58.  Pekka tönäisi Merjaa 
+	'Pekka.nom push/nudge.pst.3sg Merja.par'
+
+59.  John admires Mary 
+
+60.  John likes Mary 
+
+61.  John persuades Mary 
+
+62.  Giuseppe spinge Luisa 
+
+63.  lavano Luisa 
+
+64.  loro lavano Luisa 
+
+& Ungrammatical (finite transitive verbs)
+
+65. *Pekka ihailee 
+	'Pekka.nom admire.prs.3sg'
+
+66. *Pekka löysi 
+	'Pekka.nom find.pst.3sg'
+
+67. *Pekka teki 
+	'Pekka.nom make.pst.3sg'
+
+68. *Pekka etsii 
+	'Pekka.nom search.prs.3sg'
+
+69. *Pekka haluaa 
+	'Pekka.nom want.prs.3sg'
+
+70. *Pekka häiritsee 
+	'Pekka.nom disturb.prs.3sg'
+
+71. *Pekka pelkää 
+	'Pekka.nom fear.prs.3sg'
+
+72. *Pekka pesi 
+	'Pekka.nom wash.pst.3sg'
+
+73. *Pekka saavuttaa 
+	'Pekka.nom reach.prs.3sg'
+
+74. *Pekka teki 
+	'Pekka.nom make.pst.3sg'
+
+75. *Pekka tönaisi 
+	'Pekka.nom push/nudge.prs.3sg'
+
+76. *ihailee 
+	'admire.prs.3sg'
+
+77. *löysi 
+	'find.pst.3sg'
+
+78. *teki 
+	'make.pst.3sg'
+
+79. *etsii 
+	'search.prs.3sg'
+
+80. *haluaa 
+	'want.prs.3sg'
+
+81. *häiritsee 
+	'disturb.prs.3sg'
+
+82. *pelkää 
+	'fear.prs.3sg'
+
+83. *pesi 
+	'wash.pst.3sg'
+
+84. *saavuttaa 
+	'reach.prs.3sg'
+
+85. *ihailee ihailee 
+	'admire.prs.3sg admire.prs.3sg'
+
+86. *Pekka ihailee Merjaa Merjaa 
+	'Pekka.nom admire.prs.3sg Merja.par Merja.par'
+
+87. *Pekka Pekka ihailee Merjaa 
+	'Pekka.nom Pekka.nom admire.prs.3sg Merja.par'
+
+88. *Pekka Pekka ihailee Merjaa Merjaa 
+	'Pekka.nom Pekka.nom admire.prs.3sg Merja.par Merja.par'
+
+89. *minä haluan 
+	'I want'
+
+90. *Pekka haluaa Merjalle 
+	'Pekka.nom wants to.Merja'
+
+91. *John admires 
+
+92. *John admires him him 
+
+93. *admires 
+
+94. *admires Mary 
+
+& Ditransitive verbs
+
+& Grammatical
+
+95.  Pekka antoi kirjan Merjalle 
+	'Pekka.nom give.pst.3sg book.acc/gen to.Merja'
+
+96.  John gave the key to Mary 
+
+& Ungrammatical
+
+97. *antoi kirjan Merjalle 
+	'give.pst.3sg book.acc/gen to.Merja'
+
+98. *Pekka antoi antoi kirjan Merjalle 
+	'Pekka.nom give.pst.3sg give.pst.3sg book.acc/gen to.Merja'
+
+99. *John gave the key to 
+
+100. *John gave the to Mary 
+
+101. *John gave the to 
+
+102. *John gave the 
+
+103. *John gave to 
+
+& Intransitive verbs with PP argument
+
+& Grammatical
+
+104.  Pekka elää Helsingissä 
+	'Pekka.nom live.prs.3sg in.Helsinki'
+
+105.  Pekka istuu Helsingissä 
+	'Pekka.nom sit.prs.3sg in.Helsinki'
+
+106.  Pekka lähtee Helsingissä 
+	'Pekka.nom leave.prs.3sg in.Helsinki'
+
+107.  Pekka juoksee Helsingissä 
+	'Pekka.nom run.prs.3sg in.Helsinki'
+
+108.  Pekka kuorsaa Helsingissä 
+	'Pekka.nom snore.prs.3sg in.Helsinki'
+
+109.  Pekka nukkui Helsingissä 
+	'Pekka.nom sleep.pst.3sg in.Helsinki'
+
+110.  John sleeps in Helsinki 
+
+& Ungrammatical
+
+111. *Pekka elää Helsinki 
+	'Pekka.nom live.prs.3sg Helsinki.nom'
+
+& Two PP arguments/adjuncts
+
+& Grammatical
+
+112.  Pekka antoi kirjan Merjalle Helsingissä 
+	'Pekka.nom give.pst.3sg book.acc/gen to.Merja in.Helsinki'
+
+113.  John gave the key to Mary in Helsinki 
+
+& Ungrammatical
+
+114. *Pekka antoi kirjan Merjalle Helsinki 
+	'Pekka.nom give.pst.3sg book.acc/gen to.Merja Helsinki.nom'
+
+& Special finite elements (1.2)
+
+& Aux, Sentential negation
+
+& Grammatical
+
+115.  minä en lähde 
+	'I.nom not.1sg leave'
+
+116.  sinä et lähde 
+	'you.nom not.2sg leave'
+
+117.  Pekka ei lähde 
+	'Pekka.nom not.3sg leave'
+
+118.  me emme lähde 
+	'we.nom not.1pl leave'
+
+119.  te ette lähde 
+	'you.nom not.2pl leave'
+
+120.  he_FI eivät lähde 
+	'they.nom not.3sg leave'
+
+121.  Pekka ei ihaile Merjaa 
+	'Pekka.nom not.3sg admire Merja.par'
+
+122.  Pekka ei myynyt omaisuuttaan 
+	'Pekka.nom not.3sg sell possessions.px/3sg'
+
+123.  John does sleep 
+
+124.  John does not sleep 
+
+125.  John does not admire Mary 
+
+126.  loro hanno lavato Luisa 
+
+127.  io ho lavato Luisa 
+
+128.  loro hanno voluto lavare Luisa 
+
+129.  loro stanno lavando Luisa 
+
+& Ungrammatical
+
+130. *sina en lähde 
+	'you.nom not.1sg leave'
+
+131. *sina lähde et 
+	'you.nom leave not.2sg'
+
+132. *Pekka ihaile ei Merjaa 
+	'Pekka.nom admire not.3sg Merja.par'
+
+133. *John not does sleep 
+
+& Problems (these problems have to do with ellipsis, partial fragments)
+
+134.  Pekan_gen lähteä 
+	'Pekka.GEN leave.a/inf'
+
+135.  Pekka ihaile Merjaa 
+	'Pekka.nom admire Merja.par'
+
+136.  että Merja lähtee 
+	'that Merja.nom leave.3sg'
+
+& Modals
+
+& Grammatical
+
+137.  Pekan_gen täytyy nukkua 
+	'Pekka.GEN must.0 sleep.a/inf'
+
+138.  Pekan_gen täytyy ihailla Merjaa 
+	'Pekka.GEN must.0 admire.a/inf Merja.par'
+
+139.  Pekan_gen täytyy myydä omaisuuttaan 
+	'Pekka.GEN must.0 sell.a/inf possessions.px/3sg
+
+140.  John must sleep 
+
+141.  John must admire Mary 
+
+142.  loro devono lavare Luisa 
+
+& Ungrammatical
+
+143. *Pekka täytyy nukkua 
+	'Pekka.nom must.0 sleep.a/inf'
+
+144. *täytyy Pekan nukkua 
+	'must.0 Pekka.GEN sleep.a/inf'
+
+145. *John does must sleep 
+
+146. *John must Mary admire John 
+
+147. *John must to_inf sleep 
+
+& Neg + Modal + V (Finnish)
+
+& Grammatical
+
+148.  Pekan_gen ei täydy ihailla Merjaa 
+	'Pekka.GEN not.3sg must.0 admire.a/inf Merja.par'
+
+149.  Pekan_gen ei täydy myydä omaisuuttaan 
+	'Pekka.GEN not.3sg must.0 sell.a/inf possessions.px/3sg'
+
+& Ungrammatical
+
+150. *Pekka ei täydy ihailla Merjaa 
+	'Pekka.nom not.3sg must.0 admire.a/inf Merja.par'
+
+151. *Pekka en täydy ihailla Merjaa 
+	'Pekka.nom not.1sg must.0 admire.a/inf Merja.par'
+
+152. *Pekan_gen ei täytyy ihailla Merjaa 
+	'Pekka.GEN not.3sg must.0 admire.a/inf Merja.par'
+
+& Tensed pure auxiliaries
+
+& Grammatical
+
+153.  Pekka on' nukkunut 
+	'Pekka.nom be.pst.3sg sleep.pst.prtcpl'
+
+154.  Pekka on' ihaillut Merjaa 
+	'Pekka be.pst.3sg admire.pst.prtcpl Merja.par'
+
+155.  John does sleep 
+
+& Ungrammatical
+
+156. *John does 
+
+& Infinitival complement clauses (1.3)
+
+& Basic infinitival constructions (English)
+
+& Grammatical (want-class)
+
+157.  John wants to_inf leave 
+
+158.  John wants Mary to_inf leave 
+
+159.  John wants to_inf leave Mary 
+
+160.  io detesto lavare Luisa 
+
+& Ungrammatical
+
+161. *John wants leave 
+
+162. *John wants to_inf 
+
+163. *John wants Mary leave 
+
+164. *John wants leave Mary 
+
+& OC constructions (English)
+
+& Grammatical
+
+165.  John tries to_inf leave 
+
+& Ungrammatical
+
+166. *John tries Mary to_inf leave 
+
+167. *John tries leave 
+
+& Finnish deverbal infinitival complements
+
+& A-infinitival 'to do'
+
+& Grammatical
+
+168.  Pekka haluaa lähteä 
+	'Pekka.nom want.prs.3sg leave.a/inf'
+
+169.  Pekka käskee Merjan_gen lähteä 
+	'Pekka.nom order.prs.3sg Merja.gen leave.a/inf'
+
+170.  Pekka halusi ihailla Merjaa 
+	'Pekka.nom want.pst.3sg admire.a/inf Merja.par'
+
+171.  Pekka käskee poikien ihailla Merjaa 
+	'Pekka.nom order.prs.3sg boy.PL.gen admire.a/inf Merja.par'
+
+172.  Pekka käskee poikien myydä omaisuuttaan 
+	'Pekka.nom order.prs.3sg boy.PL.gen sell.a/inf possessions.px/3sg'
+
+173.  Pekka ei halua ihailla Merjaa 
+	'Pekka.NON not.3sg want.a/inf admire.a/inf Merja.par'
+
+174.  Pekka ei halua myydä omaisuuttaan 
+	'Pekka.nom not.3sg want.a/inf sell.a/inf possessions.px/3sg'
+
+& Ungrammatical
+
+175. *Pekka haluaa Merjan_gen lähteä 
+	'Pekka.nom want.prs.3sg Merja.gen leave.a/inf'
+
+176. *Pekka haluaa heidän lähteä 
+	'Pekka.nom want.prs.3sg they.gen leave.a/inf'
+
+177. *Pekka haluaa 
+	'Pekka.nom want.prs.3sg'
+
+178. *Pekka haluaa Merjaa lähteä 
+	'Pekka.nom want.prs.3sg Merja.par leave.a/inf'
+
+& Modal + A-infinitival
+
+& Grammatical
+
+179.  Pekan_gen täytyy ihailla Merjaa 
+	'Pekka.gen must.0 admire.a/inf Merja.par'
+
+180.  Pekan_gen täytyy myydä omaisuuttaan 
+	'Pekka.gen must.0 sell.a/inf possessions.px/3sg'
+
+181.  Pekan_gen ei täydy ihailla Merjaa 
+	'Pekka.gen not.3sg must.0 admire.a/inf Merja.par'
+
+182.  Pekan_gen ei täydy myydä omaisuuttaan 
+	'Pekka.gen not.3sg must.0 sell.a/inf possessions.px/3sg'
+
+& Ungrammatical
+
+183. *Pekka täytyy ihailla Merjaa 
+	'Pekka.nom must.0 admire.a/inf Merja.par'
+
+& VA-infinitival 'to do'
+
+& Grammatical
+
+184.  Pekka sanoo Merjan_gen lähtevän 
+	'Pekka.nom says Merja.gen leave.va/inf'
+
+185.  Pekka halusi heidän lähtevän 
+	'Pekka.nom want.pst.3sg they.gen leave.va/inf'
+
+186.  Pekka sanoo lähtevänsä 
+	'Pekka.nom say.prs.3sg leave.va/inf.px/3sg'
+
+187.  Pekka sanoo ihailevansa Merjaa 
+	'Pekka.nom say.prs.3sg admire.va/inf.px/3sg Merja.par'
+
+188.  Pekka sanoo Merjan_gen lähtevän 
+	'Pekka.nom say.prs.3sg Merja.gen leave.va/inf'
+
+189.  minä sanon lähteväni 
+	'I.nom say.prs.1sg leave.va/inf.PX/1SG'
+
+& Ungrammatical
+
+190. *minä sanon lähtevänsä 
+	'I.nom say.prs.1sg leave.va/inf.px/3sg'
+
+191. *Pekka sanoo ihailevansa 
+	'Pekka.nom say.prs.3sg admire.va/inf.px/3sg'
+
+192. *Pekka halusi Merja lähtevän 
+	'Pekka.nom want.pst.3sg Merja.nom leave.va/inf'
+
+& Nominals (1.4)
+
+& Basic DPs
+
+& Grammatical
+
+193.  se talo 
+	'the/that house'
+
+194.  se pieni talo 
+	'the/that small house'
+
+195.  se pieni punainen talo 
+	'that small red house'
+
+196.  se punainen pieni talo 
+	'that red small house'
+
+197.  the little key 
+
+198.  the little red key 
+
+& Ungrammatical
+
+199. *pieni talo se 
+	'small house the/that'
+
+200. *se talo pieni 
+	'the/that house small'
+
+201. *talo pieni se 
+	'house small the/that'
+
+202. *talo se pieni 
+	'house the/that small'
+
+203. *the key little 
+
+204. *the key red little 
+
+& N + A-infinitival
+
+& Grammatical
+
+205.  Pekka teki sopimuksen ihailla Merjaa 
+	'Pekka.nom make.pst.3sg agreement admire.a/inf Merja.par'
+
+206.  Pekka teki sopimuksen antaa avaimen Merjalle 
+	'Pekka.nom make.pst.3sg agreement give.a/inf key.acc/gen to.Merja'
+
+207.  se sopimus ihailla Merjaa peruuntui 
+	'the/that agreement admire.a/inf Merja.par terminate.pst.3sg'
+
+& Ungrammatical
+
+& Adpositions (1.5)
+
+& Grammatical
+
+208.  lähellä_1 Pekkaa 
+	'near Pekka.par'
+
+209.  Pekkaa lähellä_1 
+	'Pekka.par near'
+
+210.  Merja nukkui Pekan_gen lähellä_2 
+	'Merja sleep.pst.3sg Pekka.gen near'
+
+211.  Merja nukkui lähellä_1 Pekkaa 
+	'Merja.nom sleep.pst.3sg near Pekka.par'
+
+212.  Pekka nukkui Helsingissä 
+	'Pekka sleep.pst.3sg in.Helsinki'
+
+& Ungrammatical
+
+213.  Merja nukkui lähellä Pekan_gen 
+	'Merja.nom sleep.pst.3sg near Pekka.gen'
+
+& Embedded finite THAT-clauses (1.6)
+
+& THAT-clauses
+
+& Grammatical
+
+214.  Pekka sanoi että Merja lähtee 
+	'Pekka said that Merja.nom leave.prs.3sg'
+
+215.  Pekka sanoi että Merja ihailee Pekkaa 
+	'Pekka said that Merja.nom admire.prs.3sg Pekka.par'
+
+216.  Pekka sanoi että Merja antoi kirjan Merjalle 
+	'Pekka said that Merja.nom give.pst.3sg book.acc/gen to.Merja'
+
+217.  Pekka sanoo että haluaa ihailla Merjaa 
+	'Pekka said that want.prs.3sg admire.a/inf Merja.par'
+
+218.  Pekka sanoo että haluaa myydä omaisuuttaan 
+	'Pekka said that want.prs.3sg sell.a/inf possessions.px/3sg'
+
+219.  Pekka sanoo että Pekka ei lähde 
+	'Pekka said that Pekka.nom not.3sg leave'
+
+220.  Pekka sanoo että minä en lähde 
+	'Pekka said that I.nom not.1sg leave'
+
+221.  Pekka sanoi että Pekka ei ihaile Merjaa 
+	'Pekka said that Pekka.nom not.3sg admire Merja.par'
+
+222.  Pekka sanoi että Pekan_gen täytyy nukkua 
+	'Pekka said that Pekka.gen must.0 sleep.a/inf'
+
+223.  John said that Mary sleeps 
+
+& Ungrammatical
+
+224. *Pekka sanoi että 
+	'Pekka.nom said that'
+
+225. *Pekka sanoi että Merja 
+	'Pekka.nom said that Merja.nom'
+
+226. *Pekka sanoi Merja lähtee että 
+	'Pekka.nom said Merja.nom leaves that'
+
+227. *että 
+	'that'
+
+228. *John said that 
+
+229. *John said that Mary 
+
+& Problems ("that" cannot rule out DP spec when it is an adjunct)
+
+230. *Pekka sanoi Merja että lahtee 
+	'Pekka.nom said Merja.nom that leave.prs.3sg'

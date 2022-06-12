@@ -37,9 +37,7 @@ class LocalFileSystem:
                                          'test_corpus_folder': 'language data working directory/',
                                          'ignore_ungrammatical_sentences': 'False',
                                          'console_output': 'Full',
-                                         'datatake_resources': 'True',
-                                         'datatake_resource_sequence': 'False',
-                                         'datatake_timings': 'False',
+                                         'datatake_full': 'False',
                                          'datatake_images': 'False',
                                          'image_parameter_stop_after_each_image': 'False',
                                          'image_parameter_show_words': 'True',
@@ -76,17 +74,18 @@ class LocalFileSystem:
 
     def initialize_output_files(self):
         self.dev_log_file.write('Initializing output files for writing...')
-        self.initialize_image_folder()
         self.initialize_grammaticality_judgments_file()
         self.initialize_results_file()
-        self.initialize_simple_results_file()
-        self.initialize_resources_file()
-        self.initialize_simple_log_file()
-        self.initialize_semantics_file()
         if self.settings['datatake_images']:
+            self.initialize_image_folder()
             self.settings['datatake_images'] = True
             self.visualizer = Visualizer()
             self.visualizer.initialize(self.settings)
+        if self.settings['datatake_full']:
+            self.initialize_simple_results_file()
+            self.initialize_resources_file()
+            self.initialize_simple_log_file()
+            self.initialize_semantics_file()
         self.dev_log_file.write('Done.\n')
 
     def initialize_dev_logging(self):
@@ -334,7 +333,7 @@ class LocalFileSystem:
         self.dev_log_file.write('Saving output into output files...')
         self.save_grammaticality_judgment(parser, count, sentence)
         self.save_results(parser, count, sentence, part_of_conversation)
-        if self.settings['datatake_resources']:
+        if self.settings['datatake_full']:
             self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
         self.print_result_to_console(parser, sentence)
         if self.settings['datatake_images']:
@@ -370,35 +369,41 @@ class LocalFileSystem:
         sentence_string = self.generate_input_sentence_string(sentence)
         if len(parser.result_list) == 0:
             self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
-            self.simple_results_file.write(str(count) + '. *' + sentence_string + '\n\n')
-            self.semantics_file.write(str(count) + '. *' + sentence_string + '\n\n')
+            if self.settings['datatake_full']:
+                self.simple_results_file.write(str(count) + '. *' + sentence_string + '\n\n')
+                self.semantics_file.write(str(count) + '. *' + sentence_string + '\n\n')
         else:
             self.results_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
-            self.simple_results_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
-            self.semantics_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
+            if self.settings['datatake_full']:
+                self.simple_results_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
+                self.semantics_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
             number_of_solutions = len(parser.result_list)
             parse_number = 1
             for parse, semantic_interpretation in parser.result_list:
                 if number_of_solutions == 1:
                     self.results_file.write('\t' + f'{parse}\n')
-                    self.simple_results_file.write('\t' + f'{parse}\n')
-                    self.semantics_file.write('\t' + f'{parse}\n')
+                    if self.settings['datatake_full']:
+                        self.simple_results_file.write('\t' + f'{parse}\n')
+                        self.semantics_file.write('\t' + f'{parse}\n')
                 else:
                     self.results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-                    self.simple_results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-                    self.semantics_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
+                    if self.settings['datatake_full']:
+                        self.simple_results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
+                        self.semantics_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                 if parse_number == 1:
                     self.results_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
                     self.results_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation_simple(parser)}\n')
                     self.results_file.write('\tResources:\n\t' + self.format_resource_output(parser.resources) + '\n')
-                    self.semantics_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
-                    self.semantics_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation(parser)}\n')
+                    if self.settings['datatake_full']:
+                        self.semantics_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
+                        self.semantics_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation(parser)}\n')
                 parse_number = parse_number + 1
                 if part_of_conversation:
                     self.results_file.write('\tConversation continues:\n')
                 self.results_file.write('\n')
-                self.simple_results_file.write('\n')
-                self.semantics_file.write('\n')
+                if self.settings['datatake_full']:
+                    self.simple_results_file.write('\n')
+                    self.semantics_file.write('\n')
 
     def format_semantic_interpretation_simple(self, P):
         output_str = '\n'
@@ -497,7 +502,8 @@ class LocalFileSystem:
         self.dev_log_file.write('Closing all output files...')
         self.results_file.close()
         self.grammaticality_judgments_file.close()
-        self.resources_file.close()
+        if self.settings['datatake_full']:
+            self.resources_file.close()
         self.logger_handle.close()
         self.dev_log_file.write('Done.\n')
 

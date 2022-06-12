@@ -34,8 +34,9 @@ class LexicalStream:
             else:
                 log(f'\n\n\t{self.controlling_parser_process.resources["Item streamed into syntax"]["n"]}.\tConsume /' + terminal_lexical_item.get_phonological_string()+'/ ')
                 self.controlling_parser_process.resources['Steps']['n'] += 1
-                self.controlling_parser_process.local_file_system.simple_log_file.write(
-                    f'\n{self.controlling_parser_process.resources["Steps"]["n"]}\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
+                if self.controlling_parser_process.local_file_system.settings['datatake_full']:
+                    self.controlling_parser_process.local_file_system.simple_log_file.write(
+                        f'\n{self.controlling_parser_process.resources["Steps"]["n"]}\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
             return terminal_lexical_item
 
     def process_inflection(self, inflection, lexical_item):

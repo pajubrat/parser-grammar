@@ -11,6 +11,7 @@ class LF:
         self.LF_legibility_tests = [self.selection_test,
                                     self.projection_principle,
                                     self.head_integrity_test,
+                                    self.feature_conflict_test,
                                     self.probe_goal_test,
                                     self.semantic_complement_test,
                                     self.double_spec_filter,
@@ -64,23 +65,32 @@ class LF:
             return False
         return True
 
+    def feature_conflict_test(self, h):
+        def remove_exclamation(g):
+            if g[0] == '!':
+                return g[1:]
+            else:
+                return g
+
+        for feature1 in h.features:
+            if feature1[0] == '-':
+                for feature2 in h.features:
+                    if feature1[1:] == remove_exclamation(feature2):
+                        log(f'Head {h.illustrate()} triggers feature conflict between {feature1} and {feature2}.')
+                        return False
+        return True
+
     def head_integrity_test(self, h):
         if h.features:
             if {'CAT:?', '?'} & h.features:
                 log('Head without lexical category. ')
                 return False
-            for f in h.features:
-                for g in h.features:
-                    if f[0] == '-' and f[1:] == g:
-                        log(f'Head {h.illustrate()} triggers feature conflict between {f} and {g}.')
-                        return False
         return True
 
     def probe_goal_test(self, h):
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(h.features, f[7:]):
-                    log(f'{h.illustrate()} probing for {f[7:]} failed. ')
                     return False
             if f.startswith('-PROBE:'):
                 if h.probe(set(h.features), f[7:]):
@@ -154,7 +164,7 @@ class LF:
         # (ii) Thematic assignment to specifier position
         if get_theta_assigner(h.max()) and container_head.licensed_phrasal_specifier() and h.max() == container_head.licensed_phrasal_specifier():
             # (ii-1) H does not receive a thematic role from an EPP head
-            if container_head.EPP():
+            if container_head.E():
                 return False
             if container_head.selector() and 'ARG' not in container_head.selector().features:
                 return False
@@ -162,7 +172,7 @@ class LF:
             if not {'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'} & container_head.features or {'-SPEC:φ'} & container_head.features:
                 return False
             # Condition (ii-4) One head K cannot assign two roles unless otherwise stated [DP1 [K DP2]]
-            if container_head.sister() != h.max() and {'D', 'φ'} & container_head.sister().head().features:
+            if container_head.sister() != h.max() and container_head.sister().head().is_referential():
                 if 'COPULA' not in container_head.features and test_strength == 'strong':
                     return False
             return True
@@ -174,9 +184,10 @@ class LF:
             if not goal.right_const.find_me_elsewhere and not self.final_tail_check(goal.right_const):
                 return False
         if goal.is_primitive():
-            if goal.get_tail_sets() and not goal.tail_test():
-                log(f'\'{goal.illustrate()}\' failed final tail test. ')
-                return False
+            if goal.get_tail_sets():
+                if not goal.tail_test():
+                    log(f'Tail test for {goal.illustrate()}[{goal.get_tail_sets()}] Failed. ')
+                    return False
         return True
 
     # Selection tests ----------------------------------------------------------
@@ -188,14 +199,14 @@ class LF:
     def selection__negative_specifier(self, head, lexical_feature):
         if lexical_feature.startswith('-SPEC:'):
             for spec_ in head.edge():
-                if spec_ and lexical_feature[6:] in spec_.head().features:
+                if lexical_feature[6:] in spec_.head().features:
                     if not spec_.adjunct:
                         log(f'{head} has unacceptable specifier {spec_}. ')
                         return False
         return True
 
     def selection__unselective_negative_specifier(self, head, lexical_feature):
-        if lexical_feature == '-SPEC:*':
+        if lexical_feature == '-E':
             if self.local_edge:
                 if not self.local_edge.adjunct and 'pro' not in self.local_edge.head().features:
                     log(f'-EPP head {head} has a specifier {self.local_edge}. ')
@@ -215,14 +226,14 @@ class LF:
         return True
 
     def selection__positive_obligatory_specifier(self, head, lexical_feature):
-        if lexical_feature == '!SPEC:*':
+        if lexical_feature == '!E':
             if not self.local_edge:
                 log(f'EPP-head {head} lacks specifier. ')
                 return False
         return True
 
     def selection__unselective_positive_specifier(self, head, lexical_feature):
-        if lexical_feature.startswith('!SPEC:') and not lexical_feature == '!SPEC:*':
+        if lexical_feature.startswith('!SPEC:') and not lexical_feature == '!E':
             if not self.local_edge:
                 log(f'EPP-head {head} lacks specifier {lexical_feature[6:]} that it requires. ')
                 return False
@@ -307,17 +318,17 @@ class LF:
         return new_const
 
     def specifier_match(self, h, const):
-        if 'SPEC:*' in h.features or '!SPEC:*' in h.features:
+        if 'E' in h.features or '!E' in h.features:
             return True
         for feature_in_head in h.convert_features_for_parsing(h.licensed_specifiers()):
             for feature_in_spec in const.head().features:
                 if feature_in_head == feature_in_spec:
                     return True
 
-    def try_LFmerge(self, constituent):
-        self.try_merge_to_left(constituent)
-        self.try_adjoin_right(constituent)
-        self.try_merge_to_comp(constituent)
+    def try_LFmerge(self, node):
+        self.try_merge_to_left(node)
+        self.try_adjoin_right(node)
+        self.try_merge_to_comp(node)
 
     def try_adjoin_right(self, head):
         for constituent_from_MB in self.controlling_parsing_process.syntactic_working_memory:

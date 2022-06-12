@@ -1,0 +1,427 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'collected_corpus_11_binding.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'logging': True, 'datatake_images': False, 'datatake_full': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': True, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-06-12 21:29:06.879128
+@  Test sentences from language data working directory\study-14-subjects-and-agreement\collected_corpus_11_binding.txt.
+@  Logs into language data working directory\study-14-subjects-and-agreement\collected_corpus_11_binding_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+
+& 11 Binding
+
+& 11.1 Proper names
+
+& 11.1.1 Grammatical, assignment possible
+
+1.  John sleeps 
+
+2.  Mary sleeps 
+
+3.  John admires Mary 
+
+4.  Mary admires John 
+
+5.  John admires John 
+
+6.  Mary admires Mary 
+
+7.  Pekka nukkuu 
+	'Pekka.NOM sleep.3SG.PRS'
+
+8.  Pekka ihailee Merjaa 
+	'Pekka.NOM admire.3SG.PRS Merja.PAR'
+
+& 11.1.2 Proper names inside embedded that-context
+
+9.  John said that Mary admires Bill 
+
+10.  Pekka sanoi että Merja ihailee Jukkaa 
+	'Pekka.NOM said.PST.3SG that Merja.NOM admire.3SG.PRS Jukka.PAR'
+
+& 11.1.3 Proper names inside embedded infinitival
+
+11.  John wants Mary to_inf admire Bill 
+
+12.  Pekka sanoo Merjan_gen ihailevan Jukkaa 
+	'Pekka.NOM says.PRS.3SG Merja.GEN admire.VA/inf Jukka.PAR'
+
+& 11.1.4 Condition C
+
+13.  he admires John 
+
+14.  she admires John 
+
+15.  he admires Mary 
+
+16.  she admires Mary 
+
+17.  he said that John admires Mary 
+
+18.  he wants John to_inf admire Mary 
+
+19.  hän ihailee Merjaa 
+	'He.NOM admire.3SG.PRS Merja.PAR'
+
+20.  hän sanoo että Pekka ihailee Merjaa 
+	'He.NOM says that Pekka.NOM admire.3SG.PRS Merja.PAR'
+
+21.  hänen siskonsa sanoo että Pekka ihailee Merjaa 
+	'His sister says that Pekka.NOM admire.3SG.PRS Merja.PAR'
+
+& 11.1.5 Conversations
+
+22.  John sleeps 
+
+23.  John admires Mary 
+
+24.  John sleeps 
+
+25.  Mary sleeps 
+
+& 11.1.6 Proper names and subjectless pro-sentences
+
+26.  ihailen Merjaa 
+	'admire.PRS.1SG Merja.PAR'
+
+& 11.2 Regular (type 1) pronouns
+
+& 11.2.1 Pronouns and proper names (grammatical, Condition B)
+
+27.  John admires him 
+
+28.  John admires her 
+
+29.  he admires Mary 
+
+30.  she admires John 
+
+31.  it admires John 
+
+32.  it admires Mary 
+
+33.  it admires him 
+
+34.  it admires her 
+
+35.  John admires it 
+
+36.  Mary admires it 
+
+37.  he admires it 
+
+38.  she admires it 
+
+39.  it admires it 
+
+40.  John admires he='s sister 
+
+41.  John admires she='s sister 
+
+42.  Pekka ihailee häntä 
+	'Pekka.NOM admire.3SG.PRS he.PAR'
+
+43.  Pekka ihailee sitä_DP 
+	'Pekka.NOM admire.3SG.PRS it.PAR'
+
+44.  se_DP ihailee Pekkaa 
+	'it.NOM admire.3SG.PRS Pekka.PAR'
+
+45.  se_DP ihailee sitä_DP 
+	'It.NOM admire.3SG.PRS it.PAR'
+
+46.  Pekka ihailee hänen siskoaan 
+	'Pekka.NOM admire.3SG.PRS he.GEN sister.PAR(Px/3sg)'
+
+& 11.2.2 Only pronouns (grammatical, Condition B)
+
+47.  he admires him 
+
+48.  she admires her 
+
+49.  he admires her 
+
+50.  she admires him 
+
+51.  hän ihailee häntä 
+	'He.NOM admire.3SG.PRS he.PAR'
+
+52.  se_DP ihailee sitä_DP 
+	'it.NOM admire.3SG.PRS it.PAR'
+
+& 11.2.3 *Ungrammatical, wrong case forms (OVS)
+
+53. *him admires he 
+
+54. *him admires she 
+
+55. *him admires him 
+
+56. *him admires her 
+
+57. *her admires he 
+
+58. *her admires she 
+
+59. *her admires him 
+
+60. *her admires her 
+
+& 11.2.4 Pronouns inside that-clauses (Condition B)
+
+61.  John said that Mary admires Bill 
+
+62.  John said that Mary admires him 
+
+63.  John said that he admires Mary 
+
+64.  John said that he admires him 
+
+65.  he said that he admires him 
+
+66.  he said that John admires Mary 
+
+67.  Pekka sanoo että Merja ihailee Jukkaa 
+	'Pekka.NOM says that Merja.NOM admire.3SG.PRS Jukka.PAR'
+
+68.  Pekka sanoo että Merja ihailee häntä 
+	'Pekka.NOM says that Merja.NOM admire.3SG.PRS he.PAR'
+
+69.  Pekka sanoo että hän ihailee Jukkaa 
+	'Pekka.NOM says that he.NOM admire.3SG.PRS Jukka.PAR'
+
+70.  Pekka sanoo että hän ihailee häntä 
+	'Pekka.NOM says that he.NOM admire.3SG.PRS he.PAR'
+
+& 11.2.5 Pronouns inside infinitivals
+
+71.  John wants Mary to_inf admire him 
+
+72.  Mary wants John to_inf admire her 
+
+73.  John wants John to_inf admire him 
+
+74.  Mary wants Mary to_inf admire her 
+
+75.  John wants Mary to_inf admire it 
+
+76.  Mary wants John to_inf admire it 
+
+77.  John wants him to_inf admire Mary 
+
+78.  John wants her to_inf admire Mary 
+
+79.  Mary wants him to_inf admire Mary 
+
+80.  Mary wants her to_inf admire Mary 
+
+81.  Pekka haluaa Merjan_gen ihailevan häntä 
+	'Pekka wants Merja.GEN admire.VA/inf he.PAR'
+
+82.  Pekka haluaa hänen ihailevan Merjaa 
+	'Pekka wants he.GEN admire.VA/inf he.PAR'
+
+83.  Pekka haluaa hänen ihailevan häntä 
+	'Pekka wants he.GEN admire.VA/inf he.PAR'
+
+84.  hän haluaa hänen ihailevan häntä 
+	'He wants he.GEN admire.VA/inf he.PAR'
+
+& 11.2.6 Possessive pronouns
+
+85.  he='s sister sleeps 
+
+86.  she='s sister sleeps 
+
+87.  hänen siskonsa nukkuu 
+	'his sister sleeps'
+
+& 11.2.7 Pronouns and conversation
+
+88.  John sleeps 
+
+89.  he admires Mary 
+
+90.  John admires Mary 
+
+91.  he admires her 
+
+92.  John admires Mary 
+
+93.  he='s sister sleeps 
+
+94.  it sleeps 
+
+95.  he admires Mary 
+
+96.  it sleeps 
+
+97.  he admires her 
+
+98.  it sleeps 
+
+99.  it admires her 
+
+& 11.2.8 Human vs. nonhuman pronouns
+
+100.  John admires Mary 
+
+101.  it sleeps 
+
+102.  John admires Mary 
+
+103.  he sleeps 
+
+104.  Pekka ihailee Merjaa 
+
+105.  se_DP nukkuu 
+
+106.  Pekka ihailee Merjaa 
+
+107.  hän nukkuu 
+
+& 11.2.9 C-command tests
+
+108.  John='s sister admires him 
+
+109.  Pekan_gen sisko ihailee häntä 
+	'Pekka.GEN sister.NOM admire.3SG.PRS he.PAR'
+
+& 11.2.10 Pronouns and null subject sentences
+
+110.  Pekka sanoo että ihailee häntä 
+	'Pekka says that admire.3SG.PRS he.PAR'
+
+111.  Pekka sanoo että ihailen häntä 
+	'Pekka says that admire.1SG.PRS he.PAR'
+
+112.  hän sanoo että ihailee häntä 
+	'He says that admire.3SG.PRS he.PAR'
+
+113.  hän sanoo että ihailen häntä 
+	'He says that admire.1SG.PRS he.PAR'
+
+& 11.3 Reflexive pronouns (Condition A)
+
+& 11.3.1 Grammatical, assignment possible
+
+114.  John admires himself 
+
+115.  Mary admires herself 
+
+116.  he admires himself 
+
+117.  she admires herself 
+
+118.  Pekka ihailee itseään 
+	'Pekka.NOM admire.3SG.PRS self.PAR.Px/3sg'
+
+119.  hän ihailee itseään 
+	'He.NOM admire.3SG.PRS self.PAR.Px/3sg'
+
+& 11.3.2 *Ungrammatical, gender mismatch, assignment not possible
+
+120. *John admires herself 
+
+121. *Mary admires himself 
+
+122. *he admires herself 
+
+123. *she admires himself 
+
+& 11.3.3 *Ungrammatical, human mismatch
+
+124. *it admires herself 
+
+125. *it admires himself 
+
+& 11.3.4 *Ungrammatical, subject reflexives, assignment not possible
+
+126. *himself admires John 
+
+127. *himself admires Mary 
+
+128. *himself admires he 
+
+129. *himself admires him 
+
+130. *himself admires she 
+
+131. *himself admires her 
+
+132. *himself admires it 
+
+133. *herself admires John 
+
+134. *herself admires Mary 
+
+135. *herself admires he 
+
+136. *herself admires him 
+
+137. *herself admires she 
+
+138. *herself admires her 
+
+139. *herself admires it 
+
+& 11.3.5 Reflexives in conversation
+
+140.  John admires Bill 
+
+141.  he admires himself 
+
+142.  John admires himself 
+
+143.  he sleeps 
+
+144.  John admires Mary 
+
+145.  Bill admires himself 
+
+& 11.3.6 C-command condition
+
+& 11.3.6.2 Ungrammatical, assignment 'John ~ himself' not possible
+
+& 11.3.6.2.1 English
+
+146.  John='s sister admires himself 
+
+& 11.3.6.2.2 Finnish example, grammatical
+
+147.  Pekan_gen sisko ihailee itseään 
+	'Pekka.GEN sister.NOM admire.3SG.PRS self.PAR.Px/3sg'
+
+& 11.3.7 Reflexives and control
+
+& 11.3.7.1 Local binding inside infinitival
+
+148.  John wants Mary to_inf admire herself 
+
+149.  Pekka haluaa Merjan_gen ihailevan itseään 
+	'Pekka.NOM want.3SG.PRS Merja.GEN admire.VA/inf self.PAR.Px/3SG'
+
+& 11.3.7.2 *Ungrammatical, nonlocal binding out of infinitival
+
+150. *John wants Mary to_inf admire himself 
+
+151.  Pekka halusi Merjan_gen ihailevan itseään 
+	'Pekka.NOM want.3SG.PRS Merja.GEN admire.VA/inf self.PAR.Px/3SG'
+
+& 11.3.7.3 Binding from infinitival into main clause subject
+
+& 11.3.7.3.1 Grammatical
+
+152.  John wants to_inf admire himself 
+
+153.  he wants to_inf admire himself 
+
+154.  Mary wants to_inf admire herself 
+
+155.  she wants to_inf admire herself 
+
+156.  Pekka haluaa ihailla itseään 
+	'Pekka.NOM want.3SG.PRS admire.A/inf self.PAR.Px/3SG'
+
+157.  hän haluaa ihailla itseään 
+	'He.NOM want.3SG.PRD admire.A/inf self.PAR.Px/3sg'
