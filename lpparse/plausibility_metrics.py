@@ -309,8 +309,8 @@ class PlausibilityMetrics:
     def left_branch_filter(self, N):
         set_logging(False)
         dropped, output_from_interfaces = self.brain_model.transfer_to_LF(N.copy())
-        left_branch_passes_LF = self.brain_model.LF.LF_legibility_test(dropped, self.left_branch_filter_test_battery)
         set_logging(True)
+        left_branch_passes_LF = self.brain_model.LF.LF_legibility_test(dropped, self.left_branch_filter_test_battery)
         return not left_branch_passes_LF
 
     def does_not_accept_any_complementizers(self, N):

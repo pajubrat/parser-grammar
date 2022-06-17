@@ -16,13 +16,16 @@ class PhrasalMovement:
 
     def reconstruct(self, ps):
         self.brain_model.syntactic_working_memory = []
+        pull_point = None
         # ------------------------------ minimal search -----------------------------------------------#
         for node in ps:
-            if self.get_local_head(node) and self.get_local_head(node).E():
+            if self.get_local_head(node) and self.get_local_head(node).EF():
                 self.pull_into_working_memory(self.get_local_head(node))
+                pull_point = node
             if self.get_local_head(node):
                 self.brain_model.LF.try_LFmerge(self.get_local_head(node))
-            if self.intervention(node):
+            if pull_point and pull_point.head() != node.head() and self.intervention(node):
+                log(f'Ā-chain was intervened by feature.')
                 break
         # ---------------------------------------------------------------------------------------------#
 
@@ -31,45 +34,38 @@ class PhrasalMovement:
                node.find_me_elsewhere
 
     def pull_into_working_memory(self, head):
-        for i, spec in enumerate(head.edge()):
+        for i, spec in enumerate(head.edge_specifiers()):
             if not spec.find_me_elsewhere:
                 if self.Abar_movable(spec):
                     self.brain_model.syntactic_working_memory = self.brain_model.syntactic_working_memory + [spec]
+                    criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
+                    self.process_criterial_features(i, spec, head, criterial_features)
                 else:
                     self.A.reconstruct(spec)
-                self.process_criterial_features(i, spec, head)
 
-    def process_criterial_features(self, i, spec, head):
-        def consider_externalization(head):
-            if head.get_tail_sets():
-                self.adjunct_constructor.externalize_structure(head)
-
+    def process_criterial_features(self, i, spec, head, criterial_features):
         if i == 0:
-            if not spec.find_me_elsewhere and self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec):
-                head.features |= self.get_features_for_criterial_head(head, spec)
-                # consider_externalization(head)
+            if not spec.find_me_elsewhere:
+                head.features |= self.copy_features_from_operator_to_local_head(head, spec, criterial_features)
         else:
             if self.specifier_phrase_must_have_supporting_head(spec):
-                new_h = self.engineer_head_from_specifier(head, spec)
+                new_h = self.engineer_head_from_specifier(head, spec, criterial_features)
                 spec.sister().merge_1(new_h, 'left')
-                # consider_externalization(new_h)
 
-    def engineer_head_from_specifier(self, head, spec):
-        log(f'New head at {head.illustrate()}P...')
+    def copy_features_from_operator_to_local_head(self, head, spec, criterial_features):
+        feature_set = {'OP:_'}
+        if 'OP*' in criterial_features:
+            criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec.head())
+        feature_set |= criterial_features
+        if not {'INF', 'P'} & head.features:  # This applies to non-infinitival heads
+            feature_set |= {'FIN', 'C', 'PF:C'}
+        return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
+
+    def engineer_head_from_specifier(self, head, spec, criterial_features):
+        log(f'New head at required...')
         new_h = self.lexical_access.PhraseStructure()
-        new_h.features |= self.get_features_for_criterial_head(head, spec)
+        new_h.features |= self.copy_features_from_operator_to_local_head(head, spec, criterial_features)
         return new_h
-
-    def get_features_for_criterial_head(self, head, spec):
-        criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
-        feature_set = criterial_features
-        if criterial_features:
-            feature_set |= {'OP:_'} #  This applies to all landing cites (secondary Abar chains)
-            if 'INF' not in head.features:  # This applies to non-infinitival heads
-                feature_set |= {'FIN', 'C', 'PF:C'}
-            return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
-        else:
-            return {'?'}
 
     @staticmethod
     def get_local_head(node):

@@ -5,9 +5,9 @@ study_id: 1
 study_folder:			language data working directory/study-14-subjects-and-agreement
 lexicon_folder:			language data working directory/lexicons
 test_corpus_folder:		language data working directory/study-14-subjects-and-agreement
-test_corpus_file:		collected_corpus_11_binding.txt
+test_corpus_file:		subjects_corpus.txt
 
-only_first_solution: True
+only_first_solution: False
 ignore_ungrammatical_sentences: False
 console_output: Full
 
@@ -19,7 +19,7 @@ image_parameter_stop_after_each_image: False
 image_parameter_show_words: True
 image_parameter_nolabels: False
 image_parameter_spellout: False
-image_parameter_case: True
+image_parameter_case: False
 image_parameter_show_sentences: False
 image_parameter_show_glosses: True
 

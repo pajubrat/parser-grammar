@@ -28,7 +28,7 @@ class FloaterMovement():
                 return ps.left_const
             if ps.left_const.container():
                 J = ps.left_const.container()
-                if (J.E() and 'FIN' in J.features) or ('-SPEC:*' in J.features and ps.left_const == next((const for const in J.edge()), None)):
+                if (J.EF() and 'FIN' in J.features) or ('-SPEC:*' in J.features and ps.left_const == next((const for const in J.edge_specifiers()), None)):
                     return ps.left_const
 
         if self.detect_floater(ps.right_const):
@@ -51,13 +51,27 @@ class FloaterMovement():
                'adjoinable' in ps.head().features and \
                '-adjoinable' not in ps.head().features and \
                '-float' not in ps.head().features and \
-               not self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(ps)
+               self.do_not_float_operators_at_scope_position(ps)
+
+    def do_not_float_operators_at_scope_position(self, ps):
+        # If there are criterial features
+        if self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(ps):
+            # If this phrase structure has scope position somewhere
+            if ps.top().contains_feature('FIN'):
+                # If the operator cannot see FIN, it means it is not in a scope position
+                for node in ps.head().working_memory_path('FORCE'):
+                    if 'FIN' in node.features:
+                        return True
+                # If the operator cannot see FIN upwards, it means that it is probably in a scope position
+                return False
+        return True
 
     def drop_floater(self, original_floater):
         def termination_condition(node, floater, local_tense_edge):
             return node == floater or node.find_me_elsewhere or \
                    (node.is_complex() and 'FORCE' in node.left_const.features and node.head() != local_tense_edge.head()) or \
                    (node.sister() and node.sister().is_primitive() and 'φ' in node.sister().features)
+
 
         log(f'Reconstructing {original_floater}...')
         if original_floater.is_left():

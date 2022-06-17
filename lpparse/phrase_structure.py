@@ -2,7 +2,7 @@
 from collections import namedtuple
 from itertools import takewhile
 
-major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
+major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'MA/A', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 
 Result = namedtuple('Result', 'match_occurred outcome')
 
@@ -131,8 +131,9 @@ class PhraseStructure:
     def complex_head(self):
         return self.is_primitive() and self.has_affix()
 
-    def E(self):
-        return {'E', '!E'} & self.features
+    def EF(self, parameter=''):
+        if not parameter:
+            return {f for f in self.features if 'EF:' in f and '-' not in f}
 
     def get_affix_list(self):
         lst = [self]
@@ -355,16 +356,16 @@ class PhraseStructure:
     def intervention(self, node, intervention_feature):
         return intervention_feature in node.left_const.features
 
-    def edge(probe):
+    def edge_specifiers(probe):
         return list(takewhile(lambda x:x.mother.head() == probe, probe.working_memory_path()))
 
     def selector(self):
         return next((const for const in self.working_memory_path() if const.is_primitive()), None)
 
     def licensed_phrasal_specifier(self):
-        return next((spec for spec in self.edge()
+        return next((spec for spec in self.edge_specifiers()
                      if 'φ' in spec.head().features and not spec.adjunct),
-                    next((spec for spec in self.edge()
+                    next((spec for spec in self.edge_specifiers()
                           if 'φ' in spec.head().features and not spec.find_me_elsewhere), None))
 
     #
@@ -426,7 +427,7 @@ class PhraseStructure:
 
         #-----------------Main function--------------------------
         if 'ARG' in self.features:
-            if self.E():
+            if self.EF():
                 phi_set = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
             else:
                 phi_set = {f for f in self.features if f[:4] == 'PHI:'}
@@ -493,6 +494,9 @@ class PhraseStructure:
         if 'φ' in features_to_consider:
             if {'D', 'NUM', 'D/REL', 'n', 'DET', 'QN'} & features_to_consider:
                 features_to_consider.remove('φ')
+        if 'P' in features_to_consider:
+            if {'ADV'} & features_to_consider:
+                features_to_consider.remove('ADV')
 
         # Create the label string
         major_cats = ''.join(sorted([feature for feature in features_to_consider if feature in major_category]))

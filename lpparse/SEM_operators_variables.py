@@ -39,20 +39,26 @@ class OperatorVariableModule:
     def bind_operator(self, head, semantic_interpretation):
         if not self.scope_marker(head):
             for operator_feature in [feature for feature in head.features if self.is_operator_feature(feature)]:
-                scope_marker_lst = self.bind_to_propositional_scope_marker(head, operator_feature)
+                non_scope_marked, scope_marker_lst = self.bind_to_propositional_scope_marker(head, operator_feature)
                 if len(scope_marker_lst) > 0:
-                    semantic_interpretation['Operator bindings'].append((f'{head.illustrate()}', f'by {scope_marker_lst[0]}[{operator_feature}]'))
+                    if non_scope_marked:
+                        semantic_interpretation['Operator bindings'].append(f'Operator {head.illustrate()}[{operator_feature}] bound by {scope_marker_lst[0]} freely')
+                    else:
+                        semantic_interpretation['Operator bindings'].append(f'Operator {head.illustrate()}[{operator_feature}] bound by {scope_marker_lst[0]}[{operator_feature}]')
                     self.interpret_operator_at_lexical_item(operator_feature, head, semantic_interpretation)
                     idx, space = self.narrow_semantics.get_referential_index_tuples(head, 'OP')
                     if idx:
                         self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = scope_marker_lst[0]
                 else:
                     log(f'\n\t\t\t!! {head.illustrate()} with {operator_feature} is not bound by an operator. ')
-                    self.interpretation_failed = True
+                    if 'OVERT_SCOPE' in head.features:
+                        self.interpretation_failed = True
+                    else:
+                        semantic_interpretation['Operator bindings'].append(f'Operator {head.illustrate()}[{operator_feature}] bound by speaker.')
                     break
 
     def scope_marker(self, head):
-        return 'C' in head.features or 'C/fin'  in head.features or  'OP:_' in head.features
+        return {'C', 'C/fin', 'OP:_'} & head.features
 
     def interpret_operator_at_lexical_item(self, operator_feature, head, semantic_interpretation):
         log(f'\n\t\t\tInterpreting [{operator_feature}] at ')
@@ -75,25 +81,29 @@ class OperatorVariableModule:
         local_mandatory_binder = next((node for node in head.working_memory_path() if {operator_feature, 'FIN'}.issubset(node.features)), None)
         if not local_mandatory_binder:
             if 'OVERT_SCOPE' not in head.features:
-                return [node for node in head.working_memory_path() if {'T', 'FIN'}.issubset(node.features) or {'C', 'FIN'}.issubset(node.features)]
+                return True, [node for node in head.working_memory_path() if {'T', 'FIN'}.issubset(node.features) or {'C', 'FIN'}.issubset(node.features)]
             else:
-                return []
-        return [local_mandatory_binder]
+                return True, []
+        return False, [local_mandatory_binder]
 
     def is_operator(self, head):
-        return {f for f in head.features if f[:3] == 'OP:' and f[-1] != '_'}
+        return {f for f in head.features if self.is_operator_feature(f)}
 
-    def is_operator_feature(self, feature):
-        return feature[:2] == 'OP' and feature [-1] != '_'
+    def is_operator_feature(self, f):
+        return f[:3] == 'OP:' and f[-1] != '_'
+
+    def is_feature_in_operator_system(self, feature):
+        return feature[:2] == 'OP' and feature[-1] != '_'
 
     def get_operator_features(self, features):
-        return {f for f in features if self.is_operator_feature(f)}
+        return {f for f in features if self.is_feature_in_operator_system(f)}
 
     def scan_criterial_features(self, ps):
+        # Note: we only take the first operator
         set_ = set()
         if ps.left_const and not ps.left_const.find_me_elsewhere:
             set_ = self.scan_criterial_features(ps.left_const)
-        if not set_ and ps.right_const and not ps.right_const.adjunct and not {'T/fin', 'C'} & ps.right_const.head().features:
+        if not set_ and ps.right_const and not ps.right_const.find_me_elsewhere and not {'T/fin', 'C'} & ps.right_const.head().features:
             set_ = self.scan_criterial_features(ps.right_const)
         if not set_ and ps.is_primitive():
             set_ = self.get_operator_features(ps.features)

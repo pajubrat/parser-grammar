@@ -267,16 +267,16 @@ class LinearPhaseParser:
         ps_, self.narrow_semantics.access_interface = self.transfer_to_LF(ps)
         log('\t\tDone.\n')
         ps = ps.top()  # If transfer expands the structure, we need to get to the top
-        log(f'\t\tLF-legibility check: ')
+        log(f'\t\tLF-legibility and semantic interpretation: ')
         if not self.LF.LF_legibility_test(ps) or not self.LF.final_tail_check(ps) or not self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path()
-            log('\n\t\tLF-legibility failed}.\n')
+            log('Solution was rejected. \n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps_))
             self.narrow_semantics.reset_for_new_interpretation()
             return
         self.consume_resources('Steps')
-        log('Done.\n')
+        log('\n\t\tAccepted.\n')
         print('X', end='', flush=True)
         if self.local_file_system.settings['datatake_full']:
             self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} <= accepted')

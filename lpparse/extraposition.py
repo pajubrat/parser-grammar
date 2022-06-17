@@ -20,7 +20,7 @@ class Extraposition:
                 return True
 
     def try_extraposition(self, unselected_head):
-        log(f'applied on {unselected_head.mother}...')
+        log(f'applied on {unselected_head}...')
         self.brain_model.consume_resources("Extraposition")
         self.adjunct_constructor.externalize_structure(unselected_head)
 

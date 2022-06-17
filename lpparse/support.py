@@ -4,8 +4,7 @@ import time
 import datetime
 my_log = logging.getLogger(__name__)
 
-major_category = {'N', 'P', 'D', 'C/fin', 'T/fin', 'A', 'v', 'V', 'ADV', 'Q', 'NUM'}
-
+major_category = {'N', 'Neg', 'Neg/fin', 'C', 'C/fin', 'P', 'D', 'φ', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'MA/A', 'FORCE'}
 
 class Logger:
     def __init__(self):
@@ -63,21 +62,23 @@ def get_pro_type(self):
 
 def show_primitive_constituents(self):
     def sorted_by_relevance(set):
-        id_class = {feature for feature in set if feature[0] == '#'}
-        first_class = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
-        second_class = {feature for feature in set if feature in major_category}
-        third_class = {feature for feature in set if feature in {'VAL', '-VAL', 'ARG', '-ARG', 'ASP', 'INF'}}
-        fourth_class = {feature for feature in set if feature[:3] == 'PHI'}
-        fifth_class = {feature for feature in set if feature[:3] == 'SEM'}
-        sixth_class = {feature for feature in set if feature[:4] == 'TAIL'}
-        residuum = set - first_class - second_class - third_class - fourth_class - fifth_class - sixth_class
-        return sorted(id_class) + \
-               sorted(first_class) + \
-               sorted(second_class) + \
-               sorted(third_class) + \
-               sorted(fourth_class) + \
-               sorted(fifth_class) + \
-               sorted(sixth_class) + \
+        id = {feature for feature in set if feature[0] == '#'}
+        A = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
+        B = {feature for feature in set if 'EF:' in feature or 'EDGE' in feature}
+        C = {feature for feature in set if feature in major_category}
+        D = {feature for feature in set if feature in {'ARG', '-ARG', 'ASP', 'INF', 'FIN'}}
+        E = {feature for feature in set if feature[:3] == 'PHI'}
+        F = {feature for feature in set if feature[:3] == 'SEM'}
+        G = {feature for feature in set if feature[:4] == 'TAIL'}
+        residuum = set - A - B - C - D - E - F - G
+        return sorted(A) + \
+               sorted(C) + \
+               sorted(B) + \
+               sorted(D) + \
+               sorted(E) + \
+               sorted(F) + \
+               sorted(G) + \
+               sorted(id) + \
                sorted(residuum)
 
     reply = ''

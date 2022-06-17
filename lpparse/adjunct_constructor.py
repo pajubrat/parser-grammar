@@ -12,7 +12,9 @@ class AdjunctConstructor:
                 self.externalize_head(ps, ps.tail_test())
 
     def externalize_head(self, head, tail_test):
-        if (tail_test and '!SPEC:*' in head.features and head.edge()) or (not tail_test and self.capture_specifier_rule(head)):
+        #if head.sister() and head.sister().is_primitive:  # [X Y], both primitive, externalize Y
+        #    self.externalize(head)
+        if (tail_test and head.EF() and head.edge_specifiers()) or (not tail_test and self.capture_specifier_rule(head)):
             if head.is_right():
                 self.externalize(head.mother)
             else:
@@ -21,8 +23,8 @@ class AdjunctConstructor:
             self.externalize(head.mother)  # Externalize without specifier
 
     def capture_specifier_rule(self, head):
-        return head.edge() and '-ARG' not in head.features and head.mother.mother and '-SPEC:*' not in head.features and \
-               not (set(head.specifiers_not_licensed()) & set(next((const for const in head.edge()), None).head().features))
+        return head.edge_specifiers() and '-ARG' not in head.features and head.mother.mother and '-EDGE:*' not in head.features and \
+               not (set(head.specifiers_not_licensed()) & set(next((const for const in head.edge_specifiers()), None).head().features))
 
     def externalize(self, ps):
         if ps.mother:

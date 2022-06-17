@@ -172,12 +172,6 @@ class LexicalInterface:
         if not language_specific:
             features.add(self.language)
 
-        # Ad hoc implementation for Finnish edge generalization
-        if 'LANG:FI' in features:
-            if 'OP:_' in features and 'FORCE' not in features:
-                if not self.controlling_parser_process.narrow_semantics.operator_variable_module.get_operator_features(features):
-                    features.add('!SPEC:OP:_')
-
         # ARG and VAL feature distribution
         if 'ARG' in features:
             if 'NO_NUMBER' not in features:

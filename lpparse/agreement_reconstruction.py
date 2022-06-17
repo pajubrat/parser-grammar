@@ -24,7 +24,7 @@ class AgreementReconstruction:
         self.brain_model.narrow_semantics.predicate_argument_dependencies = []
         # ---------------------------- minimal search ---------------------------------------------------------------#
         for node in ps:
-            if node.left_const and node.left_const.is_primitive() and node.left_const.E():
+            if node.left_const and node.left_const.is_primitive() and node.left_const.EF():
                 self.Agree_1(node.left_const)
         # -----------------------------------------------------------------------------------------------------------#
 
@@ -36,7 +36,8 @@ class AgreementReconstruction:
             goal, phi = self.Agree_1_from_sister(probe)
             if phi:
                 self.brain_model.narrow_semantics.predicate_argument_dependencies.append((probe, goal))
-                probe.features.add('-pro')
+                if 'ADV' in probe.features: # This applies to adverbial predicates in Finnish, must be some feature
+                    probe.features.add('-pro')
                 if not {'D', 'φ', 'n'} & probe.features: # This is currently stipulation
                     probe.features.add('BLOCK_NS')
                 for p in phi:
@@ -65,7 +66,7 @@ class AgreementReconstruction:
 
     def Agree_1_from_edge(self, head):
         return next(((const.head(), sorted({f for f in const.head().features if phi(f) and valued(f)}))
-                     for const in [const for const in head.edge()] + [head.extract_pro()] if
+                     for const in [const for const in head.edge_specifiers()] + [head.extract_pro()] if
                      const and self.agreement_condition(head, const)), (None, {}))
 
     def agreement_condition(self, probe, goal):
@@ -79,7 +80,7 @@ class AgreementReconstruction:
                 if 'pro' in goal.head().features:
                     return True
                 else:
-                    # Stipulation
+                    # To be replaced with the head-case model
                     if 'FIN' in probe.features and 'NOM' in goal.head().features:
                         return True
                     if 'INF' in probe.features and 'GEN' in goal.head().features:

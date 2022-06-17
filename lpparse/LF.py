@@ -20,18 +20,18 @@ class LF:
 
         self.active_test_battery = self.LF_legibility_tests
 
-        self.local_edge = None
+        self.complete_edge = None
 
-        self.selection_tests = [self.selection__negative_specifier,
-                                self.selection__unselective_negative_specifier,
-                                self.selection__unselective_negative_edge,
-                                self.selection__negative_one_edge,
-                                self.selection__positive_obligatory_complement,
-                                self.selection__negative_complement,
-                                self.selection__unselective_negative_complement,
-                                self.selection__positive_unselective_complement,
-                                self.selection__positive_obligatory_specifier,
-                                self.selection__unselective_positive_specifier]
+        self.selection_violation_tests = [self.selection__negative_specifier_violation,
+                                          self.selection__positive_SUBJECT_edge_violation,
+                                          self.selection__positive_mandatory_unselective_edge_violation,
+                                          self.selection__positive_selective_edge_violation,
+                                          self.selection__unselective_negative_edge_violation,
+                                          self.selection__negative_one_edge_violation,
+                                          self.selection__positive_obligatory_complement_violation,
+                                          self.selection__negative_complement_violation,
+                                          self.selection__unselective_negative_complement_violation,
+                                          self.selection__positive_unselective_complement_violation]
 
     def LF_legibility_test(self, ps, special_test_battery=None):
         if special_test_battery:
@@ -43,7 +43,9 @@ class LF:
 
     def pass_LF_legibility(self, ps):
         if ps.is_primitive():
-            self.local_edge = next((const for const in ps.edge()), ps.extract_pro())
+            self.complete_edge = [const for const in ps.edge_specifiers()]
+            if ps.extract_pro():
+                self.complete_edge += [ps.extract_pro()]
             for LF_test in self.active_test_battery:
                 if not LF_test(ps):
                     return False
@@ -91,6 +93,7 @@ class LF:
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(h.features, f[7:]):
+                    log(f'{h} failed probe-goal test {f}. ')
                     return False
             if f.startswith('-PROBE:'):
                 if h.probe(set(h.features), f[7:]):
@@ -100,7 +103,7 @@ class LF:
 
     def double_spec_filter(self, h):
         if '2SPEC' not in h.features and \
-                len([spec for spec in h.edge() if
+                len([spec for spec in h.edge_specifiers() if
                      not spec.adjunct and
                      'φ' in spec.head().features and
                      not spec.find_me_elsewhere]) > 1:
@@ -139,22 +142,19 @@ class LF:
     def identify_thematic_role_by_agreement(self, h):
         if h.max().container():
             if h.max().container().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
-                if not (h.max().container().edge() and next((const for const in h.max().container().edge()), None).is_complex()):
+                if not (h.max().container().edge_specifiers() and next((const for const in h.max().container().edge_specifiers()), None).is_complex()):
                     return True
 
     def projection_principle_applies_to(self, h):
-        if {'D', 'φ'} & h.features and \
-            h.max() and \
-            not h.max().find_me_elsewhere and \
-            h.max().mother:
+        if h.is_referential() and h.max() and not h.max().find_me_elsewhere and h.max().mother:
             return True
 
     def container_assigns_theta_role_to(self, h, test_strength):
         def get_theta_assigner(node):
             if node.sister() and node.sister().is_primitive():
                 return node.sister()
-            if node.container() and node.container().edge() and node == \
-                    node.container().edge()[0]:
+            if node.container() and node.container().edge_specifiers() and node == \
+                    node.container().edge_specifiers()[0]:
                 return node.container()
 
         # (i) H receives a thematic role if it is selected
@@ -164,7 +164,7 @@ class LF:
         # (ii) Thematic assignment to specifier position
         if get_theta_assigner(h.max()) and container_head.licensed_phrasal_specifier() and h.max() == container_head.licensed_phrasal_specifier():
             # (ii-1) H does not receive a thematic role from an EPP head
-            if container_head.E():
+            if container_head.EF():
                 return False
             if container_head.selector() and 'ARG' not in container_head.selector().features:
                 return False
@@ -193,89 +193,90 @@ class LF:
     # Selection tests ----------------------------------------------------------
 
     def selection_test(self, head):
-        return next((test(head, lexical_feature) for lexical_feature in sorted(for_lf_interface(head.features))
-                     for test in self.selection_tests if not test(head, lexical_feature)), True)
+        return next((False for lexical_feature in sorted(for_lf_interface(head.features))
+                     for test in self.selection_violation_tests if test(head, lexical_feature)), True)
 
-    def selection__negative_specifier(self, head, lexical_feature):
+    def selection__negative_specifier_violation(self, head, lexical_feature):
         if lexical_feature.startswith('-SPEC:'):
-            for spec_ in head.edge():
+            for spec_ in head.edge_specifiers():
                 if lexical_feature[6:] in spec_.head().features:
                     if not spec_.adjunct:
                         log(f'{head} has unacceptable specifier {spec_}. ')
-                        return False
-        return True
+                        return True  # Violation was detected
 
-    def selection__unselective_negative_specifier(self, head, lexical_feature):
-        if lexical_feature == '-E':
-            if self.local_edge:
-                if not self.local_edge.adjunct and 'pro' not in self.local_edge.head().features:
-                    log(f'-EPP head {head} has a specifier {self.local_edge}. ')
-                    return False
-        return True
+    def selection__positive_mandatory_unselective_edge_violation(self, head, lexical_feature):
+        if lexical_feature == '!EF:*' and not self.complete_edge:
+            log(f'EPP-head {head} lacks specifier. ')
+            return True  # Violation was detected
 
-    def selection__unselective_negative_edge(self, head, lexical_feature):
-        if lexical_feature == '-EDGE:*' and self.local_edge:
-            log(f'{head} has {self.local_edge} but has -EDGE:*')
-            return False
-        return True
+    def selection__unselective_negative_edge_violation(self, head, lexical_feature):
+        if '-EF:*' == lexical_feature and self.complete_edge:
+            log(f'{head} has illegitimate edge {self.complete_edge}. ')
+            return True  # Violation was detected
 
-    def selection__negative_one_edge(self, head, lexical_feature):
-        if lexical_feature == '!1EDGE' and len(head.edge()) > 1:
+    def selection__negative_one_edge_violation(self, head, lexical_feature):
+        if lexical_feature == '!1EDGE' and len(head.edge_specifiers()) > 1:
             log(f'{head} is only allowed to host one edge element. ')
-            return False
-        return True
+            return True  # Violation was detected
 
-    def selection__positive_obligatory_specifier(self, head, lexical_feature):
-        if lexical_feature == '!E':
-            if not self.local_edge:
-                log(f'EPP-head {head} lacks specifier. ')
-                return False
-        return True
+    def selection__positive_SUBJECT_edge_violation(self, head, lexical_feature):
+        def all_tail_features(head):
+            return {feature for feature_set in head.get_tail_sets() for feature in feature_set}
 
-    def selection__unselective_positive_specifier(self, head, lexical_feature):
-        if lexical_feature.startswith('!SPEC:') and not lexical_feature == '!E':
-            if not self.local_edge:
-                log(f'EPP-head {head} lacks specifier {lexical_feature[6:]} that it requires. ')
-                return False
-            else:
-                if lexical_feature[6:] in self.local_edge.head().features or lexical_feature[7:] in self.local_edge.head().features:
-                    pass
-                else:
-                    log(f'An EPP-head {head} has wrong specifier {self.local_edge}. ')
-                    return False
-        return True
+        if lexical_feature == '!EF:φ':
+            if self.complete_edge:
+                for edge_object in self.complete_edge:
+                    if 'φ' in edge_object.head().features:
+                        if not edge_object.head().get_tail_sets():
+                            return False
+                        elif {'EF:φ', '!EF:φ'} & all_tail_features(edge_object.head()) or 'pro' in edge_object.head().features:
+                            return False
+            log(f'Subject edge violation at {head}. ')
+            return True  # Violation was detected
 
-    def selection__positive_obligatory_complement(self, head, lexical_feature):
+    def selection__negative_SUBJECT_edge_violation(self, head, lexical_feature):
+        def all_tail_features(head):
+            return {feature for feature_set in head.get_tail_sets() for feature in feature_set}
+
+        if lexical_feature == '-EF:φ':
+            if self.complete_edge:
+                for edge_object in self.complete_edge:
+                    if 'φ' in edge_object.head().features:
+                        if {'EF:φ', '!EF:φ'} & all_tail_features(
+                                edge_object.head()) or 'pro' in edge_object.head().features:
+                            log(f'Negative subject edge violation at {head}. ')
+                            return True
+
+    def selection__positive_selective_edge_violation(self, head, lexical_feature):
+        if lexical_feature.startswith('!EF:') and lexical_feature != '!EF:*' and lexical_feature != '!EF:φ':
+            if self.complete_edge:
+                for edge_object in self.complete_edge:
+                    if lexical_feature[6:] in edge_object.head().features:
+                        return False
+            log(f'Head {head} has wrong edge {self.complete_edge}. ')
+            return True  # Violation was detected
+
+    def selection__positive_obligatory_complement_violation(self, head, lexical_feature):
         if lexical_feature.startswith('!COMP:') and not lexical_feature == '!COMP:*':
-            if not head.selected_sister():
-                log(f' Head {head} lacks mandatory complement {lexical_feature[6:]}. ')
-                return False
-            else:
-                if lexical_feature[6:] not in head.selected_sister().head().features:
-                    log(f'{head} misses complement {lexical_feature[6:]}. ')
-                    return False
-        return True
+            if head.selected_sister() and lexical_feature[6:] not in head.selected_sister().head().features:
+                log(f'Head \"{head}\" lacks complement.')
+                return True  # Violation was detected
 
-    def selection__negative_complement(self, head, lexical_feature):
+    def selection__negative_complement_violation(self, head, lexical_feature):
         if lexical_feature.startswith('-COMP:'):
             if head.is_left() and head.proper_complement() and lexical_feature[6:] in head.proper_complement().head().features:
-                log(f'{head.illustrate()} has wrong complement {head.proper_complement().illustrate()}. ')
-                return False
-        return True
+                log(f'{head.illustrate()} has wrong complement {head.proper_complement()}. ')
+                return True  # Violation was detected
 
-    def selection__unselective_negative_complement(self, head, lexical_feature):
-        if lexical_feature == '-COMP:*':
-            if head.is_left() and head.proper_complement():
-                log(f'{head} does not accept complements. ')
-                return False
-        return True
+    def selection__unselective_negative_complement_violation(self, head, lexical_feature):
+        if lexical_feature == '-COMP:*' and head.is_left() and head.proper_complement():
+            log(f'{head} does not accept complements. ')
+            return True  # Violation was detected
 
-    def selection__positive_unselective_complement(self, head, lexical_feature):
-        if lexical_feature == '!COMP:*':
-            if not head.selected_sister():
-                log(f'Head \'{head}\' lacks complement. ')
-                return False
-        return True
+    def selection__positive_unselective_complement_violation(self, head, lexical_feature):
+        if lexical_feature == '!COMP:*' and not head.selected_sister():
+            log(f'Head \'{head}\' lacks complement. ')
+            return True  # Violation was detected
 
     # end of selection tests -------------------------------------------------------------
 
@@ -317,14 +318,6 @@ class LF:
         self.controlling_parsing_process.consume_resources("A-bar Move Phrase")
         return new_const
 
-    def specifier_match(self, h, const):
-        if 'E' in h.features or '!E' in h.features:
-            return True
-        for feature_in_head in h.convert_features_for_parsing(h.licensed_specifiers()):
-            for feature_in_spec in const.head().features:
-                if feature_in_head == feature_in_spec:
-                    return True
-
     def try_LFmerge(self, node):
         self.try_merge_to_left(node)
         self.try_adjoin_right(node)
@@ -341,13 +334,19 @@ class LF:
                     break
 
     def try_merge_to_left(self, head):
-        if (not {'FIN', 'T/fin'} & head.features) and not head.edge():
+        if not {'FIN', 'T/fin'} & head.features and not head.edge_specifiers():
             for constituent_from_MB in self.controlling_parsing_process.syntactic_working_memory:
                 target_node = self.specifier_sister(head)
                 if self.specifier_match(head, constituent_from_MB) and self.tail_match(target_node, constituent_from_MB, 'left'):
                     self.LFMerge(constituent_from_MB, target_node, 'left')
                     log(f'={target_node.top()}...')
                     break
+
+    def specifier_match(self, h, const):
+        for feature_in_head in h.convert_features_for_parsing(h.licensed_specifiers()):
+            for feature_in_spec in const.head().features:
+                if feature_in_head == feature_in_spec:
+                    return True
 
     def specifier_sister(self, head):
         if head.is_left():

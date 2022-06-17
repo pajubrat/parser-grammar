@@ -70,7 +70,7 @@ class LF_Recovery:
         return 'SEM:external' not in node.features
 
     def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
-        if ps.edge() and const == next((const for const in ps.edge()), None):
+        if ps.edge_specifiers() and const == next((const for const in ps.edge_specifiers()), None):
             if not const.head().is_referential():
                 self.LF_recovery_results.add(f'{ps}(generic)')
                 list_of_antecedents.append(const)

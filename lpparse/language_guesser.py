@@ -19,10 +19,21 @@ class LanguageGuesser:
                     self.languages.add(feat)
 
     def guess_language(self, sentence):
-        hits = Counter()
+        counter = {}
         for word in sentence:
             for lang in self.lang_map[word]:
-                hits[lang] += 1
-        if hits:
-            return hits.most_common(1)[0][0]
-        return 'LANG:EN'
+                if lang not in counter.keys():
+                    counter[lang] = 1
+                else:
+                    counter[lang] += 1
+        selection = 0
+        selected_language = ''
+        if counter:
+            for key in counter.keys():
+                if counter[key] > selection:
+                    selected_language = key
+                    selection = counter[key]
+            return selected_language
+        return 'LANG:X'
+
+

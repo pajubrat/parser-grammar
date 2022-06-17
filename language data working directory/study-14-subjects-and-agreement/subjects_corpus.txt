@@ -1,0 +1,419 @@
+& 0 Preliminaries
+
+	& 0.1 Formalization (Section 3.2)
+
+		a_ b_ c_ d_	
+		a_ b_ c_edge d_
+		a_ b_ c_noedge d_
+		a_ b_ c_phiedge#AGR d_
+		a_2pl b_ c_phiedge#AGR d_
+		a_op b_ c_edge d_
+	
+		John admires Mary
+	
+		minä ihailen Merjaa
+		'I.nom admire.prs.1sg Merja.par'
+		
+		ihailen Merjaa
+		'admire.prs.1sg Merja.par'
+		
+		who does John admire
+	
+		mitä_DP kohti Seine virtaa
+		'what.par towards Seine.nom flow.prs.3sg'
+		
+		kohti mitä_DP Seine virtaa
+		'towards what.par Seine.nom flow.prs.3sg'
+		
+		mitä_DP kohti virtaamalla Seine saavuttaa meren
+		'what.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+		
+& 1. Pied-piping (Section 2.1.1)
+	& 1.1 Pied-piping, edge generalization, primary and seconday chains
+		& 1.1.1 Without operators
+
+			& ADPOSITIONS (Finnish, grammatical)
+
+				Pekka nukkuu lähellä Pariisia
+				'Pekka.nom sleep.prs.3sg near Paris.par'
+				
+				Pekka nukkuu Pariisia lähellä
+				'Pekka.nom sleep.prs.3sg Paris.par near'
+				
+				lähellä Pariisia Pekka nukkuu
+				'near Paris.par Pekka.nom sleep.prs.3sg
+			
+				Pariisia lähellä Pekka nukkuu
+				'Paris.par near Pekka.nom sleep.prs.3sg'
+			
+				Seine virtaa kohti Pariisia
+				'Seine.nom flow.prs.3sg towards Paris.'
+				
+				Seine virtaa Pariisia kohti
+				'Seine.nom flow.prs.3sg Paris.par towards'
+				
+				kohti Pariisia Seine virtaa
+				'towards Paris.par Seine.nom flow.prs.3sg'
+				
+				Pariisia kohti Seine virtaa
+				'Paris.par towards Seine.nom flow.prs.3sg'
+			
+			& Adpositions inside adverbials (Finnish, grammatical)
+			
+				Seine saavuttaa meren virtaamalla kohti Pariisia
+				'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards Paris.par'
+			
+				Seine saavuttaa meren virtaamalla Pariisia kohti
+				'Seine reaches ocean.acc flow.ma/inf Paris.par towards'
+			
+				Seine saavuttaa meren kohti Pariisia virtaamalla 
+				'Seine.nom reach.psr.3sg ocean.acc towards Paris.par flow.ma/inf'
+			
+				Seine saavuttaa meren Pariisia kohti virtaamalla
+				'Seine.nom reach.prs.3sg ocean.acc Paris.par towards flow.ma/inf'
+							
+				virtaamalla kohti Pariisia Seine saavuttaa meren
+				'flow.ma/inf towards Paris.par Seine.nom reach.prs.3sg ocean.acc'
+			
+				virtaamalla Pariisia kohti Seine saavuttaa meren
+				'flow.ma/inf Paris.par towards Seine.nom reach.prs.3sg ocean.acc'
+			
+				kohti Pariisia virtaamalla Seine saavuttaa meren
+				'towards Paris.par flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+				
+				Pariisia kohti virtaamalla Seine saavuttaa meren
+				'Paris.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+		
+		& 1.1.2 With operators (grammatical, but also echo-readings)
+				
+			& 1.1.2.1 Strong operator
+				
+				& Adpositions (Finnish)
+				
+					Pekka nukkuu lähellä mitä
+					'Pekka.nom sleep.prs.3sg near what.par'
+					
+					Pekka nukkuu mitä lähellä
+					'Pekka.nom sleep.prs.3sg what.par near'
+					
+					lähellä mitä Pekka nukkuu
+					'near what.par Pekka.nom sleep.prs.3sg
+				
+					mitä lähellä Pekka nukkuu
+					'what.par near Pekka.nom sleep.prs.3sg'
+					
+					Seine virtaa kohti mitä
+					'Seine.nom flow.prs.3sg towards what.par.'
+					
+					Seine virtaa mitä kohti
+					'Seine.nom flow.prs.3sg what.par towards'
+					
+					kohti mitä Seine virtaa
+					'towards what.par Seine.nom flow.prs.3sg'
+					
+					mitä kohti Seine virtaa
+					'what.par towards Seine.nom flow.prs.3sg'
+			
+				& Adpositions inside adverbials (Finnish)
+			
+					Seine saavuttaa meren virtaamalla kohti mitä
+					'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards what.par'
+				
+					Seine saavuttaa meren virtaamalla mitä kohti
+					'Seine reaches ocean.acc flow.ma/inf what.par towards'
+				
+					Seine saavuttaa meren kohti mitä virtaamalla 
+					'Seine.nom reach.psr.3sg ocean.acc towards what.par flow.ma/inf'
+				
+					Seine saavuttaa meren mitä kohti virtaamalla
+					'Seine.nom reach.prs.3sg ocean.acc what.par towards flow.ma/inf'
+					
+					virtaamalla kohti mitä Seine saavuttaa meren
+					'flow.ma/inf towards what.par Seine.nom reach.prs.3sg ocean.acc'
+				
+					virtaamalla mitä kohti Seine saavuttaa meren
+					'flow.ma/inf what.par towards Seine.nom reach.prs.3sg ocean.acc'
+				
+					kohti mitä virtaamalla Seine saavuttaa meren
+					'towards what.par flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+					
+					mitä_DP kohti virtaamalla Seine saavuttaa meren
+					'what.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+				
+			& 1.1.1.2 Weak opeator (grammatical)	
+			
+				& Adpositions (Finnish)
+			
+					& Ungrammatical (in situ yes/no operator)
+				
+						Pekka nukkuu lähellä Pariisia#[kO]
+						'Pekka.nom sleep.prs.3sg near what.par'
+						
+						Pekka nukkuu Pariisia#[kO] lähellä
+						'Pekka.nom sleep.prs.3sg what.par near'
+						
+						Seine virtaa kohti Pariisia#[kO]
+						'Seine.nom flow.prs.3sg towards Paris.par.Q'
+						
+						Seine virtaa Pariisia#[kO] kohti
+						'Seine.nom flow.prs.3sg Paris.par.Q towards'
+											
+					& Grammatical (yes/no operator in scope position)
+												
+						lähellä Pariisia#[kO] Pekka nukkuu
+						'near what.par Pekka.nom sleep.prs.3sg
+							
+						Pariisia#[kO] lähellä Pekka nukkuu
+						'what.par near Pekka.nom sleep.prs.3sg'
+						
+						Pariisia#[kO] kohti Seine virtaa
+						'Paris.par.Q towards Seine.nom flow.prs.3sg'
+						
+						kohti Pariisia#[kO] Seine virtaa
+						'towards Paris.par.Q Seine.nom flow.prs.3sg'
+			
+				& Adpositions within adverbials (Finnish)
+			
+					& Ungrammatical (in situ yes/no operator)
+				
+						Seine saavuttaa meren virtaamalla kohti Pariisia#[kO]
+						'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards what.par'
+					
+						Seine saavuttaa meren virtaamalla Pariisia#[kO] kohti
+						'Seine reaches ocean.acc flow.ma/inf what.par towards'
+					
+						Seine saavuttaa meren kohti Pariisia#[kO] virtaamalla 
+						'Seine.nom reach.psr.3sg ocean.acc towards what.par flow.ma/inf'
+					
+						Seine saavuttaa meren Pariisia#[kO] kohti virtaamalla
+						'Seine.nom reach.prs.3sg ocean.acc what.par towards flow.ma/inf'
+					
+					& Grammatical (yes/no operator in scope position)
+				
+						virtaamalla kohti Pariisia#[kO] Seine saavuttaa meren
+						'flow.ma/inf towards what.par Seine.nom reach.prs.3sg ocean.acc'
+					
+						virtaamalla Pariisia#[kO] kohti Seine saavuttaa meren
+						'flow.ma/inf what.par towards Seine.nom reach.prs.3sg ocean.acc'
+					
+						kohti Pariisia#[kO] virtaamalla Seine saavuttaa meren
+						'towards what.par flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+									
+						Pariisia#[kO] kohti virtaamalla Seine saavuttaa meren
+						'what.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+						
+				& All adverbials (Finnish, grammatical, but (b) only echo reading)
+				
+					& ESSA-adverbial
+					
+						Pekka lähti tehdessä#[An] taloa
+						'Pekka.nom leave.pst.3sg do.essa/inf.3sg house.par'
+						
+						Pekka lähti tehdessä#[An] mitä
+						'Pekka.nom leave.pst.3sg do.essa/inf.3sg what.par'
+												
+						mitä_DP tehdessä#[An] Pekka lähti
+						'what.par do.essa/inf.3sg Pekka.nom leave.pst.3sg'
+
+					& TUA-adverbials
+					
+						Pekka lähti tehtyä#[An] taloa
+						'Pekka.nom leave.pst.3sg do.tua/inf.3sg house.par'
+						
+						Pekka lähti tehtyä#[An] mitä
+						'Pekka.nom leave.pst.3sg do.tua/inf.3sg what.par'
+
+						mitä tehtyä#[An] Pekka lähti
+						'what.par do.tua/inf.3sg Pekka.nom leave.pst.3sg'
+					
+					& KSE-adverbials
+					
+						Pekka lähti tehdäkse#[An] taloa
+						'Pekka.nom leave.pst.3sg do.kse/inf.3sg house.par'
+						
+						Pekka lähti tehdäkse#[An] mitä
+						'Pekka.nom leave.pst.3sg do.kse/inf.3sg what.par'
+
+						mitä tehdäkse#[An] Pekka lähti
+						'what.par do.kse/inf.3sg Pekka.nom leave.pst.3sg'
+					
+					& MA-adverbial (one MA-infinitival among five in total)
+					
+						Pekka lähti tekemättä taloa
+						'Pekka.nom leave.pst.3sg do.ma/inf.3sg house.par'
+						
+						Pekka lähti tekemättä mitä
+						'Pekka.nom leave.pst.3sg do.ma/inf.3sg what.par'
+
+						mitä_DP tekemättä Pekka lähti
+						'what.par do.ma/inf.3sg Pekka.nom leave.pst.3sg'
+				
+				& Adverbials with independent subjects, with or without pied-piping
+				
+					& Grammatical baseline sentences
+				
+						Pekka lähti minun tehtyä taloa
+						'Pekka.nom leave.pst.3sg I.gen make.tua/inf house.par'
+						
+						minun tehtyä taloa Pekka lähti
+						'I.gen make.tua/inf house.par Pekka.nom leave.pst.3sg'
+					
+					& Echo-reading, but grammatical
+					
+						minun tehtyä mitä Pekka lähti
+						'I.gen make.tua/inf what.par Pekka.nom leave.pst.3sg'
+					
+					& Ungrammatical, pied-piping when independent subject present
+					
+						mitä minun tehtyä Pekka lähti
+						'what.par I.gen make.tua/inf Pekka.nom leave.pst.3sg'
+				
+				& DPs (Finnish)
+				
+					Merjan_gen kello hävisi
+					'that/it Merja.gen watch.nom disappear.pst.3sg'
+				
+					minun kello#[ni] hävisi
+					'that/it I.gen watch.nom.1sg disappear.pst.3sg'
+				
+				 	kenen kello hävisi
+					'who.gen watch.nom disappear.pst.3sg'
+				
+					se kenen kello hävisi
+					'that/it who.gen watch disappear.pst.3sg'
+				
+				& Prenominal participle adjectivess (Finnish)
+				
+					se' minun tekemä#[ni] kello hävisi
+				
+					kenen tekemä kello hävisi
+					
+					se' kenen tekemä kello hävisi
+					
+& 1. Adpositions (Sections 2.1.2)
+	& 1.1. Finnish
+		& 1.1.1 Agreeing and nonagreeing adpositions
+			& 1.1.1.1 Grammatical variants
+				
+				& Adposition in isolation (grammatical)
+		
+					lähellä minua
+					'near I.par'
+					
+					minua lähellä
+					'I.par near'
+					
+					minun lähellä#[ni]
+					'I.gen near.1sg'
+										
+					kohti' minua
+					'towards I.par'
+					
+					minua kohti'
+					'I.par towards'
+					
+				& Adpositions and the agreement paradigm (grammatical, no agreement violations)
+				
+					minun lähellä#[ni]
+					'I.gen near.1sg'
+					
+					sinun lähellä#[si]
+					'you.gen near.2sg'
+					
+					hänen lähellä#[An]
+					'he.gen near.3'
+					
+					meidän lähellä#[mme]
+					'we.gen near.1pl'
+					
+					teidän lähellä#[nne]
+					'you.gen near.2pl'
+					
+					heidän lähellä#[An]
+					'they.gen near.3'
+				
+				& Adposition in a clausal context (grammatical)
+				
+					Pekka nukkuu lähellä_1 minua
+					'Pekka.nom sleep.prs.3sg near I.par'
+					
+					Pekka nukkuu minua lähellä_1
+					'Pekka.nom sleep.prs.3sg I.par near'
+					
+					Pekka nukkuu minun lähellä_2#[ni]
+					'Pekka.nom sleep.prs.3sg I.gen near.1sg'
+					
+					Pekka nukkuu lähellä_2#[ni]
+					'Pekka.nom sleep.prs.3sg near.1sg'
+					
+					Pekka nukkuu lähellä_1
+					'Pekka.nom sleep.prs.3sg near'
+			
+					Seine virtaa kohti minua
+					'Seine.nom flow.prs.3sg towards I.par'
+					
+					Seine virtaa minua kohti
+					'Seine.nom flow.prs.3sg I.par towards'
+			
+			& 1.1.1.2 Ungrammatical variants
+				
+				& Adposition in isolation (ungrammatical PPs)
+		
+					lähellä minun
+					'near I.gen'
+					
+					kohti#[ni] minua
+					'towards.1sg I.par'
+					
+					minua kohti#[ni]
+					'I.par towards.1sg'
+					
+					kohti#[ni] minun
+					'towards.1sg I.gen'
+					
+					minun kohti#[ni]
+					'I.gen towards.1sg'
+					
+				& Adpositions and the agreement paradigm (ungrammatical, agreement violations)
+								
+					minun lähellä_2#[si]
+					'I.gen near.2sg'
+								
+					sinun lähellä_2#[ni]
+					'you.gen near.1sg'
+					
+					hänen lähellä_2#[ni]
+					'he.gen near.1sg'
+					
+					meidän lähellä_2#[ni]
+					'we.gen near.1sg'
+					
+					teidän lähellä_2#[ni]
+					'you.gen near.1sg'
+					
+					heidän lähellä_2#[ni]
+					'they.gen near.1sg'
+					
+				& Ungrammatical adpositions in a clausal context (ungrammatical)
+				
+					Seine virtaa lähellä minun
+					'Seine.nom flow.prs.3sg near I.gen'
+					
+					Seine virtaa kohti#[ni] minua
+					'Pekka.nom flow.prs.3sg towards.1sg I.par'
+					
+					Seine virtaa minua kohti#[ni]
+					'Seine.nom flow.prs.3sg I.par towards.1sg'
+					
+					Seine virtaa kohti#[ni] minun
+					'Seine.nom flow.prs.3sg towards.1sg I.gen'
+					
+					Seine virtaa minun kohti#[ni]
+					'Seine.nom flow.prs.3sg I.gen towards.1sg'
+			
+			& 1.1.1.3 Problems
+			
+				lähellä#[ni] minun
+				'near.1sg I.gen'
+	
+			
