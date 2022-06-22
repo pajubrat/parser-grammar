@@ -53,7 +53,7 @@ class PhrasalMovement:
                 spec.sister().merge_1(new_h, 'left')
 
     def copy_features_from_operator_to_local_head(self, head, spec, criterial_features):
-        feature_set = {'OP:_'}
+        feature_set = {'OP:_', 'EF:*'}
         if 'OP*' in criterial_features:
             criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec.head())
         feature_set |= criterial_features

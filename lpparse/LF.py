@@ -21,13 +21,16 @@ class LF:
         self.active_test_battery = self.LF_legibility_tests
 
         self.complete_edge = None
+        self.edge_for_EF = None
 
         self.selection_violation_tests = [self.selection__negative_specifier_violation,
                                           self.selection__positive_SUBJECT_edge_violation,
+                                          self.selection__negative_SUBJECT_edge_violation,
                                           self.selection__positive_mandatory_unselective_edge_violation,
                                           self.selection__positive_selective_edge_violation,
                                           self.selection__unselective_negative_edge_violation,
                                           self.selection__negative_one_edge_violation,
+                                          self.selection__positive_selective_specifier_violation,
                                           self.selection__positive_obligatory_complement_violation,
                                           self.selection__negative_complement_violation,
                                           self.selection__unselective_negative_complement_violation,
@@ -44,8 +47,12 @@ class LF:
     def pass_LF_legibility(self, ps):
         if ps.is_primitive():
             self.complete_edge = [const for const in ps.edge_specifiers()]
-            if ps.extract_pro():
-                self.complete_edge += [ps.extract_pro()]
+            self.edge_for_EF = [const for const in ps.edge_specifiers()]
+            pro = ps.extract_pro()
+            if pro:
+                self.complete_edge += [pro]
+                if pro.sustains_reference():
+                    self.edge_for_EF += [pro]
             for LF_test in self.active_test_battery:
                 if not LF_test(ps):
                     return False
@@ -103,10 +110,7 @@ class LF:
 
     def double_spec_filter(self, h):
         if '2SPEC' not in h.features and \
-                len([spec for spec in h.edge_specifiers() if
-                     not spec.adjunct and
-                     'φ' in spec.head().features and
-                     not spec.find_me_elsewhere]) > 1:
+                len({spec for spec in h.edge_specifiers() if not spec.adjunct}) > 1:
                 log(f'{h} has double specifiers. ')
                 return False
         return True
@@ -204,15 +208,26 @@ class LF:
                         log(f'{head} has unacceptable specifier {spec_}. ')
                         return True  # Violation was detected
 
+    def selection__positive_selective_specifier_violation(self, head, lexical_feature):
+        if lexical_feature.startswith('!SPEC:'):
+            if self.complete_edge:
+                for edge_object in self.complete_edge:
+                    if lexical_feature[6:] in edge_object.head().features:
+                        return True
+            log(f'Head {head} has wrong specifier. ')
+
     def selection__positive_mandatory_unselective_edge_violation(self, head, lexical_feature):
-        if lexical_feature == '!EF:*' and not self.complete_edge:
+        if lexical_feature == '!EF:*' and not self.edge_for_EF:
             log(f'EPP-head {head} lacks specifier. ')
             return True  # Violation was detected
 
     def selection__unselective_negative_edge_violation(self, head, lexical_feature):
-        if '-EF:*' == lexical_feature and self.complete_edge:
-            log(f'{head} has illegitimate edge {self.complete_edge}. ')
-            return True  # Violation was detected
+        if '-EF:*' == lexical_feature and self.edge_for_EF:
+            log(f'{head} has illegitimate edge: ')
+            for edge_object in self.complete_edge:
+                log(f'{edge_object} ')
+            log('. ')
+            return True # Violation was detected
 
     def selection__negative_one_edge_violation(self, head, lexical_feature):
         if lexical_feature == '!1EDGE' and len(head.edge_specifiers()) > 1:
@@ -225,7 +240,7 @@ class LF:
 
         if lexical_feature == '!EF:φ':
             if self.complete_edge:
-                for edge_object in self.complete_edge:
+                for edge_object in self.edge_for_EF:
                     if 'φ' in edge_object.head().features:
                         if not edge_object.head().get_tail_sets():
                             return False
@@ -237,21 +252,19 @@ class LF:
     def selection__negative_SUBJECT_edge_violation(self, head, lexical_feature):
         def all_tail_features(head):
             return {feature for feature_set in head.get_tail_sets() for feature in feature_set}
-
         if lexical_feature == '-EF:φ':
             if self.complete_edge:
-                for edge_object in self.complete_edge:
+                for edge_object in self.edge_for_EF:
                     if 'φ' in edge_object.head().features:
-                        if {'EF:φ', '!EF:φ'} & all_tail_features(
-                                edge_object.head()) or 'pro' in edge_object.head().features:
+                        if {'EF:φ', '!EF:φ'} & all_tail_features(edge_object.head()) or 'pro' in edge_object.head().features:
                             log(f'Negative subject edge violation at {head}. ')
                             return True
 
     def selection__positive_selective_edge_violation(self, head, lexical_feature):
         if lexical_feature.startswith('!EF:') and lexical_feature != '!EF:*' and lexical_feature != '!EF:φ':
             if self.complete_edge:
-                for edge_object in self.complete_edge:
-                    if lexical_feature[6:] in edge_object.head().features:
+                for edge_object in self.edge_for_EF:
+                    if lexical_feature[4:] in edge_object.head().features:
                         return False
             log(f'Head {head} has wrong edge {self.complete_edge}. ')
             return True  # Violation was detected

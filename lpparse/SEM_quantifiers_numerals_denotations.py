@@ -19,7 +19,7 @@ class QuantifiersNumeralsDenotations:
         self.one_complete_assignment = {}
 
     def accept(self, ps):
-        return self.has_adequate_phi_set(ps) or 'φ' in ps.head().features
+        return ps.sustains_reference() or 'φ' in ps.head().features
 
     def is_operator(self, ps):
         return self.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and 'FIN' not in ps.features
@@ -232,23 +232,6 @@ class QuantifiersNumeralsDenotations:
             if phi[-1] == '*':
                 log(f'{ps.illustrate()} induces a phi-feature conflict...')
                 self.narrow_semantics.phi_interpretation_failed = True
-
-    def has_adequate_phi_set(self, h):
-        features_detected = {}
-        for f in h.features:
-            if f[:4] == 'PHI:' and f[-1] != '_':    # Check only valued phi-features
-                features_detected[f[:7]] = True              # Record the feature type
-                for g in h.features:
-                    if g[:4] == 'PHI:' and g[-1] != '_':  # Check only valued phi-features
-                        f_type = f.split(':')[1]
-                        g_type = g.split(':')[1]
-                        f_value = f.split(':')[2]
-                        g_value = g.split(':')[2]
-                        # If there is a feature type T with two difference values, we have feature conflict
-                        if f_type == g_type and f_value != g_value:
-                            return False
-        if 'PHI:NUM' in features_detected and 'PHI:PER' in features_detected:
-            return True
 
     def format_assignment(self, assignment):
         s = '('

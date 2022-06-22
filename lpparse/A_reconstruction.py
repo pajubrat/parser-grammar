@@ -5,7 +5,6 @@ class A_reconstruction:
         self.brain_model = controlling_parser_process
 
     def reconstruct(self, spec):
-        log(f'{spec}, {spec.container()}')
         if spec == spec.container().licensed_phrasal_specifier() or self.VP_fronting_in_Finnish(spec):
 
             # Special case: [DP H] => [__ [H DP]]

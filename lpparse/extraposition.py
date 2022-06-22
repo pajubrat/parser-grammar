@@ -16,7 +16,7 @@ class Extraposition:
     def selection_violation_at(self, node):
         if node.is_complex():
             if node.left_const.complements_not_licensed() & node.right_const.head().features or \
-                    self.get_mandatory_comps(node.left_const) and not (self.get_mandatory_comps(node.left_const) & node.right_const.head().features):
+                    (self.get_mandatory_comps(node.left_const) and not (self.get_mandatory_comps(node.left_const) & node.right_const.head().features)):
                 return True
 
     def try_extraposition(self, unselected_head):

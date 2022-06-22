@@ -411,35 +411,39 @@ class PhraseStructure:
     def get_tail_sets(self):
         return {frozenset(f[5:].split(',')) for f in self.features if f[:4] == 'TAIL'}
 
-    def extract_pro(self):
-        def phi_conflict(h):
-            for f in self.features:
-                if f[:4] == 'PHI:' and f[-1] != '_':  # Check only valued phi-features
-                    for g in h.features:
-                        if g[:4] == 'PHI:' and g[-1] != '_':  # Check only valued phi-features
-                            f_type = f.split(':')[1]
-                            g_type = g.split(':')[1]
-                            f_value = f.split(':')[2]
-                            g_value = g.split(':')[2]
-                            # If there is a feature type T with two difference values, we have feature conflict
-                            if f_type == g_type and f_value != g_value:
-                                return True
+    def phi_consistent_head(self):
+        def is_valued_phi_feature(f):
+            return f[:4] == 'PHI:' and f[-1] != '_'
+        def phi_conflict(f, g):
+            def deconstruct_phi_feature(f):
+                return f.split(':')[1], f.split(':')[2]
+            f_type, f_value = deconstruct_phi_feature(f)
+            g_type, g_value = deconstruct_phi_feature(g)
+            if f_type == g_type and f_value != g_value:
+                return True
+        def phi_consistency(phi_set):
+            for f in phi_set:
+                if is_valued_phi_feature(f):
+                    for g in phi_set:
+                        if is_valued_phi_feature(g):
+                            if phi_conflict(f, g):
+                                return False
+            return True
+        return phi_consistency({f for f in self.features if f[:4] == 'PHI:'})
 
-        #-----------------Main function--------------------------
-        if 'ARG' in self.features:
-            if self.EF():
-                phi_set = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
+    def sustains_reference(self):
+        return self.phi_consistent_head() and {'PHI:NUM', 'PHI:PER'}.issubset({f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'})
+
+    def extract_pro(self):
+        if 'ARG' in self.features and self.phi_consistent_head():
+            if self.sustains_reference():
+                phi_set_for_pro = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
             else:
-                phi_set = {f for f in self.features if f[:4] == 'PHI:'}
-            if phi_set:
-                pro = PhraseStructure()
-                pro.features = pro.features | phi_set
-                pro.features.add('φ')
-                pro.features.add('D')
-                pro.features.add('PF:pro')
-                pro.features.add('pro')
-                if not phi_conflict(pro):
-                    return pro
+                phi_set_for_pro = {f for f in self.features if f[:4] == 'PHI:'}
+            pro = PhraseStructure()
+            pro.features = pro.features | phi_set_for_pro | {'φ', 'D', 'PF:pro', 'pro'}
+            return pro
+
     #
     # Support functions
     #
