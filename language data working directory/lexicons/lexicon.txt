@@ -87,6 +87,7 @@ kahdet		:: kaksi-#pl#[-nom] LANG:FI
 kahden		:: kaksi-#pl#[-gen] LANG:FI
 kaksi-		:: PF:kaksi- LF:two NUM LANG:FI
 kaupunkia	:: kaupunki-#φ#r_expression#[-par]
+kaupunki	:: kaupunki-#φ#r_expression#[-nom]
 kaupunki-	:: PF:kaupunki LF:city N -COMP:P LANG:FI
 käski		:: käske-#v#T/fin#[-V] LANG:FI
 käskee		:: käske-#v#T/fin#[-V] LANG:FI
@@ -366,8 +367,8 @@ niiden		:: ne#[-gen]
 # Infinitival agreement (Px)
 [ni]		::	inflectional PHI pro EF:φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [si]		::	inflectional PHI pro EF:φ PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[nsA]		:: 	inflectional PHI pro EF:φ PHI:PER:3 LANG:FI
-[An]		:: 	inflectional PHI pro EF:φ PHI:PER:3 LANG:FI
+[nsA]		:: 	inflectional PHI pro EF:φ PHI:PER:3 PHI:NUM:SG LANG:FI
+[An]		:: 	inflectional PHI pro EF:φ PHI:PER:3 PHI:NUM:SG LANG:FI
 [3sg]		:: 	inflectional PHI pro EF:φ PHI:PER:3 PHI:NUM:SG
 [en]		:: 	inflectional PHI pro EF:φ PHI:PER:3 PHI:NUM:SG LANG:FI
 [mme]		::	inflectional PHI pro EF:φ PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
@@ -413,6 +414,7 @@ asp			:: inflectional ASP:BOUNDED
 
 's			:: PF:D('s) LF:possessive D PHI:DET:DEF PHI:NUM:SG PHI:PER:3 R:NEW:$X$ POSS
 a_D			:: D PF:D LF:D LANG:EN
+a1			:: D PF:D LF:D LANG:EN
 admire  	:: admire-#v#T/fin#[-0] LANG:EN	
 admire_fin	:: admire-#v#T/fin#[-0] LANG:EN
 admire		:: admire-#v LANG:EN
@@ -440,6 +442,7 @@ easy		::	easy-#a0 LANG:EN
 easy-		::	PF:easy LF:easy 0 LANG:EN
 fell		:: fell-#T/fin LANG:EN
 fell-		:: PF:fell LF:fell !EF:φ V CLASS/INTR LANG:EN
+flows		:: flow-#T/fin#[-s] LANG:EN
 flow'		:: PF:flow LF:flow V SPEC:φ COMP:P LANG:EN
 flow-		:: PF:flow LF:flow V CLASS/INTR COMP:P COMP:ADV LANG:EN
 flowing		:: flow-#ing LANG:EN
@@ -454,6 +457,7 @@ key			:: PF:key LF:key N -SEM:directional LANG:EN
 knows		::	know-#v#T/fin#[-V] LANG:EN
 know-		::	PF:know LF:know V CLASS/TR LANG:EN
 leaves		:: leave-#T/fin#[-s] LANG:EN
+left		:: leave-#T/fin LANG:EN
 leave		:: PF:leave LF:leave V !EF:φ -COMP:T/fin LANG:EN
 leave- 		:: PF:leave LF:leave V -COMP:T/fin LANG:EN
 like-   	:: PF:like LF:like V !COMP:φ LANG:EN
@@ -462,6 +466,7 @@ like		:: PF:like LF:like V !COMP:φ LANG:EN
 little		:: little-#a0 LANG:EN
 little-		:: PF:little- LF:little 0 LANG:EN
 horse		:: PF:horse LF:horse N LANG:EN
+man			:: PF:man LF:man N LANG:EN
 Mary		:: Mary-#φ#sg#3p#def#hum#proper_name#f LANG:EN
 Mary-		:: PF:Mary N R:REF:PROPER_NAME -SEM:directional LF:Mary -adjoinable LANG:EN 
 mistake		::	PF:mistake LF:mistake N LANG:EN
@@ -511,6 +516,8 @@ what		:: what-#D#wh#sg#3p#def LANG:EN
 what-		:: PF:what LF:what N PHI_N LANG:EN
 which		:: PF:which LF:which D OP:WH LANG:EN
 who			:: who-#D#wh#sg#3p#def#hum LANG:EN
+who(rel)	:: who-#D/rel#sg#3p#def#hum LANG:EN
+which(rel)	:: who-#D/rel#sg#3p#def#hum LANG:EN
 who-   		:: PF:who LF:who N PHI_N LANG:EN
 whether		:: PF:whether LF:whether Q FORCE LANG:EN
 
@@ -671,13 +678,20 @@ ci-			:: PF:ci LF:there N PHI_N LANG:IT
 # HUNGARIAN LEXICON ------------------------------------------------------------------------------------------------------------------------
 
 át			:: PF:át LF:through P EF:* -PHI LANG:HU
-az			:: PF:az LF:the D LANG:HU
+az			:: PF:az LF:the EF:φ D LANG:HU
+a2			:: PF:a LF:the EF:φ D LANG:HU
 erdőn		:: PF:erdőn LF:forest N LANG:HU
+[+ja]		:: PF:φ LF:φ φ ARG
+[+e]		:: PF:φ LF:φ φ ARG
+könyve		:: könyv-#[+e] LANG:HU
+könyv-		:: PF:könyv LF:book N LANG:HU
 mellett		:: PF:mellett LF:near P !EF:φ ARG LANG:HU
 melyik		:: D#wh#strong_operator LANG:HU
 nem			:: PF:nem LF:not Neg EF:* !COMP:T/fin LANG:HU
 út			:: út-#D LANG:HU
 út-			:: PF:út LF:path N LANG:HU
+diákjaim	:: diák-#[+ja]#[+em]
+diák-		:: PF:diák LF:student N PHI:NUM:PL LANG:HU
 vezet		:: vezet-#T/fin LANG:HU
 vezet-		:: PF:vezet LF:runs	V CLASS/INTR LANG:HU
 
@@ -685,26 +699,32 @@ vezet-		:: PF:vezet LF:runs	V CLASS/INTR LANG:HU
 
 én 			:: én-#D/pro#sg#1p#def#hum#[+nom] LANG:HU
 én-			:: PF:én LF:I PHI_N N LANG:HU
-mi			:: mi-#D/pro#pl#1p#def#hum#[+nom] LANG:HU
-mi-			:: PF:mi LF:we PHI_N N LANG:HU
+mi			:: mi_HU-#D/pro#pl#1p#def#hum#[+nom] LANG:HU
+mi_HU		:: mi_HU-#D/pro#pl#1p#def#hum#[+nom] LANG:HU
+mi_HU-		:: PF:mi LF:we PHI_N N LANG:HU
+kinek		:: ki-#D_HU#wh#[+dat] LANG:HU
+ki			:: ki-#D_HU#wh#[+dat] LANG:HU
+ki-			:: PF:ki LF:who N PHI_N LANG:HU
 
 #Inflection
 #Infinitival agreement
 [+em]		:: inflectional PHI pro EF:φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:HU
 [+ünk]		:: inflectional PHI pro EF:φ PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:HU
 
+D_HU		:: PF:D LF:the D EF:φ
+
 #Case forms
 [+nom]		:: inflectional NOM adjoinable LANG:HU
+[+dat]		:: inflectional DAT adjoinable LANG:HU
 
 # ESTONIAN LEXICON -------------------------------------------------------------------------------------------------------------------------
 
-
 linna		:: PF:linna LF:city N -COMP:P LANG:ES
-lähedal		:: PF:lähedak LF:near P !EF:φ !EF:* TAIL:V LANG:ES
+lähedal		:: PF:lähedak LF:near P !EF:φ TAIL:V LANG:ES
 mis			:: D#wh#3p#sg#[/gen]#strong_operator LANG:ES
 Pariisi		:: Pariisi-#φ#sg#3p#def#[/gen] LANG:ES
 Pariisi-	:: PF:Pariisi LF:Paris N LANG:ES
-suunas		:: PF:suunas LF:towards P SPEC:D !EF:φ !EF:* TAIL:V LANG:ES
+suunas		:: PF:suunas LF:towards P SPEC:D !EF:φ TAIL:V LANG:ES
 voolab		:: voolab-#T/fin LANG:ES
 voolab-		:: PF:voolab LF:flow V COMP:P CLASS/INTR LANG:ES
 

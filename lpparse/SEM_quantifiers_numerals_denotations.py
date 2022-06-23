@@ -230,7 +230,7 @@ class QuantifiersNumeralsDenotations:
     def detect_phi_conflicts(self, ps):
         for phi in ps.get_phi_set():
             if phi[-1] == '*':
-                log(f'{ps.illustrate()} induces a phi-feature conflict...')
+                log(f'\n\t\t\t{ps.illustrate()} has a phi-feature conflict with {phi}.')
                 self.narrow_semantics.phi_interpretation_failed = True
 
     def format_assignment(self, assignment):

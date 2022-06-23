@@ -25,8 +25,8 @@ class PhrasalMovement:
             if self.get_local_head(node):
                 self.brain_model.LF.try_LFmerge(self.get_local_head(node))
             if pull_point and pull_point.head() != node.head() and self.intervention(node):
-                log(f'Ā-chain was intervened by feature.')
-                break
+                log(f'Ā-chain was intervened by feature (this effect is offline). ')
+                #break
         # ---------------------------------------------------------------------------------------------#
 
     def intervention(self, node):
@@ -57,7 +57,7 @@ class PhrasalMovement:
         if 'OP*' in criterial_features:
             criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec.head())
         feature_set |= criterial_features
-        if not {'INF', 'P'} & head.features:  # This applies to non-infinitival heads
+        if not {'INF', 'P', 'D', 'φ'} & head.features:  # This applies to non-infinitival heads
             feature_set |= {'FIN', 'C', 'PF:C'}
         return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
 

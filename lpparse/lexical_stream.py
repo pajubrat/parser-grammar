@@ -37,6 +37,11 @@ class LexicalStream:
                 if self.controlling_parser_process.local_file_system.settings['datatake_full']:
                     self.controlling_parser_process.local_file_system.simple_log_file.write(
                         f'\n{self.controlling_parser_process.resources["Steps"]["n"]}\t{ps}\n\t{ps} + {terminal_lexical_item.get_phonological_string()}')
+            if self.controlling_parser_process.local_file_system.settings['stop_at_unknown_lexical_item']:
+                if '?' in terminal_lexical_item.features:
+                    print(f'\nUnrecognized word /{lst_branched[index]}/ terminated the derivation. ')
+                    self.controlling_parser_process.exit = True
+
             return terminal_lexical_item
 
     def process_inflection(self, inflection, lexical_item):

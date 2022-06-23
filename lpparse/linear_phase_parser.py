@@ -363,8 +363,6 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            if self.local_file_system.settings['datatake_full']:
-                self.local_file_system.resource_sequence_file.write(f'{key}({info}),{self.time_from_stimulus_onset},  ')
 
     def LF_legibility_test(self, ps):
         def detached(ps):

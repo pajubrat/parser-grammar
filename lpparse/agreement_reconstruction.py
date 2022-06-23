@@ -101,14 +101,14 @@ class AgreementReconstruction:
             h.features.add('PHI_CHECKED')
 
     def valuation_blocked(self, head, f):
+        # This is nontrivial. We do not check violation, only that if types match, then there must be a licensing
+        # feature with identical value.
         valued_input_feature_type = get_type(f)
-        heads_phi_set = head.get_phi_set()
-        valued_phi_in_h = {phi for phi in heads_phi_set if valued(phi) and get_type(phi) == valued_input_feature_type}
-
+        # Find type matches
+        valued_phi_in_h = {phi for phi in head.get_phi_set() if valued(phi) and get_type(phi) == valued_input_feature_type}
         if valued_phi_in_h:
-            type_value_matches = {phi for phi in valued_phi_in_h if phi == f}
-            if type_value_matches:
+            # Find if there is a licensing element
+            if {phi for phi in valued_phi_in_h if phi == f}:
                 return False
-            else:
-                log(f'Feature {f} cannot be valued into {head}.')
-                return True
+            log(f'Feature {f} cannot be valued into {head}.')
+            return True
