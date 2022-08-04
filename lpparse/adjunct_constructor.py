@@ -12,9 +12,9 @@ class AdjunctConstructor:
                 self.externalize_head(ps, ps.tail_test())
 
     def externalize_head(self, head, tail_test):
-        #if head.sister() and head.sister().is_primitive:  # [X Y], both primitive, externalize Y
-        #    self.externalize(head)
-        if (tail_test and head.EF() and head.edge_specifiers()) or (not tail_test and self.capture_specifier_rule(head)):
+        if head.sister() and head.sister().is_primitive() and 'P' in head.features:  # [X Y], both primitive, externalize Y
+            self.externalize(head)
+        elif (tail_test and head.EF() and head.edge_specifiers()) or (not tail_test and self.capture_specifier_rule(head)):
             if head.is_right():
                 self.externalize(head.mother)
             else:

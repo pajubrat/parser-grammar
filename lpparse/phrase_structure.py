@@ -52,10 +52,10 @@ class PhraseStructure:
             return self
         if self.left_const.is_primitive():
             return self.left_const
-        if self.right_const.is_primitive():
-            return self.right_const
         if self.right_const.adjunct:
             return self.left_const.head()
+        if self.right_const.is_primitive():
+            return self.right_const
         return self.right_const.head()
 
     def is_left(self):

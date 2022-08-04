@@ -25,12 +25,12 @@ to_inf		:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROB
 A/inf		:: A/inf 	INF 	?ARG  -PHI	 						PF:(t)A LF:A/inf -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI
 VA/inf  	:: VA/inf 	INF T   ARG  !EF:φ 							PF:vAn LF:VA -SPEC:N LANG:FI
 ESSA/inf 	:: ESSA/inf	INF ADV ARG   EF:φ TAIL:T,$NO_W 			PF:essa LF:while LANG:FI
-TUA/inf		:: TUA/inf	INF ADV ARG  !EF:φ AIL:T,$NO_W 				PF:tua LF:after LANG:FI
+TUA/inf		:: TUA/inf	INF ADV ARG  !EF:φ TAIL:T,$NO_W 				PF:tua LF:after LANG:FI
 KSE/inf		:: KSE/inf	INF ADV ARG   EF:φ TAIL:T,$NO_W 			PF:kse LF:in_order_to LANG:FI
 E/inf		:: E/inf 	INF ADV ARG  -EF:φ TAIL:T,$NO_W 			PF:en LF:by LANG:FI
 MA/ssa		:: MA/ssa	INF ADV ARG  -EF:φ EF:* TAIL:CLASS/TR,$NO_W PF:massa LF:in_doing LANG:FI
 MA/tta		:: MA/tta	INF ADV ARG  -EF:φ TAIL:T,$NO_W 			PF:matta LF:without_doing LANG:FI
-MA/lla		:: MA/lla	INF ADV ARG  -EF:φ TAIL:V,$NO_W 			PF:malla LF:by_doing LANG:FI
+MA/lla		:: MA/lla	INF ADV ARG  -EF:φ TAIL:T,$NO_W 			PF:malla LF:by_doing LANG:FI
 MA/sta		:: MA/sta	INF ADV ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_denied_event,$NO_W PF:masta LF:without_doing LANG:FI
 MA/an		:: MA/an	INF		ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:maan LF:to_do SEM/desired_event LANG:FI adjoinable
 

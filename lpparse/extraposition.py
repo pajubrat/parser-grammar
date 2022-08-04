@@ -10,7 +10,7 @@ class Extraposition:
     def reconstruct(self, ps):
         if ps.top().contains_feature('FIN') or 'D' in ps.top().features:
             head_violating_selection = next((node.right_const.head() for node in ps if self.selection_violation_at(node)), None)
-            if head_violating_selection:
+            if head_violating_selection and not head_violating_selection.adjunct:
                 self.try_extraposition(head_violating_selection)
 
     def selection_violation_at(self, node):
@@ -20,7 +20,7 @@ class Extraposition:
                 return True
 
     def try_extraposition(self, unselected_head):
-        log(f'applied on {unselected_head}...')
+        log(f'applied on \'{unselected_head}\'...')
         self.brain_model.consume_resources("Extraposition")
         self.adjunct_constructor.externalize_structure(unselected_head)
 

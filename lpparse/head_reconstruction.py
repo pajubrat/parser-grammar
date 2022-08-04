@@ -30,7 +30,7 @@ class HeadMovement:
         return current_node.mother
 
     def create_head_chain(self, complex_head, intervention_feature_set, affix):
-        if not complex_head.sister() or complex_head.is_right():
+        if not complex_head.sister() or complex_head.is_right() or complex_head.geometrical_sister().adjunct:
             complex_head.merge_1(affix, 'right')
             return affix
 

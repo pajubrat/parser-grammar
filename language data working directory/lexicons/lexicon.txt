@@ -108,9 +108,8 @@ kirjan  	:: kirja-#φ#sg#3p#def#r_expression#[-n_acc] LANG:FI
 kirjan_gen  :: kirja-#φ#sg#3p#def#r_expression#[-gen] LANG:FI
 kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[-par] LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
-kohti		:: P PF:kohti LF:towards -PHI TAIL:V LANG:FI
-# For testing in isolation
-kohti'		:: P PF:kohti LF:towards -PHI LANG:FI
+kohti		:: P PF:kohti LF:towards !COMP:φ -PHI TAIL:V LANG:FI
+kohti'		:: P PF:kohti LF:towards !COMP:φ -PHI LANG:FI
 koko		:: PF:koko LF:all D LANG:FI TAIL:T,$NO_S COMP:φ adjoinable
 ketä		:: kuka-#D#wh#[-par] LANG:FI
 kenen		:: kuka-#D/pro#wh#[-gen] LANG:FI
@@ -126,8 +125,8 @@ kysyi		:: kysy-#v#T/fin#[-V] LANG:EN
 kysy-		:: PF:kysya LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		::	P PF:lähellä LF:near -PHI LANG:FI
 lähellä_1	::	P PF:lähellä LF:near -PHI LANG:FI
-lähellä		::	P PF:lähellä LF:near INF !EF:φ EF:φ LANG:FI
-lähellä_2	::	P PF:lähellä LF:near INF !EF:φ EF:φ LANG:FI
+lähellä		::	P PF:lähellä LF:near INF !EF:φ EF:φ !SEF LANG:FI
+lähellä_2	::	P PF:lähellä LF:near INF !EF:φ EF:φ !SEF LANG:FI
 lähtee		:: lähte-#T/fin#[-V] LANG:FI
 lähden		:: lähte-#T/fin#[-n] LANG:FI
 lähteä 		:: lähte-#A/inf LANG:FI
@@ -685,7 +684,7 @@ erdőn		:: PF:erdőn LF:forest N LANG:HU
 [+e]		:: PF:φ LF:φ φ ARG
 könyve		:: könyv-#[+e] LANG:HU
 könyv-		:: PF:könyv LF:book N LANG:HU
-mellett		:: PF:mellett LF:near P !EF:φ ARG LANG:HU
+mellett		:: PF:mellett LF:near P !EF:φ !SEF ARG LANG:HU
 melyik		:: D#wh#strong_operator LANG:HU
 nem			:: PF:nem LF:not Neg EF:* !COMP:T/fin LANG:HU
 út			:: út-#D LANG:HU

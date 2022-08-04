@@ -31,6 +31,7 @@ class LF:
                                           self.selection__unselective_negative_edge_violation,
                                           self.selection__negative_one_edge_violation,
                                           self.selection__positive_selective_specifier_violation,
+                                          self.selection__positive_shared_edge_violation,
                                           self.selection__positive_obligatory_complement_violation,
                                           self.selection__negative_complement_violation,
                                           self.selection__unselective_negative_complement_violation,
@@ -269,9 +270,22 @@ class LF:
             log(f'Head {head} has wrong edge {self.complete_edge}. ')
             return True  # Violation was detected
 
+    def selection__positive_shared_edge_violation(self, head, lexical_feature):
+        if lexical_feature == '!SEF':
+            if not head.edge_specifiers():
+                if head.proper_complement():
+                    if head.proper_complement().head().is_referential():
+                        log(f'Shared edge violation at \'{head}\'. ')
+                        return True  # Violation was detected (e.g., [P_sef DP])
+                    if head.proper_complement().head().licensed_phrasal_specifier() and \
+                            head.proper_complement().head().licensed_phrasal_specifier().is_referential():
+                        log(f'Shared edge violation at \'{head}\'. ')
+                        return True  # Violation was detected (e.g., A/inf [DP VP])
+
+
     def selection__positive_obligatory_complement_violation(self, head, lexical_feature):
         if lexical_feature.startswith('!COMP:') and not lexical_feature == '!COMP:*':
-            if head.selected_sister() and lexical_feature[6:] not in head.selected_sister().head().features:
+            if not head.selected_sister() or (head.selected_sister() and lexical_feature[6:] not in head.selected_sister().head().features):
                 log(f'Head \"{head}\" lacks complement.')
                 return True  # Violation was detected
 
