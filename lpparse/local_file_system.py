@@ -213,13 +213,15 @@ class LocalFileSystem:
     def initialize_resources_file(self):
         self.dev_log_file.write('Initializing resources file...')
         self.resources_file = open(self.external_sources["resources_file_name"], "w", -1, encoding=self.encoding)
-        self.stamp(self.resources_file)
 
-    def add_columns_to_resources_file(self, resources, experimental_group):
+    def add_columns_to_resources_file(self, resources, experimental_groups):
         self.dev_log_file.write('Add columns to the resources file...')
         self.resources_file.write("Number,Sentence,Study_ID,")
-        for index, group in enumerate(experimental_group):
-            self.resources_file.write(f"Group {index},")
+        if experimental_groups:
+            for index, group in enumerate(experimental_groups):
+                self.resources_file.write(f"Group {index},")
+        else:
+            self.resources_file.write('Group,')
         for key in resources:
             self.resources_file.write(f'{key},')
         self.resources_file.write("Execution time (ms)\t\n")
@@ -236,7 +238,7 @@ class LocalFileSystem:
         for key in consumed_resources:
             s += f'{key}:{consumed_resources[key]["n"]}, '
             i += len(key)
-            if i > 60:
+            if i > 50:
                 s += '\n\t'
                 i = 0
         return s
@@ -245,21 +247,30 @@ class LocalFileSystem:
         output_str = ''
         tabs_str = '\t'
         for key in semantic_interpretation_dict:
-            if key == 'Assignments':
-                output_str += tabs_str + key + ': ' + str(self.illustrated(semantic_interpretation_dict[key], parser)) + '\n'
-            else:
-                output_str += tabs_str + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
+            if semantic_interpretation_dict[key]:
+                if key == 'spellout structure':
+                    output_str += '\n' + tabs_str + 'Summary of the derivation:\n'
+                if key == 'Assignments':
+                    output_str += tabs_str + key + ': ' + str(self.illustrated(semantic_interpretation_dict[key], parser)) + '\n'
+                else:
+                    output_str += tabs_str + key + ': ' + str(semantic_interpretation_dict[key]) + '\n'
         return output_str
 
-    def illustrated(self, semantic_interpretations_list, parser):
+    def illustrated(self, assignments_list, parser):
         output_str = ''
-        for assignment in semantic_interpretations_list:
-            output_str += '\n\t'
-            for key, value in assignment.items():
-                if key != 'weight':
-                    output_str += parser.narrow_semantics.quantifiers_numerals_denotations_module.inventory[key]['Reference'] + ' ~ ' + value + ', '
-                else:
-                    output_str += 'Weight ' + str(value)
+        i = 0
+        for assignment in assignments_list:
+            if i > 2:
+                output_str += '\n\t (...)'
+                break
+            if assignment['weight'] > 0:
+                i += 1
+                output_str += '\n\t'
+                for key, value in assignment.items():
+                    if key != 'weight':
+                        output_str += parser.narrow_semantics.quantifiers_numerals_denotations_module.inventory[key]['Reference'] + ' ~ ' + value + ', '
+                    else:
+                        output_str += 'Weight ' + str(value)
         return output_str
 
     def generate_input_sentence_string(self, sentence):
@@ -327,7 +338,6 @@ class LocalFileSystem:
         file_handle.write('@  '+f'Redundancy rules from {self.external_sources["redundancy_rules"]}.\n')
         file_handle.write('@  '+f'Universal morphemes from {self.external_sources["ug_morphemes"]}.\n')
         file_handle.write('@ \n')
-        file_handle.write('@ \n')
 
     def save_output(self, parser, count, sentence, experimental_group, part_of_conversation):
         self.dev_log_file.write('Saving output into output files...')
@@ -393,7 +403,7 @@ class LocalFileSystem:
                 if parse_number == 1:
                     self.results_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
                     self.results_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation_simple(parser)}\n')
-                    self.results_file.write('\tResources:\n\t' + self.format_resource_output(parser.resources) + '\n')
+                    self.results_file.write('\tResources:\n\t' + self.format_resource_output(parser.resources))
                     if self.settings['datatake_full']:
                         self.semantics_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
                         self.semantics_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation(parser)}\n')

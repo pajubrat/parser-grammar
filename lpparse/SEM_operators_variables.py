@@ -20,7 +20,8 @@ class OperatorVariableModule:
         return self.inventory[idx]
 
     def accept(self, ps):
-        return {f for f in ps.head().features if f[:3] == 'OP:'}
+        return False
+        # return {f for f in ps.head().features if f[:3] == 'OP:'}
 
     def update(self, idx, criteria):
         self.inventory[idx].update(criteria)

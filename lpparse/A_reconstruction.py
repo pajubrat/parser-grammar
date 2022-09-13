@@ -10,8 +10,8 @@ class A_reconstruction:
             # Special case: [DP H] => [__ [H DP]]
             if spec.sister().is_primitive():
                 spec.sister().merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'right')
+                self.brain_model.consume_resources('A-Chain')
                 return
-
             if spec.sister().find_me_elsewhere:
                 return
 
@@ -19,8 +19,7 @@ class A_reconstruction:
             for node in [node for node in spec.sister()][1:]:
                 if self.target_location_for_A_reconstruction(node):
                     node.merge_1(spec.copy_from_memory_buffer(self.brain_model.babtize()), 'left')
-                    self.brain_model.consume_resources('A-Move Phrase')
-                    self.brain_model.consume_resources('Move Phrase')
+                    self.brain_model.consume_resources('A-Chain')
                     break
                 if self.intervention(node):
                     break

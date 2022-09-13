@@ -123,10 +123,10 @@ kuvaa		:: kuva-#φ#sg#3p#def#nonhum#r_expression#[-par] LANG:FI
 kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[-V] LANG:EN
 kysy-		:: PF:kysya LF:ask V !PROBE:FORCE:WH LANG:FI
-lähellä		::	P PF:lähellä LF:near -PHI LANG:FI
-lähellä_1	::	P PF:lähellä LF:near -PHI LANG:FI
-lähellä		::	P PF:lähellä LF:near INF !EF:φ EF:φ !SEF LANG:FI
-lähellä_2	::	P PF:lähellä LF:near INF !EF:φ EF:φ !SEF LANG:FI
+lähellä		::	P PF:lähellä LF:near -PHI TAIL:V LANG:FI
+lähellä		::	P PF:lähellä LF:near TAIL:V INF !EF:φ EF:φ !SEF LANG:FI
+lähellä'	::	P PF:lähellä LF:near -PHI ANG:FI
+lähellä'	::	P PF:lähellä LF:near INF !EF:φ EF:φ !SEF LANG:FI
 lähtee		:: lähte-#T/fin#[-V] LANG:FI
 lähden		:: lähte-#T/fin#[-n] LANG:FI
 lähteä 		:: lähte-#A/inf LANG:FI
@@ -156,8 +156,9 @@ löydetty	:: löytä-#impass#asp#T/prt LANG:FI
 löydettiin	:: löytä-#impass#asp#T/fin#pl#1p#def LANG:FI
 löysimme	:: löytä-#v#asp#T/fin#[-mme] LANG:FI
 löysi		:: löytä-#v#asp#T/fin#[-V] LANG:FI
-löytää		:: löytä-#A/inf LANG:FI
+löytää		:: löytä-#v'#A/inf LANG:FI
 löytä-		:: PF:löytä- LF:find V CLASS/TR !COMP:φ ASP:BOUNDED LANG:FI
+v'			:: v PF:v LF:v ASP:BOUNDED
 Merja   	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-nom] LANG:FI
 Merja_nom   ::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-nom] LANG:FI
 Merjan		::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
@@ -176,10 +177,10 @@ mere-		::	PF:meri LF:ocean N LANG:FI
 mies		::	mies-#φ#r_expression#[-nom]
 mies-		::	PF:mies LF:man N LANG:FI
 minka		:: mikä-#D#wh#[-n_acc] LANG:FI
-mikä		:: mikä-#D#wh LANG:FI
-mitä		:: D#wh#[-par] LANG:FI
-mitä		:: mikä-#D#wh#[-par] LANG:FI
-mitä_DP		:: mikä-#D#wh#[-par] LANG:FI
+mikä		:: mikä-#D#wh#sg#3p#[-nom] LANG:FI
+mitä		:: D#wh#sg#3p#[-par] LANG:FI
+mitä		:: mikä-#D#wh#sg#3p#[-par] LANG:FI
+mitä_DP		:: mikä-#D#wh#sg#3p#[-par] LANG:FI
 mikä-		:: PF:mikä LF:what N LANG:FI
 mukavasti 	:: mukava-#sti
 mukava-		:: PF:mukavasti LF:comfortably 0 LANG:FI
@@ -265,7 +266,7 @@ sala		:: sala-#D LANG:IT
 sala-		:: PF:sala LF:room N LANG:IT
 raukesi		:: raukea-#T/fin#[-V] LANG:FI
 raukea-		:: PF:raukea LF:terminate V LANG:FI
-Seine		:: Seine-#D#[-nom] LANG:FI
+Seine		:: Seine-#D#sg#3p#[-nom] LANG:FI
 Seine-		:: PF:Seine N R:REF:PROPER_NAME LF:Seine LANG:FI
 sukka		:: sukka-#φ#r_expression#[-nom]
 sukka_0acc	:: sukka-#φ#r_expression#[-0_acc]
@@ -294,7 +295,7 @@ tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tässä		:: tämä#P
 täytyy		:: täydy-#T/fin#[-V] LANG:FI
 täydy		:: täydy-#T/prt LANG:FI
-täydy-		:: PF:täydy- LF:must FIN V MODAL EG:φ !COMP:A/inf -ASP LANG:FI
+täydy-		:: PF:täydy- LF:must FIN V MODAL EF:φ !COMP:A/inf -ASP LANG:FI
 teki		:: teke-#v#T/fin#[-V] LANG:FI
 teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke LF:make LANG:FI
 tönäisi		:: tönäise-#v#T/fin#[-V] LANG:FI
@@ -376,7 +377,7 @@ niiden		:: ne#[-gen]
 # Case suffixes
 # A. Structural
 [-nom]		:: inflectional NOM TAIL:FIN,ARG,EF:φ,$NO_S adjoinable LANG:FI
-[-gen]		:: inflectional GEN TAIL:INF,ARG,EF:φ adjoinable LANG:FI
+[-gen]		:: inflectional GEN TAIL:INF,ARG,EF:φ,$NO_S adjoinable -float LANG:FI
 [-par]   	:: inflectional PAR TAIL:ARG,-PHI,$NO_S adjoinable LANG:FI
 gen			:: inflectional GEN TAIL:INF,ARG adjoinable
 [-dat]		:: inflectional DAT TAIL:*φ adjoinable
@@ -466,7 +467,7 @@ little		:: little-#a0 LANG:EN
 little-		:: PF:little- LF:little 0 LANG:EN
 horse		:: PF:horse LF:horse N LANG:EN
 man			:: PF:man LF:man N LANG:EN
-Mary		:: Mary-#φ#sg#3p#def#hum#proper_name#f LANG:EN
+Mary		:: Mary-#D#sg#3p#def#hum#proper_name#f LANG:EN
 Mary-		:: PF:Mary N R:REF:PROPER_NAME -SEM:directional LF:Mary -adjoinable LANG:EN 
 mistake		::	PF:mistake LF:mistake N LANG:EN
 moved		:: move-#v#T/fin LANG:EN
@@ -679,11 +680,26 @@ ci-			:: PF:ci LF:there N PHI_N LANG:IT
 át			:: PF:át LF:through P EF:* -PHI LANG:HU
 az			:: PF:az LF:the EF:φ D LANG:HU
 a2			:: PF:a LF:the EF:φ D LANG:HU
+adott		:: adott-#v#MA/A
+adott-		:: PF:adott LF:give V LANG:HU
+ajándék		:: PF:ajándék LF:persent N LANG:HU
+által		:: PF:által LF:by P !EF:φ !COMP:* LANG:HU
 erdőn		:: PF:erdőn LF:forest N LANG:HU
 [+ja]		:: PF:φ LF:φ φ ARG
 [+e]		:: PF:φ LF:φ φ ARG
+János		:: János-#D#[+nom] LANG:HU
+Jánosnak	:: János-#D#[+dat] LANG:HU
+János-		:: PF:János LF:John N LANG:HU
+keresi		:: keresi-#v#T/fin LANG:HU
+keresi-		:: PF:keresi LF:seek V CLASS/TR LANG:HU
+ki			:: ki-#D#wh LANG:HU
+ki-			:: PF:ki LF:who N LANG:HU
+kinek		:: ki-#D#wh#[+dat] LANG:HU
 könyve		:: könyv-#[+e] LANG:HU
 könyv-		:: PF:könyv LF:book N LANG:HU
+Mari		:: Mari-#D LANG:HU
+Marit		:: Mari-#D#[+acc] LANG:HU
+Mari-		:: PF:Mari LF:Mari N LANG:HU
 mellett		:: PF:mellett LF:near P !EF:φ !SEF ARG LANG:HU
 melyik		:: D#wh#strong_operator LANG:HU
 nem			:: PF:nem LF:not Neg EF:* !COMP:T/fin LANG:HU
@@ -697,8 +713,10 @@ vezet-		:: PF:vezet LF:runs	V CLASS/INTR LANG:HU
 # Pronouns
 
 én 			:: én-#D/pro#sg#1p#def#hum#[+nom] LANG:HU
+én' 		:: én-#D/pro#sg#1p#def#hum LANG:HU
 én-			:: PF:én LF:I PHI_N N LANG:HU
 mi			:: mi_HU-#D/pro#pl#1p#def#hum#[+nom] LANG:HU
+mi'			:: mi_HU-#D/pro#pl#1p#def#hum LANG:HU
 mi_HU		:: mi_HU-#D/pro#pl#1p#def#hum#[+nom] LANG:HU
 mi_HU-		:: PF:mi LF:we PHI_N N LANG:HU
 kinek		:: ki-#D_HU#wh#[+dat] LANG:HU
@@ -713,7 +731,8 @@ ki-			:: PF:ki LF:who N PHI_N LANG:HU
 D_HU		:: PF:D LF:the D EF:φ
 
 #Case forms
-[+nom]		:: inflectional NOM adjoinable LANG:HU
+[+nom]		:: inflectional NOM TAIL:T/fin,$NO_S adjoinable LANG:HU
+[+acc]		:: inflectional ACC TAIL:v,$NO_S adjoinable LANG:HU
 [+dat]		:: inflectional DAT adjoinable LANG:HU
 
 # ESTONIAN LEXICON -------------------------------------------------------------------------------------------------------------------------

@@ -83,28 +83,12 @@ class LinearPhaseParser:
         self.operations = 0
         self.resources = {"Total Time": {'ms': 0, 'n': 0},     # Count predicted cognitive time
                           "Garden Paths": {'ms': 0, 'n': 0},
-                          "Memory Reactivation": {'ms': 500, 'n' : 0},
-                          "Steps": {'ms': 0, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
-                          "Move Head": {'ms': 5, 'n': 0},
-                          "Move Phrase": {'ms': 5, 'n': 0},
-                          "A-Move Phrase": {'ms': 5, 'n': 0},
-                          "A-bar Move Phrase": {'ms': 5, 'n': 0},
-                          "Move Adjunct": {'ms': 5, 'n': 0},
-                          "Agree": {'ms': 5, 'n': 0},
-                          "Phi": {'ms': 0, 'n': 0},
-                          "Transfer": {'ms': 5, 'n': 0},
-                          "Item streamed into syntax": {'ms': 5, 'n': 0},
-                          "Feature Processing": {'ms': 5, 'n': 0},
-                          "Extraposition": {'ms': 5, 'n': 0},
-                          "Inflection": {'ms': 5, 'n': 0},
-                          "Failed Transfer": {'ms': 5, 'n': 0},
-                          "LF recovery": {'ms': 5, 'n': 0},
-                          "LF test": {'ms': 5, 'n': 0},
-                          "Filter solution": {'ms': 5, 'n': 0},
-                          "Rank solution": {'ms': 5, 'n': 0},
-                          "Lexical retrieval": {'ms': 5, 'n': 0},
-                          "Morphological decomposition": {'ms': 5, 'n': 0},
+                          "Head Chain": {'ms': 5, 'n': 0},
+                          "A-Chain": {'ms': 5, 'n': 0},
+                          "Ā-Chain": {'ms': 5, 'n': 0},
+                          "Adjunct Chain": {'ms': 5, 'n': 0},
+                          "Phase Transfers": {'ms': 0, 'n': 0},
                           "Mean time per word": {'ms': 0, 'n': 0}
                           }
 
@@ -127,25 +111,20 @@ class LinearPhaseParser:
             print('\n(Ignored by user.)')
             log('\n(Ignored by user.)')
 
-    def parse_new_item(self, ps, lst, index):
+    def parse_new_item(self, ps, lst, index, inflection_buffer=None):
 
-        # CIRCUIT BREAKER
         if self.circuit_breaker(ps, lst, index):
             return
 
-        # LEXICAL AMBIGUITY
+        # Lexical ambiguity
         log('Lexical retrieval for ')
         list_of_retrieved_lexical_items_matching_the_phonological_word = self.lexicon.lexical_retrieval(lst[index])
         for lexical_constituent in list_of_retrieved_lexical_items_matching_the_phonological_word:
-            self.consume_resources('Lexical retrieval', lst[index])
-
-            # MORPHOLOGY
+            # Morphology
             terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
-
-            # LEXICAL ACCESS AND STREAM
-            terminal_lexical_item = self.lexical_stream.stream_into_syntax(terminal_lexical_item, lst_branched, inflection, ps, index)
-
-            # SYNTACTIC MODULE
+            # Lexical stream
+            terminal_lexical_item = self.lexical_stream.stream_into_syntax(terminal_lexical_item, lst_branched, inflection, ps, index, inflection_buffer)
+            # Syntactic module
             merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
 
             # ---------------------------------------------------------------------------------------------#
@@ -220,7 +199,6 @@ class LinearPhaseParser:
         # If site is not in active working memory, it must be activated
         if 'working_memory' in self.local_file_system.settings and self.local_file_system.settings['working_memory']:
             if not site.active_in_syntactic_working_memory:
-                self.consume_resources("Memory Reactivation", {site})
                 log(f'\n\t\tA dormant constituent had to be woken back into syntactic working memory.')
                 site.active_in_syntactic_working_memory = True
 
@@ -270,22 +248,21 @@ class LinearPhaseParser:
         log(f'\t\tLF-legibility and semantic interpretation: ')
         if not self.LF.LF_legibility_test(ps) or not self.LF.final_tail_check(ps) or not self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path()
-            log('Solution was rejected. \n')
+            log('\n\t\tSolution was rejected. \n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps_))
             self.narrow_semantics.reset_for_new_interpretation()
             return
-        self.consume_resources('Steps')
-        log('\n\t\tAccepted.\n')
+        log('\n\t\tAccepted.++\n')
         print('X', end='', flush=True)
         if self.local_file_system.settings['datatake_full']:
-            self.local_file_system.simple_log_file.write(f'\n{self.resources["Steps"]["n"]}\t{ps_} <= accepted')
+            self.local_file_system.simple_log_file.write(f'\n\t{ps_} <= accepted')
         if len(self.narrow_semantics.semantic_interpretation['Assignments']) == 0:
             log('\t\t!! Sentence was judged uninterpretable due to lack of legitimate assignments.\n')
         if not self.first_solution_found:
-            log(f'\t\tSolution accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.++\n')
+            log(f'\t\tSolution accepted at {self.resources["Total Time"]["n"]}ms stimulus onset.\n')
             self.resources['Mean time per word']['n'] = int(self.resources['Total Time']['n'] / self.count_words(self.sentence))
-            self.resources.update(PhraseStructure.resources) # Add phrase resource consumption from class phrase structure
+            self.resources.update(PhraseStructure.resources)  # Add phrase resource consumption from class phrase structure
         if self.only_first_solution:
             self.exit = True
         self.execution_time_results.append(int((process_time() - self.start_time) * 1000))

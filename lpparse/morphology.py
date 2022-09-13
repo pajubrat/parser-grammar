@@ -37,8 +37,6 @@ class Morphology:
                     log(',')
             log('>. ')
 
-            controlling_parsing_process.consume_resources('Morphological decomposition')
-
             # Retrieve the first item in the list from the lexicon
             # Exit the process only if this is primitive (i.e. while-loop)
             log(f'\n\t\tNext item: ')

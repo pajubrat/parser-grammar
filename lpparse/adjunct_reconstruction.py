@@ -99,8 +99,7 @@ class FloaterMovement():
             self.adjunct_constructor.externalize_structure(original_floater)
         dropped_floater = original_floater.copy_from_memory_buffer(self.babtize())
         self.merge_floater(node, dropped_floater)
-        self.controlling_parser_process.consume_resources("Move Adjunct")
-        self.controlling_parser_process.consume_resources("Move Phrase", f'{dropped_floater.illustrate()}')
+        self.controlling_parser_process.consume_resources("Adjunct Chain")
         return dropped_floater
 
     def merge_floater(self, node, dropped_floater):

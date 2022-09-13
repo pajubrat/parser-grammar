@@ -18,7 +18,7 @@ class PhrasalMovement:
         self.brain_model.syntactic_working_memory = []
         pull_point = None
         # ------------------------------ minimal search -----------------------------------------------#
-        for node in ps:
+        for node in [const for const in ps]:
             if self.get_local_head(node) and self.get_local_head(node).EF():
                 self.pull_into_working_memory(self.get_local_head(node))
                 pull_point = node
@@ -38,6 +38,7 @@ class PhrasalMovement:
             if not spec.find_me_elsewhere:
                 if self.Abar_movable(spec):
                     self.brain_model.syntactic_working_memory = self.brain_model.syntactic_working_memory + [spec]
+                    log(f'{spec}...')
                     criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)
                     self.process_criterial_features(i, spec, head, criterial_features)
                 else:
@@ -53,12 +54,15 @@ class PhrasalMovement:
                 spec.sister().merge_1(new_h, 'left')
 
     def copy_features_from_operator_to_local_head(self, head, spec, criterial_features):
-        feature_set = {'OP:_', 'EF:*'}
-        if 'OP*' in criterial_features:
-            criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec.head())
-        feature_set |= criterial_features
-        if not {'INF', 'P', 'D', 'φ'} & head.features:  # This applies to non-infinitival heads
-            feature_set |= {'FIN', 'C', 'PF:C'}
+        if criterial_features:
+            feature_set = {'OP:_', 'EF:*'}
+            if 'OP*' in criterial_features:
+                criterial_features = self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec.head())
+            feature_set |= criterial_features
+            if not {'INF', 'P', 'D', 'φ'} & head.features:  # This applies to non-infinitival heads
+                feature_set |= {'FIN', 'C', 'PF:C'}
+        else:
+            feature_set = {'?'}
         return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(feature_set))
 
     def engineer_head_from_specifier(self, head, spec, criterial_features):

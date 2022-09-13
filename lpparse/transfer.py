@@ -23,12 +23,12 @@ class Transfer:
         output_to_interfaces = {}
         log_embedding = embedding * '\t'
         if not is_logging_enabled():
-            log(log_embedding + f'Transferring {ps} to LF.')
+            log(log_embedding + f'Transferring {ps} to LF...')
 
         log_embedding = log_embedding + '\t'
 
-        self.brain_model.consume_resources("Transfer", f'{ps}')
         output_to_interfaces['spellout structure'] = ps.copy()
+        self.brain_model.consume_resources("Phase Transfers")
 
         log('\n')
         log(log_embedding + '1. Head movement reconstruction...')

@@ -1,14 +1,10 @@
+# Subjects dataset
 
-#
-# This dataset follows roughly the flow of the main article.
-#
+& 1 Background. Wh-movement and agreement in Finnish
 
+	& 1.1 	Secondary wh-chains with pied piping%
 
-& 2 Background. Wh-movement and agreement in Finnish
-
-	& 2.1 	Secondary wh-chains in pied piping
-
-		& 2.1.1 Secondary Ā-chains and pied-piping, without operators
+		& 1.1.1 Secondary Ā-chains and pied-piping, without operators
 
 			& ADPOSITIONS
 				
@@ -16,43 +12,41 @@
 				
 					& Grammatical
 
-					Pekka nukkuu lähellä Pariisia
-					'Pekka.nom sleep.prs.3sg near Paris.par'
+						Pekka nukkuu lähellä Pariisia
+						'Pekka.nom sleep.prs.3sg near Paris.par'
+						
+						Pekka nukkuu Pariisia lähellä
+						'Pekka.nom sleep.prs.3sg Paris.par near'
+						
+						lähellä Pariisia Pekka nukkuu
+						'near Paris.par Pekka.nom sleep.prs.3sg
 					
-					Pekka nukkuu Pariisia lähellä
-					'Pekka.nom sleep.prs.3sg Paris.par near'
+						Pariisia lähellä Pekka nukkuu
+						'Paris.par near Pekka.nom sleep.prs.3sg'
 					
-					lähellä Pariisia Pekka nukkuu
-					'near Paris.par Pekka.nom sleep.prs.3sg
-				
-					Pariisia lähellä Pekka nukkuu
-					'Paris.par near Pekka.nom sleep.prs.3sg'
-				
-					Seine virtaa kohti Pariisia
-					'Seine.nom flow.prs.3sg towards Paris.'
-					
-					Seine virtaa Pariisia kohti
-					'Seine.nom flow.prs.3sg Paris.par towards'
-					
-					kohti Pariisia Seine virtaa
-					'towards Paris.par Seine.nom flow.prs.3sg'
-					
-					Pariisia kohti Seine virtaa
-					'Paris.par towards Seine.nom flow.prs.3sg'
+						Seine virtaa kohti Pariisia
+						'Seine.nom flow.prs.3sg towards Paris.'
+						
+						Seine virtaa Pariisia kohti
+						'Seine.nom flow.prs.3sg Paris.par towards'
+						
+						kohti Pariisia Seine virtaa
+						'towards Paris.par Seine.nom flow.prs.3sg'
+						
+						Pariisia kohti Seine virtaa
+						'Paris.par towards Seine.nom flow.prs.3sg'
 
 				& English 
 				
 					& Grammatical
 								
-					John lives near Paris
+						John lives near Paris
 					
-					Paris near John lives
-					'Only meaning "Paris, located near John, lives"'
-			
 					& Ungrammatical
-				
-					John lives Paris near
-					near Paris John lives
+					
+						Paris near John lives
+						John lives Paris near
+						near Paris John lives
 					
 			& Adpositions inside adverbials (Finnish)
 			
@@ -82,9 +76,32 @@
 					Pariisia kohti virtaamalla Seine saavuttaa meren
 					'Paris.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
 		
-		& 2.1.2 Secondary Ā-chains and pied-piping, with operators
+		& 1.1.2 Secondary Ā-chains and pied-piping, with operators
 				
-			& 2.1.2.1 Strong operator
+			& 1.1.2.1 Strong operator
+				
+				& Ordinary interrogatives with interrogative pronoun (Finnish, English)
+				
+					John admires Mary
+
+					ketä Pekka ihailee
+					'who.par Pekka.nom admire.prs.3sg'
+					
+					mitä Pekka ihailee
+					'what.par Pekka.nom admire.prs.3sg'
+					
+					Pekka ihailee ketä
+					'Pekka.nom admire.prs.3sg who.par'
+				
+					Pekka ihailee mitä
+					'Pekka.nom admire.prs.3sg what.par'
+				
+					kuka ihailee Merjaa
+					'who.nom admire.prs.3sg Merja.par'
+					
+					who John admires
+					who does John admire
+					who admires Mary
 				
 				& Adpositions (Finnish)
 				
@@ -208,9 +225,11 @@
 
 							& Ungrammatical (chain, movement to edge)
 						
-							the city which(rel) towards Seine flows disappeared
+								the city which(rel) towards Seine flows disappeared
+								the city Seine flows towards which(rel) disappeared
+								the city Seine flows which(rel) towards disappeared
 				
-			& 2.1.2.2 Weak opeators
+			& 1.1.2.2 Weak opeators
 			
 				& Adpositions (Finnish)
 			
@@ -272,106 +291,180 @@
 						Pariisia#[kO] kohti virtaamalla Seine saavuttaa meren
 						'what.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
 					
-	& 2.2 Agreement in Finnish
+	& 1.2 Agreement in Finnish
 					
-			& Grammatical
+			& 1.2.1 Adpositions
 			
-				lähellä minua
-				'near I.par'
-				
-				minua lähellä
-				'I.par near'
-				
-				minun lähellä#[ni]
-				'I.gen near.1sg'
-									
-				kohti' minua
-				'towards I.par'
-				
-				minua kohti'
-				'I.par towards'
-					
-			& Adpositions and the agreement paradigm
-					
 				& Grammatical
-			
-				minun lähellä#[ni]
-				'I.gen near.1sg'
 				
-				sinun lähellä#[si]
-				'you.gen near.2sg'
-				
-				hänen lähellä#[An]
-				'he.gen near.3'
-				
-				meidän lähellä#[mme]
-				'we.gen near.1pl'
-				
-				teidän lähellä#[nne]
-				'you.gen near.2pl'
-				
-				heidän lähellä#[An]
-				'they.gen near.3'
-			
-			& Ungrammatical
+					lähellä' minua
+					'near I.par'
 					
-				lähellä minun
-				'near I.gen'
-
-				lähellä_2#[ni] minun
-				'near.1sg I.gen'
-			
-				kohti#[ni] minua
-				'towards.1sg I.par'
-								
-				minua kohti#[ni]
-				'I.par towards.1sg'
+					minua lähellä'
+					'I.par near'
+					
+					minun lähellä'#[ni]
+					'I.gen near.1sg'
+										
+					kohti' minua
+					'towards I.par'
+					
+					minua kohti'
+					'I.par towards'
+						
+				& Adpositions and the agreement paradigm
+						
+					& Grammatical
 				
-				kohti#[ni] minun
-				'towards.1sg I.gen'
+						minun lähellä'#[ni]
+						'I.gen near.1sg'
+						
+						sinun lähellä'#[si]
+						'you.gen near.2sg'
+						
+						hänen lähellä'#[An]
+						'he.gen near.3'
+						
+						meidän lähellä'#[mme]
+						'we.gen near.1pl'
+						
+						teidän lähellä'#[nne]
+						'you.gen near.2pl'
+						
+						heidän lähellä'#[An]
+						'they.gen near.3'
 				
-				minun kohti#[ni]
-				'I.gen towards.1sg'
-									
-				minun lähellä_2#[si]
-				'I.gen near.2sg'
+					& Ungrammatical
 							
-				sinun lähellä_2#[ni]
-				'you.gen near.1sg'
-				
-				hänen lähellä_2#[ni]
-				'he.gen near.1sg'
-				
-				meidän lähellä_2#[ni]
-				'we.gen near.1sg'
-				
-				teidän lähellä_2#[ni]
-				'you.gen near.1sg'
-				
-				heidän lähellä_2#[ni]
-				'they.gen near.1sg'
+						lähellä' minun
+						'near I.gen'
 
-& 3. Agreement and Ā-chains
+						lähellä'#[ni] minun
+						'near.1sg I.gen'
+					
+						kohti'#[ni] minua
+						'towards.1sg I.par'
+										
+						minua kohti'#[ni]
+						'I.par towards.1sg'
+						
+						kohti'#[ni] minun
+						'towards.1sg I.gen'
+						
+						minun kohti'#[ni]
+						'I.gen towards.1sg'
+											
+						minun lähellä'#[si]
+						'I.gen near.2sg'
+									
+						sinun lähellä'#[ni]
+						'you.gen near.1sg'
+						
+						hänen lähellä'#[ni]
+						'he.gen near.1sg'
+						
+						meidän lähellä'#[ni]
+						'we.gen near.1sg'
+						
+						teidän lähellä#[ni]
+						'you.gen near.1sg'
+						
+						heidän lähellä'#[ni]
+						'they.gen near.1sg'
+			
+			& 1.2.1 Finite clauses and the agreement paradigm
 
-	& 3.2 Adpositions
+				& Grammatical
+					
+					Pekka ihailee Merjaa
+					'Pekka.nom admire.prs.3sg Merja.par'
+					
+				& Ungrammatical (S-V agreement error)
 
-		& 3.2.1 Finnish
+					Pekka ihailen Merjaa
+					'Pekka.nom admire.prs.1sg Merja.par'
+					
+					Pekka ihailet Merjaa
+					'Pekka.nom admire.prs.2sg Merja.par'
+					
+					Pekka ihailemme Merjaa
+					'Pekka.nom admire.prs.1pl Merja.par'
+					
+					Pekka ihailette Merjaa
+					'Pekka.nom admire.prs.2pl Merja.par'
+					
+					Pekka ihailevat Merjaa
+					'Pekka.nom admire.prs.3pl Merja.par'
+			
+			& Noun phrases and the agreement paradigm
+			
+				& Grammatical
+				
+					minun kello#[ni] hävisi
+					'I.gen watch.1sg disappeared'
+					
+				& Ungrammatical (posessive-N agreement error)
+				
+					sinun kello#[ni] hävisi
+					'I.gen watch.1sg disappeared'
+					
+					hänen kello#[ni] hävisi
+					'I.gen watch.1sg disappeared'
+
+					meidän kello#[ni] hävisi
+					'I.gen watch.1sg disappeared'
+					
+					teidän kello#[ni] hävisi
+					'I.gen watch.1sg disappeared'
+					
+					heidän kello#[ni] hävisi
+					'I.gen watch.1sg disappeared'
+					
+			& Participle adjectives and the agreement paradigm
+			
+				& Grammatical
+				
+					se' minun tekemä#[ni] kello hävisi
+					'that I.gen made.1sg watch disappeared.'
+					
+				& Ungrammatical (possessive-participle agreement error)
+				
+					se' sinun tekemä#[ni] kello hävisi
+					'that you.sg.gen made.1sg watch disappeared.'
+					
+					se' hänen tekemä#[ni] kello hävisi
+					'that he.gen made.1sg watch disappeared.'
+				
+					se' meidän tekemä#[ni] kello hävisi
+					'that we.gen made.1sg watch disappeared.'
+					
+					se' teidän tekemä#[ni] kello hävisi
+					'that you.pl.gen made.1sg watch disappeared.'
+					
+					se' heidän tekemä#[ni] kello hävisi
+					'that they.gen made.1sg watch disappeared.'
+					
+& 2. Agreement and Ā-chains
+
+	& 2.1 Adpositions
+
+		& 2.1.1 Finnish
 				
 			& Grammatical
 										
-				Pekka nukkuu lähellä_1 minua
+				Pekka nukkuu lähellä minua
 				'Pekka.nom sleep.prs.3sg near I.par'
 				
-				Pekka nukkuu minua lähellä_1
+				Pekka nukkuu minua lähellä
 				'Pekka.nom sleep.prs.3sg I.par near'
 				
-				Pekka nukkuu minun lähellä_2#[ni]
+				Pekka nukkuu minun lähellä#[ni]
 				'Pekka.nom sleep.prs.3sg I.gen near.1sg'
 				
-				Pekka nukkuu lähellä_2#[ni]
+				Pekka nukkuu lähellä#[ni]
 				'Pekka.nom sleep.prs.3sg near.1sg'
 				
-				Pekka nukkuu lähellä_1
+				Pekka nukkuu lähellä
 				'Pekka.nom sleep.prs.3sg near'
 		
 				Seine virtaa kohti minua
@@ -382,7 +475,7 @@
 													
 			& Ungrammatical
 		
-				Pekka nukkuu lähellä_2#[ni] minun
+				Pekka nukkuu lähellä#[ni] minun
 				'Pekka.nom sleep.prs.3sg near.1sg I.gen'
 		
 				Seine virtaa lähellä minun
@@ -400,7 +493,7 @@
 				Seine virtaa minun kohti#[ni]
 				'Seine.nom flow.prs.3sg I.gen towards.1sg'
 			
-		& 3.2.2 ENGLISH
+		& 2.1.2 English
 		
 			& Grammatical
 			
@@ -414,15 +507,13 @@
 				near Paris John lives
 
 			& Ungrammatical, adpositions and agreement
-		
-			& Ungrammatical (no agreement)
-			
+					
 				John lives near#[3sg] Paris
 				John lives Paris near#[3sg]
 				near#[3sg] Paris John lives
 				Paris near#[3sg] John lives
 
-		& 3.2.3 ITALIAN
+		& 2.1.3 Italian
 	
 			& Grammatical
 
@@ -458,14 +549,14 @@
 				cose a vicino Giuseppe vive
 				'[[what at __] near __] Giuseppe live.prs.3sg'
 		
-		& 3.2.4 HUNGARIAN
+		& 2.1.4 Hungarian
 			
 			& Grammatical
 			
-				én mellett#[+em]
+				én' mellett#[+em]
 				'I.nom near.1sg'
 				
-				mi mellett#[+ünk]
+				mi' mellett#[+ünk]
 				'we.nom near.1pl'
 		
 				út nem vezet át az erdőn 
@@ -488,7 +579,7 @@
 				mellett#[+ünk] mi
 				'near.1pl we.nom'
 					
-		& 3.2.5 Estonian
+		& 2.1.5 Estonian
 	
 			& Grammatical
 		
@@ -506,11 +597,11 @@
 				suunas mis linna Seine voolab
 				'towards which city Seine.nom flow.prs.3sg'
 
-	& 3.3 Adverbials and nonfinite clauses
+	& 2.2 Adverbials and nonfinite clauses
 
-		& 3.3.1 FINNISH
+		& 2.2.1 Finnish
 		
-			& 3.3.1.1 ESSA-adverbial
+			& 2.2.1.1 ESSA-adverbial
 			
 				& Grammatical
 			
@@ -526,7 +617,7 @@
 				mitä_DP tehdessä#[An] Pekka lähti
 				'what.par do.essa/inf.3sg Pekka.nom leave.pst.3sg'
 
-			& 3.3.1.2  TUA-adverbials
+			& 2.2.1.2  TUA-adverbials
 			
 				& Grammatical
 			
@@ -542,7 +633,7 @@
 				mitä tehtyä#[An] Pekka lähti
 				'what.par do.tua/inf.3sg Pekka.nom leave.pst.3sg'
 			
-			& 3.3.1.3 KSE-adverbials
+			& 2.2.1.3 KSE-adverbials
 			
 				& Grammatical
 			
@@ -558,7 +649,7 @@
 				mitä tehdäkse#[An] Pekka lähti
 				'what.par do.kse/inf.3sg Pekka.nom leave.pst.3sg'
 			
-			& 3.3.1.4 MA-adverbial (one MA-infinitival among five in total)
+			& 2.2.1.4 MA-adverbial (one MA-infinitival among five in total)
 			
 				& Grammatical
 			
@@ -574,7 +665,7 @@
 				mitä_DP tekemättä Pekka lähti
 				'what.par do.ma/inf.3sg Pekka.nom leave.pst.3sg'
 		
-			& 3.3.1.5 Adverbials with extra fronted arguments, with or without pied-piping
+			& 2.2.1.5 Adverbials with extra fronted arguments, with or without pied-piping
 			
 				& Grammatical baseline sentences
 			
@@ -600,7 +691,7 @@
 					Pekka lähti minun taloa tehtyä
 					'Pekka.nom leave.pst.3sg I.gen house.par make.tua/inf'
 		
-		& 3.3.2 ENGLISH
+		& 2.2.2 English
 	
 			& Grammatical
 		
@@ -624,8 +715,9 @@
 				Seine reaches the ocean towards what by flowing
 				what by flowing towards Seine reaches the ocean 
 				towards what by flowing Seine reaches the ocean
-					
-		& 3.3.3 ITALIAN
+				what towards by flowing Seine reaches the ocean
+			
+		& 2.2.3 Italian
 	
 			& Grammatical
 		
@@ -640,25 +732,48 @@
 				cosa per aver vinto Giuseppe ha attirato attenzione 
 				'Who for having won Giuseppe has attracted attention.'
 			
-	& 3.4 Detminer phrases and noun phrases
+	& 2.3 Detminer phrases and noun phrases
 
-		& 3.4.1 FINNISH
+		& 2.3.1 Finnish
 		
 			& Grammatical
 		
+				kello hävisi
+				'watch.nom disappear.pst.3sg'
+				
 				Merjan_gen kello hävisi
 				'Merja.gen watch.nom disappear.pst.3sg'
 			
+				se Merjan_gen kello hävisi
+				'that/it Merja.gen watch.nom disappear.pst.3sg'
+			
 				minun kello#[ni] hävisi
 				'that/it I.gen watch.nom.1sg disappear.pst.3sg'
+				
+				sinun kello#[si] hävisi
+				'you.gen watch.nom.2sg disappear.pst.3sg'
 			
 				kenen kello hävisi
 				'who.gen watch.nom disappear.pst.3sg'
 			
 				se kenen kello hävisi
 				'that/it who.gen watch disappear.pst.3sg, only echo-reading'
+								
+			& Ungrammatical
+			
+				sinun kello#[ni] hävisi
+				'you.gen watch.nom.1sg disappear.pst.3sg'
+			
+				kello Merjan_gen hävisi
+				'watch.nom Merja.gen disappear.pst.3sg'
 				
-		& 3.4.2 HUNGARIAN
+				Merjan_gen se kello hävisi
+				'Merja.gen that/it.nom watch.nom disappear.pst.3sg'
+			
+				Merjan_gen kello se hävisi
+				'Merja.gen watch.nom that/it.nom disappear.pst.3sg'
+			
+		& 2.3.2 Hungarian
 		
 			& Grammatical
 			
@@ -675,10 +790,22 @@
 			
 				az mi_HU diákjaim
 				'the I.nom student.pl.1pl runs'
+		
+		& 2.3.3 English
+		
+			& Grammatical
 			
-	& 3.5. Participle adjectives
+				John admires he='s sister
+				
+				the sister admires him
+			
+				the little sister admires him
+			
+				John='s sister admires him
+			
+	& 2.4 Participle adjectives
 
-		& 4.1 FINNISH
+		& 2.4.1 Finnish
 			
 			& Grammatical
 		
@@ -690,35 +817,120 @@
 				
 				se' kenen tekemä kello hävisi
 				'it/that who.gen make.ma/a watch disappear.pst.3sg'
-	
-	& 3.6 Relative clause
-	
-		& See =>2.1.2.1.
-	
-	& 3.6. Finite clause
-
-		& 5.1 FINNISH
+				
+		& 2.4.2 Hungarian
 		
-			Pekka antoi kirjan Merjalle
-			'Pekka.nom give.pst.3sg book.acc Merja.all
+			& Grammatical
 			
-			Merjalle antoi Pekka kirjan
-			'Merja.all give.pst.3sg Pekka.nom book.acc'
+				a2 Mari által adott ajándék
+				'the [[Mari by] given] present'
+				
+				a2 Mari által Jánosnak adott ajándék
+				'the [[Mari by] John.dat given] present'
+				
+				a2 Jánosnak Mari által adott ajándék
+				'the John.dat Mary by given present'
+				
+				a2 ki által adott ajándék
+				'the [[who by] given] present'
+				
+				a2 ki által Jánosnak adott ajándék
+				'the [[who by] John.dat given] present'
+				
+				a2 Mari által kinek adott ajándék
+				'the [[Mary by] who.dat given] present'
 			
-			Merjalle antoi kirjan Pekka
-			'Merja.all give.pst.3sg book.acc Pekka.nom'
+			& Ungrammatical
 			
-			kirjan antoi Merjalle Pekka 
-			'book.acc give.pst.3sg Merja.all Pekka.nom'
+				a2 [kinek [Mary által] given] ajándék
+				'the who.dat Mary by given present'
+			
+	& 2.5. Finite clause
+
+		& 2.5.1 Finnish
+
+			& 2.5.1.1 Finnish word order variations
+			
+				Pekka antoi kirjan Merjalle
+				'Pekka.nom give.pst.3sg book.acc Merja.all
+				
+				Merjalle antoi Pekka kirjan
+				'Merja.all give.pst.3sg Pekka.nom book.acc'
+				
+				Merjalle antoi kirjan Pekka
+				'Merja.all give.pst.3sg book.acc Pekka.nom'
+				
+				kirjan antoi Merjalle Pekka 
+				'book.acc give.pst.3sg Merja.all Pekka.nom'
+				
+			& 2.5.1.2 Modal construction
+			
+				& Grammatical
+				
+					minun täytyy ihailla Merjaa
+					'I.gen must.0 admire.a/inf Merja.par'
 					
-& 4.2 Formalization
+					minun täytyy löytää hänet
+					'I.gen must.0 find.a/inf he.acc'
+					
+				& Ungrammatical
+				
+					Merjaa täytyy ihailla minun
+					'Merja.par must.0 admire.a/inf I.gen'
+					
+					hänet täytyy löytää minun
+					'he.acc must.0 find.a/inf I.gen'
+			
+			& 2.5.1.4 Finite cause plus an infinitival complement
+			
+				& Grammatical
+				
+					Pekka uskoi Merjan_gen lähtevän
+					'Pekka.nom believe.pst.3sg Merja.gen leave.va/inf'
+				
+				& Ungrammatical
+				
+					Pekka uskoi lähtevän Merjan_gen
+					'Pekka.nom believe.pst.3sg leave.va/inf Merja.gen'
+		
+		& 2.5.2 Hungarian
+		
+			& 2.5.2.1 The (multi)topic-predicate structure
+			
+				János#top keresi Marit
+				'Janos.nom seeks Mari.acc'
+				
+				Marit#top keresi János
+				'Janos.nom seeks Mari.acc'
+				
+				János#top Marit keresi
+				'Janos.nom Marit.acc seeks'
+		
+				János#top Marit#top keresi
+				'Janos.nom Marit.acc seeks'
+				
+				Marit#top János#top keresi
+				'Mari.acc Janos.nom seeks'
+				
+		& 2.5.3 English
+		
+			John admires Mary
+		
+& 3 Formalization
 
 	a_ b_ c_ d_	
+	
 	a_ b_ c_edge d_
+	
 	a_ b_ c_noedge d_
+	
 	a_ b_ c_phiedge#AGR d_
+	
 	a_2pl b_ c_phiedge#AGR d_
+	
 	a_op b_ c_edge d_
+	
+	a_ b* c_ d_
 
 	John admires Mary
 
@@ -747,9 +959,9 @@
 
 	does_C John admire Mary
 
-& 5. Extensions
+& 4. Extensions
 
-	& 5.1 Subjects in Finnish and English
+	& 4.1 Subjects in Finnish and English
 		
 		& Ungrammatical
 		
@@ -764,10 +976,13 @@
 		& Grammatical
 		
 			ihailen Merjaa
+			'admire.prs.1sg Merja.par'
 						
 			Merjaa ihailee Pekka
+			'Merja.par admire.pre.3sg Pekka.nom'
 			
 			Pekka sanoi että ihailee Merjaa
+			'Pekka.nom say.pst.3sg that admire.prs.3sg Merja.par'
 
 		& Full pro-drop (Italian)
 

@@ -44,7 +44,7 @@ class PlausibilityMetrics:
         log(f'Done.\n\t\tRanking results:')
         for i, (site, transfer) in enumerate(solutions, start=1):
             if nodes_not_in_active_working_memory and site == nodes_not_in_active_working_memory[0]:
-                log('\n\t\t\t\t--------------------------------Working memory boundary-------------------------------------------------')
+                log('\n\t\t\t\t-- Working memory boundary --')
             if transfer:
                 log(f'\n\t\t({i}) [{site}↓+ ' + str(w) + ']')
             else:
@@ -212,7 +212,6 @@ class PlausibilityMetrics:
                 if self.plausibility_conditions[key]['condition'](site):
                     log(self.plausibility_conditions[key]['log'] + f' for {site}...')
                     log('('+str(self.plausibility_conditions[key]['weight'])+') ')
-                    self.brain_model.consume_resources('Rank solution')
                     new_weight = new_weight + self.plausibility_conditions[key]['weight']
             calculated_weighted_site_list.append((site, new_weight))
 
@@ -259,19 +258,15 @@ class PlausibilityMetrics:
         for N in list_of_sites_in_active_working_memory:
             if self.does_not_accept_any_complementizers(N):
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
-                self.brain_model.consume_resources('Filter solution')
                 continue
             if N.is_complex() and self.left_branch_filter(N):
                 log(f'Reject {N} + {w} due to bad left branch...')
-                self.brain_model.consume_resources('Filter solution')
                 continue
             if self.word_breaking_filter(N, w):
                 log(f'Reject {N} + {w} because it breaks words...')
-                self.brain_model.consume_resources('Filter solution')
                 continue
             if self.impossible_sequence(N, w):
                  log(f'Reject {N} + {w} because the sequence is impossible...')
-                 self.brain_model.consume_resources('Filter solution')
                  continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------
@@ -281,7 +276,6 @@ class PlausibilityMetrics:
     def word_internal(self, ps, w):
         if ps.bottom().bottom_affix().internal:
             log(f'\n\t\tOne solution due to sinking.')
-            self.brain_model.consume_resources('Filter solution', 'sink')
             return True
 
     @knockout_working_memory

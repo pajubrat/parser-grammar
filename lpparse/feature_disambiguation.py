@@ -20,20 +20,19 @@ class FeatureProcessing():
         h.features.discard('?ARG')
         if self.selected_by_SEM_internal(h):
             log(f'{h} resolved into -ARG due to {h.selector()}...')
-            h.features.add('-E')
-            h.features.discard('E')
+            h.features.add('-EF:φ')
+            h.features.discard('EF:φ')
             h.features.add('-ARG')
         elif self.selected_by_SEM_external(h):
             log(f'{h} resolved into +ARG due to {h.selector()}...')
             h.features.add('ARG')
-            h.features.add('!E')
+            h.features.add('!EF:φ')
         else:   # Selected by neither
             log(f'{h} resolved to +ARG...')
             h.features.add('ARG')
             h.features.add('PHI:NUM:_')
             h.features.add('PHI:PER:_')
-            h.features.add('E')
-        self.controlling_parser_process.consume_resources("Feature Processing")
+            h.features.add('EF:φ')
 
     def selected_by_SEM_internal(self, h):
         return h.selector() and 'SEM:internal' in h.selector().features

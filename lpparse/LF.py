@@ -42,7 +42,6 @@ class LF:
             self.active_test_battery = special_test_battery
         else:
             self.active_test_battery = self.LF_legibility_tests
-        self.controlling_parsing_process.consume_resources("LF test", f'{ps}')
         return self.pass_LF_legibility(ps)
 
     def pass_LF_legibility(self, ps):
@@ -101,7 +100,7 @@ class LF:
         for f in sorted(for_lf_interface(h.features)):
             if f.startswith('!PROBE:'):
                 if not h.probe(h.features, f[7:]):
-                    log(f'{h} failed probe-goal test {f}. ')
+                    log(f'{h.illustrate()} failed probe-goal test {f}. ')
                     return False
             if f.startswith('-PROBE:'):
                 if h.probe(set(h.features), f[7:]):
@@ -278,7 +277,7 @@ class LF:
                         log(f'Shared edge violation at \'{head}\'. ')
                         return True  # Violation was detected (e.g., [P_sef DP])
                     if head.proper_complement().head().licensed_phrasal_specifier() and \
-                            head.proper_complement().head().licensed_phrasal_specifier().is_referential():
+                            head.proper_complement().head().licensed_phrasal_specifier().head().is_referential():
                         log(f'Shared edge violation at \'{head}\'. ')
                         return True  # Violation was detected (e.g., A/inf [DP VP])
 
@@ -340,9 +339,8 @@ class LF:
         log(f'Merging {constituent_from_MB} {direction} of \'{target}\'...')
         new_const = constituent_from_MB.copy_from_memory_buffer(self.controlling_parsing_process.babtize())
         target.merge_1(new_const, direction)
-        self.controlling_parsing_process.consume_resources("Move Phrase", f'{constituent_from_MB}')
+        self.controlling_parsing_process.consume_resources("Ā-Chain", f'{constituent_from_MB}')
         self.controlling_parsing_process.syntactic_working_memory.remove(constituent_from_MB)
-        self.controlling_parsing_process.consume_resources("A-bar Move Phrase")
         return new_const
 
     def try_LFmerge(self, node):

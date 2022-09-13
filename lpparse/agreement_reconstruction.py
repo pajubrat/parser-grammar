@@ -29,16 +29,13 @@ class AgreementReconstruction:
         # -----------------------------------------------------------------------------------------------------------#
 
     def Agree_1(self, probe):
-        self.brain_model.consume_resources("Agree")
-        self.brain_model.consume_resources("Phi")
-
         if probe.sister():
             goal, phi = self.Agree_1_from_sister(probe)
             if phi:
                 self.brain_model.narrow_semantics.predicate_argument_dependencies.append((probe, goal))
                 if 'ADV' in probe.features: # This applies to adverbial predicates in Finnish, must be some feature
                     probe.features.add('-pro')
-                if not {'D', 'φ', 'n'} & probe.features: # This is currently stipulation
+                if not {'D', 'φ', 'n'} & probe.features:  # This is currently stipulation
                     probe.features.add('BLOCK_NS')
                 for p in phi:
                     self.value(probe, goal, p, 'sister')

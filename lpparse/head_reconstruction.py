@@ -1,4 +1,4 @@
-from support import set_logging, log, get_number_of_operations, reset_number_of_operations, log_result, illu
+from support import log
 from lexical_interface import LexicalInterface
 
 class HeadMovement:
@@ -42,14 +42,14 @@ class HeadMovement:
                 break
             node.merge_1(affix, 'left')
             if self.reconstruction_is_successful(affix):
-                self.brain_model.consume_resources("Move Head")
+                self.brain_model.consume_resources("Head Chain")
                 return affix
             affix.remove()
         # --------------------------------------------------------------------------------#
 
         if not self.consider_right_merge(affix, node, starting_pos_node):
             starting_pos_node.merge_1(affix, 'left') # last resort
-            self.brain_model.consume_resources("Move Head")
+            self.brain_model.consume_resources("Head Chain")
 
         return affix
 
@@ -60,7 +60,7 @@ class HeadMovement:
     def consider_right_merge(self, affix, node, starting_pos_node):
         for const in [node, starting_pos_node]:
             if const.merge_1(affix, 'right') and self.reconstruction_is_successful(affix):
-                self.brain_model.consume_resources("Move Head")
+                self.brain_model.consume_resources("Head Chain")
                 return True
             affix.remove()
 

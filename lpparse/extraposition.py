@@ -21,7 +21,6 @@ class Extraposition:
 
     def try_extraposition(self, unselected_head):
         log(f'applied on \'{unselected_head}\'...')
-        self.brain_model.consume_resources("Extraposition")
         self.adjunct_constructor.externalize_structure(unselected_head)
 
     def last_resort_reconstruct(self, ps):
@@ -29,7 +28,6 @@ class Extraposition:
             log(f'Last resort extraposition on {ps.head().illustrate()}P...')
             target = next((node for node in ps.bottom().working_memory_path() if self.possible_extraposition_target(node)), None)
             if target:
-                self.brain_model.consume_resources("Extraposition")
                 self.adjunct_constructor.externalize_structure(target)
                 return True
             log(f'No suitable node found...')

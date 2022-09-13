@@ -1,6 +1,7 @@
 # This class defines basic linguistic competence, i.e. phrase structures and operations on phrase structure
 from collections import namedtuple
 from itertools import takewhile
+from support import log
 
 major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'MA/A', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 
@@ -8,11 +9,7 @@ Result = namedtuple('Result', 'match_occurred outcome')
 
 #class phrase structure
 class PhraseStructure:
-    resources = {"Asymmetric Merge": {"ms": 0, "n": 0},
-                 "Sink": {"ms": 0, "n": 0},
-                 "Tail test": {"ms": 0, "n": 0},
-                 "Case checking": {"ms": 0, "n": 0}
-                 }
+    resources = {"Merge-1": {"ms": 0, "n": 0}}
 
     def __init__(self, left_constituent=None, right_constituent=None):
         self.left_const = left_constituent
@@ -185,7 +182,7 @@ class PhraseStructure:
         return new_constituent.top()
 
     def asymmetric_merge(self, B, direction='right'):
-        self.consume_resources('Asymmetric Merge')
+        self.consume_resources('Merge-1')
         if direction == 'left':
             new_constituent = PhraseStructure(B, self)
         else:
@@ -219,7 +216,6 @@ class PhraseStructure:
             self.mother = None                      # detach H
 
     def sink(self, ps):
-        self.consume_resources('Sink')
         bottom_affix = self.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
         bottom_affix.active_in_syntactic_working_memory = True
         bottom_affix.right_const = ps
@@ -376,7 +372,6 @@ class PhraseStructure:
         negative_features = {f for f in self.get_tail_sets() if self.negative_features(f)}
         checked_positive_features = {tail_set for tail_set in positive_features if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
         checked_negative_features = {tail_set for tail_set in negative_features if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
-        self.consume_resources('Tail test')
         return positive_features == checked_positive_features and not checked_negative_features
 
     def strong_tail_condition(self, tail_set):
@@ -387,11 +382,10 @@ class PhraseStructure:
     def weak_tail_condition(self, tail_set):
         if '$NO_W' not in tail_set:
             if self.is_referential():
-                self.consume_resources('Case checking')
-            for m in (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list()):
-                test = m.match_features(tail_set)
-                if test.match_occurred:
-                    return test.outcome
+                for m in (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list()):
+                    test = m.match_features(tail_set)
+                    if test.match_occurred:
+                        return test.outcome
             if self.negative_features(tail_set):    # Unchecked negative features will pass the test
                 return False
 
