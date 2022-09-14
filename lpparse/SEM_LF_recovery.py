@@ -7,20 +7,6 @@ def semantically_relevant_phi(phi):
     return phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET'
 def get_semantically_relevant_phi(h):
     return {f for f in h.features if semantically_relevant_phi(f)}
-def check(F, G, unchecked):
-    if F == G:
-        unchecked.discard(G)
-    else:
-        if valued_check(F, G):
-            unchecked.discard(G)
-    return unchecked
-def valued_check(F, G):
-    if is_unvalued(G):
-        return residuum_identity(F, G)
-def is_unvalued(G):
-    return G[-1] == '_'
-def residuum_identity(F, G):
-    return F[:len(G[:-1])] == G[:-1]
 
 class LF_Recovery:
     def __init__(self, controlling_parsing_process):
@@ -64,31 +50,32 @@ class LF_Recovery:
             if not {'φ', 'T/prt', 'MODAL'} & probe.features:
                 # self.interpretation_failed = True
                 return None
-
         if list_of_antecedents:
             return list_of_antecedents[0]
+
+    def is_possible_antecedent(self, antecedent, probe):
+        def check(antecedent_feature, probe_feature):
+            # features are the same OR feature in the antecedent can value an unvalued feature in the probe
+            return antecedent_feature == probe_feature or \
+                   (probe_feature[-1] == '_' and antecedent_feature[:len(probe_feature[:-1])] == probe_feature[:-1])
+        phi_to_check = {phi for phi in probe.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER'}
+        if not antecedent.find_me_elsewhere:
+            return phi_to_check == {phi2 for phi1 in antecedent.head().get_valued_features()
+                                                   for phi2 in phi_to_check
+                                                   if check(phi1, phi2)}
 
     def recovery_termination(self, node):
         return 'SEM:external' not in node.features
 
-    def special_local_edge_antecedent_rule(self, const, ps, list_of_antecedents):
-        if ps.edge_specifiers() and const == next((const for const in ps.edge_specifiers()), None):
+    def special_local_edge_antecedent_rule(self, const, probe, list_of_antecedents):
+        if 'FIN' in probe.features and probe.edge_specifiers() and const == next((const for const in probe.edge_specifiers()), None):
             if not const.head().is_referential():
-                self.LF_recovery_results.append(f'{ps}(generic)')
+                self.LF_recovery_results.append(f'{probe}(generic)')
                 list_of_antecedents.append(const)
-                ps.features.add('PHI:DET:GEN')
+                probe.features.add('PHI:DET:GEN')
             else:
                 list_of_antecedents.append(const)
             return True
-
-    def is_possible_antecedent(self, antecedent, probe):
-        if not antecedent.find_me_elsewhere:
-            unchecked = get_semantically_relevant_phi(probe)
-            for F in antecedent.head().get_valued_features():
-                for G in get_semantically_relevant_phi(probe):
-                    unchecked = check(F, G, unchecked)
-            if not unchecked:
-                return True
 
     def interpret_antecedent(self, list_of_antecedents, probe, unvalued, semantic_interpretation_dict):
         self.LF_recovery_results = []
