@@ -82,13 +82,13 @@ class LF_Recovery:
             return True
 
     def is_possible_antecedent(self, antecedent, probe):
-        unchecked = get_semantically_relevant_phi(probe)
-        for F in antecedent.head().get_valued_features():
-            for G in get_semantically_relevant_phi(probe):
-                unchecked = check(F, G, unchecked)
-        log(f'Antecedent {antecedent} could not check {unchecked}')
-        if not unchecked:
-            return True
+        if not antecedent.find_me_elsewhere:
+            unchecked = get_semantically_relevant_phi(probe)
+            for F in antecedent.head().get_valued_features():
+                for G in get_semantically_relevant_phi(probe):
+                    unchecked = check(F, G, unchecked)
+            if not unchecked:
+                return True
 
     def interpret_antecedent(self, list_of_antecedents, probe, unvalued, semantic_interpretation_dict):
         self.LF_recovery_results = []

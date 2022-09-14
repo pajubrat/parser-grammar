@@ -128,7 +128,8 @@ class LinearPhaseParser:
             merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
 
             # ---------------------------------------------------------------------------------------------#
-            for site, transfer in merge_sites:
+            for site, transfer, address_label in merge_sites:
+                log(f'\n\t\t...{address_label}')
                 left_branch = self.target_left_branch(ps, site)
                 new_constituent = self.attach(left_branch, site, terminal_lexical_item, transfer)
                 self.put_rest_out_of_working_memory(merge_sites)
@@ -227,7 +228,7 @@ class LinearPhaseParser:
         return False
 
     def put_rest_out_of_working_memory(self, merge_sites):
-        for site, transfer in merge_sites:
+        for site, transfer, address_label in merge_sites:
             site.active_in_syntactic_working_memory = False
 
     def babtize(self):

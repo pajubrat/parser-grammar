@@ -26,10 +26,14 @@ class Extraposition:
     def last_resort_reconstruct(self, ps):
         if self.preconditions_for_extraposition(ps):
             log(f'Last resort extraposition on {ps.head().illustrate()}P...')
-            target = next((node for node in ps.bottom().working_memory_path() if self.possible_extraposition_target(node)), None)
-            if target:
-                self.adjunct_constructor.externalize_structure(target)
+            if self.possible_extraposition_target(ps.head()):
+                self.adjunct_constructor.externalize_structure(ps.head())
                 return True
+            else:
+                target = next((node for node in ps.bottom().working_memory_path() if self.possible_extraposition_target(node)), None)
+                if target:
+                    self.adjunct_constructor.externalize_structure(target)
+                    return True
             log(f'No suitable node found...')
 
     def preconditions_for_extraposition(self, ps):

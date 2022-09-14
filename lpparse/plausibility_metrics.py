@@ -17,6 +17,7 @@ class PlausibilityMetrics:
         self.not_word_specs = None
         self.rare_word_specs = None
         self.word_tail_set = None
+        self.address_label = 0
         self.left_branch_filter_test_battery = [self.brain_model.LF.selection_test,
                                                 self.brain_model.LF.semantic_complement_test,
                                                 self.brain_model.LF.probe_goal_test,
@@ -32,7 +33,7 @@ class PlausibilityMetrics:
 
         # Word internal components are always sank into the bottom word, no need to filter or rank
         elif self.word_internal(ps, w) and self.dispersion_filter_active():
-            solutions = [(ps.bottom(), True)]
+            solutions = [(ps.bottom(), True, self.generate_address_label())]
         else:
             nodes_in_active_working_memory, nodes_not_in_active_working_memory = self.in_active_working_memory(ps)
             log(f'\n\t\tFiltering and ranking merge sites...')
@@ -42,13 +43,13 @@ class PlausibilityMetrics:
             solutions = self.evaluate_transfer(all_merge_sites)
 
         log(f'Done.\n\t\tRanking results:')
-        for i, (site, transfer) in enumerate(solutions, start=1):
+        for i, (site, transfer, address_label) in enumerate(solutions, start=1):
             if nodes_not_in_active_working_memory and site == nodes_not_in_active_working_memory[0]:
                 log('\n\t\t\t\t-- Working memory boundary --')
             if transfer:
-                log(f'\n\t\t({i}) [{site}↓+ ' + str(w) + ']')
+                log(f'\n\t\t({i}) [{site}↓+ ' + str(w) + f'](=> {address_label})')
             else:
-                log(f'\n\t\t({i}) [{site} + ' + str(w) + ']')
+                log(f'\n\t\t({i}) [{site} + ' + str(w) + f'](=> {address_label})')
 
         return solutions
 
@@ -56,19 +57,23 @@ class PlausibilityMetrics:
         solutions = []
         for site in all_merge_sites:
             if site.is_complex():
-                solutions.append((site, True))
+                solutions.append((site, True, self.generate_address_label()))
             else:
                 if site.complex_head():
                     if {'φ', 'D', 'P', 'A', 'D/rel'} & site.features:
-                        solutions.append((site, True))
-                        solutions.append((site, False))
+                        solutions.append((site, True, self.generate_address_label()))
+                        solutions.append((site, False, self.generate_address_label()))
                     else:
-                        solutions.append((site, False))
-                        solutions.append((site, True))
+                        solutions.append((site, False, self.generate_address_label()))
+                        solutions.append((site, True, self.generate_address_label()))
                 else:
-                    solutions.append((site, True))
+                    solutions.append((site, True, self.generate_address_label()))
 
         return solutions
+
+    def generate_address_label(self):
+        self.address_label += 1
+        return '#' + hex(self.address_label) + '#'
 
     def dispersion_filter_active(self):
         if 'dispersion_filter' not in self.brain_model.local_file_system.settings:

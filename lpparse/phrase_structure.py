@@ -426,7 +426,7 @@ class PhraseStructure:
         return phi_consistency({f for f in self.features if f[:4] == 'PHI:'})
 
     def sustains_reference(self):
-        return self.phi_consistent_head() and {'PHI:NUM', 'PHI:PER'}.issubset({f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'})
+        return self.phi_consistent_head() and {'PHI:NUM', 'PHI:PER'} & {f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
 
     def extract_pro(self):
         if 'ARG' in self.features and self.phi_consistent_head():
