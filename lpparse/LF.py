@@ -291,7 +291,6 @@ class LF:
     def selection__negative_complement_violation(self, head, lexical_feature):
         if lexical_feature.startswith('-COMP:'):
             if head.is_left() and head.proper_complement() and lexical_feature[6:] in head.proper_complement().head().features:
-                log(f'{head.illustrate()} has wrong complement {head.proper_complement()}. ')
                 return True  # Violation was detected
 
     def selection__unselective_negative_complement_violation(self, head, lexical_feature):

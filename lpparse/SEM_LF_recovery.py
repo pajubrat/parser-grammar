@@ -124,12 +124,12 @@ class LF_Recovery:
             else:
                 arg_str = antecedent.illustrate()
         elif 'C' in antecedent.head().features or 'FORCE' in antecedent.head().features and antecedent.is_complex():
-            arg_str = 'C-proposition'
+            arg_str = 'C/prop'
         elif 'V' in antecedent.head().features and antecedent.is_complex():
-            arg_str = 'Agent of V-event'
+            arg_str = 'V(pro)'
         elif 'T' in antecedent.head().features:
             if antecedent.is_complex():
-                arg_str = 'Agent of T-event'
+                arg_str = 'T(pro))'
             else:
                 arg_str = f'{sorted(get_valued_phi_set(antecedent))}'
         else:
