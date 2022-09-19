@@ -126,11 +126,18 @@ class PhraseStructure:
         return self.right_const and not self.left_const
 
     def complex_head(self):
-        return self.is_primitive() and self.has_affix()
+        return self.has_affix()
 
-    def EF(self, parameter=''):
-        if not parameter:
-            return {f for f in self.features if 'EF:' in f and '-' not in f}
+    def EF(self):
+        return next((True for f in self.features if 'EF:' in f and '-' not in f), False)
+
+    def is_extended_subject(self):
+        def all_tail_features(probe):
+            return {feature for feature_set in probe.get_tail_sets() for feature in feature_set}
+        return {'EF:φ', '!EF:φ'} & all_tail_features(self.head()) or 'pro' in self.head().features
+
+    def has_tail_features(self):
+        return self.head().get_tail_sets()
 
     def get_affix_list(self):
         lst = [self]
@@ -370,8 +377,10 @@ class PhraseStructure:
     def tail_test(self):
         positive_features = {f for f in self.get_tail_sets() if self.positive_features(f)}
         negative_features = {f for f in self.get_tail_sets() if self.negative_features(f)}
-        checked_positive_features = {tail_set for tail_set in positive_features if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
-        checked_negative_features = {tail_set for tail_set in negative_features if self.strong_tail_condition(tail_set) or self.weak_tail_condition(tail_set)}
+        checked_positive_features = {tail_set for tail_set in positive_features if self.strong_tail_condition(tail_set) or
+                                     self.weak_tail_condition(tail_set)}
+        checked_negative_features = {tail_set for tail_set in negative_features if self.strong_tail_condition(tail_set) or
+                                     self.weak_tail_condition(tail_set)}
         return positive_features == checked_positive_features and not checked_negative_features
 
     def strong_tail_condition(self, tail_set):
@@ -447,7 +456,7 @@ class PhraseStructure:
     def get_phonological_string(self):
         def show_affix(self):
             i = ''
-            if self.is_primitive() and self.right_const:
+            if self.has_affix():
                 i = self.right_const.get_cats_string()
                 if self.right_const.right_const:
                     i = i + ',' + show_affix(self.right_const)

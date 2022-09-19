@@ -9,6 +9,7 @@ from pyglet.gl import GL_LINES, glBegin, glEnd, glVertex2f, gl, glLineWidth, glC
     glClear, GL_COLOR_BUFFER_BIT
 
 
+SCALING_FACTOR = 2
 case_features = {'NOM', 'ACC', 'PAR', 'GEN', 'ACC(0)', 'ACC(n)', 'ACC(t)', 'DAT', 'POSS'}
 
 
@@ -51,33 +52,25 @@ class Visualizer:
     def project_to_plane(self, ps):
         ps.x = 0
         ps.y = 0
-        self.determine_plane_topology(ps)
-        self.remove_overlaps(ps)
+        self.determine_plane_topology(ps)   # Projects the phrase structure into a simple abstract space
+        self.remove_overlaps(ps)            # Modifies the projection to remove overlapping texts and lines
+
+    def determine_plane_topology(self, ps):
+        if ps.left_const:
+            ps.left_const.x = ps.x - 1
+            ps.left_const.y = ps.y - 1
+            self.determine_plane_topology(ps.left_const)
+        if ps.right_const:
+            ps.right_const.x = ps.x + 1
+            ps.right_const.y = ps.y - 1
+            self.determine_plane_topology(ps.right_const)
 
     def remove_overlaps(self, ps):
         self.new_lateral_stretch_needed = True
         while self.new_lateral_stretch_needed:
             self.new_lateral_stretch_needed = False
-            self.lateral_stretch(ps)
+            self.lateral_stretch(ps)  # Stretches the structure laterally to avoid overlaps
 
-    def determine_plane_topology(self, ps):
-            if ps.left_const:
-                ps.left_const.x = ps.x - 1
-                ps.left_const.y = ps.y - 1
-                self.determine_plane_topology(ps.left_const)
-            if ps.right_const:
-                ps.right_const.x = ps.x + 1
-                ps.right_const.y = ps.y - 1
-                self.determine_plane_topology(ps.right_const)
-
-    def move_node(self, dx, dy, N):
-        N.x = N.x + dx
-        N.y = N.y + dy
-        if N.is_complex():
-            self.move_node(dx, dy, N.left_const)
-            self.move_node(dx, dy, N.right_const)
-
-    # Definition for lateral stretch for constituent N (should be the top node)
     def lateral_stretch(self, N):
         min_move = 0.5
         if N.is_primitive():
@@ -85,11 +78,19 @@ class Visualizer:
         else:
             k = self.check_lateral_conflicts(N)
             if k <= 0:
+                # Stretches the left and right node apart to avoid overlaps below
                 self.move_node(k*0.1-min_move, 0, N.left_const)
                 self.move_node(-k*0.1+min_move, 0, N.right_const)
                 self.new_lateral_stretch_needed = True
             self.lateral_stretch(N.left_const)
             self.lateral_stretch(N.right_const)
+
+    def move_node(self, dx, dy, N):
+        N.x = N.x + dx
+        N.y = N.y + dy
+        if N.is_complex():
+            self.move_node(dx, dy, N.left_const)
+            self.move_node(dx, dy, N.right_const)
 
     def check_lateral_conflicts(self, N):
         left_branch_coordinates = self.get_coordinate_set(N.left_const, set())
@@ -111,9 +112,10 @@ class Visualizer:
                 coordinate_set |= self.safety_window_coordinate_update(N)
         else:
             coordinate_set |= self.get_coordinate_set(N.left_const, coordinate_set)
-            coordinate_set |=self.get_coordinate_set(N.right_const, coordinate_set)
+            coordinate_set |= self.get_coordinate_set(N.right_const, coordinate_set)
         return coordinate_set
 
+    # This determines the safe space around text, based on the information in labels.
     def safety_window_coordinate_update(self, N):
         s = set()
         for K in N.get_affix_list():
@@ -139,15 +141,18 @@ class ProduceGraphicOutput(pyglet.window.Window):
                  visualizer):
 
         self.visualizer = visualizer
+
+        # Scaling function (larger = more detailed but also larger image)
+        self.scale = SCALING_FACTOR
+
         # Define the grid
-        self.x_grid = 50
-        self.y_grid = 75
+        self.x_grid = 50 * self.scale
+        self.y_grid = 75 * self.scale
         # offset
-        self.x_offset = 0
-        self.y_offset = 0
+        self.x_offset = 0  # Defined later
+        self.y_offset = 0  # Defined later
         # Define the margins
-        self.margins = 100
-        self.top_node_position = 0
+        self.margins = (100 * self.scale)
         self.file_identifier = self.visualizer.file_identifier
         self.mouse_position_x = 0
         self.mouse_position_y = 0
@@ -156,18 +161,22 @@ class ProduceGraphicOutput(pyglet.window.Window):
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
         if self.visualizer.show_words:
-            self.margins += 10
+            self.margins += (10 * self.scale)
         if self.visualizer.nolabels and not self.visualizer.show_words:
-            self.margins += 10
+            self.margins += (10 * self.scale)
         if self.visualizer.show_glosses:
-            self.margins += 10
+            self.margins += (10 * self.scale)
 
         width, height = self.determine_window_size(ps)
         if self.visualizer.stop_after_each_image:
             visible = True
         else:
             visible = True
-        pyglet.window.Window.__init__(self, visible=visible, width=int(width), height=int(height), resizable=True, caption=self.visualizer.input_sentence_string)
+        pyglet.window.Window.__init__(self, visible=visible,
+                                      width=int(width),
+                                      height=int(height),
+                                      resizable=False,
+                                      caption=self.visualizer.input_sentence_string)
         glClearColor(1, 1, 1, 1)
 
     def determine_window_size(self, ps):
@@ -176,7 +185,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         height = abs(depth * self.y_grid) + self.margins
         self.top_node_position = width / (abs(left) + abs(right)) * abs(left)
         self.x_offset = self.top_node_position  # Position of the highest node
-        self.y_offset = height - 30 # How much extra room above the highest node (for highest label)
+        self.y_offset = height - (30 * self.scale) # How much extra room above the highest node (for highest label)
         return width, height
 
     def on_key_press(self, symbol, modifiers):
@@ -251,8 +260,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
             Y1 = 0
 
         # Textual
-        head_text = self.determine_label_stack(ps)
-        self.draw_node_label(ps, X1, Y1, head_text)
+        head_text_stack = self.determine_label_stack(ps)
+        self.draw_node_label(ps, X1, Y1, head_text_stack)
         self.draw_chain_subscript(ps, X1, Y1)
         self.draw_original_sentence()
         self.draw_selection()
@@ -276,6 +285,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             circle.opacity = 2
             circle.draw()
 
+    # This functions generates a label stack (list of tuples) for a node
     def determine_label_stack(self, ps):
         # Internal function
         def get_case(h):
@@ -283,28 +293,64 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 if label in case_features:
                     return '[' + label + ']'
             return ''
+        def legitimate_label(ps):
+            phon = ps.get_phonological_string()
+            if '.' not in phon and len(phon) > 1:
+                return True
 
         # Main function
+        label_stack = []    # Label_stack is a list of tuples (string, type) where _type_ is a code for font style
+                            # and string is the label shown on the phrase structure tree
+        # Major labels
         if self.visualizer.nolabels:
             if ps.get_phonological_string():
-                label_stack = ps.get_phonological_string()
+                label_stack.append((ps.get_phonological_string(), 'PHONOLOGY'))
             else:
-                label_stack = 'X'
+                label_stack.append(('X', 'LABEL'))
         else:
-            label_stack = ps.get_cats_string()
+            label_stack.append((ps.get_cats_string(), 'LABEL'))
 
+        # Show words
         if self.visualizer.show_words and ps.is_primitive():
-            if ps.get_phonological_string() != ps.get_cats_string():
-                label_stack = label_stack + '§' + ps.get_phonological_string()
+            if ps.get_phonological_string() != ps.get_cats_string() and \
+                    legitimate_label(ps):
+                label_stack.append((ps.get_phonological_string(), 'PHONOLOGY'))
                 if self.visualizer.show_glosses:
-                    if ps.gloss() != ps.get_cats_string() and ps.gloss() != ps.get_phonological_string():
-                        label_stack = label_stack + '§' + '\'' + ps.gloss() + '\''
-
+                    if ps.gloss() != ps.get_cats_string() and \
+                            ps.gloss() != ps.get_phonological_string() and \
+                            legitimate_label(ps):
+                        label_stack.append((f"\'{ps.gloss()}\'", 'GLOSS'))
         if self.visualizer.case and ps.is_primitive():
             if get_case(ps):
-                label_stack = label_stack + '§' + str(get_case(ps))
-
+                label_stack.append(str(get_case(ps), 'CASE'))
         return label_stack
+
+    def draw_node_label(self, ps, X1, Y1, label_stack):
+        line_position = -15
+        if self.nearby(X1, Y1+12, self.mouse_position_x, self.mouse_position_y):
+            bold = True
+            self.mouse_over_node = ps
+        else:
+            bold = False
+
+        for i, (label, style) in enumerate(label_stack):
+            if style == 'LABEL':
+                font_size = 20 * self.scale
+            else:
+                font_size = 15 * self.scale
+            if style == 'PHONOLOGY':
+                italics_style = True
+            else:
+                italics_style = False
+            label_ = pyglet.text.Label(label,
+                                      font_name='Times New Roman',
+                                      font_size=font_size,
+                                      italic=italics_style,
+                                      x=X1, y=Y1 + 12 - line_position,
+                                      anchor_x='center', anchor_y='center',
+                                      color=(1, 1, 1, 255))
+            label_.draw()
+            line_position = line_position + (25 * self.scale)
 
     def draw_right_line(self, ps, X1, Y1):
         X2 = self.x_offset + ps.right_const.x * self.x_grid
@@ -314,8 +360,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
         glVertex2f(X2, Y2)
         # Adjuncts are marked by double line
         if ps.right_const.adjunct:
-            glVertex2f(X1 + 5, Y1)
-            glVertex2f(X2 + 5, Y2)
+            glVertex2f(X1 + (5 * self.scale), Y1)
+            glVertex2f(X2 + (5 * self.scale), Y2)
 
         glEnd()
 
@@ -332,15 +378,15 @@ class ProduceGraphicOutput(pyglet.window.Window):
         glVertex2f(X2, Y2)
         # Adjuncts are marked by double line
         if ps.left_const.adjunct:
-            glVertex2f(X1 - 5, Y1 + 1)
-            glVertex2f(X2 - 5, Y2 + 1)
+            glVertex2f(X1 - (5 * self.scale), Y1 + 1)
+            glVertex2f(X2 - (5 * self.scale), Y2 + 1)
         glEnd()
 
     def draw_vertical_line(self, ps, X1, Y1):
         X2 = X1
         Y2 = self.y_offset + ps.right_const.y * self.y_grid + (self.y_grid - self.x_grid)
         glBegin(GL_LINES)
-        glVertex2f(X1, Y1 - 25)
+        glVertex2f(X1, Y1 - (25 * self.scale))
         glVertex2f(X2, Y2)
         glEnd()
 
@@ -349,7 +395,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             label5 = pyglet.text.Label(self.visualizer.input_sentence_string,
                                        font_name='Times New Roman',
                                        font_size=20,
-                                       italic = True,
+                                       italic=True,
                                        x=0, y=0,
                                        anchor_x='left', anchor_y='bottom',
                                        color=(1, 1, 1, 255))
@@ -358,9 +404,12 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
     def draw_chain_subscript(self, ps, X1, Y1):
         if ps.identity:
-            label = pyglet.text.Label(ps.identity, font_name='Times New Roman', font_size=10, x=X1+18, y=Y1+5,
-                                          anchor_x='center', anchor_y='center',
-                                          color=(1, 1, 1, 255))
+            label = pyglet.text.Label(ps.identity, font_name='Times New Roman',
+                                      font_size=(10 * self.scale),
+                                      x=X1+(18 * self.scale),
+                                      y=Y1+(5 * self.scale),
+                                      anchor_x='center', anchor_y='center',
+                                      color=(1, 1, 1, 255))
             label.draw()
 
     def nearby(self, x1, y1, x2, y2):
@@ -368,30 +417,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
             return True
         else:
             return False
-
-    def draw_node_label(self, ps, X1, Y1, head_text):
-        label_stack = head_text.split('§')
-        line_position = 0
-        if self.nearby(X1, Y1+12, self.mouse_position_x, self.mouse_position_y):
-            bold = True
-            self.mouse_over_node = ps
-        else:
-            bold = False
-
-        for i, label in enumerate(label_stack):
-            if i == 0:
-                font_size = 20
-            else:
-                font_size = 15
-            label_ = pyglet.text.Label(label,
-                                      font_name='Times New Roman',
-                                      font_size=font_size,
-                                      bold=bold,
-                                      x=X1, y=Y1 + 12 - line_position,
-                                      anchor_x='center', anchor_y='center',
-                                      color=(1, 1, 1, 255))
-            line_position = line_position + 25
-            label_.draw()
 
     def get_tree_size(self, ps, left, right, depth):
         if ps.x < left:

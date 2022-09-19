@@ -1,5 +1,5 @@
-@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'subjects_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'logging': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'datatake_full': False, 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2022-09-14 12:16:54.506027
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'subjects_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'logging': True, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'datatake_full': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-09-19 19:06:23.053068
 @  Test sentences from language data working directory\study-14-subjects-and-agreement\subjects_corpus.txt.
 @  Logs into language data working directory\study-14-subjects-and-agreement\subjects_corpus_log.txt.
 @  Lexicon from language data working directory\lexicons\lexicon.txt.
@@ -9,7 +9,7 @@
 
 & 1 Background. Wh-movement and agreement in Finnish
 
-& 1.1 Secondary wh-chains with pied piping%
+& 1.1 Secondary wh-chains with pied piping
 
 & 1.1.1 Secondary Ā-chains and pied-piping, without operators
 
@@ -19,29 +19,29 @@
 
 & Grammatical
 
-1.  Pekka nukkuu lähellä Pariisia 
-	'Pekka.nom sleep.prs.3sg near Paris.par'
+1.  Pekka asuu lähellä Pariisia 
+	'Pekka.nom live.prs.3sg near Paris.par'
 
-2.  Pekka nukkuu Pariisia lähellä 
-	'Pekka.nom sleep.prs.3sg Paris.par near'
+2.  Pekka asuu Pariisia lähellä 
+	'Pekka.nom live.prs.3sg [Paris.par near __]'
 
-3.  lähellä Pariisia Pekka nukkuu 
-	'near Paris.par Pekka.nom sleep.prs.3sg
+3.  lähellä Pariisia Pekka asuu 
+	'[near Paris.par] Pekka.nom live.prs.3sg __'
 
-4.  Pariisia lähellä Pekka nukkuu 
-	'Paris.par near Pekka.nom sleep.prs.3sg'
+4.  Pariisia lähellä Pekka asuu 
+	'[Paris.par near __] Pekka.nom live.prs.3sg __'
 
 5.  Seine virtaa kohti Pariisia 
 	'Seine.nom flow.prs.3sg towards Paris.'
 
 6.  Seine virtaa Pariisia kohti 
-	'Seine.nom flow.prs.3sg Paris.par towards'
+	'Seine.nom flow.prs.3sg [Paris.par towards __]'
 
 7.  kohti Pariisia Seine virtaa 
-	'towards Paris.par Seine.nom flow.prs.3sg'
+	'[towards Paris.par __] Seine.nom flow.prs.3sg __'
 
 8.  Pariisia kohti Seine virtaa 
-	'Paris.par towards Seine.nom flow.prs.3sg'
+	'[Paris.par towards __] Seine.nom flow.prs.3sg __'
 
 & English
 
@@ -65,25 +65,25 @@
 	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards Paris.par'
 
 14.  Seine saavuttaa meren virtaamalla Pariisia kohti 
-	'Seine reaches ocean.acc flow.ma/inf Paris.par towards'
+	'Seine reaches ocean.acc flow.ma/inf [Paris.par towards __]'
 
 15.  Seine saavuttaa meren kohti Pariisia virtaamalla 
-	'Seine.nom reach.psr.3sg ocean.acc towards Paris.par flow.ma/inf'
+	'Seine.nom reach.psr.3sg ocean.acc [towards Paris.par] flow.ma/inf __'
 
 16.  Seine saavuttaa meren Pariisia kohti virtaamalla 
-	'Seine.nom reach.prs.3sg ocean.acc Paris.par towards flow.ma/inf'
+	'Seine.nom reach.prs.3sg ocean.acc [Paris.par towards __] flow.ma/inf __'
 
 17.  virtaamalla kohti Pariisia Seine saavuttaa meren 
-	'flow.ma/inf towards Paris.par Seine.nom reach.prs.3sg ocean.acc'
+	'[flow.ma/inf towards Paris.par] Seine.nom reach.prs.3sg ocean.acc __'
 
 18.  virtaamalla Pariisia kohti Seine saavuttaa meren 
-	'flow.ma/inf Paris.par towards Seine.nom reach.prs.3sg ocean.acc'
+	'[flow.ma/inf [Paris.par towards __]] Seine.nom reach.prs.3sg ocean.acc __'
 
 19.  kohti Pariisia virtaamalla Seine saavuttaa meren 
-	'towards Paris.par flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+	'[[towards Paris.par] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
 
 20.  Pariisia kohti virtaamalla Seine saavuttaa meren 
-	'Paris.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+	'[[Paris.par towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
 
 & 1.1.2 Secondary Ā-chains and pied-piping, with operators
 
@@ -94,10 +94,10 @@
 21.  John admires Mary 
 
 22.  ketä Pekka ihailee 
-	'who.par Pekka.nom admire.prs.3sg'
+	'who.par Pekka.nom admire.prs.3sg?'
 
 23.  mitä Pekka ihailee 
-	'what.par Pekka.nom admire.prs.3sg'
+	'what.par Pekka.nom admire.prs.3sg?'
 
 24.  Pekka ihailee ketä 
 	'Pekka.nom admire.prs.3sg who.par'
@@ -106,7 +106,7 @@
 	'Pekka.nom admire.prs.3sg what.par'
 
 26.  kuka ihailee Merjaa 
-	'who.nom admire.prs.3sg Merja.par'
+	'who.nom admire.prs.3sg Merja.par?'
 
 27.  who John admires 
 
@@ -118,29 +118,29 @@
 
 & Grammatical
 
-30.  Pekka nukkuu lähellä mitä 
-	'Pekka.nom sleep.prs.3sg near what.par'
+30.  Pekka asuu lähellä mitä 
+	'Pekka.nom live.prs.3sg near what.par'
 
-31.  Pekka nukkuu mitä lähellä 
-	'Pekka.nom sleep.prs.3sg what.par near'
+31.  Pekka asuu mitä lähellä 
+	'Pekka.nom live.prs.3sg [what.par near __]'
 
-32.  lähellä mitä Pekka nukkuu 
-	'near what.par Pekka.nom sleep.prs.3sg
+32.  lähellä mitä Pekka asuu 
+	'[near what.par] Pekka.nom live.prs.3sg __'
 
-33.  mitä lähellä Pekka nukkuu 
-	'what.par near Pekka.nom sleep.prs.3sg'
+33.  mitä lähellä Pekka asuu 
+	'[what.par near __] Pekka.nom live.prs.3sg __?'
 
 34.  Seine virtaa kohti mitä 
 	'Seine.nom flow.prs.3sg towards what.par.'
 
 35.  Seine virtaa mitä kohti 
-	'Seine.nom flow.prs.3sg what.par towards'
+	'Seine.nom flow.prs.3sg [what.par towards __]'
 
 36.  kohti mitä Seine virtaa 
-	'towards what.par Seine.nom flow.prs.3sg'
+	'[towards what.par] Seine.nom flow.prs.3sg __'
 
 37.  mitä kohti Seine virtaa 
-	'what.par towards Seine.nom flow.prs.3sg'
+	'[what.par towards __] Seine.nom flow.prs.3sg __?'
 
 & English
 
@@ -164,25 +164,25 @@
 	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards what.par'
 
 43.  Seine saavuttaa meren virtaamalla mitä kohti 
-	'Seine reaches ocean.acc flow.ma/inf what.par towards'
+	'Seine reaches ocean.acc flow.ma/inf [what.par towards __]'
 
 44.  Seine saavuttaa meren kohti mitä virtaamalla 
-	'Seine.nom reach.psr.3sg ocean.acc towards what.par flow.ma/inf'
+	'Seine.nom reach.psr.3sg ocean.acc [towards what.par] flow.ma/inf __'
 
 45.  Seine saavuttaa meren mitä kohti virtaamalla 
-	'Seine.nom reach.prs.3sg ocean.acc what.par towards flow.ma/inf'
+	'Seine.nom reach.prs.3sg ocean.acc [what.par towards __] flow.ma/inf __'
 
 46.  virtaamalla kohti mitä Seine saavuttaa meren 
-	'flow.ma/inf towards what.par Seine.nom reach.prs.3sg ocean.acc'
+	'[flow.ma/inf towards what.par] Seine.nom reach.prs.3sg ocean.acc __'
 
 47.  virtaamalla mitä kohti Seine saavuttaa meren 
-	'flow.ma/inf what.par towards Seine.nom reach.prs.3sg ocean.acc'
+	'[flow.ma/inf [what.par towards __]] Seine.nom reach.prs.3sg ocean.acc __'
 
 48.  kohti mitä virtaamalla Seine saavuttaa meren 
-	'towards what.par flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+	'[[towards what.par] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
 
 49.  mitä_DP kohti virtaamalla Seine saavuttaa meren 
-	'what.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+	'[[what.par towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
 
 & Relative clauses
 
@@ -194,7 +194,7 @@
 	'[man.nom [who leave.prs.3sg]] leave.pst.3sg'
 
 51.  mies joka lähtee ihailee Merjaa 
-	'man.nom who leave.prs.3sg admire.prs.3sg Merja.par'
+	'[man.nom [who leave.prs.3sg]] admire.prs.3sg Merja.par'
 
 52.  mies joka ihailee Merjaa lähti 
 	'[man.nom [who.nom admire.prs.3sg Merja.par]] leave.pst.3sg'
@@ -203,10 +203,10 @@
 	'[man [who admire.prs.3sg Merja.par]] admire.prs.3sg Jukka.par'
 
 54.  mies jota Merja ihailee lähti 
-	'[man.nom [who.par Merja.nom admire.prs.3sg __]] leave.pst.3sg'
+	'[man.nom [who.par(1) Merja.nom admire.prs.3sg __(1)]] leave.pst.3sg'
 
 55.  mies jota Merja ihailee ihailee Jukkaa 
-	'man who Merja.nom admire.prs.3sg admire.prs.3sg Jukka.par'
+	'[man [who(1) Merja.nom admire.prs.3sg __(1)]] admire.prs.3sg Jukka.par'
 
 & Pied-piping in relativization
 
@@ -256,61 +256,61 @@
 
 & Ungrammatical (weak yes/no operator in situ position)
 
-70. *Pekka nukkuu lähellä Pariisia#[kO] 
-	'Pekka.nom sleep.prs.3sg near what.par'
+70. *Pekka asuu lähellä Pariisia#[kO] 
+	'Pekka.nom live.prs.3sg near Paris.par.Q'
 
-71. *Pekka nukkuu Pariisia#[kO] lähellä 
-	'Pekka.nom sleep.prs.3sg what.par near'
+71. *Pekka asuu Pariisia#[kO] lähellä 
+	'Pekka.nom live.prs.3sg [Paris.par.Q near __]'
 
 72. *Seine virtaa kohti Pariisia#[kO] 
 	'Seine.nom flow.prs.3sg towards Paris.par.Q'
 
 73. *Seine virtaa Pariisia#[kO] kohti 
-	'Seine.nom flow.prs.3sg Paris.par.Q towards'
+	'Seine.nom flow.prs.3sg [Paris.par.Q towards __]'
 
 & Grammatical (yes/no operator in scope position)
 
-74.  lähellä Pariisia#[kO] Pekka nukkuu 
-	'near what.par Pekka.nom sleep.prs.3sg
+74.  lähellä Pariisia#[kO] Pekka asuu 
+	'[near Paris.par.Q] Pekka.nom live.prs.3sg __?'
 
-75.  Pariisia#[kO] lähellä Pekka nukkuu 
-	'what.par near Pekka.nom sleep.prs.3sg'
+75.  Pariisia#[kO] lähellä Pekka asuu 
+	'[Paris.par.Q near __] Pekka.nom live.prs.3sg __?'
 
 76.  Pariisia#[kO] kohti Seine virtaa 
-	'Paris.par.Q towards Seine.nom flow.prs.3sg'
+	'[Paris.par.Q towards __] Seine.nom flow.prs.3sg __?'
 
 77.  kohti Pariisia#[kO] Seine virtaa 
-	'towards Paris.par.Q Seine.nom flow.prs.3sg'
+	'[owards Paris.par.Q] Seine.nom flow.prs.3sg __?'
 
 & Adpositions within adverbials (Finnish)
 
 & Ungrammatical (in situ yes/no operator)
 
 78. *Seine saavuttaa meren virtaamalla kohti Pariisia#[kO] 
-	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards what.par'
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards Paris.par.Q'
 
 79. *Seine saavuttaa meren virtaamalla Pariisia#[kO] kohti 
-	'Seine reaches ocean.acc flow.ma/inf what.par towards'
+	'Seine reaches ocean.acc flow.ma/inf [Paris.par.Q towards __]'
 
 80. *Seine saavuttaa meren kohti Pariisia#[kO] virtaamalla 
-	'Seine.nom reach.psr.3sg ocean.acc towards what.par flow.ma/inf'
+	'Seine.nom reach.psr.3sg ocean.acc [towards Paris.par.Q] flow.ma/inf __'
 
 81. *Seine saavuttaa meren Pariisia#[kO] kohti virtaamalla 
-	'Seine.nom reach.prs.3sg ocean.acc what.par towards flow.ma/inf'
+	'Seine.nom reach.prs.3sg ocean.acc [Paris.par.Q towards __] flow.ma/inf __'
 
 & Grammatical (yes/no operator in scope position)
 
 82.  virtaamalla kohti Pariisia#[kO] Seine saavuttaa meren 
-	'flow.ma/inf towards what.par Seine.nom reach.prs.3sg ocean.acc'
+	'[flow.ma/inf towards Paris.par.Q] Seine.nom reach.prs.3sg ocean.acc __?'
 
 83.  virtaamalla Pariisia#[kO] kohti Seine saavuttaa meren 
-	'flow.ma/inf what.par towards Seine.nom reach.prs.3sg ocean.acc'
+	'[flow.ma/inf [Paris.par.Q towards __]] Seine.nom reach.prs.3sg ocean.acc __?'
 
 84.  kohti Pariisia#[kO] virtaamalla Seine saavuttaa meren 
-	'towards what.par flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+	'[[towards Paris.par.Q] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
 
 85.  Pariisia#[kO] kohti virtaamalla Seine saavuttaa meren 
-	'what.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+	'[[Paris.par.Q towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
 
 & 1.2 Agreement in Finnish
 
@@ -322,7 +322,7 @@
 	'near I.par'
 
 87.  minua lähellä' 
-	'I.par near'
+	'I.par near __'
 
 88.  minun lähellä'#[ni] 
 	'I.gen near.1sg'
@@ -331,7 +331,7 @@
 	'towards I.par'
 
 90.  minua kohti' 
-	'I.par towards'
+	'I.par towards __'
 
 & Adpositions and the agreement paradigm
 
@@ -473,31 +473,31 @@
 
 & Grammatical
 
-127.  Pekka nukkuu lähellä minua 
-	'Pekka.nom sleep.prs.3sg near I.par'
+127.  Pekka asuu lähellä minua 
+	'Pekka.nom live.prs.3sg near I.par'
 
-128.  Pekka nukkuu minua lähellä 
-	'Pekka.nom sleep.prs.3sg I.par near'
+128.  Pekka asuu minua lähellä 
+	'Pekka.nom live.prs.3sg [I.par near __]'
 
-129.  Pekka nukkuu minun lähellä#[ni] 
-	'Pekka.nom sleep.prs.3sg I.gen near.1sg'
+129.  Pekka asuu minun lähellä#[ni] 
+	'Pekka.nom live.prs.3sg I.gen near.1sg'
 
-130.  Pekka nukkuu lähellä#[ni] 
-	'Pekka.nom sleep.prs.3sg near.1sg'
+130.  Pekka asuu lähellä#[ni] 
+	'Pekka.nom live.prs.3sg near.1sg'
 
-131.  Pekka nukkuu lähellä 
-	'Pekka.nom sleep.prs.3sg near'
+131.  Pekka asuu lähellä 
+	'Pekka.nom live.prs.3sg near'
 
 132.  Seine virtaa kohti minua 
 	'Seine.nom flow.prs.3sg towards I.par'
 
 133.  Seine virtaa minua kohti 
-	'Seine.nom flow.prs.3sg I.par towards'
+	'Seine.nom flow.prs.3sg [I.par towards __]'
 
 & Ungrammatical
 
-134. *Pekka nukkuu lähellä#[ni] minun 
-	'Pekka.nom sleep.prs.3sg near.1sg I.gen'
+134. *Pekka asuu lähellä#[ni] minun 
+	'Pekka.nom live.prs.3sg near.1sg I.gen'
 
 135. *Seine virtaa lähellä minun 
 	'Seine.nom flow.prs.3sg near I.gen'
@@ -612,7 +612,7 @@
 	'Seine.nom flow.prs.3sg [Paris.gen towards __]'
 
 167.  mis linna suunas Seine voolab 
-	'which city near Seine flows?'
+	'[which city near __] Seine flows?'
 
 & Ungrammatical
 
@@ -620,7 +620,7 @@
 	'Seine.nom flow.prs.3sg [towards Paris.gen]'
 
 169. *suunas mis linna Seine voolab 
-	'towards which city Seine.nom flow.prs.3sg'
+	'[towards which city] Seine.nom flow.prs.3sg'
 
 & 2.2 Adverbials and nonfinite clauses
 
@@ -634,13 +634,13 @@
 	'Pekka.nom leave.pst.3sg do.essa/inf.3sg house.par'
 
 171.  Pekka lähti taloa tehdessä#[An] 
-	'Pekka.nom leave.pst.3sg house.par do.essa/inf.3sg'
+	'Pekka.nom leave.pst.3sg [house.par do.essa/inf.3sg __]'
 
 172.  Pekka lähti tehdessä#[An] mitä 
 	'Pekka.nom leave.pst.3sg do.essa/inf.3sg what.par'
 
 173.  mitä_DP tehdessä#[An] Pekka lähti 
-	'what.par do.essa/inf.3sg Pekka.nom leave.pst.3sg'
+	'[what.par do.essa/inf.3sg __] Pekka.nom leave.pst.3sg __'
 
 & 2.2.1.2 TUA-adverbials
 
@@ -650,13 +650,13 @@
 	'Pekka.nom leave.pst.3sg do.tua/inf.3sg house.par'
 
 175.  Pekka lähti taloa tehtyä#[An] 
-	'Pekka.nom leave.pst.3sg house.par do.tua/inf.3sg'
+	'Pekka.nom leave.pst.3sg [house.par do.tua/inf.3sg __]'
 
 176.  Pekka lähti tehtyä#[An] mitä 
 	'Pekka.nom leave.pst.3sg do.tua/inf.3sg what.par'
 
 177.  mitä tehtyä#[An] Pekka lähti 
-	'what.par do.tua/inf.3sg Pekka.nom leave.pst.3sg'
+	'[what.par do.tua/inf.3sg __] Pekka.nom leave.pst.3sg __'
 
 & 2.2.1.3 KSE-adverbials
 
@@ -666,13 +666,13 @@
 	'Pekka.nom leave.pst.3sg do.kse/inf.3sg house.par'
 
 179.  Pekka lähti taloa tehdäkse#[An] 
-	'Pekka.nom leave.pst.3sg do.kse/inf.3sg house.par'
+	'Pekka.nom leave.pst.3sg [house.par do.kse/inf.3sg __'
 
 180.  Pekka lähti tehdäkse#[An] mitä 
 	'Pekka.nom leave.pst.3sg do.kse/inf.3sg what.par'
 
 181.  mitä tehdäkse#[An] Pekka lähti 
-	'what.par do.kse/inf.3sg Pekka.nom leave.pst.3sg'
+	'[what.par do.kse/inf.3sg __] Pekka.nom leave.pst.3sg __'
 
 & 2.2.1.4 MA-adverbial (one MA-infinitival among five in total)
 
@@ -682,13 +682,13 @@
 	'Pekka.nom leave.pst.3sg do.ma/inf.3sg house.par'
 
 183.  Pekka lähti taloa tekemättä 
-	'Pekka.nom leave.pst.3sg house.par do.ma/inf.3sg'
+	'Pekka.nom leave.pst.3sg [house.par do.ma/inf.3sg __]'
 
 184.  Pekka lähti tekemättä mitä 
 	'Pekka.nom leave.pst.3sg do.ma/inf.3sg what.par'
 
 185.  mitä_DP tekemättä Pekka lähti 
-	'what.par do.ma/inf.3sg Pekka.nom leave.pst.3sg'
+	'[what.par do.ma/inf.3sg __] Pekka.nom leave.pst.3sg __'
 
 & 2.2.1.5 Adverbials with extra fronted arguments, with or without pied-piping
 
@@ -698,15 +698,15 @@
 	'Pekka.nom leave.pst.3sg I.gen make.tua/inf house.par'
 
 187.  minun tehtyä taloa Pekka lähti 
-	'I.gen make.tua/inf house.par Pekka.nom leave.pst.3sg'
+	'[I.gen make.tua/inf house.par] Pekka.nom leave.pst.3sg __'
 
 188.  minun tehtyä mitä Pekka lähti 
-	'I.gen make.tua/inf what.par Pekka.nom leave.pst.3sg'
+	'[I.gen make.tua/inf what.par] Pekka.nom leave.pst.3sg __'
 
 & Ungrammatical, pied-piping when independent subject present
 
 189. *mitä minun tehtyä Pekka lähti 
-	'what.par I.gen make.tua/inf Pekka.nom leave.pst.3sg'
+	'[what.par(1) I.gen make.tua/inf __(1)] Pekka.nom leave.pst.3sg __'
 
 & Ungrammatical, fronting two arguments
 
@@ -714,7 +714,7 @@
 	'Pekka.nom leave.pst.3sg house.par I.gen make.tua/inf'
 
 191. *Pekka lähti minun taloa tehtyä 
-	'Pekka.nom leave.pst.3sg I.gen house.par make.tua/inf'
+	'Pekka.nom leave.pst.3sg [I.gen house.par(1) make.tua/inf __(1)]'
 
 & 2.2.2 English
 
@@ -760,12 +760,12 @@
 	'Giuseppe.nom has attracted attention for having won Luisa'
 
 207.  per aver vinto cosa Giuseppe ha attirato attenzione 
-	'For having won who Giuseppe has attracted attention'
+	'[For having won who] Giuseppe has attracted attention __?'
 
 & Ungrammatical
 
 208. *cosa per aver vinto Giuseppe ha attirato attenzione 
-	'Who for having won Giuseppe has attracted attention.'
+	'[Who for having won __] Giuseppe has attracted attention __?'
 
 & 2.3 Detminer phrases and noun phrases
 
@@ -800,10 +800,10 @@
 	'you.gen watch.nom.1sg disappear.pst.3sg'
 
 217. *kello Merjan_gen hävisi 
-	'watch.nom Merja.gen disappear.pst.3sg'
+	'[__(1) watch.nom Merja.gen(1)] disappear.pst.3sg'
 
 218. *Merjan_gen se kello hävisi 
-	'Merja.gen that/it.nom watch.nom disappear.pst.3sg'
+	'[Merja.gen that/it.nom __ watch.nom] disappear.pst.3sg'
 
 219. *Merjan_gen kello se hävisi 
 	'Merja.gen watch.nom that/it.nom disappear.pst.3sg'
@@ -812,14 +812,14 @@
 
 & Grammatical
 
-220.  az én diákjaim vezet 
+220.  az én' diákjaim vezet 
 	'the my student.pl.1sg runs'
 
 221.  kinek a2 könyve vezet 
 	'who.DAT the book runs'
 
 222.  a ki könyve vezet 
-	'the who student leads runs (only echo-interpretation)'
+	'the who student leads (only echo-interpretation)'
 
 & Ungrammatical (agreement violation)
 
@@ -845,40 +845,40 @@
 & Grammatical
 
 228.  se' minun tekemä#[ni] kello hävisi 
-	'it/that I.gen make.ma/a.1sg watch disappear.pst.3sg'
+	'it/that [I.gen make.ma/a.1sg] watch disappear.pst.3sg'
 
 229.  kenen tekemä kello hävisi 
-	'who.gen make.ma/a watch disappear.pst.3sg'
+	'[who.gen make.ma/a] watch disappear.pst.3sg'
 
 230.  se' kenen tekemä kello hävisi 
-	'it/that who.gen make.ma/a watch disappear.pst.3sg'
+	'it/that [who.gen make.ma/a] watch disappear.pst.3sg'
 
 & 2.4.2 Hungarian
 
 & Grammatical
 
 231.  a2 Mari által adott ajándék 
-	'the [[Mari by] given] present'
+	'the [[Mari by __] given] present'
 
 232.  a2 Mari által Jánosnak adott ajándék 
-	'the [[Mari by] John.dat given] present'
+	'the [[Mari by __] John.dat given] present'
 
 233.  a2 Jánosnak Mari által adott ajándék 
-	'the John.dat Mary by given present'
+	'the [John.dat [Mary by __] given] present'
 
 234.  a2 ki által adott ajándék 
-	'the [[who by] given] present'
+	'the [[who by __] given] present'
 
 235.  a2 ki által Jánosnak adott ajándék 
-	'the [[who by] John.dat given] present'
+	'the [[who by __] John.dat given] present'
 
 236.  a2 Mari által kinek adott ajándék 
-	'the [[Mary by] who.dat given] present'
+	'the [[Mary by __] who.dat given] present'
 
 & Ungrammatical
 
-237. *a2 [kinek [Mary által] given] ajándék 
-	'the who.dat Mary by given present'
+237. *a2 kinek Mari által adott ajándék 
+	'the [who.dat [Mary by __] given] present'
 
 & 2.5. Finite clause
 
@@ -890,13 +890,13 @@
 	'Pekka.nom give.pst.3sg book.acc Merja.all
 
 239.  Merjalle antoi Pekka kirjan 
-	'Merja.all give.pst.3sg Pekka.nom book.acc'
+	'Merja.all give.pst.3sg Pekka.nom book.acc __'
 
 240.  Merjalle antoi kirjan Pekka 
-	'Merja.all give.pst.3sg book.acc Pekka.nom'
+	'Merja.all(2) give.pst.3sg __(1) book.acc Pekka.nom(1) __(2)'
 
 241.  kirjan antoi Merjalle Pekka 
-	'book.acc give.pst.3sg Merja.all Pekka.nom'
+	'book.acc(1) give.pst.3sg __(1) Merja.all Pekka.nom'
 
 & 2.5.1.2 Modal construction
 
@@ -926,7 +926,7 @@
 & Ungrammatical
 
 247. *Pekka uskoi lähtevän Merjan_gen 
-	'Pekka.nom believe.pst.3sg leave.va/inf Merja.gen'
+	'Pekka.nom believe.pst.3sg __(1) leave.va/inf Merja.gen(1)'
 
 & 2.5.2 Hungarian
 
@@ -978,13 +978,13 @@
 264.  who does John admire 
 
 265.  mitä_DP kohti Seine virtaa 
-	'what.par towards Seine.nom flow.prs.3sg'
+	'[what.par towards __] Seine.nom flow.prs.3sg __?'
 
 266.  kohti mitä_DP Seine virtaa 
-	'towards what.par Seine.nom flow.prs.3sg'
+	'[towards what.par] Seine.nom flow.prs.3sg __'
 
 267.  mitä_DP kohti virtaamalla Seine saavuttaa meren 
-	'what.par towards flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+	'[[what.par towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
 
 268.  who admires Mary 
 

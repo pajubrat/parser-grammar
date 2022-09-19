@@ -8,7 +8,7 @@ C		:: -SPEC:MA/A
 T/fin 	:: ARG EF:φ T FIN !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:INF -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
 T/prt 	:: ARG FIN T !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin SPEC:φ -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V
 T 		:: ARG TAM COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V SPEC:φ SPEC:D -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
-Neg/fin :: ARG !EF:* FIN NEG COMP:T/prt -SPEC:T -COMP:T/fin -SPEC:T/fin %SPEC:INF SEM:internal
+Neg/fin :: ARG EF:φ FIN NEG COMP:T/prt -SPEC:T -COMP:T/fin -SPEC:T/fin %SPEC:INF SEM:internal
 v   	:: ARG -PHI ASP !COMP:* COMP:V -SPEC:v -SPEC:T/fin !PROBE:V SPEC:φ -SPEC:N
 D   	:: φ -ARG !COMP:* -COMP:D -COMP:P -COMP:T/fin -SPEC:MA/lla -SPEC:Neg -SPEC:P -SPEC:C -SPEC:INF -SPEC:V COMP:n COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 D/rel	:: φ D -ARG OP OP:REL COMP:* -COMP:C/fin -COMP:φ -SPEC:MA/lla -SPEC:P -SPEC:C -SPEC:INF -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
@@ -26,7 +26,7 @@ QN		:: φ COMP:φ COMP:N COMP:NUM
 φ		:: COMP:N -SPEC:T -SPEC:P COMP:D/rel
 Neg		:: -SPEC:N SPEC:D
 
-#Universdal operator rules
+#Universal operator rules
 OP				:: -COMP:MA/A
 OP:WH			::	DIS:WH OP
 WH  			:: -COMP:C/fin -COMP:ADV
@@ -43,21 +43,41 @@ OP:Q			:: DIS:WH OP
 CLASS/TR 		:: !COMP:* -COMP:P COMP:φ -COMP:ADV
 CLASS/INTR 		:: -COMP:φ SPEC:φ -COMP:INF
 CLASS/DITR 		:: !COMP:* SPEC:φ COMP:φ
-
 PHI_N			:: -COMP:*
 
-#CP-complementary (assume opposite for V2 languages)
-C/fin PHON	:: -EF:*
-
 # Universal rules related to the edge feature
--EF:φ		:: -PHI
 !EF:φ		:: EF:φ
 
 # Nouns and nounlike elements
 R:REF:PROPER_NAME :: -COMP:INF
-N LANG:FI	:: -COMP:T/prt
 
-# English
+#
+# Language specific rules
+#
+# ==> FINNISH
+# CP-complementary (assume opposite for V2 languages)
+C/fin PHON	:: -EF:*
+
+# Finnish edge behavior
+P LANG:FI		::	EF:* ADV
+ADV LANG:FI		::	EF:*
+A LANG:FI		::	EF:*
+T/fin LANG:FI	:: !EF:φ
+φ LANG:FI		::	EF:φ
+
+# Other rules
+N LANG:FI	:: -COMP:T/prt
+A LANG:FI 	::  -adjoinable
+
+# Finnish specific operator features
+OP:WH LANG:FI	:: OP OP*
+OP:REL LANG:FI	:: OP OP* OVERT_SCOPE
+OP:Q LANG:FI	:: OP OVERT_SCOPE DIS:WH
+OP:FAM LANG:FI	:: OP OVERT_SCOPE DIS:FAM
+OP:POL LANG:FI	:: OP OVERT_SCOPE DIS:POL
+OP:FOC LANG:FI	:: OP DIS:FOC
+
+# ===> ENGLISH
 P LANG:EN		::	-PHI -EF:* -EF:φ -float !COMP:*
 ADV LANG:EN		::	-PHI -EF:*
 n LANG:EN		::  -PHI
@@ -68,27 +88,10 @@ NOM LANG:EN		::  -adjoinable -float
 D LANG:EN		::	-SPEC:φ
 φ LANG:EN		::	-SPEC:φ
 
-# Italian
+# ==> ITALIAN
 P LANG:IT		:: -PHI -EF:* -EF:φ !COMP:*
 NOM LANG:IT		::	-adjoinable -float
 
-# Finnish edge behavior
-A LANG:FI 		::  -adjoinable
-P LANG:FI		::	EF:* ADV
-ADV LANG:FI		::	EF:*
-A LANG:FI		::	EF:*
-T/fin LANG:FI	:: !EF:φ
-φ LANG:FI		::	EF:φ
-
-# Finnish specific operator features
-OP:WH LANG:FI	:: OP*
-OP:REL LANG:FI	:: OVERT_SCOPE OP OP*
-OP:Q LANG:FI	:: OVERT_SCOPE DIS:WH OP
-OP:FAM LANG:FI	:: OVERT_SCOPE DIS:FAM OP
-OP:POL LANG:FI	:: OVERT_SCOPE DIS:POL OP
-OP:FOC LANG:FI	:: DIS:FOC OP
-
-# Hungarian
+# => HUNGARIAN
 WH:OP LANG:HU	:: OP*
 D LANG:HU		:: EF:*
-
