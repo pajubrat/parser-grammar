@@ -186,7 +186,7 @@ class PhraseStructure:
         local_structure = self.local_structure()                # [X...self...Y]
         new_constituent = self.asymmetric_merge(C, direction)   # A = [self H] or [H self]
         new_constituent.substitute(local_structure)             # [X...A...Y]
-        return new_constituent.top()
+        return new_constituent
 
     def asymmetric_merge(self, B, direction='right'):
         self.consume_resources('Merge-1')

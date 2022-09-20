@@ -133,7 +133,7 @@ class LinearPhaseParser:
                 left_branch = self.target_left_branch(ps, site)
                 new_constituent = self.attach(left_branch, site, terminal_lexical_item, transfer)
                 self.put_rest_out_of_working_memory(merge_sites)
-                self.parse_new_item(new_constituent, lst_branched, index + 1)
+                self.parse_new_item(new_constituent.top(), lst_branched, index + 1)
                 if self.stop_looking_for_further_solutions():
                     break
             # ---------------------------------------------------------------------------------------- #
@@ -162,10 +162,8 @@ class LinearPhaseParser:
             new_constituent = self.sink_into_complex_head(left_branch, terminal_lexical_item)
         else:
             new_constituent = self.attach_into_phrase(left_branch, terminal_lexical_item, transfer)
-
         if not self.first_solution_found:
             self.time_from_stimulus_onset_for_word.append((terminal_lexical_item, self.time_from_stimulus_onset))
-
         return new_constituent
 
     def belong_to_same_word(self, left_branch, site):
@@ -182,7 +180,7 @@ class LinearPhaseParser:
         else:
             new_left_branch = left_branch
 
-        new_constituent = new_left_branch + terminal_lexical_item
+        new_constituent = new_left_branch.merge_1(terminal_lexical_item)
         set_logging(True)
         self.remove_from_syntactic_working_memory(left_branch)
         log(f'Result: {new_constituent}...Done.\n')
