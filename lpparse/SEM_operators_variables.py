@@ -16,8 +16,7 @@ class OperatorVariableModule:
                                          'OP:POL': 'Polarity topic',
                                          'OP:Q': 'Yes/no interrogative',
                                          'OP:REL': 'Relativization',
-                                         'OP:C/OP': 'Generic operator'
-                                         }
+                                         'OP:C/OP': 'Generic operator'}
         self.inventory = {}
 
     def bind_operator(self, head, semantic_interpretation):
