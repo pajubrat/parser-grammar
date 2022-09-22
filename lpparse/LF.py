@@ -229,7 +229,7 @@ class LF:
         if goal.is_primitive():
             if goal.get_tail_sets():
                 if not goal.tail_test():
-                    log(f'Tail test for \'{goal.illustrate()}, {goal.max().illustrate()}\' failed. ')
+                    log(f'Post-syntactic tail test for \'{goal.illustrate()}\', {goal.max().illustrate()} failed. ')
                     return False
         return True
 

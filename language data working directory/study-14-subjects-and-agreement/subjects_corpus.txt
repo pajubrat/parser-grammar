@@ -35,16 +35,43 @@
 						
 						Pariisia kohti Seine virtaa
 						'[Paris.par towards __] Seine.nom flow.prs.3sg __'
+						
+						Pekka asuu minun lähellä
+						'Pekka.nom live.prs.3sg I.gen near.'
+						
+						Pekka asuu minun lähellä#[ni]
+						'Pekka.nom live.prs.3sg I.gen near.1sg'
+						
+						minun lähellä Pekka asuu
+						'I.gen near Pekka.nom live.prs.3sg'
+						
+						minun lähellä#[ni] Pekka asuu
+						'I.gen near.1sg Pekka.nom live.prs.3sg'
+						
+					& Ungrammatical
+					
+						Pekka asuu lähellä minun
+						'Pekka.nom live.prs.3sg near I.gen'
+						
+						Pekka asuu lähellä#[ni] minun
+						'Pekka.nom live.prs.3sg near.1sg I.gen'
+						
+						lähellä minun Pekka asuu
+						'near I.gen Pekka.nom live.prs.3sg'
+						
+						lähellä#[ni] minun Pekka asuu
+						'near.1sg I.gen Pekka.nom live.prs.3sg'
 
 				& English 
 				
 					& Grammatical
 								
 						John lives near Paris
+						Paris near John lives
+						'Paris, which is near John, lives
 					
 					& Ungrammatical
-					
-						Paris near John lives
+
 						John lives Paris near
 						near Paris John lives
 					
@@ -76,6 +103,32 @@
 					Pariisia kohti virtaamalla Seine saavuttaa meren
 					'[[Paris.par towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
 		
+					Seine saavuttaa meren virtaamalla Pariisin lähellä
+					'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf [Paris.gen near __]'
+					
+					Seine saavuttaa meren Pariisin lähellä virtaamalla
+					'Seine.nom reach.prs.3sg ocean.acc [Paris.gen near __] flow.ma/inf'
+				
+					virtaamalla Pariisin lähellä Seine saavuttaa meren
+					'[flow.ma/inf [Paris.gen near __]] Seine.nom reach.prs.3sg ocean.acc __'
+					
+					Pariisin lähellä virtaamalla Seine saavuttaa meren
+					'[[Paris.gen near __] flow.ma/inf] Seine.nom reach.prs.3sg ocean.acc __'
+				
+				& Ungrammatical
+				
+					Seine saavuttaa meren virtaamalla lähellä Pariisin
+					'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf ear Paris.gen'
+					
+					Seine saavuttaa meren lähellä Pariisin virtaamalla
+					'Seine.nom reach.prs.3sg ocean.acc near Paris.gen flow.ma/inf'
+
+					virtaamalla lähellä Pariisin Seine saavuttaa meren
+					'flow.ma/inf near Paris.gen Seine.nom reach.prs.3sg ocean.acc'
+					
+					lähellä Pariisin virtaamalla Seine saavuttaa meren
+					'near Paris.gen flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+					
 		& 1.1.2 Secondary Ā-chains and pied-piping, with operators
 				
 			& 1.1.2.1 Strong operator
@@ -130,17 +183,31 @@
 						
 						mitä kohti Seine virtaa
 						'[what.par towards __] Seine.nom flow.prs.3sg __?'
+						
+						Pekka asuu kenen lähellä
+						'Pekka.nom live.prs.3sg [who.gen near __]
+						
+						kenen lähellä Pekka asuu
+						'who.gen near Pekka.nom live.prs.3sg?'
+						
+					& Ungrammatical
+					
+						Pekka asuu lähellä kenen
+						'Pekka.nom live.prs.3sg near who.gen
+						
+						lähellä kenen Pekka asuu
+						'near who.gen Pekka.nom live.prs.3sg?'
 			
 				& English
 				
 					& Grammatical
 				
 						John lives near what
+						near what John lives
 
 					& Ungrammatical
 					
 						John lives what near
-						near what John lives
 						what near John lives
 			
 				& Adpositions inside adverbials (Finnish)
@@ -170,6 +237,32 @@
 						
 						mitä_DP kohti virtaamalla Seine saavuttaa meren
 						'[[what.par towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
+						
+						Seine saavuttaa meren virtaamalla kenen lähellä
+						'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf who.gen near'
+				
+						Seine saavuttaa meren kenen lähellä virtaamalla
+						'Seine.nom reach.prs.3sg ocean.acc who.gen near flow.ma/inf'
+						
+						virtaamalla kenen lähellä Seine saavuttaa meren
+						'flow.ma/inf who.gen near Seine.nom reach.prs.3sg ocean.acc'
+						
+						kenen lähellä virtaamalla Seine saavuttaa meren
+						'who.gen near flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
+						
+					& Ungrammatical
+					
+						Seine saavuttaa meren virtaamalla lähellä kenen
+						'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf near who.gen'
+				
+						Seine saavuttaa meren lähellä kenen virtaamalla
+						'Seine.nom reach.prs.3sg ocean.acc near who.gen flow.ma/inf'
+						
+						virtaamalla lähellä kenen Seine saavuttaa meren
+						'flow.ma/inf near who.gen Seine.nom reach.prs.3sg ocean.acc'
+						
+						lähellä kenen virtaamalla Seine saavuttaa meren
+						'near who.gen flow.ma/inf Seine.nom reach.prs.3sg ocean.acc'
 				
 				& Relative clauses
 				
@@ -201,6 +294,9 @@
 					
 							kaupunki jota kohti Seine virtaa hävisi
 							'[city.nom [which.par towards __ ]] Seine.nom flow.prs.3sg __ disappear.pst.3sg'
+							
+							kaupunki jonka lähellä Seine virtaa hävisi
+							'city.nom which.gen near Seine.nom flow.prs.3sg disappear.prs.3sg'
 					
 						& Ungrammatical (edge generalization violation)
 					
@@ -212,6 +308,15 @@
 							
 							kaupunki Seine virtaa kohti jota hävisi
 							'city.nom Seine.nom flow.prs.3sg towards which.par disappear.pst.3sg'
+							
+							kaupunki lähellä jonka Seine virtaa hävisi
+							'city.nom near which.gen Seine.nom flow.prs.3sg disappear.prs.3sg'
+							
+							kaupunki Seine virtaa jonka lähellä hävisi
+							'city Seine.nom flow.prs.3sg which.gen near disappear.prs.3sg'
+							
+							kaupunki Seine virtaa lähellä jonka hävisi
+							'city Seine.nom flow.prs.3sg near which.gen disappear.prs.3sg'
 				
 					& English
 						
@@ -246,7 +351,16 @@
 						
 						Seine virtaa Pariisia#[kO] kohti
 						'Seine.nom flow.prs.3sg [Paris.par.Q towards __]'
-										
+						
+						Pekka asuu Pariisin#[kO] lähellä
+						'Pekka.nom live.prs.3sg Paris.gen.Q near __'
+					
+						Pekka asuu lähellä Pariisin#[kO]
+						'Pekka.nom live.prs.3sg near Paris.gen.Q'
+						
+						lähellä Pariisin#[kO] Pekka asuu
+						'near Paris.gen.Q Pekka.nom live.prs.3sg (P-DP(gen) order violation)'
+					
 					& Grammatical (yes/no operator in scope position)
 												
 						lähellä Pariisia#[kO] Pekka asuu
@@ -260,6 +374,9 @@
 						
 						kohti Pariisia#[kO] Seine virtaa
 						'[owards Paris.par.Q] Seine.nom flow.prs.3sg __?'
+						
+						Pariisin#[kO] lähellä Pekka asuu
+						'Paris.gen.Q near Pekka.nom live.prs.3sg'
 			
 				& Adpositions within adverbials (Finnish)
 			
@@ -277,6 +394,24 @@
 						Seine saavuttaa meren Pariisia#[kO] kohti virtaamalla
 						'Seine.nom reach.prs.3sg ocean.acc [Paris.par.Q towards __] flow.ma/inf __'
 				
+						Seine saavuttaa meren virtaamalla lähellä Pariisin#[kO]
+						'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf near Paris.gen.Q'
+
+						Seine saavuttaa meren virtaamalla Pariisin#[kO] lähellä
+						'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf Paris.gen.Q near'
+						
+						Seine saavuttaa meren lähellä Pariisin#[kO] virtaamalla
+						'Seine.nom reach.prs.3sg ocean.acc near Paris.gen.Q flow.ma/inf'
+						
+						Seine saavuttaa meren Pariisin#[kO] lähellä virtaamalla
+						'Seine.nom reach.prs.3sg ocean.acc Paris.gen.Q near flow.ma/inf'
+						
+						virtaamalla lähellä Pariisin#[kO] Seine saavuttaa meren
+						'flow.ma/inf near Paris.gen.Q Seine.nom reach.prs.3sg ocean.acc (P-DP(gen) violation)'
+						
+						lähellä Pariisin#[kO] virtaamalla Seine saavuttaa meren
+						'near Paris.gen.Q flow.ma/inf Seine.nom reach.prs.3sg ocean.acc (P-DP(gen) violation)'
+											 
 					& Grammatical (yes/no operator in scope position)
 				
 						virtaamalla kohti Pariisia#[kO] Seine saavuttaa meren
@@ -290,7 +425,13 @@
 									
 						Pariisia#[kO] kohti virtaamalla Seine saavuttaa meren
 						'[[Paris.par.Q towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
-					
+						
+						virtaamalla Pariisin#[kO] lähellä Seine saavuttaa meren
+						'[flow.ma/inf [Paris.gen.Q near __]] Seine.nom reach.prs.3sg ocean.acc __'
+						
+						Pariisin#[kO] lähellä virtaamalla Seine saavuttaa meren
+						'[[Paris.gen.Q near __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
+						
 	& 1.2 Agreement in Finnish
 					
 			& 1.2.1 Adpositions
@@ -311,6 +452,11 @@
 					
 					minua kohti'
 					'I.par towards __'
+					
+				& Ungrammatical
+					
+					minun kohti'
+					'I.gen towards'
 						
 				& Adpositions and the agreement paradigm
 						
@@ -498,10 +644,11 @@
 			& Grammatical
 			
 				John lives near Paris
-			
+				Paris near John lives
+				 'Paris, which is near John, lives'
+				 
 			& Ungrammatical
 			
-				Paris near John lives
 				John lives Paris near
 				near Paris John lives
 

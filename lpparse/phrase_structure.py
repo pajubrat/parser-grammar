@@ -390,7 +390,7 @@ class PhraseStructure:
 
     def weak_tail_condition(self, tail_set):
         if '$NO_W' not in tail_set:
-            if self.is_referential():
+            if self.is_referential() or 'P' in self.features:
                 for m in (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list()):
                     test = m.match_features(tail_set)
                     if test.match_occurred:

@@ -72,6 +72,7 @@ istuu		:: istu-#T/fin#[-V] LANG:FI
 istu-		:: PF:istuu LF:sit V CLASS/INTR LANG:FI
 joka		:: joka-#D/rel#sg#3p#def#hum#[-nom] LANG:FI
 jota		:: joka-#D/rel#sg#3p#def#hum#[-par]	LANG:FI
+jonka		:: joka-#D/rel#sg#3p#def#hum#[-gen] LANG:FI
 joka-   	:: PF:joka LF:who N PHI_N LANG:FI
 Jukka   	:: Jukka-#φ#[-nom]#sg#3p#def#hum#def LANG:FI -SEM:directional LANG:FI
 Jukkaa		:: Jukka-#φ#sg#3p#def#hum#def#[-par] LANG:FI -SEM:directional 
@@ -102,6 +103,7 @@ kelloja		:: kello-#pl#φ#pl#3p#def#r_expression#[-par]
 kello		:: kello-#φ#r_expression LANG:FI
 kello-		:: PF:kello LF:watch N LANG:FI
 kello0- 	:: PF:kello LF:watch 0 LANG:FI
+kenen		:: mikä-#D#wh#sg#3p#[-gen] LANG:FI
 kirja		:: kirja-#φ#sg#3p#def#r_expression#[-nom] LANG:FI
 kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[-0_acc] LANG:FI
 kirjan  	:: kirja-#φ#sg#3p#def#r_expression#[-n_acc] LANG:FI
@@ -219,6 +221,7 @@ päivää		:: päivä-#φ#[-par]
 päivä		:: päivä-#φ#[-0_acc]
 päivä-		:: PF:päivä LF:day N SEM:nonreferential LANG:FI
 Pariisia	:: Pariisi-#D#sg#3p#def#proper_name#[-par] LANG:FI
+Pariisin	:: Pariisi-#D#sg#3p#def#proper_name#[-gen] LANG:FI
 Pariisi-	:: PF:Pariisi LF:Paris N LANG:FI
 Pekkaa		:: Pekka-#φ#sg#3p#def#hum#proper_name#[-par] LANG:FI
 Pekka   	:: Pekka-#φ#sg#3p#def#hum#proper_name#[-nom] LANG:FI
@@ -476,7 +479,7 @@ moved		:: move-#v#T/fin LANG:EN
 move'		:: move-#v LANG:EN
 move-		:: PF:move LF:move V CLASS/TR COMP:φ +SEM:directional LANGN:EN
 must		:: T/fin MODAL COMP:Neg PF:must LF:must LANG:EN
-near		:: PF:near LF:near P -EF:φ TAIL:T TAIL:*V LANG:EN
+near		:: PF:near LF:near P -EF:φ TAIL:T LANG:EN
 not			:: Neg LF:not PF:not POL:NEG ARG EDGE:φ -COMP:FIN -SPEC:T/fin COMP:C -COMP:φ !COMP:* LANG:EN
 ocean		:: PF:ocean LF:ocean N LANG:EN
 persuades 	:: persuade-#v#T/fin#[-s] LANG:EN
@@ -492,7 +495,7 @@ sleeps		:: sleep-#T/fin#[-s] LANG:EN
 sleep		:: PF:sleep LF:sleep V CLASS/INTR LANG:EN
 sleep- 		:: PF:sleep LF:sleep V CLASS/INTR LANG:EN
 lives		:: live-#T/fin#[-s] LANG:EN
-live-		:: PF:live LF:live V CLASS/INTR LANG:EN
+live-		:: PF:live LF:live V COMP:P CLASS/INTR LANG:EN
 raced		:: race-#T/fin FREQ:2 INFO:finite_verb LANG:EN  
 raced		:: race-#T/prt FREQ:1 INFO:participle_verb LANG:EN
 race-		:: PF:race LF:race V CLASS/INTR !COMP:* -COMP:T/fin COMP:P LAMG:EN
