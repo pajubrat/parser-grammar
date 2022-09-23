@@ -2,6 +2,7 @@
 
 # FINNISH LEXICON -----------------------------------------------------------------------------------------------------------------------
 
+ali			:: PF:yli LF:over P TAIL:V INF EF:φ LANG:FI LANG:FI
 antaa		:: anta-#v#asp#A/inf LANG:FI
 anta-   	:: PF:antaa LF:give V -COMP:P CLASS/DITR -COMP:FIN +SEM:directional ASP:BOUNDED LANG:FI
 antoi   	:: anta-#v#asp#T/fin#[-V] LANG:FI
@@ -78,7 +79,7 @@ Jukka   	:: Jukka-#φ#[-nom]#sg#3p#def#hum#def LANG:FI -SEM:directional LANG:FI
 Jukkaa		:: Jukka-#φ#sg#3p#def#hum#def#[-par] LANG:FI -SEM:directional 
 Jukka-  	:: PF:Jukka LF:Jukka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 juosten 	:: juokse-#E/inf LANG:FI
-juoksee		:: juokse-#T/fin LANG:FI
+juoksee		:: juokse-#T/fin#[-V] LANG:FI
 juokse-		:: PF:juokse- LF:run V CLASS/INTR LANG:FI
 kaksi		:: PF:kaksi LF:two NUM NOM TAIL:ARG,E,FIN,$NO_S -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
 kaksi_1		:: PF:kaksi LF:two NUM NOM TAIL:ARG,E,FIN,$NO_S -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
@@ -126,9 +127,10 @@ kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[-V] LANG:EN
 kysy-		:: PF:kysya LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		::	P PF:lähellä LF:near -PHI TAIL:V LANG:FI
-lähellä		::	P PF:lähellä LF:near TAIL:V INF !EF:φ EF:φ !SEF LANG:FI
-lähellä'	::	P PF:lähellä LF:near -PHI ANG:FI
-lähellä'	::	P PF:lähellä LF:near INF !EF:φ EF:φ !SEF LANG:FI
+lähellä		::	P PF:lähellä LF:near TAIL:V INF EF:φ !SEF LANG:FI
+lähellä*	::  P PF:lähellä LF:near TAIL:V INF EF:φ !SEF LANG:FI
+lähellä'	::	P PF:lähellä LF:near -PHI LANG:FI
+lähellä'	::	P PF:lähellä LF:near INF EF:φ !SEF LANG:FI
 lähtee		:: lähte-#T/fin#[-V] LANG:FI
 lähden		:: lähte-#T/fin#[-n] LANG:FI
 lähteä 		:: lähte-#A/inf LANG:FI
@@ -179,6 +181,7 @@ mere-		::	PF:meri LF:ocean N LANG:FI
 mies		::	mies-#φ#r_expression#[-nom]
 mies-		::	PF:mies LF:man N LANG:FI
 minka		:: mikä-#D#wh#[-n_acc] LANG:FI
+minkä		:: mikä-#D#wh#[-gen] LANG:FI
 mikä		:: mikä-#D#wh#sg#3p#[-nom] LANG:FI
 mitä		:: D#wh#sg#3p#[-par] LANG:FI
 mitä		:: mikä-#D#wh#sg#3p#[-par] LANG:FI
@@ -253,6 +256,9 @@ puna-		:: PF:puna- LF:red 0 LANG:FI
 pyytää		:: pyytä-#v#T/fin#[-V] LANG:FI
 pyysi		:: pyytä-#v#T/fin#[-V] LANG:FI
 pyytä-		:: PF:pyyda- LF:ask V CLASS/TR SEMCLASS_desired_event SEM:external LANG:FI
+silta-		:: PF:silta LF:bridge N LANG:FI
+sillan		:: silta-#φ#sg#3p#r_expression#[-gen]
+siltaa		:: silta-#φ#sg#3p#r_expression#[-par]
 siskoaan	:: sisko-#φ#sg#3p#def#r_expression#[-par]
 siskonsa	:: sisko-#φ#sg#3p#def#r_expression#[-nom]
 sisko		:: sisko-#φ#sg#3p#def#r_expression#[-nom]
@@ -316,6 +322,8 @@ voitti		:: voitta-#v#asp#T/fin#[-V] LANG:FI
 voittanut	:: voitta-#v#asp#T/prt#sg LANG:FI
 voittaa		:: voitta-#A/inf LANG:FI
 voitta-		:: V PF:voitta LF:win CLASS/TR ASP:BOUNDED SEM:achievement
+yli'		:: PF:yli LF:over P INF EF:φ LANG:FI LANG:FI
+yli			:: PF:yli LF:over P TAIL:V INF EF:φ LANG:FI LANG:FI
 yrittaa		:: yritta-#T/fin#[-V] LANG:FI
 yritta- 	:: PF:yritta LF:try V SPEC:φ !COMP:A/inf !COMP:-ARG LANG:EN SEM:internal 
 

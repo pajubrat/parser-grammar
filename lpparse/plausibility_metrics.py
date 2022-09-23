@@ -265,7 +265,7 @@ class PlausibilityMetrics:
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
                 continue
             if N.is_complex() and self.left_branch_filter(N):
-                log(f'Reject {N} + {w} due to bad left branch...')
+                log(f'Reject {N} + {w} due to bad left branch ({self.brain_model.LF.error_report_for_user})...')
                 continue
             if self.word_breaking_filter(N, w):
                 log(f'Reject {N} + {w} because it breaks words...')

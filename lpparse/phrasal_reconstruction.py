@@ -46,7 +46,7 @@ class PhrasalMovement:
         head.features |= self.transfer_features(head, spec)
 
     def transfer_features(self, head, spec):
-        features = self.scan_operator(self.checking_domain(spec)) | self.add_scope_information(head)
+        features = {'OP:_'} | self.scan_operator(self.checking_domain(spec)) | self.add_scope_information(head)
         return self.lexical_access.apply_parameters(self.lexical_access.apply_redundancy_rules(features))
 
     @staticmethod

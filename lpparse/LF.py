@@ -19,6 +19,7 @@ class LF:
                                     self.adjunct_interpretation_test]
 
         self.active_test_battery = self.LF_legibility_tests
+        self.error_report_for_user = ''
 
         self.complete_edge = None
         self.edge_for_EF = None
@@ -55,6 +56,7 @@ class LF:
                 result = LF_test(ps)
                 if result:
                     log(result)
+                    self.error_report_for_user = result
                     return False
         else:
             if not ps.left_const.find_me_elsewhere:
@@ -68,7 +70,7 @@ class LF:
 
     # Selection tests ----------------------------------------------------------
     def selection_test(self, probe):
-        return next((f'\'{probe}\' failed {lexical_feature}. ' for lexical_feature in sorted(for_lf_interface(probe.features))
+        return next((f'\'{probe}\' failed {lexical_feature}' for lexical_feature in sorted(for_lf_interface(probe.features))
                      for (gate, test) in self.selection_violation_tests
                      if lexical_feature.startswith(gate) and
                      not test(probe, lexical_feature)), None)
@@ -89,10 +91,11 @@ class LF:
 
     # Feature !SEF
     def selection__positive_shared_edge(self, probe, lexical_feature):
-        return not (not probe.edge_specifiers() and probe.proper_complement() and
-                    (probe.proper_complement().head().is_referential() or
+        def complement_criterion(probe):  # Complement exists and is/has referential argument
+            return probe.proper_complement() and (probe.proper_complement().head().is_referential() or
                      (probe.proper_complement().head().licensed_phrasal_specifier() and
-                      probe.proper_complement().head().licensed_phrasal_specifier().head().is_referential())))
+                      probe.proper_complement().head().licensed_phrasal_specifier().head().is_referential()))
+        return not (not probe.licensed_phrasal_specifier() and complement_criterion(probe))
 
     # Feature !1EDGE
     def selection__negative_one_edge(self, probe, lexical_feature):
