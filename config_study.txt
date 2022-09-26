@@ -7,15 +7,16 @@ lexicon_folder:			language data working directory/lexicons
 test_corpus_folder:		language data working directory/study-14-subjects-and-agreement
 test_corpus_file:		subjects_corpus.txt
 
-only_first_solution: False
+only_first_solution: True
 ignore_ungrammatical_sentences: False
 console_output: Full
 stop_at_unknown_lexical_item: True
 image_parameter_stop_after_each_image: False
 logging: True
-datatake_full: True
+datatake_full: False
 
-datatake_images: True
+datatake_images: False
+show_features: OVERT_SCOPE,FIN,EF,OP
 image_parameter_show_words: True
 image_parameter_nolabels: False
 image_parameter_spellout: False

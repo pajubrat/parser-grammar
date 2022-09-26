@@ -163,10 +163,12 @@ class LocalFileSystem:
                         value = value.strip()
                         if ',' in value:
                             value = value.split(',')
-
                         self.settings[key] = value
-                        self.dev_log_file.write(f'{key}: {value}, ')
+                        self.dev_log_file.write(f'\n{key}: {value}, ')
             config_file.close()
+            # Safeguards
+            if not self.settings['show_features'] or self.settings['show_features'] == '':
+                self.settings['show_features'] = []
             self.dev_log_file.write('Done.\n')
         except IOError:
             for key in self.default_study_parameters:

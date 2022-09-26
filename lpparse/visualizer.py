@@ -4,10 +4,10 @@
 ######################################################################
 import pyglet
 import pyglet.window.key
-from pyglet import shapes, window
-from pyglet.gl import GL_LINES, glBegin, glEnd, glVertex2f, gl, glLineWidth, glColor4f, glClearColor, \
+from pyglet import shapes
+from pyglet.gl import GL_LINES, glBegin, glEnd, glVertex2f, glLineWidth, glColor4f, glClearColor, \
     glClear, GL_COLOR_BUFFER_BIT
-
+import re
 
 SCALING_FACTOR = 2
 case_features = {'NOM', 'ACC', 'PAR', 'GEN', 'ACC(0)', 'ACC(n)', 'ACC(t)', 'DAT', 'POSS'}
@@ -27,6 +27,7 @@ class Visualizer:
         self.nolabels = False
         self.spellout = False
         self.show_tails = False
+        self.show_features = []
         self.case = False
         self.save_image_file_name = ''
         self.input_sentence_string = ''
@@ -40,6 +41,7 @@ class Visualizer:
         self.case = settings['image_parameter_case']
         self.show_sentences = settings['image_parameter_show_sentences']
         self.show_glosses = settings['image_parameter_show_glosses']
+        self.show_features = settings['show_features']
 
     # Definition for the drawing function
     def draw(self, ps):
@@ -184,7 +186,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         width = (right - left) * self.x_grid + self.margins
         height = abs(depth * self.y_grid) + self.margins
         self.top_node_position = width / (abs(left) + abs(right)) * abs(left)
-        self.x_offset = self.top_node_position  # Position of the highest node
+        self.x_offset = self.top_node_position + 50  # Position of the highest node
         self.y_offset = height - (30 * self.scale) # How much extra room above the highest node (for highest label)
         return width, height
 
@@ -323,10 +325,23 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if self.visualizer.case and ps.is_primitive():
             if get_case(ps):
                 label_stack.append(str(get_case(ps), 'CASE'))
+
+        # Show features (if any)
+        if self.visualizer.show_features:
+            feature_str = ''
+            for feature_pattern in self.visualizer.show_features:
+                for i, lexical_feature in enumerate(ps.features):
+                    if re.match(feature_pattern, lexical_feature):
+                        feature_str += f'[{lexical_feature}]'
+                        if len(feature_str) > 10:
+                            label_stack.append((feature_str, 'FEATURE'))
+                            feature_str = ''
+
         return label_stack
 
     def draw_node_label(self, ps, X1, Y1, label_stack):
         line_position = -15
+        line_space = 1
         if self.nearby(X1, Y1+12, self.mouse_position_x, self.mouse_position_y):
             bold = True
             self.mouse_over_node = ps
@@ -338,6 +353,11 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 font_size = 20 * self.scale
             else:
                 font_size = 15 * self.scale
+            if style == 'FEATURE':
+                font_size = 7 * self.scale
+                line_space = 0.35
+            else:
+                line_space = 1
             if style == 'PHONOLOGY':
                 italics_style = True
             else:
@@ -350,7 +370,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                       anchor_x='center', anchor_y='center',
                                       color=(1, 1, 1, 255))
             label_.draw()
-            line_position = line_position + (25 * self.scale)
+            line_position = line_position + (25 * line_space * self.scale)
 
     def draw_right_line(self, ps, X1, Y1):
         X2 = self.x_offset + ps.right_const.x * self.x_grid
