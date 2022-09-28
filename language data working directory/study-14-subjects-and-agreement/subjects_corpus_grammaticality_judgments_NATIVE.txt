@@ -1,5 +1,5 @@
-@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'subjects_corpus.txt', 'only_first_solution': False, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'datatake_full': False, 'datatake_images': True, 'show_features': ['OVERT_SCOPE', 'FIN', 'EF', 'OP'], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2022-09-26 11:45:42.206097
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'subjects_corpus.txt', 'only_first_solution': True, 'datatake_images': False, 'datatake_full': False, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'show_features': ['OVERT_SCOPE', 'FIN', 'EF', 'OP'], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-09-28 15:15:47.891314
 @  Test sentences from language data working directory\study-14-subjects-and-agreement\subjects_corpus.txt.
 @  Logs into language data working directory\study-14-subjects-and-agreement\subjects_corpus_log.txt.
 @  Lexicon from language data working directory\lexicons\lexicon.txt.
@@ -38,7 +38,7 @@
 & Class IIa
 
 5.  Pekka asuu minun lähellä 
-	'Pekka.nom live.prs.3sg I.gen near.'
+	'Pekka.nom live.prs.3sg I.gen near'
 
 6.  Pekka asuu minun lähellä#[ni] 
 	'Pekka.nom live.prs.3sg [I.gen near.1sg __]'
@@ -52,7 +52,7 @@
 & kohti 'towards' (Class I)
 
 9.  Seine virtaa kohti Pariisia 
-	'Seine.nom flow.prs.3sg towards Paris.'
+	'Seine.nom flow.prs.3sg towards Paris.par.'
 
 10.  Seine virtaa Pariisia kohti 
 	'Seine.nom flow.prs.3sg [Paris.par towards __]'
@@ -130,10 +130,10 @@
 	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards Paris.par'
 
 30.  Seine saavuttaa meren virtaamalla Pariisia kohti 
-	'Seine reaches ocean.acc flow.ma/inf [Paris.par towards __]'
+	'Seine reache.prs.3sg ocean.acc flow.ma/inf [Paris.par towards __]'
 
 31.  Seine saavuttaa meren kohti Pariisia virtaamalla 
-	'Seine.nom reach.psr.3sg ocean.acc [towards Paris.par] flow.ma/inf __'
+	'Seine.nom reach.prs.3sg ocean.acc [towards Paris.par] flow.ma/inf __'
 
 32.  Seine saavuttaa meren Pariisia kohti virtaamalla 
 	'Seine.nom reach.prs.3sg ocean.acc [[Paris.par towards __] flow.ma/inf __]'
@@ -162,7 +162,7 @@
 	'[flow.ma/inf [Paris.gen near __]] Seine.nom reach.prs.3sg ocean.acc __'
 
 40.  Pariisin lähellä virtaamalla Seine saavuttaa meren 
-	'[[Paris.gen near __] flow.ma/inf] Seine.nom reach.prs.3sg ocean.acc __'
+	'[[Paris.gen near __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
 
 & ali/yli 'under/over' (Class IIb)
 
@@ -193,10 +193,10 @@
 	'[[near Paris.gen] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
 
 49. *Seine saavuttaa meren virtaamalla ali siltaa 
-	'Seine.nom reach.prs.3sg ocean.acc [flow.ma/inf under bridge.par]'
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf under bridge.par'
 
 50. *Seine saavuttaa meren virtaamalla siltaa ali 
-	'Seine.nom reach.prs.3sg ocean.acc [flow.ma/inf [bridge.par under __]]'
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf [bridge.par under __]'
 
 51. *ali siltaa virtaamalla Seine saavuttaa meren 
 	'[[under bridge.par] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
@@ -1672,3 +1672,8 @@
 
 468.  adorano Luisa 
 	'admire.prs.1sg Luisa'
+
+& 4.2 Added/missing elements
+
+469.  Pekka asuu lähellä#[ni] 
+	'Pekka.nom live.prs.3sg near.1sg'

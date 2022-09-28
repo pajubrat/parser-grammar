@@ -45,13 +45,7 @@ class LF:
 
     def pass_LF_legibility(self, ps):
         if ps.is_primitive():
-            self.complete_edge = [const for const in ps.edge_specifiers()]
-            self.edge_for_EF = [const for const in ps.edge_specifiers()]
-            pro = ps.extract_pro()
-            if pro:
-                self.complete_edge += [pro]
-                if pro.sustains_reference():
-                    self.edge_for_EF += [pro]
+            self.complete_edge, self.edge_for_EF = self.create_edges(ps)
             for LF_test in self.active_test_battery:
                 result = LF_test(ps)
                 if result:
@@ -65,8 +59,13 @@ class LF:
             if not ps.right_const.find_me_elsewhere:
                 if not self.pass_LF_legibility(ps.right_const):
                     return False
-        log('.')
         return True
+
+    @staticmethod
+    def create_edges(ps):
+        complete_edge = [const for const in ps.edge_specifiers() + [ps.extract_pro()] if const]
+        edge_for_EF = [const for const in complete_edge if not ('pro' in const.head().features and not const.head().sustains_reference())]
+        return complete_edge, edge_for_EF
 
     # Selection tests ----------------------------------------------------------
     def selection_test(self, probe):
@@ -86,11 +85,12 @@ class LF:
 
     # Feature -EF:φ
     def selection__negative_SUBJECT_edge(self, probe, lexical_feature):
-        return not next((True for edge_object in self.edge_for_EF if 'φ' in edge_object.head().features and
+        return not next((edge_object for edge_object in self.edge_for_EF if 'φ' in edge_object.head().features and
                          edge_object.is_extended_subject()), None)
 
     # Feature !SEF
-    def selection__positive_shared_edge(self, probe, lexical_feature):
+    @staticmethod
+    def selection__positive_shared_edge(probe, lexical_feature):
         def complement_criterion(probe):  # Complement exists and is/has referential argument
             return probe.proper_complement() and (probe.proper_complement().head().is_referential() or
                      (probe.proper_complement().head().licensed_phrasal_specifier() and
@@ -98,7 +98,8 @@ class LF:
         return not (not probe.licensed_phrasal_specifier() and complement_criterion(probe))
 
     # Feature !1EDGE
-    def selection__negative_one_edge(self, probe, lexical_feature):
+    @staticmethod
+    def selection__negative_one_edge(probe, lexical_feature):
         return len(probe.edge_specifiers()) < 2
 
     # Feature !SPEC
