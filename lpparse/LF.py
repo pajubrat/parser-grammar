@@ -27,6 +27,7 @@ class LF:
         self.selection_violation_tests = [('-EF:φ', self.selection__negative_SUBJECT_edge),
                                           ('!EF:φ', self.selection__positive_SUBJECT_edge),
                                           ('-EF:*', self.selection__unselective_negative_edge),
+                                          ('!EF:*', self.selection__unselective_edge),
                                           ('!1EDGE', self.selection__negative_one_edge),
                                           ('!SEF', self.selection__positive_shared_edge),
                                           ('-SPEC:', self.selection__negative_specifier),
@@ -101,6 +102,10 @@ class LF:
     @staticmethod
     def selection__negative_one_edge(probe, lexical_feature):
         return len(probe.edge_specifiers()) < 2
+
+    # Feature [!EF:*] ~ not used for calculation of any data
+    def selection__unselective_edge(self, probe, lexical_feature):
+        return self.edge_for_EF
 
     # Feature !SPEC
     def selection__positive_selective_specifier(self, probe, lexical_feature):

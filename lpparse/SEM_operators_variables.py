@@ -31,7 +31,7 @@ class OperatorVariableModule:
 
     @staticmethod
     def interpret_covert_scope(binding):
-        if not binding['Scope'] and 'OVERT_SCOPE' not in binding['Head'].features:
+        if not binding['Scope'] and '!SCOPE' not in binding['Head'].features:
             return next(({'Head': binding['Head'], 'Scope': scope, 'Overt': False}
                          for scope in binding['Head'].working_memory_path() if
                          {'T', 'FIN'}.issubset(scope.features) or {'C', 'FIN'}.issubset(scope.features)),
@@ -48,7 +48,7 @@ class OperatorVariableModule:
             self.project_operator_objects_into_discourse_inventory(binding)
         else:
             log(f'\n\t\t\t{binding["Head"].illustrate()} with {operator_feature} is not bound by an operator. ')
-            if 'OVERT_SCOPE' in binding["Head"].features:
+            if '!SCOPE' in binding["Head"].features:
                 log(f'Interpretation fails and the derivation crashes. ')
                 self.interpretation_failed = True
             else:

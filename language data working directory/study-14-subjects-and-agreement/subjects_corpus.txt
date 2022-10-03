@@ -1131,24 +1131,6 @@
 				mellett#[+ünk] mi
 				'near.1pl we.nom'
 					
-		& 2.1.5 Estonian
-	
-			& Grammatical
-		
-				Seine voolab Pariisi suunas
-				'Seine.nom flow.prs.3sg [Paris.gen towards __]'
-		
-				mis linna suunas Seine voolab
-				'[which city near __] Seine flows?'
-	
-			& Ungrammatical
-	
-				Seine voolab suunas Pariisi
-				'Seine.nom flow.prs.3sg [towards Paris.gen]'
-		
-				suunas mis linna Seine voolab
-				'[towards which city] Seine.nom flow.prs.3sg __'
-
 	& 2.2 Adverbials and nonfinite clauses
 
 		& 2.2.1 Finnish
@@ -1553,6 +1535,10 @@
 		& 2.5.3 English
 		
 			John admires Mary
+			
+			John Mary admires
+			
+			admires John Mary
 		
 & 3 Formalization
 
@@ -1561,6 +1547,8 @@
 	a_ b_ c_edge d_
 	
 	a_ b_ c_noedge d_
+
+	a_2pl b_ c_edge d_
 	
 	a_ b_ c_phiedge#AGR d_
 	

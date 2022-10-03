@@ -57,6 +57,8 @@ class Visualizer:
         self.determine_plane_topology(ps)   # Projects the phrase structure into a simple abstract space
         self.remove_overlaps(ps)            # Modifies the projection to remove overlapping texts and lines
 
+
+    # Creates a basic plane topology with constituent branches by one unit
     def determine_plane_topology(self, ps):
         if ps.left_const:
             ps.left_const.x = ps.x - 1
@@ -67,6 +69,7 @@ class Visualizer:
             ps.right_const.y = ps.y - 1
             self.determine_plane_topology(ps.right_const)
 
+    # Removes overlaps when one branch goes on the top of another branch
     def remove_overlaps(self, ps):
         self.new_lateral_stretch_needed = True
         while self.new_lateral_stretch_needed:
@@ -110,7 +113,7 @@ class Visualizer:
         coordinate_set.add((N.x-min_safety_window, N.y))  # x-coordinate + safety window to prevent text overlap
         coordinate_set.add((N.x+min_safety_window, N.y))  # x-coordinate + safety window to prevent text overlap
         if N.is_primitive():
-            if self.show_glosses or self.spellout:
+            if self.show_glosses or self.spellout or self.show_features:
                 coordinate_set |= self.safety_window_coordinate_update(N)
         else:
             coordinate_set |= self.get_coordinate_set(N.left_const, coordinate_set)
@@ -120,17 +123,22 @@ class Visualizer:
     # This determines the safe space around text, based on the information in labels.
     def safety_window_coordinate_update(self, N):
         s = set()
-        for K in N.get_affix_list():
-            pf_width = len(K.get_phonological_string()) / 8
-            gloss_width = len(K.gloss()) / 8
-            s.add((N.x - pf_width, N.y))
-            s.add((N.x + pf_width, N.y))
-            s.add((N.x - gloss_width, N.y))
-            s.add((N.x + gloss_width, N.y))
-            if self.show_glosses and self.spellout and self.number_of_label_lines(N):
-                s.add((N.x - gloss_width / 2, N.y - 1))
-                s.add((N.x + gloss_width / 2, N.y - 1))
+        width = 0
+        if self.show_glosses:
+            width += len(K.gloss()) / 8
+        if self.count_features(N) > 0:
+            width += 1
+        s.add((N.x - width, N.y))
+        s.add((N.x + width, N.y))
         return s
+
+    def count_features(self, N):
+        c = 0
+        for feature_pattern in self.show_features:
+            for i, lexical_feature in enumerate(N.features):
+                if re.match(feature_pattern, lexical_feature):
+                    c += 1
+        return c
 
     def number_of_label_lines(self, N):
         if len(N.get_phonological_string()) > 1 and len(N.gloss()) > 1:
@@ -186,7 +194,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         width = (right - left) * self.x_grid + self.margins
         height = abs(depth * self.y_grid) + self.margins
         self.top_node_position = width / (abs(left) + abs(right)) * abs(left)
-        self.x_offset = self.top_node_position + 50  # Position of the highest node
+        self.x_offset = self.top_node_position  # Position of the highest node
         self.y_offset = height - (30 * self.scale) # How much extra room above the highest node (for highest label)
         return width, height
 
@@ -333,20 +341,19 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 for i, lexical_feature in enumerate(ps.features):
                     if re.match(feature_pattern, lexical_feature):
                         feature_str += f'[{lexical_feature}]'
-                        if len(feature_str) > 10:
+                        if len(feature_str) > 7:
                             label_stack.append((feature_str, 'FEATURE'))
                             feature_str = ''
+                if feature_str != '':
+                    label_stack.append((feature_str, 'FEATURE'))
+                    feature_str = ''
 
         return label_stack
 
     def draw_node_label(self, ps, X1, Y1, label_stack):
         line_position = -15
-        line_space = 1
         if self.nearby(X1, Y1+12, self.mouse_position_x, self.mouse_position_y):
-            bold = True
             self.mouse_over_node = ps
-        else:
-            bold = False
 
         for i, (label, style) in enumerate(label_stack):
             if style == 'LABEL':

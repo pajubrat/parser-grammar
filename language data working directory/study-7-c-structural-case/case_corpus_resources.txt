@@ -1,0 +1,303 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'February', 'study_id': 1, 'study_folder': 'language data working directory/study-7-c-structural-case', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-7-c-structural-case', 'test_corpus_file': 'case_corpus.txt', 'only_first_solution': False, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': True, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-05-07 11:47:47.829739
+@  Test sentences from language data working directory\study-7-c-structural-case\case_corpus.txt.
+@  Logs into language data working directory\study-7-c-structural-case\case_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+Number,Sentence,Study_ID,Total Time,Garden Paths,Memory Reactivation,Steps,Merge,Move Head,Move Phrase,A-Move Phrase,A-bar Move Phrase,Move Adjunct,Agree,Phi,Transfer,Item streamed into syntax,Feature Processing,Extraposition,Inflection,Failed Transfer,LF recovery,LF test,Filter solution,Rank solution,Lexical retrieval,Morphological decomposition,Mean time per word,Asymmetric Merge,Sink,Tail test,Case checking,Execution time (ms)	
+1,a' b' c' d' ,1,,220,0,0,5,3,0,0,0,0,0,0,0,10,4,0,0,0,0,0,7,0,0,4,0,55,8,0,0,0,15
+2,a'' b' c' d' ,1,,370,0,0,10,5,10,0,0,0,0,0,0,9,6,0,0,0,0,0,7,2,0,6,1,92,94,2,0,0,15
+3,John admires Mary ,1,,1205,0,0,13,6,2,2,2,0,0,3,5,3,7,0,0,12,0,2,5,5,2,19,3,401,28,9,0,0,31
+4,Pekka nukkuu ,1,,830,0,0,5,3,0,1,0,0,1,6,7,6,4,0,0,7,0,1,7,2,1,11,2,415,10,3,8,8,15
+5,Pekka ihailee Merjaa ,1,,1560,0,0,13,6,2,2,0,0,2,12,14,11,7,0,0,14,0,2,13,5,2,21,3,520,45,9,46,46,46
+6,Pekka antoi kirjan Merjalle ,1,,2465,0,0,45,9,10,5,0,0,5,34,37,29,10,0,0,19,0,3,35,7,6,29,4,616,279,37,384,659,109
+7,Pekka halusi ihailla Merjaa ,1,,1940,0,0,29,9,8,3,0,0,3,18,22,17,10,3,0,14,0,4,21,9,3,24,4,485,131,21,116,116,62
+8,Pekka ihailee Merjaa ,1,,1560,0,0,13,6,2,2,0,0,2,12,14,11,7,0,0,14,0,2,13,5,2,21,3,520,45,9,46,46,46
+9,Pekka Merjaa ihailee ,1,,3165,1,2,19,9,0,6,3,0,3,40,42,40,9,0,0,14,0,2,44,6,3,23,3,1055,82,15,112,112,93
+10,Merjaa Pekka ihailee ,1,,3105,1,2,19,9,0,6,3,0,3,36,38,36,9,0,0,14,0,2,40,6,3,23,3,1035,79,15,103,103,109
+11,Merjaa ihailee Pekka ,1,,1750,0,0,14,6,2,4,0,0,4,22,25,22,7,0,0,14,0,3,25,4,3,21,3,583,73,10,91,91,62
+12,ihailee Pekka Merjaa ,1,,
+13,ihailee Merjaa Pekka ,1,,
+14,Merjaa halusi ihailla Pekka ,1,,2400,0,0,36,9,10,6,0,0,6,44,49,44,10,4,0,14,0,5,50,7,5,24,4,600,232,27,296,296,140
+15,Merjaa halusi Pekka ihailla ,1,,2310,0,0,43,9,6,7,1,0,6,40,45,40,10,1,0,14,0,5,45,8,4,24,4,577,233,34,272,272,109
+16,Merjaa Pekka halusi ihailla ,1,,5325,2,4,59,18,4,9,4,0,5,73,77,74,17,3,0,14,0,4,81,14,5,31,5,1331,307,49,439,439,203
+17,Pekka Merjaa halusi ihailla ,1,,7390,3,6,63,21,4,12,3,0,9,131,135,133,19,4,0,14,0,4,143,14,7,33,5,1847,388,53,584,584,328
+18,Pekka halusi Merjaa ihailla ,1,,2225,0,0,45,9,10,5,0,0,5,37,41,33,10,1,0,14,0,4,39,7,5,24,4,556,265,37,297,297,125
+19,Pekka halusi ihailla Merjaa ,1,,1940,0,0,29,9,8,3,0,0,3,18,22,17,10,3,0,14,0,4,21,9,3,24,4,485,131,21,116,116,78
+20,Merjaa ihailla halusi Pekka ,1,,2010,0,0,36,9,2,6,2,0,4,21,27,24,10,3,0,14,0,6,25,7,3,24,4,502,210,27,213,209,78
+21,ihailla Merjaa halusi Pekka ,1,,1785,0,0,37,9,8,3,2,0,1,8,14,8,10,3,0,14,0,6,9,7,3,24,4,446,251,28,295,290,62
+22,Pekka Merjaa ihailla halusi ,1,,7210,3,6,61,21,2,15,6,0,9,113,118,120,19,8,1,15,0,5,123,14,4,34,5,1802,371,51,506,506,296
+23,Pekka ihailla Merjaa halusi ,1,,2100,0,0,39,9,10,5,4,0,1,26,31,27,10,6,0,14,0,5,27,7,3,24,4,525,199,31,210,210,93
+24,halusi Merjaa ihailla Pekka ,1,,
+25,halusi Merjaa Pekka ihailla ,1,,
+26,halusi ihailla Merjaa Pekka ,1,,
+27,halusi ihailla Pekka Merjaa ,1,,
+28,halusi Pekka Merjaa ihailla ,1,,
+29,halusi Pekka ihailla Merjaa ,1,,
+30,Merjaa ihailla Pekka halusi ,1,,13790,8,16,49,37,18,25,10,0,15,148,153,140,30,12,32,16,0,5,148,25,7,46,6,3447,260,40,309,309,515
+31,ihailla Merjaa Pekka halusi ,1,,3085,1,2,52,12,6,6,4,0,2,18,23,18,12,3,0,14,0,5,21,8,4,26,4,771,299,43,442,442,109
+32,ihailla halusi Merjaa Pekka ,1,,
+33,ihailla halusi Pekka Merjaa ,1,,
+34,ihailla Pekka Merjaa halusi ,1,,
+35,ihailla Pekka halusi Merjaa ,1,,
+36,Pekka ihailla halusi Merjaa ,1,,
+37,Merjaa Pekka ihailla halusi ,1,,
+38,Merjaa nukkuu ,1,,
+39,Merjan_gen nukkuu ,1,,
+40,Merjan_acc nukkuu ,1,,
+41,Merja_0acc nukkuu ,1,,
+42,Merja ihailee ,1,,
+43,ihailee ,1,,
+44,antoi kirjan Merjalle ,1,,
+45,Merja ihailee Merja ,1,,
+46,Merja ihailee Merjan_gen ,1,,
+47,Merja ihailee Merjan_acc ,1,,
+48,Merja ihailee Merja_0acc ,1,,
+49,Merjaa ihailee Merjaa ,1,,
+50,Merjaa ihailee Merjan_gen ,1,,
+51,Merjaa ihailee Merjan_acc ,1,,
+52,Merjaa ihailee Merja_0acc ,1,,
+53,Merjan_gen ihailee Merja ,1,,
+54,Merjan_gen ihailee Merjaa ,1,,
+55,Merjan_gen ihailee Merjan_gen ,1,,
+56,Merjan_gen ihailee Merjan_acc ,1,,
+57,Merjan_gen ihailee Merja_0acc ,1,,
+58,Merjan_acc ihailee Merja ,1,,
+59,Merjan_acc ihailee Merjaa ,1,,
+60,Merjan_acc ihailee Merjan_gen ,1,,
+61,Merjan_acc ihailee Merjan_acc ,1,,
+62,Merjan_acc ihailee Merja_0acc ,1,,
+63,Merja_0acc ihailee Merja ,1,,
+64,Merja_0acc ihailee Merjaa ,1,,
+65,Merja_0acc ihailee Merjan_gen ,1,,
+66,Merja_0acc ihailee Merjan_acc ,1,,
+67,Merja_0acc ihailee Merja_0acc ,1,,
+68,Pekka antoi kirja Merjalle ,1,,
+69,Pekka antoi kirja Merja ,1,,
+70,Pekka antoi kirja Merjan ,1,,
+71,Pekka antoi kirja Merjaa ,1,,
+72,Pekka antoi kirjan Merja ,1,,
+73,Pekka antoi kirjan Merjan ,1,,
+74,Pekka antoi kirjan Merjaa ,1,,
+75,Pekkaa antoi kirja Merja ,1,,
+76,Pekkaa antoi kirja Merjan ,1,,
+77,Pekkaa antoi kirja Merjaa ,1,,
+78,Pekka halusi ihailla Merja ,1,,
+79,Pekkaa halusi ihailla Merjaa ,1,,
+80,Pekka Pekka nukkuu ,1,,
+81,Pekka Pekka ihailee Merjaa ,1,,
+82,Pekka ihailee Merjaa Merjaa ,1,,
+83,Pekka Pekka ihailee Merjaa Merjaa ,1,,
+84,Pekka Pekka antoi kirjan Merjalle ,1,,
+85,Pekka antoi kirjan kirjan Merjalle ,1,,
+86,Pekka halusi ihailla Merjaa ,1,,1940,0,0,29,9,8,3,0,0,3,18,22,17,10,3,0,14,0,4,21,9,3,24,4,485,131,21,116,116,78
+87,Pekka nukahti lukemalla kirjaa ,1,,4880,2,4,33,15,8,7,1,0,6,48,52,45,14,0,4,16,0,4,45,12,6,30,5,1220,189,24,284,156,140
+88,Merjaa halusi ihailla Pekka ,1,,2400,0,0,36,9,10,6,0,0,6,44,49,44,10,4,0,14,0,5,50,7,5,24,4,600,232,27,296,296,125
+89,lukemalla kirjaa Pekka nukahti ,1,,3075,1,2,35,10,6,3,0,0,3,54,58,35,10,0,0,11,0,4,22,6,4,21,4,768,311,26,518,428,125
+90,kirjaa lukemalla Pekka nukahti ,1,,13270,8,16,35,28,18,19,3,0,16,189,193,168,21,0,23,11,0,4,135,16,7,32,6,3317,299,26,489,297,421
+91,lukemalla kirjaa nukahti Pekka ,1,,1725,0,0,33,8,7,4,0,0,4,25,30,16,9,0,1,11,0,5,12,5,4,20,4,431,249,24,353,280,62
+92,kirjaa lukemalla nukahti Pekka ,1,,9675,5,10,31,22,11,20,3,0,17,111,116,107,18,0,5,23,0,5,100,15,5,41,6,2418,213,22,309,229,265
+93,Pekkaa halusi ihailla Merjaa ,1,,
+94,Pekan_gen halusi ihailla Merjaa ,1,,
+95,Pekan_acc halusi ihailla Merjaa ,1,,
+96,Pekka_0acc halusi ihailla Merjaa ,1,,
+97,Pekka halusi ihailla Merja ,1,,
+98,Pekka halusi ihailla Merja_0acc ,1,,
+99,Pekka halusi ihailla Merjan_gen ,1,,
+100,Pekka halusi Merja ihailla ,1,,
+101,Pekka halusi Merja_0acc ihailla ,1,,
+102,Pekka halusi Merjan_gen ihailla ,1,,
+103,Pekkaa nukahti lukemalla kirjaa ,1,,
+104,Pekan_gen nukahti lukemalla kirjaa ,1,,
+105,Pekan_acc nukahti lukemalla kirjaa ,1,,
+106,Pekka_0acc nukahti lukemalla kirjaa ,1,,
+107,kirjaa nukahti lukemalla Pekan_gen ,1,,
+108,kirjaa nukahti lukemalla Pekan_acc ,1,,
+109,kirjaa nukahti lukemalla Pekka_0acc ,1,,
+110,Pekka nukahti lukemalla kirja ,1,,
+111,Pekka nukahti lukemalla kirja_0acc ,1,,
+112,Pekka nukahti lukemalla kirjan_gen ,1,,
+113,lukemalla kirja Pekka nukahti ,1,,
+114,lukemalla kirja_0acc Pekka nukahti ,1,,
+115,lukemalla kirjan_gen Pekka nukahti ,1,,
+116,kirja lukemalla Pekka nukahti ,1,,
+117,kirja_0acc lukemalla Pekka nukahti ,1,,
+118,kirjan_gen lukemalla Pekka nukahti ,1,,
+119,lukemalla kirja nukahti Pekka ,1,,
+120,lukemalla kirja_0acc nukahti Pekka ,1,,
+121,lukemalla kirjan_gen nukahti Pekka ,1,,
+122,kirja lukemalla nukahti Pekka ,1,,
+123,kirja_0acc lukemalla nukahti Pekka ,1,,
+124,kirjan_gen lukemalla nukahti Pekka ,1,,
+125,lahella Pekkaa ,1,,1150,1,0,5,4,0,0,0,0,0,3,4,4,6,0,0,12,0,1,2,2,2,18,2,575,4,2,3,3,15
+126,Pekkaa lahella ,1,,1765,2,2,4,4,1,0,0,0,0,10,11,9,4,0,0,6,0,1,10,1,2,10,1,882,14,1,12,12,31
+127,Pekan_gen lahella ,1,,655,0,0,4,2,0,0,0,0,0,3,3,2,3,0,0,6,0,0,2,1,2,9,1,327,12,1,8,6,15
+128,lahella Pekka ,1,,
+129,Pekka lahella ,1,,
+130,lahella Pekan_acc ,1,,
+131,Pekan_acc lahella ,1,,
+132,lahella Pekka_0acc ,1,,
+133,Pekka_0acc lahella ,1,,
+134,lahella Pekkaa Pekkaa ,1,,
+135,Pekkaa Pekkaa lahella ,1,,
+136,lahella Pekka Pekka ,1,,
+137,Pekka Pekka lahella ,1,,
+138,lahella Pekan_gen ,1,,
+139,Pekkaa pelottaa ,1,,955,0,0,7,4,0,1,0,0,1,7,10,7,5,0,0,7,0,3,8,3,1,12,2,477,13,5,10,10,15
+140,Pekka pelottaa ,1,,
+141,Pekan_gen pelottaa ,1,,
+142,Pekan_acc pelottaa ,1,,
+143,Pekka_0acc pelottaa ,1,,
+144,ne kaksi sukkaa havisi ,1,,1930,1,2,17,7,0,2,2,0,0,8,12,11,7,0,1,2,0,4,18,4,5,9,2,482,44,10,23,24,46
+145,ne kahdet sukat havisivat ,1,,2235,1,2,9,7,0,2,2,0,0,9,12,12,7,0,1,6,0,3,19,4,5,13,3,558,33,5,55,55,125
+146,ne kaksi sukkaa havisivat ,1,,2030,1,2,17,7,0,2,2,0,0,8,12,11,7,0,1,3,0,4,18,4,5,10,2,507,44,10,23,24,125
+147,Pekka loysi ne kaksi sukkaa ,1,,3075,1,1,33,11,20,7,0,0,7,42,46,46,12,0,0,12,0,4,59,16,5,24,4,615,144,13,154,141,156
+148,Pekka sanoi niiden kahden sukan haviavan ,1,,4145,1,2,64,11,10,10,2,0,8,75,78,86,11,2,0,12,0,3,103,10,9,23,6,690,513,42,1019,964,234
+149,kaksi sukkaa havisi ,1,,680,0,0,13,4,0,1,1,0,0,4,8,5,5,0,0,2,0,4,8,2,3,7,2,226,30,8,19,21,15
+150,ne kaksi sukka havisi ,1,,
+151,ne kaksi sukan_gen havisi ,1,,
+152,ne kaksi sukan havisi ,1,,
+153,ne kaksi sukan_acc havisi ,1,,
+154,ne kahdet sukkaa havisivat ,1,,
+155,ne kahdet sukan_gen havisivat ,1,,
+156,ne kahdet sukan_acc havisivat ,1,,
+157,ne kahdet sukka_0acc havisivat ,1,,
+158,Pekka sanoi niiden kaksi sukkaa haviavan ,1,,
+159,sukkaa ne kaksi havisi ,1,,
+160,kaksi ne sukkaa havisi ,1,,
+161,kaksi sukkaa ne havisi ,1,,
+162,ne sukkaa kaksi havisi ,1,,5130,4,7,25,14,0,7,7,0,0,27,31,30,11,0,4,2,0,4,41,6,5,13,3,1282,97,15,79,75,93
+163,Pekka voitti Merjan ,1,,1600,0,0,13,6,2,2,0,0,2,12,14,11,7,0,0,15,0,2,13,5,2,22,3,533,45,9,46,92,46
+164,Pekka voitti Merjaa ,1,,1600,0,0,13,6,2,2,0,0,2,12,14,11,7,0,0,15,0,2,13,5,2,22,3,533,45,9,46,46,46
+165,Pekka tonaisi Merjaa ,1,,1570,0,0,13,6,2,2,0,0,2,12,14,11,7,0,0,14,0,2,13,5,2,21,3,523,45,9,46,46,46
+166,Pekka pesi Merjan ,1,,1510,0,0,40,6,2,2,0,0,2,12,14,11,7,0,0,14,0,2,13,5,2,21,3,503,190,29,218,476,46
+167,Pekka pesi Merjaa ,1,,1510,0,0,40,6,2,2,0,0,2,12,14,11,7,0,0,14,0,2,13,5,2,21,3,503,174,29,184,184,46
+168,Pekka pesi hanet ,1,,1385,0,0,40,6,2,2,0,0,2,11,13,11,7,0,0,12,0,2,13,5,2,19,3,461,190,29,218,347,46
+169,Pekka tonaisi Merja ,1,,
+170,Pekka tonaisi Merjan_gen ,1,,
+171,Pekka tonaisi Merjan_acc ,1,,
+172,Pekka tonaisi hanet ,1,,
+173,Pekka tonaisi Merja_0acc ,1,,
+174,Merjan voitti Pekka ,1,,1790,0,0,14,6,2,4,0,0,4,22,25,22,7,0,0,15,0,3,25,4,3,22,3,596,73,10,91,183,62
+175,Merjan pesi Pekka ,1,,12785,8,14,42,30,16,16,6,0,10,97,100,91,26,0,6,40,0,3,106,22,6,66,8,4261,246,31,306,606,343
+176,Merjaa pesi Pekka ,1,,1700,0,0,44,6,2,4,0,0,4,22,25,22,7,0,0,14,0,3,25,4,3,21,3,566,286,33,364,364,62
+177,Merja tonaisi Pekka ,1,,
+178,Merjan tonaisi Pekka ,1,,
+179,Merja_0acc tonaisi Pekka ,1,,
+180,hanet tonaisi Pekka ,1,,
+181,Pekka ei voittanut Merjaa ,1,,1865,0,0,15,7,2,2,0,0,2,23,26,19,8,0,1,16,0,3,23,7,2,24,4,466,61,9,66,66,93
+182,Pekka ei voittanut Merja ,1,,
+183,Pekka ei voittanut Merjan_gen ,1,,
+184,Pekka ei voittanut Merjan ,1,,
+185,Pekka ei voittanut Merja_0acc ,1,,
+186,Merjaa ei voittanut Pekka ,1,,2100,0,0,16,7,2,4,0,0,4,37,41,33,8,0,1,16,0,4,38,6,2,24,4,525,80,10,92,92,93
+187,Merjaa ei Pekka voittanut ,1,,2000,0,0,17,7,0,3,1,0,2,30,33,28,8,0,3,16,0,3,32,7,2,24,4,500,57,11,61,61,78
+188,Pekka ei Merjaa voittanut ,1,,2120,0,0,17,7,0,3,1,0,2,38,41,36,8,0,3,16,0,3,40,7,2,24,4,530,70,11,99,99,78
+189,Merjaa Pekka ei voittanut ,1,,2110,0,0,29,7,0,4,2,0,2,37,40,35,8,0,2,16,0,3,40,6,2,24,4,527,156,19,273,273,125
+190,Pekka Merjaa ei voittanut ,1,,2125,0,0,29,7,0,4,2,0,2,38,41,36,8,0,2,16,0,3,41,6,2,24,4,531,161,19,288,288,78
+191,Merjan ei voittanut Pekka ,1,,
+192,Merja ei voittanut Pekka ,1,,
+193,Merja_0acc ei voittanut Pekka ,1,,
+194,Merjan_gen ei voittanut Pekka ,1,,
+195,me loysimme avaimen ,1,,1370,0,0,26,6,2,2,0,0,2,3,5,11,7,0,0,12,0,2,13,5,3,19,3,456,115,19,126,244,46
+196,me loydettiin avain_0acc ,1,,1550,0,0,26,6,2,2,0,0,2,3,5,11,7,0,0,14,0,2,13,5,3,21,3,516,115,19,126,244,31
+197,avaimen loysimme me ,1,,1580,0,0,21,6,2,4,0,0,4,19,21,22,7,0,0,12,0,2,25,4,3,19,3,526,140,15,171,351,62
+198,avain_0acc loydettiin me ,1,,1760,0,0,21,6,2,4,0,0,4,19,21,22,7,0,0,14,0,2,25,4,3,21,3,586,140,15,171,351,62
+199,me loydettiin avaimen ,1,,
+200,me loydettiin avaimen_gen ,1,,
+201,me loysimme avain ,1,,
+202,me loysimme avain_0acc ,1,,
+203,me loysimme avaimen_gen ,1,,
+204,me ei' loydetty avainta ,1,,1525,0,0,30,7,2,2,0,0,2,8,11,19,8,0,1,11,0,3,23,7,2,19,3,381,144,19,161,161,46
+205,avainta ei' loydetty me ,1,,1815,0,0,23,7,2,4,0,0,4,32,36,33,8,0,1,11,0,4,38,6,3,19,3,453,166,15,200,200,78
+206,avainta me ei' loydetty ,1,,1770,0,0,56,7,0,2,0,0,2,19,22,37,8,0,4,11,0,3,42,6,3,19,3,442,288,37,476,476,62
+207,me ei' avainta loydetty ,1,,1780,0,0,33,7,0,3,1,0,2,23,26,36,8,0,3,11,0,3,40,7,2,19,3,445,141,22,198,198,62
+208,me_FI ei' loydetty avain ,1,,
+209,me ei' loydetty avaimen_gen ,1,,
+210,me ei' loydetty avaimen ,1,,
+211,me ei' loydetty avain_0acc ,1,,
+212,Pekka halusi voittaa Merjan ,1,,1890,0,0,25,8,7,3,0,0,3,18,21,17,9,3,0,14,0,3,21,8,3,23,4,472,118,17,128,268,78
+213,Pekka halusi tonaista Merjaa ,1,,1910,0,0,25,8,7,3,0,0,3,18,21,17,9,3,0,14,0,3,21,8,3,23,4,477,113,17,112,112,62
+214,Pekka halusi pesta Merjan ,1,,1850,0,0,41,8,7,3,0,0,3,18,21,17,9,3,0,14,0,3,21,8,3,23,4,462,231,29,279,619,62
+215,Pekka halusi loytaa avaimen ,1,,1790,0,0,25,8,7,3,0,0,3,18,21,17,9,3,0,12,0,3,21,8,3,21,4,447,118,17,128,268,78
+216,me haluttiin voittaa Merja_0acc ,1,,1870,0,0,55,8,7,3,0,0,3,5,8,17,9,3,0,14,0,3,21,8,4,23,4,467,299,39,347,677,62
+217,me ei' haluttu voittaa Merjaa ,1,,1935,0,0,59,9,9,3,0,0,3,13,17,27,10,4,1,12,0,4,34,11,3,22,4,387,355,39,411,411,78
+218,me halusimme voittaa Merjan ,1,,1740,0,0,55,8,7,3,0,0,3,5,8,17,9,3,0,13,0,3,21,8,4,22,4,435,315,39,389,803,62
+219,Merjan halusi voittaa Pekka ,1,,4850,2,4,26,12,13,10,4,0,6,59,63,60,11,6,5,14,0,4,66,9,4,25,4,1212,168,18,221,433,171
+220,Merjaa halusi tonaista Pekka ,1,,4990,2,4,31,12,13,11,3,0,8,66,70,67,11,6,5,14,0,4,74,8,5,25,4,1247,204,22,280,280,187
+221,Merjan halusi pesta Pekka ,1,,4810,2,4,43,12,13,10,4,0,6,59,63,60,11,6,5,14,0,4,66,9,4,25,4,1202,315,31,433,839,171
+222,avaimen halusi loytaa Pekka ,1,,4750,2,4,26,12,13,10,4,0,6,59,63,60,11,6,5,12,0,4,66,9,4,23,4,1187,168,18,221,433,171
+223,Merja_0acc haluttiin voittaa me ,1,,4735,2,4,39,12,13,9,3,0,6,47,51,60,11,6,0,14,0,4,66,9,4,25,4,1183,299,27,356,758,156
+224,Merjaa ei' haluttu voittaa me ,1,,5115,2,4,50,13,15,12,4,0,8,78,83,86,12,7,1,12,0,5,96,11,5,24,4,1023,414,34,500,496,187
+225,Merjan halusimme voittaa me ,1,,4600,2,4,39,12,13,9,3,0,6,47,50,60,11,6,0,13,0,3,66,9,4,24,4,1150,299,27,356,758,156
+226,me haluttiin voittaa Merjan ,1,,
+227,me halusimme voittaa Merja_0acc ,1,,
+228,me ei' haluttu voittaa Merja_0acc ,1,,
+229,me ei' haluttu voittaa Merjan ,1,,
+230,Pekka kaski Merjan_gen lahtea ,1,,2110,0,0,25,8,6,4,1,0,3,32,35,31,9,1,2,14,0,3,35,8,2,23,4,527,148,17,173,166,125
+231,Pekka sanoi Merjan_gen lahtevan ,1,,2345,0,0,34,7,5,6,1,0,5,48,50,47,8,1,0,14,0,2,54,4,7,22,4,586,251,25,346,338,125
+232,Pekan_gen taytyy lahtea ,1,,1190,0,0,11,5,1,3,2,0,1,13,17,12,6,1,1,7,0,4,14,4,2,13,3,396,32,7,19,15,46
+233,Pekka kaski lahtea Merjan_gen ,1,,
+234,Pekka sanoi lahtevan Merjan_gen ,1,,4715,2,4,31,11,8,10,3,0,7,59,61,52,10,7,2,14,0,2,60,6,6,24,4,1178,178,22,210,189,156
+235,Pekka kaski Merja lahtea ,1,,
+236,Pekka kaski Merjaa lahtea ,1,,
+237,Pekka kaski Merjan_acc lahtea ,1,,
+238,Pekka kaski Merja_0acc lahtea ,1,,
+239,Pekka kaski lahtea Merja ,1,,
+240,Pekka kaski lahtea Merjaa ,1,,
+241,Pekka kaski lahtea Merjan_acc ,1,,
+242,Pekka kaski lahtea Merja_0acc ,1,,
+243,se Merjan_gen kello havisi ,1,,8835,6,12,39,20,2,15,13,0,2,40,41,39,15,0,4,14,0,1,52,10,6,29,5,2208,157,28,121,105,156
+244,se kello Merjan_gen havisi ,1,,
+245,se kello havisi Merjan_gen ,1,,
+246,Merjan_gen se kello havisi ,1,,
+247,se Merja kello havisi ,1,,
+248,se Merjaa kello havisi ,1,,
+249,se Merjan_acc kello havisi ,1,,
+250,se Merja_0acc kello havisi ,1,,
+251,Merja nukkui Pekan_gen lahella ,1,,2335,0,0,22,6,5,5,0,0,5,53,54,51,7,0,4,14,0,1,58,3,9,21,3,583,394,8,623,576,125
+252,Merja nukkui lahella Pekkaa ,1,,6710,4,5,32,17,5,9,2,0,7,67,69,68,15,0,3,32,0,2,75,12,7,47,6,1677,162,16,199,186,203
+253,Merja nukkui lahella Pekan_gen ,1,,
+254,ne kaksi Merjan_gen puhelinta havisi ,1,,14450,11,22,57,33,3,26,26,0,0,40,43,40,23,0,3,7,0,3,65,17,13,30,5,2890,218,42,59,48,250
+255,ne Merjan_gen kaksi puhelinta havisi ,1,,1430,0,0,83,7,0,7,7,0,0,12,16,14,8,0,2,7,0,4,22,4,6,15,3,286,341,59,130,126,109
+256,ne kaksi Merja puhelinta havisi ,1,,
+257,ne kaksi Merjaa puhelinta havisi ,1,,
+258,ne kaksi Merjan_acc puhelinta havisi ,1,,
+259,ne kaksi Merja_0acc puhelinta havisi ,1,,
+260,me loysimme avaimen ,1,,1370,0,0,26,6,2,2,0,0,2,3,5,11,7,0,0,12,0,2,13,5,3,19,3,456,115,19,126,244,46
+261,me loydettiin avain_0acc ,1,,1550,0,0,26,6,2,2,0,0,2,3,5,11,7,0,0,14,0,2,13,5,3,21,3,516,115,19,126,244,31
+262,avain_0acc loydettiin ,1,,1120,0,0,7,4,0,1,0,0,1,7,9,7,5,0,0,9,0,2,8,3,1,14,2,560,13,5,10,30,15
+263,loydettiin avain_0acc ,1,,1035,0,0,6,4,2,0,0,0,0,2,4,1,5,0,0,9,0,2,2,3,1,14,2,517,13,4,14,42,15
+264,me loydettiin avaimen ,1,,
+265,me loysimme avain ,1,,
+266,Merja nayttaa lahtevan ,1,,1130,0,0,11,5,1,2,0,0,2,13,14,11,6,1,0,7,0,1,13,4,2,13,3,376,33,7,24,24,46
+267,Merjaa nayttaa lahtevan ,1,,
+268,Merjan_gen nayttaa lahtevan ,1,,
+269,Merjan nayttaa lahtevan ,1,,
+270,Merja_0acc nayttaa lahtevan ,1,,
+271,Pekka on' Pekka ,1,,1455,0,0,12,5,1,3,0,0,3,17,17,16,6,0,0,13,0,0,19,3,3,19,3,485,56,8,69,69,46
+272,Merjalla on' Pekka ,1,,1380,0,0,12,6,1,2,0,0,2,8,10,7,7,0,0,13,0,2,4,5,2,20,3,460,38,8,36,23,31
+273,Pekka on' Pekkaa ,1,,
+274,Pekka on' Pekan_gen ,1,,
+275,Pekka on' Pekka_0acc ,1,,
+276,Pekka on' Pekan_acc ,1,,
+277,Pekkaa on Pekka ,1,,
+278,Pekan_gen on Pekka ,1,,
+279,Pekan_acc on Pekka ,1,,
+280,Pekka_0acc on Pekka ,1,,
+281,Pekka nukkui#asp koko paivan ,1,,2470,1,1,18,9,3,6,2,0,4,33,35,37,9,0,3,10,0,2,42,7,5,19,5,617,89,9,140,190,109
+282,Pekka nukku-#asp#T/fin#[-V] koko paivan ,1,,1650,0,0,18,6,3,4,1,0,3,23,25,25,7,0,3,9,0,2,28,5,4,16,3,412,86,9,133,173,62
+283,Pekka ei nukkunut koko paivaa ,1,,1840,0,0,31,7,4,4,0,0,4,42,45,39,8,0,5,9,0,3,45,7,6,17,4,368,190,17,363,363,109
+284,me nukuttiin koko paiva ,1,,4400,3,4,39,15,6,9,2,0,7,21,24,64,13,0,4,9,0,3,72,11,7,22,5,1100,205,22,290,390,140
+285,Pekka ihailee#asp Merjaa koko paivan ,1,,12385,8,13,56,28,36,28,4,0,24,166,169,166,21,0,5,19,0,3,186,18,13,40,8,2477,563,34,921,1219,531
+286,Pekka nukkui koko paivan ,1,,
+287,Pekka ei nukkunut koko paivan ,1,,
+288,me nukuttiin koko paivan ,1,,
+289,Pekka ihailee Merjaa koko paivan ,1,,
+290,Pekka ihailee#asp Merjaa koko paiva ,1,,
+291,Pekka ihailee#asp Merjaa koko paivaa ,1,,
+292,Pekka ihailee Merjaa koko paivaa ,1,,
+293,Pekka nukkui koko paivaa ,1,,1450,0,0,18,6,3,4,1,0,3,23,25,25,7,0,3,8,0,2,28,5,4,15,3,362,86,9,133,133,78
