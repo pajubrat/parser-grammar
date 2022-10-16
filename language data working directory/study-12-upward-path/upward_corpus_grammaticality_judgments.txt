@@ -1,0 +1,6638 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'February', 'study_id': 1, 'study_folder': 'language data working directory/study-12-upward-path', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-12-upward-path', 'test_corpus_file': 'upward_corpus.txt', 'only_first_solution': True, 'logging': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'datatake_resources': True, 'datatake_resource_sequence': False, 'datatake_timings': False, 'datatake_images': False, 'image_parameter_stop_after_each_image': False, 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-03-19 11:29:14.073741
+@  Test sentences from language data working directory\study-12-upward-path\upward_corpus.txt.
+@  Logs into language data working directory\study-12-upward-path\upward_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+@ 
+
+& 0 Sentences cited in the article
+
+& 0.1 Section 3.2.1 Basic clause structure
+
+1.  John admires him 
+
+2. *John admires Mary Mary 
+
+3. *John John admires Mary 
+
+4. *him admires John 
+
+5.  who does John admire 
+
+6.  sitä taloa#[kO] Pekka ihailee 
+
+7.  John wants to_inf leave 
+
+8.  John wants Mary to_inf leave 
+
+9.  John tries to_inf leave 
+
+10. *John tries Mary to_inf leave 
+
+11.  John persuades Mary to_inf leave 
+
+12. *John persuades to_inf leave 
+
+13.  John persuades Mary 
+
+14.  John promises Mary to_inf leave 
+
+15.  John promises to_inf leave 
+
+16.  John admires himself 
+
+17.  John admires him 
+
+18.  John said that Mary admires him 
+
+19.  John admires John 
+
+20.  John='s sister admires him 
+
+21.  John='s sister admires herself 
+
+22.  John wants Mary to_inf admire' herself 
+
+23. *John wants Mary to_inf admire' himself 
+
+24. *John said that Mary admires himself 
+
+25.  John wants to_inf admire himself 
+
+26.  John gave the key to Mary 
+
+27.  Pekka ihailee Merjaa 
+
+28.  Merjaa ihailee Pekka 
+
+29.  ihailen Merjaa 
+
+30. *ihailee Merjaa 
+
+31.  Pekka sanoi etta ihailee Merjaa 
+
+32.  myyda#[kO] Pekka haluaa omaisuutensa 
+
+& 1 Basic construction types
+
+& Basic verb classes (1.1)
+
+& Intransitive verbs
+
+& Grammatical (finite intransitive verbs)
+
+33.  Pekka istuu 
+	'Pekka.nom sit.prs.3sg'
+
+34.  Pekka lahtee 
+	'Pekka.nom leave.prs.3sg'
+
+35.  Pekka elaa 
+	'Pekka.nom live.prs.3sg'
+
+36.  Pekka juoksee 
+	'Pekka.nom run.prs.3sg'
+
+37.  Pekka kuorsaa 
+	'Pekka snor.prs.3sg'
+
+38.  Pekka nukkui 
+	'Pekka.nom sleep.pst.3sg'
+
+39.  John sleeps 
+
+40.  John leaves 
+
+41.  the horse fell 
+
+42.  lui dorme 
+	'He sleeps'
+
+& Ungrammatical (finite intransitive verbs)
+
+43. *Pekka lahtee Merjan 
+	'Pekka.nom depart.prs.3sg Merja.acc'
+
+44. *Pekka elaa Merjan 
+	'Pekka.nom live.prs.3sg Merja.acc'
+
+45. *Pekka istuu Merjan 
+	'Pekka.nom sit.prs.3sg Merja.acc'
+
+46. *Pekka juoksee Merjan 
+	'Pekka.nom run.prs.3sg Merja.acc'
+
+47. *Pekka kuorsaa Merjan 
+	'Pekka.nom snor.prs.3sg Merja.acc'
+
+48. *Pekka nukkui Merjan 
+	'Pekka.nom sleep.pst.3sg Merja.acc'
+
+49. *Pekka lahtee Merja 
+	'Pekka.nom leave.prs.3sg Merja.nom'
+
+50. *Pekka elaa Merja 
+	'Pekka.nom live.prs.3sg Merja.nom'
+
+51. *Pekka istuu Merja 
+	'Pekka.nom sit.prs.3sg Merja.nom'
+
+52. *Pekka juoksee Merja 
+	'Pekka.nom run.prs.3sg Merja.nom'
+
+53. *Pekka kuorsaa Merja 
+	'Pekka.nom snor.prs.3sg Merja.nom'
+
+54. *Pekka nukkui Merja 
+	'Pekka.nom sleep.prs.3sg Merja.nom'
+
+55. *Pekan istuu 
+	'Pekka.acc/gen sit.prs.3sg'
+
+56. *Pekan lahtee 
+	'Pekka.acc/gen leave.prs.3sg'
+
+57. *Pekan elaa 
+	'Pekka.acc/gen live.prs.3sg'
+
+58. *Pekan juoksee 
+	'Pekka.acc/gen run.prs.3sg'
+
+59. *Pekan kuorsaa 
+	'Pekka.acc/gen snor.prs.3sg'
+
+60. *Pekan nukkui 
+	'Pekka.acc/gen sleep.pst.3sg'
+
+61. *lahtee 
+	'leave.prs.3sg'
+
+62. *elaa 
+	'live.prs.3sg'
+
+63. *istuu 
+	'sit.prs.3sg'
+
+64. *juoksee 
+	'run.prs.3sg'
+
+65. *kuorsaa 
+	'snor.prs.3sg'
+
+66. *lahtee lahtee 
+	'leave.prs.3sg leave.prs.3sg'
+
+67. *istuu Pekka 
+	'sit.prs.3sg Pekka.nom'
+
+68. *lahtee Pekka 
+	'leave.prs.3sg Pekka.nom'
+
+69. *elaa Pekka 
+	'live.prs.3sg Pekka.nom'
+
+70. *juoksee Pekka 
+	'run.prs.3sg Pekka.nom'
+
+71. *kuorsaa Pekka 
+	'snor.prs.3sg Pekka.nom'
+
+72. *nukkui Pekka 
+	'sleep.pst.3sg Pekka.nom'
+
+73. *sleeps 
+
+74. *leaves 
+
+75. *John sleeps Mary 
+
+76. *John John sleeps 
+
+77. *lui dorme Luisa 
+	'He sleeps Luisa'
+
+& Transitive verbs
+
+& Grammatical (finite transitive verbs)
+
+78.  Pekka ihailee Merjaa 
+	'Pekka.nom admire.prs.3sg Merja.par'
+
+79.  Pekka ihailee Pekkaa 
+	'Pekka.nom admire.prs.3sg Pekka.par'
+
+80.  Pekka loysi Merjan 
+	'Pekka.nom find.pst.3sg Merja.acc/gen'
+
+81.  Pekka teki sen kellon_N 
+	'Pekka.nom make.pst.3sg that watch'
+
+82.  Pekka etsii Merjaa 
+	'Pekka.nom search.prs.3sg Merja.par'
+
+83.  Pekka haluaa Merjaa 
+	'Pekka.nom want.prs.3sg Merja.par'
+
+84.  Pekka hairitsee Merjaa 
+	'Pekka.nom disturb.prs.3sg Merja.par'
+
+85.  Pekka lukee kirjaa 
+	'Pekka read.prs.3sg book.par'
+
+86.  Pekka pelkaa Merjaa 
+	'Pekka fear.prs.3sg Merja.par'
+
+87.  Pekka pesi Merjaa 
+	'Pekka.nom wash.pst.3sg Merja.par'
+
+88.  Pekka saavuttaa Merjaa 
+	'Pekka.nom reach.prs.3sg Merja.par'
+
+89.  Pekka teki kirjan 
+	'Pekka make.pst.3sg book.acc/gen'
+
+90.  Pekka tonaisi Merjaa 
+	'Pekka.nom push/nudge.pst.3sg Merja.par'
+
+91.  John admires Mary 
+
+92.  John likes Mary 
+
+93.  John persuades Mary 
+
+94.  Giuseppe spinge Luisa 
+
+95.  lavano Luisa 
+
+96.  loro lavano Luisa 
+
+& Ungrammatical (finite transitive verbs)
+
+97. *Pekka ihailee 
+	'Pekka.nom admire.prs.3sg'
+
+98. *Pekka loysi 
+	'Pekka.nom find.pst.3sg'
+
+99. *Pekka teki 
+	'Pekka.nom make.pst.3sg'
+
+100. *Pekka etsii 
+	'Pekka.nom search.prs.3sg'
+
+101. *Pekka haluaa 
+	'Pekka.nom want.prs.3sg'
+
+102. *Pekka hairitsee 
+	'Pekka.nom disturb.prs.3sg'
+
+103. *Pekka pelkaa 
+	'Pekka.nom fear.prs.3sg'
+
+104. *Pekka pesi 
+	'Pekka.nom wash.pst.3sg'
+
+105. *Pekka saavuttaa 
+	'Pekka.nom reach.prs.3sg'
+
+106. *Pekka teki 
+	'Pekka.nom make.pst.3sg'
+
+107. *Pekka tonaisi 
+	'Pekka.nom push/nudge.prs.3sg'
+
+108. *ihailee 
+	'admire.prs.3sg'
+
+109. *loysi 
+	'find.pst.3sg'
+
+110. *teki 
+	'make.pst.3sg'
+
+111. *etsii 
+	'search.prs.3sg'
+
+112. *haluaa 
+	'want.prs.3sg'
+
+113. *hairitsee 
+	'disturb.prs.3sg'
+
+114. *pelkaa 
+	'fear.prs.3sg'
+
+115. *pesi 
+	'wash.pst.3sg'
+
+116. *saavuttaa 
+	'reach.prs.3sg'
+
+117. *ihailee ihailee 
+	'admire.prs.3sg admire.prs.3sg'
+
+118. *Pekka ihailee Merjaa Merjaa 
+	'Pekka.nom admire.prs.3sg Merja.par Merja.par'
+
+119. *Pekka Pekka ihailee Merjaa 
+	'Pekka.nom Pekka.nom admire.prs.3sg Merja.par'
+
+120. *Pekka Pekka ihailee Merjaa Merjaa 
+	'Pekka.nom Pekka.nom admire.prs.3sg Merja.par Merja.par'
+
+121. *mina haluan 
+	'I want'
+
+122. *Pekka haluaa Merjalle 
+	'Pekka.nom wants to.Merja'
+
+123. *John admires 
+
+124. *John admires Mary Mary 
+
+125. *admires 
+
+126. *admires Mary 
+
+& Ditransitive verbs
+
+& Grammatical
+
+127.  Pekka antoi kirjan Merjalle 
+	'Pekka.nom give.pst.3sg book.acc/gen to.Merja'
+
+128.  John gave the key to Mary 
+
+& Ungrammatical
+
+129. *antoi kirjan Merjalle 
+	'give.pst.3sg book.acc/gen to.Merja'
+
+130. *Pekka antoi antoi kirjan Merjalle 
+	'Pekka.nom give.pst.3sg give.pst.3sg book.acc/gen to.Merja'
+
+131. *John gave the key to 
+
+132. *John gave the to Mary 
+
+133. *John gave the to 
+
+134. *John gave the 
+
+135. *John gave to 
+
+& Intransitive verbs with PP argument
+
+& Grammatical
+
+136.  Pekka elaa Helsingissa 
+	'Pekka.nom live.prs.3sg in.Helsinki'
+
+137.  Pekka istuu Helsingissa 
+	'Pekka.nom sit.prs.3sg in.Helsinki'
+
+138.  Pekka lahtee Helsingissa 
+	'Pekka.nom leave.prs.3sg in.Helsinki'
+
+139.  Pekka juoksee Helsingissa 
+	'Pekka.nom run.prs.3sg in.Helsinki'
+
+140.  Pekka kuorsaa Helsingissa 
+	'Pekka.nom snore.prs.3sg in.Helsinki'
+
+141.  Pekka nukkui Helsingissa 
+	'Pekka.nom sleep.pst.3sg in.Helsinki'
+
+142.  John sleeps in Helsinki 
+
+& Ungrammatical
+
+143. *Pekka elaa Helsinki 
+	'Pekka.nom live.prs.3sg Helsinki.nom'
+
+& Two PP arguments/adjuncts
+
+& Grammatical
+
+144.  Pekka antoi kirjan Merjalle Helsingissa 
+	'Pekka.nom give.pst.3sg book.acc/gen to.Merja in.Helsinki'
+
+145.  John gave the key to Mary in Helsinki 
+
+& Ungrammatical
+
+146. *Pekka antoi kirjan Merjalle Helsinki 
+	'Pekka.nom give.pst.3sg book.acc/gen to.Merja Helsinki.nom'
+
+& Special finite elements (1.2)
+
+& Aux, Sentential negation
+
+& Grammatical
+
+147.  mina en lahde 
+	'I.nom not.1sg leave'
+
+148.  sina et lahde 
+	'you.nom not.2sg leave'
+
+149.  Pekka ei lahde 
+	'Pekka.nom not.3sg leave'
+
+150.  me emme lahde 
+	'we.nom not.1pl leave'
+
+151.  te ette lahde 
+	'you.nom not.2pl leave'
+
+152.  he_FI eivat lahde 
+	'they.nom not.3sg leave'
+
+153.  Pekka ei ihaile Merjaa 
+	'Pekka.nom not.3sg admire Merja.par'
+
+154.  Pekka ei myynyt omaisuuttaan 
+	'Pekka.nom not.3sg sell possessions.px/3sg'
+
+155.  John does sleep 
+
+156.  John does not sleep 
+
+157.  John does not admire' Mary 
+
+158.  loro hanno lavato Luisa 
+
+159.  io ho lavato Luisa 
+
+160.  loro hanno voluto lavare Luisa 
+
+161.  loro stanno lavando Luisa 
+
+& Ungrammatical
+
+162. *sina en lahde 
+	'you.nom not.1sg leave'
+
+163. *sina lahde et 
+	'you.nom leave not.2sg'
+
+164. *Pekka ihaile ei Merjaa 
+	'Pekka.nom admire not.3sg Merja.par'
+
+165. *John not does sleep 
+
+& Problems (these problems have to do with ellipsis, partial fragments)
+
+166.  Pekan_gen lahtea 
+	'Pekka.GEN leave.a/inf'
+
+167.  Pekka ihaile Merjaa 
+	'Pekka.nom admire Merja.par'
+
+168.  etta Merja lahtee 
+	'that Merja.nom leave.3sg'
+
+& Modals
+
+& Grammatical
+
+169.  Pekan_gen taytyy nukkua 
+	'Pekka.GEN must.0 sleep.a/inf'
+
+170.  Pekan_gen taytyy ihailla Merjaa 
+	'Pekka.GEN must.0 admire.a/inf Merja.par'
+
+171.  Pekan_gen taytyy myyda omaisuuttaan 
+	'Pekka.GEN must.0 sell.a/inf possessions.px/3sg
+
+172.  John must sleep 
+
+173.  John must admire' Mary 
+
+174.  loro devono lavare Luisa 
+
+& Ungrammatical
+
+175. *Pekka taytyy nukkua 
+	'Pekka.nom must.0 sleep.a/inf'
+
+176. *taytyy Pekan nukkua 
+	'must.0 Pekka.GEN sleep.a/inf'
+
+177. *John does must sleep 
+
+178. *John must Mary admire' John 
+
+179. *John must to_inf sleep 
+
+& Neg + Modal + V (Finnish)
+
+& Grammatical
+
+180.  Pekan_gen ei taydy ihailla Merjaa 
+	'Pekka.GEN not.3sg must.0 admire.a/inf Merja.par'
+
+181.  Pekan_gen ei taydy myyda omaisuuttaan 
+	'Pekka.GEN not.3sg must.0 sell.a/inf possessions.px/3sg'
+
+& Ungrammatical
+
+182. *Pekka ei taydy ihailla Merjaa 
+	'Pekka.nom not.3sg must.0 admire.a/inf Merja.par'
+
+183. *Pekka en taydy ihailla Merjaa 
+	'Pekka.nom not.1sg must.0 admire.a/inf Merja.par'
+
+184. *Pekan_gen ei taytyy ihailla Merjaa 
+	'Pekka.GEN not.3sg must.0 admire.a/inf Merja.par'
+
+& Tensed pure auxiliaries
+
+& Grammatical
+
+185.  Pekka on' nukkunut 
+	'Pekka.nom be.pst.3sg sleep.pst.prtcpl'
+
+186.  Pekka on' ihaillut Merjaa 
+	'Pekka be.pst.3sg admire.pst.prtcpl Merja.par'
+
+187.  John does sleep 
+
+& Ungrammatical
+
+188. *John does 
+
+& Infinitival complement clauses (1.3)
+
+& Basic infinitival constructions (English)
+
+& Grammatical (want-class)
+
+189.  John wants to_inf leave 
+
+190.  John wants Mary to_inf leave 
+
+191.  John wants to_inf leave Mary 
+
+192.  io detesto lavare Luisa 
+
+& Ungrammatical
+
+193. *io detesto Giuseppe lavare Luisa 
+
+194. *John wants leave 
+
+195. *John wants to_inf 
+
+196. *John wants Mary leave 
+
+197. *John wants leave Mary 
+
+& OC constructions (English)
+
+& Grammatical
+
+198.  John tries to_inf leave 
+
+& Ungrammatical
+
+199. *John tries Mary to_inf leave 
+
+200. *John tries leave 
+
+& Finnish deverbal infinitival complements
+
+& A-infinitival 'to do'
+
+& Grammatical
+
+201.  Pekka haluaa lahtea 
+	'Pekka.nom want.prs.3sg leave.a/inf'
+
+202.  Pekka kaskee Merjan_gen lahtea 
+	'Pekka.nom order.prs.3sg Merja.gen leave.a/inf'
+
+203.  Pekka halusi ihailla Merjaa 
+	'Pekka.nom want.pst.3sg admire.a/inf Merja.par'
+
+204.  Pekka kaskee poikien ihailla Merjaa 
+	'Pekka.nom order.prs.3sg boy.PL.gen admire.a/inf Merja.par'
+
+205.  Pekka kaskee poikien myyda omaisuuttaan 
+	'Pekka.nom order.prs.3sg boy.PL.gen sell.a/inf possessions.px/3sg'
+
+206.  Pekka ei halua ihailla Merjaa 
+	'Pekka.NON not.3sg want.a/inf admire.a/inf Merja.par'
+
+207.  Pekka ei halua myyda omaisuuttaan 
+	'Pekka.nom not.3sg want.a/inf sell.a/inf possessions.px/3sg'
+
+& Ungrammatical
+
+208. *Pekka haluaa Merjan_gen lahtea 
+	'Pekka.nom want.prs.3sg Merja.gen leave.a/inf'
+
+209. *Pekka haluaa heidan lahtea 
+	'Pekka.nom want.prs.3sg they.gen leave.a/inf'
+
+210. *Pekka haluaa 
+	'Pekka.nom want.prs.3sg'
+
+211. *Pekka haluaa Merjaa lahtea 
+	'Pekka.nom want.prs.3sg Merja.par leave.a/inf'
+
+& Modal + A-infinitival
+
+& Grammatical
+
+212.  Pekan_gen taytyy ihailla Merjaa 
+	'Pekka.gen must.0 admire.a/inf Merja.par'
+
+213.  Pekan_gen taytyy myyda omaisuuttaan 
+	'Pekka.gen must.0 sell.a/inf possessions.px/3sg'
+
+214.  Pekan_gen ei taydy ihailla Merjaa 
+	'Pekka.gen not.3sg must.0 admire.a/inf Merja.par'
+
+215.  Pekan_gen ei taydy myyda omaisuuttaan 
+	'Pekka.gen not.3sg must.0 sell.a/inf possessions.px/3sg'
+
+& Ungrammatical
+
+216. *Pekka taytyy ihailla Merjaa 
+	'Pekka.nom must.0 admire.a/inf Merja.par'
+
+& VA-infinitival 'to do'
+
+& Grammatical
+
+217.  Pekka sanoo Merjan_gen lahtevan 
+	'Pekka.nom says Merja.gen leave.va/inf'
+
+218.  Pekka halusi heidan lahtevan 
+	'Pekka.nom want.pst.3sg they.gen leave.va/inf'
+
+219.  Pekka sanoo lahtevansa 
+	'Pekka.nom say.prs.3sg leave.va/inf.px/3sg'
+
+220.  Pekka sanoo ihailevansa Merjaa 
+	'Pekka.nom say.prs.3sg admire.va/inf.px/3sg Merja.par'
+
+221.  Pekka sanoo Merjan_gen lahtevan 
+	'Pekka.nom say.prs.3sg Merja.gen leave.va/inf'
+
+222.  mina sanon lahtevani 
+	'I.nom say.prs.1sg leave.va/inf.PX/1SG'
+
+& Ungrammatical
+
+223. *mina sanon lahtevansa 
+	'I.nom say.prs.1sg leave.va/inf.px/3sg'
+
+224. *Pekka sanoo ihailevansa 
+	'Pekka.nom say.prs.3sg admire.va/inf.px/3sg'
+
+225. *Pekka halusi Merja lahtevan 
+	'Pekka.nom want.pst.3sg Merja.nom leave.va/inf'
+
+& Nominals (1.4)
+
+& Basic DPs
+
+& Grammatical
+
+226.  se talo 
+	'the/that house'
+
+227.  se pieni talo 
+	'the/that small house'
+
+228.  se pieni punainen talo 
+	'that small red house'
+
+229.  se punainen pieni talo 
+	'that red small house'
+
+230.  the little key 
+
+231.  the little red key 
+
+& Ungrammatical
+
+232. *pieni talo se 
+	'small house the/that'
+
+233. *se talo pieni 
+	'the/that house small'
+
+234. *talo pieni se 
+	'house small the/that'
+
+235. *talo se pieni 
+	'house the/that small'
+
+236. *the key little 
+
+237. *the key red little 
+
+& N + A-infinitival
+
+& Grammatical
+
+238.  Pekka teki sopimuksen ihailla Merjaa 
+	'Pekka.nom make.pst.3sg agreement admire.a/inf Merja.par'
+
+239.  Pekka teki sopimuksen antaa avaimen Merjalle 
+	'Pekka.nom make.pst.3sg agreement give.a/inf key.acc/gen to.Merja'
+
+240.  se sopimus ihailla Merjaa peruuntui 
+	'the/that agreement admire.a/inf Merja.par terminate.pst.3sg'
+
+& Ungrammatical
+
+& Adpositions (1.5)
+
+& Grammatical
+
+241.  lahella_1 Pekkaa 
+	'near Pekka.par'
+
+242.  Pekkaa lahella_1 
+	'Pekka.par near'
+
+243.  Merja nukkui Pekan_gen lahella_2 
+	'Merja sleep.pst.3sg Pekka.gen near'
+
+244.  Merja nukkui lahella_1 Pekkaa 
+	'Merja.nom sleep.pst.3sg near Pekka.par'
+
+245.  Pekka nukkui Helsingissa 
+	'Pekka sleep.pst.3sg in.Helsinki'
+
+& Ungrammatical
+
+246. *Merja nukkui lahella Pekan_gen 
+	'Merja.nom sleep.pst.3sg near Pekka.gen'
+
+& Embedded finite THAT-clauses (1.6)
+
+& THAT-clauses
+
+& Grammatical
+
+247.  Pekka sanoi etta Merja lahtee 
+	'Pekka said that Merja.nom leave.prs.3sg'
+
+248.  Pekka sanoi etta Merja ihailee Pekkaa 
+	'Pekka said that Merja.nom admire.prs.3sg Pekka.par'
+
+249.  Pekka sanoi etta Merja antoi kirjan Merjalle 
+	'Pekka said that Merja.nom give.pst.3sg book.acc/gen to.Merja'
+
+250.  Pekka sanoo etta haluaa ihailla Merjaa 
+	'Pekka said that want.prs.3sg admire.a/inf Merja.par'
+
+251.  Pekka sanoo etta haluaa myyda omaisuuttaan 
+	'Pekka said that want.prs.3sg sell.a/inf possessions.px/3sg'
+
+252.  Pekka sanoo etta Pekka ei lahde 
+	'Pekka said that Pekka.nom not.3sg leave'
+
+253.  Pekka sanoo etta mina en lahde 
+	'Pekka said that I.nom not.1sg leave'
+
+254.  Pekka sanoi etta Pekka ei ihaile Merjaa 
+	'Pekka said that Pekka.nom not.3sg admire Merja.par'
+
+255.  Pekka sanoi etta Pekan_gen taytyy nukkua 
+	'Pekka said that Pekka.gen must.0 sleep.a/inf'
+
+256.  John said that Mary sleeps 
+
+& Ungrammatical
+
+257. *Pekka sanoi etta 
+	'Pekka.nom said that'
+
+258. *Pekka sanoi etta Merja 
+	'Pekka.nom said that Merja.nom'
+
+259. *Pekka sanoi Merja lahtee etta 
+	'Pekka.nom said Merja.nom leaves that'
+
+260. *etta 
+	'that'
+
+261. *John said that 
+
+262. *John said that Mary 
+
+& Problems ("that" cannot rule out DP spec when it is an adjunct)
+
+263.  Pekka sanoi Merja etta lahtee 
+	'Pekka.nom said Merja.nom that leave.prs.3sg'
+
+& 2 Adjunction and adjuncts
+
+& PP adjuncts (2.1)
+
+& Grammatical
+
+264.  John gave the key to Mary 
+
+265.  John moved the key from Mary to John 
+
+& Ungrammatical
+
+266. *John to Mary gave the key 
+
+267. *John to Mary gave key the 
+
+268. *John gave to Mary the key 
+
+269. *to Mary John gave the key 
+
+270. *to Mary John moved the key to John 
+
+& Adjectives (2.2)
+
+& Grammatical
+
+271.  the little key 
+
+272.  the little red key 
+
+273.  se talo 
+
+274.  se pieni talo 
+
+275.  se pieni punainen talo 
+
+276.  se punainen pieni talo 
+
+& Ungrammatical
+
+277. *the key little 
+
+278. *the key red little 
+
+279. *pieni talo se 
+	'small house the/that'
+
+280. *se talo pieni 
+	'the/that house small'
+
+281. *talo pieni se 
+	'house small the/that'
+
+282. *talo se pieni 
+	'house the/that small'
+
+& Adjunct infinitivals in Finnish (2.3)
+
+& MA-infinitival 'doing, without doing...'
+
+& Grammatical
+
+283.  Pekka naki Merjan_acc lahtemassa 
+	'Pekka.nom see.pst.3sg Merja.acc leave.ma/inf (in leaving)'
+
+284.  Pekka naki Merjan_acc lahtematta 
+	'Pekka.nom see.pst.3sg Merja.acc leave.ma/inf (without leaving)'
+
+285.  Pekka naki Merjan_acc lahtemalla 
+	'Pekka.nom see.pst.3sg Merja.acc leave.ma/inf (by leaving)'
+
+286.  Pekka naki Merjan_acc ihailemassa Jukkaa 
+	'Pekka.nom see.pst.3sg Merja.acc admire.ma/inf (in admiring) Jukka.par'
+
+287.  Pekka elaa ihailemalla Merjaa 
+	'Pekka.nom live.prs.3sg admire.ma/inf (by admiring) Merja.par'
+
+288.  Pekka elaa haluamalla ihailla Merjaa 
+	'Pekka.nom live.prs.3sg want.ma/inf admire.a/inf Merja.par'
+
+& Ungrammatical
+
+289. *Pekka naki lahtemassa 
+	'Pekka.nom see.pst.3sg leave.ma/inf (in leaving)'
+
+290.  Pekka naki Merjan_gen lahtemassa 
+	'Pekka.nom see.pst.3sg Merja.gen leave.ma/inf (in leaving)'
+
+291. *Pekka naki heidan lahtemassa 
+	'Pekka.nom see.pst.3sg they.gen leave.ma/inf (in leaving)'
+
+292. *Pekka naki heidan ihailemassa 
+	'Pekka.nom see.pst.3sg they.gen admire.ma/inf (in admiring)'
+
+& ESSA-infinitival 'while doing'
+
+& Grammatical
+
+293.  Pekka naki Merjan_acc lahtiessa 
+	'Pekka.nom see.pst.3sg Merja.acc leave.e/inf'
+
+294.  Pekka naki Merjan_acc lahtiessaan 
+	'Pekka.nom see.pst.3sg Merja.acc leave.e/inf.px/3sg'
+
+295.  Pekka naki avaimen_acc Merjan_gen lahtiessa 
+	'Pekka.nom see.pst.3sg key.acc Merja.gen leave.e/inf'
+
+& Ungrammatical
+
+296. *Pekka naki Merjan_gen lahtiessa 
+	'Pekka.nom see.pst.3sg Merja.gen leave.e/inf'
+
+297. *Pekka naki heidan lahtiessa 
+	'Pekka.nom see.pst.3sg they.gen leave.e/inf'
+
+298. *Pekka naki lahtiessa 
+	'Pekka.nom see.pst.3sg leave.e/inf'
+
+& TUA-infinitival 'after doing'
+
+& Grammatical
+
+299.  Pekka naki Merjan_acc lahdettyaan 
+	'Pekka.nom see.pst.3sg Merja.acc leave.tua.px/3sg'
+
+300.  Pekka lahtee Merjan_gen lahdettya 
+	'Pekka.nom leave.prs.3sg Merja.gen leave.tua/inf'
+
+301.  Pekka lahtee heidan lahdettya 
+	'Pekka.nom leave.prs.3sg they.gen leave.tua/inf'
+
+302.  Pekka lahtee heidan ihailtua Merjaa 
+	'Pekka.nom leave.prs.3sg they.gen admire.tua/inf Merja.par'
+
+& Ungrammatical
+
+303. *Pekka nakee Merjan_acc lahdettya 
+	'Pekka.nom see.prs.3sg Merja.acc leave.tua/inf'
+
+304. *Pekka lahtee heidan ihailtua 
+	'Pekka.nom leave.prs.3sg they.gen admire.tua/inf'
+
+& E-infinitival 'by doing'
+
+& Grammatical
+
+305.  Pekka lahtee juosten 
+	'Pekka.nom leave.prs.3sg run.e/inf'
+
+& Ungrammatical
+
+306. *Pekka lahtee Merjan_gen juosten 
+	'Pekka.nom leave.prs.3sg Merja.gen run.e/inf'
+
+& 3 A-bar movement and pied-piping
+
+& Basic interrogatives (3.1)
+
+& Grammatical
+
+307.  keta Pekka ihailee 
+	'who.par Pekka.nom admire.prs.3sg'
+
+308.  kuka ihailee Merjaa 
+	'who.nom admire.prs.3sg Merja.par'
+
+309.  kuka ei ihaile Merjaa 
+	'who.nom not.3sg admire Merja.par'
+
+310.  keta Pekka ei ihaile 
+	'who.par Pekka.nom not.3sg admire'
+
+311.  kenen taytyy ihailla Merjaa 
+	'who.gen must.0 admire.a/inf Merja.par'
+
+312.  keta Pekan_gen taytyy ihailla 
+	'who.par Pekka.gen must.0 admire.a/inf'
+
+313.  kuka antoi kirjan Merjalle 
+	'who.nom give.pst.3sg book.acc/gen to.Merja'
+
+314.  kenen ei taydy ihailla Merjaa 
+	'who.gen not.3sg must.0 admire.a/inf Merja.par'
+
+315.  keta Pekan_gen ei taydy ihailla 
+	'who.par Pekka.gen not.3sg must.0 admire.a/inf'
+
+316.  kuka kaskee Merjan_gen lahtea 
+	'who.nom order.prs.3sg Merja.gen leave.a/inf'
+
+317.  kuka halusi ihailla Merjaa 
+	'who.nom want.prs.3sg admire.a/inf Merja.par'
+
+318.  kuka sanoo Merjan_gen lahtevan 
+	'who.nom say.prs.3sg Merja.gen leave.va/inf'
+
+319.  kuka sanoo lahtevansa 
+	'who.nom say.prs.3sg leave.va/inf.px/3sg'
+
+320.  kuka teki sopimuksen ihailla Merjaa 
+	'who.nom make.pst.3sg agreement admire.a/inf Merja.par'
+
+321.  kuka nukkui lahella_1 Pekkaa 
+	'who.nom sleep.pst.3sg near Pekka.par'
+
+322.  kuka sanoi etta Merja lahtee 
+	'who.nom say.pst.3sg that Merja.nom leave.prs.3sg'
+
+323.  kuka sanoi etta Merja ihailee Pekkaa 
+	'who.nom say.pst.3sg that Merja.nom admire.prs.3sg Pekka.par'
+
+324.  kuka naki Merjan_acc lahtemassa 
+	'who.nom see.pst.3sg Merja.acc leave.ma/inf'
+
+325.  who wants to_inf leave 
+
+326.  who admires John 
+
+327.  who does John admire' 
+
+& Ungrammatical
+
+328. *admires who John 
+
+329. *admires John who 
+
+330. *John who admires 
+
+331. *ihailee keta Pekka 
+	'admire.prs.3sg who.par Pekka.nom'
+
+332. *ihailee Pekka keta 
+	'admire.prs.3sg Pekka.nom who.par'
+
+& Problems (genitive DP does not mo through Spec,A/inf)
+
+333.  kenen Pekka kaskee lahtea 
+	'who.gen Pekka.nom order.prs.3sg leave.a/inf'
+
+334. *kenen Pekka sanoo lahtevan 
+	'who.gen Pekka.nom say.prs.3sg leave.va/inf'
+
+& Problems ('Pekka' is interpreted as an second Spec TP-adjunct)
+
+335. *Pekka keta ihailee 
+	'Pekka.nom who.par admire.prs.3sg'
+
+& Pied-piping (3.2)
+
+& Grammatical
+
+336.  towards which city does Seine flow' 
+
+337.  mita kaupunkia kohti Seine virtaa 
+	'what.par city.par towards Seine.nom flow.prs.3sg'
+
+338.  mita kaupunkia kohti virtaamalla Seine saavuttaa meren 
+	'what.par city.par towards by.flowing Seine.nom reache.prs.3sg ocean.acc/gen'
+
+& Echo questions
+
+339.  kohti mita kaupunkia Seine virtaa 
+	'towards what.par city.par Seine.nom flow.prs.3sg'
+
+340.  Seine virtaa kohti mita kaupunkia 
+	'Seine.nom flow.prs.3sg toward what.par city.par'
+
+341.  Seine virtaa mita kaupunkia kohti 
+	'Seine.nom flow.prs.3sg what.par city.par towards'
+
+& Ungrammatical
+
+342. *which city towards does Seine flow' 
+
+& Islands (3.3)
+
+& Extraction from left branch and right adjunct (CED-effects)
+
+& Grammatical
+
+343.  John moved the key from Mary to John 
+
+344.  Seine saavuttaa meren virtaamalla kohti Pariisia 
+	'Seine.nom reach.prs.3ssg ocean.acc/gen flow.ma/inf towards Paris.par'
+
+345.  se sopimus ostaa auto raukesi 
+	'the/that agreement buy.a/inf car terminate.pst.3sg'
+
+346.  Merjan_gen kello havisi 
+	'the/that Merja.gen watch disappear.pst.3sg'
+
+347.  Pekka naki Merjan_acc ihailemassa Jukkaa 
+	'Pekka.nom see.pst.3sg Merja.acc admire.ma/inf Jukka.par
+
+& Ungrammatical
+
+348. *mita kaupunkia Seine saavuttaa meren virtaamalla kohti 
+	'what.par city.par Seine.nom reach.pst.3sg ocean.acc/gen by.flowing towards'
+
+349. *mika se sopimus ostaa raukesi 
+	'which the/that agreement buy.a/inf terminate.pst.3sg'
+
+350. *kenen se kello havisi 
+	'who.gen the/that watch disappear.pst.3sg'
+
+351. *keta Pekka naki Merjan_acc ihailemassa 
+	'who.par Pekka.nom see.pst.3sg Merja.acc admire.ma/inf'
+
+& Extraction from embedded interrogative (wh-island)
+
+& Grammatical
+
+352.  who does John say' that Mary admires 
+
+353.  John asks whether Mary admires John 
+
+& Ungrammatical
+
+354. *who does John ask- whether Mary admires 
+
+& Problems
+
+355. *who does John ask- what admires 
+
+& Extraction from DP
+
+& Grammatical
+
+356.  Pekka teki sopimuksen ostaa auton 
+	'Pekka.nom make.pst.3sg agreement buy.a/inf car.acc/gen'
+
+357.  Pekka teki Merjan_gen kellon_n 
+	'Pekka.nom make.pst.3sg the/that.acc/gen Merja.gen watch.acc/gen'
+
+& Ungrammatical
+
+358. *kenen Pekka teki sen kellon_N 
+	'who.gen Pekka.nom make.pst.3sg the/that.acc/gen _ watch.acc/gen'
+
+359. *minka Pekka teki sopimuksen ostaa 
+	'what.par Pekka.nom make.pst.3sg agreement buy.a/inf _'
+
+& Extraction of embedded subject position
+
+& Grammatical
+
+360.  John said that Mary sleeps 
+
+& Ungrammatical
+
+361. *who does John say' that sleeps 
+
+& Left peripheral C-features (3.4)
+
+& All combinations (3.4.1)
+
+& Grammatical
+
+362.  kuka ihailee Merjaa 
+	'who.nom admire.prs.3sg Merja.par'
+
+363.  kuka#[hAn] ihailee Merjaa 
+	'who.nom.fam (familiarity topic) admire.prs.3sg Merja.par'
+
+364.  kuka#[pA] ihailee Merjaa 
+	'who.nom.pol (polarity topic) admire.prs.3sg Merja.par'
+
+365.  kuka#[kO] ihailee Merjaa 
+	'who.nom.q (yes/no question) admire.prs.3sg Merja.par'
+
+366.  kuka#[foc] ihailee Merjaa 
+	'who.nom.foc (contrast) admire.prs.3sg Merja.par'
+
+367.  kuka#[foc]#[hAn] ihailee Merjaa 
+	'who.nom.foc.fam admire.prs.3sg Merja.par'
+
+368.  kuka#[foc]#[pA] ihailee Merjaa 
+	'who.nom.foc.pol admire.prs.3sg Merja.par'
+
+369.  kuka#[foc]#[kO] ihailee Merjaa 
+	'who.nom.foc.q admire.prs.3sg Merja.par'
+
+370.  kuka#[pA]#[hAn] ihailee Merjaa 
+	'who.nom.pol.fam admire.prs.3sg Merja.par'
+
+371.  kuka#[kO]#[hAn] ihailee Merjaa 
+	'who.nom.q.fam admire.prs.3sg Merja.par'
+
+372.  kuka#[foc]#[kO]#[hAn] ihailee Merjaa 
+	'who.nom.foc.q.fam admire.prs.3sg Merja.par'
+
+373.  kuka#[foc]#[pA]#[hAn] ihailee Merjaa 
+	'who.nom.foc.q.fam admire.prs.3sg Merja.par'
+
+374.  Pekka#[hAn] ihailee Merjaa 
+	'Pekka.nom.fam admire.prs.3sg Merja.par'
+
+375.  Pekka#[pA] ihailee Merjaa 
+	'Pekka.nom.pol admire.prs.3sg Merja.par'
+
+376.  Pekka#[kO] ihailee Merjaa 
+	'Pekka.nom.q admire.prs.3sg Merja.par'
+
+377.  Pekka#[foc] ihailee Merjaa 
+	'Pekka.nom.foc admire.prs.3sg Merja.par'
+
+378.  Pekka#[foc]#[hAn] ihailee Merjaa 
+	'Pekka.nom.foc.fam admire.prs.3sg Merja.par'
+
+379.  Pekka#[foc]#[pA] ihailee Merjaa 
+	'Pekka.nom.foc.pol admire.prs.3sg Merja.par'
+
+380.  Pekka#[foc]#[kO] ihailee Merjaa 
+	'Pekka.nom.foc.q admire.prs.3sg Merja.par'
+
+381.  Pekka#[foc]#[kO]#[hAn] ihailee Merjaa 
+	'Pekka.nom.foc.q.fam admire.prs.3sg Merja.par'
+
+382.  Pekka#[foc]#[pA]#[hAn] ihailee Merjaa 
+	'Pekka.nom.foc.pol.fam admire.prs.3sg Merja.par'
+
+383.  Pekka#[pA]#[hAn] ihailee Merjaa 
+	'Pekka.nom.pol.fam admire.prs.3sg Merja.par'
+
+384.  Pekka#[kO]#[hAn] ihailee Merjaa 
+	'Pekka.nom.q.fam admire.prs.3sg Merja.par'
+
+385.  istuu#[foc] Pekka 
+	'sit.prs.3sg.foc Pekka.nom'
+
+386.  istuu#[hAn] Pekka 
+	'sit.prs.3sg.fam Pekka.nom'
+
+387.  istuu#[kO] Pekka 
+	'sit.prs.3sg.q Pekka.nom'
+
+388.  istuu#[pA] Pekka 
+	'sit.prs.3sg.pol Pekka.nom'
+
+389.  istuu#[kO]#[hAn] Pekka 
+	'sit.prs.3sg.q.fam Pekka.nom'
+
+390.  istuu#[pA]#[hAn] Pekka 
+	'sit.prs.3sg.pol.fam Pekka.nom'
+
+391.  istuu#[foc]#[kO]#[hAn] Pekka 
+	'sit.prs.3sg.foc.q.fam Pekka.nom'
+
+392.  istuu#[foc]#[pA]#[hAn] Pekka 
+	'sit.prs.3sg.foc.q.fam Pekka.nom'
+
+& C-feature tests, individual features and combinations (3.4.2)
+
+& Grammatical
+
+& Single C-feature
+
+& Relative clauses
+
+& Interrogative wh
+
+393.  keta Pekka ihailee 
+	'who.par Pekka.nom admire.prs.3sg'
+
+394.  kuka ihailee Merjaa 
+	'who.nom admire.prs.3sg Merja.par'
+
+395.  kuka halusi ihailla Merjaa 
+	'who.nom want.pst.3sg admire.a/inf Merja.par'
+
+396.  keta Pekka halusi ihailla 
+	'who.par Pekka.nom want.pst.3sg admire.a/inf'
+
+& Familiarity particle hAn
+
+397.  Pekka#[hAn] ihailee Merjaa 
+	'Pekka.nom.fam admire.prs.3sg Merja.par'
+
+398.  Pekkahan ihailee Merjaa 
+	'Pekka.nom.fam admire.prs.3sg Merja.par'
+
+399.  Merjaa#[hAn] Pekka ihailee 
+	'Merja.par.fam Pekka.nom admire.prs.3sg'
+
+400.  Merjaahan Pekka ihailee 
+	'Merja.par.fam Pekka.nom admire.prs.3sg'
+
+401.  Helsingissa#[hAn] Pekka nukkui 
+	'in.Helsinki.fam Pekka.nom sleep.pst.3sg'
+
+402.  Merjaa#[hAn] Pekka halusi ihailla 
+	'Merja.par.fam Pekka.nom want.pst.3sg admire.a/inf'
+
+& Polarity particle pA
+
+403.  Pekka#[pA] ihailee Merjaa 
+	'Pekka.nom.pol admire.prs.3sg Merja.par'
+
+404.  Merjaa#[pA] Pekka ihailee 
+	'Merja.par.pol Pekka.nom admire.prs.3sg'
+
+405.  Helsingissa#[pA] Pekka nukkui 
+	'in.Helsinki.pol Pekka.nom sleep.pst.3sg'
+
+406.  Merjaa#[pA] Pekka halusi ihailla 
+	'Merja.par.pol Pekka.nom want.pst.3sg admire.a/inf'
+
+& Yes/no question particle kO
+
+407.  Pekka#[kO] ihailee Merjaa 
+	'Pekka.nom.q admire.prs.3sg Merja.par'
+
+408.  Merjaa#[kO] Pekka ihailee 
+	'Merja.par.q Pekka.nom admire.prs.3sg'
+
+409.  Helsingissa#[kO] Pekka nukkui 
+	'in.Helsinki.q Pekka.nom sleep.pst.3sg'
+
+410.  Merjaa#[kO] Pekka halusi ihailla 
+	'Merja.par.q Pekka.nom want.pst.3sg admire.a/inf'
+
+& Contrastive focus foc and/or prosodic emphasis
+
+411.  Pekka#[foc] ihailee Merjaa 
+	'Pekka.nom.foc admire.prs.3sg Merja.par'
+
+412.  PEKKA ihailee Merjaa 
+	'Pekka.foc admire.prs.3sg Merja.par'
+
+413.  Merjaa#[foc] Pekka ihailee 
+	'Merja.par.foc Pekka.nom admire.prs.3sg'
+
+414.  Helsingissa#[foc] Pekka nukkui 
+	'in.Helsinki.foc Pekka.nom sleep.pst.3sg'
+
+415.  Merjaa#[foc] Pekka halusi ihailla 
+	'Merja.par.foc Pekka.nom want.pst.3sg admire.a/inf'
+
+& Two particle combinations
+
+& Contrastive focus + all others
+
+416.  PEKKA#[hAn] ihailee Merjaa 
+	'Pekka.foc.fam admire.prs.3sg Merja.par'
+
+417.  PEKKA#[pA] ihailee Merjaa 
+	'Pekka.foc.pol admire.prs.3sg Merja.par'
+
+418.  PEKKA#[kO] ihailee Merjaa 
+	'Pekka.foc.q admire.prs.3sg Merja.par'
+
+419.  Merjaa#[foc]#[hAn] Pekka ihailee 
+	'Merja.par.foc.fam Pekka.nom admire.prs.3sg'
+
+420.  Merjaa#[foc]#[pA] Pekka ihailee 
+	'Merja.par.foc.pol Pekka.nom admire.prs.3sg'
+
+421.  Merjaa#[foc]#[kO] Pekka ihailee 
+	'Merja.par.foc.q Pekka.nom admire.prs.3sg'
+
+422.  Merjaa#[foc]#[hAn] Pekka halusi ihailla 
+	'Merja.par.foc.fam Pekka.nom want.pst.3sg admire.a/inf'
+
+423.  Merjaa#[foc]#[pA] Pekka halusi ihailla 
+	'Merja.par.foc.q Pekka.nom want.pst.3sg admire.a/inf'
+
+424.  Merjaa#[foc]#[kO] Pekka halusi ihailla 
+	'Merja.par.foc.q Pekka.nom want.pst.3sg admire.a/inf'
+
+& wh + other particles
+
+425.  kuka#[hAn] ihailee Merjaa 
+	'who.nom.fam admire.prs.3sg Merja.par'
+
+426.  kuka#[pA] ihailee Merjaa 
+	'who.nom.pol admire.prs.3sg Merja.par'
+
+427.  kuka#[kO] ihailee Merjaa 
+	'who.nom.q admire.prs.3sg Merja.par'
+
+428.  keta#[hAn] Pekka ihailee 
+	'who.par.fam Pekka.nom admire.prs.3sg'
+
+429.  keta#[pA] Pekka ihailee 
+	'who.par.pol Pekka admire.prs.3sg'
+
+430.  keta#[kO] Pekka ihailee 
+	'who.par.q Pekka.nom admire.prs.3sg'
+
+& Remaining combinations
+
+431.  Pekka#[pA]#[hAn] ihailee Merjaa 
+	'Pekka.nom.pol.fam admire.prs.3sg Merja.par'
+
+432.  Pekka#[kO]#[hAn] ihailee Merjaa 
+	'Pekka.nom.q.fam admire.prs.3sg Merja.par'
+
+433.  Helsingissa#[kO]#[hAn] Pekka nukkui 
+	'in.Helsinki.q.fam Pekka sleep.pst.3sg'
+
+434.  Helsingissa#[pA]#[hAn] Pekka nukkui 
+	'in.Helsinki.pol.fam Pekka.nom sleep.pst.3sg'
+
+& Three particle combinations
+
+& contrastive focus + two others
+
+& Subject fronting
+
+435.  PEKKA#[kO]#[hAn] ihailee Merjaa 
+	'Pekka.foc.q.fam admire.prs.3sg Merja.par'
+
+436.  PEKKA#[pA]#[hAn] ihailee Merjaa 
+	'Pekka.foc.pol.fan admire.prs.3sg Merja.par'
+
+& Object fronting
+
+437.  Merjaa#[foc]#[pA]#[hAn] Pekka halusi ihailla 
+	'Merja.par.foc.pol.fam Pekka.nom want.pst.3sg admire.a/inf'
+
+438.  Merjaa#[foc]#[kO]#[hAn] Pekka halusi ihailla 
+	'Merja.par.foc.q.fam Pekka.nom want.pst.3sg admire.a/inf'
+
+439.  Merjaa#[foc]#[pA]#[hAn] Pekka ihailee 
+	'Merja.par.foc.pol.fam Pekka.nom admire.prs.3sg'
+
+440.  Merjaa#[foc]#[kO]#[hAn] Pekka ihailee 
+	'Merja.par.foc.q.fam Pekka.nom admire.prs.3sg'
+
+& PP fronting
+
+441.  Helsingissa#[foc]#[kO]#[hAn] Pekka nukkui 
+	'in.Helsinki.foc.q.fam Pekka.nom sleep.pst.3sg'
+
+442.  Helsingissa#[foc]#[pA]#[hAn] Pekka nukkui 
+	'in.Helsinki,foc.pol.fam Pekka.nom sleep.pst.3sg'
+
+& interrogative pronoun (wh) + two other
+
+& subject interrogatives
+
+443.  kuka#[kO]#[hAn] ihailee Merjaa 
+	'who.nom.q.fam admire.prs.3sg Merja.par'
+
+444.  kuka#[pA]#[hAn] ihailee Merjaa 
+	'who.nom.pol.fam admire.prs.3sg Merja.par'
+
+445.  kuka#[foc]#[kO]#[hAn] ihailee Merjaa 
+	'who.nom.foc.q.fam admire.prs.3sg Merja.par'
+
+446.  kuka#[foc]#[pA]#[hAn] ihailee Merjaa 
+	'who.nom.foc.pol.fam admire.prs.3sg Merja.par'
+
+& object interrogatives
+
+447.  keta#[foc]#[kO]#[hAn] Pekka ihailee 
+	'who.par.foc.q.fam Pekka.nom admire.prs.3sg'
+
+448.  keta#[foc]#[pA]#[hAn] Pekka ihailee 
+	'who.par.foc.pol.fam Pekka.nom admire.prs.3sg'
+
+449.  keta#[foc]#[kO]#[hAn] Pekka halusi ihailla 
+	'who.par.foc.q.fam Pekka.nom want.pst.3sg admire.a/inf'
+
+450.  keta#[foc]#[pA]#[hAn] Pekka halusi ihailla 
+	'who.par.pol.fam Pekka.nom want.pst.3sg admire.a/inf'
+
+& Ungrammatical (double filled operator field)
+
+451. *kuka keta ihailee 
+	'who.nom who.par admire.prs.3sg'
+
+452. *Pekka#[kO] keta ihailee 
+	'Pekka.nom.q who.par admire.prs.3sg'
+
+453. *kuka Merjaa#[kO] ihailee 
+	'who.nom Merja.par.q admire.prs.3sg'
+
+454. *Pekka#[kO] Merjaa#[kO] ihailee 
+	'Pekka.nom.q Merja.par.q admire.prs.3sg'
+
+455. *Pekka#[hAn] Merjaa#[kO] ihailee 
+	'Pekka.nom.fam Merja.par.q admire.prs.3sg'
+
+456. *Pekka#[pA] Merjaa#[kO] ihailee 
+	'Pekka.nom.pol Merja.par.q admire.prs.3sg'
+
+457. *Pekka#[foc] Merjaa#[kO] ihailee 
+	'Pekka.nom.foc Merja.par.q admire.prs.3sg'
+
+458. *Pekka#[kO] Merjaa#[hAn] ihailee 
+	'Pekka.nom.q Merja.par.fam admire.prs.3sg'
+
+459. *Pekka#[hAn] Merjaa#[hAn] ihailee 
+	'Pekka.nom.fam Merja.par.fam admire.prs.3sg'
+
+460. *Pekka#[pA] Merjaa#[hAn] ihailee 
+	'Pekka.nom.pol Merja.par.fam admire.prs.3sg'
+
+461. *Pekka#[foc] Merjaa#[hAn] ihailee 
+	'Pekka.nom.foc Merja.par.fam admire.prs.3sg'
+
+462. *Pekka#[kO] Merjaa#[pA] ihailee 
+	'Pekka.nom.q Merja.par.pol admire.prs.3sg'
+
+463. *Pekka#[hAn] Merjaa#[pA] ihailee 
+	'Pekka.nom.fam Merja.par.pol admire.prs.3sg'
+
+464. *Pekka#[pA] Merjaa#[pA] ihailee 
+	'Pekka.nom.pol Merja.par.pol admire.prs.3sg'
+
+465. *Pekka#[foc] Merjaa#[pA] ihailee 
+	'Pekka.nom.foc Merja.par.pol admire.prs.3sg'
+
+466. *Pekka#[kO] Merjaa#[foc] ihailee 
+	'Pekka.nom.q Merja.par.foc admire.prs.3sg'
+
+467. *Pekka#[hAn] Merjaa#[foc] ihailee 
+	'Pekka.nom.fam Merja.par.foc admire.prs.3sg'
+
+468. *Pekka#[pA] Merjaa#[foc] ihailee 
+	'Pekka.nom.pol Merja.par.foc admire.prs.3sg'
+
+469. *Pekka#[foc] Merjaa#[foc] ihailee 
+	'Pekka.nom.foc Merja.par.foc admire.prs.3sg'
+
+470. *Pekka#[kO] Merjaa#[foc]#[hAn] ihailee 
+	'Pekka.nom.q Merja.par.foc.fam admire.prs.3sg'
+
+471. *Pekka#[hAn] Merjaa#[foc]#[hAn] ihailee 
+	'Pekka.nom.fam Merja.par.foc.fam admire.prs.3sg'
+
+472. *Pekka#[pA] Merjaa#[foc]#[hAn] ihailee 
+	'Pekka.nom.pol Merja.par.foc.fam admire.prs.3sg'
+
+473. *Pekka#[foc] Merjaa#[foc]#[hAn] ihailee 
+	'Pekka.nom.foc Merja.par.foc.fam admire.prs.3sg'
+
+474. *Pekka#[kO] Merjaa#[foc]#[pA] ihailee 
+	'Pekka.nom.q Merja.par.foc.pol admire.prs.3sg'
+
+475. *Pekka#[hAn] Merjaa#[foc]#[pA] ihailee 
+	'Pekka.nom.fam Merja.par.foc.pol admire.prs.3sg'
+
+476. *Pekka#[pA] Merjaa#[foc]#[pA] ihailee 
+	'Pekka.nom.pol Merja.par.foc.pol admire.prs.3sg'
+
+477. *Pekka#[foc] Merjaa#[foc]#[pA] ihailee 
+	'Pekka.nom.foc Merja.par.foc.pol admire.prs.3sg'
+
+478. *Pekka#[kO] Merjaa#[foc]#[kO] ihailee 
+	'Pekka.nom.q Merja.par.foc.q admire.prs.3sg'
+
+479. *Pekka#[hAn] Merjaa#[foc]#[kO] ihailee 
+	'Pekka.nom.fam Merja.par.foc.q admire.prs.3sg'
+
+480. *Pekka#[pA] Merjaa#[foc]#[kO] ihailee 
+	'Pekka.nom.pol Merja.par.foc.q admire.prs.3sg'
+
+481. *Pekka#[foc] Merjaa#[foc]#[kO] ihailee 
+	'Pekka.nom.foc Merja.par.foc.q admire.prs.3sg'
+
+482. *Pekka#[kO] Merjaa#[foc]#[kO]#[hAn] ihailee 
+	'Pekka.nom.q Merja.par.foc.q.fam admire.prs.3sg'
+
+483. *Pekka#[hAn] Merjaa#[foc]#[kO]#[hAn] ihailee 
+	'Pekka.nom.fam Merja.par.foc.q.fam admire.prs.3sg'
+
+484. *Pekka#[pA] Merjaa#[foc]#[kO]#[hAn] ihailee 
+	'Pekka.nom.pol Merja.par.foc.q.fam admire.prs.3sg'
+
+485. *Pekka#[foc] Merjaa#[foc]#[kO]#[hAn] ihailee 
+	'Pekka.nom.foc Merja.par.foc.q.fam admire.prs.3sg'
+
+486. *Pekka#[kO] Merjaa#[foc]#[pA]#[hAn] ihailee 
+	'Pekka.nom.q Merja.par.foc.pol.fam admire.prs.3sg'
+
+487. *Pekka#[hAn] Merjaa#[foc]#[pA]#[hAn] ihailee 
+	'Pekka.nom.fam Merja.par.foc.pol.fam admire.prs.3sg'
+
+488. *Pekka#[pA] Merjaa#[foc]#[pA]#[hAn] ihailee 
+	'Pekka.nom.pol Merja.par.foc.pol.fam admire.prs.3sg'
+
+489. *Pekka#[foc] Merjaa#[foc]#[pA]#[hAn] ihailee 
+	'Pekka.nom.foc Merja.par.foc.pol.fam admire.prs.3sg'
+
+& C-features in connection with pied-piping (3.4.4)
+
+& Grammatical
+
+& One left peripheral suffix
+
+& D-feature on subject
+
+490.  se talo#[hAn] ihailee Merjaa 
+	'the house.fam admire.prs.3sg Merja.par'
+
+491.  se talo#[pA] ihailee Merjaa 
+	'the house.pol admire.prs.3sg Merja.par'
+
+492.  se talo#[kO] ihailee Merjaa 
+	'the house.q admire.prs.3sg Merja.par'
+
+493.  se talo#[foc] ihailee Merjaa 
+	'the house.foc admire.prs.3sg Merja.par'
+
+& D-feature on object
+
+494.  sitä taloa#[hAn] Pekka ihailee 
+	'the.par house.par.fam Pekka.nom admire.prs.3sg'
+
+495.  sitä taloa#[pA] Pekka ihailee 
+	'the.par house.par.pol Pekka.nom admire.prs.3sg'
+
+496.  sitä taloa#[kO] Pekka ihailee 
+	'the.par house.par.q Pekka.nom admire.prs.3sg'
+
+497.  sitä taloa#[foc] Pekka ihailee 
+	'the.par house.par.foc Pekka.nom admire.prs.3sg'
+
+& D-feature on subject
+
+498.  se#[hAn] talo ihailee Merjaa 
+	'the.fam house admire.prs.3sg Merja.par'
+
+499.  se#[pA] talo ihailee Merjaa 
+	'the.pol house admire.prs.3sg Merja.par'
+
+500.  se#[kO] talo ihailee Merjaa 
+	'the.q house admire.prs.3sg Merja.par'
+
+501.  se#[foc] talo ihailee Merjaa 
+	'the.foc house admire.prs.3sg Merja.par'
+
+& D-feature on object
+
+502.  sitä#[hAn] taloa Pekka ihailee 
+	'the.par.fam house.par Pekka.nom admire.prs.3sg'
+
+503.  sitä#[pA] taloa Pekka ihailee 
+	'the.par.pol house.par Pekka.nom admire.prs.3sg'
+
+504.  sitä#[kO] taloa Pekka ihailee 
+	'the.par.q house.par Pekka.nom admire.prs.3sg'
+
+505.  sitä#[foc] taloa Pekka ihailee 
+	'the.par.foc house.par Pekka.nom admire.prs.3sg'
+
+& Two left peripheral suffixes
+
+& Subject
+
+506.  se talo#[kO]#[hAn] ihailee Merjaa 
+	'the/that house.q.fam admire.prs.3sg Merja.par'
+
+507.  se talo#[pA]#[hAn] ihailee Merjaa 
+	'the/that house.pol.fam admire.prs.3sg Merja.par'
+
+508.  se talo#[foc]#[hAn] ihailee Merjaa 
+	'the/that house.foc.fam admire.prs.3sg Merja.par'
+
+509.  se talo#[foc]#[pA] ihailee Merjaa 
+	'the/that house.foc.pol admire.prs.3sg Merja.par'
+
+510.  se#[kO]#[hAn] talo ihailee Merjaa 
+	'the/that.q.fam house admire.prs.3sg Merja.par'
+
+511.  se#[pA]#[hAn] talo ihailee Merjaa 
+	'the/that.pol.fam house admire.prs.3sg Merja.par'
+
+512.  se#[foc]#[hAn] talo ihailee Merjaa 
+	'the/that.foc.fam house admire.prs.3sg Merja.par'
+
+513.  se#[foc]#[pA] talo ihailee Merjaa 
+	'the/that.foc.pol house admire.prs.3sg Merja.par'
+
+& Object
+
+514.  sitä taloa#[kO]#[hAn] Pekka ihailee 
+	'that.par house.par.q.fam Pekka.nom admire.prs.3sg'
+
+515.  sitä taloa#[pA]#[hAn] Pekka ihailee 
+	'that.par house.par.pol.fam Pekka.nom admire.prs.3sg'
+
+516.  sitä taloa#[foc]#[hAn] Pekka ihailee 
+	'that.par house.par.foc.fam Pekka.nom admire.prs.3sg'
+
+517.  sitä taloa#[foc]#[pA] Pekka ihailee 
+	'that.par house.par.foc.pol Pekka.nom admire.prs.3sg'
+
+518.  sitä#[kO]#[hAn] taloa Pekka ihailee 
+	'that.par.q.fam house.par Pekka.nom admire.prs.3sg'
+
+519.  sitä#[pA]#[hAn] taloa Pekka ihailee 
+	'that.par.pol.fam house.par Pekka.nom admire.prs.3sg'
+
+520.  sitä#[foc]#[hAn] taloa Pekka ihailee 
+	'that.par.foc.fam house.par Pekka.nom admire.prs.3sg'
+
+521.  sitä#[foc]#[pA] taloa Pekka ihailee 
+	'that.par.foc.pol house.par Pekka.nom admire.prs.3sg'
+
+& Three left peripheral suffixes
+
+& D-features on subject
+
+522.  se talo#[foc]#[kO]#[hAn] ihailee Merjaa 
+	'that house.foc.q.fam admire.prs.3sg Merja.par'
+
+523.  se talo#[foc]#[pA]#[hAn] ihailee Merjaa 
+	'that house.foc.pol.fam admire.prs.3sg Merja.par'
+
+524.  se#[foc]#[kO]#[hAn] talo ihailee Merjaa 
+	'that.foc.q.fam house admire.prs.3sg Merja.par'
+
+525.  se#[foc]#[pA]#[hAn] talo ihailee Merjaa 
+	'that.foc.pol.fam house admire.prs.3sg Merja.par'
+
+& D-features on object
+
+526.  sitä taloa#[foc]#[kO]#[hAn] Pekka ihailee 
+	'that.par house.par.foc.q.fam Pekka.nom admire.prs.3sg'
+
+527.  sitä taloa#[foc]#[pA]#[hAn] Pekka ihailee 
+	'that.par house.par.foc.pol.fam Pekka.nom admire.prs.3sg'
+
+528.  sitä#[foc]#[kO]#[hAn] taloa Pekka ihailee 
+	'that.par.foc.q.fam house.par Pekka.nom admire.prs.3sg'
+
+529.  sitä#[foc]#[pA]#[hAn] taloa Pekka ihailee 
+	'that.par.foc.pol.fam house.par Pekka.nom admire.prs.3sg'
+
+& Longer movement/reconstruction
+
+530.  sitä taloa Pekka haluaa ihailla 
+	'that.par house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+531.  sitä taloa#[hAn] Pekka haluaa ihailla 
+	'that.par house.par.fam Pekka.nom want.prs.3sg admire.a/inf'
+
+532.  sitä taloa#[pA] Pekka haluaa ihailla 
+	'that.par house.par.pol Pekka.nom want.prs.3sg admire.a/inf'
+
+533.  sitä taloa#[kO] Pekka haluaa ihailla 
+	'that.par house.par.q Pekka.nom want.prs.3sg admire.a/inf'
+
+534.  sitä taloa#[foc] Pekka haluaa ihailla 
+	'that.par house.par.foc Pekka.nom want.prs.3sg admire.a/inf'
+
+535.  sitä taloa#[foc]#[hAn] Pekka haluaa ihailla 
+	'that.par house.par.foc.fam Pekka.nom want.prs.3sg admire.a/inf'
+
+536.  sitä taloa#[foc]#[pA] Pekka haluaa ihailla 
+	'that.par house.par.foc.pol Pekka.nom want.prs.3sg admire.a/inf'
+
+537.  sitä taloa#[foc]#[kO] Pekka haluaa ihailla 
+	'that.par house.par.foc.q Pekka.nom want.prs.3sg admire.a/inf'
+
+538.  sitä taloa#[pA]#[hAn] Pekka haluaa ihailla 
+	'that.par house.par.pol.fam Pekka.nom want.prs.3sg admire.a/inf'
+
+539.  sitä taloa#[kO]#[hAn] Pekka haluaa ihailla 
+	'that.par house.par.q.fam Pekka.nom want.prs.3sg admire.a/inf'
+
+540.  sitä taloa#[foc]#[pA]#[hAn] Pekka haluaa ihailla 
+	'that.par house.par.foc.pol.fam Pekka.nom want.prs.3sg admire.a/inf'
+
+541.  sitä taloa#[foc]#[kO]#[hAn] Pekka haluaa ihailla 
+	'that.par house.par.foc.q.fam Pekka.nom want.prs.3sg admire.a/inf'
+
+542.  sitä#[hAn] taloa Pekka haluaa ihailla 
+	'that.par.fam house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+543.  sitä#[pA] taloa Pekka haluaa ihailla 
+	'that.par.pol house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+544.  sitä#[kO] taloa Pekka haluaa ihailla 
+	'that.par.q house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+545.  sitä#[foc] taloa Pekka haluaa ihailla 
+	'that.par.foc house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+546.  sitä#[foc]#[hAn] taloa Pekka haluaa ihailla 
+	'that.par.foc.fam house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+547.  sitä#[foc]#[pA] taloa Pekka haluaa ihailla 
+	'that.par.foc.pol house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+548.  sitä#[foc]#[kO] taloa Pekka haluaa ihailla 
+	'that.par.foc.q house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+549.  sitä#[pA]#[hAn] taloa Pekka haluaa ihailla 
+	'that.par.pol.fam house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+550.  sitä#[kO]#[hAn] taloa Pekka haluaa ihailla 
+	'that.par.q.fam house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+551.  sitä#[foc]#[pA]#[hAn] taloa Pekka haluaa ihailla 
+	'that.par.foc.pol.fam house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+552.  sitä#[foc]#[kO]#[hAn] taloa Pekka haluaa ihailla 
+	'that.par.foc.q.fam house.par Pekka.nom want.prs.3sg admire.a/inf'
+
+& PP-pied-piping
+
+553.  Merjaa#[foc] lahella_1 Pekka nukkui 
+	'Merja.par.foc near Pekka.nom sleep.pst.3sg'
+
+554.  Merjaa#[hAn] lahella Pekka nukkui 
+	'Merja.par.fam near Pekka.nom sleep.pst.3sg'
+
+555.  Merjaa#[kO] lahella Pekka nukkui 
+	'Merja.par.q near Pekka.nom sleep.pst.3sg'
+
+556.  Merjaa#[pA] lahella Pekka nukkui 
+	'Merja.par.pol near Pekka.nom sleep.pst.3sg'
+
+557.  Merjaa#[kO]#[hAn] lahella Pekka nukkui 
+	'Merja.par.q.fam near Pekka.nom sleep.pst.3sg'
+
+558.  Merjaa#[pA]#[hAn] lahella Pekka nukkui 
+	'Merja.par.pol.fam near Pekka.nom sleep.pst.3sg'
+
+559.  Merjaa#[foc]#[hAn] lahella Pekka nukkui 
+	'Merja.par.foc.fam near Pekka.nom sleep.pst.3sg'
+
+560.  Merjaa#[foc]#[pA] lahella Pekka nukkui 
+	'Merja.par.foc.pol near Pekka.nom sleep.pst.3sg'
+
+561.  Merjaa#[foc]#[pA]#[hAn] lahella Pekka nukkui 
+	'Merja.par.foc.pol.fam near Pekka.nom sleep.pst.3sg'
+
+562.  Merjaa#[foc]#[kO]#[hAn] lahella Pekka nukkui 
+	'Merja.par.foc.q.fam near Pekka.nom sleep.pst.3sg'
+
+& Scattered left peripheral features
+
+& Grammatical
+
+563.  sitä#[hAn] taloa#[foc] Pekka ihailee 
+	'that.par.fam house.par.foc Pekka.nom admire.prs.3sg'
+
+564.  sitä#[pA] taloa#[foc] Pekka ihailee 
+	'that.par.pol house.par.foc Pekka.nom admire.prs.3sg'
+
+565.  sitä#[kO] taloa#[foc] Pekka ihailee 
+	'that.par.q house.par.foc Pekka.nom admire.prs.3sg'
+
+566.  sitä#[kO]#[hAn] taloa#[foc] Pekka ihailee 
+	'that.par.q.fam house.par.foc Pekka.nom admire.prs.3sg'
+
+567.  sitä#[pA]#[hAn] taloa#[foc] Pekka ihailee 
+	'that.par.pol.fam house.par.foc Pekka.nom admire.prs.3sg'
+
+& Ungrammatical
+
+568. *sitä#[hAn] taloa#[pA] Pekka ihailee 
+	'that.par.fam house.par.pol Pekka.nom admire.prs.3sg'
+
+569. *sitä#[hAn] taloa#[kO] Pekka ihailee 
+	'that.par.fam house.par.q Pekka.nom admire.prs.3sg'
+
+570. *sitä#[pA] taloa#[hAn] Pekka ihailee 
+	'that.par.pol house.par.fam Pekka.nom admire.prs.3sg'
+
+571. *sitä#[pA] taloa#[kO] Pekka ihailee 
+	'that.par.pol house.par.q Pekka.nom admire.prs.3sg'
+
+572. *sitä#[kO] taloa#[pA] Pekka ihailee 
+	'that.par.q house.par.pol Pekka.nom admire.prs.3sg'
+
+573. *sitä#[kO] taloa#[hAn] Pekka ihailee 
+	'that.par.q house.par.fam Pekka.nom admire.prs.3sg'
+
+574. *sitä#[kO]#[hAn] taloa#[pA] Pekka ihailee 
+	'that.par.q.fam house.par.pol Pekka.nom admire.prs.3sg'
+
+575.  sitä#[kO]#[hAn] taloa#[kO] Pekka ihailee 
+	'that.par.q.fam house.par.q Pekka.nom admire.prs.3sg'
+
+576.  sitä#[pA]#[hAn] taloa#[hAn] Pekka ihailee 
+	'that.par.q.fam house.par.fam Pekka.nom admire.prs.3sg'
+
+577. *sitä#[pA]#[hAn] taloa#[kO] Pekka ihailee 
+	'that.par.pol.fam house.par.q Pekka.nom admire.prs.3sg'
+
+578. *sitä#[kO] taloa#[pA]#[hAn] Pekka ihailee 
+	'that.par.q house.par.pol.fam Pekka.nom admire.prs.3sg'
+
+579. *sitä#[kO] taloa#[kO]#[hAn] Pekka ihailee 
+	'that.par.q house.par.q.fam Pekka.nom admire.prs.3sg'
+
+580. *sitä#[kO] taloa#[foc]#[hAn] Pekka ihailee 
+	'that.par.q house.par.foc.fam Pekka.nom admire.prs.3sg'
+
+581. *sitä#[pA] taloa#[hAn]#[hAn] Pekka ihailee 
+	'that.par.pol house.par.fam.fam Pekka.nom admire.prs.3sg'
+
+582. *sitä#[pA] taloa#[foc]#[hAn] Pekka ihailee 
+	'that.par.pol house.par.foc.fam Pekka.nom admire.prs.3sg'
+
+583. *sitä#[pA] taloa#[kO]#[hAn] Pekka ihailee 
+	'that.par.pol house.par.q.fam Pekka.nom admire.prs.3sg'
+
+& C-features in connection with noncanonical word order (3.4.5)
+
+& Grammatical
+
+& Interrogative wh
+
+584.  keta ihailee Pekka 
+	'who.par admire.prs.3sg Pekka.nom'
+
+585.  kuka ihailee Merjaa 
+	'who.nom admire.prs.3sg Merja.par'
+
+586.  kuka Merjaa halusi ihailla 
+	'who.nom Merja.par want.pst.3sg admire.a/inf'
+
+& Familiarity particle hAn
+
+587.  Pekka#[hAn] Merjaa ihailee 
+	'Pekka.nom.fam Merja.par admire.prs.3sg'
+
+588.  Pekkahan Merjaa ihailee 
+	'Pekka.nom.fam merja.par admire.prs.3sg'
+
+589.  Merjaa#[hAn] ihailee Pekka 
+	'Merja.par.fam admire.prs.3sg Pekka.nom'
+
+590.  Merjaahan ihailee Pekka 
+	'Merja.par.fam admire.prs.3sg Pekka.nom'
+
+591.  Helsingissa#[hAn] nukkui Pekka 
+	'in.Helsinki.fam sleep.pst.3sg Pekka.nom'
+
+& Polarity particle pA
+
+592.  Pekka#[pA] Merjaa ihailee 
+	'Pekka.nom.pol Merja.par admire.prs.3sg'
+
+593.  Merjaa#[pA] ihailee Pekka 
+	'Merja.par.pol admire.prs.3sg Pekka.nom'
+
+594.  Helsingissa#[pA] nukkui Pekka 
+	'in.Helsinki.pol sleep.pst.3sg Pekka.nom'
+
+& Yes/no question particle kO
+
+595.  Pekka#[kO] Merjaa ihailee 
+	'Pekka.nom.q Merja.par admire.prs.3sg'
+
+596.  Merjaa#[kO] ihailee Pekka 
+	'Merja.par.q admire.prs.3sg Pekka.nom'
+
+597.  Helsingissa#[kO] nukkui Pekka 
+	'in.Helsinki.q sleep.pst.3sg Pekka.nom'
+
+& Contrastive focus foc and/or prosodic emphasis
+
+598.  Pekka#[foc] Merjaa ihailee 
+	'Pekka.nom.foc Merja.par admire.prs.3sg'
+
+599.  PEKKA Merjaa ihailee 
+	'Pekka.foc Merja.par admire.prs.3sg'
+
+600.  Merjaa#[foc] ihailee Pekka 
+	'Merja.par.foc admire.prs.3sg Pekka.nom'
+
+601.  Helsingissa#[foc] nukkui Pekka 
+	'in.Helsinki.foc sleep.pst.3sg Pekka.nom'
+
+& Two particle combinations
+
+602.  PEKKA#[hAn] Merjaa ihailee 
+	'Pekka.foc.fam Merja.par admire.prs.3sg'
+
+603.  PEKKA#[pA] Merjaa ihailee 
+	'Pekka.foc.pol Merja.par admire.prs.3sg'
+
+604.  PEKKA#[kO] Merjaa ihailee 
+	'Pekka.foc.q Merja.par admire.prs.3sg'
+
+605.  Pekka#[pA]#[hAn] Merjaa ihailee 
+	'Pekka.pol.fam Merja.par admire.prs.3sg'
+
+606.  Pekka#[kO]#[hAn] Merjaa ihailee 
+	'Pekka.q.fam Merja.par admire.prs.3sg'
+
+607.  kuka#[hAn] Merjaa ihailee 
+	'who.fam Merja.par admire.prs.3sg'
+
+608.  kuka#[pA] Merjaa ihailee 
+	'who.pol Merja.par admire.prs.3sg'
+
+609.  kuka#[kO] Merjaa ihailee 
+	'who.q Merja.par admire.prs.3sg'
+
+610.  Merjaa#[foc]#[hAn] ihailee Pekka 
+	'Merja.par.foc.fam admire.prs.3sg Pekka.nom'
+
+611.  Merjaa#[foc]#[pA] ihailee Pekka 
+	'Merja.par.foc.pol admire.prs.3sg Pekka.nom'
+
+612.  Merjaa#[foc]#[kO] ihailee Pekka 
+	'Merja.par.foc.q admire.prs.3sg Pekka.nom'
+
+613.  Merjaa#[foc]#[pA]#[hAn] ihailee Pekka 
+	'Merja.par.foc.pol.fam admire.prs.3sg Pekka.nom'
+
+614.  Merjaa#[foc]#[kO]#[hAn] ihailee Pekka 
+	'Merja.par.foc.q.fam admire.prs.3sg Pekka.nom'
+
+615.  keta#[hAn] ihailee Pekka 
+	'who.par.fam admire.prs.3sg Pekka.nom'
+
+616.  keta#[pA] ihailee Pekka 
+	'who.par.pol admire.prs.3sg Pekka.nom'
+
+617.  keta#[kO] ihailee Pekka 
+	'who.par.q admire.prs.3sg Pekka.nom'
+
+618.  Helsingissa#[foc]#[hAn] nukkui Pekka 
+	'in.Helsinki.foc.fam sleep.pst.3sg Pekka.nom'
+
+619.  Helsingissa#[foc]#[kO] nukkui Pekka 
+	'in.Helsinki.foc.q sleep.pst.3sg Pekka.nom'
+
+620.  Helsingissa#[foc]#[pA] nukkui Pekka 
+	'in.Helsinki.foc.pol sleep.pst.3sg Pekka.nom'
+
+621.  Helsingissa#[pA]#[hAn] nukkui Pekka 
+	'in.Helsinki.pol.fam sleep.pst.3sg Pekka.nom'
+
+622.  Helsingissa#[kO]#[hAn] nukkui Pekka 
+	'in.Helsinki.q.fam sleep.pst.3sg Pekka.nom'
+
+& Three particle combinations
+
+623.  PEKKA#[kO]#[hAn] Merjaa ihailee 
+	'Pekka.foc.q.fam Merja.par admire.prs.3sg'
+
+624.  PEKKA#[pA]#[hAn] Merjaa ihailee 
+	'Pekka.foc.pol.fam Merja.par admire.prs.3sg'
+
+625.  kuka#[kO]#[hAn] Merjaa ihailee 
+	'who.nom.q.fam Merja.par admire.prs.3sg'
+
+626.  Merjaa#[foc]#[kO]#[hAn] ihailee Pekka 
+	'Merja.par.foc.q.fam admire.prs.3sg Pekka.nom'
+
+627.  Merjaa#[foc]#[pA]#[hAn] ihailee Pekka 
+	'Merja.par.foc.pol.fam admire.prs.3sg Pekka.nom'
+
+628.  keta#[foc]#[kO]#[hAn] ihailee Pekka 
+	'who.par.foc.q.fam admire.prs.3sg Pekka.nom'
+
+629.  Helsingissa#[foc]#[pA]#[hAn] nukkui Pekka 
+	'in.Helsinki.foc.pol.fam sleep.pst.3sg Pekka.nom'
+
+630.  Helsingissa#[foc]#[kO]#[hAn] nukkui Pekka 
+	'in.Helsinki.foc.q.fam sleep.pst.3sg Pekka.nom'
+
+& C-features in connection with pied-piping and noncanonical word order (3.4.6)
+
+& Grammatical
+
+631.  se talo#[hAn] Merjaa ihailee 
+	'the/that house.fam Merja.par admire.prs.3sg'
+
+632.  se talo#[pA] Merjaa ihailee 
+	'the/that house.pol Merja.par admire.prs.3sg'
+
+633.  se talo#[kO] Merjaa ihailee 
+	'the/that house.q Merja.par admire.prs.3sg'
+
+634.  se talo#[foc] Merjaa ihailee 
+	'the/that house.foc Merja.par admire.prs.3sg'
+
+635.  se talo#[kO]#[hAn] Merjaa ihailee 
+	'the/that house.q.fam Merja.par admire.prs.3sg'
+
+636.  se talo#[pA]#[hAn] Merjaa ihailee 
+	'the/that house.pol.fam Merja.par admire.prs.3sg'
+
+637.  se talo#[foc]#[kO]#[hAn] Merjaa ihailee 
+	'the/that house.foc.q.fam Merja.par admire.prs.3sg'
+
+638.  se talo#[foc]#[pA]#[hAn] Merjaa ihailee 
+	'the/that house.foc.pol.fam Merja.par admire.prs.3sg'
+
+639.  sitä taloa#[hAn] ihailee Pekka 
+	'the/that house.fam admire.prs.3sg Pekka.nom'
+
+640.  sitä taloa#[pA] ihailee Pekka 
+	'the/that house.pol.fam admire.prs.3sg Pekka.nom'
+
+641.  sitä taloa#[kO] ihailee Pekka 
+	'the/that house.q admire.prs.3sg Pekka.nom'
+
+642.  sitä taloa#[foc] ihailee Pekka 
+	'the/that house.foc admire.prs.3sg Pekka.nom'
+
+643.  sitä taloa#[kO]#[hAn] ihailee Pekka 
+	'the/that house.q.fam admire.prs.3sg Pekka.nom'
+
+644.  sitä taloa#[pA]#[hAn] ihailee Pekka 
+	'the/that house.pol.fam admire.prs.3sg Pekka.nom'
+
+645.  sitä taloa#[foc]#[kO]#[hAn] ihailee Pekka 
+	'the/that house.foc.q.fam admire.prs.3sg Pekka.nom'
+
+646.  sitä taloa#[foc]#[pA]#[hAn] ihailee Pekka 
+	'the/that house.foc.pol.fam admire.prs.3sg Pekka.nom'
+
+647.  se#[hAn] talo Merjaa ihailee 
+	'the/that.fam house Merja.par admire.prs.3sg'
+
+648.  se#[pA] talo Merjaa ihailee 
+	'the/that.pol house Merja.par admire.prs.3sg'
+
+649.  se#[kO] talo Merjaa ihailee 
+	'the/that.q house Merja.par admire.prs.3sg'
+
+650.  se#[foc] talo Merjaa ihailee 
+	'the/that.foc house Merja.par admire.prs.3sg'
+
+651.  se#[kO]#[hAn] talo Merjaa ihailee 
+	'the/that.q.fam house Merja.par admire.prs.3sg'
+
+652.  se#[pA]#[hAn] talo Merjaa ihailee 
+	'the/that.pol.fam house Merja.par admire.prs.3sg'
+
+653.  se#[foc]#[kO]#[hAn] talo Merjaa ihailee 
+	'the/that.foc.q.fam house Merja.par admire.prs.3sg'
+
+654.  se#[foc]#[pA]#[hAn] talo Merjaa ihailee 
+	'the/that.foc.pol.fam house Merja.par admire.prs.3sg'
+
+655.  sitä#[hAn] taloa ihailee Pekka 
+	'the/that.par.fam house.par admire.prs.3sg Pekka.nom'
+
+656.  sitä#[pA] taloa ihailee Pekka 
+	'the/that.pol house.par admire.prs.3sg Pekka.nom'
+
+657.  sitä#[kO] taloa ihailee Pekka 
+	'the/that.q house.par admire.prs.3sg Pekka.nom'
+
+658.  sitä#[foc] taloa ihailee Pekka 
+	'the/that.foc house.par admire.prs.3sg Pekka.nom'
+
+659.  sitä#[kO]#[hAn] taloa ihailee Pekka 
+	'the/that.q.fam house.par admire.prs.3sg Pekka.nom'
+
+660.  sitä#[pA]#[hAn] taloa ihailee Pekka 
+	'the/that.pol.fam house.par admire.prs.3sg Pekka.nom'
+
+661.  sitä#[foc]#[kO]#[hAn] taloa ihailee Pekka 
+	'the/that.foc.q.fam house.par admire.prs.3sg Pekka.nom'
+
+662.  sitä#[foc]#[pA]#[hAn] taloa ihailee Pekka 
+	'the/that.foc.pol.fam house.par admire.prs.3sg Pekka.nom'
+
+& Embedded interrogatives (and C-feature constructions)(3.5)
+
+& Canonical word order (3.5.1)
+
+& Grammatical
+
+& Interrogative wh
+
+663.  Jukka kysyi että keta Pekka ihailee 
+	'Jukka asked who.par Pekka.nom admire.prs.3sg'
+
+664.  Jukka kysyi kuka ihailee Merjaa 
+	'Jukka asked who.nom admire.prs.3sg Merja.par'
+
+665.  Jukka kysyi kuka halusi ihailla Merjaa 
+	'Jukka asked who.nom want.pst.3sg admire.a/inf Merja.par'
+
+& Familiarity particle hAn
+
+666.  Jukka sanoi etta Pekka#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.nom.fam admire.prs.3sg Merja.par'
+
+667.  Jukka sanoi etta Pekkahan ihailee Merjaa 
+	'Jukka said that Pekka.nom.fam admire.prs.3sg Merja.par'
+
+668.  Jukka sanoi etta Merjaa#[hAn] Pekka ihailee 
+	'Jukka said that Merja.par.fam Pekka.nom admire.prs.3sg'
+
+669.  Jukka sanoi etta Merjaahan Pekka ihailee 
+	'Jukka said that Merja.par.fam Pekka.nom admire.prs.3sg'
+
+670.  Jukka sanoi etta Helsingissa#[hAn] Pekka nukkui 
+	'Jukka said that in.Helsinki.fam Pekka.nom sleep.pst.3sg'
+
+& Polarity particle pA
+
+671.  Jukka sanoi etta Pekka#[pA] ihailee Merjaa 
+	'Jukka said that Pekka.nom.pol admire.prs.3sg Merja.par'
+
+672.  Jukka sanoi etta Merjaa#[pA] Pekka ihailee 
+	'Jukka said that Merja.par.pol Pekka.nom admire.prs.3sg'
+
+673.  Jukka sanoi etta Helsingissa#[pA] Pekka nukkui 
+	'Jukka said that in.Helsinki.pol Pekka.nom sleep.pst.3sg'
+
+& Yes/no question particle kO
+
+674.  Jukka kysyi etta Pekka#[kO] ihailee Merjaa 
+	'Jukka asked that Pekka.nom.q admire.prs.3sg Merja.par'
+
+675.  Jukka kysyi etta Merjaa#[kO] Pekka ihailee 
+	'Jukka asked that Merja.par.q Pekka.nom admire.prs.3sg'
+
+676.  Jukka kysyi etta Helsingissa#[kO] Pekka nukkui 
+	'Jukka asked that in.Helsinki.q Pekka.nom sleep.pst.3sg'
+
+& Contrastive focus foc and/or prosodic emphasis
+
+677.  Jukka sanoi etta Pekka#[foc] ihailee Merjaa 
+	'Jukka said that Pekka.nom.foc admire.prs.3sg Merja.par'
+
+678.  Jukka sanoi etta PEKKA ihailee Merjaa 
+	'Jukka said that Pekka.foc admire.prs.3sg Merja.par'
+
+679.  Jukka sanoi etta Merjaa#[foc] Pekka ihailee 
+	'Jukka said that Merja.par.foc Pekka.nom admire.prs.3sg'
+
+680.  Jukka sanoi etta Helsingissa#[foc] Pekka nukkui 
+	'Jukka said that in.Helsinki.foc Pekka.nom sleep.pst.3sg'
+
+& Two particle combinations
+
+681.  Jukka sanoi etta PEKKA#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.foc.fam admire.prs.3sg Merja.par'
+
+682.  Jukka sanoi etta PEKKA#[pA] ihailee Merjaa 
+	'Jukka said that Pekka.foc.pol admire.prs.3sg Merja.par'
+
+683.  Jukka kysyi etta PEKKA#[kO] ihailee Merjaa 
+	'Jukka said that Pekka.foc.q admire.prs.3sg Merja.par'
+
+684.  Jukka sanoi etta Pekka#[pA]#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.pol.fam admire.prs.3sg Merja.par'
+
+685.  Jukka kysyi etta Pekka#[kO]#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.q.fam admire.prs.3sg Merja.par'
+
+686.  Jukka kysyi etta kuka#[hAn] ihailee Merjaa 
+	'Jukka said that who.nom.fam admire.prs.3sg Merja.par'
+
+687.  Jukka kysyi etta kuka#[pA] ihailee Merjaa 
+	'Jukka said that who.nom.pol admire.prs.3sg Merja.par'
+
+688.  Jukka kysyi etta kuka#[kO] ihailee Merjaa 
+	'Jukka said that who.nom.q admire.prs.3sg Merja.par'
+
+689.  Jukka sanoi etta Merjaa#[foc]#[hAn] Pekka ihailee 
+	'Jukka said that Merja.par.foc.fam Pekka.nom admire.prs.3sg'
+
+690.  Jukka sanoi etta Merjaa#[foc]#[pA] Pekka ihailee 
+	'Jukka said that Merja.par.foc.pol Pekka.nom admire.prs.3sg'
+
+691.  Jukka kysyi etta Merjaa#[foc]#[kO] Pekka ihailee 
+	'Jukka asked that Merja.par.foc.q Pekka.nom admire.prs.3sg'
+
+692.  Jukka sanoi etta Merjaa#[foc]#[pA]#[hAn] Pekka ihailee 
+	'Jukka said that Merja.par.foc.pol.fam Pekka.nom admire.prs.3sg'
+
+693.  Jukka kysyi etta Merjaa#[foc]#[kO]#[hAn] Pekka ihailee 
+	'Jukka asked that Merja.par.foc.q.fam Pekka.nom admire.prs.3sg'
+
+694.  Jukka kysyi etta keta#[hAn] Pekka ihailee 
+	'Jukka asked that who.par.fam Pekka.nom admire.prs.3sg'
+
+695.  Jukka kysyi etta keta#[pA] Pekka ihailee 
+	'Jukka asked that who.par.pol Pekka.nom admire.prs.3sg'
+
+696.  Jukka kysyi etta keta#[kO] Pekka ihailee 
+	'Jukka asked that who.par.q Pekka.nom admire.prs.3sg'
+
+697.  Jukka sanoi etta Helsingissa#[foc]#[hAn] Pekka nukkui 
+	'Jukka said that in.Helsinki.foc.fam Pekka.nom sleep.pst.3sg'
+
+698.  Jukka sanoi etta Helsingissa#[foc]#[pA] Pekka nukkui 
+	'Jukka said that in.Helsinki.foc.pol Pekka.nom sleep.pst.3sg'
+
+699.  Jukka kysyi etta Helsingissa#[foc]#[kO] Pekka nukkui 
+	'Jukka said that in.Helsinki.foc.q Pekka.nom sleep.pst.3sg'
+
+700.  Jukka sanoi etta Helsingissa#[pA]#[hAn] Pekka nukkui 
+	'Jukka said that in.Helsinki.pol.fam Pekka.nom sleep.pst.3sg'
+
+701.  Jukka kysyi etta Helsingissa#[kO]#[hAn] Pekka nukkui 
+	'Jukka said that in.Helsinki.q.fam Pekka.nom sleep.pst.3sg'
+
+& Three particle combinations
+
+702.  Jukka kysyi etta PEKKA#[kO]#[hAn] ihailee Merjaa 
+	'Jukka asked that Pekka.foc.q.fam admire.prs.3sg Merja.par'
+
+703.  Jukka sanoi etta PEKKA#[pA]#[hAn] ihailee Merjaa 
+	'Jukka asked that Pekka.foc.pol.fam admire.prs.3sg Merja.par'
+
+704.  Jukka kysyi etta kuka#[kO]#[hAn] ihailee Merjaa 
+	'Jukka asked that who.nom.q.fam admire.prs.3sg Merja.par'
+
+705.  Jukka kysyi etta Merjaa#[foc]#[kO]#[hAn] Merja ihailee 
+	'Jukka asked that Merja.par.foc.q.fam Merja.nom admire.prs.3sg'
+
+706.  Jukka sanoi etta Merjaa#[foc]#[pA]#[hAn] Pekka ihailee 
+	'Jukka said that Merja.par.foc.pol.fam Pekka.nom admire.prs.3sg'
+
+707.  Jukka kysyi etta keta#[foc]#[kO]#[hAn] Merja ihailee 
+	'Jukka asked that who.par.foc.q.fam Merja.nom admire.prs.3sg'
+
+708.  Jukka kysyi etta Helsingissa#[foc]#[kO]#[hAn] Pekka nukkui 
+	'Jukka asked that in.Helsinki.foc.q.fam Pekka.nom sleep.pst.3sg'
+
+709.  Jukka sanoi etta Helsingissa#[foc]#[pA]#[hAn] Pekka nukkui 
+	'Jukka said that in.Helsinki.foc.q.fam Pekka.nom sleep.pst.3sg'
+
+& All above with pied-piping (when applicable)
+
+710.  Jukka sanoi etta se talo#[hAn] ihailee Merjaa 
+	'Jukka said that the/that house.fam admire.prs.3sg Merja.par'
+
+711.  Jukka sanoi etta se talo#[pA] ihailee Merjaa 
+	'Jukka said that the/that house.pol admire.prs.3sg Merja.par'
+
+712.  Jukka kysyi etta se talo#[kO] ihailee Merjaa 
+	'Jukka asked that the/that house.q admire.prs.3sg Merja.par'
+
+713.  Jukka sanoi etta se talo#[foc] ihailee Merjaa 
+	'Jukka said that the/that house.foc admire.prs.3sg Merja.par'
+
+714.  Jukka kysyi etta se talo#[kO]#[hAn] ihailee Merjaa 
+	'Jukka said that the/that house.q.fam admire.prs.3sg Merja.par'
+
+715.  Jukka sanoi etta se talo#[pA]#[hAn] ihailee Merjaa 
+	'Jukka said that the/that house.pol.fam admire.prs.3sg Merja.par'
+
+716.  Jukka kysyi etta se talo#[foc]#[kO]#[hAn] ihailee Merjaa 
+	'Jukka said that the/that house.foc.q.fam admire.prs.3sg Merja.par'
+
+717.  Jukka sanoi etta se talo#[foc]#[pA]#[hAn] ihailee Merjaa 
+	'Jukka said that the/that house.foc.pol.fam admire.prs.3sg Merja.par'
+
+718.  Jukka sanoi etta sitä taloa#[hAn] Merja ihailee 
+	'Jukka said that the/that house.fam Merja.nom admire.prs.3sg'
+
+719.  Jukka sanoi etta sitä taloa#[pA] Merja ihailee 
+	'Jukka said that the/that house.pol Merja.nom admire.prs.3sg'
+
+720.  Jukka kysyi etta sitä taloa#[kO] Merja ihailee 
+	'Jukka asked that the/that house.q Merja.nom admire.prs.3sg'
+
+721.  Jukka sanoi etta sitä taloa#[foc] Merja ihailee 
+	'Jukka said that the/that.par house.par.foc Merja.nom admire.prs.3sg'
+
+722.  Jukka kysyi etta sitä taloa#[kO]#[hAn] Merja ihailee 
+	'Jukka asked that the/that.par house.par.q.fam Merja.nom admire.prs.3sg'
+
+723.  Jukka sanoi etta sitä taloa#[pA]#[hAn] Merja ihailee 
+	'Jukka said that the/that.par house.par.pol.fam Merja.nom admire.prs.3sg'
+
+724.  Jukka kysyi etta sitä taloa#[foc]#[kO]#[hAn] Merja ihailee 
+	'Jukka asked that the/that.par house.par.foc.q.fam Merja.nom admire.prs.3sg'
+
+725.  Jukka sanoi etta sitä taloa#[foc]#[pA]#[hAn] Merja ihailee 
+	'Jukka said that the/that.par house.par.foc.pol.fam Merja.nom admire.prs.3sg'
+
+726.  Jukka sanoi etta se#[hAn] talo ihailee Merjaa 
+	'Jukka said that the/that.fam house admire.prs.3sg Merja.par'
+
+727.  Jukka sanoi etta se#[pA] talo ihailee Merjaa 
+	'Jukka said that the/that.pol house admire.prs.3sg Merja.par'
+
+728.  Jukka kysyi etta se#[kO] talo ihailee Merjaa 
+	'Jukka asked that the/that.q house admire.prs.3sg Merja.par'
+
+729.  Jukka sanoi etta se#[foc] talo ihailee Merjaa 
+	'Jukka said that the/that.foc house admire.prs.3sg Merja.par'
+
+730.  Jukka kysyi etta se#[kO]#[hAn] talo ihailee Merjaa 
+	'Jukka asked that the/that.q.fam house admire.prs.3sg Merja.par'
+
+731.  Jukka sanoi etta se#[pA]#[hAn] talo ihailee Merjaa 
+	'Jukka said that the/that.pol.fam house admire.prs.3sg Merja.par'
+
+732.  Jukka kysyi etta se#[foc]#[kO]#[hAn] talo ihailee Merjaa 
+	'Jukka asked that the/that.foc.q.fam house admire.prs.3sg Merja.par'
+
+733.  Jukka sanoi etta se#[foc]#[pA]#[hAn] talo ihailee Merjaa 
+	'Jukka said that the/that.foc.pol.fam house admire.prs.3sg Merja.par'
+
+734.  Jukka sanoi etta sitä#[hAn] taloa Merja ihailee 
+	'Jukka said that the/that.par.fam house.par Merja.nom admire.prs.3sg'
+
+735.  Jukka sanoi etta sitä#[pA] taloa Merja ihailee 
+	'Jukka said that the/that.par.pol house.par Merja.nom admire.prs.3sg'
+
+736.  Jukka kysyi etta sitä#[kO] taloa Merja ihailee 
+	'Jukka asked that the/that.q.par house.nom admire.prs.3sg'
+
+737.  Jukka sanoi etta sitä#[foc] taloa Merja ihailee 
+	'Jukka said that the/that.par.foc house.par Merja.nom admire.prs.3sg'
+
+738.  Jukka kysyi etta sitä#[kO]#[hAn] taloa Merja ihailee 
+	'Jukka asked that the/that.par.q.fam house.par Merja.nom admire.prs.3sg'
+
+739.  Jukka sanoi etta sitä#[pA]#[hAn] taloa Merja ihailee 
+	'Jukka said that the/that.par.pol.fam house.par Merja.nom admire.prs.3sg'
+
+740.  Jukka kysyi etta sitä#[foc]#[kO]#[hAn] taloa Merja ihailee 
+	'Jukka said that the/that.par.foc.q.fam house.par Merja.nom admire.prs.3sg'
+
+741.  Jukka sanoi etta sitä#[foc]#[pA]#[hAn] taloa Merja ihailee 
+	'Jukka said that the/that.par.foc.pol.fam house.par Merja.nom admire.prs.3sg'
+
+& Noncanonical word order (3.5.2)
+
+& Grammatical
+
+& Interrogative wh
+
+742.  Jukka kysyi etta keta ihailee Pekka 
+	'Jukka asked that who.par admire.prs.3sg Pekka.nom'
+
+743.  Jukka kysyi etta kuka ihailee Merjaa 
+	'Jukka asked that who.nom admire.prs.3sg Merja.par'
+
+744.  Jukka kysyi etta kuka Merjaa halusi ihailla 
+	'Jukka asked that who.nom Merja.par want.pst.3sg admire.a/inf'
+
+& Familiarity particle hAn
+
+745.  Jukka sanoi etta Pekka#[hAn] Merjaa ihailee 
+	'Jukka said that Pekka.nom.fam Merja.par admire.prs.3sg'
+
+746.  Jukka sanoi etta Pekkahan Merjaa ihailee 
+	'Jukka said that Pekka.nom.fam Merja.par admire.prs.3sg'
+
+747.  Jukka sanoi etta Merjaa#[hAn] ihailee Pekka 
+	'Jukka said that Merja.par.fam admire.prs.3sg Pekka.nom'
+
+748.  Jukka sanoi etta Merjaahan ihailee Pekka 
+	'Jukka said that Merja.par.fam admire.prs.3sg Pekka.nom'
+
+749.  Jukka sanoi etta Helsingissa#[hAn] nukkui Pekka 
+	'Jukka said that in.Helsinki.fam sleep.pst.3sg Pekka.nom'
+
+& Polarity particle pA
+
+750.  Jukka sanoi etta Pekka#[pA] Merjaa ihailee 
+	'Jukka said that Pekka.nom.pol Merja.par admire.prs.3sg'
+
+751.  Jukka sanoi etta Merjaa#[pA] ihailee Pekka 
+	'Jukka said that Merja.par.pol admire.prs.3sg Pekka.nom'
+
+752.  Jukka sanoi etta Helsingissa#[pA] nukkui Pekka 
+	'Jukka said that in.Helsinki.pol sleep.pst.3sg Pekka.nom'
+
+& Yes/no question particle kO
+
+753.  Jukka kysyi etta Pekka#[kO] Merjaa ihailee 
+	'Jukka asked that Pekka.nom.q Merja.par admire.prs.3sg'
+
+754.  Jukka kysyi etta Merjaa#[kO] ihailee Pekka 
+	'Jukka asked that Merja.par.q admire.prs.3sg Pekka.nom'
+
+755.  Jukka kysyi etta Helsingissa#[kO] nukkui Pekka 
+	'Jukka asked that in.Helsinki.q sleep.pst.3sg Pekka.nom'
+
+& Contrastive focus foc and/or prosodic emphasis
+
+756.  Jukka sanoi etta Pekka#[foc] Merjaa ihailee 
+	'Jukka said that Pekka.nom.foc Merja.par admire.prs.3sg'
+
+757.  Jukka sanoi etta PEKKA Merjaa ihailee 
+	'Jukka said that Pekka.foc Merja.par admire.prs.3sg'
+
+758.  Jukka sanoi etta Merjaa#[foc] ihailee Pekka 
+	'Jukka said that Merja.par.foc admire.prs.3sg Pekka.nom'
+
+759.  Jukka sanoi etta Helsingissa#[foc] nukkui Pekka 
+	'Jukka said that in.Helsinki.foc sleep.pst.3sg Pekka.nom'
+
+& Two particle combinations
+
+760.  Jukka sanoi etta PEKKA#[hAn] Merjaa ihailee 
+	'Jukka said that Pekka.foc.fam Merja.par admire.prs.3sg'
+
+761.  Jukka sanoi etta PEKKA#[pA] Merjaa ihailee 
+	'Jukka said that Pekka.foc.pol Merja.par admire.prs.3sg'
+
+762.  Jukka kysyi etta PEKKA#[kO] Merjaa ihailee 
+	'Jukka asked that Pekka.foc.q Merja.par admire.prs.3sg'
+
+763.  Jukka sanoi etta Pekka#[pA]#[hAn] Merjaa ihailee 
+	'Jukka said that Pekka.nom.pol.fam Merja.par admire.prs.3sg'
+
+764.  Jukka kysyi etta Pekka#[kO]#[hAn] Merjaa ihailee 
+	'Jukka asked that Pekka.nom.q.fam Merja.par admire.prs.3sg'
+
+765.  Jukka kysyi etta kuka#[hAn] Merjaa ihailee 
+	'Jukka asked that who.nom.fam Merja.par admire.prs.3sg'
+
+766.  Jukka kysyi etta kuka#[pA] Merjaa ihailee 
+	'Jukka asked that who.nom.pol Merja.par admire.prs.3sg'
+
+767.  Jukka kysyi etta kuka#[kO] Merjaa ihailee 
+	'Jukka asked that who.nom.q Merja.par admire.prs.3sg'
+
+768.  Jukka sanoi etta Merjaa#[foc]#[hAn] ihailee Pekka 
+	'Jukka said that Merja.par.foc.fam admire.prs.3sg Pekka.nom'
+
+769.  Jukka sanoi etta Merjaa#[foc]#[pA] ihailee Pekka 
+	'Jukka said that Merja.par.foc.pol admire.prs.3sg Pekka.nom'
+
+770.  Jukka kysyi etta Merjaa#[foc]#[kO] ihailee Pekka 
+	'Jukka asked that Merja.par.foc.q admire.prs.3sg Pekka.nom'
+
+771.  Jukka sanoi etta Merjaa#[foc]#[pA]#[hAn] ihailee Pekka 
+	'Jukka said that Merja.par.foc.pol.fam admire.prs.3sg Pekka.nom'
+
+772.  Jukka kysyi etta Merjaa#[foc]#[kO]#[hAn] ihailee Pekka 
+	'Jukka asked that Merja.par.foc.q.fam admire.prs.3sg Pekka.nom'
+
+773.  Jukka kysyi etta keta#[hAn] ihailee Pekka 
+	'Jukka asked that who.par.fam admire.prs.3sg Pekka.nom'
+
+774.  Jukka kysyi etta keta#[pA] ihailee Pekka 
+	'Jukka asked that who.par.pol admire.prs.3sg Pekka.nom'
+
+775.  Jukka kysyi etta keta#[kO] ihailee Pekka 
+	'Jukka asked that who.par.q admire.prs.3sg Pekka.nom'
+
+776.  Jukka sanoi etta Helsingissa#[foc]#[hAn] nukkui Pekka 
+	'Jukka said that in.Helsinki.foc.fam sleep.pst.3sg Pekka.nom'
+
+777.  Jukka sanoi etta Helsingissa#[foc]#[pA] nukkui Pekka 
+	'Jukka said that in.Helsinki.foc.pol sleep.pst.3sg Pekka.nom'
+
+778.  Jukka kysyi etta Helsingissa#[foc]#[kO] nukkui Pekka 
+	'Jukka asked that in.Helsinki.foc.q sleep.pst.3sg Pekka.nom'
+
+779.  Jukka kysyi etta Helsingissa#[kO]#[hAn] nukkui Pekka 
+	'Jukka asked that in.Helsinki.q.fam sleep.pst.3sg Pekka.nom'
+
+780.  Jukka sanoi etta Helsingissa#[pA]#[hAn] nukkui Pekka 
+	'Jukka said that in.Helsinki.pol.fam sleep.pst.3sg Pekka.nom'
+
+& Three particle combinations
+
+781.  Jukka kysyi etta PEKKA#[kO]#[hAn] Merjaa ihailee 
+	'Jukka asked that Pekka.foc.q.fam Merja.par admire.prs.3sg'
+
+782.  Jukka sanoi etta PEKKA#[pA]#[hAn] Merjaa ihailee 
+	'Jukka said that Pekka.foc.pol.fam Merja.par admire.prs.3sg'
+
+783.  Jukka kysyi etta kuka#[kO]#[hAn] Merjaa ihailee 
+	'Jukka asked that who.nom.fq.fam Merja.par admire.prs.3sg'
+
+784.  Jukka kysyi etta Merjaa#[foc]#[kO]#[hAn] ihailee Pekka 
+	'Jukka asked that Merja.par.foc.q.fam admire.prs.3sg Pekka.nom'
+
+785.  Jukka sanoi etta Merjaa#[foc]#[pA]#[hAn] ihailee Pekka 
+	'Jukka said that Merja.par.foc.pol.fam admire.prs.3sg Pekka.nom'
+
+786.  Jukka kysyi etta keta#[foc]#[kO]#[hAn] ihailee Pekka 
+	'Jukka asked that who.par.foc.q.fam admire.prs.3sg Pekka.nom'
+
+787.  Jukka sanoi etta Helsingissa#[foc]#[pA]#[hAn] nukkui Pekka 
+	'Jukka said that in.Helsinki.foc.pol.fam sleep.pst.3sg Pekka.nom'
+
+788.  Jukka kysyi etta Helsingissa#[foc]#[kO]#[hAn] nukkui Pekka 
+	'Jukka asked that in.Helsinki.foc.q.fam sleep.pst.3sg Pekka.nom'
+
+& All above with pied-piping (when applicable)
+
+789.  Jukka sanoi etta se talo#[hAn] Merjaa ihailee 
+	'Jukka said that the/that house.fam Merja.par admire.prs.3sg'
+
+790.  Jukka sanoi etta se talo#[pA] Merjaa ihailee 
+	'Jukka said that the/that house.par Merja.par admire.prs.3sg'
+
+791.  Jukka kysyi etta se talo#[kO] Merjaa ihailee 
+	'Jukka asked that the/that house.q Merja.par admire.prs.3sg'
+
+792.  Jukka sanoi etta se talo#[foc] Merjaa ihailee 
+	'Jukka said that the/that house.foc Merja.par admire.prs.3sg'
+
+793.  Jukka kysyi etta se talo#[kO]#[hAn] Merjaa ihailee 
+	'Jukka asked that the/that house.q.fam Merja.par admire.prs.3sg'
+
+794.  Jukka sanoi etta se talo#[pA]#[hAn] Merjaa ihailee 
+	'Jukka asked that the/that house.pol.fam Merja.par admire.prs.3sg'
+
+795.  Jukka kysyi etta se talo#[foc]#[kO]#[hAn] Merjaa ihailee 
+	'Jukka asked that the/that house.foc.q.fam Merja.par admire.prs.3sg'
+
+796.  Jukka sanoi etta se talo#[foc]#[pA]#[hAn] Merjaa ihailee 
+	'Jukka said that the/that house.foc.pol.fam Merja.par admire.prs.3sg'
+
+797.  Jukka sanoi etta sitä taloa#[hAn] ihailee Pekka 
+	'Jukka said that the/that.par house.fam admire.prs.3sg Pekka.nom'
+
+798.  Jukka sanoi etta sitä taloa#[pA] ihailee Pekka 
+	'Jukka said that the/that.par house.pol admire.prs.3sg Pekka.nom'
+
+799.  Jukka kysyi etta sitä taloa#[kO] ihailee Pekka 
+	'Jukka asked that the/that.par house.par.q admire.prs.3sg Pekka.nom'
+
+800.  Jukka sanoi etta sitä taloa#[foc] ihailee Pekka 
+	'Jukka said that the/that.par house.par.foc admire.prs.3sg Pekka.nom'
+
+801.  Jukka kysyi etta sitä taloa#[kO]#[hAn] ihailee Pekka 
+	'Jukka asked that the/that.par house.par.q.fam admire.prs.3sg Pekka.nom'
+
+802.  Jukka sanoi etta sitä taloa#[pA]#[hAn] ihailee Pekka 
+	'Jukka said that the/that.par house.par.pol.fam admire.prs.3sg Pekka.nom'
+
+803.  Jukka kysyi etta sitä taloa#[foc]#[kO]#[hAn] ihailee Pekka 
+	'Jukka asked that the/that.par house.par.foc.q.fam admire.prs.3sg Pekka.nom'
+
+804.  Jukka sanoi etta sitä taloa#[foc]#[pA]#[hAn] ihailee Pekka 
+	'Jukka said that the/that.par house.par.foc.pol.fam admire.prs.3sg Pekka.nom'
+
+805.  Jukka sanoi etta se#[hAn] talo Merjaa ihailee 
+	'Jukka said that the/that.fam house Merja.par admire.prs.3sg'
+
+806.  Jukka sanoi etta se#[pA] talo Merjaa ihailee 
+	'Jukka said that the/that.pol house Merja.par admire..prs.3sg'
+
+807.  Jukka kysyi etta se#[kO] talo Merjaa ihailee 
+	'Jukka asked that the/that.q house Merja.par admire.prs.3sg'
+
+808.  Jukka sanoi etta se#[foc] talo Merjaa ihailee 
+	'Jukka said that the/that.foc house Merja.par admire.prs.3sg'
+
+809.  Jukka kysyi etta se#[kO]#[hAn] talo Merjaa ihailee 
+	'Jukka asked that the/that.q.fam house Merja.par admire.prs.3sg'
+
+810.  Jukka sanoi etta se#[pA]#[hAn] talo Merjaa ihailee 
+	'Jukka said that the/that.pol.fam house Merja.par admire.prs.3sg'
+
+811.  Jukka kysyi etta se#[foc]#[kO]#[hAn] talo Merjaa ihailee 
+	'Jukka asked that the/that.foc.q.fam house Merja.par admire.prs.3sg'
+
+812.  Jukka sanoi etta se#[foc]#[pA]#[hAn] talo Merjaa ihailee 
+	'Jukka said that the/that.foc.pol.fam house Merja.par admire.prs.3sg'
+
+813.  Jukka sanoi etta sitä#[hAn] taloa ihailee Pekka 
+	'Jukka said that the/that.par.fam house.par admire.prs.3sg Pekka.nom'
+
+814.  Jukka sanoi etta sitä#[pA] taloa ihailee Pekka 
+	'Jukka said that the/that.par.pol house.par admire.prs.3sg Pekka.nom'
+
+815.  Jukka kysyi etta sitä#[kO] taloa ihailee Pekka 
+	'Jukka asked that the/that.par.q house.par admire.prs.3sg Pekka.nom'
+
+816.  Jukka sanoi etta sitä#[foc] taloa ihailee Pekka 
+	'Jukka said that the/that.par.foc house.par admire.prs.3sg Pekka.nom'
+
+817.  Jukka kysyi etta sitä#[kO]#[hAn] taloa ihailee Pekka 
+	'Jukka asked that the/that.par.q.fam house.par admire.prs.3sg Pekka.nom'
+
+818.  Jukka sanoi etta sitä#[pA]#[hAn] taloa ihailee Pekka 
+	'Jukka said that the/that.par.pol.fam house.par admire.prs.3sg Pekka.nom'
+
+819.  Jukka kysyi etta sitä#[foc]#[kO]#[hAn] taloa ihailee Pekka 
+	'Jukka asked that the/that.par.foc.q.fam house.par admire.prs.3sg Pekka.nom'
+
+820.  Jukka sanoi etta sitä#[foc]#[pA]#[hAn] taloa ihailee Pekka 
+	'Jukka said that the/that.par.foc.pol.fam house.par admire.prs.3sg Pekka.nom'
+
+& Main verb selecting an embedded left peripheral features (+/-wh, +/-wh)(3.5.3)
+
+& Grammatical [V/+wh, +wh]
+
+821.  Jukka kysyi etta kuka ihailee Merjaa 
+	'Jukka asked that who.nom admire.prs.3sg Merja.par'
+
+822.  Jukka kysyi etta kuka#[hAn] ihailee Merjaa 
+	'Jukka asked that who.nom.fam admire.prs.3sg Merja.par'
+
+823.  Jukka kysyi etta kuka#[kO] ihailee Merjaa 
+	'Jukka asked that who.nom.q admire.prs.3sg Merja.par'
+
+824.  Jukka kysyi etta kuka#[pA] ihailee Merjaa 
+	'Jukka asked that who.nom.pol admire.prs.3sg Merja.par'
+
+825.  Jukka kysyi etta kuka#[foc] ihailee Merjaa 
+	'Jukka asked tthat who.nom.foc admire.prs.3sg Merja.par'
+
+826.  Jukka kysyi etta Pekka#[foc]#[kO] ihailee Merjaa 
+	'Jukka asked that Pekka.nom.foc.q admire.prs.3sg Merja.par'
+
+827.  Jukka kysyi etta Pekka#[foc]#[kO]#[hAn] ihailee Merjaa 
+	'Jukka asked that Pekka.nom.foc.q.fam admire.prs.3sg Merja.par'
+
+828.  Jukka kysyi etta ihailee#[kO] Pekka Merjaa 
+	'Jukka asked that admire.prs.3sg.q Pekka.nom Merja.par'
+
+829.  Jukka kysyi etta ihailee#[foc]#[kO] Pekka Merjaa 
+	'Jukka asked that admire.prs.3sg.foc.q Pekka.nom Merja.par'
+
+& Ungrammatical [V/+wh, -wh]
+
+830. *Jukka kysyi etta Pekka ihailee Merjaa 
+	'Jukka asked that Pekka.nom admires.prs.3sgMerja.par'
+
+831. *Jukka kysyi etta Pekka#[hAn] ihailee Merjaa 
+	'Jukka asked that Pekka.nom.fam admire.prs.3sg Merja.par'
+
+832. *Jukka kysyi etta Pekka#[pA]#[hAn] ihailee Merjaa 
+	'Jukka asked that Pekka.nom.pol.fam admire.prs.3sg Merja.par'
+
+833. *Jukka kysyi etta Pekka#[foc]#[hAn] ihailee Merjaa 
+	'Jukka asked that Pekka.nom.foc.fam admire.prs.3sg Merja.par'
+
+834. *Jukka kysyi etta Pekka#[foc]#[pA]#[hAn] ihailee Merjaa 
+	'Jukka asked that Pekka.nom.foc.pol.fam admire.prs.3sg Merja.par'
+
+835. *Jukka kysyi etta Pekka#[pA] ihailee Merjaa 
+	'Jukka asked that Pekka.nom.pol admire.prs.3sg Merja.par'
+
+836. *Jukka kysyi etta ihailee#[foc] Pekka Merjaa 
+	'Jukka asked that admire.prs.3sg.foc Pekka.nom Merja.par'
+
+& Grammatical [V(-wh), -wh]
+
+837.  Jukka sanoi etta Pekka ihailee Merjaa 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par'
+
+838.  Jukka sanoi etta Pekka#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.nom.fam admire.prs.3sg Merja.par'
+
+839.  Jukka sanoi etta Pekka#[pA]#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.nom.fpol.am admire.prs.3sg Merja.par'
+
+840.  Jukka sanoi etta Pekka#[foc]#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.nom.foc.fam admire.prs.3sg Merja.par'
+
+841.  Jukka sanoi etta Pekka#[foc]#[pA]#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.nom.foc.pol admire.prs.3sg Merja.par'
+
+842.  Jukka sanoi etta Pekka#[pA] ihailee Merjaa 
+	'Jukka said that Pekka.nom.pol admire.prs.3sg Merja.par'
+
+843.  Jukka sanoi etta ihailee#[foc] Pekka Merjaa 
+	'Jukka said that admire.prs.3sg.foc Pekka.nom Merja.par'
+
+& Ungrammatical [V(-wh), +wh]
+
+844. *Jukka sanoi etta kuka ihailee Merjaa 
+	'Jukka said that who.nom admire.prs.3sg Merja.par'
+
+845. *Jukka sanoi etta Pekka#[kO] ihailee Merjaa 
+	'Jukka said that Pekka.nom.q admire.prs.3sg Merja.par'
+
+846. *Jukka sanoi etta Pekka#[kO]#[hAn] ihailee Merjaa 
+	'Jukka said that Pekka.nom.q.fam admire.prs.3sg Merja.par'
+
+847. *Jukka sanoi etta ihailee#[kO] Pekka Merjaa 
+	'Jukka said that admire.prs.3sg.q Pekka.nom Merja.par'
+
+& Operators in situ and scope (3.6)
+
+& Wh in situ (3.6.1)
+
+& Grammatical
+
+848.  Pekka ihailee keta 
+	'Pekka.nom admire.prs.3sg who.par'
+
+849.  Jukka sanoi etta Pekka ihailee keta 
+	'Jukka said that Pekka.nom admire.prs.3sg who.par'
+
+& Focus in situ (3.6.2)
+
+& Grammatical
+
+850.  Pekka ihailee Merjaa#[foc] 
+	'Pekka.nom admire.prs.3sg Merja.par.foc'
+
+851.  Jukka sanoi etta Pekka ihailee Merjaa#[foc] 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par.foc'
+
+852. *Merjaa haluaa ihailla Pekka#[foc] 
+	'Merja.par want.prs.3sg admire.a/inf Pekka.nom.foc'
+
+853.  Pekka haluaa ihailla Merjaa#[foc] 
+	'Pekka.nom want.prs.3sg admire.a/inf Merja.par.foc'
+
+& Scope ambiguity, embedded clause, and pied-piping (3.6.3)
+
+& Grammatical
+
+854.  Jukka sanoi etta Pekka ihailee sitä#[foc] taloa 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par.foc house.par'
+
+855.  Jukka sanoi etta Pekka ihailee sitä taloa#[foc] 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par house.par.foc'
+
+& C-features that are not possible in an in situ configuration (3.6.4)
+
+& Ungrammatical
+
+856. *Jukka sanoi etta Pekka ihailee Merjaa#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par.fam'
+
+857. *Jukka sanoi etta Pekka ihailee Merjaa#[pA] 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par.pol'
+
+858. *Jukka sanoi etta Pekka ihailee Merjaa#[kO] 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par.q'
+
+859. *Jukka sanoi etta Pekka ihailee Merjaa#[kO]#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par.q.fam'
+
+860. *Jukka sanoi etta Pekka ihailee Merjaa#[pA]#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par.pol.fam'
+
+861. *Jukka sanoi etta Pekka ihailee Merjaa#[foc]#[kO]#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par.foc.q.fam'
+
+862. *Jukka sanoi etta Pekka ihailee Merjaa#[foc]#[pA]#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg Merja.par.foc.pol.fam'
+
+863. *Jukka sanoi etta Pekka ihailee sitä taloa#[hAn] 
+	'Jukka said that Pekka admire.prs.3sg the/that.par house.par.fam'
+
+864. *Jukka sanoi etta Pekka ihailee sitä taloa#[pA] 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par house.par.pol'
+
+865. *Jukka sanoi etta Pekka ihailee sitä taloa#[kO] 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par house.par.q'
+
+866. *Jukka sanoi etta Pekka ihailee sitä taloa#[kO]#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par house.par.q.fam'
+
+867. *Jukka sanoi etta Pekka ihailee sitä taloa#[pA]#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par house.par.pol.fam'
+
+868. *Jukka sanoi etta Pekka ihailee sitä taloa#[foc]#[kO]#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par house.par.foc.q.fam'
+
+869. *Jukka sanoi etta Pekka ihailee sitä taloa#[foc]#[pA]#[hAn] 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par house.par.foc.pol.fam'
+
+870. *Jukka sanoi etta Pekka ihailee sitä#[hAn] taloa 
+	'Jukka said that Pekka admire.prs.3sg the/that.par.fam house.par'
+
+871. *Jukka sanoi etta Pekka ihailee sitä#[pA] taloa 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par.pol house.par'
+
+872. *Jukka sanoi etta Pekka ihailee sitä#[kO] taloa 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par.q house.par'
+
+873. *Jukka sanoi etta Pekka ihailee sitä#[kO]#[hAn] taloa 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par.q.fam house.par'
+
+874. *Jukka sanoi etta Pekka ihailee sitä#[pA]#[hAn] taloa 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par.pol.fam house.par'
+
+875. *Jukka sanoi etta Pekka ihailee sitä#[foc]#[kO]#[hAn] taloa 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par.foc.q.fam house.par'
+
+876. *Jukka sanoi etta Pekka ihailee sitä#[foc]#[pA]#[hAn] taloa 
+	'Jukka said that Pekka.nom admire.prs.3sg the/that.par.foc.pol.fam house.par'
+
+& 4 Case
+
+& Finite clause, nominative and partitive (4.1)
+
+& Grammatical
+
+877.  Pekka nukkuu 
+	'Pekka.nom sleep.prs.3sg'
+
+878.  Merja nukkuu 
+	'Merja.nom sleep.prs.3sg'
+
+879.  Pekka ihailee Merjaa 
+	'Pekka.nom admire.prs.3sg Merja.par'
+
+880.  Pekka antoi kirjan Merjalle 
+	'Pekka.nom give.pst.3sg book.acc/gen to.Merja'
+
+& Ungrammatical
+
+881. *Pekkaa nukkuu 
+	'Pekka.par sleep.prs.3sg'
+
+882. *Pekka ihailee Merja 
+	'Pekka.nom admire.prs.3sg Merja.nom'
+
+883. *Pekka antoi kirja Merjalle 
+	'Pekka.nom give.pst.3sg book.nom to.Merja'
+
+884. *Pekka antoi kirjan Merja 
+	'Pekka.nom give.pst.3sg book.acc/gen to.Merja'
+
+885. *Pekka antoi kirja Merja 
+	'Pekka.nom give.pst.3sg book.nom Merja.nom'
+
+886. *Merjan_gen nukkuu 
+	'Merja.gen sleep.prs.3sg'
+
+887. *Merjan_acc nukkuu 
+	'Merja.acc(n) sleep.prs.3sg'
+
+888. *Merja_0acc nukkuu 
+	'Merja.acc(0) sleep.prs.3sg'
+
+889. *Merjaa nukkuu 
+	'Merja.par sleep.prs.3sg'
+
+890. *Merja ihailee Pekan_gen 
+	'Merja.nom admire.prs.3sg Pekka.gen'
+
+891. *Merja ihailee Pekan_acc 
+	'Merja.nom admire.prs.3sg Pekka.acc(n)'
+
+892. *Merja ihailee Pekka_0acc 
+	'Merja.nom admire.prs.3sg Pekka.acc(0)'
+
+& Finite clause, accusative (4.2)
+
+& Accusative and aspect
+
+& Grammatical
+
+893.  Pekka voitti Merjan 
+	'Pekka.nom win.pst.3sg Merja.acc(n)'
+
+894.  Pekka voitti Merjaa 
+	'Pekka.nom win.pst.3sg Merja.par'
+
+895.  Pekka tonaisi Merjaa 
+	'Pekka.nom push.pst.3sg Merja.par'
+
+896.  Pekka pesi Merjan 
+	'Pekka.nom wash.pst.3sg Merja.acc(n)'
+
+897.  Pekka pesi Merjaa 
+	'Pekka.nom wash.pst.3sg Merja.par'
+
+898. *Pekka pesi hanet 
+	'Pekka.nom wash.pst.3sg he.acc(t)'
+
+& Ungrammatical
+
+899. *Pekka tonaisi Merjan 
+	'Pekka.nom push.pst.3sg Merja.acc(n)'
+
+900. *Pekka tonaisi Merja 
+	'Pekka.nom push.pst.3sg Merja.nom'
+
+901. *Pekka tonaisi Merja_0acc 
+	'Pekka.nom push.pst.3sg Merja.acc(0)'
+
+902. *Pekka tonaisi hanet 
+	'Pekka.non push.pst.3sg he.acc(t)'
+
+& Accusative and negation
+
+& Grammatical
+
+903.  Pekka ei voittanut Merjaa 
+	'Pekka.nom not.3sg win.pst.prtcpl Merja.par'
+
+& Ungrammatical
+
+904. *Pekka ei voittanut Merjan 
+	'Pekka.nom not.3sg win.pst.prtcpl Merja.acc(n)'
+
+905. *Pekka ei voittanut Merja 
+	'Pekka.nom not.3sg win.pst.prtcpl Merja.nom'
+
+906. *Pekka ei voittanut Merja_0acc 
+	'Pekka.nom not.3sg win.pst.prtcpl Merja.acc(0)'
+
+907. *Pekka ei voittanut Merjan_gen 
+	'Pekka.nom not.3sg win.pst.prtcpl Merja.gen'
+
+& Accusative and agreement
+
+& Grammatical
+
+908.  me loysimme avaimen 
+	'we.nom found.pst.1pl key.acc(n)'
+
+909.  me loydettiin avain_0acc 
+	'we.nom found.pst.impass key.acc(0)'
+
+& Ungrammatical
+
+910. *me loydettiin avaimen 
+	'we.nom found.pst.impass key.acc(n)'
+
+911. *me loysimme avain 
+	'we.nom found.pst.1pl key.nom'
+
+912. *me loysimme avain_0acc 
+	'we.nom found.pst.1pl key.acc(0)'
+
+& Accusative and long-distance effects
+
+& Grammatical
+
+913.  Pekka halusi voittaa Merjan 
+	'Pekka.nom want.pst.3sg win.a/inf Merja.acc(n)'
+
+914.  Pekka halusi tonaista Merjaa 
+	'Pekka.nom want.pst.3sg push.a/inf Merja.par'
+
+915.  Pekka halusi pesta Merjan 
+	'Pekka.nom want.pst.3sg wash.a/inf Merja.acc(n)'
+
+916.  Pekka halusi loytaa avaimen 
+	'Pekka.nom want.pst.3sg find.a/inf key.acc(n)'
+
+917.  me haluttiin voittaa Merja_0acc 
+	'we.nom want.pst.impass win.a/inf Merja.acc(0)'
+
+918.  me ei' haluttu voittaa Merjaa 
+	'we.nom not want.pst.prtcpl win.a/inf Merja.par'
+
+919.  me halusimme voittaa Merjan 
+	'we.nom want.pst.1pl win.a/inf Merja.acc(n)'
+
+& Ungrammatical
+
+920. *me haluttiin voittaa Merjan 
+	'we.nom want.pst.impass win.a/inf Merja.acc(n)'
+
+921. *me halusimme voittaa Merja_0acc 
+	'we.nom want.pst.1pl win.a/inf Merja.acc(0)'
+
+922. *me ei' haluttu voittaa Merja_0acc 
+	'we.nom not want.pst.prtcpl win.a/inf Merja.acc(0)'
+
+923. *me ei' haluttu voittaa Merjan 
+	'we.nom not want.pst.prtcpl win.a/inf Merja.acc(n)'
+
+& Adpositions (4.3)
+
+& Grammatical
+
+924.  lahella_1 Pekkaa 
+	'near Pekka.par'
+
+925.  Pekkaa lahella_1 
+	'Pekka.par near'
+
+926.  Merja nukkui Pekan_gen lahella_2 
+	'Merja.nom slept Pekka.gen near'
+
+927.  Merja nukkui lahella_1 Pekkaa 
+	'Merja.nom slept near Pekka.par'
+
+& Ungrammatical
+
+928. *Merja nukkui lahella Pekan_gen 
+	'Merja.nom slept near Pekka.gen'
+
+& Infinitivals (4.4)
+
+& Grammatical
+
+929.  Pekka kaski Merjan_gen lahtea 
+	'Pekka.nom ordered Merja.gen leave.a/inf'
+
+930.  Pekka sanoi Merjan_gen lahtevan 
+	'Pekka.nom said Merja.gen leave.va/inf'
+
+931.  Pekka halusi ihailla Merjaa 
+	'Pekka.nom want.pst.3sg admire.a/inf Merja.par'
+
+& Ungrammatical
+
+932. *Pekka kaski Merja lahtea 
+	'Pekka.nom order.pst.3sg Merja.nom leave.a/inf'
+
+933.  Pekka kaski Merjaa lahtea 
+	'Pekka.nom order.pst.3sg Merja.par leave.a/inf'
+
+934. *Pekka kaski hanet lahtea 
+	'Pekka.nom order.pst.3sg he.acc(t) leave.a/inf'
+
+935. *Pekka sanoi Merja lahtevan 
+	'Pekka.nom said Merja.nom leave.va/inf'
+
+936. *Pekka sanoi Merjaa lahtevan 
+	'Pekka.nom said Merja.par leave.va/inf'
+
+937. *Pekka sanoi hanet lahtevan 
+	'Pekka.nom said he.acc(t) leave.va/inf'
+
+938. *Pekka kaski lahtea Merjan_gen 
+	'Pekka.nom order.pst.3sg leave.a/inf Merja.gen'
+
+939. *Pekka sanoi lahtevan Merjan_gen 
+	'Pekka.nom say.pst.3sg leave.va/inf Merja.gen'
+
+& Possessive constructions (4.5)
+
+& Grammatical
+
+940.  se Merjan_gen kello havisi 
+	'the/that Merja.gen watch disappear.pst.3sg'
+
+& Ungrammatical
+
+941. *se kello Merjan_gen havisi 
+	'the/that watch Merja.gen disappear.pst.3sg'
+
+& Numeral constructions (two types))(4.6)
+
+& Grammatical
+
+942.  ne kaksi_1 sukkaa havisi 
+	'those two.sg.0 sock.sg.par disappear.pst.3sg'
+
+943.  ne kahdet sukat havisivat 
+	'those two.pl.nom sock.pl.nom disappear.pst.3pl'
+
+944.  ne kaksi_1 sukkaa havisivat 
+	'those two.sg.0 sock.sg.par disappear.pst.3pl'
+
+945.  Pekka loysi ne kaksi_2 sukkaa 
+	'Pekka.nom find.pst.3sg those two.sg.0 sock.sg.par'
+
+946.  Pekka sanoi niiden kahden sukan haviavan 
+	'Pekka.nom say.pst.3sg those.gen two.gen sock.gen disappear.va/inf's
+
+& Ungrammatical
+
+947. *ne kaksi sukan havisi 
+	'those two.0 sock.gen disappear.pst.3sg'
+
+948. *ne kahdet sukkaa havisivat 
+	'those two.pl.nom sock.sg.par disappear.pst.3pl'
+
+949. *ne kahdet sukka_0acc havisivat 
+	'those two.pl.nom sock.acc(0) disappear.pst.3pl'
+
+950.  ne kahdet sukka havisivat 
+	'those two.pl.nom sock.sg.nom disappear.pst.3pl'
+
+951. *Pekka sanoi niiden kaksi sukkaa haviavan 
+	'Pekka.nom said those.gen two.sg.0 sock.sg.par disappear.pst.3sg'
+
+& Adverbials, direct object marking (4.7)
+
+& MALLA-adverbial
+
+& Grammatical
+
+952.  Pekka nukahti lukemalla kirjaa 
+	'Pekka.nom fell.asleep read.ma/inf (by reading) book.par'
+
+& Ungrammatical
+
+953. *Pekka nukahti lukemalla Merjan_gen 
+	'Pekka.nom fell.asleep read.ma/inf Merja.gen'
+
+954. *Pekka nukahti lukemalla Merja 
+	'Pekka.nom fell.asleep read.ma/inf Merja.nom'
+
+955. *Pekka nukahti lukemalla Merja_0acc 
+	'Pekka.nom fell.asleep read.ma/inf Merja.acc(0)'
+
+956. *Pekka nukahti lukemalla Merjan_acc 
+	'Pekka.nom fell.asleep read.ma/inf Merja.acc(n)'
+
+& Adverbial case marking (4.8)
+
+& Grammatical
+
+957.  Pekka nukkui#asp koko paivan 
+	'Pekka.nom sleep.pst.3sg.asp all day.acc(n)'
+
+958.  Pekka ei nukkunut koko paivaa 
+	'Pekka.nom not.3sg sleep.sg.pst.prtcpl all day.par'
+
+959.  me nukuttiin koko paiva 
+	'we.nom sleep.pst.impass all day.nom'
+
+960.  Pekka ihailee#asp Merjaa koko paivan 
+	'Pekka.nom admire.prs.3sg.asp Merja.par all day.acc(n)'
+
+& Ungrammatical
+
+961. *Pekka nukkui koko paivan 
+	'Pekka.nom sleep.pst.3sg all day.acc(n)'
+
+962. *Pekka ei nukkunut koko paivan 
+	'Pekka.nom not.3sg sleep.pst.prtcpl all day.acc(n)'
+
+963. *me nukuttiin koko paivan 
+	'we.nom sleep.pst.impass all day.acc(n)'
+
+964. *Pekka ihailee Merjaa koko paivan 
+	'Pekka.nom admire.prs.3sg Merja.par all day.acc(n)'
+
+965. *Pekka ihailee#asp Merjaa koko paiva 
+	'Pekka.nom admire.prs.3sg.asp Merja.par all day.nom'
+
+966. *Pekka ihailee#asp Merjaa koko paivaa 
+	'Pekka.nom admire.prs.3sg.asp Merja.par all day.par'
+
+967. *Pekka ihailee Merjaa koko paivaa 
+	'Pekka.nom admire.prs.3sg Merja.par all day.par'
+
+& Special constructions (4.9)
+
+& Partitive subjects (psych verbs)
+
+& Grammatical
+
+968.  Merjaa pelottaa 
+	'Merja.par fear.cau.prs.3sg'
+
+& Ungrammatical
+
+969. *Pekka pelottaa 
+	'Pekka.nom fear.cau.prs.3sg'
+
+970. *Merjan_gen pelottaa 
+	'Merja.gen fear.cau.prs.3sg'
+
+971. *Merjan_acc pelottaa 
+	'Merja.acc(n) fear.cau.prs.3sg'
+
+972. *Merja_0acc pelottaa 
+	'Merja.acc(0) fear.cau.prs.3sg'
+
+973. *Merjalle pelottaa 
+	'to.Merja fear.cau.prs.3sg'
+
+& Impersonal passives
+
+& Grammatical
+
+974.  me loysimme avaimen 
+	'we.nom find.pst.1pl key.acc(n)'
+
+975.  me loydettiin avain_0acc 
+	'we.nom find.pst.impass key.acc(0)'
+
+976.  avain_0acc loydettiin 
+	'key.acc(0) find.pst.impass'
+
+977.  loydettiin avain_0acc 
+	'find.pst.impass key.acc(0)'
+
+& Ungrammatical
+
+978. *me loydettiin avaimen 
+	'we.nom find.pst.impass key.acc(n)'
+
+979. *me loysimme avain 
+	'we.nom find.pst.1pl key.nom/acc(0)'
+
+& Copula
+
+& Grammatical
+
+980.  Pekka on' Pekka 
+	'Pekka.nom is Pekka.nom'
+
+981.  Merjalla on' Pekka 
+	'Merja.all be.prs.3sg Pekka.nom'
+
+982.  Pekka on' Merjalla 
+	'Pekka.nom be.prs.3sg Merja.all'
+
+& Ungrammatical
+
+983. *Pekka on' Pekkaa 
+	'Pekka.nom be.prs.3sg Pekka.par'
+
+984. *Pekka on' Pekan_gen 
+	'Pekka.nom be.prs.3sg Pekka.gen'
+
+& 5 Agreement
+
+& Standard finite S-V agreement (5.1)
+
+& Grammatical
+
+985.  mina ihailen Merjaa 
+	'I.nom admire.prs.1sg Merja.par'
+
+986.  sina ihailet Merjaa 
+	'you.nom admire.prs.2sg Merja.par'
+
+987.  han ihailee Merjaa 
+	'he.nom admire.prs.3sg Merja.par'
+
+988.  me ihailemme Merjaa 
+	'we.nom admire.prs.1pl Merja.par'
+
+989.  te ihailette Merjaa 
+	'you.nom admire.prs.2pl Merja.par'
+
+990.  he_FI ihailevat Merjaa 
+	'he.nom admire.prs.3pl Merja.par'
+
+991.  I admire Mary 
+
+992.  you admire Mary 
+
+993.  he admires Mary 
+
+994.  she admires Mary 
+
+995.  John admires Mary 
+
+996.  we admire Mary 
+
+997.  you_pl admire Mary 
+
+998.  they admire Mary 
+
+999.  io adoro Luisa 
+
+1000.  tu adori Luisa 
+
+1001.  lui adora Luisa 
+
+1002.  lei adora Luisa 
+
+1003.  noi adoriamo Luisa 
+
+1004.  voi adorate Luisa 
+
+1005.  loro adorano Luisa 
+
+& Ungrammatical
+
+1006. *mina ihailet Merjaa 
+	'I.nom admire.2sg Merja.par'
+
+1007. *mina ihailee Merjaa 
+	'I.nom admire.3sg Merja.par'
+
+1008. *mina ihailemme Merjaa 
+	'I.nom admire.1pl Merja.par'
+
+1009. *mina ihailette Merjaa 
+	'I.nom admire.2pl Merja.par'
+
+1010. *mina ihailevat Merjaa 
+	'I.nom admire.3pl Merja.par'
+
+1011. *sina ihailen Merjaa 
+
+1012. *sina ihailee Merjaa 
+
+1013. *sina ihailemme Merjaa 
+
+1014. *sina ihailette Merjaa 
+
+1015. *sina ihailevat Merjaa 
+	'you.nom admire.1sg/3sg/1pl/2pl/3pl Merja.par'
+
+1016. *han ihailen Merjaa 
+
+1017. *han ihailet Merjaa 
+
+1018. *han ihailemme Merjaa 
+
+1019. *han ihailette Merjaa 
+
+1020. *han ihailevat Merjaa 
+	'he.nom admire.1sg/2sg/1pl/2pl/3pl Merja.par'
+
+1021. *me ihailen Merjaa 
+
+1022. *me ihailet Merjaa 
+
+1023. *me ihailee Merjaa 
+
+1024. *me ihailette Merjaa 
+
+1025. *me ihailevat Merjaa 
+	'we.nom admire.1sg/2sg/3sg/2pl/3pl Merja.par'
+
+1026. *te ihailen Merjaa 
+
+1027. *te ihailet Merjaa 
+
+1028. *te ihailee Merjaa 
+
+1029. *te ihailemme Merjaa 
+
+1030. *te ihailevat Merjaa 
+	'you.pl.nom admire.1sg/2sg/3sg/1pl/3pl Merja.par'
+
+1031. *he_FI ihailen Merjaa 
+
+1032. *he_FI ihailet Merjaa 
+
+1033. *he_FI ihailee Merjaa 
+
+1034. *he_FI ihailemme Merjaa 
+
+1035. *he_FI ihailette Merjaa 
+	'he.nom admire.1sg/2sg/3sg/1pl/2pl Merja.par'
+
+1036. *John admire_fin Mary 
+
+1037. *we admires Mary 
+
+1038. *io adori Luisa 
+
+1039. *io adora Luisa 
+
+1040. *io adorate Luisa 
+
+1041. *io adorano Luisa 
+
+& S-V areement with noncanonical word order (Finnish)(5.2)
+
+& Grammatical
+
+1042.  ihailen mina Merjaa 
+
+1043.  ihailen Merjaa mina 
+
+1044.  ihailet sina Merjaa 
+
+1045.  ihailet Merjaa sina 
+
+1046.  ihailette Merjaa te 
+
+1047.  ihailemme me Merjaa 
+
+1048.  ihailemme Merjaa me 
+
+1049.  ihailette te Merjaa 
+
+1050.  mina ihailen Merjaa 
+
+1051.  mina Merjaa ihailen 
+
+1052.  Merjaa mina ihailen 
+
+1053.  Merjaa ihailen mina 
+
+1054.  sina ihailet Merjaa 
+
+1055.  sina Merjaa ihailet 
+
+1056.  Merjaa sina ihailet 
+
+1057.  Merjaa ihailet sina 
+
+1058.  han ihailee Merjaa 
+
+1059.  han Merjaa ihailee 
+
+1060.  Merjaa han ihailee 
+
+1061.  Merjaa ihailee han 
+
+1062.  me ihailemme Merjaa 
+
+1063.  me Merjaa ihailemme 
+
+1064.  Merjaa me ihailemme 
+
+1065.  Merjaa ihailemme me 
+
+1066.  te ihailette Merjaa 
+
+1067.  te Merjaa ihailette 
+
+1068.  Merjaa te ihailette 
+
+1069.  Merjaa ihailette te 
+
+1070.  he_FI ihailevat Merjaa 
+
+1071.  he_FI Merjaa ihailevat 
+
+1072.  Merjaa he_FI ihailevat 
+
+1073. *Merjaa ihailevat he_FI 
+
+& Ungrammatical
+
+1074. *ihailee han Merjaa 
+
+1075. *ihailee Merjaa han 
+
+1076. *ihailevat he_FI Merjaa 
+
+1077. *ihailevat Merjaa he_FI 
+
+& Ungrammatical, incorrect SV-agreement with noncanonical order
+
+1078. *mina ihailet Merjaa 
+
+1079. *mina Merjaa ihailet 
+
+1080. *ihailet mina Merjaa 
+
+1081. *ihailet Merjaa mina 
+
+1082. *Merjaa mina ihailet 
+
+1083. *Merjaa ihailet mina 
+
+1084. *mina ihailee Merjaa 
+
+1085. *mina Merjaa ihailee 
+
+1086. *ihailee mina Merjaa 
+
+1087. *ihailee Merjaa mina 
+
+1088. *Merjaa mina ihailee 
+
+1089. *Merjaa ihailee mina 
+
+1090. *mina ihailemme Merjaa 
+
+1091. *mina Merjaa ihailemme 
+
+1092. *ihailemme mina Merjaa 
+
+1093. *ihailemme Merjaa mina 
+
+1094. *Merjaa mina ihailemme 
+
+1095. *Merjaa ihailemme mina 
+
+1096. *mina ihailette Merjaa 
+
+1097. *mina Merjaa ihailette 
+
+1098. *ihailette mina Merjaa 
+
+1099. *ihailette Merjaa mina 
+
+1100. *Merjaa mina ihailette 
+
+1101. *Merjaa ihailette mina 
+
+1102. *mina ihailevat Merjaa 
+
+1103. *mina Merjaa ihailevat 
+
+1104. *ihailevat mina Merjaa 
+
+1105. *ihailevat Merjaa mina 
+
+1106. *Merjaa mina ihailevat 
+
+1107. *Merjaa ihailevat mina 
+
+1108. *sina ihailen Merjaa 
+
+1109. *sina Merjaa ihailen 
+
+1110. *ihailen sina Merjaa 
+
+1111. *ihailen Merjaa sina 
+
+1112. *Merjaa sina ihailen 
+
+1113. *Merjaa ihailen sina 
+
+1114. *sina ihailee Merjaa 
+
+1115. *sina Merjaa ihailee 
+
+1116. *ihailee sina Merjaa 
+
+1117. *ihailee Merjaa sina 
+
+1118. *Merjaa sina ihailee 
+
+1119. *Merjaa ihailee sina 
+
+1120. *sina ihailemme Merjaa 
+
+1121. *sina Merjaa ihailemme 
+
+1122. *ihailemme sina Merjaa 
+
+1123. *ihailemme Merjaa sina 
+
+1124. *Merjaa sina ihailemme 
+
+1125. *Merjaa ihailemme sina 
+
+1126. *sina ihailette Merjaa 
+
+1127. *sina Merjaa ihailette 
+
+1128. *ihailette sina Merjaa 
+
+1129. *ihailette Merjaa sina 
+
+1130. *Merjaa sina ihailette 
+
+1131. *Merjaa ihailette sina 
+
+1132. *sina ihailevat Merjaa 
+
+1133. *sina Merjaa ihailevat 
+
+1134. *ihailevat sina Merjaa 
+
+1135. *ihailevat Merjaa sina 
+
+1136. *Merjaa sina ihailevat 
+
+1137. *Merjaa ihailevat sina 
+
+1138. *han ihailen Merjaa 
+
+1139. *han Merjaa ihailen 
+
+1140. *ihailen han Merjaa 
+
+1141. *ihailen Merjaa han 
+
+1142. *Merjaa han ihailen 
+
+1143. *Merjaa ihailen han 
+
+1144. *han ihailet Merjaa 
+
+1145. *han Merjaa ihailet 
+
+1146. *ihailet han Merjaa 
+
+1147. *ihailet Merjaa han 
+
+1148. *Merjaa han ihailet 
+
+1149. *Merjaa ihailet han 
+
+1150. *han ihailemme Merjaa 
+
+1151. *han Merjaa ihailemme 
+
+1152. *ihailemme han Merjaa 
+
+1153. *ihailemme Merjaa han 
+
+1154. *Merjaa han ihailemme 
+
+1155. *Merjaa ihailemme han 
+
+1156. *han ihailette Merjaa 
+
+1157. *han Merjaa ihailette 
+
+1158. *ihailette han Merjaa 
+
+1159. *ihailette Merjaa han 
+
+1160. *Merjaa han ihailette 
+
+1161. *Merjaa ihailette han 
+
+1162. *han ihailevat Merjaa 
+
+1163. *han Merjaa ihailevat 
+
+1164. *ihailevat han Merjaa 
+
+1165. *ihailevat Merjaa han 
+
+1166. *Merjaa han ihailevat 
+
+1167. *Merjaa ihailevat han 
+
+1168. *me_FI ihailen Merjaa 
+
+1169. *me_FI Merjaa ihailen 
+
+1170. *ihailen me_FI Merjaa 
+
+1171. *ihailen Merjaa me_FI 
+
+1172. *Merjaa me_FI ihailen 
+
+1173. *Merjaa ihailen me_FI 
+
+1174. *me_FI ihailet Merjaa 
+
+1175. *me_FI Merjaa ihailet 
+
+1176. *ihailet me_FI Merjaa 
+
+1177. *ihailet Merjaa me_FI 
+
+1178. *Merjaa me_FI ihailet 
+
+1179. *Merjaa ihailet me_FI 
+
+1180. *me_FI ihailee Merjaa 
+
+1181. *me_FI Merjaa ihailee 
+
+1182. *ihailee me_FI Merjaa 
+
+1183. *ihailee Merjaa me_FI 
+
+1184. *Merjaa me_FI ihailee 
+
+1185. *Merjaa ihailee me_FI 
+
+1186. *me_FI ihailette Merjaa 
+
+1187. *me_FI Merjaa ihailette 
+
+1188. *ihailette me_FI Merjaa 
+
+1189. *ihailette Merjaa me_FI 
+
+1190. *Merjaa me_FI ihailette 
+
+1191. *Merjaa ihailette me_FI 
+
+1192. *me_FI ihailevat Merjaa 
+
+1193. *me_FI Merjaa ihailevat 
+
+1194. *ihailevat me_FI Merjaa 
+
+1195. *ihailevat Merjaa me_FI 
+
+1196. *Merjaa me_FI ihailevat 
+
+1197. *Merjaa ihailevat me_FI 
+
+1198. *te ihailen Merjaa 
+
+1199. *te Merjaa ihailen 
+
+1200. *ihailen te Merjaa 
+
+1201. *ihailen Merjaa te 
+
+1202. *Merjaa te ihailen 
+
+1203. *Merjaa ihailen te 
+
+1204. *te ihailet Merjaa 
+
+1205. *te Merjaa ihailet 
+
+1206. *ihailet te Merjaa 
+
+1207. *ihailet Merjaa te 
+
+1208. *Merjaa te ihailet 
+
+1209. *Merjaa ihailet te 
+
+1210. *te ihailee Merjaa 
+
+1211. *te Merjaa ihailee 
+
+1212. *ihailee te Merjaa 
+
+1213. *ihailee Merjaa te 
+
+1214. *Merjaa te ihailee 
+
+1215. *Merjaa ihailee te 
+
+1216. *te ihailemme Merjaa 
+
+1217. *te Merjaa ihailemme 
+
+1218. *ihailemme te Merjaa 
+
+1219. *ihailemme Merjaa te 
+
+1220. *Merjaa te ihailemme 
+
+1221. *Merjaa ihailemme te 
+
+1222. *te ihailevat Merjaa 
+
+1223. *te Merjaa ihailevat 
+
+1224. *ihailevat te Merjaa 
+
+1225. *ihailevat Merjaa te 
+
+1226. *Merjaa te ihailevat 
+
+1227. *Merjaa ihailevat te 
+
+1228. *he_FI ihailen Merjaa 
+
+1229. *he_FI Merjaa ihailen 
+
+1230. *ihailen he_FI Merjaa 
+
+1231. *ihailen Merjaa he_FI 
+
+1232. *Merjaa he_FI ihailen 
+
+1233. *Merjaa ihailen he_FI 
+
+1234. *he_FI ihailet Merjaa 
+
+1235. *he_FI Merjaa ihailet 
+
+1236. *ihailet he_FI Merjaa 
+
+1237. *ihailet Merjaa he_FI 
+
+1238. *Merjaa he_FI ihailet 
+
+1239. *Merjaa ihailet he_FI 
+
+1240. *he_FI ihailee Merjaa 
+
+1241. *he_FI Merjaa ihailee 
+
+1242. *ihailee he_FI Merjaa 
+
+1243. *ihailee Merjaa he_FI 
+
+1244. *Merjaa he_FI ihailee 
+
+1245. *Merjaa ihailee he_FI 
+
+1246. *he_FI ihailemme Merjaa 
+
+1247. *he_FI Merjaa ihailemme 
+
+1248. *ihailemme he_FI Merjaa 
+
+1249. *ihailemme Merjaa he_FI 
+
+1250. *Merjaa he_FI ihailemme 
+
+1251. *Merjaa ihailemme he_FI 
+
+1252. *he_FI ihailette Merjaa 
+
+1253. *he_FI Merjaa ihailette 
+
+1254. *ihailette he_FI Merjaa 
+
+1255. *ihailette Merjaa he_FI 
+
+1256. *Merjaa he_FI ihailette 
+
+1257. *Merjaa ihailette he_FI 
+
+& 6 Pro-drop
+
+& Finite pro-drop (6.1)
+
+& Grammatical
+
+1258.  ihailen Merjaa 
+	'admire.1sg Merja.par'
+
+1259.  ihailet Merjaa 
+	'admire.2sg Merja.par'
+
+1260.  ihailemme Merjaa 
+	'admire.1pl Merja.par'
+
+1261.  ihailette Merjaa 
+	'admire.2pl Merja.par'
+
+1262.  adoro Luisa 
+
+1263.  adori Luisa 
+
+1264.  adora Luisa 
+
+1265.  adora Luisa 
+
+1266.  adoriamo Luisa 
+
+1267.  adorate Luisa 
+
+1268.  adorano Luisa 
+
+1269.  lavano Luisa 
+
+1270.  devono lavare Luisa 
+
+1271.  hanno lavato Luisa 
+
+1272.  ho lavato Luisa 
+
+1273.  hanno voluto lavare Luisa 
+
+1274.  stanno lavando Luisa 
+
+& Ungrammatical
+
+1275. *ihailee Merjaa 
+	'admire.3sg Merja.par'
+
+1276. *ihailevat Merjaa 
+	'admire.3pl Merja.par'
+
+1277. *admire_fin Mary 
+
+1278. *admires Mary 
+
+& Finite pro-drop with noncanonical word order (6.2)
+
+& Grammatical
+
+1279.  ihailen Merjaa 
+	'admire.prs.1sg Merja.par'
+
+1280.  Merjaa ihailen 
+	'Merja.par admire.prs.1sg'
+
+1281.  Merjaa ihailevat 
+	'Merja.par admire.prs.3pl'
+
+& Ungrammatical
+
+1282. *ihailee Merjaa 
+	'admire.prs.3sg Merja.par'
+
+1283. *ihailevat Merjaa 
+	'admire.prs.3pl Merja.par'
+
+& Unclear case (compare 'Elokuvia katselee mielelaan')
+
+1284.  Merjaa ihailee 
+	'Merja.par admire.prs.3sg'
+
+& Third person pro in Finnish, with and without antecedent (6.3)
+
+& Grammatical
+
+1285.  Pekka sanoi etta ihailee Merjaa 
+	'Pekka said that admire.prs.3sg Merja.par'
+
+& Ungrammatical (antecedent missing)
+
+1286. *ihailee Merjaa 
+	'admire.prs.3sg Merja.par'
+
+1287. *mina sanon etta ihailee Merjaa 
+	'I.nom said that admire.prs.3sg Merja.par'
+
+& Ungrammatical (English)
+
+1288. *John said that admire Mary 
+
+1289. *John said that admires Mary 
+
+& 7 Control
+
+& Partial pro-drop control (only D_ unvalued)(7.1)
+
+& Grammatical
+
+1290.  Pekka sanoi etta ihailee Merjaa 
+	'Pekka.nom said that admire.prs.3sg Merja.par'
+
+& Ungrammatical
+
+1291. *ihailee Merjaa 
+	'admire.prs.3sg Merja.par'
+
+1292. *Mina sanon etta ihailee Merjaa 
+	'I.nom said that admire.prs.3sg Merja.par'
+
+& Standard control (phi_, D_ unvalued)(7.2)
+
+& Control into complements
+
+& Want-class (no SEM)
+
+& Grammatical
+
+1293.  John wants to_inf leave 
+
+1294.  John wants Mary to_inf leave 
+
+& Ungrammatical
+
+1295. *John wants 
+
+1296. *John wants to_inf 
+
+1297. *John wants leave 
+
+& OC-construction (SEM:internal)
+
+& Grammatical
+
+1298.  Pekka haluaa lahtea 
+	'Pekka.nom want.prs.3sg leave.a/inf'
+
+1299.  John tries to_inf leave 
+
+1300.  John promises to_inf leave 
+
+& Ungrammatical
+
+1301. *Pekka haluaa Merjan lahtea 
+	'Pekka.nom want.prs.3sg Merja.gen leave.a/inf'
+
+1302. *John tries Mary to_inf leave 
+
+& Anti-OC construction (SEN:external)
+
+& Grammatical
+
+1303.  Pekka kaskee Merjan_gen lahtea 
+	'Pekka.nom order.prs.3sg Merja.gen leave.a/inf'
+
+1304.  Pekka haluaa Merjan_gen lahtevan 
+	'Pekka.nom want.prs.3sg Merja.gen leave.va/inf'
+
+1305.  John persuades Mary to_inf leave 
+
+& Ungrammatical
+
+1306. *Pekka kaskee lahtea 
+	'Pekka.nom order.prs.3sg leave.a/inf'
+
+1307. *John persuades to_inf leave 
+
+1308. *Pekka haluaa lahtevan 
+	'Pekka.nom want.prs.3sg leave.va/inf'
+
+& Control into adverbials (7.2.4)
+
+& Subject control (high adjunct position)
+
+& Grammatical
+
+1309.  Pekka etsii Merjaa juosten 
+	'Pekka.nom search.prs.3sg Merja.par run.e/inf (by running)'
+
+1310.  John promises Mary to_inf leave 
+
+& Ungrammatical
+
+& Object control (low adjunct position)
+
+& Grammatical
+
+1311.  John persuades Mary to_inf leave 
+
+& Ungrammatical
+
+1312. *John persuades to_inf leave 
+
+& Generic interpretation (7.3)
+
+& Grammatical
+
+& Null object construction (Finnish)
+
+1313.  Pekka pyytaa lahtemaan 
+	'Pekka.nom ask.prs.3sg leave.ma/inf (to leave)'
+
+& Generic null subject
+
+1314.  Pekka sanoo etta istuu mukavasti 
+	'Pekka.nom says that sit.prs.3sg comfortably'
+
+1315.  tassa istuu mukavasti 
+	'here sit.prs.3sg comfortably'
+
+1316.  Pekka sanoo etta tassa istuu mukavasti 
+	'Pekka says that here sit.prs.3sg comfortably'
+
+& Ungrammatical
+
+1317. *istuu mukavasti 
+	'sit.prs.3sg comfortably'
+
+& 8 Word order
+
+& Basic transitive clause (8.1)
+
+& Frozen word order regimen (English)
+
+& Grammatical
+
+1318.  John admires Mary 
+
+1319.  Mary admires John 
+
+& Ungrammatical
+
+1320. *John Mary admires 
+
+1321. *admires John Mary 
+
+1322. *admires Mary John 
+
+1323. *Mary John admires 
+
+& Free word order regimen (Finnish)
+
+& Grammatical (S = subject, V = verb, O = Object)
+
+1324.  Pekka ihailee Merjaa 
+	'Pekka.nom(S) admire.prs.3sg(V) Merja.par(O)'
+
+1325.  Pekka Merjaa ihailee 
+	'SOV'
+
+1326.  Merjaa Pekka ihailee 
+	'OSV'
+
+1327.  Merjaa ihailee Pekka 
+	'OVS'
+
+& Ungrammatical (verb-initial, M = Modal)
+
+1328. *ihailee Pekka Merjaa 
+	'VSO'
+
+1329. *ihailee Merjaa Pekka 
+	'VOS'
+
+1330. *taytyy Pekan_gen ihailla Merjaa 
+	'MSVO'
+
+& Ditransitives (8.2)
+
+& Free word order profile (Finnish)
+
+& Grammatical
+
+1331.  Pekka antoi kirjan Merjalle 
+	'Pekka.nom(S) gave.prs.3sg(V) book.acc(n)(O) to.Merja(I)'
+
+1332.  Pekka antoi Merjalle kirjan 
+	'SVIO'
+
+1333.  Pekka kirjan antoi Merjalle 
+	'SOVI'
+
+1334.  Pekka kirjan Merjalle antoi 
+	'SOIV'
+
+1335.  Pekka Merjalle antoi kirjan 
+	'SIVO'
+
+1336.  Pekka Merjalle kirjan antoi 
+	'SIOV'
+
+1337.  kirjan Pekka antoi Merjalle 
+	'OSVI'
+
+1338.  kirjan Pekka Merjalle antoi 
+	'OSIV'
+
+1339.  kirjan antoi Pekka Merjalle 
+	'OVSI'
+
+1340.  kirjan antoi Merjalle Pekka 
+	'OVIS'
+
+1341.  kirjan Merjalle Pekka antoi 
+	'OISV'
+
+1342.  kirjan Merjalle antoi Pekka 
+	'OIVS'
+
+1343.  Merjalle Pekka antoi kirjan 
+	'ISVO'
+
+1344.  Merjalle Pekka kirjan antoi 
+	'ISOV'
+
+1345.  Merjalle antoi Pekka kirjan 
+	'IVSO'
+
+1346.  Merjalle antoi kirjan Pekka 
+	'IVOS'
+
+1347.  Merjalle kirjan Pekka antoi 
+	'IOSV'
+
+1348.  Merjalle kirjan antoi Pekka 
+	'IOVS'
+
+& Ungrammatical
+
+1349. *antoi Pekka kirjan Merjalle 
+
+1350. *antoi Pekka Merjalle kirjan 
+
+1351. *antoi kirjan Pekka Merjalle 
+
+1352. *antoi kirjan Merjalle Pekka 
+
+1353. *antoi Merjalle Pekka kirjan 
+
+1354. *antoi Merjalle kirjan Pekka 
+	'V...'
+
+& Rigid word order profile (English)(8.2.2)
+
+& Grammatical
+
+1355.  John gave the key to Mary 
+
+1356.  the key gave John to Mary 
+
+& Ungrammatical
+
+1357. *John gave to Mary the key 
+
+1358. *John the key gave to Mary 
+
+1359. *John the key to Mary gave 
+
+1360. *John to Mary gave the key 
+
+1361. *John to Mary the key gave 
+
+1362. *gave John the key to Mary 
+
+1363. *gave John to Mary the key 
+
+1364. *gave the key John to Mary 
+
+1365. *gave the key to Mary John 
+
+1366. *gave to Mary John the key 
+
+1367. *gave to Mary the key John 
+
+1368. *the key John gave to Mary 
+
+1369. *the key John to Mary gave 
+
+1370. *the key gave to Mary John 
+
+1371. *the key to Mary John gave 
+
+1372. *the key to Mary gave John 
+
+1373. *to Mary John gave the key 
+
+1374. *to Mary John the key gave 
+
+1375. *to Mary gave John the key 
+
+1376. *to Mary gave the key John 
+
+1377. *to Mary the key John gave 
+
+1378. *to Mary the key gave John 
+
+& Neg/Aux + V (8.3)
+
+& Finnish transitive Neg + V (8.3.1)
+
+& Grammatical
+
+1379.  Pekka ei ihaile Merjaa 
+	'Pekka.nom(S) not.3sg(N) admire(V) Merja.par'
+
+1380.  Pekka ei Merjaa ihaile 
+	'SNOV'
+
+1381.  Pekka Merjaa ei ihaile 
+	'SONV'
+
+1382.  Merjaa Pekka ei ihaile 
+	'OSNV'
+
+1383.  Merjaa ei Pekka ihaile 
+	'ONSV'
+
+1384.  Merjaa ei ihaile Pekka 
+	'ONVS'
+
+& Ungrammatical
+
+1385. *Pekka ihaile ei Merjaa 
+	'SVNO'
+
+1386. *Pekka ihaile Merjaa ei 
+	'SVON'
+
+1387. *Pekka Merjaa ihaile ei 
+	'SOVN'
+
+1388. *ei Pekka ihaile Merjaa 
+
+1389. *ei Pekka Merjaa ihaile 
+
+1390. *ei ihaile Pekka Merjaa 
+
+1391. *ei ihaile Merjaa Pekka 
+
+1392. *ei Merjaa Pekka ihaile 
+
+1393. *ei Merjaa ihaile Pekka 
+	'N...'
+
+1394. *ihaile Pekka ei Merjaa 
+
+1395. *ihaile Pekka Merjaa ei 
+
+1396. *ihaile ei Pekka Merjaa 
+
+1397. *ihaile ei Merjaa Pekka 
+
+1398. *ihaile Merjaa Pekka ei 
+
+1399. *ihaile Merjaa ei Pekka 
+	'V...'
+
+1400. *Merjaa Pekka ihaile ei 
+	'OSVN'
+
+1401. *Merjaa ihaile Pekka ei 
+	'OVSN'
+
+1402. *Merjaa ihaile ei Pekka 
+	'OVNS'
+
+& English transitive Aux + V (8.3.2)
+
+& Grammatical
+
+1403.  John does admire' Mary 
+
+1404.  Mary does admire' John 
+
+& Ungrammatical
+
+1405. *John admire' does Mary 
+
+1406. *John admire' Mary does 
+
+1407. *John Mary does admire' 
+
+1408. *John Mary admire' does 
+
+1409. *does_T John admire' Mary 
+
+1410. *does_T John Mary admire' 
+
+1411. *does_T admire' John Mary 
+
+1412. *does_T admire' Mary John 
+
+1413. *does_T Mary John admire' 
+
+1414. *does_T Mary admire' John 
+
+1415. *admire' John does Mary 
+
+1416. *admire' John Mary does 
+
+1417. *admire' does John Mary 
+
+1418. *admire' does Mary John 
+
+1419. *admire' Mary John does 
+
+1420. *admire' Mary does John 
+
+1421. *Mary John does admire' 
+
+1422. *Mary John admire' does 
+
+1423. *Mary admire' John does 
+
+1424. *Mary admire' does John 
+
+& Unclear
+
+1425.  John does Mary admire' 
+
+1426.  Mary does John admire' 
+
+& Heads in wrong order (8.4)
+
+& Ungrammatical
+
+& Neg + V
+
+1427. *Pekka ihaile ei Merjaa 
+	'SVNO'
+
+& Neg + Aux + V
+
+1428. *Pekka ollut ei ihaillut Merjaa 
+	'Pekka.nom be.pst.prtcpl(A) not.3sg(N) admire.pst.prtcpl(V) Merja.par'
+
+1429. *Pekka ollut ihaillut ei Merjaa 
+	'SAVNO'
+
+1430. *Pekka ei ihaillut ollut Merjaa 
+	'SNVAO'
+
+1431. *Pekka ei ihaillut ei ollut Merjaa 
+	'SNVNAO'
+
+1432. *Pekka ihaillut ollut ei Merjaa 
+	'SVANO'
+
+& Neg + Modal + V
+
+1433. *Pekan_gen taydy ei ihailla Merjaa 
+	'Pekka.gen must.0 not.3sg admire.a/inf Merja.par'
+
+1434. *Pekan_gen taydy ihailla ei Merjaa 
+
+1435. *Pekan_gen ei ihailla taydy Merjaa 
+
+1436. *Pekan_gen ihailla ei taydy Merjaa 
+
+1437. *Pekan_gen ihailla taydy ei Merjaa 
+
+& Neg + V + V + LHM, with wrong head order
+
+1438. *taydy#C/op Pekan_gen ihailla ei Merjaa 
+	'must.0.c/op Pekka.gen admire.a/inf not.3sg Merja.par'
+
+1439. *ihailla#C/op Pekan_gen taydy ei Merjaa 
+
+1440. *halua#C/op Pekan_gen Pekka ihailla ei Merjaa 
+
+1441. *ihailla#C/op Pekan_gen halua ei Merjaa 
+
+& Head final constructions with two more more verbal elements
+
+1442. *Pekka ihaile Merjaa ei 
+	'Pekka.nom admire Merja.par not.3sg'
+
+1443. *Pekan_gen ei ihailla Merjaa taydy 
+	'Pekka.gen not.3sg admire.a/inf Merja.par must.0'
+
+& Infinitival complements (8.5)
+
+& Rigid word order (English)(8.5.1)
+
+& John wants to leave
+
+& Grammatical
+
+1444.  John wants to_inf leave 
+
+& Ungrammatical
+
+1445. *John wants leave to_inf 
+
+1446. *John to_inf wants leave 
+
+1447. *John to_inf leave wants 
+
+1448. *John leave wants to_inf 
+
+1449. *John leave to_inf wants 
+
+1450. *wants John to_inf leave 
+
+1451. *wants John leave to_inf 
+
+1452. *wants to_inf John leave 
+
+1453. *wants to_inf leave John 
+
+1454. *wants leave John to_inf 
+
+1455. *wants leave to_inf John 
+
+1456. *to_inf John wants leave 
+
+1457. *to_inf John leave wants 
+
+1458. *to_inf wants John leave 
+
+1459. *to_inf wants leave John 
+
+1460. *to_inf leave John wants 
+
+1461. *leave John wants to_inf 
+
+1462. *leave John to_inf wants 
+
+1463. *leave wants John to_inf 
+
+1464. *leave wants to_inf John 
+
+1465. *leave to_inf John wants 
+
+1466. *leave to_inf wants John 
+
+& John wants Mary to leave
+
+& Grammatical
+
+1467.  John wants Mary to_inf leave 
+
+1468.  Mary wants to_inf leave John 
+
+1469.  Mary wants John to_inf leave 
+
+1470.  John wants to_inf leave Mary 
+
+& Ungrammatical
+
+1471. *John wants Mary leave to_inf 
+
+1472. *John wants leave Mary to_inf 
+
+1473. *John wants leave to_inf Mary 
+
+1474. *John Mary wants to_inf leave 
+
+1475. *John Mary wants leave to_inf 
+
+1476. *John Mary to_inf wants leave 
+
+1477. *John Mary to_inf leave wants 
+
+1478. *John Mary leave wants to_inf 
+
+1479. *John Mary leave to_inf wants 
+
+1480. *John to_inf wants Mary leave 
+
+1481. *John to_inf wants leave Mary 
+
+1482. *John to_inf Mary wants leave 
+
+1483. *John to_inf Mary leave wants 
+
+1484. *John to_inf leave Mary wants 
+
+1485. *John leave wants Mary to_inf 
+
+1486. *John leave wants to_inf Mary 
+
+1487. *John leave Mary wants to_inf 
+
+1488. *John leave Mary to_inf wants 
+
+1489. *John leave to_inf wants Mary 
+
+1490. *John leave to_inf Mary wants 
+
+1491. *wants John Mary to_inf leave 
+
+1492. *wants John Mary leave to_inf 
+
+1493. *wants John to_inf Mary leave 
+
+1494. *wants John to_inf leave Mary 
+
+1495. *wants John leave Mary to_inf 
+
+1496. *wants John leave to_inf Mary 
+
+1497. *wants Mary John to_inf leave 
+
+1498. *wants Mary John leave to_inf 
+
+1499. *wants Mary to_inf John leave 
+
+1500. *wants Mary to_inf leave John 
+
+1501. *wants Mary leave John to_inf 
+
+1502. *wants Mary leave to_inf John 
+
+1503. *wants to_inf John Mary leave 
+
+1504. *wants to_inf John leave Mary 
+
+1505. *wants to_inf Mary John leave 
+
+1506. *wants to_inf Mary leave John 
+
+1507. *wants to_inf leave John Mary 
+
+1508. *wants to_inf leave Mary John 
+
+1509. *wants leave John Mary to_inf 
+
+1510. *wants leave John to_inf Mary 
+
+1511. *wants leave Mary John to_inf 
+
+1512. *wants leave Mary to_inf John 
+
+1513. *wants leave to_inf John Mary 
+
+1514. *wants leave to_inf Mary John 
+
+1515. *Mary John wants to_inf leave 
+
+1516. *Mary John wants leave to_inf 
+
+1517. *Mary John to_inf wants leave 
+
+1518. *Mary John to_inf leave wants 
+
+1519. *Mary John leave wants to_inf 
+
+1520. *Mary John leave to_inf wants 
+
+1521. *Mary wants John leave to_inf 
+
+1522. *Mary wants leave John to_inf 
+
+1523. *Mary wants leave to_inf John 
+
+1524. *Mary to_inf John wants leave 
+
+1525. *Mary to_inf John leave wants 
+
+1526. *Mary to_inf wants John leave 
+
+1527. *Mary to_inf wants leave John 
+
+1528. *Mary to_inf leave John wants 
+
+1529. *Mary leave John wants to_inf 
+
+1530. *Mary leave John to_inf wants 
+
+1531. *Mary leave wants John to_inf 
+
+1532. *Mary leave wants to_inf John 
+
+1533. *Mary leave to_inf John wants 
+
+1534. *Mary leave to_inf wants John 
+
+1535. *to_inf John wants Mary leave 
+
+1536. *to_inf John wants leave Mary 
+
+1537. *to_inf John Mary wants leave 
+
+1538. *to_inf John Mary leave wants 
+
+1539. *to_inf John leave Mary wants 
+
+1540. *to_inf wants John Mary leave 
+
+1541. *to_inf wants John leave Mary 
+
+1542. *to_inf wants Mary John leave 
+
+1543. *to_inf wants Mary leave John 
+
+1544. *to_inf wants leave John Mary 
+
+1545. *to_inf wants leave Mary John 
+
+1546. *to_inf Mary John wants leave 
+
+1547. *to_inf Mary John leave wants 
+
+1548. *to_inf Mary wants John leave 
+
+1549. *to_inf Mary wants leave John 
+
+1550. *to_inf Mary leave John wants 
+
+1551. *to_inf leave John Mary wants 
+
+1552. *to_inf leave wants John Mary 
+
+1553. *to_inf leave wants Mary John 
+
+1554. *to_inf leave Mary John wants 
+
+1555. *leave John Mary wants to_inf 
+
+1556. *leave John Mary to_inf wants 
+
+1557. *leave John to_inf Mary wants 
+
+1558. *leave wants John Mary to_inf 
+
+1559. *leave wants John to_inf Mary 
+
+1560. *leave wants Mary John to_inf 
+
+1561. *leave wants Mary to_inf John 
+
+1562. *leave wants to_inf John Mary 
+
+1563. *leave wants to_inf Mary John 
+
+1564. *leave Mary John wants to_inf 
+
+1565. *leave Mary John to_inf wants 
+
+1566. *leave Mary to_inf John wants 
+
+1567. *leave to_inf John Mary wants 
+
+1568. *leave to_inf wants John Mary 
+
+1569. *leave to_inf wants Mary John 
+
+1570. *leave to_inf Mary John wants 
+
+1571. *leave John wants Mary to_inf 
+
+1572. *leave John wants to_inf Mary 
+
+1573. *leave John to_inf wants Mary 
+
+1574. *leave Mary wants John to_inf 
+
+1575. *leave Mary wants to_inf John 
+
+1576. *leave Mary to_inf wants John 
+
+1577. *leave to_inf John wants Mary 
+
+1578. *leave to_inf Mary wants John 
+
+1579.  John to_inf leave wants Mary 
+
+1580.  Mary to_inf leave wants John 
+
+1581. *to_inf John leave wants Mary 
+
+1582. *to_inf Mary leave wants John 
+
+1583. *to_inf leave John wants Mary 
+
+& Problem: in situ version
+
+1584.  John wants to_inf Mary leave 
+
+1585.  Mary wants to_inf John leave 
+
+& Free word order (Finnish)(8.5.3)
+
+& Pekka haluaa lahtea
+
+& Grammatical
+
+1586.  Pekka haluaa lahtea 
+	'Pekka.nom want.prs.3sg leave.a/inf'
+
+1587.  haluaa#C/op Pekka lahtea 
+	'want.a/inf.c/op Pekka.nom leave.a/inf'
+
+1588.  Pekka kaskee Merjan_gen lahtea 
+	'Pekka.nom order.prs.3sg Merja.gen leave.a/inf'
+
+& Ungrammatical
+
+1589. *haluaa Pekka lahtea 
+	'want.prs.3sg(V) Pekka.nom(S) leave.a/inf(v)'
+
+1590. *haluaa lahtea Pekka 
+	'VvS'
+
+1591. *lahtea Pekka haluaa 
+	'vSV'
+
+1592. *lahtea haluaa Pekka 
+	'vVS'
+
+& Unclear
+
+1593. *haluaa#C/op lahtea Pekka 
+
+& Grammatical
+
+1594.  Pekka kaskee Merjan_gen lahtea 
+	'Pekka.nom(S) order.ors.3sg(V) Merja.gen(s) leave.a/inf(v)'
+
+1595.  Pekka Merjan_gen kaskee lahtea 
+	'SsVv'
+
+1596.  Merjan_gen Pekka kaskee lahtea 
+	'sSVv'
+
+1597. *Merjan_gen kaskee Pekka lahtea 
+	'sVSv'
+
+1598.  Merjan_gen kaskee lahtea Pekka 
+	'sVvS'
+
+1599.  kaskee#C/op Pekka Merjan_gen lahtea 
+	'VSsv'
+
+1600.  lahtea#C/op Pekka Merjan_gen kaskee 
+	'vSsV'
+
+1601.  Merjan_gen lahtea kaskee Pekka 
+	'svVS'
+
+1602.  Pekka Merjan_gen lahtea kaskee 
+	'SsvV'
+
+& Ungrammatical
+
+1603.  Merjan_gen lahtea Pekka kaskee 
+	'Merja.gen leave.a/inf Pekka.nom order.prs.3sg'
+
+1604. *Pekka kaskee lahtea Merjan_gen 
+
+1605. *Pekka lahtea kaskee Merjan_gen 
+
+1606. *Pekka lahtea Merjan_gen kaskee 
+
+1607. *kaskee Pekka Merjan_gen lahtea 
+
+1608. *kaskee Pekka lahtea Merjan_gen 
+
+1609. *kaskee Merjan_gen Pekka lahtea 
+
+1610. *kaskee Merjan_gen lahtea Pekka 
+
+1611. *kaskee lahtea Pekka Merjan_gen 
+
+1612. *kaskee lahtea Merjan_gen Pekka 
+
+1613.  Merjan_gen Pekka lahtea kaskee 
+
+1614. *lahtea Pekka kaskee Merjan_gen 
+
+1615. *lahtea Pekka Merjan_gen kaskee 
+
+1616. *lahtea kaskee Pekka Merjan_gen 
+
+1617.  lahtea kaskee Merjan_gen Pekka 
+
+1618.  lahtea Merjan_gen Pekka kaskee 
+
+1619. *lahtea Merjan_gen kaskee Pekka 
+
+& Topicalization restrictions in Finnish)8.6)
+
+& Ungrammatical (Topicalization from DP argument)
+
+1620. *sitä Pekka ihaili taloa 
+	'the/that.par Pekka.nom admire.pst.3sg _ house'
+
+1621. *taloa Pekka ihaili sitä 
+	'house.par Pekka.nom admire the/that.par _'
+
+1622. *Merjaa Pekka teki sopimuksen ihailla 
+	'Merja.par Pekka.nom made agreement admire.a/inf _'
+
+& Ungrammatical (Topicalization from right adverbial (CED violation))
+
+1623. *Merjan_gen naki Pekka avaimen_acc lahtiessa 
+	'Merja.gen see.pst.3sg Pekka.nom key.acc(n) _ leave.essa/inf (while leaving)'
+
+& Ungrammatical (Topicalization from left subject (CED violation))
+
+1624. *se Merjaa talo ihaili 
+	'the/that Merja.par _ house.nom admire.pst.3sg'
+
+1625. *talo Merjaa se ihaili 
+	'house.nom Merja.par the/that.nom _ admire.pst.3sg'
+
+1626. *Merjaa se sopimus ihailla peruuntui 
+	'Merja.par the/that.nom agreement.nom admire.a/inf _ terminate.pst.3sg'
+
+& Ungrammatical (Topicalization from embedded finite clause)
+
+1627. *Merjaa Jukka sanoi etta Pekka ihailee 
+
+1628. *Pekka Jukka sanoi etta Merjaa ihailee 
+
+& Ungrammatical (Topicalization over operators)
+
+1629. *Merjaa kuka ihailee 
+	'Merja.par who.nom admire.prs.3sg'
+
+1630. *Merjaa Pekka#[hAn] ihailee 
+	'Merja.par Pekka.nom.fam admire.prs.3sg'
+
+1631. *Merjaa Pekka#[kO] ihailee 
+	'Merja.par Pekka.nom.q admire.prs.3sg'
+
+1632. *Merjaa Pekka#[hAn] ihailee 
+	'Merja.par Pekka.nom.fam admire.prs.3sg'
+
+1633. *Merjaa Pekka#[pA] ihailee 
+	'Merja.par Pekka.nom.pol admire.prs.3sg'
+
+1634. *Merjaa Pekka#[kO]#[hAn] ihailee 
+	'Merja.par Pekka.nom.q.fam admire.prs.3sg'
+
+1635. *Merjaa Pekka#[pA]#[hAn] ihailee 
+	'Merja.par Pekka.nom.pol.fam admire.prs.3sg'
+
+1636. *Merjaa Pekka#[foc]#[kO]#[hAn] ihailee 
+	'Merja.par Pekka.nom.foc.q.fam admire.prs.3sg'
+
+1637. *Merjaa Pekka#[foc]#[pA]#[hAn] ihailee 
+	'Merja.par Pekka.nom.foc.pol.fam admire.prs.3sg'
+
+1638. *Merjaa kuka#[hAn] ihailee 
+	'Merja.par who.nom.fam admire.prs.3sg'
+
+1639. *Merjaa kuka ihailee 
+	'Merja.par who.nom admire.prs.3sg'
+
+1640. *Merjaa kuka#[hAn] ihailee 
+	'Merja.par who.nom.fam admire.prs.3sg'
+
+1641. *Merjaa kuka#[pA] ihailee 
+	'Merja.par who.nom.pol admire.prs.3sg'
+
+1642. *Merjaa kuka#[kO]#[hAn] ihailee 
+	'Merja.par who.nom.q.fam admire.prs.3sg'
+
+1643. *Merjaa kuka#[pA]#[hAn] ihailee 
+	'Merja.par who.nom.pol.fam admire.prs.3sg'
+
+1644. *Merjaa kuka#[foc]#[kO]#[hAn] ihailee 
+	'Merja.par who.nom.foc.q.fam admire.prs.3sg'
+
+1645. *Merjaa kuka#[foc]#[pA]#[hAn] ihailee 
+	'Merja.par who.nom.foc.pol.fam admire.prs.3sg'
+
+1646. *Pekka keta ihailee 
+	'Pekka.nom who.par admire.prs.3sg'
+
+1647. *Pekka keta#[hAn] ihailee 
+	'Pekka.nom who.par.par admire.prs.3sg'
+
+1648. *Pekka keta#[kO] ihailee 
+	'Pekka.nom who.par.q admire.prs.3sg'
+
+1649. *Pekka keta#[pA] ihailee 
+	'Pekka.nom who.par.pol admire.prs.3sg'
+
+1650. *Pekka keta#[kO]#[hAn] ihailee 
+	'Pekka.nom who.par.q.fam admire.prs.3sg'
+
+1651. *Pekka keta#[pA]#[hAn] ihailee 
+	'Pekka.nom who.par.pol.fam admire.prs.3sg'
+
+1652. *Pekka keta#[foc]#[kO]#[hAn] ihailee 
+	'Pekka.nom who.par.foc.q.fam admire.prs.3sg'
+
+1653. *Pekka keta#[foc]#[pA]#[hAn] ihailee 
+	'Pekka.nom who.par.foc.pol.fam admire.prs.3sg'
+
+1654. *Pekka Merjaa#[hAn] ihailee 
+	'Pekka.nom merja.par.fam admire.prs.3sg'
+
+1655. *Pekka Merjaa#[kO] ihailee 
+	'Pekka.nom Merja.par.q admire.prs.3sg'
+
+1656. *Pekka Merjaa#[pA] ihailee 
+	'Pekka.nom Merja.par.pol admire.prs.3sg'
+
+1657. *Pekka Merjaa#[kO]#[hAn] ihailee 
+	'Pekka.nom Merja.par.q.fam admire.prs.3sg'
+
+1658. *Pekka Merjaa#[pA]#[hAn] ihailee 
+	'Pekka.nom Merja.par.pol.fam admire.prs.3sg'
+
+1659. *Pekka Merjaa#[foc]#[kO]#[hAn] ihailee 
+	'Pekka.nom merja.par.foc.q.fam admire.prs.3sg'
+
+1660. *Pekka Merjaa#[foc]#[pA]#[hAn] ihailee 
+	'Pekka.nom Merja.par.foc.pol.fam admire.prs.3sg'
+
+& 9 Head movement
+
+& Local HMC-compliant X-to-C movement (9.1)
+
+& Grammatical
+
+& T-to-C* movement
+
+1661.  istuu#foc Pekka 
+	'sit.prs.3sg.foc Pekka.nom'
+
+1662.  istuu#C/op Pekka 
+	'sit.prs.3sg.c/op Pekka.nom'
+
+1663.  ihailee#foc Pekka Merjaa 
+	'admire.prs.3sg.foc Pekka Merja.par'
+
+1664.  ihailee#C/op Pekka Merjaa 
+	'admire.prs.3sg.c/op Pekka.nom Merja.par'
+
+1665.  myi#foc Pekka omaisuutensa 
+	'sell.pst.3sg.foc Pekka.nom possessions'
+
+1666.  myi#C/op Pekka omaisuutensa 
+	'sell.pst.3sg.c/op Pekka.nom possessions'
+
+1667.  antoi#foc Pekka avaimen Merjalle 
+	'give.pst.3sg.foc Pekka.nom key.acc(n) to.Merja'
+
+1668.  antoi#C/op Pekka avaimen Merjalle 
+	'give.pst.3sg.c/op Pekka.nom key.acc(n) to.Merja'
+
+& Neg-to-C* movement
+
+1669.  ei#C/op Pekka ihaile Merjaa 
+	'not.3sg.c/op Pekka.nom admire Merja.par'
+
+1670.  ei#C/op Pekan_gen taydy ihailla Merjaa 
+	'not.3sg.c/op Pekka.gen must.0 admire.a/inf Merja.par'
+
+1671.  ei#C/op Pekka halua ihailla Merjaa 
+	'not.3sg.c/op Pekka.nom want admire.a/inf Merja.par'
+
+1672.  ei#C/op Pekka ollut ihaillut Merjaa 
+	'not.3sg.c/op Pekka.nom be.pst.prtcpl admire.pst.prtcpl Merja.par'
+
+1673.  ei#C/op Pekka myynyt omaisuuttaan 
+	'not.3sg.c/op Pekka.nom sell.pst.prtcpl possessions'
+
+1674.  ei#C/op Pekan_gen taydy myyda omaisuuttaan 
+	'not.3sg.c/op Pekka.gen must.0 sell.a/inf possessions'
+
+1675.  ei#C/op Pekka halua myyda omaisuuttaan 
+	'not.3sg.c/op Pekka.nom want.a/inf sell.a/inf possessions'
+
+1676.  ei#C/op Pekka ollut myynyt omaisuuttaan 
+	'not.3sg.c/op Pekka.nom be.pst.prtcpl sell.pst.prtcpl possessions'
+
+& Modal-to-C*
+
+1677.  taytyy#C/op Pekan_gen ihailla Merjaa 
+	'must.0.c/op Pekka.gen admire.a/inf Merja.par'
+
+1678.  taytyy#C/op Pekan_gen myyda omaisuuttaan 
+	'must.0.c/op Pekka.gen sell.a/inf possessions'
+
+& Want-to-C*
+
+1679.  haluaa#C/op Pekka ihailla Merjaa 
+	'want.prs.3sg.c/op Pekka.nom admire.a/inf Merja.par'
+
+1680.  haluaa#C/op Pekka myyda omaisuuttaan 
+	'want.prs.3sg.c/op Pekka.nom sell.a/inf possessions'
+
+& Aux-to-C*
+
+1681.  on'#C/op Pekka ihaillut Merjaa 
+	'be.prs.3sg.c/op Pekka.nom admire.pst.prtcpl Merja.par'
+
+1682.  on'#C/op Pekka myynyt omaisuuttaan 
+	'be.prs.3sg.c/op Pekka.nom sell.pst.prtcpl possessions'
+
+& X-to-C, with formal C-feature C/fin
+
+1683.  ihailee#C/fin Pekka Merjaa 
+	'admire.prs.3sg.c/inf Pekka.nom Merja.par'
+
+1684.  ei#C/fin Pekka ihaile Merjaa 
+	'not.3sg.c/inf Pekka.nom admire Merja.par'
+
+1685.  taytyy#C/fin Pekan_gen ihailla Merjaa 
+	'must.0.c/fin Pekka.gen admire.a/inf Merja.par'
+
+1686.  haluaa#C/fin Pekka ihailla Merjaa 
+	'want.prs.3sg.c/fin Pekka.nom admire.a/inf Merja.par'
+
+1687.  on'#C/fin Pekka ihaillut Merjaa 
+	'be.prs.3sg.c/fin Pekka.nom admire.pst.prtcpl Merja.par'
+
+1688.  myi#C/fin Pekka omaisuuttaan 
+	'sell.pst.3sg.c/fin Pekka.nom possessions'
+
+1689.  ei#C/fin Pekka myynyt omaisuuttaan 
+	'not.3sg.c/fin Pekka.nom sell.pst.prtcpl possessions'
+
+1690.  taytyy#C/fin Pekan_gen myyda omaisuuttaan 
+	'must.0.c/fin Pekka.gen sell.a/inf possessions'
+
+1691.  haluaa#C/fin Pekka myyda omaisuuttaan 
+	'want.prs.3sg.c/fin Pekka.nom sell.a/fin possessions'
+
+1692.  on'#C/fin Pekka myynyt omaisuuttaan 
+	'be.prs.3sg.c/fin Pekka.nom sell.pst.prtcpl possessions'
+
+1693.  does#C/fin John admire' Mary 
+
+& Ungrammatical (9.1.7, C-feature is missing, V-initial)
+
+1694. *ihailee Pekka Merjaa 
+	'admire.prs.3sg Pekka.nom Merja.par'
+
+1695. *ei Pekka ihaile Merjaa 
+	'not.3sg Pekka.nom admire Merja.par'
+
+1696. *taytyy Pekan_gen ihailla Merjaa 
+	'must.0 Pekka.gen admire.a/inf Merja.par'
+
+1697. *haluaa Pekka ihailla Merjaa 
+	'want.a/inf Pekka.nom admire.a/inf Merja.par'
+
+1698. *ihailee Pekka ihailee Merjaa 
+	'admire.prs.3sg Pekka.nom admire.prs.3sg Merja.par'
+
+1699. *on' Pekka ihaillut Merjaa 
+	'be.prs.3sg Pekka.nom admire.pst.prtcpl Merja.par'
+
+1700. *myi Pekka omaisuutensa 
+	'sell.pst.3sg Pekka.nom possessions'
+
+1701. *admire'#C/fin John does Mary 
+
+& Ungrammatical (9.1.7, C-feature as a prefix)
+
+1702. *[foc]#ihailee Pekka Merjaa 
+	'foc.admire.prs.3sg Pekka.nom Merja.par'
+
+1703. *[hAn]#ihailee Pekka Merjaa 
+
+1704. *[kO]#ihailee Pekka Merjaa 
+
+1705. *[pA]#ihailee Pekka Merjaa 
+
+1706. *[kO]#[hAn]#ihailee Pekka Merjaa 
+
+1707. *[pA]#[hAn]#ihailee Pekka Merjaa 
+
+1708. *[foc]#[kO]#[hAn]#ihailee Pekka Merjaa 
+
+1709. *[foc]#[pA]#[hAn]#ihailee Pekka Merjaa 
+
+1710. *[foc]#ei Pekka ihaile Merjaa 
+
+& Ungrammatical (9.1.7, C-feature on a wrong element)
+
+1711. *Pekka [foc]#ihailee Merjaa 
+	'Pekka.nom foc.admire.prs.3sg Merja.par'
+
+1712. *Pekka [hAn]#ihailee Merjaa 
+
+1713. *Pekka [kO]#ihailee Merjaa 
+
+1714. *Pekka [pA]#ihailee Merjaa 
+
+1715. *Pekka [kO]#[hAn]#ihailee Merjaa 
+
+1716. *Pekka [pA]#[hAn]#ihailee Merjaa 
+
+1717. *Pekka [foc]#[kO]#[hAn]#ihailee Merjaa 
+
+1718. *Pekka [foc]#[pA]#[hAn]#ihailee Merjaa 
+
+1719. *Pekka [foc]#ei ihaile Merjaa 
+
+& A-infinitival
+
+1720. *Pekka haluaa ihailla#[hAn] Merjaa 
+	'Pekka.nom want.prs.3sg admire.a/inf.fam Merja.par'
+
+1721. *Pekka haluaa ihailla#[kO] Merjaa 
+
+1722. *Pekka haluaa ihailla#[pA] Merjaa 
+
+1723. *Pekka haluaa ihaillla#[pA]#[hAn] Merjaa 
+
+1724. *Pekka haluaa ihaillla#[kO]#[hAn] Merjaa 
+
+1725. *Pekka haluaa ihailla#[foc]#[kO]#[hAn] Merjaa 
+
+1726. *Pekka haluaa ihailla#[foc]#[pA]#[hAn] Merjaa 
+
+& A-infinitival inside DP
+
+1727. *Pekka teki sopimuksen ihailla#[hAn] Merjaa 
+	'Pekka.nom made agreement admire.a/inf.fam Merja.par'
+
+1728. *Pekka teki sopimuksen ihailla#[kO] Merjaa 
+
+1729. *Pekka teki sopimuksen ihailla#[pA] Merjaa 
+
+1730. *Pekka teki sopimuksen ihailla#[pA]#[hAn] Merjaa 
+
+1731. *Pekka teki sopimuksen ihailla#[kO]#[hAn] Merjaa 
+
+1732. *Pekka teki sopimuksen ihailla#[foc]#[kO]#[hAn] Merjaa 
+
+1733. *Pekka teki sopimuksen ihailla#[foc]#[pA]#[hAn] Merjaa 
+
+& VA-infinitival
+
+1734. *Pekka halusi heidan lahtevan#[hAn] 
+	'Pekka.nom want.pts.3sg they.gen leave.va/inf.fam'
+
+1735. *Pekka halusi heidan lahtevan#[kO] 
+
+1736. *Pekka halusi heidan lahtevan#[pA] 
+
+1737. *Pekka halusi heidan lahtevan#[pA]#[hAn] 
+
+1738. *Pekka halusi heidan lahtevan#[kO]#[hAn] 
+
+1739. *Pekka halusi heidan lahtevan#[foc]#[kO]#[hAn] 
+
+1740. *Pekka halusi heidan lahtevan#[foc]#[pA]#[hAn] 
+
+& Negation
+
+1741. *Pekka ei#[hAn] ihaile Merjaa 
+	'Pekka.nom not.3sg.fam admire Merja.par'
+
+1742. *Pekka ei#[kO] ihaile Merjaa 
+
+1743. *Pekka ei#[pA] ihaile Merjaa 
+
+1744. *Pekka ei#[pA]#[hAn] ihaile Merjaa 
+
+1745. *Pekka ei#[kO]#[hAn] ihaile Merjaa 
+
+1746. *Pekka ei#[foc]#[kO]#[hAn] ihaile Merjaa 
+
+1747. *Pekka ei#[foc]#[pA]#[hAn] ihaile Merjaa 
+
+& Noun (N#D element)
+
+1748. *Pekka teki sopimuksen#[hAn] ihailla Merjaa 
+	'Pekka.nom make.pst.3sg agreement.fam admire.a/inf Merja.par'
+
+1749. *Pekka teki sopimuksen#[kO] ihailla Merjaa 
+
+1750. *Pekka teki sopimuksen#[pA] ihailla Merjaa 
+
+1751. *Pekka teki sopimuksen#[pA]#[hAn] ihailla Merjaa 
+
+1752. *Pekka teki sopimuksen#[kO]#[hAn] ihailla Merjaa 
+
+1753. *Pekka teki sopimuksen#[foc]#[kO]#[hAn] ihailla Merjaa 
+
+1754. *Pekka teki sopimuksen#[foc]#[pA]#[hAn] ihailla Merjaa 
+
+& Että-complementizer (these are extremely marginal or ungrammatical)
+
+1755. *Jukka sanoi etta#[hAn] Pekka ihailee Merjaa 
+	'Jukka said that.fam Pekka.nom admire.prs.3sg Merja.par'
+
+1756. *Jukka sanoi etta#[kO] Pekka ihailee Merjaa 
+
+1757. *Jukka sanoi etta#[pA] Pekka ihailee Merjaa 
+
+1758. *Jukka sanoi etta#[pA]#[hAn] Pekka ihailee Merjaa 
+
+1759. *Jukka sanoi etta#[kO]#[hAn] Pekka ihailee Merjaa 
+
+1760. *Jukka sanoi etta#[foc]#[kO]#[hAn] Pekka ihailee Merjaa 
+
+1761. *Jukka sanoi etta#[foc]#[pA]#[hAn] Pekka ihailee Merjaa 
+
+& Long head movement (9.2)
+
+& Grammatical
+
+& V-over-Neg
+
+1762.  ihaile#C/op Pekka ei Merjaa 
+	'admire.c/op Pekka.nom not.3sg Merja.par'
+
+& V-over-Aux(BE)
+
+1763.  ihaillut#C/op Pekka on' Merjaa 
+	'admire.pst.prtcpl.c/op Pekka.nom be.prs.3sg Merja.par'
+
+1764.  myynyt#C/op Pekka on' omaisuutensa 
+	'sell.pst.3sg.c/op Pekka.nom be.prs.3sg possessions'
+
+& V-over-want
+
+1765.  ihailla#C/op Pekka haluaa Merjaa 
+	'admire.a/inf.c/op Pekka.nom want.prs.3sg Merja.par'
+
+1766.  myyda#C/op Pekka haluaa omaisuutensa 
+	'sell.a/inf.c/op Pekka.nom want.prs.3sg possessions'
+
+& V-over-must
+
+1767.  ihailla#C/op Pekan_gen taytyy Merjaa 
+	'admire.a/inf.c/op Pekka.gen must.0 Merja.par'
+
+1768.  myyda#C/op Pekan_gen taytyy omaisuutensa 
+	'sell.a/inf.c/op Pekka.gen must.0 possessions'
+
+& With noncanonical OVS orders
+
+1769.  ihaile#C/op Merjaa ei Pekka 
+	'admire.c/op Merja.par not.3sg Pekka.nom'
+
+1770.  ihaillut#C/op Merjaa on' Pekka 
+	'admire.pst.prtcpl.c/op Merja.par be.prs.3sg Pekka.nom'
+
+1771.  ihailla#C/op Merjaa haluaa Pekka 
+	'admire.a/inf.c/op Merja.par want.prs.3sg Pekka.nom'
+
+1772.  myynyt#C/op omaisuuttaan ei Pekka 
+	'sell.pst.prtcpl.c/op possessions not.3sg Pekka.nom'
+
+1773.  myynyt#C/op omaisuuttaan on' Pekka 
+	'sell.pst.prtcpl.c/op possessions be.prs.3sg Pekka.nom'
+
+1774.  myyda#C/op omaisuuttaan haluaa Pekka 
+	'sell.a/inf.c/op possessions want.prs.3sg Pekka.nom'
+
+& Neg + Modal + V, with Modal moving moving (grammaticality status unclear)
+
+1775.  taydy#C/op Pekan_gen ei ihailla Merjaa 
+	'must.0.c/op Pekka.gen not.3sg admire.a/inf Merja.par'
+
+1776.  taydy#C/op Pekan_gen ei myyda omaisuuttaan 
+	'must.0.c/op Pekka.gen not.3sg sell.a/inf possessions'
+
+& Neg + Modal + V with V moving
+
+1777.  ihailla#C/op Pekan_gen ei taydy Merjaa 
+	'admire.a/inf.c/op Pekka.gen not.3sg must.0 Merja.par'
+
+1778.  myyda#C/op Pekan_gen ei taydy omaisuuttaan 
+	'sell.a/inf.c/op Pekka.gen not.3sg must.0 possessions'
+
+& Neg + want + V, with want moving
+
+1779.  halua#C/op Pekka ei ihailla Merjaa 
+	'want.a/inf.c/op Pekka.nom not.3sg admire.a/inf Merja.par'
+
+1780.  ihailla#C/op Pekka ei halua Merjaa 
+	'admire.a/inf.c/op Pekka.nom not.3sg want Merja.par'
+
+1781.  halua#C/op Pekka ei myyda omaisuuttaan 
+	'want.c/op Pekka.nom not.3sg sell.a/inf possessions'
+
+1782.  myyda#C/op Pekka ei halua omaisuuttaan 
+	'sell.a/inf.c/op Pekka.nom not.3sg want possessions'
+
+& Ungrammatical (English)
+
+1783. *admire' John wants to_inf Mary 
+
+1784. *to_inf admire' John wants Mary 
+
+1785. *to_inf John wants admire' Mary 
+
+1786. *admire'#C/fin John wants to_inf Mary 
+
+1787. *to_inf#C/fin admire' John wants Mary 
+
+1788. *to_inf#C/fin John wants admire' Mary 
+
+& Ungrammatical (Finnish)
+
+& Long head movement with formal C-feature or with no C-featre
+
+1789. *ihaile#C/fin Pekka ei Merjaa 
+	'admire.c/fin Pekka.nom not.3sg Merja.par'
+
+1790. *ihaillut#C/fin Pekka on' Merjaa 
+	'admire.pst.prtcpl.c/fin Pekka.nom be.prs.3sg Merja.par'
+
+1791. *ihailla#C/fin Pekka haluaa Merjaa 
+	'admire.a/inf.c/inf Pekka.nom want.prs.3sg Merja.par'
+
+1792. *ihailla#C/fin Pekan_gen taytyy Merjaa 
+	'admire.a/inf.c/fin Pekka.gen must.0 Merja.par'
+
+1793. *ihaillut#C/fin Pekka ei ollut Merjaa 
+	'admire.pst.prtcpl.c/fin Pekka.nom not.3sg be.pst.prtcpl Merja.par'
+
+1794. *ihaile Pekka ei Merjaa 
+	'admire Pekka.nom not.3sg Merja.par'
+
+1795. *ihaillut Pekka on' Merjaa 
+	'admire.pst.prtcpl Pekka.nom be.prs.3sg Merja.par'
+
+1796. *ihailla Pekka haluaa Merjaa 
+	'admire.a/inf Pekka.nom want.prs.3sg Merja.par'
+
+1797. *ihailla Pekan_gen taytyy Merjaa 
+	'admire.a/inf Pekka.gen must.0 Merja.par'
+
+1798. *ihaillut Pekka ei ollut Merjaa 
+	'admire.pst.prtcpl Pekka.nom not.3sg be.pst.prtcpl Merja.par'
+
+1799. *myynyt#C/fin Pekka ei omaisuuttaan 
+	'sell.pst.prtcpl.c/fin Pekka.nom not.3sg possessions'
+
+1800. *myynyt#C/fin Pekka on' omaisuuttaan 
+	'sell.pst.prtcpl.c/fin Pekka.nom be.prs.3sg possessions'
+
+1801. *myyda#C/fin Pekka haluaa omaisuuttaan 
+	'sell.a/inf.c/fin Pekka.nom want.prs.3sg possessions'
+
+1802. *myyda#C/fin Pekan_gen taytyy omaisuuttaan 
+	'sell.a/inf.c/fin Pekka.gen must.0 possessions'
+
+1803. *myynyt#C/fin Pekka ei ollut omaisuuttaan 
+	'sell.pst.prtcpl.c/fin Pekka.nom not.3sg be.pst.prtcpl possessions'
+
+1804. *myynyt Pekka ei omaisuuttaan 
+	'sell.pst.prtcpl Pekka.nom not.3sg possessions'
+
+1805. *myynyt Pekka on' omaisuuttaan 
+	'sell.pst.prtcpl Pekka.nom be.prs.3sg possessions'
+
+1806. *myyda Pekka haluaa omaisuuttaan 
+	'sell.a/inf Pekka.nom want.prs.3sg possessions'
+
+1807. *myyda Pekan_gen taytyy omaisuuttaan 
+	'sell.a/inf Pekka.gen must.0 possessions'
+
+1808. *myynyt Pekka ei ollut omaisuuttaan 
+	'sell.pst.prtcpl Pekka.nom not.3sg be.pst.prtcpl possessions'
+
+& long head movement with infinitival subject
+
+1809. *ihailla#C/op Pekka kaskee poikien Merjaa 
+	'admire.a/inf.c/op Pekka.nom order.prs.3sg boys.gen Merja.par'
+
+1810. *ihailla Pekka kaskee poikien Merjaa 
+	'admire.a/inf Pekka.nom order.prs.3sg boys.gen Merja.par'
+
+1811. *ihailla#C/fin Pekka kaskee poikien Merjaa 
+	'admire.a/inf.c/fin Pekka.nom order.prs.3sg boys.gen Merja.par'
+
+& Long head movement with second auxiliary
+
+1812. *ollut#C/fin Pekka ei ihaillut Merjaa 
+	'be.pst.prtcpl.c/fin Pekka.nom not.3sg admire.pst.prtcpl Merja.par'
+
+1813. *ollut Pekka ei ihaillut Merjaa 
+	'be.pst.prtcpl Pekka.nom not.3sg admire.pst.prtcpl Merja.par'
+
+& Aux + prtcpl + prtcpl with locality violation
+
+1814. *ihaillut#C/op Pekka ei ollut Merjaa 
+	'admire.pst.prtcpl.c/op Pekka.nom not.3sg be.pst.prtcpl Merja.par'
+
+& Neg + Modal + V with only formal C-feature (ungrammatical)
+
+1815. *taydy#C/fin Pekan_gen ei ihailla Merjaa 
+	'must.0.c/fin Pekka.gen not.3sg admire Merja.par'
+
+1816. *taydy Pekan_gen ei ihailla Merjaa 
+	'must.0 Pekka.gen not.3sg admire Merja.par'
+
+1817. *taydy#C/fin Pekan_gen ei myyda omaisuuttaan 
+	'must.0.c/fin Pekka.gen not.3sg sell.a/inf possessions'
+
+1818. *taydy Pekan_gen ei myyda omaisuuttaan 
+	'must.0 Pekka.gen not.3sg sell possessions'
+
+& Neg + want + V with no C-feature
+
+1819. *ihailla#C/fin Pekan_gen ei taydy Merjaa 
+	'admire.a/inf.c/fin Pekka.gen not.3sg must.0 Merja.par'
+
+1820. *ihailla Pekan_gen ei taydy Merjaa 
+	'admire.a/inf Pekka.gen not.3sg must.0 Merja.par'
+
+1821. *halua Pekka ei myyda omaisuuttaan 
+	'want Pekka.nom not.3sg sell.a/fin possessions'
+
+& Super LHM (9.3)
+
+& Grammatical
+
+& that + want + A/inf
+
+1822.  ihailla#C/op Pekka sanoo etta Pekka haluaa Merjaa 
+	'admire.a/inf.c/op Pekka.nom says that Pekka.nom want.prs.3sg __ Merja.par'
+
+1823.  lahtea#C/op Pekka sanoo etta Pekan_gen taytyy 
+	'leave.a/inf.c/op Pekka.nom says that Pekka.gen must.0 _'
+
+& Ungrammatical
+
+& Moving of the embedded finite verb (ungrammatical)
+
+1824. *haluaa#C/op Pekka sanoo etta ihailla Merjaa 
+	'want.prs.3sg.c/op Pekka.nom says that _ admire.a/inf Merja.par'
+
+1825. *ihailee#C/op Pekka sanoo etta Merjaa 
+	'admire.prs.3sg.c/op Pekka.nom says that _ Merja.par'
+
+1826. *taytyy#C/op Pekka sanoo etta Pekan_gen ihailla Merjaa 
+	'must.0.c/op Pekka.nom says that Pekka.gen _ admire.a/inf Merja.par'
+
+1827. *haluaa#C/op Pekka sanoo etta myyda omaisuutensa 
+	'want.prs.3sg.c/op Pekka.nom says that _ sell.a/inf possessions'
+
+1828. *myi#C/op Pekka sanoo etta omaisuutensa 
+	'sell.pst.3sg.c/op Pekka.nom says that _ possessions'
+
+1829. *taytyy#C/op Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+	'must.0.c/op Pekka says that Pekka.gen _ sell.a/inf possessions'
+
+& Formal C-features or no C-features = V-initial constructions (ungrammatical)
+
+1830. *ihailla#C/fin Pekka sanoo etta haluaa Merjaa 
+	'admire.a/inf.c/fin Pekka says that want.prs.3sg _ Merja.par'
+
+1831. *lahtea#C/fin Pekka sanoo etta Pekan_gen taytyy 
+	'leave.a/inf.c/fin Pekka says that Pekka.gen must _'
+
+1832. *ihailla Pekka sanoo etta haluaa Merjaa 
+	'admire.a/inf Pekka. says that want.prs.3sg _ Merja.par'
+
+1833. *lahtea Pekka sanoo etta Pekan_gen taytyy 
+	'leave.a/inf Pekka says that Pekka.gen must.0 _'
+
+1834. *haluaa#C/fin Pekka sanoo etta myyda omaisuutensa 
+	'want.prs.3sg.c/fin Pekka says that _ sell.a/inf possessions'
+
+1835. *myi#C/fin Pekka sanoo etta omaisuutensa 
+	'sell.pst.3sg.c/fin Pekka says that _ possessions'
+
+1836. *taytyy#C/fin Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+	'must.0.c/fin Pekka says that Pekka.gen _ sell.a/inf possessions'
+
+1837. *haluaa Pekka sanoo etta myyda omaisuutensa 
+	'want.prs.3sg Pekka says that _ sell.a/inf possessions'
+
+1838. *myi Pekka sanoo etta omaisuutensa 
+	'sell.pst.3sg Pekka says that _ possessions'
+
+1839. *taytyy Pekka sanoo etta Pekan_gen myyda omaisuutensa 
+	'must.0 Pekka says that Pekka.gen _ sell.a/inf possessions'
+
+& Long head movement and island violations (9.4)
+
+& Ungrammatical
+
+& Right-adjunct CED
+
+1840. *ihailemalla#C/op Pekka ihailee Merjaa Jukkaa 
+	'admire.ma/inf.c/op Pekka.nom admire.prs.3sg _ Merja.par Jukka.par'
+
+& Left branch CED
+
+1841. *ihailla#C/op sopimus Merjaa istuu 
+	'admire.a/inf agreement _ Merja.par sit.prs.3sg
+
+& Extraction from DP
+
+1842. *ihailla#C/op Pekka teki sopimuksen Merjaa 
+	'admire.a/inf.c/op Pekka.nom made agreement _ Merja.par'
+
+& C-features on wrong heads (9.5)
+
+& With C/op feature (9.5.1)
+
+& Ungrammatical
+
+1843. *C/fin Pekka ihailee#C/op Merjaa 
+	'C/fin Pekka.nom admire.prs.3sg.c/op Merja.par'
+
+1844. *C/fin Pekka ei#C/op ihaile Merjaa 
+	'C/fin...not.3sg.c/op...'
+
+1845. *C/fin Pekka on'#C/op ihaillut Merjaa 
+	'C/fin...be.prs.3sg.c/op...'
+
+1846. *C/fin Pekka ei#C/op ollut ihaillut Merjaa 
+	'...not.3.sg.c/op...'
+
+1847. *C/fin Pekka haluaa#C/op ihailla Merjaa 
+	'...want.prs.3sg.c/op...'
+
+1848. *C/fin Pekan_gen taytyy#C/op ihailla Merjaa 
+	'...must.0.c/op...'
+
+1849. *C/fin Pekan_gen ei#C/op taydy ihailla Merjaa 
+	'...not.3sg.c/op...'
+
+1850. *C/fin Pekka ei#C/op halua ihailla Merjaa 
+	'...not.3sg.c/op...'
+
+1851. *C/fin Pekka sanoo#C/op etta haluaa ihailla Merjaa 
+	'...say.prs.3sg.c/op...'
+
+1852. *C/fin Pekka kaskee#C/op poikien ihailla Merjaa 
+	'...order.prs.3sg.c/op...'
+
+1853. *C/fin Pekka istuu#C/op ihailemalla Merjaa 
+	'...sit.prs.3sg.c/op...'
+
+1854. *C/fin Pekka istuu#C/op haluamalla ihailla Merjaa 
+	'...sit.prs.3sg.c/op...'
+
+1855. *C/fin Pekka teki#C/op sopimuksen ihailla Merjaa 
+	'...make.pst.3sg.c/op...'
+
+1856. *Pekka ei ihaile#C/op Merjaa 
+	'...not.3sg admire.c/op...'
+
+1857. *Pekka on' ihaillut#C/op Merjaa 
+	'Pekka.nom be.prs.3sg admire.pst.prtcpl Merja.par'
+
+1858. *Pekka ei ollut#C/op ihaillut Merjaa 
+	'Pekka.nom not.3sg be.pst.prtcpl admire.pst.prtcpl Merja.par'
+
+1859. *Pekka haluaa ihailla#C/op Merjaa 
+	'Pekka.nom want.prs.3sg admire.a/inf.c/op Merja.par'
+
+1860. *Pekan_gen taytyy ihailla#C/op Merjaa 
+	'Pekka.gen must.0 admire.a/inf.c/op Merja.par'
+
+1861. *Pekan_gen ei taydy#C/op ihailla Merjaa 
+	'Pekka.gen not.3sg must.c/op admire.a/inf Merja.par'
+
+1862. *Pekka ei halua#C/op ihailla Merjaa 
+	'Pekka.nom not.3sg want.c/op admire.a/inf Merja.par'
+
+1863. *Pekka kaskee poikien ihailla#C/op Merjaa 
+	'Pekka.nom order.prs.3sg boys.gen admire.a/inf.c/op Merja.par'
+
+1864. *Pekka ei ollut ihaillut#C/op Merjaa 
+	'Pekka.nom not.3sg be.pst.prtcpl admire.pst.prtcpl Merja.par'
+
+1865. *Pekan_gen ei taydy ihailla#C/op Merjaa 
+	'Pekka.gen not.3sg must.0 admire.a/inf.c/op Merja.par'
+
+1866. *Pekka ei halua ihailla#C/op Merjaa 
+	'Pekka.nom not.3sg want admire.a/inf.c/op Merja.par'
+
+1867. *Pekka sanoo etta haluaa ihailla#C/op Merjaa 
+	'Pekka says that want.prs.3sg admire.a/inf.c/op Merja.par'
+
+1868. *Pekka istuu ihailemalla#C/op Merjaa 
+	'Pekka sit.prs.3sg admire.ma/inf.c/op Merja.par'
+
+1869. *Pekka istuu haluamalla ihailla#C/op Merjaa 
+	'Pekka.nom sit.prs.3sg want.ma/inf admire.a/inf Merja.par'
+
+1870. *Pekka teki sopimuksen ihailla#C/op Merjaa 
+	'Pekka.nom make.pst.3sg agreement admire.a/inf.c/op Merja.par'
+
+& All C-features and combinations (9.5.2)
+
+& Ungrammatical
+
+1871. *Pekka haluaa ihailla#[hAn] Merjaa 
+	'Pekka.nom want.prs.3sg admire.a/inf.fam Merja.par'
+
+1872. *Pekka haluaa ihailla#[pA] Merjaa 
+	'Pekka.nom want.prs.3sg admire.a/inf.pol Merja.par'
+
+1873. *Pekka haluaa ihailla#[kO] Merjaa 
+	'Pekka.nom want.prs.3sg admire.a/inf.q Merja.par'
+
+1874. *Pekka haluaa ihailla#[kO]#[hAn] Merjaa 
+	'Pekka.nom want.prs.3sg admire.a/inf.q.fam Merja.par'
+
+1875. *Pekka haluaa ihailla#[pA]#[hAn] Merjaa 
+	'Pekka.nom want.prs.3sg admire.a/inf.pol.fam Merja.par'
+
+1876. *Pekka haluaa ihailla#[foc]#[kO]#[hAn] Merjaa 
+	'Pekka want.prs.3sg admire.a/inf.foc.q.fam Merja.par'
+
+1877. *Pekka haluaa ihailla#[foc]#[pA]#[hAn] Merjaa 
+	'Pekka.nom want.prs.3sg admire.a/inf.foc.pol.fam Merja.par'
+
+& All C-features and combinations in connection with head movement (9.6)
+
+& Grammatical
+
+& Intransitives
+
+1878.  istuu#C/op Pekka 
+	'sit.prs.3sg.c/op Pekka.nom'
+
+1879.  istuu#[foc] Pekka 
+	'sit.prs.3sg.foc Pekka.nom'
+
+1880.  istuu#[hAn] Pekka 
+	'sit.prs.3sg.fam Pekka.nom'
+
+1881.  istuu#[kO] Pekka 
+	'sit.prs.3sg.q Pekka.nom'
+
+1882.  istuu#[pA] Pekka 
+	'sit.prs.3sg.pol Pekka.nom'
+
+1883.  istuu#[kO]#[hAn] Pekka 
+	'sit.prs.3sg.q.fam Pekka.nom'
+
+1884.  istuu#[pA]#[hAn] Pekka 
+	'sit.prs.3sg.pol.fam Pekka.nom'
+
+1885.  istuu#[foc]#[kO]#[hAn] Pekka 
+	'sit.prs.3sg.foc.q.fam Pekka.nom'
+
+1886.  istuu#[foc]#[pA]#[hAn] Pekka 
+	'sit.prs.3sg.foc.pol.fam Pekka.nom'
+
+& Transitives
+
+1887.  ihailee#C/op Pekka Merjaa 
+	'admire.prs.3sg.c/op Pekka _ Merja.par'
+
+1888.  ihailee#[foc] Pekka Merjaa 
+	'admire.prs.3sg.foc Pekka.nom _ Merja.par'
+
+1889.  ihailee#[hAn] Pekka Merjaa 
+	'admire.prs.3sg.fam Pekka.nom _ Merja.par'
+
+1890.  ihailee#[kO] Pekka Merjaa 
+	'admire.prs.3sg.q Pekka.nom _ Merja.par'
+
+1891.  ihailee#[pA] Pekka Merjaa 
+	'admire.prs.3sg.pol Pekka.nom _ Merja.par'
+
+1892.  ihailee#[kO]#[hAn] Pekka Merjaa 
+	'admire.prs.3sg.q.fam Pekka.nom _ Merja.par'
+
+1893.  ihailee#[pA]#[hAn] Pekka Merjaa 
+	'admire.prs.3sg.pol.fam Pekka.nom _ Merja.par'
+
+1894.  ihailee#[foc]#[kO]#[hAn] Pekka Merjaa 
+	'admire.prs.3sg.foc.q.fam Pekka.nom _ Merja.par'
+
+1895.  ihailee#[foc]#[pA]#[hAn] Pekka Merjaa 
+	'admire.prs.3sg.foc.pol.fam Pekka.nom _ Merja.par'
+
+& Ditransitives
+
+1896.  antoi#C/op Pekka avaimen Merjalle 
+	'give.pst.3sg.c/op Pekka.nom _ key.acc(n) to.Merja'
+
+1897.  antoi#[foc] Pekka avaimen Merjalle 
+	'give.pst.3sg.foc...'
+
+1898.  antoi#[hAn] Pekka avaimen Merjalle 
+	'give.pst.3sg.fam...'
+
+1899.  antoi#[kO] Pekka avaimen Merjalle 
+	'give.pst.3sg.q...'
+
+1900.  antoi#[pA] Pekka avaimen Merjalle 
+	'give.pst.3sg.pol...'
+
+1901.  antoi#[kO]#[hAn] Pekka avaimen Merjalle 
+	'give.pst.3sg.q.fam...'
+
+1902.  antoi#[pA]#[hAn] Pekka avaimen Merjalle 
+	'give.pst.3sg.pol.fam...'
+
+1903.  antoi#[foc]#[kO]#[hAn] Pekka avaimen Merjalle 
+	'give.pst.3sg.foc.q.fam...'
+
+1904.  antoi#[foc]#[pA]#[hAn] Pekka avaimen Merjalle 
+	'give.pst.3sg.foc.pol.fam...'
+
+& Neg-to-C
+
+1905.  ei#C/op Pekka ihaile Merjaa 
+	'not.3sg.c/op Pekka.nom _ admire Merja.par'
+
+1906.  ei#[foc] Pekka ihaile Merjaa 
+	'not.3sg.foc...'
+
+1907.  ei#[hAn] Pekka ihaile Merjaa 
+	'not.3sg.fam...'
+
+1908.  ei#[kO] Pekka ihaile Merjaa 
+	'not.3sg.q...'
+
+1909.  ei#[pA] Pekka ihaile Merjaa 
+	'not.3sg.pol...'
+
+1910.  ei#[kO]#[hAn] Pekka ihaile Merjaa 
+	'not.3sg.q.fam...'
+
+1911.  ei#[pA]#[hAn] Pekka ihaile Merjaa 
+	'not.3sg.pol.fam...'
+
+1912.  ei#[foc]#[kO]#[hAn] Pekka ihaile Merjaa 
+	'not.3sg.foc.q.fam...'
+
+1913.  ei#[foc]#[pA]#[hAn] Pekka ihaile Merjaa 
+	'not.3sg.foc.pol.fam...'
+
+& Long head movement (LHM)
+
+1914.  ihaile#C/op Pekka ei Merjaa 
+	'admire.c/op Pekka.nom not.3sg _ Merja.par'
+
+1915.  ihailla#C/op Pekka haluaa Merjaa 
+	'admire.a/inf.c/op Pekka.nom want.prs.3sg Merja.par'
+
+1916.  ihailla#[foc] Pekka haluaa Merjaa 
+	'admire.a/inf.foc Pekka.nom want.prs.3sg _ Merja.par'
+
+1917.  ihailla#[hAn] Pekka haluaa Merjaa 
+	'admire.a/inf.fam Pekka.nom want.prs.3sg _ Merja.par'
+
+1918.  ihailla#[pA] Pekka haluaa Merjaa 
+	'admire.a/inf.pol Pekka.nom want.prs.3sg _ Merja.par'
+
+1919.  ihailla#[kO]#[hAn] Pekka haluaa Merjaa 
+	'admire.a/inf.q.fam Pekka.nom want.prs.3sg _ Merja.par'
+
+1920.  ihailla#[pA]#[hAn] Pekka haluaa Merjaa 
+	'admire.a/inf.pol.fam Pekka.nom want.prs.3sg Merja.par'
+
+1921.  ihailla#[foc]#[kO]#[hAn] Pekka haluaa Merjaa 
+	'admire.a/inf.foc.q.fam Pekka.nom want.prs.3sg Merja.par'
+
+1922.  ihailla#[foc]#[pA]#[hAn] Pekka haluaa Merjaa 
+	'admire.a/inf.foc.pol.fam Pekka.nom want.prs.3sg Merja.par'
+
+& 10 Clitics/incorporation mechanism
+
+& Simple transitive clause, direct object accusative clitics (10.1)
+
+& Grammatical
+
+1923.  loro mi=lavano 
+
+1924.  mi=lavano 
+
+1925.  loro la=lavano 
+
+1926.  la=lavano 
+
+1927.  loro lo=lavano 
+
+1928.  lo=lavano 
+
+& Ungrammatical, clitic in wrong position
+
+1929. *loro lavano=mi 
+
+1930. *lavano=mi 
+
+1931. *loro=mi lavano 
+
+1932. *mi=loro lavano 
+
+1933. *loro lavano mi 
+
+1934. *loro mi=lavano Luisa 
+
+& Ungrammatical, S-V agreement error
+
+1935. *io mi=lavano 
+
+& Two-verb transitive, direct object accusative clitics (10.2)
+
+& hanno + lavato
+
+& Grammatical
+
+1936.  loro mi=hanno lavato 
+
+1937.  loro la=hanno lavata 
+
+1938.  mi=hanno lavato 
+
+1939.  la=hanno lavata 
+
+1940.  lo=hanno lavato 
+
+& Ungrammatical
+
+1941. *loro hanno mi=lavato 
+
+1942. *loro hanno la=lavato 
+
+1943. *hanno mi=lavato 
+
+1944. *io sono=mi lavato 
+
+1945. *loro hanno lo=lavato 
+
+1946. *hanno lo=lavato 
+
+1947. *hanno la=lavato 
+
+1948. *loro hanno lavato=mi 
+
+1949. *loro hanno lavato=la 
+
+1950. *loro hanno lavato=lo 
+
+1951. *mi=io sono lavato 
+
+1952. *io=mi sono lavato 
+
+1953. *loro=mi hanno lavato 
+
+1954. *la=io sono lavato 
+
+1955. *io=la sono lavato 
+
+1956. *loro=la hanno lavato 
+
+1957. *lo=io sono lavato 
+
+1958. *io=lo sono lavato 
+
+1959. *loro=lo hanno lavato 
+
+1960. *mi=loro hanno lavato 
+
+1961. *io sono=la lavata 
+
+1962. *io sono=lo lavato 
+
+& devono + lavare
+
+& Grammatical
+
+1963.  loro mi=devono lavare 
+
+1964.  loro devono lavare=mi 
+
+1965.  loro la=devono lavare 
+
+1966.  loro devono lavare=la 
+
+1967.  loro lo=devono lavare 
+
+1968.  loro devono lavare=lo 
+
+1969.  mi=devono lavare 
+
+1970.  devono lavare=mi 
+
+1971.  la=devono lavare 
+
+1972.  devono lavare=la 
+
+1973.  lo=devono lavare 
+
+1974.  devono lavare=lo 
+
+& Ungrammatical
+
+1975. *loro devono mi=lavare 
+
+1976. *loro devono la=lavare 
+
+1977. *loro devono lo=lavare 
+
+1978. *loro=la devono lavare 
+
+1979. *loro=lo devono lavare 
+
+1980. *loro=mi devono lavare 
+
+1981. *devono mi=lavare loro 
+
+1982. *devono la=lavare loro 
+
+1983. *devono lo=lavare loro 
+
+1984. *devono lavare loro=la 
+
+1985. *devono lavare loro=lo 
+
+1986. *devono lavare loro=mi 
+
+& stanno + lavando
+
+& Grammatical
+
+1987.  loro mi=stanno lavando 
+
+1988.  mi=stanno lavando 
+
+1989.  la=stanno lavando 
+
+1990.  lo=stanno lavando 
+
+1991.  loro stanno lavando=mi 
+
+1992.  stanno lavando=mi 
+
+1993.  stanno lavando=la 
+
+1994.  stanno lavando=lo 
+
+& Ungrammatical
+
+1995. *loro stanno mi=lavando 
+
+1996. *stanno mi=lavando 
+
+1997. *stanno la=lavando 
+
+1998. *stanno lo=lavando 
+
+1999. *loro=mi stanno lavando 
+
+2000. *loro=la stanno lavando 
+
+2001. *loro=lo stanno lavando 
+
+& Three-verb constructions (Aux + T/par + ARE/inf)(10.3)
+
+& Grammatical
+
+2002.  loro mi=hanno voluto lavare 
+
+2003.  loro hanno voluto lavare=mi 
+
+2004.  mi=hanno voluto lavare 
+
+2005.  hanno voluto lavare=mi 
+
+& Ungrammatical
+
+2006. *loro hanno mi=voluto lavare 
+
+2007. *loro hanno voluto mi=lavare 
+
+2008. *loro=mi hanno voluto lavare 
+
+2009. *mi=loro hanno voluto lavare 
+
+2010. *hanno mi=voluto lavare 
+
+2011. *hanno voluto mi=lavare 
+
+& CL-V agreement in clitic constructions (10.4)
+
+& Grammatical
+
+2012.  loro mi=hanno lavato 
+
+& Ungrammatical
+
+2013. *loro la=hanno lavato 
+
+2014. *loro mi=hanno lavata 
+
+2015. *loro lo=hanno lavata 
+
+2016. *la=hanno lavato 
+
+2017. *mi=hanno lavata 
+
+2018. *lo=hanno lavata 
+
+& Indirect clitic arguments (10.5)
+
+& Grammatical
+
+2019.  loro gli=lavano Luisa 
+
+2020.  gli=lavano Luisa 
+
+& Clitic clusters (10.6)
+
+& Grammatical
+
+2021.  loro gli=la=hanno lavata 
+
+2022.  gli=la=hanno lavata 
+
+& Ungrammatical
+
+2023. *loro la=gli=hanno lavata 
+
+2024. *la=gli=hanno lavata 
+
+2025. *loro hanno gli=la=lavata 
+
+2026. *hanno gli=la=lavata 
+
+& Restructuring (10.7)
+
+& Grammatical
+
+2027.  loro sembrano lavare=mi 
+
+2028.  Giuseppe spinge Luisa a_IT lavare=lo 
+
+2029.  sembrano lavare=mi 
+
+2030.  spinge Luisa a_IT lavare=lo 
+
+& Ungrammatical
+
+2031. *loro mi=sembrano lavare 
+
+2032. *mi=sembrano lavare 
+
+2033. *io lo=detesto lavare 
+
+2034. *lo=detesto lavare 
+
+2035. *Giuseppe lo=spinge Luisa a_IT lavare 
+
+2036.  lo=spinge Luisa a_IT lavare Giuseppe 
+
+2037.  io detesto lavare=lo 
+
+& Reflexive clitics (10.8)
+
+& Grammatical
+
+2038.  io mi=lavo 
+
+2039.  mi=lavo 
+
+2040.  tu mi=lavi 
+
+2041.  mi=lavi 
+
+& 11 Binding
+
+& 11.1 Proper names
+
+& 11.1.1 Grammatical, assignment possible
+
+2042.  John sleeps 
+
+2043.  Mary sleeps 
+
+2044.  John admires Mary 
+
+2045.  Mary admires John 
+
+2046.  John admires John 
+
+2047.  Mary admires Mary 
+
+2048.  Pekka nukkuu 
+	'Pekka.NOM sleep.3SG.PRS'
+
+2049.  Pekka ihailee Merjaa 
+	'Pekka.NOM admire.3SG.PRS Merja.PAR'
+
+& 11.1.2 Proper names inside embedded that-context
+
+2050.  John said that Mary admires Bill 
+
+2051.  Pekka sanoi etta Merja ihailee Jukkaa 
+	'Pekka.NOM said.PST.3SG that Merja.NOM admire.3SG.PRS Jukka.PAR'
+
+& 11.1.3 Proper names inside embedded infinitival
+
+2052.  John wants Mary to_inf admire' Bill 
+
+2053.  Pekka sanoo Merjan_gen ihailevan Jukkaa 
+	'Pekka.NOM says.PRS.3SG Merja.GEN admire.VA/inf Jukka.PAR'
+
+& 11.1.4 Condition C
+
+2054.  he admires John 
+
+2055.  she admires John 
+
+2056.  he admires Mary 
+
+2057.  she admires Mary 
+
+2058.  he said that John admires Mary 
+
+2059.  he wants John to_inf admire' Mary 
+
+2060.  hän ihailee Merjaa 
+	'He.NOM admire.3SG.PRS Merja.PAR'
+
+2061.  hän sanoo että Pekka ihailee Merjaa 
+	'He.NOM says that Pekka.NOM admire.3SG.PRS Merja.PAR'
+
+2062.  hänen siskonsa sanoo että Pekka ihailee Merjaa 
+	'His sister says that Pekka.NOM admire.3SG.PRS Merja.PAR'
+
+& 11.1.5 Conversations
+
+2063.  John sleeps 
+
+2064.  John admires Mary 
+
+2065.  John sleeps 
+
+2066.  Mary sleeps 
+
+& 11.1.6 Proper names and subjectless pro-sentences
+
+2067.  ihailen Merjaa 
+	'admire.PRS.1SG Merja.PAR'
+
+& 11.2 Regular (type 1) pronouns
+
+& 11.2.1 Pronouns and proper names (grammatical, Condition B)
+
+2068.  John admires him 
+
+2069.  John admires her 
+
+2070.  he admires Mary 
+
+2071.  she admires John 
+
+2072.  it admires John 
+
+2073.  it admires Mary 
+
+2074.  it admires him 
+
+2075.  it admires her 
+
+2076.  John admires it 
+
+2077.  Mary admires it 
+
+2078.  he admires it 
+
+2079.  she admires it 
+
+2080.  it admires it 
+
+2081.  John admires he='s sister 
+
+2082.  John admires she='s sister 
+
+2083.  Pekka ihailee häntä 
+	'Pekka.NOM admire.3SG.PRS he.PAR'
+
+2084.  Pekka ihailee sitä_DP 
+	'Pekka.NOM admire.3SG.PRS it.PAR'
+
+2085.  se_DP ihailee Pekkaa 
+	'it.NOM admire.3SG.PRS Pekka.PAR'
+
+2086.  se_DP ihailee sitä_DP 
+	'It.NOM admire.3SG.PRS it.PAR'
+
+2087.  Pekka ihailee hänen siskoaan 
+	'Pekka.NOM admire.3SG.PRS he.GEN sister.PAR(Px/3sg)'
+
+& 11.2.2 Only pronouns (grammatical, Condition B)
+
+2088.  he admires him 
+
+2089.  she admires her 
+
+2090.  he admires her 
+
+2091.  she admires him 
+
+2092.  hän ihailee häntä 
+	'He.NOM admire.3SG.PRS he.PAR'
+
+2093.  se_DP ihailee sitä_DP 
+	'it.NOM admire.3SG.PRS it.PAR'
+
+& 11.2.3 *Ungrammatical, wrong case forms (OVS)
+
+2094. *him admires he 
+
+2095. *him admires she 
+
+2096. *him admires him 
+
+2097. *him admires her 
+
+2098. *her admires he 
+
+2099. *her admires she 
+
+2100. *her admires him 
+
+2101. *her admires her 
+
+& 11.2.4 Pronouns inside that-clauses (Condition B)
+
+2102.  John said that Mary admires Bill 
+
+2103.  John said that Mary admires him 
+
+2104.  John said that he admires Mary 
+
+2105.  John said that he admires him 
+
+2106.  he said that he admires him 
+
+2107.  he said that John admires Mary 
+
+2108.  Pekka sanoo että Merja ihailee Jukkaa 
+	'Pekka.NOM says that Merja.NOM admire.3SG.PRS Jukka.PAR'
+
+2109.  Pekka sanoo että Merja ihailee häntä 
+	'Pekka.NOM says that Merja.NOM admire.3SG.PRS he.PAR'
+
+2110.  Pekka sanoo että hän ihailee Jukkaa 
+	'Pekka.NOM says that he.NOM admire.3SG.PRS Jukka.PAR'
+
+2111.  Pekka sanoo että hän ihailee häntä 
+	'Pekka.NOM says that he.NOM admire.3SG.PRS he.PAR'
+
+& 11.2.5 Pronouns inside infinitivals
+
+2112.  John wants Mary to_inf admire' him 
+
+2113.  Mary wants John to_inf admire' her 
+
+2114.  John wants John to_inf admire' him 
+
+2115.  Mary wants Mary to_inf admire' her 
+
+2116.  John wants Mary to_inf admire' it 
+
+2117.  Mary wants John to_inf admire' it 
+
+2118.  John wants him to_inf admire' Mary 
+
+2119.  John wants her to_inf admire' Mary 
+
+2120.  Mary wants him to_inf admire' Mary 
+
+2121.  Mary wants her to_inf admire' Mary 
+
+2122.  Pekka haluaa Merjan_gen ihailevan häntä 
+	'Pekka wants Merja.GEN admire.VA/inf he.PAR'
+
+2123.  Pekka haluaa hänen ihailevan Merjaa 
+	'Pekka wants he.GEN admire.VA/inf he.PAR'
+
+2124.  Pekka haluaa hänen ihailevan häntä 
+	'Pekka wants he.GEN admire.VA/inf he.PAR'
+
+2125.  hän haluaa hänen ihailevan häntä 
+	'He wants he.GEN admire.VA/inf he.PAR'
+
+& 11.2.6 Possessive pronouns
+
+2126.  he='s sister sleeps 
+
+2127.  she='s sister sleeps 
+
+2128.  hänen siskonsa nukkuu 
+	'his sister sleeps'
+
+& 11.2.7 Pronouns and conversation
+
+2129.  John sleeps 
+
+2130.  he admires Mary 
+
+2131.  John admires Mary 
+
+2132.  he admires her 
+
+2133.  John admires Mary 
+
+2134.  he='s sister sleeps 
+
+2135.  it sleeps 
+
+2136.  he admires Mary 
+
+2137.  it sleeps 
+
+2138.  he admires her 
+
+2139.  it sleeps 
+
+2140.  it admires her 
+
+& 11.2.8 Human vs. nonhuman pronouns
+
+2141.  John admires Mary 
+
+2142.  it sleeps 
+
+2143.  John admires Mary 
+
+2144.  he sleeps 
+
+2145.  Pekka ihailee Merjaa 
+
+2146.  se_DP nukkuu 
+
+2147.  Pekka ihailee Merjaa 
+
+2148.  hän nukkuu 
+
+& 11.2.9 C-command tests
+
+2149.  John='s sister admires him 
+
+2150.  Pekan_gen sisko ihailee häntä 
+	'Pekka.GEN sister.NOM admire.3SG.PRS he.PAR'
+
+& 11.2.10 Pronouns and null subject sentences
+
+2151.  Pekka sanoo että ihailee häntä 
+	'Pekka says that admire.3SG.PRS he.PAR'
+
+2152.  Pekka sanoo että ihailen häntä 
+	'Pekka says that admire.1SG.PRS he.PAR'
+
+2153.  hän sanoo että ihailee häntä 
+	'He says that admire.3SG.PRS he.PAR'
+
+2154.  hän sanoo että ihailen häntä 
+	'He says that admire.1SG.PRS he.PAR'
+
+& 11.3 Reflexive pronouns (Condition A)
+
+& 11.3.1 Grammatical, assignment possible
+
+2155.  John admires himself 
+
+2156.  Mary admires herself 
+
+2157.  he admires himself 
+
+2158.  she admires herself 
+
+2159.  Pekka ihailee itseään 
+	'Pekka.NOM admire.3SG.PRS self.PAR.Px/3sg'
+
+2160.  hän ihailee itseään 
+	'He.NOM admire.3SG.PRS self.PAR.Px/3sg'
+
+& 11.3.2 *Ungrammatical, gender mismatch, assignment not possible
+
+2161. *John admires herself 
+
+2162. *Mary admires himself 
+
+2163. *he admires herself 
+
+2164. *she admires himself 
+
+& 11.3.3 *Ungrammatical, human mismatch
+
+2165. *it admires herself 
+
+2166. *it admires himself 
+
+& 11.3.4 *Ungrammatical, subject reflexives, assignment not possible
+
+2167. *himself admires John 
+
+2168. *himself admires Mary 
+
+2169. *himself admires he 
+
+2170. *himself admires him 
+
+2171. *himself admires she 
+
+2172. *himself admires her 
+
+2173. *himself admires it 
+
+2174. *herself admires John 
+
+2175. *herself admires Mary 
+
+2176. *herself admires he 
+
+2177. *herself admires him 
+
+2178. *herself admires she 
+
+2179. *herself admires her 
+
+2180. *herself admires it 
+
+& 11.3.5 Reflexives in conversation
+
+2181.  John admires Bill 
+
+2182.  he admires himself 
+
+2183.  John admires himself 
+
+2184.  he sleeps 
+
+2185.  John admires Mary 
+
+2186.  Bill admires himself 
+
+& 11.3.6 C-command condition
+
+& 11.3.6.2 Ungrammatical, assignment 'John ~ himself' not possible
+
+& 11.3.6.2.1 English
+
+2187.  John='s sister admires himself 
+
+& 11.3.6.2.2 Finnish example, grammatical
+
+2188.  Pekan_gen sisko ihailee itseään 
+	'Pekka.GEN sister.NOM admire.3SG.PRS self.PAR.Px/3sg'
+
+& 11.3.7 Reflexives and control
+
+& 11.3.7.1 Local binding inside infinitival
+
+2189.  John wants Mary to_inf admire' herself 
+
+2190.  Pekka haluaa Merjan_gen ihailevan itseään 
+	'Pekka.NOM want.3SG.PRS Merja.GEN admire.VA/inf self.PAR.Px/3SG'
+
+& 11.3.7.2 *Ungrammatical, nonlocal binding out of infinitival
+
+2191. *John wants Mary to_inf admire' himself 
+
+2192.  Pekka halusi Merjan_gen ihailevan itseään 
+	'Pekka.NOM want.3SG.PRS Merja.GEN admire.VA/inf self.PAR.Px/3SG'
+
+& 11.3.7.3 Binding from infinitival into main clause subject
+
+& 11.3.7.3.1 Grammatical
+
+2193.  John wants to_inf admire' himself 
+
+2194.  he wants to_inf admire' himself 
+
+2195.  Mary wants to_inf admire' herself 
+
+2196.  she wants to_inf admire' herself 
+
+2197.  Pekka haluaa ihailla itseään 
+	'Pekka.NOM want.3SG.PRS admire.A/inf self.PAR.Px/3SG'
+
+2198.  hän haluaa ihailla itseään 
+	'He.NOM want.3SG.PRD admire.A/inf self.PAR.Px/3sg'
+
+& 11.3.7.3.2 *Ungrammatical, gender mismatch
+
+2199. *John wants to_inf admire' herself 
+
+2200. *he wants to_inf admire' herself 
+
+& 11.3.7.4 Reflexive subjects inside infinitivals
+
+& 11.3.7.5.1 Grammatical
+
+2201.  John wants himself to_inf admire' Mary 
+
+2202.  Mary wants herself to_inf admire' John 
+
+2203.  Pekka haluaa itsensä_gen ihailevan Merjaa 
+	'Pekka.NOM want.3SG.PRS self.GEN.Px/3SG admire.VA/inf Merja.PAR'
+
+& 11.3.7.5.2 Ungrammatical, gender mismatch
+
+2204. *John wants herself to_inf admire' Mary 
+
+2205. *Mary wants himself to_inf admire' John 
+
+& 11.3.8 Ungrammatical reflexive binding from that-clause
+
+2206. *John said that Mary admires himself 
+
+2207. *Mary said that John admires herself 
+
+& 11.3.9 Reflexives and null subjects
+
+& 11.3.9.1 Grammatical
+
+2208.  Pekka sanoo että ihailee itseään 
+	'Pekka says that admire.3SG.PRS self.PAR.PX/3SG'
+
+2209.  Pekka sanoo että ihailen itseäni 
+	'Pekka says that admire.1SG.PRS self.PAR.PX/1SG'
+
+& 11.3.9.2 Ungrammatical, assignment no possible
+
+2210. *Pekka sanoo että ihailee itseäni 
+	'Pekka says that admire.3SG.PRS self.PAR.PX/1SG'
+
+2211. *Pekka sanoo että ihailen itseään 
+	'Pekka says that admire.1SG.PRS self.PAR.PX/3SG'

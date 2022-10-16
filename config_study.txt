@@ -8,7 +8,7 @@ lexicon_folder:			language data working directory/lexicons
 test_corpus_folder:		language data working directory/study-14-subjects-and-agreement
 test_corpus_file:		subjects_corpus.txt
 
-only_first_solution: True
+only_first_solution: False
 datatake_images: False
 datatake_full: False
 
@@ -18,7 +18,7 @@ stop_at_unknown_lexical_item: True
 image_parameter_stop_after_each_image: False
 logging: True
 
-show_features: OVERT_SCOPE,FIN,EF,OP
+show_features: !SCOPE,FIN,EF,OP,-EF,!EF
 image_parameter_show_words: True
 image_parameter_nolabels: False
 image_parameter_spellout: False

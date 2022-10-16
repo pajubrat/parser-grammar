@@ -1,0 +1,2048 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-14-subjects-and-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-14-subjects-and-agreement', 'test_corpus_file': 'subjects_corpus.txt', 'only_first_solution': False, 'datatake_images': True, 'datatake_full': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'show_features': ['!SCOPE', 'FIN', 'EF', 'OP', '-EF', '!EF'], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-10-04 07:51:35.470860
+@  Test sentences from language data working directory\study-14-subjects-and-agreement\subjects_corpus.txt.
+@  Logs into language data working directory\study-14-subjects-and-agreement\subjects_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+1.  Pekka asuu lähellä Pariisia 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [asuu [lähellä [D Pariisi]]]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [asuu [lähellä [D Pariisi]]]]]]
+
+2.  Pekka asuu Pariisia lähellä 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [asuu [[D Pariisi]:2 [lähellä __:2]]]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [asuu [[D Pariisi]:2 [lähellä __:2]]]]]]
+
+3.  lähellä Pariisia Pekka asuu 
+
+	a. [<lähellä [D Pariisi]>:1 [<φ Pekka>:2 [T [<__>:2 [asuu <__>:1]]]]]
+
+	b. [<lähellä [D Pariisi]>:1 [<φ Pekka>:2 [T [<__>:2 [asuu <__>:1]]]]]
+
+4.  Pariisia lähellä Pekka asuu 
+
+	a. [<[D Pariisi]:2 [lähellä __:2]>:1 [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]
+
+	b. [<[D Pariisi]:2 [lähellä __:2]>:1 [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]
+
+5.  Pekka asuu minun lähellä 
+
+	[<φ Pekka>:1 [T [<__>:1 [asuu <[D minä]:2 [lähellä __:2]>]]]]
+
+6.  Pekka asuu minun lähellä#[ni] 
+
+	[<φ Pekka>:1 [T [<__>:1 [asuu <[D minä]:2 [lähellä __:2]>]]]]
+
+7.  minun lähellä Pekka asuu 
+
+	[<[D minä]:2 [lähellä __:2]>:1 [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]
+
+8.  minun lähellä#[ni] Pekka asuu 
+
+	[<[D minä]:2 [lähellä __:2]>:1 [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]
+
+9.  Seine virtaa kohti Pariisia 
+
+	a. [<D Seine>:1 [T [<__>:1 [virtaa- [kohti [D Pariisi]]]]]]
+
+	b. [<D Seine>:1 [T [<__>:1 [virtaa- [kohti [D Pariisi]]]]]]
+
+10.  Seine virtaa Pariisia kohti 
+
+	a. [<D Seine>:1 [T [<__>:1 [virtaa- [[D Pariisi]:2 [kohti __:2]]]]]]
+
+	b. [<D Seine>:1 [T [<__>:1 [virtaa- [[D Pariisi]:2 [kohti __:2]]]]]]
+
+11.  kohti Pariisia Seine virtaa 
+
+	a. [<kohti [D Pariisi]>:1 [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]
+
+	b. [<kohti [D Pariisi]>:1 [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]
+
+12.  Pariisia kohti Seine virtaa 
+
+	a. [<[D Pariisi]:2 [kohti __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]
+
+	b. [<[D Pariisi]:2 [kohti __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]
+
+13.  Pekka juoksee yli sillan 
+
+	[<φ Pekka>:1 [T [<__>:1 [juokse- [yli [φ silta]]]]]]
+
+14.  Pekka juoksee sillan yli 
+
+	[<φ Pekka>:1 [T [<__>:1 [juokse- [[φ silta]:2 [yli __:2]]]]]]
+
+15.  yli sillan Pekka juoksee 
+
+	[<yli [φ silta]>:1 [<φ Pekka>:2 [T [<__>:2 [juokse- <__>:1]]]]]
+
+16.  sillan yli Pekka juoksee 
+
+	[<[φ silta]:2 [yli __:2]>:1 [<φ Pekka>:3 [T [<__>:3 [juokse- <__>:1]]]]]
+
+17. *Pekka asuu lähellä minun 
+
+18. *Pekka asuu lähellä#[ni] minun 
+
+19. *lähellä minun Pekka asuu 
+
+20. *lähellä#[ni] minun Pekka asuu 
+
+21.  Pekka juoksee yli siltaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [juokse- [yli [φ silta]]]]]]
+
+22.  Pekka juoksee siltaa yli 
+
+	[<φ Pekka>:1 [T [<__>:1 [juokse- [[φ silta]:2 [yli __:2]]]]]]
+
+23.  yli siltaa Pekka juoksee 
+
+	[<yli [φ silta]>:1 [<φ Pekka>:2 [T [<__>:2 [juokse- <__>:1]]]]]
+
+24.  siltaa yli Pekka juoksee 
+
+	[<[φ silta]:2 [yli __:2]>:1 [<φ Pekka>:3 [T [<__>:3 [juokse- <__>:1]]]]]
+
+25.  John lives near Paris 
+
+	a. [[D John]:1 [T [__:1 [live [near [D Paris]]]]]]
+
+	b. [[[D John]:1 [T [__:1 live]]] <near [D Paris]>]
+
+26.  Paris near John lives 
+
+	[[D [Paris [near [D John]]]]:1 [T [__:1 live]]]
+
+27. *John lives Paris near 
+
+28. *near Paris John lives 
+
+29.  Seine saavuttaa meren virtaamalla kohti Pariisia 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [kohti [D Pariisi]]]]]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [kohti [D Pariisi]]]]]]]]] <__>:2]]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <malla [virtaa- [kohti [D Pariisi]]]>]]
+
+	d. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <malla [virtaa- [kohti [D Pariisi]]]>]]
+
+	e. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [kohti [D Pariisi]]]>]
+
+	f. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [kohti [D Pariisi]]]>]
+
+30.  Seine saavuttaa meren virtaamalla Pariisia kohti 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D Pariisi]:3 [kohti __:3]>>]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D Pariisi]:3 [kohti __:3]>>]]]]] <__>:2]]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]>]]
+
+	d. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]>]]
+
+	e. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]>]
+
+	f. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]>]
+
+31.  Seine saavuttaa meren kohti Pariisia virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [kohti [D Pariisi]]]]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [kohti [D Pariisi]]]]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [kohti [D Pariisi]]]]]]]] <malla virtaa->]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [kohti [D Pariisi]]]]]]]]] <malla virtaa->]
+
+	e. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>]]
+
+	f. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>]]
+
+	g. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>]
+
+	h. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>]
+
+32.  Seine saavuttaa meren Pariisia kohti virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [kohti __:2]>]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [kohti __:2]>]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [kohti __:2]>]]]]] <malla virtaa->]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [kohti __:2]>]]]]]] <malla virtaa->]
+
+	e. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	f. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	g. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+	h. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+33.  virtaamalla kohti Pariisia Seine saavuttaa meren 
+
+	a. [[<malla [virtaa- [kohti [D Pariisi]]]>:1 [<D Seine>:2 [T [<__>:2 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	b. [[<malla [virtaa- [kohti [D Pariisi]]]>:1 [<D Seine>:2 [T [<__>:2 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	c. [[<malla virtaa->:1 [<kohti [D Pariisi]>:2 [<D Seine>:3 [T [<__>:3 [v [[saavutta- [φ meri]] <__>:2]]]]]]] <__>:1]
+
+	d. [[<malla virtaa->:1 [<kohti [D Pariisi]>:2 [<D Seine>:3 [T [<__>:3 [v [[saavutta- [φ meri]] <__>:2]]]]]]] <__>:1]
+
+34.  virtaamalla Pariisia kohti Seine saavuttaa meren 
+
+	a. [[<malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]>:1 [<D Seine>:3 [T [<__>:3 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	b. [[<malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]>:1 [<D Seine>:3 [T [<__>:3 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	c. [[<malla virtaa->:1 [<[D Pariisi]:3 [kohti __:3]>:2 [<D Seine>:4 [T [<__>:4 [v [[saavutta- [φ meri]] <__>:2]]]]]]] <__>:1]
+
+	d. [[<malla virtaa->:1 [<[D Pariisi]:3 [kohti __:3]>:2 [<D Seine>:4 [T [<__>:4 [v [[saavutta- [φ meri]] <__>:2]]]]]]] <__>:1]
+
+35.  kohti Pariisia virtaamalla Seine saavuttaa meren 
+
+	a. [[<kohti [D Pariisi]>:1 [<malla virtaa->:2 [<D Seine>:3 [T [<__>:3 [v [[saavutta- [φ meri]] <__>:1]]]]]]] <__>:2]
+
+	b. [[<<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>:1 [<D Seine>:3 [T [<__>:3 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	c. [[<kohti [D Pariisi]>:1 [<malla virtaa->:2 [<D Seine>:3 [T [<__>:3 [v [[saavutta- [φ meri]] <__>:1]]]]]]] <__>:2]
+
+	d. [[<<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>:1 [<D Seine>:3 [T [<__>:3 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+36.  Pariisia kohti virtaamalla Seine saavuttaa meren 
+
+	a. [[<[D Pariisi]:2 [kohti __:2]>:1 [<malla virtaa->:3 [<D Seine>:4 [T [<__>:4 [v [[saavutta- [φ meri]] <__>:1]]]]]]] <__>:3]
+
+	b. [[<<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>:1 [<D Seine>:4 [T [<__>:4 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	c. [[<[D Pariisi]:2 [kohti __:2]>:1 [<malla virtaa->:3 [<D Seine>:4 [T [<__>:4 [v [[saavutta- [φ meri]] <__>:1]]]]]]] <__>:3]
+
+	d. [[<<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>:1 [<D Seine>:4 [T [<__>:4 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+37.  Seine saavuttaa meren virtaamalla Pariisin lähellä 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D Pariisi]:3 [lähellä __:3]>>]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D Pariisi]:3 [lähellä __:3]>>]]]]] <__>:2]]
+
+	c. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[D Pariisi]:3 [lähellä __:3]]]]]]]]] <__>:2]]
+
+	d. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[D Pariisi]:3 [lähellä __:3]]]]]]]]] <__>:2]]
+
+	e. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]>]]
+
+	f. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]>]]
+
+	g. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]>]
+
+	h. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]>]
+
+38.  Seine saavuttaa meren Pariisin lähellä virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [lähellä __:2]>]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [lähellä __:2]>]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [lähellä __:2]>]]]]] <malla virtaa->]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [lähellä __:2]>]]]]]] <malla virtaa->]
+
+	e. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [[D Pariisi]:2 [lähellä __:2]]]]]]]] <malla virtaa->]]
+
+	f. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [[D Pariisi]:2 [lähellä __:2]]]]]]]]] <malla virtaa->]
+
+	g. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [[D Pariisi]:2 [lähellä __:2]]]]]]]] <malla virtaa->]]
+
+	h. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [[D Pariisi]:2 [lähellä __:2]]]]]]]]] <malla virtaa->]
+
+	i. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	j. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	k. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+	l. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+39.  virtaamalla Pariisin lähellä Seine saavuttaa meren 
+
+	a. [[<malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]>:1 [<D Seine>:3 [T [<__>:3 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	b. [[<malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]>:1 [<D Seine>:3 [T [<__>:3 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	c. [[<malla virtaa->:1 [<[D Pariisi]:3 [lähellä __:3]>:2 [<D Seine>:4 [T [<__>:4 [v [[saavutta- [φ meri]] <__>:2]]]]]]] <__>:1]
+
+	d. [[<malla virtaa->:1 [<[D Pariisi]:3 [lähellä __:3]>:2 [<D Seine>:4 [T [<__>:4 [v [[saavutta- [φ meri]] <__>:2]]]]]]] <__>:1]
+
+40.  Pariisin lähellä virtaamalla Seine saavuttaa meren 
+
+	a. [[<[D Pariisi]:2 [lähellä __:2]>:1 [<malla virtaa->:3 [<D Seine>:4 [T [<__>:4 [v [[saavutta- [φ meri]] <__>:1]]]]]]] <__>:3]
+
+	b. [[<<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>:1 [<D Seine>:4 [T [<__>:4 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+	c. [[<[D Pariisi]:2 [lähellä __:2]>:1 [<malla virtaa->:3 [<D Seine>:4 [T [<__>:4 [v [[saavutta- [φ meri]] <__>:1]]]]]]] <__>:3]
+
+	d. [[<<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>:1 [<D Seine>:4 [T [<__>:4 [v [saavutta- [φ meri]]]]]]] <__>:1]
+
+41.  Seine saavuttaa meren virtaamalla ali sillan 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [yli [φ silta]]]]]]]]] <__>:2]]
+
+	b. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <malla [virtaa- [yli [φ silta]]]>]]
+
+	c. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [yli [φ silta]]]>]
+
+42.  Seine saavuttaa meren virtaamalla sillan ali 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[φ silta]:3 [yli __:3]>>]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[φ silta]:3 [yli __:3]]]]]]]]] <__>:2]]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <malla [virtaa- [[φ silta]:2 [yli __:2]]]>]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[φ silta]:2 [yli __:2]]]>]
+
+43.  ali sillan Seine saavuttaa meren virtaamalla 
+
+	a. [<yli [φ silta]>:1 [[D Seine]:2 [[T [__:2 [v [saavutta- [φ meri]]]]] <malla [virtaa- <__>:1]>]]]
+
+	b. [<yli [φ silta]>:1 [[<D Seine>:2 [T [<__>:2 [v [saavutta- [φ meri]]]]]] <malla [virtaa- <__>:1]>]]
+
+	c. [[<yli [φ silta]>:1 [<D Seine>:2 [T [<__>:2 [v [[saavutta- [φ meri]] <__>:1]]]]]] <malla virtaa->]
+
+44.  sillan ali Seine saavuttaa meren virtaamalla 
+
+	a. [<[φ silta]:2 [yli __:2]>:1 [[D Seine]:3 [[T [__:3 [v [saavutta- [φ meri]]]]] <malla [virtaa- <__>:1]>]]]
+
+	b. [<[φ silta]:2 [yli __:2]>:1 [[<D Seine>:3 [T [<__>:3 [v [saavutta- [φ meri]]]]]] <malla [virtaa- <__>:1]>]]
+
+	c. [[<[φ silta]:2 [yli __:2]>:1 [<D Seine>:3 [T [<__>:3 [v [[saavutta- [φ meri]] <__>:1]]]]]] <malla virtaa->]
+
+45. *Seine saavuttaa meren virtaamalla lähellä Pariisin 
+
+46. *Seine saavuttaa meren lähellä Pariisin virtaamalla 
+
+47. *virtaamalla lähellä Pariisin Seine saavuttaa meren 
+
+48. *lähellä Pariisin virtaamalla Seine saavuttaa meren 
+
+49. *Seine saavuttaa meren virtaamalla ali siltaa 
+
+50. *Seine saavuttaa meren virtaamalla siltaa ali 
+
+51. *ali siltaa virtaamalla Seine saavuttaa meren 
+
+52. *siltaa ali virtaamalla Seine saavuttaa meren 
+
+53.  John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+54.  ketä Pekka ihailee 
+
+	[[D kuka]:1 [C [<φ Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+55.  mitä Pekka ihailee 
+
+	[[D mikä]:1 [C [<φ Pekka>:2 [T [<__>:2 [v [__:1 ihaile-]]]]]]]
+
+56.  Pekka ihailee ketä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [D kuka]]]]]]
+
+57.  Pekka ihailee mitä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [D mikä]]]]]]
+
+58.  kuka ihailee Merjaa 
+
+	a. [[D kuka]:1 [C.T [__:1 [v [ihaile- [φ Merja]]]]]]
+
+	b. [[D kuka]:1 [[C.T [__:1 [v [<__>:2 ihaile-]]]] <φ Merja>:2]]
+
+59.  who John admires 
+
+	[[D who]:1 [C [[D John]:2 [T [__:2 [v [admire __:1]]]]]]]
+
+60.  who does John admire 
+
+	[[D who]:1 [C.does [[D John] [v [admire __:1]]]]]
+
+61.  who admires Mary 
+
+	[[D who]:1 [C.T [__:1 [v [admire [D Mary]]]]]]
+
+62.  Pekka asuu lähellä mitä 
+
+	[<φ Pekka>:1 [T [<__>:1 [asuu [lähellä [D mikä]]]]]]
+
+63.  Pekka asuu mitä lähellä 
+
+	[<φ Pekka>:1 [T [<__>:1 [asuu [[D mikä]:2 [lähellä __:2]]]]]]
+
+64.  lähellä mitä Pekka asuu 
+
+	[[lähellä [D mikä]]:1 [C [<φ Pekka>:2 [T [<__>:2 [asuu <__>:1]]]]]]
+
+65.  mitä lähellä Pekka asuu 
+
+	[[[D mikä]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+66.  Pekka asuu kenen lähellä 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [asuu <[D mikä]:2 [lähellä __:2]>]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [asuu <[D kuka]:2 [lähellä __:2]>]]]]
+
+67.  kenen lähellä Pekka asuu 
+
+	a. [[[D mikä]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+	b. [[[D kuka]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+68.  Seine virtaa kohti mitä 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [kohti [D mikä]]]]]]
+
+69.  Seine virtaa mitä kohti 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [[D mikä]:2 [kohti __:2]]]]]]
+
+70.  kohti mitä Seine virtaa 
+
+	[[kohti [D mikä]]:1 [C [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]]
+
+71.  mitä kohti Seine virtaa 
+
+	[[[D mikä]:2 [kohti __:2]]:1 [C [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]]
+
+72.  Pekka juoksee yli minkä 
+
+	[<φ Pekka>:1 [T [<__>:1 [juokse- [yli [D mikä]]]]]]
+
+73.  Pekka juoksee minkä yli 
+
+	[<φ Pekka>:1 [T [<__>:1 [juokse- [[D mikä]:2 [yli __:2]]]]]]
+
+74.  yli minkä Pekka juoksee 
+
+	[[yli [D mikä]]:1 [C [<φ Pekka>:2 [T [<__>:2 [juokse- <__>:1]]]]]]
+
+75.  minkä yli Pekka juoksee 
+
+	[[[D mikä]:2 [yli __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [juokse- <__>:1]]]]]]
+
+76. *Pekka asuu lähellä kenen 
+
+77. *lähellä kenen Pekka asuu 
+
+78.  John lives near what 
+
+	a. [[D John]:1 [T [__:1 [live [near [D what]]]]]]
+
+	b. [[[D John]:1 [T [__:1 live]]] <near [D what]>]
+
+79.  near what John lives 
+
+	[[near [D what]]:1 [C [[D John]:2 [T [__:2 [live __:1]]]]]]
+
+80. *John lives what near 
+
+81. *what near John lives 
+
+82.  Seine saavuttaa meren virtaamalla kohti mitä 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [kohti [D mikä]]]]]]]]] <__>:2]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [kohti [D mikä]]]>]
+
+83.  Seine saavuttaa meren virtaamalla mitä kohti 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D mikä]:3 [kohti __:3]>>]]]]] <__>:2]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D mikä]:2 [kohti __:2]]]>]
+
+84.  Seine saavuttaa meren kohti mitä virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [kohti [D mikä]]]]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [kohti [D mikä]]]]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<kohti [D mikä]>:2 [malla [virtaa- <__>:2]]>]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<kohti [D mikä]>:2 [malla [virtaa- <__>:2]]>]
+
+85.  Seine saavuttaa meren mitä kohti virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D mikä]:2 [kohti __:2]>]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D mikä]:2 [kohti __:2]>]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D mikä]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D mikä]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+86.  virtaamalla kohti mitä Seine saavuttaa meren 
+
+	[[malla [virtaa- [kohti [D mikä]]]]:1 [C [<D Seine>:2 [[T [<__>:2 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+87.  virtaamalla mitä kohti Seine saavuttaa meren 
+
+	[[malla [virtaa- [[D mikä]:2 [kohti __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+88.  kohti mitä virtaamalla Seine saavuttaa meren 
+
+	[[<kohti [D mikä]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+89.  mitä_DP kohti virtaamalla Seine saavuttaa meren 
+
+	[[<[D mikä]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+90.  Seine saavuttaa meren virtaamalla kenen lähellä 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D mikä]:3 [lähellä __:3]>>]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D kuka]:3 [lähellä __:3]>>]]]]] <__>:2]]
+
+	c. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[D mikä]:3 [lähellä __:3]]]]]]]]] <__>:2]]
+
+	d. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[D kuka]:3 [lähellä __:3]]]]]]]]] <__>:2]]
+
+	e. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D mikä]:2 [lähellä __:2]]]>]
+
+	f. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D kuka]:2 [lähellä __:2]]]>]
+
+91.  Seine saavuttaa meren kenen lähellä virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D mikä]:2 [lähellä __:2]>]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D mikä]:2 [lähellä __:2]>]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [[D mikä]:2 [lähellä __:2]]]]]]]] <malla virtaa->]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [[D mikä]:2 [lähellä __:2]]]]]]]]] <malla virtaa->]
+
+	e. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D mikä]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	f. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D mikä]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+	g. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D kuka]:2 [lähellä __:2]>]]]]] <malla virtaa->]]
+
+	h. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D kuka]:2 [lähellä __:2]>]]]]]] <malla virtaa->]
+
+	i. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri <D [kuka lähellä]>]]]]]] <malla virtaa->]]
+
+	j. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri <D [kuka lähellä]>]]]]]]] <malla virtaa->]
+
+	k. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [[D kuka]:2 [lähellä __:2]]]]]]]] <malla virtaa->]]
+
+	l. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [[D kuka]:2 [lähellä __:2]]]]]]]]] <malla virtaa->]
+
+	m. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri <D [kuka lähellä]>]]]]]] <malla virtaa->]]
+
+	n. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri <D [kuka lähellä]>]]]]]]] <malla virtaa->]
+
+	o. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D kuka]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	p. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D kuka]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+92.  virtaamalla kenen lähellä* Seine saavuttaa meren 
+
+	a. [[malla [virtaa- [[D mikä]:2 [lähellä __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[malla [virtaa- [[D kuka]:2 [lähellä __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+93.  kenen lähellä virtaamalla Seine saavuttaa meren 
+
+	a. [[<[D mikä]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[<[D kuka]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+94.  Seine saavuttaa meren virtaamalla ali minkä 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [yli [D mikä]]]]]]]]] <__>:2]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [yli [D mikä]]]>]
+
+95.  Seine saavuttaa meren virtaamalla minkä ali 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D mikä]:3 [yli __:3]>>]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[D mikä]:3 [yli __:3]]]]]]]]] <__>:2]]
+
+	c. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D mikä]:2 [yli __:2]]]>]
+
+96.  ali minkä virtaamalla Seine saavuttaa meren 
+
+	[[<yli [D mikä]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+97.  minkä ali virtaamalla Seine saavuttaa meren 
+
+	[[<[D mikä]:3 [yli __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+98. *Seine saavuttaa meren virtaamalla lähellä kenen 
+
+99. *Seine saavuttaa meren lähellä kenen virtaamalla 
+
+100. *virtaamalla lähellä kenen Seine saavuttaa meren 
+
+101. *lähellä kenen virtaamalla Seine saavuttaa meren 
+
+102.  mies joka lähtee lähti 
+
+	[<φ [mies <[D/rel joka]:2 [C.T [__:2 lähte-]]>]>:1 [T [<__>:1 lähte-]]]
+
+103.  mies joka lähtee ihailee Merjaa 
+
+	a. [<φ [mies <[D/rel joka]:2 [C.T [__:2 lähte-]]>]>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	b. [[φ [mies <[D/rel joka]:2 [C.T [__:2 lähte-]]>]]:1 [[T [__:1 [v [<__>:3 ihaile-]]]] <φ Merja>:3]]
+
+	c. [[<φ [mies <[D/rel joka]:2 [C.T [__:2 lähte-]]>]>:1 [T [<__>:1 [v [<__>:3 ihaile-]]]]] <φ Merja>:3]
+
+104.  mies joka ihailee Merjaa lähti 
+
+	a. [<φ mies>:1 <[D/rel joka]:2 [C.T [<__>:1 [v [ihaile- [φ [Merja <__:2 [C.T [__:2 lähte-]]>]]]]]]>]
+
+	b. [<φ [mies <[D/rel joka]:2 [C.T [__:2 [v [ihaile- [φ Merja]]]]]>]>:1 [T [<__>:1 lähte-]]]
+
+105.  mies joka ihailee Merjaa ihailee Jukkaa 
+
+	a. [<φ mies>:1 <[D/rel joka]:2 [C.T [<__>:1 [v [ihaile- [φ [Merja <__:2 [C.T [__:2 [v [ihaile- [φ Jukka]]]]]>]]]]]]>]
+
+	b. [<φ [mies <[D/rel joka]:2 [C.T [__:2 [v [ihaile- [φ Merja]]]]]>]>:1 [T [<__>:1 [v [ihaile- [φ Jukka]]]]]]
+
+	c. [[φ [mies <[D/rel joka]:2 [C.T [__:2 [v [ihaile- [φ Merja]]]]]>]]:1 [[T [__:1 [v [<__>:3 ihaile-]]]] <φ Jukka>:3]]
+
+	d. [[<φ [mies <[D/rel joka]:2 [C.T [__:2 [v [ihaile- [φ Merja]]]]]>]>:1 [T [<__>:1 [v [<__>:3 ihaile-]]]]] <φ Jukka>:3]
+
+106.  mies jota Merja ihailee lähti 
+
+	[<φ [mies [[D/rel joka]:2 [C [[φ Merja]:3 [T [__:3 [v [__:2 ihaile-]]]]]]]]>:1 [T [<__>:1 lähte-]]]
+
+107.  mies jota Merja ihailee ihailee Jukkaa 
+
+	a. [<φ [mies [[D/rel joka]:2 [C [[φ Merja]:3 [T [__:3 [v [__:2 ihaile-]]]]]]]]>:1 [T [<__>:1 [v [ihaile- [φ Jukka]]]]]]
+
+	b. [[φ [mies [[D/rel joka]:2 [C [[φ Merja]:3 [T [__:3 [v [__:2 ihaile-]]]]]]]]]:1 [[T [__:1 [v [<__>:4 ihaile-]]]] <φ Jukka>:4]]
+
+	c. [[<φ [mies [[D/rel joka]:2 [C [[φ Merja]:3 [T [__:3 [v [__:2 ihaile-]]]]]]]]>:1 [T [<__>:1 [v [<__>:4 ihaile-]]]]] <φ Jukka>:4]
+
+108.  kaupunki jota kohti Seine virtaa hävisi 
+
+	[<φ [kaupunki [[[D/rel joka]:3 [kohti __:3]]:2 [C [[D Seine]:4 [T [__:4 [virtaa- <__>:2]]]]]]]>:1 [T [<__>:1 häviä-]]]
+
+109.  kaupunki jonka lähellä Seine virtaa hävisi 
+
+	[<φ [kaupunki [[[D/rel joka]:3 [lähellä __:3]]:2 [C [[D Seine]:4 [T [__:4 [virtaa- <__>:2]]]]]]]>:1 [T [<__>:1 häviä-]]]
+
+110.  kaupunki jonka ali Seine virtaa hävisi 
+
+	[<φ [kaupunki [[[D/rel joka]:3 [yli __:3]]:2 [C [[D Seine]:4 [T [__:4 [virtaa- <__>:2]]]]]]]>:1 [T [<__>:1 häviä-]]]
+
+111. *kaupunki kohti jota Seine virtaa hävisi 
+
+112. *kaupunki Seine virtaa jota kohti hävisi 
+
+113. *kaupunki Seine virtaa kohti jota hävisi 
+
+114. *kaupunki lähellä jonka Seine virtaa hävisi 
+
+115. *kaupunki Seine virtaa jonka lähellä hävisi 
+
+116. *kaupunki Seine virtaa lähellä jonka hävisi 
+
+117. *kaupunki ali jonka Seine virtaa hävisi 
+
+118. *kaupunki Seine virtaa ali jonka hävisi 
+
+119. *kaupunki Seine virtaa jonka ali hävisi 
+
+120.  the man who(rel) sleeps left 
+
+	a. [[the [man <[D/rel who]:2 [C.T [__:2 sleep]]>]]:1 [T [__:1 leave]]]
+
+	b. [[[the man] <[D/rel who]:2 [C.T [__:2 sleep]]>]:1 [T [__:1 leave]]]
+
+121.  the man who(rel) sleeps admires Mary 
+
+	a. [[the [man <[D/rel who]:2 [C.T [__:2 sleep]]>]]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+	b. [[[the man] <[D/rel who]:2 [C.T [__:2 sleep]]>]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+122.  the man who(rel) John admires left 
+
+	[[the [man [[D/rel who]:2 [C [[D John]:3 [T [__:3 [v [admire __:2]]]]]]]]]:1 [T [__:1 leave]]]
+
+123.  the man who(rel) John admires admires Mary 
+
+	[[the [man [[D/rel who]:2 [C [[D John]:3 [T [__:3 [v [admire __:2]]]]]]]]]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+124.  the man who(rel) John admires left 
+
+	[[the [man [[D/rel who]:2 [C [[D John]:3 [T [__:3 [v [admire __:2]]]]]]]]]:1 [T [__:1 leave]]]
+
+125.  the man who(rel) John admires admires Mary 
+
+	[[the [man [[D/rel who]:2 [C [[D John]:3 [T [__:3 [v [admire __:2]]]]]]]]]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+126.  the city towards which(rel) Seine flows disappeared 
+
+	[[the [city [[towards [D/rel who]]:2 [C [[D Seine]:3 [T [__:3 [flow __:2]]]]]]]]:1 [T [__:1 disappear]]]
+
+127. *the city which(rel) towards Seine flows disappeared 
+
+128. *the city Seine flows towards which(rel) disappeared 
+
+129. *the city Seine flows which(rel) towards disappeared 
+
+130. *the city Seine flows towards which(rel) disappeared 
+
+131. *the city Seine flows which(rel) towards disappeared 
+
+132. *Pekka asuu lähellä Pariisia#[kO] 
+
+133. *Pekka asuu Pariisia#[kO] lähellä 
+
+134. *Seine virtaa kohti Pariisia#[kO] 
+
+135. *Seine virtaa Pariisia#[kO] kohti 
+
+136. *Pekka asuu Pariisin#[kO] lähellä 
+
+137. *Pekka asuu lähellä Pariisin#[kO] 
+
+138. *lähellä Pariisin#[kO] Pekka asuu 
+
+139. *Pekka juoksee yli sillan#[kO] 
+
+140. *Pekka juoksee sillan#[kO] yli 
+
+141.  lähellä Pariisia#[kO] Pekka asuu 
+
+	a. [[lähellä [D Pariisi]]:1 [C [<φ Pekka>:2 [T [<__>:2 [asuu <__>:1]]]]]]
+
+	b. [[lähellä [D Pariisi]]:1 [C [<φ Pekka>:2 [T [<__>:2 [asuu <__>:1]]]]]]
+
+142.  Pariisia#[kO] lähellä Pekka asuu 
+
+	a. [[[D Pariisi]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+	b. [[[D Pariisi]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+143.  Pariisia#[kO] kohti Seine virtaa 
+
+	a. [[[D Pariisi]:2 [kohti __:2]]:1 [C [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]]
+
+	b. [[[D Pariisi]:2 [kohti __:2]]:1 [C [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]]
+
+144.  kohti Pariisia#[kO] Seine virtaa 
+
+	a. [[kohti [D Pariisi]]:1 [C [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]]
+
+	b. [[kohti [D Pariisi]]:1 [C [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]]
+
+145.  Pariisin#[kO] lähellä Pekka asuu 
+
+	a. [[[D Pariisi]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+	b. [[[D Pariisi]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+146.  yli sillan#[kO] Pekka juoksee 
+
+	[[yli [φ silta]]:1 [C [<φ Pekka>:2 [T [<__>:2 [juokse- <__>:1]]]]]]
+
+147.  sillan#[kO] yli Pekka juoksee 
+
+	[[[φ silta]:2 [yli __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [juokse- <__>:1]]]]]]
+
+148. *Seine saavuttaa meren virtaamalla kohti Pariisia#[kO] 
+
+149. *Seine saavuttaa meren virtaamalla Pariisia#[kO] kohti 
+
+150. *Seine saavuttaa meren kohti Pariisia#[kO] virtaamalla 
+
+151. *Seine saavuttaa meren Pariisia#[kO] kohti virtaamalla 
+
+152. *Seine saavuttaa meren virtaamalla lähellä Pariisin#[kO] 
+
+153. *Seine saavuttaa meren virtaamalla Pariisin#[kO] lähellä 
+
+154. *Seine saavuttaa meren lähellä Pariisin#[kO] virtaamalla 
+
+155. *Seine saavuttaa meren Pariisin#[kO] lähellä virtaamalla 
+
+156. *virtaamalla lähellä Pariisin#[kO] Seine saavuttaa meren 
+
+157. *lähellä Pariisin#[kO] virtaamalla Seine saavuttaa meren 
+
+158. *Seine saavuttaa meren virtaamalla ali sillan#[kO] 
+
+159. *Seine saavuttaa meren virtaamalla sillan#[kO] ali 
+
+160.  virtaamalla kohti Pariisia#[kO] Seine saavuttaa meren 
+
+	a. [[malla [virtaa- [kohti [D Pariisi]]]]:1 [C [<D Seine>:2 [[T [<__>:2 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[malla [virtaa- [kohti [D Pariisi]]]]:1 [C [<D Seine>:2 [[T [<__>:2 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+161.  virtaamalla Pariisia#[kO] kohti Seine saavuttaa meren 
+
+	a. [[malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+162.  kohti Pariisia#[kO] virtaamalla Seine saavuttaa meren 
+
+	a. [[<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+163.  Pariisia#[kO] kohti virtaamalla Seine saavuttaa meren 
+
+	a. [[<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+164.  virtaamalla Pariisin#[kO] lähellä Seine saavuttaa meren 
+
+	a. [[malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+165.  Pariisin#[kO] lähellä virtaamalla Seine saavuttaa meren 
+
+	a. [[<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+166.  ali sillan#[kO] virtaamalla Seine saavuttaa meren 
+
+	[[<yli [φ silta]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+167.  sillan#[kO] ali virtaamalla Seine saavuttaa meren 
+
+	[[<[φ silta]:3 [yli __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+168.  Pekka asuu lähellä Pariisia#[foc] 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [asuu [lähellä [D Pariisi]]]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [asuu [lähellä [D Pariisi]]]]]]
+
+169.  Pekka asuu Pariisia#[foc] lähellä 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [asuu [[D Pariisi]:2 [lähellä __:2]]]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [asuu [[D Pariisi]:2 [lähellä __:2]]]]]]
+
+170.  Seine virtaa kohti Pariisia#[foc] 
+
+	a. [<D Seine>:1 [T [<__>:1 [virtaa- [kohti [D Pariisi]]]]]]
+
+	b. [<D Seine>:1 [T [<__>:1 [virtaa- [kohti [D Pariisi]]]]]]
+
+171.  Seine virtaa Pariisia#[foc] kohti 
+
+	a. [<D Seine>:1 [T [<__>:1 [virtaa- [[D Pariisi]:2 [kohti __:2]]]]]]
+
+	b. [<D Seine>:1 [T [<__>:1 [virtaa- [[D Pariisi]:2 [kohti __:2]]]]]]
+
+172.  Pekka asuu Pariisin#[foc] lähellä 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [asuu <[D Pariisi]:2 [lähellä __:2]>]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [asuu <[D Pariisi]:2 [lähellä __:2]>]]]]
+
+173.  Pekka juoksee yli sillan#[foc] 
+
+	[<φ Pekka>:1 [T [<__>:1 [juokse- [yli [φ silta]]]]]]
+
+174.  Pekka juoksee sillan#[foc] yli 
+
+	[<φ Pekka>:1 [T [<__>:1 [juokse- [[φ silta]:2 [yli __:2]]]]]]
+
+175.  lähellä Pariisia#[foc] Pekka asuu 
+
+	a. [[lähellä [D Pariisi]]:1 [C [<φ Pekka>:2 [T [<__>:2 [asuu <__>:1]]]]]]
+
+	b. [[lähellä [D Pariisi]]:1 [C [<φ Pekka>:2 [T [<__>:2 [asuu <__>:1]]]]]]
+
+176.  Pariisia#[foc] lähellä Pekka asuu 
+
+	a. [[[D Pariisi]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+	b. [[[D Pariisi]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+177.  Pariisia#[foc] kohti Seine virtaa 
+
+	a. [[[D Pariisi]:2 [kohti __:2]]:1 [C [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]]
+
+	b. [[[D Pariisi]:2 [kohti __:2]]:1 [C [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]]
+
+178.  kohti Pariisia#[foc] Seine virtaa 
+
+	a. [[kohti [D Pariisi]]:1 [C [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]]
+
+	b. [[kohti [D Pariisi]]:1 [C [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]]
+
+179.  Pariisin#[foc] lähellä Pekka asuu 
+
+	a. [[[D Pariisi]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+	b. [[[D Pariisi]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+180.  yli sillan#[foc] Pekka juoksee 
+
+	[[yli [φ silta]]:1 [C [<φ Pekka>:2 [T [<__>:2 [juokse- <__>:1]]]]]]
+
+181.  sillan#[foc] yli Pekka juoksee 
+
+	[[[φ silta]:2 [yli __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [juokse- <__>:1]]]]]]
+
+182.  Seine saavuttaa meren virtaamalla kohti Pariisia#[foc] 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [kohti [D Pariisi]]]]]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [kohti [D Pariisi]]]]]]]]] <__>:2]]
+
+	c. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [kohti [D Pariisi]]]>]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [kohti [D Pariisi]]]>]
+
+183.  Seine saavuttaa meren virtaamalla Pariisia#[foc] kohti 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D Pariisi]:3 [kohti __:3]>>]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D Pariisi]:3 [kohti __:3]>>]]]]] <__>:2]]
+
+	c. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]>]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]>]
+
+184.  Seine saavuttaa meren kohti Pariisia#[foc] virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [kohti [D Pariisi]]]]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [kohti [D Pariisi]]]]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [kohti [D Pariisi]]]]]]]] <malla virtaa->]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [kohti [D Pariisi]]]]]]]]] <malla virtaa->]
+
+	e. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>]]
+
+	f. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>]]
+
+	g. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>]
+
+	h. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]>]
+
+185.  Seine saavuttaa meren Pariisia#[foc] kohti virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [kohti __:2]>]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [kohti __:2]>]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [kohti __:2]>]]]]] <malla virtaa->]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [kohti __:2]>]]]]]] <malla virtaa->]
+
+	e. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	f. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	g. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+	h. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+186.  Seine saavuttaa meren virtaamalla Pariisin#[foc] lähellä 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D Pariisi]:3 [lähellä __:3]>>]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[D Pariisi]:3 [lähellä __:3]>>]]]]] <__>:2]]
+
+	c. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[D Pariisi]:3 [lähellä __:3]]]]]]]]] <__>:2]]
+
+	d. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[D Pariisi]:3 [lähellä __:3]]]]]]]]] <__>:2]]
+
+	e. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]>]
+
+	f. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]>]
+
+187.  Seine saavuttaa meren Pariisin#[foc] lähellä virtaamalla 
+
+	a. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [lähellä __:2]>]]]]] <malla virtaa->]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [lähellä __:2]>]]]]]] <malla virtaa->]
+
+	c. [[D Seine]:1 [[T [__:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [lähellä __:2]>]]]]] <malla virtaa->]]
+
+	d. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <[D Pariisi]:2 [lähellä __:2]>]]]]]] <malla virtaa->]
+
+	e. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [[D Pariisi]:2 [lähellä __:2]]]]]]]] <malla virtaa->]]
+
+	f. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [[D Pariisi]:2 [lähellä __:2]]]]]]]]] <malla virtaa->]
+
+	g. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ [meri [[D Pariisi]:2 [lähellä __:2]]]]]]]] <malla virtaa->]]
+
+	h. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ [meri [[D Pariisi]:2 [lähellä __:2]]]]]]]]] <malla virtaa->]
+
+	i. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	j. [[D Seine]:1 [[T [__:1 [v [saavutta- [φ meri]]]]] <<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]]
+
+	k. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+	l. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]>]
+
+188.  Seine saavuttaa meren virtaamalla ali sillan#[foc] 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [yli [φ silta]]]]]]]]] <__>:2]]
+
+	b. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [yli [φ silta]]]>]
+
+189.  Seine saavuttaa meren virtaamalla sillan#[foc] ali 
+
+	a. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [[φ meri] <<malla virtaa->:2 <[φ silta]:3 [yli __:3]>>]]]]] <__>:2]]
+
+	b. [<D Seine>:1 [[T [<__>:1 [v [saavutta- [φ [meri [<malla virtaa->:2 [[φ silta]:3 [yli __:3]]]]]]]]] <__>:2]]
+
+	c. [[<D Seine>:1 [T [<__>:1 [v [saavutta- [φ meri]]]]]] <malla [virtaa- [[φ silta]:2 [yli __:2]]]>]
+
+190.  virtaamalla kohti Pariisia#[foc] Seine saavuttaa meren 
+
+	a. [[malla [virtaa- [kohti [D Pariisi]]]]:1 [C [<D Seine>:2 [[T [<__>:2 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[malla [virtaa- [kohti [D Pariisi]]]]:1 [C [<D Seine>:2 [[T [<__>:2 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+191.  virtaamalla Pariisia#[foc] kohti Seine saavuttaa meren 
+
+	a. [[malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[malla [virtaa- [[D Pariisi]:2 [kohti __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+192.  kohti Pariisia#[foc] virtaamalla Seine saavuttaa meren 
+
+	a. [[<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[<kohti [D Pariisi]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+193.  Pariisia#[foc] kohti virtaamalla Seine saavuttaa meren 
+
+	a. [[<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[<[D Pariisi]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+194.  virtaamalla Pariisin#[foc] lähellä Seine saavuttaa meren 
+
+	a. [[malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[malla [virtaa- [[D Pariisi]:2 [lähellä __:2]]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+195.  Pariisin#[foc] lähellä virtaamalla Seine saavuttaa meren 
+
+	a. [[<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+	b. [[<[D Pariisi]:3 [lähellä __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+196.  ali sillan#[foc] virtaamalla Seine saavuttaa meren 
+
+	[[<yli [φ silta]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:3 [[T [<__>:3 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+197.  sillan#[foc] ali virtaamalla Seine saavuttaa meren 
+
+	[[<[φ silta]:3 [yli __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+198. *Pekka asuu lähellä Pariisin#[foc] 
+
+199. *lähellä Pariisin#[foc] Pekka asuu 
+
+200. *Seine saavuttaa meren virtaamalla lähellä Pariisin#[foc] 
+
+201. *Seine saavuttaa meren lähellä Pariisin#[foc]] virtaamalla 
+
+202. *virtaamalla lähellä Pariisin#[foc] Seine saavuttaa meren 
+
+203. *lähellä Pariisin#[foc] virtaamalla Seine saavuttaa meren 
+
+204.  mitä#[kO] lähellä Pekka asuu 
+
+	[[[D mikä]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+205.  mitä#[kO] kohti Seine virtaa 
+
+	[[[D mikä]:2 [kohti __:2]]:1 [C [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]]
+
+206.  kenen#[kO] lähellä Pekka asuu 
+
+	a. [[[D mikä]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+	b. [[[D kuka]:2 [lähellä __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]]
+
+207.  minkä#[kO] yli Pekka juoksee 
+
+	[[[D mikä]:2 [yli __:2]]:1 [C [<φ Pekka>:3 [T [<__>:3 [juokse- <__>:1]]]]]]
+
+208. *Pekka asuu lähellä mitä#[kO] 
+
+209. *Pekka asuu mitä#[kO] lähellä 
+
+210. *Seine virtaa kohti mitä#[kO] 
+
+211. *Seine virtaa mitä#[kO] kohti 
+
+212. *Pekka asuu lähellä kenen#[kO] 
+
+213. *lähellä kenen#[kO] Pekka asuu 
+
+214. *Pekka asuu kenen#[kO] lähellä 
+
+215. *Pekka juoksee yli minkä#[kO] 
+
+216. *Pekka juoksee minkä#[kO] yli 
+
+217. *lähellä mitä#[kO] Pekka asuu 
+
+218. *kohti mitä#[kO] Seine virtaa 
+
+219. *yli minkä#[kO] Pekka juoksee 
+
+220.  lähellä' minua 
+
+	[lähellä [D minä]]
+
+221.  minua lähellä' 
+
+	[[D minä]:1 [lähellä __:1]]
+
+222.  minun lähellä'#[ni] 
+
+	[[D minä]:1 [lähellä __:1]]
+
+223.  kohti' minua 
+
+	[kohti [D minä]]
+
+224.  minua kohti' 
+
+	[[D minä]:1 [kohti __:1]]
+
+225.  sillan yli' 
+
+	[[φ silta]:1 [yli __:1]]
+
+226.  yli' sillan 
+
+	[yli [φ silta]]
+
+227.  siltaa yli' 
+
+	[[φ silta]:1 [yli __:1]]
+
+228.  yli' siltaa 
+
+	[yli [φ silta]]
+
+229. *minun kohti' 
+
+230. *lähellä' minun 
+
+231. *lähellä'#[ni] minun 
+
+232.  minun lähellä'#[ni] 
+
+	[[D minä]:1 [lähellä __:1]]
+
+233.  sinun lähellä'#[si] 
+
+	[[D sinä]:1 [lähellä __:1]]
+
+234.  hänen lähellä'#[An] 
+
+	[[D hän]:1 [lähellä __:1]]
+
+235.  meidän lähellä'#[mme] 
+
+	[[D me]:1 [lähellä __:1]]
+
+236.  teidän lähellä'#[nne] 
+
+	[[D te]:1 [lähellä __:1]]
+
+237.  heidän lähellä'#[An] 
+
+	[[D he]:1 [lähellä __:1]]
+
+238. *lähellä' minun 
+
+239. *lähellä'#[ni] minun 
+
+240. *kohti'#[ni] minua 
+
+241. *minua kohti'#[ni] 
+
+242. *kohti'#[ni] minun 
+
+243. *minun kohti'#[ni] 
+
+244. *minun lähellä'#[si] 
+
+245. *sinun lähellä'#[ni] 
+
+246. *hänen lähellä'#[ni] 
+
+247. *meidän lähellä'#[ni] 
+
+248. *teidän lähellä#[ni] 
+
+249. *heidän lähellä'#[ni] 
+
+250.  Pekka ihailee Merjaa 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	b. [[φ Pekka]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <φ Merja>:2]]
+
+251. *Pekka ihailen Merjaa 
+
+252. *Pekka ihailet Merjaa 
+
+253. *Pekka ihailemme Merjaa 
+
+254. *Pekka ihailette Merjaa 
+
+255. *Pekka ihailevat Merjaa 
+
+256.  minun kello#[ni] hävisi 
+
+	[[[D minä]:2 [φ [__:2 kello]]]:1 [T [__:1 häviä-]]]
+
+257. *sinun kello#[ni] hävisi 
+
+258. *hänen kello#[ni] hävisi 
+
+259. *meidän kello#[ni] hävisi 
+
+260. *teidän kello#[ni] hävisi 
+
+261. *heidän kello#[ni] hävisi 
+
+262.  se' minun tekemä#[ni] kello hävisi 
+
+	[<se [[[D minä]:2 [ma [__:2 [v teke-]]]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+
+263. *se' sinun tekemä#[ni] kello hävisi 
+
+264. *se' hänen tekemä#[ni] kello hävisi 
+
+265. *se' meidän tekemä#[ni] kello hävisi 
+
+266. *se' teidän tekemä#[ni] kello hävisi 
+
+267. *se' heidän tekemä#[ni] kello hävisi 
+
+268.  Seine virtaa kohti minua 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [kohti [D minä]]]]]]
+
+269.  Seine virtaa minua kohti 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [[D minä]:2 [kohti __:2]]]]]]
+
+270.  kohti minua Seine virtaa 
+
+	[<kohti [D minä]>:1 [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]
+
+271.  minua kohti Seine virtaa 
+
+	[<[D minä]:2 [kohti __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]
+
+272. *Seine virtaa kohti#[ni] minua 
+
+273. *Seine virtaa minua kohti#[ni] 
+
+274. *kohti#[ni] minua Seine virtaa 
+
+275. *minua kohti#[ni] Seine virtaa 
+
+276. *Seine virtaa kohti#[ni] minun 
+
+277. *Seine virtaa minun kohti#[ni] 
+
+278. *kohti#[ni] minun Seine virtaa 
+
+279. *minun kohti#[ni] Seine virtaa 
+
+280.  Pekka asuu lähellä minua 
+
+	[<φ Pekka>:1 [T [<__>:1 [asuu [lähellä [D minä]]]]]]
+
+281.  Pekka asuu minua lähellä 
+
+	[<φ Pekka>:1 [T [<__>:1 [asuu [[D minä]:2 [lähellä __:2]]]]]]
+
+282.  lähellä minua Pekka asuu 
+
+	[<lähellä [D minä]>:1 [<φ Pekka>:2 [T [<__>:2 [asuu <__>:1]]]]]
+
+283.  minua lähellä Pekka asuu 
+
+	[<[D minä]:2 [lähellä __:2]>:1 [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]
+
+284.  Pekka asuu minun lähellä#[ni] 
+
+	[<φ Pekka>:1 [T [<__>:1 [asuu <[D minä]:2 [lähellä __:2]>]]]]
+
+285.  minun lähellä#[ni] Pekka asuu 
+
+	[<[D minä]:2 [lähellä __:2]>:1 [<φ Pekka>:3 [T [<__>:3 [asuu <__>:1]]]]]
+
+286.  Pekka asuu lähellä 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [asuu lähellä]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [asuu <lähellä>]]]]
+
+287. *Pekka asuu lähellä#[ni] minua 
+
+288. *Pekka asuu minua lähellä#[ni] 
+
+289. *lähellä#[ni] minua Pekka asuu 
+
+290. *minua lähellä#[ni] Pekka asuu 
+
+291. *Pekka asuu lähellä#[ni] minun 
+
+292. *lähellä#[ni] minun Pekka asuu 
+
+293.  Seine virtaa yli sillan 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [yli [φ silta]]]]]]
+
+294.  Seine virtaa sillan yli 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [[φ silta]:2 [yli __:2]]]]]]
+
+295.  yli sillan Seine virtaa 
+
+	[<yli [φ silta]>:1 [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]
+
+296.  sillan yli Seine virtaa 
+
+	[<[φ silta]:2 [yli __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]
+
+297. *Seine virtaa yli#[ni] sillan 
+
+298. *Seine virtaa sillan yli#[ni] 
+
+299. *yli#[ni] sillan Seine virtaa 
+
+300. *sillan yli#[ni] Seine virtaa 
+
+301.  John lives near Paris 
+
+	a. [[D John]:1 [T [__:1 [live [near [D Paris]]]]]]
+
+	b. [[[D John]:1 [T [__:1 live]]] <near [D Paris]>]
+
+302.  Paris near John lives 
+
+	[[D [Paris [near [D John]]]]:1 [T [__:1 live]]]
+
+303. *John lives Paris near 
+
+304. *near Paris John lives 
+
+305. *John lives near#[3sg] Paris 
+
+306. *John lives Paris near#[3sg] 
+
+307. *near#[3sg] Paris John lives 
+
+308. *Paris near#[3sg] John lives 
+
+309.  Giuseppe vive vicino a Parigi 
+
+	a. [[D Giuseppe]:1 [T [__:1 [vive [vicino [a [D Parigi]]]]]]]
+
+	b. [[[D Giuseppe]:1 [T [__:1 vive]]] <vicino [a [D Parigi]]>]
+
+310.  Giuseppe vive vicino a cosa 
+
+	a. [[D Giuseppe]:1 [T [__:1 [vive [vicino [a [D cosa]]]]]]]
+
+	b. [[[D Giuseppe]:1 [T [__:1 vive]]] <vicino [a [D cosa]]>]
+
+311.  vicino a cosa Giuseppe vive 
+
+	[[vicino [a [D cosa]]]:1 [C [[D Giuseppe]:2 [[T [__:2 vive]] <__>:1]]]]
+
+312. *Giuseppe vive vicino Parigi a 
+
+313. *Giuseppe vive a Parigi vicino 
+
+314. *Giuseppe vive Parigi a vicino 
+
+315. *Giuseppe vive Parigi a#[3sg] vicino 
+
+316. *vicino cosa a Giuseppe vive 
+
+317. *a cosa vicino Giuseppe vive 
+
+318. *cose a vicino Giuseppe vive 
+
+319.  én' mellett#[+em] 
+
+	[[D én]:1 [mellett __:1]]
+
+320.  mi' mellett#[+ünk] 
+
+	[[D mi]:1 [mellett __:1]]
+
+321.  út nem vezet át az erdőn 
+
+	[<D út>:1 [nem [T [<__>:1 [vezet [át [az erdőn]]]]]]]
+
+322.  út nem vezet az erdőn át 
+
+	a. [<D út>:1 [nem [T [<__>:1 [vezet [[az erdőn]:2 [át __:2]]]]]]]
+
+	b. [<D út>:1 [nem [[T [<__>:1 vezet]] <[az erdőn]:2 [át __:2]>]]]
+
+323.  melyik erdőn át út nem vezet 
+
+	[[[D erdőn]:2 [át __:2]]:1 [C [<D út>:3 [nem [T [<__>:3 [vezet __:1]]]]]]]
+
+324.  át melyik erdőn út nem vezet 
+
+	[[át [D erdőn]]:1 [C [<D út>:2 [nem [T [<__>:2 [vezet __:1]]]]]]]
+
+325. *mellett#[+em] én 
+
+326. *mellett#[+ünk] mi 
+
+327.  Pekka lähti tehdessä#[An] taloa 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <essa [v [teke- [φ talo]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <essa [v [teke- [φ talo]]]>]
+
+328.  Pekka lähti taloa tehdessä#[An] 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <<φ talo>:2 [essa [v [<__>:2 teke-]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <<φ talo>:2 [essa [v [<__>:2 teke-]]]>]
+
+329.  Pekka lähti tehdessä#[An] mitä 
+
+	[[<φ Pekka>:1 [T [<__>:1 lähte-]]] <essa [v [teke- [D mikä]]]>]
+
+330.  mitä_DP tehdessä#[An] Pekka lähti 
+
+	[[<D mikä>:2 [essa [v [<__>:2 teke-]]]]:1 [C [<φ Pekka>:3 [[T [<__>:3 lähte-]] <__>:1]]]]
+
+331.  Pekka lähti tehdessä taloa 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <essa [v [teke- [φ talo]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <essa [v [teke- [φ talo]]]>]
+
+332.  Pekka lähti taloa tehdessä 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <<φ talo>:2 [essa [v [<__>:2 teke-]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <<φ talo>:2 [essa [v [<__>:2 teke-]]]>]
+
+333.  Pekka lähti tehdessä mitä 
+
+	[[<φ Pekka>:1 [T [<__>:1 lähte-]]] <essa [v [teke- [D mikä]]]>]
+
+334.  mitä_DP tehdessä Pekka lähti 
+
+	[[<D mikä>:2 [essa [v [<__>:2 teke-]]]]:1 [C [<φ Pekka>:3 [[T [<__>:3 lähte-]] <__>:1]]]]
+
+335.  Pekka lähti Merjan_gen tehdessä taloa 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <[φ Merja]:2 [essa [__:2 [v [teke- [φ talo]]]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <[φ Merja]:2 [essa [__:2 [v [teke- [φ talo]]]]]>]
+
+336.  Pekka lähti Merjan_gen tehdessä mitä 
+
+	[[<φ Pekka>:1 [T [<__>:1 lähte-]]] <[φ Merja]:2 [essa [__:2 [v [teke- [D mikä]]]]]>]
+
+337.  Pekka lähti tehtyä#[An] taloa 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <tua [v [teke- [φ talo]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <tua [v [teke- [φ talo]]]>]
+
+338.  Pekka lähti taloa tehtyä#[An] 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <<φ talo>:2 [tua [v [<__>:2 teke-]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <<φ talo>:2 [tua [v [<__>:2 teke-]]]>]
+
+339.  Pekka lähti tehtyä#[An] mitä 
+
+	[[<φ Pekka>:1 [T [<__>:1 lähte-]]] <tua [v [teke- [D mikä]]]>]
+
+340.  mitä tehtyä#[An] Pekka lähti 
+
+	[[<D mikä>:2 [tua [v [<__>:2 teke-]]]]:1 [C [<φ Pekka>:3 [[T [<__>:3 lähte-]] <__>:1]]]]
+
+341. *Pekka lähti tehtyä taloa 
+
+342. *Pekka lähti taloa tehtyä 
+
+343. *Pekka lähti tehtyä mitä 
+
+344. *mitä tehtyä Pekka lähti 
+
+345.  Pekka lähti Merjan_gen tehtyä taloa 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <[φ Merja]:2 [tua [__:2 [v [teke- [φ talo]]]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <[φ Merja]:2 [tua [__:2 [v [teke- [φ talo]]]]]>]
+
+346.  Pekka lähti Merjan_gen tehtyä mitä 
+
+	[[<φ Pekka>:1 [T [<__>:1 lähte-]]] <[φ Merja]:2 [tua [__:2 [v [teke- [D mikä]]]]]>]
+
+347.  Pekka lähti tehdäkse#[An] taloa 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <kse [v [teke- [φ talo]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <kse [v [teke- [φ talo]]]>]
+
+348.  Pekka lähti taloa tehdäkse#[An] 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <<φ talo>:2 [kse [v [<__>:2 teke-]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <<φ talo>:2 [kse [v [<__>:2 teke-]]]>]
+
+349.  Pekka lähti tehdäkse#[An] mitä 
+
+	[[<φ Pekka>:1 [T [<__>:1 lähte-]]] <kse [v [teke- [D mikä]]]>]
+
+350.  mitä tehdäkse#[An] Pekka lähti 
+
+	[[<D mikä>:2 [kse [v [<__>:2 teke-]]]]:1 [C [<φ Pekka>:3 [[T [<__>:3 lähte-]] <__>:1]]]]
+
+351. *Pekka lähti Merjan_gen tehdäkse#[An] taloa 
+
+352. *Pekka lähti Merjan_gen tehdäkse#[An] mitä 
+
+353.  Pekka lähti tekemättä taloa 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <matta [v [teke- [φ talo]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <matta [v [teke- [φ talo]]]>]
+
+354.  Pekka lähti taloa tekemättä 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <<φ talo>:2 [matta [v [<__>:2 teke-]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <<φ talo>:2 [matta [v [<__>:2 teke-]]]>]
+
+355.  Pekka lähti tekemättä mitä 
+
+	[[<φ Pekka>:1 [T [<__>:1 lähte-]]] <matta [v [teke- [D mikä]]]>]
+
+356.  mitä_DP tekemättä Pekka lähti 
+
+	[[<D mikä>:2 [matta [v [<__>:2 teke-]]]]:1 [C [<φ Pekka>:3 [[T [<__>:3 lähte-]] <__>:1]]]]
+
+357. *Pekka lähti tekemättä#[An] taloa 
+
+358. *Pekka lähti taloa tekemättä#[An] 
+
+359. *Pekka lähti tekemättä#[An] mitä 
+
+360. *mitä_DP tekemättä#[An] Pekka lähti 
+
+361. *Pekka lähti Merjan_gen tekemättä taloa 
+
+362. *Pekka lähti Merjan_gen tekemättä mitä 
+
+363.  Pekka lähti minun tehtyä taloa 
+
+	a. [[φ Pekka]:1 [[T [__:1 lähte-]] <[D minä]:2 [tua [__:2 [v [teke- [φ talo]]]]]>]]
+
+	b. [[<φ Pekka>:1 [T [<__>:1 lähte-]]] <[D minä]:2 [tua [__:2 [v [teke- [φ talo]]]]]>]
+
+364.  minun tehtyä taloa Pekka lähti 
+
+	[[<[D minä]:2 [tua [__:2 [v [teke- [φ talo]]]]]>:1 [<φ Pekka>:3 [T [<__>:3 lähte-]]]] <__>:1]
+
+365.  minun tehtyä mitä Pekka lähti 
+
+	[[[D minä]:2 [tua [__:2 [v [teke- [D mikä]]]]]]:1 [C [<φ Pekka>:3 [[T [<__>:3 lähte-]] <__>:1]]]]
+
+366. *mitä minun tehtyä Pekka lähti 
+
+367. *Pekka lähti taloa minun tehtyä 
+
+368. *Pekka lähti minun taloa tehtyä 
+
+369.  Seine reaches the ocean by flowing towards Paris 
+
+	[[[D Seine]:1 [T [__:1 [v [reach [the ocean]]]]]] <by [ing [flow [towards [D Paris]]]]>]
+
+370.  Seine reaches the ocean by flowing towards what 
+
+	[[[D Seine]:1 [T [__:1 [v [reach [the ocean]]]]]] <by [ing [flow [towards [D what]]]]>]
+
+371.  by flowing towards what Seine reaches the ocean 
+
+	[[by [ing [flow [towards [D what]]]]]:1 [C [[D Seine]:2 [[T [__:2 [v [reach [the ocean]]]]] <__>:1]]]]
+
+372. *Seine reaches the ocean Paris by flowing#[3sg] towards 
+
+373. *Seine reaches the ocean Paris by flowing towards 
+
+374. *Seine reaches the ocean towards Paris by flowing 
+
+375. *by flowing towards Paris Seine reaches the ocean 
+
+376. *Paris by flowing towards Seine reaches the ocean 
+
+377. *towards Paris by flowing Seine reaches the ocean 
+
+378. *Seine reaches the ocean what by flowing towards 
+
+379. *Seine reaches the ocean towards what by flowing 
+
+380. *what by flowing towards Seine reaches the ocean 
+
+381. *towards what by flowing Seine reaches the ocean 
+
+382. *what towards by flowing Seine reaches the ocean 
+
+383.  Giuseppe ha attirato attenzione per aver vinto Luisa 
+
+	[[D Giuseppe]:1 [T [__:1 [v [attirato [D [attenzione [per [aver [vinto [D Luisa]]]]]]]]]]]
+
+384.  per aver vinto cosa Giuseppe ha attirato attenzione 
+
+	[[per [aver [vinto [D cosa]]]]:1 [C [[D Giuseppe]:2 [T [__:2 [v [attirato [D [attenzione __:1]]]]]]]]]
+
+385. *cosa per aver vinto Giuseppe ha attirato attenzione 
+
+386.  kello hävisi 
+
+	[[φ kello]:1 [T [__:1 häviä-]]]
+
+387.  Merjan_gen kello hävisi 
+
+	[[[φ Merja]:2 [φ [__:2 kello]]]:1 [T [__:1 häviä-]]]
+
+388.  se Merjan_gen kello hävisi 
+
+	a. [<se [[φ Merja]:2 [φ [__:2 kello]]]>:1 [T [<__>:1 häviä-]]]
+
+	b. [[se [[φ Merja]:2 [φ [__:2 kello]]]]:1 [T [__:1 häviä-]]]
+
+389.  minun kello#[ni] hävisi 
+
+	[[[D minä]:2 [φ [__:2 kello]]]:1 [T [__:1 häviä-]]]
+
+390.  sinun kello#[si] hävisi 
+
+	[[[D sinä]:2 [φ [__:2 kello]]]:1 [T [__:1 häviä-]]]
+
+391.  kenen kello hävisi 
+
+	a. [[[D mikä]:2 [φ [__:2 kello]]]:1 [C.T [__:1 häviä-]]]
+
+	b. [[[D kuka]:2 [φ [__:2 kello]]]:1 [C.T [__:1 häviä-]]]
+
+392.  se kenen kello hävisi 
+
+	a. [[se [[D mikä]:2 [φ [__:2 kello]]]]:1 [C.T [__:1 häviä-]]]
+
+	b. [[se [[D kuka]:2 [φ [__:2 kello]]]]:1 [C.T [__:1 häviä-]]]
+
+	c. [[se [[D mikä]:2 [φ [__:2 kello]]]]:1 [C.T [__:1 häviä-]]]
+
+	d. [[se [[D kuka]:2 [φ [__:2 kello]]]]:1 [C.T [__:1 häviä-]]]
+
+393. *sinun kello#[ni] hävisi 
+
+394. *kello Merjan_gen hävisi 
+
+395. *Merjan_gen se kello hävisi 
+
+396. *Merjan_gen kello se hävisi 
+
+397.  az én' diákjaim vezet 
+
+	[[az [[D én]:2 [φ [__:2 diák]]]]:1 [T [__:1 vezet]]]
+
+398.  kinek a2 könyve vezet 
+
+	a. [[[D ki]:2 [a [φ [__:2 könyv]]]]:1 [C.T [__:1 vezet]]]
+
+	b. [[[D ki]:2 [a [φ [__:2 könyv]]]]:1 [C.T [__:1 vezet]]]
+
+	c. [[[D ki]:2 [a [φ [__:2 könyv]]]]:1 [C.T [__:1 vezet]]]
+
+	d. [[[D ki]:2 [a [φ [__:2 könyv]]]]:1 [C.T [__:1 vezet]]]
+
+399.  a ki könyve vezet 
+
+	a. [[a [D ki]]:1 [C [[φ könyv]:2 [T [__:2 [vezet __:1]]]]]]
+
+	b. [[a [D ki]]:1 [C [[φ könyv]:2 [T [__:2 [vezet __:1]]]]]]
+
+400. *az mi_HU diákjaim 
+
+401.  John admires he='s sister 
+
+	[[D John]:1 [T [__:1 [v [admire [D('s) [[D he] sister]]]]]]]
+
+402.  the sister admires him 
+
+	[[the sister]:1 [T [__:1 [v [admire [D he]]]]]]
+
+403.  the little sister admires him 
+
+	a. [[the [[A little-] sister]]:1 [T [__:1 [v [admire [D he]]]]]]
+
+	b. [[the [A [little- sister]]]:1 [T [__:1 [v [admire [D he]]]]]]
+
+404.  John='s sister admires him 
+
+	[[D('s) [[D John] sister]]:1 [T [__:1 [v [admire [D he]]]]]]
+
+405.  who='s sister admires him 
+
+	[[D('s) [[D who] sister]]:1 [C.T [__:1 [v [admire [D he]]]]]]
+
+406.  se' minun tekemä#[ni] kello hävisi 
+
+	[<se [[[D minä]:2 [ma [__:2 [v teke-]]]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+
+407.  kenen tekemä kello hävisi 
+
+	a. [[[[D mikä]:2 [ma [__:2 [v teke-]]]] [φ kello]]:1 [C.T [__:1 häviä-]]]
+
+	b. [[[[D kuka]:2 [ma [__:2 [v teke-]]]] [φ kello]]:1 [C.T [__:1 häviä-]]]
+
+408.  se' kenen tekemä kello hävisi 
+
+	a. [[se [[[D mikä]:2 [ma [__:2 [v teke-]]]] [φ kello]]]:1 [C.T [__:1 häviä-]]]
+
+	b. [[se [[[D kuka]:2 [ma [__:2 [v teke-]]]] [φ kello]]]:1 [C.T [__:1 häviä-]]]
+
+409.  a2 Mari által adott ajándék vezet 
+
+	[[a [[<[D Mari]:3 [által __:3]>:2 [ma [v [adott <__>:2]]]] ajándék]]:1 [T [__:1 vezet]]]
+
+410.  a2 Mari által Jánosnak adott ajándék vezet 
+
+	[[a [[<[D Mari]:3 [által __:3]>:2 [[D János]:4 [ma [__:4 [v [adott <__>:2]]]]]] ajándék]]:1 [T [__:1 vezet]]]
+
+411.  a2 Jánosnak Mari által adott ajándék vezet 
+
+	[[a [[[D János]:2 [<[D Mari]:4 [által __:4]>:3 [ma [__:2 [v [adott <__>:3]]]]]] ajándék]]:1 [T [__:1 vezet]]]
+
+412.  a2 ki által adott ajándék vezet 
+
+	a. [[a [[<[D ki]:3 [által __:3]>:2 [ma [v [adott <__>:2]]]] ajándék]]:1 [C.T [__:1 vezet]]]
+
+	b. [[a [[<[D ki]:3 [által __:3]>:2 [ma [v [adott <__>:2]]]] ajándék]]:1 [C.T [__:1 vezet]]]
+
+413.  a2 ki által Jánosnak adott ajándék vezet 
+
+	a. [[a [[<[D ki]:3 [által __:3]>:2 [[D János]:4 [ma [__:4 [v [adott <__>:2]]]]]] ajándék]]:1 [C.T [__:1 vezet]]]
+
+	b. [[a [[<[D ki]:3 [által __:3]>:2 [[D János]:4 [ma [__:4 [v [adott <__>:2]]]]]] ajándék]]:1 [C.T [__:1 vezet]]]
+
+414.  a2 Mari által kinek adott ajándék vezet 
+
+	a. [[a [[<[D Mari]:3 [által __:3]>:2 [[D ki]:4 [ma [__:4 [v [adott <__>:2]]]]]] ajándék]]:1 [C.T [__:1 vezet]]]
+
+	b. [[a [[<[D Mari]:3 [által __:3]>:2 [[D ki]:4 [ma [__:4 [v [adott <__>:2]]]]]] ajándék]]:1 [C.T [__:1 vezet]]]
+
+	c. [[a [[<[D Mari]:3 [által __:3]>:2 [[D ki]:4 [ma [__:4 [v [adott <__>:2]]]]]] ajándék]]:1 [C.T [__:1 vezet]]]
+
+	d. [[a [[<[D Mari]:3 [által __:3]>:2 [[D ki]:4 [ma [__:4 [v [adott <__>:2]]]]]] ajándék]]:1 [C.T [__:1 vezet]]]
+
+415. *a2 kinek Mari által adott ajándék vezet 
+
+416.  Pekka antoi kirjan Merjalle 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [antaa [[φ kirja] <P(-lle) [φ Merja]>]]]]]]
+
+417.  kuka antoi kirjan Merjalle 
+
+	[[D kuka]:1 [C.T [__:1 [v [antaa [[φ kirja] <P(-lle) [φ Merja]>]]]]]]
+
+418.  mitä Pekka antoi Merjalle 
+
+	[[D mikä]:1 [C [<φ Pekka>:2 [T [<__>:2 [v [__:1 [antaa <P(-lle) [φ Merja]>]]]]]]]]
+
+419.  Merjalle antoi Pekka kirjan 
+
+	[<P(-lle) [φ Merja]>:1 [T [<__>:2 [v [[antaa [<φ Pekka>:2 [φ kirja]]] <__>:1]]]]]
+
+420.  Merjalle antoi kirjan Pekka 
+
+	a. [<P(-lle) [φ Merja]>:1 [T [<__>:2 [v [[antaa [φ [kirja <φ Pekka>:2]]] <__>:1]]]]]
+
+	b. [[<P(-lle) [φ Merja]>:1 [T [<__>:2 [v [[antaa [φ kirja]] <__>:1]]]]] <φ Pekka>:2]
+
+421.  kirjan antoi Merjalle Pekka 
+
+	[[<φ kirja>:1 [T [<__>:2 [v [<__>:1 [antaa <P(-lle) [φ Merja]>]]]]]] <φ Pekka>:2]
+
+422.  minun täytyy ihailla Merjaa 
+
+	[[D minä]:1 [T [__:1 [täydy- [__:1 [(t)A [__:1 [v [ihaile- [φ Merja]]]]]]]]]]
+
+423.  minun täytyy löytää hänet 
+
+	a. [[D minä]:1 [T [__:1 [täydy- [__:1 [(t)A [__:1 [v [löytä- [D hän]]]]]]]]]]
+
+	b. [[D minä]:1 [T [__:1 [täydy- [[__:1 [(t)A [__:1 [v [<__>:2 löytä-]]]]] <D hän>:2]]]]]
+
+	c. [[D minä]:1 [T [__:1 [täydy- [__:1 [(t)A [__:1 [v [löytä- [D hän]]]]]]]]]]
+
+	d. [[D minä]:1 [T [__:1 [täydy- [[__:1 [(t)A [__:1 [v [<__>:2 löytä-]]]]] <D hän>:2]]]]]
+
+424. *Merjaa täytyy ihailla minun 
+
+425. *hänet täytyy löytää minun 
+
+426.  Pekka uskoi Merjan_gen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [usko- [[φ Merja]:2 [vAn [__:2 lähte-]]]]]]]
+
+427. *Pekka uskoi lähtevän Merjan_gen 
+
+428.  János#top keresi Marit 
+
+	a. [[D János]:1 [C.T [__:1 [v [keresi [D Mari]]]]]]
+
+	b. [[D János]:1 [[C.T [__:1 [v [<__>:2 keresi]]]] <D Mari>:2]]
+
+429.  Marit#top keresi János 
+
+	a. [[D Mari]:1 [C.T [<__>:2 [v [[keresi __:1] <D János>:2]]]]]
+
+	b. [[D Mari]:1 [[C.T [<__>:2 [v [keresi __:1]]]] <D János>:2]]
+
+	c. [[[D Mari]:1 [C.T [<__>:2 [v [keresi __:1]]]]] <D János>:2]
+
+430.  János#top Marit keresi 
+
+	[[D János]:1 [C [<D Mari>:2 [T [__:1 [v [<__>:2 keresi]]]]]]]
+
+431.  János#top Marit#top keresi 
+
+	[[D János]:1 [C [[D Mari]:2 [C.T [__:1 [v [keresi __:2]]]]]]]
+
+432.  Marit#top János#top keresi 
+
+	[[D Mari]:1 [C [[D János]:2 [C.T [__:2 [v [keresi __:1]]]]]]]
+
+433.  John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+434. *John Mary admires 
+
+435. *admires John Mary 
+
+436. ?a_ b_ c_ d_ 
+
+	a. [a [b [c d]]]
+
+	b. [a [[b c] d]]
+
+	c. [[a [b c]] d]
+
+	d. [[[a b] c] d]
+
+	e. [[a b] [c d]]
+
+437. ?a_ b_ c_edge d_ 
+
+	a. [[[a b] c] d]
+
+	b. [[a b] [c d]]
+
+438. ?a_ b_ c_noedge d_ 
+
+	a. [a [b [c d]]]
+
+	b. [a [[b c] d]]
+
+	c. [[a [b c]] d]
+
+439.  a_2pl b_ c_edge d_ 
+
+	a. [[[a b]:1 [c __:1]] d]
+
+	b. [[a b]:1 [c [__:1 d]]]
+
+440.  a_ b_ c_phiedge#AGR d_ 
+
+	a. [a [b [c d]]]
+
+	b. [a [[b c] d]]
+
+	c. [[a [b c]] d]
+
+	d. [[[a b] c] d]
+
+	e. [[a b] [c d]]
+
+441.  a_2pl b_ c_phiedge#AGR d_ 
+
+	a. [[a [b c]] d]
+
+	b. [a [b [c d]]]
+
+	c. [a [[b c] d]]
+
+442.  a_op b_ c_edge d_ 
+
+	a. [[[a b] C.c] d]
+
+	b. [[a b]:1 [C.c [__:1 d]]]
+
+443. ?a_ b* c_ d_ 
+
+	a. [a [z [y [x [c d]]]]]
+
+	b. [a [[z [y [x c]]] d]]
+
+	c. [[a [z [y [x c]]]] d]
+
+	d. [a [[[z [y x]] c] d]]
+
+	e. [a [[z [y x]] [c d]]]
+
+	f. [[a [[z [y x]] c]] d]
+
+	g. [[[a [z [y x]]] c] d]
+
+	h. [[a [z [y x]]] [c d]]
+
+444.  John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+445.  minä ihailen Merjaa 
+
+	a. [<D minä>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	b. [[D minä]:1 [[T [__:1 [v [<__>:2 ihaile-]]]] <φ Merja>:2]]
+
+446.  ihailen Merjaa 
+
+	a. [T [v [ihaile- [φ Merja]]]]
+
+	b. [[T [v [<__>:1 ihaile-]]] <φ Merja>:1]
+
+447.  who does John admire 
+
+	[[D who]:1 [C.does [[D John] [v [admire __:1]]]]]
+
+448.  mitä_DP kohti Seine virtaa 
+
+	[[[D mikä]:2 [kohti __:2]]:1 [C [<D Seine>:3 [T [<__>:3 [virtaa- <__>:1]]]]]]
+
+449.  kohti mitä_DP Seine virtaa 
+
+	[[kohti [D mikä]]:1 [C [<D Seine>:2 [T [<__>:2 [virtaa- <__>:1]]]]]]
+
+450.  mitä_DP kohti virtaamalla Seine saavuttaa meren 
+
+	[[<[D mikä]:3 [kohti __:3]>:2 [malla [virtaa- <__>:2]]]:1 [C [<D Seine>:4 [[T [<__>:4 [v [saavutta- [φ meri]]]]] <__>:1]]]]
+
+451.  who admires Mary 
+
+	[[D who]:1 [C.T [__:1 [v [admire [D Mary]]]]]]
+
+452.  John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+453.  who does John admire 
+
+	[[D who]:1 [C.does [[D John] [v [admire __:1]]]]]
+
+454.  does_C John admire Mary 
+
+	[C [[D John]:1 [does [__:1 [v [admire [D Mary]]]]]]]
+
+455. *admires Mary John 
+
+456. *ihailee Merjaa 
+
+457. *ihailee Pekka Merjaa 
+
+458.  ihailen Merjaa 
+
+	a. [T [v [ihaile- [φ Merja]]]]
+
+	b. [[T [v [<__>:1 ihaile-]]] <φ Merja>:1]
+
+459.  Merjaa ihailee Pekka 
+
+	a. [<φ Merja>:1 [T [<__>:2 [v [<__>:1 [ihaile- <φ Pekka>:2]]]]]]
+
+	b. [[φ Merja]:1 [[T [<__>:2 [v [__:1 ihaile-]]]] <φ Pekka>:2]]
+
+	c. [[<φ Merja>:1 [T [<__>:2 [v [<__>:1 ihaile-]]]]] <φ Pekka>:2]
+
+460.  Pekka sanoi että ihailee Merjaa 
+
+	a. [<φ Pekka>:1 [T [<__>:1 [sano- [että [T [v [ihaile- [φ Merja]]]]]]]]]
+
+	b. [<φ Pekka>:1 [T [<__>:1 [sano- [että [[T [v [<__>:2 ihaile-]]] <φ Merja>:2]]]]]]
+
+461.  adoro Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+462.  adori Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+463.  adora Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+464.  adora Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+465.  adoriamo Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+466.  adorate Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+467.  adorano Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+468.  Pekka asuu lähellä#[ni] 
+
+	[<φ Pekka>:1 [T [<__>:1 [asuu <lähellä>]]]]
+

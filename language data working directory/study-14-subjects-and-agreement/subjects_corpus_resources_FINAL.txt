@@ -1,0 +1,469 @@
+Number,Sentence,Study_ID,Group,Total Time,Garden Paths,Merge,Head Chain,A-Chain,Ā-Chain,Adjunct Chain,Phase Transfers,Mean time per word,Merge-1,Execution time (ms)	
+1,Pekka asuu lähellä Pariisia ,1,,1080,0,6,5,0,0,5,29,270,329,109
+2,Pekka asuu Pariisia lähellä ,1,,1085,0,6,5,1,0,5,33,271,673,125
+3,lähellä Pariisia Pekka asuu ,1,,1835,7,24,8,10,0,5,101,458,416,343
+4,Pariisia lähellä Pekka asuu ,1,,1480,4,16,1,10,0,5,87,370,602,265
+5,Pekka asuu minun lähellä ,1,,1090,4,10,10,4,0,8,62,272,272,218
+6,Pekka asuu minun lähellä#[ni] ,1,,1210,4,10,10,4,0,8,63,302,272,234
+7,minun lähellä Pekka asuu ,1,,3165,13,42,11,20,0,10,157,791,202,625
+8,minun lähellä#[ni] Pekka asuu ,1,,3285,13,42,11,20,0,10,158,821,202,656
+9,Seine virtaa kohti Pariisia ,1,,895,0,6,3,0,0,4,23,223,102,62
+10,Seine virtaa Pariisia kohti ,1,,915,0,6,5,1,0,5,33,228,413,93
+11,kohti Pariisia Seine virtaa ,1,,1920,7,24,8,12,0,4,92,480,249,218
+12,Pariisia kohti Seine virtaa ,1,,1365,3,14,1,10,0,4,70,341,274,234
+13,Pekka juoksee yli sillan ,1,,1030,0,6,5,0,0,5,29,257,97,125
+14,Pekka juoksee sillan yli ,1,,1035,0,6,5,1,0,5,33,258,174,187
+15,yli sillan Pekka juoksee ,1,,2055,7,24,8,10,0,5,80,513,103,359
+16,sillan yli Pekka juoksee ,1,,1580,4,16,1,10,0,5,66,395,135,265
+17,Pekka asuu lähellä minun ,1,,
+18,Pekka asuu lähellä#[ni] minun ,1,,
+19,lähellä minun Pekka asuu ,1,,
+20,lähellä#[ni] minun Pekka asuu ,1,,
+21,Pekka juoksee yli siltaa ,1,,1030,0,6,5,0,0,5,29,257,119,109
+22,Pekka juoksee siltaa yli ,1,,1035,0,6,5,1,0,5,33,258,220,125
+23,yli siltaa Pekka juoksee ,1,,2055,7,24,8,10,0,5,101,513,124,453
+24,siltaa yli Pekka juoksee ,1,,1580,4,16,1,10,0,5,87,395,166,281
+25,John lives near Paris ,1,,625,0,6,3,4,0,0,7,156,42,46
+26,Paris near John lives ,1,,1185,3,15,5,3,0,0,19,296,44,93
+27,John lives Paris near ,1,,
+28,near Paris John lives ,1,,
+29,Seine saavuttaa meren virtaamalla kohti Pariisia ,1,,4125,14,38,70,15,0,24,402,687,2526,1031
+30,Seine saavuttaa meren virtaamalla Pariisia kohti ,1,,2100,4,18,48,17,0,15,179,350,6436,500
+31,Seine saavuttaa meren kohti Pariisia virtaamalla ,1,,4410,16,50,75,32,0,31,429,735,2825,1234
+32,Seine saavuttaa meren Pariisia kohti virtaamalla ,1,,2005,3,17,28,18,0,10,159,334,4469,468
+33,virtaamalla kohti Pariisia Seine saavuttaa meren ,1,,10550,40,133,104,20,0,57,889,1758,4243,2906
+34,virtaamalla Pariisia kohti Seine saavuttaa meren ,1,,6785,21,78,56,25,0,44,574,1130,4951,1828
+35,kohti Pariisia virtaamalla Seine saavuttaa meren ,1,,21790,82,276,166,50,0,130,2757,3631,6495,7546
+36,Pariisia kohti virtaamalla Seine saavuttaa meren ,1,,3015,4,27,21,3,0,20,192,502,3924,562
+37,Seine saavuttaa meren virtaamalla Pariisin lähellä ,1,,2560,12,26,91,31,0,30,351,426,9972,1578
+38,Seine saavuttaa meren Pariisin lähellä virtaamalla ,1,,4410,20,56,71,50,0,25,352,735,7765,1406
+39,virtaamalla Pariisin lähellä Seine saavuttaa meren ,1,,18660,64,224,188,83,0,75,1314,3110,9937,5937
+40,Pariisin lähellä virtaamalla Seine saavuttaa meren ,1,,35725,130,447,260,115,0,169,3021,5954,11966,9171
+41,Seine saavuttaa meren virtaamalla ali sillan ,1,,3925,11,39,76,13,0,21,327,654,2124,1109
+42,Seine saavuttaa meren virtaamalla sillan ali ,1,,2155,8,23,58,16,0,30,338,359,3044,906
+43,ali sillan Seine saavuttaa meren virtaamalla ,1,,15510,68,212,222,95,0,55,1520,2585,2144,5437
+44,sillan ali Seine saavuttaa meren virtaamalla ,1,,7005,24,84,98,58,0,45,723,1167,2699,2437
+45,Seine saavuttaa meren virtaamalla lähellä Pariisin ,1,,
+46,Seine saavuttaa meren lähellä Pariisin virtaamalla ,1,,
+47,virtaamalla lähellä Pariisin Seine saavuttaa meren ,1,,
+48,lähellä Pariisin virtaamalla Seine saavuttaa meren ,1,,
+49,Seine saavuttaa meren virtaamalla ali siltaa ,1,,
+50,Seine saavuttaa meren virtaamalla siltaa ali ,1,,
+51,ali siltaa virtaamalla Seine saavuttaa meren ,1,,
+52,siltaa ali virtaamalla Seine saavuttaa meren ,1,,
+53,John admires Mary ,1,,890,0,6,2,2,0,0,3,296,28,31
+54,ketä Pekka ihailee ,1,,900,1,9,0,0,2,1,18,300,66,93
+55,mitä Pekka ihailee ,1,,1920,4,20,1,1,3,1,30,640,88,156
+56,Pekka ihailee ketä ,1,,800,0,6,2,0,0,2,11,266,37,62
+57,Pekka ihailee mitä ,1,,1000,2,8,4,2,0,4,30,333,71,140
+58,kuka ihailee Merjaa ,1,,990,0,6,2,0,2,0,3,330,39,46
+59,who John admires ,1,,730,0,6,0,1,1,0,4,243,28,31
+60,who does John admire ,1,,975,2,12,1,1,5,0,12,243,210,78
+61,who admires Mary ,1,,860,0,6,2,0,2,0,3,286,33,31
+62,Pekka asuu lähellä mitä ,1,,1060,3,9,12,2,0,9,62,265,295,250
+63,Pekka asuu mitä lähellä ,1,,1345,8,17,11,8,1,10,123,336,358,390
+64,lähellä mitä Pekka asuu ,1,,2535,13,39,9,2,9,2,94,633,244,546
+65,mitä lähellä Pekka asuu ,1,,2770,10,34,3,0,10,5,119,692,372,531
+66,Pekka asuu kenen lähellä ,1,,970,4,10,10,2,2,8,62,242,537,218
+67,kenen lähellä Pekka asuu ,1,,3520,18,54,14,0,31,7,167,880,604,781
+68,Seine virtaa kohti mitä ,1,,825,1,7,6,0,0,6,35,206,114,109
+69,Seine virtaa mitä kohti ,1,,1055,4,13,8,4,1,9,87,263,225,203
+70,kohti mitä Seine virtaa ,1,,2370,10,33,9,2,8,2,86,592,139,281
+71,mitä kohti Seine virtaa ,1,,1970,7,25,2,0,11,4,93,492,171,328
+72,Pekka juoksee yli minkä ,1,,850,0,6,5,0,0,5,29,212,101,125
+73,Pekka juoksee minkä yli ,1,,855,0,6,5,0,1,5,33,213,173,125
+74,yli minkä Pekka juoksee ,1,,2050,9,28,8,1,15,2,68,512,126,343
+75,minkä yli Pekka juoksee ,1,,1485,5,18,1,0,13,3,62,371,164,265
+76,Pekka asuu lähellä kenen ,1,,
+77,lähellä kenen Pekka asuu ,1,,
+78,John lives near what ,1,,715,0,6,3,4,0,0,7,178,42,46
+79,near what John lives ,1,,1375,5,20,6,3,2,0,19,343,45,109
+80,John lives what near ,1,,
+81,what near John lives ,1,,
+82,Seine saavuttaa meren virtaamalla kohti mitä ,1,,3830,18,42,109,23,0,32,502,638,2972,1406
+83,Seine saavuttaa meren virtaamalla mitä kohti ,1,,2250,6,22,62,22,2,26,323,375,4272,796
+84,Seine saavuttaa meren kohti mitä virtaamalla ,1,,4730,18,57,86,33,0,28,393,788,1848,1406
+85,Seine saavuttaa meren mitä kohti virtaamalla ,1,,4625,17,57,77,25,19,27,404,770,2652,1484
+86,virtaamalla kohti mitä Seine saavuttaa meren ,1,,13475,53,174,134,10,55,20,725,2245,2266,3093
+87,virtaamalla mitä kohti Seine saavuttaa meren ,1,,12445,42,152,101,0,47,33,825,2074,2667,2921
+88,kohti mitä virtaamalla Seine saavuttaa meren ,1,,28100,105,358,214,8,80,88,1959,4683,2547,7500
+89,mitä_DP kohti virtaamalla Seine saavuttaa meren ,1,,5665,16,65,34,0,21,25,355,944,1550,1234
+90,Seine saavuttaa meren virtaamalla kenen lähellä ,1,,2005,8,21,61,15,4,24,255,334,9153,796
+91,Seine saavuttaa meren kenen lähellä virtaamalla ,1,,4205,20,56,71,20,27,25,331,700,7176,1187
+92,virtaamalla kenen lähellä* Seine saavuttaa meren ,1,,7270,25,89,60,0,43,18,429,1211,4916,2125
+93,kenen lähellä virtaamalla Seine saavuttaa meren ,1,,38495,146,493,273,3,135,149,2658,6415,11434,9906
+94,Seine saavuttaa meren virtaamalla ali minkä ,1,,2955,11,39,76,13,0,21,327,492,2052,1062
+95,Seine saavuttaa meren virtaamalla minkä ali ,1,,1595,2,15,33,9,2,12,129,265,2773,390
+96,ali minkä virtaamalla Seine saavuttaa meren ,1,,22925,92,302,168,4,84,81,1611,3820,2131,6000
+97,minkä ali virtaamalla Seine saavuttaa meren ,1,,5565,16,65,34,0,21,25,349,927,2859,1531
+98,Seine saavuttaa meren virtaamalla lähellä kenen ,1,,
+99,Seine saavuttaa meren lähellä kenen virtaamalla ,1,,
+100,virtaamalla lähellä kenen Seine saavuttaa meren ,1,,
+101,lähellä kenen virtaamalla Seine saavuttaa meren ,1,,
+102,mies joka lähtee lähti ,1,,2060,4,23,7,4,12,6,89,515,145,359
+103,mies joka lähtee ihailee Merjaa ,1,,5325,13,56,17,7,14,17,196,1065,386,968
+104,mies joka ihailee Merjaa lähti ,1,,1665,1,12,17,2,8,10,79,333,1047,312
+105,mies joka ihailee Merjaa ihailee Jukkaa ,1,,2710,3,22,32,2,12,22,151,451,4130,828
+106,mies jota Merja ihailee lähti ,1,,5585,11,67,24,12,30,24,314,1117,674,1390
+107,mies jota Merja ihailee ihailee Jukkaa ,1,,12390,37,155,48,22,44,57,672,2065,1437,3437
+108,kaupunki jota kohti Seine virtaa hävisi ,1,,11895,47,183,59,13,86,102,1245,1982,2064,3906
+109,kaupunki jonka lähellä Seine virtaa hävisi ,1,,27660,112,433,153,20,200,222,2533,4610,3576,9875
+110,kaupunki jonka ali Seine virtaa hävisi ,1,,12065,51,189,60,13,88,111,1244,2010,2109,4343
+111,kaupunki kohti jota Seine virtaa hävisi ,1,,
+112,kaupunki Seine virtaa jota kohti hävisi ,1,,
+113,kaupunki Seine virtaa kohti jota hävisi ,1,,
+114,kaupunki lähellä jonka Seine virtaa hävisi ,1,,
+115,kaupunki Seine virtaa jonka lähellä hävisi ,1,,
+116,kaupunki Seine virtaa lähellä jonka hävisi ,1,,
+117,kaupunki ali jonka Seine virtaa hävisi ,1,,
+118,kaupunki Seine virtaa ali jonka hävisi ,1,,
+119,kaupunki Seine virtaa jonka ali hävisi ,1,,
+120,the man who(rel) sleeps left ,1,,695,0,7,0,1,7,0,23,139,112,265
+121,the man who(rel) sleeps admires Mary ,1,,1210,0,10,2,1,7,0,23,201,248,406
+122,the man who(rel) John admires left ,1,,1040,0,10,0,9,7,0,23,173,292,421
+123,the man who(rel) John admires admires Mary ,1,,1555,0,13,2,9,7,0,23,222,466,562
+124,the man who(rel) John admires left ,1,,1040,0,10,0,9,7,0,23,173,292,421
+125,the man who(rel) John admires admires Mary ,1,,1555,0,13,2,9,7,0,23,222,466,578
+126,the city towards which(rel) Seine flows disappeared ,1,,9715,43,134,28,37,70,0,227,1387,858,4156
+127,the city which(rel) towards Seine flows disappeared ,1,,
+128,the city Seine flows towards which(rel) disappeared ,1,,
+129,the city Seine flows which(rel) towards disappeared ,1,,
+130,the city Seine flows towards which(rel) disappeared ,1,,
+131,the city Seine flows which(rel) towards disappeared ,1,,
+132,Pekka asuu lähellä Pariisia#[kO] ,1,,
+133,Pekka asuu Pariisia#[kO] lähellä ,1,,
+134,Seine virtaa kohti Pariisia#[kO] ,1,,
+135,Seine virtaa Pariisia#[kO] kohti ,1,,
+136,Pekka asuu Pariisin#[kO] lähellä ,1,,
+137,Pekka asuu lähellä Pariisin#[kO] ,1,,
+138,lähellä Pariisin#[kO] Pekka asuu ,1,,
+139,Pekka juoksee yli sillan#[kO] ,1,,
+140,Pekka juoksee sillan#[kO] yli ,1,,
+141,lähellä Pariisia#[kO] Pekka asuu ,1,,2045,9,28,8,1,8,2,74,511,388,1078
+142,Pariisia#[kO] lähellä Pekka asuu ,1,,1650,5,18,1,0,10,3,77,412,664,781
+143,Pariisia#[kO] kohti Seine virtaa ,1,,1575,4,16,1,0,11,3,70,393,296,562
+144,kohti Pariisia#[kO] Seine virtaa ,1,,2105,8,26,8,1,8,2,70,526,245,671
+145,Pariisin#[kO] lähellä Pekka asuu ,1,,3840,18,54,14,0,31,7,167,960,604,2390
+146,yli sillan#[kO] Pekka juoksee ,1,,2340,9,28,8,1,15,2,68,585,126,1359
+147,sillan#[kO] yli Pekka juoksee ,1,,1775,5,18,1,0,13,3,62,443,164,921
+148,Seine saavuttaa meren virtaamalla kohti Pariisia#[kO] ,1,,
+149,Seine saavuttaa meren virtaamalla Pariisia#[kO] kohti ,1,,
+150,Seine saavuttaa meren kohti Pariisia#[kO] virtaamalla ,1,,
+151,Seine saavuttaa meren Pariisia#[kO] kohti virtaamalla ,1,,
+152,Seine saavuttaa meren virtaamalla lähellä Pariisin#[kO] ,1,,
+153,Seine saavuttaa meren virtaamalla Pariisin#[kO] lähellä ,1,,
+154,Seine saavuttaa meren lähellä Pariisin#[kO] virtaamalla ,1,,
+155,Seine saavuttaa meren Pariisin#[kO] lähellä virtaamalla ,1,,
+156,virtaamalla lähellä Pariisin#[kO] Seine saavuttaa meren ,1,,
+157,lähellä Pariisin#[kO] virtaamalla Seine saavuttaa meren ,1,,
+158,Seine saavuttaa meren virtaamalla ali sillan#[kO] ,1,,
+159,Seine saavuttaa meren virtaamalla sillan#[kO] ali ,1,,
+160,virtaamalla kohti Pariisia#[kO] Seine saavuttaa meren ,1,,12135,49,157,115,5,55,19,631,2022,4027,7406
+161,virtaamalla Pariisia#[kO] kohti Seine saavuttaa meren ,1,,8210,28,98,64,0,47,19,466,1368,4635,5203
+162,kohti Pariisia#[kO] virtaamalla Seine saavuttaa meren ,1,,24535,94,314,179,4,80,78,1670,4089,4485,16468
+163,Pariisia#[kO] kohti virtaamalla Seine saavuttaa meren ,1,,5965,16,65,34,0,21,25,355,994,3100,3468
+164,virtaamalla Pariisin#[kO] lähellä Seine saavuttaa meren ,1,,22215,88,284,221,0,123,59,1376,3702,11067,16281
+165,Pariisin#[kO] lähellä virtaamalla Seine saavuttaa meren ,1,,38815,146,493,273,3,135,149,2658,6469,11434,26640
+166,ali sillan#[kO] virtaamalla Seine saavuttaa meren ,1,,23170,91,300,172,4,83,81,1611,3861,2130,17125
+167,sillan#[kO] ali virtaamalla Seine saavuttaa meren ,1,,5855,16,65,34,0,21,25,349,975,2859,3734
+168,Pekka asuu lähellä Pariisia#[foc] ,1,,1220,0,6,5,0,0,5,29,305,247,328
+169,Pekka asuu Pariisia#[foc] lähellä ,1,,1225,0,6,5,0,1,5,33,306,493,359
+170,Seine virtaa kohti Pariisia#[foc] ,1,,1035,0,6,3,0,0,4,23,258,100,203
+171,Seine virtaa Pariisia#[foc] kohti ,1,,1055,0,6,5,0,1,5,33,263,299,281
+172,Pekka asuu Pariisin#[foc] lähellä ,1,,1300,4,10,10,2,2,8,62,325,513,640
+173,Pekka juoksee yli sillan#[foc] ,1,,1150,0,6,5,0,0,5,29,287,101,328
+174,Pekka juoksee sillan#[foc] yli ,1,,1155,0,6,5,0,1,5,33,288,173,359
+175,lähellä Pariisia#[foc] Pekka asuu ,1,,2055,9,28,8,1,8,2,74,513,388,937
+176,Pariisia#[foc] lähellä Pekka asuu ,1,,1660,5,18,1,0,10,3,77,415,664,765
+177,Pariisia#[foc] kohti Seine virtaa ,1,,1585,4,16,1,0,11,3,70,396,296,562
+178,kohti Pariisia#[foc] Seine virtaa ,1,,2115,8,26,8,1,8,2,70,528,245,671
+179,Pariisin#[foc] lähellä Pekka asuu ,1,,3850,18,54,14,0,31,7,167,962,604,2187
+180,yli sillan#[foc] Pekka juoksee ,1,,2350,9,28,8,1,15,2,68,587,126,1046
+181,sillan#[foc] yli Pekka juoksee ,1,,1785,5,18,1,0,13,3,62,446,164,828
+182,Seine saavuttaa meren virtaamalla kohti Pariisia#[foc] ,1,,4795,14,38,70,13,0,20,380,799,2322,2968
+183,Seine saavuttaa meren virtaamalla Pariisia#[foc] kohti ,1,,2240,4,18,48,14,3,15,179,373,5086,1421
+184,Seine saavuttaa meren kohti Pariisia#[foc] virtaamalla ,1,,4660,16,50,75,26,0,31,421,776,2511,3468
+185,Seine saavuttaa meren Pariisia#[foc] kohti virtaamalla ,1,,2145,3,17,28,5,13,10,149,357,3885,1281
+186,Seine saavuttaa meren virtaamalla Pariisin#[foc] lähellä ,1,,2700,12,26,91,25,6,30,351,450,8860,2687
+187,Seine saavuttaa meren Pariisin#[foc] lähellä virtaamalla ,1,,4535,20,56,71,20,27,25,331,755,7095,3281
+188,Seine saavuttaa meren virtaamalla ali sillan#[foc] ,1,,4525,11,39,76,13,0,21,327,754,2102,2828
+189,Seine saavuttaa meren virtaamalla sillan#[foc] ali ,1,,2275,8,23,58,12,4,30,338,379,2877,2515
+190,virtaamalla kohti Pariisia#[foc] Seine saavuttaa meren ,1,,12145,49,157,115,5,55,19,631,2024,4027,7421
+191,virtaamalla Pariisia#[foc] kohti Seine saavuttaa meren ,1,,8220,28,98,64,0,47,19,466,1370,4635,5203
+192,kohti Pariisia#[foc] virtaamalla Seine saavuttaa meren ,1,,24545,94,314,179,4,80,78,1670,4090,4485,16562
+193,Pariisia#[foc] kohti virtaamalla Seine saavuttaa meren ,1,,5975,16,65,34,0,21,25,355,995,3100,3484
+194,virtaamalla Pariisin#[foc] lähellä Seine saavuttaa meren ,1,,22225,88,284,221,0,123,59,1376,3704,11067,16234
+195,Pariisin#[foc] lähellä virtaamalla Seine saavuttaa meren ,1,,38825,146,493,273,3,135,149,2658,6470,11434,26609
+196,ali sillan#[foc] virtaamalla Seine saavuttaa meren ,1,,23180,91,300,172,4,83,81,1611,3863,2130,17031
+197,sillan#[foc] ali virtaamalla Seine saavuttaa meren ,1,,5865,16,65,34,0,21,25,349,977,2859,3578
+198,Pekka asuu lähellä Pariisin#[foc] ,1,,
+199,lähellä Pariisin#[foc] Pekka asuu ,1,,
+200,Seine saavuttaa meren virtaamalla lähellä Pariisin#[foc] ,1,,
+201,Seine saavuttaa meren lähellä Pariisin#[foc]] virtaamalla ,1,,
+202,virtaamalla lähellä Pariisin#[foc] Seine saavuttaa meren ,1,,
+203,lähellä Pariisin#[foc] virtaamalla Seine saavuttaa meren ,1,,
+204,mitä#[kO] lähellä Pekka asuu ,1,,2860,10,34,3,0,10,5,119,715,372,1250
+205,mitä#[kO] kohti Seine virtaa ,1,,2060,7,25,2,0,11,4,93,515,171,750
+206,kenen#[kO] lähellä Pekka asuu ,1,,3620,18,54,14,0,31,7,167,905,604,2171
+207,minkä#[kO] yli Pekka juoksee ,1,,1585,5,18,1,0,13,3,62,396,164,765
+208,Pekka asuu lähellä mitä#[kO] ,1,,
+209,Pekka asuu mitä#[kO] lähellä ,1,,
+210,Seine virtaa kohti mitä#[kO] ,1,,
+211,Seine virtaa mitä#[kO] kohti ,1,,
+212,Pekka asuu lähellä kenen#[kO] ,1,,
+213,lähellä kenen#[kO] Pekka asuu ,1,,
+214,Pekka asuu kenen#[kO] lähellä ,1,,
+215,Pekka juoksee yli minkä#[kO] ,1,,
+216,Pekka juoksee minkä#[kO] yli ,1,,
+217,lähellä mitä#[kO] Pekka asuu ,1,,
+218,kohti mitä#[kO] Seine virtaa ,1,,
+219,yli minkä#[kO] Pekka juoksee ,1,,
+220,lähellä' minua ,1,,420,0,2,0,0,0,0,2,210,4,31
+221,minua lähellä' ,1,,425,0,2,0,1,0,0,4,212,14,46
+222,minun lähellä'#[ni] ,1,,575,2,4,1,2,0,0,5,287,10,62
+223,kohti' minua ,1,,400,0,2,0,0,0,0,2,200,2,31
+224,minua kohti' ,1,,405,0,2,0,1,0,0,4,202,7,46
+225,sillan yli' ,1,,385,0,2,0,1,0,0,2,192,5,31
+226,yli' sillan ,1,,380,0,2,0,0,0,0,2,190,2,31
+227,siltaa yli' ,1,,385,0,2,0,1,0,0,4,192,7,46
+228,yli' siltaa ,1,,380,0,2,0,0,0,0,2,190,2,31
+229,minun kohti' ,1,,
+230,lähellä' minun ,1,,
+231,lähellä'#[ni] minun ,1,,
+232,minun lähellä'#[ni] ,1,,575,2,4,1,2,0,0,5,287,10,78
+233,sinun lähellä'#[si] ,1,,575,2,4,1,2,0,0,5,287,10,78
+234,hänen lähellä'#[An] ,1,,565,2,4,1,2,0,0,5,282,10,62
+235,meidän lähellä'#[mme] ,1,,575,2,4,1,2,0,0,5,287,10,78
+236,teidän lähellä'#[nne] ,1,,575,2,4,1,2,0,0,5,287,10,62
+237,heidän lähellä'#[An] ,1,,595,2,4,1,2,0,0,5,297,10,62
+238,lähellä' minun ,1,,
+239,lähellä'#[ni] minun ,1,,
+240,kohti'#[ni] minua ,1,,
+241,minua kohti'#[ni] ,1,,
+242,kohti'#[ni] minun ,1,,
+243,minun kohti'#[ni] ,1,,
+244,minun lähellä'#[si] ,1,,
+245,sinun lähellä'#[ni] ,1,,
+246,hänen lähellä'#[ni] ,1,,
+247,meidän lähellä'#[ni] ,1,,
+248,teidän lähellä#[ni] ,1,,
+249,heidän lähellä'#[ni] ,1,,
+250,Pekka ihailee Merjaa ,1,,1100,0,6,2,0,0,2,11,366,45,156
+251,Pekka ihailen Merjaa ,1,,
+252,Pekka ihailet Merjaa ,1,,
+253,Pekka ihailemme Merjaa ,1,,
+254,Pekka ihailette Merjaa ,1,,
+255,Pekka ihailevat Merjaa ,1,,
+256,minun kello#[ni] hävisi ,1,,725,0,5,0,4,0,0,5,241,31,109
+257,sinun kello#[ni] hävisi ,1,,
+258,hänen kello#[ni] hävisi ,1,,
+259,meidän kello#[ni] hävisi ,1,,
+260,teidän kello#[ni] hävisi ,1,,
+261,heidän kello#[ni] hävisi ,1,,
+262,se' minun tekemä#[ni] kello hävisi ,1,,2110,8,29,12,13,0,2,44,422,148,859
+263,se' sinun tekemä#[ni] kello hävisi ,1,,
+264,se' hänen tekemä#[ni] kello hävisi ,1,,
+265,se' meidän tekemä#[ni] kello hävisi ,1,,
+266,se' teidän tekemä#[ni] kello hävisi ,1,,
+267,se' heidän tekemä#[ni] kello hävisi ,1,,
+268,Seine virtaa kohti minua ,1,,825,0,6,3,0,0,4,23,206,78,203
+269,Seine virtaa minua kohti ,1,,845,0,6,5,1,0,5,33,211,220,281
+270,kohti minua Seine virtaa ,1,,1850,7,24,8,12,0,4,92,462,125,718
+271,minua kohti Seine virtaa ,1,,1295,3,14,1,10,0,4,70,323,137,484
+272,Seine virtaa kohti#[ni] minua ,1,,
+273,Seine virtaa minua kohti#[ni] ,1,,
+274,kohti#[ni] minua Seine virtaa ,1,,
+275,minua kohti#[ni] Seine virtaa ,1,,
+276,Seine virtaa kohti#[ni] minun ,1,,
+277,Seine virtaa minun kohti#[ni] ,1,,
+278,kohti#[ni] minun Seine virtaa ,1,,
+279,minun kohti#[ni] Seine virtaa ,1,,
+280,Pekka asuu lähellä minua ,1,,1010,0,6,5,0,0,5,29,252,222,328
+281,Pekka asuu minua lähellä ,1,,1015,0,6,5,1,0,5,33,253,350,343
+282,lähellä minua Pekka asuu ,1,,1765,7,24,8,10,0,5,101,441,209,984
+283,minua lähellä Pekka asuu ,1,,1410,4,16,1,10,0,5,87,352,243,750
+284,Pekka asuu minun lähellä#[ni] ,1,,1210,4,10,10,4,0,8,63,302,272,656
+285,minun lähellä#[ni] Pekka asuu ,1,,3285,13,42,11,20,0,10,158,821,202,1906
+286,Pekka asuu lähellä ,1,,640,0,4,1,0,0,3,16,213,73,187
+287,Pekka asuu lähellä#[ni] minua ,1,,
+288,Pekka asuu minua lähellä#[ni] ,1,,
+289,lähellä#[ni] minua Pekka asuu ,1,,
+290,minua lähellä#[ni] Pekka asuu ,1,,
+291,Pekka asuu lähellä#[ni] minun ,1,,
+292,lähellä#[ni] minun Pekka asuu ,1,,
+293,Seine virtaa yli sillan ,1,,820,0,6,5,0,0,5,29,205,97,265
+294,Seine virtaa sillan yli ,1,,825,0,6,5,1,0,5,33,206,164,296
+295,yli sillan Seine virtaa ,1,,1830,7,24,8,12,0,4,73,457,106,703
+296,sillan yli Seine virtaa ,1,,1275,3,14,1,10,0,4,49,318,142,453
+297,Seine virtaa yli#[ni] sillan ,1,,
+298,Seine virtaa sillan yli#[ni] ,1,,
+299,yli#[ni] sillan Seine virtaa ,1,,
+300,sillan yli#[ni] Seine virtaa ,1,,
+301,John lives near Paris ,1,,625,0,6,3,4,0,0,7,156,42,109
+302,Paris near John lives ,1,,1185,3,15,5,3,0,0,19,296,44,265
+303,John lives Paris near ,1,,
+304,near Paris John lives ,1,,
+305,John lives near#[3sg] Paris ,1,,
+306,John lives Paris near#[3sg] ,1,,
+307,near#[3sg] Paris John lives ,1,,
+308,Paris near#[3sg] John lives ,1,,
+309,Giuseppe vive vicino a Parigi ,1,,885,0,7,5,5,0,0,11,177,59,203
+310,Giuseppe vive vicino a cosa ,1,,835,0,7,5,5,0,0,11,167,59,203
+311,vicino a cosa Giuseppe vive ,1,,2200,12,37,8,4,7,0,42,440,90,828
+312,Giuseppe vive vicino Parigi a ,1,,
+313,Giuseppe vive a Parigi vicino ,1,,
+314,Giuseppe vive Parigi a vicino ,1,,
+315,Giuseppe vive Parigi a#[3sg] vicino ,1,,
+316,vicino cosa a Giuseppe vive ,1,,
+317,a cosa vicino Giuseppe vive ,1,,
+318,cose a vicino Giuseppe vive ,1,,
+319,én' mellett#[+em] ,1,,435,0,2,0,1,0,0,2,217,5,46
+320,mi' mellett#[+ünk] ,1,,475,0,2,0,1,0,0,2,237,5,31
+321,út nem vezet át az erdőn ,1,,620,0,7,7,1,0,5,44,103,173,343
+322,út nem vezet az erdőn át ,1,,640,1,8,8,2,0,6,52,106,185,375
+323,melyik erdőn át út nem vezet ,1,,4175,21,63,9,11,20,2,142,695,209,1500
+324,át melyik erdőn út nem vezet ,1,,3580,17,53,9,11,21,2,132,596,194,1265
+325,mellett#[+em] én ,1,,
+326,mellett#[+ünk] mi ,1,,
+327,Pekka lähti tehdessä#[An] taloa ,1,,1745,4,19,12,2,0,8,83,436,278,890
+328,Pekka lähti taloa tehdessä#[An] ,1,,1790,4,22,9,2,0,9,89,447,271,890
+329,Pekka lähti tehdessä#[An] mitä ,1,,2610,19,41,28,10,0,13,222,652,385,2281
+330,mitä_DP tehdessä#[An] Pekka lähti ,1,,2240,9,30,18,0,3,9,145,560,356,1437
+331,Pekka lähti tehdessä taloa ,1,,1615,4,19,12,2,0,8,83,403,278,859
+332,Pekka lähti taloa tehdessä ,1,,1530,4,22,9,2,0,9,89,382,271,859
+333,Pekka lähti tehdessä mitä ,1,,2480,19,41,28,10,0,13,222,620,385,2375
+334,mitä_DP tehdessä Pekka lähti ,1,,2110,9,30,18,0,3,9,145,527,356,1375
+335,Pekka lähti Merjan_gen tehdessä taloa ,1,,4130,17,58,37,23,0,16,309,826,1212,3406
+336,Pekka lähti Merjan_gen tehdessä mitä ,1,,7730,72,144,98,90,0,26,769,1546,1661,9203
+337,Pekka lähti tehtyä#[An] taloa ,1,,1705,4,19,12,2,0,8,83,426,278,921
+338,Pekka lähti taloa tehtyä#[An] ,1,,1710,4,22,9,2,0,9,89,427,271,921
+339,Pekka lähti tehtyä#[An] mitä ,1,,2570,19,41,28,10,0,13,222,642,385,2296
+340,mitä tehtyä#[An] Pekka lähti ,1,,3780,16,51,32,2,3,10,213,945,445,2203
+341,Pekka lähti tehtyä taloa ,1,,
+342,Pekka lähti taloa tehtyä ,1,,
+343,Pekka lähti tehtyä mitä ,1,,
+344,mitä tehtyä Pekka lähti ,1,,
+345,Pekka lähti Merjan_gen tehtyä taloa ,1,,3880,14,52,34,21,0,15,270,776,1061,2921
+346,Pekka lähti Merjan_gen tehtyä mitä ,1,,7160,60,126,88,78,0,24,663,1432,1448,7734
+347,Pekka lähti tehdäkse#[An] taloa ,1,,1745,4,19,12,2,0,8,83,436,278,906
+348,Pekka lähti taloa tehdäkse#[An] ,1,,1790,4,22,9,2,0,9,89,447,271,890
+349,Pekka lähti tehdäkse#[An] mitä ,1,,2610,19,41,28,10,0,13,222,652,385,2312
+350,mitä tehdäkse#[An] Pekka lähti ,1,,3860,16,51,32,2,3,10,213,965,445,2203
+351,Pekka lähti Merjan_gen tehdäkse#[An] taloa ,1,,
+352,Pekka lähti Merjan_gen tehdäkse#[An] mitä ,1,,
+353,Pekka lähti tekemättä taloa ,1,,1625,4,19,12,2,0,8,83,406,278,859
+354,Pekka lähti taloa tekemättä ,1,,1550,4,22,9,2,0,9,89,387,271,859
+355,Pekka lähti tekemättä mitä ,1,,2490,19,41,28,10,0,13,222,622,385,2234
+356,mitä_DP tekemättä Pekka lähti ,1,,2120,9,30,18,0,3,9,145,530,356,1375
+357,Pekka lähti tekemättä#[An] taloa ,1,,
+358,Pekka lähti taloa tekemättä#[An] ,1,,
+359,Pekka lähti tekemättä#[An] mitä ,1,,
+360,mitä_DP tekemättä#[An] Pekka lähti ,1,,
+361,Pekka lähti Merjan_gen tekemättä taloa ,1,,
+362,Pekka lähti Merjan_gen tekemättä mitä ,1,,
+363,Pekka lähti minun tehtyä taloa ,1,,3720,14,52,34,21,0,15,270,744,1050,2640
+364,minun tehtyä taloa Pekka lähti ,1,,1460,1,12,8,5,0,3,39,292,814,640
+365,minun tehtyä mitä Pekka lähti ,1,,4440,15,51,30,20,7,4,161,888,1034,2203
+366,mitä minun tehtyä Pekka lähti ,1,,
+367,Pekka lähti taloa minun tehtyä ,1,,
+368,Pekka lähti minun taloa tehtyä ,1,,
+369,Seine reaches the ocean by flowing towards Paris ,1,,4675,27,87,112,34,0,0,181,584,667,3046
+370,Seine reaches the ocean by flowing towards what ,1,,5795,27,87,112,34,0,0,181,724,667,3140
+371,by flowing towards what Seine reaches the ocean ,1,,17965,228,458,654,103,202,0,1104,2245,2950,19359
+372,Seine reaches the ocean Paris by flowing#[3sg] towards ,1,,
+373,Seine reaches the ocean Paris by flowing towards ,1,,
+374,Seine reaches the ocean towards Paris by flowing ,1,,
+375,by flowing towards Paris Seine reaches the ocean ,1,,
+376,Paris by flowing towards Seine reaches the ocean ,1,,
+377,towards Paris by flowing Seine reaches the ocean ,1,,
+378,Seine reaches the ocean what by flowing towards ,1,,
+379,Seine reaches the ocean towards what by flowing ,1,,
+380,what by flowing towards Seine reaches the ocean ,1,,
+381,towards what by flowing Seine reaches the ocean ,1,,
+382,what towards by flowing Seine reaches the ocean ,1,,
+383,Giuseppe ha attirato attenzione per aver vinto Luisa ,1,,1710,1,16,21,9,0,0,152,213,705,1125
+384,per aver vinto cosa Giuseppe ha attirato attenzione ,1,,29605,138,403,112,45,29,0,534,3700,924,9875
+385,cosa per aver vinto Giuseppe ha attirato attenzione ,1,,
+386,kello hävisi ,1,,270,0,3,0,1,0,0,2,135,7,31
+387,Merjan_gen kello hävisi ,1,,775,0,5,0,4,0,0,5,258,31,125
+388,se Merjan_gen kello hävisi ,1,,1685,6,20,2,13,0,2,38,421,145,609
+389,minun kello#[ni] hävisi ,1,,725,0,5,0,4,0,0,5,241,31,125
+390,sinun kello#[si] hävisi ,1,,725,0,5,0,4,0,0,5,241,31,125
+391,kenen kello hävisi ,1,,505,0,5,0,0,4,0,5,168,74,109
+392,se kenen kello hävisi ,1,,890,1,8,0,0,8,0,12,222,216,218
+393,sinun kello#[ni] hävisi ,1,,
+394,kello Merjan_gen hävisi ,1,,
+395,Merjan_gen se kello hävisi ,1,,
+396,Merjan_gen kello se hävisi ,1,,
+397,az én' diákjaim vezet ,1,,800,1,8,0,8,0,0,11,200,44,343
+398,kinek a2 könyve vezet ,1,,625,1,8,0,1,4,0,12,156,276,203
+399,a ki könyve vezet ,1,,1525,7,24,6,3,4,0,25,381,226,406
+400,az mi_HU diákjaim ,1,,
+401,John admires he='s sister ,1,,940,0,8,10,4,0,0,10,188,85,187
+402,the sister admires him ,1,,640,0,6,2,2,0,0,6,160,29,93
+403,the little sister admires him ,1,,780,0,8,2,2,0,0,10,156,109,125
+404,John='s sister admires him ,1,,940,0,8,2,2,0,0,10,188,73,156
+405,who='s sister admires him ,1,,900,0,8,2,0,2,0,10,180,75,171
+406,se' minun tekemä#[ni] kello hävisi ,1,,2110,8,29,12,13,0,2,44,422,148,843
+407,kenen tekemä kello hävisi ,1,,1335,5,22,10,2,9,0,20,333,230,390
+408,se' kenen tekemä kello hävisi ,1,,1740,6,25,12,2,13,0,30,348,292,578
+409,a2 Mari által adott ajándék vezet ,1,,675,0,9,0,5,0,3,34,112,177,328
+410,a2 Mari által Jánosnak adott ajándék vezet ,1,,8545,46,134,56,82,0,15,439,1220,1091,5656
+411,a2 Jánosnak Mari által adott ajándék vezet ,1,,1370,4,20,0,16,0,6,76,195,829,828
+412,a2 ki által adott ajándék vezet ,1,,690,0,9,0,0,6,3,34,115,698,343
+413,a2 ki által Jánosnak adott ajándék vezet ,1,,7960,41,123,56,19,51,13,339,1137,4157,4343
+414,a2 Mari által kinek adott ajándék vezet ,1,,15870,90,251,112,114,58,27,687,2267,4439,9156
+415,a2 kinek Mari által adott ajándék vezet ,1,,
+416,Pekka antoi kirjan Merjalle ,1,,1555,0,9,10,0,0,4,25,388,266,390
+417,kuka antoi kirjan Merjalle ,1,,1445,0,9,10,0,4,0,9,361,236,296
+418,mitä Pekka antoi Merjalle ,1,,7235,11,56,14,3,9,3,76,1808,327,1578
+419,Merjalle antoi Pekka kirjan ,1,,1545,0,9,6,0,0,6,30,386,186,375
+420,Merjalle antoi kirjan Pekka ,1,,1665,1,11,13,2,0,7,43,416,289,531
+421,kirjan antoi Merjalle Pekka ,1,,1740,2,13,14,0,0,9,61,435,222,703
+422,minun täytyy ihailla Merjaa ,1,,1215,0,8,5,8,0,0,6,303,102,187
+423,minun täytyy löytää hänet ,1,,1105,0,8,5,8,0,0,6,276,206,156
+424,Merjaa täytyy ihailla minun ,1,,
+425,hänet täytyy löytää minun ,1,,
+426,Pekka uskoi Merjan_gen lähtevän ,1,,1240,0,7,3,1,0,3,18,310,123,265
+427,Pekka uskoi lähtevän Merjan_gen ,1,,
+428,János#top keresi Marit ,1,,540,0,6,2,0,2,0,3,180,39,93
+429,Marit#top keresi János ,1,,550,0,6,2,0,3,1,7,183,57,109
+430,János#top Marit keresi ,1,,530,0,6,0,0,1,1,17,176,63,125
+431,János#top Marit#top keresi ,1,,620,0,6,0,0,2,0,11,206,59,109
+432,Marit#top János#top keresi ,1,,620,0,6,0,0,2,0,11,206,58,109
+433,John admires Mary ,1,,890,0,6,2,2,0,0,3,296,28,93
+434,John Mary admires ,1,,
+435,admires John Mary ,1,,
+436,a_ b_ c_ d_ ,1,,95,0,3,0,0,0,0,10,23,8,31
+437,a_ b_ c_edge d_ ,1,,165,1,5,0,0,0,0,13,41,6,31
+438,a_ b_ c_noedge d_ ,1,,155,0,3,0,0,0,0,10,38,7,15
+439,a_2pl b_ c_edge d_ ,1,,210,1,5,0,3,0,0,13,52,10,31
+440,a_ b_ c_phiedge#AGR d_ ,1,,295,0,3,0,0,0,0,10,73,8,46
+441,a_2pl b_ c_phiedge#AGR d_ ,1,,325,0,3,0,0,0,0,10,81,12,46
+442,a_op b_ c_edge d_ ,1,,185,1,5,0,0,0,0,13,46,8,31
+443,a_ b* c_ d_ ,1,,185,0,5,10,0,0,0,9,46,78,31
+444,John admires Mary ,1,,890,0,6,2,2,0,0,3,296,28,93
+445,minä ihailen Merjaa ,1,,1030,0,6,2,0,0,2,11,343,45,156
+446,ihailen Merjaa ,1,,690,0,4,2,0,0,0,1,345,13,62
+447,who does John admire ,1,,975,2,12,1,1,5,0,12,243,210,187
+448,mitä_DP kohti Seine virtaa ,1,,1275,4,16,1,0,11,3,70,318,148,562
+449,kohti mitä_DP Seine virtaa ,1,,1805,8,26,8,1,8,2,70,451,123,656
+450,mitä_DP kohti virtaamalla Seine saavuttaa meren ,1,,5665,16,65,34,0,21,25,355,944,1550,3421
+451,who admires Mary ,1,,860,0,6,2,0,2,0,3,286,33,109
+452,John admires Mary ,1,,890,0,6,2,2,0,0,3,296,28,78
+453,who does John admire ,1,,975,2,12,1,1,5,0,12,243,210,187
+454,does_C John admire Mary ,1,,2290,4,21,19,12,0,0,17,572,161,359
+455,admires Mary John ,1,,
+456,ihailee Merjaa ,1,,
+457,ihailee Pekka Merjaa ,1,,
+458,ihailen Merjaa ,1,,690,0,4,2,0,0,0,1,345,13,78
+459,Merjaa ihailee Pekka ,1,,1110,0,6,2,0,0,4,22,370,73,265
+460,Pekka sanoi että ihailee Merjaa ,1,,1355,0,9,7,0,0,5,30,271,209,406
+461,adoro Luisa ,1,,490,0,4,2,0,0,0,1,245,8,62
+462,adori Luisa ,1,,490,0,4,2,0,0,0,1,245,8,62
+463,adora Luisa ,1,,490,0,4,2,0,0,0,1,245,8,46
+464,adora Luisa ,1,,490,0,4,2,0,0,0,1,245,8,62
+465,adoriamo Luisa ,1,,520,0,4,2,0,0,0,1,260,8,62
+466,adorate Luisa ,1,,510,0,4,2,0,0,0,1,255,8,62
+467,adorano Luisa ,1,,510,0,4,2,0,0,0,1,255,8,62
+468,Pekka asuu lähellä#[ni] ,1,,800,3,7,2,2,0,5,36,266,73,406
