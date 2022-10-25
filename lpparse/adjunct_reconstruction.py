@@ -28,18 +28,18 @@ class FloaterMovement():
                 return ps.left_const
             if ps.left_const.container():
                 J = ps.left_const.container()
-                if (J.EF() and 'FIN' in J.features) or ('-SPEC:*' in J.features and ps.left_const == next((const for const in J.edge_specifiers()), None)):
+                if (J.EF() and J.finite()) or ('-SPEC:*' in J.features and ps.left_const == next((const for const in J.edge_specifiers()), None)):
                     return ps.left_const
 
         if self.detect_floater(ps.right_const):
             H = ps.right_const.head()
             if not H.tail_test():
                 log(ps.right_const.illustrate() + ' failed ' + illu(H.get_tail_sets()) + '. ')
-                if 'ADV' not in H.features and H.top().contains_feature('FIN'):
+                if not H.adverbial() and H.top().contains_feature('Fin'):
                     self.adjunct_constructor.externalize_structure(H)
                     if not ps.right_const.head().tail_test():
                         return ps.right_const
-                elif 'ADV' in H.features and not ps.right_const.adjunct:
+                elif H.adverbial() and not ps.right_const.adjunct:
                     self.adjunct_constructor.externalize_structure(H)
                     # No need to drop, hence externalization is sufficient
 
@@ -57,10 +57,10 @@ class FloaterMovement():
         # If there are criterial features
         if self.controlling_parser_process.narrow_semantics.operator_variable_module.scan_criterial_features(ps):
             # If this phrase structure has scope position somewhere
-            if ps.top().contains_feature('FIN'):
+            if ps.top().contains_feature('Fin'):
                 # If the operator cannot see FIN, it means it is not in a scope position
                 for node in ps.head().working_memory_path('FORCE'):
-                    if 'FIN' in node.features:
+                    if node.finite():
                         return True
                 # If the operator cannot see FIN upwards, it means that it is probably in a scope position
                 return False
@@ -113,7 +113,7 @@ class FloaterMovement():
                 self.conditions_for_left_adjuncts(test_item, starting_point_head)
 
     def is_right_adjunct(self, test_item):
-        return {'ADV', 'P'} & test_item.head().features
+        return test_item.adverbial() or 'P' in test_item.head().features
 
     def conditions_for_right_adjuncts(self, test_item):
         return test_item.head().tail_test() and self.is_right_adjunct(test_item)

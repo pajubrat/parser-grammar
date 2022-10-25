@@ -51,8 +51,8 @@ class PhrasalMovement:
 
     @staticmethod
     def add_scope_information(head):
-        if not {'INF', 'P', 'D', 'φ'} & head.features:
-            return {'FIN', 'C', 'PF:C'}
+        if not {'Inf', 'P', 'D', 'φ'} & head.features:
+            return {'Fin', 'C', 'PF:C'}
         return set()
 
     def checking_domain(self, spec):

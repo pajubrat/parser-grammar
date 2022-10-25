@@ -98,7 +98,7 @@ class PlausibilityMetrics:
         if not site.is_primitive() and site.mother and \
                 site.mother.left_const and site.mother.left_const.is_primitive():
             if site.mother.left_const.licensed_complements() & site.features:
-                if 'ADV' not in self.word.features:
+                if not self.word.adverbial():
                     return True
 
     @knockout_lexical_ranking
@@ -135,7 +135,7 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def negative_adverbial_test(self, site):
-        if 'ADV' in self.word.features and self.word_tail_set:
+        if self.word.adverbial() and self.word_tail_set:
             w_copy = self.word.copy()
             site.merge_1(w_copy, 'right')
             # If external tail head test fails and the site itself does not match with the tail features,
@@ -153,7 +153,7 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def positive_adverbial_test(self, site):
-        if 'ADV' in self.word.features and self.word_tail_set and site.is_complex():
+        if self.word.adverbial() and self.word_tail_set and site.is_complex():
             w_copy = self.word.copy()
             site.merge_1(w_copy, 'right')
             if w_copy.tail_test() or self.sister_tail_head_test(site, w_copy):

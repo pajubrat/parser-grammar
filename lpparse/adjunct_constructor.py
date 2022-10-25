@@ -14,7 +14,7 @@ class AdjunctConstructor:
     def externalize_head(self, head, tail_test):
         if head.sister() and head.sister().is_primitive() and 'P' in head.features:  # [X Y], both primitive, externalize Y
             self.externalize(head)
-        elif (tail_test and head.EF() and head.edge_specifiers()) or (not tail_test and self.capture_specifier_rule(head)):
+        elif '-EF:φ' not in head.features and ((tail_test and head.EF() and head.edge_specifiers()) or (not tail_test and self.capture_specifier_rule(head))):
             if head.is_right():
                 self.externalize(head.mother)
             else:
@@ -40,7 +40,7 @@ class AdjunctConstructor:
                 ps.head().features.add('TAIL:V')
             elif 'T' not in ps.head().features:       # TP can only become relative clause, e.g. 'che dorme'
                 ps.head().features.add('TAIL:T')
-                ps.head().features.add('ADV')
+                ps.head().features.add('Adv')
 
     def transfer_adjunct(self, ps):
         original_mother, is_right = ps.detach()

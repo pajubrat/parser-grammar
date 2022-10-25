@@ -18,37 +18,6 @@ class Logger:
 
 log_instance = Logger()
 
-def show(self, start=True, label_only=False):
-
-    s = f'{self.get_cats_string()} = ' if start else ''
-
-    if self.identity != '':
-        id_str = ':'+self.identity
-    else:
-        id_str = ''
-
-    if self.features and 'null' in self.features:
-        return s + '__' + id_str
-    elif self.is_primitive():
-        if not self.get_phonological_string():
-            return s + '?'
-        else:
-            return s + self.get_cats_string()
-    elif label_only:
-        if self.adjunct:
-            return f'{s}{self.get_cats_string()}' + id_str
-        else:
-            return f'{s}{self.get_cats_string()}' + id_str
-    else:
-        if self.right_const.adjunct:
-            left = show(self.left_const, start=False)
-            right = show(self.right_const, start=False, label_only=True)
-        else:
-            left = show(self.left_const, start=False, label_only=True)
-            right = show(self.right_const, start=False)
-
-        return f'{s}[{left} {right}]' + id_str
-
 # This function returns the type of pro-element depending on the valuation of (uD, up) probe
 # PRO = control pro
 # pro/x = antecedent requiring pro

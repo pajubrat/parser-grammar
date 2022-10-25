@@ -27,6 +27,7 @@ class FeatureProcessing():
             log(f'{h} resolved into +ARG due to {h.selector()}...')
             h.features.add('ARG')
             h.features.add('!EF:φ')
+            h.features.add('EF:φ')
         else:   # Selected by neither
             log(f'{h} resolved to +ARG...')
             h.features.add('ARG')

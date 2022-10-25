@@ -27,14 +27,14 @@ class OperatorVariableModule:
     @staticmethod
     def find_overt_scope(head, operator_feature):
         return next(({'Head': head, 'Scope': scope, 'Overt': True} for scope in head.working_memory_path() if
-                     {operator_feature, 'FIN'}.issubset(scope.features)), {'Head': head, 'Scope': None, 'Overt': False})
+                     {operator_feature, 'Fin'}.issubset(scope.features)), {'Head': head, 'Scope': None, 'Overt': False})
 
     @staticmethod
     def interpret_covert_scope(binding):
         if not binding['Scope'] and '!SCOPE' not in binding['Head'].features:
             return next(({'Head': binding['Head'], 'Scope': scope, 'Overt': False}
                          for scope in binding['Head'].working_memory_path() if
-                         {'T', 'FIN'}.issubset(scope.features) or {'C', 'FIN'}.issubset(scope.features)),
+                         scope.finite_left_periphery()),
                         {'Head': binding['Head'], 'Scope': None, 'Overt': False})
         return binding
 
@@ -76,7 +76,7 @@ class OperatorVariableModule:
         else:
             log('Not enough lexical content. ')
 
-        if 'FIN' in head_chain[0].features:
+        if head_chain[0].finite():
             log('Verum focus/polarity question interpretation. ')
             semantic_interpretation['Verum focus/polarity question interpretation'] = True
 

@@ -68,7 +68,7 @@ class LF_Recovery:
         return 'SEM:external' not in node.features
 
     def special_local_edge_antecedent_rule(self, const, probe, list_of_antecedents):
-        if 'FIN' in probe.features and probe.edge_specifiers() and const == next((const for const in probe.edge_specifiers()), None):
+        if probe.finite() and probe.edge_specifiers() and const == next((const for const in probe.edge_specifiers()), None):
             if not const.head().is_referential():
                 self.LF_recovery_results.append(f'{probe}(generic)')
                 list_of_antecedents.append(const)
@@ -114,33 +114,28 @@ class LF_Recovery:
             return phi_set
 
         if probe.sister() and probe.is_left() and antecedent == probe.sister() and antecedent.is_right():
-            prefix = 'Patient of'
+            prefix = 'Patient/'
         else:
-            prefix = 'Agent of'
+            prefix = 'Agent/'
 
+        arg_str = ''
         if antecedent.head().is_referential():
             if antecedent.head().sister() and 'N' in antecedent.head().sister().head().features:
                 arg_str = antecedent.head().sister().head().illustrate()
             else:
                 arg_str = antecedent.illustrate()
-        elif 'C' in antecedent.head().features or 'FORCE' in antecedent.head().features and antecedent.is_complex():
-            arg_str = 'C/prop'
-        elif 'V' in antecedent.head().features and antecedent.is_complex():
-            arg_str = 'V(pro)'
-        elif 'T' in antecedent.head().features:
+        else:
             if antecedent.is_complex():
-                arg_str = 'T(pro))'
+                arg_str = antecedent.major_cat()
             else:
                 arg_str = f'{sorted(get_valued_phi_set(antecedent))}'
-        else:
-            arg_str = antecedent.illustrate()
 
-        return prefix + f' {probe.illustrate()}: {arg_str}'
+        return prefix + f'{probe.illustrate()}/{arg_str}'
 
     def antecedent_does_not_exist(self, ps, features):
         if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
             if ps.sister() and ps.sister().is_complex() and \
-                    ('CAT:INF' in ps.sister().head().features or 'CAT:FIN' in ps.sister().head().features):
+                    (ps.sister().head().nonfinite() or ps.sister().head().finite()):
                 return 'Clausal argument'
             else:
                 return 'Generic'

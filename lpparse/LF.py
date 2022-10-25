@@ -41,7 +41,7 @@ class LF:
         else:
             self.active_test_battery = self.LF_legibility_tests
         result = self.pass_LF_legibility(ps)
-        log('Done. ')
+        log('. Done. ')
         return result
 
     def pass_LF_legibility(self, ps):
@@ -263,7 +263,7 @@ class LF:
                 if head.complement_match(const):
                     old_complement = head.proper_complement()
                     head.proper_complement().merge_1(const.copy_from_memory_buffer(self.controlling_parsing_process.babtize()), 'left')
-                    log(f'Merging {const} to Comp{head.get_cats_string()}P due to complement mismatch. ')
+                    log(f'Merging {const} to Comp{head.major_cat()} due to complement mismatch. ')
                     if 'adjoinable' in old_complement.head().features:
                         log(f'Externalizing {old_complement}. ')
                         old_complement.adjunct = True
@@ -286,7 +286,7 @@ class LF:
 
     def try_adjoin_right(self, head):
         for constituent_from_MB in self.controlling_parsing_process.syntactic_working_memory:
-            if 'ADV' in constituent_from_MB.head().features:
+            if constituent_from_MB.head().adverbial():
                 target_node = self.specifier_sister(head)
                 if self.tail_match(target_node, constituent_from_MB, 'right'):
                     new_const = self.LFMerge(constituent_from_MB, target_node, 'right')
@@ -295,7 +295,7 @@ class LF:
                     break
 
     def try_merge_to_left(self, head):
-        if not {'FIN', 'T/fin'} & head.features and not head.edge_specifiers():
+        if not head.finite() and not head.edge_specifiers():
             for constituent_from_MB in self.controlling_parsing_process.syntactic_working_memory:
                 target_node = self.specifier_sister(head)
                 if self.specifier_match(head, constituent_from_MB) and self.tail_match(target_node, constituent_from_MB, 'left'):

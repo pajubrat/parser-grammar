@@ -329,7 +329,7 @@ class LinearPhaseParser:
                 node.active_in_syntactic_working_memory = False
 
     def check_transfer_presuppositions(self, ps):
-        if 'FIN' in ps.head().features or 'INF' in ps.head().features:
+        if ps.head().finite() or ps.head().nonfinite():
             if not self.surface_conditions_module.reconstruct(ps):
                 return False
         return True

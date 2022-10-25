@@ -50,15 +50,15 @@ class NarrowSemantics:
                               'D': '§Thing',
                               'φ': '§Thing',
                               'Q': '§Quantifier',
-                              'NUM': '§Quantity',
-                              'NEG': '§Polarity',
+                              'Num': '§Quantity',
+                              'Neg': '§Polarity',
                               'C/fin': '§Proposition',
                               'C': '§Proposition',
                               'N': '§Predicate',
                               'V': '§Predicate',
                               'A': '§Predicate',
                               'a': '§Predicate',
-                              'ADV': '§Predicate',
+                              'Adv': '§Predicate',
                               '0': '§Predicate',
                               'OP:REL': '§Predicate',
                               'P': '§Relator',
@@ -172,7 +172,7 @@ class NarrowSemantics:
                 return True
 
     def expresses_concept(self, head):
-        if {'N', 'NEG', 'P', 'D', 'φ', 'A', 'V', 'ADV', 'Q', 'NUM', '0'} & head.features and \
+        if {'N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'} & head.features and \
                 'COPULA' not in head.features and 'T/prt' not in head.features:
             return True
 

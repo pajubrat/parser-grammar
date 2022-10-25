@@ -21,6 +21,7 @@ class LocalFileSystem:
         self.resource_sequence_file = None
         self.simple_log_file = None
         self.simple_results_file = None
+        self.control_file = None
         self.dev_log_file = None
         self.logger_handle = None
         self.instruction_to_ignore_from_test_corpus = False
@@ -86,11 +87,17 @@ class LocalFileSystem:
             self.initialize_resources_file()
             self.initialize_simple_log_file()
             self.initialize_semantics_file()
+            self.initialize_control_file()
         self.dev_log_file.write('Done.\n')
 
     def initialize_dev_logging(self):
         self.dev_log_file  = open('dev_log.txt', 'w', -1, 'utf-8')
         self.dev_log_file.write(f'Devlogging started at {datetime.datetime.now()}.\n')
+
+    def initialize_control_file(self):
+        self.dev_log_file.write('Initializing control file...')
+        self.control_file = open(self.external_sources['control_file_name'], 'w', -1, encoding=self.encoding)
+        self.stamp(self.control_file)
 
     def verify_and_check_mandatory_values(self):
         self.dev_log_file.write('Checking and validating settings...')
@@ -115,7 +122,8 @@ class LocalFileSystem:
                                  "lexicon_file_name": self.folder['lexicon'] / 'lexicon.txt',
                                  "ug_morphemes": self.folder['lexicon'] / 'ug_morphemes.txt',
                                  "redundancy_rules": self.folder['lexicon'] / 'redundancy_rules.txt',
-                                 "semantics_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_semantics.txt')
+                                 "semantics_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_semantics.txt'),
+                                 "control_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_control.txt')
                                  }
         self.dev_log_file.write(f'{self.external_sources}.\n')
 
@@ -346,6 +354,7 @@ class LocalFileSystem:
         self.save_grammaticality_judgment(parser, count, sentence)
         self.save_results(parser, count, sentence, part_of_conversation)
         if self.settings['datatake_full']:
+            self.save_control_data(parser, count, sentence)
             self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
         self.print_result_to_console(parser, sentence)
         if self.settings['datatake_images']:
@@ -376,6 +385,19 @@ class LocalFileSystem:
                 self.resources_file.write(f'{parser.resources[key]["n"]},')
             self.resources_file.write(f'{parser.execution_time_results[0]}')
         self.resources_file.write('\n')
+
+    def save_control_data(self, parser, count, sentence):
+        sentence_string = self.generate_input_sentence_string(sentence)
+        self.control_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n')
+        if len(parser.result_list) > 0:
+            p, sem = parser.result_list[0]
+            if 'Recovery' in sem:
+                for i, item in enumerate(sem['Recovery']):
+                    self.control_file.write(item)
+                    if i < len(sem['Recovery']) - 1:
+                        self.control_file.write(', ')
+                self.control_file.write('\n')
+        self.control_file.write('\n')
 
     def save_results(self, parser, count, sentence, part_of_conversation):
         sentence_string = self.generate_input_sentence_string(sentence)
@@ -483,16 +505,17 @@ class LocalFileSystem:
                     parse_number =  parse_number + 1
         self.dev_log_file.write('Done.\n')
 
-    def write_comment_line(self, sentence):
-        if sentence[0].startswith("&"):
-            self.grammaticality_judgments_file.write('\n')
-        if sentence[0].startswith("'"):
-            s = '\t'
+    def write_comment_line(self, sentence_lst):
+        sentence_string = ' '.join(map(str, sentence_lst))
+        if sentence_lst[0].startswith("&"):
+            self.grammaticality_judgments_file.write('\n\t\t')
+        if sentence_lst[0].startswith("'"):
+            prefix = '\t'
         else:
-            s = ''
-        self.grammaticality_judgments_file.write(s + ' '.join(map(str, sentence)))
+            prefix = ''
+        self.grammaticality_judgments_file.write(prefix + sentence_string)
         self.grammaticality_judgments_file.write('\n')
-        self.results_file.write(s + ' '.join(map(str, sentence)) + '\n\n')
+        self.results_file.write(prefix + ' '.join(map(str, sentence_lst)) + '\n\n')
 
     def save_surface_vocabulary(self, surface_vocabulary):
         surface_vocabulary_file = open(self.external_sources["surface_vocabulary_file_name"], "w", -1, "utf-8")
@@ -514,6 +537,7 @@ class LocalFileSystem:
         self.dev_log_file.write('Closing all output files...')
         self.results_file.close()
         self.grammaticality_judgments_file.close()
+        self.control_file.close()
         if self.settings['datatake_full']:
             self.resources_file.close()
         self.logger_handle.close()

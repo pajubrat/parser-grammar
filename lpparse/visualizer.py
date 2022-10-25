@@ -318,15 +318,15 @@ class ProduceGraphicOutput(pyglet.window.Window):
             else:
                 label_stack.append(('X', 'LABEL'))
         else:
-            label_stack.append((ps.get_cats_string(), 'LABEL'))
+            label_stack.append((ps.major_cat(), 'LABEL'))
 
         # Show words
         if self.visualizer.show_words and ps.is_primitive():
-            if ps.get_phonological_string() != ps.get_cats_string() and \
+            if ps.get_phonological_string() != ps.major_cat() and \
                     legitimate_label(ps):
                 label_stack.append((ps.get_phonological_string(), 'PHONOLOGY'))
                 if self.visualizer.show_glosses:
-                    if ps.gloss() != ps.get_cats_string() and \
+                    if ps.gloss() != ps.major_cat() and \
                             ps.gloss() != ps.get_phonological_string() and \
                             legitimate_label(ps):
                         label_stack.append((f"\'{ps.gloss()}\'", 'GLOSS'))

@@ -106,21 +106,18 @@ class Discourse:
         return (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
     def out_of_proposition_scope(self, ps, scope):
-        def finite(head):
-            return 'FIN' in head.head().features or 'C/fin' in head.head().features or 'T/fin' in head.head().features
-
         if ps.left_const.is_primitive():
-            if finite(ps.left_const):
+            if ps.left_const.finite():
                 if {'T/fin'} & ps.left_const.features:
                     if ps != scope:
                         return True
         if ps.right_const.is_primitive():
-            if finite(ps.right_const):
+            if ps.right_const.finite():
                 if ps != scope:
                     return True
 
     def locate_proposition(self, ps):
-        return next((node for node in ps if node.is_complex() and 'T/fin' in node.left_const.features), None)
+        return next((node for node in ps if node.is_complex() and node.left_const.finite_tense()), None)
 
     def get_force_features(self, ps):
         return {f for f in ps.head().features if f[:5] == 'FORCE'}

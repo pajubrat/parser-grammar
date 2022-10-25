@@ -8,7 +8,7 @@ class Extraposition:
         self.brain_model = controlling_parser_process
 
     def reconstruct(self, ps):
-        if ps.top().contains_feature('FIN') or 'D' in ps.top().features:
+        if ps.top().contains_feature('Fin') or 'D' in ps.top().features:
             head_violating_selection = next((node.right_const.head() for node in ps if self.selection_violation_at(node)), None)
             if head_violating_selection and not head_violating_selection.adjunct:
                 self.try_extraposition(head_violating_selection)
@@ -37,7 +37,7 @@ class Extraposition:
             log(f'No suitable node found...')
 
     def preconditions_for_extraposition(self, ps):
-        if ps.top().contains_feature('FIN') or {'D','φ'} & ps.top().head().features:
+        if ps.top().contains_feature('Fin') or {'D', 'φ'} & ps.top().head().features:
             if not self.brain_model.LF_legibility_test(ps.top()):
                 return True
 

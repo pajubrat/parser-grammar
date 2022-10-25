@@ -3,11 +3,14 @@ from collections import namedtuple
 from itertools import takewhile
 from support import log
 
-major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'MA/A', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
+# Old list
+major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'Adv', 'Q', 'Num', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'MA/A', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
+
+# New list (ordered hierarchically)
+major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'Adv', 'Q', 'Num', 'Inf', 'T', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 
 Result = namedtuple('Result', 'match_occurred outcome')
 
-#class phrase structure
 class PhraseStructure:
     resources = {"Merge-1": {"ms": 0, "n": 0}}
 
@@ -372,6 +375,24 @@ class PhraseStructure:
                           if 'φ' in spec.head().features and not spec.find_me_elsewhere), None))
 
     #
+    # Major lexical categories, for abstraction purposes
+    #
+    def adverbial(self):
+        return 'Adv' in self.head().features
+
+    def finite(self):
+        return 'Fin' in self.head().features or 'T/fin' in self.head().features or 'C/fin' in self.head().features
+
+    def nonfinite(self):
+        return 'Inf' in self.head().features
+
+    def finite_left_periphery(self):
+        return self.finite() and {'T', 'C'} & self.features
+
+    def finite_tense(self):
+        return 'T/fin' in self.head().features or (self.finite() and 'T' in self.head().features)
+
+    #
     # Tail processing
     #
     def tail_test(self):
@@ -457,7 +478,7 @@ class PhraseStructure:
         def show_affix(self):
             i = ''
             if self.has_affix():
-                i = self.right_const.get_cats_string()
+                i = self.right_const.major_cat()
                 if self.right_const.right_const:
                     i = i + ',' + show_affix(self.right_const)
             else:
@@ -494,16 +515,28 @@ class PhraseStructure:
             pf = pf + LF_features(self)
         return pf
 
+    def major_cat(self):
+        head = self.head()
+        if self.is_complex():
+            suffix = 'P'
+        else:
+            suffix = ''
+        for cat in major_cats:
+            if cat in head.features:
+                return cat + suffix
+        return 'X' + suffix
+
+    # Old function, remove later
     def get_cats_string(self):
 
         # Decide which labels to show if there are several
         features_to_consider = set(self.head().features)
         if 'φ' in features_to_consider:
-            if {'D', 'NUM', 'D/REL', 'n', 'DET', 'QN'} & features_to_consider:
+            if {'D', 'Num', 'D/REL', 'n', 'DET', 'QN'} & features_to_consider:
                 features_to_consider.remove('φ')
         if 'P' in features_to_consider:
-            if {'ADV'} & features_to_consider:
-                features_to_consider.remove('ADV')
+            if {'Adv'} & features_to_consider:
+                features_to_consider.remove('Adv')
 
         # Create the label string
         major_cats = ''.join(sorted([feature for feature in features_to_consider if feature in major_category]))

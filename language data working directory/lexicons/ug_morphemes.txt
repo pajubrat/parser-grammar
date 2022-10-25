@@ -6,7 +6,7 @@
 T/fin   :: T/fin PF:T LF:T
 v       :: v PF:v LF:v
 C/fin   :: C/fin PF:C LF:C/fin 
-T		:: T PF:T LF:T FIN
+T		:: T PF:T LF:T Fin
 T/prt 	:: T/prt PF:T/prt LF:T/prt
 a0		:: A PF:A LF:A
 n		:: N n PF:n LF:n
@@ -15,27 +15,28 @@ cau		:: v PF:Cau LF:v/Cause
 φ		:: φ PF:φ LF:φ ARG INF
 
 # Infinitivals
-INF			:: INF PF:INF LF:INF
-prtcpl		:: INF T T/prt PF:T/prt LF:T/prt
+INF			:: Inf PF:Inf LF:INF
+prtcpl		:: Inf T T/prt PF:T/prt LF:T/prt
 
 # English
 to_inf		:: INF TO/inf PF:TO/inf LF:TO/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable
 
 # Finnish infinitivals
-A/inf		:: A/inf 	INF 	?ARG  -PHI	!SEF					PF:(t)A LF:A/inf -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI
-VA/inf  	:: VA/inf 	INF T   ARG  !EF:φ 	!SEF					PF:vAn LF:VA -SPEC:N LANG:FI
-ESSA/inf 	:: ESSA/inf	INF ADV ARG   EF:φ TAIL:T,$NO_W 			PF:essa LF:while LANG:FI
-TUA/inf		:: TUA/inf	INF ADV ARG  !EF:φ TAIL:T,$NO_W 				PF:tua LF:after LANG:FI
-KSE/inf		:: KSE/inf	INF ADV ARG   EF:φ TAIL:T,$NO_W 			PF:kse LF:in_order_to LANG:FI
-E/inf		:: E/inf 	INF ADV ARG  -EF:φ TAIL:T,$NO_W 			PF:en LF:by LANG:FI
-MA/ssa		:: MA/ssa	INF ADV ARG  -EF:φ EF:* TAIL:CLASS/TR,$NO_W PF:massa LF:in_doing LANG:FI
-MA/tta		:: MA/tta	INF ADV ARG  -EF:φ TAIL:T,$NO_W 			PF:matta LF:without_doing LANG:FI
-MA/lla		:: MA/lla	INF ADV ARG  -EF:φ TAIL:T,$NO_W				PF:malla LF:by_doing LANG:FI
-MA/sta		:: MA/sta	INF ADV ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_denied_event,$NO_W PF:masta LF:without_doing LANG:FI
-MA/an		:: MA/an	INF		ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:maan LF:to_do SEM/desired_event LANG:FI adjoinable
+A/inf		:: A/inf 	Inf 	?ARG  -PHI	!SEF					PF:A LF:A/inf -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI
+VA/inf  	:: VA/inf 	Inf T   ARG  !EF:φ 	!SEF					PF:vAn LF:VA -SPEC:N LANG:FI
+ESSA/inf 	:: ESSA/inf	Inf Adv ARG   EF:φ TAIL:T,$NO_W 			PF:essA LF:while LANG:FI
+TUA/inf		:: TUA/inf	Inf Adv ARG  !EF:φ TAIL:T,$NO_W 			PF:tua LF:after LANG:FI
+KSE/inf		:: KSE/inf	Inf Adv ARG   EF:φ TAIL:T,$NO_W 			PF:kse LF:in_order_to LANG:FI
+E/inf		:: E/inf 	Inf Adv ARG  -EF:φ TAIL:T,$NO_W 			PF:en LF:by LANG:FI
+MA/ssa		:: MA/ssa	Inf Adv ARG  -EF:φ TAIL:V,$NO_W 			PF:mAssA LF:in_doing LANG:FI
+MA/tta		:: MA/tta	Inf Adv ARG  -EF:φ TAIL:T,$NO_W 			PF:mAttA LF:without_doing LANG:FI
+MA/lla		:: MA/lla	Inf Adv ARG  -EF:φ TAIL:T,$NO_W				PF:mAllA LF:by_doing LANG:FI
+MA/sta		:: MA/sta	Inf Adv ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_denied_event,$NO_W PF:masta LF:without_doing LANG:FI
+MA/an		:: MA/an	Inf	Adv	ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:maan LF:to_do SEM/desired_event LANG:FI adjoinable
 
-# Prenominal participle adjectives
-MA/A		:: MA/A 	INF		 ARG !EF:* EF:φ					PF:ma LF:ma LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N
+# Prticiple adjectives
+MA/A		:: MA/A 	Inf		 ARG !EF:* EF:φ						PF:mA LF:ma LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N
+VA/A		:: VA/A		Inf		 ARG -EF:φ							PF:vA LF:va LANG_FI -PROBE:N
 
 # Italian
 ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ARG EF:φ -SPEC:T/fin -adjoinable 
@@ -76,7 +77,7 @@ Rexpression	:: inflectional R:NEW:$$$/SUR
 demanaphora	:: inflectional R:OLD:$$$/SUR
 
 # Generic deficient structural cases
-nom   	:: inflectional NOM TAIL:FIN,!COMP:*,EF:φ,$NO_S -float -adjoinable
+nom   	:: inflectional NOM TAIL:Fin,!COMP:*,EF:φ,$NO_S -float -adjoinable
 acc		:: inflectional ACC TAIL:v,$NO_S
 acc_it	:: inflectional ACC TAIL:v,$NO_S adjoinable float
 dat		:: inflectional DAT TAIL:T LANG:IT

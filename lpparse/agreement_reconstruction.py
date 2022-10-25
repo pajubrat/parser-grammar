@@ -33,7 +33,7 @@ class AgreementReconstruction:
             goal, phi = self.Agree_1_from_sister(probe)
             if phi:
                 self.brain_model.narrow_semantics.predicate_argument_dependencies.append((probe, goal))
-                if 'ADV' in probe.features: # This applies to adverbial predicates in Finnish, must be some feature
+                if probe.adverbial() or 'VA/inf' in probe.features:  # Complementary distribution of phi and overt subject in this class
                     probe.features.add('-pro')
                 if not {'D', 'φ', 'n'} & probe.features:  # This is currently stipulation
                     probe.features.add('BLOCK_NS')
@@ -78,9 +78,9 @@ class AgreementReconstruction:
                     return True
                 else:
                     # To be replaced with the head-case model
-                    if 'FIN' in probe.features and 'NOM' in goal.head().features:
+                    if probe.finite() and 'NOM' in goal.head().features:
                         return True
-                    if 'INF' in probe.features and 'GEN' in goal.head().features:
+                    if probe.nonfinite() and 'GEN' in goal.head().features:
                         return True
 
     def value(self, h, goal, phi, location):
