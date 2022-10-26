@@ -93,9 +93,9 @@ class LF:
     @staticmethod
     def selection__positive_shared_edge(probe, lexical_feature):
         def complement_criterion(probe):  # Complement exists and is/has referential argument
-            return probe.proper_complement() and (probe.proper_complement().head().is_referential() or
-                     (probe.proper_complement().head().licensed_phrasal_specifier() and
-                      probe.proper_complement().head().licensed_phrasal_specifier().head().is_referential()))
+            return probe.proper_complement() and (probe.proper_complement().head().referential() or
+                                                  (probe.proper_complement().head().licensed_phrasal_specifier() and
+                                                   probe.proper_complement().head().licensed_phrasal_specifier().head().referential()))
         return not (not probe.licensed_phrasal_specifier() and complement_criterion(probe))
 
     # Feature !1EDGE
@@ -198,7 +198,7 @@ class LF:
                     return True
 
     def projection_principle_applies_to(self, h):
-        if h.is_referential() and h.max() and not h.max().find_me_elsewhere and h.max().mother:
+        if h.referential() and h.max() and not h.max().find_me_elsewhere and h.max().mother:
             return True
 
     def container_assigns_theta_role_to(self, h, test_strength):
@@ -224,7 +224,7 @@ class LF:
             if not {'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'} & container_head.features or {'-SPEC:φ'} & container_head.features:
                 return False
             # Condition (ii-4) One head K cannot assign two roles unless otherwise stated [DP1 [K DP2]]
-            if container_head.sister() != h.max() and container_head.sister().head().is_referential():
+            if container_head.sister() != h.max() and container_head.sister().head().referential():
                 if 'COPULA' not in container_head.features and test_strength == 'strong':
                     return False
             return True

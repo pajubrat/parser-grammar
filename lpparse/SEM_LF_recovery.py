@@ -69,7 +69,7 @@ class LF_Recovery:
 
     def special_local_edge_antecedent_rule(self, const, probe, list_of_antecedents):
         if probe.finite() and probe.edge_specifiers() and const == next((const for const in probe.edge_specifiers()), None):
-            if not const.head().is_referential():
+            if not const.head().referential():
                 self.LF_recovery_results.append(f'{probe}(generic)')
                 list_of_antecedents.append(const)
                 probe.features.add('PHI:DET:GEN')
@@ -89,46 +89,18 @@ class LF_Recovery:
         self.report_to_log(probe, list_of_antecedents, unvalued)
 
     def interpret_antecedent_for_output(self, probe, antecedent):
-        def get_valued_phi_set(h):
-            phi_set = set()
-            if h.is_complex():
-                if h.left_const:
-                    phi_set = get_valued_phi_set(h.left_const)
-                if h.right_const:
-                    phi_set = phi_set | get_valued_phi_set(h.right_const)
-            else:
-                if 'PHI:NUM:SG' in h.features and 'PHI:PER:1' in h.features:
-                    phi_set.add(f'pro at {h}')
-                elif 'PHI:NUM:SG' in h.features and 'PHI:PER:2' in h.features:
-                    phi_set.add(f'pro at {h}')
-                elif 'PHI:NUM:SG' in h.features and 'PHI:PER:3' in h.features:
-                    phi_set.add(f'pro at {h}')
-                elif 'PHI:NUM:PL' in h.features and 'PHI:PER:1' in h.features:
-                    phi_set.add(f'pro at {h}')
-                elif 'PHI:NUM:PL' in h.features and 'PHI:PER:2' in h.features:
-                    phi_set.add(f'pro at {h}')
-                elif 'PHI:NUM:PL' in h.features and 'PHI:PER:3' in h.features:
-                    phi_set.add(f'pro at {h}')
-            if 'PHI:DET:GEN' in h.features:
-                phi_set.add(f'generic')
-            return phi_set
-
         if probe.sister() and probe.is_left() and antecedent == probe.sister() and antecedent.is_right():
             prefix = 'Patient/'
         else:
             prefix = 'Agent/'
 
-        arg_str = ''
-        if antecedent.head().is_referential():
+        if antecedent.head().referential():
             if antecedent.head().sister() and 'N' in antecedent.head().sister().head().features:
                 arg_str = antecedent.head().sister().head().illustrate()
             else:
                 arg_str = antecedent.illustrate()
         else:
-            if antecedent.is_complex():
-                arg_str = antecedent.major_cat()
-            else:
-                arg_str = f'{sorted(get_valued_phi_set(antecedent))}'
+            arg_str = f'pro({antecedent.head()})'
 
         return prefix + f'{probe.illustrate()}/{arg_str}'
 
@@ -136,7 +108,7 @@ class LF_Recovery:
         if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:
             if ps.sister() and ps.sister().is_complex() and \
                     (ps.sister().head().nonfinite() or ps.sister().head().finite()):
-                return 'Clausal argument'
+                return 'Clausal'
             else:
                 return 'Generic'
         elif 'PHI:PER:_' in features and 'PHI:NUM:_' not in features:

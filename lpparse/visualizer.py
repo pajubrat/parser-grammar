@@ -125,7 +125,7 @@ class Visualizer:
         s = set()
         width = 0
         if self.show_glosses:
-            width += len(K.gloss()) / 8
+            width += len(N.gloss()) / 8
         if self.count_features(N) > 0:
             width += 1
         s.add((N.x - width, N.y))
@@ -329,7 +329,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
                     if ps.gloss() != ps.major_cat() and \
                             ps.gloss() != ps.get_phonological_string() and \
                             legitimate_label(ps):
-                        label_stack.append((f"\'{ps.gloss()}\'", 'GLOSS'))
+                        label_stack.append((f"ʻ{ps.gloss()}ʼ", 'GLOSS'))
         if self.visualizer.case and ps.is_primitive():
             if get_case(ps):
                 label_stack.append(str(get_case(ps), 'CASE'))
@@ -395,10 +395,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
     def draw_left_line(self, ps, X1, Y1):
         X2 = self.x_offset + ps.left_const.x * self.x_grid
         Y2 = self.y_offset + ps.left_const.y * self.y_grid + (self.y_grid - self.x_grid)
-        if abs(ps.x - ps.left_const.x) > 1:
-            glLineWidth(1)
-        else:
-            glLineWidth(2)
+        glLineWidth(3)
         glColor4f(0, 0, 0, 0)
         glBegin(GL_LINES)
         glVertex2f(X1, Y1)

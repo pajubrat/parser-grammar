@@ -363,7 +363,7 @@ class LocalFileSystem:
 
     def save_grammaticality_judgment(self, P, count, sentence):
         sentence_string = self.generate_input_sentence_string(sentence)
-        self.grammaticality_judgments_file.write('\n'+str(count) + '. ' + self.judgment_marker(P) + sentence_string + '\n')
+        self.grammaticality_judgments_file.write('\n\t\t'+str(count) + '. ' + self.judgment_marker(P) + sentence_string + '\n')
 
     def judgment_marker(self, parser):
         if len(parser.result_list) == 0:
@@ -492,7 +492,10 @@ class LocalFileSystem:
         if self.visualizer.image_output:
             parse_number = 1
             for parse, semantic_interpretation in P.result_list:
-                file_name = 'Raw image of (' + str(count) + chr(96 + parse_number) + ').png'
+                if len(P.result_list) > 1:
+                    file_name = str(count) + chr(96 + parse_number) + '.png'
+                else:
+                    file_name = str(count) + '.png'
                 self.visualizer.file_identifier = self.folder['images'] / file_name
                 self.visualizer.draw(parse)
                 parse_number = parse_number + 1
@@ -508,9 +511,9 @@ class LocalFileSystem:
     def write_comment_line(self, sentence_lst):
         sentence_string = ' '.join(map(str, sentence_lst))
         if sentence_lst[0].startswith("&"):
-            self.grammaticality_judgments_file.write('\n\t\t')
+            self.grammaticality_judgments_file.write('\n')
         if sentence_lst[0].startswith("'"):
-            prefix = '\t'
+            prefix = '\t\t\t'
         else:
             prefix = ''
         self.grammaticality_judgments_file.write(prefix + sentence_string)

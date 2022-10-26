@@ -7,7 +7,7 @@ from support import log
 major_category = {'N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'Adv', 'Q', 'Num', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'MA/A', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z'}
 
 # New list (ordered hierarchically)
-major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'Adv', 'Q', 'Num', 'Inf', 'T', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
+major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'T', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 
 Result = namedtuple('Result', 'match_occurred outcome')
 
@@ -80,9 +80,6 @@ class PhraseStructure:
 
     def is_adjoinable(self):
         return self.adjunct or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
-
-    def is_referential(self):
-        return {'φ', 'D'} & self.features
 
     def max(probe):
         p = probe
@@ -392,6 +389,9 @@ class PhraseStructure:
     def finite_tense(self):
         return 'T/fin' in self.head().features or (self.finite() and 'T' in self.head().features)
 
+    def referential(self):
+        return {'φ', 'D'} & self.features
+
     #
     # Tail processing
     #
@@ -411,7 +411,7 @@ class PhraseStructure:
 
     def weak_tail_condition(self, tail_set):
         if '$NO_W' not in tail_set:
-            if self.is_referential() or 'P' in self.features:
+            if self.referential() or 'P' in self.features:
                 for m in (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list()):
                     test = m.match_features(tail_set)
                     if test.match_occurred:

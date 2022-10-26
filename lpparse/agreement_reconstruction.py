@@ -67,7 +67,7 @@ class AgreementReconstruction:
                      const and self.agreement_condition(head, const)), (None, {}))
 
     def agreement_condition(self, probe, goal):
-        if goal.head().is_referential():
+        if goal.head().referential():
             if 'LANG:FI' not in goal.head().features:
                 return True
             else:
