@@ -27,12 +27,13 @@ class LF_Recovery:
 
         # Standard control
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
+            # Add the sister
             if probe.is_primitive() and probe.is_left() and probe.sister().is_complex():
                 working_memory.append(probe.sister())
+            # Add from the upward path
             working_memory.extend(list(takewhile(self.recovery_termination, probe.working_memory_path())))
             antecedent = next((const for const in working_memory if self.is_possible_antecedent(const, probe)), None)
-            if antecedent:
-                return antecedent
+            return antecedent
 
         # Finite control in Finnish
         if 'PHI:DET:_' in unvalued_phi:
@@ -58,6 +59,7 @@ class LF_Recovery:
             # features are the same OR feature in the antecedent can value an unvalued feature in the probe
             return antecedent_feature == probe_feature or \
                    (probe_feature[-1] == '_' and antecedent_feature[:len(probe_feature[:-1])] == probe_feature[:-1])
+
         phi_to_check = {phi for phi in probe.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER'}
         if not antecedent.find_me_elsewhere:
             return phi_to_check == {phi2 for phi1 in antecedent.head().get_valued_features()
@@ -85,14 +87,15 @@ class LF_Recovery:
             self.brain_model.narrow_semantics.predicate_argument_dependencies.append((probe, list_of_antecedents[0].head()))
             semantic_interpretation_dict['Recovery'].append(f'{antecedent}')
         else:
-            self.LF_recovery_results.append(f'{probe}(' + self.antecedent_does_not_exist(probe, unvalued) + ')')
+            self.LF_recovery_results.append(self.antecedent_does_not_exist(probe, unvalued))
+            semantic_interpretation_dict['Recovery'].append(f'Agent/{probe.major_cat()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{self.antecedent_does_not_exist(probe, unvalued)}')
         self.report_to_log(probe, list_of_antecedents, unvalued)
 
     def interpret_antecedent_for_output(self, probe, antecedent):
         if probe.sister() and probe.is_left() and antecedent == probe.sister() and antecedent.is_right():
-            prefix = 'Patient/'
+            prefix = 'Patient'
         else:
-            prefix = 'Agent/'
+            prefix = 'Agent'
 
         if antecedent.head().referential():
             if antecedent.head().sister() and 'N' in antecedent.head().sister().head().features:
@@ -100,9 +103,9 @@ class LF_Recovery:
             else:
                 arg_str = antecedent.illustrate()
         else:
-            arg_str = f'pro({antecedent.head()})'
+            arg_str = f'{antecedent.head().major_cat()}(pro)'
 
-        return prefix + f'{probe.illustrate()}/{arg_str}'
+        return f'{prefix}/{probe.major_cat()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
 
     def antecedent_does_not_exist(self, ps, features):
         if 'PHI:NUM:_' in features and 'PHI:PER:_' in features:

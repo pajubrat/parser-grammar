@@ -1,4 +1,3 @@
-
 from support import log
 
 # Transforms a set of lexical features to be used in checking LF-interface conditions
@@ -119,9 +118,7 @@ class LF:
 
     # Feature !COMP
     def selection__positive_obligatory_complement(self, probe, lexical_feature):
-        return probe.selected_sister() and \
-               (lexical_feature == '!COMP:*' or
-                (lexical_feature != '!COMP:*' and lexical_feature[6:] in probe.selected_sister().head().features))
+        return probe.selected_sister() and (lexical_feature[6] == '*' or lexical_feature[6:] in probe.selected_sister().head().features)
 
     # Feature -COMP
     def selection__negative_complement(self, probe, lexical_feature):
@@ -246,62 +243,56 @@ class LF:
     # LF Merge operations
     #
 
-    def try_merge_to_comp(self, head):
+    def LFMerge(self, phrase, target_head, direction='left'):
+        log(f'Merging {phrase} {direction} of \'{target_head}\'...')
+        new_const = phrase.copy_from_memory_buffer(self.controlling_parsing_process.babtize())
+        target_head.merge_1(new_const, direction)
+        self.controlling_parsing_process.consume_resources("Ā-Chain", f'{phrase}')
+        return new_const
+
+    def try_LFmerge(self, head, phrase):
+        for try_merge in [self.try_merge_to_left, self.try_adjoin_right, self.try_merge_to_comp]:
+            if try_merge(head, phrase):
+                return
+
+    def try_merge_to_comp(self, head, phrase):
 
         # Case 1. missing complement
         if head.is_primitive() and not head.proper_complement() and head.licensed_complements():
-            for const in self.controlling_parsing_process.syntactic_working_memory:
-                if head.complement_match(const):
-                    self.LFMerge(const, head, 'right')
-                    log(f'={head.top()}...')
-                    self.controlling_parsing_process.consume_resources("Move Phrase", f'{const}')
-                    break
+            if head.complement_match(phrase):
+                self.LFMerge(phrase, head, 'right')
+                log(f'={head.top()}...')
+                self.controlling_parsing_process.consume_resources("Move Phrase", f'{phrase}')
+                return True
 
         # Case 2. Wrong complement
         if head.is_left() and head.proper_complement() and not (head.licensed_complements() & head.proper_complement().head().features):
-            for const in self.controlling_parsing_process.syntactic_working_memory:
-                if head.complement_match(const):
-                    old_complement = head.proper_complement()
-                    head.proper_complement().merge_1(const.copy_from_memory_buffer(self.controlling_parsing_process.babtize()), 'left')
-                    log(f'Merging {const} to Comp{head.major_cat()} due to complement mismatch. ')
-                    if 'adjoinable' in old_complement.head().features:
-                        log(f'Externalizing {old_complement}. ')
-                        old_complement.adjunct = True
-                    self.controlling_parsing_process.syntactic_working_memory.remove(const)
-                    self.controlling_parsing_process.consume_resources("Move Phrase", f'{const}')
-                    break
+            if head.complement_match(phrase):
+                old_complement = head.proper_complement()
+                head.proper_complement().merge_1(phrase.copy_from_memory_buffer(self.controlling_parsing_process.babtize()), 'left')
+                log(f'Merging {phrase} to Comp{head.major_cat()} due to complement mismatch. ')
+                if 'adjoinable' in old_complement.head().features:
+                    log(f'Externalizing {old_complement}. ')
+                    old_complement.adjunct = True
+                self.controlling_parsing_process.consume_resources("Move Phrase", f'{phrase}')
+                return True
 
-    def LFMerge(self, constituent_from_MB, target, direction='left'):
-        log(f'Merging {constituent_from_MB} {direction} of \'{target}\'...')
-        new_const = constituent_from_MB.copy_from_memory_buffer(self.controlling_parsing_process.babtize())
-        target.merge_1(new_const, direction)
-        self.controlling_parsing_process.consume_resources("Ā-Chain", f'{constituent_from_MB}')
-        self.controlling_parsing_process.syntactic_working_memory.remove(constituent_from_MB)
-        return new_const
+    def try_adjoin_right(self, head, phrase):
+        if phrase.head().adverbial():
+            target_node = self.specifier_sister(head)
+            if self.tail_match(target_node, phrase, 'right'):
+                new_const = self.LFMerge(phrase, target_node, 'right')
+                new_const.adjunct = True
+                log(f'={target_node.top()}')
+                return True
 
-    def try_LFmerge(self, node):
-        self.try_merge_to_left(node)
-        self.try_adjoin_right(node)
-        self.try_merge_to_comp(node)
-
-    def try_adjoin_right(self, head):
-        for constituent_from_MB in self.controlling_parsing_process.syntactic_working_memory:
-            if constituent_from_MB.head().adverbial():
-                target_node = self.specifier_sister(head)
-                if self.tail_match(target_node, constituent_from_MB, 'right'):
-                    new_const = self.LFMerge(constituent_from_MB, target_node, 'right')
-                    new_const.adjunct = True
-                    log(f'={target_node.top()}')
-                    break
-
-    def try_merge_to_left(self, head):
+    def try_merge_to_left(self, head, phrase):
         if not head.finite() and not head.edge_specifiers():
-            for constituent_from_MB in self.controlling_parsing_process.syntactic_working_memory:
-                target_node = self.specifier_sister(head)
-                if self.specifier_match(head, constituent_from_MB) and self.tail_match(target_node, constituent_from_MB, 'left'):
-                    self.LFMerge(constituent_from_MB, target_node, 'left')
-                    log(f'={target_node.top()}...')
-                    break
+            target_node = self.specifier_sister(head)
+            if self.specifier_match(head, phrase) and self.tail_match(target_node, phrase, 'left'):
+                self.LFMerge(phrase, target_node, 'left')
+                log(f'={target_node.top()}...')
+                return True
 
     def specifier_match(self, h, const):
         for feature_in_head in h.convert_features_for_parsing(h.licensed_specifiers()):

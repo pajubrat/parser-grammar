@@ -114,6 +114,9 @@ class PhraseStructure:
             self = self.mother
         return self
 
+    def minimal_search(self):
+        return [const.left_const if const.is_complex() else const for const in self]
+
     #
     # Definitions for heads and terminal elements
     #
@@ -130,6 +133,9 @@ class PhraseStructure:
 
     def EF(self):
         return next((True for f in self.features if 'EF:' in f and '-' not in f), False)
+
+    def trigger_phrasal_chain(self):
+        return self.EF()
 
     def is_extended_subject(self):
         def all_tail_features(probe):
@@ -390,7 +396,18 @@ class PhraseStructure:
         return 'T/fin' in self.head().features or (self.finite() and 'T' in self.head().features)
 
     def referential(self):
-        return {'φ', 'D'} & self.features
+        return {'φ', 'D'} & self.head().features
+
+    def preposition(self):
+        return 'P' in self.head().features
+
+    def non_scopal(self):
+        return {'Inf', 'P', 'D', 'φ'} & self.features
+
+    def add_scope_information(self):
+        if not self.non_scopal():
+            return {'Fin', 'C', 'PF:C'}
+        return set()
 
     #
     # Tail processing

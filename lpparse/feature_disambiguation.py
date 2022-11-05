@@ -23,17 +23,13 @@ class FeatureProcessing():
             h.features.add('-EF:φ')
             h.features.discard('EF:φ')
             h.features.add('-ARG')
-        elif self.selected_by_SEM_external(h):
-            log(f'{h} resolved into +ARG due to {h.selector()}...')
+        else:
+            log(f'{h} resolved into +ARG...')
             h.features.add('ARG')
             h.features.add('!EF:φ')
             h.features.add('EF:φ')
-        else:   # Selected by neither
-            log(f'{h} resolved to +ARG...')
-            h.features.add('ARG')
             h.features.add('PHI:NUM:_')
             h.features.add('PHI:PER:_')
-            h.features.add('EF:φ')
 
     def selected_by_SEM_internal(self, h):
         return h.selector() and 'SEM:internal' in h.selector().features

@@ -58,7 +58,7 @@ class Discourse:
         return f, f'{ps.illustrate()}'
 
     def calculate_information_structure(self, root_node, semantic_interpretation):
-        if 'FIN' in root_node.head().features:
+        if root_node.finite():
             log('\n\t\tCalculating information structure...')
             semantic_interpretation['Information structure'] = self.create_topic_gradient(self.arguments_of_proposition(root_node))
             log(f'{semantic_interpretation["Information structure"]}')
@@ -101,14 +101,14 @@ class Discourse:
         return arguments
 
     def is_relevant_for_information_structure(self, ps):
-        if 'T/fin' in ps.head().features:
+        if ps.finite_tense():
             return False
         return (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
     def out_of_proposition_scope(self, ps, scope):
         if ps.left_const.is_primitive():
             if ps.left_const.finite():
-                if {'T/fin'} & ps.left_const.features:
+                if ps.left_const.finite_tense():
                     if ps != scope:
                         return True
         if ps.right_const.is_primitive():
@@ -144,7 +144,7 @@ class Discourse:
         self.records_of_attentional_processing[idx]['Marked gradient'] = direction
 
     def allocate_attention(self, head):
-        if {'D', 'φ', 'P'} & head.features:  # This is arbitrary and only limits the scope of the current theory
+        if head.referential() or head.preposition():
             idx = self.consume_index()
             head.features.add('*IDX:'+str(idx))
             self.records_of_attentional_processing[str(idx)] = {'Order':idx, 'Name': f'{head}'}

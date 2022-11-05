@@ -23,7 +23,6 @@ class LinearPhaseParser:
         self.result_matrix = [[] for i in range(50)]            # Result matrix
         self.execution_time_results = []                        # Execution time
         self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
-        self.syntactic_working_memory = []                      # Syntactic working memory
         self.name_provider_index = 0                            # Used to name chains for output purposes
         self.first_solution_found = False                       # Registers when the first solution if found
         self.exit = False                                       # Forced exit tag
