@@ -409,6 +409,16 @@ class PhraseStructure:
             return {'Fin', 'C', 'PF:C'}
         return set()
 
+    def adjoinable_and_floatable(self):
+        return self.is_complex() and not self.find_me_elsewhere and \
+               self.head().get_tail_sets() and 'adjoinable' in self.head().features and \
+               '-adjoinable' not in self.head().features and '-float' not in self.head().features
+
+    def in_EPP_position(self):
+        return self.container() and \
+               (self.container().EF() and self.container().finite()) or \
+               ('-SPEC:*' in self.container().features and self == next((const for const in self.container().edge_specifiers()), None))
+
     #
     # Tail processing
     #

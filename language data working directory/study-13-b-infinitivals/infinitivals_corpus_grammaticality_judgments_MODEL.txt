@@ -1,0 +1,1713 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-13-b-infinitivals', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-13-b-infinitivals', 'test_corpus_file': 'infinitivals_corpus.txt', 'only_first_solution': False, 'datatake_images': True, 'datatake_full': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'show_features': [], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-11-04 10:53:10.575823
+@  Test sentences from language data working directory\study-13-b-infinitivals\infinitivals_corpus.txt.
+@  Logs into language data working directory\study-13-b-infinitivals\infinitivals_corpus_log.txt.
+@  Lexicon from language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules from language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes from language data working directory\lexicons\ug_morphemes.txt.
+@ 
+
+& 0. Preliminaries (presuppositions of the study)
+
+& 0.1 Case mechanisms
+
+& 0.1.1 Nominative and partitive
+
+& Grammatical
+
+		1.  Pekka ihailee Merjaa 
+			'Pekka.nom admire.prs.3sg Merja.par'
+
+& 0.1.2 Nominative and t-accusative
+
+& Grammatical
+
+		2.  Pekka näki hänet 
+			'Pekka.nom saw he.acc(t)'
+
+& 0.2 Verb classes
+
+& 0.2.1 -OC verb
+
+& Grammatical
+
+		3.  Pekka käski hänen lähteä 
+			'Pekka.nom order.pst.3sg he.gen leave.A/inf'
+
+& Ungrammatical
+
+		4. *Pekka käski lähteä 
+			'Pekka.nom order.pst.3sg leave.A/inf'
+
+& 0.2.2 OC verb
+
+& Grammatical
+
+		5.  Pekka halusi lähteä 
+			'Pekka.nom want.pst.3sg leave.A/inf'
+
+& Ungrammatical
+
+		6. *Pekka halusi hänen lähteä 
+			'Pekka.nom want.pst.3sg he.gen leave.A/inf'
+
+& 0.2.3 Proposition-selection verb
+
+& Grammatical
+
+		7.  Pekka uskoi hänen lähtevän 
+			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf'
+
+& Ungrammatical
+
+		8. *Pekka uskoi 
+			'Pekka.nom believe.pst.3sg'
+
+& 0.2.4 Intransitive
+
+& Grammatical
+
+		9.  Pekka nukkui 
+			'Pekka.nom sleep.pst.3sg'
+
+& Ungrammatical
+
+		10. *Pekka nukkui hänet 
+			'Pekka.nom sleep.pst.3sg he.acc(t)'
+
+& 1. A-infinitival
+
+& (Vainikka: TA-infinitive; traditional: 1st infinitive, short form)
+
+& 1.1 Selected by -OC verb (external, käski 'ordered')
+
+& 1.1.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+		11.  Pekka käski hänen lähteä 
+			'Pekka.nom order.pst.3sg he.gen leave.A/inf'
+
+& 1.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		12. *Pekka käski hänen lähteänsä 
+			'Pekka.nom order.pst.3sg he.gen leave.A/inf.px/3sg'
+
+& Ungrammatical
+
+		13. *Pekka käski hänen lähteä#[nsA] 
+			'Pekka.nom order.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		14. *Pekka käski lähteä 
+			'Pekka.nom order.pst.3sg leave.A/inf'
+
+& 1.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		15. *Pekka käski lähteä#[nsA] 
+			'Pekka.nom order.pst.3sg leave.A/inf-Px/3sg'
+
+& 1.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 1.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		16. *Pekka halusi hänen lähteä 
+			'Pekka.nom want.pst.3sg he.gen leave.A/inf'
+
+& 1.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		17. *Pekka halusi hänen lähteä#[nsA] 
+			'Pekka.nom want.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.2.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+		18.  Pekka halusi lähteä 
+			'Pekka.nom want.pst.3sg leave.A/inf'
+
+& 1.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		19. *Pekka halusi lähteä#[nsA] 
+			'Pekka.nom want.pst.3sg leave.A/inf-px/3sg'
+
+& 1.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 1.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		20. *Pekka uskoi hänen lähteä 
+			'Pekka.nom believe.pst.3sg he.gen leave.A/inf'
+
+& 1.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		21. *Pekka uskoi hänen lähteä#[nsA] 
+			'Pekka.nom believe.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		22. *Pekka uskoi lähteä 
+			'Pekka.nom believe.pst.3sg leave.A/inf'
+
+& 1.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		23. *Pekka uskoi lähteä#[nsA] 
+			'Pekka.nom believe.pst.3sg leave.A/inf-px/3sg'
+
+& 1.4 In adjunct position (not selected)
+
+& 1.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		24. *Pekka näki hänet hänen lähteä 
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.A/inf]'
+
+& 1.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		25. *Pekka näki hänet hänen lähteä#[nsA] 
+			'Pekka see.pst.3sg he.acc(t) [he.gen leave.A/inf-px/3sg]
+
+& 1.4.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		26. *Pekka näki hänet lähteä 
+			'Pekka.nom see.pst.3sg he.acc(t) [leave.A/inf]
+
+& 1.4.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		27. *Pekka näki hänet hänen lähteä#[nsA] 
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.A/inf-px/3sg]'
+
+& 1.5 In connection with intransitive main verb (not selected)
+
+& 1.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		28. *Pekka nukkui hänen lähteä 
+			'Pekka.nom sleep.pst.3sg he.gen leave.A/inf'
+
+& 1.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		29. *Pekka nukkui hänen lähteä#[nsA] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.5.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		30. *Pekka nukkui lähteä 
+			'Pekka.nom sleep.pst.3sg leave.A/inf'
+
+& 1.5.4 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		31. *Pekka nukkui lähteä#[nsA] 
+			'Pekka.nom sleep.pst.3sg leave.A/inf-px/3sg'
+
+& 2. VA-infinitival
+
+& (Vainikka: clausal complement infinitival; traditional: participle)
+
+& 2.1 Selected by -OC verb (external, käski 'ordered')
+
+& 2.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		32. *Pekka käski hänen lähtevän 
+			'Pekka.nom order.pst.3sg he.gen leave.VA/inf'
+
+& 2.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		33. *Pekka käski hänen lähtevän#[nsA] 
+			'Pekka.nom order.pst.3sg he.gen leave.VA/inf.px/3sg'
+
+& 2.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		34. *Pekka käski lähtevän 
+			'Pekka.nom order.pst.3sg leave.VA/inf'
+
+& 2.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		35. *Pekka käski lähtevän#[nsA] 
+			'Pekka.nom order.pst.3sg leave.VA/inf-px/3sg'
+
+& 2.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 2.2.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+		36.  Pekka halusi hänen lähtevän 
+			'Pekka.nom want.pst.3sg he.gen leave.VA/inf'
+
+& 2.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		37. *Pekka halusi hänen lähtevän#[nsA] 
+			'Pekka.nom want.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		38. *Pekka halusi lähtevän 
+			'Pekka.nom want.pst.3sg leave.VA/inf'
+
+& 2.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		39. *Pekka halusi lähtevän#[nsA] 
+			'Pekka.nom want.pst.3sg leave.VA/inf-px/3sg'
+
+& 2.3 Selected by proposition-taking verb (+/-external, uskoi 'believed')
+
+& 2.3.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+		40.  Pekka uskoi hänen lähtevän 
+			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf'
+
+& 2.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		41. *Pekka uskoi hänen lähtevän#[nsA] 
+			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		42. *Pekka uskoi lähtevän 
+			'Pekka.nom believe.pst.3sg leave.VA/inf'
+
+& 2.3.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+		43.  Pekka uskoi lähtevän#[nsA] 
+			'Pekka.nom believe.pst.3sg leave.VA/inf-px/3sg
+
+& 2.4 In adjunct position (not selected)
+
+& 2.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		44. *Pekka näki hänet hänen lähtevän 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.VA/inf'
+
+& 2.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		45. *Pekka näki hänet hänen lähtevän#[nsA] 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.VA/inf-px/3sg'
+
+& 2.4.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		46. *Pekka näki hänet lähtevän 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.VA/inf'
+
+& 2.4.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		47. *Pekka näki hänet hänen lähtevän#[nsA] 
+			'Pekka see.pst.3sg he.acc(t) he.gen leave.VA/inf-px/3sg
+
+& 2.5 In connection with intransitive main verb (not selected)
+
+& 2.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		48. *Pekka nukkui hänen lähtevän 
+			'Pekka.nom sleep.pst.3sg he.gen leave.VA/inf'
+
+& 2.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		49. *Pekka nukkui hänen lähtevän#[nsA] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.5.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		50. *Pekka nukkui lähtevän 
+			'Pekka.nom sleep.pst.3sg leave.VA/inf'
+
+& 2.5.4 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		51. *Pekka nukkui lähtevän#[nsA] 
+			'Pekka.nom sleep.pst.3sg leave.VA/inf-px/3sg'
+
+& 3. MA-infinitival
+
+& (Vainikka: MA-infinitive; traditional: 3rd infinitive)
+
+& 3.1 Selected by -OC verb (external, käski 'ordered')
+
+& 3.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		52. *Pekka käski hänen lähtemässä 
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+		53. *Pekka käski hänen lähtemään 
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+		54. *Pekka käski hänen lähtemästä 
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+		55. *Pekka käski hänen lähtemällä 
+			'Pekka.nom order.pst.3sg he.gen leave.MA/INF.ade'
+
+& Ungrammatical
+
+		56. *Pekka käski hänen lähtemättä 
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.abe'
+
+& 3.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		57. *Pekka käski hänen lähtemässä#[nsA] 
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		58. *Pekka käski hänen lähtemään#[nsA] 
+			'Pekka.nom order he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		59. *Pekka käski hänen lähtemästä#[nsA] 
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		60. *Pekka käski hänen lähtemällä#[nsA] 
+			'Pekka.nom order he.gen leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		61. *Pekka käski hänen lähtemättä#[An] 
+			'Pekka.nom order.pst.3sg he.gen leave.MA/abe-px/3sg
+
+& 3.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		62. *Pekka käski lähtemässä 
+			'Pekka.nom order.pst.3sg leave.MA/inf.ine
+
+& Grammatical
+
+		63.  Pekka käski lähtemään 
+			'Pekka.nom order leave.MA/inf.ill'
+
+& Ungrammatical
+
+		64. *Pekka käski lähtemästä 
+			'Pekka.nom order.pst.3sg leave.MA/inf.ela'
+
+& Ungrammatical
+
+		65. *Pekka käski lähtemällä 
+			'Pekka.nom order.pst.3sg leave.MA/inf.ade'
+
+& Ungrammatical
+
+		66. *Pekka käski lähtemättä 
+			'Pekka.nom order leave.MA/inf.abe'
+
+& 3.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		67. *Pekka käski lähtemässä#[An] 
+			'Pekka.nom order.pst.3sg leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		68. *Pekka käski lähtemään#[nsA] 
+			'Pekka.nom order.pst.3st leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		69. *Pekka käski lähtemästä#[An] 
+			'Pekka.nom order.pst.3sg leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		70. *Pekka käski lähtemällä#[An] 
+			'Pekka.nom order leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		71. *Pekka käski lähtemättä#[An] 
+			'Pekka.nom order leave.MA/inf.abe-px/3sg'
+
+& 3.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 3.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		72. *Pekka halusi hänen lähtemässä 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+		73. *Pekka halusi hänen lähtemään 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+		74. *Pekka halusi hänen lähtemästä 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+		75. *Pekka halusi hänen lähtemällä 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ade'
+
+& Ungrammatical
+
+		76. *Pekka halusi hänen lähtemättä 
+			'Pekka want.pst.3sg he.gen leave.MA/inf.abe'
+
+& 3.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		77. *Pekka halusi hänen lähtemässä#[An] 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		78. *Pekka halusi hänen lähtemään#[nsA] 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		79. *Pekka halusi hänen lähtemästä#[An] 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		80. *Pekka halusi hänen lähtemällä#[An] 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		81. *Pekka halusi hänen lähtemättä#[An] 
+			'Pekka.nom want.pst.3sg he.gen leave.MA/ind.abe-px/3sg'
+
+& 3.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		82. *Pekka halusi lähtemässä 
+			'Pekka.nom want.pst.3sg leave.MA/inf.ine'
+
+& Grammatical
+
+		83.  Pekka halusi lähtemään 
+			'Pekka.nom want.pst.3sg leave.MA/inf.ill'
+
+& Ungrammatical
+
+		84. *Pekka halusi lähtemästä 
+			'Pekka.nom want.pst.3sg leava.MA/inf.ela'
+
+& Ungrammatical
+
+		85. *Pekka halusi lähtemällä 
+			'Pekka want leave.MA/inf.ade'
+
+& Ungrammatical
+
+		86. *Pekka halusi lähtemättä 
+			'Pekka want.pst.3sg leave.MA/inf.abe'
+
+& 3.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		87. *Pekka halusi lähtemässä#[An] 
+			'Pekka want.pst.3sg leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		88. *Pekka halusi lähtemään#[nsA] 
+			'Pekka want.pst.3sg leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		89. *Pekka halusi lähtemästä#[An] 
+			'Pekka.nom want.pst.3sg leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		90. *Pekka halusi lähtemällä#[An] 
+			'Pekka.nom want.pst.3sg leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		91. *Pekka halusi lähtemättä#[An] 
+			'Pekka.nom want.pst.3sg leave.MA/inf.abe-px/3sg'
+
+& 3.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 3.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		92. *Pekka uskoi hänen lähtemässä 
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+		93. *Pekka uskoi hänen lähtemään 
+			'Pekka.nom believe.pst.3sg he-gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+		94. *Pekka uskoi hänen lähtemästä 
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+		95. *Pekka uskoi hänen lähtemällä 
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ade'
+
+& Ungrammatical
+
+		96. *Pekka uskoi hänen lähtemättä 
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.abe'
+
+& 3.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		97. *Pekka uskoi hänen lähtemässä#[An] 
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		98. *Pekka uskoi hänen lähtemään#[nsA] 
+			'Pekka believe.pst.3sg he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		99. *Pekka uskoi hänen lähtemästä#[An] 
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		100. *Pekka uskoi hänen lähtemällä#[An] 
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		101. *Pekka uskoi hänen lähtemättä#[An] 
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.abe-px/3sg'
+
+& 3.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		102. *Pekka uskoi lähtemässä 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ine'
+
+& Ungrammatical
+
+		103. *Pekka uskoi lähtemään 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ill'
+
+& Ungrammatical
+
+		104. *Pekka uskoi lähtemästä 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ela'
+
+& Ungrammatical
+
+		105. *Pekka uskoi lähtemällä 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ade'
+
+& Ungrammatical
+
+		106. *Pekka uskoi lähtemättä 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.abe'
+
+& 3.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		107. *Pekka uskoi lähtemässä#[An] 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		108. *Pekka uskoi lähtemään#[nsA] 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		109. *Pekka uskoi lähtemästä#[An] 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		110. *Pekka uskoi lähtemällä#[An] 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		111. *Pekka uskoi lähtemättä#[An] 
+			'Pekka.nom believe.pst.3sg leave.MA/inf.abe-px/3sg'
+
+& 3.4 In adjunct position (not selected)
+
+& 3.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		112. *Pekka näki hänet hänen lähtemässä 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+		113. *Pekka näki hänet hänen lähtemään 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+		114. *Pekka näki hänet hänen lähtemästä 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+		115. *Pekka esti häntä hänen lähtemästä 
+			'Pekka.nom prevent he.par he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+		116. *Pekka näki hänet hänen lähtemällä 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ade'
+
+& Ungrammatical
+
+		117. *Pekka näki hänet hänen lähtemättä 
+			'Pekka see he.acc(t) he.gen leave.MA/inf.abe'
+
+& 3.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		118. *Pekka näki hänet hänen lähtemässä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		119. *Pekka näki hänet hänen lähtemään#[nsA] 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		120. *Pekka näki hänet hänen lähtemästä#[An] 
+			'Pekka.nom see he.acc(t) he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		121. *Pekka esti häntä hänen lähtemästä#[An] 
+			'Pekka.nom prevent he.par he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		122. *Pekka näki hänet hänen lähtemällä#[An] 
+			'Pekka.nom see he.acc(t) he.gen leave.MA/inde.ade-px/3sg'
+
+& Ungrammatical
+
+		123. *Pekka näki hänet hänen lähtemättä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.abe-px/3sg'
+
+& 3.4.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+		124.  Pekka näki hänet lähtemässä 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ine'
+
+& Ungrammatical
+
+		125. *Pekka näki hänet lähtemään 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ill'
+
+& Ungrammatical
+
+		126. *Pekka näki häntä lähtemään 
+			'Pekka.nom see.pst.3sg he.par leave.MA/inf.ill'
+
+& Grammatical
+
+		127.  Pekka pyysi häntä lähtemään 
+			'Pekka asked he.par leave.MA/inf.ill'
+
+& Ungrammatical
+
+		128. *Pekka näki hänet lähtemästä 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ela'
+
+& Grammatical
+
+		129.  Pekka esti häntä lähtemästä 
+			'Pekka.nom prevent.pst.3sg he.par leave.MA/inf.ela'
+
+& Grammatical
+
+		130.  Pekka näki hänet lähtemällä 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ade
+
+& Grammatical
+
+		131.  Pekka näki hänet lähtemättä 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.abe'
+
+& 3.4.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		132. *Pekka näki hänet lähtemässä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		133. *Pekka näki hänet lähtemään#[nsA] 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		134. *Pekka näki hänet lähtemästä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		135. *Pekka esti häntä lähtemästä#[nsA] 
+			'Pekka.nom prevent.pst.3sg he.par leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		136. *Pekka näki hänet lähtemällä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		137. *Pekka näki hänet lähtemättä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.abe-px/3sg'
+
+& 3.5 In connection with intransitive main verb (not selected)
+
+& 3.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		138. *Pekka nukkui hänen lähtemässä 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+		139. *Pekka nukkui hänen lähtemään 
+			'Pekka.nom sleep.pst.3sg e.gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+		140. *Pekka nukkui hänen lähtemästä 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+		141. *Pekka nukkui hänen lähtemällä 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ade'
+
+& Ungrammatical
+
+		142. *Pekka nukkui hänen lähtemättä 
+			'Pekka sleep.pst.3sg he.gen leave.MA/inf.abe'
+
+& 3.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		143. *Pekka nukkui hänen lähtemässä#[An] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		144. *Pekka nukkui hänen lähtemään#[nsA] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		145. *Pekka nukkui hänen lähtemästä#[An] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		146. *Pekka nukkui hänen lähtemästä#[An] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		147. *Pekka nukkui hänen lähtemällä#[An] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		148. *Pekka nukkui hänen lähtemättä#[An] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.abe-px/3sg'
+
+& 3.5.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+		149.  Pekka nukkui lähtemässä 
+			'#Pekka.nom sleep.pst.3sg leave.MA/inf.ine'
+
+& Ungrammatical
+
+		150. *Pekka nukkui lähtemään 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ill'
+
+& Ungrammatical
+
+		151. *Pekka nukkui lähtemästä 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ela'
+
+& Grammatical
+
+		152.  Pekka nukkui lähtemällä 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ade'
+
+& Grammatical
+
+		153.  Pekka nukkui lähtemättä 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.abe'
+
+& 3.5.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		154. *Pekka nukkui lähtemässä#[An] 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+		155. *Pekka nukkui lähtemään#[nsA] 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+		156. *Pekka nukkui lähtemästä#[An] 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+		157. *Pekka nukkui lähtemästä#[nsA] 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		158. *Pekka nukkui lähtemällä#[An] 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+		159. *Pekka nukkui lähtemättä#[An] 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.abe-px/3sg'
+
+& 4. E-infinitival
+
+& (Vainikka: archaic, not covered; traditional: variation of 2nd infinite)
+
+& 4.1 Selected by -OC verb (external, käski 'ordered')
+
+& 4.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		160. *Pekka käski hänen lähtien 
+			'Pekka.nom order.pst.3sg [he.gen leave.E/inf]'
+
+& 4.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		161. *Pekka käski hänen lähtien#[nsA] 
+			'Pekka.nom order.pst.3sg [he.gen leave.E/inf-px/3sg]'
+
+& 4.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		162. *Pekka käski lähtien 
+			'Pekka.nom order.pst.3sg leave-E/inf'
+
+& 4.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		163. *Pekka käski lähtien#[nsA] 
+			'Pekka.nom order.pst.3sg leave.E/inf-px/3sg'
+
+& 4.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 4.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		164. *Pekka halusi hänen lähtien 
+			'Pekka.nom want.pst.3sg he.gen leave.E/inf'
+
+& 4.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		165. *Pekka halusi hänen lähtien#[nsA] 
+			'Pekka.nom want.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		166. *Pekka halusi lähtien 
+			'Pekka.nom want.pst.3sg leave.E/inf'
+
+& 4.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		167. *Pekka halusi lähtien#[nsA] 
+			'Pekka.nom want.pst.3sg leave.E/inf-px/3sg'
+
+& 4.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 4.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		168. *Pekka uskoi hänen lähtien 
+			'Pekka.nom believe.pst.3sg he.gen leave.E/inf'
+
+& 4.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		169. *Pekka uskoi hänen lähtien#[nsA] 
+			'Pekka.nom believe.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		170. *Pekka uskoi lähtien 
+			'Pekka.nom believe.pst.3sg leave.E/inf'
+
+& 4.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		171. *Pekka uskoi lähtien#[nsA] 
+			'Pekka.nom believe.pst.3sg leave.E/inf-px/3sg'
+
+& 4.4 In adjunct position (not selected)
+
+& 4.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		172. *Pekka näki hänet hänen lähtien 
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.E/inf]'
+
+& 4.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		173. *Pekka näki hänet hänen lähtien#[nsA] 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.E/inf-px/3sg'
+
+& 4.4.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+		174.  Pekka näki hänet lähtien 
+			'Pekka see.pst.3sg he.acc(t) leave.E/inf'
+
+& 4.4.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		175. *Pekka näki hänet lähtien#[nsA] 
+			'Pekka see.pst.3sg he.acc(t) he.gen leave.E/inf-px/3sg'
+
+& 4.5 In connection with intransitive main verb (not selected)
+
+& 4.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		176. *Pekka nukkui hänen lähtien 
+			'Pekka.nom sleep.pst.3sg he.gen leave.E/inf'
+
+& 4.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		177. *Pekka nukkui hänen lähtien#[nsA] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.5.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+		178.  Pekka nukkui lähtien 
+			'Pekka.nom sleep.pst.3sg leave.E/inf'
+
+& 4.5.4 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		179. *Pekka nukkui lähtien#[nsA] 
+			'Pekka.nom sleep.pst.3sg leave.E/inf-px/3sg'
+
+& 5. ESSA-infinitival
+
+& (Vainikka: temporal adjunct, traditional: 2nd infinitival)
+
+& 5.1 Selected by -OC verb (external, käski 'ordered')
+
+& 5.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		180. *Pekka käski hänen lähtiessä 
+			'Pekka.nom order.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		181. *Pekka käski hänen lähtiessä#[An] 
+			'Pekka.nom order.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		182. *Pekka käski lähtiessä 
+			'Pekka.nom order.pst.3sg leave.ESSA/inf'
+
+& 5.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		183. *Pekka käski lähtiessä#[An] 
+			'Pekka.nom order.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 5.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		184. *Pekka halusi hänen lähtiessä 
+			'Pekka.nom want.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		185. *Pekka halusi hänen lähtiessä#[An] 
+			'Pekka.nom want.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		186. *Pekka halusi lähtiessä 
+			'Pekka.nom want.pst.3sg leave.ESSA/inf'
+
+& 5.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		187. *Pekka halusi lähtiessä#[An] 
+			'Pekka.nom want.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 5.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		188. *Pekka uskoi hänen lähtiessä 
+			'Pekka.nom believe.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		189. *Pekka uskoi hänen lähtiessä#[An] 
+			'Pekka.nom believe.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		190. *Pekka uskoi lähtiessä 
+			'Pekka.nom believe.pst.3sg leave.ESSA/inf'
+
+& 5.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		191. *Pekka uskoi lähtiessä#[An] 
+			'Pekka.nom believe.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.4 In adjunct position (not selected)
+
+& 5.4.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+		192.  Pekka näki hänet hänen lähtiessä 
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.ESSA/inf]'
+
+& 5.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		193. *Pekka näki hänet hänen lähtiessä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.ESSA/inf-px/3sg'
+
+& 5.4.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+		194.  Pekka näki hänet lähtiessä 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.ESSA/inf'
+
+& 5.4.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+		195.  Pekka näki hänet lähtiessä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.ESSA/inf-px/3sg'
+
+& 5.5 In connection with intransitive main verb (not selected)
+
+& 5.5.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+		196.  Pekka nukkui hänen lähtiessä 
+			'Pekka.nom sleep.pst.3sg he.gen leave.ESSA/inf'
+
+& 5.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		197. *Pekka nukkui hänen lähtiessä#[An] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 5.5.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+		198.  Pekka nukkui lähtiessä 
+			'Pekka.nom sleep.pst.3sg leave.A/inf'
+
+& 5.5.4 Embedded Subject present (with PX)
+
+& Grammatical
+
+		199.  Pekka nukkui lähtiessä#[An] 
+			'Pekka.nom sleep.pst.3sg leave.A/inf-px/3sg'
+
+& 6. TUA-infinitival
+
+& (Vainikka: temporal adjunct, traditional: past participle)
+
+& 6.1 Selected by -OC verb (external, käski 'ordered')
+
+& 6.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		200. *Pekka käski hänen lähdettyä 
+			'Pekka.nom see.pst.3sg [he.gen leave.TUA]'
+
+& 6.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		201. *Pekka käski hänen lähdettyä#[An] 
+			'Pekka.nom order.pst.3sg he.gen leave.TUA-px/3sg'
+
+& 6.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		202. *Pekka käski lähdettyä 
+			'Pekka.nom order.pst.3sg leave.TUA'
+
+& 6.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		203. *Pekka käski lähdettyä#[An] 
+			'Pekka.nom order.pst.3sg leave.TUA-px/3sg'
+
+& 6.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 6.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		204. *Pekka halusi hänen lähdettyä 
+			'Pekka.nom want.pst.3sg [he.gen leave.TUA]'
+
+& 6.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		205. *Pekka halusi hänen lähdettyä#[An] 
+			'Pekka.nom want.pst.3sg [he.gen leave.TUA-px/3sg]'
+
+& 6.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		206. *Pekka halusi lähdettyä 
+			'Pekka.nom want.pst.3sg leave.TUA'
+
+& 6.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		207. *Pekka halusi lähdettyä#[An] 
+			'Pekka.nom want.pst.3sg leave.TUA-px/3sg'
+
+& 6.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 6.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		208. *Pekka uskoi hänen lähdettyä 
+			'Pekka.nom believe.pst.3sg he.gen leave.TUA/inf'
+
+& 6.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		209. *Pekka uskoi hänen lähdettyä#[An] 
+			'Pekka.nom believe.pst.3sg he.gen leave.TUA/inf-px/3sg'
+
+& 6.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		210. *Pekka uskoi lähdettyä 
+			'Pekka.nom believe.pst.3sg leave.TUA/inf'
+
+& 6.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		211. *Pekka uskoi lähdettyä#[An] 
+			'Pekka.nom believe.pst.3sg leave.TUA/inf-px/3sg'
+
+& 6.4 In adjunct position (not selected)
+
+& 6.4.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+		212.  Pekka näki hänet hänen lähdettyä 
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.TUA]'
+
+& 6.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		213. *Pekka näki hänet hänen lähdettyä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.TUA/inf-px/3sg]'
+
+& 6.4.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		214. *Pekka näki hänet lähdettyä 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.TUA'
+
+& 6.4.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+		215.  Pekka näki hänet lähdettyä#[An] 
+			'Pekka.nom see.pst.3sg he.acc(t) [eave.TUA/inf-px/3sg]'
+
+& 6.5 In connection with intransitive main verb (not selected)
+
+& 6.5.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+		216.  Pekka nukkui hänen lähdettyä 
+			'Pekka.nom sleep.pst.3sg he.gen leave.TUA/inf'
+
+& 6.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		217. *Pekka nukkui hänen lähdettyä#[An] 
+			'Pekka.nom sleep.pst.3sg he.gen leave.TUA/inf-px/3sg'
+
+& 6.5.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		218. *Pekka nukkui lähdettyä 
+			'Pekka.nom sleep.pst.3sg leave.TUA/inf'
+
+& 6.5.4 Embedded Subject present (with PX)
+
+& Grammatical
+
+		219.  Pekka nukkui lähdettyä#[An] 
+			'Pekka.nom sleep.pst.3sg leave.TUA/inf-px/3sg'
+
+& 7. KSE-infinitival
+
+& (Vainikka: rationale adjunct, traditional: 1st infinitival, long form)
+
+& 7.1 Selected by -OC verb (external, käski 'ordered')
+
+& 7.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		220. *Pekka käski hänen lähteäkse 
+			'Pekka order.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		221. *Pekka käski hänen lähteäkseen 
+			'Pekka.nom order.pst.3sg he.gen leave.KSE/inf.px/3sg'
+
+& 7.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		222. *Pekka käski lähteäkse 
+			'Pekka order.pst.3sg *leave.KSE/inf'
+
+& 7.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		223. *Pekka käski lähteäkseen 
+			'Pekka order.pst.3sg leave.KSE/inf.px/3sg'
+
+& 7.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 7.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		224. *Pekka halusi hänen lähteäkse 
+			'Pekka.nom want.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		225. *Pekka halusi hänen lähteäkseen 
+			'Pekka.nom want.pst.3sg he.gen leave.KSE/inf.px/3sg
+
+& 7.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		226. *Pekka halusi lähteäkse 
+			'Pekka.nom want.pst.3sg *leave.KSE/inf'
+
+& 7.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		227. *Pekka halusi lähteäkseen 
+			'Pekka.nom want.pst.3sg leave.KSE/inf.px/3sg
+
+& 7.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 7.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		228. *Pekka uskoi hänen lähteäkse 
+			'Pekka.nom believe.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		229. *Pekka uskoi hänen lähteäkseen 
+			'Pekka.nom believe.pst.3sg he.gen leave.KSE/inf-px/3sg'
+
+& 7.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		230. *Pekka uskoi lähteäkse 
+			'Pekka.nom believe.pst.3sg *leave.KSE/inf
+
+& 7.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+		231. *Pekka uskoi lähteäkseen 
+			'Pekka.nom believe.pst.3sg [leave.KSE/inf.px/3sg]'
+
+& 7.4 In adjunct position (not selected)
+
+& 7.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		232. *Pekka näki hänet hänen lähteäkse 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen *leave.KSE/inf'
+
+& 7.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		233. *Pekka näki hänet hänen lähteäkseen 
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.KSE/inf.px/3sg
+
+& 7.4.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		234. *Pekka näki lähteäkse 
+			'Pekka.nom see.pst.3sg leave.KSE/inf'
+
+& 7.4.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+		235.  Pekka näki hänet lähteäkseen 
+			'Pekka.nom see.pst.3sg e.gen leave.KSE/inf.px/3sg'
+
+& 7.5 In connection with intransitive main verb (not selected)
+
+& 7.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+		236. *Pekka nukkui hänen lähteäkse 
+			'Pekka.nom sleep.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+		237. *Pekka nukkui hänen lähteäkseen 
+			'Pekka.nom sleep.pst.3sg he.gen leave.KSE/inf-px/3sg'
+
+& 7.5.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+		238. *Pekka nukkui lähteäkse 
+			'Pekka.nom sleep.pst.3sg *leave.KSE/inf'
+
+& 7.5.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+		239.  Pekka nukkui lähteäkseen 
+			'Pekka.nom sleep.pst.3sg leave.KSE/inf-px/3sg'
+
+& 8. Additional topics
+
+& 8.1 Word order
+
+& 8.1.1 A-infinitival, noncanonical order
+
+& Grammatical
+
+		240.  Pekka halusi ihailla Merjaa 
+			'Pekka.nom want.pst.3sg admire.a/inf Merja.par'
+
+& Grammatical
+
+		241.  Merjaa halusi ihailla Pekka 
+			'Merja.par want.pst.3sg admire.a/inf Pekka.nom'
+
+& 8.2. VA-infinitival, noncanonical order
+
+& Grammatical
+
+		242.  Pekka uskoi ihailevan#[nsA] Merjaa 
+			'Pekka.nom believe.pst.3sg admire-va/inf-px/3sg Merja-par'
+
+& Grammatical
+
+		243.  Merjaa uskoi ihailevan#[nsA] Pekka 
+			'Merja-par believe.pst.3sg admire-va/inf-px/3sg Pekka.nom'
+
+& 8.2 Binding
+
+& Grammatical
+
+		244.  Pekka halusi ihailla itseään 
+			'Pekka.nom want.pst.3sg admire.a/inf self.par'
+
+& Grammatical
+
+		245.  Pekka käski Merjan_gen ihailla itseään 
+			'Pekka.nom order.pst.3sg Merja.gen admire.a/inf self.par'
+
+& Grammatical
+
+		246.  Pekka käski hänen ihailla itseään 
+			'Pekka.nom order.pst.3sg he.gen admire.a/inf self.par'
+
+& Grammatical
+
+		247.  Pekka uskoi ihailevansa itseään 
+			'Pekka.nom believe.pst.3sg admire.va/inf self.par'
+
+& Grammatical
+
+		248.  Pekka uskoi Merjan_gen ihailevan itseään 
+			'Pekka.nom believe.pst.3sg Merja.gen admire.va/inf self.par'
+
+& Grammatical
+
+		249.  Pekka uskoi hänen ihailevan itseään 
+			'Pekka.nom believe.pst.3sg he.gen admire.va/inf self.par'
+
+& 8.3 Participles
+
+& 8.3.1 MA-participles (agent participles)
+
+& Grammatical
+
+		250.  se' sinun tekemä#[si] kello hävisi 
+			'it/that [I.gen make.ma/a.2sg] watch disappear.pst.3sg'
+
+& Grammatical
+
+		251.  se' sinun tekemä kello hävisi 
+			'it/that [I.gen make.ma/a.2sg] watch disappear.pst.3sg'
+
+& Grammatical
+
+		252.  se' tekemä#[si] kello hävisi 
+			'it/that [make.ma/a.2sg] watch disappear.pst.3sg'
+
+& Ungrammatical
+
+		253. *se' tekemä kello hävisi 
+			'it/that make-ma/a watch disappear.pst.3sg'
+
+& 8.3.2 VA-participles (patient participles)
+
+& Grammatical
+
+		254.  se' sinua ihaileva tyttö hävisi 
+			'it/that you.par admire.va/a girl disappear.pst.3sg'
+
+& Ungrammatical
+
+		255. *se' sinua ihaileva#[si] tyttö hävisi 
+			'it/that you.par admire.va/a.2sg girl disappear.pst.3sg'
+
+& Ungrammatical
+
+		256. *se' ihaileva#[si] tyttö hävisi 
+			'it/that admire.va/a.2sg girl disappear.pst.3sg'
+
+& Ungrammatical
+
+		257. *se' ihaileva tyttö hävisi 
+			'it/that admire.va/a girl disappear.pst.3sg'
+
+& 8.4 Experimental infinitival predicates
+
+		258.  Pekka ihailee* Merjaa 
+
+		259.  Pekka näki hänet lähtemässä* 
+
+		260.  Pekka nukkui lähteäkseen* 

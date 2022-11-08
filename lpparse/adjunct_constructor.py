@@ -7,26 +7,27 @@ class AdjunctConstructor:
     def externalize_structure(self, ps):
         if ps.head().is_adjoinable():
             if ps.is_complex():
-                self.externalize(ps)
+                self.externalize_and_transfer(ps)
             else:
                 self.externalize_head(ps, ps.tail_test())
 
     def externalize_head(self, head, tail_test):
         if head.sister() and head.sister().is_primitive() and 'P' in head.features:  # [X Y], both primitive, externalize Y
-            self.externalize(head)
-        elif '-EF:φ' not in head.features and ((tail_test and head.EF() and head.edge_specifiers()) or (not tail_test and self.capture_specifier_rule(head))):
+            self.externalize_and_transfer(head)
+            return
+        if '-EF:φ' not in head.features and ((tail_test and head.EF() and head.edge_specifiers()) or (not tail_test and self.capture_specifier_rule(head))):
             if head.is_right():
-                self.externalize(head.mother)
+                self.externalize_and_transfer(head.mother)
             else:
-                self.externalize(head.mother.mother)  # Externalize with specifier
+                self.externalize_and_transfer(head.mother.mother)  # Externalize with specifier
         else:
-            self.externalize(head.mother)  # Externalize without specifier
+            self.externalize_and_transfer(head.mother)  # Externalize without specifier
 
     def capture_specifier_rule(self, head):
         return head.edge_specifiers() and '-ARG' not in head.features and head.mother.mother and '-EDGE:*' not in head.features and \
                not (set(head.specifiers_not_licensed()) & set(next((const for const in head.edge_specifiers()), None).head().features))
 
-    def externalize(self, ps):
+    def externalize_and_transfer(self, ps):
         if ps.mother:
             ps.adjunct = True
             self.add_tail_features_if_missing(ps)

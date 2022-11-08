@@ -12,46 +12,39 @@ class FloaterMovement():
         self.adjunct_constructor = AdjunctConstructor(self.controlling_parser_process)
 
     def reconstruct(self, ps):
-        for node in [node for node in ps.top()]:
-            f = self.get_floater(node)
-            if f:
-                self.drop_floater(f)
-                if f.is_right():
+        for constituent in [const for node in ps.top() for const in [node.left_const, node.right_const]]:
+            if self.detect_potential_floater(constituent):
+                if self.reconstruct_floater(self.get_floater(constituent)):
                     break
         return ps.top()
 
-    def get_floater(self, ps):
-        if self.detect_floater(ps.left_const):
-            H = ps.left_const.head()
-            if not H.tail_test():
-                log(ps.left_const.illustrate() + ' failed ' + illu(H.get_tail_sets()) + '. ')
-                return ps.left_const
-            if ps.left_const.container():
-                J = ps.left_const.container()
-                if (J.EF() and J.finite()) or ('-SPEC:*' in J.features and ps.left_const == next((const for const in J.edge_specifiers()), None)):
-                    return ps.left_const
+    def get_floater(self, target_phrase):
+        if target_phrase.is_left():
+            return self.get_left_floater_for_reconstruction(target_phrase)
+        else:
+            return self.get_right_floater_for_reconstruction(target_phrase)
 
-        if self.detect_floater(ps.right_const):
-            H = ps.right_const.head()
-            if not H.tail_test():
-                log(ps.right_const.illustrate() + ' failed ' + illu(H.get_tail_sets()) + '. ')
-                if not H.adverbial() and H.top().contains_feature('Fin'):
-                    self.adjunct_constructor.externalize_structure(H)
-                    if not ps.right_const.head().tail_test():
-                        return ps.right_const
-                elif H.adverbial() and not ps.right_const.adjunct:
-                    self.adjunct_constructor.externalize_structure(H)
-                    # No need to drop, hence externalization is sufficient
+    def get_left_floater_for_reconstruction(self, target_phrase):
+        if self.floater_in_wrong_position(target_phrase) or target_phrase.in_EPP_position():
+            return target_phrase
 
-    def detect_floater(self, ps):
-        return ps and \
-               ps.is_complex() and \
-               not ps.find_me_elsewhere and \
-               ps.head().get_tail_sets() and \
-               'adjoinable' in ps.head().features and \
-               '-adjoinable' not in ps.head().features and \
-               '-float' not in ps.head().features and \
-               self.do_not_float_operators_at_scope_position(ps)
+    def floater_in_wrong_position(self, target_phrase):
+        if not target_phrase.head().tail_test():
+            log(f'{target_phrase.illustrate()}({illu(target_phrase.head().get_tail_sets())}) needs reconstruction. ')
+            return True
+
+    def get_right_floater_for_reconstruction(self, target_phrase):
+        if self.floater_in_wrong_position(target_phrase):
+            if not target_phrase.head().adverbial() and target_phrase.top().contains_feature('Fin'):
+                self.adjunct_constructor.externalize_structure(target_phrase.head())
+                if self.floater_in_wrong_position(target_phrase):
+                    return target_phrase
+            elif target_phrase.head().adverbial():
+                self.adjunct_constructor.externalize_structure(target_phrase.head())
+                # No need to reconstruct, externalization is sufficient
+
+    def detect_potential_floater(self, ps):
+        return ps and ps.adjoinable_and_floatable() and self.do_not_float_operators_at_scope_position(ps)
 
     def do_not_float_operators_at_scope_position(self, ps):
         # If there are criterial features
@@ -66,33 +59,33 @@ class FloaterMovement():
                 return False
         return True
 
-    def drop_floater(self, original_floater):
+    def reconstruct_floater(self, target_phrase):
         def termination_condition(node, floater, local_tense_edge):
             return node == floater or node.find_me_elsewhere or \
                    (node.is_complex() and 'FORCE' in node.left_const.features and node.head() != local_tense_edge.head()) or \
                    (node.sister() and node.sister().is_primitive() and 'φ' in node.sister().features)
 
-
-        log(f'Reconstructing {original_floater}...')
-        if original_floater.is_left():
-            starting_point_head = original_floater.container()
-        else:
-            starting_point_head = None
-        test_item = original_floater.copy()
-        local_tense_edge = self.local_tense_edge(original_floater)
-        # ------------------------------------ minimal search ------------------------------------#
-        for node in local_tense_edge:
-            if termination_condition(node, original_floater, local_tense_edge):
-                break
-            self.merge_floater(node, test_item)
-            self.adjunct_constructor.externalize_structure(test_item)
-            if self.validate_position(test_item, starting_point_head):
+        if target_phrase:
+            log(f'Reconstructing {target_phrase}...')
+            if target_phrase.is_left():
+                starting_point_head = target_phrase.container()
+            else:
+                starting_point_head = None
+            test_item = target_phrase.copy()
+            local_tense_edge = self.local_tense_edge(target_phrase)
+            # ------------------------------------ minimal search ------------------------------------#
+            for node in local_tense_edge:
+                if termination_condition(node, target_phrase, local_tense_edge):
+                    break
+                self.merge_floater(node, test_item)
+                self.adjunct_constructor.externalize_structure(test_item)
+                if self.validate_position(test_item, starting_point_head):
+                    test_item.remove()
+                    dropped_floater = self.copy_and_insert_floater(node, target_phrase)
+                    self.controlling_parser_process.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point_head)
+                    return True
                 test_item.remove()
-                dropped_floater = self.copy_and_insert_floater(node, original_floater)
-                self.controlling_parser_process.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point_head)
-                return
-            test_item.remove()
-        # ---------------------------------------------------------------------------------------#
+            # ---------------------------------------------------------------------------------------#
 
     def copy_and_insert_floater(self, node, original_floater):
         if not original_floater.adjunct:
