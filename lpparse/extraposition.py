@@ -8,48 +8,26 @@ class Extraposition:
         self.brain_model = controlling_parser_process
 
     def reconstruct(self, ps):
-        if ps.top().contains_feature('Fin') or 'D' in ps.top().features:
-            head_violating_selection = next((node.right_const.head() for node in ps if self.selection_violation_at(node)), None)
-            if head_violating_selection and not head_violating_selection.adjunct:
-                self.try_extraposition(head_violating_selection)
+        if self.license_extraposition(ps):
+            self.try_extraposition(self.get_head_violating_selection(ps))
 
-    def selection_violation_at(self, node):
-        if node.is_complex():
-            if node.left_const.complements_not_licensed() & node.right_const.head().features or \
-                    (self.get_mandatory_comps(node.left_const) and not (self.get_mandatory_comps(node.left_const) & node.right_const.head().features)):
-                return True
+    def get_head_violating_selection(self, ps):
+        return next((node.right_const.head() for node in ps if
+                     self.brain_model.LF.selection_violation(node) and
+                     not node.right_const.head().adjunct), None)
 
-    def try_extraposition(self, unselected_head):
-        log(f'applied on \'{unselected_head}\'...')
-        self.adjunct_constructor.externalize_structure(unselected_head)
+    def license_extraposition(self, ps):
+        return ps.top().contains_finiteness() or ps.top().referential()
+
+    def try_extraposition(self, head_violating_selection):
+        if head_violating_selection:
+            self.adjunct_constructor.externalize_structure(head_violating_selection)
 
     def last_resort_reconstruct(self, ps):
-        if self.preconditions_for_extraposition(ps):
-            log(f'Last resort extraposition on {ps.head().illustrate()}P...')
-            if self.possible_extraposition_target(ps.head()):
-                self.adjunct_constructor.externalize_structure(ps.head())
-                return True
-            else:
-                target = next((node for node in ps.bottom().working_memory_path() if self.possible_extraposition_target(node)), None)
-                if target:
-                    self.adjunct_constructor.externalize_structure(target)
-                    return True
-            log(f'No suitable node found...')
-
-    def preconditions_for_extraposition(self, ps):
-        if ps.top().contains_feature('Fin') or {'D', 'φ'} & ps.top().head().features:
-            if not self.brain_model.LF_legibility_test(ps.top()):
-                return True
+        if self.license_extraposition(ps) and not self.brain_model.LF_legibility_test(ps.top()):
+            self.adjunct_constructor.externalize_structure(next((node for node in ps.bottom().working_memory_path() if self.possible_extraposition_target(node)), None))
 
     def possible_extraposition_target(self, node):
         if node.is_primitive() and node.is_adjoinable() and node.mother and node.mother.sister():
-            if node.mother.sister().is_complex():
-                return True
-            if node.mother.sister().is_primitive():
-                if node.features & node.mother.sister().complements_not_licensed():
-                    return True
-                if self.get_mandatory_comps(node.mother.sister()) and not (node.features & self.get_mandatory_comps(node.mother.sister())):
-                    return True
-
-    def get_mandatory_comps(self, node):
-        return  {f[6:] for f in node.features if f[:5] == '!COMP' and f != '!COMP:*'}
+            return node.mother.sister().is_complex() or \
+                   (node.mother.sister().is_primitive() and self.brain_model.LF.selection_violation(node.mother.mother))

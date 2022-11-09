@@ -71,7 +71,7 @@ class PhraseStructure:
             return self.mother.left_const
 
     def proper_complement(self):
-        if self.sister() and self.sister().is_right():
+        if self.is_primitive() and self.sister() and self.sister().is_right():
             return self.sister()
 
     def container(self):
@@ -108,6 +108,12 @@ class PhraseStructure:
         while not self.is_primitive():
             self = self.right_const
         return self
+
+    def specifier_sister(self):
+        if self.is_left():
+            return self.mother
+        else:
+            return self
 
     def top(self):
         while self.mother:
@@ -160,6 +166,9 @@ class PhraseStructure:
 
     def get_phi_set(self):
         return {f for f in self.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
+
+    def get_mandatory_comps(self):
+        return {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
 
     def licensed_specifiers(self):
         return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
@@ -263,17 +272,35 @@ class PhraseStructure:
     #
     # Properties relating lexical features with phrase structure geometry
     #
+
+    def local_tense_edge(self):
+        return next((node.mother for node in self.working_memory_path('FORCE') if node.finite() or node.force()), self.top())
+
     def complement_match(self, const):
         return self.licensed_complements() & const.head().features
 
     def licensed_complements(self):
         return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}
 
+    def head_comp_selection_violation(self):
+        return self.proper_complement() and \
+               (self.complements_not_licensed() & self.proper_complement().head().features)
+
+    def complement_not_licensed(self):
+        return self.proper_complement() and \
+               not (self.licensed_complements() & self.proper_complement().head().features)
+
     def licensed_specifiers(self):
         return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
 
     def complements_not_licensed(self):
         return {f[6:] for f in self.features if f[:5] == '-COMP'}
+
+    def properly_selected(self):
+        return self.selector().bottom_affix().licensed_complements() & self.features
+
+    def specifier_match(self, phrase):
+        return self.licensed_specifiers() & phrase.head().features
 
     def probe(self, feature, G):
         def inside_path(node):
@@ -389,6 +416,9 @@ class PhraseStructure:
     def finite(self):
         return 'Fin' in self.head().features or 'T/fin' in self.head().features or 'C/fin' in self.head().features
 
+    def finite_C(self):
+        return 'C/fin' in self.head().features
+
     def nonfinite(self):
         return 'Inf' in self.head().features
 
@@ -397,6 +427,9 @@ class PhraseStructure:
 
     def finite_tense(self):
         return 'T/fin' in self.head().features or (self.finite() and 'T' in self.head().features)
+
+    def contains_finiteness(self):
+        return self.contains_feature('Fin')
 
     def referential(self):
         return {'φ', 'D'} & self.head().features
@@ -419,6 +452,7 @@ class PhraseStructure:
 
     def adverbial_adjunct(self):
         return self.adverbial() or self.preposition()
+
     #
     # Tail processing
     #

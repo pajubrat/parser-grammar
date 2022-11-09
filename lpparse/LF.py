@@ -34,7 +34,10 @@ class LF:
                                          ('-COMP', self.selection__negative_complement),
                                          ('!COMP', self.selection__positive_obligatory_complement)]
 
-        self.interpretation_test = {'adjunct': self.adjunct_legibility}
+        self.interpretation_test = {'adjunct': self.adjunct_legibility,
+                                    'head': self.head_legibility,
+                                    'phrasal': self.phrasal_legibility}
+
 
     def interpretable(self, target, query_type):
         if self.interpretation_test[query_type](target):
@@ -76,6 +79,21 @@ class LF:
             return False
         return True
 
+    def head_legibility(self, target):
+        return target.is_complex() or not target.complex_head()
+
+    def validate_reconstructed_head(self, target):
+        return target.properly_selected() and not self.extra_condition_violation(target)
+
+    def extra_condition_violation(self, target):
+        return target.selector().finite_C() and target.EF() and not target.edge_specifiers()
+
+    def phrasal_legibility(self, target):
+        return not target.EF()
+
+    def selection_violation(self, node):
+        return node.is_complex() and (node.left_const.head_comp_selection_violation() or
+                                      (node.left_const.get_mandatory_comps() and not (node.left_const.get_mandatory_comps() & node.right_const.head().features)))
 
     def LF_legibility_test(self, ps, special_test_battery=None):
         if special_test_battery:
@@ -191,9 +209,8 @@ class LF:
                         return f'Head {h.illustrate()} triggers feature conflict between {feature1} and {feature2}.'
 
     def head_integrity_test(self, h):
-        if h.features:
-            if {'CAT:?', '?'} & h.features:
-                return 'Head without lexical category. '
+        if h.features and {'CAT:?', '?'} & h.features:
+            return 'Head without lexical category. '
 
     def probe_goal_test(self, h):
         for f in sorted(for_lf_interface(h.features)):
@@ -285,69 +302,46 @@ class LF:
     #
     # LF Merge operations
     #
-
-    def LFMerge(self, phrase, target_head, direction='left'):
-        log(f'Merging {phrase} {direction} of \'{target_head}\'...')
-        new_const = phrase.copy_for_reconstruction(self.brain_model.babtize())
-        target_head.merge_1(new_const, direction)
-        self.brain_model.consume_resources("Ā-Chain", f'{phrase}')
-        return new_const
-
     def try_LFmerge(self, head, phrase):
         for try_merge in [self.try_merge_to_left, self.try_adjoin_right, self.try_merge_to_comp]:
             if try_merge(head, phrase):
-                return
-
-    def try_merge_to_comp(self, head, phrase):
-
-        # Case 1. missing complement
-        if head.is_primitive() and not head.proper_complement() and head.licensed_complements():
-            if head.complement_match(phrase):
-                self.LFMerge(phrase, head, 'right')
-                log(f'={head.top()}...')
-                self.brain_model.consume_resources("Move Phrase", f'{phrase}')
                 return True
 
-        # Case 2. Wrong complement
-        if head.is_left() and head.proper_complement() and not (head.licensed_complements() & head.proper_complement().head().features):
-            if head.complement_match(phrase):
+    def try_merge_to_comp(self, head, phrase):
+        if head.complement_match(phrase):
+            if not head.proper_complement():
+                self.LF_Merge(phrase, head, 'right')
+                self.brain_model.consume_resources("Move Phrase", f'{phrase}')
+                return True
+            if head.complement_not_licensed():
                 old_complement = head.proper_complement()
                 head.proper_complement().merge_1(phrase.copy_for_reconstruction(self.brain_model.babtize()), 'left')
-                log(f'Merging {phrase} to Comp{head.major_cat()} due to complement mismatch. ')
                 if 'adjoinable' in old_complement.head().features:
-                    log(f'Externalizing {old_complement}. ')
                     old_complement.adjunct = True
                 self.brain_model.consume_resources("Move Phrase", f'{phrase}')
                 return True
 
     def try_adjoin_right(self, head, phrase):
         if phrase.head().adverbial():
-            target_node = self.specifier_sister(head)
+            target_node = head.specifier_sister()
             if self.tail_match(target_node, phrase, 'right'):
-                new_const = self.LFMerge(phrase, target_node, 'right')
+                new_const = self.LF_Merge(phrase, target_node, 'right')
                 new_const.adjunct = True
-                log(f'={target_node.top()}')
                 return True
 
     def try_merge_to_left(self, head, phrase):
         if not head.finite() and not head.edge_specifiers():
-            target_node = self.specifier_sister(head)
-            if self.specifier_match(head, phrase) and self.tail_match(target_node, phrase, 'left'):
-                self.LFMerge(phrase, target_node, 'left')
-                log(f'={target_node.top()}...')
+            target_node = head.specifier_sister()
+            if head.specifier_match(phrase) and self.tail_match(target_node, phrase, 'left'):
+                self.LF_Merge(phrase, target_node, 'left')
                 return True
 
-    def specifier_match(self, h, const):
-        for feature_in_head in h.convert_features_for_parsing(h.licensed_specifiers()):
-            for feature_in_spec in const.head().features:
-                if feature_in_head == feature_in_spec:
-                    return True
-
-    def specifier_sister(self, head):
-        if head.is_left():
-            return head.mother
-        else:
-            return head
+    def LF_Merge(self, phrase, target_head, direction='left'):
+        log(f'Merging {phrase} {direction} of \'{target_head}\'...')
+        new_const = phrase.copy_for_reconstruction(self.brain_model.babtize())
+        target_head.merge_1(new_const, direction)
+        self.brain_model.consume_resources("Ā-Chain", f'{phrase}')
+        return new_const
 
     def tail_match(self, target_node, constituent_from_MB, direction):
         target_node.merge_1(constituent_from_MB.copy(), direction)        # Test merge

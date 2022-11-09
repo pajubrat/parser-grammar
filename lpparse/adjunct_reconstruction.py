@@ -25,17 +25,15 @@ class FloaterMovement():
         return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and ps.container() and ps.container().head().finite()
 
     def reconstruct_floater(self, target):
-        log(f'Reconstructing {target}...')
-
         # Exception: only non-adverbial and uninterpretable right adjuncts are reconstructed if they are inside finite construction
         if target.is_right():
             self.adjunct_constructor.externalize_structure(target.head())
-            if target.head().adverbial() or not target.top().contains_feature('Fin') or self.brain_model.LF.interpretable(target, 'adjunct'):
+            if target.head().adverbial() or not target.top().contains_finiteness() or self.brain_model.LF.interpretable(target, 'adjunct'):
                 return  # No reconstruction
 
         starting_point = self.set_starting_point(target)
         virtual_test_item = target.copy()
-        local_tense_edge = self.local_tense_edge(target)
+        local_tense_edge = target.local_tense_edge()
         # ------------------------------------ minimal search ------------------------------------#
         for node in local_tense_edge:
             if self.termination_condition(node, target, local_tense_edge):
@@ -72,9 +70,6 @@ class FloaterMovement():
         else:
             node.merge_1(dropped_floater, 'left')
         self.adjunct_constructor.externalize_structure(dropped_floater)
-
-    def local_tense_edge(self, ps):
-        return next((node.mother for node in ps.working_memory_path('FORCE') if node.finite() or node.force()), ps.top())
 
     def babtize(self):
         self.name_provider_index += 1

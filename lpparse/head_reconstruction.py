@@ -11,21 +11,20 @@ class HeadMovement:
 
     def reconstruct(self, phrase_structure):
         current_node = phrase_structure.bottom()
-        while current_node.mother or self.detect_complex_head(current_node):
-            current_node = self.consider_head_reconstruction(current_node, self.detect_complex_head(current_node))
+        while current_node.mother or self.get_head_needing_reconstruction(current_node):
+            current_node = self.consider_head_reconstruction(current_node, self.get_head_needing_reconstruction(current_node))
         return phrase_structure.top()
 
-    def detect_complex_head(self, node):
-        if node.complex_head():
+    def get_head_needing_reconstruction(self, node):
+        if not self.brain_model.LF.interpretable(node, 'head'):
             return node
-        if node.is_complex() and node.left_const.complex_head():
+        if node.is_complex() and not self.brain_model.LF.interpretable(node.left_const, 'head'):
             return node.left_const
 
     def consider_head_reconstruction(self, current_node, targeted_head):
         if targeted_head:
-            log(f'Reconstruct {targeted_head.right_const} from {targeted_head}...')
             current_node = self.create_head_chain(targeted_head, self.determine_intervention_features(targeted_head), self.get_affix_out(targeted_head))
-            log(f'={current_node.top()}...')
+            log(f'={current_node.top()}. ')
             return current_node
         return current_node.mother
 
@@ -41,7 +40,7 @@ class HeadMovement:
                 node = starting_pos_node    # Reset the search pointer after intervention
                 break
             node.merge_1(affix, 'left')
-            if self.reconstruction_is_successful(affix):
+            if self.brain_model.LF.validate_reconstructed_head(affix):
                 self.brain_model.consume_resources("Head Chain")
                 return affix
             affix.remove()
@@ -50,22 +49,14 @@ class HeadMovement:
         if not self.consider_right_merge(affix, node, starting_pos_node):
             starting_pos_node.merge_1(affix, 'left') # last resort
             self.brain_model.consume_resources("Head Chain")
-
         return affix
-
-    def reconstruction_is_successful(self, reconstructed_affix):
-        return reconstructed_affix.features & reconstructed_affix.selector().bottom_affix().licensed_complements() and \
-               not self.extra_condition_violation(reconstructed_affix)
 
     def consider_right_merge(self, affix, node, starting_pos_node):
         for const in [node, starting_pos_node]:
-            if const.merge_1(affix, 'right') and self.reconstruction_is_successful(affix):
+            if const.merge_1(affix, 'right') and self.brain_model.LF.validate_reconstructed_head(affix):
                 self.brain_model.consume_resources("Head Chain")
                 return True
             affix.remove()
-
-    def extra_condition_violation(self, affix):
-        return 'C/fin' in affix.selector().features and affix.EF() and not affix.edge_specifiers()
 
     def get_affix_out(self, node):
         affix = node.right_const

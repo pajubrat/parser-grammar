@@ -5,7 +5,7 @@ class AdjunctConstructor:
         self.controlling_parser_process = controlling_parser_process
 
     def externalize_structure(self, ps):
-        if ps.head().is_adjoinable():
+        if ps and ps.head().is_adjoinable():
             if ps.is_complex():
                 self.externalize_and_transfer(ps)
             else:

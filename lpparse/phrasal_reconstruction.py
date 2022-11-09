@@ -14,7 +14,7 @@ class PhrasalMovement:
     def reconstruct(self, ps):
         # ------------------- minimal search -------------------------#
         for head in ps.minimal_search():
-            if head.trigger_phrasal_chain():
+            if not self.brain_model.LF.interpretable(head, 'phrasal'):
                 for i, spec in enumerate(head.edge_specifiers()):
                     if not spec.find_me_elsewhere:
                         self.create_phrasal_chain(head, spec, i > 0)
@@ -31,8 +31,9 @@ class PhrasalMovement:
         self.find_gap(head, spec)
 
     def find_gap(self, head, spec):
-        for node in head.mother.minimal_search():
-            self.brain_model.LF.try_LFmerge(node, spec)
+        for head in head.mother.minimal_search():
+            if self.brain_model.LF.try_LFmerge(head, spec):
+                break
 
     def create_A_chain(self, spec):
         self.A.reconstruct(spec)
