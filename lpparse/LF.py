@@ -6,7 +6,7 @@ def for_lf_interface(features):
 
 class LF:
     def __init__(self, controlling_parsing_process):
-        self.controlling_parsing_process = controlling_parsing_process
+        self.brain_model = controlling_parsing_process
         self.LF_legibility_tests = [self.selection_test,
                                     self.projection_principle,
                                     self.head_integrity_test,
@@ -23,16 +23,59 @@ class LF:
         self.complete_edge = None
         self.edge_for_EF = None
 
-        self.selection_violation_tests = [('-EF:φ', self.selection__negative_SUBJECT_edge),
-                                          ('!EF:φ', self.selection__positive_SUBJECT_edge),
-                                          ('-EF:*', self.selection__unselective_negative_edge),
-                                          ('!EF:*', self.selection__unselective_edge),
-                                          ('!1EDGE', self.selection__negative_one_edge),
-                                          ('!SEF', self.selection__positive_shared_edge),
-                                          ('-SPEC:', self.selection__negative_specifier),
-                                          ('!SPEC', self.selection__positive_selective_specifier),
-                                          ('-COMP', self.selection__negative_complement),
-                                          ('!COMP', self.selection__positive_obligatory_complement)]
+        self.selection_violation_test = [('-EF:φ', self.selection__negative_SUBJECT_edge),
+                                         ('!EF:φ', self.selection__positive_SUBJECT_edge),
+                                         ('-EF:*', self.selection__unselective_negative_edge),
+                                         ('!EF:*', self.selection__unselective_edge),
+                                         ('!1EDGE', self.selection__negative_one_edge),
+                                         ('!SEF', self.selection__positive_shared_edge),
+                                         ('-SPEC:', self.selection__negative_specifier),
+                                         ('!SPEC', self.selection__positive_selective_specifier),
+                                         ('-COMP', self.selection__negative_complement),
+                                         ('!COMP', self.selection__positive_obligatory_complement)]
+
+        self.interpretation_test = {'adjunct': self.adjunct_legibility}
+
+    def interpretable(self, target, query_type):
+        if self.interpretation_test[query_type](target):
+            return True
+        log(f'{target.illustrate()} requires {query_type} reconstruction. ')
+
+    def adjunct_legibility(self, target):
+        if target.is_left():
+            return self.left_adjunct_legibility(target)
+        if target.is_right():
+            return self.adjunct_tail_legibility(target)
+
+    def left_adjunct_legibility(self, target):
+        return self.adjunct_tail_legibility(target) and not self.in_nonthematic_position(target)
+
+    def adjunct_tail_legibility(self, target):
+        return target.head().tail_test()
+
+    def in_nonthematic_position(self, target):
+        return target.container() and \
+               (target.container().EF() and target.container().finite()) or \
+               ('-SPEC:*' in target.container().features and target == next(
+                   (const for const in target.container().edge_specifiers()), None))
+
+    def validate_reconstructed_adjunct(self, target, starting_point_node):
+        return self.adjunct_tail_legibility(target) and (target.adverbial_adjunct() or self.non_adverbial_adjunct_extra_conditions(target, starting_point_node))
+
+    # Ad hoc conditions that must be derived from general rules
+    def non_adverbial_adjunct_extra_conditions(self, target, starting_point_head):
+        if not target.container():
+            return True
+        if 'GEN' in target.head().features and not target.container().referential():
+            return True  # Possessives inside referential phrases are not floated
+        if target.container() == starting_point_head:
+            return False  # Do not reconstruct into the starting position
+        if self.in_nonthematic_position(target):
+            return False
+        if target.referential() and self.projection_principle(target.head(), 'weak'):
+            return False
+        return True
+
 
     def LF_legibility_test(self, ps, special_test_battery=None):
         if special_test_battery:
@@ -70,7 +113,7 @@ class LF:
     # Selection tests ----------------------------------------------------------
     def selection_test(self, probe):
         return next((f'\'{probe}\' failed {lexical_feature}' for lexical_feature in sorted(for_lf_interface(probe.features))
-                     for (gate, test) in self.selection_violation_tests
+                     for (gate, test) in self.selection_violation_test
                      if lexical_feature.startswith(gate) and
                      not test(probe, lexical_feature)), None)
 
@@ -245,9 +288,9 @@ class LF:
 
     def LFMerge(self, phrase, target_head, direction='left'):
         log(f'Merging {phrase} {direction} of \'{target_head}\'...')
-        new_const = phrase.copy_from_memory_buffer(self.controlling_parsing_process.babtize())
+        new_const = phrase.copy_for_reconstruction(self.brain_model.babtize())
         target_head.merge_1(new_const, direction)
-        self.controlling_parsing_process.consume_resources("Ā-Chain", f'{phrase}')
+        self.brain_model.consume_resources("Ā-Chain", f'{phrase}')
         return new_const
 
     def try_LFmerge(self, head, phrase):
@@ -262,19 +305,19 @@ class LF:
             if head.complement_match(phrase):
                 self.LFMerge(phrase, head, 'right')
                 log(f'={head.top()}...')
-                self.controlling_parsing_process.consume_resources("Move Phrase", f'{phrase}')
+                self.brain_model.consume_resources("Move Phrase", f'{phrase}')
                 return True
 
         # Case 2. Wrong complement
         if head.is_left() and head.proper_complement() and not (head.licensed_complements() & head.proper_complement().head().features):
             if head.complement_match(phrase):
                 old_complement = head.proper_complement()
-                head.proper_complement().merge_1(phrase.copy_from_memory_buffer(self.controlling_parsing_process.babtize()), 'left')
+                head.proper_complement().merge_1(phrase.copy_for_reconstruction(self.brain_model.babtize()), 'left')
                 log(f'Merging {phrase} to Comp{head.major_cat()} due to complement mismatch. ')
                 if 'adjoinable' in old_complement.head().features:
                     log(f'Externalizing {old_complement}. ')
                     old_complement.adjunct = True
-                self.controlling_parsing_process.consume_resources("Move Phrase", f'{phrase}')
+                self.brain_model.consume_resources("Move Phrase", f'{phrase}')
                 return True
 
     def try_adjoin_right(self, head, phrase):

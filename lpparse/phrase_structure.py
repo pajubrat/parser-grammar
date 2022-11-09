@@ -383,6 +383,9 @@ class PhraseStructure:
     def adverbial(self):
         return 'Adv' in self.head().features
 
+    def force(self):
+        return 'FORCE' in self.head().features
+
     def finite(self):
         return 'Fin' in self.head().features or 'T/fin' in self.head().features or 'C/fin' in self.head().features
 
@@ -414,11 +417,8 @@ class PhraseStructure:
                self.head().get_tail_sets() and 'adjoinable' in self.head().features and \
                '-adjoinable' not in self.head().features and '-float' not in self.head().features
 
-    def in_EPP_position(self):
-        return self.container() and \
-               (self.container().EF() and self.container().finite()) or \
-               ('-SPEC:*' in self.container().features and self == next((const for const in self.container().edge_specifiers()), None))
-
+    def adverbial_adjunct(self):
+        return self.adverbial() or self.preposition()
     #
     # Tail processing
     #
@@ -577,7 +577,7 @@ class PhraseStructure:
             major_cats = 'X'
         return major_cats + suffix
 
-    def copy_from_memory_buffer(self, babtize='1'):
+    def copy_for_reconstruction(self, babtize='1'):
         def silence_phonologically(h):
             if not h.features:
                 h.features = {'null'}
