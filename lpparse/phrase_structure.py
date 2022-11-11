@@ -167,6 +167,9 @@ class PhraseStructure:
     def get_phi_set(self):
         return {f for f in self.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
+    def phi_needs_valuation(self):
+        return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
+
     def get_mandatory_comps(self):
         return {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
 

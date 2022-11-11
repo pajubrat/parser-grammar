@@ -540,9 +540,10 @@ class LocalFileSystem:
         self.dev_log_file.write('Closing all output files...')
         self.results_file.close()
         self.grammaticality_judgments_file.close()
-        self.control_file.close()
+
         if self.settings['datatake_full']:
             self.resources_file.close()
+            self.control_file.close()
         self.logger_handle.close()
         self.dev_log_file.write('Done.\n')
 

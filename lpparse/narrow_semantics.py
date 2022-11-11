@@ -9,7 +9,7 @@ from global_cognition import GlobalCognition
 class NarrowSemantics:
     def __init__(self, controlling_parsing_process):
         self.operator_variable_module = OperatorVariableModule(self)
-        self.LF_recovery_module = LF_Recovery(controlling_parsing_process)
+        self.argument_recovery_module = LF_Recovery(controlling_parsing_process)
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
         self.pragmatic_pathway = Discourse(self)
         self.predicates_relations_events_module = PredicatesRelationsEvents(self)
@@ -95,7 +95,7 @@ class NarrowSemantics:
         self.phi_interpretation_failed = False
         self.operator_variable_module.interpretation_failed = False
         self.pragmatic_pathway.interpretation_failed = False
-        self.LF_recovery_module.interpretation_failed = False
+        self.argument_recovery_module.interpretation_failed = False
         self.semantic_interpretation = {'Recovery': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -117,7 +117,8 @@ class NarrowSemantics:
 
     def interpret_(self, ps):
         if ps.is_primitive():
-            self.LF_recovery_module.perform_LF_recovery(ps, self.semantic_interpretation)
+            if ps.phi_needs_valuation():
+                self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.recover_arguments(ps))
             self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
             self.interpret_tail_features(ps)
             self.inventory_projection(ps)
@@ -159,7 +160,7 @@ class NarrowSemantics:
         self.semantic_interpretation.update(self.access_interface)
 
     def failure(self):
-        if self.LF_recovery_module.interpretation_failed or \
+        if self.argument_recovery_module.interpretation_failed or \
                 self.phi_interpretation_failed or \
                 self.operator_variable_module.interpretation_failed or \
                 self.pragmatic_pathway.interpretation_failed:
