@@ -59,8 +59,7 @@ class LF:
     def in_nonthematic_position(self, target):
         return target.container() and \
                (target.container().EF() and target.container().finite()) or \
-               ('-SPEC:*' in target.container().features and target == next(
-                   (const for const in target.container().edge_specifiers()), None))
+               (target.container().check_feature('-SPEC:*') and target == self.brain_model.scan_next(target.container().edge_specifiers()))
 
     def validate_reconstructed_adjunct(self, target, starting_point_node):
         return self.adjunct_tail_legibility(target) and (target.adverbial_adjunct() or self.non_adverbial_adjunct_extra_conditions(target, starting_point_node))
@@ -69,7 +68,7 @@ class LF:
     def non_adverbial_adjunct_extra_conditions(self, target, starting_point_head):
         if not target.container():
             return True
-        if 'GEN' in target.head().features and not target.container().referential():
+        if target.check_feature('GEN') and not target.container().referential():
             return True  # Possessives inside referential phrases are not floated
         if target.container() == starting_point_head:
             return False  # Do not reconstruct into the starting position
@@ -101,7 +100,6 @@ class LF:
         else:
             self.active_test_battery = self.LF_legibility_tests
         result = self.pass_LF_legibility(ps)
-        log('. Done. ')
         return result
 
     def pass_LF_legibility(self, ps):
@@ -122,10 +120,9 @@ class LF:
                     return False
         return True
 
-    @staticmethod
-    def create_edges(ps):
+    def create_edges(self, ps):
         complete_edge = [const for const in ps.edge_specifiers() + [ps.extract_pro()] if const]
-        edge_for_EF = [const for const in complete_edge if not ('pro' in const.head().features and not const.head().sustains_reference())]
+        edge_for_EF = self.brain_model.scan_all(complete_edge, lambda x: not (x.check_feature('pro') and not x.head().sustains_reference()))
         return complete_edge, edge_for_EF
 
     # Selection tests ----------------------------------------------------------
@@ -137,8 +134,7 @@ class LF:
 
     # Feature !EF:φ
     def selection__positive_SUBJECT_edge(self, head, lexical_feature):
-        return next((edge_object for edge_object in self.edge_for_EF if 'φ' in edge_object.head().features and
-                     (not edge_object.has_tail_features() or edge_object.is_extended_subject())), None)
+        return self.brain_model.scan_next(self.edge_for_EF, lambda x: x.referential() and (not x.has_tail_features() or x.is_extended_subject()))
 
     # Feature -EF:*
     def selection__unselective_negative_edge(self, probe, lexical_feature):
@@ -146,8 +142,7 @@ class LF:
 
     # Feature -EF:φ
     def selection__negative_SUBJECT_edge(self, probe, lexical_feature):
-        return not next((edge_object for edge_object in self.edge_for_EF if 'φ' in edge_object.head().features and
-                         edge_object.is_extended_subject()), None)
+        return not self.brain_model.scan_next(self.edge_for_EF, lambda x: x.referential() and x.is_extended_subject())
 
     # Feature !SEF
     @staticmethod
@@ -169,22 +164,20 @@ class LF:
 
     # Feature !SPEC
     def selection__positive_selective_specifier(self, probe, lexical_feature):
-        if self.complete_edge:
-            return next((edge_object for edge_object in self.complete_edge if lexical_feature[6:] in edge_object.head().features), False)
+        return self.brain_model.scan_next(self.complete_edge, lambda x: x.check_feature(lexical_feature[6:]))
 
     # Feature -SPEC
     def selection__negative_specifier(self, probe, lexical_feature):
-        return next((False for spec in probe.edge_specifiers() if lexical_feature[6:] in spec.head().features and
-              not spec.adjunct), True)
+        return not self.brain_model.scan_next(probe.edge_specifiers(), lambda x: x.check_feature(lexical_feature[6:]) and not x.adjunct)
 
     # Feature !COMP
     def selection__positive_obligatory_complement(self, probe, lexical_feature):
-        return probe.selected_sister() and (lexical_feature[6] == '*' or lexical_feature[6:] in probe.selected_sister().head().features)
+        return probe.selected_sister() and (lexical_feature[6] == '*' or probe.selected_sister().check_feature(lexical_feature[6:]))
 
     # Feature -COMP
     def selection__negative_complement(self, probe, lexical_feature):
         return not (probe.is_left() and probe.proper_complement() and
-                    (lexical_feature[6:] in probe.proper_complement().head().features or lexical_feature[6:] == '*'))
+                    (probe.proper_complement().check_feature(lexical_feature[6:]) or lexical_feature[6:] == '*'))
 
     # end of selection tests -------------------------------------------------------------
 
@@ -192,7 +185,7 @@ class LF:
         if 'φ' in h.features and \
                 h.max() and h.max().adjunct and \
                 h.max().is_right() and \
-                h.max().mother and 'φ' in h.max().mother.head().features:
+                h.max().mother and h.max().mother.check_feature('φ'):
             return 'error'
 
     def feature_conflict_test(self, h):
@@ -209,7 +202,7 @@ class LF:
                         return f'Head {h.illustrate()} triggers feature conflict between {feature1} and {feature2}.'
 
     def head_integrity_test(self, h):
-        if h.features and {'CAT:?', '?'} & h.features:
+        if h.features and h.unrecognized_label():
             return 'Head without lexical category. '
 
     def probe_goal_test(self, h):
@@ -222,19 +215,17 @@ class LF:
                     return f'{h} failed negative probe-test for [{f[7:]}]. '
 
     def double_spec_filter(self, h):
-        if '2SPEC' not in h.features and \
+        if not h.check_feature('2SPEC') and \
                 len({spec for spec in h.edge_specifiers() if not spec.adjunct}) > 1:
                 return f'{h} has double specifiers. '
 
     def semantic_complement_test(self, head):
-        if head.proper_complement():
-            if not LF.semantic_match(head, head.proper_complement()):
-                return f'{head} fails semantic match with {head.proper_complement()}. '
+        if head.proper_complement() and not LF.semantic_match(head, head.proper_complement()):
+            return f'{head} fails semantic match with {head.proper_complement()}. '
 
     def criterial_feature_test(self, h):
-        if 'φ' in h.features and 'REL' not in h.features and h.mother:
-            if h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
-                return f'Criterial legibility failed for {h}. '
+        if h.referential() and not h.relative() and h.mother and h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
+            return f'Criterial legibility failed for {h}. '
 
     def projection_principle(self, h, test_strength='strong'):
         if self.projection_principle_applies_to(h):
@@ -242,17 +233,16 @@ class LF:
             if h.max().container() and self.container_assigns_theta_role_to(h, test_strength):
                 return None
             else:
-                if h.max().contains_feature('adjoinable') and h.max().contains_feature('SEM:nonreferential'):
+                if h.max().contains_features({'adjoinable', 'SEM:nonreferential'}):
                     return None
                 if self.identify_thematic_role_by_agreement(h):
                     return None
             return f'{h.max().illustrate()} has no θ role in {h.max().container().max()}. '
 
     def identify_thematic_role_by_agreement(self, h):
-        if h.max().container():
-            if h.max().container().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features():
-                if not (h.max().container().edge_specifiers() and next((const for const in h.max().container().edge_specifiers()), None).is_complex()):
-                    return True
+        return h.max().container() and \
+               h.max().container().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features() and \
+               not (h.max().container().edge_specifiers() and self.brain_model.scan_next(h.max().container().edge_specifiers()).is_complex())
 
     def projection_principle_applies_to(self, h):
         if h.referential() and h.max() and not h.max().find_me_elsewhere and h.max().mother:
@@ -275,14 +265,14 @@ class LF:
             # (ii-1) H does not receive a thematic role from an EPP head
             if container_head.EF():
                 return False
-            if container_head.selector() and 'ARG' not in container_head.selector().features:
+            if container_head.selector() and not container_head.selector().check_feature('ARG'):
                 return False
             # (ii-3) H does not receive a thematic role from heads K... that do not assign thematic roles
-            if not {'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'} & container_head.features or {'-SPEC:φ'} & container_head.features:
+            if not container_head.check_feature_from_set({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) or container_head.check_feature('-SPEC:φ'):
                 return False
             # Condition (ii-4) One head K cannot assign two roles unless otherwise stated [DP1 [K DP2]]
             if container_head.sister() != h.max() and container_head.sister().head().referential():
-                if 'COPULA' not in container_head.features and test_strength == 'strong':
+                if not container_head.check_feature('COPULA') and test_strength == 'strong':
                     return False
             return True
 
@@ -292,11 +282,9 @@ class LF:
                 return False
             if not goal.right_const.find_me_elsewhere and not self.final_tail_check(goal.right_const):
                 return False
-        if goal.is_primitive():
-            if goal.get_tail_sets():
-                if not goal.tail_test():
-                    log(f'Post-syntactic tail test for \'{goal.illustrate()}\', {goal.max().illustrate()} failed. ')
-                    return False
+        if goal.is_primitive() and goal.get_tail_sets() and not goal.tail_test():
+            log(f'Post-syntactic tail test for \'{goal.illustrate()}\', {goal.max().illustrate()} failed. ')
+            return False
         return True
 
     #
@@ -316,7 +304,7 @@ class LF:
             if head.complement_not_licensed():
                 old_complement = head.proper_complement()
                 head.proper_complement().merge_1(phrase.copy_for_reconstruction(self.brain_model.babtize()), 'left')
-                if 'adjoinable' in old_complement.head().features:
+                if old_complement.check_feature('adjoinable'):
                     old_complement.adjunct = True
                 self.brain_model.consume_resources("Move Phrase", f'{phrase}')
                 return True

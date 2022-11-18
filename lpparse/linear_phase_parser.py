@@ -10,6 +10,7 @@ from lexical_stream import LexicalStream
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
+from itertools import takewhile
 
 class LinearPhaseParser:
     def __init__(self, local_file_system, language=''):
@@ -346,3 +347,12 @@ class LinearPhaseParser:
             ps.mother = None
             return ps
         return self.LF.LF_legibility_test(detached(ps.copy()))
+
+    def scan_next(self, working_memory, func=lambda x: x == x):
+        return next((const for const in working_memory if func(const)), None)
+
+    def scan_all(self, working_memory, func=lambda x: x == x):
+        return [const for const in working_memory if func(const)]
+
+    def scan_until(self, working_memory, func=lambda x: x == x):
+        return list(takewhile(func, working_memory))

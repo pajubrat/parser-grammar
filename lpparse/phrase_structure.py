@@ -197,6 +197,15 @@ class PhraseStructure:
                 self = self.right_const
             return self
 
+    def check_feature(self, f):
+        return f in self.head().features
+
+    def check_features(self, feature_set):
+        return feature_set & self.head().features == feature_set
+
+    def check_feature_from_set(self, f):
+        return f & self.head().features
+
     #
     # Structure building
     #
@@ -331,6 +340,15 @@ class PhraseStructure:
             if feature in self.features:
                 return True
 
+    def contains_features(self, feature_set):
+        if self.left_const and self.left_const.contains_features(feature_set):
+            return True
+        if self.right_const and self.right_const.contains_features(feature_set):
+            return True
+        if self.is_primitive:
+            if feature_set & self.features == feature_set:
+                return True
+
     def find_occurrences_from(self, ps):
         def find_(identity, ps):
             chain = []
@@ -422,6 +440,9 @@ class PhraseStructure:
     def finite_C(self):
         return 'C/fin' in self.head().features
 
+    def relative(self):
+        return 'REF' in self.head().features
+
     def nonfinite(self):
         return 'Inf' in self.head().features
 
@@ -455,6 +476,9 @@ class PhraseStructure:
 
     def adverbial_adjunct(self):
         return self.adverbial() or self.preposition()
+
+    def unrecognized_label(self):
+        return {'CAT:?', '?'} & self.head().features
 
     #
     # Tail processing
