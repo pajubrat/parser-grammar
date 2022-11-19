@@ -13,7 +13,7 @@ class Extraposition:
 
     def get_head_violating_selection(self, ps):
         return next((node.right_const.head() for node in ps if
-                     self.brain_model.LF.selection_violation(node) and
+                     node.contains_selection_violation() and
                      not node.right_const.head().adjunct), None)
 
     def license_extraposition(self, ps):
@@ -28,6 +28,7 @@ class Extraposition:
             self.adjunct_constructor.externalize_structure(next((node for node in ps.bottom().working_memory_path() if self.possible_extraposition_target(node)), None))
 
     def possible_extraposition_target(self, node):
-        if node.is_primitive() and node.is_adjoinable() and node.mother and node.mother.sister():
-            return node.mother.sister().is_complex() or \
-                   (node.mother.sister().is_primitive() and self.brain_model.LF.selection_violation(node.mother.mother))
+        return node.is_primitive() and \
+               node.is_adjoinable() and \
+               node.mother and node.mother.sister() and node.mother.sister().is_complex() and \
+               (node.mother.sister().is_primitive() or node.mother.mother.contains_selection_violation())

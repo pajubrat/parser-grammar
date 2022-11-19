@@ -17,16 +17,16 @@ class LF_Recovery:
             return self.finite_control(probe)
 
     def control(self, probe):
-        return self.brain_model.scan_next(self.construct_working_memory(probe), lambda x: self.is_possible_antecedent(x, probe))
+        return probe.scan_next(self.construct_working_memory(probe), lambda x: self.is_possible_antecedent(x, probe))
 
     def construct_working_memory(self, probe):
         extra = []
         if probe.is_primitive() and probe.is_left() and probe.sister().is_complex():
             extra = [probe.sister()]
-        return extra + self.brain_model.scan_until(probe.working_memory_path(), lambda x: x.check_feature('SEM:external'))
+        return extra + probe.scan_until(probe.working_memory_path(), lambda x: x.check_feature('SEM:external'))
 
     def finite_control(self, probe):
-        return self.brain_model.scan_next(probe.working_memory_path(), lambda x: self.is_possible_antecedent(x, probe) or self.special_rule(x, probe))
+        return probe.scan_next(probe.working_memory_path(), lambda x: self.is_possible_antecedent(x, probe) or self.special_rule(x, probe))
 
     def is_possible_antecedent(self, antecedent, probe):
         if not antecedent.find_me_elsewhere:

@@ -1,5 +1,6 @@
 from support import set_logging, log
 from operator import itemgetter
+from phrase_structure import PhraseStructure
 import random
 from knockouts import knockout_filter, \
     knockout_extra_ranking, \
@@ -19,9 +20,9 @@ class PlausibilityMetrics:
         self.word_tail_set = None
         self.address_label = 0
         self.left_branch_filter_test_battery = [('Selection test', self.brain_model.LF.selection_test),
-                                                ('Semantic Complement test', self.brain_model.LF.semantic_complement_test),
-                                                ('Probe_Goal test', self.brain_model.LF.probe_goal_test),
-                                                ('Head Integrity test', self.brain_model.LF.head_integrity_test)]
+                                                ('Semantic Complement test', PhraseStructure.semantic_complement),
+                                                ('Probe_Goal test', PhraseStructure.probe_goal_test),
+                                                ('Head Integrity test', PhraseStructure.unrecognized_label)]
 
     # Main entry point
     def filter_and_rank(self, ps, w):
@@ -120,7 +121,7 @@ class PlausibilityMetrics:
     def negative_semantic_match(self, site):
         if site.is_primitive():
             m = site.bottom_affix()
-            if not self.brain_model.LF.semantic_match(m, self.word):
+            if not m.semantic_match(self.word):
                 return True
 
     @knockout_extra_ranking

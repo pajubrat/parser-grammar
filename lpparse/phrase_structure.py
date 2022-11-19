@@ -41,8 +41,7 @@ class PhraseStructure:
     # Phrase structure geometry
     #
     def is_primitive(self):
-        if not (self.right_const and self.left_const):
-            return True
+        return not (self.right_const and self.left_const)
 
     def is_complex(self):
         return self.right_const and self.left_const
@@ -80,6 +79,12 @@ class PhraseStructure:
 
     def is_licensed_specifier(self):
         return self.max().container().licensed_phrasal_specifier() and self.max() == self.max().container().licensed_phrasal_specifier()
+
+    def empty_finite_EPP(self):
+        return self.selector().finite_C() and self.EF() and not self.edge_specifiers()
+
+    def non_complex_head(self):
+        return self.is_complex() or not self.complex_head()
 
     def specifier_theta_role_assigner(self):
         return not self.EF() and \
@@ -144,6 +149,12 @@ class PhraseStructure:
 
     def complex_head(self):
         return self.has_affix()
+
+    def contains_selection_violation(self):
+        return self.is_complex() and (self.left_const.nonlicensed_complement() or self.left_const.missing_mandatory_complement())
+
+    def legitimate_head_position(self):
+        return self.properly_selected() and not self.empty_finite_EPP()
 
     def EF(self):
         return next((True for f in self.features if 'EF:' in f and '-' not in f), False)
@@ -330,6 +341,72 @@ class PhraseStructure:
     def specifier_match(self, phrase):
         return self.licensed_specifiers() & phrase.head().features
 
+    def projection_principle(self):
+        return self.projection_principle_applies() and not self.container_assigns_theta_role()
+
+    def non_adverbial_adjunct_condition(self, starting_point_head):
+        return not self.container() or \
+                (self.check_feature('GEN') and not self.container().referential()) and \
+                not self.container() == starting_point_head and \
+                not self.nonthematic() and not (self.referential() and self.head().projection_principle())
+
+    def valid_reconstructed_adjunct(self, starting_point_node):
+        return self.head().tail_test() and (self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node))
+
+    def projection_principle_applies(self):
+        return self.referential() and self.max() and not self.max().find_me_elsewhere and self.max().mother and not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
+
+    def double_spec_filter(self):
+        return not self.check_feature('2SPEC') and len({spec for spec in self.edge_specifiers() if not spec.adjunct}) > 1
+
+    def semantic_complement(self):
+        return self.proper_complement() and not self.semantic_match(self.proper_complement())
+
+    def semantic_match(self, b):
+        a_head = self.head()
+        b_head = b.head()
+        pos_sem_a = {f[5:] for f in a_head.features if f.startswith('+SEM:')}
+        neg_sem_a = {f[5:] for f in a_head.features if f.startswith('-SEM:')}
+        pos_sem_b = {f[5:] for f in b_head.features if f.startswith('+SEM:')}
+        neg_sem_b = {f[5:] for f in b_head.features if f.startswith('-SEM:')}
+        return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
+
+    def legitimate_criterial_feature(self):
+        return self.referential() and not self.relative() and self.mother and self.mother.contains_feature('REL') and not self.mother.contains_feature('T/fin')
+
+    def interpretable_adjunct(self):
+        return self.referential() and self.max() and self.max().adjunct and self.max().is_right() and self.max().mother and self.max().mother.referential()
+
+    def feature_conflict(self):
+        def remove_exclamation(g):
+            if g[0] == '!':
+                return g[1:]
+            else:
+                return g
+        for feature1 in self.features:
+            if feature1[0] == '-':
+                for feature2 in self.features:
+                    if feature1[1:] == remove_exclamation(feature2):
+                        return True
+
+    def container_assigns_theta_role(self):
+        return self.max().container() and (self.selected() or (self.is_licensed_specifier() and self.max().container().specifier_theta_role_assigner()))
+
+    # Complement exists and is/has referential argument
+    def referential_complement_criterion(probe):
+        return probe.proper_complement() and (probe.proper_complement().head().referential() or
+                                              (probe.proper_complement().head().licensed_phrasal_specifier() and
+                                               probe.proper_complement().head().licensed_phrasal_specifier().head().referential()))
+
+    def probe_goal_test(self):
+        for f in sorted(self.features):
+            if f.startswith('!PROBE:'):
+                if not self.probe(self.features, f[7:]):
+                    return True
+            if f.startswith('-PROBE:'):
+                if self.probe(set(self.features), f[7:]):
+                    return True
+
     def probe(self, feature, G):
         def inside_path(node):
             if node.is_primitive():
@@ -383,6 +460,49 @@ class PhraseStructure:
 
     def __add__(self, incoming_constituent):
         return self.merge_1(incoming_constituent)
+
+    # Feature !EF:φ
+    def selection__positive_SUBJECT_edge(self, lexical_feature):
+        return self.scan_next(self.filtered_edge(), lambda x: x.referential() and (not x.has_tail_features() or x.is_extended_subject()))
+
+    # Feature -EF:*
+    def selection__unselective_negative_edge(self, lexical_feature):
+        return not self.filtered_edge()
+
+    # Feature -EF:φ
+    def selection__negative_SUBJECT_edge(self, lexical_feature):
+        return not self.scan_next(self.filtered_edge(), lambda x: x.referential() and x.is_extended_subject())
+
+    # Feature !SEF
+    def selection__positive_shared_edge(self, lexical_feature):
+        return not (not self.licensed_phrasal_specifier() and self.referential_complement_criterion())
+
+    # Feature !1EDGE
+    @staticmethod
+    def selection__negative_one_edge(self, lexical_feature):
+        return len(self.edge_specifiers()) < 2
+
+    # Feature [!EF:*] ~ not used for calculation of any data
+    def selection__unselective_edge(self, lexical_feature):
+        return self.filtered_edge()
+
+    # Feature !SPEC
+    def selection__positive_selective_specifier(self, lexical_feature):
+        return self.scan_next(self.complete_edge(), lambda x: x.check_feature(lexical_feature[6:]))
+
+    # Feature -SPEC
+    def selection__negative_specifier(self,  lexical_feature):
+        return not self.scan_next(self.edge_specifiers(), lambda x: x.check_feature(lexical_feature[6:]) and not x.adjunct)
+
+    # Feature !COMP
+    def selection__positive_obligatory_complement(self, lexical_feature):
+        return self.selected_sister() and (lexical_feature[6] == '*' or self.selected_sister().check_feature(lexical_feature[6:]))
+
+    # Feature -COMP
+    def selection__negative_complement(self, lexical_feature):
+        return not (self.is_left() and self.proper_complement() and
+                    (self.proper_complement().check_feature(lexical_feature[6:]) or lexical_feature[6:] == '*'))
+
 
     #
     # Working memory related operations
@@ -441,6 +561,25 @@ class PhraseStructure:
                     next((spec for spec in self.edge_specifiers()
                           if 'φ' in spec.head().features and not spec.find_me_elsewhere), None))
 
+    def complete_edge(self):
+        return [const for const in self.edge_specifiers() + [self.extract_pro()] if const]
+
+    def filtered_edge(self):
+        return self.scan_all(self.complete_edge(), lambda x: not (x.check_feature('pro') and not x.head().sustains_reference()))
+
+
+    @staticmethod
+    def scan_next(working_memory, func=lambda x: x == x):
+        return next((const for const in working_memory if func(const)), None)
+
+    @staticmethod
+    def scan_all(working_memory, func=lambda x: x == x):
+        return [const for const in working_memory if func(const)]
+
+    @staticmethod
+    def scan_until(working_memory, func=lambda x: x == x):
+        return list(takewhile(func, working_memory))
+
     #
     # Major lexical categories, for abstraction purposes
     #
@@ -496,6 +635,8 @@ class PhraseStructure:
     def unrecognized_label(self):
         return {'CAT:?', '?'} & self.head().features
 
+
+
     #
     # Tail processing
     #
@@ -529,6 +670,9 @@ class PhraseStructure:
         if self.positive_features(features_to_check) & self.features:
             return Result(True, self.positive_features(features_to_check).issubset(self.features))  # Match occurred, outcome negative (partial match)/positive (full match)
         return Result(False, None)  # No match occurred, no outcome (usually evaluates into False)
+
+    def legible_adjunct(self):
+        return self.head().tail_test() and (self.is_right() or (self.is_left() and not self.nonthematic()))
 
     def negative_features(self, features_to_check):
         return {feature[1:] for feature in features_to_check if feature[0] == '*'}
@@ -571,6 +715,8 @@ class PhraseStructure:
             pro = PhraseStructure()
             pro.features = pro.features | phi_set_for_pro | {'φ', 'D', 'PF:pro', 'pro'}
             return pro
+
+
 
     #
     # Support functions

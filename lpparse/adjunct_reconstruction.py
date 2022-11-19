@@ -19,7 +19,7 @@ class FloaterMovement():
         return ps.top()
 
     def trigger_reconstruction(self, target):
-        return target and target.adjoinable_and_floatable() and not self.operator_in_scope_position(target) and not self.brain_model.LF.interpretable(target, 'adjunct')
+        return target and target.adjoinable_and_floatable() and not self.operator_in_scope_position(target) and not target.legible_adjunct()
 
     def operator_in_scope_position(self, ps):
         return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and ps.container() and ps.container().head().finite()
@@ -28,7 +28,7 @@ class FloaterMovement():
         # Exception: only non-adverbial and uninterpretable right adjuncts are reconstructed if they are inside finite construction
         if target.is_right():
             self.adjunct_constructor.externalize_structure(target.head())
-            if target.head().adverbial() or not target.top().contains_finiteness() or self.brain_model.LF.interpretable(target, 'adjunct'):
+            if target.head().adverbial() or not target.top().contains_finiteness() or target.legible_adjunct():
                 return  # No reconstruction
 
         starting_point = self.set_starting_point(target)
@@ -39,7 +39,7 @@ class FloaterMovement():
             if self.termination_condition(node, target, local_tense_edge):
                 break
             self.merge_floater(node, virtual_test_item)
-            if self.brain_model.LF.validate_reconstructed_adjunct(virtual_test_item, starting_point):
+            if virtual_test_item.valid_reconstructed_adjunct(starting_point):
                 virtual_test_item.remove()
                 dropped_floater = self.copy_and_insert(node, target)
                 self.brain_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point)

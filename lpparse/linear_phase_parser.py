@@ -348,11 +348,3 @@ class LinearPhaseParser:
             return ps
         return self.LF.LF_legibility_test(detached(ps.copy()))
 
-    def scan_next(self, working_memory, func=lambda x: x == x):
-        return next((const for const in working_memory if func(const)), None)
-
-    def scan_all(self, working_memory, func=lambda x: x == x):
-        return [const for const in working_memory if func(const)]
-
-    def scan_until(self, working_memory, func=lambda x: x == x):
-        return list(takewhile(func, working_memory))

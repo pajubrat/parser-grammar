@@ -105,7 +105,6 @@ class OperatorVariableModule:
             set_ = self.get_operator_features(ps.features)
         return set_
 
-
     def get_object(self, idx):
         return self.inventory[idx]
 

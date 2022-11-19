@@ -16,9 +16,9 @@ class HeadMovement:
         return phrase_structure.top()
 
     def get_head_needing_reconstruction(self, node):
-        if not self.brain_model.LF.interpretable(node, 'head'):
+        if node.complex_head():
             return node
-        if node.is_complex() and not self.brain_model.LF.interpretable(node.left_const, 'head'):
+        if node.is_complex() and node.left_const.complex_head():
             return node.left_const
 
     def consider_head_reconstruction(self, current_node, targeted_head):
@@ -40,7 +40,7 @@ class HeadMovement:
                 node = starting_pos_node    # Reset the search pointer after intervention
                 break
             node.merge_1(affix, 'left')
-            if self.brain_model.LF.validate_reconstructed_head(affix):
+            if affix.legitimate_head_position():
                 self.brain_model.consume_resources("Head Chain")
                 return affix
             affix.remove()
@@ -53,7 +53,7 @@ class HeadMovement:
 
     def consider_right_merge(self, affix, node, starting_pos_node):
         for const in [node, starting_pos_node]:
-            if const.merge_1(affix, 'right') and self.brain_model.LF.validate_reconstructed_head(affix):
+            if const.merge_1(affix, 'right') and affix.legitimate_head_position():
                 self.brain_model.consume_resources("Head Chain")
                 return True
             affix.remove()
