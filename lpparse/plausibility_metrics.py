@@ -18,10 +18,10 @@ class PlausibilityMetrics:
         self.rare_word_specs = None
         self.word_tail_set = None
         self.address_label = 0
-        self.left_branch_filter_test_battery = [self.brain_model.LF.selection_test,
-                                                self.brain_model.LF.semantic_complement_test,
-                                                self.brain_model.LF.probe_goal_test,
-                                                self.brain_model.LF.head_integrity_test]
+        self.left_branch_filter_test_battery = [('Selection test', self.brain_model.LF.selection_test),
+                                                ('Semantic Complement test', self.brain_model.LF.semantic_complement_test),
+                                                ('Probe_Goal test', self.brain_model.LF.probe_goal_test),
+                                                ('Head Integrity test', self.brain_model.LF.head_integrity_test)]
 
     # Main entry point
     def filter_and_rank(self, ps, w):
@@ -265,7 +265,7 @@ class PlausibilityMetrics:
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
                 continue
             if N.is_complex() and self.left_branch_filter(N):
-                log(f'Reject {N} + {w} due to bad left branch ({self.brain_model.LF.error_report_for_user})...')
+                log(f'Reject {N} + {w} due to bad left branch ({self.brain_model.LF.error_report_for_external_callers})...')
                 continue
             if self.word_breaking_filter(N, w):
                 log(f'Reject {N} + {w} because it breaks words...')

@@ -7,32 +7,33 @@ def for_lf_interface(features):
 class LF:
     def __init__(self, controlling_parsing_process):
         self.brain_model = controlling_parsing_process
-        self.LF_legibility_tests = [self.selection_test,
-                                    self.projection_principle,
-                                    self.head_integrity_test,
-                                    self.feature_conflict_test,
-                                    self.probe_goal_test,
-                                    self.semantic_complement_test,
-                                    self.double_spec_filter,
-                                    self.criterial_feature_test,
-                                    self.adjunct_interpretation_test]
+        self.LF_legibility_tests = [('Selection test', self.selection_test),
+                                    ('Projection Principle', self.projection_principle),
+                                    ('Head Integrity test', self.head_integrity_test),
+                                    ('Feature Conflict test', self.feature_conflict_test),
+                                    ('Probe-Goal test', self.probe_goal_test),
+                                    ('Semantic Complement test', self.semantic_complement_test),
+                                    ('Double Specifier Filter', self.double_spec_filter),
+                                    ('Criterial Feature test', self.criterial_feature_test),
+                                    ('Adjunct Interpretation test', self.adjunct_interpretation_test)]
 
         self.active_test_battery = self.LF_legibility_tests
-        self.error_report_for_user = ''
+        self.error_report_for_external_callers = ''
+        self.error_message = ''
 
         self.complete_edge = None
-        self.edge_for_EF = None
+        self.filtered_edge = None
 
-        self.selection_violation_test = [('-EF:φ', self.selection__negative_SUBJECT_edge),
-                                         ('!EF:φ', self.selection__positive_SUBJECT_edge),
-                                         ('-EF:*', self.selection__unselective_negative_edge),
-                                         ('!EF:*', self.selection__unselective_edge),
-                                         ('!1EDGE', self.selection__negative_one_edge),
-                                         ('!SEF', self.selection__positive_shared_edge),
-                                         ('-SPEC:', self.selection__negative_specifier),
-                                         ('!SPEC', self.selection__positive_selective_specifier),
-                                         ('-COMP', self.selection__negative_complement),
-                                         ('!COMP', self.selection__positive_obligatory_complement)]
+        self.selection_violation_test = {'-EF:φ': self.selection__negative_SUBJECT_edge,
+                                         '!EF:φ': self.selection__positive_SUBJECT_edge,
+                                         '-EF:*': self.selection__unselective_negative_edge,
+                                         '!EF:*': self.selection__unselective_edge,
+                                         '!1EDG': self.selection__negative_one_edge,
+                                         '!SEF': self.selection__positive_shared_edge,
+                                         '-SPEC': self.selection__negative_specifier,
+                                         '!SPEC': self.selection__positive_selective_specifier,
+                                         '-COMP': self.selection__negative_complement,
+                                         '!COMP': self.selection__positive_obligatory_complement}
 
         self.interpretation_test = {'adjunct': self.adjunct_legibility,
                                     'head': self.head_legibility,
@@ -51,15 +52,10 @@ class LF:
             return self.adjunct_tail_legibility(target)
 
     def left_adjunct_legibility(self, target):
-        return self.adjunct_tail_legibility(target) and not self.in_nonthematic_position(target)
+        return self.adjunct_tail_legibility(target) and not target.nonthematic()
 
     def adjunct_tail_legibility(self, target):
         return target.head().tail_test()
-
-    def in_nonthematic_position(self, target):
-        return target.container() and \
-               (target.container().EF() and target.container().finite()) or \
-               (target.container().check_feature('-SPEC:*') and target == self.brain_model.scan_next(target.container().edge_specifiers()))
 
     def validate_reconstructed_adjunct(self, target, starting_point_node):
         return self.adjunct_tail_legibility(target) and (target.adverbial_adjunct() or self.non_adverbial_adjunct_extra_conditions(target, starting_point_node))
@@ -72,9 +68,9 @@ class LF:
             return True  # Possessives inside referential phrases are not floated
         if target.container() == starting_point_head:
             return False  # Do not reconstruct into the starting position
-        if self.in_nonthematic_position(target):
+        if target.nonthematic():
             return False
-        if target.referential() and self.projection_principle(target.head(), 'weak'):
+        if target.referential() and self.projection_principle(target.head()):
             return False
         return True
 
@@ -91,25 +87,22 @@ class LF:
         return not target.EF()
 
     def selection_violation(self, node):
-        return node.is_complex() and (node.left_const.head_comp_selection_violation() or
-                                      (node.left_const.get_mandatory_comps() and not (node.left_const.get_mandatory_comps() & node.right_const.head().features)))
+        return node.is_complex() and (node.left_const.nonlicensed_complement() or node.left_const.missing_mandatory_complement())
 
-    def LF_legibility_test(self, ps, special_test_battery=None):
-        if special_test_battery:
-            self.active_test_battery = special_test_battery
+    def LF_legibility_test(self, ps, test_battery=None):
+        if test_battery:
+            self.active_test_battery = test_battery
         else:
             self.active_test_battery = self.LF_legibility_tests
-        result = self.pass_LF_legibility(ps)
-        return result
+        return self.pass_LF_legibility(ps)
 
     def pass_LF_legibility(self, ps):
         if ps.is_primitive():
-            self.complete_edge, self.edge_for_EF = self.create_edges(ps)
-            for LF_test in self.active_test_battery:
-                result = LF_test(ps)
-                if result:
-                    log(result)
-                    self.error_report_for_user = result
+            self.complete_edge, self.filtered_edge = self.create_edges(ps)
+            for (test_name, test) in self.active_test_battery:
+                if test(ps):
+                    log(f'{ps} failed {test_name}. ')
+                    self.error_report_for_external_callers = f'{ps} failed {test_name}'
                     return False
         else:
             if not ps.left_const.find_me_elsewhere:
@@ -122,27 +115,27 @@ class LF:
 
     def create_edges(self, ps):
         complete_edge = [const for const in ps.edge_specifiers() + [ps.extract_pro()] if const]
-        edge_for_EF = self.brain_model.scan_all(complete_edge, lambda x: not (x.check_feature('pro') and not x.head().sustains_reference()))
-        return complete_edge, edge_for_EF
+        filtered_edge = self.brain_model.scan_all(complete_edge, lambda x: not (x.check_feature('pro') and not x.head().sustains_reference()))
+        return complete_edge, filtered_edge
 
     # Selection tests ----------------------------------------------------------
     def selection_test(self, probe):
-        return next((f'\'{probe}\' failed {lexical_feature}' for lexical_feature in sorted(for_lf_interface(probe.features))
-                     for (gate, test) in self.selection_violation_test
-                     if lexical_feature.startswith(gate) and
-                     not test(probe, lexical_feature)), None)
+        for lexical_feature in sorted(for_lf_interface(probe.features)):
+            if lexical_feature[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[lexical_feature[:5]](probe, lexical_feature):
+                log(f'{probe} failed feature {lexical_feature}. ')
+                return True
 
     # Feature !EF:φ
     def selection__positive_SUBJECT_edge(self, head, lexical_feature):
-        return self.brain_model.scan_next(self.edge_for_EF, lambda x: x.referential() and (not x.has_tail_features() or x.is_extended_subject()))
+        return self.brain_model.scan_next(self.filtered_edge, lambda x: x.referential() and (not x.has_tail_features() or x.is_extended_subject()))
 
     # Feature -EF:*
     def selection__unselective_negative_edge(self, probe, lexical_feature):
-        return not self.edge_for_EF
+        return not self.filtered_edge
 
     # Feature -EF:φ
     def selection__negative_SUBJECT_edge(self, probe, lexical_feature):
-        return not self.brain_model.scan_next(self.edge_for_EF, lambda x: x.referential() and x.is_extended_subject())
+        return not self.brain_model.scan_next(self.filtered_edge, lambda x: x.referential() and x.is_extended_subject())
 
     # Feature !SEF
     @staticmethod
@@ -160,7 +153,7 @@ class LF:
 
     # Feature [!EF:*] ~ not used for calculation of any data
     def selection__unselective_edge(self, probe, lexical_feature):
-        return self.edge_for_EF
+        return self.filtered_edge
 
     # Feature !SPEC
     def selection__positive_selective_specifier(self, probe, lexical_feature):
@@ -181,100 +174,51 @@ class LF:
 
     # end of selection tests -------------------------------------------------------------
 
-    def adjunct_interpretation_test(self, h):
-        if 'φ' in h.features and \
-                h.max() and h.max().adjunct and \
-                h.max().is_right() and \
-                h.max().mother and h.max().mother.check_feature('φ'):
-            return 'error'
+    def adjunct_interpretation_test(self, probe):
+        return probe.referential() and probe.max() and probe.max().adjunct and probe.max().is_right() and probe.max().mother and probe.max().mother.referential()
 
-    def feature_conflict_test(self, h):
+    def feature_conflict_test(self, probe):
         def remove_exclamation(g):
             if g[0] == '!':
                 return g[1:]
             else:
                 return g
 
-        for feature1 in h.features:
+        for feature1 in probe.features:
             if feature1[0] == '-':
-                for feature2 in h.features:
+                for feature2 in probe.features:
                     if feature1[1:] == remove_exclamation(feature2):
-                        return f'Head {h.illustrate()} triggers feature conflict between {feature1} and {feature2}.'
+                        return True
 
-    def head_integrity_test(self, h):
-        if h.features and h.unrecognized_label():
-            return 'Head without lexical category. '
+    def head_integrity_test(self, probe):
+        return probe.features and probe.unrecognized_label()
 
-    def probe_goal_test(self, h):
-        for f in sorted(for_lf_interface(h.features)):
+    def probe_goal_test(self, probe):
+        for f in sorted(for_lf_interface(probe.features)):
             if f.startswith('!PROBE:'):
-                if not h.probe(h.features, f[7:]):
-                    return f'{h.illustrate()} failed probe-goal test {f}. '
+                if not probe.probe(probe.features, f[7:]):
+                    return True
             if f.startswith('-PROBE:'):
-                if h.probe(set(h.features), f[7:]):
-                    return f'{h} failed negative probe-test for [{f[7:]}]. '
+                if probe.probe(set(probe.features), f[7:]):
+                    return True
 
-    def double_spec_filter(self, h):
-        if not h.check_feature('2SPEC') and \
-                len({spec for spec in h.edge_specifiers() if not spec.adjunct}) > 1:
-                return f'{h} has double specifiers. '
+    def double_spec_filter(self, probe):
+        return not probe.check_feature('2SPEC') and len({spec for spec in probe.edge_specifiers() if not spec.adjunct}) > 1
 
-    def semantic_complement_test(self, head):
-        if head.proper_complement() and not LF.semantic_match(head, head.proper_complement()):
-            return f'{head} fails semantic match with {head.proper_complement()}. '
+    def semantic_complement_test(self, probe):
+        return probe.proper_complement() and not LF.semantic_match(probe, probe.proper_complement())
 
-    def criterial_feature_test(self, h):
-        if h.referential() and not h.relative() and h.mother and h.mother.contains_feature('REL') and not h.mother.contains_feature('T/fin'):
-            return f'Criterial legibility failed for {h}. '
+    def criterial_feature_test(self, probe):
+        return probe.referential() and not probe.relative() and probe.mother and probe.mother.contains_feature('REL') and not probe.mother.contains_feature('T/fin')
 
-    def projection_principle(self, h, test_strength='strong'):
-        if self.projection_principle_applies_to(h):
-            # If XP is inside a projection from head H and H assigns it a thematic role, then return True
-            if h.max().container() and self.container_assigns_theta_role_to(h, test_strength):
-                return None
-            else:
-                if h.max().contains_features({'adjoinable', 'SEM:nonreferential'}):
-                    return None
-                if self.identify_thematic_role_by_agreement(h):
-                    return None
-            return f'{h.max().illustrate()} has no θ role in {h.max().container().max()}. '
+    def projection_principle(self, probe):
+        return self.projection_principle_applies(probe) and not self.container_assigns_theta_role(probe)
 
-    def identify_thematic_role_by_agreement(self, h):
-        return h.max().container() and \
-               h.max().container().get_valued_features() & h.max().head().get_valued_features() == h.max().head().get_valued_features() and \
-               not (h.max().container().edge_specifiers() and self.brain_model.scan_next(h.max().container().edge_specifiers()).is_complex())
+    def projection_principle_applies(self, probe):
+        return probe.referential() and probe.max() and not probe.max().find_me_elsewhere and probe.max().mother and not probe.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
-    def projection_principle_applies_to(self, h):
-        if h.referential() and h.max() and not h.max().find_me_elsewhere and h.max().mother:
-            return True
-
-    def container_assigns_theta_role_to(self, h, test_strength):
-        def get_theta_assigner(node):
-            if node.sister() and node.sister().is_primitive():
-                return node.sister()
-            if node.container() and node.container().edge_specifiers() and node == \
-                    node.container().edge_specifiers()[0]:
-                return node.container()
-
-        # (i) H receives a thematic role if it is selected
-        if h.max().sister() and h.max().sister().is_primitive():
-            return True
-        container_head = h.max().container()
-        # (ii) Thematic assignment to specifier position
-        if get_theta_assigner(h.max()) and container_head.licensed_phrasal_specifier() and h.max() == container_head.licensed_phrasal_specifier():
-            # (ii-1) H does not receive a thematic role from an EPP head
-            if container_head.EF():
-                return False
-            if container_head.selector() and not container_head.selector().check_feature('ARG'):
-                return False
-            # (ii-3) H does not receive a thematic role from heads K... that do not assign thematic roles
-            if not container_head.check_feature_from_set({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) or container_head.check_feature('-SPEC:φ'):
-                return False
-            # Condition (ii-4) One head K cannot assign two roles unless otherwise stated [DP1 [K DP2]]
-            if container_head.sister() != h.max() and container_head.sister().head().referential():
-                if not container_head.check_feature('COPULA') and test_strength == 'strong':
-                    return False
-            return True
+    def container_assigns_theta_role(self, probe):
+        return probe.max().container() and (probe.selected() or (probe.is_licensed_specifier() and probe.max().container().specifier_theta_role_assigner()))
 
     def final_tail_check(self, goal):
         if goal.is_complex():

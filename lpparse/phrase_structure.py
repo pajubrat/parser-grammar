@@ -78,6 +78,14 @@ class PhraseStructure:
         if self.mother:
             return self.mother.head()
 
+    def is_licensed_specifier(self):
+        return self.max().container().licensed_phrasal_specifier() and self.max() == self.max().container().licensed_phrasal_specifier()
+
+    def specifier_theta_role_assigner(self):
+        return not self.EF() and \
+            not (self.selector() and not self.selector().check_feature('ARG')) and \
+            self.check_feature_from_set({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) and not self.max().container().check_feature('-SPEC:φ')
+
     def is_adjoinable(self):
         return self.adjunct or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
 
@@ -139,6 +147,10 @@ class PhraseStructure:
 
     def EF(self):
         return next((True for f in self.features if 'EF:' in f and '-' not in f), False)
+
+    def nonthematic(self):
+        return self.container() and (self.container().EF() and self.container().finite()) or \
+               (self.container().check_feature('-SPEC:*') and self == next((const for const in self.container().edge_specifiers()), None))
 
     def trigger_phrasal_chain(self):
         return self.EF()
@@ -294,13 +306,14 @@ class PhraseStructure:
     def licensed_complements(self):
         return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}
 
-    def head_comp_selection_violation(self):
-        return self.proper_complement() and \
-               (self.complements_not_licensed() & self.proper_complement().head().features)
+    def nonlicensed_complement(self):
+        return self.proper_complement() and (self.complements_not_licensed() & self.proper_complement().head().features)
+
+    def missing_mandatory_complement(self):
+        return self.get_mandatory_comps() and (not self.proper_complement() or not (self.get_mandatory_comps() & self.proper_complement().head().features))
 
     def complement_not_licensed(self):
-        return self.proper_complement() and \
-               not (self.licensed_complements() & self.proper_complement().head().features)
+        return self.proper_complement() and not (self.licensed_complements() & self.proper_complement().head().features)
 
     def licensed_specifiers(self):
         return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
@@ -310,6 +323,9 @@ class PhraseStructure:
 
     def properly_selected(self):
         return self.selector().bottom_affix().licensed_complements() & self.features
+
+    def selected(self):
+        return self.max().sister() and self.max().sister().is_primitive()
 
     def specifier_match(self, phrase):
         return self.licensed_specifiers() & phrase.head().features
