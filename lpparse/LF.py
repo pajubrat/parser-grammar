@@ -43,7 +43,7 @@ class LF:
             for (test_name, test_failure) in self.active_test_battery:
                 if test_failure(ps):
                     log(f'{ps} failed {test_name}. ')
-                    self.error_report_for_external_callers = f'{ps} failed {test_name}'
+                    self.error_report_for_external_callers = f'{ps} failed {test_name}'  # For plausibility metrics calculations and output
                     return False
         else:
             if not ps.left_const.find_me_elsewhere:
@@ -72,7 +72,7 @@ class LF:
         return True
 
     #
-    # LF Merge operations
+    # LF Merge operations (these operations will be replaced with whatever operations are used in enumeration)
     #
     def try_LFmerge(self, head, phrase):
         for try_merge in [self.try_merge_to_left, self.try_adjoin_right, self.try_merge_to_comp]:

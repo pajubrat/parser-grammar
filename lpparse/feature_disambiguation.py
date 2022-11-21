@@ -3,22 +3,19 @@ from support import log
 class FeatureProcessing():
     def __init__(self, controlling_parser_process):
         self.controlling_parser_process = controlling_parser_process
-        pass
 
-    # Definition for feature inheritance mechanism
     def disambiguate(self, ps):
         # --------------------------- minimal search ---------------------------------------------#
         for node in ps:
-            if node.left_const and node.left_const.is_primitive():
-                if '?ARG' in node.left_const.features:
-                    log(f'Solving feature ambiguities for \"{node.left_const}\"...')
+            if node.is_complex() and node.left_const.is_primitive():
+                if node.left_const.check_feature('?ARG'):
                     self.resolve_neutralized_feature(node.left_const)
         # ----------------------------------------------------------------------------------------#
 
     # Definition for feature inheritance
     def resolve_neutralized_feature(self, h):
         h.features.discard('?ARG')
-        if self.selected_by_SEM_internal(h):
+        if h.selected_by_SEM_internal_predicate():
             log(f'{h} resolved into -ARG due to {h.selector()}...')
             h.features.add('-EF:φ')
             h.features.discard('EF:φ')
@@ -30,9 +27,3 @@ class FeatureProcessing():
             h.features.add('EF:φ')
             h.features.add('PHI:NUM:_')
             h.features.add('PHI:PER:_')
-
-    def selected_by_SEM_internal(self, h):
-        return h.selector() and 'SEM:internal' in h.selector().features
-
-    def selected_by_SEM_external(self, h):
-        return h.selector() and 'SEM:external' in h.selector().features

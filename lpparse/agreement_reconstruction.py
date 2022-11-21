@@ -24,7 +24,7 @@ class AgreementReconstruction:
         self.brain_model.narrow_semantics.predicate_argument_dependencies = []
         # ---------------------------- minimal search ---------------------------------------------------------------#
         for node in ps:
-            if node.left_const and node.left_const.is_primitive() and node.left_const.EF():
+            if node.is_complex() and node.left_const.is_primitive() and node.left_const.EF():
                 self.Agree_1(node.left_const)
         # -----------------------------------------------------------------------------------------------------------#
 
@@ -35,7 +35,7 @@ class AgreementReconstruction:
                 self.brain_model.narrow_semantics.predicate_argument_dependencies.append((probe, goal))
                 if probe.adverbial() or 'VA/inf' in probe.features:  # Complementary distribution of phi and overt subject in this class
                     probe.features.add('-pro')
-                if not {'D', 'φ', 'n'} & probe.features:  # This is currently stipulation
+                if probe.referential() or {'n'} & probe.features:  # This is currently stipulation
                     probe.features.add('BLOCK_NS')
                 for p in phi:
                     self.value(probe, goal, p, 'sister')
@@ -47,7 +47,7 @@ class AgreementReconstruction:
             for p in phi:
                 if {f for f in probe.features if unvalued(f) and f[:-1] == p[:len(f[:-1])]}:
                     self.value(probe, goal2, p, 'edge')
-            if not {'D', 'φ', 'n'} & probe.features and 'pro' not in goal2.features:
+            if (probe.referential() or {'n'} & probe.features) and 'pro' not in goal2.features:
                 probe.features.add('BLOCK_NS')
 
     def Agree_1_from_sister(self, probe):

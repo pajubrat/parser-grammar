@@ -86,6 +86,18 @@ class PhraseStructure:
     def non_complex_head(self):
         return self.is_complex() or not self.complex_head()
 
+    def aunt(self):
+        if self.mother:
+            return self.mother.sister()
+
+    def grandmother(self):
+        if self.mother.mother:
+            return self.mother.mother
+
+    def cutoff_point_for_last_resort_extraposition(self):
+        return self.is_primitive() and self.is_adjoinable() and self.aunt() and \
+               (self.aunt().is_complex() or (self.aunt().is_primitive() and self.grandmother().contains_selection_violation()))
+
     def specifier_theta_role_assigner(self):
         return not self.EF() and \
             not (self.selector() and not self.selector().check_feature('ARG')) and \
@@ -555,6 +567,18 @@ class PhraseStructure:
     def selector(self):
         return next((const for const in self.working_memory_path() if const.is_primitive()), None)
 
+    def selected_by_SEM_internal_predicate(self):
+        return self.selector() and self.selector().SEM_internal_predicate()
+
+    def selected_by_SEM_external_predicate(self):
+        return self.selector() and self.selector().SEM_external_predicate()
+
+    def SEM_internal_predicate(self):
+        return 'SEM:internal' in self.features
+
+    def SEM_external_predicate(self):
+        return 'SEM:external' in self.features
+
     def licensed_phrasal_specifier(self):
         return next((spec for spec in self.edge_specifiers()
                      if 'φ' in spec.head().features and not spec.adjunct),
@@ -564,9 +588,17 @@ class PhraseStructure:
     def complete_edge(self):
         return [const for const in self.edge_specifiers() + [self.extract_pro()] if const]
 
+    def concept(self):
+        for m in self.get_affix_list():
+            if m.expresses_concept():
+                return True
+
+    def expresses_concept(self):
+        return {'N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'} & self.features and \
+                not self.copula() and 'T/prt' not in self.features
+
     def filtered_edge(self):
         return self.scan_all(self.complete_edge(), lambda x: not (x.check_feature('pro') and not x.head().sustains_reference()))
-
 
     @staticmethod
     def scan_next(working_memory, func=lambda x: x == x):
@@ -580,6 +612,9 @@ class PhraseStructure:
     def scan_until(working_memory, func=lambda x: x == x):
         return list(takewhile(func, working_memory))
 
+    def scan_down(self, func=lambda x: x == x):
+        return next((const for const in self if func(const)), None)
+
     #
     # Major lexical categories, for abstraction purposes
     #
@@ -591,6 +626,12 @@ class PhraseStructure:
 
     def finite(self):
         return 'Fin' in self.head().features or 'T/fin' in self.head().features or 'C/fin' in self.head().features
+
+    def copula(self):
+        return 'COPULA' in self.features
+
+    def candidate_for_VP_fronting(self):
+        return self == self.scan_next(self.container().edge_specifiers(), lambda x: {'A/inf', 'VA/inf'} & x.head().features)
 
     def finite_C(self):
         return 'C/fin' in self.head().features
@@ -616,6 +657,38 @@ class PhraseStructure:
     def preposition(self):
         return 'P' in self.head().features
 
+    def predicate(self):
+        return self.is_primitive() and 'ARG' in self.head().features and '-ARG' not in self.head().features
+
+    def adjunct_is_correct_position(self):
+        return self.tail_test()
+
+    def has_legitimate_specifier(self):
+        return self.predicate() and not self.edgeless() and self.edge_specifiers() and not self.has_unlicensed_specifier()
+
+    def has_vacant_phrasal_position(self):
+        return (self.is_complex() and self.left_const.is_primitive() and self.sister().is_primitive()) or self.is_primitive()
+
+    def has_nonthematic_specifier(self):
+        return self.EF() and self.edge_specifiers()
+
+    def externalize_with_specifier(self):
+        return self.is_left() and self.predicate() and \
+               ((self.adjunct_is_correct_position() and self.has_nonthematic_specifier()) or
+                (not self.adjunct_is_correct_position() and self.has_legitimate_specifier()))
+
+    def isolated_preposition(self):
+        return self.preposition() and self.sister() and self.sister().is_primitive()
+
+    def edgeless(self):
+        return '-EF:φ' in self.head().features or '-EDGE:*' in self.head().features
+
+    def license_extraposition(self):
+        return self.top().contains_finiteness() or self.top().referential()
+
+    def has_unlicensed_specifier(self):
+        return set(self.specifiers_not_licensed()) & set(next((const for const in self.edge_specifiers()), None).head().features)
+
     def non_scopal(self):
         return {'Inf', 'P', 'D', 'φ'} & self.features
 
@@ -635,7 +708,8 @@ class PhraseStructure:
     def unrecognized_label(self):
         return {'CAT:?', '?'} & self.head().features
 
-
+    def get_head_violating_selection(self):
+        return self.scan_down(lambda x: x.contains_selection_violation() and not x.right_const.head().adjunct)
 
     #
     # Tail processing

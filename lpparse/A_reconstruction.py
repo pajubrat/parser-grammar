@@ -1,11 +1,9 @@
-from support import log
-
 class A_reconstruction:
     def __init__(self, controlling_parser_process):
         self.brain_model = controlling_parser_process
 
     def reconstruct(self, spec):
-        if spec == spec.container().licensed_phrasal_specifier() or self.VP_fronting_in_Finnish(spec):
+        if spec == spec.container().licensed_phrasal_specifier() or spec.candidate_for_VP_fronting():
 
             # Special case: [DP H] => [__ [H DP]]
             if spec.sister().is_primitive():
@@ -17,19 +15,10 @@ class A_reconstruction:
 
             # -----------------minimal search---------------------------------------------------------------------------#
             for node in [node for node in spec.sister()][1:]:
-                if self.target_location_for_A_reconstruction(node):
+                if node.has_vacant_phrasal_position():
                     node.merge_1(spec.copy_for_reconstruction(self.brain_model.babtize()), 'left')
                     self.brain_model.consume_resources('A-Chain')
                     break
-                if self.intervention(node):
+                if node.is_complex() and node.left_const.referential():  #Intervention
                     break
             # -----------------------------------------------------------------------------------------------------------#
-
-    def intervention(self, node):
-        return node.left_const and 'φ' in node.left_const.features
-
-    def VP_fronting_in_Finnish(self, spec):
-        return spec == next((spec for spec in spec.container().edge_specifiers() if {'A/inf', 'VA/inf'} & spec.head().features), None)
-
-    def target_location_for_A_reconstruction(self, node):
-        return (node.left_const and node.left_const.is_primitive() and node.sister().is_primitive()) or node.is_primitive()

@@ -167,16 +167,6 @@ class NarrowSemantics:
             self.semantic_interpretation_failed = True
             return True
 
-    def is_concept(self, head):
-        for m in head.get_affix_list():
-            if self.expresses_concept(m):
-                return True
-
-    def expresses_concept(self, head):
-        if {'N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'} & head.features and \
-                'COPULA' not in head.features and 'T/prt' not in head.features:
-            return True
-
     def get_referential_index(self, ps, space):
         idx_tuples_list = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
         return [idx for idx, space_ in idx_tuples_list if space_ == space][0]

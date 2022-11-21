@@ -64,6 +64,6 @@ class HeadMovement:
         return affix
 
     def determine_intervention_features(self, head):
-        if self.brain_model.narrow_semantics.is_concept(head) and {feature for feature in head.features if feature[:2] == 'OP'}:
+        if head.concept() and {feature for feature in head.features if feature[:2] == 'OP'}:
             return {'φ'} | set(self.brain_model.narrow_semantics.operator_variable_module.operator_interpretation.keys())
         return {'!COMP:*'}

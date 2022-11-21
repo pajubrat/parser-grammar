@@ -67,7 +67,7 @@ class OperatorVariableModule:
         log(f'\n\t\t\tInterpreting [{operator_feature}] at ')
         head_chain = binding["Head"].find_occurrences_from(self.narrow_semantics.access_interface['spellout structure'])
         log(f'{head_chain[0].illustrate()}. ')
-        if self.narrow_semantics.is_concept(head_chain[0]):
+        if head_chain[0].concept():
             log('Interpretation successful.')
             if 'Predicates targeted by operator interpretation' not in semantic_interpretation:
                 semantic_interpretation['Predicates targeted by operator interpretation'] = [f'[{operator_feature}] at {head_chain[0]}']

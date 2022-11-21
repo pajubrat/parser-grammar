@@ -342,11 +342,11 @@ class LocalFileSystem:
     def stamp(self, file_handle):
         file_handle.write('@  '+str(self.settings) + '\n')
         file_handle.write('@  '+str(datetime.datetime.now()) + '\n')
-        file_handle.write('@  '+f'Test sentences from {self.external_sources["test_corpus_file_name"]}.\n')
-        file_handle.write('@  '+f'Logs into {self.external_sources["log_file_name"]}.\n')
-        file_handle.write('@  '+f'Lexicon from {self.external_sources["lexicon_file_name"]}.\n')
-        file_handle.write('@  '+f'Redundancy rules from {self.external_sources["redundancy_rules"]}.\n')
-        file_handle.write('@  '+f'Universal morphemes from {self.external_sources["ug_morphemes"]}.\n')
+        file_handle.write('@  '+f'Test sentences {self.external_sources["test_corpus_file_name"]}.\n')
+        file_handle.write('@  '+f'Logs {self.external_sources["log_file_name"]}.\n')
+        file_handle.write('@  '+f'Lexicon {self.external_sources["lexicon_file_name"]}.\n')
+        file_handle.write('@  '+f'Redundancy rules {self.external_sources["redundancy_rules"]}.\n')
+        file_handle.write('@  '+f'Universal morphemes {self.external_sources["ug_morphemes"]}.\n')
         file_handle.write('@ \n')
 
     def save_output(self, parser, count, sentence, experimental_group, part_of_conversation):
@@ -369,7 +369,7 @@ class LocalFileSystem:
         if len(parser.result_list) == 0:
             return '*'
         if not {assignment['weight'] for assignment in parser.result_list[0][1]['Assignments'] if assignment['weight'] > 0}:
-            return '?' # Change this if you want to have different marking for sentences without assignment
+            return ' '  # Change this if you want to have different marking for sentences without assignment
         return ' '
 
     def save_resources(self, parser, count, sentence, experimental_group):
