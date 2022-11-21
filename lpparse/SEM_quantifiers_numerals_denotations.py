@@ -19,10 +19,10 @@ class QuantifiersNumeralsDenotations:
         self.one_complete_assignment = {}
 
     def accept(self, ps):
-        return ps.sustains_reference() or 'φ' in ps.head().features
+        return ps.sustains_reference() or ps.referential()
 
     def is_operator(self, ps):
-        return self.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and 'FIN' not in ps.features
+        return self.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and not ps.finite()
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
@@ -75,7 +75,7 @@ class QuantifiersNumeralsDenotations:
 
     def calculate_assignment_weight(self, complete_assignment):
         weighted_assignment = complete_assignment.copy()
-        log(f'\n\t\t\tAssignment {complete_assignment} ')
+        log(f'\n\t\t\tAssignment {complete_assignment}: ')
         weighted_assignment['weight'] = 1
         for expression in self.referential_constituents_feed:
             if not self.binding_theory_conditions(expression, complete_assignment):
@@ -83,9 +83,9 @@ class QuantifiersNumeralsDenotations:
                 log('Rejected by binding.')
             if not self.predication_theory_conditions(expression, complete_assignment):
                 weighted_assignment['weight'] = 0
-                log('rejected by predication theory.')
+                log('Rejected by predication theory.')
         if weighted_assignment['weight'] > 0:
-            log('accepted.')
+            log('Accepted.')
         return weighted_assignment
 
     def predication_theory_conditions(self, expression, complete_assignment):
@@ -142,11 +142,7 @@ class QuantifiersNumeralsDenotations:
         return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')])
 
     def R_feature(self, feature):
-        feature_list = feature.split(':')
-        if feature_list[0] == 'R':
-            return True
-        if feature_list[0] == 'PHI':
-            return True
+        return feature.split(':')[0] == 'R'
 
     def get_R_features(self, ps):
         return {feature for feature in ps.head().features if self.R_feature(feature)}
