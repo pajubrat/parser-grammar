@@ -8,7 +8,7 @@ class FeatureProcessing():
         # --------------------------- minimal search ---------------------------------------------#
         for node in ps:
             if node.is_complex() and node.left_const.is_primitive():
-                if node.left_const.check_feature('?ARG'):
+                if node.left_const.check('?ARG'):
                     self.resolve_neutralized_feature(node.left_const)
         # ----------------------------------------------------------------------------------------#
 

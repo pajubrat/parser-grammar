@@ -88,7 +88,7 @@ class LF:
             if head.complement_not_licensed():
                 old_complement = head.proper_complement()
                 head.proper_complement().merge_1(phrase.copy_for_reconstruction(self.brain_model.babtize()), 'left')
-                if old_complement.check_feature('adjoinable'):
+                if old_complement.check('adjoinable'):
                     old_complement.adjunct = True
                 self.brain_model.consume_resources("Move Phrase", f'{phrase}')
                 return True

@@ -23,7 +23,7 @@ class LF_Recovery:
         extra = []
         if probe.is_primitive() and probe.is_left() and probe.sister().is_complex():
             extra = [probe.sister()]
-        return extra + probe.scan_until(probe.working_memory_path(), lambda x: x.check_feature('SEM:external'))
+        return extra + probe.scan_until(probe.working_memory_path(), lambda x: x.check('SEM:external'))
 
     def finite_control(self, probe):
         return probe.scan_next(probe.working_memory_path(), lambda x: self.is_possible_antecedent(x, probe) or self.special_rule(x, probe))
@@ -59,8 +59,8 @@ class LF_Recovery:
         if antecedent.head().referential():
             arg_str = antecedent.illustrate()
         else:
-            arg_str = f'{antecedent.head().major_cat()}(pro)'
-        return f'{prefix}/{probe.major_cat()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
+            arg_str = f'{antecedent.head().major_category_label()}(pro)'
+        return f'{prefix}/{probe.major_category_label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
 
     def antecedent_absent(self, probe):
         unvalued_phi = probe.phi_needs_valuation()
@@ -77,4 +77,4 @@ class LF_Recovery:
                 arg_str = 'Uninterpretable, interpretation failed.'
             else:
                 arg_str = 'Generic'
-        return f'Agent/{probe.major_cat()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
+        return f'Agent/{probe.major_category_label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
