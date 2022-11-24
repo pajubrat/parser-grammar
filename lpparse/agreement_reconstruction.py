@@ -64,7 +64,7 @@ class AgreementReconstruction:
 
     def Agree_1_from_edge(self, head):
         return next(((const.head(), sorted({f for f in const.head().features if phi(f) and valued(f)}))
-                     for const in [const for const in head.edge_specifiers()] + [head.extract_pro()] if
+                     for const in [const for const in head.scan_edge()] + [head.extract_pro()] if
                      const and self.agreement_condition(head, const)), (None, {}))
 
     def agreement_condition(self, probe, goal):

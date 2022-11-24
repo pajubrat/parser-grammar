@@ -15,7 +15,7 @@ class PhrasalMovement:
         # ------------------- minimal search -------------------------#
         for head in ps.minimal_search():
             if head.EF():
-                for i, spec in enumerate(head.edge_specifiers()):
+                for i, spec in enumerate(head.scan_edge()):
                     if not spec.find_me_elsewhere:
                         self.create_phrasal_chain(head, spec, i > 0)
         # ------------------------------------------------------------#

@@ -17,16 +17,10 @@ class LF_Recovery:
             return self.finite_control(probe)
 
     def control(self, probe):
-        return probe.scan_next(self.construct_working_memory(probe), lambda x: self.is_possible_antecedent(x, probe))
-
-    def construct_working_memory(self, probe):
-        extra = []
-        if probe.is_primitive() and probe.is_left() and probe.sister().is_complex():
-            extra = [probe.sister()]
-        return extra + probe.scan_until(probe.working_memory_path(), lambda x: x.check('SEM:external'))
+        return probe.scan_next(probe.construct_working_memory, lambda x: self.is_possible_antecedent(x, probe))
 
     def finite_control(self, probe):
-        return probe.scan_next(probe.working_memory_path(), lambda x: self.is_possible_antecedent(x, probe) or self.special_rule(x, probe))
+        return probe.scan_next(probe.working_memory_path, lambda x: self.is_possible_antecedent(x, probe) or self.special_rule(x, probe))
 
     def is_possible_antecedent(self, antecedent, probe):
         if not antecedent.find_me_elsewhere:
@@ -39,7 +33,7 @@ class LF_Recovery:
         return antecedent_feature == probe_feature or (probe_feature[-1] == '_' and antecedent_feature[:len(probe_feature[:-1])] == probe_feature[:-1])
 
     def special_rule(self, const, probe):
-        if probe.finite() and probe.edge_specifiers() and const == self.brain_model.scan_next(probe.edge_specifiers()):
+        if probe.finite() and probe.scan_edge() and const == probe.scan_next():
             if not const.referential():
                 probe.features.add('PHI:DET:GEN')
             return const

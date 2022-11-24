@@ -21,52 +21,42 @@ class Transfer:
 
     def transfer(self, ps, embedding=3):
         output_to_interfaces = {}
-        log_embedding = embedding * '\t'
         if not is_logging_enabled():
-            log(log_embedding + f'Transferring {ps} to LF...')
-
-        log_embedding = log_embedding + '\t'
+            log(f'Transferring {ps} to LF...')
 
         output_to_interfaces['spellout structure'] = ps.copy()
         self.brain_model.consume_resources("Phase Transfers")
 
         log('\n')
-        log(log_embedding + '1. Head movement reconstruction...')
+        log('\t\t\t1.\tHead movement reconstruction:')
         ps = self.head_movement_module.reconstruct(ps)
         output_to_interfaces['surface structure'] = ps.copy()
-        log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(f'\n\t\t\t\t{ps}\n')
 
-        log(log_embedding + '2. Feature processing...')
+        log('\t\t\t2.\tFeature processing:')
         self.feature_process_module.disambiguate(ps)
-        log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(f'\n\t\t\t\t{ps}\n')
 
-        log(log_embedding + '3. Extraposition...')
+        log('\t\t\t3.\tExtraposition:')
         self.extraposition_module.reconstruct(ps)
-        log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(f'\n\t\t\t\t{ps}\n')
 
-        log(log_embedding + '4. Floater movement reconstruction...')
+        log('\t\t\t4.\tFloater movement reconstruction:')
         ps = self.floater_movement_module.reconstruct(ps)
-        log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(f'\n\t\t\t\t{ps}\n')
         output_to_interfaces['s-structure'] = ps.copy()
 
-        log(log_embedding + '5. Phrasal movement reconstruction...')
+        log('\t\t\t5\tPhrasal movement reconstruction:')
         self.phrasal_movement_module.reconstruct(ps)
-        log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(f'\n\t\t\t\t{ps}\n')
 
-        log(log_embedding + '6. Agreement reconstruction...')
+        log('\t\t\t6.\tAgreement reconstruction:')
         self.agreement_module.reconstruct(ps)
-        log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(f'\n\t\t\t\t{ps}\n')
 
-        log(log_embedding + '7. Last resort extraposition...')
+        log('\t\t\t7.\tLast resort extraposition:')
         self.extraposition_module.last_resort_reconstruct(ps)
-        log('Done.\n')
-        log(log_embedding + f'\t= {ps}\n')
+        log(f'\n\t\t\t\t{ps}\n')
         output_to_interfaces['LF structure'] = ps.copy()
 
         return ps, output_to_interfaces

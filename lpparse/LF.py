@@ -102,7 +102,7 @@ class LF:
                 return True
 
     def try_merge_to_left(self, head, phrase):
-        if not head.finite() and not head.edge_specifiers():
+        if not head.finite() and not head.scan_edge():
             target_node = head.specifier_sister()
             if head.specifier_match(phrase) and self.tail_match(target_node, phrase, 'left'):
                 self.LF_Merge(phrase, target_node, 'left')

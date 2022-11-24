@@ -24,7 +24,6 @@ class HeadMovement:
     def consider_head_reconstruction(self, current_node, targeted_head):
         if targeted_head:
             current_node = self.create_head_chain(targeted_head, self.determine_intervention_features(targeted_head), self.get_affix_out(targeted_head))
-            log(f'={current_node.top()}. ')
             return current_node
         return current_node.mother
 
