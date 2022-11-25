@@ -385,7 +385,7 @@ class PhraseStructure:
 
     def nonthematic(self):
         return self.container() and (self.container().EF() and self.container().finite()) or \
-               (self.container().check('-SPEC:*') and self == next((const for const in self.container().scan_edge()), None))
+               (self.container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and self == next((const for const in self.container().scan_edge()), None))
 
     # Feature [!SEF]
     def referential_complement_criterion(probe):
@@ -487,9 +487,9 @@ class PhraseStructure:
 
     def non_adverbial_adjunct_condition(self, starting_point_head):
         return not self.container() or \
-               (self.check('GEN') and not self.container().referential()) and \
-               not self.container() == starting_point_head and \
-               not self.nonthematic() and not (self.referential() and self.head().projection_principle())
+               (not (self.check('GEN') and self.container().referential()) and
+               not self.container() == starting_point_head and
+               not self.nonthematic() and not (self.referential() and self.head().projection_principle()))
 
     def valid_reconstructed_adjunct(self, starting_point_node):
         return self.head().tail_test() and (self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node))

@@ -33,7 +33,7 @@ class LF_Recovery:
         return antecedent_feature == probe_feature or (probe_feature[-1] == '_' and antecedent_feature[:len(probe_feature[:-1])] == probe_feature[:-1])
 
     def special_rule(self, const, probe):
-        if probe.finite() and probe.scan_edge() and const == probe.scan_next():
+        if probe.finite() and probe.scan_edge() and const == probe.scan_next(probe.working_memory_path):
             if not const.referential():
                 probe.features.add('PHI:DET:GEN')
             return const
