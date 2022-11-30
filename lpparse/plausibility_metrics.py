@@ -60,7 +60,7 @@ class PlausibilityMetrics:
             if site.is_complex():
                 solutions.append((site, True, self.generate_address_label()))
             else:
-                if site.complex_head():
+                if site.has_affix():
                     if {'φ', 'D', 'P', 'A', 'D/rel'} & site.features:
                         solutions.append((site, True, self.generate_address_label()))
                         solutions.append((site, False, self.generate_address_label()))
@@ -97,8 +97,8 @@ class PlausibilityMetrics:
     @knockout_lexical_ranking
     def break_head_comp_relations(self, site):
         if not site.is_primitive() and site.mother and \
-                site.mother.left_const and site.mother.left_const.is_primitive():
-            if site.mother.left_const.licensed_complements() & site.features:
+                site.mother.left and site.mother.left.is_primitive():
+            if site.mother.left.licensed_complements() & site.features:
                 if not self.word.adverbial():
                     return True
 
@@ -297,9 +297,9 @@ class PlausibilityMetrics:
 
     def geometrical_minimal_search(self, ps):
         search_list = [ps]
-        while ps.is_complex() and ps.right_const:
-            search_list.append(ps.right_const)
-            ps = ps.right_const
+        while ps.is_complex() and ps.right:
+            search_list.append(ps.right)
+            ps = ps.right
         return search_list
 
     def impossible_sequence(self, N, w):

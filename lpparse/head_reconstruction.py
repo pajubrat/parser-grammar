@@ -16,10 +16,10 @@ class HeadMovement:
         return phrase_structure.top()
 
     def get_head_needing_reconstruction(self, node):
-        if node.complex_head():
+        if node.has_affix():
             return node
-        if node.is_complex() and node.left_const.complex_head():
-            return node.left_const
+        if node.is_complex() and node.left.has_affix():
+            return node.left
 
     def consider_head_reconstruction(self, current_node, targeted_head):
         if targeted_head:
@@ -32,7 +32,6 @@ class HeadMovement:
             complex_head.merge_1(affix, 'right')
             return affix
 
-        # --------------- minimal search -------------------------------------------------#
         starting_pos_node = complex_head.sister()
         for node in starting_pos_node:
             if node != starting_pos_node and intervention_feature_set & node.sister().features:
@@ -43,7 +42,6 @@ class HeadMovement:
                 self.brain_model.consume_resources("Head Chain")
                 return affix
             affix.remove()
-        # --------------------------------------------------------------------------------#
 
         if not self.consider_right_merge(affix, node, starting_pos_node):
             starting_pos_node.merge_1(affix, 'left') # last resort
@@ -58,8 +56,8 @@ class HeadMovement:
             affix.remove()
 
     def get_affix_out(self, node):
-        affix = node.right_const
-        node.right_const = None
+        affix = node.right
+        node.right = None
         return affix
 
     def determine_intervention_features(self, head):

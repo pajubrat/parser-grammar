@@ -390,6 +390,7 @@ class LocalFileSystem:
         sentence_string = self.generate_input_sentence_string(sentence)
         self.control_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n')
         if len(parser.result_list) > 0:
+            self.control_file.write('\t')
             p, sem = parser.result_list[0]
             if 'Recovery' in sem:
                 for i, item in enumerate(sem['Recovery']):

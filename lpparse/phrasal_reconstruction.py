@@ -15,7 +15,7 @@ class PhrasalMovement:
         # ------------------- minimal search -------------------------#
         for head in ps.minimal_search():
             if head.EF():
-                for i, spec in enumerate(head.scan_edge()):
+                for i, spec in enumerate(head.edge()):
                     if not spec.find_me_elsewhere:
                         self.create_phrasal_chain(head, spec, i > 0)
         # ------------------------------------------------------------#
@@ -43,7 +43,7 @@ class PhrasalMovement:
 
     def process_criterial_features(self, head, spec, multi):
         if multi and self.multi_specifier_needs_head_support(spec):
-            head = spec.sister().merge_1(self.lexical_access.PhraseStructure(), 'left').left_const
+            head = spec.sister().merge_1(self.lexical_access.PhraseStructure(), 'left').left
         head.features |= self.transfer_features(head, spec)
 
     def transfer_features(self, head, spec):

@@ -52,8 +52,8 @@ def show_primitive_constituents(self):
 
     reply = ''
     if not self.is_primitive():
-        reply += show_primitive_constituents(self.left_const)
-        reply += show_primitive_constituents(self.right_const)
+        reply += show_primitive_constituents(self.left)
+        reply += show_primitive_constituents(self.right)
     else:
         reply += f'\t\t{self.get_phonological_string():<10} {sorted_by_relevance(self.features)}\n'
     return reply

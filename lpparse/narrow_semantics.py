@@ -127,10 +127,10 @@ class NarrowSemantics:
             if self.failure():
                 return
         else:
-            if not ps.left_const.find_me_elsewhere:
-                self.interpret_(ps.left_const)
-            if not ps.right_const.find_me_elsewhere:
-                self.interpret_(ps.right_const)
+            if not ps.left.find_me_elsewhere:
+                self.interpret_(ps.left)
+            if not ps.right.find_me_elsewhere:
+                self.interpret_(ps.right)
 
     def inventory_projection(self, ps):
         def preconditions(ps):
@@ -189,10 +189,10 @@ class NarrowSemantics:
 
     def interpret_tail_features(self, ps):
         def in_scope_of(ps, feature_set):
-            return next((const for const in ps.working_memory_path() if feature_set.issubset(const.features)), None)
+            return next((const for const in ps.upward_path() if feature_set.issubset(const.features)), None)
 
         def get_tailed_head(ps, tail_set):
-            return next((const for const in ps.working_memory_path() if const.is_primitive() and const.match_features(tail_set).match_occurred and const.match_features(tail_set).outcome), None)
+            return next((const for const in ps.upward_path() if const.is_primitive() and const.match_features(tail_set).match_occurred and const.match_features(tail_set).outcome), None)
 
         def interpret_argument_tailing(ps, tailed_head):
             if tailed_head:

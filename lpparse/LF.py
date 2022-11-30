@@ -46,11 +46,11 @@ class LF:
                     self.error_report_for_external_callers = f'{ps} failed {test_name}'  # For plausibility metrics calculations and output
                     return False
         else:
-            if not ps.left_const.find_me_elsewhere:
-                if not self.pass_LF_legibility(ps.left_const):
+            if not ps.left.find_me_elsewhere:
+                if not self.pass_LF_legibility(ps.left):
                     return False
-            if not ps.right_const.find_me_elsewhere:
-                if not self.pass_LF_legibility(ps.right_const):
+            if not ps.right.find_me_elsewhere:
+                if not self.pass_LF_legibility(ps.right):
                     return False
         return True
 
@@ -62,9 +62,9 @@ class LF:
 
     def final_tail_check(self, goal):
         if goal.is_complex():
-            if not goal.left_const.find_me_elsewhere and not self.final_tail_check(goal.left_const):
+            if not goal.left.find_me_elsewhere and not self.final_tail_check(goal.left):
                 return False
-            if not goal.right_const.find_me_elsewhere and not self.final_tail_check(goal.right_const):
+            if not goal.right.find_me_elsewhere and not self.final_tail_check(goal.right):
                 return False
         if goal.is_primitive() and goal.get_tail_sets() and not goal.tail_test():
             log(f'Post-syntactic tail test for \'{goal.illustrate()}\', {goal.max().illustrate()} failed. ')
@@ -88,7 +88,7 @@ class LF:
             if head.complement_not_licensed():
                 old_complement = head.proper_complement()
                 head.proper_complement().merge_1(phrase.copy_for_reconstruction(self.brain_model.babtize()), 'left')
-                if old_complement.check('adjoinable'):
+                if old_complement.check({'adjoinable'}):
                     old_complement.adjunct = True
                 self.brain_model.consume_resources("Move Phrase", f'{phrase}')
                 return True
@@ -102,7 +102,7 @@ class LF:
                 return True
 
     def try_merge_to_left(self, head, phrase):
-        if not head.finite() and not head.scan_edge():
+        if not head.finite() and not head.edge():
             target_node = head.specifier_sister()
             if head.specifier_match(phrase) and self.tail_match(target_node, phrase, 'left'):
                 self.LF_Merge(phrase, target_node, 'left')

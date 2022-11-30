@@ -17,15 +17,15 @@ class LF_Recovery:
             return self.finite_control(probe)
 
     def control(self, probe):
-        return probe.scan_next(probe.construct_working_memory, lambda x: self.is_possible_antecedent(x, probe))
+        return next((x for x in [probe.sister()] + list(takewhile(lambda x: 'SEM:external' not in x.features, probe.upward_path())) if self.is_possible_antecedent(x, probe)), None)
 
     def finite_control(self, probe):
-        return probe.scan_next(probe.working_memory_path, lambda x: self.is_possible_antecedent(x, probe) or self.special_rule(x, probe))
+        return probe.next(probe.upward_path, lambda x: self.is_possible_antecedent(x, probe) or self.special_rule(x, probe))
 
     def is_possible_antecedent(self, antecedent, probe):
         if not antecedent.find_me_elsewhere:
             phi_to_check = {phi for phi in probe.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER'}
-            phi_checked = {phi2 for phi1 in antecedent.head().get_valued_features() for phi2 in phi_to_check if self.feature_check(phi1, phi2)}
+            phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if self.feature_check(phi1, phi2)}
             return phi_to_check == phi_checked
 
     @staticmethod
@@ -33,7 +33,7 @@ class LF_Recovery:
         return antecedent_feature == probe_feature or (probe_feature[-1] == '_' and antecedent_feature[:len(probe_feature[:-1])] == probe_feature[:-1])
 
     def special_rule(self, const, probe):
-        if probe.finite() and probe.scan_edge() and const == probe.scan_next(probe.working_memory_path):
+        if probe.finite() and probe.edge() and const == probe.next(probe.upward_path):
             if not const.referential():
                 probe.features.add('PHI:DET:GEN')
             return const
@@ -51,9 +51,9 @@ class LF_Recovery:
         else:
             prefix = 'Agent'
         if antecedent.head().referential():
-            arg_str = antecedent.illustrate()
+            arg_str = antecedent.phonological_content().strip()
         else:
-            arg_str = f'{antecedent.head().major_category_label()}(pro)'
+            arg_str = f'{antecedent.head().major_category_label()}P(pro)'
         return f'{prefix}/{probe.major_category_label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
 
     def antecedent_absent(self, probe):

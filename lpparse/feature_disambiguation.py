@@ -7,9 +7,9 @@ class FeatureProcessing():
     def disambiguate(self, ps):
         # --------------------------- minimal search ---------------------------------------------#
         for node in ps:
-            if node.is_complex() and node.left_const.is_primitive():
-                if node.left_const.check('?ARG'):
-                    self.resolve_neutralized_feature(node.left_const)
+            if node.is_complex() and node.left.is_primitive():
+                if node.left.check({'?ARG'}):
+                    self.resolve_neutralized_feature(node.left)
         # ----------------------------------------------------------------------------------------#
 
     # Definition for feature inheritance

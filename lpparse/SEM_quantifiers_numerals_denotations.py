@@ -52,8 +52,8 @@ class QuantifiersNumeralsDenotations:
         L2 = []
         if not ps.find_me_elsewhere:
             if ps.is_complex():
-                L1 = self.calculate_possible_denotations_(ps.left_const)
-                L2 = self.calculate_possible_denotations_(ps.right_const)
+                L1 = self.calculate_possible_denotations_(ps.left)
+                L2 = self.calculate_possible_denotations_(ps.right)
             else:
                 if self.narrow_semantics.has_referential_index(ps, 'QND'):
                     idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
@@ -126,7 +126,7 @@ class QuantifiersNumeralsDenotations:
 
     def reference_set(self, ps, intervention_feature, complete_assignment):
         reference_set = set()
-        for const in (node for node in ps.working_memory_path() if
+        for const in (node for node in ps.upward_path() if
                       self.narrow_semantics.has_referential_index(node.head()) and
                       self.narrow_semantics.exists(node.head(), 'QND') and
                       node.head() != ps and
@@ -224,7 +224,7 @@ class QuantifiersNumeralsDenotations:
             return f'{head.illustrate}'
 
     def detect_phi_conflicts(self, ps):
-        for phi in ps.get_phi_set():
+        for phi in ps.head().get_phi_set():
             if phi[-1] == '*':
                 log(f'\n\t\t\t{ps.illustrate()} has a phi-feature conflict with {phi}.')
                 self.narrow_semantics.phi_interpretation_failed = True

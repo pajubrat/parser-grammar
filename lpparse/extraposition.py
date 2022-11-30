@@ -16,4 +16,4 @@ class Extraposition:
 
     def last_resort_reconstruct(self, ps):
         if ps.license_extraposition() and not self.brain_model.LF_legibility_test(ps.top()):
-            self.adjunct_constructor.externalize_structure(ps.bottom().scan_next(ps.bottom().working_memory_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
+            self.adjunct_constructor.externalize_structure(ps.bottom().next(ps.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))

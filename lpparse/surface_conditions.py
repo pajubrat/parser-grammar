@@ -23,9 +23,9 @@ class SurfaceConditions:
         ps_ = ps.top()
         for node in ps_:
             if node.is_complex():
-                if node.left_const.is_clitic() and not self.is_clitic_licensed(node.left_const):
+                if node.left.is_clitic() and not self.is_clitic_licensed(node.left):
                     return False
-                elif node.right_const.is_clitic() and not self.is_clitic_licensed(node.right_const):
+                elif node.right.is_clitic() and not self.is_clitic_licensed(node.right):
                     return False
             elif node.is_clitic() and not self.is_clitic_licensed(node):
                     return False
@@ -120,7 +120,7 @@ class SurfaceConditions:
         def walk_upstream(node):
             while node.mother:
                 node = node.mother
-                if not node.right_const.adjunct:
+                if not node.right.adjunct:
                     return node
 
         if direction=='left':
@@ -144,7 +144,7 @@ class SurfaceConditions:
     # Recursive definition for left edge of a constituent
     def left_edge(self, ps):
         if ps.is_complex():
-            return self.left_edge(ps.left_const)
+            return self.left_edge(ps.left)
         else:
             return ps
 

@@ -27,7 +27,7 @@ class AdjunctConstructor:
             self.transfer_adjunct(ps)
 
     def add_tail_features_if_missing(self, ps):
-        if not ps.has_tail_features():
+        if not ps.head().get_tail_sets():
             if 'D' in ps.head().features:
                 ps.head().features.add('TAIL:V')
             elif 'T' not in ps.head().features:       # TP can only become relative clause, e.g. 'che dorme'
@@ -42,7 +42,7 @@ class AdjunctConstructor:
         if original_mother:
             ps.mother = original_mother
             if is_right:
-                ps.mother.right_const = ps
+                ps.mother.right = ps
             else:
-                ps.mother.left_const = ps
+                ps.mother.left = ps
         return ps

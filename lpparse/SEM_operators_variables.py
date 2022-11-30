@@ -26,14 +26,14 @@ class OperatorVariableModule:
 
     @staticmethod
     def find_overt_scope(head, operator_feature):
-        return next(({'Head': head, 'Scope': scope, 'Overt': True} for scope in head.working_memory_path() if
+        return next(({'Head': head, 'Scope': scope, 'Overt': True} for scope in head.upward_path() if
                      {operator_feature, 'Fin'}.issubset(scope.features)), {'Head': head, 'Scope': None, 'Overt': False})
 
     @staticmethod
     def interpret_covert_scope(binding):
         if not binding['Scope'] and '!SCOPE' not in binding['Head'].features:
             return next(({'Head': binding['Head'], 'Scope': scope, 'Overt': False}
-                         for scope in binding['Head'].working_memory_path() if
+                         for scope in binding['Head'].upward_path() if
                          scope.finite_left_periphery()),
                         {'Head': binding['Head'], 'Scope': None, 'Overt': False})
         return binding
@@ -97,10 +97,10 @@ class OperatorVariableModule:
     def scan_criterial_features(self, ps):
         # Note: we only take the first operator
         set_ = set()
-        if ps.left_const and not ps.left_const.find_me_elsewhere:
-            set_ = self.scan_criterial_features(ps.left_const)
-        if not set_ and ps.right_const and not ps.right_const.find_me_elsewhere and not {'T/fin', 'C'} & ps.right_const.head().features:
-            set_ = self.scan_criterial_features(ps.right_const)
+        if ps.left and not ps.left.find_me_elsewhere:
+            set_ = self.scan_criterial_features(ps.left)
+        if not set_ and ps.right and not ps.right.find_me_elsewhere and not {'T/fin', 'C'} & ps.right.head().features:
+            set_ = self.scan_criterial_features(ps.right)
         if not set_ and ps.is_primitive():
             set_ = self.get_operator_features(ps.features)
         return set_

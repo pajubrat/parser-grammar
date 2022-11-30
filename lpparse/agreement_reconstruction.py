@@ -25,8 +25,8 @@ class AgreementReconstruction:
         self.brain_model.narrow_semantics.predicate_argument_dependencies = []
         # ---------------------------- minimal search ---------------------------------------------------------------#
         for node in ps:
-            if node.is_complex() and node.left_const.is_primitive() and node.left_const.EF():
-                self.Agree_1(node.left_const)
+            if node.is_complex() and node.left.is_primitive() and node.left.EF():
+                self.Agree_1(node.left)
         # -----------------------------------------------------------------------------------------------------------#
 
     def Agree_1(self, probe):
@@ -54,9 +54,9 @@ class AgreementReconstruction:
     def Agree_1_from_sister(self, probe):
         #===========================================================
         for node in probe.sister():
-            if node.left_const:
-                if node.left_const.is_complex() and self.agreement_condition(probe, node.left_const):
-                    return node.left_const.head(), sorted({f for f in node.left_const.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
+            if node.left:
+                if node.left.is_complex() and self.agreement_condition(probe, node.left):
+                    return node.left.head(), sorted({f for f in node.left.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
                 else:
                     break
         return None, None
@@ -64,7 +64,7 @@ class AgreementReconstruction:
 
     def Agree_1_from_edge(self, head):
         return next(((const.head(), sorted({f for f in const.head().features if phi(f) and valued(f)}))
-                     for const in [const for const in head.scan_edge()] + [head.extract_pro()] if
+                     for const in [const for const in head.edge()] + [head.extract_pro()] if
                      const and self.agreement_condition(head, const)), (None, {}))
 
     def agreement_condition(self, probe, goal):
@@ -82,7 +82,7 @@ class AgreementReconstruction:
                         return True
 
     def value(self, h, goal, phi, location):
-        if h.get_valued_features() and self.valuation_blocked(h, phi):
+        if h.valued_phi_features() and self.valuation_blocked(h, phi):
             log(f'Valuation of {h} was blocked for {phi}...')
             h.features.add(mark_bad(phi))
 

@@ -153,7 +153,7 @@ class LinearPhaseParser:
         position = 0
         while old_ps_node != targeted_site:
             position = position + 1
-            old_ps_node = old_ps_node.right_const
+            old_ps_node = old_ps_node.right
         return new_ps[position]
 
     def attach(self, left_branch, site, terminal_lexical_item, transfer):
@@ -322,7 +322,7 @@ class LinearPhaseParser:
 
     def remove_from_syntactic_working_memory(self, ps):
         ps.active_in_syntactic_working_memory = False
-        if ps.mother and ps.contains_feature('T/fin') and ps.contains_feature('OP:REL'): # Remove also container if transferred phrase is finite
+        if ps.mother and (ps.contains_features({'T/fin', 'OP:REL'})):  # Remove also container if transferred phrase is finite
             node = ps
             while node.mother:
                 node = node.mother

@@ -1,6 +1,6 @@
-from support import log, illu, set_logging
 from lexical_interface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
+from support import log
 
 class FloaterMovement():
     def __init__(self, controlling_parser_process):
@@ -12,24 +12,23 @@ class FloaterMovement():
         self.adjunct_constructor = AdjunctConstructor(self.brain_model)
 
     def reconstruct(self, ps):
-        for constituent in [daughter_const for node in ps.top() for daughter_const in [node.left_const, node.right_const] if self.trigger_reconstruction(daughter_const)]:
+        for constituent in [daughter for node in ps.top() for daughter in [node.left, node.right] if self.trigger_reconstruction(daughter)]:
             self.reconstruct_floater(constituent)
             if constituent.is_right():
                 break
         return ps.top()
 
     def trigger_reconstruction(self, target):
-        return target and target.adjoinable_and_floatable() and not self.operator_in_scope_position(target) and not target.legible_adjunct()
+        return target and target.adjoinable() and not target.check({'-float'}) and not self.operator_in_scope_position(target) and not target.legible_adjunct()
 
     def operator_in_scope_position(self, ps):
         return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and ps.container() and ps.container().head().finite()
 
     def reconstruct_floater(self, target):
-        # Exception: only non-adverbial and uninterpretable right adjuncts are reconstructed if they are inside finite construction
         if target.is_right():
             self.adjunct_constructor.externalize_structure(target.head())
             if target.head().adverbial() or not target.top().contains_finiteness() or target.legible_adjunct():
-                return  # No reconstruction
+                return
 
         starting_point = self.set_starting_point(target)
         virtual_test_item = target.copy()
@@ -53,7 +52,7 @@ class FloaterMovement():
 
     def termination_condition(self, node, floater, local_tense_edge):
         return node == floater or node.find_me_elsewhere or \
-               (node.is_complex() and node.left_const.force() and node.head() != local_tense_edge.head()) or \
+               (node.is_complex() and node.left.force() and node.head() != local_tense_edge.head()) or \
                (node.sister() and node.sister().is_primitive() and node.sister().referential())
 
     def copy_and_insert(self, node, original_floater):

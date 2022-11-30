@@ -4,7 +4,7 @@
 # =======================================================================================
 
 T/fin   :: T/fin PF:T LF:tense
-v       :: v PF:-ø- LF:voice
+v       :: v PF:-ø- LF:v
 C/fin   :: C/fin PF:C LF:C/fin
 T		:: T PF:T LF:tense Fin EF:φ
 T/prt 	:: T/prt PF:T/prt LF:prtcpl
@@ -36,7 +36,7 @@ MA.ela/inf	:: MA.ela/inf	Inf Adv ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_denied_event
 MA.ill/inf	:: MA.ill/inf	Inf		ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:-mAAn LF:to SEM/desired_event LANG:FI adjoinable
 
 # Prticiple adjectives
-MA/A		:: MA/A 	Inf		 ARG !EF:* EF:φ						PF:-mA LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N
+MA/A		:: MA/A 	Inf		 ARG  !EF:φ							PF:-mA LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N
 VA/A		:: VA/A		Inf		 ARG -EF:φ							PF:-vA LF:P_rel LANG:FI -PROBE:N
 
 # Experimental

@@ -11,12 +11,12 @@ class PhraseStructure:
     resources = {"Merge-1": {"ms": 0, "n": 0}}
 
     def __init__(self, left_constituent=None, right_constituent=None):
-        self.left_const = left_constituent
-        self.right_const = right_constituent
-        if self.left_const:
-            self.left_const.mother = self
-        if self.right_const:
-            self.right_const.mother = self
+        self.left = left_constituent
+        self.right = right_constituent
+        if self.left:
+            self.left.mother = self
+        if self.right:
+            self.right.mother = self
         self.mother = None
         self.features = set()
         self.active_in_syntactic_working_memory = True
@@ -35,23 +35,59 @@ class PhraseStructure:
 
     # 1. BASIC PHRASE STRUCTURE GEOMETRY =======================================================
 
-    def is_primitive(self):
-        return not (self.right_const and self.left_const)
-
     def is_complex(self):
-        return self.right_const and self.left_const
+        return self.right and self.left
+
+    def is_primitive(self):
+        return not self.is_complex()
 
     def is_left(self):
-        return self.mother and self.mother.left_const == self
+        return self.mother and self.mother.left == self
 
     def is_right(self):
-        return self.mother and self.mother.right_const == self
+        return self.mother and self.mother.right == self
+
+    def head(self):
+        if self.is_primitive():
+            return self
+        if self.left.is_primitive():
+            return self.left
+        if self.right.adjunct:
+            return self.left.head()
+        if self.right.is_primitive():
+            return self.right
+        return self.right.head()
+
+    def inside(self, head):
+        return self.head() == head
+
+    def container(self):
+        if self.mother:
+            return self.mother.head()
+
+    def minimal_search(self):
+        return [const.left if const.is_complex() else const for const in self]
+
+    def upward_path(self):
+        upward_path = []
+        x = self.mother
+        while x:
+            if not x.right.adjunct and x.left.head() != self:
+                upward_path.append(x.left)
+            x = x.mother
+        return upward_path
+
+    def next(self, memory_span, condition=lambda x: x == x):
+        return next((x for x in memory_span() if condition(x)), None)
+
+    def edge(self):
+        return list(takewhile(lambda x: x.mother.inside(self), self.upward_path()))
 
     def geometrical_sister(self):
         if self.is_left():
-            return self.mother.right_const
+            return self.mother.right
         if self.is_right():
-            return self.mother.left_const
+            return self.mother.left
 
     def sister(self):
         while self.mother:
@@ -66,8 +102,31 @@ class PhraseStructure:
                 else:
                     return None
 
+    def proper_complement(self):
+        if self.is_primitive() and self.sister() and self.sister().is_right():
+            return self.sister()
+
+    def selected(self):
+        return self.max().sister() and self.max().sister().is_primitive()
+
+    def bottom(self):
+        while not self.is_primitive():
+            self = self.right
+        return self
+
+    def top(self):
+        while self.mother:
+            self = self.mother
+        return self
+
+    def max(self):
+        probe = self
+        while probe.mother and probe.mother.head() == self:
+            probe = probe.mother
+        return probe
+
     def selected_sister(self):
-        if self.sister() and (self.sister().is_complex() or (self.sister().is_primitive() and self.sister().is_right())):
+        if self.sister() and not (self.sister().is_primitive() and self.sister().is_left()):
             return self.sister()
 
     def specifier_sister(self):
@@ -84,189 +143,100 @@ class PhraseStructure:
         if self.mother:
             return self.mother.sister()
 
-    def head(self):
-        if self.is_primitive():
-            return self
-        if self.left_const.is_primitive():
-            return self.left_const
-        if self.right_const.adjunct:
-            return self.left_const.head()
-        if self.right_const.is_primitive():
-            return self.right_const
-        return self.right_const.head()
-
-    def inside(self, head):
-        return self.head() == head
-
-    def minimal_search(self):
-        return [const.left_const if const.is_complex() else const for const in self]
-
-    def proper_complement(self):
-        if self.is_primitive() and self.sister() and self.sister().is_right():
-            return self.sister()
-
-    def selected(self):
-        return self.max().sister() and self.max().sister().is_primitive()
-
-    def container(self):
-        if self.mother:
-            return self.mother.head()
-
-    def bottom(self):
-        while not self.is_primitive():
-            self = self.right_const
-        return self
-
-    def top(self):
-        while self.mother:
-            self = self.mother
-        return self
-
-    def max(self):
-        probe = self
-        while self.mother and self.mother.head() == probe:
-            self = self.mother
-        return self
-
     def has_affix(self):
-        return self.right_const and not self.left_const
-
-    def complex_head(self):
-        return self.has_affix()
+        return self.right and not self.left
 
     def get_affix_list(self):
         lst = [self]
-        while self.right_const and not self.left_const:
-            lst.append(self.right_const)
-            self = self.right_const
+        while self.right and not self.left:
+            lst.append(self.right)
+            self = self.right
         return lst
 
     def bottom_affix(self):
         if self.is_primitive:
-            while self.right_const:
-                self = self.right_const
+            while self.right:
+                self = self.right
             return self
-
-    def non_complex_head(self):
-        return self.is_complex() or not self.complex_head()
-
-    def features_of_complex_word(h):
-        return {feature for affix in h.get_affix_list() for feature in affix.features}
 
     def is_licensed_specifier(self):
         return self.max().container().licensed_phrasal_specifier() and self.max() == self.max().container().licensed_phrasal_specifier()
 
-    def working_memory_path(self):
-        node = self.mother
-        working_memory = []
-        while node:
-            if node.left_const.head() != self:
-                working_memory.append(node.left_const)
-            node = node.walk_upwards()
-        return working_memory
-
-    def walk_upwards(self):
-        node = self.mother
-        if self.is_left():
-            while node and node.right_const.adjunct:
-                node = node.mother
-        return node
-
-    def scan_next(self, memory_span, condition=lambda x: x == x):
-        return next((const for const in memory_span() if condition(const)), None)
-
-    def scan_edge(self):
-        return list(takewhile(lambda x: x.mother.inside(self), self.working_memory_path()))
-
-    def scan_edge_with_pro(self):
-        return [const for const in self.scan_edge()] + [self.extract_pro()]
-
-    def local_tense_edge(self):
-        return next((node.mother for node in self.working_memory_path() if node.finite() or node.force()), self.top())
-
-    def scan_down(self, func=lambda x: x == x):
-        return next((const for const in self if func(const)), None)
-
     def selector(self):
-        return self.scan_next(self.working_memory_path, lambda x: x.is_primitive())
-
-    def contains_feature(self, feature):
-        if self.left_const and self.left_const.contains_feature(feature):
-            return True
-        if self.right_const and self.right_const.contains_feature(feature):
-            return True
-        if self.is_primitive:
-            if feature in self.features:
-                return True
+        return self.next(self.upward_path, lambda x: x.is_primitive())
 
     def contains_features(self, feature_set):
-        if self.left_const and self.left_const.contains_features(feature_set):
-            return True
-        if self.right_const and self.right_const.contains_features(feature_set):
-            return True
-        if self.is_primitive:
-            if feature_set & self.features == feature_set:
+        if self.is_complex():
+            if self.left.contains_features(feature_set) or self.right.contains_features(feature_set):
                 return True
+        elif feature_set & self.features == feature_set:
+            return True
 
     def cutoff_point_for_last_resort_extraposition(self):
         return self.is_primitive() and self.is_adjoinable() and self.aunt() and \
                (self.aunt().is_complex() or (self.aunt().is_primitive() and self.grandmother().contains_selection_violation()))
 
-    def construct_working_memory(self):
-        extra = []
-        if self.is_primitive() and self.is_left() and self.sister().is_complex():
-            extra = [self.sister()]
-        return extra + [const for const in self.working_memory_path() if const.check('SEM:external')]
-
     # 2. PROPERTIES DEFINED BY LEXICAL FEATURES =====================================================================
 
+    def features_of_complex_word(h):
+        return {feature for affix in h.get_affix_list() for feature in affix.features}
+
     def adverbial(self):
-        return self.check('Adv')
+        return self.check({'Adv'})
 
     def force(self):
-        return self.check('FORCE')
+        return self.check({'FORCE'})
 
     def finite(self):
         return self.check_some({'Fin', 'T/fin', 'C/fin'})
 
     def copula(self):
-        return self.check('COPULA')
-
-    def candidate_for_VP_fronting(self):
-        return self == self.container().scan_next(self.container().working_memory_path, lambda x: x.mother.inside(self.container()) and x.head().check_some({'VA/inf', 'A/inf'}))
+        return self.check({'COPULA'})
 
     def finite_C(self):
-        return self.check('C/fin')
+        return self.check({'C/fin'})
 
     def relative(self):
-        return self.check('REF')
+        return self.check({'REF'})
 
     def nonfinite(self):
-        return self.check('Inf')
-
-    def legible_adjunct(self):
-        return self.head().tail_test() and (self.is_right() or (self.is_left() and not self.nonthematic()))
+        return self.check({'Inf'})
 
     def finite_left_periphery(self):
         return self.finite() and self.check_some({'T', 'C'})
 
     def finite_tense(self):
-        return self.check('T/fin') or (self.finite() and self.check('T'))
+        return self.check({'T/fin'}) or (self.finite() and self.check({'T'}))
 
     def contains_finiteness(self):
-        return self.contains_feature('Fin')
+        return self.contains_features({'Fin'})
 
     def referential(self):
         return self.check_some({'φ', 'D'})
 
     def preposition(self):
-        return self.check('P')
+        return self.check({'P'})
 
     def SEM_internal_predicate(self):
-        return self.check('SEM:internal')
+        return self.check({'SEM:internal'})
 
     def SEM_external_predicate(self):
-        return self.check('SEM:external')
+        return self.check({'SEM:external'})
+
+    def non_scopal(self):
+        return self.check_some({'Inf', 'P', 'D', 'φ'})
+
+    def expresses_concept(self):
+        return self.check_some({'N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'}) and not self.check({'T/prt', 'COPULA'})
+
+    def unrecognized_label(self):
+        return self.check_some({'CAT:?', '?'})
+
+    def VP_for_fronting(self):
+        return self == self.container().next(self.container().upward_path, lambda x: x.mother.inside(self.container()) and x.head().check_some({'VA/inf', 'A/inf'}))
+
+    def legible_adjunct(self):
+        return self.head().tail_test() and (self.is_right() or (self.is_left() and not self.nonthematic()))
 
     def selected_by_SEM_internal_predicate(self):
         return self.selector() and self.selector().SEM_internal_predicate()
@@ -275,71 +245,68 @@ class PhraseStructure:
         return self.selector() and self.selector().SEM_external_predicate()
 
     def predicate(self):
-        return self.is_primitive() and self.check('ARG') and not self.check('-ARG')
-
-    def adjunct_is_correct_position(self):
-        return self.tail_test()
+        return self.is_primitive() and self.check({'ARG'}) and not self.check({'-ARG'})
 
     def has_legitimate_specifier(self):
-        return self.predicate() and not self.edgeless() and self.scan_edge() and not self.has_unlicensed_specifier()
+        return self.predicate() and not self.head().check_some({'-EF:φ', '-EDGE:*'}) and self.edge() and not self.has_unlicensed_specifier()
 
     def has_vacant_phrasal_position(self):
-        return (self.is_complex() and self.left_const.is_primitive() and self.sister().is_primitive()) or self.is_primitive()
+        return self.is_primitive() or self.gapless_heads()
+
+    def gapless_heads(self):
+        return self.is_complex() and self.left.is_primitive() and self.sister().is_primitive()
 
     def has_nonthematic_specifier(self):
-        if self.EF() and self.scan_edge() and self.scan_edge()[0].is_extended_subject():
-            return True
+        return self.EF() and self.edge() and self.edge()[0].is_extended_subject()
+
+    def local_tense_edge(self):
+        return next((node.mother for node in self.upward_path() if node.finite() or node.force()), self.top())
 
     def externalize_with_specifier(self):
         return self.is_left() and self.predicate() and \
-               ((self.adjunct_is_correct_position() and self.has_nonthematic_specifier()) or
-                (not self.adjunct_is_correct_position() and self.has_legitimate_specifier()))
+               ((self.tail_test() and self.has_nonthematic_specifier()) or
+                (not self.tail_test() and self.has_legitimate_specifier()))
 
     def isolated_preposition(self):
         return self.preposition() and self.sister() and self.sister().is_primitive()
-
-    def edgeless(self):
-        return self.head().check_some({'-EF:φ', '-EDGE:*'})
 
     def license_extraposition(self):
         return self.top().contains_finiteness() or self.top().referential()
 
     def has_unlicensed_specifier(self):
-        return set(self.specifiers_not_licensed()) & set(next((const for const in self.scan_edge()), None).head().features)
-
-    def non_scopal(self):
-        return self.check_some({'Inf', 'P', 'D', 'φ'})
+        return set(self.specifiers_not_licensed()) & set(next((const for const in self.edge()), None).head().features)
 
     def add_scope_information(self):
         if not self.non_scopal():
             return {'Fin', 'C', 'PF:C'}
         return set()
 
-    def adjoinable_and_floatable(self):
-        return self.is_complex() and not self.find_me_elsewhere and \
-               self.head().get_tail_sets() and self.check('adjoinable') and \
-               not self.check('-adjoinable') and not self.check('-float')
+    def adjoinable(self):
+        return self.is_complex() and not self.find_me_elsewhere and self.head().get_tail_sets() and self.check({'adjoinable'}) and not self.check({'-adjoinable'})
 
     def adverbial_adjunct(self):
         return self.adverbial() or self.preposition()
 
-    def unrecognized_label(self):
-        return self.check_some({'CAT:?', '?'})
-
     def get_constituent_containing_selection_violation(self):
-        return self.scan_down(lambda x: x.contains_selection_violation() and not x.right_const.head().adjunct)
+        return next((x for x in self if x.contains_selection_violation() and not x.right.head().adjunct), None)
+
+    def contains_selection_violation(self):
+        return self.is_complex() and (self.left.nonlicensed_complement() or self.left.missing_mandatory_complement())
 
     # Feature !EF:φ
     def selection__positive_SUBJECT_edge(self, lexical_feature):
-        return self.scan_next(self.scan_edge_with_pro, lambda x: x.referential() and not x.check('pro_') and (not x.has_tail_features() or x.is_extended_subject()))
+        return next((x for x in self.pro_list() if x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.is_extended_subject())), None)
 
     # Feature -EF:*
     def selection__unselective_negative_edge(self, lexical_feature):
-        return not self.scan_edge()
+        return not self.edge()
 
     # Feature -EF:φ
     def selection__negative_SUBJECT_edge(self, lexical_feature):
-        return not self.scan_next(self.scan_edge, lambda x: x.referential() and x.is_extended_subject())
+        return not self.next(self.edge, lambda x: x.referential() and x.is_extended_subject())
+
+    def is_extended_subject(self):
+        return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or 'pro' in self.head().features
 
     # Feature !SEF
     def selection__positive_shared_edge(self, lexical_feature):
@@ -348,44 +315,41 @@ class PhraseStructure:
     # Feature !1EDGE
     @staticmethod
     def selection__negative_one_edge(self, lexical_feature):
-        return len(self.scan_edge()) < 2
+        return len(self.edge()) < 2
 
     # Feature [!EF:*] ~ not used for calculation of any data
     def selection__unselective_edge(self, lexical_feature):
-        return self.scan_edge()
+        return self.edge()
 
     # Feature !SPEC
     def selection__positive_selective_specifier(self, lexical_feature):
-        return self.scan_next(self.scan_edge_with_pro, lambda x: x.check(lexical_feature[6:]))
+        return next((x for x in self.pro_list() if x.check(lexical_feature[6:])), None)
+
+    def pro_list(self):
+        return [x for item in [self.edge(), self.extract_pro()] for x in item]
 
     # Feature -SPEC
     def selection__negative_specifier(self,  lexical_feature):
-        return not self.scan_next(self.working_memory_path, lambda x: x.check(lexical_feature[6:]) and not x.adjunct and x.mother.inside(self))
+        return not self.next(self.edge, lambda x: x.check({lexical_feature[6:]}) and not x.adjunct)
 
     # Feature !COMP
     def selection__positive_obligatory_complement(self, lexical_feature):
-        return self.selected_sister() and (lexical_feature[6] == '*' or self.selected_sister().check(lexical_feature[6:]))
+        return self.selected_sister() and (lexical_feature[6] == '*' or self.selected_sister().check({lexical_feature[6:]}))
 
     # Feature -COMP
     def selection__negative_complement(self, lexical_feature):
         return not (self.is_left() and self.proper_complement() and
-                    (self.proper_complement().check(lexical_feature[6:]) or lexical_feature[6:] == '*'))
+                    (self.proper_complement().check({lexical_feature[6:]}) or lexical_feature[6:] == '*'))
 
     def EF(self):
         return next((True for f in self.features if 'EF:' in f and '-' not in f), False)
 
-    def trigger_phrasal_chain(self):
-        return self.EF()
-
     def empty_finite_EPP(self):
-        return self.selector().finite_C() and self.EF() and not self.scan_edge()
-
-    def is_extended_subject(self):
-        return {'EF:φ', '!EF:φ'} & {feature for feature_set in self.get_tail_sets() for feature in feature_set} or 'pro' in self.head().features
+        return self.selector().finite_C() and self.EF() and not self.edge()
 
     def nonthematic(self):
         return self.container() and (self.container().EF() and self.container().finite()) or \
-               (self.container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and self == next((const for const in self.container().scan_edge()), None))
+               (self.container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and self == next((const for const in self.container().edge()), None))
 
     # Feature [!SEF]
     def referential_complement_criterion(probe):
@@ -398,23 +362,17 @@ class PhraseStructure:
 
     def specifier_theta_role_assigner(self):
         return not self.EF() and \
-               not (self.selector() and not self.selector().check('ARG')) and \
-               self.check_some({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) and not self.max().container().check('-SPEC:φ')
+               not (self.selector() and not self.selector().check({'ARG'})) and \
+               self.check_some({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) and not self.max().container().check({'-SPEC:φ'})
 
     def is_adjoinable(self):
-        return self.adjunct or ('adjoinable' in self.head().features and '-adjoinable' not in self.head().features)
+        return self.adjunct or (self.head().check({'adjoinable'}) and not self.head().check({'-adjoinable'}))
 
-    def contains_selection_violation(self):
-        return self.is_complex() and (self.left_const.nonlicensed_complement() or self.left_const.missing_mandatory_complement())
-
-    def has_tail_features(self):
-        return self.head().get_tail_sets()
-
-    def get_valued_features(self):
+    def valued_phi_features(self):
         return {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
 
     def get_phi_set(self):
-        return {f for f in self.head().features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
+        return {f for f in self.features if f[:4] == 'PHI:' and len(f.split(':')) == 3}
 
     def phi_needs_valuation(self):
         return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
@@ -432,18 +390,15 @@ class PhraseStructure:
         return {f[6:] for f in self.features if f[:5] == '%SPEC'}
 
     def double_spec_filter(self):
-        return not self.check('2SPEC') and len({spec for spec in self.scan_edge() if not spec.adjunct}) > 1
+        return not self.check({'2SPEC'}) and len({spec for spec in self.edge() if not spec.adjunct}) > 1
 
     def convert_features_for_parsing(self, features):
         return {f[1:] if f.startswith('!') else f for f in features}
 
     def is_clitic(self):
-        return self.check('CL') or (self.head().check('CL') and not self.head().has_affix() and self.head().internal)
+        return self.check({'CL'}) or (self.head().check({'CL'}) and not self.head().has_affix() and self.head().internal)
 
-    def check(self, f):
-        return f in self.head().features
-
-    def check_all(self, feature_set):
+    def check(self, feature_set):
         return feature_set & self.head().features == feature_set
 
     def check_some(self, f):
@@ -477,17 +432,17 @@ class PhraseStructure:
         return self.licensed_specifiers() & phrase.head().features
 
     def licensed_phrasal_specifier(self):
-        return next((spec for spec in self.scan_edge()
-                     if spec.check('φ') and not spec.adjunct),
-                    next((spec for spec in self.scan_edge()
-                          if spec.check('φ') and not spec.find_me_elsewhere), None))
+        return next((spec for spec in self.edge()
+                     if spec.referential() and not spec.adjunct),
+                    next((spec for spec in self.edge()
+                          if spec.referential() and not spec.find_me_elsewhere), None))
 
     def projection_principle(self):
         return self.projection_principle_applies() and not self.container_assigns_theta_role()
 
     def non_adverbial_adjunct_condition(self, starting_point_head):
         return not self.container() or \
-               (not (self.check('GEN') and self.container().referential()) and
+               (not (self.check({'GEN'}) and self.container().referential()) and
                not self.container() == starting_point_head and
                not self.nonthematic() and not (self.referential() and self.head().projection_principle()))
 
@@ -513,18 +468,13 @@ class PhraseStructure:
         return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
 
     def legitimate_criterial_feature(self):
-        return self.referential() and not self.relative() and self.mother and self.mother.contains_feature('REL') and not self.mother.contains_feature('T/fin')
+        return self.referential() and not self.relative() and self.mother and self.mother.contains_features({'REL'}) and not self.mother.contains_features({'T/fin'})
 
     def interpretable_adjunct(self):
         return self.referential() and self.max() and self.max().adjunct and self.max().is_right() and self.max().mother and self.max().mother.referential()
 
     def concept(self):
-        for m in self.get_affix_list():
-            if m.expresses_concept():
-                return True
-
-    def expresses_concept(self):
-        return self.check_some({'N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'}) and not self.copula() and not self.check('T/prt')
+        next((x for x in self.get_affix_list() if x.expresses_concept()), False)
 
     def feature_conflict(self):
         def remove_exclamation(g):
@@ -547,34 +497,32 @@ class PhraseStructure:
                 if self.probe(set(self.features), f[7:]):
                     return True
 
-    def probe(self, intervention_feature, G):
+    def probe(self, intervention_features, G):
         if self.sister():
-            # --------------------- minimal search --------------------------------
             for node in self.sister().minimal_search():
-                if node.check(G) or (G[:4] == 'TAIL' and G[5:] in node.left_const.scan_criterial_features()):
+                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.left.scan_criterial_features()):
                     return True
-                if intervention_feature.issubset(node.features):
+                if node.check(intervention_features):
                     break
-            # -------------------------------------------------------------------------
 
     def find_occurrences_from(self, ps):
         def find_(identity, ps):
             chain = []
             if ps.is_complex():
-                chain = chain + find_(identity, ps.left_const)
-                chain = chain + find_(identity, ps.right_const)
+                chain = chain + find_(identity, ps.left)
+                chain = chain + find_(identity, ps.right)
             else:
                 if identity in ps.features:
                     return [ps]
                 if ps.complex_head():
-                    chain = chain + find_(identity, ps.right_const)
+                    chain = chain + find_(identity, ps.right)
             return chain
 
         identity = self.get_id()  # Returns the identity symbol (#1, ...)
         return find_(identity, ps)
 
     def get_tail_sets(self):
-        return {frozenset(f[5:].split(',')) for f in self.features if f[:4] == 'TAIL'}
+        return {frozenset(f[5:].split(',')) for f in self.head().features if f[:4] == 'TAIL'}
 
     def tail_test(self):
         positive_features = {f for f in self.get_tail_sets() if self.positive_features(f)}
@@ -587,14 +535,13 @@ class PhraseStructure:
 
     def strong_tail_condition(self, tail_set):
         if '$NO_S' not in tail_set and self.max() and self.max().mother:
-            log(f'{self}, {self.max()}!!')
             return self.max().container().match_features(tail_set).outcome or \
                    (self.max().mother.sister() and self.max().mother.sister().match_features(tail_set).outcome)
 
     def weak_tail_condition(self, tail_set):
         if '$NO_W' not in tail_set:
             if self.referential() or 'P' in self.features:
-                for m in (affix for node in self.working_memory_path() if node.is_primitive() for affix in node.get_affix_list()):
+                for m in (affix for node in self.upward_path() if node.is_primitive() for affix in node.get_affix_list()):
                     test = m.match_features(tail_set)
                     if test.match_occurred:
                         return test.outcome
@@ -615,7 +562,7 @@ class PhraseStructure:
         return {feature for feature in features_to_check if feature[0] != '*' and feature[0] != '$'}
 
     def extract_pro(self):
-        if self.check('ARG') and self.phi_consistent_head():
+        if self.check({'ARG'}) and self.phi_consistent_head():
             if self.sustains_reference():
                 phi_set_for_pro = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
             else:
@@ -667,9 +614,9 @@ class PhraseStructure:
     def substitute(self, local_structure):
         if local_structure.mother:
             if not local_structure.left:
-                local_structure.mother.right_const = self
+                local_structure.mother.right = self
             else:
-                local_structure.mother.left_const = self
+                local_structure.mother.left = self
             self.mother = local_structure.mother
 
     def local_structure(self):
@@ -685,27 +632,27 @@ class PhraseStructure:
             grandparent = self.mother.mother        # {Y {H, X}}
             sister.mother = sister.mother.mother    # Y
             if mother.is_right():
-                grandparent.right_const = sister    # {Y X} (removed H)
+                grandparent.right = sister    # {Y X} (removed H)
             elif mother.is_left():
-                grandparent.left_const = sister     # {X Y} (removed H)
+                grandparent.left = sister     # {X Y} (removed H)
             self.mother = None                      # detach H
 
     def sink(self, ps):
         bottom_affix = self.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
         bottom_affix.active_in_syntactic_working_memory = True
-        bottom_affix.right_const = ps
+        bottom_affix.right = ps
         ps.mother = bottom_affix
-        bottom_affix.left_const = None
+        bottom_affix.left = None
         return self.top()
 
     def copy(self):
         ps_ = PhraseStructure()
-        if self.left_const:
-            ps_.left_const = self.left_const.copy()
-            ps_.left_const.mother = ps_
-        if self.right_const:
-            ps_.right_const = self.right_const.copy()
-            ps_.right_const.mother = ps_
+        if self.left:
+            ps_.left = self.left.copy()
+            ps_.left.mother = ps_
+        if self.right:
+            ps_.right = self.right.copy()
+            ps_.right.mother = ps_
         if self.features:
             ps_.features = self.features.copy()
         ps_.morphology = self.morphology
@@ -722,25 +669,24 @@ class PhraseStructure:
         self.mother = None
         return original_mother, is_right
 
-
     def __getitem__(self, position):
         iter_ = 0
-        ps_ = self
+        node = self
         while iter_ != position:
-            if ps_.is_primitive():
+            if node.is_primitive():
                 raise IndexError
-            if ps_.head() == ps_.right_const.head():
-                ps_ = ps_.right_const
+            if node.head() == node.right.head():
+                node = node.right
             else:
-                if ps_.left_const.is_complex():
-                    ps_ = ps_.left_const
+                if node.left.is_complex():
+                    node = node.left
                 else:
-                    if ps_.right_const.adjunct:
-                        ps_ = ps_.left_const
+                    if node.right.adjunct:
+                        node = node.left
                     else:
-                        ps_ = ps_.right_const
-            iter_ = iter_ + 1
-        return ps_
+                        node = node.right
+            iter_ += 1
+        return node
 
     def __add__(self, incoming_constituent):
         return self.merge_1(incoming_constituent)
@@ -754,9 +700,9 @@ class PhraseStructure:
         def show_affix(self):
             i = ''
             if self.has_affix():
-                i = self.right_const.major_category_label()
-                if self.right_const.right_const:
-                    i = i + ',' + show_affix(self.right_const)
+                i = self.right.major_category_label()
+                if self.right.right:
+                    i = i + ',' + show_affix(self.right)
             else:
                 i = ''
             return i
@@ -778,16 +724,16 @@ class PhraseStructure:
             return '.'.join(sorted(lfs))
 
         pf = ''
-        if self.left_const:
-            if 'null' in self.left_const.features:
+        if self.left:
+            if 'null' in self.left.features:
                 pf = pf + '__'
             else:
-                pf = pf + self.left_const.gloss() + ' '
-        if self.right_const:
-            if 'null' in self.right_const.features:
+                pf = pf + self.left.gloss() + ' '
+        if self.right:
+            if 'null' in self.right.features:
                 pf = pf + '__'
             else:
-                pf = pf + self.right_const.gloss() + ' '
+                pf = pf + self.right.gloss() + ' '
         if self.is_primitive():
             pf = pf + LF_features(self)
         return pf
@@ -809,10 +755,10 @@ class PhraseStructure:
                 h.features = {'null'}
             else:
                 h.features.add('null')
-            if h.left_const:
-                silence_phonologically(h.left_const)
-            if h.right_const:
-                silence_phonologically(h.right_const)
+            if h.left:
+                silence_phonologically(h.left)
+            if h.right:
+                silence_phonologically(h.right)
 
         if self.identity == '':
             self.identity = babtize
@@ -843,20 +789,36 @@ class PhraseStructure:
 
         if 'null' in self.features:
             if self.adjunct:
-                return '<' + prefix + self.left_const.illustrate() + ' ' \
-                       + self.right_const.illustrate() + '>'
+                return '<' + prefix + self.left.illustrate() + ' ' \
+                       + self.right.illustrate() + '>'
             else:
-                return '[' + prefix + self.left_const.illustrate() + ' ' \
-                       + self.right_const.illustrate() + ']'
+                return '[' + prefix + self.left.illustrate() + ' ' \
+                       + self.right.illustrate() + ']'
         else:
             if self.adjunct:
                 return f'<' + prefix \
-                       + self.left_const.illustrate() + ' ' \
-                       + self.right_const.illustrate() + '>'
+                       + self.left.illustrate() + ' ' \
+                       + self.right.illustrate() + '>'
             else:
                 return f'[' + prefix \
-                       + self.left_const.illustrate() + ' ' \
-                       + self.right_const.illustrate() + ']'
+                       + self.left.illustrate() + ' ' \
+                       + self.right.illustrate() + ']'
+
+    def phonological_content(self):
+        exceptions = {'φ', 'D'}
+        phon = ''
+        if self.is_primitive():
+            if not set(self.get_phonological_string()) & exceptions:
+                phon = self.get_phonological_string()
+        else:
+            str = self.left.phonological_content()
+            if str:
+                phon += ' ' + str
+            if not self.right.adjunct:
+                str = self.right.phonological_content()
+                if str:
+                    phon += ' ' + str
+        return phon
 
     def __str__(self):
         if self.identity != '':
@@ -884,12 +846,12 @@ class PhraseStructure:
                         return self.get_phonological_string()
         else:
             if self.adjunct:
-                return f'<{self.left_const} {self.right_const}>' + index_str
+                return f'<{self.left} {self.right}>' + index_str
             else:
                 if self.active_in_syntactic_working_memory:
-                    return f'[{self.left_const} {self.right_const}]' + index_str
+                    return f'[{self.left} {self.right}]' + index_str
                 else:
-                    return f'[{self.left_const} {self.right_const}]' + index_str
+                    return f'[{self.left} {self.right}]' + index_str
 
     def tidy_names(self, counter):
         def rebaptize(h, old_name, new_name):
@@ -897,19 +859,19 @@ class PhraseStructure:
                 if not h.rebaptized:
                     h.identity = new_name
                     h.rebaptized = True
-            if h.left_const:
-                rebaptize(h.left_const, old_name, new_name)
-            if h.right_const:
-                rebaptize(h.right_const, old_name, new_name)
+            if h.left:
+                rebaptize(h.left, old_name, new_name)
+            if h.right:
+                rebaptize(h.right, old_name, new_name)
             return
 
         if self.identity != '' and not self.rebaptized:
             rebaptize(self.top(), self.identity, str(counter))
             counter = counter + 1
-        if self.left_const:
-            counter = self.left_const.tidy_names(counter)
-        if self.right_const:
-            counter = self.right_const.tidy_names(counter)
+        if self.left:
+            counter = self.left.tidy_names(counter)
+        if self.right:
+            counter = self.right.tidy_names(counter)
         return counter
 
     def consume_resources(self, resource_key):

@@ -60,14 +60,14 @@ class Visualizer:
 
     # Creates a basic plane topology with constituent branches by one unit
     def determine_plane_topology(self, ps):
-        if ps.left_const:
-            ps.left_const.x = ps.x - 1
-            ps.left_const.y = ps.y - 1
-            self.determine_plane_topology(ps.left_const)
-        if ps.right_const:
-            ps.right_const.x = ps.x + 1
-            ps.right_const.y = ps.y - 1
-            self.determine_plane_topology(ps.right_const)
+        if ps.left:
+            ps.left.x = ps.x - 1
+            ps.left.y = ps.y - 1
+            self.determine_plane_topology(ps.left)
+        if ps.right:
+            ps.right.x = ps.x + 1
+            ps.right.y = ps.y - 1
+            self.determine_plane_topology(ps.right)
 
     # Removes overlaps when one branch goes on the top of another branch
     def remove_overlaps(self, ps):
@@ -84,22 +84,22 @@ class Visualizer:
             k = self.check_lateral_conflicts(N)
             if k <= 0:
                 # Stretches the left and right node apart to avoid overlaps below
-                self.move_node(k*0.1-min_move, 0, N.left_const)
-                self.move_node(-k*0.1+min_move, 0, N.right_const)
+                self.move_node(k * 0.1 - min_move, 0, N.left)
+                self.move_node(-k * 0.1 + min_move, 0, N.right)
                 self.new_lateral_stretch_needed = True
-            self.lateral_stretch(N.left_const)
-            self.lateral_stretch(N.right_const)
+            self.lateral_stretch(N.left)
+            self.lateral_stretch(N.right)
 
     def move_node(self, dx, dy, N):
         N.x = N.x + dx
         N.y = N.y + dy
         if N.is_complex():
-            self.move_node(dx, dy, N.left_const)
-            self.move_node(dx, dy, N.right_const)
+            self.move_node(dx, dy, N.left)
+            self.move_node(dx, dy, N.right)
 
     def check_lateral_conflicts(self, N):
-        left_branch_coordinates = self.get_coordinate_set(N.left_const, set())
-        right_branch_coordinates = self.get_coordinate_set(N.right_const, set())
+        left_branch_coordinates = self.get_coordinate_set(N.left, set())
+        right_branch_coordinates = self.get_coordinate_set(N.right, set())
         max_overlap = 1
         for coordinates_from_left in left_branch_coordinates:
             for coordinates_from_right in right_branch_coordinates:
@@ -116,8 +116,8 @@ class Visualizer:
             if self.show_glosses or self.spellout or self.show_features:
                 coordinate_set |= self.safety_window_coordinate_update(N)
         else:
-            coordinate_set |= self.get_coordinate_set(N.left_const, coordinate_set)
-            coordinate_set |= self.get_coordinate_set(N.right_const, coordinate_set)
+            coordinate_set |= self.get_coordinate_set(N.left, coordinate_set)
+            coordinate_set |= self.get_coordinate_set(N.right, coordinate_set)
         return coordinate_set
 
     # This determines the safe space around text, based on the information in labels.
@@ -277,12 +277,12 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.draw_selection()
 
         # Phrase structure geometry for daughters
-        if ps.left_const:
+        if ps.left:
             self.draw_left_line(ps, X1, Y1)
-            self.show_in_window(ps.left_const)
-        if ps.right_const and not ps.complex_head():
+            self.show_in_window(ps.left)
+        if ps.right and not ps.complex_head():
             self.draw_right_line(ps, X1, Y1)
-            self.show_in_window(ps.right_const)
+            self.show_in_window(ps.right)
             if not self.visualizer.stop_after_each_image:
                 pyglet.app.exit()
 
@@ -380,35 +380,35 @@ class ProduceGraphicOutput(pyglet.window.Window):
             line_position = line_position + (25 * line_space * self.scale)
 
     def draw_right_line(self, ps, X1, Y1):
-        X2 = self.x_offset + ps.right_const.x * self.x_grid
-        Y2 = self.y_offset + ps.right_const.y * self.y_grid + (self.y_grid - self.x_grid)
+        X2 = self.x_offset + ps.right.x * self.x_grid
+        Y2 = self.y_offset + ps.right.y * self.y_grid + (self.y_grid - self.x_grid)
         glBegin(GL_LINES)
         glVertex2f(X1, Y1)
         glVertex2f(X2, Y2)
         # Adjuncts are marked by double line
-        if ps.right_const.adjunct:
+        if ps.right.adjunct:
             glVertex2f(X1 + (5 * self.scale), Y1)
             glVertex2f(X2 + (5 * self.scale), Y2)
 
         glEnd()
 
     def draw_left_line(self, ps, X1, Y1):
-        X2 = self.x_offset + ps.left_const.x * self.x_grid
-        Y2 = self.y_offset + ps.left_const.y * self.y_grid + (self.y_grid - self.x_grid)
+        X2 = self.x_offset + ps.left.x * self.x_grid
+        Y2 = self.y_offset + ps.left.y * self.y_grid + (self.y_grid - self.x_grid)
         glLineWidth(3)
         glColor4f(0, 0, 0, 0)
         glBegin(GL_LINES)
         glVertex2f(X1, Y1)
         glVertex2f(X2, Y2)
         # Adjuncts are marked by double line
-        if ps.left_const.adjunct:
+        if ps.left.adjunct:
             glVertex2f(X1 - (5 * self.scale), Y1 + 1)
             glVertex2f(X2 - (5 * self.scale), Y2 + 1)
         glEnd()
 
     def draw_vertical_line(self, ps, X1, Y1):
         X2 = X1
-        Y2 = self.y_offset + ps.right_const.y * self.y_grid + (self.y_grid - self.x_grid)
+        Y2 = self.y_offset + ps.right.y * self.y_grid + (self.y_grid - self.x_grid)
         glBegin(GL_LINES)
         glVertex2f(X1, Y1 - (25 * self.scale))
         glVertex2f(X2, Y2)
@@ -449,9 +449,9 @@ class ProduceGraphicOutput(pyglet.window.Window):
             right = ps.x
         if ps.y < depth:
             depth = ps.y
-        if ps.left_const:
-            left, right, depth = self.get_tree_size(ps.left_const, left, right, depth)
-        if ps.right_const and not ps.complex_head():
-            left, right, depth = self.get_tree_size(ps.right_const, left, right, depth)
+        if ps.left:
+            left, right, depth = self.get_tree_size(ps.left, left, right, depth)
+        if ps.right and not ps.complex_head():
+            left, right, depth = self.get_tree_size(ps.right, left, right, depth)
 
         return left, right, depth

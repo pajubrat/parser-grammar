@@ -3,7 +3,7 @@ class A_reconstruction:
         self.brain_model = controlling_parser_process
 
     def reconstruct(self, spec):
-        if spec == spec.container().licensed_phrasal_specifier() or spec.candidate_for_VP_fronting():
+        if spec == spec.container().licensed_phrasal_specifier() or spec.VP_for_fronting():
 
             # Special case: [DP H] => [__ [H DP]]
             if spec.sister().is_primitive():
@@ -19,6 +19,6 @@ class A_reconstruction:
                     node.merge_1(spec.copy_for_reconstruction(self.brain_model.babtize()), 'left')
                     self.brain_model.consume_resources('A-Chain')
                     break
-                if node.is_complex() and node.left_const.referential():  #Intervention
+                if node.is_complex() and node.left.referential():  #Intervention
                     break
             # -----------------------------------------------------------------------------------------------------------#
