@@ -23,11 +23,8 @@ class AgreementReconstruction:
 
     def reconstruct(self, ps):
         self.brain_model.narrow_semantics.predicate_argument_dependencies = []
-        # ---------------------------- minimal search ---------------------------------------------------------------#
-        for node in ps:
-            if node.is_complex() and node.left.is_primitive() and node.left.EF():
-                self.Agree_1(node.left)
-        # -----------------------------------------------------------------------------------------------------------#
+        for node in ps.minimal_search(lambda x: x.EF()):
+            self.Agree_1(node)
 
     def Agree_1(self, probe):
         if probe.sister():
@@ -52,15 +49,12 @@ class AgreementReconstruction:
                 probe.features.add('BLOCK_NS')
 
     def Agree_1_from_sister(self, probe):
-        #===========================================================
-        for node in probe.sister():
-            if node.left:
-                if node.left.is_complex() and self.agreement_condition(probe, node.left):
-                    return node.left.head(), sorted({f for f in node.left.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
-                else:
-                    break
+        for goal in probe.sister().minimal_search(lambda x: x.is_complex()):
+            if self.agreement_condition(probe, goal):
+                return goal.head(), sorted({f for f in goal.head().features if phi(f) and f[:7] != 'PHI:DET' and valued(f)})
+            else:
+                break
         return None, None
-        #===========================================================
 
     def Agree_1_from_edge(self, head):
         return next(((const.head(), sorted({f for f in const.head().features if phi(f) and valued(f)}))

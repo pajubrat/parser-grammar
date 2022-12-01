@@ -37,7 +37,7 @@ class HeadMovement:
             if node != starting_pos_node and intervention_feature_set & node.sister().features:
                 node = starting_pos_node    # Reset the search pointer after intervention
                 break
-            node.merge_1(affix, 'left')
+            node.mother.merge_1(affix, 'left')
             if affix.legitimate_head_position():
                 self.brain_model.consume_resources("Head Chain")
                 return affix

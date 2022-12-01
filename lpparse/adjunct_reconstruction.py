@@ -12,7 +12,7 @@ class FloaterMovement():
         self.adjunct_constructor = AdjunctConstructor(self.brain_model)
 
     def reconstruct(self, ps):
-        for constituent in [daughter for node in ps.top() for daughter in [node.left, node.right] if self.trigger_reconstruction(daughter)]:
+        for constituent in [daughter for node in ps.top() for daughter in [node, node.sister()] if self.trigger_reconstruction(daughter)]:
             self.reconstruct_floater(constituent)
             if constituent.is_right():
                 break
@@ -33,7 +33,7 @@ class FloaterMovement():
         starting_point = self.set_starting_point(target)
         virtual_test_item = target.copy()
         local_tense_edge = target.local_tense_edge()
-        # ------------------------------------ minimal search ------------------------------------#
+
         for node in local_tense_edge:
             if self.termination_condition(node, target, local_tense_edge):
                 break
@@ -44,16 +44,19 @@ class FloaterMovement():
                 self.brain_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point)
                 return
             virtual_test_item.remove()
-        # ---------------------------------------------------------------------------------------#
 
     def set_starting_point(self, target):
         if target.is_left():
             return target.container()
 
-    def termination_condition(self, node, floater, local_tense_edge):
-        return node == floater or node.find_me_elsewhere or \
-               (node.is_complex() and node.left.force() and node.head() != local_tense_edge.head()) or \
-               (node.sister() and node.sister().is_primitive() and node.sister().referential())
+    def termination_condition(self, node, target, local_tense_edge):
+        if node.mother:
+            if node.mother == target:
+                return True
+            if node.mother.find_me_elsewhere:
+                return True
+            if node.force() and node.container() != local_tense_edge.head():
+                return True
 
     def copy_and_insert(self, node, original_floater):
         if not original_floater.adjunct:
@@ -64,10 +67,16 @@ class FloaterMovement():
         return reconstructed_floater
 
     def merge_floater(self, node, dropped_floater):
-        if dropped_floater.adverbial_adjunct():
-            node.merge_1(dropped_floater, 'right')
+        if node.is_right():
+            if dropped_floater.adverbial_adjunct():
+                node.merge_1(dropped_floater, 'right')
+            else:
+                node.merge_1(dropped_floater, 'left')
         else:
-            node.merge_1(dropped_floater, 'left')
+            if dropped_floater.adverbial_adjunct():
+                node.mother.merge_1(dropped_floater, 'right')
+            else:
+                node.mother.merge_1(dropped_floater, 'left')
         self.adjunct_constructor.externalize_structure(dropped_floater)
 
     def babtize(self):

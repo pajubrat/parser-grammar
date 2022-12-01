@@ -12,7 +12,7 @@ class Extraposition:
 
     def try_extraposition(self, node_violating_selection):
         if node_violating_selection:
-            self.adjunct_constructor.externalize_structure(node_violating_selection.head().proper_complement().head())
+            self.adjunct_constructor.externalize_structure(node_violating_selection.sister().head())
 
     def last_resort_reconstruct(self, ps):
         if ps.license_extraposition() and not self.brain_model.LF_legibility_test(ps.top()):

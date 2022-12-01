@@ -12,19 +12,16 @@ class PhrasalMovement:
         self.A = A_reconstruction(self.brain_model)
 
     def reconstruct(self, ps):
-        # ------------------- minimal search -------------------------#
-        for head in ps.minimal_search():
-            if head.EF():
-                for i, spec in enumerate(head.edge()):
-                    if not spec.find_me_elsewhere:
-                        self.create_phrasal_chain(head, spec, i > 0)
-        # ------------------------------------------------------------#
+        for head in ps.minimal_search(lambda x: x.EF()):
+            for i, spec in enumerate(head.edge()):
+                if not spec.find_me_elsewhere:
+                    self.create_phrasal_chain(head, spec, i > 0)
 
     def create_phrasal_chain(self, head, spec, multi):
         if self.scan_operator(spec):
             self.create_A_bar_chain(head, spec, multi)
         else:
-            self.create_A_chain(spec)
+            self.A.reconstruct(head, spec)
 
     def create_A_bar_chain(self, head, spec, multi):
         self.process_criterial_features(head, spec, multi)
@@ -34,9 +31,6 @@ class PhrasalMovement:
         for head in head.mother.minimal_search():
             if self.brain_model.LF.try_LFmerge(head, spec):
                 break
-
-    def create_A_chain(self, spec):
-        self.A.reconstruct(spec)
 
     def scan_operator(self, spec):
         return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)

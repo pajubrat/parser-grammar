@@ -130,7 +130,7 @@ class LinearPhaseParser:
             # ---------------------------------------------------------------------------------------------#
             for site, transfer, address_label in merge_sites:
                 log(f'\n\t\t...{address_label}')
-                left_branch = self.target_left_branch(ps, site)
+                left_branch = self.target_left_branch_(ps, site)
                 new_constituent = self.attach(left_branch, site, terminal_lexical_item, transfer)
                 self.put_rest_out_of_working_memory(merge_sites)
                 self.parse_new_item(new_constituent.top(), lst_branched, index + 1)
@@ -146,6 +146,10 @@ class LinearPhaseParser:
     def stop_looking_for_further_solutions(self):
         if self.exit:
             return True
+
+    def target_left_branch_(self, old_ps, target):
+        new_ps = old_ps.top().copy()
+        return new_ps.get_node(old_ps.top().get_index(target))
 
     def target_left_branch(self, old_ps_node, targeted_site):
         new_ps = old_ps_node.top().copy()

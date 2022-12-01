@@ -286,7 +286,7 @@ class PlausibilityMetrics:
 
     @knockout_working_memory
     def in_active_working_memory(self, ps):
-        all_nodes_available = [N for N in self.geometrical_minimal_search(ps)]
+        all_nodes_available = [N for N in ps.geometrical_minimal_search()]
         nodes_not_in_active_working_memory = []
         new_nodes_available = all_nodes_available.copy()
         for N in all_nodes_available:
@@ -294,13 +294,6 @@ class PlausibilityMetrics:
                 new_nodes_available.remove(N)
                 nodes_not_in_active_working_memory.insert(0, N) # Outside list is stack
         return [node for node in new_nodes_available], [node for node in nodes_not_in_active_working_memory]
-
-    def geometrical_minimal_search(self, ps):
-        search_list = [ps]
-        while ps.is_complex() and ps.right:
-            search_list.append(ps.right)
-            ps = ps.right
-        return search_list
 
     def impossible_sequence(self, N, w):
         if N.is_primitive() and 'T/fin' in N.head().features and 'T/fin' in w.features:
@@ -311,6 +304,9 @@ class PlausibilityMetrics:
         dropped, output_from_interfaces = self.brain_model.transfer_to_LF(N.copy())
         set_logging(True)
         left_branch_passes_LF = self.brain_model.LF.LF_legibility_test(dropped, self.left_branch_filter_test_battery)
+        if not left_branch_passes_LF:
+            log(f'in {dropped}. ')
+
         return not left_branch_passes_LF
 
     def does_not_accept_any_complementizers(self, N):

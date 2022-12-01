@@ -27,6 +27,8 @@ class PhraseStructure:
         self.find_me_elsewhere = False
         self.identity = ''
         self.rebaptized = False
+        self.stop = False
+        self.np = None
         self.x = 0
         self.y = 0
         if left_constituent and left_constituent.adjunct and left_constituent.is_primitive():
@@ -65,8 +67,25 @@ class PhraseStructure:
         if self.mother:
             return self.mother.head()
 
-    def minimal_search(self):
-        return [const.left if const.is_complex() else const for const in self]
+    def __next__(self):
+        if not self.np:
+            raise StopIteration
+        current = self.np
+        if self.np.is_primitive():
+            self.np = None
+            return current
+        elif self.np.head() == self.np.right.head() or self.np.left.select_right():
+            self.np = self.np.right
+        else:
+            self.np = self.np.left
+        return current.left
+
+    def __iter__(self):
+        self.np = self
+        return self
+
+    def minimal_search(self, condition=lambda x: x == x):
+        return [const for const in self if condition(const)]
 
     def upward_path(self):
         upward_path = []
@@ -105,6 +124,9 @@ class PhraseStructure:
     def proper_complement(self):
         if self.is_primitive() and self.sister() and self.sister().is_right():
             return self.sister()
+
+    def select_right(self):
+        return self.is_primitive() and self.is_left() and not self.geometrical_sister().adjunct
 
     def selected(self):
         return self.max().sister() and self.max().sister().is_primitive()
@@ -174,7 +196,7 @@ class PhraseStructure:
 
     def cutoff_point_for_last_resort_extraposition(self):
         return self.is_primitive() and self.is_adjoinable() and self.aunt() and \
-               (self.aunt().is_complex() or (self.aunt().is_primitive() and self.grandmother().contains_selection_violation()))
+               (self.aunt().is_complex() or (self.aunt().is_primitive() and self.grandmother().induces_selection_violation()))
 
     # 2. PROPERTIES DEFINED BY LEXICAL FEATURES =====================================================================
 
@@ -241,6 +263,9 @@ class PhraseStructure:
     def selected_by_SEM_internal_predicate(self):
         return self.selector() and self.selector().SEM_internal_predicate()
 
+    def A_reconstructing(self):
+        return self == self.container().licensed_phrasal_specifier() or self.VP_for_fronting()
+
     def selected_by_SEM_external_predicate(self):
         return self.selector() and self.selector().SEM_external_predicate()
 
@@ -251,10 +276,10 @@ class PhraseStructure:
         return self.predicate() and not self.head().check_some({'-EF:φ', '-EDGE:*'}) and self.edge() and not self.has_unlicensed_specifier()
 
     def has_vacant_phrasal_position(self):
-        return self.is_primitive() or self.gapless_heads()
+        return self.gapless_heads() or self.is_right()
 
     def gapless_heads(self):
-        return self.is_complex() and self.left.is_primitive() and self.sister().is_primitive()
+        return self.is_primitive() and self.aunt().is_primitive()
 
     def has_nonthematic_specifier(self):
         return self.EF() and self.edge() and self.edge()[0].is_extended_subject()
@@ -288,10 +313,10 @@ class PhraseStructure:
         return self.adverbial() or self.preposition()
 
     def get_constituent_containing_selection_violation(self):
-        return next((x for x in self if x.contains_selection_violation() and not x.right.head().adjunct), None)
+        return next((x for x in self if x.induces_selection_violation() and not x.sister().adjunct), None)
 
-    def contains_selection_violation(self):
-        return self.is_complex() and (self.left.nonlicensed_complement() or self.left.missing_mandatory_complement())
+    def induces_selection_violation(self):
+        return self.nonlicensed_complement() or self.missing_mandatory_complement()
 
     # Feature !EF:φ
     def selection__positive_SUBJECT_edge(self, lexical_feature):
@@ -342,7 +367,7 @@ class PhraseStructure:
                     (self.proper_complement().check({lexical_feature[6:]}) or lexical_feature[6:] == '*'))
 
     def EF(self):
-        return next((True for f in self.features if 'EF:' in f and '-' not in f), False)
+        return next((True for f in self.features if ('EF:' in f and '-' not in f) or '!SEF' == f), False)
 
     def empty_finite_EPP(self):
         return self.selector().finite_C() and self.EF() and not self.edge()
@@ -494,13 +519,13 @@ class PhraseStructure:
                 if not self.probe(self.features, f[7:]):
                     return True
             if f.startswith('-PROBE:'):
-                if self.probe(set(self.features), f[7:]):
+                if self.probe(self.features, f[7:]):
                     return True
 
     def probe(self, intervention_features, G):
         if self.sister():
             for node in self.sister().minimal_search():
-                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.left.scan_criterial_features()):
+                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_criterial_features()):
                     return True
                 if node.check(intervention_features):
                     break
@@ -625,6 +650,15 @@ class PhraseStructure:
         local_structure.left = self.is_left()
         return local_structure
 
+    def merge_to_right(self, node, spec, name):
+        if node.is_right():
+            if node == self:
+                node.merge_1(spec.copy_for_reconstruction(name), 'right')
+            else:
+                node.merge_1(spec.copy_for_reconstruction(name), 'left')
+        else:
+            node.mother.merge_1(spec.copy_for_reconstruction(name), 'left')
+
     def remove(self):
         if self.mother:
             mother = self.mother                    # {H, X}
@@ -632,10 +666,10 @@ class PhraseStructure:
             grandparent = self.mother.mother        # {Y {H, X}}
             sister.mother = sister.mother.mother    # Y
             if mother.is_right():
-                grandparent.right = sister    # {Y X} (removed H)
+                grandparent.right = sister           # {Y X} (removed H)
             elif mother.is_left():
-                grandparent.left = sister     # {X Y} (removed H)
-            self.mother = None                      # detach H
+                grandparent.left = sister            # {X Y} (removed H)
+            self.mother = None                          # detach H
 
     def sink(self, ps):
         bottom_affix = self.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
@@ -669,27 +703,26 @@ class PhraseStructure:
         self.mother = None
         return original_mother, is_right
 
-    def __getitem__(self, position):
-        iter_ = 0
-        node = self
-        while iter_ != position:
-            if node.is_primitive():
-                raise IndexError
-            if node.head() == node.right.head():
-                node = node.right
-            else:
-                if node.left.is_complex():
-                    node = node.left
-                else:
-                    if node.right.adjunct:
-                        node = node.left
-                    else:
-                        node = node.right
-            iter_ += 1
-        return node
-
     def __add__(self, incoming_constituent):
         return self.merge_1(incoming_constituent)
+
+    def get_index(self, target):
+        for i, node in enumerate(self.geometrical_minimal_search()):
+            if target == node:
+                return i
+
+    def get_node(self, idx):
+        for i, node in enumerate(self.geometrical_minimal_search()):
+            if i == idx:
+                return node
+
+    def geometrical_minimal_search(self):
+        search_list = [self]
+        ps = self
+        while ps.is_complex() and ps.right:
+            search_list.append(ps.right)
+            ps = ps.right
+        return search_list
 
     # 4. SUPPORT
 

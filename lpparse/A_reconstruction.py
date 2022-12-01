@@ -1,24 +1,12 @@
+from support import log
+
 class A_reconstruction:
     def __init__(self, controlling_parser_process):
         self.brain_model = controlling_parser_process
 
-    def reconstruct(self, spec):
-        if spec == spec.container().licensed_phrasal_specifier() or spec.VP_for_fronting():
-
-            # Special case: [DP H] => [__ [H DP]]
-            if spec.sister().is_primitive():
-                spec.sister().merge_1(spec.copy_for_reconstruction(self.brain_model.babtize()), 'right')
+    def reconstruct(self, head, spec):
+        if spec.A_reconstructing():
+            for node in spec.sister().minimal_search(lambda x: x.has_vacant_phrasal_position() or x.referential()):
+                head.merge_to_right(node, spec, self.brain_model.babtize())
                 self.brain_model.consume_resources('A-Chain')
-                return
-            if spec.sister().find_me_elsewhere:
-                return
-
-            # -----------------minimal search---------------------------------------------------------------------------#
-            for node in [node for node in spec.sister()][1:]:
-                if node.has_vacant_phrasal_position():
-                    node.merge_1(spec.copy_for_reconstruction(self.brain_model.babtize()), 'left')
-                    self.brain_model.consume_resources('A-Chain')
-                    break
-                if node.is_complex() and node.left.referential():  #Intervention
-                    break
-            # -----------------------------------------------------------------------------------------------------------#
+                break
