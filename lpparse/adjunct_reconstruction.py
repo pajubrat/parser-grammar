@@ -12,31 +12,22 @@ class FloaterMovement():
         self.adjunct_constructor = AdjunctConstructor(self.brain_model)
 
     def reconstruct(self, ps):
-        for constituent in [daughter for node in ps.top() for daughter in [node, node.sister()] if self.trigger_reconstruction(daughter)]:
+        for constituent in ps.symmetric_minimal_search(lambda x: self.trigger_reconstruction(x), lambda x: x.is_right()):
             self.reconstruct_floater(constituent)
-            if constituent.is_right():
-                break
         return ps.top()
 
     def trigger_reconstruction(self, target):
-        return target and target.adjoinable() and not target.check({'-float'}) and not self.operator_in_scope_position(target) and not target.legible_adjunct()
-
-    def operator_in_scope_position(self, ps):
-        return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(ps) and ps.container() and ps.container().head().finite()
+        return target and not target.legible_adjunct() and target.adjoinable() and target.floatable() and not self.brain_model.narrow_semantics.operator_variable_module.operator_in_scope_position(target)
 
     def reconstruct_floater(self, target):
         if target.is_right():
             self.adjunct_constructor.externalize_structure(target.head())
-            if target.head().adverbial() or not target.top().contains_finiteness() or target.legible_adjunct():
+            if target.legible_adjunct() or target.head().adverbial() or not target.top().contains_finiteness():
                 return
-
-        starting_point = self.set_starting_point(target)
+        starting_point = target.container()
         virtual_test_item = target.copy()
         local_tense_edge = target.local_tense_edge()
-
-        for node in local_tense_edge:
-            if self.termination_condition(node, target, local_tense_edge):
-                break
+        for node in local_tense_edge.minimal_search(lambda x: x == x, lambda x: self.sustain_condition(x, target, local_tense_edge)):
             self.merge_floater(node, virtual_test_item)
             if virtual_test_item.valid_reconstructed_adjunct(starting_point):
                 virtual_test_item.remove()
@@ -45,39 +36,30 @@ class FloaterMovement():
                 return
             virtual_test_item.remove()
 
-    def set_starting_point(self, target):
-        if target.is_left():
-            return target.container()
-
-    def termination_condition(self, node, target, local_tense_edge):
-        if node.mother:
-            if node.mother == target:
-                return True
-            if node.mother.find_me_elsewhere:
-                return True
-            if node.force() and node.container() != local_tense_edge.head():
-                return True
+    # Don't reconstruct inside the element itself; into moved phrase; inside another finite clause
+    def sustain_condition(self, node, target, local_tense_edge):
+        return not (node.mother == target or node.mother.find_me_elsewhere or (node.force() and node.container() != local_tense_edge.head()))
 
     def copy_and_insert(self, node, original_floater):
         if not original_floater.adjunct:
             self.adjunct_constructor.externalize_structure(original_floater)
         reconstructed_floater = original_floater.copy_for_reconstruction(self.babtize())
         self.merge_floater(node, reconstructed_floater)
-        self.brain_model.consume_resources("Adjunct Chain")
+        self.brain_model.consume_resources("Adjunct Chain", reconstructed_floater)
         return reconstructed_floater
 
-    def merge_floater(self, node, dropped_floater):
+    def merge_floater(self, node, floater):
         if node.is_right():
-            if dropped_floater.adverbial_adjunct():
-                node.merge_1(dropped_floater, 'right')
+            if floater.adverbial_adjunct():
+                node.merge_1(floater, 'right')
             else:
-                node.merge_1(dropped_floater, 'left')
+                node.merge_1(floater, 'left')
         else:
-            if dropped_floater.adverbial_adjunct():
-                node.mother.merge_1(dropped_floater, 'right')
+            if floater.adverbial_adjunct():
+                node.mother.merge_1(floater, 'right')
             else:
-                node.mother.merge_1(dropped_floater, 'left')
-        self.adjunct_constructor.externalize_structure(dropped_floater)
+                node.mother.merge_1(floater, 'left')
+        self.adjunct_constructor.externalize_structure(floater)
 
     def babtize(self):
         self.name_provider_index += 1

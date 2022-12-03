@@ -53,8 +53,8 @@ class LF_Recovery:
         if antecedent.head().referential():
             arg_str = antecedent.phonological_content().strip()
         else:
-            arg_str = f'{antecedent.head().major_category_label()}P(pro)'
-        return f'{prefix}/{probe.major_category_label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
+            arg_str = f'{antecedent.head().label()}P(pro)'
+        return f'{prefix}/{probe.label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
 
     def antecedent_absent(self, probe):
         unvalued_phi = probe.phi_needs_valuation()
@@ -71,4 +71,4 @@ class LF_Recovery:
                 arg_str = 'Uninterpretable, interpretation failed.'
             else:
                 arg_str = 'Generic'
-        return f'Agent/{probe.major_category_label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
+        return f'Agent/{probe.label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'

@@ -83,6 +83,9 @@ class OperatorVariableModule:
     def is_operator(self, head):
         return {f for f in head.features if self.is_operator_feature(f)}
 
+    def operator_in_scope_position(self, ps):
+        return self.scan_criterial_features(ps) and ps.container() and ps.container().head().finite()
+
     @staticmethod
     def is_operator_feature(f):
         return f[:3] == 'OP:' and f[-1] != '_'

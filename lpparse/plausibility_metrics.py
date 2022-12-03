@@ -43,14 +43,14 @@ class PlausibilityMetrics:
             all_merge_sites = merge_sites + nodes_not_in_active_working_memory
             solutions = self.evaluate_transfer(all_merge_sites)
 
-        log(f'Done.\n\t\tRanking results:')
+        log(f'\n\t\tRanking:')
         for i, (site, transfer, address_label) in enumerate(solutions, start=1):
             if nodes_not_in_active_working_memory and site == nodes_not_in_active_working_memory[0]:
                 log('\n\t\t\t\t-- Working memory boundary --')
             if transfer:
-                log(f'\n\t\t({i}) [{site}↓+ ' + str(w) + f'](=> {address_label})')
+                log(f'\n\t\t({i}) [{site}↓+ {w.label()}°](=> {address_label})')
             else:
-                log(f'\n\t\t({i}) [{site} + ' + str(w) + f'](=> {address_label})')
+                log(f'\n\t\t({i}) [{site} + {w.label()}°](=> {address_label})')
 
         return solutions
 
@@ -276,12 +276,10 @@ class PlausibilityMetrics:
                  continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------
-        log('Done. ')
         return adjunction_sites
 
     def word_internal(self, ps, w):
         if ps.bottom().bottom_affix().internal:
-            log(f'\n\t\tOne solution due to sinking.')
             return True
 
     @knockout_working_memory

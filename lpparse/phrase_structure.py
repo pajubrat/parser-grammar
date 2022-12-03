@@ -67,6 +67,7 @@ class PhraseStructure:
         if self.mother:
             return self.mother.head()
 
+    # Bare minimal search, follows labeling and selection
     def __next__(self):
         if not self.np:
             raise StopIteration
@@ -84,8 +85,19 @@ class PhraseStructure:
         self.np = self
         return self
 
-    def minimal_search(self, condition=lambda x: x == x):
-        return [const for const in self if condition(const)]
+    # Minimal search with a search and stop conditions
+    def minimal_search(self, selection_condition=lambda x: True, sustain_condition=lambda x: True):
+        return takewhile(sustain_condition, (const for const in self if selection_condition(const)))
+
+    def symmetric_minimal_search(self, condition=lambda x: x == x, stop_condition=lambda x: x == x):
+        lst = []
+        for node in self.top().minimal_search():
+            for daughter in [node, node.sister()]:
+                if condition(daughter):
+                    lst.append(daughter)
+                    if stop_condition(daughter):
+                        break
+        return lst
 
     def upward_path(self):
         upward_path = []
@@ -151,6 +163,9 @@ class PhraseStructure:
         if self.sister() and not (self.sister().is_primitive() and self.sister().is_left()):
             return self.sister()
 
+    def right_sister(self):
+        return self.sister() and self.sister().is_right()
+
     def specifier_sister(self):
         if self.is_left():
             return self.mother
@@ -174,6 +189,11 @@ class PhraseStructure:
             lst.append(self.right)
             self = self.right
         return lst
+
+    def extract_affix(self):
+        affix = self.right
+        self.right = None
+        return affix
 
     def bottom_affix(self):
         if self.is_primitive:
@@ -224,6 +244,9 @@ class PhraseStructure:
     def nonfinite(self):
         return self.check({'Inf'})
 
+    def concept_operator(self):
+        return self.concept() and {feature for feature in self.features if feature[:2] == 'OP'}
+
     def finite_left_periphery(self):
         return self.finite() and self.check_some({'T', 'C'})
 
@@ -238,6 +261,9 @@ class PhraseStructure:
 
     def preposition(self):
         return self.check({'P'})
+
+    def floatable(self):
+        return not self.check({'-float'})
 
     def SEM_internal_predicate(self):
         return self.check({'SEM:internal'})
@@ -422,6 +448,11 @@ class PhraseStructure:
 
     def is_clitic(self):
         return self.check({'CL'}) or (self.head().check({'CL'}) and not self.head().has_affix() and self.head().internal)
+
+    def intervention_for_head_reconstruction(self):
+        if self.concept_operator():
+            return {'φ'}
+        return {'!COMP:*'}
 
     def check(self, feature_set):
         return feature_set & self.head().features == feature_set
@@ -629,7 +660,7 @@ class PhraseStructure:
         return new_constituent
 
     def asymmetric_merge(self, B, direction='right'):
-        self.consume_resources('Merge-1')
+        self.consume_resources('Merge-1', self)
         if direction == 'left':
             new_constituent = PhraseStructure(B, self)
         else:
@@ -658,6 +689,11 @@ class PhraseStructure:
                 node.merge_1(spec.copy_for_reconstruction(name), 'left')
         else:
             node.mother.merge_1(spec.copy_for_reconstruction(name), 'left')
+
+    def merge_around(self, node):
+        if not (self.merge_1(node, 'right') and node.legitimate_head_position()):
+            node.remove()
+            self.merge_1(node, 'left')
 
     def remove(self):
         if self.mother:
@@ -733,7 +769,7 @@ class PhraseStructure:
         def show_affix(self):
             i = ''
             if self.has_affix():
-                i = self.right.major_category_label()
+                i = self.right.label()
                 if self.right.right:
                     i = i + ',' + show_affix(self.right)
             else:
@@ -771,7 +807,7 @@ class PhraseStructure:
             pf = pf + LF_features(self)
         return pf
 
-    def major_category_label(self):
+    def label(self):
         head = self.head()
         if self.is_complex():
             suffix = 'P'
@@ -907,7 +943,7 @@ class PhraseStructure:
             counter = self.right.tidy_names(counter)
         return counter
 
-    def consume_resources(self, resource_key):
+    def consume_resources(self, resource_key, target):
         PhraseStructure.resources[resource_key]['n'] += 1
 
     def get_id(self):

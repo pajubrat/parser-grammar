@@ -117,11 +117,10 @@ class LinearPhaseParser:
             return
 
         # Lexical ambiguity
-        log('Lexical retrieval for ')
         list_of_retrieved_lexical_items_matching_the_phonological_word = self.lexicon.lexical_retrieval(lst[index])
         for lexical_constituent in list_of_retrieved_lexical_items_matching_the_phonological_word:
             # Morphology
-            terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(self, lexical_constituent, lst.copy(), index)
+            terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(lexical_constituent, lst.copy(), index)
             # Lexical stream
             terminal_lexical_item = self.lexical_stream.stream_into_syntax(terminal_lexical_item, lst_branched, inflection, ps, index, inflection_buffer)
             # Syntactic module
@@ -168,6 +167,7 @@ class LinearPhaseParser:
             new_constituent = self.attach_into_phrase(left_branch, terminal_lexical_item, transfer)
         if not self.first_solution_found:
             self.time_from_stimulus_onset_for_word.append((terminal_lexical_item, self.time_from_stimulus_onset))
+        log('\n')
         return new_constituent
 
     def belong_to_same_word(self, left_branch, site):
@@ -175,9 +175,9 @@ class LinearPhaseParser:
             return True
 
     def attach_into_phrase(self, left_branch, terminal_lexical_item, transfer):
-        log(f'\n\t\tConsidering [{left_branch} + {terminal_lexical_item.get_phonological_string()}]...')
+        log(f'\n\t\tTry [{left_branch} + {terminal_lexical_item.get_phonological_string()}°]...')
         log(f'Transferring left branch {left_branch}...')
-        self.consume_resources("Merge", f'{terminal_lexical_item}')
+        self.consume_resources("Merge", terminal_lexical_item)
         set_logging(False)
         if transfer:
             new_left_branch, output_from_interfaces = self.transfer_to_LF(left_branch)
@@ -187,15 +187,14 @@ class LinearPhaseParser:
         new_constituent = new_left_branch.merge_1(terminal_lexical_item)
         set_logging(True)
         self.remove_from_syntactic_working_memory(left_branch)
-        log(f'Result: {new_constituent}...Done.\n')
+        log(f'= {new_constituent}.')
         return new_constituent
 
     def sink_into_complex_head(self, left_branch, terminal_lexical_item):
-        log(f'\n\t\tSinking {terminal_lexical_item} into {left_branch.bottom_affix()} = ')
+        log(f'\n\t\tTry {left_branch.bottom_affix().label()}° <= {terminal_lexical_item.label()}°...')
         new_constituent = left_branch.bottom_affix().sink(terminal_lexical_item)
-        log(f'{new_constituent.top()}')
-        self.consume_resources("Merge", f'{terminal_lexical_item}')
-        log('\n')
+        self.consume_resources("Merge", terminal_lexical_item)
+        log(f'={new_constituent}.')
         return new_constituent
 
     def maintain_working_memory(self, site):
@@ -211,9 +210,6 @@ class LinearPhaseParser:
         # We have decided not to explore any more solutions, exit the recursion
         if self.exit:
             return True
-
-        if index < len(lst):
-            log(f'\n\t\tNext item: {lst[index]}. ')
 
         # If there are no more words, we attempt to complete processing
         if index == len(lst):
@@ -241,7 +237,7 @@ class LinearPhaseParser:
         spellout_structure = ps.copy()
         self.preparations(ps)  # Currently just for logging purposes
         if self.surface_condition_violation(ps):
-            self.add_garden_path()
+            self.add_garden_path(ps)
             log('Failure.\n')
             return
         log('\t\tTransferring to LF...')
@@ -252,7 +248,7 @@ class LinearPhaseParser:
         if not self.LF.LF_legibility_test(ps) or \
                 not self.LF.final_tail_check(ps) or \
                 not self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
-            self.add_garden_path()
+            self.add_garden_path(ps)
             log('Solution was rejected. \n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps_))
@@ -281,9 +277,9 @@ class LinearPhaseParser:
             sentence_ = sentence_ + word_
         return len(sentence_)
 
-    def add_garden_path(self):
+    def add_garden_path(self, ps):
         if not self.first_solution_found:
-            self.consume_resources("Garden Paths")
+            self.consume_resources("Garden Paths", ps)
 
     def preparations(self, ps):
         log('\n\t------------------------------------------------------------------------------------------------------------------------------------------------\n')
@@ -338,13 +334,14 @@ class LinearPhaseParser:
                 return False
         return True
 
-    def consume_resources(self, key, info=''):
+    def consume_resources(self, key, target):
         self.operations += 1
-        if key in self.resources and not self.first_solution_found:
+        if not self.first_solution_found:
             self.time_from_stimulus_onset += self.resources[key]['ms']
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
+            log(f'{key}({target.illustrate()})... ')
 
     def LF_legibility_test(self, ps):
         def detached(ps):

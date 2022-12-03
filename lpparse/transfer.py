@@ -25,36 +25,36 @@ class Transfer:
             log(f'Transferring {ps} to LF...')
 
         output_to_interfaces['spellout structure'] = ps.copy()
-        self.brain_model.consume_resources("Phase Transfers")
+        self.brain_model.consume_resources("Phase Transfers", ps)
 
         log('\n')
-        log('\t\t\t1.\tHead movement reconstruction:')
-        ps = self.head_movement_module.reconstruct(ps)
+        log('\t\t\t1.\tHead movement reconstruction: ')
+        self.head_movement_module.reconstruct(ps.bottom())
         output_to_interfaces['surface structure'] = ps.copy()
         log(f'\n\t\t\t\t{ps}\n')
 
-        log('\t\t\t2.\tFeature processing:')
+        log('\t\t\t2.\tFeature processing: ')
         self.feature_process_module.disambiguate(ps)
         log(f'\n\t\t\t\t{ps}\n')
 
-        log('\t\t\t3.\tExtraposition:')
+        log('\t\t\t3.\tExtraposition: ')
         self.extraposition_module.reconstruct(ps)
         log(f'\n\t\t\t\t{ps}\n')
 
-        log('\t\t\t4.\tFloater movement reconstruction:')
+        log('\t\t\t4.\tFloater movement reconstruction: ')
         ps = self.floater_movement_module.reconstruct(ps)
         log(f'\n\t\t\t\t{ps}\n')
         output_to_interfaces['s-structure'] = ps.copy()
 
-        log('\t\t\t5\tPhrasal movement reconstruction:')
+        log('\t\t\t5\tPhrasal movement reconstruction: ')
         self.phrasal_movement_module.reconstruct(ps)
         log(f'\n\t\t\t\t{ps}\n')
 
-        log('\t\t\t6.\tAgreement reconstruction:')
+        log('\t\t\t6.\tAgreement reconstruction: ')
         self.agreement_module.reconstruct(ps)
         log(f'\n\t\t\t\t{ps}\n')
 
-        log('\t\t\t7.\tLast resort extraposition:')
+        log('\t\t\t7.\tLast resort extraposition: ')
         self.extraposition_module.last_resort_reconstruct(ps)
         log(f'\n\t\t\t\t{ps}\n')
         output_to_interfaces['LF structure'] = ps.copy()

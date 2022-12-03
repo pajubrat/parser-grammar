@@ -77,7 +77,6 @@ class LexicalInterface:
 
     # Defines lexical retrieval
     def lexical_retrieval(self, phonological_entry):
-        log(f'\"{phonological_entry}\": ')
         internal = False
         incorporated = False
 
@@ -118,7 +117,6 @@ class LexicalInterface:
             for idx, word in enumerate(word_list, start=1):
                 log(f'\n\t\t\t({idx}) {word.morphology}')
             log('\n\t\t')
-
         return word_list
 
     def rank_lexical_items(self, word_list):

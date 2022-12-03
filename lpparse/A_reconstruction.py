@@ -6,7 +6,7 @@ class A_reconstruction:
 
     def reconstruct(self, head, spec):
         if spec.A_reconstructing():
-            for node in spec.sister().minimal_search(lambda x: x.has_vacant_phrasal_position() or x.referential()):
+            node = next(spec.sister().minimal_search(lambda x: x.has_vacant_phrasal_position(), lambda x: not x.referential()), None)
+            if node:
                 head.merge_to_right(node, spec, self.brain_model.babtize())
-                self.brain_model.consume_resources('A-Chain')
-                break
+                self.brain_model.consume_resources('A-Chain', spec)

@@ -83,14 +83,14 @@ class LF:
         if head.complement_match(phrase):
             if not head.proper_complement():
                 self.LF_Merge(phrase, head, 'right')
-                self.brain_model.consume_resources("Move Phrase", f'{phrase}')
+                self.brain_model.consume_resources("Move Phrase", phrase)
                 return True
             if head.complement_not_licensed():
                 old_complement = head.proper_complement()
                 head.proper_complement().merge_1(phrase.copy_for_reconstruction(self.brain_model.babtize()), 'left')
                 if old_complement.check({'adjoinable'}):
                     old_complement.adjunct = True
-                self.brain_model.consume_resources("Move Phrase", f'{phrase}')
+                self.brain_model.consume_resources("Move Phrase", phrase)
                 return True
 
     def try_adjoin_right(self, head, phrase):
@@ -112,7 +112,7 @@ class LF:
         log(f'Merging {phrase} {direction} of \'{target_head}\'...')
         new_const = phrase.copy_for_reconstruction(self.brain_model.babtize())
         target_head.merge_1(new_const, direction)
-        self.brain_model.consume_resources("Ā-Chain", f'{phrase}')
+        self.brain_model.consume_resources("Ā-Chain", phrase)
         return new_const
 
     def tail_match(self, target_node, constituent_from_MB, direction):

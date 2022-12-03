@@ -12,9 +12,11 @@ class Morphology:
         self.lexicon.load_lexicon(self.brain_model)
 
     # Definition for morphological parsing for lexical item (set of features)
-    def morphological_parse(self, controlling_parsing_process, lexical_item, input_word_list, index):
+    def morphological_parse(self, lexical_item, input_word_list, index):
         current_lexical_item = lexical_item
         while self.is_polymorphemic(current_lexical_item):
+
+            log(f'\n\t\t/{input_word_list[index]}/ ~ ')
 
             # Solves an ambiguity in C_features, i.e. whether they are criterial or head features
             current_lexical_item = self.Aux_inversion(current_lexical_item)
@@ -29,17 +31,8 @@ class Morphology:
             # Apply the morphological mirror principle (should follow automatically from something)
             self.apply_mirror_principle(input_word_list, morpheme_list, index)
 
-            # Log
-            log(f'Morphological decomposition for {current_lexical_item.morphology}: <')
-            for i, w in enumerate(morpheme_list):
-                log(f'{w}')
-                if i < len(morpheme_list) - 1:
-                    log(',')
-            log('>. ')
-
             # Retrieve the first item in the list from the lexicon
             # Exit the process only if this is primitive (i.e. while-loop)
-            log(f'\n\t\tNext item: ')
             current_lexical_item = self.lexicon.lexical_retrieval(input_word_list[index])[0]
 
         # Extract infection features if the current element is inflectional feature and not a lexical item
@@ -62,7 +55,6 @@ class Morphology:
 
     def get_inflection_features(self, lexical_item, morpheme_string):
         if 'inflectional' in lexical_item.features:
-            log(f'Inflectional feature {morpheme_string}...')
             inflection_features = lexical_item.features
             if inflection_features and not morpheme_string.endswith('$'):
                 log(f'Is stranded... ')
@@ -72,12 +64,6 @@ class Morphology:
             return inflection_features
         else:
             return set()
-
-    def set_inflection(self, lexical_item, inflectional_affixes):
-        if inflectional_affixes:
-            log(f'Adding {inflectional_affixes} to ' + lexical_item.get_phonological_string() + '...')
-            lexical_item.features = lexical_item.features | set(inflectional_affixes)
-        return lexical_item
 
     def Aux_inversion(self, lexical_item):
         def verbal(head):
