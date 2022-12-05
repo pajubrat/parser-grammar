@@ -16,18 +16,20 @@ class HeadMovement:
     def consider_reconstruction(self, node):
         if node.has_affix():
             return self.create_head_chain(node, node.extract_affix())
-        return node.mother.sister()
+        if node.mother:
+            return node.mother.sister()
 
     def create_head_chain(self, target_head, affix):
         if not target_head.right_sister():
             target_head.merge_around(affix)
         else:
-            for node in target_head.sister().minimal_search(lambda x: True, lambda x: not x.check(target_head.intervention_for_head_reconstruction())):
+            for node in target_head.sister().minimal_search(lambda x: True, lambda x: not x.intervention_for_head_reconstruction()):
                 node.mother.merge_1(affix, 'left')
                 if affix.legitimate_head_position():
                     break
                 affix.remove()
             else:
-                target_head.top().bottom().merge_around(affix)
+                if not target_head.top().bottom().merge_around(affix):
+                    target_head.sister().merge_1(affix, 'left')
         self.brain_model.consume_resources("Head Chain", affix)
         return affix

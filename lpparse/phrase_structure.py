@@ -3,7 +3,7 @@ from itertools import takewhile
 from support import log
 
 # New list (ordered hierarchically)
-major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'T', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
+major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 
 Result = namedtuple('Result', 'match_occurred outcome')
 
@@ -482,7 +482,7 @@ class PhraseStructure:
         return {f[6:] for f in self.features if f[:5] == '-COMP'}
 
     def properly_selected(self):
-        return self.selector().bottom_affix().licensed_complements() & self.features
+        return self.selector() and self.selector().bottom_affix().licensed_complements() & self.features
 
     def specifier_match(self, phrase):
         return self.licensed_specifiers() & phrase.head().features
@@ -690,10 +690,11 @@ class PhraseStructure:
         else:
             node.mother.merge_1(spec.copy_for_reconstruction(name), 'left')
 
-    def merge_around(self, node):
-        if not (self.merge_1(node, 'right') and node.legitimate_head_position()):
-            node.remove()
-            self.merge_1(node, 'left')
+    def merge_around(self, affix):
+        if not (self.merge_1(affix, 'right') and affix.legitimate_head_position()):
+            affix.remove()
+            if not(self.merge_1(affix, 'left') and affix.legitimate_head_position()):
+                return True
 
     def remove(self):
         if self.mother:

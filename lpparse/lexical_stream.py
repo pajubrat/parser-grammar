@@ -51,7 +51,7 @@ class LexicalStream:
                     inflection_buffer = inflection_buffer.union(inflection)
         else:
             if inflection_buffer:
-                log(f'=> next morph({lexical_item}) ')
+                log(f'=> into next morph ({lexical_item}) ')
                 lexical_item.features = self.lexicon.apply_redundancy_rules(lexical_item.features | inflection_buffer)
                 inflection_buffer = None
         return lexical_item, inflection_buffer
