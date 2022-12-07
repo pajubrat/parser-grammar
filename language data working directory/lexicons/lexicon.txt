@@ -6,16 +6,16 @@ ali			:: PF:yli LF:over P TAIL:V Inf EF:φ LANG:FI LANG:FI
 antaa		:: anta-#v#asp#A/inf LANG:FI
 anta-   	:: PF:antaa LF:give V -COMP:P CLASS/DITR -COMP:Fin +SEM:directional ASP:BOUNDED LANG:FI
 antoi   	:: anta-#v#asp#T/fin#[-V] LANG:FI
-avain_0acc	::	avain-#φ#sg#3p#def#r_expression#[-0_acc]
-avain_nom	::	avain-#φ#sg#3p#def#r_expression#[-nom]
-avain		::	avain-#φ#sg#3p#def#r_expression#[-nom]
-avaimen_acc	::	avain-#φ#sg#3p#def#r_expression#[-n_acc]
-avaimen		::	avain-#φ#sg#3p#def#r_expression#[-n_acc]
-avaimen_gen ::	avain-#φ#sg#3p#def#r_expression#[-gen]
-avaimet		::	avain-#φ#pl#3p#def#r_expression#[-t_acc]#pl
-avainta		::	avain-#φ#sg#3p#def#r_expression#[-par]
+avain_0acc	::	avain-#φ#sg#3p#def#r_expression#[-acc(0)]
+avain_nom	::	avain-#φ#sg#3p#def#r_expression#[nom]
+avain		::	avain-#φ#sg#3p#def#r_expression#[nom]
+avaimen_acc	::	avain-#φ#sg#3p#def#r_expression#[acc(n)]
+avaimen		::	avain-#φ#sg#3p#def#r_expression#[acc(n)]
+avaimen_gen ::	avain-#φ#sg#3p#def#r_expression#[gen]
+avaimet		::	avain-#φ#pl#3p#def#r_expression#[acc(t)]#pl
+avainta		::	avain-#φ#sg#3p#def#r_expression#[par]
 avain-		::	PF:avain- LF:key N LANG:FI -SEM:directional
-auton		::	auto-#φ#sg#3p#def#r_expression#[-n_acc] LANG:FI
+auton		::	auto-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 auto		::	auto-#φ#sg#3p#def#r_expression LANG:FI
 auto-		::	PF:auto LF:car N LANG:FI -SEM:directional
 en			:: e-#[-n] LANG:FI
@@ -49,7 +49,7 @@ häviävän	:: häviä-#VA/inf LANG:FI
 hävisi		:: häviä-#T/fin LANG:FI
 häviä-		:: PF:häviä- LF:disappear V CLASS/INTR LANG:FI
 Helsingissä	:: Helsinki-#φ#sg#3p#def#r_expression#ssa LANG:FI
-Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression#[-nom] LANG:FI
+Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression LANG:EN
 Helsinki-	:: PF:Helsinki LF:Helsinki N R:REF:PROPER_NAME LANG:FI
 ihailen		:: ihaile-#v#T/fin#[-n] LANG:FI
@@ -73,12 +73,12 @@ ihaile- 	:: PF:ihaile- LF:admire V CLASS/TR SPEC:φ !COMP:φ -COMP:Fin LANG:FI
 istuuko		:: istu-#T/fin#C/op LANG:FI
 istuu		:: istu-#T/fin#[-V] LANG:FI
 istu-		:: PF:istu- LF:sit V CLASS/INTR LANG:FI
-joka		:: joka-#D/rel#sg#3p#def#hum#[-nom] LANG:FI
-jota		:: joka-#D/rel#sg#3p#def#hum#[-par]	LANG:FI
-jonka		:: joka-#D/rel#sg#3p#def#hum#[-gen] LANG:FI
+joka		:: joka-#D/rel#sg#3p#def#hum#[nom] LANG:FI
+jota		:: joka-#D/rel#sg#3p#def#hum#[par]	LANG:FI
+jonka		:: joka-#D/rel#sg#3p#def#hum#[gen] LANG:FI
 joka-   	:: PF:joka LF:who N PHI_N LANG:FI
-Jukka   	:: Jukka-#φ#[-nom]#sg#3p#def#hum#def LANG:FI -SEM:directional LANG:FI
-Jukkaa		:: Jukka-#φ#sg#3p#def#hum#def#[-par] LANG:FI -SEM:directional 
+Jukka   	:: Jukka-#φ#[nom]#sg#3p#def#hum#def LANG:FI -SEM:directional LANG:FI
+Jukkaa		:: Jukka-#φ#sg#3p#def#hum#def#[par] LANG:FI -SEM:directional 
 Jukka-  	:: PF:Jukka LF:Jukka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 juosten 	:: juokse-#E/inf LANG:FI
 juoksee		:: juokse-#T/fin#[-V] LANG:FI
@@ -87,43 +87,43 @@ kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin,$NO_S -PHI PHI:NUM:SG ARG -VAL 
 kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin,$NO_S -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
 kaksi		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED,$NO_S -PHI ARG -E !COMP:* TAIL:*POL:NEG
 kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED,$NO_S -PHI ARG -E !COMP:* TAIL:*POL:NEG
-kahdet		:: kaksi-#pl#[-nom] LANG:FI
-kahden		:: kaksi-#pl#[-gen] LANG:FI
+kahdet		:: kaksi-#pl#[nom] LANG:FI
+kahden		:: kaksi-#pl#[gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two Num LANG:FI
-kaupunkia	:: kaupunki-#φ#r_expression#[-par]
-kaupunki	:: kaupunki-#φ#r_expression#[-nom]
+kaupunkia	:: kaupunki-#φ#r_expression#[par]
+kaupunki	:: kaupunki-#φ#r_expression#[nom]
 kaupunki-	:: PF:kaupunki- LF:city N -COMP:P LANG:FI
 käski		:: käske-#v#T/fin#[-V] LANG:FI
 käskee		:: käske-#v#T/fin#[-V] LANG:FI
 käskee		:: käske-#v#T/fin#[-V] LANG:FI
 käske-		:: PF:käske- LF:order V CLASS/TR !COMP:SEM/desired_event SEMCLASS_desired_event SEM:external LANG:FI
-kellon		:: kello0-#φ#r_expression#[-n_acc]
-kellon		:: kello-#[-n_acc] LANG:FI
-kellon_n	:: kello0-#φ#r_expression#[-n_acc]
-kellon_N	:: kello-#[-n_acc] LANG:FI
-kelloja		:: kello-#pl#φ#pl#3p#def#r_expression#[-par]
+kellon		:: kello0-#φ#r_expression#[acc(n)]
+kellon		:: kello-#[acc(n)] LANG:FI
+kellon_n	:: kello0-#φ#r_expression#[acc(n)]
+kellon_N	:: kello-#[acc(n)] LANG:FI
+kelloja		:: kello-#pl#φ#pl#3p#def#r_expression#[par]
 kello		:: kello-#φ#r_expression LANG:FI
 kello-		:: PF:kello LF:watch N LANG:FI
 kello0- 	:: PF:kello LF:watch 0 LANG:FI
-kenen		:: mikä-#D#wh#sg#3p#[-gen] LANG:FI
-kirja		:: kirja-#φ#sg#3p#def#r_expression#[-nom] LANG:FI
-kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[-0_acc] LANG:FI
-kirjan  	:: kirja-#φ#sg#3p#def#r_expression#[-n_acc] LANG:FI
-kirjan_gen  :: kirja-#φ#sg#3p#def#r_expression#[-gen] LANG:FI
-kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[-par] LANG:FI
+kenen		:: mikä-#D#wh#sg#3p#[gen] LANG:FI
+kirja		:: kirja-#φ#sg#3p#def#r_expression#[nom] LANG:FI
+kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[acc(0)] LANG:FI
+kirjan  	:: kirja-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
+kirjan_gen  :: kirja-#φ#sg#3p#def#r_expression#[gen] LANG:FI
+kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[par] LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
 kohti		:: P PF:kohti LF:towards !COMP:φ -PHI TAIL:V LANG:FI
 kohti'		:: P PF:kohti LF:towards !COMP:φ -PHI LANG:FI
 koko		:: PF:koko LF:all D LANG:FI TAIL:T,$NO_S COMP:φ adjoinable
-ketä		:: kuka-#D#wh#[-par] LANG:FI
-kenen		:: kuka-#D/pro#wh#[-gen] LANG:FI
-kuka 		:: kuka-#D#wh#sg#3p#def#hum#[-nom] LANG:FI
-KUKA		:: kuka-#D#wh#sg#3p#def#hum#[-nom]#[foc] LANG:FI
+ketä		:: kuka-#D#wh#[par] LANG:FI
+kenen		:: kuka-#D/pro#wh#[gen] LANG:FI
+kuka 		:: kuka-#D#wh#sg#3p#def#hum#[nom] LANG:FI
+KUKA		:: kuka-#D#wh#sg#3p#def#hum#[nom]#[foc] LANG:FI
 kuka-   	:: PF:kuka LF:who N PHI LANG:FI
 kuorsaa		:: kuorsaa-#T/fin#[-V] LANG:FI
 kuorsaamalla 	:: kuorsaa-#malla LANG:FI
 kuorsaa- 	:: PF:kuorsaa- LF:snore V CLASS/INTR COMP:P -COMP:WH -COMP:T/fin -COMP:φ LANG:FI
-kuvaa		:: kuva-#φ#sg#3p#def#nonhum#r_expression#[-par] LANG:FI
+kuvaa		:: kuva-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[-V] LANG:EN
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
@@ -166,29 +166,28 @@ löysi		:: löytä-#v#asp#T/fin#[-V] LANG:FI
 löytää		:: löytä-#v'#A/inf LANG:FI
 löytä-		:: PF:löytä- LF:find V CLASS/TR !COMP:φ ASP:BOUNDED LANG:FI
 v'			:: v PF:v LF:v ASP:BOUNDED
-Merja   	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-nom] LANG:FI
-Merja_nom   ::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-nom] LANG:FI
-Merjan		::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
-Merjan_acc	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
-Merja_0acc	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-0_acc] LANG:FI
-Merjan_gen	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-gen] LANG:FI
-Merjan_poss	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[-poss] LANG:FI
-Merjaa		:: Merja-#φ#sg#3p#def#hum#def#proper_name#[-par] LANG:FI
-Merjaahan	:: Merja-#φ#sg#3p#def#hum#def#proper_name#[-par]#[hAn] LANG:FI
+Merja   	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[nom] LANG:FI
+Merja_nom   ::	Merja-#φ#sg#3p#def#hum#def#proper_name#[nom] LANG:FI
+Merjan		::	Merja-#φ#sg#3p#def#hum#def#proper_name#[acc(n)] LANG:FI
+Merjan_acc	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[acc(n)] LANG:FI
+Merja_0acc	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[acc(0)] LANG:FI
+Merjan_gen	::	Merja-#φ#sg#3p#def#hum#def#proper_name#[gen] LANG:FI
+Merjaa		:: Merja-#φ#sg#3p#def#hum#def#proper_name#[par] LANG:FI
+Merjaahan	:: Merja-#φ#sg#3p#def#hum#def#proper_name#[par]#[hAn] LANG:FI
 Merja-  	:: PF:Merja LF:Merja N R:REF:PROPER_NAME -SEM:directional -adjoinable LANG:FI
 Merjalle	::	Merja-#φ#sg#3p#def#hum#def#proper_name#lle
 Merjalla	:: 	Merja-#φ#sg#3p#def#hum#def#proper_name#lla
 Merjasta	::	Merja-#φ#sg#3p#def#hum#def#proper_name#sta
-meren		::	mere-#φ#sg#3p#def#r_expression#[-n_acc] LANG:FI
+meren		::	mere-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 mere-		::	PF:meri LF:ocean N LANG:FI
-mies		::	mies-#φ#r_expression#[-nom]
+mies		::	mies-#φ#r_expression#[nom]
 mies-		::	PF:mies LF:man N LANG:FI
-minka		:: mikä-#D#wh#[-n_acc] LANG:FI
-minkä		:: mikä-#D#wh#[-gen] LANG:FI
-mikä		:: mikä-#D#wh#sg#3p#[-nom] LANG:FI
-mitä		:: D#wh#sg#3p#[-par] LANG:FI
-mitä		:: mikä-#D#wh#sg#3p#[-par] LANG:FI
-mitä_DP		:: mikä-#D#wh#sg#3p#[-par] LANG:FI
+minka		:: mikä-#D#wh#[acc(n)] LANG:FI
+minkä		:: mikä-#D#wh#[gen] LANG:FI
+mikä		:: mikä-#D#wh#sg#3p#[nom] LANG:FI
+mitä		:: D#wh#sg#3p#[par] LANG:FI
+mitä		:: mikä-#D#wh#sg#3p#[par] LANG:FI
+mitä_DP		:: mikä-#D#wh#sg#3p#[par] LANG:FI
 mikä-		:: PF:mikä LF:what N LANG:FI
 mukavasti 	:: mukava-#sti
 mukava-		:: PF:mukavasti LF:comfortably 0 LANG:FI
@@ -196,7 +195,7 @@ myi 		:: myy-#v#asp#T/fin#[-V] LANG:FI
 myynyt		:: myy-#v#asp#T/prt#sg LANG:FI
 myydä 		:: myy-#v#A/inf LANG:FI
 myy-		:: PF:myy- LF:sell V ASP:BOUNDED CLASS/TR -COMP:T/fin -COMP:Neg/fin COMP:φ LANG:FI
-nainen		:: nainen-#φ#nonhum#r_expression#[-nom]
+nainen		:: nainen-#φ#nonhum#r_expression#[nom]
 nainen-		:: PF:nainen LF:woman N LANG:FI
 näki		:: näke-#v#T/fin#[-V] LANG:FI
 näkee		:: näke-#v#T/fin#[-V] LANG:FI
@@ -216,26 +215,26 @@ asu-		:: PF:asuu- LF:live V CLASS/INTR -COMP:T -SPEC:P -COMP:Inf -COMP:T/fin -CO
 ollut		:: T PF:T LF:T LANG:FI
 on'			:: BE-#T/fin#[-V] LANG:FI
 on			:: BE-#T/fin#[-V] LANG:FI
-omaisuutensa	:: omaisuus-#D#def#sg#3p#[-n_acc] LANG:FI
-omaisuuttaan	:: omaisuus-#D#def#sg#3p#[-par] LANG:FI
+omaisuutensa	:: omaisuus-#D#def#sg#3p#[acc(n)] LANG:FI
+omaisuuttaan	:: omaisuus-#D#def#sg#3p#[par] LANG:FI
 omaisuus-		::	PF:omaisuuden LF:possessions N LANG:FI
 ostaa		:: osta-#v#A/inf LANG:FI
 osta-		:: PF:osta- LF:buy V CLASS/TR ASP:BOUNDED LANG:FI
-päivän		:: päivä-#φ#[-n_acc]
-päivää		:: päivä-#φ#[-par]
-päivä		:: päivä-#φ#[-0_acc]
+päivän		:: päivä-#φ#[acc(n)]
+päivää		:: päivä-#φ#[par]
+päivä		:: päivä-#φ#[acc(0)]
 päivä-		:: PF:päivä- LF:day N SEM:nonreferential LANG:FI
-Pariisia	:: Pariisi-#D#sg#3p#def#proper_name#[-par] LANG:FI
-Pariisin	:: Pariisi-#D#sg#3p#def#proper_name#[-gen] LANG:FI
+Pariisia	:: Pariisi-#D#sg#3p#def#proper_name#[par] LANG:FI
+Pariisin	:: Pariisi-#D#sg#3p#def#proper_name#[gen] LANG:FI
 Pariisi-	:: PF:Pariisi LF:Paris N LANG:FI
-Pekkaa		:: Pekka-#φ#sg#3p#def#hum#proper_name#[-par] LANG:FI
-Pekka   	:: Pekka-#φ#sg#3p#def#hum#proper_name#[-nom] LANG:FI
-Pekan		:: Pekka-#φ#sg#3p#def#hum#proper_name#[-n_acc]
-Pekan_gen	:: Pekka-#φ#sg#3p#def#hum#proper_name#[-gen] LANG:FI
-Pekan_acc	::	Pekka-#φ#sg#3p#def#hum#def#proper_name#[-n_acc] LANG:FI
-Pekka_0acc	::	Pekka-#φ#sg#3p#def#hum#def#proper_name#[-0_acc] LANG:FI
-Pekkahan	:: Pekka-#φ#sg#3p#def#hum#def#proper_name#[-nom]#[hAn] LANG:FI
-PEKKA		:: Pekka-#φ#sg#3p#def#hum#def#proper_name#[-nom]#[foc]
+Pekkaa		:: Pekka-#φ#sg#3p#def#hum#proper_name#[par] LANG:FI
+Pekka   	:: Pekka-#φ#sg#3p#def#hum#proper_name#[nom] LANG:FI
+Pekan		:: Pekka-#φ#sg#3p#def#hum#proper_name#[acc(n)]
+Pekan_gen	:: Pekka-#φ#sg#3p#def#hum#proper_name#[gen] LANG:FI
+Pekan_acc	::	Pekka-#φ#sg#3p#def#hum#def#proper_name#[acc(n)] LANG:FI
+Pekka_0acc	::	Pekka-#φ#sg#3p#def#hum#def#proper_name#[acc(0)] LANG:FI
+Pekkahan	:: Pekka-#φ#sg#3p#def#hum#def#proper_name#[nom]#[hAn] LANG:FI
+PEKKA		:: Pekka-#φ#sg#3p#def#hum#def#proper_name#[nom]#[foc]
 Pekka-  	:: PF:Pekka LF:Pekka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 pelottaa	:: pelkä-#cau#T/fin#[-V] LANG:FI
 pelkää		:: pelkä-#v#T/fin#[-V] LANG:FI
@@ -249,7 +248,7 @@ pese-		:: PF:pese_asp LF:wash V CLASS/TR ASP:BOUNDED LANG:FI
 pese-		:: PF:pese- LF:wash V CLASS/TR LANG:FI
 pieni		:: pieni-#a0 LANG:FI
 pieni-		:: PF:pieni- LF:small 0 LANG:FI
-poikien		::	poika-#φ#[-gen]#[-dat]#pl#3p#def#r_expression#hum LANG:FI
+poikien		::	poika-#φ#[gen]#[-dat]#pl#3p#def#r_expression#hum LANG:FI
 poika-		::	PF:poika LF:boy N LANG:FI
 puhelinta	:: puhelin-#n LANG:FI
 puhelin-	:: PF:puhelin- LF:phone 0 LANG:FI
@@ -259,13 +258,13 @@ pyytää		:: pyytä-#v#T/fin#[-V] LANG:FI
 pyysi		:: pyytä-#v#T/fin#[-V] LANG:FI
 pyytä-		:: PF:pyyda- LF:ask V CLASS/TR SEMCLASS_desired_event SEM:external LANG:FI
 silta-		:: PF:silta LF:bridge N LANG:FI
-sillan		:: silta-#φ#sg#3p#r_expression#[-gen]
-siltaa		:: silta-#φ#sg#3p#r_expression#[-par]
-siskoaan	:: sisko-#φ#sg#3p#def#r_expression#[-par]
-siskonsa	:: sisko-#φ#sg#3p#def#r_expression#[-nom]
-sisko		:: sisko-#φ#sg#3p#def#r_expression#[-nom]
+sillan		:: silta-#φ#sg#3p#r_expression#[gen]
+siltaa		:: silta-#φ#sg#3p#r_expression#[par]
+siskoaan	:: sisko-#φ#sg#3p#def#r_expression#[par]
+siskonsa	:: sisko-#φ#sg#3p#def#r_expression#[nom]
+sisko		:: sisko-#φ#sg#3p#def#r_expression#[nom]
 sisko-		:: PF:sisko LF:sister N LANG:FI
-sopimuksen	:: sopimus-#φ#sg#3p#def#r_expression#[-n_acc] LANG:FI
+sopimuksen	:: sopimus-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 sopimus		:: sopimus-#φ#sg#3p#r_expression#def	LANG:FI
 sopimus-	:: N PF:sopimus LF:agreement !COMP:A/inf LANG:FI
 ssa			:: PF:ssa LF:in P TAIL:V float LANG:FI
@@ -279,20 +278,20 @@ sala		:: sala-#D LANG:IT
 sala-		:: PF:sala- LF:room N LANG:IT
 raukesi		:: raukea-#T/fin#[-V] LANG:FI
 raukea-		:: PF:raukea- LF:terminate V LANG:FI
-Seine		:: Seine-#D#sg#3p#[-nom] LANG:FI
+Seine		:: Seine-#D#sg#3p#[nom] LANG:FI
 Seine-		:: PF:Seine N R:REF:PROPER_NAME LF:Seine LANG:FI
-sukka		:: sukka-#φ#r_expression#[-nom]
-sukka_0acc	:: sukka-#φ#r_expression#[-0_acc]
-sukkaa		:: sukka-#φ#r_expression#[-par]
-sukan		:: sukka-#φ#r_expression#[-gen]
-sukan_gen	:: sukka-#φ#r_expression#[-gen]
-sukan_acc	:: sukka-#φ#r_expression#[-n_acc]
-sukat		:: sukka-#φ#r_expression#[-nom]#pl
+sukka		:: sukka-#φ#r_expression#[nom]
+sukka_0acc	:: sukka-#φ#r_expression#[acc(0)]
+sukkaa		:: sukka-#φ#r_expression#[par]
+sukan		:: sukka-#φ#r_expression#[gen]
+sukan_gen	:: sukka-#φ#r_expression#[gen]
+sukan_acc	:: sukka-#φ#r_expression#[acc(n)]
+sukat		:: sukka-#φ#r_expression#[nom]#pl
 sukka-		:: PF:sukka LF:socks N LANG:FI
 sta			:: PF:sta LF:of P TAIL:V LANG:FI
 sti			:: PF:sti LF:by !COMP:* TAIL:T,$NO_W Adv -ARG LANG:FI
 talo		:: talo-#φ#r_expression
-taloa		:: talo-#φ#r_expression#[-par]
+taloa		:: talo-#φ#r_expression#[par]
 talona		:: talo-#φ#r_expression#[-ess]
 taloksi		:: talo-#φ#r_expression#[-ess]
 talo-		:: PF:talo LF:house N LANG:FI
@@ -308,7 +307,7 @@ tee-		:: V PF:teke- LF:do LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
 tyttö-		:: PF:tyttö LF:girl N LANG:FI
 tämä		:: tämä-#D#sg#3p#def
-tätä		:: D#sg#3p#def#[-par]
+tätä		:: D#sg#3p#def#[par]
 tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tässä		:: tämä#P
 täytyy		:: täydy-#T/fin#[-V] LANG:FI
@@ -335,46 +334,45 @@ yritta- 	:: PF:yritta LF:try V SPEC:φ !COMP:A/inf !COMP:-ARG LANG:EN SEM:intern
 
 # Pronouns
 
-minä		:: minä-#D/pro#[-nom]#sg#1p#def#hum LANG:FI
-minua		:: minä-#D/pro#[-par]#sg#1p#def#hum LANG:FI
-minun		:: minä-#D/pro#[-gen]#sg#1p#def#hum LANG:FI
+minä		:: minä-#D/pro#[nom]#sg#1p#def#hum LANG:FI
+minua		:: minä-#D/pro#[par]#sg#1p#def#hum LANG:FI
+minun		:: minä-#D/pro#[gen]#sg#1p#def#hum LANG:FI
 minä- 		:: PF:minä LF:I N PHI_N LANG:FI LANG:FI
-sinä		:: sinä-#D/pro#[-nom]#sg#2p#def#hum LANG:FI
-sinua		:: sinä-#D/pro#[-par]#sg#2p#def#hum LANG:FI
-sinun		:: sinä-#D/pro#[-gen]#sg#2p#def#hum LANG:FI
+sinä		:: sinä-#D/pro#[nom]#sg#2p#def#hum LANG:FI
+sinua		:: sinä-#D/pro#[par]#sg#2p#def#hum LANG:FI
+sinun		:: sinä-#D/pro#[gen]#sg#2p#def#hum LANG:FI
 sinä-		:: PF:sinä  LF:you N PHI_N LANG:FI
-hän			:: hän-#D/pro#[-nom]#sg#3p#def#hum LANG:FI
-häntä		:: hän-#D/pro#[-par]#sg#3p#def#hum LANG:FI
-hänen		:: hän-#D/pro#[-gen]#sg#3p#def#hum LANG:FI
+hän			:: hän-#D/pro#[nom]#sg#3p#def#hum LANG:FI
+häntä		:: hän-#D/pro#[par]#sg#3p#def#hum LANG:FI
+hänen		:: hän-#D/pro#[gen]#sg#3p#def#hum LANG:FI
 hänet		:: hän-#D/pro#[acc(t)]#sg#3p#def#hum LANG:FI
-hänet		:: hän-#D/pro#[-t_acc]#sg#3p#def#hum LANG:FI
 hän-		:: PF:hän LF:s/he N PHI_N LANG:FI
-me_FI		:: me-#D/pro#[-nom]#pl#1p#def#hum LANG:FI
-me			:: me-#D/pro#[-nom]#pl#1p#def#hum LANG:FI
-meidän		:: me-#D/pro#[-gen]#pl#1p#def#hum LANG:FI
+me_FI		:: me-#D/pro#[nom]#pl#1p#def#hum LANG:FI
+me			:: me-#D/pro#[nom]#pl#1p#def#hum LANG:FI
+meidän		:: me-#D/pro#[gen]#pl#1p#def#hum LANG:FI
 me- 		:: PF:me LF:we N PHI_N LANG:FI
-te			:: te-#D/pro#[-nom]#pl#2p#def#hum LANG:FI
-teidän		:: te-#D/pro#[-gen]#pl#2p#def#hum LANG:FI
+te			:: te-#D/pro#[nom]#pl#2p#def#hum LANG:FI
+teidän		:: te-#D/pro#[gen]#pl#2p#def#hum LANG:FI
 te- 		:: PF:te LF:you N PHI_N LANG:FI
-he_FI		:: he_FI-#D/pro#[-nom]#pl#3p#def#hum LANG:FI
-heidän		:: he_FI-#D/pro#[-gen]#pl#3p#def#hum LANG:FI
+he_FI		:: he_FI-#D/pro#[nom]#pl#3p#def#hum LANG:FI
+heidän		:: he_FI-#D/pro#[gen]#pl#3p#def#hum LANG:FI
 he_FI- 		:: PF:he LF:they N PHI_N LANG:FI
-se			:: se-#[-nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
-se'			:: se-#[-nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
+se			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
+se'			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se			:: se-#sg#3p#def#nonhum#pronoun1 LANG:FI
-sen			:: se-#[-n_acc]#sg#3p#def#nonhum#pronoun1 LANG:FI
-sitä		:: se-#[-par]#sg#3p#def#nonhum#pronoun1 LANG:FI
+sen			:: se-#[acc(n)]#sg#3p#def#nonhum#pronoun1 LANG:FI
+sitä		:: se-#[par]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se-			:: PF:se LF:the/that D LANG:FI
-se_DP		:: se_N-#D/pro#[-nom]#sg#3p#def#nonhum LANG:FI
-sitä_DP		:: se_N-#D/pro#[-par]#sg#3p#def#nonhum LANG:FI
-sen_DP_gen	:: se_N-#D/pro#[-gen]#sg#3p#def#nonhum LANG:FI
+se_DP		:: se_N-#D/pro#[nom]#sg#3p#def#nonhum LANG:FI
+sitä_DP		:: se_N-#D/pro#[par]#sg#3p#def#nonhum LANG:FI
+sen_DP_gen	:: se_N-#D/pro#[gen]#sg#3p#def#nonhum LANG:FI
 se_N-		:: PF:se LF:the/that N LANG:FI
-itseään		:: itse-#D/refl#3p#sg#def#[-par] LANG:FI
-itseäni		:: itse-#D/refl#1p#sg#def#[-par] LANG:FI
-itsensä_gen	:: itse-#D/refl#3p#sg#def#[-gen] LANG:FI
+itseään		:: itse-#D/refl#3p#sg#def#[par] LANG:FI
+itseäni		:: itse-#D/refl#1p#sg#def#[par] LANG:FI
+itsensä_gen	:: itse-#D/refl#3p#sg#def#[gen] LANG:FI
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
 ne			:: PF:ne LF:those D PHI:NUM:PL PHI:PER:3 LANG:FI
-niiden		:: ne#[-gen]
+niiden		:: ne#[gen]
 
 # Finite agreement
 [-n]		::	inflectional PHI EF:φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
@@ -396,16 +394,14 @@ niiden		:: ne#[-gen]
 
 # Case suffixes
 # A. Structural
-[-nom]		:: inflectional NOM TAIL:Fin,ARG,EF:φ,$NO_S adjoinable LANG:FI
-[-gen]		:: inflectional GEN TAIL:Inf,ARG,EF:φ,$NO_S adjoinable -float LANG:FI
-[-par]   	:: inflectional PAR TAIL:ARG,-PHI,$NO_S adjoinable LANG:FI
+[nom]		:: inflectional NOM TAIL:Fin,ARG,EF:φ,$NO_S adjoinable LANG:FI
+[gen]		:: inflectional GEN TAIL:Inf,ARG,EF:φ,$NO_S adjoinable -float LANG:FI
+[par]   	:: inflectional PAR TAIL:ARG,-PHI,$NO_S adjoinable LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
-[-dat]		:: inflectional DAT TAIL:*φ adjoinable
-[-n_acc]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
+[dat]		:: inflectional DAT TAIL:*φ adjoinable
 [acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
-[-t_acc]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
+[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
 [acc(t)]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
-[-0_acc]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S TAIL:*PHI,$NO_S adjoinable LANG:FI
 [acc(0)]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S TAIL:*PHI,$NO_S adjoinable LANG:FI
 # B. Semantic cases
 [-ess]     	:: inflectional PF:na LF:as TAIL:V LANG:FI #essiivi

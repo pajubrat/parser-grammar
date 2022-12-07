@@ -341,7 +341,7 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'{key}({target.illustrate()})... ')
+            log(f'{key}({target.illustrate()}) = {target.top()}. ')
 
     def LF_legibility_test(self, ps):
         def detached(ps):

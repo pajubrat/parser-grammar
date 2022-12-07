@@ -23,21 +23,21 @@ prtcpl		:: Inf T T/prt PF:T/prt LF:prtcpl
 to_inf		:: INF TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable
 
 # Finnish infinitivals
-A/inf		:: A/inf 		Inf 	?ARG  -PHI	!SEF			PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI
-VA/inf  	:: VA/inf 		Inf T   ARG  !EF:φ 	!SEF			PF:-vAn 	LF:to -SPEC:N LANG:FI
-ESSA/inf 	:: ESSA/inf		Inf Adv ARG   EF:φ TAIL:T,$NO_W 	PF:-essA 	LF:while LANG:FI
-TUA/inf		:: TUA/inf		Inf Adv ARG  !EF:φ TAIL:T,$NO_W 	PF:-tUA 	LF:after LANG:FI
-KSE/inf		:: KSE/inf		Inf Adv ARG   EF:φ TAIL:T,$NO_W 	PF:-kse 	LF:for LANG:FI
-E/inf		:: E/inf 		Inf Adv ARG  -EF:φ TAIL:T,$NO_W 	PF:-en 		LF:by LANG:FI
-MA.ine/inf	:: MA.ine/inf	Inf Adv ARG  -EF:φ TAIL:V,$NO_W 	PF:-mAssA 	LF:in LANG:FI
-MA.abe/inf	:: MA.abe/inf	Inf Adv ARG  -EF:φ TAIL:T,$NO_W 	PF:-mAttA 	LF:without LANG:FI
-MA.ade/inf	:: MA.ade/inf	Inf Adv ARG  -EF:φ TAIL:T,$NO_W		PF:-mAllA 	LF:by LANG:FI
-MA.ela/inf	:: MA.ela/inf	Inf Adv ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_denied_event,$NO_W PF:-mAstA LF:without LANG:FI
-MA.ill/inf	:: MA.ill/inf	Inf		ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:-mAAn LF:to SEM/desired_event LANG:FI adjoinable
+A/inf		:: A/inf 		Inf 	?ARG  -PHI	!SEF			PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI
+VA/inf  	:: VA/inf 		Inf T   ARG  !EF:φ 	!SEF			PF:-vAn 	LF:to -SPEC:N !COMP:* LANG:FI
+ESSA/inf 	:: ESSA/inf		Inf Adv ARG   EF:φ TAIL:T,$NO_W 	PF:-essA 	LF:while !COMP:* LANG:FI
+TUA/inf		:: TUA/inf		Inf Adv ARG  !EF:φ TAIL:T,$NO_W 	PF:-tUA 	LF:after !COMP:* LANG:FI
+KSE/inf		:: KSE/inf		Inf Adv ARG   EF:φ TAIL:T,$NO_W 	PF:-kse 	LF:for !COMP:* LANG:FI
+E/inf		:: E/inf 		Inf Adv ARG  -EF:φ TAIL:T,$NO_W 	PF:-en 		LF:by !COMP:* LANG:FI
+MA.ine/inf	:: MA.ine/inf	Inf Adv ARG  -EF:φ TAIL:V,$NO_W 	PF:-mAssA 	LF:in !COMP:* LANG:FI
+MA.abe/inf	:: MA.abe/inf	Inf Adv ARG  -EF:φ TAIL:T,$NO_W 	PF:-mAttA 	LF:without !COMP:* LANG:FI
+MA.ade/inf	:: MA.ade/inf	Inf Adv ARG  -EF:φ TAIL:T,$NO_W		PF:-mAllA 	LF:by !COMP:* LANG:FI
+MA.ela/inf	:: MA.ela/inf	Inf Adv ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_denied_event,$NO_W PF:-mAstA LF:without !COMP:* LANG:FI
+MA.ill/inf	:: MA.ill/inf	Inf		ARG  -EF:φ TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:-mAAn LF:to SEM/desired_event !COMP:* LANG:FI adjoinable
 
 # Prticiple adjectives
-MA/A		:: MA/A 	Inf		 ARG  !EF:φ							PF:-mA LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N COMP:V
-VA/A		:: VA/A		Inf		 ARG -EF:φ							PF:-vA LF:P_rel LANG:FI -PROBE:N
+MA/A		:: MA/A 	Inf		 ARG  !EF:φ							PF:-mA LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N COMP:V !COMP:*
+VA/A		:: VA/A		Inf		 ARG -EF:φ							PF:-vA LF:P_rel LANG:FI -PROBE:N !COMP:*
 
 # Experimental
 MA.ine/inf*	:: MA.ine/inf* 	Inf 	ARG  -EF:φ 						PF:-mA-* 	LF:ing LANG:FI !COMP:*

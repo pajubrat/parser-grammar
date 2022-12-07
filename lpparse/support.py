@@ -32,31 +32,31 @@ def get_pro_type(self):
 def show_primitive_constituents(self):
     def sorted_by_relevance(set):
         id = {feature for feature in set if feature[0] == '#'}
-        A = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
-        B = {feature for feature in set if 'EF:' in feature or 'EDGE' in feature}
-        C = {feature for feature in set if feature in major_category}
-        D = {feature for feature in set if feature in {'ARG', '-ARG', 'ASP', 'INF', 'FIN'}}
-        E = {feature for feature in set if feature[:3] == 'PHI'}
-        F = {feature for feature in set if feature[:3] == 'SEM'}
-        G = {feature for feature in set if feature[:4] == 'TAIL'}
-        residuum = set - A - B - C - D - E - F - G
-        return sorted(A) + \
-               sorted(C) + \
-               sorted(B) + \
-               sorted(D) + \
-               sorted(E) + \
-               sorted(F) + \
-               sorted(G) + \
-               sorted(id) + \
-               sorted(residuum)
+        A = {feature for feature in set if feature in major_category}
+        B = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
+        C = {feature for feature in set if feature.startswith('!EF:') or feature.startswith('-EF') or feature.startswith('EF')}
+        D = {feature for feature in set if feature in {'ARG', '-ARG', 'ASP', 'Inf', 'Fin'}}
+        E = {feature for feature in set if feature.startswith('TAIL')}
+        F = {feature for feature in set if feature[:3] == 'PHI'}
+        G = {feature for feature in set if feature[:3] == 'SEM'}
+        H = {feature for feature in set if feature[:4] == 'COMP' or feature[:5] == '-COMP' or feature[:5] == '!COMP'}
+        J = {feature for feature in set if feature[:4] == 'SPEC' or feature[:5] == '-SPEC' or feature[:5] == '!SPEC'}
+        residuum = set - A - B - C - D - E - F - G - H - J
+        return sorted(A) + sorted(B) + sorted(C) + sorted(D) + sorted(E) + sorted(F) + sorted(G) + sorted(H) + sorted(J) + sorted(id) + sorted(residuum)
 
     reply = ''
     if not self.is_primitive():
         reply += show_primitive_constituents(self.left)
         reply += show_primitive_constituents(self.right)
     else:
-        reply += f'\t\t{self.get_phonological_string():<10} {sorted_by_relevance(self.features)}\n'
+        reply += f'\t\t{self.get_phonological_string():<10} {show_feature_list(sorted_by_relevance(self.features))}\n'
     return reply
+
+def show_feature_list(lst):
+    str = ''
+    for feature in lst:
+        str += f'[{feature}], '
+    return str
 
 def log(text):
     if log_instance.logging and not log_instance.disabled:

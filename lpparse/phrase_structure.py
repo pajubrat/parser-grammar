@@ -693,7 +693,8 @@ class PhraseStructure:
     def merge_around(self, affix):
         if not (self.merge_1(affix, 'right') and affix.legitimate_head_position()):
             affix.remove()
-            if not(self.merge_1(affix, 'left') and affix.legitimate_head_position()):
+            if not (self.merge_1(affix, 'left') and affix.legitimate_head_position()):
+                affix.remove()
                 return True
 
     def remove(self):

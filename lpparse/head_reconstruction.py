@@ -29,7 +29,9 @@ class HeadMovement:
                     break
                 affix.remove()
             else:
-                if not target_head.top().bottom().merge_around(affix):
-                    target_head.sister().merge_1(affix, 'left')
+                target_head.sister().merge_1(affix, 'left')
         self.brain_model.consume_resources("Head Chain", affix)
         return affix
+
+    # if target_head.top().bottom().merge_around(affix):
+
