@@ -116,20 +116,19 @@ class NarrowSemantics:
         return not self.semantic_interpretation_failed
 
     def interpret_(self, ps):
-        if ps.is_primitive():
-            if ps.phi_needs_valuation():
-                self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.recover_arguments(ps))
-            self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
-            self.interpret_tail_features(ps)
-            self.inventory_projection(ps)
-            self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
-            self.pragmatic_pathway.interpret_discourse_features(ps, self.semantic_interpretation)
-            if self.failure():
-                return
-        else:
-            if not ps.left.find_me_elsewhere:
+        if not ps.find_me_elsewhere:
+            if ps.is_primitive():
+                if ps.phi_needs_valuation():
+                    self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.recover_arguments(ps))
+                self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
+                self.interpret_tail_features(ps)
+                self.inventory_projection(ps)
+                self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
+                self.pragmatic_pathway.interpret_discourse_features(ps, self.semantic_interpretation)
+                if self.failure():
+                    return
+            else:
                 self.interpret_(ps.left)
-            if not ps.right.find_me_elsewhere:
                 self.interpret_(ps.right)
 
     def inventory_projection(self, ps):

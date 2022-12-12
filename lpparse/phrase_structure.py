@@ -112,7 +112,9 @@ class PhraseStructure:
         return next((x for x in memory_span() if condition(x)), None)
 
     def edge(self):
-        return list(takewhile(lambda x: x.mother.inside(self), self.upward_path()))
+        if self.upward_path():
+            log(f'{self.upward_path()[0].mother} ')
+        return list(takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path()))
 
     def geometrical_sister(self):
         if self.is_left():
@@ -197,7 +199,7 @@ class PhraseStructure:
 
     def bottom_affix(self):
         if self.is_primitive:
-            while self.right:
+            while self.right and not self.right.find_me_elsewhere:
                 self = self.right
             return self
 
@@ -377,7 +379,10 @@ class PhraseStructure:
         return next((x for x in self.pro_list() if x.check(lexical_feature[6:])), None)
 
     def pro_list(self):
-        return [x for item in [self.edge(), self.extract_pro()] for x in item]
+        lst = self.edge()
+        if self.extract_pro():
+            lst.append(self.extract_pro())
+        return lst
 
     # Feature -SPEC
     def selection__negative_specifier(self,  lexical_feature):
@@ -408,8 +413,6 @@ class PhraseStructure:
                                               (probe.proper_complement().head().licensed_phrasal_specifier() and
                                                probe.proper_complement().head().licensed_phrasal_specifier().head().referential()))
 
-    def legitimate_head_position(self):
-        return self.properly_selected() and not self.empty_finite_EPP()
 
     def specifier_theta_role_assigner(self):
         return not self.EF() and \
@@ -482,7 +485,7 @@ class PhraseStructure:
         return {f[6:] for f in self.features if f[:5] == '-COMP'}
 
     def properly_selected(self):
-        return self.selector() and self.selector().bottom_affix().licensed_complements() & self.features
+        return self.selector() and self.selector().licensed_complements() & self.features
 
     def specifier_match(self, phrase):
         return self.licensed_specifiers() & phrase.head().features
@@ -682,7 +685,7 @@ class PhraseStructure:
         return local_structure
 
     def merge_to_right(self, node, spec, name):
-        if node.is_right():
+        if not node.right_sister():
             if node == self:
                 node.merge_1(spec.copy_for_reconstruction(name), 'right')
             else:
@@ -690,12 +693,15 @@ class PhraseStructure:
         else:
             node.mother.merge_1(spec.copy_for_reconstruction(name), 'left')
 
-    def merge_around(self, affix):
-        if not (self.merge_1(affix, 'right') and affix.legitimate_head_position()):
-            affix.remove()
-            if not (self.merge_1(affix, 'left') and affix.legitimate_head_position()):
-                affix.remove()
+    def merge_around(self, reconstructed_object, legibility=lambda x: True):
+        if not (self.merge_1(reconstructed_object, 'right') and legibility(reconstructed_object)):
+            reconstructed_object.remove()
+            if not (self.merge_1(reconstructed_object, 'left') and legibility(reconstructed_object)):
+                reconstructed_object.remove()
                 return True
+
+    def copy_and_merge(self, reconstructed_object, name):
+        return reconstructed_object
 
     def remove(self):
         if self.mother:
@@ -767,24 +773,6 @@ class PhraseStructure:
     def get_pf(self):
         return {feature[3:] for feature in self.features if feature[:3] == 'PF:'}
 
-    def get_phonological_string(self):
-        def show_affix(self):
-            i = ''
-            if self.has_affix():
-                i = self.right.label()
-                if self.right.right:
-                    i = i + ',' + show_affix(self.right)
-            else:
-                i = ''
-            return i
-
-        pfs = [f[3:] for f in self.features if f[:2] == 'PF']
-        if self.has_affix():
-            affix_str = show_affix(self)
-            return '.'.join(sorted(pfs)) + '(' + affix_str + ')'
-        else:
-            return '.'.join(sorted(pfs))
-
     def info(self):
         info = [f[5:] for f in self.features if f[:5] == 'INFO:']
         return '.'.join(sorted(info))
@@ -797,12 +785,12 @@ class PhraseStructure:
         pf = ''
         if self.left:
             if 'null' in self.left.features:
-                pf = pf + '__'
+                pf = pf + '_'
             else:
                 pf = pf + self.left.gloss() + ' '
         if self.right:
             if 'null' in self.right.features:
-                pf = pf + '__'
+                pf = pf + '_'
             else:
                 pf = pf + self.right.gloss() + ' '
         if self.is_primitive():
@@ -833,10 +821,10 @@ class PhraseStructure:
 
         if self.identity == '':
             self.identity = babtize
-        self_copy = self.copy()  # Copy the constituent
-        self_copy.find_me_elsewhere = False  # Copy is marked for being where it is
-        silence_phonologically(self_copy)  # Silence the new constituent phonologically
-        self.find_me_elsewhere = True  # Mark that the constituent has been copied
+        self_copy = self.copy()                 # Copy the constituent
+        self_copy.find_me_elsewhere = False     # Copy is marked for being where it is
+        silence_phonologically(self_copy)       # Silence the new constituent phonologically
+        self.find_me_elsewhere = True           # Mark that the constituent has been copied
         return self_copy
 
     def for_LF_interface(self, features):
@@ -893,16 +881,16 @@ class PhraseStructure:
 
     def __str__(self):
         if self.identity != '':
-            index_str = ':' + self.identity
+            chain_index_str = ':' + self.identity
         else:
-            index_str = ''
+            chain_index_str = ''
         if self.find_me_elsewhere:
-            index_str = index_str + ''
-        if self.features and 'null' in self.features:
+            chain_index_str = chain_index_str + ''
+        if self.features and 'null' in self.features and self.is_complex():
             if self.adjunct:
-                return '<__>' + index_str
+                return '<_>' + chain_index_str
             else:
-                return '__' + index_str
+                return '_' + chain_index_str
         if self.is_primitive():
             if not self.get_phonological_string():
                 return '?'
@@ -910,19 +898,36 @@ class PhraseStructure:
                 if self.adjunct:
                     return '<' + self.get_phonological_string() + '>'
                 else:
-                    if self.extract_pro():
-                        return self.get_phonological_string()
-                        # return self.get_pro_type() + '.' + self.get_pf()
-                    else:
-                        return self.get_phonological_string()
+                    return self.get_phonological_string()
         else:
             if self.adjunct:
-                return f'<{self.left} {self.right}>' + index_str
+                return f'<{self.left} {self.right}>' + chain_index_str
             else:
                 if self.active_in_syntactic_working_memory:
-                    return f'[{self.left} {self.right}]' + index_str
+                    return f'[{self.left} {self.right}]' + chain_index_str
                 else:
-                    return f'[{self.left} {self.right}]' + index_str
+                    return f'[{self.left} {self.right}]' + chain_index_str
+
+    def get_phonological_string(self):
+        def show_affix(self):
+            i = ''
+            if self.has_affix():
+                i = self.right.label()
+                if self.right.right:
+                    i = i + ',' + show_affix(self.right)
+            else:
+                i = ''
+            return i
+
+        pfs = [f[3:] for f in self.features if f[:2] == 'PF']
+        if self.has_affix():
+            if self.right.find_me_elsewhere:
+                affix_str = '_'
+            else:
+                affix_str = show_affix(self)
+            return '.'.join(sorted(pfs)) + '(' + affix_str + ')'
+        else:
+            return '.'.join(sorted(pfs))
 
     def tidy_names(self, counter):
         def rebaptize(h, old_name, new_name):

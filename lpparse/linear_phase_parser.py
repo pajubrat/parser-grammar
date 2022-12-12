@@ -10,6 +10,7 @@ from lexical_stream import LexicalStream
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
+from reconstruct import Reconstruct
 from itertools import takewhile
 
 class LinearPhaseParser:
@@ -33,6 +34,7 @@ class LinearPhaseParser:
         self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
         self.morphology = Morphology(self)                      # Access to morphology
         self.transfer = Transfer(self)                          # Access to transfer
+        self.reconstruct = Reconstruct(self)                    # Access to general reconstruction function
         self.local_file_system = local_file_system              # Access to local file system
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream

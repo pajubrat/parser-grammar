@@ -39,17 +39,16 @@ class LF:
         return self.pass_LF_legibility(ps)
 
     def pass_LF_legibility(self, ps):
-        if ps.is_primitive():
-            for (test_name, test_failure) in self.active_test_battery:
-                if test_failure(ps):
-                    log(f'{ps} failed {test_name}. ')
-                    self.error_report_for_external_callers = f'{ps} failed {test_name}'  # For plausibility metrics calculations and output
-                    return False
-        else:
-            if not ps.left.find_me_elsewhere:
+        if not ps.find_me_elsewhere:
+            if ps.is_primitive():
+                for (test_name, test_failure) in self.active_test_battery:
+                    if test_failure(ps):
+                        log(f'{ps} failed {test_name}. ')
+                        self.error_report_for_external_callers = f'{ps} failed {test_name}'  # For plausibility metrics calculations and output
+                        return False
+            else:
                 if not self.pass_LF_legibility(ps.left):
                     return False
-            if not ps.right.find_me_elsewhere:
                 if not self.pass_LF_legibility(ps.right):
                     return False
         return True
@@ -101,12 +100,11 @@ class LF:
                 new_const.adjunct = True
                 return True
 
-    def try_merge_to_left(self, head, phrase):
-        if not head.finite() and not head.edge():
-            target_node = head.specifier_sister()
-            if head.specifier_match(phrase) and self.tail_match(target_node, phrase, 'left'):
-                self.LF_Merge(phrase, target_node, 'left')
-                return True
+    def try_merge_to_left(self, head, reconstructed_object):
+        target_node = head.specifier_sister()
+        if not head.finite() and not head.edge() and head.specifier_match(reconstructed_object) and self.tail_match(target_node, reconstructed_object, 'left'):
+            self.LF_Merge(reconstructed_object, target_node, 'left')
+            return True
 
     def LF_Merge(self, phrase, target_head, direction='left'):
         log(f'Merging {phrase} {direction} of \'{target_head}\'...')

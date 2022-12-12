@@ -1,15 +1,11 @@
 from support import log
 from lexical_interface import LexicalInterface
-from adjunct_constructor import AdjunctConstructor
-from A_reconstruction import A_reconstruction
-
 
 class PhrasalMovement:
     def __init__(self, controlling_parser_process):
         self.brain_model = controlling_parser_process
         self.brain_model.name_provider_index = 1
         self.lexical_access = LexicalInterface(self.brain_model)
-        self.A = A_reconstruction(self.brain_model)
 
     def reconstruct(self, ps):
         for head in ps.minimal_search(lambda x: x.EF()):
@@ -17,11 +13,12 @@ class PhrasalMovement:
                 if not spec.find_me_elsewhere:
                     self.create_phrasal_chain(head, spec, i > 0)
 
-    def create_phrasal_chain(self, head, spec, multi):
-        if self.scan_operator(spec):
-            self.create_A_bar_chain(head, spec, multi)
+    def create_phrasal_chain(self, head, reconstructed_spec, multi):
+        if self.scan_operator(reconstructed_spec):
+            self.create_A_bar_chain(head, reconstructed_spec, multi)
         else:
-            self.A.reconstruct(head, spec)
+            if reconstructed_spec.A_reconstructing():
+                self.brain_model.reconstruct.create_chain(head, reconstructed_spec.copy_for_reconstruction(self.brain_model.babtize()), lambda x: x.has_vacant_phrasal_position(), lambda x: not x.referential(), lambda x: True)
 
     def create_A_bar_chain(self, head, spec, multi):
         self.process_criterial_features(head, spec, multi)

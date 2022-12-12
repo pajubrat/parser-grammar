@@ -6,7 +6,7 @@ def is_unvalued(head):
             return True
 
 def unvalued(f):
-    return f[:4] == 'PHI:' and f[-1] == '_'
+    return f[:4] == 'PHI:' and f[-1] == '_' and f[:7] != 'PHI:DET'
 def valued(f):
     return not unvalued(f)
 def mark_bad(p):
