@@ -31,7 +31,7 @@ class Transfer:
         log('\t\t\t1.\tHead movement reconstruction: ')
         self.head_movement_module.reconstruct(ps.bottom())
         output_to_interfaces['surface structure'] = ps.copy()
-        log(f'\n\t\t\t\t{ps}\n')
+        log(f'\n')
 
         log('\t\t\t2.\tFeature processing: ')
         self.feature_process_module.disambiguate(ps)
@@ -41,14 +41,14 @@ class Transfer:
         self.extraposition_module.reconstruct(ps)
         log(f'\n\t\t\t\t{ps}\n')
 
-        log('\t\t\t4.\tFloater movement reconstruction: ')
+        log('\t\t\t4.\tFloater reconstruction: ')
         ps = self.floater_movement_module.reconstruct(ps)
         log(f'\n\t\t\t\t{ps}\n')
         output_to_interfaces['s-structure'] = ps.copy()
 
-        log('\t\t\t5\tPhrasal movement reconstruction: ')
+        log('\t\t\t5\tPhrasal/head reconstruction: ')
         self.phrasal_movement_module.reconstruct(ps)
-        log(f'\n\t\t\t\t{ps}\n')
+        log(f'\n')
 
         log('\t\t\t6.\tAgreement reconstruction: ')
         self.agreement_module.reconstruct(ps)

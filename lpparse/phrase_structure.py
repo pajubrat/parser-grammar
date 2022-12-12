@@ -112,9 +112,13 @@ class PhraseStructure:
         return next((x for x in memory_span() if condition(x)), None)
 
     def edge(self):
-        if self.upward_path():
-            log(f'{self.upward_path()[0].mother} ')
         return list(takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path()))
+
+    def search_domain(self):
+        if not self.right_sister():
+            return self
+        else:
+            return self.sister()
 
     def geometrical_sister(self):
         if self.is_left():
@@ -166,7 +170,8 @@ class PhraseStructure:
             return self.sister()
 
     def right_sister(self):
-        return self.sister() and self.sister().is_right()
+        if self.sister() and self.sister().is_right():
+            return self.sister()
 
     def specifier_sister(self):
         if self.is_left():
@@ -488,7 +493,25 @@ class PhraseStructure:
         return self.selector() and self.selector().licensed_complements() & self.features
 
     def specifier_match(self, phrase):
-        return self.licensed_specifiers() & phrase.head().features
+        return  phrase.head().check_some(self.licensed_specifiers())
+
+    def A_bar_chain_selection(self):
+        return not self.finite() and not self.edge()
+
+    def A_bar_chain_legibility(self, spec):
+        return (self.specifier_match(spec) and self.specifier_sister().tail_match(self.specifier_sister(), 'left')) or self.complement_match(spec)
+
+    def A_bar_chain_sustain(self):
+        return True
+
+    def A_chain_selection(self):
+        return self.has_vacant_phrasal_position()
+
+    def A_chain_sustain(self):
+        return not self.referential()
+
+    def A_chain_legibility(self):
+        return True
 
     def licensed_phrasal_specifier(self):
         return next((spec for spec in self.edge()
@@ -573,7 +596,7 @@ class PhraseStructure:
             else:
                 if identity in ps.features:
                     return [ps]
-                if ps.complex_head():
+                if ps.has_affix():
                     chain = chain + find_(identity, ps.right)
             return chain
 
@@ -619,6 +642,14 @@ class PhraseStructure:
 
     def positive_features(self, features_to_check):
         return {feature for feature in features_to_check if feature[0] != '*' and feature[0] != '$'}
+
+    def tail_match(self, constituent_from_MB, direction):
+        self.merge_1(constituent_from_MB.copy(), direction)        # Test merge
+        if direction == 'right':                                          # Presupposition
+            self.geometrical_sister().adjunct = True
+        result = self.geometrical_sister().head().tail_test()      # Test
+        self.geometrical_sister().remove()                         # Remove trial unit
+        return result
 
     def extract_pro(self):
         if self.check({'ARG'}) and self.phi_consistent_head():
@@ -687,11 +718,11 @@ class PhraseStructure:
     def merge_to_right(self, node, spec, name):
         if not node.right_sister():
             if node == self:
-                node.merge_1(spec.copy_for_reconstruction(name), 'right')
+                node.merge_1(spec.copy_for_chain(name), 'right')
             else:
-                node.merge_1(spec.copy_for_reconstruction(name), 'left')
+                node.merge_1(spec.copy_for_chain(name), 'left')
         else:
-            node.mother.merge_1(spec.copy_for_reconstruction(name), 'left')
+            node.mother.merge_1(spec.copy_for_chain(name), 'left')
 
     def merge_around(self, reconstructed_object, legibility=lambda x: True):
         if not (self.merge_1(reconstructed_object, 'right') and legibility(reconstructed_object)):
@@ -808,7 +839,7 @@ class PhraseStructure:
                 return cat + suffix
         return 'X' + suffix
 
-    def copy_for_reconstruction(self, babtize='1'):
+    def copy_for_chain(self, babtize='1'):
         def silence_phonologically(h):
             if not h.features:
                 h.features = {'null'}

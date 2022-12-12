@@ -3,7 +3,7 @@ from lexical_interface import LexicalInterface
 
 selection = lambda x: True
 sustain = lambda x: True
-legibility = lambda x: x.properly_selected() and not x.empty_finite_EPP()
+legibility = lambda x, y: y.properly_selected() and not y.empty_finite_EPP() and y.right_sister() != x
 
 class HeadMovement:
     def __init__(self, controlling_parser_process):
@@ -16,8 +16,7 @@ class HeadMovement:
     def reconstruct(self, node):
         while node:
             if node.has_affix() and not node.right.find_me_elsewhere:
-                node = self.brain_model.reconstruct.create_chain(node, node.right.copy_for_reconstruction(self.brain_model.babtize()), selection, sustain, legibility)
-                self.brain_model.consume_resources('A-Chain', node)
+                node = self.brain_model.reconstruct.create_chain(node, node.right.copy_for_chain(self.brain_model.babtize()), selection, sustain, legibility)
             elif node.mother:
                 node = node.mother.sister()
             else:

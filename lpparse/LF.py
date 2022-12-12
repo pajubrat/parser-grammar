@@ -70,53 +70,43 @@ class LF:
             return False
         return True
 
-    #
-    # LF Merge operations (these operations will be replaced with whatever operations are used in enumeration)
-    #
-    def try_LFmerge(self, head, phrase):
-        for try_merge in [self.try_merge_to_left, self.try_adjoin_right, self.try_merge_to_comp]:
-            if try_merge(head, phrase):
-                return True
 
-    def try_merge_to_comp(self, head, phrase):
-        if head.complement_match(phrase):
-            if not head.proper_complement():
-                self.LF_Merge(phrase, head, 'right')
-                self.brain_model.consume_resources("Move Phrase", phrase)
-                return True
-            if head.complement_not_licensed():
-                old_complement = head.proper_complement()
-                head.proper_complement().merge_1(phrase.copy_for_reconstruction(self.brain_model.babtize()), 'left')
-                if old_complement.check({'adjoinable'}):
-                    old_complement.adjunct = True
-                self.brain_model.consume_resources("Move Phrase", phrase)
-                return True
+    #def try_LFmerge(self, head, phrase):
+    #    for try_merge in [self.try_merge_to_left, self.try_adjoin_right, self.try_merge_to_comp]:
+    #        if try_merge(head, phrase):
+    #            return True
 
-    def try_adjoin_right(self, head, phrase):
-        if phrase.head().adverbial():
-            target_node = head.specifier_sister()
-            if self.tail_match(target_node, phrase, 'right'):
-                new_const = self.LF_Merge(phrase, target_node, 'right')
-                new_const.adjunct = True
-                return True
+    #def try_merge_to_comp(self, head, phrase):
+    #    if head.complement_match(phrase):
+    #        if not head.proper_complement():
+    #            self.LF_Merge(phrase, head, 'right')
+    #            self.brain_model.consume_resources("Move Phrase", phrase)
+    #            return True
+    #        if head.complement_not_licensed():
+    #            old_complement = head.proper_complement()
+    #            head.proper_complement().merge_1(phrase.copy_for_chain(self.brain_model.babtize()), 'left')
+    #            if old_complement.check({'adjoinable'}):
+    #                old_complement.adjunct = True
+    #            self.brain_model.consume_resources("Move Phrase", phrase)
+    #            return True
 
-    def try_merge_to_left(self, head, reconstructed_object):
-        target_node = head.specifier_sister()
-        if not head.finite() and not head.edge() and head.specifier_match(reconstructed_object) and self.tail_match(target_node, reconstructed_object, 'left'):
-            self.LF_Merge(reconstructed_object, target_node, 'left')
-            return True
+    #def try_adjoin_right(self, head, phrase):
+    #    if phrase.head().adverbial():
+    #        target_node = head.specifier_sister()
+    #        if self.tail_match(target_node, phrase, 'right'):
+    #            new_const = self.LF_Merge(phrase, target_node, 'right')
+    #            new_const.adjunct = True
+    #            return True
 
-    def LF_Merge(self, phrase, target_head, direction='left'):
-        log(f'Merging {phrase} {direction} of \'{target_head}\'...')
-        new_const = phrase.copy_for_reconstruction(self.brain_model.babtize())
-        target_head.merge_1(new_const, direction)
-        self.brain_model.consume_resources("Ā-Chain", phrase)
-        return new_const
+    #def try_merge_to_left(self, head, reconstructed_object):
+    #    target_node = head.specifier_sister()
+    #    if not head.finite() and not head.edge() and head.specifier_match(reconstructed_object) and self.tail_match(target_node, reconstructed_object, 'left'):
+    #        self.LF_Merge(reconstructed_object, target_node, 'left')
+    #        return True
 
-    def tail_match(self, target_node, constituent_from_MB, direction):
-        target_node.merge_1(constituent_from_MB.copy(), direction)        # Test merge
-        if direction == 'right':                                          # Presupposition
-            target_node.geometrical_sister().adjunct = True
-        result = target_node.geometrical_sister().head().tail_test()      # Test
-        target_node.geometrical_sister().remove()                         # Remove trial unit
-        return result
+    #def LF_Merge(self, phrase, target_head, direction='left'):
+    #    log(f'Merging {phrase} {direction} of \'{target_head}\'...')
+    #    new_const = phrase.copy_for_chain(self.brain_model.babtize())
+    #    target_head.merge_1(new_const, direction)
+    #    self.brain_model.consume_resources("Ā-Chain", phrase)
+    #    return new_const

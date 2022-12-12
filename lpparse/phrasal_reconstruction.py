@@ -9,25 +9,14 @@ class PhrasalMovement:
 
     def reconstruct(self, ps):
         for head in ps.minimal_search(lambda x: x.EF()):
-            for i, spec in enumerate(head.edge()):
-                if not spec.find_me_elsewhere:
-                    self.create_phrasal_chain(head, spec, i > 0)
-
-    def create_phrasal_chain(self, head, reconstructed_spec, multi):
-        if self.scan_operator(reconstructed_spec):
-            self.create_A_bar_chain(head, reconstructed_spec, multi)
-        else:
-            if reconstructed_spec.A_reconstructing():
-                self.brain_model.reconstruct.create_chain(head, reconstructed_spec.copy_for_reconstruction(self.brain_model.babtize()), lambda x: x.has_vacant_phrasal_position(), lambda x: not x.referential(), lambda x: True)
-
-    def create_A_bar_chain(self, head, spec, multi):
-        self.process_criterial_features(head, spec, multi)
-        self.find_gap(head, spec)
-
-    def find_gap(self, head, spec):
-        for head in head.mother.minimal_search():
-            if self.brain_model.LF.try_LFmerge(head, spec):
-                break
+            for i, spec in enumerate([spec for spec in head.edge() if not spec.find_me_elsewhere]):
+                spec_copy = spec.copy_for_chain(self.brain_model.babtize())
+                if self.scan_operator(spec):
+                    self.process_criterial_features(head, spec, i > 0)
+                    self.brain_model.reconstruct.create_chain(head, spec_copy, lambda x: x.A_bar_chain_selection(), lambda x: x.A_bar_chain_sustain(), lambda x, y: x.A_bar_chain_legibility(spec))
+                else:
+                    if spec.A_reconstructing():
+                        self.brain_model.reconstruct.create_chain(head, spec_copy, lambda x: x.A_chain_selection(), lambda x: x.A_chain_sustain(), lambda x, y: x.A_chain_legibility())
 
     def scan_operator(self, spec):
         return self.brain_model.narrow_semantics.operator_variable_module.scan_criterial_features(spec)

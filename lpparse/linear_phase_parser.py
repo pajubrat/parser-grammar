@@ -10,7 +10,7 @@ from lexical_stream import LexicalStream
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
-from reconstruct import Reconstruct
+from reconstruction import Reconstruct
 from itertools import takewhile
 
 class LinearPhaseParser:
@@ -86,9 +86,7 @@ class LinearPhaseParser:
         self.resources = {"Total Time": {'ms': 0, 'n': 0},     # Count predicted cognitive time
                           "Garden Paths": {'ms': 0, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
-                          "Head Chain": {'ms': 5, 'n': 0},
-                          "A-Chain": {'ms': 5, 'n': 0},
-                          "Ā-Chain": {'ms': 5, 'n': 0},
+                          "Chain": {'ms': 5, 'n': 0},
                           "Adjunct Chain": {'ms': 5, 'n': 0},
                           "Phase Transfers": {'ms': 0, 'n': 0},
                           "Mean time per word": {'ms': 0, 'n': 0}
@@ -343,7 +341,7 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'{key}({target.illustrate()}) = {target.top()}. ')
+            log(f'\n\t\t\t\t{key}({target.illustrate()}) = {target.top()}. ')
 
     def LF_legibility_test(self, ps):
         def detached(ps):

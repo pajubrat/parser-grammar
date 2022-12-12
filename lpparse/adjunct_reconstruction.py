@@ -43,7 +43,7 @@ class FloaterMovement():
     def copy_and_insert(self, node, original_floater):
         if not original_floater.adjunct:
             self.adjunct_constructor.externalize_structure(original_floater)
-        reconstructed_floater = original_floater.copy_for_reconstruction(self.babtize())
+        reconstructed_floater = original_floater.copy_for_chain(self.babtize())
         self.merge_floater(node, reconstructed_floater)
         self.brain_model.consume_resources("Adjunct Chain", reconstructed_floater)
         return reconstructed_floater
