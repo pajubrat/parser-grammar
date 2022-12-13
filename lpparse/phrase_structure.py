@@ -403,7 +403,9 @@ class PhraseStructure:
                     (self.proper_complement().check({lexical_feature[6:]}) or lexical_feature[6:] == '*'))
 
     def EF(self):
-        return next((True for f in self.features if ('EF:' in f and '-' not in f) or '!SEF' == f), False)
+        for f in self.features:
+            if f.startswith('!EF:') or f.startswith('EF:') or f == '!SEF':
+                return True
 
     def empty_finite_EPP(self):
         return self.selector().finite_C() and self.EF() and not self.edge()
@@ -493,25 +495,20 @@ class PhraseStructure:
         return self.selector() and self.selector().licensed_complements() & self.features
 
     def specifier_match(self, phrase):
-        return  phrase.head().check_some(self.licensed_specifiers())
+        return phrase.head().check_some(self.licensed_specifiers())
 
-    def A_bar_chain_selection(self):
-        return not self.finite() and not self.edge()
+    def move_upwards(self):
+        if self.mother:
+            return self.mother.sister()
 
-    def A_bar_chain_legibility(self, spec):
-        return (self.specifier_match(spec) and self.specifier_sister().tail_match(self.specifier_sister(), 'left')) or self.complement_match(spec)
+    def unlicensed_specifier(self):
+        return self.is_complex() and not self.adjunct and self.container() and self != self.container().licensed_phrasal_specifier()
 
-    def A_bar_chain_sustain(self):
-        return True
-
-    def A_chain_selection(self):
-        return self.has_vacant_phrasal_position()
-
-    def A_chain_sustain(self):
-        return not self.referential()
-
-    def A_chain_legibility(self):
-        return True
+    # Strong and weak operators
+    def checking_domain(self, narrow_domain):
+        if narrow_domain:
+            return self.head()
+        return self
 
     def licensed_phrasal_specifier(self):
         return next((spec for spec in self.edge()
@@ -582,7 +579,7 @@ class PhraseStructure:
     def probe(self, intervention_features, G):
         if self.sister():
             for node in self.sister().minimal_search():
-                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_criterial_features()):
+                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_operators()):
                     return True
                 if node.check(intervention_features):
                     break

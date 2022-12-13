@@ -84,7 +84,7 @@ class OperatorVariableModule:
         return {f for f in head.features if self.is_operator_feature(f)}
 
     def operator_in_scope_position(self, ps):
-        return self.scan_criterial_features(ps) and ps.container() and ps.container().head().finite()
+        return self.scan_operators(ps) and ps.container() and ps.container().head().finite()
 
     @staticmethod
     def is_operator_feature(f):
@@ -97,13 +97,13 @@ class OperatorVariableModule:
     def get_operator_features(self, features):
         return {f for f in features if self.is_feature_in_operator_system(f)}
 
-    def scan_criterial_features(self, ps):
+    def scan_operators(self, ps):
         # Note: we only take the first operator
         set_ = set()
         if ps.left and not ps.left.find_me_elsewhere:
-            set_ = self.scan_criterial_features(ps.left)
+            set_ = self.scan_operators(ps.left)
         if not set_ and ps.right and not ps.right.find_me_elsewhere and not {'T/fin', 'C'} & ps.right.head().features:
-            set_ = self.scan_criterial_features(ps.right)
+            set_ = self.scan_operators(ps.right)
         if not set_ and ps.is_primitive():
             set_ = self.get_operator_features(ps.features)
         return set_
