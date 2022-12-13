@@ -88,7 +88,7 @@ class LinearPhaseParser:
                           "Merge": {'ms': 5, 'n': 0},
                           "Chain": {'ms': 5, 'n': 0},
                           "Adjunct Chain": {'ms': 5, 'n': 0},
-                          "Phase Transfers": {'ms': 0, 'n': 0},
+                          "Phase Transfer": {'ms': 0, 'n': 0},
                           "Mean time per word": {'ms': 0, 'n': 0}
                           }
 
@@ -313,7 +313,7 @@ class LinearPhaseParser:
         original_mother, is_right = ps.detach()
         output_from_interfaces = {}
         if self.check_transfer_presuppositions(ps):
-            ps, output_from_interfaces = self.transfer.transfer(ps, log_embedding)
+            ps, output_from_interfaces = self.transfer.transfer(ps)
         else:
             log(f'Transfer of {ps} terminated due to input condition violation. ')
         if original_mother:
@@ -334,14 +334,16 @@ class LinearPhaseParser:
                 return False
         return True
 
-    def consume_resources(self, key, target):
+    def consume_resources(self, key, target, typ=''):
+        if typ:
+            typ += ' '
         self.operations += 1
         if not self.first_solution_found:
             self.time_from_stimulus_onset += self.resources[key]['ms']
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'\n\t\t\t\t{key}({target.illustrate()}) = {target.top()}. ')
+            log(f'\n\t\t\t{typ}{key}({target.illustrate()}) => {target.top()}. ')
 
     def LF_legibility_test(self, ps):
         def detached(ps):

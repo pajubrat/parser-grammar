@@ -84,9 +84,9 @@ class AgreementReconstruction:
             h.features = h.features - {f for f in h.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}
             h.features.add(phi)
             if goal.mother:
-                log(f'{h} acquired ' + str(phi) + f' from {goal.mother} inside its {location}...')
+                log(f'\n\t\t\t{h} acquired ' + str(phi) + f' from {goal.mother} inside its {location}...')
             else:
-                log(f'{h} acquired ' + str(phi) + f' from {goal} inside its {location}...')
+                log(f'\n\t\t\t{h} acquired ' + str(phi) + f' from {goal} inside its {location}...')
             h.features.add('PHI_CHECKED')
 
     def valuation_blocked(self, head, f):

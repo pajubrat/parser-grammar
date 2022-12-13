@@ -510,6 +510,28 @@ class PhraseStructure:
             return self.head()
         return self
 
+    def select_objects(self, typ):
+        if typ == 'Head':
+            return [self.right]
+        return [spec for spec in self.edge() if not spec.find_me_elsewhere]
+
+    def scan_operators(self):  # Note: we only take the first operator
+        set_ = set()
+        if self.left and not self.left.find_me_elsewhere:
+            set_ = self.left.scan_operators()
+        if not set_ and self.right and not self.right.find_me_elsewhere and not {'T/fin', 'C'} & self.right.head().features:
+            set_ = self.right.scan_operators()
+        if not set_ and self.is_primitive():
+            set_ = {f for f in self.features if f[:2] == 'OP' and f[-1] != '_'}
+        return set_
+
+    def operator_in_scope_position(self):
+        return self.scan_operators() and self.container() and self.container().head().finite()
+
+    def test_merge(self, obj, legible, direction):
+        self.specifier_sister().merge_1(obj, direction)
+        return legible(self, obj)
+
     def licensed_phrasal_specifier(self):
         return next((spec for spec in self.edge()
                      if spec.referential() and not spec.adjunct),
@@ -527,6 +549,10 @@ class PhraseStructure:
 
     def valid_reconstructed_adjunct(self, starting_point_node):
         return self.head().tail_test() and (self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node))
+
+    def trigger_adjunct_reconstruction(self):
+        return self and not self.legible_adjunct() and self.adjoinable() and self.floatable() and not self.operator_in_scope_position()
+
 
     def projection_principle_applies(self):
         return self.referential() and self.max() and not self.max().find_me_elsewhere and self.max().mother and not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})

@@ -83,30 +83,9 @@ class OperatorVariableModule:
     def is_operator(self, head):
         return {f for f in head.features if self.is_operator_feature(f)}
 
-    def operator_in_scope_position(self, ps):
-        return self.scan_operators(ps) and ps.container() and ps.container().head().finite()
-
     @staticmethod
     def is_operator_feature(f):
         return f[:3] == 'OP:' and f[-1] != '_'
-
-    @staticmethod
-    def is_feature_in_operator_system(feature):
-        return feature[:2] == 'OP' and feature[-1] != '_'
-
-    def get_operator_features(self, features):
-        return {f for f in features if self.is_feature_in_operator_system(f)}
-
-    def scan_operators(self, ps):
-        # Note: we only take the first operator
-        set_ = set()
-        if ps.left and not ps.left.find_me_elsewhere:
-            set_ = self.scan_operators(ps.left)
-        if not set_ and ps.right and not ps.right.find_me_elsewhere and not {'T/fin', 'C'} & ps.right.head().features:
-            set_ = self.scan_operators(ps.right)
-        if not set_ and ps.is_primitive():
-            set_ = self.get_operator_features(ps.features)
-        return set_
 
     def get_object(self, idx):
         return self.inventory[idx]
@@ -114,7 +93,6 @@ class OperatorVariableModule:
     @staticmethod
     def accept(ps):
         return False
-        # return {f for f in ps.head().features if f[:3] == 'OP:'}
 
     def update(self, idx, criteria):
         self.inventory[idx].update(criteria)

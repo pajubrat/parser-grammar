@@ -2,6 +2,7 @@ from lexical_interface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
 from support import log
 
+
 class FloaterMovement():
     def __init__(self, controlling_parser_process):
         self.brain_model = controlling_parser_process
@@ -12,12 +13,9 @@ class FloaterMovement():
         self.adjunct_constructor = AdjunctConstructor(self.brain_model)
 
     def reconstruct(self, ps):
-        for constituent in ps.symmetric_minimal_search(lambda x: self.trigger_reconstruction(x), lambda x: x.is_right()):
+        for constituent in ps.symmetric_minimal_search(lambda x: x.trigger_adjunct_reconstruction(), lambda x: x.is_right()):
             self.reconstruct_floater(constituent)
         return ps.top()
-
-    def trigger_reconstruction(self, target):
-        return target and not target.legible_adjunct() and target.adjoinable() and target.floatable() and not self.brain_model.narrow_semantics.operator_variable_module.operator_in_scope_position(target)
 
     def reconstruct_floater(self, target):
         if target.is_right():
