@@ -334,16 +334,14 @@ class LinearPhaseParser:
                 return False
         return True
 
-    def consume_resources(self, key, target, typ=''):
-        if typ:
-            typ += ' '
+    def consume_resources(self, key, target):
         self.operations += 1
         if not self.first_solution_found:
             self.time_from_stimulus_onset += self.resources[key]['ms']
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'\n\t\t\t{typ}{key}({target.illustrate()}) => {target.top()}. ')
+            log(f'\n\t\t\t{key}( {target.illustrate()} ) => {target.top()}. ')
 
     def LF_legibility_test(self, ps):
         def detached(ps):

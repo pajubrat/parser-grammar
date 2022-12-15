@@ -92,11 +92,14 @@ class PhraseStructure:
     def symmetric_minimal_search(self, condition=lambda x: x == x, stop_condition=lambda x: x == x):
         lst = []
         for node in self.top().minimal_search():
-            for daughter in [node, node.sister()]:
-                if condition(daughter):
-                    lst.append(daughter)
-                    if stop_condition(daughter):
-                        break
+            if condition(node):
+                lst.append(node)
+                if stop_condition(node):
+                    break
+            if node.sister() and condition(node.sister()):
+                lst.append(node.sister())
+                if stop_condition(node.sister()):
+                    break
         return lst
 
     def upward_path(self):
@@ -510,8 +513,8 @@ class PhraseStructure:
             return self.head()
         return self
 
-    def select_objects(self, typ):
-        if typ == 'Head':
+    def select_objects(self, chain):
+        if chain['type'] == 'Head':
             return [self.right]
         return [spec for spec in self.edge() if not spec.find_me_elsewhere]
 

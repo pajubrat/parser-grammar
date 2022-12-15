@@ -5,6 +5,19 @@ from feature_disambiguation import FeatureProcessing
 from extraposition import Extraposition
 from surface_conditions import SurfaceConditions
 
+chain_type = {'Head':  {'type': 'Head',
+                        'need repair': lambda x: x.has_affix() and not x.right.find_me_elsewhere,
+                        'selection': lambda x: True,
+                        'sustain': lambda x: True,
+                        'legible': lambda x, y: y.properly_selected() and not y.empty_finite_EPP() and y.right_sister() != x},
+            'Phrasal': {'type': 'Phrasal',
+                        'need repair': lambda x: x.EF(),
+                        'selection': lambda x: not x.finite() and not x.edge(),
+                        'sustain': lambda x: True,
+                        'legible': lambda x, y: (x.specifier_match(y) and x.specifier_sister().tail_match(x.specifier_sister(), 'left')) or x.complement_match(y),
+                        'last resort': lambda x: x == x.container().licensed_phrasal_specifier() or x.VP_for_fronting()},
+            }
+
 
 class Transfer:
     def __init__(self, controlling_parser_process):
@@ -21,14 +34,13 @@ class Transfer:
         if not is_logging_enabled():
             log(f'Transferring {ps} to LF...')
         output_to_interfaces['spellout structure'] = ps.copy()
-        self.brain_model.consume_resources("Phase Transfer", ps)
-        self.brain_model.reconstruction.reconstruct(ps.bottom(), 'Head')
+        self.brain_model.reconstruction.reconstruct(ps.bottom(), chain_type['Head'])
         output_to_interfaces['surface structure'] = ps.copy()
         self.feature_process_module.disambiguate(ps)
         self.extraposition_module.reconstruct(ps)
         ps = self.floater_movement_module.reconstruct(ps)
         output_to_interfaces['s-structure'] = ps.copy()
-        self.brain_model.reconstruction.reconstruct(ps.bottom(), 'Phrasal')
+        self.brain_model.reconstruction.reconstruct(ps.bottom(), chain_type['Phrasal'])
         self.agreement_module.reconstruct(ps)
         self.extraposition_module.last_resort_reconstruct(ps)
         output_to_interfaces['LF structure'] = ps.copy()
