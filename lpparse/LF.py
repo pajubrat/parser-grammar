@@ -43,8 +43,8 @@ class LF:
             if ps.is_primitive():
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(ps):
-                        log(f'{ps} failed {test_name}. ')
-                        self.error_report_for_external_callers = f'{ps} failed {test_name}'  # For plausibility metrics calculations and output
+                        log(f'\t\t{ps} failed {test_name}. ')
+                        self.error_report_for_external_callers = f'\t\t{ps} failed {test_name}'  # For plausibility metrics calculations and output
                         return False
             else:
                 if not self.pass_LF_legibility(ps.left):
@@ -56,7 +56,7 @@ class LF:
     def selection_test(self, probe):
         for lexical_feature in sorted(for_lf_interface(probe.features)):
             if lexical_feature[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[lexical_feature[:5]](probe, lexical_feature):
-                log(f'{probe} failed feature {lexical_feature}. ')
+                log(f'\t\t{probe} failed feature {lexical_feature}. ')
                 return True
 
     def final_tail_check(self, goal):
@@ -69,44 +69,3 @@ class LF:
             log(f'Post-syntactic tail test for \'{goal.illustrate()}\', {goal.max().illustrate()} failed. ')
             return False
         return True
-
-
-    #def try_LFmerge(self, head, phrase):
-    #    for try_merge in [self.try_merge_to_left, self.try_adjoin_right, self.try_merge_to_comp]:
-    #        if try_merge(head, phrase):
-    #            return True
-
-    #def try_merge_to_comp(self, head, phrase):
-    #    if head.complement_match(phrase):
-    #        if not head.proper_complement():
-    #            self.LF_Merge(phrase, head, 'right')
-    #            self.brain_model.consume_resources("Move Phrase", phrase)
-    #            return True
-    #        if head.complement_not_licensed():
-    #            old_complement = head.proper_complement()
-    #            head.proper_complement().merge_1(phrase.copy_for_chain(self.brain_model.babtize()), 'left')
-    #            if old_complement.check({'adjoinable'}):
-    #                old_complement.adjunct = True
-    #            self.brain_model.consume_resources("Move Phrase", phrase)
-    #            return True
-
-    #def try_adjoin_right(self, head, phrase):
-    #    if phrase.head().adverbial():
-    #        target_node = head.specifier_sister()
-    #        if self.tail_match(target_node, phrase, 'right'):
-    #            new_const = self.LF_Merge(phrase, target_node, 'right')
-    #            new_const.adjunct = True
-    #            return True
-
-    #def try_merge_to_left(self, head, reconstructed_object):
-    #    target_node = head.specifier_sister()
-    #    if not head.finite() and not head.edge() and head.specifier_match(reconstructed_object) and self.tail_match(target_node, reconstructed_object, 'left'):
-    #        self.LF_Merge(reconstructed_object, target_node, 'left')
-    #        return True
-
-    #def LF_Merge(self, phrase, target_head, direction='left'):
-    #    log(f'Merging {phrase} {direction} of \'{target_head}\'...')
-    #    new_const = phrase.copy_for_chain(self.brain_model.babtize())
-    #    target_head.merge_1(new_const, direction)
-    #    self.brain_model.consume_resources("Ā-Chain", phrase)
-    #    return new_const

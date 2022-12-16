@@ -27,7 +27,7 @@ class LexicalStream:
                 stri = lst_branched[index][:-1]
             else:
                 stri = lst_branched[index]
-            log(f'\n\t\tNext morph [{stri}] ~ {terminal_lexical_item.label()}°')
+            log(f'\n\tNext morph [{stri}] ~ {terminal_lexical_item.label()}°\n')
             if not ps:
                 self.controlling_parser_process.parse_new_item(terminal_lexical_item.copy(), lst_branched, index + 1)
             else:
@@ -51,7 +51,7 @@ class LexicalStream:
                     inflection_buffer = inflection_buffer.union(inflection)
         else:
             if inflection_buffer:
-                log(f'=> into next morph ({lexical_item}) ')
+                log(f'=> into next morph ({lexical_item}) \n')
                 lexical_item.features = self.lexicon.apply_redundancy_rules(lexical_item.features | inflection_buffer)
                 inflection_buffer = None
         return lexical_item, inflection_buffer

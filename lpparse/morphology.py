@@ -16,7 +16,7 @@ class Morphology:
         current_lexical_item = lexical_item
         while self.is_polymorphemic(current_lexical_item):
 
-            log(f'\n\t\t/{input_word_list[index]}/ ~ ')
+            log(f'\n\t/{input_word_list[index]}/ ~ ')
 
             # Solves an ambiguity in C_features, i.e. whether they are criterial or head features
             current_lexical_item = self.Aux_inversion(current_lexical_item)

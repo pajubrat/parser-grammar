@@ -10,8 +10,7 @@ from lexical_stream import LexicalStream
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
-from reconstruction import Reconstruct
-from itertools import takewhile
+
 
 class LinearPhaseParser:
     def __init__(self, local_file_system, language=''):
@@ -34,7 +33,6 @@ class LinearPhaseParser:
         self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
         self.morphology = Morphology(self)                      # Access to morphology
         self.transfer = Transfer(self)                          # Access to transfer
-        self.reconstruction = Reconstruct(self)                    # Access to general reconstruction function
         self.local_file_system = local_file_system              # Access to local file system
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
@@ -87,8 +85,11 @@ class LinearPhaseParser:
                           "Garden Paths": {'ms': 0, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
                           "Chain": {'ms': 5, 'n': 0},
+                          "Agree": {'ms': 5, 'n': 0},
+                          "Feature": {'ms': 5, 'n': 0},
                           "Adjunct Chain": {'ms': 5, 'n': 0},
-                          "Phase Transfer": {'ms': 0, 'n': 0},
+                          "Extraposition": {'ms': 6, 'n': 0},
+                          "Last Resort Extraposition": {'ms': 5, 'n': 0},
                           "Mean time per word": {'ms': 0, 'n': 0}
                           }
 
@@ -128,7 +129,7 @@ class LinearPhaseParser:
 
             # ---------------------------------------------------------------------------------------------#
             for site, transfer, address_label in merge_sites:
-                log(f'\n\t\t...{address_label}')
+                log(f'\n\t\t{address_label}')
                 left_branch = self.target_left_branch_(ps, site)
                 new_constituent = self.attach(left_branch, site, terminal_lexical_item, transfer)
                 self.put_rest_out_of_working_memory(merge_sites)
@@ -175,9 +176,6 @@ class LinearPhaseParser:
             return True
 
     def attach_into_phrase(self, left_branch, terminal_lexical_item, transfer):
-        log(f'\n\t\tTry [{left_branch} + {terminal_lexical_item.get_phonological_string()}°]...')
-        log(f'Transferring left branch {left_branch}...')
-        self.consume_resources("Merge", terminal_lexical_item)
         set_logging(False)
         if transfer:
             new_left_branch, output_from_interfaces = self.transfer_to_LF(left_branch)
@@ -186,15 +184,13 @@ class LinearPhaseParser:
 
         new_constituent = new_left_branch.merge_1(terminal_lexical_item)
         set_logging(True)
+        self.consume_resources("Merge", terminal_lexical_item)
         self.remove_from_syntactic_working_memory(left_branch)
-        log(f'= {new_constituent}.')
         return new_constituent
 
     def sink_into_complex_head(self, left_branch, terminal_lexical_item):
-        log(f'\n\t\tTry {left_branch.bottom_affix().label()}° <= {terminal_lexical_item.label()}°...')
         new_constituent = left_branch.bottom_affix().sink(terminal_lexical_item)
         self.consume_resources("Merge", terminal_lexical_item)
-        log(f'={new_constituent}.')
         return new_constituent
 
     def maintain_working_memory(self, site):
@@ -242,14 +238,13 @@ class LinearPhaseParser:
             return
         log('\t\tTransferring to LF...')
         ps_, self.narrow_semantics.access_interface = self.transfer_to_LF(ps)
-        log('\t\tDone.\n')
         ps = ps.top()  # If transfer expands the structure, we need to get to the top
-        log(f'\t\tCalculation LF-legibility and semantic interpretation: ')
+        log(f'\n')
         if not self.LF.LF_legibility_test(ps) or \
                 not self.LF.final_tail_check(ps) or \
                 not self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path(ps)
-            log('Solution was rejected. \n')
+            log('\n\t\tSolution was rejected. \n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps_))
             self.narrow_semantics.reset_for_new_interpretation()
@@ -309,7 +304,7 @@ class LinearPhaseParser:
             return True
         log('Done.\n')
 
-    def transfer_to_LF(self, ps, log_embedding=3):
+    def transfer_to_LF(self, ps):
         original_mother, is_right = ps.detach()
         output_from_interfaces = {}
         if self.check_transfer_presuppositions(ps):
@@ -341,7 +336,7 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'\n\t\t\t{key}( {target.illustrate()} ) => {target.top()}. ')
+            log(f'\n\t\t{key}( {target.illustrate()} ) => {target.top()}')
 
     def LF_legibility_test(self, ps):
         def detached(ps):

@@ -10,7 +10,7 @@ class GlobalCognition:
     def end_conversation(self):
         self.inventory = {}
         self.index_counter = 1
-        log('CONVERSATION ENDED.')
+        log('\tCONVERSATION ENDED.')
 
     def present(self, head):
         return f'{head.max().illustrate()}'

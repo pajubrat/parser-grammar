@@ -142,6 +142,16 @@ class PhraseStructure:
                 else:
                     return None
 
+    def form_chain(self, target, instructions):
+        for head in self.search_domain().minimal_search(instructions['selection'], instructions['sustain']):
+            if head.test_merge(target, instructions['legible'], 'left'):
+                break
+            target.remove()
+        else:
+            if not head.test_merge(target, instructions['legible'], 'right'):
+                target.remove()
+                self.sister().merge_1(target, 'left')
+
     def proper_complement(self):
         if self.is_primitive() and self.sister() and self.sister().is_right():
             return self.sister()
@@ -227,6 +237,90 @@ class PhraseStructure:
     def cutoff_point_for_last_resort_extraposition(self):
         return self.is_primitive() and self.is_adjoinable() and self.aunt() and \
                (self.aunt().is_complex() or (self.aunt().is_primitive() and self.grandmother().induces_selection_violation()))
+
+    def is_unvalued(self):
+        for f in self.features:
+            if self.unvalued(f):
+                return True
+
+    def unvalued(self, f):
+        return f[:4] == 'PHI:' and f[-1] == '_' and f[:7] != 'PHI:DET'
+
+    def Agree(self, brain_model):
+        if self.sister():
+            goal, phi = self.Agree_from_sister()
+            if phi:
+                brain_model.narrow_semantics.predicate_argument_dependencies.append((self, goal))
+                if self.adverbial() or self.check({'VA/inf'}):  # Complementary distribution of phi and overt subject in this class
+                    self.features.add('-pro')
+                if not self.referential():
+                    self.features.add('BLOCK_NS')               # Block semantic object projection
+                for p in phi:
+                    self.value(goal, p)
+                if not self.is_unvalued():
+                    return
+
+        goal2, phi = self.Agree_from_edge()
+        if goal2:
+            for p in phi:
+                if {f for f in self.features if self.unvalued(f) and f[:-1] == p[:len(f[:-1])]}:
+                    self.value(goal2, p)
+            if not self.referential() and not goal2.check({'pro'}):
+                self.features.add('BLOCK_NS')  # Block semantic object projection
+
+    def Agree_from_sister(self):
+        for goal in self.sister().minimal_search(lambda x: x.is_complex()):
+            if self.agreement_condition(goal):
+                return goal.head(), sorted({f for f in goal.head().features if f[:4] == 'PHI:' and f[:7] != 'PHI:DET' and not self.unvalued(f)})
+            else:
+                break
+        return None, None
+
+    def Agree_from_edge(self):
+        return next(((const.head(), sorted({f for f in const.head().features if f[:4] == 'PHI:' and not self.unvalued(f)}))
+                     for const in [const for const in self.edge()] + [self.extract_pro()] if
+                     const and self.agreement_condition(const)), (None, {}))
+
+    def agreement_condition(self, goal):
+        if goal.head().referential():
+            if not goal.head().check({'LANG:FI'}):
+                return True
+            else:
+                if goal.head().check({'pro'}):
+                    return True
+                else:
+                    # To be replaced with the head-case model
+                    if self.finite() and goal.head().check({'NOM'}):
+                        return True
+                    if self.nonfinite() and goal.head().check({'GEN'}):
+                        return True
+
+    def value(self, goal, phi):
+        if self.valued_phi_features() and self.valuation_blocked(phi):
+            log(f'Valuation of {self} was blocked for {phi}...')
+            self.features.add(phi + '*')
+
+        if {f for f in self.features if self.unvalued(f) and f[:-1] == phi[:len(f[:-1])]}:
+            self.features = self.features - {f for f in self.features if self.unvalued(f) and f[:-1] == phi[:len(f[:-1])]}
+            self.features.add(phi)
+            if goal.mother:
+                log(f'\n\t\t{self} acquired ' + str(phi) + f' from {goal.mother.illustrate()}...')
+            else:
+                log(f'\n\t\t{self} acquired ' + str(phi) + f' from {goal.illustrate()}...')
+            self.features.add('PHI_CHECKED')
+
+    def valuation_blocked(self, f):
+        # We do not check violation, only that if types match there must be a licensing feature with identical value.
+        valued_input_feature_type = f.split(':')[1]
+        # Find type matches
+        valued_phi_in_h = {phi for phi in self.get_phi_set() if
+                           not self.unvalued(phi) and phi.split(':')[1] == valued_input_feature_type}
+        if valued_phi_in_h:
+            # Find if there is a licensing element
+            if {phi for phi in valued_phi_in_h if phi == f}:
+                return False
+            log(f'Feature {f} cannot be valued into {self}.')
+            return True
 
     # 2. PROPERTIES DEFINED BY LEXICAL FEATURES =====================================================================
 
@@ -333,6 +427,13 @@ class PhraseStructure:
 
     def license_extraposition(self):
         return self.top().contains_finiteness() or self.top().referential()
+
+    def extrapose(self, brain_model):
+        brain_model.adjunct_constructor.externalize_structure(self.sister().head())
+
+    def last_resort_extrapose(self, brain_model):
+        if not brain_model.LF_legibility_test(self.top()):
+            brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
 
     def has_unlicensed_specifier(self):
         return set(self.specifiers_not_licensed()) & set(next((const for const in self.edge()), None).head().features)
@@ -513,10 +614,25 @@ class PhraseStructure:
             return self.head()
         return self
 
-    def select_objects(self, chain):
-        if chain['type'] == 'Head':
-            return [self.right]
-        return [spec for spec in self.edge() if not spec.find_me_elsewhere]
+    def select_objects_from_edge(self, instructions):
+        if instructions['type'] == 'Phrasal':
+            return [spec for spec in self.edge() if not spec.find_me_elsewhere]
+        return [self.right]
+
+    def resolve_neutralized_feature(self, brain_model):
+        self.features.discard('?ARG')
+        if self.selected_by_SEM_internal_predicate():
+            log(f'{self} resolved into -ARG due to {self.selector()}...')
+            self.features.add('-EF:φ')
+            self.features.discard('EF:φ')
+            self.features.add('-ARG')
+        else:
+            log(f'{self} resolved into +ARG...')
+            self.features.add('ARG')
+            self.features.add('!EF:φ')
+            self.features.add('EF:φ')
+            self.features.add('PHI:NUM:_')
+            self.features.add('PHI:PER:_')
 
     def scan_operators(self):  # Note: we only take the first operator
         set_ = set()
@@ -945,9 +1061,9 @@ class PhraseStructure:
             chain_index_str = chain_index_str + ''
         if self.features and 'null' in self.features and self.is_complex():
             if self.adjunct:
-                return '<_>' + chain_index_str
+                return '<__>' + chain_index_str
             else:
-                return '_' + chain_index_str
+                return '__' + chain_index_str
         if self.is_primitive():
             if not self.get_phonological_string():
                 return '?'
@@ -979,10 +1095,10 @@ class PhraseStructure:
         pfs = [f[3:] for f in self.features if f[:2] == 'PF']
         if self.has_affix():
             if self.right.find_me_elsewhere:
-                affix_str = '_'
+                affix_str = ''
             else:
-                affix_str = show_affix(self)
-            return '.'.join(sorted(pfs)) + '(' + affix_str + ')'
+                affix_str = '(' + show_affix(self) + ')'
+            return '.'.join(sorted(pfs)) + affix_str
         else:
             return '.'.join(sorted(pfs))
 
