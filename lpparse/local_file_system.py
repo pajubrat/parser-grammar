@@ -258,8 +258,6 @@ class LocalFileSystem:
         tabs_str = '\t'
         for key in semantic_interpretation_dict:
             if semantic_interpretation_dict[key]:
-                if key == 'spellout structure':
-                    output_str += '\n' + tabs_str + 'Summary of the derivation:\n'
                 if key == 'Assignments':
                     output_str += tabs_str + key + ': ' + str(self.illustrated(semantic_interpretation_dict[key], parser)) + '\n'
                 else:

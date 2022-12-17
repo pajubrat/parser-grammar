@@ -7,6 +7,7 @@ major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'A
 
 Result = namedtuple('Result', 'match_occurred outcome')
 
+
 class PhraseStructure:
     resources = {"Merge-1": {"ms": 0, "n": 0}}
 
@@ -432,8 +433,7 @@ class PhraseStructure:
         brain_model.adjunct_constructor.externalize_structure(self.sister().head())
 
     def last_resort_extrapose(self, brain_model):
-        if not brain_model.LF_legibility_test(self.top()):
-            brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
+        brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
 
     def has_unlicensed_specifier(self):
         return set(self.specifiers_not_licensed()) & set(next((const for const in self.edge()), None).head().features)

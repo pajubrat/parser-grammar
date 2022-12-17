@@ -244,7 +244,7 @@ class LinearPhaseParser:
                 not self.LF.final_tail_check(ps) or \
                 not self.narrow_semantics.postsyntactic_semantic_interpretation(ps_):
             self.add_garden_path(ps)
-            log('\n\t\tSolution was rejected. \n')
+            log('\n\t\tSOLUTION WAS REJECTED. \n\n')
             log('\t\tMemory dump:\n')
             log(show_primitive_constituents(ps_))
             self.narrow_semantics.reset_for_new_interpretation()
@@ -308,7 +308,8 @@ class LinearPhaseParser:
         original_mother, is_right = ps.detach()
         output_from_interfaces = {}
         if self.check_transfer_presuppositions(ps):
-            ps, output_from_interfaces = self.transfer.transfer(ps)
+            ps, output_from_interfaces = self.transfer.execute_sequence(ps)
+            log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps}')
         else:
             log(f'Transfer of {ps} terminated due to input condition violation. ')
         if original_mother:
