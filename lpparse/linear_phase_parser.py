@@ -84,7 +84,9 @@ class LinearPhaseParser:
         self.resources = {"Total Time": {'ms': 0, 'n': 0},     # Count predicted cognitive time
                           "Garden Paths": {'ms': 0, 'n': 0},
                           "Merge": {'ms': 5, 'n': 0},
-                          "Chain": {'ms': 5, 'n': 0},
+                          "Head Chain": {'ms': 5, 'n': 0},
+                          "Phrasal Chain": {'ms': 5, 'n': 0},
+                          "Feature Chain": {'ms': 5, 'n': 0},
                           "Agree": {'ms': 5, 'n': 0},
                           "Feature": {'ms': 5, 'n': 0},
                           "Adjunct Chain": {'ms': 5, 'n': 0},

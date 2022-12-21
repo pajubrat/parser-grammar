@@ -3,7 +3,7 @@ from adjunct_constructor import AdjunctConstructor
 from support import log
 
 
-class FloaterMovement():
+class ScramblingReconstruction():
     def __init__(self, controlling_parser_process):
         self.brain_model = controlling_parser_process
         self.name_provider_index = 0
@@ -14,10 +14,10 @@ class FloaterMovement():
 
     def reconstruct(self, ps):
         for constituent in ps.symmetric_minimal_search(lambda x: x.trigger_adjunct_reconstruction(), lambda x: x.is_right()):
-            self.reconstruct_floater(constituent)
+            self.reconstruct_scrambled_item(constituent)
         return ps.top()
 
-    def reconstruct_floater(self, target):
+    def reconstruct_scrambled_item(self, target):
         if target.is_right():
             self.adjunct_constructor.externalize_structure(target.head())
             if target.legible_adjunct() or target.head().adverbial() or not target.top().contains_finiteness():

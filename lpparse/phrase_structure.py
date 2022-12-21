@@ -29,7 +29,7 @@ class PhraseStructure:
         self.identity = ''
         self.rebaptized = False
         self.stop = False
-        self.np = None
+        self.nn = None
         self.x = 0
         self.y = 0
         if left_constituent and left_constituent.adjunct and left_constituent.is_primitive():
@@ -70,20 +70,20 @@ class PhraseStructure:
 
     # Bare minimal search, follows labeling and selection
     def __next__(self):
-        if not self.np:
+        if not self.nn:
             raise StopIteration
-        current = self.np
-        if self.np.is_primitive():
-            self.np = None
+        current = self.nn
+        if self.nn.is_primitive():
+            self.nn = None
             return current
-        elif self.np.head() == self.np.right.head() or self.np.left.select_right():
-            self.np = self.np.right
+        elif self.nn.head() == self.nn.right.head() or self.nn.left.select_right():
+            self.nn = self.nn.right
         else:
-            self.np = self.np.left
+            self.nn = self.nn.left
         return current.left
 
     def __iter__(self):
-        self.np = self
+        self.nn = self
         return self
 
     # Minimal search with a search and stop conditions
@@ -143,13 +143,13 @@ class PhraseStructure:
                 else:
                     return None
 
-    def form_chain(self, target, instructions):
-        for head in self.search_domain().minimal_search(instructions['selection'], instructions['sustain']):
-            if head.test_merge(target, instructions['legible'], 'left'):
+    def form_chain(self, target, inst):
+        for head in self.search_domain().minimal_search(inst['selection'], inst['sustain']):
+            if head.test_merge(target, inst['legible'], 'left'):
                 break
             target.remove()
         else:
-            if not head.test_merge(target, instructions['legible'], 'right'):
+            if not head.test_merge(target, inst['legible'], 'right'):
                 target.remove()
                 self.sister().merge_1(target, 'left')
 
@@ -247,11 +247,11 @@ class PhraseStructure:
     def unvalued(self, f):
         return f[:4] == 'PHI:' and f[-1] == '_' and f[:7] != 'PHI:DET'
 
-    def Agree(self, brain_model):
+    def Agree(self, transfer):
         if self.sister():
             goal, phi = self.Agree_from_sister()
             if phi:
-                brain_model.narrow_semantics.predicate_argument_dependencies.append((self, goal))
+                transfer.brain_model.narrow_semantics.predicate_argument_dependencies.append((self, goal))
                 if self.adverbial() or self.check({'VA/inf'}):  # Complementary distribution of phi and overt subject in this class
                     self.features.add('-pro')
                 if not self.referential():
@@ -322,6 +322,23 @@ class PhraseStructure:
                 return False
             log(f'Feature {f} cannot be valued into {self}.')
             return True
+
+    def create_chain(self, transfer, inst):
+        for i, target in enumerate(self.select_objects_from_edge(inst)):
+            inst, target = target.prepare_chain(self, inst, i > 0, target.scan_operators(), transfer)
+            self.form_chain(target, inst)
+            transfer.brain_model.consume_resources(inst['type'], self)
+            if inst['need repair'](target):
+                target.create_chain(transfer, inst)
+
+    def prepare_chain(self, probe, inst, new_head_needed, op_features, transfer):
+        if inst['type'] == 'Phrasal Chain':
+            if not op_features:
+                inst = {'type': 'Phrasal Chain', 'selection': lambda x: x.has_vacant_phrasal_position(), 'sustain': lambda x: not x.referential(), 'legible': lambda x, y: True, 'need repair': lambda x: False}
+            elif new_head_needed and (op_features or self.unlicensed_specifier()):
+                probe = self.sister().merge_1(transfer.access_lexicon.PhraseStructure(), 'left').left
+            probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
+        return inst, self.copy_for_chain(transfer.brain_model.babtize())
 
     # 2. PROPERTIES DEFINED BY LEXICAL FEATURES =====================================================================
 
@@ -429,11 +446,11 @@ class PhraseStructure:
     def license_extraposition(self):
         return self.top().contains_finiteness() or self.top().referential()
 
-    def extrapose(self, brain_model):
-        brain_model.adjunct_constructor.externalize_structure(self.sister().head())
+    def extrapose(self, transfer):
+        transfer.brain_model.adjunct_constructor.externalize_structure(self.sister().head())
 
-    def last_resort_extrapose(self, brain_model):
-        brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
+    def last_resort_extrapose(self, transfer):
+        transfer.brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
 
     def has_unlicensed_specifier(self):
         return set(self.specifiers_not_licensed()) & set(next((const for const in self.edge()), None).head().features)
@@ -615,11 +632,11 @@ class PhraseStructure:
         return self
 
     def select_objects_from_edge(self, instructions):
-        if instructions['type'] == 'Phrasal':
+        if instructions['type'] == 'Phrasal Chain':
             return [spec for spec in self.edge() if not spec.find_me_elsewhere]
         return [self.right]
 
-    def resolve_neutralized_feature(self, brain_model):
+    def resolve_neutralized_feature(self):
         self.features.discard('?ARG')
         if self.selected_by_SEM_internal_predicate():
             log(f'{self} resolved into -ARG due to {self.selector()}...')
