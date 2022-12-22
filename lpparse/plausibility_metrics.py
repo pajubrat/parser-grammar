@@ -7,13 +7,42 @@ from knockouts import knockout_filter, \
     knockout_lexical_ranking, \
     knockout_baseline_weighting, \
     knockout_working_memory
+from feature_processing import convert_features_for_parsing
 
 class PlausibilityMetrics:
     def __init__(self, controlling_parsing_process):
         self.brain_model = controlling_parsing_process
         self.weighted_site_list = []
         self.word = None
-        self.plausibility_conditions = {}
+        self.plausibility_conditions = \
+            {'positive_spec_selection':         {'condition': self.positive_spec_selection,
+                                                 'weight': self.brain_model.local_file_system.settings.get('positive_spec_selection', 100),
+                                                 'log': '+Spec selection'},
+             'negative_spec_selection':         {'condition': self.negative_spec_selection,
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_spec_selection', -100),
+                                                 'log': '-Spec selection'},
+             'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
+                                                 'weight': self.brain_model.local_file_system.settings.get('break_head_comp_relations', -100),
+                                                 'log': 'Head-complement word breaking condition'},
+             'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
+                                                 'weight': self.brain_model.local_file_system.settings.get('positive_head_comp_selection', 100),
+                                                 'log': '+Comp selection'},
+             'negative_head_comp_selection':    {'condition': self.negative_head_comp_selection,
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_head_comp_selection', -100),
+                                                 'log': '-Comp selection'},
+             'negative_semantics_match':        {'condition': self.negative_semantic_match,
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_semantics_match', -100),
+                                                 'log': 'Semantic mismatch'},
+             'lf_legibility_condition':         {'condition': self.lf_legibility_condition,
+                                                 'weight': self.brain_model.local_file_system.settings.get('lf_legibility_condition', -100),
+                                                 'log': '-LF-legibility for left branch'},
+             'negative_adverbial_test':         {'condition': self.negative_adverbial_test,
+                                                 'weight': self.brain_model.local_file_system.settings.get('negative_adverbial_test', -100),
+                                                 'log': '-Adverbial condition'},
+             'positive_adverbial_test':         {'condition': self.positive_adverbial_test,
+                                                 'weight': self.brain_model.local_file_system.settings.get('positive_adverbial_test', 100),
+                                                 'log': '+Adverbial condition'}
+             }
         self.word_specs = None
         self.not_word_specs = None
         self.rare_word_specs = None
@@ -24,7 +53,14 @@ class PlausibilityMetrics:
                                                 ('Probe_Goal test', PhraseStructure.probe_goal_test),
                                                 ('Head Integrity test', PhraseStructure.unrecognized_label)]
 
-    # Main entry point
+    def initialize(self):
+        self.weighted_site_list = []
+        self.word = None
+        self.word_specs = None
+        self.not_word_specs = None
+        self.rare_word_specs = None
+        self.word_tail_set = None
+
     def filter_and_rank(self, ps, w):
         nodes_not_in_active_working_memory = []
 
@@ -33,7 +69,7 @@ class PlausibilityMetrics:
             return []
 
         # Word internal components are always sank into the bottom word, no need to filter or rank
-        elif self.word_internal(ps, w) and self.dispersion_filter_active():
+        elif ps.word_internal() and self.dispersion_filter_active():
             solutions = [(ps.bottom(), True, self.generate_address_label())]
         else:
             nodes_in_active_working_memory, nodes_not_in_active_working_memory = self.in_active_working_memory(ps)
@@ -106,15 +142,15 @@ class PlausibilityMetrics:
     def positive_head_comp_selection(self, site):
         if site.is_primitive():
             for m in site.get_affix_list():
-                if self.word.features & m.convert_features_for_parsing(m.licensed_complements()):
+                if self.word.features & convert_features_for_parsing(m.licensed_complements()):
                     return True
 
     @knockout_lexical_ranking
     def negative_head_comp_selection(self, site):
         if site.is_primitive():
             m = site.bottom_affix()
-            if self.word.features & m.convert_features_for_parsing(m.complements_not_licensed()):
-                log(f'{self.word.features & m.convert_features_for_parsing(m.complements_not_licensed())}')
+            if self.word.features & convert_features_for_parsing(m.complements_not_licensed()):
+                log(f'{self.word.features & convert_features_for_parsing(m.complements_not_licensed())}')
                 return True
 
     @knockout_lexical_ranking
@@ -162,48 +198,11 @@ class PlausibilityMetrics:
                 return True
             w_copy.remove()
 
-    def initialize(self):
-        self.weighted_site_list = []
-        self.word = None
-        self.word_specs = None
-        self.not_word_specs = None
-        self.rare_word_specs = None
-        self.word_tail_set = None
-        self.plausibility_conditions = \
-            {'positive_spec_selection':         {'condition': self.positive_spec_selection,
-                                                 'weight': self.brain_model.local_file_system.settings.get('positive_spec_selection', 100),
-                                                 'log': '+Spec selection'},
-             'negative_spec_selection':         {'condition': self.negative_spec_selection,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_spec_selection', -100),
-                                                 'log': '-Spec selection'},
-             'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
-                                                 'weight': self.brain_model.local_file_system.settings.get('break_head_comp_relations', -100),
-                                                 'log': 'Head-complement word breaking condition'},
-             'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
-                                                 'weight': self.brain_model.local_file_system.settings.get('positive_head_comp_selection', 100),
-                                                 'log': '+Comp selection'},
-             'negative_head_comp_selection':    {'condition': self.negative_head_comp_selection,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_head_comp_selection', -100),
-                                                 'log': '-Comp selection'},
-             'negative_semantics_match':        {'condition': self.negative_semantic_match,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_semantics_match', -100),
-                                                 'log': 'Semantic mismatch'},
-             'lf_legibility_condition':         {'condition': self.lf_legibility_condition,
-                                                 'weight': self.brain_model.local_file_system.settings.get('lf_legibility_condition', -100),
-                                                 'log': '-LF-legibility for left branch'},
-             'negative_adverbial_test':         {'condition': self.negative_adverbial_test,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_adverbial_test', -100),
-                                                 'log': '-Adverbial condition'},
-             'positive_adverbial_test':         {'condition': self.positive_adverbial_test,
-                                                 'weight': self.brain_model.local_file_system.settings.get('positive_adverbial_test', 100),
-                                                 'log': '+Adverbial condition'}
-             }
-
     def rank_merge_right_(self, site_list, word):
         self.word = word
-        self.word_specs = word.convert_features_for_parsing(word.licensed_specifiers())
-        self.not_word_specs =  word.convert_features_for_parsing(word.specifiers_not_licensed())
-        self.rare_word_specs = word.convert_features_for_parsing(word.rare_specs())
+        self.word_specs = convert_features_for_parsing(word.licensed_specifiers())
+        self.not_word_specs =  convert_features_for_parsing(word.specifiers_not_licensed())
+        self.rare_word_specs = convert_features_for_parsing(word.rare_specs())
         self.word_tail_set = word.get_tail_sets()
         log('Ranking...')
 
@@ -262,7 +261,7 @@ class PlausibilityMetrics:
         adjunction_sites = []
         #--------------------geometrical minimal search------------------------------
         for N in list_of_sites_in_active_working_memory:
-            if self.does_not_accept_any_complementizers(N):
+            if N.does_not_accept_any_complementizers():
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
                 continue
             if N.is_complex() and self.left_branch_filter(N):
@@ -271,16 +270,12 @@ class PlausibilityMetrics:
             if self.word_breaking_filter(N, w):
                 log(f'Reject {N} + {w} because it breaks words...')
                 continue
-            if self.impossible_sequence(N, w):
+            if N.impossible_sequence(w):
                  log(f'Reject {N} + {w} because the sequence is impossible...')
                  continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------
         return adjunction_sites
-
-    def word_internal(self, ps, w):
-        if ps.bottom().bottom_affix().internal:
-            return True
 
     @knockout_working_memory
     def in_active_working_memory(self, ps):
@@ -293,10 +288,6 @@ class PlausibilityMetrics:
                 nodes_not_in_active_working_memory.insert(0, N) # Outside list is stack
         return [node for node in new_nodes_available], [node for node in nodes_not_in_active_working_memory]
 
-    def impossible_sequence(self, N, w):
-        if N.is_primitive() and 'T/fin' in N.head().features and 'T/fin' in w.features:
-            return True
-
     def left_branch_filter(self, N):
         set_logging(False)
         dropped, output_from_interfaces = self.brain_model.transfer_to_LF(N.copy())
@@ -304,20 +295,9 @@ class PlausibilityMetrics:
         left_branch_passes_LF = self.brain_model.LF.LF_legibility_test(dropped, self.left_branch_filter_test_battery)
         if not left_branch_passes_LF:
             log(f'in {dropped}. ')
-
         return not left_branch_passes_LF
 
-    def does_not_accept_any_complementizers(self, N):
-        if N.is_primitive() and '-COMP:*' in N.features:
-            return True
-
     def word_breaking_filter(self, N, w):
-        if self.is_word_internal(N):
+        if N.is_word_internal():
             if not w.is_adjoinable():  # Adjoinable phrases cannot be tested because they might become adjuncts later
                 set_logging(True)
-
-    def is_word_internal(self, XP):
-        if XP.mother and XP.sister() and XP.sister().is_primitive() and XP.sister().internal:
-            return True
-        else:
-            return False

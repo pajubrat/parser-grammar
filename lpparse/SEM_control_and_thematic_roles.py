@@ -1,5 +1,6 @@
 from itertools import takewhile
 
+
 class LF_Recovery:
     def __init__(self, controlling_parsing_process):
         self.brain_model = controlling_parsing_process
@@ -7,36 +8,7 @@ class LF_Recovery:
         self.interpretation_failed = False
 
     def recover_arguments(self, probe):
-        return self.interpret_antecedent(probe, self.get_antecedent(probe))
-
-    def get_antecedent(self, probe):
-        unvalued_phi = probe.phi_needs_valuation()
-        if {'PHI:NUM:_', 'PHI:PER:_'} & unvalued_phi:
-            return self.control(probe)
-        elif {'PHI:DET:_'} & unvalued_phi:
-            return self.finite_control(probe)
-
-    def control(self, probe):
-        return next((x for x in [probe.sister()] + list(takewhile(lambda x: 'SEM:external' not in x.features, probe.upward_path())) if self.is_possible_antecedent(x, probe)), None)
-
-    def finite_control(self, probe):
-        return probe.next(probe.upward_path, lambda x: self.is_possible_antecedent(x, probe) or self.special_rule(x, probe))
-
-    def is_possible_antecedent(self, antecedent, probe):
-        if not antecedent.find_me_elsewhere:
-            phi_to_check = {phi for phi in probe.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER'}
-            phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if self.feature_check(phi1, phi2)}
-            return phi_to_check == phi_checked
-
-    @staticmethod
-    def feature_check(antecedent_feature, probe_feature):
-        return antecedent_feature == probe_feature or (probe_feature[-1] == '_' and antecedent_feature[:len(probe_feature[:-1])] == probe_feature[:-1])
-
-    def special_rule(self, const, probe):
-        if probe.finite() and probe.edge() and const == probe.next(probe.upward_path):
-            if not const.referential():
-                probe.features.add('PHI:DET:GEN')
-            return const
+        return self.interpret_antecedent(probe, probe.get_antecedent())
 
     def interpret_antecedent(self, probe, antecedent):
         if antecedent:

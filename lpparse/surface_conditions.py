@@ -23,11 +23,11 @@ class SurfaceConditions:
         ps_ = ps.top()
         for node in ps_:
             if node.is_complex():
-                if node.left.is_clitic() and not self.is_clitic_licensed(node.left):
+                if node.left.clitic() and not self.is_clitic_licensed(node.left):
                     return False
-                elif node.right.is_clitic() and not self.is_clitic_licensed(node.right):
+                elif node.right.clitic() and not self.is_clitic_licensed(node.right):
                     return False
-            elif node.is_clitic() and not self.is_clitic_licensed(node):
+            elif node.clitic() and not self.is_clitic_licensed(node):
                     return False
         # -------------------------------------------------------------------- #
         return True

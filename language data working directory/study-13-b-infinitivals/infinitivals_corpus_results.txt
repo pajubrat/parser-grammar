@@ -1,0 +1,2984 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-13-b-infinitivals', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-13-b-infinitivals', 'test_corpus_file': 'infinitivals_corpus.txt', 'only_first_solution': True, 'datatake_images': False, 'datatake_full': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'show_features': [], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2022-12-22 11:03:01.344831
+@  Test sentences language data working directory\study-13-b-infinitivals\infinitivals_corpus.txt.
+@  Logs language data working directory\study-13-b-infinitivals\infinitivals_corpus_log.txt.
+@  Lexicon language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes language data working directory\lexicons\ug_morphemes.txt.
+@ 
+1.  John admires Mary 
+
+	[[D John]:1 [C.T [__:1 [v [admire [D Mary]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/C(C.T ʻadmire v tenseʼ)/John', 'Agent/v(v ʻ_vʼ)/John', 'Patient/V(admire ʻadmireʼ)/Mary']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, [D Mary] ~ 8, Weight 1
+	[D John] ~ 8, [D Mary] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[D John] [T(v,V) D(N)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+	Object 8 in GLOBAL: [D Mary]
+
+	Resources:
+	Total Time:910, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:303, Merge-1:14, 
+2.  who admires John 
+
+	[[D who]:1 [C.T [__:1 [v [admire [D John]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/C(C.T ʻadmire v tenseʼ)/who', 'Agent/v(v ʻ_vʼ)/who', 'Patient/V(admire ʻadmireʼ)/John']
+	DIS-features: [('DIS:WH', 'C.T'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator D(OP:WH) bound by C.T(OP:WH)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D who] ~ 2, [D John] ~ 8, Weight 1
+	[D who] ~ 8, [D John] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[D who] [T(v,V) D(N)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D who]
+	Object 8 in GLOBAL: [D John]
+
+	Resources:
+	Total Time:760, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:253, Merge-1:14, 
+3.  who John admires 
+
+	[[D who]:1 [C [[D John]:3 [C.T [__:3 [v [__:1 admire]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/C(C.T ʻadmire v tenseʼ)/John', 'Agent/v(v ʻ_vʼ)/John', 'Agent/V(admire ʻadmireʼ)/who']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator D(OP:WH) bound by C(OP:WH)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D John] ~ 2, [D who] ~ 6, Weight 1
+	[D John] ~ 6, [D who] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[D who] [[D John] T(v,V)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+	Object 6 in GLOBAL: [D who]
+
+	Resources:
+	Total Time:755, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:251, Merge-1:15, 
+4.  Pekka ihailee Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻadmire v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) φ(N)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1120, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:373, Merge-1:20, 
+5.  Merjaa ihailee Pekka 
+
+	[<φ Merja>:1 [T [<__>:4 [v [<__>:1 [ihaile- <φ Pekka>:4]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻadmire v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/Pekka', 'Agent/V(ihaile- ʻadmireʼ)/Merja']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ Pekka] ~ 6, [φ Merja] ~ 10, Weight 1
+	pro(T) ~ 6, [φ Pekka] ~ 4, [φ Merja] ~ 10, Weight 1
+	pro(T) ~ 10, [φ Pekka] ~ 6, [φ Merja] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Merja] [T(v,V) φ(N)]]
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 6 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1140, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:380, Merge-1:34, 
+& 0. Preliminaries (presuppositions of the study)
+
+& 0.1 Case mechanisms
+
+& 0.1.1 Nominative and partitive
+
+& Grammatical
+
+6.  Pekka ihailee Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻadmire v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) φ(N)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1120, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:373, Merge-1:20, 
+			'Pekka.nom admire.prs.3sg Merja.par'
+
+& 0.1.2 Nominative and t-accusative
+
+& Grammatical
+
+7.  Pekka näki hänet 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) D(N)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:970, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:323, Merge-1:20, 
+			'Pekka.nom saw he.acc(t)'
+
+& 0.2 Verb classes
+
+& 0.2.1 -OC verb
+
+& Grammatical
+
+8. *Pekka käski hänen lähteä 
+
+			'Pekka.nom order.pst.3sg he.gen leave.A/inf'
+
+& Ungrammatical
+
+9.  Pekka käski lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(käske- ʻorderʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) -(t)A(V)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:770, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:256, Merge-1:20, 
+			'Pekka.nom order.pst.3sg leave.A/inf'
+
+& 0.2.2 OC verb
+
+& Grammatical
+
+10.  Pekka halusi lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) -(t)A(V)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:780, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:260, Merge-1:20, 
+			'Pekka.nom want.pst.3sg leave.A/inf'
+
+& Ungrammatical
+
+11. *Pekka halusi hänen lähteä 
+
+			'Pekka.nom want.pst.3sg he.gen leave.A/inf'
+
+& 0.2.3 Proposition-selection verb
+
+& Grammatical
+
+12. *Pekka uskoi hänen lähtevän 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf'
+
+& Ungrammatical
+
+13. *Pekka uskoi 
+
+			'Pekka.nom believe.pst.3sg'
+
+& 0.2.4 Intransitive
+
+& Grammatical
+
+14.  Pekka nukkui 
+
+	[<φ Pekka>:1 [T [<__>:1 nukku-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] T(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:600, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:300, Merge-1:9, 
+			'Pekka.nom sleep.pst.3sg'
+
+& Ungrammatical
+
+15. *Pekka nukkui hänet 
+
+			'Pekka.nom sleep.pst.3sg he.acc(t)'
+
+& 1. A-infinitive
+
+& (Vainikka: TA-infinitive; traditional: 1st infinitive, short form)
+
+& 1.1 Selected by -OC verb (external, käski 'ordered')
+
+& 1.1.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+16. *Pekka käski hänen lähteä 
+
+			'Pekka.nom order.pst.3sg he.gen leave.A/inf'
+
+& 1.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+17. *Pekka käski hänen lähteänsä 
+
+			'Pekka.nom order.pst.3sg he.gen leave.A/inf.px/3sg'
+
+& Ungrammatical
+
+18. *Pekka käski hänen lähteä#[nsA] 
+
+			'Pekka.nom order.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+19.  Pekka käski lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(käske- ʻorderʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) -(t)A(V)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:770, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:256, Merge-1:20, 
+			'Pekka.nom order.pst.3sg leave.A/inf'
+
+& 1.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+20. *Pekka käski lähteä#[nsA] 
+
+			'Pekka.nom order.pst.3sg leave.A/inf-Px/3sg'
+
+& 1.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 1.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+21. *Pekka halusi hänen lähteä 
+
+			'Pekka.nom want.pst.3sg he.gen leave.A/inf'
+
+& 1.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+22. *Pekka halusi hänen lähteä#[nsA] 
+
+			'Pekka.nom want.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.2.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+23.  Pekka halusi lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) -(t)A(V)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:780, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:260, Merge-1:20, 
+			'Pekka.nom want.pst.3sg leave.A/inf'
+
+& 1.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+24. *Pekka halusi lähteä#[nsA] 
+
+			'Pekka.nom want.pst.3sg leave.A/inf-px/3sg'
+
+& 1.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 1.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+25. *Pekka uskoi hänen lähteä 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.A/inf'
+
+& 1.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+26. *Pekka uskoi hänen lähteä#[nsA] 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+27. *Pekka uskoi lähteä 
+
+			'Pekka.nom believe.pst.3sg leave.A/inf'
+
+& 1.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+28. *Pekka uskoi lähteä#[nsA] 
+
+			'Pekka.nom believe.pst.3sg leave.A/inf-px/3sg'
+
+& 1.4 In adjunct position (not selected)
+
+& 1.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+29. *Pekka näki hänet hänen lähteä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.A/inf]'
+
+& 1.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+30. *Pekka näki hänet hänen lähteä#[nsA] 
+
+			'Pekka see.pst.3sg he.acc(t) [he.gen leave.A/inf-px/3sg]
+
+& 1.4.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+31. *Pekka näki hänet lähteä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) [leave.A/inf]
+
+& 1.4.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+32. *Pekka näki hänet hänen lähteä#[nsA] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.A/inf-px/3sg]'
+
+& 1.5 In connection with intransitive main verb (not selected)
+
+& 1.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+33. *Pekka nukkui hänen lähteä 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.A/inf'
+
+& 1.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+34. *Pekka nukkui hänen lähteä#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 1.5.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+35. *Pekka nukkui lähteä 
+
+			'Pekka.nom sleep.pst.3sg leave.A/inf'
+
+& 1.5.4 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+36. *Pekka nukkui lähteä#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg leave.A/inf-px/3sg'
+
+& 2. VA-infinitive
+
+& (Vainikka: clausal complement infinitival; traditional: participle)
+
+& 2.1 Selected by -OC verb (external, käski 'ordered')
+
+& 2.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+37. *Pekka käski hänen lähtevän 
+
+			'Pekka.nom order.pst.3sg he.gen leave.VA/inf'
+
+& 2.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+38. *Pekka käski hänen lähtevän#[nsA] 
+
+			'Pekka.nom order.pst.3sg he.gen leave.VA/inf.px/3sg'
+
+& 2.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+39. *Pekka käski lähtevän 
+
+			'Pekka.nom order.pst.3sg leave.VA/inf'
+
+& 2.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+40. *Pekka käski lähtevän#[nsA] 
+
+			'Pekka.nom order.pst.3sg leave.VA/inf-px/3sg'
+
+& 2.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 2.2.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+41. *Pekka halusi hänen lähtevän 
+
+			'Pekka.nom want.pst.3sg he.gen leave.VA/inf'
+
+& 2.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+42. *Pekka halusi hänen lähtevän#[nsA] 
+
+			'Pekka.nom want.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+43. *Pekka halusi lähtevän 
+
+			'Pekka.nom want.pst.3sg leave.VA/inf'
+
+& 2.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+44. *Pekka halusi lähtevän#[nsA] 
+
+			'Pekka.nom want.pst.3sg leave.VA/inf-px/3sg'
+
+& 2.3 Selected by proposition-taking verb (+/-external, uskoi 'believed')
+
+& 2.3.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+45. *Pekka uskoi hänen lähtevän 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf'
+
+& 2.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+46. *Pekka uskoi hänen lähtevän#[nsA] 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+47. *Pekka uskoi lähtevän 
+
+			'Pekka.nom believe.pst.3sg leave.VA/inf'
+
+& 2.3.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+48.  Pekka uskoi lähtevän#[nsA] 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻleave toʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/TP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 10, pro(-vAn) ~ 10, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) -vAn(V)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:920, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:306, Merge-1:20, 
+			'Pekka.nom believe.pst.3sg leave.VA/inf-px/3sg
+
+& 2.4 In adjunct position (not selected)
+
+& 2.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+49. *Pekka näki hänet hänen lähtevän 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.VA/inf'
+
+& 2.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+50. *Pekka näki hänet hänen lähtevän#[nsA] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.VA/inf-px/3sg'
+
+& 2.4.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+51. *Pekka näki hänet lähtevän 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.VA/inf'
+
+& 2.4.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+52. *Pekka näki hänet hänen lähtevän#[nsA] 
+
+			'Pekka see.pst.3sg he.acc(t) he.gen leave.VA/inf-px/3sg
+
+& 2.5 In connection with intransitive main verb (not selected)
+
+& 2.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+53. *Pekka nukkui hänen lähtevän 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.VA/inf'
+
+& 2.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+54. *Pekka nukkui hänen lähtevän#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.VA/inf-px/3sg'
+
+& 2.5.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+55. *Pekka nukkui lähtevän 
+
+			'Pekka.nom sleep.pst.3sg leave.VA/inf'
+
+& 2.5.4 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+56. *Pekka nukkui lähtevän#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg leave.VA/inf-px/3sg'
+
+& 3. MA-infinitives
+
+& (Vainikka: MA-infinitive; traditional: 3rd infinitive)
+
+& 3.1 Selected by -OC verb (external, käski 'ordered')
+
+& 3.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+57. *Pekka käski hänen lähtemässä 
+
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+58. *Pekka käski hänen lähtemään 
+
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+59. *Pekka käski hänen lähtemästä 
+
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+60. *Pekka käski hänen lähtemällä 
+
+			'Pekka.nom order.pst.3sg he.gen leave.MA/INF.ade'
+
+& Ungrammatical
+
+61. *Pekka käski hänen lähtemättä 
+
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.abe'
+
+& 3.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+62. *Pekka käski hänen lähtemässä#[nsA] 
+
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+63. *Pekka käski hänen lähtemään#[nsA] 
+
+			'Pekka.nom order he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+64. *Pekka käski hänen lähtemästä#[nsA] 
+
+			'Pekka.nom order.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+65. *Pekka käski hänen lähtemällä#[nsA] 
+
+			'Pekka.nom order he.gen leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+66. *Pekka käski hänen lähtemättä#[An] 
+
+			'Pekka.nom order.pst.3sg he.gen leave.MA/abe-px/3sg
+
+& 3.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+67. *Pekka käski lähtemässä 
+
+			'Pekka.nom order.pst.3sg leave.MA/inf.ine
+
+& Grammatical
+
+68.  Pekka käski lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-mAAn lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(käske- ʻorderʼ)/Pekka', 'Agent/Inf(-mAAn ʻleave toʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) -mAAn(V)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:800, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:266, Merge-1:20, 
+			'Pekka.nom order leave.MA/inf.ill'
+
+& Ungrammatical
+
+69. *Pekka käski lähtemästä 
+
+			'Pekka.nom order.pst.3sg leave.MA/inf.ela'
+
+& Ungrammatical
+
+70. *Pekka käski lähtemällä 
+
+			'Pekka.nom order.pst.3sg leave.MA/inf.ade'
+
+& Ungrammatical
+
+71. *Pekka käski lähtemättä 
+
+			'Pekka.nom order leave.MA/inf.abe'
+
+& 3.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+72. *Pekka käski lähtemässä#[An] 
+
+			'Pekka.nom order.pst.3sg leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+73. *Pekka käski lähtemään#[nsA] 
+
+			'Pekka.nom order.pst.3st leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+74. *Pekka käski lähtemästä#[An] 
+
+			'Pekka.nom order.pst.3sg leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+75. *Pekka käski lähtemällä#[An] 
+
+			'Pekka.nom order leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+76. *Pekka käski lähtemättä#[An] 
+
+			'Pekka.nom order leave.MA/inf.abe-px/3sg'
+
+& 3.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 3.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+77. *Pekka halusi hänen lähtemässä 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+78. *Pekka halusi hänen lähtemään 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+79. *Pekka halusi hänen lähtemästä 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+80. *Pekka halusi hänen lähtemällä 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ade'
+
+& Ungrammatical
+
+81. *Pekka halusi hänen lähtemättä 
+
+			'Pekka want.pst.3sg he.gen leave.MA/inf.abe'
+
+& 3.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+82. *Pekka halusi hänen lähtemässä#[An] 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+83. *Pekka halusi hänen lähtemään#[nsA] 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+84. *Pekka halusi hänen lähtemästä#[An] 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+85. *Pekka halusi hänen lähtemällä#[An] 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+86. *Pekka halusi hänen lähtemättä#[An] 
+
+			'Pekka.nom want.pst.3sg he.gen leave.MA/ind.abe-px/3sg'
+
+& 3.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+87. *Pekka halusi lähtemässä 
+
+			'Pekka.nom want.pst.3sg leave.MA/inf.ine'
+
+& Grammatical
+
+88.  Pekka halusi lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-mAAn lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/Inf(-mAAn ʻleave toʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) -mAAn(V)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:810, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:270, Merge-1:20, 
+			'Pekka.nom want.pst.3sg leave.MA/inf.ill'
+
+& Ungrammatical
+
+89. *Pekka halusi lähtemästä 
+
+			'Pekka.nom want.pst.3sg leava.MA/inf.ela'
+
+& Ungrammatical
+
+90. *Pekka halusi lähtemällä 
+
+			'Pekka want leave.MA/inf.ade'
+
+& Ungrammatical
+
+91. *Pekka halusi lähtemättä 
+
+			'Pekka want.pst.3sg leave.MA/inf.abe'
+
+& 3.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+92. *Pekka halusi lähtemässä#[An] 
+
+			'Pekka want.pst.3sg leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+93. *Pekka halusi lähtemään#[nsA] 
+
+			'Pekka want.pst.3sg leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+94. *Pekka halusi lähtemästä#[An] 
+
+			'Pekka.nom want.pst.3sg leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+95. *Pekka halusi lähtemällä#[An] 
+
+			'Pekka.nom want.pst.3sg leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+96. *Pekka halusi lähtemättä#[An] 
+
+			'Pekka.nom want.pst.3sg leave.MA/inf.abe-px/3sg'
+
+& 3.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 3.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+97. *Pekka uskoi hänen lähtemässä 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+98. *Pekka uskoi hänen lähtemään 
+
+			'Pekka.nom believe.pst.3sg he-gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+99. *Pekka uskoi hänen lähtemästä 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+100. *Pekka uskoi hänen lähtemällä 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ade'
+
+& Ungrammatical
+
+101. *Pekka uskoi hänen lähtemättä 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.abe'
+
+& 3.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+102. *Pekka uskoi hänen lähtemässä#[An] 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+103. *Pekka uskoi hänen lähtemään#[nsA] 
+
+			'Pekka believe.pst.3sg he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+104. *Pekka uskoi hänen lähtemästä#[An] 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+105. *Pekka uskoi hänen lähtemällä#[An] 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+106. *Pekka uskoi hänen lähtemättä#[An] 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.MA/inf.abe-px/3sg'
+
+& 3.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+107. *Pekka uskoi lähtemässä 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ine'
+
+& Ungrammatical
+
+108. *Pekka uskoi lähtemään 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ill'
+
+& Ungrammatical
+
+109. *Pekka uskoi lähtemästä 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ela'
+
+& Ungrammatical
+
+110. *Pekka uskoi lähtemällä 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ade'
+
+& Ungrammatical
+
+111. *Pekka uskoi lähtemättä 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.abe'
+
+& 3.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+112. *Pekka uskoi lähtemässä#[An] 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+113. *Pekka uskoi lähtemään#[nsA] 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+114. *Pekka uskoi lähtemästä#[An] 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+115. *Pekka uskoi lähtemällä#[An] 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+116. *Pekka uskoi lähtemättä#[An] 
+
+			'Pekka.nom believe.pst.3sg leave.MA/inf.abe-px/3sg'
+
+& 3.4 In adjunct position (not selected)
+
+& 3.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+117. *Pekka näki hänet hänen lähtemässä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+118. *Pekka näki hänet hänen lähtemään 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+119. *Pekka näki hänet hänen lähtemästä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+120. *Pekka esti häntä hänen lähtemästä 
+
+			'Pekka.nom prevent he.par he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+121. *Pekka näki hänet hänen lähtemällä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ade'
+
+& Ungrammatical
+
+122. *Pekka näki hänet hänen lähtemättä 
+
+			'Pekka see he.acc(t) he.gen leave.MA/inf.abe'
+
+& 3.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+123. *Pekka näki hänet hänen lähtemässä#[An] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+124. *Pekka näki hänet hänen lähtemään#[nsA] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+125. *Pekka näki hänet hänen lähtemästä#[An] 
+
+			'Pekka.nom see he.acc(t) he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+126. *Pekka esti häntä hänen lähtemästä#[An] 
+
+			'Pekka.nom prevent he.par he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+127. *Pekka näki hänet hänen lähtemällä#[An] 
+
+			'Pekka.nom see he.acc(t) he.gen leave.MA/inde.ade-px/3sg'
+
+& Ungrammatical
+
+128. *Pekka näki hänet hänen lähtemättä#[An] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.MA/inf.abe-px/3sg'
+
+& 3.4.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+129.  Pekka näki hänet lähtemässä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] <-mAssA lähte->]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-mAssA ʻleave inʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 4, Weight 1
+	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 12, Weight 1
+	pro(T) ~ 4, [φ Pekka] ~ 12, [D hän] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] -mAssA(V)]]]
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 6 in GLOBAL: [φ Pekka]
+	Object 12 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1215, Garden Paths:0, Merge:8, Head Chain:19, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:303, Merge-1:52, 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ine'
+
+& Ungrammatical
+
+130. *Pekka näki hänet lähtemään 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ill'
+
+& Ungrammatical
+
+131. *Pekka näki häntä lähtemään 
+
+			'Pekka.nom see.pst.3sg he.par leave.MA/inf.ill'
+
+& Grammatical
+
+132.  Pekka pyysi häntä lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [pyyda- [[D hän] <-mAAn lähte->]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻask v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(pyyda- ʻaskʼ)/hän', 'Agent/Inf(-mAAn ʻleave toʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] -mAAn(V)]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1195, Garden Paths:0, Merge:8, Head Chain:19, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:298, Merge-1:47, 
+			'Pekka asked he.par leave.MA/inf.ill'
+
+& Ungrammatical
+
+133. *Pekka näki hänet lähtemästä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ela'
+
+& Grammatical
+
+134.  Pekka esti häntä lähtemästä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [estä- [[D hän] <-mAstA lähte->]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻprevent v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(estä- ʻpreventʼ)/hän', 'Agent/Adv(-mAstA ʻleave withoutʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 4, Weight 1
+	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 12, Weight 1
+	pro(T) ~ 4, [φ Pekka] ~ 12, [D hän] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] -mAstA(V)]]]
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 6 in GLOBAL: [φ Pekka]
+	Object 12 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1185, Garden Paths:0, Merge:8, Head Chain:19, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:296, Merge-1:52, 
+			'Pekka.nom prevent.pst.3sg he.par leave.MA/inf.ela'
+
+& Grammatical
+
+135.  Pekka näki hänet lähtemällä 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-mAllA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-mAllA ʻleave byʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:779 [T [<__>:779 [v [näke- [D hän]]]]]] -mAllA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1495, Garden Paths:3, Merge:14, Head Chain:31, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:373, Merge-1:84, 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ade
+
+& Grammatical
+
+136.  Pekka näki hänet lähtemättä 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-mAttA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-mAttA ʻleave withoutʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:785 [T [<__>:785 [v [näke- [D hän]]]]]] -mAttA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1495, Garden Paths:3, Merge:14, Head Chain:31, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:373, Merge-1:84, 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.abe'
+
+& 3.4.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+137. *Pekka näki hänet lähtemässä#[An] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+138. *Pekka näki hänet lähtemään#[nsA] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+139. *Pekka näki hänet lähtemästä#[An] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+140. *Pekka esti häntä lähtemästä#[nsA] 
+
+			'Pekka.nom prevent.pst.3sg he.par leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+141. *Pekka näki hänet lähtemällä#[An] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+142. *Pekka näki hänet lähtemättä#[An] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.MA/inf.abe-px/3sg'
+
+& 3.5 In connection with intransitive main verb (not selected)
+
+& 3.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+143. *Pekka nukkui hänen lähtemässä 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ine'
+
+& Ungrammatical
+
+144. *Pekka nukkui hänen lähtemään 
+
+			'Pekka.nom sleep.pst.3sg e.gen leave.MA/inf.ill'
+
+& Ungrammatical
+
+145. *Pekka nukkui hänen lähtemästä 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ela'
+
+& Ungrammatical
+
+146. *Pekka nukkui hänen lähtemällä 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ade'
+
+& Ungrammatical
+
+147. *Pekka nukkui hänen lähtemättä 
+
+			'Pekka sleep.pst.3sg he.gen leave.MA/inf.abe'
+
+& 3.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+148. *Pekka nukkui hänen lähtemässä#[An] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+149. *Pekka nukkui hänen lähtemään#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+150. *Pekka nukkui hänen lähtemästä#[An] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+151. *Pekka nukkui hänen lähtemästä#[An] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+152. *Pekka nukkui hänen lähtemällä#[An] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+153. *Pekka nukkui hänen lähtemättä#[An] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.MA/inf.abe-px/3sg'
+
+& 3.5.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+154.  Pekka nukkui lähtemässä 
+
+	[<φ Pekka>:1 [T [<__>:1 [nukku- <-mAssA lähte->]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-mAssA ʻleave inʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ Pekka] ~ 6, Weight 1
+	pro(T) ~ 6, [φ Pekka] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(V) -mAssA(V)]]
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 6 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:795, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:265, Merge-1:26, 
+			'#Pekka.nom sleep.pst.3sg leave.MA/inf.ine'
+
+& Ungrammatical
+
+155. *Pekka nukkui lähtemään 
+
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ill'
+
+& Ungrammatical
+
+156. *Pekka nukkui lähtemästä 
+
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ela'
+
+& Grammatical
+
+157.  Pekka nukkui lähtemällä 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-mAllA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-mAllA ʻleave byʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:930 [T [<__>:930 nukku-]]] -mAllA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:960, Garden Paths:2, Merge:9, Head Chain:9, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:320, Merge-1:44, 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ade'
+
+& Grammatical
+
+158.  Pekka nukkui lähtemättä 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-mAttA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-mAttA ʻleave withoutʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:934 [T [<__>:934 nukku-]]] -mAttA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:960, Garden Paths:2, Merge:9, Head Chain:9, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:320, Merge-1:44, 
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.abe'
+
+& 3.5.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+159. *Pekka nukkui lähtemässä#[An] 
+
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ine-px/3sg'
+
+& Ungrammatical
+
+160. *Pekka nukkui lähtemään#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ill-px/3sg'
+
+& Ungrammatical
+
+161. *Pekka nukkui lähtemästä#[An] 
+
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ela-px/3sg'
+
+& Ungrammatical
+
+162. *Pekka nukkui lähtemästä#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+163. *Pekka nukkui lähtemällä#[An] 
+
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.ade-px/3sg'
+
+& Ungrammatical
+
+164. *Pekka nukkui lähtemättä#[An] 
+
+			'Pekka.nom sleep.pst.3sg leave.MA/inf.abe-px/3sg'
+
+& 4. E-infinitive
+
+& (Vainikka: archaic, not covered; traditional: variation of 2nd infinite)
+
+& 4.1 Selected by -OC verb (external, käski 'ordered')
+
+& 4.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+165. *Pekka käski hänen lähtien 
+
+			'Pekka.nom order.pst.3sg [he.gen leave.E/inf]'
+
+& 4.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+166. *Pekka käski hänen lähtien#[nsA] 
+
+			'Pekka.nom order.pst.3sg [he.gen leave.E/inf-px/3sg]'
+
+& 4.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+167. *Pekka käski lähtien 
+
+			'Pekka.nom order.pst.3sg leave-E/inf'
+
+& 4.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+168. *Pekka käski lähtien#[nsA] 
+
+			'Pekka.nom order.pst.3sg leave.E/inf-px/3sg'
+
+& 4.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 4.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+169. *Pekka halusi hänen lähtien 
+
+			'Pekka.nom want.pst.3sg he.gen leave.E/inf'
+
+& 4.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+170. *Pekka halusi hänen lähtien#[nsA] 
+
+			'Pekka.nom want.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+171. *Pekka halusi lähtien 
+
+			'Pekka.nom want.pst.3sg leave.E/inf'
+
+& 4.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+172. *Pekka halusi lähtien#[nsA] 
+
+			'Pekka.nom want.pst.3sg leave.E/inf-px/3sg'
+
+& 4.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 4.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+173. *Pekka uskoi hänen lähtien 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.E/inf'
+
+& 4.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+174. *Pekka uskoi hänen lähtien#[nsA] 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+175. *Pekka uskoi lähtien 
+
+			'Pekka.nom believe.pst.3sg leave.E/inf'
+
+& 4.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+176. *Pekka uskoi lähtien#[nsA] 
+
+			'Pekka.nom believe.pst.3sg leave.E/inf-px/3sg'
+
+& 4.4 In adjunct position (not selected)
+
+& 4.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+177. *Pekka näki hänet hänen lähtien 
+
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.E/inf]'
+
+& 4.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+178. *Pekka näki hänet hänen lähtien#[nsA] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.E/inf-px/3sg'
+
+& 4.4.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+179.  Pekka näki hänet lähtien 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-en lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-en ʻleave byʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1044 [T [<__>:1044 [v [näke- [D hän]]]]]] -en(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1465, Garden Paths:3, Merge:14, Head Chain:31, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:366, Merge-1:84, 
+			'Pekka see.pst.3sg he.acc(t) leave.E/inf'
+
+& 4.4.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+180. *Pekka näki hänet lähtien#[nsA] 
+
+			'Pekka see.pst.3sg he.acc(t) he.gen leave.E/inf-px/3sg'
+
+& 4.5 In connection with intransitive main verb (not selected)
+
+& 4.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+181. *Pekka nukkui hänen lähtien 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.E/inf'
+
+& 4.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+182. *Pekka nukkui hänen lähtien#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.E/inf-px/3sg'
+
+& 4.5.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+183.  Pekka nukkui lähtien 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-en lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-en ʻleave byʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1070 [T [<__>:1070 nukku-]]] -en(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:930, Garden Paths:2, Merge:9, Head Chain:9, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:310, Merge-1:44, 
+			'Pekka.nom sleep.pst.3sg leave.E/inf'
+
+& 4.5.4 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+184. *Pekka nukkui lähtien#[nsA] 
+
+			'Pekka.nom sleep.pst.3sg leave.E/inf-px/3sg'
+
+& 5. ESSA-infinitive
+
+& (Vainikka: temporal adjunct, traditional: 2nd infinitival)
+
+& 5.1 Selected by -OC verb (external, käski 'ordered')
+
+& 5.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+185. *Pekka käski hänen lähtiessä 
+
+			'Pekka.nom order.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+186. *Pekka käski hänen lähtiessä#[An] 
+
+			'Pekka.nom order.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+187. *Pekka käski lähtiessä 
+
+			'Pekka.nom order.pst.3sg leave.ESSA/inf'
+
+& 5.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+188. *Pekka käski lähtiessä#[An] 
+
+			'Pekka.nom order.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 5.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+189. *Pekka halusi hänen lähtiessä 
+
+			'Pekka.nom want.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+190. *Pekka halusi hänen lähtiessä#[An] 
+
+			'Pekka.nom want.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+191. *Pekka halusi lähtiessä 
+
+			'Pekka.nom want.pst.3sg leave.ESSA/inf'
+
+& 5.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+192. *Pekka halusi lähtiessä#[An] 
+
+			'Pekka.nom want.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 5.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+193. *Pekka uskoi hänen lähtiessä 
+
+			'Pekka.nom believe.pst.3sg [he.gen leave.ESSA/inf]'
+
+& 5.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+194. *Pekka uskoi hänen lähtiessä#[An] 
+
+			'Pekka.nom believe.pst.3sg [he.gen leave.ESSA/inf-px/3sg]'
+
+& 5.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+195. *Pekka uskoi lähtiessä 
+
+			'Pekka.nom believe.pst.3sg leave.ESSA/inf'
+
+& 5.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+196. *Pekka uskoi lähtiessä#[An] 
+
+			'Pekka.nom believe.pst.3sg leave.ESSA/inf-px/3sg'
+
+& 5.4 In adjunct position (not selected)
+
+& 5.4.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+197. *Pekka näki hänet hänen lähtiessä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.ESSA/inf]'
+
+& 5.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+198. *Pekka näki hänet hänen lähtiessä#[An] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.ESSA/inf-px/3sg'
+
+& 5.4.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+199.  Pekka näki hänet lähtiessä 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-essA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-essA ʻleave whileʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1160 [T [<__>:1160 [v [näke- [D hän]]]]]] -essA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1485, Garden Paths:3, Merge:14, Head Chain:31, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:371, Merge-1:90, 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.ESSA/inf'
+
+& 5.4.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+200.  Pekka näki hänet lähtiessä#[An] 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-essA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-essA ʻleave whileʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-essA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-essA) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-essA) ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1166 [T [<__>:1166 [v [näke- [D hän]]]]]] -essA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 12 in GLOBAL: pro(-essA)
+
+	Resources:
+	Total Time:1625, Garden Paths:3, Merge:14, Head Chain:31, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:406, Merge-1:90, 
+			'Pekka.nom see.pst.3sg he.acc(t) leave.ESSA/inf-px/3sg'
+
+& 5.5 In connection with intransitive main verb (not selected)
+
+& 5.5.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+201. *Pekka nukkui hänen lähtiessä 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.ESSA/inf'
+
+& 5.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+202. *Pekka nukkui hänen lähtiessä#[An] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.A/inf-px/3sg'
+
+& 5.5.3 Embedded Subject absent (without PX)
+
+& Grammatical
+
+203.  Pekka nukkui lähtiessä 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-essA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-essA ʻleave whileʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1186 [T [<__>:1186 nukku-]]] -essA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:950, Garden Paths:2, Merge:9, Head Chain:9, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:316, Merge-1:44, 
+			'Pekka.nom sleep.pst.3sg leave.A/inf'
+
+& 5.5.4 Embedded Subject present (with PX)
+
+& Grammatical
+
+204.  Pekka nukkui lähtiessä#[An] 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-essA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-essA ʻleave whileʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-essA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-essA) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-essA) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1190 [T [<__>:1190 nukku-]]] -essA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(-essA)
+
+	Resources:
+	Total Time:1090, Garden Paths:2, Merge:9, Head Chain:9, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:363, Merge-1:44, 
+			'Pekka.nom sleep.pst.3sg leave.A/inf-px/3sg'
+
+& 6. TUA-infinitive
+
+& (Vainikka: temporal adjunct, traditional: past participle)
+
+& 6.1 Selected by -OC verb (external, käski 'ordered')
+
+& 6.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+205. *Pekka käski hänen lähdettyä 
+
+			'Pekka.nom see.pst.3sg [he.gen leave.TUA]'
+
+& 6.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+206. *Pekka käski hänen lähdettyä#[An] 
+
+			'Pekka.nom order.pst.3sg he.gen leave.TUA-px/3sg'
+
+& 6.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+207. *Pekka käski lähdettyä 
+
+			'Pekka.nom order.pst.3sg leave.TUA'
+
+& 6.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+208. *Pekka käski lähdettyä#[An] 
+
+			'Pekka.nom order.pst.3sg leave.TUA-px/3sg'
+
+& 6.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 6.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+209. *Pekka halusi hänen lähdettyä 
+
+			'Pekka.nom want.pst.3sg [he.gen leave.TUA]'
+
+& 6.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+210. *Pekka halusi hänen lähdettyä#[An] 
+
+			'Pekka.nom want.pst.3sg [he.gen leave.TUA-px/3sg]'
+
+& 6.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+211. *Pekka halusi lähdettyä 
+
+			'Pekka.nom want.pst.3sg leave.TUA'
+
+& 6.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+212. *Pekka halusi lähdettyä#[An] 
+
+			'Pekka.nom want.pst.3sg leave.TUA-px/3sg'
+
+& 6.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 6.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+213. *Pekka uskoi hänen lähdettyä 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.TUA/inf'
+
+& 6.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+214. *Pekka uskoi hänen lähdettyä#[An] 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.TUA/inf-px/3sg'
+
+& 6.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+215. *Pekka uskoi lähdettyä 
+
+			'Pekka.nom believe.pst.3sg leave.TUA/inf'
+
+& 6.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+216. *Pekka uskoi lähdettyä#[An] 
+
+			'Pekka.nom believe.pst.3sg leave.TUA/inf-px/3sg'
+
+& 6.4 In adjunct position (not selected)
+
+& 6.4.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+217. *Pekka näki hänet hänen lähdettyä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.TUA]'
+
+& 6.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+218. *Pekka näki hänet hänen lähdettyä#[An] 
+
+			'Pekka.nom see.pst.3sg he.acc(t) [he.gen leave.TUA/inf-px/3sg]'
+
+& 6.4.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+219. *Pekka näki hänet lähdettyä 
+
+			'Pekka.nom see.pst.3sg he.acc(t) leave.TUA'
+
+& 6.4.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+220.  Pekka näki hänet lähdettyä#[An] 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-tUA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-tUA ʻleave afterʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-tUA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-tUA) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-tUA) ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1282 [T [<__>:1282 [v [näke- [D hän]]]]]] -tUA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 12 in GLOBAL: pro(-tUA)
+
+	Resources:
+	Total Time:1625, Garden Paths:3, Merge:14, Head Chain:31, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:406, Merge-1:90, 
+			'Pekka.nom see.pst.3sg he.acc(t) [eave.TUA/inf-px/3sg]'
+
+& 6.5 In connection with intransitive main verb (not selected)
+
+& 6.5.1 Embedded Subject present (without PX)
+
+& Grammatical
+
+221. *Pekka nukkui hänen lähdettyä 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.TUA/inf'
+
+& 6.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+222. *Pekka nukkui hänen lähdettyä#[An] 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.TUA/inf-px/3sg'
+
+& 6.5.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+223. *Pekka nukkui lähdettyä 
+
+			'Pekka.nom sleep.pst.3sg leave.TUA/inf'
+
+& 6.5.4 Embedded Subject present (with PX)
+
+& Grammatical
+
+224.  Pekka nukkui lähdettyä#[An] 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-tUA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-tUA ʻleave afterʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-tUA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-tUA) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-tUA) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1306 [T [<__>:1306 nukku-]]] -tUA(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(-tUA)
+
+	Resources:
+	Total Time:1090, Garden Paths:2, Merge:9, Head Chain:9, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:363, Merge-1:44, 
+			'Pekka.nom sleep.pst.3sg leave.TUA/inf-px/3sg'
+
+& 7. KSE-infinitive
+
+& (Vainikka: rationale adjunct, traditional: 1st infinitival, long form)
+
+& 7.1 Selected by -OC verb (external, käski 'ordered')
+
+& 7.1.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+225. *Pekka käski hänen lähteäkse 
+
+			'Pekka order.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.1.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+226. *Pekka käski hänen lähteäkseen 
+
+			'Pekka.nom order.pst.3sg he.gen leave.KSE/inf.px/3sg'
+
+& 7.1.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+227. *Pekka käski lähteäkse 
+
+			'Pekka order.pst.3sg *leave.KSE/inf'
+
+& 7.1.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+228. *Pekka käski lähteäkseen 
+
+			'Pekka order.pst.3sg leave.KSE/inf.px/3sg'
+
+& 7.2 Selected by +OC verb (internal, halusi 'wanted')
+
+& 7.2.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+229. *Pekka halusi hänen lähteäkse 
+
+			'Pekka.nom want.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.2.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+230. *Pekka halusi hänen lähteäkseen 
+
+			'Pekka.nom want.pst.3sg he.gen leave.KSE/inf.px/3sg
+
+& 7.2.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+231. *Pekka halusi lähteäkse 
+
+			'Pekka.nom want.pst.3sg *leave.KSE/inf'
+
+& 7.2.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+232. *Pekka halusi lähteäkseen 
+
+			'Pekka.nom want.pst.3sg leave.KSE/inf.px/3sg
+
+& 7.3 Selected by proposition-taken verb (+/-external, uskoi 'believed')
+
+& 7.3.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+233. *Pekka uskoi hänen lähteäkse 
+
+			'Pekka.nom believe.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.3.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+234. *Pekka uskoi hänen lähteäkseen 
+
+			'Pekka.nom believe.pst.3sg he.gen leave.KSE/inf-px/3sg'
+
+& 7.3.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+235. *Pekka uskoi lähteäkse 
+
+			'Pekka.nom believe.pst.3sg *leave.KSE/inf
+
+& 7.3.4 Embedded Subject absent (with PX)
+
+& Ungrammatical
+
+236. *Pekka uskoi lähteäkseen 
+
+			'Pekka.nom believe.pst.3sg [leave.KSE/inf.px/3sg]'
+
+& 7.4 In adjunct position (not selected)
+
+& 7.4.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+237. *Pekka näki hänet hänen lähteäkse 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen *leave.KSE/inf'
+
+& 7.4.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+238. *Pekka näki hänet hänen lähteäkseen 
+
+			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.KSE/inf.px/3sg
+
+& 7.4.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+239. *Pekka näki lähteäkse 
+
+			'Pekka.nom see.pst.3sg leave.KSE/inf'
+
+& 7.4.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+240.  Pekka näki hänet lähteäkseen 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-kse lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-kse ʻleave forʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/AdvP(pro)']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-kse) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-kse) ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1368 [T [<__>:1368 [v [näke- [D hän]]]]]] -kse(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 12 in GLOBAL: pro(-kse)
+
+	Resources:
+	Total Time:1585, Garden Paths:3, Merge:14, Head Chain:31, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:396, Merge-1:90, 
+			'Pekka.nom see.pst.3sg e.gen leave.KSE/inf.px/3sg'
+
+& 7.5 In connection with intransitive main verb (not selected)
+
+& 7.5.1 Embedded Subject present (without PX)
+
+& Ungrammatical
+
+241. *Pekka nukkui hänen lähteäkse 
+
+			'Pekka.nom sleep.pst.3sg he.gen *leave.KSE/inf'
+
+& 7.5.2 Embedded Subject present (with PX)
+
+& Ungrammatical
+
+242. *Pekka nukkui hänen lähteäkseen 
+
+			'Pekka.nom sleep.pst.3sg he.gen leave.KSE/inf-px/3sg'
+
+& 7.5.3 Embedded Subject absent (without PX)
+
+& Ungrammatical
+
+243. *Pekka nukkui lähteäkse 
+
+			'Pekka.nom sleep.pst.3sg *leave.KSE/inf'
+
+& 7.5.4 Embedded Subject absent (with PX)
+
+& Grammatical
+
+244.  Pekka nukkui lähteäkseen 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-kse lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-kse ʻleave forʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/AdvP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-kse) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-kse) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1386 [T [<__>:1386 nukku-]]] -kse(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(-kse)
+
+	Resources:
+	Total Time:1050, Garden Paths:2, Merge:9, Head Chain:9, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:350, Merge-1:44, 
+			'Pekka.nom sleep.pst.3sg leave.KSE/inf-px/3sg'
+
+& 8. Additional topics
+
+& 8.1 Word order
+
+& 8.1.1 A-infinitival, noncanonical order
+
+& Grammatical
+
+245.  Pekka halusi ihailla Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A [v [ihaile- [φ Merja]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 12, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [-(t)A(v,V) φ(N)]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 12 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1330, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:332, Merge-1:39, 
+			'Pekka.nom want.pst.3sg admire.a/inf Merja.par'
+
+& Grammatical
+
+246.  Merjaa halusi ihailla Pekka 
+
+	[<φ Merja>:1 [T [<__>:4 [v [halua- [-(t)A [v [<__>:1 [ihaile- <φ Pekka>:4]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/Pekka', 'Agent/V(ihaile- ʻadmireʼ)/Merja']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ Pekka] ~ 6, [φ Merja] ~ 14, Weight 1
+	pro(T) ~ 6, [φ Pekka] ~ 4, [φ Merja] ~ 14, Weight 1
+	pro(T) ~ 14, [φ Pekka] ~ 6, [φ Merja] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Merja] [T(v,V) [-(t)A(v,V) φ(N)]]]
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 6 in GLOBAL: [φ Pekka]
+	Object 14 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1360, Garden Paths:0, Merge:9, Head Chain:20, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:340, Merge-1:65, 
+			'Merja.par want.pst.3sg admire.a/inf Pekka.nom'
+
+& 8.2. VA-infinitival, noncanonical order
+
+& Grammatical
+
+247.  Pekka uskoi ihailevan#[nsA] Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn [v [ihaile- [φ Merja]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/TP(pro)', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/TP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [φ Merja] ~ 10, Weight 1
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [φ Merja] ~ 16, Weight 1
+	[φ Pekka] ~ 10, pro(-vAn) ~ 10, [φ Merja] ~ 16, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [-vAn(v,V) φ(N)]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: pro(-vAn)
+	Object 16 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1480, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:370, Merge-1:39, 
+			'Pekka.nom believe.pst.3sg admire-va/inf-px/3sg Merja-par'
+
+& Grammatical
+
+248.  Merjaa uskoi ihailevan#[nsA] Pekka 
+
+	[<φ Merja>:1 [T [<__>:4 [usko- [-vAn [v [<__>:1 [ihaile- <φ Pekka>:4]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/TP(pro)', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(ihaile- ʻadmireʼ)/Merja']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ Pekka] ~ 6, pro(-vAn) ~ 6, [φ Merja] ~ 12, Weight 1
+	pro(T) ~ 4, [φ Pekka] ~ 6, pro(-vAn) ~ 6, [φ Merja] ~ 16, Weight 1
+	pro(T) ~ 4, [φ Pekka] ~ 12, pro(-vAn) ~ 12, [φ Merja] ~ 16, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Merja] [T(V) [-vAn(v,V) φ(N)]]]
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 6 in GLOBAL: [φ Pekka]
+	Object 12 in GLOBAL: pro(-vAn)
+	Object 16 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:4890, Garden Paths:8, Merge:42, Head Chain:88, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:12, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:1222, Merge-1:244, 
+			'Merja-par believe.pst.3sg admire-va/inf-px/3sg Pekka.nom'
+
+& 8.2 Binding
+
+& Grammatical
+
+249.  Pekka halusi ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A [v [ihaile- [D itse]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 12, [D itse] ~ 12, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [-(t)A(v,V) D(N)]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 12 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:1180, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:295, Merge-1:39, 
+			'Pekka.nom want.pst.3sg admire.a/inf self.par'
+
+& Grammatical
+
+250.  Pekka käski Merjan_gen ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[φ Merja]:5 [-(t)A [__:5 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(käske- ʻorderʼ)/InfP(pro)', 'Agent/φ(φ ʻ_phiʼ)/InfP(pro)', 'Agent/v(v ʻ_vʼ)/Merja', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [φ Merja] ~ 14, [D itse] ~ 14, Weight 1
+	[φ Pekka] ~ 14, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[φ Merja] [-(t)A(v,V) D(N)]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [φ Merja]
+	Object 14 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:1730, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:346, Merge-1:62, 
+			'Pekka.nom order.pst.3sg Merja.gen admire.a/inf self.par'
+
+& Grammatical
+
+251.  Pekka käski hänen ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[D hän]:5 [-(t)A [__:5 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(käske- ʻorderʼ)/InfP(pro)', 'Agent/v(v ʻ_vʼ)/hän', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 14, [D itse] ~ 14, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D itse] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] [-(t)A(v,V) D(N)]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 14 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:1560, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:312, Merge-1:62, 
+			'Pekka.nom order.pst.3sg he.gen admire.a/inf self.par'
+
+& Grammatical
+
+252.  Pekka uskoi ihailevansa itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn [v [ihaile- [D itse]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/TP(pro)', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 10, pro(-vAn) ~ 10, [D itse] ~ 10, Weight 1
+	[φ Pekka] ~ 16, pro(-vAn) ~ 16, [D itse] ~ 16, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [-vAn(v,V) D(N)]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: pro(-vAn)
+	Object 16 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:1270, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:317, Merge-1:39, 
+			'Pekka.nom believe.pst.3sg admire.va/inf self.par'
+
+& Grammatical
+
+253.  Pekka uskoi Merjan_gen ihailevan itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[φ Merja]:5 [-vAn [__:5 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Merja', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [φ Merja] ~ 14, [D itse] ~ 14, Weight 1
+	[φ Pekka] ~ 14, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[φ Merja] [-vAn(v,V) D(N)]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [φ Merja]
+	Object 14 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:1740, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:348, Merge-1:62, 
+			'Pekka.nom believe.pst.3sg Merja.gen admire.va/inf self.par'
+
+& Grammatical
+
+254.  Pekka uskoi hänen ihailevan itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän]:5 [-vAn [__:5 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/hän', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 14, [D itse] ~ 14, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D itse] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] [-vAn(v,V) D(N)]]]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 14 in GLOBAL: [D itse]
+
+	Resources:
+	Total Time:1570, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:314, Merge-1:62, 
+			'Pekka.nom believe.pst.3sg he.gen admire.va/inf self.par'
+
+& 8.3 Participles
+
+& 8.3.1 MA-participles (agent participles)
+
+& Grammatical
+
+255.  se' sinun tekemä#[si] kello hävisi 
+
+	[<se [[[D sinä]:2 [-mA [__:2 [v teke-]]]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se    sinä  -mA   sinä  v teke-  kello', 'Agent/A(-mA ʻ_A_relʼ)/Generic', 'Agent/v(v ʻ_vʼ)/sinä', 'Agent/V(teke- ʻdoʼ)/sinä', 'Agent/φ(φ ʻ_phiʼ)/AP(pro)', 'Agent/V(häviä- ʻdisappearʼ)/se    sinä  -mA   sinä  v teke-  kello']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 4, [φ kello] ~ 4, Weight 1
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 4, [φ kello] ~ 10, Weight 1
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 10, [φ kello] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[se [[[D sinä]:56 [-mA [__:56 [v teke-]]]] [φ kello]]] T(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]]
+	Object 4 in GLOBAL: [D sinä]
+	Object 10 in GLOBAL: [φ kello]
+
+	Resources:
+	Total Time:2355, Garden Paths:9, Merge:31, Head Chain:54, Phrasal Chain:10, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:471, Merge-1:129, 
+			'it/that [I.gen make.ma/a.2sg] watch disappear.pst.3sg'
+
+& Grammatical
+
+256.  se' sinun tekemä kello hävisi 
+
+	[<se [[[D sinä]:2 [-mA [__:2 [v teke-]]]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se    sinä  -mA   sinä  v teke-  kello', 'Agent/A(-mA ʻ_A_relʼ)/Generic', 'Agent/v(v ʻ_vʼ)/sinä', 'Agent/V(teke- ʻdoʼ)/sinä', 'Agent/φ(φ ʻ_phiʼ)/AP(pro)', 'Agent/V(häviä- ʻdisappearʼ)/se    sinä  -mA   sinä  v teke-  kello']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 4, [φ kello] ~ 4, Weight 1
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 4, [φ kello] ~ 10, Weight 1
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 10, [φ kello] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[se [[[D sinä]:47 [-mA [__:47 [v teke-]]]] [φ kello]]] T(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]]
+	Object 4 in GLOBAL: [D sinä]
+	Object 10 in GLOBAL: [φ kello]
+
+	Resources:
+	Total Time:1985, Garden Paths:6, Merge:25, Head Chain:45, Phrasal Chain:10, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:397, Merge-1:104, 
+			'it/that [I.gen make.ma/a.2sg] watch disappear.pst.3sg'
+
+& Grammatical
+
+257.  se' tekemä#[si] kello hävisi 
+
+	[<se [[-mA [v teke-]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se   -mA  v teke-  kello', 'Agent/A(-mA ʻ_A_relʼ)/Generic', 'Agent/v(v ʻ_vʼ)/AP(pro)', 'Agent/V(teke- ʻdoʼ)/AP(pro)', 'Agent/φ(φ ʻ_phiʼ)/AP(pro)', 'Agent/V(häviä- ʻdisappearʼ)/se   -mA  v teke-  kello']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[se [[-mA [v teke-]] [φ kello]]] ~ 2, pro(-mA) ~ 2, [φ kello] ~ 6, Weight 1
+	[se [[-mA [v teke-]] [φ kello]]] ~ 2, pro(-mA) ~ 2, [φ kello] ~ 12, Weight 1
+	[se [[-mA [v teke-]] [φ kello]]] ~ 2, pro(-mA) ~ 6, [φ kello] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[se [[-mA [v teke-]] [φ kello]]] T(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [se [[-mA [v teke-]] [φ kello]]]
+	Object 6 in GLOBAL: pro(-mA)
+	Object 12 in GLOBAL: [φ kello]
+
+	Resources:
+	Total Time:940, Garden Paths:1, Merge:9, Head Chain:12, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:235, Merge-1:32, 
+			'it/that [make.ma/a.2sg] watch disappear.pst.3sg'
+
+& Ungrammatical
+
+258. *se' tekemä kello hävisi 
+
+			'it/that make-ma/a watch disappear.pst.3sg'
+
+& 8.3.2 VA-participles (patient participles)
+
+& Grammatical
+
+259.  se' sinua ihaileva tyttö hävisi 
+
+	[<se [[<D sinä>:2 [-vA [v [<__>:2 ihaile-]]]] [φ tyttö]]>:1 [T [<__>:1 häviä-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se    sinä  -vA  v   sinä ihaile-  tyttö', 'Agent/A(-vA ʻ_P_relʼ)/se', 'Agent/v(v ʻ_vʼ)/se', 'Agent/V(ihaile- ʻadmireʼ)/sinä', 'Agent/φ(φ ʻ_phiʼ)/se', 'Agent/V(häviä- ʻdisappearʼ)/se    sinä  -vA  v   sinä ihaile-  tyttö']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[se [[<D sinä> [-vA [v [<D sinä> ihaile-]]]] [φ tyttö]]] ~ 2, [D sinä] ~ 8, [φ tyttö] ~ 8, Weight 1
+	[se [[<D sinä> [-vA [v [<D sinä> ihaile-]]]] [φ tyttö]]] ~ 2, [D sinä] ~ 8, [φ tyttö] ~ 12, Weight 1
+	[se [[<D sinä> [-vA [v [<D sinä> ihaile-]]]] [φ tyttö]]] ~ 2, [D sinä] ~ 12, [φ tyttö] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[se [[<D sinä>:1442 [-vA [v [<__>:1442 ihaile-]]]] [φ tyttö]]] T(V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [se [[<D sinä> [-vA [v [<D sinä> ihaile-]]]] [φ tyttö]]]
+	Object 8 in GLOBAL: [D sinä]
+	Object 12 in GLOBAL: [φ tyttö]
+
+	Resources:
+	Total Time:2035, Garden Paths:6, Merge:25, Head Chain:45, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:9, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:407, Merge-1:162, 
+			'it/that you.par admire.va/a girl disappear.pst.3sg'
+
+& Ungrammatical
+
+260. *se' sinua ihaileva#[si] tyttö hävisi 
+
+			'it/that you.par admire.va/a.2sg girl disappear.pst.3sg'
+
+& Ungrammatical
+
+261. *se' ihaileva#[si] tyttö hävisi 
+
+			'it/that admire.va/a.2sg girl disappear.pst.3sg'
+
+& Ungrammatical
+
+262. *se' ihaileva tyttö hävisi 
+
+			'it/that admire.va/a girl disappear.pst.3sg'
+
+& 8.4 Experimental infinitival predicates
+
+263.  Pekka ihailee* Merjaa 
+
+	[<φ Pekka>:1 [Agr [T [<__>:1 [v [ihaile- [φ Merja]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/Agr(Agr ʻadmire v tense Agrʼ)/Pekka', 'Agent/T(T ʻ_tenseʼ)/AgrP(pro)', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [Agr(T,v,V) φ(N)]]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1105, Garden Paths:0, Merge:7, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:368, Merge-1:25, 
+264.  Pekka näki hänet lähtemässä* 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] <-ssa* [-mA-* lähte-]>]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-ssa* ʻleave ing inʼ)/Pekka', 'Agent/Inf(-mA-* ʻ_ingʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 4, Weight 1
+	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 12, Weight 1
+	pro(T) ~ 4, [φ Pekka] ~ 12, [D hän] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[φ Pekka] [T(v,V) [[D hän] -ssa*(Inf,V)]]]
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 6 in GLOBAL: [φ Pekka]
+	Object 12 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1355, Garden Paths:0, Merge:9, Head Chain:20, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:338, Merge-1:54, 
+265.  Pekka nukkui lähteäkseen* 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-kse [-(t)A* lähte-]>]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-kse ʻleave to forʼ)/Generic', 'Agent/Inf(-(t)A* ʻ_toʼ)/AdvP(pro)', 'Agent/V(lähte- ʻleaveʼ)/AdvP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-kse) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-kse) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+	spellout structure: [[<φ Pekka>:1462 [T [<__>:1462 nukku-]]] -kse(Inf,V)]
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(-kse)
+
+	Resources:
+	Total Time:1310, Garden Paths:2, Merge:12, Head Chain:12, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:436, Merge-1:51, 
