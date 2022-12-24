@@ -6,30 +6,22 @@ class SurfaceConditions:
         self.all_pass = True
 
     def reconstruct(self, ps):
-        """
-        Examines the spellout structure and whether it is well-formed. Currently handles only incorporation
-        (and by extension clitics). The algorithm detects clitics and return False ('fail') immediate if the
-        clitic is not licensed. If no problems are detected, returns True ('pass').
-
-        Looking at these procedures I now think that this cannot be the correct way to formulate these properties.
-        This is because by doing it at the spellout structure we are forced to mimic left-right properties of the
-        linear order inside SS structure. A more natural approach would be to handle this by manipulating the
-        lexical stream, but this requires then that we posit a processing buffer between lexico-morphological
-        component and syntax that hosts the lexical stream, possibly for each word at a time. Then we can formulate the
-        incorporation tests inside that pipeline. To be useful there should be some other independent reasons why
-        this structure exists.
-        """
+        log('Checking surface conditions...')
         # ----------------------- minimal search ---------------------------- #
         ps_ = ps.top()
         for node in ps_:
             if node.is_complex():
                 if node.left.clitic() and not self.is_clitic_licensed(node.left):
+                    log(f'Failed.')
                     return False
                 elif node.right.clitic() and not self.is_clitic_licensed(node.right):
+                    log('Failed.')
                     return False
             elif node.clitic() and not self.is_clitic_licensed(node):
+                    log('Failed.')
                     return False
         # -------------------------------------------------------------------- #
+        log('OK')
         return True
 
     def is_clitic_licensed(self, test_constituent):

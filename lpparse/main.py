@@ -3,6 +3,7 @@ from language_guesser import LanguageGuesser
 from support import is_comment
 from linear_phase_parser import LinearPhaseParser
 
+
 def run_study(args):
     sentence = args.get('sentence', '')
 
@@ -28,7 +29,7 @@ def run_study(args):
         if not is_comment(sentence):
             language = lang_guesser.guess_language(sentence)
             local_file_system.print_sentence_to_console(sentence_number, sentence)
-            parser_for[language].parse(sentence_number, sentence)
+            parser_for[language].parse_sentence(sentence_number, sentence)
             local_file_system.save_output(parser_for[language],
                                           sentence_number,
                                           sentence,
@@ -38,7 +39,6 @@ def run_study(args):
                 parser_for[language].narrow_semantics.global_cognition.end_conversation()
             sentence_number = sentence_number + 1
         else:
-            local_file_system.parse_and_analyze_comment(sentence)
             local_file_system.write_comment_line(sentence)
 
     # Finish processing

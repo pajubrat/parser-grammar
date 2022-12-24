@@ -2,6 +2,8 @@
 import logging
 import time
 import datetime
+from time import process_time
+
 my_log = logging.getLogger(__name__)
 
 major_category = {'N', 'Neg', 'Neg/fin', 'C', 'C/fin', 'P', 'D', 'φ', 'A', 'v', 'V', 'ADV', 'Q', 'NUM', 'T', 'TO/inf', 'VA/inf', 'A/inf', 'MA/A', 'FORCE'}
@@ -157,3 +159,54 @@ def initialize_console(file_names):
 
 def is_comment(sentence):
     return sentence[0] == '&' or sentence[0].startswith("'")
+
+def log_solution(brain_model, ps, solution_found):
+    if not solution_found:
+        log(f'\n\tSemantic interpretation:\n{brain_model.local_file_system.formatted_semantics_output(brain_model.narrow_semantics.semantic_interpretation, brain_model)}')
+    ps.tidy_names(1)
+    log(f'\n\n\t\tLexical features:\n{show_primitive_constituents(ps)}')
+    if not solution_found:
+        log('\n\t\tSemantic bookkeeping:')
+        log(f'\t\t{brain_model.local_file_system.format_semantic_interpretation(brain_model)}\n')
+        log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
+    log('\n\tChecking if the sentence is ambiguous...\n')
+
+def report_success(brain_model, ps):
+    log('\n\t\tAccepted.++\n')
+    print('X', end='', flush=True)
+    if brain_model.local_file_system.settings['datatake_full']:
+        brain_model.local_file_system.simple_log_file.write(f'\n\t{ps} <= accepted')
+    if len(brain_model.narrow_semantics.semantic_interpretation['Assignments']) == 0:
+        log('\t\tSentence was judged uninterpretable due to lack of legitimate assignments.\n')
+    if not brain_model.first_solution_found:
+        log(f'\t\tSolution accepted at {brain_model.resources["Total Time"]["n"]}ms stimulus onset.\n')
+        brain_model.resources['Mean time per word']['n'] = int(brain_model.resources['Total Time']['n'] / count_words(brain_model.sentence))
+    if brain_model.only_first_solution:
+        brain_model.exit = True
+    brain_model.execution_time_results.append(int((process_time() - brain_model.start_time) * 1000))
+    brain_model.result_list.append([ps, brain_model.narrow_semantics.semantic_interpretation])
+    brain_model.spellout_result_list.append(ps)
+    brain_model.first_solution_found = True
+    log_solution(brain_model, ps, brain_model.first_solution_found)
+    brain_model.first_solution_found = True
+
+def count_words(sentence):
+    sentence_ = []
+    for word in sentence:
+        word_ = word.split('=')
+        sentence_ = sentence_ + word_
+    return len(sentence_)
+
+def report_failure(ps):
+    log('\n\t\tSOLUTION WAS REJECTED. \n\n')
+    log('\t\tMemory dump:\n')
+    log(f'{show_primitive_constituents(ps)}')
+
+def log_new_sentence(brain_model, count, lst):
+    set_logging(True)
+    log('\n------------------------------------------------------------------------------------------------')
+    log(f'\n#{count}. {brain_model.local_file_system.generate_input_sentence_string(lst)}')
+    log(f'\n{brain_model.sentence}')
+    log(f'\n\n\t 1. {brain_model.sentence}\n')
+    if brain_model.local_file_system.settings['datatake_full']:
+        brain_model.local_file_system.simple_log_file.write(f'\n\n#{count}. {brain_model.local_file_system.generate_input_sentence_string(lst)} / {brain_model.sentence}\n')

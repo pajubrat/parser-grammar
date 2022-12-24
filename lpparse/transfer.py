@@ -1,6 +1,7 @@
 from support import log, is_logging_enabled
 from scrambling_reconstruction import ScramblingReconstruction
 from lexical_interface import LexicalInterface
+from surface_conditions import SurfaceConditions
 
 
 class Transfer:
@@ -9,7 +10,9 @@ class Transfer:
         self.i = 0
         self.target = None
         self.scrambling_module = ScramblingReconstruction(self.brain_model)
+        self.surface_conditions_module = SurfaceConditions()
         self.access_lexicon = LexicalInterface(self.brain_model)
+        self.name_provider_index = 0
         self.instructions = {'Head':            {'type': 'Head Chain',
                                                  'need repair': lambda x: x.has_affix() and not x.right.find_me_elsewhere,
                                                  'repair function': lambda x, y, z: x.create_chain(y, z),
@@ -33,12 +36,20 @@ class Transfer:
                                                  'need repair': lambda x: (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and not x.sister().adjunct,
                                                  'repair function': lambda x, y, z: x.extrapose(self)},
                              'Last Resort Extraposition': {'type': 'Last Resort Extraposition',
-                                                           'need repair': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not self.brain_model.LF_legibility_test(x.top()),
+                                                           'need repair': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not self.brain_model.LF.LF_legibility_test_detached(x.top()),
                                                            'repair function': lambda x, y, z: x.last_resort_extrapose(self)}
                              }
 
+    def transfer_to_LF(self, ps):
+        self.name_provider_index = 0
+        original_mother, is_right = ps.detach()
+        ps = self.execute_sequence(ps)
+        if original_mother:
+            ps.mother = original_mother
+        return ps
+
     def execute_sequence(self, ps):
-        output_to_interfaces = {'spellout structure': ps.copy()}
+        log(f'\n\tTransfer to LF:----------------------------------------------------------------------\n ')
         self.reconstruct(ps.bottom(), self.instructions['Head'])
         self.reconstruct(ps.bottom(), self.instructions['Feature'])
         self.reconstruct(ps.bottom(), self.instructions['Extraposition'])
@@ -46,10 +57,15 @@ class Transfer:
         self.reconstruct(ps.bottom(), self.instructions['Phrasal'])
         self.reconstruct(ps.bottom(), self.instructions['Agree'])
         self.reconstruct(ps.bottom(), self.instructions['Last Resort Extraposition'])
-        return ps, output_to_interfaces
+        log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps}\n')
+        return ps
 
     def reconstruct(self, probe, inst):
         while probe:
             if inst['need repair'](probe):
                 inst['repair function'](probe, self, inst)
             probe = probe.move_upwards()
+
+    def babtize(self):
+        self.name_provider_index += 1
+        return str(self.name_provider_index)

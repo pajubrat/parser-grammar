@@ -37,7 +37,7 @@ class AdjunctConstructor:
     def transfer_adjunct(self, ps):
         original_mother, is_right = ps.detach()
         disable_logging()
-        ps, output_from_interfaces = self.controlling_parser_process.transfer_to_LF(ps)
+        ps = self.controlling_parser_process.transfer.transfer_to_LF(ps)
         enable_logging()
         if original_mother:
             ps.mother = original_mother

@@ -71,9 +71,6 @@ class NarrowSemantics:
                               'FORCE': '§Proposition'
                               }
 
-        # This dictionary implements syntax-semantics interfaces as assumed in the multiple interface hypothesis
-        self.access_interface = {}
-
     def initialize(self):
         self.access_interface = {}
         self.pragmatic_pathway.initialize()

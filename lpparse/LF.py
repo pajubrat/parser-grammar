@@ -69,3 +69,9 @@ class LF:
             log(f'Post-syntactic tail test for \'{goal.illustrate()}\', {goal.max().illustrate()} failed. ')
             return False
         return True
+
+    def LF_legibility_test_detached(self, ps):
+        def detached(ps):
+            ps.mother = None
+            return ps
+        return self.LF_legibility_test(detached(ps.copy()))

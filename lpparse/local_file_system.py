@@ -528,13 +528,6 @@ class LocalFileSystem:
                 surface_vocabulary_file.write(string)
         surface_vocabulary_file.close()
 
-    def parse_and_analyze_comment(self, sentence):
-        if self.settings['ignore_ungrammatical_sentences']:
-            if 'ungram' in self.generate_input_sentence_string(sentence).lower():
-                self.instruction_to_ignore_from_test_corpus = True
-            elif 'gram' in self.generate_input_sentence_string(sentence).lower():
-                self.instruction_to_ignore_from_test_corpus = False
-
     def close_all_output_files(self):
         self.dev_log_file.write('Closing all output files...')
         self.results_file.close()

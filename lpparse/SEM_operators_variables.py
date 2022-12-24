@@ -44,7 +44,7 @@ class OperatorVariableModule:
                 semantic_interpretation['Operator bindings'].append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()}({operator_feature})')
             else:
                 semantic_interpretation['Operator bindings'].append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()} by default. ')
-            self.interpret_operator_at_lexical_item(binding, operator_feature, semantic_interpretation)
+            # self.interpret_operator_at_lexical_item(binding, operator_feature, semantic_interpretation)
             self.project_operator_objects_into_discourse_inventory(binding)
         else:
             log(f'\n\t\t\t{binding["Head"].illustrate()} with {operator_feature} is not bound by an operator. ')

@@ -9,9 +9,10 @@ from knockouts import knockout_filter, \
     knockout_working_memory
 from feature_processing import convert_features_for_parsing
 
+
 class PlausibilityMetrics:
-    def __init__(self, controlling_parsing_process):
-        self.brain_model = controlling_parsing_process
+    def __init__(self, brain_model):
+        self.brain_model = brain_model
         self.weighted_site_list = []
         self.word = None
         self.plausibility_conditions = \
@@ -62,7 +63,7 @@ class PlausibilityMetrics:
         self.word_tail_set = None
 
     def filter_and_rank(self, ps, w):
-        nodes_not_in_active_working_memory = []
+        self.brain_model.working_memory.not_in_active_working_memory = []
 
         # Input integrity test
         if not ps or not w:
@@ -72,22 +73,21 @@ class PlausibilityMetrics:
         elif ps.word_internal() and self.dispersion_filter_active():
             solutions = [(ps.bottom(), True, self.generate_address_label())]
         else:
-            nodes_in_active_working_memory, nodes_not_in_active_working_memory = self.in_active_working_memory(ps)
+            self.brain_model.working_memory.in_active_working_memory, self.brain_model.working_memory.not_in_active_working_memory = self.brain_model.working_memory.active_working_memory_catalog(ps)
             log(f'\n\t\tFiltering and ranking merge sites...')
-            nodes_available = self.filter(nodes_in_active_working_memory, w)
+            nodes_available = self.filter(self.brain_model.working_memory.in_active_working_memory, w)
             merge_sites = self.rank_merge_right_(nodes_available, w)
-            all_merge_sites = merge_sites + nodes_not_in_active_working_memory
+            all_merge_sites = merge_sites + self.brain_model.working_memory.not_in_active_working_memory
             solutions = self.evaluate_transfer(all_merge_sites)
 
         log(f'\n\t\tRanking:')
         for i, (site, transfer, address_label) in enumerate(solutions, start=1):
-            if nodes_not_in_active_working_memory and site == nodes_not_in_active_working_memory[0]:
+            if self.brain_model.working_memory.not_in_active_working_memory and site == self.brain_model.working_memory.not_in_active_working_memory[0]:
                 log('\n\t\t\t\t-- Working memory boundary --')
             if transfer:
                 log(f'\n\t\t({i}) [{site}↓+ {w.label()}°](=> {address_label})')
             else:
                 log(f'\n\t\t({i}) [{site} + {w.label()}°](=> {address_label})')
-
         return solutions
 
     def evaluate_transfer(self, all_merge_sites):
@@ -164,8 +164,8 @@ class PlausibilityMetrics:
     def lf_legibility_condition(self, site):
         if not site.is_primitive():
             set_logging(False)
-            dropped, output_from_interfaces = self.brain_model.transfer_to_LF(site.copy())
-            if not self.brain_model.LF_legibility_test(dropped):
+            dropped = self.brain_model.transfer.transfer_to_LF(site.copy())
+            if not self.brain_model.LF.LF_legibility_test(dropped):
                 set_logging(True)
                 return True
             set_logging(True)
@@ -277,20 +277,9 @@ class PlausibilityMetrics:
         #-------------------------------------------------------------------------------
         return adjunction_sites
 
-    @knockout_working_memory
-    def in_active_working_memory(self, ps):
-        all_nodes_available = [N for N in ps.geometrical_minimal_search()]
-        nodes_not_in_active_working_memory = []
-        new_nodes_available = all_nodes_available.copy()
-        for N in all_nodes_available:
-            if not N.active_in_syntactic_working_memory:
-                new_nodes_available.remove(N)
-                nodes_not_in_active_working_memory.insert(0, N) # Outside list is stack
-        return [node for node in new_nodes_available], [node for node in nodes_not_in_active_working_memory]
-
     def left_branch_filter(self, N):
         set_logging(False)
-        dropped, output_from_interfaces = self.brain_model.transfer_to_LF(N.copy())
+        dropped = self.brain_model.transfer.transfer_to_LF(N.copy())
         set_logging(True)
         left_branch_passes_LF = self.brain_model.LF.LF_legibility_test(dropped, self.left_branch_filter_test_battery)
         if not left_branch_passes_LF:

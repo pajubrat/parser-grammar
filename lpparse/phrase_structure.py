@@ -537,7 +537,7 @@ class PhraseStructure:
             elif new_head_needed and (op_features or self.unlicensed_specifier()):
                 probe = self.sister().merge_1(transfer.access_lexicon.PhraseStructure(), 'left').left
             probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
-        return inst.copy(), self.copy_for_chain(transfer.brain_model.babtize())
+        return inst.copy(), self.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
         for head in self.search_domain().minimal_search(inst['selection'], inst['sustain']):
@@ -952,6 +952,12 @@ class PhraseStructure:
         bottom_affix.left = None
         return self.top()
 
+    def belong_to_same_word(self, site):
+        return self.bottom_affix().internal and site.is_primitive()
+
+    def sink_into_complex_head(self, terminal_lexical_item):
+        return self.bottom_affix().sink(terminal_lexical_item)
+
     def copy(self):
         ps_ = PhraseStructure()
         if self.left:
@@ -988,6 +994,11 @@ class PhraseStructure:
         for i, node in enumerate(self.geometrical_minimal_search()):
             if i == idx:
                 return node
+
+    def target_left_branch(self, target):
+        new_ps = self.top().copy()
+        return new_ps.get_node(self.top().get_index(target))
+
 
     # Support ----------------------------------------------------------------------
 
