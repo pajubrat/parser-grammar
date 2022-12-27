@@ -49,14 +49,14 @@ class ScramblingReconstruction():
     def merge_floater(self, node, floater):
         if node.is_right():
             if floater.adverbial_adjunct():
-                node.merge_1(floater, 'right')
+                node.Merge(floater, 'right')
             else:
-                node.merge_1(floater, 'left')
+                node.Merge(floater, 'left')
         else:
             if floater.adverbial_adjunct():
-                node.mother.merge_1(floater, 'right')
+                node.mother.Merge(floater, 'right')
             else:
-                node.mother.merge_1(floater, 'left')
+                node.mother.Merge(floater, 'left')
         self.adjunct_constructor.externalize_structure(floater)
 
     def babtize(self):

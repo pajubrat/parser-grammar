@@ -1,7 +1,6 @@
 from support import log, is_logging_enabled
 from scrambling_reconstruction import ScramblingReconstruction
 from lexical_interface import LexicalInterface
-from surface_conditions import SurfaceConditions
 
 
 class Transfer:
@@ -10,7 +9,6 @@ class Transfer:
         self.i = 0
         self.target = None
         self.scrambling_module = ScramblingReconstruction(self.brain_model)
-        self.surface_conditions_module = SurfaceConditions()
         self.access_lexicon = LexicalInterface(self.brain_model)
         self.name_provider_index = 0
         self.instructions = {'Head':            {'type': 'Head Chain',

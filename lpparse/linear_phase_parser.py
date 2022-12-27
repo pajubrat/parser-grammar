@@ -3,7 +3,7 @@ from lexical_interface import LexicalInterface
 from LF import LF
 from morphology import Morphology
 from transfer import Transfer
-from narrow_semantics import NarrowSemantics
+from SEM_narrow_semantics import NarrowSemantics
 from adjunct_constructor import AdjunctConstructor
 from lexical_stream import LexicalStream
 from time import process_time
@@ -135,7 +135,7 @@ class LinearPhaseParser:
             set_logging(False)
             new_left_branch = self.transfer.transfer_to_LF(left_branch)
             set_logging(True)
-        new_constituent = new_left_branch.merge_1(terminal_lexical_item)
+        new_constituent = new_left_branch.Merge(terminal_lexical_item)
         self.working_memory.remove_item(left_branch)
         return new_constituent
 

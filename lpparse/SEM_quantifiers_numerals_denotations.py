@@ -51,7 +51,7 @@ class QuantifiersNumeralsDenotations:
         L1 = []
         L2 = []
         if not ps.find_me_elsewhere:
-            if ps.is_complex():
+            if ps.complex():
                 L1 = self.calculate_possible_denotations_(ps.left)
                 L2 = self.calculate_possible_denotations_(ps.right)
             else:

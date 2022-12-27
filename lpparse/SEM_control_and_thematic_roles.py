@@ -31,7 +31,7 @@ class LF_Recovery:
     def antecedent_absent(self, probe):
         unvalued_phi = probe.phi_needs_valuation()
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
-            if probe.sister() and probe.sister().is_complex() and (probe.sister().head().nonfinite() or probe.sister().head().finite()):
+            if probe.sister() and probe.sister().complex() and (probe.sister().head().nonfinite() or probe.sister().head().finite()):
                 arg_str = 'Clausal'
             else:
                 arg_str = 'Generic'

@@ -78,7 +78,7 @@ class Visualizer:
 
     def lateral_stretch(self, N):
         min_move = 0.5
-        if N.is_primitive():
+        if N.primitive():
             return
         else:
             k = self.check_lateral_conflicts(N)
@@ -93,7 +93,7 @@ class Visualizer:
     def move_node(self, dx, dy, N):
         N.x = N.x + dx
         N.y = N.y + dy
-        if N.is_complex():
+        if N.complex():
             self.move_node(dx, dy, N.left)
             self.move_node(dx, dy, N.right)
 
@@ -112,7 +112,7 @@ class Visualizer:
         min_safety_window = 0.4
         coordinate_set.add((N.x-min_safety_window, N.y))  # x-coordinate + safety window to prevent text overlap
         coordinate_set.add((N.x+min_safety_window, N.y))  # x-coordinate + safety window to prevent text overlap
-        if N.is_primitive():
+        if N.primitive():
             if self.show_glosses or self.spellout or self.show_features:
                 coordinate_set |= self.safety_window_coordinate_update(N)
         else:
@@ -321,7 +321,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             label_stack.append((ps.label(), 'LABEL'))
 
         # Show words
-        if self.visualizer.show_words and ps.is_primitive():
+        if self.visualizer.show_words and ps.primitive():
             if ps.get_phonological_string() != ps.label() and \
                     legitimate_label(ps):
                 label_stack.append((ps.get_phonological_string(), 'PHONOLOGY'))
@@ -330,7 +330,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
                             ps.gloss() != ps.get_phonological_string() and \
                             legitimate_label(ps):
                         label_stack.append((f"ʻ{ps.gloss()}ʼ", 'GLOSS'))
-        if self.visualizer.case and ps.is_primitive():
+        if self.visualizer.case and ps.primitive():
             if get_case(ps):
                 label_stack.append(str(get_case(ps), 'CASE'))
 

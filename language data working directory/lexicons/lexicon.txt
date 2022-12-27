@@ -83,10 +83,10 @@ Jukka-  	:: PF:Jukka LF:Jukka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 juosten 	:: juokse-#E/inf LANG:FI
 juoksee		:: juokse-#T/fin#[-V] LANG:FI
 juokse-		:: PF:juokse- LF:run V CLASS/INTR LANG:FI
-kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin,$NO_S -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin,$NO_S -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED,$NO_S -PHI ARG -E !COMP:* TAIL:*POL:NEG
-kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED,$NO_S -PHI ARG -E !COMP:* TAIL:*POL:NEG
+kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -PHI ARG -E !COMP:* TAIL:*POL:NEG
+kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -PHI ARG -E !COMP:* TAIL:*POL:NEG
 kahdet		:: kaksi-#pl#[nom] LANG:FI
 kahden		:: kaksi-#pl#[gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two Num LANG:FI
@@ -114,7 +114,7 @@ kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[par] LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
 kohti		:: P PF:kohti LF:towards !COMP:φ -PHI TAIL:V LANG:FI
 kohti'		:: P PF:kohti LF:towards !COMP:φ -PHI LANG:FI
-koko		:: PF:koko LF:all D LANG:FI TAIL:T,$NO_S COMP:φ adjoinable
+koko		:: PF:koko LF:all D LANG:FI TAIL:T COMP:φ adjoinable
 ketä		:: kuka-#D#wh#[par] LANG:FI
 kenen		:: kuka-#D/pro#wh#[gen] LANG:FI
 kuka 		:: kuka-#D#wh#sg#3p#def#hum#[nom] LANG:FI
@@ -289,7 +289,7 @@ sukan_acc	:: sukka-#φ#r_expression#[acc(n)]
 sukat		:: sukka-#φ#r_expression#[nom]#pl
 sukka-		:: PF:sukka LF:socks N LANG:FI
 sta			:: PF:sta LF:of P TAIL:V LANG:FI
-sti			:: PF:sti LF:by !COMP:* TAIL:T,$NO_W Adv -ARG LANG:FI
+sti			:: PF:sti LF:by !COMP:* TAIL:T Adv -ARG LANG:FI
 talo		:: talo-#φ#r_expression
 taloa		:: talo-#φ#r_expression#[par]
 talona		:: talo-#φ#r_expression#[-ess]
@@ -394,15 +394,15 @@ niiden		:: ne#[gen]
 
 # Case suffixes
 # A. Structural
-[nom]		:: inflectional NOM TAIL:Fin,ARG,EF:φ,$NO_S adjoinable LANG:FI
-[gen]		:: inflectional GEN TAIL:Inf,ARG,EF:φ,$NO_S adjoinable -float LANG:FI
-[par]   	:: inflectional PAR TAIL:ARG,-PHI,$NO_S adjoinable LANG:FI
+[nom]		:: inflectional NOM TAIL:Fin,ARG,EF:φ adjoinable LANG:FI
+[gen]		:: inflectional GEN TAIL:Inf,ARG,EF:φ adjoinable -float LANG:FI
+[par]   	:: inflectional PAR TAIL:ARG,-PHI adjoinable LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
 [dat]		:: inflectional DAT TAIL:*φ adjoinable
-[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
-[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:PHI,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
-[acc(t)]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S adjoinable LANG:FI
-[acc(0)]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED,$NO_S TAIL:*POL:NEG,$NO_S TAIL:*PHI,$NO_S adjoinable LANG:FI
+[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:PHI TAIL:*POL:NEG adjoinable LANG:FI
+[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:PHI TAIL:*POL:NEG adjoinable LANG:FI
+[acc(t)]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
+[acc(0)]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
 # B. Semantic cases
 [-ess]     	:: inflectional PF:na LF:as TAIL:V LANG:FI #essiivi
 [-trs]		:: inflectional PF:ksi LF:to TAIL:V LANG:FI #translatiivi
@@ -747,9 +747,9 @@ ki-			:: PF:ki LF:who N PHI_N LANG:HU
 D_HU		:: PF:D LF:the D EF:φ
 
 #Case forms
-[+nom]		:: inflectional NOM TAIL:ARG,T/fin,$NO_S adjoinable LANG:HU
-[+acc]		:: inflectional ACC TAIL:v,$NO_S adjoinable LANG:HU
-[+dat]		:: inflectional DAT TAIL:ARG,Inf,$NO_S adjoinable -float LANG:HU
+[+nom]		:: inflectional NOM TAIL:ARG,T/fin adjoinable LANG:HU
+[+acc]		:: inflectional ACC TAIL:v adjoinable LANG:HU
+[+dat]		:: inflectional DAT TAIL:ARG,Inf adjoinable -float LANG:HU
 
 # ESTONIAN LEXICON -------------------------------------------------------------------------------------------------------------------------
 

@@ -47,7 +47,7 @@ def show_primitive_constituents(self):
         return sorted(A) + sorted(B) + sorted(C) + sorted(D) + sorted(E) + sorted(F) + sorted(G) + sorted(H) + sorted(J) + sorted(id) + sorted(residuum)
 
     reply = ''
-    if not self.is_primitive():
+    if not self.primitive():
         reply += show_primitive_constituents(self.left)
         reply += show_primitive_constituents(self.right)
     else:

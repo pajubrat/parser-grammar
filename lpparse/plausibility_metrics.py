@@ -93,7 +93,7 @@ class PlausibilityMetrics:
     def evaluate_transfer(self, all_merge_sites):
         solutions = []
         for site in all_merge_sites:
-            if site.is_complex():
+            if site.complex():
                 solutions.append((site, True, self.generate_address_label()))
             else:
                 if site.has_affix():
@@ -120,34 +120,34 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def positive_spec_selection(self, site):
-        return (site.is_complex() or 'D' in site.features) and self.word_specs & site.head().features
+        return (site.complex() or 'D' in site.features) and self.word_specs & site.head().features
 
     @knockout_lexical_ranking
     def negative_spec_selection(self, site):
-        return site.is_complex() and self.not_word_specs & site.head().features
+        return site.complex() and self.not_word_specs & site.head().features
 
     @knockout_lexical_ranking
     def rare_spec_selection(self, site):
-        return site.is_complex() and self.rare_word_specs & site.head().features
+        return site.complex() and self.rare_word_specs & site.head().features
 
     @knockout_lexical_ranking
     def break_head_comp_relations(self, site):
-        if not site.is_primitive() and site.mother and \
-                site.mother.left and site.mother.left.is_primitive():
+        if not site.primitive() and site.mother and \
+                site.mother.left and site.mother.left.primitive():
             if site.mother.left.licensed_complements() & site.features:
                 if not self.word.adverbial():
                     return True
 
     @knockout_lexical_ranking
     def positive_head_comp_selection(self, site):
-        if site.is_primitive():
+        if site.primitive():
             for m in site.get_affix_list():
                 if self.word.features & convert_features_for_parsing(m.licensed_complements()):
                     return True
 
     @knockout_lexical_ranking
     def negative_head_comp_selection(self, site):
-        if site.is_primitive():
+        if site.primitive():
             m = site.bottom_affix()
             if self.word.features & convert_features_for_parsing(m.complements_not_licensed()):
                 log(f'{self.word.features & convert_features_for_parsing(m.complements_not_licensed())}')
@@ -155,14 +155,14 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def negative_semantic_match(self, site):
-        if site.is_primitive():
+        if site.primitive():
             m = site.bottom_affix()
             if not m.semantic_match(self.word):
                 return True
 
     @knockout_extra_ranking
     def lf_legibility_condition(self, site):
-        if not site.is_primitive():
+        if not site.primitive():
             set_logging(False)
             dropped = self.brain_model.transfer.transfer_to_LF(site.copy())
             if not self.brain_model.LF.LF_legibility_test(dropped):
@@ -174,26 +174,20 @@ class PlausibilityMetrics:
     def negative_adverbial_test(self, site):
         if self.word.adverbial() and self.word_tail_set:
             w_copy = self.word.copy()
-            site.merge_1(w_copy, 'right')
+            site.Merge(w_copy, 'right')
             # If external tail head test fails and the site itself does not match with the tail features,
             # the negative adverbial test is true
             if not w_copy.tail_test():
-                if not self.sister_tail_head_test(site, w_copy):
                     w_copy.remove()
                     return True
             w_copy.remove()
 
-    def sister_tail_head_test(self, site, w_copy):
-        for tail_set in w_copy.get_tail_sets():
-            if site.head().match_features(tail_set) == 'complete match':
-                return True
-
     @knockout_lexical_ranking
     def positive_adverbial_test(self, site):
-        if self.word.adverbial() and self.word_tail_set and site.is_complex():
+        if self.word.adverbial() and self.word_tail_set and site.complex():
             w_copy = self.word.copy()
-            site.merge_1(w_copy, 'right')
-            if w_copy.tail_test() or self.sister_tail_head_test(site, w_copy):
+            site.Merge(w_copy, 'right')
+            if w_copy.tail_test():
                 w_copy.remove()
                 return True
             w_copy.remove()
@@ -264,7 +258,7 @@ class PlausibilityMetrics:
             if N.does_not_accept_any_complementizers():
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
                 continue
-            if N.is_complex() and self.left_branch_filter(N):
+            if N.complex() and self.left_branch_filter(N):
                 log(f'Reject {N} + {w} due to bad left branch ({self.brain_model.LF.error_report_for_external_callers})...')
                 continue
             if self.word_breaking_filter(N, w):

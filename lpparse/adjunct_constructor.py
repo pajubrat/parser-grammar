@@ -6,7 +6,7 @@ class AdjunctConstructor:
 
     def externalize_structure(self, ps):
         if ps and ps.head().is_adjoinable():
-            if ps.is_complex():
+            if ps.complex():
                 self.externalize_and_transfer(ps)
             else:
                 self.externalize_head(ps)

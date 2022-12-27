@@ -114,7 +114,7 @@ class NarrowSemantics:
 
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
-            if ps.is_primitive():
+            if ps.primitive():
                 if ps.phi_needs_valuation():
                     self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.recover_arguments(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
@@ -188,7 +188,7 @@ class NarrowSemantics:
             return next((const for const in ps.upward_path() if feature_set.issubset(const.features)), None)
 
         def get_tailed_head(ps, tail_set):
-            return next((const for const in ps.upward_path() if const.is_primitive() and const.match_features(tail_set).match_occurred and const.match_features(tail_set).outcome), None)
+            return next((const for const in ps.upward_path() if const.primitive() and const.check_some(tail_set) and const.check(tail_set)), None)
 
         def interpret_argument_tailing(ps, tailed_head):
             if tailed_head:

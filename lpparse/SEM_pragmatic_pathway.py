@@ -88,7 +88,7 @@ class Discourse:
 
     def collect_arguments(self, ps, scope):
         arguments = set()
-        if ps.is_complex() and not self.out_of_proposition_scope(ps, scope):
+        if ps.complex() and not self.out_of_proposition_scope(ps, scope):
             if self.is_relevant_for_information_structure(ps.left.head()):
                 arguments.add(ps.left.head())
             if self.is_relevant_for_information_structure(ps.right.head()):
@@ -106,18 +106,18 @@ class Discourse:
         return (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
     def out_of_proposition_scope(self, ps, scope):
-        if ps.left.is_primitive():
+        if ps.left.primitive():
             if ps.left.finite():
                 if ps.left.finite_tense():
                     if ps != scope:
                         return True
-        if ps.right.is_primitive():
+        if ps.right.primitive():
             if ps.right.finite():
                 if ps != scope:
                     return True
 
     def locate_proposition(self, ps):
-        return next((node for node in ps if node.is_complex() and node.left.finite_tense()), None)
+        return next((node for node in ps if node.complex() and node.left.finite_tense()), None)
 
     def get_force_features(self, ps):
         return {f for f in ps.head().features if f[:5] == 'FORCE'}
@@ -135,7 +135,7 @@ class Discourse:
             return
 
         idx = self.get_inventory_index(ps.head())
-        if starting_point_head in {const for const in ps.head().upward_path() if const.is_primitive()}:
+        if starting_point_head in {const for const in ps.head().upward_path() if const.primitive()}:
             direction = 'High'
             log(f'Topicalization...')
         else:

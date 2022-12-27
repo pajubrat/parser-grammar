@@ -40,7 +40,7 @@ class LF:
 
     def pass_LF_legibility(self, ps):
         if not ps.find_me_elsewhere:
-            if ps.is_primitive():
+            if ps.primitive():
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(ps):
                         log(f'\t\t{ps} failed {test_name}. ')
@@ -60,12 +60,12 @@ class LF:
                 return True
 
     def final_tail_check(self, goal):
-        if goal.is_complex():
+        if goal.complex():
             if not goal.left.find_me_elsewhere and not self.final_tail_check(goal.left):
                 return False
             if not goal.right.find_me_elsewhere and not self.final_tail_check(goal.right):
                 return False
-        if goal.is_primitive() and goal.get_tail_sets() and not goal.tail_test():
+        if goal.primitive() and goal.get_tail_sets() and not goal.tail_test():
             log(f'Post-syntactic tail test for \'{goal.illustrate()}\', {goal.max().illustrate()} failed. ')
             return False
         return True
