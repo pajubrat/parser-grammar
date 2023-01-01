@@ -88,16 +88,16 @@ class PhraseStructure:
             return self.mother.right
         return self.mother.left
 
-    def sister(self):
-        while self.mother:
-            if self.is_left():
-                if not self.geometrical_sister().adjunct:
-                    return self.geometrical_sister()
+    def sister(x):
+        while x.mother:
+            if x.is_left():
+                if not x.geometrical_sister().adjunct:
+                    return x.geometrical_sister()
                 else:
-                    self = self.mother
-            if self.is_right():
-                if not self.adjunct:
-                    return self.geometrical_sister()
+                    x = x.mother
+            if x.is_right():
+                if not x.adjunct:
+                    return x.geometrical_sister()
                 else:
                     return None
 
@@ -195,6 +195,12 @@ class PhraseStructure:
     def edge(self):
         return list(takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path()))
 
+    def pro_edge(self):
+        lst = self.edge()
+        if self.extract_pro():
+            lst.append(self.extract_pro())
+        return lst
+
     def contains_features(self, feature_set):
         if self.complex():
             if self.left.contains_features(feature_set) or self.right.contains_features(feature_set):
@@ -225,7 +231,6 @@ class PhraseStructure:
     # Virtual pronouns -----------------------------------------------------------------------
 
     def extract_pro(self):
-
         if self.check({'ARG'}) and self.phi_consistent_head():
             if self.sustains_reference():
                 phi_set_for_pro = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
@@ -245,55 +250,40 @@ class PhraseStructure:
     # Selection -------------------------------------------------------------------------------------------
 
     # Feature !EF:φ
-    def selection__positive_SUBJECT_edge(self, lexical_feature):
-        return next((x for x in self.pro_list() if x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.is_extended_subject())), None)
-
-    # Feature -EF:*
-    def selection__unselective_negative_edge(self, lexical_feature):
-        return not self.edge()
+    def selection__positive_SUBJECT_edge(self, selected_feature):
+        return self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
 
     # Feature -EF:φ
-    def selection__negative_SUBJECT_edge(self, lexical_feature):
-        return not self.next(self.edge, lambda x: x.referential() and x.is_extended_subject())
+    def selection__negative_SUBJECT_edge(self, selected_feature):
+        return not self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
 
-    def is_extended_subject(self):
-        return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or self.check({'pro'})
-
-    # Feature !SEF
-    def selection__positive_shared_edge(self, lexical_feature):
-        return not (not self.licensed_phrasal_specifier() and self.referential_complement_criterion())
-
-    # Feature !1EDGE
-    @staticmethod
-    def selection__negative_one_edge(self, lexical_feature):
-        return len(self.edge()) < 2
-
-    # Feature [!EF:*] ~ not used for calculation of any data
-    def selection__unselective_edge(self, lexical_feature):
+    # Feature !EF:*
+    def selection__unselective_edge(self, selected_feature):
         return self.edge()
 
-    # Feature !SPEC
-    def selection__positive_selective_specifier(self, lexical_feature):
-        return next((x for x in self.pro_list() if x.check(lexical_feature[6:])), None)
+    # Feature -EF:*
+    def selection__unselective_negative_edge(self, selected_feature):
+        return not self.edge()
 
-    def pro_list(self):
-        lst = self.edge()
-        if self.extract_pro():
-            lst.append(self.extract_pro())
-        return lst
+    # Feature !SEF
+    def selection__positive_shared_edge(self, selected_feature):
+        return not (not self.licensed_phrasal_specifier() and self.referential_complement_criterion())
 
-    # Feature -SPEC
-    def selection__negative_specifier(self,  lexical_feature):
-        return not self.next(self.edge, lambda x: x.check({lexical_feature[6:]}) and not x.adjunct)
+    # Feature -SPEC:L
+    def selection__negative_specifier(self,  selected_feature):
+        return not self.next(self.edge, lambda x: x.check({selected_feature}) and not x.adjunct)
 
-    # Feature !COMP
-    def selection__positive_obligatory_complement(self, lexical_feature):
-        return self.selected_sister() and (lexical_feature[6] == '*' or self.selected_sister().check({lexical_feature[6:]}))
+    # Feature !1EDGE
+    def selection__negative_one_edge(self, selected_feature):
+        return len(self.edge()) < 2
 
-    # Feature -COMP
-    def selection__negative_complement(self, lexical_feature):
-        return not (self.is_left() and self.proper_selected_complement() and
-                    (self.proper_selected_complement().check({lexical_feature[6:]}) or lexical_feature[6:] == '*'))
+    # Feature !COMP:L
+    def selection__positive_obligatory_complement(self, selected_feature):
+        return self.selected_sister() and self.selected_sister().check({selected_feature})
+
+    # Feature -COMP:L
+    def selection__negative_complement(self, selected_feature):
+        return not (self.proper_selected_complement() and self.proper_selected_complement().check({selected_feature}))
 
     # Feature [!SEF]
     def referential_complement_criterion(probe):
@@ -301,14 +291,19 @@ class PhraseStructure:
                                                        (probe.proper_selected_complement().head().licensed_phrasal_specifier() and
                                                         probe.proper_selected_complement().head().licensed_phrasal_specifier().head().referential()))
 
-    def complement_match(self, const):
-        return const.check(self.licensed_complements())
+    def specifier_match(self, phrase):
+        return phrase.head().check_some(self.licensed_specifiers())
 
     def double_spec_filter(self):
         return not self.check({'2SPEC'}) and len({spec for spec in self.edge() if not spec.adjunct}) > 1
 
-    def licensed_complements(self):
-        return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}
+    def licensed_phrasal_specifier(self):
+        if self.next(self.edge, lambda x: x.referential() and not x.adjunct):
+            return self.next(self.edge, lambda x: x.referential() and not x.adjunct)
+        return self.next(self.edge, lambda x: x.referential() and not x.find_me_elsewhere)
+
+    def complement_match(self, const):
+        return const.check(self.licensed_complements())
 
     def nonlicensed_complement(self):
         return self.proper_selected_complement() and self.proper_selected_complement().check(self.complements_not_licensed())
@@ -319,25 +314,10 @@ class PhraseStructure:
     def complement_not_licensed(self):
         return self.proper_selected_complement() and not self.proper_selected_complement().check(self.licensed_complements())
 
-    def licensed_specifiers(self):
-        return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
-
-    def complements_not_licensed(self):
-        return {f[6:] for f in self.features if f[:5] == '-COMP'}
-
     def properly_selected(self):
         return self.selector() and self.check_some(self.selector().licensed_complements())
 
-    def specifier_match(self, phrase):
-        return phrase.head().check_some(self.licensed_specifiers())
-
-    def licensed_phrasal_specifier(self):
-        return next((spec for spec in self.edge()
-                     if spec.referential() and not spec.adjunct),
-                    next((spec for spec in self.edge()
-                          if spec.referential() and not spec.find_me_elsewhere), None))
-
-    def does_not_accept_any_complementizers(self):
+    def does_not_accept_any_complements(self):
         return self.check({'-COMP:*'})
 
     def probe_goal_test(self):
@@ -437,7 +417,7 @@ class PhraseStructure:
         return self.primitive() and self.aunt().primitive()
 
     def has_nonthematic_specifier(self):
-        return self.EF() and self.edge() and self.edge()[0].is_extended_subject()
+        return self.EF() and self.edge() and self.edge()[0].extended_subject()
 
     def add_scope_information(self):
         if not self.non_scopal():
@@ -590,11 +570,19 @@ class PhraseStructure:
     # Feature processing -----------------------------------------------------------------------------
 
     def check(self, feature_set):
-        return feature_set & self.head().features == feature_set
+        return feature_set == {'*'} or feature_set & self.head().features == feature_set
 
-    def check_some(self, f):
-        if f & self.head().features:
-            return True
+    def check_some(self, feature_set):
+        return feature_set == {'*'} or feature_set & self.head().features
+
+    def complements_not_licensed(self):
+        return {f[6:] for f in self.features if f[:5] == '-COMP'}
+
+    def licensed_specifiers(self):
+        return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
+
+    def licensed_complements(self):
+        return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}
 
     def is_unvalued(self):
         for f in self.features:
@@ -668,22 +656,6 @@ class PhraseStructure:
 
     def operator_in_scope_position(self):
         return self.scan_operators() and self.container() and self.container().head().finite()
-
-    def find_occurrences_from(self, ps):
-        def find_(identity, ps):
-            chain = []
-            if ps.complex():
-                chain = chain + find_(identity, ps.left)
-                chain = chain + find_(identity, ps.right)
-            else:
-                if identity in ps.features:
-                    return [ps]
-                if ps.has_affix():
-                    chain = chain + find_(identity, ps.right)
-            return chain
-
-        identity = self.get_id()  # Returns the identity symbol (#1, ...)
-        return find_(identity, ps)
 
     # Tail-processing ---------------------------------------------------------------------------
 
@@ -1097,8 +1069,7 @@ class PhraseStructure:
         return self.adjunct or (self.head().check({'adjoinable'}) and not self.head().check({'-adjoinable'}))
 
     def clitic(self):
-        return self.check({'CL'}) or (
-                    self.head().check({'CL'}) and not self.head().has_affix() and self.head().internal)
+        return self.check({'CL'}) or self.head().check({'CL'}) and not self.head().has_affix() and self.head().internal
 
     def concept(self):
         next((x for x in self.get_affix_list() if x.expresses_concept()), False)
@@ -1132,3 +1103,6 @@ class PhraseStructure:
 
     def is_word_internal(self):
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
+
+    def extended_subject(self):
+        return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or self.check({'pro'})

@@ -255,7 +255,7 @@ class PlausibilityMetrics:
         adjunction_sites = []
         #--------------------geometrical minimal search------------------------------
         for N in list_of_sites_in_active_working_memory:
-            if N.does_not_accept_any_complementizers():
+            if N.does_not_accept_any_complements():
                 log(f'Reject {N} + {w} because {N} does not accept complementizers...')
                 continue
             if N.complex() and self.left_branch_filter(N):

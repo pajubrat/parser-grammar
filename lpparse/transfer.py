@@ -48,21 +48,22 @@ class Transfer:
 
     def execute_sequence(self, ps):
         log(f'\n\tTransfer to LF:----------------------------------------------------------------------\n ')
-        self.reconstruct(ps.bottom(), self.instructions['Head'])
-        self.reconstruct(ps.bottom(), self.instructions['Feature'])
-        self.reconstruct(ps.bottom(), self.instructions['Extraposition'])
+        self.reconstruct(ps, self.instructions['Head'])
+        self.reconstruct(ps, self.instructions['Feature'])
+        self.reconstruct(ps, self.instructions['Extraposition'])
         ps = self.scrambling_module.reconstruct(ps)
-        self.reconstruct(ps.bottom(), self.instructions['Phrasal'])
-        self.reconstruct(ps.bottom(), self.instructions['Agree'])
-        self.reconstruct(ps.bottom(), self.instructions['Last Resort Extraposition'])
+        self.reconstruct(ps, self.instructions['Phrasal'])
+        self.reconstruct(ps, self.instructions['Agree'])
+        self.reconstruct(ps, self.instructions['Last Resort Extraposition'])
         log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps}\n')
         return ps
 
     def reconstruct(self, probe, inst):
-        while probe:
-            if inst['need repair'](probe):
-                inst['repair function'](probe, self, inst)
-            probe = probe.move_upwards()
+        x = probe.bottom()
+        while x:
+            if inst['need repair'](x):
+                inst['repair function'](x, self, inst)
+            x = x.move_upwards()
 
     def babtize(self):
         self.name_provider_index += 1

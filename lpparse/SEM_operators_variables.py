@@ -44,7 +44,6 @@ class OperatorVariableModule:
                 semantic_interpretation['Operator bindings'].append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()}({operator_feature})')
             else:
                 semantic_interpretation['Operator bindings'].append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()} by default. ')
-            # self.interpret_operator_at_lexical_item(binding, operator_feature, semantic_interpretation)
             self.project_operator_objects_into_discourse_inventory(binding)
         else:
             log(f'\n\t\t\t{binding["Head"].illustrate()} with {operator_feature} is not bound by an operator. ')
@@ -62,23 +61,6 @@ class OperatorVariableModule:
     @staticmethod
     def scope_marker(head):
         return {'C', 'C/fin', 'OP:_'} & head.features
-
-    def interpret_operator_at_lexical_item(self, binding, operator_feature, semantic_interpretation):
-        log(f'\n\t\t\tInterpreting [{operator_feature}] at ')
-        head_chain = binding["Head"].find_occurrences_from(self.narrow_semantics.access_interface['spellout structure'])
-        log(f'{head_chain[0].illustrate()}. ')
-        if head_chain[0].concept():
-            log('Interpretation successful.')
-            if 'Predicates targeted by operator interpretation' not in semantic_interpretation:
-                semantic_interpretation['Predicates targeted by operator interpretation'] = [f'[{operator_feature}] at {head_chain[0]}']
-            else:
-                semantic_interpretation['Predicates targeted by operator interpretation'].append(f'[{operator_feature}] at {head_chain[0]}')
-        else:
-            log('Not enough lexical content. ')
-
-        if head_chain[0].finite():
-            log('Verum focus/polarity question interpretation. ')
-            semantic_interpretation['Verum focus/polarity question interpretation'] = True
 
     def is_operator(self, head):
         return {f for f in head.features if self.is_operator_feature(f)}

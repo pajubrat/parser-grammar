@@ -94,28 +94,22 @@ class LinearPhaseParser:
     def parse_new_item(self, ps, lst, index, inflection_buffer=None):
         if self.circuit_breaker(ps, lst, index):
             return
-        # Lexical ambiguity
         list_of_retrieved_lexical_items_matching_the_phonological_word = self.lexicon.lexical_retrieval(lst[index])
         for lexical_constituent in list_of_retrieved_lexical_items_matching_the_phonological_word:
-            # Morphology
+            # Decompose constituents which hold morphological chunks
             terminal_lexical_item, lst_branched, inflection = self.morphology.morphological_parse(lexical_constituent, lst.copy(), index)
-            # Lexical stream
+            # Process the first item and send into syntax
             terminal_lexical_item = self.lexical_stream.stream_into_syntax(terminal_lexical_item, lst_branched, inflection, ps, index, inflection_buffer)
-            # Syntactic module
             merge_sites = self.plausibility_metrics.filter_and_rank(ps, terminal_lexical_item)
-
             for site, transfer, address_label in merge_sites:
                 log(f'\n\t\t{address_label}')
-                left_branch = ps.target_left_branch(site)
-                new_constituent = self.attach(left_branch, site, terminal_lexical_item, transfer)
+                new_constituent = self.attach(ps.target_left_branch(site), site, terminal_lexical_item, transfer)
                 self.working_memory.remove_items(merge_sites)
                 self.parse_new_item(new_constituent.top(), lst_branched, index + 1)
                 if self.exit:
                     break
-
             print('.', end='', flush=True)
             self.narrow_semantics.pragmatic_pathway.forget_object(terminal_lexical_item)
-
         if not self.exit:
             log(f'\n\t\tBacktracking...')
 

@@ -24,7 +24,6 @@ class LF:
                                          '!1EDG': PhraseStructure.selection__negative_one_edge,
                                          '!SEF':  PhraseStructure.selection__positive_shared_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
-                                         '!SPEC': PhraseStructure.selection__positive_selective_specifier,
                                          '-COMP': PhraseStructure.selection__negative_complement,
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement}
 
@@ -54,9 +53,9 @@ class LF:
         return True
 
     def selection_test(self, probe):
-        for lexical_feature in sorted(for_lf_interface(probe.features)):
-            if lexical_feature[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[lexical_feature[:5]](probe, lexical_feature):
-                log(f'\t\t{probe} failed feature {lexical_feature}. ')
+        for selected_feature in sorted(for_lf_interface(probe.features)):
+            if selected_feature[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[selected_feature[:5]](probe, selected_feature[6:]):
+                log(f'\t\t{probe} failed feature {selected_feature}. ')
                 return True
 
     def final_tail_check(self, goal):
