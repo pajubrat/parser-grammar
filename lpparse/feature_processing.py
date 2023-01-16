@@ -1,6 +1,11 @@
 def unvalued(f):
     return f[:4] == 'PHI:' and f[-1] == '_' and f[:7] != 'PHI:DET'
 
+def valued(f):
+    return not unvalued(f)
+
+def phi_feature_for_Agree(f):
+    return f[:4] == 'PHI:' and f[:7] != 'PHI:DET' and not unvalued(f)
 
 def convert_features_for_parsing(features):
     return {f[1:] if f.startswith('!') else f for f in features}

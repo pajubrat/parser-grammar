@@ -132,8 +132,14 @@ lähellä		:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
 lähellä*	:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
 lähellä'	:: P PF:lähellä LF:near -PHI LANG:FI
 lähellä'	:: P PF:lähellä LF:near Inf EF:φ !SEF LANG:FI
-lähtee		:: lähte-#T/fin#[-V] LANG:FI
+
 lähden		:: lähte-#T/fin#[-n] LANG:FI
+lähdet		:: lähte-#T/fin#[-t] LANG:FI
+lähtee		:: lähte-#T/fin#[-V] LANG:FI
+lähdemme	:: lähte-#T/fin#[-mme] LANG:FI
+lähdette	:: lähte-#T/fin#[-tte] LANG:FI
+lähtevät	:: lähte-#T/fin#[-vAt] LANG:FI
+
 lähteä 		:: lähte-#A/inf LANG:FI
 lähtemään 	:: lähte-#MA.ill/inf LANG:FI
 lähtevän 	:: lähte-#VA/inf LANG:FI
@@ -363,8 +369,8 @@ se			:: se-#sg#3p#def#nonhum#pronoun1 LANG:FI
 sen			:: se-#[acc(n)]#sg#3p#def#nonhum#pronoun1 LANG:FI
 sitä		:: se-#[par]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se-			:: PF:se LF:the/that D LANG:FI
-se_DP		:: se_N-#D/pro#[nom]#sg#3p#def#nonhum LANG:FI
-sitä_DP		:: se_N-#D/pro#[par]#sg#3p#def#nonhum LANG:FI
+se			:: se_N-#D/pro#[nom]#sg#3p#def#nonhum LANG:FI
+sitä		:: se_N-#D/pro#[par]#sg#3p#def#nonhum LANG:FI
 sen_DP_gen	:: se_N-#D/pro#[gen]#sg#3p#def#nonhum LANG:FI
 se_N-		:: PF:se LF:the/that N LANG:FI
 itseään		:: itse-#D/refl#3p#sg#def#[par] LANG:FI
@@ -372,6 +378,8 @@ itseäni		:: itse-#D/refl#1p#sg#def#[par] LANG:FI
 itsensä_gen	:: itse-#D/refl#3p#sg#def#[gen] LANG:FI
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
 ne			:: PF:ne LF:those D PHI:NUM:PL PHI:PER:3 LANG:FI
+ne			:: ne-#D/pro#3p#pl#def#nonhum#[nom] LANG:FI
+ne-			:: PF:ne LF:those N LANG:FI
 niiden		:: ne#[gen]
 
 # Finite agreement
@@ -380,7 +388,7 @@ niiden		:: ne#[gen]
 [-V]		::	inflectional PHI EF:φ PHI:NUM:SG PHI:PER:3 LANG:FI
 [-mme]		::	inflectional PHI EF:φ PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
 [-tte]		::	inflectional PHI EF:φ PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[-vat]		::	inflectional PHI EF:φ PHI:NUM:PL PHI:PER:3 LANG:FI
+[-vAt]		::	inflectional PHI EF:φ PHI:NUM:PL PHI:PER:3 LANG:FI
 
 # Infinitival agreement (Px)
 [ni]		::	inflectional PHI pro EF:φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI

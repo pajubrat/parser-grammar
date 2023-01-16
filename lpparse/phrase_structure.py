@@ -1,7 +1,7 @@
 from collections import namedtuple
-from itertools import takewhile
+from itertools import takewhile, chain
 from support import log
-from feature_processing import unvalued, feature_check, negative_features, positive_features, phi_consistency
+from feature_processing import valued, unvalued, phi_feature_for_Agree, feature_check, negative_features, positive_features, phi_consistency
 
 # New list (ordered hierarchically)
 major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
@@ -193,12 +193,12 @@ class PhraseStructure:
         return next((x for x in memory_span() if condition(x)), None)
 
     def edge(self):
-        return list(takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path()))
+        return takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path())
 
     def pro_edge(self):
         lst = self.edge()
         if self.extract_pro():
-            lst.append(self.extract_pro())
+            chain(lst, self.extract_pro())
         return lst
 
     def contains_features(self, feature_set):
@@ -424,80 +424,39 @@ class PhraseStructure:
             return {'Fin', 'C', 'PF:C'}
         return set()
 
-    def Agree(self, transfer):
-        if self.sister():
-            goal, phi = self.Agree_from_sister()
-            if phi:
-                transfer.brain_model.narrow_semantics.predicate_argument_dependencies.append((self, goal))
-                if self.adverbial() or self.check({'VA/inf'}):  # Complementary distribution of phi and overt subject in this class
-                    self.features.add('-pro')
-                if not self.referential():
-                    self.features.add('BLOCK_NS')               # Block semantic object projection
-                for p in phi:
-                    self.value(goal, p)
-                if not self.is_unvalued():
-                    return
+    def Agree(self):
+        domain = chain(self.sister().minimal_search(lambda x: x.complex(), lambda x: x.primitive()), self.edge())
+        self.value_features(next((const for const in domain if const.head().referential()), None))
 
-        goal2, phi = self.Agree_from_edge()
-        if goal2:
-            for p in phi:
-                if {f for f in self.features if unvalued(f) and f[:-1] == p[:len(f[:-1])]}:
-                    self.value(goal2, p)
-            if not self.referential() and not goal2.check({'pro'}):
+    def value_features(self, goal):
+        if goal:
+            for phi in sorted({f for f in goal.head().features if phi_feature_for_Agree(f)}):
+                self.value(phi)
+
+    def value(self, phi):
+        unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
+        if self.valued_phi_features() and self.block_valuation(phi):
+            self.features.add(phi + '*')
+        elif unvalued_counterparty:
+            self.features = self.features - unvalued_counterparty
+            self.features.add(phi)
+            self.features.add('PHI_CHECKED')
+            log(f'\n\t\t{self} acquired ' + phi)
+            if self.adverbial() or self.check({'VA/inf'}):  # Complementary distribution of phi and overt subject in this class
+                self.features.add('-pro')
+            if not self.referential():
                 self.features.add('BLOCK_NS')  # Block semantic object projection
 
-    def Agree_from_sister(self):
-        for goal in self.sister().minimal_search(lambda x: x.complex()):
-            if self.agreement_condition(goal):
-                return goal.head(), sorted({f for f in goal.head().features if f[:4] == 'PHI:' and f[:7] != 'PHI:DET' and not unvalued(f)})
-            else:
-                break
-        return None, None
-
-    def Agree_from_edge(self):
-        return next(((const.head(), sorted({f for f in const.head().features if f[:4] == 'PHI:' and not unvalued(f)}))
-                     for const in [const for const in self.edge()] + [self.extract_pro()] if
-                     const and self.agreement_condition(const)), (None, {}))
-
-    def agreement_condition(self, goal):
-        if goal.head().referential():
-            if not goal.head().check({'LANG:FI'}):
-                return True
-            else:
-                if goal.head().check({'pro'}):
-                    return True
-                else:
-                    # To be replaced with the head-case model
-                    if self.finite() and goal.head().check({'NOM'}):
-                        return True
-                    if self.nonfinite() and goal.head().check({'GEN'}):
-                        return True
-
-    def value(self, goal, phi):
-        if self.valued_phi_features() and self.valuation_blocked(phi):
-            log(f'Valuation of {self} was blocked for {phi}...')
-            self.features.add(phi + '*')
-
-        if {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}:
-            self.features = self.features - {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}
-            self.features.add(phi)
-            if goal.mother:
-                log(f'\n\t\t{self} acquired ' + str(phi) + f' from {goal.mother.illustrate()}...')
-            else:
-                log(f'\n\t\t{self} acquired ' + str(phi) + f' from {goal.illustrate()}...')
-            self.features.add('PHI_CHECKED')
-
-    def valuation_blocked(self, f):
+    def block_valuation(self, phi):
         # We do not check violation, only that if types match there must be a licensing feature with identical value.
-        valued_input_feature_type = f.split(':')[1]
+        valued_input_feature_type = phi.split(':')[1]
         # Find type matches
-        valued_phi_in_h = {phi for phi in self.get_phi_set() if
-                           not unvalued(phi) and phi.split(':')[1] == valued_input_feature_type}
+        valued_phi_in_h = {phi for phi in self.get_phi_set() if valued(phi) and phi.split(':')[1] == valued_input_feature_type}
         if valued_phi_in_h:
             # Find if there is a licensing element
-            if {phi for phi in valued_phi_in_h if phi == f}:
+            if {phi_ for phi_ in valued_phi_in_h if phi == phi_}:
                 return False
-            log(f'Feature {f} cannot be valued into {self}.')
+            log(f'Feature {phi} cannot be valued into {self}.')
             return True
 
     def cutoff_point_for_last_resort_extraposition(self):
