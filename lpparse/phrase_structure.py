@@ -384,7 +384,7 @@ class PhraseStructure:
 
     def form_chain(self, target, inst):
         for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
-            if head.test_merge(target, inst['legible'], 'left'):
+            if head != self and head.test_merge(target, inst['legible'], 'left'):
                 break
             target.remove()
         else:
@@ -414,10 +414,10 @@ class PhraseStructure:
         return self.gapless_heads() or self.is_right()
 
     def gapless_heads(self):
-        return self.primitive() and self.aunt().primitive()
+        return self.primitive() and self.aunt() and self.aunt().primitive()
 
     def has_nonthematic_specifier(self):
-        return self.EF() and self.edge() and self.edge()[0].extended_subject()
+        return self.EF() and self.edge() and next(self.edge()).extended_subject()
 
     def add_scope_information(self):
         if not self.non_scopal():
@@ -442,7 +442,8 @@ class PhraseStructure:
             self.features.add(phi)
             self.features.add('PHI_CHECKED')
             log(f'\n\t\t{self} acquired ' + phi)
-            if self.adverbial() or self.check({'VA/inf'}):  # Complementary distribution of phi and overt subject in this class
+            # Complementary distribution of phi and overt subject in this class, still mysterious
+            if not self.preposition() and self.adverbial() or self.check({'VA/inf'}):
                 self.features.add('-pro')
             if not self.referential():
                 self.features.add('BLOCK_NS')  # Block semantic object projection
@@ -524,6 +525,8 @@ class PhraseStructure:
 
     def move_upwards(self):
         if self.mother:
+            if self.is_right():
+                return self.sister()
             return self.mother.sister()
 
     # Feature processing -----------------------------------------------------------------------------
@@ -1043,7 +1046,7 @@ class PhraseStructure:
         return self.selector() and self.selector().SEM_external_predicate()
 
     def isolated_preposition(self):
-        return self.preposition() and self.sister() and self.sister().is_primitive()
+        return self.preposition() and self.sister() and self.sister().primitive()
 
     def adjoinable(self):
         return self.complex() and not self.find_me_elsewhere and self.head().get_tail_sets() and self.check({'adjoinable'}) and not self.check({'-adjoinable'})

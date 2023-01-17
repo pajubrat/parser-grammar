@@ -65,7 +65,7 @@ class LF:
             if not goal.right.find_me_elsewhere and not self.final_tail_check(goal.right):
                 return False
         if goal.primitive() and goal.get_tail_sets() and not goal.tail_test():
-            log(f'Post-syntactic tail test for \'{goal.illustrate()}\', {goal.max().illustrate()} failed. ')
+            log(f'\t\tPost-syntactic tail test for \'{goal.illustrate()}\'. ')
             return False
         return True
 
