@@ -196,10 +196,9 @@ class PhraseStructure:
         return takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path())
 
     def pro_edge(self):
-        lst = self.edge()
         if self.extract_pro():
-            chain(lst, self.extract_pro())
-        return lst
+            return chain(self.edge(), self.extract_pro())
+        return self.edge()
 
     def contains_features(self, feature_set):
         if self.complex():
@@ -251,6 +250,7 @@ class PhraseStructure:
 
     # Feature !EF:φ
     def selection__positive_SUBJECT_edge(self, selected_feature):
+        log(f'\n\tEF:phi checking: {self}')
         return self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
 
     # Feature -EF:φ
@@ -369,7 +369,7 @@ class PhraseStructure:
             inst, target = target.prepare_chain(self, inst, i > 0, target.scan_operators(), transfer)
             self.form_chain(target, inst)
             transfer.brain_model.consume_resources(inst['type'], self)
-            if inst['need repair'](target):
+            if inst['test integrity'](target):
                 target.create_chain(transfer, inst)
 
     def prepare_chain(self, probe, inst, new_head_needed, op_features, transfer):
@@ -388,7 +388,7 @@ class PhraseStructure:
                 break
             target.remove()
         else:
-            if not head.test_merge(target, inst['legible'], 'right'):
+            if not self.bottom().test_merge(target, inst['legible'], 'right'):
                 target.remove()
                 self.sister().Merge(target, 'left')
 
@@ -522,12 +522,6 @@ class PhraseStructure:
                (not (self.check({'GEN'}) and self.container().referential()) and
                not self.container() == starting_point_head and
                not self.nonthematic() and not (self.referential() and self.head().projection_principle()))
-
-    def move_upwards(self):
-        if self.mother:
-            if self.is_right():
-                return self.sister()
-            return self.mother.sister()
 
     # Feature processing -----------------------------------------------------------------------------
 
