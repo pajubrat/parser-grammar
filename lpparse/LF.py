@@ -1,4 +1,4 @@
-from support import log
+from support import log, set_logging
 from phrase_structure import PhraseStructure
 
 def for_lf_interface(features):
@@ -42,8 +42,8 @@ class LF:
             if ps.primitive():
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(ps):
-                        log(f'\t\t{ps} failed {test_name}. ')
-                        self.error_report_for_external_callers = f'\t\t{ps} failed {test_name}'  # For plausibility metrics calculations and output
+                        log(f'{ps} failed {test_name} ')
+                        self.error_report_for_external_callers = f'{ps} failed {test_name}'  # For plausibility metrics calculations and output
                         return False
             else:
                 if not self.pass_LF_legibility(ps.left):
@@ -55,7 +55,7 @@ class LF:
     def selection_test(self, probe):
         for selected_feature in sorted(for_lf_interface(probe.features)):
             if selected_feature[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[selected_feature[:5]](probe, selected_feature[6:]):
-                log(f'\t\t{probe} failed feature {selected_feature}. ')
+                log(f'\n\t\t{probe} failed feature {selected_feature} ')
                 return True
 
     def final_tail_check(self, goal):
@@ -65,7 +65,7 @@ class LF:
             if not goal.right.find_me_elsewhere and not self.final_tail_check(goal.right):
                 return False
         if goal.primitive() and goal.get_tail_sets() and not goal.tail_test():
-            log(f'\t\tPost-syntactic tail test for \'{goal.illustrate()}\'. ')
+            log(f'\n\t\tPost-syntactic tail test for \'{goal.illustrate()}\' failed. ')
             return False
         return True
 
@@ -73,4 +73,6 @@ class LF:
         def detached(ps):
             ps.mother = None
             return ps
-        return self.LF_legibility_test(detached(ps.copy()))
+        result = self.LF_legibility_test(detached(ps.copy()))
+        return result
+

@@ -137,10 +137,8 @@ class Discourse:
         idx = self.get_inventory_index(ps.head())
         if starting_point_head in {const for const in ps.head().upward_path() if const.primitive()}:
             direction = 'High'
-            log(f'Topicalization...')
         else:
             direction = 'Low'
-            log(f'Focussing...')
         self.records_of_attentional_processing[idx]['Marked gradient'] = direction
 
     def allocate_attention(self, head):

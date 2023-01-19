@@ -156,6 +156,7 @@ class LinearPhaseParser:
             self.consume_resources("Garden Paths", ps)
 
     def postsyntactic_tests(self, ps):
+        log(f'\n\t\tLF-interface and postsyntactic legibility tests:')
         return self.LF.LF_legibility_test(ps) and \
                self.LF.final_tail_check(ps) and \
                self.narrow_semantics.postsyntactic_semantic_interpretation(ps)
@@ -166,4 +167,4 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'\n\t\t{key}( {target.illustrate()} ) => {target.top()}')
+            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}')

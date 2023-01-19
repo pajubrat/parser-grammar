@@ -250,7 +250,6 @@ class PhraseStructure:
 
     # Feature !EF:φ
     def selection__positive_SUBJECT_edge(self, selected_feature):
-        log(f'\n\tEF:phi checking: {self}')
         return self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
 
     # Feature -EF:φ
@@ -509,7 +508,9 @@ class PhraseStructure:
         return self.selector().finite_C() and self.EF() and not self.edge()
 
     def has_unlicensed_specifier(self):
-        return set(self.specifiers_not_licensed()) & set(next((const for const in self.edge()), None).head().features)
+        local_edge = next(self.edge(), None)
+        if local_edge:
+            return set(self.specifiers_not_licensed()) & local_edge.head().features
 
     def get_constituent_containing_selection_violation(self):
         return next((x for x in self if x.induces_selection_violation() and not x.sister().adjunct), None)
