@@ -131,7 +131,7 @@ laula-		:: V PF:laula LF:sing CLASS/INTR LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -PHI TAIL:V LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
-lähellä*	:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
+lähellä2	:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
 lähellä'	:: P PF:lähellä LF:near -PHI LANG:FI
 lähellä'	:: P PF:lähellä LF:near Inf EF:φ !SEF LANG:FI
 
@@ -141,7 +141,6 @@ lähtee		:: lähte-#T/fin#[-V] LANG:FI
 lähdemme	:: lähte-#T/fin#[-mme] LANG:FI
 lähdette	:: lähte-#T/fin#[-tte] LANG:FI
 lähtevät	:: lähte-#T/fin#[-vAt] LANG:FI
-
 lähteä 		:: lähte-#A/inf LANG:FI
 lähtemään 	:: lähte-#MA.ill/inf LANG:FI
 lähtevän 	:: lähte-#VA/inf LANG:FI
@@ -189,7 +188,10 @@ Merjalla	:: 	Merja-#φ#sg#3p#def#hum#def#proper_name#lla
 Merjasta	::	Merja-#φ#sg#3p#def#hum#def#proper_name#sta
 meren		::	mere-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 mere-		::	PF:meri LF:ocean N LANG:FI
-mies		::	mies-#φ#r_expression#[nom]
+mies		::	mies-#φ#sg#3p#r_expression#[nom]
+miehet		:: 	mies-#φ#pl#3p#r_expression#[nom]
+miehen		:: 	mies-#φ#sg#3p#r_expression#[gen]
+miesten		::	mies-#φ#pl#3p#r_expression#[gen]
 mies-		::	PF:mies LF:man N LANG:FI
 minka		:: mikä-#D#wh#[acc(n)] LANG:FI
 minkä		:: mikä-#D#wh#[gen] LANG:FI
@@ -236,14 +238,14 @@ päivä-		:: PF:päivä- LF:day N SEM:nonreferential LANG:FI
 Pariisia	:: Pariisi-#D#sg#3p#def#proper_name#[par] LANG:FI
 Pariisin	:: Pariisi-#D#sg#3p#def#proper_name#[gen] LANG:FI
 Pariisi-	:: PF:Pariisi LF:Paris N LANG:FI
-Pekkaa		:: Pekka-#φ#sg#3p#def#hum#proper_name#[par] LANG:FI
-Pekka   	:: Pekka-#φ#sg#3p#def#hum#proper_name#[nom] LANG:FI
-Pekan		:: Pekka-#φ#sg#3p#def#hum#proper_name#[acc(n)]
-Pekan_gen	:: Pekka-#φ#sg#3p#def#hum#proper_name#[gen] LANG:FI
-Pekan_acc	::	Pekka-#φ#sg#3p#def#hum#def#proper_name#[acc(n)] LANG:FI
-Pekka_0acc	::	Pekka-#φ#sg#3p#def#hum#def#proper_name#[acc(0)] LANG:FI
-Pekkahan	:: Pekka-#φ#sg#3p#def#hum#def#proper_name#[nom]#[hAn] LANG:FI
-PEKKA		:: Pekka-#φ#sg#3p#def#hum#def#proper_name#[nom]#[foc]
+Pekkaa		:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[par] LANG:FI
+Pekka   	:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
+Pekan		:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[acc(n)]
+Pekan_gen	:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[gen] LANG:FI
+Pekan_acc	::	Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[acc(n)] LANG:FI
+Pekka_0acc	::	Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[acc(0)] LANG:FI
+Pekkahan	:: Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[nom]#[hAn] LANG:FI
+PEKKA		:: Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[nom]#[foc]
 Pekka-  	:: PF:Pekka LF:Pekka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 pelottaa	:: pelkä-#cau#T/fin#[-V] LANG:FI
 pelkää		:: pelkä-#v#T/fin#[-V] LANG:FI
@@ -299,22 +301,37 @@ sukat		:: sukka-#φ#r_expression#[nom]#pl
 sukka-		:: PF:sukka LF:socks N LANG:FI
 sta			:: PF:sta LF:of P TAIL:V LANG:FI
 sti			:: PF:sti LF:by !COMP:* TAIL:T Adv -ARG LANG:FI
-talo		:: talo-#φ#r_expression
-taloa		:: talo-#φ#r_expression#[par]
-talona		:: talo-#φ#r_expression#[-ess]
-taloksi		:: talo-#φ#r_expression#[-ess]
+talo		:: talo-#φ#sg#3p#r_expression
+taloa		:: talo-#φ#sg#3p#r_expression#[par]
+talona		:: talo-#φ#sg#3p#r_expression#[-ess]
+taloksi		:: talo-#φ#sg#3p#r_expression#[-ess]
 talo-		:: PF:talo LF:house N LANG:FI
-tekemättä	:: tee-#v#MA.abe/inf
-tehdessä	:: tee-#v#ESSA/inf
-tehdäkse	:: tee-#v#KSE/inf
-tehtyä		:: tee-#v#TUA/inf
-tekemä		:: tee-#v#MA/A
-tekevä		:: tee-#v#VA/A
 teki		:: teke-#v#T/fin#[-V] LANG:FI
+tein		:: teke-#v#T/fin#[-n] LANG:FI
+teit		:: teke-#v#T/fin#[-t] LANG:FI
+teen		:: teke-#v#T/fin#[-n] LANG:FI
+teet		:: teke-#v#T/fin#[-t] LANG:FI
+tekee		:: teke-#v#T/fin#[-V] LANG:FI
+teemme		:: teke-#v#T/fin#[-mme] LANG:FI
+teette		:: teke-#v#T/fin#[-tte] LANG:FI
+tekevät		:: teke-#v#T/fin#[-vAt] LANG:FI
+tekemättä	:: teke-#v#MA.abe/inf
+tehdessä	:: teke-#v#ESSA/inf
+tehdäkse	:: teke-#v#KSE/inf
+tehdä		:: teke-#v#A/inf
+tehtyä		:: teke-#v#TUA/inf
+tekevän		:: teke-#v#VA/inf
+tekemään	:: teke-#v#MA.ill/inf
+tekemässä	:: teke-#v#MA.ine/inf
+tekemä		:: teke-#v#MA/A
+tekevä		:: teke-#v#VA/A
+tehdäkse	:: teke-#v#KSE/inf
+tee			:: teke-#v#T/fin LANG:FI
 teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
-tee-		:: V PF:teke- LF:do LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
 tyttö-		:: PF:tyttö LF:girl N LANG:FI
+työtä		:: työ-#φ#sg#3p#r_expression#[par]
+työ-		:: PF:työ LF:work N LANG:FI
 tämä		:: tämä-#D#sg#3p#def
 tätä		:: D#sg#3p#def#[par]
 tämä-		:: PF:tämä LF:this N PHI LANG:FI
@@ -365,11 +382,13 @@ teidän		:: te-#D/pro#[gen]#pl#2p#def#hum LANG:FI
 te- 		:: PF:te LF:you N PHI_N LANG:FI
 he_FI		:: he_FI-#D/pro#[nom]#pl#3p#def#hum LANG:FI
 heidän		:: he_FI-#D/pro#[gen]#pl#3p#def#hum LANG:FI
+niiden		:: he_FI-#D/pro#[gen]#pl#3p#def#nonhum LANG:FI
 he_FI- 		:: PF:he LF:they N PHI_N LANG:FI
 se			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se'			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se			:: se-#sg#3p#def#nonhum#pronoun1 LANG:FI
 sen			:: se-#[acc(n)]#sg#3p#def#nonhum#pronoun1 LANG:FI
+sen2		:: se_N-#D/pro#[gen]#sg#3p#def#nonhum#pronoun1 LANG:FI
 sitä		:: se-#[par]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se-			:: PF:se LF:the/that D LANG:FI
 se			:: se_N-#D/pro#[nom]#sg#3p#def#nonhum LANG:FI
@@ -394,14 +413,14 @@ niiden		:: ne#[gen]
 [-vAt]		::	inflectional PHI EF:φ PHI:NUM:PL PHI:PER:3 LANG:FI
 
 # Infinitival agreement (Px)
-[ni]		::	inflectional PHI pro EF:φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[si]		::	inflectional PHI pro EF:φ PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[nsA]		:: 	inflectional PHI pro EF:φ PHI:PER:3 PHI:NUM:SG LANG:FI
-[An]		:: 	inflectional PHI pro EF:φ PHI:PER:3 LANG:FI
-[3sg]		:: 	inflectional PHI pro EF:φ PHI:PER:3 PHI:NUM:SG LANG:FI
-[en]		:: 	inflectional PHI pro EF:φ PHI:PER:3 PHI:NUM:SG LANG:FI
-[mme]		::	inflectional PHI pro EF:φ PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[nne]		::	inflectional PHI pro EF:φ PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[ni]		::	inflectional PHI pro EF:φ PHI:PRON:PRON PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[si]		::	inflectional PHI pro EF:φ PHI:PRON:PRON PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[nsA]		:: 	inflectional PHI pro EF:φ PHI:PRON:PRON PHI:PER:3 PHI:HUM:HUM LANG:FI
+[An]		:: 	inflectional PHI pro EF:φ PHI:PRON:PRON PHI:PER:3 PHI:HUM:HUM LANG:FI
+[3sg]		:: 	inflectional PHI pro EF:φ PHI:PRON:PRON PHI:PER:3 PHI:HUM:HUM PHI:NUM:SG LANG:FI
+[en]		:: 	inflectional PHI pro EF:φ PHI:PRON:PRON PHI:PER:3 PHI:HUM:HUM PHI:NUM:SG LANG:FI
+[mme]		::	inflectional PHI pro EF:φ PHI:PRON:PRON PHI:NUM:PL PHI:PER:1 PHI:HUM:HUM PHI:DET:DEF LANG:FI
+[nne]		::	inflectional PHI pro EF:φ PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PHI:HUM:HUM PHI:DET:DEF  LANG:FI
 
 # Case suffixes
 # A. Structural

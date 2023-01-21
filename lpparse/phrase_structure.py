@@ -305,7 +305,7 @@ class PhraseStructure:
         return const.check(self.licensed_complements())
 
     def nonlicensed_complement(self):
-        return self.proper_selected_complement() and self.proper_selected_complement().check(self.complements_not_licensed())
+        return self.proper_selected_complement() and self.proper_selected_complement().check_some(self.complements_not_licensed())
 
     def missing_mandatory_complement(self):
         return self.get_mandatory_comps() and (not self.proper_selected_complement() or not self.proper_selected_complement().check(self.get_mandatory_comps()))
@@ -416,7 +416,7 @@ class PhraseStructure:
         return self.primitive() and self.aunt() and self.aunt().primitive()
 
     def has_nonthematic_specifier(self):
-        return self.EF() and self.edge() and next(self.edge()).extended_subject()
+        return self.EF() and next(self.edge(), self).extended_subject()
 
     def add_scope_information(self):
         if not self.non_scopal():
@@ -424,11 +424,12 @@ class PhraseStructure:
         return set()
 
     def Agree(self):
-        domain = chain(self.sister().minimal_search(lambda x: x.complex(), lambda x: x.primitive()), self.edge())
-        self.value_features(next((const for const in domain if const.head().referential()), None))
+        self.value_features(next((const for const in self.sister().minimal_search(lambda x: x.complex() and x.head().referential(), lambda x: x.complex())), None))
 
     def value_features(self, goal):
         if goal:
+            print(f'{self} agrees with {goal}.')
+            log(f'\n\t\t\'{self}\' checked {sorted({f for f in goal.head().features if phi_feature_for_Agree(f)})} from {goal}. ')
             for phi in sorted({f for f in goal.head().features if phi_feature_for_Agree(f)}):
                 self.value(phi)
 
@@ -440,7 +441,7 @@ class PhraseStructure:
             self.features = self.features - unvalued_counterparty
             self.features.add(phi)
             self.features.add('PHI_CHECKED')
-            log(f'\n\t\t{self} acquired ' + phi)
+            log(f'\n\t\t\'{self}\' valued ' + phi)
             # Complementary distribution of phi and overt subject in this class, still mysterious
             if not self.preposition() and self.adverbial() or self.check({'VA/inf'}):
                 self.features.add('-pro')
@@ -456,7 +457,7 @@ class PhraseStructure:
             # Find if there is a licensing element
             if {phi_ for phi_ in valued_phi_in_h if phi == phi_}:
                 return False
-            log(f'Feature {phi} cannot be valued into {self}.')
+            log(f'*Feature clash {phi}.')
             return True
 
     def cutoff_point_for_last_resort_extraposition(self):
@@ -468,6 +469,7 @@ class PhraseStructure:
 
     def extrapose(self, transfer):
         transfer.brain_model.adjunct_constructor.externalize_structure(self.sister().head())
+        transfer.brain_model.consume_resources('Extraposition', self)
 
     def last_resort_extrapose(self, transfer):
         transfer.brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
@@ -589,10 +591,15 @@ class PhraseStructure:
             else:
                 return g
         for feature1 in self.features:
-            if feature1[0] == '-':
+            if feature1.startswith('-'):
                 for feature2 in self.features:
                     if feature1[1:] == remove_exclamation(feature2):
                         return True
+            if feature1.startswith('PHI:') and not feature1.endswith('_'):
+                for feature2 in self.features:
+                    if feature2.startswith('PHI:') and not feature2.endswith('_'):
+                        if feature1.split(':')[1] == feature2.split(':')[1] and feature1.split(':')[2] != feature2.split(':')[2]:
+                            return True
 
     # Operators
 

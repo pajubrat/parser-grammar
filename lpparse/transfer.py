@@ -29,7 +29,7 @@ class Transfer:
                                                  'repair': lambda x, y, z: x.resolve_neutralized_feature()},
                              'Agree':           {'type': 'Agree',
                                                  'test integrity': lambda x: x.EF(),
-                                                 'repair': lambda x, y, z: x.mother and x.Agree()},
+                                                 'repair': lambda x, y, z: x.sister() and x.Agree()},
                              'Extraposition':   {'type': 'Extraposition',
                                                  'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and not x.sister().adjunct,
                                                  'repair': lambda x, y, z: x.extrapose(self)},
