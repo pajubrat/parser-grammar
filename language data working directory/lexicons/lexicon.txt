@@ -6,6 +6,8 @@ ali			:: PF:yli LF:over P TAIL:V Inf EF:φ LANG:FI LANG:FI
 antaa		:: anta-#v#asp#A/inf LANG:FI
 anta-   	:: PF:antaa LF:give V -COMP:P CLASS/DITR -COMP:Fin +SEM:directional ASP:BOUNDED LANG:FI
 antoi   	:: anta-#v#asp#T/fin#[-V] LANG:FI
+asuu		:: asu-#T/fin#[-V] LANG:FI
+asu-		:: PF:asuu- LF:live V CLASS/INTR -COMP:T -SPEC:P -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
 avain_0acc	::	avain-#φ#sg#3p#def#r_expression#[-acc(0)]
 avain_nom	::	avain-#φ#sg#3p#def#r_expression#[nom]
 avain		::	avain-#φ#sg#3p#def#r_expression#[nom]
@@ -25,6 +27,7 @@ emme		:: e-#[-mme] LANG:FI
 ette		:: e-#[-tte] LANG:FI
 eivät		:: e-#[-vat] LANG:FI
 ei'			:: PF:e- LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T LANG:FI
+e			:: PF:e- LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T ANG:FI
 e-			:: PF:e- LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T ANG:FI
 elää		:: elä-#T/fin#[-V] LANG:FI
 elä-		:: PF:elää LF:live V CLASS/INTR SPEC:φ LANG:FI
@@ -134,13 +137,14 @@ lähellä		:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
 lähellä2	:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
 lähellä'	:: P PF:lähellä LF:near -PHI LANG:FI
 lähellä'	:: P PF:lähellä LF:near Inf EF:φ !SEF LANG:FI
-
 lähden		:: lähte-#T/fin#[-n] LANG:FI
 lähdet		:: lähte-#T/fin#[-t] LANG:FI
 lähtee		:: lähte-#T/fin#[-V] LANG:FI
 lähdemme	:: lähte-#T/fin#[-mme] LANG:FI
 lähdette	:: lähte-#T/fin#[-tte] LANG:FI
 lähtevät	:: lähte-#T/fin#[-vAt] LANG:FI
+lähtenyt	:: lähte-#T/prt#sg LANG:FI
+lähteneet	:: lähte-#T/prt#pl LANG:FI
 lähteä 		:: lähte-#A/inf LANG:FI
 lähtemään 	:: lähte-#MA.ill/inf LANG:FI
 lähtevän 	:: lähte-#VA/inf LANG:FI
@@ -221,11 +225,15 @@ nukkua		:: nukku-#A/inf LANG:FI
 nukkui		:: nukku-#T/fin#[-V] LANG:FI
 nukkuu		:: nukku-#T/fin#[-V] LANG:FI
 nukku-		:: PF:nukku- LF:sleep V CLASS/INTR -COMP:T -SPEC:P -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
-asuu		:: asu-#T/fin#[-V] LANG:FI
-asu-		:: PF:asuu- LF:live V CLASS/INTR -COMP:T -SPEC:P -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
+
 ollut		:: T PF:T LF:T LANG:FI
+olen		:: BE-#T/fin#[-n] LANG:FI
+olet		:: BE-#T/fin#[-t] LANG:FI
 on'			:: BE-#T/fin#[-V] LANG:FI
 on			:: BE-#T/fin#[-V] LANG:FI
+olemme		:: BE-#T/fin#[-mme] LANG:FI
+olette		:: BE-#T/fin#[-tte] LANG:FI
+olevant		:: BE-#T/fin#[-vAt] LANG:FI
 omaisuutensa	:: omaisuus-#D#def#sg#3p#[acc(n)] LANG:FI
 omaisuuttaan	:: omaisuus-#D#def#sg#3p#[par] LANG:FI
 omaisuus-		::	PF:omaisuuden LF:possessions N LANG:FI
@@ -312,6 +320,8 @@ teit		:: teke-#v#T/fin#[-t] LANG:FI
 teen		:: teke-#v#T/fin#[-n] LANG:FI
 teet		:: teke-#v#T/fin#[-t] LANG:FI
 tekee		:: teke-#v#T/fin#[-V] LANG:FI
+tehnyt		:: teke-#v#T/prt#sg LANG:FI
+tehneet		:: teke-#v#T/prt#pl LANG:FI
 teemme		:: teke-#v#T/fin#[-mme] LANG:FI
 teette		:: teke-#v#T/fin#[-tte] LANG:FI
 tekevät		:: teke-#v#T/fin#[-vAt] LANG:FI

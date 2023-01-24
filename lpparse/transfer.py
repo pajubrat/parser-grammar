@@ -31,7 +31,7 @@ class Transfer:
                                                  'test integrity': lambda x: x.EF(),
                                                  'repair': lambda x, y, z: x.sister() and x.Agree()},
                              'Extraposition':   {'type': 'Extraposition',
-                                                 'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and not x.sister().adjunct,
+                                                 'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
                                                  'repair': lambda x, y, z: x.extrapose(self)},
                              'Last Resort Extraposition': {'type': 'Last Resort Extraposition',
                                                            'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not self.brain_model.LF.LF_legibility_test_detached(x.top()),

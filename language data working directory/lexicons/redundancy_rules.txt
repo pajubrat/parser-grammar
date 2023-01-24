@@ -8,7 +8,7 @@ C		:: -SPEC:MA/A
 T/fin 	:: ARG EF:φ T Fin !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
 T/prt 	:: ARG Fin T !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin SPEC:φ -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V
 T 		:: ARG TAM COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V SPEC:φ SPEC:D -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
-Neg/fin :: ARG EF:φ Fin NEG COMP:T/prt -SPEC:T -COMP:T/fin -SPEC:T/fin %SPEC:Inf SEM:internal
+Neg/fin :: ARG EF:φ Fin NEG COMP:T/prt -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
 v   	:: ARG -PHI ASP !COMP:* COMP:V -SPEC:v -SPEC:T/fin !PROBE:V SPEC:φ -SPEC:N
 D   	:: φ -ARG !COMP:* -COMP:D -COMP:v -COMP:V -COMP:P -COMP:T/fin -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:n COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 D/rel	:: φ D -ARG OP OP:REL COMP:* -COMP:C/fin -COMP:φ -SPEC:MA.ade/inf -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable

@@ -424,11 +424,10 @@ class PhraseStructure:
         return set()
 
     def Agree(self):
-        self.value_features(next((const for const in self.sister().minimal_search(lambda x: x.complex() and x.head().referential(), lambda x: x.complex())), None))
+        self.value_features(next((const for const in self.sister().minimal_search(lambda x: x.complex() and x.head().referential(), lambda x: not x.phase_head())), None))
 
     def value_features(self, goal):
         if goal:
-            print(f'{self} agrees with {goal}.')
             log(f'\n\t\t\'{self}\' checked {sorted({f for f in goal.head().features if phi_feature_for_Agree(f)})} from {goal}. ')
             for phi in sorted({f for f in goal.head().features if phi_feature_for_Agree(f)}):
                 self.value(phi)
@@ -1067,6 +1066,9 @@ class PhraseStructure:
 
     def is_word_internal(self):
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
+
+    def phase_head(self):
+        return self.check_some({'v', 'C'})
 
     def extended_subject(self):
         return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or self.check({'pro'})
