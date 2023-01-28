@@ -274,7 +274,7 @@ class PhraseStructure:
 
     # Feature !1EDGE
     def selection__negative_one_edge(self, selected_feature):
-        return len(self.edge()) < 2
+        return len(list(self.edge())) < 2
 
     # Feature !COMP:L
     def selection__positive_obligatory_complement(self, selected_feature):
@@ -345,7 +345,7 @@ class PhraseStructure:
     def specifier_theta_role_assigner(self):
         return not self.EF() and \
                not (self.selector() and not self.selector().check({'ARG'})) and \
-               self.check_some({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) and not self.max().container().check({'-SPEC:φ'})
+               self.check_some({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) and self.max().container() and not self.max().container().check({'-SPEC:φ'})
 
     def projection_principle(self):
         return self.projection_principle_applies() and not self.container_assigns_theta_role()
@@ -354,7 +354,7 @@ class PhraseStructure:
         return self.referential() and self.max() and not self.max().find_me_elsewhere and self.max().mother and not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
     def container_assigns_theta_role(self):
-        return self.max().container() and (self.selector() or (self.is_licensed_specifier() and self.max().container().specifier_theta_role_assigner()))
+        return self.max().container() and (self.selector() or (self.is_licensed_specifier() and self.max().container() and self.max().container().specifier_theta_role_assigner()))
 
     # Reconstruction -----------------------------------------------------------------------------------
 

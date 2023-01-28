@@ -1,5 +1,5 @@
 from support import log
-
+import time
 
 class LexicalStream:
     def __init__(self, controlling_parsing_process):
@@ -37,6 +37,7 @@ class LexicalStream:
             if self.controlling_parser_process.local_file_system.settings['stop_at_unknown_lexical_item']:
                 if '?' in terminal_lexical_item.features:
                     print(f'\nUnrecognized word /{lst_branched[index]}/ terminated the derivation. ')
+                    time.sleep(5)
                     self.controlling_parser_process.exit = True
             return terminal_lexical_item
 

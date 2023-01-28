@@ -25,7 +25,8 @@ et			:: e-#[-t] LANG:FI
 ei			:: e-#[-V] LANG:FI
 emme		:: e-#[-mme] LANG:FI
 ette		:: e-#[-tte] LANG:FI
-eivät		:: e-#[-vat] LANG:FI
+eivät		:: e-#[-vAt] LANG:FI
+ei'			:: PF:e- LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T LANG:FI
 ei'			:: PF:e- LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T LANG:FI
 e			:: PF:e- LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T ANG:FI
 e-			:: PF:e- LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T ANG:FI
@@ -165,6 +166,7 @@ lähdettyään	:: lähte-#TUA/inf#[An] LANG:FI
 lähdettyä	:: lähte-#TUA/inf LANG:FI
 lähde		:: lähte-#T/fin LANG:FI
 lähti		:: lähte-#T/fin#[-V] LANG:FI
+lähdettiin	:: lähte-#impass#T/fin LANG:FI
 lähte- 		:: PF:lähte- LF:leave CLASS/INTR V SPEC:φ -COMP:φ COMP:P LANG:FI
 lle     	:: PF:P(-lle) LF:for P -E +SEM:directional -EF:* -EF:φ TAIL:V LANG:FI
 lla			:: PF:P(-lla) LF:by	P -EF:* -EF:φ TAIL:T TAIL:*V LANG:FI
@@ -215,7 +217,13 @@ nainen-		:: PF:nainen LF:woman N LANG:FI
 näki		:: näke-#v#T/fin#[-V] LANG:FI
 näkee		:: näke-#v#T/fin#[-V] LANG:FI
 näke-		:: PF:näke- LF:see V CLASS/TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA.abe/inf -COMP:MA.ine/inf LANG:FI
-näyttää		:: näyttä-#T/fin LANG:FI
+näytän 		:: näyttä-#T/fin#[-n] LANG:FI
+näytät		:: näyttä-#T/fin#[-t] LANG:FI
+näyttää		:: näyttä-#T/fin#[-V] LANG:FI
+näytämme	:: näyttä-#T/fin#[-mme] LANG:FI
+näytätte	:: näyttä-#T/fin#[-tte] LANG:FI
+näyttävät	:: näyttä-#T/fin#[-vAt] LANG:FI
+näytä		:: näyttä-#T/fin LANG:FI
 näyttä- 	:: PF:näyttä- LF:seem V -ARG ASP !EF:φ !COMP:VA/inf SEM:internal LANG:FI
 nukun		:: nukku-#T/fin#[-n] LANG:FI
 nukahti		:: nukku-#T/fin LANG:FI
@@ -233,7 +241,8 @@ on'			:: BE-#T/fin#[-V] LANG:FI
 on			:: BE-#T/fin#[-V] LANG:FI
 olemme		:: BE-#T/fin#[-mme] LANG:FI
 olette		:: BE-#T/fin#[-tte] LANG:FI
-olevant		:: BE-#T/fin#[-vAt] LANG:FI
+ovat		:: BE-#T/fin#[-vAt] LANG:FI
+ole			:: BE-#T/fin LANG:FI
 omaisuutensa	:: omaisuus-#D#def#sg#3p#[acc(n)] LANG:FI
 omaisuuttaan	:: omaisuus-#D#def#sg#3p#[par] LANG:FI
 omaisuus-		::	PF:omaisuuden LF:possessions N LANG:FI
@@ -336,6 +345,7 @@ tekemässä	:: teke-#v#MA.ine/inf
 tekemä		:: teke-#v#MA/A
 tekevä		:: teke-#v#VA/A
 tehdäkse	:: teke-#v#KSE/inf
+tehtiin		:: teke-#impass#T/fin LANG:FI
 tee			:: teke-#v#T/fin LANG:FI
 teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
