@@ -342,11 +342,6 @@ class PhraseStructure:
         return self.container() and self.container().EF() or \
                (self.container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and self == next((const for const in self.container().edge()), None))
 
-    def specifier_theta_role_assigner(self):
-        return not self.EF() and \
-               not (self.selector() and not self.selector().check({'ARG'})) and \
-               self.check_some({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) and self.max().container() and not self.max().container().check({'-SPEC:φ'})
-
     def projection_principle_failure(self):
         return self.max().projection_principle_applies() and not self.max().container_assigns_theta_role()
 
@@ -355,10 +350,13 @@ class PhraseStructure:
 
     def container_assigns_theta_role(self):
         if self.max().container():
-            if self.selector():
+            if self.sister() and self.sister().primitive():
                 return True
             if self.is_licensed_specifier() and self.max().container().specifier_theta_role_assigner():
                 return True
+
+    def specifier_theta_role_assigner(self):
+        return not self.EF() and not (self.selector() and not self.selector().check({'ARG'})) and self.check_some({'SPEC:φ', '!SPEC:φ'})
 
     # Reconstruction -----------------------------------------------------------------------------------
 
@@ -385,7 +383,7 @@ class PhraseStructure:
                 inst['legible'] = lambda x, y: True
             elif new_head_needed and (op_features or self.unlicensed_specifier()):
                 probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
-            probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
+                probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
         return inst.copy(), self.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
@@ -430,6 +428,9 @@ class PhraseStructure:
         if not self.non_scopal():
             return {'Fin', 'C', 'PF:C'}
         return set()
+
+    def unvalued(self):
+        return {f for f in self.features if f[:3] == 'PHI' and f[-1] == '_'}
 
     def Agree(self):
         domain = (const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()))
@@ -485,13 +486,14 @@ class PhraseStructure:
         transfer.brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
 
     def resolve_neutralized_feature(self):
-        self.features.discard('?ARG')
         if self.selected_by_SEM_internal_predicate():
+            self.features.discard('?ARG')
             log(f'{self} resolved into -ARG due to {self.selector()}...')
             self.features.add('-EF:φ')
             self.features.discard('EF:φ')
             self.features.add('-ARG')
-        else:
+        elif self.selected_by_SEM_external_predicate():
+            self.features.discard('?ARG')
             log(f'{self} resolved into +ARG...')
             self.features.add('ARG')
             self.features.add('!EF:φ')
@@ -606,7 +608,7 @@ class PhraseStructure:
                 for feature2 in self.features:
                     if feature1[1:] == remove_exclamation(feature2):
                         return True
-            if feature1.startswith('PHI:') and not feature1.endswith('_'):
+            if feature1.startswith('PHI:') and not feature1.endswith('_') and 'GEN' not in feature1:
                 for feature2 in self.features:
                     if feature2.startswith('PHI:') and not feature2.endswith('_'):
                         if feature1.split(':')[1] == feature2.split(':')[1] and feature1.split(':')[2] != feature2.split(':')[2]:
@@ -1080,7 +1082,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return self.check({'v'}) or self.check({'C'})
+        return (self.check({'v'}) and not self.check({'v-'})) or self.check({'C'})
 
     def extended_subject(self):
         return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or self.check({'pro'})

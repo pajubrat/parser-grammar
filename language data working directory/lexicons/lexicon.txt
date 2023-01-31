@@ -341,12 +341,13 @@ tehtyä		:: teke-#v#TUA/inf
 tekevän		:: teke-#v#VA/inf
 tekemään	:: teke-#v#MA.ill/inf
 tekemässä	:: teke-#v#MA.ine/inf
-tekemä		:: teke-#v#MA/A
+tekemä		:: teke2-#v#MA/A
 tekevä		:: teke-#v#VA/A
 tehdäkse	:: teke-#v#KSE/inf
 tehtiin		:: teke-#impass#T/fin LANG:FI
 tee			:: teke-#v#T/fin LANG:FI
 teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
+teke2-		:: V -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
 tyttö-		:: PF:tyttö LF:girl N LANG:FI
 työtä		:: työ-#φ#sg#3p#r_expression#[par] LANG:FI
@@ -484,7 +485,8 @@ admire  	:: admire-#v#T/fin#[-0] LANG:EN
 admire_fin	:: admire-#v#T/fin#[-0] LANG:EN
 admire		:: admire-#v LANG:EN
 admires  	:: admire-#v#T/fin#[-s] LANG:EN
-admire-  	:: PF:admire LF:admire V -COMP:T/fin CLASS/TR -SPEC:Neg -COMP:Neg COMP:D
+admired		:: admire-#v* LANG:EN
+admire-  	:: PF:admire LF:admire V -COMP:T/fin CLASS/TR -SPEC:Neg -COMP:Neg COMP:D COMP:φ
 asks		:: ask-#v#T/fin#[-s] LANG:EN
 ask-		:: PF:ask LF:ask V SPEC:φ COMP:φ SEM:internal LANG:EN
 bank		::	PF:bank1 LF:bank_inst N FREQ:1 LANG:EN
@@ -523,7 +525,7 @@ knows		::	know-#v#T/fin#[V] LANG:EN
 know-		::	PF:know- LF:know V CLASS/TR LANG:EN
 leaves		:: leave-#T/fin#[-s] LANG:EN
 left		:: leave-#T/fin LANG:EN
-leave		:: PF:leave- LF:leave V !EF:φ -COMP:T/fin LANG:EN
+leave		:: PF:leave- LF:leave V -COMP:T/fin LANG:EN
 leave- 		:: PF:leave- LF:leave V -COMP:T/fin LANG:EN
 like-   	:: PF:like- LF:like V !COMP:φ LANG:EN
 likes   	:: like-#v#T/fin#sg#3p#def LANG:EN
@@ -552,7 +554,6 @@ promise- 	:: PF:promise LF:promise V SPEC:φ COMP:φ SEM:internal LANG:EN
 problem		:: PF:problem LF:problem N LANG:EN
 sister		:: PF:sister LF:sister N LANG:EN
 sleeps		:: sleep-#T/fin#[-s] LANG:EN
-sleep		:: PF:sleep LF:sleep V CLASS/INTR LANG:EN
 sleep- 		:: PF:sleep LF:sleep V CLASS/INTR LANG:EN
 lives		:: live-#T/fin#[-s] LANG:EN
 live-		:: PF:live LF:live V COMP:P CLASS/INTR LANG:EN
@@ -566,6 +567,9 @@ red-		:: PF:red LF:red 0 LANG:EN
 said    	:: say-#T/fin LANG:EN
 say'		:: PF:say LF:say V SPEC:φ !COMP:FORCE LANG:EN
 say-    	:: PF:say LF:say V SPEC:φ !COMP:FORCE LANG:EN
+seems		:: seem-#T/fin#[-s] LANG:EN
+seem		:: seem-#T/fin#[-0] LANG:EN
+seem-		:: PF:seem LF:seem V -ARG EF:φ !COMP:TO/inf SEM:external
 solution	:: PF:solution LF:solution N LANG:EN
 surprised	::	surprise-#v#T/fin LANG:EN
 surprise-	:: PF:surprise LF:surprise V CLASS/TR -COMP:T/fin LANG:EN
@@ -576,7 +580,10 @@ towards		:: PF:towards LF:towards P TAIL:V TAIL:*LF:reach LANG:EN
 tries		:: try-#T/fin#[-s] LANG:EN
 try-		:: PF:try LF:try V SPEC:φ !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
 wants		:: want-#v#T/fin#[-s] LANG:EN
+want		:: want-#v#T/fin#[-0] LANG:EN
 want-		:: PF:want LF:want V CLASS/TR -COMP:V -SPEC:TO/inf COMP:TO/inf LANG:EN
+was			:: T/fin#sg LANG:EN
+were		:: T/fin#pl LANG:EN
 what		:: what-#D#wh#sg#3p#def LANG:EN
 what-		:: PF:what LF:what N PHI_N LANG:EN
 which		:: PF:which LF:which D OP:WH LANG:EN
@@ -701,6 +708,7 @@ vive-		:: PF:vive LF:live V CLASS/INTR LANG:TI
 voluto		:: volu-#v#T/prt#m#def LANG:IT
 vuole		:: volu-#v#T/fin#[-e] LANG:IT
 volu-		:: V PF:volu -E SEM:internal LF:want !COMP:*
+
 
 # Pronouns
 io			:: io-#D/pro#sg#1p#def#hum
