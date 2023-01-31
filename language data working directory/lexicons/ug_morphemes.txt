@@ -9,7 +9,6 @@ C/fin   :: C/fin PF:C LF:C/fin
 T		:: T PF:T LF:tense Fin EF:φ
 T/prt 	:: T/prt PF:T/prt LF:prtcpl
 a0		:: A PF:a LF:mod
-n		:: N n PF:n LF:thing
 impass	:: v ARG PF:impass LF:impass 
 cau		:: v PF:Cau LF:cause
 φ		:: φ PF:φ LF:phi ARG Inf
@@ -49,7 +48,8 @@ KSE/inf*	:: KSE/inf		Inf Adv ARG   EF:φ TAIL:T 	PF:-kse 	LF:for LANG:FI COMP:A/
 ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ARG EF:φ -SPEC:T/fin -adjoinable 
 
 # Copula
-BE-		:: V COPULA PF:BE LF:be -ARG COMP:φ SPEC:φ !COMP:* COMP:T/prt -COMP:T/fin
+# BE-		:: V COPULA PF:BE LF:be -ARG COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
+BE-		:: V COPULA EF:φ PF:AUX LF:T -ARG !COMP:* COMP:T/prt -COMP:T/fin
 
 # D-elements
 D		:: φ D PF:D LF:det R:NEW:$$$/SUR

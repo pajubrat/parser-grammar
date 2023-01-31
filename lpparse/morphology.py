@@ -6,7 +6,8 @@ def verbal_head():
     return {'V', 'FIN', 'T', 'v', 'INF'}
 
 class Morphology:
-    def __init__(self, controlling_parser_process):
+    def __init__(self, controlling_parser_process, language):
+        self.language = language
         self.brain_model = controlling_parser_process
         self.lexicon = LexicalInterface(self.brain_model)
         self.lexicon.load_lexicon(self.brain_model)

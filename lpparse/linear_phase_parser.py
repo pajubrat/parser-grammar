@@ -13,7 +13,7 @@ from working_memory import SyntacticWorkingMemory
 
 
 class LinearPhaseParser:
-    def __init__(self, local_file_system, language=''):
+    def __init__(self, local_file_system, language='XX'):
         self.sentence = ''
         self.local_file_system = local_file_system              # Access to file system (e.g., lexicon, settings)
         self.language = language                                # Contextual variables (language etc.)
@@ -30,7 +30,7 @@ class LinearPhaseParser:
         self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
         self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
-        self.morphology = Morphology(self)                      # Access to morphology
+        self.morphology = Morphology(self, language)            # Access to morphology
         self.working_memory = SyntacticWorkingMemory(self)      # Access to working memory
         self.transfer = Transfer(self)                          # Access to transfer
         self.LF = LF(self)                                      # Access to LF

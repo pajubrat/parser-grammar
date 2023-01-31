@@ -28,7 +28,7 @@ def run_study(args):
     for sentence, experimental_group, part_of_conversation in sentences_to_parse:
         if not is_comment(sentence):
             language = lang_guesser.guess_language(sentence)
-            local_file_system.print_sentence_to_console(sentence_number, sentence)
+            local_file_system.print_sentence_to_console(sentence_number, sentence, language)
             parser_for[language].parse_sentence(sentence_number, sentence)
             local_file_system.save_output(parser_for[language],
                                           sentence_number,

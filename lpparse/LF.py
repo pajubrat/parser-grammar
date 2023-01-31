@@ -8,7 +8,7 @@ class LF:
     def __init__(self, controlling_parsing_process):
         self.brain_model = controlling_parsing_process
         self.LF_legibility_tests = [('Selection test', self.selection_test),
-                                    ('Projection Principle', PhraseStructure.projection_principle),
+                                    ('Projection Principle', PhraseStructure.projection_principle_failure),
                                     ('Head Integrity test', PhraseStructure.unrecognized_label),
                                     ('Feature Conflict test', PhraseStructure.feature_conflict),
                                     ('Probe-Goal test', PhraseStructure.probe_goal_test),

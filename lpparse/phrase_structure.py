@@ -339,7 +339,7 @@ class PhraseStructure:
     # Projection principle and thematic roles ---------------------------------------------------------------------
 
     def nonthematic(self):
-        return self.container() and (self.container().EF() and self.container().finite()) or \
+        return self.container() and self.container().EF() or \
                (self.container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and self == next((const for const in self.container().edge()), None))
 
     def specifier_theta_role_assigner(self):
@@ -347,14 +347,18 @@ class PhraseStructure:
                not (self.selector() and not self.selector().check({'ARG'})) and \
                self.check_some({'SPEC:φ', 'COMP:φ', '!SPEC:φ', '!COMP:φ'}) and self.max().container() and not self.max().container().check({'-SPEC:φ'})
 
-    def projection_principle(self):
-        return self.projection_principle_applies() and not self.container_assigns_theta_role()
+    def projection_principle_failure(self):
+        return self.max().projection_principle_applies() and not self.max().container_assigns_theta_role()
 
     def projection_principle_applies(self):
         return self.referential() and self.max() and not self.max().find_me_elsewhere and self.max().mother and not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
     def container_assigns_theta_role(self):
-        return self.max().container() and (self.selector() or (self.is_licensed_specifier() and self.max().container() and self.max().container().specifier_theta_role_assigner()))
+        if self.max().container():
+            if self.selector():
+                return True
+            if self.is_licensed_specifier() and self.max().container().specifier_theta_role_assigner():
+                return True
 
     # Reconstruction -----------------------------------------------------------------------------------
 
@@ -368,8 +372,11 @@ class PhraseStructure:
             inst, target = target.prepare_chain(self, inst, i > 0, target.scan_operators(), transfer)
             self.form_chain(target, inst)
             transfer.brain_model.consume_resources(inst['type'], self)
-            if inst['test integrity'](target):
+            # Successive-cyclic chain formation
+            if target.primitive() and inst['test integrity'](target):
                 target.create_chain(transfer, inst)
+            elif target.max().container() and inst['test integrity'](target.max().container()):
+                target.max().container().create_chain(transfer, inst)
 
     def prepare_chain(self, probe, inst, new_head_needed, op_features, transfer):
         if inst['type'] == 'Phrasal Chain':
@@ -389,7 +396,8 @@ class PhraseStructure:
         else:
             if not self.bottom().test_merge(target, inst['legible'], 'right'):
                 target.remove()
-                self.sister().Merge(target, 'left')
+                if self.sister():
+                    self.sister().Merge(target, 'left')
 
     def test_merge(self, obj, legible, direction):
         self.specifier_sister().Merge(obj, direction)
@@ -424,7 +432,8 @@ class PhraseStructure:
         return set()
 
     def Agree(self):
-        self.value_features(next((const for const in self.sister().minimal_search(lambda x: x.complex() and x.head().referential(), lambda x: not x.phase_head())), None))
+        domain = (const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()))
+        self.value_features(next(domain, None))
 
     def value_features(self, goal):
         if goal:
@@ -434,6 +443,7 @@ class PhraseStructure:
 
     def value(self, phi):
         unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
+
         if self.valued_phi_features() and self.block_valuation(phi):
             self.features.add(phi + '*')
         elif unvalued_counterparty:
@@ -441,6 +451,7 @@ class PhraseStructure:
             self.features.add(phi)
             self.features.add('PHI_CHECKED')
             log(f'\n\t\t\'{self}\' valued ' + phi)
+
             # Complementary distribution of phi and overt subject in this class, still mysterious
             if not self.preposition() and self.adverbial() or self.check({'VA/inf'}):
                 self.features.add('-pro')
@@ -520,10 +531,11 @@ class PhraseStructure:
         return self.nonlicensed_complement() or self.missing_mandatory_complement()
 
     def non_adverbial_adjunct_condition(self, starting_point_head):
-        return not self.container() or \
-               (not (self.check({'GEN'}) and self.container().referential()) and
-               not self.container() == starting_point_head and
-               not self.nonthematic() and not (self.referential() and self.head().projection_principle()))
+        if not self.container():
+            return True
+        if self.container() == starting_point_head or self.nonthematic() or (self.referential() and self.projection_principle_failure()):
+            return False
+        return True
 
     # Feature processing -----------------------------------------------------------------------------
 
@@ -630,7 +642,7 @@ class PhraseStructure:
         return pos_tsets == checked_pos_tsets and not checked_neg_tsets
 
     def tail_condition(self, tset):
-        if self.max() and self.max().container() and (self.max().container().check(tset) or (self.max().mother.sister() and self.max().mother.sister().check(tset))):
+        if not self.referential() and self.max() and self.max().container() and (self.max().container().check(tset) or (self.max().mother.sister() and self.max().mother.sister().check(tset))):
             return True
         if self.referential() or self.preposition():
             for m in (affix for node in self.upward_path() if node.primitive() for affix in node.get_affix_list()):
@@ -1068,7 +1080,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return self.check_some({'v', 'C'})
+        return self.check({'v'}) or self.check({'C'})
 
     def extended_subject(self):
         return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or self.check({'pro'})

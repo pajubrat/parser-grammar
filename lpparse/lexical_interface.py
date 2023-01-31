@@ -92,8 +92,9 @@ class LexicalInterface:
 
         # If a matching element is found from the dictionary, it will return a list of constituents
         # These constituents contain raw morphological strings
+        word_list = []
         if phonological_entry in self.surface_vocabulary:
-            word_list = [const.copy() for const in self.surface_vocabulary[phonological_entry]]
+            word_list = [const.copy() for const in self.surface_vocabulary[phonological_entry] if self.language_match(const)]
 
             # Add internal/incorporation information to each
             if internal:
@@ -104,8 +105,7 @@ class LexicalInterface:
                 for const in word_list:
                     const.incorporated = True
 
-        # Default constituent
-        else:
+        if not word_list:
             const = self.PhraseStructure()
             const.features = {'PF:?', '?'}
             const.morphology = phonological_entry
@@ -118,6 +118,9 @@ class LexicalInterface:
                 log(f'\n\t\t\t({idx}) {word.morphology}')
             log('\n\t\t')
         return word_list
+
+    def language_match(self, const):
+        return 'LANG:XX' in const.features or self.language in const.features
 
     def rank_lexical_items(self, word_list):
         def frequency(word):

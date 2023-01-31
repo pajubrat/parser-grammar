@@ -197,8 +197,8 @@ class LocalFileSystem:
         self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, encoding=self.encoding)
         self.stamp(self.simple_log_file)
 
-    def print_sentence_to_console(self, sentence_number, sentence):
-        print(f'\n{sentence_number}. {sentence}', end='')
+    def print_sentence_to_console(self, sentence_number, sentence, language):
+        print(f'\n{sentence_number}. {sentence} ({language[-2:]}) ', end='')
 
     def initialize_results_file(self):
         self.dev_log_file.write('Initializing results file...')

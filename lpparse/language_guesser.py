@@ -6,7 +6,7 @@ class LanguageGuesser:
     def __init__(self, lexicon_file):
         self.lang_map = defaultdict(list)
         self.languages = set()
-        for line in open(lexicon_file):
+        for line in open(lexicon_file, 'r', encoding='utf-8'):
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
@@ -34,6 +34,6 @@ class LanguageGuesser:
                     selected_language = key
                     selection = counter[key]
             return selected_language
-        return 'LANG:X'
+        return 'LANG:FI'    # default language assumption for unknown language
 
 

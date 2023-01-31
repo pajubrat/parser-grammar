@@ -27,9 +27,6 @@ ei			:: e#[V] LANG:FI
 emme		:: e#mme LANG:FI
 ette		:: e#tte LANG:FI
 eivät		:: e#vAt LANG:FI
-ei'			:: PF:e LF:neg LANG:FI
-ei'			:: PF:e LF:neg LANG:FI
-e-			:: PF:e LF:neg LANG:FI
 e			:: PF:e LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T LANG:FI
 elää		:: elä-#T/fin#[V] LANG:FI
 elä-		:: PF:elää LF:live V CLASS/INTR SPEC:φ LANG:FI
@@ -195,10 +192,10 @@ Merjalla	:: 	Merja-#φ#sg#3p#def#hum#def#proper_name#lla
 Merjasta	::	Merja-#φ#sg#3p#def#hum#def#proper_name#sta
 meren		::	mere-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 mere-		::	PF:meri LF:ocean N LANG:FI
-mies		::	mies-#φ#sg#3p#r_expression#[nom]
-miehet		:: 	mies-#φ#pl#3p#r_expression#[nom]
-miehen		:: 	mies-#φ#sg#3p#r_expression#[gen]
-miesten		::	mies-#φ#pl#3p#r_expression#[gen]
+mies		::	mies-#φ#sg#3p#r_expression#[nom] LANG:FI
+miehet		:: 	mies-#φ#pl#3p#r_expression#[nom] LANG:FI
+miehen		:: 	mies-#φ#sg#3p#r_expression#[gen] LANG:FI
+miesten		::	mies-#φ#pl#3p#r_expression#[gen] LANG:FI
 mies-		::	PF:mies LF:man N LANG:FI
 minka		:: mikä-#D#wh#[acc(n)] LANG:FI
 minkä		:: mikä-#D#wh#[gen] LANG:FI
@@ -259,6 +256,7 @@ Pariisi-	:: PF:Pariisi LF:Paris N LANG:FI
 Pekkaa		:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[par] LANG:FI
 Pekka   	:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
 Pekan		:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[acc(n)]
+Pekan		:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[gen] LANG:FI
 Pekan_gen	:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[gen] LANG:FI
 Pekan_acc	::	Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[acc(n)] LANG:FI
 Pekka_0acc	::	Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[acc(0)] LANG:FI
@@ -351,13 +349,13 @@ tee			:: teke-#v#T/fin LANG:FI
 teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
 tyttö-		:: PF:tyttö LF:girl N LANG:FI
-työtä		:: työ-#φ#sg#3p#r_expression#[par]
+työtä		:: työ-#φ#sg#3p#r_expression#[par] LANG:FI
 työ-		:: PF:työ LF:work N LANG:FI
 tämä		:: tämä-#D#sg#3p#def
 tätä		:: D#sg#3p#def#[par]
 tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tässä		:: tämä#P
-täytyy		:: täydy-#T/fin#[V] LANG:FI
+täytyy		:: täydy-#T/fin LANG:FI
 täydy		:: täydy-#T/prt LANG:FI
 täydy-		:: PF:täyty- LF:must Fin V MODAL EF:φ !COMP:A/inf -ASP LANG:FI
 tönäisi		:: tönäise-#v#T/fin#[V] LANG:FI
@@ -384,7 +382,7 @@ yritta- 	:: PF:yritta LF:try V SPEC:φ !COMP:A/inf !COMP:-ARG LANG:EN SEM:intern
 minä		:: minä-#D/pro#[nom]#sg#1p#def#hum LANG:FI
 minua		:: minä-#D/pro#[par]#sg#1p#def#hum LANG:FI
 minun		:: minä-#D/pro#[gen]#sg#1p#def#hum LANG:FI
-minä- 		:: PF:minä LF:I N PHI_N LANG:FI LANG:FI
+minä- 		:: PF:minä LF:I N PHI_N LANG:FI
 sinä		:: sinä-#D/pro#[nom]#sg#2p#def#hum LANG:FI
 sinua		:: sinä-#D/pro#[par]#sg#2p#def#hum LANG:FI
 sinun		:: sinä-#D/pro#[gen]#sg#2p#def#hum LANG:FI
@@ -401,10 +399,10 @@ me- 		:: PF:me LF:we N PHI_N LANG:FI
 te			:: te-#D/pro#[nom]#pl#2p#def#hum LANG:FI
 teidän		:: te-#D/pro#[gen]#pl#2p#def#hum LANG:FI
 te- 		:: PF:te LF:you N PHI_N LANG:FI
-he_FI		:: he_FI-#D/pro#[nom]#pl#3p#def#hum LANG:FI
-heidän		:: he_FI-#D/pro#[gen]#pl#3p#def#hum LANG:FI
-niiden		:: he_FI-#D/pro#[gen]#pl#3p#def#nonhum LANG:FI
-he_FI- 		:: PF:he LF:they N PHI_N LANG:FI
+he			:: he-#D/pro#[nom]#pl#3p#def#hum LANG:FI
+heidän		:: he-#D/pro#[gen]#pl#3p#def#hum LANG:FI
+niiden		:: he-#D/pro#[gen]#pl#3p#def#nonhum LANG:FI
+he- 		:: PF:he LF:they N PHI_N LANG:FI
 se			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se'			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se			:: se-#sg#3p#def#nonhum#pronoun1 LANG:FI
@@ -414,7 +412,7 @@ sitä		:: se-#[par]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se-			:: PF:se LF:the/that D LANG:FI
 se			:: se_N-#D/pro#[nom]#sg#3p#def#nonhum LANG:FI
 sitä		:: se_N-#D/pro#[par]#sg#3p#def#nonhum LANG:FI
-sen_DP_gen	:: se_N-#D/pro#[gen]#sg#3p#def#nonhum LANG:FI
+sen			:: se_N-#D/pro#[gen]#sg#3p#def#nonhum LANG:FI
 se_N-		:: PF:se LF:the/that N LANG:FI
 itseään		:: itse-#D/refl#3p#sg#def#[par] LANG:FI
 itseäni		:: itse-#D/refl#1p#sg#def#[par] LANG:FI
@@ -589,26 +587,26 @@ who-   		:: PF:who LF:who N PHI_N LANG:EN
 whether		:: PF:whether LF:whether Q FORCE LANG:EN
 
 # Pronouns
-I			:: I-#D/pro#sg#1p#def#hum
-me			:: I-#D/pro#sg#1p#def#hum#acc
-I- 			:: PF:I LF:I N PHI_N LANG:EN 
-you			:: you-#D/pro#sg#2p#def#hum
+I			:: I-#D/pro#sg#1p#def#hum LANG:EN
+me			:: I-#D/pro#sg#1p#def#hum#acc LANG:EN
+I- 			:: PF:I LF:I N PHI_N LANG:EN
+you			:: you-#D/pro#sg#2p#def#hum LANG:EN
 you-		:: PF:you LF:you N PHI_N LANG:EN
-he			:: he-#D/pro#sg#3p#def#hum#m
-him			:: he-#D/pro#sg#3p#def#hum#m#acc
-himself		:: he-#D/refl#sg#3p#def#hum#m#acc
+he			:: he-#D/pro#sg#3p#def#hum#m LANG:EN
+him			:: he-#D/pro#sg#3p#def#hum#m#acc LANG:EN
+himself		:: he-#D/refl#sg#3p#def#hum#m#acc LANG:EN
 he-			:: PF:he LF:he N PHI_N LANG:EN
-she			:: she-#D/pro#sg#3p#def#hum#f
-her			:: she-#D/pro#sg#3p#def#hum#f#acc
-herself		:: she-#D/refl#sg#3p#def#hum#f#acc
+she			:: she-#D/pro#sg#3p#def#hum#f LANG:EN
+her			:: she-#D/pro#sg#3p#def#hum#f#acc LANG:EN
+herself		:: she-#D/refl#sg#3p#def#hum#f#acc LANG:EN
 she-		:: PF:she LF:she N PHI_N LANG:EN
-we			:: we-#D/pro#pl#1p#def#hum
-us			:: we-#D/pro#pl#1p#def#hum#acc
+we			:: we-#D/pro#pl#1p#def#hum LANG:EN
+us			:: we-#D/pro#pl#1p#def#hum#acc LANG:EN
 we- 		:: PF:we LF:we N PHI_N LANG:EN
-you_pl		:: you_pl-#D/pro#pl#2p#def#hum
+you_pl		:: you_pl-#D/pro#pl#2p#def#hum LANG:EN
 you_pl- 	:: PF:you_pl LF:you_pl N PHI LANG:EN
-they		:: they-#D/pro#pl#3p#def#hum
-them		:: they-#D/pro#pl#3p#def#hum#acc
+they		:: they-#D/pro#pl#3p#def#hum LANG:EN
+them		:: they-#D/pro#pl#3p#def#hum#acc LANG:EN
 they- 		:: PF:they LF:they N PHI_N LANG:EN
 it			:: it-#D/pro#sg#3p#def#nonhum LANG:EN
 it-			:: PF:it LF:it/that N LANG:EN
@@ -727,7 +725,7 @@ la			:: la-#D/pro#sg#3p#def#hum#f#cl#acc_it
 la-			:: PF:la(cl) LF:her N PHI_N CL LANG:IT
 lo			:: lo-#D/pro#sg#3p#def#hum#m#cl#acc_it
 lo-			:: PF:lo(cl) LF:him N PHI_N CL LANG:IT
-si			:: si-#D/pro#3p#def#cl#nom
+si§			:: si-#D/pro#3p#def#cl#nom
 si-			:: PF:si(cl) LF:3sg N PHI_N CAL:CL LANG:IT
 gli			:: lo-#D/pro#sg#3p#def#hum#m#a_IT#cl#dat
 ci			:: ci-#D/pro#sg#3p#def#hum#m#cl#dat
