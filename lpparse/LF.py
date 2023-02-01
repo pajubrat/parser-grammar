@@ -25,7 +25,9 @@ class LF:
                                          '!SEF':  PhraseStructure.selection__positive_shared_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
                                          '-COMP': PhraseStructure.selection__negative_complement,
-                                         '!COMP': PhraseStructure.selection__positive_obligatory_complement}
+                                         '!COMP': PhraseStructure.selection__positive_obligatory_complement,
+                                         '!SELF': PhraseStructure.selection__positive_self_selection,
+                                         '-SELF': PhraseStructure.selection__negative_self_selection}
 
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''

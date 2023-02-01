@@ -290,6 +290,12 @@ class PhraseStructure:
                                                        (probe.proper_selected_complement().head().licensed_phrasal_specifier() and
                                                         probe.proper_selected_complement().head().licensed_phrasal_specifier().head().referential()))
 
+    def selection__positive_self_selection(self, selected_feature):
+        return self.check({selected_feature})
+
+    def selection__negative_self_selection(self, selected_feature):
+        return not self.check({selected_feature})
+
     def specifier_match(self, phrase):
         return phrase.head().check_some(self.licensed_specifiers())
 
@@ -446,11 +452,20 @@ class PhraseStructure:
         unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
 
         if self.valued_phi_features() and self.block_valuation(phi):
-            self.features.add(phi + '*')
+            self.features.add(phi)
+            self.features.add(f'-{phi}')
         elif unvalued_counterparty:
             self.features = self.features - unvalued_counterparty
             self.features.add(phi)
+            self.features.add('Φ/LF')
             self.features.add('PHI_CHECKED')
+            if self.check_some({'Φ/PF', 'Φ/LF'}):
+                self.features.add('Φ/12')
+                if not self.check({'Φ/PF', 'Φ/LF'}):
+                    self.features.add('Φ/1')
+                else:
+                    self.features.discard('Φ/1')
+
             log(f'\n\t\t\'{self}\' valued ' + phi)
 
             # Complementary distribution of phi and overt subject in this class, still mysterious
