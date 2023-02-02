@@ -1950,7 +1950,7 @@
 				'we.nom not.1pl be.prs make.sg.pst.prtcpl'			
 	
 			& Ungrammatical (Neg + Aux double agreement error)
-			
+						
 				minä en ole#n lähtenyt
 				'I.nom not.1sg be.1sg.prs leave.sg.pst.prtcpl'
 		
@@ -1976,7 +1976,12 @@
 				
 				me emme ole#mme tehnyt työtä
 				'we.nom not.1pl be.1pl.prs make.sg.pst.prtcpl war.par'
-		
+			
+			& Ungrammatical (triple-agreement)
+			
+				minä e#n ole#n lähde#n
+				'I.nom not.1sg be.prs.1sg leave.prs.1sg'
+				
 	& 1.3 Agreementless finite clauses
 	
 		& 1.3.1 Modal construction
@@ -2637,9 +2642,9 @@
 
 	& 2.3 Nonfinite complement clauses (A-, VA-infinitive)
 	
-		& 2.3.1 A-infinitive
+		& 2.3.1 A-infinitive (non-OC construction)
 		
-			& 2.3.1.1 Grammatical (no agreement)
+			& Grammatical (no agreement)
 						
 				Merja käski minun lähteä
 				'Merja.nom order.pst.3sg I.gen leave.A/inf'
@@ -2678,7 +2683,7 @@
 				Merja käski heidän tehdä työtä
 				'Merja.nom order.pst.3sg they.gen make.A/inf work.par'
 							
-			& 2.3.1.2 Ungrammatical (Impossible agreement)
+			& Ungrammatical (Impossible agreement)
 						
 				Merja käski lähteä#ni
 				'Merja.nom order.pst.3sg leave.A/inf.1sg'
@@ -2711,7 +2716,7 @@
 				Merja käski tehdä#nne työtä
 				'Merja.nom order.pst.3sg make.A/inf.2pl work.par'
 				
-			& 2.3.1.3 Ungrammatical (Impossible agreement and double agreement)
+			& Ungrammatical (Impossible agreement and double agreement)
 						
 				Merja käski minun lähteä#ni
 				'Merja.nom order.pst.3sg I.gen leave.A/inf.1sg'
@@ -2744,7 +2749,7 @@
 				Merja käski teidän tehdä#nne työtä
 				'Merja.nom order.pst.3sg you.gen make.A/inf.2pl work.par'
 					
-			& 2.3.1.4 Ungrammatical (impossible agreement + feature [human] error)
+			& Ungrammatical (impossible agreement + feature [human] error)
 						
 				Merja käski sen2 lähteä#nsA
 				'Merja.nom order.pst.3sg it.gen leave.A/inf.3p'
@@ -2771,7 +2776,7 @@
 				Merja käski miesten tehdä#nsA työtä
 				'Merja.nom order.pst.3sg men.gen make.A/inf.3p work.par'
 								
-			& 2.3.1.5 Ungrammatical (impossible agreement + feature [human, person, number] errors)
+			& Ungrammatical (impossible agreement + feature [human, person, number] errors)
 
 				& First person singular PX
 								
@@ -2881,9 +2886,76 @@
 					Merja käski miesten tehdä#nne työtä
 					'Merja.nom order.pst.3sg men.gen make.A/inf.2pl work.par'
 								
-		& 2.3.2 VA-infinitive
+		& 2.3.2 A-infinitive (OC-construction)
 		
-			& 2.3.2.1 S-Vinf agreement
+			& Grammatical
+			
+				Merja halusi lähteä
+				'Merja.nom want.prs.3sg leave.a/inf'
+			
+			& Ungrammatical (agreement error)
+			
+				Merja halusi lähteä#n
+				'Merja.nom want.prs.3sg leave.a/inf.1sg'
+				
+				Merja halusi lähteä#t
+				'Merja.nom want.prs.3sg leave.a/inf.2sg'
+			
+				Merja halusi lähteä#[-V]
+				'Merja.nom want.prs.3sg leave.a/inf.3sg'
+				
+				Merja halusi lähteä#mme
+				'Merja.nom want.prs.3sg leave.a/inf.1pl'
+				
+				Merja halusi lähteä#tte
+				'Merja.nom want.prs.3sg leave.a/inf.2pl'
+				
+				Merja halusi lähteä#vAt
+				'Merja.nom want.prs.3sg leave.a/inf.3pl'
+				
+			& Ungrammatical (illicit phrasal subject)
+			
+				Merja halusi minun lähteä
+				'Merja.nom want.pst.3sg I.gen leave.a/inf'
+
+				Merja halusi sinun lähteä
+				'Merja.nom want.pst.3sg you.gen leave.a/inf'
+
+				Merja halusi hänen lähteä
+				'Merja.nom want.pst.3sg he.gen leave.a/inf'
+
+				Merja halusi meidän lähteä
+				'Merja.nom want.pst.3sg we.gen leave.a/inf'
+
+				Merja halusi teidän lähteä
+				'Merja.nom want.pst.3sg you.gen leave.a/inf'
+
+				Merja halusi heidän lähteä
+				'Merja.nom want.pst.3sg they.gen leave.a/inf'
+				
+			& UNgrammatical (illicit phrasa subject and agreement)
+			
+				Merja halusi minun lähteä#n
+				'Merja.nom want.pst.3sg I.gen leave.a/inf'
+
+				Merja halusi sinun lähteä#t
+				'Merja.nom want.pst.3sg you.gen leave.a/inf'
+
+				Merja halusi hänen lähteä#[V]
+				'Merja.nom want.pst.3sg he.gen leave.a/inf'
+
+				Merja halusi meidän lähteä#mme
+				'Merja.nom want.pst.3sg we.gen leave.a/inf'
+
+				Merja halusi teidän lähteä#tte
+				'Merja.nom want.pst.3sg you.gen leave.a/inf'
+
+				Merja halusi heidän lähteä#vAt
+				'Merja.nom want.pst.3sg they.gen leave.a/inf'
+				
+		& 2.3.3 VA-infinitive
+		
+			& Grammatical
 			
 				Merja uskoi minun lähtevän
 				'Merja.nom believe.pst.3sg I.gen leave.VA/inf'
@@ -2954,7 +3026,7 @@
 				Merja uskoi tekevän#nne työtä
 				'Merja.nom believe.pst.3sg make.VA/inf.2pl work.par'
 						
-			& 2.3.2.2 Ungrammatical (double/redundant agreement errors)
+			& Ungrammatical (double/redundant agreement errors)
 
 				Merja uskoi minun lähtevän#ni
 				'Merja.nom believe.pst.3sg I.gen leave.VA/inf.1sg'
@@ -2987,7 +3059,7 @@
 				Merja uskoi teidän tekevän#nne työtä
 				'Merja.nom believe.pst.3sg you.gen make.VA/inf.2pl work.par'
 
-			& 2.3.2.3 Ungrammatical (double agreement + feature [human] errors)
+			& Ungrammatical (double agreement + feature [human] errors)
 						
 				Merja uskoi Pekan lähtevän#nsA
 				'Merja.nom believe.pst.3sg Pekka.gen leave.VA/inf.3p'
@@ -3014,7 +3086,7 @@
 				Merja uskoi sen2 tekevän#nsA työtä
 				'Merja.nom believe.pst.3sg it.gen make.VA/inf.3p work.par'
 					
-			& 2.3.2.4 Ungrammatical (double agreement + feature [human, person, number] errors)
+			& Ungrammatical (double agreement + feature [human, person, number] errors)
 			
 				Merja uskoi Pekan lähtevän#ni
 				'Merja.nom believe.pst.3sg Pekka.gen leave.VA/inf.1sg'
@@ -3115,9 +3187,9 @@
 				Merja uskoi sen2 tekevän#nne työtä
 				'Merja.nom believe.pst.3sg it.gen make.VA/inf.2pl work.par'
 			
-		& 2.3.3 MA-infinitive
+		& 2.3.4 MA-infinitive
 		
-			& 2.3.3.1 Grammatical
+			& Grammatical
 					
 				Merja käski lähtemään
 				'Merja.nom order.pst.3sg leave.MA/inf'
@@ -3125,7 +3197,7 @@
 				Merja käski tekemään työtä
 				'Merja order.pst.3sg make.MA.ill/inf work.par'
 										
-			& 2.3.3.2 Ungrammatical (impossible agreement error)
+			& Ungrammatical (impossible agreement error)
 			
 				Merja käski lähtemään#ni
 				'Merja.nom order.pst.3sg leave.MA/inf.1sg'
@@ -3162,7 +3234,7 @@
 	
 		& 2.4.1 ESSA-infinitive
 		
-			& 2.4.1.1 Grammatical
+			& Grammatical
 						
 				Merja laulaa lähtiessä
 				'Merja.nom sing.prs.3sg leave.ESSA/inf'
@@ -3200,6 +3272,156 @@
 
 				Merja laulaa tehdessä#nne työtä
 				'Merja.nom sing.prs.3sg make.ESSA/inf.2pl work.par'
+
+				
+				Merja laulaa minun lähtiessä
+				'Merja sing.prs.3sg I.gen leave.ESSA/inf
+
+				Merja laulaa sinun lähtiessä
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf
+
+				Merja laulaa hänen lähtiessä
+				'Merja sing.prs.3sg he.gen leave.ESSA/inf
+				
+				Merja laulaa meidän lähtiessä
+				'Merja sing.prs.3sg we.gen leave.ESSA/inf
+
+				Merja laulaa teidän lähtiessä
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf
+
+				Merja laulaa heidän lähtiessä
+				'Merja sing.prs.3sg they.gen leave.ESSA/inf
+
+
+				Merja laulaa minun lähtiessä#ni
+				'Merja sing.prs.3sg I.gen leave.ESSA/inf.1sg
+
+				Merja laulaa sinun lähtiessä#si
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.2sg
+
+				Merja laulaa hänen lähtiessä#An
+				'Merja sing.prs.3sg he.gen leave.ESSA/inf.3p
+				
+				Merja laulaa meidän lähtiessä#mme
+				'Merja sing.prs.3sg we.gen leave.ESSA/inf.1pl
+
+				Merja laulaa teidän lähtiessä#nne
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.2pl
+
+				Merja laulaa heidän lähtiessä#An
+				'Merja sing.prs.3sg they.gen leave.ESSA/inf.3pl
+			
+			& Ungrammatical (human pronoun violation)
+			
+				Merja laulaa Pekan lähtiessä#An
+				'Merja.nom sing.prs.3sg Pekan.gen leave.ESSA/inf.3p'
+
+				Merja laulaa miehen lähtiessä#An
+				'Merja.nom sing.prs.3sg man.gen leave.ESSA/inf.3p'
+
+				Merja laulaa sen lähtiessä#An
+				'Merja.nom sing.prs.3sg it.gen leave.ESSA/inf.3p'
+			
+				Merja laulaa miesten lähtiessä#An
+				'Merja.nom sing.prs.3sg men.gen leave.ESSA/inf.3p'			
+			
+			& Ungrammatical (agreement violation)
+			
+				Merja laulaa minun lähtiessä#si
+				'Merja sing.prs.3sg I.gen leave.ESSA/inf.2sg
+
+				Merja laulaa minun lähtiessä#An
+				'Merja sing.prs.3sg I.gen leave.ESSA/inf.3p
+				
+				Merja laulaa minun lähtiessä#mme
+				'Merja sing.prs.3sg I.gen leave.ESSA/inf.1pl
+
+				Merja laulaa minun lähtiessä#nne
+				'Merja sing.prs.3sg I.gen leave.ESSA/inf.2pl
+
+				Merja laulaa minun lähtiessä#An
+				'Merja sing.prs.3sg I.gen leave.ESSA/inf.3pl
+
+
+				Merja laulaa sinun lähtiessä#ni
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.1sg
+
+				Merja laulaa sinun lähtiessä#An
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.3p
+				
+				Merja laulaa sinun lähtiessä#mme
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.1pl
+
+				Merja laulaa sinun lähtiessä#nne
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.2pl
+
+				Merja laulaa sinun lähtiessä#An
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.3pl		
+
+
+				Merja laulaa hänen lähtiessä#ni
+				'Merja sing.prs.3sg he.gen leave.ESSA/inf.1sg
+
+				Merja laulaa hänen lähtiessä#si
+				'Merja sing.prs.3sg he.gen leave.ESSA/inf.2sg
+				
+				Merja laulaa hänen lähtiessä#mme
+				'Merja sing.prs.3sg he.gen leave.ESSA/inf.1pl
+
+				Merja laulaa hänen lähtiessä#nne
+				'Merja sing.prs.3sg he.gen leave.ESSA/inf.2pl
+
+				Merja laulaa hänen lähtiessä#An
+				'Merja sing.prs.3sg he.gen leave.ESSA/inf.3pl					
+
+
+				Merja laulaa meidän lähtiessä#ni
+				'Merja sing.prs.3sg we.gen leave.ESSA/inf.1sg
+
+				Merja laulaa meidän lähtiessä#si
+				'Merja sing.prs.3sg we.gen leave.ESSA/inf.2sg
+
+				Merja laulaa meidän lähtiessä#An
+				'Merja sing.prs.3sg we.gen leave.ESSA/inf.3p
+				
+				Merja laulaa meidän lähtiessä#nne
+				'Merja sing.prs.3sg we.gen leave.ESSA/inf.2pl
+
+				Merja laulaa meidän lähtiessä#An
+				'Merja sing.prs.3sg we.gen leave.ESSA/inf.3pl
+				
+	
+				Merja laulaa teidän lähtiessä#ni
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.1sg
+
+				Merja laulaa teidän lähtiessä#si
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.2sg
+
+				Merja laulaa teidän lähtiessä#An
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.3p
+				
+				Merja laulaa teidän lähtiessä#mme
+				'Merja sing.prs.3sg youwe.gen leave.ESSA/inf.1pl
+
+				Merja laulaa teidän lähtiessä#An
+				'Merja sing.prs.3sg you.gen leave.ESSA/inf.3pl
+
+
+				Merja laulaa heidän lähtiessä#ni
+				'Merja sing.prs.3sg they.gen leave.ESSA/inf.1sg
+
+				Merja laulaa heidän lähtiessä#si
+				'Merja sing.prs.3sg they.gen leave.ESSA/inf.2sg
+
+				Merja laulaa heidän lähtiessä#An
+				'Merja sing.prs.3sg they.gen leave.ESSA/inf.3p
+				
+				Merja laulaa heidän lähtiessä#mme
+				'Merja sing.prs.3sg they.gen leave.ESSA/inf.1pl
+
+				Merja laulaa heidän lähtiessä#nne
+				'Merja sing.prs.3sg they.gen leave.ESSA/inf.2pl
+
 
 		& 2.4.2 KSE-infinitive
 				
@@ -3347,7 +3569,8 @@
 				Merja laulaa niiden tehtyä työtä
 				'Merja.nom sing.prs.3sg they.gen(nonhum) make.TUA/inf work.par'
 
-
+			& Marginal or ungrammatical
+			
 				Merja laulaa minun lähdettyä#ni
 				'Merja.nom sing I.gen leave.TUA/inf.1sg'
 
@@ -3706,6 +3929,9 @@
 			& Grammatical
 		
 				& Phrasal subject and agreement
+		
+					minun tekemä#ni kello
+					'I.gen make.ma/a#1sg watch'
 		
 					se' minun tekemä#ni kello hävisi
 					'it/that I.gen make.ma/a.1sg watch disappear.pst.3sg

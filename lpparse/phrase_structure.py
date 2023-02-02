@@ -290,9 +290,11 @@ class PhraseStructure:
                                                        (probe.proper_selected_complement().head().licensed_phrasal_specifier() and
                                                         probe.proper_selected_complement().head().licensed_phrasal_specifier().head().referential()))
 
+    # Feature [!SELF]
     def selection__positive_self_selection(self, selected_feature):
         return self.check({selected_feature})
 
+    # Feature [-SELF]
     def selection__negative_self_selection(self, selected_feature):
         return not self.check({selected_feature})
 
@@ -447,6 +449,12 @@ class PhraseStructure:
             log(f'\n\t\t\'{self}\' checked {sorted({f for f in goal.head().features if phi_feature_for_Agree(f)})} from {goal}. ')
             for phi in sorted({f for f in goal.head().features if phi_feature_for_Agree(f)}):
                 self.value(phi)
+        if self.check_some({'Φ/PF', 'Φ/LF'}):
+            self.features.add('Φ/12')
+            if not self.check({'Φ/PF', 'Φ/LF'}):
+                self.features.add('Φ/1')
+            else:
+                self.features.discard('Φ/1')
 
     def value(self, phi):
         unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
@@ -459,13 +467,6 @@ class PhraseStructure:
             self.features.add(phi)
             self.features.add('Φ/LF')
             self.features.add('PHI_CHECKED')
-            if self.check_some({'Φ/PF', 'Φ/LF'}):
-                self.features.add('Φ/12')
-                if not self.check({'Φ/PF', 'Φ/LF'}):
-                    self.features.add('Φ/1')
-                else:
-                    self.features.discard('Φ/1')
-
             log(f'\n\t\t\'{self}\' valued ' + phi)
 
             # Complementary distribution of phi and overt subject in this class, still mysterious
@@ -473,6 +474,7 @@ class PhraseStructure:
                 self.features.add('-pro')
             if not self.referential():
                 self.features.add('BLOCK_NS')  # Block semantic object projection
+
 
     def block_valuation(self, phi):
         # We do not check violation, only that if types match there must be a licensing feature with identical value.
@@ -500,21 +502,25 @@ class PhraseStructure:
     def last_resort_extrapose(self, transfer):
         transfer.brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
 
-    def resolve_neutralized_feature(self):
-        if self.selected_by_SEM_internal_predicate():
-            self.features.discard('?ARG')
-            log(f'{self} resolved into -ARG due to {self.selector()}...')
-            self.features.add('-EF:φ')
-            self.features.discard('EF:φ')
-            self.features.add('-ARG')
-        elif self.selected_by_SEM_external_predicate():
-            self.features.discard('?ARG')
-            log(f'{self} resolved into +ARG...')
-            self.features.add('ARG')
-            self.features.add('!EF:φ')
-            self.features.add('EF:φ')
-            self.features.add('PHI:NUM:_')
-            self.features.add('PHI:PER:_')
+    def feature_inheritance(self):
+        if self.highest_finite_head():
+            log(f'\n\t\t{self} inherited Φ/PF.')
+            self.features.add('!SELF:Φ/PF')
+        if self.check({'?ARG'}):
+            if self.selected_by_SEM_internal_predicate():
+                self.features.discard('?ARG')
+                log(f'\n\t\t{self} resolved into -ARG due to {self.selector()}.')
+                self.features.add('-EF:φ')
+                self.features.discard('EF:φ')
+                self.features.add('-ARG')
+            elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
+                self.features.discard('?ARG')
+                log(f'\n\t\t{self} resolved into +ARG.')
+                self.features.add('ARG')
+                self.features.add('!EF:φ')
+                self.features.add('EF:φ')
+                self.features.add('PHI:NUM:_')
+                self.features.add('PHI:PER:_')
 
     def valid_reconstructed_adjunct(self, starting_point_node):
         return self.head().tail_test() and (self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node))
@@ -1101,3 +1107,7 @@ class PhraseStructure:
 
     def extended_subject(self):
         return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or self.check({'pro'})
+
+    def highest_finite_head(self):
+        return self.check({'Fin'}) and (not self.selector() or (self.selector() and not self.selector().check_some({'T', 'COPULA', 'Fin'})))
+

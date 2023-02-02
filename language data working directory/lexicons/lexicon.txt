@@ -46,9 +46,9 @@ haluttu		:: halua-#impass#T/prt LANG:FI
 halua- 		:: PF:halua- LF:want V ASP:BOUNDED SEMCLASS_desired_event SEM:internal CLASS/TR -SPEC:D -SPEC:φ SPEC:A/inf COMP:φ COMP:A/inf -COMP:pro LANG:FI
 häiritsee 	:: häiritse-#v#T/fin LANG:FI
 häiritse- 	:: PF:häiritse- LF:disturb CLASS/TR V SPEC:φ !COMP:φ -COMP:Fin LANG:FI
-hävisivät	:: häviä-#T/fin#[-vat] LANG:FI
+hävisivät	:: häviä-#T/fin#[-vAt] LANG:FI
 häviävän	:: häviä-#VA/inf LANG:FI
-hävisi		:: häviä-#T/fin LANG:FI
+hävisi		:: häviä-#T/fin#[V] LANG:FI
 häviä-		:: PF:häviä- LF:disappear V CLASS/INTR LANG:FI
 Helsingissä	:: Helsinki-#φ#sg#3p#def#r_expression#ssa LANG:FI
 Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression#[nom] LANG:FI
@@ -162,9 +162,10 @@ lähtiessä	:: lähte-#ESSA/inf LANG:FI
 lähtiessään	:: lähte-#ESSA/inf#An LANG:FI
 lähdettyään	:: lähte-#TUA/inf#An LANG:FI
 lähdettyä	:: lähte-#TUA/inf LANG:FI
+lähde		:: lähte-#T LANG:FI
 lähde		:: lähte-#T/fin LANG:FI
 lähti		:: lähte-#T/fin#[V] LANG:FI
-lähdettiin	:: lähte-#impass#T/fin LANG:FI
+lähdettiin	:: lähte-#impass#T/fin#default LANG:FI
 lähte- 		:: PF:lähte- LF:leave CLASS/INTR V SPEC:φ -COMP:φ COMP:P LANG:FI
 lle     	:: PF:P(-lle) LF:for P -E +SEM:directional -EF:* -EF:φ TAIL:V LANG:FI
 lla			:: PF:P(-lla) LF:by	P -EF:* -EF:φ TAIL:T TAIL:*V LANG:FI
@@ -231,7 +232,6 @@ nukkua		:: nukku-#A/inf LANG:FI
 nukkui		:: nukku-#T/fin#[V] LANG:FI
 nukkuu		:: nukku-#T/fin#[V] LANG:FI
 nukku-		:: PF:nukku- LF:sleep V CLASS/INTR -COMP:T -SPEC:P -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
-
 ollut		:: T PF:T LF:T LANG:FI
 olen		:: BE-#T/fin#n LANG:FI
 olet		:: BE-#T/fin#t LANG:FI
@@ -240,7 +240,7 @@ on			:: BE-#T/fin#[V] LANG:FI
 olemme		:: BE-#T/fin#mme LANG:FI
 olette		:: BE-#T/fin#tte LANG:FI
 ovat		:: BE-#T/fin#vAt LANG:FI
-ole			:: BE-#T/fin LANG:FI
+ole			:: BE-#T LANG:FI
 omaisuutensa	:: omaisuus-#D#def#sg#3p#[acc(n)] LANG:FI
 omaisuuttaan	:: omaisuus-#D#def#sg#3p#[par] LANG:FI
 omaisuus-		::	PF:omaisuuden LF:possessions N LANG:FI
@@ -344,8 +344,9 @@ tekemässä	:: teke-#v#MA.ine/inf
 tekemä		:: teke2-#v#MA/A
 tekevä		:: teke-#v#VA/A
 tehdäkse	:: teke-#v#KSE/inf
-tehtiin		:: teke-#impass#T/fin LANG:FI
+tehtiin		:: teke-#impass#T/fin#default LANG:FI
 tee			:: teke-#v#T/fin LANG:FI
+tee			:: teke-#v#T LANG:FI
 teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
 teke2-		:: V -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
@@ -356,7 +357,7 @@ tämä		:: tämä-#D#sg#3p#def
 tätä		:: D#sg#3p#def#[par]
 tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tässä		:: tämä#P
-täytyy		:: täydy-#T/fin LANG:FI
+täytyy		:: täydy-#T/fin#default LANG:FI
 täydy		:: täydy-#T/prt LANG:FI
 täydy-		:: PF:täyty- LF:must Fin V MODAL EF:φ !COMP:A/inf -ASP LANG:FI
 tönäisi		:: tönäise-#v#T/fin#[V] LANG:FI
@@ -396,13 +397,17 @@ hän-		:: PF:hän LF:s/he N PHI_N LANG:FI
 me_FI		:: me-#D/pro#[nom]#pl#1p#def#hum LANG:FI
 me			:: me-#D/pro#[nom]#pl#1p#def#hum LANG:FI
 meidän		:: me-#D/pro#[gen]#pl#1p#def#hum LANG:FI
+meitä		:: me-#D/pro#[par]#pl#1p#def#hum LANG:FI
 me- 		:: PF:me LF:we N PHI_N LANG:FI
 te			:: te-#D/pro#[nom]#pl#2p#def#hum LANG:FI
 teidän		:: te-#D/pro#[gen]#pl#2p#def#hum LANG:FI
+teitä		:: te-#D/pro#[par]#pl#2p#def#hum LANG:FI
 te- 		:: PF:te LF:you N PHI_N LANG:FI
 he			:: he-#D/pro#[nom]#pl#3p#def#hum LANG:FI
 heidän		:: he-#D/pro#[gen]#pl#3p#def#hum LANG:FI
+heitä		:: he-#D/pro#[par]#pl#3p#def#hum LANG:FI
 niiden		:: he-#D/pro#[gen]#pl#3p#def#nonhum LANG:FI
+niitä		:: he-#D/pro#[par]#pl#3p#def#nonhum LANG:FI
 he- 		:: PF:he LF:they N PHI_N LANG:FI
 se			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se'			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
@@ -425,22 +430,22 @@ ne-			:: PF:ne LF:those N LANG:FI
 niiden		:: ne#[gen]
 
 # Finite agreement
-n		::	inflectional Φ/PF EF:φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-t		::	inflectional Φ/PF EF:φ PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[V]		::	inflectional Φ/PF EF:φ PHI:NUM:SG PHI:PER:3 LANG:FI
-mme		::	inflectional Φ/PF EF:φ PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-tte		::	inflectional Φ/PF EF:φ PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-vAt		::	inflectional Φ/PF EF:φ PHI:NUM:PL PHI:PER:3 LANG:FI
+n		::	inflectional Φ/PF EF:φ PHI:NUM:SG PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+t		::	inflectional Φ/PF EF:φ PHI:NUM:SG PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+[V]		::	inflectional Φ/PF EF:φ PHI:NUM:SG PHI:PER:3 PER LANG:FI
+mme		::	inflectional Φ/PF EF:φ PHI:NUM:PL PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+tte		::	inflectional Φ/PF EF:φ PHI:NUM:PL PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+vAt		::	inflectional Φ/PF EF:φ PHI:NUM:PL PHI:PER:3 PER LANG:FI
 
 # Infinitival agreement (Px)
-ni		::	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-si		::	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:FI
-nsA		:: 	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:PER:3 PHI:HUM:HUM LANG:FI
-An		:: 	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:PER:3 PHI:HUM:HUM LANG:FI
-3sg		:: 	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:PER:3 PHI:HUM:HUM PHI:NUM:SG LANG:FI
-en		:: 	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:PER:3 PHI:HUM:HUM PHI:NUM:SG LANG:FI
-mme		::	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:NUM:PL PHI:PER:1 PHI:HUM:HUM PHI:DET:DEF LANG:FI
-nne		::	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PHI:HUM:HUM PHI:DET:DEF  LANG:FI
+ni		::	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:NUM:SG PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+si		::	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:NUM:SG PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+nsA		:: 	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
+An		:: 	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
+3sg		:: 	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM PHI:NUM:SG LANG:FI
+en		:: 	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM PHI:NUM:SG LANG:FI
+mme		::	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:NUM:PL PHI:PER:1 PER PHI:HUM:HUM PHI:DET:DEF LANG:FI
+nne		::	inflectional Φ/PF EF:φ PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI:HUM:HUM PHI:DET:DEF  LANG:FI
 
 # Case suffixes
 # A. Structural
@@ -619,8 +624,8 @@ it			:: it-#D/pro#sg#3p#def#nonhum LANG:EN
 it-			:: PF:it LF:it/that N LANG:EN
 
 # Agreement
-[-s]		::	inflectional Φ/PF EF:φ PHI:NUM:SG PHI:PER:3 PHI:GEN:M PHI:GEN:F LANG:EN
-[-0]		::  inflectional Φ/PF EF:φ PHI:NUM:PL PHI:NUM:SG PHI:PER:1 PHI:PER:2 PHI:PER:3 PHI:DET:DEF PHI:GEN:N LANG:EN
+[-s]		::	inflectional Φ/PF EF:φ PHI:NUM:SG PHI:PER:3 PER PHI:GEN:M PHI:GEN:F LANG:EN
+[-0]		::  inflectional Φ/PF EF:φ PHI:NUM:PL PHI:NUM:SG PHI:PER:1 PER PHI:PER:2 PHI:PER:3 PHI:DET:DEF PHI:GEN:N LANG:EN
 
 # ITALIAN LEXICON ------------------------------------------------------------------------------------------------------------------------
 

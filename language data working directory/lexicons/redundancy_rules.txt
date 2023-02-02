@@ -6,9 +6,9 @@ FORCE	:: -ARG -PHI -EF:* Fin !COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin
 C/fin 	:: -ARG Fin C -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:Fin COMP:Neg/fin !COMP:* -SPEC:N -SPEC:T/fin -SPEC:C/fin -COMP:FORCE 
 C		:: -SPEC:MA/A
 T/fin 	:: ARG EF:φ T Fin !SELF:Φ/12 !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
-T/prt 	:: ARG Fin T EF:φ !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin SPEC:φ -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V
-T 		:: ARG COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V SPEC:φ SPEC:D -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
-Neg/fin :: ARG EF:φ Fin NEG COMP:T/prt COMP:T -SPEC:T -SPEC:T/fin !SELF:Φ/PF %SPEC:Inf SEM:internal
+T/prt 	:: ARG Fin T EF:φ !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V
+T 		:: ARG COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
+Neg/fin :: ARG EF:φ Fin NEG COMP:T/prt COMP:T -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
 v   	:: ARG -PHI ASP !COMP:* COMP:V -SPEC:v -SPEC:T/fin !PROBE:V SPEC:φ -SPEC:N
 D   	:: φ -ARG !COMP:* -COMP:D -COMP:v -COMP:V -COMP:P -COMP:T/fin -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:n COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 D/rel	:: φ D -ARG OP OP:REL COMP:* -COMP:C/fin -COMP:φ -SPEC:MA.ade/inf -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
@@ -27,6 +27,7 @@ QN		:: φ COMP:φ COMP:N COMP:Num
 MA/A	:: A
 VA/A	:: A
 Neg		:: -SPEC:N SPEC:D
+ARG		:: -COMP:PER
 
 #Universal operator rules
 OP				:: -COMP:MA/A
@@ -59,12 +60,13 @@ R:REF:PROPER_NAME :: -COMP:Inf
 # ==> FINNISH
 # CP-complementary (assume opposite for V2 languages)
 C/fin PHON	:: -EF:*
+C/fin		:: !COMP:Φ/PF
 
 # Finnish edge behavior
 P LANG:FI		::	EF:* Adv
 Adv LANG:FI		::	EF:*
 A LANG:FI		::	EF:*
-T/fin LANG:FI	:: !EF:* !SELF:Φ/12
+T/fin LANG:FI	:: !EF:*
 φ LANG:FI		::	EF:φ
 
 # Other rules

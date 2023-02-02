@@ -36,7 +36,7 @@ MA.ela/inf	:: MA.ela/inf	Inf Adv ARG  -SELF:Φ/PF 			-EF:φ 	TAIL:CLASS/TR,SEMCL
 MA.ill/inf	:: MA.ill/inf	Inf		ARG  -SELF:Φ/PF 			-EF:φ 	TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:-mAAn LF:to SEM/desired_event !COMP:* LANG:FI adjoinable
 
 # Prticiple adjectives
-MA/A		:: MA/A 		Inf		ARG  !SELF:Φ/1		!EF:φ			PF:-mA LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N COMP:V !COMP:*
+MA/A		:: MA/A 		Inf		ARG  !SELF:Φ/12		!EF:φ			PF:-mA LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N COMP:V !COMP:*
 VA/A		:: VA/A			Inf		ARG  -SELF:Φ/PF		-EF:φ							PF:-vA LF:P_rel LANG:FI -PROBE:N !COMP:*
 
 # Experimental
@@ -50,7 +50,7 @@ ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ARG EF:φ -SPEC:T/fin -adjoinable
 
 # Copula
 # BE-		:: V COPULA PF:BE LF:be -ARG COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
-BE-		:: V COPULA EF:φ PF:AUX LF:T -ARG !COMP:* COMP:T/prt -COMP:T/fin
+BE-			:: V COPULA EF:φ PF:AUX LF:T -ARG !COMP:* COMP:T/prt -COMP:T/fin
 
 # D-elements
 D		:: φ D PF:D LF:det R:NEW:$$$/SUR
@@ -77,6 +77,7 @@ hum 		:: inflectional PHI:HUM:HUM
 nonhum 		:: inflectional PHI:HUM:NONHUM
 m			:: inflectional PHI:GEN:M
 f			:: inflectional PHI:GEN:F
+default		:: inflectional Φ/PF
 proper_name	:: inflectional PHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
 r_expression	:: inflectional PHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
 pronoun1	:: inflectional PHI:PRON:PRON R:NEW:REF
