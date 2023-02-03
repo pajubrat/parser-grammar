@@ -7,19 +7,18 @@ class LexicalStream:
         self.lexicon = self.brain_model.lexicon
         self.id = 0
 
-    def stream_into_syntax(self, lexical_item, lst_branched, inflection, ps, index, inflection_buffer):
-        lexical_item, inflection_buffer = self.process_inflection(inflection, lexical_item, inflection_buffer)
+    def stream_into_syntax(self, lexical_item, lst_branched, ps, index, inflection_buffer):
+        if '#' in lexical_item.morphology:
+            return
+        lexical_item, inflection_buffer, inflection = self.process_inflection(lexical_item, inflection_buffer, lst_branched[index])
         if inflection:
-            log(f'[{lst_branched[index][:-1]}] ')
+            log(f'\n\tNext affix [{lst_branched[index][:-1]}] ')
             if ps:
                 self.brain_model.parse_new_item(ps.copy(), lst_branched, index + 1, inflection_buffer)
             else:
                 self.brain_model.parse_new_item(None, lst_branched, index + 1, inflection_buffer)
         else:
             lexical_item.active_in_syntactic_working_memory = True
-            # Add identity feature
-            # self.add_ID(lexical_item)
-            # Allocate attentional resources
             self.brain_model.narrow_semantics.pragmatic_pathway.allocate_attention(lexical_item)
 
             if lst_branched[index].endswith('$'):
@@ -37,27 +36,28 @@ class LexicalStream:
                 if '?' in lexical_item.features:
                     print(f'\nUnrecognized word or feature in /{lst_branched[index]}/ terminated the derivation. ')
                     self.brain_model.exit = True
-            return lexical_item
 
-    def process_inflection(self, inflection, lexical_item, inflection_buffer):
+    def process_inflection(self, lexical_item, inflection_buffer, phonological_word):
+        inflection = self.get_inflection_features(lexical_item, phonological_word)
         if inflection:
-            if 'inflectional' in inflection:
-                inflection.remove('inflectional')
-                if inflection_buffer:
-                    for feature in inflection:
-                        if feature.startswith('PHI') and feature in inflection_buffer:
-                            inflection_buffer.add('?')
-                        else:
-                            inflection_buffer.add(feature)
-                else:
-                    inflection_buffer = set()
-                    inflection_buffer = inflection_buffer.union(inflection)
+            if inflection_buffer:
+                for feature in inflection:
+                    if feature.startswith('PHI') and feature in inflection_buffer:
+                        inflection_buffer.add('?')
+                    else:
+                        inflection_buffer.add(feature)
+            else:
+                inflection_buffer = set()
+                inflection_buffer = inflection_buffer.union(inflection)
         else:
             if inflection_buffer:
-                log(f'=> into next morph ({lexical_item}) \n')
                 lexical_item.features = self.lexicon.apply_redundancy_rules(lexical_item.features | inflection_buffer)
                 inflection_buffer = None
-        return lexical_item, inflection_buffer
+        return lexical_item, inflection_buffer, inflection
+
+    def get_inflection_features(self, lexical_item, phonological_word):
+        if 'inflectional' in lexical_item.features:
+            return lexical_item.features - {'inflectional'}
 
     def add_ID(self, lexical_item):
         lexical_item.features.add('#'+str(self.consume_id()))

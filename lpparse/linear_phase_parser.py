@@ -96,20 +96,19 @@ class LinearPhaseParser:
             return
         retrieved_lexical_items = self.lexicon.lexical_retrieval(lst[index])
         for lexical_constituent in retrieved_lexical_items:
-            lexical_item, lst_branched, inflection = self.morphology.morphological_parse(lexical_constituent, lst.copy(), index)
-            lexical_item = self.lexical_stream.stream_into_syntax(lexical_item, lst_branched, inflection, ps, index, inflection_buffer)
-            merge_sites = self.plausibility_metrics.filter_and_rank(ps, lexical_item)
+            self.morphology.morphological_parse(ps, lexical_constituent, lst.copy(), index, inflection_buffer)
+            self.lexical_stream.stream_into_syntax(lexical_constituent, lst, ps, index, inflection_buffer)
+            merge_sites = self.plausibility_metrics.filter_and_rank(ps, lexical_constituent)
             for site, transfer, address_label in merge_sites:
                 log(f'\n\t\t{address_label}')
-                new_constituent = self.attach(ps.target_left_branch(site), site, lexical_item, transfer)
+                new_constituent = self.attach(ps.target_left_branch(site), site, lexical_constituent, transfer)
                 self.working_memory.remove_items(merge_sites)
-                self.parse_new_item(new_constituent.top(), lst_branched, index + 1)
+                self.parse_new_item(new_constituent.top(), lst, index + 1)
                 if self.exit:
                     break
             print('.', end='', flush=True)
-            self.narrow_semantics.pragmatic_pathway.forget_object(lexical_item)
-        if not self.exit:
-            log(f'\n\t\tBacktracking to {lst[index]}')
+            self.narrow_semantics.pragmatic_pathway.forget_object(lexical_constituent)
+        log(f'\n\t\tBacktracking...')
 
     def attach(self, left_branch, site, terminal_lexical_item, transfer):
         self.working_memory.maintain(site)

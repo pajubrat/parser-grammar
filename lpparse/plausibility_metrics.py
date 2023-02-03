@@ -63,6 +63,12 @@ class PlausibilityMetrics:
         self.word_tail_set = None
 
     def filter_and_rank(self, ps, w):
+        if 'inflectional' in w.features:
+            return []
+
+        if '#' in w.morphology or '=' in w.morphology:
+            return []
+
         self.brain_model.working_memory.not_in_active_working_memory = []
 
         # Input integrity test

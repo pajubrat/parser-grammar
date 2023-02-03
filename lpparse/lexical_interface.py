@@ -114,8 +114,9 @@ class LexicalInterface:
 
         if len(morpheme_lst) > 1:
             morpheme_lst = self.rank_lexical_items(morpheme_lst)
+            log(f'\n\tRetrieved:')
             for idx, word in enumerate(morpheme_lst, start=1):
-                log(f'\n\t\t\t({idx}) {phonological_entry} {word.features}')
+                log(f'\n\t\t({idx}) {phonological_entry} {word.features}')
             log('\n\t\t')
         return morpheme_lst
 

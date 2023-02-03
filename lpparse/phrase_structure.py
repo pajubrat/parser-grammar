@@ -624,6 +624,7 @@ class PhraseStructure:
             if feature1.startswith('-'):
                 for feature2 in self.features:
                     if feature1[1:] == remove_exclamation(feature2):
+                        log(f'\n\t\tFeature conflict +/{feature1}')
                         return True
             if feature1.startswith('PHI:') and not feature1.endswith('_') and 'GEN' not in feature1:
                 for feature2 in self.features:

@@ -1,4 +1,4 @@
-from support import log, is_logging_enabled
+from support import log, set_logging, is_logging_enabled
 from scrambling_reconstruction import ScramblingReconstruction
 from lexical_interface import LexicalInterface
 
@@ -47,7 +47,7 @@ class Transfer:
         return ps
 
     def execute_sequence(self, ps):
-        log(f'\n\tTransfer to LF:----------------------------------------------------------------------\n ')
+        log(f'\n\tTransfer {ps} to LF:----------------------------------------------------------------------\n ')
         self.reconstruct(ps, self.instructions['Head'])
         self.reconstruct(ps, self.instructions['Feature'])
         self.reconstruct(ps, self.instructions['Extraposition'])

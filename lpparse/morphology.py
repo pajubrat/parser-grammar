@@ -13,33 +13,16 @@ class Morphology:
         self.lexicon.load_lexicon(self.brain_model)
 
     # Definition for morphological parsing for lexical item (set of features)
-    def morphological_parse(self, lexical_item, input_word_list, index):
+    def morphological_parse(self, ps, lexical_item, input_word_list, index, inflection_buffer):
         current_lexical_item = lexical_item
-        while self.is_polymorphemic(current_lexical_item):
-
-            log(f'\n\t/{input_word_list[index]}/ ~ ')
-
-            # Solves an ambiguity in C_features, i.e. whether they are criterial or head features
+        if self.is_polymorphemic(current_lexical_item):
+            log(f'\n\tMorphological decomposition of /{input_word_list[index]}/ ~ ')
             current_lexical_item = self.Aux_inversion(current_lexical_item)
-
-            # Morphological decomposition based on the lexical entry
-            # Returns a list of morphemes
             morpheme_list = self.decompose(current_lexical_item.morphology)
-
-            # Transfer knowledge of incorporation
             morpheme_list = self.handle_incorporation(current_lexical_item, morpheme_list)
-
-            # Apply the morphological mirror principle (should follow automatically from something)
+            log(f'{morpheme_list} ')
             self.apply_mirror_principle(input_word_list, morpheme_list, index)
-
-            # Retrieve the first item in the list from the lexicon
-            # Exit the process only if this is primitive (i.e. while-loop)
-            current_lexical_item = self.lexicon.lexical_retrieval(input_word_list[index])[0]
-
-        # Extract infection features if the current element is inflectional feature and not a lexical item
-        inflection_features = self.get_inflection_features(current_lexical_item, input_word_list[index])
-
-        return current_lexical_item, input_word_list, inflection_features
+            self.brain_model.parse_new_item(ps, input_word_list, index, inflection_buffer)
 
     def handle_incorporation(self, current_lexical_item, morpheme_list_):
         if current_lexical_item.incorporated:
@@ -53,18 +36,6 @@ class Morphology:
 
     def is_polymorphemic(self, lexical_item):
         return '#' in lexical_item.morphology or '=' in lexical_item.morphology
-
-    def get_inflection_features(self, lexical_item, morpheme_string):
-        if 'inflectional' in lexical_item.features:
-            inflection_features = lexical_item.features
-            if inflection_features and not morpheme_string.endswith('$'):
-                log(f'Is stranded... ')
-                lexical_item.features.add('PF:' + morpheme_string)
-                lexical_item.features.add('CAT:?')
-                inflection_features = set()
-            return inflection_features
-        else:
-            return set()
 
     def Aux_inversion(self, lexical_item):
         def verbal(head):
