@@ -446,9 +446,11 @@ class PhraseStructure:
 
     def value_features(self, goal):
         if goal:
-            log(f'\n\t\t\'{self}\' checked {sorted({f for f in goal.head().features if phi_feature_for_Agree(f)})} from {goal}. ')
-            for phi in sorted({f for f in goal.head().features if phi_feature_for_Agree(f)}):
+            log(f'\n\t\t\'{self}\' checked {sorted({f[1:] for f in goal.head().features if phi_feature_for_Agree(f)})} from {goal}. ')
+            for phi in sorted({f[1:] for f in goal.head().features if phi_feature_for_Agree(f)}):
                 self.value(phi)
+
+        # Effects of revised Agree (experimental)
         if self.check_some({'Φ/PF', 'Φ/LF'}):
             self.features.add('Φ/12')
             if not self.check({'Φ/PF', 'Φ/LF'}):
@@ -458,7 +460,6 @@ class PhraseStructure:
 
     def value(self, phi):
         unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
-
         if self.valued_phi_features() and self.block_valuation(phi):
             self.features.add(phi)
             self.features.add(f'-{phi}')
@@ -468,24 +469,19 @@ class PhraseStructure:
             self.features.add('Φ/LF')
             self.features.add('PHI_CHECKED')
             log(f'\n\t\t\'{self}\' valued ' + phi)
-
-            # Complementary distribution of phi and overt subject in this class, still mysterious
-            if not self.preposition() and self.adverbial() or self.check({'VA/inf'}):
-                self.features.add('-pro')
             if not self.referential():
                 self.features.add('BLOCK_NS')  # Block semantic object projection
-
 
     def block_valuation(self, phi):
         # We do not check violation, only that if types match there must be a licensing feature with identical value.
         valued_input_feature_type = phi.split(':')[1]
         # Find type matches
-        valued_phi_in_h = {phi for phi in self.get_phi_set() if valued(phi) and phi.split(':')[1] == valued_input_feature_type}
-        if valued_phi_in_h:
+        valued_phi_at_probe = {phi_ for phi_ in self.get_phi_set() if phi_[-1] != '_' and phi_.split(':')[1] == valued_input_feature_type}
+        if valued_phi_at_probe:
             # Find if there is a licensing element
-            if {phi_ for phi_ in valued_phi_in_h if phi == phi_}:
+            if {phi_ for phi_ in valued_phi_at_probe if phi == phi_}:
                 return False
-            log(f'*Feature clash {phi}.')
+            log(f'\n\t\t{phi} clash at {self} due to {valued_phi_at_probe}')
             return True
 
     def cutoff_point_for_last_resort_extraposition(self):

@@ -92,32 +92,32 @@ class LexicalInterface:
 
         # If a matching element is found from the dictionary, it will return a list of constituents
         # These constituents contain raw morphological strings
-        word_list = []
+        morpheme_lst = []
         if phonological_entry in self.surface_vocabulary:
-            word_list = [const.copy() for const in self.surface_vocabulary[phonological_entry] if self.language_match(const)]
+            morpheme_lst = [const.copy() for const in self.surface_vocabulary[phonological_entry] if self.language_match(const)]
 
             # Add internal/incorporation information to each
             if internal:
-                for const in word_list:
+                for const in morpheme_lst:
                     if const.morphology:
                         const.internal = True
             if incorporated:
-                for const in word_list:
+                for const in morpheme_lst:
                     const.incorporated = True
 
-        if not word_list:
+        if not morpheme_lst:
             const = self.PhraseStructure()
             const.features = {'PF:?', '?'}
             const.morphology = phonological_entry
             const.internal = internal
-            word_list = [const]
+            morpheme_lst = [const]
 
-        if len(word_list) > 1:
-            word_list = self.rank_lexical_items(word_list)
-            for idx, word in enumerate(word_list, start=1):
-                log(f'\n\t\t\t({idx}) {word.morphology}')
+        if len(morpheme_lst) > 1:
+            morpheme_lst = self.rank_lexical_items(morpheme_lst)
+            for idx, word in enumerate(morpheme_lst, start=1):
+                log(f'\n\t\t\t({idx}) {phonological_entry} {word.features}')
             log('\n\t\t')
-        return word_list
+        return morpheme_lst
 
     def language_match(self, const):
         return 'LANG:XX' in const.features or self.language in const.features
@@ -125,7 +125,7 @@ class LexicalInterface:
     def rank_lexical_items(self, word_list):
         def frequency(word):
             for f in word.features:
-                if f[:5]=='FREQ:':
+                if f[:5] == 'FREQ:':
                     return int(f[5:])
             return 0
         ranked_list = [(word, frequency(word)) for word in word_list]

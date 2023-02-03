@@ -65,25 +65,35 @@ pro-	:: PF:(pro) LF:pro N PHI
 cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL LANG:IT
 inc		:: inflectional INCORPORATED
 
-# Phi- and R-features
-sg 			:: inflectional PHI:NUM:SG
-pl 			:: inflectional PHI:NUM:PL
-1p 			:: inflectional PHI:PER:1
-2p 			:: inflectional PHI:PER:2
-3p 			:: inflectional PHI:PER:3
-def 		:: inflectional PHI:DET:DEF
-indef 		:: inflectional PHI:DET:INDEF
-hum 		:: inflectional PHI:HUM:HUM
-nonhum 		:: inflectional PHI:HUM:NONHUM
-m			:: inflectional PHI:GEN:M
-f			:: inflectional PHI:GEN:F
-default		:: inflectional Φ/PF
-proper_name	:: inflectional PHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
-r_expression	:: inflectional PHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
-pronoun1	:: inflectional PHI:PRON:PRON R:NEW:REF
-reflexive	:: inflectional PHI:PRON:PRON R:OLD:REF
-Rexpression	:: inflectional PHI:PRON:NONPRON R:NEW:$$$/SUR
-demanaphora	:: inflectional R:OLD:$$$/SUR
+# Interpretable phi-features
+sg 				:: inflectional iPHI:NUM:SG
+pl 				:: inflectional iPHI:NUM:PL
+1p 				:: inflectional iPHI:PER:1
+2p 				:: inflectional iPHI:PER:2
+3p 				:: inflectional iPHI:PER:3
+def 			:: inflectional iPHI:DET:DEF
+indef 			:: inflectional iPHI:DET:INDEF
+hum 			:: inflectional iPHI:HUM:HUM
+nonhum 			:: inflectional iPHI:HUM:NONHUM
+m				:: inflectional iPHI:GEN:M
+f				:: inflectional iPHI:GEN:F
+default			:: inflectional Φ/PF PHI
+proper_name		:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
+r_expression	:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
+pronoun1		:: inflectional iPHI:PRON:PRON R:NEW:REF
+reflexive		:: inflectional iPHI:PRON:PRON R:OLD:REF
+Rexpression		:: inflectional iPHI:PRON:NONPRON R:NEW:$$$/SUR
+sg_ 			:: inflectional PHI:NUM:SG
+pl_ 			:: inflectional PHI:NUM:PL
+1p_ 			:: inflectional PHI:PER:1
+2p_ 			:: inflectional PHI:PER:2
+3p_ 			:: inflectional PHI:PER:3
+def_ 			:: inflectional PHI:DET:DEF
+indef_ 			:: inflectional PHI:DET:INDEF
+hum_ 			:: inflectional PHI:HUM:HUM
+nonhum_ 		:: inflectional PHI:HUM:NONHUM
+m_				:: inflectional PHI:GEN:M
+f_				:: inflectional PHI:GEN:F
 
 # Generic deficient structural cases
 nom   	:: inflectional NOM TAIL:Fin,!COMP:*,EF:φ -float -adjoinable
