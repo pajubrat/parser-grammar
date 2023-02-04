@@ -378,6 +378,7 @@ class PhraseStructure:
             inst, target = target.prepare_chain(self, inst, i > 0, target.scan_operators(), transfer)
             self.form_chain(target, inst)
             transfer.brain_model.consume_resources(inst['type'], self)
+
             # Successive-cyclic chain formation
             if target.primitive() and inst['test integrity'](target):
                 target.create_chain(transfer, inst)
