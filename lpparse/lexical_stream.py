@@ -34,7 +34,7 @@ class LexicalStream:
                         f'\n\t{ps}\n\t{ps} + {lexical_item.get_phonological_string()}')
             if self.brain_model.local_file_system.settings['stop_at_unknown_lexical_item']:
                 if '?' in lexical_item.features:
-                    print(f'\nUnrecognized word or feature in /{lst_branched[index]}/ terminated the derivation. ')
+                    print(f'\nUnrecognized feature in /{lst_branched[index]}/. ')
                     self.brain_model.exit = True
 
     def process_inflection(self, lexical_item, inflection_buffer, phonological_word):
@@ -42,7 +42,7 @@ class LexicalStream:
         if inflection:
             if inflection_buffer:
                 for feature in inflection:
-                    if feature.startswith('PHI') and feature in inflection_buffer:
+                    if (feature.startswith('PHI') and feature in inflection_buffer) or (feature == 'default' and 'Φ/PF' in inflection_buffer):
                         inflection_buffer.add('?')
                     else:
                         inflection_buffer.add(feature)

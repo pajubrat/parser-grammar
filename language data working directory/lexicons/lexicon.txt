@@ -165,7 +165,7 @@ lähdettyä	:: lähte-#TUA/inf LANG:FI
 lähde		:: lähte-#T LANG:FI
 lähde		:: lähte-#T/fin LANG:FI
 lähti		:: lähte-#T/fin#[V] LANG:FI
-lähdettiin	:: lähte-#impass#T/fin#default LANG:FI
+lähdettiin	:: lähte-#impass#T/fin#tVVn LANG:FI
 lähte- 		:: PF:lähte- LF:leave CLASS/INTR V SPEC:φ -COMP:φ COMP:P LANG:FI
 lle     	:: PF:P(-lle) LF:for P -E +SEM:directional -EF:* -EF:φ TAIL:V LANG:FI
 lla			:: PF:P(-lla) LF:by	P -EF:* -EF:φ TAIL:T TAIL:*V LANG:FI
@@ -344,7 +344,7 @@ tekemässä	:: teke-#v#MA.ine/inf
 tekemä		:: teke2-#v#MA/A
 tekevä		:: teke-#v#VA/A
 tehdäkse	:: teke-#v#KSE/inf
-tehtiin		:: teke-#impass#T/fin#default LANG:FI
+tehtiin		:: teke-#impass#T/fin#tVVn LANG:FI
 tee			:: teke-#v#T/fin LANG:FI
 tee			:: teke-#v#T LANG:FI
 teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
@@ -436,6 +436,7 @@ t		::	inflectional Φ/PF EF:φ -Inf PHI:NUM:SG PHI:PER:2 PER PHI:DET:DEF PHI:HUM
 mme		::	inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 tte		::	inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 vAt		::	inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:3 PER LANG:FI
+tVVn	::  inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:1 PER LANG:FI
 
 # Infinitival agreement (Px)
 ni		::	inflectional Φ/PF EF:φ -Fin PHI:PRON:PRON PHI:NUM:SG PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
