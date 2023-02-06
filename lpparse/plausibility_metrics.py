@@ -204,7 +204,6 @@ class PlausibilityMetrics:
         self.not_word_specs =  convert_features_for_parsing(word.specifiers_not_licensed())
         self.rare_word_specs = convert_features_for_parsing(word.rare_specs())
         self.word_tail_set = word.get_tail_sets()
-        log('Ranking...')
 
         # Create baseline default weighting order (default order is decided by input parameters in study config file)
         self.weighted_site_list = self.create_baseline_weighting([(site, 0) for site in site_list])
@@ -228,7 +227,6 @@ class PlausibilityMetrics:
     @knockout_baseline_weighting
     def create_baseline_weighting(self, weighted_site_list, method=''):
         if method == 'Z':
-            log(f'Using Z-baseline ranking...')
             new_weighted_site_list = [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
             new_weighted_site_list[0] = (new_weighted_site_list[0][0], len(weighted_site_list))
             new_weighted_site_list[-1] = (new_weighted_site_list[-1][0], len(weighted_site_list)+1)
@@ -237,27 +235,20 @@ class PlausibilityMetrics:
         if method == 'Random':
             site_w = list(range(len(weighted_site_list)))
             random.shuffle(site_w)
-            log(f'Random baseline ranking {site_w}...')
             return [(site, site_w[i]) for i, (site, w) in enumerate(weighted_site_list, start=0)]
         if method == 'Top-down':
-            log(f'Top-down baseline ranking...')
             return [(site, -j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
         if method == 'Bottom-up':
-            log(f'Bottom-up baseline ranking...')
             return [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
         if method == 'Sling':
             lst = [(site, -j) for j, (site, w) in enumerate(weighted_site_list, start=1)]    # Top-down
             lst[-1] = (lst[-1][0], 1)                                                        # Promote the bottom node
-            log(f'Sling baseline ranking {lst}...')
             return lst
         else:
-            log(f'Closure principle not defined, using default bottom-up baseline ranking...')
             return [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
 
     @knockout_filter
     def filter(self, list_of_sites_in_active_working_memory, w):
-        set_logging(True)
-        log('Filtering...')
         adjunction_sites = []
         #--------------------geometrical minimal search------------------------------
         for N in list_of_sites_in_active_working_memory:
@@ -280,13 +271,13 @@ class PlausibilityMetrics:
     def left_branch_filter(self, N):
         set_logging(False)
         dropped = self.brain_model.transfer.transfer_to_LF(N.copy())
-        set_logging(True)
         left_branch_passes_LF = self.brain_model.LF.LF_legibility_test(dropped, self.left_branch_filter_test_battery)
         if not left_branch_passes_LF:
             log(f'in {dropped}. ')
+        set_logging(True)
         return not left_branch_passes_LF
 
     def word_breaking_filter(self, N, w):
         if N.is_word_internal():
             if not w.is_adjoinable():  # Adjoinable phrases cannot be tested because they might become adjuncts later
-                set_logging(True)
+                return True

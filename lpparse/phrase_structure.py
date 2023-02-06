@@ -310,7 +310,7 @@ class PhraseStructure:
         return self.next(self.edge, lambda x: x.referential() and not x.find_me_elsewhere)
 
     def complement_match(self, const):
-        return const.check(self.licensed_complements())
+        return const.check_some(self.licensed_complements())
 
     def nonlicensed_complement(self):
         return self.proper_selected_complement() and self.proper_selected_complement().check_some(self.complements_not_licensed())
@@ -374,8 +374,8 @@ class PhraseStructure:
                 return True
 
     def create_chain(self, transfer, inst):
-        for i, target in enumerate(self.select_objects_from_edge(inst)):
-            inst, target = target.prepare_chain(self, inst, i > 0, target.scan_operators(), transfer)
+        for target in self.select_objects_from_edge(inst):
+            inst, target = target.prepare_chain(self, inst, target.scan_operators(), transfer)
             self.form_chain(target, inst)
             transfer.brain_model.consume_resources(inst['type'], self)
             # Successive-cyclic chain formation
@@ -384,15 +384,15 @@ class PhraseStructure:
             elif target.max().container() and inst['test integrity'](target.max().container()):
                 target.max().container().create_chain(transfer, inst)
 
-    def prepare_chain(self, probe, inst, new_head_needed, op_features, transfer):
+    def prepare_chain(self, probe, inst, op_features, transfer):
         if inst['type'] == 'Phrasal Chain':
             if not op_features and inst['last resort A-chain conditions'](self):
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
-            elif new_head_needed and (op_features or self.unlicensed_specifier()):
+            elif (op_features and self.not_head_supported_specifier()) or self.unlicensed_specifier():
                 probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
-                probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
-        return inst.copy(), self.copy_for_chain(transfer.babtize())
+            probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
+        return inst, self.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
         for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
@@ -400,14 +400,23 @@ class PhraseStructure:
                 break
             target.remove()
         else:
-            if not self.bottom().test_merge(target, inst['legible'], 'right'):
+            if not self.top().bottom().test_merge(target, inst['legible'], 'right'):
                 target.remove()
                 if self.sister():
                     self.sister().Merge(target, 'left')
 
+    def not_head_supported_specifier(self):
+        return self.max().container() and self != self.next(self.max().container().edge)
+
     def test_merge(self, obj, legible, direction):
         self.specifier_sister().Merge(obj, direction)
         return legible(self, obj)
+
+    def Abar_legible(self, y):
+        if y == next(self.edge(), None):
+            return len(list(self.edge())) < 2 and self.specifier_match(y) and self.specifier_sister().tail_match(self.specifier_sister(), 'left')
+        if self.proper_selected_complement() == y:
+            return self.complement_match(y)
 
     def select_objects_from_edge(self, instructions):
         if instructions['type'] == 'Phrasal Chain':

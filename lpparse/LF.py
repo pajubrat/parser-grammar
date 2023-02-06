@@ -72,11 +72,9 @@ class LF:
         return True
 
     def LF_legibility_test_detached(self, ps):
-        set_logging(False)
         def detached(ps):
             ps.mother = None
             return ps
         result = self.LF_legibility_test(detached(ps.copy()))
-        set_logging(True)
         return result
 

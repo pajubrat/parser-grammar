@@ -20,9 +20,9 @@ class Transfer:
                              'Phrasal':         {'type': 'Phrasal Chain',
                                                  'test integrity': lambda x: x.EF(),
                                                  'repair': lambda x, y, z: x.create_chain(y, z),
-                                                 'selection': lambda x: not x.finite() and not x.edge(),
-                                                 'sustain': lambda x: not x.referential(),
-                                                 'legible': lambda x, y: (x.specifier_match(y) and x.specifier_sister().tail_match(x.specifier_sister(), 'left')) or x.complement_match(y),
+                                                 'selection': lambda x: x.primitive() and not x.finite(),
+                                                 'sustain': lambda x: not (x.primitive() and x.referential()),
+                                                 'legible': lambda x, y: x.Abar_legible(y),
                                                  'last resort A-chain conditions': lambda x: x == x.container().licensed_phrasal_specifier() or x.VP_for_fronting()},
                              'Feature':         {'type': 'Feature Chain',
                                                  'test integrity': lambda x: x.check({'?ARG'}) or x.check({'Fin'}),
@@ -48,13 +48,13 @@ class Transfer:
 
     def execute_sequence(self, ps):
         log(f'\n\tTransfer {ps} to LF:----------------------------------------------------------------------\n ')
-        self.reconstruct(ps, self.instructions['Head'])
-        self.reconstruct(ps, self.instructions['Feature'])
-        self.reconstruct(ps, self.instructions['Extraposition'])
+        self.reconstruct(ps, self.instructions['Head'].copy())
+        self.reconstruct(ps, self.instructions['Feature'].copy())
+        self.reconstruct(ps, self.instructions['Extraposition'].copy())
         ps = self.scrambling_module.reconstruct(ps)
-        self.reconstruct(ps, self.instructions['Phrasal'])
-        self.reconstruct(ps, self.instructions['Agree'])
-        self.reconstruct(ps, self.instructions['Last Resort Extraposition'])
+        self.reconstruct(ps, self.instructions['Phrasal'].copy())
+        self.reconstruct(ps, self.instructions['Agree'].copy())
+        self.last_resort(ps, self.instructions['Last Resort Extraposition'].copy())
         log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps}\n')
         return ps
 
@@ -64,6 +64,10 @@ class Transfer:
             if inst['test integrity'](x):
                 inst['repair'](x, self, inst)
             x = x.selector()
+
+    def last_resort(self, x, inst):
+        if inst['test integrity'](x):
+            inst['repair'](x, self, inst)
 
     def babtize(self):
         self.name_provider_index += 1
