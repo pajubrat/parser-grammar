@@ -51,12 +51,12 @@ class Transfer:
         self.reconstruct(ps, self.instructions['Head'].copy())
         self.reconstruct(ps, self.instructions['Feature'].copy())
         self.reconstruct(ps, self.instructions['Extraposition'].copy())
-        ps = self.scrambling_module.reconstruct(ps)
+        self.scrambling_module.reconstruct(ps)
         self.reconstruct(ps, self.instructions['Phrasal'].copy())
         self.reconstruct(ps, self.instructions['Agree'].copy())
         self.last_resort(ps, self.instructions['Last Resort Extraposition'].copy())
         log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps}\n')
-        return ps
+        return ps.top()
 
     def reconstruct(self, probe, inst):
         x = probe.bottom()

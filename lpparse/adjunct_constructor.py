@@ -2,10 +2,10 @@ from support import log, disable_logging, enable_logging
 
 class AdjunctConstructor:
     def __init__(self, controlling_parser_process):
-        self.controlling_parser_process = controlling_parser_process
+        self.brain_model = controlling_parser_process
 
     def externalize_structure(self, ps):
-        if ps and ps.head().is_adjoinable():
+        if ps and ps.head().is_adjoinable() and ps.mother:
             if ps.complex():
                 self.externalize_and_transfer(ps)
             else:
@@ -37,7 +37,7 @@ class AdjunctConstructor:
     def transfer_adjunct(self, ps):
         original_mother, is_right = ps.detach()
         disable_logging()
-        ps = self.controlling_parser_process.transfer.transfer_to_LF(ps)
+        self.brain_model.transfer.transfer_to_LF(ps)
         enable_logging()
         if original_mother:
             ps.mother = original_mother

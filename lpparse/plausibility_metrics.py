@@ -253,16 +253,16 @@ class PlausibilityMetrics:
         #--------------------geometrical minimal search------------------------------
         for N in list_of_sites_in_active_working_memory:
             if N.does_not_accept_any_complements():
-                log(f'Reject {N} + {w} because {N} does not accept complementizers...')
+                log(f'Reject {N} + {w} because {N} does not accept complementizers. ')
                 continue
             if N.complex() and self.left_branch_filter(N):
                 log(f'Reject {N} + {w} due to bad left branch ({self.brain_model.LF.error_report_for_external_callers})...')
                 continue
             if self.word_breaking_filter(N, w):
-                log(f'Reject {N} + {w} because it breaks words...')
+                log(f'Reject {N} + {w} because it breaks words. ')
                 continue
             if N.impossible_sequence(w):
-                 log(f'Reject {N} + {w} because the sequence is impossible...')
+                 log(f'Reject {N} + {w} because the sequence is impossible. ')
                  continue
             adjunction_sites.append(N)
         #-------------------------------------------------------------------------------

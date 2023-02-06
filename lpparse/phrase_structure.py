@@ -357,10 +357,11 @@ class PhraseStructure:
         return self.referential() and self.max() and not self.max().find_me_elsewhere and self.max().mother and not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
     def container_assigns_theta_role(self):
-        if self.max().container():
-            if self.sister() and self.sister().primitive():
+        assigner = self.max().container()
+        if assigner:
+            if assigner.sister() == self:
                 return True
-            if self.is_licensed_specifier() and self.max().container().specifier_theta_role_assigner():
+            if self.is_licensed_specifier() and assigner.specifier_theta_role_assigner():
                 return True
 
     def specifier_theta_role_assigner(self):
@@ -390,7 +391,7 @@ class PhraseStructure:
             if not op_features and inst['last resort A-chain conditions'](self):
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
-            elif (op_features and self.not_head_supported_specifier()) or self.unlicensed_specifier():
+            elif op_features and not self.supported_by(probe):
                 probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
             probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
         return inst, self.copy_for_chain(transfer.babtize())
@@ -406,8 +407,8 @@ class PhraseStructure:
                 if self.sister():
                     self.sister().Merge(target, 'left')
 
-    def not_head_supported_specifier(self):
-        return self.max().container() and self != self.next(self.max().container().edge)
+    def supported_by(self, probe):
+        return self == probe.next(probe.edge)
 
     def test_merge(self, obj, legible, direction):
         self.specifier_sister().Merge(obj, direction)
@@ -415,8 +416,9 @@ class PhraseStructure:
 
     def Abar_legible(self, y):
         if y == next(self.edge(), None):
-            return len(list(self.edge())) < 2 and self.specifier_match(y) and self.specifier_sister().tail_match(self.specifier_sister(), 'left')
-        if self.proper_selected_complement() == y:
+            if len(list(self.edge())) < 2 and self.specifier_match(y) and self.specifier_sister().tail_match(self.specifier_sister(), 'left'):
+                return True
+        if self.sister() == y:
             return self.complement_match(y)
 
     def select_objects_from_edge(self, instructions):
@@ -428,7 +430,7 @@ class PhraseStructure:
         return self == self.container().next(self.container().upward_path, lambda x: x.mother.inside(self.container()) and x.head().check_some({'VA/inf', 'A/inf'}))
 
     def has_legitimate_specifier(self):
-        return self.predicate() and not self.head().check_some({'-EF:φ', '-EDGE:*'}) and self.edge() and not self.has_unlicensed_specifier()
+        return self.predicate() and not self.head().check_some({'-EF:φ', '-EDGE:*'}) and len(list(self.edge())) > 0 and not self.has_unlicensed_specifier()
 
     def unlicensed_specifier(self):
         return self.complex() and not self.adjunct and self.container() and self != self.container().licensed_phrasal_specifier()
@@ -769,6 +771,7 @@ class PhraseStructure:
         bottom_affix.right = ps
         ps.mother = bottom_affix
         bottom_affix.left = None
+        self.internal = False
         return self.top()
 
     def belong_to_same_word(self, site):

@@ -85,10 +85,10 @@ Jukka-  	:: PF:Jukka LF:Jukka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 juosten 	:: juokse-#E/inf LANG:FI
 juoksee		:: juokse-#T/fin#[V] LANG:FI
 juokse-		:: PF:juokse- LF:run V CLASS/INTR LANG:FI
-kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -PHI PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -PHI ARG -E !COMP:* TAIL:*POL:NEG
-kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -PHI ARG -E !COMP:* TAIL:*POL:NEG
+kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -Φ/PF PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -Φ/PF PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaksi		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -Φ/PF ARG -E !COMP:* TAIL:*POL:NEG
+kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -Φ/PF ARG -E !COMP:* TAIL:*POL:NEG
 kahdet		:: kaksi-#pl#[nom] LANG:FI
 kahden		:: kaksi-#pl#[gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two Num LANG:FI
@@ -107,18 +107,17 @@ kelloja		:: kello-#pl#φ#pl#3p#def#r_expression#[par]
 kello		:: kello-#φ#r_expression LANG:FI
 kello-		:: PF:kello LF:watch N LANG:FI
 kello0- 	:: PF:kello LF:watch 0 LANG:FI
-kenen		:: mikä-#D#wh#sg#3p#[gen] LANG:FI
 kirja		:: kirja-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[acc(0)] LANG:FI
 kirjan  	:: kirja-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 kirjan_gen  :: kirja-#φ#sg#3p#def#r_expression#[gen] LANG:FI
 kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[par] LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
-kohti		:: P PF:kohti LF:towards !COMP:φ -PHI TAIL:V LANG:FI
-kohti'		:: P PF:kohti LF:towards !COMP:φ -PHI LANG:FI
+kohti		:: P PF:kohti LF:towards !COMP:φ -Φ/PF TAIL:V LANG:FI
+kohti'		:: P PF:kohti LF:towards !COMP:φ -Φ/PF LANG:FI
 koko		:: PF:koko LF:all D LANG:FI TAIL:T COMP:φ adjoinable
 ketä		:: kuka-#D#wh#[par] LANG:FI
-kenen		:: kuka-#D/pro#wh#[gen] LANG:FI
+kenen		:: kuka-#D/pro#wh#nonhum#[gen] LANG:FI
 kuka 		:: kuka-#D#wh#sg#3p#def#hum#[nom] LANG:FI
 KUKA		:: kuka-#D#wh#sg#3p#def#hum#[nom]#[foc] LANG:FI
 kuka-   	:: PF:kuka LF:who N PHI LANG:FI
@@ -131,10 +130,10 @@ kysyi		:: kysy-#v#T/fin#[V] LANG:EN
 laulaa		:: laula-#T/fin#[V] LANG:FI
 laula-		:: V PF:laula LF:sing CLASS/INTR LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
-lähellä		:: P PF:lähellä LF:near -PHI TAIL:V LANG:FI
+lähellä		:: P PF:lähellä LF:near -Φ/PF TAIL:V LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
 lähellä2	:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
-lähellä'	:: P PF:lähellä LF:near -PHI LANG:FI
+lähellä'	:: P PF:lähellä LF:near -Φ/PF LANG:FI
 lähellä'	:: P PF:lähellä LF:near Inf EF:φ !SEF LANG:FI
 lähden		:: lähte-#T/fin#n LANG:FI
 lähdet		:: lähte-#T/fin#t LANG:FI
@@ -231,7 +230,7 @@ nukuttiin	:: nukku-#impass#T/fin#asp LANG:FI
 nukkua		:: nukku-#A/inf LANG:FI
 nukkui		:: nukku-#T/fin#[V] LANG:FI
 nukkuu		:: nukku-#T/fin#[V] LANG:FI
-nukku-		:: PF:nukku- LF:sleep V CLASS/INTR -COMP:T -SPEC:P -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
+nukku-		:: PF:nukku- LF:sleep V CLASS/INTR -COMP:T -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
 ollut		:: T PF:T LF:T LANG:FI
 olen		:: BE-#T/fin#n LANG:FI
 olet		:: BE-#T/fin#t LANG:FI
@@ -374,8 +373,8 @@ voitti		:: voitta-#v#asp#T/fin#[V] LANG:FI
 voittanut	:: voitta-#v#asp#T/prt#sg LANG:FI
 voittaa		:: voitta-#A/inf LANG:FI
 voitta-		:: V PF:voitta- LF:win CLASS/TR ASP:BOUNDED SEM:achievement
-yli'		:: PF:yli LF:over P -PHI Inf EF:φ LANG:FI LANG:FI
-yli			:: PF:yli LF:over P -PHI TAIL:V Inf EF:φ LANG:FI LANG:FI
+yli'		:: PF:yli LF:over P Φ/PF Inf EF:φ LANG:FI LANG:FI
+yli			:: PF:yli LF:over P Φ/PF TAIL:V Inf EF:φ LANG:FI LANG:FI
 yrittaa		:: yritta-#T/fin#[V] LANG:FI
 yritta- 	:: PF:yritta LF:try V SPEC:φ !COMP:A/inf !COMP:-ARG LANG:EN SEM:internal 
 
@@ -452,7 +451,7 @@ nne		::	inflectional Φ/PF EF:φ -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF:φ adjoinable LANG:FI
 [gen]		:: inflectional GEN TAIL:Inf,ARG,EF:φ adjoinable -float LANG:FI
-[par]   	:: inflectional PAR TAIL:ARG,-PHI adjoinable LANG:FI
+[par]   	:: inflectional PAR TAIL:ARG,-Φ/PF adjoinable LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
 [dat]		:: inflectional DAT TAIL:*φ adjoinable
 [acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:PHI TAIL:*POL:NEG adjoinable LANG:FI
@@ -756,7 +755,7 @@ ci-			:: PF:ci LF:there N PHI_N LANG:IT
 
 # HUNGARIAN LEXICON ------------------------------------------------------------------------------------------------------------------------
 
-át			:: PF:át LF:through P !COMP:* EF:* -PHI LANG:HU
+át			:: PF:át LF:through P !COMP:* EF:* Φ/PF LANG:HU
 az			:: PF:az LF:the EF:φ D LANG:HU
 a2			:: PF:a LF:the EF:φ D LANG:HU
 adott		:: adott-#v#MA/A

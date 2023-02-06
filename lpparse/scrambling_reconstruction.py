@@ -13,15 +13,15 @@ class ScramblingReconstruction():
         self.adjunct_constructor = AdjunctConstructor(self.brain_model)
 
     def reconstruct(self, ps):
-        for constituent in ps.symmetric_minimal_search(lambda x: x.trigger_adjunct_reconstruction(), lambda x: x.is_right()):
-            self.reconstruct_scrambled_item(constituent)
-        return ps.top()
+        for target in ps.symmetric_minimal_search(lambda x: x.trigger_adjunct_reconstruction(), lambda x: x.is_right()):
+            self.reconstruct_scrambled_item(target)
 
     def reconstruct_scrambled_item(self, target):
         if target.is_right():
             self.adjunct_constructor.externalize_structure(target.head())
             if target.legible_adjunct() or target.head().adverbial() or not target.top().contains_finiteness():
                 return
+
         starting_point = target.container()
         virtual_test_item = target.copy()
         local_tense_edge = target.local_tense_edge()
