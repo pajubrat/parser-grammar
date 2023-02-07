@@ -358,7 +358,7 @@ tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tässä		:: tämä#P
 täytyy		:: täydy-#T/fin#default LANG:FI
 täydy		:: täydy-#T/prt LANG:FI
-täydy-		:: PF:täyty- LF:must Fin V MODAL EF:φ !COMP:A/inf -ASP LANG:FI
+täydy-		:: PF:täyty- LF:must Fin V MODAL EF:φ !COMP:A/inf -ASP SEM:internal LANG:FI
 tönäisi		:: tönäise-#v#T/fin#[V] LANG:FI
 tönäistä	:: tönäise-#A/inf LANG:FI
 tönäise-	:: PF:tönäise- LF:nudge V CLASS/TR LANG:FI
@@ -435,7 +435,7 @@ t		::	inflectional Φ/PF EF:φ -Inf PHI:NUM:SG PHI:PER:2 PER PHI:DET:DEF PHI:HUM
 mme		::	inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 tte		::	inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 vAt		::	inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:3 PER LANG:FI
-tVVn	::  inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:1 PER LANG:FI
+tVVn	::  inflectional Φ/PF EF:φ -Inf PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PER LANG:FI
 
 # Infinitival agreement (Px)
 ni		::	inflectional Φ/PF EF:φ -Fin PHI:PRON:PRON PHI:NUM:SG PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
@@ -450,7 +450,7 @@ nne		::	inflectional Φ/PF EF:φ -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI
 # Case suffixes
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF:φ adjoinable LANG:FI
-[gen]		:: inflectional GEN TAIL:Inf,ARG,EF:φ adjoinable -float LANG:FI
+[gen]		:: inflectional GEN TAIL:Inf,!COMP:* adjoinable LANG:FI
 [par]   	:: inflectional PAR TAIL:ARG,-Φ/PF adjoinable LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
 [dat]		:: inflectional DAT TAIL:*φ adjoinable
@@ -530,6 +530,7 @@ knows		::	know-#v#T/fin#[V] LANG:EN
 know-		::	PF:know- LF:know V CLASS/TR LANG:EN
 leaves		:: leave-#T/fin#[-s] LANG:EN
 left		:: leave-#T/fin LANG:EN
+leave1		:: leave-#T/fin#[-0] LANG:EN
 leave		:: PF:leave- LF:leave V -COMP:T/fin LANG:EN
 leave- 		:: PF:leave- LF:leave V -COMP:T/fin LANG:EN
 like-   	:: PF:like- LF:like V !COMP:φ LANG:EN

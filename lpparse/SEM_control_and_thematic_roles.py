@@ -1,4 +1,5 @@
 from itertools import takewhile
+from support import log
 
 
 class LF_Recovery:
@@ -25,22 +26,24 @@ class LF_Recovery:
         if antecedent.head().referential():
             arg_str = antecedent.phonological_content().strip()
         else:
-            arg_str = f'{antecedent.head().label()}P(pro)'
-        return f'{prefix}/{probe.label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
+            arg_str = f'pro at {antecedent.head().label()}'
+        return f'{prefix} of {probe.label()}({probe.gloss()}) is {arg_str}'
 
     def antecedent_absent(self, probe):
         unvalued_phi = probe.phi_needs_valuation()
         if 'PHI:NUM:_' in unvalued_phi and 'PHI:PER:_' in unvalued_phi:
             if probe.sister() and probe.sister().complex() and (probe.sister().head().nonfinite() or probe.sister().head().finite()):
-                arg_str = 'Clausal'
+                arg_str = f'{probe.sister().label()}'
             else:
-                arg_str = 'Generic'
-        elif 'PHI:PER:_' in unvalued_phi and 'PHI:NUM:_' not in unvalued_phi:
-            arg_str = 'Discourse antecedent'
-        else:
+                arg_str = 'generic'
+        if 'PHI:DET:_' in unvalued_phi and probe.check({'LANG:FI'}):
             if 'T/fin' in probe.head().features or 'Neg/fin' in probe.head().features:   # Finnish EPP ad hoc rule
                 self.interpretation_failed = True
-                arg_str = 'Uninterpretable, interpretation failed.'
+                log(f'\n\t\tMissing antecedent crashes the derivation.')
+                arg_str = 'uninterpretable (crash).'
             else:
-                arg_str = 'Generic'
-        return f'Agent/{probe.label()}({probe.illustrate()} ʻ{probe.gloss()}ʼ)/{arg_str}'
+                arg_str = 'generic'
+            if 'PHI:PER:_' in unvalued_phi and 'PHI:NUM:_' not in unvalued_phi:
+                arg_str = 'discourse antecedent'
+
+        return f'Agent of {probe.label()} is {arg_str}'

@@ -191,11 +191,11 @@ class PhraseStructure:
         return next((x for x in memory_span() if condition(x)), None)
 
     def edge(self):
-        return takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path())
+        return list(takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path()))
 
     def pro_edge(self):
         if self.extract_pro():
-            return chain(self.edge(), self.extract_pro())
+            return self.edge() + [self.extract_pro()]
         return self.edge()
 
     def contains_features(self, feature_set):
@@ -256,11 +256,11 @@ class PhraseStructure:
 
     # Feature !EF:*
     def selection__unselective_edge(self, selected_feature):
-        return self.edge()
+        return self.pro_edge()
 
     # Feature -EF:*
     def selection__unselective_negative_edge(self, selected_feature):
-        return not self.edge()
+        return not self.pro_edge()
 
     # Feature !SEF
     def selection__positive_shared_edge(self, selected_feature):
@@ -272,7 +272,7 @@ class PhraseStructure:
 
     # Feature !1EDGE
     def selection__negative_one_edge(self, selected_feature):
-        return len(list(self.edge())) < 2
+        return len(self.edge()) < 2
 
     # Feature !COMP:L
     def selection__positive_obligatory_complement(self, selected_feature):
@@ -413,8 +413,8 @@ class PhraseStructure:
         return legible(self, obj)
 
     def Abar_legible(self, y):
-        if y == next(self.edge(), None):
-            if len(list(self.edge())) < 2 and self.specifier_match(y) and self.specifier_sister().tail_match(self.specifier_sister(), 'left'):
+        if y == self.next(self.edge):
+            if len(self.edge()) < 2 and self.specifier_match(y) and self.specifier_sister().tail_match(self.specifier_sister(), 'left'):
                 return True
         if self.sister() == y:
             return self.complement_match(y)
@@ -428,7 +428,7 @@ class PhraseStructure:
         return self == self.container().next(self.container().upward_path, lambda x: x.mother.inside(self.container()) and x.head().check_some({'VA/inf', 'A/inf'}))
 
     def has_legitimate_specifier(self):
-        return self.predicate() and not self.head().check_some({'-EF:φ', '-EDGE:*'}) and len(list(self.edge())) > 0 and not self.has_unlicensed_specifier()
+        return self.predicate() and not self.head().check_some({'-EF:φ', '-EDGE:*'}) and self.edge() and not self.has_unlicensed_specifier()
 
     def unlicensed_specifier(self):
         return self.complex() and not self.adjunct and self.container() and self != self.container().licensed_phrasal_specifier()
@@ -440,7 +440,7 @@ class PhraseStructure:
         return self.primitive() and self.aunt() and self.aunt().primitive()
 
     def has_nonthematic_specifier(self):
-        return self.EF() and next(self.edge(), self).extended_subject()
+        return self.EF() and next(iter(self.edge()), self).extended_subject()
 
     def add_scope_information(self):
         if not self.non_scopal():
@@ -451,14 +451,28 @@ class PhraseStructure:
         return {f for f in self.features if f[:3] == 'PHI' and f[-1] == '_'}
 
     def Agree(self):
-        domain = (const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()))
+        domain = chain((const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head())), self)
         self.value_features(next(domain, None))
 
     def value_features(self, goal):
         if goal:
-            log(f'\n\t\t\'{self}\' checked {sorted({f[1:] for f in goal.head().features if phi_feature_for_Agree(f)})} from {goal}. ')
-            for phi in sorted({f[1:] for f in goal.head().features if phi_feature_for_Agree(f)}):
-                self.value(phi)
+            log(f'\n\t\t\'{self}\' checked {sorted({f for f in goal.head().features if phi_feature_for_Agree(f)})} from {goal}. ')
+            for phi in sorted({f for f in goal.head().features if phi_feature_for_Agree(f)}):
+                if phi.startswith('iPHI'):
+                    phi = phi[1:]
+                unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
+                if self.valued_phi_features() and self.block_valuation(phi):
+                    log(f'\n\t\tFeature conflict with {phi}.')
+                    self.features.add(phi)
+                    self.features.add(f'-{phi}')
+                elif unvalued_counterparty:
+                    self.features = self.features - unvalued_counterparty
+                    self.features.add(phi)
+                    self.features.add('Φ/LF')
+                    self.features.add('PHI_CHECKED')
+                    log(f'\n\t\t\'{self}\' valued ' + phi)
+                    if goal != self and not self.referential():
+                        self.features.add('BLOCK_INVENTORY_PROJECTION')  # Block semantic object projection
 
         # Effects of revised Agree (experimental)
         if self.check_some({'Φ/PF', 'Φ/LF'}):
@@ -467,20 +481,6 @@ class PhraseStructure:
                 self.features.add('Φ/1')
             else:
                 self.features.discard('Φ/1')
-
-    def value(self, phi):
-        unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
-        if self.valued_phi_features() and self.block_valuation(phi):
-            self.features.add(phi)
-            self.features.add(f'-{phi}')
-        elif unvalued_counterparty:
-            self.features = self.features - unvalued_counterparty
-            self.features.add(phi)
-            self.features.add('Φ/LF')
-            self.features.add('PHI_CHECKED')
-            log(f'\n\t\t\'{self}\' valued ' + phi)
-            if not self.referential():
-                self.features.add('BLOCK_NS')  # Block semantic object projection
 
     def block_valuation(self, phi):
         # We do not check violation, only that if types match there must be a licensing feature with identical value.
@@ -519,6 +519,7 @@ class PhraseStructure:
                 self.features.add('-EF:φ')
                 self.features.discard('EF:φ')
                 self.features.add('-ARG')
+                self.features.discard('!SEF')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into +ARG.')
@@ -549,7 +550,7 @@ class PhraseStructure:
         return self.selector().finite_C() and self.EF() and not self.edge()
 
     def has_unlicensed_specifier(self):
-        local_edge = next(self.edge(), None)
+        local_edge = self.next(self.edge)
         if local_edge:
             return set(self.specifiers_not_licensed()) & local_edge.head().features
 
@@ -690,7 +691,7 @@ class PhraseStructure:
     # Recovery ---------------------------------------------------------------------------------------------------
 
     def is_possible_antecedent(self, antecedent):
-        if not antecedent.find_me_elsewhere:
+        if antecedent and not antecedent.find_me_elsewhere:
             phi_to_check = {phi for phi in self.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER'}
             phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if feature_check(phi1, phi2)}
             return phi_to_check == phi_checked
@@ -702,17 +703,22 @@ class PhraseStructure:
             return x
 
     def control(self):
-        return next((x for x in [self.sister()] + list(takewhile(lambda x: 'SEM:external' not in x.features, self.upward_path())) if self.is_possible_antecedent(x)), None)
+        antecedent = next((x for x in [self.sister()] + list(takewhile(lambda x: 'SEM:external' not in x.features, self.upward_path())) if self.is_possible_antecedent(x)), None)
+        log(f'\n\t\tAntecedent search for {self} provides {antecedent} (standard control).')
 
     def finite_control(self):
-        return self.next(self.upward_path, lambda x: self.is_possible_antecedent(x) or self.special_rule(x))
+        antecedent = self.next(self.upward_path, lambda x: self.is_possible_antecedent(x) or self.special_rule(x))
+        log(f'\n\t\tAntecedent search for {self} provides {antecedent} (finite control).')
+        return antecedent
 
     def get_antecedent(self):
+        antecedent = None
         unvalued_phi = self.phi_needs_valuation()
         if {'PHI:NUM:_', 'PHI:PER:_'} & unvalued_phi:
-            return self.control()
-        elif {'PHI:DET:_'} & unvalued_phi:
-            return self.finite_control()
+            antecedent = self.control()
+        if {'PHI:DET:_'} & unvalued_phi and self.check({'LANG:FI'}):
+            antecedent = self.finite_control()
+        return antecedent
 
     # Structure building --------------------------------------------------------------------------
 
@@ -836,7 +842,7 @@ class PhraseStructure:
                 pf = pf + '_'
             else:
                 pf = pf + self.left.gloss() + ' '
-        if self.right:
+        if self.left and self.right:
             if 'null' in self.right.features:
                 pf = pf + '_'
             else:
@@ -1050,12 +1056,6 @@ class PhraseStructure:
     def floatable(self):
         return not self.check({'-float'})
 
-    def SEM_internal_predicate(self):
-        return self.check({'SEM:internal'})
-
-    def SEM_external_predicate(self):
-        return self.check({'SEM:external'})
-
     def non_scopal(self):
         return self.check_some({'Inf', 'P', 'D', 'φ'})
 
@@ -1089,6 +1089,12 @@ class PhraseStructure:
     def selected_by_SEM_external_predicate(self):
         return self.selector() and self.selector().SEM_external_predicate()
 
+    def SEM_internal_predicate(self):
+        return self.check({'SEM:internal'})
+
+    def SEM_external_predicate(self):
+        return self.check({'SEM:external'})
+
     def isolated_preposition(self):
         return self.preposition() and self.sister() and self.sister().primitive()
 
@@ -1117,5 +1123,5 @@ class PhraseStructure:
         return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or self.check({'pro'})
 
     def highest_finite_head(self):
-        return self.check({'Fin'}) and (not self.selector() or (self.selector() and not self.selector().check_some({'T', 'COPULA', 'Fin'})))
+        return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
 
