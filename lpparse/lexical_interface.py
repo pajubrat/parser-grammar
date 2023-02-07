@@ -184,7 +184,5 @@ class LexicalInterface:
                 features.add('PHI:DET:_')
             if 'LANG:IT' or 'LANG:EN' in features:
                 features.add('PHI:GEN:_')
-            if 'VAL' in features:
-                features.add('SPEC:*')
 
         return features

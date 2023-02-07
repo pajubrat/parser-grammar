@@ -41,6 +41,10 @@ class LF_Recovery:
                 self.interpretation_failed = True
                 log(f'\n\t\tMissing antecedent crashes the derivation.')
                 arg_str = 'uninterpretable (crash).'
+            if probe.head().check({'-Fin'}):
+                self.interpretation_failed = True
+                log(f'\n\t\t\tMissing antecedent crashes the derivation (generic reading is impossible for PX).')
+                arg_str = 'uninterpretable (crash).'
             else:
                 arg_str = 'generic'
             if 'PHI:PER:_' in unvalued_phi and 'PHI:NUM:_' not in unvalued_phi:

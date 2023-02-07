@@ -391,7 +391,7 @@ class PhraseStructure:
                 inst['legible'] = lambda x, y: True
             elif op_features and not self.supported_by(probe):
                 probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
-            probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
+                probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
         return inst, self.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
@@ -454,12 +454,27 @@ class PhraseStructure:
         domain = chain((const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head())), self)
         self.value_features(next(domain, None))
 
+    def relevant_for_donation(self, phi, goal, interpretable):
+        if 'PHI:' in phi and phi[-1] != '_':
+            if goal == self:
+                if 'Φ/PF' in goal.head().features:  # For self valuation...
+                    return 'iPHI' not in phi        # Ignore interpretable features if valued one exist
+            elif interpretable:
+                return 'iPHI' in phi    # Goals with interpretable features donate only iPHI
+            return 'PHI' in phi     # ...All other goals donate all valued phi-features
+
+    def interpretable_phi_features(self):
+        return {phi for phi in self.head().features if phi.startswith('iPHI:')}
+
     def value_features(self, goal):
         if goal:
-            log(f'\n\t\t\'{self}\' checked {sorted({f for f in goal.head().features if phi_feature_for_Agree(f)})} from {goal}. ')
-            for phi in sorted({f for f in goal.head().features if phi_feature_for_Agree(f)}):
+            interpretable = goal.interpretable_phi_features()
+            incoming_phi = {phi for phi in goal.head().features if self.relevant_for_donation(phi, goal, interpretable)}
+            log(f'\n\t\tGoal {goal.illustrate()} for {self} has {incoming_phi}')
+            for phi in sorted(incoming_phi):
                 if phi.startswith('iPHI'):
                     phi = phi[1:]
+
                 unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
                 if self.valued_phi_features() and self.block_valuation(phi):
                     log(f'\n\t\tFeature conflict with {phi}.')
@@ -704,11 +719,11 @@ class PhraseStructure:
 
     def control(self):
         antecedent = next((x for x in [self.sister()] + list(takewhile(lambda x: 'SEM:external' not in x.features, self.upward_path())) if self.is_possible_antecedent(x)), None)
-        log(f'\n\t\tAntecedent search for {self} provides {antecedent} (standard control).')
+        log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control).')
 
     def finite_control(self):
-        antecedent = self.next(self.upward_path, lambda x: self.is_possible_antecedent(x) or self.special_rule(x))
-        log(f'\n\t\tAntecedent search for {self} provides {antecedent} (finite control).')
+        antecedent = self.next(self.upward_path, lambda x: x.complex() and self.is_possible_antecedent(x) or self.special_rule(x))
+        log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (finite control).')
         return antecedent
 
     def get_antecedent(self):
