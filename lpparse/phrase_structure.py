@@ -117,9 +117,7 @@ class PhraseStructure:
             return self.sister()
 
     def bottom(x):
-        while not x.primitive():
-            x = x.right
-        return x
+        return list(x.minimal_search())[-1]
 
     def top(x):
         while x.mother:
