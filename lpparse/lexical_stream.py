@@ -1,5 +1,6 @@
 from support import log
 import time
+from feature_processing import phi_feature
 
 class LexicalStream:
     def __init__(self, brain_model):
@@ -42,7 +43,7 @@ class LexicalStream:
         if inflection:
             if inflection_buffer:
                 for feature in inflection:
-                    if (feature.startswith('PHI') and feature in inflection_buffer) or (feature == 'default' and 'Φ/PF' in inflection_buffer):
+                    if (phi_feature(feature) and feature in inflection_buffer) or (feature == 'default' and 'PHI/PF' in inflection_buffer):
                         inflection_buffer.add('?')
                     else:
                         inflection_buffer.add(feature)

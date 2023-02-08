@@ -39,7 +39,7 @@ def show_primitive_constituents(self):
         C = {feature for feature in set if feature.startswith('!EF:') or feature.startswith('-EF') or feature.startswith('EF')}
         D = {feature for feature in set if feature in {'ARG', '-ARG', 'ASP', 'Inf', 'Fin'}}
         E = {feature for feature in set if feature.startswith('TAIL')}
-        F = {feature for feature in set if feature[:3] == 'PHI'}
+        F = {feature for feature in set if feature[:4] == 'PHI:' or feature[:5] == 'iPHI:' or feature[:4] == 'PHI/'}
         G = {feature for feature in set if feature[:3] == 'SEM'}
         H = {feature for feature in set if feature[:4] == 'COMP' or feature[:5] == '-COMP' or feature[:5] == '!COMP'}
         J = {feature for feature in set if feature[:4] == 'SPEC' or feature[:5] == '-SPEC' or feature[:5] == '!SPEC'}

@@ -28,7 +28,7 @@ class AdjunctConstructor:
 
     def add_tail_features_if_missing(self, ps):
         if not ps.head().get_tail_sets():
-            if 'D' in ps.head().features:
+            if ps.referential():
                 ps.head().features.add('TAIL:V')
             elif 'T' not in ps.head().features:       # TP can only become relative clause, e.g. 'che dorme'
                 ps.head().features.add('TAIL:T')

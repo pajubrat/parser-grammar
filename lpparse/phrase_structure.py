@@ -1,7 +1,18 @@
 from collections import namedtuple
 from itertools import takewhile, chain
 from support import log
-from feature_processing import valued, unvalued, phi_feature_for_Agree, feature_check, negative_features, positive_features, phi_consistency
+from feature_processing import valued, \
+    unvalued, \
+    phi_feature, \
+    valued_phi_feature, \
+    unvalued_phi_feature, \
+    interpretable_phi_feature, \
+    exactly_one_PHI, \
+    at_least_one_PHI, \
+    feature_check, \
+    negative_features, \
+    positive_features, \
+    phi_consistency
 
 # New list (ordered hierarchically)
 major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
@@ -262,9 +273,9 @@ class PhraseStructure:
     def selection__unselective_negative_edge(self, selected_feature):
         return not self.pro_edge()
 
-    # Feature !SEF
+    # Feature !SEF (not correct)
     def selection__positive_shared_edge(self, selected_feature):
-        return not (not self.licensed_phrasal_specifier() and self.referential_complement_criterion())
+        return not self.licensed_phrasal_specifier() and self.referential_complement_criterion()
 
     # Feature -SPEC:L
     def selection__negative_specifier(self,  selected_feature):
@@ -448,23 +459,23 @@ class PhraseStructure:
         return set()
 
     def unvalued(self):
-        return {f for f in self.features if f[:3] == 'PHI' and f[-1] == '_'}
+        return {f for f in self.features if unvalued_phi_feature(f)}
 
     def Agree(self):
         domain = chain((const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head())), self)
         self.value_features(next(domain, None))
 
     def relevant_for_donation(self, phi, goal, interpretable):
-        if 'PHI:' in phi and phi[-1] != '_':
+        if valued_phi_feature(phi):
             if goal == self:
-                if 'Φ/PF' in goal.head().features:  # For self valuation...
-                    return 'iPHI' not in phi        # Ignore interpretable features if valued one exist
+                if goal.PF_PHI():                                # For self valuation...
+                    return not interpretable_phi_feature(phi)   # Ignore interpretable features if valued one exist
             elif interpretable:
-                return 'iPHI' in phi    # Goals with interpretable features donate only iPHI
-            return 'PHI' in phi     # ...All other goals donate all valued phi-features
+                return interpretable_phi_feature(phi)           # Goals with interpretable features donate only iPHI
+            return phi_feature(phi)                              # ...All other goals donate all valued phi-features
 
     def interpretable_phi_features(self):
-        return {phi for phi in self.head().features if phi.startswith('iPHI:')}
+        return {phi for phi in self.head().features if interpretable_phi_feature(phi)}
 
     def value_features(self, goal):
         if goal:
@@ -472,9 +483,8 @@ class PhraseStructure:
             incoming_phi = {phi for phi in goal.head().features if self.relevant_for_donation(phi, goal, interpretable)}
             log(f'\n\t\tGoal {goal.illustrate()} for {self} has {incoming_phi}')
             for phi in sorted(incoming_phi):
-                if phi.startswith('iPHI'):
+                if interpretable_phi_feature(phi):
                     phi = phi[1:]
-
                 unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
                 if self.valued_phi_features() and self.block_valuation(phi):
                     log(f'\n\t\tFeature conflict with {phi}.')
@@ -483,25 +493,25 @@ class PhraseStructure:
                 elif unvalued_counterparty:
                     self.features = self.features - unvalued_counterparty
                     self.features.add(phi)
-                    self.features.add('Φ/LF')
+                    self.features.add('PHI/LF')
                     self.features.add('PHI_CHECKED')
                     log(f'\n\t\t\'{self}\' valued ' + phi)
                     if goal != self and not self.referential():
                         self.features.add('BLOCK_INVENTORY_PROJECTION')  # Block semantic object projection
 
         # Effects of revised Agree (experimental)
-        if self.check_some({'Φ/PF', 'Φ/LF'}):
-            self.features.add('Φ/12')
-            if not self.check({'Φ/PF', 'Φ/LF'}):
-                self.features.add('Φ/1')
+        if self.PHI():
+            self.features.add(at_least_one_PHI())
+            if not self.PHI_FULL():
+                self.features.add(exactly_one_PHI())
             else:
-                self.features.discard('Φ/1')
+                self.features.discard(exactly_one_PHI())
 
     def block_valuation(self, phi):
         # We do not check violation, only that if types match there must be a licensing feature with identical value.
         valued_input_feature_type = phi.split(':')[1]
         # Find type matches
-        valued_phi_at_probe = {phi_ for phi_ in self.get_phi_set() if phi_[-1] != '_' and phi_.split(':')[1] == valued_input_feature_type}
+        valued_phi_at_probe = {phi for phi in self.get_phi_set() if valued_phi_feature(phi) and phi.split(':')[1] == valued_input_feature_type}
         if valued_phi_at_probe:
             # Find if there is a licensing element
             if {phi_ for phi_ in valued_phi_at_probe if phi == phi_}:
@@ -525,8 +535,8 @@ class PhraseStructure:
 
     def feature_inheritance(self):
         if self.highest_finite_head():
-            log(f'\n\t\t{self} inherited Φ/PF.')
-            self.features.add('!SELF:Φ/PF')
+            log(f'\n\t\t{self} inherited PHI/PF.')
+            self.features.add('!SELF:PHI/PF')
         if self.check({'?ARG'}):
             if self.selected_by_SEM_internal_predicate():
                 self.features.discard('?ARG')
@@ -1139,4 +1149,18 @@ class PhraseStructure:
 
     def highest_finite_head(self):
         return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
+
+    def LF_PHI(self):
+        return self.head().check({'PHI/LF'})
+
+    def PF_PHI(self):
+        return self.head().check({'PHI/PF'})
+
+    def PHI(self):
+        return self.head().check_some({'PHI/PF', 'PHI/LF'})
+
+    def PHI_FULL(self):
+        return self.head().check({'PHI/PF', 'PHI/LF'})
+
+
 

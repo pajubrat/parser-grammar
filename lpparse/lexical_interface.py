@@ -137,6 +137,7 @@ class LexicalInterface:
         def negative_feature(f):
             if f.startswith('-'):
                 return True
+
         def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
             if negative_feature(new_candidate_feature_to_add):
                 if new_candidate_feature_to_add[1:] in features_from_lexicon:

@@ -4,8 +4,23 @@ def unvalued(f):
 def valued(f):
     return not unvalued(f)
 
-def phi_feature_for_Agree(f):
-    return 'PHI:' in f and f[-1] != '_'
+def phi_feature(f):
+    return 'PHI:' in f
+
+def interpretable_phi_feature(f):
+    return 'iPHI:' in f
+
+def unvalued_phi_feature(f):
+    return phi_feature(f) and f[-1] == '_'
+
+def valued_phi_feature(f):
+    return phi_feature(f) and f[-1] != '_'
+
+def exactly_one_PHI():
+    return 'PHI/1'
+
+def at_least_one_PHI():
+    return 'PHI/12'
 
 def convert_features_for_parsing(features):
     return {f[1:] if f.startswith('!') else f for f in features}
