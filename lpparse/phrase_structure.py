@@ -273,9 +273,10 @@ class PhraseStructure:
     def selection__unselective_negative_edge(self, selected_feature):
         return not self.pro_edge()
 
-    # Feature !SEF (not correct)
+    # Feature !SEF
     def selection__positive_shared_edge(self, selected_feature):
-        return not self.licensed_phrasal_specifier() and self.referential_complement_criterion()
+        log(f'{self}, {self.licensed_phrasal_specifier()}; {self.referential_complement_criterion()}')
+        return not (not self.licensed_phrasal_specifier() and self.referential_complement_criterion())
 
     # Feature -SPEC:L
     def selection__negative_specifier(self,  selected_feature):
@@ -316,7 +317,7 @@ class PhraseStructure:
     def licensed_phrasal_specifier(self):
         if self.next(self.edge, lambda x: x.referential() and not x.adjunct):
             return self.next(self.edge, lambda x: x.referential() and not x.adjunct)
-        return self.next(self.edge, lambda x: x.referential() and not x.find_me_elsewhere)
+        return self.next(self.edge, lambda x: x.referential())
 
     def complement_match(self, const):
         return const.check_some(self.licensed_complements())
@@ -462,12 +463,13 @@ class PhraseStructure:
         return {f for f in self.features if unvalued_phi_feature(f)}
 
     def Agree(self):
-        domain = chain((const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head())), self)
-        self.value_features(next(domain, None))
+        domain = (const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()))
+        self.value_features(next(domain, None), 'LF')
+        self.value_features(self, 'PF')
 
-    def relevant_for_donation(self, phi, goal, interpretable):
+    def relevant_for_donation(self, phi, goal, interpretable, pathway):
         if valued_phi_feature(phi):
-            if goal == self:
+            if pathway == 'PF':
                 if goal.PF_PHI():                                # For self valuation...
                     return not interpretable_phi_feature(phi)   # Ignore interpretable features if valued one exist
             elif interpretable:
@@ -477,10 +479,10 @@ class PhraseStructure:
     def interpretable_phi_features(self):
         return {phi for phi in self.head().features if interpretable_phi_feature(phi)}
 
-    def value_features(self, goal):
+    def value_features(self, goal, pathway):
         if goal:
             interpretable = goal.interpretable_phi_features()
-            incoming_phi = {phi for phi in goal.head().features if self.relevant_for_donation(phi, goal, interpretable)}
+            incoming_phi = {phi for phi in goal.head().features if self.relevant_for_donation(phi, goal, interpretable, pathway)}
             log(f'\n\t\tGoal {goal.illustrate()} for {self} has {incoming_phi}')
             for phi in sorted(incoming_phi):
                 if interpretable_phi_feature(phi):
@@ -493,16 +495,15 @@ class PhraseStructure:
                 elif unvalued_counterparty:
                     self.features = self.features - unvalued_counterparty
                     self.features.add(phi)
-                    self.features.add('PHI/LF')
-                    self.features.add('PHI_CHECKED')
+                    self.features.add('PHI/' + pathway)
                     log(f'\n\t\t\'{self}\' valued ' + phi)
-                    if goal != self and not self.referential():
+                    if pathway == 'PF' and not self.referential():
                         self.features.add('BLOCK_INVENTORY_PROJECTION')  # Block semantic object projection
 
         # Effects of revised Agree (experimental)
-        if self.PHI():
+        if self.has_PHI():
             self.features.add(at_least_one_PHI())
-            if not self.PHI_FULL():
+            if not self.has_PHI_FULL():
                 self.features.add(exactly_one_PHI())
             else:
                 self.features.discard(exactly_one_PHI())
@@ -1145,7 +1146,7 @@ class PhraseStructure:
         return (self.check({'v'}) and not self.check({'v-'})) or self.check({'C'})
 
     def extended_subject(self):
-        return {'EF:φ', '!EF:φ'} & {f for feature_set in self.get_tail_sets() for f in feature_set} or self.check({'pro'})
+        return self.check_some({'NOM', 'GEN'})
 
     def highest_finite_head(self):
         return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
@@ -1156,10 +1157,10 @@ class PhraseStructure:
     def PF_PHI(self):
         return self.head().check({'PHI/PF'})
 
-    def PHI(self):
+    def has_PHI(self):
         return self.head().check_some({'PHI/PF', 'PHI/LF'})
 
-    def PHI_FULL(self):
+    def has_PHI_FULL(self):
         return self.head().check({'PHI/PF', 'PHI/LF'})
 
 
