@@ -357,8 +357,10 @@ class PhraseStructure:
     # Projection principle and thematic roles ---------------------------------------------------------------------
 
     def nonthematic(self):
-        return self.container() and self.container().EF() or \
-               (self.container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and self == next((const for const in self.container().edge()), None))
+        if self.max().container():
+            return self.max().container().EF() or \
+                   (self.max().container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and
+                    self == next((const for const in self.max().container().edge()), None))
 
     def projection_principle_failure(self):
         return self.max().projection_principle_applies() and not self.max().container_assigns_theta_role()
@@ -375,7 +377,10 @@ class PhraseStructure:
                 return True
 
     def specifier_theta_role_assigner(self):
-        return not self.EF() and not (self.selector() and not self.selector().check({'ARG'})) and self.check_some({'SPEC:φ', '!SPEC:φ'})
+        if self.EF():
+            return False
+        if self.check_some({'SPEC:φ', '!SPEC:φ'}) and not (self.selector() and self.selector().check({'-ARG'})):
+            return True
 
     # Reconstruction -----------------------------------------------------------------------------------
 

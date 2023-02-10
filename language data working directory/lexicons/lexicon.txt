@@ -358,7 +358,7 @@ tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tässä		:: tämä#P
 täytyy		:: täydy-#T/fin#default LANG:FI
 täydy		:: täydy-#T/prt LANG:FI
-täydy-		:: PF:täyty- LF:must Fin V MODAL EF:φ !COMP:A/inf -ASP SEM:internal LANG:FI
+täydy-		:: PF:täyty- LF:must Fin V MODAL EF:φ !COMP:A/inf -ASP LANG:FI
 tönäisi		:: tönäise-#v#T/fin#[V] LANG:FI
 tönäistä	:: tönäise-#A/inf LANG:FI
 tönäise-	:: PF:tönäise- LF:nudge V CLASS/TR LANG:FI
@@ -450,7 +450,7 @@ nne		::	inflectional PHI/PF EF:φ -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PH
 # Case suffixes
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF:φ adjoinable LANG:FI
-[gen]		:: inflectional GEN TAIL:Inf,!COMP:* adjoinable LANG:FI
+[gen]		:: inflectional GEN TAIL:Inf,!COMP:* adjoinable -float LANG:FI
 [par]   	:: inflectional PAR TAIL:ARG,-PHI/PF adjoinable LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
 [dat]		:: inflectional DAT TAIL:*φ adjoinable
