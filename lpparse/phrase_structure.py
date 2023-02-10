@@ -193,7 +193,7 @@ class PhraseStructure:
         upward_path = []
         x = self.mother
         while x:
-            if not x.right.adjunct and x.left.head() != self:
+            if x.left.head() != self:
                 upward_path.append(x.left)
             x = x.mother
         return upward_path
@@ -406,8 +406,9 @@ class PhraseStructure:
             if not op_features and inst['last resort A-chain conditions'](self):
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
-            elif op_features and not self.supported_by(probe):
-                probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
+            else:
+                if op_features and not self.supported_by(probe):
+                    probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
                 probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
         return inst, self.copy_for_chain(transfer.babtize())
 
@@ -495,14 +496,13 @@ class PhraseStructure:
                 unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
                 if self.valued_phi_features() and self.block_valuation(phi):
                     log(f'\n\t\tFeature conflict with {phi}.')
-                    self.features.add(phi)
-                    self.features.add(f'-{phi}')
+                    self.features.add('*')
                 elif unvalued_counterparty:
                     self.features = self.features - unvalued_counterparty
                     self.features.add(phi)
                     self.features.add('PHI/' + pathway)
                     log(f'\n\t\t\'{self}\' valued ' + phi)
-                    if pathway == 'PF' and not self.referential():
+                    if pathway == 'LF' and not self.referential():
                         self.features.add('BLOCK_INVENTORY_PROJECTION')  # Block semantic object projection
 
         # Effects of revised Agree (experimental)
@@ -663,16 +663,13 @@ class PhraseStructure:
             else:
                 return g
         for feature1 in self.features:
+            if feature1 == '*':
+                return True
             if feature1.startswith('-'):
                 for feature2 in self.features:
                     if feature1[1:] == remove_exclamation(feature2):
                         log(f'\n\t\tFeature conflict +/{feature1}')
                         return True
-            if feature1.startswith('PHI:') and not feature1.endswith('_') and 'GEN' not in feature1:
-                for feature2 in self.features:
-                    if feature2.startswith('PHI:') and not feature2.endswith('_'):
-                        if feature1.split(':')[1] == feature2.split(':')[1] and feature1.split(':')[2] != feature2.split(':')[2]:
-                            return True
 
     # Operators
 
@@ -734,7 +731,7 @@ class PhraseStructure:
             return x
 
     def control(self):
-        antecedent = next((x for x in [self.sister()] + list(takewhile(lambda x: 'SEM:external' not in x.features, self.upward_path())) if self.is_possible_antecedent(x)), None)
+        antecedent = next((x for x in [self.sister()] + list(takewhile(lambda x: 'SEM:external' not in x.head().features, self.upward_path())) if self.is_possible_antecedent(x)), None)
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control).')
 
     def finite_control(self):

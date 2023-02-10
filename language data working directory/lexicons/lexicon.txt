@@ -84,6 +84,7 @@ Jukkaa		:: Jukka-#φ#sg#3p#def#hum#def#[par] LANG:FI -SEM:directional
 Jukka-  	:: PF:Jukka LF:Jukka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 juosten 	:: juokse-#E/inf LANG:FI
 juoksee		:: juokse-#T/fin#[V] LANG:FI
+juoksi		:: juokse-#T/fin#[V] LANG:FI
 juokse-		:: PF:juokse- LF:run V CLASS/INTR LANG:FI
 kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -PHI/PF PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
 kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -PHI/PF PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
@@ -123,6 +124,7 @@ KUKA		:: kuka-#D#wh#sg#3p#def#hum#[nom]#[foc] LANG:FI
 kuka-   	:: PF:kuka LF:who N PHI LANG:FI
 kuorsaa		:: kuorsaa-#T/fin#[V] LANG:FI
 kuorsaamalla 	:: kuorsaa-#malla LANG:FI
+kuorsaten	:: kuorsaa-#E/inf LANG:FI
 kuorsaa- 	:: PF:kuorsaa- LF:snore V CLASS/INTR COMP:P -COMP:WH -COMP:T/fin -COMP:φ LANG:FI
 kuvaa		:: kuva-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 kuva-		:: PF:kuva LF:picture N LANG:FI
@@ -374,7 +376,8 @@ voittanut	:: voitta-#v#asp#T/prt#sg LANG:FI
 voittaa		:: voitta-#A/inf LANG:FI
 voitta-		:: V PF:voitta- LF:win CLASS/TR ASP:BOUNDED SEM:achievement
 yli'		:: PF:yli LF:over P PHI/PF Inf EF:φ LANG:FI LANG:FI
-yli			:: PF:yli LF:over P PHI/PF TAIL:V Inf EF:φ LANG:FI LANG:FI
+yli			:: PF:yli LF:over P PHI/PF TAIL:V Inf !COMP:* !EF:φ !SPEC:φ LANG:FI LANG:FI
+ylitse		:: PF:yli LF:over P PHI/PF TAIL:V Inf !COMP:* !EF:φ !SPEC:φ LANG:FI LANG:FI
 yrittaa		:: yritta-#T/fin#[V] LANG:FI
 yritta- 	:: PF:yritta LF:try V SPEC:φ !COMP:A/inf !COMP:-ARG LANG:EN SEM:internal 
 
@@ -588,8 +591,8 @@ try-		:: PF:try LF:try V SPEC:φ !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal
 wants		:: want-#v#T/fin#[-s] LANG:EN
 want		:: want-#v#T/fin#[-0] LANG:EN
 want-		:: PF:want LF:want V CLASS/TR -COMP:V -SPEC:TO/inf COMP:TO/inf LANG:EN
-was			:: T/fin#sg_ LANG:EN
-were		:: T/fin#pl_ LANG:EN
+was			:: T/fin#[-s] LANG:EN
+were		:: T/fin#[-0] LANG:EN
 what		:: what-#D#wh#sg#3p#def LANG:EN
 what-		:: PF:what LF:what N PHI_N LANG:EN
 which		:: PF:which LF:which D OP:WH LANG:EN

@@ -44,7 +44,7 @@ class LexicalStream:
             if inflection_buffer:
                 for feature in inflection:
                     if (phi_feature(feature) and feature in inflection_buffer) or (feature == 'default' and 'PHI/PF' in inflection_buffer):
-                        inflection_buffer.add('?')
+                        inflection_buffer.add('*')
                     else:
                         inflection_buffer.add(feature)
             else:
