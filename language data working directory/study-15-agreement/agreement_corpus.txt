@@ -5196,11 +5196,74 @@
 	
 	& 3.3. High complementizer
 	
+		& Grammatical (canonical form)
+			
+			Pekka sanoo että ei lähde
+			'Pekka.nom say.prs.3sg that not.3sg leave'
+
+		& Grammatical (adjoined forms)
+			
+			Pekka sanoo etten lähde
+			'Pekka.nom say.prs.3sg that.not.1sg leave.prs'			
+
+			Pekka sanoo ettet lähde
+			'Pekka.nom say.prs.3sg that.not.2sg leave.prs'			
+
+			Pekka sanoo ettei lähde
+			'Pekka.nom say.prs.3sg that.not.3sg leave.prs'			
+
+			Pekka sanoo ettemme lähde
+			'Pekka.nom say.prs.3sg that.not.1pl leave.prs'			
+
+			Pekka sanoo ettette lähde
+			'Pekka.nom say.prs.3sg that.not.2pl leave.prs'			
+
+			Pekka sanoo etteivät lähde
+			'Pekka.nom say.prs.3sg that.not.3pl leave.prs'	
+
+			Pekka sanoo että#e#n lähde
+			'Pekka.nom say.prs.3sg that.not.1sg leave.prs'			
+
+			Pekka sanoo että#e#t lähde
+			'Pekka.nom say.prs.3sg that.not.2sg leave.prs'			
+
+			Pekka sanoo että#e#[V] lähde
+			'Pekka.nom say.prs.3sg that.not.3sg leave.prs'			
+
+			Pekka sanoo että#e#mme lähde
+			'Pekka.nom say.prs.3sg that.not.1pl leave.prs'			
+
+			Pekka sanoo että#e#tte lähde
+			'Pekka.nom say.prs.3sg that.not.2pl leave.prs'			
+
+			Pekka sanoo että#e#vät lähde
+			'Pekka.nom say.prs.3sg that.not.3pl leave.prs'			
+		
+		& Ungrammatical (agreement on the complementizer)
+		
+			Pekka sanoo että#n en lähde
+			'Pekka.nom say.prs.3sg that.1sg not.1sg leave'
+
+			Pekka sanoo että#t et lähde
+			'Pekka.nom say.prs.3sg that.2sg not.2sg leave'	
+
+			Pekka sanoo että#[V] ei lähde
+			'Pekka.nom say.prs.3sg that.3sg not.3sg leave'	
+
+			Pekka sanoo että#mme emme lähde
+			'Pekka.nom say.prs.3sg that.1pl not.1pl leave'	
+
+			Pekka sanoo että#tte ette lähde
+			'Pekka.nom say.prs.3sg that.2pl not.2pl leave'	
+
+			Pekka sanoo että#vAt eivät lähde
+			'Pekka.nom say.prs.3sg that.3pl not.3pl leave'	
+
 	& 3.4. Agreement and morphology
 		
 		& 3.4.1 Ungrammatical (double agreement error)
 
-			& 3.4.1.1 Finite agreement
+			& Finite agreement
 		
 				minä lähde#n#n
 				'I.nom leave.prs.1sg.1sg'
@@ -5220,7 +5283,7 @@
 				he lähde#vAt#vAt
 				'they.nom leave.prs.3pl.3pl'
 
-			& 3.4.1.2 Nonfinite agreement
+			& Nonfinite agreement
 			
 				hän nukkuu minun lähellä#ni#ni
 				'he.nom sleep.prs.3sg I.gen near.px/1sg.px/1sg'
@@ -5240,7 +5303,7 @@
 				hän nukkuu heidän lähellä#nsA#nsA
 				'he.nom sleep.prs.3sg they.gen near.px/3p.px/3p'
 			
-			& 3.4.1.3 Finite and nonfinite agreement
+			& Finite and nonfinite agreement
 			
 				hän nukkuu minun lähellä#n#ni
 				'he.nom sleep.prs.3sg I.gen near.1sg.px/1sg'
@@ -5321,62 +5384,107 @@
 				
 				John wants Mary to_inf leave#[-s]
 	
-		& 4.2.1 English personal passive, agreement and A-chains
+		& 4.1.2 A-chains (passive, raising)
+		
+			& English personal passive, agreement and A-chains
+			
+				& Grammatical
+			
+					John admires Mary
+					Mary was admired
+					they were admired
+				
+				& Ungrammatical
+				
+					& Agreement failure
+					
+						they was admired
+						Mary were admired
+					
+					& EPP failure
+					
+						was John admired
+					
+					& Projection principle failure
+					
+						Mary was admired John
+				
+					& Combined failures
+					
+						was they admired
+						were Mary admired
+						was they admired John
+						were Mary admired John
+						
+			& English raising construction
+					
+				& Grammatical
+					
+					John wants to_inf leave
+					John seems to_inf leave
+					
+					they seem to_inf leave
+					
+				& Ungrammatical
+				
+					& Agreement failure
+				
+						John want to_inf leave
+						John seem to_inf leave
+						they wants to_inf leave
+						they seems to_inf leave
+					
+					& EPP failure
+				
+						wants John to_inf leave
+						seems John to_inf leave
+						wants to_inf John leave
+						seems to_inf John leave
+					
+					& Projection principle failure
+					
+						John seems Mary to_inf leave
+						
+	& 4.2 Italian
+	
+		& 4.2.1 Consistent pro-drop profile
 		
 			& Grammatical
-		
-				John admires Mary
-				Mary was admired
-				they were admired
 			
-			& Ungrammatical
-			
-				& Agreement failure
+				io adoro Luisa
+				'I.nom admire.prs.1sg Luisa'
 				
-					they was admired
-					Mary were admired
+				tu adori Luisa
+				'you.nom admire.prs.2sg Luisa'
 				
-				& EPP failure
+				lui adora Luisa
+				'he.nom admire.prs.3sg Luisa'
 				
-					was John admired
+				noi adoriamo Luisa
+				'we.nom admire.1pl Luisa'
 				
-				& Projection principle failure
+				voi adorate Luisa
+				'you.nom admire.prs.2pl Luisa'
 				
-			 		Mary was admired John
-			
-				& Combined failures
+				loro adorano Luisa
+				'they.nom admire.prs.3pl Luisa'
 				
-					was they admired
-					were Mary admired
-					was they admired John
-					were Mary admired John
-					
-		& 4.2.2 English raising construction
+				adoro Luisa
+				'admire.prs.1sg Luisa'
 				
-			& Grammatical
+				adori Luisa
+				'admire.prs.2sg Luisa'
 				
-				John wants to_inf leave
-				John seems to_inf leave
+				adora Luisa
+				'admire.prs.3sg Luisa'
 				
-				they seem to_inf leave
+				adoriamo Luisa
+				'admire.1pl Luisa'
 				
-			& Ungrammatical
-			
-				& Agreement failure
-			
-					John want to_inf leave
-					John seem to_inf leave
-					they wants to_inf leave
-					they seems to_inf leave
+				adorate Luisa
+				'admire.prs.2pl Luisa'
 				
-				& EPP failure
-			
-					wants John to_inf leave
-					seems John to_inf leave
-					wants to_inf John leave
-					seems to_inf John leave
+				adorano Luisa
+				'admire.prs.3pl Luisa'
 				
-				& Projection principle failure
-				
-					John seems Mary to_inf leave
-					
+						
