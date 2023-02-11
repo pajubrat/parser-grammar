@@ -42,11 +42,9 @@ class LexicalStream:
         inflection = self.get_inflection_features(lexical_item, phonological_word)
         if inflection:
             if inflection_buffer:
-                for feature in inflection:
-                    if (phi_feature(feature) and feature in inflection_buffer) or (feature == 'default' and 'PHI/PF' in inflection_buffer):
-                        inflection_buffer.add('*')
-                    else:
-                        inflection_buffer.add(feature)
+                inflection_buffer = inflection_buffer | inflection
+                if 'PHI/PF' in inflection and 'PHI/PF' in inflection_buffer:
+                    inflection_buffer.add('*')
             else:
                 inflection_buffer = set()
                 inflection_buffer = inflection_buffer.union(inflection)
