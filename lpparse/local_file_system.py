@@ -167,12 +167,17 @@ class LocalFileSystem:
                 for line in config_file:
                     line = line.strip().replace('\t', '')
                     if line and not line.startswith('#'):
-                        key, value = line.split(':', 1)
+                        key, value = line.split('=', 1)
                         value = value.strip()
                         if ',' in value:
                             value = value.split(',')
+                        else:
+                            if key == 'show_features':
+                                value = [value]
+                            else:
+                                value = value
                         self.settings[key] = value
-                        self.dev_log_file.write(f'\n{key}: {value}, ')
+                        self.dev_log_file.write(f'\n{key}={value}, ')
             config_file.close()
             # Safeguards
             if not self.settings['show_features'] or self.settings['show_features'] == '':
@@ -504,7 +509,7 @@ class LocalFileSystem:
                     file_name = 'Raw image of (' + str(count) + chr(96 + parse_number) + ')_spellout.png'
                     self.visualizer.file_identifier = self.folder['images'] / file_name
                     self.visualizer.draw(spellout)
-                    parse_number =  parse_number + 1
+                    parse_number = parse_number + 1
         self.dev_log_file.write('Done.\n')
 
     def write_comment_line(self, sentence_lst):

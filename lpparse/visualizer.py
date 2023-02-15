@@ -5,8 +5,6 @@
 import pyglet
 import pyglet.window.key
 from pyglet import shapes
-from pyglet.gl import GL_LINES, glBegin, glEnd, glVertex2f, glLineWidth, glColor4f, glClearColor, \
-    glClear, GL_COLOR_BUFFER_BIT
 import re
 
 SCALING_FACTOR = 2
@@ -56,7 +54,6 @@ class Visualizer:
         ps.y = 0
         self.determine_plane_topology(ps)   # Projects the phrase structure into a simple abstract space
         self.remove_overlaps(ps)            # Modifies the projection to remove overlapping texts and lines
-
 
     # Creates a basic plane topology with constituent branches by one unit
     def determine_plane_topology(self, ps):
@@ -146,9 +143,7 @@ class Visualizer:
 
 # Definition for the output window behavior
 class ProduceGraphicOutput(pyglet.window.Window):
-    def __init__(self,
-                 ps,
-                 visualizer):
+    def __init__(self, ps, visualizer):
 
         self.visualizer = visualizer
 
@@ -168,6 +163,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.mouse_position_y = 0
         self.mouse_over_node = None
         self.selected_node = None
+        self.circle = None
+        self.line = None
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
         if self.visualizer.show_words:
@@ -178,16 +175,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             self.margins += (10 * self.scale)
 
         width, height = self.determine_window_size(ps)
-        if self.visualizer.stop_after_each_image:
-            visible = True
-        else:
-            visible = True
-        pyglet.window.Window.__init__(self, visible=visible,
-                                      width=int(width),
-                                      height=int(height),
-                                      resizable=False,
-                                      caption=self.visualizer.input_sentence_string)
-        glClearColor(1, 1, 1, 1)
+        super().__init__(width=width, height=height, caption='LF interface', visible=False)
 
     def determine_window_size(self, ps):
         left, right, depth = self.get_tree_size(ps, 0, 0, 0)
@@ -196,7 +184,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.top_node_position = width / (abs(left) + abs(right)) * abs(left)
         self.x_offset = self.top_node_position  # Position of the highest node
         self.y_offset = height - (30 * self.scale) # How much extra room above the highest node (for highest label)
-        return width, height
+        return int(width), int(height)
 
     def on_key_press(self, symbol, modifiers):
         move_x = 0
@@ -221,13 +209,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if move_x != 0 or move_y != 0:
             self.visualizer.move_node(move_x, move_y, self.selected_node)
             self.visualizer.lateral_stretch(self.selected_node.top())
-
-    def on_draw(self):
-        glClear(GL_COLOR_BUFFER_BIT)
-        self.mouse_over_node = None
-        self.show_in_window(self.phrase_structure)
-        if not self.visualizer.stop_after_each_image:
-            self.save_image()
 
     def save_image(self):
         pyglet.image.get_buffer_manager().get_color_buffer().save(self.visualizer.file_identifier)
@@ -280,7 +261,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if ps.left:
             self.draw_left_line(ps, X1, Y1)
             self.show_in_window(ps.left)
-        if ps.right and not ps.complex_head():
+        if ps.right and not ps.has_affix():
             self.draw_right_line(ps, X1, Y1)
             self.show_in_window(ps.right)
             if not self.visualizer.stop_after_each_image:
@@ -290,8 +271,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if self.selected_node:
             x = self.x_offset + self.selected_node.x * self.x_grid
             y = self.y_offset + self.selected_node.y * self.y_grid + (self.y_grid - self.x_grid)
-            glColor4f(0, 0, 0, 0)
-            circle = shapes.Circle(x=x-1, y=y-14, radius=30, color=(50, 50, 50))
+            circle = shapes.Circle(x=x-1, y=y-14, radius=30)
             circle.opacity = 2
             circle.draw()
 
@@ -340,7 +320,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             for feature_pattern in self.visualizer.show_features:
                 for i, lexical_feature in enumerate(ps.features):
                     if re.match(feature_pattern, lexical_feature):
-                        feature_str += f'[{lexical_feature}]'
+                        feature_str += f'[{self.abbreviate_feature(lexical_feature)}]'
                         if len(feature_str) > 7:
                             label_stack.append((feature_str, 'FEATURE'))
                             feature_str = ''
@@ -349,6 +329,28 @@ class ProduceGraphicOutput(pyglet.window.Window):
                     feature_str = ''
 
         return label_stack
+
+    def abbreviate_feature(self, feature):
+        if 'PHI:' in feature:
+            phi, typ, value = feature.split(':')
+            if phi == 'iPHI':
+                prefix = 'i'
+            else:
+                prefix = ''
+            if feature[-1] == '_':
+                return prefix + typ + '?'
+
+            if typ == 'NUM':
+                return prefix + value
+            if typ == 'PER':
+                return prefix + value + 'P'
+            if typ == 'GEN':
+                return prefix + value
+            if typ == 'DET':
+                return prefix + value
+            if typ == 'HUM':
+                return prefix + value
+        return feature
 
     def draw_node_label(self, ps, X1, Y1, label_stack):
         line_position = -15
@@ -375,44 +377,35 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                       italic=italics_style,
                                       x=X1, y=Y1 + 12 - line_position,
                                       anchor_x='center', anchor_y='center',
-                                      color=(1, 1, 1, 255))
+                                      color=(50, 50, 50, 255))
             label_.draw()
             line_position = line_position + (25 * line_space * self.scale)
 
     def draw_right_line(self, ps, X1, Y1):
         X2 = self.x_offset + ps.right.x * self.x_grid
         Y2 = self.y_offset + ps.right.y * self.y_grid + (self.y_grid - self.x_grid)
-        glBegin(GL_LINES)
-        glVertex2f(X1, Y1)
-        glVertex2f(X2, Y2)
+        line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50))
         # Adjuncts are marked by double line
         if ps.right.adjunct:
-            glVertex2f(X1 + (5 * self.scale), Y1)
-            glVertex2f(X2 + (5 * self.scale), Y2)
-
-        glEnd()
+            line2 = shapes.Line(X1 + (5 * self.scale), Y1, X2 + (5 * self.scale), Y2, width=1, color=(50, 50, 50))
+            line2.draw()
+        line.draw()
 
     def draw_left_line(self, ps, X1, Y1):
         X2 = self.x_offset + ps.left.x * self.x_grid
         Y2 = self.y_offset + ps.left.y * self.y_grid + (self.y_grid - self.x_grid)
-        glLineWidth(3)
-        glColor4f(0, 0, 0, 0)
-        glBegin(GL_LINES)
-        glVertex2f(X1, Y1)
-        glVertex2f(X2, Y2)
+        line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50))
         # Adjuncts are marked by double line
         if ps.left.adjunct:
-            glVertex2f(X1 - (5 * self.scale), Y1 + 1)
-            glVertex2f(X2 - (5 * self.scale), Y2 + 1)
-        glEnd()
+            line2 = shapes.Line(X1 + (5 * self.scale), Y1, X2 + (5 * self.scale), Y2, width=2, color=(50, 50, 50))
+            line2.draw()
+        line.draw()
 
     def draw_vertical_line(self, ps, X1, Y1):
         X2 = X1
         Y2 = self.y_offset + ps.right.y * self.y_grid + (self.y_grid - self.x_grid)
-        glBegin(GL_LINES)
-        glVertex2f(X1, Y1 - (25 * self.scale))
-        glVertex2f(X2, Y2)
-        glEnd()
+        line = shapes.Line(X1, Y1 - (25 * self.scale), X2, Y2, width=2, color=(50, 50, 50, 255))
+        line.draw()
 
     def draw_original_sentence(self):
         if self.visualizer.show_sentences:
@@ -421,19 +414,16 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                        font_size=20,
                                        italic=True,
                                        x=0, y=0,
-                                       anchor_x='left', anchor_y='bottom',
-                                       color=(1, 1, 1, 255))
+                                       anchor_x='left', anchor_y='bottom')
             label5.draw()
 
-
     def draw_chain_subscript(self, ps, X1, Y1):
-        if ps.identity:
+        if ps.identity and not ps.primitive():
             label = pyglet.text.Label(ps.identity, font_name='Times New Roman',
                                       font_size=(10 * self.scale),
                                       x=X1+(18 * self.scale),
                                       y=Y1+(5 * self.scale),
-                                      anchor_x='center', anchor_y='center',
-                                      color=(1, 1, 1, 255))
+                                      anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
             label.draw()
 
     def nearby(self, x1, y1, x2, y2):
@@ -451,7 +441,14 @@ class ProduceGraphicOutput(pyglet.window.Window):
             depth = ps.y
         if ps.left:
             left, right, depth = self.get_tree_size(ps.left, left, right, depth)
-        if ps.right and not ps.complex_head():
+        if ps.right and not ps.has_affix():
             left, right, depth = self.get_tree_size(ps.right, left, right, depth)
 
         return left, right, depth
+
+    def on_draw(self):
+        self.mouse_over_node = None
+        self.show_in_window(self.phrase_structure)
+
+        if not self.visualizer.stop_after_each_image:
+            self.save_image()

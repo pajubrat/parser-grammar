@@ -183,7 +183,7 @@ class LexicalInterface:
                 features.add('PHI:PER:_')
             if 'NO_DET' not in features:
                 features.add('PHI:DET:_')
-            if 'LANG:IT' or 'LANG:EN' in features:
+            if {'LANG:IT', 'LANG:EN'} & features:
                 features.add('PHI:GEN:_')
 
         return features
