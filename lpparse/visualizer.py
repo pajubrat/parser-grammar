@@ -157,7 +157,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.x_offset = 0  # Defined later
         self.y_offset = 0  # Defined later
         # Define the margins
-        self.margins = (100 * self.scale)
+        self.margins = (200 * self.scale)
         self.file_identifier = self.visualizer.file_identifier
         self.mouse_position_x = 0
         self.mouse_position_y = 0
@@ -181,7 +181,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         left, right, depth = self.get_tree_size(ps, 0, 0, 0)
         width = (right - left) * self.x_grid + self.margins
         height = abs(depth * self.y_grid) + self.margins
-        self.top_node_position = width / (abs(left) + abs(right)) * abs(left)
+        self.top_node_position = width / (abs(left) + abs(right)) * abs(left) + 100
         self.x_offset = self.top_node_position  # Position of the highest node
         self.y_offset = height - (30 * self.scale) # How much extra room above the highest node (for highest label)
         return int(width), int(height)
@@ -350,6 +350,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return prefix + value
             if typ == 'HUM':
                 return prefix + value
+            if typ == 'PRON':
+                return prefix + 'PRO'
         return feature
 
     def draw_node_label(self, ps, X1, Y1, label_stack):

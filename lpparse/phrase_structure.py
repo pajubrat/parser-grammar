@@ -12,7 +12,8 @@ from feature_processing import valued, \
     feature_check, \
     negative_features, \
     positive_features, \
-    phi_consistency
+    phi_consistency, \
+    strip_i
 
 # New list (ordered hierarchically)
 major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
@@ -469,43 +470,33 @@ class PhraseStructure:
         return {f for f in self.features if unvalued_phi_feature(f)}
 
     def Agree(self):
-        domain = (const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()))
-        self.value_features(next(domain, None), 'LF')
-        self.value_features(self, 'PF')
-
-    def relevant_for_donation(self, phi, goal, interpretable, pathway):
-        if valued_phi_feature(phi):
-            if pathway == 'PF':
-                if goal.PF_PHI():                                # For self valuation...
-                    return not interpretable_phi_feature(phi)   # Ignore interpretable features if valued one exist
-            elif interpretable:
-                return interpretable_phi_feature(phi)           # Goals with interpretable features donate only iPHI
-            return phi_feature(phi)                              # ...All other goals donate all valued phi-features
-
-    def interpretable_phi_features(self):
-        return {phi for phi in self.head().features if interpretable_phi_feature(phi)}
+        self.value_features(next((const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head())), None), 'PHI/LF')
+        self.value_features(self, 'PHI/PF')
+        self.update_phi_interactions()
 
     def value_features(self, goal, pathway):
         if goal:
-            interpretable = goal.interpretable_phi_features()
-            incoming_phi = {phi for phi in goal.head().features if self.relevant_for_donation(phi, goal, interpretable, pathway)}
-            log(f'\n\t\tGoal {goal.illustrate()} for {self} has {incoming_phi}')
-            for phi in sorted(incoming_phi):
-                if interpretable_phi_feature(phi):
-                    phi = phi[1:]
-                unvalued_counterparty = {f for f in self.features if unvalued(f) and f[:-1] == phi[:len(f[:-1])]}  # A:B:C / A:B:_
-                if self.valued_phi_features() and self.block_valuation(phi):
-                    log(f'\n\t\tFeature conflict with {phi}.')
-                    self.features.add('*')
-                elif unvalued_counterparty:
-                    self.features = self.features - unvalued_counterparty
-                    self.features.add(phi)
-                    self.features.add('PHI/' + pathway)
-                    log(f'\n\t\t\'{self}\' valued ' + phi)
-                    if pathway == 'LF' and not self.referential():
-                        self.features.add('BLOCK_INVENTORY_PROJECTION')  # Block semantic object projection
+            for incoming_phi, unvalued_counterparty in [(strip_i(phi), self.unvalued_counterparty(phi)) for phi in sorted(goal.head().features) if valued_phi_feature(phi) and self.special_condition(goal, phi)]:
+                self.value_feature(incoming_phi, unvalued_counterparty, goal, pathway)
 
-        # Effects of revised Agree (experimental)
+    def value_feature(self, phi, unvalued_counterparty, goal, pathway):
+        if self.block_valuation(phi):
+            self.features.add('*')
+        elif unvalued_counterparty:
+            self.features.discard(unvalued_counterparty)
+            self.features.add(phi)
+            self.features.add(pathway)
+            log(f'\n\t\t\'{self}\' valued ' + phi + f' from {goal}. ')
+
+    def special_condition(self, goal, phi):
+        return self != goal or not (self.referential() and interpretable_phi_feature(phi))
+
+    def unvalued_counterparty(self, phi):
+        for phi_ in self.features:
+            if unvalued(phi_) and phi.startswith(phi_[:-1]):
+                return phi_
+
+    def update_phi_interactions(self):
         if self.has_PHI():
             self.features.add(at_least_one_PHI())
             if not self.has_PHI_FULL():
@@ -514,16 +505,17 @@ class PhraseStructure:
                 self.features.discard(exactly_one_PHI())
 
     def block_valuation(self, phi):
-        # We do not check violation, only that if types match there must be a licensing feature with identical value.
-        valued_input_feature_type = phi.split(':')[1]
-        # Find type matches
-        valued_phi_at_probe = {phi for phi in self.get_phi_set() if valued_phi_feature(phi) and phi.split(':')[1] == valued_input_feature_type}
-        if valued_phi_at_probe:
-            # Find if there is a licensing element
-            if {phi_ for phi_ in valued_phi_at_probe if phi == phi_}:
-                return False
-            log(f'\n\t\t{phi} clash at {self} due to {valued_phi_at_probe}')
-            return True
+        if self.valued_phi_features():
+            # We do not check violation, only that if types match there must be a licensing feature with identical value.
+            valued_input_feature_type = phi.split(':')[1]
+            # Find type matches
+            valued_phi_at_probe = {phi for phi in self.get_phi_set() if valued_phi_feature(phi) and phi.split(':')[1] == valued_input_feature_type}
+            if valued_phi_at_probe:
+                # Find if there is a licensing element
+                if {phi_ for phi_ in valued_phi_at_probe if phi == phi_}:
+                    return False
+                log(f'\n\t\t{phi} clash at {self} due to {valued_phi_at_probe}. ')
+                return True
 
     def cutoff_point_for_last_resort_extraposition(self):
         return self.primitive() and self.is_adjoinable() and self.aunt() and \

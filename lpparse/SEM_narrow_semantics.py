@@ -132,7 +132,7 @@ class NarrowSemantics:
         def preconditions(ps):
             return not self.brain_model.first_solution_found and \
                    not ps.find_me_elsewhere and \
-                   'BLOCK_INVENTORY_PROJECTION' not in ps.features
+                   (ps.referential() or not ps.check({'PHI/LF'}))
 
         if preconditions(ps):
             for space in self.semantic_spaces:
