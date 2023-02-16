@@ -276,7 +276,6 @@ class PhraseStructure:
 
     # Feature !SEF
     def selection__positive_shared_edge(self, selected_feature):
-        log(f'{self}, {self.licensed_phrasal_specifier()}; {self.referential_complement_criterion()}')
         return not (not self.licensed_phrasal_specifier() and self.referential_complement_criterion())
 
     # Feature -SPEC:L
@@ -476,23 +475,30 @@ class PhraseStructure:
 
     def value_features(self, goal, pathway):
         if goal:
-            for incoming_phi, unvalued_counterparty in [(strip_i(phi), self.unvalued_counterparty(phi)) for phi in sorted(goal.head().features) if valued_phi_feature(phi) and self.special_condition(goal, phi)]:
-                self.value_feature(incoming_phi, unvalued_counterparty, goal, pathway)
+            log(f'\n\t\tProbe {self} targets goal {goal} and values ')
+            for incoming_phi, unvalued_counterparty in [(strip_i(phi), self.unvalued_counterparty(strip_i(phi))) for phi in goal.head().features if valued_phi_feature(phi) and self.ignore_iphi_for_referential_probes(phi, pathway)]:
+                self.value_feature(incoming_phi, unvalued_counterparty, pathway)
 
-    def value_feature(self, phi, unvalued_counterparty, goal, pathway):
+    def value_feature(self, phi, unvalued_counterparty, pathway):
         if self.block_valuation(phi):
             self.features.add('*')
         elif unvalued_counterparty:
             self.features.discard(unvalued_counterparty)
             self.features.add(phi)
             self.features.add(pathway)
-            log(f'\n\t\t\'{self}\' valued ' + phi + f' from {goal}. ')
+            log(f'{phi} ')
 
-    def special_condition(self, goal, phi):
-        return self != goal or not (self.referential() and interpretable_phi_feature(phi))
+    def ignore_iphi_for_referential_probes(self, phi, pathway):
+        if pathway == 'PHI/LF':
+            return True
+        if pathway == 'PHI/PF':
+            if self.referential() and not interpretable_phi_feature(phi):
+                return True
+            if not self.referential() and valued_phi_feature(phi):
+                return True
 
     def unvalued_counterparty(self, phi):
-        for phi_ in self.features:
+        for phi_ in self.head().features:
             if unvalued(phi_) and phi.startswith(phi_[:-1]):
                 return phi_
 
@@ -514,7 +520,7 @@ class PhraseStructure:
                 # Find if there is a licensing element
                 if {phi_ for phi_ in valued_phi_at_probe if phi == phi_}:
                     return False
-                log(f'\n\t\t{phi} clash at {self} due to {valued_phi_at_probe}. ')
+                log(f'*{phi}. ')
                 return True
 
     def cutoff_point_for_last_resort_extraposition(self):
@@ -613,7 +619,7 @@ class PhraseStructure:
                 return True
 
     def valued_phi_features(self):
-        return {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
+        return {f for f in self.features if 'PHI:' in f and f[-1] != '_'}
 
     def get_pf(self):
         return {feature[3:] for feature in self.features if feature[:3] == 'PF:'}
@@ -713,7 +719,7 @@ class PhraseStructure:
     def is_possible_antecedent(self, antecedent):
         if antecedent and not antecedent.find_me_elsewhere:
             phi_to_check = {phi for phi in self.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER'}
-            phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if feature_check(phi1, phi2)}
+            phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if feature_check(strip_i(phi1), phi2)}
             return phi_to_check == phi_checked
 
     def special_rule(self, x):
