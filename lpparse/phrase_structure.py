@@ -475,8 +475,8 @@ class PhraseStructure:
 
     def value_features(self, goal, pathway):
         if goal:
-            log(f'\n\t\tProbe {self} targets goal {goal} and values ')
-            for incoming_phi, unvalued_counterparty in [(strip_i(phi), self.unvalued_counterparty(strip_i(phi))) for phi in goal.head().features if valued_phi_feature(phi) and self.ignore_iphi_for_referential_probes(phi, pathway)]:
+            log(f'\n\t\tProbe {self} targets goal {goal}. ')
+            for incoming_phi, unvalued_counterparty in [(strip_i(phi), self.unvalued_counterparty(strip_i(phi))) for phi in goal.head().features if valued_phi_feature(phi) and self.ignore_iphi_for_referential_probes(phi, goal)]:
                 self.value_feature(incoming_phi, unvalued_counterparty, pathway)
 
     def value_feature(self, phi, unvalued_counterparty, pathway):
@@ -488,13 +488,19 @@ class PhraseStructure:
             self.features.add(pathway)
             log(f'{phi} ')
 
-    def ignore_iphi_for_referential_probes(self, phi, pathway):
-        if pathway == 'PHI/LF':
-            return True
-        if pathway == 'PHI/PF':
-            if self.referential() and not interpretable_phi_feature(phi):
+    # Hierarchy of features approach
+    def ignore_iphi_for_referential_probes(self, phi, goal):
+        if self != goal:
+            if goal.has_interpretable_phi_features():   # Prioritize interpretable features if they exist
+                if interpretable_phi_feature(phi):
+                    return True
+            else:
                 return True
-            if not self.referential() and valued_phi_feature(phi):
+        if self == goal:
+            if self.has_interpretable_phi_features():   # Do not take interpretable features if they exist
+                if not interpretable_phi_feature(phi):
+                    return True
+            else:
                 return True
 
     def unvalued_counterparty(self, phi):
@@ -521,6 +527,11 @@ class PhraseStructure:
                 if {phi_ for phi_ in valued_phi_at_probe if phi == phi_}:
                     return False
                 log(f'*{phi}. ')
+                return True
+
+    def has_interpretable_phi_features(self):
+        for f in self.head().features:
+            if f.startswith('iPHI:'):
                 return True
 
     def cutoff_point_for_last_resort_extraposition(self):

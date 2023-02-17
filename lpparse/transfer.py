@@ -28,7 +28,7 @@ class Transfer:
                                                  'test integrity': lambda x: x.check({'?ARG'}) or x.check({'Fin'}),
                                                  'repair': lambda x, y, z: x.feature_inheritance()},
                              'Agree':           {'type': 'Agree',
-                                                 'test integrity': lambda x: x.EF() and x.unvalued(),
+                                                 'test integrity': lambda x: x.EF(),
                                                  'repair': lambda x, y, z: x.sister() and x.Agree()},
                              'Extraposition':   {'type': 'Extraposition',
                                                  'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
