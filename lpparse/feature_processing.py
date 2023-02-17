@@ -16,7 +16,7 @@ def unvalued_phi_feature(f):
 def valued_phi_feature(f):
     return phi_feature(f) and f[-1] != '_'
 
-def strip_i(phi):
+def i(phi):
     if interpretable_phi_feature(phi):
         return phi[1:]
     return phi

@@ -1,19 +1,7 @@
 from collections import namedtuple
 from itertools import takewhile, chain
 from support import log
-from feature_processing import valued, \
-    unvalued, \
-    phi_feature, \
-    valued_phi_feature, \
-    unvalued_phi_feature, \
-    interpretable_phi_feature, \
-    exactly_one_PHI, \
-    at_least_one_PHI, \
-    feature_check, \
-    negative_features, \
-    positive_features, \
-    phi_consistency, \
-    strip_i
+from feature_processing import *
 
 # New list (ordered hierarchically)
 major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
@@ -465,49 +453,49 @@ class PhraseStructure:
             return {'Fin', 'C', 'PF:C'}
         return set()
 
-    def unvalued(self):
-        return {f for f in self.features if unvalued_phi_feature(f)}
-
+    # Agreement mechanism
     def Agree(self):
-        self.value_features(next((const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head())), None), 'PHI/LF')
-        self.value_features(self, 'PHI/PF')
-        self.update_phi_interactions()
+        domain = (const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()))
+        self.value_features(next(domain, None))     # Value from overt phrasal arguments inside the domain
+        self.value_features(self)                   # Value from head itself (pro-elements)
+        self.update_phi_interactions()              # Revised theory of Agree
 
-    def value_features(self, goal, pathway):
+    def value_features(self, goal):
         if goal:
-            log(f'\n\t\tProbe {self} targets goal {goal}. ')
-            for incoming_phi, unvalued_counterparty in [(strip_i(phi), self.unvalued_counterparty(strip_i(phi))) for phi in goal.head().features if valued_phi_feature(phi) and self.ignore_iphi_for_referential_probes(phi, goal)]:
-                self.value_feature(incoming_phi, unvalued_counterparty, pathway)
+            log(f'\n\t\tProbe {self} targets goal {goal} and values ')
+            valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in goal.head().features if self.target_phi_feature(phi, goal)]
+            for incoming_phi, unvalued_counterparty in valuations:
+                self.value_feature(incoming_phi, unvalued_counterparty, goal)
+            if not valuations:
+                log(f'nothing (no useful features acquired). ')
 
-    def value_feature(self, phi, unvalued_counterparty, pathway):
-        if self.block_valuation(phi):
+    def value_feature(self, phi, unvalued_counterparty, goal):
+        if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
             self.features.add('*')
-        elif unvalued_counterparty:
-            self.features.discard(unvalued_counterparty)
-            self.features.add(phi)
-            self.features.add(pathway)
-            log(f'{phi} ')
+        elif unvalued_counterparty:                 # Unvalued counterparty  exists
+            self.value(unvalued_counterparty, phi)  # Perform valuation
+            if self != goal:                        # Leave a record that Agree/LF has occurred
+                self.features.add('PHI/LF')
 
-    # Hierarchy of features approach
-    def ignore_iphi_for_referential_probes(self, phi, goal):
-        if self != goal:
-            if goal.has_interpretable_phi_features():   # Prioritize interpretable features if they exist
-                if interpretable_phi_feature(phi):
-                    return True
-            else:
-                return True
-        if self == goal:
-            if self.has_interpretable_phi_features():   # Do not take interpretable features if they exist
-                if not interpretable_phi_feature(phi):
-                    return True
-            else:
-                return True
+    # Replace the unvalued feature by the valued one
+    def value(self, unvalued_counterparty, phi):
+        log(f'{phi} ')
+        self.features.discard(unvalued_counterparty)
+        self.features.add(phi)
+
+    def target_phi_feature(self, phi, goal):
+        if valued_phi_feature(phi):                             # Use only valued phi-features
+            if goal.has_interpretable_phi_features():           # Filter out interpretable phi-features for self-valuation if and only if the probe/goal has them
+                if self == goal:
+                    return not interpretable_phi_feature(phi)
+                else:
+                    return interpretable_phi_feature(phi)
+            return True
 
     def unvalued_counterparty(self, phi):
-        for phi_ in self.head().features:
-            if unvalued(phi_) and phi.startswith(phi_[:-1]):
-                return phi_
+        return next((phi_ for phi_ in self.head().features if unvalued(phi_) and phi.startswith(phi_[:-1])), None)
 
+    # Instructions for PHI-interactions in enumerative grammar
     def update_phi_interactions(self):
         if self.has_PHI():
             self.features.add(at_least_one_PHI())
@@ -516,23 +504,18 @@ class PhraseStructure:
             else:
                 self.features.discard(exactly_one_PHI())
 
-    def block_valuation(self, phi):
-        if self.valued_phi_features():
-            # We do not check violation, only that if types match there must be a licensing feature with identical value.
-            valued_input_feature_type = phi.split(':')[1]
-            # Find type matches
-            valued_phi_at_probe = {phi for phi in self.get_phi_set() if valued_phi_feature(phi) and phi.split(':')[1] == valued_input_feature_type}
-            if valued_phi_at_probe:
-                # Find if there is a licensing element
-                if {phi_ for phi_ in valued_phi_at_probe if phi == phi_}:
-                    return False
-                log(f'*{phi}. ')
+    # Check if types match, then there must be a licensing feature with identical value.
+    def feature_licensing(self, phi):
+        type_matched_phi = [phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and phi.split(':')[1] == phi_.split(':')[1]]
+        if not type_matched_phi:
+            return True
+        for x in type_matched_phi:
+            if x == phi:
                 return True
+        log(f'*{phi}. ')
 
     def has_interpretable_phi_features(self):
-        for f in self.head().features:
-            if f.startswith('iPHI:'):
-                return True
+        return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
 
     def cutoff_point_for_last_resort_extraposition(self):
         return self.primitive() and self.is_adjoinable() and self.aunt() and \
@@ -730,7 +713,7 @@ class PhraseStructure:
     def is_possible_antecedent(self, antecedent):
         if antecedent and not antecedent.find_me_elsewhere:
             phi_to_check = {phi for phi in self.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER'}
-            phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if feature_check(strip_i(phi1), phi2)}
+            phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if feature_check(i(phi1), phi2)}
             return phi_to_check == phi_checked
 
     def special_rule(self, x):

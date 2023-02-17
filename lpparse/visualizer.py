@@ -32,7 +32,6 @@ class Visualizer:
 
     def initialize(self, settings):
         self.image_output = True
-        self.stop_after_each_image = settings['image_parameter_stop_after_each_image']
         self.show_words = settings['image_parameter_show_words']
         self.nolabels = settings['image_parameter_nolabels']
         self.spellout = settings['image_parameter_spellout']
@@ -45,9 +44,8 @@ class Visualizer:
     def draw(self, ps):
         self.project_to_plane(ps)
         win = ProduceGraphicOutput(ps, self)
+        pyglet.clock.schedule_once(win.terminate, 0.1)
         pyglet.app.run()
-        if not self.stop_after_each_image:
-            win.close()
 
     def project_to_plane(self, ps):
         ps.x = 0
@@ -106,9 +104,9 @@ class Visualizer:
         return max_overlap
 
     def get_coordinate_set(self, N, coordinate_set):
-        min_safety_window = 0.4
-        coordinate_set.add((N.x-min_safety_window, N.y))  # x-coordinate + safety window to prevent text overlap
-        coordinate_set.add((N.x+min_safety_window, N.y))  # x-coordinate + safety window to prevent text overlap
+        min_safety_window = 0.2                             # How much stretching is done
+        coordinate_set.add((N.x-min_safety_window, N.y))    # x-coordinate + safety window to prevent text overlap
+        coordinate_set.add((N.x+min_safety_window, N.y))    # x-coordinate + safety window to prevent text overlap
         if N.primitive():
             if self.show_glosses or self.spellout or self.show_features:
                 coordinate_set |= self.safety_window_coordinate_update(N)
@@ -122,7 +120,7 @@ class Visualizer:
         s = set()
         width = 0
         if self.show_glosses:
-            width += len(N.gloss()) / 8
+            width += len(N.gloss()) / 6
         if self.count_features(N) > 0:
             width += 1
         s.add((N.x - width, N.y))
@@ -157,58 +155,34 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.x_offset = 0  # Defined later
         self.y_offset = 0  # Defined later
         # Define the margins
-        self.margins = (200 * self.scale)
+        self.margins = (150 * self.scale)
         self.file_identifier = self.visualizer.file_identifier
         self.mouse_position_x = 0
         self.mouse_position_y = 0
+        self.max_x_value = 0
+        self.max_y_value = 0
         self.mouse_over_node = None
         self.selected_node = None
         self.circle = None
         self.line = None
+        self.window_width = 1
+        self.window_height = 1
+        self.top_node_position = 0
+
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
-        if self.visualizer.show_words:
-            self.margins += (10 * self.scale)
-        if self.visualizer.nolabels and not self.visualizer.show_words:
-            self.margins += (10 * self.scale)
-        if self.visualizer.show_glosses:
-            self.margins += (10 * self.scale)
 
-        width, height = self.determine_window_size(ps)
-        super().__init__(width=width, height=height, caption='LF interface', visible=False)
+        self.window_width, self.window_height = self.determine_window_size(ps)
+        super().__init__(width=self.window_width, height=self.window_height, caption='LF interface', visible=False)
+        self.background_image = pyglet.image.SolidColorImagePattern((255, 255, 255, 255)).create_image(self.window_width, self.window_height)
 
     def determine_window_size(self, ps):
         left, right, depth = self.get_tree_size(ps, 0, 0, 0)
-        width = (right - left) * self.x_grid + self.margins
-        height = abs(depth * self.y_grid) + self.margins
-        self.top_node_position = width / (abs(left) + abs(right)) * abs(left) + 100
-        self.x_offset = self.top_node_position  # Position of the highest node
-        self.y_offset = height - (30 * self.scale) # How much extra room above the highest node (for highest label)
+        width = (abs(right) + abs(left)) * self.x_grid + self.margins
+        height = abs(depth * self.y_grid) + self.y_grid/2 + self.margins
+        self.x_offset = width / 2 - (right - (abs(left) + abs(right))/2) * self.x_grid   # Position of the highest node
+        self.y_offset = height - self.y_grid  # How much extra room above the highest node (for highest label)
         return int(width), int(height)
-
-    def on_key_press(self, symbol, modifiers):
-        move_x = 0
-        move_y = 0
-        if symbol == pyglet.window.key.S:
-            self.save_image()
-            print('Image saved.')
-            self.close()
-            return
-        elif symbol == pyglet.window.key.R:
-            if self.selected_node:
-                self.visualizer.project_to_plane(self.selected_node.top())
-        elif symbol == 65361 and self.selected_node:
-            move_x = - 0.5
-        elif symbol == 65363:
-            move_x = + 0.5
-        elif symbol == 65362:
-            move_y = + 0.5
-        elif symbol == 65364:
-            move_y = - 0.5
-
-        if move_x != 0 or move_y != 0:
-            self.visualizer.move_node(move_x, move_y, self.selected_node)
-            self.visualizer.lateral_stretch(self.selected_node.top())
 
     def save_image(self):
         pyglet.image.get_buffer_manager().get_color_buffer().save(self.visualizer.file_identifier)
@@ -216,33 +190,17 @@ class ProduceGraphicOutput(pyglet.window.Window):
     def update(self):
         pass
 
-    def on_mouse_motion(self, x, y, button, modifiers):
-        self.mouse_position_x = x
-        self.mouse_position_y = y
-
-    def on_mouse_press(self, x, y, button, modifiers):
-        if self.mouse_over_node:
-            self.selected_node = self.mouse_over_node
-        else:
-            self.selected_node = None
-
-    def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
-        move_x = 0
-        move_y = 0
-        if self.selected_node:
-            if buttons & pyglet.window.mouse.LEFT:
-                move_x = dx/self.x_grid
-                move_y = dy/self.y_grid
-            if move_x != 0 or move_y != 0:
-                self.visualizer.move_node(move_x, move_y, self.selected_node)
-                self.visualizer.lateral_stretch(self.selected_node.top())
-
     # Recursive projection function
     def show_in_window(self, ps):
 
         # Mother node position
         X1 = self.x_offset + ps.x * self.x_grid
         Y1 = self.y_offset + ps.y * self.y_grid
+
+        if X1 > self.max_x_value:
+            self.max_x_value = X1
+        if Y1 > self.max_y_value:
+            self.max_y_value = Y1
 
         # Prevent drawing outside of window boundaries
         if X1 < 0:
@@ -399,7 +357,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50))
         # Adjuncts are marked by double line
         if ps.left.adjunct:
-            line2 = shapes.Line(X1 + (5 * self.scale), Y1, X2 + (5 * self.scale), Y2, width=2, color=(50, 50, 50))
+            line2 = shapes.Line(X1 + (2 * self.scale), Y1 - 2 * self.scale, X2 + (2 * self.scale), Y2 - 2 * self.scale, width=2, color=(50, 50, 50))
             line2.draw()
         line.draw()
 
@@ -449,8 +407,12 @@ class ProduceGraphicOutput(pyglet.window.Window):
         return left, right, depth
 
     def on_draw(self):
+        self.clear()
+        self.background_image.blit(0, 0)
         self.mouse_over_node = None
-        self.show_in_window(self.phrase_structure)
+        # self.set_size(int(self.max_x_value), int(self.max_y_value))
 
-        if not self.visualizer.stop_after_each_image:
-            self.save_image()
+    def terminate(self, dt):
+        self.show_in_window(self.phrase_structure)
+        self.save_image()
+        self.close()
