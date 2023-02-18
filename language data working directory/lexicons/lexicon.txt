@@ -358,8 +358,8 @@ tehdäkse	:: teke-#v#KSE/inf
 tehtiin		:: teke-#impass#T/fin#tVVn LANG:FI
 tee			:: teke-#v#T/fin LANG:FI
 tee			:: teke-#v#T LANG:FI
-teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
-teke2-		:: V -COMP:A/inf ASP:BOUNDED -COMP:v PF:teke- LF:make LANG:FI
+teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf COMP:v PF:teke- LF:make LANG:FI
+teke2-		:: V -COMP:A/inf -COMP:v PF:teke- LF:make LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
 tyttö-		:: PF:tyttö LF:girl N LANG:FI
 työtä		:: työ-#φ#sg#3p#r_expression#[par] LANG:FI
@@ -466,9 +466,9 @@ nne		::	inflectional PHI/PF EF:φ -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PH
 [gen]		:: inflectional GEN TAIL:Inf,!COMP:* adjoinable -float LANG:FI
 [par]   	:: inflectional PAR TAIL:ARG,-PHI/PF adjoinable LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
-[dat]		:: inflectional DAT TAIL:*φ adjoinable
-[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:PHI TAIL:*POL:NEG adjoinable LANG:FI
-[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:PHI TAIL:*POL:NEG adjoinable LANG:FI
+[dat]		:: inflectional DAT TAIL:φ adjoinable
+[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:PHI/PF TAIL:*POL:NEG adjoinable LANG:FI
+[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:PHI/PF TAIL:*POL:NEG adjoinable LANG:FI
 [acc(t)]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
 [acc(0)]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
 # B. Semantic cases

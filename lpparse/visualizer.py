@@ -278,13 +278,14 @@ class ProduceGraphicOutput(pyglet.window.Window):
             for feature_pattern in self.visualizer.show_features:
                 for i, lexical_feature in enumerate(ps.features):
                     if re.match(feature_pattern, lexical_feature):
-                        feature_str += f'[{self.abbreviate_feature(lexical_feature)}]'
+                        if self.abbreviate_feature(lexical_feature) not in feature_str:
+                            feature_str += f'[{self.abbreviate_feature(lexical_feature)}]'
                         if len(feature_str) > 7:
                             label_stack.append((feature_str, 'FEATURE'))
                             feature_str = ''
-                if feature_str != '':
-                    label_stack.append((feature_str, 'FEATURE'))
-                    feature_str = ''
+            if feature_str != '':
+                label_stack.append((feature_str, 'FEATURE'))
+                feature_str = ''
 
         return label_stack
 
@@ -292,24 +293,15 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if 'PHI:' in feature:
             phi, typ, value = feature.split(':')
             if phi == 'iPHI':
-                prefix = 'i'
-            else:
-                prefix = ''
-            if feature[-1] == '_':
-                return prefix + typ + '?'
-
-            if typ == 'NUM':
-                return prefix + value
-            if typ == 'PER':
-                return prefix + value + 'P'
-            if typ == 'GEN':
-                return prefix + value
-            if typ == 'DET':
-                return prefix + value
-            if typ == 'HUM':
-                return prefix + value
-            if typ == 'PRON':
-                return prefix + 'PRO'
+                return 'iφ'
+            if phi == 'PHI' and value == '_':
+                return 'φ‗'
+            if phi == 'PHI' and value != '_':
+                return 'φ'
+        if feature == 'PHI/PF':
+            return 'ΦPF'
+        if feature == 'PHI/LF':
+            return 'ΦLF'
         return feature
 
     def draw_node_label(self, ps, X1, Y1, label_stack):
@@ -323,8 +315,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
             else:
                 font_size = 15 * self.scale
             if style == 'FEATURE':
-                font_size = 7 * self.scale
-                line_space = 0.35
+                font_size = 10 * self.scale
+                line_space = 0.8
             else:
                 line_space = 1
             if style == 'PHONOLOGY':

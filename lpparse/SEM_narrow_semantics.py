@@ -115,7 +115,7 @@ class NarrowSemantics:
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
-                if ps.phi_needs_valuation():
+                if ps.phi_needs_valuation() and not ps.referential():
                     self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.recover_arguments(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
@@ -173,15 +173,12 @@ class NarrowSemantics:
                 return True
 
     def get_referential_index_tuples(self, ps, space_query=''):
-        idx_lst = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
-        if space_query == '':
-            return idx_lst
-        else:
-            lst = [(idx, space) for idx, space in idx_lst if space == space_query]
-            if lst:
-                return lst[0]
-            else:
-                return None, None
+        return [(idx, space) for idx, space in [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX'] if space == space_query or space_query == '']
+
+    def get_referential_index_tuple(self, ps, space_query):
+        for idx, space in [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']:
+            if space == space_query:
+                return idx, space
 
     def interpret_tail_features(self, ps):
         def in_scope_of(ps, feature_set):
@@ -212,7 +209,7 @@ class NarrowSemantics:
         return dict
 
     def has_referential_index(self, ps, space_query=''):
-        for idx, space in self.get_referential_index_tuples(ps):
+        for idx, space in self.get_referential_index_tuples(ps, space_query):
             if space_query == '':
                 return True
             else:

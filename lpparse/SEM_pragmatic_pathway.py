@@ -60,7 +60,7 @@ class Discourse:
     def calculate_information_structure(self, root_node, semantic_interpretation):
         if root_node.finite():
             log('\n\t\tCalculating information structure...')
-            semantic_interpretation['Information structure'] = self.create_topic_gradient(self.arguments_of_proposition(root_node))
+            semantic_interpretation['Information structure'] = self.create_topic_gradient(self.collect_arguments(root_node))
             log(f'{semantic_interpretation["Information structure"]}')
             self.compute_speaker_attitude(root_node)
 
@@ -80,30 +80,19 @@ class Discourse:
                     topic_lst.append(topic_gradient[key]['Name'])
         return {'Marked topics': marked_topic_lst, 'Neutral gradient': topic_lst, 'Marked focus': marked_focus_lst}
 
-    def arguments_of_proposition(self, ps):
-        scope = self.locate_proposition(ps)
-        if not scope:
-            return set()
-        return self.collect_arguments(ps, scope)
-
-    def collect_arguments(self, ps, scope):
+    def collect_arguments(self, ps):
         arguments = set()
-        if ps.complex() and not self.out_of_proposition_scope(ps, scope):
-            if self.is_relevant_for_information_structure(ps.left.head()):
+        if ps.complex():
+            if self.narrow_semantics.get_referential_index_tuple(ps.left.head(), 'QND'):
                 arguments.add(ps.left.head())
-            if self.is_relevant_for_information_structure(ps.right.head()):
+            if self.narrow_semantics.get_referential_index_tuple(ps.right.head(), 'QND'):
                 arguments.add(ps.right.head())
             if ps.right.adjunct:
-                arguments = arguments | self.collect_arguments(ps.right, scope)
-                arguments = arguments | self.collect_arguments(ps.left, scope)
+                arguments = arguments | self.collect_arguments(ps.right)
+                arguments = arguments | self.collect_arguments(ps.left)
             else:
-                arguments = arguments | self.collect_arguments(ps.right, scope)
+                arguments = arguments | self.collect_arguments(ps.right)
         return arguments
-
-    def is_relevant_for_information_structure(self, ps):
-        if ps.finite_tense():
-            return False
-        return (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
 
     def out_of_proposition_scope(self, ps, scope):
         if ps.left.primitive():

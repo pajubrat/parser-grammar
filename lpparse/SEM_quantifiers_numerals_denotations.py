@@ -56,7 +56,7 @@ class QuantifiersNumeralsDenotations:
                 L2 = self.calculate_possible_denotations_(ps.right)
             else:
                 if self.narrow_semantics.has_referential_index(ps, 'QND'):
-                    idx, space = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
+                    idx, space = self.narrow_semantics.get_referential_index_tuple(ps, 'QND')
                     self.inventory[idx]['Denotations'] = self.create_all_denotations(ps)
                     log(f'\n\t\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
                     return [(idx, f'{ps.illustrate()}', ps, self.inventory[idx]['Denotations'])]
