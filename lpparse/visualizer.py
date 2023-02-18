@@ -298,10 +298,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return 'φ‗'
             if phi == 'PHI' and value != '_':
                 return 'φ'
-        if feature == 'ΦPF':
-            return 'ΦPF'
-        if feature == 'ΦLF':
-            return 'ΦLF'
         return feature
 
     def draw_node_label(self, ps, X1, Y1, label_stack):
