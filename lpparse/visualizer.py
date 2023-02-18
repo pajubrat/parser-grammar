@@ -298,9 +298,9 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return 'φ‗'
             if phi == 'PHI' and value != '_':
                 return 'φ'
-        if feature == 'PHI/PF':
+        if feature == 'ΦPF':
             return 'ΦPF'
-        if feature == 'PHI/LF':
+        if feature == 'ΦLF':
             return 'ΦLF'
         return feature
 

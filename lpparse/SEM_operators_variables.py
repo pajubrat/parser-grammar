@@ -54,7 +54,7 @@ class OperatorVariableModule:
                 semantic_interpretation['Operator bindings'].append(f'Operator {binding["Head"].illustrate()}[{operator_feature}] bound by speaker.')
 
     def project_operator_objects_into_discourse_inventory(self, binding):
-        idx, space = self.narrow_semantics.get_referential_index_tuples(binding["Head"], 'OP')
+        idx, space = self.narrow_semantics.get_referential_index_tuple(binding["Head"], 'OP')
         if idx:
             self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = binding["Head"]
 

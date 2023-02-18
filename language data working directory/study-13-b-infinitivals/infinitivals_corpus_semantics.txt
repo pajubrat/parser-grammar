@@ -1,0 +1,4985 @@
+@  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-13-b-infinitivals', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-13-b-infinitivals', 'test_corpus_file': 'infinitivals_corpus.txt', 'only_first_solution': True, 'datatake_images': False, 'datatake_full': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'show_features': [], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-01-01 19:22:06.772797
+@  Test sentences language data working directory\study-13-b-infinitivals\infinitivals_corpus.txt.
+@  Logs language data working directory\study-13-b-infinitivals\infinitivals_corpus_log.txt.
+@  Lexicon language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes language data working directory\lexicons\ug_morphemes.txt.
+@ 
+1.  John admires Mary 
+
+	[[D John]:1 [C.T [__:1 [v [admire [D Mary]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/C(C.T ʻadmire v tenseʼ)/John', 'Agent/v(v ʻ_vʼ)/John', 'Patient/V(admire ʻadmireʼ)/Mary']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, [D Mary] ~ 8, Weight 1
+	[D John] ~ 8, [D Mary] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D John]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Mary
+			Reference: [D Mary]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: admire
+			Referring constituent: admire
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D John]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: admire
+			Referring constituent: admire
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Mary
+			Reference: [D Mary]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+2.  who admires John 
+
+	[[D who]:1 [C.T [__:1 [v [admire [D John]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/C(C.T ʻadmire v tenseʼ)/who', 'Agent/v(v ʻ_vʼ)/who', 'Patient/V(admire ʻadmireʼ)/John']
+	DIS-features: [('DIS:WH', 'C.T'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator D(OP:WH) bound by C.T(OP:WH)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D who] ~ 2, [D John] ~ 8, Weight 1
+	[D who] ~ 8, [D John] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: ['OP:WH']
+			Reference: [D who]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D John]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: admire
+			Referring constituent: admire
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: ['OP:WH']
+			Reference: [D who]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: admire
+			Referring constituent: admire
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D John]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+3.  who John admires 
+
+	[[D who]:1 [C [[D John]:3 [C.T [__:3 [v [__:1 admire]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/C(C.T ʻadmire v tenseʼ)/John', 'Agent/v(v ʻ_vʼ)/John', 'Agent/V(admire ʻadmireʼ)/who']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator D(OP:WH) bound by C(OP:WH)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D John] ~ 2, [D who] ~ 6, Weight 1
+	[D John] ~ 6, [D who] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '6']
+			Operator: []
+			Reference: [D John]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 5 ['§Thing'] in QND
+			Denotations: ['2', '6']
+			Operator: ['OP:WH']
+			Reference: [D who]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: admire
+			Referring constituent: admire
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D John]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Thing'] in GLOBAL
+			Operator: ['OP:WH']
+			Reference: [D who]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: admire
+			Referring constituent: admire
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+4.  Pekka ihailee Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻadmire v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['8']
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+5. *Merjaa ihailee Pekka 
+
+6.  Pekka ihailee Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻadmire v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['8']
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+7.  Pekka näki hänet 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+8. *Pekka käski hänen lähteä 
+
+9.  Pekka käski lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(käske- ʻorderʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+10.  Pekka halusi lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+11. *Pekka halusi hänen lähteä 
+
+12.  Pekka uskoi hänen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(usko- ʻbelieveʼ)/Pekka', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+13. *Pekka uskoi 
+
+14.  Pekka nukkui 
+
+	[<φ Pekka>:1 [T [<__>:1 nukku-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+15. *Pekka nukkui hänet 
+
+16. *Pekka käski hänen lähteä 
+
+17. *Pekka käski hänen lähteänsä 
+
+18. *Pekka käski hänen lähteä#[nsA] 
+
+19.  Pekka käski lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(käske- ʻorderʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+20. *Pekka käski lähteä#[nsA] 
+
+21. *Pekka halusi hänen lähteä 
+
+22. *Pekka halusi hänen lähteä#[nsA] 
+
+23.  Pekka halusi lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+24. *Pekka halusi lähteä#[nsA] 
+
+25. *Pekka uskoi hänen lähteä 
+
+26. *Pekka uskoi hänen lähteä#[nsA] 
+
+27. *Pekka uskoi lähteä 
+
+28. *Pekka uskoi lähteä#[nsA] 
+
+29. *Pekka näki hänet hänen lähteä 
+
+30. *Pekka näki hänet hänen lähteä#[nsA] 
+
+31.  Pekka näki hänet lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [-(t)A lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(näke- ʻseeʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+32. *Pekka näki hänet hänen lähteä#[nsA] 
+
+33. *Pekka nukkui hänen lähteä 
+
+34. *Pekka nukkui hänen lähteä#[nsA] 
+
+35. *Pekka nukkui lähteä 
+
+36. *Pekka nukkui lähteä#[nsA] 
+
+37. *Pekka käski hänen lähtevän 
+
+38. *Pekka käski hänen lähtevän#[nsA] 
+
+39. *Pekka käski lähtevän 
+
+40. *Pekka käski lähtevän#[nsA] 
+
+41.  Pekka halusi hänen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [[D hän] [-vAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 9 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+42. *Pekka halusi hänen lähtevän#[nsA] 
+
+43. *Pekka halusi lähtevän 
+
+44. *Pekka halusi lähtevän#[nsA] 
+
+45.  Pekka uskoi hänen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(usko- ʻbelieveʼ)/Pekka', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+46.  Pekka uskoi hänen lähtevän#[nsA] 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/TP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-vAn) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 12, pro(-vAn) ~ 12, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 11 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 13 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 12 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 14 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+47. *Pekka uskoi lähtevän 
+
+48.  Pekka uskoi lähtevän#[nsA] 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻleave toʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/TP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 10, pro(-vAn) ~ 10, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '10']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 9 ['§Thing'] in QND
+			Denotations: ['2', '10']
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 7 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 10 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+49.  Pekka näki hänet hänen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(näke- ʻseeʼ)/Pekka', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D hän] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '10']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '10']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 9 ['§Thing'] in QND
+			Denotations: ['2', '8', '10']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 11 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 13 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 12 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 14 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+50.  Pekka näki hänet hänen lähtevän#[nsA] 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/TP(pro)', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/TP(pro)']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 10, pro(-vAn) ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 14, pro(-vAn) ~ 14, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '10', '14']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '10', '14']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 9 ['§Thing'] in QND
+			Denotations: ['2', '8', '10', '14']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 13 ['§Thing'] in QND
+			Denotations: ['2', '8', '10', '14']
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 11 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 15 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 12 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 14 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 16 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+51. *Pekka näki hänet lähtevän 
+
+52.  Pekka näki hänet hänen lähtevän#[nsA] 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/TP(pro)', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/TP(pro)']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 10, pro(-vAn) ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 14, pro(-vAn) ~ 14, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '10', '14']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '10', '14']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 9 ['§Thing'] in QND
+			Denotations: ['2', '8', '10', '14']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 13 ['§Thing'] in QND
+			Denotations: ['2', '8', '10', '14']
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 11 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 15 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 12 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 14 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 16 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+53. *Pekka nukkui hänen lähtevän 
+
+54. *Pekka nukkui hänen lähtevän#[nsA] 
+
+55. *Pekka nukkui lähtevän 
+
+56. *Pekka nukkui lähtevän#[nsA] 
+
+57. *Pekka käski hänen lähtemässä 
+
+58. *Pekka käski hänen lähtemään 
+
+59. *Pekka käski hänen lähtemästä 
+
+60. *Pekka käski hänen lähtemällä 
+
+61. *Pekka käski hänen lähtemättä 
+
+62. *Pekka käski hänen lähtemässä#[nsA] 
+
+63. *Pekka käski hänen lähtemään#[nsA] 
+
+64. *Pekka käski hänen lähtemästä#[nsA] 
+
+65. *Pekka käski hänen lähtemällä#[nsA] 
+
+66. *Pekka käski hänen lähtemättä#[An] 
+
+67. *Pekka käski lähtemässä 
+
+68.  Pekka käski lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-mAAn lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(käske- ʻorderʼ)/Pekka', 'Agent/Inf(-mAAn ʻleave toʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 7 ['§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAAn
+			Referring constituent: -mAAn
+			Semantic space: PRE
+			Semantic type: ['§Unsaturated']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 8 ['§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAAn
+			Referring constituent: -mAAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Unsaturated']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+69. *Pekka käski lähtemästä 
+
+70. *Pekka käski lähtemällä 
+
+71. *Pekka käski lähtemättä 
+
+72. *Pekka käski lähtemässä#[An] 
+
+73. *Pekka käski lähtemään#[nsA] 
+
+74. *Pekka käski lähtemästä#[An] 
+
+75. *Pekka käski lähtemällä#[An] 
+
+76. *Pekka käski lähtemättä#[An] 
+
+77. *Pekka halusi hänen lähtemässä 
+
+78. *Pekka halusi hänen lähtemään 
+
+79. *Pekka halusi hänen lähtemästä 
+
+80. *Pekka halusi hänen lähtemällä 
+
+81. *Pekka halusi hänen lähtemättä 
+
+82. *Pekka halusi hänen lähtemässä#[An] 
+
+83. *Pekka halusi hänen lähtemään#[nsA] 
+
+84. *Pekka halusi hänen lähtemästä#[An] 
+
+85. *Pekka halusi hänen lähtemällä#[An] 
+
+86. *Pekka halusi hänen lähtemättä#[An] 
+
+87. *Pekka halusi lähtemässä 
+
+88.  Pekka halusi lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-mAAn lähte-]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/Inf(-mAAn ʻleave toʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 7 ['§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAAn
+			Referring constituent: -mAAn
+			Semantic space: PRE
+			Semantic type: ['§Unsaturated']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 8 ['§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAAn
+			Referring constituent: -mAAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Unsaturated']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+89. *Pekka halusi lähtemästä 
+
+90. *Pekka halusi lähtemällä 
+
+91. *Pekka halusi lähtemättä 
+
+92. *Pekka halusi lähtemässä#[An] 
+
+93. *Pekka halusi lähtemään#[nsA] 
+
+94. *Pekka halusi lähtemästä#[An] 
+
+95. *Pekka halusi lähtemällä#[An] 
+
+96. *Pekka halusi lähtemättä#[An] 
+
+97. *Pekka uskoi hänen lähtemässä 
+
+98. *Pekka uskoi hänen lähtemään 
+
+99. *Pekka uskoi hänen lähtemästä 
+
+100. *Pekka uskoi hänen lähtemällä 
+
+101. *Pekka uskoi hänen lähtemättä 
+
+102. *Pekka uskoi hänen lähtemässä#[An] 
+
+103. *Pekka uskoi hänen lähtemään#[nsA] 
+
+104. *Pekka uskoi hänen lähtemästä#[An] 
+
+105. *Pekka uskoi hänen lähtemällä#[An] 
+
+106. *Pekka uskoi hänen lähtemättä#[An] 
+
+107. *Pekka uskoi lähtemässä 
+
+108. *Pekka uskoi lähtemään 
+
+109. *Pekka uskoi lähtemästä 
+
+110. *Pekka uskoi lähtemällä 
+
+111. *Pekka uskoi lähtemättä 
+
+112. *Pekka uskoi lähtemässä#[An] 
+
+113. *Pekka uskoi lähtemään#[nsA] 
+
+114. *Pekka uskoi lähtemästä#[An] 
+
+115. *Pekka uskoi lähtemällä#[An] 
+
+116. *Pekka uskoi lähtemättä#[An] 
+
+117. *Pekka näki hänet hänen lähtemässä 
+
+118. *Pekka näki hänet hänen lähtemään 
+
+119. *Pekka näki hänet hänen lähtemästä 
+
+120. *Pekka esti häntä hänen lähtemästä 
+
+121. *Pekka näki hänet hänen lähtemällä 
+
+122. *Pekka näki hänet hänen lähtemättä 
+
+123. *Pekka näki hänet hänen lähtemässä#[An] 
+
+124. *Pekka näki hänet hänen lähtemään#[nsA] 
+
+125. *Pekka näki hänet hänen lähtemästä#[An] 
+
+126. *Pekka esti häntä hänen lähtemästä#[An] 
+
+127. *Pekka näki hänet hänen lähtemällä#[An] 
+
+128. *Pekka näki hänet hänen lähtemättä#[An] 
+
+129.  Pekka näki hänet lähtemässä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] <-mAssA lähte->]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-mAssA ʻleave inʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAssA
+			Referring constituent: -mAssA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAssA
+			Referring constituent: -mAssA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+130. *Pekka näki hänet lähtemään 
+
+131. *Pekka näki häntä lähtemään 
+
+132.  Pekka pyysi häntä lähtemään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [pyyda- [[D hän] [-mAAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻask v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(pyyda- ʻaskʼ)/Pekka', 'Agent/Inf(-mAAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: pyyda-
+			Referring constituent: pyyda-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 9 ['§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAAn
+			Referring constituent: -mAAn
+			Semantic space: PRE
+			Semantic type: ['§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: pyyda-
+			Referring constituent: pyyda-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAAn
+			Referring constituent: -mAAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+133. *Pekka näki hänet lähtemästä 
+
+134.  Pekka esti häntä lähtemästä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [estä- [[D hän] <-mAstA lähte->]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻprevent v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(estä- ʻpreventʼ)/hän', 'Agent/Adv(-mAstA ʻleave withoutʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: estä-
+			Referring constituent: estä-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAstA
+			Referring constituent: -mAstA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: estä-
+			Referring constituent: estä-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAstA
+			Referring constituent: -mAstA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+135.  Pekka näki hänet lähtemällä 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-mAllA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-mAllA ʻleave byʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAllA
+			Referring constituent: -mAllA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAllA
+			Referring constituent: -mAllA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+136.  Pekka näki hänet lähtemättä 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-mAttA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-mAttA ʻleave withoutʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAttA
+			Referring constituent: -mAttA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAttA
+			Referring constituent: -mAttA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+137. *Pekka näki hänet lähtemässä#[An] 
+
+138. *Pekka näki hänet lähtemään#[nsA] 
+
+139. *Pekka näki hänet lähtemästä#[An] 
+
+140. *Pekka esti häntä lähtemästä#[nsA] 
+
+141. *Pekka näki hänet lähtemällä#[An] 
+
+142. *Pekka näki hänet lähtemättä#[An] 
+
+143. *Pekka nukkui hänen lähtemässä 
+
+144. *Pekka nukkui hänen lähtemään 
+
+145. *Pekka nukkui hänen lähtemästä 
+
+146. *Pekka nukkui hänen lähtemällä 
+
+147. *Pekka nukkui hänen lähtemättä 
+
+148. *Pekka nukkui hänen lähtemässä#[An] 
+
+149. *Pekka nukkui hänen lähtemään#[nsA] 
+
+150. *Pekka nukkui hänen lähtemästä#[An] 
+
+151. *Pekka nukkui hänen lähtemästä#[An] 
+
+152. *Pekka nukkui hänen lähtemällä#[An] 
+
+153. *Pekka nukkui hänen lähtemättä#[An] 
+
+154. *Pekka nukkui lähtemässä 
+
+155. *Pekka nukkui lähtemään 
+
+156. *Pekka nukkui lähtemästä 
+
+157.  Pekka nukkui lähtemällä 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-mAllA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-mAllA ʻleave byʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAllA
+			Referring constituent: -mAllA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAllA
+			Referring constituent: -mAllA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+158.  Pekka nukkui lähtemättä 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-mAttA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-mAttA ʻleave withoutʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mAttA
+			Referring constituent: -mAttA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mAttA
+			Referring constituent: -mAttA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+159. *Pekka nukkui lähtemässä#[An] 
+
+160. *Pekka nukkui lähtemään#[nsA] 
+
+161. *Pekka nukkui lähtemästä#[An] 
+
+162. *Pekka nukkui lähtemästä#[nsA] 
+
+163. *Pekka nukkui lähtemällä#[An] 
+
+164. *Pekka nukkui lähtemättä#[An] 
+
+165. *Pekka käski hänen lähtien 
+
+166. *Pekka käski hänen lähtien#[nsA] 
+
+167. *Pekka käski lähtien 
+
+168. *Pekka käski lähtien#[nsA] 
+
+169. *Pekka halusi hänen lähtien 
+
+170. *Pekka halusi hänen lähtien#[nsA] 
+
+171. *Pekka halusi lähtien 
+
+172. *Pekka halusi lähtien#[nsA] 
+
+173. *Pekka uskoi hänen lähtien 
+
+174. *Pekka uskoi hänen lähtien#[nsA] 
+
+175. *Pekka uskoi lähtien 
+
+176. *Pekka uskoi lähtien#[nsA] 
+
+177. *Pekka näki hänet hänen lähtien 
+
+178. *Pekka näki hänet hänen lähtien#[nsA] 
+
+179.  Pekka näki hänet lähtien 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-en lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-en ʻleave byʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -en
+			Referring constituent: -en
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -en
+			Referring constituent: -en
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+180. *Pekka näki hänet lähtien#[nsA] 
+
+181. *Pekka nukkui hänen lähtien 
+
+182. *Pekka nukkui hänen lähtien#[nsA] 
+
+183.  Pekka nukkui lähtien 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-en lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-en ʻleave byʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -en
+			Referring constituent: -en
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -en
+			Referring constituent: -en
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+184. *Pekka nukkui lähtien#[nsA] 
+
+185. *Pekka käski hänen lähtiessä 
+
+186. *Pekka käski hänen lähtiessä#[An] 
+
+187. *Pekka käski lähtiessä 
+
+188. *Pekka käski lähtiessä#[An] 
+
+189. *Pekka halusi hänen lähtiessä 
+
+190. *Pekka halusi hänen lähtiessä#[An] 
+
+191. *Pekka halusi lähtiessä 
+
+192. *Pekka halusi lähtiessä#[An] 
+
+193. *Pekka uskoi hänen lähtiessä 
+
+194. *Pekka uskoi hänen lähtiessä#[An] 
+
+195. *Pekka uskoi lähtiessä 
+
+196. *Pekka uskoi lähtiessä#[An] 
+
+197. *Pekka näki hänet hänen lähtiessä 
+
+198. *Pekka näki hänet hänen lähtiessä#[An] 
+
+199.  Pekka näki hänet lähtiessä 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-essA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-essA ʻleave whileʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -essA
+			Referring constituent: -essA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -essA
+			Referring constituent: -essA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+200.  Pekka näki hänet lähtiessä#[An] 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-essA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-essA ʻleave whileʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-essA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-essA) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-essA) ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 11 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Reference: pro(-essA)
+			Referring constituent: -essA
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -essA
+			Referring constituent: -essA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 13 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -essA
+			Referring constituent: -essA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-essA)
+			Referring constituent: -essA
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 14 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+201. *Pekka nukkui hänen lähtiessä 
+
+202. *Pekka nukkui hänen lähtiessä#[An] 
+
+203.  Pekka nukkui lähtiessä 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-essA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-essA ʻleave whileʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -essA
+			Referring constituent: -essA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -essA
+			Referring constituent: -essA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+204.  Pekka nukkui lähtiessä#[An] 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-essA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-essA ʻleave whileʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-essA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-essA) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-essA) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: pro(-essA)
+			Referring constituent: -essA
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -essA
+			Referring constituent: -essA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -essA
+			Referring constituent: -essA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-essA)
+			Referring constituent: -essA
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+205. *Pekka käski hänen lähdettyä 
+
+206. *Pekka käski hänen lähdettyä#[An] 
+
+207. *Pekka käski lähdettyä 
+
+208. *Pekka käski lähdettyä#[An] 
+
+209. *Pekka halusi hänen lähdettyä 
+
+210. *Pekka halusi hänen lähdettyä#[An] 
+
+211. *Pekka halusi lähdettyä 
+
+212. *Pekka halusi lähdettyä#[An] 
+
+213. *Pekka uskoi hänen lähdettyä 
+
+214. *Pekka uskoi hänen lähdettyä#[An] 
+
+215. *Pekka uskoi lähdettyä 
+
+216. *Pekka uskoi lähdettyä#[An] 
+
+217. *Pekka näki hänet hänen lähdettyä 
+
+218. *Pekka näki hänet hänen lähdettyä#[An] 
+
+219. *Pekka näki hänet lähdettyä 
+
+220.  Pekka näki hänet lähdettyä#[An] 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-tUA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-tUA ʻleave afterʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-tUA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-tUA) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-tUA) ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 11 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Reference: pro(-tUA)
+			Referring constituent: -tUA
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -tUA
+			Referring constituent: -tUA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 13 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -tUA
+			Referring constituent: -tUA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-tUA)
+			Referring constituent: -tUA
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 14 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+221. *Pekka nukkui hänen lähdettyä 
+
+222. *Pekka nukkui hänen lähdettyä#[An] 
+
+223. *Pekka nukkui lähdettyä 
+
+224.  Pekka nukkui lähdettyä#[An] 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-tUA lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-tUA ʻleave afterʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-tUA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-tUA) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-tUA) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: pro(-tUA)
+			Referring constituent: -tUA
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -tUA
+			Referring constituent: -tUA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -tUA
+			Referring constituent: -tUA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-tUA)
+			Referring constituent: -tUA
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+225. *Pekka käski hänen lähteäkse 
+
+226. *Pekka käski hänen lähteäkseen 
+
+227. *Pekka käski lähteäkse 
+
+228. *Pekka käski lähteäkseen 
+
+229. *Pekka halusi hänen lähteäkse 
+
+230. *Pekka halusi hänen lähteäkseen 
+
+231. *Pekka halusi lähteäkse 
+
+232. *Pekka halusi lähteäkseen 
+
+233. *Pekka uskoi hänen lähteäkse 
+
+234. *Pekka uskoi hänen lähteäkseen 
+
+235. *Pekka uskoi lähteäkse 
+
+236. *Pekka uskoi lähteäkseen 
+
+237. *Pekka näki hänet hänen lähteäkse 
+
+238. *Pekka näki hänet hänen lähteäkseen 
+
+239. *Pekka näki lähteäkse 
+
+240.  Pekka näki hänet lähteäkseen 
+
+	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-kse lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-kse ʻleave forʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/AdvP(pro)']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-kse) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-kse) ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 11 ['§Thing'] in QND
+			Denotations: ['2', '8', '12']
+			Operator: []
+			Reference: pro(-kse)
+			Referring constituent: -kse
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -kse
+			Referring constituent: -kse
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 13 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: näke-
+			Referring constituent: näke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -kse
+			Referring constituent: -kse
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 12 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-kse)
+			Referring constituent: -kse
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 14 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+241. *Pekka nukkui hänen lähteäkse 
+
+242. *Pekka nukkui hänen lähteäkseen 
+
+243. *Pekka nukkui lähteäkse 
+
+244.  Pekka nukkui lähteäkseen 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-kse lähte->]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-kse ʻleave forʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/AdvP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-kse) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-kse) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: pro(-kse)
+			Referring constituent: -kse
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -kse
+			Referring constituent: -kse
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -kse
+			Referring constituent: -kse
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-kse)
+			Referring constituent: -kse
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+245.  Pekka halusi ihailla Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A [v [ihaile- [φ Merja]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 12, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 11 ['§Thing'] in QND
+			Denotations: ['12']
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 12 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+246. *Merjaa halusi ihailla Pekka 
+
+247.  Pekka uskoi ihailevan#[nsA] Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn [v [ihaile- [φ Merja]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/TP(pro)', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/TP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [φ Merja] ~ 10, Weight 1
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [φ Merja] ~ 16, Weight 1
+	[φ Pekka] ~ 10, pro(-vAn) ~ 10, [φ Merja] ~ 16, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '10']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 9 ['§Thing'] in QND
+			Denotations: ['2', '10', '16']
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 15 ['§Thing'] in QND
+			Denotations: ['10', '16']
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 7 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 11 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 13 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 10 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 12 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 14 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 16 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+248. *Merjaa uskoi ihailevan#[nsA] Pekka 
+
+249.  Pekka halusi ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A [v [ihaile- [D itse]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 12, [D itse] ~ 12, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '12']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 11 ['§Thing'] in QND
+			Denotations: ['2', '12']
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Internal', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: halua-
+			Referring constituent: halua-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Internal', '§Predicate', '§Unsaturated']
+		Object 8 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 12 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+250.  Pekka käski Merjan_gen ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[φ Merja]:2 [-(t)A [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(käske- ʻorderʼ)/InfP(pro)', 'Agent/φ(φ ʻ_phiʼ)/InfP(pro)', 'Agent/v(v ʻ_vʼ)/Merja', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [φ Merja] ~ 14, [D itse] ~ 14, Weight 1
+	[φ Pekka] ~ 14, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '14']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['8', '14']
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 13 ['§Thing'] in QND
+			Denotations: ['2', '8', '14']
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 14 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+251.  Pekka käski hänen ihailla itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[D hän]:2 [-(t)A [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(käske- ʻorderʼ)/InfP(pro)', 'Agent/v(v ʻ_vʼ)/hän', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 14, [D itse] ~ 14, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D itse] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '14']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '14']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 13 ['§Thing'] in QND
+			Denotations: ['2', '8', '14']
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§External', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: käske-
+			Referring constituent: käske-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§External', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 14 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+252.  Pekka uskoi ihailevansa itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn [v [ihaile- [D itse]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/TP(pro)', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [D itse] ~ 2, Weight 1
+	[φ Pekka] ~ 10, pro(-vAn) ~ 10, [D itse] ~ 10, Weight 1
+	[φ Pekka] ~ 16, pro(-vAn) ~ 16, [D itse] ~ 16, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '10', '16']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 9 ['§Thing'] in QND
+			Denotations: ['2', '10', '16']
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 15 ['§Thing'] in QND
+			Denotations: ['2', '10', '16']
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 7 ['§Tense', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: PRE
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 11 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 13 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Tense', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -vAn
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Tense', '§Unsaturated']
+		Object 10 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-vAn)
+			Referring constituent: -vAn
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 12 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 14 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 16 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+253.  Pekka uskoi Merjan_gen ihailevan itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[φ Merja]:2 [-vAn [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Merja', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [φ Merja] ~ 14, [D itse] ~ 14, Weight 1
+	[φ Pekka] ~ 14, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '14']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['8', '14']
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 13 ['§Thing'] in QND
+			Denotations: ['2', '8', '14']
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 14 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+254.  Pekka uskoi hänen ihailevan itseään 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän]:2 [-vAn [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/hän', 'Patient/V(ihaile- ʻadmireʼ)/itse']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D itse] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 14, [D itse] ~ 14, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, [D itse] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8', '14']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8', '14']
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 13 ['§Thing'] in QND
+			Denotations: ['2', '8', '14']
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: usko-
+			Referring constituent: usko-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D hän]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 14 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D itse]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+255.  se' sinun tekemä#[si] kello hävisi 
+
+	[<se [<D sinä> [[-mA [v teke-]] [φ kello]]]>:1 [T [<__>:1 häviä-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se   sinä   -mA  v teke-  kello', 'Agent/A(-mA ʻ_A_relʼ)/sinä', 'Agent/v(v ʻ_vʼ)/AP(pro)', 'Agent/V(teke- ʻdoʼ)/AP(pro)', 'Agent/φ(φ ʻ_phiʼ)/AP(pro)', 'Agent/V(häviä- ʻdisappearʼ)/se   sinä   -mA  v teke-  kello']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[se [<D sinä> [[-mA [v teke-]] [φ kello]]]] ~ 2, [D sinä] ~ 4, pro(-mA) ~ 4, [φ kello] ~ 8, Weight 1
+	[se [<D sinä> [[-mA [v teke-]] [φ kello]]]] ~ 2, [D sinä] ~ 4, pro(-mA) ~ 4, [φ kello] ~ 14, Weight 1
+	[se [<D sinä> [[-mA [v teke-]] [φ kello]]]] ~ 2, [D sinä] ~ 8, pro(-mA) ~ 8, [φ kello] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '4', '8', '14']
+			Operator: []
+			Reference: [se [<D sinä> [[-mA [v teke-]] [φ kello]]]]
+			Referring constituent: se
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Thing'] in QND
+			Denotations: ['2', '4', '8', '14']
+			Operator: []
+			Reference: [D sinä]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '4', '8', '14']
+			Operator: []
+			Reference: pro(-mA)
+			Referring constituent: -mA
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 13 ['§Thing'] in QND
+			Denotations: ['2', '4', '8', '14']
+			Operator: []
+			Proper name: kello
+			Reference: [φ kello]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mA
+			Referring constituent: -mA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 9 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: teke-
+			Referring constituent: teke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 15 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: häviä-
+			Referring constituent: häviä-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [se [<D sinä> [[-mA [v teke-]] [φ kello]]]]
+			Referring constituent: se
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D sinä]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mA
+			Referring constituent: -mA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-mA)
+			Referring constituent: -mA
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: teke-
+			Referring constituent: teke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 14 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: kello
+			Reference: [φ kello]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 16 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: häviä-
+			Referring constituent: häviä-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+256.  se' sinun tekemä kello hävisi 
+
+	[<se [[[D sinä]:2 [-mA [__:2 [v teke-]]]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se    sinä  -mA   sinä  v teke-  kello', 'Agent/A(-mA ʻ_A_relʼ)/Generic', 'Agent/v(v ʻ_vʼ)/sinä', 'Agent/V(teke- ʻdoʼ)/sinä', 'Agent/φ(φ ʻ_phiʼ)/AP(pro)', 'Agent/V(häviä- ʻdisappearʼ)/se    sinä  -mA   sinä  v teke-  kello']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 4, [φ kello] ~ 4, Weight 1
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 4, [φ kello] ~ 10, Weight 1
+	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 10, [φ kello] ~ 4, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '4', '10']
+			Operator: []
+			Reference: [se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]]
+			Referring constituent: se
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Thing'] in QND
+			Denotations: ['2', '4', '10']
+			Operator: []
+			Reference: [D sinä]
+			Referring constituent: D
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 9 ['§Thing'] in QND
+			Denotations: ['2', '4', '10']
+			Operator: []
+			Proper name: kello
+			Reference: [φ kello]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 5 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 7 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: teke-
+			Referring constituent: teke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: häviä-
+			Referring constituent: häviä-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]]
+			Referring constituent: se
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [D sinä]
+			Referring constituent: D
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 6 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 8 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: teke-
+			Referring constituent: teke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 10 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: kello
+			Reference: [φ kello]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: häviä-
+			Referring constituent: häviä-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+257.  se' tekemä#[si] kello hävisi 
+
+	[<se [[-mA [v teke-]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se   -mA  v teke-  kello', 'Agent/A(-mA ʻ_A_relʼ)/Generic', 'Agent/v(v ʻ_vʼ)/AP(pro)', 'Agent/V(teke- ʻdoʼ)/AP(pro)', 'Agent/φ(φ ʻ_phiʼ)/AP(pro)', 'Agent/V(häviä- ʻdisappearʼ)/se   -mA  v teke-  kello']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[se [[-mA [v teke-]] [φ kello]]] ~ 2, pro(-mA) ~ 2, [φ kello] ~ 6, Weight 1
+	[se [[-mA [v teke-]] [φ kello]]] ~ 2, pro(-mA) ~ 2, [φ kello] ~ 12, Weight 1
+	[se [[-mA [v teke-]] [φ kello]]] ~ 2, pro(-mA) ~ 6, [φ kello] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '6', '12']
+			Operator: []
+			Reference: [se [[-mA [v teke-]] [φ kello]]]
+			Referring constituent: se
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 5 ['§Thing'] in QND
+			Denotations: ['2', '6', '12']
+			Operator: []
+			Reference: pro(-mA)
+			Referring constituent: -mA
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 11 ['§Thing'] in QND
+			Denotations: ['2', '6', '12']
+			Operator: []
+			Proper name: kello
+			Reference: [φ kello]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -mA
+			Referring constituent: -mA
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 7 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 9 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: teke-
+			Referring constituent: teke-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 13 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: häviä-
+			Referring constituent: häviä-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: [se [[-mA [v teke-]] [φ kello]]]
+			Referring constituent: se
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -mA
+			Referring constituent: -mA
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 6 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-mA)
+			Referring constituent: -mA
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 8 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 10 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: teke-
+			Referring constituent: teke-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 12 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: kello
+			Reference: [φ kello]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 14 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: häviä-
+			Referring constituent: häviä-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+
+258. *se' tekemä kello hävisi 
+
+259. *se' sinua ihaileva tyttö hävisi 
+
+260. *se' sinua ihaileva#[si] tyttö hävisi 
+
+261. *se' ihaileva#[si] tyttö hävisi 
+
+262. *se' ihaileva tyttö hävisi 
+
+263.  Pekka ihailee* Merjaa 
+
+	[<φ Pekka>:1 [Agr [T [<__>:1 [v [ihaile- [φ Merja]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/Agr(Agr ʻadmire v tense Agrʼ)/Pekka', 'Agent/T(T ʻ_tenseʼ)/AgrP(pro)', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(ihaile- ʻadmireʼ)/Merja', 'Agent/φ(φ ʻMerja phiʼ)/Pekka']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['8']
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Unsaturated', '§Valency'] in PRE
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 5 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Unsaturated', '§Valency'] in GLOBAL
+			Operator: []
+			Reference: v
+			Referring constituent: v
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Unsaturated', '§Valency']
+		Object 6 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: ihaile-
+			Referring constituent: ihaile-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Merja
+			Reference: [φ Merja]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+
+
+264. *Pekka näki hänet lähtemässä* 
+
+265.  Pekka nukkui lähteäkseen* 
+
+	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-kse [-(t)A* lähte-]>]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-kse ʻleave to forʼ)/Generic', 'Agent/Inf(-(t)A* ʻ_toʼ)/AdvP(pro)', 'Agent/V(lähte- ʻleaveʼ)/AdvP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-kse) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-kse) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-kse) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+		Object 1 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 7 ['§Thing'] in QND
+			Denotations: ['2', '8']
+			Operator: []
+			Reference: pro(-kse)
+			Referring constituent: -kse
+			Semantic space: QND
+			Semantic type: ['§Thing']
+		Object 3 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 5 ['§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: -kse
+			Referring constituent: -kse
+			Semantic space: PRE
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 9 ['§Unsaturated'] in PRE
+			Operator: []
+			Reference: -(t)A*
+			Referring constituent: -(t)A*
+			Semantic space: PRE
+			Semantic type: ['§Unsaturated']
+		Object 11 ['§Eventive', '§Predicate', '§Unsaturated'] in PRE
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: PRE
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 2 ['§Thing'] in GLOBAL
+			Operator: []
+			Proper name: Pekka
+			Reference: [φ Pekka]
+			Referring constituent: φ
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 4 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: nukku-
+			Referring constituent: nukku-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+		Object 6 ['§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -kse
+			Referring constituent: -kse
+			Semantic space: GLOBAL
+			Semantic type: ['§Predicate', '§Unsaturated']
+		Object 8 ['§Thing'] in GLOBAL
+			Operator: []
+			Reference: pro(-kse)
+			Referring constituent: -kse
+			Semantic space: GLOBAL
+			Semantic type: ['§Thing']
+		Object 10 ['§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: -(t)A*
+			Referring constituent: -(t)A*
+			Semantic space: GLOBAL
+			Semantic type: ['§Unsaturated']
+		Object 12 ['§Eventive', '§Predicate', '§Unsaturated'] in GLOBAL
+			Operator: []
+			Reference: lähte-
+			Referring constituent: lähte-
+			Semantic space: GLOBAL
+			Semantic type: ['§Eventive', '§Predicate', '§Unsaturated']
+
+

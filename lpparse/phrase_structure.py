@@ -453,29 +453,23 @@ class PhraseStructure:
             return {'Fin', 'C', 'PF:C'}
         return set()
 
-    # Agreement mechanism
     def Agree(self):
-        domain = (const for const in self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()))
-        self.value_features(next(domain, None))     # Value from overt phrasal arguments inside the domain
-        self.value_features(self)                   # Value from head itself (pro-elements)
-        self.update_phi_interactions()              # Revised theory of Agree
+        self.value_features(next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), self))
+        self.update_phi_interactions()  # Revised theory of Agree
 
     def value_features(self, goal):
-        if goal:
-            log(f'\n\t\tProbe {self} targets goal {goal} and values ')
-            valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in goal.head().features if self.target_phi_feature(phi, goal)]
-            for incoming_phi, unvalued_counterparty in valuations:
-                self.value_feature(incoming_phi, unvalued_counterparty, goal)
-            if not valuations:
-                log(f'nothing (no useful features acquired). ')
+        log(f'\n\t\t{self} Agree with {goal.illustrate()} and values ')
+        valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in goal.head().features if self.target_phi_feature(phi, goal)]
+        for incoming_phi, unvalued_counterparty in valuations:
+            self.value_feature(incoming_phi, unvalued_counterparty, goal)
 
     def value_feature(self, phi, unvalued_counterparty, goal):
         if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
             self.features.add('*')
-        elif unvalued_counterparty:                 # Unvalued counterparty  exists
+        elif unvalued_counterparty:                 # Unvalued counterparty exists
             self.value(unvalued_counterparty, phi)  # Perform valuation
             if self != goal:                        # Leave a record that Agree/LF has occurred
-                self.features.add('PHI/LF')
+                self.features.add('ΦLF')
 
     # Replace the unvalued feature by the valued one
     def value(self, unvalued_counterparty, phi):
@@ -533,8 +527,8 @@ class PhraseStructure:
 
     def feature_inheritance(self):
         if self.highest_finite_head():
-            log(f'\n\t\t{self} inherited PHI/PF.')
-            self.features.add('!SELF:PHI/PF')
+            log(f'\n\t\t{self} inherited ΦPF.')
+            self.features.add('!SELF:ΦPF')
         if self.check({'?ARG'}):
             if self.selected_by_SEM_internal_predicate():
                 self.features.discard('?ARG')
@@ -1146,16 +1140,13 @@ class PhraseStructure:
         return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
 
     def LF_PHI(self):
-        return self.head().check({'PHI/LF'})
+        return self.head().check({'ΦLF'})
 
     def PF_PHI(self):
-        return self.head().check({'PHI/PF'})
+        return self.head().check({'ΦPF'})
 
     def has_PHI(self):
-        return self.head().check_some({'PHI/PF', 'PHI/LF'})
+        return self.head().check_some({'ΦPF', 'ΦLF'})
 
     def has_PHI_FULL(self):
-        return self.head().check({'PHI/PF', 'PHI/LF'})
-
-
-
+        return self.head().check({'ΦPF', 'ΦLF'})

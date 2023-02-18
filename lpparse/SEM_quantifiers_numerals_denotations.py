@@ -95,7 +95,7 @@ class QuantifiersNumeralsDenotations:
         if self.narrow_semantics.query['PRE']['Accept'](ps) and self.narrow_semantics.query['QND']['Accept'](ps):
 
             # Get referential interpretation from the predicate
-            idx_pred, space_pred = self.narrow_semantics.get_referential_index_tuples(ps, 'QND')
+            idx_pred, space_pred = self.narrow_semantics.get_referential_index_tuple(ps, 'QND')
 
             if idx_pred:
                 # Examine if the predicate has been linked with an argument
@@ -103,7 +103,7 @@ class QuantifiersNumeralsDenotations:
                     if ps == predicate:
 
                         # Get referential interpretation from the argument
-                        idx_arg, space_arg = self.narrow_semantics.get_referential_index_tuples(argument, 'QND')
+                        idx_arg, space_arg = self.narrow_semantics.get_referential_index_tuple(argument, 'QND')
 
                         # Predicate theory only applies if the argument is linked with a reference
                         # (This condition is violated exceptionally if the linked argument is EPP-related filler)

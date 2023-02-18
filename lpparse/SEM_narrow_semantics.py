@@ -115,7 +115,7 @@ class NarrowSemantics:
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
-                if ps.phi_needs_valuation() and not ps.referential():
+                if ps.phi_needs_valuation() and (not ps.referential() or ps.check({'PHI:DET:_'})):
                     self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.recover_arguments(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
@@ -179,6 +179,7 @@ class NarrowSemantics:
         for idx, space in [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']:
             if space == space_query:
                 return idx, space
+        return None, None
 
     def interpret_tail_features(self, ps):
         def in_scope_of(ps, feature_set):

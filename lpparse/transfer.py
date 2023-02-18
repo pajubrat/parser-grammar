@@ -1,7 +1,7 @@
 from support import log, set_logging, is_logging_enabled
 from scrambling_reconstruction import ScramblingReconstruction
 from lexical_interface import LexicalInterface
-
+from EXP_Agreement_variations import AgreementVariations
 
 class Transfer:
     def __init__(self, brain_model):
@@ -10,6 +10,7 @@ class Transfer:
         self.target = None
         self.scrambling_module = ScramblingReconstruction(self.brain_model)
         self.access_lexicon = LexicalInterface(self.brain_model)
+        self.Agree_variations = AgreementVariations(self.brain_model)
         self.name_provider_index = 0
         self.instructions = {'Head':            {'type': 'Head Chain',
                                                  'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere,
@@ -29,7 +30,7 @@ class Transfer:
                                                  'repair': lambda x, y, z: x.feature_inheritance()},
                              'Agree':           {'type': 'Agree',
                                                  'test integrity': lambda x: x.EF(),
-                                                 'repair': lambda x, y, z: x.sister() and x.Agree()},
+                                                 'repair': lambda x, y, z: x.sister() and self.Agree_variations.Agree(x)},
                              'Extraposition':   {'type': 'Extraposition',
                                                  'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
                                                  'repair': lambda x, y, z: x.extrapose(self)},

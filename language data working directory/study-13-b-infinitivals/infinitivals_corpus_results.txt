@@ -1,5 +1,5 @@
 @  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-13-b-infinitivals', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-13-b-infinitivals', 'test_corpus_file': 'infinitivals_corpus.txt', 'only_first_solution': True, 'datatake_images': False, 'datatake_full': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'show_features': [], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2022-12-22 11:03:01.344831
+@  2023-01-01 19:22:06.771798
 @  Test sentences language data working directory\study-13-b-infinitivals\infinitivals_corpus.txt.
 @  Logs language data working directory\study-13-b-infinitivals\infinitivals_corpus_log.txt.
 @  Lexicon language data working directory\lexicons\lexicon.txt.
@@ -17,7 +17,6 @@
 	[D John] ~ 2, [D Mary] ~ 8, Weight 1
 	[D John] ~ 8, [D Mary] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[D John] [T(v,V) D(N)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [D John]
@@ -40,7 +39,6 @@
 	[D who] ~ 2, [D John] ~ 8, Weight 1
 	[D who] ~ 8, [D John] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[D who] [T(v,V) D(N)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [D who]
@@ -63,7 +61,6 @@
 	[D John] ~ 2, [D who] ~ 6, Weight 1
 	[D John] ~ 6, [D who] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[D who] [[D John] T(v,V)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [D John]
@@ -83,7 +80,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) φ(N)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -93,30 +89,8 @@
 	Total Time:1120, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
 	Mean time per word:373, Merge-1:20, 
-5.  Merjaa ihailee Pekka 
+5. *Merjaa ihailee Pekka 
 
-	[<φ Merja>:1 [T [<__>:4 [v [<__>:1 [ihaile- <φ Pekka>:4]]]]]]
-
-	Semantics:
-	Recovery: ['Agent/T(T ʻadmire v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/Pekka', 'Agent/V(ihaile- ʻadmireʼ)/Merja']
-	Speaker attitude: ['Declarative']
-	Assignments: 
-	pro(T) ~ 4, [φ Pekka] ~ 6, [φ Merja] ~ 10, Weight 1
-	pro(T) ~ 6, [φ Pekka] ~ 4, [φ Merja] ~ 10, Weight 1
-	pro(T) ~ 10, [φ Pekka] ~ 6, [φ Merja] ~ 4, Weight 1
-	 (...)
-	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Merja] [T(v,V) φ(N)]]
-
-	Discourse inventory: 
-	Object 4 in GLOBAL: pro(T)
-	Object 6 in GLOBAL: [φ Pekka]
-	Object 10 in GLOBAL: [φ Merja]
-
-	Resources:
-	Total Time:1140, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
-	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:380, Merge-1:34, 
 & 0. Preliminaries (presuppositions of the study)
 
 & 0.1 Case mechanisms
@@ -135,7 +109,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) φ(N)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -163,7 +136,6 @@
 	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
 	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) D(N)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -197,7 +169,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) -(t)A(V)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -222,7 +193,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) -(t)A(V)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -243,8 +213,26 @@
 
 & Grammatical
 
-12. *Pekka uskoi hänen lähtevän 
+12.  Pekka uskoi hänen lähtevän 
 
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(usko- ʻbelieveʼ)/Pekka', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1140, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:285, Merge-1:35, 
 			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf'
 
 & Ungrammatical
@@ -267,7 +255,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] T(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -326,7 +313,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) -(t)A(V)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -377,7 +363,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) -(t)A(V)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -452,8 +437,27 @@
 
 & Ungrammatical
 
-31. *Pekka näki hänet lähteä 
+31.  Pekka näki hänet lähteä 
 
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [-(t)A lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(näke- ʻseeʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1175, Garden Paths:0, Merge:8, Head Chain:19, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:293, Merge-1:47, 
 			'Pekka.nom see.pst.3sg he.acc(t) [leave.A/inf]
 
 & 1.4.4 Embedded Subject absent (with PX)
@@ -542,8 +546,26 @@
 
 & Grammatical
 
-41. *Pekka halusi hänen lähtevän 
+41.  Pekka halusi hänen lähtevän 
 
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [[D hän] [-vAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1195, Garden Paths:0, Merge:8, Head Chain:19, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:298, Merge-1:47, 
 			'Pekka.nom want.pst.3sg he.gen leave.VA/inf'
 
 & 2.2.2 Embedded Subject present (with PX)
@@ -576,16 +598,55 @@
 
 & Grammatical
 
-45. *Pekka uskoi hänen lähtevän 
+45.  Pekka uskoi hänen lähtevän 
 
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(usko- ʻbelieveʼ)/Pekka', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1140, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:285, Merge-1:35, 
 			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf'
 
 & 2.3.2 Embedded Subject present (with PX)
 
 & Ungrammatical
 
-46. *Pekka uskoi hänen lähtevän#[nsA] 
+46.  Pekka uskoi hänen lähtevän#[nsA] 
 
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/TP(pro)']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-vAn) ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 12, pro(-vAn) ~ 12, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 12 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1280, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:320, Merge-1:35, 
 			'Pekka.nom believe.pst.3sg he.gen leave.VA/inf-px/3sg'
 
 & 2.3.3 Embedded Subject absent (without PX)
@@ -611,7 +672,6 @@
 	[φ Pekka] ~ 2, pro(-vAn) ~ 2, Weight 1
 	[φ Pekka] ~ 10, pro(-vAn) ~ 10, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) -vAn(V)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -629,16 +689,61 @@
 
 & Ungrammatical
 
-49. *Pekka näki hänet hänen lähtevän 
+49.  Pekka näki hänet hänen lähtevän 
 
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(näke- ʻseeʼ)/Pekka', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 10, [D hän] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 10 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1600, Garden Paths:0, Merge:10, Head Chain:34, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:320, Merge-1:84, 
 			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.VA/inf'
 
 & 2.4.2 Embedded Subject present (with PX)
 
 & Ungrammatical
 
-50. *Pekka näki hänet hänen lähtevän#[nsA] 
+50.  Pekka näki hänet hänen lähtevän#[nsA] 
 
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/TP(pro)', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/TP(pro)']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 10, pro(-vAn) ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 14, pro(-vAn) ~ 14, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 10 in GLOBAL: [D hän]
+	Object 14 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1740, Garden Paths:0, Merge:10, Head Chain:34, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:348, Merge-1:84, 
 			'Pekka.nom see.pst.3sg he.acc(t) he.gen leave.VA/inf-px/3sg'
 
 & 2.4.3 Embedded Subject absent (without PX)
@@ -653,8 +758,31 @@
 
 & Ungrammatical
 
-52. *Pekka näki hänet hänen lähtevän#[nsA] 
+52.  Pekka näki hänet hänen lähtevän#[nsA] 
 
+	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+
+	Semantics:
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/TP(pro)', 'Agent/T(-vAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/TP(pro)']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 10, pro(-vAn) ~ 10, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [D hän] ~ 14, pro(-vAn) ~ 14, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
+	Object 10 in GLOBAL: [D hän]
+	Object 14 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1740, Garden Paths:0, Merge:10, Head Chain:34, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:348, Merge-1:84, 
 			'Pekka see.pst.3sg he.acc(t) he.gen leave.VA/inf-px/3sg
 
 & 2.5 In connection with intransitive main verb (not selected)
@@ -781,7 +909,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) -mAAn(V)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -924,12 +1051,10 @@
 
 	Semantics:
 	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/Inf(-mAAn ʻleave toʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
-	Aspect: ['Aspectually bounded']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) -mAAn(V)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1207,21 +1332,17 @@
 	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] <-mAssA lähte->]]]]]]
 
 	Semantics:
-	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-mAssA ʻleave inʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
-	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-mAssA ʻleave inʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Aspect: ['Aspectually bounded']
 	Speaker attitude: ['Declarative']
 	Assignments: 
-	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 4, Weight 1
-	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 12, Weight 1
-	pro(T) ~ 4, [φ Pekka] ~ 12, [D hän] ~ 4, Weight 1
-	 (...)
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [[D hän] -mAssA(V)]]]
 
 	Discourse inventory: 
-	Object 4 in GLOBAL: pro(T)
-	Object 6 in GLOBAL: [φ Pekka]
-	Object 12 in GLOBAL: [D hän]
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
 
 	Resources:
 	Total Time:1215, Garden Paths:0, Merge:8, Head Chain:19, Phrasal Chain:0, Feature Chain:0, 
@@ -1245,16 +1366,15 @@
 
 132.  Pekka pyysi häntä lähtemään 
 
-	[<φ Pekka>:1 [T [<__>:1 [v [pyyda- [[D hän] <-mAAn lähte->]]]]]]
+	[<φ Pekka>:1 [T [<__>:1 [v [pyyda- [[D hän] [-mAAn lähte-]]]]]]]
 
 	Semantics:
-	Recovery: ['Agent/T(T ʻask v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(pyyda- ʻaskʼ)/hän', 'Agent/Inf(-mAAn ʻleave toʼ)/Generic', 'Agent/V(lähte- ʻleaveʼ)/Generic']
+	Recovery: ['Agent/T(T ʻask v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(pyyda- ʻaskʼ)/Pekka', 'Agent/Inf(-mAAn ʻleave toʼ)/hän', 'Agent/V(lähte- ʻleaveʼ)/hän']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
 	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [[D hän] -mAAn(V)]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1279,20 +1399,16 @@
 	[<φ Pekka>:1 [T [<__>:1 [v [estä- [[D hän] <-mAstA lähte->]]]]]]
 
 	Semantics:
-	Recovery: ['Agent/T(T ʻprevent v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(estä- ʻpreventʼ)/hän', 'Agent/Adv(-mAstA ʻleave withoutʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
+	Recovery: ['Agent/T(T ʻprevent v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(estä- ʻpreventʼ)/hän', 'Agent/Adv(-mAstA ʻleave withoutʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
 	Speaker attitude: ['Declarative']
 	Assignments: 
-	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 4, Weight 1
-	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 12, Weight 1
-	pro(T) ~ 4, [φ Pekka] ~ 12, [D hän] ~ 4, Weight 1
-	 (...)
+	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
+	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [[D hän] -mAstA(V)]]]
 
 	Discourse inventory: 
-	Object 4 in GLOBAL: pro(T)
-	Object 6 in GLOBAL: [φ Pekka]
-	Object 12 in GLOBAL: [D hän]
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [D hän]
 
 	Resources:
 	Total Time:1185, Garden Paths:0, Merge:8, Head Chain:19, Phrasal Chain:0, Feature Chain:0, 
@@ -1314,7 +1430,6 @@
 	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
 	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:779 [T [<__>:779 [v [näke- [D hän]]]]]] -mAllA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1340,7 +1455,6 @@
 	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
 	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:785 [T [<__>:785 [v [näke- [D hän]]]]]] -mAttA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1466,27 +1580,8 @@
 
 & Grammatical
 
-154.  Pekka nukkui lähtemässä 
+154. *Pekka nukkui lähtemässä 
 
-	[<φ Pekka>:1 [T [<__>:1 [nukku- <-mAssA lähte->]]]]
-
-	Semantics:
-	Recovery: ['Agent/T(T ʻsleep tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(nukku- ʻsleepʼ)/Pekka', 'Agent/Adv(-mAssA ʻleave inʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
-	Speaker attitude: ['Declarative']
-	Assignments: 
-	pro(T) ~ 4, [φ Pekka] ~ 6, Weight 1
-	pro(T) ~ 6, [φ Pekka] ~ 4, Weight 1
-	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(V) -mAssA(V)]]
-
-	Discourse inventory: 
-	Object 4 in GLOBAL: pro(T)
-	Object 6 in GLOBAL: [φ Pekka]
-
-	Resources:
-	Total Time:795, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
-	Agree:0, Feature:0, Adjunct Chain:3, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:265, Merge-1:26, 
 			'#Pekka.nom sleep.pst.3sg leave.MA/inf.ine'
 
 & Ungrammatical
@@ -1513,7 +1608,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:930 [T [<__>:930 nukku-]]] -mAllA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1536,7 +1630,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:934 [T [<__>:934 nukku-]]] -mAttA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1725,7 +1818,6 @@
 	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
 	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1044 [T [<__>:1044 [v [näke- [D hän]]]]]] -en(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1777,7 +1869,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1070 [T [<__>:1070 nukku-]]] -en(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1936,7 +2027,6 @@
 	[φ Pekka] ~ 2, [D hän] ~ 8, Weight 1
 	[φ Pekka] ~ 8, [D hän] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1160 [T [<__>:1160 [v [näke- [D hän]]]]]] -essA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -1966,7 +2056,6 @@
 	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-essA) ~ 12, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1166 [T [<__>:1166 [v [näke- [D hän]]]]]] -essA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2011,7 +2100,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1186 [T [<__>:1186 nukku-]]] -essA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2039,7 +2127,6 @@
 	[φ Pekka] ~ 8, pro(-essA) ~ 2, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1190 [T [<__>:1190 nukku-]]] -essA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2201,7 +2288,6 @@
 	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-tUA) ~ 12, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1282 [T [<__>:1282 [v [näke- [D hän]]]]]] -tUA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2257,7 +2343,6 @@
 	[φ Pekka] ~ 8, pro(-tUA) ~ 2, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1306 [T [<__>:1306 nukku-]]] -tUA(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2419,7 +2504,6 @@
 	[φ Pekka] ~ 2, [D hän] ~ 8, pro(-kse) ~ 12, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1368 [T [<__>:1368 [v [näke- [D hän]]]]]] -kse(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2475,7 +2559,6 @@
 	[φ Pekka] ~ 8, pro(-kse) ~ 2, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1386 [T [<__>:1386 nukku-]]] -kse(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2505,7 +2588,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, [φ Merja] ~ 12, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [-(t)A(v,V) φ(N)]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2519,30 +2601,8 @@
 
 & Grammatical
 
-246.  Merjaa halusi ihailla Pekka 
+246. *Merjaa halusi ihailla Pekka 
 
-	[<φ Merja>:1 [T [<__>:4 [v [halua- [-(t)A [v [<__>:1 [ihaile- <φ Pekka>:4]]]]]]]]]
-
-	Semantics:
-	Recovery: ['Agent/T(T ʻwant v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/V(halua- ʻwantʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/Pekka', 'Agent/V(ihaile- ʻadmireʼ)/Merja']
-	Speaker attitude: ['Declarative']
-	Assignments: 
-	pro(T) ~ 4, [φ Pekka] ~ 6, [φ Merja] ~ 14, Weight 1
-	pro(T) ~ 6, [φ Pekka] ~ 4, [φ Merja] ~ 14, Weight 1
-	pro(T) ~ 14, [φ Pekka] ~ 6, [φ Merja] ~ 4, Weight 1
-	 (...)
-	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Merja] [T(v,V) [-(t)A(v,V) φ(N)]]]
-
-	Discourse inventory: 
-	Object 4 in GLOBAL: pro(T)
-	Object 6 in GLOBAL: [φ Pekka]
-	Object 14 in GLOBAL: [φ Merja]
-
-	Resources:
-	Total Time:1360, Garden Paths:0, Merge:9, Head Chain:20, Phrasal Chain:1, Feature Chain:0, 
-	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:340, Merge-1:65, 
 			'Merja.par want.pst.3sg admire.a/inf Pekka.nom'
 
 & 8.2. VA-infinitival, noncanonical order
@@ -2562,7 +2622,6 @@
 	[φ Pekka] ~ 10, pro(-vAn) ~ 10, [φ Merja] ~ 16, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [-vAn(v,V) φ(N)]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2577,31 +2636,8 @@
 
 & Grammatical
 
-248.  Merjaa uskoi ihailevan#[nsA] Pekka 
+248. *Merjaa uskoi ihailevan#[nsA] Pekka 
 
-	[<φ Merja>:1 [T [<__>:4 [usko- [-vAn [v [<__>:1 [ihaile- <φ Pekka>:4]]]]]]]]
-
-	Semantics:
-	Recovery: ['Agent/T(T ʻbelieve tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/TP(pro)', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/V(ihaile- ʻadmireʼ)/Merja']
-	Speaker attitude: ['Declarative']
-	Assignments: 
-	pro(T) ~ 4, [φ Pekka] ~ 6, pro(-vAn) ~ 6, [φ Merja] ~ 12, Weight 1
-	pro(T) ~ 4, [φ Pekka] ~ 6, pro(-vAn) ~ 6, [φ Merja] ~ 16, Weight 1
-	pro(T) ~ 4, [φ Pekka] ~ 12, pro(-vAn) ~ 12, [φ Merja] ~ 16, Weight 1
-	 (...)
-	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Merja] [T(V) [-vAn(v,V) φ(N)]]]
-
-	Discourse inventory: 
-	Object 4 in GLOBAL: pro(T)
-	Object 6 in GLOBAL: [φ Pekka]
-	Object 12 in GLOBAL: pro(-vAn)
-	Object 16 in GLOBAL: [φ Merja]
-
-	Resources:
-	Total Time:4890, Garden Paths:8, Merge:42, Head Chain:88, Phrasal Chain:4, Feature Chain:0, 
-	Agree:0, Feature:0, Adjunct Chain:12, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:1222, Merge-1:244, 
 			'Merja-par believe.pst.3sg admire-va/inf-px/3sg Pekka.nom'
 
 & 8.2 Binding
@@ -2619,7 +2655,6 @@
 	[φ Pekka] ~ 2, [D itse] ~ 2, Weight 1
 	[φ Pekka] ~ 12, [D itse] ~ 12, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [-(t)A(v,V) D(N)]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2635,7 +2670,7 @@
 
 250.  Pekka käski Merjan_gen ihailla itseään 
 
-	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[φ Merja]:5 [-(t)A [__:5 [v [ihaile- [D itse]]]]]]]]]]]
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[φ Merja]:2 [-(t)A [__:2 [v [ihaile- [D itse]]]]]]]]]]]
 
 	Semantics:
 	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(käske- ʻorderʼ)/InfP(pro)', 'Agent/φ(φ ʻ_phiʼ)/InfP(pro)', 'Agent/v(v ʻ_vʼ)/Merja', 'Patient/V(ihaile- ʻadmireʼ)/itse']
@@ -2646,7 +2681,6 @@
 	[φ Pekka] ~ 14, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [[φ Merja] [-(t)A(v,V) D(N)]]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2663,7 +2697,7 @@
 
 251.  Pekka käski hänen ihailla itseään 
 
-	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[D hän]:5 [-(t)A [__:5 [v [ihaile- [D itse]]]]]]]]]]]
+	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[D hän]:2 [-(t)A [__:2 [v [ihaile- [D itse]]]]]]]]]]]
 
 	Semantics:
 	Recovery: ['Agent/T(T ʻorder v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(käske- ʻorderʼ)/InfP(pro)', 'Agent/v(v ʻ_vʼ)/hän', 'Patient/V(ihaile- ʻadmireʼ)/itse']
@@ -2674,7 +2708,6 @@
 	[φ Pekka] ~ 8, [D hän] ~ 2, [D itse] ~ 2, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [[D hän] [-(t)A(v,V) D(N)]]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2701,7 +2734,6 @@
 	[φ Pekka] ~ 10, pro(-vAn) ~ 10, [D itse] ~ 10, Weight 1
 	[φ Pekka] ~ 16, pro(-vAn) ~ 16, [D itse] ~ 16, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [-vAn(v,V) D(N)]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2718,7 +2750,7 @@
 
 253.  Pekka uskoi Merjan_gen ihailevan itseään 
 
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[φ Merja]:5 [-vAn [__:5 [v [ihaile- [D itse]]]]]]]]]]]
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[φ Merja]:2 [-vAn [__:2 [v [ihaile- [D itse]]]]]]]]]]]
 
 	Semantics:
 	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Merja', 'Patient/V(ihaile- ʻadmireʼ)/itse']
@@ -2729,7 +2761,6 @@
 	[φ Pekka] ~ 14, [φ Merja] ~ 8, [D itse] ~ 8, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [[φ Merja] [-vAn(v,V) D(N)]]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2746,7 +2777,7 @@
 
 254.  Pekka uskoi hänen ihailevan itseään 
 
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän]:5 [-vAn [__:5 [v [ihaile- [D itse]]]]]]]]]]]
+	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän]:2 [-vAn [__:2 [v [ihaile- [D itse]]]]]]]]]]]
 
 	Semantics:
 	Recovery: ['Agent/T(T ʻbelieve v tenseʼ)/Pekka', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(usko- ʻbelieveʼ)/TP(pro)', 'Agent/T(-vAn ʻadmire v toʼ)/Pekka', 'Agent/v(v ʻ_vʼ)/hän', 'Patient/V(ihaile- ʻadmireʼ)/itse']
@@ -2757,7 +2788,6 @@
 	[φ Pekka] ~ 8, [D hän] ~ 2, [D itse] ~ 2, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [[D hän] [-vAn(v,V) D(N)]]]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2778,28 +2808,28 @@
 
 255.  se' sinun tekemä#[si] kello hävisi 
 
-	[<se [[[D sinä]:2 [-mA [__:2 [v teke-]]]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+	[<se [<D sinä> [[-mA [v teke-]] [φ kello]]]>:1 [T [<__>:1 häviä-]]]
 
 	Semantics:
-	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se    sinä  -mA   sinä  v teke-  kello', 'Agent/A(-mA ʻ_A_relʼ)/Generic', 'Agent/v(v ʻ_vʼ)/sinä', 'Agent/V(teke- ʻdoʼ)/sinä', 'Agent/φ(φ ʻ_phiʼ)/AP(pro)', 'Agent/V(häviä- ʻdisappearʼ)/se    sinä  -mA   sinä  v teke-  kello']
+	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se   sinä   -mA  v teke-  kello', 'Agent/A(-mA ʻ_A_relʼ)/sinä', 'Agent/v(v ʻ_vʼ)/AP(pro)', 'Agent/V(teke- ʻdoʼ)/AP(pro)', 'Agent/φ(φ ʻ_phiʼ)/AP(pro)', 'Agent/V(häviä- ʻdisappearʼ)/se   sinä   -mA  v teke-  kello']
 	Speaker attitude: ['Declarative']
 	Assignments: 
-	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 4, [φ kello] ~ 4, Weight 1
-	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 4, [φ kello] ~ 10, Weight 1
-	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 10, [φ kello] ~ 4, Weight 1
+	[se [<D sinä> [[-mA [v teke-]] [φ kello]]]] ~ 2, [D sinä] ~ 4, pro(-mA) ~ 4, [φ kello] ~ 8, Weight 1
+	[se [<D sinä> [[-mA [v teke-]] [φ kello]]]] ~ 2, [D sinä] ~ 4, pro(-mA) ~ 4, [φ kello] ~ 14, Weight 1
+	[se [<D sinä> [[-mA [v teke-]] [φ kello]]]] ~ 2, [D sinä] ~ 8, pro(-mA) ~ 8, [φ kello] ~ 4, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[se [[[D sinä]:56 [-mA [__:56 [v teke-]]]] [φ kello]]] T(V)]
 
 	Discourse inventory: 
-	Object 2 in GLOBAL: [se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]]
+	Object 2 in GLOBAL: [se [<D sinä> [[-mA [v teke-]] [φ kello]]]]
 	Object 4 in GLOBAL: [D sinä]
-	Object 10 in GLOBAL: [φ kello]
+	Object 8 in GLOBAL: pro(-mA)
+	Object 14 in GLOBAL: [φ kello]
 
 	Resources:
-	Total Time:2355, Garden Paths:9, Merge:31, Head Chain:54, Phrasal Chain:10, Feature Chain:0, 
-	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:471, Merge-1:129, 
+	Total Time:1325, Garden Paths:1, Merge:11, Head Chain:20, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Adjunct Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:265, Merge-1:52, 
 			'it/that [I.gen make.ma/a.2sg] watch disappear.pst.3sg'
 
 & Grammatical
@@ -2817,7 +2847,6 @@
 	[se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]] ~ 2, [D sinä] ~ 10, [φ kello] ~ 4, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[se [[[D sinä]:47 [-mA [__:47 [v teke-]]]] [φ kello]]] T(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [se [[[D sinä] [-mA [[D sinä] [v teke-]]]] [φ kello]]]
@@ -2845,7 +2874,6 @@
 	[se [[-mA [v teke-]] [φ kello]]] ~ 2, pro(-mA) ~ 6, [φ kello] ~ 12, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[se [[-mA [v teke-]] [φ kello]]] T(V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [se [[-mA [v teke-]] [φ kello]]]
@@ -2868,30 +2896,8 @@
 
 & Grammatical
 
-259.  se' sinua ihaileva tyttö hävisi 
+259. *se' sinua ihaileva tyttö hävisi 
 
-	[<se [[<D sinä>:2 [-vA [v [<__>:2 ihaile-]]]] [φ tyttö]]>:1 [T [<__>:1 häviä-]]]
-
-	Semantics:
-	Recovery: ['Agent/T(T ʻdisappear tenseʼ)/se    sinä  -vA  v   sinä ihaile-  tyttö', 'Agent/A(-vA ʻ_P_relʼ)/se', 'Agent/v(v ʻ_vʼ)/se', 'Agent/V(ihaile- ʻadmireʼ)/sinä', 'Agent/φ(φ ʻ_phiʼ)/se', 'Agent/V(häviä- ʻdisappearʼ)/se    sinä  -vA  v   sinä ihaile-  tyttö']
-	Speaker attitude: ['Declarative']
-	Assignments: 
-	[se [[<D sinä> [-vA [v [<D sinä> ihaile-]]]] [φ tyttö]]] ~ 2, [D sinä] ~ 8, [φ tyttö] ~ 8, Weight 1
-	[se [[<D sinä> [-vA [v [<D sinä> ihaile-]]]] [φ tyttö]]] ~ 2, [D sinä] ~ 8, [φ tyttö] ~ 12, Weight 1
-	[se [[<D sinä> [-vA [v [<D sinä> ihaile-]]]] [φ tyttö]]] ~ 2, [D sinä] ~ 12, [φ tyttö] ~ 8, Weight 1
-	 (...)
-	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[se [[<D sinä>:1442 [-vA [v [<__>:1442 ihaile-]]]] [φ tyttö]]] T(V)]
-
-	Discourse inventory: 
-	Object 2 in GLOBAL: [se [[<D sinä> [-vA [v [<D sinä> ihaile-]]]] [φ tyttö]]]
-	Object 8 in GLOBAL: [D sinä]
-	Object 12 in GLOBAL: [φ tyttö]
-
-	Resources:
-	Total Time:2035, Garden Paths:6, Merge:25, Head Chain:45, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Adjunct Chain:9, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:407, Merge-1:162, 
 			'it/that you.par admire.va/a girl disappear.pst.3sg'
 
 & Ungrammatical
@@ -2924,7 +2930,6 @@
 	Assignments: 
 	[φ Pekka] ~ 2, [φ Merja] ~ 8, Weight 1
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [Agr(T,v,V) φ(N)]]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]
@@ -2934,31 +2939,8 @@
 	Total Time:1105, Garden Paths:0, Merge:7, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Adjunct Chain:2, Extraposition:0, Last Resort Extraposition:0, 
 	Mean time per word:368, Merge-1:25, 
-264.  Pekka näki hänet lähtemässä* 
+264. *Pekka näki hänet lähtemässä* 
 
-	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] <-ssa* [-mA-* lähte-]>]]]]]]
-
-	Semantics:
-	Recovery: ['Agent/T(T ʻsee v tenseʼ)/Generic', 'Agent/φ(φ ʻ_phiʼ)/TP(pro)', 'Agent/v(v ʻ_vʼ)/Pekka', 'Patient/V(näke- ʻseeʼ)/hän', 'Agent/Adv(-ssa* ʻleave ing inʼ)/Pekka', 'Agent/Inf(-mA-* ʻ_ingʼ)/Pekka', 'Agent/V(lähte- ʻleaveʼ)/Pekka']
-	Aspect: ['Aspectually bounded', 'Aspectually bounded']
-	Speaker attitude: ['Declarative']
-	Assignments: 
-	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 4, Weight 1
-	pro(T) ~ 4, [φ Pekka] ~ 6, [D hän] ~ 12, Weight 1
-	pro(T) ~ 4, [φ Pekka] ~ 12, [D hän] ~ 4, Weight 1
-	 (...)
-	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[φ Pekka] [T(v,V) [[D hän] -ssa*(Inf,V)]]]
-
-	Discourse inventory: 
-	Object 4 in GLOBAL: pro(T)
-	Object 6 in GLOBAL: [φ Pekka]
-	Object 12 in GLOBAL: [D hän]
-
-	Resources:
-	Total Time:1355, Garden Paths:0, Merge:9, Head Chain:20, Phrasal Chain:0, Feature Chain:0, 
-	Agree:0, Feature:0, Adjunct Chain:4, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:338, Merge-1:54, 
 265.  Pekka nukkui lähteäkseen* 
 
 	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-kse [-(t)A* lähte-]>]
@@ -2972,7 +2954,6 @@
 	[φ Pekka] ~ 8, pro(-kse) ~ 2, Weight 1
 	 (...)
 	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
-	spellout structure: [[<φ Pekka>:1462 [T [<__>:1462 nukku-]]] -kse(Inf,V)]
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ Pekka]

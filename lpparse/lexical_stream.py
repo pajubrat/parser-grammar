@@ -43,7 +43,7 @@ class LexicalStream:
         if inflection:
             if inflection_buffer:
                 inflection_buffer = inflection_buffer | inflection
-                if 'PHI/PF' in inflection and 'PHI/PF' in inflection_buffer:
+                if 'ΦPF' in inflection and 'ΦPF' in inflection_buffer:
                     inflection_buffer.add('*')
             else:
                 inflection_buffer = set()

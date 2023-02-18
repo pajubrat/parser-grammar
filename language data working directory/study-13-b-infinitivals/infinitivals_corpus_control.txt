@@ -1,5 +1,5 @@
 @  {'author': 'Anon', 'year': 2022, 'date': 'May', 'study_id': 1, 'study_folder': 'language data working directory/study-13-b-infinitivals', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-13-b-infinitivals', 'test_corpus_file': 'infinitivals_corpus.txt', 'only_first_solution': True, 'datatake_images': False, 'datatake_full': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'show_features': [], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2023-01-01 19:22:06.772298
+@  2023-01-01 19:22:06.772797
 @  Test sentences language data working directory\study-13-b-infinitivals\infinitivals_corpus.txt.
 @  Logs language data working directory\study-13-b-infinitivals\infinitivals_corpus_log.txt.
 @  Lexicon language data working directory\lexicons\lexicon.txt.
@@ -7,52 +7,42 @@
 @  Universal morphemes language data working directory\lexicons\ug_morphemes.txt.
 @ 
 1.  John admires Mary 
-
-	[[D John]:1 [C.T [__:1 [v [admire [D Mary]]]]]]
+	Agent/C(C.T ʻadmire v tenseʼ)/John, Agent/v(v ʻ_vʼ)/John, Patient/V(admire ʻadmireʼ)/Mary
 
 2.  who admires John 
-
-	[[D who]:1 [C.T [__:1 [v [admire [D John]]]]]]
+	Agent/C(C.T ʻadmire v tenseʼ)/who, Agent/v(v ʻ_vʼ)/who, Patient/V(admire ʻadmireʼ)/John
 
 3.  who John admires 
-
-	[[D who]:1 [C [[D John]:3 [C.T [__:3 [v [__:1 admire]]]]]]]
+	Agent/C(C.T ʻadmire v tenseʼ)/John, Agent/v(v ʻ_vʼ)/John, Agent/V(admire ʻadmireʼ)/who
 
 4.  Pekka ihailee Merjaa 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+	Agent/T(T ʻadmire v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(ihaile- ʻadmireʼ)/Merja, Agent/φ(φ ʻMerja phiʼ)/Pekka
 
 5. *Merjaa ihailee Pekka 
 
 6.  Pekka ihailee Merjaa 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+	Agent/T(T ʻadmire v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(ihaile- ʻadmireʼ)/Merja, Agent/φ(φ ʻMerja phiʼ)/Pekka
 
 7.  Pekka näki hänet 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän
 
 8. *Pekka käski hänen lähteä 
 
 9.  Pekka käski lähteä 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-(t)A lähte-]]]]]]
+	Agent/T(T ʻorder v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(käske- ʻorderʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/Generic
 
 10.  Pekka halusi lähteä 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A lähte-]]]]]]
+	Agent/T(T ʻwant v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(halua- ʻwantʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/Pekka
 
 11. *Pekka halusi hänen lähteä 
 
 12.  Pekka uskoi hänen lähtevän 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+	Agent/T(T ʻbelieve v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(usko- ʻbelieveʼ)/Pekka, Agent/T(-vAn ʻleave toʼ)/hän, Agent/V(lähte- ʻleaveʼ)/hän
 
 13. *Pekka uskoi 
 
 14.  Pekka nukkui 
-
-	[<φ Pekka>:1 [T [<__>:1 nukku-]]]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka
 
 15. *Pekka nukkui hänet 
 
@@ -63,8 +53,7 @@
 18. *Pekka käski hänen lähteä#[nsA] 
 
 19.  Pekka käski lähteä 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-(t)A lähte-]]]]]]
+	Agent/T(T ʻorder v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(käske- ʻorderʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/Generic
 
 20. *Pekka käski lähteä#[nsA] 
 
@@ -73,8 +62,7 @@
 22. *Pekka halusi hänen lähteä#[nsA] 
 
 23.  Pekka halusi lähteä 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A lähte-]]]]]]
+	Agent/T(T ʻwant v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(halua- ʻwantʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/Pekka
 
 24. *Pekka halusi lähteä#[nsA] 
 
@@ -91,8 +79,7 @@
 30. *Pekka näki hänet hänen lähteä#[nsA] 
 
 31.  Pekka näki hänet lähteä 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [-(t)A lähte-]]]]]]]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(näke- ʻseeʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/hän
 
 32. *Pekka näki hänet hänen lähteä#[nsA] 
 
@@ -113,8 +100,7 @@
 40. *Pekka käski lähtevän#[nsA] 
 
 41.  Pekka halusi hänen lähtevän 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [halua- [[D hän] [-vAn lähte-]]]]]]]
+	Agent/T(T ʻwant v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(halua- ʻwantʼ)/Pekka, Agent/T(-vAn ʻleave toʼ)/hän, Agent/V(lähte- ʻleaveʼ)/hän
 
 42. *Pekka halusi hänen lähtevän#[nsA] 
 
@@ -123,32 +109,26 @@
 44. *Pekka halusi lähtevän#[nsA] 
 
 45.  Pekka uskoi hänen lähtevän 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+	Agent/T(T ʻbelieve v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(usko- ʻbelieveʼ)/Pekka, Agent/T(-vAn ʻleave toʼ)/hän, Agent/V(lähte- ʻleaveʼ)/hän
 
 46.  Pekka uskoi hänen lähtevän#[nsA] 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän] [-vAn lähte-]]]]]]]
+	Agent/T(T ʻbelieve v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(usko- ʻbelieveʼ)/TP(pro), Agent/T(-vAn ʻleave toʼ)/hän, Agent/V(lähte- ʻleaveʼ)/TP(pro)
 
 47. *Pekka uskoi lähtevän 
 
 48.  Pekka uskoi lähtevän#[nsA] 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn lähte-]]]]]]
+	Agent/T(T ʻbelieve v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(usko- ʻbelieveʼ)/TP(pro), Agent/T(-vAn ʻleave toʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/TP(pro)
 
 49.  Pekka näki hänet hänen lähtevän 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(näke- ʻseeʼ)/Pekka, Agent/T(-vAn ʻleave toʼ)/hän, Agent/V(lähte- ʻleaveʼ)/hän
 
 50.  Pekka näki hänet hänen lähtevän#[nsA] 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/TP(pro), Agent/T(-vAn ʻleave toʼ)/hän, Agent/V(lähte- ʻleaveʼ)/TP(pro)
 
 51. *Pekka näki hänet lähtevän 
 
 52.  Pekka näki hänet hänen lähtevän#[nsA] 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] [<D hän> [-vAn lähte-]]]]]]]]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/TP(pro), Agent/T(-vAn ʻleave toʼ)/hän, Agent/V(lähte- ʻleaveʼ)/TP(pro)
 
 53. *Pekka nukkui hänen lähtevän 
 
@@ -181,8 +161,7 @@
 67. *Pekka käski lähtemässä 
 
 68.  Pekka käski lähtemään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [käske- [-mAAn lähte-]]]]]]
+	Agent/T(T ʻorder v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(käske- ʻorderʼ)/Pekka, Agent/Inf(-mAAn ʻleave toʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 69. *Pekka käski lähtemästä 
 
@@ -223,8 +202,7 @@
 87. *Pekka halusi lähtemässä 
 
 88.  Pekka halusi lähtemään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-mAAn lähte-]]]]]]
+	Agent/T(T ʻwant v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(halua- ʻwantʼ)/Pekka, Agent/Inf(-mAAn ʻleave toʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/Pekka
 
 89. *Pekka halusi lähtemästä 
 
@@ -307,30 +285,25 @@
 128. *Pekka näki hänet hänen lähtemättä#[An] 
 
 129.  Pekka näki hänet lähtemässä 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [näke- [[D hän] <-mAssA lähte->]]]]]]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän, Agent/Adv(-mAssA ʻleave inʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/Pekka
 
 130. *Pekka näki hänet lähtemään 
 
 131. *Pekka näki häntä lähtemään 
 
 132.  Pekka pyysi häntä lähtemään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [pyyda- [[D hän] [-mAAn lähte-]]]]]]]
+	Agent/T(T ʻask v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(pyyda- ʻaskʼ)/Pekka, Agent/Inf(-mAAn ʻleave toʼ)/hän, Agent/V(lähte- ʻleaveʼ)/hän
 
 133. *Pekka näki hänet lähtemästä 
 
 134.  Pekka esti häntä lähtemästä 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [estä- [[D hän] <-mAstA lähte->]]]]]]
+	Agent/T(T ʻprevent v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(estä- ʻpreventʼ)/hän, Agent/Adv(-mAstA ʻleave withoutʼ)/Pekka, Agent/V(lähte- ʻleaveʼ)/Pekka
 
 135.  Pekka näki hänet lähtemällä 
-
-	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-mAllA lähte->]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän, Agent/Adv(-mAllA ʻleave byʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 136.  Pekka näki hänet lähtemättä 
-
-	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-mAttA lähte->]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän, Agent/Adv(-mAttA ʻleave withoutʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 137. *Pekka näki hänet lähtemässä#[An] 
 
@@ -373,12 +346,10 @@
 156. *Pekka nukkui lähtemästä 
 
 157.  Pekka nukkui lähtemällä 
-
-	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-mAllA lähte->]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka, Agent/Adv(-mAllA ʻleave byʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 158.  Pekka nukkui lähtemättä 
-
-	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-mAttA lähte->]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka, Agent/Adv(-mAttA ʻleave withoutʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 159. *Pekka nukkui lähtemässä#[An] 
 
@@ -421,8 +392,7 @@
 178. *Pekka näki hänet hänen lähtien#[nsA] 
 
 179.  Pekka näki hänet lähtien 
-
-	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-en lähte->]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän, Agent/Adv(-en ʻleave byʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 180. *Pekka näki hänet lähtien#[nsA] 
 
@@ -431,8 +401,7 @@
 182. *Pekka nukkui hänen lähtien#[nsA] 
 
 183.  Pekka nukkui lähtien 
-
-	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-en lähte->]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka, Agent/Adv(-en ʻleave byʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 184. *Pekka nukkui lähtien#[nsA] 
 
@@ -465,24 +434,20 @@
 198. *Pekka näki hänet hänen lähtiessä#[An] 
 
 199.  Pekka näki hänet lähtiessä 
-
-	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-essA lähte->]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän, Agent/Adv(-essA ʻleave whileʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 200.  Pekka näki hänet lähtiessä#[An] 
-
-	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-essA lähte->]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän, Agent/Adv(-essA ʻleave whileʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 201. *Pekka nukkui hänen lähtiessä 
 
 202. *Pekka nukkui hänen lähtiessä#[An] 
 
 203.  Pekka nukkui lähtiessä 
-
-	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-essA lähte->]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka, Agent/Adv(-essA ʻleave whileʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 204.  Pekka nukkui lähtiessä#[An] 
-
-	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-essA lähte->]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka, Agent/Adv(-essA ʻleave whileʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 205. *Pekka käski hänen lähdettyä 
 
@@ -515,8 +480,7 @@
 219. *Pekka näki hänet lähdettyä 
 
 220.  Pekka näki hänet lähdettyä#[An] 
-
-	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-tUA lähte->]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän, Agent/Adv(-tUA ʻleave afterʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 221. *Pekka nukkui hänen lähdettyä 
 
@@ -525,8 +489,7 @@
 223. *Pekka nukkui lähdettyä 
 
 224.  Pekka nukkui lähdettyä#[An] 
-
-	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-tUA lähte->]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka, Agent/Adv(-tUA ʻleave afterʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/Generic
 
 225. *Pekka käski hänen lähteäkse 
 
@@ -559,8 +522,7 @@
 239. *Pekka näki lähteäkse 
 
 240.  Pekka näki hänet lähteäkseen 
-
-	[[<φ Pekka>:1 [T [<__>:1 [v [näke- [D hän]]]]]] <-kse lähte->]
+	Agent/T(T ʻsee v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(näke- ʻseeʼ)/hän, Agent/Adv(-kse ʻleave forʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/AdvP(pro)
 
 241. *Pekka nukkui hänen lähteäkse 
 
@@ -569,56 +531,44 @@
 243. *Pekka nukkui lähteäkse 
 
 244.  Pekka nukkui lähteäkseen 
-
-	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-kse lähte->]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka, Agent/Adv(-kse ʻleave forʼ)/Generic, Agent/V(lähte- ʻleaveʼ)/AdvP(pro)
 
 245.  Pekka halusi ihailla Merjaa 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A [v [ihaile- [φ Merja]]]]]]]]]
+	Agent/T(T ʻwant v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(halua- ʻwantʼ)/Pekka, Agent/v(v ʻ_vʼ)/Pekka, Patient/V(ihaile- ʻadmireʼ)/Merja, Agent/φ(φ ʻMerja phiʼ)/Pekka
 
 246. *Merjaa halusi ihailla Pekka 
 
 247.  Pekka uskoi ihailevan#[nsA] Merjaa 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn [v [ihaile- [φ Merja]]]]]]]]]
+	Agent/T(T ʻbelieve v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(usko- ʻbelieveʼ)/TP(pro), Agent/T(-vAn ʻadmire v toʼ)/Pekka, Agent/v(v ʻ_vʼ)/TP(pro), Patient/V(ihaile- ʻadmireʼ)/Merja, Agent/φ(φ ʻMerja phiʼ)/TP(pro)
 
 248. *Merjaa uskoi ihailevan#[nsA] Pekka 
 
 249.  Pekka halusi ihailla itseään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A [v [ihaile- [D itse]]]]]]]]]
+	Agent/T(T ʻwant v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Agent/V(halua- ʻwantʼ)/Pekka, Agent/v(v ʻ_vʼ)/Pekka, Patient/V(ihaile- ʻadmireʼ)/itse
 
 250.  Pekka käski Merjan_gen ihailla itseään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[φ Merja]:2 [-(t)A [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+	Agent/T(T ʻorder v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(käske- ʻorderʼ)/InfP(pro), Agent/φ(φ ʻ_phiʼ)/InfP(pro), Agent/v(v ʻ_vʼ)/Merja, Patient/V(ihaile- ʻadmireʼ)/itse
 
 251.  Pekka käski hänen ihailla itseään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [käske- [[D hän]:2 [-(t)A [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+	Agent/T(T ʻorder v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(käske- ʻorderʼ)/InfP(pro), Agent/v(v ʻ_vʼ)/hän, Patient/V(ihaile- ʻadmireʼ)/itse
 
 252.  Pekka uskoi ihailevansa itseään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [-vAn [v [ihaile- [D itse]]]]]]]]]
+	Agent/T(T ʻbelieve v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(usko- ʻbelieveʼ)/TP(pro), Agent/T(-vAn ʻadmire v toʼ)/Pekka, Agent/v(v ʻ_vʼ)/TP(pro), Patient/V(ihaile- ʻadmireʼ)/itse
 
 253.  Pekka uskoi Merjan_gen ihailevan itseään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[φ Merja]:2 [-vAn [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+	Agent/T(T ʻbelieve v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(usko- ʻbelieveʼ)/TP(pro), Agent/T(-vAn ʻadmire v toʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Merja, Patient/V(ihaile- ʻadmireʼ)/itse
 
 254.  Pekka uskoi hänen ihailevan itseään 
-
-	[<φ Pekka>:1 [T [<__>:1 [v [usko- [[D hän]:2 [-vAn [__:2 [v [ihaile- [D itse]]]]]]]]]]]
+	Agent/T(T ʻbelieve v tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(usko- ʻbelieveʼ)/TP(pro), Agent/T(-vAn ʻadmire v toʼ)/Pekka, Agent/v(v ʻ_vʼ)/hän, Patient/V(ihaile- ʻadmireʼ)/itse
 
 255.  se' sinun tekemä#[si] kello hävisi 
-
-	[<se [<D sinä> [[-mA [v teke-]] [φ kello]]]>:1 [T [<__>:1 häviä-]]]
+	Agent/T(T ʻdisappear tenseʼ)/se   sinä   -mA  v teke-  kello, Agent/A(-mA ʻ_A_relʼ)/sinä, Agent/v(v ʻ_vʼ)/AP(pro), Agent/V(teke- ʻdoʼ)/AP(pro), Agent/φ(φ ʻ_phiʼ)/AP(pro), Agent/V(häviä- ʻdisappearʼ)/se   sinä   -mA  v teke-  kello
 
 256.  se' sinun tekemä kello hävisi 
-
-	[<se [[[D sinä]:2 [-mA [__:2 [v teke-]]]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+	Agent/T(T ʻdisappear tenseʼ)/se    sinä  -mA   sinä  v teke-  kello, Agent/A(-mA ʻ_A_relʼ)/Generic, Agent/v(v ʻ_vʼ)/sinä, Agent/V(teke- ʻdoʼ)/sinä, Agent/φ(φ ʻ_phiʼ)/AP(pro), Agent/V(häviä- ʻdisappearʼ)/se    sinä  -mA   sinä  v teke-  kello
 
 257.  se' tekemä#[si] kello hävisi 
-
-	[<se [[-mA [v teke-]] [φ kello]]>:1 [T [<__>:1 häviä-]]]
+	Agent/T(T ʻdisappear tenseʼ)/se   -mA  v teke-  kello, Agent/A(-mA ʻ_A_relʼ)/Generic, Agent/v(v ʻ_vʼ)/AP(pro), Agent/V(teke- ʻdoʼ)/AP(pro), Agent/φ(φ ʻ_phiʼ)/AP(pro), Agent/V(häviä- ʻdisappearʼ)/se   -mA  v teke-  kello
 
 258. *se' tekemä kello hävisi 
 
@@ -631,12 +581,10 @@
 262. *se' ihaileva tyttö hävisi 
 
 263.  Pekka ihailee* Merjaa 
-
-	[<φ Pekka>:1 [Agr [T [<__>:1 [v [ihaile- [φ Merja]]]]]]]
+	Agent/Agr(Agr ʻadmire v tense Agrʼ)/Pekka, Agent/T(T ʻ_tenseʼ)/AgrP(pro), Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/v(v ʻ_vʼ)/Pekka, Patient/V(ihaile- ʻadmireʼ)/Merja, Agent/φ(φ ʻMerja phiʼ)/Pekka
 
 264. *Pekka näki hänet lähtemässä* 
 
 265.  Pekka nukkui lähteäkseen* 
-
-	[[<φ Pekka>:1 [T [<__>:1 nukku-]]] <-kse [-(t)A* lähte-]>]
+	Agent/T(T ʻsleep tenseʼ)/Pekka, Agent/φ(φ ʻ_phiʼ)/TP(pro), Agent/V(nukku- ʻsleepʼ)/Pekka, Agent/Adv(-kse ʻleave to forʼ)/Generic, Agent/Inf(-(t)A* ʻ_toʼ)/AdvP(pro), Agent/V(lähte- ʻleaveʼ)/AdvP(pro)
 
