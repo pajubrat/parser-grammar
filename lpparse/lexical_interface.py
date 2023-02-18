@@ -177,12 +177,7 @@ class LexicalInterface:
 
         # ARG and VAL feature distribution
         if 'ARG' in features:
-            if 'NO_NUMBER' not in features:
-                features.add('PHI:NUM:_')
-            if 'NO_PERSON' not in features:
-                features.add('PHI:PER:_')
-            if 'NO_DET' not in features:
-                features.add('PHI:DET:_')
+            features = features.union({'PHI:NUM:_', 'PHI:PER:_', 'PHI:DET:_', 'PHI:HUM:_', 'PHI:PRON:_'})
             if {'LANG:IT', 'LANG:EN'} & features:
                 features.add('PHI:GEN:_')
 
