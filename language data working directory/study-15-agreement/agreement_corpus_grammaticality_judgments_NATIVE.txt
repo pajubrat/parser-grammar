@@ -1,5 +1,5 @@
-@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': False, 'datatake_images': False, 'datatake_full': False, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'image_parameter_stop_after_each_image': False, 'logging': True, 'show_features': ['PHI:', 'iPHI:'], 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2023-02-17 08:29:45.028823
+@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': False, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'logging': True, 'datatake_full': False, 'datatake_images': False, 'show_features': ['PHI:', 'iPHI:', 'PHI/PF', 'PHI/LF'], 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'Agree': 'revised', 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-02-18 15:07:02.900701
 @  Test sentences language data working directory\study-15-agreement\agreement_corpus.txt.
 @  Logs language data working directory\study-15-agreement\agreement_corpus_log.txt.
 @  Lexicon language data working directory\lexicons\lexicon.txt.
@@ -6407,105 +6407,212 @@
 		1972. *Pekka sanoo että* he eivät lähde 
 			'Pekka.nom says that.pl they.nom not.3pl leave.prs'
 
-& 3.4. Agreement and morphology
+& 3.4. Illicit agreement overt finite C
 
-& 3.4.1 Ungrammatical (double agreement error)
+& Grammatical
+
+& Main clause subjects + embedded first person subject
+
+		1973.  minä sano#n uskovan#ni että minä lähde#n 
+			'I.nom say.prs.1sg believe.va/inf.px/1sg that I.nom leave.prs.1sg'
+
+		1974.  sinä sano#t uskovan#si että minä lähde#n 
+			'you.nom say.prs.2sg believe.va/inf.px/2sg that I.nom leave.prs.1sg'
+
+		1975.  hän sano#[V] uskovan#nsA että minä lähde#n 
+			'he.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+		1976.  Pekka sano#[V] uskovan#nsA että minä lähde#n 
+			'Pekka.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+		1977.  mies sano#[V] uskovan#nsA että minä lähde#n 
+			'man.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+		1978.  se sano#[V] uskovan#nsA että minä lähde#n 
+			'it.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+		1979.  me sano#mme uskovan#mme että minä lähde#n 
+			'we.nom say.prs.1pl believe.va/inf.px/1pl that I.nom leave.prs.1sg'
+
+		1980.  te sano#tte uskovan#nne että minä lähde#n 
+			'we.nom say.prs.2pl believe.va/inf.px/2pl that I.nom leave.prs.1sg'
+
+		1981.  he sano#vAt uskovan#nsA että minä lähde#n 
+			'they.nom say.prs.3pl believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+& Main clause subjects + embedded third person subject
+
+		1982.  minä sano#n uskovan#ni että Merja lähtee 
+			'I.nom say.prs.1sg believe.va/inf.px/1sg that Merja.nom leave.prs.3sg'
+
+		1983.  sinä sano#t uskovan#si että Merja lähtee 
+			'you.nom say.prs.2sg believe.va/inf.px/2sg that Merja.nom leave.prs.3sg'
+
+		1984.  hän sano#[V] uskovan#nsA että Merja lähtee 
+			'he.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
+
+		1985.  Pekka sano#[V] uskovan#nsA että Merja lähtee 
+			'Pekka.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
+
+		1986.  mies sano#[V] uskovan#nsA että Merja lähtee 
+			'man.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
+
+		1987.  se sano#[V] uskovan#nsA että Merja lähtee 
+			'it.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
+
+		1988.  me sano#mme uskovan#mme että Merja lähtee 
+			'we.nom say.prs.1pl believe.va/inf.px/1pl that Merja.nom leave.prs.3sg'
+
+		1989.  te sano#tte uskovan#nne että Merja lähtee 
+			'we.nom say.prs.2pl believe.va/inf.px/2pl that Merja.nom leave.prs.3sg'
+
+		1990.  he sano#vAt uskovan#nsA että Merja lähtee 
+			'they.nom say.prs.3pl believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
+
+& Main clause subjects + embedded second person plural subject
+
+		1991.  minä sano#n uskovan#ni että te lähde#tte 
+			'I.nom say.prs.1sg believe.va/inf.px/1sg that you.nom leave.prs.2pl'
+
+		1992.  sinä sano#t uskovan#si että te lähde#tte 
+			'you.nom say.prs.2sg believe.va/inf.px/2sg that you.nom leave.prs.2pl'
+
+		1993.  hän sano#[V] uskovan#nsA että te lähde#tte 
+			'he.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2pl'
+
+		1994.  Pekka sano#[V] uskovan#nsA että te lähde#tte 
+			'Pekka.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2plg'
+
+		1995.  mies sano#[V] uskovan#nsA että te lähde#tte 
+			'man.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2pl'
+
+		1996.  se sano#[V] uskovan#nsA että te lähde#tte 
+			'it.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2pl'
+
+		1997.  me sano#mme uskovan#mme että te lähde#tte 
+			'we.nom say.prs.1pl believe.va/inf.px/1pl that you.nom leave.prs.2plg'
+
+		1998.  te sano#tte uskovan#nne että te lähde#tte 
+			'we.nom say.prs.2pl believe.va/inf.px/2pl that you.nom leave.prs.2pl'
+
+		1999.  he sano#vAt uskovan#nsA että te lähde#tte 
+			'they.nom say.prs.3pl believe.va/inf.px/3p that you.nom leave.prs.2pl'
+
+& Ungrammatical
+
+& Illicit agreement with the embedded subject
+
+		2000. *sinä sano#t uskovan#nsA että Pekka lähtee 
+			'you.nom say.prs.2sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+		2001. *me sano#mme uskovan#nsA että Pekka lähtee 
+			'we.nom say.prs.1pl believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+		2002. *te sano#tte uskovan#nsA että Pekka lähtee 
+			'we.nom say.prs.2pl believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+		2003.  he sano#vAt uskovan#nsA että Pekka lähtee 
+			'they.nom say.prs.3pl believe.va/inf.px/3p that I.nom leave.prs.1sg'
+
+& 3.5. Agreement and morphology
+
+& 3.5.1 Ungrammatical (double agreement error)
 
 & Finite agreement
 
-		1973. *minä lähde#n#n 
+		2004. *minä lähde#n#n 
 			'I.nom leave.prs.1sg.1sg'
 
-		1974. *sinä lähde#t#t 
+		2005. *sinä lähde#t#t 
 			'you.nom leave.prs.2sg.2sg'
 
-		1975. *hän lähde#[V]#[V] 
+		2006. *hän lähde#[V]#[V] 
 			'he.nom leave.prs.3sg.3sg'
 
-		1976. *me lähde#mme#mme 
+		2007. *me lähde#mme#mme 
 			'we.nom leave.prs.1pl.1pl'
 
-		1977. *te lähde#tte#tte 
+		2008. *te lähde#tte#tte 
 			'you.nom leave.prs.2pl.2pl'
 
-		1978. *he lähde#vAt#vAt 
+		2009. *he lähde#vAt#vAt 
 			'they.nom leave.prs.3pl.3pl'
 
 & Nonfinite agreement
 
-		1979. *hän nukkuu minun lähellä#ni#ni 
+		2010. *hän nukkuu minun lähellä#ni#ni 
 			'he.nom sleep.prs.3sg I.gen near.px/1sg.px/1sg'
 
-		1980. *hän nukkuu sinun lähellä#si#si 
+		2011. *hän nukkuu sinun lähellä#si#si 
 			'he.nom sleep.prs.3sg you.gen near.px/2sg.px/2sg'
 
-		1981. *hän nukkuu hänen lähellä#nsA#nsA 
+		2012. *hän nukkuu hänen lähellä#nsA#nsA 
 			'he.nom sleep.prs.3sg he.gen near.px/3p.px/3p'
 
-		1982. *hän nukkuu meidän lähellä#mme#mme 
+		2013. *hän nukkuu meidän lähellä#mme#mme 
 			'he.nom sleep.prs.3sg we.gen near.px/1pl.px/1pl'
 
-		1983. *hän nukkuu teidän lähellä#nne#nne 
+		2014. *hän nukkuu teidän lähellä#nne#nne 
 			'he.nom sleep.prs.3sg you.gen near.px/2pl.px/2pl'
 
-		1984. *hän nukkuu heidän lähellä#nsA#nsA 
+		2015. *hän nukkuu heidän lähellä#nsA#nsA 
 			'he.nom sleep.prs.3sg they.gen near.px/3p.px/3p'
 
 & Finite and nonfinite agreement
 
-		1985. *hän nukkuu minun lähellä#n#ni 
+		2016. *hän nukkuu minun lähellä#n#ni 
 			'he.nom sleep.prs.3sg I.gen near.1sg.px/1sg'
 
-		1986. *hän nukkuu sinun lähellä#t#si 
+		2017. *hän nukkuu sinun lähellä#t#si 
 			'he.nom sleep.prs.3sg you.gen near.2sg.px/1sg'
 
-		1987. *hän nukkuu hänen lähellä#[V]#nsA 
+		2018. *hän nukkuu hänen lähellä#[V]#nsA 
 			'he.nom sleep.prs.3sg he.gen near.3sg.px/1sg'
 
-		1988. *hän nukkuu meidän lähellä#mme#mme 
+		2019. *hän nukkuu meidän lähellä#mme#mme 
 			'he.nom sleep.prs.3sg we.gen near.1pl.px/1sg'
 
-		1989. *hän nukkuu teidän lähellä#tte#nne 
+		2020. *hän nukkuu teidän lähellä#tte#nne 
 			'he.nom sleep.prs.3sg you.gen near.2pl.px/1sg'
 
-		1990. *hän nukkuu heidän lähellä#vAt#nsA 
+		2021. *hän nukkuu heidän lähellä#vAt#nsA 
 			'he.nom sleep.prs.3sg they.gen near.3pl.px/1sg'
 
-& 3.4.2 Ungrammatical (finite/nonfinite agreement error)
+& 3.5.2 Ungrammatical (finite/nonfinite agreement error)
 
-& 3.4.2.1 Nonfinite agreement on finite verb
+& Nonfinite agreement on finite verb
 
-		1991. *minä lähde#ni 
+		2022. *minä lähde#ni 
 			'I.nom leave.prs.px/1sg'
 
-		1992. *sinä lähde#si 
+		2023. *sinä lähde#si 
 			'I.nom leave.prs.px/2sg'
 
-		1993. *hän lähde#nsA 
+		2024. *hän lähde#nsA 
 			'he.nom leave.prs.px/3sg'
 
-		1994. *te lähde#nne 
+		2025. *te lähde#nne 
 			'you.nom leave.prs.px/2pl'
 
-		1995. *he lähde#nsA 
+		2026. *he lähde#nsA 
 			'they.nom leave.prs.px/3pl'
 
-& 3.4.2.2 Finite agreement on adposition
+& Finite agreement on adposition
 
-		1996. *hän nukkuu minun lähellä#n 
+		2027. *hän nukkuu minun lähellä#n 
 			'he.nom sleep.prs.3sg I.gen near.1sg'
 
-		1997. *hän nukkuu sinun lähellä#t 
+		2028. *hän nukkuu sinun lähellä#t 
 			'he.nom sleep.prs.3sg you.gen near.2sg'
 
-		1998. *hän nukkuu hänen lähellä#[V] 
+		2029. *hän nukkuu hänen lähellä#[V] 
 			'he.nom sleep.prs.3sg he.gen near.3sg'
 
-		1999.  hän nukkuu meidän lähellä#mme 
+		2030.  hän nukkuu meidän lähellä#mme 
 			'he.nom sleep.prs.3sg we.gen near.1pl'
 
-		2000. *hän nukkuu teidän lähellä#tte 
+		2031. *hän nukkuu teidän lähellä#tte 
 			'he.nom sleep.prs.3sg you.gen near.2pl'
 
-		2001. *hän nukkuu heidän lähellä#vAt 
+		2032. *hän nukkuu heidän lähellä#vAt 
 			'he.nom sleep.prs.3sg they.gen near.3pl'

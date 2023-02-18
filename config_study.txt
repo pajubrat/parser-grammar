@@ -32,10 +32,10 @@ image_parameter_show_glosses= False
 #	standard = standard theory (Chomsky 2000, 2001, 2008)
 #	revised = current best formulation
 #	variation1 = revised formulation without PIC, only select closest
-#	variation2 = revised formulation but with added specifier agreement (whole edge is explored) as a last resort
+#	variation2 = revised formulation but with added specifier (edge) agreement as a last resort
 #	variation3 = revised formulation with unlimited upwards search as a last resort
 #	variation4 = revised formulation with only specifier-head agreement
-Agree=variation1
+Agree=revised
 
 # PARSING HEURISTICS
 extra_ranking= True

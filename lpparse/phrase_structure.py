@@ -1131,7 +1131,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return (self.check({'v'}) and not self.check({'v-'})) or self.check({'C'})
+        return self.check_some({'v', 'C', 'FORCE'}) and not self.check({'v-'})
 
     def extended_subject(self):
         return self.check_some({'NOM', 'GEN'})

@@ -129,10 +129,8 @@ class NarrowSemantics:
                 self.interpret_(ps.right)
 
     def inventory_projection(self, ps):
-        def preconditions(ps):
-            return not self.brain_model.first_solution_found and \
-                   not ps.find_me_elsewhere and \
-                   (ps.referential() or not ps.check({'PHI/LF'}))
+        def preconditions(x):
+            return not self.brain_model.first_solution_found and not ps.find_me_elsewhere and (x.referential() or (not x.referential() and not x.check({'PHI/LF'})))
 
         if preconditions(ps):
             for space in self.semantic_spaces:
