@@ -168,6 +168,7 @@ class LocalFileSystem:
                     line = line.strip().replace('\t', '')
                     if line and not line.startswith('#'):
                         key, value = line.split('=', 1)
+                        key = key.strip()
                         value = value.strip()
                         if ',' in value:
                             value = value.split(',')
@@ -371,8 +372,9 @@ class LocalFileSystem:
     def judgment_marker(self, parser):
         if len(parser.result_list) == 0:
             return '*'
-        if not {assignment['weight'] for assignment in parser.result_list[0][1]['Assignments'] if assignment['weight'] > 0}:
-            return '?'  # Change this if you want to have different marking for sentences without assignment
+        if self.settings['calculate_assignments']:
+            if not {assignment['weight'] for assignment in parser.result_list[0][1]['Assignments'] if assignment['weight'] > 0}:
+                return '?'
         return ' '
 
     def save_resources(self, parser, count, sentence, experimental_group):

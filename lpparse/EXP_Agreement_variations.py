@@ -9,9 +9,9 @@ class AgreementVariations:
         self.brain_model = brain_model
         pass
 
-    def Agree(self, probe):
+    def Agree(self, probe, transfer):
         if self.brain_model.local_file_system.settings['Agree'] == 'standard':
-            probe.standard(probe)
+            self.standard(probe)
         if self.brain_model.local_file_system.settings['Agree'] == 'revised':
             self.revised(probe)
         if self.brain_model.local_file_system.settings['Agree'] == 'variation1':
@@ -24,11 +24,34 @@ class AgreementVariations:
             self.variation4(probe)
 
     def revised(self, probe):
-        probe.Agree()
+        return probe.Agree()
 
     # Standard theory (Chomsky 2000, 2001, 2008)
+    # We construct this entity for experimental purposes by backtracking the changes of the revised model
     def standard(self, probe):
-        pass
+        def value_features(probe, goal):
+            log(f'\n\t\t{probe} Agree with {goal.illustrate()} and values ')
+            # Replace iPHI features with PHI features
+            valuations = [(i(phi), probe.unvalued_counterparty(i(phi))) for phi in goal.head().features if
+                          probe.target_phi_feature(phi, goal)]
+            for incoming_phi, unvalued_counterparty in valuations:
+                probe.value_feature(incoming_phi, unvalued_counterparty, goal)
+
+        def Agree(self):
+            probe.features.discard('!SELF:Φ1')
+            probe.features.discard('!SELF:Φ12')
+            probe.features.discard('-SELF:Φ1')
+            probe.features.discard('-SELF:Φ12')
+            probe.features.discard('!SELF:ΦPF')
+            probe.features.discard('-COMP:PER')
+            probe.features.discard('PER')
+            probe.features.discard('-PER')
+            probe.features = {i(f) for f in probe.features}
+            self.value_features(next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(),
+                                                                  lambda x: not x.phase_head()), self))
+
+        # --- main ---
+        Agree(probe)
 
     # Standard Agree without PIC
     def variation1(self, probe):

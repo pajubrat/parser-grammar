@@ -13,7 +13,7 @@
 					minä lähden
 					'I.nom leave.1sg'
 				
-					minä tein työtä
+				%	minä tein työtä
 					'I.nom make.pst.1sg work.par'
 					
 				& Second person singular
@@ -1951,7 +1951,7 @@
 					Pekka en ole lähtenyt
 					'Pekka.nom not.1sg be.prs leave.sg.pst.prtcpl'
 
-					Pekka ole tehnyt työtä
+					Pekka en ole tehnyt työtä
 					'man.nom not.1sg be.prs make.sg.pst.prtcpl work.par'
 					
 					Pekka et ole lähtenyt
@@ -3538,7 +3538,7 @@
 		& 2.1.3 Noun heads
 		
 			& Grammatical
-			
+
 				minun talo#ni
 				'I.gen home.1sg'
 				
@@ -3556,6 +3556,24 @@
 				
 				heidän talo#nsA
 				'they.gen home.3p'
+
+				minun talo#ni hävisi
+				'I.gen home.1sg disappear.pst.3sg'
+				
+				sinun talo#si hävisi
+				'you.gen home.2sg disappear.pst.3sg'
+				
+				hänen talo#nsA hävisi
+				'he.gen home.3p disappear.pst.3sg'
+				
+				meidän talo#mme hävisi
+				'we.gen home.1pl disappear.pst.3sg'
+				
+				teidän talo#nne hävisi
+				'you.gen home.2pl disappear.pst.3sg'
+				
+				heidän talo#nsA hävisi
+				'they.gen home.3p disappear.pst.3sg'
 				
 			& Ungrammatical (DP-N agreement errors)
 						
@@ -3630,6 +3648,78 @@
 				
 				heidän talo#nne
 				'you.gen home.2pl'		
+
+				minun talo#si hävisi
+				'you.gen home.2sg disappear.pst.3sg'
+				
+				minun talo#nsA hävisi
+				'he.gen home.3p disappear.pst.3sg'
+				
+				minun talo#mme hävisi
+				'we.gen home.1pl disappear.pst.3sg'
+				
+				minun talo#nne hävisi
+				'you.gen home.2pl disappear.pst.3sg'
+							
+				sinun talo#ni hävisi
+				'you.gen home.1sg disappear.pst.3sg'
+				
+				sinun talo#nsA hävisi
+				'he.gen home.3p disappear.pst.3sg'
+				
+				sinun talo#mme hävisi
+				'we.gen home.1pl disappear.pst.3sg'
+				
+				sinun talo#nne hävisi
+				'you.gen home.2pl disappear.pst.3sg'
+
+				hänen talo#ni hävisi
+				'you.gen home.1sg disappear.pst.3sg' 
+				
+				hänen talo#si hävisi
+				'he.gen home.2sg disappear.pst.3sg'
+				
+				hänen talo#mme hävisi
+				'we.gen home.1pl disappear.pst.3sg'
+				
+				hänen talo#nne hävisi
+				'you.gen home.2pl disappear.pst.3sg'
+				
+				meidän talo#ni hävisi
+				'you.gen home.1sg disappear.pst.3sg'
+ 				
+				meidän talo#si hävisi
+				'he.gen home.2sg disappear.pst.3sg'
+				
+				meidän talo#nsA hävisi
+				'we.gen home.3p disappear.pst.3sg'
+				
+				meidän talo#nne hävisi
+				'you.gen home.2pl disappear.pst.3sg'
+			
+				teidän talo#ni hävisi
+				'you.gen home.1sg disappear.pst.3sg'
+				
+				teidän talo#si hävisi
+				'he.gen home.2sg disappear.pst.3sg'
+				
+				teidän talo#nsA hävisi
+				'we.gen home.3p disappear.pst.3sg'
+				
+				teidän talo#mme hävisi
+				'you.gen home.1pl disappear.pst.3sg'
+
+				heidän talo#ni hävisi
+				'you.gen home.1sg disappear.pst.3sg'
+				
+				heidän talo#si hävisi
+				'he.gen home.2sg disappear.pst.3sg'
+				
+				heidän talo#mme hävisi
+				'we.gen home.1pl disappear.pst.3sg'
+				
+				heidän talo#nne hävisi
+				'you.gen home.2pl disappear.pst.3sg'
 
 			& Ungrammatical (feature [human] errors)
 				
@@ -4935,7 +5025,15 @@
 
 				Merja laulaa teidän tehtyä#nne työtä
 				'Merja.nom sing you.gen leave.TUA/inf.2pl work.par'
-				
+			
+			& Ungrammatical (lack of phrasal subject and agreement)
+
+				Merja laulaa lähdettyä
+				'Merja.nom sing.prs.3sg leave.TUA/inf'
+
+				Merja laulaa tehtyä työtä
+				'Merja.nom sing.prs.3sg make.TUA/inf work.par'
+	
 			& Ungrammatical (person/number error)
 			
 				Merja laulaa Pekan lähdettyä#nsA
@@ -6001,7 +6099,7 @@
 
 				työtä tekevät te
 				'work.par make.prs.3pl you.nom'
-´
+
 				työtä teen he
 				'work.par make.prs.1sg they.nom'
 			

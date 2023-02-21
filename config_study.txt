@@ -9,47 +9,54 @@ test_corpus_folder=		language data working directory/study-15-agreement
 test_corpus_file=		agreement_corpus.txt
 
 # GENERAL SIMULATION PARAMETERS
-only_first_solution= False
-ignore_ungrammatical_sentences= False
-console_output= Full
-stop_at_unknown_lexical_item= True
-logging= True
+only_first_solution = True
+ignore_ungrammatical_sentences = False
+console_output = Full
+stop_at_unknown_lexical_item = True
+logging = True
 
 # DATA COLLECTION
-datatake_full= False
+datatake_full = False
 
 # IMAGE PARAMETERS
-datatake_images= False
-show_features= PHI:,iPHI:,PHI/PF,PHI/LF
-image_parameter_show_words= False
-image_parameter_nolabels= False
-image_parameter_spellout= False
-image_parameter_case= False
-image_parameter_show_sentences= False
-image_parameter_show_glosses= False
+datatake_images = True
+show_features = PHI:,iPHI:,ΦPF,ΦLF,-ΦPF,-ΦLF,!SELF:ΦPF,!SELF:ΦLF
+image_parameter_show_words = False
+image_parameter_nolabels = False
+image_parameter_spellout = False
+image_parameter_case = False
+image_parameter_show_sentences = False
+image_parameter_show_glosses = False
 
 # UG COMPONENTS
+
+#	Agree
 #	standard = standard theory (Chomsky 2000, 2001, 2008)
 #	revised = current best formulation
 #	variation1 = revised formulation without PIC, only select closest
 #	variation2 = revised formulation but with added specifier (edge) agreement as a last resort
 #	variation3 = revised formulation with unlimited upwards search as a last resort
 #	variation4 = revised formulation with only specifier-head agreement
-Agree=revised
+Agree = revised
+
+#	Semantics
+calculate_assignments = True
+calculate_pragmatics = True
+project_objects = True
 
 # PARSING HEURISTICS
-extra_ranking= True
-filter= True
-lexical_anticipation= True
-closure= Bottom-up
-working_memory= True
-positive_spec_selection= 100
-negative_spec_selection= -100
-break_head_comp_relations= -100
-negative_tail_test= -100
-positive_head_comp_selection= 100
-negative_head_comp_selection= -100
-negative_semantics_match= -100
-lf_legibility_condition= -100
-negative_adverbial_test= -100
-positive_adverbial_test= 100
+extra_ranking = True
+filter = True
+lexical_anticipation = True
+closure = Bottom-up
+working_memory = True
+positive_spec_selection = 100
+negative_spec_selection = -100
+break_head_comp_relations = -100
+negative_tail_test = -100
+positive_head_comp_selection = 100
+negative_head_comp_selection = -100
+negative_semantics_match = -100
+lf_legibility_condition = -100
+negative_adverbial_test = -100
+positive_adverbial_test = 100

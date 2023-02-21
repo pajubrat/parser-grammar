@@ -7,9 +7,9 @@ from SEM_predicates_relations_events import PredicatesRelationsEvents
 from global_cognition import GlobalCognition
 
 class NarrowSemantics:
-    def __init__(self, controlling_parsing_process):
+    def __init__(self, brain_model):
         self.operator_variable_module = OperatorVariableModule(self)
-        self.argument_recovery_module = LF_Recovery(controlling_parsing_process)
+        self.argument_recovery_module = LF_Recovery(brain_model)
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
         self.pragmatic_pathway = Discourse(self)
         self.predicates_relations_events_module = PredicatesRelationsEvents(self)
@@ -17,7 +17,7 @@ class NarrowSemantics:
         self.semantic_interpretation = {}
         self.semantic_interpretation_failed = False
         self.predicate_argument_dependencies = []
-        self.brain_model = controlling_parsing_process
+        self.brain_model = brain_model
         self.phi_interpretation_failed = False
         self.query = \
             {'GLOBAL': {'Remove': self.global_cognition.remove_object,
@@ -107,19 +107,22 @@ class NarrowSemantics:
         log(f'\n\t\tInterpreting {root_node.head()}P globally: ')
         self.reset_for_new_interpretation()
         self.interpret_(root_node)
-        self.quantifiers_numerals_denotations_module.reconstruct_assignments(root_node)
-        self.pragmatic_pathway.calculate_information_structure(root_node, self.semantic_interpretation)
+        if self.brain_model.local_file_system.settings['calculate_assignments']:
+            self.quantifiers_numerals_denotations_module.reconstruct_assignments(root_node)
+        if self.brain_model.local_file_system.settings['calculate_pragmatics']:
+            self.pragmatic_pathway.calculate_information_structure(root_node, self.semantic_interpretation)
         self.document_interface_content_for_user()
         return not self.semantic_interpretation_failed
 
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
-                if ps.phi_needs_valuation() and (not ps.referential() or ps.check({'PHI:DET:_'})):
+                if ps.is_unvalued() and (not ps.referential() or ps.check({'PHI:DET:_'})):
                     self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.recover_arguments(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
-                self.inventory_projection(ps)
+                if self.brain_model.local_file_system.settings['project_objects']:
+                    self.inventory_projection(ps)
                 self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
                 self.pragmatic_pathway.interpret_discourse_features(ps, self.semantic_interpretation)
                 if self.failure():
@@ -130,7 +133,7 @@ class NarrowSemantics:
 
     def inventory_projection(self, ps):
         def preconditions(x):
-            return not self.brain_model.first_solution_found and not ps.find_me_elsewhere and (x.referential() or (not x.referential() and not x.check({'PHI/LF'})))
+            return not self.brain_model.first_solution_found and not ps.find_me_elsewhere and (x.referential() or (not x.referential() and not x.check({'ΦLF'})))
 
         if preconditions(ps):
             for space in self.semantic_spaces:

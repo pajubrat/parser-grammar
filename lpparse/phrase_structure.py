@@ -454,14 +454,18 @@ class PhraseStructure:
         return set()
 
     def Agree(self):
-        self.value_features(next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), self))
-        self.update_phi_interactions()  # Revised theory of Agree
+        goal = next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), self)
+        self.value_features(goal)
+        self.update_phi_interactions()
 
     def value_features(self, goal):
-        log(f'\n\t\t{self} Agree with {goal.illustrate()} and values ')
+        log(f'\n\t\t{self} agrees with {goal} ({goal.max().illustrate()}) and values ')
         valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in goal.head().features if self.target_phi_feature(phi, goal)]
-        for incoming_phi, unvalued_counterparty in valuations:
-            self.value_feature(incoming_phi, unvalued_counterparty, goal)
+        if valuations:
+            for incoming_phi, unvalued_counterparty in valuations:
+                self.value_feature(incoming_phi, unvalued_counterparty, goal)
+        else:
+            log(f'nothing (no useful features available). ')
 
     def value_feature(self, phi, unvalued_counterparty, goal):
         if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
@@ -528,6 +532,7 @@ class PhraseStructure:
     def feature_inheritance(self):
         if self.highest_finite_head():
             log(f'\n\t\t{self} inherited ΦPF.')
+            self.features.add('!SELF:ΦPF')
             self.features.add('!SELF:ΦPF')
         if self.check({'?ARG'}):
             if self.selected_by_SEM_internal_predicate():
@@ -620,6 +625,11 @@ class PhraseStructure:
 
     def phi_needs_valuation(self):
         return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
+
+    def phi_is_unvalued(self):
+        for f in self.head().features:
+            if f[-1] == '_':
+                return True
 
     def get_mandatory_comps(self):
         return {f[6:] for f in self.features if f[:5] == '!COMP' and f != '!COMP:*'}
