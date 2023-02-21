@@ -1,5 +1,5 @@
-@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'logging': True, 'datatake_full': False, 'datatake_images': False, 'show_features': ['PHI:', 'iPHI:', 'PHI/PF', 'PHI/LF'], 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'Agree': 'revised', 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2023-02-19 22:43:03.462495
+@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'logging': True, 'datatake_full': True, 'datatake_images': False, 'show_features': ['PHI:', 'iPHI:', 'ΦPF', 'ΦLF', '-ΦPF', '-ΦLF', '!SELF:ΦPF', '!SELF:ΦLF', '!SELF:Φ1', '!SELF:Φ12'], 'image_parameter_show_words': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': False, 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'project_objects': True, 'generate_argument_links': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-02-21 17:55:21.040902
 @  Test sentences language data working directory\study-15-agreement\agreement_corpus.txt.
 @  Logs language data working directory\study-15-agreement\agreement_corpus_log.txt.
 @  Lexicon language data working directory\lexicons\lexicon.txt.
@@ -4099,462 +4099,481 @@
 		1268. *Merja käski miesten tehdä#nne työtä 
 			'Merja.nom order.pst.3sg men.gen make.A/inf.2pl work.par'
 
+& Ungrammatical or marginal (no subject)
+
+		1269. *Merja käski lähteä 
+			'Merja.nom order.pst.3sg leave.A/inf'
+
+		1270. *Merja käski tehdä työtä 
+			'Merja.nom order.pst.3sg make.A/inf work.par'
+
 & 2.3.2 A-infinitive (OC-construction)
 
 & Grammatical
 
-		1269.  Merja halusi lähteä 
+		1271.  Merja halusi lähteä 
 			'Merja.nom want.prs.3sg leave.a/inf'
+
+		1272.  Merja halusi tehdä työtä 
+			'Merja.nom want.prs.3sg make.A/inf work.par'
 
 & Ungrammatical (agreement error)
 
-		1270. *Merja halusi lähteä#ni 
+		1273. *Merja halusi lähteä#ni 
 			'Merja.nom want.prs.3sg leave.a/inf.1sg'
 
-		1271. *Merja halusi lähteä#si 
+		1274. *Merja halusi lähteä#si 
 			'Merja.nom want.prs.3sg leave.a/inf.2sg'
 
-		1272. *Merja halusi lähteä#An 
+		1275. *Merja halusi lähteä#An 
 			'Merja.nom want.prs.3sg leave.a/inf.3sg'
 
-		1273. *Merja halusi lähteä#mme 
+		1276. *Merja halusi lähteä#mme 
 			'Merja.nom want.prs.3sg leave.a/inf.1pl'
 
-		1274. *Merja halusi lähteä#nne 
+		1277. *Merja halusi lähteä#nne 
 			'Merja.nom want.prs.3sg leave.a/inf.2pl'
 
-		1275. *Merja halusi lähteä#nsA 
+		1278. *Merja halusi lähteä#nsA 
 			'Merja.nom want.prs.3sg leave.a/inf.3pl'
 
 & Ungrammatical (illicit phrasal subject)
 
-		1276. *Merja halusi minun lähteä 
+		1279. *Merja halusi minun lähteä 
 			'Merja.nom want.pst.3sg I.gen leave.a/inf'
 
-		1277. *Merja halusi sinun lähteä 
+		1280. *Merja halusi sinun lähteä 
 			'Merja.nom want.pst.3sg you.gen leave.a/inf'
 
-		1278. *Merja halusi hänen lähteä 
+		1281. *Merja halusi hänen lähteä 
 			'Merja.nom want.pst.3sg he.gen leave.a/inf'
 
-		1279. *Merja halusi Pekan lähteä 
+		1282. *Merja halusi Pekan lähteä 
 			'Merja.nom want.pst.3sg Pekka.gen leave.a/inf'
 
-		1280. *Merja halusi sen lähteä 
+		1283. *Merja halusi sen lähteä 
 			'Merja.nom want.pst.3sg it.gen leave.a/inf'
 
-		1281. *Merja halusi miehen lähteä 
+		1284. *Merja halusi miehen lähteä 
 			'Merja.nom want.pst.3sg man.gen leave.a/inf'
 
-		1282. *Merja halusi meidän lähteä 
+		1285. *Merja halusi meidän lähteä 
 			'Merja.nom want.pst.3sg we.gen leave.a/inf'
 
-		1283. *Merja halusi teidän lähteä 
+		1286. *Merja halusi teidän lähteä 
 			'Merja.nom want.pst.3sg you.gen leave.a/inf'
 
-		1284. *Merja halusi heidän lähteä 
+		1287. *Merja halusi heidän lähteä 
 			'Merja.nom want.pst.3sg they.gen leave.a/inf'
 
-		1285. *Merja halusi niiden lähteä 
+		1288. *Merja halusi niiden lähteä 
 			'Merja.nom want.pst.3sg they.gen leave.a/inf'
 
-		1286. *Merja halusi miesten lähteä 
+		1289. *Merja halusi miesten lähteä 
 			'Merja.nom want.pst.3sg men.gen leave.a/inf'
 
 & Ungrammatical (illicit phrasa subject plus correct agreement)
 
-		1287. *Merja halusi minun lähteä#ni 
+		1290. *Merja halusi minun lähteä#ni 
 			'Merja.nom want.pst.3sg I.gen leave.a/inf'
 
-		1288. *Merja halusi sinun lähteä#si 
+		1291. *Merja halusi sinun lähteä#si 
 			'Merja.nom want.pst.3sg you.gen leave.a/inf'
 
-		1289. *Merja halusi hänen lähteä#nsA 
+		1292. *Merja halusi hänen lähteä#nsA 
 			'Merja.nom want.pst.3sg he.gen leave.a/inf'
 
-		1290. *Merja halusi meidän lähteä#mme 
+		1293. *Merja halusi meidän lähteä#mme 
 			'Merja.nom want.pst.3sg we.gen leave.a/inf'
 
-		1291. *Merja halusi teidän lähteä#nne 
+		1294. *Merja halusi teidän lähteä#nne 
 			'Merja.nom want.pst.3sg you.gen leave.a/inf'
 
-		1292. *Merja halusi heidän lähteä#nsA 
+		1295. *Merja halusi heidän lähteä#nsA 
 			'Merja.nom want.pst.3sg they.gen leave.a/inf'
 
 & Ungrammatical (illicit phrasal subject plus human/person error in agreemen)
 
-		1293. *Merja halusi Pekan lähteä#nsA 
+		1296. *Merja halusi Pekan lähteä#nsA 
 			'Merja.nom want.pst.3sg Pekka.gen leave.a/inf'
 
-		1294. *Merja halusi sen lähteä#nsA 
+		1297. *Merja halusi sen lähteä#nsA 
 			'Merja.nom want.pst.3sg it.gen leave.a/inf'
 
-		1295. *Merja halusi miehen lähteä#nsA 
+		1298. *Merja halusi miehen lähteä#nsA 
 			'Merja.nom want.pst.3sg man.gen leave.a/inf'
 
-		1296. *Merja halusi miesten lähteä#nsA 
+		1299. *Merja halusi miesten lähteä#nsA 
 			'Merja.nom want.pst.3sg men.gen leave.a/inf'
 
-		1297. *Merja halusi niiden lähteä#nsA 
+		1300. *Merja halusi niiden lähteä#nsA 
 			'Merja.nom want.pst.3sg they.gen leave.a/inf'
 
 & 2.3.3 VA-infinitive
 
 & Grammatical
 
-		1298.  Merja uskoi minun lähtevän 
+		1301.  Merja uskoi minun lähtevän 
 			'Merja.nom believe.pst.3sg I.gen leave.VA/inf'
 
-		1299.  Merja uskoi sinun lähtevän 
+		1302.  Merja uskoi sinun lähtevän 
 			'Merja.nom believe.pst.3sg you.gen leave.VA/inf'
 
-		1300.  Merja uskoi hänen lähtevän 
+		1303.  Merja uskoi hänen lähtevän 
 			'Merja.nom believe.pst.3sg he.gen leave.VA/inf'
 
-		1301.  Merja uskoi Pekan lähtevän 
+		1304.  Merja uskoi Pekan lähtevän 
 			'Merja.nom believe.pst.3sg Pekka.gen leave.VA/inf'
 
-		1302.  Merja uskoi sen lähtevän 
+		1305.  Merja uskoi sen lähtevän 
 			'Merja.nom believe.pst.3sg it.gen leave.VA/inf'
 
-		1303.  Merja uskoi miehen lähtevän 
+		1306.  Merja uskoi miehen lähtevän 
 			'Merja.nom believe.pst.3sg man.gen leave.VA/inf'
 
-		1304.  Merja uskoi meidän lähtevän 
+		1307.  Merja uskoi meidän lähtevän 
 			'Merja.nom believe.pst.3sg we.gen leave.VA/inf'
 
-		1305.  Merja uskoi teidän lähtevän 
+		1308.  Merja uskoi teidän lähtevän 
 			'Merja.nom believe.pst.3sg you.gen leave.VA/inf'
 
-		1306.  Merja uskoi heidän lähtevän 
+		1309.  Merja uskoi heidän lähtevän 
 			'Merja.nom believe they.gen leave.VA/inf'
 
-		1307.  Merja uskoi niiden lähtevän 
+		1310.  Merja uskoi niiden lähtevän 
 			'Merja.nom believe they.gen leave.VA/inf'
 
-		1308.  Merja uskoi miesten lähtevän 
+		1311.  Merja uskoi miesten lähtevän 
 			'Merja.nom believe men.gen leave.VA/inf'
 
-		1309.  Merja uskoi minun tekevän työtä 
+		1312.  Merja uskoi minun tekevän työtä 
 			'Merja.nom believe.pst.3sg I.gen make.VA/inf work.par'
 
-		1310.  Merja uskoi sinun tekevän työtä 
+		1313.  Merja uskoi sinun tekevän työtä 
 			'Merja.nom believe.pst.3sg you.gen make.VA/inf work.par'
 
-		1311.  Merja uskoi hänen tekevän työtä 
+		1314.  Merja uskoi hänen tekevän työtä 
 			'Merja.nom believe.pst.3sg he.gen make.VA/inf work.par'
 
-		1312.  Merja uskoi Pekan tekevän työtä 
+		1315.  Merja uskoi Pekan tekevän työtä 
 			'Merja.nom believe.pst.3sg Pekka.gen make.VA/inf work.par'
 
-		1313.  Merja uskoi sen tekevän työtä 
+		1316.  Merja uskoi sen tekevän työtä 
 			'Merja.nom believe.pst.3sg it.gen make.VA/inf work.par'
 
-		1314.  Merja uskoi miehen tekevän työtä 
+		1317.  Merja uskoi miehen tekevän työtä 
 			'Merja.nom believe.pst.3sg man.gen make.VA/inf work.par'
 
-		1315.  Merja uskoi meidän tekevän työtä 
+		1318.  Merja uskoi meidän tekevän työtä 
 			'Merja.nom believe.pst.3sg we.gen make.VA/inf work.par'
 
-		1316.  Merja uskoi teidän tekevän työtä 
+		1319.  Merja uskoi teidän tekevän työtä 
 			'Merja.nom believe.pst.3sg you.gen make.VA/inf work.par'
 
-		1317.  Merja uskoi heidän tekevän työtä 
+		1320.  Merja uskoi heidän tekevän työtä 
 			'Merja.nom believe they.gen make.VA/inf work.par'
 
-		1318.  Merja uskoi niiden tekevän työtä 
+		1321.  Merja uskoi niiden tekevän työtä 
 			'Merja.nom believe they.gen make.VA/inf work.par'
 
-		1319.  Merja uskoi miesten tekevän työtä 
+		1322.  Merja uskoi miesten tekevän työtä 
 			'Merja.nom believe men.gen make.VA/inf work.par'
 
-		1320.  Merja uskoi lähtevän#ni 
+		1323.  Merja uskoi lähtevän#ni 
 			'Merja.nom believe.pst.3sg leave.VA/inf.1sg'
 
-		1321.  Merja uskoi lähtevän#si 
+		1324.  Merja uskoi lähtevän#si 
 			'Merja.nom believe.pst.3sg leave.VA/inf.1sg'
 
-		1322.  Merja uskoi lähtevän#nsA 
+		1325.  Merja uskoi lähtevän#nsA 
 			'Merja.nom believe.pst.3p leave.VA/inf.1sg'
 
-		1323.  Merja uskoi lähtevän#mme 
+		1326.  Merja uskoi lähtevän#mme 
 			'Merja.nom believe.pst.3sg leave.VA/inf.1sg'
 
-		1324.  Merja uskoi lähtevän#nne 
+		1327.  Merja uskoi lähtevän#nne 
 			'Merja.nom believe.pst.3sg leave.VA/inf.1sg'
 
-		1325.  Merja uskoi tekevän#ni työtä 
+		1328.  Merja uskoi tekevän#ni työtä 
 			'Merja.nom believe.pst.3sg make.VA/inf.1sg work.par'
 
-		1326.  Merja uskoi tekevän#si työtä 
+		1329.  Merja uskoi tekevän#si työtä 
 			'Merja.nom believe.pst.3sg make.VA/inf.2sg work.par'
 
-		1327.  Merja uskoi tekevän#nsA työtä 
+		1330.  Merja uskoi tekevän#nsA työtä 
 			'Merja.nom believe.pst.3p make.VA/inf.3p work.par'
 
-		1328.  Merja uskoi tekevän#mme työtä 
+		1331.  Merja uskoi tekevän#mme työtä 
 			'Merja.nom believe.pst.3sg make.VA/inf.1pl work.par'
 
-		1329.  Merja uskoi tekevän#nne työtä 
+		1332.  Merja uskoi tekevän#nne työtä 
 			'Merja.nom believe.pst.3sg make.VA/inf.2pl work.par'
+
+& Ungrammatical (no subject, no agreement)
+
+		1333. *Merja uskoi lähtevän 
+			'Merja.nom believe.pst.3sg leave.VA/inf'
+
+		1334. *Merja uskoi tekevän työtä 
+			'Merja.nom believe.pst.3sg make.VA/inf work.par'
 
 & Ungrammatical (double/redundant agreement errors)
 
-		1330. *Merja uskoi minun lähtevän#ni 
+		1335. *Merja uskoi minun lähtevän#ni 
 			'Merja.nom believe.pst.3sg I.gen leave.VA/inf.1sg'
 
-		1331. *Merja uskoi sinun lähtevän#si 
+		1336. *Merja uskoi sinun lähtevän#si 
 			'Merja.nom believe.pst.3sg you.gen leave.VA/inf.2sg'
 
-		1332. *Merja uskoi hänen lähtevän#nsA 
+		1337. *Merja uskoi hänen lähtevän#nsA 
 			'Merja.nom believe.pst.3sg he.gen leave.VA/inf.3sg'
 
-		1333. *Merja uskoi meidän lähtevän#mme 
+		1338. *Merja uskoi meidän lähtevän#mme 
 			'Merja.nom believe.pst.3sg we.gen leave.VA/inf.1pl'
 
-		1334. *Merja uskoi teidän lähtevän#nne 
+		1339. *Merja uskoi teidän lähtevän#nne 
 			'Merja.nom believe.pst.3sg you.gen leave.VA/inf.2pl'
 
-		1335. *Merja uskoi minun tekevän#ni työtä 
+		1340. *Merja uskoi minun tekevän#ni työtä 
 			'Merja.nom believe.pst.3sg I.gen make.VA/inf.1sg work.par'
 
-		1336. *Merja uskoi sinun tekevän#si työtä 
+		1341. *Merja uskoi sinun tekevän#si työtä 
 			'Merja.nom believe.pst.3sg you.gen make.VA/inf.2sg work.par'
 
-		1337. *Merja uskoi hänen tekevän#nsA työtä 
+		1342. *Merja uskoi hänen tekevän#nsA työtä 
 			'Merja.nom believe.pst.3sg he.gen make.VA/inf.3sg work.par'
 
-		1338. *Merja uskoi meidän tekevän#mme työtä 
+		1343. *Merja uskoi meidän tekevän#mme työtä 
 			'Merja.nom believe.pst.3sg we.gen make.VA/inf.1pl work.par'
 
-		1339. *Merja uskoi teidän tekevän#nne työtä 
+		1344. *Merja uskoi teidän tekevän#nne työtä 
 			'Merja.nom believe.pst.3sg you.gen make.VA/inf.2pl work.par'
 
 & Ungrammatical (double agreement + feature [human] errors)
 
-		1340. *Merja uskoi Pekan lähtevän#nsA 
+		1345. *Merja uskoi Pekan lähtevän#nsA 
 			'Merja.nom believe.pst.3sg Pekka.gen leave.VA/inf.3p'
 
-		1341. *Merja uskoi miehen lähtevän#nsA 
+		1346. *Merja uskoi miehen lähtevän#nsA 
 			'Merja.nom believe.pst.3sg man.gen leave.VA/inf.3p'
 
-		1342. *Merja uskoi miesten lähtevän#nsA 
+		1347. *Merja uskoi miesten lähtevän#nsA 
 			'Merja.nom believe.pst.3sg men.gen leave.VA/inf.3p'
 
-		1343. *Merja uskoi niiden lähtevän#nsA 
+		1348. *Merja uskoi niiden lähtevän#nsA 
 			'Merja.nom believe.pst.3sg they.gen leave.VA/inf.3p'
 
-		1344. *Merja uskoi sen2 lähtevän#nsA 
+		1349. *Merja uskoi sen2 lähtevän#nsA 
 			'Merja.nom believe.pst.3sg it.gen leave.VA/inf.3p'
 
-		1345. *Merja uskoi Pekan tekevän#nsA työtä 
+		1350. *Merja uskoi Pekan tekevän#nsA työtä 
 			'Merja.nom believe.pst.3sg Pekka.gen make.VA/inf.3p work.par'
 
-		1346. *Merja uskoi miehen tekevän#nsA työtä 
+		1351. *Merja uskoi miehen tekevän#nsA työtä 
 			'Merja.nom believe.pst.3sg man.gen make.VA/inf.3p work.par'
 
-		1347. *Merja uskoi miesten tekevän#nsA työtä 
+		1352. *Merja uskoi miesten tekevän#nsA työtä 
 			'Merja.nom believe.pst.3sg men.gen make.VA/inf.3p work.par'
 
-		1348. *Merja uskoi niiden tekevän#nsA työtä 
+		1353. *Merja uskoi niiden tekevän#nsA työtä 
 			'Merja.nom believe.pst.3sg they.gen make.VA/inf.3p work.par'
 
-		1349. *Merja uskoi sen2 tekevän#nsA työtä 
+		1354. *Merja uskoi sen2 tekevän#nsA työtä 
 			'Merja.nom believe.pst.3sg it.gen make.VA/inf.3p work.par'
 
 & Ungrammatical (double agreement + feature [human, person, number] errors)
 
-		1350. *Merja uskoi Pekan lähtevän#ni 
+		1355. *Merja uskoi Pekan lähtevän#ni 
 			'Merja.nom believe.pst.3sg Pekka.gen leave.VA/inf.1sg'
 
-		1351. *Merja uskoi miehen lähtevän#ni 
+		1356. *Merja uskoi miehen lähtevän#ni 
 			'Merja.nom believe.pst.3sg man.gen leave.VA/inf.1sg'
 
-		1352. *Merja uskoi miesten lähtevän#ni 
+		1357. *Merja uskoi miesten lähtevän#ni 
 			'Merja.nom believe.pst.3sg men.gen leave.VA/inf.1sg'
 
-		1353. *Merja uskoi sen2 lähtevän#ni 
+		1358. *Merja uskoi sen2 lähtevän#ni 
 			'Merja.nom believe.pst.3sg it.gen leave.VA/inf.1sg'
 
-		1354. *Merja uskoi Pekan tekevän#ni työtä 
+		1359. *Merja uskoi Pekan tekevän#ni työtä 
 			'Merja.nom believe.pst.3sg Pekka.gen make.VA/inf.1sg work.par'
 
-		1355. *Merja uskoi miehen tekevän#ni työtä 
+		1360. *Merja uskoi miehen tekevän#ni työtä 
 			'Merja.nom believe.pst.3sg man.gen make.VA/inf.1sg work.par'
 
-		1356. *Merja uskoi miesten tekevän#ni työtä 
+		1361. *Merja uskoi miesten tekevän#ni työtä 
 			'Merja.nom believe.pst.3sg men.gen make.VA/inf.1sg work.par'
 
-		1357. *Merja uskoi sen2 tekevän#ni työtä 
+		1362. *Merja uskoi sen2 tekevän#ni työtä 
 			'Merja.nom believe.pst.3sg it.gen make.VA/inf.1sg work.par'
 
-		1358. *Merja uskoi Pekan lähtevän#si 
+		1363. *Merja uskoi Pekan lähtevän#si 
 			'Merja.nom believe.pst.3sg Pekka.gen leave.VA/inf.2sg'
 
-		1359. *Merja uskoi miehen lähtevän#si 
+		1364. *Merja uskoi miehen lähtevän#si 
 			'Merja.nom believe.pst.3sg man.gen leave.VA/inf.2sg'
 
-		1360. *Merja uskoi miesten lähtevän#si 
+		1365. *Merja uskoi miesten lähtevän#si 
 			'Merja.nom believe.pst.3sg men.gen leave.VA/inf.2sg'
 
-		1361. *Merja uskoi sen2 lähtevän#si 
+		1366. *Merja uskoi sen2 lähtevän#si 
 			'Merja.nom believe.pst.3sg it.gen leave.VA/inf.2sg'
 
-		1362. *Merja uskoi Pekan tekevän#si työtä 
+		1367. *Merja uskoi Pekan tekevän#si työtä 
 			'Merja.nom believe.pst.3sg Pekka.gen make.VA/inf.2sg work.par'
 
-		1363. *Merja uskoi miehen tekevän#si työtä 
+		1368. *Merja uskoi miehen tekevän#si työtä 
 			'Merja.nom believe.pst.3sg man.gen make.VA/inf.2sg work.par'
 
-		1364. *Merja uskoi miesten tekevän#si työtä 
+		1369. *Merja uskoi miesten tekevän#si työtä 
 			'Merja.nom believe.pst.3sg men.gen make.VA/inf.2sg work.parg'
 
-		1365. *Merja uskoi sen2 tekevän#si työtä 
+		1370. *Merja uskoi sen2 tekevän#si työtä 
 			'Merja.nom believe.pst.3sg it.gen make.VA/inf.2sg work.par'
 
-		1366. *Merja uskoi Pekan lähtevän#mme 
+		1371. *Merja uskoi Pekan lähtevän#mme 
 			'Merja.nom believe.pst.3sg Pekka.gen leave.VA/inf.1pl'
 
-		1367. *Merja uskoi miehen lähtevän#mme 
+		1372. *Merja uskoi miehen lähtevän#mme 
 			'Merja.nom believe.pst.3sg man.gen leave.VA/inf.1pl'
 
-		1368. *Merja uskoi miesten lähtevän#mme 
+		1373. *Merja uskoi miesten lähtevän#mme 
 			'Merja.nom believe.pst.3sg men.gen leave.VA/inf.1pl'
 
-		1369. *Merja uskoi sen2 lähtevän#mme 
+		1374. *Merja uskoi sen2 lähtevän#mme 
 			'Merja.nom believe.pst.3sg it.gen leave.VA/inf.1pl'
 
-		1370. *Merja uskoi Pekan tekevän#mme työtä 
+		1375. *Merja uskoi Pekan tekevän#mme työtä 
 			'Merja.nom believe.pst.3sg Pekka.gen make.VA/inf.1pl work.par'
 
-		1371. *Merja uskoi miehen tekevän#mme työtä 
+		1376. *Merja uskoi miehen tekevän#mme työtä 
 			'Merja.nom believe.pst.3sg man.gen make.VA/inf.1pl work.par'
 
-		1372. *Merja uskoi miesten tekevän#mme työtä 
+		1377. *Merja uskoi miesten tekevän#mme työtä 
 			'Merja.nom believe.pst.3sg men.gen make.VA/inf.1pl work.par'
 
-		1373. *Merja uskoi sen2 tekevän#mme työtä 
+		1378. *Merja uskoi sen2 tekevän#mme työtä 
 			'Merja.nom believe.pst.3sg it.gen make.VA/inf.1pl work.par'
 
-		1374. *Merja uskoi Pekan lähtevän#nne 
+		1379. *Merja uskoi Pekan lähtevän#nne 
 			'Merja.nom believe.pst.3sg Pekka.gen leave.VA/inf.2pl'
 
-		1375. *Merja uskoi miehen lähtevän#nne 
+		1380. *Merja uskoi miehen lähtevän#nne 
 			'Merja.nom believe.pst.3sg man.gen leave.VA/inf.2pl'
 
-		1376. *Merja uskoi miesten lähtevän#nne 
+		1381. *Merja uskoi miesten lähtevän#nne 
 			'Merja.nom believe.pst.3sg men.gen leave.VA/inf.2pl'
 
-		1377. *Merja uskoi sen2 lähtevän#nne 
+		1382. *Merja uskoi sen2 lähtevän#nne 
 			'Merja.nom believe.pst.3sg it.gen leave.VA/inf.2pl'
 
-		1378. *Merja uskoi Pekan tekevän#nne työtä 
+		1383. *Merja uskoi Pekan tekevän#nne työtä 
 			'Merja.nom believe.pst.3sg Pekka.gen make.VA/inf.2pl work.par'
 
-		1379. *Merja uskoi miehen tekevän#nne työtä 
+		1384. *Merja uskoi miehen tekevän#nne työtä 
 			'Merja.nom believe.pst.3sg man.gen make.VA/inf.2pl work.par'
 
-		1380. *Merja uskoi miesten tekevän#nne työtä 
+		1385. *Merja uskoi miesten tekevän#nne työtä 
 			'Merja.nom believe.pst.3sg men.gen make.VA/inf.2pl work.par'
 
-		1381. *Merja uskoi sen2 tekevän#nne työtä 
+		1386. *Merja uskoi sen2 tekevän#nne työtä 
 			'Merja.nom believe.pst.3sg it.gen make.VA/inf.2pl work.par'
 
 & 2.3.4 MA-infinitive
 
 & Grammatical
 
-		1382.  Merja käski lähtemään 
+		1387.  Merja käski lähtemään 
 			'Merja.nom order.pst.3sg leave.MA/inf'
 
-		1383.  Merja käski tekemään työtä 
+		1388.  Merja käski tekemään työtä 
 			'Merja order.pst.3sg make.MA.ill/inf work.par'
 
 & Ungrammatical (impossible agreement error)
 
-		1384. *Merja käski lähtemään#ni 
+		1389. *Merja käski lähtemään#ni 
 			'Merja.nom order.pst.3sg leave.MA/inf.1sg'
 
-		1385. *Merja käski lähtemään#si 
+		1390. *Merja käski lähtemään#si 
 			'Merja.nom order.pst.3sg leave.MA/inf.1sg'
 
-		1386. *Merja käski lähtemään#nsA 
+		1391. *Merja käski lähtemään#nsA 
 			'Merja.nom order.pst.3sg leave.MA/inf.1sg'
 
-		1387. *Merja käski lähtemään#mme 
+		1392. *Merja käski lähtemään#mme 
 			'Merja.nom order.pst.3sg leave.MA/inf.1sg'
 
-		1388. *Merja käski lähtemään#nne 
+		1393. *Merja käski lähtemään#nne 
 			'Merja.nom order.pst.3sg leave.MA/inf.1sg'
 
-		1389. *Merja käski tekemään#ni työtä 
+		1394. *Merja käski tekemään#ni työtä 
 			'Merja.nom order.pst.3sg make.MA/inf.1sg work.par'
 
-		1390. *Merja käski tekemään#si työtä 
+		1395. *Merja käski tekemään#si työtä 
 			'Merja.nom order.pst.3sg make.MA/inf.2sg work.par'
 
-		1391. *Merja käski tekemään#nsA työtä 
+		1396. *Merja käski tekemään#nsA työtä 
 			'Merja.nom order.pst.3sg make.MA/inf.3p work.par'
 
-		1392. *Merja käski tekemään#mme työtä 
+		1397. *Merja käski tekemään#mme työtä 
 			'Merja.nom order.pst.3sg make.MA/inf.1pl work.par'
 
-		1393. *Merja käski tekemään#nne työtä 
+		1398. *Merja käski tekemään#nne työtä 
 			'Merja.nom order.pst.3sg make.MA/inf.2pl work.par'
 
 & Ungrammatical (illicit subject)
 
-		1394. *Merja käski minun lähtemään 
+		1399. *Merja käski minun lähtemään 
 			'Merja.nom order I.gen leave.MA/inf'
 
-		1395. *Merja käski sinun lähtemään 
+		1400. *Merja käski sinun lähtemään 
 			'Merja.nom order you.gen leave.MA/inf'
 
-		1396. *Merja käski hänen lähtemään 
+		1401. *Merja käski hänen lähtemään 
 			'Merja.nom order he.gen leave.MA/inf'
 
-		1397. *Merja käski Pekan lähtemään 
+		1402. *Merja käski Pekan lähtemään 
 			'Merja.nom order Pekka.gen leave.MA/inf'
 
-		1398. *Merja käski sen lähtemään 
+		1403. *Merja käski sen lähtemään 
 			'Merja.nom order it.gen leave.MA/inf'
 
-		1399. *Merja käski miehen lähtemään 
+		1404. *Merja käski miehen lähtemään 
 			'Merja.nom order man.gen leave.MA/inf'
 
-		1400. *Merja käski meidän lähtemään 
+		1405. *Merja käski meidän lähtemään 
 			'Merja.nom order I.gen leave.MA/inf'
 
-		1401. *Merja käski teidän lähtemään 
+		1406. *Merja käski teidän lähtemään 
 			'Merja.nom order I.gen leave.MA/inf'
 
-		1402. *Merja käski heidän lähtemään 
+		1407. *Merja käski heidän lähtemään 
 			'Merja.nom order I.gen leave.MA/inf'
 
-		1403. *Merja käski niiden lähtemään 
+		1408. *Merja käski niiden lähtemään 
 			'Merja.nom order they.gen leave.MA/inf'
 
-		1404. *Merja käski miesten lähtemään 
+		1409. *Merja käski miesten lähtemään 
 			'Merja.nom order men.gen leave.MA/inf'
 
 & Ungrammatical (illicit subject and illicit agreement)
 
-		1405. *Merja käski minun lähtemään#ni 
+		1410. *Merja käski minun lähtemään#ni 
 			'Merja.nom order I.gen leave.MA/inf.px/1sg'
 
-		1406. *Merja käski sinun lähtemään#si 
+		1411. *Merja käski sinun lähtemään#si 
 			'Merja.nom order I.gen leave.MA/inf.px/2sg'
 
-		1407. *Merja käski hänen lähtemään#nsA 
+		1412. *Merja käski hänen lähtemään#nsA 
 			'Merja.nom order I.gen leave.MA/inf.px/3sg'
 
-		1408. *Merja käski meidän lähtemään#mme 
+		1413. *Merja käski meidän lähtemään#mme 
 			'Merja.nom order I.gen leave.MA/inf.px/1pl'
 
-		1409. *Merja käski teidän lähtemään#nne 
+		1414. *Merja käski teidän lähtemään#nne 
 			'Merja.nom order I.gen leave.MA/inf.px/2pl'
 
-		1410. *Merja käski heidän lähtemään#nsA 
+		1415. *Merja käski heidän lähtemään#nsA 
 			'Merja.nom order I.gen leave.MA/inf.px/3pl'
 
 & 2.4 Adjunct infinitives
@@ -4563,948 +4582,948 @@
 
 & Grammatical
 
-		1411.  Merja laulaa lähtiessä 
+		1416.  Merja laulaa lähtiessä 
 			'Merja.nom sing.prs.3sg leave.ESSA/inf'
 
-		1412.  Merja laulaa lähtiessä#ni 
+		1417.  Merja laulaa lähtiessä#ni 
 			'Merja.nom sing.prs.3sg leave.ESSA/inf.1sg'
 
-		1413.  Merja laulaa lähtiessä#si 
+		1418.  Merja laulaa lähtiessä#si 
 			'Merja.nom sing.prs.3sg leave.ESSA/inf.2sg'
 
-		1414.  Merja laulaa lähtiessä#nsA 
+		1419.  Merja laulaa lähtiessä#nsA 
 			'Merja.nom sing.prs.3sg leave.ESSA/inf.3p'
 
-		1415.  Merja laulaa lähtiessä#mme 
+		1420.  Merja laulaa lähtiessä#mme 
 			'Merja.nom sing.prs.3sg leave.ESSA/inf.1pl'
 
-		1416.  Merja laulaa lähtiessä#nne 
+		1421.  Merja laulaa lähtiessä#nne 
 			'Merja.nom sing.prs.3sg leave.ESSA/inf.2pl'
 
-		1417.  Merja laulaa tehdessä työtä 
+		1422.  Merja laulaa tehdessä työtä 
 			'Merja.nom sing.prs.3sg leave.ESSA/inf'
 
-		1418.  Merja laulaa tehdessä#ni työtä 
+		1423.  Merja laulaa tehdessä#ni työtä 
 			'Merja.nom sing.prs.3sg make.ESSA/inf.1sg work.par'
 
-		1419.  Merja laulaa tehdessä#si työtä 
+		1424.  Merja laulaa tehdessä#si työtä 
 			'Merja.nom sing.prs.3sg make.ESSA/inf.2sg work.par'
 
-		1420.  Merja laulaa tehdessä#nsA työtä 
+		1425.  Merja laulaa tehdessä#nsA työtä 
 			'Merja.nom sing.prs.3sg make.ESSA/inf.3p work.par'
 
-		1421.  Merja laulaa tehdessä#mme työtä 
+		1426.  Merja laulaa tehdessä#mme työtä 
 			'Merja.nom sing.prs.3sg make.ESSA/inf.1pl work.par'
 
-		1422.  Merja laulaa tehdessä#nne työtä 
+		1427.  Merja laulaa tehdessä#nne työtä 
 			'Merja.nom sing.prs.3sg make.ESSA/inf.2pl work.par'
 
-		1423.  Merja laulaa minun lähtiessä 
+		1428.  Merja laulaa minun lähtiessä 
 			'Merja sing.prs.3sg I.gen leave.ESSA/inf
 
-		1424.  Merja laulaa sinun lähtiessä 
+		1429.  Merja laulaa sinun lähtiessä 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf
 
-		1425.  Merja laulaa hänen lähtiessä 
+		1430.  Merja laulaa hänen lähtiessä 
 			'Merja sing.prs.3sg he.gen leave.ESSA/inf
 
-		1426.  Merja laulaa Pekan lähtiessä 
+		1431.  Merja laulaa Pekan lähtiessä 
 			'Merja sing.prs.3sg Pekka.gen leave.ESSA/inf
 
-		1427.  Merja laulaa miehen lähtiessä 
+		1432.  Merja laulaa miehen lähtiessä 
 			'Merja sing.prs.3sg man.gen leave.ESSA/inf
 
-		1428.  Merja laulaa sen lähtiessä 
+		1433.  Merja laulaa sen lähtiessä 
 			'Merja sing.prs.3sg it.gen leave.ESSA/inf
 
-		1429.  Merja laulaa meidän lähtiessä 
+		1434.  Merja laulaa meidän lähtiessä 
 			'Merja sing.prs.3sg we.gen leave.ESSA/inf
 
-		1430.  Merja laulaa teidän lähtiessä 
+		1435.  Merja laulaa teidän lähtiessä 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf
 
-		1431.  Merja laulaa heidän lähtiessä 
+		1436.  Merja laulaa heidän lähtiessä 
 			'Merja sing.prs.3sg they.gen leave.ESSA/inf
 
-		1432.  Merja laulaa niiden lähtiessä 
+		1437.  Merja laulaa niiden lähtiessä 
 			'Merja sing.prs.3sg they.gen leave.ESSA/inf
 
-		1433.  Merja laulaa miesten lähtiessä 
+		1438.  Merja laulaa miesten lähtiessä 
 			'Merja sing.prs.3sg men.gen leave.ESSA/inf
 
-		1434.  Merja laulaa minun lähtiessä#ni 
+		1439.  Merja laulaa minun lähtiessä#ni 
 			'Merja sing.prs.3sg I.gen leave.ESSA/inf.1sg
 
-		1435.  Merja laulaa sinun lähtiessä#si 
+		1440.  Merja laulaa sinun lähtiessä#si 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.2sg
 
-		1436.  Merja laulaa hänen lähtiessä#An 
+		1441.  Merja laulaa hänen lähtiessä#An 
 			'Merja sing.prs.3sg he.gen leave.ESSA/inf.3p
 
-		1437.  Merja laulaa meidän lähtiessä#mme 
+		1442.  Merja laulaa meidän lähtiessä#mme 
 			'Merja sing.prs.3sg we.gen leave.ESSA/inf.1pl
 
-		1438.  Merja laulaa teidän lähtiessä#nne 
+		1443.  Merja laulaa teidän lähtiessä#nne 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.2pl
 
-		1439.  Merja laulaa heidän lähtiessä#An 
+		1444.  Merja laulaa heidän lähtiessä#An 
 			'Merja sing.prs.3sg they.gen leave.ESSA/inf.3pl
 
 & Ungrammatical (human pronoun violation)
 
-		1440. *Merja laulaa Pekan lähtiessä#An 
+		1445. *Merja laulaa Pekan lähtiessä#An 
 			'Merja.nom sing.prs.3sg Pekan.gen leave.ESSA/inf.3p'
 
-		1441. *Merja laulaa miehen lähtiessä#An 
+		1446. *Merja laulaa miehen lähtiessä#An 
 			'Merja.nom sing.prs.3sg man.gen leave.ESSA/inf.3p'
 
-		1442. *Merja laulaa sen lähtiessä#An 
+		1447. *Merja laulaa sen lähtiessä#An 
 			'Merja.nom sing.prs.3sg it.gen leave.ESSA/inf.3p'
 
-		1443. *Merja laulaa miesten lähtiessä#An 
+		1448. *Merja laulaa miesten lähtiessä#An 
 			'Merja.nom sing.prs.3sg men.gen leave.ESSA/inf.3p'
 
-		1444. *Merja laulaa niiden lähtiessä#An 
+		1449. *Merja laulaa niiden lähtiessä#An 
 			'Merja.nom sing.prs.3sg they.gen leave.ESSA/inf.3p'
 
 & Ungrammatical (agreement violation)
 
-		1445. *Merja laulaa minun lähtiessä#si 
+		1450. *Merja laulaa minun lähtiessä#si 
 			'Merja sing.prs.3sg I.gen leave.ESSA/inf.2sg
 
-		1446. *Merja laulaa minun lähtiessä#An 
+		1451. *Merja laulaa minun lähtiessä#An 
 			'Merja sing.prs.3sg I.gen leave.ESSA/inf.3p
 
-		1447. *Merja laulaa minun lähtiessä#mme 
+		1452. *Merja laulaa minun lähtiessä#mme 
 			'Merja sing.prs.3sg I.gen leave.ESSA/inf.1pl
 
-		1448. *Merja laulaa minun lähtiessä#nne 
+		1453. *Merja laulaa minun lähtiessä#nne 
 			'Merja sing.prs.3sg I.gen leave.ESSA/inf.2pl
 
-		1449. *Merja laulaa minun lähtiessä#An 
+		1454. *Merja laulaa minun lähtiessä#An 
 			'Merja sing.prs.3sg I.gen leave.ESSA/inf.3pl
 
-		1450. *Merja laulaa sinun lähtiessä#ni 
+		1455. *Merja laulaa sinun lähtiessä#ni 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.1sg
 
-		1451. *Merja laulaa sinun lähtiessä#An 
+		1456. *Merja laulaa sinun lähtiessä#An 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.3p
 
-		1452. *Merja laulaa sinun lähtiessä#mme 
+		1457. *Merja laulaa sinun lähtiessä#mme 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.1pl
 
-		1453. *Merja laulaa sinun lähtiessä#nne 
+		1458. *Merja laulaa sinun lähtiessä#nne 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.2pl
 
-		1454. *Merja laulaa sinun lähtiessä#An 
+		1459. *Merja laulaa sinun lähtiessä#An 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.3pl
 
-		1455. *Merja laulaa hänen lähtiessä#ni 
+		1460. *Merja laulaa hänen lähtiessä#ni 
 			'Merja sing.prs.3sg he.gen leave.ESSA/inf.1sg
 
-		1456. *Merja laulaa hänen lähtiessä#si 
+		1461. *Merja laulaa hänen lähtiessä#si 
 			'Merja sing.prs.3sg he.gen leave.ESSA/inf.2sg
 
-		1457. *Merja laulaa hänen lähtiessä#mme 
+		1462. *Merja laulaa hänen lähtiessä#mme 
 			'Merja sing.prs.3sg he.gen leave.ESSA/inf.1pl
 
-		1458. *Merja laulaa hänen lähtiessä#nne 
+		1463. *Merja laulaa hänen lähtiessä#nne 
 			'Merja sing.prs.3sg he.gen leave.ESSA/inf.2pl
 
-		1459. *Merja laulaa meidän lähtiessä#ni 
+		1464. *Merja laulaa meidän lähtiessä#ni 
 			'Merja sing.prs.3sg we.gen leave.ESSA/inf.1sg
 
-		1460. *Merja laulaa meidän lähtiessä#si 
+		1465. *Merja laulaa meidän lähtiessä#si 
 			'Merja sing.prs.3sg we.gen leave.ESSA/inf.2sg
 
-		1461. *Merja laulaa meidän lähtiessä#An 
+		1466. *Merja laulaa meidän lähtiessä#An 
 			'Merja sing.prs.3sg we.gen leave.ESSA/inf.3p
 
-		1462. *Merja laulaa meidän lähtiessä#nne 
+		1467. *Merja laulaa meidän lähtiessä#nne 
 			'Merja sing.prs.3sg we.gen leave.ESSA/inf.2pl
 
-		1463. *Merja laulaa meidän lähtiessä#An 
+		1468. *Merja laulaa meidän lähtiessä#An 
 			'Merja sing.prs.3sg we.gen leave.ESSA/inf.3pl
 
-		1464. *Merja laulaa teidän lähtiessä#ni 
+		1469. *Merja laulaa teidän lähtiessä#ni 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.1sg
 
-		1465. *Merja laulaa teidän lähtiessä#si 
+		1470. *Merja laulaa teidän lähtiessä#si 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.2sg
 
-		1466. *Merja laulaa teidän lähtiessä#An 
+		1471. *Merja laulaa teidän lähtiessä#An 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.3p
 
-		1467. *Merja laulaa teidän lähtiessä#mme 
+		1472. *Merja laulaa teidän lähtiessä#mme 
 			'Merja sing.prs.3sg youwe.gen leave.ESSA/inf.1pl
 
-		1468. *Merja laulaa teidän lähtiessä#An 
+		1473. *Merja laulaa teidän lähtiessä#An 
 			'Merja sing.prs.3sg you.gen leave.ESSA/inf.3pl
 
-		1469. *Merja laulaa heidän lähtiessä#ni 
+		1474. *Merja laulaa heidän lähtiessä#ni 
 			'Merja sing.prs.3sg they.gen leave.ESSA/inf.1sg
 
-		1470. *Merja laulaa heidän lähtiessä#si 
+		1475. *Merja laulaa heidän lähtiessä#si 
 			'Merja sing.prs.3sg they.gen leave.ESSA/inf.2sg
 
-		1471. *Merja laulaa heidän lähtiessä#mme 
+		1476. *Merja laulaa heidän lähtiessä#mme 
 			'Merja sing.prs.3sg they.gen leave.ESSA/inf.1pl
 
-		1472. *Merja laulaa heidän lähtiessä#nne 
+		1477. *Merja laulaa heidän lähtiessä#nne 
 			'Merja sing.prs.3sg they.gen leave.ESSA/inf.2pl
 
 & 2.4.2 KSE-infinitive
 
 & Grammatical
 
-		1473.  Merja laulaa lähteäkse#ni 
+		1478.  Merja laulaa lähteäkse#ni 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.1sg'
 
-		1474.  Merja laulaa lähteäkse#si 
+		1479.  Merja laulaa lähteäkse#si 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.2sg'
 
-		1475.  Merja laulaa lähteäkse#nsA 
+		1480.  Merja laulaa lähteäkse#nsA 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.3p'
 
-		1476.  Merja laulaa lähteäkse#mme 
+		1481.  Merja laulaa lähteäkse#mme 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.1pl'
 
-		1477.  Merja laulaa lähteäkse#nne 
+		1482.  Merja laulaa lähteäkse#nne 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.2pl'
 
-		1478.  Merja laulaa tehdäkse#ni työtä 
+		1483.  Merja laulaa tehdäkse#ni työtä 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.1sg work.par'
 
-		1479.  Merja laulaa tehdäkse#si työtä 
+		1484.  Merja laulaa tehdäkse#si työtä 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.2sg work.par'
 
-		1480.  Merja laulaa tehdäkse#An työtä 
+		1485.  Merja laulaa tehdäkse#An työtä 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.3p work.par'
 
-		1481.  Merja laulaa tehdäkse#mme työtä 
+		1486.  Merja laulaa tehdäkse#mme työtä 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.1pl work.par'
 
-		1482.  Merja laulaa tehdäkse#nne työtä 
+		1487.  Merja laulaa tehdäkse#nne työtä 
 			'Merja.nom sing.prs.3sg leave.KSE/inf.2pl work.par'
 
 & Ungrammatical (missing obligatory agreement)
 
-		1483. *Merja laulaa lähteäkse 
+		1488. *Merja laulaa lähteäkse 
 			'Merja.nom sing.prs.3sg leave.KSE/inf'
 
-		1484. *Merja laulaa tehdäkse työtä 
+		1489. *Merja laulaa tehdäkse työtä 
 			'Merja.nom sing.prs.3sg make.KSE/inf work.par'
 
 & Ungrammatical (illicit subject)
 
-		1485. *Merja laulaa minun lähteäkse#ni 
+		1490. *Merja laulaa minun lähteäkse#ni 
 			'Merja.nom sings I.gen leave.KSE/inf-px/1sg'
 
-		1486. *Merja laulaa sinun lähteäkse#si 
+		1491. *Merja laulaa sinun lähteäkse#si 
 			'Merja.nom sings you.gen leave.KSE/inf-px/1sg'
 
-		1487. *Merja laulaa hänen lähteäkse#nsA 
+		1492. *Merja laulaa hänen lähteäkse#nsA 
 			'Merja.nom sings he.gen leave.KSE/inf-px/1sg'
 
-		1488. *Merja laulaa Pekan lähteäkse#nsA 
+		1493. *Merja laulaa Pekan lähteäkse#nsA 
 			'Merja.nom sings Pekka.gen leave.KSE/inf-px/1sg'
 
-		1489. *Merja laulaa sen lähteäkse#nsA 
+		1494. *Merja laulaa sen lähteäkse#nsA 
 			'Merja.nom sings it.gen leave.KSE/inf-px/1sg'
 
-		1490. *Merja laulaa meidän lähteäkse#mme 
+		1495. *Merja laulaa meidän lähteäkse#mme 
 			'Merja.nom sings we.gen leave.KSE/inf-px/1sg'
 
-		1491. *Merja laulaa teidän lähteäkse#nne 
+		1496. *Merja laulaa teidän lähteäkse#nne 
 			'Merja.nom sings you.gen leave.KSE/inf-px/1sg'
 
-		1492. *Merja laulaa heidän lähteäkse#nsA 
+		1497. *Merja laulaa heidän lähteäkse#nsA 
 			'Merja.nom sings they.gen leave.KSE/inf-px/1sg'
 
-		1493. *Merja laulaa niiden lähteäkse#nsA 
+		1498. *Merja laulaa niiden lähteäkse#nsA 
 			'Merja.nom sings they.gen leave.KSE/inf-px/1sg'
 
-		1494. *Merja laulaa miesten lähteäkse#nsA 
+		1499. *Merja laulaa miesten lähteäkse#nsA 
 			'Merja.nom sings men.gen leave.KSE/inf-px/1sg'
 
 & Ungrammatical (illicit subject and wrong agreement)
 
-		1495. *Merja laulaa minun lähteäkse#si 
+		1500. *Merja laulaa minun lähteäkse#si 
 			'Merja.nom sings I.gen leave.KSE/inf-px/2sg'
 
-		1496. *Merja laulaa minun lähteäkse#nsA 
+		1501. *Merja laulaa minun lähteäkse#nsA 
 			'Merja.nom sings I.gen leave.KSE/inf-px/3p'
 
-		1497. *Merja laulaa minun lähteäkse#mme 
+		1502. *Merja laulaa minun lähteäkse#mme 
 			'Merja.nom sings I.gen leave.KSE/inf-px/1pl'
 
-		1498. *Merja laulaa minun lähteäkse#nne 
+		1503. *Merja laulaa minun lähteäkse#nne 
 			'Merja.nom sings I.gen leave.KSE/inf-px/2pl'
 
-		1499. *Merja laulaa sinun lähteäkse#ni 
+		1504. *Merja laulaa sinun lähteäkse#ni 
 			'Merja.nom sings you.gen leave.KSE/inf-px/1sg'
 
-		1500. *Merja laulaa sinun lähteäkse#nsA 
+		1505. *Merja laulaa sinun lähteäkse#nsA 
 			'Merja.nom sings you.gen leave.KSE/inf-px/3p'
 
-		1501. *Merja laulaa sinun lähteäkse#mme 
+		1506. *Merja laulaa sinun lähteäkse#mme 
 			'Merja.nom sings you.gen leave.KSE/inf-px/1pl'
 
-		1502. *Merja laulaa sinun lähteäkse#nne 
+		1507. *Merja laulaa sinun lähteäkse#nne 
 			'Merja.nom sings you.gen leave.KSE/inf-px/1pl'
 
-		1503. *Merja laulaa sinun lähteäkse#nsA 
+		1508. *Merja laulaa sinun lähteäkse#nsA 
 			'Merja.nom sings you.gen leave.KSE/inf-px/3p'
 
-		1504. *Merja laulaa hänen lähteäkse#si 
+		1509. *Merja laulaa hänen lähteäkse#si 
 			'Merja.nom sings he.gen leave.KSE/inf-px/2sg'
 
-		1505. *Merja laulaa hänen lähteäkse#mme 
+		1510. *Merja laulaa hänen lähteäkse#mme 
 			'Merja.nom sings he.gen leave.KSE/inf-px/1pl'
 
-		1506. *Merja laulaa hänen lähteäkse#nne 
+		1511. *Merja laulaa hänen lähteäkse#nne 
 			'Merja.nom sings he.gen leave.KSE/inf-px/2pl'
 
-		1507. *Merja laulaa meidän lähteäkse#ni 
+		1512. *Merja laulaa meidän lähteäkse#ni 
 			'Merja.nom sings we.gen leave.KSE/inf-px/1sg'
 
-		1508. *Merja laulaa meidän lähteäkse#si 
+		1513. *Merja laulaa meidän lähteäkse#si 
 			'Merja.nom sings we.gen leave.KSE/inf-px/2sg'
 
-		1509. *Merja laulaa meidän lähteäkse#nsA 
+		1514. *Merja laulaa meidän lähteäkse#nsA 
 			'Merja.nom sings we.gen leave.KSE/inf-px/3sg'
 
-		1510. *Merja laulaa meidän lähteäkse#nne 
+		1515. *Merja laulaa meidän lähteäkse#nne 
 			'Merja.nom sings we.gen leave.KSE/inf-px/2pl'
 
-		1511. *Merja laulaa teidän lähteäkse#ni 
+		1516. *Merja laulaa teidän lähteäkse#ni 
 			'Merja.nom sings you.gen leave.KSE/inf-px/1sg'
 
-		1512. *Merja laulaa teidän lähteäkse#si 
+		1517. *Merja laulaa teidän lähteäkse#si 
 			'Merja.nom sings you.gen leave.KSE/inf-px/2sg'
 
-		1513. *Merja laulaa teidän lähteäkse#nsA 
+		1518. *Merja laulaa teidän lähteäkse#nsA 
 			'Merja.nom sings you.gen leave.KSE/inf-px/3sg'
 
-		1514. *Merja laulaa teidän lähteäkse#mme 
+		1519. *Merja laulaa teidän lähteäkse#mme 
 			'Merja.nom sings you.gen leave.KSE/inf-px/1pl'
 
-		1515. *Merja laulaa heidän lähteäkse#ni 
+		1520. *Merja laulaa heidän lähteäkse#ni 
 			'Merja.nom sings they.gen leave.KSE/inf-px/1sg'
 
-		1516. *Merja laulaa heidän lähteäkse#si 
+		1521. *Merja laulaa heidän lähteäkse#si 
 			'Merja.nom sings they.gen leave.KSE/inf-px/2sg'
 
-		1517. *Merja laulaa heidän lähteäkse#mme 
+		1522. *Merja laulaa heidän lähteäkse#mme 
 			'Merja.nom sings they.gen leave.KSE/inf-px/1pl'
 
-		1518. *Merja laulaa heidän lähteäkse#nne 
+		1523. *Merja laulaa heidän lähteäkse#nne 
 			'Merja.nom sings they.gen leave.KSE/inf-px/2pl'
 
 & 2.4.3 TUA-infinitive
 
 & Grammatical
 
-		1519.  Merja laulaa lähdettyä#ni 
+		1524.  Merja laulaa lähdettyä#ni 
 			'Merja.nom sing leave.TUA/inf.1sg'
 
-		1520.  Merja laulaa lähdettyä#si 
+		1525.  Merja laulaa lähdettyä#si 
 			'Merja.nom sing leave.TUA/inf.2sg'
 
-		1521.  Merja laulaa lähdettyä#nsA 
+		1526.  Merja laulaa lähdettyä#nsA 
 			'Merja.nom sing leave.TUA/inf.3p'
 
-		1522.  Merja laulaa lähdettyä#mme 
+		1527.  Merja laulaa lähdettyä#mme 
 			'Merja.nom sing leave.TUA/inf.1pl'
 
-		1523.  Merja laulaa lähdettyä#nne 
+		1528.  Merja laulaa lähdettyä#nne 
 			'Merja.nom sing leave.TUA/inf.2pl'
 
-		1524.  Merja laulaa tehtyä#ni työtä 
+		1529.  Merja laulaa tehtyä#ni työtä 
 			'Merja.nom sing make.TUA/inf.1sg work.par'
 
-		1525.  Merja laulaa tehtyä#si työtä 
+		1530.  Merja laulaa tehtyä#si työtä 
 			'Merja.nom sing make.TUA/inf.2sg work.par'
 
-		1526.  Merja laulaa tehtyä#nsA työtä 
+		1531.  Merja laulaa tehtyä#nsA työtä 
 			'Merja.nom sing make.TUA/inf.3p work.par'
 
-		1527.  Merja laulaa tehtyä#mme työtä 
+		1532.  Merja laulaa tehtyä#mme työtä 
 			'Merja.nom sing make.TUA/inf.1pl work.par'
 
-		1528.  Merja laulaa tehtyä#nne työtä 
+		1533.  Merja laulaa tehtyä#nne työtä 
 			'Merja.nom sing make.TUA/inf.2pl work.par'
 
-		1529.  Merja laulaa minun lähdettyä 
+		1534.  Merja laulaa minun lähdettyä 
 			'Merja sing.prs.3sg I.gen leave.TUA/inf'
 
-		1530.  Merja laulaa sinun lähdettyä 
+		1535.  Merja laulaa sinun lähdettyä 
 			'Merja sing.prs.3sg you.gen leave.TUA/inf'
 
-		1531.  Merja laulaa hänen lähdettyä 
+		1536.  Merja laulaa hänen lähdettyä 
 			'Merja sing.prs.3sg he.gen leave.TUA/inf'
 
-		1532.  Merja laulaa sen2 lähdettyä 
+		1537.  Merja laulaa sen2 lähdettyä 
 			'Merja.nom sing.prs.3sg it.gen leave.TUA/inf'
 
-		1533.  Merja laulaa Pekan lähdettyä 
+		1538.  Merja laulaa Pekan lähdettyä 
 			'Merja.nom sing.prs.3sg Pekka.gen leave.TUA/inf'
 
-		1534.  Merja laulaa miehen lähdettyä 
+		1539.  Merja laulaa miehen lähdettyä 
 			'Merja.nom sing.prs.3sg man.gen leave.TUA/inf'
 
-		1535.  Merja laulaa miesten lähdettyä 
+		1540.  Merja laulaa miesten lähdettyä 
 			'Merja.nom sing.prs.3sg men.gen leave.TUA/inf'
 
-		1536.  Merja laulaa meidän lähdettyä 
+		1541.  Merja laulaa meidän lähdettyä 
 			'Merja sing.prs.3sg we.gen leave.TUA/inf'
 
-		1537.  Merja laulaa teidän lähdettyä 
+		1542.  Merja laulaa teidän lähdettyä 
 			'Merja sing.prs.3sg you.gen leave.TUA/inf'
 
-		1538.  Merja laulaa heidän lähdettyä 
+		1543.  Merja laulaa heidän lähdettyä 
 			'Merja sing.prs.3sg they.gen leave.TUA/inf'
 
-		1539.  Merja laulaa niiden lähdettyä 
+		1544.  Merja laulaa niiden lähdettyä 
 			'Merja.nom sing.prs.3sg they.gen(nonhum) leave.TUA/inf'
 
-		1540.  Merja laulaa minun tehtyä työtä 
+		1545.  Merja laulaa minun tehtyä työtä 
 			'Merja sing.prs.3sg I.gen make.TUA/inf work.par'
 
-		1541.  Merja laulaa sinun tehtyä työtä 
+		1546.  Merja laulaa sinun tehtyä työtä 
 			'Merja sing.prs.3sg you.gen make.TUA/inf work.par'
 
-		1542.  Merja laulaa hänen tehtyä työtä 
+		1547.  Merja laulaa hänen tehtyä työtä 
 			'Merja sing.prs.3sg he.gen make.TUA/inf work.par'
 
-		1543.  Merja laulaa sen2 tehtyä työtä 
+		1548.  Merja laulaa sen2 tehtyä työtä 
 			'Merja.nom sing.prs.3sg it.gen make.TUA/inf work.par'
 
-		1544.  Merja laulaa Pekan tehtyä työtä 
+		1549.  Merja laulaa Pekan tehtyä työtä 
 			'Merja.nom sing.prs.3sg Pekka.gen make.TUA/inf work.par'
 
-		1545.  Merja laulaa miehen tehtyä työtä 
+		1550.  Merja laulaa miehen tehtyä työtä 
 			'Merja.nom sing.prs.3sg man.gen make.TUA/inf work.par'
 
-		1546.  Merja laulaa miesten tehtyä työtä 
+		1551.  Merja laulaa miesten tehtyä työtä 
 			'Merja.nom sing.prs.3sg men.gen make.TUA/inf work.par'
 
-		1547.  Merja laulaa meidän tehtyä työtä 
+		1552.  Merja laulaa meidän tehtyä työtä 
 			'Merja sing.prs.3sg we.gen make.TUA/inf work.par'
 
-		1548.  Merja laulaa teidän tehtyä työtä 
+		1553.  Merja laulaa teidän tehtyä työtä 
 			'Merja sing.prs.3sg you.gen make.TUA/inf work.par'
 
-		1549.  Merja laulaa heidän tehtyä työtä 
+		1554.  Merja laulaa heidän tehtyä työtä 
 			'Merja sing.prs.3sg they.gen make.TUA/inf work.par'
 
-		1550.  Merja laulaa niiden tehtyä työtä 
+		1555.  Merja laulaa niiden tehtyä työtä 
 			'Merja.nom sing.prs.3sg they.gen(nonhum) make.TUA/inf work.par'
 
 & Marginal or ungrammatical
 
-		1551. *Merja laulaa minun lähdettyä#ni 
+		1556. *Merja laulaa minun lähdettyä#ni 
 			'Merja.nom sing I.gen leave.TUA/inf.1sg'
 
-		1552. *Merja laulaa sinun lähdettyä#si 
+		1557. *Merja laulaa sinun lähdettyä#si 
 			'Merja.nom sing you.gen leave.TUA/inf.2sg'
 
-		1553. *Merja laulaa hänen lähdettyä#nsA 
+		1558. *Merja laulaa hänen lähdettyä#nsA 
 			'Merja.nom sing he.gen leave.TUA/inf.3p'
 
-		1554. *Merja laulaa meidän lähdettyä#mme 
+		1559. *Merja laulaa meidän lähdettyä#mme 
 			'Merja.nom sing we.gen leave.TUA/inf.1pl'
 
-		1555. *Merja laulaa teidän lähdettyä#nne 
+		1560. *Merja laulaa teidän lähdettyä#nne 
 			'Merja.nom sing you.gen leave.TUA/inf.2pl'
 
-		1556. *Merja laulaa minun tehtyä#ni työtä 
+		1561. *Merja laulaa minun tehtyä#ni työtä 
 			'Merja.nom sing I.gen leave.TUA/inf.1sg work.par'
 
-		1557. *Merja laulaa sinun tehtyä#si työtä 
+		1562. *Merja laulaa sinun tehtyä#si työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.2sg work.par'
 
-		1558. *Merja laulaa hänen tehtyä#nsA työtä 
+		1563. *Merja laulaa hänen tehtyä#nsA työtä 
 			'Merja.nom sing he.gen leave.TUA/inf.3p work.par'
 
-		1559. *Merja laulaa meidän tehtyä#mme työtä 
+		1564. *Merja laulaa meidän tehtyä#mme työtä 
 			'Merja.nom sing we.gen leave.TUA/inf.1pl work.par'
 
-		1560. *Merja laulaa teidän tehtyä#nne työtä 
+		1565. *Merja laulaa teidän tehtyä#nne työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.2pl work.par'
 
 & Ungrammatical (lack of phrasal subject and agreement)
 
-		1561. *Merja laulaa lähdettyä 
+		1566. *Merja laulaa lähdettyä 
 			'Merja.nom sing.prs.3sg leave.TUA/inf'
 
-		1562. *Merja laulaa tehtyä työtä 
+		1567. *Merja laulaa tehtyä työtä 
 			'Merja.nom sing.prs.3sg make.TUA/inf work.par'
 
 & Ungrammatical (person/number error)
 
-		1563. *Merja laulaa Pekan lähdettyä#nsA 
+		1568. *Merja laulaa Pekan lähdettyä#nsA 
 			'Merja.nom sing Pekka.gen leave.TUA/inf.3p'
 
-		1564. *Merja laulaa sen lähdettyä#nsA 
+		1569. *Merja laulaa sen lähdettyä#nsA 
 			'Merja.nom sing it.gen leave.TUA/inf.3p'
 
-		1565. *Merja laulaa miehen lähdettyä#nsA 
+		1570. *Merja laulaa miehen lähdettyä#nsA 
 			'Merja.nom sing man.gen leave.TUA/inf.3p'
 
-		1566. *Merja laulaa niiden lähdettyä#nsA 
+		1571. *Merja laulaa niiden lähdettyä#nsA 
 			'Merja.nom sing they.gen leave.TUA/inf.3p'
 
-		1567. *Merja laulaa miesten lähdettyä#nsA 
+		1572. *Merja laulaa miesten lähdettyä#nsA 
 			'Merja.nom sing men.gen leave.TUA/inf.3p'
 
 & Ungrammatical (S-Vinf agreement errors)
 
-		1568. *Merja laulaa minun lähdettyä#si 
+		1573. *Merja laulaa minun lähdettyä#si 
 			'Merja.nom sing I.gen leave.TUA/inf.2sg'
 
-		1569. *Merja laulaa minun lähdettyä#nsA 
+		1574. *Merja laulaa minun lähdettyä#nsA 
 			'Merja.nom sing I.gen leave.TUA/inf.3sg'
 
-		1570. *Merja laulaa minun lähdettyä#mme 
+		1575. *Merja laulaa minun lähdettyä#mme 
 			'Merja.nom sing I.gen leave.TUA/inf.plg'
 
-		1571. *Merja laulaa minun lähdettyä#nne 
+		1576. *Merja laulaa minun lähdettyä#nne 
 			'Merja.nom sing I.gen leave.TUA/inf.2pl'
 
-		1572. *Merja laulaa minun tehtyä#si työtä 
+		1577. *Merja laulaa minun tehtyä#si työtä 
 			'Merja.nom sing I.gen leave.TUA/inf.2sg work.par'
 
-		1573. *Merja laulaa minun tehtyä#nsA työtä 
+		1578. *Merja laulaa minun tehtyä#nsA työtä 
 			'Merja.nom sing I.gen leave.TUA/inf.3sg work.par'
 
-		1574. *Merja laulaa minun tehtyä#mme työtä 
+		1579. *Merja laulaa minun tehtyä#mme työtä 
 			'Merja.nom sing I.gen leave.TUA/inf.1pl work.par'
 
-		1575. *Merja laulaa minun tehtyä#nne työtä 
+		1580. *Merja laulaa minun tehtyä#nne työtä 
 			'Merja.nom sing I.gen leave.TUA/inf.2pl work.par'
 
-		1576. *Merja laulaa sinun lähdettyä#ni 
+		1581. *Merja laulaa sinun lähdettyä#ni 
 			'Merja.nom sing you.gen leave.TUA/inf.2sg'
 
-		1577. *Merja laulaa sinun lähdettyä#nsA 
+		1582. *Merja laulaa sinun lähdettyä#nsA 
 			'Merja.nom sing you.gen leave.TUA/inf.3p'
 
-		1578. *Merja laulaa sinun lähdettyä#mme 
+		1583. *Merja laulaa sinun lähdettyä#mme 
 			'Merja.nom sing you.gen leave.TUA/inf.plg'
 
-		1579. *Merja laulaa sinun lähdettyä#nne 
+		1584. *Merja laulaa sinun lähdettyä#nne 
 			'Merja.nom sing you.gen leave.TUA/inf.2pl'
 
-		1580. *Merja laulaa sinun tehtyä#ni työtä 
+		1585. *Merja laulaa sinun tehtyä#ni työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.2sg work.par'
 
-		1581. *Merja laulaa sinun tehtyä#nsA työtä 
+		1586. *Merja laulaa sinun tehtyä#nsA työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.3p work.par'
 
-		1582. *Merja laulaa sinun tehtyä#mme työtä 
+		1587. *Merja laulaa sinun tehtyä#mme työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.plg work.par'
 
-		1583. *Merja laulaa sinun tehtyä#nne työtä 
+		1588. *Merja laulaa sinun tehtyä#nne työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.2pl work.par'
 
-		1584. *Merja laulaa hänen lähdettyä#ni 
+		1589. *Merja laulaa hänen lähdettyä#ni 
 			'Merja.nom sing he.gen leave.TUA/inf.2sg'
 
-		1585. *Merja laulaa hänen lähdettyä#si 
+		1590. *Merja laulaa hänen lähdettyä#si 
 			'Merja.nom sing he.gen leave.TUA/inf.3p'
 
-		1586. *Merja laulaa hänen lähdettyä#mme 
+		1591. *Merja laulaa hänen lähdettyä#mme 
 			'Merja.nom sing he.gen leave.TUA/inf.plg'
 
-		1587. *Merja laulaa hänen lähdettyä#nne 
+		1592. *Merja laulaa hänen lähdettyä#nne 
 			'Merja.nom sing he.gen leave.TUA/inf.2pl'
 
-		1588. *Merja laulaa hänen tehtyä#ni työtä 
+		1593. *Merja laulaa hänen tehtyä#ni työtä 
 			'Merja.nom sing he.gen leave.TUA/inf.2sg work.par'
 
-		1589. *Merja laulaa hänen tehtyä#si työtä 
+		1594. *Merja laulaa hänen tehtyä#si työtä 
 			'Merja.nom sing he.gen leave.TUA/inf.3p work.par'
 
-		1590. *Merja laulaa hänen tehtyä#mme työtä 
+		1595. *Merja laulaa hänen tehtyä#mme työtä 
 			'Merja.nom sing he.gen leave.TUA/inf.plg work.par'
 
-		1591. *Merja laulaa hänen tehtyä#nne työtä 
+		1596. *Merja laulaa hänen tehtyä#nne työtä 
 			'Merja.nom sing he.gen leave.TUA/inf.2pl work.par'
 
-		1592. *Merja laulaa meidän lähdettyä#ni 
+		1597. *Merja laulaa meidän lähdettyä#ni 
 			'Merja.nom sing we.gen leave.TUA/inf.1sg'
 
-		1593. *Merja laulaa meidän lähdettyä#si 
+		1598. *Merja laulaa meidän lähdettyä#si 
 			'Merja.nom sing we.gen leave.TUA/inf.2sg'
 
-		1594. *Merja laulaa meidän lähdettyä#nsA 
+		1599. *Merja laulaa meidän lähdettyä#nsA 
 			'Merja.nom sing we.gen leave.TUA/inf.3p'
 
-		1595. *Merja laulaa meidän lähdettyä#nne 
+		1600. *Merja laulaa meidän lähdettyä#nne 
 			'Merja.nom sing we.gen leave.TUA/inf.2pl'
 
-		1596. *Merja laulaa meidän tehtyä#ni työtä 
+		1601. *Merja laulaa meidän tehtyä#ni työtä 
 			'Merja.nom sing we.gen leave.TUA/inf.1sg work.par'
 
-		1597. *Merja laulaa meidän tehtyä#si työtä 
+		1602. *Merja laulaa meidän tehtyä#si työtä 
 			'Merja.nom sing we.gen leave.TUA/inf.2sg work.par'
 
-		1598. *Merja laulaa meidän tehtyä#nsA työtä 
+		1603. *Merja laulaa meidän tehtyä#nsA työtä 
 			'Merja.nom sing we.gen leave.TUA/inf.3p work.par'
 
-		1599. *Merja laulaa meidän tehtyä#nne työtä 
+		1604. *Merja laulaa meidän tehtyä#nne työtä 
 			'Merja.nom sing we.gen leave.TUA/inf.2pl work.par'
 
-		1600. *Merja laulaa teidän lähdettyä#ni 
+		1605. *Merja laulaa teidän lähdettyä#ni 
 			'Merja.nom sing you.gen leave.TUA/inf.1sg'
 
-		1601. *Merja laulaa teidän lähdettyä#si 
+		1606. *Merja laulaa teidän lähdettyä#si 
 			'Merja.nom sing you.gen leave.TUA/inf.2sg'
 
-		1602. *Merja laulaa teidän lähdettyä#nsA 
+		1607. *Merja laulaa teidän lähdettyä#nsA 
 			'Merja.nom sing you.gen leave.TUA/inf.3p'
 
-		1603. *Merja laulaa teidän lähdettyä#mme 
+		1608. *Merja laulaa teidän lähdettyä#mme 
 			'Merja.nom sing you.gen leave.TUA/inf.1pl'
 
-		1604. *Merja laulaa teidän tehtyä#ni työtä 
+		1609. *Merja laulaa teidän tehtyä#ni työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.1sg work.par'
 
-		1605. *Merja laulaa teidän tehtyä#si työtä 
+		1610. *Merja laulaa teidän tehtyä#si työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.2sg work.par'
 
-		1606. *Merja laulaa teidän tehtyä#nsA työtä 
+		1611. *Merja laulaa teidän tehtyä#nsA työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.3p work.par'
 
-		1607. *Merja laulaa teidän tehtyä#mme työtä 
+		1612. *Merja laulaa teidän tehtyä#mme työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.1pl work.par'
 
-		1608. *Merja laulaa heidän lähdettyä#ni 
+		1613. *Merja laulaa heidän lähdettyä#ni 
 			'Merja.nom sing you.gen leave.TUA/inf.1sg'
 
-		1609. *Merja laulaa heidän lähdettyä#si 
+		1614. *Merja laulaa heidän lähdettyä#si 
 			'Merja.nom sing you.gen leave.TUA/inf.2sg'
 
-		1610. *Merja laulaa heidän lähdettyä#mme 
+		1615. *Merja laulaa heidän lähdettyä#mme 
 			'Merja.nom sing you.gen leave.TUA/inf.1pl'
 
-		1611. *Merja laulaa heidän lähdettyä#nne 
+		1616. *Merja laulaa heidän lähdettyä#nne 
 			'Merja.nom sing you.gen leave.TUA/inf.2pl'
 
-		1612. *Merja laulaa heidän tehtyä#ni työtä 
+		1617. *Merja laulaa heidän tehtyä#ni työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.1sg work.park'
 
-		1613. *Merja laulaa heidän tehtyä#si työtä 
+		1618. *Merja laulaa heidän tehtyä#si työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.2sg work.park'
 
-		1614. *Merja laulaa heidän tehtyä#mme työtä 
+		1619. *Merja laulaa heidän tehtyä#mme työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.1pl work.park'
 
-		1615. *Merja laulaa heidän tehtyä#nne työtä 
+		1620. *Merja laulaa heidän tehtyä#nne työtä 
 			'Merja.nom sing you.gen leave.TUA/inf.2pl work.park'
 
 & 2.4.3.3 Ungrammatical (feature [human] error)
 
-		1616. *Merja laulaa sen2 lähdettyä#nsA 
+		1621. *Merja laulaa sen2 lähdettyä#nsA 
 			'Merja.nom sing.prs.3sg it.gen leave.TUA/inf.3p'
 
-		1617. *Merja laulaa Pekan lähdettyä#nsA 
+		1622. *Merja laulaa Pekan lähdettyä#nsA 
 			'Merja.nom sing.prs.3sg Pekka.gen leave.TUA/inf.3p'
 
-		1618. *Merja laulaa miehen lähdettyä#nsA 
+		1623. *Merja laulaa miehen lähdettyä#nsA 
 			'Merja.nom sing.prs.3sg man.gen leave.TUA/inf.3p'
 
-		1619. *Merja laulaa miesten lähdettyä#nsA 
+		1624. *Merja laulaa miesten lähdettyä#nsA 
 			'Merja.nom sing.prs.3sg men.gen leave.TUA/inf.3p'
 
-		1620. *Merja laulaa sen2 tehtyä#nsA työtä 
+		1625. *Merja laulaa sen2 tehtyä#nsA työtä 
 			'Merja.nom sing.prs.3sg it.gen make.TUA/inf.3p work.par'
 
-		1621. *Merja laulaa Pekan tehtyä#nsA työtä 
+		1626. *Merja laulaa Pekan tehtyä#nsA työtä 
 			'Merja.nom sing.prs.3sg Pekka.gen make.TUA/inf.3p work.par'
 
-		1622. *Merja laulaa miehen tehtyä#nsA työtä 
+		1627. *Merja laulaa miehen tehtyä#nsA työtä 
 			'Merja.nom sing.prs.3sg man.gen make.TUA/inf.3p work.par'
 
-		1623. *Merja laulaa miesten tehtyä#nsA työtä 
+		1628. *Merja laulaa miesten tehtyä#nsA työtä 
 			'Merja.nom sing.prs.3sg men.gen make.TUA/inf.3p work.par'
 
-		1624. *Merja laulaa niiden tehtyä#nsA työtä 
+		1629. *Merja laulaa niiden tehtyä#nsA työtä 
 			'Merja.nom sing.prs.3sg they.gen make.TUA/inf.3p work.par'
 
 & 2.4.3.4 Ungrammatical (features [human, person, number] errors)
 
-		1625. *Merja laulaa sen2 lähdettyä#ni 
+		1630. *Merja laulaa sen2 lähdettyä#ni 
 			'Merja.nom sing.prs.3sg it.gen leave.TUA/inf.1sg'
 
-		1626. *Merja laulaa Pekan lähdettyä#ni 
+		1631. *Merja laulaa Pekan lähdettyä#ni 
 			'Merja.nom sing.prs.3sg Pekka.gen leave.TUA/inf.1sg'
 
-		1627. *Merja laulaa miehen lähdettyä#ni 
+		1632. *Merja laulaa miehen lähdettyä#ni 
 			'Merja.nom sing.prs.3sg man.gen leave.TUA/inf.1sg'
 
-		1628. *Merja laulaa miesten lähdettyä#ni 
+		1633. *Merja laulaa miesten lähdettyä#ni 
 			'Merja.nom sing.prs.3sg men.gen leave.TUA/inf.1sg'
 
-		1629. *Merja laulaa sen2 tehtyä#ni työtä 
+		1634. *Merja laulaa sen2 tehtyä#ni työtä 
 			'Merja.nom sing.prs.3sg it.gen make.TUA/inf.1sg work.par'
 
-		1630. *Merja laulaa Pekan tehtyä#ni työtä 
+		1635. *Merja laulaa Pekan tehtyä#ni työtä 
 			'Merja.nom sing.prs.3sg Pekka.gen make.TUA/inf.1sg work.par'
 
-		1631. *Merja laulaa miehen tehtyä#ni työtä 
+		1636. *Merja laulaa miehen tehtyä#ni työtä 
 			'Merja.nom sing.prs.3sg man.gen make.TUA/inf.1sg work.par'
 
-		1632. *Merja laulaa miesten tehtyä#ni työtä 
+		1637. *Merja laulaa miesten tehtyä#ni työtä 
 			'Merja.nom sing.prs.3sg men.gen make.TUA/inf.1sg work.par'
 
-		1633. *Merja laulaa sen2 lähdettyä#si 
+		1638. *Merja laulaa sen2 lähdettyä#si 
 			'Merja.nom sing.prs.3sg it.gen leave.TUA/inf.2sg'
 
-		1634. *Merja laulaa Pekan lähdettyä#si 
+		1639. *Merja laulaa Pekan lähdettyä#si 
 			'Merja.nom sing.prs.3sg Pekka.gen leave.TUA/inf.2sg'
 
-		1635. *Merja laulaa miehen lähdettyä#si 
+		1640. *Merja laulaa miehen lähdettyä#si 
 			'Merja.nom sing.prs.3sg man.gen leave.TUA/inf.2sg'
 
-		1636. *Merja laulaa miesten lähdettyä#si 
+		1641. *Merja laulaa miesten lähdettyä#si 
 			'Merja.nom sing.prs.3sg men.gen leave.TUA/inf.2sg'
 
-		1637. *Merja laulaa sen2 tehtyä#si työtä 
+		1642. *Merja laulaa sen2 tehtyä#si työtä 
 			'Merja.nom sing.prs.3sg it.gen make.TUA/inf.2sg work.par'
 
-		1638. *Merja laulaa Pekan tehtyä#si työtä 
+		1643. *Merja laulaa Pekan tehtyä#si työtä 
 			'Merja.nom sing.prs.3sg Pekka.gen make.TUA/inf.2sg work.par'
 
-		1639. *Merja laulaa miehen tehtyä#si työtä 
+		1644. *Merja laulaa miehen tehtyä#si työtä 
 			'Merja.nom sing.prs.3sg man.gen make.TUA/inf.2sg work.par'
 
-		1640. *Merja laulaa miesten tehtyä#si työtä 
+		1645. *Merja laulaa miesten tehtyä#si työtä 
 			'Merja.nom sing.prs.3sg men.gen make.TUA/inf.2sg work.par'
 
-		1641. *Merja laulaa sen2 lähdettyä#mme 
+		1646. *Merja laulaa sen2 lähdettyä#mme 
 			'Merja.nom sing.prs.3sg it.gen leave.TUA/inf.1pl'
 
-		1642. *Merja laulaa Pekan lähdettyä#mme 
+		1647. *Merja laulaa Pekan lähdettyä#mme 
 			'Merja.nom sing.prs.3sg Pekka.gen leave.TUA/inf.1pl'
 
-		1643. *Merja laulaa miehen lähdettyä#mme 
+		1648. *Merja laulaa miehen lähdettyä#mme 
 			'Merja.nom sing.prs.3sg man.gen leave.TUA/inf.1pl'
 
-		1644. *Merja laulaa miesten lähdettyä#mme 
+		1649. *Merja laulaa miesten lähdettyä#mme 
 			'Merja.nom sing.prs.3sg men.gen leave.TUA/inf.1pl'
 
-		1645. *Merja laulaa sen2 tehtyä#mme työtä 
+		1650. *Merja laulaa sen2 tehtyä#mme työtä 
 			'Merja.nom sing.prs.3sg it.gen make.TUA/inf.1pl work.par'
 
-		1646. *Merja laulaa Pekan tehtyä#mme työtä 
+		1651. *Merja laulaa Pekan tehtyä#mme työtä 
 			'Merja.nom sing.prs.3sg Pekka.gen make.TUA/inf.1pl work.par'
 
-		1647. *Merja laulaa miehen tehtyä#mme työtä 
+		1652. *Merja laulaa miehen tehtyä#mme työtä 
 			'Merja.nom sing.prs.3sg man.gen make.TUA/inf.1pl work.par'
 
-		1648. *Merja laulaa miesten tehtyä#mme työtä 
+		1653. *Merja laulaa miesten tehtyä#mme työtä 
 			'Merja.nom sing.prs.3sg men.gen make.TUA/inf.1pl work.par'
 
-		1649. *Merja laulaa sen2 lähdettyä#nne 
+		1654. *Merja laulaa sen2 lähdettyä#nne 
 			'Merja.nom sing.prs.3sg it.gen leave.TUA/inf.1pl'
 
-		1650. *Merja laulaa Pekan lähdettyä#nne 
+		1655. *Merja laulaa Pekan lähdettyä#nne 
 			'Merja.nom sing.prs.3sg Pekka.gen leave.TUA/inf.1pl'
 
-		1651. *Merja laulaa miehen lähdettyä#nne 
+		1656. *Merja laulaa miehen lähdettyä#nne 
 			'Merja.nom sing.prs.3sg man.gen leave.TUA/inf.1pl'
 
-		1652. *Merja laulaa miesten lähdettyä#nne 
+		1657. *Merja laulaa miesten lähdettyä#nne 
 			'Merja.nom sing.prs.3sg men.gen leave.TUA/inf.1pl'
 
-		1653. *Merja laulaa sen2 tehtyä#nne työtä 
+		1658. *Merja laulaa sen2 tehtyä#nne työtä 
 			'Merja.nom sing.prs.3sg it.gen make.TUA/inf.1pl work.par'
 
-		1654. *Merja laulaa Pekan tehtyä#nne työtä 
+		1659. *Merja laulaa Pekan tehtyä#nne työtä 
 			'Merja.nom sing.prs.3sg Pekka.gen make.TUA/inf.1pl work.par'
 
-		1655. *Merja laulaa miehen tehtyä#nne työtä 
+		1660. *Merja laulaa miehen tehtyä#nne työtä 
 			'Merja.nom sing.prs.3sg man.gen make.TUA/inf.1pl work.par'
 
-		1656. *Merja laulaa miesten tehtyä#nne työtä 
+		1661. *Merja laulaa miesten tehtyä#nne työtä 
 			'Merja.nom sing.prs.3sg men.gen make.TUA/inf.1pl work.par'
 
 & 2.4.4 MA-adjunct
 
 & Grammatical
 
-		1657.  Pekka näki hänet lähtemässä 
+		1662.  Pekka näki hänet lähtemässä 
 			'Pekka.nom see.pst.3sg he.acc(t) leave.MA.ine/inf'
 
-		1658.  Pekka näki hänet tekemässä työtä 
+		1663.  Pekka näki hänet tekemässä työtä 
 			'Pekka.nom see.pst.3sg he.acc make.MA.ine/inf work.par'
 
 & Ungrammatical (impossible agreement)
 
-		1659. *Pekka näki hänet lähtemässä#ni 
+		1664. *Pekka näki hänet lähtemässä#ni 
 			'Pekka.nom see.prs.3sg he.acc leave.MA/inf.1sg'
 
-		1660. *Pekka näki hänet lähtemässä#si 
+		1665. *Pekka näki hänet lähtemässä#si 
 			'Pekka.nom see.prs.3sg he.acc leave.MA/inf.2sg'
 
-		1661. *Pekka näki hänet lähtemässä#nsA 
+		1666. *Pekka näki hänet lähtemässä#nsA 
 			'Pekka.nom see.prs.3sg he.acc leave.MA/inf.3p'
 
-		1662. *Pekka näki hänet lähtemässä#mme 
+		1667. *Pekka näki hänet lähtemässä#mme 
 			'Pekka.nom see.prs.3sg he.acc leave.MA/inf.1pl'
 
-		1663. *Pekka näki hänet lähtemässä#nne 
+		1668. *Pekka näki hänet lähtemässä#nne 
 			'Pekka.nom see.prs.3sg he.acc leave.MA/inf.2pl'
 
-		1664. *Pekka näki hänet tekemässä#ni työtä 
+		1669. *Pekka näki hänet tekemässä#ni työtä 
 			'Pekka.nom see.prs.3sg he.acc make.MA/inf.1sg work.par'
 
-		1665. *Pekka näki hänet tekemässä#si työtä 
+		1670. *Pekka näki hänet tekemässä#si työtä 
 			'Pekka.nom see.prs.3sg he.acc make.MA/inf.2sg work.par'
 
-		1666. *Pekka näki hänet tekemässä#nsA työtä 
+		1671. *Pekka näki hänet tekemässä#nsA työtä 
 			'Pekka.nom see.prs.3sg he.acc make.MA/inf.3p work.par'
 
-		1667. *Pekka näki hänet tekemässä#mme työtä 
+		1672. *Pekka näki hänet tekemässä#mme työtä 
 			'Pekka.nom see.prs.3sg he.acc make.MA/inf.1pl work.par'
 
-		1668. *Pekka näki hänet tekemässä#nne työtä 
+		1673. *Pekka näki hänet tekemässä#nne työtä 
 			'Pekka.nom see.prs.3sg he.acc make.MA/inf.2pl work.par'
 
 & Ungrammatical (illicit subject)
 
-		1669. *Pekka näki hänet minun lähtemässä#ni 
+		1674. *Pekka näki hänet minun lähtemässä#ni 
 			'Pekka.nom see.prs.3sg he.acc I.gen leave.MA/inf.1sg'
 
-		1670. *Pekka näki hänet sinun lähtemässä#si 
+		1675. *Pekka näki hänet sinun lähtemässä#si 
 			'Pekka.nom see.prs.3sg he.acc you.gen leave.MA/inf.2sg'
 
-		1671. *Pekka näki hänet hänen lähtemässä#nsA 
+		1676. *Pekka näki hänet hänen lähtemässä#nsA 
 			'Pekka.nom see.prs.3sg he.acc he.gen leave.MA/inf.3p'
 
-		1672. *Pekka näki hänet meidän lähtemässä#mme 
+		1677. *Pekka näki hänet meidän lähtemässä#mme 
 			'Pekka.nom see.prs.3sg he.acc we.gen leave.MA/inf.1pl'
 
-		1673. *Pekka näki hänet teidän lähtemässä#nne 
+		1678. *Pekka näki hänet teidän lähtemässä#nne 
 			'Pekka.nom see.prs.3sg he.acc you.gen leave.MA/inf.2pl'
 
-		1674. *Pekka näki hänet heidän lähtemässä#nsA 
+		1679. *Pekka näki hänet heidän lähtemässä#nsA 
 			'Pekka.nom see.prs.3sg he.acc they.gen leave.MA/inf.3p'
 
-		1675. *Pekka näki hänet minun tekemässä#ni työtä 
+		1680. *Pekka näki hänet minun tekemässä#ni työtä 
 			'Pekka.nom see.prs.3sg he.acc I.gen make.MA/inf.1sg work.par'
 
-		1676. *Pekka näki hänet sinun tekemässä#si työtä 
+		1681. *Pekka näki hänet sinun tekemässä#si työtä 
 			'Pekka.nom see.prs.3sg he.acc you.gen make.MA/inf.2sg work.par'
 
-		1677. *Pekka näki hänet hänen tekemässä#nsA työtä 
+		1682. *Pekka näki hänet hänen tekemässä#nsA työtä 
 			'Pekka.nom see.prs.3sg he.acc he.gen make.MA/inf.3p work.par'
 
-		1678. *Pekka näki hänet meidän tekemässä#mme työtä 
+		1683. *Pekka näki hänet meidän tekemässä#mme työtä 
 			'Pekka.nom see.prs.3sg he.acc we.gen make.MA/inf.1pl work.par'
 
-		1679. *Pekka näki hänet teidän tekemässä#nne työtä 
+		1684. *Pekka näki hänet teidän tekemässä#nne työtä 
 			'Pekka.nom see.prs.3sg he.acc you.gen make.MA/inf.2pl work.par'
 
-		1680. *Pekka näki hänet heidän tekemässä#nsA työtä 
+		1685. *Pekka näki hänet heidän tekemässä#nsA työtä 
 			'Pekka.nom see.prs.3sg he.acc they.gen make.MA/inf.3p work.par'
 
 & 2.4.5 E-adjunct
 
 & Grammatical
 
-		1681.  Pekka nukkuu kuorsaten 
+		1686.  Pekka nukkuu kuorsaten 
 			'Pekka.nom sleep.prs.3sg snore.E/inf
 
 & Ungrammatical (illicit subject)
 
-		1682. *Pekka nukkuu minun kuorsaten 
+		1687. *Pekka nukkuu minun kuorsaten 
 			'Pekka.nom sleep.prs.3sg I.gen snore.E/inf'
 
-		1683. *Pekka nukkuu sinun kuorsaten 
+		1688. *Pekka nukkuu sinun kuorsaten 
 			'Pekka.nom sleep.prs.3sg you.gen snore.E/inf'
 
-		1684. *Pekka nukkuu hänen kuorsaten 
+		1689. *Pekka nukkuu hänen kuorsaten 
 			'Pekka.nom sleep.prs.3sg he.gen snore.E/inf'
 
-		1685. *Pekka nukkuu meidän kuorsaten 
+		1690. *Pekka nukkuu meidän kuorsaten 
 			'Pekka.nom sleep.prs.3sg we.gen snore.E/inf'
 
-		1686. *Pekka nukkuu teidän kuorsaten 
+		1691. *Pekka nukkuu teidän kuorsaten 
 			'Pekka.nom sleep.prs.3sg you.gen snore.E/inf'
 
-		1687. *Pekka nukkuu heidän kuorsaten 
+		1692. *Pekka nukkuu heidän kuorsaten 
 			'Pekka.nom sleep.prs.3sg they.gen snore.E/inf'
 
-		1688. *Pekka nukkuu miehen kuorsaten 
+		1693. *Pekka nukkuu miehen kuorsaten 
 			'Pekka.nom sleep.prs.3sg man.gen snore.E/inf'
 
-		1689. *Pekka nukkuu Merjan kuorsaten 
+		1694. *Pekka nukkuu Merjan kuorsaten 
 			'Pekka.nom sleep.prs.3sg Merja.gen snore.E/inf'
 
-		1690. *Pekka nukkuu sen kuorsaten 
+		1695. *Pekka nukkuu sen kuorsaten 
 			'Pekka.nom sleep.prs.3sg it.gen snore.E/inf'
 
 & Ungrammatical (illicit agreement)
 
-		1691. *Pekka nukkuu kuorsaten#ni 
+		1696. *Pekka nukkuu kuorsaten#ni 
 			'Pekka.nom sleep.prs.3sg snore.E/inf.px/1sg'
 
-		1692. *Pekka nukkuu kuorsaten#si 
+		1697. *Pekka nukkuu kuorsaten#si 
 			'Pekka.nom sleep.prs.3sg snore.E/inf.px/2sg'
 
-		1693. *Pekka nukkuu kuorsaten#nsA 
+		1698. *Pekka nukkuu kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg snore.E/inf.px/3sg'
 
-		1694. *Pekka nukkuu kuorsaten#mme 
+		1699. *Pekka nukkuu kuorsaten#mme 
 			'Pekka.nom sleep.prs.3sg snore.E/inf.px/1pl'
 
-		1695. *Pekka nukkuu kuorsaten#nne 
+		1700. *Pekka nukkuu kuorsaten#nne 
 			'Pekka.nom sleep.prs.3sg snore.E/inf.px/2pl'
 
-		1696. *Pekka nukkuu kuorsaten#nsA 
+		1701. *Pekka nukkuu kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg snore.E/inf.px/3p'
 
-		1697. *Pekka nukkuu kuorsaten#nsA 
+		1702. *Pekka nukkuu kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg snore.E/inf.px/3p'
 
 & Ungrammatical (illicit subject and illicit but correct agreement)
 
-		1698. *Pekka nukkuu minun kuorsaten#ni 
+		1703. *Pekka nukkuu minun kuorsaten#ni 
 			'Pekka.nom sleep.prs.3sg I.gen snore.E/inf.px/1sg'
 
-		1699. *Pekka nukkuu sinun kuorsaten#si 
+		1704. *Pekka nukkuu sinun kuorsaten#si 
 			'Pekka.nom sleep.prs.3sg you.gen snore.E/inf.px/2sg'
 
-		1700. *Pekka nukkuu hänen kuorsaten#nsA 
+		1705. *Pekka nukkuu hänen kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg he.gen snore.E/inf.px/3sg'
 
-		1701. *Pekka nukkuu meidän kuorsaten#mme 
+		1706. *Pekka nukkuu meidän kuorsaten#mme 
 			'Pekka.nom sleep.prs.3sg we.gen snore.E/inf.px/1pl'
 
-		1702. *Pekka nukkuu teidän kuorsaten#nne 
+		1707. *Pekka nukkuu teidän kuorsaten#nne 
 			'Pekka.nom sleep.prs.3sg you.gen snore.E/inf.px/2pl'
 
-		1703. *Pekka nukkuu heidän kuorsaten#nsA 
+		1708. *Pekka nukkuu heidän kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg they.gen snore.E/inf.px/3p'
 
 & Ugrammatical (illicit subject plus human/person error)
 
-		1704. *Pekka nukkuu miehen kuorsaten#nsA 
+		1709. *Pekka nukkuu miehen kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg man.gen snore.E/inf.px/3p'
 
-		1705. *Pekka nukkuu miesten kuorsaten#nsA 
+		1710. *Pekka nukkuu miesten kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg men.gen snore.E/inf.px/3p'
 
-		1706. *Pekka nukkuu niiden kuorsaten#nsA 
+		1711. *Pekka nukkuu niiden kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg they.gen snore.E/inf.px/3p'
 
-		1707. *Pekka nukkuu Merjan kuorsaten#nsA 
+		1712. *Pekka nukkuu Merjan kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg Merja.gen snore.E/inf.px/3p'
 
-		1708. *Pekka nukkuu sen kuorsaten#nsA 
+		1713. *Pekka nukkuu sen kuorsaten#nsA 
 			'Pekka.nom sleep.prs.3sg it.gen snore.E/inf.px/3p'
 
 & 2.5 Participle adjectives
@@ -5515,283 +5534,285 @@
 
 & Phrasal subject and agreement
 
-		1709.  minun tekemä#ni kello 
+		1714.  minun tekemä#ni kello 
 			'I.gen make.ma/a#1sg watch'
 
-		1710.  se' minun tekemä#ni kello hävisi 
+		1715.  se' minun tekemä#ni kello hävisi 
 			'it/that I.gen make.ma/a.1sg watch disappear.pst.3sg
 
-		1711.  se' sinun tekemä#si kello hävisi 
+		1716.  se' sinun tekemä#si kello hävisi 
 			'it/that you.gen make.ma/a.2sg watch disappear.pst.3sg'
 
-		1712.  se' hänen tekemä#nsA kello hävisi 
+		1717.  se' hänen tekemä#nsA kello hävisi 
 			'it/that he.gen make.ma/a.3sg watch disappear.pst.3sg
 
-		1713.  se' meidän tekemä#mme kello hävisi 
+		1718.  se' meidän tekemä#mme kello hävisi 
 			'it/that we.gen make.ma/a.1pl watch disappear.pst.3sg
 
-		1714.  se' teidän tekemä#nne kello hävisi 
+		1719.  se' teidän tekemä#nne kello hävisi 
 			'it/that you.gen make.ma/a.2pl watch disappear.pst.3sg
 
-		1715.  se' heidän tekemä#nsA kello hävisi 
+		1720.  se' heidän tekemä#nsA kello hävisi 
 			'it/that they.gen make.ma/a.3p watch disappear.pst.3sg
 
 & Only agreement
 
-		1716.  se' tekemä#ni kello hävisi 
+		1721.  se' tekemä#ni kello hävisi 
 			'it/that make.ma/a.1sg watch disappear.pst.3sg
 
-		1717.  se' tekemä#si kello hävisi 
+		1722.  se' tekemä#si kello hävisi 
 			'it/that make.ma/a.2sg watch disappear.pst.3sg'
 
-		1718.  se' tekemä#mme kello hävisi 
+		1723.  se' tekemä#mme kello hävisi 
 			'it/that make.ma/a.1pl watch disappear.pst.3sg
 
-		1719.  se' tekemä#nne kello hävisi 
+		1724.  se' tekemä#nne kello hävisi 
 			'it/that make.ma/a.2pl watch disappear.pst.3sg
 
 & Only phrasal subject
 
-		1720.  se' minun tekemä kello hävisi 
+		1725.  se' minun tekemä kello hävisi 
 			'it/that I.gen make.ma/a watch disappear.pst.3sg
 
-		1721.  se' sinun tekemä kello hävisi 
+		1726.  se' sinun tekemä kello hävisi 
 			'it/that you.gen make.ma/a watch disappear.pst.3sg'
 
-		1722.  se' hänen tekemä kello hävisi 
+		1727.  se' hänen tekemä kello hävisi 
 			'it/that he.gen make.ma/a watch disappear.pst.3sg
 
-		1723.  se' Pekan tekemä kello hävisi 
+		1728.  se' Pekan tekemä kello hävisi 
 			'it/that Pekka.gen make.ma/a watch disappear.pst.3sg
 
-		1724.  se' sen tekemä kello hävisi 
+		1729.  se' sen tekemä kello hävisi 
 			'it/that it.gen make.ma/a watch disappear.pst.3sg
 
-		1725.  se' miehen tekemä kello hävisi 
+		1730.  se' miehen tekemä kello hävisi 
 			'it/that man.gen make.ma/a watch disappear.pst.3sg
 
-		1726.  se' miesten tekemä kello hävisi 
+		1731.  se' miesten tekemä kello hävisi 
 			'it/that men.gen make.ma/a watch disappear.pst.3sg
 
-		1727.  se' niiden tekemä kello hävisi 
+		1732.  se' niiden tekemä kello hävisi 
 			'it/that they.gen make.ma/a watch disappear.pst.3sg
 
-		1728.  se' meidän tekemä kello hävisi 
+		1733.  se' meidän tekemä kello hävisi 
 			'it/that we.gen make.ma/a watch disappear.pst.3sg
 
-		1729.  se' teidän tekemä kello hävisi 
+		1734.  se' teidän tekemä kello hävisi 
 			'it/that you.gen make.ma/a watch disappear.pst.3sg
 
-		1730.  se' heidän tekemä kello hävisi 
+		1735.  se' heidän tekemä kello hävisi 
 			'it/that they.gen make.ma/a watch disappear.pst.3sg
 
 & Ungrammatical
 
 & Agreement and phrasal subject missing
 
-		1731. *se' tekemä kello hävisi 
+		1736. *se' tekemä kello hävisi 
 			'it/that I.gen make.ma/a.1sg watch disappear.pst.3sg
 
 & Third person px without antecedent
 
-		1732.  se' tekemä#nsA kello hävisi 
+		1737.  se' tekemä#nsA kello hävisi 
 			'it/that make.ma/a.3p watch disappear.pst.3sg
 
 & Agreement errors
 
-		1733. *se' minun tekemä#si kello hävisi 
+		1738. *se' minun tekemä#si kello hävisi 
 			'it/that I.gen make.ma/a.2sg watch disappear.pst.3sg'
 
-		1734. *se' minun tekemä#nsA kello hävisi 
+		1739. *se' minun tekemä#nsA kello hävisi 
 			'it/that I.gen make.ma/a.3p watch disappear.pst.3sg
 
-		1735. *se' minun tekemä#mme kello hävisi 
+		1740. *se' minun tekemä#mme kello hävisi 
 			'it/that I.gen make.ma/a.1pl watch disappear.pst.3sg
 
-		1736. *se' minun tekemä#nne kello hävisi 
+		1741. *se' minun tekemä#nne kello hävisi 
 			'it/that I.gen make.ma/a.2pl watch disappear.pst.3sg
 
-		1737. *se' sinun tekemä#ni kello hävisi 
+		1742. *se' sinun tekemä#ni kello hävisi 
 			'it/that you.gen make.ma/a.1sg watch disappear.pst.3sg'
 
-		1738. *se' sinun tekemä#nsA kello hävisi 
+		1743. *se' sinun tekemä#nsA kello hävisi 
 			'it/that you.gen make.ma/a.3p watch disappear.pst.3sg
 
-		1739. *se' sinun tekemä#mme kello hävisi 
+		1744. *se' sinun tekemä#mme kello hävisi 
 			'it/that you.gen make.ma/a.1pl watch disappear.pst.3sg
 
-		1740. *se' sinun tekemä#nne kello hävisi 
+		1745. *se' sinun tekemä#nne kello hävisi 
 			'it/that you.gen make.ma/a.2pl watch disappear.pst.3sg
 
-		1741. *se' hänen tekemä#ni kello hävisi 
+		1746. *se' hänen tekemä#ni kello hävisi 
 			'it/that he.gen make.ma/a.1sg watch disappear.pst.3sg'
 
-		1742. *se' hänen tekemä#si kello hävisi 
+		1747. *se' hänen tekemä#si kello hävisi 
 			'it/that he.gen make.ma/a.2sg watch disappear.pst.3sg
 
-		1743. *se' hänen tekemä#mme kello hävisi 
+		1748. *se' hänen tekemä#mme kello hävisi 
 			'it/that he.gen make.ma/a.1pl watch disappear.pst.3sg
 
-		1744. *se' hänen tekemä#nne kello hävisi 
+		1749. *se' hänen tekemä#nne kello hävisi 
 			'it/that yoheu.gen make.ma/a.2pl watch disappear.pst.3sg
 
-		1745. *se' meidän tekemä#ni kello hävisi 
+		1750. *se' meidän tekemä#ni kello hävisi 
 			'it/that we.gen make.ma/a.1sg watch disappear.pst.3sg'
 
-		1746. *se' meidän tekemä#si kello hävisi 
+		1751. *se' meidän tekemä#si kello hävisi 
 			'it/that we.gen make.ma/a.2sg watch disappear.pst.3sg
 
-		1747. *se' meidän tekemä#nsA kello hävisi 
+		1752. *se' meidän tekemä#nsA kello hävisi 
 			'it/that we.gen make.ma/a.3p watch disappear.pst.3sg
 
-		1748. *se' meidän tekemä#nne kello hävisi 
+		1753. *se' meidän tekemä#nne kello hävisi 
 			'it/that we.gen make.ma/a.2pl watch disappear.pst.3sg
 
-		1749. *se' teidän tekemä#ni kello hävisi 
+		1754. *se' teidän tekemä#ni kello hävisi 
 			'it/that you.gen make.ma/a.1sg watch disappear.pst.3sg'
 
-		1750. *se' teidän tekemä#si kello hävisi 
+		1755. *se' teidän tekemä#si kello hävisi 
 			'it/that you.gen make.ma/a.2sg watch disappear.pst.3sg
 
-		1751. *se' teidän tekemä#nsA kello hävisi 
+		1756. *se' teidän tekemä#nsA kello hävisi 
 			'it/that you.gen make.ma/a.3p watch disappear.pst.3sg
 
-		1752. *se' teidän tekemä#mme kello hävisi 
+		1757. *se' teidän tekemä#mme kello hävisi 
 			'it/that you.gen make.ma/a.1pl watch disappear.pst.3sg
 
-		1753. *se' heidän tekemä#ni kello hävisi 
+		1758. *se' heidän tekemä#ni kello hävisi 
 			'it/that they.gen make.ma/a.1sg watch disappear.pst.3sg'
 
-		1754. *se' heidän tekemä#si kello hävisi 
+		1759. *se' heidän tekemä#si kello hävisi 
 			'it/that they.gen make.ma/a.2sg watch disappear.pst.3sg
 
-		1755. *se' heidän tekemä#nne kello hävisi 
+		1760. *se' heidän tekemä#nne kello hävisi 
 			'it/that they.gen make.ma/a.2pl watch disappear.pst.3sg
 
-		1756. *se' heidän tekemä#mme kello hävisi 
+		1761. *se' heidän tekemä#mme kello hävisi 
 			'it/that they.gen make.ma/a.1pl watch disappear.pst.3sg
 
-		1757. *se' Pekan tekemä#nsA kello hävisi 
+		1762. *se' Pekan tekemä#nsA kello hävisi 
 			'it/that Pekka.gen make.ma/a.3p watch disappear.pst.3sg'
 
-		1758. *se' miehen tekemä#nsA kello hävisi 
+		1763. *se' miehen tekemä#nsA kello hävisi 
 			'it/that man.gen make.ma/a.3p watch disappear.pst.3sg'
 
-		1759. *se' sen tekemä#nsA kello hävisi 
+		1764. *se' sen tekemä#nsA kello hävisi 
 			'it/that it.gen make.ma/a.3p watch disappear.pst.3sg'
 
 & 2.5.2 VA-participle
 
 & Grammatical
 
-		1760. *se' minua ihaileva tyttö hävisi 
+		1765.  minua ihaileva tyttö 
+
+		1766.  se' minua ihaileva tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1761. *se' sinua ihaileva tyttö hävisi 
+		1767.  se' sinua ihaileva tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1762. *se' häntä ihaileva tyttö hävisi 
+		1768.  se' häntä ihaileva tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1763. *se' Pekkaa ihaileva tyttö hävisi 
+		1769.  se' Pekkaa ihaileva tyttö hävisi 
 			'it/that Pekka.par admire.va/a girl disappear.pst.3sg'
 
-		1764. *se' sitä ihaileva tyttö hävisi 
+		1770.  se' sitä ihaileva tyttö hävisi 
 			'it/that it.par admire.va/a girl disappear.pst.3sg'
 
-		1765. *se' miestä ihaileva tyttö hävisi 
+		1771.  se' miestä ihaileva tyttö hävisi 
 			'it/that man.par admire.va/a girl disappear.pst.3sg'
 
-		1766. *se' miehiä ihaileva tyttö hävisi 
+		1772.  se' miehiä ihaileva tyttö hävisi 
 			'it/that men.par admire.va/a girl disappear.pst.3sg'
 
-		1767. *se' niitä ihaileva tyttö hävisi 
+		1773.  se' niitä ihaileva tyttö hävisi 
 			'it/that they.par admire.va/a girl disappear.pst.3sg'
 
-		1768. *se' meitä ihaileva tyttö hävisi 
+		1774.  se' meitä ihaileva tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1769. *se' teitä ihaileva tyttö hävisi 
+		1775.  se' teitä ihaileva tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1770. *se' heitä ihaileva tyttö hävisi 
+		1776.  se' heitä ihaileva tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
 & Ungrammatical
 
 & Illicit agreement
 
-		1771. *se' minua ihaileva#ni tyttö hävisi 
+		1777. *se' minua ihaileva#ni tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1772. *se' sinua ihaileva#si tyttö hävisi 
+		1778. *se' sinua ihaileva#si tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1773. *se' häntä ihaileva#nsA tyttö hävisi 
+		1779. *se' häntä ihaileva#nsA tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1774. *se' meitä ihaileva#mme tyttö hävisi 
+		1780. *se' meitä ihaileva#mme tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1775. *se' teitä ihaileva#nne tyttö hävisi 
+		1781. *se' teitä ihaileva#nne tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
-		1776. *se' heitä ihaileva#nsA tyttö hävisi 
+		1782. *se' heitä ihaileva#nsA tyttö hävisi 
 			'it/that I.par admire.va/a girl disappear.pst.3sg'
 
 & Illicit genitive subject + correct agreement
 
-		1777. *se' minun ihaileva#ni tyttö hävisi 
+		1783. *se' minun ihaileva#ni tyttö hävisi 
 			'it/that I.gen admire.va/a girl disappear.pst.3sg'
 
-		1778. *se' sinun ihaileva#si tyttö hävisi 
+		1784. *se' sinun ihaileva#si tyttö hävisi 
 			'it/that you.gen admire.va/a girl disappear.pst.3sg'
 
-		1779. *se' hänen ihaileva#nsA tyttö hävisi 
+		1785. *se' hänen ihaileva#nsA tyttö hävisi 
 			'it/that he.gen admire.va/a girl disappear.pst.3sg'
 
-		1780. *se' meidän ihaileva#mme tyttö hävisi 
+		1786. *se' meidän ihaileva#mme tyttö hävisi 
 			'it/that we.gen admire.va/a girl disappear.pst.3sg'
 
-		1781. *se' teidän ihaileva#nne tyttö hävisi 
+		1787. *se' teidän ihaileva#nne tyttö hävisi 
 			'it/that you.gen admire.va/a girl disappear.pst.3sg'
 
-		1782. *se' heidän ihaileva#nsA tyttö hävisi 
+		1788. *se' heidän ihaileva#nsA tyttö hävisi 
 			'it/that they.gen admire.va/a girl disappear.pst.3sg'
 
 & Ungrammatical (illicit subject without agreement)
 
-		1783. *se' minun ihaileva tyttö hävisi 
+		1789. *se' minun ihaileva tyttö hävisi 
 			'it/that I.gen admire.va/a girl disappear.pst.3sg'
 
-		1784. *se' sinun ihaileva tyttö hävisi 
+		1790. *se' sinun ihaileva tyttö hävisi 
 			'it/that you.gen admire.va/a girl disappear.pst.3sg'
 
-		1785. *se' hänen ihaileva tyttö hävisi 
+		1791. *se' hänen ihaileva tyttö hävisi 
 			'it/that he.gen admire.va/a girl disappear.pst.3sg'
 
-		1786. *se' Pekan ihaileva tyttö hävisi 
+		1792. *se' Pekan ihaileva tyttö hävisi 
 			'it/that Pekka.gen admire.va/a girl disappear.pst.3sg'
 
-		1787. *se' miehen ihaileva tyttö hävisi 
+		1793. *se' miehen ihaileva tyttö hävisi 
 			'it/that man.gen admire.va/a girl disappear.pst.3sg'
 
-		1788. *se' sen ihaileva tyttö hävisi 
+		1794. *se' sen ihaileva tyttö hävisi 
 			'it/that it.gen admire.va/a girl disappear.pst.3sg'
 
-		1789. *se' miesten ihaileva tyttö hävisi 
+		1795. *se' miesten ihaileva tyttö hävisi 
 			'it/that men.gen admire.va/a girl disappear.pst.3sg'
 
-		1790. *se' niiden ihaileva tyttö hävisi 
+		1796. *se' niiden ihaileva tyttö hävisi 
 			'it/that they.gen admire.va/a girl disappear.pst.3sg'
 
-		1791. *se' meidän ihaileva tyttö hävisi 
+		1797. *se' meidän ihaileva tyttö hävisi 
 			'it/that we.gen admire.va/a girl disappear.pst.3sg'
 
-		1792. *se' teidän ihaileva tyttö hävisi 
+		1798. *se' teidän ihaileva tyttö hävisi 
 			'it/that you.gen admire.va/a girl disappear.pst.3sg'
 
-		1793. *se' heidän ihaileva tyttö hävisi 
+		1799. *se' heidän ihaileva tyttö hävisi 
 			'it/that they.gen admire.va/a girl disappear.pst.3sg'
 
 & 3. Special topics
@@ -5802,343 +5823,343 @@
 
 & Grammatical (subject wh-pronouns)
 
-		1794.  kuka tekee työtä 
+		1800.  kuka tekee työtä 
 			'who.nom make.prs.3sg work.par'
 
-		1795.  kuka ei tee työtä 
+		1801.  kuka ei tee työtä 
 			'who.nom not.3sg make.prs work.par'
 
-		1796.  mitä_DP teen minä 
+		1802.  mitä_DP teen minä 
 			'what.par make.prs.1sg I.nom
 
 & Grammatical (subject yes/no operator)
 
-		1797.  minä#[kO] teen työtä 
+		1803.  minä#[kO] teen työtä 
 			'I.nom-q make.prs.1sg work.par'
 
-		1798.  sinä#[kO] teet työtä 
+		1804.  sinä#[kO] teet työtä 
 			'I.nom-q make.prs.1sg work.par'
 
-		1799.  hän#[kO] tekee työtä 
+		1805.  hän#[kO] tekee työtä 
 			'I.nom-q make.prs.1sg work.par'
 
-		1800.  me#[kO] teemme työtä 
+		1806.  me#[kO] teemme työtä 
 			'I.nom-q make.prs.1sg work.par'
 
-		1801.  te#[kO] teette työtä 
+		1807.  te#[kO] teette työtä 
 			'I.nom-q make.prs.1sg work.par'
 
-		1802.  he#[kO] tekevät työtä 
+		1808.  he#[kO] tekevät työtä 
 			'I.nom-q make.prs.1sg work.par'
 
 & Ungrammatical (Move feeding Agree)
 
-		1803. *mitä_DP tekee minä 
+		1809. *mitä_DP tekee minä 
 			'what.par make.prs.1sg I.nom
 
 & Ungrammatical (subject yes/no operator and agreement mismatch)
 
-		1804. *minä#[kO] teet työtä 
+		1810. *minä#[kO] teet työtä 
 			'I.nom.q make.prs.2sg work.par'
 
-		1805. *minä#[kO] tekee työtä 
+		1811. *minä#[kO] tekee työtä 
 			'I.nom.q make.prs.3sg work.par'
 
-		1806. *minä#[kO] teemme työtä 
+		1812. *minä#[kO] teemme työtä 
 			'I.nom.q make.prs.1pl work.par'
 
-		1807. *minä#[kO] teette työtä 
+		1813. *minä#[kO] teette työtä 
 			'I.nom.q make.prs.2pl work.par'
 
-		1808. *minä#[kO] tekevät työtä 
+		1814. *minä#[kO] tekevät työtä 
 			'I.nom.q make.prs.3pl work.par'
 
-		1809. *sinä#[kO] teen työtä 
+		1815. *sinä#[kO] teen työtä 
 			'you.nom.q make.prs.1sg work.par'
 
-		1810. *sinä#[kO] tekee työtä 
+		1816. *sinä#[kO] tekee työtä 
 			'you.nom.q make.prs.3sg work.par'
 
-		1811. *sinä#[kO] teemme työtä 
+		1817. *sinä#[kO] teemme työtä 
 			'you.nom.q make.prs.1pl work.par'
 
-		1812. *sinä#[kO] teette työtä 
+		1818. *sinä#[kO] teette työtä 
 			'you.nom.q make.prs.2pl work.par'
 
-		1813. *sinä#[kO] tekevät työtä 
+		1819. *sinä#[kO] tekevät työtä 
 			'you.nom.q make.prs.3pl work.par'
 
-		1814. *hän#[kO] teen työtä 
+		1820. *hän#[kO] teen työtä 
 			'he.nom.q make.prs.1sg work.par'
 
-		1815. *hän#[kO] teet työtä 
+		1821. *hän#[kO] teet työtä 
 			'he.nom.q make.prs.2sg work.par'
 
-		1816. *hän#[kO] teemme työtä 
+		1822. *hän#[kO] teemme työtä 
 			'he.nom.q make.prs.1pl work.par'
 
-		1817. *hän#[kO] teette työtä 
+		1823. *hän#[kO] teette työtä 
 			'he.nom.q make.prs.2pl work.par'
 
-		1818. *hän#[kO] tekevät työtä 
+		1824. *hän#[kO] tekevät työtä 
 			'he.nom.q make.prs.3pl work.par'
 
-		1819. *me#[kO] teen työtä 
+		1825. *me#[kO] teen työtä 
 			'we.nom.q make.prs.1sg work.par'
 
-		1820. *me#[kO] teet työtä 
+		1826. *me#[kO] teet työtä 
 			'we.nom.q make.prs.2sg work.par'
 
-		1821. *me#[kO] tekee työtä 
+		1827. *me#[kO] tekee työtä 
 			'we.nom.q make.prs.3pl work.par'
 
-		1822. *me#[kO] teette työtä 
+		1828. *me#[kO] teette työtä 
 			'we.nom.q make.prs.2pl work.par'
 
-		1823. *me#[kO] tekevät työtä 
+		1829. *me#[kO] tekevät työtä 
 			'we.nom.q make.prs.3pl work.par'
 
-		1824. *te#[kO] teen työtä 
+		1830. *te#[kO] teen työtä 
 			'you.nom.q make.prs.1sg work.par'
 
-		1825. *te#[kO] teet työtä 
+		1831. *te#[kO] teet työtä 
 			'you.nom.q make.prs.2sg work.par'
 
-		1826. *te#[kO] tekee työtä 
+		1832. *te#[kO] tekee työtä 
 			'you.nom.q make.prs.3pl work.par'
 
-		1827. *te#[kO] teemme työtä 
+		1833. *te#[kO] teemme työtä 
 			'you.nom.q make.prs.2pl work.par'
 
-		1828. *te#[kO] tekevät työtä 
+		1834. *te#[kO] tekevät työtä 
 			'you.nom.q make.prs.3pl work.par'
 
-		1829. *he#[kO] teen työtä 
+		1835. *he#[kO] teen työtä 
 			'they.nom.q make.prs.1sg work.par'
 
-		1830. *he#[kO] teet työtä 
+		1836. *he#[kO] teet työtä 
 			'they.nom.q make.prs.2sg work.par'
 
-		1831. *he#[kO] tekee työtä 
+		1837. *he#[kO] tekee työtä 
 			'they.nom.q make.prs.3pl work.par'
 
-		1832. *he#[kO] teemme työtä 
+		1838. *he#[kO] teemme työtä 
 			'they.nom.q make.prs.1pl work.par'
 
-		1833. *he#[kO] teette työtä 
+		1839. *he#[kO] teette työtä 
 			'they.nom.q make.prs.2pl work.par'
 
 & Ungrammatical (Wh-operator and agreement error)
 
-		1834. *kuka tee#n työtä 
+		1840. *kuka tee#n työtä 
 			'who.nom make.prs.3sg work.par'
 
-		1835. *kuka e#n tee työtä 
+		1841. *kuka e#n tee työtä 
 			'who.nom not.3sg make.prs work.par'
 
-		1836. *kuka tee#t työtä 
+		1842. *kuka tee#t työtä 
 			'who.nom make.prs.3sg work.par'
 
-		1837. *kuka e#t tee työtä 
+		1843. *kuka e#t tee työtä 
 			'who.nom not.3sg make.prs work.par'
 
-		1838. *kuka tee#mme työtä 
+		1844. *kuka tee#mme työtä 
 			'who.nom make.prs.3sg work.par'
 
-		1839. *kuka e#mme tee työtä 
+		1845. *kuka e#mme tee työtä 
 			'who.nom not.3sg make.prs work.par'
 
-		1840. *kuka tee#tte työtä 
+		1846. *kuka tee#tte työtä 
 			'who.nom make.prs.3sg work.par'
 
-		1841. *kuka e#tte tee työtä 
+		1847. *kuka e#tte tee työtä 
 			'who.nom not.3sg make.prs work.par'
 
-		1842. *kuka tee#vAt työtä 
+		1848. *kuka tee#vAt työtä 
 			'who.nom make.prs.3sg work.par'
 
-		1843. *kuka e#vAt tee työtä 
+		1849. *kuka e#vAt tee työtä 
 			'who.nom not.3sg make.prs work.par'
 
 & Grammatical (Secondary Ā-chains)
 
-		1844.  kenen lähellä hän nukkuu 
+		1850.  kenen lähellä hän nukkuu 
 			'who.gen near he.nom sleep.prs.3sg'
 
-		1845.  minun#[kO] lähellä#ni hän nukkuu 
+		1851.  minun#[kO] lähellä#ni hän nukkuu 
 			'I.gen.Q near.px/1sg he.nom sleep.prs.3sg'
 
-		1846.  minun#[kO] lähellä hän nukkuu 
+		1852.  minun#[kO] lähellä hän nukkuu 
 			'I.gen.Q near.px/1sg he.nom sleep.prs.3sg'
 
-		1847.  minua#[kO] lähellä hän nukkuu 
+		1853.  minua#[kO] lähellä hän nukkuu 
 			'I.par.Q near he.nom sleep.prs.3sg'
 
 & Ungrammatical (human/person agreement error)
 
-		1848. *kenen lähellä#nsA hän nukkuu 
+		1854. *kenen lähellä#nsA hän nukkuu 
 			'who.gen near.px/3sg he.nom sleep.prs.3sg'
 
-		1849. *Pekan#[kO] lähellä#nsA hän nukkuu 
+		1855. *Pekan#[kO] lähellä#nsA hän nukkuu 
 			'Pekka.gen.Q near.px/3sg he.nom sleep.prs.3sg'
 
-		1850. *miehen#[kO] lähellä#nsA hän nukkuu 
+		1856. *miehen#[kO] lähellä#nsA hän nukkuu 
 			'man.gen.Q near.px/3sg he.nom sleep.prs.3sg'
 
 & Ungrammatical (Move feeds Agree in secondary Ā-chains)
 
-		1851. *minun#[kO] lähellä#si hän nukkuu 
+		1857. *minun#[kO] lähellä#si hän nukkuu 
 			'I.gen.Q near.px/2sg he.nom sleep.prs.3sg'
 
-		1852. *minun#[kO] lähellä#An hän nukkuu 
+		1858. *minun#[kO] lähellä#An hän nukkuu 
 			'I.gen.Q near.px/3p he.nom sleep.prs.3sg'
 
-		1853. *minun#[kO] lähellä#mme hän nukkuu 
+		1859. *minun#[kO] lähellä#mme hän nukkuu 
 			'I.gen.Q near.px/1pl he.nom sleep.prs.3sg'
 
-		1854. *minun#[kO] lähellä#nne hän nukkuu 
+		1860. *minun#[kO] lähellä#nne hän nukkuu 
 			'I.gen.Q near.px/2pl he.nom sleep.prs.3sg'
 
-		1855. *minun#[kO] lähellä#nsA hän nukkuu 
+		1861. *minun#[kO] lähellä#nsA hän nukkuu 
 			'I.gen.Q near.px/3p he.nom sleep.prs.3sg'
 
-		1856. *minun#[kO] lähellä#si hän nukkuu 
+		1862. *minun#[kO] lähellä#si hän nukkuu 
 			'I.gen.Q near.px/2sg he.nom sleep.prs.3sg'
 
-		1857. *minua#[kO] lähellä#ni hän nukkuu 
+		1863. *minua#[kO] lähellä#ni hän nukkuu 
 			'I.par.Q near.px/1sg he.nom sleep.prs.3sg'
 
-		1858. *minua#[kO] lähellä#si hän nukkuu 
+		1864. *minua#[kO] lähellä#si hän nukkuu 
 			'I.par.Q near.px/2sg he.nom sleep.prs.3sg'
 
-		1859. *minua#[kO] lähellä#An hän nukkuu 
+		1865. *minua#[kO] lähellä#An hän nukkuu 
 			'I.par.Q near.px/3p he.nom sleep.prs.3sg'
 
-		1860. *minua#[kO] lähellä#mme hän nukkuu 
+		1866. *minua#[kO] lähellä#mme hän nukkuu 
 			'I.par.Q near.px/1pl he.nom sleep.prs.3sg'
 
-		1861. *minua#[kO] lähellä#nne hän nukkuu 
+		1867. *minua#[kO] lähellä#nne hän nukkuu 
 			'I.par.Q near.px/2pl he.nom sleep.prs.3sg'
 
 & 3.1.2 Agreement and scrambling
 
 & Grammatical
 
-		1862.  työtä teen minä 
+		1868.  työtä teen minä 
 			'work.par make.prs.1sg I.nom'
 
-		1863.  minä teen työtä 
+		1869.  minä teen työtä 
 			'I.nom make.prs.1sg work.par'
 
 & Ungrammatical
 
-		1864. *työtä teet minä 
+		1870. *työtä teet minä 
 			'work.par make.prs.2sg I.nom'
 
-		1865. *työtä tekee minä 
+		1871. *työtä tekee minä 
 			'work.par make.prs.3sg I.nom'
 
-		1866. *työtä teemme minä 
+		1872. *työtä teemme minä 
 			'work.par make.prs.1pl I.nom'
 
-		1867. *työtä teette minä 
+		1873. *työtä teette minä 
 			'work.par make.prs.2pl I.nom'
 
-		1868. *työtä tekevät minä 
+		1874. *työtä tekevät minä 
 			'work.par make.prs.3pl I.nom'
 
-		1869. *työtä teen sinä 
+		1875. *työtä teen sinä 
 			'work.par make.prs.1sg you.nom'
 
-		1870. *työtä tekee sinä 
+		1876. *työtä tekee sinä 
 			'work.par make.prs.3sg you.nom'
 
-		1871. *työtä teemme sinä 
+		1877. *työtä teemme sinä 
 			'work.par make.prs.1pl you.nom'
 
-		1872. *työtä teette sinä 
+		1878. *työtä teette sinä 
 			'work.par make.prs.2pl you.nom'
 
-		1873. *työtä tekevät sinä 
+		1879. *työtä tekevät sinä 
 			'work.par make.prs.3pl you.nom'
 
-		1874. *työtä teen hän 
+		1880. *työtä teen hän 
 			'work.par make.prs.2sg he.nom'
 
-		1875. *työtä teen hän 
+		1881. *työtä teen hän 
 			'work.par make.prs.1sg he.nom'
 
-		1876. *työtä teemme hän 
+		1882. *työtä teemme hän 
 			'work.par make.prs.1pl he.nom'
 
-		1877. *työtä teette hän 
+		1883. *työtä teette hän 
 			'work.par make.prs.2pl he.nom'
 
-		1878. *työtä tekevät hän 
+		1884. *työtä tekevät hän 
 			'work.par make.prs.3pl he.nom'
 
-		1879. *työtä teen me 
+		1885. *työtä teen me 
 			'work.par make.prs.2sg we.nom'
 
-		1880. *työtä teet me 
+		1886. *työtä teet me 
 			'work.par make.prs.2sg we.nom'
 
-		1881. *työtä tekee me 
+		1887. *työtä tekee me 
 			'work.par make.prs.3pl we.nom'
 
-		1882. *työtä teette me 
+		1888. *työtä teette me 
 			'work.par make.prs.2pl we.nom'
 
-		1883. *työtä tekevät me 
+		1889. *työtä tekevät me 
 			'work.par make.prs.3pl we.nom'
 
-		1884. *työtä teen te 
+		1890. *työtä teen te 
 			'work.par make.prs.1sg you.nom'
 
-		1885. *työtä teet te 
+		1891. *työtä teet te 
 			'work.par make.prs.2sg you.nom'
 
-		1886. *työtä tekee te 
+		1892. *työtä tekee te 
 			'work.par make.prs.3pl you.nom'
 
-		1887. *työtä teemme te 
+		1893. *työtä teemme te 
 			'work.par make.prs.1pl you.nom'
 
-		1888. *työtä tekevät te 
+		1894. *työtä tekevät te 
 			'work.par make.prs.3pl you.nom'
 
-		1889. *työtä teen he 
+		1895. *työtä teen he 
 			'work.par make.prs.1sg they.nom'
 
-		1890. *työtä teet he 
+		1896. *työtä teet he 
 			'work.par make.prs.2sg they.nom'
 
-		1891. *työtä tekee he 
+		1897. *työtä tekee he 
 			'work.par make.prs.3pl they.nom'
 
-		1892. *työtä teette he 
+		1898. *työtä teette he 
 			'work.par make.prs.2pl they.nom'
 
-		1893. *työtä teemme he 
+		1899. *työtä teemme he 
 			'work.par make.prs.1pl they.nom'
 
 & 3.1.3 English want-infinitive
 
 & Grammatical
 
-		1894.  John wants to_inf leave 
+		1900.  John wants to_inf leave 
 
-		1895.  John wants Mary to_inf leave 
+		1901.  John wants Mary to_inf leave 
 
 & Ungrammatical
 
-		1896. *John wants to_inf leave#[-0] 
+		1902. *John wants to_inf leave#[-0] 
 
-		1897. *John wants to_inf leave#[-s] 
+		1903. *John wants to_inf leave#[-s] 
 
-		1898. *John wants Mary to_inf leave#[-0] 
+		1904. *John wants Mary to_inf leave#[-0] 
 
-		1899. *John wants Mary to_inf leave#[-s] 
+		1905. *John wants Mary to_inf leave#[-s] 
 
 & A-chains (passive, raising)
 
@@ -6146,73 +6167,73 @@
 
 & Grammatical
 
-		1900.  John admires Mary 
+		1906.  John admires Mary 
 
-		1901.  Mary was admired 
+		1907.  Mary was admired 
 
-		1902.  they were admired 
+		1908.  they were admired 
 
 & Ungrammatical
 
 & Agreement failure
 
-		1903. *they was admired 
+		1909. *they was admired 
 
-		1904. *Mary were admired 
+		1910. *Mary were admired 
 
 & EPP failure
 
-		1905. *was John admired 
+		1911. *was John admired 
 
 & Projection principle failure
 
-		1906. *Mary was admired John 
+		1912. *Mary was admired John 
 
 & Combined failures
 
-		1907. *was they admired 
+		1913. *was they admired 
 
-		1908. *were Mary admired 
+		1914. *were Mary admired 
 
-		1909. *was they admired John 
+		1915. *was they admired John 
 
-		1910. *were Mary admired John 
+		1916. *were Mary admired John 
 
 & English raising construction
 
 & Grammatical
 
-		1911.  John wants to_inf leave 
+		1917.  John wants to_inf leave 
 
-		1912.  John seems to_inf leave 
+		1918.  John seems to_inf leave 
 
-		1913.  they seem to_inf leave 
+		1919.  they seem to_inf leave 
 
 & Ungrammatical
 
 & Agreement failure
 
-		1914. *John want to_inf leave 
+		1920. *John want to_inf leave 
 
-		1915. *John seem to_inf leave 
+		1921. *John seem to_inf leave 
 
-		1916. *they wants to_inf leave 
+		1922. *they wants to_inf leave 
 
-		1917. *they seems to_inf leave 
+		1923. *they seems to_inf leave 
 
 & EPP failure
 
-		1918. *wants John to_inf leave 
+		1924. *wants John to_inf leave 
 
-		1919. *seems John to_inf leave 
+		1925. *seems John to_inf leave 
 
-		1920. *wants to_inf John leave 
+		1926. *wants to_inf John leave 
 
-		1921. *seems to_inf John leave 
+		1927. *seems to_inf John leave 
 
 & Projection principle failure
 
-		1922. *John seems Mary to_inf leave 
+		1928. *John seems Mary to_inf leave 
 
 & 3.2. Agreement, pro-drop and control
 
@@ -6220,54 +6241,54 @@
 
 & Grammatical
 
-		1923.  lähden 
+		1929.  lähden 
 			'leave.prs.1sg'
 
-		1924.  lähdet 
+		1930.  lähdet 
 			'leave.prs.2sg'
 
-		1925.  lähdemme 
+		1931.  lähdemme 
 			'leave.prs.1pl'
 
-		1926.  lähdette 
+		1932.  lähdette 
 			'leave.prs.2pl'
 
 & Ungrammatical (Finnish third person, the partial pro-drop profile)
 
-		1927. *lähtee 
+		1933. *lähtee 
 			'leave.prs.3sg'
 
-		1928. *lähtevät 
+		1934. *lähtevät 
 			'leave.prs.3pl'
 
 & Ungrammatical (English weak agreement)
 
-		1929. *leave1 
+		1935. *leave1 
 
-		1930. *leaves 
+		1936. *leaves 
 
 & Finite pro-drop in embedded finite clause
 
 & Grammatical
 
-		1931.  Pekka sanoo että lähden 
+		1937.  Pekka sanoo että lähden 
 			'Pekka.nom say.prs.3sg that leave.prs.1sg'
 
-		1932.  Pekka sanoo että lähdet 
+		1938.  Pekka sanoo että lähdet 
 			'Pekka.nom say.prs.3sg that leave.prs.2sg'
 
-		1933.  Pekka sanoo että lähtee 
+		1939.  Pekka sanoo että lähtee 
 			'Pekka.nom say.prs.3sg that leave.prs.3sg'
 
-		1934.  Pekka sanoo että lähdemme 
+		1940.  Pekka sanoo että lähdemme 
 			'Pekka.nom say.prs.3sg that leave.prs.1pl'
 
-		1935.  Pekka sanoo että lähdette 
+		1941.  Pekka sanoo että lähdette 
 			'Pekka.nom say.prs.3sg that leave.prs.2pl'
 
 & Ungrammatical
 
-		1936. *Pekka sanoo että lähtevät 
+		1942. *Pekka sanoo että lähtevät 
 			'Pekka.nom say.prs.3sg. that leave.prs.3pl'
 
 & 3.2.3 Nonfinite pro-drop
@@ -6276,122 +6297,122 @@
 
 & Grammatical (1st and 2nd person)
 
-		1937.  minun auto#ni lähtee 
+		1943.  minun auto#ni lähtee 
 			'I.gen car.px/1sg leave.prs.3sg'
 
-		1938.  auto#ni lähtee 
+		1944.  auto#ni lähtee 
 			'car.px/1sg leave.prs.3sg'
 
-		1939.  auto lähtee 
+		1945.  auto lähtee 
 			'car.px/1sg leave.prs.3sg'
 
-		1940.  sinun auto#si lähtee 
+		1946.  sinun auto#si lähtee 
 			'I.gen car.px/2sg leave.prs.3sg'
 
-		1941.  auto#si lähtee 
+		1947.  auto#si lähtee 
 			'car.px/2sg leave.prs.3sg'
 
-		1942.  heidän auto#nsA lähtee 
+		1948.  heidän auto#nsA lähtee 
 			'they.gen car.px/3p'
 
-		1943.  hänen auto#nsA lähtee 
+		1949.  hänen auto#nsA lähtee 
 			'he.gen car.px/3p'
 
-		1944.  meidän auto#mme lähtee 
+		1950.  meidän auto#mme lähtee 
 			'I.gen car.px/1pl leave.prs.3sg'
 
-		1945.  auto#mme lähtee 
+		1951.  auto#mme lähtee 
 			'car.px/1pl leave.prs.3sg'
 
-		1946.  teidän auto#nne lähtee 
+		1952.  teidän auto#nne lähtee 
 			'I.gen car.px/2pl leave.prs.3pl'
 
-		1947.  auto#nne lähtee 
+		1953.  auto#nne lähtee 
 			'car.px/2sg leave.prs.3pl'
 
 & Ungrammatical (3rd person)
 
-		1948. *auto#nsA lähtee 
+		1954.  auto#nsA lähtee 
 			'car.px/3sg leave.prs.3sg'
 
 & Pro-drop in object position
 
 & Grammatical
 
-		1949.  Pekka ihailee minun autoa#ni 
+		1955.  Pekka ihailee minun autoa#ni 
 			'Pekka.nom admire.prs.3sg I.gen car.par.px/1sg'
 
-		1950.  Pekka ihailee sinun autoa#si 
+		1956.  Pekka ihailee sinun autoa#si 
 			'Pekka.nom admire.prs.3sg you.gen car.par.px/2sg'
 
-		1951.  Pekka ihailee hänen autoa#An 
+		1957.  Pekka ihailee hänen autoa#An 
 			'Pekka.nom admire.prs.3sg he.gen car.par.px/3p'
 
-		1952.  Pekka ihailee meidän autoa#mme 
+		1958.  Pekka ihailee meidän autoa#mme 
 			'Pekka.nom admire.prs.3sg we.gen car.par.px/1pl'
 
-		1953.  Pekka ihailee teidän autoa#nne 
+		1959.  Pekka ihailee teidän autoa#nne 
 			'Pekka.nom admire.prs.3sg you.gen car.par.px/2pl'
 
-		1954.  Pekka ihailee heidän autoa#An 
+		1960.  Pekka ihailee heidän autoa#An 
 			'Pekka.nom admire.prs.3sg they.gen car.par.px/3p'
 
-		1955.  Pekka ihailee autoa#ni 
+		1961.  Pekka ihailee autoa#ni 
 			'Pekka.nom admire.prs.3sg I.gen car.par.px/1sg'
 
-		1956.  Pekka ihailee autoa#si 
+		1962.  Pekka ihailee autoa#si 
 			'Pekka.nom admire.prs.3sg you.gen car.par.px/2sg'
 
-		1957.  Pekka ihailee autoa#An 
+		1963.  Pekka ihailee autoa#An 
 			'Pekka.nom admire.prs.3sg he.gen car.par.px/3p'
 
-		1958.  Pekka ihailee autoa#mme 
+		1964.  Pekka ihailee autoa#mme 
 			'Pekka.nom admire.prs.3sg we.gen car.par.px/1pl'
 
-		1959.  Pekka ihailee autoa#nne 
+		1965.  Pekka ihailee autoa#nne 
 			'Pekka.nom admire.prs.3sg you.gen car.par.px/2pl'
 
-		1960.  Pekka ihailee autoa#An 
+		1966.  Pekka ihailee autoa#An 
 			'Pekka.nom admire.prs.3sg they.gen car.par.px/3p'
 
 & 3.2.4 Consistent pro-drop profile (Italian)
 
 & Grammatical
 
-		1961.  io adoro Luisa 
+		1967.  io adoro Luisa 
 			'I.nom admire.prs.1sg Luisa'
 
-		1962.  tu adori Luisa 
+		1968.  tu adori Luisa 
 			'you.nom admire.prs.2sg Luisa'
 
-		1963.  lui adora Luisa 
+		1969.  lui adora Luisa 
 			'he.nom admire.prs.3sg Luisa'
 
-		1964.  noi adoriamo Luisa 
+		1970.  noi adoriamo Luisa 
 			'we.nom admire.1pl Luisa'
 
-		1965.  voi adorate Luisa 
+		1971.  voi adorate Luisa 
 			'you.nom admire.prs.2pl Luisa'
 
-		1966.  loro adorano Luisa 
+		1972.  loro adorano Luisa 
 			'they.nom admire.prs.3pl Luisa'
 
-		1967.  adoro Luisa 
+		1973.  adoro Luisa 
 			'admire.prs.1sg Luisa'
 
-		1968.  adori Luisa 
+		1974.  adori Luisa 
 			'admire.prs.2sg Luisa'
 
-		1969.  adora Luisa 
+		1975.  adora Luisa 
 			'admire.prs.3sg Luisa'
 
-		1970.  adoriamo Luisa 
+		1976.  adoriamo Luisa 
 			'admire.1pl Luisa'
 
-		1971.  adorate Luisa 
+		1977.  adorate Luisa 
 			'admire.prs.2pl Luisa'
 
-		1972.  adorano Luisa 
+		1978.  adorano Luisa 
 			'admire.prs.3pl Luisa'
 
 & 3.3. High complementizer
@@ -6400,107 +6421,107 @@
 
 & Grammatical (canonical form)
 
-		1973.  Pekka sanoo että ei lähde 
+		1979.  Pekka sanoo että ei lähde 
 			'Pekka.nom say.prs.3sg that not.3sg leave'
 
 & Grammatical (adjoined forms)
 
-		1974.  Pekka sanoo etten lähde 
+		1980.  Pekka sanoo etten lähde 
 			'Pekka.nom say.prs.3sg that.not.1sg leave.prs'
 
-		1975.  Pekka sanoo ettet lähde 
+		1981.  Pekka sanoo ettet lähde 
 			'Pekka.nom say.prs.3sg that.not.2sg leave.prs'
 
-		1976.  Pekka sanoo ettei lähde 
+		1982.  Pekka sanoo ettei lähde 
 			'Pekka.nom say.prs.3sg that.not.3sg leave.prs'
 
-		1977.  Pekka sanoo ettemme lähde 
+		1983.  Pekka sanoo ettemme lähde 
 			'Pekka.nom say.prs.3sg that.not.1pl leave.prs'
 
-		1978.  Pekka sanoo ettette lähde 
+		1984.  Pekka sanoo ettette lähde 
 			'Pekka.nom say.prs.3sg that.not.2pl leave.prs'
 
-		1979.  Pekka sanoo etteivät lähde 
+		1985.  Pekka sanoo etteivät lähde 
 			'Pekka.nom say.prs.3sg that.not.3pl leave.prs'
 
-		1980.  Pekka sanoo että#e#n lähde 
+		1986.  Pekka sanoo että#e#n lähde 
 			'Pekka.nom say.prs.3sg that.not.1sg leave.prs'
 
-		1981.  Pekka sanoo että#e#t lähde 
+		1987.  Pekka sanoo että#e#t lähde 
 			'Pekka.nom say.prs.3sg that.not.2sg leave.prs'
 
-		1982.  Pekka sanoo että#e#[V] lähde 
+		1988.  Pekka sanoo että#e#[V] lähde 
 			'Pekka.nom say.prs.3sg that.not.3sg leave.prs'
 
-		1983.  Pekka sanoo että#e#mme lähde 
+		1989.  Pekka sanoo että#e#mme lähde 
 			'Pekka.nom say.prs.3sg that.not.1pl leave.prs'
 
-		1984.  Pekka sanoo että#e#tte lähde 
+		1990.  Pekka sanoo että#e#tte lähde 
 			'Pekka.nom say.prs.3sg that.not.2pl leave.prs'
 
-		1985. *Pekka sanoo että#e#vät lähde 
+		1991. *Pekka sanoo että#e#vät lähde 
 			'Pekka.nom say.prs.3sg that.not.3pl leave.prs'
 
 & Ungrammatical (agreement on the complementizer)
 
-		1986. *Pekka sanoo että#n en lähde 
+		1992. *Pekka sanoo että#n en lähde 
 			'Pekka.nom say.prs.3sg that.1sg not.1sg leave'
 
-		1987. *Pekka sanoo että#t et lähde 
+		1993. *Pekka sanoo että#t et lähde 
 			'Pekka.nom say.prs.3sg that.2sg not.2sg leave'
 
-		1988. *Pekka sanoo että#[V] ei lähde 
+		1994. *Pekka sanoo että#[V] ei lähde 
 			'Pekka.nom say.prs.3sg that.3sg not.3sg leave'
 
-		1989. *Pekka sanoo että#mme emme lähde 
+		1995. *Pekka sanoo että#mme emme lähde 
 			'Pekka.nom say.prs.3sg that.1pl not.1pl leave'
 
-		1990. *Pekka sanoo että#tte ette lähde 
+		1996. *Pekka sanoo että#tte ette lähde 
 			'Pekka.nom say.prs.3sg that.2pl not.2pl leave'
 
-		1991. *Pekka sanoo että#vAt eivät lähde 
+		1997. *Pekka sanoo että#vAt eivät lähde 
 			'Pekka.nom say.prs.3sg that.3pl not.3pl leave'
 
 & 3.3.2 Experimental complementizer agreement
 
 & Grammatical (että* = C + sg, että** = C + pl)
 
-		1992.  Pekka sanoo että* minä en lähde 
+		1998.  Pekka sanoo että* minä en lähde 
 			'Pekka.nom says that.sg I.nom not.1sg leave.prs'
 
-		1993.  Pekka sanoo että* sinä et lähde 
+		1999.  Pekka sanoo että* sinä et lähde 
 			'Pekka.nom says että.sg you.nom not.2sg leave.prs'
 
-		1994.  Pekka sanoo että* hän ei lähde 
+		2000.  Pekka sanoo että* hän ei lähde 
 			'Pekka.nom says that.sg he.nom not.3sg leave.prs'
 
-		1995.  Pekka sanoo että** me emme lähde 
+		2001.  Pekka sanoo että** me emme lähde 
 			'Pekka.nom says that.pl we.nom not.1pl leave.prs'
 
-		1996.  Pekka sanoo että** te ette lähde 
+		2002.  Pekka sanoo että** te ette lähde 
 			'Pekka.nom says that.pl you.nom not.2pl leave.prs'
 
-		1997.  Pekka sanoo että** he eivät lähde 
+		2003.  Pekka sanoo että** he eivät lähde 
 			'Pekka.nom says that.pl they.nom not.3pl leave.prs'
 
 & Ungrammatical (experimental complementizer agreement)
 
-		1998. *Pekka sanoo että** minä en lähde 
+		2004. *Pekka sanoo että** minä en lähde 
 			'Pekka.nom says that.sg I.nom not.1sg leave.prs'
 
-		1999. *Pekka sanoo että** sinä et lähde 
+		2005. *Pekka sanoo että** sinä et lähde 
 			'Pekka.nom says että.sg you.nom not.2sg leave.prs'
 
-		2000. *Pekka sanoo että** hän ei lähde 
+		2006. *Pekka sanoo että** hän ei lähde 
 			'Pekka.nom says that.sg he.nom not.3sg leave.prs'
 
-		2001. *Pekka sanoo että* me emme lähde 
+		2007. *Pekka sanoo että* me emme lähde 
 			'Pekka.nom says that.pl we.nom not.1pl leave.prs'
 
-		2002. *Pekka sanoo että* te ette lähde 
+		2008. *Pekka sanoo että* te ette lähde 
 			'Pekka.nom says that.pl you.nom not.2pl leave.prs'
 
-		2003. *Pekka sanoo että* he eivät lähde 
+		2009. *Pekka sanoo että* he eivät lähde 
 			'Pekka.nom says that.pl they.nom not.3pl leave.prs'
 
 & 3.4. Illicit agreement overt finite C
@@ -6509,105 +6530,105 @@
 
 & Main clause subjects + embedded first person subject
 
-		2004.  minä sano#n uskovan#ni että minä lähde#n 
+		2010.  minä sano#n uskovan#ni että minä lähde#n 
 			'I.nom say.prs.1sg believe.va/inf.px/1sg that I.nom leave.prs.1sg'
 
-		2005.  sinä sano#t uskovan#si että minä lähde#n 
+		2011.  sinä sano#t uskovan#si että minä lähde#n 
 			'you.nom say.prs.2sg believe.va/inf.px/2sg that I.nom leave.prs.1sg'
 
-		2006.  hän sano#[V] uskovan#nsA että minä lähde#n 
+		2012.  hän sano#[V] uskovan#nsA että minä lähde#n 
 			'he.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
-		2007.  Pekka sano#[V] uskovan#nsA että minä lähde#n 
+		2013.  Pekka sano#[V] uskovan#nsA että minä lähde#n 
 			'Pekka.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
-		2008.  mies sano#[V] uskovan#nsA että minä lähde#n 
+		2014.  mies sano#[V] uskovan#nsA että minä lähde#n 
 			'man.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
-		2009.  se sano#[V] uskovan#nsA että minä lähde#n 
+		2015.  se sano#[V] uskovan#nsA että minä lähde#n 
 			'it.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
-		2010.  me sano#mme uskovan#mme että minä lähde#n 
+		2016.  me sano#mme uskovan#mme että minä lähde#n 
 			'we.nom say.prs.1pl believe.va/inf.px/1pl that I.nom leave.prs.1sg'
 
-		2011.  te sano#tte uskovan#nne että minä lähde#n 
+		2017.  te sano#tte uskovan#nne että minä lähde#n 
 			'we.nom say.prs.2pl believe.va/inf.px/2pl that I.nom leave.prs.1sg'
 
-		2012.  he sano#vAt uskovan#nsA että minä lähde#n 
+		2018.  he sano#vAt uskovan#nsA että minä lähde#n 
 			'they.nom say.prs.3pl believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
 & Main clause subjects + embedded third person subject
 
-		2013.  minä sano#n uskovan#ni että Merja lähtee 
+		2019.  minä sano#n uskovan#ni että Merja lähtee 
 			'I.nom say.prs.1sg believe.va/inf.px/1sg that Merja.nom leave.prs.3sg'
 
-		2014.  sinä sano#t uskovan#si että Merja lähtee 
+		2020.  sinä sano#t uskovan#si että Merja lähtee 
 			'you.nom say.prs.2sg believe.va/inf.px/2sg that Merja.nom leave.prs.3sg'
 
-		2015.  hän sano#[V] uskovan#nsA että Merja lähtee 
+		2021.  hän sano#[V] uskovan#nsA että Merja lähtee 
 			'he.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
 
-		2016.  Pekka sano#[V] uskovan#nsA että Merja lähtee 
+		2022.  Pekka sano#[V] uskovan#nsA että Merja lähtee 
 			'Pekka.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
 
-		2017.  mies sano#[V] uskovan#nsA että Merja lähtee 
+		2023.  mies sano#[V] uskovan#nsA että Merja lähtee 
 			'man.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
 
-		2018.  se sano#[V] uskovan#nsA että Merja lähtee 
+		2024.  se sano#[V] uskovan#nsA että Merja lähtee 
 			'it.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
 
-		2019.  me sano#mme uskovan#mme että Merja lähtee 
+		2025.  me sano#mme uskovan#mme että Merja lähtee 
 			'we.nom say.prs.1pl believe.va/inf.px/1pl that Merja.nom leave.prs.3sg'
 
-		2020.  te sano#tte uskovan#nne että Merja lähtee 
+		2026.  te sano#tte uskovan#nne että Merja lähtee 
 			'we.nom say.prs.2pl believe.va/inf.px/2pl that Merja.nom leave.prs.3sg'
 
-		2021.  he sano#vAt uskovan#nsA että Merja lähtee 
+		2027.  he sano#vAt uskovan#nsA että Merja lähtee 
 			'they.nom say.prs.3pl believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
 
 & Main clause subjects + embedded second person plural subject
 
-		2022.  minä sano#n uskovan#ni että te lähde#tte 
+		2028.  minä sano#n uskovan#ni että te lähde#tte 
 			'I.nom say.prs.1sg believe.va/inf.px/1sg that you.nom leave.prs.2pl'
 
-		2023.  sinä sano#t uskovan#si että te lähde#tte 
+		2029.  sinä sano#t uskovan#si että te lähde#tte 
 			'you.nom say.prs.2sg believe.va/inf.px/2sg that you.nom leave.prs.2pl'
 
-		2024.  hän sano#[V] uskovan#nsA että te lähde#tte 
+		2030.  hän sano#[V] uskovan#nsA että te lähde#tte 
 			'he.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2pl'
 
-		2025.  Pekka sano#[V] uskovan#nsA että te lähde#tte 
+		2031.  Pekka sano#[V] uskovan#nsA että te lähde#tte 
 			'Pekka.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2plg'
 
-		2026.  mies sano#[V] uskovan#nsA että te lähde#tte 
+		2032.  mies sano#[V] uskovan#nsA että te lähde#tte 
 			'man.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2pl'
 
-		2027.  se sano#[V] uskovan#nsA että te lähde#tte 
+		2033.  se sano#[V] uskovan#nsA että te lähde#tte 
 			'it.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2pl'
 
-		2028.  me sano#mme uskovan#mme että te lähde#tte 
+		2034.  me sano#mme uskovan#mme että te lähde#tte 
 			'we.nom say.prs.1pl believe.va/inf.px/1pl that you.nom leave.prs.2plg'
 
-		2029.  te sano#tte uskovan#nne että te lähde#tte 
+		2035.  te sano#tte uskovan#nne että te lähde#tte 
 			'we.nom say.prs.2pl believe.va/inf.px/2pl that you.nom leave.prs.2pl'
 
-		2030.  he sano#vAt uskovan#nsA että te lähde#tte 
+		2036.  he sano#vAt uskovan#nsA että te lähde#tte 
 			'they.nom say.prs.3pl believe.va/inf.px/3p that you.nom leave.prs.2pl'
 
 & Ungrammatical
 
 & Illicit agreement with the embedded subject
 
-		2031. *sinä sano#t uskovan#nsA että Pekka lähtee 
+		2037. *sinä sano#t uskovan#nsA että Pekka lähtee 
 			'you.nom say.prs.2sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
-		2032. *me sano#mme uskovan#nsA että Pekka lähtee 
+		2038. *me sano#mme uskovan#nsA että Pekka lähtee 
 			'we.nom say.prs.1pl believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
-		2033. *te sano#tte uskovan#nsA että Pekka lähtee 
+		2039. *te sano#tte uskovan#nsA että Pekka lähtee 
 			'we.nom say.prs.2pl believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
-		2034.  he sano#vAt uskovan#nsA että Pekka lähtee 
+		2040.  he sano#vAt uskovan#nsA että Pekka lähtee 
 			'they.nom say.prs.3pl believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
 & 3.5. Agreement and morphology
@@ -6616,99 +6637,99 @@
 
 & Finite agreement
 
-		2035. *minä lähde#n#n 
+		2041. *minä lähde#n#n 
 			'I.nom leave.prs.1sg.1sg'
 
-		2036. *sinä lähde#t#t 
+		2042. *sinä lähde#t#t 
 			'you.nom leave.prs.2sg.2sg'
 
-		2037. *hän lähde#[V]#[V] 
+		2043. *hän lähde#[V]#[V] 
 			'he.nom leave.prs.3sg.3sg'
 
-		2038. *me lähde#mme#mme 
+		2044. *me lähde#mme#mme 
 			'we.nom leave.prs.1pl.1pl'
 
-		2039. *te lähde#tte#tte 
+		2045. *te lähde#tte#tte 
 			'you.nom leave.prs.2pl.2pl'
 
-		2040. *he lähde#vAt#vAt 
+		2046. *he lähde#vAt#vAt 
 			'they.nom leave.prs.3pl.3pl'
 
 & Nonfinite agreement
 
-		2041. *hän nukkuu minun lähellä#ni#ni 
+		2047. *hän nukkuu minun lähellä#ni#ni 
 			'he.nom sleep.prs.3sg I.gen near.px/1sg.px/1sg'
 
-		2042. *hän nukkuu sinun lähellä#si#si 
+		2048. *hän nukkuu sinun lähellä#si#si 
 			'he.nom sleep.prs.3sg you.gen near.px/2sg.px/2sg'
 
-		2043. *hän nukkuu hänen lähellä#nsA#nsA 
+		2049. *hän nukkuu hänen lähellä#nsA#nsA 
 			'he.nom sleep.prs.3sg he.gen near.px/3p.px/3p'
 
-		2044. *hän nukkuu meidän lähellä#mme#mme 
+		2050. *hän nukkuu meidän lähellä#mme#mme 
 			'he.nom sleep.prs.3sg we.gen near.px/1pl.px/1pl'
 
-		2045. *hän nukkuu teidän lähellä#nne#nne 
+		2051. *hän nukkuu teidän lähellä#nne#nne 
 			'he.nom sleep.prs.3sg you.gen near.px/2pl.px/2pl'
 
-		2046. *hän nukkuu heidän lähellä#nsA#nsA 
+		2052. *hän nukkuu heidän lähellä#nsA#nsA 
 			'he.nom sleep.prs.3sg they.gen near.px/3p.px/3p'
 
 & Finite and nonfinite agreement
 
-		2047. *hän nukkuu minun lähellä#n#ni 
+		2053. *hän nukkuu minun lähellä#n#ni 
 			'he.nom sleep.prs.3sg I.gen near.1sg.px/1sg'
 
-		2048. *hän nukkuu sinun lähellä#t#si 
+		2054. *hän nukkuu sinun lähellä#t#si 
 			'he.nom sleep.prs.3sg you.gen near.2sg.px/1sg'
 
-		2049. *hän nukkuu hänen lähellä#[V]#nsA 
+		2055. *hän nukkuu hänen lähellä#[V]#nsA 
 			'he.nom sleep.prs.3sg he.gen near.3sg.px/1sg'
 
-		2050. *hän nukkuu meidän lähellä#mme#mme 
+		2056. *hän nukkuu meidän lähellä#mme#mme 
 			'he.nom sleep.prs.3sg we.gen near.1pl.px/1sg'
 
-		2051. *hän nukkuu teidän lähellä#tte#nne 
+		2057. *hän nukkuu teidän lähellä#tte#nne 
 			'he.nom sleep.prs.3sg you.gen near.2pl.px/1sg'
 
-		2052. *hän nukkuu heidän lähellä#vAt#nsA 
+		2058. *hän nukkuu heidän lähellä#vAt#nsA 
 			'he.nom sleep.prs.3sg they.gen near.3pl.px/1sg'
 
 & 3.5.2 Ungrammatical (finite/nonfinite agreement error)
 
 & Nonfinite agreement on finite verb
 
-		2053. *minä lähde#ni 
+		2059. *minä lähde#ni 
 			'I.nom leave.prs.px/1sg'
 
-		2054. *sinä lähde#si 
+		2060. *sinä lähde#si 
 			'I.nom leave.prs.px/2sg'
 
-		2055. *hän lähde#nsA 
+		2061. *hän lähde#nsA 
 			'he.nom leave.prs.px/3sg'
 
-		2056. *te lähde#nne 
+		2062. *te lähde#nne 
 			'you.nom leave.prs.px/2pl'
 
-		2057. *he lähde#nsA 
+		2063. *he lähde#nsA 
 			'they.nom leave.prs.px/3pl'
 
 & Finite agreement on adposition
 
-		2058. *hän nukkuu minun lähellä#n 
+		2064. *hän nukkuu minun lähellä#n 
 			'he.nom sleep.prs.3sg I.gen near.1sg'
 
-		2059. *hän nukkuu sinun lähellä#t 
+		2065. *hän nukkuu sinun lähellä#t 
 			'he.nom sleep.prs.3sg you.gen near.2sg'
 
-		2060. *hän nukkuu hänen lähellä#[V] 
+		2066. *hän nukkuu hänen lähellä#[V] 
 			'he.nom sleep.prs.3sg he.gen near.3sg'
 
-		2061.  hän nukkuu meidän lähellä#mme 
+		2067.  hän nukkuu meidän lähellä#mme 
 			'he.nom sleep.prs.3sg we.gen near.1pl'
 
-		2062. *hän nukkuu teidän lähellä#tte 
+		2068. *hän nukkuu teidän lähellä#tte 
 			'he.nom sleep.prs.3sg you.gen near.2pl'
 
-		2063. *hän nukkuu heidän lähellä#vAt 
+		2069. *hän nukkuu heidän lähellä#vAt 
 			'he.nom sleep.prs.3sg they.gen near.3pl'

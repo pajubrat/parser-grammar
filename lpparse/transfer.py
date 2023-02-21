@@ -56,7 +56,7 @@ class Transfer:
         self.reconstruct(ps, self.instructions['Phrasal'].copy())
         self.reconstruct(ps, self.instructions['Agree'].copy())
         self.last_resort(ps, self.instructions['Last Resort Extraposition'].copy())
-        log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps}\n')
+        log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps.top()}\n')
         return ps.top()
 
     def reconstruct(self, probe, inst):

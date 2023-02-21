@@ -155,7 +155,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.x_offset = 0  # Defined later
         self.y_offset = 0  # Defined later
         # Define the margins
-        self.margins = (150 * self.scale)
+        self.margins = (100 * self.scale)
         self.file_identifier = self.visualizer.file_identifier
         self.mouse_position_x = 0
         self.mouse_position_y = 0
@@ -275,12 +275,15 @@ class ProduceGraphicOutput(pyglet.window.Window):
         # Show features (if any)
         if self.visualizer.show_features:
             feature_str = ''
+            features_included = set()
             for feature_pattern in self.visualizer.show_features:
                 for i, lexical_feature in enumerate(ps.features):
                     if re.match(feature_pattern, lexical_feature):
-                        if self.abbreviate_feature(lexical_feature) not in feature_str:
-                            feature_str += f'[{self.abbreviate_feature(lexical_feature)}]'
-                        if len(feature_str) > 7:
+                        lexical_feature_abbreviated = self.abbreviate_feature(lexical_feature)
+                        if lexical_feature_abbreviated not in features_included:
+                            feature_str += f'[{lexical_feature_abbreviated}]'
+                            features_included.add(lexical_feature_abbreviated)
+                        if len(feature_str) > 9:
                             label_stack.append((feature_str, 'FEATURE'))
                             feature_str = ''
             if feature_str != '':
@@ -302,6 +305,12 @@ class ProduceGraphicOutput(pyglet.window.Window):
             return '+ΦPF'
         if feature == '!SELF:ΦLF':
             return '+ΦLF'
+        if feature == '!SELF:Φ1':
+            return 'Φ1'
+        if feature == '!SELF:Φ12':
+            return 'Φ12'
+        if feature == '-ΦPF':
+            return '–ΦPF'
         return feature
 
     def draw_node_label(self, ps, X1, Y1, label_stack):

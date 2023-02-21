@@ -20,7 +20,7 @@ Inf			:: PF:Inf LF:inf
 prtcpl		:: Inf T T/prt PF:T/prt LF:prtcpl
 
 # English
-to_inf		:: INF TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable
+to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable
 
 # Finnish infinitivals
 A/inf		:: A/inf 		Inf 	?ARG  -ΦPF 					!SEF	PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI
@@ -37,7 +37,7 @@ MA.ill/inf	:: MA.ill/inf	Inf		ARG  -ΦPF  		-EF:φ 	TAIL:CLASS/TR,SEMCLASS_desir
 
 # Prticiple adjectives
 MA/A		:: MA/A 		Inf		ARG  !SELF:Φ12	EF:φ	PF:-mA LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin -SPEC:N COMP:V !COMP:*
-VA/A		:: VA/A			Inf		ARG  -ΦPF 		-EF:φ	PF:-vA LF:P_rel LANG:FI -PROBE:N !COMP:*
+VA/A		:: VA/A			Inf		-ΦPF 		-EF:φ	PF:-vA LF:P_rel LANG:FI -PROBE:N !COMP:*
 
 # Experimental
 MA.ine/inf*	:: MA.ine/inf* 	Inf 	ARG  -EF:φ 						PF:-mA-* 	LF:ing LANG:FI !COMP:*

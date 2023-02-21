@@ -16,11 +16,11 @@ stop_at_unknown_lexical_item = True
 logging = True
 
 # DATA COLLECTION
-datatake_full = False
+datatake_full = True
 
 # IMAGE PARAMETERS
 datatake_images = False
-show_features = PHI:,iPHI:,ΦPF,ΦLF,-ΦPF,-ΦLF,!SELF:ΦPF,!SELF:ΦLF
+show_features = PHI:,iPHI:,ΦPF,ΦLF,-ΦPF,-ΦLF,!SELF:ΦPF,!SELF:ΦLF,!SELF:Φ1,!SELF:Φ12
 image_parameter_show_words = False
 image_parameter_nolabels = False
 image_parameter_spellout = False
@@ -35,8 +35,7 @@ image_parameter_show_glosses = False
 #	revised = current best formulation
 #	variation1 = revised formulation without PIC, only select closest
 #	variation2 = revised formulation but with added specifier (edge) agreement as a last resort
-#	variation3 = revised formulation with unlimited upwards search as a last resort
-#	variation4 = revised formulation with only specifier-head agreement
+#	variation3 = revised formulation with only specifier-head agreement
 Agree = revised
 
 #	Semantics

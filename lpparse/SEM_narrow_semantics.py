@@ -121,7 +121,7 @@ class NarrowSemantics:
             if ps.primitive():
                 if self.brain_model.local_file_system.settings['generate_argument_links'] and ps.get_dPHI():
                     self.semantic_interpretation['Arguments'] = self.semantic_interpretation['Arguments'] + self.argument_recovery_module.calculate_arguments(ps)
-                if ps.is_unvalued() and (not ps.referential() or ps.check({'PHI:DET:_'})):
+                if ps.is_unvalued() and not ps.referential():
                     self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.control(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)

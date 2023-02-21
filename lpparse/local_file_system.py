@@ -503,7 +503,7 @@ class LocalFileSystem:
                 else:
                     file_name = str(count) + '.png'
                 self.visualizer.file_identifier = self.folder['images'] / file_name
-                self.visualizer.draw(parse)
+                self.visualizer.draw(parse.top())
                 parse_number = parse_number + 1
             if self.visualizer.spellout:
                 parse_number = 1

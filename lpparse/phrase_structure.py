@@ -471,7 +471,7 @@ class PhraseStructure:
 
     def value_features(self, goal):
         log(f'\n\t\t{self} agrees with {goal} ({goal.max().illustrate()}) and values ')
-        valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in goal.head().features if self.target_phi_feature(phi, goal)]
+        valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]
         if valuations:
             for incoming_phi, unvalued_counterparty in valuations:
                 self.value_feature(incoming_phi, unvalued_counterparty, goal)
