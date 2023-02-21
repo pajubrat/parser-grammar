@@ -79,6 +79,7 @@ class NarrowSemantics:
         self.semantic_interpretation_failed = False
         self.predicate_argument_dependencies = []
         self.semantic_interpretation = {'Recovery': [],
+                                        'Arguments': [],
                                         'Aspect': [],
                                         'DIS-features': [],
                                         'Operator bindings': [],
@@ -94,6 +95,7 @@ class NarrowSemantics:
         self.pragmatic_pathway.interpretation_failed = False
         self.argument_recovery_module.interpretation_failed = False
         self.semantic_interpretation = {'Recovery': [],
+                                        'Arguments': [],
                                         'Aspect': [],
                                         'DIS-features': [],
                                         'Operator bindings': [],
@@ -117,8 +119,10 @@ class NarrowSemantics:
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
+                if self.brain_model.local_file_system.settings['generate_argument_links'] and ps.get_dPHI():
+                    self.semantic_interpretation['Arguments'] = self.semantic_interpretation['Arguments'] + self.argument_recovery_module.calculate_arguments(ps)
                 if ps.is_unvalued() and (not ps.referential() or ps.check({'PHI:DET:_'})):
-                    self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.recover_arguments(ps))
+                    self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.control(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
                 if self.brain_model.local_file_system.settings['project_objects']:
@@ -133,7 +137,7 @@ class NarrowSemantics:
 
     def inventory_projection(self, ps):
         def preconditions(x):
-            return not self.brain_model.first_solution_found and not ps.find_me_elsewhere and (x.referential() or (not x.referential() and not x.check({'ΦLF'})))
+            return not self.brain_model.first_solution_found and not ps.find_me_elsewhere and (x.referential() or (not x.referential() and not x.get_dPHI()))
 
         if preconditions(ps):
             for space in self.semantic_spaces:

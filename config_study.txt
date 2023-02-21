@@ -19,7 +19,7 @@ logging = True
 datatake_full = False
 
 # IMAGE PARAMETERS
-datatake_images = True
+datatake_images = False
 show_features = PHI:,iPHI:,ΦPF,ΦLF,-ΦPF,-ΦLF,!SELF:ΦPF,!SELF:ΦLF
 image_parameter_show_words = False
 image_parameter_nolabels = False
@@ -43,6 +43,7 @@ Agree = revised
 calculate_assignments = True
 calculate_pragmatics = True
 project_objects = True
+generate_argument_links = True
 
 # PARSING HEURISTICS
 extra_ranking = True

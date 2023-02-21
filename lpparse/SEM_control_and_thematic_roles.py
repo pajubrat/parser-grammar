@@ -3,12 +3,23 @@ from support import log
 
 
 class LF_Recovery:
-    def __init__(self, controlling_parsing_process):
-        self.brain_model = controlling_parsing_process
+    def __init__(self, brain_model):
+        self.brain_model = brain_model
         self.LF_recovery_results = []
         self.interpretation_failed = False
 
-    def recover_arguments(self, probe):
+    def calculate_arguments(self, probe):
+        argument_lst = []
+        dPHI_set = probe.get_dPHI()
+        for dPHI in dPHI_set:
+            feature_to_search = dPHI.split(':')[2]
+            argument = probe.top().return_constituent_with(feature_to_search)
+            log(f'\n\t\t\tEstablishing argument link for {probe}: {argument.max().illustrate()}. ')
+            if argument:
+                argument_lst.append(f'Argument for {probe} is {argument.max().illustrate()}')
+        return argument_lst
+
+    def control(self, probe):
         return self.interpret_antecedent(probe, probe.get_antecedent())
 
     def interpret_antecedent(self, probe, antecedent):

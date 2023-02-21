@@ -205,6 +205,17 @@ class PhraseStructure:
         else:
             return self.check(feature_set)
 
+    def return_constituent_with(self, feature):
+        constituent = None
+        if self.complex():
+            constituent = self.left.return_constituent_with(feature)
+            if constituent:
+                return constituent
+            constituent = self.right.return_constituent_with(feature)
+        if self.primitive() and feature in self.features:
+            constituent = self
+        return constituent
+
     def geometrical_minimal_search(x):
         search_list = [x]
         while x.complex() and x.right:
@@ -474,6 +485,7 @@ class PhraseStructure:
             self.value(unvalued_counterparty, phi)  # Perform valuation
             if self != goal:                        # Leave a record that Agree/LF has occurred
                 self.features.add('ΦLF')
+                self.features.add('dPHI:IDX:' + goal.head().get_id())
 
     # Replace the unvalued feature by the valued one
     def value(self, unvalued_counterparty, phi):
@@ -514,6 +526,9 @@ class PhraseStructure:
 
     def has_interpretable_phi_features(self):
         return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
+
+    def get_dPHI(self):
+        return {f for f in self.head().features if f.startswith('dPHI:')}
 
     def cutoff_point_for_last_resort_extraposition(self):
         return self.primitive() and self.is_adjoinable() and self.aunt() and \
@@ -1033,8 +1048,9 @@ class PhraseStructure:
 
     def get_id(self):
         for f in self.features:
-            if f[0] == '#':
+            if f.startswith('#'):
                 return f
+        return '?'
 
     #  Definitions and abstractions for terms
 
