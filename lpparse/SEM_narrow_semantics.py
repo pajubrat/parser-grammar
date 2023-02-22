@@ -121,7 +121,9 @@ class NarrowSemantics:
             if ps.primitive():
                 if self.brain_model.local_file_system.settings['generate_argument_links'] and ps.get_dPHI():
                     self.semantic_interpretation['Arguments'] = self.semantic_interpretation['Arguments'] + self.argument_recovery_module.calculate_arguments(ps)
-                if ps.is_unvalued() and not ps.referential():
+                # Seek recovery for unvalued features, if the host is not referential (because the case is still unclear) but include 3p PX with [D_]
+                # Most likely all referential predicates are included here, but this must be studied with a separate dataset
+                if ps.is_unvalued() and not (ps.referential() and not ps.check({'PHI:DET:_'})):
                     self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.control(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)

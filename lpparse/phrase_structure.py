@@ -470,7 +470,7 @@ class PhraseStructure:
         self.update_phi_interactions()
 
     def value_features(self, goal):
-        log(f'\n\t\t{self} agrees with {goal} ({goal.max().illustrate()}) and values ')
+        log(f'\n\t\t{self} agrees with {goal.head()} ({goal.max().illustrate()}) and values ')
         valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]
         if valuations:
             for incoming_phi, unvalued_counterparty in valuations:
@@ -546,8 +546,7 @@ class PhraseStructure:
 
     def feature_inheritance(self):
         if self.highest_finite_head():
-            log(f'\n\t\t{self} inherited ΦPF.')
-            self.features.add('!SELF:ΦPF')
+            log(f'\n\t\t{self} inherited +ΦPF.')
             self.features.add('!SELF:ΦPF')
         if self.check({'?ARG'}):
             if self.selected_by_SEM_internal_predicate():
