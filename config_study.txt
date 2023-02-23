@@ -16,10 +16,10 @@ stop_at_unknown_lexical_item = False
 logging = True
 
 # DATA COLLECTION
-datatake_full = False
+datatake_full = True
 
 # IMAGE PARAMETERS
-datatake_images = False
+datatake_images = True
 show_features = PHI:,iPHI:,ΦPF,ΦLF,-ΦPF,-ΦLF,!SELF:ΦPF,!SELF:ΦLF,!SELF:Φ1,!SELF:Φ12
 # show_features = PHI:,iPHI:
 image_parameter_show_words = False
@@ -38,7 +38,7 @@ image_parameter_show_glosses = False
 #	variation2 = revised formulation but with added specifier (edge) agreement as a last resort
 #	variation3 = revised formulation with only specifier-head agreement
 #	variation4 = revised formulation with each phi-features looking for its own goal
-Agree = variation4
+Agree = revised
 
 #	Semantics
 calculate_assignments = True
