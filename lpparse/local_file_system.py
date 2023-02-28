@@ -64,6 +64,22 @@ class LocalFileSystem:
                                          'positive_adverbial_test': '100'
                                          }
 
+    def check_output(self):
+        grammatical = True
+        errors = open(self.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
+        errors.write('Prediction errors were detected in the following sentences:\n')
+        errors.write('(Determined solely on the basis of the grammatical/ungrammatical labels in the dataset file.)\n\n')
+        for line in open(self.external_sources["grammaticality_judgments_file_name"], "r", -1, encoding=self.encoding):
+            if line:
+                if 'Grammatical' in line or 'grammatical' in line:
+                    grammatical = True
+                if 'Ungrammatical' in line or 'ungrammatical' in line:
+                    grammatical = False
+                if line.strip()[:1].isdigit():
+                    if (' *' in line and grammatical) or (' *' not in line and not grammatical):
+                        errors.write(f'{line}')
+        errors.close()
+
     def initialize(self, args):
         self.initialize_dev_logging()
         self.read_study_config_file(args)
@@ -123,7 +139,8 @@ class LocalFileSystem:
                                  "ug_morphemes": self.folder['lexicon'] / 'ug_morphemes.txt',
                                  "redundancy_rules": self.folder['lexicon'] / 'redundancy_rules.txt',
                                  "semantics_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_semantics.txt'),
-                                 "control_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_control.txt')
+                                 "control_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_control.txt'),
+                                 "error_report_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_error_reports.txt')
                                  }
         self.dev_log_file.write(f'{self.external_sources}.\n')
 
@@ -300,12 +317,12 @@ class LocalFileSystem:
         plus_sentences = []
         for line in open(self.external_sources["test_corpus_file_name"], encoding=self.encoding):
             part_of_conversation = False
-            if line.startswith('=STOP='):
+            line = line.strip()
+            if line.startswith('=STOP=') or line.startswith('=END='):
                 break
-            if line.startswith('=START='):
+            if line.startswith('=START=') or line.startswith('=BEGIN='):
                 parse_list = []
                 continue
-            line = line.strip()
             if not line or line.startswith('#'):
                 continue
             if line.startswith('%'):

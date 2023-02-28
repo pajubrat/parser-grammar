@@ -71,7 +71,7 @@ class LexicalInterface:
                     new_const.morphology = ''
                 else:
                     new_const.morphology = phonological_entry
-                new_const.features = self.apply_parameters(self.apply_redundancy_rules(lexical_features))
+                new_const.features = self.add_language_feature(self.apply_redundancy_rules(lexical_features))
                 self.surface_vocabulary[phonological_entry].append(new_const)
         return self.surface_vocabulary
 
@@ -151,20 +151,22 @@ class LexicalInterface:
         new_features_to_add = set()
 
         # Include features of a lexical redundancy rule when the antecedent features are matched
-        for f in self.redundancy_rules:
-            antecedent_trigger_set = set(f.split())
-            if feature_set & antecedent_trigger_set == antecedent_trigger_set:
-                new_features_to_add |= set(self.redundancy_rules[f])
+        for i in range(2):
+            for f in self.redundancy_rules:
+                antecedent_trigger_set = set(f.split())
+                if feature_set & antecedent_trigger_set == antecedent_trigger_set:
+                    new_features_to_add |= set(self.redundancy_rules[f])
 
-        # Resolve conflicts in favor of lexical features
-        features_not_blocked_by_specific_lexicon = set()
-        for new_feature in new_features_to_add:
-            if not feature_conflict(new_feature, feature_set):
-                features_not_blocked_by_specific_lexicon.add(new_feature)
-        feature_set |= features_not_blocked_by_specific_lexicon
+            # Resolve conflicts in favor of lexical features
+            features_not_blocked_by_specific_lexicon = set()
+            for new_feature in new_features_to_add:
+                if not feature_conflict(new_feature, feature_set):
+                    features_not_blocked_by_specific_lexicon.add(new_feature)
+            feature_set |= features_not_blocked_by_specific_lexicon
+
         return feature_set
 
-    def apply_parameters(self, features):
+    def add_language_feature(self, features):
         features = set(features)
         language_specific = False
 
@@ -174,11 +176,5 @@ class LexicalInterface:
                 language_specific = True
         if not language_specific:
             features.add(self.language)
-
-        # ARG and VAL feature distribution
-        if 'ARG' in features:
-            features = features.union({'PHI:NUM:_', 'PHI:PER:_', 'PHI:DET:_', 'PHI:HUM:_', 'PHI:PRON:_'})
-            if {'LANG:IT', 'LANG:EN'} & features:
-                features.add('PHI:GEN:_')
 
         return features

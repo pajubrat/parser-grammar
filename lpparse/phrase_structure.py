@@ -408,7 +408,7 @@ class PhraseStructure:
             else:
                 if op_features and not self.supported_by(probe):
                     probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
-                probe.features |= transfer.access_lexicon.apply_parameters(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
+                probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
         return inst, self.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
@@ -465,12 +465,14 @@ class PhraseStructure:
         return set()
 
     def Agree(self):
-        goal = next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), self)
+        goal = self
+        if self.sister():
+            goal = next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), self)
         self.value_features(goal)
         self.update_phi_interactions()
 
     def value_features(self, goal):
-        log(f'\n\t\t{self} agrees with {goal.head()} ({goal.max().illustrate()}) and values ')
+        log(f'\n\t\t{self}° agrees with {goal.head()} ({goal.max().illustrate()}) and values ')
         valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]
         if valuations:
             for incoming_phi, unvalued_counterparty in valuations:
@@ -522,7 +524,7 @@ class PhraseStructure:
         for x in type_matched_phi:
             if x == phi:
                 return True
-        log(f'*{phi}. ')
+        log(f'*{phi} ')
 
     def has_interpretable_phi_features(self):
         return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
@@ -545,9 +547,9 @@ class PhraseStructure:
         transfer.brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
 
     def feature_inheritance(self):
-        if self.highest_finite_head():
-            log(f'\n\t\t{self} inherited +ΦPF.')
-            self.features.add('!SELF:ΦPF')
+        if self.highest_finite_head() and not self.check({'-ΦPF'}):
+            log(f'\n\t\t{self} inherited φ-completeness (mandatory person feature).')
+            self.features.add('!SELF:PER')
         if self.check({'?ARG'}):
             if self.selected_by_SEM_internal_predicate():
                 self.features.discard('?ARG')

@@ -110,7 +110,7 @@ class PlausibilityMetrics:
                         solutions.append((site, False, self.generate_address_label()))
                         solutions.append((site, True, self.generate_address_label()))
                 else:
-                    solutions.append((site, True, self.generate_address_label()))
+                    solutions.append((site, False, self.generate_address_label()))
 
         return solutions
 

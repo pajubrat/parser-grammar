@@ -30,7 +30,7 @@ class Transfer:
                                                  'repair': lambda x, y, z: x.feature_inheritance()},
                              'Agree':           {'type': 'Agree',
                                                  'test integrity': lambda x: x.is_unvalued(),
-                                                 'repair': lambda x, y, z: x.sister() and self.Agree_variations.Agree(x, y)},
+                                                 'repair': lambda x, y, z: self.Agree_variations.Agree(x, y)},
                              'Extraposition':   {'type': 'Extraposition',
                                                  'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
                                                  'repair': lambda x, y, z: x.extrapose(self)},

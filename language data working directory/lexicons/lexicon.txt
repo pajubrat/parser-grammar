@@ -27,7 +27,7 @@ ei			:: e#[V] LANG:FI
 emme		:: e#mme LANG:FI
 ette		:: e#tte LANG:FI
 eivät		:: e#vAt LANG:FI
-e			:: PF:e LF:neg Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T LANG:FI
+e			:: PF:e LF:not Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T LANG:FI
 elää		:: elä-#T/fin#[V] LANG:FI
 elä-		:: PF:elää LF:live V CLASS/INTR SPEC:φ LANG:FI
 etsii		:: etsi-#v#T/fin#[V] LANG:FI
@@ -35,14 +35,13 @@ etsi-		:: PF:etsi- LF:search V CLASS/TR !COMP:φ LANG:FI COMP:φ
 esti		:: estä-#v#T/fin#[V] LANG:FI
 estä-		:: PF:estä- LF:prevent V CLASS/TR SEMCLASS_denied_event LANG:FI
 että		:: PF:että LF:that FORCE -ΦPF -SPEC:φ -COMP:φ REF LANG:FI
-että*		:: PF:että* LF:that* PHI:NUM:SG PHI:NUM:_ EF:φ C FORCE -SPEC:φ -COMP:φ REF LANG:FI
-että**		:: PF:että* LF:that* PHI:NUM:PL PHI:NUM:_ EF:φ C FORCE -SPEC:φ -COMP:φ REF LANG:FI
-etten		:: en#että LANG:FI
-ettet		:: et#että LANG:FI
-ettei		:: ei#että LANG:FI
-ettemme		:: emme#että LANG:FI
-ettette		:: ette#että LANG:FI
-etteivät	:: eivät#että LANG:FI
+että'		:: PF:että LF:that C FORCE -SPEC:φ -COMP:φ REF PHI:PER:_ PHI:NUM:_ LANG:FI
+etten		:: e#n#että LANG:FI
+ettet		:: e#t#että LANG:FI
+ettei		:: e#[V]#että LANG:FI
+ettemme		:: e#mme#että LANG:FI
+ettette		:: e#tte#että LANG:FI
+etteivät	:: e#vAt#että LANG:FI
 haluaa 		:: halua-#v#T/fin#[V] LANG:FI
 halusi		:: halua-#v#T/fin#[V] LANG:FI
 halusimme	:: halua-#v#T/fin#mme LANG:FI
@@ -141,8 +140,8 @@ laulaa		:: laula-#T/fin#[V] LANG:FI
 laula-		:: V PF:laula LF:sing CLASS/INTR LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
-lähellä		:: P PF:lähellä LF:near !COMP:* TAIL:V Inf EF:φ !SEF LANG:FI
-lähellä2	:: P PF:lähellä LF:near !COMP:* TAIL:V Inf EF:φ !SEF LANG:FI
+lähellä		:: P PF:lähellä LF:near TAIL:V Inf EF:φ !SEF LANG:FI
+lähellä2	:: P PF:lähellä LF:near TAIL:V Inf LANG:FI
 lähellä'	:: P PF:lähellä LF:near -ΦPF LANG:FI
 lähellä'	:: P PF:lähellä LF:near Inf EF:φ !SEF LANG:FI
 lähden		:: lähte-#T/fin#n LANG:FI
@@ -243,7 +242,8 @@ nukkua		:: nukku-#A/inf LANG:FI
 nukkui		:: nukku-#T/fin#[V] LANG:FI
 nukkuu		:: nukku-#T/fin#[V] LANG:FI
 nukku-		:: PF:nukku- LF:sleep V CLASS/INTR -COMP:T -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
-ollut		:: T PF:T LF:T LANG:FI
+ollut		:: BE-#T/prt#sg_ LANG:FI
+olleet		:: BE-#T/prt#pl_ LANG:FI
 olen		:: BE-#T/fin#n LANG:FI
 olet		:: BE-#T/fin#t LANG:FI
 on'			:: BE-#T/fin#[V] LANG:FI
@@ -465,7 +465,7 @@ nne		::	inflectional ΦPF EF:φ -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI:
 # Case suffixes
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF:φ adjoinable LANG:FI
-[gen]		:: inflectional GEN TAIL:Inf,!COMP:* adjoinable -float LANG:FI
+[gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable -float LANG:FI
 [par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
 [dat]		:: inflectional DAT TAIL:φ adjoinable
@@ -761,13 +761,13 @@ ci			:: ci-#D/pro#sg#3p#def#hum#m#cl#dat
 ci-			:: PF:ci LF:there N PHI_N LANG:IT
 
 # Finite agreement
-[-o]		::	inflectional ΦPF EF:φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:IT
-[-i]		::	inflectional ΦPF EF:φ PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:IT
-[-a]		::	inflectional ΦPF EF:φ PHI:NUM:SG PHI:PER:3 PHI:DET:DEF LANG:IT
-[-e]		::	inflectional ΦPF EF:φ PHI:NUM:SG PHI:PER:3 PHI:DET:DEF LANG:IT
-[-iamo]		::	inflectional ΦPF EF:φ PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:IT
-[-te]		::	inflectional ΦPF EF:φ PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:IT
-[-no]		::	inflectional ΦPF EF:φ PHI:NUM:PL PHI:PER:3 PHI:DET:DEF LANG:IT
+[-o]		::	inflectional ΦPF EF:φ PER PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:IT
+[-i]		::	inflectional ΦPF EF:φ PER PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:IT
+[-a]		::	inflectional ΦPF EF:φ PER PHI:NUM:SG PHI:PER:3 PHI:DET:DEF LANG:IT
+[-e]		::	inflectional ΦPF EF:φ PER PHI:NUM:SG PHI:PER:3 PHI:DET:DEF LANG:IT
+[-iamo]		::	inflectional ΦPF EF:φ PER PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:IT
+[-te]		::	inflectional ΦPF EF:φ PER PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:IT
+[-no]		::	inflectional ΦPF EF:φ PER PHI:NUM:PL PHI:PER:3 PHI:DET:DEF LANG:IT
 
 # HUNGARIAN LEXICON ------------------------------------------------------------------------------------------------------------------------
 

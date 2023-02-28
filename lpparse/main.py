@@ -45,3 +45,5 @@ def run_study(args):
     if local_file_system.settings['datatake_full']:
         local_file_system.save_surface_vocabulary(parser_for["LANG:EN"].lexicon.surface_vocabulary)
     local_file_system.close_all_output_files()
+    if local_file_system.settings['check_output']:
+        local_file_system.check_output()

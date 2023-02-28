@@ -243,7 +243,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             return ''
         def legitimate_label(ps):
             phon = ps.get_phonological_string()
-            if '.' not in phon and len(phon) > 1:
+            if '.' not in phon:
                 return True
 
         # Main function

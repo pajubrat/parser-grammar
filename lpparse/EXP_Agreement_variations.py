@@ -46,26 +46,39 @@ class AgreementVariations:
             probe.features.discard('-COMP:PER')
             probe.features.discard('PER')
             probe.features.discard('-PER')
+            probe.features.discard('!SELF:PER')
             probe.features = {i(f) for f in probe.features}
-            self.value_features(next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(),
-                                                                  lambda x: not x.phase_head()), self))
+            goal = self
+            if self.sister():
+                goal = next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(),
+                                                         lambda x: not x.phase_head()), self)
+            self.value_features(goal)
 
         # --- main ---
         Agree(probe)
 
     # Standard Agree without PIC
     def variation1(self, probe):
-        probe.value_features(next(probe.sister().minimal_search(lambda x: x.head().referential()), probe))
+        goal = probe
+        if probe.sister():
+            goal = next(probe.sister().minimal_search(lambda x: x.head().referential()), probe)
+        probe.value_features(goal)
         probe.update_phi_interactions()
 
     # Standard Agree with specifier agreement as a last resort
     def variation2(self, probe):
-        probe.value_features(next(probe.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), next((x for x in probe.edge()), probe)))
+        goal = probe
+        if probe.sister():
+            goal = next(probe.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), next((x for x in probe.edge()), probe))
+        probe.value_features(goal)
         probe.update_phi_interactions()
 
     # Agree with only specifier-head agreement
     def variation3(self, probe):
-        probe.value_features(next((x for x in probe.edge()), probe))
+        goal = probe
+        if probe.sister():
+            goal = next((x for x in probe.edge()), probe)
+        probe.value_features(goal)
         probe.update_phi_interactions()
 
     def variation4(self, probe):
@@ -74,7 +87,9 @@ class AgreementVariations:
             log(f'\n\t\tProbe feature {unvalued_probe_phi} at {probe} ')
 
             # find goal
-            goal = next(probe.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), probe)
+            goal = probe
+            if probe.sister():
+                goal = next(probe.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), probe)
             log(f'finds goal {goal} with ')
 
             # Examine all possible phi-feature candidates at the goal

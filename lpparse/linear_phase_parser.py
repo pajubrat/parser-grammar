@@ -76,7 +76,7 @@ class LinearPhaseParser:
                           "Feature Chain": {'ms': 5, 'n': 0},
                           "Agree": {'ms': 5, 'n': 0},
                           "Feature": {'ms': 5, 'n': 0},
-                          "Adjunct Chain": {'ms': 5, 'n': 0},
+                          "Scrambling Chain": {'ms': 5, 'n': 0},
                           "Extraposition": {'ms': 6, 'n': 0},
                           "Last Resort Extraposition": {'ms': 5, 'n': 0},
                           "Mean time per word": {'ms': 0, 'n': 0}
