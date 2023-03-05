@@ -1058,6 +1058,12 @@ class PhraseStructure:
     def adverbial(self):
         return self.check({'Adv'})
 
+    def nominal(self):
+        return self.check({'N'})
+
+    def light_verb(self):
+        return self.check_some({'v', 'v*', 'impass', 'cau'})
+
     def force(self):
         return self.check({'FORCE'})
 
@@ -1165,6 +1171,9 @@ class PhraseStructure:
 
     def highest_finite_head(self):
         return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
+
+    def theta_assigner(self):
+        return self.check_some({'SPEC:φ', 'SPEC:D', 'COMP:φ', 'COMP:D', '!SPEC:φ', '!SPEC:D', '!COMP:φ', '!COMP:D'})
 
     def LF_PHI(self):
         return self.head().check({'ΦLF'})

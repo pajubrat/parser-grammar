@@ -1,0 +1,4350 @@
+@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'check_output': True, 'datatake_full': True, 'datatake_images': False, 'show_features': ['PHI:', 'iPHI:', 'ΦPF', 'ΦLF', '-ΦPF', '-ΦLF', '!SELF:ΦPF', '!SELF:ΦLF', '!SELF:Φ1', '!SELF:Φ12'], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'calculate_thematic_roles': True, 'project_objects': True, 'generate_argument_links': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-03-05 10:21:39.097874
+@  Test sentences language data working directory\study-15-agreement\agreement_corpus.txt.
+@  Logs language data working directory\study-15-agreement\agreement_corpus_log.txt.
+@  Lexicon language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes language data working directory\lexicons\ug_morphemes.txt.
+@ 
+1.  minä lähden 
+	
+2.  minä tein työtä 
+	
+3.  sinä lähdet 
+	
+4.  sinä teit työtä 
+	
+5.  hän lähtee 
+	
+6.  hän tekee työtä 
+	
+7.  se lähtee 
+	
+8.  se tekee työtä 
+	
+9.  Pekka lähtee 
+	
+10.  Pekka tekee työtä 
+	
+11.  mies lähtee 
+	
+12.  mies tekee työtä 
+	
+13.  me lähdemme 
+	
+14.  me teemme työtä 
+	
+15.  te lähdette 
+	
+16.  te teette työtä 
+	
+17.  he lähtevät 
+	
+18.  he tekevät työtä 
+	
+19.  ne lähtevät 
+	
+20.  ne tekevät työtä 
+	
+21.  miehet lähtevät 
+	
+22.  miehet tekevät työtä 
+	
+23. *minä lähdet 
+
+24. *minä teet työtä 
+
+25. *minä lähtee 
+
+26. *minä tekee työtä 
+
+27. *minä lähdemme 
+
+28. *minä teemme työtä 
+
+29. *minä lähdette 
+
+30. *minä teette työtä 
+
+31. *minä lähtevät 
+
+32. *minä tekevät työtä 
+
+33. *sinä lähden 
+
+34. *sinä teen työtä 
+
+35. *sinä lähtee 
+
+36. *sinä tekee työtä 
+
+37. *sinä lähdemme 
+
+38. *sinä teemme työtä 
+
+39. *sinä lähdette 
+
+40. *sinä teette työtä 
+
+41. *sinä lähtevät 
+
+42. *sinä tekevät työtä 
+
+43. *hän lähden 
+
+44. *hän teen työtä 
+
+45. *hän lähdet 
+
+46. *hän teet työtä 
+
+47. *hän lähdemme 
+
+48. *hän teemme työtä 
+
+49. *hän lähdette 
+
+50. *hän teette työtä 
+
+51. *hän lähtevät 
+
+52. *hän tekevät työtä 
+
+53. *se lähden 
+
+54. *se teen työtä 
+
+55. *se lähdet 
+
+56. *se teet työtä 
+
+57. *se lähdemme 
+
+58. *se teemme työtä 
+
+59. *se lähdette 
+
+60. *se teette työtä 
+
+61. *se lähtevät 
+
+62. *se tekevät työtä 
+
+63. *Pekka lähden 
+
+64. *Pekka teen työtä 
+
+65. *Pekka lähdet 
+
+66. *Pekka teet työtä 
+
+67. *Pekka lähdemme 
+
+68. *Pekka teemme työtä 
+
+69. *Pekka lähdette 
+
+70. *Pekka teette työtä 
+
+71. *Pekka lähtevät 
+
+72. *Pekka tekevät työtä 
+
+73. *mies lähden 
+
+74. *mies teen työtä 
+
+75. *mies lähdet 
+
+76. *mies teet työtä 
+
+77. *mies lähdemme 
+
+78. *mies teemme työtä 
+
+79. *mies lähdette 
+
+80. *mies teette työtä 
+
+81. *mies lähtevät 
+
+82. *mies tekevät työtä 
+
+83. *me lähden 
+
+84. *me teen työtä 
+
+85. *me lähdet 
+
+86. *me teet työtä 
+
+87. *me lähtee 
+
+88. *me tekee työtä 
+
+89. *me lähdette 
+
+90. *me teette työtä 
+
+91. *me lähtevät 
+
+92. *me tekevät työtä 
+
+93. *te lähden 
+
+94. *te teen työtä 
+
+95. *te lähdet 
+
+96. *te teet työtä 
+
+97. *te lähtee 
+
+98. *te tekee työtä 
+
+99. *te lähdemme 
+
+100. *te teemme työtä 
+
+101. *te lähtevät 
+
+102. *te tekevät työtä 
+
+103. *he lähden 
+
+104. *he teen työtä 
+
+105. *he lähdet 
+
+106. *he teet työtä 
+
+107. *he lähtee 
+
+108. *he tekee työtä 
+
+109. *he lähdemme 
+
+110. *he teemme työtä 
+
+111. *he lähdette 
+
+112. *he teette työtä 
+
+113. *ne lähden 
+
+114. *ne teen työtä 
+
+115. *ne lähdet 
+
+116. *ne teet työtä 
+
+117. *ne lähdemme 
+
+118. *ne teemme työtä 
+
+119. *ne lähdette 
+
+120. *ne teette työtä 
+
+121. *miehet lähden 
+
+122. *miehet teen työtä 
+
+123. *miehet lähdet 
+
+124. *miehet teet työtä 
+
+125. *miehet lähdemme 
+
+126. *miehet teemme työtä 
+
+127. *miehet lähdette 
+
+128. *miehet teette työtä 
+
+129. *ne lähtee 
+
+130. *ne tekee työtä 
+
+131.  minä lähde#n 
+	
+132.  minä tee#n työtä 
+	
+133.  sinä lähde#t 
+	
+134.  sinä tee#t työtä 
+	
+135.  hän lähde#[V] 
+	
+136.  hän tee#[V] työtä 
+	
+137.  se lähde#[V] 
+	
+138.  se tee#[V] työtä 
+	
+139.  Pekka lähde#[V] 
+	
+140.  Pekka tee#[V] työtä 
+	
+141.  mies lähde#[V] 
+	
+142.  mies tee#[V] työtä 
+	
+143.  me lähde#mme 
+	
+144.  me tee#mme työtä 
+	
+145.  te lähde#tte 
+	
+146.  te tee#tte työtä 
+	
+147.  he lähde#vAt 
+	
+148.  he tee#vAt työtä 
+	
+149.  ne lähde#vAt 
+	
+150.  ne tee#vAt työtä 
+	
+151.  miehet lähde#vAt 
+	
+152.  miehet tee#vAt työtä 
+	
+153. *minä lähde#t 
+
+154. *minä tee#t työtä 
+
+155. *minä lähde#[V] 
+
+156. *minä tee#[V] työtä 
+
+157. *minä lähde#mme 
+
+158. *minä tee#mme työtä 
+
+159. *minä lähde#tte 
+
+160. *minä tee#tte työtä 
+
+161. *minä lähde#vAt 
+
+162. *minä tee#vAt työtä 
+
+163. *sinä lähde#n 
+
+164. *sinä tee#n työtä 
+
+165. *sinä lähde#[V] 
+
+166. *sinä tee#[V] työtä 
+
+167. *sinä lähde#mme 
+
+168. *sinä tee#mme työtä 
+
+169. *sinä lähde#tte 
+
+170. *sinä tee#tte työtä 
+
+171. *sinä lähde#vAt 
+
+172. *sinä tee#vAt työtä 
+
+173. *hän lähde#n 
+
+174. *hän tee#n työtä 
+
+175. *hän lähde#t 
+
+176. *hän tee#t työtä 
+
+177. *hän lähde#mme 
+
+178. *hän tee#mme työtä 
+
+179. *hän lähde#tte 
+
+180. *hän tee#tte työtä 
+
+181. *hän lähde#vAt 
+
+182. *hän tee#vAt työtä 
+
+183. *se lähde#n 
+
+184. *se tee#n työtä 
+
+185. *se lähde#t 
+
+186. *se tee#t työtä 
+
+187. *se lähde#mme 
+
+188. *se tee#mme työtä 
+
+189. *se lähde#tte 
+
+190. *se tee#tte työtä 
+
+191. *se lähde#vAt 
+
+192. *se tee#vAt työtä 
+
+193. *mies lähde#n 
+
+194. *mies tee#n työtä 
+
+195. *mies lähde#t 
+
+196. *mies tee#t työtä 
+
+197. *mies lähde#mme 
+
+198. *mies tee#mme työtä 
+
+199. *mies lähde#tte 
+
+200. *mies tee#tte työtä 
+
+201. *mies lähde#vAt 
+
+202. *mies tee#vAt työtä 
+
+203. *Pekka lähde#n 
+
+204. *Pekka tee#n työtä 
+
+205. *Pekka lähde#t 
+
+206. *Pekka tee#t työtä 
+
+207. *Pekka lähde#mme 
+
+208. *Pekka tee#mme työtä 
+
+209. *Pekka lähde#tte 
+
+210. *Pekka tee#tte työtä 
+
+211. *Pekka lähde#vAt 
+
+212. *Pekka tee#vAt työtä 
+
+213. *me lähde#n 
+
+214. *me tee#n työtä 
+
+215. *me lähde#t 
+
+216. *me tee#t työtä 
+
+217. *me lähde#[V] 
+
+218. *me tee#[V] työtä 
+
+219. *me lähde#tte 
+
+220. *me tee#tte työtä 
+
+221. *me lähde#vAt 
+
+222. *me tee#vAt työtä 
+
+223. *te lähde#n 
+
+224. *te tee#n työtä 
+
+225. *te lähde#t 
+
+226. *te tee#t työtä 
+
+227. *te lähde#[V] 
+
+228. *te tee#[V] työtä 
+
+229. *te lähde#mme 
+
+230. *te tee#mme työtä 
+
+231. *te lähde#vAt 
+
+232. *te tee#vAt työtä 
+
+233. *he lähde#n 
+
+234. *he tee#n työtä 
+
+235. *he lähde#t 
+
+236. *he tee#t työtä 
+
+237. *he lähde#[V] 
+
+238. *he tee#[V] työtä 
+
+239. *he lähde#mme 
+
+240. *he tee#mme työtä 
+
+241. *he lähde#tte 
+
+242. *he tee#tte työtä 
+
+243. *ne lähde#n 
+
+244. *ne tee#n työtä 
+
+245. *ne lähde#t 
+
+246. *ne tee#t työtä 
+
+247. *ne lähde#[V] 
+
+248. *ne tee#[V] työtä 
+
+249. *ne lähde#mme 
+
+250. *ne tee#mme työtä 
+
+251. *ne lähde#tte 
+
+252. *ne tee#tte työtä 
+
+253. *miehet lähde#n 
+
+254. *miehet tee#n työtä 
+
+255. *miehet lähde#t 
+
+256. *miehet tee#t työtä 
+
+257. *miehet lähde#[V] 
+
+258. *miehet tee#[V] työtä 
+
+259. *miehet lähde#mme 
+
+260. *miehet tee#mme työtä 
+
+261. *miehet lähde#tte 
+
+262. *miehet tee#tte työtä 
+
+263.  minä en lähde 
+	
+264.  minä en tee työtä 
+	
+265.  sinä et lähde 
+	
+266.  sinä et tee työtä 
+	
+267.  hän ei lähde 
+	
+268.  hän ei tee työtä 
+	
+269.  se ei lähde 
+	
+270.  se ei tee työtä 
+	
+271.  Pekka ei lähde 
+	
+272.  Pekka ei tee työtä 
+	
+273.  mies ei lähde 
+	
+274.  mies ei tee työtä 
+	
+275.  me emme lähde 
+	
+276.  me emme tee työtä 
+	
+277.  te ette lähde 
+	
+278.  te ette tee työtä 
+	
+279.  he eivät lähde 
+	
+280.  he eivät tee työtä 
+	
+281.  ne eivät lähde 
+	
+282.  ne eivät tee työtä 
+	
+283.  miehet eivät lähde 
+	
+284.  miehet eivät tee työtä 
+	
+285.  minä e#n lähde 
+	
+286.  minä e#n tee työtä 
+	
+287.  sinä e#t lähde 
+	
+288.  sinä e#t tee työtä 
+	
+289.  hän e#[V] lähde 
+	
+290.  hän e#[V] tee työtä 
+	
+291.  se e#[V] lähde 
+	
+292.  se e#[V] tee työtä 
+	
+293.  Pekka e#[V] lähde 
+	
+294.  Pekka e#[V] tee työtä 
+	
+295.  mies e#[V] lähde 
+	
+296.  mies e#[V] tee työtä 
+	
+297.  me e#mme lähde 
+	
+298.  me e#mme tee työtä 
+	
+299.  te e#tte lähde 
+	
+300.  te e#tte tee työtä 
+	
+301.  he e#vAt lähde 
+	
+302.  he e#vAt tee työtä 
+	
+303.  ne e#vAt lähde 
+	
+304.  ne e#vAt tee työtä 
+	
+305.  miehet e#vAt lähde 
+	
+306.  miehet e#vAt tee työtä 
+	
+307. *minä e lähde 
+
+308. *sinä e lähde 
+
+309. *hän e lähde 
+
+310. *Pekka e lähde 
+
+311. *mies e lähde 
+
+312. *se e lähde 
+
+313. *me e lähde 
+
+314. *te e lähde 
+
+315. *he e lähde 
+
+316. *ne e lähde 
+
+317. *minä e tee työtä 
+
+318. *sinä e tee työtä 
+
+319. *hän e tee työtä 
+
+320. *Pekka e tee työtä 
+
+321. *mies e tee työtä 
+
+322. *se e tee työtä 
+
+323. *me e tee työtä 
+
+324. *te e tee työtä 
+
+325. *he e tee työtä 
+
+326. *ne e tee työtä 
+
+327. *minä et lähde 
+
+328. *minä et tee työtä 
+
+329. *minä ei lähde 
+
+330. *minä ei tee työtä 
+
+331. *minä emme lähde 
+
+332. *minä emme tee työtä 
+
+333. *minä ette lähde 
+
+334. *minä ette tee työtä 
+
+335. *minä eivät lähde 
+
+336. *minä eivät tee työtä 
+
+337. *sinä en lähde 
+
+338. *sinä en tee työtä 
+
+339. *sinä ei lähde 
+
+340. *sinä ei tee työtä 
+
+341. *sinä emme lähde 
+
+342. *sinä emme tee työtä 
+
+343. *sinä ette lähde 
+
+344. *sinä ette tee työtä 
+
+345. *sinä eivät lähde 
+
+346. *sinä eivät tee työtä 
+
+347. *hän en lähde 
+
+348. *hän en tee työtä 
+
+349. *hän et lähde 
+
+350. *hän et tee työtä 
+
+351. *hän emme lähde 
+
+352. *hän emme tee työtä 
+
+353. *hän ette lähde 
+
+354. *hän ette tee työtä 
+
+355. *hän eivät lähde 
+
+356. *hän eivät tee työtä 
+
+357. *se en lähde 
+
+358. *se en tee työtä 
+
+359. *se et lähde 
+
+360. *se et tee työtä 
+
+361. *se emme lähde 
+
+362. *se emme tee työtä 
+
+363. *se ette lähde 
+
+364. *se ette tee työtä 
+
+365. *se eivät lähde 
+
+366. *se eivät tee työtä 
+
+367. *Pekka en lähde 
+
+368. *Pekka en tee työtä 
+
+369. *Pekka et lähde 
+
+370. *Pekka et tee työtä 
+
+371. *Pekka emme lähde 
+
+372. *Pekka emme tee työtä 
+
+373. *Pekka ette lähde 
+
+374. *Pekka ette tee työtä 
+
+375. *Pekka eivät lähde 
+
+376. *Pekka eivät tee työtä 
+
+377. *mies en lähde 
+
+378. *mies en tee työtä 
+
+379. *mies et lähde 
+
+380. *mies et tee työtä 
+
+381. *mies emme lähde 
+
+382. *mies emme tee työtä 
+
+383. *mies ette lähde 
+
+384. *mies ette tee työtä 
+
+385. *mies eivät lähde 
+
+386. *mies eivät tee työtä 
+
+387. *me en lähde 
+
+388. *me en tee työtä 
+
+389. *me et lähde 
+
+390. *me et tee työtä 
+
+391. *me ei lähde 
+
+392. *me ei tee työtä 
+
+393. *me ette lähde 
+
+394. *me ette tee työtä 
+
+395. *me eivät lähde 
+
+396. *me eivät tee työtä 
+
+397. *te en lähde 
+
+398. *te en tee työtä 
+
+399. *te et lähde 
+
+400. *te et tee työtä 
+
+401. *te ei lähde 
+
+402. *te ei tee työtä 
+
+403. *te emme lähde 
+
+404. *te emme tee työtä 
+
+405. *te eivät lähde 
+
+406. *te eivät tee työtä 
+
+407. *he en lähde 
+
+408. *he en tee työtä 
+
+409. *he et lähde 
+
+410. *he et tee työtä 
+
+411. *he ei lähde 
+
+412. *he ei tee työtä 
+
+413. *he emme lähde 
+
+414. *he emme tee työtä 
+
+415. *he ette lähde 
+
+416. *he ette tee työtä 
+
+417.  minä olen lähtenyt 
+	
+418.  minä olen tehnyt työtä 
+	
+419.  sinä olet lähtenyt 
+	
+420.  sinä olet tehnyt työtä 
+	
+421.  hän on lähtenyt 
+	
+422.  hän on tehnyt työtä 
+	
+423.  Pekka on lähtenyt 
+	
+424.  Pekka on tehnyt työtä 
+	
+425.  se on lähtenyt 
+	
+426.  se on tehnyt työtä 
+	
+427.  mies on lähtenyt 
+	
+428.  mies on tehnyt työtä 
+	
+429.  me olemme lähteneet 
+	
+430.  me olemme tehneet työtä 
+	
+431.  te olette lähteneet 
+	
+432.  te olette tehneet työtä 
+	
+433.  he ovat lähteneet 
+	
+434.  he ovat tehneet työtä 
+	
+435.  miehet ovat lähteneet 
+	
+436.  miehet ovat tehneet työtä 
+	
+437.  ne ovat lähteneet 
+	
+438.  ne ovat tehneet työtä 
+	
+439. *minä olet lähtenyt 
+
+440. *minä olet tehnyt työtä 
+
+441. *minä on lähtenyt 
+
+442. *minä on tehnyt työtä 
+
+443. *minä olemme lähteneet 
+
+444. *minä olemme tehneet työtä 
+
+445. *minä olette lähteneet 
+
+446. *minä olette tehneet työtä 
+
+447. *minä ovat lähteneet 
+
+448. *minä ovat tehneet työtä 
+
+449. *sinä olen lähtenyt 
+
+450. *sinä olen tehnyt työtä 
+
+451. *sinä on lähtenyt 
+
+452. *sinä on tehnyt työtä 
+
+453. *sinä olemme lähteneet 
+
+454. *sinä olemme tehneet työtä 
+
+455. *sinä olette lähteneet 
+
+456. *sinä olette tehneet työtä 
+
+457. *sinä ovat lähteneet 
+
+458. *sinä ovat tehneet työtä 
+
+459. *hän olen lähtenyt 
+
+460. *hän olen tehnyt työtä 
+
+461. *hän olet lähtenyt 
+
+462. *hän olet tehnyt työtä 
+
+463. *hän olemme lähteneet 
+
+464. *hän olemme tehneet työtä 
+
+465. *hän olette lähteneet 
+
+466. *hän olette tehneet työtä 
+
+467. *hän ovat lähteneet 
+
+468. *hän ovat tehneet työtä 
+
+469. *me olen lähtenyt 
+
+470. *me olen tehnyt työtä 
+
+471. *me olet lähtenyt 
+
+472. *me olet tehnyt työtä 
+
+473. *me on lähtenyt 
+
+474. *me on tehnyt työtä 
+
+475. *me olette lähteneet 
+
+476. *me olette tehneet työtä 
+
+477. *me ovat lähteneet 
+
+478. *me ovat tehneet työtä 
+
+479. *te olen lähtenyt 
+
+480. *te olen tehnyt työtä 
+
+481. *te olet lähtenyt 
+
+482. *te olet tehnyt työtä 
+
+483. *te on lähtenyt 
+
+484. *te on tehnyt työtä 
+
+485. *te olemme lähteneet 
+
+486. *te olemme tehneet työtä 
+
+487. *te ovat lähteneet 
+
+488. *te ovat tehneet työtä 
+
+489. *he olen lähtenyt 
+
+490. *he olen tehnyt työtä 
+
+491. *he olet lähtenyt 
+
+492. *he olet tehnyt työtä 
+
+493. *he on lähtenyt 
+
+494. *he on tehnyt työtä 
+
+495. *he on lähtenyt 
+
+496. *he on tehnyt työtä 
+
+497. *he on lähtenyt 
+
+498. *he on tehnyt työtä 
+
+499. *he on lähtenyt 
+
+500. *he on tehnyt työtä 
+
+501. *he olemme lähteneet 
+
+502. *he olemme tehneet työtä 
+
+503. *he olette lähteneet 
+
+504. *he olette tehneet työtä 
+
+505. *minä ole lähtenyt 
+
+506. *minä ole tehnyt työtä 
+
+507. *sinä ole lähtenyt 
+
+508. *sinä ole tehnyt työtä 
+
+509. *hän ole lähtenyt 
+
+510. *hän ole tehnyt työtä 
+
+511. *Pekka ole lähtenyt 
+
+512. *Pekka ole tehnyt työtä 
+
+513. *se ole lähtenyt 
+
+514. *se ole tehnyt työtä 
+
+515. *mies ole lähtenyt 
+
+516. *mies ole tehnyt työtä 
+
+517. *me ole lähteneet 
+
+518. *me ole tehneet työtä 
+
+519. *te ole lähteneet 
+
+520. *te ole tehneet työtä 
+
+521. *he ole lähteneet 
+
+522. *he ole tehneet työtä 
+
+523. *ne ole lähteneet 
+
+524. *ne ole tehneet työtä 
+
+525. *minä ole lähde#n 
+
+526. *sinä ole lähde#t 
+
+527. *hän ole lähde#[V] 
+
+528. *Pekka ole lähde#[V] 
+
+529. *mies ole lähde#[V] 
+
+530. *se ole lähde#[V] 
+
+531. *me ole lähde#mme 
+
+532. *te ole lähde#tte 
+
+533. *he ole lähde#vAt 
+
+534.  minä en ole lähtenyt 
+	
+535.  minä en ole tehnyt työtä 
+	
+536.  sinä et ole lähtenyt 
+	
+537.  sinä et ole tehnyt työtä 
+	
+538.  hän ei ole lähtenyt 
+	
+539.  hän ei ole tehnyt työtä 
+	
+540.  Pekka ei ole lähtenyt 
+	
+541.  Pekka ei ole tehnyt työtä 
+	
+542.  mies ei ole lähtenyt 
+	
+543.  mies ei ole tehnyt työtä 
+	
+544.  se ei ole lähtenyt 
+	
+545.  se ei ole tehnyt työtä 
+	
+546.  me emme ole lähteneet 
+	
+547.  me emme ole tehneet työtä 
+	
+548.  te ette ole lähteneet 
+	
+549.  te ette ole tehneet työtä 
+	
+550.  he eivät ole lähteneet 
+	
+551.  he eivät ole tehneet työtä 
+	
+552.  ne eivät ole lähteneet 
+	
+553.  ne eivät ole tehneet työtä 
+	
+554.  miehet eivät ole lähteneet 
+	
+555.  miehet eivät ole tehneet työtä 
+	
+556. *minä et ole lähtenyt 
+
+557. *minä et ole tehnyt työtä 
+
+558. *minä ei ole lähtenyt 
+
+559. *minä ei ole tehnyt työtä 
+
+560. *minä emme ole lähteneet 
+
+561. *minä emme ole tehneet työtä 
+
+562. *minä ette ole lähteneet 
+
+563. *minä ette ole tehneet työtä 
+
+564. *minä eivät ole lähteneet 
+
+565. *minä eivät ole tehneet työtä 
+
+566. *sinä en ole lähtenyt 
+
+567. *sinä en ole tehnyt työtä 
+
+568. *sinä ei ole lähtenyt 
+
+569. *sinä ei ole tehnyt työtä 
+
+570. *sinä emme ole lähteneet 
+
+571. *sinä emme ole tehneet työtä 
+
+572. *sinä ette ole lähteneet 
+
+573. *sinä ette ole tehneet työtä 
+
+574. *sinä eivät ole lähteneet 
+
+575. *sinä eivät ole tehneet työtä 
+
+576. *hän en ole lähtenyt 
+
+577. *hän en ole tehnyt työtä 
+
+578. *hän et ole lähtenyt 
+
+579. *hän et ole tehnyt työtä 
+
+580. *hän emme ole lähteneet 
+
+581. *hän emme ole tehneet työtä 
+
+582. *hän ette ole lähteneet 
+
+583. *hän ette ole tehneet työtä 
+
+584. *hän eivät ole lähteneet 
+
+585. *hän eivät ole tehneet työtä 
+
+586. *se en ole lähtenyt 
+
+587. *se en ole tehnyt työtä 
+
+588. *se et ole lähtenyt 
+
+589. *se et ole tehnyt työtä 
+
+590. *se emme ole lähteneet 
+
+591. *se emme ole tehneet työtä 
+
+592. *se ette ole lähteneet 
+
+593. *se ette ole tehneet työtä 
+
+594. *se eivät ole lähteneet 
+
+595. *se eivät ole tehneet työtä 
+
+596. *mies en ole lähtenyt 
+
+597. *mies en ole tehnyt työtä 
+
+598. *mies et ole lähtenyt 
+
+599. *mies et ole tehnyt työtä 
+
+600. *mies emme ole lähteneet 
+
+601. *mies emme ole tehneet työtä 
+
+602. *mies ette ole lähteneet 
+
+603. *mies ette ole tehneet työtä 
+
+604. *mies eivät ole lähteneet 
+
+605. *mies eivät ole tehneet työtä 
+
+606. *Pekka en ole lähtenyt 
+
+607. *Pekka en ole tehnyt työtä 
+
+608. *Pekka et ole lähtenyt 
+
+609. *Pekka et ole tehnyt työtä 
+
+610. *Pekka emme ole lähteneet 
+
+611. *Pekka emme ole tehneet työtä 
+
+612. *Pekka ette ole lähteneet 
+
+613. *Pekka ette ole tehneet työtä 
+
+614. *Pekka eivät ole lähteneet 
+
+615. *Pekka eivät ole tehneet työtä 
+
+616. *me en ole lähtenyt 
+
+617. *me en ole tehnyt työtä 
+
+618. *me et ole lähtenyt 
+
+619. *me et ole tehnyt työtä 
+
+620. *me ei ole lähteneet 
+
+621. *me ei ole tehneet työtä 
+
+622. *me ette ole lähteneet 
+
+623. *me ette ole tehneet työtä 
+
+624. *me eivät ole lähteneet 
+
+625. *me eivät ole tehneet työtä 
+
+626. *te en ole lähtenyt 
+
+627. *te en ole tehnyt työtä 
+
+628. *te et ole lähtenyt 
+
+629. *te et ole tehnyt työtä 
+
+630. *te ei ole lähteneet 
+
+631. *te ei ole tehneet työtä 
+
+632. *te emme ole lähteneet 
+
+633. *te emme ole tehneet työtä 
+
+634. *te eivät ole lähteneet 
+
+635. *te eivät ole tehneet työtä 
+
+636. *he en ole lähtenyt 
+
+637. *he en ole tehnyt työtä 
+
+638. *he et ole lähtenyt 
+
+639. *he et ole tehnyt työtä 
+
+640. *he ei ole lähteneet 
+
+641. *he ei ole tehneet työtä 
+
+642. *he emme ole lähteneet 
+
+643. *he emme ole tehneet työtä 
+
+644. *he ette ole lähteneet 
+
+645. *he ette ole tehneet työtä 
+
+646. *ne en ole lähtenyt 
+
+647. *ne en ole tehnyt työtä 
+
+648. *ne et ole lähtenyt 
+
+649. *ne et ole tehnyt työtä 
+
+650. *ne ei ole lähteneet 
+
+651. *ne ei ole tehneet työtä 
+
+652. *ne emme ole lähteneet 
+
+653. *ne emme ole tehneet työtä 
+
+654. *ne ette ole lähteneet 
+
+655. *ne ette ole tehneet työtä 
+
+656. *miehet en ole lähtenyt 
+
+657. *miehet en ole tehnyt työtä 
+
+658. *miehet et ole lähtenyt 
+
+659. *miehet et ole tehnyt työtä 
+
+660. *miehet ei ole lähteneet 
+
+661. *miehet ei ole tehneet työtä 
+
+662. *miehet emme ole lähteneet 
+
+663. *miehet emme ole tehneet työtä 
+
+664. *minä e ole lähtenyt 
+
+665. *minä e ole tehnyt työtä 
+
+666. *sinä e ole lähtenyt 
+
+667. *sinä e ole tehnyt työtä 
+
+668. *hän e ole lähtenyt 
+
+669. *hän e ole tehnyt työtä 
+
+670. *Pekka e ole lähtenyt 
+
+671. *Pekka e ole tehnyt työtä 
+
+672. *mies e ole lähtenyt 
+
+673. *mies e ole tehnyt työtä 
+
+674. *se e ole lähtenyt 
+
+675. *se e ole tehnyt työtä 
+
+676. *me e ole lähteneet 
+
+677. *me e ole tehneet työtä 
+
+678. *te e ole lähteneet 
+
+679. *te e ole tehneet työtä 
+
+680. *he e ole lähteneet 
+
+681. *he e ole tehneet työtä 
+
+682. *ne e ole lähteneet 
+
+683. *ne e ole tehneet työtä 
+
+684. *miehet e ole lähteneet 
+
+685. *miehet e ole tehneet työtä 
+
+686. *minä lähtenyt 
+
+687. *sinä lähtenyt 
+
+688. *hän lähtenyt 
+
+689. *mies lähtenyt 
+
+690. *Pekka lähtenyt 
+
+691. *se lähtenyt 
+
+692. *me lähteneet 
+
+693. *te lähteneet 
+
+694. *he lähteneet 
+
+695. *minä tehnyt työtä 
+
+696. *sinä tehnyt työtä 
+
+697. *hän tehnyt työtä 
+
+698. *mies tehnyt työtä 
+
+699. *Pekka tehnyt työtä 
+
+700. *se tehnyt työtä 
+
+701. *me tehneet työtä 
+
+702. *te tehneet työtä 
+
+703. *he tehneet työtä 
+
+704. *miehet tehneet työtä 
+
+705. *minä lähteneet 
+
+706. *sinä lähteneet 
+
+707. *hän lähteneet 
+
+708. *mies lähteneet 
+
+709. *Pekka lähteneet 
+
+710. *se lähteneet 
+
+711. *me lähtenyt 
+
+712. *te lähtenyt 
+
+713. *he lähtenyt 
+
+714. *minä tehneet työtä 
+
+715. *sinä tehneet työtä 
+
+716. *hän tehneet työtä 
+
+717. *mies tehneet työtä 
+
+718. *Pekka tehneet työtä 
+
+719. *se tehneet työtä 
+
+720. *me tehnyt työtä 
+
+721. *te tehnyt työtä 
+
+722. *he tehnyt työtä 
+
+723. *miehet tehnyt työtä 
+
+724. *minä ollut lähtenyt 
+
+725. *sinä ollut lähtenyt 
+
+726. *hän ollut lähtenyt 
+
+727. *Pekka ollut lähtenyt 
+
+728. *mies ollut lähtenyt 
+
+729. *se ollut lähtenyt 
+
+730. *me olleet lähteneet 
+
+731. *te olleet lähteneet 
+
+732. *he olleet lähteneet 
+
+733. *miehet olleet lähteneet 
+
+734.  minä en lähtenyt 
+	
+735.  minä en tehnyt työtä 
+	
+736.  sinä et lähtenyt 
+	
+737.  sinä et tehnyt työtä 
+	
+738.  hän ei lähtenyt 
+	
+739.  hän ei tehnyt työtä 
+	
+740.  Pekka ei lähtenyt 
+	
+741.  Pekka ei tehnyt työtä 
+	
+742.  mies ei lähtenyt 
+	
+743.  mies ei tehnyt työtä 
+	
+744.  se ei lähtenyt 
+	
+745.  se ei tehnyt työtä 
+	
+746.  me emme lähteneet 
+	
+747.  me emme tehneet työtä 
+	
+748.  te ette lähteneet 
+	
+749.  te ette tehneet työtä 
+	
+750.  he eivät lähteneet 
+	
+751.  he eivät tehneet työtä 
+	
+752.  ne eivät lähteneet 
+	
+753.  ne eivät tehneet työtä 
+	
+754. *minä en lähteneet 
+
+755. *minä en tehneet työtä 
+
+756. *sinä et lähteneet 
+
+757. *sinä et tehneet työtä 
+
+758. *hän ei lähteneet 
+
+759. *hän ei tehneet työtä 
+
+760. *Pekka ei lähteneet 
+
+761. *Pekka ei tehneet työtä 
+
+762. *se ei lähteneet 
+
+763. *se ei tehneet työtä 
+
+764. *mies ei lähteneet 
+
+765. *mies ei tehneet työtä 
+
+766. *me emme lähtenyt 
+
+767. *me emme tehnyt työtä 
+
+768. *te ette lähtenyt 
+
+769. *te ette tehnyt työtä 
+
+770. *he eivät lähtenyt 
+
+771. *he eivät tehnyt työtä 
+
+772. *ne eivät lähtenyt 
+
+773. *ne eivät tehnyt työtä 
+
+774. *minä e#n lähde#n 
+
+775. *sinä e#t lähde#t 
+
+776. *hän e#[V] lähde#[V] 
+
+777. *Pekka e#[V] lähde#[V] 
+
+778. *mies e#[V] lähde#[V] 
+
+779. *se e#[V] lähde#[V] 
+
+780. *me e#mme lähde#mme 
+
+781. *te e#tte lähde#tte 
+
+782. *he e#vAt lähde#vAt 
+
+783. *ne e#vAt lähde#vAt 
+
+784. *minä e lähde#n 
+
+785. *minä e tee#n työtä 
+
+786. *sinä e lähde#t 
+
+787. *sinä e tee#t työtä 
+
+788. *hän e lähde#[V] 
+
+789. *hän e tee#[V] työtä 
+
+790. *Pekka e lähde#[V] 
+
+791. *Pekka e tee#n työtä 
+
+792. *mies e lähde#[V] 
+
+793. *mies e tee#[V] työtä 
+
+794. *se e lähde#[V] 
+
+795. *se e tee#n työtä 
+
+796. *me e lähde#mme 
+
+797. *me e tee#mme työtä 
+
+798. *te e lähde#tte 
+
+799. *te e tee#tte työtä 
+
+800. *he e lähde#vAt 
+
+801. *he e tee#vAt työtä 
+
+802. *ne e lähde#vAt 
+
+803. *ne e tee#vAt työtä 
+
+804.  minä en ole lähtenyt 
+	
+805.  minä en ole tehnyt työtä 
+	
+806.  sinä et ole lähtenyt 
+	
+807.  sinä et ole tehnyt työtä 
+	
+808.  hän ei ole lähtenyt 
+	
+809.  hän ei ole tehnyt työtä 
+	
+810.  Pekka ei ole lähtenyt 
+	
+811.  Pekka ei ole tehnyt työtä 
+	
+812.  mies ei ole lähtenyt 
+	
+813.  mies ei ole tehnyt työtä 
+	
+814.  se ei ole lähtenyt 
+	
+815.  se ei ole tehnyt työtä 
+	
+816.  me emme ole lähteneet 
+	
+817.  me emme ole tehneet työtä 
+	
+818.  te ette ole lähteneet 
+	
+819.  te ette ole tehneet työtä 
+	
+820.  he eivät ole lähteneet 
+	
+821.  he eivät ole tehneet työtä 
+	
+822.  ne eivät ole lähteneet 
+	
+823.  ne eivät ole tehneet työtä 
+	
+824.  miehet eivät ole lähteneet 
+	
+825.  miehet eivät ole tehneet työtä 
+	
+826.  minä en ollut lähtenyt 
+	
+827.  minä en ollut tehnyt työtä 
+	
+828.  sinä et ollut lähtenyt 
+	
+829.  sinä et ollut tehnyt työtä 
+	
+830.  hän ei ollut lähtenyt 
+	
+831.  hän ei ollut tehnyt työtä 
+	
+832.  Pekka ei ollut lähtenyt 
+	
+833.  Pekka ei ollut tehnyt työtä 
+	
+834.  mies ei ollut lähtenyt 
+	
+835.  mies ei ollut tehnyt työtä 
+	
+836.  se ei ollut lähtenyt 
+	
+837.  se ei ollut tehnyt työtä 
+	
+838.  me emme olleet lähteneet 
+	
+839.  me emme olleet tehneet työtä 
+	
+840.  te ette olleet lähteneet 
+	
+841.  te ette olleet tehneet työtä 
+	
+842.  he eivät olleet lähteneet 
+	
+843.  he eivät olleet tehneet työtä 
+	
+844.  ne eivät olleet lähteneet 
+	
+845.  ne eivät olleet tehneet työtä 
+	
+846.  miehet eivät olleet lähteneet 
+	
+847.  miehet eivät olleet tehneet työtä 
+	
+848. *minä en ole lähteneet 
+
+849. *minä en ole tehneet työtä 
+
+850. *sinä et ole lähteneet 
+
+851. *sinä et ole tehneet työtä 
+
+852. *hän ei ole lähteneet 
+
+853. *hän ei ole tehneet työtä 
+
+854. *Pekka ei ole lähteneet 
+
+855. *Pekka ei ole tehneet työtä 
+
+856. *mies ei ole lähteneet 
+
+857. *mies ei ole tehneet työtä 
+
+858. *se ei ole lähteneet 
+
+859. *se ei ole tehneet työtä 
+
+860. *me emme ole lähtenyt 
+
+861. *me emme ole tehnyt työtä 
+
+862. *te ette ole lähtenyt 
+
+863. *te ette ole tehnyt työtä 
+
+864. *he eivät ole lähtenyt 
+
+865. *he eivät ole tehnyt työtä 
+
+866. *ne eivät ole lähtenyt 
+
+867. *ne eivät ole tehnyt työtä 
+
+868. *miehet eivät ole lähtenyt 
+
+869. *miehet eivät ole tehnyt työtä 
+
+870. *minä en olleet lähteneet 
+
+871. *minä en olleet tehneet työtä 
+
+872. *sinä et olleet lähteneet 
+
+873. *sinä et olleet tehneet työtä 
+
+874. *hän ei olleet lähteneet 
+
+875. *hän ei olleet tehneet työtä 
+
+876. *Pekka ei olleet lähteneet 
+
+877. *Pekka ei olleet tehneet työtä 
+
+878. *mies ei olleet lähteneet 
+
+879. *mies ei olleet tehneet työtä 
+
+880. *se ei olleet lähteneet 
+
+881. *se ei olleet tehneet työtä 
+
+882. *me emme ollut lähtenyt 
+
+883. *me emme ollut tehnyt työtä 
+
+884. *te ette ollut lähtenyt 
+
+885. *te ette ollut tehnyt työtä 
+
+886. *he eivät ollut lähtenyt 
+
+887. *he eivät ollut tehnyt työtä 
+
+888. *ne eivät ollut lähtenyt 
+
+889. *ne eivät ollut tehnyt työtä 
+
+890. *miehet eivät ollut lähtenyt 
+
+891. *miehet eivät ollut tehnyt työtä 
+
+892. *minä en ole#n lähtenyt 
+
+893. *minä en ole#n tehnyt työtä 
+
+894. *sinä et ole#t lähtenyt 
+
+895. *sinä et ole#t tehnyt työtä 
+
+896. *hän ei ole#[V] lähtenyt 
+
+897. *hän ei ole#[V] tehnyt työtä 
+
+898. *Pekka ei ole#[V] lähtenyt 
+
+899. *Pekka ei ole#[V] tehnyt työtä 
+
+900. *mies ei ole#[V] lähtenyt 
+
+901. *mies ei ole#[V] tehnyt työtä 
+
+902. *se ei ole#[V] lähtenyt 
+
+903. *se ei ole#[V] tehnyt työtä 
+
+904. *me emme ole#mme lähteneet 
+
+905. *me emme ole#mme tehneet työtä 
+
+906. *te ette ole#tte lähteneet 
+
+907. *te ette ole#tte tehneet työtä 
+
+908. *he eivät ole#vAt lähteneet 
+
+909. *he eivät ole#vAt tehneet työtä 
+
+910. *ne eivät ole#vAt lähteneet 
+
+911. *ne eivät ole#vAt tehneet työtä 
+
+912. *miehet eivät ole#vAt lähteneet 
+
+913. *miehet eivät ole#vAt tehneet työtä 
+
+914. *minä en ole#n lähteneet 
+
+915. *minä en ole#n tehneet työtä 
+
+916. *sinä et ole#t lähteneet 
+
+917. *sinä et ole#t tehneet työtä 
+
+918. *hän ei ole#[V] lähteneet 
+
+919. *hän ei ole#[V] tehneet työtä 
+
+920. *Pekka ei ole#[V] lähteneet 
+
+921. *Pekka ei ole#[V] tehneet työtä 
+
+922. *mies ei ole#[V] lähteneet 
+
+923. *mies ei ole#[V] tehneet työtä 
+
+924. *se ei ole#[V] lähteneet 
+
+925. *se ei ole#[V] tehneet työtä 
+
+926. *me emme ole#mme lähtenyt 
+
+927. *me emme ole#mme tehnyt työtä 
+
+928. *te ette ole#tte lähtenyt 
+
+929. *te ette ole#tte tehnyt työtä 
+
+930. *he eivät ole#vAt lähtenyt 
+
+931. *he eivät ole#vAt tehnyt työtä 
+
+932. *ne eivät ole#vAt lähtenyt 
+
+933. *ne eivät ole#vAt tehnyt työtä 
+
+934. *miehet eivät ole#vAt lähtenyt 
+
+935. *miehet eivät ole#vAt tehnyt työtä 
+
+936. *minä e#n ole#n lähde#n 
+
+937. *sinä e#t ole#t lähde#t 
+
+938. *hän e#[V] ole#[V] lähde#[V] 
+
+939. *Pekka e#[V] ole#[V] lähde#[V] 
+
+940. *mies e#[V] ole#[V] lähde#[V] 
+
+941. *se e#[V] ole#[V] lähde#[V] 
+
+942. *me e#mme ole#mme lähde#mme 
+
+943. *te e#tte ole#tte lähde#tte 
+
+944. *he e#vAt ole#vAt lähde#vAt 
+
+945. *ne e#vAt ole#vAt lähde#vAt 
+
+946. *miehet e#vAt ole#vAt lähde#vAt 
+
+947. *minä e#n ole#n tee#n työtä 
+
+948. *sinä e#t ole#t tee#t työtä 
+
+949. *hän e#[V] ole#[V] tee#[V]työtä 
+
+950. *Pekka e#[V] ole#[V] tee#[V] työtä 
+
+951. *mies e#[V] ole#[V] tee#[V] työtä 
+
+952. *se e#[V] ole#[V] tee#[V] työtä 
+
+953. *me e#mme ole#mme tee#mme työtä 
+
+954. *te e#tte ole#tte tee#tte työtä 
+
+955. *he e#vAt ole#vAt tee#vAt työtä 
+
+956. *ne e#vAt ole#vAt tee#vAt työtä 
+
+957. *miehet e#vAt ole#vAt tee#vAt työtä 
+
+958.  minun täytyy lähteä 
+	
+959.  minun täytyy tehdä työtä 
+	
+960.  sinun täytyy lähteä 
+	
+961.  sinun täytyy tehdä työtä 
+	
+962.  hänen täytyy lähteä 
+	
+963.  hänen täytyy tehdä työtä 
+	
+964.  miehen täytyy lähteä 
+	
+965.  miehen täytyy tehdä työtä 
+	
+966.  Pekan täytyy lähteä 
+	
+967.  Pekan täytyy tehdä työtä 
+	
+968.  sen täytyy lähteä 
+	
+969.  sen täytyy tehdä työtä 
+	
+970.  meidän täytyy lähteä 
+	
+971.  meidän täytyy tehdä työtä 
+	
+972.  teidän täytyy lähteä 
+	
+973.  teidän täytyy tehdä työtä 
+	
+974.  heidän täytyy lähteä 
+	
+975.  heidän täytyy tehdä työtä 
+	
+976.  niiden täytyy lähteä 
+	
+977.  niiden täytyy tehdä työtä 
+	
+978. *minun täydy#n lähteä 
+
+979. *minun täydy#n tehdä työtä 
+
+980. *sinun täydy#t lähteä 
+
+981. *sinun täydy#t tehdä työtä 
+
+982. *hänen täydy#[V] lähteä 
+
+983. *hänen täydy#[V] tehdä työtä 
+
+984. *Pekan täydy#[V] lähteä 
+
+985. *Pekka täydy#[V] tehdä työtä 
+
+986. *miehen täydy#[V] lähteä 
+
+987. *miehen täydy#[V] tehdä työtä 
+
+988. *sen täydy#[V] lähteä 
+
+989. *sen täydy#[V] tehdä työtä 
+
+990. *meidän täydy#mme lähteä 
+
+991. *meidän täydy#mme tehdä työtä 
+
+992. *teidän täydy#tte lähteä 
+
+993. *teidän täydy#tte tehdä työtä 
+
+994. *heidän täydy#vAt lähteä 
+
+995. *heidän täydy#vAt tehdä työtä 
+
+996. *niiden täydy#vAt lähteä 
+
+997. *niiden täydy#vAt tehdä työtä 
+
+998. *miesten täydy#vAt lähteä 
+
+999. *miesten täydy#vAt tehdä työtä 
+
+1000.  me lähdettiin 
+	
+1001.  me tehtiin työtä 
+	
+1002.  työtä tehtiin 
+	
+1003. *me lähdettiin#n 
+
+1004. *me tehtiin#n työtä 
+
+1005. *me lähdettiin#t 
+
+1006. *me tehtiin#t työtä 
+
+1007. *me lähdettiin#[V] 
+
+1008. *me tehtiin#[V] työtä 
+
+1009. *me lähdettiin#mme 
+
+1010. *me tehtiin#mme työtä 
+
+1011. *me lähdettiin#tte 
+
+1012. *me tehtiin#tte työtä 
+
+1013. *me lähdettiin#vAt 
+
+1014. *me tehtiin#vAt työtä 
+
+1015. *minä lähdettiin 
+
+1016. *sinä lähdettiin 
+
+1017. *hän lähdettiin 
+
+1018. *Pekka lähdettiin 
+
+1019. *mies lähdettiin 
+
+1020. *se lähdettiin 
+
+1021. *te lähdettiin 
+
+1022. *he lähdettiin 
+
+1023. *ne lähdettiin 
+
+1024. *minä tehtiin työtä 
+
+1025. *sinä tehtiin työtä 
+
+1026. *hän tehtiin työtä 
+
+1027. *Pekka tehtiin työtä 
+
+1028. *se tehtiin työtä 
+
+1029. *he tehtiin työtä 
+
+1030. *ne tehtiin työtä 
+
+1031. *me lähdettiin#mme 
+
+1032. *me tehtiin#mme työtä 
+
+1033. *te lähdettiin#tte 
+
+1034. *te tehtiin#tte työtä 
+
+1035. *hän lähdettiin#[V] 
+
+1036. *hän tehtiin#[V] työtä 
+
+1037. *minä lähdettiin#n 
+
+1038. *minä tehtiin#n työtä 
+
+1039. *sinä lähdettiin#t 
+
+1040. *sinä tehtiin#t työtä 
+
+1041. *he lähdettiin#vAt 
+
+1042. *he tehtiin#vAt työtä 
+
+1043.  hän nukkuu minun lähellä2#ni 
+	
+1044.  hän tekee työtä minun lähellä#ni 
+	
+1045.  hän nukkuu sinun lähellä#si 
+	
+1046.  hän tekee työtä sinun lähellä#si 
+	
+1047.  hän nukkuu hänen lähellä2#An 
+	
+1048.  hän tekee työtä hänen lähellä#An 
+	
+1049.  hän nukkuu meidän lähellä#mme 
+	
+1050.  hän tekee työtä meidän lähellä#mme 
+	
+1051.  hän nukkuu teidän lähellä#nne 
+	
+1052.  hän tekee työtä teidän lähellä#nne 
+	
+1053.  hän nukkuu heidän lähellä#An 
+	
+1054.  hän tekee työtä heidän lähellä#An 
+	
+1055.  hän nukkuu lähellä2#ni 
+	
+1056.  hän nukkuu lähellä2#si 
+	
+1057.  hän nukkuu lähellä2#nsA 
+	
+1058.  hän nukkuu lähellä2#mme 
+	
+1059.  hän nukkuu lähellä2#nne 
+	
+1060.  hän nukkuu lähellä 
+	
+1061. *hän nukkuu minun lähellä#si 
+
+1062. *hän nukkuu minun lähellä#An 
+
+1063. *hän nukkuu minun lähellä#mme 
+
+1064. *hän nukkuu minun lähellä#nne 
+
+1065. *hän tekee työtä minun lähellä#si 
+
+1066. *hän tekee työtä minun lähellä#An 
+
+1067. *hän tekee työtä minun lähellä#mme 
+
+1068. *hän tekee työtä minun lähellä#nne 
+
+1069. *hän nukkuu sinun lähellä#ni 
+
+1070. *hän nukkuu sinun lähellä#An 
+
+1071. *hän nukkuu sinun lähellä#mme 
+
+1072. *hän nukkuu sinun lähellä#nne 
+
+1073. *hän tekee työtä sinun lähellä#ni 
+
+1074. *hän tekee työtä sinun lähellä#An 
+
+1075. *hän tekee työtä sinun lähellä#mme 
+
+1076. *hän tekee työtä sinun lähellä#nne 
+
+1077. *hän nukkuu hänen lähellä#ni 
+
+1078. *hän nukkuu hänen lähellä#si 
+
+1079. *hän nukkuu hänen lähellä#mme 
+
+1080. *hän nukkuu hänen lähellä#nne 
+
+1081. *hän tekee työtä hänen lähellä#ni 
+
+1082. *hän tekee työtä hänen lähellä#si 
+
+1083. *hän tekee työtä hänen lähellä#mme 
+
+1084. *hän tekee työtä hänen lähellä#nne 
+
+1085. *hän nukkuu meidän lähellä#ni 
+
+1086. *hän nukkuu meidän lähellä#si 
+
+1087. *hän nukkuu meidän lähellä#An 
+
+1088. *hän nukkuu meidän lähellä#nne 
+
+1089. *hän tekee työtä meidän lähellä#ni 
+
+1090. *hän tekee työtä meidän lähellä#si 
+
+1091. *hän tekee työtä meidän lähellä#An 
+
+1092. *hän tekee työtä meidän lähellä#nne 
+
+1093. *hän nukkuu teidän lähellä#ni 
+
+1094. *hän nukkuu teidän lähellä#si 
+
+1095. *hän nukkuu teidän lähellä#An 
+
+1096. *hän nukkuu teidän lähellä#mme 
+
+1097. *hän tekee työtä teidän lähellä#ni 
+
+1098. *hän tekee työtä teidän lähellä#si 
+
+1099. *hän tekee työtä teidän lähellä#An 
+
+1100. *hän tekee työtä teidän lähellä#mme 
+
+1101. *hän nukkuu heidän lähellä#ni 
+
+1102. *hän nukkuu heidän lähellä#si 
+
+1103. *hän nukkuu heidän lähellä#mme 
+
+1104. *hän nukkuu heidän lähellä#nne 
+
+1105. *hän tekee työtä heidän lähellä#ni 
+
+1106. *hän tekee työtä heidän lähellä#si 
+
+1107. *hän tekee työtä heidän lähellä#mme 
+
+1108. *hän tekee työtä heidän lähellä#nne 
+
+1109. *hän nukkuu sen2 lähellä2#An 
+
+1110. *hän tekee työtä sen2 lähellä2#An 
+
+1111. *hän nukkuu Pekan lähellä2#An 
+
+1112. *hän tekee työtä Pekan lähellä2#An 
+
+1113. *hän nukkuu miehen lähellä2#An 
+
+1114. *hän nukkuu miesten lähellä2#An 
+
+1115. *hän tekee työtä miehen lähellä2#An 
+
+1116. *hän tekee työtä miesten lähellä2#An 
+
+1117. *hän nukkuu sen2 lähellä2#ni 
+
+1118. *hän nukkuu sen2 lähellä2#si 
+
+1119. *hän nukkuu sen2 lähellä2#mme 
+
+1120. *hän nukkuu sen2 lähellä2#nne 
+
+1121. *hän tekee työtä sen2 lähellä2#ni 
+
+1122. *hän tekee työtä sen2 lähellä2#si 
+
+1123. *hän tekee työtä sen2 lähellä2#mme 
+
+1124. *hän tekee työtä sen2 lähellä2#nne 
+
+1125. *hän nukkuu Pekan lähellä2#ni 
+
+1126. *hän nukkuu Pekan lähellä2#si 
+
+1127. *hän nukkuu Pekan lähellä2#mme 
+
+1128. *hän nukkuu Pekan lähellä2#nne 
+
+1129. *hän tekee työtä Pekan lähellä2#ni 
+
+1130. *hän tekee työtä Pekan lähellä2#si 
+
+1131. *hän tekee työtä Pekan lähellä2#mme 
+
+1132. *hän tekee työtä Pekan lähellä2#nne 
+
+1133. *hän nukkuu miehen lähellä2#ni 
+
+1134. *hän nukkuu miesten lähellä2#ni 
+
+1135. *hän nukkuu miehen lähellä2#si 
+
+1136. *hän nukkuu miesten lähellä2#si 
+
+1137. *hän nukkuu miehen lähellä2#mme 
+
+1138. *hän nukkuu miesten lähellä2#mme 
+
+1139. *hän nukkuu miehen lähellä2#nne 
+
+1140. *hän nukkuu miesten lähellä2#nne 
+
+1141. *hän tekee työtä miehen lähellä2#ni 
+
+1142. *hän tekee työtä miesten lähellä2#ni 
+
+1143. *hän tekee työtä miehen lähellä2#si 
+
+1144. *hän tekee työtä miesten lähellä2#si 
+
+1145. *hän tekee työtä miehen lähellä2#mme 
+
+1146. *hän tekee työtä miesten lähellä2#mme 
+
+1147. *hän tekee työtä miehen lähellä2#nne 
+
+1148. *hän tekee työtä miesten lähellä2#nne 
+
+1149.  Pekka juoksi sillan ylitse 
+	
+1150.  Pekka juoksi Pekan ylitse 
+	
+1151.  Pekka juoksi sen ylitse 
+	
+1152.  Pekka juoksi minun ylitse 
+	
+1153.  Pekka juoksi sinun ylitse 
+	
+1154.  Pekka juoksi hänen ylitse 
+	
+1155.  Pekka juoksi meidän ylitse 
+	
+1156.  Pekka juoksi teidän ylitse 
+	
+1157.  Pekka juoksi heidän ylitse 
+	
+1158.  Pekka juoksi minun ylitse#ni 
+	
+1159.  Pekka juoksi sinun ylitse#si 
+	
+1160.  Pekka juoksi hänen ylitse#nsA 
+	
+1161.  Pekka juoksi meidän ylitse#mme 
+	
+1162.  Pekka juoksi teidän ylitse#nne 
+	
+1163.  Pekka juoksi heidän ylitse#nsA 
+	
+1164. *Pekka juoksi sinun ylitse#ni 
+
+1165. *Pekka juoksi hänen ylitse#ni 
+
+1166. *Pekka juoksi meidän ylitse#ni 
+
+1167. *Pekka juoksi teidän ylitse#ni 
+
+1168. *Pekka juoksi heidän ylitse#ni 
+
+1169. *Pekka juoksi minun ylitse#si 
+
+1170. *Pekka juoksi hänen ylitse#si 
+
+1171. *Pekka juoksi meidän ylitse#si 
+
+1172. *Pekka juoksi teidän ylitse#si 
+
+1173. *Pekka juoksi heidän ylitse#si 
+
+1174. *Pekka juoksi minun ylitse#nsA 
+
+1175. *Pekka juoksi sinun ylitse#nsA 
+
+1176. *Pekka juoksi meidän ylitse#nsA 
+
+1177. *Pekka juoksi teidän ylitse#nsA 
+
+1178. *Pekka juoksi miehen ylitse#nsA 
+
+1179. *Pekka juoksi Merjan ylitse#nsA 
+
+1180. *Pekka juoksi sen ylitse#nsA 
+
+1181. *Pekka juoksi minun ylitse#mme 
+
+1182. *Pekka juoksi sinun ylitse#mme 
+
+1183. *Pekka juoksi hänen ylitse#mme 
+
+1184. *Pekka juoksi teidän ylitse#mme 
+
+1185. *Pekka juoksi heidän ylitse#mme 
+
+1186. *Pekka juoksi minun ylitse#nne 
+
+1187. *Pekka juoksi sinun ylitse#nne 
+
+1188. *Pekka juoksi hänen ylitse#nne 
+
+1189. *Pekka juoksi meidän ylitse#nne 
+
+1190. *Pekka juoksi heidän ylitse#nne 
+
+1191. *Pekka juoksi sen ylitse#nsA 
+
+1192. *Pekka juoksi Pekan ylitse#nsA 
+
+1193. *Pekka juoksi miehen ylitse#nsA 
+
+1194. *Pekka juoksi miesten ylitse#nsA 
+
+1195. *Pekka juoksi ylitse#ni 
+
+1196. *Pekka juoksi ylitse#si 
+
+1197. *Pekka juoksi ylitse#nsA 
+
+1198. *Pekka juoksi ylitse#mme 
+
+1199. *Pekka juoksi ylitse#nne 
+
+1200.  minun talo#ni 
+	
+1201.  sinun talo#si 
+	
+1202.  hänen talo#nsA 
+	
+1203.  meidän talo#mme 
+	
+1204.  teidän talo#nne 
+	
+1205.  heidän talo#nsA 
+	
+1206.  minun talo#ni hävisi 
+	
+1207.  sinun talo#si hävisi 
+	
+1208.  hänen talo#nsA hävisi 
+	
+1209.  meidän talo#mme hävisi 
+	
+1210.  teidän talo#nne hävisi 
+	
+1211.  heidän talo#nsA hävisi 
+	
+1212. *minun talo#si 
+
+1213. *minun talo#nsA 
+
+1214. *minun talo#mme 
+
+1215. *minun talo#nne 
+
+1216. *sinun talo#ni 
+
+1217. *sinun talo#nsA 
+
+1218. *sinun talo#mme 
+
+1219. *sinun talo#nne 
+
+1220. *hänen talo#ni 
+
+1221. *hänen talo#si 
+
+1222. *hänen talo#mme 
+
+1223. *hänen talo#nne 
+
+1224. *meidän talo#ni 
+
+1225. *meidän talo#si 
+
+1226. *meidän talo#nsA 
+
+1227. *meidän talo#nne 
+
+1228. *teidän talo#ni 
+
+1229. *teidän talo#si 
+
+1230. *teidän talo#nsA 
+
+1231. *teidän talo#mme 
+
+1232. *heidän talo#ni 
+
+1233. *heidän talo#si 
+
+1234. *heidän talo#mme 
+
+1235. *heidän talo#nne 
+
+1236. *minun talo#si hävisi 
+
+1237. *minun talo#nsA hävisi 
+
+1238. *minun talo#mme hävisi 
+
+1239. *minun talo#nne hävisi 
+
+1240. *sinun talo#ni hävisi 
+
+1241. *sinun talo#nsA hävisi 
+
+1242. *sinun talo#mme hävisi 
+
+1243. *sinun talo#nne hävisi 
+
+1244. *hänen talo#ni hävisi 
+
+1245. *hänen talo#si hävisi 
+
+1246. *hänen talo#mme hävisi 
+
+1247. *hänen talo#nne hävisi 
+
+1248. *meidän talo#ni hävisi 
+
+1249. *meidän talo#si hävisi 
+
+1250. *meidän talo#nsA hävisi 
+
+1251. *meidän talo#nne hävisi 
+
+1252. *teidän talo#ni hävisi 
+
+1253. *teidän talo#si hävisi 
+
+1254. *teidän talo#nsA hävisi 
+
+1255. *teidän talo#mme hävisi 
+
+1256. *heidän talo#ni hävisi 
+
+1257. *heidän talo#si hävisi 
+
+1258. *heidän talo#mme hävisi 
+
+1259. *heidän talo#nne hävisi 
+
+1260. *sen2 talo#nsA 
+
+1261. *Pekan talo#nsA 
+
+1262. *miehen talo#nsA 
+
+1263. *miesten talo#nsA 
+
+1264. *sen2 talo#ni 
+
+1265. *sen2 talo#si 
+
+1266. *sen2 talo#mme 
+
+1267. *sen2 talo#nne 
+
+1268. *Pekan talo#ni 
+
+1269. *Pekan talo#si 
+
+1270. *Pekan talo#mme 
+
+1271. *Pekan talo#nne 
+
+1272. *miehen talo#ni 
+
+1273. *miesten talo#ni 
+
+1274. *miehen talo#si 
+
+1275. *miesten talo#si 
+
+1276. *miehen talo#mme 
+
+1277. *miesten talo#mme 
+
+1278. *miehen talo#nne 
+
+1279. *miesten talo#nne 
+
+1280.  Merja käski minun lähteä 
+	
+1281.  Merja käski sinun lähteä 
+	
+1282.  Merja käski hänen lähteä 
+	
+1283.  Merja käski sen lähteä 
+	
+1284.  Merja käski Pekan lähteä 
+	
+1285.  Merja käski miehen lähteä 
+	
+1286.  Merja käski meidän lähteä 
+	
+1287.  Merja käski teidän lähteä 
+	
+1288.  Merja käski heidän lähteä 
+	
+1289.  Merja käski niiden lähteä 
+	
+1290.  Merja käski miesten lähteä 
+	
+1291.  Merja käski minun tehdä työtä 
+	
+1292.  Merja käski sinun tehdä työtä 
+	
+1293.  Merja käski hänen tehdä työtä 
+	
+1294.  Merja käski Pekan tehdä työtä 
+	
+1295.  Merja käski miehen tehdä työtä 
+	
+1296.  Merja käski sen tehdä työtä 
+	
+1297.  Merja käski meidän tehdä työtä 
+	
+1298.  Merja käski teidän tehdä työtä 
+	
+1299.  Merja käski heidän tehdä työtä 
+	
+1300.  Merja käski niiden tehdä työtä 
+	
+1301.  Merja käski miesten tehdä työtä 
+	
+1302. *Merja käski lähteä#ni 
+
+1303. *Merja käski lähteä#si 
+
+1304. *Merja käski lähteä#nsA 
+
+1305. *Merja käski lähteä#mme 
+
+1306. *Merja käski lähteä#nne 
+
+1307. *Merja käski tehdä#ni työtä 
+
+1308. *Merja käski tehdä#si työtä 
+
+1309. *Merja käski tehdä#nsA työtä 
+
+1310. *Merja käski tehdä#mme työtä 
+
+1311. *Merja käski tehdä#nne työtä 
+
+1312. *Merja käski minun lähteä#ni 
+
+1313. *Merja käski sinun lähteä#si 
+
+1314. *Merja käski hänen lähteä#nsA 
+
+1315. *Merja käski Pekan lähteä#nsA 
+
+1316. *Merja käski sen lähteä#nsA 
+
+1317. *Merja käski miehen lähteä#nsA 
+
+1318. *Merja käski meidän lähteä#mme 
+
+1319. *Merja käski teidän lähteä#nne 
+
+1320. *Merja käski heidän lähteä#nsA 
+
+1321. *Merja käski niiden lähteä#nsA 
+
+1322. *Merja käski miesten lähteä#nsA 
+
+1323. *Merja käski minun tehdä#ni työtä 
+
+1324. *Merja käski sinun tehdä#si työtä 
+
+1325. *Merja käski hänen tehdä#nsA työtä 
+
+1326. *Merja käski Pekan tehdä#nsA työtä 
+
+1327. *Merja käski sen tehdä#nsA työtä 
+
+1328. *Merja käski meidän tehdä#mme työtä 
+
+1329. *Merja käski teidän tehdä#nne työtä 
+
+1330. *Merja käski heidän tehdä#nsA työtä 
+
+1331. *Merja käski niiden tehdä#nsA työtä 
+
+1332. *Merja käski miesten tehdä#nsA työtä 
+
+1333. *Merja käski sen2 lähteä#nsA 
+
+1334. *Merja käski Pekan lähteä#nsA 
+
+1335. *Merja käski miehen lähteä#nsA 
+
+1336. *Merja käski miesten lähteä#nsA 
+
+1337. *Merja käski sen2 tehdä#nsA työtä 
+
+1338. *Merja käski Pekan tehdä#nsA työtä 
+
+1339. *Merja käski miehen tehdä#nsA työtä 
+
+1340. *Merja käski miesten tehdä#nsA työtä 
+
+1341. *Merja käski sen2 lähteä#ni 
+
+1342. *Merja käski Pekan lähteä#ni 
+
+1343. *Merja käski miehen lähteä#ni 
+
+1344. *Merja käski miesten lähteä#ni 
+
+1345. *Merja käski sen2 tehdä#ni työtä 
+
+1346. *Merja käski Pekan tehdä#ni työtä 
+
+1347. *Merja käski miehen tehdä#ni työtä 
+
+1348. *Merja käski miesten tehdä#ni työtä 
+
+1349. *Merja käski sen2 lähteä#si 
+
+1350. *Merja käski Pekan lähteä#si 
+
+1351. *Merja käski miehen lähteä#si 
+
+1352. *Merja käski miesten lähteä#si 
+
+1353. *Merja käski sen2 tehdä#si työtä 
+
+1354. *Merja käski Pekan tehdä#si työtä 
+
+1355. *Merja käski miehen tehdä#si työtä 
+
+1356. *Merja käski miesten tehdä#si työtä 
+
+1357. *Merja käski sen2 tehdä#mme työtä 
+
+1358. *Merja käski Pekan tehdä#mme työtä 
+
+1359. *Merja käski miehen tehdä#mme työtä 
+
+1360. *Merja käski miesten tehdä#mme työtä 
+
+1361. *Merja käski sen2 tehdä#mme työtä 
+
+1362. *Merja käski Pekan tehdä#mme työtä 
+
+1363. *Merja käski miehen tehdä#mme työtä 
+
+1364. *Merja käski miesten tehdä#mme työtä 
+
+1365. *Merja käski sen2 lähteä#nne 
+
+1366. *Merja käski Pekan lähteä#nne 
+
+1367. *Merja käski miehen lähteä#nne 
+
+1368. *Merja käski miesten lähteä#nne 
+
+1369. *Merja käski sen2 tehdä#nne työtä 
+
+1370. *Merja käski Pekan tehdä#nne työtä 
+
+1371. *Merja käski miehen tehdä#nne työtä 
+
+1372. *Merja käski miesten tehdä#nne työtä 
+
+1373. *Merja käski lähteä 
+
+1374. *Merja käski tehdä työtä 
+
+1375.  Merja halusi lähteä 
+	
+1376.  Merja halusi tehdä työtä 
+	
+1377. *Merja halusi lähteä#ni 
+
+1378. *Merja halusi lähteä#si 
+
+1379. *Merja halusi lähteä#An 
+
+1380. *Merja halusi lähteä#mme 
+
+1381. *Merja halusi lähteä#nne 
+
+1382. *Merja halusi lähteä#nsA 
+
+1383. *Merja halusi minun lähteä 
+
+1384. *Merja halusi sinun lähteä 
+
+1385. *Merja halusi hänen lähteä 
+
+1386. *Merja halusi Pekan lähteä 
+
+1387. *Merja halusi sen lähteä 
+
+1388. *Merja halusi miehen lähteä 
+
+1389. *Merja halusi meidän lähteä 
+
+1390. *Merja halusi teidän lähteä 
+
+1391. *Merja halusi heidän lähteä 
+
+1392. *Merja halusi niiden lähteä 
+
+1393. *Merja halusi miesten lähteä 
+
+1394. *Merja halusi minun lähteä#ni 
+
+1395. *Merja halusi sinun lähteä#si 
+
+1396. *Merja halusi hänen lähteä#nsA 
+
+1397. *Merja halusi meidän lähteä#mme 
+
+1398. *Merja halusi teidän lähteä#nne 
+
+1399. *Merja halusi heidän lähteä#nsA 
+
+1400. *Merja halusi Pekan lähteä#nsA 
+
+1401. *Merja halusi sen lähteä#nsA 
+
+1402. *Merja halusi miehen lähteä#nsA 
+
+1403. *Merja halusi miesten lähteä#nsA 
+
+1404. *Merja halusi niiden lähteä#nsA 
+
+1405.  Merja uskoi minun lähtevän 
+	
+1406.  Merja uskoi sinun lähtevän 
+	
+1407.  Merja uskoi hänen lähtevän 
+	
+1408.  Merja uskoi Pekan lähtevän 
+	
+1409.  Merja uskoi sen lähtevän 
+	
+1410.  Merja uskoi miehen lähtevän 
+	
+1411.  Merja uskoi meidän lähtevän 
+	
+1412.  Merja uskoi teidän lähtevän 
+	
+1413.  Merja uskoi heidän lähtevän 
+	
+1414.  Merja uskoi niiden lähtevän 
+	
+1415.  Merja uskoi miesten lähtevän 
+	
+1416.  Merja uskoi minun tekevän työtä 
+	
+1417.  Merja uskoi sinun tekevän työtä 
+	
+1418.  Merja uskoi hänen tekevän työtä 
+	
+1419.  Merja uskoi Pekan tekevän työtä 
+	
+1420.  Merja uskoi sen tekevän työtä 
+	
+1421.  Merja uskoi miehen tekevän työtä 
+	
+1422.  Merja uskoi meidän tekevän työtä 
+	
+1423.  Merja uskoi teidän tekevän työtä 
+	
+1424.  Merja uskoi heidän tekevän työtä 
+	
+1425.  Merja uskoi niiden tekevän työtä 
+	
+1426.  Merja uskoi miesten tekevän työtä 
+	
+1427.  Merja uskoi lähtevän#ni 
+	
+1428.  Merja uskoi lähtevän#si 
+	
+1429.  Merja uskoi lähtevän#nsA 
+	
+1430.  Merja uskoi lähtevän#mme 
+	
+1431.  Merja uskoi lähtevän#nne 
+	
+1432.  Merja uskoi tekevän#ni työtä 
+	
+1433.  Merja uskoi tekevän#si työtä 
+	
+1434.  Merja uskoi tekevän#nsA työtä 
+	
+1435.  Merja uskoi tekevän#mme työtä 
+	
+1436.  Merja uskoi tekevän#nne työtä 
+	
+1437. *Merja uskoi lähtevän 
+
+1438. *Merja uskoi tekevän työtä 
+
+1439. *Merja uskoi minun lähtevän#ni 
+
+1440. *Merja uskoi sinun lähtevän#si 
+
+1441. *Merja uskoi hänen lähtevän#nsA 
+
+1442. *Merja uskoi meidän lähtevän#mme 
+
+1443. *Merja uskoi teidän lähtevän#nne 
+
+1444. *Merja uskoi minun tekevän#ni työtä 
+
+1445. *Merja uskoi sinun tekevän#si työtä 
+
+1446. *Merja uskoi hänen tekevän#nsA työtä 
+
+1447. *Merja uskoi meidän tekevän#mme työtä 
+
+1448. *Merja uskoi teidän tekevän#nne työtä 
+
+1449. *Merja uskoi Pekan lähtevän#nsA 
+
+1450. *Merja uskoi miehen lähtevän#nsA 
+
+1451. *Merja uskoi miesten lähtevän#nsA 
+
+1452. *Merja uskoi niiden lähtevän#nsA 
+
+1453. *Merja uskoi sen2 lähtevän#nsA 
+
+1454. *Merja uskoi Pekan tekevän#nsA työtä 
+
+1455. *Merja uskoi miehen tekevän#nsA työtä 
+
+1456. *Merja uskoi miesten tekevän#nsA työtä 
+
+1457. *Merja uskoi niiden tekevän#nsA työtä 
+
+1458. *Merja uskoi sen2 tekevän#nsA työtä 
+
+1459. *Merja uskoi Pekan lähtevän#ni 
+
+1460. *Merja uskoi miehen lähtevän#ni 
+
+1461. *Merja uskoi miesten lähtevän#ni 
+
+1462. *Merja uskoi sen2 lähtevän#ni 
+
+1463. *Merja uskoi Pekan tekevän#ni työtä 
+
+1464. *Merja uskoi miehen tekevän#ni työtä 
+
+1465. *Merja uskoi miesten tekevän#ni työtä 
+
+1466. *Merja uskoi sen2 tekevän#ni työtä 
+
+1467. *Merja uskoi Pekan lähtevän#si 
+
+1468. *Merja uskoi miehen lähtevän#si 
+
+1469. *Merja uskoi miesten lähtevän#si 
+
+1470. *Merja uskoi sen2 lähtevän#si 
+
+1471. *Merja uskoi Pekan tekevän#si työtä 
+
+1472. *Merja uskoi miehen tekevän#si työtä 
+
+1473. *Merja uskoi miesten tekevän#si työtä 
+
+1474. *Merja uskoi sen2 tekevän#si työtä 
+
+1475. *Merja uskoi Pekan lähtevän#mme 
+
+1476. *Merja uskoi miehen lähtevän#mme 
+
+1477. *Merja uskoi miesten lähtevän#mme 
+
+1478. *Merja uskoi sen2 lähtevän#mme 
+
+1479. *Merja uskoi Pekan tekevän#mme työtä 
+
+1480. *Merja uskoi miehen tekevän#mme työtä 
+
+1481. *Merja uskoi miesten tekevän#mme työtä 
+
+1482. *Merja uskoi sen2 tekevän#mme työtä 
+
+1483. *Merja uskoi Pekan lähtevän#nne 
+
+1484. *Merja uskoi miehen lähtevän#nne 
+
+1485. *Merja uskoi miesten lähtevän#nne 
+
+1486. *Merja uskoi sen2 lähtevän#nne 
+
+1487. *Merja uskoi Pekan tekevän#nne työtä 
+
+1488. *Merja uskoi miehen tekevän#nne työtä 
+
+1489. *Merja uskoi miesten tekevän#nne työtä 
+
+1490. *Merja uskoi sen2 tekevän#nne työtä 
+
+1491.  Merja käski lähtemään 
+	
+1492.  Merja käski tekemään työtä 
+	
+1493. *Merja käski lähtemään#ni 
+
+1494. *Merja käski lähtemään#si 
+
+1495. *Merja käski lähtemään#nsA 
+
+1496. *Merja käski lähtemään#mme 
+
+1497. *Merja käski lähtemään#nne 
+
+1498. *Merja käski tekemään#ni työtä 
+
+1499. *Merja käski tekemään#si työtä 
+
+1500. *Merja käski tekemään#nsA työtä 
+
+1501. *Merja käski tekemään#mme työtä 
+
+1502. *Merja käski tekemään#nne työtä 
+
+1503. *Merja käski minun lähtemään 
+
+1504. *Merja käski sinun lähtemään 
+
+1505. *Merja käski hänen lähtemään 
+
+1506. *Merja käski Pekan lähtemään 
+
+1507. *Merja käski sen lähtemään 
+
+1508. *Merja käski miehen lähtemään 
+
+1509. *Merja käski meidän lähtemään 
+
+1510. *Merja käski teidän lähtemään 
+
+1511. *Merja käski heidän lähtemään 
+
+1512. *Merja käski niiden lähtemään 
+
+1513. *Merja käski miesten lähtemään 
+
+1514. *Merja käski minun lähtemään#ni 
+
+1515. *Merja käski sinun lähtemään#si 
+
+1516. *Merja käski hänen lähtemään#nsA 
+
+1517. *Merja käski meidän lähtemään#mme 
+
+1518. *Merja käski teidän lähtemään#nne 
+
+1519. *Merja käski heidän lähtemään#nsA 
+
+1520.  Merja laulaa lähtiessä 
+	
+1521.  Merja laulaa lähtiessä#ni 
+	
+1522.  Merja laulaa lähtiessä#si 
+	
+1523.  Merja laulaa lähtiessä#nsA 
+	
+1524.  Merja laulaa lähtiessä#mme 
+	
+1525.  Merja laulaa lähtiessä#nne 
+	
+1526.  Merja laulaa tehdessä työtä 
+	
+1527.  Merja laulaa tehdessä#ni työtä 
+	
+1528.  Merja laulaa tehdessä#si työtä 
+	
+1529.  Merja laulaa tehdessä#nsA työtä 
+	
+1530.  Merja laulaa tehdessä#mme työtä 
+	
+1531.  Merja laulaa tehdessä#nne työtä 
+	
+1532.  Merja laulaa minun lähtiessä 
+	
+1533.  Merja laulaa sinun lähtiessä 
+	
+1534.  Merja laulaa hänen lähtiessä 
+	
+1535.  Merja laulaa Pekan lähtiessä 
+	
+1536.  Merja laulaa miehen lähtiessä 
+	
+1537.  Merja laulaa sen lähtiessä 
+	
+1538.  Merja laulaa meidän lähtiessä 
+	
+1539.  Merja laulaa teidän lähtiessä 
+	
+1540.  Merja laulaa heidän lähtiessä 
+	
+1541.  Merja laulaa niiden lähtiessä 
+	
+1542.  Merja laulaa miesten lähtiessä 
+	
+1543.  Merja laulaa minun lähtiessä#ni 
+	
+1544.  Merja laulaa sinun lähtiessä#si 
+	
+1545.  Merja laulaa hänen lähtiessä#An 
+	
+1546.  Merja laulaa meidän lähtiessä#mme 
+	
+1547.  Merja laulaa teidän lähtiessä#nne 
+	
+1548.  Merja laulaa heidän lähtiessä#An 
+	
+1549. *Merja laulaa Pekan lähtiessä#An 
+
+1550. *Merja laulaa miehen lähtiessä#An 
+
+1551. *Merja laulaa sen lähtiessä#An 
+
+1552. *Merja laulaa miesten lähtiessä#An 
+
+1553. *Merja laulaa niiden lähtiessä#An 
+
+1554. *Merja laulaa minun lähtiessä#si 
+
+1555. *Merja laulaa minun lähtiessä#An 
+
+1556. *Merja laulaa minun lähtiessä#mme 
+
+1557. *Merja laulaa minun lähtiessä#nne 
+
+1558. *Merja laulaa minun lähtiessä#An 
+
+1559. *Merja laulaa sinun lähtiessä#ni 
+
+1560. *Merja laulaa sinun lähtiessä#An 
+
+1561. *Merja laulaa sinun lähtiessä#mme 
+
+1562. *Merja laulaa sinun lähtiessä#nne 
+
+1563. *Merja laulaa sinun lähtiessä#An 
+
+1564. *Merja laulaa hänen lähtiessä#ni 
+
+1565. *Merja laulaa hänen lähtiessä#si 
+
+1566. *Merja laulaa hänen lähtiessä#mme 
+
+1567. *Merja laulaa hänen lähtiessä#nne 
+
+1568. *Merja laulaa meidän lähtiessä#ni 
+
+1569. *Merja laulaa meidän lähtiessä#si 
+
+1570. *Merja laulaa meidän lähtiessä#An 
+
+1571. *Merja laulaa meidän lähtiessä#nne 
+
+1572. *Merja laulaa meidän lähtiessä#An 
+
+1573. *Merja laulaa teidän lähtiessä#ni 
+
+1574. *Merja laulaa teidän lähtiessä#si 
+
+1575. *Merja laulaa teidän lähtiessä#An 
+
+1576. *Merja laulaa teidän lähtiessä#mme 
+
+1577. *Merja laulaa teidän lähtiessä#An 
+
+1578. *Merja laulaa heidän lähtiessä#ni 
+
+1579. *Merja laulaa heidän lähtiessä#si 
+
+1580. *Merja laulaa heidän lähtiessä#mme 
+
+1581. *Merja laulaa heidän lähtiessä#nne 
+
+1582.  Merja laulaa lähteäkse#ni 
+	
+1583.  Merja laulaa lähteäkse#si 
+	
+1584.  Merja laulaa lähteäkse#nsA 
+	
+1585.  Merja laulaa lähteäkse#mme 
+	
+1586.  Merja laulaa lähteäkse#nne 
+	
+1587.  Merja laulaa tehdäkse#ni työtä 
+	
+1588.  Merja laulaa tehdäkse#si työtä 
+	
+1589.  Merja laulaa tehdäkse#An työtä 
+	
+1590.  Merja laulaa tehdäkse#mme työtä 
+	
+1591.  Merja laulaa tehdäkse#nne työtä 
+	
+1592. *Merja laulaa lähteäkse 
+
+1593. *Merja laulaa tehdäkse työtä 
+
+1594. *Merja laulaa minun lähteäkse#ni 
+
+1595. *Merja laulaa sinun lähteäkse#si 
+
+1596. *Merja laulaa hänen lähteäkse#nsA 
+
+1597. *Merja laulaa Pekan lähteäkse#nsA 
+
+1598. *Merja laulaa sen lähteäkse#nsA 
+
+1599. *Merja laulaa meidän lähteäkse#mme 
+
+1600. *Merja laulaa teidän lähteäkse#nne 
+
+1601. *Merja laulaa heidän lähteäkse#nsA 
+
+1602. *Merja laulaa niiden lähteäkse#nsA 
+
+1603. *Merja laulaa miesten lähteäkse#nsA 
+
+1604. *Merja laulaa minun lähteäkse#si 
+
+1605. *Merja laulaa minun lähteäkse#nsA 
+
+1606. *Merja laulaa minun lähteäkse#mme 
+
+1607. *Merja laulaa minun lähteäkse#nne 
+
+1608. *Merja laulaa sinun lähteäkse#ni 
+
+1609. *Merja laulaa sinun lähteäkse#nsA 
+
+1610. *Merja laulaa sinun lähteäkse#mme 
+
+1611. *Merja laulaa sinun lähteäkse#nne 
+
+1612. *Merja laulaa sinun lähteäkse#nsA 
+
+1613. *Merja laulaa hänen lähteäkse#si 
+
+1614. *Merja laulaa hänen lähteäkse#mme 
+
+1615. *Merja laulaa hänen lähteäkse#nne 
+
+1616. *Merja laulaa meidän lähteäkse#ni 
+
+1617. *Merja laulaa meidän lähteäkse#si 
+
+1618. *Merja laulaa meidän lähteäkse#nsA 
+
+1619. *Merja laulaa meidän lähteäkse#nne 
+
+1620. *Merja laulaa teidän lähteäkse#ni 
+
+1621. *Merja laulaa teidän lähteäkse#si 
+
+1622. *Merja laulaa teidän lähteäkse#nsA 
+
+1623. *Merja laulaa teidän lähteäkse#mme 
+
+1624. *Merja laulaa heidän lähteäkse#ni 
+
+1625. *Merja laulaa heidän lähteäkse#si 
+
+1626. *Merja laulaa heidän lähteäkse#mme 
+
+1627. *Merja laulaa heidän lähteäkse#nne 
+
+1628.  Merja laulaa lähdettyä#ni 
+	
+1629.  Merja laulaa lähdettyä#si 
+	
+1630.  Merja laulaa lähdettyä#nsA 
+	
+1631.  Merja laulaa lähdettyä#mme 
+	
+1632.  Merja laulaa lähdettyä#nne 
+	
+1633.  Merja laulaa tehtyä#ni työtä 
+	
+1634.  Merja laulaa tehtyä#si työtä 
+	
+1635.  Merja laulaa tehtyä#nsA työtä 
+	
+1636.  Merja laulaa tehtyä#mme työtä 
+	
+1637.  Merja laulaa tehtyä#nne työtä 
+	
+1638.  Merja laulaa minun lähdettyä 
+	
+1639.  Merja laulaa sinun lähdettyä 
+	
+1640.  Merja laulaa hänen lähdettyä 
+	
+1641.  Merja laulaa sen2 lähdettyä 
+	
+1642.  Merja laulaa Pekan lähdettyä 
+	
+1643.  Merja laulaa miehen lähdettyä 
+	
+1644.  Merja laulaa miesten lähdettyä 
+	
+1645.  Merja laulaa meidän lähdettyä 
+	
+1646.  Merja laulaa teidän lähdettyä 
+	
+1647.  Merja laulaa heidän lähdettyä 
+	
+1648.  Merja laulaa niiden lähdettyä 
+	
+1649.  Merja laulaa minun tehtyä työtä 
+	
+1650.  Merja laulaa sinun tehtyä työtä 
+	
+1651.  Merja laulaa hänen tehtyä työtä 
+	
+1652.  Merja laulaa sen2 tehtyä työtä 
+	
+1653.  Merja laulaa Pekan tehtyä työtä 
+	
+1654.  Merja laulaa miehen tehtyä työtä 
+	
+1655.  Merja laulaa miesten tehtyä työtä 
+	
+1656.  Merja laulaa meidän tehtyä työtä 
+	
+1657.  Merja laulaa teidän tehtyä työtä 
+	
+1658.  Merja laulaa heidän tehtyä työtä 
+	
+1659.  Merja laulaa niiden tehtyä työtä 
+	
+1660. *Merja laulaa minun lähdettyä#ni 
+
+1661. *Merja laulaa sinun lähdettyä#si 
+
+1662. *Merja laulaa hänen lähdettyä#nsA 
+
+1663. *Merja laulaa meidän lähdettyä#mme 
+
+1664. *Merja laulaa teidän lähdettyä#nne 
+
+1665. *Merja laulaa minun tehtyä#ni työtä 
+
+1666. *Merja laulaa sinun tehtyä#si työtä 
+
+1667. *Merja laulaa hänen tehtyä#nsA työtä 
+
+1668. *Merja laulaa meidän tehtyä#mme työtä 
+
+1669. *Merja laulaa teidän tehtyä#nne työtä 
+
+1670. *Merja laulaa lähdettyä 
+
+1671. *Merja laulaa tehtyä työtä 
+
+1672. *Merja laulaa Pekan lähdettyä#nsA 
+
+1673. *Merja laulaa sen lähdettyä#nsA 
+
+1674. *Merja laulaa miehen lähdettyä#nsA 
+
+1675. *Merja laulaa niiden lähdettyä#nsA 
+
+1676. *Merja laulaa miesten lähdettyä#nsA 
+
+1677. *Merja laulaa minun lähdettyä#si 
+
+1678. *Merja laulaa minun lähdettyä#nsA 
+
+1679. *Merja laulaa minun lähdettyä#mme 
+
+1680. *Merja laulaa minun lähdettyä#nne 
+
+1681. *Merja laulaa minun tehtyä#si työtä 
+
+1682. *Merja laulaa minun tehtyä#nsA työtä 
+
+1683. *Merja laulaa minun tehtyä#mme työtä 
+
+1684. *Merja laulaa minun tehtyä#nne työtä 
+
+1685. *Merja laulaa sinun lähdettyä#ni 
+
+1686. *Merja laulaa sinun lähdettyä#nsA 
+
+1687. *Merja laulaa sinun lähdettyä#mme 
+
+1688. *Merja laulaa sinun lähdettyä#nne 
+
+1689. *Merja laulaa sinun tehtyä#ni työtä 
+
+1690. *Merja laulaa sinun tehtyä#nsA työtä 
+
+1691. *Merja laulaa sinun tehtyä#mme työtä 
+
+1692. *Merja laulaa sinun tehtyä#nne työtä 
+
+1693. *Merja laulaa hänen lähdettyä#ni 
+
+1694. *Merja laulaa hänen lähdettyä#si 
+
+1695. *Merja laulaa hänen lähdettyä#mme 
+
+1696. *Merja laulaa hänen lähdettyä#nne 
+
+1697. *Merja laulaa hänen tehtyä#ni työtä 
+
+1698. *Merja laulaa hänen tehtyä#si työtä 
+
+1699. *Merja laulaa hänen tehtyä#mme työtä 
+
+1700. *Merja laulaa hänen tehtyä#nne työtä 
+
+1701. *Merja laulaa meidän lähdettyä#ni 
+
+1702. *Merja laulaa meidän lähdettyä#si 
+
+1703. *Merja laulaa meidän lähdettyä#nsA 
+
+1704. *Merja laulaa meidän lähdettyä#nne 
+
+1705. *Merja laulaa meidän tehtyä#ni työtä 
+
+1706. *Merja laulaa meidän tehtyä#si työtä 
+
+1707. *Merja laulaa meidän tehtyä#nsA työtä 
+
+1708. *Merja laulaa meidän tehtyä#nne työtä 
+
+1709. *Merja laulaa teidän lähdettyä#ni 
+
+1710. *Merja laulaa teidän lähdettyä#si 
+
+1711. *Merja laulaa teidän lähdettyä#nsA 
+
+1712. *Merja laulaa teidän lähdettyä#mme 
+
+1713. *Merja laulaa teidän tehtyä#ni työtä 
+
+1714. *Merja laulaa teidän tehtyä#si työtä 
+
+1715. *Merja laulaa teidän tehtyä#nsA työtä 
+
+1716. *Merja laulaa teidän tehtyä#mme työtä 
+
+1717. *Merja laulaa heidän lähdettyä#ni 
+
+1718. *Merja laulaa heidän lähdettyä#si 
+
+1719. *Merja laulaa heidän lähdettyä#mme 
+
+1720. *Merja laulaa heidän lähdettyä#nne 
+
+1721. *Merja laulaa heidän tehtyä#ni työtä 
+
+1722. *Merja laulaa heidän tehtyä#si työtä 
+
+1723. *Merja laulaa heidän tehtyä#mme työtä 
+
+1724. *Merja laulaa heidän tehtyä#nne työtä 
+
+1725. *Merja laulaa sen2 lähdettyä#nsA 
+
+1726. *Merja laulaa Pekan lähdettyä#nsA 
+
+1727. *Merja laulaa miehen lähdettyä#nsA 
+
+1728. *Merja laulaa miesten lähdettyä#nsA 
+
+1729. *Merja laulaa sen2 tehtyä#nsA työtä 
+
+1730. *Merja laulaa Pekan tehtyä#nsA työtä 
+
+1731. *Merja laulaa miehen tehtyä#nsA työtä 
+
+1732. *Merja laulaa miesten tehtyä#nsA työtä 
+
+1733. *Merja laulaa niiden tehtyä#nsA työtä 
+
+1734. *Merja laulaa sen2 lähdettyä#ni 
+
+1735. *Merja laulaa Pekan lähdettyä#ni 
+
+1736. *Merja laulaa miehen lähdettyä#ni 
+
+1737. *Merja laulaa miesten lähdettyä#ni 
+
+1738. *Merja laulaa sen2 tehtyä#ni työtä 
+
+1739. *Merja laulaa Pekan tehtyä#ni työtä 
+
+1740. *Merja laulaa miehen tehtyä#ni työtä 
+
+1741. *Merja laulaa miesten tehtyä#ni työtä 
+
+1742. *Merja laulaa sen2 lähdettyä#si 
+
+1743. *Merja laulaa Pekan lähdettyä#si 
+
+1744. *Merja laulaa miehen lähdettyä#si 
+
+1745. *Merja laulaa miesten lähdettyä#si 
+
+1746. *Merja laulaa sen2 tehtyä#si työtä 
+
+1747. *Merja laulaa Pekan tehtyä#si työtä 
+
+1748. *Merja laulaa miehen tehtyä#si työtä 
+
+1749. *Merja laulaa miesten tehtyä#si työtä 
+
+1750. *Merja laulaa sen2 lähdettyä#mme 
+
+1751. *Merja laulaa Pekan lähdettyä#mme 
+
+1752. *Merja laulaa miehen lähdettyä#mme 
+
+1753. *Merja laulaa miesten lähdettyä#mme 
+
+1754. *Merja laulaa sen2 tehtyä#mme työtä 
+
+1755. *Merja laulaa Pekan tehtyä#mme työtä 
+
+1756. *Merja laulaa miehen tehtyä#mme työtä 
+
+1757. *Merja laulaa miesten tehtyä#mme työtä 
+
+1758. *Merja laulaa sen2 lähdettyä#nne 
+
+1759. *Merja laulaa Pekan lähdettyä#nne 
+
+1760. *Merja laulaa miehen lähdettyä#nne 
+
+1761. *Merja laulaa miesten lähdettyä#nne 
+
+1762. *Merja laulaa sen2 tehtyä#nne työtä 
+
+1763. *Merja laulaa Pekan tehtyä#nne työtä 
+
+1764. *Merja laulaa miehen tehtyä#nne työtä 
+
+1765. *Merja laulaa miesten tehtyä#nne työtä 
+
+1766.  Pekka näki hänet lähtemässä 
+	
+1767.  Pekka näki hänet tekemässä työtä 
+	
+1768. *Pekka näki hänet lähtemässä#ni 
+
+1769. *Pekka näki hänet lähtemässä#si 
+
+1770. *Pekka näki hänet lähtemässä#nsA 
+
+1771. *Pekka näki hänet lähtemässä#mme 
+
+1772. *Pekka näki hänet lähtemässä#nne 
+
+1773. *Pekka näki hänet tekemässä#ni työtä 
+
+1774. *Pekka näki hänet tekemässä#si työtä 
+
+1775. *Pekka näki hänet tekemässä#nsA työtä 
+
+1776. *Pekka näki hänet tekemässä#mme työtä 
+
+1777. *Pekka näki hänet tekemässä#nne työtä 
+
+1778. *Pekka näki hänet minun lähtemässä#ni 
+
+1779. *Pekka näki hänet sinun lähtemässä#si 
+
+1780. *Pekka näki hänet hänen lähtemässä#nsA 
+
+1781. *Pekka näki hänet meidän lähtemässä#mme 
+
+1782. *Pekka näki hänet teidän lähtemässä#nne 
+
+1783. *Pekka näki hänet heidän lähtemässä#nsA 
+
+1784. *Pekka näki hänet minun tekemässä#ni työtä 
+
+1785. *Pekka näki hänet sinun tekemässä#si työtä 
+
+1786. *Pekka näki hänet hänen tekemässä#nsA työtä 
+
+1787. *Pekka näki hänet meidän tekemässä#mme työtä 
+
+1788. *Pekka näki hänet teidän tekemässä#nne työtä 
+
+1789. *Pekka näki hänet heidän tekemässä#nsA työtä 
+
+1790.  Pekka nukkuu kuorsaten 
+	
+1791. *Pekka nukkuu minun kuorsaten 
+
+1792. *Pekka nukkuu sinun kuorsaten 
+
+1793. *Pekka nukkuu hänen kuorsaten 
+
+1794. *Pekka nukkuu meidän kuorsaten 
+
+1795. *Pekka nukkuu teidän kuorsaten 
+
+1796. *Pekka nukkuu heidän kuorsaten 
+
+1797. *Pekka nukkuu miehen kuorsaten 
+
+1798. *Pekka nukkuu Merjan kuorsaten 
+
+1799. *Pekka nukkuu sen kuorsaten 
+
+1800. *Pekka nukkuu kuorsaten#ni 
+
+1801. *Pekka nukkuu kuorsaten#si 
+
+1802. *Pekka nukkuu kuorsaten#nsA 
+
+1803. *Pekka nukkuu kuorsaten#mme 
+
+1804. *Pekka nukkuu kuorsaten#nne 
+
+1805. *Pekka nukkuu kuorsaten#nsA 
+
+1806. *Pekka nukkuu kuorsaten#nsA 
+
+1807. *Pekka nukkuu minun kuorsaten#ni 
+
+1808. *Pekka nukkuu sinun kuorsaten#si 
+
+1809. *Pekka nukkuu hänen kuorsaten#nsA 
+
+1810. *Pekka nukkuu meidän kuorsaten#mme 
+
+1811. *Pekka nukkuu teidän kuorsaten#nne 
+
+1812. *Pekka nukkuu heidän kuorsaten#nsA 
+
+1813. *Pekka nukkuu miehen kuorsaten#nsA 
+
+1814. *Pekka nukkuu miesten kuorsaten#nsA 
+
+1815. *Pekka nukkuu niiden kuorsaten#nsA 
+
+1816. *Pekka nukkuu Merjan kuorsaten#nsA 
+
+1817. *Pekka nukkuu sen kuorsaten#nsA 
+
+1818.  minun tekemä#ni kello 
+	
+1819.  se' minun tekemä#ni kello hävisi 
+	
+1820.  se' sinun tekemä#si kello hävisi 
+	
+1821.  se' hänen tekemä#nsA kello hävisi 
+	
+1822.  se' meidän tekemä#mme kello hävisi 
+	
+1823.  se' teidän tekemä#nne kello hävisi 
+	
+1824.  se' heidän tekemä#nsA kello hävisi 
+	
+1825.  se' tekemä#ni kello hävisi 
+	
+1826.  se' tekemä#si kello hävisi 
+	
+1827.  se' tekemä#mme kello hävisi 
+	
+1828.  se' tekemä#nne kello hävisi 
+	
+1829.  se' minun tekemä kello hävisi 
+	
+1830.  se' sinun tekemä kello hävisi 
+	
+1831.  se' hänen tekemä kello hävisi 
+	
+1832.  se' Pekan tekemä kello hävisi 
+	
+1833.  se' sen tekemä kello hävisi 
+	
+1834.  se' miehen tekemä kello hävisi 
+	
+1835.  se' miesten tekemä kello hävisi 
+	
+1836.  se' niiden tekemä kello hävisi 
+	
+1837.  se' meidän tekemä kello hävisi 
+	
+1838.  se' teidän tekemä kello hävisi 
+	
+1839.  se' heidän tekemä kello hävisi 
+	
+1840. *se' tekemä kello hävisi 
+
+1841.  se' tekemä#nsA kello hävisi 
+	
+1842. *se' minun tekemä#si kello hävisi 
+
+1843. *se' minun tekemä#nsA kello hävisi 
+
+1844. *se' minun tekemä#mme kello hävisi 
+
+1845. *se' minun tekemä#nne kello hävisi 
+
+1846. *se' sinun tekemä#ni kello hävisi 
+
+1847. *se' sinun tekemä#nsA kello hävisi 
+
+1848. *se' sinun tekemä#mme kello hävisi 
+
+1849. *se' sinun tekemä#nne kello hävisi 
+
+1850. *se' hänen tekemä#ni kello hävisi 
+
+1851. *se' hänen tekemä#si kello hävisi 
+
+1852. *se' hänen tekemä#mme kello hävisi 
+
+1853. *se' hänen tekemä#nne kello hävisi 
+
+1854. *se' meidän tekemä#ni kello hävisi 
+
+1855. *se' meidän tekemä#si kello hävisi 
+
+1856. *se' meidän tekemä#nsA kello hävisi 
+
+1857. *se' meidän tekemä#nne kello hävisi 
+
+1858. *se' teidän tekemä#ni kello hävisi 
+
+1859. *se' teidän tekemä#si kello hävisi 
+
+1860. *se' teidän tekemä#nsA kello hävisi 
+
+1861. *se' teidän tekemä#mme kello hävisi 
+
+1862. *se' heidän tekemä#ni kello hävisi 
+
+1863. *se' heidän tekemä#si kello hävisi 
+
+1864. *se' heidän tekemä#nne kello hävisi 
+
+1865. *se' heidän tekemä#mme kello hävisi 
+
+1866. *se' Pekan tekemä#nsA kello hävisi 
+
+1867. *se' miehen tekemä#nsA kello hävisi 
+
+1868. *se' sen tekemä#nsA kello hävisi 
+
+1869.  minua ihaileva tyttö 
+	
+1870.  se' minua ihaileva tyttö hävisi 
+	
+1871.  se' sinua ihaileva tyttö hävisi 
+	
+1872.  se' häntä ihaileva tyttö hävisi 
+	
+1873.  se' Pekkaa ihaileva tyttö hävisi 
+	
+1874.  se' sitä ihaileva tyttö hävisi 
+	
+1875.  se' miestä ihaileva tyttö hävisi 
+	
+1876.  se' miehiä ihaileva tyttö hävisi 
+	
+1877.  se' niitä ihaileva tyttö hävisi 
+	
+1878.  se' meitä ihaileva tyttö hävisi 
+	
+1879.  se' teitä ihaileva tyttö hävisi 
+	
+1880.  se' heitä ihaileva tyttö hävisi 
+	
+1881. *se' minua ihaileva#ni tyttö hävisi 
+
+1882. *se' sinua ihaileva#si tyttö hävisi 
+
+1883. *se' häntä ihaileva#nsA tyttö hävisi 
+
+1884. *se' meitä ihaileva#mme tyttö hävisi 
+
+1885. *se' teitä ihaileva#nne tyttö hävisi 
+
+1886. *se' heitä ihaileva#nsA tyttö hävisi 
+
+1887. *se' minun ihaileva#ni tyttö hävisi 
+
+1888. *se' sinun ihaileva#si tyttö hävisi 
+
+1889. *se' hänen ihaileva#nsA tyttö hävisi 
+
+1890. *se' meidän ihaileva#mme tyttö hävisi 
+
+1891. *se' teidän ihaileva#nne tyttö hävisi 
+
+1892. *se' heidän ihaileva#nsA tyttö hävisi 
+
+1893. *se' minun ihaileva tyttö hävisi 
+
+1894. *se' sinun ihaileva tyttö hävisi 
+
+1895. *se' hänen ihaileva tyttö hävisi 
+
+1896. *se' Pekan ihaileva tyttö hävisi 
+
+1897. *se' miehen ihaileva tyttö hävisi 
+
+1898. *se' sen ihaileva tyttö hävisi 
+
+1899. *se' miesten ihaileva tyttö hävisi 
+
+1900. *se' niiden ihaileva tyttö hävisi 
+
+1901. *se' meidän ihaileva tyttö hävisi 
+
+1902. *se' teidän ihaileva tyttö hävisi 
+
+1903. *se' heidän ihaileva tyttö hävisi 
+
+1904.  kuka tekee työtä 
+	
+1905.  kuka ei tee työtä 
+	
+1906.  mitä_DP teen minä 
+	
+1907.  minä#[kO] teen työtä 
+	
+1908.  sinä#[kO] teet työtä 
+	
+1909.  hän#[kO] tekee työtä 
+	
+1910.  me#[kO] teemme työtä 
+	
+1911.  te#[kO] teette työtä 
+	
+1912.  he#[kO] tekevät työtä 
+	
+1913. *mitä_DP tekee minä 
+
+1914. *minä#[kO] teet työtä 
+
+1915. *minä#[kO] tekee työtä 
+
+1916. *minä#[kO] teemme työtä 
+
+1917. *minä#[kO] teette työtä 
+
+1918. *minä#[kO] tekevät työtä 
+
+1919. *sinä#[kO] teen työtä 
+
+1920. *sinä#[kO] tekee työtä 
+
+1921. *sinä#[kO] teemme työtä 
+
+1922. *sinä#[kO] teette työtä 
+
+1923. *sinä#[kO] tekevät työtä 
+
+1924. *hän#[kO] teen työtä 
+
+1925. *hän#[kO] teet työtä 
+
+1926. *hän#[kO] teemme työtä 
+
+1927. *hän#[kO] teette työtä 
+
+1928. *hän#[kO] tekevät työtä 
+
+1929. *me#[kO] teen työtä 
+
+1930. *me#[kO] teet työtä 
+
+1931. *me#[kO] tekee työtä 
+
+1932. *me#[kO] teette työtä 
+
+1933. *me#[kO] tekevät työtä 
+
+1934. *te#[kO] teen työtä 
+
+1935. *te#[kO] teet työtä 
+
+1936. *te#[kO] tekee työtä 
+
+1937. *te#[kO] teemme työtä 
+
+1938. *te#[kO] tekevät työtä 
+
+1939. *he#[kO] teen työtä 
+
+1940. *he#[kO] teet työtä 
+
+1941. *he#[kO] tekee työtä 
+
+1942. *he#[kO] teemme työtä 
+
+1943. *he#[kO] teette työtä 
+
+1944. *kuka tee#n työtä 
+
+1945. *kuka e#n tee työtä 
+
+1946. *kuka tee#t työtä 
+
+1947. *kuka e#t tee työtä 
+
+1948. *kuka tee#mme työtä 
+
+1949. *kuka e#mme tee työtä 
+
+1950. *kuka tee#tte työtä 
+
+1951. *kuka e#tte tee työtä 
+
+1952. *kuka tee#vAt työtä 
+
+1953. *kuka e#vAt tee työtä 
+
+1954.  kenen lähellä hän nukkuu 
+	
+1955.  minun#[kO] lähellä#ni hän nukkuu 
+	
+1956.  minun#[kO] lähellä hän nukkuu 
+	
+1957.  minua#[kO] lähellä hän nukkuu 
+	
+1958. *kenen lähellä#nsA hän nukkuu 
+
+1959. *Pekan#[kO] lähellä#nsA hän nukkuu 
+
+1960. *miehen#[kO] lähellä#nsA hän nukkuu 
+
+1961. *minun#[kO] lähellä#si hän nukkuu 
+
+1962. *minun#[kO] lähellä#An hän nukkuu 
+
+1963. *minun#[kO] lähellä#mme hän nukkuu 
+
+1964. *minun#[kO] lähellä#nne hän nukkuu 
+
+1965. *minun#[kO] lähellä#nsA hän nukkuu 
+
+1966. *minun#[kO] lähellä#si hän nukkuu 
+
+1967. *minua#[kO] lähellä#ni hän nukkuu 
+
+1968. *minua#[kO] lähellä#si hän nukkuu 
+
+1969. *minua#[kO] lähellä#An hän nukkuu 
+
+1970. *minua#[kO] lähellä#mme hän nukkuu 
+
+1971. *minua#[kO] lähellä#nne hän nukkuu 
+
+1972.  työtä teen minä 
+	
+1973.  minä teen työtä 
+	
+1974. *työtä teet minä 
+
+1975. *työtä tekee minä 
+
+1976. *työtä teemme minä 
+
+1977. *työtä teette minä 
+
+1978. *työtä tekevät minä 
+
+1979. *työtä teen sinä 
+
+1980. *työtä tekee sinä 
+
+1981. *työtä teemme sinä 
+
+1982. *työtä teette sinä 
+
+1983. *työtä tekevät sinä 
+
+1984. *työtä teen hän 
+
+1985. *työtä teen hän 
+
+1986. *työtä teemme hän 
+
+1987. *työtä teette hän 
+
+1988. *työtä tekevät hän 
+
+1989. *työtä teen me 
+
+1990. *työtä teet me 
+
+1991. *työtä tekee me 
+
+1992. *työtä teette me 
+
+1993. *työtä tekevät me 
+
+1994. *työtä teen te 
+
+1995. *työtä teet te 
+
+1996. *työtä tekee te 
+
+1997. *työtä teemme te 
+
+1998. *työtä tekevät te 
+
+1999. *työtä teen he 
+
+2000. *työtä teet he 
+
+2001. *työtä tekee he 
+
+2002. *työtä teette he 
+
+2003. *työtä teemme he 
+
+2004.  John wants to_inf leave 
+	
+2005.  John wants Mary to_inf leave 
+	
+2006. *John wants to_inf leave#[-0] 
+
+2007. *John wants to_inf leave#[-s] 
+
+2008. *John wants Mary to_inf leave#[-0] 
+
+2009. *John wants Mary to_inf leave#[-s] 
+
+2010.  John admires Mary 
+	
+2011.  Mary was admired 
+	
+2012.  they were admired 
+	
+2013. *they was admired 
+
+2014. *Mary were admired 
+
+2015. *was John admired 
+
+2016. *Mary was admired John 
+
+2017. *was they admired 
+
+2018. *were Mary admired 
+
+2019. *was they admired John 
+
+2020. *were Mary admired John 
+
+2021.  John wants to_inf leave 
+	
+2022.  John seems to_inf leave 
+	
+2023.  they seem to_inf leave 
+	
+2024. *John want to_inf leave 
+
+2025. *John seem to_inf leave 
+
+2026. *they wants to_inf leave 
+
+2027. *they seems to_inf leave 
+
+2028. *wants John to_inf leave 
+
+2029. *seems John to_inf leave 
+
+2030. *wants to_inf John leave 
+
+2031. *seems to_inf John leave 
+
+2032. *John seems Mary to_inf leave 
+
+2033.  lähden 
+	
+2034.  lähdet 
+	
+2035.  lähdemme 
+	
+2036.  lähdette 
+	
+2037. *lähtee 
+
+2038. *lähtevät 
+
+2039. *leave1 
+
+2040. *leaves 
+
+2041.  Pekka sanoo että lähden 
+	
+2042.  Pekka sanoo että lähdet 
+	
+2043.  Pekka sanoo että lähtee 
+	
+2044.  Pekka sanoo että lähdemme 
+	
+2045.  Pekka sanoo että lähdette 
+	
+2046. *Pekka sanoo että lähtevät 
+
+2047.  minun auto#ni lähtee 
+	
+2048.  auto#ni lähtee 
+	
+2049.  auto lähtee 
+	
+2050.  sinun auto#si lähtee 
+	
+2051.  auto#si lähtee 
+	
+2052.  heidän auto#nsA lähtee 
+	
+2053.  hänen auto#nsA lähtee 
+	
+2054.  meidän auto#mme lähtee 
+	
+2055.  auto#mme lähtee 
+	
+2056.  teidän auto#nne lähtee 
+	
+2057.  auto#nne lähtee 
+	
+2058. *auto#nsA lähtee 
+
+2059.  Pekka ihailee minun autoa#ni 
+	
+2060.  Pekka ihailee sinun autoa#si 
+	
+2061.  Pekka ihailee hänen autoa#An 
+	
+2062.  Pekka ihailee meidän autoa#mme 
+	
+2063.  Pekka ihailee teidän autoa#nne 
+	
+2064.  Pekka ihailee heidän autoa#An 
+	
+2065.  Pekka ihailee autoa#ni 
+	
+2066.  Pekka ihailee autoa#si 
+	
+2067.  Pekka ihailee autoa#An 
+	
+2068.  Pekka ihailee autoa#mme 
+	
+2069.  Pekka ihailee autoa#nne 
+	
+2070.  Pekka ihailee autoa#An 
+	
+2071.  io adoro Luisa 
+	
+2072.  tu adori Luisa 
+	
+2073.  lui adora Luisa 
+	
+2074.  noi adoriamo Luisa 
+	
+2075.  voi adorate Luisa 
+	
+2076.  loro adorano Luisa 
+	
+2077.  adoro Luisa 
+	
+2078.  adori Luisa 
+	
+2079.  adora Luisa 
+	
+2080.  adoriamo Luisa 
+	
+2081.  adorate Luisa 
+	
+2082.  adorano Luisa 
+	
+2083.  Pekka sanoo että ei lähde 
+	
+2084.  Pekka sanoo etten lähde 
+	
+2085.  Pekka sanoo ettet lähde 
+	
+2086.  Pekka sanoo ettei lähde 
+	
+2087.  Pekka sanoo ettemme lähde 
+	
+2088.  Pekka sanoo ettette lähde 
+	
+2089.  Pekka sanoo etteivät lähde 
+	
+2090.  Pekka sanoo e#n#että lähde 
+	
+2091.  Pekka sanoo e#t#että lähde 
+	
+2092.  Pekka sanoo e#[V]#että lähde 
+	
+2093.  Pekka sanoo e#mme#että lähde 
+	
+2094.  Pekka sanoo e#tte#että lähde 
+	
+2095.  Pekka sanoo e#vAt#että lähde 
+	
+2096. *Pekka sanoo että#n en lähde 
+
+2097. *Pekka sanoo että#t et lähde 
+
+2098. *Pekka sanoo että#[V] ei lähde 
+
+2099. *Pekka sanoo että#mme emme lähde 
+
+2100. *Pekka sanoo että#tte ette lähde 
+
+2101. *Pekka sanoo että#vAt eivät lähde 
+
+2102.  Pekka sanoo että'#sg_ minä en lähde 
+	
+2103.  Pekka sanoo että'#sg_ sinä et lähde 
+	
+2104.  Pekka sanoo että'#sg_ hän ei lähde 
+	
+2105.  Pekka sanoo että'#pl_ me emme lähde 
+	
+2106.  Pekka sanoo että'#pl_ te ette lähde 
+	
+2107.  Pekka sanoo että'#pl_ he eivät lähde 
+	
+2108. *Pekka sanoo että'#pl_ minä en lähde 
+
+2109. *Pekka sanoo että'#pl_ sinä et lähde 
+
+2110. *Pekka sanoo että'#pl_ hän ei lähde 
+
+2111. *Pekka sanoo että'#sg_ me emme lähde 
+
+2112. *Pekka sanoo että'#sg_ te ette lähde 
+
+2113. *Pekka sanoo että'#sg_ he eivät lähde 
+
+2114.  minä sano#n uskovan#ni että minä lähde#n 
+	
+2115.  sinä sano#t uskovan#si että minä lähde#n 
+	
+2116.  hän sano#[V] uskovan#nsA että minä lähde#n 
+	
+2117.  Pekka sano#[V] uskovan#nsA että minä lähde#n 
+	
+2118.  mies sano#[V] uskovan#nsA että minä lähde#n 
+	
+2119.  se sano#[V] uskovan#nsA että minä lähde#n 
+	
+2120.  me sano#mme uskovan#mme että minä lähde#n 
+	
+2121.  te sano#tte uskovan#nne että minä lähde#n 
+	
+2122.  he sano#vAt uskovan#nsA että minä lähde#n 
+	
+2123.  minä sano#n uskovan#ni että Merja lähtee 
+	
+2124.  sinä sano#t uskovan#si että Merja lähtee 
+	
+2125.  hän sano#[V] uskovan#nsA että Merja lähtee 
+	
+2126.  Pekka sano#[V] uskovan#nsA että Merja lähtee 
+	
+2127.  mies sano#[V] uskovan#nsA että Merja lähtee 
+	
+2128.  se sano#[V] uskovan#nsA että Merja lähtee 
+	
+2129.  me sano#mme uskovan#mme että Merja lähtee 
+	
+2130.  te sano#tte uskovan#nne että Merja lähtee 
+	
+2131.  he sano#vAt uskovan#nsA että Merja lähtee 
+	
+2132.  minä sano#n uskovan#ni että te lähde#tte 
+	
+2133.  sinä sano#t uskovan#si että te lähde#tte 
+	
+2134.  hän sano#[V] uskovan#nsA että te lähde#tte 
+	
+2135.  Pekka sano#[V] uskovan#nsA että te lähde#tte 
+	
+2136.  mies sano#[V] uskovan#nsA että te lähde#tte 
+	
+2137.  se sano#[V] uskovan#nsA että te lähde#tte 
+	
+2138.  me sano#mme uskovan#mme että te lähde#tte 
+	
+2139.  te sano#tte uskovan#nne että te lähde#tte 
+	
+2140.  he sano#vAt uskovan#nsA että te lähde#tte 
+	
+2141. *sinä sano#t uskovan#nsA että Pekka lähtee 
+
+2142. *me sano#mme uskovan#nsA että Pekka lähtee 
+
+2143. *te sano#tte uskovan#nsA että Pekka lähtee 
+
+2144. *minä lähde#n#n 
+
+2145. *sinä lähde#t#t 
+
+2146. *hän lähde#[V]#[V] 
+
+2147. *me lähde#mme#mme 
+
+2148. *te lähde#tte#tte 
+
+2149. *he lähde#vAt#vAt 
+
+2150. *hän nukkuu minun lähellä#ni#ni 
+
+2151. *hän nukkuu sinun lähellä#si#si 
+
+2152. *hän nukkuu hänen lähellä#nsA#nsA 
+
+2153. *hän nukkuu meidän lähellä#mme#mme 
+
+2154. *hän nukkuu teidän lähellä#nne#nne 
+
+2155. *hän nukkuu heidän lähellä#nsA#nsA 
+
+2156. *hän nukkuu minun lähellä#n#ni 
+
+2157. *hän nukkuu sinun lähellä#t#si 
+
+2158. *hän nukkuu hänen lähellä#[V]#nsA 
+
+2159. *hän nukkuu meidän lähellä#mme#mme 
+
+2160. *hän nukkuu teidän lähellä#tte#nne 
+
+2161. *hän nukkuu heidän lähellä#vAt#nsA 
+
+2162. *minä lähde#ni 
+
+2163. *sinä lähde#si 
+
+2164. *hän lähde#nsA 
+
+2165. *te lähde#nne 
+
+2166. *he lähde#nsA 
+
+2167. *hän nukkuu minun lähellä#n 
+
+2168. *hän nukkuu sinun lähellä#t 
+
+2169. *hän nukkuu hänen lähellä#[V] 
+
+2170. *hän nukkuu teidän lähellä#tte 
+
+2171. *hän nukkuu heidän lähellä#vAt 
+

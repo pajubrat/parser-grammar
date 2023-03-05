@@ -4,12 +4,14 @@ from SEM_pragmatic_pathway import Discourse
 from SEM_control_and_thematic_roles import LF_Recovery
 from SEM_quantifiers_numerals_denotations import QuantifiersNumeralsDenotations
 from SEM_predicates_relations_events import PredicatesRelationsEvents
+from SEM_thematic_roles import ThematicRoles
 from global_cognition import GlobalCognition
 
 class NarrowSemantics:
     def __init__(self, brain_model):
         self.operator_variable_module = OperatorVariableModule(self)
         self.argument_recovery_module = LF_Recovery(brain_model)
+        self.thematic_roles_module = ThematicRoles()
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
         self.pragmatic_pathway = Discourse(self)
         self.predicates_relations_events_module = PredicatesRelationsEvents(self)
@@ -78,7 +80,8 @@ class NarrowSemantics:
         self.predicates_relations_events_module.reset()
         self.semantic_interpretation_failed = False
         self.predicate_argument_dependencies = []
-        self.semantic_interpretation = {'Recovery': [],
+        self.semantic_interpretation = {'Control': [],
+                                        'Thematic roles': [],
                                         'Arguments': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -94,7 +97,8 @@ class NarrowSemantics:
         self.operator_variable_module.interpretation_failed = False
         self.pragmatic_pathway.interpretation_failed = False
         self.argument_recovery_module.interpretation_failed = False
-        self.semantic_interpretation = {'Recovery': [],
+        self.semantic_interpretation = {'Control': [],
+                                        'Thematic roles': [],
                                         'Arguments': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -121,10 +125,12 @@ class NarrowSemantics:
             if ps.primitive():
                 if self.brain_model.local_file_system.settings['generate_argument_links'] and ps.get_dPHI():
                     self.semantic_interpretation['Arguments'] = self.semantic_interpretation['Arguments'] + self.argument_recovery_module.calculate_arguments(ps)
-                # Seek recovery for unvalued features, if the host is not referential (because the case is still unclear) but include 3p PX with [D_]
-                # Most likely all referential predicates are included here, but this must be studied with a separate dataset
                 if ps.is_unvalued() and not (ps.referential() and not ps.check({'PHI:DET:_'})):
-                    self.semantic_interpretation['Recovery'].append(self.argument_recovery_module.control(ps))
+                    self.semantic_interpretation['Control'].append(self.argument_recovery_module.control(ps))
+                if self.brain_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_assigner():
+                    thematic_assignment = self.thematic_roles_module.reconstruct(ps)
+                    if thematic_assignment:
+                        self.semantic_interpretation['Thematic roles'].append(thematic_assignment)
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
                 if self.brain_model.local_file_system.settings['project_objects']:

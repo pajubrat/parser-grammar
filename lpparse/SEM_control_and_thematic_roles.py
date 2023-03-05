@@ -16,7 +16,7 @@ class LF_Recovery:
             argument = probe.top().return_constituent_with(feature_to_search)
             log(f'\n\t\t\tEstablishing argument link for {probe}: {argument.max().illustrate()}. ')
             if argument:
-                argument_lst.append(f'Argument for {probe} is {argument.max().illustrate()}')
+                argument_lst.append(f'Argument for {probe}° is {argument.max().illustrate()}')
         return argument_lst
 
     def control(self, probe):
@@ -31,14 +31,14 @@ class LF_Recovery:
     @staticmethod
     def antecedent_present(probe, antecedent):
         if probe.sister() and probe.is_left() and antecedent == probe.sister() and antecedent.is_right():
-            prefix = 'Patient'
+            prefix = 'Antecedent'
         else:
-            prefix = 'Agent'
+            prefix = 'Antecedent'
         if antecedent.head().referential():
             arg_str = antecedent.phonological_content().strip()
         else:
             arg_str = f'pro at {antecedent.head().label()}'
-        return f'{prefix} of {probe.label()}({probe.gloss()}) is {arg_str}'
+        return f'{prefix} for {probe.label()}°({probe.gloss()}) is {arg_str}'
 
     def antecedent_absent(self, probe):
         unvalued_phi = probe.phi_needs_valuation()
@@ -62,4 +62,4 @@ class LF_Recovery:
             if 'PHI:PER:_' in unvalued_phi and 'PHI:NUM:_' not in unvalued_phi:
                 arg_str = 'discourse antecedent'
 
-        return f'Agent of {probe.label()} is {arg_str}'
+        return f'Antecedent of {probe.label()} is {arg_str}'
