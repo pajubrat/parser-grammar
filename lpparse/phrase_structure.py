@@ -257,19 +257,15 @@ class PhraseStructure:
 
     # Selection -------------------------------------------------------------------------------------------
 
-    # Feature !EF:φ
-    def selection__positive_SUBJECT_edge(self, selected_feature):
-        return self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
-
     # Feature -EF:φ
     def selection__negative_SUBJECT_edge(self, selected_feature):
         return not self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
 
-    # Feature !EF:*
+    # Feature !EF
     def selection__unselective_edge(self, selected_feature):
         return self.pro_edge()
 
-    # Feature -EF:*
+    # Feature -EF
     def selection__unselective_negative_edge(self, selected_feature):
         return not self.pro_edge()
 
@@ -306,6 +302,12 @@ class PhraseStructure:
     # Feature [-SELF]
     def selection__negative_self_selection(self, selected_feature):
         return not self.check({selected_feature})
+
+    def selection__phonological_AGREE(self, selected_feature):
+        if not self.theta_assigner() and not self.check({'!SEF'}):
+            # -ΦPF -> -EFφ
+            return self.selection__negative_SUBJECT_edge(selected_feature)
+        return True
 
     def specifier_match(self, phrase):
         return phrase.head().check_some(self.licensed_specifiers())
@@ -385,7 +387,7 @@ class PhraseStructure:
 
     def EF(self):
         for f in self.features:
-            if f.startswith('!EF:') or f.startswith('EF:') or f == '!SEF':
+            if f.startswith('!EF') or f.startswith('EF') or f == '!SEF':
                 return True
 
     def create_chain(self, transfer, inst):
@@ -555,6 +557,7 @@ class PhraseStructure:
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into -ARG due to {self.selector()}.')
                 self.features.add('-EF:φ')
+                self.features.add('-ΦPF')
                 self.features.discard('EF:φ')
                 self.features.add('-ARG')
                 self.features.discard('!SEF')
@@ -743,12 +746,12 @@ class PhraseStructure:
             return x
 
     def control(self):
-        antecedent = next((x for x in [self.sister()] + list(takewhile(lambda x: 'SEM:external' not in x.head().features, self.upward_path())) if self.is_possible_antecedent(x)), None)
-        log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control).')
+        antecedent = next((x for x in [self.sister()] + list(takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())) if self.is_possible_antecedent(x)), None)
+        log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control). ')
 
     def finite_control(self):
         antecedent = self.next(self.upward_path, lambda x: x.complex() and self.is_possible_antecedent(x) or self.special_rule(x))
-        log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (finite control).')
+        log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (finite control). ')
         return antecedent
 
     def get_antecedent(self):

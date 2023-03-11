@@ -2,13 +2,13 @@
 # Universal lexical redundancy rules
 
 # Basic lexical categories
-FORCE	:: -ARG -EF:* Fin !COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin
+FORCE	:: -ARG -EF Fin !COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin
 C/fin 	:: -ARG Fin C -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:Fin COMP:Neg/fin !COMP:* -SPEC:N -SPEC:T/fin -SPEC:C/fin -COMP:FORCE 
 C		:: -SPEC:MA/A
-T/fin 	:: ARG EF:φ T Fin !SELF:Φ12 !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
-T/prt 	:: ARG Fin T EF:φ !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -PER
+T/fin 	:: ARG EF T Fin !SELF:Φ12 !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
+T/prt 	:: ARG Fin T EF !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -PER
 T 		:: ARG COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
-Neg/fin :: ARG EF:φ Fin NEG COMP:T/prt COMP:T -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
+Neg/fin :: ARG EF Fin NEG COMP:T/prt COMP:T -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
 v   	:: ARG -ΦPF ASP !COMP:* COMP:V -SPEC:v -SPEC:T/fin !PROBE:V SPEC:φ -SPEC:N
 D   	:: φ -ARG !COMP:* -COMP:D -COMP:v -COMP:V -COMP:P -COMP:T/fin -COMP:Neg/fin -COMP:T -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:n COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 D/rel	:: φ D -ARG OP OP:REL COMP:* -COMP:C/fin -COMP:φ -SPEC:MA.ade/inf -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N adjoinable
@@ -18,7 +18,7 @@ P   	:: ARG COMP:φ -COMP:V -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SP
 Adv 	:: -SPEC:N -SPEC:FORCE -SPEC:Neg/fin -SPEC:T/fin adjoinable
 A 		:: COMP:0 TAIL:φ -SPEC:A
 Inf		:: TAM -COMP:T/fin -COMP:FORCE -COMP:C/fin -SPEC:T/fin -SPEC:V
-n		:: φ EF:φ ARG Inf !COMP:* COMP:0 COMP:V COMP:v
+n		:: φ EF ARG Inf !COMP:* COMP:0 COMP:V COMP:v
 0		:: SPEC:φ 2SPEC -COMP:φ
 Num		:: φ COMP:φ COMP:N COMP:n -COMP:D -COMP:QN
 DET		:: φ COMP:φ -COMP:DET 
@@ -50,7 +50,7 @@ CLASS/DITR 		:: !COMP:* SPEC:φ COMP:φ
 PHI_N			:: -COMP:*
 
 # Universal rules related to the edge feature
-!EF:φ		:: EF:φ
+!EF		:: EF
 
 # Nouns and nounlike elements
 R:REF:PROPER_NAME :: -COMP:Inf
@@ -60,15 +60,15 @@ R:REF:PROPER_NAME :: -COMP:Inf
 #
 # ==> FINNISH
 # CP-complementary (assume opposite for V2 languages)
-C/fin PHON	:: -EF:*
+C/fin PHON	:: -EF
 C/fin		:: !COMP:ΦPF
 
 # Finnish edge behavior
-P LANG:FI		::	EF:* Adv
-Adv LANG:FI		::	EF:*
-A LANG:FI		::	EF:*
-T/fin LANG:FI	:: !EF:*
-φ LANG:FI		::	EF:φ
+P LANG:FI		::	EF Adv
+Adv LANG:FI		::	EF
+A LANG:FI		::	EF
+T/fin LANG:FI	:: !EF
+φ LANG:FI		::	EF
 
 # Other rules
 N LANG:FI	:: -COMP:T/prt
@@ -84,10 +84,10 @@ OP:POL LANG:FI	:: OP !SCOPE DIS:POL
 OP:FOC LANG:FI	:: OP DIS:FOC
 
 # ===> ENGLISH
-P LANG:EN		::	-ΦPF -EF:* -EF:φ -float !COMP:*
-Adv LANG:EN		::	-ΦPF -EF:*
+P LANG:EN		::	-ΦPF -EF -float !COMP:*
+Adv LANG:EN		::	-ΦPF -EF
 n LANG:EN		::  -ΦPF
-T/fin LANG:EN	::	!EF:φ EF:φ SPEC:FORCE
+T/fin LANG:EN	::	!EF EF SPEC:FORCE
 A LANG:EN		::	-adjoinable
 ACC LANG:EN		::	-adjoinable -float
 NOM LANG:EN		::  -adjoinable -float
@@ -97,10 +97,10 @@ OP:REL LANG:EN	::	!SCOPE
 ARG LANG:EN		::  PHI:GEN:_
 
 # ==> ITALIAN
-P LANG:IT		::  -ΦPF -EF:* -EF:φ !COMP:*
+P LANG:IT		::  -ΦPF -EF !COMP:*
 NOM LANG:IT		::	-adjoinable -float
 ARG LANG:IT		::  PHI:GEN:_
 
 # => HUNGARIAN
 WH:OP LANG:HU	:: OP*
-D LANG:HU		:: EF:*
+D LANG:HU		:: EF

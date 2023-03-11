@@ -18,16 +18,16 @@ class LF:
                                     ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct)]
 
         self.selection_violation_test = {'-EF:φ': PhraseStructure.selection__negative_SUBJECT_edge,
-                                         '!EF:φ': PhraseStructure.selection__positive_SUBJECT_edge,
-                                         '-EF:*': PhraseStructure.selection__unselective_negative_edge,
-                                         '!EF:*': PhraseStructure.selection__unselective_edge,
+                                         '-EF': PhraseStructure.selection__unselective_negative_edge,
+                                         '!EF': PhraseStructure.selection__unselective_edge,
                                          '!1EDG': PhraseStructure.selection__negative_one_edge,
                                          '!SEF':  PhraseStructure.selection__positive_shared_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
                                          '-COMP': PhraseStructure.selection__negative_complement,
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
                                          '!SELF': PhraseStructure.selection__positive_self_selection,
-                                         '-SELF': PhraseStructure.selection__negative_self_selection}
+                                         '-SELF': PhraseStructure.selection__negative_self_selection,
+                                         '-ΦPF':  PhraseStructure.selection__phonological_AGREE}
 
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''

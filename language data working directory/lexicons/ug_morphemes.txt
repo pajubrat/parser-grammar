@@ -23,34 +23,34 @@ prtcpl		:: Inf T T/prt PF:T/prt LF:prtcpl
 to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable
 
 # Finnish infinitivals
-A/inf		:: A/inf 		Inf 	?ARG  -ΦPF 					!SEF	PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
-VA/inf  	:: VA/inf 		Inf T   ARG   !SELF:Φ1				EF:φ 	!SEF	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
-ESSA/inf 	:: ESSA/inf		Inf Adv ARG   						EF:φ 	TAIL:T 	PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI
-TUA/inf		:: TUA/inf		Inf Adv ARG  !SELF:Φ1				EF:φ  	TAIL:T	PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI
-KSE/inf		:: KSE/inf		Inf Adv ARG  !SELF:ΦPF 	-SELF:ΦLF	EF:φ	TAIL:T	PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI 
-E/inf		:: E/inf 		Inf Adv ARG  -ΦPF 					-EF:φ 	TAIL:T 	PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI
-MA.ine/inf	:: MA.ine/inf	Inf Adv ARG  -ΦPF  					-EF:φ 	TAIL:V	PF:-mAssA 	LF:in !COMP:*  PROBE:V LANG:FI
-MA.abe/inf	:: MA.abe/inf	Inf Adv ARG  -ΦPF  					-EF:φ 	TAIL:T	PF:-mAttA 	LF:without !COMP:*  PROBE:V LANG:FI
-MA.ade/inf	:: MA.ade/inf	Inf Adv ARG  -ΦPF  					-EF:φ 	TAIL:T	PF:-mAllA 	LF:by !COMP:*  PROBE:V LANG:FI
-MA.ela/inf	:: MA.ela/inf	Inf Adv ARG  -ΦPF  					-EF:φ 	TAIL:CLASS/TR,SEMCLASS_denied_event,$NO_W PF:-mAstA LF:without !COMP:*  PROBE:V LANG:FI
-MA.ill/inf	:: MA.ill/inf	Inf		ARG  -ΦPF  					-EF:φ 	TAIL:CLASS/TR,SEMCLASS_desired_event,$NO_W PF:-mAAn LF:to SEM/desired_event !COMP:*  PROBE:V LANG:FI adjoinable
+A/inf		:: A/inf 			Inf 	?ARG -ΦPF 		!SEF	PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
+VA/inf  	:: VA/inf 		EF	Inf T   ARG	!SELF:Φ1	!SEF	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
+ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG   					PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
+TUA/inf		:: TUA/inf		EF	Inf Adv ARG	!SELF:Φ1			PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
+KSE/inf		:: KSE/inf		EF	Inf Adv ARG	!SELF:ΦPF -SELF:ΦLF	PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
+E/inf		:: E/inf 			Inf Adv ARG	-ΦPF 				PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
+MA.ine/inf	:: MA.ine/inf		Inf Adv ARG	-ΦPF  				PF:-mAssA 	LF:in !COMP:*  PROBE:V LANG:FI TAIL:V	
+MA.abe/inf	:: MA.abe/inf		Inf Adv ARG	-ΦPF  				PF:-mAttA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:T
+MA.ade/inf	:: MA.ade/inf		Inf Adv ARG	-ΦPF  				PF:-mAllA 	LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
+MA.ela/inf	:: MA.ela/inf		Inf Adv ARG	-ΦPF  				PF:-mAstA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event
+MA.ill/inf	:: MA.ill/inf		Inf		ARG	-ΦPF  				PF:-mAAn 	LF:to SEM/desired_event !COMP:*  PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event
 
 # Prticiple adjectives
-MA/A		:: MA/A 		Inf		ARG  !SELF:Φ12	EF:φ	PF:-mA LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
-VA/A		:: VA/A			Inf		-ΦPF 					-EF:φ	PF:-vA LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
+MA/A		:: MA/A 		EF	Inf		ARG  !SELF:Φ12			PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
+VA/A		:: VA/A				Inf			 -ΦPF 				PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
 
 # Experimental
-MA.ine/inf*	:: MA.ine/inf* 	Inf 	ARG  -EF:φ 						PF:-mA-* 	LF:ing LANG:FI !COMP:*
-P*			:: PF:-ssa* -EF:φ Adv LF:in ARG COMP:φ !COMP:* TAIL:V COMP:MA.ine/inf* -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
-A/inf*		:: A/inf 		Inf 	ARG   -ΦPF 	-EF:φ	PF:-(t)A* 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI !COMP:*
-KSE/inf*	:: KSE/inf		Inf Adv ARG   EF:φ TAIL:T 	PF:-kse 	LF:for LANG:FI COMP:A/inf
+MA.ine/inf*	:: MA.ine/inf* 		Inf 	ARG  -ΦPF 				PF:-mA-* 	LF:ing LANG:FI !COMP:*
+A/inf*		:: A/inf 			Inf 	ARG  -ΦPF 				PF:-(t)A* 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI !COMP:*
+KSE/inf*	:: KSE/inf			Inf Adv ARG !SELF:ΦPF EF 		PF:-kse 	LF:for LANG:FI COMP:A/inf TAIL:T 	
+P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* COMP:φ !COMP:* TAIL:V COMP:MA.ine/inf* LF:in -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 
 # Italian
-ARE/inf		:: INF ARE/inf PF:are LF:ARE/inf ARG EF:φ -SPEC:T/fin -adjoinable 
+ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin -adjoinable 
 
 # Copula
-# BE-		:: V COPULA PF:BE LF:be -ARG COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
-BE-			:: V COPULA EF:φ PF:BE LF:T -ARG !COMP:* COMP:T/prt -COMP:T/fin
+# BE-		:: V COPULA  				-ARG 					PF:BE 		LF:be COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
+BE-			:: V COPULA 	EF 			-ARG 					PF:BE 		LF:T !COMP:* COMP:T/prt -COMP:T/fin
 
 # D-elements
 D		:: φ D PF:D LF:det R:NEW:$$$/SUR
@@ -96,7 +96,7 @@ m_				:: inflectional ΦPF PHI:GEN:M
 f_				:: inflectional ΦPF PHI:GEN:F
 
 # Generic deficient structural cases
-nom   	:: inflectional NOM TAIL:Fin,!COMP:*,EF:φ -float -adjoinable
+nom   	:: inflectional NOM TAIL:Fin,!COMP:*,EF -float -adjoinable
 acc		:: inflectional ACC TAIL:v
 acc_it	:: inflectional ACC TAIL:v adjoinable float
 dat		:: inflectional DAT TAIL:T LANG:IT

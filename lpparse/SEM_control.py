@@ -51,11 +51,11 @@ class LF_Recovery:
         if 'PHI:DET:_' in unvalued_phi and probe.check({'LANG:FI'}):
             if 'T/fin' in probe.head().features or 'Neg/fin' in probe.head().features:   # Finnish EPP ad hoc rule
                 self.interpretation_failed = True
-                log(f'\n\t\tMissing antecedent crashes the derivation.')
+                log(f'Missing antecedent crashes the derivation.')
                 arg_str = 'uninterpretable (crash).'
             if probe.head().check({'-Fin'}):
                 self.interpretation_failed = True
-                log(f'\n\t\t\tMissing antecedent crashes the derivation (generic reading is impossible for PX).')
+                log(f'Missing antecedent crashes the derivation (generic reading is impossible for PX).')
                 arg_str = 'uninterpretable (crash).'
             else:
                 arg_str = 'generic'
