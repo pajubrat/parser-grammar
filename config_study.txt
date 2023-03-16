@@ -21,14 +21,15 @@ datatake_full = True
 
 # IMAGE PARAMETERS
 datatake_images = False
-show_features = PHI:,iPHI:,ΦPF,ΦLF,-ΦPF,-ΦLF,!SELF:ΦPF,!SELF:ΦLF,!SELF:Φ1,!SELF:Φ12
-# show_features = PHI:,iPHI:
+# show_features = PHI:,iPHI:,ΦPF,ΦLF,-ΦPF,-ΦLF,!SELF:ΦPF,!SELF:ΦLF,!SELF:Φ1,!SELF:Φ12
+show_features = PHI:,iPHI:
 image_parameter_show_words = True
 image_parameter_nolabels = False
 image_parameter_spellout = False
 image_parameter_case = False
 image_parameter_show_sentences = False
 image_parameter_show_glosses = True
+image_parameter_mark_adjuncts = False
 
 # UG COMPONENTS
 
@@ -47,7 +48,6 @@ calculate_pragmatics = True
 calculate_thematic_roles = True
 project_objects = True
 generate_argument_links = True
-
 
 # PARSING HEURISTICS
 extra_ranking = True

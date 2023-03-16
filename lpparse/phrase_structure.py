@@ -303,9 +303,11 @@ class PhraseStructure:
     def selection__negative_self_selection(self, selected_feature):
         return not self.check({selected_feature})
 
+    # -ΦPF
     def selection__phonological_AGREE(self, selected_feature):
         if not self.theta_assigner() and not self.check({'!SEF'}):
             # -ΦPF -> -EFφ
+            log(f'{self} {self.theta_assigner()}')
             return self.selection__negative_SUBJECT_edge(selected_feature)
         return True
 

@@ -1,5 +1,5 @@
-@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'check_output': True, 'datatake_full': True, 'datatake_images': False, 'show_features': ['PHI:', 'iPHI:', 'ΦPF', 'ΦLF', '-ΦPF', '-ΦLF', '!SELF:ΦPF', '!SELF:ΦLF', '!SELF:Φ1', '!SELF:Φ12'], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'calculate_thematic_roles': True, 'project_objects': True, 'generate_argument_links': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2023-03-05 10:21:39.096891
+@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'check_output': True, 'datatake_full': True, 'datatake_images': False, 'show_features': ['PHI:', 'iPHI:'], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'image_parameter_mark_adjuncts': False, 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'calculate_thematic_roles': True, 'project_objects': True, 'generate_argument_links': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-03-16 15:28:54.188200
 @  Test sentences language data working directory\study-15-agreement\agreement_corpus.txt.
 @  Logs language data working directory\study-15-agreement\agreement_corpus_log.txt.
 @  Lexicon language data working directory\lexicons\lexicon.txt.
@@ -4429,12 +4429,12 @@
 		1372. *Merja käski miesten tehdä#nne työtä 
 			'Merja.nom order.pst.3sg men.gen make.A/inf.2pl work.par'
 
-& Ungrammatical or marginal (no subject)
+& Grammatical or marginal (no subject, null subject reading possible?)
 
-		1373. *Merja käski lähteä 
+		1373.  Merja käski lähteä 
 			'Merja.nom order.pst.3sg leave.A/inf'
 
-		1374. *Merja käski tehdä työtä 
+		1374.  Merja käski tehdä työtä 
 			'Merja.nom order.pst.3sg make.A/inf work.par'
 
 & 2.3.2 A-infinitive (OC-construction)

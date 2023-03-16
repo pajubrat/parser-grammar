@@ -39,6 +39,7 @@ class Visualizer:
         self.show_sentences = settings['image_parameter_show_sentences']
         self.show_glosses = settings['image_parameter_show_glosses']
         self.show_features = settings['show_features']
+        self.mark_adjuncts = settings['image_parameter_mark_adjuncts']
 
     # Definition for the drawing function
     def draw(self, ps):
@@ -104,7 +105,7 @@ class Visualizer:
         return max_overlap
 
     def get_coordinate_set(self, N, coordinate_set):
-        min_safety_window = 0.2                             # How much stretching is done
+        min_safety_window = 0.1                            # How much stretching is done
         coordinate_set.add((N.x-min_safety_window, N.y))    # x-coordinate + safety window to prevent text overlap
         coordinate_set.add((N.x+min_safety_window, N.y))    # x-coordinate + safety window to prevent text overlap
         if N.primitive():
@@ -121,8 +122,8 @@ class Visualizer:
         width = 0
         if self.show_glosses:
             width += len(N.gloss()) / 6
-        if self.count_features(N) > 0:
-            width += 1
+        #if self.count_features(N) > 0:
+        #    width += 1
         s.add((N.x - width, N.y))
         s.add((N.x + width, N.y))
         return s
@@ -235,7 +236,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
     # This functions generates a label stack (list of tuples) for a node
     def determine_label_stack(self, ps):
-        # Internal function
+        # Internal functions
         def get_case(h):
             for label in h.features:
                 if label in case_features:
@@ -256,7 +257,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             else:
                 label_stack.append(('X', 'LABEL'))
         else:
-            label_stack.append((ps.label(), 'LABEL'))
+            label_stack.append((self.abbreviate_label(ps.label()), 'LABEL'))
 
         # Show words
         if self.visualizer.show_words and ps.primitive():
@@ -292,6 +293,13 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
         return label_stack
 
+    def abbreviate_label(self, feature):
+        if feature == 'Neg/fin':
+            return 'Neg'
+        if feature == 'Neg/finP':
+            return 'NegP'
+        return feature
+
     def abbreviate_feature(self, feature):
         if 'PHI:' in feature:
             phi, typ, value = feature.split(':')
@@ -324,7 +332,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             else:
                 font_size = 15 * self.scale
             if style == 'FEATURE':
-                font_size = 10 * self.scale
+                font_size = 13 * self.scale
                 line_space = 0.8
             else:
                 line_space = 1
@@ -347,7 +355,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         Y2 = self.y_offset + ps.right.y * self.y_grid + (self.y_grid - self.x_grid)
         line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50))
         # Adjuncts are marked by double line
-        if ps.right.adjunct:
+        if ps.right.adjunct and self.visualizer.mark_adjuncts:
             line2 = shapes.Line(X1 + (5 * self.scale), Y1, X2 + (5 * self.scale), Y2, width=1, color=(50, 50, 50))
             line2.draw()
         line.draw()
@@ -357,7 +365,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         Y2 = self.y_offset + ps.left.y * self.y_grid + (self.y_grid - self.x_grid)
         line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50))
         # Adjuncts are marked by double line
-        if ps.left.adjunct:
+        if ps.left.adjunct and self.visualizer.mark_adjuncts:
             line2 = shapes.Line(X1 + (2 * self.scale), Y1 - 2 * self.scale, X2 + (2 * self.scale), Y2 - 2 * self.scale, width=2, color=(50, 50, 50))
             line2.draw()
         line.draw()

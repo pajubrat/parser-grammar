@@ -1,5 +1,5 @@
-@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'check_output': True, 'datatake_full': True, 'datatake_images': False, 'show_features': ['PHI:', 'iPHI:', 'ΦPF', 'ΦLF', '-ΦPF', '-ΦLF', '!SELF:ΦPF', '!SELF:ΦLF', '!SELF:Φ1', '!SELF:Φ12'], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'calculate_thematic_roles': True, 'project_objects': True, 'generate_argument_links': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
-@  2023-03-05 10:21:39.097375
+@  {'author': 'Anon', 'year': 2023, 'date': 'January', 'study_id': 15, 'study_folder': 'language data working directory/study-15-agreement', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-15-agreement', 'test_corpus_file': 'agreement_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'check_output': True, 'datatake_full': True, 'datatake_images': False, 'show_features': ['PHI:', 'iPHI:'], 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_case': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'image_parameter_mark_adjuncts': False, 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'calculate_thematic_roles': True, 'project_objects': True, 'generate_argument_links': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-03-16 15:28:54.188697
 @  Test sentences language data working directory\study-15-agreement\agreement_corpus.txt.
 @  Logs language data working directory\study-15-agreement\agreement_corpus_log.txt.
 @  Lexicon language data working directory\lexicons\lexicon.txt.
@@ -258,7 +258,7 @@
 	[<φ mies>:1 [T [<__>:1 lähte-]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -270,9 +270,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:610, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:650, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:305, Merge-1:7, 
+	Mean time per word:325, Merge-1:7, 
 			'man.nom leave.prs.3sg'
 
 12.  mies tekee työtä 
@@ -280,7 +280,7 @@
 	[<φ mies>:1 [T [<__>:1 [v [teke- [φ työ]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -293,9 +293,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1126, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:1166, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:375, Merge-1:16, 
+	Mean time per word:388, Merge-1:16, 
 			'man.nom make.prs.3sg work.par'
 
 & First person plural
@@ -495,7 +495,7 @@
 	[<φ mies>:1 [T [<__>:1 lähte-]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -507,9 +507,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:650, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:690, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:325, Merge-1:7, 
+	Mean time per word:345, Merge-1:7, 
 			'men.nom leave.prs.3pl'
 
 22.  miehet tekevät työtä 
@@ -517,7 +517,7 @@
 	[<φ mies>:1 [T [<__>:1 [v [teke- [φ työ]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -530,9 +530,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1166, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:1206, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:388, Merge-1:16, 
+	Mean time per word:402, Merge-1:16, 
 			'men.nom make.prs.3pl work.par'
 
 & Ungrammatical (S-V agreement errors)
@@ -1245,7 +1245,7 @@
 	[<φ mies>:1 [T [<__>:1 lähte-]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -1257,9 +1257,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:690, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:730, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:345, Merge-1:7, 
+	Mean time per word:365, Merge-1:7, 
 			'man.nom leave.prs.3sg'
 
 142.  mies tee#[V] työtä 
@@ -1267,7 +1267,7 @@
 	[<φ mies>:1 [T [<__>:1 [v [teke- [φ työ]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -1280,9 +1280,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1176, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:1216, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:392, Merge-1:16, 
+	Mean time per word:405, Merge-1:16, 
 			'man.nom make.prs.3sg work.par'
 
 & First person plural
@@ -1482,7 +1482,7 @@
 	[<φ mies>:1 [T [<__>:1 lähte-]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -1494,9 +1494,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:710, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:750, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:355, Merge-1:7, 
+	Mean time per word:375, Merge-1:7, 
 			'men.nom leave.prs.3sg'
 
 152.  miehet tee#vAt työtä 
@@ -1504,7 +1504,7 @@
 	[<φ mies>:1 [T [<__>:1 [v [teke- [φ työ]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -1517,9 +1517,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1196, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:1236, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:398, Merge-1:16, 
+	Mean time per word:412, Merge-1:16, 
 			'men.nom make.prs.3pl work.par'
 
 & Ungrammatical
@@ -2200,24 +2200,21 @@
 	[<φ mies>:1 [e [T [<__>:1 lähte-]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ mies] ~ 2, Weight 1
-	[φ mies] ~ 2, Weight 1
-	[φ mies] ~ 4, Weight 1
 	Information structure: {'Marked topics': ['<φ mies>'], 'Neutral gradient': [], 'Marked focus': []}
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ mies]
-	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:757, Garden Paths:1, Merge:6, Head Chain:3, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:252, Merge-1:26, 
+	Total Time:686, Garden Paths:0, Merge:4, Head Chain:2, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:228, Merge-1:14, 
 			'man.nom not.3sg leave.prs'
 
 274.  mies ei tee työtä 
@@ -2225,27 +2222,22 @@
 	[<φ mies>:1 [e [T [<__>:1 [v [teke- [φ työ]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ mies] ~ 2, [φ työ] ~ 4, Weight 1
-	[φ mies] ~ 2, [φ työ] ~ 4, Weight 1
-	[φ mies] ~ 2, [φ työ] ~ 8, Weight 1
-	 (...)
 	Information structure: {'Marked topics': ['<φ mies>'], 'Neutral gradient': ['[φ työ]'], 'Marked focus': []}
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ mies]
 	Object 4 in GLOBAL: [φ työ]
-	Object 6 in GLOBAL: [φ mies]
-	Object 8 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1897, Garden Paths:2, Merge:14, Head Chain:18, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:474, Merge-1:60, 
+	Total Time:1208, Garden Paths:0, Merge:7, Head Chain:8, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:302, Merge-1:26, 
 			'man.nom not.3sg make.prs work.par'
 
 275.  me emme lähde 
@@ -2433,24 +2425,21 @@
 	[<φ mies>:1 [e [T [<__>:1 lähte-]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ mies] ~ 2, Weight 1
-	[φ mies] ~ 2, Weight 1
-	[φ mies] ~ 4, Weight 1
 	Information structure: {'Marked topics': ['<φ mies>'], 'Neutral gradient': [], 'Marked focus': []}
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ mies]
-	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:807, Garden Paths:1, Merge:6, Head Chain:3, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:269, Merge-1:26, 
+	Total Time:736, Garden Paths:0, Merge:4, Head Chain:2, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:245, Merge-1:14, 
 			'men.nom not.3pl leave.prs'
 
 284.  miehet eivät tee työtä 
@@ -2458,27 +2447,22 @@
 	[<φ mies>:1 [e [T [<__>:1 [v [teke- [φ työ]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ mies] ~ 2, [φ työ] ~ 4, Weight 1
-	[φ mies] ~ 2, [φ työ] ~ 4, Weight 1
-	[φ mies] ~ 2, [φ työ] ~ 8, Weight 1
-	 (...)
 	Information structure: {'Marked topics': ['<φ mies>'], 'Neutral gradient': ['[φ työ]'], 'Marked focus': []}
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ mies]
 	Object 4 in GLOBAL: [φ työ]
-	Object 6 in GLOBAL: [φ mies]
-	Object 8 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1947, Garden Paths:2, Merge:14, Head Chain:18, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:486, Merge-1:60, 
+	Total Time:1258, Garden Paths:0, Merge:7, Head Chain:8, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:314, Merge-1:26, 
 			'men.nom not.3pl make.prs work.par'
 
 & Morphological decomposition
@@ -2713,24 +2697,21 @@
 	[<φ mies>:1 [e [T [<__>:1 lähte-]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ mies] ~ 2, Weight 1
-	[φ mies] ~ 2, Weight 1
-	[φ mies] ~ 4, Weight 1
 	Information structure: {'Marked topics': ['<φ mies>'], 'Neutral gradient': [], 'Marked focus': []}
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ mies]
-	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:787, Garden Paths:1, Merge:6, Head Chain:3, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:262, Merge-1:26, 
+	Total Time:716, Garden Paths:0, Merge:4, Head Chain:2, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:238, Merge-1:14, 
 			'man.nom not.3sg leave.prs'
 
 296.  mies e#[V] tee työtä 
@@ -2738,27 +2719,22 @@
 	[<φ mies>:1 [e [T [<__>:1 [v [teke- [φ työ]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ mies] ~ 2, [φ työ] ~ 4, Weight 1
-	[φ mies] ~ 2, [φ työ] ~ 4, Weight 1
-	[φ mies] ~ 2, [φ työ] ~ 8, Weight 1
-	 (...)
 	Information structure: {'Marked topics': ['<φ mies>'], 'Neutral gradient': ['[φ työ]'], 'Marked focus': []}
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ mies]
 	Object 4 in GLOBAL: [φ työ]
-	Object 6 in GLOBAL: [φ mies]
-	Object 8 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1927, Garden Paths:2, Merge:14, Head Chain:18, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:481, Merge-1:60, 
+	Total Time:1238, Garden Paths:0, Merge:7, Head Chain:8, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:309, Merge-1:26, 
 			'man.nom not.3sg make.prs work.par'
 
 297.  me e#mme lähde 
@@ -2946,24 +2922,21 @@
 	[<φ mies>:1 [e [T [<__>:1 lähte-]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ mies] ~ 2, Weight 1
-	[φ mies] ~ 2, Weight 1
-	[φ mies] ~ 4, Weight 1
 	Information structure: {'Marked topics': ['<φ mies>'], 'Neutral gradient': [], 'Marked focus': []}
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ mies]
-	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:807, Garden Paths:1, Merge:6, Head Chain:3, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:269, Merge-1:26, 
+	Total Time:736, Garden Paths:0, Merge:4, Head Chain:2, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:245, Merge-1:14, 
 			'men.nom not.3pl leave.prs'
 
 306.  miehet e#vAt tee työtä 
@@ -2971,27 +2944,22 @@
 	[<φ mies>:1 [e [T [<__>:1 [v [teke- [φ työ]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
 	[φ mies] ~ 2, [φ työ] ~ 4, Weight 1
-	[φ mies] ~ 2, [φ työ] ~ 4, Weight 1
-	[φ mies] ~ 2, [φ työ] ~ 8, Weight 1
-	 (...)
 	Information structure: {'Marked topics': ['<φ mies>'], 'Neutral gradient': ['[φ työ]'], 'Marked focus': []}
 
 	Discourse inventory: 
 	Object 2 in GLOBAL: [φ mies]
 	Object 4 in GLOBAL: [φ työ]
-	Object 6 in GLOBAL: [φ mies]
-	Object 8 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1947, Garden Paths:2, Merge:14, Head Chain:18, Phrasal Chain:2, Feature Chain:0, 
-	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:486, Merge-1:60, 
+	Total Time:1258, Garden Paths:0, Merge:7, Head Chain:8, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:314, Merge-1:26, 
 			'men.nom not.3pl make.prs work.par'
 
 & Ungrammatical (No agreement on negation)
@@ -3478,9 +3446,9 @@
 	Object 2 in GLOBAL: [D minä]
 
 	Resources:
-	Total Time:905, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:890, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:301, Merge-1:23, 
+	Mean time per word:296, Merge-1:17, 
 			'I.nom be.prs.1sg leave.sg.pst.prt'
 
 418.  minä olen tehnyt työtä 
@@ -3502,9 +3470,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1437, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1422, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:359, Merge-1:38, 
+	Mean time per word:355, Merge-1:32, 
 			'I.nom be.prs.1sg make.sg.pst.prt work.par'
 
 419.  sinä olet lähtenyt 
@@ -3523,9 +3491,9 @@
 	Object 2 in GLOBAL: [D sinä]
 
 	Resources:
-	Total Time:905, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:890, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:301, Merge-1:23, 
+	Mean time per word:296, Merge-1:17, 
 			'you.nom be.prs.2sg leave.sg.pst.prt'
 
 420.  sinä olet tehnyt työtä 
@@ -3547,9 +3515,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1437, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1422, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:359, Merge-1:38, 
+	Mean time per word:355, Merge-1:32, 
 			'you.nom be.prs.2sg make.sg.pst.prt work.par'
 
 421.  hän on lähtenyt 
@@ -3568,9 +3536,9 @@
 	Object 2 in GLOBAL: [D hän]
 
 	Resources:
-	Total Time:885, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:870, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:295, Merge-1:23, 
+	Mean time per word:290, Merge-1:17, 
 			'he.nom be.prs.3sg leave.sg.pst.prt'
 
 422.  hän on tehnyt työtä 
@@ -3592,9 +3560,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1417, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1402, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:354, Merge-1:38, 
+	Mean time per word:350, Merge-1:32, 
 			'he.nom be.prs.3sg make.sg.pst.prt work.par'
 
 423.  Pekka on lähtenyt 
@@ -3614,9 +3582,9 @@
 	Object 2 in GLOBAL: [φ Pekka]
 
 	Resources:
-	Total Time:945, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:930, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:315, Merge-1:23, 
+	Mean time per word:310, Merge-1:17, 
 			'Pekka.nom be.prs.3sg leave.sg.pst.prt'
 
 424.  Pekka on tehnyt työtä 
@@ -3637,9 +3605,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1477, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1462, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:369, Merge-1:38, 
+	Mean time per word:365, Merge-1:32, 
 			'Pekka.nom be.prs.3sg make.sg.pst.prt work.par'
 
 425.  se on lähtenyt 
@@ -3658,9 +3626,9 @@
 	Object 2 in GLOBAL: [D se]
 
 	Resources:
-	Total Time:2611, Garden Paths:4, Merge:17, Head Chain:15, Phrasal Chain:6, Feature Chain:0, 
+	Total Time:2596, Garden Paths:4, Merge:17, Head Chain:14, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:6, Last Resort Extraposition:0, 
-	Mean time per word:870, Merge-1:45, 
+	Mean time per word:865, Merge-1:39, 
 			'it.nom be.prs.3sg leave.sg.pst.prt'
 
 426.  se on tehnyt työtä 
@@ -3682,9 +3650,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:5607, Garden Paths:8, Merge:40, Head Chain:65, Phrasal Chain:12, Feature Chain:0, 
+	Total Time:5592, Garden Paths:8, Merge:40, Head Chain:64, Phrasal Chain:10, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:22, Last Resort Extraposition:0, 
-	Mean time per word:1401, Merge-1:136, 
+	Mean time per word:1398, Merge-1:130, 
 			'it.nom be.prs.3sg make.sg.pst.prt work.par'
 
 427.  mies on lähtenyt 
@@ -3692,7 +3660,7 @@
 	[<φ mies>:1 [T [BE [T/prt [<__>:1 lähte-]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -3704,9 +3672,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:825, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:850, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:275, Merge-1:23, 
+	Mean time per word:283, Merge-1:17, 
 			'man.nom be.prs.3sg leave.sg.pst.prt'
 
 428.  mies on tehnyt työtä 
@@ -3714,7 +3682,7 @@
 	[<φ mies>:1 [T [BE [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -3727,9 +3695,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1357, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1382, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:339, Merge-1:38, 
+	Mean time per word:345, Merge-1:32, 
 			'man.nom be.prs.3sg make.sg.pst.prt work.par'
 
 429.  me olemme lähteneet 
@@ -3748,9 +3716,9 @@
 	Object 2 in GLOBAL: [D me]
 
 	Resources:
-	Total Time:915, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:900, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:305, Merge-1:23, 
+	Mean time per word:300, Merge-1:17, 
 			'we.nom be.prs.1pl leave.pl.pst.prt'
 
 430.  me olemme tehneet työtä 
@@ -3772,9 +3740,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1447, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1432, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:361, Merge-1:38, 
+	Mean time per word:358, Merge-1:32, 
 			'we.nom be.prs.1pl make.pl.pst.prt work.par'
 
 431.  te olette lähteneet 
@@ -3793,9 +3761,9 @@
 	Object 2 in GLOBAL: [D te]
 
 	Resources:
-	Total Time:915, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:900, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:305, Merge-1:23, 
+	Mean time per word:300, Merge-1:17, 
 			'you.nom be.prs.2pl leave.pl.pst.prt'
 
 432.  te olette tehneet työtä 
@@ -3817,9 +3785,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1447, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1432, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:361, Merge-1:38, 
+	Mean time per word:358, Merge-1:32, 
 			'you.nom be.prs.2pl make.pl.pst.prt work.par'
 
 433.  he ovat lähteneet 
@@ -3838,9 +3806,9 @@
 	Object 2 in GLOBAL: [D he]
 
 	Resources:
-	Total Time:895, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:880, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:298, Merge-1:23, 
+	Mean time per word:293, Merge-1:17, 
 			'they.nom be.prs.3pl leave.pl.pst.prt'
 
 434.  he ovat tehneet työtä 
@@ -3862,9 +3830,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1427, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1412, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:356, Merge-1:38, 
+	Mean time per word:353, Merge-1:32, 
 			'they.nom be.prs.3pl make.pl.pst.prt work.par'
 
 435.  miehet ovat lähteneet 
@@ -3872,7 +3840,7 @@
 	[<φ mies>:1 [T [BE [T/prt [<__>:1 lähte-]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -3884,9 +3852,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:875, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:900, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:291, Merge-1:23, 
+	Mean time per word:300, Merge-1:17, 
 			'men.nom be.prs.3pl leave.pl.pst.prt'
 
 436.  miehet ovat tehneet työtä 
@@ -3894,7 +3862,7 @@
 	[<φ mies>:1 [T [BE [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -3907,9 +3875,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1407, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:1432, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:2, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:351, Merge-1:38, 
+	Mean time per word:358, Merge-1:32, 
 			'men.nom be.prs.3pl make.pl.pst.prt work.par'
 
 437.  ne ovat lähteneet 
@@ -3928,9 +3896,9 @@
 	Object 2 in GLOBAL: [D ne]
 
 	Resources:
-	Total Time:1483, Garden Paths:2, Merge:11, Head Chain:10, Phrasal Chain:5, Feature Chain:0, 
+	Total Time:1468, Garden Paths:2, Merge:11, Head Chain:9, Phrasal Chain:3, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:3, Last Resort Extraposition:0, 
-	Mean time per word:494, Merge-1:34, 
+	Mean time per word:489, Merge-1:28, 
 			'they.nom be.prs.3pl leave.pl.pst.prt'
 
 438.  ne ovat tehneet työtä 
@@ -3952,9 +3920,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:3247, Garden Paths:4, Merge:24, Head Chain:39, Phrasal Chain:8, Feature Chain:0, 
+	Total Time:3232, Garden Paths:4, Merge:24, Head Chain:38, Phrasal Chain:6, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:12, Last Resort Extraposition:0, 
-	Mean time per word:811, Merge-1:87, 
+	Mean time per word:808, Merge-1:81, 
 			'they.nom be.prs.3pl make.pl.pst.prt work.par'
 
 & Ungrammatical (Subject-Aux agreement error)
@@ -4375,9 +4343,9 @@
 	Object 2 in GLOBAL: [D minä]
 
 	Resources:
-	Total Time:916, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:896, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:229, Merge-1:35, 
+	Mean time per word:224, Merge-1:27, 
 			'I.nom not.1sg be.prs leave.sg.pst.prt'
 
 535.  minä en ole tehnyt työtä 
@@ -4399,9 +4367,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1449, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:293, Merge-1:54, 
+	Mean time per word:289, Merge-1:46, 
 			'I.nom not.1sg be.prs make.sg.pst.prt work.par'
 
 536.  sinä et ole lähtenyt 
@@ -4420,9 +4388,9 @@
 	Object 2 in GLOBAL: [D sinä]
 
 	Resources:
-	Total Time:916, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:896, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:229, Merge-1:35, 
+	Mean time per word:224, Merge-1:27, 
 			'you.nom not.2sg be.prs leave.sg.pst.prt'
 
 537.  sinä et ole tehnyt työtä 
@@ -4444,9 +4412,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1449, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:293, Merge-1:54, 
+	Mean time per word:289, Merge-1:46, 
 			'you.nom not.1sg be.prs make.sg.pst.prt work.par'
 
 538.  hän ei ole lähtenyt 
@@ -4465,9 +4433,9 @@
 	Object 2 in GLOBAL: [D hän]
 
 	Resources:
-	Total Time:916, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:896, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:229, Merge-1:35, 
+	Mean time per word:224, Merge-1:27, 
 			'he.nom not.3sg be.prs leave.sg.pst.prt'
 
 539.  hän ei ole tehnyt työtä 
@@ -4489,9 +4457,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1449, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:293, Merge-1:54, 
+	Mean time per word:289, Merge-1:46, 
 			'he.nom not.1sg be.prs make.sg.pst.prt work.par'
 
 540.  Pekka ei ole lähtenyt 
@@ -4511,9 +4479,9 @@
 	Object 2 in GLOBAL: [φ Pekka]
 
 	Resources:
-	Total Time:976, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:956, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:244, Merge-1:35, 
+	Mean time per word:239, Merge-1:27, 
 			'Pekka.nom not.3sg be.prs leave.sg.pst.prt'
 
 541.  Pekka ei ole tehnyt työtä 
@@ -4534,9 +4502,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1529, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1509, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:305, Merge-1:54, 
+	Mean time per word:301, Merge-1:46, 
 			'Pekka.nom not.1sg be.prs make.sg.pst.prt work.par'
 
 542.  mies ei ole lähtenyt 
@@ -4544,7 +4512,7 @@
 	[<φ mies>:1 [e [T [BE [T/prt [<__>:1 lähte-]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -4556,9 +4524,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:856, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:876, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:214, Merge-1:35, 
+	Mean time per word:219, Merge-1:27, 
 			'man.nom not.3sg be.prs leave.sg.pst.prt'
 
 543.  mies ei ole tehnyt työtä 
@@ -4566,7 +4534,7 @@
 	[<φ mies>:1 [e [T [BE [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -4579,9 +4547,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1409, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1429, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:281, Merge-1:54, 
+	Mean time per word:285, Merge-1:46, 
 			'man.nom not.1sg be.prs make.sg.pst.prt work.par'
 
 544.  se ei ole lähtenyt 
@@ -4600,9 +4568,9 @@
 	Object 2 in GLOBAL: [D se]
 
 	Resources:
-	Total Time:2686, Garden Paths:4, Merge:20, Head Chain:18, Phrasal Chain:9, Feature Chain:0, 
+	Total Time:2666, Garden Paths:4, Merge:20, Head Chain:17, Phrasal Chain:6, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:11, Last Resort Extraposition:0, 
-	Mean time per word:671, Merge-1:61, 
+	Mean time per word:666, Merge-1:53, 
 			'it.nom not.3sg be.prs. leave.sg.pst.prt'
 
 545.  se ei ole tehnyt työtä 
@@ -4624,9 +4592,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:5811, Garden Paths:8, Merge:43, Head Chain:81, Phrasal Chain:17, Feature Chain:0, 
+	Total Time:5791, Garden Paths:8, Merge:43, Head Chain:80, Phrasal Chain:14, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:36, Last Resort Extraposition:0, 
-	Mean time per word:1162, Merge-1:174, 
+	Mean time per word:1158, Merge-1:166, 
 			'it.nom not.1sg be.prs make.sg.pst.prt work.par'
 
 546.  me emme ole lähteneet 
@@ -4645,9 +4613,9 @@
 	Object 2 in GLOBAL: [D me]
 
 	Resources:
-	Total Time:926, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:906, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:231, Merge-1:35, 
+	Mean time per word:226, Merge-1:27, 
 			'we.nom not.1pl be.prs leave.pl.pst.prt'
 
 547.  me emme ole tehneet työtä 
@@ -4669,9 +4637,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1479, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1459, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:295, Merge-1:54, 
+	Mean time per word:291, Merge-1:46, 
 			'we.nom not.1sg be.prs make.sg.pst.prt work.par'
 
 548.  te ette ole lähteneet 
@@ -4690,9 +4658,9 @@
 	Object 2 in GLOBAL: [D te]
 
 	Resources:
-	Total Time:926, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:906, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:231, Merge-1:35, 
+	Mean time per word:226, Merge-1:27, 
 			'you.nom not.2pl be.prs leave.pl.pst.prt'
 
 549.  te ette ole tehneet työtä 
@@ -4714,9 +4682,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1479, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1459, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:295, Merge-1:54, 
+	Mean time per word:291, Merge-1:46, 
 			'you.nom not.1sg be.prs make.sg.pst.prt work.par'
 
 550.  he eivät ole lähteneet 
@@ -4735,9 +4703,9 @@
 	Object 2 in GLOBAL: [D he]
 
 	Resources:
-	Total Time:936, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:916, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:234, Merge-1:35, 
+	Mean time per word:229, Merge-1:27, 
 			'they.nom not.3pl be.prs leave.pl.pst.prt'
 
 551.  he eivät ole tehneet työtä 
@@ -4759,9 +4727,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1489, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:297, Merge-1:54, 
+	Mean time per word:293, Merge-1:46, 
 			'they.nom not.1sg be.prs make.pl.pst.prt work.par'
 
 552.  ne eivät ole lähteneet 
@@ -4780,9 +4748,9 @@
 	Object 2 in GLOBAL: [D ne]
 
 	Resources:
-	Total Time:1556, Garden Paths:2, Merge:13, Head Chain:12, Phrasal Chain:8, Feature Chain:0, 
+	Total Time:1536, Garden Paths:2, Merge:13, Head Chain:11, Phrasal Chain:5, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:6, Last Resort Extraposition:0, 
-	Mean time per word:389, Merge-1:48, 
+	Mean time per word:384, Merge-1:40, 
 			'they.nom not.3pl be.prs leave.pl.pst.prt'
 
 553.  ne eivät ole tehneet työtä 
@@ -4804,9 +4772,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:3395, Garden Paths:4, Merge:26, Head Chain:49, Phrasal Chain:12, Feature Chain:0, 
+	Total Time:3375, Garden Paths:4, Merge:26, Head Chain:48, Phrasal Chain:9, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:20, Last Resort Extraposition:0, 
-	Mean time per word:679, Merge-1:114, 
+	Mean time per word:675, Merge-1:106, 
 			'they.nom not.1sg be.prs make.pl.pst.prt work.par'
 
 554.  miehet eivät ole lähteneet 
@@ -4814,7 +4782,7 @@
 	[<φ mies>:1 [e [T [BE [T/prt [<__>:1 lähte-]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -4826,9 +4794,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:916, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:936, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:229, Merge-1:35, 
+	Mean time per word:234, Merge-1:27, 
 			'men.nom not.3pl be.prs leave.pl.pst.prt'
 
 555.  miehet eivät ole tehneet työtä 
@@ -4836,7 +4804,7 @@
 	[<φ mies>:1 [e [T [BE [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -4849,9 +4817,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1489, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:293, Merge-1:54, 
+	Mean time per word:297, Merge-1:46, 
 			'men.nom not.1sg be.prs make.pl.pst.prt work.par'
 
 & Ungrammatical (S-Neg agreement error)
@@ -5781,7 +5749,7 @@
 	[<φ mies>:1 [e [T/prt [<__>:1 lähte-]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -5793,9 +5761,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:716, Garden Paths:0, Merge:4, Head Chain:2, Phrasal Chain:1, Feature Chain:0, 
+	Total Time:756, Garden Paths:0, Merge:4, Head Chain:2, Phrasal Chain:1, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:238, Merge-1:14, 
+	Mean time per word:252, Merge-1:14, 
 			'man.nom not.3sg leave.sg.pst.prt'
 
 743.  mies ei tehnyt työtä 
@@ -5803,7 +5771,7 @@
 	[<φ mies>:1 [e [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -5816,9 +5784,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1238, Garden Paths:0, Merge:7, Head Chain:8, Phrasal Chain:1, Feature Chain:0, 
+	Total Time:1278, Garden Paths:0, Merge:7, Head Chain:8, Phrasal Chain:1, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:3, Last Resort Extraposition:0, 
-	Mean time per word:309, Merge-1:26, 
+	Mean time per word:319, Merge-1:26, 
 			'man.nom not.3sg make.sg.pst.prt work.par'
 
 744.  se ei lähtenyt 
@@ -6272,9 +6240,9 @@
 	Object 2 in GLOBAL: [D minä]
 
 	Resources:
-	Total Time:916, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:896, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:229, Merge-1:35, 
+	Mean time per word:224, Merge-1:27, 
 			'I.nom not.1sg be.prs leave.sg.pst.prt'
 
 805.  minä en ole tehnyt työtä 
@@ -6296,9 +6264,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1449, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:293, Merge-1:54, 
+	Mean time per word:289, Merge-1:46, 
 			'I.nom not.1sg be.prs make.sg.pst.prt'
 
 806.  sinä et ole lähtenyt 
@@ -6317,9 +6285,9 @@
 	Object 2 in GLOBAL: [D sinä]
 
 	Resources:
-	Total Time:916, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:896, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:229, Merge-1:35, 
+	Mean time per word:224, Merge-1:27, 
 			'you.nom not.2sg be.prs leave.sg.pst.prt'
 
 807.  sinä et ole tehnyt työtä 
@@ -6341,9 +6309,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1449, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:293, Merge-1:54, 
+	Mean time per word:289, Merge-1:46, 
 			'you.nom not.2sg be.prs make.sg.pst.prt'
 
 808.  hän ei ole lähtenyt 
@@ -6362,9 +6330,9 @@
 	Object 2 in GLOBAL: [D hän]
 
 	Resources:
-	Total Time:916, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:896, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:229, Merge-1:35, 
+	Mean time per word:224, Merge-1:27, 
 			'he.nom not.3sg be.prs leave.sg.pst.prt'
 
 809.  hän ei ole tehnyt työtä 
@@ -6386,9 +6354,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1449, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:293, Merge-1:54, 
+	Mean time per word:289, Merge-1:46, 
 			'he.nom not.3sg be.prs make.sg.pst.prt'
 
 810.  Pekka ei ole lähtenyt 
@@ -6408,9 +6376,9 @@
 	Object 2 in GLOBAL: [φ Pekka]
 
 	Resources:
-	Total Time:976, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:956, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:244, Merge-1:35, 
+	Mean time per word:239, Merge-1:27, 
 			'Pekka.nom not.3sg be.prs leave.sg.pst.prt'
 
 811.  Pekka ei ole tehnyt työtä 
@@ -6431,9 +6399,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1529, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1509, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:305, Merge-1:54, 
+	Mean time per word:301, Merge-1:46, 
 			'Pekka.nom not.3sg be.prs make.sg.pst.prt'
 
 812.  mies ei ole lähtenyt 
@@ -6441,7 +6409,7 @@
 	[<φ mies>:1 [e [T [BE [T/prt [<__>:1 lähte-]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -6453,9 +6421,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:856, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:876, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:214, Merge-1:35, 
+	Mean time per word:219, Merge-1:27, 
 			'man.nom not.3sg be.prs leave.sg.pst.prt'
 
 813.  mies ei ole tehnyt työtä 
@@ -6463,7 +6431,7 @@
 	[<φ mies>:1 [e [T [BE [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -6476,9 +6444,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1409, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1429, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:281, Merge-1:54, 
+	Mean time per word:285, Merge-1:46, 
 			'man.nom not.3sg be.prs make.sg.pst.prt'
 
 814.  se ei ole lähtenyt 
@@ -6497,9 +6465,9 @@
 	Object 2 in GLOBAL: [D se]
 
 	Resources:
-	Total Time:2686, Garden Paths:4, Merge:20, Head Chain:18, Phrasal Chain:9, Feature Chain:0, 
+	Total Time:2666, Garden Paths:4, Merge:20, Head Chain:17, Phrasal Chain:6, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:11, Last Resort Extraposition:0, 
-	Mean time per word:671, Merge-1:61, 
+	Mean time per word:666, Merge-1:53, 
 			'it.nom not.3sg be.prs leave.sg.pst.prt'
 
 815.  se ei ole tehnyt työtä 
@@ -6521,9 +6489,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:5811, Garden Paths:8, Merge:43, Head Chain:81, Phrasal Chain:17, Feature Chain:0, 
+	Total Time:5791, Garden Paths:8, Merge:43, Head Chain:80, Phrasal Chain:14, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:36, Last Resort Extraposition:0, 
-	Mean time per word:1162, Merge-1:174, 
+	Mean time per word:1158, Merge-1:166, 
 			'it.nom not.3sg be.prs make.sg.pst.prt'
 
 816.  me emme ole lähteneet 
@@ -6542,9 +6510,9 @@
 	Object 2 in GLOBAL: [D me]
 
 	Resources:
-	Total Time:926, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:906, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:231, Merge-1:35, 
+	Mean time per word:226, Merge-1:27, 
 			'we.nom not.1pl be.prs leave.pl.pst.prt'
 
 817.  me emme ole tehneet työtä 
@@ -6566,9 +6534,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1479, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1459, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:295, Merge-1:54, 
+	Mean time per word:291, Merge-1:46, 
 			'we.nom not.1pl be.prs make.pl.pst.prt'
 
 818.  te ette ole lähteneet 
@@ -6587,9 +6555,9 @@
 	Object 2 in GLOBAL: [D te]
 
 	Resources:
-	Total Time:926, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:906, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:231, Merge-1:35, 
+	Mean time per word:226, Merge-1:27, 
 			'you.nom not.2pl be.prs leave.pl.pst.prt'
 
 819.  te ette ole tehneet työtä 
@@ -6611,9 +6579,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1479, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1459, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:295, Merge-1:54, 
+	Mean time per word:291, Merge-1:46, 
 			'you.nom not.2pl be.prs make.pl.pst.prt'
 
 820.  he eivät ole lähteneet 
@@ -6632,9 +6600,9 @@
 	Object 2 in GLOBAL: [D he]
 
 	Resources:
-	Total Time:936, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:916, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:234, Merge-1:35, 
+	Mean time per word:229, Merge-1:27, 
 			'they.nom not.3pl be.prs leave.pl.pst.prt'
 
 821.  he eivät ole tehneet työtä 
@@ -6656,9 +6624,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1489, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:297, Merge-1:54, 
+	Mean time per word:293, Merge-1:46, 
 			'they.nom not.3pl be.prs make.pl.pst.prt'
 
 822.  ne eivät ole lähteneet 
@@ -6677,9 +6645,9 @@
 	Object 2 in GLOBAL: [D ne]
 
 	Resources:
-	Total Time:1556, Garden Paths:2, Merge:13, Head Chain:12, Phrasal Chain:8, Feature Chain:0, 
+	Total Time:1536, Garden Paths:2, Merge:13, Head Chain:11, Phrasal Chain:5, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:6, Last Resort Extraposition:0, 
-	Mean time per word:389, Merge-1:48, 
+	Mean time per word:384, Merge-1:40, 
 			'they.nom not.3pl be.prs leave.pl.pst.prt'
 
 823.  ne eivät ole tehneet työtä 
@@ -6701,9 +6669,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:3395, Garden Paths:4, Merge:26, Head Chain:49, Phrasal Chain:12, Feature Chain:0, 
+	Total Time:3375, Garden Paths:4, Merge:26, Head Chain:48, Phrasal Chain:9, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:20, Last Resort Extraposition:0, 
-	Mean time per word:679, Merge-1:114, 
+	Mean time per word:675, Merge-1:106, 
 			'they.nom not.3pl be.prs make.pl.pst.prt'
 
 824.  miehet eivät ole lähteneet 
@@ -6711,7 +6679,7 @@
 	[<φ mies>:1 [e [T [BE [T/prt [<__>:1 lähte-]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -6723,9 +6691,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:916, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:936, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:229, Merge-1:35, 
+	Mean time per word:234, Merge-1:27, 
 			'men.nom not.3pl be.prs leave.pl.pst.prt'
 
 825.  miehet eivät ole tehneet työtä 
@@ -6733,7 +6701,7 @@
 	[<φ mies>:1 [e [T [BE [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -6746,9 +6714,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1469, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1489, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:293, Merge-1:54, 
+	Mean time per word:297, Merge-1:46, 
 			'men.nom not.3pl be.prs make.pl.pst.prt'
 
 & Grammatical (S + Neg + Aux(prt) + V(prt))
@@ -6769,9 +6737,9 @@
 	Object 2 in GLOBAL: [D minä]
 
 	Resources:
-	Total Time:1016, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:996, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:254, Merge-1:35, 
+	Mean time per word:249, Merge-1:27, 
 			'I.nom not.1sg be.sg.pst.prt leave.sg.pst.prt'
 
 827.  minä en ollut tehnyt työtä 
@@ -6793,9 +6761,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1569, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1549, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:313, Merge-1:54, 
+	Mean time per word:309, Merge-1:46, 
 			'I.nom not.1sg be.sg.pst.prt make.sg.pst.prt'
 
 828.  sinä et ollut lähtenyt 
@@ -6814,9 +6782,9 @@
 	Object 2 in GLOBAL: [D sinä]
 
 	Resources:
-	Total Time:1016, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:996, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:254, Merge-1:35, 
+	Mean time per word:249, Merge-1:27, 
 			'you.nom not.2sg be.sg.pst.prt leave.sg.pst.prt'
 
 829.  sinä et ollut tehnyt työtä 
@@ -6838,9 +6806,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1569, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1549, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:313, Merge-1:54, 
+	Mean time per word:309, Merge-1:46, 
 			'you.nom not.2sg be.sg.pst.prt make.sg.pst.prt'
 
 830.  hän ei ollut lähtenyt 
@@ -6859,9 +6827,9 @@
 	Object 2 in GLOBAL: [D hän]
 
 	Resources:
-	Total Time:1016, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:996, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:254, Merge-1:35, 
+	Mean time per word:249, Merge-1:27, 
 			'he.nom not.3sg be.sg.pst.prt leave.sg.pst.prt'
 
 831.  hän ei ollut tehnyt työtä 
@@ -6883,9 +6851,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1569, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1549, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:313, Merge-1:54, 
+	Mean time per word:309, Merge-1:46, 
 			'he.nom not.3sg be.sg.pst.prt make.sg.pst.prt'
 
 832.  Pekka ei ollut lähtenyt 
@@ -6905,9 +6873,9 @@
 	Object 2 in GLOBAL: [φ Pekka]
 
 	Resources:
-	Total Time:1076, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1056, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:269, Merge-1:35, 
+	Mean time per word:264, Merge-1:27, 
 			'Pekka.nom not.3sg be.sg.pst.prt leave.sg.pst.prt'
 
 833.  Pekka ei ollut tehnyt työtä 
@@ -6928,9 +6896,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1629, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1609, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:325, Merge-1:54, 
+	Mean time per word:321, Merge-1:46, 
 			'Pekka.nom not.3sg be.sg.pst.prt make.sg.pst.prt'
 
 834.  mies ei ollut lähtenyt 
@@ -6938,7 +6906,7 @@
 	[<φ mies>:1 [e [T/prt [BE [T/prt [<__>:1 lähte-]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -6950,9 +6918,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:956, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:976, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:239, Merge-1:35, 
+	Mean time per word:244, Merge-1:27, 
 			'man.nom not.3sg be.sg.pst.prt leave.sg.pst.prt'
 
 835.  mies ei ollut tehnyt työtä 
@@ -6960,7 +6928,7 @@
 	[<φ mies>:1 [e [T/prt [BE [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -6973,9 +6941,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1509, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1529, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:301, Merge-1:54, 
+	Mean time per word:305, Merge-1:46, 
 			'man.nom not.3sg be.sg.pst.prt make.sg.pst.prt'
 
 836.  se ei ollut lähtenyt 
@@ -6994,9 +6962,9 @@
 	Object 2 in GLOBAL: [D se]
 
 	Resources:
-	Total Time:2986, Garden Paths:4, Merge:20, Head Chain:18, Phrasal Chain:9, Feature Chain:0, 
+	Total Time:2966, Garden Paths:4, Merge:20, Head Chain:17, Phrasal Chain:6, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:11, Last Resort Extraposition:0, 
-	Mean time per word:746, Merge-1:61, 
+	Mean time per word:741, Merge-1:53, 
 			'it.nom not.3sg be.sg.pst.prt leave.sg.pst.prt'
 
 837.  se ei ollut tehnyt työtä 
@@ -7018,9 +6986,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:6111, Garden Paths:8, Merge:43, Head Chain:81, Phrasal Chain:17, Feature Chain:0, 
+	Total Time:6091, Garden Paths:8, Merge:43, Head Chain:80, Phrasal Chain:14, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:36, Last Resort Extraposition:0, 
-	Mean time per word:1222, Merge-1:174, 
+	Mean time per word:1218, Merge-1:166, 
 			'it.nom not.3sg be.sg.pst.prt make.sg.pst.prt'
 
 838.  me emme olleet lähteneet 
@@ -7039,9 +7007,9 @@
 	Object 2 in GLOBAL: [D me]
 
 	Resources:
-	Total Time:1036, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1016, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:259, Merge-1:35, 
+	Mean time per word:254, Merge-1:27, 
 			'we.nom not.1pl be.pl.pst.prt leave.pl.pst.prt'
 
 839.  me emme olleet tehneet työtä 
@@ -7063,9 +7031,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1589, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1569, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:317, Merge-1:54, 
+	Mean time per word:313, Merge-1:46, 
 			'we.nom not.1pl be.pl.pst.prt make.pl.pst.prt'
 
 840.  te ette olleet lähteneet 
@@ -7084,9 +7052,9 @@
 	Object 2 in GLOBAL: [D te]
 
 	Resources:
-	Total Time:1036, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1016, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:259, Merge-1:35, 
+	Mean time per word:254, Merge-1:27, 
 			'you.nom not.2pl be.pl.pst.prt leave.pl.pst.prt'
 
 841.  te ette olleet tehneet työtä 
@@ -7108,9 +7076,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1589, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1569, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:317, Merge-1:54, 
+	Mean time per word:313, Merge-1:46, 
 			'you.nom not.2pl be.pl.pst.prt make.pl.pst.prt'
 
 842.  he eivät olleet lähteneet 
@@ -7129,9 +7097,9 @@
 	Object 2 in GLOBAL: [D he]
 
 	Resources:
-	Total Time:1046, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1026, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:261, Merge-1:35, 
+	Mean time per word:256, Merge-1:27, 
 			'they.nom not.3pl be.pl.pst.prt leave.pl.pst.prt'
 
 843.  he eivät olleet tehneet työtä 
@@ -7153,9 +7121,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1599, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1579, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:319, Merge-1:54, 
+	Mean time per word:315, Merge-1:46, 
 			'they.nom not.3pl be.pl.pst.prt make.pl.pst.prt'
 
 844.  ne eivät olleet lähteneet 
@@ -7174,9 +7142,9 @@
 	Object 2 in GLOBAL: [D ne]
 
 	Resources:
-	Total Time:1776, Garden Paths:2, Merge:13, Head Chain:12, Phrasal Chain:8, Feature Chain:0, 
+	Total Time:1756, Garden Paths:2, Merge:13, Head Chain:11, Phrasal Chain:5, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:6, Last Resort Extraposition:0, 
-	Mean time per word:444, Merge-1:48, 
+	Mean time per word:439, Merge-1:40, 
 			'they.nom not.3pl be.pl.pst.prt leave.pl.pst.prt'
 
 845.  ne eivät olleet tehneet työtä 
@@ -7198,9 +7166,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:3615, Garden Paths:4, Merge:26, Head Chain:49, Phrasal Chain:12, Feature Chain:0, 
+	Total Time:3595, Garden Paths:4, Merge:26, Head Chain:48, Phrasal Chain:9, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:20, Last Resort Extraposition:0, 
-	Mean time per word:723, Merge-1:114, 
+	Mean time per word:719, Merge-1:106, 
 			'they.nom not.3pl be.pl.pst.prt make.pl.pst.prt'
 
 846.  miehet eivät olleet lähteneet 
@@ -7208,7 +7176,7 @@
 	[<φ mies>:1 [e [T/prt [BE [T/prt [<__>:1 lähte-]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: <φ mies>']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for lähte-° is <φ mies>']
 	Speaker attitude: ['Declarative']
@@ -7220,9 +7188,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:1026, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1046, Garden Paths:0, Merge:6, Head Chain:5, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:256, Merge-1:35, 
+	Mean time per word:261, Merge-1:27, 
 			'men.nom not.3pl be.pl.pst.prt leave.pl.pst.prt'
 
 847.  miehet eivät olleet tehneet työtä 
@@ -7230,7 +7198,7 @@
 	[<φ mies>:1 [e [T/prt [BE [T/prt [<__>:1 [v [teke- [φ työ]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for Neg/fin°(not) is mies', 'Antecedent of T is generic', 'Antecedent of T is generic', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of Neg/fin is ', 'Antecedent of T is ', 'Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ mies>', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for e° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for T/prt° is <φ mies>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -7243,9 +7211,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1579, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Total Time:1599, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:315, Merge-1:54, 
+	Mean time per word:319, Merge-1:46, 
 			'men.nom not.3pl be.pl.pst.prt make.pl.pst.prt'
 
 & Ungrammatical (Subject-participle agreement error)
@@ -7844,7 +7812,7 @@
 	[[φ mies]:1 [T [__:1 [täyty- [__:1 [-(t)A [__:1 lähte-]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent for V°(must) is mies', 'Antecedent of φ is generic', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of V is ', 'Antecedent of φ is generic', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is [φ mies]', 'Argument for täyty-° is [φ mies]', 'Argument for -(t)A° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -7856,9 +7824,9 @@
 	Object 2 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:896, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:5, Feature Chain:0, 
+	Total Time:936, Garden Paths:0, Merge:5, Head Chain:4, Phrasal Chain:5, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:1, Last Resort Extraposition:0, 
-	Mean time per word:298, Merge-1:11, 
+	Mean time per word:312, Merge-1:11, 
 			'man.gen must.prs.0 leave.a/inf'
 
 965.  miehen täytyy tehdä työtä 
@@ -7866,7 +7834,7 @@
 	[[φ mies]:1 [T [__:1 [täyty- [__:1 [-(t)A [__:1 [v [teke- [φ työ]]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent for V°(must) is mies', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of V is ', 'Antecedent of φ is generic', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: [φ mies]', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is [φ mies]', 'Argument for täyty-° is [φ mies]', 'Argument for -(t)A° is [φ mies]', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -7879,9 +7847,9 @@
 	Object 4 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1448, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:8, Feature Chain:0, 
+	Total Time:1488, Garden Paths:0, Merge:8, Head Chain:12, Phrasal Chain:8, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:3, Last Resort Extraposition:0, 
-	Mean time per word:362, Merge-1:23, 
+	Mean time per word:372, Merge-1:23, 
 			'man.gen must.prs.0 make.a/inf work.par'
 
 966.  Pekan täytyy lähteä 
@@ -10523,7 +10491,7 @@
 	[<φ Merja>:1 [T [<__>:1 [v [käske- [[φ mies]:2 [-(t)A [__:2 lähte-]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent of φ is generic', 'Antecedent for v°(v) is Merja', 'Antecedent for V°(order) is Merja', 'Antecedent for φ°(phi) is Merja', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of φ is generic', 'Antecedent of v is ', 'Antecedent of V is ', 'Antecedent for φ°(phi) is Merja', 'Antecedent of V is ']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Patient of V(order)°: InfP', 'Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ mies]', 'Argument for käske-° is [φ mies]', 'Argument for -(t)A° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -10536,9 +10504,9 @@
 	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:1413, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Total Time:1453, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:3, Last Resort Extraposition:0, 
-	Mean time per word:353, Merge-1:29, 
+	Mean time per word:363, Merge-1:29, 
 			'Merja.nom order.pst.3sg man.gen leave.A/inf'
 
 1286.  Merja käski meidän lähteä 
@@ -10642,7 +10610,7 @@
 	[<φ Merja>:1 [T [<__>:1 [v [käske- [[φ mies]:2 [-(t)A [__:2 lähte-]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent of φ is generic', 'Antecedent of v is generic', 'Antecedent of V is generic', 'Antecedent for φ°(phi) is Merja', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of φ is generic', 'Antecedent of v is ', 'Antecedent of V is ', 'Antecedent for φ°(phi) is Merja', 'Antecedent of V is ']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Patient of V(order)°: InfP', 'Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ mies]', 'Argument for käske-° is [φ mies]', 'Argument for -(t)A° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -10655,9 +10623,9 @@
 	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:1423, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Total Time:1463, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:3, Last Resort Extraposition:0, 
-	Mean time per word:355, Merge-1:29, 
+	Mean time per word:365, Merge-1:29, 
 			'Merja.nom order.pst.3sg men.gen leave.A/inf'
 
 1291.  Merja käski minun tehdä työtä 
@@ -10770,7 +10738,7 @@
 	[<φ Merja>:1 [T [<__>:1 [v [käske- [[φ mies]:2 [-(t)A [__:2 [v [teke- [φ työ]]]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent of φ is generic', 'Antecedent for v°(v) is Merja', 'Antecedent for V°(order) is Merja', 'Antecedent for φ°(phi) is Merja', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of φ is generic', 'Antecedent of v is ', 'Antecedent of V is ', 'Antecedent for φ°(phi) is Merja', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Patient of V(order)°: InfP', 'Causer/Agent of v(v)°: [φ mies]', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ mies]', 'Argument for käske-° is [φ mies]', 'Argument for -(t)A° is [φ mies]', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -10784,9 +10752,9 @@
 	Object 6 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1990, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:2030, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:5, Last Resort Extraposition:0, 
-	Mean time per word:398, Merge-1:49, 
+	Mean time per word:406, Merge-1:49, 
 			'Merja.nom order.pst.3sg man.gen make.A/inf work.par'
 
 1296.  Merja käski sen tehdä työtä 
@@ -10929,7 +10897,7 @@
 	[<φ Merja>:1 [T [<__>:1 [v [käske- [[φ mies]:2 [-(t)A [__:2 [v [teke- [φ työ]]]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent of φ is generic', 'Antecedent of v is generic', 'Antecedent of V is generic', 'Antecedent for φ°(phi) is Merja', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of φ is generic', 'Antecedent of v is ', 'Antecedent of V is ', 'Antecedent for φ°(phi) is Merja', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Patient of V(order)°: InfP', 'Causer/Agent of v(v)°: [φ mies]', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ mies]', 'Argument for käske-° is [φ mies]', 'Argument for -(t)A° is [φ mies]', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -10943,9 +10911,9 @@
 	Object 6 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:2000, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:2040, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:5, Last Resort Extraposition:0, 
-	Mean time per word:400, Merge-1:49, 
+	Mean time per word:408, Merge-1:49, 
 			'Merja.nom order.pst.3sg men.gen make.A/inf work.par'
 
 & Ungrammatical (Impossible agreement, missing subject)
@@ -11248,14 +11216,51 @@
 
 			'Merja.nom order.pst.3sg men.gen make.A/inf.2pl work.par'
 
-& Ungrammatical or marginal (no subject)
+& Grammatical or marginal (no subject, null subject reading possible?)
 
-1373. *Merja käski lähteä 
+1373.  Merja käski lähteä 
 
+	[<φ Merja>:1 [T [<__>:1 [v [käske- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Control: ['Antecedent of φ is generic', 'Antecedent for v°(v) is Merja', 'Antecedent for V°(order) is Merja', 'Antecedent of Inf is generic', 'Antecedent for V°(leave) is Merja']
+	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Patient of V(order)°: InfP', 'Agent of V(leave)°: pro']
+	Arguments: ['Argument for T° is <φ Merja>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Merja] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:966, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:322, Merge-1:16, 
 			'Merja.nom order.pst.3sg leave.A/inf'
 
-1374. *Merja käski tehdä työtä 
+1374.  Merja käski tehdä työtä 
 
+	[<φ Merja>:1 [T [<__>:1 [v [käske- [-(t)A [v [teke- [φ työ]]]]]]]]]
+
+	Semantics:
+	Control: ['Antecedent of φ is generic', 'Antecedent for v°(v) is Merja', 'Antecedent for V°(order) is Merja', 'Antecedent of Inf is generic', 'Antecedent for φ°(phi) is Merja']
+	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Patient of V(order)°: InfP', 'Causer/Agent of v(v)°: pro', 'Patient of V(make)°: [φ työ]']
+	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Merja] ~ 2, [φ työ] ~ 10, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': ['[φ työ]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Merja]
+	Object 10 in GLOBAL: [φ työ]
+
+	Resources:
+	Total Time:1518, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:379, Merge-1:31, 
 			'Merja.nom order.pst.3sg make.A/inf work.par'
 
 & 2.3.2 A-infinitive (OC-construction)
@@ -11555,7 +11560,7 @@
 	[<φ Merja>:1 [T [<__>:1 [v [usko- [[φ mies]:2 [-vAn [__:2 lähte-]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent of φ is generic', 'Antecedent for v°(v) is Merja', 'Antecedent for V°(believe) is Merja', 'Antecedent for T°(to) is Merja', 'Antecedent for φ°(phi) is Merja', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of φ is generic', 'Antecedent of v is ', 'Antecedent of V is ', 'Antecedent of T is ', 'Antecedent for φ°(phi) is Merja', 'Antecedent of V is ']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Agent of V(believe)°: pro', 'Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ mies]', 'Argument for usko-° is [φ mies]', 'Argument for -vAn° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -11568,9 +11573,9 @@
 	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:1415, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Total Time:1455, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:353, Merge-1:29, 
+	Mean time per word:363, Merge-1:29, 
 			'Merja.nom believe.pst.3sg man.gen leave.VA/inf'
 
 1411.  Merja uskoi meidän lähtevän 
@@ -11674,7 +11679,7 @@
 	[<φ Merja>:1 [T [<__>:1 [v [usko- [[φ mies]:2 [-vAn [__:2 lähte-]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent of φ is generic', 'Antecedent of v is generic', 'Antecedent of V is generic', 'Antecedent of T is generic', 'Antecedent for φ°(phi) is Merja', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent of φ is generic', 'Antecedent of v is ', 'Antecedent of V is ', 'Antecedent of T is ', 'Antecedent for φ°(phi) is Merja', 'Antecedent of V is ']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Agent of V(believe)°: pro', 'Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ mies]', 'Argument for usko-° is [φ mies]', 'Argument for -vAn° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -11687,9 +11692,9 @@
 	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:1425, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Total Time:1465, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
-	Mean time per word:356, Merge-1:29, 
+	Mean time per word:366, Merge-1:29, 
 			'Merja.nom believe men.gen leave.VA/inf'
 
 1416.  Merja uskoi minun tekevän työtä 
@@ -11829,7 +11834,7 @@
 	[<φ Merja>:1 [T [<__>:1 [v [usko- [[φ mies]:2 [-vAn [__:2 [v [teke- [φ työ]]]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent of φ is generic', 'Antecedent for v°(v) is Merja', 'Antecedent for V°(believe) is Merja', 'Antecedent for T°(to) is Merja', 'Antecedent for φ°(phi) is Merja', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of φ is generic', 'Antecedent of v is ', 'Antecedent of V is ', 'Antecedent of T is ', 'Antecedent for φ°(phi) is Merja', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Agent of V(believe)°: pro', 'Causer/Agent of v(v)°: [φ mies]', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ mies]', 'Argument for usko-° is [φ mies]', 'Argument for -vAn° is [φ mies]', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -11843,9 +11848,9 @@
 	Object 6 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:1992, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:2032, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:398, Merge-1:49, 
+	Mean time per word:406, Merge-1:49, 
 			'Merja.nom believe.pst.3sg man.gen make.VA/inf work.par'
 
 1422.  Merja uskoi meidän tekevän työtä 
@@ -11961,7 +11966,7 @@
 	[<φ Merja>:1 [T [<__>:1 [v [usko- [[φ mies]:2 [-vAn [__:2 [v [teke- [φ työ]]]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent of φ is generic', 'Antecedent of v is generic', 'Antecedent of V is generic', 'Antecedent of T is generic', 'Antecedent for φ°(phi) is Merja', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of φ is generic', 'Antecedent of v is ', 'Antecedent of V is ', 'Antecedent of T is ', 'Antecedent for φ°(phi) is Merja', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: <φ Merja>', 'Agent of V(believe)°: pro', 'Causer/Agent of v(v)°: [φ mies]', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is <φ Merja>', 'Argument for v° is [φ mies]', 'Argument for usko-° is [φ mies]', 'Argument for -vAn° is [φ mies]', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -11975,9 +11980,9 @@
 	Object 6 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:2002, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
+	Total Time:2042, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:4, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
-	Mean time per word:400, Merge-1:49, 
+	Mean time per word:408, Merge-1:49, 
 			'Merja.nom believe men.gen make.VA/inf work.par'
 
 1427.  Merja uskoi lähtevän#ni 
@@ -13052,7 +13057,7 @@
 	[[φ Merja]:1 [[T [__:1 laula]] <[φ mies]:2 [-essA [__:2 lähte-]]>]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent for Adv°(while) is pro at T', 'Antecedent for φ°(phi) is pro at T', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is ', 'Antecedent for φ°(phi) is pro at T', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(sing)°: [φ Merja]', 'Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is [φ Merja]', 'Argument for laula° is [φ Merja]', 'Argument for -essA° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -13065,9 +13070,9 @@
 	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:2112, Garden Paths:4, Merge:17, Head Chain:27, Phrasal Chain:5, Feature Chain:0, 
+	Total Time:2152, Garden Paths:4, Merge:17, Head Chain:27, Phrasal Chain:5, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:528, Merge-1:85, 
+	Mean time per word:538, Merge-1:85, 
 			'Merja sing.prs.3sg man.gen leave.ESSA/inf
 
 1537.  Merja laulaa sen lähtiessä 
@@ -13205,7 +13210,7 @@
 	[[φ Merja]:1 [[T [__:1 laula]] <[φ mies]:2 [-essA [__:2 lähte-]]>]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is generic', 'Antecedent for φ°(phi) is pro at T', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is ', 'Antecedent for φ°(phi) is pro at T', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(sing)°: [φ Merja]', 'Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is [φ Merja]', 'Argument for laula° is [φ Merja]', 'Argument for -essA° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -13218,9 +13223,9 @@
 	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:2122, Garden Paths:4, Merge:17, Head Chain:27, Phrasal Chain:5, Feature Chain:0, 
+	Total Time:2162, Garden Paths:4, Merge:17, Head Chain:27, Phrasal Chain:5, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:530, Merge-1:85, 
+	Mean time per word:540, Merge-1:85, 
 			'Merja sing.prs.3sg men.gen leave.ESSA/inf
 
 1543.  Merja laulaa minun lähtiessä#ni 
@@ -14335,7 +14340,7 @@
 	[[φ Merja]:1 [[T [__:1 laula]] <[φ mies]:2 [-tUA [__:2 lähte-]]>]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent for Adv°(after) is pro at T', 'Antecedent for φ°(phi) is pro at T', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is ', 'Antecedent for φ°(phi) is pro at T', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(sing)°: [φ Merja]', 'Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is [φ Merja]', 'Argument for laula° is [φ Merja]', 'Argument for -tUA° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -14348,9 +14353,9 @@
 	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:2092, Garden Paths:4, Merge:17, Head Chain:27, Phrasal Chain:5, Feature Chain:0, 
+	Total Time:2132, Garden Paths:4, Merge:17, Head Chain:27, Phrasal Chain:5, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:523, Merge-1:85, 
+	Mean time per word:533, Merge-1:85, 
 			'Merja.nom sing.prs.3sg man.gen leave.TUA/inf'
 
 1644.  Merja laulaa miesten lähdettyä 
@@ -14358,7 +14363,7 @@
 	[[φ Merja]:1 [[T [__:1 laula]] <[φ mies]:2 [-tUA [__:2 lähte-]]>]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is generic', 'Antecedent for φ°(phi) is pro at T', 'Antecedent for V°(leave) is mies']
+	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is ', 'Antecedent for φ°(phi) is pro at T', 'Antecedent of V is ']
 	Thematic roles: ['Agent of V(sing)°: [φ Merja]', 'Agent of V(leave)°: [φ mies]']
 	Arguments: ['Argument for T° is [φ Merja]', 'Argument for laula° is [φ Merja]', 'Argument for -tUA° is [φ mies]', 'Argument for lähte-° is [φ mies]']
 	Speaker attitude: ['Declarative']
@@ -14371,9 +14376,9 @@
 	Object 4 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:2102, Garden Paths:4, Merge:17, Head Chain:27, Phrasal Chain:5, Feature Chain:0, 
+	Total Time:2142, Garden Paths:4, Merge:17, Head Chain:27, Phrasal Chain:5, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:525, Merge-1:85, 
+	Mean time per word:535, Merge-1:85, 
 			'Merja.nom sing.prs.3sg men.gen leave.TUA/inf'
 
 1645.  Merja laulaa meidän lähdettyä 
@@ -14617,7 +14622,7 @@
 	[[φ Merja]:1 [[T [__:1 laula]] <[φ mies]:2 [-tUA [__:2 [v [teke- [φ työ]]]]]>]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent for Adv°(after) is pro at T', 'Antecedent for φ°(phi) is pro at T', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is ', 'Antecedent for φ°(phi) is pro at T', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Agent of V(sing)°: [φ Merja]', 'Causer/Agent of v(v)°: [φ mies]', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is [φ Merja]', 'Argument for laula° is [φ Merja]', 'Argument for -tUA° is [φ mies]', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -14631,9 +14636,9 @@
 	Object 6 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:5323, Garden Paths:11, Merge:46, Head Chain:84, Phrasal Chain:17, Feature Chain:0, 
+	Total Time:5363, Garden Paths:11, Merge:46, Head Chain:84, Phrasal Chain:17, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:12, Extraposition:23, Last Resort Extraposition:0, 
-	Mean time per word:1064, Merge-1:238, 
+	Mean time per word:1072, Merge-1:238, 
 			'Merja.nom sing.prs.3sg man.gen make.TUA/inf work.par'
 
 1655.  Merja laulaa miesten tehtyä työtä 
@@ -14641,7 +14646,7 @@
 	[[φ Merja]:1 [[T [__:1 laula]] <[φ mies]:2 [-tUA [__:2 [v [teke- [φ työ]]]]]>]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is generic', 'Antecedent for φ°(phi) is pro at T', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent for φ°(phi) is pro at T', 'Antecedent of Adv is ', 'Antecedent for φ°(phi) is pro at T', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Agent of V(sing)°: [φ Merja]', 'Causer/Agent of v(v)°: [φ mies]', 'Patient of V(make)°: [φ työ]']
 	Arguments: ['Argument for T° is [φ Merja]', 'Argument for laula° is [φ Merja]', 'Argument for -tUA° is [φ mies]', 'Argument for v° is [φ työ]', 'Argument for teke-° is [φ työ]']
 	Speaker attitude: ['Declarative']
@@ -14655,9 +14660,9 @@
 	Object 6 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:5333, Garden Paths:11, Merge:46, Head Chain:84, Phrasal Chain:17, Feature Chain:0, 
+	Total Time:5373, Garden Paths:11, Merge:46, Head Chain:84, Phrasal Chain:17, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:12, Extraposition:23, Last Resort Extraposition:0, 
-	Mean time per word:1066, Merge-1:238, 
+	Mean time per word:1074, Merge-1:238, 
 			'Merja.nom sing.prs.3sg men.gen make.TUA/inf work.par'
 
 1656.  Merja laulaa meidän tehtyä työtä 
@@ -15256,9 +15261,9 @@
 	Object 8 in GLOBAL: [φ työ]
 
 	Resources:
-	Total Time:2075, Garden Paths:0, Merge:11, Head Chain:31, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:2080, Garden Paths:0, Merge:11, Head Chain:31, Phrasal Chain:1, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:5, Last Resort Extraposition:0, 
-	Mean time per word:415, Merge-1:78, 
+	Mean time per word:416, Merge-1:79, 
 			'Pekka.nom see.pst.3sg he.acc make.MA.ine/inf work.par'
 
 & Ungrammatical (impossible agreement)
@@ -15940,7 +15945,7 @@
 	[<se [[[φ mies]:3 [-mA [__:3 [v teke-]]]]:2 [φ [__:2 kello]]]>:1 [T [<__>:1 häviä-]]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is se    mies  -mA   mies  v teke-     mies  -mA   mies  v teke- kello', 'Antecedent for A°(A_rel) is se    mies  -mA   mies  v teke-     mies  -mA   mies  v teke- kello', 'Antecedent for φ°(phi) is pro at A', 'Antecedent for v°(v) is mies', 'Antecedent for V°(make) is mies']
+	Control: ['Antecedent for φ°(phi) is se    mies  -mA   mies  v teke-     mies  -mA   mies  v teke- kello', 'Antecedent of A is ', 'Antecedent for φ°(phi) is pro at A', 'Antecedent for v°(v) is mies', 'Antecedent for V°(make) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: [φ mies]', 'Agent/Possessor of N(watch)°: AP', 'Agent of V(disappear)°: <se [[[φ mies] [-mA [[φ mies] [v teke-]]]] [φ [[[φ mies] [-mA [[φ mies] [v teke-]]]] kello]]]>']
 	Arguments: ['Argument for T° is <se [[[φ mies] [-mA [[φ mies] [v teke-]]]] [φ [[[φ mies] [-mA [[φ mies] [v teke-]]]] kello]]]>', 'Argument for -mA° is [φ mies]', 'Argument for häviä-° is <se [[[φ mies] [-mA [[φ mies] [v teke-]]]] [φ [[[φ mies] [-mA [[φ mies] [v teke-]]]] kello]]]>']
 	Speaker attitude: ['Declarative']
@@ -15957,9 +15962,9 @@
 	Object 6 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:4940, Garden Paths:18, Merge:58, Head Chain:86, Phrasal Chain:47, Feature Chain:0, 
+	Total Time:4980, Garden Paths:18, Merge:58, Head Chain:86, Phrasal Chain:47, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:10, Last Resort Extraposition:0, 
-	Mean time per word:988, Merge-1:245, 
+	Mean time per word:996, Merge-1:245, 
 			'it/that man.gen make.ma/a watch disappear.pst.3sg
 
 1835.  se' miesten tekemä kello hävisi 
@@ -15967,7 +15972,7 @@
 	[<se [[[φ mies]:3 [-mA [__:3 [v teke-]]]]:2 [φ [__:2 kello]]]>:1 [T [<__>:1 häviä-]]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is se    mies  -mA   mies  v teke-     mies  -mA   mies  v teke- kello', 'Antecedent of A is generic', 'Antecedent for φ°(phi) is pro at A', 'Antecedent for v°(v) is mies', 'Antecedent for V°(make) is mies']
+	Control: ['Antecedent for φ°(phi) is se    mies  -mA   mies  v teke-     mies  -mA   mies  v teke- kello', 'Antecedent of A is ', 'Antecedent for φ°(phi) is pro at A', 'Antecedent for v°(v) is mies', 'Antecedent for V°(make) is mies']
 	Thematic roles: ['Causer/Agent of v(v)°: [φ mies]', 'Agent/Possessor of N(watch)°: AP', 'Agent of V(disappear)°: <se [[[φ mies] [-mA [[φ mies] [v teke-]]]] [φ [[[φ mies] [-mA [[φ mies] [v teke-]]]] kello]]]>']
 	Arguments: ['Argument for T° is <se [[[φ mies] [-mA [[φ mies] [v teke-]]]] [φ [[[φ mies] [-mA [[φ mies] [v teke-]]]] kello]]]>', 'Argument for -mA° is [φ mies]', 'Argument for häviä-° is <se [[[φ mies] [-mA [[φ mies] [v teke-]]]] [φ [[[φ mies] [-mA [[φ mies] [v teke-]]]] kello]]]>']
 	Speaker attitude: ['Declarative']
@@ -15984,9 +15989,9 @@
 	Object 6 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:4950, Garden Paths:18, Merge:58, Head Chain:86, Phrasal Chain:47, Feature Chain:0, 
+	Total Time:4990, Garden Paths:18, Merge:58, Head Chain:86, Phrasal Chain:47, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:10, Last Resort Extraposition:0, 
-	Mean time per word:990, Merge-1:245, 
+	Mean time per word:998, Merge-1:245, 
 			'it/that men.gen make.ma/a watch disappear.pst.3sg
 
 1836.  se' niiden tekemä kello hävisi 
@@ -16411,7 +16416,7 @@
 	[<se [[<φ mies>:3 [-vA [v [<__>:3 ihaile-]]]]:2 [φ [__:2 tyttö]]]>:1 [T [<__>:1 häviä-]]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent for v°(v) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent for φ°(phi) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent for V°(admire) is mies']
+	Control: ['Antecedent for φ°(phi) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent of v is ', 'Antecedent for φ°(phi) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent of V is ']
 	Thematic roles: ['Causer/Agent of v(v)°: pro', 'Agent of V(admire)°: <φ mies>', 'Agent/Possessor of N(girl)°: AP', 'Agent of V(disappear)°: <se [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] [φ [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] tyttö]]]>']
 	Arguments: ['Argument for T° is <se [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] [φ [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] tyttö]]]>', 'Argument for v° is <φ mies>', 'Argument for ihaile-° is <φ mies>', 'Argument for häviä-° is <se [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] [φ [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] tyttö]]]>']
 	Speaker attitude: ['Declarative']
@@ -16428,9 +16433,9 @@
 	Object 6 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:2797, Garden Paths:6, Merge:25, Head Chain:45, Phrasal Chain:20, Feature Chain:0, 
+	Total Time:2837, Garden Paths:6, Merge:25, Head Chain:45, Phrasal Chain:20, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:559, Merge-1:159, 
+	Mean time per word:567, Merge-1:159, 
 			'it/that man.par admire.va/a girl disappear.pst.3sg'
 
 1876.  se' miehiä ihaileva tyttö hävisi 
@@ -16438,7 +16443,7 @@
 	[<se [[<φ mies>:3 [-vA [v [<__>:3 ihaile-]]]]:2 [φ [__:2 tyttö]]]>:1 [T [<__>:1 häviä-]]]
 
 	Semantics:
-	Control: ['Antecedent for φ°(phi) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent of v is generic', 'Antecedent for φ°(phi) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent for V°(admire) is mies']
+	Control: ['Antecedent for φ°(phi) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent of v is ', 'Antecedent for φ°(phi) is se    mies  -vA  v   mies ihaile-     mies  -vA  v   mies ihaile- tyttö', 'Antecedent of V is ']
 	Thematic roles: ['Causer/Agent of v(v)°: pro', 'Agent of V(admire)°: <φ mies>', 'Agent/Possessor of N(girl)°: AP', 'Agent of V(disappear)°: <se [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] [φ [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] tyttö]]]>']
 	Arguments: ['Argument for T° is <se [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] [φ [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] tyttö]]]>', 'Argument for v° is <φ mies>', 'Argument for ihaile-° is <φ mies>', 'Argument for häviä-° is <se [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] [φ [[<φ mies> [-vA [v [<φ mies> ihaile-]]]] tyttö]]]>']
 	Speaker attitude: ['Declarative']
@@ -16455,9 +16460,9 @@
 	Object 6 in GLOBAL: [φ mies]
 
 	Resources:
-	Total Time:2797, Garden Paths:6, Merge:25, Head Chain:45, Phrasal Chain:20, Feature Chain:0, 
+	Total Time:2837, Garden Paths:6, Merge:25, Head Chain:45, Phrasal Chain:20, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:7, Last Resort Extraposition:0, 
-	Mean time per word:559, Merge-1:159, 
+	Mean time per word:567, Merge-1:159, 
 			'it/that men.par admire.va/a girl disappear.pst.3sg'
 
 1877.  se' niitä ihaileva tyttö hävisi 
@@ -17429,7 +17434,7 @@
 
 	Semantics:
 	Control: ['Antecedent of v is generic', 'Antecedent of V is InfP', 'Antecedent of V is generic']
-	Thematic roles: ['Causer/Agent of v(v)°: [D John]', 'Patient of V(want)°: InfP']
+	Thematic roles: ['Causer/Agent of v(v)°: [D John]', 'Patient of V(want)°: InfP', 'Agent of V(leave)°: pro']
 	Arguments: ['Argument for T° is [D John]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
@@ -17449,7 +17454,7 @@
 
 	Semantics:
 	Control: ['Antecedent of V is generic']
-	Thematic roles: ['Causer/Agent of v(v)°: [D John]', 'Patient of V(want)°: [D Mary]']
+	Thematic roles: ['Causer/Agent of v(v)°: [D John]', 'Patient of V(want)°: [D Mary]', 'Agent of V(leave)°: pro']
 	Arguments: ['Argument for T° is [D John]', 'Argument for v° is [D Mary]', 'Argument for want° is [D Mary]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
@@ -17575,7 +17580,7 @@
 
 	Semantics:
 	Control: ['Antecedent of v is generic', 'Antecedent of V is InfP', 'Antecedent of V is generic']
-	Thematic roles: ['Causer/Agent of v(v)°: [D John]', 'Patient of V(want)°: InfP']
+	Thematic roles: ['Causer/Agent of v(v)°: [D John]', 'Patient of V(want)°: InfP', 'Agent of V(leave)°: pro']
 	Arguments: ['Argument for T° is [D John]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
@@ -17594,6 +17599,7 @@
 	[[D John]:1 [T [__:1 [seem [__:1 [to [__:1 leave-]]]]]]]
 
 	Semantics:
+	Thematic roles: ['Agent of V(leave)°: [D John]']
 	Arguments: ['Argument for T° is [D John]', 'Argument for to° is [D John]', 'Argument for leave-° is [D John]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
@@ -17613,6 +17619,7 @@
 
 	Semantics:
 	Control: ['Antecedent of T is ', 'Antecedent of V is ']
+	Thematic roles: ['Agent of V(leave)°: [D they]']
 	Arguments: ['Argument for T° is [D they]', 'Argument for to° is [D they]', 'Argument for leave-° is [D they]']
 	Speaker attitude: ['Declarative']
 	Assignments: 
@@ -19414,7 +19421,7 @@
 	[<φ mies>:1 [T [<__>:1 [sano- [-vAn [usko- [että [<D minä>:5 [T [<__>:5 lähte-]]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for V°(say) is mies', 'Antecedent for T°(to) is mies', 'Antecedent for V°(believe) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for V°(say) is mies', 'Antecedent for T°(to) is mies', 'Antecedent for V°(believe) is mies']
 	Thematic roles: ['Agent of V(say)°: <φ mies>', 'Agent of V(believe)°: pro', 'Agent of V(leave)°: <D minä>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for T° is <D minä>', 'Argument for lähte-° is <D minä>']
 	Speaker attitude: ['Declarative']
@@ -19431,9 +19438,9 @@
 	Object 12 in GLOBAL: [D minä]
 
 	Resources:
-	Total Time:1969, Garden Paths:0, Merge:10, Head Chain:29, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:2009, Garden Paths:0, Merge:10, Head Chain:29, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:8, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:328, Merge-1:73, 
+	Mean time per word:334, Merge-1:73, 
 			'man.nom say.prs.3sg believe.va/inf.px/3p that I.nom leave.prs.1sg'
 
 2119.  se sano#[V] uskovan#nsA että minä lähde#n 
@@ -19659,7 +19666,7 @@
 	[<φ mies>:1 [T [<__>:1 [sano- [-vAn [usko- [että [<φ Merja>:5 [T [<__>:5 lähte-]]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for V°(say) is mies', 'Antecedent for T°(to) is mies', 'Antecedent for V°(believe) is mies', 'Antecedent for φ°(phi) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for V°(say) is mies', 'Antecedent for T°(to) is mies', 'Antecedent for V°(believe) is mies', 'Antecedent for φ°(phi) is mies']
 	Thematic roles: ['Agent of V(say)°: <φ mies>', 'Agent of V(believe)°: pro', 'Agent of V(leave)°: <φ Merja>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for T° is <φ Merja>', 'Argument for lähte-° is <φ Merja>']
 	Speaker attitude: ['Declarative']
@@ -19676,9 +19683,9 @@
 	Object 12 in GLOBAL: [φ Merja]
 
 	Resources:
-	Total Time:1969, Garden Paths:0, Merge:10, Head Chain:29, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:2009, Garden Paths:0, Merge:10, Head Chain:29, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:8, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:328, Merge-1:73, 
+	Mean time per word:334, Merge-1:73, 
 			'man.nom say.prs.3sg believe.va/inf.px/3p that Merja.nom leave.prs.3sg'
 
 2128.  se sano#[V] uskovan#nsA että Merja lähtee 
@@ -19904,7 +19911,7 @@
 	[<φ mies>:1 [T [<__>:1 [sano- [-vAn [usko- [että [<D te>:5 [T [<__>:5 lähte-]]]]]]]]]]
 
 	Semantics:
-	Control: ['Antecedent for T°(tense) is mies', 'Antecedent of φ is generic', 'Antecedent for V°(say) is mies', 'Antecedent for T°(to) is mies', 'Antecedent for V°(believe) is mies']
+	Control: ['Antecedent of T is ', 'Antecedent of φ is generic', 'Antecedent for V°(say) is mies', 'Antecedent for T°(to) is mies', 'Antecedent for V°(believe) is mies']
 	Thematic roles: ['Agent of V(say)°: <φ mies>', 'Agent of V(believe)°: pro', 'Agent of V(leave)°: <D te>']
 	Arguments: ['Argument for T° is <φ mies>', 'Argument for T° is <D te>', 'Argument for lähte-° is <D te>']
 	Speaker attitude: ['Declarative']
@@ -19921,9 +19928,9 @@
 	Object 12 in GLOBAL: [D te]
 
 	Resources:
-	Total Time:1969, Garden Paths:0, Merge:10, Head Chain:29, Phrasal Chain:0, Feature Chain:0, 
+	Total Time:2009, Garden Paths:0, Merge:10, Head Chain:29, Phrasal Chain:0, Feature Chain:0, 
 	Agree:0, Feature:0, Scrambling Chain:8, Extraposition:4, Last Resort Extraposition:0, 
-	Mean time per word:328, Merge-1:73, 
+	Mean time per word:334, Merge-1:73, 
 			'man.nom say.prs.3sg believe.va/inf.px/3p that you.nom leave.prs.2pl'
 
 2137.  se sano#[V] uskovan#nsA että te lähde#tte 
