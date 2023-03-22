@@ -29,6 +29,7 @@ class Visualizer:
         self.case = False
         self.save_image_file_name = ''
         self.input_sentence_string = ''
+        self.image_parameter_stop_after_image = False
 
     def initialize(self, settings):
         self.image_output = True
@@ -40,6 +41,7 @@ class Visualizer:
         self.show_glosses = settings['image_parameter_show_glosses']
         self.show_features = settings['show_features']
         self.mark_adjuncts = settings['image_parameter_mark_adjuncts']
+        self.image_parameter_stop_after_image = settings['image_parameter_stop_after_image']
 
     # Definition for the drawing function
     def draw(self, ps):
@@ -169,12 +171,13 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.window_width = 1
         self.window_height = 1
         self.top_node_position = 0
+        self.do_not_repeat_information = False
 
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
 
         self.window_width, self.window_height = self.determine_window_size(ps)
-        super().__init__(width=self.window_width, height=self.window_height, caption='LF interface', visible=False)
+        super().__init__(width=self.window_width, height=self.window_height, caption='LF interface', visible=self.visualizer.image_parameter_stop_after_image)
         self.background_image = pyglet.image.SolidColorImagePattern((255, 255, 255, 255)).create_image(self.window_width, self.window_height)
 
     def determine_window_size(self, ps):
@@ -193,6 +196,10 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
     # Recursive projection function
     def show_in_window(self, ps):
+
+        # Do not repeat information if ps have been copied
+        if ps.find_me_elsewhere:
+            self.do_not_repeat_information = True
 
         # Mother node position
         X1 = self.x_offset + ps.x * self.x_grid
@@ -223,8 +230,9 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if ps.right and not ps.has_affix():
             self.draw_right_line(ps, X1, Y1)
             self.show_in_window(ps.right)
-            if not self.visualizer.stop_after_each_image:
-                pyglet.app.exit()
+
+        if ps.find_me_elsewhere:
+            self.do_not_repeat_information = False
 
     def draw_selection(self):
         if self.selected_node:
@@ -260,36 +268,37 @@ class ProduceGraphicOutput(pyglet.window.Window):
             label_stack.append((self.abbreviate_label(ps.label()), 'LABEL'))
 
         # Show words
-        if self.visualizer.show_words and ps.primitive():
-            if ps.get_phonological_string() != ps.label() and \
-                    legitimate_label(ps):
-                label_stack.append((ps.get_phonological_string(), 'PHONOLOGY'))
-                if self.visualizer.show_glosses:
-                    if ps.gloss() != ps.label() and \
-                            ps.gloss() != ps.get_phonological_string() and \
-                            legitimate_label(ps):
-                        label_stack.append((f"ʻ{ps.gloss()}ʼ", 'GLOSS'))
-        if self.visualizer.case and ps.primitive():
-            if get_case(ps):
-                label_stack.append(str(get_case(ps), 'CASE'))
+        if not self.do_not_repeat_information:
+            if self.visualizer.show_words and ps.primitive():
+                if ps.get_phonological_string() != ps.label() and \
+                        legitimate_label(ps):
+                    label_stack.append((ps.get_phonological_string(), 'PHONOLOGY'))
+                    if self.visualizer.show_glosses:
+                        if ps.gloss() != ps.label() and \
+                                ps.gloss() != ps.get_phonological_string() and \
+                                legitimate_label(ps):
+                            label_stack.append((f"ʻ{ps.gloss()}ʼ", 'GLOSS'))
+            if self.visualizer.case and ps.primitive():
+                if get_case(ps):
+                    label_stack.append(str(get_case(ps), 'CASE'))
 
-        # Show features (if any)
-        if self.visualizer.show_features:
-            feature_str = ''
-            features_included = set()
-            for feature_pattern in self.visualizer.show_features:
-                for i, lexical_feature in enumerate(ps.features):
-                    if re.match(feature_pattern, lexical_feature):
-                        lexical_feature_abbreviated = self.abbreviate_feature(lexical_feature)
-                        if lexical_feature_abbreviated not in features_included:
-                            feature_str += f'[{lexical_feature_abbreviated}]'
-                            features_included.add(lexical_feature_abbreviated)
-                        if len(feature_str) > 9:
-                            label_stack.append((feature_str, 'FEATURE'))
-                            feature_str = ''
-            if feature_str != '':
-                label_stack.append((feature_str, 'FEATURE'))
+            # Show features (if any)
+            if self.visualizer.show_features:
                 feature_str = ''
+                features_included = set()
+                for feature_pattern in self.visualizer.show_features:
+                    for i, lexical_feature in enumerate(ps.features):
+                        if re.match(feature_pattern, lexical_feature):
+                            lexical_feature_abbreviated = self.abbreviate_feature(lexical_feature)
+                            if lexical_feature_abbreviated not in features_included:
+                                feature_str += f'[{lexical_feature_abbreviated}]'
+                                features_included.add(lexical_feature_abbreviated)
+                            if len(feature_str) > 6:
+                                label_stack.append((feature_str, 'FEATURE'))
+                                feature_str = ''
+                if feature_str != '':
+                    label_stack.append((feature_str, 'FEATURE'))
+                    feature_str = ''
 
         return label_stack
 
@@ -309,6 +318,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return 'φ‗'
             if phi == 'PHI' and value != '_':
                 return 'φ'
+        if feature == 'ΦPF':
+            return 'pf'
         if feature == '!SELF:ΦPF':
             return '+ΦPF'
         if feature == '!SELF:ΦLF':
@@ -318,7 +329,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if feature == '!SELF:Φ12':
             return 'Φ12'
         if feature == '-ΦPF':
-            return '–ΦPF'
+            return '–pf'
         return feature
 
     def draw_node_label(self, ps, X1, Y1, label_stack):
@@ -417,9 +428,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
     def on_draw(self):
         self.clear()
+        self.flip()
         self.background_image.blit(0, 0)
-        self.mouse_over_node = None
-        # self.set_size(int(self.max_x_value), int(self.max_y_value))
 
     def terminate(self, dt):
         self.show_in_window(self.phrase_structure)

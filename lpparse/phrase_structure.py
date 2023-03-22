@@ -551,7 +551,7 @@ class PhraseStructure:
 
     def feature_inheritance(self):
         if self.highest_finite_head() and not self.check({'-ΦPF'}):
-            log(f'\n\t\t{self} inherited φ-completeness (mandatory person feature).')
+            log(f'\n\t\t{self} acquired φ-completeness.')
             self.features.add('!SELF:PER')
         if self.check({'?ARG'}):
             if self.selected_by_SEM_internal_predicate():

@@ -21,6 +21,9 @@ class ThematicRoles:
                 theta_role = 'Causer/Agent'
             else:
                 theta_role = 'Agent'
+        elif ps.check({'V'}) and ps.check({'CLASS/TR'}) and ps.pro_edge():
+            assignee = ps.pro_edge()[0]
+            theta_role = 'Patient'
         if assignee:
             if assignee.head().referential():
                 if assignee.head().mother:

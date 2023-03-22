@@ -450,7 +450,7 @@ class LocalFileSystem:
                 if parse_number == 1:
                     self.results_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
                     self.results_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation_simple(parser)}\n')
-                    self.results_file.write('\tResources:\n\t' + self.format_resource_output(parser.resources))
+                    self.results_file.write('\tResources:\n\t' + self.format_resource_output(parser.resources) + '\n')
                     if self.settings['datatake_full']:
                         self.semantics_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
                         self.semantics_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation(parser)}\n')
@@ -536,7 +536,7 @@ class LocalFileSystem:
         if sentence_lst[0].startswith("&"):
             self.grammaticality_judgments_file.write('\n')
         if sentence_lst[0].startswith("'"):
-            prefix = '\t\t\t'
+            prefix = '\t'
         else:
             prefix = ''
         self.grammaticality_judgments_file.write(prefix + sentence_string)

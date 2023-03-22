@@ -1,7 +1,7 @@
 
 author= Anon
 year= 2023
-date= January
+date= March
 study_id= 15
 study_folder=			language data working directory/study-15-agreement
 lexicon_folder=			language data working directory/lexicons
@@ -21,18 +21,17 @@ datatake_full = True
 
 # IMAGE PARAMETERS
 datatake_images = False
-# show_features = PHI:,iPHI:,ΦPF,ΦLF,-ΦPF,-ΦLF,!SELF:ΦPF,!SELF:ΦLF,!SELF:Φ1,!SELF:Φ12
-show_features = PHI:,iPHI:
+show_features = PHI:,iPHI:,ΦPF
 image_parameter_show_words = True
 image_parameter_nolabels = False
 image_parameter_spellout = False
 image_parameter_case = False
 image_parameter_show_sentences = False
 image_parameter_show_glosses = True
-image_parameter_mark_adjuncts = False
+image_parameter_mark_adjuncts = True
+image_parameter_stop_after_image = False
 
 # UG COMPONENTS
-
 #	Agree
 #	standard = standard theory (Chomsky 2000, 2001, 2008)
 #	revised = current best formulation

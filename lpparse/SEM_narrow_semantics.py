@@ -125,7 +125,7 @@ class NarrowSemantics:
             if ps.primitive():
                 if self.brain_model.local_file_system.settings['generate_argument_links'] and ps.get_dPHI():
                     self.semantic_interpretation['Arguments'] = self.semantic_interpretation['Arguments'] + self.argument_recovery_module.calculate_arguments(ps)
-                if ps.is_unvalued() and not (ps.referential() and not ps.check({'PHI:DET:_'})):
+                if ps.phi_needs_valuation() and not (ps.referential() and not ps.check({'ΦPF', 'PHI:DET:_'})):
                     self.semantic_interpretation['Control'].append(self.argument_recovery_module.control(ps))
                 if self.brain_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_assigner():
                     thematic_assignment = self.thematic_roles_module.reconstruct(ps)
