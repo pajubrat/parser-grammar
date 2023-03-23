@@ -5,15 +5,15 @@
 
 T/fin   :: T/fin PF:T LF:tense
 v       :: v PF:v LF:v
-v*		:: v PF:v* LF:passive -ARG EF:φ
+v*		:: v PF:v* LF:passive -ARG EF
 C/fin   :: C/fin PF:C LF:C/fin
-T		:: T PF:T LF:tense Fin EF:φ
+T		:: T PF:T LF:tense Fin EF
 T/prt 	:: T/prt PF:T/prt LF:prt
 a0		:: A PF:a LF:mod
 impass	:: v ARG PF:impass LF:impass 
 cau		:: v PF:Cau LF:cause
 φ		:: φ PF:φ LF:phi ARG Inf
-Agr		:: Agr !EF:φ PF:Agr LF:Agr ARG Fin COMP:T
+Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
 
 # Infinitivals
 Inf			:: PF:Inf LF:inf
@@ -23,8 +23,8 @@ prtcpl		:: Inf T T/prt PF:T/prt LF:prtcpl
 to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable
 
 # Finnish infinitivals
-A/inf		:: A/inf 			Inf 	?ARG -ΦPF 		!SEF	PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
-VA/inf  	:: VA/inf 		EF	Inf T   ARG	!SELF:Φ1	!SEF	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
+A/inf		:: A/inf 			Inf 	?ARG -ΦPF 				PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
+VA/inf  	:: VA/inf 		EF	Inf T   ARG	!SELF:Φ1			PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
 ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG   					PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
 TUA/inf		:: TUA/inf		EF	Inf Adv ARG	!SELF:Φ1			PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
 KSE/inf		:: KSE/inf		EF	Inf Adv ARG	!SELF:ΦPF -SELF:ΦLF	PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
@@ -42,8 +42,8 @@ VA/A		:: VA/A				Inf			 -ΦPF 				PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !C
 # Experimental
 MA.ine/inf*	:: MA.ine/inf* 		Inf 	ARG  -ΦPF 				PF:-mA-* 	LF:ing LANG:FI !COMP:*
 A/inf*		:: A/inf 			Inf 	ARG  -ΦPF 				PF:-(t)A* 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI !COMP:*
-KSE/inf*	:: KSE/inf			Inf Adv ARG !SELF:ΦPF EF 		PF:-kse 	LF:for LANG:FI COMP:A/inf TAIL:T 	
-P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* COMP:φ !COMP:* TAIL:V COMP:MA.ine/inf* LF:in -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
+KSE/inf*	:: KSE/inf		EF	Inf Adv ARG !SELF:ΦPF	 		PF:-kse 	LF:for LANG:FI COMP:A/inf TAIL:T 	
+P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* 	LF:in COMP:φ !COMP:* TAIL:V COMP:MA.ine/inf* -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 
 # Italian
 ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin -adjoinable 
@@ -85,9 +85,9 @@ reflexive		:: inflectional iPHI:PRON:PRON R:OLD:REF
 Rexpression		:: inflectional iPHI:PRON:NONPRON R:NEW:$$$/SUR
 sg_ 			:: inflectional ΦPF PHI:NUM:SG
 pl_ 			:: inflectional ΦPF PHI:NUM:PL
-1p_ 			:: inflectional ΦPF PHI:PER:1
-2p_ 			:: inflectional ΦPF PHI:PER:2
-3p_ 			:: inflectional ΦPF PHI:PER:3
+1p_ 			:: inflectional ΦPF PHI:PER:1 PER
+2p_ 			:: inflectional ΦPF PHI:PER:2 PER
+3p_ 			:: inflectional ΦPF PHI:PER:3 PER
 def_ 			:: inflectional ΦPF PHI:DET:DEF
 indef_ 			:: inflectional ΦPF PHI:DET:INDEF
 hum_ 			:: inflectional ΦPF PHI:HUM:HUM

@@ -550,24 +550,21 @@ class PhraseStructure:
         transfer.brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
 
     def feature_inheritance(self):
+
         if self.highest_finite_head() and not self.check({'-ΦPF'}):
             log(f'\n\t\t{self} acquired φ-completeness.')
             self.features.add('!SELF:PER')
+
         if self.check({'?ARG'}):
             if self.selected_by_SEM_internal_predicate():
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into -ARG due to {self.selector()}.')
-                self.features.add('-EF:φ')
-                self.features.add('-ΦPF')
-                self.features.discard('EF:φ')
                 self.features.add('-ARG')
-                self.features.discard('!SEF')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into +ARG.')
                 self.features.add('ARG')
-                self.features.add('!EF:φ')
-                self.features.add('EF:φ')
+                self.features.add('!SEF')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
 

@@ -96,7 +96,7 @@ class LocalFileSystem:
         if self.settings['datatake_images']:
             self.initialize_image_folder()
             self.settings['datatake_images'] = True
-            self.visualizer = Visualizer()
+            self.visualizer = Visualizer(self.settings)
             self.visualizer.initialize(self.settings)
         if self.settings['datatake_full']:
             self.initialize_simple_results_file()
@@ -522,7 +522,7 @@ class LocalFileSystem:
                 self.visualizer.file_identifier = self.folder['images'] / file_name
                 self.visualizer.draw(parse.top())
                 parse_number = parse_number + 1
-            if self.visualizer.spellout:
+            if self.settings['image_parameter_spellout']:
                 parse_number = 1
                 for spellout in P.spellout_result_list:
                     file_name = 'Raw image of (' + str(count) + chr(96 + parse_number) + ')_spellout.png'

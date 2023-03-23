@@ -3,10 +3,10 @@ author= Anon
 year= 2023
 date= March
 study_id= 15
-study_folder=			language data working directory/study-15-agreement
+study_folder=			language data working directory/study-13-c-infinitivals
 lexicon_folder=			language data working directory/lexicons
-test_corpus_folder=		language data working directory/study-15-agreement
-test_corpus_file=		agreement_corpus.txt
+test_corpus_folder=		language data working directory/study-13-c-infinitivals
+test_corpus_file=		infinitivals_corpus.txt
 
 # GENERAL SIMULATION PARAMETERS
 only_first_solution = True
@@ -21,11 +21,10 @@ datatake_full = True
 
 # IMAGE PARAMETERS
 datatake_images = False
-show_features = PHI:,iPHI:,ΦPF
+show_features = !SELF:Φ1,!SELF:Φ12,!SEF,ΦPF,-ΦPF
 image_parameter_show_words = True
 image_parameter_nolabels = False
 image_parameter_spellout = False
-image_parameter_case = False
 image_parameter_show_sentences = False
 image_parameter_show_glosses = True
 image_parameter_mark_adjuncts = True
