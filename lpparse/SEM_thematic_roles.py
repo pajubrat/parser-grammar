@@ -32,6 +32,6 @@ class ThematicRoles:
                     argument_str = f'{assignee.head()}'
             else:
                 argument_str = f'{assignee.label()}'
-            return theta_role + f' of {ps.label()}({ps.gloss()})°: ' + argument_str
+            return theta_role + f' of {ps.label()}°({ps.gloss()}): ' + argument_str
 
 

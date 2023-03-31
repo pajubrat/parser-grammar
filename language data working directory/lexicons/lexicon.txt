@@ -130,14 +130,15 @@ kuka 		:: kuka-#D#wh#sg#3p#def#hum#[nom] LANG:FI
 KUKA		:: kuka-#D#wh#sg#3p#def#hum#[nom]#[foc] LANG:FI
 kuka-   	:: PF:kuka LF:who N PHI LANG:FI
 kuorsaa		:: kuorsaa-#T/fin#[V] LANG:FI
-kuorsaamalla 	:: kuorsaa-#malla LANG:FI
+kuorsaamalla :: kuorsaa-#malla LANG:FI
 kuorsaten	:: kuorsaa-#E/inf LANG:FI
 kuorsaa- 	:: PF:kuorsaa- LF:snore V CLASS/INTR COMP:P -COMP:WH -COMP:T/fin -COMP:φ LANG:FI
 kuvaa		:: kuva-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[V] LANG:EN
 laulaa		:: laula-#T/fin#[V] LANG:FI
-laula-		:: V PF:laula LF:sing CLASS/INTR LANG:FI
+laulamaan 	:: laula-#MA.ill/inf LANG:FI
+laula-		:: V PF:laula LF:sing CLASS/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Inf EF !SEF LANG:FI
@@ -295,6 +296,15 @@ puna-		:: PF:puna- LF:red 0 LANG:FI
 pyytää		:: pyytä-#v#T/fin#[V] LANG:FI
 pyysi		:: pyytä-#v#T/fin#[V] LANG:FI
 pyytä-		:: PF:pyyda- LF:ask V CLASS/TR SEMCLASS_desired_event SEM:external LANG:FI
+saavuttaa	:: saavutta-#v#T/fin#[V] LANG:FI
+saavutta-	:: PF:saavutta- LF:reach !COMP:φ ASP:BOUNDED CLASS/TR V LANG:FI
+sano		:: sano-#T/fin LANG:FI
+sanon   	:: sano-#T/fin#n LANG:FI
+sanoo   	:: sano-#T/fin#[V] LANG:FI
+sanoi		:: sano-#T/fin#[V] LANG:FI
+sano-   	:: PF:sano- LF:say V SPEC:φ COMP:VA/inf COMP:FORCE -PROBE:FORCE:WH LANG:FI
+sala		:: sala-#D LANG:IT
+sala-		:: PF:sala- LF:room N LANG:IT
 silta-		:: PF:silta LF:bridge N LANG:FI
 sillan		:: silta-#φ#sg#3p#r_expression#[gen]
 siltaa		:: silta-#φ#sg#3p#r_expression#[par]
@@ -306,15 +316,8 @@ sopimuksen	:: sopimus-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 sopimus		:: sopimus-#φ#sg#3p#r_expression#def	LANG:FI
 sopimus-	:: N PF:sopimus LF:agreement !COMP:A/inf LANG:FI
 ssa			:: PF:ssa LF:in P TAIL:V float LANG:FI
-saavuttaa	:: saavutta-#v#T/fin#[V] LANG:FI
-saavutta-	:: PF:saavutta- LF:reach !COMP:φ ASP:BOUNDED CLASS/TR V LANG:FI
-sano		:: sano-#T/fin LANG:FI
-sanon   	:: sano-#T/fin#n LANG:FI
-sanoo   	:: sano-#T/fin#[V] LANG:FI
-sanoi		:: sano-#T/fin#[V] LANG:FI
-sano-   	:: PF:sano- LF:say V SPEC:φ COMP:VA/inf COMP:FORCE -PROBE:FORCE:WH LANG:FI
-sala		:: sala-#D LANG:IT
-sala-		:: PF:sala- LF:room N LANG:IT
+suututti	:: suututa-#v#T/fin#[V] LANG:FI
+suututa-	:: PF:suututa- LF:anger V CLASS/TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA.abe/inf -COMP:MA.ine/inf LANG:FI
 raukesi		:: raukea-#T/fin#[V] LANG:FI
 raukea-		:: PF:raukea- LF:terminate V LANG:FI
 Seine		:: Seine-#D#sg#3p#[nom] LANG:FI
@@ -434,9 +437,9 @@ se			:: se_N-#D/pro#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 sitä		:: se_N-#D/pro#[par]#sg#3p#def#nonhum#pronoun1 LANG:FI
 sen			:: se_N-#D/pro#[gen]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se_N-		:: PF:se LF:the/that N LANG:FI
-itseään		:: itse-#D/refl#3p#sg#def#[par]#pronoun1 LANG:FI
-itseäni		:: itse-#D/refl#1p#sg#def#[par]#pronoun1 LANG:FI
-itsensä_gen	:: itse-#D/refl#3p#sg#def#[gen]#pronoun1 LANG:FI
+itseään		:: itse-#D/refl#3p#sg#def#[par]#reflexive LANG:FI
+itseäni		:: itse-#D/refl#1p#sg#def#[par]#reflexive LANG:FI
+itsensä_gen	:: itse-#D/refl#3p#sg#def#[gen]#reflexive LANG:FI
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
 ne			:: PF:ne LF:those D PHI:NUM:PL PHI:PER:3 LANG:FI
 ne			:: ne-#D/pro#3p#pl#def#nonhum#[nom]#pronoun1 LANG:FI

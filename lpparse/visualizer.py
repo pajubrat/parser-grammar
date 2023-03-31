@@ -285,6 +285,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return '[φ]'
         if feature == 'ΦPF':
             return '[φ]'
+        if feature == '-SELF:ΦLF':
+            return '[‒EPP]'
         if feature == '!SELF:ΦPF':
             return '[+ΦPF]'
         if feature == '!SELF:ΦLF':
@@ -292,10 +294,10 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if feature == '!SELF:Φ1':
             return '[Φ1]'
         if feature == '!SELF:Φ12':
-            return '[Φ12]'
+            return '[Φ2]'
         if feature == '-ΦPF':
             if not ps.theta_assigner() and not ps.check({'!SEF'}):
-                return '[-EPP]'
+                return '[‒EPP]'
             else:
                 return None
         if feature == '!SEF':

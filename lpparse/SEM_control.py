@@ -1,7 +1,6 @@
 from itertools import takewhile
 from support import log
 
-
 class LF_Recovery:
     def __init__(self, brain_model):
         self.brain_model = brain_model
