@@ -285,23 +285,17 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return '[φ]'
         if feature == 'ΦPF':
             return '[φ]'
-        if feature == '-SELF:ΦLF':
-            return '[‒EPP]'
+        if feature == '-SELF:DPF':
+            return '[‒EF]'
+        if feature == '!SELF:DPF':
+            if ps.check({'-SELF:DPF*'}):
+                return '[EF*]'
+            else:
+                return '[EF]'
+        if feature == '-SELF:DPF*':
+            return None
         if feature == '!SELF:ΦPF':
             return '[+ΦPF]'
-        if feature == '!SELF:ΦLF':
-            return '[+ΦLF]'
-        if feature == '!SELF:Φ1':
-            return '[Φ1]'
-        if feature == '!SELF:Φ12':
-            return '[Φ2]'
-        if feature == '-ΦPF':
-            if not ps.theta_assigner() and not ps.check({'!SEF'}):
-                return '[‒EPP]'
-            else:
-                return None
-        if feature == '!SEF':
-            return '[EPP]'
         return f'[{feature}]'
 
     def draw_node_label(self, ps, X1, Y1, label_stack):

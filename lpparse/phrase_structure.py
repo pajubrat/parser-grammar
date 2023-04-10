@@ -1,5 +1,5 @@
 from collections import namedtuple
-from itertools import takewhile, chain
+from itertools import takewhile
 from support import log
 from feature_processing import *
 
@@ -388,7 +388,7 @@ class PhraseStructure:
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
                 if self.scan_feature('iPHI:DET'):
-                    if probe.check('DPF'):
+                    if probe.check({'DPF'}):
                         probe.features.add('DPF*')
                     else:
                         probe.features.add('DPF')
@@ -1072,6 +1072,9 @@ class PhraseStructure:
 
     def referential(self):
         return self.check_some({'φ', 'D'})
+
+    def interpretable_phi(self):
+        return {f for f in self.features if f.startswith('iPHI:')}
 
     def preposition(self):
         return self.check({'P'})

@@ -1,4 +1,3 @@
-from itertools import takewhile
 from support import log
 
 class LF_Recovery:

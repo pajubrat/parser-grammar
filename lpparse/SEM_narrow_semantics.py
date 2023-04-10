@@ -5,6 +5,7 @@ from SEM_control import LF_Recovery
 from SEM_quantifiers_numerals_denotations import QuantifiersNumeralsDenotations
 from SEM_predicates_relations_events import PredicatesRelationsEvents
 from SEM_thematic_roles import ThematicRoles
+from SEM_predicates import Predicates
 from global_cognition import GlobalCognition
 
 class NarrowSemantics:
@@ -16,6 +17,7 @@ class NarrowSemantics:
         self.pragmatic_pathway = Discourse(self)
         self.predicates_relations_events_module = PredicatesRelationsEvents(self)
         self.global_cognition = GlobalCognition(self)
+        self.predicates = Predicates(self)
         self.semantic_interpretation = {}
         self.semantic_interpretation_failed = False
         self.predicate_argument_dependencies = []
@@ -83,6 +85,7 @@ class NarrowSemantics:
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
                                         'Arguments': [],
+                                        'Predicate scopes': [],
                                         'Aspect': [],
                                         'DIS-features': [],
                                         'Operator bindings': [],
@@ -100,6 +103,7 @@ class NarrowSemantics:
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
                                         'Arguments': [],
+                                        'Predicate scopes': [],
                                         'Aspect': [],
                                         'DIS-features': [],
                                         'Operator bindings': [],
@@ -131,6 +135,8 @@ class NarrowSemantics:
                     thematic_assignment = self.thematic_roles_module.reconstruct(ps)
                     if thematic_assignment:
                         self.semantic_interpretation['Thematic roles'].append(thematic_assignment)
+                if self.brain_model.local_file_system.settings['calculate_predicates'] and ps.interpretable_phi():
+                    self.semantic_interpretation['Predicate scopes'].append(self.predicates.reconstruct(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
                 if self.brain_model.local_file_system.settings['project_objects']:

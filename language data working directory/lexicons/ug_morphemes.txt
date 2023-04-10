@@ -25,7 +25,7 @@ to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V 
 # Finnish infinitivals
 A/inf		:: A/inf 		EF	Inf 	?ARG -ΦPF 					PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
 VA/inf  	:: VA/inf 		EF	Inf T   ARG	!SELF:DPF -SELF:DPF*	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
-ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG   						PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
+ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  						PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
 TUA/inf		:: TUA/inf		EF	Inf Adv ARG	!SELF:DPF -SELF:DPF*	PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
 KSE/inf		:: KSE/inf		EF	Inf Adv ARG	!SELF:ΦPF -SELF:ΦLF		PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
 E/inf		:: E/inf 		EF	Inf Adv ARG	-SELF:DPF  				PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
