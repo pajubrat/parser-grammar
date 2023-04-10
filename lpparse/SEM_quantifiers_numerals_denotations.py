@@ -21,9 +21,6 @@ class QuantifiersNumeralsDenotations:
     def accept(self, ps):
         return ps.sustains_reference() or ps.referential()
 
-    def is_operator(self, ps):
-        return self.narrow_semantics.operator_variable_module.scan_operators(ps) and not ps.finite()
-
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
 

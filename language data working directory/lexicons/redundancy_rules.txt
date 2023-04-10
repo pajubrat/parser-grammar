@@ -5,7 +5,7 @@
 FORCE	:: -ARG -EF Fin !COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin
 C/fin 	:: -ARG Fin C -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:Fin COMP:Neg/fin !COMP:* -SPEC:N -SPEC:T/fin -SPEC:C/fin -COMP:FORCE 
 C		:: -SPEC:MA/A
-T/fin 	:: ARG EF T Fin !SELF:Φ12 !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
+T/fin 	:: ARG EF T Fin !SELF:DPF !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
 T/prt 	:: ARG Fin T EF !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -PER
 T 		:: ARG COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
 Neg/fin :: ARG EF Fin NEG COMP:T/prt COMP:T -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
@@ -49,9 +49,6 @@ CLASS/INTR 		:: -COMP:φ SPEC:φ COMP:P
 CLASS/DITR 		:: !COMP:* SPEC:φ COMP:φ
 PHI_N			:: -COMP:*
 
-# Universal rules related to the edge feature
-!EF		:: EF
-
 # Nouns and nounlike elements
 R:REF:PROPER_NAME :: -COMP:Inf
 
@@ -67,7 +64,7 @@ C/fin		:: !COMP:ΦPF
 P LANG:FI		::	EF Adv
 Adv LANG:FI		::	EF
 A LANG:FI		::	EF
-T/fin LANG:FI	:: !EF
+T/fin LANG:FI	::  EF
 φ LANG:FI		::	EF
 
 # Other rules
@@ -84,10 +81,10 @@ OP:POL LANG:FI	:: OP !SCOPE DIS:POL
 OP:FOC LANG:FI	:: OP DIS:FOC
 
 # ===> ENGLISH
-P LANG:EN		::	-ΦPF -EF -float !COMP:*
-Adv LANG:EN		::	-ΦPF -EF
+P LANG:EN		::	-ΦPF -float !COMP:*
+Adv LANG:EN		::	-ΦPF
 n LANG:EN		::  -ΦPF
-T/fin LANG:EN	::	!EF EF SPEC:FORCE
+T/fin LANG:EN	::	!SELF:DPF EF SPEC:FORCE
 A LANG:EN		::	-adjoinable
 ACC LANG:EN		::	-adjoinable -float
 NOM LANG:EN		::  -adjoinable -float
@@ -97,7 +94,7 @@ OP:REL LANG:EN	::	!SCOPE
 ARG LANG:EN		::  PHI:GEN:_
 
 # ==> ITALIAN
-P LANG:IT		::  -ΦPF -EF !COMP:*
+P LANG:IT		::  -ΦPF !COMP:*
 NOM LANG:IT		::	-adjoinable -float
 ARG LANG:IT		::  PHI:GEN:_
 

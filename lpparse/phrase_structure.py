@@ -257,22 +257,6 @@ class PhraseStructure:
 
     # Selection -------------------------------------------------------------------------------------------
 
-    # Feature -EF:φ
-    def selection__negative_SUBJECT_edge(self, selected_feature):
-        return not self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
-
-    # Feature !EF
-    def selection__unselective_edge(self, selected_feature):
-        return self.pro_edge()
-
-    # Feature -EF
-    def selection__unselective_negative_edge(self, selected_feature):
-        return not self.pro_edge()
-
-    # Feature !SEF
-    def selection__positive_shared_edge(self, selected_feature):
-        return not (not self.licensed_phrasal_specifier() and self.referential_complement_criterion())
-
     # Feature -SPEC:L
     def selection__negative_specifier(self,  selected_feature):
         return not self.next(self.edge, lambda x: x.check({selected_feature}) and not x.adjunct)
@@ -289,12 +273,6 @@ class PhraseStructure:
     def selection__negative_complement(self, selected_feature):
         return not (self.proper_selected_complement() and self.proper_selected_complement().check({selected_feature}))
 
-    # Feature [!SEF]
-    def referential_complement_criterion(probe):
-        return probe.proper_selected_complement() and (probe.proper_selected_complement().head().referential() or
-                                                       (probe.proper_selected_complement().head().licensed_phrasal_specifier() and
-                                                        probe.proper_selected_complement().head().licensed_phrasal_specifier().head().referential()))
-
     # Feature [!SELF]
     def selection__positive_self_selection(self, selected_feature):
         return self.check({selected_feature})
@@ -305,9 +283,9 @@ class PhraseStructure:
 
     # -ΦPF
     def selection__phonological_AGREE(self, selected_feature):
-        if not self.theta_assigner() and not self.check({'!SEF'}):
+        if not self.theta_assigner() and not self.check({'!SELF:DPF'}):
             # -ΦPF -> -EFφ
-            return self.selection__negative_SUBJECT_edge(selected_feature)
+            return not self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
         return True
 
     def specifier_match(self, phrase):
@@ -351,7 +329,7 @@ class PhraseStructure:
     def probe(self, intervention_features, G):
         if self.sister():
             for node in self.sister().minimal_search():
-                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_operators()):
+                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_feature('OP')):
                     return True
                 if node.check(intervention_features):
                     break
@@ -393,7 +371,7 @@ class PhraseStructure:
 
     def create_chain(self, transfer, inst):
         for target in self.select_objects_from_edge(inst):
-            inst, target = target.prepare_chain(self, inst, target.scan_operators(), transfer)
+            inst, target = target.prepare_chain(self, inst, transfer)
             self.form_chain(target, inst)
             transfer.brain_model.consume_resources(inst['type'], self)
 
@@ -403,15 +381,22 @@ class PhraseStructure:
             elif target.max().container() and inst['test integrity'](target.max().container()):
                 target.max().container().create_chain(transfer, inst)
 
-    def prepare_chain(self, probe, inst, op_features, transfer):
+    def prepare_chain(self, probe, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
+            op_features = self.scan_feature('OP')
             if not op_features and inst['last resort A-chain conditions'](self):
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
+                if self.scan_feature('iPHI:DET'):
+                    if probe.check('DPF'):
+                        probe.features.add('DPF*')
+                    else:
+                        probe.features.add('DPF')
             else:
                 if op_features and not self.supported_by(probe):
                     probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
-                probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_operators() | probe.add_scope_information()))
+                probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_feature('OP') | probe.add_scope_information()))
+                probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_feature('OP') | probe.add_scope_information()))
         return inst, self.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
@@ -472,7 +457,6 @@ class PhraseStructure:
         if self.sister():
             goal = next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), self)
         self.value_features(goal)
-        self.update_phi_interactions()
 
     def value_features(self, goal):
         log(f'\n\t\t{self}° agrees with {goal.head()} ({goal.max().illustrate()}) and values ')
@@ -509,15 +493,6 @@ class PhraseStructure:
 
     def unvalued_counterparty(self, phi):
         return next((phi_ for phi_ in self.head().features if unvalued(phi_) and phi.startswith(phi_[:-1])), None)
-
-    # Instructions for PHI-interactions in enumerative grammar
-    def update_phi_interactions(self):
-        if self.has_PHI():
-            self.features.add(at_least_one_PHI())
-            if not self.has_PHI_FULL():
-                self.features.add(exactly_one_PHI())
-            else:
-                self.features.discard(exactly_one_PHI())
 
     # Check if types match, then there must be a licensing feature with identical value.
     def feature_licensing(self, phi):
@@ -562,9 +537,9 @@ class PhraseStructure:
                 self.features.add('-ARG')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 self.features.discard('?ARG')
-                log(f'\n\t\t{self} resolved into +ARG.')
+                log(f'\n\t\t{self} resolved into ARG.')
                 self.features.add('ARG')
-                self.features.add('!SEF')
+                self.features.add('!SELF:DPF')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
 
@@ -691,18 +666,18 @@ class PhraseStructure:
             return self.head()
         return self
 
-    def scan_operators(self):  # Note: we only take the first operator
+    def scan_feature(self, feature):  # Note: we only take the first operator
         set_ = set()
         if self.left and not self.left.find_me_elsewhere:
-            set_ = self.left.scan_operators()
+            set_ = self.left.scan_feature(feature)
         if not set_ and self.right and not self.right.find_me_elsewhere and not {'T/fin', 'C'} & self.right.head().features:
-            set_ = self.right.scan_operators()
+            set_ = self.right.scan_feature(feature)
         if not set_ and self.primitive():
-            set_ = {f for f in self.features if f[:2] == 'OP' and f[-1] != '_'}
+            set_ = {f for f in self.features if f.startswith(feature) and f[-1] != '_'}
         return set_
 
     def operator_in_scope_position(self):
-        return self.scan_operators() and self.container() and self.container().head().finite()
+        return self.scan_feature('OP') and self.container() and self.container().head().finite()
 
     # Tail-processing ---------------------------------------------------------------------------
 
@@ -1183,7 +1158,7 @@ class PhraseStructure:
         return self.head().check({'ΦPF'})
 
     def has_PHI(self):
-        return self.head().check_some({'ΦPF', 'ΦLF'})
+        return self.head().check({'DPF'})
 
     def has_PHI_FULL(self):
         return self.head().check({'ΦPF', 'ΦLF'})

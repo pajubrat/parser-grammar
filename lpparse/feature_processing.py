@@ -22,10 +22,10 @@ def i(phi):
     return phi
 
 def exactly_one_PHI():
-    return 'Φ1'
+    return 'DPF*'
 
 def at_least_one_PHI():
-    return 'Φ12'
+    return 'DPF'
 
 def convert_features_for_parsing(features):
     return {f[1:] if f.startswith('!') else f for f in features}

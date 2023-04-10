@@ -17,11 +17,7 @@ class LF:
                                     ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
                                     ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct)]
 
-        self.selection_violation_test = {'-EF:φ': PhraseStructure.selection__negative_SUBJECT_edge,
-                                         '-EF': PhraseStructure.selection__unselective_negative_edge,
-                                         '!EF': PhraseStructure.selection__unselective_edge,
-                                         '!1EDG': PhraseStructure.selection__negative_one_edge,
-                                         '!SEF':  PhraseStructure.selection__positive_shared_edge,
+        self.selection_violation_test = {'!1EDG': PhraseStructure.selection__negative_one_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
                                          '-COMP': PhraseStructure.selection__negative_complement,
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
