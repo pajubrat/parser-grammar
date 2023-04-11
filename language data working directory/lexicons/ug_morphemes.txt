@@ -14,10 +14,15 @@ impass	:: v ARG PF:impass LF:impass
 cau		:: v PF:Cau LF:cause
 φ		:: φ PF:φ LF:phi ARG Inf
 Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
+N		:: N PF:N LF:N
 
 # Infinitivals
 Inf			:: PF:Inf LF:inf
 prtcpl		:: Inf T T/prt PF:T/prt LF:prtcpl
+
+# Expletives
+D/expl		:: EXPL PF:expl LF:expl !COMP:N
+expl		:: N#D/expl
 
 # English
 to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable

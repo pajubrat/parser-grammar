@@ -446,6 +446,11 @@ ne			:: ne-#D/pro#3p#pl#def#nonhum#[nom]#pronoun1 LANG:FI
 ne-			:: PF:ne LF:those N LANG:FI
 niiden		:: ne#[gen]#pronoun1
 
+# Expletive pronouns
+
+sitä		:: N#D/expl LANG:FI
+sitä'		:: N#D/expl LANG:FI
+
 # Finite agreement
 n		::	inflectional ΦPF DPF EF -Inf PHI:NUM:SG PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 t		::	inflectional ΦPF DPF EF -Inf PHI:NUM:SG PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
@@ -641,6 +646,10 @@ them		:: they-#D/pro#pl#3p#def#hum#acc LANG:EN
 they- 		:: PF:they LF:they N PHI_N LANG:EN
 it			:: it-#D/pro#sg#3p#def#nonhum LANG:EN
 it-			:: PF:it LF:it/that N LANG:EN
+
+# Expletive pronouns
+it'			:: N#D/expl LANG:EN
+there'		:: N#D/expl LANG:EN
 
 # Agreement
 [-s]		::	inflectional ΦPF EF PHI:NUM:SG PHI:PER:3 PER PHI:GEN:M PHI:GEN:F LANG:EN

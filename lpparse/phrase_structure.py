@@ -4,7 +4,7 @@ from support import log
 from feature_processing import *
 
 # New list (ordered hierarchically)
-major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
+major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', 'EXPL', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 
 Result = namedtuple('Result', 'match_occurred outcome')
 
@@ -426,7 +426,7 @@ class PhraseStructure:
 
     def select_objects_from_edge(self, instructions):
         if instructions['type'] == 'Phrasal Chain':
-            return [spec for spec in self.edge() if not spec.find_me_elsewhere]
+            return [spec for spec in self.edge() if not spec.find_me_elsewhere and not spec.uninterpretable()]
         return [self.right]
 
     def VP_for_fronting(self):
@@ -1146,7 +1146,7 @@ class PhraseStructure:
         return self.check_some({'v', 'C', 'FORCE'}) and not self.check({'v-'})
 
     def extended_subject(self):
-        return self.check_some({'NOM', 'GEN'})
+        return self.check_some({'GEN'})
 
     def highest_finite_head(self):
         return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
@@ -1165,3 +1165,6 @@ class PhraseStructure:
 
     def has_PHI_FULL(self):
         return self.head().check({'ΦPF', 'ΦLF'})
+
+    def uninterpretable(self):
+        return self.head().check({'EXPL'})
