@@ -5,7 +5,7 @@ class Predicates:
         self.brain_model = brain_model
 
     def reconstruct(self, probe):
-        scope_head = next((x for x in probe.upward_path() if x.check({'DPF'})), None)
+        scope_head = next((x for x in probe.upward_path() if x.check({'δPF'})), None)
         if scope_head:
             return f'Predicate scope for {probe.max().illustrate()} is {scope_head}'
         return f'Predicate scope for {probe.max().illustrate()} is not available'

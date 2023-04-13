@@ -66,6 +66,7 @@ class LocalFileSystem:
 
     def check_output(self):
         grammatical = True
+        number_of_errors = 0
         errors = open(self.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
         errors.write('Prediction errors were detected in the following sentences:\n')
         errors.write('(Determined solely on the basis of the grammatical/ungrammatical labels in the dataset file.)\n\n')
@@ -78,7 +79,10 @@ class LocalFileSystem:
                 if line.strip()[:1].isdigit():
                     if (' *' in line and grammatical) or (' *' not in line and not grammatical):
                         errors.write(f'{line}')
+                        print(f'Error: {line}')
+                        number_of_errors += 1
         errors.close()
+        print(f'\nFound {number_of_errors} errors.')
 
     def initialize(self, args):
         self.initialize_dev_logging()

@@ -372,26 +372,35 @@ class PhraseStructure:
     def create_chain(self, transfer, inst):
         for target in self.select_objects_from_edge(inst):
             inst, target = target.prepare_chain(self, inst, transfer)
-            self.form_chain(target, inst)
-            transfer.brain_model.consume_resources(inst['type'], self)
+            if not target.expletive():
+                self.form_chain(target, inst)
+                transfer.brain_model.consume_resources(inst['type'], self)
 
-            # Successive-cyclic chain formation
-            if target.primitive() and inst['test integrity'](target):
-                target.create_chain(transfer, inst)
-            elif target.max().container() and inst['test integrity'](target.max().container()):
-                target.max().container().create_chain(transfer, inst)
+                # Successive-cyclic chain formation
+                if target.primitive() and inst['test integrity'](target):
+                    target.create_chain(transfer, inst)
+                elif target.max().container() and inst['test integrity'](target.max().container()):
+                    target.max().container().create_chain(transfer, inst)
 
     def prepare_chain(self, probe, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
             op_features = self.scan_feature('OP')
+            dph_features = self.scan_feature('iPHI:DET')
+
+            # DPH features
+            if not self.check({'null'}) and dph_features:
+                if dph_features in probe.features:
+                    probe.features.add('δPF*')
+                else:
+                    probe.features.add('δPF')
+                log(f'\n\t\t{probe}° checked EPP.')
+
+            # A-features
             if not op_features and inst['last resort A-chain conditions'](self):
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
-                if self.scan_feature('iPHI:DET'):
-                    if probe.check({'DPF'}):
-                        probe.features.add('DPF*')
-                    else:
-                        probe.features.add('DPF')
+
+            # Operator features
             else:
                 if op_features and not self.supported_by(probe):
                     probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
@@ -426,7 +435,7 @@ class PhraseStructure:
 
     def select_objects_from_edge(self, instructions):
         if instructions['type'] == 'Phrasal Chain':
-            return [spec for spec in self.edge() if not spec.find_me_elsewhere and not spec.uninterpretable()]
+            return [spec for spec in self.edge() if not spec.find_me_elsewhere and not spec.expletive()]
         return [self.right]
 
     def VP_for_fronting(self):
@@ -539,7 +548,7 @@ class PhraseStructure:
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into ARG.')
                 self.features.add('ARG')
-                self.features.add('!SELF:DPF')
+                self.features.add('!SELF:δPF')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
 
@@ -712,18 +721,12 @@ class PhraseStructure:
             phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if feature_check(i(phi1), phi2)}
             return phi_to_check == phi_checked
 
-    def special_rule(self, x):
-        if self.finite() and self.edge() and x == self.next(self.upward_path):
-            if not x.referential():
-                self.features.add('PHI:DET:GEN')
-            return x
-
     def control(self):
         antecedent = next((x for x in [self.sister()] + list(takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())) if self.is_possible_antecedent(x)), None)
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control). ')
 
     def finite_control(self):
-        antecedent = self.next(self.upward_path, lambda x: x.complex() and self.is_possible_antecedent(x) or self.special_rule(x))
+        antecedent = self.next(self.upward_path, lambda x: x.complex() and self.is_possible_antecedent(x))
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (finite control). ')
         return antecedent
 
@@ -732,7 +735,7 @@ class PhraseStructure:
         unvalued_phi = self.phi_needs_valuation()
         if {'PHI:NUM:_', 'PHI:PER:_'} & unvalued_phi:
             antecedent = self.control()
-        if {'PHI:DET:_'} & unvalued_phi and self.check({'LANG:FI'}):
+        elif {'PHI:DET:_'} & unvalued_phi:
             antecedent = self.finite_control()
         return antecedent
 
@@ -1166,5 +1169,5 @@ class PhraseStructure:
     def has_PHI_FULL(self):
         return self.head().check({'ΦPF', 'ΦLF'})
 
-    def uninterpretable(self):
+    def expletive(self):
         return self.head().check({'EXPL'})

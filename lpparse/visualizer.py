@@ -285,14 +285,14 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return '[φ]'
         if feature == 'ΦPF':
             return '[φ]'
-        if feature == '-SELF:DPF':
-            return '[‒EF]'
-        if feature == '!SELF:DPF':
+        if feature == '-SELF:δPF':
+            return '[‒EPP]'
+        if feature == '!SELF:δPF':
             if ps.check({'-SELF:DPF*'}):
-                return '[EF*]'
+                return '[EPP*]'
             else:
-                return '[EF]'
-        if feature == '-SELF:DPF*':
+                return '[EPP]'
+        if feature == '-SELF:δPF*':
             return None
         if feature == '!SELF:ΦPF':
             return '[+ΦPF]'
