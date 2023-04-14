@@ -21,7 +21,7 @@ Inf			:: PF:Inf LF:inf
 prtcpl		:: Inf T T/prt PF:T/prt LF:prtcpl
 
 # Expletives
-D/expl		:: EXPL PF:expl LF:expl !COMP:N
+D/expl		:: EXPL δPF PF:expl LF:expl !COMP:N -SPEC:*
 expl		:: N#D/expl
 
 # English
@@ -29,10 +29,10 @@ to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V 
 
 # Finnish infinitivals
 A/inf		:: A/inf 		EF	Inf 	?ARG -ΦPF 					PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
-VA/inf  	:: VA/inf 		EF	Inf T   ARG	!SELF:δPF -SELF:δPF*	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
+VA/inf  	:: VA/inf 		EF	Inf T   ARG	-SELF:δPF*				PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
 ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  						PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
-TUA/inf		:: TUA/inf		EF	Inf Adv ARG	!SELF:δPF -SELF:δPF*	PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
-KSE/inf		:: KSE/inf		EF	Inf Adv ARG	!SELF:ΦPF -SELF:ΦLF		PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
+TUA/inf		:: TUA/inf		EF	Inf Adv ARG	-SELF:δPF*				PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
+KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-SELF:ΦLF				PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
 E/inf		:: E/inf 		EF	Inf Adv ARG	-SELF:δPF  				PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
 MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-SELF:δPF  				PF:-mAssA 	LF:in !COMP:*  PROBE:V LANG:FI TAIL:V	
 MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-SELF:δPF  				PF:-mAttA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:T

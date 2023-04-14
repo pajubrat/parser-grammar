@@ -12,7 +12,7 @@ class LF_Recovery:
         for dPHI in dPHI_set:
             feature_to_search = dPHI.split(':')[2]
             argument = probe.top().return_constituent_with(feature_to_search)
-            log(f'\n\t\t\tEstablishing argument link for {probe}: {argument.max().illustrate()}. ')
+            log(f'\n\t\t\tArgument for {probe}: {argument.max().illustrate()}. ')
             if argument:
                 argument_lst.append(f'Argument for {probe}° is {argument.max().illustrate()}')
         return argument_lst
@@ -49,7 +49,7 @@ class LF_Recovery:
         if 'PHI:DET:_' in unvalued_phi and probe.check({'LANG:FI'}):
             if 'T/fin' in probe.head().features or 'Neg/fin' in probe.head().features:   # Finnish EPP ad hoc rule
                 self.interpretation_failed = True
-                log(f'Missing antecedent crashes the derivation.')
+                log(f'Missing antecedent for {probe} crashes the derivation.')
                 arg_str = 'uninterpretable (crash).'
             if probe.head().check({'-Fin'}):
                 self.interpretation_failed = True
@@ -60,4 +60,4 @@ class LF_Recovery:
             if 'PHI:PER:_' in unvalued_phi and 'PHI:NUM:_' not in unvalued_phi:
                 arg_str = 'discourse antecedent'
 
-        return f'Antecedent of {probe.label()} is {arg_str}'
+        return f'Antecedent of {probe.label()}({probe.gloss()}) is {arg_str}'

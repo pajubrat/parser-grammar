@@ -2,10 +2,10 @@
 # Universal lexical redundancy rules
 
 # Basic lexical categories
-FORCE	:: -ARG -EF Fin !COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin
+FORCE	:: -ARG -EF Fin !COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin -SPEC:T/fin
 C/fin 	:: -ARG Fin C -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:Fin COMP:Neg/fin !COMP:* -SPEC:N -SPEC:T/fin -SPEC:C/fin -COMP:FORCE 
 C		:: -SPEC:MA/A
-T/fin 	:: ARG EF T Fin !SELF:δPF !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
+T/fin 	:: ARG EF T Fin !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
 T/prt 	:: ARG Fin T EF !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -PER
 T 		:: ARG COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
 Neg/fin :: ARG EF Fin NEG COMP:T/prt COMP:T -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
@@ -23,7 +23,7 @@ n		:: φ EF ARG Inf !COMP:* COMP:0 COMP:V COMP:v
 Num		:: φ COMP:φ COMP:N COMP:n -COMP:D -COMP:QN
 DET		:: φ COMP:φ -COMP:DET 
 QN		:: φ COMP:φ COMP:N COMP:Num
-φ		:: COMP:N -SPEC:T -SPEC:P COMP:D/rel !COMP:*
+φ		:: δPF COMP:N -SPEC:T -SPEC:P COMP:D/rel !COMP:*
 MA/A	:: A
 VA/A	:: A
 Neg		:: -SPEC:N SPEC:D
@@ -84,7 +84,7 @@ OP:FOC LANG:FI	:: OP DIS:FOC
 P LANG:EN		::	-ΦPF -float !COMP:*
 Adv LANG:EN		::	-ΦPF
 n LANG:EN		::  -ΦPF
-T/fin LANG:EN	::	!SELF:δPF EF SPEC:FORCE
+T/fin LANG:EN	::	EF SPEC:FORCE
 A LANG:EN		::	-adjoinable
 ACC LANG:EN		::	-adjoinable -float
 NOM LANG:EN		::  -adjoinable -float

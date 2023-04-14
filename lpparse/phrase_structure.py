@@ -385,27 +385,28 @@ class PhraseStructure:
     def prepare_chain(self, probe, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
             op_features = self.scan_feature('OP')
-            dph_features = self.scan_feature('iPHI:DET')
+            dpf_features = self.scan_feature('δPF')
 
             # DPH features
-            if not self.check({'null'}) and dph_features:
-                if dph_features in probe.features:
+            if not self.check({'null'}) and dpf_features:
+                if dpf_features & probe.features:
                     probe.features.add('δPF*')
                 else:
-                    probe.features.add('δPF')
-                log(f'\n\t\t{probe}° checked EPP.')
+                    probe.features |= dpf_features
+                log(f'\n\t\t{probe}° checked EPP by {self}.')
 
             # A-features
-            if not op_features and inst['last resort A-chain conditions'](self):
-                inst['selection'] = lambda x: x.has_vacant_phrasal_position()
-                inst['legible'] = lambda x, y: True
+            if not self.expletive():
+                if not op_features and inst['last resort A-chain conditions'](self):
+                    inst['selection'] = lambda x: x.has_vacant_phrasal_position()
+                    inst['legible'] = lambda x, y: True
 
-            # Operator features
-            else:
-                if op_features and not self.supported_by(probe):
-                    probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
-                probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_feature('OP') | probe.add_scope_information()))
-                probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_feature('OP') | probe.add_scope_information()))
+                # Operator features
+                else:
+                    if op_features and not self.supported_by(probe):
+                        probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
+                    probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_feature('OP') | probe.add_scope_information()))
+                    probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_feature('OP') | probe.add_scope_information()))
         return inst, self.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
@@ -435,7 +436,7 @@ class PhraseStructure:
 
     def select_objects_from_edge(self, instructions):
         if instructions['type'] == 'Phrasal Chain':
-            return [spec for spec in self.edge() if not spec.find_me_elsewhere and not spec.expletive()]
+            return [spec for spec in self.edge() if not spec.find_me_elsewhere]
         return [self.right]
 
     def VP_for_fronting(self):

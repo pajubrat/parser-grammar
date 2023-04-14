@@ -30,7 +30,7 @@ class ScramblingReconstruction():
             if virtual_test_item.valid_reconstructed_adjunct(starting_point):
                 virtual_test_item.remove()
                 dropped_floater = self.copy_and_insert(node, target)
-                if dropped_floater.scan_feature('iPHI:DET'):
+                if target in starting_point.edge() and dropped_floater.scan_feature('δPF'):
                     starting_point.features.add('δPF')
                     log(f'\n\t\t{starting_point}° checked EPP.')
                 self.brain_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point)
