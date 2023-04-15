@@ -382,18 +382,20 @@ class PhraseStructure:
                 elif target.max().container() and inst['test integrity'](target.max().container()):
                     target.max().container().create_chain(transfer, inst)
 
+    def copy_criterial_features(self, specifier):
+        feature_set = {x[1:] for x in specifier.scan_feature('Δ')}
+        if self.features & feature_set:
+            self.features |= {x+'*' for x in self.features & feature_set}
+        self.features |= feature_set
+        if feature_set:
+            log(f'\n\t\t{self}° checked {feature_set} by {specifier}.')
+
     def prepare_chain(self, probe, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
             op_features = self.scan_feature('OP')
-            dpf_features = self.scan_feature('δPF')
 
-            # DPH features
-            if not self.check({'null'}) and dpf_features:
-                if dpf_features & probe.features:
-                    probe.features.add('δPF*')
-                else:
-                    probe.features |= dpf_features
-                log(f'\n\t\t{probe}° checked EPP by {self}.')
+            # First we handle only delta-p features
+            probe.copy_criterial_features(self)
 
             # A-features
             if not self.expletive():
@@ -549,7 +551,7 @@ class PhraseStructure:
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into ARG.')
                 self.features.add('ARG')
-                self.features.add('!SELF:δPF')
+                self.features.add('!SELF:Δp')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
 
@@ -676,7 +678,7 @@ class PhraseStructure:
             return self.head()
         return self
 
-    def scan_feature(self, feature):  # Note: we only take the first operator
+    def scan_feature(self, feature):  # Note: we take only the first feature set
         set_ = set()
         if self.left and not self.left.find_me_elsewhere:
             set_ = self.left.scan_feature(feature)
