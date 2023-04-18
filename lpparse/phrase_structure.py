@@ -394,8 +394,12 @@ class PhraseStructure:
         if inst['type'] == 'Phrasal Chain':
             op_features = self.scan_feature('OP')
 
-            # First we handle only delta-p features
+            # handle only delta-d features (experimental)
             probe.copy_criterial_features(self)
+
+            # Handle p-features (experimental)
+            if not self.check({'null'}):
+                probe.features.add('p')
 
             # A-features
             if not self.expletive():
@@ -486,6 +490,9 @@ class PhraseStructure:
             self.value(unvalued_counterparty, phi)  # Perform valuation
             if self != goal:                        # Leave a record that Agree/LF has occurred
                 self.features.add('ΦLF')
+                # Experimental
+                if self.check({'EF'}):
+                    self.features.add('!SELF:p')
                 self.features.add('dPHI:IDX:' + goal.head().get_id())
 
     # Replace the unvalued feature by the valued one
@@ -551,7 +558,7 @@ class PhraseStructure:
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into ARG.')
                 self.features.add('ARG')
-                self.features.add('!SELF:Δp')
+                self.features.add('!SELF:d')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
 

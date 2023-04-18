@@ -32,7 +32,12 @@ class ScramblingReconstruction():
                 dropped_floater = self.copy_and_insert(node, target)
                 if target in starting_point.edge():
                     starting_point.copy_criterial_features(target)
-                    log(f'\n\t\t{starting_point}° checked EPP.')
+                    log(f'\n\t\t{starting_point}° checked [d] (EPP).')
+                    # Handle p-features (experimental)
+                    if not target.check({'null'}):
+                        starting_point.features.add('p')
+                        log(f'\n\t\t{starting_point}° checked [p] (EPP).')
+
                 self.brain_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point)
                 return
             virtual_test_item.remove()

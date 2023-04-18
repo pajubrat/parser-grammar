@@ -330,6 +330,7 @@ class LocalFileSystem:
             if not line or line.startswith('#'):
                 continue
             if line.startswith('%'):
+                self.settings['check_output'] = False
                 parse_list = []
                 line = line.lstrip('%')
                 line = self.clear_line_end(line)
