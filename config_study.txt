@@ -21,13 +21,13 @@ datatake_full = False
 
 # IMAGE PARAMETERS
 datatake_images = False
-show_features = ΦPF,Δp,-SELF:δPF,!SELF:δPF
+show_features = !SELF:d,!SELF:p,EF,ΦPF,!COMP:φ,!SPEC:φ,Δd,d
 image_parameter_show_words = True
 image_parameter_nolabels = False
 image_parameter_spellout = False
 image_parameter_show_sentences = False
 image_parameter_show_glosses = True
-image_parameter_mark_adjuncts = True
+image_parameter_mark_adjuncts = False
 image_parameter_stop_after_image = False
 
 # UG COMPONENTS

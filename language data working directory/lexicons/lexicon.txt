@@ -3,7 +3,7 @@
 
 # FINNISH LEXICON -----------------------------------------------------------------------------------------------------------------------
 
-ali			:: PF:yli LF:over P TAIL:V Inf EF LANG:FI LANG:FI
+ali			:: PF:ali LF:under P -ΦPF TAIL:V Inf !COMP:* LANG:FI ARG
 antaa		:: anta-#v#asp#A/inf LANG:FI
 anta-   	:: PF:antaa LF:give V -COMP:P CLASS/DITR -COMP:Fin +SEM:directional ASP:BOUNDED LANG:FI
 antoi   	:: anta-#v#asp#T/fin#[V] LANG:FI
@@ -142,10 +142,11 @@ laulamaan 	:: laula-#MA.ill/inf LANG:FI
 laula-		:: V PF:laula LF:sing CLASS/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
-lähellä		:: P PF:lähellä LF:near TAIL:V Inf EF !SEF LANG:FI
+lähellä		:: P PF:lähellä LF:near TAIL:V Inf !SELF:d LANG:FI
+lähellä[d]	:: P PF:lähellä LF:near TAIL:V Inf !SELF:d LANG:FI
 lähellä2	:: P PF:lähellä LF:near TAIL:V Inf LANG:FI
 lähellä'	:: P PF:lähellä LF:near -ΦPF LANG:FI
-lähellä'	:: P PF:lähellä LF:near Inf EF !SEF LANG:FI
+lähellä'	:: P PF:lähellä LF:near Inf !SELF:d LANG:FI
 lähden		:: lähte-#T/fin#n LANG:FI
 lähdet		:: lähte-#T/fin#t LANG:FI
 lähtee		:: lähte-#T/fin#[V] LANG:FI
@@ -307,8 +308,8 @@ sano-   	:: PF:sano- LF:say V SPEC:φ COMP:VA/inf !COMP:* COMP:FORCE -PROBE:FORC
 sala		:: sala-#D LANG:IT
 sala-		:: PF:sala- LF:room N LANG:IT
 silta-		:: PF:silta LF:bridge N LANG:FI
-sillan		:: silta-#φ#sg#3p#r_expression#[gen]
-siltaa		:: silta-#φ#sg#3p#r_expression#[par]
+sillan		:: silta-#φ#def#sg#3p#r_expression#[gen]
+siltaa		:: silta-#φ#def#sg#3p#r_expression#[par]
 siskoaan	:: sisko-#φ#sg#3p#def#r_expression#[par]
 siskonsa	:: sisko-#φ#sg#3p#def#r_expression#[nom]
 sisko		:: sisko-#φ#sg#3p#def#r_expression#[nom]
@@ -321,7 +322,7 @@ suututti	:: suututa-#v#T/fin#[V] LANG:FI
 suututa-	:: PF:suututa- LF:anger V CLASS/TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA.abe/inf -COMP:MA.ine/inf LANG:FI
 raukesi		:: raukea-#T/fin#[V] LANG:FI
 raukea-		:: PF:raukea- LF:terminate V LANG:FI
-Seine		:: Seine-#D#sg#3p#[nom] LANG:FI
+Seine		:: Seine-#D#def#sg#3p#[nom] LANG:FI
 Seine-		:: PF:Seine N R:REF:PROPER_NAME LF:Seine LANG:FI
 sukka		:: sukka-#φ#r_expression#[nom]
 sukka_0acc	:: sukka-#φ#r_expression#[acc(0)]
@@ -540,7 +541,7 @@ fell		:: fell-#T/fin LANG:EN
 fell-		:: PF:fell LF:fell V CLASS/INTR LANG:EN
 flows		:: flow-#T/fin#[-s] LANG:EN
 flow'		:: PF:flow LF:flow V SPEC:φ COMP:P LANG:EN
-flow-		:: PF:flow LF:flow V CLASS/INTR COMP:P COMP:Adv LANG:EN
+flow-		:: PF:flow LF:flow V CLASS/INTR !SPEC:φ COMP:P COMP:Adv LANG:EN
 flowing		:: flow-#ing LANG:EN
 from    	:: PF:from LF:from P TAIL:V,+SEM:directional LANG:EN
 gave    	:: give-#v#T/fin LANG:EN
@@ -577,7 +578,7 @@ ocean		:: PF:ocean LF:ocean N LANG:EN
 persuades 	:: persuade-#v#T/fin#[-s] LANG:EN
 persuade- 	:: PF:persuade LF:persuade V COMP:TO/inf !COMP:* SEM:external LANG:EN
 Paris		:: Paris-#D LANG:EN
-Paris-		:: PF:Paris LF:Paris N LANG:FI
+Paris-		:: PF:Paris LF:Paris N LANG:EN
 primary		:: PF:primary LF:nurse N LANG:IT
 promises 	:: promise-#v#T/fin#[-s] LANG:EN
 promise- 	:: PF:promise LF:promise V SPEC:φ COMP:φ SEM:internal LANG:EN 
@@ -600,13 +601,15 @@ say-    	:: PF:say LF:say V SPEC:φ !COMP:FORCE LANG:EN
 seems		:: seem-#T/fin#[-s] LANG:EN
 seem		:: seem-#T/fin#[-0] LANG:EN
 seem-		:: PF:seem LF:seem V -ARG EF SPEC:D !COMP:TO/inf SEM:external
+Seine		:: Seine-#D#sg#3p#def LANG:EN
+Seine-		:: PF:Seine LF:Seine N LANG:EN
 solution	:: PF:solution LF:solution N LANG:EN
 surprised	::	surprise-#v#T/fin LANG:EN
 surprise-	:: PF:surprise LF:surprise V CLASS/TR -COMP:T/fin LANG:EN
 that    	:: PF:that LF:that FORCE FORCE:DECL REF LANG:EN
 the			:: PF:the LF:the D PHI:DET:DEF PHI:PER:3 PHI:NUM:SG LANG:EN
 to     		:: PF:to LF:to P +SEM:directional -E TAIL:V +SEM:directional LANG:EN
-towards		:: PF:towards LF:towards P TAIL:V TAIL:*LF:reach LANG:EN
+towards		:: PF:towards LF:towards P !COMP:φ -SPEC:φ TAIL:V TAIL:*LF:reach LANG:EN
 tries		:: try-#T/fin#[-s] LANG:EN
 try-		:: PF:try LF:try V SPEC:φ !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
 wants		:: want-#v#T/fin#[-s] LANG:EN

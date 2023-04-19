@@ -252,13 +252,13 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 features_included = set()
                 for feature_pattern in self.settings['show_features']:
                     for i, lexical_feature in enumerate(ps.features):
-                        if re.match(feature_pattern, lexical_feature):
+                        if feature_pattern == lexical_feature:
                             lexical_feature_abbreviated = self.abbreviate_feature(lexical_feature, ps)
                             if lexical_feature_abbreviated:
                                 if lexical_feature_abbreviated not in features_included:
                                     feature_str += f'{lexical_feature_abbreviated}'
                                     features_included.add(lexical_feature_abbreviated)
-                                if len(feature_str) > 1:
+                                if len(feature_str) > 4:
                                     label_stack.append((feature_str, 'FEATURE'))
                                     feature_str = ''
                 if feature_str != '':
@@ -285,17 +285,19 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return '[φ]'
         if feature == 'ΦPF':
             return '[φ]'
-        if feature == '-SELF:δPF':
-            return '[‒EPP]'
-        if feature == '!SELF:δPF':
-            if ps.check({'-SELF:DPF*'}):
-                return '[EPP*]'
+        if feature == 'Δd':
+            return '[d´]'
+        if feature == '!SELF:p':
+            return '[p]'
+        if feature == '!SELF:d':
+            if not ps.check({'d'}):
+                return '[d*]'
             else:
-                return '[EPP]'
-        if feature == '-SELF:δPF*':
-            return None
-        if feature == '!SELF:ΦPF':
-            return '[+ΦPF]'
+                return ''
+        if feature == 'd':
+            return '[đ]'
+        if 'COMP:φ' in feature or 'SPEC:φ' in feature and not ps.check({'EF'}):
+            return '[θ]'
         return f'[{feature}]'
 
     def draw_node_label(self, ps, X1, Y1, label_stack):

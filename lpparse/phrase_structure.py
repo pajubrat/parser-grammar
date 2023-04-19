@@ -351,7 +351,7 @@ class PhraseStructure:
     def container_assigns_theta_role(self):
         assigner = self.max().container()
         if assigner:
-            if assigner.sister() == self:
+            if assigner.sister() == self or (self.referential() and assigner.geometrical_sister() == self):
                 return True
             if self.is_licensed_specifier() and assigner.specifier_theta_role_assigner():
                 return True
@@ -395,7 +395,8 @@ class PhraseStructure:
             op_features = self.scan_feature('OP')
 
             # handle only delta-d features (experimental)
-            probe.copy_criterial_features(self)
+            if probe.check({'!SELF:d'}):
+                probe.copy_criterial_features(self)
 
             # Handle p-features (experimental)
             if not self.check({'null'}):
@@ -491,7 +492,7 @@ class PhraseStructure:
             if self != goal:                        # Leave a record that Agree/LF has occurred
                 self.features.add('ΦLF')
                 # Experimental
-                if self.check({'EF'}):
+                if self.check({'!SELF:d'}):
                     self.features.add('!SELF:p')
                 self.features.add('dPHI:IDX:' + goal.head().get_id())
 
