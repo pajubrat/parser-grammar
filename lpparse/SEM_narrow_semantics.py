@@ -84,7 +84,7 @@ class NarrowSemantics:
         self.predicate_argument_dependencies = []
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
-                                        'Arguments': [],
+                                        'Agree/LF': [],
                                         'Predicate scopes': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -102,7 +102,7 @@ class NarrowSemantics:
         self.argument_recovery_module.interpretation_failed = False
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
-                                        'Arguments': [],
+                                        'Agree/LF': [],
                                         'Predicate scopes': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -128,8 +128,8 @@ class NarrowSemantics:
         if not ps.find_me_elsewhere:
             if ps.primitive():
                 if self.brain_model.local_file_system.settings['generate_argument_links'] and ps.get_dPHI():
-                    self.semantic_interpretation['Arguments'] = self.semantic_interpretation['Arguments'] + self.argument_recovery_module.calculate_arguments(ps)
-                if ps.phi_needs_valuation() and not ps.referential() and not ps.check({'δPF'}):
+                    self.semantic_interpretation['Agree/LF'] = self.semantic_interpretation['Agree/LF'] + self.argument_recovery_module.calculate_arguments(ps)
+                if ps.check({'ARG'}) and not ps.referential():
                     self.semantic_interpretation['Control'].append(self.argument_recovery_module.control(ps))
                 if self.brain_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_assigner():
                     thematic_assignment = self.thematic_roles_module.reconstruct(ps)

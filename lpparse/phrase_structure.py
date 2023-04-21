@@ -1,5 +1,5 @@
 from collections import namedtuple
-from itertools import takewhile
+from itertools import takewhile, chain
 from support import log
 from feature_processing import *
 
@@ -494,6 +494,7 @@ class PhraseStructure:
                 # Experimental
                 if self.check({'!SELF:d'}):
                     self.features.add('!SELF:p')
+                    log(f'[p] ')
                 self.features.add('dPHI:IDX:' + goal.head().get_id())
 
     # Replace the unvalued feature by the valued one
@@ -728,13 +729,25 @@ class PhraseStructure:
 
     def is_possible_antecedent(self, antecedent):
         if antecedent and not antecedent.find_me_elsewhere:
-            phi_to_check = {phi for phi in self.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER'}
-            phi_checked = {phi2 for phi1 in antecedent.head().valued_phi_features() for phi2 in phi_to_check if feature_check(i(phi1), phi2)}
-            return phi_to_check == phi_checked
+            valued_phi_at_probe = [phi.split(':') for phi in self.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' and not phi.endswith('_')]
+            valued_phi_at_antecedent = [phi.split(':') for phi in self.head().features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' and not phi.endswith('_')]
+            for P in valued_phi_at_probe:
+                for A in valued_phi_at_antecedent:
+                    if P[1] == A[1] and P[2] != A[2]:
+                        return False
+        return True
 
     def control(self):
-        antecedent = next((x for x in [self.sister()] + list(takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())) if self.is_possible_antecedent(x)), None)
+        head = []
+        if self.extract_pro() and self.check({'d'}) and not {phi for phi in self.features if phi.startswith('PHI:DET') and phi.endswith('_')}:
+            head = [self]
+        sister = []
+        if self.open_class() and self.sister():
+            sister = [self.sister()]
+        search_path = head + sister + [x for x in takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())]
+        antecedent = next((x for x in search_path if self.is_possible_antecedent(x)), None)
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control). ')
+        return antecedent
 
     def finite_control(self):
         antecedent = self.next(self.upward_path, lambda x: x.complex() and self.is_possible_antecedent(x))
@@ -742,12 +755,11 @@ class PhraseStructure:
         return antecedent
 
     def get_antecedent(self):
-        antecedent = None
         unvalued_phi = self.phi_needs_valuation()
-        if {'PHI:NUM:_', 'PHI:PER:_'} & unvalued_phi:
-            antecedent = self.control()
-        elif {'PHI:DET:_'} & unvalued_phi:
+        if unvalued_phi & {'PHI:DET:_'} and not unvalued_phi & {'PHI:PER:_', 'PHI:NUM:_'}:
             antecedent = self.finite_control()
+        else:
+            antecedent = self.control()
         return antecedent
 
     # Structure building --------------------------------------------------------------------------
@@ -1182,3 +1194,6 @@ class PhraseStructure:
 
     def expletive(self):
         return self.head().check({'EXPL'})
+
+    def open_class(self):
+        return self.head().check_some({'N', 'V', 'P', 'A'})

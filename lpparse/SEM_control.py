@@ -12,9 +12,9 @@ class LF_Recovery:
         for dPHI in dPHI_set:
             feature_to_search = dPHI.split(':')[2]
             argument = probe.top().return_constituent_with(feature_to_search)
-            log(f'\n\t\t\tArgument for {probe}: {argument.max().illustrate()}. ')
+            log(f'\n\t\t\t{probe} ~ {argument.max().illustrate()}. ')
             if argument:
-                argument_lst.append(f'Argument for {probe}° is {argument.max().illustrate()}')
+                argument_lst.append(f'{probe}° ~ {argument.max().illustrate()}')
         return argument_lst
 
     def control(self, probe):
@@ -28,15 +28,14 @@ class LF_Recovery:
 
     @staticmethod
     def antecedent_present(probe, antecedent):
-        if probe.sister() and probe.is_left() and antecedent == probe.sister() and antecedent.is_right():
-            prefix = 'Antecedent'
-        else:
-            prefix = 'Antecedent'
-        if antecedent.head().referential():
+        if antecedent.referential():
             arg_str = antecedent.phonological_content().strip()
         else:
-            arg_str = f'pro at {antecedent.head().label()}'
-        return f'{prefix} for {probe.label()}°({probe.gloss()}) is {arg_str}'
+            if antecedent == probe.sister():
+                arg_str = f'{antecedent.head().label()}P'
+            else:
+                arg_str = f'pro at {antecedent.head().label()}'
+        return f'Argument for {probe.label()}° is {arg_str}'
 
     def antecedent_absent(self, probe):
         unvalued_phi = probe.phi_needs_valuation()
@@ -49,15 +48,15 @@ class LF_Recovery:
         if 'PHI:DET:_' in unvalued_phi and probe.check({'LANG:FI'}):
             if 'T/fin' in probe.head().features or 'Neg/fin' in probe.head().features:   # Finnish EPP ad hoc rule
                 self.interpretation_failed = True
-                log(f'Missing antecedent for {probe} crashes the derivation.')
+                log(f'Missing argument for {probe} crashes the derivation.')
                 arg_str = 'uninterpretable (crash).'
             if probe.head().check({'-Fin'}):
                 self.interpretation_failed = True
-                log(f'Missing antecedent crashes the derivation (generic reading is impossible for PX).')
+                log(f'Missing argument crashes the derivation (generic reading is impossible for PX).')
                 arg_str = 'uninterpretable (crash).'
             else:
                 arg_str = 'generic'
             if 'PHI:PER:_' in unvalued_phi and 'PHI:NUM:_' not in unvalued_phi:
-                arg_str = 'discourse antecedent'
+                arg_str = 'discourse argument'
 
-        return f'Antecedent of {probe.label()}({probe.gloss()}) is {arg_str}'
+        return f'Argument of {probe.label()} is {arg_str}'
