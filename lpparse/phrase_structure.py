@@ -728,7 +728,7 @@ class PhraseStructure:
     # Recovery ---------------------------------------------------------------------------------------------------
 
     def is_possible_antecedent(self, antecedent):
-        if antecedent and not antecedent.find_me_elsewhere:
+        if antecedent:
             valued_phi_at_probe = [phi.split(':') for phi in self.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' and not phi.endswith('_')]
             valued_phi_at_antecedent = [phi.split(':') for phi in self.head().features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' and not phi.endswith('_')]
             for P in valued_phi_at_probe:
@@ -750,17 +750,16 @@ class PhraseStructure:
         return antecedent
 
     def finite_control(self):
-        antecedent = self.next(self.upward_path, lambda x: x.complex() and self.is_possible_antecedent(x))
+        antecedent = self.next(self.upward_path, lambda x: x.complex() and self.is_possible_antecedent(x) and not x.find_me_elsewhere)
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (finite control). ')
         return antecedent
 
     def get_antecedent(self):
         unvalued_phi = self.phi_needs_valuation()
-        if unvalued_phi & {'PHI:DET:_'} and not unvalued_phi & {'PHI:PER:_', 'PHI:NUM:_'}:
-            antecedent = self.finite_control()
+        if unvalued_phi & {'PHI:DET:_'} and not unvalued_phi & {'PHI:PER:_'}:
+            return self.finite_control(), True
         else:
-            antecedent = self.control()
-        return antecedent
+            return self.control(), False
 
     # Structure building --------------------------------------------------------------------------
 

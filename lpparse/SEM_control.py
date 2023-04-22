@@ -1,8 +1,8 @@
 from support import log
 
 class LF_Recovery:
-    def __init__(self, brain_model):
-        self.brain_model = brain_model
+    def __init__(self, speaker_model):
+        self.brain_model = speaker_model
         self.LF_recovery_results = []
         self.interpretation_failed = False
 
@@ -20,11 +20,15 @@ class LF_Recovery:
     def control(self, probe):
         return self.interpret_antecedent(probe, probe.get_antecedent())
 
-    def interpret_antecedent(self, probe, antecedent):
+    def interpret_antecedent(self, probe, antecedent_package):
+        antecedent, finite_control = antecedent_package
         if antecedent:
             self.brain_model.narrow_semantics.predicate_argument_dependencies.append((probe, antecedent.head()))
             return self.antecedent_present(probe, antecedent)
-        return self.antecedent_absent(probe)
+        else:
+            if finite_control:
+                self.interpretation_failed = True
+            return self.antecedent_absent(probe)
 
     @staticmethod
     def antecedent_present(probe, antecedent):
