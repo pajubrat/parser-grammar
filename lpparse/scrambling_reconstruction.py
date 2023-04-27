@@ -21,7 +21,6 @@ class ScramblingReconstruction():
             self.adjunct_constructor.externalize_structure(target.head())
             if target.legible_adjunct() or target.head().adverbial() or not target.top().contains_finiteness():
                 return
-
         starting_point = target.container()
         virtual_test_item = target.copy()
         local_tense_edge = target.local_tense_edge()

@@ -7,8 +7,10 @@ T/fin   :: T/fin PF:T LF:tense
 v       :: v PF:v LF:v
 v*		:: v PF:v* LF:passive -ARG EF
 C/fin   :: C/fin PF:C LF:C/fin
+C		:: C C/fin PF:C LF:C
 T		:: T PF:T LF:tense Fin EF
-T/prt 	:: T/prt PF:T/prt LF:prt
+T/prt 	:: T/prt PF:Prtc LF:Prtc
+Fin		:: Fin LF:fin PF:Fin ARG COMP:T !SELF:d
 a0		:: A PF:a LF:mod
 impass	:: v ARG PF:impass LF:impass 
 cau		:: v PF:Cau LF:cause
@@ -29,9 +31,9 @@ to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V 
 
 # Finnish infinitivals
 A/inf		:: A/inf 		EF	Inf 	?ARG -ΦPF 					PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
-VA/inf  	:: VA/inf 		EF	Inf T   ARG	-SELF:Δd*				PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
+VA/inf  	:: VA/inf 		EF	Inf T   ARG	-SELF:d* !SELF:d		PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
 ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  						PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
-TUA/inf		:: TUA/inf		EF	Inf Adv ARG	-SELF:Δd*				PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
+TUA/inf		:: TUA/inf		EF	Inf Adv ARG	-SELF:d*				PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
 KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-SELF:ΦLF				PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
 E/inf		:: E/inf 		EF	Inf Adv ARG	-SELF:Δd  				PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
 MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-SELF:Δd  				PF:-mAssA 	LF:in !COMP:*  PROBE:V LANG:FI TAIL:V	
@@ -55,7 +57,7 @@ ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin -adjoinab
 
 # Copula
 # BE-		:: V COPULA  				-ARG 					PF:BE 		LF:be COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
-BE-			:: V COPULA 	EF 			-ARG 					PF:BE 		LF:T !COMP:* COMP:T/prt -COMP:T/fin
+BE-			:: V COPULA 	EF 			-ARG 					PF:Aux 		LF:Aux !COMP:* COMP:T/prt -COMP:T/fin
 
 # D-elements
 D		:: φ D PF:D LF:det R:NEW:$$$/SUR

@@ -97,8 +97,9 @@ class Visualizer:
             if self.label_stack_size(N) > 4:
                 coordinate_set.add((N.x, N.y - 2))
         else:
-            coordinate_set |= self.get_coordinate_set(N.left, coordinate_set)
-            coordinate_set |= self.get_coordinate_set(N.right, coordinate_set)
+            if not (N.head().check({'φ'}) and self.settings['image_parameter_ignore_internal_structure_of_DPs']):
+                coordinate_set |= self.get_coordinate_set(N.left, coordinate_set)
+                coordinate_set |= self.get_coordinate_set(N.right, coordinate_set)
         return coordinate_set
 
     def label_stack_size(self, ps):
@@ -193,9 +194,15 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.draw_node_label(ps, X1, Y1, head_text_stack)
         self.draw_chain_subscript(ps, X1, Y1)
         self.draw_original_sentence()
-        self.draw_selection()
+
+        if ps.find_me_elsewhere:
+            self.do_not_repeat_information = False
 
         # Phrase structure geometry for daughters
+        # Ignore structure conditions
+        if (ps.label() == 'DP' or ps.label() == 'φP') and self.settings['image_parameter_ignore_internal_structure_of_DPs']:
+            self.draw_node_label(ps, X1, Y1-52, [(ps.phonological_content(), 'PHONOLOGY')])
+            return
         if ps.left:
             self.draw_left_line(ps, X1, Y1)
             self.show_in_window(ps.left)
@@ -203,19 +210,9 @@ class ProduceGraphicOutput(pyglet.window.Window):
             self.draw_right_line(ps, X1, Y1)
             self.show_in_window(ps.right)
 
-        if ps.find_me_elsewhere:
-            self.do_not_repeat_information = False
-
-    def draw_selection(self):
-        if self.selected_node:
-            x = self.x_offset + self.selected_node.x * self.x_grid
-            y = self.y_offset + self.selected_node.y * self.y_grid + (self.y_grid - self.x_grid)
-            circle = shapes.Circle(x=x-1, y=y-14, radius=30)
-            circle.opacity = 2
-            circle.draw()
-
     # This functions generates a label stack (list of tuples) for a node
     def determine_label_stack(self, ps):
+
         # Internal functions
         def legitimate_label(ps):
             phon = ps.get_phonological_string()
@@ -272,6 +269,14 @@ class ProduceGraphicOutput(pyglet.window.Window):
             return 'Neg'
         if feature == 'Neg/finP':
             return 'NegP'
+        if self.settings['image_parameter_show_φPs_as_DPs']:
+            if feature == 'φ':
+                return 'D'
+            if feature == 'φP':
+                return 'DP'
+        if self.settings['image_parameter_show_φPs_as_NPs']:
+            if feature == 'φP':
+                return 'NP'
         return feature
 
     def abbreviate_feature(self, feature, ps):
@@ -283,19 +288,16 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return '[φ‗]'
             if phi == 'PHI' and value != '_':
                 return '[φ]'
+        if feature == 'EF':
+            return '[EPP]'
         if feature == 'ΦPF':
             return '[φ]'
-        if feature == 'Δd':
-            return '[d´]'
         if feature == '!SELF:p':
             return '[p]'
         if feature == '!SELF:d':
-            if not ps.check({'d'}):
-                return '[d*]'
-            else:
-                return ''
-        if feature == 'd':
-            return '[đ]'
+            return '[d]'
+        if feature == 'OP:Q':
+            return '[Q]'
         if 'COMP:φ' in feature or 'SPEC:φ' in feature and not ps.check({'EF'}):
             return '[θ]'
         return f'[{feature}]'

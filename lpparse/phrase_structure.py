@@ -4,7 +4,7 @@ from support import log
 from feature_processing import *
 
 # New list (ordered hierarchically)
-major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', 'EXPL', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
+major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Fin', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', 'EXPL', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 
 Result = namedtuple('Result', 'match_occurred outcome')
 
@@ -383,20 +383,19 @@ class PhraseStructure:
                     target.max().container().create_chain(transfer, inst)
 
     def copy_criterial_features(self, specifier):
-        feature_set = {x[1:] for x in specifier.scan_feature('Δ')}
-        if self.features & feature_set:
-            self.features |= {x+'*' for x in self.features & feature_set}
-        self.features |= feature_set
-        if feature_set:
-            log(f'\n\t\t{self}° checked {feature_set} by {specifier}.')
+        copied_features = [x for x in specifier.scan_feature('Δ')]
+        for x in copied_features:
+            if x[1:] in self.features:
+                self.features.add(x[1:]+'*')
+            self.features.add(x[1:])
+            specifier.head().features.discard(x)
+        if copied_features:
+            log(f'\n\t\t{self}° checked {copied_features} by {specifier}.')
 
     def prepare_chain(self, probe, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
             op_features = self.scan_feature('OP')
-
-            # handle only delta-d features (experimental)
-            if probe.check({'!SELF:d'}):
-                probe.copy_criterial_features(self)
+            probe.copy_criterial_features(self)     # Currently only d-features
 
             # Handle p-features (experimental)
             if not self.check({'null'}):
@@ -478,11 +477,12 @@ class PhraseStructure:
     def value_features(self, goal):
         log(f'\n\t\t{self}° agrees with {goal.head()} ({goal.max().illustrate()}) and values ')
         valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]
-        if valuations:
-            for incoming_phi, unvalued_counterparty in valuations:
-                self.value_feature(incoming_phi, unvalued_counterparty, goal)
-        else:
-            log(f'nothing (no useful features available). ')
+        if not self.test_condition_on_Agree(goal):
+            if valuations:
+                for incoming_phi, unvalued_counterparty in valuations:
+                    self.value_feature(incoming_phi, unvalued_counterparty, goal)
+            else:
+                log(f'nothing (no useful features available). ')
 
     def value_feature(self, phi, unvalued_counterparty, goal):
         if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
@@ -496,6 +496,12 @@ class PhraseStructure:
                     self.features.add('!SELF:p')
                     log(f'[p] ')
                 self.features.add('dPHI:IDX:' + goal.head().get_id())
+
+    def test_condition_on_Agree(self, goal):
+        if self.check({'!SELF:d'}) and goal.head().check({'Δd'}) and not self.check({'Fin', 'd'}):
+            self.features.add('*')
+            log(f'\n\t\t{self}° violated Condition on Agree.')
+            return True
 
     # Replace the unvalued feature by the valued one
     def value(self, unvalued_counterparty, phi):

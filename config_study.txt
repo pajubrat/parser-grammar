@@ -9,7 +9,7 @@ test_corpus_folder=		language data working directory/study-16-EPP
 test_corpus_file=		EPP_corpus.txt
 
 # GENERAL SIMULATION PARAMETERS
-only_first_solution = False
+only_first_solution = True
 ignore_ungrammatical_sentences = False
 console_output = Full
 stop_at_unknown_lexical_item = False
@@ -21,7 +21,6 @@ datatake_full = False
 
 # IMAGE PARAMETERS
 datatake_images = False
-show_features = !SELF:d,!SELF:p,EF,ΦPF,!COMP:φ,!SPEC:φ,Δd,d
 image_parameter_show_words = True
 image_parameter_nolabels = False
 image_parameter_spellout = False
@@ -29,6 +28,14 @@ image_parameter_show_sentences = False
 image_parameter_show_glosses = True
 image_parameter_mark_adjuncts = False
 image_parameter_stop_after_image = False
+image_parameter_show_φPs_as_DPs = True
+image_parameter_show_φPs_as_NPs = False
+image_parameter_ignore_internal_structure_of_DPs = False
+#EPP study
+#show_features = !SELF:d,!SELF:p,EF,ΦPF,!COMP:φ,!SPEC:φ
+
+#Finnish syntax study
+show_features = OP:Q
 
 # UG COMPONENTS
 #	Agree
