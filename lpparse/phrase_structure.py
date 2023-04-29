@@ -1,6 +1,6 @@
 from collections import namedtuple
 from itertools import takewhile, chain
-from support import log
+from support import log, show_feature_list
 from feature_processing import *
 
 # New list (ordered hierarchically)
@@ -329,7 +329,7 @@ class PhraseStructure:
     def probe(self, intervention_features, G):
         if self.sister():
             for node in self.sister().minimal_search():
-                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_feature('OP')):
+                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_features('OP')[0]):
                     return True
                 if node.check(intervention_features):
                     break
@@ -371,49 +371,64 @@ class PhraseStructure:
 
     def create_chain(self, transfer, inst):
         for target in self.select_objects_from_edge(inst):
-            inst, target = target.prepare_chain(self, inst, transfer)
+            inst, target = self.prepare_chain(target, inst, transfer)
             if not target.expletive():
                 self.form_chain(target, inst)
                 transfer.brain_model.consume_resources(inst['type'], self)
-
                 # Successive-cyclic chain formation
                 if target.primitive() and inst['test integrity'](target):
                     target.create_chain(transfer, inst)
                 elif target.max().container() and inst['test integrity'](target.max().container()):
                     target.max().container().create_chain(transfer, inst)
 
-    def copy_criterial_features(self, specifier):
-        copied_features = [x for x in specifier.scan_feature('Δ')]
-        for x in copied_features:
-            if x[1:] in self.features:
-                self.features.add(x[1:]+'*')
-            self.features.add(x[1:])
-            specifier.head().features.discard(x)
-        if copied_features:
-            log(f'\n\t\t{self}° checked {copied_features} by {specifier}.')
+    def scan_features(self, feature):
+        criterial_feature_set = set()
+        target = None
+        Operator = False
+        if self.left and not self.left.find_me_elsewhere:
+            criterial_feature_set, target, Operator = self.left.scan_features(feature)
+        if not criterial_feature_set and self.right and not self.right.find_me_elsewhere and not {'T/fin', 'C'} & self.right.head().features:
+            criterial_feature_set, target, Operator = self.right.scan_features(feature)
+        if not criterial_feature_set and self.primitive():
+            criterial_feature_set = {f for f in self.features if f.startswith(feature) and f[-1] != '_'}
+            target = self
+            if {f for f in criterial_feature_set if 'OP' in f}:
+                Operator = True
+        return criterial_feature_set, target, Operator
 
-    def prepare_chain(self, probe, inst, transfer):
+    def check_features(self, target, features):
+        for f in list(features):
+            interpretable_feature = f[1:]
+            if interpretable_feature == 'd' or interpretable_feature == 'p':
+                if self.check({'ARG'}):
+                    target.features.discard(f)
+            elif interpretable_feature[:2] == 'OP':
+                if not self.check({'ARG'}):
+                    target.features.discard(f)
+            else:
+                target.features.discard(f)
+            if interpretable_feature in self.features:  # Double feature checking (real rule unknown)
+                self.features.add(interpretable_feature + '*')
+            self.features.add(interpretable_feature)
+            target.features.add(interpretable_feature)
+            if not target.check({'null'}):
+                self.features.add('p')
+            log(f'\n\t\t{self},{target} checked [{interpretable_feature}] ')
+
+    def prepare_chain(probe, specifier, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
-            op_features = self.scan_feature('OP')
-            probe.copy_criterial_features(self)     # Currently only d-features
-
-            # Handle p-features (experimental)
-            if not self.check({'null'}):
-                probe.features.add('p')
-
-            # A-features
-            if not self.expletive():
-                if not op_features and inst['last resort A-chain conditions'](self):
-                    inst['selection'] = lambda x: x.has_vacant_phrasal_position()
-                    inst['legible'] = lambda x, y: True
-
-                # Operator features
-                else:
-                    if op_features and not self.supported_by(probe):
-                        probe = self.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
-                    probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_feature('OP') | probe.add_scope_information()))
-                    probe.features |= transfer.access_lexicon.add_language_feature(transfer.access_lexicon.apply_redundancy_rules({'OP:_'} | self.checking_domain('OP*' in op_features).scan_feature('OP') | probe.add_scope_information()))
-        return inst, self.copy_for_chain(transfer.babtize())
+            copied_features, target, Operator = specifier.scan_features('Δ')
+            if Operator:
+                if not specifier.supported_by(probe):
+                    probe = specifier.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
+                    probe.features |= probe.add_scope_information()
+                    log(f'\n\t\tCreated {probe}°.')
+            else:
+                inst['selection'] = lambda x: x.has_vacant_phrasal_position()
+                inst['legible'] = lambda x, y: True
+            probe.check_features(target, copied_features)
+            probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
+        return inst, specifier.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
         for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
@@ -693,18 +708,8 @@ class PhraseStructure:
             return self.head()
         return self
 
-    def scan_feature(self, feature):  # Note: we take only the first feature set
-        set_ = set()
-        if self.left and not self.left.find_me_elsewhere:
-            set_ = self.left.scan_feature(feature)
-        if not set_ and self.right and not self.right.find_me_elsewhere and not {'T/fin', 'C'} & self.right.head().features:
-            set_ = self.right.scan_feature(feature)
-        if not set_ and self.primitive():
-            set_ = {f for f in self.features if f.startswith(feature) and f[-1] != '_'}
-        return set_
-
     def operator_in_scope_position(self):
-        return self.scan_feature('OP') and self.container() and self.container().head().finite()
+        return self.scan_features('ΔOP') and self.container() and self.container().head().finite()
 
     # Tail-processing ---------------------------------------------------------------------------
 

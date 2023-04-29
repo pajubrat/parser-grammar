@@ -64,7 +64,7 @@ def show_primitive_constituents(self):
 def show_feature_list(lst):
     str = ''
     for feature in lst:
-        str += f'[{feature}], '
+        str += f'[{feature}]'
     return str
 
 def log(text):

@@ -79,7 +79,7 @@ class LocalFileSystem:
                 if line.strip()[:1].isdigit():
                     if (' *' in line and grammatical) or (' *' not in line and not grammatical):
                         errors.write(f'{line}')
-                        print(f'Error: {line}')
+                        print(f'Error: {line.strip()}')
                         number_of_errors += 1
         errors.close()
         print(f'\nFound {number_of_errors} errors.')
