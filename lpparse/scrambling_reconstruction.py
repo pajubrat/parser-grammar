@@ -31,7 +31,7 @@ class ScramblingReconstruction():
                 dropped_floater = self.copy_and_insert(node, target)
                 if target in starting_point.edge() and starting_point.check({'!SELF:d'}):
                     copied_features, target, Operator = target.scan_features('Δ')
-                    starting_point.check_features(target, copied_features)
+                    starting_point.check_features(target, dropped_floater, copied_features)
                     starting_point.features = self.brain_model.transfer.access_lexicon.apply_redundancy_rules(starting_point.features)
                     log(f'\n\t\t{starting_point}° checked [d] (EPP).')
                     if not target.check({'null'}):

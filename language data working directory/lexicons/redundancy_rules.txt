@@ -30,7 +30,7 @@ Neg		:: -SPEC:N SPEC:D
 ARG Fin	:: -COMP:PER
 ARG		:: PHI:NUM:_ PHI:PER:_ PHI:DET:_
 
-#Universal operator rules
+# Universal operator rules
 OP				:: -COMP:MA/A
 OP:WH			::	DIS:WH OP
 WH  			:: -COMP:C/fin -COMP:Adv
@@ -55,7 +55,6 @@ R:REF:PROPER_NAME :: -COMP:Inf
 # Edge behaviors (redundant)
 !SELF:d 		:: EF
 
-#
 # Language specific rules
 #
 # ==> FINNISH
@@ -77,12 +76,12 @@ A LANG:FI 	::  -adjoinable
 ARG LANG:FI	:: PHI:HUM:_ PHI:PRON:_
 
 # Finnish specific operator features
-OP:WH LANG:FI	:: OP OP*
-OP:REL LANG:FI	:: OP OP* !SCOPE
-OP:Q LANG:FI	:: OP !SCOPE DIS:WH
-OP:FAM LANG:FI	:: OP !SCOPE DIS:FAM
-OP:POL LANG:FI	:: OP !SCOPE DIS:POL
-OP:FOC LANG:FI	:: OP DIS:FOC
+OP:WH LANG:FI	:: OP
+OP:REL LANG:FI	:: OP !SCOPE
+OP:Q LANG:FI	:: OP !SCOPE DIS:WH OP*
+OP:FAM LANG:FI	:: OP !SCOPE DIS:FAM OP*
+OP:POL LANG:FI	:: OP !SCOPE DIS:POL OP*
+OP:FOC LANG:FI	:: OP DIS:FOC OP*
 
 # ===> ENGLISH
 P LANG:EN		::	-ΦPF -float !COMP:*
@@ -96,12 +95,14 @@ D LANG:EN		::	-SPEC:φ
 φ LANG:EN		::	-SPEC:φ
 OP:REL LANG:EN	::	!SCOPE
 ARG LANG:EN		::  PHI:GEN:_
+OP LANG:EN		::	OP*
 
 # ==> ITALIAN
 P LANG:IT		::  -ΦPF !COMP:*
 NOM LANG:IT		::	-adjoinable -float
 ARG LANG:IT		::  PHI:GEN:_
+OP LANG:IT		::  OP*
 
 # => HUNGARIAN
-WH:OP LANG:HU	:: OP*
+OP LANG:HU		:: OP*
 D LANG:HU		:: EF

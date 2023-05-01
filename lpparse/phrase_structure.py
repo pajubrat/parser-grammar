@@ -381,10 +381,24 @@ class PhraseStructure:
                 elif target.max().container() and inst['test integrity'](target.max().container()):
                     target.max().container().create_chain(transfer, inst)
 
+    def prepare_chain(probe, specifier, inst, transfer):
+        if inst['type'] == 'Phrasal Chain':
+            copied_features, target_head, operators = specifier.scan_features('Δ')
+            if operators:
+                if not specifier.supported_by(probe):
+                    probe = specifier.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
+                    probe.features |= probe.add_scope_information()
+                    log(f'\n\t\tCreated {probe}° ')
+            else:
+                inst['selection'] = lambda x: x.has_vacant_phrasal_position()
+                inst['legible'] = lambda x, y: True
+            probe.check_features(target_head, specifier, copied_features)
+            probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
+        return inst, specifier.copy_for_chain(transfer.babtize())
+
     def scan_features(self, feature):
         criterial_feature_set = set()
         target = None
-        Operator = False
         if self.left and not self.left.find_me_elsewhere:
             criterial_feature_set, target, Operator = self.left.scan_features(feature)
         if not criterial_feature_set and self.right and not self.right.find_me_elsewhere and not {'T/fin', 'C'} & self.right.head().features:
@@ -392,43 +406,38 @@ class PhraseStructure:
         if not criterial_feature_set and self.primitive():
             criterial_feature_set = {f for f in self.features if f.startswith(feature) and f[-1] != '_'}
             target = self
-            if {f for f in criterial_feature_set if 'OP' in f}:
-                Operator = True
-        return criterial_feature_set, target, Operator
+        return criterial_feature_set, target, {f for f in criterial_feature_set if 'OP' in f}
 
-    def check_features(self, target, features):
+    def check_features(self, target_head, specifier, features):
         for f in list(features):
-            interpretable_feature = f[1:]
-            if interpretable_feature == 'd' or interpretable_feature == 'p':
-                if self.check({'ARG'}):
-                    target.features.discard(f)
-            elif interpretable_feature[:2] == 'OP':
-                if not self.check({'ARG'}):
-                    target.features.discard(f)
-            else:
-                target.features.discard(f)
-            if interpretable_feature in self.features:  # Double feature checking (real rule unknown)
-                self.features.add(interpretable_feature + '*')
-            self.features.add(interpretable_feature)
-            target.features.add(interpretable_feature)
-            if not target.check({'null'}):
+            self.move_feature(target_head, specifier, f)
+            if not target_head.check({'null'}):
                 self.features.add('p')
-            log(f'\n\t\t{self},{target} checked [{interpretable_feature}] ')
 
-    def prepare_chain(probe, specifier, inst, transfer):
-        if inst['type'] == 'Phrasal Chain':
-            copied_features, target, Operator = specifier.scan_features('Δ')
-            if Operator:
-                if not specifier.supported_by(probe):
-                    probe = specifier.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
-                    probe.features |= probe.add_scope_information()
-                    log(f'\n\t\tCreated {probe}°.')
-            else:
-                inst['selection'] = lambda x: x.has_vacant_phrasal_position()
-                inst['legible'] = lambda x, y: True
-            probe.check_features(target, copied_features)
-            probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
-        return inst, specifier.copy_for_chain(transfer.babtize())
+    def move_feature(self, target_head, specifier, f):
+
+        int_f = f[1:]
+
+        # Neutralize the uninterpretable feature at final criterial position
+        if int_f == 'd' or int_f == 'p':
+            if self.check({'ARG'}):
+                target_head.features.discard(f)
+        elif int_f[:2] == 'OP':
+            if not self.check({'ARG'}):
+                target_head.features.discard(f)
+
+        # Mark double-checking
+        if int_f in self.features:  # Double feature checking (real rule unknown)
+            self.features.add(int_f + '*')
+
+        # Add interpretable feature to the target head
+        target_head.features.add(int_f)
+
+        # Add interpretable feature to the probe head
+        if int_f in specifier.head().features or 'OP*' in target_head.features:
+            self.features.add(int_f)
+
+        log(f'\n\t\t{self},{target_head} checked [{int_f}] ')
 
     def form_chain(self, target, inst):
         for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
