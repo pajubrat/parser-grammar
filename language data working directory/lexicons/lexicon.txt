@@ -184,7 +184,7 @@ lähtiessään	:: lähte-#ESSA/inf#An LANG:FI
 lähdettyään	:: lähte-#TUA/inf#An LANG:FI
 lähdettyä	:: lähte-#TUA/inf LANG:FI
 lähde		:: lähte-#T/fin LANG:FI
-lähde		:: lähte-#T LANG:FI
+lähde		:: lähte-#T#default LANG:FI
 lähti		:: lähte-#T/fin#[V] LANG:FI
 lähdettiin	:: lähte-#impass#T/fin#tVVn LANG:FI
 lähte- 		:: PF:lähte- LF:leave CLASS/INTR V SPEC:φ -COMP:φ COMP:P LANG:FI
@@ -201,6 +201,7 @@ löytää		:: löytä-#v'#A/inf LANG:FI
 löytä-		:: PF:löytä- LF:find V CLASS/TR !COMP:φ ASP:BOUNDED LANG:FI
 v'			:: v PF:v LF:v ASP:BOUNDED
 maalatessa	:: maalaa-#v#ESSA/inf LANG:FI
+maalaavan	:: maalaa-#v#VA/inf LANG:FI
 maalasi		:: maalaa-#v#T/fin#[V] LANG:FI
 maalaa-		:: PF:maalaa- LF:paint V !COMP:φ SPEC:φ CLASS/TR LANG:FI
 Merja   	::	Merja-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
@@ -596,7 +597,7 @@ ocean		:: PF:ocean LF:ocean N LANG:EN
 persuades 	:: persuade-#v#T/fin#[-s] LANG:EN
 persuade- 	:: PF:persuade LF:persuade V COMP:TO/inf !COMP:* SEM:external LANG:EN
 Paris		:: Paris-#D LANG:EN
-Paris-		:: PF:Paris LF:Paris N LANG:EN
+Paris-		:: PF:Paris LF:Paris N LANG:EN -COMP:*
 primary		:: PF:primary LF:nurse N LANG:IT
 promises 	:: promise-#v#T/fin#[-s] LANG:EN
 promise- 	:: PF:promise LF:promise V SPEC:φ COMP:φ SEM:internal LANG:EN 
@@ -675,6 +676,7 @@ there'		:: N#D/expl LANG:EN
 
 # Agreement
 [-s]		::	inflectional ΦPF EF PHI:NUM:SG PHI:PER:3 PER PHI:GEN:M PHI:GEN:F LANG:EN
+[*3sg]		::	inflectional ΦPF EF PHI:NUM:SG PHI:PER:3 PER PHI:GEN:M PHI:GEN:F LANG:EN
 [-0]		::  inflectional ΦPF EF PHI:NUM:PL PHI:NUM:SG PHI:PER:1 PER PHI:PER:2 PHI:PER:3 PHI:DET:DEF PHI:GEN:N LANG:EN
 
 # ITALIAN LEXICON ------------------------------------------------------------------------------------------------------------------------

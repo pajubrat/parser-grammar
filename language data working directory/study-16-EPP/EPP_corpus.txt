@@ -1,90 +1,97 @@
 
-& 0. Core examples and preliminary tests
+& 1. Nonfinite first-merge only
 
-	& English
-
-		& Grammatical
-
-			John admires Mary
-		
-		& Ungrammatical (EPP unchecked)
-			
-			admires Mary
-
-	& Italian
+	& 1.1 English prepositions
 	
-		& Grammatical (pro-drop, rich agreement checks EPP)
-		
-			adoro Luisa
-			'admire.prs.1sg Luisa'
-				
-			adori Luisa
-			'admire.prs.1sg Luisa'
-				
-			adora Luisa
-			'admire.prs.1sg Luisa'
-				
-			adora Luisa
-			'admire.prs.1sg Luisa'
-				
-			adoriamo Luisa
-			'admire.prs.1sg Luisa'
-				
-			adorate Luisa
-			'admire.prs.1sg Luisa'
-				
-			adorano Luisa
-			'admire.prs.1sg Luisa'
-		
-	& Finnish
+		& 1.1.1 Word order variations, -Agreement
 	
-		& Grammatical
-		
-			Pekka ihailee Merjaa
-			'Pekka.nom admire.prs.3sg Merja.par'
-		
-			Merjaa ihailee Pekka
-			'Merja.par admire.prs.3sg Pekka.nom'
-		
-		& Ungrammatical
-		
-			ihailee Merjaa
-			'admire.prs.3sg Merja.par'
-			
-			ihailee Pekka Merjaa
-			'admire.prs.3sg Pekka.nom Merja.par'
-			
-& 1. Examples from the main article
-
-	& Adposition data, English and Finnish
-	
-		& English adpositions, no EF
-		
-			& Ungrammatical (towards)
-		
-				Seine flows towards
-		
 			& Grammatical
 		
 				Seine flows towards Paris
 			
-			& Ungrammatical (towards, wrong word order)
+			& Ungrammatical
 			
 				Seine flows Paris towards
-				flows towards Paris
+				
+				towards Paris Seine flows
+				
+				Paris towards Seine flows
 
-		& Finnish adpositions with EF, without [d]
-
-			& Grammatical (towards, near (non-d))
+		& 1.1.2 Word order variations, +Agreement
 		
+			& Ungrammatical
+		
+				Seine flows towards#[*3sg] Paris
+						
+				Seine flows Paris towards#[*3sg]
+				
+				towards#[*3sg] Paris Seine flows
+				
+				Paris towards#[*3sg] Seine flows
+				
+		& 1.1.3 Word order variations, without argument, +-Agreement
+		
+			& Ungrammatical
+		
+				Seine flows towards
+							
+				towards Seine flows
+				
+				Seine flows towards#[*3sg]
+							
+				towards#[*3sg] Seine flows
+				
+& 2. Nonfinite second-merge, without [d]
+
+	& 2.1 Finnish adposition, type kohti 'towards', without [d]
+		
+		& 2.1.1 Word order variations, -Agreement
+		
+			& Grammatical
+			
 				Seine virtaa kohti Pariisia
 				'Seine.nom flow.prs.3sg towards Paris.par'
 				
 				Seine virtaa Pariisia kohti
 				'Seine.nom flow.prs.3sg Paris.par towards'
 			
+				kohti Pariisia Seine virtaa
+				'towards Paris-par Seine.nom flow.prs.3sg'
+			
 				Pariisia kohti Seine virtaa
 				'Paris.par towards Seine.nom flow.prs.3sg'
+	
+		& 2.1.2 Word order variations, +Agreement
+		
+			& Ungrammatical
+			
+				Seine virtaa kohti#nsA häntä
+				'Seine.nom flow.prs.3sg towards.3p he.par'
+				
+				Seine virtaa häntä kohti#nsA
+				'Seine.nom flow.prs.3sg he.par towards.3p'
+			
+				kohti#nsA häntä Seine virtaa
+				'towards.3p he-par Seine.nom flow.prs.3sg'
+			
+				häntä kohti#nsA Seine virtaa
+				'he.par towards.3p Seine.nom flow.prs.3sg'
+				
+		& 2.1.3 Word order variations, without argument, +-Agreement
+		
+			& Ungrammatical
+			
+				Seine virtaa kohti
+				'Seine.nom flow.prs.3sg towards'
+					
+				Seine virtaa kohti#nsA
+				'Seine.nom flow.prs.3sg towards.3p'
+		
+	& 2.2 Finnish adpositions, type lähellä 'near' with partitive argument, without [d]
+		
+		& 2.2.1 Word order variations, -Agreement
+		
+			& Grammatical
 			
 				Seine virtaa lähellä Pariisia
 				'Seine.nom flow.prs.3sg near Paris.par'
@@ -92,130 +99,224 @@
 				Seine virtaa Pariisia lähellä
 				'Seine.nom flow.prs.3sg Paris.par near'
 			
-		& Finnish adpositions with EF[d]
+				lähellä Pariisia Seine virtaa
+				'near Paris-par Seine.nom flow.prs.3sg'
+				
+				Pariisia lähellä Seine virtaa
+				'Paris-par near Seine.nom flow.prs.3sg'
 		
-			& Grammatical (near[d])
+		& 2.2.2 Word order variations, +Agreement
+		
+			& Ungrammatical
 			
-				Seine virtaa Pariisin lähellä[d]
-				'Seine.nom flow.prs.3sg Paris.gen near.'
-			
-			& Ungrammatical (preposition)
-			
-				Seine virtaa lähellä[d] Pariisin
-				'Seine.nom flow.prs.3sg near Paris.gen'
+				Seine virtaa lähellä#An häntä
+				'Seine.nom flow.prs.3sg near.3p he.par'
 				
-			& Grammatical (overt agreement)
+				Seine virtaa häntä lähellä#An 
+				'Seine.nom flow.prs.3sg he.par near.3p'
 			
-				Seine virtaa minun lähellä[d]#ni
-				'Seine.nom flow.prs.3sg I.gen near.1sg'
+				lähellä#An häntä Seine virtaa
+				'near.3p he-par Seine.nom flow.prs.3sg'
 				
-				Seine virtaa lähellä[d]#ni
+				häntä lähellä#An Seine virtaa
+				'he.par near.3p Seine.nom flow.prs.3sg'
+				
+		& 2.2.3 Word order variations, without argument, +-Agreement
+		
+			& Grammatical
+		
+				Seine virtaa lähellä
+				'Seine.nom flow.prs.3sg near'
+
+				Seine virtaa lähellä#ni
 				'Seine.nom flow.prs.3sg near.1sg'
-				
-			& Ungrammatical (preposition)
+	
+	& 2.3 Finnish adposition, type yli/ali 'over/under'
+
+		& 2.3.1 Word order variations, -agreement
 			
-				Seine virtaa lähellä[d]#ni minun
-				'Seine.nom flow.prs.3sg near.1sg I.gen'
-			
-			& Grammatical (under)
-			
+			& Grammatical
+		
 				Seine virtaa ali sillan
 				'Seine.nom flow.prs.3sg under bridge.gen'
 				
 				Seine virtaa sillan ali
 				'Seine.nom flow.prs.3sg bridge.gen under'
-			
-			& Ungrammatical (under + agreement)
-			
-				Seine virtaa minun ali#ni
-				'Seine.nom flow.prt.3sg I.gen under.1sg'
 				
-	& Finite clause
-
-		& Grammatical (English EPP)
-		
-			John admires Mary
-			 
-		& Ungrammatical (English NS)
-		
-			admires Mary
-		
-		& Grammatical
-		
-			minä lähdin
-			'I.nom leave.pst.1sg'
-			
-			lähdin
-			'leave.pst.1sg'
-		
-			sinä lähdit
-			'you.nom leave.pst.2sg'
-			
-			lähdit
-			'leave-pst.2sg'
+				ali sillan Seine virtaa
+				'under bridge Seine.nom flow.prs.3sg'
 				
-		& Ungrammatical
+				sillan ali Seine virtaa
+				'bridge under Seine.nom flow.prs.3sg'
+			
+		& 2.3.2 Word order variations, +agreement
 		
-			lähdin minä
-			'leave.pst.1sg I.nom'
-			
-			lähdit sinä
-			'leave.pst.2sg you.nom'
-			
-		& Grammatical
+			& Ungrammatical
 		
-			työtä teen minä
-			'work.par make.prs.3sg I.nom'
-		
-			Pekka tekee työtä
-			'Pekka.nom make.prs.3sg work.par'
-		
-		& Ungrammatical (third person pro-drop)
-			
-			tekee työtä
-			'make.prs.3sg work.par'
-		
-		& Grammatical (third person pro-drop with antecedent and finite control)
-		
-			Pekka sanoi että tekee työtä
-			'Pekka.nom say.pst.3sg that make.prs.3sg work.par'
-			
-			# Pekka sanoi että sitä tekee työtä
-			# EXPLETIVE (TODO)
-			
-		& Grammatical (third person PX and antecedent)
-		
-			Pekka ihailee autoa#An
-			'Pekka.nom admire.prs.3sg car.3p'
-			
-		& Ungrammatical (third person PX without antecedent)
-			
-			auto#nsA lähtee
-			'car.3p leave.prs.3sg'
-			
-	& Infinitivals (double [d]-checking)
+				Seine virtaa ali#nsA hänen
+				'Seine.nom flow.prs.3sg under he.gen'
+				
+				Seine virtaa hänen ali#nsA
+				'Seine.nom flow.prs.3sg he.gen under'
+				
+				ali#nsA hänen Seine virtaa
+				'under he.gen Seine.nom flow.prs.3sg'
+				
+				hänen ali#nsA Seine virtaa
+				'he.gen under Seine.nom flow.prs.3sg'
 	
-		& VA-infinitival (no double checking)
+& 3. Nonfinite second-merge, with [d]
+
+	& 3.1 Finnish adpositions, type lähellä 'near', with genitive argument, with [d]
+	
+		& 3.1.1 Word order variations, -Agreement
 		
+			& Ungrammatical
+			
+				Seine virtaa lähellä[d] Pariisin
+				'Seine.nom flow.prs.3sg near Paris.gen'
+				
 			& Grammatical
 			
+				Seine virtaa Pariisin lähellä[d]
+				'Seine.nom flow.prs.3sg Paris.gen near'
+			
+			& Ungrammatical
+			
+				lähellä[d] Pariisin Seine virtaa
+				'near Paris.gen Seine.nom flow.prs.3sg'
+			
+			& Grammatical
+			
+				Pariisin lähellä[d] Seine virtaa
+				'Paris.gen near Seine.nom flow.prs.3sg'
+				
+		& 3.1.2 Word order variations, +Agreement
+		
+			& Ungrammatical
+		
+				Seine virtaa lähellä[d]#An hänen
+				'Seine.nom flow.prs.3sg near.3p he.gen'
+				
+			& Grammatical
+				
+				Seine virtaa hänen lähellä[d]#An
+				'Seine.nom flow.prs.3sg he.gen near.3p'
+				
+			& Ungrammatical
+				
+				lähellä[d]#An hänen Seine virtaa
+				'near.3p he.gen Seine.nom flow.prs.3sg'
+				
+			& Grammatical
+			
+				hänen lähellä[d]#An Seine virtaa
+				'he.gen near.3p Seine.nom flow.prs.3sg'
+			
+		& 3.1.3 Word order variations, without argument, +-Agreement
+		
+			& Ungrammatical
+			
+				Seine virtaa lähellä[d]
+				'Seine.nom flow.prs.3sg near.'
+
+			& Grammatical
+			
+				Seine virtaa lähellä[d]#ni
+				'Seine.nom flow.prs.3sg near.1sg'
+
+	& 3.2 Noun phrases
+	
+		& 3.2.1 (Currently unorganized)
+
+			& Grammatical (third person PX and antecedent)
+			
+				Pekka ihailee autoa#An
+				'Pekka.nom admire.prs.3sg car.3p'
+				
+			& Ungrammatical (third person PX without antecedent)
+				
+				auto#nsA lähtee
+				'car.3p leave.prs.3sg'
+
+	& 3.2 VA-infinitive, with[d], ban on doubld [d] checking
+	
+		& 3.2.1 Canonical word order
+	
+			& Ungrammatical (bare infinitival verb)
+		
+				Pekka sanoi lähtevän
+				'Pekka.nom say.pst.3sg leave.va/inf'
+		
+			& Grammatical (either subject or agreement, but not both)
+		
 				Pekka sanoi lähtevän#nsA
 				'Pekka.nom say.pst.3sg leave.va/inf.3p'
 				
-				Pekka sanoi Merjan_gen lähtevän
-				'Pekka.nom say.pst.3sg Merja.gen leave.va/inf'
-				
-			& Ungrammatical
+				Pekka sanoi hänen lähtevän
+				'Pekka.nom say.pst.3sg he.gen leave.va/inf'
+					
+			& Ungrammatical (both agreement and subject)
 			
-				Pekka sanoi lähtevän
-				'Pekka.nom say.pst.3sg leave.va/inf'
-				
 				Pekka sanoi hänen lähtevän#nsA
 				'Pekka.nom say.pst.3sg Merja.gen leave.va/inf.3p'
 
-		& ESSA.infinitival (all combinations possible)
+		& 3.2.2 Postverbal genitive argument
+		
+			& Ungrammatical
+			
+				Pekka sanoi lähtevän hänen
+				'Pekka said leave.va/inf he.gen'
+				
+				Pekka sanoi lähtevän#nsA hänen
+				'Pekka said leave.va/inf.3p he.gen'
+				
+		& 3.2.3 Object topicalization, without subject
+
+			& Ungrammatical
+			
+				Pekka sanoi maalaavan aitaa
+				'Pekka.nom say.prs.3sg paint.va/inf fence.par'
+				
+			%	Pekka sanoi aitaa maalaavan
+				'Pekka.nom say.prs.3sg fence.par paint.va/inf'
 		
 			& Grammatical
+			
+				Pekka sanoi maalaavan#nsA aitaa
+				'Pekka.nom say.prs.3sg paint.va/inf.3p fence.par'
+				
+				Pekka sanoi aitaa maalaavan#nsA
+				'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p'
+		
+		& 3.2.4 Object topicalization, with subject
+		
+			& Grammatical
+			
+				Pekka sanoi hänen maalaavan aitaa
+				'Pekka.nom say.prs.3sg he.gen paint.va/inf fence.par'
+			
+			& Ungrammatical
+			
+				Pekka sanoi hänen maalaavan#nsA aitaa
+				'Pekka.nom say.pst.3sg he.gen paint.va/inf.3p fence.par'
+			
+			& Ungrammatical
+			
+				Pekka sanoi aitaa maalaavan hänen
+				'Pekka.nom say.prs.3sg fence.par paint.va/inf he.gen'
+				
+				Pekka sanoi aitaa maalaavan#nsA hänen
+				'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p he.gen'
+				
+	& 3.3 ESSA-infinitive, with or withoiut [d], double [d] checking possible
+	
+		& 3.3.1 Canonical word order
+	
+			& Grammatical
+			
+				Pekka laulaa lähtiessä
+				'Pekka.nom sing.prs.3sg leave.essa/inf'
 			
 				Pekka laulaa lähtiessä#An
 				'Pekka sing.prs.3sg leave.essa/inf.3p'
@@ -225,47 +326,245 @@
 				
 				Pekka laulaa hänen lähtiessä#An
 				'Pekka.nom sing.prs.3sg she.gen leave.essa/inf.3p'
-				
-				Pekka laulaa lähtiessä
-				'Pekka.nom sing.prs.3sg leave.essa/inf'
-				
-			& Ungrammatical (antecedent dependency impossible)
+		
+		& 3.3.2 Noncanonical word order
+		
+			& Ungrammatical
 			
-				minä laulan lähtiessä#An
-				'I.nom sing.prs.3sg leave.essa/inf.3p'
-				
-			& Grammatical (ESSA-infinitive with genitive subject)
+				Pekka laulaa lähtiessä hänen
+				'Pekka.nom sing.prs.3sg leave.essa/inf he.gen'
 			
-				Pekka nauroi minun laulaessa#ni
-				'Pekka.nom laugh.pst.3sg I.gen sing.essa/inf-px/1sg'
-				
-			& Ungrammatical (postverbal genitive argument)
+				Pekka laulaa lähtiessä#An hänen
+				'Pekka sing.prs.3sg leave.essa/inf.3p he.gen'
+		
+		& 3.3.3 Object topicalization, without subject
+		
+			& Grammatical
 			
-				Pekka nauroi lähtiessä#ni minun
-				'Pekka.nom laugh.pst.3sg leave.essa/inf-px/1sg I.gen'
+				Pekka laulaa maalatessa aitaa
+				'Pekka.nom sing.prs.3sg paint.essa/inf fence.par'
+				
+				Pekka laulaa aitaa maalatessa
+				'Pekka.nom sing.prs.3sg fence.par paint.essa/inf'
+				
+				Pekka laulaa maalatessa#An aitaa
+				'Pekka.nom sing.prs.3sg paint.essa/inf.3p fence.par'
+				
+				Pekka laulaa aitaa maalatessa#An
+				'Pekka.nom sing.prs.3sg fence.par paint.essa/inf.3p'
+		
+		& 3.3.4 Object topicalization, with subject
+		
+			& Grammatical
 			
-			& Object topicalization data (ESSA-infinitive)
+				Pekka laulaa hänen maalatessa aitaa	
+				'Pekka.nom sing.prs.3sg he.gen paint.essa/inf fence.par'
 			
-				& Grammatical
+			& Ungrammatical
+			
+				Pekka laulaa aitaa maalatessa hänen
+				'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
 				
-					Pekka odotti minun maalatessa#ni aitaa
-					'Pekka.nom wait.pst.3sg I.gen paint.essa/inf.px/1sg fence.par'
+			& Grammatical
+			
+				Pekka laulaa hänen maalatessa#An aitaa
+				'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
 				
-					Pekka odotti maalatessa#ni aitaa
-					'Pekka.nom wait.pst.3sg paint.essa/inf.px/1sg fence.par'
-					
-					Pekka odotti aitaa maalatessa#ni
-					'Pekka.nom wait.pst.3sg fence.par paint.essa/inf.px/1sg'
-					
-				& Ungrammatical (infinitival OVS order)
-				
-					Pekka odotti aitaa maalatessa#ni minun
-					'Pekka.nom wait.pst.3sg fence.par paint.essa/inf.px/1sg I.gen'
-					
-	& Ā-system
+			& Ungrammatical
+			
+				Pekka laulaa aitaa maalatessa#An hänen
+				'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
+								
+& 4. Finite first-merge only 
+
+& 5. Finite second-merge without [d]
+
+& 6. Finite second-merge with [d]
+
+	& 6.1 Weak agreement (English finite clause)
 	
 		& Grammatical
 	
-			mitä Pekka maalasi
-			'what.par Pekka.nom paint.pst.3sg'
+			John admires Mary
+			
+		& Ungrammatical
+		
+			admires Mary
+	
+	& 6.2 Rich agreement, partial pro-drop profile (Finnish finite clause)
+	
+		& 6.2.1 With overt phrasal subject, preverbal position
+	
+			& Grammatical
+			
+				minä lähde#n
+				'I.nom leave.prs.1sg'
+				
+				sinä lähde#t
+				'you.nom leave.prs.2sg'
+				
+				hän lähde#[V]
+				'he.nom leave.prs.3sg'
+				
+				me lähde#mme
+				'we.nom leave.prs.1pl'
+				
+				te lähde#tte
+				'you.nom leave.prs.2pl'
+				
+				he lähde#vAt
+				'they.nom leave.prs.3pl'
+
+		& 6.2.2 With overt phrasal subject, postverbal position
+		
+			& Ungrammatical
+			
+				lähde#n minä
+				'leave.prs.1sg I.nom'
+				
+				lähde#t sinä
+				'leave.prs.2sg you.nom'
+				
+				lähde#[V] hän
+				'leave.prs.3sg he.nom'
+				
+				lähde#mme me
+				'leave.prs.1pl we.nom'
+				
+				lähde#tte te
+				'leave.prs.2pl you.nom'
+				
+				lähde#vAt he
+				'leave.prs.3pl they.nom'
+
+		& 6.2.3 With overt phrasal subject and direct object, OVS inversion
+		
+			& Grammatical
+			
+				Merjaa ihaile#n minä
+				'Merja.par admire.prs.1sg I.nom'
+			
+				Merjaa ihaile#t sinä
+				'Merja.par admire.prs.2sg I.nom'
+				
+				Merjaa ihaile#[V] hän
+				'Merja.par admire.prs.3sg I.nom'
+				
+				Merjaa ihaile#mme me
+				'Merja.par admire.prs.1pl I.nom'				
+				
+				Merjaa ihaile#tte te
+				'Merja.par admire.prs.2pl I.nom'
+				
+				Merjaa ihaile#vAt he
+				'Merja.par admire.prs.3pl I.nom'
+				
+		& 6.2.4 With null subject
+		
+			& Grammatical
+			
+				lähde#n
+				'leave.prs.1sg'
+		
+				lähde#t
+				'leave.prs.2sg'
+				
+			 	lähde#mme
+				'leave.prs.1pl'
+				
+				lähde#tte
+				'leave.prs.2pl'
+			
+			& Ungrammatical (third person pro-drop)
+			
+				lähtee
+				'leave.prs.3sg'
+			
+				lähde#vAt
+				'leave.prs.3pl'
+		
+		& 6.2.5 Null subject, inside embedded clause
+		
+			& Grammatical
+			
+				Pekka sanoi että lähde#n
+				'Pekka said that leave.prs.1sg'
+				
+				Pekka sanoi että lähde#t
+				'Pekka said that leave.prs.2sg'
+				
+				Pekka sanoi että lähde#[V]
+				'Pekka said that leave.prs.3sg'
+				
+				Pekka sanoi että lähde#mme
+				'Pekka said that leave.prs.1pl'
+				
+				Pekka sanoi että lähde#tte
+				'Pekka said that leave.prs.2pl'
+				
+				Pekka snaoi että lähte#vAt
+				'Pekka said that leave.prs.3pl'
+				
+	& 6.3 Rich agreement with complete pro-drop (Italian finite clause)
+		
+		& 6.3.1 With overt phrasal subject
+		
+			& Grammatical
+		
+				io adoro Luisa
+				'admire.prs.1sg Luisa'
+					
+				tu adori Luisa
+				'admire.prs.1sg Luisa'
+					
+				lui adora Luisa
+				'admire.prs.1sg Luisa'
+					
+				lei adora Luisa
+				'admire.prs.1sg Luisa'
+					
+				noi adoriamo Luisa
+				'admire.prs.1sg Luisa'
+					
+				voi adorate Luisa
+				'admire.prs.1sg Luisa'
+					
+				loro adorano Luisa
+				'admire.prs.1sg Luisa'
+		
+		& 6.3.2 With null subject
+		
+			& Grammatical
+			
+				adoro Luisa
+				'admire.prs.1sg Luisa'
+					
+				adori Luisa
+				'admire.prs.1sg Luisa'
+					
+				adora Luisa
+				'admire.prs.1sg Luisa'
+					
+				adora Luisa
+				'admire.prs.1sg Luisa'
+					
+				adoriamo Luisa
+				'admire.prs.1sg Luisa'
+					
+				adorate Luisa
+				'admire.prs.1sg Luisa'
+					
+				adorano Luisa
+				'admire.prs.1sg Luisa'
+	
+& 7. Finite C, Ā-head, with [d][wh]
+
+	& 7.1 Standard interrogatives
+
+		mitä Pekka maalasi
+		'what.par Pekka.nom paint.pst.3sg'
+
+=END=
+
+
 			

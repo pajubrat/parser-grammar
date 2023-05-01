@@ -411,20 +411,10 @@ class PhraseStructure:
     def check_features(self, target_head, specifier, features):
         for f in list(features):
             self.move_feature(target_head, specifier, f)
-            if not target_head.check({'null'}):
-                self.features.add('p')
 
     def move_feature(self, target_head, specifier, f):
 
         int_f = f[1:]
-
-        # Neutralize the uninterpretable feature at final criterial position
-        if int_f == 'd' or int_f == 'p':
-            if self.check({'ARG'}):
-                target_head.features.discard(f)
-        elif int_f[:2] == 'OP':
-            if not self.check({'ARG'}):
-                target_head.features.discard(f)
 
         # Mark double-checking
         if int_f in self.features:  # Double feature checking (real rule unknown)
@@ -434,10 +424,22 @@ class PhraseStructure:
         target_head.features.add(int_f)
 
         # Add interpretable feature to the probe head
-        if int_f in specifier.head().features or 'OP*' in target_head.features:
+        if f in specifier.head().features or 'OP*' in target_head.features:
             self.features.add(int_f)
 
+        # Neutralize the uninterpretable feature (e.g., Δd) from the goal at final criterial position
+        if int_f == 'd' or int_f == 'p':
+            if self.check({'ARG'}):
+                target_head.features.discard(f)
+        elif int_f[:2] == 'OP':
+            if not self.check({'ARG'}):
+                target_head.features.discard(f)
+
         log(f'\n\t\t{self},{target_head} checked [{int_f}] ')
+
+        if not target_head.check({'null'}):
+            self.features.add('p')
+            log(f', [p].')
 
     def form_chain(self, target, inst):
         for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
@@ -521,11 +523,13 @@ class PhraseStructure:
                     log(f'[p] ')
                 self.features.add('dPHI:IDX:' + goal.head().get_id())
 
+    # If a nonfinite probe has [d] and the goal, which is not a pro-element at the probe, hasn't neutralized [Δd], the expression is judged ungrammatical
     def test_condition_on_Agree(self, goal):
-        if self.check({'!SELF:d'}) and goal.head().check({'Δd'}) and not self.check({'Fin', 'd'}):
-            self.features.add('*')
-            log(f'\n\t\t{self}° violated Condition on Agree.')
-            return True
+        if self != goal:
+            if self.check({'!SELF:d'}) and goal.head().check({'Δd'}) and not self.check({'Fin', 'd'}):
+                self.features.add('*')
+                log(f'\n\t\t{self}° violated Condition on Agree.')
+                return True
 
     # Replace the unvalued feature by the valued one
     def value(self, unvalued_counterparty, phi):
@@ -718,7 +722,10 @@ class PhraseStructure:
         return self
 
     def operator_in_scope_position(self):
-        return self.scan_features('ΔOP') and self.container() and self.container().head().finite()
+        if self.container() and self.container().head().finite():
+            criterial_features, target, operators = self.scan_features('ΔOP')
+            if criterial_features:
+                return True
 
     # Tail-processing ---------------------------------------------------------------------------
 

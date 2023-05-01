@@ -61,9 +61,9 @@ BE-			:: V COPULA 	EF 			-ARG 					PF:Aux 		LF:Aux !COMP:* COMP:T/prt -COMP:T/fi
 
 # D-elements
 D		:: φ D PF:D LF:det R:NEW:$$$/SUR
-D/rel	:: D/rel D φ PF:D/rel LF:det/rel adjoinable
-D/pro	:: D φ PF:D LF:det R:NEW:REF -R:NEW:$$$/SUR
-D/refl 	:: D φ PF:D LF:det R:OLD:REF -R:NEW:$$$/SUR
+D/rel	:: φ D D/rel φ PF:D/rel LF:det/rel adjoinable
+D/pro	:: φ D PF:D LF:det R:NEW:REF -R:NEW:$$$/SUR
+D/refl 	:: φ D PF:D LF:det R:OLD:REF -R:NEW:$$$/SUR
 P		:: P PF:P LF:prep
 
 # Pronominal items

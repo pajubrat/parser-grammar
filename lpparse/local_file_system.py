@@ -65,6 +65,7 @@ class LocalFileSystem:
                                          }
 
     def check_output(self):
+        print(f'\n')
         grammatical = True
         number_of_errors = 0
         errors = open(self.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
