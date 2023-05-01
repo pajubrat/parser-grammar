@@ -1,0 +1,35 @@
+@  {'author': 'Anon', 'year': 2023, 'date': 'March', 'study_id': 15, 'study_folder': 'language data working directory/study-17-Finnish', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-17-Finnish', 'test_corpus_file': 'Finnish_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'check_output': True, 'datatake_full': False, 'datatake_images': True, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'image_parameter_mark_adjuncts': False, 'image_parameter_stop_after_image': False, 'image_parameter_show_φPs_as_DPs': True, 'image_parameter_show_φPs_as_NPs': False, 'image_parameter_ignore_internal_structure_of_DPs': False, 'show_features': ['¤¤¤'], 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'calculate_thematic_roles': True, 'project_objects': True, 'generate_argument_links': True, 'calculate_predicates': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-04-26 10:54:03.004185
+@  Test sentences language data working directory\study-17-Finnish\Finnish_corpus.txt.
+@  Logs language data working directory\study-17-Finnish\Finnish_corpus_log.txt.
+@  Lexicon language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes language data working directory\lexicons\ug_morphemes.txt.
+@ 
+1.  minä ole#Fin#n pese-#v#T/prt ikkunan 
+
+	[<D minä>:1 [Fin [T [Aux [Prtc [<__>:1 [v [pese- [φ ikkunan]]]]]]]]]
+
+	Semantics:
+	Control: ['Argument for Fin° is pro at Fin', 'Argument for T° is pro at Fin', 'Argument for T° is pro at V', 'Argument for v° is minä', 'Argument for V° is ikkunan']
+	Thematic roles: ['Causer/Agent of v°(v): <D minä>', 'Patient of V°(wash): [φ ikkunan]']
+	Agree/LF: ['Fin° ~ <D minä>', 'T° ~ <D minä>', 'Prtc° ~ <D minä>', 'v° ~ [φ ikkunan]', 'pese-° ~ [φ ikkunan]']
+	Predicate scopes: ['Predicate scope for <D minä> is Fin', 'Predicate scope for [φ ikkunan] is Fin']
+	Aspect: ['Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D minä] ~ 2, [φ ikkunan] ~ 2, Weight 1
+	[D minä] ~ 2, [φ ikkunan] ~ 4, Weight 1
+	[D minä] ~ 4, [φ ikkunan] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D minä>'], 'Neutral gradient': ['[φ ikkunan]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D minä]
+	Object 4 in GLOBAL: [φ ikkunan]
+
+	Resources:
+	Total Time:1495, Garden Paths:0, Merge:9, Head Chain:18, Phrasal Chain:6, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:373, Merge-1:49, 
+

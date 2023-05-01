@@ -392,7 +392,7 @@ class PhraseStructure:
             else:
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
-            probe.check_features(target_head, specifier, copied_features)
+            probe.spec_head_feature_checking(target_head, specifier, copied_features)
             probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
         return inst, specifier.copy_for_chain(transfer.babtize())
 
@@ -408,38 +408,22 @@ class PhraseStructure:
             target = self
         return criterial_feature_set, target, {f for f in criterial_feature_set if 'OP' in f}
 
-    def check_features(self, target_head, specifier, features):
-        for f in list(features):
-            self.move_feature(target_head, specifier, f)
+    def spec_head_feature_checking(self, target_head, specifier, features):
+        for f in features:
+            if f == 'Δd' or f == 'Δp':
+                if self.check({'ARG'}):
+                    self.features.add('checked:'+specifier.head().index())
+            elif f[:3] == 'ΔOP':
+                if not self.check({'ARG'}):
+                    self.features.add('checked:' + specifier.head().index())
+            if not target_head.check({'null'}):
+                self.features.add('p')
+                log(f', [p]')
 
-    def move_feature(self, target_head, specifier, f):
-
-        int_f = f[1:]
-
-        # Mark double-checking
-        if int_f in self.features:  # Double feature checking (real rule unknown)
-            self.features.add(int_f + '*')
-
-        # Add interpretable feature to the target head
-        target_head.features.add(int_f)
-
-        # Add interpretable feature to the probe head
-        if f in specifier.head().features or 'OP*' in target_head.features:
-            self.features.add(int_f)
-
-        # Neutralize the uninterpretable feature (e.g., Δd) from the goal at final criterial position
-        if int_f == 'd' or int_f == 'p':
-            if self.check({'ARG'}):
-                target_head.features.discard(f)
-        elif int_f[:2] == 'OP':
-            if not self.check({'ARG'}):
-                target_head.features.discard(f)
-
-        log(f'\n\t\t{self},{target_head} checked [{int_f}] ')
-
-        if not target_head.check({'null'}):
-            self.features.add('p')
-            log(f', [p].')
+    def index(self):
+        for f in self.features:
+            if f.startswith('#'):
+                return f[1:]
 
     def form_chain(self, target, inst):
         for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
@@ -503,12 +487,32 @@ class PhraseStructure:
     def value_features(self, goal):
         log(f'\n\t\t{self}° agrees with {goal.head()} ({goal.max().illustrate()}) and values ')
         valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]
-        if not self.test_condition_on_Agree(goal):
-            if valuations:
-                for incoming_phi, unvalued_counterparty in valuations:
-                    self.value_feature(incoming_phi, unvalued_counterparty, goal)
+        if valuations:
+            for incoming_phi, unvalued_counterparty in valuations:
+                self.value_feature(incoming_phi, unvalued_counterparty, goal)
+            self.check_d(goal)
+        else:
+            log(f'nothing (no useful features available). ')
+
+    def check_d(self, goal):
+        if self != goal and self.check({'!SELF:d'}):
+            if not self.check({'Fin'}) and not self.associate(goal):
+                self.features.add('*')
+                log(f'\n\t\t{self}° failed the associate rule')
+            elif self.check({'d'}):
+                self.features.add('d*')
+                log(f'\n\t\t{self}° double checked [d]')
             else:
-                log(f'nothing (no useful features available). ')
+                self.features.add('d')
+                log(f'\n\t\t{self}° checked [d]')
+
+    def associate(self, goal):
+        idx = goal.head().index()
+        for f in self.features:
+            if f.startswith('checked'):
+                associate_idx = f.split(':')[1]
+                if idx == associate_idx:
+                    return True
 
     def value_feature(self, phi, unvalued_counterparty, goal):
         if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
@@ -522,14 +526,6 @@ class PhraseStructure:
                     self.features.add('!SELF:p')
                     log(f'[p] ')
                 self.features.add('dPHI:IDX:' + goal.head().get_id())
-
-    # If a nonfinite probe has [d] and the goal, which is not a pro-element at the probe, hasn't neutralized [Δd], the expression is judged ungrammatical
-    def test_condition_on_Agree(self, goal):
-        if self != goal:
-            if self.check({'!SELF:d'}) and goal.head().check({'Δd'}) and not self.check({'Fin', 'd'}):
-                self.features.add('*')
-                log(f'\n\t\t{self}° violated Condition on Agree.')
-                return True
 
     # Replace the unvalued feature by the valued one
     def value(self, unvalued_counterparty, phi):
