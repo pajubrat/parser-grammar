@@ -392,7 +392,7 @@ class PhraseStructure:
             else:
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
-            probe.spec_head_feature_checking(target_head, specifier, copied_features)
+            probe.process_criterial_features(copied_features, specifier)
             probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
         return inst, specifier.copy_for_chain(transfer.babtize())
 
@@ -408,17 +408,10 @@ class PhraseStructure:
             target = self
         return criterial_feature_set, target, {f for f in criterial_feature_set if 'OP' in f}
 
-    def spec_head_feature_checking(self, target_head, specifier, features):
-        for f in features:
-            if f == 'Δd' or f == 'Δp':
-                if self.check({'ARG'}):
-                    self.features.add('checked:'+specifier.head().index())
-            elif f[:3] == 'ΔOP':
-                if not self.check({'ARG'}):
-                    self.features.add('checked:' + specifier.head().index())
-            if not target_head.check({'null'}):
-                self.features.add('p')
-                log(f', [p]')
+    def process_criterial_features(self, features, specifier):
+        for f in list(features):
+            self.features.add(f[1:])
+            log(f'[{f[1:]}] ')
 
     def index(self):
         for f in self.features:
@@ -496,7 +489,7 @@ class PhraseStructure:
 
     def check_d(self, goal):
         if self != goal and self.check({'!SELF:d'}):
-            if not self.check({'Fin'}) and not self.associate(goal):
+            if not self.check({'!SELF:PER'}) and not self.associate(goal):
                 self.features.add('*')
                 log(f'\n\t\t{self}° failed the associate rule')
             elif self.check({'d'}):
@@ -507,12 +500,10 @@ class PhraseStructure:
                 log(f'\n\t\t{self}° checked [d]')
 
     def associate(self, goal):
-        idx = goal.head().index()
-        for f in self.features:
-            if f.startswith('checked'):
-                associate_idx = f.split(':')[1]
-                if idx == associate_idx:
-                    return True
+        const = next(iter(self.edge()), None)
+        if const:
+            if const.head().get_id() == goal.head().get_id():
+                return True
 
     def value_feature(self, phi, unvalued_counterparty, goal):
         if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
@@ -586,6 +577,7 @@ class PhraseStructure:
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into -ARG due to {self.selector()}.')
                 self.features.add('-ARG')
+                self.features.add('-SELF:d')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into ARG.')
@@ -931,7 +923,8 @@ class PhraseStructure:
             if not h.features:
                 h.features = {'null'}
             else:
-                h.features.add('null')
+                h.features.add('null')      # Null is about what is printed out
+                h.features.discard('Δp')    # This is the grammatical feature that operates in narrow syntax
             if h.left:
                 silence_phonologically(h.left)
             if h.right:

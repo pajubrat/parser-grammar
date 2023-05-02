@@ -51,6 +51,7 @@ class LexicalInterface:
                 lexical_features.append(self.language)
 
             lexical_features.append('PHON')
+            lexical_features.append('Δp')
 
             # If the word is complex, we treat it differently
             if '#' in lexical_features[0]:
