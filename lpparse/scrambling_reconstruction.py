@@ -30,9 +30,8 @@ class ScramblingReconstruction():
                 virtual_test_item.remove()
                 dropped_floater = self.copy_and_insert(node, target)
                 if target in starting_point.edge() and starting_point.check({'!SELF:d'}):
-                    copied_features, target, Operator = dropped_floater.scan_features('Δ')
-                    starting_point.process_criterial_features(copied_features, dropped_floater)
-                    starting_point.features.add('p')
+                    starting_point.scan_criterial_features(dropped_floater, 'ΔOP')
+                    starting_point.copy_criterial_features(dropped_floater)
                 starting_point.features = self.brain_model.transfer.access_lexicon.apply_redundancy_rules(starting_point.features)
                 self.brain_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point)
                 return

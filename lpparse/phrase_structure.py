@@ -383,8 +383,7 @@ class PhraseStructure:
 
     def prepare_chain(probe, specifier, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
-            copied_features, target_head, operators = specifier.scan_features('Δ')
-            if operators:
+            if probe.scan_criterial_features(specifier, 'ΔOP'):
                 if not specifier.supported_by(probe):
                     probe = specifier.sister().Merge(transfer.access_lexicon.PhraseStructure(), 'left').left
                     probe.features |= probe.add_scope_information()
@@ -392,24 +391,33 @@ class PhraseStructure:
             else:
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
-            probe.process_criterial_features(copied_features, specifier)
+                log(f'\n\t\t{probe} triggers A-movement')
+            probe.copy_criterial_features(specifier)
             probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
         return inst, specifier.copy_for_chain(transfer.babtize())
 
+    def scan_criterial_features(self, specifier, feature):
+        criterial_features = specifier.scan_features(feature)
+        if 'OP*' not in criterial_features:
+            specifier.head().features = specifier.head().features | criterial_features
+        for f in list(criterial_features):
+            if 'OP' in f:
+                return True
+
     def scan_features(self, feature):
         criterial_feature_set = set()
-        target = None
         if self.left and not self.left.find_me_elsewhere:
-            criterial_feature_set, target, Operator = self.left.scan_features(feature)
+            criterial_feature_set = self.left.scan_features(feature)
         if not criterial_feature_set and self.right and not self.right.find_me_elsewhere and not {'T/fin', 'C'} & self.right.head().features:
-            criterial_feature_set, target, Operator = self.right.scan_features(feature)
+            criterial_feature_set= self.right.scan_features(feature)
         if not criterial_feature_set and self.primitive():
             criterial_feature_set = {f for f in self.features if f.startswith(feature) and f[-1] != '_'}
-            target = self
-        return criterial_feature_set, target, {f for f in criterial_feature_set if 'OP' in f}
+        return criterial_feature_set
 
-    def process_criterial_features(self, features, specifier):
-        for f in list(features):
+    def copy_criterial_features(self, specifier):
+        if self.check({'Δp'}):
+            self.features.add('p')
+        for f in [g for g in specifier.head().features if g.startswith('Δ')]:
             self.features.add(f[1:])
             log(f'[{f[1:]}] ')
 
@@ -710,10 +718,7 @@ class PhraseStructure:
         return self
 
     def operator_in_scope_position(self):
-        if self.container() and self.container().head().finite():
-            criterial_features, target, operators = self.scan_features('ΔOP')
-            if criterial_features:
-                return True
+        return self.container() and self.container().head().finite() and self.scan_features('ΔOP')
 
     # Tail-processing ---------------------------------------------------------------------------
 
