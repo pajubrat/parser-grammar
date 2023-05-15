@@ -1,11 +1,13 @@
+from support import log
 
 class ThematicRoles:
     def __init__(self):
-        pass
+        self.failure = False
 
     def reconstruct(self, ps):
         assignee = None
-        predix = ''
+        self.failre = False
+        theta_role = ''
 
         if ps.check_some({'COMP:φ', 'COMP:D', '!COMP:φ', '!COMP:D'}) and ps.proper_selected_complement():
             assignee = ps.proper_selected_complement()
@@ -15,16 +17,23 @@ class ThematicRoles:
                 theta_role = 'Patient'
         elif not ps.EF() and ps.check_some({'SPEC:φ', 'SPEC:D', '!SPEC:φ', '!SPEC:D'}) and ps.pro_edge():
             assignee = ps.pro_edge()[0]
-            if ps.nominal():
-                theta_role = 'Agent/Possessor'
-            elif ps.light_verb():
-                theta_role = 'Causer/Agent'
+            if assignee.referential():
+                if ps.nominal():
+                    theta_role = 'Agent/Possessor'
+                elif ps.light_verb():
+                    theta_role = 'Causer/Agent'
+                else:
+                    theta_role = 'Agent'
             else:
-                theta_role = 'Agent'
+                theta_role = '?'
         elif ps.check({'V'}) and ps.check({'CLASS/TR'}) and ps.pro_edge():
             assignee = ps.pro_edge()[0]
             theta_role = 'Patient'
         if assignee:
+            if assignee.head().check({'EXPL'}):
+                log(f'\n\t\t\tExpletive cannot receive a thematic role from {ps}.')
+                self.failure = True
+                return
             if assignee.head().referential():
                 if assignee.head().mother:
                     argument_str = f'{assignee.head().mother.illustrate()}'

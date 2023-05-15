@@ -24,7 +24,7 @@ prtcpl		:: Inf T T/prt PF:T/prt LF:prtcpl
 
 # Expletives
 D/expl		:: EXPL Δd PF:expl LF:expl !COMP:N -SPEC:*
-expl		:: N#D/expl
+EXPL		:: N#D/expl
 
 # English
 to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable

@@ -178,7 +178,8 @@ class NarrowSemantics:
         if self.argument_recovery_module.interpretation_failed or \
                 self.phi_interpretation_failed or \
                 self.operator_variable_module.interpretation_failed or \
-                self.pragmatic_pathway.interpretation_failed:
+                self.pragmatic_pathway.interpretation_failed or \
+                self.thematic_roles_module.failure:
             self.semantic_interpretation_failed = True
             return True
 

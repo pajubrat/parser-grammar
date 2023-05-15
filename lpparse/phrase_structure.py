@@ -371,15 +371,19 @@ class PhraseStructure:
 
     def create_chain(self, transfer, inst):
         for target in self.select_objects_from_edge(inst):
-            inst, target = self.prepare_chain(target, inst, transfer)
-            if not target.expletive():
-                self.form_chain(target, inst)
-                transfer.brain_model.consume_resources(inst['type'], self)
-                # Successive-cyclic chain formation
-                if target.primitive() and inst['test integrity'](target):
-                    target.create_chain(transfer, inst)
-                elif target.max().container() and inst['test integrity'](target.max().container()):
-                    target.max().container().create_chain(transfer, inst)
+            if self.EF() or target.primitive():
+                if not (target.expletive() and self.license_expletive()):               # Licensed expletives are not reconstructed
+                    inst, target = self.prepare_chain(target, inst, transfer)
+                    self.form_chain(target, inst)
+                    transfer.brain_model.consume_resources(inst['type'], self)
+                    # Successive-cyclic chain formation
+                    if target.primitive() and inst['test integrity'](target):
+                        target.create_chain(transfer, inst)
+                    elif target.max().container() and inst['test integrity'](target.max().container()):
+                        target.max().container().create_chain(transfer, inst)
+            else:
+                if not self.projects_thematic_specifier():                              # Heads without EF cannot have anything at the edge
+                    self.features.add('*')                                              # (Implements -EF behavior)
 
     def prepare_chain(probe, specifier, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
@@ -739,7 +743,7 @@ class PhraseStructure:
 
     def tail_match(self, constituent_from_MB, direction):
         self.Merge(constituent_from_MB.copy(), direction)        # Test merge
-        if direction == 'right':                                          # Presupposition
+        if direction == 'right':                                   # Presupposition
             self.geometrical_sister().adjunct = True
         result = self.geometrical_sister().head().tail_test()      # Test
         self.geometrical_sister().remove()                         # Remove trial unit
@@ -749,13 +753,14 @@ class PhraseStructure:
 
     def is_possible_antecedent(self, antecedent):
         if antecedent:
-            valued_phi_at_probe = [phi.split(':') for phi in self.features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' and not phi.endswith('_')]
-            valued_phi_at_antecedent = [phi.split(':') for phi in self.head().features if phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' and not phi.endswith('_')]
-            for P in valued_phi_at_probe:
-                for A in valued_phi_at_antecedent:
-                    if P[1] == A[1] and P[2] != A[2]:
-                        return False
-        return True
+            if not self.self_referencing(antecedent):
+                valued_phi_at_probe = [phi.split(':') for phi in self.features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_')]
+                valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_')]
+                for P in valued_phi_at_probe:
+                    for A in valued_phi_at_antecedent:
+                        if P[1] == A[1] and P[2] != A[2]:
+                            return False
+                return True
 
     def control(self):
         head = []
@@ -776,10 +781,11 @@ class PhraseStructure:
 
     def get_antecedent(self):
         unvalued_phi = self.phi_needs_valuation()
-        if unvalued_phi & {'PHI:DET:_'} and not unvalued_phi & {'PHI:PER:_'}:
-            return self.finite_control(), True
-        else:
+        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'}:
             return self.control(), False
+        elif unvalued_phi & {'PHI:DET:_'}:
+            return self.finite_control(), True
+        return None, False
 
     # Structure building --------------------------------------------------------------------------
 
@@ -1217,3 +1223,16 @@ class PhraseStructure:
 
     def open_class(self):
         return self.head().check_some({'N', 'V', 'P', 'A'})
+
+    def license_expletive(self):
+        return self.head().check({'SPEC:EXPL'})
+
+    def projects_thematic_specifier(self):
+        return self.check_some({'SPEC:φ', '!SPEC:φ'})
+
+    def coreference_by_Agree(self, goal):
+        return {f.split(':')[2] for f in goal.head().features if f.split(':')[0] == 'dPHI'} & self.head().features
+
+    def self_referencing(self, goal):
+        return goal.head().get_id() == self.get_id() or (self.check({'φ'}) and {f.split(':')[2] for f in goal.head().features if f.split(':')[0] == 'dPHI'} & self.head().features)
+

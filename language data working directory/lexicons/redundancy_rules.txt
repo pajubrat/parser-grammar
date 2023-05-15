@@ -45,7 +45,7 @@ OP:Q			:: DIS:WH OP
 
 # Verb classess
 CLASS/TR 		:: !COMP:* -COMP:P COMP:φ -COMP:Adv
-CLASS/INTR 		:: -COMP:φ SPEC:φ COMP:P
+CLASS/INTR 		:: -COMP:φ -COMP:EXPL SPEC:φ COMP:P
 CLASS/DITR 		:: !COMP:* SPEC:φ COMP:φ
 PHI_N			:: -COMP:*
 
@@ -69,6 +69,8 @@ A LANG:FI		::	EF
 T/fin LANG:FI	::  EF
 φ LANG:FI		::	EF
 Fin LANG:FI		::  EF
+T Fin LANG:FI	:: 	SPEC:EXPL
+Neg Fin LANG:FI	::	SPEC:EXPL
 
 # Other rules
 N LANG:FI	:: -COMP:T/prt

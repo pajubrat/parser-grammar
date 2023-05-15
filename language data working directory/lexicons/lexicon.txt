@@ -227,12 +227,12 @@ miesten		:: mies-#φ#pl#3p#def#r_expression#[gen] LANG:FI
 miestä		:: mies-#φ#sg#3p#def#r_expression#[par] LANG:FI
 miehiä		:: mies-#φ#pl#3p#def#r_expression#[par] LANG:FI
 mies-		:: PF:mies LF:man N LANG:FI
-minka		:: mikä-#D#wh#[acc(n)] LANG:FI
-minkä		:: mikä-#D#wh#[gen] LANG:FI
+minka		:: mikä-#D#wh#def#[acc(n)] LANG:FI
+minkä		:: mikä-#D#wh#def#[gen] LANG:FI
 mikä		:: mikä-#D#wh#sg#3p#[nom] LANG:FI
 #mitä		:: D#wh#sg#3p#[par] LANG:FI
-mitä		:: mikä-#D#wh#sg#3p#[par] LANG:FI
-mitä_DP		:: mikä-#D#wh#sg#3p#[par] LANG:FI
+mitä		:: mikä-#D#def#wh#sg#3p#[par] LANG:FI
+mitä_DP		:: mikä-#D#def#wh#sg#3p#[par] LANG:FI
 mikä-		:: PF:mikä LF:what N LANG:FI
 mukavasti 	:: mukava-#sti
 mukava-		:: PF:mukavasti LF:comfortably 0 LANG:FI
@@ -286,7 +286,7 @@ päivä		:: päivä-#φ#[acc(0)]
 päivä-		:: PF:päivä- LF:day N SEM:nonreferential LANG:FI
 Pariisia	:: Pariisi-#D#sg#3p#def#proper_name#[par] LANG:FI
 Pariisin	:: Pariisi-#D#sg#3p#def#proper_name#[gen] LANG:FI
-Pariisi-	:: PF:Pariisi LF:Paris N LANG:FI
+Pariisi-	:: PF:Pariisi LF:Paris N -COMP:* LANG:FI
 Pekkaa		:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[par] LANG:FI
 Pekka   	:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
 Pekan		:: Pekka-#φ#sg#3p#def#nonhum#proper_name#[acc(n)]
@@ -409,7 +409,7 @@ uskovan		:: usko-#VA/inf LANG:FI
 usko-   	:: PF:usko- LF:believe V -COMP:A/inf SPEC:φ SPEC:D COMP:VA/inf COMP:FORCE !PROBE:T -PROBE:FORCE:WH LANG:FI
 virtaamalla	:: virtaa-#MA.ade/inf LANG:FI
 virtaa		:: virtaa-#T/fin#[V] LANG:FI
-virtaa-		:: PF:virtaa- LF:flow CLASS/INTR V COMP:P SPEC:φ -COMP:φ -COMP:D LANG:FI
+virtaa-		:: PF:virtaa- LF:flow CLASS/INTR V COMP:P SPEC:φ -COMP:φ LANG:FI
 voitti		:: voitta-#v#asp#T/fin#[V] LANG:FI
 voittanut	:: voitta-#v#asp#T/prt#sg LANG:FI
 voittaa		:: voitta-#A/inf LANG:FI

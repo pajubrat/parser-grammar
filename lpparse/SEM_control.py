@@ -37,6 +37,8 @@ class LF_Recovery:
         else:
             if antecedent == probe.sister():
                 arg_str = f'{antecedent.head().label()}P'
+            elif antecedent.check({'EXPL'}):
+                arg_str = f'generic'
             else:
                 arg_str = f'pro at {antecedent.head().label()}'
         return f'Argument for {probe.label()}° is {arg_str}'
