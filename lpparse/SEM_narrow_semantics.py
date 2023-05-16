@@ -1,7 +1,6 @@
 from support import log
 from SEM_operators_variables import OperatorVariableModule
 from SEM_pragmatic_pathway import Discourse
-from SEM_control import LF_Recovery
 from SEM_quantifiers_numerals_denotations import QuantifiersNumeralsDenotations
 from SEM_predicates_relations_events import PredicatesRelationsEvents
 from SEM_thematic_roles import ThematicRoles
@@ -11,7 +10,6 @@ from global_cognition import GlobalCognition
 class NarrowSemantics:
     def __init__(self, brain_model):
         self.operator_variable_module = OperatorVariableModule(self)
-        self.argument_recovery_module = LF_Recovery(brain_model)
         self.thematic_roles_module = ThematicRoles()
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
         self.pragmatic_pathway = Discourse(self)
@@ -84,7 +82,7 @@ class NarrowSemantics:
         self.predicate_argument_dependencies = []
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
-                                        'Agree/LF': [],
+                                        'Agree': [],
                                         'Predicate scopes': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -99,10 +97,9 @@ class NarrowSemantics:
         self.phi_interpretation_failed = False
         self.operator_variable_module.interpretation_failed = False
         self.pragmatic_pathway.interpretation_failed = False
-        self.argument_recovery_module.interpretation_failed = False
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
-                                        'Agree/LF': [],
+                                        'Agree': [],
                                         'Predicates': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -127,8 +124,6 @@ class NarrowSemantics:
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
-                if self.brain_model.local_file_system.settings['generate_argument_links'] and ps.get_dPHI():
-                    self.semantic_interpretation['Agree/LF'] = self.semantic_interpretation['Agree/LF'] + self.argument_recovery_module.calculate_arguments(ps)
                 if self.brain_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_assigner():
                     thematic_assignment = self.thematic_roles_module.reconstruct(ps)
                     if thematic_assignment:
@@ -173,8 +168,7 @@ class NarrowSemantics:
         self.semantic_interpretation.update(self.access_interface)
 
     def failure(self):
-        if self.argument_recovery_module.interpretation_failed or \
-                self.phi_interpretation_failed or \
+        if self.phi_interpretation_failed or \
                 self.operator_variable_module.interpretation_failed or \
                 self.pragmatic_pathway.interpretation_failed or \
                 self.thematic_roles_module.failure:

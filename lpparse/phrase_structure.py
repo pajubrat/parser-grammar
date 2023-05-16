@@ -564,6 +564,23 @@ class PhraseStructure:
     def get_dPHI(self):
         return {f for f in self.head().features if f.startswith('dPHI:')}
 
+    def argument_by_agreement(self):
+        for x in self.features:
+            if x.startswith('dPHI'):
+                if self.sister():
+                    return self.sister().constituent_by_index(x.split(':')[2])
+
+    def constituent_by_index(self, idx):
+        const = None
+        if self.complex():
+            const = self.left.constituent_by_index(idx)
+            if not const:
+                const = self.right.constituent_by_index(idx)
+        else:
+            if idx in self.features:
+                return self
+        return const
+
     def cutoff_point_for_last_resort_extraposition(self):
         return self.primitive() and self.is_adjoinable() and self.aunt() and \
                (self.aunt().complex() or (self.aunt().primitive() and self.grandmother().induces_selection_violation()))
@@ -763,13 +780,14 @@ class PhraseStructure:
                 return True
 
     def control(self):
-        head = []
-        if self.extract_pro() and self.check({'d'}) and not {phi for phi in self.features if phi.startswith('PHI:DET') and phi.endswith('_')}:
-            head = [self]
-        sister = []
-        if self.open_class() and self.sister():
-            sister = [self.sister()]
-        search_path = head + sister + [x for x in takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())]
+        unvalued_phi = self.phi_needs_valuation()
+        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'}:
+            return self.standard_control()
+        elif unvalued_phi & {'PHI:DET:_'}:
+            return self.finite_control()
+
+    def standard_control(self):
+        search_path = [x for x in takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())]
         antecedent = next((x for x in search_path if self.is_possible_antecedent(x)), None)
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control). ')
         return antecedent
