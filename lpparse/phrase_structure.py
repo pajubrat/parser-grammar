@@ -779,14 +779,6 @@ class PhraseStructure:
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (finite control). ')
         return antecedent
 
-    def get_antecedent(self):
-        unvalued_phi = self.phi_needs_valuation()
-        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'}:
-            return self.control(), False
-        elif unvalued_phi & {'PHI:DET:_'}:
-            return self.finite_control(), True
-        return None, False
-
     # Structure building --------------------------------------------------------------------------
 
     def Merge(self, C, direction=''):

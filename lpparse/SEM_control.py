@@ -17,9 +17,6 @@ class LF_Recovery:
                 argument_lst.append(f'{probe}° ~ {argument.max().illustrate()}')
         return argument_lst
 
-    def control(self, probe):
-        return self.interpret_antecedent(probe, probe.get_antecedent())
-
     def interpret_antecedent(self, probe, antecedent_package):
         antecedent, finite_control = antecedent_package
         if antecedent:
@@ -41,7 +38,7 @@ class LF_Recovery:
                 arg_str = f'generic'
             else:
                 arg_str = f'pro at {antecedent.head().label()}'
-        return f'Argument for {probe.label()}° is {arg_str}'
+        return f'{arg_str}'
 
     def antecedent_absent(self, probe):
         unvalued_phi = probe.phi_needs_valuation()
@@ -65,4 +62,4 @@ class LF_Recovery:
             if 'PHI:PER:_' in unvalued_phi and 'PHI:NUM:_' not in unvalued_phi:
                 arg_str = 'discourse argument'
 
-        return f'Argument of {probe.label()} is {arg_str}'
+        return f'{arg_str}'

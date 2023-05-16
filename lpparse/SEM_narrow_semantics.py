@@ -103,7 +103,7 @@ class NarrowSemantics:
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
                                         'Agree/LF': [],
-                                        'Predicate scopes': [],
+                                        'Predicates': [],
                                         'Aspect': [],
                                         'DIS-features': [],
                                         'Operator bindings': [],
@@ -129,14 +129,12 @@ class NarrowSemantics:
             if ps.primitive():
                 if self.brain_model.local_file_system.settings['generate_argument_links'] and ps.get_dPHI():
                     self.semantic_interpretation['Agree/LF'] = self.semantic_interpretation['Agree/LF'] + self.argument_recovery_module.calculate_arguments(ps)
-                if ps.check({'ARG'}) and not (ps.referential() and not ps.check({'ΦPF'})):
-                    self.semantic_interpretation['Control'].append(self.argument_recovery_module.control(ps))
                 if self.brain_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_assigner():
                     thematic_assignment = self.thematic_roles_module.reconstruct(ps)
                     if thematic_assignment:
                         self.semantic_interpretation['Thematic roles'].append(thematic_assignment)
-                if self.brain_model.local_file_system.settings['calculate_predicates'] and ps.interpretable_phi():
-                    self.semantic_interpretation['Predicate scopes'].append(self.predicates.reconstruct(ps))
+                if self.brain_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}):
+                    self.semantic_interpretation['Predicates'].append(self.predicates.reconstruct(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
                 if self.brain_model.local_file_system.settings['project_objects']:
