@@ -519,7 +519,7 @@ class PhraseStructure:
 
     def value_feature(self, phi, unvalued_counterparty, goal):
         if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
-            self.features.add('*')
+            pass  # self.features.add('*')
         elif unvalued_counterparty:                 # Unvalued counterparty exists
             self.value(unvalued_counterparty, phi)  # Perform valuation
             if self != goal:                        # Leave a record that Agree/LF has occurred
@@ -556,7 +556,7 @@ class PhraseStructure:
         for x in type_matched_phi:
             if x == phi:
                 return True
-        log(f'*{phi} ')
+        log(f'*{phi} (feature conflict) ')
 
     def has_interpretable_phi_features(self):
         return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
@@ -569,6 +569,17 @@ class PhraseStructure:
             if x.startswith('dPHI'):
                 if self.sister():
                     return self.sister().constituent_by_index(x.split(':')[2])
+
+    def antecedent_licensing(self, goal):
+        return goal
+
+    def agreement_licensing(self, goal):
+        if goal:
+            for phi in [phi_ for phi_ in goal.head().features if phi_.startswith('iPHI:') and not phi_.endswith('_')]:
+                if not self.feature_licensing(phi[1:]):
+                    log(f'\n\t\t\t*There is a phi-feature mismatch in {phi[1:].split(":")[1]} between {self}° and {goal.max().illustrate()}.')
+                    return False
+        return True
 
     def constituent_by_index(self, idx):
         const = None
@@ -770,9 +781,10 @@ class PhraseStructure:
 
     def is_possible_antecedent(self, antecedent):
         if antecedent:
-            if not self.self_referencing(antecedent):
+            if not self.self_referencing(antecedent) and {phi for phi in antecedent.head().features if (phi.startswith("iPHI:") or phi.startswith("PHI:")) and not phi.endswith('_')}:
                 valued_phi_at_probe = [phi.split(':') for phi in self.features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_')]
-                valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_')]
+                valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:8] == 'iPHI:NUM' or phi[:8] == 'iPHI:PER') and not phi.endswith('_')]
+                log(f'{antecedent}: {valued_phi_at_probe}/{valued_phi_at_antecedent}')
                 for P in valued_phi_at_probe:
                     for A in valued_phi_at_antecedent:
                         if P[1] == A[1] and P[2] != A[2]:
@@ -1244,5 +1256,5 @@ class PhraseStructure:
         return {f.split(':')[2] for f in goal.head().features if f.split(':')[0] == 'dPHI'} & self.head().features
 
     def self_referencing(self, goal):
-        return goal.head().get_id() == self.get_id() or (self.check({'φ'}) and {f.split(':')[2] for f in goal.head().features if f.split(':')[0] == 'dPHI'} & self.head().features)
+        return goal.head().get_id() == self.get_id()
 

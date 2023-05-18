@@ -15,7 +15,7 @@ class NarrowSemantics:
         self.pragmatic_pathway = Discourse(self)
         self.predicates_relations_events_module = PredicatesRelationsEvents(self)
         self.global_cognition = GlobalCognition(self)
-        self.predicates = Predicates(self)
+        self.predicates = Predicates()
         self.semantic_interpretation = {}
         self.semantic_interpretation_failed = False
         self.predicate_argument_dependencies = []
@@ -95,6 +95,7 @@ class NarrowSemantics:
     def reset_for_new_interpretation(self):
         self.semantic_interpretation_failed = False
         self.phi_interpretation_failed = False
+        self.predicates.operation_failed = False
         self.operator_variable_module.interpretation_failed = False
         self.pragmatic_pathway.interpretation_failed = False
         self.semantic_interpretation = {'Control': [],
@@ -171,6 +172,7 @@ class NarrowSemantics:
         if self.phi_interpretation_failed or \
                 self.operator_variable_module.interpretation_failed or \
                 self.pragmatic_pathway.interpretation_failed or \
+                self.predicates.operation_failed or \
                 self.thematic_roles_module.failure:
             self.semantic_interpretation_failed = True
             return True
