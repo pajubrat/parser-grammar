@@ -495,46 +495,34 @@ class PhraseStructure:
         if valuations:
             for incoming_phi, unvalued_counterparty in valuations:
                 self.value_feature(incoming_phi, unvalued_counterparty, goal)
-            self.check_d(goal)
-        else:
-            log(f'nothing (no useful features available). ')
+            if self != goal:
+                self.associate_rule(goal)
+                self.check_redundant_Φ()
+                self.features.update({'Φ', 'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
 
-    def check_d(self, goal):
-        if self != goal and self.check({'!SELF:d'}):
-            if not self.check({'!SELF:PER'}) and not self.associate(goal):
+    def associate_rule(self, goal):
+        if self.requires_SUBJECT():
+            self.features.add('!SELF:p')                                        # Agree activates [p]
+            if not self.check({'!SELF:PER'}) and not self.associate(goal):      # Checks strong [p] condition
                 self.features.add('*')
                 log(f'\n\t\t{self}° failed the associate rule')
-            elif self.check({'d'}):
-                self.features.add('d*')
-                log(f'\n\t\t{self}° double checked [d]')
-            else:
-                self.features.add('d')
-                log(f'\n\t\t{self}° checked [d]')
+
+    # This should be reduced into something else
+    def check_redundant_Φ(self):
+        if self.check({'Φ'}):
+            self.features.add('Φ*')
 
     def associate(self, goal):
-        const = next(iter(self.edge()), None)
-        if const:
-            if const.head().get_id() == goal.head().get_id():
-                return True
+        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
 
     def value_feature(self, phi, unvalued_counterparty, goal):
         if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
-            pass  # self.features.add('*')
-        elif unvalued_counterparty:                 # Unvalued counterparty exists
-            self.value(unvalued_counterparty, phi)  # Perform valuation
-            if self != goal:                        # Leave a record that Agree/LF has occurred
-                self.features.add('ΦLF')
-                # Experimental
-                if self.check({'!SELF:d'}):
-                    self.features.add('!SELF:p')
-                    log(f'[p] ')
-                self.features.add('dPHI:IDX:' + goal.head().get_id())
-
-    # Replace the unvalued feature by the valued one
-    def value(self, unvalued_counterparty, phi):
-        log(f'{phi} ')
-        self.features.discard(unvalued_counterparty)
-        self.features.add(phi)
+            self.features.add('*')
+            log(f'\n\t\t\t*{phi} (feature conflict)')
+        elif unvalued_counterparty:                 # Unvalued counterparty exist
+            log(f'{phi} ')
+            self.features.discard(unvalued_counterparty)
+            self.features.add(phi)
 
     def target_phi_feature(self, phi, goal):
         if valued_phi_feature(phi):                             # Use only valued phi-features
@@ -551,35 +539,16 @@ class PhraseStructure:
     # Check if types match, then there must be a licensing feature with identical value.
     def feature_licensing(self, phi):
         type_matched_phi = [phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and phi.split(':')[1] == phi_.split(':')[1]]
-        if not type_matched_phi:
-            return True
-        for x in type_matched_phi:
-            if x == phi:
-                return True
-        log(f'*{phi} (feature conflict) ')
+        return not type_matched_phi or {x for x in type_matched_phi if x == phi}
 
     def has_interpretable_phi_features(self):
         return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
-
-    def get_dPHI(self):
-        return {f for f in self.head().features if f.startswith('dPHI:')}
 
     def argument_by_agreement(self):
         for x in self.features:
             if x.startswith('dPHI'):
                 if self.sister():
                     return self.sister().constituent_by_index(x.split(':')[2])
-
-    def antecedent_licensing(self, goal):
-        return goal
-
-    def agreement_licensing(self, goal):
-        if goal:
-            for phi in [phi_ for phi_ in goal.head().features if phi_.startswith('iPHI:') and not phi_.endswith('_')]:
-                if not self.feature_licensing(phi[1:]):
-                    log(f'\n\t\t\t*There is a phi-feature mismatch in {phi[1:].split(":")[1]} between {self}° and {goal.max().illustrate()}.')
-                    return False
-        return True
 
     def constituent_by_index(self, idx):
         const = None
@@ -617,12 +586,12 @@ class PhraseStructure:
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into -ARG due to {self.selector()}.')
                 self.features.add('-ARG')
-                self.features.add('-SELF:d')
+                self.features.add('-SELF:Φ')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 self.features.discard('?ARG')
                 log(f'\n\t\t{self} resolved into ARG.')
                 self.features.add('ARG')
-                self.features.add('!SELF:d')
+                self.features.add('!SELF:Φ')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
 
@@ -1217,7 +1186,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return self.check_some({'v', 'C', 'FORCE'}) and not self.check({'v-'})
+        return self.check_some({'v', 'C', 'FORCE', 'V'}) and not self.check({'v-'})
 
     def extended_subject(self):
         return self.check_some({'GEN'})
@@ -1227,18 +1196,6 @@ class PhraseStructure:
 
     def theta_assigner(self):
         return self.check_some({'SPEC:φ', 'SPEC:D', 'COMP:φ', 'COMP:D', '!SPEC:φ', '!SPEC:D', '!COMP:φ', '!COMP:D'})
-
-    def LF_PHI(self):
-        return self.head().check({'ΦLF'})
-
-    def PF_PHI(self):
-        return self.head().check({'ΦPF'})
-
-    def has_PHI(self):
-        return self.head().check({'DPF'})
-
-    def has_PHI_FULL(self):
-        return self.head().check({'ΦPF', 'ΦLF'})
 
     def expletive(self):
         return self.head().check({'EXPL'})
@@ -1258,3 +1215,8 @@ class PhraseStructure:
     def self_referencing(self, goal):
         return goal.head().get_id() == self.get_id()
 
+    def requires_SUBJECT(self):
+        return self.check({'!SELF:Φ'})
+
+    def get_dPHI(self):
+        return {f for f in self.head().features if f.startswith('dPHI:')}

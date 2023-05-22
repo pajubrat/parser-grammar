@@ -29,7 +29,7 @@ class ScramblingReconstruction():
             if virtual_test_item.valid_reconstructed_adjunct(starting_point):
                 virtual_test_item.remove()
                 dropped_floater = self.copy_and_insert(node, target)
-                if target in starting_point.edge() and starting_point.check({'!SELF:d'}):
+                if target in starting_point.edge() and starting_point.requires_SUBJECT():
                     starting_point.scan_criterial_features(dropped_floater, 'ΔOP')
                     starting_point.copy_criterial_features(dropped_floater)
                 starting_point.features = self.brain_model.transfer.access_lexicon.apply_redundancy_rules(starting_point.features)

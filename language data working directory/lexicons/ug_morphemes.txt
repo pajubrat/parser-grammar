@@ -10,7 +10,7 @@ C/fin   :: C/fin PF:C LF:C/fin
 C		:: C C/fin PF:C LF:C
 T		:: T PF:T LF:tense Fin EF
 T/prt 	:: T/prt PF:Prtc LF:Prtc
-Fin		:: Fin LF:fin PF:Fin ARG COMP:T !SELF:d
+Fin		:: Fin LF:fin PF:Fin ARG COMP:T !SELF:Φ
 a0		:: A PF:a LF:mod
 impass	:: v ARG PF:impass LF:impass 
 cau		:: v PF:Cau LF:cause
@@ -30,20 +30,20 @@ EXPL		:: N#D/expl
 to_inf		:: Inf TO/inf PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ?ARG !PROBE:V adjoinable
 
 # Finnish infinitivals
-A/inf		:: A/inf 		EF	Inf 	?ARG -ΦPF 					PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
-VA/inf  	:: VA/inf 		EF	Inf T   ARG	-SELF:d* !SELF:d		PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
-ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  						PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
-TUA/inf		:: TUA/inf		EF	Inf Adv ARG	-SELF:d*				PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
-KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-SELF:ΦLF				PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
-E/inf		:: E/inf 		EF	Inf Adv ARG	-SELF:Δd  				PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
-MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-SELF:Δd  				PF:-mAssA 	LF:in !COMP:*  PROBE:V LANG:FI TAIL:V	
-MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-SELF:Δd  				PF:-mAttA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:T
-MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-SELF:Δd  				PF:-mAllA 	LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
-MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-SELF:Δd  				PF:-mAstA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event
-MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-SELF:Δd  				PF:-mAAn 	LF:to SEM/desired_event !COMP:*  PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event
+A/inf		:: A/inf 		EF	Inf 	?ARG -ΦPF 				PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
+VA/inf  	:: VA/inf 		EF	Inf T   ARG	-SELF:Φ* !SELF:Φ	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
+ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  					PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
+TUA/inf		:: TUA/inf		EF	Inf Adv ARG	-SELF:Φ*			PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
+KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-SELF:ΦLF			PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
+E/inf		:: E/inf 		EF	Inf Adv ARG	  					PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
+MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	 					PF:-mAssA 	LF:in !COMP:*  PROBE:V LANG:FI TAIL:V	
+MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	 					PF:-mAttA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:T
+MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	 					PF:-mAllA 	LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
+MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	 					PF:-mAstA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event
+MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	 					PF:-mAAn 	LF:to SEM/desired_event !COMP:*  PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event
 
 # Prticiple adjectives
-MA/A		:: MA/A 		EF	Inf		ARG  !SELF:Δd			PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
+MA/A		:: MA/A 		EF	Inf		ARG  					PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
 VA/A		:: VA/A				Inf			 -ΦPF 				PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
 
 # Experimental
@@ -90,13 +90,13 @@ r_expression	:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
 pronoun1		:: inflectional iPHI:PRON:PRON R:NEW:REF
 reflexive		:: inflectional iPHI:PRON:PRON R:OLD:REF
 Rexpression		:: inflectional iPHI:PRON:NONPRON R:NEW:$$$/SUR
-sg_ 			:: inflectional ΦPF d PHI:NUM:SG
-pl_ 			:: inflectional ΦPF d PHI:NUM:PL
-1p_ 			:: inflectional ΦPF d PHI:PER:1 PER
-2p_ 			:: inflectional ΦPF d PHI:PER:2 PER
-3p_ 			:: inflectional ΦPF d PHI:PER:3 PER
-def_ 			:: inflectional ΦPF d PHI:DET:DEF
-indef_ 			:: inflectional ΦPF d PHI:DET:INDEF
+sg_ 			:: inflectional ΦPF Φ PHI:NUM:SG
+pl_ 			:: inflectional ΦPF Φ PHI:NUM:PL
+1p_ 			:: inflectional ΦPF Φ PHI:PER:1 PER
+2p_ 			:: inflectional ΦPF Φ PHI:PER:2 PER
+3p_ 			:: inflectional ΦPF Φ PHI:PER:3 PER
+def_ 			:: inflectional ΦPF Φ PHI:DET:DEF
+indef_ 			:: inflectional ΦPF Φ PHI:DET:INDEF
 hum_ 			:: inflectional ΦPF 	PHI:HUM:HUM
 nonhum_ 		:: inflectional ΦPF 	PHI:HUM:NONHUM
 m_				:: inflectional ΦPF 	PHI:GEN:M

@@ -5,7 +5,7 @@
 FORCE	:: -ARG -EF Fin !COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin -SPEC:T/fin
 C/fin 	:: -ARG Fin C -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:Fin COMP:Neg/fin !COMP:* -SPEC:N -SPEC:T/fin -SPEC:C/fin -COMP:FORCE 
 C		:: -SPEC:MA/A
-T/fin 	:: ARG EF !SELF:d T Fin !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
+T/fin 	:: ARG EF !SELF:Φ T Fin !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
 T/prt 	:: ARG Fin T EF !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -PER
 T 		:: ARG COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
 Neg/fin :: ARG EF Fin NEG COMP:T/prt COMP:T -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
@@ -53,7 +53,7 @@ PHI_N			:: -COMP:*
 R:REF:PROPER_NAME :: -COMP:Inf
 
 # Edge behaviors (redundant)
-!SELF:d 		:: EF
+!SELF:Φ 		:: EF
 
 # Language specific rules
 #
