@@ -8,9 +8,6 @@ class Predicates:
         self.edge = [('zero merge',
                       lambda x: x.extract_pro() and not x.phi_needs_valuation(),
                       lambda x: x.extract_pro()),
-                     ('Agree',
-                      lambda x: x.argument_by_agreement() and x.check({'d'}),
-                      lambda x: x.argument_by_agreement().max()),
                      ('first merge',
                       lambda x: x.sister() and x.sister().referential(),
                       lambda x: x.sister()),
@@ -22,12 +19,20 @@ class Predicates:
                       lambda x: x.control())]
 
     def reconstruct(self, probe):
-        log(f'\n\t\t\tArgument for {probe}°: ')
         for name, condition, acquisition in self.edge:
             if condition(probe):
                 goal = acquisition(probe)
                 if goal:
-                    log(f'{goal.illustrate()} (by {name}).')
-                    return f'{probe}°: {goal.illustrate()}'
+                    log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, goal)} (by {name}).')
+                    return f'{probe}°: {self.print_target(probe, goal)}'
         log(f'\n\t\t\t*{probe} was not linked with an argument.')
         self.operation_failed = True
+
+    def print_target(self, probe, goal):
+        if 'pro' in goal.features:
+            phrasal_argument = probe.argument_by_agreement()
+            if phrasal_argument:
+                return f'pro={probe.argument_by_agreement().max().illustrate()}'
+            else:
+                return f'pro'
+        return f'{goal.illustrate()}'

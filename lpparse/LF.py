@@ -15,7 +15,8 @@ class LF:
                                     ('Semantic Complement test', PhraseStructure.semantic_complement),
                                     ('Double Specifier Filter', PhraseStructure.double_spec_filter),
                                     ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
-                                    ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct)]
+                                    ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
+                                    ('Edge feature test', PhraseStructure.edge_feature_test)]
 
         self.selection_violation_test = {'!1EDG': PhraseStructure.selection__negative_one_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,

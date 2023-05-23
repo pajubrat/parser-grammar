@@ -335,6 +335,8 @@ class PhraseStructure:
                     break
 
     # Projection principle and thematic roles ---------------------------------------------------------------------
+    def edge_feature_test(self):
+        return not self.check_some({'SPEC:φ', '!SPEC:φ'}) and 'EF' not in self.features and self.edge()
 
     def nonthematic(self):
         if self.max().container():
@@ -381,9 +383,6 @@ class PhraseStructure:
                         target.create_chain(transfer, inst)
                     elif target.max().container() and inst['test integrity'](target.max().container()):
                         target.max().container().create_chain(transfer, inst)
-            else:
-                if not self.projects_thematic_specifier():                              # Heads without EF cannot have anything at the edge
-                    self.features.add('*')                                              # (Implements -EF behavior)
 
     def prepare_chain(probe, specifier, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
@@ -486,7 +485,7 @@ class PhraseStructure:
     def Agree(self):
         goal = self
         if self.sister():
-            goal = next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), self)
+            goal = next(self.sister().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or x.phase_head(), lambda x: not x.phase_head()), self)
         self.value_features(goal)
 
     def value_features(self, goal):
@@ -545,21 +544,11 @@ class PhraseStructure:
         return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
 
     def argument_by_agreement(self):
-        for x in self.features:
-            if x.startswith('dPHI'):
+        for f in self.features:
+            if f.startswith('dPHI'):
                 if self.sister():
-                    return self.sister().constituent_by_index(x.split(':')[2])
-
-    def constituent_by_index(self, idx):
-        const = None
-        if self.complex():
-            const = self.left.constituent_by_index(idx)
-            if not const:
-                const = self.right.constituent_by_index(idx)
-        else:
-            if idx in self.features:
-                return self
-        return const
+                    idx = f.split(':')[2]
+                    return next(self.sister().minimal_search(lambda x: idx in x.head().features, lambda x: not x.phase_head()), None)
 
     def cutoff_point_for_last_resort_extraposition(self):
         return self.primitive() and self.is_adjoinable() and self.aunt() and \
@@ -596,7 +585,16 @@ class PhraseStructure:
                 self.features.add('PHI:PER:_')
 
     def valid_reconstructed_adjunct(self, starting_point_node):
-        return self.head().tail_test() and (self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node))
+        if self.head().tail_test():
+            if self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node):
+                if self.container():
+                    h = self.container()
+                    if self == h.next(h.edge):
+                        return h.specifier_match(self)
+                    if self == h.sister():
+                        return h.complement_match(self)
+                else:
+                    return True     # XP without container is accepted
 
     def trigger_adjunct_reconstruction(self):
         return not self.legible_adjunct() and self.adjoinable() and self.floatable() and not self.operator_in_scope_position()
@@ -753,7 +751,6 @@ class PhraseStructure:
             if not self.self_referencing(antecedent) and {phi for phi in antecedent.head().features if (phi.startswith("iPHI:") or phi.startswith("PHI:")) and not phi.endswith('_')}:
                 valued_phi_at_probe = [phi.split(':') for phi in self.features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_')]
                 valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:8] == 'iPHI:NUM' or phi[:8] == 'iPHI:PER') and not phi.endswith('_')]
-                log(f'{antecedent}: {valued_phi_at_probe}/{valued_phi_at_antecedent}')
                 for P in valued_phi_at_probe:
                     for A in valued_phi_at_antecedent:
                         if P[1] == A[1] and P[2] != A[2]:
@@ -769,7 +766,7 @@ class PhraseStructure:
 
     def standard_control(self):
         search_path = [x for x in takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())]
-        antecedent = next((x for x in search_path if self.is_possible_antecedent(x)), None)
+        antecedent = next((x for x in search_path if not x.find_me_elsewhere and self.is_possible_antecedent(x)), None)
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control). ')
         return antecedent
 
@@ -1206,7 +1203,9 @@ class PhraseStructure:
     def license_expletive(self):
         return self.head().check({'SPEC:EXPL'})
 
-    def projects_thematic_specifier(self):
+    def theta_marks(self, target):
+        if self.sister() == target:
+            return self.check_some({'SPEC:φ', '!SPEC:φ', 'COMP:φ', '!COMP:φ'})
         return self.check_some({'SPEC:φ', '!SPEC:φ'})
 
     def coreference_by_Agree(self, goal):

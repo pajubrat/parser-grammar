@@ -4,7 +4,7 @@
 # Basic lexical categories
 FORCE	:: -ARG -EF Fin !COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin -SPEC:T/fin
 C/fin 	:: -ARG Fin C -COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:Fin COMP:Neg/fin !COMP:* -SPEC:N -SPEC:T/fin -SPEC:C/fin -COMP:FORCE 
-C		:: -SPEC:MA/A
+C		:: -SPEC:MA/A EF
 T/fin 	:: ARG EF !SELF:Φ T Fin !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
 T/prt 	:: ARG Fin T EF !COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -PER
 T 		:: ARG COMP:* COMP:v COMP:V -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
@@ -59,7 +59,6 @@ R:REF:PROPER_NAME :: -COMP:Inf
 #
 # ==> FINNISH
 # CP-complementary (assume opposite for V2 languages)
-C/fin PHON	:: -EF
 C/fin		:: !COMP:ΦPF
 
 # Finnish edge behavior
