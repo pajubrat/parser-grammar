@@ -531,13 +531,15 @@ asp			:: inflectional ASP:BOUNDED
 
 's			:: PF:D('s) LF:possessive D PHI:DET:DEF PHI:NUM:SG PHI:PER:3 R:NEW:$X$ POSS
 a_D			:: D PF:D LF:D LANG:EN
+an			:: D PHI:PER:3 PHI:NUM:SG PHI:DEF:INDEF PF:D LF:D LANG:EN
 a1			:: D PF:D LF:D LANG:EN
+accident	:: PF:accident LF:accident N
 admire  	:: admire-#v#T/fin#[-0] LANG:EN	
 admire_fin	:: admire-#v#T/fin#[-0] LANG:EN
 admire		:: admire-#v LANG:EN
 admires  	:: admire-#v#T/fin#[-s] LANG:EN
 admired		:: admire-#v* LANG:EN
-admire-  	:: PF:admire LF:admire V -COMP:T/fin CLASS/TR -SPEC:Neg -COMP:Neg COMP:D COMP:φ
+admire-  	:: PF:admire LF:admire V SPEC:φ -COMP:T/fin CLASS/TR -SPEC:Neg -COMP:Neg COMP:D COMP:φ
 asks		:: ask-#v#T/fin#[-s] LANG:EN
 ask-		:: PF:ask LF:ask V SPEC:φ COMP:φ SEM:internal LANG:EN
 bank		::	PF:bank1 LF:bank_inst N FREQ:1 LANG:EN
@@ -596,6 +598,8 @@ must		:: T/fin MODAL COMP:Neg PF:must LF:must LANG:EN
 near		:: PF:near LF:near P -ΦPF TAIL:T LANG:EN
 not			:: Neg LF:not PF:not POL:NEG ARG EDGE:φ -COMP:Fin -SPEC:T/fin COMP:C -COMP:φ !COMP:* LANG:EN
 ocean		:: PF:ocean LF:ocean N LANG:EN
+occurred	:: occur-#T/fin LANG:EN
+occur-		:: PF:occur LF:occur V V- SPEC:φ LANG:EN
 persuades 	:: persuade-#v#T/fin#[-s] LANG:EN
 persuade- 	:: PF:persuade LF:persuade V COMP:TO/inf !COMP:* SEM:external LANG:EN
 Paris		:: Paris-#D LANG:EN
@@ -612,6 +616,8 @@ live-		:: PF:live LF:live V COMP:P CLASS/INTR LANG:EN
 raced		:: race-#T/fin FREQ:2 INFO:finite_verb LANG:EN  
 raced		:: race-#T/prt FREQ:1 INFO:participle_verb LANG:EN
 race-		:: PF:race LF:race V CLASS/INTR !COMP:* -COMP:T/fin COMP:P LAMG:EN
+rains		:: rain-#T/fin#[-s] LANG:EN
+rain-		:: LF:rain PF:rain V CLASS/INTR
 reaches		:: reach-#v#T/fin LANG:EN
 reach-		:: PF:reach LF:reach V CLASS/TR LANG:EN
 red			:: red-#a0 LANG:EN
@@ -637,6 +643,8 @@ wants		:: want-#v#T/fin#[-s] LANG:EN
 want		:: want-#v#T/fin#[-0] LANG:EN
 want-		:: PF:want LF:want V CLASS/TR -COMP:V -SPEC:TO/inf COMP:TO/inf LANG:EN
 was			:: T/fin#[-s] LANG:EN
+was_AUX		:: T/fin#[-s] LANG:EN
+was1		:: BE-#T/fin#[-s] LANG:EN 
 were		:: T/fin#[-0] LANG:EN
 what		:: what-#D#wh#sg#3p#def LANG:EN
 what-		:: PF:what LF:what N PHI_N LANG:EN

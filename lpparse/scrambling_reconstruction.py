@@ -22,10 +22,12 @@ class ScramblingReconstruction():
             self.adjunct_constructor.externalize_structure(target.head())
             if target.legible_adjunct() or target.head().adverbial() or not target.top().contains_finiteness():
                 return
+
         starting_point = target.container()
+        if target.is_left():
+            starting_point.head().features.add('p')
         virtual_test_item = target.copy()
         local_tense_edge = target.local_tense_edge()
-
         for node in local_tense_edge.minimal_search(lambda x: x == x, lambda x: self.sustain_condition(x, target, local_tense_edge)):
             self.merge_floater(node, virtual_test_item)
             if self.test_adjunction_solution(node, target, virtual_test_item, starting_point, 'left'):

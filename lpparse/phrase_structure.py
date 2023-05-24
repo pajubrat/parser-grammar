@@ -283,7 +283,7 @@ class PhraseStructure:
 
     # -ΦPF
     def selection__phonological_AGREE(self, selected_feature):
-        if not self.theta_assigner() and not self.check({'!SELF:DPF'}):
+        if not self.theta_assigner() and not self.check({'!SELF:ΦPF'}):
             # -ΦPF -> -EFφ
             return not self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
         return True
@@ -336,7 +336,9 @@ class PhraseStructure:
 
     # Projection principle and thematic roles ---------------------------------------------------------------------
     def edge_feature_test(self):
-        return not self.check_some({'SPEC:φ', '!SPEC:φ'}) and 'EF' not in self.features and self.edge()
+        if 'EF' not in self.features and self.edge():
+            if not ((self.edge()[0] == self.sister() and self.check_some({'!COMP:φ', 'COMP:φ'})) or self.check_some({'SPEC:φ', '!SPEC:φ'})):
+                return True
 
     def nonthematic(self):
         if self.max().container():
@@ -418,8 +420,6 @@ class PhraseStructure:
         return criterial_feature_set
 
     def copy_criterial_features(self, specifier):
-        if self.check({'Δp'}):
-            self.features.add('p')
         for f in [g for g in specifier.head().features if g.startswith('Δ')]:
             self.features.add(f[1:])
             log(f'[{f[1:]}] ')
@@ -456,7 +456,10 @@ class PhraseStructure:
 
     def select_objects_from_edge(self, instructions):
         if instructions['type'] == 'Phrasal Chain':
-            return [spec for spec in self.edge() if not spec.find_me_elsewhere]
+            edge = [spec for spec in self.edge() if not spec.find_me_elsewhere]
+            if edge:
+                self.features.add('p')
+            return edge
         return [self.right]
 
     def VP_for_fronting(self):
@@ -521,7 +524,7 @@ class PhraseStructure:
         elif unvalued_counterparty:                 # Unvalued counterparty exist
             log(f'{phi} ')
             self.features.discard(unvalued_counterparty)
-            self.features.add(phi)
+            self.features.update({phi, phi.split(':')[1]})
 
     def target_phi_feature(self, phi, goal):
         if valued_phi_feature(phi):                             # Use only valued phi-features
@@ -1183,7 +1186,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return self.check_some({'v', 'C', 'FORCE', 'V'}) and not self.check({'v-'})
+        return self.check_some({'v', 'C', 'FORCE', 'V'}) and not self.check_some({'v-', '-ARG', 'V-'})
 
     def extended_subject(self):
         return self.check_some({'GEN'})
@@ -1201,7 +1204,7 @@ class PhraseStructure:
         return self.head().check_some({'N', 'V', 'P', 'A'})
 
     def license_expletive(self):
-        return self.head().check({'SPEC:EXPL'})
+        return self.head().check_some({'SPEC:EXPL', '!SPEC:EXPL'})
 
     def theta_marks(self, target):
         if self.sister() == target:

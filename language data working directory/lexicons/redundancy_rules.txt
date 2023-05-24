@@ -27,7 +27,7 @@ QN		:: φ COMP:φ COMP:N COMP:Num
 MA/A	:: A
 VA/A	:: A
 Neg		:: -SPEC:N SPEC:D
-ARG Fin	:: -COMP:PER
+# ARG Fin	:: -COMP:PER
 ARG		:: PHI:NUM:_ PHI:PER:_ PHI:DET:_
 
 # Universal operator rules
@@ -55,6 +55,9 @@ R:REF:PROPER_NAME :: -COMP:Inf
 # Edge behaviors (redundant)
 !SELF:Φ 		:: EF
 
+# Expletives
+T Fin			:: 	SPEC:EXPL
+
 # Language specific rules
 #
 # ==> FINNISH
@@ -68,7 +71,6 @@ A LANG:FI		::	EF
 T/fin LANG:FI	::  EF
 φ LANG:FI		::	EF
 Fin LANG:FI		::  EF
-T Fin LANG:FI	:: 	SPEC:EXPL
 Neg Fin LANG:FI	::	SPEC:EXPL
 
 # Other rules
