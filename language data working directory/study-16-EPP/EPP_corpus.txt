@@ -1,9 +1,9 @@
 
-& 1. Nonfinite first-merge only
+& 1. First-merge only
 
 	& 1.1 English prepositions
 	
-		& 1.1.1 Word order variations, -Agreement
+		& 1.1.1 Word order variations, without agreement
 	
 			& Grammatical
 		
@@ -17,7 +17,11 @@
 				
 				Paris towards Seine flows
 
-		& 1.1.2 Word order variations, +Agreement
+				towards Paris flows Seine
+
+				Paris towards flows Seine
+
+		& 1.1.2 Word order variations, with agreement
 		
 			& Ungrammatical
 		
@@ -28,20 +32,43 @@
 				towards#[*3sg] Paris Seine flows
 				
 				Paris towards#[*3sg] Seine flows
+			
+				towards#[*3sg] Paris flows Seine
 				
-		& 1.1.3 Word order variations, without argument, +-Agreement
+				Paris towards#[*3sg] flows Seine
+			
+		& 1.1.3 Word order variations, without argument, with and without agreement
 		
 			& Ungrammatical
 		
 				Seine flows towards
 							
 				towards Seine flows
+
+				towards flows Seine
 				
 				Seine flows towards#[*3sg]
 							
 				towards#[*3sg] Seine flows
+
+				towards#[*3sg] flows Seine
+
+	& 1.2 Finnish high complementizer
 	
-& 2. Nonfinite second-merge, without [Φ]
+		& Grammatical
+		
+			Pekka sanoi että Merja tekee työtä
+			'Pekka.nom say.prs.3sg that Mereja.nom make.prs.3sg work.par'
+		
+		& Ungrammatical (illicit subject/object at SpecCP)
+		
+			Pekka sanoi Merja että tekee työtä
+			'Pekka.nom say.prs.3sg Merja.nom that make.prs.3sg work.par'
+			
+			Pekka sanoi työtä että Merja tekee
+			'Pekka.nom say.prs.3sg work.par that Merja.nom make.prs.3sg'
+
+& 2. Second-merge, without subject rule [Φ]
 
 	& 2.1 Finnish adposition, type kohti 'towards', without [Φ]
 		
@@ -215,7 +242,7 @@
 				Pekka halusi aitaa maalata#nsA hänen
 				'Pekka.nom want.pst.3sg fence.par paint.a/inf.px/3sg he.gen'
 	
-& 3. Nonfinite second-merge, with [Φ]
+& 3. Second-merge, with [Φ]
 
 	& 3.1 Finnish adpositions, type lähellä 'near', with genitive argument, with [Φ]
 	
@@ -543,15 +570,9 @@
 			
 				John wants Mary to_inf leave
 	
-& 4. Finite first-merge only 
-
-& 5. Finite second-merge without [Φ]
-
-	# so this is modal construction?
-
-& 6. Finite second-merge with [Φ]
+& 4. Finite second-merge with [Φ]
 	
-	& 6.1.0 Preliminary test: agreement
+	& 4.1.0 Preliminary test: agreement
 	
 		& Ungrammatical
 		
@@ -559,7 +580,7 @@
 			
 			they admires Mary
 	
-	& 6.1.1 Weak agreement (English finite clause)
+	& 4.1.1 Weak agreement (English finite clause)
 	
 		& Grammatical
 	
@@ -569,7 +590,7 @@
 		
 			admires Mary
 	
-	& 6.2 Rich agreement, partial pro-drop profile (Finnish finite clause)
+	& 4.2 Rich agreement, partial pro-drop profile (Finnish finite clause)
 	
 		& 6.2.0 Preliminary test: agreement
 		
@@ -606,7 +627,7 @@
 				he lähde#mme
 				'they.nom leave.prs.1pl'
 
-		& 6.2.1 With overt phrasal subject, preverbal position
+		& 4.2.1 With overt phrasal subject, preverbal position
 	
 			& Grammatical
 			
@@ -631,7 +652,7 @@
 				Pekka ihailee Merjaa
 				'Pekka.nom admire.prs.3sg Merja.par'
 
-		& 6.2.2 With overt phrasal subject, postverbal position
+		& 4.2.2 With overt phrasal subject, postverbal position
 		
 			& Ungrammatical
 			
@@ -653,7 +674,7 @@
 				lähde#vAt he
 				'leave.prs.3pl they.nom'
 
-		& 6.2.3 With overt phrasal subject and direct object, OVS inversion
+		& 4.2.3 With overt phrasal subject and direct object, OVS inversion
 		
 			& Grammatical
 			
@@ -675,7 +696,7 @@
 				Merjaa ihaile#vAt he
 				'Merja.par admire.prs.3pl I.nom'
 				
-		& 6.2.4 With null subject
+		& 4.2.4 With null subject
 		
 			& Grammatical
 			
@@ -699,7 +720,7 @@
 				lähde#vAt
 				'leave.prs.3pl'
 		
-		& 6.2.5 Null subject, inside embedded clause
+		& 4.2.5 Null subject, inside embedded clause
 		
 			& Grammatical
 			
@@ -723,9 +744,9 @@
 				Pekka sanoi että lähte#vAt
 				'Pekka said that leave.prs.3pl'
 				
-	& 6.3 Rich agreement with complete pro-drop (Italian finite clause)
+	& 4.3 Rich agreement with complete pro-drop (Italian finite clause)
 		
-		& 6.3.1 With overt phrasal subject
+		& 4.3.1 With overt phrasal subject
 		
 			& Grammatical
 		
@@ -750,7 +771,7 @@
 				loro adorano Luisa
 				'admire.prs.1sg Luisa'
 		
-		& 6.3.2 With null subject
+		& 4.3.2 With null subject
 		
 			& Grammatical
 			
@@ -775,18 +796,18 @@
 				adorano Luisa
 				'admire.prs.1sg Luisa'
 	
-& 7. Finite C, Ā-head, with [d][wh]
+& 5. Finite C, Ā-head, with [d][wh]
 
-	& 7.1 Standard interrogatives
+	& 5.1 Standard interrogatives
 		
 		& Grammatical
 
 			mitä Pekka maalasi
 			'what.par Pekka.nom paint.pst.3sg'
 
-	& 7.2 Pied-piping, [wh] checking at first-merge and second-merge positions
+	& 5.2 Pied-piping, [wh] checking at first-merge and second-merge positions
 	
-		& 7.2.1 With partitive DP argument (without [Φ]-marking)
+		& 5.2.1 With partitive DP argument (without [Φ]-marking)
 
 			& Grammatical
 	
@@ -796,7 +817,7 @@
 				Pariisia#[kO] lähellä Seine virtaa
 				'Paris.par.q near Seine.nom flow.prs.3sg'
 
-		& 7.2.2 With genitive DP argument (with [d]-marking)
+		& 5.2.2 With genitive DP argument (with [d]-marking)
 		
 			& Ungrammatical
 			
@@ -808,9 +829,9 @@
 				Pariisin#[kO] lähellä Seine virtaa
 				'Paris.gen.q near Seine.nom flow.prs.3sg'
 				
-& 8. Expletives
+& 6. Expletives
 
-	& 8.1 Expletives as finite subjects
+	& 6.1 Expletives as finite subjects
 	
 		& Grammatical
 
@@ -831,7 +852,7 @@
 		
 			an accident occurred
 		
-	& 8.2 Expletives at thematic positions
+	& 6.2 Expletives at thematic positions
 		
 		& Ungrammatical
 			
@@ -863,7 +884,7 @@
 			
 			towards EXPL Seine flows
 	
-	& 8.3 Expletives at nonlicensed second-merge positions
+	& 6.3 Expletives at nonlicensed second-merge positions
 	
 		& Ungrammatical
 	
@@ -873,7 +894,7 @@
 								
 			EXPL towards Seine flows
 
-	& 8.4 Expletives at nonfinite and nonthematic second-merge positions
+	& 6.4 Expletives at nonfinite and nonthematic second-merge positions
 	
 		& Ungrammatical
 
@@ -922,7 +943,7 @@
 			Pekka halusi EXPLlähteä
 			'Pekka.nom want.pst.3sg EXPLleave.a/inf'
 							
-	& 8.5 Expetives at postverbal positions
+	& 6.5 Expetives at postverbal positions
 		
 		& Ungrammatical
 				
@@ -944,7 +965,7 @@
 			Pekka laulaa lähtiessä#An EXPL
 			'Pekka sing.prs.3sg leave.essa/inf.3p EXPL'		
 
-	& 8.6 Expletives and word order inversion
+	& 6.6 Expletives and word order inversion
 	
 		& Ungrammatical
 	
@@ -954,7 +975,7 @@
 			Merjaa ihaile#n EXPL
 			'Merja.par admire.prs.1sg EXPL'
 	
-	& 8.7 Epletives as operators
+	& 6.7 Epletives as operators
 
 		& Ungrammatical
 
@@ -967,7 +988,7 @@
 			EXPL#[kO] lähellä Seine virtaa
 			'EXPL.q near Seine.nom flow.prs.3sg'
 			
-& 9. A-movement and successive-cyclic movement
+& 7. A-movement and successive-cyclic movement
 
 	& 9.1 English passives
 	
@@ -976,3 +997,6 @@
 			Mary was admired
 
 			John seems to_inf leave
+
+& 8. Topicalization, scrambling
+
