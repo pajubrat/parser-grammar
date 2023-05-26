@@ -1,5 +1,5 @@
 
-& 1. First-merge only
+& 1. CLASS [-EF][-Φ], first-merge only
 
 	& 1.1 English prepositions
 	
@@ -68,11 +68,25 @@
 			Pekka sanoi työtä että Merja tekee
 			'Pekka.nom say.prs.3sg work.par that Merja.nom make.prs.3sg'
 
-& 2. Second-merge, without subject rule [Φ]
+	& 1.3 English try-construction
+	
+		& Grammatical
+		
+			John tries to_inf paint the fence
+		
+		& Ungrammatical (illicit embedded subject)
+		
+			John tries Mary to_inf paint the fence
+			
+		& Ungrammatical (illicit nonsubject fronting)
+		
+			John tries the fence to_inf paint
+
+& 2. CLASS [+EF][-Φ], second-merge without subjects
 
 	& 2.1 Finnish adposition, type kohti 'towards', without [Φ]
 		
-		& 2.1.1 Word order variations, -Agreement
+		& 2.1.1 Word order variations, without agreement
 		
 			& Grammatical
 			
@@ -88,7 +102,7 @@
 				Pariisia kohti Seine virtaa
 				'Paris.par towards Seine.nom flow.prs.3sg'
 	
-		& 2.1.2 Word order variations, +Agreement
+		& 2.1.2 Word order variations, with agreement
 		
 			& Ungrammatical
 			
@@ -104,7 +118,7 @@
 				häntä kohti#nsA Seine virtaa
 				'he.par towards.3p Seine.nom flow.prs.3sg'
 				
-		& 2.1.3 Word order variations, without argument, +-Agreement
+		& 2.1.3 Word order variations, without argument, with and without Agreement
 		
 			& Ungrammatical
 			
@@ -160,7 +174,7 @@
 	
 	& 2.3 Finnish adposition, type yli/ali 'over/under'
 
-		& 2.3.1 Word order variations, -agreement
+		& 2.3.1 Word order variations, without -agreement
 			
 			& Grammatical
 		
@@ -176,7 +190,7 @@
 				sillan ali Seine virtaa
 				'bridge under Seine.nom flow.prs.3sg'
 			
-		& 2.3.2 Word order variations, +agreement
+		& 2.3.2 Word order variations, with agreement
 		
 			& Ungrammatical
 		
@@ -242,7 +256,7 @@
 				Pekka halusi aitaa maalata#nsA hänen
 				'Pekka.nom want.pst.3sg fence.par paint.a/inf.px/3sg he.gen'
 	
-& 3. Second-merge, with [Φ]
+& 3. CLASS [+EF][+Φ], second-merge with subject
 
 	& 3.1 Finnish adpositions, type lähellä 'near', with genitive argument, with [Φ]
 	
@@ -293,7 +307,7 @@
 				Seine virtaa minun lähellä[Φ]#nsA
 				'Seine.nom flow.prs.3sg I.gen near.px/3p'
 	
-		& 3.1.1 Word order variations, -Agreement
+		& 3.1.1 Word order variations, without agreement
 		
 			& Ungrammatical
 			
@@ -315,7 +329,7 @@
 				Pariisin lähellä[Φ] Seine virtaa
 				'Paris.gen near Seine.nom flow.prs.3sg'
 				
-		& 3.1.2 Word order variations, +Agreement
+		& 3.1.2 Word order variations, with agreement
 		
 			& Ungrammatical
 		
@@ -337,7 +351,7 @@
 				hänen lähellä[Φ]#An Seine virtaa
 				'he.gen near.3p Seine.nom flow.prs.3sg'
 			
-		& 3.1.3 Word order variations, without argument, +-Agreement
+		& 3.1.3 Wwithout argument, with and without agreement
 		
 			& Ungrammatical
 			
@@ -363,15 +377,30 @@
 				auto#nsA lähtee
 				'car.3p leave.prs.3sg'
 
-	& 3.3 VA-infinitive, with[Φ], ban on doubld [Φ] checking
+	& 3.3 VA-infinitive
 	
 		& 3.3.0 Prelimiary test: agreement paradigms
 		
 			& Grammatical
+							
+				minä sano#n lähtevän#ni
+				'I.nom say.prs.1sg leave.va/inf.px/1sg'
+				
+				sinä sano#t lähtevän#si
+				'you.nom say.prs.2sg leave.va/inf.px/2sg'
 			
 				Pekka sanoi lähtevän#nsA
-				'Pekka.nom say.pst.3sg leave.va/inf'
+				'Pekka.nom say.pst.3sg leave.va/inf.px/3p'
+			
+				me sano#mme lähtevän#mme
+				'we.nom say.prs.1pl leave.va/inf.px/1pl'
 				
+				te sano#tte lähtevän#nne
+				'you.nom say.prs.2pl leave.va/inf.px/2pl'
+			
+				he sano#vAt lähtevän#nsA
+				'they.nom say.prs.3pl leave.va/inf.px/3p
+			
 			& Ungrammatical
 			
 				minä sano#n lähtevän#nsA
@@ -454,7 +483,7 @@
 				Pekka sanoi aitaa maalaavan#nsA hänen
 				'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p he.gen'
 				
-	& 3.4 ESSA-infinitive, with or withoout [Φ], double [Φ] checking possible
+	& 3.4 ESSA-infinitive
 	
 		& 3.4.0 Prelimiary test: agreement paradigms
 		
@@ -555,44 +584,135 @@
 			
 				Pekka laulaa aitaa maalatessa#An hänen
 				'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
-		
-	& 3.5 English want-construction (subject, without agreement)
+
+	& 3.5 TUA-infinitive
 	
-		& 3.5.1 Without embedded subject
+		& 3.5.1 Agreement tests
+		
+			& Grammatical
+			
+				Pekka lähti maalattua#An aitaa
+				'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+			
+				minä lähde#n maalattua#ni aitaa
+				'I.nom leave.prs.1sg paint.tua/inf.px/1sg fence.par'
+				
+				sinä lähde#t maalattua#si aitaa
+				'you.nom leave.prs.2sg paint.tua/inf.px/2sg fence.par'
+				
+				hän lähde#[V] maalattua#An aitaa
+				'he.nom leave.prs.3sg paint.tua/inf.px/3p fence.par'
+				
+				me lähde#mme maalattua#mme aitaa
+				'we.nom leave.prs.1pl paint.tua/inf.px/1pl fence.par'
+				
+				te lähde#tte maalattua#nne aitaa
+				'you.nom leave.prs.2pl paint.tua/inf.px/2pl fence.par'
+				
+				he lähte#vAt maalattua#An aitaa
+				'they.nom leave.prs.3sg paint.tua/inf.px/3p fence.par'
+				
+			& Ungrammatical
+							
+				minä lähde#n maalattua#An aitaa
+				'I.nom leave.prs.1sg paint.tua/inf.px/3p fence.par'
+				
+				sinä lähde#t maalattua#An aitaa
+				'you.nom leave.prs.2sg paint.tua/inf.px/3p fence.par'
+				
+				me lähde#mme maalattua#An aitaa
+				'we.nom leave.prs.1pl paint.tua/inf.px/3p fence.par'
+
+				te lähde#tte maalattua#An aitaa
+				'you.nom leave.prs.2pl paint.tua/inf.px/3p fence.par'
+				
+		& 3.5.2 Canonical word order
+		
+			& Ungrammatical
+			
+				Pekka lähti maalattua aitaa
+				'Pekka.nom leave.pst.3sg paint.tua/inf fence.par'
+			
+			& Grammatical
+			
+				Pekka lähti isän maalattua aitaa
+				'Pekka.nom leave.pst.3sg father.gen paint.tua/inf fence.par'
+				
+			& Grammatical
+			
+				Pekka lähti maalattua#An aitaa
+				'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+
+			& Ungrammatical
+
+				Pekka lähti isän maalattua#An aitaa
+				'Pekka.nom leave.pst.3sg father.gen paint.tua/inf.px/3p fence.par'
+
+		& 3.5.3 Noncanonical word order, object fronting
+		
+			& Grammatical
+			
+				Pekka lähti aitaa maalattua#An
+				'Pekka.nom leave.pst.3sg fence.par paint.tua/inf.px/3p'
+				
+			& Ungrammatical
+			
+				Pekka lähti aitaa maalattua
+				'Pekka.nom leave.prs.3sg fence.par paint.tua/inf'
+			
+				Pekka lähti aitaa isän maalattua#An
+				'Pekka.nom leave.prs.3sg fence.par father.gen paint.tua/inf.px/3p'
+				
+				Pekka lähti aitaa isän maalattua
+				'Peka.nom leave.prs.3sg fence.par father.gen paint.tua/inf'
+			
+	& 3.6 English want-construction (subject, without agreement)
+	
+		& 3.6.1 Canonical word order
 		
 			& Grammatical
 			
 				John wants to_inf leave
+				
+				John wants to_inf paint the fence
+				
+				John wants Mary to_inf leave
+				
+				John wants Mary to_inf paint the fence
+		
+		& 3.6.2 Noncanonical word order, object fronting
 	
-		& 3.5.2 With embedded subject
+			& Ungrammatical
+	
+				John wants the fence to_inf paint
+				
+				John wants the fence Mary to_inf paint
+	
+& 4. Finite clause, second-merge with [Φ]
+	
+	& 4.1 Weak agreement
+	
+		& 4.1.0 Preliminary test: agreement
+		
+			& Ungrammatical
+			
+				John admire_fin Mary
+				they admires Mary
+		
+		& 4.1.1 Weak agreement (English finite clause)
 		
 			& Grammatical
-			
-				John wants Mary to_inf leave
-	
-& 4. Finite second-merge with [Φ]
-	
-	& 4.1.0 Preliminary test: agreement
-	
-		& Ungrammatical
 		
-			John admire_fin Mary
+				John admires Mary
+				
+			& Ungrammatical
 			
-			they admires Mary
-	
-	& 4.1.1 Weak agreement (English finite clause)
-	
-		& Grammatical
-	
-			John admires Mary
-			
-		& Ungrammatical
-		
-			admires Mary
+				admires Mary
+				EXPL admires Mary
 	
 	& 4.2 Rich agreement, partial pro-drop profile (Finnish finite clause)
 	
-		& 6.2.0 Preliminary test: agreement
+		& 4.2.0 Preliminary test: agreement
 		
 			& Grammatical
 			
@@ -659,20 +779,38 @@
 				lähde#n minä
 				'leave.prs.1sg I.nom'
 				
+				maalaa#n minä aitaa
+				'paint.prs.1sg I.nom fence.par'
+				
 				lähde#t sinä
 				'leave.prs.2sg you.nom'
-				
+
+				maalaa#t sinä aitaa
+				'paint.prs.2sg you.nom fence.par'
+
 				lähde#[V] hän
 				'leave.prs.3sg he.nom'
 				
+				maalaa#[V] hän aitaa
+				'paint.prs.3sg he.nom fence.par'
+
 				lähde#mme me
 				'leave.prs.1pl we.nom'
+
+				maalaa#mme me aitaa
+				'paint.prs.1pl we.nom fence.par'
 				
 				lähde#tte te
 				'leave.prs.2pl you.nom'
 				
+				maalaa#tte te aitaa
+				'paint.prs.2pl you.nom fence.par'
+				
 				lähde#vAt he
 				'leave.prs.3pl they.nom'
+
+				maalaa#vAt he aitaa
+				'paint.prs.3pl they.nom fence.par'
 
 		& 4.2.3 With overt phrasal subject and direct object, OVS inversion
 		
@@ -695,54 +833,117 @@
 				
 				Merjaa ihaile#vAt he
 				'Merja.par admire.prs.3pl I.nom'
-				
-		& 4.2.4 With null subject
+		
+		& 4.2.4 OVS inversion inside embedded finite clause
+		
+				& Grammatical
+		
+					Pekka sanoi että aitaa maalaa#n minä
+					'Pekka said that fence.par paint.prs.1sg I.nom'
+					
+					Pekka sanoi että aitaa maalaa#t sinä
+					'Pekka said that fence.par paint.prs.2sg you.nom'
+					
+					Pekka sanoi että aitaa maalaa#[V] hän
+					'Pekka said that fence.par paint.prs.3sg he.nom'					
+					
+					Pekka sanoi että aitaa maalaa#mme me
+					'Pekka said that fence.par paint.prs.1pl we.nom'					
+					
+					Pekka sanoi että aitaa maalaa#tte te
+					'Pekka said that fence.par paint.prs.2pl you.nom'
+					
+					Pekka sanoi että aitaa maalaa#vAt he
+					'Pekka said that fence.par paint.prs.3pl they.nom'
+		
+		& 4.2.5 With null subject
 		
 			& Grammatical
 			
 				lähde#n
 				'leave.prs.1sg'
 		
+				maalaa#n aitaa
+				'paint-prs.1sg fence.par'
+		
 				lähde#t
 				'leave.prs.2sg'
-				
+
+				maalaa#t aitaa
+				'paint-prs.2sg fence.par'
+
 			 	lähde#mme
 				'leave.prs.1pl'
-				
+
+				maalaa#mme aitaa
+				'paint-prs.1pl fence.par'
+
 				lähde#tte
 				'leave.prs.2pl'
-			
+
+				maalaa#tte aitaa
+				'paint-prs.2pl fence.par'
+
 			& Ungrammatical (third person pro-drop)
 			
 				lähtee
 				'leave.prs.3sg'
+
+				maalaa#[V] aitaa
+				'paint.prs.3sg fence.par'
 			
 				lähde#vAt
 				'leave.prs.3pl'
+				
+				maalaa#vAt aitaa
+				'paint.prs.3pl fence.par'
 		
-		& 4.2.5 Null subject, inside embedded clause
+		& 4.2.6 Null subject, inside embedded clause
 		
-			& Grammatical
+			& Grammatical, canonical order
 			
 				Pekka sanoi että lähde#n
 				'Pekka said that leave.prs.1sg'
 				
+				Pekka sanoi että maalaa#n aitaa
+				'Pekka said that paint.prs.1g fence.par'
+			
 				Pekka sanoi että lähde#t
 				'Pekka said that leave.prs.2sg'
-				
+
+				Pekka sanoi että maalaa#t aitaa
+				'Pekka said that paint.prs.2sg fence.par'
+
 				Pekka sanoi että lähde#[V]
 				'Pekka said that leave.prs.3sg'
 				
+				Pekka sanoi että maalaa#[V] aitaa
+				'Pekka said that paint.prs.3sg fence.par'
+
 				Pekka sanoi että lähde#mme
 				'Pekka said that leave.prs.1pl'
-				
+
+				Pekka sanoi että maalaa#mme aitaa
+				'Pekka said that paint.prs.1pl fence.par'
+
 				Pekka sanoi että lähde#tte
 				'Pekka said that leave.prs.2pl'
+
+				Pekka sanoi että maalaa#tte aitaa
+				'Pekka said that paint.prs.2pl fence.par'
 
 			& Ungrammatical (this is unclear case, needs more work)
 			
 				Pekka sanoi että lähte#vAt
 				'Pekka said that leave.prs.3pl'
+				
+			& Grammatical, object fronting inside the embedded clause
+			
+				Pekka sanoi että aitaa maalaa#n
+				'Pekka said that fence.par paint.prs.1g'
+				
+				Pekka sanoi että aitaa maalaa#[V]
+				'Pekka said that fence.par paint.prs.3sg'
 				
 	& 4.3 Rich agreement with complete pro-drop (Italian finite clause)
 		

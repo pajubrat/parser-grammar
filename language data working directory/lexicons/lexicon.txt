@@ -202,9 +202,11 @@ löytää		:: löytä-#v'#A/inf LANG:FI
 löytä-		:: PF:löytä- LF:find V CLASS/TR !COMP:φ ASP:BOUNDED LANG:FI
 v'			:: v PF:v LF:v ASP:BOUNDED
 maalatessa	:: maalaa-#v#ESSA/inf LANG:FI
+maalattua	:: maalaa-#v#TUA/inf LANG:FI
 maalaavan	:: maalaa-#v#VA/inf LANG:FI
 maalata		:: maalaa-#v#A/inf LANG:FI
 maalasi		:: maalaa-#v#T/fin#[V] LANG:FI
+maalaa		:: maalaa-#v#T/fin LANG:FI
 maalaa-		:: PF:maalaa- LF:paint V !COMP:φ SPEC:φ CLASS/TR LANG:FI
 Merja   	::	Merja-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
 Merja_nom   ::	Merja-#φ#sg#3p#def#nonhum#def#proper_name#[nom] LANG:FI
@@ -562,6 +564,7 @@ easy		::	easy-#a0 LANG:EN
 easy-		::	PF:easy LF:easy 0 LANG:EN
 fell		:: fell-#T/fin LANG:EN
 fell-		:: PF:fell LF:fell V CLASS/INTR LANG:EN
+fence		:: PF:fence LF:fence N LANG:EN
 flows		:: flow-#T/fin#[-s] LANG:EN
 flow'		:: PF:flow LF:flow V SPEC:φ COMP:P LANG:EN
 flow-		:: PF:flow LF:flow V CLASS/INTR !SPEC:φ COMP:P COMP:Adv LANG:EN
@@ -600,6 +603,8 @@ not			:: Neg LF:not PF:not POL:NEG ARG EDGE:φ -COMP:Fin -SPEC:T/fin COMP:C -COM
 ocean		:: PF:ocean LF:ocean N LANG:EN
 occurred	:: occur-#T/fin LANG:EN
 occur-		:: PF:occur LF:occur V V- SPEC:φ LANG:EN
+paint		:: paint-#v LANG:EN
+paint-		:: PF:paint LF:paint V CLASS/TR LANG:EN
 persuades 	:: persuade-#v#T/fin#[-s] LANG:EN
 persuade- 	:: PF:persuade LF:persuade V COMP:TO/inf !COMP:* SEM:external LANG:EN
 Paris		:: Paris-#D LANG:EN
