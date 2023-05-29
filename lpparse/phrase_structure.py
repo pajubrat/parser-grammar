@@ -600,7 +600,7 @@ class PhraseStructure:
                     return True     # XP without container is accepted
 
     def trigger_adjunct_reconstruction(self):
-        return not self.legible_adjunct() and self.adjoinable() and self.floatable() and not self.operator_in_scope_position()
+        return not self.legible_adjunct() and self.adjoinable() and self.floatable() and not self.operator_in_scope_position() and not self.expletive()
 
     def legible_adjunct(self):
         return self.head().tail_test() and (self.is_right() or (self.is_left() and not self.nonthematic()))

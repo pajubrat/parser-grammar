@@ -96,6 +96,7 @@ class NarrowSemantics:
         self.semantic_interpretation_failed = False
         self.phi_interpretation_failed = False
         self.predicates.operation_failed = False
+        self.thematic_roles_module.failure = False
         self.operator_variable_module.interpretation_failed = False
         self.pragmatic_pathway.interpretation_failed = False
         self.semantic_interpretation = {'Control': [],

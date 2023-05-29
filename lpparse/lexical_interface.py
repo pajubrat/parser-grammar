@@ -21,7 +21,10 @@ class LexicalInterface:
             antecedent_trigger, feature_list = line.split('::', 1)
             antecedent_trigger = antecedent_trigger.strip()
             feature_list = [f.strip() for f in feature_list.split()]
-            redundancy_rules_dict[antecedent_trigger] = feature_list
+            if antecedent_trigger in redundancy_rules_dict.keys():
+                redundancy_rules_dict[antecedent_trigger] = redundancy_rules_dict[antecedent_trigger] + feature_list
+            else:
+                redundancy_rules_dict[antecedent_trigger] = feature_list
         return redundancy_rules_dict
 
     def load_lexicon(self, controlling_parser_process):
@@ -51,7 +54,6 @@ class LexicalInterface:
                 lexical_features.append(self.language)
 
             lexical_features.append('PHON')
-            lexical_features.append('Δp')
 
             # If the word is complex, we treat it differently
             if '#' in lexical_features[0]:
