@@ -336,7 +336,7 @@ class PhraseStructure:
 
     # Projection principle and thematic roles ---------------------------------------------------------------------
     def edge_feature_test(self):
-        if 'EF' not in self.features and self.edge():
+        if 'EF' not in self.features and self.edge() and not self.edge()[0].head().check({'Adv'}):
             if not ((self.edge()[0] == self.sister() and self.check_some({'!COMP:φ', 'COMP:φ'})) or self.check_some({'SPEC:φ', '!SPEC:φ'})):
                 return True
 
@@ -1192,7 +1192,7 @@ class PhraseStructure:
         return self.check_some({'GEN'})
 
     def highest_finite_head(self):
-        return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
+        return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA'}))
 
     def theta_assigner(self):
         return self.check_some({'SPEC:φ', 'SPEC:D', 'COMP:φ', 'COMP:D', '!SPEC:φ', '!SPEC:D', '!COMP:φ', '!COMP:D'})
