@@ -492,7 +492,10 @@ class PhraseStructure:
         self.value_features(goal)
 
     def value_features(self, goal):
-        log(f'\n\t\t{self}° agrees with {goal.head()} ({goal.max().illustrate()}) and values ')
+        if self != goal:
+            log(f'\n\t\t{self}° agrees with {goal.head()} and values ')
+        else:
+            log(f'\n\t\t{self}° probes own independent pro and found ')
         valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]
         if valuations:
             for incoming_phi, unvalued_counterparty in valuations:
@@ -501,6 +504,8 @@ class PhraseStructure:
                 self.associate_rule(goal)
                 self.check_redundant_Φ()
                 self.features.update({'Φ', 'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
+        else:
+            log('nothing')
 
     def associate_rule(self, goal):
         if self.requires_SUBJECT():
@@ -576,12 +581,12 @@ class PhraseStructure:
         if self.check({'?ARG'}):
             if self.selected_by_SEM_internal_predicate():
                 self.features.discard('?ARG')
-                log(f'\n\t\t{self} resolved into -ARG due to {self.selector()}.')
+                log(f'\n\t\t{self}° resolved into -ARG.')
                 self.features.add('-ARG')
                 self.features.add('-SELF:Φ')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 self.features.discard('?ARG')
-                log(f'\n\t\t{self} resolved into ARG.')
+                log(f'\n\t\t{self}° resolved into ARG.')
                 self.features.add('ARG')
                 self.features.add('!SELF:Φ')
                 self.features.add('PHI:NUM:_')
@@ -1186,7 +1191,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return self.check_some({'v', 'C', 'FORCE', 'V'}) and not self.check_some({'v-', '-ARG', 'V-'})
+        return self.check_some({'v', 'C', 'FORCE', 'V', 'P'}) and not self.check_some({'v-', '-ARG', 'V-'})
 
     def extended_subject(self):
         return self.check_some({'GEN'})

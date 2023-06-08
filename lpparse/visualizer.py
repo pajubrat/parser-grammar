@@ -255,7 +255,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                 if lexical_feature_abbreviated not in features_included:
                                     feature_str += f'{lexical_feature_abbreviated}'
                                     features_included.add(lexical_feature_abbreviated)
-                                if len(feature_str) > 4:
+                                if len(feature_str) > 2:
                                     label_stack.append((feature_str, 'FEATURE'))
                                     feature_str = ''
                 if feature_str != '':
@@ -288,14 +288,14 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return '[φ‗]'
             if phi == 'PHI' and value != '_':
                 return '[φ]'
-        if feature == 'EF':
-            return '[EPP]'
         if feature == 'ΦPF':
-            return '[φ]'
+            return '/φ/'
         if feature == '!SELF:p':
             return '[p]'
         if feature == '!SELF:Φ':
             return '[Φ]'
+        if feature == '-SELF:Φ':
+            return '[–Φ]'
         if feature == 'OP:Q':
             return '[Q]'
         if 'COMP:φ' in feature or 'SPEC:φ' in feature and not ps.check({'EF'}):

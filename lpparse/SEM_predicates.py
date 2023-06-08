@@ -32,7 +32,7 @@ class Predicates:
         if 'pro' in goal.features:
             phrasal_argument = probe.argument_by_agreement()
             if phrasal_argument:
-                return f'pro={probe.argument_by_agreement().max().illustrate()}'
+                return f'pro/{probe.argument_by_agreement().max().illustrate()}'
             else:
                 return f'pro'
         return f'{goal.illustrate()}'
