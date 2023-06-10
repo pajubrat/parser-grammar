@@ -6,7 +6,6 @@ from linear_phase_parser import LinearPhaseParser
 
 def run_study(args):
     sentence = args.get('sentence', '')
-
     local_file_system = LocalFileSystem()
     local_file_system.initialize(args)
     local_file_system.configure_logging()
