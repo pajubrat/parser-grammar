@@ -1,0 +1,5071 @@
+@  {'author': 'Anon', 'year': 2023, 'date': 'March', 'study_id': 15, 'study_folder': 'language data working directory/study-16-EPP', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-16-EPP', 'test_corpus_file': 'EPP_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'check_output': True, 'datatake_full': False, 'datatake_images': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'image_parameter_mark_adjuncts': False, 'image_parameter_stop_after_image': False, 'image_parameter_show_φPs_as_DPs': True, 'image_parameter_show_φPs_as_NPs': False, 'image_parameter_ignore_internal_structure_of_DPs': False, 'show_features': ['ΦPF', '-SELF:Φ', '!SELF:Φ', '!SELF:p', 'EF', '!COMP:φ', '!SPEC:φ'], 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'calculate_thematic_roles': True, 'project_objects': True, 'generate_argument_links': True, 'calculate_predicates': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-06-10 11:09:31.263984
+@  Test sentences language data working directory\study-16-EPP\EPP_corpus.txt.
+@  Logs language data working directory\study-16-EPP\EPP_corpus_log.txt.
+@  Lexicon language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes language data working directory\lexicons\ug_morphemes.txt.
+@ 
+& 1. CLASS [-EF][-Φ], first-merge only
+
+& 1.1 English prepositions
+
+& 1.1.1 Word order variations, without agreement
+
+& Grammatical
+
+1.  Seine flows towards Paris 
+
+	[[D Seine]:1 [T [__:1 [flow [towards [D Paris]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): [D Seine]', 'Patient of P°(towards): [D Paris]']
+	Predicates: ['T°: [D Seine]', 'flow°: [D Seine]', 'towards°: pro/[D Paris]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Paris] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Paris] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Seine]', '[towards [D Paris]]', '[D Paris]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Paris]
+
+	Resources:
+	Total Time:1027, Garden Paths:0, Merge:6, Head Chain:7, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:256, Merge-1:18, 
+
+& Ungrammatical
+
+2. *Seine flows Paris towards 
+
+3. *towards Paris Seine flows 
+
+4. *Paris towards Seine flows 
+
+5. *towards Paris flows Seine 
+
+6. *Paris towards flows Seine 
+
+& 1.1.2 Word order variations, with agreement
+
+& Ungrammatical
+
+7. *Seine flows towards#[*3sg] Paris 
+
+8. *Seine flows Paris towards#[*3sg] 
+
+9. *towards#[*3sg] Paris Seine flows 
+
+10. *Paris towards#[*3sg] Seine flows 
+
+11. *towards#[*3sg] Paris flows Seine 
+
+12. *Paris towards#[*3sg] flows Seine 
+
+& 1.1.3 Word order variations, without argument, with and without agreement
+
+& Ungrammatical
+
+13. *Seine flows towards 
+
+14. *towards Seine flows 
+
+15. *towards flows Seine 
+
+16. *Seine flows towards#[*3sg] 
+
+17. *towards#[*3sg] Seine flows 
+
+18. *towards#[*3sg] flows Seine 
+
+& 1.2 Finnish high complementizer
+
+& Grammatical
+
+19.  Pekka sanoi että Merja tekee työtä 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ Merja>:4 [T [<__>:4 [v [teke- [φ työ]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <φ Merja>', 'Patient of V°(make): [φ työ]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<φ Merja>', 'T°: pro/<φ Merja>', 'φ°: T', 'v°: <φ Merja>', 'teke-°: pro/[φ työ]', 'φ°: teke-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 4, [φ työ] ~ 8, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ Merja>'], 'Neutral gradient': ['[φ työ]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [φ Merja]
+	Object 8 in GLOBAL: [φ työ]
+
+	Resources:
+	Total Time:2167, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:11, Extraposition:7, Last Resort Extraposition:0, 
+	Mean time per word:361, Merge-1:82, 
+
+	'Pekka.nom say.prs.3sg that Mereja.nom make.prs.3sg work.par'
+
+& Ungrammatical (illicit subject/object at SpecCP)
+
+20. *Pekka sanoi Merja että tekee työtä 
+
+	'Pekka.nom say.prs.3sg Merja.nom that make.prs.3sg work.par'
+
+21. *Pekka sanoi työtä että Merja tekee 
+
+	'Pekka.nom say.prs.3sg work.par that Merja.nom make.prs.3sg'
+
+& 1.3 English try-construction
+
+& Grammatical
+
+22.  John tries to_inf paint the fence 
+
+	[[D John]:1 [T [__:1 [try [to [v [paint [the fence]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(try): [D John]', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [the fence]']
+	Predicates: ['T°: [D John]', 'try°: [D John]', 'v°: [D John]', 'paint°: pro/[the fence]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, [the fence] ~ 2, Weight 1
+	[D John] ~ 2, [the fence] ~ 8, Weight 1
+	[D John] ~ 8, [the fence] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D John]', '[the fence]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+	Object 8 in GLOBAL: [the fence]
+
+	Resources:
+	Total Time:906, Garden Paths:0, Merge:8, Head Chain:18, Phrasal Chain:6, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:151, Merge-1:43, 
+
+& Ungrammatical (illicit embedded subject)
+
+23. *John tries Mary to_inf paint the fence 
+
+24. *John tries to_inf Mary paint the fence 
+
+& Ungrammatical (illicit nonsubject fronting)
+
+25. *John tries the fence to_inf paint 
+
+& 1.4 Finnish OC-construction
+
+& Grammatical
+
+26.  Pekka halusi lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Patient of V°(want): InfP', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: <φ Pekka>', 'halua-°: <φ Pekka>', 'lähte-°: <φ Pekka>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:970, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:323, Merge-1:16, 
+
+	'Pekka.nom want.prs.3sg leave.a/inf'
+
+& Ungrammatical
+
+27. *Pekka halusi Merjan_gen lähteä 
+
+	'Pekka.nom want.prs.3sg Merja.gen leave.a/inf'
+
+& 2. CLASS [+EF][-Φ], second-merge without subjects
+
+& 2.1 Finnish adposition, type kohti 'towards', without [Φ]
+
+& 2.1.1 Word order variations, without agreement
+
+& Grammatical
+
+28.  Seine virtaa kohti Pariisia 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [kohti [D Pariisi]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(towards): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[kohti [D Pariisi]]', '[D Pariisi]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1127, Garden Paths:0, Merge:6, Head Chain:7, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:281, Merge-1:33, 
+
+	'Seine.nom flow.prs.3sg towards Paris.par'
+
+29.  Seine virtaa Pariisia kohti 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [<D Pariisi>:2 [kohti <__>:2]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/<D Pariisi>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['<D Pariisi>', '[<D Pariisi> [kohti <D Pariisi>]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1185, Garden Paths:0, Merge:6, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:5, Last Resort Extraposition:0, 
+	Mean time per word:296, Merge-1:54, 
+
+	'Seine.nom flow.prs.3sg Paris.par towards'
+
+30.  kohti Pariisia Seine virtaa 
+
+	[<kohti [D Pariisi]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- __:1]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(towards): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[kohti [D Pariisi]]', '<D Seine>'], 'Neutral gradient': ['[D Pariisi]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:2457, Garden Paths:8, Merge:26, Head Chain:36, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:12, Last Resort Extraposition:0, 
+	Mean time per word:614, Merge-1:142, 
+
+	'towards Paris-par Seine.nom flow.prs.3sg'
+
+31.  Pariisia kohti Seine virtaa 
+
+	[<[D Pariisi]:2 [kohti __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- __:1]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(towards): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[D Pariisi]', '[[D Pariisi] [kohti [D Pariisi]]]', '<D Seine>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1672, Garden Paths:3, Merge:14, Head Chain:14, Phrasal Chain:6, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:418, Merge-1:98, 
+
+	'Paris.par towards Seine.nom flow.prs.3sg'
+
+& 2.1.2 Word order variations, with agreement
+
+& Ungrammatical
+
+32. *Seine virtaa kohti#nsA häntä 
+
+	'Seine.nom flow.prs.3sg towards.3p he.par'
+
+33. *Seine virtaa häntä kohti#nsA 
+
+	'Seine.nom flow.prs.3sg he.par towards.3p'
+
+34. *kohti#nsA häntä Seine virtaa 
+
+	'towards.3p he-par Seine.nom flow.prs.3sg'
+
+35. *häntä kohti#nsA Seine virtaa 
+
+	'he.par towards.3p Seine.nom flow.prs.3sg'
+
+& 2.1.3 Word order variations, without argument, with and without Agreement
+
+& Ungrammatical
+
+36. *Seine virtaa kohti 
+
+	'Seine.nom flow.prs.3sg towards'
+
+37. *Seine virtaa kohti#nsA 
+
+	'Seine.nom flow.prs.3sg towards.3p'
+
+& 2.2 Finnish adpositions, type lähellä 'near' with partitive argument, without [Φ]
+
+& 2.2.1 Word order variations, -Agreement
+
+& Grammatical
+
+38.  Seine virtaa lähellä Pariisia 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [lähellä [D Pariisi]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[lähellä [D Pariisi]]', '[D Pariisi]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1150, Garden Paths:0, Merge:6, Head Chain:9, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:287, Merge-1:44, 
+
+	'Seine.nom flow.prs.3sg near Paris.par'
+
+39.  Seine virtaa Pariisia lähellä 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [[D Pariisi]:2 [lähellä __:2]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[D Pariisi]', '[[D Pariisi] [lähellä [D Pariisi]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1199, Garden Paths:0, Merge:6, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:299, Merge-1:56, 
+
+	'Seine.nom flow.prs.3sg Paris.par near'
+
+40.  lähellä Pariisia Seine virtaa 
+
+	[<lähellä [D Pariisi]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- __:1]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[lähellä [D Pariisi]]', '<D Seine>'], 'Neutral gradient': ['[D Pariisi]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:2477, Garden Paths:8, Merge:26, Head Chain:36, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:12, Last Resort Extraposition:0, 
+	Mean time per word:619, Merge-1:142, 
+
+	'near Paris-par Seine.nom flow.prs.3sg'
+
+41.  Pariisia lähellä Seine virtaa 
+
+	[<[D Pariisi]:2 [lähellä __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- __:1]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[D Pariisi]', '[[D Pariisi] [lähellä [D Pariisi]]]', '<D Seine>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1797, Garden Paths:4, Merge:16, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:449, Merge-1:116, 
+
+	'Paris-par near Seine.nom flow.prs.3sg'
+
+& 2.2.2 Word order variations, +Agreement
+
+& Ungrammatical
+
+42. *Seine virtaa lähellä#An häntä 
+
+	'Seine.nom flow.prs.3sg near.3p he.par'
+
+43. *Seine virtaa häntä lähellä#An 
+
+	'Seine.nom flow.prs.3sg he.par near.3p'
+
+44. *lähellä#An häntä Seine virtaa 
+
+	'near.3p he-par Seine.nom flow.prs.3sg'
+
+45. *häntä lähellä#An Seine virtaa 
+
+	'he.par near.3p Seine.nom flow.prs.3sg'
+
+& 2.2.3 Word order variations, without argument, +-Agreement
+
+& Grammatical
+
+46.  Seine virtaa lähellä 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- lähellä]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: <D Seine>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['lähellä'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+
+	Resources:
+	Total Time:645, Garden Paths:0, Merge:4, Head Chain:4, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:215, Merge-1:24, 
+
+	'Seine.nom flow.prs.3sg near'
+
+47.  Seine virtaa lähellä[Φ]#ni 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- lähellä]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, pro(lähellä) ~ 2, Weight 1
+	[D Seine] ~ 2, pro(lähellä) ~ 8, Weight 1
+	[D Seine] ~ 8, pro(lähellä) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['lähellä'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 8 in GLOBAL: pro(lähellä)
+
+	Resources:
+	Total Time:835, Garden Paths:0, Merge:4, Head Chain:4, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:278, Merge-1:23, 
+
+	'Seine.nom flow.prs.3sg near.1sg'
+
+& 2.3 Finnish adposition, type yli/ali 'over/under'
+
+& 2.3.1 Word order variations, without -agreement
+
+& Grammatical
+
+48.  Seine virtaa ali sillan 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [ali [φ silta]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(under): [φ silta]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'ali°: pro/[φ silta]', 'φ°: ali']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [φ silta] ~ 6, Weight 1
+	[D Seine] ~ 6, [φ silta] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[ali [φ silta]]', '[φ silta]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [φ silta]
+
+	Resources:
+	Total Time:1065, Garden Paths:0, Merge:6, Head Chain:7, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:266, Merge-1:33, 
+
+	'Seine.nom flow.prs.3sg under bridge.gen'
+
+49.  Seine virtaa sillan ali 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [[φ silta]:2 [ali __:2]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(under): [φ silta]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'ali°: pro/[φ silta]', 'φ°: ali']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [φ silta] ~ 6, Weight 1
+	[D Seine] ~ 6, [φ silta] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[φ silta]', '[[φ silta] [ali [φ silta]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [φ silta]
+
+	Resources:
+	Total Time:1129, Garden Paths:0, Merge:6, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:282, Merge-1:54, 
+
+	'Seine.nom flow.prs.3sg bridge.gen under'
+
+50.  ali sillan Seine virtaa 
+
+	[<ali [φ silta]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- __:1]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(under): [φ silta]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'ali°: pro/[φ silta]', 'φ°: ali']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [φ silta] ~ 6, Weight 1
+	[D Seine] ~ 6, [φ silta] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[ali [φ silta]]', '<D Seine>'], 'Neutral gradient': ['[φ silta]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [φ silta]
+
+	Resources:
+	Total Time:2407, Garden Paths:8, Merge:26, Head Chain:36, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:12, Last Resort Extraposition:0, 
+	Mean time per word:601, Merge-1:142, 
+
+	'under bridge Seine.nom flow.prs.3sg'
+
+51.  sillan ali Seine virtaa 
+
+	[<[φ silta]:2 [ali __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- __:1]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(under): [φ silta]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'ali°: pro/[φ silta]', 'φ°: ali']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [φ silta] ~ 6, Weight 1
+	[D Seine] ~ 6, [φ silta] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[φ silta]', '[[φ silta] [ali [φ silta]]]', '<D Seine>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [φ silta]
+
+	Resources:
+	Total Time:1622, Garden Paths:3, Merge:14, Head Chain:14, Phrasal Chain:6, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:405, Merge-1:98, 
+
+	'bridge under Seine.nom flow.prs.3sg'
+
+& 2.3.2 Word order variations, with agreement
+
+& Ungrammatical
+
+52. *Seine virtaa ali#nsA hänen 
+
+	'Seine.nom flow.prs.3sg under he.gen'
+
+53. *Seine virtaa hänen ali#nsA 
+
+	'Seine.nom flow.prs.3sg he.gen under'
+
+54. *ali#nsA hänen Seine virtaa 
+
+	'under he.gen Seine.nom flow.prs.3sg'
+
+55. *hänen ali#nsA Seine virtaa 
+
+	'he.gen under Seine.nom flow.prs.3sg'
+
+& 2.4 Finnish OC-constructions ('want-class', which do not project subects but allows internal object fronting))
+
+& 1.2.1 Without and without embedded subject
+
+& Grammatical
+
+56.  Pekka halusi lähteä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A lähte-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Patient of V°(want): InfP', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: <φ Pekka>', 'halua-°: <φ Pekka>', 'lähte-°: <φ Pekka>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:970, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:323, Merge-1:16, 
+
+	'Pekka.nom want.pst.3sg leave.a/inf'
+
+57.  Pekka halusi maalata aitaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A [v [maalaa- [φ aita]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Patient of V°(want): InfP', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: <φ Pekka>', 'halua-°: <φ Pekka>', 'v°: <φ Pekka>', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ aita] ~ 10, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1572, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:393, Merge-1:31, 
+
+	'Pekka.nom want.pst.3sg paint.a/inf fence.par'
+
+& Ungrammatical (illicit agreement and subject)
+
+58. *Pekka halusi Merjan_gen lähteä 
+
+	'Pekka.nom want.pst.3sg Merja.gen leave.a/inf'
+
+59. *Pekka halusi maalata#nsA aitaa 
+
+	'Pekka.nom want.pst.3sg paint.a/inf.px/3sg fence.par'
+
+60. *Pekka halusi hänen maalata aitaa 
+
+	'Pekka want.pst.3sg he.gen paint.a/inf fence.par'
+
+61. *Pekka halusi hänen maalata#nsA aitaa 
+
+	'Pekka.nom want.pst.3sg he.gen paint.a/inf.px/3sg fence.par'
+
+& 1.2.2 Internal object fronting
+
+& Grammatical
+
+62.  Pekka halusi tehdä työtä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [-(t)A [v [teke- [φ työ]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Patient of V°(want): InfP', 'Causer/Agent of v°(v): pro', 'Patient of V°(make): [φ työ]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: <φ Pekka>', 'halua-°: <φ Pekka>', 'v°: <φ Pekka>', 'teke-°: pro/[φ työ]', 'φ°: teke-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ työ] ~ 10, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ työ]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [φ työ]
+
+	Resources:
+	Total Time:1522, Garden Paths:0, Merge:9, Head Chain:16, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:380, Merge-1:31, 
+
+	'Pekka.nom want.prs.3sg make.a/inf work.par'
+
+63.  Pekka halusi työtä tehdä 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [<φ työ>:5 [-(t)A [v [teke- __:5]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Patient of V°(want): InfP', 'Causer/Agent of v°(v): pro', 'Patient of V°(make): [φ työ]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: <φ Pekka>', 'halua-°: <φ Pekka>', 'v°: <φ Pekka>', 'teke-°: pro/[φ työ]', 'φ°: teke-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ työ] ~ 10, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>', '[φ työ]'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 10 in GLOBAL: [φ työ]
+
+	Resources:
+	Total Time:1546, Garden Paths:0, Merge:9, Head Chain:20, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:386, Merge-1:49, 
+
+	'Pekka.nom want.pst.3sg work.par make.a/inf'
+
+64.  Pekka halusi aitaa maalata 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [halua- [<φ aita>:5 [-(t)A [v [<__>:5 maalaa-]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Patient of V°(want): InfP', 'Causer/Agent of v°(v): pro', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: <φ Pekka>', 'halua-°: <φ Pekka>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ aita] ~ 8, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1596, Garden Paths:0, Merge:9, Head Chain:20, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:399, Merge-1:48, 
+
+	'Pekka.nom want.pst.3sg fence.par paint.a/inf'
+
+& Ungrammatical (with illicit subject and/or agreement)
+
+65. *Pekka halusi aitaa maalata#nsA 
+
+	'Pekka.nom want.pst.3sg fence.par paint.par.px/3sg'
+
+66. *Pekka halusi aitaa maalata hänen 
+
+	'Pekka want.pst.3sg fence.par paint.a/inf he.gen'
+
+67. *Pekka halusi aitaa maalata#nsA hänen 
+
+	'Pekka.nom want.pst.3sg fence.par paint.a/inf.px/3sg he.gen'
+
+& 3. CLASS [+EF][+Φ], second-merge with subject
+
+& 3.1 Finnish adpositions, type lähellä 'near', with genitive argument, with [Φ]
+
+& 3.1.0 Prelimiary test: agreement paradigms
+
+& Grammatical
+
+68.  Seine virtaa hänen lähellä[Φ]#An 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [[D hän]:2 [lähellä __:2]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D hän]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D hän]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D hän] ~ 6, Weight 1
+	[D Seine] ~ 6, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[D hän]', '[[D hän] [lähellä [D hän]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1369, Garden Paths:0, Merge:6, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:342, Merge-1:54, 
+
+	'Seine.nom flow.prs.3sg he.gen near.px/3p
+
+& Ungrammatical (proper names, nonhuman pronouns, full DPs + px agreement)
+
+69. *Seine virtaa Pariisin lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg Paris.gen near.px/3p'
+
+70. *Seine virtaa sen2 lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg it.gen near.px/3p'
+
+71. *Seine virtaa miehen lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg man.gen near.px/3p'
+
+& Ungrammatical (agreement mismatches)
+
+72. *Seine virtaa minun lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg I.gen near.px/3p'
+
+73. *Seine virtaa sinun lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg you.gen near.px/3p'
+
+74. *Seine virtaa meidän lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg we.gen near.px/3p'
+
+75. *Seine virtaa teidän lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg you.gen near.px/3p'
+
+76. *Seine virtaa minun lähellä[Φ]#si 
+
+	'Seine.nom flow.prs.3sg I.gen near.px/2sg'
+
+77. *Seine virtaa minun lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg I.gen near.px/3p'
+
+78. *Seine virtaa minun lähellä[Φ]#mme 
+
+	'Seine.nom flow.prs.3sg I.gen near.px/1pl'
+
+79. *Seine virtaa minun lähellä[Φ]#nne 
+
+	'Seine.nom flow.prs.3sg I.gen near.px/2pl'
+
+80. *Seine virtaa minun lähellä[Φ]#nsA 
+
+	'Seine.nom flow.prs.3sg I.gen near.px/3p'
+
+& 3.1.1 Word order variations, without agreement
+
+& Ungrammatical
+
+81. *Seine virtaa lähellä[Φ] Pariisin 
+
+	'Seine.nom flow.prs.3sg near Paris.gen'
+
+& Grammatical
+
+82.  Seine virtaa Pariisin lähellä[Φ] 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [[D Pariisi]:2 [lähellä __:2]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[D Pariisi]', '[[D Pariisi] [lähellä [D Pariisi]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1229, Garden Paths:0, Merge:6, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:307, Merge-1:54, 
+
+	'Seine.nom flow.prs.3sg Paris.gen near'
+
+& Ungrammatical
+
+83. *lähellä[Φ] Pariisin Seine virtaa 
+
+	'near Paris.gen Seine.nom flow.prs.3sg'
+
+& Grammatical
+
+84.  Pariisin lähellä[Φ] Seine virtaa 
+
+	[<[D Pariisi]:2 [lähellä __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- __:1]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 6, Weight 1
+	[D Seine] ~ 6, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[D Pariisi]', '[[D Pariisi] [lähellä [D Pariisi]]]', '<D Seine>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1722, Garden Paths:3, Merge:14, Head Chain:14, Phrasal Chain:6, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:430, Merge-1:98, 
+
+	'Paris.gen near Seine.nom flow.prs.3sg'
+
+& 3.1.2 Word order variations, with agreement
+
+& Ungrammatical
+
+85. *Seine virtaa lähellä[Φ]#An hänen 
+
+	'Seine.nom flow.prs.3sg near.3p he.gen'
+
+& Grammatical
+
+86.  Seine virtaa hänen lähellä[Φ]#An 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- [[D hän]:2 [lähellä __:2]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D hän]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D hän]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D hän] ~ 6, Weight 1
+	[D Seine] ~ 6, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[D hän]', '[[D hän] [lähellä [D hän]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1369, Garden Paths:0, Merge:6, Head Chain:13, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:342, Merge-1:54, 
+
+	'Seine.nom flow.prs.3sg he.gen near.3p'
+
+& Ungrammatical
+
+87. *lähellä[Φ]#An hänen Seine virtaa 
+
+	'near.3p he.gen Seine.nom flow.prs.3sg'
+
+& Grammatical
+
+88.  hänen lähellä[Φ]#An Seine virtaa 
+
+	[<[D hän]:2 [lähellä __:2]>:1 [<D Seine>:3 [T [<__>:3 [virtaa- __:1]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(near): [D hän]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D hän]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [D hän] ~ 6, Weight 1
+	[D Seine] ~ 6, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[D hän]', '[[D hän] [lähellä [D hän]]]', '<D Seine>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1967, Garden Paths:4, Merge:16, Head Chain:17, Phrasal Chain:7, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:491, Merge-1:114, 
+
+	'he.gen near.3p Seine.nom flow.prs.3sg'
+
+& 3.1.3 Wwithout argument, with and without agreement
+
+& Ungrammatical
+
+89. *Seine virtaa lähellä[Φ] 
+
+	'Seine.nom flow.prs.3sg near.'
+
+& Grammatical
+
+90.  Seine virtaa lähellä[Φ]#ni 
+
+	[<D Seine>:1 [T [<__>:1 [virtaa- lähellä]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, pro(lähellä) ~ 2, Weight 1
+	[D Seine] ~ 2, pro(lähellä) ~ 8, Weight 1
+	[D Seine] ~ 8, pro(lähellä) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['lähellä'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 8 in GLOBAL: pro(lähellä)
+
+	Resources:
+	Total Time:835, Garden Paths:0, Merge:4, Head Chain:4, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:278, Merge-1:23, 
+
+	'Seine.nom flow.prs.3sg near.1sg'
+
+& 3.2 Noun phrases
+
+& 3.2.1 (Currently unorganized)
+
+& Grammatical (third person PX and antecedent)
+
+91.  Pekka ihailee autoa#An 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ auto]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Patient of V°(admire): [φ auto]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: <φ Pekka>', 'ihaile-°: pro/[φ auto]', 'φ°: ihaile-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ auto] ~ 6, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ auto]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [φ auto]
+
+	Resources:
+	Total Time:1336, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:445, Merge-1:16, 
+
+	'Pekka.nom admire.prs.3sg car.3p'
+
+& Ungrammatical (third person PX without antecedent)
+
+92.  auto#nsA lähtee 
+
+	[<φ auto>:1 [T [<__>:1 lähte-]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <φ auto>']
+	Predicates: ['T°: pro/<φ auto>', 'φ°: T', 'lähte-°: pro/<φ auto>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ auto] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ auto>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ auto]
+
+	Resources:
+	Total Time:770, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:385, Merge-1:7, 
+
+	'car.3p leave.prs.3sg'
+
+& 3.3 VA-infinitive
+
+& 3.3.0 Prelimiary test: agreement paradigms
+
+& Grammatical
+
+93.  minä sano#n lähtevän#ni 
+
+	[<D minä>:1 [T [<__>:1 [sano- [-vAn lähte-]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <D minä>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<D minä>', 'sano-°: <D minä>', '-vAn°: pro', 'lähte-°: -vAn']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D minä] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[D minä] ~ 2, pro(-vAn) ~ 8, Weight 1
+	[D minä] ~ 8, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D minä>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D minä]
+	Object 8 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1085, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:361, Merge-1:19, 
+
+	'I.nom say.prs.1sg leave.va/inf.px/1sg'
+
+94.  sinä sano#t lähtevän#si 
+
+	[<D sinä>:1 [T [<__>:1 [sano- [-vAn lähte-]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <D sinä>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<D sinä>', 'sano-°: <D sinä>', '-vAn°: pro', 'lähte-°: -vAn']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D sinä] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[D sinä] ~ 2, pro(-vAn) ~ 8, Weight 1
+	[D sinä] ~ 8, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D sinä>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D sinä]
+	Object 8 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1085, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:361, Merge-1:19, 
+
+	'you.nom say.prs.2sg leave.va/inf.px/2sg'
+
+95.  Pekka sanoi lähtevän#nsA 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [-vAn lähte-]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', '-vAn°: <φ Pekka>', 'lähte-°: -vAn']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-vAn) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1115, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:371, Merge-1:19, 
+
+	'Pekka.nom say.pst.3sg leave.va/inf.px/3p'
+
+96.  me sano#mme lähtevän#mme 
+
+	[<D me>:1 [T [<__>:1 [sano- [-vAn lähte-]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <D me>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<D me>', 'sano-°: <D me>', '-vAn°: pro', 'lähte-°: -vAn']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D me] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[D me] ~ 2, pro(-vAn) ~ 8, Weight 1
+	[D me] ~ 8, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D me>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D me]
+	Object 8 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1540, Garden Paths:3, Merge:11, Head Chain:13, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:513, Merge-1:54, 
+
+	'we.nom say.prs.1pl leave.va/inf.px/1pl'
+
+97.  te sano#tte lähtevän#nne 
+
+	[<D te>:1 [T [<__>:1 [sano- [-vAn lähte-]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <D te>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<D te>', 'sano-°: <D te>', '-vAn°: pro', 'lähte-°: -vAn']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D te] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[D te] ~ 2, pro(-vAn) ~ 8, Weight 1
+	[D te] ~ 8, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D te>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D te]
+	Object 8 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1105, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:368, Merge-1:19, 
+
+	'you.nom say.prs.2pl leave.va/inf.px/2pl'
+
+98.  he sano#vAt lähtevän#nsA 
+
+	[<D he>:1 [T [<__>:1 [sano- [-vAn lähte-]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <D he>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<D he>', 'sano-°: <D he>', '-vAn°: <D he>', 'lähte-°: -vAn']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D he] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[D he] ~ 2, pro(-vAn) ~ 8, Weight 1
+	[D he] ~ 8, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D he>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D he]
+	Object 8 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1105, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:368, Merge-1:19, 
+
+	'they.nom say.prs.3pl leave.va/inf.px/3p
+
+& Ungrammatical
+
+99. *minä sano#n lähtevän#nsA 
+
+	'I.nom say.prs.1sg leave.va/inf.px/3p'
+
+100. *sinä sano#t lähtevän#nsA 
+
+	'I.nom say.prs.2sg leave.va/inf.px/3p'
+
+101. *me sano#mme lähtevän#nsA 
+
+	'I.nom say.prs.1pl leave.va/inf.px/3p'
+
+102. *te sano#tte lähtevän#nsA 
+
+	'I.nom say.prs.2pl leave.va/inf.px/3p'
+
+& 3.3.1 Canonical word order
+
+& Ungrammatical (bare infinitival verb)
+
+103. *Pekka sanoi lähtevän 
+
+	'Pekka.nom say.pst.3sg leave.va/inf'
+
+& Grammatical (either subject or agreement, but not both)
+
+104.  Pekka sanoi lähtevän#nsA 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [-vAn lähte-]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', '-vAn°: <φ Pekka>', 'lähte-°: -vAn']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-vAn) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(-vAn) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(-vAn)
+
+	Resources:
+	Total Time:1115, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:371, Merge-1:19, 
+
+	'Pekka.nom say.pst.3sg leave.va/inf.3p'
+
+105.  Pekka sanoi hänen lähtevän 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [<D hän>:4 [-vAn [<__>:4 lähte-]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Agent of V°(leave): <D hän>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<D hän>', '-vAn°: pro/<D hän>', 'lähte-°: pro/<D hän>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>', '<D hän>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:1455, Garden Paths:0, Merge:7, Head Chain:12, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:363, Merge-1:56, 
+
+	'Pekka.nom say.pst.3sg he.gen leave.va/inf'
+
+& Ungrammatical (both agreement and subject)
+
+106. *Pekka sanoi hänen lähtevän#nsA 
+
+	'Pekka.nom say.pst.3sg Merja.gen leave.va/inf.3p'
+
+& 3.3.2 Postverbal genitive argument
+
+& Ungrammatical
+
+107. *Pekka sanoi lähtevän hänen 
+
+	'Pekka said leave.va/inf he.gen'
+
+108. *Pekka sanoi lähtevän#nsA hänen 
+
+	'Pekka said leave.va/inf.3p he.gen'
+
+& 3.3.3 Object topicalization, without subject
+
+& Ungrammatical
+
+109. *Pekka sanoi maalaavan aitaa 
+
+	'Pekka.nom say.prs.3sg paint.va/inf fence.par'
+
+110. *Pekka sanoi aitaa maalaavan 
+
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf'
+
+& Grammatical
+
+111.  Pekka sanoi maalaavan#nsA aitaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [-vAn [v [maalaa- [φ aita]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', '-vAn°: <φ Pekka>', 'v°: -vAn', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [φ aita] ~ 12, Weight 1
+	[φ Pekka] ~ 2, pro(-vAn) ~ 8, [φ aita] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(-vAn)
+	Object 12 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1717, Garden Paths:0, Merge:8, Head Chain:13, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:429, Merge-1:32, 
+
+	'Pekka.nom say.prs.3sg paint.va/inf.3p fence.par'
+
+112.  Pekka sanoi aitaa maalaavan#nsA 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [<φ aita>:4 [-vAn [v [<__>:4 maalaa-]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', '-vAn°: <φ aita>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(-vAn) ~ 2, [φ aita] ~ 10, Weight 1
+	[φ Pekka] ~ 2, pro(-vAn) ~ 8, [φ aita] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(-vAn)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1731, Garden Paths:0, Merge:8, Head Chain:15, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:432, Merge-1:46, 
+
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p'
+
+& 3.3.4 Object topicalization, with subject
+
+& Grammatical
+
+113.  Pekka sanoi hänen maalaavan aitaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [<D hän>:4 [-vAn [<__>:4 [v [maalaa- [φ aita]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <D hän>', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<D hän>', '-vAn°: pro/<D hän>', 'v°: <D hän>', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 4, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 8, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D hän] ~ 2, [φ aita] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<D hän>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D hän]
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2072, Garden Paths:0, Merge:10, Head Chain:22, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:10, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:414, Merge-1:88, 
+
+	'Pekka.nom say.prs.3sg he.gen paint.va/inf fence.par'
+
+& Ungrammatical
+
+114. *Pekka sanoi hänen maalaavan#nsA aitaa 
+
+	'Pekka.nom say.pst.3sg he.gen paint.va/inf.3p fence.par'
+
+& Ungrammatical
+
+115. *Pekka sanoi aitaa maalaavan hänen 
+
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf he.gen'
+
+116. *Pekka sanoi aitaa maalaavan#nsA hänen 
+
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p he.gen'
+
+& 3.4 ESSA-infinitive
+
+& 3.4.0 Prelimiary test: agreement paradigms
+
+& Grammatical
+
+117.  Pekka laulaa hänen lähtiessä#An 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <<D hän>:2 [-essA [<__>:2 lähte-]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Agent of V°(leave): <D hän>']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: pro/<D hän>', 'lähte-°: pro/<D hän>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D hän] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]', '<D hän>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:2462, Garden Paths:4, Merge:17, Head Chain:28, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:7, Last Resort Extraposition:0, 
+	Mean time per word:615, Merge-1:104, 
+
+	'Pekka.nom sing.prs.3sg he.gen leave.essa/inf.px/3p'
+
+& Ungrammatical
+
+118. *Pekka laulaa minun lähtiessä#An 
+
+	'Pekka.nom sing.prs.3sg I.gen leave.essa/inf.px/3p'
+
+119. *Pekka laulaa sinun lähtiessä#An 
+
+	'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/3p'
+
+120. *Pekka laulaa meidän lähtiessä#An 
+
+	'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px/3p'
+
+121. *Pekka laulaa teidän lähtiessä#An 
+
+	'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/3p'
+
+122. *Pekka laulaa sinun lähtiessä#ni 
+
+	'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/1sg'
+
+123. *Pekka laulaa hänen lähtiessä#ni 
+
+	'Pekka.nom sing.prs.3sg he.gen leave.essa/inf.px/1sg'
+
+124. *Pekka laulaa meidän lähtiessä#ni 
+
+	'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px/1sg'
+
+125. *Pekka laulaa teidän lähtiessä#ni 
+
+	'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/1sg'
+
+126. *Pekka laulaa heidän lähtiessä#ni 
+
+	'Pekka.nom sing.prs.3sg them.gen leave.essa/inf.px/1sg'
+
+& 3.4.1 Canonical word order
+
+& Grammatical
+
+127.  Pekka laulaa lähtiessä 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <-essA lähte->]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: [T [[φ Pekka] laula]]', 'lähte-°: [T [[φ Pekka] laula]]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+
+	Resources:
+	Total Time:1090, Garden Paths:1, Merge:7, Head Chain:7, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:363, Merge-1:31, 
+
+	'Pekka.nom sing.prs.3sg leave.essa/inf'
+
+128.  Pekka laulaa lähtiessä#An 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <-essA lähte->]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: [T [[φ Pekka] laula]]', 'lähte-°: -essA']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-essA) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(-essA) ~ 6, Weight 1
+	[φ Pekka] ~ 6, pro(-essA) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: pro(-essA)
+
+	Resources:
+	Total Time:1240, Garden Paths:1, Merge:7, Head Chain:7, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:413, Merge-1:31, 
+
+	'Pekka sing.prs.3sg leave.essa/inf.3p'
+
+129.  Pekka laulaa hänen lähtiessä 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <<D hän>:2 [-essA [<__>:2 lähte-]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Agent of V°(leave): <D hän>']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: pro/<D hän>', 'lähte-°: pro/<D hän>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D hän] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]', '<D hän>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:2162, Garden Paths:4, Merge:17, Head Chain:28, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:7, Last Resort Extraposition:0, 
+	Mean time per word:540, Merge-1:104, 
+
+	'Pekka.nom sing.prs.3sg he.gen leave.essa/inf'
+
+130.  Pekka laulaa hänen lähtiessä#An 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <<D hän>:2 [-essA [<__>:2 lähte-]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Agent of V°(leave): <D hän>']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: pro/<D hän>', 'lähte-°: pro/<D hän>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D hän] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]', '<D hän>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:2462, Garden Paths:4, Merge:17, Head Chain:28, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:7, Last Resort Extraposition:0, 
+	Mean time per word:615, Merge-1:104, 
+
+	'Pekka.nom sing.prs.3sg she.gen leave.essa/inf.3p'
+
+& 3.4.2 Noncanonical word order
+
+& Ungrammatical
+
+131. *Pekka laulaa lähtiessä hänen 
+
+	'Pekka.nom sing.prs.3sg leave.essa/inf he.gen'
+
+132. *Pekka laulaa lähtiessä#An hänen 
+
+	'Pekka sing.prs.3sg leave.essa/inf.3p he.gen'
+
+& 3.4.3 Object topicalization, without subject
+
+& Grammatical
+
+133.  Pekka laulaa maalatessa aitaa 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <-essA [v [maalaa- [φ aita]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: [T [[φ Pekka] laula]]', 'v°: [T [[φ Pekka] laula]]', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ aita] ~ 8, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2324, Garden Paths:2, Merge:15, Head Chain:23, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:581, Merge-1:66, 
+
+	'Pekka.nom sing.prs.3sg paint.essa/inf fence.par'
+
+134.  Pekka laulaa aitaa maalatessa 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <<φ aita>:2 [-essA [v [<__>:2 maalaa-]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Causer/Agent of v°(v): pro', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: <φ aita>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ aita] ~ 6, Weight 1
+	Information structure: {'Marked topics': ['[φ Pekka]', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2468, Garden Paths:4, Merge:22, Head Chain:33, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:13, Last Resort Extraposition:0, 
+	Mean time per word:617, Merge-1:113, 
+
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf'
+
+135.  Pekka laulaa maalatessa#An aitaa 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <-essA [v [maalaa- [φ aita]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: [T [[φ Pekka] laula]]', 'v°: -essA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-essA) ~ 2, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, pro(-essA) ~ 2, [φ aita] ~ 10, Weight 1
+	[φ Pekka] ~ 2, pro(-essA) ~ 6, [φ aita] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: pro(-essA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2484, Garden Paths:2, Merge:15, Head Chain:23, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:621, Merge-1:66, 
+
+	'Pekka.nom sing.prs.3sg paint.essa/inf.3p fence.par'
+
+136.  Pekka laulaa aitaa maalatessa#An 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <<φ aita>:2 [-essA [v [<__>:2 maalaa-]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Causer/Agent of v°(v): pro', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: <φ aita>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-essA) ~ 2, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, pro(-essA) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(-essA) ~ 6, [φ aita] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: pro(-essA)
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2788, Garden Paths:4, Merge:22, Head Chain:33, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:13, Last Resort Extraposition:0, 
+	Mean time per word:697, Merge-1:113, 
+
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf.3p'
+
+& 3.4.4 Object topicalization, with subject
+
+& Grammatical
+
+137.  Pekka laulaa hänen maalatessa aitaa 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <<D hän>:2 [-essA [<__>:2 [v [maalaa- [φ aita]]]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Causer/Agent of v°(v): <D hän>', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: pro/<D hän>', 'v°: <D hän>', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 4, [φ aita] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]', '<D hän>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D hän]
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:5694, Garden Paths:11, Merge:46, Head Chain:85, Phrasal Chain:7, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:20, Extraposition:24, Last Resort Extraposition:0, 
+	Mean time per word:1138, Merge-1:297, 
+
+	'Pekka.nom sing.prs.3sg he.gen paint.essa/inf fence.par'
+
+& Ungrammatical
+
+138. *Pekka laulaa aitaa maalatessa hänen 
+
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
+
+& Grammatical
+
+139.  Pekka laulaa hänen maalatessa#An aitaa 
+
+	[[φ Pekka]:1 [[T [__:1 laula]] <<D hän>:2 [-essA [<__>:2 [v [maalaa- [φ aita]]]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(sing): [φ Pekka]', 'Causer/Agent of v°(v): <D hän>', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'laula°: pro/[φ Pekka]', '-essA°: pro/<D hän>', 'v°: <D hän>', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 2, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 4, [φ aita] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]', '<D hän>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D hän]
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:6014, Garden Paths:11, Merge:46, Head Chain:85, Phrasal Chain:7, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:20, Extraposition:24, Last Resort Extraposition:0, 
+	Mean time per word:1202, Merge-1:297, 
+
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
+
+& Ungrammatical
+
+140. *Pekka laulaa aitaa maalatessa#An hänen 
+
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
+
+& 3.5 TUA-infinitive
+
+& 3.5.1 Agreement tests
+
+& Grammatical
+
+141.  Pekka lähti maalattua#An aitaa 
+
+	[[φ Pekka]:1 [[T [__:1 lähte-]] <-tUA [v [maalaa- [φ aita]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): [φ Pekka]', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'lähte-°: pro/[φ Pekka]', '-tUA°: [T [[φ Pekka] lähte-]]', 'v°: -tUA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 10, Weight 1
+	[φ Pekka] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2444, Garden Paths:2, Merge:15, Head Chain:23, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:611, Merge-1:66, 
+
+	'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+
+142.  minä lähde#n maalattua#ni aitaa 
+
+	[[<D minä>:1 [T [<__>:1 lähte-]]] <-tUA [v [maalaa- [φ aita]]]>]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D minä>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<D minä>', 'lähte-°: pro/<D minä>', '-tUA°: pro', 'v°: -tUA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D minä] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[D minä] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 10, Weight 1
+	[D minä] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D minä>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D minä]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:3261, Garden Paths:5, Merge:24, Head Chain:35, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:6, Last Resort Extraposition:0, 
+	Mean time per word:815, Merge-1:112, 
+
+	'I.nom leave.prs.1sg paint.tua/inf.px/1sg fence.par'
+
+143.  sinä lähde#t maalattua#si aitaa 
+
+	[[<D sinä>:1 [T [<__>:1 lähte-]]] <-tUA [v [maalaa- [φ aita]]]>]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D sinä>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<D sinä>', 'lähte-°: pro/<D sinä>', '-tUA°: pro', 'v°: -tUA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D sinä] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[D sinä] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 10, Weight 1
+	[D sinä] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D sinä>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D sinä]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:3261, Garden Paths:5, Merge:24, Head Chain:35, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:6, Last Resort Extraposition:0, 
+	Mean time per word:815, Merge-1:112, 
+
+	'you.nom leave.prs.2sg paint.tua/inf.px/2sg fence.par'
+
+144.  hän lähde#[V] maalattua#An aitaa 
+
+	[[D hän]:1 [[T [__:1 lähte-]] <-tUA [v [maalaa- [φ aita]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): [D hän]', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[D hän]', 'lähte-°: pro/[D hän]', '-tUA°: [T [[D hän] lähte-]]', 'v°: -tUA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D hän] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[D hän] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 10, Weight 1
+	[D hän] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[D hän]'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D hän]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2474, Garden Paths:2, Merge:15, Head Chain:23, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:618, Merge-1:66, 
+
+	'he.nom leave.prs.3sg paint.tua/inf.px/3p fence.par'
+
+145.  me lähde#mme maalattua#mme aitaa 
+
+	[[<D me>:1 [T [<__>:1 lähte-]]] <-tUA [v [maalaa- [φ aita]]]>]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D me>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<D me>', 'lähte-°: pro/<D me>', '-tUA°: pro', 'v°: -tUA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D me] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[D me] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 10, Weight 1
+	[D me] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D me>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D me]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:5752, Garden Paths:12, Merge:47, Head Chain:72, Phrasal Chain:9, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:12, Extraposition:12, Last Resort Extraposition:0, 
+	Mean time per word:1438, Merge-1:237, 
+
+	'we.nom leave.prs.1pl paint.tua/inf.px/1pl fence.par'
+
+146.  te lähde#tte maalattua#nne aitaa 
+
+	[[<D te>:1 [T [<__>:1 lähte-]]] <-tUA [v [maalaa- [φ aita]]]>]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D te>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<D te>', 'lähte-°: pro/<D te>', '-tUA°: pro', 'v°: -tUA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D te] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[D te] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 10, Weight 1
+	[D te] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D te>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D te]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:3281, Garden Paths:5, Merge:24, Head Chain:35, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:6, Last Resort Extraposition:0, 
+	Mean time per word:820, Merge-1:112, 
+
+	'you.nom leave.prs.2pl paint.tua/inf.px/2pl fence.par'
+
+147.  he lähde#vAt maalattua#An aitaa 
+
+	[[D he]:1 [[T [__:1 lähte-]] <-tUA [v [maalaa- [φ aita]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): [D he]', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[D he]', 'lähte-°: pro/[D he]', '-tUA°: [T [[D he] lähte-]]', 'v°: -tUA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D he] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[D he] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 10, Weight 1
+	[D he] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[D he]'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D he]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2454, Garden Paths:2, Merge:15, Head Chain:23, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:613, Merge-1:66, 
+
+	'they.nom leave.prs.3sg paint.tua/inf.px/3p fence.par'
+
+& Ungrammatical
+
+148. *minä lähde#n maalattua#An aitaa 
+
+	'I.nom leave.prs.1sg paint.tua/inf.px/3p fence.par'
+
+149. *sinä lähde#t maalattua#An aitaa 
+
+	'you.nom leave.prs.2sg paint.tua/inf.px/3p fence.par'
+
+150. *me lähde#mme maalattua#An aitaa 
+
+	'we.nom leave.prs.1pl paint.tua/inf.px/3p fence.par'
+
+151. *te lähde#tte maalattua#An aitaa 
+
+	'you.nom leave.prs.2pl paint.tua/inf.px/3p fence.par'
+
+& 3.5.2 Canonical word order
+
+& Ungrammatical
+
+152. *Pekka lähti maalattua aitaa 
+
+	'Pekka.nom leave.pst.3sg paint.tua/inf fence.par'
+
+& Grammatical
+
+153.  Pekka lähti isän maalattua aitaa 
+
+	[[φ Pekka]:1 [[T [__:1 lähte-]] <<φ isä>:2 [-tUA [<__>:2 [v [maalaa- [φ aita]]]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): [φ Pekka]', 'Causer/Agent of v°(v): <φ isä>', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'lähte-°: pro/[φ Pekka]', '-tUA°: pro/<φ isä>', 'φ°: -tUA', 'v°: <φ isä>', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ isä] ~ 2, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 2, [φ isä] ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, [φ isä] ~ 4, [φ aita] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]', '<φ isä>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [φ isä]
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:5543, Garden Paths:11, Merge:46, Head Chain:85, Phrasal Chain:8, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:20, Extraposition:23, Last Resort Extraposition:0, 
+	Mean time per word:1108, Merge-1:302, 
+
+	'Pekka.nom leave.pst.3sg father.gen paint.tua/inf fence.par'
+
+& Grammatical
+
+154.  Pekka lähti maalattua#An aitaa 
+
+	[[φ Pekka]:1 [[T [__:1 lähte-]] <-tUA [v [maalaa- [φ aita]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): [φ Pekka]', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'lähte-°: pro/[φ Pekka]', '-tUA°: [T [[φ Pekka] lähte-]]', 'v°: -tUA', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 10, Weight 1
+	[φ Pekka] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2444, Garden Paths:2, Merge:15, Head Chain:23, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:611, Merge-1:66, 
+
+	'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+
+& Ungrammatical
+
+155. *Pekka lähti isän maalattua#An aitaa 
+
+	'Pekka.nom leave.pst.3sg father.gen paint.tua/inf.px/3p fence.par'
+
+& 3.5.3 Noncanonical word order, object fronting
+
+& Grammatical
+
+156.  Pekka lähti aitaa maalattua#An 
+
+	[[φ Pekka]:1 [[T [__:1 lähte-]] <<φ aita>:2 [-tUA [v [<__>:2 maalaa-]]]>]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): [φ Pekka]', 'Causer/Agent of v°(v): pro', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/[φ Pekka]', 'φ°: T', 'lähte-°: pro/[φ Pekka]', '-tUA°: <φ aita>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, pro(-tUA) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(-tUA) ~ 6, [φ aita] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[φ Pekka]', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: pro(-tUA)
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2718, Garden Paths:4, Merge:22, Head Chain:33, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:13, Last Resort Extraposition:0, 
+	Mean time per word:679, Merge-1:113, 
+
+	'Pekka.nom leave.pst.3sg fence.par paint.tua/inf.px/3p'
+
+& Ungrammatical
+
+157. *Pekka lähti aitaa maalattua 
+
+	'Pekka.nom leave.prs.3sg fence.par paint.tua/inf'
+
+158. *Pekka lähti aitaa isän maalattua#An 
+
+	'Pekka.nom leave.prs.3sg fence.par father.gen paint.tua/inf.px/3p'
+
+159. *Pekka lähti aitaa isän maalattua 
+
+	'Peka.nom leave.prs.3sg fence.par father.gen paint.tua/inf'
+
+& 3.6 English want-construction (subject, without agreement)
+
+& 3.6.1 Canonical word order
+
+& Grammatical
+
+160.  John wants to_inf leave 
+
+	[[D John]:1 [T [__:1 [v [want [to leave-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D John]', 'Patient of V°(want): InfP', 'Agent of V°(leave): pro']
+	Predicates: ['T°: [D John]', 'v°: [D John]', 'want°: [D John]', 'leave-°: [D John]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D John]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+
+	Resources:
+	Total Time:715, Garden Paths:0, Merge:6, Head Chain:11, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:178, Merge-1:30, 
+
+161.  John wants to_inf paint the fence 
+
+	[[D John]:1 [T [__:1 [v [want [to [v [paint [the fence]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D John]', 'Patient of V°(want): InfP', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [the fence]']
+	Predicates: ['T°: [D John]', 'v°: [D John]', 'want°: [D John]', 'v°: [D John]', 'paint°: pro/[the fence]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, [the fence] ~ 2, Weight 1
+	[D John] ~ 2, [the fence] ~ 10, Weight 1
+	[D John] ~ 10, [the fence] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D John]', '[the fence]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+	Object 10 in GLOBAL: [the fence]
+
+	Resources:
+	Total Time:980, Garden Paths:0, Merge:9, Head Chain:27, Phrasal Chain:6, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:163, Merge-1:58, 
+
+162.  John wants Mary to_inf leave 
+
+	[[D John]:1 [T [__:1 [v [want [[D Mary]:4 [to [__:4 leave-]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D John]', 'Patient of V°(want): InfP', 'Agent of V°(leave): [D Mary]']
+	Predicates: ['T°: [D John]', 'v°: [D John]', 'want°: pro/[D Mary]', 'leave-°: pro/[D Mary]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, [D Mary] ~ 6, Weight 1
+	[D John] ~ 6, [D Mary] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D John]', '[D Mary]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+	Object 6 in GLOBAL: [D Mary]
+
+	Resources:
+	Total Time:1180, Garden Paths:0, Merge:8, Head Chain:19, Phrasal Chain:9, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:236, Merge-1:32, 
+
+163.  John wants Mary to_inf paint the fence 
+
+	[[D John]:1 [T [__:1 [v [want [[D Mary]:5 [to [__:5 [v [paint [the fence]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D John]', 'Patient of V°(want): InfP', 'Causer/Agent of v°(v): [D Mary]', 'Patient of V°(paint): [the fence]']
+	Predicates: ['T°: [D John]', 'v°: [D John]', 'want°: pro/[D Mary]', 'v°: [D Mary]', 'paint°: pro/[the fence]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, [D Mary] ~ 6, [the fence] ~ 2, Weight 1
+	[D John] ~ 2, [D Mary] ~ 6, [the fence] ~ 6, Weight 1
+	[D John] ~ 2, [D Mary] ~ 6, [the fence] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D John]', '[D Mary]', '[the fence]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+	Object 6 in GLOBAL: [D Mary]
+	Object 10 in GLOBAL: [the fence]
+
+	Resources:
+	Total Time:1485, Garden Paths:0, Merge:11, Head Chain:37, Phrasal Chain:17, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:212, Merge-1:70, 
+
+& 3.6.2 Noncanonical word order, object fronting
+
+& Ungrammatical
+
+164. *John wants the fence to_inf paint 
+
+165. *John wants the fence Mary to_inf paint 
+
+& 4. Finite clause, second-merge with [Φ]
+
+& 4.1 Weak agreement
+
+& 4.1.0 Preliminary test: agreement
+
+& Ungrammatical
+
+166. *John admire_fin Mary 
+
+167. *they admires Mary 
+
+& 4.1.1 Weak agreement (English finite clause)
+
+& Grammatical
+
+168.  John admires Mary 
+
+	[[D John]:1 [T [__:1 [v [admire [D Mary]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D John]', 'Patient of V°(admire): [D Mary]']
+	Predicates: ['T°: [D John]', 'v°: [D John]', 'admire°: pro/[D Mary]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, [D Mary] ~ 6, Weight 1
+	[D John] ~ 6, [D Mary] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D John]', '[D Mary]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+	Object 6 in GLOBAL: [D Mary]
+
+	Resources:
+	Total Time:1000, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:333, Merge-1:10, 
+
+& Ungrammatical
+
+169. *admires Mary 
+
+170. *EXPL admires Mary 
+
+& 4.2 Rich agreement, partial pro-drop profile (Finnish finite clause)
+
+& 4.2.0 Preliminary test: agreement
+
+& Grammatical
+
+171.  sinä lähde#t 
+
+	[<D sinä>:1 [T [<__>:1 lähte-]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D sinä>']
+	Predicates: ['T°: pro/<D sinä>', 'lähte-°: pro/<D sinä>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D sinä] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D sinä>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D sinä]
+
+	Resources:
+	Total Time:730, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:365, Merge-1:7, 
+
+& Ungrammatical
+
+172. *minä lähde#[V] 
+
+	'I.nom leave.prs.3sg'
+
+173. *sinä lähde#[V] 
+
+	'you.nom leave.prs.3sg'
+
+174. *me lähde#[V] 
+
+	'we.nom leave.prs.3sg'
+
+175. *te lähd#[V] 
+
+	'you leave.prs.3sg'
+
+176. *minä lähde#mme 
+
+	'I.nom leave.prs.1pl'
+
+177. *sinä lähde#mme 
+
+	'you.nom leave.prs.1pl'
+
+178. *hän lähde#mme 
+
+	'he.nom leave.prs.1pl'
+
+179. *te lähde#mme 
+
+	'you.nom leave.prs.1pl'
+
+180. *he lähde#mme 
+
+	'they.nom leave.prs.1pl'
+
+& 4.2.1 With overt phrasal subject, preverbal position
+
+& Grammatical
+
+181.  minä lähde#n 
+
+	[<D minä>:1 [T [<__>:1 lähte-]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D minä>']
+	Predicates: ['T°: pro/<D minä>', 'lähte-°: pro/<D minä>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D minä] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D minä>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D minä]
+
+	Resources:
+	Total Time:730, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:365, Merge-1:7, 
+
+	'I.nom leave.prs.1sg'
+
+182.  sinä lähde#t 
+
+	[<D sinä>:1 [T [<__>:1 lähte-]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D sinä>']
+	Predicates: ['T°: pro/<D sinä>', 'lähte-°: pro/<D sinä>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D sinä] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D sinä>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D sinä]
+
+	Resources:
+	Total Time:730, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:365, Merge-1:7, 
+
+	'you.nom leave.prs.2sg'
+
+183.  hän lähde#[V] 
+
+	[<D hän>:1 [T [<__>:1 lähte-]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D hän>']
+	Predicates: ['T°: pro/<D hän>', 'lähte-°: pro/<D hän>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D hän] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D hän>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D hän]
+
+	Resources:
+	Total Time:750, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:375, Merge-1:7, 
+
+	'he.nom leave.prs.3sg'
+
+184.  me lähde#mme 
+
+	[<D me>:1 [T [<__>:1 lähte-]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D me>']
+	Predicates: ['T°: pro/<D me>', 'lähte-°: pro/<D me>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D me] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D me>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D me]
+
+	Resources:
+	Total Time:730, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:365, Merge-1:7, 
+
+	'we.nom leave.prs.1pl'
+
+185.  te lähde#tte 
+
+	[<D te>:1 [T [<__>:1 lähte-]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D te>']
+	Predicates: ['T°: pro/<D te>', 'lähte-°: pro/<D te>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D te] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D te>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D te]
+
+	Resources:
+	Total Time:730, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:365, Merge-1:7, 
+
+	'you.nom leave.prs.2pl'
+
+186.  he lähde#vAt 
+
+	[<D he>:1 [T [<__>:1 lähte-]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): <D he>']
+	Predicates: ['T°: pro/<D he>', 'lähte-°: pro/<D he>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D he] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D he>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D he]
+
+	Resources:
+	Total Time:730, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:365, Merge-1:7, 
+
+	'they.nom leave.prs.3pl'
+
+187.  Pekka ihailee Merjaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [v [ihaile- [φ Merja]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Patient of V°(admire): [φ Merja]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: <φ Pekka>', 'ihaile-°: pro/[φ Merja]', 'φ°: ihaile-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 6, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ Merja]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1346, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:2, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:448, Merge-1:16, 
+
+	'Pekka.nom admire.prs.3sg Merja.par'
+
+& 4.2.2 With overt phrasal subject, postverbal position
+
+& Ungrammatical
+
+188. *lähde#n minä 
+
+	'leave.prs.1sg I.nom'
+
+189. *maalaa#n minä aitaa 
+
+	'paint.prs.1sg I.nom fence.par'
+
+190. *lähde#t sinä 
+
+	'leave.prs.2sg you.nom'
+
+191. *maalaa#t sinä aitaa 
+
+	'paint.prs.2sg you.nom fence.par'
+
+192. *lähde#[V] hän 
+
+	'leave.prs.3sg he.nom'
+
+193. *maalaa#[V] hän aitaa 
+
+	'paint.prs.3sg he.nom fence.par'
+
+194. *lähde#mme me 
+
+	'leave.prs.1pl we.nom'
+
+195. *maalaa#mme me aitaa 
+
+	'paint.prs.1pl we.nom fence.par'
+
+196. *lähde#tte te 
+
+	'leave.prs.2pl you.nom'
+
+197. *maalaa#tte te aitaa 
+
+	'paint.prs.2pl you.nom fence.par'
+
+198. *lähde#vAt he 
+
+	'leave.prs.3pl they.nom'
+
+199. *maalaa#vAt he aitaa 
+
+	'paint.prs.3pl they.nom fence.par'
+
+& 4.2.3 With overt phrasal subject and direct object, OVS inversion
+
+& Grammatical
+
+200.  Merjaa ihaile#n minä 
+
+	[<φ Merja>:1 [T [<__>:4 [v [<__>:1 [ihaile- <D minä>:4]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D minä>', 'Agent of V°(admire): <φ Merja>']
+	Predicates: ['T°: pro/<D minä>', 'v°: pro/<φ Merja>', 'φ°: v', 'ihaile-°: pro/<φ Merja>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D minä] ~ 2, [φ Merja] ~ 4, Weight 1
+	[D minä] ~ 4, [φ Merja] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': ['<D minä>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D minä]
+	Object 4 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1342, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:447, Merge-1:28, 
+
+	'Merja.par admire.prs.1sg I.nom'
+
+201.  Merjaa ihaile#t sinä 
+
+	[<φ Merja>:1 [T [<__>:4 [v [<__>:1 [ihaile- <D sinä>:4]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D sinä>', 'Agent of V°(admire): <φ Merja>']
+	Predicates: ['T°: pro/<D sinä>', 'v°: pro/<φ Merja>', 'φ°: v', 'ihaile-°: pro/<φ Merja>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D sinä] ~ 2, [φ Merja] ~ 4, Weight 1
+	[D sinä] ~ 4, [φ Merja] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': ['<D sinä>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D sinä]
+	Object 4 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1342, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:447, Merge-1:28, 
+
+	'Merja.par admire.prs.2sg I.nom'
+
+202.  Merjaa ihaile#[V] hän 
+
+	[<φ Merja>:1 [T [<__>:4 [v [<__>:1 [ihaile- <D hän>:4]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D hän>', 'Agent of V°(admire): <φ Merja>']
+	Predicates: ['T°: pro/<D hän>', 'v°: pro/<φ Merja>', 'φ°: v', 'ihaile-°: pro/<φ Merja>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D hän] ~ 2, [φ Merja] ~ 4, Weight 1
+	[D hän] ~ 4, [φ Merja] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': ['<D hän>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D hän]
+	Object 4 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1362, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:454, Merge-1:28, 
+
+	'Merja.par admire.prs.3sg I.nom'
+
+203.  Merjaa ihaile#mme me 
+
+	[<φ Merja>:1 [T [<__>:4 [v [<__>:1 [ihaile- <D me>:4]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D me>', 'Agent of V°(admire): <φ Merja>']
+	Predicates: ['T°: pro/<D me>', 'v°: pro/<φ Merja>', 'φ°: v', 'ihaile-°: pro/<φ Merja>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D me] ~ 2, [φ Merja] ~ 4, Weight 1
+	[D me] ~ 4, [φ Merja] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': ['<D me>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D me]
+	Object 4 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1342, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:447, Merge-1:28, 
+
+	'Merja.par admire.prs.1pl I.nom'
+
+204.  Merjaa ihaile#tte te 
+
+	[<φ Merja>:1 [T [<__>:4 [v [<__>:1 [ihaile- <D te>:4]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D te>', 'Agent of V°(admire): <φ Merja>']
+	Predicates: ['T°: pro/<D te>', 'v°: pro/<φ Merja>', 'φ°: v', 'ihaile-°: pro/<φ Merja>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D te] ~ 2, [φ Merja] ~ 4, Weight 1
+	[D te] ~ 4, [φ Merja] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': ['<D te>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D te]
+	Object 4 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1342, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:447, Merge-1:28, 
+
+	'Merja.par admire.prs.2pl I.nom'
+
+205.  Merjaa ihaile#vAt he 
+
+	[<φ Merja>:1 [T [<__>:4 [v [<__>:1 [ihaile- <D he>:4]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D he>', 'Agent of V°(admire): <φ Merja>']
+	Predicates: ['T°: pro/<D he>', 'v°: pro/<φ Merja>', 'φ°: v', 'ihaile-°: pro/<φ Merja>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D he] ~ 2, [φ Merja] ~ 4, Weight 1
+	[D he] ~ 4, [φ Merja] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Merja>'], 'Neutral gradient': [], 'Marked focus': ['<D he>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D he]
+	Object 4 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:1342, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:447, Merge-1:28, 
+
+	'Merja.par admire.prs.3pl I.nom'
+
+& 4.2.4 OVS inversion inside embedded finite clause
+
+& Grammatical
+
+206.  Pekka sanoi että aitaa maalaa#n minä 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [<__>:6 [v [<__>:4 [maalaa- <D minä>:6]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <D minä>', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<D minä>', 'T°: pro/<D minä>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D minä] ~ 4, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [D minä] ~ 6, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D minä] ~ 2, [φ aita] ~ 6, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': ['<D minä>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D minä]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2331, Garden Paths:0, Merge:11, Head Chain:35, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:17, Extraposition:11, Last Resort Extraposition:0, 
+	Mean time per word:388, Merge-1:127, 
+
+	'Pekka said that fence.par paint.prs.1sg I.nom'
+
+207.  Pekka sanoi että aitaa maalaa#t sinä 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [<__>:6 [v [<__>:4 [maalaa- <D sinä>:6]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <D sinä>', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<D sinä>', 'T°: pro/<D sinä>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D sinä] ~ 4, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [D sinä] ~ 6, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D sinä] ~ 2, [φ aita] ~ 6, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': ['<D sinä>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D sinä]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2331, Garden Paths:0, Merge:11, Head Chain:35, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:17, Extraposition:11, Last Resort Extraposition:0, 
+	Mean time per word:388, Merge-1:127, 
+
+	'Pekka said that fence.par paint.prs.2sg you.nom'
+
+208.  Pekka sanoi että aitaa maalaa#[V] hän 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [<__>:6 [v [<__>:4 [maalaa- <D hän>:6]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <D hän>', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<D hän>', 'T°: pro/<D hän>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D hän] ~ 4, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [D hän] ~ 6, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D hän] ~ 2, [φ aita] ~ 6, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': ['<D hän>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D hän]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2351, Garden Paths:0, Merge:11, Head Chain:35, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:17, Extraposition:11, Last Resort Extraposition:0, 
+	Mean time per word:391, Merge-1:127, 
+
+	'Pekka said that fence.par paint.prs.3sg he.nom'
+
+209.  Pekka sanoi että aitaa maalaa#mme me 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [<__>:6 [v [<__>:4 [maalaa- <D me>:6]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <D me>', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<D me>', 'T°: pro/<D me>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D me] ~ 4, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [D me] ~ 6, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D me] ~ 2, [φ aita] ~ 6, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': ['<D me>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D me]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2331, Garden Paths:0, Merge:11, Head Chain:35, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:17, Extraposition:11, Last Resort Extraposition:0, 
+	Mean time per word:388, Merge-1:127, 
+
+	'Pekka said that fence.par paint.prs.1pl we.nom'
+
+210.  Pekka sanoi että aitaa maalaa#tte te 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [<__>:6 [v [<__>:4 [maalaa- <D te>:6]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <D te>', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<D te>', 'T°: pro/<D te>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D te] ~ 4, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [D te] ~ 6, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D te] ~ 2, [φ aita] ~ 6, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': ['<D te>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D te]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2331, Garden Paths:0, Merge:11, Head Chain:35, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:17, Extraposition:11, Last Resort Extraposition:0, 
+	Mean time per word:388, Merge-1:127, 
+
+	'Pekka said that fence.par paint.prs.2pl you.nom'
+
+211.  Pekka sanoi että aitaa maalaa#vAt he 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [<__>:6 [v [<__>:4 [maalaa- <D he>:6]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <D he>', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<D he>', 'T°: pro/<D he>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D he] ~ 4, [φ aita] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [D he] ~ 6, [φ aita] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D he] ~ 2, [φ aita] ~ 6, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': ['<D he>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D he]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2331, Garden Paths:0, Merge:11, Head Chain:35, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:17, Extraposition:11, Last Resort Extraposition:0, 
+	Mean time per word:388, Merge-1:127, 
+
+	'Pekka said that fence.par paint.prs.3pl they.nom'
+
+& 4.2.5 With null subject
+
+& Grammatical
+
+212.  lähde#n 
+
+	T
+
+	Semantics:
+	Predicates: ['T°: pro']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:270, Garden Paths:0, Merge:1, Head Chain:1, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:270, Merge-1:1, 
+
+	'leave.prs.1sg'
+
+213.  maalaa#n aitaa 
+
+	[T [v [maalaa- [φ aita]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ aita] ~ 8, Weight 1
+	pro(T) ~ 8, [φ aita] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:825, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:412, Merge-1:4, 
+
+	'paint-prs.1sg fence.par'
+
+214.  lähde#t 
+
+	T
+
+	Semantics:
+	Predicates: ['T°: pro']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:270, Garden Paths:0, Merge:1, Head Chain:1, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:270, Merge-1:1, 
+
+	'leave.prs.2sg'
+
+215.  maalaa#t aitaa 
+
+	[T [v [maalaa- [φ aita]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ aita] ~ 8, Weight 1
+	pro(T) ~ 8, [φ aita] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:825, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:412, Merge-1:4, 
+
+	'paint-prs.2sg fence.par'
+
+216.  lähde#mme 
+
+	T
+
+	Semantics:
+	Predicates: ['T°: pro']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:310, Garden Paths:0, Merge:1, Head Chain:1, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:310, Merge-1:1, 
+
+	'leave.prs.1pl'
+
+217.  maalaa#mme aitaa 
+
+	[T [v [maalaa- [φ aita]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ aita] ~ 8, Weight 1
+	pro(T) ~ 8, [φ aita] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:865, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:432, Merge-1:4, 
+
+	'paint-prs.1pl fence.par'
+
+218.  lähde#tte 
+
+	T
+
+	Semantics:
+	Predicates: ['T°: pro']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:310, Garden Paths:0, Merge:1, Head Chain:1, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:310, Merge-1:1, 
+
+	'leave.prs.2pl'
+
+219.  maalaa#tte aitaa 
+
+	[T [v [maalaa- [φ aita]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [φ aita] ~ 8, Weight 1
+	pro(T) ~ 8, [φ aita] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:865, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:432, Merge-1:4, 
+
+	'paint-prs.2pl fence.par'
+
+& Ungrammatical (third person pro-drop)
+
+220. *lähtee 
+
+	'leave.prs.3sg'
+
+221. *maalaa#[V] aitaa 
+
+	'paint.prs.3sg fence.par'
+
+222. *lähde#vAt 
+
+	'leave.prs.3pl'
+
+223. *maalaa#vAt aitaa 
+
+	'paint.prs.3pl fence.par'
+
+& 4.2.6 Null subject, inside embedded clause
+
+& Grammatical, canonical order
+
+224.  Pekka sanoi että lähde#n 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T lähte-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'lähte-°: T']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(T) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:1065, Garden Paths:0, Merge:6, Head Chain:7, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:266, Merge-1:30, 
+
+	'Pekka said that leave.prs.1sg'
+
+225.  Pekka sanoi että maalaa#n aitaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T [v [maalaa- [φ aita]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 12, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, [φ aita] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+	Object 12 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1683, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:336, Merge-1:45, 
+
+	'Pekka said that paint.prs.1g fence.par'
+
+226.  Pekka sanoi että lähde#t 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T lähte-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'lähte-°: T']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(T) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:1065, Garden Paths:0, Merge:6, Head Chain:7, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:266, Merge-1:30, 
+
+	'Pekka said that leave.prs.2sg'
+
+227.  Pekka sanoi että maalaa#t aitaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T [v [maalaa- [φ aita]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 12, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, [φ aita] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+	Object 12 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1683, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:336, Merge-1:45, 
+
+	'Pekka said that paint.prs.2sg fence.par'
+
+228.  Pekka sanoi että lähde#[V] 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T lähte-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: <φ Pekka>', 'lähte-°: T']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(T) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:1105, Garden Paths:0, Merge:6, Head Chain:7, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:276, Merge-1:30, 
+
+	'Pekka said that leave.prs.3sg'
+
+229.  Pekka sanoi että maalaa#[V] aitaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T [v [maalaa- [φ aita]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: <φ Pekka>', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 12, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, [φ aita] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+	Object 12 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1723, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:344, Merge-1:45, 
+
+	'Pekka said that paint.prs.3sg fence.par'
+
+230.  Pekka sanoi että lähde#mme 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T lähte-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'lähte-°: T']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(T) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:1105, Garden Paths:0, Merge:6, Head Chain:7, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:276, Merge-1:30, 
+
+	'Pekka said that leave.prs.1pl'
+
+231.  Pekka sanoi että maalaa#mme aitaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T [v [maalaa- [φ aita]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 12, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, [φ aita] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+	Object 12 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1723, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:344, Merge-1:45, 
+
+	'Pekka said that paint.prs.1pl fence.par'
+
+232.  Pekka sanoi että lähde#tte 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T lähte-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Agent of V°(leave): pro']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'lähte-°: T']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, Weight 1
+	[φ Pekka] ~ 8, pro(T) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:1105, Garden Paths:0, Merge:6, Head Chain:7, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:4, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:276, Merge-1:30, 
+
+	'Pekka said that leave.prs.2pl'
+
+233.  Pekka sanoi että maalaa#tte aitaa 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [T [v [maalaa- [φ aita]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'v°: T', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 12, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, [φ aita] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+	Object 12 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1723, Garden Paths:0, Merge:9, Head Chain:17, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:344, Merge-1:45, 
+
+	'Pekka said that paint.prs.2pl fence.par'
+
+& Ungrammatical (this is unclear case, needs more work)
+
+234. *Pekka sanoi että lähde#vAt 
+
+	'Pekka said that leave.prs.3pl'
+
+& Grammatical, object fronting inside the embedded clause
+
+235.  Pekka sanoi että aitaa maalaa#n 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [v [<__>:4 maalaa-]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: pro', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 10, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, [φ aita] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1679, Garden Paths:0, Merge:9, Head Chain:14, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:335, Merge-1:48, 
+
+	'Pekka said that fence.par paint.prs.1g'
+
+236.  Pekka sanoi että aitaa maalaa#[V] 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [v [<__>:4 maalaa-]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: <φ aita>', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 8, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 2, [φ aita] ~ 10, Weight 1
+	[φ Pekka] ~ 2, pro(T) ~ 8, [φ aita] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 8 in GLOBAL: pro(T)
+	Object 10 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1719, Garden Paths:0, Merge:9, Head Chain:14, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:343, Merge-1:48, 
+
+	'Pekka said that fence.par paint.prs.3sg'
+
+& 4.3 Rich agreement with complete pro-drop (Italian finite clause)
+
+& 4.3.1 With overt phrasal subject
+
+& Grammatical
+
+237.  io adoro Luisa 
+
+	[[D io]:1 [T [__:1 [v [adora [D Luisa]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D io]', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro/[D io]', 'v°: [D io]', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D io] ~ 2, [D Luisa] ~ 6, Weight 1
+	[D io] ~ 6, [D Luisa] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D io]', '[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D io]
+	Object 6 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:865, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:288, Merge-1:13, 
+
+	'admire.prs.1sg Luisa'
+
+238.  tu adori Luisa 
+
+	[[D tu]:1 [T [__:1 [v [adora [D Luisa]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D tu]', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro/[D tu]', 'v°: [D tu]', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D tu] ~ 2, [D Luisa] ~ 6, Weight 1
+	[D tu] ~ 6, [D Luisa] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D tu]', '[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D tu]
+	Object 6 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:865, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:288, Merge-1:13, 
+
+	'admire.prs.1sg Luisa'
+
+239.  lui adora Luisa 
+
+	[[D lui]:1 [T [__:1 [v [adora [D Luisa]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D lui]', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro/[D lui]', 'v°: [D lui]', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D lui] ~ 2, [D Luisa] ~ 6, Weight 1
+	[D lui] ~ 6, [D Luisa] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D lui]', '[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D lui]
+	Object 6 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:905, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:301, Merge-1:13, 
+
+	'admire.prs.1sg Luisa'
+
+240.  lei adora Luisa 
+
+	[[D lei]:1 [T [__:1 [v [adora [D Luisa]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D lei]', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro/[D lei]', 'v°: [D lei]', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D lei] ~ 2, [D Luisa] ~ 6, Weight 1
+	[D lei] ~ 6, [D Luisa] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D lei]', '[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D lei]
+	Object 6 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:905, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:301, Merge-1:13, 
+
+	'admire.prs.1sg Luisa'
+
+241.  noi adoriamo Luisa 
+
+	[[D noi]:1 [T [__:1 [v [adora [D Luisa]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D noi]', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro/[D noi]', 'v°: [D noi]', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D noi] ~ 2, [D Luisa] ~ 6, Weight 1
+	[D noi] ~ 6, [D Luisa] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D noi]', '[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D noi]
+	Object 6 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:945, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:315, Merge-1:13, 
+
+	'admire.prs.1sg Luisa'
+
+242.  voi adorate Luisa 
+
+	[[D voi]:1 [T [__:1 [v [adora [D Luisa]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D voi]', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro/[D voi]', 'v°: [D voi]', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D voi] ~ 2, [D Luisa] ~ 6, Weight 1
+	[D voi] ~ 6, [D Luisa] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D voi]', '[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D voi]
+	Object 6 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:915, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:305, Merge-1:13, 
+
+	'admire.prs.1sg Luisa'
+
+243.  loro adorano Luisa 
+
+	[[D loro]:1 [T [__:1 [v [adora [D Luisa]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D loro]', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro/[D loro]', 'v°: [D loro]', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D loro] ~ 2, [D Luisa] ~ 6, Weight 1
+	[D loro] ~ 6, [D Luisa] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D loro]', '[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D loro]
+	Object 6 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:895, Garden Paths:0, Merge:6, Head Chain:8, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:298, Merge-1:13, 
+
+	'admire.prs.1sg Luisa'
+
+& 4.3.2 With null subject
+
+& Grammatical
+
+244.  adoro Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro', 'v°: T', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [D Luisa] ~ 8, Weight 1
+	pro(T) ~ 8, [D Luisa] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:565, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:282, Merge-1:4, 
+
+	'admire.prs.1sg Luisa'
+
+245.  adori Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro', 'v°: T', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [D Luisa] ~ 8, Weight 1
+	pro(T) ~ 8, [D Luisa] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:565, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:282, Merge-1:4, 
+
+	'admire.prs.1sg Luisa'
+
+246.  adora Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro', 'v°: T', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [D Luisa] ~ 8, Weight 1
+	pro(T) ~ 8, [D Luisa] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:565, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:282, Merge-1:4, 
+
+	'admire.prs.1sg Luisa'
+
+247.  adora Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro', 'v°: T', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [D Luisa] ~ 8, Weight 1
+	pro(T) ~ 8, [D Luisa] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:565, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:282, Merge-1:4, 
+
+	'admire.prs.1sg Luisa'
+
+248.  adoriamo Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro', 'v°: T', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [D Luisa] ~ 8, Weight 1
+	pro(T) ~ 8, [D Luisa] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:625, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:312, Merge-1:4, 
+
+	'admire.prs.1sg Luisa'
+
+249.  adorate Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro', 'v°: T', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [D Luisa] ~ 8, Weight 1
+	pro(T) ~ 8, [D Luisa] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:595, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:297, Merge-1:4, 
+
+	'admire.prs.1sg Luisa'
+
+250.  adorano Luisa 
+
+	[T [v [adora [D Luisa]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(admire): [D Luisa]']
+	Predicates: ['T°: pro', 'v°: T', 'adora°: pro/[D Luisa]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	pro(T) ~ 4, [D Luisa] ~ 8, Weight 1
+	pro(T) ~ 8, [D Luisa] ~ 4, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Luisa]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 4 in GLOBAL: pro(T)
+	Object 8 in GLOBAL: [D Luisa]
+
+	Resources:
+	Total Time:595, Garden Paths:0, Merge:4, Head Chain:3, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:297, Merge-1:4, 
+
+	'admire.prs.1sg Luisa'
+
+& 5. Expletives
+
+& 5.1 Expletives as finite subjects
+
+& Grammatical
+
+251.  EXPL ihaile#n Merjaa 
+
+	[[expl N] [T [v [ihaile- [φ Merja]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(admire): [φ Merja]']
+	Predicates: ['T°: pro', 'v°: T', 'ihaile-°: pro/[φ Merja]', 'φ°: ihaile-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[expl N] ~ 2, pro(T) ~ 2, [φ Merja] ~ 6, Weight 1
+	[expl N] ~ 2, pro(T) ~ 2, [φ Merja] ~ 10, Weight 1
+	[expl N] ~ 2, pro(T) ~ 6, [φ Merja] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[φ Merja]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [expl N]
+	Object 6 in GLOBAL: pro(T)
+	Object 10 in GLOBAL: [φ Merja]
+
+	Resources:
+	Total Time:986, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:328, Merge-1:8, 
+
+	'EXPL admire.prs.1sg Merja.par'
+
+252.  EXPL lähtee 
+
+	[[expl N] [T lähte-]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): pro']
+	Predicates: ['T°: [expl N]', 'lähte-°: T']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[expl N] ~ 2, pro(T) ~ 2, Weight 1
+	[expl N] ~ 2, pro(T) ~ 6, Weight 1
+	[expl N] ~ 6, pro(T) ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [expl N]
+	Object 6 in GLOBAL: pro(T)
+
+	Resources:
+	Total Time:365, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:182, Merge-1:3, 
+
+	'EXPL leave.prs.3sg'
+
+253.  EXPL kohti Pariisia Seine virtaa 
+
+	[[expl N] [<kohti [D Pariisi]>:2 [<D Seine>:3 [T [<__>:3 [virtaa- __:2]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(flow): <D Seine>', 'Patient of P°(towards): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/[D Pariisi]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[expl N] ~ 2, [D Seine] ~ 4, [D Pariisi] ~ 8, Weight 1
+	[expl N] ~ 2, [D Seine] ~ 8, [D Pariisi] ~ 4, Weight 1
+	[expl N] ~ 4, [D Seine] ~ 2, [D Pariisi] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[kohti [D Pariisi]]', '<D Seine>'], 'Neutral gradient': ['[D Pariisi]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [expl N]
+	Object 4 in GLOBAL: [D Seine]
+	Object 8 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:2832, Garden Paths:10, Merge:32, Head Chain:46, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:17, Last Resort Extraposition:0, 
+	Mean time per word:566, Merge-1:164, 
+
+	'EXPL towards Paris.par Seine.nom flow.prs.3sg'
+
+254.  Pekka sanoi että EXPL tekee työtä 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [[expl N] [T [v [teke- [φ työ]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): pro', 'Patient of V°(make): [φ työ]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: <φ Pekka>', 'T°: [expl N]', 'v°: T', 'teke-°: pro/[φ työ]', 'φ°: teke-']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [expl N] ~ 2, pro(T) ~ 2, [φ työ] ~ 6, Weight 1
+	[φ Pekka] ~ 2, [expl N] ~ 2, pro(T) ~ 2, [φ työ] ~ 10, Weight 1
+	[φ Pekka] ~ 2, [expl N] ~ 2, pro(T) ~ 2, [φ työ] ~ 14, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[φ työ]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 6 in GLOBAL: [expl N]
+	Object 10 in GLOBAL: pro(T)
+	Object 14 in GLOBAL: [φ työ]
+
+	Resources:
+	Total Time:1764, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:6, Extraposition:4, Last Resort Extraposition:0, 
+	Mean time per word:294, Merge-1:58, 
+
+	'Pekka.nom say.prs.3sg that EXPL make.prs.3sg work.par'
+
+255.  it rains 
+
+	[[D it]:1 [T [__:1 rain]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(rain): [D it]']
+	Predicates: ['T°: [D it]', 'rain°: pro/[D it]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D it] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D it]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D it]
+
+	Resources:
+	Total Time:520, Garden Paths:0, Merge:3, Head Chain:2, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:260, Merge-1:4, 
+
+256.  EXPL was1 an accident 
+
+	[[expl N] [T [Aux [D accident]]]]
+
+	Semantics:
+	Thematic roles: ['Patient of V°(Aux): [D accident]']
+	Predicates: ['T°: [expl N]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[expl N] ~ 2, [D accident] ~ 2, Weight 1
+	[expl N] ~ 2, [D accident] ~ 4, Weight 1
+	[expl N] ~ 4, [D accident] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D accident]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [expl N]
+	Object 4 in GLOBAL: [D accident]
+
+	Resources:
+	Total Time:450, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:112, Merge-1:12, 
+
+257.  EXPL occurred an accident 
+
+	[[expl N] [T [occur [D accident]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(occur): pro']
+	Predicates: ['T°: [expl N]', 'occur°: [D accident]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[expl N] ~ 2, [D accident] ~ 2, Weight 1
+	[expl N] ~ 2, [D accident] ~ 4, Weight 1
+	[expl N] ~ 4, [D accident] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D accident]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [expl N]
+	Object 4 in GLOBAL: [D accident]
+
+	Resources:
+	Total Time:470, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:117, Merge-1:12, 
+
+258.  an accident occurred 
+
+	[[D accident]:1 [T [__:1 occur]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(occur): [D accident]']
+	Predicates: ['T°: [D accident]', 'occur°: [D accident]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D accident] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D accident]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D accident]
+
+	Resources:
+	Total Time:325, Garden Paths:0, Merge:3, Head Chain:1, Phrasal Chain:1, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:108, Merge-1:4, 
+
+& 5.2 Expletives at thematic positions
+
+& Ungrammatical
+
+259. *Pekka ihailee EXPL 
+
+	'Pekka.nom admire.prs.3sg EXPL'
+
+260. *Seine virtaa kohti EXPL 
+
+	'Seine.nom flow.prs.3sg towards EXPL'
+
+261. *Seine virtaa Pariisia kohti EXPL 
+
+	'Seine.nom flow.prs.3sg Paris.par towards EXPL'
+
+262. *kohti EXPL Seine virtaa 
+
+	'towards Paris-par Seine.nom flow.prs.3sg'
+
+263. *Seine virtaa lähellä[Φ] EXPL 
+
+	'Seine.nom flow.prs.3sg near EXPL'
+
+264. *lähellä[Φ] EXPL Seine virtaa 
+
+	'near EXPL Seine.nom flow.prs.3sg'
+
+265. *Pekka sanoi maalaavan#nsA EXPL 
+
+	'Pekka.nom say.prs.3sg paint.va/inf EXPL'
+
+266. *Pekka sanoi hänen maalaavan EXPL 
+
+	'Pekka.nom say.prs.3sg he.gen paint.va/inf EXPL'
+
+267. *Pekka lähti maalattua#An EXPL 
+
+	'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p EXPL'
+
+268. *Pekka halusi maalata EXPL 
+
+	'Pekka.nom want.pst.3sg paint.a/inf EXPL'
+
+269. *John admires EXPL 
+
+270. *Seine flows towards EXPL 
+
+271. *towards EXPL Seine flows 
+
+& 5.3 Expletives at nonlicensed second-merge positions
+
+& Ungrammatical
+
+272. *Pekka sanoi EXPL että Merja tekee työtä 
+
+	'Pekka.nom say.prs.3sg EXPL that Mereja.nom make.prs.3sg work.par'
+
+273. *Seine flows EXPL towards Paris 
+
+274. *Seine flows EXPL towards 
+
+275. *EXPL towards Seine flows 
+
+& 5.4 Expletives at nonfinite and nonthematic second-merge positions
+
+& Ungrammatical
+
+276. *Seine virtaa EXPL kohti Pariisia 
+
+	'Seine.nom flow.prs.3sg EXPL towards Paris.par'
+
+277. *EXPL kohti Seine virtaa 
+
+	'EXPL towards Seine.nom flow.prs.3sg'
+
+278. *Seine virtaa EXPL lähellä[Φ] 
+
+	'Seine.nom flow.prs.3sg EXPL near'
+
+279. *Seine virtaa EXPL lähellä[Φ]#An 
+
+	'Seine.nom flow.prs.3sg EXPL near'
+
+280. *EXPL lähellä[Φ] Seine virtaa 
+
+	'EXPL near Seine.nom flow.prs.3sg'
+
+281. *EXPL lähellä[Φ]#An Seine virtaa 
+
+	'EXPL near Seine.nom flow.prs.3sg'
+
+282. *Pekka sanoi EXPL lähtevän 
+
+	'Pekka.nom say.pst.3sg EXPL leave.va/inf'
+
+283. *Pekka sanoi EXPL lähtevän#nsA 
+
+	'Pekka.nom say.pst.3sg EXPL leave.va/inf.3p'
+
+284. *Pekka sanoi EXPL maalaavan#nsA 
+
+	'Pekka.nom say.prs.3sg EXPL paint.va/inf.3p'
+
+285. *Pekka sanoi EXPL maalaavan aitaa 
+
+	'Pekka.nom say.prs.3sg EXPL paint.va/inf fence.par'
+
+286. *Pekka laulaa EXPL lähtiessä 
+
+	'Pekka.nom sing.prs.3sg EXPL leave.essa/inf'
+
+287. *Pekka laulaa EXPL lähtiessä#An 
+
+	'Pekka.nom sing.prs.3sg EXPL leave.essa/inf.3p'
+
+288. *Pekka halusi EXPL maalata aitaa 
+
+	'Pekka.nom want.pst.3sg EXPL paint.a/inf fence.par'
+
+289. *Pekka käski EXPL maalata aitaa 
+
+	'Pekka.nom order.pst.3sg EXPL paint.a/inf fence.par'
+
+290. *Pekka halusi EXPL lähteä 
+
+	'Pekka.nom want.pst.3sg EXPLleave.a/inf'
+
+& 5.5 Expetives at postverbal positions
+
+& Ungrammatical
+
+291. *Pekka sanoi lähtevän EXPL 
+
+	'Pekka said leave.va/inf EXPL'
+
+292. *Pekka sanoi lähtevän#nsA EXPL 
+
+	'Pekka said leave.va/inf.3p EXPL'
+
+293. *Pekka sanoi aitaa maalaavan EXPL 
+
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf EXPL'
+
+294. *Pekka sanoi aitaa maalaavan#nsA EXPL 
+
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p EXPL'
+
+295. *Pekka laulaa lähtiessä EXPL 
+
+	'Pekka.nom sing.prs.3sg leave.essa/inf EXPL'
+
+296. *Pekka laulaa lähtiessä#An EXPL 
+
+	'Pekka sing.prs.3sg leave.essa/inf.3p EXPL'
+
+297. *Mary was admired EXPL 
+
+& 5.6 Expletives as superfluous argument elements
+
+298. *John admires Mary EXPL 
+
+299. *John admires EXPL Mary 
+
+300. *Pekka halusi EXPL lähteä 
+
+	'Pekka.nom want.prt.3sg EXPL leave.a/inf (OC-construction)'
+
+301. *Pekka halusi maalata aitaa EXPL 
+
+	'Pekka.nom want.pst.3sg paint.a/inf fence.par EXPL'
+
+& 5.7 Expletives and word order inversion
+
+& Ungrammatical
+
+302. *EXPL ihaile#n minä 
+
+	'EXPL admire.prs.1sg I.nom'
+
+303. *Merjaa ihaile#n EXPL 
+
+	'Merja.par admire.prs.1sg EXPL'
+
+& 5.8 Epletives as operators
+
+& Ungrammatical
+
+304. *EXPL#[kO] Pekka maalasi 
+
+	'expl.q Pekka.nom paint.pst.3sg'
+
+305. *lähellä EXPL#[kO] Seine virtaa 
+
+	'near EXPL.q Seine.nom flow.prs.3sg'
+
+306. *EXPL#[kO] lähellä Seine virtaa 
+
+	'EXPL.q near Seine.nom flow.prs.3sg'
+
+& 6. A-movement and successive-cyclic movement
+
+& 6.1 English passives
+
+& Grammatical
+
+307.  Mary was admired 
+
+	[[D Mary]:1 [T [__:1 [v* [__:1 admire]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(admire): [D Mary]']
+	Predicates: ['T°: [D Mary]', 'admire°: pro/[D Mary]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Mary] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D Mary]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Mary]
+
+	Resources:
+	Total Time:735, Garden Paths:0, Merge:4, Head Chain:2, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:245, Merge-1:7, 
+
+& 6.2 English raising constructions
+
+308.  John seems to_inf leave 
+
+	[[D John]:1 [T [__:1 [seem [__:1 [to [__:1 leave-]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(leave): [D John]']
+	Predicates: ['T°: [D John]', 'to°: pro/[D John]', 'leave-°: pro/[D John]']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D John] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D John]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+
+	Resources:
+	Total Time:686, Garden Paths:0, Merge:5, Head Chain:5, Phrasal Chain:8, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:171, Merge-1:20, 
+
+& 7. Topicalization, scrambling
+
+& 7.1 Topicalization in Finnish finite clause
+
+& Grammatical
+
+309.  aitaa maalaa Pekka 
+
+	[<φ aita>:1 [T [<__>:4 [v [<__>:1 [maalaa- <φ Pekka>:4]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ aita] ~ 4, Weight 1
+	Information structure: {'Marked topics': ['<φ aita>'], 'Neutral gradient': [], 'Marked focus': ['<φ Pekka>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1251, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:417, Merge-1:21, 
+
+	'fence.par paint.prs.3sg Pekka.nom'
+
+310.  Pekka sanoi että aitaa maalaa Merja 
+
+	[<φ Pekka>:1 [T [<__>:1 [sano- [että [<φ aita>:4 [T [<__>:6 [v [<__>:4 [maalaa- <φ Merja>:6]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Agent of V°(say): <φ Pekka>', 'Causer/Agent of v°(v): <φ Merja>', 'Agent of V°(paint): <φ aita>']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'sano-°: pro/<φ Merja>', 'T°: pro/<φ Merja>', 'φ°: T', 'v°: pro/<φ aita>', 'φ°: v', 'maalaa-°: pro/<φ aita>']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[φ Pekka] ~ 2, [φ Merja] ~ 4, [φ aita] ~ 6, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>', '<φ aita>'], 'Neutral gradient': [], 'Marked focus': ['<φ Merja>']}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [φ Merja]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:2172, Garden Paths:0, Merge:11, Head Chain:25, Phrasal Chain:0, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:12, Extraposition:7, Last Resort Extraposition:0, 
+	Mean time per word:362, Merge-1:90, 
+
+	'Pekka.nom say.prs.3sg that fence.par paint.prs.3sg Merja.nom'
+
+& 8. Finite C, Ā-head, with [d][wh]
+
+& 8.1 Standard interrogatives
+
+& Grammatical
+
+311.  what did John paint 
+
+	[[D what]:1 [C [[D John]:4 [does [__:4 [v [__:1 paint]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D John]', 'Patient of V°(paint): [D what]']
+	Predicates: ['does°: [D John]', 'v°: pro/[D what]', 'paint°: pro/[D what]']
+	DIS-features: [('DIS:WH', 'C')]
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D John] ~ 2, [D what] ~ 4, Weight 1
+	[D John] ~ 4, [D what] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D what]', '[D John]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D John]
+	Object 4 in GLOBAL: [D what]
+
+	Resources:
+	Total Time:957, Garden Paths:0, Merge:7, Head Chain:9, Phrasal Chain:5, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:239, Merge-1:27, 
+
+312.  who painted the fence 
+
+	[[D who]:1 [T [__:1 [v [paint [the fence]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D who]', 'Patient of V°(paint): [the fence]']
+	Predicates: ['T°: pro/[D who]', 'v°: [D who]', 'paint°: pro/[the fence]']
+	DIS-features: [('DIS:WH', 'T')]
+	Operator bindings: ['Operator T[OP:WH] bound by speaker.']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D who] ~ 2, [the fence] ~ 2, Weight 1
+	[D who] ~ 2, [the fence] ~ 6, Weight 1
+	[D who] ~ 6, [the fence] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D who]', '[the fence]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D who]
+	Object 6 in GLOBAL: [the fence]
+
+	Resources:
+	Total Time:640, Garden Paths:0, Merge:6, Head Chain:9, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:0, Last Resort Extraposition:0, 
+	Mean time per word:160, Merge-1:26, 
+
+313.  mitä Pekka maalasi 
+
+	[[D mikä]:1 [C [<φ Pekka>:2 [T [<__>:2 [v [__:1 maalaa-]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <φ Pekka>', 'Agent of V°(paint): [D mikä]']
+	Predicates: ['T°: pro/<φ Pekka>', 'φ°: T', 'v°: pro/[D mikä]', 'maalaa-°: pro/[D mikä]']
+	DIS-features: [('DIS:WH', 'C')]
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[φ Pekka] ~ 2, [D mikä] ~ 4, Weight 1
+	[φ Pekka] ~ 4, [D mikä] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<φ Pekka>'], 'Neutral gradient': ['[D mikä]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [φ Pekka]
+	Object 4 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:1262, Garden Paths:1, Merge:9, Head Chain:9, Phrasal Chain:5, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:1, Extraposition:2, Last Resort Extraposition:0, 
+	Mean time per word:420, Merge-1:41, 
+
+	'what.par Pekka.nom paint.pst.3sg'
+
+314.  kuka maalasi aitaa 
+
+	[[D kuka]:1 [T [__:1 [v [maalaa- [φ aita]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): [D kuka]', 'Patient of V°(paint): [φ aita]']
+	Predicates: ['T°: pro/[D kuka]', 'v°: [D kuka]', 'maalaa-°: pro/[φ aita]', 'φ°: maalaa-']
+	DIS-features: [('DIS:WH', 'T')]
+	Operator bindings: ['Operator T[OP:WH] bound by speaker.']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D kuka] ~ 2, [φ aita] ~ 6, Weight 1
+	[D kuka] ~ 6, [φ aita] ~ 2, Weight 1
+	Information structure: {'Marked topics': [], 'Neutral gradient': ['[D kuka]', '[φ aita]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D kuka]
+	Object 6 in GLOBAL: [φ aita]
+
+	Resources:
+	Total Time:1156, Garden Paths:0, Merge:6, Head Chain:6, Phrasal Chain:2, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:0, Extraposition:1, Last Resort Extraposition:0, 
+	Mean time per word:385, Merge-1:12, 
+
+	'who.nom paint.prs.3sg fence.par'
+
+& 8.2 Pied-piping, [wh] checking at first-merge and second-merge positions
+
+& 8.2.1 With partitive DP argument (without [Φ]-marking)
+
+& Grammatical
+
+315.  lähellä Pariisia#[kO] Seine virtaa 
+
+	[[lähellä [D Pariisi]]:1 [C [<D Seine>:2 [T [<__>:2 [__:1 virtaa-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Patient of P°(near): [D Pariisi]', '? of V°(flow): PP']
+	Predicates: ['T°: pro/<D Seine>', 'lähellä°: pro/[D Pariisi]', 'virtaa-°: [lähellä [D Pariisi]]']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 4, Weight 1
+	[D Seine] ~ 4, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[lähellä [D Pariisi]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 4 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:2657, Garden Paths:8, Merge:26, Head Chain:36, Phrasal Chain:6, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:12, Last Resort Extraposition:0, 
+	Mean time per word:664, Merge-1:101, 
+
+	'near Paris.par.q Seine.nom flow.prs.3sg'
+
+316.  Pariisia#[kO] lähellä Seine virtaa 
+
+	[[[D Pariisi]:1 [lähellä __:1]]:1 [C [<D Seine>:2 [T [<__>:2 [__:1 virtaa-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Patient of P°(near): [D Pariisi]', '? of V°(flow): PP']
+	Predicates: ['T°: pro/<D Seine>', 'lähellä°: pro/[D Pariisi]', 'virtaa-°: [[D Pariisi] [lähellä [D Pariisi]]]']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'lähellä'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator lähellä(OP:Q) bound by C(OP:Q)', 'Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 4, Weight 1
+	[D Seine] ~ 4, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[[D Pariisi] [lähellä [D Pariisi]]]', '<D Seine>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 4 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:1988, Garden Paths:4, Merge:16, Head Chain:17, Phrasal Chain:10, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:497, Merge-1:115, 
+
+	'Paris.par.q near Seine.nom flow.prs.3sg'
+
+317.  mitä lähellä Seine virtaa 
+
+	[[[D mikä]:1 [lähellä __:1]]:1 [C [<D Seine>:2 [T [<__>:2 [__:1 virtaa-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Patient of P°(near): [D mikä]', '? of V°(flow): PP']
+	Predicates: ['T°: pro/<D Seine>', 'lähellä°: pro/[D mikä]', 'virtaa-°: [[D mikä] [lähellä [D mikä]]]']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'lähellä')]
+	Operator bindings: ['Operator lähellä(OP:WH) bound by C(OP:WH)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D mikä] ~ 4, Weight 1
+	[D Seine] ~ 4, [D mikä] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['[[D mikä] [lähellä [D mikä]]]', '<D Seine>'], 'Neutral gradient': [], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 4 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:1648, Garden Paths:4, Merge:16, Head Chain:17, Phrasal Chain:10, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:5, Extraposition:3, Last Resort Extraposition:0, 
+	Mean time per word:412, Merge-1:115, 
+
+	'what.par near Seine.nom flow.prs.3sg'
+
+& Echo-question
+
+318.  lähellä mitä Seine virtaa 
+
+	[[lähellä [D mikä]]:1 [C [<D Seine>:2 [T [<__>:2 [__:1 virtaa-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Patient of P°(near): [D mikä]', '? of V°(flow): PP']
+	Predicates: ['T°: pro/<D Seine>', 'lähellä°: pro/[D mikä]', 'virtaa-°: [lähellä [D mikä]]']
+	DIS-features: [('DIS:WH', 'C')]
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D mikä] ~ 4, Weight 1
+	[D Seine] ~ 4, [D mikä] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[lähellä [D mikä]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 4 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:2317, Garden Paths:8, Merge:26, Head Chain:36, Phrasal Chain:6, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:3, Extraposition:12, Last Resort Extraposition:0, 
+	Mean time per word:579, Merge-1:101, 
+
+	'near what.par Seine.nom flow.prs.3sg'
+
+& 8.2.2 With genitive DP argument (with [d]-marking)
+
+& Ungrammatical
+
+319. *lähellä Pariisin#[kO] Seine virtaa 
+
+	'near Paris.gen.q Seine.nom flow.prs.3sg'
+
+320. *lähellä minkä Seine virtaa 
+
+	'near what.gen Seine.nom flow.prs.3sg'
+
+& Grammatical
+
+321.  Pariisin#[kO] lähellä Seine virtaa 
+
+	[[[D Pariisi]:1 [lähellä __:1]]:1 [C [<D Seine>:2 [T [<__>:2 [__:1 virtaa-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Patient of P°(near): [D Pariisi]', '? of V°(flow): PP']
+	Predicates: ['T°: pro/<D Seine>', 'lähellä°: pro/[D Pariisi]', 'virtaa-°: [[D Pariisi] [lähellä [D Pariisi]]]']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'lähellä'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator lähellä(OP:Q) bound by C(OP:Q)', 'Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 4, Weight 1
+	[D Seine] ~ 4, [D Pariisi] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[[D Pariisi] [lähellä [D Pariisi]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 4 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:4322, Garden Paths:14, Merge:44, Head Chain:54, Phrasal Chain:27, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:9, Extraposition:17, Last Resort Extraposition:0, 
+	Mean time per word:1080, Merge-1:295, 
+
+	'Paris.gen.q near Seine.nom flow.prs.3sg'
+
+322.  minkä lähellä Seine virtaa 
+
+	[[[D mikä]:1 [lähellä __:1]]:1 [C [<D Seine>:2 [T [<__>:2 [__:1 virtaa-]]]]]]
+
+	Semantics:
+	Thematic roles: ['Patient of P°(near): [D mikä]', '? of V°(flow): PP']
+	Predicates: ['T°: pro/<D Seine>', 'lähellä°: [D mikä]', 'virtaa-°: [[D mikä] [lähellä [D mikä]]]']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'lähellä')]
+	Operator bindings: ['Operator lähellä(OP:WH) bound by C(OP:WH)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D mikä] ~ 4, Weight 1
+	[D Seine] ~ 4, [D mikä] ~ 2, Weight 1
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[[D mikä] [lähellä [D mikä]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 4 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:4503, Garden Paths:17, Merge:52, Head Chain:64, Phrasal Chain:29, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:10, Extraposition:23, Last Resort Extraposition:0, 
+	Mean time per word:1125, Merge-1:347, 
+
+	'what.gen near Seine.nom flow.prs.3sg'
+
+& 8.2.3 Iterative snowballing
+
+& Grammatical, echo-wh-interrogatives
+
+323.  Seine saavuttaa meren virtaamalla kohti mitä 
+
+	[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <-mAllA [virtaa- [kohti [D mikä]]]>]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Patient of V°(reach): [φ meri]', 'Agent of V°(flow): pro', 'Patient of P°(towards): [D mikä]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', 'saavutta-°: pro/[φ meri]', 'φ°: saavutta-', '-mAllA°: [φ meri]', 'virtaa-°: [φ meri]', 'kohti°: pro/[D mikä]']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [φ meri] ~ 6, [D mikä] ~ 12, Weight 1
+	[D Seine] ~ 2, [φ meri] ~ 12, [D mikä] ~ 6, Weight 1
+	[D Seine] ~ 6, [φ meri] ~ 2, [D mikä] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[[φ meri] <-mAllA [virtaa- [kohti [D mikä]]]>]', '[kohti [D mikä]]', '[D mikä]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [φ meri]
+	Object 12 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:2045, Garden Paths:0, Merge:11, Head Chain:42, Phrasal Chain:3, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:7, Extraposition:10, Last Resort Extraposition:0, 
+	Mean time per word:340, Merge-1:150, 
+
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards what.par'
+
+324.  Seine saavuttaa meren virtaamalla mitä kohti 
+
+	[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ meri] <-mAllA [virtaa- [[<__>:2 <D mikä>:2] kohti]]>]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Patient of V°(reach): [φ meri]', 'Agent of V°(flow): pro']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', 'saavutta-°: pro/[φ meri]', 'φ°: saavutta-', '-mAllA°: [φ meri]', 'virtaa-°: pro/[<D mikä> <D mikä>]', 'kohti°: pro/<D mikä>']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'kohti')]
+	Operator bindings: ['Operator kohti(OP:WH) bound by T by default. ']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [φ meri] ~ 6, [D mikä] ~ 10, Weight 1
+	[D Seine] ~ 2, [φ meri] ~ 10, [D mikä] ~ 6, Weight 1
+	[D Seine] ~ 6, [φ meri] ~ 2, [D mikä] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[[φ meri] <-mAllA [virtaa- [[<D mikä> <D mikä>] kohti]]>]', '[<D mikä> <D mikä>]', '[[<D mikä> <D mikä>] kohti]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [φ meri]
+	Object 10 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:2145, Garden Paths:0, Merge:11, Head Chain:54, Phrasal Chain:4, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:8, Extraposition:15, Last Resort Extraposition:0, 
+	Mean time per word:357, Merge-1:180, 
+
+	'Seine reaches ocean.acc flow.ma/inf [what.par towards __]'
+
+325.  Seine saavuttaa meren kohti mitä virtaamalla 
+
+	[<D Seine>:1 [T [<__>:1 [v [saavutta- [[φ [meri <kohti [D mikä]>]] <-mAllA virtaa->]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Patient of V°(reach): [φ [meri <kohti [D mikä]>]]', 'Patient of P°(towards): [D mikä]', 'Agent of V°(flow): pro']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', 'saavutta-°: pro/[φ [meri <kohti [D mikä]>]]', 'φ°: saavutta-', 'kohti°: pro/[D mikä]', '-mAllA°: [φ [meri <kohti [D mikä]>]]', 'virtaa-°: [φ [meri <kohti [D mikä]>]]']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded', 'Aspectually bounded']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [φ [meri <kohti [D mikä]>]] ~ 6, [D mikä] ~ 8, Weight 1
+	[D Seine] ~ 2, [φ [meri <kohti [D mikä]>]] ~ 8, [D mikä] ~ 6, Weight 1
+	[D Seine] ~ 6, [φ [meri <kohti [D mikä]>]] ~ 2, [D mikä] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>', '<kohti [D mikä]>'], 'Neutral gradient': ['[[φ [meri <kohti [D mikä]>]] <-mAllA virtaa->]', '[D mikä]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [φ [meri <kohti [D mikä]>]]
+	Object 8 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:4491, Garden Paths:13, Merge:42, Head Chain:116, Phrasal Chain:11, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:30, Extraposition:21, Last Resort Extraposition:0, 
+	Mean time per word:748, Merge-1:530, 
+
+	'Seine.nom reach.psr.3sg ocean.acc [towards what.par] flow.ma/inf __'
+
+326.  Seine saavuttaa meren mitä kohti virtaamalla 
+
+	[<D Seine>:1 [T [<__>:1 [v [saavutta- [[[φ meri] <[D mikä]:2 [kohti __:2]>] <-mAllA virtaa->]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Patient of V°(reach): [φ meri]', 'Patient of P°(towards): [D mikä]', 'Agent of V°(flow): pro']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', 'saavutta-°: pro/[[φ meri] <[D mikä] [kohti [D mikä]]>]', 'φ°: saavutta-', 'kohti°: pro/[D mikä]', '-mAllA°: [[φ meri] <[D mikä] [kohti [D mikä]]>]', 'virtaa-°: [[φ meri] <[D mikä] [kohti [D mikä]]>]']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'kohti')]
+	Operator bindings: ['Operator kohti(OP:WH) bound by T by default. ']
+	Speaker attitude: ['Declarative']
+	Assignments: 
+	[D Seine] ~ 2, [φ meri] ~ 6, [D mikä] ~ 8, Weight 1
+	[D Seine] ~ 2, [φ meri] ~ 8, [D mikä] ~ 6, Weight 1
+	[D Seine] ~ 6, [φ meri] ~ 2, [D mikä] ~ 8, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>', '[[[φ meri] <[D mikä] [kohti [D mikä]]>] <-mAllA virtaa->]'], 'Neutral gradient': ['[D mikä]', '<[D mikä] [kohti [D mikä]]>'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 6 in GLOBAL: [φ meri]
+	Object 8 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:2222, Garden Paths:1, Merge:13, Head Chain:45, Phrasal Chain:11, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:13, Extraposition:12, Last Resort Extraposition:0, 
+	Mean time per word:370, Merge-1:302, 
+
+	'Seine.nom reach.prs.3sg ocean.acc [what.par towards __] flow.ma/inf __'
+
+327.  virtaamalla kohti mitä Seine saavuttaa meren 
+
+	[[-mAllA [virtaa- [kohti [D mikä]]]]:1 [C [<D Seine>:3 [T [<__>:3 [v [__:1 [saavutta- [φ meri]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of P°(towards): [D mikä]', 'Patient of V°(reach): [φ meri]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/[D mikä]', 'saavutta-°: pro/[φ meri]', 'φ°: saavutta-']
+	Aspect: ['Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C')]
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D mikä] ~ 10, [φ meri] ~ 10, Weight 1
+	[D Seine] ~ 2, [D mikä] ~ 10, [φ meri] ~ 12, Weight 1
+	[D Seine] ~ 2, [D mikä] ~ 12, [φ meri] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[φ meri]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [D mikä]
+	Object 12 in GLOBAL: [φ meri]
+
+	Resources:
+	Total Time:15844, Garden Paths:48, Merge:155, Head Chain:304, Phrasal Chain:59, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:30, Extraposition:214, Last Resort Extraposition:0, 
+	Mean time per word:2640, Merge-1:1197, 
+
+	'[flow.ma/inf towards what.par] Seine.nom reach.prs.3sg ocean.acc __'
+
+328.  virtaamalla mitä kohti Seine saavuttaa meren 
+
+	[[-mAllA [virtaa- [[D mikä]:1 [kohti __:1]]]]:1 [C [<D Seine>:2 [T [<__>:2 [v [__:1 [saavutta- [φ meri]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of P°(towards): [D mikä]', 'Patient of V°(reach): [φ meri]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/[D mikä]', 'saavutta-°: pro/[φ meri]', 'φ°: saavutta-']
+	Aspect: ['Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'kohti')]
+	Operator bindings: ['Operator kohti(OP:WH) bound by C(OP:WH)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D mikä] ~ 10, [φ meri] ~ 10, Weight 1
+	[D Seine] ~ 2, [D mikä] ~ 10, [φ meri] ~ 12, Weight 1
+	[D Seine] ~ 2, [D mikä] ~ 12, [φ meri] ~ 10, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[φ meri]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [D mikä]
+	Object 12 in GLOBAL: [φ meri]
+
+	Resources:
+	Total Time:9522, Garden Paths:23, Merge:85, Head Chain:159, Phrasal Chain:38, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:24, Extraposition:112, Last Resort Extraposition:0, 
+	Mean time per word:1587, Merge-1:744, 
+
+	'[flow.ma/inf [what.par towards __]] Seine.nom reach.prs.3sg ocean.acc __'
+
+329.  kohti mitä virtaamalla Seine saavuttaa meren 
+
+	[[kohti [D mikä]]:1 [C [[-mAllA virtaa-]:2 [<D Seine>:3 [T [<__>:3 [v [__:2 [saavutta- [φ [meri __:1]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of V°(reach): [φ [meri [kohti [D mikä]]]]', 'Patient of P°(towards): [D mikä]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'saavutta-°: pro/[φ [meri [kohti [D mikä]]]]', 'φ°: saavutta-', 'kohti°: pro/[D mikä]']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C')]
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [φ [meri [kohti [D mikä]]]] ~ 10, [D mikä] ~ 12, Weight 1
+	[D Seine] ~ 2, [φ [meri [kohti [D mikä]]]] ~ 12, [D mikä] ~ 10, Weight 1
+	[D Seine] ~ 10, [φ [meri [kohti [D mikä]]]] ~ 2, [D mikä] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[kohti [D mikä]]', '[D mikä]', '<D Seine>'], 'Neutral gradient': ['[φ [meri [kohti [D mikä]]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [φ [meri [kohti [D mikä]]]]
+	Object 12 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:31802, Garden Paths:91, Merge:303, Head Chain:578, Phrasal Chain:149, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:66, Extraposition:417, Last Resort Extraposition:0, 
+	Mean time per word:5300, Merge-1:3042, 
+
+	'[[towards what.par] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
+
+& Grammatical, regular interrogative
+
+330.  mitä_DP kohti virtaamalla Seine saavuttaa meren 
+
+	[[[D mikä]:2 [kohti __:2]]:1 [C [[-mAllA virtaa-]:2 [<D Seine>:3 [T [<__>:3 [v [__:2 [saavutta- [φ [meri __:1]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of V°(reach): [φ [meri [[D mikä] [kohti [D mikä]]]]]', 'Patient of P°(towards): [D mikä]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'saavutta-°: pro/[φ [meri [[D mikä] [kohti [D mikä]]]]]', 'φ°: saavutta-', 'kohti°: pro/[D mikä]']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'kohti')]
+	Operator bindings: ['Operator kohti(OP:WH) bound by C(OP:WH)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [φ [meri [[D mikä] [kohti [D mikä]]]]] ~ 10, [D mikä] ~ 12, Weight 1
+	[D Seine] ~ 2, [φ [meri [[D mikä] [kohti [D mikä]]]]] ~ 12, [D mikä] ~ 10, Weight 1
+	[D Seine] ~ 10, [φ [meri [[D mikä] [kohti [D mikä]]]]] ~ 2, [D mikä] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[[D mikä] [kohti [D mikä]]]', '<D Seine>'], 'Neutral gradient': ['[D mikä]', '[φ [meri [[D mikä] [kohti [D mikä]]]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [φ [meri [[D mikä] [kohti [D mikä]]]]]
+	Object 12 in GLOBAL: [D mikä]
+
+	Resources:
+	Total Time:4652, Garden Paths:7, Merge:36, Head Chain:71, Phrasal Chain:19, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:12, Extraposition:27, Last Resort Extraposition:0, 
+	Mean time per word:775, Merge-1:335, 
+
+	'[[what.par towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
+
+& Ungrammatical, in situ yes/no operator constructions
+
+331. *Seine saavuttaa meren virtaamalla kohti Pariisia#[kO] 
+
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards Paris.par.Q'
+
+332. *Seine saavuttaa meren virtaamalla Pariisia#[kO] kohti 
+
+	'Seine reaches ocean.acc flow.ma/inf [Paris.par.Q towards __]'
+
+333. *Seine saavuttaa meren kohti Pariisia#[kO] virtaamalla 
+
+	'Seine.nom reach.psr.3sg ocean.acc [towards Paris.par.Q] flow.ma/inf __'
+
+334. *Seine saavuttaa meren Pariisia#[kO] kohti virtaamalla 
+
+	'Seine.nom reach.prs.3sg ocean.acc [Paris.par.Q towards __] flow.ma/inf __'
+
+335. *Seine saavuttaa meren virtaamalla lähellä Pariisin#[kO] 
+
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf near Paris.gen.Q'
+
+336. *Seine saavuttaa meren virtaamalla Pariisin#[kO] lähellä 
+
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf [Paris.gen.Q near __]'
+
+337. *Seine saavuttaa meren lähellä Pariisin#[kO] virtaamalla 
+
+	'Seine.nom reach.prs.3sg ocean.acc [[near Paris.gen.Q] flow.ma/inf __]'
+
+338. *Seine saavuttaa meren Pariisin#[kO] lähellä virtaamalla 
+
+	'Seine.nom reach.prs.3sg ocean.acc [[Paris.gen.Q near __] flow.ma/inf __]'
+
+339. *virtaamalla lähellä Pariisin#[kO] Seine saavuttaa meren 
+
+	'[flow.ma/inf near Paris.gen.Q] Seine.nom reach.prs.3sg ocean.acc __'
+
+& Grammatical, yes/no operator in the scriterial scope position, with or without snowballing
+
+340.  virtaamalla kohti Pariisia#[kO] Seine saavuttaa meren 
+
+	[[-mAllA [virtaa- [kohti [D Pariisi]]]]:1 [C [<D Seine>:3 [T [<__>:3 [v [__:1 [saavutta- [φ meri]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of P°(towards): [D Pariisi]', 'Patient of V°(reach): [φ meri]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/[D Pariisi]', 'saavutta-°: pro/[φ meri]', 'φ°: saavutta-']
+	Aspect: ['Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 10, [φ meri] ~ 12, Weight 1
+	[D Seine] ~ 10, [D Pariisi] ~ 2, [φ meri] ~ 2, Weight 1
+	[D Seine] ~ 10, [D Pariisi] ~ 2, [φ meri] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[φ meri]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [D Pariisi]
+	Object 12 in GLOBAL: [φ meri]
+
+	Resources:
+	Total Time:16184, Garden Paths:48, Merge:155, Head Chain:304, Phrasal Chain:59, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:30, Extraposition:214, Last Resort Extraposition:0, 
+	Mean time per word:2697, Merge-1:1197, 
+
+	'[flow.ma/inf towards Paris.par.Q] Seine.nom reach.prs.3sg ocean.acc __?'
+
+341.  virtaamalla Pariisia#[kO] kohti Seine saavuttaa meren 
+
+	[[-mAllA [virtaa- [[D Pariisi]:1 [kohti __:1]]]]:1 [C [<D Seine>:2 [T [<__>:2 [v [__:1 [saavutta- [φ meri]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of P°(towards): [D Pariisi]', 'Patient of V°(reach): [φ meri]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'kohti°: pro/[D Pariisi]', 'saavutta-°: pro/[φ meri]', 'φ°: saavutta-']
+	Aspect: ['Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'kohti'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator kohti(OP:Q) bound by C(OP:Q)', 'Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 10, [φ meri] ~ 12, Weight 1
+	[D Seine] ~ 10, [D Pariisi] ~ 2, [φ meri] ~ 2, Weight 1
+	[D Seine] ~ 10, [D Pariisi] ~ 2, [φ meri] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[φ meri]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [D Pariisi]
+	Object 12 in GLOBAL: [φ meri]
+
+	Resources:
+	Total Time:9862, Garden Paths:23, Merge:85, Head Chain:159, Phrasal Chain:38, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:24, Extraposition:112, Last Resort Extraposition:0, 
+	Mean time per word:1643, Merge-1:744, 
+
+	'[flow.ma/inf [Paris.par.Q towards __]] Seine.nom reach.prs.3sg ocean.acc __?'
+
+342.  kohti Pariisia#[kO] virtaamalla Seine saavuttaa meren 
+
+	[[kohti [D Pariisi]]:1 [C [[-mAllA virtaa-]:2 [<D Seine>:3 [T [<__>:3 [v [__:2 [saavutta- [φ [meri __:1]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of V°(reach): [φ [meri [kohti [D Pariisi]]]]', 'Patient of P°(towards): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'saavutta-°: pro/[φ [meri [kohti [D Pariisi]]]]', 'φ°: saavutta-', 'kohti°: pro/[D Pariisi]']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [φ [meri [kohti [D Pariisi]]]] ~ 10, [D Pariisi] ~ 12, Weight 1
+	[D Seine] ~ 10, [φ [meri [kohti [D Pariisi]]]] ~ 2, [D Pariisi] ~ 12, Weight 1
+	[D Seine] ~ 12, [φ [meri [kohti [D Pariisi]]]] ~ 10, [D Pariisi] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[kohti [D Pariisi]]', '[D Pariisi]', '<D Seine>'], 'Neutral gradient': ['[φ [meri [kohti [D Pariisi]]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [φ [meri [kohti [D Pariisi]]]]
+	Object 12 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:32142, Garden Paths:91, Merge:303, Head Chain:578, Phrasal Chain:149, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:66, Extraposition:417, Last Resort Extraposition:0, 
+	Mean time per word:5357, Merge-1:3042, 
+
+	'[[towards Paris.par.Q] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
+
+343.  Pariisia#[kO] kohti virtaamalla Seine saavuttaa meren 
+
+	[[[D Pariisi]:2 [kohti __:2]]:1 [C [[-mAllA virtaa-]:2 [<D Seine>:3 [T [<__>:3 [v [__:2 [saavutta- [φ [meri __:1]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of V°(reach): [φ [meri [[D Pariisi] [kohti [D Pariisi]]]]]', 'Patient of P°(towards): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'saavutta-°: pro/[φ [meri [[D Pariisi] [kohti [D Pariisi]]]]]', 'φ°: saavutta-', 'kohti°: pro/[D Pariisi]']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'kohti'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator kohti(OP:Q) bound by C(OP:Q)', 'Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [φ [meri [[D Pariisi] [kohti [D Pariisi]]]]] ~ 10, [D Pariisi] ~ 12, Weight 1
+	[D Seine] ~ 10, [φ [meri [[D Pariisi] [kohti [D Pariisi]]]]] ~ 2, [D Pariisi] ~ 12, Weight 1
+	[D Seine] ~ 12, [φ [meri [[D Pariisi] [kohti [D Pariisi]]]]] ~ 10, [D Pariisi] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[[D Pariisi] [kohti [D Pariisi]]]', '<D Seine>'], 'Neutral gradient': ['[D Pariisi]', '[φ [meri [[D Pariisi] [kohti [D Pariisi]]]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [φ [meri [[D Pariisi] [kohti [D Pariisi]]]]]
+	Object 12 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:4962, Garden Paths:7, Merge:36, Head Chain:71, Phrasal Chain:19, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:12, Extraposition:27, Last Resort Extraposition:0, 
+	Mean time per word:827, Merge-1:335, 
+
+	'[[Paris.par.Q towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
+
+344.  virtaamalla Pariisin#[kO] lähellä Seine saavuttaa meren 
+
+	[[[-mAllA virtaa-] <[D Pariisi]:1 [lähellä __:1]>]:1 [C [<D Seine>:2 [T [<__>:2 [v [__:1 [saavutta- [φ meri]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of P°(near): [D Pariisi]', 'Patient of V°(reach): [φ meri]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'lähellä°: pro/[D Pariisi]', 'saavutta-°: pro/[φ meri]', 'φ°: saavutta-']
+	Aspect: ['Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'lähellä'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator lähellä(OP:Q) bound by C(OP:Q)', 'Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [D Pariisi] ~ 10, [φ meri] ~ 12, Weight 1
+	[D Seine] ~ 10, [D Pariisi] ~ 2, [φ meri] ~ 2, Weight 1
+	[D Seine] ~ 10, [D Pariisi] ~ 2, [φ meri] ~ 12, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['<D Seine>'], 'Neutral gradient': ['[φ meri]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [D Pariisi]
+	Object 12 in GLOBAL: [φ meri]
+
+	Resources:
+	Total Time:74142, Garden Paths:209, Merge:696, Head Chain:1213, Phrasal Chain:322, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:153, Extraposition:1087, Last Resort Extraposition:0, 
+	Mean time per word:12357, Merge-1:5828, 
+
+	'[flow.ma/inf [Paris.gen.Q near __]] Seine.nom reach.prs.3sg ocean.acc __'
+
+345.  Pariisin#[kO] lähellä virtaamalla Seine saavuttaa meren 
+
+	[[[D Pariisi]:2 [lähellä __:2]]:1 [C [[-mAllA virtaa-]:2 [<D Seine>:3 [T [<__>:3 [v [__:2 [saavutta- [φ [meri __:1]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of V°(reach): [φ [meri [[D Pariisi] [lähellä [D Pariisi]]]]]', 'Patient of P°(near): [D Pariisi]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'saavutta-°: pro/[φ [meri [[D Pariisi] [lähellä [D Pariisi]]]]]', 'φ°: saavutta-', 'lähellä°: pro/[D Pariisi]']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'lähellä'), ('DIS:WH', 'D')]
+	Operator bindings: ['Operator lähellä(OP:Q) bound by C(OP:Q)', 'Operator D(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [φ [meri [[D Pariisi] [lähellä [D Pariisi]]]]] ~ 10, [D Pariisi] ~ 12, Weight 1
+	[D Seine] ~ 10, [φ [meri [[D Pariisi] [lähellä [D Pariisi]]]]] ~ 2, [D Pariisi] ~ 12, Weight 1
+	[D Seine] ~ 12, [φ [meri [[D Pariisi] [lähellä [D Pariisi]]]]] ~ 10, [D Pariisi] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[D Pariisi]', '[[D Pariisi] [lähellä [D Pariisi]]]', '<D Seine>'], 'Neutral gradient': ['[φ [meri [[D Pariisi] [lähellä [D Pariisi]]]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [φ [meri [[D Pariisi] [lähellä [D Pariisi]]]]]
+	Object 12 in GLOBAL: [D Pariisi]
+
+	Resources:
+	Total Time:41771, Garden Paths:114, Merge:389, Head Chain:733, Phrasal Chain:189, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:102, Extraposition:481, Last Resort Extraposition:0, 
+	Mean time per word:6961, Merge-1:3568, 
+
+	'[[Paris.gen.Q near __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
+
+346.  ali sillan#[kO] virtaamalla Seine saavuttaa meren 
+
+	[[ali [φ silta]]:1 [C [[-mAllA virtaa-]:2 [<D Seine>:3 [T [<__>:3 [v [__:2 [saavutta- [φ [meri __:1]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of V°(reach): [φ [meri [ali [φ silta]]]]', 'Patient of P°(under): [φ silta]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'saavutta-°: pro/[φ [meri [ali [φ silta]]]]', 'φ°: saavutta-', 'ali°: pro/[φ silta]', 'φ°: ali']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'φ')]
+	Operator bindings: ['Operator φ(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [φ [meri [ali [φ silta]]]] ~ 10, [φ silta] ~ 12, Weight 1
+	[D Seine] ~ 10, [φ [meri [ali [φ silta]]]] ~ 2, [φ silta] ~ 12, Weight 1
+	[D Seine] ~ 12, [φ [meri [ali [φ silta]]]] ~ 10, [φ silta] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[ali [φ silta]]', '[φ silta]', '<D Seine>'], 'Neutral gradient': ['[φ [meri [ali [φ silta]]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [φ [meri [ali [φ silta]]]]
+	Object 12 in GLOBAL: [φ silta]
+
+	Resources:
+	Total Time:32245, Garden Paths:94, Merge:309, Head Chain:594, Phrasal Chain:143, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:81, Extraposition:395, Last Resort Extraposition:0, 
+	Mean time per word:5374, Merge-1:3003, 
+
+	'under bridge.gen.Q Seine.nom reach.prs.3sg ocean.acc flow.ma/inf'
+
+347.  sillan#[kO] ali virtaamalla Seine saavuttaa meren 
+
+	[[[φ silta]:2 [ali __:2]]:1 [C [[-mAllA virtaa-]:2 [<D Seine>:3 [T [<__>:3 [v [__:2 [saavutta- [φ [meri __:1]]]]]]]]]]]
+
+	Semantics:
+	Thematic roles: ['Causer/Agent of v°(v): <D Seine>', 'Agent of V°(flow): pro', 'Patient of V°(reach): [φ [meri [[φ silta] [ali [φ silta]]]]]', 'Patient of P°(under): [φ silta]']
+	Predicates: ['T°: pro/<D Seine>', 'v°: <D Seine>', '-mAllA°: <D Seine>', 'virtaa-°: <D Seine>', 'saavutta-°: pro/[φ [meri [[φ silta] [ali [φ silta]]]]]', 'φ°: saavutta-', 'ali°: pro/[φ silta]', 'φ°: ali']
+	Aspect: ['Aspectually bounded', 'Aspectually bounded']
+	DIS-features: [('DIS:WH', 'C'), ('DIS:WH', 'ali'), ('DIS:WH', 'φ')]
+	Operator bindings: ['Operator ali(OP:Q) bound by C(OP:Q)', 'Operator φ(OP:Q) bound by C(OP:Q)']
+	Speaker attitude: ['Interrogative']
+	Assignments: 
+	[D Seine] ~ 2, [φ [meri [[φ silta] [ali [φ silta]]]]] ~ 10, [φ silta] ~ 12, Weight 1
+	[D Seine] ~ 10, [φ [meri [[φ silta] [ali [φ silta]]]]] ~ 2, [φ silta] ~ 12, Weight 1
+	[D Seine] ~ 12, [φ [meri [[φ silta] [ali [φ silta]]]]] ~ 10, [φ silta] ~ 2, Weight 1
+	 (...)
+	Information structure: {'Marked topics': ['[[φ silta] [ali [φ silta]]]', '<D Seine>'], 'Neutral gradient': ['[φ silta]', '[φ [meri [[φ silta] [ali [φ silta]]]]]'], 'Marked focus': []}
+
+	Discourse inventory: 
+	Object 2 in GLOBAL: [D Seine]
+	Object 10 in GLOBAL: [φ [meri [[φ silta] [ali [φ silta]]]]]
+	Object 12 in GLOBAL: [φ silta]
+
+	Resources:
+	Total Time:4892, Garden Paths:7, Merge:36, Head Chain:71, Phrasal Chain:19, Feature Chain:0, 
+	Agree:0, Feature:0, Scrambling Chain:12, Extraposition:27, Last Resort Extraposition:0, 
+	Mean time per word:815, Merge-1:335, 
+
+	'[brige.gen.Q under __] Seine.nom reach.prs.3sg ocean.acc flow.ma/inf'
+

@@ -53,7 +53,8 @@ class LF:
 
     def selection_test(self, probe):
         for selected_feature in sorted(for_lf_interface(probe.features)):
-            if selected_feature[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[selected_feature[:5]](probe, selected_feature[6:]):
+            if selected_feature[:5] in self.selection_violation_test.keys() and \
+                    not self.selection_violation_test[selected_feature[:5]](probe, selected_feature[6:]):
                 log(f'\n\t\t{probe} failed feature {selected_feature} ')
                 return True
 

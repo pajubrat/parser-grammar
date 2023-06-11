@@ -54,6 +54,29 @@ class PhraseStructure:
     def has_affix(self):
         return self.right and not self.left
 
+    def get_affix_list(x):
+        lst = [x]
+        while x.right and not x.left:
+            lst.append(x.right)
+            x = x.right
+        return lst
+
+    def bottom(x):
+        return list(x.minimal_search())[-1]
+
+    def top(x):
+        while x.mother:
+            x = x.mother
+        return x
+
+    def grandmother(self):
+        if self.mother.mother:
+            return self.mother.mother
+
+    def aunt(self):
+        if self.mother:
+            return self.mother.sister()
+
     def head(self):
         if self.primitive():
             return self
@@ -116,33 +139,10 @@ class PhraseStructure:
         if self.sister() and not self.sister().proper_selected_complement():
             return self.sister()
 
-    def bottom(x):
-        return list(x.minimal_search())[-1]
-
-    def top(x):
-        while x.mother:
-            x = x.mother
-        return x
-
     def specifier_sister(self):
         if self.is_left():
             return self.mother
         return self
-
-    def grandmother(self):
-        if self.mother.mother:
-            return self.mother.mother
-
-    def aunt(self):
-        if self.mother:
-            return self.mother.sister()
-
-    def get_affix_list(x):
-        lst = [x]
-        while x.right and not x.left:
-            lst.append(x.right)
-            x = x.right
-        return lst
 
     def extract_affix(self):
         affix = self.right
@@ -285,7 +285,9 @@ class PhraseStructure:
     def selection__phonological_AGREE(self, selected_feature):
         if not self.theta_assigner() and not self.check({'!SELF:ΦPF'}):
             # -ΦPF -> -EFφ
-            return not self.next(self.pro_edge, lambda x: x.referential() and not x.check({'pro_'}) and (not x.get_tail_sets() or x.extended_subject()))
+            return not self.next(self.pro_edge, lambda x: x.referential() and
+                                                          not x.check({'pro_'}) and
+                                                          (not x.get_tail_sets() or x.extended_subject()))
         return True
 
     def specifier_match(self, phrase):
@@ -347,18 +349,21 @@ class PhraseStructure:
                     self == next((const for const in self.max().container().edge()), None))
 
     def projection_principle_failure(self):
-        return self.max().projection_principle_applies() and not self.max().container_assigns_theta_role()
+        return self.max().projection_principle_applies() and \
+               not self.max().container_assigns_theta_role()
 
     def projection_principle_applies(self):
-        return self.referential() and self.max() and not self.max().find_me_elsewhere and self.max().mother and not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
+        return self.referential() and \
+               self.max() and \
+               not self.max().find_me_elsewhere and \
+               self.max().mother and \
+               not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
     def container_assigns_theta_role(self):
         assigner = self.max().container()
-        if assigner:
-            if assigner.sister() == self or (self.referential() and assigner.geometrical_sister() == self):
-                return True
-            if self.is_licensed_specifier() and assigner.specifier_theta_role_assigner():
-                return True
+        return assigner and \
+               (assigner.sister() == self or (self.referential() and assigner.geometrical_sister() == self) or
+                self.is_licensed_specifier() and assigner.specifier_theta_role_assigner())
 
     def specifier_theta_role_assigner(self):
         if self.EF():
@@ -376,7 +381,7 @@ class PhraseStructure:
     def create_chain(self, transfer, inst):
         for target in self.select_objects_from_edge(inst):
             if self.EF() or target.primitive():
-                if not (target.expletive() and self.license_expletive()):               # Licensed expletives are not reconstructed
+                if not (target.expletive() and self.license_expletive()):
                     inst, target = self.prepare_chain(target, inst, transfer)
                     self.form_chain(target, inst)
                     transfer.brain_model.consume_resources(inst['type'], self)
@@ -488,7 +493,9 @@ class PhraseStructure:
     def Agree(self):
         goal = self
         if self.sister():
-            goal = next(self.sister().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or x.phase_head(), lambda x: not x.phase_head()), self)
+            goal = next(self.sister().minimal_search(lambda x: (x.head().referential() and
+                                                                not x.find_me_elsewhere) or
+                                                               x.phase_head(), lambda x: not x.phase_head()), self)
         self.value_features(goal)
 
     def value_features(self, goal):
@@ -523,10 +530,10 @@ class PhraseStructure:
         return next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
 
     def value_feature(self, phi, unvalued_counterparty, goal):
-        if not self.feature_licensing(phi):         # If the same type already exists, we must have also matching value
+        if not self.feature_licensing(phi):
             self.features.add('*')
             log(f'\n\t\t\t*{phi} (feature conflict)')
-        elif unvalued_counterparty:                 # Unvalued counterparty exist
+        elif unvalued_counterparty:
             log(f'{phi} ')
             self.features.discard(unvalued_counterparty)
             self.features.update({phi, phi.split(':')[1]})
@@ -737,7 +744,12 @@ class PhraseStructure:
         return pos_tsets == checked_pos_tsets and not checked_neg_tsets
 
     def tail_condition(self, tset):
-        if not self.referential() and self.max() and self.max().container() and (self.max().container().check(tset) or (self.max().mother.sister() and self.max().mother.sister().check(tset))):
+        if not self.referential() and \
+                self.max() and \
+                self.max().container() and \
+                (self.max().container().check(tset) or
+                 (self.max().mother.sister() and
+                  self.max().mother.sister().check(tset))):
             return True
         if self.referential() or self.preposition():
             for m in (affix for node in self.upward_path() if node.primitive() for affix in node.get_affix_list()):

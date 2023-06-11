@@ -146,7 +146,10 @@ class NarrowSemantics:
 
     def inventory_projection(self, ps):
         def preconditions(x):
-            return not self.brain_model.first_solution_found and not ps.find_me_elsewhere and (x.referential() or (not x.referential() and not x.get_dPHI()))
+            return not self.brain_model.first_solution_found and \
+                   not ps.find_me_elsewhere and \
+                   (x.referential() or
+                    (not x.referential() and not x.get_dPHI()))
 
         if preconditions(ps):
             for space in self.semantic_spaces:
