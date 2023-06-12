@@ -79,7 +79,8 @@ class PlausibilityMetrics:
         elif ps.word_internal() and self.dispersion_filter_active():
             solutions = [(ps.bottom(), True, self.generate_address_label())]
         else:
-            self.brain_model.working_memory.in_active_working_memory, self.brain_model.working_memory.not_in_active_working_memory = self.brain_model.working_memory.active_working_memory_catalog(ps)
+            self.brain_model.working_memory.in_active_working_memory, self.brain_model.working_memory.not_in_active_working_memory = \
+                self.brain_model.working_memory.active_working_memory_catalog(ps)
             log(f'\n\t\tFiltering and ranking merge sites...')
             nodes_available = self.filter(self.brain_model.working_memory.in_active_working_memory, w)
             merge_sites = self.rank_merge_right_(nodes_available, w)
@@ -250,7 +251,6 @@ class PlausibilityMetrics:
     @knockout_filter
     def filter(self, list_of_sites_in_active_working_memory, w):
         adjunction_sites = []
-        #--------------------geometrical minimal search------------------------------
         for N in list_of_sites_in_active_working_memory:
             if N.does_not_accept_any_complements():
                 log(f'Reject {N} + {w} because {N} does not accept complementizers. ')
@@ -265,7 +265,6 @@ class PlausibilityMetrics:
                  log(f'Reject {N} + {w} because the sequence is impossible. ')
                  continue
             adjunction_sites.append(N)
-        #-------------------------------------------------------------------------------
         return adjunction_sites
 
     def left_branch_filter(self, N):
