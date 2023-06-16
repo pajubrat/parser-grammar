@@ -385,6 +385,7 @@ class PhraseStructure:
                     inst, target = self.prepare_chain(target, inst, transfer)
                     self.form_chain(target, inst)
                     transfer.brain_model.consume_resources(inst['type'], self)
+
                     # Successive-cyclic chain formation
                     if target.primitive() and inst['test integrity'](target):
                         target.create_chain(transfer, inst)
@@ -401,7 +402,7 @@ class PhraseStructure:
             else:
                 inst['selection'] = lambda x: x.has_vacant_phrasal_position()
                 inst['legible'] = lambda x, y: True
-                log(f'\n\t\t{probe} triggers A-movement')
+                log(f'\n\t\t{probe} triggers A-movement ')
             probe.copy_criterial_features(specifier)
             probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
         return inst, specifier.copy_for_chain(transfer.babtize())

@@ -28,7 +28,8 @@ class ScramblingReconstruction():
             starting_point.head().features.add('p')
         virtual_test_item = target.copy()
         local_tense_edge = target.local_tense_edge()
-        for node in local_tense_edge.minimal_search(lambda x: x == x, lambda x: self.sustain_condition(x, target, local_tense_edge)):
+        node = starting_point
+        for node in local_tense_edge.minimal_search(lambda x: True, lambda x: self.sustain_condition(x, target, local_tense_edge)):
             self.merge_floater(node, virtual_test_item)
             if self.test_adjunction_solution(node, target, virtual_test_item, starting_point, 'left'):
                 break
@@ -49,9 +50,12 @@ class ScramblingReconstruction():
             return True
         virtual_test_item.remove()
 
-    # Don't reconstruct inside the element itself; into moved phrase; inside another finite clause
+    # Don't reconstruct:inside the element itself; into moved phrase; inside another finite clause
     def sustain_condition(self, node, target, local_tense_edge):
-        return not (node.mother == target or node.mother.find_me_elsewhere or (node.force() and node.container() != local_tense_edge.head()))
+        return not (node.mother == target or
+                    node.mother.find_me_elsewhere or
+                    (node.force() and node.container() != local_tense_edge.head()) or
+                    (node.primitive() and node.check({'D'})))
 
     def copy_and_insert(self, node, original_floater, direction):
         if not original_floater.adjunct:

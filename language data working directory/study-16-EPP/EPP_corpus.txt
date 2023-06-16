@@ -141,6 +141,41 @@
 				Seine virtaa kohti#nsA
 				'Seine.nom flow.prs.3sg towards.3p'
 		
+		& 2.1.4 Word order variations, with two arguments
+		
+			& Ungrammatical
+		
+				Seine virtaa Pariisia kohti Pariisia
+				'Seine.nom flow.prs.3sg Paris.par towards Paris.par'
+		
+		& 2.1.5 Lack of [Φ] effects
+		
+			& Ungrammatical
+			
+				Seine virtaa kohti hänen
+				'Seine.nom flow.prs.3sg towards he.gen'
+				
+				Seine virtaa kohti#nsA hänen
+				'Seine.nom flow.prs.3sg towards.px/3p he.gen'
+			
+				Seine virtaa hänen kohti
+				'Seine.nom flow.prs.3sg he.gen towards'
+				
+				Seine virtaa hänen kohti#nsA
+				'Seine.nom flow.prs.3sg he.gen towards.px/3p'
+
+				kohti hänen Seine virtaa
+				'towards he.gen Seine.nom flow.prs.3sg'
+				
+				kohti#nsA hänen Seine virtaa
+				'towards.px/3p he.gen Seine.nom flow.prs.3sg'
+				
+				hänen kohti Seine virtaa
+				'he.gen towards Seine.nom flow.prs.3sg'
+				
+				hänen kohti#nsA Seine virtaa
+				'he.gen towards.px/3p Seine.nom flow.prs.3sg'
+			
 	& 2.2 Finnish adpositions, type lähellä 'near' with partitive argument, without [Φ]
 		
 		& 2.2.1 Word order variations, -Agreement
@@ -184,6 +219,17 @@
 
 				Seine virtaa lähellä[Φ]#ni
 				'Seine.nom flow.prs.3sg near.1sg'
+	
+		& 2.2.4 Double argument
+			
+			& Ungrammatical
+			
+				Seine virtaa Pariisia lähellä Pariisia
+				'Seine.nom flow.prs.3sg Paris.par near Paris.par'
+	
+		& 2.2.5 Lack of [Φ]-effects
+		
+			# This adposition is ambiguous between Type I and Type II, therefore the test does not apply.
 	
 	& 2.3 Finnish adposition, type yli/ali 'over/under'
 
@@ -376,23 +422,9 @@
 				Seine virtaa lähellä[Φ]#ni
 				'Seine.nom flow.prs.3sg near.1sg'
 
-	& 3.2 Noun phrases
+	& 3.2 VA-infinitive
 	
-		& 3.2.1 (Currently unorganized)
-
-			& Grammatical (third person PX and antecedent)
-			
-				Pekka ihailee autoa#An
-				'Pekka.nom admire.prs.3sg car.3p'
-				
-			& Ungrammatical (third person PX without antecedent)
-				
-				auto#nsA lähtee
-				'car.3p leave.prs.3sg'
-
-	& 3.3 VA-infinitive
-	
-		& 3.3.0 Prelimiary test: agreement paradigms
+		& 3.2.0 Prelimiary test: agreement paradigms
 		
 			& Grammatical
 							
@@ -428,7 +460,7 @@
 				te sano#tte lähtevän#nsA
 				'I.nom say.prs.2pl leave.va/inf.px/3p'
 				
-		& 3.3.1 Canonical word order
+		& 3.2.1 Canonical word order
 	
 			& Ungrammatical (bare infinitival verb)
 		
@@ -448,7 +480,7 @@
 				Pekka sanoi hänen lähtevän#nsA
 				'Pekka.nom say.pst.3sg Merja.gen leave.va/inf.3p'
 
-		& 3.3.2 Postverbal genitive argument
+		& 3.2.2 Postverbal genitive argument
 		
 			& Ungrammatical
 			
@@ -458,7 +490,7 @@
 				Pekka sanoi lähtevän#nsA hänen
 				'Pekka said leave.va/inf.3p he.gen'
 				
-		& 3.3.3 Object topicalization, without subject
+		& 3.2.3 Object topicalization, without subject
 
 			& Ungrammatical
 			
@@ -476,7 +508,7 @@
 				Pekka sanoi aitaa maalaavan#nsA
 				'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p'
 		
-		& 3.3.4 Object topicalization, with subject
+		& 3.2.4 Object topicalization, with subject
 		
 			& Grammatical
 			
@@ -700,6 +732,10 @@
 				John wants the fence to_inf paint
 				
 				John wants the fence Mary to_inf paint
+				
+				John wants to_inf Mary paint the fence
+				
+				John wants to_inf paint Mary the fence
 	
 & 4. Finite clause, second-merge with [Φ]
 	
@@ -710,6 +746,7 @@
 			& Ungrammatical
 			
 				John admire_fin Mary
+				
 				they admires Mary
 		
 		& 4.1.1 Weak agreement (English finite clause)
@@ -721,6 +758,7 @@
 			& Ungrammatical
 			
 				admires Mary
+				
 				EXPL admires Mary
 	
 	& 4.2 Rich agreement, partial pro-drop profile (Finnish finite clause)
