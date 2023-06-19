@@ -359,10 +359,14 @@ class PhraseStructure:
                self.max().mother and \
                not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
+    # Configuration [A <XP>] is unclear, currently it satisfies PP if A licenses XP because Finnish reconstructed arguments
+    # satisfy this configuration, but the assumption is unintuitive. Perhaps <XP> has to be returned to the primary plane
+    # when it is reconstructed to this position
     def container_assigns_theta_role(self):
         assigner = self.max().container()
         return assigner and \
-               (assigner.sister() == self or (self.referential() and assigner.geometrical_sister() == self) or
+               (assigner.sister() == self or
+                (self.referential() and assigner.geometrical_sister() == self and self.check_some(assigner.licensed_complements())) or
                 self.is_licensed_specifier() and assigner.specifier_theta_role_assigner())
 
     def specifier_theta_role_assigner(self):
@@ -509,18 +513,23 @@ class PhraseStructure:
             for incoming_phi, unvalued_counterparty in valuations:
                 self.value_feature(incoming_phi, unvalued_counterparty, goal)
             if self != goal:
-                self.associate_rule(goal)
+                self.p_rule(goal)
                 self.check_redundant_Φ()
                 self.features.update({'Φ', 'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
         else:
             log('nothing')
 
-    def associate_rule(self, goal):
-        if self.requires_SUBJECT():
-            self.features.add('!SELF:p')                                        # Agree activates [p]
-            if not self.check({'!SELF:PER'}) and not self.associate(goal):      # Checks strong [p] condition
-                self.features.add('*')
-                log(f'\n\t\t{self}° failed the associate rule')
+    def p_rule(self, goal):
+        if not self.check({'!SELF:Φ'}) and self.theta_head():
+            return
+        self.features.add('!SELF:p')
+        if not self.check({'!SELF:PER'}) and not self.associate(goal):
+            self.features.add('*')
+            log(f'\n\t\t{self}° failed the associate rule')
+
+    def mysterious_finite_agreement_condition(self):
+        return self.extract_pro() and self.finite()
+
 
     # This should be reduced into something else
     def check_redundant_Φ(self):
@@ -587,16 +596,20 @@ class PhraseStructure:
             self.features.add('!SELF:PER')
 
         if self.check({'?ARG'}):
+            self.features.discard('?ARG')
             if self.selected_by_SEM_internal_predicate():
-                self.features.discard('?ARG')
                 log(f'\n\t\t{self}° resolved into -ARG.')
                 self.features.add('-ARG')
                 self.features.add('-SELF:Φ')
+                self.features.add('opaque')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
-                self.features.discard('?ARG')
                 log(f'\n\t\t{self}° resolved into ARG.')
                 self.features.add('ARG')
                 self.features.add('!SELF:Φ')
+                self.features.add('PHI:NUM:_')
+                self.features.add('PHI:PER:_')
+            else:
+                self.features.add('ARG')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
 
@@ -1204,7 +1217,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return self.check_some({'v', 'C', 'FORCE', 'V', 'P'}) and not self.check_some({'v-', '-ARG', 'V-'})
+        return self.primitive() and not self.check_some({'opaque', 'φ'})
 
     def extended_subject(self):
         return self.check_some({'GEN'})
@@ -1214,6 +1227,9 @@ class PhraseStructure:
 
     def theta_assigner(self):
         return self.check_some({'SPEC:φ', 'SPEC:D', 'COMP:φ', 'COMP:D', '!SPEC:φ', '!SPEC:D', '!COMP:φ', '!COMP:D'})
+
+    def theta_head(self):
+        return self.check_some({'COMP:φ', '!COMP:φ', 'v', 'V'})
 
     def expletive(self):
         return self.head().check({'EXPL'})

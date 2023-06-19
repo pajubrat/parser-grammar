@@ -55,7 +55,7 @@ class ScramblingReconstruction():
         return not (node.mother == target or
                     node.mother.find_me_elsewhere or
                     (node.force() and node.container() != local_tense_edge.head()) or
-                    (node.primitive() and node.check({'D'})))
+                    (node.primitive() and node.referential()))
 
     def copy_and_insert(self, node, original_floater, direction):
         if not original_floater.adjunct:

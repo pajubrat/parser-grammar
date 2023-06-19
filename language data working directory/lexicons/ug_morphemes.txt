@@ -5,14 +5,14 @@
 
 T/fin   :: T/fin PF:T LF:tense
 v       :: v PF:v LF:v
-v*		:: v PF:v* v- LF:pass -ARG EF
+v*		:: v PF:v* v- LF:pass -ARG EF opaque
 C/fin   :: C/fin PF:C LF:C/fin
 C		:: C C/fin PF:C LF:C
-T		:: T PF:T LF:tense Fin EF
-T/prt 	:: T/prt PF:Prtc LF:Prtc
+T		:: T PF:T LF:tense Fin EF opaque
+T/prt 	:: T/prt PF:Prtc LF:Prtc opaque
 Fin		:: Fin LF:fin PF:Fin ARG COMP:T !SELF:Φ
 a0		:: A PF:a LF:mod
-impass	:: v ARG PF:impass LF:impass 
+impass	:: v ARG PF:impass LF:impass
 cau		:: v PF:Cau LF:cause
 φ		:: φ PF:φ LF:phi ARG Inf
 Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
@@ -57,7 +57,7 @@ ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin -adjoinab
 
 # Copula
 # BE-		:: V COPULA  				-ARG 					PF:BE 		LF:be COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
-BE-			:: V COPULA 	 			-ARG 					PF:Aux 		LF:Aux !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ
+BE-			:: V COPULA 	 			-ARG 					PF:Aux 		LF:Aux !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ opaque
 
 # D-elements
 D		:: φ D PF:D LF:det R:NEW:$$$/SUR
