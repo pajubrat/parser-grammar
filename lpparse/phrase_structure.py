@@ -293,6 +293,9 @@ class PhraseStructure:
     def specifier_match(self, phrase):
         return phrase.head().check_some(self.licensed_specifiers())
 
+    def specifier_mismatch(self, phrase):
+        return phrase.head().check_some(self.nonlicensed_specifiers())
+
     def double_spec_filter(self):
         return not self.check({'2SPEC'}) and len({spec for spec in self.edge() if not spec.adjunct}) > 1
 
@@ -461,8 +464,11 @@ class PhraseStructure:
         if y == self.next(self.edge):
             if len(self.edge()) < 2 and self.specifier_match(y) and self.specifier_sister().tail_match(self.specifier_sister(), 'left'):
                 return True
+        if y.is_right():
+            y.adjunct = False
         if self.sister() == y:
-            return self.complement_match(y)
+            if self.complement_match(y) and not (y.is_left() and self.specifier_mismatch(y)):
+                return True
 
     def select_objects_from_edge(self, instructions):
         if instructions['type'] == 'Phrasal Chain':
@@ -673,6 +679,9 @@ class PhraseStructure:
 
     def licensed_specifiers(self):
         return {f[5:] for f in self.features if f[:4] == 'SPEC'} | {f[6:] for f in self.features if f[:5] == '!SPEC'}
+
+    def nonlicensed_specifiers(self):
+        return {f[6:] for f in self.features if f[:5] == '-SPEC'}
 
     def licensed_complements(self):
         return {f[5:] for f in self.features if f[:4] == 'COMP'} | {f[6:] for f in self.features if f[:5] == '!COMP'}

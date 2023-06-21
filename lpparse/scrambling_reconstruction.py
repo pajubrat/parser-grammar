@@ -28,6 +28,7 @@ class ScramblingReconstruction():
             starting_point.head().features.add('p')
         virtual_test_item = target.copy()
         local_tense_edge = target.local_tense_edge()
+
         node = starting_point
         for node in local_tense_edge.minimal_search(lambda x: True, lambda x: self.sustain_condition(x, target, local_tense_edge)):
             self.merge_floater(node, virtual_test_item)
