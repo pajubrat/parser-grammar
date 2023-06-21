@@ -504,16 +504,14 @@ class PhraseStructure:
     def Agree(self):
         goal = self
         if self.sister():
-            goal = next(self.sister().minimal_search(lambda x: (x.head().referential() and
-                                                                not x.find_me_elsewhere) or
-                                                               x.phase_head(), lambda x: not x.phase_head()), self)
+            goal = next(self.sister().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or x.phase_head(), lambda x: not x.phase_head()), self)
         self.value_features(goal)
 
     def value_features(self, goal):
         if self != goal:
             log(f'\n\t\t{self}° agrees with {goal.head()} and values ')
         else:
-            log(f'\n\t\t{self}° probes own independent pro and found ')
+            log(f'\n\t\t{self}° probes pro and found ')
         valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]
         if valuations:
             for incoming_phi, unvalued_counterparty in valuations:
@@ -526,24 +524,33 @@ class PhraseStructure:
             log('nothing')
 
     def p_rule(self, goal):
-        if not self.check({'!SELF:Φ'}) and self.theta_head():
-            return
-        self.features.add('!SELF:p')
-        if not self.check({'!SELF:PER'}) and not self.associate(goal):
-            self.features.add('*')
-            log(f'\n\t\t{self}° failed the associate rule')
+        # This exempts thematic heads without [Φ]
+        if not self.exclude_head_for_p_rule():
+            self.features.add('!SELF:p')
+            if not self.finite_agreement_special_condition() and not self.associate(goal):
+                self.features.add('*')
+                log(f'\n\t\t{self}° failed the associate rule')
 
-    def mysterious_finite_agreement_condition(self):
-        return self.extract_pro() and self.finite()
+    # This function exempts selected heads (currently, highest agreeing finite heads) from the p-associate rule
+    # The feature is currently stipulated
+    def finite_agreement_special_condition(self):
+        return self.check({'!SELF:PER'}) and self.finite()
 
+    # Exclude theta-heads without [Φ]
+    # We exclude theta heads without [Φ] because they project thematic positions
+    # As such, these heads still undergo Agree but do not invoke the p-rule
+    def exclude_head_for_p_rule(self):
+        return self.theta_head() and not self.check({'!SELF:Φ'})
 
-    # This should be reduced into something else
+    # Establishes whether the associate rule holds
+    def associate(self, goal):
+        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
+
+    # This handles cases where redundant subject-agreement combination is illicit
+    # Something more abstract could be going on (cf. double-filled CP)
     def check_redundant_Φ(self):
         if self.check({'Φ'}):
             self.features.add('Φ*')
-
-    def associate(self, goal):
-        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
 
     def value_feature(self, phi, unvalued_counterparty, goal):
         if not self.feature_licensing(phi):

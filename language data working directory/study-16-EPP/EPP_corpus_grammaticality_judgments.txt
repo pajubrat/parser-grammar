@@ -1,0 +1,1440 @@
+@  {'author': 'Anon', 'year': 2023, 'date': 'March', 'study_id': 15, 'study_folder': 'language data working directory/study-16-EPP', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-16-EPP', 'test_corpus_file': 'EPP_corpus.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'check_output': True, 'datatake_full': False, 'datatake_images': False, 'image_parameter_show_words': True, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'image_parameter_mark_adjuncts': False, 'image_parameter_stop_after_image': False, 'image_parameter_show_φPs_as_DPs': True, 'image_parameter_show_φPs_as_NPs': False, 'image_parameter_ignore_internal_structure_of_DPs': False, 'show_features': ['ΦPF', '-SELF:Φ', '!SELF:Φ', '!SELF:p', 'EF', '!COMP:φ', '!SPEC:φ'], 'Agree': 'revised', 'calculate_assignments': True, 'calculate_pragmatics': True, 'calculate_thematic_roles': True, 'project_objects': True, 'generate_argument_links': True, 'calculate_predicates': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100}
+@  2023-06-21 16:58:31.552011
+@  Test sentences language data working directory\study-16-EPP\EPP_corpus.txt.
+@  Logs language data working directory\study-16-EPP\EPP_corpus_log.txt.
+@  Lexicon language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes language data working directory\lexicons\ug_morphemes.txt.
+@ 
+
+& 1. CLASS [-EF][-Φ], first-merge only
+
+& 1.1 English prepositions
+
+& 1.1.1 Word order variations, without agreement
+
+& Grammatical
+
+		1.  Seine flows towards Paris 
+
+& Ungrammatical
+
+		2. *Seine flows Paris towards 
+
+		3. *towards Paris Seine flows 
+
+		4. *Paris towards Seine flows 
+
+		5. *towards Paris flows Seine 
+
+		6. *Paris towards flows Seine 
+
+& 1.1.2 Word order variations, with agreement
+
+& Ungrammatical
+
+		7. *Seine flows towards#[*3sg] Paris 
+
+		8. *Seine flows Paris towards#[*3sg] 
+
+		9. *towards#[*3sg] Paris Seine flows 
+
+		10. *Paris towards#[*3sg] Seine flows 
+
+		11. *towards#[*3sg] Paris flows Seine 
+
+		12. *Paris towards#[*3sg] flows Seine 
+
+& 1.1.3 Word order variations, without argument, with and without agreement
+
+& Ungrammatical
+
+		13. *Seine flows towards 
+
+		14. *towards Seine flows 
+
+		15. *towards flows Seine 
+
+		16. *Seine flows towards#[*3sg] 
+
+		17. *towards#[*3sg] Seine flows 
+
+		18. *towards#[*3sg] flows Seine 
+
+& 1.2 Finnish high complementizer
+
+& Grammatical
+
+		19.  Pekka sanoi että Merja tekee työtä 
+	'Pekka.nom say.prs.3sg that Mereja.nom make.prs.3sg work.par'
+
+& Ungrammatical (illicit subject/object at SpecCP)
+
+		20. *Pekka sanoi Merja että tekee työtä 
+	'Pekka.nom say.prs.3sg Merja.nom that make.prs.3sg work.par'
+
+		21. *Pekka sanoi työtä että Merja tekee 
+	'Pekka.nom say.prs.3sg work.par that Merja.nom make.prs.3sg'
+
+& 1.3 English try-construction
+
+& Grammatical
+
+		22.  John tries to_inf paint the fence 
+
+& Ungrammatical (illicit embedded subject)
+
+		23. *John tries Mary to_inf paint the fence 
+
+		24. *John tries to_inf Mary paint the fence 
+
+& Ungrammatical (illicit nonsubject fronting)
+
+		25. *John tries the fence to_inf paint 
+
+& 1.4 Finnish OC-construction
+
+& Grammatical
+
+		26.  Pekka halusi lähteä 
+	'Pekka.nom want.prs.3sg leave.a/inf'
+
+& Ungrammatical
+
+		27. *Pekka halusi Merjan_gen lähteä 
+	'Pekka.nom want.prs.3sg Merja.gen leave.a/inf'
+
+& 2. CLASS [+EF][-Φ], second-merge without subjects
+
+& 2.1 Finnish adposition, type kohti 'towards', without [Φ]
+
+& 2.1.1 Word order variations, without agreement
+
+& Grammatical
+
+		28.  Seine virtaa kohti Pariisia 
+	'Seine.nom flow.prs.3sg towards Paris.par'
+
+		29.  Seine virtaa Pariisia kohti 
+	'Seine.nom flow.prs.3sg Paris.par towards'
+
+		30.  kohti Pariisia Seine virtaa 
+	'towards Paris-par Seine.nom flow.prs.3sg'
+
+		31.  Pariisia kohti Seine virtaa 
+	'Paris.par towards Seine.nom flow.prs.3sg'
+
+& 2.1.2 Word order variations, with agreement
+
+& Ungrammatical
+
+		32. *Seine virtaa kohti#nsA häntä 
+	'Seine.nom flow.prs.3sg towards.3p he.par'
+
+		33. *Seine virtaa häntä kohti#nsA 
+	'Seine.nom flow.prs.3sg he.par towards.3p'
+
+		34. *kohti#nsA häntä Seine virtaa 
+	'towards.3p he-par Seine.nom flow.prs.3sg'
+
+		35. *häntä kohti#nsA Seine virtaa 
+	'he.par towards.3p Seine.nom flow.prs.3sg'
+
+& 2.1.3 Word order variations, without argument, with and without Agreement
+
+& Ungrammatical
+
+		36. *Seine virtaa kohti 
+	'Seine.nom flow.prs.3sg towards'
+
+		37. *Seine virtaa kohti#nsA 
+	'Seine.nom flow.prs.3sg towards.3p'
+
+& 2.1.4 Word order variations, with two arguments
+
+& Ungrammatical
+
+		38. *Seine virtaa Pariisia kohti Pariisia 
+	'Seine.nom flow.prs.3sg Paris.par towards Paris.par'
+
+& 2.1.5 Lack of [Φ] effects
+
+& Ungrammatical
+
+		39. *Seine virtaa kohti hänen 
+	'Seine.nom flow.prs.3sg towards he.gen'
+
+		40. *Seine virtaa kohti#nsA hänen 
+	'Seine.nom flow.prs.3sg towards.px/3p he.gen'
+
+		41. *Seine virtaa hänen kohti 
+	'Seine.nom flow.prs.3sg he.gen towards'
+
+		42. *Seine virtaa hänen kohti#nsA 
+	'Seine.nom flow.prs.3sg he.gen towards.px/3p'
+
+		43. *kohti hänen Seine virtaa 
+	'towards he.gen Seine.nom flow.prs.3sg'
+
+		44. *kohti#nsA hänen Seine virtaa 
+	'towards.px/3p he.gen Seine.nom flow.prs.3sg'
+
+		45. *hänen kohti Seine virtaa 
+	'he.gen towards Seine.nom flow.prs.3sg'
+
+		46. *hänen kohti#nsA Seine virtaa 
+	'he.gen towards.px/3p Seine.nom flow.prs.3sg'
+
+& 2.2 Finnish adpositions, type lähellä 'near' with partitive argument, without [Φ]
+
+& 2.2.1 Word order variations, -Agreement
+
+& Grammatical
+
+		47.  Seine virtaa lähellä Pariisia 
+	'Seine.nom flow.prs.3sg near Paris.par'
+
+		48.  Seine virtaa Pariisia lähellä 
+	'Seine.nom flow.prs.3sg Paris.par near'
+
+		49.  lähellä Pariisia Seine virtaa 
+	'near Paris-par Seine.nom flow.prs.3sg'
+
+		50.  Pariisia lähellä Seine virtaa 
+	'Paris-par near Seine.nom flow.prs.3sg'
+
+& 2.2.2 Word order variations, +Agreement
+
+& Ungrammatical
+
+		51. *Seine virtaa lähellä#An häntä 
+	'Seine.nom flow.prs.3sg near.3p he.par'
+
+		52. *Seine virtaa häntä lähellä#An 
+	'Seine.nom flow.prs.3sg he.par near.3p'
+
+		53. *lähellä#An häntä Seine virtaa 
+	'near.3p he-par Seine.nom flow.prs.3sg'
+
+		54. *häntä lähellä#An Seine virtaa 
+	'he.par near.3p Seine.nom flow.prs.3sg'
+
+& 2.2.3 Word order variations, without argument, +-Agreement
+
+& Grammatical
+
+		55.  Seine virtaa lähellä 
+	'Seine.nom flow.prs.3sg near'
+
+		56.  Seine virtaa lähellä[Φ]#ni 
+	'Seine.nom flow.prs.3sg near.1sg'
+
+& 2.2.4 Double argument
+
+& Ungrammatical
+
+		57. *Seine virtaa Pariisia lähellä Pariisia 
+	'Seine.nom flow.prs.3sg Paris.par near Paris.par'
+
+& 2.2.5 Lack of [Φ]-effects
+
+& 2.3 Finnish adposition, type yli/ali 'over/under'
+
+& 2.3.1 Word order variations, without -agreement
+
+& Grammatical
+
+		58.  Seine virtaa ali sillan 
+	'Seine.nom flow.prs.3sg under bridge.gen'
+
+		59.  Seine virtaa sillan ali 
+	'Seine.nom flow.prs.3sg bridge.gen under'
+
+		60.  ali sillan Seine virtaa 
+	'under bridge Seine.nom flow.prs.3sg'
+
+		61.  sillan ali Seine virtaa 
+	'bridge under Seine.nom flow.prs.3sg'
+
+& 2.3.2 Word order variations, with agreement
+
+& Ungrammatical
+
+		62. *Seine virtaa ali#nsA hänen 
+	'Seine.nom flow.prs.3sg under he.gen'
+
+		63. *Seine virtaa hänen ali#nsA 
+	'Seine.nom flow.prs.3sg he.gen under'
+
+		64. *ali#nsA hänen Seine virtaa 
+	'under he.gen Seine.nom flow.prs.3sg'
+
+		65. *hänen ali#nsA Seine virtaa 
+	'he.gen under Seine.nom flow.prs.3sg'
+
+& 2.4 Finnish OC-constructions ('want-class', which do not project subects but allows internal object fronting))
+
+& 1.2.1 Without and without embedded subject
+
+& Grammatical
+
+		66.  Pekka halusi lähteä 
+	'Pekka.nom want.pst.3sg leave.a/inf'
+
+		67.  Pekka halusi maalata aitaa 
+	'Pekka.nom want.pst.3sg paint.a/inf fence.par'
+
+& Ungrammatical (illicit agreement and subject)
+
+		68. *Pekka halusi Merjan_gen lähteä 
+	'Pekka.nom want.pst.3sg Merja.gen leave.a/inf'
+
+		69. *Pekka halusi maalata#nsA aitaa 
+	'Pekka.nom want.pst.3sg paint.a/inf.px/3sg fence.par'
+
+		70. *Pekka halusi hänen maalata aitaa 
+	'Pekka want.pst.3sg he.gen paint.a/inf fence.par'
+
+		71. *Pekka halusi hänen maalata#nsA aitaa 
+	'Pekka.nom want.pst.3sg he.gen paint.a/inf.px/3sg fence.par'
+
+& 1.2.2 Internal object fronting
+
+& Grammatical
+
+		72.  Pekka halusi tehdä työtä 
+	'Pekka.nom want.prs.3sg make.a/inf work.par'
+
+		73.  Pekka halusi työtä tehdä 
+	'Pekka.nom want.pst.3sg work.par make.a/inf'
+
+		74.  Pekka halusi aitaa maalata 
+	'Pekka.nom want.pst.3sg fence.par paint.a/inf'
+
+& Ungrammatical (with illicit subject and/or agreement)
+
+		75. *Pekka halusi aitaa maalata#nsA 
+	'Pekka.nom want.pst.3sg fence.par paint.par.px/3sg'
+
+		76. *Pekka halusi aitaa maalata hänen 
+	'Pekka want.pst.3sg fence.par paint.a/inf he.gen'
+
+		77. *Pekka halusi aitaa maalata#nsA hänen 
+	'Pekka.nom want.pst.3sg fence.par paint.a/inf.px/3sg he.gen'
+
+& 3. CLASS [+EF][+Φ], second-merge with subject
+
+& 3.1 Finnish adpositions, type lähellä 'near', with genitive argument, with [Φ]
+
+& 3.1.0 Prelimiary test: agreement paradigms
+
+& Grammatical
+
+		78.  Seine virtaa hänen lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg he.gen near.px/3p
+
+& Ungrammatical (proper names, nonhuman pronouns, full DPs + px agreement)
+
+		79. *Seine virtaa Pariisin lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg Paris.gen near.px/3p'
+
+		80. *Seine virtaa sen2 lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg it.gen near.px/3p'
+
+		81. *Seine virtaa miehen lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg man.gen near.px/3p'
+
+& Ungrammatical (agreement mismatches)
+
+		82. *Seine virtaa minun lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg I.gen near.px/3p'
+
+		83. *Seine virtaa sinun lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg you.gen near.px/3p'
+
+		84. *Seine virtaa meidän lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg we.gen near.px/3p'
+
+		85. *Seine virtaa teidän lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg you.gen near.px/3p'
+
+		86. *Seine virtaa minun lähellä[Φ]#si 
+	'Seine.nom flow.prs.3sg I.gen near.px/2sg'
+
+		87. *Seine virtaa minun lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg I.gen near.px/3p'
+
+		88. *Seine virtaa minun lähellä[Φ]#mme 
+	'Seine.nom flow.prs.3sg I.gen near.px/1pl'
+
+		89. *Seine virtaa minun lähellä[Φ]#nne 
+	'Seine.nom flow.prs.3sg I.gen near.px/2pl'
+
+		90. *Seine virtaa minun lähellä[Φ]#nsA 
+	'Seine.nom flow.prs.3sg I.gen near.px/3p'
+
+& 3.1.1 Word order variations, without agreement
+
+& Ungrammatical
+
+		91. *Seine virtaa lähellä[Φ] Pariisin 
+	'Seine.nom flow.prs.3sg near Paris.gen'
+
+& Grammatical
+
+		92.  Seine virtaa Pariisin lähellä[Φ] 
+	'Seine.nom flow.prs.3sg Paris.gen near'
+
+& Ungrammatical
+
+		93. *lähellä[Φ] Pariisin Seine virtaa 
+	'near Paris.gen Seine.nom flow.prs.3sg'
+
+& Grammatical
+
+		94.  Pariisin lähellä[Φ] Seine virtaa 
+	'Paris.gen near Seine.nom flow.prs.3sg'
+
+& 3.1.2 Word order variations, with agreement
+
+& Ungrammatical
+
+		95. *Seine virtaa lähellä[Φ]#An hänen 
+	'Seine.nom flow.prs.3sg near.3p he.gen'
+
+& Grammatical
+
+		96.  Seine virtaa hänen lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg he.gen near.3p'
+
+& Ungrammatical
+
+		97. *lähellä[Φ]#An hänen Seine virtaa 
+	'near.3p he.gen Seine.nom flow.prs.3sg'
+
+& Grammatical
+
+		98.  hänen lähellä[Φ]#An Seine virtaa 
+	'he.gen near.3p Seine.nom flow.prs.3sg'
+
+& 3.1.3 Wwithout argument, with and without agreement
+
+& Ungrammatical
+
+		99. *Seine virtaa lähellä[Φ] 
+	'Seine.nom flow.prs.3sg near.'
+
+& Grammatical
+
+		100.  Seine virtaa lähellä[Φ]#ni 
+	'Seine.nom flow.prs.3sg near.1sg'
+
+& 3.1.4 Wrong case
+
+& Ungrammatical
+
+		101. *Seine virtaa häntä lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg he.par near.px/3p'
+
+		102. *Seine virtaa minua lähellä[Φ]#ni 
+	'Seine.nom flow.prs.3sg I.par near.px/3p'
+
+		103. *Seine virtaa sinua lähellä[Φ]#si 
+	'Seine.nom flow.prs.3sg you.par near.px/3p'
+
+		104. *Seine virtaa meitä lähellä[Φ]#mme 
+	'Seine.nom flow.prs.3sg us.par near.px/3p'
+
+		105. *Seine virtaa teitä lähellä[Φ]#nne 
+	'Seine.nom flow.prs.3sg you.par near.px/3p'
+
+		106. *Seine virtaa heitä lähellä[Φ]#nsA 
+	'Seine.nom flow.prs.3sg they.par near.px/3p'
+
+& 3.2 VA-infinitive
+
+& 3.2.0 Prelimiary test: agreement paradigms
+
+& Grammatical
+
+		107.  minä sano#n lähtevän#ni 
+	'I.nom say.prs.1sg leave.va/inf.px/1sg'
+
+		108.  sinä sano#t lähtevän#si 
+	'you.nom say.prs.2sg leave.va/inf.px/2sg'
+
+		109.  Pekka sanoi lähtevän#nsA 
+	'Pekka.nom say.pst.3sg leave.va/inf.px/3p'
+
+		110.  me sano#mme lähtevän#mme 
+	'we.nom say.prs.1pl leave.va/inf.px/1pl'
+
+		111.  te sano#tte lähtevän#nne 
+	'you.nom say.prs.2pl leave.va/inf.px/2pl'
+
+		112.  he sano#vAt lähtevän#nsA 
+	'they.nom say.prs.3pl leave.va/inf.px/3p
+
+& Ungrammatical
+
+		113. *minä sano#n lähtevän#nsA 
+	'I.nom say.prs.1sg leave.va/inf.px/3p'
+
+		114. *sinä sano#t lähtevän#nsA 
+	'I.nom say.prs.2sg leave.va/inf.px/3p'
+
+		115. *me sano#mme lähtevän#nsA 
+	'I.nom say.prs.1pl leave.va/inf.px/3p'
+
+		116. *te sano#tte lähtevän#nsA 
+	'I.nom say.prs.2pl leave.va/inf.px/3p'
+
+& 3.2.1 Canonical word order
+
+& Ungrammatical (bare infinitival verb)
+
+		117. *Pekka sanoi lähtevän 
+	'Pekka.nom say.pst.3sg leave.va/inf'
+
+& Grammatical (either subject or agreement, but not both)
+
+		118.  Pekka sanoi lähtevän#nsA 
+	'Pekka.nom say.pst.3sg leave.va/inf.3p'
+
+		119.  Pekka sanoi hänen lähtevän 
+	'Pekka.nom say.pst.3sg he.gen leave.va/inf'
+
+& Ungrammatical (both agreement and subject)
+
+		120. *Pekka sanoi hänen lähtevän#nsA 
+	'Pekka.nom say.pst.3sg Merja.gen leave.va/inf.3p'
+
+& 3.2.2 Postverbal genitive argument
+
+& Ungrammatical
+
+		121. *Pekka sanoi lähtevän hänen 
+	'Pekka said leave.va/inf he.gen'
+
+		122. *Pekka sanoi lähtevän#nsA hänen 
+	'Pekka said leave.va/inf.3p he.gen'
+
+& 3.2.3 Object topicalization, without subject
+
+& Ungrammatical
+
+		123. *Pekka sanoi maalaavan aitaa 
+	'Pekka.nom say.prs.3sg paint.va/inf fence.par'
+
+		124. *Pekka sanoi aitaa maalaavan 
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf'
+
+& Grammatical
+
+		125.  Pekka sanoi maalaavan#nsA aitaa 
+	'Pekka.nom say.prs.3sg paint.va/inf.3p fence.par'
+
+		126.  Pekka sanoi aitaa maalaavan#nsA 
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p'
+
+& 3.2.4 Object topicalization, with subject
+
+& Grammatical
+
+		127.  Pekka sanoi hänen maalaavan aitaa 
+	'Pekka.nom say.prs.3sg he.gen paint.va/inf fence.par'
+
+& Ungrammatical
+
+		128. *Pekka sanoi hänen maalaavan#nsA aitaa 
+	'Pekka.nom say.pst.3sg he.gen paint.va/inf.3p fence.par'
+
+& Ungrammatical
+
+		129. *Pekka sanoi aitaa maalaavan hänen 
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf he.gen'
+
+		130. *Pekka sanoi aitaa maalaavan#nsA hänen 
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p he.gen'
+
+& 3.4 ESSA-infinitive
+
+& 3.4.0 Prelimiary test: agreement paradigms
+
+& Grammatical
+
+		131.  Pekka laulaa hänen lähtiessä#An 
+	'Pekka.nom sing.prs.3sg he.gen leave.essa/inf.px/3p'
+
+& Ungrammatical
+
+		132. *Pekka laulaa minun lähtiessä#An 
+	'Pekka.nom sing.prs.3sg I.gen leave.essa/inf.px/3p'
+
+		133. *Pekka laulaa sinun lähtiessä#An 
+	'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/3p'
+
+		134. *Pekka laulaa meidän lähtiessä#An 
+	'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px/3p'
+
+		135. *Pekka laulaa teidän lähtiessä#An 
+	'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/3p'
+
+		136. *Pekka laulaa sinun lähtiessä#ni 
+	'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/1sg'
+
+		137. *Pekka laulaa hänen lähtiessä#ni 
+	'Pekka.nom sing.prs.3sg he.gen leave.essa/inf.px/1sg'
+
+		138. *Pekka laulaa meidän lähtiessä#ni 
+	'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px/1sg'
+
+		139. *Pekka laulaa teidän lähtiessä#ni 
+	'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/1sg'
+
+		140. *Pekka laulaa heidän lähtiessä#ni 
+	'Pekka.nom sing.prs.3sg them.gen leave.essa/inf.px/1sg'
+
+& 3.4.1 Canonical word order
+
+& Grammatical
+
+		141.  Pekka laulaa lähtiessä 
+	'Pekka.nom sing.prs.3sg leave.essa/inf'
+
+		142.  Pekka laulaa lähtiessä#An 
+	'Pekka sing.prs.3sg leave.essa/inf.3p'
+
+		143.  Pekka laulaa hänen lähtiessä 
+	'Pekka.nom sing.prs.3sg he.gen leave.essa/inf'
+
+		144.  Pekka laulaa hänen lähtiessä#An 
+	'Pekka.nom sing.prs.3sg she.gen leave.essa/inf.3p'
+
+& 3.4.2 Noncanonical word order
+
+& Ungrammatical
+
+		145. *Pekka laulaa lähtiessä hänen 
+	'Pekka.nom sing.prs.3sg leave.essa/inf he.gen'
+
+		146. *Pekka laulaa lähtiessä#An hänen 
+	'Pekka sing.prs.3sg leave.essa/inf.3p he.gen'
+
+& 3.4.3 Object topicalization, without subject
+
+& Grammatical
+
+		147.  Pekka laulaa maalatessa aitaa 
+	'Pekka.nom sing.prs.3sg paint.essa/inf fence.par'
+
+		148.  Pekka laulaa aitaa maalatessa 
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf'
+
+		149.  Pekka laulaa maalatessa#An aitaa 
+	'Pekka.nom sing.prs.3sg paint.essa/inf.3p fence.par'
+
+		150.  Pekka laulaa aitaa maalatessa#An 
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf.3p'
+
+& 3.4.4 Object topicalization, with subject
+
+& Grammatical
+
+		151.  Pekka laulaa hänen maalatessa aitaa 
+	'Pekka.nom sing.prs.3sg he.gen paint.essa/inf fence.par'
+
+& Ungrammatical
+
+		152. *Pekka laulaa aitaa maalatessa hänen 
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
+
+& Grammatical
+
+		153.  Pekka laulaa hänen maalatessa#An aitaa 
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
+
+& Ungrammatical
+
+		154. *Pekka laulaa aitaa maalatessa#An hänen 
+	'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
+
+& 3.5 TUA-infinitive
+
+& 3.5.1 Agreement tests
+
+& Grammatical
+
+		155.  Pekka lähti maalattua#An aitaa 
+	'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+
+		156.  minä lähde#n maalattua#ni aitaa 
+	'I.nom leave.prs.1sg paint.tua/inf.px/1sg fence.par'
+
+		157.  sinä lähde#t maalattua#si aitaa 
+	'you.nom leave.prs.2sg paint.tua/inf.px/2sg fence.par'
+
+		158.  hän lähde#[V] maalattua#An aitaa 
+	'he.nom leave.prs.3sg paint.tua/inf.px/3p fence.par'
+
+		159.  me lähde#mme maalattua#mme aitaa 
+	'we.nom leave.prs.1pl paint.tua/inf.px/1pl fence.par'
+
+		160.  te lähde#tte maalattua#nne aitaa 
+	'you.nom leave.prs.2pl paint.tua/inf.px/2pl fence.par'
+
+		161.  he lähde#vAt maalattua#An aitaa 
+	'they.nom leave.prs.3sg paint.tua/inf.px/3p fence.par'
+
+& Ungrammatical
+
+		162. *minä lähde#n maalattua#An aitaa 
+	'I.nom leave.prs.1sg paint.tua/inf.px/3p fence.par'
+
+		163. *sinä lähde#t maalattua#An aitaa 
+	'you.nom leave.prs.2sg paint.tua/inf.px/3p fence.par'
+
+		164. *me lähde#mme maalattua#An aitaa 
+	'we.nom leave.prs.1pl paint.tua/inf.px/3p fence.par'
+
+		165. *te lähde#tte maalattua#An aitaa 
+	'you.nom leave.prs.2pl paint.tua/inf.px/3p fence.par'
+
+& 3.5.2 Canonical word order
+
+& Ungrammatical
+
+		166. *Pekka lähti maalattua aitaa 
+	'Pekka.nom leave.pst.3sg paint.tua/inf fence.par'
+
+& Grammatical
+
+		167.  Pekka lähti isän maalattua aitaa 
+	'Pekka.nom leave.pst.3sg father.gen paint.tua/inf fence.par'
+
+& Grammatical
+
+		168.  Pekka lähti maalattua#An aitaa 
+	'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+
+& Ungrammatical
+
+		169. *Pekka lähti isän maalattua#An aitaa 
+	'Pekka.nom leave.pst.3sg father.gen paint.tua/inf.px/3p fence.par'
+
+& 3.5.3 Noncanonical word order, object fronting
+
+& Grammatical
+
+		170.  Pekka lähti aitaa maalattua#An 
+	'Pekka.nom leave.pst.3sg fence.par paint.tua/inf.px/3p'
+
+& Ungrammatical
+
+		171. *Pekka lähti aitaa maalattua 
+	'Pekka.nom leave.prs.3sg fence.par paint.tua/inf'
+
+		172. *Pekka lähti aitaa isän maalattua#An 
+	'Pekka.nom leave.prs.3sg fence.par father.gen paint.tua/inf.px/3p'
+
+		173. *Pekka lähti aitaa isän maalattua 
+	'Peka.nom leave.prs.3sg fence.par father.gen paint.tua/inf'
+
+& 3.6 English want-construction (subject, without agreement)
+
+& 3.6.1 Canonical word order
+
+& Grammatical
+
+		174.  John wants to_inf leave 
+
+		175.  John wants to_inf paint the fence 
+
+		176.  John wants Mary to_inf leave 
+
+		177.  John wants Mary to_inf paint the fence 
+
+& 3.6.2 Noncanonical word order, object fronting
+
+& Ungrammatical
+
+		178. *John wants the fence to_inf paint 
+
+		179. *John wants the fence Mary to_inf paint 
+
+		180. *John wants to_inf Mary paint the fence 
+
+		181. *John wants to_inf paint Mary the fence 
+
+& 4. Finite clause, second-merge with [Φ]
+
+& 4.1 Weak agreement
+
+& 4.1.0 Preliminary test: agreement
+
+& Ungrammatical
+
+		182. *John admire_fin Mary 
+
+		183. *they admires Mary 
+
+& 4.1.1 Weak agreement (English finite clause)
+
+& Grammatical
+
+		184.  John admires Mary 
+
+& Ungrammatical
+
+		185. *admires Mary 
+
+		186. *EXPL admires Mary 
+
+& 4.1.2 non-null subject language test (English pro-drop)
+
+& Ungrammatical
+
+		187. *flows towards Paris 
+
+		188. *flows Seine towards Paris 
+
+		189. *painted John the fence 
+
+& 4.2 Rich agreement, partial pro-drop profile (Finnish finite clause)
+
+& 4.2.0 Preliminary test: agreement
+
+& Grammatical
+
+		190.  sinä lähde#t 
+
+& Ungrammatical
+
+		191. *minä lähde#[V] 
+	'I.nom leave.prs.3sg'
+
+		192. *sinä lähde#[V] 
+	'you.nom leave.prs.3sg'
+
+		193. *me lähde#[V] 
+	'we.nom leave.prs.3sg'
+
+		194. *te lähd#[V] 
+	'you leave.prs.3sg'
+
+		195. *minä lähde#mme 
+	'I.nom leave.prs.1pl'
+
+		196. *sinä lähde#mme 
+	'you.nom leave.prs.1pl'
+
+		197. *hän lähde#mme 
+	'he.nom leave.prs.1pl'
+
+		198. *te lähde#mme 
+	'you.nom leave.prs.1pl'
+
+		199. *he lähde#mme 
+	'they.nom leave.prs.1pl'
+
+& 4.2.1 With overt phrasal subject, preverbal position
+
+& Grammatical
+
+		200.  minä lähde#n 
+	'I.nom leave.prs.1sg'
+
+		201.  sinä lähde#t 
+	'you.nom leave.prs.2sg'
+
+		202.  hän lähde#[V] 
+	'he.nom leave.prs.3sg'
+
+		203.  me lähde#mme 
+	'we.nom leave.prs.1pl'
+
+		204.  te lähde#tte 
+	'you.nom leave.prs.2pl'
+
+		205.  he lähde#vAt 
+	'they.nom leave.prs.3pl'
+
+		206.  Pekka ihailee Merjaa 
+	'Pekka.nom admire.prs.3sg Merja.par'
+
+& 4.2.2 With overt phrasal subject, postverbal position
+
+& Ungrammatical
+
+		207. *lähde#n minä 
+	'leave.prs.1sg I.nom'
+
+		208. *maalaa#n minä aitaa 
+	'paint.prs.1sg I.nom fence.par'
+
+		209. *lähde#t sinä 
+	'leave.prs.2sg you.nom'
+
+		210. *maalaa#t sinä aitaa 
+	'paint.prs.2sg you.nom fence.par'
+
+		211. *lähde#[V] hän 
+	'leave.prs.3sg he.nom'
+
+		212. *maalaa#[V] hän aitaa 
+	'paint.prs.3sg he.nom fence.par'
+
+		213. *lähde#mme me 
+	'leave.prs.1pl we.nom'
+
+		214. *maalaa#mme me aitaa 
+	'paint.prs.1pl we.nom fence.par'
+
+		215. *lähde#tte te 
+	'leave.prs.2pl you.nom'
+
+		216. *maalaa#tte te aitaa 
+	'paint.prs.2pl you.nom fence.par'
+
+		217. *lähde#vAt he 
+	'leave.prs.3pl they.nom'
+
+		218. *maalaa#vAt he aitaa 
+	'paint.prs.3pl they.nom fence.par'
+
+& 4.2.3 With overt phrasal subject and direct object, OVS inversion
+
+& Grammatical
+
+		219.  Merjaa ihaile#n minä 
+	'Merja.par admire.prs.1sg I.nom'
+
+		220.  Merjaa ihaile#t sinä 
+	'Merja.par admire.prs.2sg I.nom'
+
+		221.  Merjaa ihaile#[V] hän 
+	'Merja.par admire.prs.3sg I.nom'
+
+		222.  Merjaa ihaile#mme me 
+	'Merja.par admire.prs.1pl I.nom'
+
+		223.  Merjaa ihaile#tte te 
+	'Merja.par admire.prs.2pl I.nom'
+
+		224.  Merjaa ihaile#vAt he 
+	'Merja.par admire.prs.3pl I.nom'
+
+& 4.2.4 OVS inversion inside embedded finite clause
+
+& Grammatical
+
+		225.  Pekka sanoi että aitaa maalaa#n minä 
+	'Pekka said that fence.par paint.prs.1sg I.nom'
+
+		226.  Pekka sanoi että aitaa maalaa#t sinä 
+	'Pekka said that fence.par paint.prs.2sg you.nom'
+
+		227.  Pekka sanoi että aitaa maalaa#[V] hän 
+	'Pekka said that fence.par paint.prs.3sg he.nom'
+
+		228.  Pekka sanoi että aitaa maalaa#mme me 
+	'Pekka said that fence.par paint.prs.1pl we.nom'
+
+		229.  Pekka sanoi että aitaa maalaa#tte te 
+	'Pekka said that fence.par paint.prs.2pl you.nom'
+
+		230.  Pekka sanoi että aitaa maalaa#vAt he 
+	'Pekka said that fence.par paint.prs.3pl they.nom'
+
+& 4.2.5 With null subject
+
+& Grammatical
+
+		231.  lähde#n 
+	'leave.prs.1sg'
+
+		232.  maalaa#n aitaa 
+	'paint-prs.1sg fence.par'
+
+		233.  lähde#t 
+	'leave.prs.2sg'
+
+		234.  maalaa#t aitaa 
+	'paint-prs.2sg fence.par'
+
+		235.  lähde#mme 
+	'leave.prs.1pl'
+
+		236.  maalaa#mme aitaa 
+	'paint-prs.1pl fence.par'
+
+		237.  lähde#tte 
+	'leave.prs.2pl'
+
+		238.  maalaa#tte aitaa 
+	'paint-prs.2pl fence.par'
+
+& Ungrammatical (third person pro-drop)
+
+		239. *lähtee 
+	'leave.prs.3sg'
+
+		240. *maalaa#[V] aitaa 
+	'paint.prs.3sg fence.par'
+
+		241. *lähde#vAt 
+	'leave.prs.3pl'
+
+		242. *maalaa#vAt aitaa 
+	'paint.prs.3pl fence.par'
+
+& 4.2.6 Null subject, inside embedded clause
+
+& Grammatical, canonical order
+
+		243.  Pekka sanoi että lähde#n 
+	'Pekka said that leave.prs.1sg'
+
+		244.  Pekka sanoi että maalaa#n aitaa 
+	'Pekka said that paint.prs.1g fence.par'
+
+		245.  Pekka sanoi että lähde#t 
+	'Pekka said that leave.prs.2sg'
+
+		246.  Pekka sanoi että maalaa#t aitaa 
+	'Pekka said that paint.prs.2sg fence.par'
+
+		247.  Pekka sanoi että lähde#[V] 
+	'Pekka said that leave.prs.3sg'
+
+		248.  Pekka sanoi että maalaa#[V] aitaa 
+	'Pekka said that paint.prs.3sg fence.par'
+
+		249.  Pekka sanoi että lähde#mme 
+	'Pekka said that leave.prs.1pl'
+
+		250.  Pekka sanoi että maalaa#mme aitaa 
+	'Pekka said that paint.prs.1pl fence.par'
+
+		251.  Pekka sanoi että lähde#tte 
+	'Pekka said that leave.prs.2pl'
+
+		252.  Pekka sanoi että maalaa#tte aitaa 
+	'Pekka said that paint.prs.2pl fence.par'
+
+& Ungrammatical (this is unclear case, needs more work)
+
+		253. *Pekka sanoi että lähde#vAt 
+	'Pekka said that leave.prs.3pl'
+
+& Grammatical, object fronting inside the embedded clause
+
+		254.  Pekka sanoi että aitaa maalaa#n 
+	'Pekka said that fence.par paint.prs.1g'
+
+		255.  Pekka sanoi että aitaa maalaa#[V] 
+	'Pekka said that fence.par paint.prs.3sg'
+
+& 4.3 Rich agreement with complete pro-drop (Italian finite clause)
+
+& 4.3.1 With overt phrasal subject
+
+& Grammatical
+
+		256.  io adoro Luisa 
+	'admire.prs.1sg Luisa'
+
+		257.  tu adori Luisa 
+	'admire.prs.1sg Luisa'
+
+		258.  lui adora Luisa 
+	'admire.prs.1sg Luisa'
+
+		259.  lei adora Luisa 
+	'admire.prs.1sg Luisa'
+
+		260.  noi adoriamo Luisa 
+	'admire.prs.1sg Luisa'
+
+		261.  voi adorate Luisa 
+	'admire.prs.1sg Luisa'
+
+		262.  loro adorano Luisa 
+	'admire.prs.1sg Luisa'
+
+& 4.3.2 With null subject
+
+& Grammatical
+
+		263.  adoro Luisa 
+	'admire.prs.1sg Luisa'
+
+		264.  adori Luisa 
+	'admire.prs.1sg Luisa'
+
+		265.  adora Luisa 
+	'admire.prs.1sg Luisa'
+
+		266.  adora Luisa 
+	'admire.prs.1sg Luisa'
+
+		267.  adoriamo Luisa 
+	'admire.prs.1sg Luisa'
+
+		268.  adorate Luisa 
+	'admire.prs.1sg Luisa'
+
+		269.  adorano Luisa 
+	'admire.prs.1sg Luisa'
+
+& 5. Expletives
+
+& 5.1 Expletives as finite subjects
+
+& Grammatical
+
+		270.  EXPL ihaile#n Merjaa 
+	'EXPL admire.prs.1sg Merja.par'
+
+		271.  EXPL lähtee 
+	'EXPL leave.prs.3sg'
+
+		272.  EXPL kohti Pariisia Seine virtaa 
+	'EXPL towards Paris.par Seine.nom flow.prs.3sg'
+
+		273.  Pekka sanoi että EXPL tekee työtä 
+	'Pekka.nom say.prs.3sg that EXPL make.prs.3sg work.par'
+
+		274.  it rains 
+
+		275.  EXPL was1 an accident 
+
+		276.  EXPL occurred an accident 
+
+		277.  an accident occurred 
+
+& 5.2 Expletives at thematic positions
+
+& Ungrammatical
+
+		278. *Pekka ihailee EXPL 
+	'Pekka.nom admire.prs.3sg EXPL'
+
+		279. *Seine virtaa kohti EXPL 
+	'Seine.nom flow.prs.3sg towards EXPL'
+
+		280. *Seine virtaa Pariisia kohti EXPL 
+	'Seine.nom flow.prs.3sg Paris.par towards EXPL'
+
+		281. *kohti EXPL Seine virtaa 
+	'towards Paris-par Seine.nom flow.prs.3sg'
+
+		282. *Seine virtaa lähellä[Φ] EXPL 
+	'Seine.nom flow.prs.3sg near EXPL'
+
+		283. *lähellä[Φ] EXPL Seine virtaa 
+	'near EXPL Seine.nom flow.prs.3sg'
+
+		284. *Pekka sanoi maalaavan#nsA EXPL 
+	'Pekka.nom say.prs.3sg paint.va/inf EXPL'
+
+		285. *Pekka sanoi hänen maalaavan EXPL 
+	'Pekka.nom say.prs.3sg he.gen paint.va/inf EXPL'
+
+		286. *Pekka lähti maalattua#An EXPL 
+	'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p EXPL'
+
+		287. *Pekka halusi maalata EXPL 
+	'Pekka.nom want.pst.3sg paint.a/inf EXPL'
+
+		288. *John admires EXPL 
+
+		289. *Seine flows towards EXPL 
+
+		290. *towards EXPL Seine flows 
+
+& 5.3 Expletives at nonlicensed second-merge positions
+
+& Ungrammatical
+
+		291. *Pekka sanoi EXPL että Merja tekee työtä 
+	'Pekka.nom say.prs.3sg EXPL that Mereja.nom make.prs.3sg work.par'
+
+		292. *Seine flows EXPL towards Paris 
+
+		293. *Seine flows EXPL towards 
+
+		294. *EXPL towards Seine flows 
+
+& 5.4 Expletives at nonfinite and nonthematic second-merge positions
+
+& Ungrammatical
+
+		295. *Seine virtaa EXPL kohti Pariisia 
+	'Seine.nom flow.prs.3sg EXPL towards Paris.par'
+
+		296. *EXPL kohti Seine virtaa 
+	'EXPL towards Seine.nom flow.prs.3sg'
+
+		297. *Seine virtaa EXPL lähellä[Φ] 
+	'Seine.nom flow.prs.3sg EXPL near'
+
+		298. *Seine virtaa EXPL lähellä[Φ]#An 
+	'Seine.nom flow.prs.3sg EXPL near'
+
+		299. *EXPL lähellä[Φ] Seine virtaa 
+	'EXPL near Seine.nom flow.prs.3sg'
+
+		300. *EXPL lähellä[Φ]#An Seine virtaa 
+	'EXPL near Seine.nom flow.prs.3sg'
+
+		301. *Pekka sanoi EXPL lähtevän 
+	'Pekka.nom say.pst.3sg EXPL leave.va/inf'
+
+		302. *Pekka sanoi EXPL lähtevän#nsA 
+	'Pekka.nom say.pst.3sg EXPL leave.va/inf.3p'
+
+		303. *Pekka sanoi EXPL maalaavan#nsA 
+	'Pekka.nom say.prs.3sg EXPL paint.va/inf.3p'
+
+		304. *Pekka sanoi EXPL maalaavan aitaa 
+	'Pekka.nom say.prs.3sg EXPL paint.va/inf fence.par'
+
+		305. *Pekka laulaa EXPL lähtiessä 
+	'Pekka.nom sing.prs.3sg EXPL leave.essa/inf'
+
+		306. *Pekka laulaa EXPL lähtiessä#An 
+	'Pekka.nom sing.prs.3sg EXPL leave.essa/inf.3p'
+
+		307. *Pekka halusi EXPL maalata aitaa 
+	'Pekka.nom want.pst.3sg EXPL paint.a/inf fence.par'
+
+		308. *Pekka käski EXPL maalata aitaa 
+	'Pekka.nom order.pst.3sg EXPL paint.a/inf fence.par'
+
+		309. *Pekka halusi EXPL lähteä 
+	'Pekka.nom want.pst.3sg EXPLleave.a/inf'
+
+& 5.5 Expetives at postverbal positions
+
+& Ungrammatical
+
+		310. *Pekka sanoi lähtevän EXPL 
+	'Pekka said leave.va/inf EXPL'
+
+		311. *Pekka sanoi lähtevän#nsA EXPL 
+	'Pekka said leave.va/inf.3p EXPL'
+
+		312. *Pekka sanoi aitaa maalaavan EXPL 
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf EXPL'
+
+		313. *Pekka sanoi aitaa maalaavan#nsA EXPL 
+	'Pekka.nom say.prs.3sg fence.par paint.va/inf.3p EXPL'
+
+		314. *Pekka laulaa lähtiessä EXPL 
+	'Pekka.nom sing.prs.3sg leave.essa/inf EXPL'
+
+		315. *Pekka laulaa lähtiessä#An EXPL 
+	'Pekka sing.prs.3sg leave.essa/inf.3p EXPL'
+
+		316. *Mary was admired EXPL 
+
+& 5.6 Expletives as superfluous argument elements
+
+		317. *John admires Mary EXPL 
+
+		318. *John admires EXPL Mary 
+
+		319. *Pekka halusi EXPL lähteä 
+	'Pekka.nom want.prt.3sg EXPL leave.a/inf (OC-construction)'
+
+		320. *Pekka halusi maalata aitaa EXPL 
+	'Pekka.nom want.pst.3sg paint.a/inf fence.par EXPL'
+
+& 5.7 Expletives and word order inversion
+
+& Ungrammatical
+
+		321. *EXPL ihaile#n minä 
+	'EXPL admire.prs.1sg I.nom'
+
+		322. *Merjaa ihaile#n EXPL 
+	'Merja.par admire.prs.1sg EXPL'
+
+& 5.8 Epletives as operators
+
+& Ungrammatical
+
+		323. *EXPL#[kO] Pekka maalasi 
+	'expl.q Pekka.nom paint.pst.3sg'
+
+		324. *lähellä EXPL#[kO] Seine virtaa 
+	'near EXPL.q Seine.nom flow.prs.3sg'
+
+		325. *EXPL#[kO] lähellä Seine virtaa 
+	'EXPL.q near Seine.nom flow.prs.3sg'
+
+& 6. A-movement and successive-cyclic movement
+
+& 6.1 English passives
+
+& Grammatical
+
+		326.  Mary was admired 
+
+& 6.2 English raising constructions
+
+		327.  John seems to_inf leave 
+
+& 7. Topicalization, scrambling
+
+& 7.1 Topicalization in Finnish finite clause
+
+& Grammatical
+
+		328.  aitaa maalaa Pekka 
+	'fence.par paint.prs.3sg Pekka.nom'
+
+		329.  Pekka sanoi että aitaa maalaa Merja 
+	'Pekka.nom say.prs.3sg that fence.par paint.prs.3sg Merja.nom'
+
+& 8. Finite C, Ā-head, with [d][wh]
+
+& 8.1 Standard interrogatives
+
+& Grammatical
+
+		330.  what did John paint 
+
+		331.  who painted the fence 
+
+		332.  mitä Pekka maalasi 
+	'what.par Pekka.nom paint.pst.3sg'
+
+		333.  kuka maalasi aitaa 
+	'who.nom paint.prs.3sg fence.par'
+
+& 8.2 Pied-piping, [wh] checking at first-merge and second-merge positions
+
+& 8.2.1 With partitive DP argument (without [Φ]-marking)
+
+& Grammatical
+
+		334.  lähellä Pariisia#[kO] Seine virtaa 
+	'near Paris.par.q Seine.nom flow.prs.3sg'
+
+		335.  Pariisia#[kO] lähellä Seine virtaa 
+	'Paris.par.q near Seine.nom flow.prs.3sg'
+
+		336.  mitä lähellä Seine virtaa 
+	'what.par near Seine.nom flow.prs.3sg'
+
+& Echo-question
+
+		337.  lähellä mitä Seine virtaa 
+	'near what.par Seine.nom flow.prs.3sg'
+
+& 8.2.2 With genitive DP argument (with [d]-marking)
+
+& Ungrammatical
+
+		338. *lähellä Pariisin#[kO] Seine virtaa 
+	'near Paris.gen.q Seine.nom flow.prs.3sg'
+
+		339. *lähellä minkä Seine virtaa 
+	'near what.gen Seine.nom flow.prs.3sg'
+
+& Grammatical
+
+		340.  Pariisin#[kO] lähellä Seine virtaa 
+	'Paris.gen.q near Seine.nom flow.prs.3sg'
+
+		341.  minkä lähellä Seine virtaa 
+	'what.gen near Seine.nom flow.prs.3sg'
+
+& 8.2.3 Iterative snowballing
+
+& Grammatical, echo-wh-interrogatives
+
+		342.  Seine saavuttaa meren virtaamalla kohti mitä 
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards what.par'
+
+		343.  Seine saavuttaa meren virtaamalla mitä kohti 
+	'Seine reaches ocean.acc flow.ma/inf [what.par towards __]'
+
+		344.  Seine saavuttaa meren kohti mitä virtaamalla 
+	'Seine.nom reach.psr.3sg ocean.acc [towards what.par] flow.ma/inf __'
+
+		345.  Seine saavuttaa meren mitä kohti virtaamalla 
+	'Seine.nom reach.prs.3sg ocean.acc [what.par towards __] flow.ma/inf __'
+
+		346.  virtaamalla kohti mitä Seine saavuttaa meren 
+	'[flow.ma/inf towards what.par] Seine.nom reach.prs.3sg ocean.acc __'
+
+		347.  virtaamalla mitä kohti Seine saavuttaa meren 
+	'[flow.ma/inf [what.par towards __]] Seine.nom reach.prs.3sg ocean.acc __'
+
+		348.  kohti mitä virtaamalla Seine saavuttaa meren 
+	'[[towards what.par] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
+
+& Grammatical, regular interrogative
+
+		349.  mitä_DP kohti virtaamalla Seine saavuttaa meren 
+	'[[what.par towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
+
+& Ungrammatical, in situ yes/no operator constructions
+
+		350. *Seine saavuttaa meren virtaamalla kohti Pariisia#[kO] 
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf towards Paris.par.Q'
+
+		351. *Seine saavuttaa meren virtaamalla Pariisia#[kO] kohti 
+	'Seine reaches ocean.acc flow.ma/inf [Paris.par.Q towards __]'
+
+		352. *Seine saavuttaa meren kohti Pariisia#[kO] virtaamalla 
+	'Seine.nom reach.psr.3sg ocean.acc [towards Paris.par.Q] flow.ma/inf __'
+
+		353. *Seine saavuttaa meren Pariisia#[kO] kohti virtaamalla 
+	'Seine.nom reach.prs.3sg ocean.acc [Paris.par.Q towards __] flow.ma/inf __'
+
+		354. *Seine saavuttaa meren virtaamalla lähellä Pariisin#[kO] 
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf near Paris.gen.Q'
+
+		355. *Seine saavuttaa meren virtaamalla Pariisin#[kO] lähellä 
+	'Seine.nom reach.prs.3sg ocean.acc flow.ma/inf [Paris.gen.Q near __]'
+
+		356. *Seine saavuttaa meren lähellä Pariisin#[kO] virtaamalla 
+	'Seine.nom reach.prs.3sg ocean.acc [[near Paris.gen.Q] flow.ma/inf __]'
+
+		357. *Seine saavuttaa meren Pariisin#[kO] lähellä virtaamalla 
+	'Seine.nom reach.prs.3sg ocean.acc [[Paris.gen.Q near __] flow.ma/inf __]'
+
+		358. *virtaamalla lähellä Pariisin#[kO] Seine saavuttaa meren 
+	'[flow.ma/inf near Paris.gen.Q] Seine.nom reach.prs.3sg ocean.acc __'
+
+& Grammatical, yes/no operator in the scriterial scope position, with or without snowballing
+
+		359.  virtaamalla kohti Pariisia#[kO] Seine saavuttaa meren 
+	'[flow.ma/inf towards Paris.par.Q] Seine.nom reach.prs.3sg ocean.acc __?'
+
+		360.  virtaamalla Pariisia#[kO] kohti Seine saavuttaa meren 
+	'[flow.ma/inf [Paris.par.Q towards __]] Seine.nom reach.prs.3sg ocean.acc __?'
+
+		361.  kohti Pariisia#[kO] virtaamalla Seine saavuttaa meren 
+	'[[towards Paris.par.Q] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
+
+		362.  Pariisia#[kO] kohti virtaamalla Seine saavuttaa meren 
+	'[[Paris.par.Q towards __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __?'
+
+		363.  virtaamalla Pariisin#[kO] lähellä Seine saavuttaa meren 
+	'[flow.ma/inf [Paris.gen.Q near __]] Seine.nom reach.prs.3sg ocean.acc __'
+
+		364.  Pariisin#[kO] lähellä virtaamalla Seine saavuttaa meren 
+	'[[Paris.gen.Q near __] flow.ma/inf __] Seine.nom reach.prs.3sg ocean.acc __'
+
+		365.  ali sillan#[kO] virtaamalla Seine saavuttaa meren 
+	'under bridge.gen.Q Seine.nom reach.prs.3sg ocean.acc flow.ma/inf'
+
+		366.  sillan#[kO] ali virtaamalla Seine saavuttaa meren 
+	'[brige.gen.Q under __] Seine.nom reach.prs.3sg ocean.acc flow.ma/inf'
+
+& 9. A-chains, successive-cyclicity
