@@ -106,6 +106,7 @@ class PhraseStructure:
             return self
         return self.sister()
 
+
     def geometrical_sister(self):
         if self.is_left():
             return self.mother.right
@@ -502,68 +503,39 @@ class PhraseStructure:
         return set()
 
     def Agree(self):
-        goal = self
-        if self.sister():
-            goal = next(self.sister().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or x.phase_head(), lambda x: not x.phase_head()), self)
-        self.value_features(goal)
+        self.value_features_from(self.get_goal())
 
-    def value_features(self, goal):
+    def get_goal(self):
+        return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and
+                                                                           not x.find_me_elsewhere) or
+                                                                          x.phase_head(),
+                                                                lambda x: not x.phase_head()), self)
+
+    def value_features_from(self, goal):
+        log(f'\n\t\tAgree({self}°, {goal.head()}) values ')
+        for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if
+                          self.target_phi_feature(phi, goal)]:
+            self.value_feature(phi, phi_)
         if self != goal:
-            log(f'\n\t\t{self}° agrees with {goal.head()} and values ')
-        else:
-            log(f'\n\t\t{self}° probes pro and found ')
-        valuations = [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]
-        if valuations:
-            for incoming_phi, unvalued_counterparty in valuations:
-                self.value_feature(incoming_phi, unvalued_counterparty, goal)
-            if self != goal:
-                self.p_rule(goal)
-                self.check_redundant_Φ()
-                self.features.update({'Φ', 'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
-        else:
-            log('nothing')
+            self.AgreeLF(goal)
 
-    def p_rule(self, goal):
-        # This exempts thematic heads without [Φ]
-        if not self.exclude_head_for_p_rule():
-            self.features.add('!SELF:p')
-            if not self.finite_agreement_special_condition() and not self.associate(goal):
-                self.features.add('*')
-                log(f'\n\t\t{self}° failed the associate rule')
-
-    # This function exempts selected heads (currently, highest agreeing finite heads) from the p-associate rule
-    # The feature is currently stipulated
-    def finite_agreement_special_condition(self):
-        return self.check({'!SELF:PER'}) and self.finite()
-
-    # Exclude theta-heads without [Φ]
-    # We exclude theta heads without [Φ] because they project thematic positions
-    # As such, these heads still undergo Agree but do not invoke the p-rule
-    def exclude_head_for_p_rule(self):
-        return self.theta_head() and not self.check({'!SELF:Φ'})
-
-    # Establishes whether the associate rule holds
-    def associate(self, goal):
-        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
-
-    # This handles cases where redundant subject-agreement combination is illicit
-    # Something more abstract could be going on (cf. double-filled CP)
-    def check_redundant_Φ(self):
-        if self.check({'Φ'}):
-            self.features.add('Φ*')
-
-    def value_feature(self, phi, unvalued_counterparty, goal):
+    def value_feature(self, phi, phi_):
+        log(f' {phi}')
         if not self.feature_licensing(phi):
             self.features.add('*')
-            log(f'\n\t\t\t*{phi} (feature conflict)')
-        elif unvalued_counterparty:
-            log(f'{phi} ')
-            self.features.discard(unvalued_counterparty)
+            log(f'(*)')
+        elif phi_:
+            self.features.discard(phi_)
             self.features.update({phi, phi.split(':')[1]})
 
+    def AgreeLF(self, goal):
+        self.add_features({'Φ', 'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
+        if self.check({'!SELF:Φ'}):
+            self.features.add('!SELF:p')
+
     def target_phi_feature(self, phi, goal):
-        if valued_phi_feature(phi):                             # Use only valued phi-features
-            if goal.has_interpretable_phi_features():           # Filter out interpretable phi-features for self-valuation if and only if the probe/goal has them
+        if valued_phi_feature(phi):
+            if goal.has_interpretable_phi_features():
                 if self == goal:
                     return not interpretable_phi_feature(phi)
                 else:
@@ -572,6 +544,12 @@ class PhraseStructure:
 
     def unvalued_counterparty(self, phi):
         return next((phi_ for phi_ in self.head().features if unvalued(phi_) and phi.startswith(phi_[:-1])), None)
+
+    def add_features(self, set):
+        for f in set:
+            if len(f.split(':')) == 1 and f in self.features:
+                self.features.add(f+'*')
+            self.features.add(f)
 
     # Check if types match, then there must be a licensing feature with identical value.
     def feature_licensing(self, phi):

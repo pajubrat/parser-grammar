@@ -52,7 +52,7 @@ class AgreementVariations:
             if self.sister():
                 goal = next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(),
                                                          lambda x: not x.phase_head()), self)
-            self.value_features(goal)
+            self.value_features_from(goal)
 
         # --- main ---
         Agree(probe)
@@ -62,7 +62,7 @@ class AgreementVariations:
         goal = probe
         if probe.sister():
             goal = next(probe.sister().minimal_search(lambda x: x.head().referential()), probe)
-        probe.value_features(goal)
+        probe.value_features_from(goal)
         probe.update_phi_interactions()
 
     # Standard Agree with specifier agreement as a last resort
@@ -70,7 +70,7 @@ class AgreementVariations:
         goal = probe
         if probe.sister():
             goal = next(probe.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(), lambda x: not x.phase_head()), next((x for x in probe.edge()), probe))
-        probe.value_features(goal)
+        probe.value_features_from(goal)
         probe.update_phi_interactions()
 
     # Agree with only specifier-head agreement
@@ -78,7 +78,7 @@ class AgreementVariations:
         goal = probe
         if probe.sister():
             goal = next((x for x in probe.edge()), probe)
-        probe.value_features(goal)
+        probe.value_features_from(goal)
         probe.update_phi_interactions()
 
     def variation4(self, probe):
