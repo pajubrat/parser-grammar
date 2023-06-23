@@ -24,7 +24,7 @@ class Predicates:
                 goal = acquisition(probe)
                 if goal:
                     log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, goal)} by {name}. ')
-                    if probe.EPP_check(goal):
+                    if probe.p_associate_check(goal):
                         log(f'EPP violation. ')
                         break
                     return f'{probe}°: {self.print_target(probe, goal)}'

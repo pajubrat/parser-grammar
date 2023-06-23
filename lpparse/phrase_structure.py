@@ -384,28 +384,31 @@ class PhraseStructure:
             return True
 
     # Reconstruction -----------------------------------------------------------------------------------
-
     def EF(self):
         for f in self.features:
             if f.startswith('!EF') or f.startswith('EF') or f == '!SEF':
                 return True
 
-    # Used by post-LF predicates module (experimental)
-    def apply_EPP(self):
+    # P-associate rule is applied only to heads which
+    # (i) instantiate AgreeLF ('S has been recognized');
+    # (ii) do not have strong pro ('VSO pattern');
+    # (iii) are not exempted by the relevant finiteness property ('OVS pattern');
+    # (iv) are not theta_heads.
+    def apply_p_associate_rule(self):
         return self.check({'ΦLF'}) and \
-               not self.check({'strong'}) and \
+               not self.check({'strong_agr'}) and \
                not self.check({'!SELF:PER'}) and \
                not self.theta_head()
 
     # Used by post-LF predicates module (experimental)
-    def EPP_check(self,  goal):
-        if self.apply_EPP():
+    def p_associate_check(self, goal):
+        if self.apply_p_associate_rule():
             if 'pro' in goal.features:
                 goal = self.argument_by_agreement()
             return not (goal and next(iter(self.edge()), self).head().get_id() == goal.head().get_id())
 
     def create_chain(self, transfer, inst):
-        for target in self.select_targets_from_edge(inst):
+        for target in self.select_targets(inst):
             inst, target = self.prepare_chain(target, inst, transfer)
             self.form_chain(target, inst)
             transfer.brain_model.consume_resources(inst['type'], self)
@@ -416,7 +419,7 @@ class PhraseStructure:
             elif target.max().container() and inst['test integrity'](target.max().container()):
                 target.max().container().create_chain(transfer, inst)
 
-    def select_targets_from_edge(self, instructions):
+    def select_targets(self, instructions):
         if instructions['type'] == 'Phrasal Chain':
             return [x for x in self.edge() if not x.find_me_elsewhere and not self.licensed_expletive(x)]
         return [self.right]
@@ -437,10 +440,14 @@ class PhraseStructure:
         return inst, specifier.copy_for_chain(transfer.babtize())
 
     def form_chain(self, target, inst):
+
+        # Core engine
         for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
             if head != self and head.test_merge(target, inst['legible'], 'left'):
                 break
             target.remove()
+
+        # Last resort options
         else:
             if not self.top().bottom().test_merge(target, inst['legible'], 'right'):
                 target.remove()
@@ -519,9 +526,7 @@ class PhraseStructure:
         self.value_features_from(self.get_goal())
 
     def get_goal(self):
-        return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and
-                                                                           not x.find_me_elsewhere) or
-                                                                          x.phase_head(),
+        return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or x.phase_head(),
                                                                 lambda x: not x.phase_head()), self)
 
     def value_features_from(self, goal):

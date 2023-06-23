@@ -290,7 +290,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return '[φ]'
         if feature == 'ΦPF':
             return '/φ/'
-        if feature == '!SELF:p':
+        if feature == '!p':
             return '[p]'
         if feature == '!SELF:Φ':
             return '[Φ]'

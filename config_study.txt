@@ -19,7 +19,7 @@ check_output = True
 # DATA COLLECTION
 datatake_full = False
 
-# IMAGE PARAMETERS
+# IMAGE PARAMETERS (requires Pyglet library)
 datatake_images = False
 image_parameter_show_words = True
 image_parameter_nolabels = False
@@ -32,7 +32,7 @@ image_parameter_show_φPs_as_DPs = True
 image_parameter_show_φPs_as_NPs = False
 image_parameter_ignore_internal_structure_of_DPs = False
 #EPP study
-show_features = ΦPF,-SELF:Φ,!SELF:Φ,!SELF:p,EF,!COMP:φ,!SPEC:φ
+show_features = ΦPF,-SELF:Φ,!SELF:Φ,!p,EF,!COMP:φ,!SPEC:φ
 
 #Finnish syntax study
 #show_features = OP:Q
