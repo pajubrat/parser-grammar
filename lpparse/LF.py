@@ -7,7 +7,8 @@ def for_lf_interface(features):
 class LF:
     def __init__(self, controlling_parsing_process):
         self.brain_model = controlling_parsing_process
-        self.LF_legibility_tests = [('Selection test', self.selection_test),
+        self.LF_legibility_tests = [('Edge feature test', PhraseStructure.edge_feature_tests),
+                                    ('Selection test', self.selection_test),
                                     ('Projection Principle', PhraseStructure.projection_principle_failure),
                                     ('Head Integrity test', PhraseStructure.unrecognized_label),
                                     ('Feature Conflict test', PhraseStructure.feature_conflict),
@@ -15,8 +16,7 @@ class LF:
                                     ('Semantic Complement test', PhraseStructure.semantic_complement),
                                     ('Double Specifier Filter', PhraseStructure.double_spec_filter),
                                     ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
-                                    ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
-                                    ('Edge feature test', PhraseStructure.edge_feature_test)]
+                                    ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct)]
 
         self.selection_violation_test = {'!1EDG': PhraseStructure.selection__negative_one_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
@@ -24,7 +24,8 @@ class LF:
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
                                          '!SELF': PhraseStructure.selection__positive_self_selection,
                                          '-SELF': PhraseStructure.selection__negative_self_selection,
-                                         '-ΦPF':  PhraseStructure.selection__phonological_AGREE}
+                                         '-ΦPF':  PhraseStructure.selection__phonological_AGREE,
+                                         '!p': PhraseStructure.selection__p_test}
 
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''

@@ -1,6 +1,6 @@
 from collections import namedtuple
-from itertools import takewhile, chain
-from support import log, show_feature_list
+from itertools import takewhile
+from support import log
 from feature_processing import *
 
 # New list (ordered hierarchically)
@@ -291,6 +291,10 @@ class PhraseStructure:
                                                           (not x.get_tail_sets() or x.extended_subject()))
         return True
 
+    # Feature [!p]
+    def selection__p_test(self, feature):
+        return self.edge() or self.check({'strong_agr'})
+
     def specifier_match(self, phrase):
         return phrase.head().check_some(self.licensed_specifiers())
 
@@ -340,12 +344,12 @@ class PhraseStructure:
                 if node.check(intervention_features):
                     break
 
-    # Projection principle and thematic roles ---------------------------------------------------------------------
-    def edge_feature_test(self):
+    def edge_feature_tests(self):
         if 'EF' not in self.features and self.edge() and not self.edge()[0].head().check({'Adv'}):
             if not ((self.edge()[0] == self.sister() and self.check_some({'!COMP:φ', 'COMP:φ'})) or self.check_some({'SPEC:φ', '!SPEC:φ'})):
                 return True
 
+    # Projection principle and thematic roles ---------------------------------------------------------------------
     def nonthematic(self):
         if self.max().container():
             return self.max().container().EF() or \
@@ -386,19 +390,36 @@ class PhraseStructure:
             if f.startswith('!EF') or f.startswith('EF') or f == '!SEF':
                 return True
 
-    def create_chain(self, transfer, inst):
-        for target in self.select_objects_from_edge(inst):
-            if self.EF() or target.primitive():
-                if not (target.expletive() and self.license_expletive()):
-                    inst, target = self.prepare_chain(target, inst, transfer)
-                    self.form_chain(target, inst)
-                    transfer.brain_model.consume_resources(inst['type'], self)
+    # Used by post-LF predicates module (experimental)
+    def apply_EPP(self):
+        return self.check({'ΦLF'}) and \
+               not self.check({'strong'}) and \
+               not self.check({'!SELF:PER'}) and \
+               not self.theta_head()
 
-                    # Successive-cyclic chain formation
-                    if target.primitive() and inst['test integrity'](target):
-                        target.create_chain(transfer, inst)
-                    elif target.max().container() and inst['test integrity'](target.max().container()):
-                        target.max().container().create_chain(transfer, inst)
+    # Used by post-LF predicates module (experimental)
+    def EPP_check(self,  goal):
+        if self.apply_EPP():
+            if 'pro' in goal.features:
+                goal = self.argument_by_agreement()
+            return not (goal and next(iter(self.edge()), self).head().get_id() == goal.head().get_id())
+
+    def create_chain(self, transfer, inst):
+        for target in self.select_targets_from_edge(inst):
+            inst, target = self.prepare_chain(target, inst, transfer)
+            self.form_chain(target, inst)
+            transfer.brain_model.consume_resources(inst['type'], self)
+
+            # Successive-cyclicity
+            if target.primitive() and inst['test integrity'](target):
+                target.create_chain(transfer, inst)
+            elif target.max().container() and inst['test integrity'](target.max().container()):
+                target.max().container().create_chain(transfer, inst)
+
+    def select_targets_from_edge(self, instructions):
+        if instructions['type'] == 'Phrasal Chain':
+            return [x for x in self.edge() if not x.find_me_elsewhere and not self.licensed_expletive(x)]
+        return [self.right]
 
     def prepare_chain(probe, specifier, inst, transfer):
         if inst['type'] == 'Phrasal Chain':
@@ -414,6 +435,17 @@ class PhraseStructure:
             probe.copy_criterial_features(specifier)
             probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
         return inst, specifier.copy_for_chain(transfer.babtize())
+
+    def form_chain(self, target, inst):
+        for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
+            if head != self and head.test_merge(target, inst['legible'], 'left'):
+                break
+            target.remove()
+        else:
+            if not self.top().bottom().test_merge(target, inst['legible'], 'right'):
+                target.remove()
+                if self.sister():
+                    self.sister().Merge(target, 'left')
 
     def scan_criterial_features(self, specifier, feature):
         criterial_features = specifier.scan_features(feature)
@@ -443,17 +475,6 @@ class PhraseStructure:
             if f.startswith('#'):
                 return f[1:]
 
-    def form_chain(self, target, inst):
-        for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
-            if head != self and head.test_merge(target, inst['legible'], 'left'):
-                break
-            target.remove()
-        else:
-            if not self.top().bottom().test_merge(target, inst['legible'], 'right'):
-                target.remove()
-                if self.sister():
-                    self.sister().Merge(target, 'left')
-
     def supported_by(self, probe):
         return self == probe.next(probe.edge)
 
@@ -470,14 +491,6 @@ class PhraseStructure:
         if self.sister() == y:
             if self.complement_match(y) and not (y.is_left() and self.specifier_mismatch(y)):
                 return True
-
-    def select_objects_from_edge(self, instructions):
-        if instructions['type'] == 'Phrasal Chain':
-            edge = [spec for spec in self.edge() if not spec.find_me_elsewhere]
-            if edge:
-                self.features.add('p')
-            return edge
-        return [self.right]
 
     def VP_for_fronting(self):
         return self == self.container().next(self.container().upward_path, lambda x: x.mother.inside(self.container()) and x.head().check_some({'VA/inf', 'A/inf'}))
@@ -513,25 +526,24 @@ class PhraseStructure:
 
     def value_features_from(self, goal):
         log(f'\n\t\tAgree({self}°, {goal.head()}) values ')
-        for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if
-                          self.target_phi_feature(phi, goal)]:
-            self.value_feature(phi, phi_)
-        if self != goal:
-            self.AgreeLF(goal)
+        for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
+            self.value_feature(phi, phi_, goal)
+        self.AgreeLF(goal)
 
-    def value_feature(self, phi, phi_):
+    def value_feature(self, phi, phi_, goal):
         log(f' {phi}')
         if not self.feature_licensing(phi):
             self.features.add('*')
             log(f'(*)')
         elif phi_:
             self.features.discard(phi_)
-            self.features.update({phi, phi.split(':')[1]})
+            self.features.update({phi, phi.split(':')[1], 'dPHI:IDX:' + goal.head().get_id()})
 
     def AgreeLF(self, goal):
-        self.add_features({'Φ', 'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
-        if self.check({'!SELF:Φ'}):
-            self.features.add('!SELF:p')
+        if self != goal:                        # Definition of AgreeLF
+            self.add_features({'Φ', 'ΦLF'})     # Feature consequences of AgreeLF
+            if self.check({'!SELF:Φ'}):         # Evoke [p]
+                self.features.add('!p')
 
     def target_phi_feature(self, phi, goal):
         if valued_phi_feature(phi):
@@ -1223,7 +1235,7 @@ class PhraseStructure:
         return self.check_some({'SPEC:φ', 'SPEC:D', 'COMP:φ', 'COMP:D', '!SPEC:φ', '!SPEC:D', '!COMP:φ', '!COMP:D'})
 
     def theta_head(self):
-        return self.check_some({'COMP:φ', '!COMP:φ', 'v', 'V'})
+        return self.check_some({'COMP:φ', '!COMP:φ', 'v', 'V'}) and not self.check({'!SELF:Φ'})
 
     def expletive(self):
         return self.head().check({'EXPL'})
@@ -1231,8 +1243,8 @@ class PhraseStructure:
     def open_class(self):
         return self.head().check_some({'N', 'V', 'P', 'A'})
 
-    def license_expletive(self):
-        return self.head().check_some({'SPEC:EXPL', '!SPEC:EXPL'})
+    def licensed_expletive(self, phrase):
+        return phrase.expletive() and self.head().check_some({'SPEC:EXPL', '!SPEC:EXPL'})
 
     def theta_marks(self, target):
         if self.sister() == target:

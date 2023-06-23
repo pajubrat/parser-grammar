@@ -24,8 +24,6 @@ class ScramblingReconstruction():
                 return
 
         starting_point = target.container()
-        if target.is_left():
-            starting_point.head().features.add('p')
         virtual_test_item = target.copy()
         local_tense_edge = target.local_tense_edge()
 

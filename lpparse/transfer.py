@@ -19,7 +19,7 @@ class Transfer:
                                                  'sustain': lambda x: True,
                                                  'legible': lambda x, y: y.properly_selected() and not y.empty_finite_EPP() and y.right_sister() != x},
                              'Phrasal':         {'type': 'Phrasal Chain',
-                                                 'test integrity': lambda x: True,
+                                                 'test integrity': lambda x: x.EF(),
                                                  'repair': lambda x, y, z: x.create_chain(y, z),
                                                  'selection': lambda x: x.primitive() and not x.finite(),
                                                  'sustain': lambda x: not (x.primitive() and x.referential()),
