@@ -130,7 +130,7 @@ class NarrowSemantics:
                     thematic_assignment = self.thematic_roles_module.reconstruct(ps)
                     if thematic_assignment:
                         self.semantic_interpretation['Thematic roles'].append(thematic_assignment)
-                if self.brain_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}):
+                if self.brain_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}) and not ps.check({'φ'}):
                     self.semantic_interpretation['Predicates'].append(self.predicates.reconstruct(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)

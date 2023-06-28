@@ -367,7 +367,7 @@ class PhraseStructure:
                self.max().mother and \
                not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
-    # Configuration [A <XP>] is unclear, currently it satisfies PP if A licenses XP because Finnish reconstructed arguments
+    # Configuration [A <XP>] is unclear, currently it satisfies Projection Principle if A licenses XP because Finnish reconstructed arguments
     # satisfy this configuration, but the assumption is unintuitive. Perhaps <XP> has to be returned to the primary plane
     # when it is reconstructed to this position
     def container_assigns_theta_role(self):
@@ -389,23 +389,10 @@ class PhraseStructure:
             if f.startswith('!EF') or f.startswith('EF') or f == '!SEF':
                 return True
 
-    # P-associate rule is applied only to heads which
-    # (i) instantiate AgreeLF ('S has been recognized');
-    # (ii) do not have strong pro ('VSO pattern');
-    # (iii) are not exempted by the relevant finiteness property ('OVS pattern');
-    # (iv) are not theta_heads.
-    def apply_p_associate_rule(self):
-        return self.check({'ΦLF'}) and \
-               not self.check({'strong_agr'}) and \
-               not self.check({'!SELF:PER'}) and \
-               not self.theta_head()
-
     # Used by post-LF predicates module (experimental)
     def p_associate_check(self, goal):
-        if self.apply_p_associate_rule():
-            if 'pro' in goal.features:
-                goal = self.argument_by_agreement()
-            return not (goal and next(iter(self.edge()), self).head().get_id() == goal.head().get_id())
+        if not self.check({'strong_agr'}) and not self.check({'!SELF:PER'}) and not self.theta_head():
+            return self != goal and not (next(iter(self.edge()), self).head().get_id() == goal.head().get_id())
 
     def create_chain(self, transfer, inst):
         for target in self.select_targets(inst):
@@ -533,6 +520,7 @@ class PhraseStructure:
         log(f'\n\t\tAgree({self}°, {goal.head()}) values ')
         for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
             self.value_feature(phi, phi_, goal)
+        log(f' from {goal.illustrate()}. ')
         self.AgreeLF(goal)
 
     def value_feature(self, phi, phi_, goal):

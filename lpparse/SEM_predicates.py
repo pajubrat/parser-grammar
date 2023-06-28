@@ -5,29 +5,29 @@ class Predicates:
     def __init__(self):
         self.operation_failed = False
         # structure of the type: (name of the operation, target and trigger, argument selection)
-        self.edge = [('zero merge',
+        self.edge = [('0-merge',
                       lambda x: x.extract_pro() and not x.phi_needs_valuation(),
                       lambda x: x.extract_pro()),
-                     ('first merge',
+                     ('1-merge',
                       lambda x: x.sister() and x.sister().referential(),
                       lambda x: x.sister()),
-                     ('second merge',
+                     ('2-merge',
                       lambda x: x.edge(),
                       lambda x: x.edge()[0]),
-                     ('N merge',
+                     ('N-merge',
                       lambda x: x.phi_needs_valuation(),
                       lambda x: x.control())]
 
     def reconstruct(self, probe):
         for name, condition, acquisition in self.edge:
             if condition(probe):
-                goal = acquisition(probe)
-                if goal:
-                    log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, goal)} by {name}. ')
-                    if probe.p_associate_check(goal):
+                argument = acquisition(probe)
+                if argument:
+                    log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, argument)} by {name}. ')
+                    if probe.p_associate_check(probe.get_goal()):
                         log(f'EPP violation. ')
                         break
-                    return f'{probe}°: {self.print_target(probe, goal)}'
+                    return f'{probe}°: {self.print_target(probe, argument)}'
         log(f'\n\t\t\t*{probe} failed to link with an argument.')
         self.operation_failed = True
 
