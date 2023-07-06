@@ -6,16 +6,16 @@ class Predicates:
         self.operation_failed = False
         # structure of the type: (name of the operation, target and trigger, argument selection)
         self.edge = [('0-merge',
-                      lambda x: x.extract_pro() and not x.phi_needs_valuation(),
+                      lambda x: x.extract_pro() and not x.needs_valuation(),
                       lambda x: x.extract_pro()),
                      ('1-merge',
                       lambda x: x.sister() and x.sister().referential(),
                       lambda x: x.sister()),
                      ('2-merge',
-                      lambda x: x.edge(),
+                      lambda x: x.edge() and x.edge()[0].referential(),
                       lambda x: x.edge()[0]),
                      ('N-merge',
-                      lambda x: x.phi_needs_valuation(),
+                      lambda x: x.needs_valuation(),
                       lambda x: x.control())]
 
     def reconstruct(self, probe):
@@ -39,3 +39,8 @@ class Predicates:
             else:
                 return f'pro'
         return f'{goal.illustrate()}'
+
+    def reconstruct_agreement(self, ps):
+        goal = ps.argument_by_agreement()
+        if goal:
+            return f'Agree({ps}, {goal.illustrate()})'

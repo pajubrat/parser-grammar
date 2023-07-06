@@ -153,11 +153,11 @@ laulaessa	:: laula-#ESSA/inf LANG:FI
 laula-		:: V PF:laula LF:sing CLASS/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
-lähellä		:: P PF:lähellä LF:near TAIL:V Inf !SELF:Φ LANG:FI
-lähellä[Φ]	:: P PF:lähellä LF:near TAIL:V Inf !SELF:Φ LANG:FI
+lähellä		:: P PF:lähellä LF:near TAIL:V Inf ?SELF:ΦLF,ΦPF LANG:FI
+lähellä[Φ]	:: P PF:lähellä LF:near TAIL:V Inf ?SELF:ΦLF,ΦPF  LANG:FI
 lähellä2	:: P PF:lähellä LF:near TAIL:V Inf LANG:FI
 lähellä'	:: P PF:lähellä LF:near -ΦPF LANG:FI
-lähellä'	:: P PF:lähellä LF:near Inf !SELF:Φ LANG:FI
+lähellä'	:: P PF:lähellä LF:near Inf ?SELF:ΦLF,ΦPF LANG:FI
 lähden		:: lähte-#T/fin#n LANG:FI
 lähdin		:: lähte-#T/fin#n LANG:FI
 lähdet		:: lähte-#T/fin#t LANG:FI

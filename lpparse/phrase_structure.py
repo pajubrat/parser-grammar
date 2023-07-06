@@ -253,8 +253,9 @@ class PhraseStructure:
     def phi_consistent_head(self):
         return phi_consistency({f for f in self.features if f[:4] == 'PHI:'})
 
+    # Condition for independent pro-element
     def sustains_reference(self):
-        return self.phi_consistent_head() and {'PHI:NUM', 'PHI:PER'} & {f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
+        return self.phi_consistent_head() and self.has_full_phi_set()
 
     # Selection -------------------------------------------------------------------------------------------
 
@@ -275,21 +276,19 @@ class PhraseStructure:
         return not (self.proper_selected_complement() and self.proper_selected_complement().check({selected_feature}))
 
     # Feature [!SELF]
-    def selection__positive_self_selection(self, selected_feature):
-        return self.check({selected_feature})
+    def selection__positive_self_selection(self, selected_features):
+        selected_features_set = set(selected_features.split(','))
+        return self.check(selected_features_set)
 
     # Feature [-SELF]
-    def selection__negative_self_selection(self, selected_feature):
-        return not self.check({selected_feature})
+    def selection__negative_self_selection(self, selected_features):
+        selected_features_set = set(selected_features.split(','))
+        return not self.check(selected_features_set)
 
-    # -ΦPF
-    def selection__phonological_AGREE(self, selected_feature):
-        if not self.theta_assigner() and not self.check({'!SELF:ΦPF'}):
-            # -ΦPF -> -EFφ
-            return not self.next(self.pro_edge, lambda x: x.referential() and
-                                                          not x.check({'pro_'}) and
-                                                          (not x.get_tail_sets() or x.extended_subject()))
-        return True
+    # Feature [?SELF]
+    def selection__partial_self_selection(self, selected_features):
+        selected_features_set = set(selected_features.split(','))
+        return self.check_some(selected_features_set)
 
     # Feature [!p]
     def selection__p_test(self, feature):
@@ -391,7 +390,7 @@ class PhraseStructure:
 
     # Used by post-LF predicates module (experimental)
     def p_associate_check(self, goal):
-        if not self.check({'strong_agr'}) and not self.check({'!SELF:PER'}) and not self.theta_head():
+        if goal and not self.check({'strong_agr'}) and not self.check({'!SELF:PER'}) and not self.theta_head():
             return self != goal and not (next(iter(self.edge()), self).head().get_id() == goal.head().get_id())
 
     def create_chain(self, transfer, inst):
@@ -509,34 +508,22 @@ class PhraseStructure:
             return {'Fin', 'C', 'PF:C'}
         return set()
 
-    def Agree(self):
+    def AgreeLF(self):
         self.value_features_from(self.get_goal())
 
     def get_goal(self):
         return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or x.phase_head(),
-                                                                lambda x: not x.phase_head()), self)
+                                                                lambda x: not x.phase_head()), None)
 
     def value_features_from(self, goal):
-        log(f'\n\t\tAgree({self}°, {goal.head()}) values ')
-        for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
-            self.value_feature(phi, phi_, goal)
-        log(f' from {goal.illustrate()}. ')
-        self.AgreeLF(goal)
-
-    def value_feature(self, phi, phi_, goal):
-        log(f' {phi}')
-        if not self.feature_licensing(phi):
-            self.features.add('*')
-            log(f'(*)')
-        elif phi_:
-            self.features.discard(phi_)
-            self.features.update({phi, phi.split(':')[1], 'dPHI:IDX:' + goal.head().get_id()})
-
-    def AgreeLF(self, goal):
-        if self != goal:                        # Definition of AgreeLF
-            self.add_features({'Φ', 'ΦLF'})     # Feature consequences of AgreeLF
-            if self.check({'!SELF:Φ'}):         # Evoke [p]
-                self.features.add('!p')
+        if goal:
+            log(f'\n\t\tAgree({self}°, {goal.head()})')
+            for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
+                if self.feature_licensing(phi):
+                    self.features.discard(phi_)
+                    self.features.update({phi, phi.split(':')[1]})
+            self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})     # Feature consequences of AgreeLF
+            self.induce_p()
 
     def target_phi_feature(self, phi, goal):
         if valued_phi_feature(phi):
@@ -550,16 +537,13 @@ class PhraseStructure:
     def unvalued_counterparty(self, phi):
         return next((phi_ for phi_ in self.head().features if unvalued(phi_) and phi.startswith(phi_[:-1])), None)
 
-    def add_features(self, set):
-        for f in set:
-            if len(f.split(':')) == 1 and f in self.features:
-                self.features.add(f+'*')
-            self.features.add(f)
-
     # Check if types match, then there must be a licensing feature with identical value.
     def feature_licensing(self, phi):
-        type_matched_phi = [phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and phi.split(':')[1] == phi_.split(':')[1]]
-        return not type_matched_phi or {x for x in type_matched_phi if x == phi}
+        probe_type_matched_phi = {phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and self.type_match(phi, phi_)}
+        if not probe_type_matched_phi or {x for x in probe_type_matched_phi if x == phi}:
+            return True
+        log(f'(*)')
+        self.features.add('*')
 
     def has_interpretable_phi_features(self):
         return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
@@ -596,12 +580,12 @@ class PhraseStructure:
             if self.selected_by_SEM_internal_predicate():
                 log(f'\n\t\t{self}° resolved into -ARG.')
                 self.features.add('-ARG')
-                self.features.add('-SELF:Φ')
+                self.features.add('-SELF:ΦPF,ΦPF')
                 self.features.add('opaque')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 log(f'\n\t\t{self}° resolved into ARG.')
                 self.features.add('ARG')
-                self.features.add('!SELF:Φ')
+                self.features.add('?SELF:ΦLF,ΦPF')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
             else:
@@ -693,8 +677,8 @@ class PhraseStructure:
     def get_tail_sets(self):
         return {frozenset(f[5:].split(',')) for f in self.head().features if f[:4] == 'TAIL'}
 
-    def phi_needs_valuation(self):
-        return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
+    def needs_valuation(self):
+        return not self.sustains_reference() and self.has_unvalued_phi()
 
     def phi_is_unvalued(self):
         for f in self.head().features:
@@ -782,16 +766,17 @@ class PhraseStructure:
     def is_possible_antecedent(self, antecedent):
         if antecedent:
             if not self.self_referencing(antecedent) and {phi for phi in antecedent.head().features if (phi.startswith("iPHI:") or phi.startswith("PHI:")) and not phi.endswith('_')}:
-                valued_phi_at_probe = [phi.split(':') for phi in self.features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_')]
-                valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:8] == 'iPHI:NUM' or phi[:8] == 'iPHI:PER') and not phi.endswith('_')]
-                for P in valued_phi_at_probe:
-                    for A in valued_phi_at_antecedent:
-                        if P[1] == A[1] and P[2] != A[2]:
-                            return False
-                return True
+                if antecedent.head().referential() or antecedent.head().sustains_reference():
+                    valued_phi_at_probe = [phi.split(':') for phi in self.features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_')]
+                    valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:8] == 'iPHI:NUM' or phi[:8] == 'iPHI:PER') and not phi.endswith('_')]
+                    for P in valued_phi_at_probe:
+                        for A in valued_phi_at_antecedent:
+                            if P[1] == A[1] and P[2] != A[2]:
+                                return False
+                    return True
 
     def control(self):
-        unvalued_phi = self.phi_needs_valuation()
+        unvalued_phi = self.needs_valuation()
         if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'}:
             return self.standard_control()
         elif unvalued_phi & {'PHI:DET:_'}:
@@ -804,7 +789,7 @@ class PhraseStructure:
         return antecedent
 
     def finite_control(self):
-        antecedent = self.next(self.upward_path, lambda x: x.complex() and self.is_possible_antecedent(x) and not x.find_me_elsewhere)
+        antecedent = self.next(self.upward_path, lambda x: x.complex() and (self.is_possible_antecedent(x) or x.expletive()) and not x.find_me_elsewhere)
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (finite control). ')
         return antecedent
 
@@ -1251,7 +1236,24 @@ class PhraseStructure:
         return goal.head().get_id() == self.get_id()
 
     def requires_SUBJECT(self):
-        return self.check({'!SELF:Φ'})
+        return self.check({'?SELF:ΦLF,ΦPF'})
 
     def get_dPHI(self):
         return {f for f in self.head().features if f.startswith('dPHI:')}
+
+    def get_unvalued_phi(self):
+        return {f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
+
+    def has_full_phi_set(self):
+        return len({'PHI:NUM', 'PHI:PER', 'PHI:DET'} & self.get_unvalued_phi()) == 3
+
+    def has_unvalued_phi(self):
+        return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
+
+    def type_match(self, phi, phi_):
+        return phi.split(':')[1] == phi_.split(':')[1]
+
+    def induce_p(self):
+        if self.check_some({'?SELF:ΦLF,ΦPF', '!SELF:ΦLF,ΦPF'}):
+            self.features.add('!p')
+

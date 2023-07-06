@@ -2,7 +2,7 @@ from support import log, set_logging
 from phrase_structure import PhraseStructure
 
 def for_lf_interface(features):
-    return {f for f in features if f.startswith('!') or f.startswith('-')}
+    return {f for f in features if f.startswith('!') or f.startswith('-') or f.startswith('?')}
 
 class LF:
     def __init__(self, controlling_parsing_process):
@@ -24,7 +24,7 @@ class LF:
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
                                          '!SELF': PhraseStructure.selection__positive_self_selection,
                                          '-SELF': PhraseStructure.selection__negative_self_selection,
-                                         '-ΦPF':  PhraseStructure.selection__phonological_AGREE,
+                                         '?SELF': PhraseStructure.selection__partial_self_selection,
                                          '!p': PhraseStructure.selection__p_test}
 
         self.active_test_battery = self.LF_legibility_tests

@@ -82,7 +82,7 @@ class NarrowSemantics:
         self.predicate_argument_dependencies = []
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
-                                        'Agree': [],
+                                        'Agreement': [],
                                         'Predicate scopes': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -101,7 +101,7 @@ class NarrowSemantics:
         self.pragmatic_pathway.interpretation_failed = False
         self.semantic_interpretation = {'Control': [],
                                         'Thematic roles': [],
-                                        'Agree': [],
+                                        'Agreement': [],
                                         'Predicates': [],
                                         'Aspect': [],
                                         'DIS-features': [],
@@ -132,6 +132,8 @@ class NarrowSemantics:
                         self.semantic_interpretation['Thematic roles'].append(thematic_assignment)
                 if self.brain_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}) and not ps.check({'φ'}):
                     self.semantic_interpretation['Predicates'].append(self.predicates.reconstruct(ps))
+                if ps.argument_by_agreement():
+                    self.semantic_interpretation['Agreement'].append(self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
                 if self.brain_model.local_file_system.settings['project_objects']:

@@ -24,7 +24,7 @@ class AgreementVariations:
             self.variation4(probe)
 
     def revised(self, probe):
-        return probe.Agree()
+        return probe.AgreeLF()
 
     # Standard theory (Chomsky 2000, 2001, 2008)
     # We construct this entity for experimental purposes by backtracking the changes of the revised model
