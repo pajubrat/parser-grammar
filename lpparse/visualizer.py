@@ -62,7 +62,7 @@ class Visualizer:
             overlap = self.check_lateral_conflicts(N)
             if overlap > 0:
                 # Stretches the left and right node apart to avoid overlaps below
-                # The multiplier determines the amount fo stretching
+                # The multiplier determines the amount of stretching
                 self.move_node(-overlap * 0.5, 0, N.left)
                 self.move_node(overlap * 0.5, 0, N.right)
                 self.new_lateral_stretch_needed = True
@@ -112,7 +112,7 @@ class Visualizer:
         if self.settings['show_features']:
             for feature_pattern in self.settings['show_features']:
                 for i, lexical_feature in enumerate(ps.features):
-                    if re.match(feature_pattern, lexical_feature):
+                    if feature_pattern == lexical_feature:
                         label_stack += 1
         return label_stack
 
@@ -292,9 +292,9 @@ class ProduceGraphicOutput(pyglet.window.Window):
             return '/φ/'
         if feature == '!p':
             return '[p]'
-        if feature == '!SELF:Φ':
+        if feature == '?SELF:ΦLF,ΦPF':
             return '[Φ]'
-        if feature == '-SELF:Φ':
+        if feature == '-SELF:ΦPF,ΦPF':
             return '[–Φ]'
         if feature == 'OP:Q':
             return '[Q]'
@@ -311,9 +311,9 @@ class ProduceGraphicOutput(pyglet.window.Window):
             if style == 'LABEL':
                 font_size = 20 * self.scale
             else:
-                font_size = 15 * self.scale
+                font_size = 12 * self.scale
             if style == 'FEATURE':
-                font_size = 13 * self.scale
+                font_size = 12 * self.scale
                 line_space = 0.8
             else:
                 line_space = 1

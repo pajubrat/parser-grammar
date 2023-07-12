@@ -604,7 +604,7 @@ must		:: T/fin MODAL COMP:Neg PF:must LF:must LANG:EN
 near		:: PF:near LF:near P -ΦPF TAIL:T LANG:EN
 not			:: Neg LF:not PF:not POL:NEG ARG EDGE:φ -COMP:Fin -SPEC:T/fin COMP:C -COMP:φ !COMP:* LANG:EN
 ocean		:: PF:ocean LF:ocean N LANG:EN
-occurred	:: occur-#T/fin LANG:EN
+occurred	:: occur-#T/fin#[-0] LANG:EN
 occur-		:: PF:occur LF:occur V V- SPEC:φ LANG:EN
 paint		:: paint-#v LANG:EN
 painted		:: paint-#v#T/fin LANG:EN
@@ -694,9 +694,9 @@ it'			:: N#D/expl LANG:EN
 there'		:: N#D/expl LANG:EN
 
 # Agreement
-[-s]		::	inflectional ΦPF EF PHI:NUM:SG PHI:PER:3 PER PHI:GEN:M PHI:GEN:F LANG:EN
-[*3sg]		::	inflectional ΦPF EF PHI:NUM:SG PHI:PER:3 PER PHI:GEN:M PHI:GEN:F LANG:EN
-[-0]		::  inflectional ΦPF EF PHI:NUM:PL PHI:NUM:SG PHI:PER:1 PER PHI:PER:2 PHI:PER:3 PHI:DET:DEF PHI:GEN:N LANG:EN
+[-s]		::	inflectional ΦPF EF PHI:NUM:SG PHI:PER:3 PER PHI:GEN:M PHI:GEN:F LANG:EN PER
+[*3sg]		::	inflectional ΦPF EF PHI:NUM:SG PHI:PER:3 PER PHI:GEN:M PHI:GEN:F LANG:EN PER
+[-0]		::  inflectional ΦPF EF PHI:NUM:PL PHI:NUM:SG PHI:PER:1 PER PHI:PER:2 PHI:PER:3 PHI:DET:DEF PHI:GEN:N LANG:EN PER
 
 # ITALIAN LEXICON ------------------------------------------------------------------------------------------------------------------------
 

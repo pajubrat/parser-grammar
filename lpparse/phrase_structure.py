@@ -521,7 +521,7 @@ class PhraseStructure:
             for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
                 if self.feature_licensing(phi):
                     self.features.discard(phi_)
-                    self.features.update({phi, phi.split(':')[1]})
+                    self.features.add(phi)
             self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})     # Feature consequences of AgreeLF
             self.induce_p()
 

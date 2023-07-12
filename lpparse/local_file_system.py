@@ -192,8 +192,8 @@ class LocalFileSystem:
                         key, value = line.split('=', 1)
                         key = key.strip()
                         value = value.strip()
-                        if ',' in value:
-                            value = value.split(',')
+                        if ';' in value:
+                            value = value.split(';')
                         else:
                             if key == 'show_features':
                                 value = [value]
