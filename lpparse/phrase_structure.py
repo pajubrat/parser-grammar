@@ -512,8 +512,8 @@ class PhraseStructure:
         self.value_features_from(self.get_goal())
 
     def get_goal(self):
-        return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or x.phase_head(),
-                                                                lambda x: not x.phase_head()), None)
+        return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or
+                                                                          x.phase_head(), lambda x: not x.phase_head()), None)
 
     def value_features_from(self, goal):
         if goal:
@@ -522,7 +522,7 @@ class PhraseStructure:
                 if self.feature_licensing(phi):
                     self.features.discard(phi_)
                     self.features.add(phi)
-            self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})     # Feature consequences of AgreeLF
+            self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
             self.induce_p()
 
     def target_phi_feature(self, phi, goal):
