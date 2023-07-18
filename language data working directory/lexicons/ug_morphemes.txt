@@ -35,12 +35,12 @@ VA/inf  	:: VA/inf 		EF	Inf T   ARG	?SELF:ΦLF,ΦPF -SELF:ΦLF,ΦPF 	PF:-vAn 	LF
 ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  								PF:-essA 	LF:while !COMP:*  PROBE:V LANG:FI TAIL:T
 TUA/inf		:: TUA/inf		EF	Inf Adv ARG	?SELF:ΦLF,ΦPF -SELF:ΦLF,ΦPF 	PF:-tUA 	LF:after !COMP:*  PROBE:V LANG:FI TAIL:T	
 KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-ΦLF !SELF:ΦPF					PF:-kse 	LF:for !COMP:*  PROBE:V LANG:FI TAIL:T
-E/inf		:: E/inf 		EF	Inf Adv ARG	  								PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
-MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	 								PF:-mAssA 	LF:in !COMP:*  PROBE:V LANG:FI TAIL:V	
-MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	 								PF:-mAttA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:T
-MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	 								PF:-mAllA 	LF:by !COMP:*  PROBE:V LANG:FI TAIL:V
-MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	 								PF:-mAstA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event
-MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	 								PF:-mAAn 	LF:to SEM/desired_event !COMP:*  PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event
+E/inf		:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  						PF:-en 		LF:by !COMP:*  PROBE:V LANG:FI TAIL:T
+MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF						PF:-mAssA 	LF:in !COMP:*  PROBE:V LANG:FI TAIL:V	
+MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-ΦLF -ΦPF						PF:-mAttA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:T
+MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF						PF:-mAllA 	LF:by !COMP:*  PROBE:V LANG:FI TAIL:V
+MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 						PF:-mAstA 	LF:without !COMP:*  PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event
+MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 						PF:-mAAn 	LF:to SEM/desired_event !COMP:*  PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event
 
 # Prticiple adjectives
 MA/A		:: MA/A 		EF	Inf		ARG  					PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*

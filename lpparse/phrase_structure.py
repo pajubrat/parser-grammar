@@ -390,7 +390,7 @@ class PhraseStructure:
 
     # Used by post-LF predicates module (experimental)
     def p_associate_check(self, goal):
-        if goal and not self.check({'strong_agr'}) and not self.check({'!SELF:PER'}) and not self.theta_head():
+        if goal and self.check({'!p'}) and not self.check({'strong_agr'}) and not self.check({'!SELF:PER'}) and not self.theta_head():
             return self != goal and not (next(iter(self.edge()), self).head().get_id() == goal.head().get_id())
 
     def create_chain(self, transfer, inst):
@@ -513,13 +513,14 @@ class PhraseStructure:
 
     def get_goal(self):
         return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or
-                                                                          x.phase_head(), lambda x: not x.phase_head()), None)
+                                                                          x.phase_head() or x.check({'PER'}), lambda x: not x.phase_head()), None)
 
     def value_features_from(self, goal):
         if goal:
             log(f'\n\t\tAgree({self}°, {goal.head()})')
             for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
-                if self.feature_licensing(phi):
+                log(f' {phi}')
+                if self.feature_licensing(phi, goal):
                     self.features.discard(phi_)
                     self.features.add(phi)
             self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
@@ -538,10 +539,11 @@ class PhraseStructure:
         return next((phi_ for phi_ in self.head().features if unvalued(phi_) and phi.startswith(phi_[:-1])), None)
 
     # Check if types match, then there must be a licensing feature with identical value.
-    def feature_licensing(self, phi):
-        probe_type_matched_phi = {phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and self.type_match(phi, phi_)}
-        if not probe_type_matched_phi or {x for x in probe_type_matched_phi if x == phi}:
-            return True
+    def feature_licensing(self, phi, goal):
+        if goal.referential():
+            probe_type_matched_phi = {phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and self.type_match(phi, phi_)}
+            if not probe_type_matched_phi or {x for x in probe_type_matched_phi if x == phi}:
+                return True
         log(f'(*)')
         self.features.add('*')
 
@@ -1207,7 +1209,7 @@ class PhraseStructure:
         return self.check_some({'GEN'})
 
     def highest_finite_head(self):
-        return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA'}))
+        return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
 
     def theta_assigner(self):
         return self.check_some({'SPEC:φ', 'SPEC:D', 'COMP:φ', 'COMP:D', '!SPEC:φ', '!SPEC:D', '!COMP:φ', '!COMP:D'})
