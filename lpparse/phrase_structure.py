@@ -461,6 +461,7 @@ class PhraseStructure:
     def copy_criterial_features(self, specifier):
         for f in [g for g in specifier.head().features if g.startswith('Δ')]:
             self.features.add(f[1:])
+            self.features.add('OP:_')
             log(f'[{f[1:]}] ')
 
     def index(self):
@@ -540,7 +541,7 @@ class PhraseStructure:
 
     # Check if types match, then there must be a licensing feature with identical value.
     def feature_licensing(self, phi, goal):
-        if goal.referential():
+        if goal.nonverbal():
             probe_type_matched_phi = {phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and self.type_match(phi, phi_)}
             if not probe_type_matched_phi or {x for x in probe_type_matched_phi if x == phi}:
                 return True
@@ -779,14 +780,16 @@ class PhraseStructure:
 
     def control(self):
         unvalued_phi = self.needs_valuation()
-        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'}:
+        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not self.get_valued_phi() & {'PHI:NUM', 'PHI:PER'}:
             return self.standard_control()
         elif unvalued_phi & {'PHI:DET:_'}:
             return self.finite_control()
 
     def standard_control(self):
         search_path = [x for x in takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())]
-        antecedent = next((x for x in search_path if not x.find_me_elsewhere and self.is_possible_antecedent(x)), None)
+        antecedent = next((x for x in search_path if not x.find_me_elsewhere and self.is_possible_antecedent(x)), PhraseStructure())
+        if not antecedent.features:
+            antecedent.features = {"PF:generic 'one'", 'LF:generic', 'φ', 'D'}
         log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control). ')
         return antecedent
 
@@ -1097,6 +1100,12 @@ class PhraseStructure:
     def nominal(self):
         return self.check({'N'})
 
+    def nonverbal(self):
+        return self.nominal() or self.referential() or self.adjectival()
+
+    def adjectival(self):
+        return self.check({'A'})
+
     def light_verb(self):
         return self.check_some({'v', 'v*', 'impass', 'cau'})
 
@@ -1243,11 +1252,11 @@ class PhraseStructure:
     def get_dPHI(self):
         return {f for f in self.head().features if f.startswith('dPHI:')}
 
-    def get_unvalued_phi(self):
+    def get_valued_phi(self):
         return {f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
 
     def has_full_phi_set(self):
-        return len({'PHI:NUM', 'PHI:PER', 'PHI:DET'} & self.get_unvalued_phi()) == 3
+        return len({'PHI:NUM', 'PHI:PER', 'PHI:DET'} & self.get_valued_phi()) == 3
 
     def has_unvalued_phi(self):
         return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
