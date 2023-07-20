@@ -257,6 +257,10 @@ class PhraseStructure:
     def sustains_reference(self):
         return self.phi_consistent_head() and self.has_full_phi_set()
 
+    def pro_legibility(self):
+        iter = self.minimal_search_domain().minimal_search(lambda x: x.primitive(), lambda x: x.root_predicate() or (not x.phase_head()) and not x.check({'PER'}))
+        return next((x for x in iter if x.root_predicate()), None)
+
     # Selection -------------------------------------------------------------------------------------------
 
     # Feature -SPEC:L
@@ -1105,6 +1109,9 @@ class PhraseStructure:
 
     def adjectival(self):
         return self.check({'A'})
+
+    def root_predicate(self):
+        return not self.check({'-ARG'}) and (self.light_verb() or self.check({'V'}) or self.check({'N'}) or self.check({'φ'}))
 
     def light_verb(self):
         return self.check_some({'v', 'v*', 'impass', 'cau'})

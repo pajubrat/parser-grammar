@@ -3082,7 +3082,7 @@
 		& 1.3.1 Modal construction
 		
 			& Grammatical
-			
+						
 				minun täytyy lähteä
 				'I.gen must.prs.0 leave.a/inf'
 				
@@ -3143,6 +3143,35 @@
 				niiden täytyy tehdä työtä
 				'they(nonhum).gen must.prs.0 make.a/inf work.par'
 
+			& Ungrammatical (agreementless form, C-T inheritance violation)
+			
+				minun täydy lähteä
+				'I.gen must.0 leave.a/inf'
+
+				sinun täydy lähteä
+				'I.gen must.0 leave.a/inf'
+
+				hänen täydy lähteä
+				'I.gen must.0 leave.a/inf'
+
+				Pekan täydy lähteä
+				'I.gen must.0 leave.a/inf'
+
+				sen täydy lähteä
+				'I.gen must.0 leave.a/inf'
+
+				miehen täydy lähteä
+				'man.gen must.0 leave.a/inf'
+
+				meidän täydy lähteä
+				'I.gen must.0 leave.a/inf'
+
+				teidän täydy lähteä
+				'I.gen must.0 leave.a/inf'
+
+				heidän täydy lähteä
+				'I.gen must.0 leave.a/inf'
+
 			& Ungrammatical (ungrammatical agreement of the modal)
 			
 				minun täydy#n lähteä
@@ -3156,30 +3185,6 @@
 							
 				sinun täydy#t tehdä työtä
 				'you.gen must.prs.2sg make.a/inf work.par'
-
-				hänen täydy#[V] lähteä
-				'he.gen must.prs.3sg leave.a/inf'
-				
-				hänen täydy#[V] tehdä työtä
-				'he.gen must.prs.3sg make.a/inf work.par'
-
-				Pekan täydy#[V] lähteä
-				'Pekka.gen must.prs.3sg leave.a/inf'
-				
-				Pekka täydy#[V] tehdä työtä
-				'Pekka.gen must.prs.3sg make.a/inf work.par'
-
-				miehen täydy#[V] lähteä
-				'man.gen must.prs.3sg leave.a/inf'
-				
-				miehen täydy#[V] tehdä työtä
-				'man.gen must.prs.3sg make.a/inf work.par'
-
-				sen täydy#[V] lähteä
-				'it.gen must.prs.3sg leave.a/inf'
-				
-				sen täydy#[V] tehdä työtä
-				'it.gen must.prs.3sg make.a/inf work.par'
 
 				meidän täydy#mme lähteä
 				'we.gen must.prs.1sg leave.a/inf'
@@ -3211,6 +3216,71 @@
 				miesten täydy#vAt tehdä työtä
 				'men.gen must.prs.1sg make.a/inf work.par'
 
+			& Grammatical (third person agreement)
+			
+				hänen täydy#[V] lähteä
+				'he.gen must.prs.3sg leave.a/inf'
+				
+				hänen täydy#[V] tehdä työtä
+				'he.gen must.prs.3sg make.a/inf work.par'
+
+				Pekan täydy#[V] lähteä
+				'Pekka.gen must.prs.3sg leave.a/inf'
+				
+				Pekka täydy#[V] tehdä työtä
+				'Pekka.gen must.prs.3sg make.a/inf work.par'
+
+				miehen täydy#[V] lähteä
+				'man.gen must.prs.3sg leave.a/inf'
+				
+				miehen täydy#[V] tehdä työtä
+				'man.gen must.prs.3sg make.a/inf work.par'
+
+				sen täydy#[V] lähteä
+				'it.gen must.prs.3sg leave.a/inf'
+				
+				sen täydy#[V] tehdä työtä
+				'it.gen must.prs.3sg make.a/inf work.par'
+
+			& Grammatical (negated modal)
+			
+				minun ei täydy lähteä
+				'I.gen not.3sg must.0 leave.a/inf'
+			
+				sinun ei täydy lähteä
+				'you.gen not.3sg must.0 leave.a/inf'
+
+			& Ungrammatical
+			
+				minun e#n täydy lähteä
+				'I.gen not.1sg must.prs.0 leave.a/inf'
+				
+				sinun e#t täydy lähteä
+				'you.gen not.2sg must.prs.0 leave.a/inf'
+				
+				meidän e#mme täydy lähteä
+				'we.gen not.3sg must.prs.0 leave.a/inf'
+				
+				teidän e#ette täydy lähteä
+				'you.gen not.3sg must.prs.0 leave.a/inf'
+
+				heidän e#vat täydy lähteä
+				'they.gen not.3sg must.prs.0 leave.a/inf'
+
+			& Grammatical
+			
+				hänen e#i täydy lähteä
+				'he.gen not.3sg must.prs.0 leave.a/inf'
+				
+				Pekan e#i täydy lähteä
+				'Pekka.gen not.3sg must.prs.0 leave.a/inf'
+				
+				sen e#i täydy lähteä
+				'it.gen not.3sg must.prs.0 leave.a/inf'
+				
+				miehen e#i täydy lähteä
+				'man not.3sg must.prs.0 leave.a/inf'
+			
 		& 1.3.2 Impersonal passive
 
 			& Grammatical
@@ -6788,48 +6858,6 @@
 
 				Pekka sanoo että#vAt eivät lähde
 				'Pekka.nom say.prs.3sg that.3pl not.3pl leave'	
-
-		& 3.3.2 Experimental complementizer agreement
-
-			& Grammatical
-			
-				Pekka sanoo että'#sg_ minä en lähde
-				'Pekka.nom says that.sg I.nom not.1sg leave.prs'
-			
-				Pekka sanoo että'#sg_ sinä et lähde
-				'Pekka.nom says että.sg you.nom not.2sg leave.prs'
-				
-				Pekka sanoo että'#sg_ hän ei lähde
-				'Pekka.nom says that.sg he.nom not.3sg leave.prs'
-						
-				Pekka sanoo että'#pl_ me emme lähde
-				'Pekka.nom says that.pl we.nom not.1pl leave.prs'
-
-				Pekka sanoo että'#pl_ te ette lähde
-				'Pekka.nom says that.pl you.nom not.2pl leave.prs'
-				
-				Pekka sanoo että'#pl_ he eivät lähde
-				'Pekka.nom says that.pl they.nom not.3pl leave.prs'
-				
-			& Ungrammatical (experimental complementizer agreement)
-			
-				Pekka sanoo että'#pl_ minä en lähde
-				'Pekka.nom says that.pl I.nom not.1sg leave.prs'
-			
-				Pekka sanoo että'#pl_ sinä et lähde
-				'Pekka.nom says että.pl you.nom not.2sg leave.prs'
-				
-				Pekka sanoo että'#pl_ hän ei lähde
-				'Pekka.nom says that.pl he.nom not.3sg leave.prs'
-						
-				Pekka sanoo että'#sg_ me emme lähde
-				'Pekka.nom says that.sg we.nom not.1pl leave.prs'
-
-				Pekka sanoo että'#sg_ te ette lähde
-				'Pekka.nom says that.sg you.nom not.2pl leave.prs'
-				
-				Pekka sanoo että'#sg_ he eivät lähde
-				'Pekka.nom says that.sg they.nom not.3pl leave.prs'
 
 	& 3.4. Illicit agreement overt finite C
 	

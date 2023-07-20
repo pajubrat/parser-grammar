@@ -43,8 +43,8 @@ MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 						PF:-mAstA 	LF:without 
 MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 						PF:-mAAn 	LF:to SEM/desired_event !COMP:*  PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event
 
 # Prticiple adjectives
-MA/A		:: MA/A 		EF	Inf		ARG  					PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
-VA/A		:: VA/A				Inf			 -ΦPF 				PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
+MA/A		:: MA/A 		EF	Inf		ARG  ?SELF:ΦLF,ΦPF 					PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
+VA/A		:: VA/A				Inf			 -ΦPF 							PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
 
 # Experimental
 MA.ine/inf*	:: MA.ine/inf* 		Inf 	ARG  -ΦPF 				PF:-mA-* 	LF:ing LANG:FI !COMP:*
@@ -84,7 +84,7 @@ hum 			:: inflectional iPHI:HUM:HUM
 nonhum 			:: inflectional iPHI:HUM:NONHUM
 m				:: inflectional iPHI:GEN:M
 f				:: inflectional iPHI:GEN:F
-default			:: inflectional -ΦPF
+default			:: inflectional ΦPF PER
 proper_name		:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
 r_expression	:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
 pronoun1		:: inflectional iPHI:PRON:PRON R:NEW:REF

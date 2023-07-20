@@ -187,7 +187,7 @@ lähtiessään	:: lähte-#ESSA/inf#An LANG:FI
 lähdettyään	:: lähte-#TUA/inf#An LANG:FI
 lähdettyä	:: lähte-#TUA/inf LANG:FI
 lähde		:: lähte-#T/fin LANG:FI
-lähde		:: lähte-#T#default LANG:FI
+lähde		:: lähte-#T LANG:FI
 lähti		:: lähte-#T/fin#[V] LANG:FI
 lähdettiin	:: lähte-#impass#T/fin#tVVn LANG:FI
 lähte- 		:: PF:lähte- LF:leave CLASS/INTR V SPEC:φ -COMP:φ COMP:P LANG:FI
@@ -402,7 +402,7 @@ tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tässä		:: tämä#P
 täytyy		:: täydy-#T/fin#default LANG:FI
 täydy		:: täydy-#T/prt LANG:FI
-täydy-		:: PF:täyty- LF:must Fin V MODAL EF SPEC:φ !COMP:A/inf -ASP LANG:FI
+täydy-		:: PF:täyty- LF:must Fin V -ARG MODAL EF SPEC:φ !COMP:A/inf -ASP LANG:FI
 tönäisi		:: tönäise-#v#T/fin#[V] LANG:FI
 tönäistä	:: tönäise-#A/inf LANG:FI
 tönäise-	:: PF:tönäise- LF:nudge V CLASS/TR LANG:FI
@@ -501,7 +501,7 @@ nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI:
 # Case suffixes
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF adjoinable LANG:FI
-[gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable LANG:FI
+[gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable -float LANG:FI
 [par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable TAG LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
 [dat]		:: inflectional DAT TAIL:φ adjoinable
