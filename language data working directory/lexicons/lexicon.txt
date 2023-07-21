@@ -10,6 +10,7 @@ ali			:: PF:ali LF:under P -ΦPF TAIL:V Inf !COMP:* LANG:FI ARG
 antaa		:: anta-#v#asp#A/inf LANG:FI
 anta-   	:: PF:antaa LF:give V -COMP:P CLASS/DITR -COMP:Fin +SEM:directional ASP:BOUNDED LANG:FI
 antoi   	:: anta-#v#asp#T/fin#[V] LANG:FI
+antoi   	:: anta-#v#asp#T/fin#[V] LANG:FI
 asuu		:: asu-#T/fin#[V] LANG:FI
 asu-		:: PF:asuu- LF:live V CLASS/INTR -COMP:T -SPEC:P -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
 avain_0acc	::	avain-#φ#sg#3p#def#r_expression#[-acc(0)]
@@ -485,7 +486,7 @@ t		::	inflectional ΦPF Φ EF -Inf PHI:NUM:SG PHI:PER:2 PER PHI:DET:DEF PHI:HUM:
 [V]		::	inflectional ΦPF Φ EF -Inf PHI:NUM:SG PHI:PER:3 PER LANG:FI
 mme		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 tte		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
-vAt		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:3 PER LANG:FI
+vAt		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:3 PER PHI:DET:DEF LANG:FI
 tVVn	::  inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PER LANG:FI
 
 # Infinitival agreement (Px)

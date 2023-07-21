@@ -34,7 +34,7 @@ class Predicates:
                     if name == '0-merge':
                         paired_with = probe.pro_legibility()
                         log(f'paired with {paired_with}°.')
-                        if not paired_with:
+                        if probe.sister() and not paired_with:
                             log(' *This pro-element cannot be paired with a root predicate/thematic role.')
                             self.operation_failed = True
                     return f'{probe}°: {self.print_target(probe, argument)}'

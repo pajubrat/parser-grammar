@@ -518,7 +518,7 @@ class PhraseStructure:
 
     def get_goal(self):
         return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or
-                                                                          x.phase_head() or x.check({'PER'}), lambda x: not x.phase_head()), None)
+                                                                          x.phase_head(), lambda x: not x.phase_head()), None)
 
     def value_features_from(self, goal):
         if goal:
