@@ -126,7 +126,7 @@ class NarrowSemantics:
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
-                if self.brain_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_assigner():
+                if self.brain_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_predicate():
                     thematic_assignment = self.thematic_roles_module.reconstruct(ps)
                     if thematic_assignment:
                         self.semantic_interpretation['Thematic roles'].append(thematic_assignment)

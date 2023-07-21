@@ -27,19 +27,12 @@ class Predicates:
             if condition(probe):
                 argument = acquisition(probe)
                 if argument:
-                    log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, argument)} by {name} ')
-                    if probe.p_associate_check(probe.get_goal()):
-                        log(f'EPP violation. ')
+                    if probe.p_associate_check(probe.get_goal()) or not legibility(probe):
                         break
-                    if name == '0-merge':
-                        paired_with = probe.pro_legibility()
-                        log(f'paired with {paired_with}°.')
-                        if probe.sister() and not paired_with:
-                            log(' *This pro-element cannot be paired with a root predicate/thematic role.')
-                            self.operation_failed = True
-                    return f'{probe}°: {self.print_target(probe, argument)}'
-
-        log(f'\n\t\t\t*{probe} failed to link with an argument.')
+                    else:
+                        log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, argument)} by {name} ')
+                        return f'{probe}°: {self.print_target(probe, argument)}'
+        log(f'\n\t\t\t*Argument mapping for {probe} failed.')
         self.operation_failed = True
 
     def print_target(self, probe, goal):

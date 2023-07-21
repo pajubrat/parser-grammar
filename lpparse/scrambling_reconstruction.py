@@ -1,6 +1,5 @@
 from lexical_interface import LexicalInterface
 from adjunct_constructor import AdjunctConstructor
-from support import log
 
 
 # This class must be decomposed into independent left and right operations such that the latter contains extraposition

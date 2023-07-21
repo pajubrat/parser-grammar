@@ -5,8 +5,7 @@ import random
 from knockouts import knockout_filter, \
     knockout_extra_ranking, \
     knockout_lexical_ranking, \
-    knockout_baseline_weighting, \
-    knockout_working_memory
+    knockout_baseline_weighting
 from feature_processing import convert_features_for_parsing
 
 

@@ -290,12 +290,14 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 return '[φ]'
         if feature == 'ΦPF':
             return '/φ/'
-        if feature == '!p':
+        if feature == '&P':
             return '[p]'
-        if feature == '?SELF:ΦLF,ΦPF':
-            return '[Φ]'
-        if feature == '-SELF:ΦPF,ΦPF':
+        if feature == '!ΦLF,ΦPF':
+            return '[Φ2]'
+        if feature == '-ΦPF,ΦPF':
             return '[–Φ]'
+        if feature == '+ΦPF,ΦPF':
+            return '[Φ1]'
         if feature == 'OP:Q':
             return '[Q]'
         if 'COMP:φ' in feature or 'SPEC:φ' in feature and not ps.check({'EF'}):

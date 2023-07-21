@@ -1,4 +1,4 @@
-from support import log, set_logging, is_logging_enabled
+from support import log
 from scrambling_reconstruction import ScramblingReconstruction
 from lexical_interface import LexicalInterface
 from EXP_Agreement_variations import AgreementVariations
@@ -26,7 +26,7 @@ class Transfer:
                                                  'legible': lambda x, y: x.Abar_legible(y),
                                                  'last resort A-chain conditions': lambda x: x == x.container().licensed_phrasal_specifier() or x.VP_for_fronting()},
                              'Feature':         {'type': 'Feature Chain',
-                                                 'test integrity': lambda x: x.check({'?ARG'}) or x.check({'Fin'}),
+                                                 'test integrity': lambda x: x.check({'ARG?'}) or x.check({'Fin'}),
                                                  'repair': lambda x, y, z: x.feature_inheritance()},
                              'Agree':           {'type': 'Agree',
                                                  'test integrity': lambda x: x.is_unvalued(),

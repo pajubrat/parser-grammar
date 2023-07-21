@@ -47,7 +47,7 @@ class OperatorVariableModule:
             self.project_operator_objects_into_discourse_inventory(binding)
         else:
             log(f'\n\t\t\t{binding["Head"].illustrate()} with {operator_feature} is not bound by an operator. ')
-            if '!SCOPE' in binding["Head"].features:
+            if 'SCOPE' in binding["Head"].features:
                 log(f'Interpretation fails and the derivation crashes. ')
                 self.interpretation_failed = True
             else:

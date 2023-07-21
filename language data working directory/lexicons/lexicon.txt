@@ -106,8 +106,8 @@ juoksi		:: juokse-#T/fin#[V] LANG:FI
 juokse-		:: PF:juokse- LF:run V CLASS/INTR LANG:FI
 kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -ΦPF PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
 kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -ΦPF PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -ΦPF ARG -E !COMP:* TAIL:*POL:NEG
-kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -ΦPF ARG -E !COMP:* TAIL:*POL:NEG
+kaksi		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -ΦPF ARG !COMP:* TAIL:*POL:NEG
+kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -ΦPF ARG !COMP:* TAIL:*POL:NEG
 kahdet		:: kaksi-#pl#[nom] LANG:FI
 kahden		:: kaksi-#pl#[gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two Num LANG:FI
@@ -154,11 +154,11 @@ laulaessa	:: laula-#ESSA/inf LANG:FI
 laula-		:: V PF:laula LF:sing CLASS/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
-lähellä		:: P PF:lähellä LF:near TAIL:V Inf ?SELF:ΦLF,ΦPF LANG:FI
-lähellä[Φ]	:: P PF:lähellä LF:near TAIL:V Inf ?SELF:ΦLF,ΦPF  LANG:FI
+lähellä		:: P PF:lähellä LF:near TAIL:V Inf +ΦLF,ΦPF LANG:FI
+lähellä[Φ]	:: P PF:lähellä LF:near TAIL:V Inf +ΦLF,ΦPF LANG:FI
 lähellä2	:: P PF:lähellä LF:near TAIL:V Inf LANG:FI
 lähellä'	:: P PF:lähellä LF:near -ΦPF LANG:FI
-lähellä'	:: P PF:lähellä LF:near Inf ?SELF:ΦLF,ΦPF LANG:FI
+lähellä'	:: P PF:lähellä LF:near Inf +ΦLF,ΦPF LANG:FI
 lähden		:: lähte-#T/fin#n LANG:FI
 lähdin		:: lähte-#T/fin#n LANG:FI
 lähdet		:: lähte-#T/fin#t LANG:FI
@@ -192,7 +192,7 @@ lähde		:: lähte-#T LANG:FI
 lähti		:: lähte-#T/fin#[V] LANG:FI
 lähdettiin	:: lähte-#impass#T/fin#tVVn LANG:FI
 lähte- 		:: PF:lähte- LF:leave CLASS/INTR V SPEC:φ -COMP:φ COMP:P LANG:FI
-lle     	:: PF:P(-lle) LF:for P -E +SEM:directional -ΦPF TAIL:V LANG:FI
+lle     	:: PF:P(-lle) LF:for P +SEM:directional -ΦPF TAIL:V LANG:FI
 lla			:: PF:P(-lla) LF:by	P -ΦPF TAIL:T TAIL:*V LANG:FI
 lukemalla	:: luke-#v#MA.ade/inf LANG:FI
 lukee		:: luke-#v#T/fin#[V] LANG:FI
@@ -219,7 +219,7 @@ Merja_0acc	::	Merja-#φ#sg#3p#def#nonhum#def#proper_name#[acc(0)] LANG:FI
 Merjan_gen	::	Merja-#φ#sg#3p#def#nonhum#def#proper_name#[gen] LANG:FI
 Merjaa		:: Merja-#φ#sg#3p#def#nonhum#def#proper_name#[par] LANG:FI
 Merjaahan	:: Merja-#φ#sg#3p#def#nonhum#def#proper_name#[par]#[hAn] LANG:FI
-Merja-  	:: PF:Merja LF:Merja N R:REF:PROPER_NAME -SEM:directional -adjoinable LANG:FI
+Merja-  	:: PF:Merja LF:Merja N R:REF:PROPER_NAME -SEM:directional nonadjoinable LANG:FI
 Merjalle	::	Merja-#φ#sg#3p#def#nonhum#def#proper_name#lle
 Merjalla	:: 	Merja-#φ#sg#3p#def#nonhum#def#proper_name#lla
 Merjasta	::	Merja-#φ#sg#3p#def#nonhum#def#proper_name#sta
@@ -502,7 +502,7 @@ nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI:
 # Case suffixes
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF adjoinable LANG:FI
-[gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable -float LANG:FI
+[gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable nonfloat LANG:FI
 [par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable TAG LANG:FI
 gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
 [dat]		:: inflectional DAT TAIL:φ adjoinable
@@ -551,7 +551,7 @@ bank		::	PF:bank1 LF:bank_inst N FREQ:1 LANG:EN
 bank		::	PF:bank2 LF:bank_river N FREQ:2 LANG:EN
 barn		::	PF:barn LF:barn N LANG:EN
 Bill 		:: Bill-#D#sg#3p#def#hum#m LANG:EN
-Bill-		:: PF:Bill LF:Bill N R:REF:PROPER_NAME -SEM:directional -adjoinable LANG:EN
+Bill-		:: PF:Bill LF:Bill N R:REF:PROPER_NAME -SEM:directional nonadjoinable LANG:EN
 by			:: PF:by LF:by P Adv -ΦPF TAIL:T TAIL:*V LANG:EN
 city		:: PF:city LF:city N LANG:EN
 claims		::	claim-#T/fin#[V] LANG:EN
@@ -577,7 +577,7 @@ from    	:: PF:from LF:from P TAIL:V,+SEM:directional LANG:EN
 gave    	:: give-#v#T/fin LANG:EN
 give-   	:: PF:give LF:give V CLASS/DITR -COMP:Fin +SEM:directional LANG:EN
 John 		:: John-#D#sg#3p#def#hum#m LANG:EN
-John-		:: PF:John LF:John N R:REF:PROPER_NAME -SEM:directional -adjoinable LANG:EN
+John-		:: PF:John LF:John N R:REF:PROPER_NAME -SEM:directional nonadjoinable LANG:EN
 is			:: be-#T/fin#[-s] LANG:EN
 be-			:: PF:be LF:be V COPULA SPEC:φ SPEC:TO/inf -COMP:TO/inf !COMP:* -ARG LANG:EN
 key			:: PF:key LF:key N -SEM:directional LANG:EN
@@ -596,7 +596,7 @@ little-		:: PF:little- LF:little 0 LANG:EN
 horse		:: PF:horse LF:horse N LANG:EN
 man			:: PF:man LF:man N LANG:EN
 Mary		:: Mary-#D#sg#3p#def#hum#proper_name#f LANG:EN
-Mary-		:: PF:Mary LF:Mary N R:REF:PROPER_NAME -SEM:directional -adjoinable LANG:EN 
+Mary-		:: PF:Mary LF:Mary N R:REF:PROPER_NAME -SEM:directional nonadjoinable LANG:EN 
 mistake		:: PF:mistake LF:mistake N LANG:EN
 moved		:: move-#v#T/fin LANG:EN
 move'		:: move-#v LANG:EN
@@ -728,7 +728,7 @@ detesto 	:: detest-#T/fin#[-o] LANG:IT
 detest-		:: V PF:detest LF:detest SEM:internal COMP:φ COMP:ARE/inf LANG:IT
 devono 		:: deva-#T/fin#[-no]
 deva-		:: V PF:deva LF:must SPEC:φ COMP:ARE/inf SEM:internal -ASP LANG:IT
-di			:: PF:di LF:of P -adjoinable LANG:FI
+di			:: PF:di LF:of P nonadjoinable LANG:FI
 dorme		:: dorme-#T/fin#[-e] LANG:IT
 dorme-		:: V SPEC:φ PF:dorme CLASS/INTR LF:sleep
 e			:: BE-#T/fin#3p#sg LANG:IT
@@ -756,7 +756,7 @@ lava		:: lava-#v#T/fin#3p#def LANG:IT
 le			:: PF:le LF:φ D LANG:IT
 Luisa		:: Luisa-#D#sg#3p#def#hum#f LANG:IT
 Luisa-		:: PF:Luisa N -SEM:directional R:REF:PROPER_NAME LF:Luisa LANG:IT 
-ndo			:: Inf ?ARG EF Inf PRG PF:PRG LF:ing
+ndo			:: Inf ARG? EF Inf PRG PF:PRG LF:ing
 nen			:: A PF:a LF:ing LANG:FI
 operatoria	:: operatoria-#a0 LANG:IT
 operatoria-	:: PF:operatoria LF:operation 0 LANG:IT
@@ -850,7 +850,7 @@ könyv-		:: PF:könyv LF:book N LANG:HU
 Mari		:: Mari-#D LANG:HU
 Marit		:: Mari-#D#[+acc] LANG:HU
 Mari-		:: PF:Mari LF:Mari N LANG:HU
-mellett		:: PF:mellett LF:near P !SELF:Δd ARG LANG:HU
+mellett		:: PF:mellett LF:near P !Δd ARG LANG:HU
 melyik		:: D#wh#strong_operator LANG:HU
 nem			:: PF:nem LF:not Neg EF !COMP:T/fin LANG:HU
 út			:: út-#D#sg#3p#def#[+nom] LANG:HU
@@ -883,16 +883,16 @@ D_HU		:: PF:D LF:the D EF
 #Case forms
 [+nom]		:: inflectional NOM TAIL:ARG,T/fin adjoinable LANG:HU
 [+acc]		:: inflectional ACC TAIL:v adjoinable LANG:HU
-[+dat]		:: inflectional DAT TAIL:ARG,Inf adjoinable -float LANG:HU
+[+dat]		:: inflectional DAT TAIL:ARG,Inf adjoinable nonfloat LANG:HU
 
 # ESTONIAN LEXICON -------------------------------------------------------------------------------------------------------------------------
 
 linna		:: PF:linna LF:city N -COMP:P LANG:ES
-lähedal		:: PF:lähedak LF:near P !SELF:Δd TAIL:V LANG:ES
+lähedal		:: PF:lähedak LF:near P !Δd TAIL:V LANG:ES
 mis			:: D#wh#3p#sg#[/gen]#strong_operator LANG:ES
 Pariisi		:: Pariisi-#φ#sg#3p#def#[/gen] LANG:ES
 Pariisi-	:: PF:Pariisi LF:Paris N LANG:ES
-suunas		:: PF:suunas LF:towards P SPEC:D !SELF:Δd TAIL:V LANG:ES
+suunas		:: PF:suunas LF:towards P SPEC:D !Δd TAIL:V LANG:ES
 voolab		:: voolab-#T/fin LANG:ES
 voolab-		:: PF:voolab LF:flow V COMP:P CLASS/INTR LANG:ES
 
@@ -911,9 +911,9 @@ a_2pl		:: PF:a LF:a φ PHI:NUM:PL PHI:PER:2 PHI:DET:DEF LANG:X
 a_op		:: PF:a LF:a φ OP:WH
 b_ 			:: b PF:b LF:b LANG:X
 c_			:: c PF:c LF:c LANG:X
-c_edge		:: c PF:c LF:c !SELF:Δd LANG:X
+c_edge		:: c PF:c LF:c !Δd LANG:X
 c_noedge	:: c PF:c LF:c -ΦPF LANG:X
-c_phiedge	:: c PF:c LF:c !SELF:Δd ARG LANG:X
+c_phiedge	:: c PF:c LF:c !Δd ARG LANG:X
 c_nophiedge	:: c PF:c LF:c -ΦPF LANG:X
 d_			:: Φ PF:d LF:d LANG:X SPEC:φ
 AGR			:: inflectional PHI pro PHI:NUM:SG PHI:PER:1 PHI:DET:DEF LANG:X

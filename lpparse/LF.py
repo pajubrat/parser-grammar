@@ -2,7 +2,10 @@ from support import log, set_logging
 from phrase_structure import PhraseStructure
 
 def for_lf_interface(features):
-    return {f for f in features if f.startswith('!') or f.startswith('-') or f.startswith('?')}
+    return {f for f in features if f.startswith('!') or f.startswith('-') or f.startswith('+')}
+
+def self_selectional_feature(f):
+    return ':' not in f and (f.startswith('!') or f.startswith('+') or f.startswith('-'))
 
 class LF:
     def __init__(self, controlling_parsing_process):
@@ -18,14 +21,14 @@ class LF:
                                     ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
                                     ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct)]
 
-        self.selection_violation_test = {'!1EDG': PhraseStructure.selection__negative_one_edge,
+        self.selection_violation_test = {'1EDGE': PhraseStructure.selection__negative_one_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
                                          '-COMP': PhraseStructure.selection__negative_complement,
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
-                                         '!SELF': PhraseStructure.selection__positive_self_selection,
-                                         '-SELF': PhraseStructure.selection__negative_self_selection,
-                                         '?SELF': PhraseStructure.selection__partial_self_selection,
-                                         '!p': PhraseStructure.selection__p_test}
+                                         '!': PhraseStructure.selection__positive_self_selection,
+                                         '-': PhraseStructure.selection__negative_self_selection,
+                                         '+': PhraseStructure.selection__partial_self_selection,
+                                         '&P': PhraseStructure.selection__p_test}
 
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''
@@ -53,11 +56,17 @@ class LF:
         return True
 
     def selection_test(self, probe):
-        for selected_feature in sorted(for_lf_interface(probe.features)):
-            if selected_feature[:5] in self.selection_violation_test.keys() and \
-                    not self.selection_violation_test[selected_feature[:5]](probe, selected_feature[6:]):
-                log(f'\n\t\t{probe} failed feature {selected_feature} ')
+        for f in sorted(for_lf_interface(probe.features)):
+            if self_selectional_feature(f) and self.self_selection(probe, f):
                 return True
+            elif f[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[f[:5]](probe, f[6:]):
+                log(f'\n\t\t{probe} failed feature {f} ')
+                return True
+
+    def self_selection(self, probe, s_feature):
+        if not self.selection_violation_test[s_feature[0]](probe, s_feature[1:]):
+            log(f'\n\t\t{probe} failed feature {s_feature} ')
+            return True
 
     def final_tail_check(self, goal):
         if goal.complex():

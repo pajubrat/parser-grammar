@@ -3,7 +3,6 @@ from itertools import takewhile
 from support import log
 from feature_processing import *
 
-# New list (ordered hierarchically)
 major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Fin', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', 'EXPL', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 
 Result = namedtuple('Result', 'match_occurred outcome')
@@ -105,7 +104,6 @@ class PhraseStructure:
         if not self.right_sister():
             return self
         return self.sister()
-
 
     def geometrical_sister(self):
         if self.is_left():
@@ -258,8 +256,10 @@ class PhraseStructure:
         return self.phi_consistent_head() and self.has_full_phi_set()
 
     def pro_legibility(self):
-        iter = self.minimal_search_domain().minimal_search(lambda x: x.primitive(), lambda x: x.root_predicate() or (not x.phase_head()) and not x.check({'PER'}))
-        return next((x for x in iter if x.root_predicate()), None)
+        if not self.sister():
+            return True
+        iter = self.minimal_search_domain().minimal_search(lambda x: x.primitive(), lambda x: x.theta_predicate() or (not x.phase_head()) and not x.check({'PER'}))
+        return next((x for x in iter if x.theta_predicate()), None)
 
     # Selection -------------------------------------------------------------------------------------------
 
@@ -281,20 +281,17 @@ class PhraseStructure:
 
     # Feature [!SELF]
     def selection__positive_self_selection(self, selected_features):
-        selected_features_set = set(selected_features.split(','))
-        return self.check(selected_features_set)
+        return self.check(set(selected_features.split(',')))
 
     # Feature [-SELF]
     def selection__negative_self_selection(self, selected_features):
-        selected_features_set = set(selected_features.split(','))
-        return not self.check(selected_features_set)
+        return not self.check(set(selected_features.split(',')))
 
-    # Feature [?SELF]
+    # Feature [+SELF]
     def selection__partial_self_selection(self, selected_features):
-        selected_features_set = set(selected_features.split(','))
-        return self.check_some(selected_features_set)
+        return self.check_some(set(selected_features.split(',')))
 
-    # Feature [!p]
+    # Feature [&P]
     def selection__p_test(self, feature):
         return self.edge() or self.check({'strong_agr'})
 
@@ -394,7 +391,7 @@ class PhraseStructure:
 
     # Used by post-LF predicates module (experimental)
     def p_associate_check(self, goal):
-        if goal and self.check({'!p'}) and not self.check({'strong_agr'}) and not self.check({'!SELF:PER'}) and not self.theta_head():
+        if goal and self.check({'&P'}) and not self.check({'strong_agr'}) and not self.check({'!PER'}) and not self.theta_head():
             return self != goal and not (next(iter(self.edge()), self).head().get_id() == goal.head().get_id())
 
     def create_chain(self, transfer, inst):
@@ -524,7 +521,6 @@ class PhraseStructure:
         if goal:
             log(f'\n\t\tAgree({self}°, {goal.head()})')
             for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
-                log(f' {phi}')
                 if self.feature_licensing(phi, goal):
                     self.features.discard(phi_)
                     self.features.add(phi)
@@ -549,7 +545,6 @@ class PhraseStructure:
             probe_type_matched_phi = {phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and self.type_match(phi, phi_)}
             if not probe_type_matched_phi or {x for x in probe_type_matched_phi if x == phi}:
                 return True
-        log(f'(*)')
         self.features.add('*')
 
     def has_interpretable_phi_features(self):
@@ -580,19 +575,19 @@ class PhraseStructure:
 
         if self.highest_finite_head() and not self.check({'-ΦPF'}):
             log(f'\n\t\t{self} acquired φ-completeness.')
-            self.features.add('!SELF:PER')
+            self.features.add('!PER')
 
-        if self.check({'?ARG'}):
-            self.features.discard('?ARG')
+        if self.check({'ARG?'}):
+            self.features.discard('ARG?')
             if self.selected_by_SEM_internal_predicate():
                 log(f'\n\t\t{self}° resolved into -ARG.')
                 self.features.add('-ARG')
-                self.features.add('-SELF:ΦPF,ΦPF')
+                self.features.add('-ΦPF,ΦPF')
                 self.features.add('opaque')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 log(f'\n\t\t{self}° resolved into ARG.')
                 self.features.add('ARG')
-                self.features.add('?SELF:ΦLF,ΦPF')
+                self.features.add('+ΦLF,ΦPF')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
             else:
@@ -1110,8 +1105,8 @@ class PhraseStructure:
     def adjectival(self):
         return self.check({'A'})
 
-    def root_predicate(self):
-        return not self.check({'-ARG'}) and (self.light_verb() or self.check({'V'}) or self.check({'N'}) or self.check({'φ'}))
+    def theta_predicate(self):
+        return self.check({'θ'}) and not self.check({'-ARG'})
 
     def light_verb(self):
         return self.check_some({'v', 'v*', 'impass', 'cau'})
@@ -1156,7 +1151,7 @@ class PhraseStructure:
         return self.check({'P'})
 
     def floatable(self):
-        return not self.check({'-float'})
+        return not self.check({'nonfloat'})
 
     def non_scopal(self):
         return self.check_some({'Inf', 'P', 'D', 'φ'})
@@ -1174,7 +1169,7 @@ class PhraseStructure:
         return self.adverbial() or self.preposition()
 
     def is_adjoinable(self):
-        return self.adjunct or (self.head().check({'adjoinable'}) and not self.head().check({'-adjoinable'}))
+        return self.adjunct or (self.head().check({'adjoinable'}) and not self.head().check({'nonadjoinable'}))
 
     def clitic(self):
         return self.check({'CL'}) or self.head().check({'CL'}) and not self.head().has_affix() and self.head().internal
@@ -1201,7 +1196,7 @@ class PhraseStructure:
         return self.preposition() and self.sister() and self.sister().primitive()
 
     def adjoinable(self):
-        return self.complex() and not self.find_me_elsewhere and self.head().get_tail_sets() and self.check({'adjoinable'}) and not self.check({'-adjoinable'})
+        return self.complex() and not self.find_me_elsewhere and self.head().get_tail_sets() and self.check({'adjoinable'}) and not self.check({'nonadjoinable'})
 
     def legitimate_criterial_feature(self):
         return self.referential() and not self.relative() and self.mother and self.mother.contains_features({'REL'}) and not self.mother.contains_features({'T/fin'})
@@ -1227,11 +1222,8 @@ class PhraseStructure:
     def highest_finite_head(self):
         return self.check({'Fin'}) and not self.check_some({'C', 'FORCE'}) and not (self.selector() and self.selector().check_some({'T', 'COPULA', 'Fin'}))
 
-    def theta_assigner(self):
-        return self.check_some({'SPEC:φ', 'SPEC:D', 'COMP:φ', 'COMP:D', '!SPEC:φ', '!SPEC:D', '!COMP:φ', '!COMP:D'})
-
     def theta_head(self):
-        return self.check_some({'COMP:φ', '!COMP:φ', 'v', 'V'}) and not self.check({'!SELF:Φ'})
+        return self.theta_predicate() and not self.check({'!Φ'})
 
     def expletive(self):
         return self.head().check({'EXPL'})
@@ -1244,7 +1236,7 @@ class PhraseStructure:
 
     def theta_marks(self, target):
         if self.sister() == target:
-            return self.check_some({'SPEC:φ', '!SPEC:φ', 'COMP:φ', '!COMP:φ'})
+            return self.theta_predicate()
         return self.check_some({'SPEC:φ', '!SPEC:φ'})
 
     def coreference_by_Agree(self, goal):
@@ -1272,6 +1264,5 @@ class PhraseStructure:
         return phi.split(':')[1] == phi_.split(':')[1]
 
     def induce_p(self):
-        if self.check_some({'?SELF:ΦLF,ΦPF', '!SELF:ΦLF,ΦPF'}):
-            self.features.add('!p')
-
+        if self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'}):
+            self.features.add('&P')
