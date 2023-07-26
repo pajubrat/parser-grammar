@@ -5,11 +5,11 @@
 
 T/fin   :: T/fin PF:T LF:tense
 v       :: v PF:v LF:v
-v*		:: v PF:v* v- LF:pass -ARG EF opaque
+v*		:: v PF:v* v- LF:pass -ARG EF nonphase
 C/fin   :: C/fin PF:C LF:C/fin
 C		:: C C/fin PF:C LF:C
-T		:: T PF:T LF:tense Fin EF opaque
-T/prt 	:: T/prt PF:Prtc LF:Prtc opaque
+T		:: T PF:T LF:tense Fin EF nonphase
+T/prt 	:: T/prt PF:Prtc LF:Prtc nonphase
 Fin		:: Fin LF:fin PF:Fin ARG COMP:T +ΦLF,ΦPF 	
 a0		:: A PF:a LF:mod
 impass	:: v ARG PF:impass LF:impass
@@ -27,7 +27,7 @@ D/expl		:: EXPL Δd PF:expl PHI:PER:3 LF:expl COMP:N -SPEC:*
 EXPL		:: N#D/expl
 
 # English
-to_inf		:: Inf TO/inf EF PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable
+to_inf		:: Inf TO/inf EF PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE:V nonphase adjoinable
 
 # Finnish infinitivals
 A/inf		:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
@@ -57,7 +57,7 @@ ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin nonadjoin
 
 # Copula
 # BE-		:: V COPULA  				-ARG 					PF:BE 		LF:be COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
-BE-			:: V COPULA 	 			-ARG 					PF:Aux 		LF:Aux !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ opaque
+BE-			:: V COPULA 	 			-ARG 					PF:Aux 		LF:Aux !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ nonphase
 
 # D-elements
 D		:: φ D PF:D LF:det R:NEW:$$$/SUR

@@ -27,31 +27,18 @@ class AgreementVariations:
         return probe.AgreeLF()
 
     # Standard theory (Chomsky 2000, 2001, 2008)
-    # We construct this entity for experimental purposes by backtracking the changes of the revised model
+    # We construct this entity for experimental purposes
     def standard(self, probe):
-        def value_features(probe, goal):
-            log(f'\n\t\t{probe} Agree with {goal.illustrate()} and values ')
-            # Replace iPHI features with PHI features
-            valuations = [(i(phi), probe.unvalued_counterparty(i(phi))) for phi in goal.head().features if
-                          probe.target_phi_feature(phi, goal)]
-            for incoming_phi, unvalued_counterparty in valuations:
-                probe.value_feature(incoming_phi, unvalued_counterparty, goal)
-
         def Agree(self):
-            probe.features.discard('!SELF:Φ1')
-            probe.features.discard('!SELF:Φ12')
-            probe.features.discard('-SELF:Φ1')
-            probe.features.discard('-SELF:Φ12')
-            probe.features.discard('!SELF:ΦPF')
-            probe.features.discard('-COMP:PER')
-            probe.features.discard('PER')
+            probe.features.discard('+ΦLF,ΦPF')
+            probe.features.discard('!ΦLF,ΦPF')
+            probe.features.discard('-ΦLF,ΦPF')
+            probe.features.discard('!ΦPF')
+            probe.features.discard('!PER')
             probe.features.discard('-PER')
-            probe.features.discard('!SELF:PER')
             probe.features = {i(f) for f in probe.features}
-            goal = self
             if self.sister():
-                goal = next(self.sister().minimal_search(lambda x: x.head().referential() or x.phase_head(),
-                                                         lambda x: not x.phase_head()), self)
+                goal = next(self.sister().minimal_search(lambda x: x.goal_selection(), lambda x: not x.phase_head()), None)
             self.value_features_from(goal)
 
         # --- main ---

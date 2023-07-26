@@ -291,7 +291,7 @@ class PhraseStructure:
     def selection__partial_self_selection(self, selected_features):
         return self.check_some(set(selected_features.split(',')))
 
-    # Feature [&P]
+    # Feature [P]
     def selection__p_test(self, feature):
         return self.edge() or self.check({'strong_agr'})
 
@@ -514,18 +514,27 @@ class PhraseStructure:
         self.value_features_from(self.get_goal())
 
     def get_goal(self):
-        return next(self.minimal_search_domain().minimal_search(lambda x: (x.head().referential() and not x.find_me_elsewhere) or
-                                                                          x.phase_head(), lambda x: not x.phase_head()), None)
+        return next(self.minimal_search_domain().minimal_search(lambda x: x.goal_selection(), lambda x: not x.phase_head()), None)
+
+    def goal_selection(self):
+        return not self.find_me_elsewhere and (self.head().referential() or self.phase_head())
 
     def value_features_from(self, goal):
         if goal:
-            log(f'\n\t\tAgree({self}°, {goal.head()})')
             for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
-                if self.feature_licensing(phi, goal):
-                    self.features.discard(phi_)
-                    self.features.add(phi)
+                self.value_feature(phi, phi_, goal)
             self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
             self.induce_p()
+            log(f'\n\t\tAgree({self}°, {goal.head()})')
+
+    def value_feature(self, phi, phi_, goal):
+        if self.feature_licensing(phi, goal):
+            self.features.discard(phi_)
+            self.features.add(phi)
+
+    def induce_p(self):
+        if self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'}):
+            self.features.add('&P')
 
     def target_phi_feature(self, phi, goal):
         if valued_phi_feature(phi):
@@ -1214,7 +1223,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return self.primitive() and not self.check_some({'opaque', 'φ'})
+        return self.primitive() and not self.check_some({'nonphase', 'φ'})
 
     def extended_subject(self):
         return self.check_some({'GEN'})
@@ -1263,6 +1272,3 @@ class PhraseStructure:
     def type_match(self, phi, phi_):
         return phi.split(':')[1] == phi_.split(':')[1]
 
-    def induce_p(self):
-        if self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'}):
-            self.features.add('&P')
