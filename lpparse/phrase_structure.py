@@ -521,11 +521,12 @@ class PhraseStructure:
 
     def value_features_from(self, goal):
         if goal:
+            log(f'\n\t\tAgree({self}°, {goal.head()}) values ')
             for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
                 self.value_feature(phi, phi_, goal)
+                log(f'[{phi.split(":")[2]}] ')
             self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
             self.induce_p()
-            log(f'\n\t\tAgree({self}°, {goal.head()})')
 
     def value_feature(self, phi, phi_, goal):
         if self.feature_licensing(phi, goal):

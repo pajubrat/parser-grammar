@@ -132,6 +132,9 @@ class NarrowSemantics:
                         self.semantic_interpretation['Thematic roles'].append(thematic_assignment)
                 if self.brain_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}):
                     self.semantic_interpretation['Predicates'].append(self.predicates.reconstruct(ps))
+                    # Predicate-argument mapping does not affect grammaticality under the standard model of Agree
+                    if self.brain_model.local_file_system.settings['Agree'] == 'standard':
+                        self.predicates.operation_failed = False
                 if ps.argument_by_agreement():
                     self.semantic_interpretation['Agreement'].append(self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
