@@ -27,19 +27,22 @@ class AgreementVariations:
         return probe.AgreeLF()
 
     # Standard theory (Chomsky 2000, 2001, 2008)
-    # We construct this entity for experimental purposes
     def standard(self, probe):
-        def Agree(self):
+        def phase_head(self, probe):
+            return probe.check_some({'v', 'C'})
+
+        def Agree(probe):
             probe.features.discard('+ΦLF,ΦPF')
             probe.features.discard('!ΦLF,ΦPF')
             probe.features.discard('-ΦLF,ΦPF')
             probe.features.discard('!ΦPF')
+            probe.features.discard('!ΦLF')
             probe.features.discard('!PER')
             probe.features.discard('-PER')
             probe.features = {i(f) for f in probe.features}
-            if self.sister():
-                goal = next(self.sister().minimal_search(lambda x: x.goal_selection(), lambda x: not x.phase_head()), None)
-            self.value_features_from(goal)
+            if probe.sister():
+                goal = next(probe.sister().minimal_search(lambda x: x.goal_selection(), lambda x: not x.phase_head()), None)
+                probe.value_features_from(goal)
 
         # --- main ---
         Agree(probe)
@@ -88,5 +91,3 @@ class AgreementVariations:
                     probe.value_feature(goal_phi, unvalued_probe_phi, goal)
 
         probe.update_phi_interactions()
-
-
