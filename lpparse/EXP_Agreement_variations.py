@@ -29,7 +29,7 @@ class AgreementVariations:
     # Standard theory (Chomsky 2000, 2001, 2008)
     def standard(self, probe):
         def phase_head(probe):
-            return probe.check_some({'v', 'C', 'FORCE'})
+            return probe.check_some({'v', 'C', 'FORCE'}) and not probe.check_some({'v-'})
 
         def goal_selection(probe):
             return not probe.find_me_elsewhere and (probe.head().referential() or phase_head(probe))

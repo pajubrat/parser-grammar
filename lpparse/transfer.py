@@ -1,14 +1,13 @@
 from support import log
-from scrambling_reconstruction import ScramblingReconstruction
 from lexical_interface import LexicalInterface
 from EXP_Agreement_variations import AgreementVariations
+
 
 class Transfer:
     def __init__(self, brain_model):
         self.brain_model = brain_model
         self.i = 0
         self.target = None
-        self.scrambling_module = ScramblingReconstruction(self.brain_model)
         self.access_lexicon = LexicalInterface(self.brain_model)
         self.Agree_variations = AgreementVariations(self.brain_model)
         self.name_provider_index = 0
@@ -34,10 +33,24 @@ class Transfer:
                              'Extraposition':   {'type': 'Extraposition',
                                                  'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
                                                  'repair': lambda x, y, z: x.extrapose(self)},
+                             'Right Scramble':  {'type': 'Right Scrambling',
+                                                 'test integrity': lambda x: x.trigger_right_adjunct_reconstruction(),
+                                                 'repair': lambda x, y, z: x.right_scramble(y, z)},
+                             'Left Scramble':   {'type': 'Left Scrambling',
+                                                 'test integrity': lambda x: True,
+                                                 'repair': lambda x, y, z: x.left_scramble(y, z)},
                              'Last Resort Extraposition': {'type': 'Last Resort Extraposition',
                                                            'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not self.brain_model.LF.LF_legibility_test_detached(x.top()),
-                                                           'repair': lambda x, y, z: x.last_resort_extrapose(self)}
+                                                           'repair': lambda x, y, z: x.last_resort_extrapose(y)}
                              }
+        self.transfer_sequence = [self.instructions['Head'],
+                                  self.instructions['Feature'],
+                                  self.instructions['Extraposition'],
+                                  self.instructions['Right Scramble'],
+                                  self.instructions['Left Scramble'],
+                                  self.instructions['Phrasal'],
+                                  self.instructions['Agree'],
+                                  self.instructions['Last Resort Extraposition']]
 
     def transfer_to_LF(self, ps):
         self.name_provider_index = 0
@@ -49,27 +62,7 @@ class Transfer:
 
     def execute_sequence(self, ps):
         log(f'\n\tTransfer {ps} to LF:----------------------------------------------------------------------\n ')
-        self.reconstruct(ps, self.instructions['Head'].copy())
-        self.reconstruct(ps, self.instructions['Feature'].copy())
-        self.reconstruct(ps, self.instructions['Extraposition'].copy())
-        self.scrambling_module.reconstruct(ps)
-        self.reconstruct(ps, self.instructions['Phrasal'].copy())
-        self.reconstruct(ps, self.instructions['Agree'].copy())
-        self.last_resort(ps, self.instructions['Last Resort Extraposition'].copy())
+        for operation in self.transfer_sequence:
+            ps.reconstruct(self, operation.copy())
         log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps.top()}\n')
         return ps.top()
-
-    def reconstruct(self, probe, inst):
-        x = probe.bottom()
-        while x:
-            if inst['test integrity'](x):
-                inst['repair'](x, self, inst)
-            x = x.selector()
-
-    def last_resort(self, x, inst):
-        if inst['test integrity'](x):
-            inst['repair'](x, self, inst)
-
-    def babtize(self):
-        self.name_provider_index += 1
-        return str(self.name_provider_index)

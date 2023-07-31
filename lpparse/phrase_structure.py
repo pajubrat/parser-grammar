@@ -2,6 +2,8 @@ from collections import namedtuple
 from itertools import takewhile
 from support import log
 from feature_processing import *
+from support import log, disable_logging, enable_logging
+
 
 major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Fin', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', 'EXPL', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 
@@ -222,19 +224,6 @@ class PhraseStructure:
             x = x.right
         return search_list
 
-    def symmetric_minimal_search(self, condition=lambda x: x == x, stop_condition=lambda x: x == x):
-        lst = []
-        for node in self.top().minimal_search():
-            if condition(node):
-                lst.append(node)
-                if stop_condition(node):
-                    break
-            if node.sister() and condition(node.sister()):
-                lst.append(node.sister())
-                if stop_condition(node.sister()):
-                    break
-        return lst
-
     # Virtual pronouns -----------------------------------------------------------------------
 
     def extract_pro(self):
@@ -384,6 +373,11 @@ class PhraseStructure:
             return True
 
     # Reconstruction -----------------------------------------------------------------------------------
+    def reconstruct(self, transfer, operation):
+        for x in [self.bottom()] + self.bottom().upward_path():
+            if operation['test integrity'](x):
+                operation['repair'](x, transfer, operation)
+
     def EF(self):
         for f in self.features:
             if f.startswith('!EF') or f.startswith('EF') or f == '!SEF':
@@ -400,14 +394,13 @@ class PhraseStructure:
             self.form_chain(target, inst)
             transfer.brain_model.consume_resources(inst['type'], self)
 
-            # Successive-cyclicity
             if target.primitive() and inst['test integrity'](target):
                 target.create_chain(transfer, inst)
             elif target.max().container() and inst['test integrity'](target.max().container()):
                 target.max().container().create_chain(transfer, inst)
 
     def select_targets(self, instructions):
-        if instructions['type'] == 'Phrasal Chain':
+        if instructions['type'] == 'Phrasal Chain' or instructions['type'] == 'Left Scrambling':
             return [x for x in self.edge() if not x.find_me_elsewhere and not self.licensed_expletive(x)]
         return [self.right]
 
@@ -424,7 +417,7 @@ class PhraseStructure:
                 log(f'\n\t\t{probe} triggers A-movement ')
             probe.copy_criterial_features(specifier)
             probe.features = transfer.access_lexicon.apply_redundancy_rules(probe.features)
-        return inst, specifier.copy_for_chain(transfer.babtize())
+        return inst, specifier.copy_for_chain()
 
     def form_chain(self, target, inst):
 
@@ -510,6 +503,151 @@ class PhraseStructure:
             return {'Fin', 'C', 'PF:C'}
         return set()
 
+    # Scrambling ==========================================================================
+
+    def left_scramble(self, transfer, inst):
+        if not self.legible_adjunct() and self.adjoinable() and self.floatable() and not self.operator_in_scope_position() and not self.expletive():
+            self.reconstruct_scrambling(transfer, inst)
+
+    def trigger_right_adjunct_reconstruction(self):
+        target = self
+        if self.is_left():
+            target = self.geometrical_sister()
+        return not target.legible_adjunct() and target.adjoinable() and target.floatable() and not target.operator_in_scope_position() and not target.expletive()
+
+    def legible_adjunct(self):
+        return self.head().tail_test() and (self.is_right() or (self.is_left() and not self.nonthematic()))
+
+    def right_scramble(self, transfer, inst):
+        if self.is_left:
+            target = self.geometrical_sister()
+        else:
+            target = self
+        target.head().externalize_structure(transfer)
+        if target.legible_adjunct() or target.head().adverbial() or not target.top().contains_finiteness():
+            return
+        target.reconstruct_scrambling(transfer, inst)
+
+    def merge_floater(self, floater, transfer, direction='left'):
+        if direction == 'left':
+            if self.is_right():
+                if floater.adverbial_adjunct():
+                    self.Merge(floater, 'right')
+                else:
+                    self.Merge(floater, 'left')
+            else:
+                if floater.adverbial_adjunct():
+                    self.mother.Merge(floater, 'right')
+                else:
+                    self.mother.Merge(floater, 'left')
+            floater.externalize_structure(transfer)
+        elif direction == 'right':
+            self.Merge(floater, 'right')
+            floater.adjunct = False
+
+    def reconstruct_scrambling(self, transfer, inst):
+        def sustain_condition(node, target, local_tense_edge):
+            return not (node.mother == target or
+                        node.mother.find_me_elsewhere or
+                        (node.force() and node.container() != local_tense_edge.head()) or
+                        (node.primitive() and node.referential()))
+
+        def test_adjunction_solution(node, target, virtual_test_item, starting_point, direction, transfer):
+            def copy_and_insert(node, original_floater, direction):
+                if not original_floater.adjunct:
+                    original_floater.externalize_structure(transfer)
+                reconstructed_floater = original_floater.copy_for_chain()
+                node.merge_floater(reconstructed_floater, transfer, direction)
+                return reconstructed_floater
+            if virtual_test_item.valid_reconstructed_adjunct(starting_point):
+                virtual_test_item.remove()
+                dropped_floater = copy_and_insert(node, target, direction)
+                if target in starting_point.edge() and starting_point.requires_SUBJECT():
+                    starting_point.scan_criterial_features(dropped_floater, 'ΔOP')
+                    starting_point.copy_criterial_features(dropped_floater)
+                starting_point.features = transfer.access_lexicon.apply_redundancy_rules(starting_point.features)
+                transfer.brain_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(dropped_floater, starting_point)
+                return True
+            virtual_test_item.remove()
+        starting_point = self.container()
+        virtual_test_item = self.copy()
+        local_tense_edge = self.local_tense_edge()
+        node = starting_point
+        for node in local_tense_edge.minimal_search(lambda x: True, lambda x: sustain_condition(x, self, local_tense_edge)):
+            node.merge_floater(virtual_test_item, transfer)
+            if test_adjunction_solution(node, self, virtual_test_item, starting_point, 'left', transfer):
+                break
+        else:
+            node.Merge(virtual_test_item, 'right')
+            virtual_test_item.adjunct = False
+            test_adjunction_solution(node, self, virtual_test_item, starting_point, 'right', transfer)
+        transfer.brain_model.consume_resources(inst['type'], self)
+
+    def externalize_structure(self, transfer):
+        if self and self.head().is_adjoinable() and self.mother:
+            if self.complex():
+                self.externalize_and_transfer(transfer)
+            else:
+                self.externalize_head(transfer)
+
+    def externalize_head(self, transfer):
+        if self.isolated_preposition():
+            self.externalize_and_transfer(transfer)
+            return
+        if self.externalize_with_specifier():
+            self.mother.mother.externalize_and_transfer(transfer)
+        else:
+            self.mother.externalize_and_transfer(transfer)
+
+    def externalize_and_transfer(self, transfer):
+        if self.mother:
+            self.adjunct = True
+            self.add_tail_features_if_missing()
+            self.transfer_adjunct(transfer)
+
+    def add_tail_features_if_missing(self):
+        if not self.head().get_tail_sets():
+            if self.referential():
+                self.head().features.add('TAIL:V')
+            elif 'T' not in self.head().features:       # TP can only become relative clause, e.g. 'che dorme'
+                self.head().features.add('TAIL:T')
+                self.head().features.add('Adv')
+
+    def transfer_adjunct(self, transfer):
+        original_mother, is_right = self.detach()
+        disable_logging()
+        transfer.transfer_to_LF(self)
+        enable_logging()
+        if original_mother:
+            self.mother = original_mother
+            if is_right:
+                self.mother.right = self
+            else:
+                self.mother.left = self
+        return self
+
+    def valid_reconstructed_adjunct(self, starting_point_node):
+        if self.head().tail_test():
+            if self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node):
+                if self.container():
+                    h = self.container()
+                    if self == h.next(h.edge):
+                        return h.specifier_match(self)
+                    if self == h.sister():
+                        return h.complement_match(self)
+                else:
+                    return True  # XP without container is accepted
+
+    def local_tense_edge(self):
+        return next((node.mother for node in self.upward_path() if node.finite() or node.force()), self.top())
+
+    def externalize_with_specifier(self):
+        return self.is_left() and self.predicate() and \
+               ((self.tail_test() and self.has_nonthematic_specifier()) or
+                (not self.tail_test() and self.has_legitimate_specifier()))
+
+    # Agreement ---------------------------------------------------------------------------------------------
+
     def AgreeLF(self):
         self.value_features_from(self.get_goal())
 
@@ -575,18 +713,19 @@ class PhraseStructure:
         return self.top().contains_finiteness() or self.top().referential()
 
     def extrapose(self, transfer):
-        transfer.brain_model.adjunct_constructor.externalize_structure(self.sister().head())
+        self.sister().head().externalize_structure(transfer)
         transfer.brain_model.consume_resources('Extraposition', self)
 
     def last_resort_extrapose(self, transfer):
-        transfer.brain_model.adjunct_constructor.externalize_structure(self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition()))
+        target = self.bottom().next(self.bottom().upward_path, lambda x: x.cutoff_point_for_last_resort_extraposition())
+        if target:
+            transfer.brain_model.consume_resources('Last Resort Extraposition', self)
+            target.externalize_structure(transfer)
 
     def feature_inheritance(self):
-
         if self.highest_finite_head() and not self.check({'-ΦPF'}):
             log(f'\n\t\t{self} acquired φ-completeness.')
             self.features.add('!PER')
-
         if self.check({'ARG?'}):
             self.features.discard('ARG?')
             if self.selected_by_SEM_internal_predicate():
@@ -604,32 +743,6 @@ class PhraseStructure:
                 self.features.add('ARG')
                 self.features.add('PHI:NUM:_')
                 self.features.add('PHI:PER:_')
-
-    def valid_reconstructed_adjunct(self, starting_point_node):
-        if self.head().tail_test():
-            if self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node):
-                if self.container():
-                    h = self.container()
-                    if self == h.next(h.edge):
-                        return h.specifier_match(self)
-                    if self == h.sister():
-                        return h.complement_match(self)
-                else:
-                    return True     # XP without container is accepted
-
-    def trigger_adjunct_reconstruction(self):
-        return not self.legible_adjunct() and self.adjoinable() and self.floatable() and not self.operator_in_scope_position() and not self.expletive()
-
-    def legible_adjunct(self):
-        return self.head().tail_test() and (self.is_right() or (self.is_left() and not self.nonthematic()))
-
-    def local_tense_edge(self):
-        return next((node.mother for node in self.upward_path() if node.finite() or node.force()), self.top())
-
-    def externalize_with_specifier(self):
-        return self.is_left() and self.predicate() and \
-               ((self.tail_test() and self.has_nonthematic_specifier()) or
-                (not self.tail_test() and self.has_legitimate_specifier()))
 
     def empty_finite_EPP(self):
         return self.selector().finite_C() and self.EF() and not self.edge()

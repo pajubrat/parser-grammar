@@ -4,7 +4,6 @@ from LF import LF
 from morphology import Morphology
 from transfer import Transfer
 from SEM_narrow_semantics import NarrowSemantics
-from adjunct_constructor import AdjunctConstructor
 from lexical_stream import LexicalStream
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
@@ -35,7 +34,6 @@ class LinearPhaseParser:
         self.transfer = Transfer(self)                          # Access to transfer
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
-        self.adjunct_constructor = AdjunctConstructor(self)     # Adjunct constructor
         self.plausibility_metrics = PlausibilityMetrics(self)
         self.resources = dict                                   # Resources consumed
         self.start_time = 0                                     # Calculates execution time
@@ -76,7 +74,8 @@ class LinearPhaseParser:
                           "Feature Chain": {'ms': 5, 'n': 0},
                           "Agree": {'ms': 5, 'n': 0},
                           "Feature": {'ms': 5, 'n': 0},
-                          "Scrambling Chain": {'ms': 5, 'n': 0},
+                          "Left Scrambling": {'ms': 5, 'n': 0},
+                          "Right Scrambling": {'ms': 5, 'n': 0},
                           "Extraposition": {'ms': 6, 'n': 0},
                           "Last Resort Extraposition": {'ms': 5, 'n': 0},
                           "Mean time per word": {'ms': 0, 'n': 0}
