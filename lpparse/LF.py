@@ -10,6 +10,7 @@ def self_selectional_feature(f):
 class LF:
     def __init__(self, controlling_parsing_process):
         self.brain_model = controlling_parsing_process
+        self.failed_feature = ''
         self.LF_legibility_tests = [('Edge feature test', PhraseStructure.edge_feature_tests),
                                     ('Selection test', self.selection_test),
                                     ('Projection Principle', PhraseStructure.projection_principle_failure),
@@ -33,25 +34,22 @@ class LF:
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''
 
-    def LF_legibility_test(self, ps, test_battery=None):
-        if test_battery:
-            self.active_test_battery = test_battery
-        else:
-            self.active_test_battery = self.LF_legibility_tests
-        return self.pass_LF_legibility(ps)
-
-    def pass_LF_legibility(self, ps):
+    def pass_LF_legibility(self, ps, logging=True):
+        self.failed_feature = ''
         if not ps.find_me_elsewhere:
             if ps.primitive():
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(ps):
-                        log(f'\n\t\t{ps} failed {test_name} ')
-                        self.error_report_for_external_callers = f'{ps} failed {test_name}'  # For plausibility metrics calculations and output
+                        if logging:
+                            log(f'\n\t\t{ps} failed {test_name} ')
+                            if self.failed_feature:
+                                log(f'for [{self.failed_feature}]')
+                        self.error_report_for_external_callers = f'{ps} failed {test_name}.'  # For plausibility metrics calculations and output
                         return False
             else:
-                if not self.pass_LF_legibility(ps.left):
+                if not self.pass_LF_legibility(ps.left, logging):
                     return False
-                if not self.pass_LF_legibility(ps.right):
+                if not self.pass_LF_legibility(ps.right, logging):
                     return False
         return True
 
@@ -60,7 +58,7 @@ class LF:
             if self_selectional_feature(f) and self.self_selection(probe, f):
                 return True
             elif f[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[f[:5]](probe, f[6:]):
-                log(f'\n\t\t{probe} failed feature {f} ')
+                self.failed_feature = f
                 return True
 
     def self_selection(self, probe, s_feature):
@@ -83,6 +81,6 @@ class LF:
         def detached(ps):
             ps.mother = None
             return ps
-        result = self.LF_legibility_test(detached(ps.copy()))
-        return result
+        self.active_test_battery = self.LF_legibility_tests
+        return self.pass_LF_legibility(detached(ps.copy()), False)
 

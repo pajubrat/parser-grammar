@@ -26,7 +26,7 @@ class LexicalStream:
                 stri = lst_branched[index][:-1]
             else:
                 stri = lst_branched[index]
-            log(f'\n\tNext morph [{stri}] ~ {lexical_item.label()}°\n')
+            log(f'\n\n\tNext morph [{stri}] ~ {lexical_item.label()}°\n')
             self.add_ID(lexical_item)
             if not ps:
                 self.brain_model.parse_new_item(lexical_item.copy(), lst_branched, index + 1)

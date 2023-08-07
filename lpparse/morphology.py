@@ -16,7 +16,7 @@ class Morphology:
     def morphological_parse(self, ps, lexical_item, input_word_list, index, inflection_buffer):
         current_lexical_item = lexical_item
         if self.is_polymorphemic(current_lexical_item):
-            log(f'\n\tMorphological decomposition of /{input_word_list[index]}/ ~ ')
+            log(f'\n\n\tMorphological decomposition of /{input_word_list[index]}/ ~ ')
             current_lexical_item = self.Aux_inversion(current_lexical_item)
             morpheme_list = self.decompose(current_lexical_item.morphology)
             morpheme_list = self.handle_incorporation(current_lexical_item, morpheme_list)

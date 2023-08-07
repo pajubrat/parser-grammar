@@ -62,6 +62,7 @@ class PlausibilityMetrics:
         self.word_tail_set = None
 
     def filter_and_rank(self, ps, w):
+        set_logging(False)
         if 'inflectional' in w.features:
             return []
 
@@ -86,6 +87,7 @@ class PlausibilityMetrics:
             all_merge_sites = merge_sites + self.brain_model.working_memory.not_in_active_working_memory
             solutions = self.evaluate_transfer(all_merge_sites)
 
+        set_logging(True)
         log(f'\n\t\tRanking:')
         for i, (site, transfer, address_label) in enumerate(solutions, start=1):
             if self.brain_model.working_memory.not_in_active_working_memory and site == self.brain_model.working_memory.not_in_active_working_memory[0]:
@@ -169,12 +171,9 @@ class PlausibilityMetrics:
     @knockout_extra_ranking
     def lf_legibility_condition(self, site):
         if not site.primitive():
-            set_logging(False)
-            dropped = self.brain_model.transfer.transfer_to_LF(site.copy())
-            if not self.brain_model.LF.LF_legibility_test(dropped):
-                set_logging(True)
+            dropped = site.copy().transfer_to_LF()
+            if not self.brain_model.LF.pass_LF_legibility(dropped, False):
                 return True
-            set_logging(True)
 
     @knockout_lexical_ranking
     def negative_adverbial_test(self, site):
@@ -267,12 +266,11 @@ class PlausibilityMetrics:
         return adjunction_sites
 
     def left_branch_filter(self, N):
-        set_logging(False)
-        dropped = self.brain_model.transfer.transfer_to_LF(N.copy())
-        left_branch_passes_LF = self.brain_model.LF.LF_legibility_test(dropped, self.left_branch_filter_test_battery)
+        dropped = N.copy().transfer_to_LF()
+        self.brain_model.LF.active_test_battery = self.left_branch_filter_test_battery
+        left_branch_passes_LF = self.brain_model.LF.pass_LF_legibility(dropped, False)
         if not left_branch_passes_LF:
             log(f'in {dropped}. ')
-        set_logging(True)
         return not left_branch_passes_LF
 
     def word_breaking_filter(self, N, w):

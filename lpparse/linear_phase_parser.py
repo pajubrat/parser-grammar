@@ -2,14 +2,13 @@ from support import set_logging, log, report_failure, report_success, log_new_se
 from lexical_interface import LexicalInterface
 from LF import LF
 from morphology import Morphology
-from transfer import Transfer
 from SEM_narrow_semantics import NarrowSemantics
 from lexical_stream import LexicalStream
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
 from working_memory import SyntacticWorkingMemory
-
+from EXP_Agreement_variations import AgreementVariations
 
 class LinearPhaseParser:
     def __init__(self, local_file_system, language='XX'):
@@ -31,7 +30,6 @@ class LinearPhaseParser:
         self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
         self.morphology = Morphology(self, language)            # Access to morphology
         self.working_memory = SyntacticWorkingMemory(self)      # Access to working memory
-        self.transfer = Transfer(self)                          # Access to transfer
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.plausibility_metrics = PlausibilityMetrics(self)
@@ -43,6 +41,7 @@ class LinearPhaseParser:
         self.total_time_per_sentence = 0
         self.time_from_stimulus_onset_for_word = []
         self.only_first_solution = False
+        self.Agree_variations = AgreementVariations(self)
 
     def initialize(self):
         if 'only_first_solution' in self.local_file_system.settings:
@@ -88,6 +87,7 @@ class LinearPhaseParser:
         self.plausibility_metrics.initialize()
         self.narrow_semantics.initialize()
         log_new_sentence(self, count, lst)
+        PhraseStructure.brain_model = self
         self.parse_new_item(None, lst, 0)
 
     def parse_new_item(self, ps, lst, index, inflection_buffer=None):
@@ -116,15 +116,15 @@ class LinearPhaseParser:
         else:
             new_constituent = self.attach_into_phrase(left_branch, terminal_lexical_item, transfer)
         self.consume_resources("Merge", terminal_lexical_item)
-        log('\n')
         return new_constituent
 
     def attach_into_phrase(self, left_branch, terminal_lexical_item, transfer):
         new_left_branch = left_branch
+        m = left_branch.mother
         if transfer:
-            set_logging(False)
-            new_left_branch = self.transfer.transfer_to_LF(left_branch)
-            set_logging(True)
+            new_left_branch = left_branch.detached().transfer_to_LF()
+        set_logging(True)
+        new_left_branch.mother = m
         new_constituent = new_left_branch.Merge(terminal_lexical_item)
         self.working_memory.remove_item(left_branch)
         return new_constituent
@@ -141,7 +141,9 @@ class LinearPhaseParser:
             self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
     def complete_processing(self, ps):
-        self.transfer.transfer_to_LF(ps)
+        log(f'\n\n\tTransfer {ps} to LF:----------------------------------------------------------------------------\n ')
+        ps.transfer_to_LF()
+        log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps.top()}\n')
         if self.postsyntactic_tests(ps):
             self.resources.update(PhraseStructure.resources)
             report_success(self, ps)
@@ -153,7 +155,7 @@ class LinearPhaseParser:
 
     def postsyntactic_tests(self, ps):
         log(f'\n\t\tLF-interface and postsyntactic legibility tests:')
-        return self.LF.LF_legibility_test(ps) and \
+        return self.LF.pass_LF_legibility(ps) and \
                self.LF.final_tail_check(ps) and \
                self.narrow_semantics.postsyntactic_semantic_interpretation(ps)
 
@@ -163,4 +165,4 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}')
+            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}.')
