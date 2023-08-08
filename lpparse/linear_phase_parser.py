@@ -88,6 +88,7 @@ class LinearPhaseParser:
         self.narrow_semantics.initialize()
         log_new_sentence(self, count, lst)
         PhraseStructure.brain_model = self
+        PhraseStructure.chain_index = 0
         self.parse_new_item(None, lst, 0)
 
     def parse_new_item(self, ps, lst, index, inflection_buffer=None):
@@ -122,7 +123,9 @@ class LinearPhaseParser:
         new_left_branch = left_branch
         m = left_branch.mother
         if transfer:
-            new_left_branch = left_branch.detached().transfer_to_LF()
+            ps, m = left_branch.detached()
+            new_left_branch = left_branch.transfer_to_LF()
+            new_left_branch.mother = m
         set_logging(True)
         new_left_branch.mother = m
         new_constituent = new_left_branch.Merge(terminal_lexical_item)
