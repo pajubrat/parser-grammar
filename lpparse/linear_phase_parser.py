@@ -168,4 +168,5 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}.')
+            if key != 'Agree':
+                log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}.')

@@ -1,6 +1,5 @@
-from itertools import chain
 from feature_processing import *
-from support import set_logging, log, report_failure, report_success, log_new_sentence
+
 
 # Separate class for alternative formulations for the Agree mechanism
 # Standard agreement is implemented in the phrase structure class; this contains only experimental versions
@@ -9,7 +8,7 @@ class AgreementVariations:
         self.brain_model = brain_model
         pass
 
-    def Agree(self, probe, transfer):
+    def Agree(self, probe):
         if self.brain_model.local_file_system.settings['Agree'] == 'standard':
             self.standard(probe)
         if self.brain_model.local_file_system.settings['Agree'] == 'revised':

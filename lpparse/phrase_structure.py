@@ -12,41 +12,48 @@ class PhraseStructure:
     brain_model = None
     resources = {"Merge-1": {"ms": 0, "n": 0}}
     chain_index = 0
+    transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
                                     'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere,
-                                    'repair': lambda x, y: x.create_chain(y),
+                                    'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
                                     'sustain': lambda x: True,
                                     'legible': lambda x, y: y.properly_selected() and not y.empty_finite_EPP() and y.right_sister() != x,
                                     'single operation': False,
-                                    'prepare': lambda x, y: x.prepare_head_chain(y)},
+                                    'prepare': lambda x: x.prepare_head_chain()},
                            'Phrasal': {'type': 'Phrasal Chain',
                                        'test integrity': lambda x: not x.find_me_elsewhere and x.complex() and x.is_left() and x.container() and x.container().EF(),
-                                       'repair': lambda x, y: x.create_chain(y),
+                                       'repair': lambda x: x.create_chain(),
                                        'selection': lambda x: x.primitive() and not x.finite(),
                                        'sustain': lambda x: not (x.primitive() and x.referential()),
                                        'legible': lambda x, y: x.Abar_legible(y),
-                                       'prepare': lambda x, y: x.prepare_phrasal_chain(y),
-                                       'last resort A-chain conditions': lambda x: x == x.container().licensed_phrasal_specifier() or x.VP_for_fronting()},
+                                       'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Feature': {'type': 'Feature Chain',
                                        'test integrity': lambda x: x.check({'ARG?'}) or x.check({'Fin'}),
-                                       'repair': lambda x, y: x.feature_inheritance(),
+                                       'repair': lambda x: x.feature_inheritance(),
                                        'single operation': False},
+                           'A-chain':  {'type': 'Phrasal Chain',
+                                        'repair': lambda x: x.create_chain(),
+                                        'selection': lambda x: x.has_vacant_phrasal_position(),
+                                        'legible': lambda x, y: True,
+                                        'sustain': lambda x: not (x.primitive() and x.referential()),
+                                        'test integrity': lambda x: not x.find_me_elsewhere and x.complex() and x.is_left() and x.container() and x.container().EF(),
+                                        'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Agree': {'type': 'Agree',
                                      'test integrity': lambda x: x.is_unvalued(),
-                                     'repair': lambda x, y: PhraseStructure.brain_model.Agree_variations.Agree(x, y)},
+                                     'repair': lambda x: x.AgreeLF()},
                            'Extraposition': {'type': 'Extraposition',
                                              'test integrity': lambda x: x.primitive() and (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
-                                             'repair': lambda x, y: x.extrapose()},
+                                             'repair': lambda x: x.extrapose()},
                            'Right Scramble': {'type': 'Right Scrambling',
-                                              'test integrity': lambda x: not x.find_me_elsewhere and x.complex() and x.trigger_right_node_scrambling(),
-                                              'repair': lambda x, y: x.right_scrambling(y)},
+                                              'test integrity': lambda x: not x.find_me_elsewhere and x.trigger_right_node_scrambling(),
+                                              'repair': lambda x: x.right_scrambling()},
                            'Left Scramble': {'type': 'Left Scrambling',
                                              'test integrity': lambda x: x.complex() and not x.find_me_elsewhere and x.trigger_scrambling(),
-                                             'repair': lambda x, y: x.reconstruct_scrambling(y)},
+                                             'repair': lambda x: x.reconstruct_scrambling()},
                            'Last Resort Extraposition': {'type': 'Last Resort Extraposition',
                                                          'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not PhraseStructure.brain_model.LF.LF_legibility_test_detached(x.top()),
-                                                         'repair': lambda x, y: x.last_resort_extrapose()}}
+                                                         'repair': lambda x: x.last_resort_extrapose()}}
     transfer_sequence = [instructions['Head'],
                          instructions['Feature'],
                          instructions['Extraposition'],
@@ -157,8 +164,6 @@ class PhraseStructure:
 
     def sister(x):
         while x.mother:
-            if x.adjunct:
-                return None
             if x.is_right():
                 if not x.geometrical_sister().adjunct:
                     return x.geometrical_sister()
@@ -290,7 +295,7 @@ class PhraseStructure:
         return self.phi_consistent_head() and self.has_full_phi_set()
 
     def pro_legibility(self):
-        if not self.sister():
+        if not self.sister() or self.adjunct:
             return True
         iter = self.minimal_search_domain().minimal_search(lambda x: x.primitive(), lambda x: x.theta_predicate() or (not x.phase_head()) and not x.check({'PER'}))
         return next((x for x in iter if x.theta_predicate()), None)
@@ -416,42 +421,37 @@ class PhraseStructure:
         if self.check_some({'SPEC:φ', '!SPEC:φ'}) and not (self.selector() and self.selector().check({'-ARG'})):
             return True
 
-    # Transfer and reconstruction -----------------------------------------------------------------------------------
+    # Transfer --------------------------------------------------------------------------------------------------------------------
 
     def transfer_to_LF(self):
         ps, m = self.detached()
-        ps.execute_transfer_sequence()
+        for op in PhraseStructure.transfer_sequence:
+            PhraseStructure.transfer_operation = op
+            self.reconstruct()
         return ps.reattach(m)
 
-    def execute_transfer_sequence(self):
-        for operation in PhraseStructure.transfer_sequence:
-            self.reconstruct(operation)
+    def reconstruct(self):
+        for const in (x for x in [self.bottom()] + self.bottom().upward_path() if PhraseStructure.transfer_operation['test integrity'](x)):
+            PhraseStructure.transfer_operation['repair'](const)
+            PhraseStructure.brain_model.consume_resources(PhraseStructure.transfer_operation['type'], const)
 
-    def reconstruct(self, operation):
-        for const in [x for x in [self.bottom()] + self.bottom().upward_path() if operation['test integrity'](x)]:
-            operation['repair'](const, operation.copy())
-            PhraseStructure.brain_model.consume_resources(operation['type'], self)
+    # Chain creation (part of transfer)
 
-    def create_chain(self, operation):
-        head, target, operation = operation['prepare'](self, operation)
-        head.form_chain(target, operation)
+    def create_chain(self):
+        head, target = PhraseStructure.transfer_operation['prepare'](self)
+        head.form_chain(target)
+        if PhraseStructure.transfer_operation['test integrity'](target):
+            target.create_chain()   # Recursion, successive-cyclicity
 
-        # Successive-cyclic movement
-        if target.primitive() and operation['test integrity'](target):
-            target.create_chain(operation)
-        elif target.max().container() and operation['test integrity'](target) and target.referential():
-            target.create_chain(operation)
+    def prepare_head_chain(self):
+        return self, self.right.copy_for_chain()
 
-    def prepare_head_chain(self, operation):
-        return self, self.right.copy_for_chain(), operation
-
-    def prepare_phrasal_chain(self, operation):
-        probe = self.container()
+    def prepare_phrasal_chain(self):
         if self.A_bar_operator():
-            self.prepare_A_bar_chain(probe)
+            self.prepare_A_bar_chain(self.container())
         else:
-            self.prepare_A_chain(operation)
-        return probe, self.copy_for_chain(), operation
+            PhraseStructure.transfer_operation = PhraseStructure.instructions['A-chain']    # Last Resort option
+        return self.container(), self.copy_for_chain()
 
     def prepare_A_bar_chain(self, probe):
         if not self.supported_by(probe):
@@ -459,29 +459,23 @@ class PhraseStructure:
         probe.copy_criterial_features(self)
         probe.features = PhraseStructure.brain_model.lexicon.apply_redundancy_rules(probe.features)
 
-    @staticmethod
-    def prepare_A_chain(operation):
-        operation['selection'] = lambda x: x.has_vacant_phrasal_position()
-        operation['legible'] = lambda x, y: True
-
     def project_phonologically_null_head(self):
         probe = self.sister().Merge(PhraseStructure.brain_model.lexicon.PhraseStructure(), 'left').left
         probe.features |= probe.add_scope_information()
-        log(f'\n\t\tCreated {probe}° => {probe.top()}')
         return probe
 
-    def form_chain(self, target, inst):
-        for head in self.minimal_search_domain().minimal_search(inst['selection'], inst['sustain']):
-            if head != self and head.test_merge(target, inst['legible'], 'left'):
+    def form_chain(self, target):
+        for head in self.minimal_search_domain().minimal_search(PhraseStructure.transfer_operation['selection'], PhraseStructure.transfer_operation['sustain']):
+            if head != self and head.test_merge(target, PhraseStructure.transfer_operation['legible'], 'left'):
                 break
             target.remove()
         else:
-            if not self.top().bottom().test_merge(target, inst['legible'], 'right'):
+            if not self.top().bottom().test_merge(target, PhraseStructure.transfer_operation['legible'], 'right'):
                 target.remove()
                 if self.sister() and not target.scan_criterial_features('ΔOP'):
                     self.sister().Merge(target, 'left')
                 else:
-                    self.top().bottom().Merge(target, 'right')  #Last Resort option
+                    self.top().bottom().Merge(target, 'right')  # Last Resort option
 
     def scan_criterial_features(self, feature):
         criterial_features = self.scan_features(feature)
@@ -577,9 +571,9 @@ class PhraseStructure:
     def trigger_right_node_scrambling(self):
         return self.focus_right_node().trigger_scrambling()
 
-    def right_scrambling(self, inst):
+    def right_scrambling(self):
         if not self.focus_right_node().in_situ_scrambling_solution():
-            self.focus_right_node().reconstruct_scrambling(inst)
+            self.focus_right_node().reconstruct_scrambling()
 
     def in_situ_scrambling_solution(self):
         self.head().externalize_structure()
@@ -593,7 +587,7 @@ class PhraseStructure:
     def legible_adjunct(self):
         return self.head().tail_test() and (self.is_right() or (self.is_left() and not self.nonthematic()))
 
-    def reconstruct_scrambling(self, inst):
+    def reconstruct_scrambling(self):
         starting_point = self.container()
         virtual_test_item = self.copy()
         scrambled_phrase = self
@@ -607,7 +601,7 @@ class PhraseStructure:
             node.Merge(virtual_test_item, 'right')
             virtual_test_item.adjunct = False
             node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'right')
-        PhraseStructure.brain_model.consume_resources(inst['type'], self)
+        PhraseStructure.brain_model.consume_resources(PhraseStructure.transfer_operation['type'], self)
 
     def local_tense_edge(self):
         return next((node.mother for node in self.upward_path() if node.finite() or node.force()), self.top())
@@ -741,6 +735,7 @@ class PhraseStructure:
             if not probe_type_matched_phi or {x for x in probe_type_matched_phi if x == phi}:
                 return True
         self.features.add('*')
+        log(f'*')
 
     def has_interpretable_phi_features(self):
         return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
