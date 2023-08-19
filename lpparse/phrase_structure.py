@@ -1,8 +1,7 @@
 from collections import namedtuple
 from itertools import takewhile
-from support import log, set_logging
 from feature_processing import *
-from support import log, disable_logging, enable_logging
+from support import log
 
 major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Fin', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', 'EXPL', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 Result = namedtuple('Result', 'match_occurred outcome')
@@ -10,6 +9,8 @@ Result = namedtuple('Result', 'match_occurred outcome')
 
 class PhraseStructure:
     brain_model = None
+    access_experimental_functions = None
+    phase_heads = {'ph', 'φ'}
     resources = {"Merge-1": {"ms": 0, "n": 0}}
     chain_index = 0
     transfer_operation = None
@@ -41,7 +42,7 @@ class PhraseStructure:
                                         'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Agree': {'type': 'Agree',
                                      'test integrity': lambda x: x.is_unvalued(),
-                                     'repair': lambda x: x.AgreeLF()},
+                                     'repair': lambda x: PhraseStructure.access_experimental_functions.Agree(x)},
                            'Extraposition': {'type': 'Extraposition',
                                              'test integrity': lambda x: x.primitive() and (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
                                              'repair': lambda x: x.extrapose()},
@@ -317,15 +318,15 @@ class PhraseStructure:
     def selection__negative_complement(self, selected_feature):
         return not (self.proper_selected_complement() and self.proper_selected_complement().check({selected_feature}))
 
-    # Feature [!SELF]
+    # Feature [!]
     def selection__positive_self_selection(self, selected_features):
         return self.check(set(selected_features.split(',')))
 
-    # Feature [-SELF]
+    # Feature [-]
     def selection__negative_self_selection(self, selected_features):
         return not self.check(set(selected_features.split(',')))
 
-    # Feature [+SELF]
+    # Feature [+]
     def selection__partial_self_selection(self, selected_features):
         return self.check_some(set(selected_features.split(',')))
 
@@ -454,7 +455,7 @@ class PhraseStructure:
         return self.container(), self.copy_for_chain()
 
     def prepare_A_bar_chain(self, probe):
-        if not self.supported_by(probe):
+        if not self == probe.next(probe.edge):
             probe = self.project_phonologically_null_head()
         probe.copy_criterial_features(self)
         probe.features = PhraseStructure.brain_model.lexicon.apply_redundancy_rules(probe.features)
@@ -476,6 +477,9 @@ class PhraseStructure:
                     self.sister().Merge(target, 'left')
                 else:
                     self.top().bottom().Merge(target, 'right')  # Last Resort option
+
+    def has_vacant_phrasal_position(self):
+        return self.gapless_heads() or self.is_right()
 
     def scan_criterial_features(self, feature):
         criterial_features = self.scan_features(feature)
@@ -500,47 +504,24 @@ class PhraseStructure:
             self.features.add(f[1:])
             self.features.add('OP:_')
 
-    def index(self):
-        for f in self.features:
-            if f.startswith('#'):
-                return f[1:]
-
-    def supported_by(self, probe):
-        return self == probe.next(probe.edge)
-
     def test_merge(self, target, legible, direction):
         self.specifier_sister().Merge(target, direction)
         return legible(self, target)
 
     def Abar_legible(self, target):
-
         # Conditions for accepting [SpecXP] as landing site
         if target == self.next(self.edge) and \
                 len(self.edge()) == 1 and \
                 self.specifier_match(target) and \
                 self.specifier_sister().tail_match(self.specifier_sister(), 'left'):
             return True
-
         # Effect of [CompXP] as landing site
         if target.is_right():
             target.adjunct = False
-
         # Conditions for accepting [CompXP] as landing site
         if self.sister() == target:
             if self.complement_match(target) and not (target.is_left() and self.specifier_mismatch(target)):
                 return True
-
-    def VP_for_fronting(self):
-        return self == self.container().next(self.container().upward_path, lambda x: x.mother.inside(self.container()) and x.head().check_some({'VA/inf', 'A/inf'}))
-
-    def has_legitimate_specifier(self):
-        return self.predicate() and not self.head().check_some({'-EF:φ', '-EDGE:*'}) and self.edge() and not self.has_unlicensed_specifier()
-
-    def unlicensed_specifier(self):
-        return self.complex() and not self.adjunct and self.container() and self != self.container().licensed_phrasal_specifier()
-
-    def has_vacant_phrasal_position(self):
-        return self.gapless_heads() or self.is_right()
 
     def gapless_heads(self):
         return self.primitive() and self.aunt() and self.aunt().primitive()
@@ -685,9 +666,10 @@ class PhraseStructure:
     def externalize_with_specifier(self):
         return self.is_left() and self.predicate() and \
                ((self.tail_test() and self.has_nonthematic_specifier()) or
-                (not self.tail_test() and self.has_legitimate_specifier()))
+                (not self.tail_test() and self.edge() and not self.has_unlicensed_specifier()))
 
     # Agreement ---------------------------------------------------------------------------------------------
+
 
     def AgreeLF(self):
         self.value_features_from(self.get_goal())
@@ -1231,7 +1213,7 @@ class PhraseStructure:
             if self.right.find_me_elsewhere:
                 affix_str = ''
             else:
-                affix_str = '(' + show_affix(self) + ')'
+                affix_str = '(' + show_affix(self) + ')°'
             return '.'.join(sorted(pfs)) + affix_str
         else:
             return '.'.join(sorted(pfs))
@@ -1389,7 +1371,7 @@ class PhraseStructure:
         return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
 
     def phase_head(self):
-        return self.primitive() and not self.check_some({'nonphase', 'φ'})
+        return self.primitive() and self.check_some(PhraseStructure.phase_heads) and not self.check_some(PhraseStructure.phase_heads_exclude)
 
     def extended_subject(self):
         return self.check_some({'GEN'})

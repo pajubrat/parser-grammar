@@ -255,7 +255,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                 if lexical_feature_abbreviated not in features_included:
                                     feature_str += f'{lexical_feature_abbreviated}'
                                     features_included.add(lexical_feature_abbreviated)
-                                if len(feature_str) > 2:
+                                if len(feature_str) > 0:
                                     label_stack.append((feature_str, 'FEATURE'))
                                     feature_str = ''
                 if feature_str != '':
@@ -283,21 +283,32 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if 'PHI:' in feature:
             phi, typ, value = feature.split(':')
             if phi == 'iPHI':
-                return '[iφ]'
+                return 'iφ'
             if phi == 'PHI' and value == '_':
-                return '[φ‗]'
+                return 'φ_'
             if phi == 'PHI' and value != '_':
-                return '[φ]'
+                return 'φ'
+        if feature == '!ΦPF':
+            return '+ΦPF'
         if feature == 'ΦPF':
             return '/φ/'
+        if feature == '!ΦLF':
+            return '+ΦLF'
+        if feature == '-ΦPF':
+            return '–ΦPF'
+        if feature == '!ΦLF':
+            return '–ΦLF'
+        if feature == '-ΦLF,ΦPF':
+            return '–Φ'
+        if feature == '+ΦLF,ΦPF':
+            if '!ΦLF,ΦPF' not in ps.features:
+                return 'Φ>0'
+            else:
+                return 'Φ=2'
+        if feature == 'PER':
+            return '*φ*'
         if feature == '&P':
             return '[p]'
-        if feature == '!ΦLF,ΦPF':
-            return '[Φ2]'
-        if feature == '-ΦPF,ΦPF':
-            return '[–Φ]'
-        if feature == '+ΦPF,ΦPF':
-            return '[Φ1]'
         if feature == 'OP:Q':
             return '[Q]'
         if 'COMP:φ' in feature or 'SPEC:φ' in feature and not ps.check({'EF'}):
@@ -313,9 +324,9 @@ class ProduceGraphicOutput(pyglet.window.Window):
             if style == 'LABEL':
                 font_size = 20 * self.scale
             else:
-                font_size = 12 * self.scale
+                font_size = 16 * self.scale
             if style == 'FEATURE':
-                font_size = 12 * self.scale
+                font_size = 16 * self.scale
                 line_space = 0.8
             else:
                 line_space = 1

@@ -1,3 +1,4 @@
+import itertools
 from pathlib import Path
 from visualizer import Visualizer
 from datetime import datetime
@@ -13,6 +14,7 @@ class LocalFileSystem:
         self.external_sources = {}
         self.grammaticality_judgments_file = None
         self.results_file = None
+        self.numeration_output = None
         self.semantics_file = None
         self.resources_file = None
         self.visualizer = None
@@ -93,6 +95,9 @@ class LocalFileSystem:
         self.set_folders()
         self.set_external_resources()
         self.initialize_output_files()
+        if self.settings['use_numeration']:
+            self.process_numeration()
+            self.settings['check_output'] = False
 
     def initialize_output_files(self):
         self.dev_log_file.write('Initializing output files for writing...')
@@ -109,7 +114,13 @@ class LocalFileSystem:
             self.initialize_simple_log_file()
             self.initialize_semantics_file()
             self.initialize_control_file()
+        if self.settings['use_numeration']:
+            self.initialize_numeration_output()
         self.dev_log_file.write('Done.\n')
+
+    def initialize_numeration_output(self):
+        self.numeration_output = open(self.external_sources['numeration_output'], 'w', -1, encoding=self.encoding)
+        self.numeration_output.write(f'# Corpus generated from the numeration in {self.external_sources["numeration"]}\n')
 
     def initialize_dev_logging(self):
         self.dev_log_file  = open('dev_log.txt', 'w', -1, 'utf-8')
@@ -127,19 +138,24 @@ class LocalFileSystem:
         self.settings['test_corpus_file'] = self.settings.get('test_corpus_file', 'default_corpus.txt')
         self.settings['lexicon_folder'] = self.settings.get('lexicon_folder', 'lexicons')
         self.settings['console_output'] = self.settings.get('console_output', 'Full')
+        self.settings['Agree'] = self.settings.get('Agree', 'standard')
+        self.settings['phase_heads'] = self.settings.get('phase_heads', {'C', 'v', 'FORCE'})
+        self.settings['phase_heads_excluded'] = self.settings.get('phase_heads_excluded', set())
         self.dev_log_file.write('Done.\n')
         self.dev_log_file.write(f'Settings: {self.settings}.\n')
 
     def set_external_resources(self):
         self.dev_log_file.write('Setting external sources: ')
-        self.external_sources = {"test_corpus_file_name": self.folder['test_corpus'] / self.settings['test_corpus_file'],
-                                 "log_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_log.txt'),
-                                 "simple_log_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_simple_log.txt'),
-                                 "results_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_results.txt'),
-                                 "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_grammaticality_judgments.txt'),
-                                 "resources_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_resources.txt'),
-                                 "simple_results_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_simple_results.txt'),
-                                 "surface_vocabulary_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_saved_vocabulary.txt'),
+        self.external_sources = {"test_corpus_file_name": self.folder['test_corpus'] / self.settings['test_corpus'],
+                                 "log_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_log.txt'),
+                                 "simple_log_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_simple_log.txt'),
+                                 "results_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_results.txt'),
+                                 "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_grammaticality_judgments.txt'),
+                                 "resources_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_resources.txt'),
+                                 "simple_results_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_simple_results.txt'),
+                                 "surface_vocabulary_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_saved_vocabulary.txt'),
+                                 "numeration": self.folder['study'] / self.settings['numeration'],
+                                 "numeration_output": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_N.txt'),
                                  "lexicon_file_name": self.folder['lexicon'] / 'lexicon.txt',
                                  "ug_morphemes": self.folder['lexicon'] / 'ug_morphemes.txt',
                                  "redundancy_rules": self.folder['lexicon'] / 'redundancy_rules.txt',
@@ -193,7 +209,7 @@ class LocalFileSystem:
                         key = key.strip()
                         value = value.strip()
                         if ';' in value:
-                            value = value.split(';')
+                            value = set(value.split(';'))
                         else:
                             if key == 'show_features':
                                 value = [value]
@@ -224,6 +240,28 @@ class LocalFileSystem:
         self.dev_log_file.write('Initializing simple log file...')
         self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, encoding=self.encoding)
         self.stamp(self.simple_log_file)
+
+    def process_numeration(self):
+        self.dev_log_file.write(f'Processing numeration from {self.external_sources["numeration"]} into {self.external_sources["numeration_output"]}...')
+        self.dev_log_file.write('\nNumerations')
+        for line in open(self.external_sources["numeration"], encoding=self.encoding):
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            numeration = [x.strip() for x in line.split(',')]
+            self.dev_log_file.write(f'\n{numeration}')
+            permutations = list(itertools.permutations(numeration))
+            for p in permutations:
+                if not p[0].startswith('#'):
+                    self.numeration_output.write('\n\t')
+                    for w in p:
+                        if not w.startswith('#'):
+                            self.numeration_output.write(' ')
+                        self.numeration_output.write(f'{w}')
+        self.dev_log_file.write('\n')
+        self.numeration_output.close()
+        self.dev_log_file.write(f'were used to generate a corpus {self.external_sources["numeration_output"]}.\n')
+        self.dev_log_file.write(f'^ This corpus will be used in the processing.\n')
 
     def print_sentence_to_console(self, sentence_number, sentence, language):
         print(f'\n{sentence_number}. {sentence} ({language[-2:]}) ', end='')
@@ -316,11 +354,16 @@ class LocalFileSystem:
         return input_sentence_string
 
     def read_test_corpus(self):
-        self.dev_log_file.write(f'Reading test corpus file {self.external_sources["test_corpus_file_name"]}...')
         experimental_group = []
         parse_list = []
         plus_sentences = []
-        for line in open(self.external_sources["test_corpus_file_name"], encoding=self.encoding):
+        if self.settings['use_numeration']:
+            k = open(self.external_sources['numeration_output'], encoding=self.encoding)
+            input_file = self.external_sources["numeration_output"]
+        else:
+            input_file = self.external_sources["test_corpus_file_name"]
+        self.dev_log_file.write(f'Reading test corpus file {input_file}...')
+        for line in open(input_file, encoding=self.encoding):
             part_of_conversation = False
             line = line.strip()
             if line.startswith('=STOP=') or line.startswith('=END='):

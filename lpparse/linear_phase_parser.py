@@ -8,7 +8,7 @@ from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
 from working_memory import SyntacticWorkingMemory
-from EXP_Agreement_variations import AgreementVariations
+from Experimental_functions import ExperimentalFunctions
 
 class LinearPhaseParser:
     def __init__(self, local_file_system, language='XX'):
@@ -41,7 +41,7 @@ class LinearPhaseParser:
         self.total_time_per_sentence = 0
         self.time_from_stimulus_onset_for_word = []
         self.only_first_solution = False
-        self.Agree_variations = AgreementVariations(self)
+        self.Experimental_functions = ExperimentalFunctions(self)
 
     def initialize(self):
         if 'only_first_solution' in self.local_file_system.settings:
@@ -89,6 +89,9 @@ class LinearPhaseParser:
         log_new_sentence(self, count, lst)
         PhraseStructure.brain_model = self
         PhraseStructure.chain_index = 0
+        PhraseStructure.access_experimental_functions = self.Experimental_functions
+        PhraseStructure.phase_heads = self.local_file_system.settings['phase_heads']
+        PhraseStructure.phase_heads_exclude = self.local_file_system.settings['phase_heads_exclude']
         self.parse_new_item(None, lst, 0)
 
     def parse_new_item(self, ps, lst, index, inflection_buffer=None):
@@ -144,7 +147,7 @@ class LinearPhaseParser:
             self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
     def complete_processing(self, ps):
-        log(f'\n\n\tTransfer {ps} to LF:----------------------------------------------------------------------------\n ')
+        log(f'\n\n\tTransfer PF-interface representation {ps} to LF-interface: ----------------------------------------------------------------------------\n ')
         ps.transfer_to_LF()
         log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps.top()}\n')
         if self.postsyntactic_tests(ps):
