@@ -70,7 +70,7 @@ class LinearPhaseParser:
                           "Merge": {'ms': 5, 'n': 0},
                           "Head Chain": {'ms': 5, 'n': 0},
                           "Phrasal Chain": {'ms': 5, 'n': 0},
-                          "Feature Chain": {'ms': 5, 'n': 0},
+                          "Feature Inheritance": {'ms': 5, 'n': 0},
                           "Agree": {'ms': 5, 'n': 0},
                           "Feature": {'ms': 5, 'n': 0},
                           "Left Scrambling": {'ms': 5, 'n': 0},
@@ -147,9 +147,10 @@ class LinearPhaseParser:
             self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
     def complete_processing(self, ps):
-        log(f'\n\n\tTransfer PF-interface representation {ps} to LF-interface: ----------------------------------------------------------------------------\n ')
+        log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
+        log(f'\n\t\tPF-interface {ps}\n')
         ps.transfer_to_LF()
-        log(f'\n\n\t\tSyntax-semantics interface endpoint:\n\t\t{ps.top()}\n')
+        log(f'\n\n\t\tLF-interface {ps.top()}\n')
         if self.postsyntactic_tests(ps):
             self.resources.update(PhraseStructure.resources)
             report_success(self, ps)
@@ -171,5 +172,5 @@ class LinearPhaseParser:
             if 'Total Time' in self.resources:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
-            if key != 'Agree':
+            if key != 'Agree' and key != 'Last Resort Extraposition':
                 log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}.')

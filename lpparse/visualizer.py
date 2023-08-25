@@ -296,15 +296,22 @@ class ProduceGraphicOutput(pyglet.window.Window):
             return '+ΦLF'
         if feature == '-ΦPF':
             return '–ΦPF'
-        if feature == '!ΦLF':
+        if feature == '-ΦLF':
             return '–ΦLF'
-        if feature == '-ΦLF,ΦPF':
-            return '–Φ'
         if feature == '+ΦLF,ΦPF':
-            if '!ΦLF,ΦPF' not in ps.features:
+            if '!ΦLF,ΦPF' not in ps.features and '-ΦLF,ΦPF' not in ps.features:
                 return 'Φ>0'
+            if '-ΦLF,ΦPF' in ps.features:
+                return 'Φ=1'
             else:
                 return 'Φ=2'
+        if feature == '-ΦLF,ΦPF':
+            if '+ΦLF,ΦPF' in ps.features:
+                return 'Φ=1'
+            if '!ΦLF,ΦPF' in ps.features:
+                return 'Φ=?'
+            else:
+                return 'Φ<2'
         if feature == 'PER':
             return '*φ*'
         if feature == '&P':

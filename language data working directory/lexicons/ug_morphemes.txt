@@ -36,15 +36,15 @@ ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  					PF:-essA 	LF:while !COMP:* PROBE:V L
 TUA/inf		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	LF:after !COMP:* PROBE:V LANG:FI TAIL:T	
 KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-ΦLF !ΦPF			PF:-kse 	LF:for !COMP:* PROBE:V LANG:FI TAIL:T
 E/inf		:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  			PF:-en 		LF:by !COMP:* PROBE:V LANG:FI TAIL:T
-MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAssA 	LF:in !COMP:* PROBE:V LANG:FI TAIL:V	
-MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAttA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:T
-MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAllA 	LF:by !COMP:* PROBE:V LANG:FI TAIL:V
-MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 			PF:-mAstA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event
-MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	LF:to SEM/desired_event !COMP:* PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event
+MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAssA 	LF:in !COMP:* PROBE:V LANG:FI TAIL:V	MA/inf
+MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAttA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:T MA/inf
+MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAllA 	LF:by !COMP:* PROBE:V LANG:FI TAIL:V MA/inf
+MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 			PF:-mAstA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event MA/inf
+MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	LF:to SEM/desired_event !COMP:* PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event MA/inf
 
 # Prticiple adjectives
 MA/A		:: MA/A 		EF	Inf		ARG  +ΦLF,ΦPF 			PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
-VA/A		:: VA/A				Inf			 -ΦPF 				PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
+VA/A		:: VA/A				Inf			 -ΦPF -ΦLF			PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
 
 # Experimental
 MA.ine/inf*	:: MA.ine/inf* 		Inf 	ARG  -ΦPF 				PF:-mA-* 	LF:ing LANG:FI !COMP:*

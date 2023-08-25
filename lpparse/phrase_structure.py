@@ -3,7 +3,10 @@ from itertools import takewhile
 from feature_processing import *
 from support import log
 
-major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'T', 'Fin', 'Adv', 'Q', 'Num', 'Agr', 'Inf', 'FORCE', 'EXPL', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
+major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'VA/inf', 'T', 'Fin', 'Q', 'Num', 'Agr',
+              'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
+              'FORCE', 'EXPL', 'Adv',
+              '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
 Result = namedtuple('Result', 'match_occurred outcome')
 
 
@@ -29,8 +32,8 @@ class PhraseStructure:
                                        'sustain': lambda x: not (x.primitive() and x.referential()),
                                        'legible': lambda x, y: x.Abar_legible(y),
                                        'prepare': lambda x: x.prepare_phrasal_chain()},
-                           'Feature': {'type': 'Feature Chain',
-                                       'test integrity': lambda x: x.check({'ARG?'}) or x.check({'Fin'}),
+                           'Feature': {'type': 'Feature Inheritance',
+                                       'test integrity': lambda x: x.check({'ARG?'}) or x.highest_finite_head() and not x.check({'-ΦPF'}),
                                        'repair': lambda x: x.feature_inheritance(),
                                        'single operation': False},
                            'A-chain':  {'type': 'Phrasal Chain',
@@ -428,13 +431,13 @@ class PhraseStructure:
         ps, m = self.detached()
         for op in PhraseStructure.transfer_sequence:
             PhraseStructure.transfer_operation = op
-            self.reconstruct()
+            self.reconstruct(op)
         return ps.reattach(m)
 
-    def reconstruct(self):
-        for const in (x for x in [self.bottom()] + self.bottom().upward_path() if PhraseStructure.transfer_operation['test integrity'](x)):
-            PhraseStructure.transfer_operation['repair'](const)
-            PhraseStructure.brain_model.consume_resources(PhraseStructure.transfer_operation['type'], const)
+    def reconstruct(self, op):
+        for const in (x for x in [self.bottom()] + self.bottom().upward_path() if op['test integrity'](x)):
+            op['repair'](const)
+            PhraseStructure.brain_model.consume_resources(op['type'], const)
 
     # Chain creation (part of transfer)
 
@@ -582,7 +585,6 @@ class PhraseStructure:
             node.Merge(virtual_test_item, 'right')
             virtual_test_item.adjunct = False
             node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'right')
-        PhraseStructure.brain_model.consume_resources(PhraseStructure.transfer_operation['type'], self)
 
     def local_tense_edge(self):
         return next((node.mother for node in self.upward_path() if node.finite() or node.force()), self.top())
@@ -755,7 +757,6 @@ class PhraseStructure:
 
     def feature_inheritance(self):
         if self.highest_finite_head() and not self.check({'-ΦPF'}):
-            log(f'\n\t\t{self} acquired φ-completeness.')
             self.features.add('!PER')
         if self.check({'ARG?'}):
             self.features.discard('ARG?')
