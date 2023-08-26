@@ -24,6 +24,7 @@ class LF:
 
         self.selection_violation_test = {'1EDGE': PhraseStructure.selection__negative_one_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
+                                         '!SPEC': PhraseStructure.selection__negative_obligatory_specifier,
                                          '-COMP': PhraseStructure.selection__negative_complement,
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
                                          '!': PhraseStructure.selection__positive_self_selection,
