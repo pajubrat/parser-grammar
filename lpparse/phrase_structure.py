@@ -211,7 +211,8 @@ class PhraseStructure:
         return x
 
     def is_licensed_specifier(self):
-        return self.max().container().licensed_phrasal_specifier() and self.max() == self.max().container().licensed_phrasal_specifier()
+        return self.max().container().licensed_phrasal_specifier() and \
+               self.max() == self.max().container().licensed_phrasal_specifier()
 
     def __iter__(self):
         self.nn = self
