@@ -3,13 +3,13 @@
 # Universal language-invariant morphemes are collected here
 # =======================================================================================
 
-T/fin   :: T/fin PF:T LF:tense
+T/fin   :: T/fin LF:T
 v       :: v PF:v LF:v
 v*		:: v PF:v* v- LF:pass -ARG EF
 C/fin   :: C/fin PF:C LF:C/fin
 C		:: C C/fin PF:C LF:C
-T		:: T PF:T LF:tense Fin EF
-T/prt 	:: T/prt PF:Prtc LF:Prtc
+T		:: T LF:tense Fin EF
+T/prt 	:: T/prt LF:Prtc
 Fin		:: Fin LF:fin PF:Fin ARG COMP:T +ΦLF,ΦPF 	
 a0		:: A PF:a LF:mod
 impass	:: v ARG PF:impass LF:impass
@@ -17,6 +17,10 @@ cau		:: v PF:Cau LF:cause
 φ		:: φ PF:φ LF:phi ARG Inf
 Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
 N		:: N PF:N LF:N
+
+# Tense
+PRS		:: inflectional PRS
+PST		:: inflectional PST
 
 # Infinitivals
 Inf			:: PF:Inf LF:inf
@@ -57,7 +61,7 @@ ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin nonadjoin
 
 # Copula
 # BE-		:: V COPULA  				-ARG 					PF:BE 		LF:be COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
-BE-			:: V COPULA 	 			-ARG 					PF:Aux 		LF:Aux !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ
+BE-			:: V COPULA 	 			-ARG 					LF:be !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ
 
 # D-elements
 D		:: φ D PF:D LF:det R:NEW:$$$/SUR

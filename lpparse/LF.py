@@ -2,7 +2,7 @@ from support import log, set_logging
 from phrase_structure import PhraseStructure
 
 def for_lf_interface(features):
-    return {f for f in features if f.startswith('!') or f.startswith('-') or f.startswith('+')}
+    return {f for f in features if f.startswith('!') or f.startswith('-') or f.startswith('+') or f == '&P'}
 
 def self_selectional_feature(f):
     return ':' not in f and (f.startswith('!') or f.startswith('+') or f.startswith('-'))
@@ -24,7 +24,6 @@ class LF:
 
         self.selection_violation_test = {'1EDGE': PhraseStructure.selection__negative_one_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
-                                         '!SPEC': PhraseStructure.selection__negative_obligatory_specifier,
                                          '-COMP': PhraseStructure.selection__negative_complement,
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
                                          '!': PhraseStructure.selection__positive_self_selection,
@@ -55,17 +54,22 @@ class LF:
         return True
 
     def selection_test(self, probe):
-        for f in sorted(for_lf_interface(probe.features)):
-            if self_selectional_feature(f) and self.self_selection(probe, f):
-                return True
-            elif f[:5] in self.selection_violation_test.keys() and not self.selection_violation_test[f[:5]](probe, f[6:]):
+        for f in sorted(probe.features):
+            key, feature = self.format_selection_feature(f)
+            if key and not self.selection_violation_test[key](probe, feature):
                 self.failed_feature = f
-                return True
+                return True  # test failed
 
-    def self_selection(self, probe, s_feature):
-        if not self.selection_violation_test[s_feature[0]](probe, s_feature[1:]):
-            log(f'\n\t\t{probe} failed feature {s_feature} ')
-            return True
+    # This will be removed once we have an universal standard
+    def format_selection_feature(self, f):
+        if f == '&P':
+            return f, f
+        if ':' not in f and f[0] in self.selection_violation_test.keys():
+            return f[0], f[1:]
+        if f[:5] in self.selection_violation_test.keys():
+            return f[:5], f[6:]
+        else:
+            return None, None
 
     def final_tail_check(self, goal):
         if goal.complex():

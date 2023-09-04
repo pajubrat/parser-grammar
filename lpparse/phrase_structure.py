@@ -310,10 +310,6 @@ class PhraseStructure:
     def selection__negative_specifier(self,  selected_feature):
         return not self.next(self.edge, lambda x: x.check({selected_feature}) and not x.adjunct)
 
-    # Feature !SPEC:L
-    def selection__negative_obligatory_specifier(self, selected_feature):
-        return self.next(self.edge, lambda x: x.check({selected_feature}) and not x.adjunct)
-
     # Feature !1EDGE
     def selection__negative_one_edge(self, selected_feature):
         return len(self.edge()) < 2

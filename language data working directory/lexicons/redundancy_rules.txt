@@ -54,6 +54,13 @@ R:REF:PROPER_NAME :: -COMP:Inf
 # Expletives
 T Fin			:: 	SPEC:EXPL
 
+# FInnish spellout
+LANG:FI COPULA		:: PF:ole-
+LANG:FI T/prt		:: PF:-nUt
+LANG:FI T/fin PST	:: PF:-i
+LANG:FI T/fin PRS	:: PF:-0
+LANG:FI T/fin 		:: PF:T
+
 # Finnish edge behavior
 P LANG:FI		::	EF Adv
 Adv LANG:FI		::	EF

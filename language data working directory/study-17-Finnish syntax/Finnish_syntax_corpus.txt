@@ -1,0 +1,57 @@
+
+& 1. Examples for phrase structure trees
+
+	& Chapter 2
+
+		& Grammatical
+
+			mitkä_D ikkunat_N Pekka on maalannut
+			'which windows.pl.acc Pekka.nom be.prs.3sg paint.sg.pst.prtc'
+			
+			ikkunat_DP#[foc] Pekka pesi
+			'window.pl.acc Pekka.nom wash.pst.3sg'
+		
+			Pekka pesi ikkunat_DP
+			'Pekka.nom wash.pst.3sg window.pl.acc'
+			
+			Pekka#[foc] pesi ikkunat
+			'Pekka.nom wash.pst.3sg window.pl.acc'
+
+			Pekka#[kO] pesi ikkunat
+			'Pekka.nom.q wash.pst.3sg window.pl.acc'
+		
+			pesi#[foc] Pekka ikkunat
+			'wash.pst.3sg.foc Pekka.nom window.pl.acc'
+		
+			pesi#[kO] Pekka ikkunat
+			'wash.pst.3sg.q Pekka.nom window.pl.acc'
+	
+		& Ungrammatical
+		
+			Pekka pesi#[kO] ikkunat
+			'Pekka.nom wash.pst.3sg.q window.pl.acc
+				
+		& Grammatical
+
+			Pekka antoi kirjan Merjalle
+			'Pekka.nom give.pst.3sg book.acc Merja.all'
+			
+			Pekka antoi Merjalle kirjan
+			'Pekka.nom give.pst.3sg Merja.all book.acc'
+		
+			kirjan antoi Pekka Merjalle
+			'book.acc give.pst.3sg Pekka.nom Merja.all'
+			
+			Merjalle antoi Pekka kirjan
+			'Merja.all give.pst.3sg Pekka.nom book.acc'
+		
+		& Ungrammatical
+		
+			antoi Pekka kirjan Merjalle
+			'give.prs.3sg Pekka.nom book.acc Merja.all'
+		
+		& Grammatical
+		
+			ikkunat_DP pesi Pekka
+			'window.pl.acc wash.pst.3sg Pekka.nom'
+		

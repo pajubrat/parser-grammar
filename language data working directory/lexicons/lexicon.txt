@@ -8,9 +8,8 @@ aidan		:: aita-#φ#sg#3p#def#nonhum#r_expression#[acc(n)]
 aita-		:: PF:aita LF:fence N LANG:FI
 ali			:: PF:ali LF:under P -ΦPF TAIL:V Inf !COMP:* LANG:FI ARG
 antaa		:: anta-#v#asp#A/inf LANG:FI
-anta-   	:: PF:antaa LF:give V -COMP:P CLASS/DITR -COMP:Fin +SEM:directional ASP:BOUNDED LANG:FI
-antoi   	:: anta-#v#asp#T/fin#[V] LANG:FI
-antoi   	:: anta-#v#asp#T/fin#[V] LANG:FI
+anta-   	:: PF:antaa LF:give V -COMP:P CLASS/DITR -COMP:Fin +SEM:directional LANG:FI
+antoi   	:: anta-#asp#v#T/fin#[V] LANG:FI
 asuu		:: asu-#T/fin#[V] LANG:FI
 asu-		:: PF:asuu- LF:live V CLASS/INTR -COMP:T -SPEC:P -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
 avain_0acc	::	avain-#φ#sg#3p#def#r_expression#[-acc(0)]
@@ -86,8 +85,10 @@ ihaileva	:: ihaile-#v#VA/A LANG:FI
 ihaile- 	:: PF:ihaile- LF:admire V CLASS/TR !COMP:φ -COMP:Fin LANG:FI
 ikkunat		:: ikkuna[pl]-#φ#[acc(t)]#pl#3p#def#hum
 ikkunan		:: ikkuna-#φ#[acc(n)]#sg#3p#def#hum
-ikkuna-		:: PF:ikkuna LF:window N LANG:FI
 ikkuna[pl]-	:: PF:ikkunat LF:windows N LANG:FI
+ikkunat_N	:: PF:ikkunat LF:windows N iPHI:NUM:PL LANG:FI
+ikkunat_DP	:: ikkuna-#φ#[acc]#pl#3p#def#hum
+ikkuna-		:: PF:ikkuna LF:window N LANG:FI
 istuuko		:: istu-#T/fin#C/op LANG:FI
 istuu		:: istu-#T/fin#[V] LANG:FI
 istu-		:: PF:istu- LF:sit V CLASS/INTR LANG:FI
@@ -209,6 +210,7 @@ maalattua	:: maalaa-#v#TUA/inf LANG:FI
 maalaavan	:: maalaa-#v#VA/inf LANG:FI
 maalata		:: maalaa-#v#A/inf LANG:FI
 maalasi		:: maalaa-#v#T/fin#[V] LANG:FI
+maalannut	:: maalaa-#asp#v#T/prt#sg_ LANG:FI
 maalaa		:: maalaa-#v#T/fin LANG:FI
 maalaa-		:: PF:maalaa- LF:paint V !COMP:φ -SPEC:φ CLASS/TR LANG:FI
 Merja   	::	Merja-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
@@ -236,6 +238,7 @@ minka		:: mikä-#D#wh#def#[acc(n)] LANG:FI
 minkä		:: mikä-#D#wh#def#[gen] LANG:FI
 mikä		:: mikä-#D#wh#sg#3p#[nom] LANG:FI
 #mitä		:: D#wh#sg#3p#[par] LANG:FI
+mitkä_D		:: D#wh#pl#3p#[acc] LANG:FI
 mitä		:: mikä-#D#def#wh#sg#3p#[par] LANG:FI
 mitä_DP		:: mikä-#D#def#wh#sg#3p#[par] LANG:FI
 mikä-		:: PF:mikä LF:what N LANG:FI
@@ -275,7 +278,8 @@ olleet		:: BE-#T/prt#pl_ LANG:FI
 olen		:: BE-#T/fin#n LANG:FI
 olet		:: BE-#T/fin#t LANG:FI
 on'			:: BE-#T/fin#[V] LANG:FI
-on			:: BE-#T/fin#[V] LANG:FI
+on			:: BE-#T/fin#PRS#[V] LANG:FI
+oli			:: BE-#T/fin#PST#[V] LANG:FI
 olemme		:: BE-#T/fin#mme LANG:FI
 olette		:: BE-#T/fin#tte LANG:FI
 ovat		:: BE-#T/fin#vAt LANG:FI
@@ -307,13 +311,11 @@ pelkää		:: pelkä-#v#T/fin#[V] LANG:FI
 pelkä-		:: PF:pelkä- LF:fear V CLASS/TR LANG:FI
 peruuntui	:: peruuntu-#T/fin#[V] LANG:FI
 peruuntu-	:: PF:peruuntui- LF:cancelled V SPEC:φ LANG:FI
-pesi		:: pese-#v#T/fin#[V] LANG:FI
-pesi		:: pese-#v#asp#T/fin#[V] LANG:FI
+pesi		:: pese-#v#asp#T/fin#PST#[V] LANG:FI
 pesi*		:: pese-#v#asp#T#Fin#[V] LANG:FI
 pesit*		:: pese-#v#asp#T#Fin#t LANG:FI
 pestä		:: pese-#A/inf LANG:FI
 pese-		:: PF:pese- LF:wash V CLASS/TR ASP:BOUNDED LANG:FI
-pese-		:: PF:pese- LF:wash V CLASS/TR LANG:FI
 pieni		:: pieni-#a0 LANG:FI
 pieni-		:: PF:pieni- LF:small 0 LANG:FI
 poikien		::	poika-#φ#[gen]#[-dat]#pl#3p#def#r_expression#hum LANG:FI
@@ -504,11 +506,10 @@ nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI:
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF adjoinable LANG:FI
 [gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable nonfloat LANG:FI
 [par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable TAG LANG:FI
-gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
-[dat]		:: inflectional DAT TAIL:φ adjoinable
-[acc(n)]	:: inflectional ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:ΦPF TAIL:*POL:NEG adjoinable LANG:FI
-[acc(t)]	:: inflectional ACC(t) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
-[acc(0)]	:: inflectional ACC(0) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
+[acc(n)]	:: inflectional ACC ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:ΦPF TAIL:*POL:NEG adjoinable LANG:FI
+[acc(t)]	:: inflectional ACC ACC(t) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
+[acc(0)]	:: inflectional ACC ACC(0) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
+[acc]		:: inflectional ACC TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
 # B. Semantic cases
 [-ess]     	:: inflectional PF:na LF:as TAIL:V LANG:FI #essiivi
 [-trs]		:: inflectional PF:ksi LF:to TAIL:V LANG:FI #translatiivi
@@ -526,10 +527,10 @@ gen			:: inflectional GEN TAIL:Inf,ARG adjoinable
 asp			:: inflectional ASP:BOUNDED
 
 # Left peripheral particles
-[hAn]		:: inflectional OP:FAM LANG:FI
-[pA]		:: inflectional OP:POL LANG:FI
+[hAn]		:: inflectional OP:FAM ΔOP:FAM LANG:FI
+[pA]		:: inflectional OP:POL ΔOP:POL LANG:FI
 [kO]		:: inflectional OP:Q ΔOP:Q LANG:FI
-[foc]		:: inflectional OP:FOC LANG:FI
+[foc]		:: inflectional OP:FOC ΔOP:FOC LANG:FI
 
 
 # ENGLISH LEXICON -----------------------------------------------------------------------------------------------------------------------

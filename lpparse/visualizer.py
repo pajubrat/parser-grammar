@@ -8,8 +8,6 @@ from pyglet import shapes
 import re
 
 SCALING_FACTOR = 2
-case_features = {'NOM', 'ACC', 'PAR', 'GEN', 'ACC(0)', 'ACC(n)', 'ACC(t)', 'DAT', 'POSS'}
-
 
 # Definition for the visualizer
 class Visualizer:
@@ -170,10 +168,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
     # Recursive projection function
     def show_in_window(self, ps):
 
-        # Do not repeat information if ps have been copied
-        if ps.find_me_elsewhere:
-            self.do_not_repeat_information = True
-
         # Mother node position
         X1 = self.x_offset + ps.x * self.x_grid
         Y1 = self.y_offset + ps.y * self.y_grid
@@ -194,9 +188,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.draw_node_label(ps, X1, Y1, head_text_stack)
         self.draw_chain_subscript(ps, X1, Y1)
         self.draw_original_sentence()
-
-        if ps.find_me_elsewhere:
-            self.do_not_repeat_information = False
 
         # Phrase structure geometry for daughters
         # Ignore structure conditions
@@ -287,7 +278,20 @@ class ProduceGraphicOutput(pyglet.window.Window):
             if phi == 'PHI' and value == '_':
                 return 'φ_'
             if phi == 'PHI' and value != '_':
-                return 'φ'
+                # Overt phi-features
+                if 'ΦPF' in ps.features:
+                    if feature == 'PHI:NUM:SG':
+                        return 'Sg'
+                    if feature == 'PHI:NUM:PL':
+                        return 'Pl'
+                    if feature == 'PHI:PER:1':
+                        return '1p'
+                    if feature == 'PHI:PER:2':
+                        return '2p'
+                    if feature == 'PHI:PER:3':
+                        return '3p'
+                else:
+                    return None
         if feature == '!ΦPF':
             return '+ΦPF'
         if feature == 'ΦPF':
@@ -320,7 +324,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
             return '[Q]'
         if 'COMP:φ' in feature or 'SPEC:φ' in feature and not ps.check({'EF'}):
             return '[θ]'
-        return f'[{feature}]'
+        return f'{feature}'
 
     def draw_node_label(self, ps, X1, Y1, label_stack):
         line_position = -15
@@ -418,7 +422,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
     def on_draw(self):
         self.clear()
-        self.flip()
         self.background_image.blit(0, 0)
 
     def terminate(self, dt):

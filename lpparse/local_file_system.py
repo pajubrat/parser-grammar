@@ -161,7 +161,7 @@ class LocalFileSystem:
                                  "redundancy_rules": self.folder['lexicon'] / 'redundancy_rules.txt',
                                  "semantics_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_semantics.txt'),
                                  "control_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_control.txt'),
-                                 "error_report_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_error_reports.txt')
+                                 "error_report_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_error_reports.txt')
                                  }
         self.dev_log_file.write(f'{self.external_sources}.\n')
 
