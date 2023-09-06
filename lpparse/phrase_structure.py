@@ -3,7 +3,7 @@ from itertools import takewhile
 from feature_processing import *
 from support import log
 
-major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'C', 'A', 'v', 'V', 'VA/inf', 'T', 'Fin', 'Q', 'Num', 'Agr',
+major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'Top', 'C', 'A', 'v', 'V', 'VA/inf', 'T', 'Fin', 'Q', 'Num', 'Agr',
               'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
               'FORCE', 'EXPL', 'Adv',
               '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
@@ -1216,9 +1216,9 @@ class PhraseStructure:
                 affix_str = ''
             else:
                 affix_str = '(' + show_affix(self) + ')°'
-            return '.'.join(sorted(pfs)) + affix_str
+            return ''.join(sorted(pfs)) + affix_str
         else:
-            return '.'.join(sorted(pfs))
+            return ''.join(sorted(pfs))
 
     def tidy_names(self, counter):
         def rebaptize(h, old_name, new_name):

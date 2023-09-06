@@ -8,6 +8,8 @@ from pyglet import shapes
 import re
 
 SCALING_FACTOR = 2
+BASELINE_LATERAL_STRETCH = 1
+MINIMAL_OVERLAP = 2
 
 # Definition for the visualizer
 class Visualizer:
@@ -40,11 +42,11 @@ class Visualizer:
     # Creates a basic plane topology with constituent branches by one unit
     def determine_plane_topology(self, ps):
         if ps.left:
-            ps.left.x = ps.x - 1
+            ps.left.x = ps.x - BASELINE_LATERAL_STRETCH  # This value determines lateral stretching
             ps.left.y = ps.y - 1
             self.determine_plane_topology(ps.left)
         if ps.right:
-            ps.right.x = ps.x + 1
+            ps.right.x = ps.x + BASELINE_LATERAL_STRETCH  # This value determines lateral stretching
             ps.right.y = ps.y - 1
             self.determine_plane_topology(ps.right)
 
@@ -81,9 +83,9 @@ class Visualizer:
         right_branch_coordinates = self.get_coordinate_set(N.right, set())
         for coordinates_from_left in left_branch_coordinates:
             for coordinates_from_right in right_branch_coordinates:
-                if coordinates_from_left[1] == coordinates_from_right[1]:           # Examines nodes in the same Y-axis
-                    if coordinates_from_right[0] - coordinates_from_left[0] < 1:    # Examine pairs where there is overlap
-                        overlap = coordinates_from_left[0] - coordinates_from_right[0] + 1
+                if coordinates_from_left[1] == coordinates_from_right[1]:                            # Examines nodes in the same Y-axis
+                    if coordinates_from_right[0] - coordinates_from_left[0] < MINIMAL_OVERLAP:      # Examine pairs where there is overlap
+                        overlap = coordinates_from_left[0] - coordinates_from_right[0] + MINIMAL_OVERLAP
         return overlap
 
     def get_coordinate_set(self, N, coordinate_set):
@@ -129,7 +131,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.x_offset = 0  # Defined later
         self.y_offset = 0  # Defined later
         # Define the margins
-        self.margins = (100 * self.scale)
+        self.margins = (150 * self.scale)
         self.file_identifier = self.visualizer.file_identifier
         self.mouse_position_x = 0
         self.mouse_position_y = 0
@@ -146,6 +148,11 @@ class ProduceGraphicOutput(pyglet.window.Window):
 
         # Phrase structure that will be projected to the 2D window
         self.phrase_structure = ps
+
+        # phi-feature mappings
+        self.phi_mapping = [({'PHI:NUM:SG', 'PHI:PER:1'}, '1sg'), ({'PHI:NUM:SG', 'PHI:PER:2'}, '2sg'), ({'PHI:NUM:SG', 'PHI:PER:3'}, '3sg'),
+                            ({'PHI:NUM:PL', 'PHI:PER:1'}, '1pl'), ({'PHI:NUM:PL', 'PHI:PER:2'}, '2pl'), ({'PHI:NUM:SG', 'PHI:PER:3'}, '3pl')]
+
 
         self.window_width, self.window_height = self.determine_window_size(ps)
         super().__init__(width=self.window_width, height=self.window_height, caption='LF interface', visible=self.settings['image_parameter_stop_after_image'])
@@ -225,8 +232,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
         # Show words
         if not self.do_not_repeat_information:
             if self.settings['image_parameter_show_words'] and ps.primitive():
-                if ps.get_phonological_string() != ps.label() and \
-                        legitimate_label(ps):
+                if ps.get_phonological_string() != ps.label():
                     label_stack.append((ps.get_phonological_string(), 'PHONOLOGY'))
                     if self.settings['image_parameter_show_glosses']:
                         if ps.gloss() != ps.label() and \
@@ -244,7 +250,7 @@ class ProduceGraphicOutput(pyglet.window.Window):
                             lexical_feature_abbreviated = self.abbreviate_feature(lexical_feature, ps)
                             if lexical_feature_abbreviated:
                                 if lexical_feature_abbreviated not in features_included:
-                                    feature_str += f'{lexical_feature_abbreviated}'
+                                    feature_str += f'[{lexical_feature_abbreviated}]'
                                     features_included.add(lexical_feature_abbreviated)
                                 if len(feature_str) > 0:
                                     label_stack.append((feature_str, 'FEATURE'))
@@ -280,18 +286,13 @@ class ProduceGraphicOutput(pyglet.window.Window):
             if phi == 'PHI' and value != '_':
                 # Overt phi-features
                 if 'ΦPF' in ps.features:
-                    if feature == 'PHI:NUM:SG':
-                        return 'Sg'
-                    if feature == 'PHI:NUM:PL':
-                        return 'Pl'
-                    if feature == 'PHI:PER:1':
-                        return '1p'
-                    if feature == 'PHI:PER:2':
-                        return '2p'
-                    if feature == 'PHI:PER:3':
-                        return '3p'
+                    for phiset, output in self.phi_mapping:
+                        if ps.check(phiset):
+                            return output
                 else:
                     return None
+        if feature == 'Fin*':
+            return 'Fin'
         if feature == '!ΦPF':
             return '+ΦPF'
         if feature == 'ΦPF':
@@ -335,10 +336,10 @@ class ProduceGraphicOutput(pyglet.window.Window):
             if style == 'LABEL':
                 font_size = 20 * self.scale
             else:
-                font_size = 16 * self.scale
+                font_size = 20 * self.scale
             if style == 'FEATURE':
-                font_size = 16 * self.scale
-                line_space = 0.8
+                font_size = 20 * self.scale
+                line_space = 1
             else:
                 line_space = 1
             if style == 'PHONOLOGY':

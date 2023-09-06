@@ -148,6 +148,8 @@ kuorsaa- 	:: PF:kuorsaa- LF:snore V CLASS/INTR COMP:P -COMP:WH -COMP:T/fin -COMP
 kuvaa		:: kuva-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[V] LANG:EN
+lapsia		:: lapsi-#φ#pl#3p#def#hum#r_expression#[par] LANG:FI
+lapsi-		:: N LF:child PF:lapsi LANG:FI 
 laulaa		:: laula-#T/fin#[V] LANG:FI
 laulan		:: laula-#T/fin#n LANG:FI
 laulamaan 	:: laula-#MA.ill/inf LANG:FI
@@ -188,10 +190,12 @@ lähtiessä	:: lähte-#ESSA/inf LANG:FI
 lähtiessään	:: lähte-#ESSA/inf#An LANG:FI
 lähdettyään	:: lähte-#TUA/inf#An LANG:FI
 lähdettyä	:: lähte-#TUA/inf LANG:FI
-lähde		:: lähte-#T/fin LANG:FI
-lähde		:: lähte-#T LANG:FI
-lähti		:: lähte-#T/fin#[V] LANG:FI
+lähde		:: lähte-#T/fin#prs LANG:FI
+lähde		:: lähte-#T#prs LANG:FI
+lähti		:: lähte-#T/fin#pst#[V] LANG:FI
 lähdettiin	:: lähte-#impass#T/fin#tVVn LANG:FI
+lähtisi		:: lähte-#T/fin#cond LANG:FI
+lähtene		:: lähte-#T/fin#pot LANG:FI
 lähte- 		:: PF:lähte- LF:leave CLASS/INTR V SPEC:φ -COMP:φ COMP:P LANG:FI
 lle     	:: PF:P(-lle) LF:for P +SEM:directional -ΦPF TAIL:V LANG:FI
 lla			:: PF:P(-lla) LF:by	P -ΦPF TAIL:T TAIL:*V LANG:FI
@@ -211,6 +215,7 @@ maalaavan	:: maalaa-#v#VA/inf LANG:FI
 maalata		:: maalaa-#v#A/inf LANG:FI
 maalasi		:: maalaa-#v#T/fin#[V] LANG:FI
 maalannut	:: maalaa-#asp#v#T/prt#sg_ LANG:FI
+maalataan	:: maalaa-#asp#impass#T/fin#prs#Vn LANG:FI
 maalaa		:: maalaa-#v#T/fin LANG:FI
 maalaa-		:: PF:maalaa- LF:paint V !COMP:φ -SPEC:φ CLASS/TR LANG:FI
 Merja   	::	Merja-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
@@ -250,8 +255,11 @@ myydä 		:: myy-#v#A/inf LANG:FI
 myy-		:: PF:myy- LF:sell V ASP:BOUNDED CLASS/TR -COMP:T/fin -COMP:Neg/fin COMP:φ LANG:FI
 nainen		:: nainen-#φ#nonhum#r_expression#[nom]
 nainen-		:: PF:nainen LF:woman N LANG:FI
+nauratan	:: naura-#tA#v#T/fin#prs#n LANG:FI
+nauratutan	:: naura-#tA#tA#v#T/fin#prs#n LANG:FI
+nauratu		:: naura-#tA
 nauroi		:: naura-#T/fin#[V] LANG:FI
-naura-		:: PF:naura LF:laugh V CLASS/INTR LANG:FI
+naura-		:: PF:naura LF:laugh V LANG:FI
 näki		:: näke-#v#T/fin#[V] LANG:FI
 näkee		:: näke-#v#T/fin#[V] LANG:FI
 näke-		:: PF:näke- LF:see V CLASS/TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA.abe/inf -COMP:MA.ine/inf LANG:FI
@@ -275,11 +283,13 @@ odotti		:: odotta-#T/fin#[V] LANG:FI
 odotta-		:: PF:odotta- LF:wait V -COMP:ESSA/inf SPEC:φ COMP:φ LANG:FI
 ollut		:: BE-#T/prt#sg_ LANG:FI
 olleet		:: BE-#T/prt#pl_ LANG:FI
-olen		:: BE-#T/fin#n LANG:FI
+olen		:: BE-#T/fin#prs#n LANG:FI
+olen*		:: BE-#T#prs#Fin#n LANG:FI
 olet		:: BE-#T/fin#t LANG:FI
 on'			:: BE-#T/fin#[V] LANG:FI
-on			:: BE-#T/fin#PRS#[V] LANG:FI
-oli			:: BE-#T/fin#PST#[V] LANG:FI
+on			:: BE-#T/fin#prs#[V] LANG:FI
+oli			:: BE-#T/fin#pst#[V] LANG:FI
+olisi		:: BE-#T/fin#cond LANG:FI
 olemme		:: BE-#T/fin#mme LANG:FI
 olette		:: BE-#T/fin#tte LANG:FI
 ovat		:: BE-#T/fin#vAt LANG:FI
@@ -293,6 +303,8 @@ päivän		:: päivä-#φ#[acc(n)]
 päivää		:: päivä-#φ#[par]
 päivä		:: päivä-#φ#[acc(0)]
 päivä-		:: PF:päivä- LF:day N SEM:nonreferential LANG:FI
+paalu		:: paalu- LANG:FI
+paalu-		:: PF:paalu LF:pole N LANG:FI
 Pariisia	:: Pariisi-#D#sg#3p#def#proper_name#[par] LANG:FI
 Pariisin	:: Pariisi-#D#sg#3p#def#proper_name#[gen] LANG:FI
 Pariisi-	:: PF:Pariisi LF:Paris N -COMP:* LANG:FI
@@ -311,8 +323,10 @@ pelkää		:: pelkä-#v#T/fin#[V] LANG:FI
 pelkä-		:: PF:pelkä- LF:fear V CLASS/TR LANG:FI
 peruuntui	:: peruuntu-#T/fin#[V] LANG:FI
 peruuntu-	:: PF:peruuntui- LF:cancelled V SPEC:φ LANG:FI
-pesi		:: pese-#v#asp#T/fin#PST#[V] LANG:FI
-pesi*		:: pese-#v#asp#T#Fin#[V] LANG:FI
+pessyt		:: pese-#v#asp#T/prt#pst#sg_ LANG:FI
+pesi		:: pese-#v#asp#T/fin#pst#[V] LANG:FI
+pesin		:: pese-#v#asp#T/fin#pst#n LANG:FI
+pesi*		:: pese-#v#asp#T#pst#Fin#[V] LANG:FI
 pesit*		:: pese-#v#asp#T#Fin#t LANG:FI
 pestä		:: pese-#A/inf LANG:FI
 pese-		:: PF:pese- LF:wash V CLASS/TR ASP:BOUNDED LANG:FI
@@ -403,8 +417,11 @@ tämä		:: tämä-#D#sg#3p#def
 tätä		:: D#sg#3p#def#[par]
 tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tässä		:: tämä#P
-täytyy		:: täydy-#T/fin#default LANG:FI
-täydy		:: täydy-#T/prt LANG:FI
+täytyy		:: täydy-#T/fin#prs#default LANG:FI
+täytyi		:: täydy-#T/fin#pst#default LANG:FI
+täytyisi	:: täydy-#T/fin#cond#default LANG:FI
+täydy		:: täydy-#T/prt#prs LANG:FI
+täytynyt	:: täydy-#T/prt#pst#sg_ LANG:FI
 täydy-		:: PF:täyty- LF:must Fin V -ARG MODAL EF SPEC:φ !COMP:A/inf -ASP LANG:FI
 tönäisi		:: tönäise-#v#T/fin#[V] LANG:FI
 tönäistä	:: tönäise-#A/inf LANG:FI
@@ -489,7 +506,7 @@ t		::	inflectional ΦPF Φ EF -Inf PHI:NUM:SG PHI:PER:2 PER PHI:DET:DEF PHI:HUM:
 mme		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 tte		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 vAt		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:3 PER PHI:DET:DEF LANG:FI
-tVVn	::  inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PER LANG:FI
+Vn		::  inflectional ΦPF Φ EF -Inf PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PER IMPASS LANG:FI
 
 # Infinitival agreement (Px)
 ni		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
@@ -532,6 +549,9 @@ asp			:: inflectional ASP:BOUNDED
 [kO]		:: inflectional OP:Q ΔOP:Q LANG:FI
 [foc]		:: inflectional OP:FOC ΔOP:FOC LANG:FI
 
+# Tense and mood
+isi			:: inflectional cond
+ne			:: inflectional pot
 
 # ENGLISH LEXICON -----------------------------------------------------------------------------------------------------------------------
 

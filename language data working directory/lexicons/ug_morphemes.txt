@@ -8,19 +8,21 @@ v       :: v PF:v LF:v
 v*		:: v PF:v* v- LF:pass -ARG EF
 C/fin   :: C/fin PF:C LF:C/fin
 C		:: C C/fin PF:C LF:C
-T		:: T LF:tense Fin EF
+T		:: T LF:T Fin EF
 T/prt 	:: T/prt LF:Prtc
 Fin		:: Fin LF:fin PF:Fin ARG COMP:T +ΦLF,ΦPF 	
 a0		:: A PF:a LF:mod
-impass	:: v ARG PF:impass LF:impass
+impass	:: v PF:-TA ARG LF:impass
 cau		:: v PF:Cau LF:cause
 φ		:: φ PF:φ LF:phi ARG Inf
 Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
 N		:: N PF:N LF:N
 
 # Tense
-PRS		:: inflectional PRS
-PST		:: inflectional PST
+prs		:: inflectional prs
+pst		:: inflectional pst
+cond	:: inflectional cond
+pot		:: inflectional pot
 
 # Infinitivals
 Inf			:: PF:Inf LF:inf
@@ -46,7 +48,7 @@ MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAllA 	LF:by !COMP:* P
 MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 			PF:-mAstA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event MA/inf
 MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	LF:to SEM/desired_event !COMP:* PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event MA/inf
 
-# Prticiple adjectives
+# Finnish prticiple adjectives
 MA/A		:: MA/A 		EF	Inf		ARG  +ΦLF,ΦPF 			PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
 VA/A		:: VA/A				Inf			 -ΦPF -ΦLF			PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
 
@@ -55,6 +57,9 @@ MA.ine/inf*	:: MA.ine/inf* 		Inf 	ARG  -ΦPF 				PF:-mA-* 	LF:ing LANG:FI !COMP:
 A/inf*		:: A/inf 			Inf 	ARG  -ΦPF 				PF:-(t)A* 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI !COMP:*
 KSE/inf*	:: KSE/inf		EF	Inf Adv ARG	 !ΦPF	 			PF:-kse 	LF:for LANG:FI COMP:A/inf TAIL:T 	
 P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* 	LF:in COMP:φ !COMP:* TAIL:V COMP:MA.ine/inf* -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
+
+# Finnish derivational morphology
+tA			:: V CAU/V		 EF 		-ARG -ΦPF -ΦLF			PF:-tA		LF:cause !COMP:* LANG:FI
 
 # Italian
 ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin nonadjoinable 
