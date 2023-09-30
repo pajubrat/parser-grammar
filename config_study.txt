@@ -3,22 +3,19 @@ author= Anon
 year= 2023
 date= March
 study_id= 15
-study_folder=			language data working directory/study-17-Finnish syntax
+study_folder=			language data working directory/study-18-CML
 lexicon_folder=			language data working directory/lexicons
-test_corpus_folder=		language data working directory/study-17-Finnish syntax
-test_corpus=			Finnish_syntax_corpus.txt
-numeration=				Finnish_syntax_numeration.txt
+test_corpus_folder=		language data working directory/study-18-CML
+test_corpus=			CML_corpus.txt
+numeration=				CML_numeration.txt
 
 # GENERAL SIMULATION PARAMETERS
-only_first_solution = True
+only_first_solution = False
 ignore_ungrammatical_sentences = False
 console_output = Full
 stop_at_unknown_lexical_item = False
 logging = True
-check_output = True
 use_numeration = False
-
-# DATA COLLECTION
 datatake_full = False
 
 # IMAGE PARAMETERS (requires Pyglet library)
@@ -39,7 +36,10 @@ image_parameter_ignore_internal_structure_of_DPs = False
 # show_features = ΦPF;-ΦPF;!ΦPF;-ΦLF;!ΦLF;+ΦLF,ΦPF;-ΦLF,ΦPF;PER;PHI:NUM:_;PHI:PER:_;PHI:NUM:PL;PHI:NUM:SG;PHI:PER:1;PHI:PER:2;PHI:PER:3
 
 # Study 17 Finnish syntax
-show_features = PHI:NUM:SG;PHI:NUM:PL;PHI:PER:1;PHI:PER:2;PHI:PER:3;Fin*
+# show_features = PHI:NUM:SG;PHI:NUM:PL;PHI:PER:1;PHI:PER:2;PHI:PER:3;Fin*;OP:Q;OP:WH
+
+# Study 18 CSL
+show_features = &P
 
 # UG COMPONENTS
 #	Agree

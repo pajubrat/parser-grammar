@@ -20,7 +20,7 @@ N		:: N PF:N LF:N
 
 # Tense
 prs		:: inflectional prs
-pst		:: inflectional pst
+pst		:: inflectional pst 
 cond	:: inflectional cond
 pot		:: inflectional pot
 
@@ -39,7 +39,7 @@ to_inf		:: Inf TO/inf EF PF:to LF:to/inf -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE
 A/inf		:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
 VA/inf  	:: VA/inf 		EF	Inf T   ARG	+ΦLF,ΦPF -ΦLF,ΦPF	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
 ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  					PF:-essA 	LF:while !COMP:* PROBE:V LANG:FI TAIL:T
-TUA/inf		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	LF:after !COMP:* PROBE:V LANG:FI TAIL:T	
+TUA/inf		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	LF:after !COMP:* PROBE:V LANG:FI TAIL:T
 KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-ΦLF !ΦPF			PF:-kse 	LF:for !COMP:* PROBE:V LANG:FI TAIL:T
 E/inf		:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  			PF:-en 		LF:by !COMP:* PROBE:V LANG:FI TAIL:T
 MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAssA 	LF:in !COMP:* PROBE:V LANG:FI TAIL:V	MA/inf

@@ -14,6 +14,7 @@ class LocalFileSystem:
         self.external_sources = {}
         self.grammaticality_judgments_file = None
         self.results_file = None
+        self.errors = None
         self.numeration_output = None
         self.semantics_file = None
         self.resources_file = None
@@ -66,27 +67,6 @@ class LocalFileSystem:
                                          'positive_adverbial_test': '100'
                                          }
 
-    def check_output(self):
-        print(f'\n')
-        grammatical = True
-        number_of_errors = 0
-        errors = open(self.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
-        errors.write('Prediction errors were detected in the following sentences:\n')
-        errors.write('(Determined solely on the basis of the grammatical/ungrammatical labels in the dataset file.)\n\n')
-        for line in open(self.external_sources["grammaticality_judgments_file_name"], "r", -1, encoding=self.encoding):
-            if line:
-                if 'Grammatical' in line or 'grammatical' in line:
-                    grammatical = True
-                if 'Ungrammatical' in line or 'ungrammatical' in line:
-                    grammatical = False
-                if line.strip()[:1].isdigit():
-                    if (' *' in line and grammatical) or (' *' not in line and not grammatical):
-                        errors.write(f'{line}')
-                        print(f'Error: {line.strip()}')
-                        number_of_errors += 1
-        errors.close()
-        print(f'\nFound {number_of_errors} errors.')
-
     def initialize(self, args):
         self.initialize_dev_logging()
         self.read_study_config_file(args)
@@ -103,6 +83,8 @@ class LocalFileSystem:
         self.dev_log_file.write('Initializing output files for writing...')
         self.initialize_grammaticality_judgments_file()
         self.initialize_results_file()
+        self.initialize_resources_file()
+        self.initialize_error_file()
         if self.settings['datatake_images']:
             self.initialize_image_folder()
             self.settings['datatake_images'] = True
@@ -110,13 +92,17 @@ class LocalFileSystem:
             self.visualizer.initialize(self.settings)
         if self.settings['datatake_full']:
             self.initialize_simple_results_file()
-            self.initialize_resources_file()
             self.initialize_simple_log_file()
             self.initialize_semantics_file()
             self.initialize_control_file()
+            self.initialize_error_file()
         if self.settings['use_numeration']:
             self.initialize_numeration_output()
         self.dev_log_file.write('Done.\n')
+
+    def initialize_error_file(self):
+        self.errors = open(self.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
+        self.errors.write(f'Prediction errors:')
 
     def initialize_numeration_output(self):
         self.numeration_output = open(self.external_sources['numeration_output'], 'w', -1, encoding=self.encoding)
@@ -374,11 +360,12 @@ class LocalFileSystem:
             if not line or line.startswith('#'):
                 continue
             if line.startswith('%'):
-                self.settings['check_output'] = False
                 parse_list = []
                 line = line.lstrip('%')
+                line = line.strip()
                 line = self.clear_line_end(line)
-                parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation))
+                line, grammatical = self.gold_standard_grammaticality(line)
+                parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
                 break
             if line.endswith(';'):
                 part_of_conversation = True
@@ -392,11 +379,19 @@ class LocalFileSystem:
             elif line.startswith('=>'):             # Respond to experimental grouping symbol
                 experimental_group = self.read_experimental_group(line)
                 continue
-            parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation))
+            line, grammatical = self.gold_standard_grammaticality(line)
+            parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
         if plus_sentences:
             return plus_sentences
         self.dev_log_file.write(f'Found {len(parse_list)} sentences. Done.\n')
         return parse_list
+
+    def gold_standard_grammaticality(self, line):
+        if line.startswith('*'):
+            line = line.lstrip('*')
+            return line, False
+        else:
+            return line, True
 
     def clear_line_end(self, line):
         if line.endswith(';'):
@@ -419,21 +414,22 @@ class LocalFileSystem:
         file_handle.write('@  '+f'Universal morphemes {self.external_sources["ug_morphemes"]}.\n')
         file_handle.write('@ \n')
 
-    def save_output(self, parser, count, sentence, experimental_group, part_of_conversation):
-        self.dev_log_file.write('Saving output into output files...')
-        self.save_grammaticality_judgment(parser, count, sentence)
+    def save_output(self, parser, count, sentence, experimental_group, part_of_conversation, grammatical):
+        self.save_predicted_grammaticality_judgment(parser, count, sentence)
         self.save_results(parser, count, sentence, part_of_conversation)
-        if self.settings['datatake_full']:
-            self.save_control_data(parser, count, sentence)
-            self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
+        self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
         self.print_result_to_console(parser, sentence)
+        if len(parser.result_list) > 0 and not grammatical or len(parser.result_list) == 0 and grammatical:
+            self.save_error(count, sentence)
         if self.settings['datatake_images']:
             self.save_image(parser, sentence, count)
-        self.dev_log_file.write('Done.\n')
 
-    def save_grammaticality_judgment(self, P, count, sentence):
-        sentence_string = self.generate_input_sentence_string(sentence)
-        self.grammaticality_judgments_file.write('\n\t\t'+str(count) + '. ' + self.judgment_marker(P) + sentence_string + '\n')
+    def save_predicted_grammaticality_judgment(self, P, count, sentence):
+        self.grammaticality_judgments_file.write(f'\n\t\t{str(count)}. {self.judgment_marker(P)}{self.generate_input_sentence_string(sentence)}\n')
+
+    def save_error(self, count, sentence):
+        r = f'\n{str(count)}. {self.generate_input_sentence_string(sentence)}'
+        self.errors.write(r)
 
     def judgment_marker(self, parser):
         if len(parser.result_list) == 0:
@@ -456,20 +452,6 @@ class LocalFileSystem:
                 self.resources_file.write(f'{parser.resources[key]["n"]},')
             self.resources_file.write(f'{parser.execution_time_results[0]}')
         self.resources_file.write('\n')
-
-    def save_control_data(self, parser, count, sentence):
-        sentence_string = self.generate_input_sentence_string(sentence)
-        self.control_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n')
-        if len(parser.result_list) > 0:
-            self.control_file.write('\t')
-            p, sem = parser.result_list[0]
-            if 'Recovery' in sem:
-                for i, item in enumerate(sem['Recovery']):
-                    self.control_file.write(item)
-                    if i < len(sem['Recovery']) - 1:
-                        self.control_file.write(', ')
-                self.control_file.write('\n')
-        self.control_file.write('\n')
 
     def save_results(self, parser, count, sentence, part_of_conversation):
         sentence_string = self.generate_input_sentence_string(sentence)
@@ -610,7 +592,18 @@ class LocalFileSystem:
             self.resources_file.close()
             self.control_file.close()
         self.logger_handle.close()
+        self.errors.close()
         self.dev_log_file.write('Done.\n')
+
+    def report_errors_to_console(self):
+        self.errors = open(self.external_sources['error_report_name'], 'r')
+        print(f'\n')
+        contents = self.errors.read()
+        print(contents)
+        self.errors = open(self.external_sources['error_report_name'], 'r')
+        error_N = len(self.errors.readlines()) - 1
+        print(f'= {error_N}  errors.')
+        self.errors.close()
 
     def print_result_to_console(self, parser, sentence):
         input_sentence_string = self.generate_input_sentence_string(sentence)

@@ -18,7 +18,7 @@ def valued_phi_feature(f):
 
 def i(phi):
     if interpretable_phi_feature(phi):
-        return phi[1:]
+        return phi[5:]
     return phi
 
 def exactly_one_PHI():

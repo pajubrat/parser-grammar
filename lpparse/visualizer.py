@@ -320,11 +320,13 @@ class ProduceGraphicOutput(pyglet.window.Window):
         if feature == 'PER':
             return '*φ*'
         if feature == '&P':
-            return '[p]'
+            return 'EPP'
         if feature == 'OP:Q':
-            return '[Q]'
+            return 'Q'
+        if feature == 'OP:WH':
+            return 'wh'
         if 'COMP:φ' in feature or 'SPEC:φ' in feature and not ps.check({'EF'}):
-            return '[θ]'
+            return 'θ'
         return f'{feature}'
 
     def draw_node_label(self, ps, X1, Y1, label_stack):

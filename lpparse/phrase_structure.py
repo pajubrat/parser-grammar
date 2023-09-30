@@ -675,7 +675,7 @@ class PhraseStructure:
 
 
     def AgreeLF(self):
-        self.value_features_from(self.get_goal())
+        self.value_from_goal(self.get_goal())
 
     def get_goal(self):
         return next(self.minimal_search_domain().minimal_search(lambda x: x.goal_selection(), lambda x: not x.phase_head()), None)
@@ -683,47 +683,35 @@ class PhraseStructure:
     def goal_selection(self):
         return not self.find_me_elsewhere and (self.head().referential() or self.phase_head())
 
-    def value_features_from(self, goal):
+    def value_from_goal(self, goal):
         if goal:
-            log(f'\n\t\tAgree({self}°, {goal.head()}) values ')
-            for phi, phi_ in [(i(phi), self.unvalued_counterparty(i(phi))) for phi in sorted(list(goal.head().features)) if self.target_phi_feature(phi, goal)]:
-                self.value_feature(phi, phi_, goal)
-                log(f'[{phi.split(":")[2]}] ')
-            self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
-            self.induce_p()
+            log(f'\n\t\tAgree({self}°, {goal.head()}) ')
+            if not self.agreement_block(goal):
+                self.value(goal)
 
-    def value_feature(self, phi, phi_, goal):
-        if self.feature_licensing(phi, goal):
+    def agreement_block(self, goal):
+        phi_gates = [set(phi[4:].split(',')) for phi in self.features if valued_phi_feature(phi)]
+        if phi_gates and not self.feature_licensing(goal, phi_gates):
+            log(f'failed licensing at {self}. ')
+            self.features.add('*')
+            return True
+
+    def feature_licensing(self, goal, phi_gates):
+        g = {phi[5:] for phi in goal.head().features if phi.startswith('iPHI') and {phi.split(':')[1]} & {'PER', 'NUM'}}
+        return [p for p in phi_gates if p & g == p]
+
+    def value(self, goal):
+        log(f'values ')
+        for phi, phi_ in [(phi, f'PHI:{phi.split(":")[1]}:_') for phi in goal.head().features if phi.startswith('iPHI') and f'PHI:{phi.split(":")[1]}:_' in self.features]:
+            log(f'[{phi[5:]}] ')
             self.features.discard(phi_)
-            self.features.add(phi)
+            self.features.add(f'{phi[1:]}')
+        self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
+        self.induce_p()
 
     def induce_p(self):
         if self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'}):
             self.features.add('&P')
-
-    def target_phi_feature(self, phi, goal):
-        if valued_phi_feature(phi):
-            if goal.has_interpretable_phi_features():
-                if self == goal:
-                    return not interpretable_phi_feature(phi)
-                else:
-                    return interpretable_phi_feature(phi)
-            return True
-
-    def unvalued_counterparty(self, phi):
-        return next((phi_ for phi_ in self.head().features if unvalued(phi_) and phi.startswith(phi_[:-1])), None)
-
-    # Check if types match, then there must be a licensing feature with identical value.
-    def feature_licensing(self, phi, goal):
-        if goal.nonverbal():
-            probe_type_matched_phi = {phi_ for phi_ in self.get_phi_set() if valued_phi_feature(phi_) and self.type_match(phi, phi_)}
-            if not probe_type_matched_phi or {x for x in probe_type_matched_phi if x == phi}:
-                return True
-        self.features.add('*')
-        log(f'*')
-
-    def has_interpretable_phi_features(self):
-        return next((phi for phi in self.head().features if phi.startswith('iPHI:')), None)
 
     def argument_by_agreement(self):
         for f in self.features:
@@ -765,7 +753,6 @@ class PhraseStructure:
                 log(f'\n\t\t{self}° resolved into -ARG.')
                 self.features.add('-ARG')
                 self.features.add('-ΦPF,ΦPF')
-                self.features.add('opaque')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 log(f'\n\t\t{self}° resolved into ARG.')
                 self.features.add('ARG')

@@ -10,7 +10,7 @@ from phrase_structure import PhraseStructure
 from working_memory import SyntacticWorkingMemory
 from Experimental_functions import ExperimentalFunctions
 
-class LinearPhaseParser:
+class SpeakerModel:
     def __init__(self, local_file_system, language='XX'):
         self.sentence = ''
         self.local_file_system = local_file_system              # Access to file system (e.g., lexicon, settings)

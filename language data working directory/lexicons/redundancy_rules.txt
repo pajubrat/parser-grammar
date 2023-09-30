@@ -67,6 +67,11 @@ LANG:FI T IMPASS pst	:: PF:-in
 LANG:FI T/fin			:: Fin*
 LANG:FI Neg/fin			:: Fin*
 
+# English spellout
+
+LANG:EN T prs			:: PF:T
+LANG:EN T pst			:: PF:-ed ΦPF EF PHI:NUM:SG PHI:NUM:PL PHI:PER:1 PHI:PER:2 PHI:PER:3 PHI:DET:DEF PER
+
 # Finnish edge behavior
 P LANG:FI		::	EF Adv
 Adv LANG:FI		::	EF

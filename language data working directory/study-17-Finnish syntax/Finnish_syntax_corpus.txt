@@ -3,133 +3,136 @@
 
 	& Chapter 2
 
-		& Grammatical
-
-			mitkä_D ikkunat_N Pekka on maalannut
-			'which windows.pl.acc Pekka.nom be.prs.3sg paint.sg.pst.prtc'
-			
-			ikkunat_DP#[foc] Pekka pesi
-			'window.pl.acc Pekka.nom wash.pst.3sg'
+		mitkä_D ikkunat_N Pekka on maalannut
+		'which windows.pl.acc Pekka.nom be.prs.3sg paint.sg.pst.prtc'
 		
-			Pekka pesi ikkunat_DP
-			'Pekka.nom wash.pst.3sg window.pl.acc'
-			
-			Pekka#[foc] pesi ikkunat
-			'Pekka.nom wash.pst.3sg window.pl.acc'
-
-			Pekka#[kO] pesi ikkunat
-			'Pekka.nom.q wash.pst.3sg window.pl.acc'
-		
-			pesi#[foc] Pekka ikkunat
-			'wash.pst.3sg.foc Pekka.nom window.pl.acc'
-		
-			pesi#[kO] Pekka ikkunat
-			'wash.pst.3sg.q Pekka.nom window.pl.acc'
+		ikkunat_DP#[foc] Pekka pesi
+		'window.pl.acc Pekka.nom wash.pst.3sg'
 	
-		& Ungrammatical
+		Pekka pesi ikkunat_DP
+		'Pekka.nom wash.pst.3sg window.pl.acc'
 		
-			Pekka pesi#[kO] ikkunat
-			'Pekka.nom wash.pst.3sg.q window.pl.acc
-				
-		& Grammatical
+		Pekka#[foc] pesi ikkunat
+		'Pekka.nom wash.pst.3sg window.pl.acc'
+		
+		Pekka#[kO] pesi ikkunat
+		'Pekka.nom.q wash.pst.3sg window.pl.acc'
+	
+		pesi#[foc] Pekka ikkunat
+		'wash.pst.3sg.foc Pekka.nom window.pl.acc'
+	
+		pesi#[kO] Pekka ikkunat
+		'wash.pst.3sg.q Pekka.nom window.pl.acc'
 
-			Pekka antoi kirjan Merjalle
-			'Pekka.nom give.pst.3sg book.acc Merja.all'
+		*Pekka pesi#[kO] ikkunat
+		'Pekka.nom wash.pst.3sg.q window.pl.acc
 			
-			Pekka antoi Merjalle kirjan
-			'Pekka.nom give.pst.3sg Merja.all book.acc'
+		Pekka antoi kirjan Merjalle
+		'Pekka.nom give.pst.3sg book.acc Merja.all'
 		
-			kirjan antoi Pekka Merjalle
-			'book.acc give.pst.3sg Pekka.nom Merja.all'
+		Pekka antoi Merjalle kirjan
+		'Pekka.nom give.pst.3sg Merja.all book.acc'
+	
+		kirjan antoi Pekka Merjalle
+		'book.acc give.pst.3sg Pekka.nom Merja.all'
+		
+		Merjalle antoi Pekka kirjan
+		'Merja.all give.pst.3sg Pekka.nom book.acc'
 			
-			Merjalle antoi Pekka kirjan
-			'Merja.all give.pst.3sg Pekka.nom book.acc'
+		*antoi Pekka kirjan Merjalle
+		'give.prs.3sg Pekka.nom book.acc Merja.all'
+					
+		ikkunat_DP pesi Pekka
+		'window.pl.acc wash.pst.3sg Pekka.nom'
 		
-		& Ungrammatical
+		Pekka pesi ikkunat_DP
+		'Pekka.nom wash.pst.3sg window.pl.acc'
 		
-			antoi Pekka kirjan Merjalle
-			'give.prs.3sg Pekka.nom book.acc Merja.all'
+		Pekka pesi* ikkunat_DP
+		'Pekka.nom wash.pst.fin.3sg window.pl.accä
+	
+		pesin ikkunat_DP
+		'wash.pst.1sg window.pl.acc	
 		
-		& Grammatical
+		minä olen* pessyt ikkunat_DP
+		'I.nom be.prs.1sg wash.sg.pst.prtc window.pl.acc'
+	
+		minä olen pessyt ikkunat_DP
+		'I.nom be.prs.1sg wash.sg.pst window.pl.acc'
+	
+		minä lähde#n 
+		'I.nom leave.prs.1sg'
+		
+		sinä lähde#t
+		'you.nom leave.prs.2sg'
+		
+		hän lähde#[V]
+		'he.nom leave.prs.3sg'
+		
+		me lähde#mme
+		'we.nom leave.prs.1pl'
+		
+		te lähde#tte
+		'you.nom leave.prs.2pl'
+		
+		he lähde#vAt
+		'they.nom leave.prs.3pl'
+	
+		minä lähtisi#n
+		'I.nom leave.cond.1sg'
+	
+		minä lähde#isi#n
+		'I.nom leave.cond.1sg'
+		
+		minä lähtene#n
+		'I.nom leave.pot.1sg'
+		
+		minä lähde#ne#n
+		'I.nom leave.pot.1sg'
+	
+		minä olisi#n lähtenyt
+		'I.nom be.cond.1sg leave.sg.pst.prtc'
+	
+		me	e#mme lähde
+		'we.nom not.1pl leave.prs'
+		
+		meidän täytyy lähteä
+		'we.gen must.prs.3sg leave.a/inf
+		
+		meidän täytyisi lähteä
+		'we.gen must.cond.3sg leave.a/inf'
+	
+		meidän e#[V] täydy lähteä
+		'we.gen not.3sg must.prs leave.a/inf'
+		
+		meidän e#[V] täytynyt lähteä
+		'we.gen not.3sg must.pst.sg.prtc leave.a/inf'
+		
+		ikkunat_DP maalataan
+		'window.pl.acc paint.prs.impass'
 				
-			ikkunat_DP pesi Pekka
-			'window.pl.acc wash.pst.3sg Pekka.nom'
-			
-			Pekka pesi ikkunat_DP
-			'Pekka.nom wash.pst.3sg window.pl.acc'
-			
-			Pekka pesi* ikkunat_DP
-			'Pekka.nom wash.pst.fin.3sg window.pl.accä
+		minä nauratan lapsia
+		'I.nom laugh.cau.prs.1sg child.pl.par'
 		
-			pesin ikkunat_DP
-			'wash.pst.1sg window.pl.acc	
-			
-			minä olen* pessyt ikkunat_DP
-			'I.nom be.prs.1sg wash.sg.pst.prtc window.pl.acc'
+		minä nauratutan lapsia
+		'I.nom laugh.cau.cau.prs.1sg child.pl.par
+	
+		minä nauratu#tA#v#T/fin#prs#n lapsia
+		'I.nom laugh.cau.cau.v.T/fin.1sg child.pl.par'
 		
-			minä olen pessyt ikkunat_DP
-			'I.nom be.prs.1sg wash.sg.pst window.pl.acc'
+	& Chapter 3 (CP syntax)
+ 	
+		ikkunat_DP#[kO] Pekka pesi
+	
+	& Chapter 4 (chains)
 		
-			minä lähde#n 
-			'I.nom leave.prs.1sg'
-			
-			sinä lähde#t
-			'you.nom leave.prs.2sg'
-			
-			hän lähde#[V]
-			'he.nom leave.prs.3sg'
-			
-			me lähde#mme
-			'we.nom leave.prs.1pl'
-			
-			te lähde#tte
-			'you.nom leave.prs.2pl'
-			
-			he lähde#vAt
-			'they.nom leave.prs.3pl'
-		
-			minä lähtisi#n
-			'I.nom leave.cond.1sg'
-		
-			minä lähde#isi#n
-			'I.nom leave.cond.1sg'
-			
-			minä lähtene#n
-			'I.nom leave.pot.1sg'
-			
-			minä lähde#ne#n
-			'I.nom leave.pot.1sg'
-		
-			minä olisi#n lähtenyt
-			'I.nom be.cond.1sg leave.sg.pst.prtc'
-		
-			me	e#mme lähde
-			'we.nom not.1pl leave.prs'
-			
-			meidän täytyy lähteä
-			'we.gen must.prs.3sg leave.a/inf
-			
-			meidän täytyisi lähteä
-			'we.gen must.cond.3sg leave.a/inf'
-		
-			meidän e#[V] täydy lähteä
-			'we.gen not.3sg must.prs leave.a/inf'
-			
-			meidän e#[V] täytynyt lähteä
-			'we.gen not.3sg must.pst.sg.prtc leave.a/inf'
-			
-			ikkunat_DP maalataan
-			'window.pl.acc paint.prs.impass'
-			
-		& Derivational morphology
-		
-			minä nauratan lapsia
-			'I.nom laugh.cau.prs.1sg child.pl.par'
-			
-			minä nauratutan lapsia
-			'I.nom laugh.cau.cau.prs.1sg child.pl.par
-		
-			minä nauratu#tA#v#T/fin#prs#n lapsia
-			'I.nom laugh.cau.cau.v.T/fin.1sg child.pl.par'
-			
-			minä paalu-#tA#v#T/fin#prs#n aitaa
+		mitä_DP kohti Seine virtaa
+	
+	& Chapter 6 (nonfinite clauses)
+	
+		Pekka uskoi Merjan_gen lähtevän
+		'Pekka.nom believe.pst.3sg Merja.gen leave.va/inf'
+	
+	%	Pekka näki hänet Merjan_gen lähdettyä
+		'Pekka.nom see.pst.3sg he.acc Merja.gen leave.tua/inf'
+	
