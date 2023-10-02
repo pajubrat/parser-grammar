@@ -293,7 +293,16 @@ class PhraseStructure:
             return pro
 
     def phi_consistent_head(self):
-        return phi_consistency({f for f in self.features if f[:4] == 'PHI:'})
+        phi_set = self.complete_phi_set()
+        for f in phi_set:
+            for g in phi_set:
+                if f.split(':')[0] == g.split(':')[0] and f.split(':')[1] != g.split(':')[1]:
+                    return False
+        return True
+
+    def complete_phi_set(self):
+        phi_sets = [phi[4:].split(',') for phi in self.features if phi.startswith('PHI:') and not phi.endswith('_')]
+        return {phi for phi_set in phi_sets for phi in phi_set}
 
     # Condition for independent pro-element
     def sustains_reference(self):
@@ -702,7 +711,8 @@ class PhraseStructure:
 
     def value(self, goal):
         log(f'values ')
-        for phi, phi_ in [(phi, f'PHI:{phi.split(":")[1]}:_') for phi in goal.head().features if phi.startswith('iPHI') and f'PHI:{phi.split(":")[1]}:_' in self.features]:
+        for phi, phi_ in [(phi, f'PHI:{phi.split(":")[1]}:_') for phi in goal.head().features if
+                          phi.startswith('iPHI') and f'PHI:{phi.split(":")[1]}:_' in self.features]:
             log(f'[{phi[5:]}] ')
             self.features.discard(phi_)
             self.features.add(f'{phi[1:]}')
@@ -1398,7 +1408,7 @@ class PhraseStructure:
         return {f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
 
     def has_full_phi_set(self):
-        return len({'PHI:NUM', 'PHI:PER', 'PHI:DET'} & self.get_valued_phi()) == 3
+        return {phi[:3] for phi in self.complete_phi_set()} & {'NUM', 'PER', 'DET'} == {'NUM', 'PER', 'DET'}
 
     def has_unvalued_phi(self):
         return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}

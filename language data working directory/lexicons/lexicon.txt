@@ -4,6 +4,7 @@
 # FINNISH LEXICON -----------------------------------------------------------------------------------------------------------------------
 
 aitaa		:: aita-#φ#sg#3p#def#nonhum#r_expression#[par]
+aitoja		:: aita-#φ#pl#3p#def#nonhum#r_expression#[par]
 aidan		:: aita-#φ#sg#3p#def#nonhum#r_expression#[acc(n)]
 aita-		:: PF:aita LF:fence N LANG:FI
 ali			:: PF:ali LF:under P -ΦPF TAIL:V Inf !COMP:* LANG:FI ARG
@@ -65,14 +66,14 @@ Helsingissä	:: Helsinki-#φ#sg#3p#def#r_expression#ssa LANG:FI
 Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression LANG:EN
 Helsinki-	:: PF:Helsinki LF:Helsinki N R:REF:PROPER_NAME LANG:FI
-ihailen		:: ihaile-#v#T/fin#n LANG:FI
-ihaili		:: ihaile-#v#T/fin#[V] LANG:FI
-ihailet		:: ihaile-#v#T/fin#t LANG:FI
-ihailee 	:: ihaile-#v#T/fin#[V] LANG:FI
-ihailee*	:: ihaile-#v#T/fin#Agr#[V] LANG:FI
-ihailemme 	:: ihaile-#v#T/fin#mme LANG:FI
-ihailette 	:: ihaile-#v#T/fin#tte LANG:FI
-ihailevat 	:: ihaile-#v#T/fin#[-vAt] LANG:FI
+ihailen		:: ihaile-#v#T/fin#prs#n LANG:FI
+ihaili		:: ihaile-#v#T/fin#pst#[V] LANG:FI
+ihailet		:: ihaile-#v#T/fin#prs#t LANG:FI
+ihailee 	:: ihaile-#v#T/fin#prs#[V] LANG:FI
+ihailee*	:: ihaile-#v#T/fin#prs#Agr#[V] LANG:FI
+ihailemme 	:: ihaile-#v#T/fin#prs#mme LANG:FI
+ihailette 	:: ihaile-#v#T/fin#prs#tte LANG:FI
+ihailevat 	:: ihaile-#v#T/fin#prs#[-vAt] LANG:FI
 ihailevan	:: ihaile-#v#VA/inf LANG:FI
 ihailevansa :: ihaile-#v#VA/inf#nsA LANG:FI
 ihailemassa :: ihaile-#v#MA.ine/inf LANG:FI
@@ -216,6 +217,7 @@ maalata		:: maalaa-#v#A/inf LANG:FI
 maalasi		:: maalaa-#v#T/fin#[V] LANG:FI
 maalannut	:: maalaa-#asp#v#T/prt#sg_ LANG:FI
 maalataan	:: maalaa-#asp#impass#T/fin#prs#Vn LANG:FI
+maalattiin	:: maalaa-#asp#impass#T/fin#pst#Vn LANG:FI
 maalaa		:: maalaa-#v#T/fin LANG:FI
 maalaa-		:: PF:maalaa- LF:paint V !COMP:φ -SPEC:φ CLASS/TR LANG:FI
 Merja   	::	Merja-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
@@ -490,7 +492,7 @@ itseäni		:: itse-#D/refl#1p#sg#def#[par]#reflexive LANG:FI
 itsensä_gen	:: itse-#D/refl#3p#sg#def#[gen]#reflexive LANG:FI
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
 ne			:: PF:ne LF:those D PHI:NUM:PL PHI:PER:3 LANG:FI
-ne			:: ne-#D/pro#3p#pl#def#nonhum#[nom]#pronoun1 LANG:FI
+ne_DP		:: ne-#D/pro#3p#pl#def#nonhum#[nom]#pronoun1 LANG:FI
 ne-			:: PF:ne LF:those N LANG:FI
 niiden		:: ne#[gen]#pronoun1
 
@@ -522,7 +524,7 @@ nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI:
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF adjoinable LANG:FI
 [gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable nonfloat LANG:FI
-[par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable TAG LANG:FI
+[par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable LANG:FI TAG
 [acc(n)]	:: inflectional ACC ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:ΦPF TAIL:*POL:NEG adjoinable LANG:FI
 [acc(t)]	:: inflectional ACC ACC(t) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
 [acc(0)]	:: inflectional ACC ACC(0) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
@@ -565,7 +567,7 @@ admire_fin	:: admire-#v#T/fin#prs#[-0] LANG:EN
 admired		:: admire-#v#T/fin#pst LANG:EN
 admire*		:: admire-#v LANG:EN
 admires  	:: admire-#v#T/fin#prs#[-s] LANG:EN
-admired*	:: admire-#v* LANG:EN
+admired^	:: admire-#v* LANG:EN
 admire-  	:: PF:admire LF:admire V SPEC:φ -COMP:T/fin CLASS/TR -SPEC:Neg -COMP:Neg COMP:D COMP:φ
 asks		:: ask-#v#T/fin#[-s] LANG:EN
 ask-		:: PF:ask LF:ask V SPEC:φ COMP:φ SEM:internal LANG:EN
@@ -658,8 +660,8 @@ red-		:: PF:red LF:red 0 LANG:EN
 said    	:: say-#T/fin LANG:EN
 say'		:: PF:say LF:say V SPEC:φ !COMP:FORCE LANG:EN
 say-    	:: PF:say LF:say V SPEC:φ !COMP:FORCE LANG:EN
-seems		:: seem-#T/fin#[-s] LANG:EN
-seem		:: seem-#T/fin#[-0] LANG:EN
+seems		:: seem-#T/fin#prs#[-s] LANG:EN
+seem		:: seem-#T/fin#prs#[-0] LANG:EN
 seem-		:: PF:seem LF:seem V -ARG EF SPEC:D !COMP:TO/inf SEM:internal nonphase
 Seine		:: Seine-#D#sg#3p#def LANG:EN
 Seine-		:: PF:Seine LF:Seine N LANG:EN
@@ -672,13 +674,11 @@ to     		:: PF:to LF:to P +SEM:directional -E TAIL:V +SEM:directional LANG:EN
 towards		:: PF:towards LF:towards P !COMP:φ TAIL:V TAIL:*LF:reach LANG:EN
 tries		:: try-#T/fin#[-s] LANG:EN
 try-		:: PF:try LF:try V SPEC:φ !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
-wants		:: want-#v#T/fin#[-s] LANG:EN
-want		:: want-#v#T/fin#[-0] LANG:EN
+wants		:: want-#v#T/fin#prs#[-s] LANG:EN
+want		:: want-#v#T/fin#prs#[-0] LANG:EN
 want-		:: PF:want LF:want V CLASS/TR -COMP:V -SPEC:TO/inf COMP:TO/inf LANG:EN
-was			:: T/fin#[-s] LANG:EN
-was_AUX		:: T/fin#[-s] LANG:EN
-was1		:: BE-#T/fin#[-s] LANG:EN 
-were		:: T/fin#[-0] LANG:EN
+was			:: T/fin PF:was LF:T PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:3 PER ΦPF LANG:EN
+were		:: T/fin PF:were LF:T PHI:NUM:PL PHI:NUM:SG,PER:2 PER ΦPF LANG:EN
 what		:: what-#D#wh#sg#3p#def LANG:EN
 what-		:: PF:what LF:what N PHI_N LANG:EN
 which		:: PF:which LF:which D OP:WH LANG:EN
