@@ -103,7 +103,7 @@ class SpeakerModel:
             self.lexical_stream.stream_into_syntax(lexical_constituent, lst, ps, index, inflection_buffer)
             merge_sites = self.plausibility_metrics.filter_and_rank(ps, lexical_constituent)
             for site, transfer, address_label in merge_sites:
-                log(f'\n\t\t{address_label}')
+                log("{:<80}{}".format(f'\n ', f'           {address_label}'))
                 new_constituent = self.attach(ps.target_left_branch(site), site, lexical_constituent, transfer)
                 self.working_memory.remove_items(merge_sites)
                 self.parse_new_item(new_constituent.top(), lst, index + 1)

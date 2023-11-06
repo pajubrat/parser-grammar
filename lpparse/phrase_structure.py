@@ -3,7 +3,7 @@ from itertools import takewhile
 from feature_processing import *
 from support import log
 
-major_cats = ['N', 'Neg', 'Neg/fin', 'P', 'D', 'φ', 'Top', 'C', 'A', 'v', 'V', 'VA/inf', 'T', 'Fin', 'Q', 'Num', 'Agr',
+major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'A', 'v', 'V', 'VA/inf', 'T', 'Fin', 'Agr',
               'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
               'FORCE', 'EXPL', 'Adv',
               '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
@@ -309,7 +309,7 @@ class PhraseStructure:
         return self.phi_consistent_head() and self.has_full_phi_set()
 
     def pro_legibility(self):
-        if not self.sister() or self.adjunct:
+        if not self.sister() or self.adjunct or self.nominal():
             return True
         iter = self.minimal_search_domain().minimal_search(lambda x: x.primitive(), lambda x: x.theta_predicate() or (not x.phase_head()) and not x.check({'PER'}))
         return next((x for x in iter if x.theta_predicate()), None)
@@ -393,8 +393,8 @@ class PhraseStructure:
             for node in self.sister().minimal_search():
                 if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_features('OP')[0]):
                     return True
-                if node.check(intervention_features) or (node.primitive() and node.check_some({'D', 'φ'})):
-                    break
+                if node.check(intervention_features):
+                    pass
 
     def edge_feature_tests(self):
         if 'EF' not in self.features and self.edge() and not self.edge()[0].head().check({'Adv'}):
@@ -695,11 +695,11 @@ class PhraseStructure:
     def value_from_goal(self, goal):
         if goal:
             log(f'\n\t\tAgree({self}°, {goal.head()}) ')
-            if not self.agreement_block(goal):
+            if not self.agreement_blocked(goal):
                 self.value(goal)
 
-    def agreement_block(self, goal):
-        phi_gates = [set(phi[4:].split(',')) for phi in self.features if valued_phi_feature(phi)]
+    def agreement_blocked(self, goal):
+        phi_gates = [set(phi[4:].split(',')) for phi in self.features if valued_phi_feature(phi) and not phi.startswith('i')]
         if phi_gates and not self.feature_licensing(goal, phi_gates):
             log(f'failed licensing at {self}. ')
             self.features.add('*')
@@ -717,11 +717,14 @@ class PhraseStructure:
             self.features.discard(phi_)
             self.features.add(f'{phi[1:]}')
         self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
-        self.induce_p()
+        self.induce_p(goal)
 
-    def induce_p(self):
+    def induce_p(self, goal):
         if self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'}):
             self.features.add('&P')
+            if self.chain_condition(goal):
+                self.features.add('*')
+                log(f'A-chain condition failed for Agree. ')
 
     def argument_by_agreement(self):
         for f in self.features:
@@ -730,13 +733,12 @@ class PhraseStructure:
                     idx = f.split(':')[2]
                     return next(self.sister().minimal_search(lambda x: idx in x.head().features, lambda x: not x.phase_head()), None)
 
-    # Used by post-LF predicates module (experimental)
-    def p_associate_check(self, goal):
-        if goal and self.check({'&P'}) and not self.check({'strong_agr'}) and not self.check({'!PER'}) and not self.theta_head():
-            return self != goal and not (next(iter(self.edge()), self).head().get_id() == goal.head().get_id())
+    # Chain legibility for A-system (will be later generalized to A-bar system)
+    def chain_condition(self, goal):
+        if not self.check({'strong_agr'}) and not self.check({'!PER'}) and not self.theta_head():
+            return not next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
 
     # Extraposition
-
     def cutoff_point_for_last_resort_extraposition(self):
         return self.primitive() and self.is_adjoinable() and self.aunt() and \
                (self.aunt().complex() or (self.aunt().primitive() and self.grandmother().induces_selection_violation()))

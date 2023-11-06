@@ -1,4 +1,6 @@
 
+& 0. Algorithm and implementation
+
 & 1. Agreement in English
 
 & 1.1 Past tense
@@ -345,8 +347,51 @@
 	
 		*admire Mary
 		*admires Mary
+
+	& Illicit, optional and obligatory AgreePF, controlled by feature [ΦPF]
+	
+		& Agreement not possible
+	
+			Seine virtaa kohti Pariisia
+			'Seine.nom flow.prs.3sg towards Paris.par'
+			
+			*Seine virtaa kohti#nsA Pariisia
+			'Seine.nom flow.prs.3sg towards.px/3p Paris.par'
+
+		& Agreement optional
 		
+			Seine virtaa sinun lähellä
+			'Seine.nom flow.prs.3sg you.gen near'
+			
+			Seine virtaa sinun lähellä#si
+			'Seine flow.prs.3sg you.gen near.px/2sg'
+
+		& Agreement mandatory
 		
+			Merja pakkaa lähteäkse#An
+			'Merja.nom pack.prs.3sg leave.kse/inf.px/3p'
+			
+			*Merja pakkaa lähteäkse
+			'Merja.nom pack.prs.3sg leave.kse/inf'
+		
+	& [ΦLF]
+
+		& VA-infinitival
+		
+			tiesin Pekan_gen maalaavan aitaa
+			'know.pst.1sg Pekka.gen paint.va/inf fence.par'
+
+& EPP (drafting)
+
+	& English
+	
+		John admires Mary
+		*admires Mary
+	
+	& Finnish
+		
+		Pekka ihailee Merjaa
+
 		
 	
 

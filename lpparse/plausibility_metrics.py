@@ -92,10 +92,11 @@ class PlausibilityMetrics:
         for i, (site, transfer, address_label) in enumerate(solutions, start=1):
             if self.brain_model.working_memory.not_in_active_working_memory and site == self.brain_model.working_memory.not_in_active_working_memory[0]:
                 log('\n\t\t\t\t-- Working memory boundary --')
+            log('\n')
             if transfer:
-                log(f'\n\t\t({i}) [{site}↓+ {w.label()}°](=> {address_label})')
+                log("{:<80}{}".format(f'\t\t({i}) [{site}↓+ {w.label()}°]', f'=>  {address_label}'))
             else:
-                log(f'\n\t\t({i}) [{site} + {w.label()}°](=> {address_label})')
+                log("{:<80}{}".format(f'\t\t({i}) [{site} + {w.label()}°]', f'=>  {address_label}'))
         return solutions
 
     def evaluate_transfer(self, all_merge_sites):

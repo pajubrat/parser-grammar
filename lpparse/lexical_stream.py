@@ -13,7 +13,7 @@ class LexicalStream:
             return
         lexical_item, inflection_buffer, inflection = self.process_inflection(lexical_item, inflection_buffer, lst_branched[index])
         if inflection:
-            log(f'\n\tNext affix [{lst_branched[index][:-1]}] ')
+            # log(f'\n\tNext affix [{lst_branched[index][:-1]}] ')
             if ps:
                 self.brain_model.parse_new_item(ps.copy(), lst_branched, index + 1, inflection_buffer)
             else:

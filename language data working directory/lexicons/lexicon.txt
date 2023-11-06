@@ -106,10 +106,12 @@ juosten 	:: juokse-#E/inf LANG:FI
 juoksee		:: juokse-#T/fin#[V] LANG:FI
 juoksi		:: juokse-#T/fin#[V] LANG:FI
 juokse-		:: PF:juokse- LF:run V CLASS/INTR LANG:FI
-kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -ΦPF PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
-kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -ΦPF PHI:NUM:SG ARG -VAL !COMP:* LANG:FI
+kaikki		:: PF:kaikki LF:all Qn LANG:FI
+kaksi		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -ΦPF PHI:NUM:SG ARG !COMP:* LANG:FI
+kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:ARG,E,Fin -ΦPF PHI:NUM:SG ARG !COMP:* LANG:FI
 kaksi		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -ΦPF ARG !COMP:* TAIL:*POL:NEG
 kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:ARG,ASP:BOUNDED -ΦPF ARG !COMP:* TAIL:*POL:NEG
+kolme		:: PF:kolme LF:three Num -ΦPF ARG !COMP:* LANG:FI
 kahdet		:: kaksi-#pl#[nom] LANG:FI
 kahden		:: kaksi-#pl#[gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two Num LANG:FI
@@ -120,22 +122,25 @@ käski		:: käske-#v#T/fin#[V] LANG:FI
 käskee		:: käske-#v#T/fin#[V] LANG:FI
 käskee		:: käske-#v#T/fin#[V] LANG:FI
 käske-		:: PF:käske- LF:order V CLASS/TR !COMP:SEM/desired_event SEMCLASS_desired_event SEM:external LANG:FI
-kellon		:: kello0-#φ#r_expression#[acc(n)]
+kellon		:: √kello#φ#r_expression#[acc(n)]
 kellon		:: kello-#[acc(n)] LANG:FI
-kellon_n	:: kello0-#φ#r_expression#[acc(n)]
+kellon_n	:: √kello#φ#r_expression#[acc(n)]
 kellon_N	:: kello-#[acc(n)] LANG:FI
 kelloja		:: kello-#pl#φ#pl#3p#def#r_expression#[par]
 kello		:: kello-#φ#r_expression LANG:FI
 kello-		:: PF:kello LF:watch N LANG:FI
-kello0- 	:: PF:kello LF:watch 0 LANG:FI
+√kello 		:: PF:kello LF:√watch √ LANG:FI
 kirja		:: kirja-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[acc(0)] LANG:FI
 kirjan  	:: kirja-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 kirjan_gen  :: kirja-#φ#sg#3p#def#r_expression#[gen] LANG:FI
 kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[par] LANG:FI
+kirjaa^		:: PF:kirjaa LF:book N LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
+kirjaa^^ 	:: √kirja#n0#sg#3p#def#r_expression#[par] LANG:FI
+√kirja		:: PF:kirja- LF:√book √ LANG:FI
 kohti		:: P PF:kohti LF:towards !COMP:φ -ΦPF TAIL:V LANG:FI
-kohti'		:: P PF:kohti LF:towards !COMP:φ -ΦPF LANG:FI
+kohti^		:: P PF:kohti LF:towards !COMP:φ -ΦPF LANG:FI
 koko		:: PF:koko LF:all D LANG:FI TAIL:T COMP:φ adjoinable
 ketä		:: kuka-#D#wh#[par] LANG:FI
 kenen		:: kuka-#D/pro#wh#nonhum#[gen] LANG:FI
@@ -151,8 +156,8 @@ kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[V] LANG:EN
 lapsia		:: lapsi-#φ#pl#3p#def#hum#r_expression#[par] LANG:FI
 lapsi-		:: N LF:child PF:lapsi LANG:FI 
-laulaa		:: laula-#T/fin#[V] LANG:FI
-laulan		:: laula-#T/fin#n LANG:FI
+laulaa		:: laula-#T/fin#prs#[V] LANG:FI
+laulan		:: laula-#T/fin#prs#n LANG:FI
 laulamaan 	:: laula-#MA.ill/inf LANG:FI
 laulaessa	:: laula-#ESSA/inf LANG:FI
 laula-		:: V PF:laula LF:sing CLASS/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
@@ -301,6 +306,8 @@ omaisuuttaan	:: omaisuus-#D#def#sg#3p#[par] LANG:FI
 omaisuus-		::	PF:omaisuuden LF:possessions N LANG:FI
 ostaa		:: osta-#v#A/inf LANG:FI
 osta-		:: PF:osta- LF:buy V CLASS/TR ASP:BOUNDED LANG:FI
+pakkaa		:: pakkaa-#T/fin#prs#[V] LANG:FI
+pakkaa-		:: PF:pakkaa- LF:pack V CLASS/INTR LANG:FI
 päivän		:: päivä-#φ#[acc(n)]
 päivää		:: päivä-#φ#[par]
 päivä		:: päivä-#φ#[acc(0)]
@@ -384,6 +391,7 @@ taloa		:: talo-#φ#sg#3p#r_expression#[par]
 talona		:: talo-#φ#sg#3p#r_expression#[-ess]
 taloksi		:: talo-#φ#sg#3p#r_expression#[-ess]
 talo-		:: PF:talo LF:house N LANG:FI
+tapaa-		:: PF:tapaa- LF:meet V LANG:FI
 teki		:: teke-#v#T/fin#[V] LANG:FI
 tein		:: teke-#v#T/fin#n LANG:FI
 teit		:: teke-#v#T/fin#t LANG:FI
@@ -411,6 +419,8 @@ tee			:: teke-#v#T/fin LANG:FI
 tee			:: teke-#v#T LANG:FI
 teke-		:: V CLASS/TR !COMP:φ -COMP:A/inf COMP:v PF:teke- LF:make LANG:FI
 teke2-		:: V -COMP:A/inf -COMP:v PF:teke- LF:make LANG:FI
+tiesin		:: tietä-#T/fin#pst#n LANG:FI
+tietä-		:: PF:tietä- LF:know V COMP:VA/inf LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
 tyttö-		:: PF:tyttö LF:girl N LANG:FI
 työtä		:: työ-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI

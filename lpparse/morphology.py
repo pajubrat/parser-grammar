@@ -76,7 +76,6 @@ class Morphology:
             list_[0] = self.lexicon.lexical_retrieval(list_[0])[0].morphology
         return list_
 
-
     def flip_boundary(self, lst_):
         """
         Flips $ from the start to end, only because it is more easy to read in this way.

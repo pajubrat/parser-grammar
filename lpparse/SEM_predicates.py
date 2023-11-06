@@ -4,7 +4,7 @@ from support import log
 class Predicates:
     def __init__(self):
         self.operation_failed = False
-        # structure of the type: (name of the operation, target and trigger, argument selection, legibility)
+        # structure of the type: (name of the operation, trigger, argument selection, legibility)
         self.edge = [('0-merge',
                       lambda x: x.extract_pro() and not x.needs_valuation(),
                       lambda x: x.extract_pro(),
@@ -27,12 +27,11 @@ class Predicates:
             if condition(probe):
                 argument = acquisition(probe)
                 if argument:
-                    if probe.p_associate_check(probe.get_goal()) or not legibility(probe):
+                    if not legibility(probe):
                         break
-                    else:
-                        log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, argument)} by {name} ')
-                        return f'{probe}°: {self.print_target(probe, argument)}'
-        log(f'\n\t\t\t*Argument mapping for {probe} failed.')
+                    log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, argument)} by {name} ')
+                    return f'{probe}°: {self.print_target(probe, argument)}'
+        log(f'\n\t\t\t*Argument mapping for {probe} failed. <===')
         self.operation_failed = True
 
     def print_target(self, probe, goal):

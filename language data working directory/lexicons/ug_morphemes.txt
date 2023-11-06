@@ -16,7 +16,7 @@ impass	:: v PF:-TA ARG LF:pass
 cau		:: v PF:Cau LF:cause
 φ		:: φ PF:φ LF:phi ARG Inf
 Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
-N		:: N PF:N LF:N
+N		:: N PF:N LF:N COMP:0
 
 # Tense
 prs		:: inflectional prs
@@ -60,6 +60,9 @@ P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* 	LF:in COMP:φ !COMP:* TAIL:V COMP:MA.
 
 # Finnish derivational morphology
 tA			:: V CAU/V		 EF 		-ARG -ΦPF -ΦLF			PF:-tA		LF:cause !COMP:* LANG:FI
+minen		:: n 			 EF			ARG 					PF:-minen	LF:ing	 !COMP:* LANG:FI
+mista		:: n			 EF			ARG						PF:-mista	LF:ing	 !COMP:* LANG:FI
+n0			:: n			 EF			ARG						PF:-0		LF:n	 !COMP:* LANG:FI
 
 # Italian
 ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin nonadjoinable 
