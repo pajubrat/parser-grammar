@@ -309,7 +309,7 @@ class PhraseStructure:
         return self.phi_consistent_head() and self.has_full_phi_set()
 
     def pro_legibility(self):
-        if not self.sister() or self.adjunct or self.nominal():
+        if not self.sister() or self.adjunct or self.nominal() or self.preposition():
             return True
         iter = self.minimal_search_domain().minimal_search(lambda x: x.primitive(), lambda x: x.theta_predicate() or (not x.phase_head()) and not x.check({'PER'}))
         return next((x for x in iter if x.theta_predicate()), None)
@@ -342,10 +342,6 @@ class PhraseStructure:
     # Feature [+]
     def selection__partial_self_selection(self, selected_features):
         return self.check_some(set(selected_features.split(',')))
-
-    # Feature [P]
-    def selection__p_test(self, feature):
-        return self.edge() or self.check({'strong_agr'})
 
     def specifier_match(self, phrase):
         return phrase.head().check_some(self.licensed_specifiers())
@@ -695,15 +691,15 @@ class PhraseStructure:
     def value_from_goal(self, goal):
         if goal:
             log(f'\n\t\tAgree({self}°, {goal.head()}) ')
-            if not self.agreement_blocked(goal):
+            if self.agreement_licensing(goal):
                 self.value(goal)
 
-    def agreement_blocked(self, goal):
+    def agreement_licensing(self, goal):
         phi_gates = [set(phi[4:].split(',')) for phi in self.features if valued_phi_feature(phi) and not phi.startswith('i')]
-        if phi_gates and not self.feature_licensing(goal, phi_gates):
-            log(f'failed licensing at {self}. ')
-            self.features.add('*')
+        if not (phi_gates and not self.feature_licensing(goal, phi_gates)) and not self.agreement_EPP_rule(goal):
             return True
+        log(f'failed. ')
+        self.features.add('*')
 
     def feature_licensing(self, goal, phi_gates):
         g = {phi[5:] for phi in goal.head().features if phi.startswith('iPHI') and {phi.split(':')[1]} & {'PER', 'NUM'}}
@@ -717,14 +713,16 @@ class PhraseStructure:
             self.features.discard(phi_)
             self.features.add(f'{phi[1:]}')
         self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
-        self.induce_p(goal)
 
-    def induce_p(self, goal):
-        if self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'}):
-            self.features.add('&P')
-            if self.chain_condition(goal):
-                self.features.add('*')
-                log(f'A-chain condition failed for Agree. ')
+    def agreement_EPP_rule(self, goal):
+        if self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'}) and not self.check({'strong_agr'}):
+            if self.check({'!PER'}) or self.theta_head():
+                return not self.edge()
+            return not self.chain_condition(goal)
+
+    # Chain legibility for A-system (will be later generalized to A-bar system)
+    def chain_condition(self, goal):
+        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
 
     def argument_by_agreement(self):
         for f in self.features:
@@ -732,11 +730,6 @@ class PhraseStructure:
                 if self.sister():
                     idx = f.split(':')[2]
                     return next(self.sister().minimal_search(lambda x: idx in x.head().features, lambda x: not x.phase_head()), None)
-
-    # Chain legibility for A-system (will be later generalized to A-bar system)
-    def chain_condition(self, goal):
-        if not self.check({'strong_agr'}) and not self.check({'!PER'}) and not self.theta_head():
-            return not next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
 
     # Extraposition
     def cutoff_point_for_last_resort_extraposition(self):

@@ -569,7 +569,8 @@ ne			:: inflectional pot
 
 's			:: PF:D('s) LF:possessive D PHI:DET:DEF PHI:NUM:SG PHI:PER:3 R:NEW:$X$ POSS
 a_D			:: D PF:D LF:D LANG:EN
-an			:: D PHI:PER:3 PHI:NUM:SG PHI:DEF:INDEF PF:D LF:D LANG:EN
+an			:: D iPHI:PER:3 iPHI:NUM:SG iPHI:DET:INDEF PF:D LF:D LANG:EN
+a			:: D iPHI:PER:3 iPHI:NUM:SG iPHI:DET:INDEF PF:D LF:D LANG:EN
 a1			:: D PF:D LF:D LANG:EN
 accident	:: PF:accident LF:accident N
 admire  	:: admire-#v#T/fin#prs#[-0] LANG:EN	
@@ -680,6 +681,7 @@ surprised	::	surprise-#v#T/fin LANG:EN
 surprise-	:: PF:surprise LF:surprise V CLASS/TR -COMP:T/fin LANG:EN
 that    	:: PF:that LF:that FORCE FORCE:DECL REF LANG:EN
 the			:: PF:the LF:the D iPHI:DET:DEF iPHI:PER:3 iPHI:NUM:SG LANG:EN
+there		:: N#D/expl
 to     		:: PF:to LF:to P +SEM:directional -E TAIL:V +SEM:directional LANG:EN
 towards		:: PF:towards LF:towards P !COMP:φ TAIL:V TAIL:*LF:reach LANG:EN
 tries		:: try-#T/fin#[-s] LANG:EN
@@ -689,6 +691,8 @@ want		:: want-#v#T/fin#prs#[-0] LANG:EN
 want-		:: PF:want LF:want V CLASS/TR -COMP:V -SPEC:TO/inf COMP:TO/inf LANG:EN
 was			:: T/fin PF:was LF:T PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:3 PER ΦPF LANG:EN
 were		:: T/fin PF:were LF:T PHI:NUM:PL PHI:NUM:SG,PER:2 PER ΦPF LANG:EN
+was1		:: be-#was LANG:EN
+were1		:: be-#were LANG:EN
 what		:: what-#D#wh#sg#3p#def LANG:EN
 what-		:: PF:what LF:what N PHI_N LANG:EN
 which		:: PF:which LF:which D OP:WH LANG:EN
@@ -762,7 +766,8 @@ devono 		:: deva-#T/fin#[-no]
 deva-		:: V PF:deva LF:must SPEC:φ COMP:ARE/inf SEM:internal -ASP LANG:IT
 di			:: PF:di LF:of P nonadjoinable LANG:FI
 dorme		:: dorme-#T/fin#[-e] LANG:IT
-dorme-		:: V SPEC:φ PF:dorme CLASS/INTR LF:sleep
+dormo		:: dorme-#T/fin#prs#[-o] LANG:IT
+dorme-		:: V SPEC:φ PF:dorme LF:sleep
 e			:: BE-#T/fin#3p#sg LANG:IT
 Giuseppe	:: Giuseppe-#D#sg#3p#def#hum#m LANG:IT
 Giuseppe-	:: PF:Giuseppe N -SEM:directional LF:Giuseppe R:REF:PROPER_NAME LANG:IT 
@@ -803,7 +808,7 @@ scoppia- 	:: PF:scoppia LF:explode V LANG:IT
 sentenza 	:: PF:sentenza LF:sentence N LANG:IT
 sembrano 	:: sembra-#T/fin#[-no] LANG:IT
 sembra-		:: PF:sembra LF:seem -ASP -ARG V SPEC:P SPEC:φ -COMP:φ !COMP:ARE/inf
-sono		:: BE-#T/fin LANG:IT
+sono		:: BE-#T/fin#prs#[-o] LANG:IT
 sono_pl		:: BE-#T/fin#pl#3p#def#hum LANG:IT
 spinge 		:: spinge-#v#T/fin#[-e] LANG:IT
 spinge- 	:: V PF:spinge LF:push !COMP:φ -COMP:P LANG:IT

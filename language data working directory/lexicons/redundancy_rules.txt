@@ -68,9 +68,12 @@ LANG:FI T/fin			:: Fin*
 LANG:FI Neg/fin			:: Fin*
 
 # English spellout
-
 LANG:EN T prs			:: PF:T
 LANG:EN T pst			:: PF:-ed PER ΦPF
+
+# Italian spellout
+LANG:IT T prs			:: PF:-0
+LANG:IT T pst			:: PF:-ava
 
 # Finnish edge behavior
 P LANG:FI		::	EF Adv

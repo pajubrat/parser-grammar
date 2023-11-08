@@ -28,8 +28,7 @@ class LF:
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
                                          '!': PhraseStructure.selection__positive_self_selection,
                                          '-': PhraseStructure.selection__negative_self_selection,
-                                         '+': PhraseStructure.selection__partial_self_selection,
-                                         '&P': PhraseStructure.selection__p_test}
+                                         '+': PhraseStructure.selection__partial_self_selection}
 
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''
@@ -62,7 +61,7 @@ class LF:
 
     # This will be removed once we have an universal standard
     def format_selection_feature(self, f):
-        if f == '&P':
+        if f == 'p':
             return f, f
         if ':' not in f and f[0] in self.selection_violation_test.keys():
             return f[0], f[1:]

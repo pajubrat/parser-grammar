@@ -8,7 +8,7 @@
 	I admired Mary
 	you admired Mary
 	he admired Mary
-	she admired Mary
+%	she admired Mary
 	the cat admired Mary
 	we admired Mary
 	you(pl) admired Mary
@@ -381,20 +381,57 @@
 			tiesin Pekan_gen maalaavan aitaa
 			'know.pst.1sg Pekka.gen paint.va/inf fence.par'
 
-& EPP (drafting)
+& EPP
 
 	& English
 	
 		John admires Mary
+		*admires John Mary
 		*admires Mary
+		*does_T John admire* Mary
+	
+		there was1 an accident
+		*there were1 an accident
+	
+	& Italian
+	
+		io dormo
+		dormo io
+		dormo
 	
 	& Finnish
-		
-		Pekka ihailee Merjaa
-
-		
 	
-
+		& Adpositions (strong rule)
+		
+			Seine virtaa sinun lähellä[Φ]
+			'Seine.nom flow.prs.3sg you.gen near'
+				
+			Seine virtaa sinun lähellä[Φ]#si
+			'Seine.nom flow.prs.3sg you.gen near.px/2sg'
+			
+			Seine virtaa lähellä[Φ]#si
+			'Seine.nom flow.prs.3sg near.px/2sg'
+			
+			*Seine virtaa lähellä[Φ]#si sinun
+			'Seine.nom flow.prs.3sg near.px/2sg you.gen'
+		
+			*Seine virtaa lähellä[Φ] sinun
+			'Seine.nom flow.prs.3sg near you.gen'
+			
+			*Seine virtaa lähellä[Φ]
+			'Seine.nom flow.prs.3sg near (you)'
+		
+		& Nonsubject fronting in finite clause
+		
+			Pekka ihailee Merjaa
+			'Pekka.nom admire.prs.3sg Merja.par'
+			
+			Merjaa ihailee Pekka
+			'Merja.par admire.prs.3sg Pekka.nom'
+			
+			*ihailee Merjaa
+			'admire.prs.3sg Merja.par'
+	
 	
 		
 	

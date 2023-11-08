@@ -14,7 +14,7 @@ class Predicates:
                       lambda x: x.sister(),
                       lambda x: True),
                      ('2-merge',
-                      lambda x: x.edge() and x.edge()[0].referential(),
+                      lambda x: x.edge() and (x.edge()[0].referential() or x.edge()[0].expletive()),
                       lambda x: x.edge()[0],
                       lambda x: True),
                      ('N-merge',
@@ -31,7 +31,7 @@ class Predicates:
                         break
                     log(f'\n\t\t\tArgument for {probe}°: {self.print_target(probe, argument)} by {name} ')
                     return f'{probe}°: {self.print_target(probe, argument)}'
-        log(f'\n\t\t\t*Argument mapping for {probe} failed. <===')
+        log(f'\n\t\t\t*Argument mapping for {probe} failed.')
         self.operation_failed = True
 
     def print_target(self, probe, goal):
