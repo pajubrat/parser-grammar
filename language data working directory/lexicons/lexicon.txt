@@ -53,7 +53,7 @@ halusimme	:: halua-#v#T/fin#mme LANG:FI
 haluan		:: halua-#v#T/fin#n LANG:FI
 halua		:: halua-#v#T LANG:FI
 haluamalla 	:: halua-#v#MA.ade/inf LANG:FI
-haluttiin	:: halua-#impass#T/fin#1p#pl LANG:FI
+haluttiin	:: halua-#impass#T/fin#Vn LANG:FI
 haluttu		:: halua-#impass#T/prt LANG:FI
 halua- 		:: PF:halua- LF:want V ASP:BOUNDED SEMCLASS_desired_event SEM:internal CLASS/TR -SPEC:D -SPEC:φ SPEC:A/inf COMP:φ COMP:A/inf -COMP:ΦPF LANG:FI
 häiritsee 	:: häiritse-#v#T/fin LANG:FI
@@ -83,6 +83,7 @@ ihaillut 	:: ihaile-#v#T/prt#sg LANG:FI
 ihailla		:: ihaile-#v#A/inf LANG:FI
 ihailemalla :: ihaile-#v#MA.ade/inf LANG:FI
 ihaileva	:: ihaile-#v#VA/A LANG:FI
+ihailtiin	:: ihaile-#impass#T/fin#pst#Vn LANG:FI
 ihaile- 	:: PF:ihaile- LF:admire V CLASS/TR !COMP:φ -COMP:Fin LANG:FI
 ikkunat		:: ikkuna[pl]-#φ#[acc(t)]#pl#3p#def#hum
 ikkunan		:: ikkuna-#φ#[acc(n)]#sg#3p#def#hum
@@ -353,9 +354,9 @@ pyytä-		:: PF:pyyda- LF:ask V CLASS/TR SEMCLASS_desired_event SEM:external LANG
 saavuttaa	:: saavutta-#v#T/fin#[V] LANG:FI
 saavutta-	:: PF:saavutta- LF:reach !COMP:φ ASP:BOUNDED CLASS/TR V LANG:FI
 sano		:: sano-#T/fin LANG:FI
-sanon   	:: sano-#T/fin#n LANG:FI
-sanoo   	:: sano-#T/fin#[V] LANG:FI
-sanoi		:: sano-#T/fin#[V] LANG:FI
+sanon   	:: sano-#T/fin#prs#n LANG:FI
+sanoo   	:: sano-#T/fin#prs#[V] LANG:FI
+sanoi		:: sano-#T/fin#pst#[V] LANG:FI
 sano-   	:: PF:sano- LF:say V SPEC:φ COMP:VA/inf !COMP:* COMP:FORCE -PROBE:FORCE:WH LANG:FI
 sala		:: sala-#D LANG:IT
 sala-		:: PF:sala- LF:room N LANG:IT
@@ -673,7 +674,7 @@ say'		:: PF:say LF:say V SPEC:φ !COMP:FORCE LANG:EN
 say-    	:: PF:say LF:say V SPEC:φ !COMP:FORCE LANG:EN
 seems		:: seem-#T/fin#prs#[-s] LANG:EN
 seem		:: seem-#T/fin#prs#[-0] LANG:EN
-seem-		:: PF:seem LF:seem V -ARG EF SPEC:D !COMP:TO/inf SEM:internal nonphase
+seem-		:: PF:seem LF:seem V -θ EF SPEC:D !COMP:TO/inf SEM:internal nonphase
 Seine		:: Seine-#D#sg#3p#def LANG:EN
 Seine-		:: PF:Seine LF:Seine N LANG:EN
 solution	:: PF:solution LF:solution N LANG:EN

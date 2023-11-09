@@ -249,10 +249,17 @@ class PhraseStructure:
     def edge(self):
         return list(takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path()))
 
+    def local_edge(self):
+        if self.edge():
+            return self.edge()[0]
+
     def pro_edge(self):
-        if self.extract_pro():
-            return self.edge() + [self.extract_pro()]
+        if self.NS():
+            return self.edge() + [self.NS()]
         return self.edge()
+
+    def identify_argument(self):
+        return next((acquire(self) for acquire in [lambda x: x.pro(), lambda x: x.local_edge(), lambda x: x.control()] if acquire(self)), None)
 
     def contains_features(self, feature_set):
         if self.complex():
@@ -281,7 +288,11 @@ class PhraseStructure:
 
     # Virtual pronouns -----------------------------------------------------------------------
 
-    def extract_pro(self):
+    def pro(self):
+        if self.sustains_reference():
+            return self.NS()
+
+    def NS(self):
         if self.check({'ARG'}) and self.phi_consistent_head():
             if self.sustains_reference():
                 phi_set_for_pro = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
@@ -293,21 +304,25 @@ class PhraseStructure:
             return pro
 
     def phi_consistent_head(self):
-        phi_set = self.complete_phi_set()
+        phi_set = self.complete_valued_phi_set()
         for f in phi_set:
             for g in phi_set:
                 if f.split(':')[0] == g.split(':')[0] and f.split(':')[1] != g.split(':')[1]:
                     return False
         return True
 
-    def complete_phi_set(self):
+    def complete_valued_phi_set(self):
         phi_sets = [phi[4:].split(',') for phi in self.features if phi.startswith('PHI:') and not phi.endswith('_')]
         return {phi for phi_set in phi_sets for phi in phi_set}
 
-    # Condition for independent pro-element
+    # Condition for independent pro-element: constituent phi-features and values for NUM, PER, DEF
     def sustains_reference(self):
-        return self.phi_consistent_head() and self.has_full_phi_set()
+        return self.phi_consistent_head() and self.has_full_referential_phi_set()
 
+    def has_full_referential_phi_set(self):
+        return {phi[:3] for phi in self.complete_valued_phi_set()} & {'NUM', 'PER', 'DET'} == {'NUM', 'PER', 'DET'}
+
+    # INACTIVATED
     def pro_legibility(self):
         if not self.sister() or self.adjunct or self.nominal() or self.preposition():
             return True
@@ -488,7 +503,7 @@ class PhraseStructure:
                     self.top().bottom().Merge(target, 'right')  # Last Resort option
 
     def has_vacant_phrasal_position(self):
-        return self.gapless_heads() or self.is_right()
+        return self.gapless_head() or self.is_right()
 
     def scan_criterial_features(self, feature):
         criterial_features = self.scan_features(feature)
@@ -532,7 +547,7 @@ class PhraseStructure:
             if self.complement_match(target) and not (target.is_left() and self.specifier_mismatch(target)):
                 return True
 
-    def gapless_heads(self):
+    def gapless_head(self):
         return self.primitive() and self.aunt() and self.aunt().primitive()
 
     def has_nonthematic_specifier(self):
@@ -828,7 +843,8 @@ class PhraseStructure:
         return {frozenset(f[5:].split(',')) for f in self.head().features if f[:4] == 'TAIL'}
 
     def needs_valuation(self):
-        return not self.sustains_reference() and self.has_unvalued_phi()
+        if not self.sustains_reference() and self.get_unvalued_phi():
+            return self.get_unvalued_phi()
 
     def phi_is_unvalued(self):
         for f in self.head().features:
@@ -915,18 +931,17 @@ class PhraseStructure:
 
     def is_possible_antecedent(self, antecedent):
         if antecedent:
-            if not self.self_referencing(antecedent) and {phi for phi in antecedent.head().features if (phi.startswith("iPHI:") or phi.startswith("PHI:")) and not phi.endswith('_')}:
-                if antecedent.head().referential() or antecedent.head().sustains_reference():
-                    valued_phi_at_probe = [phi.split(':') for phi in self.features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_')]
-                    valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:8] == 'iPHI:NUM' or phi[:8] == 'iPHI:PER') and not phi.endswith('_')]
-                    for P in valued_phi_at_probe:
-                        for A in valued_phi_at_antecedent:
-                            if P[1] == A[1] and P[2] != A[2]:
-                                return False
-                    return True
+            if antecedent.head().referential() or antecedent.head().sustains_reference():
+                valued_phi_at_probe = [phi.split(':') for phi in self.features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_') and not ',' in phi]
+                valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:8] == 'iPHI:NUM' or phi[:8] == 'iPHI:PER') and not phi.endswith('_')]
+                for P in valued_phi_at_probe:
+                    for A in valued_phi_at_antecedent:
+                        if P[1] == A[1] and P[2] != A[2]:
+                            return False
+                return True
 
     def control(self):
-        unvalued_phi = self.needs_valuation()
+        unvalued_phi = self.get_unvalued_phi()
         if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not self.get_valued_phi() & {'PHI:NUM', 'PHI:PER'}:
             return self.standard_control()
         elif unvalued_phi & {'PHI:DET:_'}:
@@ -934,15 +949,13 @@ class PhraseStructure:
 
     def standard_control(self):
         search_path = [x for x in takewhile(lambda x: not x.head().check({'SEM:external'}), self.upward_path())]
-        antecedent = next((x for x in search_path if not x.find_me_elsewhere and self.is_possible_antecedent(x)), PhraseStructure())
+        antecedent = next((x for x in search_path if self.is_possible_antecedent(x)), PhraseStructure())
         if not antecedent.features:
             antecedent.features = {"PF:generic 'one'", 'LF:generic', 'φ', 'D'}
-        log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (standard control). ')
         return antecedent
 
     def finite_control(self):
-        antecedent = self.next(self.upward_path, lambda x: x.complex() and (self.is_possible_antecedent(x) or x.expletive()) and not x.find_me_elsewhere)
-        log(f'\n\t\t\tAntecedent search for {self} provides {antecedent} (finite control). ')
+        antecedent = self.next(self.upward_path, lambda x: x.complex() and (self.is_possible_antecedent(x)))
         return antecedent
 
     # Structure building --------------------------------------------------------------------------
@@ -1257,7 +1270,7 @@ class PhraseStructure:
         return self.check({'A'})
 
     def theta_predicate(self):
-        return self.check({'θ'}) and not self.check({'-ARG'})
+        return self.check({'θ'}) and not self.check({'-ARG'}) and not self.check({'-θ'})
 
     def light_verb(self):
         return self.check_some({'v', 'v*', 'impass', 'cau'})
@@ -1393,19 +1406,13 @@ class PhraseStructure:
     def coreference_by_Agree(self, goal):
         return {f.split(':')[2] for f in goal.head().features if f.split(':')[0] == 'dPHI'} & self.head().features
 
-    def self_referencing(self, goal):
-        return goal.head().get_id() == self.get_id()
-
     def get_dPHI(self):
         return {f for f in self.head().features if f.startswith('dPHI:')}
 
     def get_valued_phi(self):
         return {f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
 
-    def has_full_phi_set(self):
-        return {phi[:3] for phi in self.complete_phi_set()} & {'NUM', 'PER', 'DET'} == {'NUM', 'PER', 'DET'}
-
-    def has_unvalued_phi(self):
+    def get_unvalued_phi(self):
         return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
 
     def type_match(self, phi, phi_):
@@ -1416,3 +1423,6 @@ class PhraseStructure:
 
     def A_bar_operator(self):
         return self.scan_criterial_features('ΔOP')
+
+    def appropriate_argument(self):
+        return not self.head().check({'pro_'}) and (self.referential() or self.expletive())

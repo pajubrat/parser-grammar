@@ -5,14 +5,15 @@
 
 T/fin   :: T/fin LF:T
 v       :: v PF:v LF:v
-v*		:: v PF:-ed v- LF:pass -ARG EF
+v*		:: v PF:-ed v- LF:pass -θ EF
+impass	:: v PF:-TA LF:pass EF
 C/fin   :: C/fin PF:C LF:C/fin
 C		:: C C/fin PF:C LF:C
 T		:: T LF:T Fin EF
 T/prt 	:: T/prt LF:Prtc
 Fin		:: Fin LF:fin PF:Fin ARG COMP:T +ΦLF,ΦPF 	
 a0		:: A PF:a LF:mod
-impass	:: v PF:-TA ARG LF:pass
+
 cau		:: v PF:Cau LF:cause
 φ		:: φ PF:φ LF:phi ARG Inf
 Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
@@ -34,6 +35,7 @@ EXPL		:: N#D/expl
 
 # English
 to_inf		:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable
+to^			:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable 
 
 # Finnish infinitivals
 A/inf		:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
