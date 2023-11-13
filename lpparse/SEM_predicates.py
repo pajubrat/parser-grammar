@@ -15,13 +15,13 @@ class Predicates:
         self.operation_failed = True
 
     def print_target(self, probe, argument):
+        indexing = ''
+        if {phi for phi in probe.features if phi.startswith('dPHI')}:
+            indexing = f', indexed to {probe.argument_by_agreement().max().illustrate()}'
         if 'pro' in argument.features:
-            phrasal_argument = probe.argument_by_agreement()
-            if phrasal_argument:
-                return f'φ/pro, indexed to {probe.argument_by_agreement().max().illustrate()}'
-            else:
-                return f'φ/pro'
-        return f'{argument.max().illustrate()}'
+            return f'φ/pro' + indexing
+        else:
+            return f'{argument.max().illustrate()}' + indexing
 
     def reconstruct_agreement(self, ps):
         goal = ps.argument_by_agreement()

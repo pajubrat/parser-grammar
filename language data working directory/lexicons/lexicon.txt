@@ -513,23 +513,23 @@ sitä		:: N#D/expl LANG:FI
 sitä'		:: N#D/expl LANG:FI
 
 # Finite agreement
-n		::	inflectional ΦPF Φ EF -Inf PHI:NUM:SG,PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
-t		::	inflectional ΦPF Φ EF -Inf PHI:NUM:SG,PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
-[V]		::	inflectional ΦPF Φ EF -Inf PHI:NUM:SG,PER:3 PER LANG:FI
-mme		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL,PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
-tte		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL,PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
-vAt		::	inflectional ΦPF Φ EF -Inf PHI:NUM:PL,PER:3 PER PHI:DET:DEF LANG:FI
-Vn		::  inflectional ΦPF Φ EF -Inf PHI:NUM:PL,PER:1 PHI:DET:DEF PER IMPASS LANG:FI
+n		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:1 PER PHI:DET:DEF LANG:FI
+t		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:2 PER PHI:DET:DEF LANG:FI
+[V]		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:3 PER LANG:FI
+mme		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
+tte		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:2 PER PHI:DET:DEF LANG:FI
+vAt		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:3 PER PHI:DET:DEF LANG:FI
+Vn		::  inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:1 PHI:DET:DEF PER IMPASS LANG:FI
 
 # Infinitival agreement (Px)
-ni		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG PHI:PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
-si		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG PHI:PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+ni		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG,PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+si		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG,PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 nsA		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
 An		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
-3sg		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM PHI:NUM:SG LANG:FI
-en		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM PHI:NUM:SG LANG:FI
-mme		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:1 PER PHI:HUM:HUM PHI:DET:DEF LANG:FI
-nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL PHI:PER:2 PER PHI:HUM:HUM PHI:DET:DEF  LANG:FI
+3sg		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
+en		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
+mme		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL,PER:1 PER PHI:HUM:HUM PHI:DET:DEF LANG:FI
+nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL,PER:2 PER PHI:HUM:HUM PHI:DET:DEF  LANG:FI
 
 # Case suffixes
 # A. Structural
@@ -576,7 +576,7 @@ a1			:: D PF:D LF:D LANG:EN
 accident	:: PF:accident LF:accident N
 admire  	:: admire-#v#T/fin#prs#[-0] LANG:EN	
 admire_fin	:: admire-#v#T/fin#prs#[-0] LANG:EN
-admired		:: admire-#v#T/fin#pst LANG:EN
+admired		:: admire-#v#T/fin#pst#[-00] LANG:EN
 admire*		:: admire-#v LANG:EN
 admires  	:: admire-#v#T/fin#prs#[-s] LANG:EN
 admired^	:: admire-#v* LANG:EN
@@ -690,8 +690,8 @@ try-		:: PF:try LF:try V SPEC:φ !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal
 wants		:: want-#v#T/fin#prs#[-s] LANG:EN
 want		:: want-#v#T/fin#prs#[-0] LANG:EN
 want-		:: PF:want LF:want V CLASS/TR -COMP:V -SPEC:TO/inf COMP:TO/inf LANG:EN
-was			:: T/fin PF:was LF:T PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:3 PER ΦPF LANG:EN
-were		:: T/fin PF:were LF:T PHI:NUM:PL PHI:NUM:SG,PER:2 PER ΦPF LANG:EN
+was			:: T/fin PF:was LF:T PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:3 PER ΦPF weak LANG:EN
+were		:: T/fin PF:were LF:T PHI:NUM:PL,PER:1 PHI:NUM:PL,PER:2 PHI:NUM:PL,PER:3 PHI:NUM:SG,PER:2 PER ΦPF weak LANG:EN
 was1		:: be-#was LANG:EN
 were1		:: be-#were LANG:EN
 what		:: what-#D#wh#sg#3p#def LANG:EN
@@ -733,8 +733,9 @@ it'			:: N#D/expl LANG:EN
 there'		:: N#D/expl LANG:EN
 
 # Agreement
-[-s]		::	inflectional ΦPF EF PHI:NUM:SG,PER:3 LANG:EN PER
-[-0]		::  inflectional ΦPF EF PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:2 PHI:NUM:PL,PER:1 PHI:NUM:PL,PER:2 PHI:NUM:PL,PER:3 LANG:EN PER
+[-s]		::	inflectional ΦPF weak EF PHI:NUM:SG,PER:3 LANG:EN PER
+[-0]		::  inflectional ΦPF weak EF PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:2 PHI:NUM:PL,PER:1 PHI:NUM:PL,PER:2 PHI:NUM:PL,PER:3 PER LANG:EN
+[-00]		:: 	inflectional ΦPF weak EF PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:2 PHI:NUM:SG,PER:3 PHI:NUM:PL,PER:1 PHI:NUM:PL,PER:2 PHI:NUM:PL,PER:3 PER LANG:EN
 
 # ITALIAN LEXICON ------------------------------------------------------------------------------------------------------------------------
 
@@ -855,13 +856,13 @@ ci			:: ci-#D/pro#sg#3p#def#hum#m#cl#dat
 ci-			:: PF:ci LF:there N PHI_N LANG:IT
 
 # Finite agreement
-[-o]		::	inflectional ΦPF Φ strong_agr EF PER PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:IT
-[-i]		::	inflectional ΦPF Φ strong_agr EF PER PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:IT
-[-a]		::	inflectional ΦPF Φ strong_agr EF PER PHI:NUM:SG PHI:PER:3 PHI:DET:DEF LANG:IT
-[-e]		::	inflectional ΦPF Φ strong_agr EF PER PHI:NUM:SG PHI:PER:3 PHI:DET:DEF LANG:IT
-[-iamo]		::	inflectional ΦPF Φ strong_agr EF PER PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:IT
-[-te]		::	inflectional ΦPF Φ strong_agr EF PER PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:IT
-[-no]		::	inflectional ΦPF Φ strong_agr EF PER PHI:NUM:PL PHI:PER:3 PHI:DET:DEF LANG:IT
+[-o]		::	inflectional ΦPF Φ strong EF PER PHI:NUM:SG PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:IT
+[-i]		::	inflectional ΦPF Φ strong EF PER PHI:NUM:SG PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:IT
+[-a]		::	inflectional ΦPF Φ strong EF PER PHI:NUM:SG PHI:PER:3 PHI:DET:DEF LANG:IT
+[-e]		::	inflectional ΦPF Φ strong EF PER PHI:NUM:SG PHI:PER:3 PHI:DET:DEF LANG:IT
+[-iamo]		::	inflectional ΦPF Φ strong EF PER PHI:NUM:PL PHI:PER:1 PHI:DET:DEF PHI:HUM:HUM LANG:IT
+[-te]		::	inflectional ΦPF Φ strong EF PER PHI:NUM:PL PHI:PER:2 PHI:DET:DEF PHI:HUM:HUM LANG:IT
+[-no]		::	inflectional ΦPF Φ strong EF PER PHI:NUM:PL PHI:PER:3 PHI:DET:DEF LANG:IT
 
 # HUNGARIAN LEXICON ------------------------------------------------------------------------------------------------------------------------
 

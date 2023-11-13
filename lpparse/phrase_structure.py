@@ -26,7 +26,7 @@ class PhraseStructure:
                                     'single operation': False,
                                     'prepare': lambda x: x.prepare_head_chain()},
                            'Phrasal': {'type': 'Phrasal Chain',
-                                       'test integrity': lambda x: not x.find_me_elsewhere and x.complex() and x.is_left() and x.container() and x.container().EF(),
+                                       'test integrity': lambda x: not x.find_me_elsewhere and x.complex() and x.is_left() and not x.expletive() and x.container() and x.container().EF(),
                                        'repair': lambda x: x.create_chain(),
                                        'selection': lambda x: x.primitive() and not x.finite(),
                                        'sustain': lambda x: not (x.primitive() and x.referential()),
@@ -461,7 +461,6 @@ class PhraseStructure:
             PhraseStructure.brain_model.consume_resources(op['type'], const)
 
     # Chain creation (part of transfer)
-
     def create_chain(self):
         head, target = PhraseStructure.transfer_operation['prepare'](self)
         head.form_chain(target)
@@ -693,7 +692,6 @@ class PhraseStructure:
 
     # Agreement ---------------------------------------------------------------------------------------------
 
-
     def AgreeLF(self):
         self.value_from_goal(self.get_goal())
 
@@ -705,23 +703,15 @@ class PhraseStructure:
 
     def value_from_goal(self, goal):
         if goal:
-            log(f'\n\t\tAgree({self}°, {goal.head()}) ')
-            if self.agreement_licensing(goal):
+            log(f'\n\t\tAgree({self}°, {goal.head()}): ')
+            if feature_licensing(goal.head().interpretable_phi_features(), self.phi_masks()) and self.agreement_to_EPP_rule(goal):
                 self.value(goal)
-
-    def agreement_licensing(self, goal):
-        phi_gates = [set(phi[4:].split(',')) for phi in self.features if valued_phi_feature(phi) and not phi.startswith('i')]
-        if not (phi_gates and not self.feature_licensing(goal, phi_gates)) and not self.agreement_EPP_rule(goal):
-            return True
-        log(f'failed. ')
-        self.features.add('*')
-
-    def feature_licensing(self, goal, phi_gates):
-        g = {phi[5:] for phi in goal.head().features if phi.startswith('iPHI') and {phi.split(':')[1]} & {'PER', 'NUM'}}
-        return [p for p in phi_gates if p & g == p]
+            else:
+                log(f'Failure. ')
+                self.features.add('*')
 
     def value(self, goal):
-        log(f'values ')
+        log(f'valued features ')
         for phi, phi_ in [(phi, f'PHI:{phi.split(":")[1]}:_') for phi in goal.head().features if
                           phi.startswith('iPHI') and f'PHI:{phi.split(":")[1]}:_' in self.features]:
             log(f'[{phi[5:]}] ')
@@ -729,15 +719,16 @@ class PhraseStructure:
             self.features.add(f'{phi[1:]}')
         self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
 
-    def agreement_EPP_rule(self, goal):
-        if self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'}) and not self.check({'strong_agr'}):
-            if self.check({'!PER'}) or self.theta_head():
-                return not self.edge()
-            return not self.chain_condition(goal)
+    def agreement_to_EPP_rule(self, goal):
+        return self.theta_head() or not self.requires_identifiable_local_argument() or self.check({'strong'}) or \
+               (self.check({'weak'}) and self.edge()) or self.chain_condition(goal)
+
+    def requires_identifiable_local_argument(self):
+        return self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'})
 
     # Chain legibility for A-system (will be later generalized to A-bar system)
     def chain_condition(self, goal):
-        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id()
+        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id() or (self.edge() and self.edge()[0].expletive())
 
     def argument_by_agreement(self):
         for f in self.features:
@@ -1308,8 +1299,8 @@ class PhraseStructure:
     def referential(self):
         return self.check_some({'φ', 'D'})
 
-    def interpretable_phi(self):
-        return {f for f in self.features if f.startswith('iPHI:')}
+    def interpretable_phi_features(self):
+        return {f[5:] for f in self.features if f.startswith('iPHI:')}
 
     def preposition(self):
         return self.check({'P'})
@@ -1414,6 +1405,9 @@ class PhraseStructure:
 
     def get_unvalued_phi(self):
         return {phi for phi in self.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
+
+    def phi_masks(self):
+        return [set(phi[4:].split(',')) for phi in self.features if valued_phi_feature(phi) and not phi.startswith('i') and not 'IDX' in phi]
 
     def type_match(self, phi, phi_):
         return phi.split(':')[1] == phi_.split(':')[1]
