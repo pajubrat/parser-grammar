@@ -7,7 +7,6 @@ from lexical_stream import LexicalStream
 from time import process_time
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
-from working_memory import SyntacticWorkingMemory
 from Experimental_functions import ExperimentalFunctions
 
 class SpeakerModel:
@@ -29,7 +28,6 @@ class SpeakerModel:
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
         self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
         self.morphology = Morphology(self, language)            # Access to morphology
-        self.working_memory = SyntacticWorkingMemory(self)      # Access to working memory
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.plausibility_metrics = PlausibilityMetrics(self)
@@ -47,7 +45,6 @@ class SpeakerModel:
         if 'only_first_solution' in self.local_file_system.settings:
             if self.local_file_system.settings['only_first_solution']:
                 self.only_first_solution = True
-        self.working_memory.initialize()
         self.number_of_items_consumed = 0
         self.result_list = []                                   # Results (final analyses)
         self.semantic_interpretation = set()                    # Semantic interpretation
@@ -80,91 +77,97 @@ class SpeakerModel:
                           "Mean time per word": {'ms': 0, 'n': 0}
                           }
 
+    # Prepares the derivational search operation and then calls the recursive
+    # derivational search function parse_new_item()
     def parse_sentence(self, count, lst):
+
+        # Bookkeeping and logging
         self.sentence = lst
         self.start_time = process_time()
+        log_new_sentence(self, count, lst)
+        PhraseStructure.chain_index = 0
+
+        # Initialize the components (mostly bookkeeping and logging)
         self.initialize()
         self.plausibility_metrics.initialize()
         self.narrow_semantics.initialize()
-        log_new_sentence(self, count, lst)
-        PhraseStructure.brain_model = self
-        PhraseStructure.chain_index = 0
-        PhraseStructure.access_experimental_functions = self.Experimental_functions
-        PhraseStructure.phase_heads = self.local_file_system.settings['phase_heads']
-        PhraseStructure.phase_heads_exclude = self.local_file_system.settings['phase_heads_exclude']
+
+        # Provides phrase structure operations access to the current speaker model
+        PhraseStructure.speaker_model = self
+
+        # Call the derivational search function
         self.parse_new_item(None, lst, 0)
 
+    # Recursive derivational search function (parser)
     def parse_new_item(self, ps, lst, index, inflection_buffer=None):
         if self.circuit_breaker(ps, lst, index):
             return
+
+        # Match the phonological input word/symbol with lexical entries and
+        # return the corresponding lexical items (constituents)
         retrieved_lexical_items = self.lexicon.lexical_retrieval(lst[index])
         for lexical_constituent in retrieved_lexical_items:
+
+            # Process polymorphemic words (convert them into input list) and
+            # call parse_new_item() recursively with the result if applicable
             self.morphology.morphological_parse(ps, lexical_constituent, lst.copy(), index, inflection_buffer)
+
+            # Primitive lexical item enters the syntactic component, which
+            # handles inflectional features if any (plus recursive call) and other operations
             self.lexical_stream.stream_into_syntax(lexical_constituent, lst, ps, index, inflection_buffer)
-            merge_sites = self.plausibility_metrics.filter_and_rank(ps, lexical_constituent)
-            for site, transfer, address_label in merge_sites:
-                log("{:<80}{}".format(f'\n ', f'           {address_label}'))
-                new_constituent = self.attach(ps.target_left_branch(site), site, lexical_constituent, transfer)
-                self.working_memory.remove_items(merge_sites)
+
+            # Filter and rank all possible attachment sites, then call the function recursively
+            # to create the derivational search space
+            for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(ps, lexical_constituent):
+                new_constituent = ps.target_left_branch(N).attach(N, lexical_constituent, transfer, address_label)
                 self.parse_new_item(new_constituent.top(), lst, index + 1)
                 if self.exit:
                     break
-            print('.', end='', flush=True)
+
+            # Pragmatic processing that has to do with psychological allocation and
+            # information structure
             self.narrow_semantics.pragmatic_pathway.forget_object(lexical_constituent)
+
+        # Backtrack
         log(f'\n\t\tBacktracking...')
-
-    def attach(self, left_branch, site, terminal_lexical_item, transfer):
-        self.working_memory.maintain(site)
-        if left_branch.belong_to_same_word(site):
-            new_constituent = left_branch.sink_into_complex_head(terminal_lexical_item)
-        else:
-            new_constituent = self.attach_into_phrase(left_branch, terminal_lexical_item, transfer)
-        self.consume_resources("Merge", terminal_lexical_item)
-        return new_constituent
-
-    def attach_into_phrase(self, left_branch, terminal_lexical_item, transfer):
-        new_left_branch = left_branch
-        m = left_branch.mother
-        if transfer:
-            ps, m = left_branch.detached()
-            new_left_branch = left_branch.transfer_to_LF()
-            new_left_branch.mother = m
-        set_logging(True)
-        new_left_branch.mother = m
-        new_constituent = new_left_branch.Merge(terminal_lexical_item)
-        self.working_memory.remove_item(left_branch)
-        return new_constituent
 
     def circuit_breaker(self, ps, lst, index):
         set_logging(True)
         if self.exit:
             return True
+
+        # If there are no more words, the solution is evaluated
+        # at LF-interface and postsyntactically
         if index == len(lst):
-            self.complete_processing(ps)
+            self.evaluate_complete_solution(ps)
             return True
         self.time_from_stimulus_onset = int(len(lst[index]) * 10)
         if not self.first_solution_found:
             self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
-    def complete_processing(self, ps):
+    # Evaluates a complete solution at the LF-interface and semantic interpretation
+    def evaluate_complete_solution(self, ps):
         log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
         log(f'\n\t\tPF-interface {ps}\n')
         ps.transfer_to_LF()
         log(f'\n\n\t\tLF-interface {ps.top()}\n')
+
+        # Postsyntactic tests (LF-interface legibility and semantic interpretation)
         if self.postsyntactic_tests(ps):
             self.resources.update(PhraseStructure.resources)
             report_success(self, ps)
         else:
             self.narrow_semantics.reset_for_new_interpretation()
             report_failure(ps)
+
+        # Register one garden path if we evaluated complete solution but
+        # there has not been any accepted solutions
         if not self.first_solution_found:
             self.consume_resources("Garden Paths", ps)
 
     def postsyntactic_tests(self, ps):
         log(f'\n\t\tLF-interface and postsyntactic legibility tests:')
-        return self.LF.pass_LF_legibility(ps) and \
-               self.LF.final_tail_check(ps) and \
-               self.narrow_semantics.postsyntactic_semantic_interpretation(ps)
+        return self.LF.pass_LF_legibility(ps) and self.LF.final_tail_check(ps) and self.narrow_semantics.postsyntactic_semantic_interpretation(ps)
 
     def consume_resources(self, key, target):
         if not self.first_solution_found:

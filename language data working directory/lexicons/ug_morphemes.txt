@@ -6,12 +6,13 @@
 T/fin   :: T/fin LF:T
 v       :: v PF:v LF:v
 v*		:: v PF:-ed v- LF:pass -θ EF
-impass	:: v PF:-TA LF:pass EF
+impass	:: v PF:-TA LF:impss EF
+impass1	:: Pass ARG PF:-TA LF:Pass EF !COMP:v 
 C/fin   :: C/fin PF:C LF:C/fin
 C		:: C C/fin PF:C LF:C
 T		:: T LF:T Fin EF
 T/prt 	:: T/prt LF:Prtc
-Fin		:: Fin LF:fin PF:Fin ARG COMP:T +ΦLF,ΦPF 	
+Fin		:: Fin K LF:Fin ARG COMP:T +ΦLF,ΦPF 	
 a0		:: A PF:a LF:mod
 
 cau		:: v PF:Cau LF:cause
@@ -53,6 +54,10 @@ MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	LF:to SEM/desired_
 # Finnish prticiple adjectives
 MA/A		:: MA/A 		EF	Inf		ARG  +ΦLF,ΦPF 			PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
 VA/A		:: VA/A				Inf			 -ΦPF -ΦLF			PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
+
+# Finnish prepositions (semantic cases)
+P(ine)		:: PF:-ssA LF:in P LANG:FI
+P0			:: PF:-Ø LF:in P LANG:FI
 
 # Experimental
 MA.ine/inf*	:: MA.ine/inf* 		Inf 	ARG  -ΦPF 				PF:-mA-* 	LF:ing LANG:FI !COMP:*

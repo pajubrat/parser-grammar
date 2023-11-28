@@ -24,6 +24,8 @@ avainta		::	avain-#φ#sg#3p#def#r_expression#[par]
 avain-		::	PF:avain- LF:key N LANG:FI -SEM:directional
 auton		::	auto-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 autoa		:: 	auto-#φ#sg#3p#def#r_expression#[par] LANG:FI
+autossa		::	auto-#D#sg#3p#def#P(ine) LANG:FI
+auto_ssa	:: 	PF:auto-ssa LF:car N LANG:FI
 auto		::	auto-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 auto-		::	PF:auto LF:car N LANG:FI -SEM:directional
 en			:: e#n LANG:FI
@@ -329,6 +331,10 @@ Pekka_0acc	::	Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[acc(0)] LANG:FI
 Pekkahan	:: Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[nom]#[hAn] LANG:FI
 PEKKA		:: Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[nom]#[foc]
 Pekka-  	:: PF:Pekka LF:Pekka N R:REF:PROPER_NAME -SEM:directional LANG:FI
+pelattiin	:: pelaa-#v#asp#impass1#T#pst#Fin#Vn LANG:FI
+pelaa-		:: PF:pelaa- LF:play V CLASS/INTR LANG:FI
+peli		:: peli-#D#sg#3p#def#r_expression#[acc(0)] LANG:FI
+peli-		:: PF:peli LF:game N LANG:FI
 pelottaa	:: pelkä-#cau#T/fin#[V] LANG:FI
 pelkää		:: pelkä-#v#T/fin#[V] LANG:FI
 pelkä-		:: PF:pelkä- LF:fear V CLASS/TR LANG:FI
@@ -432,7 +438,7 @@ työ-		:: PF:työ LF:work N LANG:FI
 tämä		:: tämä-#D#sg#3p#def
 tätä		:: D#sg#3p#def#[par]
 tämä-		:: PF:tämä LF:this N PHI LANG:FI
-tässä		:: tämä#P
+tä_ssä		:: PF:tä-ssä LF:this D PHI LANG:FI
 täytyy		:: täydy-#T/fin#prs#default LANG:FI
 täytyi		:: täydy-#T/fin#pst#default LANG:FI
 täytyisi	:: täydy-#T/fin#cond#default LANG:FI

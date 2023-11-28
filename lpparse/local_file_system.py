@@ -222,6 +222,9 @@ class LocalFileSystem:
                 elif self.settings[key].lstrip('-').isdigit():
                     self.settings[key] = int(self.settings[key])
 
+        PhraseStructure.phase_heads = self.settings['phase_heads']
+        PhraseStructure.phase_heads_exclude = self.settings['phase_heads_exclude']
+
     def initialize_simple_log_file(self):
         self.dev_log_file.write('Initializing simple log file...')
         self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, encoding=self.encoding)

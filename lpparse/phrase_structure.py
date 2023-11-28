@@ -1,9 +1,9 @@
 from collections import namedtuple
 from itertools import takewhile
 from feature_processing import *
-from support import log
+from support import log, set_logging
 
-major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'A', 'v', 'V', 'VA/inf', 'T', 'Fin', 'Agr',
+major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
               'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
               'FORCE', 'EXPL', 'Adv',
               '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
@@ -11,7 +11,7 @@ Result = namedtuple('Result', 'match_occurred outcome')
 
 
 class PhraseStructure:
-    brain_model = None
+    speaker_model = None
     access_experimental_functions = None
     phase_heads = {'ph', 'φ'}
     resources = {"Merge-1": {"ms": 0, "n": 0}}
@@ -45,7 +45,7 @@ class PhraseStructure:
                                         'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Agree': {'type': 'Agree',
                                      'test integrity': lambda x: x.is_unvalued(),
-                                     'repair': lambda x: PhraseStructure.access_experimental_functions.Agree(x)},
+                                     'repair': lambda x: PhraseStructure.speaker_model.Experimental_functions.Agree(x)},
                            'Extraposition': {'type': 'Extraposition',
                                              'test integrity': lambda x: x.primitive() and (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
                                              'repair': lambda x: x.extrapose()},
@@ -56,7 +56,7 @@ class PhraseStructure:
                                              'test integrity': lambda x: x.complex() and not x.find_me_elsewhere and x.trigger_scrambling(),
                                              'repair': lambda x: x.reconstruct_scrambling()},
                            'Last Resort Extraposition': {'type': 'Last Resort Extraposition',
-                                                         'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not PhraseStructure.brain_model.LF.LF_legibility_test_detached(x.top()),
+                                                         'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not PhraseStructure.speaker_model.LF.LF_legibility_test_detached(x.top()),
                                                          'repair': lambda x: x.last_resort_extrapose()}}
     transfer_sequence = [instructions['Head'],
                          instructions['Feature'],
@@ -448,6 +448,8 @@ class PhraseStructure:
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
+    # Transfers phrase structure SELF (which may be part of a larger structure)
+    # and re-attaches the transferred SELF to its host
     def transfer_to_LF(self):
         ps, m = self.detached()
         for op in PhraseStructure.transfer_sequence:
@@ -458,7 +460,7 @@ class PhraseStructure:
     def reconstruct(self, op):
         for const in (x for x in [self.bottom()] + self.bottom().upward_path() if op['test integrity'](x)):
             op['repair'](const)
-            PhraseStructure.brain_model.consume_resources(op['type'], const)
+            PhraseStructure.speaker_model.consume_resources(op['type'], const)
 
     # Chain creation (part of transfer)
     def create_chain(self):
@@ -481,10 +483,10 @@ class PhraseStructure:
         if not self == probe.next(probe.edge):
             probe = self.project_phonologically_null_head()
         probe.copy_criterial_features(self)
-        probe.features = PhraseStructure.brain_model.lexicon.apply_redundancy_rules(probe.features)
+        probe.features = PhraseStructure.speaker_model.lexicon.apply_redundancy_rules(probe.features)
 
     def project_phonologically_null_head(self):
-        probe = self.sister().Merge(PhraseStructure.brain_model.lexicon.PhraseStructure(), 'left').left
+        probe = self.sister().Merge(PhraseStructure.speaker_model.lexicon.PhraseStructure(), 'left').left
         probe.features |= probe.add_scope_information()
         return probe
 
@@ -497,9 +499,9 @@ class PhraseStructure:
             if not self.top().bottom().test_merge(target, PhraseStructure.transfer_operation['legible'], 'right'):
                 target.remove()
                 if self.sister() and not target.scan_criterial_features('ΔOP'):
-                    self.sister().Merge(target, 'left')
+                    self.sister().Merge_inside(target, 'left')
                 else:
-                    self.top().bottom().Merge(target, 'right')  # Last Resort option
+                    self.top().bottom().Merge_inside(target, 'right')  # Last Resort option
 
     def has_vacant_phrasal_position(self):
         return self.gapless_head() or self.is_right()
@@ -528,7 +530,7 @@ class PhraseStructure:
             self.features.add('OP:_')
 
     def test_merge(self, target, legible, direction):
-        self.specifier_sister().Merge(target, direction)
+        self.specifier_sister().Merge_inside(target, direction)
         return legible(self, target)
 
     def Abar_legible(self, target):
@@ -602,7 +604,7 @@ class PhraseStructure:
             if node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'left'):
                 break
         else:
-            node.Merge(virtual_test_item, 'right')
+            node.Merge_inside(virtual_test_item, 'right')
             virtual_test_item.adjunct = False
             node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'right')
 
@@ -620,7 +622,7 @@ class PhraseStructure:
             virtual_test_item.remove()
             scrambled_phrase.externalize_structure()
             s = self.merge_scrambled_phrase(scrambled_phrase.copy_for_chain(), direction)
-            PhraseStructure.brain_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(s, starting_point)
+            PhraseStructure.speaker_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(s, starting_point)
             return True
         virtual_test_item.remove()
 
@@ -630,11 +632,11 @@ class PhraseStructure:
             if self.is_left():
                 target_node = self.mother
             if reconstructed_floater.adverbial_adjunct():
-                target_node.Merge(reconstructed_floater, 'right')
+                target_node.Merge_inside(reconstructed_floater, 'right')
             else:
-                target_node.Merge(reconstructed_floater, 'left')
+                target_node.Merge_inside(reconstructed_floater, 'left')
         else:
-            target_node.Merge(reconstructed_floater, 'right')
+            target_node.Merge_inside(reconstructed_floater, 'right')
             reconstructed_floater.adjunct = False
         return reconstructed_floater
 
@@ -696,30 +698,50 @@ class PhraseStructure:
         self.value_from_goal(self.get_goal())
 
     def get_goal(self):
-        return next(self.minimal_search_domain().minimal_search(lambda x: x.goal_selection(), lambda x: not x.phase_head()), None)
+        # Executes minimal search from the search domain until a phase head is encountered and
+        # locates the first suitable goal
+        return next(self.minimal_search_domain().minimal_search(lambda x: x.goal_selection(),
+                                                                lambda x: not x.phase_head()), None)
 
     def goal_selection(self):
+        # A goal is a phrase at the canonical position that has a referential head
+        # or which is a phase head itself
         return not self.find_me_elsewhere and (self.head().referential() or self.phase_head())
 
     def value_from_goal(self, goal):
         if goal:
             log(f'\n\t\tAgree({self}°, {goal.head()}): ')
-            if feature_licensing(goal.head().interpretable_phi_features(), self.phi_masks()) and self.agreement_to_EPP_rule(goal):
+            # Conditions for successful valuation are that
+            # (i) the incoming phi-features are licensed,
+            # (ii) agreement/EPP rule is satisfied
+            if feature_licensing(goal.head().interpretable_phi_features(), self.phi_masks()) and self.agreement_EPP_rule(goal):
                 self.value(goal)
             else:
                 log(f'Failure. ')
                 self.features.add('*')
 
+    # Finds all pairs of phi-features where the goal can value a corresponding unvalued phi-feature at the probe
+    # and performs valuation at the probe
     def value(self, goal):
         log(f'valued features ')
-        for phi, phi_ in [(phi, f'PHI:{phi.split(":")[1]}:_') for phi in goal.head().features if
-                          phi.startswith('iPHI') and f'PHI:{phi.split(":")[1]}:_' in self.features]:
+
+        # A valuing phi-feature must be interpretable and the probe must have a corresponding unvalued feature.
+        for phi in (x for x in goal.head().features if x.startswith('iPHI') and
+                                                       f'PHI:{x.split(":")[1]}:_' in self.features):
             log(f'[{phi[5:]}] ')
-            self.features.discard(phi_)
+            self.features.discard(f'PHI:{phi.split(":")[1]}:_')
             self.features.add(f'{phi[1:]}')
+
+        # Leave a record of AgreeLF and provide the index
         self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
 
-    def agreement_to_EPP_rule(self, goal):
+    # The probe X satisfies the Agreement/EPP rule if
+    # (i) X is a theta-hear OR
+    # (ii) X does not require an identifiable arguments OR
+    # (iii) X has strong agreement features OR
+    # (iv) X has weak agreement features and something at its edge OR
+    # (v) X satisfies the chain condition.
+    def agreement_EPP_rule(self, goal):
         return self.theta_head() or not self.requires_identifiable_local_argument() or self.check({'strong'}) or \
                (self.check({'weak'}) and self.edge()) or self.chain_condition(goal)
 
@@ -728,7 +750,8 @@ class PhraseStructure:
 
     # Chain legibility for A-system (will be later generalized to A-bar system)
     def chain_condition(self, goal):
-        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id() or (self.edge() and self.edge()[0].expletive())
+        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id() or \
+               (self.edge() and self.edge()[0].expletive())
 
     def argument_by_agreement(self):
         for f in self.features:
@@ -747,13 +770,13 @@ class PhraseStructure:
 
     def extrapose(self):
         self.sister().head().externalize_structure()
-        PhraseStructure.brain_model.consume_resources('Extraposition', self)
+        PhraseStructure.speaker_model.consume_resources('Extraposition', self)
 
     def last_resort_extrapose(self):
         for x in [self] + self.bottom().upward_path():
             if x.cutoff_point_for_last_resort_extraposition():
                 x.externalize_structure()
-                PhraseStructure.brain_model.consume_resources('Last Resort Extraposition', self)
+                PhraseStructure.speaker_model.consume_resources('Last Resort Extraposition', self)
 
     def feature_inheritance(self):
         if self.highest_finite_head() and not self.check({'-ΦPF'}):
@@ -911,7 +934,7 @@ class PhraseStructure:
                     return m.check(tset)
 
     def tail_match(self, constituent_from_MB, direction):
-        self.Merge(constituent_from_MB.copy(), direction)        # Test merge
+        self.Merge_inside(constituent_from_MB.copy(), direction)        # Test merge
         if direction == 'right':                                   # Presupposition
             self.geometrical_sister().adjunct = True
         result = self.geometrical_sister().head().tail_test()      # Test
@@ -951,38 +974,31 @@ class PhraseStructure:
 
     # Structure building --------------------------------------------------------------------------
 
-    def Merge(self, C, direction=''):
-        local_structure = self.local_structure()                # [X...self...Y]
-        new_constituent = self.asymmetric_merge(C, direction)   # A = [self H] or [H self]
-        new_constituent.substitute(local_structure)             # [X...A...Y]
-        return new_constituent
+    def Merge_inside(self, C, direction=''):
+        local_structure = (self.mother, self.is_left())         # Snapshot of the local structure
+        X = self.asymmetric_merge(C, direction)                 # Create new constituent X
+        X.substitute(local_structure)                           # Insert X back into the local structure
+        return X
 
+    # Asymmetric Merge is a generalization of the bottom-up Merge (__init__) that can be provided with directionality
     def asymmetric_merge(self, B, direction='right'):
         self.consume_resources('Merge-1', self)
         if direction == 'left':
-            new_constituent = PhraseStructure(B, self)
-        else:
-            new_constituent = PhraseStructure(self, B)
-        return new_constituent
+            return PhraseStructure(B, self)
+        return PhraseStructure(self, B)
 
     def substitute(self, local_structure):
-        if local_structure.mother:
-            if not local_structure.left:
-                local_structure.mother.right = self
-            else:
-                local_structure.mother.left = self
-            self.mother = local_structure.mother
-
-    def local_structure(self):
-        local_structure = namedtuple('local_structure', 'mother left')
-        local_structure.mother = self.mother
-        local_structure.left = self.is_left()
-        return local_structure
+        if local_structure[0]:                      # If N had a mother
+            if not local_structure[1]:              # If N was right...
+                local_structure[0].right = self         # the new constituent will be right,
+            else:                                       # otherwise the new constituent will be left.
+                local_structure[0].left = self
+            self.mother = local_structure[0]        # The new constituent will have the same mother as N had (substitution)
 
     def merge_around(self, reconstructed_object, legibility=lambda x: True):
-        if not (self.Merge(reconstructed_object, 'right') and legibility(reconstructed_object)):
+        if not (self.Merge_inside(reconstructed_object, 'right') and legibility(reconstructed_object)):
             reconstructed_object.remove()
-            if not (self.Merge(reconstructed_object, 'left') and legibility(reconstructed_object)):
+            if not (self.Merge_inside(reconstructed_object, 'left') and legibility(reconstructed_object)):
                 reconstructed_object.remove()
                 return True
 
@@ -1010,8 +1026,28 @@ class PhraseStructure:
     def belong_to_same_word(self, site):
         return self.bottom_affix().internal and site.primitive()
 
-    def sink_into_complex_head(self, terminal_lexical_item):
+    def attach(self, site, terminal_lexical_item, transfer, address_label):
+        self.speaker_model.consume_resources("Merge", terminal_lexical_item)
+        log("{:<80}{}".format(f'\n ', f'           {address_label}'))
+        if self.belong_to_same_word(site):
+            return self.head_attachment(terminal_lexical_item)
+        else:
+            return self.phrasal_attachment(terminal_lexical_item, transfer)
+
+    def head_attachment(self, terminal_lexical_item):
         return self.bottom_affix().sink(terminal_lexical_item)
+
+    def phrasal_attachment(self, terminal_lexical_item, transfer):
+        new_left_branch = self
+        m = self.mother
+        if transfer:
+            ps, m = self.detached()
+            new_left_branch = self.transfer_to_LF()
+            new_left_branch.mother = m
+        set_logging(True)
+        new_left_branch.mother = m
+        new_constituent = new_left_branch.Merge_inside(terminal_lexical_item)
+        return new_constituent
 
     def copy(self):
         ps_ = PhraseStructure()
@@ -1041,7 +1077,7 @@ class PhraseStructure:
         return self.top()
 
     def __add__(self, incoming_constituent):
-        return self.Merge(incoming_constituent)
+        return self.Merge_inside(incoming_constituent)
 
     def get_index(self, target):
         for i, node in enumerate(self.geometrical_minimal_search()):

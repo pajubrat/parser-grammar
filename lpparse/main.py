@@ -11,8 +11,8 @@ def run_study(args):
     local_file_system.configure_logging()
 
     speaker_model = {}
-    lang_guesser = LanguageGuesser(local_file_system.external_sources["lexicon_file_name"])
-    for language in lang_guesser.languages:
+    language_guesser = LanguageGuesser(local_file_system.external_sources["lexicon_file_name"])
+    for language in language_guesser.languages:
         speaker_model[language] = SpeakerModel(local_file_system, language)
         speaker_model[language].initialize()
 
@@ -26,7 +26,7 @@ def run_study(args):
     sentence_number = 1
     for sentence, experimental_group, part_of_conversation, grammatical in sentences_to_parse:
         if not is_comment(sentence):
-            language = lang_guesser.guess_language(sentence)
+            language = language_guesser.guess_language(sentence)
             local_file_system.print_sentence_to_console(sentence_number, sentence, language)
             speaker_model[language].parse_sentence(sentence_number, sentence)
             local_file_system.save_output(speaker_model[language],

@@ -20,6 +20,7 @@ class Discourse:
         return self.index_counter
 
     def forget_object(self, ps):
+        print('.', end='', flush=True)
         if ps and self.get_inventory_index(ps):
             idx = self.get_inventory_index(ps)
             feature = '*IDX:'+str(idx)
@@ -120,7 +121,7 @@ class Discourse:
             self.narrow_semantics.semantic_interpretation['Speaker attitude'] = ['Declarative']
 
     def unexpected_order_occurred(self, ps, starting_point_head):
-        if self.narrow_semantics.brain_model.first_solution_found or not self.get_inventory_index(ps.head()):
+        if self.narrow_semantics.speaker_model.first_solution_found or not self.get_inventory_index(ps.head()):
             return
 
         idx = self.get_inventory_index(ps.head())

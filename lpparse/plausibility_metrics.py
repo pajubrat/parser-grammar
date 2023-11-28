@@ -10,37 +10,37 @@ from feature_processing import convert_features_for_parsing
 
 
 class PlausibilityMetrics:
-    def __init__(self, brain_model):
-        self.brain_model = brain_model
+    def __init__(self, speaker_model):
+        self.speaker_model = speaker_model
         self.weighted_site_list = []
         self.word = None
         self.plausibility_conditions = \
             {'positive_spec_selection':         {'condition': self.positive_spec_selection,
-                                                 'weight': self.brain_model.local_file_system.settings.get('positive_spec_selection', 100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('positive_spec_selection', 100),
                                                  'log': '+Spec selection'},
              'negative_spec_selection':         {'condition': self.negative_spec_selection,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_spec_selection', -100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('negative_spec_selection', -100),
                                                  'log': '-Spec selection'},
              'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
-                                                 'weight': self.brain_model.local_file_system.settings.get('break_head_comp_relations', -100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('break_head_comp_relations', -100),
                                                  'log': 'Head-complement word breaking condition'},
              'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
-                                                 'weight': self.brain_model.local_file_system.settings.get('positive_head_comp_selection', 100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('positive_head_comp_selection', 100),
                                                  'log': '+Comp selection'},
              'negative_head_comp_selection':    {'condition': self.negative_head_comp_selection,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_head_comp_selection', -100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('negative_head_comp_selection', -100),
                                                  'log': '-Comp selection'},
              'negative_semantics_match':        {'condition': self.negative_semantic_match,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_semantics_match', -100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('negative_semantics_match', -100),
                                                  'log': 'Semantic mismatch'},
              'lf_legibility_condition':         {'condition': self.lf_legibility_condition,
-                                                 'weight': self.brain_model.local_file_system.settings.get('lf_legibility_condition', -100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('lf_legibility_condition', -100),
                                                  'log': '-LF-legibility for left branch'},
              'negative_adverbial_test':         {'condition': self.negative_adverbial_test,
-                                                 'weight': self.brain_model.local_file_system.settings.get('negative_adverbial_test', -100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('negative_adverbial_test', -100),
                                                  'log': '-Adverbial condition'},
              'positive_adverbial_test':         {'condition': self.positive_adverbial_test,
-                                                 'weight': self.brain_model.local_file_system.settings.get('positive_adverbial_test', 100),
+                                                 'weight': self.speaker_model.local_file_system.settings.get('positive_adverbial_test', 100),
                                                  'log': '+Adverbial condition'}
              }
         self.word_specs = None
@@ -48,7 +48,7 @@ class PlausibilityMetrics:
         self.rare_word_specs = None
         self.word_tail_set = None
         self.address_label = 0
-        self.left_branch_filter_test_battery = [('Selection test', self.brain_model.LF.selection_test),
+        self.left_branch_filter_test_battery = [('Selection test', self.speaker_model.LF.selection_test),
                                                 ('Semantic Complement test', PhraseStructure.semantic_complement),
                                                 ('Probe_Goal test', PhraseStructure.probe_goal_test),
                                                 ('Head Integrity test', PhraseStructure.unrecognized_label)]
@@ -69,29 +69,21 @@ class PlausibilityMetrics:
         if '#' in w.morphology or '=' in w.morphology:
             return []
 
-        self.brain_model.working_memory.not_in_active_working_memory = []
-
         # Input integrity test
         if not ps or not w:
             return []
 
-        # Word internal components are always sank into the bottom word, no need to filter or rank
         elif ps.word_internal() and self.dispersion_filter_active():
             solutions = [(ps.bottom(), True, self.generate_address_label())]
         else:
-            self.brain_model.working_memory.in_active_working_memory, self.brain_model.working_memory.not_in_active_working_memory = \
-                self.brain_model.working_memory.active_working_memory_catalog(ps)
             log(f'\n\t\tFiltering and ranking merge sites...')
-            nodes_available = self.filter(self.brain_model.working_memory.in_active_working_memory, w)
+            nodes_available = self.filter(ps.geometrical_minimal_search(), w)
             merge_sites = self.rank_merge_right_(nodes_available, w)
-            all_merge_sites = merge_sites + self.brain_model.working_memory.not_in_active_working_memory
-            solutions = self.evaluate_transfer(all_merge_sites)
+            solutions = self.evaluate_transfer(merge_sites)
 
         set_logging(True)
         log(f'\n\t\tRanking:')
         for i, (site, transfer, address_label) in enumerate(solutions, start=1):
-            if self.brain_model.working_memory.not_in_active_working_memory and site == self.brain_model.working_memory.not_in_active_working_memory[0]:
-                log('\n\t\t\t\t-- Working memory boundary --')
             log('\n')
             if transfer:
                 log("{:<80}{}".format(f'\t\t({i}) [{site}↓+ {w.label()}°]', f'=>  {address_label}'))
@@ -122,10 +114,10 @@ class PlausibilityMetrics:
         return '#' + hex(self.address_label) + '#'
 
     def dispersion_filter_active(self):
-        if 'dispersion_filter' not in self.brain_model.local_file_system.settings:
+        if 'dispersion_filter' not in self.speaker_model.local_file_system.settings:
             return True
         else:
-            return self.brain_model.local_file_system.settings['dispersion_filter']
+            return self.speaker_model.local_file_system.settings['dispersion_filter']
 
     @knockout_lexical_ranking
     def positive_spec_selection(self, site):
@@ -173,14 +165,14 @@ class PlausibilityMetrics:
     def lf_legibility_condition(self, site):
         if not site.primitive():
             dropped = site.copy().transfer_to_LF()
-            if not self.brain_model.LF.pass_LF_legibility(dropped, False):
+            if not self.speaker_model.LF.pass_LF_legibility(dropped, False):
                 return True
 
     @knockout_lexical_ranking
     def negative_adverbial_test(self, site):
         if self.word.adverbial() and self.word_tail_set:
             w_copy = self.word.copy()
-            site.Merge(w_copy, 'right')
+            site.Merge_inside(w_copy, 'right')
             # If external tail head test fails and the site itself does not match with the tail features,
             # the negative adverbial test is true
             if not w_copy.tail_test():
@@ -192,7 +184,7 @@ class PlausibilityMetrics:
     def positive_adverbial_test(self, site):
         if self.word.adverbial() and self.word_tail_set and site.complex():
             w_copy = self.word.copy()
-            site.Merge(w_copy, 'right')
+            site.Merge_inside(w_copy, 'right')
             if w_copy.tail_test():
                 w_copy.remove()
                 return True
@@ -255,7 +247,7 @@ class PlausibilityMetrics:
                 log(f'Reject {N} + {w} because {N} does not accept complementizers. ')
                 continue
             if N.complex() and self.left_branch_filter(N):
-                log(f'Reject {N} + {w} due to bad left branch ({self.brain_model.LF.error_report_for_external_callers})...')
+                log(f'Reject {N} + {w} due to bad left branch ({self.speaker_model.LF.error_report_for_external_callers})...')
                 continue
             if self.word_breaking_filter(N, w):
                 log(f'Reject {N} + {w} because it breaks words. ')
@@ -268,8 +260,8 @@ class PlausibilityMetrics:
 
     def left_branch_filter(self, N):
         dropped = N.copy().transfer_to_LF()
-        self.brain_model.LF.active_test_battery = self.left_branch_filter_test_battery
-        left_branch_passes_LF = self.brain_model.LF.pass_LF_legibility(dropped, False)
+        self.speaker_model.LF.active_test_battery = self.left_branch_filter_test_battery
+        left_branch_passes_LF = self.speaker_model.LF.pass_LF_legibility(dropped, False)
         if not left_branch_passes_LF:
             log(f'in {dropped}. ')
         return not left_branch_passes_LF

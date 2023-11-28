@@ -8,7 +8,7 @@ from SEM_predicates import Predicates
 from global_cognition import GlobalCognition
 
 class NarrowSemantics:
-    def __init__(self, brain_model):
+    def __init__(self, speaker_model):
         self.operator_variable_module = OperatorVariableModule(self)
         self.thematic_roles_module = ThematicRoles()
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
@@ -19,7 +19,7 @@ class NarrowSemantics:
         self.semantic_interpretation = {}
         self.semantic_interpretation_failed = False
         self.predicate_argument_dependencies = []
-        self.brain_model = brain_model
+        self.speaker_model = speaker_model
         self.phi_interpretation_failed = False
         self.query = \
             {'GLOBAL': {'Remove': self.global_cognition.remove_object,
@@ -116,9 +116,9 @@ class NarrowSemantics:
         log(f'\n\t\tInterpreting {root_node.head()}P globally: ')
         self.reset_for_new_interpretation()
         self.interpret_(root_node)
-        if self.brain_model.local_file_system.settings['calculate_assignments']:
+        if self.speaker_model.local_file_system.settings['calculate_assignments']:
             self.quantifiers_numerals_denotations_module.reconstruct_assignments(root_node)
-        if self.brain_model.local_file_system.settings['calculate_pragmatics']:
+        if self.speaker_model.local_file_system.settings['calculate_pragmatics']:
             self.pragmatic_pathway.calculate_information_structure(root_node, self.semantic_interpretation)
         self.document_interface_content_for_user()
         return not self.semantic_interpretation_failed
@@ -126,20 +126,20 @@ class NarrowSemantics:
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
-                if self.brain_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_predicate():
+                if self.speaker_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_predicate():
                     thematic_assignment = self.thematic_roles_module.reconstruct(ps)
                     if thematic_assignment:
                         self.semantic_interpretation['Thematic roles'].append(thematic_assignment)
-                if self.brain_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}) and not ps.check({'φ'}):
+                if self.speaker_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}) and not ps.check({'φ'}):
                     self.semantic_interpretation['Predicates'].append(self.predicates.reconstruct(ps))
                     # Predicate-argument mapping does not affect grammaticality under the standard model of Agree
-                    if self.brain_model.local_file_system.settings['Agree'] == 'standard':
+                    if self.speaker_model.local_file_system.settings['Agree'] == 'standard':
                         self.predicates.operation_failed = False
                 if ps.argument_by_agreement():
                     self.semantic_interpretation['Agreement'].append(self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
-                if self.brain_model.local_file_system.settings['project_objects']:
+                if self.speaker_model.local_file_system.settings['project_objects']:
                     self.inventory_projection(ps)
                 self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
                 self.pragmatic_pathway.interpret_discourse_features(ps, self.semantic_interpretation)
@@ -151,7 +151,7 @@ class NarrowSemantics:
 
     def inventory_projection(self, ps):
         def preconditions(x):
-            return not self.brain_model.first_solution_found and \
+            return not self.speaker_model.first_solution_found and \
                    not ps.find_me_elsewhere and \
                    (x.referential() or
                     (not x.referential() and not x.get_dPHI()))
