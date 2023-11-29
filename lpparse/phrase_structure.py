@@ -77,12 +77,10 @@ class PhraseStructure:
         self.mother = None
         self.features = set()
         self.active_in_syntactic_working_memory = True
-        self.morphology = ''
-        self.internal = False
         self.adjunct = False
-        self.incorporated = False
         self.find_me_elsewhere = False
         self.identity = ''
+        self.concatenation = None
         self.rebaptized = False
         self.stop = False
         self.nn = None
@@ -934,7 +932,7 @@ class PhraseStructure:
                     return m.check(tset)
 
     def tail_match(self, constituent_from_MB, direction):
-        self.Merge_inside(constituent_from_MB.copy(), direction)        # Test merge
+        self.Merge_inside(constituent_from_MB.copy(), direction)   # Test merge
         if direction == 'right':                                   # Presupposition
             self.geometrical_sister().adjunct = True
         result = self.geometrical_sister().head().tail_test()      # Test
@@ -988,12 +986,12 @@ class PhraseStructure:
         return PhraseStructure(self, B)
 
     def substitute(self, local_structure):
-        if local_structure[0]:                      # If N had a mother
-            if not local_structure[1]:              # If N was right...
+        if local_structure[0]:                          # If N had a mother
+            if not local_structure[1]:                  # If N was right...
                 local_structure[0].right = self         # the new constituent will be right,
             else:                                       # otherwise the new constituent will be left.
                 local_structure[0].left = self
-            self.mother = local_structure[0]        # The new constituent will have the same mother as N had (substitution)
+            self.mother = local_structure[0]            # The new constituent will have the same mother as N had (substitution)
 
     def merge_around(self, reconstructed_object, legibility=lambda x: True):
         if not (self.Merge_inside(reconstructed_object, 'right') and legibility(reconstructed_object)):
@@ -1020,19 +1018,19 @@ class PhraseStructure:
         bottom_affix.right = ps
         ps.mother = bottom_affix
         bottom_affix.left = None
-        self.internal = False
         return self.top()
 
     def belong_to_same_word(self, site):
-        return self.bottom_affix().internal and site.primitive()
+        return self.bottom_affix().word_internal() and site.primitive()
 
     def attach(self, site, terminal_lexical_item, transfer, address_label):
-        self.speaker_model.consume_resources("Merge", terminal_lexical_item)
         log("{:<80}{}".format(f'\n ', f'           {address_label}'))
         if self.belong_to_same_word(site):
-            return self.head_attachment(terminal_lexical_item)
+            const = self.head_attachment(terminal_lexical_item)
         else:
-            return self.phrasal_attachment(terminal_lexical_item, transfer)
+            const = self.phrasal_attachment(terminal_lexical_item, transfer)
+        self.speaker_model.consume_resources("Merge", const)
+        return const
 
     def head_attachment(self, terminal_lexical_item):
         return self.bottom_affix().sink(terminal_lexical_item)
@@ -1040,6 +1038,7 @@ class PhraseStructure:
     def phrasal_attachment(self, terminal_lexical_item, transfer):
         new_left_branch = self
         m = self.mother
+        set_logging(False)
         if transfer:
             ps, m = self.detached()
             new_left_branch = self.transfer_to_LF()
@@ -1059,13 +1058,17 @@ class PhraseStructure:
             ps_.right.mother = ps_
         if self.features:
             ps_.features = self.features.copy()
-        ps_.morphology = self.morphology
-        ps_.internal = self.internal
         ps_.active_in_syntactic_working_memory = self.active_in_syntactic_working_memory
         ps_.adjunct = self.adjunct
+        ps_.concatenation = self.concatenation
         ps_.find_me_elsewhere = self.find_me_elsewhere
         ps_.identity = self.identity
         return ps_
+
+    def secure_copy(self):
+        if self:
+            return self.copy()
+        return None
 
     def detached(self):
         m = self.mother
@@ -1278,7 +1281,7 @@ class PhraseStructure:
 
     def get_id(self):
         for f in self.features:
-            if f.startswith('#'):
+            if f.startswith('§'):
                 return f
         return '?'
 
@@ -1396,13 +1399,19 @@ class PhraseStructure:
         return self.referential() and self.max() and self.max().adjunct and self.max().is_right() and self.max().mother and self.max().mother.referential()
 
     def word_internal(self):
-        return self.bottom().bottom_affix().internal
+        return self.bottom().bottom_affix().concatenation == '#'
+
+    def word_external(self):
+        return self.concatenation == ' '
+
+    def word_incorporated(self):
+        return self.concatenation == '='
 
     def impossible_sequence(self, w):
         return self.primitive() and 'T/fin' in self.head().features and 'T/fin' in w.features
 
     def is_word_internal(self):
-        return self.mother and self.sister() and self.sister().primitive() and self.sister().internal
+        return self.mother and self.sister() and self.sister().primitive() and self.sister().word_internal()
 
     def phase_head(self):
         return self.primitive() and self.check_some(PhraseStructure.phase_heads) and not self.check_some(PhraseStructure.phase_heads_exclude)

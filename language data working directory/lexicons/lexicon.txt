@@ -168,6 +168,7 @@ kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Inf +ΦLF,ΦPF LANG:FI
 lähellä[Φ]	:: P PF:lähellä LF:near TAIL:V Inf +ΦLF,ΦPF LANG:FI
+lähellä[K]	:: P PF:lähellä LF:near Inf +ΦLF,ΦPF LANG:FI
 lähellä2	:: P PF:lähellä LF:near TAIL:V Inf LANG:FI
 lähellä'	:: P PF:lähellä LF:near -ΦPF LANG:FI
 lähellä'	:: P PF:lähellä LF:near Inf +ΦLF,ΦPF LANG:FI
@@ -475,7 +476,7 @@ minä- 		:: PF:minä LF:I N PHI_N LANG:FI
 sinä		:: sinä-#D/pro#[nom]#sg#2p#def#hum#pronoun1 LANG:FI
 sinua		:: sinä-#D/pro#[par]#sg#2p#def#hum#pronoun1 LANG:FI
 sinun		:: sinä-#D/pro#[gen]#sg#2p#def#hum#pronoun1 LANG:FI
-sinä-		:: PF:sinä  LF:you N PHI_N LANG:FI
+sinä-		:: PF:sinä LF:you N PHI_N LANG:FI
 hän			:: hän-#D/pro#[nom]#sg#3p#def#hum#pronoun1 LANG:FI
 häntä		:: hän-#D/pro#[par]#sg#3p#def#hum#pronoun1 LANG:FI
 hänen		:: hän-#D/pro#[gen]#sg#3p#def#hum#pronoun1 LANG:FI
@@ -525,7 +526,7 @@ sitä'		:: N#D/expl LANG:FI
 n		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:1 PER PHI:DET:DEF LANG:FI
 t		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:2 PER PHI:DET:DEF LANG:FI
 [V]		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:3 PER LANG:FI
-mme		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
+mme		::	inflectional ΦPF Φ weak K EF -Inf PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
 tte		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:2 PER PHI:DET:DEF LANG:FI
 vAt		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:3 PER PHI:DET:DEF LANG:FI
 Vn		::  inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:1 PHI:DET:DEF PER IMPASS LANG:FI

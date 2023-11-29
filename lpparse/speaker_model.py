@@ -1,4 +1,4 @@
-from support import set_logging, log, report_failure, report_success, log_new_sentence
+from support import set_logging, log, report_failure, report_success, log_new_sentence, secure_copy
 from lexical_interface import LexicalInterface
 from LF import LF
 from morphology import Morphology
@@ -15,7 +15,7 @@ class SpeakerModel:
         self.local_file_system = local_file_system              # Access to file system (e.g., lexicon, settings)
         self.language = language                                # Contextual variables (language etc.)
         self.result_list = []                                   # Results (final analyses)
-        self.spellout_result_list = []                          # Results (spellout structures)
+        self.spellout_result_list = []                          # Results (spell out structures)
         self.semantic_interpretation = set()                    # Semantic interpretation
         self.number_of_ambiguities = 0                          # Number of lexical ambiguities detected
         self.result_matrix = [[] for i in range(50)]            # Result matrix
@@ -26,7 +26,7 @@ class SpeakerModel:
         self.name_provider_index = 0                            # Index for name provider, for chain identification
         self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
-        self.lexicon.load_lexicon(self)                         # Load the language/dialect specific lexicon
+        self.lexicon.load_lexicon(local_file_system)            # Load the language/dialect specific lexicon
         self.morphology = Morphology(self, language)            # Access to morphology
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
@@ -99,37 +99,50 @@ class SpeakerModel:
         self.parse_new_item(None, lst, 0)
 
     # Recursive derivational search function (parser)
-    def parse_new_item(self, ps, lst, index, inflection_buffer=None):
-        if self.circuit_breaker(ps, lst, index):
-            return
+    def parse_new_item(self, ps, lst, index, inflection_buffer=set()):
 
-        # Match the phonological input word/symbol with lexical entries and
-        # return the corresponding lexical items (constituents)
-        retrieved_lexical_items = self.lexicon.lexical_retrieval(lst[index])
-        for lexical_constituent in retrieved_lexical_items:
+        # Stop processing if there are no more words to consume
+        if not self.circuit_breaker(ps, lst, index):
 
-            # Process polymorphemic words (convert them into input list) and
-            # call parse_new_item() recursively with the result if applicable
-            self.morphology.morphological_parse(ps, lexical_constituent, lst.copy(), index, inflection_buffer)
+            # Retrieve lexical items on the basis of phonological input
+            retrieved_lexical_items = self.lexicon.lexical_retrieval(lst[index])
 
-            # Primitive lexical item enters the syntactic component, which
-            # handles inflectional features if any (plus recursive call) and other operations
-            self.lexical_stream.stream_into_syntax(lexical_constituent, lst, ps, index, inflection_buffer)
+            # Examine all retrieved lexical items (ambiguity resolution)
+            for lex in retrieved_lexical_items:
 
-            # Filter and rank all possible attachment sites, then call the function recursively
-            # to create the derivational search space
-            for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(ps, lexical_constituent):
-                new_constituent = ps.target_left_branch(N).attach(N, lexical_constituent, transfer, address_label)
-                self.parse_new_item(new_constituent.top(), lst, index + 1)
+                # Recursive branching: 1) morphological parsing, 2) inflection, 3) stream into syntax
+                # Streaming (3) creates derivational search space and explores it
+
+                # 1. Morphological parsing if applicable
+                if lex.morphological_chunk:
+                    parsed_input_list = self.morphology.morphological_parse(ps, lex, lst.copy(), index, inflection_buffer)
+                    self.parse_new_item(secure_copy(ps), parsed_input_list, index, inflection_buffer)
+
+                # 2. Process inflectional feature (withhold streaming to syntax)
+                if not lex.morphological_chunk and lex.inflectional:
+                    inflection_buffer = inflection_buffer | lex.features - {'inflectional'}
+                    self.parse_new_item(secure_copy(ps), lst, index + 1, inflection_buffer)
+
+                # 3. Wrap primitive lex into primitive const and stream into syntax
+                if not lex.morphological_chunk and not lex.inflectional:
+                    self.explore_derivation_space(ps, self.lexical_stream.wrap(lex, inflection_buffer), lst, index)
+
+                inflection_buffer = set()
+        log(f'\n\t\tBacktracking...')
+
+    def explore_derivation_space(self, ps, X, lst, index):
+        if not ps:
+            # If there is no phrase structure in syntactic working memory, create it from X
+            self.parse_new_item(X.copy(), lst, index + 1)
+        else:
+            # Create derivational search space for existing phrase structure and new constituent X
+            for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(ps, X):
+                new_constituent = ps.target_left_branch(N).attach(N, X, transfer, address_label)
+                self.parse_new_item(new_constituent.top().copy(), lst, index + 1)
                 if self.exit:
                     break
 
-            # Pragmatic processing that has to do with psychological allocation and
-            # information structure
-            self.narrow_semantics.pragmatic_pathway.forget_object(lexical_constituent)
-
-        # Backtrack
-        log(f'\n\t\tBacktracking...')
+        self.narrow_semantics.pragmatic_pathway.forget_object(X)
 
     def circuit_breaker(self, ps, lst, index):
         set_logging(True)

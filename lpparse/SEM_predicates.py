@@ -17,7 +17,8 @@ class Predicates:
     def print_target(self, probe, argument):
         indexing = ''
         if {phi for phi in probe.features if phi.startswith('dPHI')}:
-            indexing = f', indexed to {probe.argument_by_agreement().max().illustrate()}'
+            if probe.argument_by_agreement():
+                indexing = f', indexed to {probe.argument_by_agreement().max().illustrate()}'
         if 'pro' in argument.features:
             return f'φ/pro' + indexing
         else:

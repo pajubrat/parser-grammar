@@ -43,6 +43,6 @@ def run_study(args):
 
     # Finish processing
     if local_file_system.settings['datatake_full']:
-        local_file_system.save_surface_vocabulary(speaker_model["LANG:EN"].lexicon.surface_vocabulary)
+        local_file_system.save_surface_vocabulary(speaker_model["LANG:EN"].lexicon.surface_lexicon)
     local_file_system.close_all_output_files()
     local_file_system.report_errors_to_console()

@@ -164,6 +164,11 @@ def initialize_console(file_names):
     print(f'UG morphemes will be read from {file_names["ug_morphemes"]}')
     print(f'Redundancy will be read from {file_names["redundancy_rules"]}')
 
+def secure_copy(ps):
+    if ps:
+        return ps.copy()
+    return None
+
 def is_comment(sentence):
     return sentence[0] == '&' or sentence[0].startswith("'")
 

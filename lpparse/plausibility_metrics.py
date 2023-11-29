@@ -63,10 +63,10 @@ class PlausibilityMetrics:
 
     def filter_and_rank(self, ps, w):
         set_logging(False)
-        if 'inflectional' in w.features:
+        if not w:
             return []
 
-        if '#' in w.morphology or '=' in w.morphology:
+        if 'inflectional' in w.features:
             return []
 
         # Input integrity test
