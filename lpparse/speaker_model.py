@@ -99,7 +99,7 @@ class SpeakerModel:
         self.parse_new_item(None, lst, 0)
 
     # Recursive derivational search function (parser)
-    def parse_new_item(self, ps, lst, index, inflection_buffer=set()):
+    def parse_new_item(self, ps, lst, index, inflection_buffer=frozenset()):
 
         # Stop processing if there are no more words to consume
         if not self.circuit_breaker(ps, lst, index):
@@ -111,7 +111,6 @@ class SpeakerModel:
             for lex in retrieved_lexical_items:
 
                 # Recursive branching: 1) morphological parsing, 2) inflection, 3) stream into syntax
-                # Streaming (3) creates derivational search space and explores it
 
                 # 1. Morphological parsing if applicable
                 if lex.morphological_chunk:
@@ -123,7 +122,7 @@ class SpeakerModel:
                     inflection_buffer = inflection_buffer | lex.features - {'inflectional'}
                     self.parse_new_item(secure_copy(ps), lst, index + 1, inflection_buffer)
 
-                # 3. Wrap primitive lex into primitive const and stream into syntax
+                # 3. Extract features from primitive lex and wrap them into primitive constituent and stream into syntax
                 if not lex.morphological_chunk and not lex.inflectional:
                     self.explore_derivation_space(ps, self.lexical_stream.wrap(lex, inflection_buffer), lst, index)
 
@@ -141,7 +140,6 @@ class SpeakerModel:
                 self.parse_new_item(new_constituent.top().copy(), lst, index + 1)
                 if self.exit:
                     break
-
         self.narrow_semantics.pragmatic_pathway.forget_object(X)
 
     def circuit_breaker(self, ps, lst, index):
