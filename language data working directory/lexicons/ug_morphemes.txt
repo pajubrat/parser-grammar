@@ -38,22 +38,6 @@ EXPL		:: N#D/expl
 to_inf		:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable
 to^			:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable 
 
-# Finnish infinitivals
-A/inf		:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-(t)A 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
-VA/inf  	:: VA/inf 		EF	Inf T   ARG	+ΦLF,ΦPF -ΦLF,ΦPF	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
-ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  					PF:-essA 	LF:while !COMP:* PROBE:V LANG:FI TAIL:T
-TUA/inf		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	LF:after !COMP:* PROBE:V LANG:FI TAIL:T
-KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-ΦLF !ΦPF			PF:-kse 	LF:for !COMP:* PROBE:V LANG:FI TAIL:T
-E/inf		:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  			PF:-en 		LF:by !COMP:* PROBE:V LANG:FI TAIL:T
-MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAssA 	LF:in !COMP:* PROBE:V LANG:FI TAIL:V	MA/inf
-MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAttA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:T MA/inf
-MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAllA 	LF:by !COMP:* PROBE:V LANG:FI TAIL:V MA/inf
-MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 			PF:-mAstA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event MA/inf
-MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	LF:to SEM/desired_event !COMP:* PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event MA/inf
-
-# Finnish prticiple adjectives
-MA/A		:: MA/A 		EF	Inf		ARG  +ΦLF,ΦPF 			PF:-mA 		LF:A_rel LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
-VA/A		:: VA/A				Inf			 -ΦPF -ΦLF			PF:-vA 		LF:P_rel LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
 
 # Finnish prepositions (semantic cases)
 P(ine)		:: PF:-ssA LF:in P LANG:FI
@@ -65,11 +49,67 @@ A/inf*		:: A/inf 			Inf 	ARG  -ΦPF 				PF:-(t)A* 	LF:to -SPEC:N -SPEC:Neg/fin S
 KSE/inf*	:: KSE/inf		EF	Inf Adv ARG	 !ΦPF	 			PF:-kse 	LF:for LANG:FI COMP:A/inf TAIL:T 	
 P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* 	LF:in COMP:φ !COMP:* TAIL:V COMP:MA.ine/inf* -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 
-# Finnish derivational morphology
-TA			:: V CAU/V		 EF 		-ARG -ΦPF -ΦLF			PF:-tA		LF:cause !COMP:* LANG:FI ALLOMORPHS:ttA,tA,tU
-minen		:: n 			 EF			ARG 					PF:-minen	LF:ing	 !COMP:* LANG:FI
-mista		:: n			 EF			ARG						PF:-mista	LF:ing	 !COMP:* LANG:FI
-n0			:: n			 EF			ARG						PF:-0		LF:n	 !COMP:* LANG:FI
+# FINNISH DERIVATIONAL MORPHOLOGY
+	# Layer 1 
+		
+		# verbal
+		TA			:: V CAU/V PRL		 	 							PF:-tA		LF:cause LANG:FI ALLOMORPHS:ttA,ntA,tA,tU,uTA
+		ile			:: V FREQ/V	PRL 									PF:-ile		LF:freq LANG:FI -pCOMP:FREQ/V ALLOMORPHS:ile,ele,skele,skentele
+		UTU			:: V REFL/V	PRL										PF:-utu		LF:refl LANG:FI	-pCOMP:REFL/V -pCOMP:CLASS/INTR ALLOMORPHS:U,tU,itU,istU,elehti,VntU
+		AhtA		:: V MOM/V PRL										PF:-AhtA	LF:mom	LANG:FI -pCOMP:PRL ALLOMORPHS:AhtA,stA,hTU,Aise,ehti
+		a			:: V V/V PRL										PF:-a		LF:event LANG:FI !pCOMP:N ALLOMORPHS:A,tA
+		
+		# nominal
+		U			:: N EVENT/N PRL									PF:-U		LF:action	LANG:FI !pCOMP:V ALLOMORPHS:o,u
+		e			:: N EVENT/N PRL									PF:-e		LF:event	LANG:FI !pCOMP:V ALLOMORPHS:e
+		ntO			:: N PRL											PF:-ntO		LF:thing	LANG:FI !pCOMP:N ALLOMORPHS:ntO
+		jA			:: N PRL											PF:-jA		LF:doer		LANG:FI !pCOMP:V ALLOMORPHS:jA
+		stO			:: N PRL											PF:-stO		LF:group	LANG:FI !pCOMP:N ALLOMORPHS:stO
+		lA			:: N PRL											PF:-lA		LF:place	LANG:FI ALLOMORPHS:lA
+		in			:: N PRL											PF:-in		LF:instr	LANG:FI ALLOMORPHS:in
+		mO			:: N PRL											PF:-mO		LF:place	LANG:FI ALLOMORPHS:mO
+		ntA			:: N PRL											PF:-ntA		LF:action	LANG:FI !pCOMP:V ALLOMORPHS:ntA,nti,ntO
+		lAinen		:: N PRL											PF:-lAinen	LF:person	LANG:FI !pCOMP:N ALLOMORPHS:lAinen
+		ri			:: N PRL											PF:-ri		LF:person	LANG:FI !pCOMP:V ALLOMORPHS:ri
+
+	# Layer 2
+		
+		# verbal
+		A/inf		:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-tA 		LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event !COMP:* LANG:FI PROBE:V
+		VA/inf  	:: VA/inf 		EF	Inf T   ARG	+ΦLF,ΦPF -ΦLF,ΦPF	PF:-vAn 	LF:to -SPEC:N !COMP:*  PROBE:V LANG:FI
+		ESSA/inf 	:: ESSA/inf		EF	Inf Adv ARG  					PF:-essA 	LF:while !COMP:* PROBE:V LANG:FI TAIL:T
+		TUA/inf		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	LF:after !COMP:* PROBE:V LANG:FI TAIL:T
+		KSE/inf		:: KSE/inf		EF	Inf Adv ARG	-ΦLF !ΦPF			PF:-kse 	LF:for !COMP:* PROBE:V LANG:FI TAIL:T
+		E/inf		:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  			PF:-en 		LF:by !COMP:* PROBE:V LANG:FI TAIL:T
+		MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAssA 	LF:in !COMP:* PROBE:V LANG:FI TAIL:V	MA/inf
+		MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAttA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:T MA/inf
+		MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAllA 	LF:by !COMP:* PROBE:V LANG:FI TAIL:V MA/inf
+		MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 			PF:-mAstA 	LF:without !COMP:* PROBE:V LANG:FI TAIL:CLASS/TR,SEMCLASS_denied_event MA/inf
+		MA.ill/inf	:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	LF:to SEM/desired_event !COMP:* PROBE:V LANG:FI adjoinable TAIL:CLASS/TR,SEMCLASS_desired_event MA/inf
+		# Includes also v, T
+	
+	# Layer 2
+		
+		# nominal
+		minen		:: n 			EF			ARG 					PF:-minen	LF:ing		!COMP:V LANG:FI
+		US			:: n			EF			ARG						PF:-UUS		LF:prprt	!COMP:* LANG:FI
+		tAr			:: N FEM/N											PF:-tAr		LF:fem		LANG:FI	!pCOMP:N ALLOMORPHS:tAr
+		nen			:: N DIM/N											PF:-nen		LF:dim		LANG:FI !COMP:N
+		mA			:: N PRL											PF:-mA		LF:result	LANG:FI !COMP:N ALLOMORPHS:mA
+		
+		# Adjectival
+		MA/A		:: MA/A 		EF	Inf		ARG  +ΦLF,ΦPF 			PF:-mA 		LF:Arel	LANG:FI -PROBE:N -PROBE:T/fin PROBE:V -SPEC:N COMP:V COMP:v !COMP:*
+		VA/A		:: VA/A				Inf			 -ΦPF -ΦLF			PF:-vA 		LF:Prel	LANG:FI -PROBE:N  PROBE:V !COMP:* COMP:V COMP:v
+		mAinen		:: A			EF	INF		ARG						PF:mAinen	LF:kind	LANG:FI	!COMP:N
+		llinen		:: A 												PF:-llinen	LF:owner !COMP:N LANG:FI !pCOMP:N ALLOMORPHS:llinen
+		inen		:: A												PF:-inen	LF:quality !COMP:N LANG:FI
+		lAinen		:: A												PF:-lAinen	LF:similar !COMP:N LANG:FI
+		hkO			:: A												PF:-hkO		LF:dim		!COMP:A LANG:FI
+		mAtOn		:: A												PF:-mAtOn	LF:polarity	!COMP:V LANG:FI
+		
+		# Special purpose elements
+		mista		:: n			EF			ARG						PF:-mista	LF:ing	 	!COMP:* LANG:FI
+		n0			:: n			 EF			ARG						PF:-0		LF:n	 !COMP:* LANG:FI
 
 # Italian
 ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin nonadjoinable 

@@ -18,7 +18,7 @@ class PhraseStructure:
     chain_index = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
-                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere,
+                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.pearl(),
                                     'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
                                     'sustain': lambda x: True,
@@ -409,6 +409,22 @@ class PhraseStructure:
         if 'EF' not in self.features and self.edge() and not self.edge()[0].head().check({'Adv'}):
             if not ((self.edge()[0] == self.sister() and self.check_some({'!COMP:φ', 'COMP:φ'})) or self.check_some({'SPEC:φ', '!SPEC:φ'})):
                 return True
+
+    def pearl_test(self):
+        if self.has_affix() and not self.right.find_me_elsewhere:
+            if not self.pearl():
+                return True     # A complex head at LF must be a keeper
+            else:
+                for head in [self] + self.get_affix_list()[0:-1]:
+                    for feature in head.features:
+                        if feature.startswith('!pCOMP:'):
+                            if feature.split(':')[1] == '*' and not head.right:
+                                return True
+                            if feature.split(':')[1] not in head.right.features:
+                                return True
+                        if feature.startswith('-pCOMP:'):
+                            if feature.split(':')[1] in head.right.features:
+                                return True
 
     # Projection principle and thematic roles ---------------------------------------------------------------------
     def nonthematic(self):
@@ -1465,3 +1481,6 @@ class PhraseStructure:
 
     def appropriate_argument(self):
         return not self.head().check({'pro_'}) and (self.referential() or self.expletive())
+
+    def pearl(self):
+        return 'PRL' in self.features

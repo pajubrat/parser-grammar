@@ -70,7 +70,7 @@ class LexicalInterface:
         if phonological_entry in self.surface_lexicon:
             lexical_items_lst = [lex.copy().set_concat(concat) for lex in self.surface_lexicon[phonological_entry] if self.language_match(lex)]
         else:
-            lexical_items_lst = [self.morphological_parse(phonological_entry)]
+            lexical_items_lst = [self.unknown_word(phonological_entry)]
         return lexical_items_lst
 
     def concatenation(self, phonological_entry):
@@ -79,10 +79,10 @@ class LexicalInterface:
         else:
             return phonological_entry, ' '
 
-    def morphological_parse(self, phonological_entry):
+    def unknown_word(self, phonological_entry):
         lex = LexicalItem()
-        lex.features = {'PF:?', '?'}
-        lex.morphological_chunk = phonological_entry      #   This is the parsing simulation
+        lex.features = {f'PF:{phonological_entry}', '?'}
+        lex.morphological_chunk = phonological_entry
         lex.internal = True
         lex.name = '?'
         return lex

@@ -111,7 +111,6 @@ class SpeakerModel:
             for lex in retrieved_lexical_items:
 
                 # Recursive branching: 1) morphological parsing, 2) inflection, 3) stream into syntax
-
                 # 1. Morphological parsing if applicable
                 if lex.morphological_chunk:
                     parsed_input_list = self.morphology.morphological_parse(ps, lex, lst.copy(), index, inflection_buffer)

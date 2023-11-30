@@ -12,11 +12,11 @@ class Morphology:
     # todo: this function is temporary placeholder
     def morphological_parse(self, ps, lex, input_word_list, index, inflection_buffer):
         log(f'\n\n\tMorphological decomposition of /{input_word_list[index]}/ ~ ')
-        lex = self.Aux_inversion(lex)                                         #  todo: not yet correct formulation
+        lex = self.Aux_inversion(lex)                                              #  todo: not yet correct formulation
         morpheme_list = self.decompose(lex.morphological_chunk)
-        morpheme_list = self.handle_incorporation(lex, morpheme_list)                  #  todo: incorporation remains to be implemented
-        log(f'{morpheme_list} ')
+        morpheme_list = self.handle_incorporation(lex, morpheme_list)              #  todo: incorporation remains to be implemented
         self.apply_mirror_principle(input_word_list, morpheme_list, index)
+        log(f'{input_word_list}')
         return input_word_list
 
     def handle_incorporation(self, current_lexical_item, morpheme_list_):
