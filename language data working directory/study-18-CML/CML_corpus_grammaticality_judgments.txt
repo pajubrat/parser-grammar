@@ -1,0 +1,923 @@
+@  {'author': 'Anon', 'year': 2023, 'date': 'March', 'study_id': 15, 'study_folder': 'language data working directory/study-18-CML', 'lexicon_folder': 'language data working directory/lexicons', 'test_corpus_folder': 'language data working directory/study-18-CML', 'test_corpus': 'CML_corpus.txt', 'numeration': 'CML_numeration.txt', 'only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': False, 'logging': True, 'use_numeration': False, 'datatake_full': False, 'image_parameter_show_words': True, 'datatake_images': False, 'image_parameter_nolabels': False, 'image_parameter_spellout': False, 'image_parameter_show_sentences': False, 'image_parameter_show_glosses': True, 'image_parameter_mark_adjuncts': False, 'image_parameter_stop_after_image': False, 'image_parameter_show_φPs_as_DPs': True, 'image_parameter_show_φPs_as_NPs': False, 'image_parameter_ignore_internal_structure_of_DPs': False, 'show_features': ['&P'], 'Agree': 'revised', 'phase_heads': {'C', 'FORCE', 'Inf', 'v'}, 'phase_heads_exclude': {'φ', 'v-', 'TO/inf'}, 'calculate_assignments': False, 'calculate_pragmatics': False, 'calculate_thematic_roles': True, 'project_objects': False, 'generate_argument_links': True, 'calculate_predicates': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'positive_spec_selection': 100, 'negative_spec_selection': -100, 'break_head_comp_relations': -100, 'negative_tail_test': -100, 'positive_head_comp_selection': 100, 'negative_head_comp_selection': -100, 'negative_semantics_match': -100, 'lf_legibility_condition': -100, 'negative_adverbial_test': -100, 'positive_adverbial_test': 100, 'test_corpus_file': 'default_corpus.txt', 'phase_heads_excluded': set()}
+@  2023-11-30 21:12:05.920995
+@  Test sentences language data working directory\study-18-CML\CML_corpus.txt.
+@  Logs language data working directory\study-18-CML\CML_corpus_log.txt.
+@  Lexicon language data working directory\lexicons\lexicon.txt.
+@  Redundancy rules language data working directory\lexicons\redundancy_rules.txt.
+@  Universal morphemes language data working directory\lexicons\ug_morphemes.txt.
+@ 
+
+& 0. Algorithm and implementation
+
+& 1. Agreement in English
+
+& 1.1 Past tense
+
+		1.  I admired Mary 
+
+		2.  you admired Mary 
+
+		3.  he admired Mary 
+
+		4.  she admired Mary 
+
+		5.  the cat admired Mary 
+
+		6.  we admired Mary 
+
+		7.  you(pl) admired Mary 
+
+		8.  they admired Mary 
+
+& 1.2 Present tense
+
+		9.  I admire Mary 
+
+		10.  you admire Mary 
+
+		11. *he admire Mary 
+
+		12. *she admire Mary 
+
+		13. *the cat admire Mary 
+
+		14.  we admire Mary 
+
+		15.  you admire Mary 
+
+		16.  they admire Mary 
+
+		17. *I admires Mary 
+
+		18. *you admires Mary 
+
+		19.  he admires Mary 
+
+		20.  she admires Mary 
+
+		21.  the cat admires Mary 
+
+		22. *we admires Mary 
+
+		23. *you admires Mary 
+
+		24. *they admires Mary 
+
+& 2. Agreement in Finnish
+
+& 2.1 Finite verb
+
+& 2.1.1 First person singular
+
+		25.  minä lähden 
+	'I.nom leave.prs.1sg'
+
+		26. *minä lähdet 
+	'I.nom leave.prs.2sg'
+
+		27. *minä lähtee 
+	'I.nom leave.prs.3sg'
+
+		28. *minä lähdemme 
+	'I.nom leave.prs.1pl'
+
+		29. *minä lähdette 
+	'I.nom leave.prs.2pl'
+
+		30. *minä lähtevät 
+	'I.nom leave.prs.3pl'
+
+& 2.1.2 Second person singular
+
+		31. *sinä lähden 
+	'you.nom leave.prs.1sg'
+
+		32.  sinä lähdet 
+	'you.nom leave.prs.2sg'
+
+		33. *sinä lähtee 
+	'you.nom leave.prs.3sg'
+
+		34. *sinä lähdemme 
+	'you.nom leave.prs.1pl'
+
+		35. *sinä lähdette 
+	'you.nom leave.prs.2pl'
+
+		36. *sinä lähtevät 
+	'you.nom leave.prs.3pl'
+
+& 2.1.3 Third person singular
+
+		37. *hän lähden 
+	'he.nom leave.prs.1sg'
+
+		38. *hän lähdet 
+	'he.nom leave.prs.2sg'
+
+		39.  hän lähtee 
+	'he.nom leave.prs.3sg'
+
+		40. *hän lähdemme 
+	'he.nom leave.prs.1pl'
+
+		41. *hän lähdette 
+	'he.nom leave.prs.2pl'
+
+		42. *hän lähtevät 
+	'he.nom leave.prs.3pl'
+
+		43. *se lähden 
+	'it.nom leave.prs.1sg'
+
+		44. *se lähdet 
+	'it.nom leave.prs.2sg'
+
+		45.  se lähtee 
+	'it.nom leave.prs.3sg'
+
+		46. *se lähdemme 
+	'it.nom leave.prs.1pl'
+
+		47. *se lähdette 
+	'it.nom leave.prs.2pl'
+
+		48. *se lähtevät 
+	'it.nom leave.prs.3pl'
+
+		49. *mies lähden 
+	'man.nom leave.prs.1pl'
+
+		50. *mies lähdet 
+	'man.nom leave.prs.2pl'
+
+		51.  mies lähtee 
+	'man.nom leave.prs.3pl'
+
+		52. *mies lähdemme 
+	'man.nom leave.prs.1pl'
+
+		53. *mies lähdette 
+	'man.nom leave.prs.2pl'
+
+		54. *mies lähtevät 
+	'man.nom leave.prs.3pl'
+
+& 2.1.4 First person plural
+
+		55. *me lähden 
+	'we.nom leave.prs.1sg'
+
+		56. *me lähdet 
+	'we.nom leave.prs.2sg'
+
+		57. *me lähtee 
+	'we.nom leave.prs.3sg'
+
+		58.  me lähdemme 
+	'we.nom leave.prs.1pl'
+
+		59. *me lähdette 
+	'we.nom leave.prs.2pl'
+
+		60. *me lähtevät 
+	'we.nom leave.prs.3pl'
+
+& 2.1.5 Second person plural
+
+		61. *te lähden 
+	'you.nom leave.prs.1sg'
+
+		62. *te lähdet 
+	'you.nom leave.prs.2sg'
+
+		63. *te lähtee 
+	'you.nom leave.prs.3sg'
+
+		64. *te lähdemme 
+	'you.nom leave.prs.1pl'
+
+		65.  te lähdette 
+	'you.nom leave.prs.2pl'
+
+		66. *te lähtevät 
+	'you.nom leave.prs.3pl'
+
+& 2.1.6 Third person plural
+
+		67. *he lähden 
+	'they.nom leave.prs.1sg'
+
+		68. *he lähdet 
+	'they.nom leave.prs.2sg'
+
+		69. *he lähtee 
+	'they.nom leave.prs.3sg'
+
+		70. *he lähdemme 
+	'they.nom leave.prs.1pl'
+
+		71. *he lähdette 
+	'they.nom leave.prs.2pl'
+
+		72.  he lähtevät 
+	'they.nom leave.prs.3pl'
+
+		73. *ne_DP lähden 
+	'it(pl).nom leave.prs.1sg'
+
+		74. *ne_DP lähdet 
+	'it(pl).nom leave.prs.2sg'
+
+		75. *ne_DP lähtee 
+	'it(pl).nom leave.prs.3sg'
+
+		76. *ne_DP lähdemme 
+	'it(pl).nom leave.prs.1pl'
+
+		77. *ne_DP lähdette 
+	'it(pl).nom leave.prs.2pl'
+
+		78.  ne_DP lähtevät 
+	'it(pl).nom leave.prs.3pl'
+
+		79. *miehet lähden 
+	'men.nom leave.prs.1sg'
+
+		80. *miehet lähdet 
+	'men.nom leave.prs.2sg'
+
+		81. *miehet lähtee 
+	'men.nom leave.prs.3sg'
+
+		82. *miehet lähdemme 
+	'men.nom leave.prs.1pl'
+
+		83. *miehet lähdette 
+	'men.nom leave.prs.2pl'
+
+		84.  miehet lähtevät 
+	'men.nom leave.prs.3pl'
+
+& 2.2 Multiple agreement
+
+& 2.2.1 Singular participle
+
+		85.  minä olen lähtenyt 
+	'I.nom be.prs.1sg leave.prtc.sg'
+
+		86.  sinä olet lähtenyt 
+	'you.nom be.prs.2sg leave.prtc.sg'
+
+		87.  hän on lähtenyt 
+	'he.nom be.prs.3sg leave.prtc.sg'
+
+		88.  mies on lähtenyt 
+	'man.nom be.prs.3sg leave.prtc.sg'
+
+		89.  se on lähtenyt 
+	'it.nom be.prs.3sg leave.prtc.sg'
+
+		90. *me olemme lähtenyt 
+	'we.nom be.prs.1pl leave.prtc.sg'
+
+		91. *te olette lähtenyt 
+	'you.nom be.prs.2pl leave.prtc.sg'
+
+		92. *he ovat lähtenyt 
+	'they.nom be.prs.3pl leave.prtc.sg'
+
+		93. *ne ovat lähtenyt 
+	'they.nom be.prs.3pl leave.prtc.sg'
+
+& 2.2.2 Plural participle
+
+		94. *minä olen lähteneet 
+	'I.nom be.prs.1sg leave.prtc.pl'
+
+		95. *sinä olet lähteneet 
+	'you.nom be.prs.2sg leave.prtc.pl'
+
+		96. *hän on lähteneet 
+	'he.nom be.prs.3sg leave.prtc.pl'
+
+		97. *mies on lähteneet 
+	'man.nom be.prs.3sg leave.prtc.pl'
+
+		98. *se on lähteneet 
+	'it.nom be.prs.3sg leave.prtc.pl'
+
+		99.  me olemme lähteneet 
+	'we.nom be.prs.1pl leave.prtc.pl'
+
+		100.  te olette lähteneet 
+	'you.nom be.prs.2pl leave.prtc.pl'
+
+		101.  he ovat lähteneet 
+	'they.nom be.prs.3pl leave.prtc.pl'
+
+& 3. Passives and raising, successive-cyclic chain formation
+
+& 3.1 English personal passives
+
+		102.  I was admired^ 
+
+		103. *you was admired^ 
+
+		104.  he was admired^ 
+
+		105.  the cat was admired^ 
+
+		106. *we was admired^ 
+
+		107. *you(pl) was admired^ 
+
+		108. *they was admired^ 
+
+		109. *I were admired^ 
+
+		110.  you were admired^ 
+
+		111. *he were admired^ 
+
+		112. *the cat were admired^ 
+
+		113.  we were admired^ 
+
+		114.  you(pl) were admired^ 
+
+		115.  they were admired^ 
+
+& 3.2 Finnish impersonal passives
+
+		116.  aitaa maalataan 
+	'fence.par paint.prs.impass'
+
+		117.  aitoja maalataan 
+	'fence.par.pl paint.prs.impass'
+
+& 3.3 English raising
+
+		118.  John wants to_inf leave 
+
+		119. *they wants to_inf leave 
+
+		120.  John seems to_inf leave 
+
+		121. *they seems to_inf leave 
+
+		122. *John want to_inf leave 
+
+		123.  they want to_inf leave 
+
+		124. *John seem to_inf leave 
+
+		125.  they seem to_inf leave 
+
+& 4 Null subjects
+
+& Finnish null subjects
+
+		126.  ihailen Merjaa 
+	'admire.prs.1sg Merja.par'
+
+		127.  ihailet Merjaa 
+	'admire.prs.2sg Merja.par'
+
+		128.  ihailemme Merjaa 
+	'admire.prs.1pl Merja.par'
+
+		129.  ihailette Merjaa 
+	'admire.prs.2pl Merja.par'
+
+& English null subjects
+
+		130. *admire Mary 
+
+		131. *admires Mary 
+
+& Illicit, optional and obligatory AgreePF, controlled by feature [ΦPF]
+
+& Agreement not possible
+
+		132.  Seine virtaa kohti Pariisia 
+	'Seine.nom flow.prs.3sg towards Paris.par'
+
+		133. *Seine virtaa kohti#nsA Pariisia 
+	'Seine.nom flow.prs.3sg towards.px/3p Paris.par'
+
+& Agreement optional
+
+		134.  Seine virtaa sinun lähellä 
+	'Seine.nom flow.prs.3sg you.gen near'
+
+		135.  Seine virtaa sinun lähellä#si 
+	'Seine flow.prs.3sg you.gen near.px/2sg'
+
+& Agreement mandatory
+
+		136.  Merja pakkaa lähteäkse#An 
+	'Merja.nom pack.prs.3sg leave.kse/inf.px/3p'
+
+		137. *Merja pakkaa lähteäkse 
+	'Merja.nom pack.prs.3sg leave.kse/inf'
+
+& [ΦLF]
+
+& VA-infinitival
+
+		138.  tiesin Pekan_gen maalaavan aitaa 
+	'know.pst.1sg Pekka.gen paint.va/inf fence.par'
+
+& EPP
+
+& English
+
+		139.  John admires Mary 
+
+		140. *admires John Mary 
+
+		141. *admires Mary 
+
+		142. *does_T John admire* Mary 
+
+		143.  there was1 an accident 
+
+		144. *there were1 an accident 
+
+& Italian
+
+		145.  io dormo 
+
+		146.  dormo io 
+
+		147.  dormo 
+
+& Finnish
+
+& Adpositions (strong rule)
+
+		148.  Seine virtaa sinun lähellä[Φ] 
+	'Seine.nom flow.prs.3sg you.gen near'
+
+		149.  Seine virtaa sinun lähellä[Φ]#si 
+	'Seine.nom flow.prs.3sg you.gen near.px/2sg'
+
+		150.  Seine virtaa lähellä[Φ]#si 
+	'Seine.nom flow.prs.3sg near.px/2sg'
+
+		151. *Seine virtaa lähellä[Φ]#si sinun 
+	'Seine.nom flow.prs.3sg near.px/2sg you.gen'
+
+		152. *Seine virtaa lähellä[Φ] sinun 
+	'Seine.nom flow.prs.3sg near you.gen'
+
+		153. *Seine virtaa lähellä[Φ] 
+	'Seine.nom flow.prs.3sg near (you)'
+
+& Nonsubject fronting in finite clause
+
+		154.  Pekka ihailee Merjaa 
+	'Pekka.nom admire.prs.3sg Merja.par'
+
+		155.  Merjaa ihailee Pekka 
+	'Merja.par admire.prs.3sg Pekka.nom'
+
+		156. *ihailee Merjaa 
+	'admire.prs.3sg Merja.par'
+
+& Passives, raiding and successive-cyclic movement
+
+& English personal passives
+
+& Agreement/EPP
+
+		157.  Mary was admired^ 
+
+		158. *they was admired^ 
+
+		159. *Mary were admired^ 
+
+		160.  they were admired^ 
+
+		161. *was Mary admired^ 
+
+		162. *was they admired^ 
+
+		163. *were Mary admired^ 
+
+		164. *were they admired^ 
+
+		165. *was admired^ Mary 
+
+		166. *was admired^ they 
+
+		167. *were admired^ Mary 
+
+		168. *were admired^ they 
+
+& English raising
+
+& Want-infinitives for contrast
+
+		169.  John wants to^ leave 
+
+		170. *they wants to^ leave 
+
+& Agreement/EPP
+
+		171.  John seems to^ leave 
+
+		172. *they seems to^ leave 
+
+		173. *John seem to^ leave 
+
+		174.  they seem to^ leave 
+
+		175. *seems John to^ leave 
+
+		176. *seems they to^ leave 
+
+		177. *seem John to^ leave 
+
+		178. *seem they to^ leave 
+
+		179. *seems to^ John leave 
+
+		180. *seems to^ they leave 
+
+		181. *seem to^ John leave 
+
+		182. *seem to^ they leave 
+
+		183. *seems to^ leave John 
+
+		184. *seems to^ leave they 
+
+		185. *seem to^ leave John 
+
+		186. *seem to^ leave they 
+
+& Control and argument mapping
+
+& Finnish
+
+& Finite clause
+
+		187.  Pekka ihailee Merjaa 
+	'Pekka.nom admire.prs.3sg Merja.par'
+
+		188.  Merjaa ihailee Pekka 
+	'Merja.par admire.prs.3sg Pekka.nom'
+
+& Finite clause without subject (pro-drop)
+
+		189.  ihailen Merjaa 
+	'admire.prs.1sg Merja.par'
+
+& Finite clause, third person pro-drop
+
+		190. *ihailee Merjaa 
+	'admire.prs.3sg Merja.par'
+
+		191.  Pekka sanoi että ihailee Merjaa 
+	'Pekka.nom say.pst.3sg that admire.prs.3sg Merja.par'
+
+		192.  Pekka sanoi että EXPL ihailee Merjaa 
+	'Pekka.nom say.pst.3sg that expl admire.prs.3sg Merja.par'
+
+& English
+
+& Finite clause
+
+		193.  John admires Mary 
+
+		194.  I admire Mary 
+
+		195.  John admired Mary 
+
+		196.  I admired Mary 
+
+		197.  there was1 an accident 
+
+& Control
+
+		198.  John wants to^ leave 
+
+		199.  John wants Mary to^ leave 
+
+& Infinitival agreement
+
+& Agreemen forms (personal pronouns, used in conjunection with adpositions)
+
+		200.  Seine virtaa minun lähellä[Φ]#ni 
+	'Seine flows I.gen near.px/1sg'
+
+		201.  Seine virtaa sinun lähellä[Φ]#si 
+	'Seine flows you.gen near.px/2sg'
+
+		202.  Seine virtaa hänen lähellä[Φ]#An 
+	'Seine flows he.gen near.px/3p'
+
+		203.  Seine virtaa meidän lähellä[Φ]#mme 
+	'Seine flows we.gen near.px/3p'
+
+		204.  Seine virtaa teidän lähellä[Φ]#nne 
+	'Seine flows you.gen near.px/2pl'
+
+		205.  Seine virtaa heidän lähellä[Φ]#An 
+	'Seine flows they.gen near.px/3p'
+
+& Proper names, full DPs, nonhuman pronouns
+
+		206.  Seine virtaa sen lähellä[Φ] 
+	'Seine flows it.gen near'
+
+		207.  Seine virtaa Pekan_gen lähellä[Φ] 
+	'Seine flows Pekka.gen near.'
+
+		208.  Seine virtaa Pariisin lähellä[Φ] 
+	'Seine flows Paris.gen near'
+
+		209. *Seine virtaa sen lähellä[Φ]#An 
+	'Seine flows it.gen near'
+
+		210. *Seine virtaa Pekan_gen lähellä[Φ]#An 
+	'Seine flows Pekka.gen near.'
+
+		211. *Seine virtaa Pariisin lähellä[Φ]#An 
+	'Seine flows Paris.gen near'
+
+& Agreement mismatches
+
+& First person singular subject
+
+		212.  Seine virtaa minun lähellä[Φ]#ni 
+	'Seine flows I.gen near.px/1sg'
+
+		213. *Seine virtaa minun lähellä[Φ]#si 
+	'Seine flows I.gen near.px/2sg'
+
+		214. *Seine virtaa minun lähellä[Φ]#An 
+	'Seine flows I.gen near.px/3p'
+
+		215. *Seine virtaa minun lähellä[Φ]#mme 
+	'Seine flows I.gen near.px/1pl'
+
+		216. *Seine virtaa minun lähellä[Φ]#nne 
+	'Seine flows I.gen near.px/2pl'
+
+		217. *Seine virtaa minun lähellä[Φ]#An 
+	'Seine flows I.gen near.px/3p'
+
+& Second person singular subject
+
+		218. *Seine virtaa sinun lähellä[Φ]#ni 
+	'Seine flows you.gen near.px/1sg'
+
+		219.  Seine virtaa sinun lähellä[Φ]#si 
+	'Seine flows you.gen near.px/2sg'
+
+		220. *Seine virtaa sinun lähellä[Φ]#An 
+	'Seine flows you.gen near.px/3p'
+
+		221. *Seine virtaa sinun lähellä[Φ]#mme 
+	'Seine flows you.gen near.px/1pl'
+
+		222. *Seine virtaa sinun lähellä[Φ]#nne 
+	'Seine flows you.gen near.px/2pl'
+
+		223. *Seine virtaa sinun lähellä[Φ]#An 
+	'Seine flows you.gen near.px/3p'
+
+& Third person singular subject
+
+		224. *Seine virtaa hänen lähellä[Φ]#ni 
+	'Seine flows he.gen near.px/1sg'
+
+		225. *Seine virtaa hänen lähellä[Φ]#si 
+	'Seine flows he.gen near.px/2sg'
+
+		226.  Seine virtaa hänen lähellä[Φ]#An 
+	'Seine flows he.gen near.px/3p'
+
+		227. *Seine virtaa hänen lähellä[Φ]#mme 
+	'Seine flows he.gen near.px/1pl'
+
+		228. *Seine virtaa hänen lähellä[Φ]#nne 
+	'Seine flows he.gen near.px/2pl'
+
+		229.  Seine virtaa hänen lähellä[Φ]#An 
+	'Seine flows he.gen near.px/3p'
+
+& First person plural subject
+
+		230. *Seine virtaa meidän lähellä[Φ]#ni 
+	'Seine flows we.gen near.px/1sg'
+
+		231. *Seine virtaa meidän lähellä[Φ]#si 
+	'Seine flows we.gen near.px/2sg'
+
+		232. *Seine virtaa meidän lähellä[Φ]#An 
+	'Seine flows we.gen near.px/3p'
+
+		233.  Seine virtaa meidän lähellä[Φ]#mme 
+	'Seine flows we.gen near.px/1pl'
+
+		234. *Seine virtaa meidän lähellä[Φ]#nne 
+	'Seine flows we.gen near.px/2pl'
+
+		235. *Seine virtaa meidän lähellä[Φ]#An 
+	'Seine flows we.gen near.px/3p'
+
+& Second person plural subject
+
+		236. *Seine virtaa teidän lähellä[Φ]#ni 
+	'Seine flows you.gen near.px/1sg'
+
+		237. *Seine virtaa teidän lähellä[Φ]#si 
+	'Seine flows you.gen near.px/2sg'
+
+		238. *Seine virtaa teidän lähellä[Φ]#An 
+	'Seine flows you.gen near.px/3p'
+
+		239. *Seine virtaa teidän lähellä[Φ]#mme 
+	'Seine flows you.gen near.px/1pl'
+
+		240.  Seine virtaa teidän lähellä[Φ]#nne 
+	'Seine flows you.gen near.px/2pl'
+
+		241. *Seine virtaa teidän lähellä[Φ]#An 
+	'Seine flows you.gen near.px/3p'
+
+& Third person plural subject
+
+		242. *Seine virtaa heidän lähellä[Φ]#ni 
+	'Seine flows they.gen near.px/1sg'
+
+		243. *Seine virtaa heidän lähellä[Φ]#si 
+	'Seine flows they.gen near.px/2sg'
+
+		244.  Seine virtaa heidän lähellä[Φ]#An 
+	'Seine flows they.gen near.px/3p'
+
+		245. *Seine virtaa heidän lähellä[Φ]#mme 
+	'Seine flows they.gen near.px/1pl'
+
+		246. *Seine virtaa heidän lähellä[Φ]#nne 
+	'Seine flows they.gen near.px/2pl'
+
+		247.  Seine virtaa heidän lähellä[Φ]#An 
+	'Seine flows they.gen near.px/3p'
+
+& Proper names, full DPs, nonhuman pronouns
+
+		248. *Seine virtaa Pekan_gen lähellä[Φ]#ni 
+	'Seine flows Pekka.gen near.px/1sg'
+
+		249. *Seine virtaa Pekan_gen lähellä[Φ]#si 
+	'Seine flows Pekka.gen near.px/2sg'
+
+		250. *Seine virtaa Pekan_gen lähellä[Φ]#An 
+	'Seine flows Pekka.gen near.px/3p'
+
+		251. *Seine virtaa Pekan_gen lähellä[Φ]#mme 
+	'Seine flows Pekka.gen near.px/3p'
+
+		252. *Seine virtaa Pekan_gen lähellä[Φ]#nne 
+	'Seine flows Pekka.gen near.px/2pl'
+
+		253. *Seine virtaa Pekan_gen lähellä[Φ]#An 
+	'Seine flows Pekka.gen near.px/3p'
+
+		254. *Seine virtaa sen lähellä[Φ]#ni 
+	'Seine flows it.gen near.px/1sg'
+
+		255. *Seine virtaa sen lähellä[Φ]#si 
+	'Seine flows Pekka.gen near.px/2sg'
+
+		256. *Seine virtaa sen lähellä[Φ]#An 
+	'Seine flows Pekka.gen near.px/3p'
+
+		257. *Seine virtaa sen lähellä[Φ]#mme 
+	'Seine flows Pekka.gen near.px/3p'
+
+		258. *Seine virtaa sen lähellä[Φ]#nne 
+	'Seine flows Pekka.gen near.px/2pl'
+
+		259. *Seine virtaa sen lähellä[Φ]#An 
+	'Seine flows Pekka.gen near.px/3p'
+
+		260. *Seine virtaa Pariisin lähellä[Φ]#ni 
+	'Seine flows Paris.gen near.px/1sg'
+
+		261. *Seine virtaa Pariisin lähellä[Φ]#si 
+	'Seine flows Paris.gen near.px/2sg'
+
+		262. *Seine virtaa Pariisin lähellä[Φ]#An 
+	'Seine flows Paris.gen near.px/3p'
+
+		263. *Seine virtaa Pariisin lähellä[Φ]#mme 
+	'Seine flows Paris.gen near.px/1pl'
+
+		264. *Seine virtaa Pariisin lähellä[Φ]#nne 
+	'Seine flows Paris.gen near.px/2pl'
+
+		265. *Seine virtaa Pariisin lähellä[Φ]#An 
+	'Seine flows Paris.gen near.px/3p'
+
+& VA-infinitive
+
+& Agreement class (Φ = 1)
+
+		266.  Merja uskoi minun lähtevän 
+	'Merja.nom believed I.gen leave.VA/inf'
+
+		267.  Merja uskoi lähteväni 
+	'Merja.nom believe.pst.3sg leave.VA/inf.px/1sg'
+
+		268. *Merja uskoi minun lähteväni 
+	'Merja.nom believe.pst.3sg I.gen leave.VA/inf.px/1sg'
+
+		269. *Merja uskoi lähtevän 
+	'Merja.nom believe.pst.3sg leave.VA/inf'
+
+& EPP behavior (chain condition obligatory, because S and agreement do not co-occur)
+
+		270.  Pekka sanoi minun maalaavan aitaa 
+	'Pekka said I.gen paint.VA/inf fence.par'
+
+		271. *Pekka sanoi aitaa maalaavan minun 
+	'Pekka said fence.par paint.VA/inf I.gen'
+
+& ESSA-infinitive
+
+& Agreement class (*,*)
+
+		272.  Pekka nauraa minun laulaessa 
+	'Pekka.nom laugh.prs.3sg I.gen sing.essa/inf'
+
+		273.  Pekka nauraa laulaessa#ni 
+	'Pekka.nom laugh.prs.3sg sing.essa.px/1sg'
+
+		274.  Pekka nauraa minun laulaessa#ni 
+	'Pekka.nom laugh.prs.3sg I.gen sing.essa/inf.px/1sg'
+
+		275.  Pekka nauraa laulaessa 
+	'Pekka.nom laugh.prs.3sg sing.essa/inf'
+
+& EPP behavior (chain condition obligatory)
+
+		276. *Pekka nauraa laulaessa minun 
+	'Pekka.nom laugh.prs.3sg sing.essa/inf I.gen.'
+
+		277. *Pekka nauraa laulaessa#ni minun 
+	'Pekka.nom laugh.prs.3sg sing.essa/inf.px/1sg I.gen'
+
+& A-infinitive, order-class
+
+& Agreement class (*,ΦLF)
+
+		278.  Pekka käski minun lähteä 
+	'Pekka.nom order.pst.3sg I.gen leave.a/inf'
+
+		279. *Pekka käski lähteä#ni 
+	'Pekka order.pst.3sg leave.a/inf.px/1sg'
+
+		280. *Pekka käski minun lähteä#ni 
+	'Pekka.nom order.pst.3sg I.gen leave.a/inf.px/1sg'
+
+		281. *Pekka käski lähteä 
+	'Pekka.nom order.pst.3sg leave.a/inf'
+
+& EPP-behavior (chain condition obligatory)
+
+		282. *Pekka käski lähteä minun 
+	'Pekka.nom order.pst.3sg leave.a/inf I.gen'
+
+		283. *Pekka käski lähteä#ni minun 
+	'Pekka.nom order.pst.3sg leave.a/inf.px/1sg I.gen'
+
+& KSE-infinitive
+
+& Agreement class (ΦPF,-ΦLF)
+
+		284. *Pekka pukee hänen lähteäkse 
+	'Pekka dress he.gen leave.kse/inf'
+
+		285.  Pekka pukee lähteäkse#An 
+	'Pekka.nom dress.prs.3sg leave.kse/inf.px/1sg'
+
+		286. *Pekka pukee hänen lähteäkse#An 
+	'Pekka.nom dress.prs.3sg he.gen leave.kse/inf.px/1sg'
+
+		287. *Pekka pukee lähteäkse 
+	'Pekka.nom dress.prs.3sg leave.kse/inf.px/3p'
+
+& EPP-behavior (chain condition obligatory)
+
+		288. *Pekka pukee lähteäkse#An hänen 
+	'Pekka.nom dress.prs.3sg leave.kse/inf.px/3p he.gen'
+
+		289. *Pekka pukee lähteäkse hänen 
+	'Pekka.nom dress.prs.3sg leave.kse/inf he.gen'

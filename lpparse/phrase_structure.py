@@ -18,7 +18,7 @@ class PhraseStructure:
     chain_index = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
-                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.pearl(),
+                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.externally_merged_head(),
                                     'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
                                     'sustain': lambda x: True,
@@ -412,7 +412,7 @@ class PhraseStructure:
 
     def pearl_test(self):
         if self.has_affix() and not self.right.find_me_elsewhere:
-            if not self.pearl():
+            if not self.externally_merged_head():
                 return True     # A complex head at LF must be a keeper
             else:
                 for head in [self] + self.get_affix_list()[0:-1]:
@@ -1482,5 +1482,5 @@ class PhraseStructure:
     def appropriate_argument(self):
         return not self.head().check({'pro_'}) and (self.referential() or self.expletive())
 
-    def pearl(self):
-        return 'PRL' in self.features
+    def externally_merged_head(self):
+        return 'EHM' in self.features
