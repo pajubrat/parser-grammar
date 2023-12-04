@@ -47,7 +47,7 @@ CLASS/TR 		:: !COMP:* -COMP:P COMP:φ -COMP:Adv
 CLASS/INTR 		:: -COMP:φ -COMP:EXPL SPEC:φ COMP:P
 CLASS/DITR 		:: !COMP:* SPEC:φ COMP:φ
 PHI_N			:: -COMP:*
-PRL				:: -ΦPF θ SPEC:φ !pCOMP:θ -pCOMP:P !pCOMP:*
+EHM				:: -ΦPF θ SPEC:φ !wCOMP:θ -wCOMP:P
 
 # Nouns and nounlike elements
 R:REF:PROPER_NAME :: -COMP:Inf
@@ -69,9 +69,15 @@ LANG:FI T/fin			:: Fin*
 LANG:FI Neg/fin			:: Fin*
 LANG:FI Fin K			:: PF:-Vn
 
+LANG:FI EHM				:: PC:#X#
+LANG:FI V				:: PC:X#
+LANG:FI inflectional	:: PC:#X
+LANG:FI T				:: PC:#X
+LANG:FI v				:: PC:#X
+
 # English spellout
 LANG:EN T prs			:: PF:T
-LANG:EN T pst			:: PF:-ed PER ΦPF
+LANG:EN T pst			:: PF:-ed PER ΦPF PC:#X
 
 # Italian spellout
 LANG:IT T prs			:: PF:-0

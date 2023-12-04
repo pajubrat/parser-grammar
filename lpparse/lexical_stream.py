@@ -11,10 +11,11 @@ class LexicalStream:
         log(f'\n\n\tNext morph {lex}')
         const = PhraseStructure()
         const.features = lex.features
-        const.concatenation = lex.concatenation
         const.features.add('§' + str(self.consume_id()))
         const.features = self.lexicon.apply_redundancy_rules(const.features | inflectional_buffer)
         self.speaker_model.narrow_semantics.pragmatic_pathway.allocate_attention(const)
+        if lex.onset == '#':
+            const.internal = True
         return const
 
     def consume_id(self):

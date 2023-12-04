@@ -1,0 +1,283 @@
+
+& 0. Preliminaries
+
+	& 0.1 Morphological boundness
+	
+		& 0.1.1 Bound morphemes
+
+			& T/fin + inflection
+			
+				*Sirkku T/fin#prs#[V] laula-
+				'Sirkku prs.3sg sing'
+				
+				Sirkku laula-#T/fin#prs#[V]
+				'Sirkku.nom sing-prs.3sg'
+			
+			& Inflection
+			
+				*Sirkku [V] laula-#T/fin#prs
+				'Sirkku.nom 3sg sing-prs'
+			
+				*Sirkku [V] T/fin#prs laula-
+				'Sirkku.nom 3sg prs sing'
+				
+			& Causative
+			
+				*Sirkku T/fin#prs#[V] TA laula-
+				'Sirkku.nom prs.3sg cau sing'
+				
+				Sirkku laula-#TA#T/fin#prs#[V]
+				'Sirkku.nom sing-cau-prs-3sg'
+			
+			& Frequentive
+			
+				*Sirkku T/fin#prs#[V] skele laula-
+				'Sirkku prs.3sg freq sing
+				
+				Sirkku laula-#skele#T/fin#prs#[V]
+				'Sirkku.nom sing-freq-prs-3sg'
+			
+			& Reflexive
+					
+				*sukka T/fin#prs#[V] U kuiva-
+				'sock.nom prs.3sg relf dry'
+				
+				sukka kuiva-#U#T/fin#prs#[V]
+				'sock dry-refl-prs-3sg'
+
+			& small verb v
+
+				*Sirkku T/fin#prs#[V] v kuiva- sukkaa
+				'Sirkku.nom prs.3sg v dry sock.par'
+				
+				Sirkku kuiva-#v#T/fin#prs#[V] sukkaa
+				'Sirkku.nom dry-prs-3sg sock.par'
+			
+			& A-infinitive
+			
+				*Sirkku haluaa A/inf laula-
+				'Sirkku.nom want.prs.3sg A/inf sing'
+				
+				Sirkku haluaa laula-#A/inf
+				'Sirkku.nom want.prs.3sg sing-a/inf'
+	
+& 1. Inner verbal derivation 
+
+	& 1.1 First layer
+
+		& Causative (CAU)
+			
+			& Verbal stems (intr, tr)
+		
+				Pekka lue-#TA#v#T/fin#prs#[V] kirjaa
+				'Pekka read-cau-prs-3sg book.par'
+				
+				Pekka kuiva-#TA#T/fin#prs#[V] sukkia
+				'Pekka dry-cau-prs-3sg sock.pl.par'
+				
+			& Nominal stem
+
+				Pekka köy-#TA#T/fin#prs#[V] venettä
+				'Pekka.nom rope-cau-prs-3sg book.par'
+		
+		& Frequentive (FREQ)
+			
+			& Verbal stem (intr, tr)
+			
+				Pekka laula-#skele#T/fin#prs#[V]
+				'Pekka.nom sing-freq-prs-3sg'
+			
+				Pekka lue-#skele#v#T/fin#prs#[V] kirjaa
+				'Pekka read-freq-prs-3sg book.par'
+			
+			& Nominal stem
+			
+				Pekka vene-#ile#T/fin#prs#[V]
+				'Pekka.nom boat-freq-prs.3sg'
+				
+		& Reflexive (REFL)
+		
+			& Verbal stems (intr, tr)
+			
+				*kirja laula-#U#T/fin#prs#[V]
+				'book.nom read-refl-prs-3sg
+			
+				sukka kuiva-#U#T/fin#prs#[V]
+				'sock.nom dry-relf-prs-3sg
+				
+			& Nominal stem
+			
+				Pekka vene-#UTU#T/fin#prs#[V]
+				'Pekka.nom boat-refl-prs-3sg (Pekka becomes a boat)'
+		
+		& Semelfactive (SEM)
+		
+			& Verbal stems (intr, tr)
+			
+				Pekka hypä-#AhtA#T/fin#prs#[V]
+				'Pekka.nom jump-sem-prs-3sg'
+	
+				*Pekka kuiva-#AhtA#T/fin#prs#[V] sukkia
+				'Pekka dry-sem-prs-3sg sock.pl.par'
+		
+			& Nominal stem
+
+				*Pekka vene-#AhtA#T/fin#prs#[V]
+				'Pekka boat-sem-prs-3sg'
+
+	& 1.2 Second layer
+	
+		& Causative
+		
+			& Causative stem (CAU + CAU)
+
+				Pekka lue-#TA#TA#v#T/fin#prs#[V] kirjaa
+				'Pekka.nom read-cau-cau-prs-3sg book.par'
+
+			& Causative iteration (CAU x n)
+
+				Pekka lue-#TA#TA#TA#v#T/fin#prs#[V] kirjaa
+				'Pekka.nom read-cau-cau-cau-prs-3sg book.par'
+
+			& Frequentive stem (FREQ + CAU)
+			
+				Pekka lue-#skele#TA#v#T/fin#prs#[V] kirjaa
+				'Pekka.nom read-freq-cau-prs-3sg book.par'
+				
+			& Reflexive stem (REFL + CAU)
+			
+				Sirkku kuiva-#U#TA#v#T/fin#prs#[V] sukkia
+				'Sirkku.nom dry-refl-cau-prs-3sg sock.pl.par 
+				
+			& Semelfactive stem (SEM + CAU)
+			
+				Pekka hypä-#AhtA#TA#T/fin#prs#[V] Merjaa
+				'Pekka.nom jump-sem-cau-prs-3sg Merja.par'
+				
+		& Frequentive
+		
+			& Causative stem (CAU + FREQ)
+			
+				Pekka laula-#TA#ele#T/fin#prs#[V] Merjaa
+				'Pekka.nom sing-cau-freq-prs-3sg Merja.par'
+				
+			& Frequentive stem (FREQ + FREQ)
+				
+				*Pekka laula-#ele#ele#T/fin#prs#[V]
+				'Pekka.nom sing-freq-freq-prs-3sg'
+			
+			& Reflexive stem (REFL + FREQ)
+			
+				sukka kuiva-#U#ile#T/fin#prs#[V]
+				'sock.nom dry-refl-freq-prs-3sg (the socks dries itself frequently)'
+				
+			& Semefactive stem (SEM + FREQ)
+			
+				Pekka nuku-#AhtA#ele#T/fin#prs#[V]
+				'Pekka sleep-sem-freq-prs-3sg'
+				
+		& Reflexive
+		
+			& Causative stem (CAU + REFL)
+			
+				sukka kuiva-#TA#U#T/fin#prs#[V]
+				'sock.nom dry-cau-refl-prs-3sg'
+			
+			& Frequentive stem (FREQ + REFL)
+			
+				*sukka kuiva-#ile#U#T/fin#prs#[V]
+				'sock dry-freq-refl-prs-3sg'
+				
+			& Reflexive stem (REFL + REFL)
+				
+				*sukka kuiva-#U#U#T/fin#prs#[V]
+				'sock dry-refl-refl-prs-3sg'
+			
+			& Semelfactive stem (SEM + REFL)
+			
+				Pekka hypä-#AhtA#U#T/fin#prs#[V]
+				'Pekka.nom jump-sem-refl-prs-3sg'
+				
+		& Semelfactive
+		
+			& Causative stem (CAU + SEM)
+			
+				*sukka kuiva-#TA#AhtA#T/fin#prs#[V]
+				'sock.nom dry-cau-sem-prs-3sg'
+			
+			& Frequentive stem (FREQ + SEM)
+			
+				*sukka kuiva-#ile#AhtA#T/fin#prs#[V]
+				'sock dry-freq-sem-prs-3sg'
+				
+			& Reflexive stem (REFL + SEM)
+				
+				*sukka kuiva-#U#AhtA#T/fin#prs#[V]
+				'sock dry-refl-sem-prs-3sg'
+			
+			& Semelfactive stem (SEM + SEM)
+			
+				*Pekka hypä-#AhtA#AhtA#T/fin#prs#[V]
+				'Pekka.nom jump-sem-sem-prs-3sg'
+			
+	& 1.3 Wordhood tests
+	
+		lue-#T/fin#n
+		'read-prs.1sg'
+		
+		lue-#TA#v#T/fin#prs#n kirjaa
+		'read-cau-v-prs-1sg book.par'
+		
+& 2. Outer verbal derivation
+
+	& 2.1 A-infinitival suffix
+			
+		Sirkku haluaa laula-#A/inf
+		'Sirkku.nom want.prs.3sg sing.a/inf'
+		
+		Sirkku haluaa laula-#TA#v#A/inf Merjaa
+		'Sirkku want.prs.3sg sing-cau-v-A/inf Merja.par'
+		
+		*Sirkku haluaa laula-#A/inf#TA#v#A/inf Merjaa
+		'Sirkku want.prs.3sg sing-A/inf-cau-A/inf Merja.par'
+				
+	& 2.2 Impersonal passive suffix
+
+		laula-#impss#T/fin#prs#Vn
+		'sing-impss-prs-3p'
+
+		laula-#TA#impss#T/fin#prs#Vn Merjaa
+		'sing-cau-impss-prs-4p Merja.par'
+		
+		*laula-#impss#TA#T/fin#prs#Vn Merjaa
+		'sing-impss-cau-prs-4p Merja.par'
+		
+	& 2.3 Finiteness
+	
+		Sirkku laula-#T/fin#prs#[V]
+		'Sirkku.nom sing-prs.3sg'
+		
+		Sirkku laula-#TA#T/fin#prs#[V] Merjaa
+		'Sirkku.nom sing-cau-prs-3sg Merja.par'
+		
+		*Sirkku laula-#T/fin#prs#[V]#TA Merjaa
+		'Sirkku.nom sing-prs-3sg-cau Merja.par'
+		
+		*Sirkku laula-#T/fin#prs#TA#[V] Merjaa
+		'Sirkku.nom sing-prs-cau-3sg Merja.par'
+	
+	& 2.4 Iteration of outer layer
+	
+		*Sirkku haluaa laula-#A/inf#A/inf
+		'Sirkku.nom want.prs.3sg sing-A/inf-A/inf'
+		
+		*laula-#impss#impss#T/fin#prs#Vn
+		'sing-impss-impss-prs-4p'
+		
+		*Sirkku laula-#T/fin#T/fin#prs#[V]
+		'Sirkku.nom sing-prs-prs-3sg'
+	
+		
+		
+		
+		

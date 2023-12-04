@@ -49,7 +49,7 @@ ettei		:: e#[V]#että LANG:FI
 ettemme		:: e#mme#että LANG:FI
 ettette		:: e#tte#että LANG:FI
 etteivät	:: e#vAt#että LANG:FI
-haluaa 		:: halua-#v#T/fin#[V] LANG:FI
+haluaa 		:: halua-#v#T/fin#prs#[V] LANG:FI
 halusi		:: halua-#v#T/fin#[V] LANG:FI
 halusimme	:: halua-#v#T/fin#mme LANG:FI
 haluan		:: halua-#v#T/fin#n LANG:FI
@@ -58,6 +58,7 @@ haluamalla 	:: halua-#v#MA.ade/inf LANG:FI
 haluttiin	:: halua-#impass#T/fin#Vn LANG:FI
 haluttu		:: halua-#impass#T/prt LANG:FI
 halua- 		:: PF:halua- LF:want V ASP:BOUNDED SEMCLASS_desired_event SEM:internal CLASS/TR -SPEC:D -SPEC:φ SPEC:A/inf COMP:φ COMP:A/inf -COMP:ΦPF LANG:FI
+hypä-		:: PF:hypä LF:jump V CLASS/INTR LANG:FI
 häiritsee 	:: häiritse-#v#T/fin LANG:FI
 häiritse- 	:: PF:häiritse- LF:disturb CLASS/TR V SPEC:φ !COMP:φ -COMP:Fin LANG:FI
 hävisivät	:: häviä-#T/fin#[-vAt] LANG:FI
@@ -147,6 +148,8 @@ kohti^		:: P PF:kohti LF:towards !COMP:φ -ΦPF LANG:FI
 koko		:: PF:koko LF:all D LANG:FI TAIL:T COMP:φ adjoinable
 ketä		:: kuka-#D#wh#[par] LANG:FI
 kenen		:: kuka-#D/pro#wh#nonhum#[gen] LANG:FI
+kuivaa		:: kuiva-#v#T/fin#prs#[V] LANG:FI
+kuiva-		:: PF:kuiva- LF:dry V CLASS/TR LANG:FI
 kuka 		:: kuka-#D#wh#sg#3p#def#hum#[nom] LANG:FI
 KUKA		:: kuka-#D#wh#sg#3p#def#hum#[nom]#[foc] LANG:FI
 kuka-   	:: PF:kuka LF:who N PHI LANG:FI
@@ -157,13 +160,14 @@ kuorsaa- 	:: PF:kuorsaa- LF:snore V CLASS/INTR COMP:P -COMP:WH -COMP:T/fin -COMP
 kuvaa		:: kuva-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[V] LANG:EN
+köy-		:: PF:köysi LF:rope N LANG:FI
 lapsia		:: lapsi-#φ#pl#3p#def#hum#r_expression#[par] LANG:FI
 lapsi-		:: N LF:child PF:lapsi LANG:FI 
 laulaa		:: laula-#T/fin#prs#[V] LANG:FI
 laulan		:: laula-#T/fin#prs#n LANG:FI
 laulamaan 	:: laula-#MA.ill/inf LANG:FI
 laulaessa	:: laula-#ESSA/inf LANG:FI
-laula-		:: V PF:laula LF:sing CLASS/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
+laula-		:: V PF:laula- LF:sing CLASS/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Inf +ΦLF,ΦPF LANG:FI
@@ -211,6 +215,7 @@ lle     	:: PF:P(-lle) LF:for P +SEM:directional -ΦPF TAIL:V LANG:FI
 lla			:: PF:P(-lla) LF:by	P -ΦPF TAIL:T TAIL:*V LANG:FI
 lukemalla	:: luke-#v#MA.ade/inf LANG:FI
 lukee		:: luke-#v#T/fin#[V] LANG:FI
+lue-		:: PF:lue- LF:read V CLASS/TR LANG:FI
 luke-		:: PF:luke- LF:read V CLASS/TR LANG:FI
 löydetty	:: löytä-#impass#asp#T/prt LANG:FI
 löydettiin	:: löytä-#impass#asp#T/fin#pl_#1p_#def_ LANG:FI
@@ -291,6 +296,7 @@ nukkua		:: nukku-#A/inf LANG:FI
 nukkui		:: nukku-#T/fin#[V] LANG:FI
 nukkuu		:: nukku-#T/fin#[V] LANG:FI
 nukku-		:: PF:nukku- LF:sleep V CLASS/INTR -COMP:T -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
+nuku-		:: PF:nuku- LF:sleep V CLASS/INTR -COMP:T -COMP:Inf -COMP:T/fin -COMP:Neg/fin LANG:FI
 odotti		:: odotta-#T/fin#[V] LANG:FI
 odotta-		:: PF:odotta- LF:wait V -COMP:ESSA/inf SPEC:φ COMP:φ LANG:FI
 ollut		:: BE-#T/prt#sg_ LANG:FI
@@ -373,6 +379,8 @@ sala-		:: PF:sala- LF:room N LANG:IT
 silta-		:: PF:silta LF:bridge N LANG:FI
 sillan		:: silta-#φ#def#sg#3p#r_expression#[gen]
 siltaa		:: silta-#φ#def#sg#3p#r_expression#[par]
+Sirkku		:: Sirkku-#D#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
+Sirkku-		:: PF:Sirkku- LF:Sirkku N LANG:FI
 siskoaan	:: sisko-#φ#sg#3p#def#r_expression#[par]
 siskonsa	:: sisko-#φ#sg#3p#def#r_expression#[nom]
 sisko		:: sisko-#φ#sg#3p#def#r_expression#[nom]
@@ -387,13 +395,14 @@ raukesi		:: raukea-#T/fin#[V] LANG:FI
 raukea-		:: PF:raukea- LF:terminate V LANG:FI
 Seine		:: Seine-#D#def#sg#3p#[nom] LANG:FI
 Seine-		:: PF:Seine N R:REF:PROPER_NAME LF:Seine LANG:FI
-sukka		:: sukka-#φ#r_expression#[nom]
-sukka_0acc	:: sukka-#φ#r_expression#[acc(0)]
-sukkaa		:: sukka-#φ#r_expression#[par]
-sukan		:: sukka-#φ#r_expression#[gen]
-sukan_gen	:: sukka-#φ#r_expression#[gen]
-sukan_acc	:: sukka-#φ#r_expression#[acc(n)]
-sukat		:: sukka-#φ#r_expression#[nom]#pl
+sukka		:: sukka-#φ#sg#3p#r_expression#[nom]
+sukka_0acc	:: sukka-#φ#sg#3p#r_expression#[acc(0)]
+sukkaa		:: sukka-#φ#sg#3p#r_expression#[par]
+sukkia		:: sukka-#φ#sg#3p#r_expression#[par]
+sukan		:: sukka-#φ#sg#3p#r_expression#[gen]
+sukan_gen	:: sukka-#φ#sg#3p#r_expression#[gen]
+sukan_acc	:: sukka-#φ#sg#3p#r_expression#[acc(n)]
+sukat		:: sukka-#φ#sg#3p#r_expression#[nom]#pl
 sukka-		:: PF:sukka LF:socks N LANG:FI
 sta			:: PF:sta LF:of P TAIL:V LANG:FI
 sti			:: PF:sti LF:by !COMP:* TAIL:T Adv -ARG LANG:FI
@@ -454,6 +463,7 @@ uskoi		:: usko-#v#T/fin#pst#[V] LANG:FI
 uskoi		:: usko-#T/fin#pst#[V] LANG:FI
 uskovan		:: usko-#VA/inf LANG:FI
 usko-   	:: PF:usko- LF:believe V -COMP:A/inf SPEC:φ SPEC:D COMP:VA/inf COMP:FORCE !PROBE:T -PROBE:FORCE:WH LANG:FI
+venettä		:: vene-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 vene-		:: PF:vene LF:boat N LANG:FI
 virtaamalla	:: virtaa-#MA.ade/inf LANG:FI
 virtaa		:: virtaa-#T/fin#prs#[V] LANG:FI

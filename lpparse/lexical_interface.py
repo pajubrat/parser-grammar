@@ -4,6 +4,8 @@ from operator import itemgetter
 from lexical_item import LexicalItem
 from support import log
 
+MBOUNDARY = ('#', '_')
+
 # Definition for lexical interface
 class LexicalInterface:
     def __init__(self, speaker_model):
@@ -12,6 +14,66 @@ class LexicalInterface:
         self.surface_lexicon = defaultdict(list)
         self.redundancy_rules = self.load_redundancy_rules(self.controlling_parser_process)
         self.language = self.controlling_parser_process.language
+
+    def lexical_retrieval(self, phon):
+        phon, onset, offset = self.phonological_context(phon)
+        if phon in self.surface_lexicon:
+            lexical_items_lst = [lex.copy().set_phonological_context(onset, offset) for lex in self.surface_lexicon[phon] if
+                                 self.language_match(lex) and self.phonological_context_match(lex, onset, offset)]
+        else:
+            lexical_items_lst = [self.unknown_word(phon)]
+        if not lexical_items_lst:
+            log(f'\n\n\t\t/{phon}/ failed lexical retrieval and will be ignored !\n')
+        return lexical_items_lst
+
+    def phonological_context_match(self, lex, onset, offset):
+        for pfc in [f[3:] for f in lex.features if f.startswith('PC')]:
+            if (pfc[0] != 'X' and pfc[0] != onset) or (pfc[-1] != 'X' and pfc[-1] != offset):
+                return False
+        return True
+
+    def phonological_context(self, phon):
+        onset = ''
+        offset = ''
+        if phon.startswith(MBOUNDARY):
+            onset = phon[0]
+        if phon.endswith(MBOUNDARY):
+            offset = phon[-1]
+        return phon[len(onset):len(phon)-len(offset)], onset, offset
+
+    def unknown_word(self, phonological_entry):
+        lex = LexicalItem()
+        lex.features = {f'PF:{phonological_entry}', '?'}
+        lex.morphological_chunk = phonological_entry
+        lex.internal = True
+        lex.name = '?'
+        return lex
+
+    def language_match(self, lex):
+        return 'LANG:XX' in lex.language or self.language in lex.language
+
+    def apply_redundancy_rules(self, features):
+        def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
+            return (new_candidate_feature_to_add.startswith('-') and new_candidate_feature_to_add[1:] in features_from_lexicon) or \
+                   (not new_candidate_feature_to_add.startswith('-') and '-' + new_candidate_feature_to_add in features_from_lexicon)
+
+        feature_set = set(features)
+        new_features_to_add = set()
+
+        # Apply the redundancy rules to the feature set
+        for i in range(2):                                                  #   Apply twice (so as to allow added features to trigger further rules)
+            for f in self.redundancy_rules:
+                antecedent_trigger_set = set(f.split())
+                if antecedent_trigger_set <= feature_set:                   #   If the antecedent features all match,
+                    new_features_to_add |= set(self.redundancy_rules[f])    #   we add the redundancy features
+
+            # Resolve conflicts in favor of language specific lexical features
+            features_not_blocked_by_language_specific_lexicon = set()
+            for new_feature in new_features_to_add:
+                if not feature_conflict(new_feature, feature_set):
+                    features_not_blocked_by_language_specific_lexicon.add(new_feature)
+            feature_set |= features_not_blocked_by_language_specific_lexicon
+        return feature_set
 
     def load_redundancy_rules(self, speaker_model):
         redundancy_rules_dict = {}
@@ -64,51 +126,3 @@ class LexicalInterface:
             else:
                 lex = LexicalItem(phonological_entry, self.apply_redundancy_rules(lexical_features))
                 self.surface_lexicon[phonological_entry].append(lex)
-
-    def lexical_retrieval(self, phonological_entry):
-        phonological_entry, concat = self.concatenation(phonological_entry)
-        if phonological_entry in self.surface_lexicon:
-            lexical_items_lst = [lex.copy().set_concat(concat) for lex in self.surface_lexicon[phonological_entry] if self.language_match(lex)]
-        else:
-            lexical_items_lst = [self.unknown_word(phonological_entry)]
-        return lexical_items_lst
-
-    def concatenation(self, phonological_entry):
-        if phonological_entry.endswith('#') or phonological_entry.endswith('='):
-            return phonological_entry[:-1], phonological_entry[-1]
-        else:
-            return phonological_entry, ' '
-
-    def unknown_word(self, phonological_entry):
-        lex = LexicalItem()
-        lex.features = {f'PF:{phonological_entry}', '?'}
-        lex.morphological_chunk = phonological_entry
-        lex.internal = True
-        lex.name = '?'
-        return lex
-
-    def language_match(self, lex):
-        return 'LANG:XX' in lex.language or self.language in lex.language
-
-    def apply_redundancy_rules(self, features):
-        def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
-            return (new_candidate_feature_to_add.startswith('-') and new_candidate_feature_to_add[1:] in features_from_lexicon) or \
-                   (not new_candidate_feature_to_add.startswith('-') and '-' + new_candidate_feature_to_add in features_from_lexicon)
-
-        feature_set = set(features)
-        new_features_to_add = set()
-
-        # Apply the redundancy rules to the feature set
-        for i in range(2):                                                  #   Apply twice (so as to allow added features to trigger further rules)
-            for f in self.redundancy_rules:
-                antecedent_trigger_set = set(f.split())
-                if antecedent_trigger_set <= feature_set:                   #   If the antecedent features all match,
-                    new_features_to_add |= set(self.redundancy_rules[f])    #   we add the redundancy features
-
-            # Resolve conflicts in favor of language specific lexical features
-            features_not_blocked_by_language_specific_lexicon = set()
-            for new_feature in new_features_to_add:
-                if not feature_conflict(new_feature, feature_set):
-                    features_not_blocked_by_language_specific_lexicon.add(new_feature)
-            feature_set |= features_not_blocked_by_language_specific_lexicon
-        return feature_set

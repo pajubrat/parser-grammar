@@ -238,7 +238,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
                         if ps.gloss() != ps.label() and \
                                 ps.gloss() != ps.get_phonological_string() and \
                                 legitimate_label(ps):
-                            label_stack.append((f"ʻ{ps.gloss()}ʼ", 'GLOSS'))
+                            for head in ps.get_affix_list():
+                                label_stack.append((f"ʻ{head.gloss()}ʼ", 'GLOSS'))
 
             # Show features (if any)
             if self.settings['show_features']:

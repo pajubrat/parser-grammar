@@ -224,6 +224,7 @@ class LocalFileSystem:
 
         PhraseStructure.phase_heads = self.settings['phase_heads']
         PhraseStructure.phase_heads_exclude = self.settings['phase_heads_exclude']
+        PhraseStructure.spellout_heads = self.settings['image_parameter_spellout_complex_heads']
 
     def initialize_simple_log_file(self):
         self.dev_log_file.write('Initializing simple log file...')

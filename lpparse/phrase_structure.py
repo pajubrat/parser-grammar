@@ -13,7 +13,8 @@ Result = namedtuple('Result', 'match_occurred outcome')
 class PhraseStructure:
     speaker_model = None
     access_experimental_functions = None
-    phase_heads = {'ph', 'φ'}
+    spellout_heads = False      # This parameter, if set true, spells out PF-content of heads in all printouts; otherwise only labels are shown
+    phase_heads = {'ph', 'φ'}   # Phase heads set for all calculations
     resources = {"Merge-1": {"ms": 0, "n": 0}}
     chain_index = 0
     transfer_operation = None
@@ -80,7 +81,7 @@ class PhraseStructure:
         self.adjunct = False
         self.find_me_elsewhere = False
         self.identity = ''
-        self.concatenation = None
+        self.internal = False
         self.rebaptized = False
         self.stop = False
         self.nn = None
@@ -410,19 +411,20 @@ class PhraseStructure:
             if not ((self.edge()[0] == self.sister() and self.check_some({'!COMP:φ', 'COMP:φ'})) or self.check_some({'SPEC:φ', '!SPEC:φ'})):
                 return True
 
-    def pearl_test(self):
+    def EHM_test(self):
         if self.has_affix() and not self.right.find_me_elsewhere:
             if not self.externally_merged_head():
-                return True     # A complex head at LF must be a keeper
+                return True
             else:
                 for head in [self] + self.get_affix_list()[0:-1]:
                     for feature in head.features:
-                        if feature.startswith('!pCOMP:'):
-                            if feature.split(':')[1] == '*' and not head.right:
+                        if feature.startswith('!wCOMP:'):
+                            if feature.split(':')[1] == '*':
+                                if not head.right:
+                                    return True
+                            elif feature.split(':')[1] not in head.right.features:
                                 return True
-                            if feature.split(':')[1] not in head.right.features:
-                                return True
-                        if feature.startswith('-pCOMP:'):
+                        if feature.startswith('-wCOMP:'):
                             if feature.split(':')[1] in head.right.features:
                                 return True
 
@@ -1036,12 +1038,9 @@ class PhraseStructure:
         bottom_affix.left = None
         return self.top()
 
-    def belong_to_same_word(self, site):
-        return self.bottom_affix().word_internal() and site.primitive()
-
     def attach(self, site, terminal_lexical_item, transfer, address_label):
         log("{:<80}{}".format(f'\n ', f'           {address_label}'))
-        if self.belong_to_same_word(site):
+        if site.primitive() and site.bottom_affix().word_internal():
             const = self.head_attachment(terminal_lexical_item)
         else:
             const = self.phrasal_attachment(terminal_lexical_item, transfer)
@@ -1076,7 +1075,7 @@ class PhraseStructure:
             ps_.features = self.features.copy()
         ps_.active_in_syntactic_working_memory = self.active_in_syntactic_working_memory
         ps_.adjunct = self.adjunct
-        ps_.concatenation = self.concatenation
+        ps_.internal = self.internal
         ps_.find_me_elsewhere = self.find_me_elsewhere
         ps_.identity = self.identity
         return ps_
@@ -1137,6 +1136,12 @@ class PhraseStructure:
         if self.primitive():
             pf = pf + LF_features(self)
         return pf
+
+    def PF(self):
+        for f in self.features:
+            if f.startswith('PF:'):
+                return f.split(':')[1]
+        return '?'
 
     def label(self):
         head = self.head()
@@ -1226,13 +1231,19 @@ class PhraseStructure:
             chain_index_str = ':' + self.identity
         else:
             chain_index_str = ''
+
+        # Chain notation
         if self.find_me_elsewhere:
             chain_index_str = chain_index_str + ''
+
+        # Phonologically null complex constituents
         if self.features and 'null' in self.features and self.complex():
             if self.adjunct:
                 return '<__>' + chain_index_str
             else:
                 return '__' + chain_index_str
+
+        # Primitive heads
         if self.primitive():
             if not self.get_phonological_string():
                 return '?'
@@ -1254,7 +1265,10 @@ class PhraseStructure:
         def show_affix(self):
             i = ''
             if self.has_affix():
-                i = self.right.label()
+                if PhraseStructure.spellout_heads:
+                    i = self.right.PF()
+                else:
+                    i = self.right.label()
                 if self.right.right:
                     i = i + ',' + show_affix(self.right)
             else:
@@ -1415,13 +1429,7 @@ class PhraseStructure:
         return self.referential() and self.max() and self.max().adjunct and self.max().is_right() and self.max().mother and self.max().mother.referential()
 
     def word_internal(self):
-        return self.bottom().bottom_affix().concatenation == '#'
-
-    def word_external(self):
-        return self.concatenation == ' '
-
-    def word_incorporated(self):
-        return self.concatenation == '='
+        return self.bottom().bottom_affix().internal
 
     def impossible_sequence(self, w):
         return self.primitive() and 'T/fin' in self.head().features and 'T/fin' in w.features

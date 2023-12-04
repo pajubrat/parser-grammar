@@ -1,4 +1,4 @@
-
+from collections import namedtuple
 
 class LexicalItem:
     def __init__(self, name='?', feature_set=set()):
@@ -7,7 +7,9 @@ class LexicalItem:
         self.features = set()
         self.language = ''
         self.inflectional = False
-        self.concatenation = ''
+        self.onset = ''
+        self.offset = ''
+        self.context = namedtuple("Context", "Onset Offset Bound")
         self.allomorphs = {}
         self.create_lexical_item(feature_set)
         self.set_language()
@@ -17,18 +19,20 @@ class LexicalItem:
         lex_.morphological_chunk = self.morphological_chunk
         lex_.language = self.language
         lex_.inflectional = self.inflectional
-        lex_.concatenation = self.concatenation
         lex_.allomorphs = self.allomorphs
+        lex_.onset = self.onset
+        lex_.offset = self.offset
         return lex_
 
-    def set_concat(self, str):
-        self.concatenation = str
+    def set_phonological_context(self, onset, offset):
+        self.onset = onset
+        self.offset = offset
         return self
 
     def create_lexical_item(self, feature_set):
         self.features = feature_set
         for f in self.features:
-            if '#' in f:
+            if '#' in f and not f.startswith('PC:'):
                 self.morphological_chunk = f
             if f.startswith('ALLOMORPHS'):
                 self.allomorphs = set(f.split(':')[1].split(','))
