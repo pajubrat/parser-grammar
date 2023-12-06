@@ -3,7 +3,7 @@
 
 	& 0.1 Morphological boundness
 	
-		& 0.1.1 Bound morphemes
+		& 0.1.1 Bound verbal morphemes
 
 			& T/fin + inflection
 			
@@ -60,7 +60,10 @@
 				
 				Sirkku haluaa laula-#A/inf
 				'Sirkku.nom want.prs.3sg sing-a/inf'
-	
+				
+		& 0.1.2 Bound nominal morphemes
+		
+			
 & 1. Inner verbal derivation 
 
 	& 1.1 First layer
@@ -125,6 +128,18 @@
 				*Pekka vene-#AhtA#T/fin#prs#[V]
 				'Pekka boat-sem-prs-3sg'
 
+		& Eventive (EVE)
+		
+			& Verbal stems (intr, tr)
+
+				*Sirkku laula-#a#v#T/fin#prs#[V] sukkia
+				'Sirkku sing-eve-prs-3sg sock.pl.par'
+									
+			& Nominal stem
+
+				Sirkku pino-#a#v#T/fin#prs#[V] sukkia
+				'Sirkku stack-v-prs-3sg sock.pl.par'
+
 	& 1.2 Second layer
 	
 		& Causative
@@ -153,6 +168,11 @@
 			
 				Pekka hypä-#AhtA#TA#T/fin#prs#[V] Merjaa
 				'Pekka.nom jump-sem-cau-prs-3sg Merja.par'
+
+			& Eventive stem (EVE + CAU)
+
+			*Sirkku pino-#a#TA#v#T/fin#prs#[V] Merjaa
+				'Sirkku.nom stack-eve-cau-prs-3sg Merja.par'
 				
 		& Frequentive
 		
@@ -176,6 +196,11 @@
 				Pekka nuku-#AhtA#ele#T/fin#prs#[V]
 				'Pekka sleep-sem-freq-prs-3sg'
 				
+			& Eventive stem (EVE + FREQ)
+
+				*Sirkku pino-#a#ele#T/fin#prs#[V]
+				'Sirkku stack-eve-freq-prs-3sg'
+
 		& Reflexive
 		
 			& Causative stem (CAU + REFL)
@@ -198,6 +223,11 @@
 				Pekka hypä-#AhtA#U#T/fin#prs#[V]
 				'Pekka.nom jump-sem-refl-prs-3sg'
 				
+			& Eventive stem (EVE + REFL)
+
+				*Sirkku pino-#a#AhtA#T/fin#prs#[V]
+				'Sirkku stack-eve-freq-prs-3sg'
+
 		& Semelfactive
 		
 			& Causative stem (CAU + SEM)
@@ -219,15 +249,39 @@
 			
 				*Pekka hypä-#AhtA#AhtA#T/fin#prs#[V]
 				'Pekka.nom jump-sem-sem-prs-3sg'
-			
-	& 1.3 Wordhood tests
-	
-		lue-#T/fin#n
-		'read-prs.1sg'
+
+			& Eventive stem (EVE + EVE)
+
+				*Sirkku pino-#a#a#v#T/fin#prs#[V]
+				'Sirkku stack-eve-eve-prs-3sg'
 		
-		lue-#TA#v#T/fin#prs#n kirjaa
-		'read-cau-v-prs-1sg book.par'
-		
+		& Eventive
+
+			& Causative stem (CAU + EVE)
+
+				*Sirkku kuiva-#TA#a#T/fin#prs#[V] sukkia
+				'Sirkku dry-cau-eve-prs-3sg sock.pl.par'
+
+			& Frequentative stem (FREQ + EVE)
+
+				*Sirkku kuiva-#ile#a#T/fin#prs#[V] sukkia
+				'Sirkku dry-freq-eve-prs-3sg sock.pl.par'
+
+			& Reflexive stem (REFL + EVE)
+
+				*Sirkku kuiva-#U#a#T/fin#prs#[V] sukkia
+				'Sirkku dry-refl-eve-prs-3sg sock.pl.par'
+
+			& Semelfactive stem (SEM + EVE)
+
+				*Sirkku hypä-#AhtA#a#T/fin#prs#[V] sukkia
+				'Sirkku jump-sem-eve-prs-3sg sock.pl.par'
+
+			& Eventive stem (EVE + EVE)
+
+				*Sirkku pino-#a#a#v#T/fin#prs#[V] sukkia
+				'Sirkku stack-eve-eve-prs-3sg sock.pl.par'
+
 & 2. Outer verbal derivation
 
 	& 2.1 A-infinitival suffix
@@ -277,7 +331,223 @@
 		*Sirkku laula-#T/fin#T/fin#prs#[V]
 		'Sirkku.nom sing-prs-prs-3sg'
 	
+& 4. Inner layer nominalization
+
+	& 4.1 Action nominal -O
+	
+		& Examples of the nominal
+	
+			laula-#O#[NOM]
+			'sing-n-nom, i.e. song'
+			
+			laula-#TA#Us#[NOM]
+			'sing-cau-n-nom'
+
+			*laula-#TA#O#[NOM]
+			'sing-cau-n-nom'
+			
+			*laula-#O#O#[NOM]
+			'sing-n-n-nom'
+
+		& Verbalizations
+		
+			Sirkku laula-#O#TA#T/fin#prs#[V] Merjaa
+			'Sirkku.nom sing-n-cau-prs.3sg Merja.par'
+		
+			Sirkku laula-#O#skele#T/fin#prs#[V]
+			'Sirkku sing-n-freq-prs-3sg'
+	
+	& 4.2 Collective -stO
+	
+		& Examples of the nominal
+		
+			laula-#O#stO#[NOM]
+			'sing-n-n-nom, lit. collection of songs'
+			
+			*laula-#stO#[NOM]
+			'sing-n-nom'
+			
+		& Verbalizations
+		
+			Sirkku laula-#O#stO#TA#T/fin#prs#[V] Merjaa
+			'Sirkku.nom sing-n-b-cau-prs.3sg Merja.par.'
+
+			Sirkku laula-#O#stO#skele#T/fin#prs#[V] Merjaa
+			'Sirkku.nom sing-n-b-freq-prs.3sg Merja.par.'			
+		
+	& 4.3 Resultative -e
+	
+		& Examples of the nominal
+		
+			laula-#e#[NOM]
+			'sing-n-nom'
+			
+			laula-#TA#e#[NOM]
+			'sing-cau-n-nom'
+			
+			*laula-#O#e#[NOM]
+			'sing-n-n-nom'
+			
+		& Verbalizations
+		
+			Sirkku laula-#e#TA#T/fin#prs#[V]
+			'Sirkku.nom sing-n-cau-prs-3sg'
+			
+			Sirkku laula-#e#skele#T/fin#prs#[V]
+			'Sirkku sing-n-freq-prs-3sg'
+		
+	& 4.4 Person of N -lAinen
+	
+		& Examples of the nominal
+		
+			Helsinki-#lAinen#[NOM]
+			'Helsinki-n-nom'
+			
+			laula-#O#lAinen#[NOM]
+			'sing-n-n-nom'
+			
+			*laula-#lAinen#[NOM]
+			'sing-n-nom'
+			
+		& Verbalizations
+
+			Sirkku Helsinki-#lAis#TA#T/fin#prs#[V] Merjaa
+			'Sirkku Helsinki-n-cau-prs-3sg Merja.par'
+
+& Outer layer nominalization
+
+	& 5.1 Abstract concept -minen
+	
+		& Basic word forms
+
+			laula-#minen
+			'sing-ing'
+			
+			laula-#mise#[NOM]
+			'sing-ing-nom'
+			
+			laula-#mise#[GEN]
+			'sing-ing-gen'
+		
+			laula-#TA#minen
+			'sing-cau-ing'
+	
+			*laula-#stO#minen
+			'sing-n-ing'
+
+		& Inside inner layer
+				
+			*Sirkku laula-#minen#TA#v#T/fin#prs#[V] Merjaa
+			'Sirkku.nom sing-ing-cau-prs-3sg Merja.par'
+
+		& Embedded in verbal outer layer head
+		
+			*Sirkku haluaa laula-#minen#A/inf
+			'Sirkku.nom want.prs.3sg sing-ing-A/inf
+		
+	& 5.2 Abstract concept -(U)Us
+	
+		& Basic word forms
+		
+			lapsi-#UUs
+			'child-hood.nom'
+			
+			lapsi-#UUde#[GEN]
+			'child-hood-gen'
+			
+			lapsi-#stO#UUs
+			'child-n-hood.nom'
+			
+			*lapsi-#TA#UUs
+			'child-cau-hood'
+		
+			*laula-#UUs
+			'sing-hood'
+			
+			*laula-#mise#UUs
+			'sing-ing-hood'
+			
+			*lapsi-#UUs#minen
+			'child-hood-ing'
+			
+		& Inside inner layer
+		
+			*Sirkku lapsi-#UUs#TA#v#T/fin#prs#[V] Merjaa
+			'Sirkku.nom child-hood-cau-v-prs-3sg Merja.par'
+			
+		& Embedded in verabl outer layer head
+		
+			*Sirkku haluaa lapsi-#UUs#A/inf
+			'Sirkku.nom wants child-hood-a/inf'
+			
+	& 5.3 Specialized denominal nominalizers  -tAr, -nen, -la,  -jA, -in, -mO, -ri
+			
+			lapsi-#tAr#[NOM]
+			'child-fem-nom'
+			
+			*laula-#tAr#[NOM]
+			'sing-fem-nom'
+			
+			*Sirkku laula-#tAr#TA#T/fin#prs#[V] Merjaa
+			'Sirkku sing-fem-cau-prs-3sg Merja'
+		
+			lapsi-#nen
+			'child-dim'
+			
+			*laula-#nen
+			'sing-dim'
+			
+			*Sirkku laula-#nen#TA#T/fin#prs#[V] Merjaa
+			'Sirkku sing-dim-cau-prs-3sg Merja.par'
+			
+			lapsi-#lA
+			'child-plc'
+			
+			*laula-#lA
+			'sing-plc'
+			
+			*Sirkku laula-#lA#TA#T/fin#prs#[V] Merjaa
+			'Sirkku sing-plc-cau-prs-3sg Merja.par'
+	
+			laula-#jA#[NOM]
+			'sing-ja-nom'
+			
+			*lapsi-#jA#[NOM]
+			'child-ja-nom'
+
+			*Sirkku lapsi-#jA#TA#T/fin#prs#[V] Merjaa
+			'Sirkku child-ja-cau-prs-3sg Merja.par'
+
+			laula-#in#[NOM]
+			'sing-inst-nom'
+			
+			*lapsi-#in#[NOM]
+			'child-inst-nom'
+			
+			*Sirkku lapsi-#in#TA#T/fin#prs#[V] Merjaa
+			'Sirkku child-inst-cau-prs-3sg Merja.par'
+			
+			laula-#mO#[NOM]
+			'sing-mo-nom'
+			
+			*lapsi-#mO#[NOM]
+			'child-mo-nom'
+			
+			*Sirkku lapsi-#mO#TA#T/fin#prs#[V] Merjaa
+			'Sirkku child-mo-cau-prs.3sg Merja.par'
+			
+			laula-#ri#[NOM]
+			'sing-ri-nom'
+			
+			lapsi-#ri#[NOM]
+			'child-ri-nom'
+			
+			*Sirkku lapsi-#ri#TA#T/fin#prs#[V] Merjaa
+			'Sirkku child-ri-cau-prs-3sg Merja.par'
 		
 		
-		
-		
+			
+			
+			
+			
+			

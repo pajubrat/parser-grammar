@@ -9,22 +9,31 @@ MBOUNDARY = ('#', '_')
 # Definition for lexical interface
 class LexicalInterface:
     def __init__(self, speaker_model):
-        self.controlling_parser_process = speaker_model
+        self.speaker_model = speaker_model
         self.PhraseStructure = phrase_structure.PhraseStructure
         self.surface_lexicon = defaultdict(list)
-        self.redundancy_rules = self.load_redundancy_rules(self.controlling_parser_process)
-        self.language = self.controlling_parser_process.language
+        self.redundancy_rules = self.load_redundancy_rules(self.speaker_model)
+        self.language = self.speaker_model.language
 
     def lexical_retrieval(self, phon):
+        log(f'\n\tNext word /{phon}/')
         phon, onset, offset = self.phonological_context(phon)
         if phon in self.surface_lexicon:
             lexical_items_lst = [lex.copy().set_phonological_context(onset, offset) for lex in self.surface_lexicon[phon] if
                                  self.language_match(lex) and self.phonological_context_match(lex, onset, offset)]
         else:
             lexical_items_lst = [self.unknown_word(phon)]
-        if not lexical_items_lst:
-            log(f'\n\n\t\t/{phon}/ failed lexical retrieval and will be ignored !\n')
+        self.log_lexical_items(phon, lexical_items_lst)
         return lexical_items_lst
+
+    def log_lexical_items(self, phon, lst):
+        log(f' => ')
+        for i, lex in enumerate(lst):
+            if lex:
+                if lex.morphological_chunk:
+                    log(f'{lex.morphological_chunk}')
+                else:
+                    log(f'({i+1}) {lex}° ')
 
     def phonological_context_match(self, lex, onset, offset):
         for pfc in [f[3:] for f in lex.features if f.startswith('PC')]:
@@ -44,13 +53,17 @@ class LexicalInterface:
     def unknown_word(self, phonological_entry):
         lex = LexicalItem()
         lex.features = {f'PF:{phonological_entry}', '?'}
-        lex.morphological_chunk = phonological_entry
-        lex.internal = True
         lex.name = '?'
+        if '#' in phonological_entry:
+            lex.morphological_chunk = phonological_entry
+            lex.internal = True
+        else:
+            log(f' = UNRECOGNIZED WORD (processing will terminate)')
+            self.speaker_model.exit = True
         return lex
 
     def language_match(self, lex):
-        return 'LANG:XX' in lex.language or self.language in lex.language
+        return self.language in lex.language
 
     def apply_redundancy_rules(self, features):
         def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
@@ -119,10 +132,5 @@ class LexicalInterface:
             lexical_features = [f.strip() for f in lexical_features.split()]    #   Create the feature list
             if not {f for f in lexical_features if f[:4] == 'LANG'}:            #   If no language is specified for the lexical entry, add it
                 lexical_features.append(self.language)
-
-            if combine and phonological_entry in self.surface_lexicon:
-                for lexical_item in self.surface_lexicon[phonological_entry]:
-                    lexical_item.features = set(lexical_item.features) | set(self.apply_redundancy_rules(lexical_features))
-            else:
-                lex = LexicalItem(phonological_entry, self.apply_redundancy_rules(lexical_features))
-                self.surface_lexicon[phonological_entry].append(lex)
+            lex = LexicalItem(phonological_entry, self.apply_redundancy_rules(lexical_features))
+            self.surface_lexicon[phonological_entry].append(lex)

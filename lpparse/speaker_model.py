@@ -131,6 +131,7 @@ class SpeakerModel:
     def explore_derivation_space(self, ps, X, lst, index):
         if not ps:
             # If there is no phrase structure in syntactic working memory, create it from X
+            log(f' - nothing to merge.')
             self.parse_new_item(X.copy(), lst, index + 1)
         else:
             # Create derivational search space for existing phrase structure and new constituent X
@@ -186,4 +187,4 @@ class SpeakerModel:
                 self.resources['Total Time']['n'] += self.resources[key]['ms']
             self.resources[key]['n'] += 1
             if key != 'Agree' and key != 'Last Resort Extraposition':
-                log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}.')
+                log(f'\n\t\t{key}({target.illustrate()}) => {target.top()} ')

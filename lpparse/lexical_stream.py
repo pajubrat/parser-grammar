@@ -8,7 +8,7 @@ class LexicalStream:
         self.id = 0
 
     def wrap(self, lex, inflectional_buffer):
-        log(f'\n\n\tNext morph {lex}')
+        log(f'\n\tNext morph {lex}°')
         const = PhraseStructure()
         const.features = lex.features
         const.features.add('§' + str(self.consume_id()))

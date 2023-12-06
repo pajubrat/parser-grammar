@@ -9,8 +9,6 @@ class LexicalItem:
         self.inflectional = False
         self.onset = ''
         self.offset = ''
-        self.context = namedtuple("Context", "Onset Offset Bound")
-        self.allomorphs = {}
         self.create_lexical_item(feature_set)
         self.set_language()
 
@@ -19,7 +17,6 @@ class LexicalItem:
         lex_.morphological_chunk = self.morphological_chunk
         lex_.language = self.language
         lex_.inflectional = self.inflectional
-        lex_.allomorphs = self.allomorphs
         lex_.onset = self.onset
         lex_.offset = self.offset
         return lex_
@@ -34,8 +31,6 @@ class LexicalItem:
         for f in self.features:
             if '#' in f and not f.startswith('PC:'):
                 self.morphological_chunk = f
-            if f.startswith('ALLOMORPHS'):
-                self.allomorphs = set(f.split(':')[1].split(','))
             if f == 'inflectional':
                 self.inflectional = True
 
@@ -43,6 +38,11 @@ class LexicalItem:
         for feature in self.features:
             if feature.startswith('LANG:'):
                 self.language = feature
+
+    def spellout(self):
+        for f in self.features:
+            if f.startswith('PF:'):
+                return f.split(':')[1]
 
     def __str__(self):
         return self.name

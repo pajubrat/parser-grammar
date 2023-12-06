@@ -19,7 +19,7 @@ class PhraseStructure:
     chain_index = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
-                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.externally_merged_head(),
+                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.EHM(),
                                     'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
                                     'sustain': lambda x: True,
@@ -412,21 +412,33 @@ class PhraseStructure:
                 return True
 
     def EHM_test(self):
-        if self.has_affix() and not self.right.find_me_elsewhere:
-            if not self.externally_merged_head():
-                return True
-            else:
-                for head in [self] + self.get_affix_list()[0:-1]:
-                    for feature in head.features:
-                        if feature.startswith('!wCOMP:'):
-                            if feature.split(':')[1] == '*':
-                                if not head.right:
-                                    return True
-                            elif feature.split(':')[1] not in head.right.features:
+        if self.has_affix():
+            for head in [self] + self.get_affix_list()[0:-1]:
+
+                # Configuration is (X Y)
+                # Verify selection of X by Y
+                for feature in head.features:
+                    if feature.startswith('!wCOMP:'):
+                        if feature.split(':')[1] == '*':
+                            if not head.right:
                                 return True
-                        if feature.startswith('-wCOMP:'):
-                            if feature.split(':')[1] in head.right.features:
-                                return True
+                        elif feature.split(':')[1] not in head.right.features:
+                            return True
+                    if feature.startswith('-wCOMP:'):
+                        if feature.split(':')[1] in head.right.features:
+                            return True
+
+                # If Y has been copied (IHM), X cannot have [EHM]
+                if head.right.find_me_elsewhere:
+                    if head.EHM():
+                        return True
+                    else:
+                        # Y being copied will be analyzed at another position, we do not continue
+                        break
+                # If Y has been merged externally, then X must have [EHM]
+                else:
+                    if not head.EHM():
+                        return True
 
     # Projection principle and thematic roles ---------------------------------------------------------------------
     def nonthematic(self):
@@ -1039,12 +1051,12 @@ class PhraseStructure:
         return self.top()
 
     def attach(self, site, terminal_lexical_item, transfer, address_label):
-        log("{:<80}{}".format(f'\n ', f'           {address_label}'))
         if site.primitive() and site.bottom_affix().word_internal():
             const = self.head_attachment(terminal_lexical_item)
         else:
             const = self.phrasal_attachment(terminal_lexical_item, transfer)
         self.speaker_model.consume_resources("Merge", const)
+        log(f'({address_label})\n')
         return const
 
     def head_attachment(self, terminal_lexical_item):
@@ -1490,5 +1502,5 @@ class PhraseStructure:
     def appropriate_argument(self):
         return not self.head().check({'pro_'}) and (self.referential() or self.expletive())
 
-    def externally_merged_head(self):
+    def EHM(self):
         return 'EHM' in self.features

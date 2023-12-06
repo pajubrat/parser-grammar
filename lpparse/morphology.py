@@ -10,7 +10,7 @@ class Morphology:
 
     # Definition for morphological parsing for lexical item (set of features)
     def morphological_parse(self, ps, lex, input_word_list, index, inflection_buffer):
-        log(f'\n\n\tMorphological decomposition of /{input_word_list[index]}/ = ')
+        log(f'\n\tMorphological decomposition of /{input_word_list[index]}/ = ')
         return self.apply_mirror_principle(input_word_list, self.decompose(lex.morphological_chunk), index)
 
     def decompose(self, word):
