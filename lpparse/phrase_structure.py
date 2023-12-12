@@ -801,10 +801,9 @@ class PhraseStructure:
         PhraseStructure.speaker_model.consume_resources('Extraposition', self)
 
     def last_resort_extrapose(self):
-        for x in [self] + self.bottom().upward_path():
-            if x.cutoff_point_for_last_resort_extraposition():
-                x.externalize_structure()
-                PhraseStructure.speaker_model.consume_resources('Last Resort Extraposition', self)
+        if self.primitive() and self.cutoff_point_for_last_resort_extraposition():
+            self.externalize_structure()
+            PhraseStructure.speaker_model.consume_resources('Last Resort Extraposition', self)
 
     def feature_inheritance(self):
         if self.highest_finite_head() and not self.check({'-ΦPF'}):

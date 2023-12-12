@@ -161,7 +161,8 @@ class SpeakerModel:
         log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
         log(f'\n\t\tPF-interface {ps}\n')
         ps.transfer_to_LF()
-        log(f'\n\n\t\tLF-interface {ps.top()}\n')
+        ps = ps.top()   # There are cases where transfer adds constituents to the top
+        log(f'\n\n\t\tLF-interface {ps}\n')
 
         # Postsyntactic tests (LF-interface legibility and semantic interpretation)
         if self.postsyntactic_tests(ps):

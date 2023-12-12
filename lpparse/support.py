@@ -58,9 +58,11 @@ def show_primitive_constituents(self):
         reply += show_primitive_constituents(self.left)
         reply += show_primitive_constituents(self.right)
     else:
-        reply += f'\t\t{self.get_phonological_string():<10} {show_feature_list(sorted_by_relevance(self.features))}\n'
+        for head in self.get_affix_list():
+            if head.find_me_elsewhere:
+                break
+            reply += f'\t\t{head.get_phonological_string():<10} {show_feature_list(sorted_by_relevance(head.features))}\n'
     return reply
-
 def show_feature_list(lst):
     str = ''
     for feature in lst:

@@ -5,27 +5,26 @@
 FORCE	:: -ARG Fin 			!COMP:* !PROBE:Fin COMP:T/fin COMP:C/fin -SPEC:T/fin
 C/fin 	:: -ARG Fin C 			-COMP:C/fin -COMP:T/prt COMP:T/fin !PROBE:Fin COMP:Neg/fin !COMP:* -SPEC:N -SPEC:T/fin -SPEC:C/fin -COMP:FORCE
 C		:: EF					-SPEC:MA/A 
-T/fin 	:: ARG EF +ΦLF,ΦPF T Fin !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V COMP:Pass -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:N -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
-T/prt 	:: ARG Fin T EF 		!COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V
-T 		:: ARG 					COMP:* COMP:v COMP:V COMP:Pass -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:N -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:NEG
+T/fin 	:: ARG EF +ΦLF,ΦPF T Fin !COMP:* -SPEC:C SPEC:T/prt COMP:v COMP:V COMP:Pass -COMP:Inf -COMP:T/fin !PROBE:V SPEC:φ SPEC:D SPEC:C/fin -SPEC:T/fin -SPEC:Neg SPEC:FORCE -SPEC:V -SPEC:v SPEC:TO/inf
+T/prt 	:: ARG Fin T EF 		!COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:T/fin -SPEC:FORCE -SPEC:V
+T 		:: ARG 					COMP:* COMP:v COMP:V COMP:Pass -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:v -SPEC:NEG
 Neg/fin :: ARG EF Fin NEG  +ΦLF,ΦPF	!ΦPF COMP:T/prt COMP:T -COMP:T/fin -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
-v   	:: θ ARG -ΦPF ASP 		!COMP:* COMP:V -SPEC:v -SPEC:T/fin !PROBE:V SPEC:φ -SPEC:N
+v   	:: θ ARG -ΦPF ASP 		!COMP:* COMP:V -SPEC:v -SPEC:T/fin !COMP:V SPEC:φ -SPEC:N
 D   	:: φ -ARG 				!COMP:* -COMP:D -COMP:v -COMP:V -COMP:P -COMP:T/fin -COMP:Neg/fin -COMP:T -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:n COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 D/rel	:: φ D -ARG OP OP:REL 	 adjoinable	COMP:* -COMP:C/fin -COMP:φ -SPEC:MA.ade/inf -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 N   	:: θ 					-COMP:EXPL -COMP:VA/inf -COMP:T/fin -COMP:MA/A -COMP:Neg -COMP:T/prt COMP:D/rel COMP:√ COMP:P -COMP:A COMP:C -COMP:AUX -SPEC:FORCE SPEC:A COMP:R COMP:R/D SPEC:φ -SPEC:uWH -SPEC:R -SPEC:V -COMP:v -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:Adv -COMP:WH
 V   	:: θ ARG -ΦPF ASP 		-SPEC:T/fin -SPEC:FORCE SPEC:Adv -COMP:N -COMP:T/prt -COMP:v SPEC:P SPEC:TO/inf -COMP:EXPL
 P   	:: ARG 					adjoinable COMP:φ -COMP:V -COMP:MA/A -SPEC:Neg -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 Adv 	:: adjoinable			-SPEC:N -SPEC:FORCE -SPEC:Neg/fin -SPEC:T/fin
-A 		:: θ TAIL:φ 			COMP:√ -SPEC:A
-Inf		:: TAM 					-COMP:T/fin -COMP:FORCE -COMP:C/fin -SPEC:T/fin -SPEC:V
-n		:: φ EF ARG Inf 		N -COMP:n !COMP:* COMP:√
+A 		:: θ		 			-SPEC:A
+Inf		:: TAM 					-COMP:A -COMP:T/fin -COMP:FORCE -COMP:C/fin -SPEC:T/fin -SPEC:V
+n		:: φ EF ARG Inf 		N -COMP:n !COMP:*
 √		:: SPEC:φ 2SPEC 		-COMP:φ
 Num		:: φ 					COMP:φ COMP:N COMP:n -COMP:D -COMP:QN
 DET		:: φ 					COMP:φ -COMP:DET 
 Qn		:: φ 					COMP:φ COMP:N COMP:Num
 φ		:: θ 					-SPEC:T -SPEC:P COMP:D/rel !COMP:* COMP:N
-MA/A	:: A
-VA/A	:: A
+a		:: 						A !COMP:* -COMP:a -COMP:A/inf -COMP:T
 Neg		:: 						-SPEC:N SPEC:D
 ARG		:: PHI:NUM:_ PHI:PER:_ PHI:DET:_
 
@@ -43,7 +42,7 @@ OP:WH			:: DIS:WH OP
 OP:Q			:: DIS:WH OP
 
 # Verb classess
-CLASS/TR 		:: !COMP:* -COMP:P COMP:φ -COMP:Adv
+CLASS/TR 		:: -COMP:P COMP:φ -COMP:Adv
 CLASS/INTR 		:: -COMP:φ -COMP:EXPL SPEC:φ COMP:P
 CLASS/DITR 		:: !COMP:* SPEC:φ COMP:φ
 PHI_N			:: -COMP:*
@@ -55,76 +54,84 @@ R:REF:PROPER_NAME :: -COMP:Inf
 # Expletives
 T Fin			:: 	SPEC:EXPL
 
-# FInnish spellout
-LANG:FI COPULA			:: PF:ole-
-LANG:FI T/prt pst		:: PF:-nUt
-LANG:FI T/prt prs		:: PF:-0
-LANG:FI T/fin pst		:: PF:-i
-LANG:FI T prs			:: PF:-0
-LANG:FI T pst			:: PF:-i
-LANG:FI T cond			:: PF:-isi
-LANG:FI T pot			:: PF:-ne
-LANG:FI T IMPASS pst	:: PF:-in
-LANG:FI T/fin			:: Fin*
-LANG:FI Neg/fin			:: Fin*
-LANG:FI Fin K			:: PF:-Vn
+# Generic case features
+[NOM]				:: TAIL:T/fin
+[ACC]				:: TAIL:v
+[PAR]				:: TAIL:v
+[GEN]				:: TAIL:Inf
 
-LANG:FI EHM				:: PC:#X#
-LANG:FI V				:: PC:X#
-LANG:FI inflectional	:: PC:#X
-LANG:FI T				:: PC:#X
-LANG:FI v				:: PC:#X
+# FINNISH
+	
+	# Spellout
+	
+		LANG:FI COPULA			:: PF:ole-
+		LANG:FI T/prt pst		:: PF:-nUt
+		LANG:FI T/prt prs		:: PF:-0
+		LANG:FI T/fin pst		:: PF:-i
+		LANG:FI T prs			:: PF:-0
+		LANG:FI T pst			:: PF:-i
+		LANG:FI T cond			:: PF:-isi
+		LANG:FI T pot			:: PF:-ne
+		LANG:FI T IMPASS pst	:: PF:-in
+		LANG:FI T/fin			:: Fin*
+		LANG:FI Neg/fin			:: Fin*
+		LANG:FI Fin K			:: PF:-Vn
+		LANG:FI EHM				:: PC:#X#
+		LANG:FI V				:: PC:X#
+		LANG:FI inflectional	:: PC:#X
+		LANG:FI T				:: PC:#X
+		LANG:FI v				:: PC:#X
 
-# English spellout
-LANG:EN T prs			:: PF:T
-LANG:EN T pst			:: PF:-ed PER ΦPF PC:#X
+	# Finnish edge behavior
+	
+		P LANG:FI		::	EF Adv
+		Adv LANG:FI		::	EF
+		A LANG:FI		::	EF
+		T/fin LANG:FI	::  EF
+		φ LANG:FI		::	EF
+		T/fin LANG:FI	::  EF
+		Neg Fin LANG:FI	::	SPEC:EXPL
+		C/fin LANG:FI	::  !COMP:ΦPF
+		P LANG:FI		::	-SPEC:EXPL
 
-# Italian spellout
-LANG:IT T prs			:: PF:-0
-LANG:IT T pst			:: PF:-ava
+	# Other rules
+	
+		N LANG:FI	:: -COMP:T/prt
+		A LANG:FI 	::  nonadjoinable
+		ARG LANG:FI	:: PHI:HUM:_ PHI:PRON:_
 
-# Finnish edge behavior
-P LANG:FI		::	EF Adv
-Adv LANG:FI		::	EF
-A LANG:FI		::	EF
-T/fin LANG:FI	::  EF
-φ LANG:FI		::	EF
-T/fin LANG:FI	::  EF
-Neg Fin LANG:FI	::	SPEC:EXPL
-C/fin LANG:FI	::  !COMP:ΦPF
-P LANG:FI		::	-SPEC:EXPL
+	# Finnish specific operator features
 
-# Other rules
-N LANG:FI	:: -COMP:T/prt
-A LANG:FI 	::  nonadjoinable
-ARG LANG:FI	:: PHI:HUM:_ PHI:PRON:_
+		OP:WH LANG:FI	:: OP S*
+		OP:REL LANG:FI	:: OP SCOPE S*
+		OP:Q LANG:FI	:: OP SCOPE DIS:WH
+		OP:FAM LANG:FI	:: OP SCOPE DIS:FAM
+		OP:POL LANG:FI	:: OP SCOPE DIS:POL
+		OP:FOC LANG:FI	:: OP DIS:FOC
 
-# Finnish specific operator features
-OP:WH LANG:FI	:: OP S*
-OP:REL LANG:FI	:: OP SCOPE S*
-OP:Q LANG:FI	:: OP SCOPE DIS:WH
-OP:FAM LANG:FI	:: OP SCOPE DIS:FAM
-OP:POL LANG:FI	:: OP SCOPE DIS:POL
-OP:FOC LANG:FI	:: OP DIS:FOC
+# ENGLISH
+	P LANG:EN		::	-ΦPF nonfloat !COMP:* -SPEC:φ
+	Adv LANG:EN		::	-ΦPF
+	n LANG:EN		::  -ΦPF
+	T/fin LANG:EN	::	EF SPEC:FORCE !ΦLF,ΦPF !SPEC:D
+	A LANG:EN		::	nonadjoinable
+	ACC LANG:EN		::	nonadjoinable nonfloat
+	NOM LANG:EN		::  nonadjoinable nonfloat
+	D LANG:EN		::	-SPEC:φ
+	φ LANG:EN		::	-SPEC:φ
+	OP:REL LANG:EN	::	SCOPE
+	ARG LANG:EN		::  PHI:GEN:_
+	LANG:EN T prs	:: PF:T
+	LANG:EN T pst	:: PF:-ed PER ΦPF PC:#X
 
-# ===> ENGLISH
-P LANG:EN		::	-ΦPF nonfloat !COMP:* -SPEC:φ
-Adv LANG:EN		::	-ΦPF
-n LANG:EN		::  -ΦPF
-T/fin LANG:EN	::	EF SPEC:FORCE !ΦLF,ΦPF !SPEC:D
-A LANG:EN		::	nonadjoinable
-ACC LANG:EN		::	nonadjoinable nonfloat
-NOM LANG:EN		::  nonadjoinable nonfloat
-D LANG:EN		::	-SPEC:φ
-φ LANG:EN		::	-SPEC:φ
-OP:REL LANG:EN	::	SCOPE
-ARG LANG:EN		::  PHI:GEN:_
 
-# ==> ITALIAN
-P LANG:IT		::  -ΦPF !COMP:*
-NOM LANG:IT		::	nonadjoinable nonfloat
-ARG LANG:IT		::  PHI:GEN:_
+# ITALIAN
+	P LANG:IT		::  -ΦPF !COMP:*
+	NOM LANG:IT		::	nonadjoinable nonfloat
+	ARG LANG:IT		::  PHI:GEN:_
+	LANG:IT T prs	:: PF:-0
+	LANG:IT T pst	:: PF:-ava
 
-# => HUNGARIAN
-OP LANG:HU		:: OP*
-D LANG:HU		:: EF
+# HUNGARIAN
+	OP LANG:HU		:: OP*
+	D LANG:HU		:: EF

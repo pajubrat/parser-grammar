@@ -109,7 +109,7 @@ class LocalFileSystem:
         self.numeration_output.write(f'# Corpus generated from the numeration in {self.external_sources["numeration"]}\n')
 
     def initialize_dev_logging(self):
-        self.dev_log_file  = open('dev_log.txt', 'w', -1, 'utf-8')
+        self.dev_log_file = open('dev_log.txt', 'w', -1, 'utf-8')
         self.dev_log_file.write(f'Devlogging started at {datetime.datetime.now()}.\n')
 
     def initialize_control_file(self):
@@ -429,7 +429,7 @@ class LocalFileSystem:
             self.save_image(parser, sentence, count)
 
     def save_predicted_grammaticality_judgment(self, P, count, sentence):
-        self.grammaticality_judgments_file.write(f'\n\t\t{str(count)}. {self.judgment_marker(P)}{self.generate_input_sentence_string(sentence)}\n')
+        self.grammaticality_judgments_file.write(f'\n#{str(count)}.\n{self.judgment_marker(P)}{self.generate_input_sentence_string(sentence)}\n')
 
     def save_error(self, count, sentence):
         r = f'\n{str(count)}. {self.generate_input_sentence_string(sentence)}'

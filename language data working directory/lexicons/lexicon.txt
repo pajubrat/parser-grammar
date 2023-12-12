@@ -136,8 +136,8 @@ kello-		:: PF:kello LF:watch N LANG:FI
 √kello 		:: PF:kello LF:√watch √ LANG:FI
 kirja		:: kirja-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[acc(0)] LANG:FI
-kirjan  	:: kirja-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
-kirjan_gen  :: kirja-#φ#sg#3p#def#r_expression#[gen] LANG:FI
+kirjan_acc 	:: kirja-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
+kirjan		:: kirja-#φ#sg#3p#def#r_expression#[gen] LANG:FI
 kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[par] LANG:FI
 kirjaa^		:: PF:kirjaa LF:book N LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
@@ -168,6 +168,7 @@ laulan		:: laula-#T/fin#prs#n LANG:FI
 laulamaan 	:: laula-#MA.ill/inf LANG:FI
 laulaessa	:: laula-#ESSA/inf LANG:FI
 laula-		:: V PF:laula- LF:sing CLASS/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
+lika-		:: PF:lika LF:dirt N LANG:FI
 kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Inf +ΦLF,ΦPF LANG:FI
@@ -364,7 +365,7 @@ puke-		:: PF:puke- LF:dressup V CLASS/INTR LANG:FI
 puhelinta	:: puhelin-#n LANG:FI
 puhelin-	:: PF:puhelin- LF:phone 0 LANG:FI
 punainen 	:: puna-#nen LANG:FI
-puna-		:: PF:puna- LF:red 0 LANG:FI
+puna-		:: PF:puna- LF:red LANG:FI
 pyytää		:: pyytä-#v#T/fin#[V] LANG:FI
 pyysi		:: pyytä-#v#T/fin#[V] LANG:FI
 pyytä-		:: PF:pyyda- LF:ask V CLASS/TR SEMCLASS_desired_event SEM:external LANG:FI
@@ -538,7 +539,8 @@ sitä'		:: N#D/expl LANG:FI
 n		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:1 PER PHI:DET:DEF LANG:FI
 t		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:2 PER PHI:DET:DEF LANG:FI
 [V]		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:SG,PER:3 PER LANG:FI
-mme		::	inflectional ΦPF Φ weak K EF -Inf PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
+[V]		::	inflectional ΦPF Φ weak EF -Inf PER LANG:FI
+mme		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
 tte		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:2 PER PHI:DET:DEF LANG:FI
 vAt		::	inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:3 PER PHI:DET:DEF LANG:FI
 Vn		::  inflectional ΦPF Φ weak EF -Inf PHI:NUM:PL,PER:1 PHI:DET:DEF PER IMPASS LANG:FI
@@ -548,7 +550,6 @@ ni		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG,PER:1 PER PHI:DET:D
 si		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG,PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
 nsA		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
 An		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
-3sg		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
 en		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
 mme		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL,PER:1 PER PHI:HUM:HUM PHI:DET:DEF LANG:FI
 nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL,PER:2 PER PHI:HUM:HUM PHI:DET:DEF  LANG:FI
@@ -556,10 +557,9 @@ nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL,PER:2 PER PHI:HUM:
 # Case suffixes
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF adjoinable LANG:FI
-[NOM]		:: inflectional NOM adjoinable LANG:FI
+[NOM´]		:: inflectional NOM -V -v -A/inf -T LANG:FI
 [gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable nonfloat LANG:FI
-[GEN]		:: inflectional adjoinable nonfloat LANG:FI
-[par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable LANG:FI TAG
+[par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable LANG:FI
 [acc(n)]	:: inflectional ACC ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:ΦPF TAIL:*POL:NEG adjoinable LANG:FI
 [acc(t)]	:: inflectional ACC ACC(t) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
 [acc(0)]	:: inflectional ACC ACC(0) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
