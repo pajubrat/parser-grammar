@@ -6,9 +6,9 @@ inner_V_morphemes = ['TA#v', 'ile', 'UTU', 'AhtA', 'a#v']
 inner_N_morphemes = ['O', 'Us', 'ntO', 'stO', 'e']
 inner_A_morphemes = ['ise', 'mAise']
 
-outer_V_morphemes = ['A/inf', 'impss', 'T/fin#prs#n', 'v']
+outer_V_morphemes = ['(t)A', 'impss', 'T/fin#prs#n', 'v']
 outer_N_morphemes = ['mise', 'tAr', 'jA', 'ri', '[NOM´]']
-outer_A_morphemes = ['inen', 'mAinen', 'llinen', 'mAtOn', 'mA´', 'vA']
+outer_A_morphemes = ['inen', 'mAinen', 'llinen', 'mAtOn', 'mA´', 'vA', 'hkO']
 
 inner_morphemes = inner_V_morphemes + inner_N_morphemes + inner_A_morphemes
 outer_morphemes = outer_V_morphemes + outer_N_morphemes + outer_A_morphemes

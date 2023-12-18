@@ -63,7 +63,7 @@ class LexicalInterface:
         return lex
 
     def language_match(self, lex):
-        return self.language in lex.language
+        return (self.language in lex.language) or (lex.language == 'LANG:X')
 
     def apply_redundancy_rules(self, features):
         def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):

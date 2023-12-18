@@ -3,10 +3,10 @@ from itertools import takewhile
 from feature_processing import *
 from support import log, set_logging
 
-major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
+major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
               'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
               'FORCE', 'EXPL', 'Adv',
-              '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z']
+              '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z']
 Result = namedtuple('Result', 'match_occurred outcome')
 
 
@@ -1273,7 +1273,7 @@ class PhraseStructure:
                     return f'[{self.left} {self.right}]' + chain_index_str
 
     def get_phonological_string(self):
-        def show_affix(self):
+        def show_affixes(self):
             i = ''
             if self.has_affix():
                 if PhraseStructure.spellout_heads:
@@ -1281,20 +1281,17 @@ class PhraseStructure:
                 else:
                     i = self.right.label()
                 if self.right.right:
-                    i = i + ',' + show_affix(self.right)
+                    i = '(' + show_affixes(self.right) + ' ' + i + ')'
             else:
                 i = ''
             return i
 
         pfs = [f[3:] for f in self.features if f[:2] == 'PF']
         if self.has_affix():
-            if self.right.find_me_elsewhere:
-                affix_str = ''
-            else:
-                affix_str = '(' + show_affix(self) + ')°'
-            return ''.join(sorted(pfs)) + affix_str
-        else:
-            return ''.join(sorted(pfs))
+            if not self.right.find_me_elsewhere:
+                affix_str = show_affixes(self)
+                return '(' + affix_str + ' ' + ''.join(sorted(pfs)) + ')°'
+        return ''.join(sorted(pfs))
 
     def tidy_names(self, counter):
         def rebaptize(h, old_name, new_name):

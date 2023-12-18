@@ -381,6 +381,7 @@ sala-		:: PF:sala- LF:room N LANG:IT
 silta-		:: PF:silta LF:bridge N LANG:FI
 sillan		:: silta-#φ#def#sg#3p#r_expression#[gen]
 siltaa		:: silta-#φ#def#sg#3p#r_expression#[par]
+Sirkun		:: Sirkku-#φ#def#sg#3p#r_expression#[gen]
 Sirkku		:: Sirkku-#D#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
 Sirkku-		:: PF:Sirkku- LF:Sirkku N LANG:FI
 siskoaan	:: sisko-#φ#sg#3p#def#r_expression#[par]
@@ -970,6 +971,14 @@ a_			:: a PF:a LF:a COMP:a COMP:b COMP:c COMP:d LANG:X
 b_ 			:: b PF:b LF:b COMP:a COMP:b COMP:c COMP:d LANG:X
 c_			:: c PF:c LF:c COMP:a COMP:b COMP:c COMP:d LANG:X
 d_			:: d PF:d LF:d COMP:a COMP:b COMP:c COMP:d LANG:X
+
+X			:: X PF:X LF:X PC:#X COMP:Y LANG:X
+Y			:: Y PF:Y LF:Y PC:#X COMP:Z LANG:X
+Z			:: Z PF:Z LF:Z 				LANG:X
+
+Y´			:: Y PF:Y LF:Y EHM PC:#X COMP:Z LANG:X
+Z´			:: Z PF:Z LF:Z EHM				LANG:X
+
 
 a_1sg		:: a PF:a LF:a φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF LANG:X
 a_2pl		:: PF:a LF:a φ PHI:NUM:PL PHI:PER:2 PHI:DET:DEF LANG:X
