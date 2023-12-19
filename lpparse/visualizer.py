@@ -5,11 +5,12 @@
 import pyglet
 import pyglet.window.key
 from pyglet import shapes
-import re
+import time
 
 SCALING_FACTOR = 2
 BASELINE_LATERAL_STRETCH = 1
 MINIMAL_OVERLAP = 2
+
 
 # Definition for the visualizer
 class Visualizer:
@@ -22,6 +23,7 @@ class Visualizer:
         self.save_image_file_name = ''
         self.input_sentence_string = ''
         self.settings = settings
+        self.window = ProduceGraphicOutput(self, self.settings)
 
     def initialize(self, settings):
         self.image_output = True
@@ -29,9 +31,7 @@ class Visualizer:
     # Definition for the drawing function
     def draw(self, ps):
         self.project_to_plane(ps)
-        win = ProduceGraphicOutput(ps, self, self.settings)
-        pyglet.clock.schedule_once(win.terminate, 0.1)
-        pyglet.app.run()
+        self.window.draw_phrase_structure(ps)
 
     def project_to_plane(self, ps):
         ps.x = 0
@@ -116,9 +116,11 @@ class Visualizer:
                         label_stack += 1
         return label_stack
 
+
 # Definition for the output window behavior
 class ProduceGraphicOutput(pyglet.window.Window):
-    def __init__(self, ps, visualizer, settings):
+    def __init__(self, visualizer, settings):
+        super().__init__(width=3200, height=2000, caption='LF interface', visible=settings['image_parameter_stop_after_image'])
         self.visualizer = visualizer
         self.settings = settings
         # Scaling function (larger = more detailed but also larger image)
@@ -147,15 +149,30 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.do_not_repeat_information = False
 
         # Phrase structure that will be projected to the 2D window
-        self.phrase_structure = ps
+        self.phrase_structure = None
 
         # phi-feature mappings
         self.phi_mapping = [({'PHI:NUM:SG', 'PHI:PER:1'}, '1sg'), ({'PHI:NUM:SG', 'PHI:PER:2'}, '2sg'), ({'PHI:NUM:SG', 'PHI:PER:3'}, '3sg'),
                             ({'PHI:NUM:PL', 'PHI:PER:1'}, '1pl'), ({'PHI:NUM:PL', 'PHI:PER:2'}, '2pl'), ({'PHI:NUM:SG', 'PHI:PER:3'}, '3pl')]
+        # temporary store for graphic elements to prevent them from being garbage collected
+        self.g = []
+        self.batch = None
+        self.background_image = None
 
+    def draw_phrase_structure(self, ps):
+        print('draw phrase structure ', ps, ' to ', self.visualizer.file_identifier)
+        t = time.time()
+        self.phrase_structure = ps
         self.window_width, self.window_height = self.determine_window_size(ps)
-        super().__init__(width=self.window_width, height=self.window_height, caption='LF interface', visible=self.settings['image_parameter_stop_after_image'])
+        self.set_size(self.window_width, self.window_height)
         self.background_image = pyglet.image.SolidColorImagePattern((255, 255, 255, 255)).create_image(self.window_width, self.window_height)
+        self.batch = pyglet.graphics.Batch()
+        self.g = []
+        self.show_in_window(self.phrase_structure)
+        self.dispatch_events()
+        self.on_draw()
+        self.save_image()
+        print('draw ps took ', time.time() - t)
 
     def determine_window_size(self, ps):
         left, right, depth = self.get_tree_size(ps, 0, 0, 0)
@@ -348,41 +365,41 @@ class ProduceGraphicOutput(pyglet.window.Window):
                 italics_style = True
             else:
                 italics_style = False
-            label_ = pyglet.text.Label(label,
-                                      font_name='Times New Roman',
-                                      font_size=font_size,
-                                      italic=italics_style,
-                                      x=X1, y=Y1 + 12 - line_position,
-                                      anchor_x='center', anchor_y='center',
-                                      color=(50, 50, 50, 255))
-            label_.draw()
+            self.g.append(pyglet.text.Label(label,
+                                            font_name='Times New Roman',
+                                            font_size=font_size,
+                                            italic=italics_style,
+                                            x=X1, y=Y1 + 12 - line_position,
+                                            anchor_x='center', anchor_y='center',
+                                            color=(50, 50, 50, 255),
+                                            batch=self.batch))
             line_position = line_position + (25 * line_space * self.scale)
 
     def draw_right_line(self, ps, X1, Y1):
         X2 = self.x_offset + ps.right.x * self.x_grid
         Y2 = self.y_offset + ps.right.y * self.y_grid + (self.y_grid - self.x_grid)
-        line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50))
+        line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50), batch=self.batch)
         # Adjuncts are marked by double line
         if ps.right.adjunct and self.settings['image_parameter_mark_adjuncts']:
-            line2 = shapes.Line(X1 + (5 * self.scale), Y1, X2 + (5 * self.scale), Y2, width=1, color=(50, 50, 50))
-            line2.draw()
-        line.draw()
+            line2 = shapes.Line(X1 + (5 * self.scale), Y1, X2 + (5 * self.scale), Y2, width=1, color=(50, 50, 50), batch=self.batch)
+            self.g.append(line2)
+        self.g.append(line)
 
     def draw_left_line(self, ps, X1, Y1):
         X2 = self.x_offset + ps.left.x * self.x_grid
         Y2 = self.y_offset + ps.left.y * self.y_grid + (self.y_grid - self.x_grid)
-        line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50))
+        line = shapes.Line(X1, Y1, X2, Y2, width=2, color=(50, 50, 50), batch=self.batch)
         # Adjuncts are marked by double line
         if ps.left.adjunct and self.settings['image_parameter_mark_adjuncts']:
-            line2 = shapes.Line(X1 + (2 * self.scale), Y1 - 2 * self.scale, X2 + (2 * self.scale), Y2 - 2 * self.scale, width=2, color=(50, 50, 50))
-            line2.draw()
-        line.draw()
+            line2 = shapes.Line(X1 + (2 * self.scale), Y1 - 2 * self.scale, X2 + (2 * self.scale), Y2 - 2 * self.scale, width=2, color=(50, 50, 50), batch=self.batch)
+            self.g.append(line2)
+        self.g.append(line)
 
     def draw_vertical_line(self, ps, X1, Y1):
         X2 = X1
         Y2 = self.y_offset + ps.right.y * self.y_grid + (self.y_grid - self.x_grid)
-        line = shapes.Line(X1, Y1 - (25 * self.scale), X2, Y2, width=2, color=(50, 50, 50, 255))
-        line.draw()
+        line = shapes.Line(X1, Y1 - (25 * self.scale), X2, Y2, width=2, color=(50, 50, 50, 255), batch=self.batch)
+        self.g.append(line)
 
     def draw_original_sentence(self):
         if self.settings['image_parameter_show_sentences']:
@@ -391,8 +408,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                        font_size=20,
                                        italic=True,
                                        x=0, y=0,
-                                       anchor_x='left', anchor_y='bottom')
-            label5.draw()
+                                       anchor_x='left', anchor_y='bottom', batch=self.batch)
+            self.g.append(label5)
 
     def draw_chain_subscript(self, ps, X1, Y1):
         if ps.identity and not ps.primitive():
@@ -400,8 +417,8 @@ class ProduceGraphicOutput(pyglet.window.Window):
                                       font_size=(10 * self.scale),
                                       x=X1+(18 * self.scale),
                                       y=Y1+(5 * self.scale),
-                                      anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-            label.draw()
+                                      anchor_x='center', anchor_y='center', color=(0, 0, 0, 255), batch=self.batch)
+            self.g.append(label)
 
     def nearby(self, x1, y1, x2, y2):
         if abs(x1-x2) < 15 and abs(y1-y2) < 15:
@@ -426,8 +443,11 @@ class ProduceGraphicOutput(pyglet.window.Window):
     def on_draw(self):
         self.clear()
         self.background_image.blit(0, 0)
+        t = time.time()
+        self.batch.draw()
+        print('drawing batch ', time.time() - t)
+
 
     def terminate(self, dt):
-        self.show_in_window(self.phrase_structure)
         self.save_image()
         self.close()
