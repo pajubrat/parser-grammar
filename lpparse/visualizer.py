@@ -153,7 +153,6 @@ class ProduceGraphicOutput(pyglet.window.Window):
         self.phi_mapping = [({'PHI:NUM:SG', 'PHI:PER:1'}, '1sg'), ({'PHI:NUM:SG', 'PHI:PER:2'}, '2sg'), ({'PHI:NUM:SG', 'PHI:PER:3'}, '3sg'),
                             ({'PHI:NUM:PL', 'PHI:PER:1'}, '1pl'), ({'PHI:NUM:PL', 'PHI:PER:2'}, '2pl'), ({'PHI:NUM:SG', 'PHI:PER:3'}, '3pl')]
 
-
         self.window_width, self.window_height = self.determine_window_size(ps)
         super().__init__(width=self.window_width, height=self.window_height, caption='LF interface', visible=self.settings['image_parameter_stop_after_image'])
         self.background_image = pyglet.image.SolidColorImagePattern((255, 255, 255, 255)).create_image(self.window_width, self.window_height)

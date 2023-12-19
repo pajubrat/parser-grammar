@@ -6,9 +6,9 @@ study_id= 15
 study_folder=			language data working directory/study-19-Morphology
 lexicon_folder=			language data working directory/lexicons
 test_corpus_folder=		language data working directory/study-19-Morphology
-#test_corpus=			Morphology_corpus.txt
+test_corpus=			Morphology_corpus.txt
 #test_corpus=			GENERATED_CORPUS.txt
-test_corpus=			50K_corpus.txt
+#test_corpus=			50K_corpus.txt
 numeration=				Morphology_numeration.txt
 
 # GENERAL SIMULATION PARAMETERS
@@ -22,7 +22,7 @@ datatake_full = False
 
 # IMAGE PARAMETERS (requires Pyglet library)
 image_parameter_show_words = True
-datatake_images = False
+datatake_images = True
 image_parameter_nolabels = False
 image_parameter_spellout = False
 image_parameter_show_sentences = False
