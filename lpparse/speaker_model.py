@@ -1,7 +1,6 @@
-from support import set_logging, log, report_failure, report_success, log_new_sentence, secure_copy
+from support import set_logging, log, report_failure, report_success, log_new_sentence, secure_copy, log_instance
 from lexical_interface import LexicalInterface
 from LF import LF
-from morphology import Morphology
 from SEM_narrow_semantics import NarrowSemantics
 from lexical_stream import LexicalStream
 from time import process_time
@@ -27,7 +26,6 @@ class SpeakerModel:
         self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
         self.lexicon.load_lexicon(local_file_system)            # Load the language/dialect specific lexicon
-        self.morphology = Morphology(self, language)            # Access to morphology
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.plausibility_metrics = PlausibilityMetrics(self)
@@ -40,6 +38,7 @@ class SpeakerModel:
         self.time_from_stimulus_onset_for_word = []
         self.only_first_solution = False
         self.Experimental_functions = ExperimentalFunctions(self)
+        self.embedding = 0
 
     def initialize(self):
         if 'only_first_solution' in self.local_file_system.settings:
@@ -101,11 +100,15 @@ class SpeakerModel:
     # Recursive derivational search function (parser)
     def parse_new_item(self, ps, lst, index, inflection_buffer=frozenset()):
 
+        log_instance.indent_level = self.embedding
+
         # Stop processing if there are no more words to consume
         if not self.circuit_breaker(ps, lst, index):
 
             # Retrieve lexical items on the basis of phonological input
             retrieved_lexical_items = self.lexicon.lexical_retrieval(lst[index])
+
+            log_instance.indent_level = self.embedding
 
             # Examine all retrieved lexical items (ambiguity resolution)
             for lex in retrieved_lexical_items:
@@ -113,8 +116,10 @@ class SpeakerModel:
                 # Recursive branching: 1) morphological parsing, 2) inflection, 3) stream into syntax
                 # 1. Morphological parsing if applicable
                 if lex.morphological_chunk:
-                    parsed_input_list = self.morphology.morphological_parse(ps, lex, lst.copy(), index, inflection_buffer)
-                    self.parse_new_item(secure_copy(ps), parsed_input_list, index, inflection_buffer)
+                    self.embedding += 1
+                    self.parse_new_item(secure_copy(ps),
+                                        lex.morphological_parse(ps, lst.copy(), index, inflection_buffer),
+                                        index, inflection_buffer)
 
                 # 2. Process inflectional feature (withhold streaming to syntax)
                 if not lex.morphological_chunk and lex.inflectional:
@@ -131,7 +136,7 @@ class SpeakerModel:
     def explore_derivation_space(self, ps, X, lst, index):
         if not ps:
             # If there is no phrase structure in syntactic working memory, create it from X
-            log(f' - nothing to merge.')
+            log(f' => Insert into working memory.')
             self.parse_new_item(X.copy(), lst, index + 1)
         else:
             # Create derivational search space for existing phrase structure and new constituent X
@@ -150,6 +155,8 @@ class SpeakerModel:
         # If there are no more words, the solution is evaluated
         # at LF-interface and postsyntactically
         if index == len(lst):
+            self.embedding = 0
+            log_instance.indent_level = self.embedding
             self.evaluate_complete_solution(ps)
             return True
         self.time_from_stimulus_onset = int(len(lst[index]) * 10)

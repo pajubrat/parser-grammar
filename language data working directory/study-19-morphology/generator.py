@@ -1,13 +1,13 @@
 # This script generates the dataset for Study 19
 
-roots = ['pino-', 'istu-', 'luKe-', 'iso-']
+roots = ['nenä-', 'istu-', 'luKe-', 'iso-']
 
 inner_V_morphemes = ['TA', 'ile', 'UTU', 'AhtA', 'Aise', 'a']
 inner_N_morphemes = ['O', 'Us', 'stO', '(t)e']
 inner_A_morphemes = ['ise', 'mAise']
 
 outer_V_morphemes = ['(t)A', 'impss', 'T/fin#prs#n', 'v']
-outer_N_morphemes = ['mise', 'tAr', 'jA', 'ri', '[NOM]']
+outer_N_morphemes = ['mise', 'tAr', 'jA', '[NOM]']
 outer_A_morphemes = ['inen', 'mAinen', 'mAtOn', 'tOn', 'mA', 'vA', 'hkO']
 
 inner_morphemes = inner_V_morphemes + inner_N_morphemes + inner_A_morphemes

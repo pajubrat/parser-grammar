@@ -4,8 +4,8 @@
 # =======================================================================================
 
 T/fin   :: T/fin LF:T
-v       :: v PF:v LF:v PC:#X#
-v*		:: v PF:-ed v- LF:pass -θ EF PC:#X#
+v       :: v V PF:v LF:v -COMP:REFL/V PC:#X
+v*		:: v V PF:-ed v- LF:pass -θ EF PC:#X#
 
 C/fin   :: C/fin PF:C LF:C/fin
 C		:: C C/fin PF:C LF:C
@@ -62,14 +62,16 @@ P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* 	LF:in COMP:φ !COMP:* TAIL:V COMP:MA.
 			U			:: V REFL/V	EHM										PF:-U		LF:refl LANG:FI	-wCOMP:REFL/V -wCOMP:FREQ/V -wCOMP:CLASS/INTR -wCOMP:EVE/V CLASS/INTR
 			AhtA		:: V MOM/V EHM										PF:-AhtA	LF:sem	LANG:FI !wCOMP:V !wCOMP:CLASS/INTR -wCOMP:EHM -wCOMP:EVE/V
 			Aise		:: V MOM/V EHM										PF:-Aise	LF:sem	LANG:FI !wCOMP:V !wCOMP:CLASS/TR -wCOMP:EHM -wCOMP:EVE/V
-			a			:: V EVE/V EHM										PF:-a		LF:event LANG:FI !wCOMP:N -wCOMP:EHM
+			a			:: a-#v LANG:FI
+			a-			:: V EVE/V											PF:-a		LF:event LANG:FI !COMP:N -COMP:EHM
 			
 		# Nominal
 		
 			O			:: N EVE/N EHM										PF:-O		LF:action	LANG:FI !wCOMP:V -wCOMP:CAU/V -wCOMP:REFL/V -wCOMP:MOM/V -wCOMP:EVE/N
 			ntO			:: N EVE/N EHM										PF:-ntO		LF:action	LANG:FI !wCOMP:V -wCOMP:CAU/V -wCOMP:REFL/V -wCOMP:MOM/V -wCOMP:EVE/N
-			Us			:: N AEVE/N EHM										PF:-Us		LF:action	LANG:FI -wCOMP:FREQ/V -wCOMP:EVE/N
+			Us			:: N AEVE/N EHM										PF:-Us		LF:action	LANG:FI !wCOMP:V -wCOMP:FREQ/V -wCOMP:EVE/N
 			Ude			:: N AEVE/N EHM										PF:-Ude		LF:action	LANG:FI !wCOMP:V -wCOMP:FREQ/V -wCOMP:EVE/N
+			vUUs		:: N AEVE/N EHM										PF:-Ude		LF:action	LANG:FI !wCOMP:V -wCOMP:FREQ/V -wCOMP:EVE/N
 			stO			:: N COL/N EHM										PF:-stO		LF:group	LANG:FI !wCOMP:N -wCOMP:COL/N
 			(t)e		:: N EVENT/N EHM									PF:-(t)e	LF:result	LANG:FI !wCOMP:V
 			lAinen		:: N PER/N EHM										PF:-lAinen	LF:person	LANG:FI !wCOMP:N
@@ -85,7 +87,7 @@ P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* 	LF:in COMP:φ !COMP:* TAIL:V COMP:MA.
 		
 		# verbal
 		
-			(t)A		:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event !COMP:* -COMP:EVE/N -COMP:n -COMP:AEVE/N -COMP:IMPSS -COMP:A/inf LANG:FI PROBE:V
+			(t)A		:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event -COMP:N !COMP:* -COMP:EVE/N -COMP:n -COMP:AEVE/N -COMP:IMPSS -COMP:A/inf LANG:FI PROBE:V
 			vAn		  	:: VA/inf 		EF	Inf T   ARG	+ΦLF,ΦPF -ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to -COMP:N -SPEC:N !COMP:*  PROBE:V LANG:FI
 			essA	 	:: ESSA/inf		EF	Inf Adv ARG  					PF:-essA 	PC:#X LF:while !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
 			tUA 		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	PC:#X LF:after !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T

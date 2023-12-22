@@ -63,6 +63,7 @@ def show_primitive_constituents(self):
                 break
             reply += f'\t\t{head.get_phonological_string():<10} {show_feature_list(sorted_by_relevance(head.features))}\n'
     return reply
+
 def show_feature_list(lst):
     str = ''
     for feature in lst:
@@ -71,10 +72,14 @@ def show_feature_list(lst):
 
 def log(text):
     if log_instance.logging and not log_instance.disabled:
-        my_log.info(text)
+        if text.startswith('\n'):
+            text2 = '\n' + '\t'*log_instance.indent_level + text[1:]
+        else:
+            text2 = text
+        my_log.info(text2)
         log_instance.operations += 1
         if log_instance.use_buffer:
-            log_instance.buffer.append(text)
+            log_instance.buffer.append(text2)
 
 def disable_logging():
     log_instance.disabled += 1

@@ -1,4 +1,5 @@
-from collections import namedtuple
+from support import log_instance
+
 
 class LexicalItem:
     def __init__(self, name='?', feature_set=set()):
@@ -46,3 +47,18 @@ class LexicalItem:
 
     def __str__(self):
         return self.name
+
+    def morphological_parse(self, ps, input_word_list, index, inflection_buffer):
+        word = self.morphological_chunk
+        word = word.replace("#", "#$#")
+        word = word.replace("=", '=$=')
+        word_list = word.split('$')
+        word_list[0] = self.onset + word_list[0]
+        word_list[-1] = word_list[-1] + self.offset
+
+        # Mirror principle
+        del input_word_list[index]
+        for w_ in word_list:
+            input_word_list.insert(index, w_)
+
+        return input_word_list

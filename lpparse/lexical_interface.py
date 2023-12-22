@@ -1,8 +1,7 @@
 import phrase_structure
 from collections import defaultdict
-from operator import itemgetter
 from lexical_item import LexicalItem
-from support import log
+from support import log, log_instance
 
 MBOUNDARY = ('#', '_')
 
@@ -26,12 +25,26 @@ class LexicalInterface:
         self.log_lexical_items(phon, lexical_items_lst)
         return lexical_items_lst
 
+    def phonological_context(self, phon):
+        onset = ''
+        offset = ''
+        if not phon.startswith(MBOUNDARY):
+            if self.speaker_model.embedding > 0:
+                self.speaker_model.embedding -= 1
+        if not phon.startswith(MBOUNDARY) and not phon.endswith(MBOUNDARY):
+            return phon, '_', '_'
+        if phon.startswith(MBOUNDARY):
+            onset = phon[0]
+        if phon.endswith(MBOUNDARY):
+            offset = phon[-1]
+        return phon[len(onset):len(phon)-len(offset)], onset, offset
+
     def log_lexical_items(self, phon, lst):
         log(f' => ')
         for i, lex in enumerate(lst):
             if lex:
                 if lex.morphological_chunk:
-                    log(f'{lex.morphological_chunk}')
+                    log(f'morphological chunk [{lex.morphological_chunk}] => ')
                 else:
                     log(f'({i+1}) {lex}° ')
 
@@ -40,15 +53,6 @@ class LexicalInterface:
             if (pfc[0] != 'X' and pfc[0] != onset) or (pfc[-1] != 'X' and pfc[-1] != offset):
                 return False
         return True
-
-    def phonological_context(self, phon):
-        onset = ''
-        offset = ''
-        if phon.startswith(MBOUNDARY):
-            onset = phon[0]
-        if phon.endswith(MBOUNDARY):
-            offset = phon[-1]
-        return phon[len(onset):len(phon)-len(offset)], onset, offset
 
     def unknown_word(self, phonological_entry):
         lex = LexicalItem()
@@ -66,9 +70,9 @@ class LexicalInterface:
         return (self.language in lex.language) or (lex.language == 'LANG:X')
 
     def apply_redundancy_rules(self, features):
-        def feature_conflict(new_candidate_feature_to_add, features_from_lexicon):
-            return (new_candidate_feature_to_add.startswith('-') and new_candidate_feature_to_add[1:] in features_from_lexicon) or \
-                   (not new_candidate_feature_to_add.startswith('-') and '-' + new_candidate_feature_to_add in features_from_lexicon)
+        def feature_conflict(new_feature, features_from_lexicon):
+            return (new_feature.startswith('-') and (new_feature[1:] in features_from_lexicon or '!' + new_feature[1:] in features_from_lexicon)) or \
+                   (not new_feature.startswith('-') and '-' + new_feature in features_from_lexicon)
 
         feature_set = set(features)
         new_features_to_add = set()
