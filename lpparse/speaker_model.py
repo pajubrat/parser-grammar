@@ -25,7 +25,7 @@ class SpeakerModel:
         self.name_provider_index = 0                            # Index for name provider, for chain identification
         self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
-        self.lexicon.load_lexicon(local_file_system)            # Load the language/dialect specific lexicon
+        self.lexicon.load_lexicons(local_file_system)            # Load the language/dialect specific lexicon
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.plausibility_metrics = PlausibilityMetrics(self)

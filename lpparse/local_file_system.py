@@ -5,6 +5,9 @@ from datetime import datetime
 from support import *
 from phrase_structure import PhraseStructure
 import logging
+from language_guesser import LanguageGuesser
+from speaker_model import SpeakerModel
+
 
 class LocalFileSystem:
     def __init__(self):
@@ -67,6 +70,19 @@ class LocalFileSystem:
                                          'positive_adverbial_test': '100'
                                          }
 
+    def set_up_experiment(self, args):
+        self.initialize(args)
+        self.configure_logging()
+        lg = LanguageGuesser(self.settings['lexicons'], self.folder['lexicon'])
+        speaker_model = {}
+        for language in lg.languages:
+            speaker_model[language] = SpeakerModel(self, language)
+            speaker_model[language].initialize()
+        sentences_to_parse = [(sentence, group, part_of_conversation, grammatical)
+                              for (sentence, group, part_of_conversation, grammatical)
+                              in self.read_test_corpus()]
+        return speaker_model, sentences_to_parse, lg
+
     def initialize(self, args):
         self.initialize_dev_logging()
         self.read_study_config_file(args)
@@ -119,14 +135,15 @@ class LocalFileSystem:
 
     def verify_and_check_mandatory_values(self):
         self.dev_log_file.write('Checking and validating settings...')
-        self.settings['study_folder'] = self.settings.get('study_folder','')
-        self.settings['test_corpus_folder'] = self.settings.get('test_corpus_folder','')
+        self.settings['study_folder'] = self.settings.get('study_folder', '')
+        self.settings['test_corpus_folder'] = self.settings.get('test_corpus_folder', '')
         self.settings['test_corpus_file'] = self.settings.get('test_corpus_file', 'default_corpus.txt')
         self.settings['lexicon_folder'] = self.settings.get('lexicon_folder', 'lexicons')
         self.settings['console_output'] = self.settings.get('console_output', 'Full')
         self.settings['Agree'] = self.settings.get('Agree', 'standard')
         self.settings['phase_heads'] = self.settings.get('phase_heads', {'C', 'v', 'FORCE'})
         self.settings['phase_heads_excluded'] = self.settings.get('phase_heads_excluded', set())
+        self.settings['lexicons'] = self.settings.get('lexicons', {'lexicon.txt', 'ug_morphemes.txt'})
         self.dev_log_file.write('Done.\n')
         self.dev_log_file.write(f'Settings: {self.settings}.\n')
 
@@ -142,19 +159,18 @@ class LocalFileSystem:
                                  "surface_vocabulary_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_saved_vocabulary.txt'),
                                  "numeration": self.folder['study'] / self.settings['numeration'],
                                  "numeration_output": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_N.txt'),
-                                 "lexicon_file_name": self.folder['lexicon'] / 'lexicon.txt',
-                                 "ug_morphemes": self.folder['lexicon'] / 'ug_morphemes.txt',
-                                 "redundancy_rules": self.folder['lexicon'] / 'redundancy_rules.txt',
+                                 "redundancy_rules": self.folder['lexicon'] / self.settings['redundancy_rules'],
                                  "semantics_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_semantics.txt'),
                                  "control_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_control.txt'),
                                  "error_report_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_error_reports.txt')
                                  }
+
         self.dev_log_file.write(f'{self.external_sources}.\n')
 
     def set_folders(self):
         self.dev_log_file.write(f'Setting folders for input and output files: ')
-        self.folder['study'] = Path(self.settings.get('study_folder','language data working directory'))
-        self.folder['test_corpus'] = Path(self.settings.get('test_corpus_folder','language data working directory'))
+        self.folder['study'] = Path(self.settings.get('study_folder', 'language data working directory'))
+        self.folder['test_corpus'] = Path(self.settings.get('test_corpus_folder', 'language data working directory'))
         self.folder['lexicon'] = Path(self.settings.get('lexicon_folder', 'language data working directory/lexicons'))
         self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
         self.dev_log_file.write(f'{self.folder}.\n')
@@ -253,8 +269,8 @@ class LocalFileSystem:
         self.dev_log_file.write(f'were used to generate a corpus {self.external_sources["numeration_output"]}.\n')
         self.dev_log_file.write(f'^ This corpus will be used in the processing.\n')
 
-    def print_sentence_to_console(self, sentence_number, sentence, language):
-        print(f'\n{sentence_number}. {sentence} ({language[-2:]}) ', end='')
+    def print_sentence_to_console(self, sentence_number, sentence):
+        print(f'\n{sentence_number}. {sentence} ', end='')
 
     def initialize_results_file(self):
         self.dev_log_file.write('Initializing results file...')
@@ -413,9 +429,6 @@ class LocalFileSystem:
         file_handle.write('@  '+str(datetime.datetime.now()) + '\n')
         file_handle.write('@  '+f'Test sentences {self.external_sources["test_corpus_file_name"]}.\n')
         file_handle.write('@  '+f'Logs {self.external_sources["log_file_name"]}.\n')
-        file_handle.write('@  '+f'Lexicon {self.external_sources["lexicon_file_name"]}.\n')
-        file_handle.write('@  '+f'Redundancy rules {self.external_sources["redundancy_rules"]}.\n')
-        file_handle.write('@  '+f'Universal morphemes {self.external_sources["ug_morphemes"]}.\n')
         file_handle.write('@ \n')
 
     def save_output(self, parser, count, sentence, experimental_group, part_of_conversation, grammatical):

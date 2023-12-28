@@ -107,19 +107,12 @@ class LexicalInterface:
                 redundancy_rules_dict[antecedent_trigger] = feature_list
         return redundancy_rules_dict
 
-    def load_lexicon(self, local_file_system):
-        # Load language-specific lexical entries
-        self.load_lexicon_(local_file_system.external_sources["lexicon_file_name"])
-        # Load universal morphemes
-        self.load_lexicon_(local_file_system.external_sources["ug_morphemes"], True)
+    def load_lexicons(self, local_file_system):
+        self.surface_lexicon = defaultdict(list)
+        for lexicon_file in list(local_file_system.settings['lexicons']):
+            self.load_lexicon(local_file_system.folder['lexicon'] / lexicon_file)
 
-    def load_lexicon_(self, lexicon_file, combine=False):
-
-        # Determines if we create the dictionary anew (combine = False) or
-        # add to an existing one by reading additional files (Combine = True)
-        if not combine:
-            self.surface_lexicon = defaultdict(list)
-            self.surface_lexicon = defaultdict(list)
+    def load_lexicon(self, lexicon_file):
 
         # Read the entries from the lexicon file (each line = one lexical entry)
         lexical_entries = []

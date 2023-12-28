@@ -13,18 +13,18 @@ v   	:: θ ARG -ΦPF ASP 		!COMP:* COMP:V -SPEC:v -SPEC:T/fin !COMP:V SPEC:φ -S
 D   	:: φ -ARG 				!COMP:* -COMP:D -COMP:v -COMP:V -COMP:P -COMP:T/fin -COMP:Neg/fin -COMP:T -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:n COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 D/rel	:: φ D -ARG OP OP:REL 	 adjoinable	COMP:* -COMP:C/fin -COMP:φ -SPEC:MA.ade/inf -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 N   	:: θ 					-COMP:EXPL -COMP:VA/inf -COMP:T/fin -COMP:MA/A -COMP:Neg -COMP:T/prt COMP:D/rel COMP:√ COMP:P -COMP:A COMP:C -COMP:AUX -SPEC:FORCE SPEC:A COMP:R COMP:R/D SPEC:φ -SPEC:uWH -SPEC:R -SPEC:V -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:Adv -COMP:WH
-V   	:: θ ARG -ΦPF ASP 		-SPEC:T/fin -SPEC:FORCE SPEC:Adv -COMP:N -COMP:T/prt -COMP:v SPEC:P SPEC:TO/inf -COMP:EXPL
+V   	:: θ ARG -ΦPF ASP 		-SPEC:T/fin -SPEC:FORCE SPEC:Adv -COMP:T/prt -COMP:N -COMP:v SPEC:P SPEC:TO/inf -COMP:EXPL
 P   	:: ARG 					adjoinable COMP:φ -COMP:V -COMP:MA/A -SPEC:Neg -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 Adv 	:: adjoinable			-SPEC:N -SPEC:FORCE -SPEC:Neg/fin -SPEC:T/fin
 A 		:: θ		 			-SPEC:A
 Inf		:: TAM 					-COMP:A -COMP:T/fin -COMP:FORCE -COMP:C/fin -SPEC:T/fin -SPEC:V
-n		:: φ EF ARG Inf 		N -COMP:n !COMP:*
+n		:: φ EF ARG Inf 		N -COMP:n !COMP:* -COMP:IMPSS
 √		:: SPEC:φ 2SPEC 		-COMP:φ
 Num		:: φ 					COMP:φ COMP:N COMP:n -COMP:D -COMP:QN
 DET		:: φ 					COMP:φ -COMP:DET 
 Qn		:: φ 					COMP:φ COMP:N COMP:Num
 φ		:: θ 					-SPEC:T -SPEC:P COMP:D/rel !COMP:* COMP:N
-a		:: 						A !COMP:* -COMP:a -COMP:A/inf -COMP:T
+a		:: 						A !COMP:* -COMP:IMPSS -COMP:a -COMP:A/inf -COMP:T
 Neg		:: 						-SPEC:N SPEC:D
 ARG		:: PHI:NUM:_ PHI:PER:_ PHI:DET:_
 

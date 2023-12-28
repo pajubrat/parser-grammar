@@ -330,20 +330,24 @@ class PhraseStructure:
 
     # Selection -------------------------------------------------------------------------------------------
     # Feature -SPEC:L
-    def selection__negative_specifier(self,  selected_feature):
-        return not self.next(self.edge, lambda x: x.check({selected_feature}) and not x.adjunct)
+    def selection__negative_specifier(self, selected_feature_set):
+        return not self.next(self.edge, lambda x: x.check(selected_feature_set) and not x.adjunct)
 
     # Feature !1EDGE
     def selection__negative_one_edge(self, selected_feature):
         return len(self.edge()) < 2
 
     # Feature !COMP:L
-    def selection__positive_obligatory_complement(self, selected_feature):
-        return self.selected_sister() and self.selected_sister().check({selected_feature})
+    def selection__positive_obligatory_complement(self, selected_feature_set):
+        return self.selected_sister() and self.selected_sister().check(selected_feature_set)
+
+    # Feature +COMP:L,K
+    def selection__positive_disjunctive_complement(self, selected_feature_set):
+        return self.selected_sister() and self.selected_sister().check_some(selected_feature_set)
 
     # Feature -COMP:L
-    def selection__negative_complement(self, selected_feature):
-        return not (self.proper_selected_complement() and self.proper_selected_complement().check({selected_feature}))
+    def selection__negative_complement(self, selected_feature_set):
+        return not (self.proper_selected_complement() and self.proper_selected_complement().check_some(selected_feature_set))
 
     # Feature [!]
     def selection__positive_self_selection(self, selected_features):
@@ -411,34 +415,27 @@ class PhraseStructure:
             if not ((self.edge()[0] == self.sister() and self.check_some({'!COMP:φ', 'COMP:φ'})) or self.check_some({'SPEC:φ', '!SPEC:φ'})):
                 return True
 
+    def w_selection(self):
+        for feature in self.features:
+            if feature.startswith('!wCOMP:') and \
+                    not self.right.check(set(feature.split(':')[1].split(','))):
+                return True
+            elif feature.startswith('-wCOMP:') and \
+                    self.right.check_some(set(feature.split(':')[1].split(','))):
+                return True
+
     def EHM_test(self):
         if self.has_affix():
-            for head in [self] + self.get_affix_list()[0:-1]:
-
-                # Configuration is (X Y)
-                # Verify selection of X by Y
-                for feature in head.features:
-                    if feature.startswith('!wCOMP:'):
-                        if feature.split(':')[1] == '*':
-                            if not head.right:
-                                return True
-                        elif feature.split(':')[1] not in head.right.features:
-                            return True
-                    if feature.startswith('-wCOMP:'):
-                        if feature.split(':')[1] in head.right.features:
-                            return True
-
-                # If Y has been copied (IHM), X cannot have [EHM]
-                if head.right.find_me_elsewhere:
-                    if head.EHM():
-                        return True
-                    else:
-                        # Y being copied will be analyzed at another position, we do not continue
-                        break
-                # If Y has been merged externally, then X must have [EHM]
+            x = self
+            while x.right:
+                if x.w_selection():
+                    return True
+                if x.right.find_me_elsewhere:
+                    return x.EHM()      # [EHM] blocks IHM
                 else:
-                    if not head.EHM():
+                    if not x.EHM():     # [EHM] licenses EHM
                         return True
+                x = x.right
 
     # Projection principle and thematic roles ---------------------------------------------------------------------
     def nonthematic(self):
@@ -849,7 +846,7 @@ class PhraseStructure:
     # Feature processing -----------------------------------------------------------------------------
 
     def check(self, feature_set):
-        return feature_set == {'*'} or feature_set & self.head().features == feature_set
+        return feature_set == {'*'} or feature_set <= self.head().features
 
     def check_some(self, feature_set):
         return feature_set == {'*'} or feature_set & self.head().features
