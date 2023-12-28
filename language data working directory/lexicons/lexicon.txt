@@ -94,6 +94,7 @@ ikkuna[pl]-	:: PF:ikkunat LF:windows N LANG:FI
 ikkunat_N	:: PF:ikkunat LF:windows N iPHI:NUM:PL LANG:FI
 ikkunat_DP	:: ikkuna-#φ#[acc]#pl#3p#def#hum
 ikkuna-		:: PF:ikkuna LF:window N LANG:FI
+iso-		:: A PF:iso LF:big LANG:FI
 istuuko		:: istu-#T/fin#C/op LANG:FI
 istuu		:: istu-#T/fin#[V] LANG:FI
 istu-		:: PF:istu- LF:sit V CLASS/INTR LANG:FI
@@ -217,7 +218,7 @@ lla			:: PF:P(-lla) LF:by	P -ΦPF TAIL:T TAIL:*V LANG:FI
 lukemalla	:: luke-#v#MA.ade/inf LANG:FI
 lukee		:: luke-#v#T/fin#[V] LANG:FI
 lue-		:: PF:lue- LF:read V CLASS/TR LANG:FI
-luke-		:: PF:luke- LF:read V CLASS/TR LANG:FI
+luKe-		:: PF:luke- LF:read V CLASS/TR LANG:FI
 löydetty	:: löytä-#impass#asp#T/prt LANG:FI
 löydettiin	:: löytä-#impass#asp#T/fin#pl_#1p_#def_ LANG:FI
 löysimme	:: löytä-#v#asp#T/fin#mme LANG:FI
@@ -278,6 +279,7 @@ nauratu		:: naura-#tA
 nauroi		:: naura-#T/fin#pst#[V] LANG:FI
 nauraa		:: naura-#T/fin#prs#[V] LANG:FI
 naura-		:: PF:naura LF:laugh CLASS/INTR V LANG:FI
+nenä-		:: PF:nenä- LF:nose N LANG:FI
 näki		:: näke-#v#T/fin#pst#[V] LANG:FI
 näkee		:: näke-#v#T/fin#[V] LANG:FI
 näke-		:: PF:näke- LF:see V CLASS/TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA.abe/inf -COMP:MA.ine/inf LANG:FI
@@ -365,7 +367,7 @@ puke-		:: PF:puke- LF:dressup V CLASS/INTR LANG:FI
 puhelinta	:: puhelin-#n LANG:FI
 puhelin-	:: PF:puhelin- LF:phone 0 LANG:FI
 punainen 	:: puna-#nen LANG:FI
-puna-		:: PF:puna- LF:red LANG:FI
+puna-		:: N PF:puna- LF:red LANG:FI
 pyytää		:: pyytä-#v#T/fin#[V] LANG:FI
 pyysi		:: pyytä-#v#T/fin#[V] LANG:FI
 pyytä-		:: PF:pyyda- LF:ask V CLASS/TR SEMCLASS_desired_event SEM:external LANG:FI
@@ -558,7 +560,7 @@ nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL,PER:2 PER PHI:HUM:
 # Case suffixes
 # A. Structural
 [nom]		:: inflectional NOM TAIL:Fin,ARG,EF adjoinable LANG:FI
-[NOM´]		:: inflectional NOM -V -v -A/inf -T LANG:FI
+[NOM]		:: inflectional NOM -V -v -A/inf -T LANG:FI
 [gen]		:: inflectional GEN TAIL:Inf,ARG adjoinable nonfloat LANG:FI
 [par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable LANG:FI
 [acc(n)]	:: inflectional ACC ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:ΦPF TAIL:*POL:NEG adjoinable LANG:FI

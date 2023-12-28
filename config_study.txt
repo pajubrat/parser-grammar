@@ -4,25 +4,31 @@ year= 2023
 date= March
 study_id= 15
 study_folder=			language data working directory/study-19-Morphology
-lexicon_folder=			language data working directory/lexicons
 test_corpus_folder=		language data working directory/study-19-Morphology
-test_corpus=			Morphology_corpus.txt
-#test_corpus=			GENERATED_CORPUS.txt
-#test_corpus=			50K_corpus.txt
+#test_corpus=			Morphology_corpus.txt
+#test_corpus=			45K_corpus.txt
+test_corpus=			Stranding_corpus.txt
 numeration=				Morphology_numeration.txt
 
 # GENERAL SIMULATION PARAMETERS
 only_first_solution = False
 ignore_ungrammatical_sentences = False
-console_output = Full
+console_output = True
 stop_at_unknown_lexical_item = False
 logging = True
 use_numeration = False
 datatake_full = False
 
+# LEXICONS
+lexicon_folder=language data working directory/lexicons
+lexicons=lexicon.txt;ug_morphemes.txt
+
+# LEXICAL REDUNDANCY RULES
+redundancy_rules=redundancy_rules.txt
+
 # IMAGE PARAMETERS (requires Pyglet library)
 image_parameter_show_words = True
-datatake_images = True
+datatake_images = False
 image_parameter_nolabels = False
 image_parameter_spellout = False
 image_parameter_show_sentences = False
@@ -57,7 +63,7 @@ phase_heads_exclude = φ;v-;TO/inf
 calculate_assignments = False
 calculate_pragmatics = False
 calculate_thematic_roles = True
-project_objects = False
+project_objects = True
 generate_argument_links = True
 calculate_predicates = True
 

@@ -27,6 +27,7 @@ class LF:
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
                                          '-COMP': PhraseStructure.selection__negative_complement,
                                          '!COMP': PhraseStructure.selection__positive_obligatory_complement,
+                                         '+COMP': PhraseStructure.selection__positive_disjunctive_complement,
                                          '!': PhraseStructure.selection__positive_self_selection,
                                          '-': PhraseStructure.selection__negative_self_selection,
                                          '+': PhraseStructure.selection__partial_self_selection}
@@ -55,19 +56,23 @@ class LF:
 
     def selection_test(self, probe):
         for f in sorted(probe.features):
-            key, feature = self.format_selection_feature(f)
-            if key and not self.selection_violation_test[key](probe, feature):
+            key, feature_set = self.format_selection_feature(f)
+            if key and not self.selection_violation_test[key](probe, feature_set):
                 self.failed_feature = f
                 return True  # test failed
 
-    # This will be removed once we have an universal standard
+    # This will be removed once we have a universal standard
     def format_selection_feature(self, f):
         if f == 'p':
             return f, f
+
+        # Selection features which do not have standard type:value format
         if ':' not in f and f[0] in self.selection_violation_test.keys():
             return f[0], f[1:]
+
+        # Selection features with the standard type:value format
         if f[:5] in self.selection_violation_test.keys():
-            return f[:5], f[6:]
+            return f[:5], set(f[6:].split(','))
         else:
             return None, None
 

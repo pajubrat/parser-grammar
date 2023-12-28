@@ -1,22 +1,23 @@
 
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 
 class LanguageGuesser:
-    def __init__(self, lexicon_file):
+    def __init__(self, lexicon_files, lexicon_folder):
         self.lang_map = defaultdict(list)
         self.languages = set()
-        for line in open(lexicon_file, 'r', encoding='utf-8'):
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            key, feats = line.split('::', 1)
-            key = key.strip()
-            feats = [f.strip() for f in feats.split()]
-            for feat in feats:
-                if feat.startswith('LANG:'):
-                    self.lang_map[key].append(feat)
-                    self.languages.add(feat)
+        for lexicon_file in lexicon_files:
+            for line in open(lexicon_folder / lexicon_file, 'r', encoding='utf-8'):
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                key, feats = line.split('::', 1)
+                key = key.strip()
+                feats = [f.strip() for f in feats.split()]
+                for feat in feats:
+                    if feat.startswith('LANG:'):
+                        self.lang_map[key].append(feat)
+                        self.languages.add(feat)
 
     def guess_language(self, sentence):
         counter = {}
