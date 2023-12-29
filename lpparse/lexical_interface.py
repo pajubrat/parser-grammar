@@ -124,10 +124,11 @@ class LexicalInterface:
             line = line.strip()                                                 #   remove extra spaces
             if not line or line.startswith('#'):                                #   Ignore comments and empty lines
                 continue
-            phonological_entry, lexical_features = line.split('::', 1)          #   Separate key and value, by symbol '::'
-            phonological_entry = phonological_entry.strip()                     #   Remove extra spaces
+            phonological_entries, lexical_features = line.split('::', 1)        #   Separate key and value, by symbol '::'
+            phonological_entries = phonological_entries.strip().split(',')      #   Remove extra spaces, create set of allomorphs
             lexical_features = [f.strip() for f in lexical_features.split()]    #   Create the feature list
             if not {f for f in lexical_features if f[:4] == 'LANG'}:            #   If no language is specified for the lexical entry, add it
                 lexical_features.append(self.language)
-            lex = LexicalItem(phonological_entry, self.apply_redundancy_rules(lexical_features))
-            self.surface_lexicon[phonological_entry].append(lex)
+            for p in phonological_entries:
+                lex = LexicalItem(p, self.apply_redundancy_rules(lexical_features))
+                self.surface_lexicon[p].append(lex)

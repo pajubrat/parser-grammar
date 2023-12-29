@@ -19,7 +19,7 @@ class PhraseStructure:
     chain_index = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
-                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.EHM(),
+                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.License_EHM(),
                                     'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
                                     'sustain': lambda x: True,
@@ -424,16 +424,17 @@ class PhraseStructure:
                     self.right.check_some(set(feature.split(':')[1].split(','))):
                 return True
 
-    def EHM_test(self):
+    # Test whether a complex head satisfies conditions of the UG
+    def Complex_Head_Integrity(self):
         if self.has_affix():
             x = self
             while x.right:
                 if x.w_selection():
                     return True
                 if x.right.find_me_elsewhere:
-                    return x.EHM()      # [EHM] blocks IHM
+                    return x.License_EHM()      # [ε] blocks IHM
                 else:
-                    if not x.EHM():     # [EHM] licenses EHM
+                    if not x.License_EHM():     # [ε] licenses EHM
                         return True
                 x = x.right
 
@@ -1495,5 +1496,6 @@ class PhraseStructure:
     def appropriate_argument(self):
         return not self.head().check({'pro_'}) and (self.referential() or self.expletive())
 
-    def EHM(self):
-        return 'EHM' in self.features
+    def License_EHM(self):
+        return 'ε' in self.features
+

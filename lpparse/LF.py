@@ -21,7 +21,7 @@ class LF:
                                     ('Double Specifier Filter', PhraseStructure.double_spec_filter),
                                     ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
                                     ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
-                                    ('External head merge test', PhraseStructure.EHM_test)]
+                                    ('External head merge test', PhraseStructure.Complex_Head_Integrity)]
 
         self.selection_violation_test = {'1EDGE': PhraseStructure.selection__negative_one_edge,
                                          '-SPEC': PhraseStructure.selection__negative_specifier,
