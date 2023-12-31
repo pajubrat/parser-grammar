@@ -8,10 +8,10 @@ class LanguageGuesser:
         self.languages = set()
         for lexicon_file in lexicon_files:
             for line in open(lexicon_folder / lexicon_file, 'r', encoding='utf-8'):
-                line = line.strip()
-                if not line or line.startswith('#'):
+                if not line or '::' not in line or line.startswith('#'):
                     continue
-                key, feats = line.split('::', 1)
+                line = line.strip()
+                key, feats = line.split('::')
                 key = key.strip()
                 feats = [f.strip() for f in feats.split()]
                 for feat in feats:

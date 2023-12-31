@@ -87,6 +87,8 @@ class PhraseStructure:
         self.nn = None
         self.x = 0
         self.y = 0
+        self.X = 0
+        self.Y = 0
         if left_constituent and left_constituent.adjunct and left_constituent.primitive():
             self.adjunct = True
             left_constituent.adjunct = False

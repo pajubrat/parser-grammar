@@ -7,7 +7,14 @@ from phrase_structure import PhraseStructure
 import logging
 from language_guesser import LanguageGuesser
 from speaker_model import SpeakerModel
+from support import feature_explanations
 
+
+def explanation(feature):
+    for key in feature_explanations.keys():
+        if key in feature:
+            return feature_explanations[key]
+    return ''
 
 class LocalFileSystem:
     def __init__(self):
@@ -70,23 +77,22 @@ class LocalFileSystem:
                                          'positive_adverbial_test': '100'
                                          }
 
-    def set_up_experiment(self, args):
-        self.initialize(args)
+    def set_up_experiment(self):
+        self.initialize()
         self.configure_logging()
         lg = LanguageGuesser(self.settings['lexicons'], self.folder['lexicon'])
         speaker_model = {}
         for language in lg.languages:
             speaker_model[language] = SpeakerModel(self, language)
             speaker_model[language].initialize()
-        sentences_to_parse = [(sentence, group, part_of_conversation, grammatical)
-                              for (sentence, group, part_of_conversation, grammatical)
+        sentences_to_parse = [(index, sentence, group, part_of_conversation, grammatical)
+                              for (index, sentence, group, part_of_conversation, grammatical)
                               in self.read_test_corpus()]
         return speaker_model, sentences_to_parse, lg
 
-    def initialize(self, args):
+    def initialize(self):
         self.initialize_dev_logging()
-        self.read_study_config_file(args)
-        self.read_input_arguments_into_settings(args)
+        self.read_study_config_file()
         self.verify_and_check_mandatory_values()
         self.set_folders()
         self.set_external_resources()
@@ -175,34 +181,15 @@ class LocalFileSystem:
         self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
         self.dev_log_file.write(f'{self.folder}.\n')
 
-    def read_input_arguments_into_settings(self, args):
-        self.dev_log_file.write('Reading input parameters from the user...')
-        for key in args:
-            self.settings[key] = args[key]
-            self.dev_log_file.write(f'{key}: {args[key]}, ')
-        self.dev_log_file.write('Done.\n')
+    def initialize_simple_log_file(self):
+        self.dev_log_file.write('Initializing simple log file...')
+        self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, encoding=self.encoding)
+        self.stamp(self.simple_log_file)
 
-    def read_root_config_file_into_settings(self):
-        self.dev_log_file.write(f'Reading root configuration file...')
-        try:
-            with open('config.txt', 'r') as config_file:
-                for line in config_file:
-                    line = line.strip()
-                    line = line.replace('\t', '')
-                    line = line.replace('  ', '')
-                    if len(line.split(':')) == 2 and not line.startswith('#'):
-                        key, value = line.split(':')
-                        self.settings[key] = value
-                        self.dev_log_file.write(f'{key}:{value}, ')
-                config_file.close()
-                self.dev_log_file.write(f'Done.\n')
-        except IOError:
-            self.dev_log_file.write('No file found.\n')
-
-    def read_study_config_file(self, args):
+    def read_study_config_file(self):
         self.dev_log_file.write('Reading study configuration file...')
         try:
-            with open(args.get('study_folder', '') + 'config_study.txt', encoding=self.encoding) as config_file:
+            with open('config_study.txt', encoding=self.encoding) as config_file:
                 # Read file into dict
                 for line in config_file:
                     line = line.strip().replace('\t', '')
@@ -241,11 +228,6 @@ class LocalFileSystem:
         PhraseStructure.phase_heads = self.settings['phase_heads']
         PhraseStructure.phase_heads_exclude = self.settings['phase_heads_exclude']
         PhraseStructure.spellout_heads = self.settings['image_parameter_spellout_complex_heads']
-
-    def initialize_simple_log_file(self):
-        self.dev_log_file.write('Initializing simple log file...')
-        self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, encoding=self.encoding)
-        self.stamp(self.simple_log_file)
 
     def process_numeration(self):
         self.dev_log_file.write(f'Processing numeration from {self.external_sources["numeration"]} into {self.external_sources["numeration_output"]}...')
@@ -362,13 +344,13 @@ class LocalFileSystem:
     def read_test_corpus(self):
         experimental_group = []
         parse_list = []
-        plus_sentences = []
         if self.settings['use_numeration']:
             k = open(self.external_sources['numeration_output'], encoding=self.encoding)
             input_file = self.external_sources["numeration_output"]
         else:
             input_file = self.external_sources["test_corpus_file_name"]
         self.dev_log_file.write(f'Reading test corpus file {input_file}...')
+        index = 1
         for line in open(input_file, encoding=self.encoding):
             part_of_conversation = False
             line = line.strip()
@@ -385,7 +367,7 @@ class LocalFileSystem:
                 line = line.strip()
                 line = self.clear_line_end(line)
                 line, grammatical = self.gold_standard_grammaticality(line)
-                parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
+                parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
                 break
             if line.endswith(';'):
                 part_of_conversation = True
@@ -393,16 +375,15 @@ class LocalFileSystem:
             if line.endswith('.'):
                 part_of_conversation = False
                 line = self.clear_line_end(line)
-            if line.startswith('+'):
-                line = self.clear_line_end(line)
-                plus_sentences.append(([word.strip() for word in line.lstrip('+').split()], experimental_group, part_of_conversation))
-            elif line.startswith('=>'):             # Respond to experimental grouping symbol
+            elif line.startswith('=>'):
                 experimental_group = self.read_experimental_group(line)
                 continue
             line, grammatical = self.gold_standard_grammaticality(line)
-            parse_list.append(([word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
-        if plus_sentences:
-            return plus_sentences
+            if line.startswith('&') or line.startswith("\'"):
+                parse_list.append((None, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
+            else:
+                parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
+                index += 1
         self.dev_log_file.write(f'Found {len(parse_list)} sentences. Done.\n')
         return parse_list
 
@@ -431,15 +412,15 @@ class LocalFileSystem:
         file_handle.write('@  '+f'Logs {self.external_sources["log_file_name"]}.\n')
         file_handle.write('@ \n')
 
-    def save_output(self, parser, count, sentence, experimental_group, part_of_conversation, grammatical):
-        self.save_predicted_grammaticality_judgment(parser, count, sentence)
-        self.save_results(parser, count, sentence, part_of_conversation)
-        self.save_resources(parser, count, self.generate_input_sentence_string(sentence), experimental_group)
-        self.print_result_to_console(parser, sentence)
-        if len(parser.result_list) > 0 and not grammatical or len(parser.result_list) == 0 and grammatical:
+    def save_output(self, speaker_model, count, sentence, experimental_group, part_of_conversation, grammatical):
+        self.save_predicted_grammaticality_judgment(speaker_model, count, sentence)
+        self.save_results(speaker_model, count, sentence, part_of_conversation)
+        self.save_resources(speaker_model, count, self.generate_input_sentence_string(sentence), experimental_group)
+        self.print_result_to_console(speaker_model, sentence)
+        if len(speaker_model.result_list) > 0 and not grammatical or len(speaker_model.result_list) == 0 and grammatical:
             self.save_error(count, sentence)
         if self.settings['datatake_images']:
-            self.save_image(parser, sentence, count)
+            self.save_image(speaker_model, sentence, count)
 
     def save_predicted_grammaticality_judgment(self, P, count, sentence):
         self.grammaticality_judgments_file.write(f'\n#{str(count)}.\n{self.judgment_marker(P)}{self.generate_input_sentence_string(sentence)}\n')
@@ -647,3 +628,34 @@ class LocalFileSystem:
         self.logger_handle = handler
         if 'logging' in self.settings and not self.settings['logging']:
             disable_all_logging()
+
+    def read_lexicons_into_dictionary(self):
+        lexicon_dict = {}
+
+        # Examine all lexical files and the lexical redundancy file
+        for lexicon_file in list(self.settings['lexicons']) + [self.settings['redundancy_rules']]:
+            lexicon_dict[lexicon_file] = {}
+
+            # Example all lines in each file
+            lexical_entries = open(self.folder['lexicon'] / lexicon_file, encoding='utf8').readlines()
+
+            # Break every line into (key, features) and then examine all features
+            for lex, features in [e.strip().split('::') for e in lexical_entries if '::' in e]:
+
+                lex = lex.strip()
+                features = features.strip()
+                features = features.replace('\t', ' ')
+                lexicon_dict[lexicon_file][lex] = {}
+                # Examine each feature
+                feature_list = []
+                for feature in features.strip().split(' '):
+                    feature = feature.strip()
+                    if feature:
+                        feature_list.append(feature)
+                        lexicon_dict[lexicon_file][lex][feature] = explanation(feature)
+
+        return lexicon_dict
+
+
+
+

@@ -6,14 +6,14 @@ study_id= 15
 study_folder=			language data working directory/study-19-Morphology
 test_corpus_folder=		language data working directory/study-19-Morphology
 #test_corpus=			Morphology_corpus.txt
-test_corpus=			45K_corpus.txt
-#test_corpus=			Stranding_corpus.txt
+#test_corpus=			45K_corpus.txt
+test_corpus=			Stranding_corpus.txt
 numeration=				Morphology_numeration.txt
 
 # GENERAL SIMULATION PARAMETERS
 only_first_solution = False
 ignore_ungrammatical_sentences = False
-console_output = True
+console_output = Full
 stop_at_unknown_lexical_item = False
 logging = True
 use_numeration = False
@@ -21,7 +21,7 @@ datatake_full = False
 
 # LEXICONS
 lexicon_folder=language data working directory/lexicons
-lexicons=lexicon.txt;ug_morphemes.txt
+lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
 
 # LEXICAL REDUNDANCY RULES
 redundancy_rules=redundancy_rules.txt

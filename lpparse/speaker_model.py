@@ -78,12 +78,12 @@ class SpeakerModel:
 
     # Prepares the derivational search operation and then calls the recursive
     # derivational search function parse_new_item()
-    def parse_sentence(self, count, lst):
+    def parse_sentence(self, index, lst):
 
         # Bookkeeping and logging
         self.sentence = lst
         self.start_time = process_time()
-        log_new_sentence(self, count, lst)
+        log_new_sentence(self, index, lst)
         PhraseStructure.chain_index = 0
 
         # Initialize the components (mostly bookkeeping and logging)

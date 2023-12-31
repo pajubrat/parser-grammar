@@ -42,11 +42,11 @@ OP:WH			:: DIS:WH OP
 OP:Q			:: DIS:WH OP
 
 # Verb classess
-CLASS/TR 		:: -COMP:P COMP:φ -COMP:Adv
-CLASS/INTR 		:: -COMP:φ -COMP:EXPL SPEC:φ COMP:P
+V/TR 		:: -COMP:P COMP:φ -COMP:Adv
+V/INTR 		:: -COMP:φ -COMP:EXPL SPEC:φ COMP:P
 CLASS/DITR 		:: !COMP:* SPEC:φ COMP:φ
 PHI_N			:: -COMP:*
-EHM				:: -ΦPF θ SPEC:φ !wCOMP:θ -wCOMP:P
+ε				:: -ΦPF θ SPEC:φ !wCOMP:θ -wCOMP:P
 
 # Nouns and nounlike elements
 R:REF:PROPER_NAME :: -COMP:Inf
@@ -76,7 +76,7 @@ T Fin			:: 	SPEC:EXPL
 		LANG:FI T/fin			:: Fin*
 		LANG:FI Neg/fin			:: Fin*
 		LANG:FI Fin K			:: PF:-Vn
-		LANG:FI EHM				:: PC:#X#
+		LANG:FI ε				:: PC:#X#
 		LANG:FI V				:: PC:X#
 		LANG:FI inflectional	:: PC:#X
 		LANG:FI T				:: PC:#X

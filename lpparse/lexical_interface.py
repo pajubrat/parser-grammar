@@ -108,7 +108,7 @@ class LexicalInterface:
         return redundancy_rules_dict
 
     def load_lexicons(self, local_file_system):
-        self.surface_lexicon = defaultdict(list)
+        self.surface_lexicon = {}
         for lexicon_file in list(local_file_system.settings['lexicons']):
             self.load_lexicon(local_file_system.folder['lexicon'] / lexicon_file)
 
@@ -121,14 +121,16 @@ class LexicalInterface:
 
         # Process the file line-by-line (entry-by-entry)
         for line in lexical_entries:
-            line = line.strip()                                                 #   remove extra spaces
-            if not line or line.startswith('#'):                                #   Ignore comments and empty lines
+            if not line or '::' not in line or line.startswith('#'):                                #   Ignore comments and empty lines
                 continue
-            phonological_entries, lexical_features = line.split('::', 1)        #   Separate key and value, by symbol '::'
+            line = line.strip()                                                 # remove extra spaces
+            phonological_entries, lexical_features = line.split('::')           #   Separate key and value, by symbol '::'
             phonological_entries = phonological_entries.strip().split(',')      #   Remove extra spaces, create set of allomorphs
             lexical_features = [f.strip() for f in lexical_features.split()]    #   Create the feature list
             if not {f for f in lexical_features if f[:4] == 'LANG'}:            #   If no language is specified for the lexical entry, add it
                 lexical_features.append(self.language)
             for p in phonological_entries:
                 lex = LexicalItem(p, self.apply_redundancy_rules(lexical_features))
+                if p not in self.surface_lexicon.keys():
+                    self.surface_lexicon[p] = []
                 self.surface_lexicon[p].append(lex)

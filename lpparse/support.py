@@ -20,6 +20,30 @@ class Logger:
 
 log_instance = Logger()
 
+feature_explanations = {'wCOMP': 'Word-internal complement selection',
+                        'COMP': 'Syntactic complement selection',
+                        'SPEC': 'Syntactic specifier selections',
+                        'ε': 'Licenses External head Merge',
+                        'LANG': 'Language',
+                        'TAIL': 'Licenses a position for adjunct',
+                        'PROBE': 'Nonlocal complement selections',
+                        'V/TR': 'Semantic transitivity',
+                        'V/INTR': 'Semantic intransitivity',
+                        'iPHI': 'Interpretable phi-feature, with type and value',
+                        'PHI': 'Uninterpretable phi-feature, with type and value',
+                        'LF': 'Access to meaning in conceptual system',
+                        'PF': 'Phonological form (for output generation only)',
+                        'EF': 'Edge feature, licenses a nonthematic specifier position',
+                        'ΦLF': 'AgreeLF',
+                        'ΦPF': 'AgreePF',
+                        'PC:': 'Phonological context for recognition',
+                        'POL': 'Polarity feature'
+                        }
+
+def legitimate_input_sentence(sentence):
+    sentence = sentence.strip()
+    return not sentence or not sentence.startswith('&') and not sentence.startswith('#') and not sentence.startswith("\'")
+
 # This function returns the type of pro-element depending on the valuation of (uD, up) probe
 # PRO = control pro
 # pro/x = antecedent requiring pro

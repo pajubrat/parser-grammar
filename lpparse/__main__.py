@@ -1,26 +1,11 @@
-#
-# Available arguments
-#
-#   sentence
-#   study_folder
-#   test_corpus_folder
-#   test_corpus_file
-#   lexicon_folder
-
+from application import Application
 import main
 import sys
 
 if __name__ == '__main__':
-    args = {}
-    for i, argument in enumerate(sys.argv):
-        # Ignore the name of the program
-        if i > 0:
-            # An argument form is 'type=value'
-            decomposed_argument_list = argument.split('=')
-            # An argument without key identifier is interpreted as the input sentence
-            if len(decomposed_argument_list) == 1:
-                args['sentence'] = decomposed_argument_list[0]
-            else:
-                # Create the entry into the argument dictionary, args[type] = value
-                args[decomposed_argument_list[0]] = decomposed_argument_list[1]
-    main.run_study(args)
+    if len(sys.argv) > 1:
+        if sys.argv[1] == '-app':
+            app = Application()
+            app.mainloop()
+            sys.exit()
+    main.run_study()    # Run one study (as defined by input files)

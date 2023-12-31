@@ -47,7 +47,7 @@ P0			:: PF:-Ø LF:in P LANG:FI
 		
 		TA				:: V CAU ε 		 	 							PF:-TA		LF:cause LANG:FI V/TR
 		ile,ele,skele	:: V FREQ ε										PF:-ile		LF:freq LANG:FI -wCOMP:FREQ,AEVE,MOM2
-		U,UTU			:: V REFL ε										PF:-utu		LF:refl LANG:FI	-wCOMP:FREQ,V/INTR,AEVE V/INTR
+		U,UTU			:: V REFL ε										PF:-utu		LF:refl LANG:FI -wCOMP:FREQ,V/INTR,AEVE V/INTR
 		AhtA			:: V MOM MOM1 ε									PF:-AhtA	LF:sem	LANG:FI !wCOMP:V,V/INTR -wCOMP:EHM
 		Aise			:: V MOM MOM2 ε									PF:-Aise	LF:sem	LANG:FI !wCOMP:V,V/TR -wCOMP:EHM
 		a				:: a-#v 															LANG:FI
@@ -139,60 +139,6 @@ pro		:: pro-#D
 pro-	:: PF:(pro) LF:pro N PHI
 cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL LANG:IT
 inc		:: inflectional INCORPORATED
-
-# Interpretable phi-features
-sg 				:: inflectional iPHI:NUM:SG
-pl 				:: inflectional iPHI:NUM:PL
-1p 				:: inflectional iPHI:PER:1
-2p 				:: inflectional iPHI:PER:2
-3p 				:: inflectional iPHI:PER:3
-3sg				:: inflectional iPHI:PER:3 iPHI:NUM:SG iPHI:DET:DEF
-def 			:: inflectional iPHI:DET:DEF
-indef 			:: inflectional iPHI:DET:INDEF
-hum 			:: inflectional iPHI:HUM:HUM
-nonhum 			:: inflectional iPHI:HUM:NONHUM
-m				:: inflectional iPHI:GEN:M
-f				:: inflectional iPHI:GEN:F
-default			:: inflectional ΦPF PHI:PER:3 PHI:NUM:SG PER
-proper_name		:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
-r_expression	:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
-pronoun1		:: inflectional iPHI:PRON:PRON R:NEW:REF
-reflexive		:: inflectional iPHI:PRON:PRON R:OLD:REF
-Rexpression		:: inflectional iPHI:PRON:NONPRON R:NEW:$$$/SUR
-sg_ 			:: inflectional ΦPF Φ PHI:NUM:SG
-pl_ 			:: inflectional ΦPF Φ PHI:NUM:PL
-1p_ 			:: inflectional ΦPF Φ PHI:PER:1 PER
-2p_ 			:: inflectional ΦPF Φ PHI:PER:2 PER
-3p_ 			:: inflectional ΦPF Φ PHI:PER:3 PER
-def_ 			:: inflectional ΦPF Φ PHI:DET:DEF
-indef_ 			:: inflectional ΦPF Φ PHI:DET:INDEF
-hum_ 			:: inflectional ΦPF PHI:HUM:HUM
-nonhum_ 		:: inflectional ΦPF PHI:HUM:NONHUM
-m_				:: inflectional ΦPF PHI:GEN:M
-f_				:: inflectional ΦPF PHI:GEN:F
-
-# Generic deficient structural cases
-nom   	:: inflectional NOM TAIL:Fin,!COMP:*,EF nonfloat nonadjoinable
-acc		:: inflectional ACC TAIL:v
-acc_it	:: inflectional ACC TAIL:v adjoinable float
-dat		:: inflectional DAT TAIL:T LANG:IT
-acc_it	:: inflectional TAIL:v LANG:IT
-
-#Aspect markers
-asp		:: inflectional ASP:BOUNDED
-
-# Universal operator feature inventory
-uC/op	:: inflectional uC/op
-wh     	:: inflectional ΔOP:WH
-WH		:: inflectional FORCE:WH
-top    	:: inflectional OP:TOP DIS:TOP
-foc    	:: inflectional OP:FOC DIS:FOC
-fam		:: inflectional OP:FAM DIS:FAM
-pol		:: inflectional OP:POL DIS:POL
-C/op	:: inflectional OP:C/OP DIS:C/OP
-d/rel   :: inflectional OP:REL
-Q		:: inflectional OP OP:WH OP:Q FORCE:WH DIS:WH
-strong_operator		:: inflectional OP*
 
 
 # Miscellanneus items
