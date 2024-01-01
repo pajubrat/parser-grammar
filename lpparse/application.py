@@ -1,13 +1,15 @@
 from local_file_system import LocalFileSystem
 import tkinter as tk
+import ctypes
 from GUI.gui_views import DatasetView, LexiconView, SpeakerModelView
 from GUI.gui_phrase_structure_graphics import PhraseStructureGraphics
-from tkinter import font
+
 
 class Application(tk.Tk):
     """Defines the main application window"""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        ctypes.windll.shcore.SetProcessDpiAwareness(1)
         self.title('LPG LAB')
         self.geometry('1200x600')
         self.lfs = LocalFileSystem()

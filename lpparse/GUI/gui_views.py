@@ -35,7 +35,6 @@ class DatasetView(ttk.LabelFrame):
                 sentence_nro += 1
 
     def _analyze(self, k):
-        print(self.style.theme_names())
         if self.dataset_treeview.selection():
             self.selected_data_item = int(self.dataset_treeview.selection()[0])
             self.event_generate('<<Analyze>>')

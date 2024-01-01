@@ -89,6 +89,7 @@ class PhraseStructure:
         self.y = 0
         self.X = 0
         self.Y = 0
+        self.canvas_ID = 0
         if left_constituent and left_constituent.adjunct and left_constituent.primitive():
             self.adjunct = True
             left_constituent.adjunct = False
@@ -1118,11 +1119,34 @@ class PhraseStructure:
             if i == idx:
                 return node
 
+    def index(self):
+        for x in self.features:
+            if x.startswith('§'):
+                return x
+
     def target_left_branch(self, target):
         new_ps = self.top().copy()
         return new_ps.get_node(self.top().get_index(target))
 
     # Support ----------------------------------------------------------------------
+
+    def find_constituent_with_index(self, idx):
+        if self.index() == idx:
+            return self
+        if self.complex():
+            const = self.left.find_constituent_with_index(idx)
+            if const:
+                return const
+            return self.right.find_constituent_with_index(idx)
+
+    def find_constituent_with_identity(self, ps, identity):
+        if self.identity == identity and self != ps:
+            return self
+        if self.complex():
+            const = self.left.find_constituent_with_identity(ps, identity)
+            if const:
+                return const
+            return self.right.find_constituent_with_identity(ps, identity)
 
     def info(self):
         info = [f[5:] for f in self.features if f[:5] == 'INFO:']

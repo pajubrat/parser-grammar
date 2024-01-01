@@ -27,9 +27,9 @@ lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
 redundancy_rules=redundancy_rules.txt
 
 # IMAGE PARAMETERS (requires Pyglet library)
-image_parameter_show_words = True
 datatake_images = False
-image_parameter_nolabels = False
+image_parameter_show_words = True
+image_parameter_labels = False
 image_parameter_spellout = False
 image_parameter_show_sentences = False
 image_parameter_show_glosses = True
@@ -39,6 +39,9 @@ image_parameter_show_φPs_as_DPs = True
 image_parameter_show_φPs_as_NPs = False
 image_parameter_spellout_complex_heads = False
 image_parameter_ignore_internal_structure_of_DPs = False
+image_parameter_show_head_chains = False
+image_parameter_show_phrasal_chains = True
+image_parameter_compress_phrasal_chains = False
 
 # Study 15 agreement
 # show_features = ΦPF;-ΦPF;!ΦPF;-ΦLF;!ΦLF;+ΦLF,ΦPF;-ΦLF,ΦPF;PER;PHI:NUM:_;PHI:PER:_;PHI:NUM:PL;PHI:NUM:SG;PHI:PER:1;PHI:PER:2;PHI:PER:3
@@ -47,7 +50,9 @@ image_parameter_ignore_internal_structure_of_DPs = False
 # show_features = PHI:NUM:SG;PHI:NUM:PL;PHI:PER:1;PHI:PER:2;PHI:PER:3;Fin*;OP:Q;OP:WH
 
 # Study 18 CSL
-show_features = &P
+# show_features = &P
+
+show_features = Fin
 
 # UG COMPONENTS
 #	Agree

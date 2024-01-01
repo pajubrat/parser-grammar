@@ -549,14 +549,14 @@ class LocalFileSystem:
                 else:
                     file_name = str(count) + '.png'
                 self.visualizer.file_identifier = self.folder['images'] / file_name
-                self.visualizer.draw(parse.top())
+                self.visualizer.draw_to_canvas(parse.top())
                 parse_number = parse_number + 1
             if self.settings['image_parameter_spellout']:
                 parse_number = 1
                 for spellout in P.spellout_result_list:
                     file_name = 'Raw image of (' + str(count) + chr(96 + parse_number) + ')_spellout.png'
                     self.visualizer.file_identifier = self.folder['images'] / file_name
-                    self.visualizer.draw(spellout)
+                    self.visualizer.draw_to_canvas(spellout)
                     parse_number = parse_number + 1
         self.dev_log_file.write('Done.\n')
 
