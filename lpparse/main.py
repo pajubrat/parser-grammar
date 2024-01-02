@@ -21,8 +21,5 @@ def run_study():
                 speaker_models[language].narrow_semantics.global_cognition.end_conversation()
         else:
             lfs.write_comment_line(sentence)
-
-    if lfs.settings['datatake_full']:
-        lfs.save_surface_vocabulary(speaker_models["LANG:EN"].lexicon.surface_lexicon)
     lfs.close_all_output_files()
     lfs.report_errors_to_console()

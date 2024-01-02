@@ -419,8 +419,6 @@ class LocalFileSystem:
         self.print_result_to_console(speaker_model, sentence)
         if len(speaker_model.result_list) > 0 and not grammatical or len(speaker_model.result_list) == 0 and grammatical:
             self.save_error(count, sentence)
-        if self.settings['datatake_images']:
-            self.save_image(speaker_model, sentence, count)
 
     def save_predicted_grammaticality_judgment(self, P, count, sentence):
         self.grammaticality_judgments_file.write(f'\n#{str(count)}.\n{self.judgment_marker(P)}{self.generate_input_sentence_string(sentence)}\n')

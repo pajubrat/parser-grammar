@@ -1,213 +1,297 @@
 import tkinter as tk
+from phrase_structure import PhraseStructure
 
 MARGINS = 150
 GRID = 150
 
 
-class PhraseStructureGraphics(tk.Toplevel):
-    def __init__(self, root, speaker_model_used_in_analysis):
-        super().__init__(root)
-        self.title("Phrase Structure Graphics")
+class GPhraseStructure(PhraseStructure):
+    settings = {}
+    """Phrase Structure class that involves properties related to tree drawing"""
+    def __init__(self, source=None, left=None, right=None):
+        super().__init__(left, right)
+        self.x = 0
+        self.y = 0
+        self.X = 0
+        self.Y = 0
+        self.label_stack = []
+        self.features = source.features
+        self.adjunct = source.adjunct
+        self.identity = source.identity
+        self.find_me_elsewhere = source.find_me_elsewhere
+        if source.left:
+            self.left = GPhraseStructure(source.left)
+            self.left.mother = self
+        if source.right:
+            self.right = GPhraseStructure(source.right)
+            self.right.mother = self
+        self.label_stack = self.generate_label_stack()
+        self.phrasal_chain_target = None
+        self.head_chain_target = None
 
-        self.root = root
-        self.canvas = None
-        self.selected_node = None
+    def find_phrasal_chain(self):
+        if self.complex() and self.find_me_elsewhere and self.identity:
+            return self.top().find_constituent_with_identity(self, self.identity)
 
-        # Settings for drawing
-        self.s = {'grid': GRID, 'margins': MARGINS}
-        self.s['tsize'] = int(self.s['grid']/3.5)
-        self.label_style = {'label': ("Times New Roman", int(self.s['tsize'])),
-                            'PF': ("Times New Roman", int(self.s['tsize']*0.90), "italic"),
-                            'gloss': ("Times New Roman", int(self.s['tsize']*0.90)),
-                            'feature': ("Times New Roman", int(self.s['tsize']*0.75))}
+    def find_head_chain(self):
+        if self.primitive() and self.is_left() and self.has_affix() and self.right.find_me_elsewhere and self.mother:
+            return self.mother.right.find_constituent_with_index(self.right.index())
 
-        # Get the phrase structure to be drawn and project into logical space
-        self.ps = self.get_results_from_speaker_model(speaker_model_used_in_analysis)
-        self.project_into_logical_plane(self.ps)
-        self.remove_overlap(self.ps)
-        width, height, spx, spy = self.calculate_canvas_size(self.ps)
-        self.geometry(str(width)+'x'+str(height))   # Set window size based on the input phrase structure
-        self.focus()
-        self.grid()
-
-        # Drawing
-        self.draw_to_canvas(self.ps, width, height, spx, spy, self.s['grid'])
-
-    def get_results_from_speaker_model(self, speaker_model_used_in_analysis):
-        """Returns the phrase structure object to be drawn, None otherwise"""
-        if speaker_model_used_in_analysis.result_list and speaker_model_used_in_analysis.result_list[0]:
-            return speaker_model_used_in_analysis.result_list[0][0].top()
-
-    def project_into_logical_plane(self, ps):
+    def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
-        if ps.complex():
-            ps.left.x = ps.x - 1
-            ps.left.y = ps.y + 1
-            self.project_into_logical_plane(ps.left)
-            ps.right.x = ps.x + 1
-            ps.right.y = ps.y + 1
-            self.project_into_logical_plane(ps.right)
+        self.phrasal_chain_target = self.find_phrasal_chain()
+        self.head_chain_target = self.find_head_chain()
+        if self.complex():
+            self.left.x = self.x - 1
+            self.left.y = self.y + 1
+            self.left.initialize_logical_space()
+            self.right.x = self.x + 1
+            self.right.y = self.y + 1
+            self.right.initialize_logical_space()
 
-    def draw_to_canvas(self, ps, width, height, spx, spy, grid):
-        """Creates a canvas and draws the phrase structure object onto it"""
-        self.canvas = PhraseStructureCanvas(self, width=width, height=height, background='white')
-        self.canvas.pack()
-        self.project_into_canvas(ps, spx, spy, grid)
-        if self.root.lfs.settings['image_parameter_show_head_chains']:
-            self.draw_head_chains(ps)
-        if self.root.lfs.settings['image_parameter_show_phrasal_chains']:
-            self.draw_phrasal_chains(ps)
+    def left_boundary(self):
+        boundary = set()
+        boundary.add((self.x, self.y))
+        if self.complex():
+            boundary = boundary | self.left.left_boundary()
+        return boundary
 
-    def remove_overlap(self, ps):
+    def right_boundary(self):
+        boundary = set()
+        boundary.add((self.x, self.y))
+        if self.complex():
+            boundary = boundary | self.right.right_boundary()
+        return boundary
+
+    def find_boundaries(self, left_x, right_x, depth):
+        if self.x < left_x:
+            left_x = self.x
+        if self.x > right_x:
+            right_x = self.x
+        if self.y > depth:
+            depth = self.y
+        if self.complex():
+            left_x, right_x, depth = self.left.find_boundaries(left_x, right_x, depth)
+            left_x, right_x, depth = self.right.find_boundaries(left_x, right_x, depth)
+        return left_x, right_x, depth
+
+    def remove_overlap(self):
         """Stretches child nodes apart if their offspring create overlap"""
-        def left_boundary(ps):
-            boundary = set()
-            boundary.add((ps.x, ps.y))
-            if ps.complex():
-                boundary = boundary | left_boundary(ps.left)
-            return boundary
-
-        def right_boundary(ps):
-            boundary = set()
-            boundary.add((ps.x, ps.y))
-            if ps.complex():
-                boundary = boundary | right_boundary(ps.right)
-            return boundary
-
-        if self.root.lfs.settings['image_parameter_compress_phrasal_chains'] and (ps.left.find_me_elsewhere or ps.right.find_me_elsewhere):
-            return
-
-        if ps.complex():
-            self.remove_overlap(ps.left)
-            self.remove_overlap(ps.right)
+        if self.complex():
+            self.left.remove_overlap()
+            self.right.remove_overlap()
             overlap = 0
-            LC_right_boundary = right_boundary(ps.left)
-            RC_left_boundary = left_boundary(ps.right)
+            LC_right_boundary = self.left.right_boundary()
+            RC_left_boundary = self.right.left_boundary()
             for L_bp in LC_right_boundary:
                 for R_bp in RC_left_boundary:
                     if L_bp[1] == R_bp[1]:
                         if L_bp[0] >= R_bp[0] and L_bp[0] - R_bp[0] >= overlap:
                             overlap = L_bp[0] - R_bp[0] + 1
             if overlap > 0:
-                self.move_x(ps.left, -overlap/2)
-                self.move_x(ps.right, overlap/2)
+                self.left.move_x(-overlap/2)
+                self.right.move_x(overlap/2)
 
-    def calculate_canvas_size(self, ps):
-        """Determines the canvas size on the basis of the pharse structure object"""
-        def find_boundaries(ps, left_x, right_x, depth):
-            if ps.x < left_x:
-                left_x = ps.x
-            if ps.x > right_x:
-                right_x = ps.x
-            if ps.y > depth:
-                depth = ps.y
-            if ps.complex():
-                left_x, right_x, depth = find_boundaries(ps.left, left_x, right_x, depth)
-                left_x, right_x, depth = find_boundaries(ps.right, left_x, right_x, depth)
-            return left_x, right_x, depth
-        left_x, right_x, depth = find_boundaries(ps, 0, 0, 0)
-        width = (abs(left_x) + abs(right_x)) * self.s['grid'] + 2 * self.s['margins']
-        height = depth * self.s['grid'] + 2 * self.s['margins']
-        height = height + self.label_size(ps)
-        return int(width), int(height), abs(left_x) * self.s['grid'] + self.s['margins'], self.s['margins']
-
-    def label_size(self, ps):
-        """Predicts the height of labels on the basis of what will be shown in them
-        to make room for them in the margins"""
-        return len(self.label_stack(ps)) * self.s['tsize']
-
-    def move_x(self, ps, amount):
+    def move_x(self, amount):
         """Moves a node and its offspring"""
-        ps.x = ps.x + amount
-        if ps.complex():
-            self.move_x(ps.left, amount)
-            self.move_x(ps.right, amount)
+        self.x = self.x + amount
+        if self.complex():
+            self.left.move_x(amount)
+            self.right.move_x(amount)
 
-    def project_into_canvas(self, ps, spx, spy, grid):
-        """Projects the logical phase structure object into canvas"""
-        X1 = spx + ps.x * grid
-        Y1 = spy + ps.y * grid
-        ps.X = X1   # Memorize the point on the canvas for later chain marking
-        ps.Y = Y1
-        if ps.complex():
-            X2 = spx + ps.left.x * grid
-            Y2 = spy + ps.left.y * grid
-            X3 = spx + ps.right.x * grid
-            Y3 = spy + ps.right.y * grid
-            ps.canvas_ID = self.canvas.create_text((X1, Y1), text=ps.label(), font=("Times New Roman", self.s['tsize']))
-            if self.root.lfs.settings['image_parameter_compress_phrasal_chains'] and ps.find_me_elsewhere:
-                return
-            self.canvas.create_line((X1, Y1 + int(self.s['tsize'] / 2)), (X2, Y2 - int(self.s['tsize'] / 2)), width=2, fill='black')
-            self.canvas.create_line((X1, Y1 + int(self.s['tsize'] / 2)), (X3, Y3 - int(self.s['tsize'] / 2)), width=2, fill='black')
-            self.project_into_canvas(ps.left, spx, spy, grid)
-            self.project_into_canvas(ps.right, spx, spy, grid)
-        if ps.primitive():
-            self.create_primitive_label(ps, X1, Y1)
+    def move_y(self, amount):
+        """Moves a node and its offspring"""
+        self.y = self.y + amount
+        if self.complex():
+            self.left.move_y(amount)
+            self.right.move_y(amount)
 
-    def create_primitive_label(self, ps, X1, Y1):
-        for i, item in enumerate(self.label_stack(ps)):
-            ps.canvas_ID = self.canvas.create_text((X1, Y1 + 1.1 * i * self.s['tsize']), text=item[0], anchor='center', font=self.label_style[item[1]])
+    def label_size(self):
+        return len(self.label_stack)
 
-    def label_stack(self, ps):
+    def generate_label_stack(self):
         """Determines the content for primitive labels"""
+        def feature_conversion(feature):
+            return feature
 
         # Minimum label is the label itself
-        stack = [(ps.label(), 'label')]
+        label_stack = [(self.label(), 'label')]
 
         # Phonological string
-        if self.root.lfs.settings['image_parameter_show_words']:
-            if ps.get_phonological_string() != ps.label():
-                stack.append((ps.get_phonological_string(), 'PF'))
+        if GPhraseStructure.settings['image_parameter_show_words']:
+            if self.get_phonological_string() != self.label():
+                label_stack.append((self.get_phonological_string(), 'PF'))
 
         # Gloss
-        if self.root.lfs.settings['image_parameter_show_glosses']:
-            if ps.gloss() != ps.label() and ps.gloss() != ps.get_phonological_string():
-                for head in ps.get_affix_list():
-                    stack.append((f"ʻ{head.gloss()}ʼ", 'gloss'))
+        if GPhraseStructure.settings['image_parameter_show_glosses']:
+            if self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
+                for head in self.get_affix_list():
+                    label_stack.append((f"ʻ{head.gloss()}ʼ", 'gloss'))
 
-        if self.root.lfs.settings['show_features']:
-            for feature in [x for x in ps.features if x in self.root.lfs.settings['show_features']]:
-                stack.append((f'[{self.feature_conversion(feature)}]', 'feature'))
+        # Features
+        if GPhraseStructure.settings['show_features']:
+            for feature in [x for x in self.features if x in GPhraseStructure.settings['show_features']]:
+                label_stack.append((f'[{feature_conversion(feature)}]', 'feature'))
 
-        return stack
+        return label_stack
 
-    def feature_conversion(self, feature):
-        return feature
+class PhraseStructureGraphics(tk.Toplevel):
+    """Window hosting the canvas, will later contain independent menu"""
+    def __init__(self, root, speaker_model_used_in_analysis):
+        super().__init__(root)
+        self.title("Phrase Structure Graphics")
+        GPhraseStructure.settings = root.lfs.settings
 
-    def draw_head_chains(self, ps):
-        if ps.complex():
-            self.draw_head_chains(ps.left)
-            self.draw_head_chains(ps.right)
-        if ps.primitive() and ps.is_left() and ps.has_affix() and ps.right.find_me_elsewhere and ps.mother:
-            target = ps.mother.right.find_constituent_with_index(ps.right.index())
-            start_label_size = self.label_size(ps)      # Begin the chain at the bottom of label
-            end_label_size = self.label_size(target)    # End the chain at the bottom of label
-            self.draw_dependency((ps.X, ps.Y + start_label_size), (target.X, target.Y + end_label_size))
+        # Settings for drawing
+        self.s = {'grid': GRID, 'margins': MARGINS}
+        self.s['tsize'] = int(self.s['grid']/3.5)
 
-    def draw_phrasal_chains(self, ps):
-        if ps.complex() and ps.find_me_elsewhere and ps.identity and ps.mother:
-            target = ps.top().find_constituent_with_identity(ps, ps.identity)
-            P = ps
-            G = target
-            self.draw_dependency((P.X, P.Y + self.s['tsize']), (G.X, G.Y + self.s['tsize']))
-        if ps.complex():
-            self.draw_phrasal_chains(ps.left)
-            self.draw_phrasal_chains(ps.right)
+        # Get the phrase structure to be drawn and project into logical space
+        self.canvas = PhraseStructureCanvas(self)
+        self.gps = GPhraseStructure(self.get_ps_from_speaker_model(speaker_model_used_in_analysis).top())
+        self.gps.initialize_logical_space()
+        self.gps.remove_overlap()
+        width, height, spx, spy = self.calculate_canvas_size(self.gps)
+        self.canvas.configure(width=width, height=height, background='white')
+        self.geometry(str(width)+'x'+str(height))   # Set window size based on the input phrase structure
+
+        # Make host window and canvas visible
+        self.focus()
+        self.grid()
+        self.canvas.pack()
+
+        # Drawing
+        self.canvas.draw_to_canvas(self.gps, spx, spy, self.s['grid'])
+
+    def calculate_canvas_size(self, gps):
+        """Determines the canvas size on the basis of the phrase structure object"""
+        left_x, right_x, depth = gps.find_boundaries(0, 0, 0)
+        width = (abs(left_x) + abs(right_x)) * self.s['grid'] + 2 * self.s['margins']
+        height = depth * self.s['grid'] + 2 * self.s['margins']
+        height = height + gps.label_size() * self.s['tsize']
+        return int(width), int(height), abs(left_x) * self.s['grid'] + self.s['margins'], self.s['margins']
+
+    def get_ps_from_speaker_model(self, speaker_model_used_in_analysis):
+        """Returns the phrase structure object to be drawn, None otherwise"""
+        if speaker_model_used_in_analysis.result_list and speaker_model_used_in_analysis.result_list[0]:
+            return speaker_model_used_in_analysis.result_list[0][0].top()
+
+class PhraseStructureCanvas(tk.Canvas):
+    """Canvas for drawing and manipulating phrase structure objects"""
+    def __init__(self, parent, *args, **kwargs):
+        super().__init__(parent, *args, **kwargs)
+        self.focus_set()
+        self.selected_canvas_node = None    # image object selection
+        self.selected_logical_node = None   # logical node selection (can be independent of image objects)
+        self.parent = parent
+        self.label_style = {'label': ("Times New Roman", int(parent.s['tsize'])),
+                            'PF': ("Times New Roman", int(parent.s['tsize']*0.90), "italic"),
+                            'gloss': ("Times New Roman", int(parent.s['tsize']*0.90)),
+                            'feature': ("Times New Roman", int(parent.s['tsize']*0.75))}
+        self.node_to_gps = {}
+        self.bind('<Button-1>', self._on_mouse_click)
+        self.bind('<KeyPress>', self._key_press)
+        self.cursor = self.create_oval((50, 50), (150, 150), state='hidden')    # Image object selection cursor
+
+    def _key_press(self, event):
+        if self.selected_canvas_node:
+            gps = self.node_to_gps[str(self.selected_canvas_node)]  # Get the phrase structure constituent
+            if event.keysym == 'Left':
+                gps.move_x(-0.5)
+            if event.keysym == 'Right':
+                gps.move_x(0.5)
+            if event.keysym == 'Down':
+                gps.move_y(+0.5)
+            if event.keysym == 'Up':
+                gps.move_y(-0.5)
+            self.redraw(gps.top())
+
+    def _on_mouse_click(self, *_):
+        if self.find_withtag('current'):
+            self.selected_canvas_node = self.find_withtag('current')[0]
+            self.selected_logical_node = self.node_to_gps[str(self.selected_canvas_node)]
+            x1, y1 = self.coords(self.selected_canvas_node)
+            self.itemconfigure(self.cursor, state='normal')
+            self.moveto(self.cursor, x1-50, y1-50)
+        else:
+            self.itemconfigure(self.cursor, state='hidden')
+
+    def redraw(self, gps):
+        self.delete("all")
+        gps.remove_overlap()
+        width, height, spx, spy = self.parent.calculate_canvas_size(gps)
+        self.configure(width=width, height=height, background='white')
+        self.parent.geometry(str(width)+'x'+str(height))
+        self.cursor = self.create_oval((50, 50), (150, 150), state='hidden')
+        self.draw_to_canvas(gps, spx, spy, self.parent.s['grid'])
+
+    def project_into_canvas(self, gps, spx, spy, grid):
+        """Projects the logical phase structure object into canvas"""
+        X1 = spx + gps.x * grid
+        Y1 = spy + gps.y * grid
+        gps.X = X1  # Memorize the point on the canvas for later chain marking
+        gps.Y = Y1
+        if gps.complex():
+            self.create_complex_node(gps, X1, Y1, spx, spy, grid)
+        else:
+            self.create_primitive_node(gps, X1, Y1)
+
+    def create_complex_node(self, gps, X1, Y1, spx, spy, grid):
+        X2 = spx + gps.left.x * grid
+        Y2 = spy + gps.left.y * grid
+        X3 = spx + gps.right.x * grid
+        Y3 = spy + gps.right.y * grid
+        ID = self.create_text((X1, Y1), text=gps.label_stack[0][0], fill='black', activefill='red', tag='node', font=("Times New Roman", self.parent.s['tsize']))
+        self.node_to_gps[str(ID)] = gps
+        if self.selected_logical_node == gps:
+            x1, y1 = self.coords(ID)
+            self.itemconfigure(self.cursor, state='normal')
+            self.moveto(self.cursor, x1 - 50, y1 - 50)
+        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 2)), (X2, Y2 - int(self.parent.s['tsize'] / 2)), width=2, fill='black')
+        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 2)), (X3, Y3 - int(self.parent.s['tsize'] / 2)), width=2, fill='black')
+        self.project_into_canvas(gps.left, spx, spy, grid)
+        self.project_into_canvas(gps.right, spx, spy, grid)
+        return ID
+
+    def create_primitive_node(self, gps, X1, Y1):
+        for i, item in enumerate(gps.label_stack):
+            ID = self.create_text((X1, Y1 + 1.2 * i * self.parent.s['tsize']), fill='black', activefill='red', tag='node', text=item[0], anchor='center', font=self.label_style[item[1]])
+            self.node_to_gps[str(ID)] = gps
+        self.update_cursor(gps, X1, Y1)
+
+    def draw_to_canvas(self, gps, spx, spy, grid):
+        """Creates a canvas and draws the phrase structure object onto it"""
+        self.project_into_canvas(gps, spx, spy, grid)
+        if gps.settings['image_parameter_show_head_chains']:
+            self.draw_head_chains(gps)
+        if gps.settings['image_parameter_show_phrasal_chains']:
+            self.draw_phrasal_chains(gps)
+
+    def update_cursor(self, gps, x1, y1):
+        if self.selected_logical_node == gps:
+            self.itemconfigure(self.cursor, state='normal')
+            self.moveto(self.cursor, x1 - 50, y1 - 50)
+
+    def draw_head_chains(self, gps):
+        if gps.complex():
+            self.draw_head_chains(gps.left)
+            self.draw_head_chains(gps.right)
+        else:
+            if gps.head_chain_target:
+                start_label_size = gps.label_size()  # Begin the chain at the bottom of label
+                end_label_size = gps.head_chain_target.label_size()  # End the chain at the bottom of label
+                self.draw_dependency((gps.X, gps.Y + start_label_size), (gps.head_chain_target.X, gps.head_chain_target.Y + end_label_size))
+
+    def draw_phrasal_chains(self, gps):
+        if gps.phrasal_chain_target:
+            self.draw_dependency((gps.X, gps.Y + self.parent.s['tsize']), (gps.phrasal_chain_target.X, gps.phrasal_chain_target.Y + self.parent.s['tsize']))
+        if gps.complex():
+            self.draw_phrasal_chains(gps.left)
+            self.draw_phrasal_chains(gps.right)
 
     def draw_dependency(self, start_point, end_point):
         """Draws a dependency arc from point to point"""
-
-        # Create an extra point to bend the line
         X = start_point[0] + abs(start_point[0] - end_point[0]) / 2
-        Y = end_point[1] + self.s['grid'] * 1.5
-        self.canvas.create_line(start_point, (X, Y), end_point, width=1, smooth=True, fill='black')
+        Y = end_point[1] + self.parent.s['grid'] * 1.5
+        self.create_line(start_point, (X, Y), end_point, width=1, smooth=True, fill='black')
 
-
-class PhraseStructureCanvas(tk.Canvas):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.bind("<Button-1>", self.on_click)
-        self.selected_node = None
-
-    def on_click(self, event):
-        print(self.find_overlapping(event.x, event.y, event.x, event.y))
