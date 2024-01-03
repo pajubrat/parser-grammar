@@ -96,7 +96,6 @@ class LocalFileSystem:
         self.verify_and_check_mandatory_values()
         self.set_folders()
         self.set_external_resources()
-        self.initialize_output_files()
         if self.settings['use_numeration']:
             self.process_numeration()
             self.settings['check_output'] = False
@@ -107,17 +106,7 @@ class LocalFileSystem:
         self.initialize_results_file()
         self.initialize_resources_file()
         self.initialize_error_file()
-        if self.settings['datatake_images']:
-            self.initialize_image_folder()
-            self.settings['datatake_images'] = True
-            self.visualizer = Visualizer(self.settings)
-            self.visualizer.initialize(self.settings)
-        if self.settings['datatake_full']:
-            self.initialize_simple_results_file()
-            self.initialize_simple_log_file()
-            self.initialize_semantics_file()
-            self.initialize_control_file()
-            self.initialize_error_file()
+        self.initialize_simple_log_file()
         if self.settings['use_numeration']:
             self.initialize_numeration_output()
         self.dev_log_file.write('Done.\n')
@@ -133,11 +122,6 @@ class LocalFileSystem:
     def initialize_dev_logging(self):
         self.dev_log_file = open('dev_log.txt', 'w', -1, 'utf-8')
         self.dev_log_file.write(f'Devlogging started at {datetime.datetime.now()}.\n')
-
-    def initialize_control_file(self):
-        self.dev_log_file.write('Initializing control file...')
-        self.control_file = open(self.external_sources['control_file_name'], 'w', -1, encoding=self.encoding)
-        self.stamp(self.control_file)
 
     def verify_and_check_mandatory_values(self):
         self.dev_log_file.write('Checking and validating settings...')
@@ -259,16 +243,6 @@ class LocalFileSystem:
         self.results_file = open(self.external_sources['results_file_name'], "w", -1, encoding=self.encoding)
         self.stamp(self.results_file)
 
-    def initialize_semantics_file(self):
-        self.dev_log_file.write('Initializing semantics file...')
-        self.semantics_file = open(self.external_sources['semantics_file_name'], "w", -1, encoding=self.encoding)
-        self.stamp(self.semantics_file)
-
-    def initialize_simple_results_file(self):
-        self.dev_log_file.write('Initializing simple results file...')
-        self.simple_results_file = open(self.external_sources['simple_results_file_name'], "w", -1, encoding=self.encoding)
-        self.stamp(self.simple_results_file)
-
     def initialize_grammaticality_judgments_file(self):
         self.dev_log_file.write('Initializing grammaticality judgments file...')
         self.grammaticality_judgments_file = open(self.external_sources["grammaticality_judgments_file_name"], "w", -1, encoding=self.encoding)
@@ -289,12 +263,6 @@ class LocalFileSystem:
         for key in resources:
             self.resources_file.write(f'{key},')
         self.resources_file.write("Execution time (ms)\t\n")
-
-    def initialize_image_folder(self):
-        try:
-            self.folder['images'].mkdir()
-        except FileExistsError as exc:
-            pass
 
     def format_resource_output(self, consumed_resources):
         s = ''
@@ -453,41 +421,23 @@ class LocalFileSystem:
         sentence_string = self.generate_input_sentence_string(sentence)
         if len(parser.result_list) == 0:
             self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
-            if self.settings['datatake_full']:
-                self.simple_results_file.write(str(count) + '. *' + sentence_string + '\n\n')
-                self.semantics_file.write(str(count) + '. *' + sentence_string + '\n\n')
         else:
             self.results_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
-            if self.settings['datatake_full']:
-                self.simple_results_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
-                self.semantics_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
             number_of_solutions = len(parser.result_list)
             parse_number = 1
             for parse, semantic_interpretation in parser.result_list:
                 if number_of_solutions == 1:
                     self.results_file.write('\t' + f'{parse}\n')
-                    if self.settings['datatake_full']:
-                        self.simple_results_file.write('\t' + f'{parse}\n')
-                        self.semantics_file.write('\t' + f'{parse}\n')
                 else:
                     self.results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-                    if self.settings['datatake_full']:
-                        self.simple_results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-                        self.semantics_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
                 if parse_number == 1:
                     self.results_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
                     self.results_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation_simple(parser)}\n')
                     self.results_file.write('\tResources:\n\t' + self.format_resource_output(parser.resources) + '\n')
-                    if self.settings['datatake_full']:
-                        self.semantics_file.write('\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
-                        self.semantics_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation(parser)}\n')
                 parse_number = parse_number + 1
                 if part_of_conversation:
                     self.results_file.write('\tConversation continues:\n')
                 self.results_file.write('\n')
-                if self.settings['datatake_full']:
-                    self.simple_results_file.write('\n')
-                    self.semantics_file.write('\n')
 
     def format_semantic_interpretation_simple(self, P):
         output_str = '\n'
@@ -536,28 +486,6 @@ class LocalFileSystem:
         lst_PE = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'PRE']
         return lst_QND + lst_PE + lst_OP + lst_GLOBAL
 
-    def save_image(self, P, sentence, count):
-        self.dev_log_file.write('Creating images for solutions...')
-        self.visualizer.input_sentence_string = self.generate_input_sentence_string(sentence)
-        if self.visualizer.image_output:
-            parse_number = 1
-            for parse, semantic_interpretation in P.result_list:
-                if len(P.result_list) > 1:
-                    file_name = str(count) + chr(96 + parse_number) + '.png'
-                else:
-                    file_name = str(count) + '.png'
-                self.visualizer.file_identifier = self.folder['images'] / file_name
-                self.visualizer.draw_to_canvas(parse.top())
-                parse_number = parse_number + 1
-            if self.settings['image_parameter_spellout']:
-                parse_number = 1
-                for spellout in P.spellout_result_list:
-                    file_name = 'Raw image of (' + str(count) + chr(96 + parse_number) + ')_spellout.png'
-                    self.visualizer.file_identifier = self.folder['images'] / file_name
-                    self.visualizer.draw_to_canvas(spellout)
-                    parse_number = parse_number + 1
-        self.dev_log_file.write('Done.\n')
-
     def write_comment_line(self, sentence_lst):
         sentence_string = ' '.join(map(str, sentence_lst))
         if sentence_lst[0].startswith("&"):
@@ -570,23 +498,11 @@ class LocalFileSystem:
         self.grammaticality_judgments_file.write('\n')
         self.results_file.write(prefix + ' '.join(map(str, sentence_lst)) + '\n\n')
 
-    def save_surface_vocabulary(self, surface_vocabulary):
-        surface_vocabulary_file = open(self.external_sources["surface_vocabulary_file_name"], "w", -1, "utf-8")
-        for key in surface_vocabulary:
-            for lexical_item in surface_vocabulary[key]:
-                value =str(lexical_item.features)
-                string = f'{key:<15} {value:<10}' + '\n'
-                surface_vocabulary_file.write(string)
-        surface_vocabulary_file.close()
-
     def close_all_output_files(self):
         self.dev_log_file.write('Closing all output files...')
         self.results_file.close()
         self.grammaticality_judgments_file.close()
-
-        if self.settings['datatake_full']:
-            self.resources_file.close()
-            self.control_file.close()
+        self.resources_file.close()
         self.logger_handle.close()
         self.errors.close()
         self.dev_log_file.write('Done.\n')
@@ -653,7 +569,3 @@ class LocalFileSystem:
                         lexicon_dict[lexicon_file][lex][feature] = explanation(feature)
 
         return lexicon_dict
-
-
-
-

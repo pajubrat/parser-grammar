@@ -7,21 +7,25 @@ class DatasetView(ttk.LabelFrame):
     def __init__(self, parent, sentences_to_parse, **kwargs):
         super().__init__(parent, text='Dataset', **kwargs)
         self.style = ttk.Style()
-        self.style.theme_use('vista')
+        self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
         self.sentences_to_parse = sentences_to_parse
         self.sentences_to_parse_dict = {}
         self.selected_data_item = 1
-        self.dataset_treeview = ttk.Treeview(self, columns=['Expression'], selectmode='browse')
+        self.dataset_treeview = ttk.Treeview(self, columns=['Expression'], selectmode='browse', style="mystyle.Treeview")
         self.dataset_treeview.heading('#0', text='Item')
         self.dataset_treeview.column('#0', width=80, stretch='no')
         self.dataset_treeview.column('Expression', width=500)
         self.dataset_treeview.heading('Expression', text='Expression')
         self.fill()
+        self.dataset_treeview.selection_set(1)
         sc = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.dataset_treeview.yview)
         sc.grid(row=0, column=1, sticky='NSW')
         self.dataset_treeview.configure(yscrollcommand=sc.set)
         self.dataset_treeview.grid(row=0, column=0, sticky='nwes')
         self.dataset_treeview.bind('<Double-1>', self._analyze)
+
+    def selected_item(self):
+        return self.dataset_treeview.selection()[0]
 
     def fill(self):
         sentence_nro = 1
@@ -46,9 +50,11 @@ class LexiconView(ttk.LabelFrame):
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
         self.lexicon_dict = lexicon_dict
+        self.style = ttk.Style()
+        self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
 
         # Create Treeview
-        self.lexicon_treeview = ttk.Treeview(self, columns=['Language', 'Comment'], selectmode='browse')
+        self.lexicon_treeview = ttk.Treeview(self, columns=['Language', 'Comment'], selectmode='browse', style='mystyle.Treeview')
         self.lexicon_treeview.heading('#0', text='Item')
         self.lexicon_treeview.column('#0', width=150, stretch='no')
         self.lexicon_treeview.heading('Comment', text='Comment', anchor='center')
@@ -94,10 +100,13 @@ class SpeakerModelView(ttk.LabelFrame):
         self.speaker_models = speaker_models
 
         # Create Treeview
-        self.speakermodel_treeview = ttk.Treeview(self, columns=['Features'], selectmode='browse')
+        self.style = ttk.Style()
+        self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
+        self.speakermodel_treeview = ttk.Treeview(self, columns=['Features'], selectmode='browse', style='mystyle.Treeview')
         self.speakermodel_treeview.heading('#0', text='Model')
         self.speakermodel_treeview.heading('Features', text='Features', anchor='center')
         self.speakermodel_treeview.column('Features', width=300, anchor=tk.W)
+
         self.fill()
 
         # Create scrollbar

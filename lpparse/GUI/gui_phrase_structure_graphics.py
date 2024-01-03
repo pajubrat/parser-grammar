@@ -1,33 +1,40 @@
 import tkinter as tk
 from phrase_structure import PhraseStructure
 
-MARGINS = 150
+MARGINS = 300
 GRID = 150
 
 
 class GPhraseStructure(PhraseStructure):
+    """Phrase Structure class that has additional properties related to tree drawing"""
     settings = {}
-    """Phrase Structure class that involves properties related to tree drawing"""
+
     def __init__(self, source=None, left=None, right=None):
         super().__init__(left, right)
+
+        # Properties of regular constituents
+        if source:
+            self.features = source.features
+            self.adjunct = source.adjunct
+            self.identity = source.identity
+            self.find_me_elsewhere = source.find_me_elsewhere
+            if source.left:
+                self.left = GPhraseStructure(source.left)
+                self.left.mother = self
+            if source.right:
+                self.right = GPhraseStructure(source.right)
+                self.right.mother = self
+
+        # Special properties
         self.x = 0
         self.y = 0
         self.X = 0
         self.Y = 0
         self.label_stack = []
-        self.features = source.features
-        self.adjunct = source.adjunct
-        self.identity = source.identity
-        self.find_me_elsewhere = source.find_me_elsewhere
-        if source.left:
-            self.left = GPhraseStructure(source.left)
-            self.left.mother = self
-        if source.right:
-            self.right = GPhraseStructure(source.right)
-            self.right.mother = self
         self.label_stack = self.generate_label_stack()
         self.phrasal_chain_target = None
         self.head_chain_target = None
+        self.Agree_target = None
 
     def find_phrasal_chain(self):
         if self.complex() and self.find_me_elsewhere and self.identity:
@@ -37,10 +44,15 @@ class GPhraseStructure(PhraseStructure):
         if self.primitive() and self.is_left() and self.has_affix() and self.right.find_me_elsewhere and self.mother:
             return self.mother.right.find_constituent_with_index(self.right.index())
 
+    def find_Agree(self):
+        if self.primitive() and self.is_left() and 'ΦLF' in self.features:
+            return self.argument_by_agreement().head()
+
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
         self.phrasal_chain_target = self.find_phrasal_chain()
         self.head_chain_target = self.find_head_chain()
+        self.Agree_target = self.find_Agree()
         if self.complex():
             self.left.x = self.x - 1
             self.left.y = self.y + 1
@@ -117,23 +129,63 @@ class GPhraseStructure(PhraseStructure):
         # Minimum label is the label itself
         label_stack = [(self.label(), 'label')]
 
-        # Phonological string
-        if GPhraseStructure.settings['image_parameter_show_words']:
-            if self.get_phonological_string() != self.label():
-                label_stack.append((self.get_phonological_string(), 'PF'))
+        if self.primitive():
 
-        # Gloss
-        if GPhraseStructure.settings['image_parameter_show_glosses']:
-            if self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
-                for head in self.get_affix_list():
-                    label_stack.append((f"ʻ{head.gloss()}ʼ", 'gloss'))
+            # Phonological string
+            if GPhraseStructure.settings['image_parameter_show_words']:
+                if self.get_phonological_string() != self.label():
+                    label_stack.append((self.get_phonological_string(), 'PF'))
 
-        # Features
-        if GPhraseStructure.settings['show_features']:
-            for feature in [x for x in self.features if x in GPhraseStructure.settings['show_features']]:
-                label_stack.append((f'[{feature_conversion(feature)}]', 'feature'))
+            # Gloss
+            if GPhraseStructure.settings['image_parameter_show_glosses']:
+                if self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
+                    for head in self.get_affix_list():
+                        label_stack.append((f"ʻ{head.gloss()}ʼ", 'gloss'))
+
+            # Features
+            if GPhraseStructure.settings['show_features']:
+                for feature in [x for x in self.features if x in GPhraseStructure.settings['show_features']]:
+                    label_stack.append((f'[{feature_conversion(feature)}]', 'feature'))
 
         return label_stack
+
+    def itext(self):
+        itext = self.label() + '\n\n'
+
+        if self.primitive():
+
+            feature_dict = {'PF:': [],
+                            'LF:': [],
+                            'COMP:': [],
+                            'SPEC:': [],
+                            'PHI:': [],
+                            'Φ': [],
+                            'PROBE:': [],
+                            'ε': [],
+                            'RESIDUUM': []}
+
+            for feature in sorted(self.features):
+                for key in feature_dict.keys():
+                    if key in feature:
+                        feature_dict[key].append(feature)
+                        break
+                else:
+                    feature_dict['RESIDUUM'].append(feature)
+
+            i = 1
+            for category in feature_dict.keys():
+                for feature in feature_dict[category]:
+                    itext += f"{feature: <20}"
+                    if i % 2 == 0:
+                        itext += '\n'
+                    i += 1
+
+            if self.has_affix() and not self.right.find_me_elsewhere:
+                itext += f'\nComplex head with structure '
+                for c in self.get_affix_list():
+                    itext += f'{c} '
+
+        return itext
 
 class PhraseStructureGraphics(tk.Toplevel):
     """Window hosting the canvas, will later contain independent menu"""
@@ -145,6 +197,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         # Settings for drawing
         self.s = {'grid': GRID, 'margins': MARGINS}
         self.s['tsize'] = int(self.s['grid']/3.5)
+
+        # Line styles
+        self.line_style = {'phrasal chain': {'fill': 'black', 'dash': None, 'width': 1},
+                           'head chain': {'fill': 'black', 'dash': None, 'width': 1},
+                           'Agree': {'fill': 'blue', 'dash': None, 'width': 3}}
 
         # Get the phrase structure to be drawn and project into logical space
         self.canvas = PhraseStructureCanvas(self)
@@ -184,14 +241,26 @@ class PhraseStructureCanvas(tk.Canvas):
         self.selected_canvas_node = None    # image object selection
         self.selected_logical_node = None   # logical node selection (can be independent of image objects)
         self.parent = parent
+        self.node_to_gps = {}
         self.label_style = {'label': ("Times New Roman", int(parent.s['tsize'])),
                             'PF': ("Times New Roman", int(parent.s['tsize']*0.90), "italic"),
                             'gloss': ("Times New Roman", int(parent.s['tsize']*0.90)),
-                            'feature': ("Times New Roman", int(parent.s['tsize']*0.75))}
-        self.node_to_gps = {}
+                            'feature': ("Times New Roman", int(parent.s['tsize']*0.75)),
+                            'info': ("Courier", int(parent.s['tsize'] * 0.25))}
         self.bind('<Button-1>', self._on_mouse_click)
         self.bind('<KeyPress>', self._key_press)
         self.cursor = self.create_oval((50, 50), (150, 150), state='hidden')    # Image object selection cursor
+        self.info_text = self.create_text((0, 0), state='hidden')  # Show information about selected objects
+
+    def draw_to_canvas(self, gps, spx, spy, grid):
+        """Creates a canvas and draws the phrase structure object onto it"""
+        self.project_into_canvas(gps, spx, spy, grid)
+        if gps.settings['image_parameter_show_head_chains']:
+            self.draw_head_chains(gps)
+        if gps.settings['image_parameter_show_phrasal_chains']:
+            self.draw_phrasal_chains(gps)
+        if gps.settings['image_parameter_show_Agree']:
+            self.draw_Agree(gps)
 
     def _key_press(self, event):
         if self.selected_canvas_node:
@@ -215,6 +284,16 @@ class PhraseStructureCanvas(tk.Canvas):
             self.moveto(self.cursor, x1-50, y1-50)
         else:
             self.itemconfigure(self.cursor, state='hidden')
+
+    def _show_info(self, event):
+        if self.find_withtag('current'):
+            self.selected_canvas_node = self.find_withtag('current')[0]
+            gps = self.node_to_gps[str(self.selected_canvas_node)]
+            self.itemconfigure(self.info_text, state='normal', text=gps.itext(), font=self.label_style['info'])
+            self.moveto(self.info_text, 50, 50)
+
+    def _hide_info(self, event):
+        self.itemconfigure(self.info_text, state='hidden')
 
     def redraw(self, gps):
         self.delete("all")
@@ -243,6 +322,8 @@ class PhraseStructureCanvas(tk.Canvas):
         Y3 = spy + gps.right.y * grid
         ID = self.create_text((X1, Y1), text=gps.label_stack[0][0], fill='black', activefill='red', tag='node', font=("Times New Roman", self.parent.s['tsize']))
         self.node_to_gps[str(ID)] = gps
+        self.tag_bind(ID, '<Enter>', self._show_info)
+        self.tag_bind(ID, '<Leave>', self._hide_info)
         if self.selected_logical_node == gps:
             x1, y1 = self.coords(ID)
             self.itemconfigure(self.cursor, state='normal')
@@ -257,15 +338,10 @@ class PhraseStructureCanvas(tk.Canvas):
         for i, item in enumerate(gps.label_stack):
             ID = self.create_text((X1, Y1 + 1.2 * i * self.parent.s['tsize']), fill='black', activefill='red', tag='node', text=item[0], anchor='center', font=self.label_style[item[1]])
             self.node_to_gps[str(ID)] = gps
+            if i == 0:
+                self.tag_bind(ID, '<Enter>', self._show_info)
+                self.tag_bind(ID, '<Leave>', self._hide_info)
         self.update_cursor(gps, X1, Y1)
-
-    def draw_to_canvas(self, gps, spx, spy, grid):
-        """Creates a canvas and draws the phrase structure object onto it"""
-        self.project_into_canvas(gps, spx, spy, grid)
-        if gps.settings['image_parameter_show_head_chains']:
-            self.draw_head_chains(gps)
-        if gps.settings['image_parameter_show_phrasal_chains']:
-            self.draw_phrasal_chains(gps)
 
     def update_cursor(self, gps, x1, y1):
         if self.selected_logical_node == gps:
@@ -273,25 +349,40 @@ class PhraseStructureCanvas(tk.Canvas):
             self.moveto(self.cursor, x1 - 50, y1 - 50)
 
     def draw_head_chains(self, gps):
+        if gps.head_chain_target:
+            self.draw_dependency('phrasal chain', gps, gps.head_chain_target)
         if gps.complex():
             self.draw_head_chains(gps.left)
             self.draw_head_chains(gps.right)
-        else:
-            if gps.head_chain_target:
-                start_label_size = gps.label_size()  # Begin the chain at the bottom of label
-                end_label_size = gps.head_chain_target.label_size()  # End the chain at the bottom of label
-                self.draw_dependency((gps.X, gps.Y + start_label_size), (gps.head_chain_target.X, gps.head_chain_target.Y + end_label_size))
 
     def draw_phrasal_chains(self, gps):
         if gps.phrasal_chain_target:
-            self.draw_dependency((gps.X, gps.Y + self.parent.s['tsize']), (gps.phrasal_chain_target.X, gps.phrasal_chain_target.Y + self.parent.s['tsize']))
+            self.draw_dependency('head chain', gps, gps.phrasal_chain_target)
         if gps.complex():
             self.draw_phrasal_chains(gps.left)
             self.draw_phrasal_chains(gps.right)
 
-    def draw_dependency(self, start_point, end_point):
-        """Draws a dependency arc from point to point"""
-        X = start_point[0] + abs(start_point[0] - end_point[0]) / 2
-        Y = end_point[1] + self.parent.s['grid'] * 1.5
-        self.create_line(start_point, (X, Y), end_point, width=1, smooth=True, fill='black')
+    def draw_Agree(self, gps):
+        if gps.Agree_target:
+            self.draw_dependency('Agree', gps, gps.Agree_target)
+        if gps.complex():
+            self.draw_Agree(gps.left)
+            self.draw_Agree(gps.right)
 
+    def draw_dependency(self, style, source, target):
+        """Draws a dependency arc from point to point"""
+        X1 = source.X
+        Y1 = source.Y
+        X3 = target.X
+        Y3 = target.Y
+        X2 = X1 + abs(X1 - X3) / 2
+        if X1 == X3:
+            Y3 = Y3 - self.parent.s['tsize'] * 3.5
+        Y2 = Y3 + self.parent.s['grid'] * 1.5
+        start_offset = source.label_size() * self.parent.s['tsize']
+        end_offset = target.label_size() * self.parent.s['tsize']
+        self.create_line((X1, Y1 + start_offset), (X2, Y2), (X3, Y3 + end_offset),
+                         dash=self.parent.line_style[style]['dash'],
+                         width=self.parent.line_style[style]['width'],
+                         smooth=True,
+                         fill=self.parent.line_style[style]['fill'])

@@ -217,8 +217,6 @@ def log_solution(brain_model, ps, solution_found):
 def report_success(brain_model, ps):
     log('\n\t\tAccepted.++\n')
     print('X', end='', flush=True)
-    if brain_model.local_file_system.settings['datatake_full']:
-        brain_model.local_file_system.simple_log_file.write(f'\n\t{ps} <= accepted')
     if len(brain_model.narrow_semantics.semantic_interpretation['Assignments']) == 0:
         log('\t\tSentence was judged uninterpretable due to lack of legitimate assignments.\n')
     if not brain_model.first_solution_found:
@@ -251,5 +249,3 @@ def log_new_sentence(brain_model, count, lst):
     log(f'\n#{count}. {brain_model.local_file_system.generate_input_sentence_string(lst)}')
     log(f'\n{brain_model.sentence}')
     log(f'\n\n\t 1. {brain_model.sentence}\n')
-    if brain_model.local_file_system.settings['datatake_full']:
-        brain_model.local_file_system.simple_log_file.write(f'\n\n#{count}. {brain_model.local_file_system.generate_input_sentence_string(lst)} / {brain_model.sentence}\n')
