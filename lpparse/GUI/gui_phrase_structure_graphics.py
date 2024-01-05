@@ -1,5 +1,6 @@
 import tkinter as tk
 from phrase_structure import PhraseStructure
+from GUI.gui_menus import GraphicsMenu
 
 MARGINS = 300
 GRID = 150
@@ -184,15 +185,18 @@ class GPhraseStructure(PhraseStructure):
                 itext += f'\nComplex head with structure '
                 for c in self.get_affix_list():
                     itext += f'{c} '
-
         return itext
 
+
 class PhraseStructureGraphics(tk.Toplevel):
-    """Window hosting the canvas, will later contain independent menu"""
-    def __init__(self, root, speaker_model_used_in_analysis):
+    """Window hosting the canvas"""
+    def __init__(self, root, speaker_model):
         super().__init__(root)
         self.title("Phrase Structure Graphics")
         GPhraseStructure.settings = root.lfs.settings
+
+        # Internal variables
+        self.index_of_analysis_shown = 0
 
         # Settings for drawing
         self.s = {'grid': GRID, 'margins': MARGINS}
@@ -203,22 +207,70 @@ class PhraseStructureGraphics(tk.Toplevel):
                            'head chain': {'fill': 'black', 'dash': None, 'width': 1},
                            'Agree': {'fill': 'blue', 'dash': None, 'width': 3}}
 
-        # Get the phrase structure to be drawn and project into logical space
-        self.canvas = PhraseStructureCanvas(self)
-        self.gps = GPhraseStructure(self.get_ps_from_speaker_model(speaker_model_used_in_analysis).top())
-        self.gps.initialize_logical_space()
-        self.gps.remove_overlap()
-        width, height, spx, spy = self.calculate_canvas_size(self.gps)
-        self.canvas.configure(width=width, height=height, background='white')
-        self.geometry(str(width)+'x'+str(height))   # Set window size based on the input phrase structure
+        # Menu
+        self.graphics_menu = GraphicsMenu(self)
+        self.config(menu=self.graphics_menu)
 
         # Make host window and canvas visible
         self.focus()
         self.grid()
+        self.canvas = PhraseStructureCanvas(self)
         self.canvas.pack()
+        self.gps = None     # Current phrase structure on screen
+        self.speaker_model = speaker_model
+        self.bind('<<LF>>', self.LF)
+        self.bind('<<PF>>', self.PF)
+        self.bind('<<NextImage>>', self.next_image)
+        self.bind('<<PreviousImage>>', self.previous_image)
+        self.bind('<<FirstImage>>', self.first_image)
 
-        # Drawing
+        # Show image
+        self.draw_phrase_structure_by_title('LF-interface')
+
+    def draw_phrase_structure(self):
+        self.prepare_phrase_structure()
+        self.canvas.delete("all")
+        spx, spy = self.prepare_canvas()
         self.canvas.draw_to_canvas(self.gps, spx, spy, self.s['grid'])
+
+    def prepare_phrase_structure(self):
+        self.canvas.derivational_index, ps, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
+        self.gps = GPhraseStructure(ps.top())
+        self.gps.initialize_logical_space()
+        self.gps.remove_overlap()
+
+    def prepare_canvas(self):
+        width, height, spx, spy = self.calculate_canvas_size(self.gps)
+        self.canvas.configure(width=width, height=height, background='white')
+        self.geometry(str(width) + 'x' + str(height))  # Set window size based on the input phrase structure
+        return spx, spy
+
+    def LF(self, *_):
+        self.draw_phrase_structure_by_title('LF-interface')
+
+    def PF(self, *_):
+        self.draw_phrase_structure_by_title('PF-interface')
+
+    def draw_phrase_structure_by_title(self, title):
+        for i, item in enumerate(self.speaker_model.recorded_steps):
+            if item[2] == title:
+                self.index_of_analysis_shown = i
+                self.draw_phrase_structure()
+                return
+
+    def next_image(self, *_):
+        if self.index_of_analysis_shown < len(self.speaker_model.recorded_steps) - 1:
+            self.index_of_analysis_shown += 1
+            self.draw_phrase_structure()
+
+    def previous_image(self, *_):
+        if self.index_of_analysis_shown > 0:
+            self.index_of_analysis_shown -= 1
+        self.draw_phrase_structure()
+
+    def first_image(self, *_):
+        self.index_of_analysis_shown = 0
+        self.draw_phrase_structure()
 
     def calculate_canvas_size(self, gps):
         """Determines the canvas size on the basis of the phrase structure object"""
@@ -228,16 +280,19 @@ class PhraseStructureGraphics(tk.Toplevel):
         height = height + gps.label_size() * self.s['tsize']
         return int(width), int(height), abs(left_x) * self.s['grid'] + self.s['margins'], self.s['margins']
 
-    def get_ps_from_speaker_model(self, speaker_model_used_in_analysis):
+    def get_ps_from_speaker_model(self, speaker_model, index):
         """Returns the phrase structure object to be drawn, None otherwise"""
-        if speaker_model_used_in_analysis.result_list and speaker_model_used_in_analysis.result_list[0]:
-            return speaker_model_used_in_analysis.result_list[0][0].top()
+        if index < len(speaker_model.recorded_steps):
+            return speaker_model.recorded_steps[index][0], speaker_model.recorded_steps[index][1], speaker_model.recorded_steps[index][2]
+
 
 class PhraseStructureCanvas(tk.Canvas):
     """Canvas for drawing and manipulating phrase structure objects"""
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
         self.focus_set()
+        self.title = None
+        self.derivational_index = None
         self.selected_canvas_node = None    # image object selection
         self.selected_logical_node = None   # logical node selection (can be independent of image objects)
         self.parent = parent
@@ -249,11 +304,16 @@ class PhraseStructureCanvas(tk.Canvas):
                             'info': ("Courier", int(parent.s['tsize'] * 0.25))}
         self.bind('<Button-1>', self._on_mouse_click)
         self.bind('<KeyPress>', self._key_press)
-        self.cursor = self.create_oval((50, 50), (150, 150), state='hidden')    # Image object selection cursor
-        self.info_text = self.create_text((0, 0), state='hidden')  # Show information about selected objects
+        self.cursor = None
+        self.info_text = None
 
     def draw_to_canvas(self, gps, spx, spy, grid):
         """Creates a canvas and draws the phrase structure object onto it"""
+        self.draw_title(spx)
+
+        self.cursor = self.create_oval((50, 50), (150, 150), state='hidden')    # Image object selection cursor
+        self.info_text = self.create_text((200, 300), state='hidden')  # Show information about selected objects
+
         self.project_into_canvas(gps, spx, spy, grid)
         if gps.settings['image_parameter_show_head_chains']:
             self.draw_head_chains(gps)
@@ -274,6 +334,11 @@ class PhraseStructureCanvas(tk.Canvas):
             if event.keysym == 'Up':
                 gps.move_y(-0.5)
             self.redraw(gps.top())
+        else:
+            if event.keysym == 'Left':
+                self.event_generate('<<PreviousImage>>')
+            if event.keysym == 'Right':
+                self.event_generate('<<NextImage>>')
 
     def _on_mouse_click(self, *_):
         if self.find_withtag('current'):
@@ -284,16 +349,21 @@ class PhraseStructureCanvas(tk.Canvas):
             self.moveto(self.cursor, x1-50, y1-50)
         else:
             self.itemconfigure(self.cursor, state='hidden')
+            self.selected_canvas_node = None
 
-    def _show_info(self, event):
+    def _show_info(self, *_):
         if self.find_withtag('current'):
-            self.selected_canvas_node = self.find_withtag('current')[0]
-            gps = self.node_to_gps[str(self.selected_canvas_node)]
-            self.itemconfigure(self.info_text, state='normal', text=gps.itext(), font=self.label_style['info'])
-            self.moveto(self.info_text, 50, 50)
+            selected = self.find_withtag('current')[0]
+            gps = self.node_to_gps[str(selected)]
+            if gps.primitive():
+                self.moveto(self.info_text, 200, 300)
+                self.itemconfigure(self.info_text, state='normal', fill='black', text=gps.itext(), font=self.label_style['info'])
 
-    def _hide_info(self, event):
+    def _hide_info(self, *_):
         self.itemconfigure(self.info_text, state='hidden')
+
+    def draw_title(self, spx):
+        self.create_text((spx, 50), font=('times', 20), text='(' + str(self.derivational_index) + ')  ' + self.title)
 
     def redraw(self, gps):
         self.delete("all")

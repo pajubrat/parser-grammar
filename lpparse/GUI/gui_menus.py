@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
 
+menu_font = ('Calibri', 20)
+
+
 class MainMenu(tk.Menu):
     # This function is used to generate events for the main window
     def _event(self, sequence):
@@ -13,7 +16,8 @@ class MainMenu(tk.Menu):
         super().__init__(parent, **kwargs)
 
         # File menu
-        file_menu = tk.Menu(self, tearoff=False)
+        file_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        file_menu.config(font=menu_font)
         file_menu.add_command(label='New...', command=self.todo)
         file_menu.add_command(label='Load...', command=self.todo)
         file_menu.add_command(label='Save', command=self.todo)
@@ -22,20 +26,27 @@ class MainMenu(tk.Menu):
         self.add_cascade(label='File', menu=file_menu)
 
         # Analysis menu
-        analysis_menu = tk.Menu(self, tearoff=False)
-        analysis_menu.add_command(label='Run study', command=self._event('<<RunStudy>>'))
-        analysis_menu.add_command(label='Analyze one expression', command=self._event('<<Analyze>>'))
-        self.add_cascade(label='Analyze', menu=analysis_menu)
+        study_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        study_menu.add_command(label='Run study', command=self._event('<<RunStudy>>'))
+        study_menu.add_command(label='Analyze one expression', command=self._event('<<Analyze>>'))
+        self.add_cascade(label='Study', menu=study_menu)
+
+        # Examine_results_meny
+        examine_results_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        examine_results_menu.add_command(label='Results...', command=self.todo)
+        examine_results_menu.add_command(label='Derivation...', command=self.todo)
+        examine_results_menu.add_command(label='Examine log...', command=self.todo)
+        self.add_cascade(label='Results', menu=examine_results_menu)
 
         # Settings menu
-        settings_menu = tk.Menu(self, tearoff=False)
+        settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
         settings_menu.add_command(label='Configure study...')
         settings_menu.add_command(label='Simulation settings...')
         settings_menu.add_command(label='Image settings...')
         self.add_cascade(label='Options', menu=settings_menu)
 
         # Help menu
-        help_menu = tk.Menu(self, tearoff=False)
+        help_menu = tk.Menu(self, tearoff=False, font=menu_font)
         help_menu.add_command(label='Help', command=self.show_help_dialog)
         self.add_cascade(label='Help', menu=help_menu)
 
@@ -56,3 +67,34 @@ class MainMenu(tk.Menu):
         pass
 
 
+class GraphicsMenu(tk.Menu):
+    def _event(self, sequence):
+        def callback(*_):
+            root = self.master.winfo_toplevel()
+            root.event_generate(sequence)
+        return callback
+
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
+
+        # File menu
+        file_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        file_menu.config(font=menu_font)
+        file_menu.add_command(label='New...', command=self.todo)
+        file_menu.add_command(label='Load...', command=self.todo)
+        file_menu.add_command(label='Save', command=self.todo)
+        file_menu.add_command(label='Preferences...', command=self.todo)
+        file_menu.add_command(label='Quit', command=self.todo)
+        self.add_cascade(label='File', menu=file_menu)
+
+        # Select image menu
+        select_image = tk.Menu(self, tearoff=False, font=menu_font)
+        select_image.add_command(label='PF-interface', command=self._event('<<PF>>'))
+        select_image.add_command(label='LF-interface', command=self._event('<<LF>>'))
+        select_image.add_command(label='Next image', command=self._event('<<NextImage>>'))
+        select_image.add_command(label='Previous image', command=self._event('<<PreviousImage>>'))
+        select_image.add_command(label='First image', command=self._event('<<FirstImage>>'))
+        self.add_cascade(label='Image source', menu=select_image)
+
+    def todo(self):
+        pass

@@ -14,6 +14,8 @@ class SpeakerModel:
         self.local_file_system = local_file_system              # Access to file system (e.g., lexicon, settings)
         self.language = language                                # Contextual variables (language etc.)
         self.result_list = []                                   # Results (final analyses)
+        self.recorded_steps = []                                # Contains all derivational steps
+        self.step_number = 0
         self.spellout_result_list = []                          # Results (spell out structures)
         self.semantic_interpretation = set()                    # Semantic interpretation
         self.number_of_ambiguities = 0                          # Number of lexical ambiguities detected
@@ -46,6 +48,7 @@ class SpeakerModel:
                 self.only_first_solution = True
         self.number_of_items_consumed = 0
         self.result_list = []                                   # Results (final analyses)
+        self.recorded_steps = []
         self.semantic_interpretation = set()                    # Semantic interpretation
         self.number_of_ambiguities = 0                          # Number of lexical ambiguities detected
         self.result_matrix = [[] for i in range(50)]            # Result matrix
@@ -131,6 +134,7 @@ class SpeakerModel:
                     self.explore_derivation_space(ps, self.lexical_stream.wrap(lex, inflection_buffer), lst, index)
 
                 inflection_buffer = set()
+
         log(f'\n\t\tBacktracking...')
 
     def explore_derivation_space(self, ps, X, lst, index):
@@ -139,6 +143,7 @@ class SpeakerModel:
             log(f' => Insert into working memory.')
             self.parse_new_item(X.copy(), lst, index + 1)
         else:
+            self.record_step(self.step_number, ps, 'Phrase structure in syntactic working memory')
             # Create derivational search space for existing phrase structure and new constituent X
             for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(ps, X):
                 new_constituent = ps.target_left_branch(N).attach(N, X, transfer, address_label)
@@ -165,11 +170,14 @@ class SpeakerModel:
 
     # Evaluates a complete solution at the LF-interface and semantic interpretation
     def evaluate_complete_solution(self, ps):
+        print(f'{self.step_number} {ps}')
+        self.record_step(self.step_number, ps, 'PF-interface')
         log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
         log(f'\n\t\tPF-interface {ps}\n')
         ps.transfer_to_LF()
         ps = ps.top()   # There are cases where transfer adds constituents to the top
         log(f'\n\n\t\tLF-interface {ps}\n')
+        self.record_step(self.step_number, ps, 'LF-interface')
 
         # Postsyntactic tests (LF-interface legibility and semantic interpretation)
         if self.postsyntactic_tests(ps):
@@ -196,3 +204,8 @@ class SpeakerModel:
             self.resources[key]['n'] += 1
             if key != 'Agree' and key != 'Last Resort Extraposition':
                 log(f'\n\t\t{key}({target.illustrate()}) => {target.top()} ')
+
+    def record_step(self, step_number, ps, information):
+        self.recorded_steps.append((step_number, ps.copy(), information))
+        self.step_number += 1
+

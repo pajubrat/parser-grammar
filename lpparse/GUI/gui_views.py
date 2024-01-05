@@ -7,27 +7,29 @@ class DatasetView(ttk.LabelFrame):
     def __init__(self, parent, sentences_to_parse, **kwargs):
         super().__init__(parent, text='Dataset', **kwargs)
         self.style = ttk.Style()
+
         self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
         self.sentences_to_parse = sentences_to_parse
         self.sentences_to_parse_dict = {}
         self.selected_data_item = 1
         self.dataset_treeview = ttk.Treeview(self, columns=['Expression'], selectmode='browse', style="mystyle.Treeview")
         self.dataset_treeview.heading('#0', text='Item')
-        self.dataset_treeview.column('#0', width=80, stretch='no')
-        self.dataset_treeview.column('Expression', width=500)
         self.dataset_treeview.heading('Expression', text='Expression')
-        self.fill()
+        self.dataset_treeview.column('Expression', width=600)
+        self.fill_with_data()
         self.dataset_treeview.selection_set(1)
         sc = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.dataset_treeview.yview)
         sc.grid(row=0, column=1, sticky='NSW')
         self.dataset_treeview.configure(yscrollcommand=sc.set)
         self.dataset_treeview.grid(row=0, column=0, sticky='nwes')
+
+        # Bindings
         self.dataset_treeview.bind('<Double-1>', self._analyze)
 
     def selected_item(self):
         return self.dataset_treeview.selection()[0]
 
-    def fill(self):
+    def fill_with_data(self):
         sentence_nro = 1
         for index, word_list, experimental_group, part_of_conversation, grammatical in self.sentences_to_parse:
             sentence = ' '.join(word_list)
@@ -43,26 +45,28 @@ class DatasetView(ttk.LabelFrame):
             self.selected_data_item = int(self.dataset_treeview.selection()[0])
             self.event_generate('<<Analyze>>')
 
+
 class LexiconView(ttk.LabelFrame):
     """Defines the GUI widget to show the lexicon"""
     def __init__(self, parent, lexicon_dict, **kwargs):
         super().__init__(parent, text='Lexicon', **kwargs)
-        self.columnconfigure(0, weight=1)
-        self.rowconfigure(0, weight=1)
         self.lexicon_dict = lexicon_dict
+
+        self.columnconfigure(0, weight=1)
+
         self.style = ttk.Style()
         self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
 
         # Create Treeview
         self.lexicon_treeview = ttk.Treeview(self, columns=['Language', 'Comment'], selectmode='browse', style='mystyle.Treeview')
         self.lexicon_treeview.heading('#0', text='Item')
-        self.lexicon_treeview.column('#0', width=150, stretch='no')
-        self.lexicon_treeview.heading('Comment', text='Comment', anchor='center')
-        self.lexicon_treeview.heading('Language', text='Language', anchor='center')
-        self.lexicon_treeview.column('Language', width=100, stretch='no')
+
+        # self.lexicon_treeview.column('#0', width=150, stretch='no')
+        self.lexicon_treeview.heading('Comment', text='Comment')
+        self.lexicon_treeview.heading('Language', text='Language')
 
         # fill Treeview
-        self.fill()
+        self.fill_with_data()
 
         # Create scrollbar
         self.scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.lexicon_treeview.yview)
@@ -70,10 +74,10 @@ class LexiconView(ttk.LabelFrame):
 
         # Position the elements
         self.lexicon_treeview.grid(row=0, column=0, sticky='nwes')
-        self.scrollbar.grid(row=0,column=1, sticky='NSW')
+        self.scrollbar.grid(row=0, column=1, sticky='NSW')
 
     # Fill the treeview with the elements in the lexicon dictionary
-    def fill(self):
+    def fill_with_data(self):
 
         for lexicon_file in list(self.lexicon_dict.keys()):
             self.lexicon_treeview.insert('', 'end', iid=lexicon_file, text=lexicon_file, values=['', ''])
@@ -98,32 +102,31 @@ class SpeakerModelView(ttk.LabelFrame):
     def __init__(self, parent, speaker_models, **kwargs):
         super().__init__(parent, text='Speaker Models', **kwargs)
         self.speaker_models = speaker_models
+        self.columnconfigure(0, weight=1)
 
         # Create Treeview
         self.style = ttk.Style()
         self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
         self.speakermodel_treeview = ttk.Treeview(self, columns=['Features'], selectmode='browse', style='mystyle.Treeview')
         self.speakermodel_treeview.heading('#0', text='Model')
-        self.speakermodel_treeview.heading('Features', text='Features', anchor='center')
-        self.speakermodel_treeview.column('Features', width=300, anchor=tk.W)
-
-        self.fill()
+        self.speakermodel_treeview.heading('Features', text='Features')
+        self.speakermodel_treeview.column('Features', width=300)
+        self.speakermodel_treeview.grid(row=0, column=0, sticky='WE')
+        self.speakermodel_treeview.columnconfigure(0, weight=1)
+        self.speakermodel_treeview.grid(row=0, column=0, sticky='nwes')
 
         # Create scrollbar
         self.scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.speakermodel_treeview.yview)
         self.scrollbarx = ttk.Scrollbar(self, orient=tk.HORIZONTAL, command=self.speakermodel_treeview.xview)
         self.speakermodel_treeview.configure(yscrollcommand=self.scrollbar.set)
         self.speakermodel_treeview.configure(xscrollcommand=self.scrollbarx.set)
-
-        # Position the elements
-        self.speakermodel_treeview.grid(row=0, column=0, sticky='nwes')
         self.scrollbar.grid(row=0,column=1, sticky='NSW')
         self.scrollbarx.grid(row=1, column=0, sticky='WE')
 
-        # Position the elements
-        self.speakermodel_treeview.grid(row=0, column=0, sticky='NSWE')
+        # Get data for the treeview
+        self.fill_with_data()
 
-    def fill(self):
+    def fill_with_data(self):
         for model in self.speaker_models.keys():
             self.speakermodel_treeview.insert('', 'end', iid=model, text=model, values=[''])
             for lex_list in self.speaker_models[model].lexicon.surface_lexicon.keys():

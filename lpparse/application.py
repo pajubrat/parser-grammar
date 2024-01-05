@@ -16,16 +16,20 @@ class Application(tk.Tk):
         self.lfs = LocalFileSystem()
         self.speaker_models, self.sentences_to_parse, self.language_guesser = self.lfs.set_up_experiment()
         self.lex_dictionary = self.lfs.read_lexicons_into_dictionary()
+
+        # Set up widgets for the main window
         self.lexicon_frame = LexiconView(self, self.lex_dictionary)
         self.dataset_frame = DatasetView(self, self.sentences_to_parse)
         self.speakermodel_frame = SpeakerModelView(self, self.speaker_models)
-        main_menu = MainMenu(self)
-        self.config(menu=main_menu)
-        self.lexicon_frame.grid(row=0, column=0, sticky='nwes')
-        self.dataset_frame.grid(row=0, column=1, sticky='nwes')
+        self.lexicon_frame.grid(row=0, column=0, sticky='WE')
+        self.dataset_frame.grid(row=0, column=1, sticky='WE')
         self.speakermodel_frame.grid(row=1, column=0, sticky='nwes')
         self.grid_columnconfigure(0, weight=1)
-        self.grid_rowconfigure(0, weight=1)
+        #self.grid_rowconfigure(0, weight=1)
+
+        # Set up main menu
+        main_menu = MainMenu(self)
+        self.config(menu=main_menu)
 
         # Callbacks
         self.bind('<<Analyze>>', self._analyze)
