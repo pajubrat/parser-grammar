@@ -43,27 +43,25 @@ class Discourse:
                 self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
                 self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
-    def interpret_discourse_features(self, ps, semantic_interpretation):
+    def interpret_discourse_features(self, ps):
         self.refresh_inventory(ps)
+        result = ''
         d_features = self.get_discourse_features(ps.features)
         if d_features:
             log('\n\t\t\tInterpreting ')
-        for f in sorted(d_features):
-            log(f'[{f}] at {ps.illustrate()}...')
-            result = self.interpret_discourse_feature(f, ps)
-            if not result:
-                return []
-            semantic_interpretation['DIS-features'].append(result)
+            for f in sorted(d_features):
+                log(f'[{f}] at {ps.illustrate()}...')
+                result += self.interpret_discourse_feature(f, ps)
 
     def interpret_discourse_feature(self, f, ps):
         return f, f'{ps.illustrate()}'
 
-    def calculate_information_structure(self, root_node, semantic_interpretation):
-        if root_node.finite():
-            log('\n\t\tCalculating information structure...')
-            semantic_interpretation['Information structure'] = self.create_topic_gradient(self.collect_arguments(root_node))
-            log(f'{semantic_interpretation["Information structure"]}')
-            self.compute_speaker_attitude(root_node)
+    def calculate_information_structure(self, ps):
+        log('\n\t\tCalculating information structure...')
+        return self.create_topic_gradient(self.collect_arguments(ps))
+
+    def calculate_speaker_attitude(self, ps):
+        return self.compute_speaker_attitude(ps)
 
     def create_topic_gradient(self, constituents_in_information_structure):
         marked_topic_lst = []
@@ -116,12 +114,12 @@ class Discourse:
         if self.get_force_features(ps.head()):
             for count, force_feature in enumerate(self.get_force_features(ps.head())):
                 if force_feature in self.attitudes:
-                    self.narrow_semantics.semantic_interpretation['Speaker attitude'].append(self.attitudes[force_feature])
+                    return self.attitudes[force_feature]
         else:
-            self.narrow_semantics.semantic_interpretation['Speaker attitude'] = ['Declarative']
+            return 'Declarative'
 
     def unexpected_order_occurred(self, ps, starting_point_head):
-        if self.narrow_semantics.speaker_model.first_solution_found or not self.get_inventory_index(ps.head()):
+        if self.narrow_semantics.speaker_model.results.first_solution_found or not self.get_inventory_index(ps.head()):
             return
 
         idx = self.get_inventory_index(ps.head())

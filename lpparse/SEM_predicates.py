@@ -10,7 +10,7 @@ class Predicates:
         arg = probe.identify_argument()
         if arg:
             log(f': {self.print_target(probe, arg)}')
-            return f'{self.print_target(probe, arg)}'
+            return f'{probe}: {self.print_target(probe, arg)}'
         log(f' not found.')
         self.operation_failed = True
 

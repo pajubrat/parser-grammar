@@ -1,28 +1,21 @@
-from support import set_logging, log, report_failure, report_success, log_new_sentence, secure_copy, log_instance
+from support import set_logging, log, log_new_sentence, secure_copy, log_instance
 from lexical_interface import LexicalInterface
 from LF import LF
 from SEM_narrow_semantics import NarrowSemantics
 from lexical_stream import LexicalStream
-from time import process_time
+
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
 from Experimental_functions import ExperimentalFunctions
+from results import Results
 
 class SpeakerModel:
     def __init__(self, local_file_system, language='XX'):
-        self.sentence = ''
-        self.local_file_system = local_file_system              # Access to file system (e.g., lexicon, settings)
+        self.sentence = []
+        self.local_file_system = local_file_system              # Access to file system
         self.language = language                                # Contextual variables (language etc.)
-        self.result_list = []                                   # Results (final analyses)
-        self.recorded_steps = []                                # Contains all derivational steps
-        self.step_number = 0
-        self.spellout_result_list = []                          # Results (spell out structures)
-        self.semantic_interpretation = set()                    # Semantic interpretation
-        self.number_of_ambiguities = 0                          # Number of lexical ambiguities detected
-        self.result_matrix = [[] for i in range(50)]            # Result matrix
-        self.execution_time_results = []                        # Execution time
+        self.results = Results()
         self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
-        self.first_solution_found = False                       # Registers when the first solution if found
         self.exit = False                                       # Forced exit tag
         self.name_provider_index = 0                            # Index for name provider, for chain identification
         self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
@@ -31,71 +24,33 @@ class SpeakerModel:
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.plausibility_metrics = PlausibilityMetrics(self)
-        self.resources = dict                                   # Resources consumed
-        self.start_time = 0                                     # Calculates execution time
-        self.end_time = 0                                       # Calculates execution time
-        self.number_of_items_consumed = 0
-        self.time_from_stimulus_onset = 0
-        self.total_time_per_sentence = 0
-        self.time_from_stimulus_onset_for_word = []
-        self.only_first_solution = False
         self.Experimental_functions = ExperimentalFunctions(self)
         self.embedding = 0
 
     def initialize(self):
-        if 'only_first_solution' in self.local_file_system.settings:
-            if self.local_file_system.settings['only_first_solution']:
-                self.only_first_solution = True
-        self.number_of_items_consumed = 0
-        self.result_list = []                                   # Results (final analyses)
-        self.recorded_steps = []
-        self.semantic_interpretation = set()                    # Semantic interpretation
-        self.number_of_ambiguities = 0                          # Number of lexical ambiguities detected
-        self.result_matrix = [[] for i in range(50)]            # Result matrix
-        self.execution_time_results = []                        # Execution time
         self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
-        self.first_solution_found = False                       # Registers when the first solution if found
         self.exit = False                                       # Forced exit tag
         self.name_provider_index = 0                            # Index for name provider, for chain identification
-        self.resources = dict                                   # Resources consumed
-        self.start_time = process_time()                        # Calculates execution time
-        self.time_from_stimulus_onset = 0                       # Counts predicted cognitive time
-        self.total_time_per_sentence = 0                        # Counts predicted cognitive time
-        self.time_from_stimulus_onset_for_word = []             # Counts predicted cognitive time
-        for key in PhraseStructure.resources:
-            PhraseStructure.resources[key] = {"ms": 1, "n": 0}
-        self.resources = {"Total Time": {'ms': 0, 'n': 0},     # Count predicted cognitive time
-                          "Garden Paths": {'ms': 0, 'n': 0},
-                          "Merge": {'ms': 5, 'n': 0},
-                          "Head Chain": {'ms': 5, 'n': 0},
-                          "Phrasal Chain": {'ms': 5, 'n': 0},
-                          "Feature Inheritance": {'ms': 5, 'n': 0},
-                          "Agree": {'ms': 5, 'n': 0},
-                          "Feature": {'ms': 5, 'n': 0},
-                          "Left Scrambling": {'ms': 5, 'n': 0},
-                          "Right Scrambling": {'ms': 5, 'n': 0},
-                          "Extraposition": {'ms': 6, 'n': 0},
-                          "Last Resort Extraposition": {'ms': 5, 'n': 0},
-                          "Mean time per word": {'ms': 0, 'n': 0}
-                          }
+        PhraseStructure.speaker_model = self                    # Provides phrase structure operations access to the current speaker model
+        PhraseStructure.chain_index = 0
 
-    # Prepares the derivational search operation and then calls the recursive
-    # derivational search function parse_new_item()
     def parse_sentence(self, index, lst):
+        """Prepares the derivational search operation and
+        calls the recursive derivational search function parse_new_item()"""
 
         # Bookkeeping and logging
         self.sentence = lst
-        self.start_time = process_time()
         log_new_sentence(self, index, lst)
-        PhraseStructure.chain_index = 0
 
         # Initialize the components (mostly bookkeeping and logging)
         self.initialize()
+        self.results.initialize()
         self.plausibility_metrics.initialize()
         self.narrow_semantics.initialize()
 
-        # Provides phrase structure operations access to the current speaker model
-        PhraseStructure.speaker_model = self
+        # Record lower level sensory processing (reading, hearing) for each word
+        for word in self.sentence:
+            self.results.consume_resources('Sensory Processing', word)
 
         # Call the derivational search function
         self.parse_new_item(None, lst, 0)
@@ -120,9 +75,7 @@ class SpeakerModel:
                 # 1. Morphological parsing if applicable
                 if lex.morphological_chunk:
                     self.embedding += 1
-                    self.parse_new_item(secure_copy(ps),
-                                        lex.morphological_parse(ps, lst.copy(), index, inflection_buffer),
-                                        index, inflection_buffer)
+                    self.parse_new_item(secure_copy(ps), lex.morphological_parse(ps, lst.copy(), index, inflection_buffer), index, inflection_buffer)
 
                 # 2. Process inflectional feature (withhold streaming to syntax)
                 if not lex.morphological_chunk and lex.inflectional:
@@ -143,7 +96,7 @@ class SpeakerModel:
             log(f' => Insert into working memory.')
             self.parse_new_item(X.copy(), lst, index + 1)
         else:
-            self.record_step(self.step_number, ps, 'Phrase structure in syntactic working memory')
+            self.results.record_step(ps, 'Phrase structure in syntactic working memory')
             # Create derivational search space for existing phrase structure and new constituent X
             for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(ps, X):
                 new_constituent = ps.target_left_branch(N).attach(N, X, transfer, address_label)
@@ -164,48 +117,33 @@ class SpeakerModel:
             log_instance.indent_level = self.embedding
             self.evaluate_complete_solution(ps)
             return True
-        self.time_from_stimulus_onset = int(len(lst[index]) * 10)
-        if not self.first_solution_found:
-            self.resources['Total Time']['n'] += self.time_from_stimulus_onset
 
     # Evaluates a complete solution at the LF-interface and semantic interpretation
     def evaluate_complete_solution(self, ps):
-        print(f'{self.step_number} {ps}')
-        self.record_step(self.step_number, ps, 'PF-interface')
+        self.results.record_step(ps, 'PF-interface')
         log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
         log(f'\n\t\tPF-interface {ps}\n')
         ps.transfer_to_LF()
-        ps = ps.top()   # There are cases where transfer adds constituents to the top
+        ps = ps.top()
         log(f'\n\n\t\tLF-interface {ps}\n')
-        self.record_step(self.step_number, ps, 'LF-interface')
+        self.results.record_step(ps, 'LF-interface')
 
         # Postsyntactic tests (LF-interface legibility and semantic interpretation)
         if self.postsyntactic_tests(ps):
-            self.resources.update(PhraseStructure.resources)
-            report_success(self, ps)
+            self.results.update_resources(PhraseStructure.resources, self.sentence)
+            self.results.report_success(self, ps)
+            self.results.store_solution(ps)
+            if self.local_file_system.settings['only_first_solution']:
+                self.exit = True
         else:
             self.narrow_semantics.reset_for_new_interpretation()
-            report_failure(ps)
+            self.results.report_failure(ps)
 
         # Register one garden path if we evaluated complete solution but
         # there has not been any accepted solutions
-        if not self.first_solution_found:
-            self.consume_resources("Garden Paths", ps)
+        if not self.results.first_solution_found:
+            self.results.consume_resources("Garden Paths", ps)
 
     def postsyntactic_tests(self, ps):
         log(f'\n\t\tLF-interface and postsyntactic legibility tests:')
         return self.LF.pass_LF_legibility(ps) and self.LF.final_tail_check(ps) and self.narrow_semantics.postsyntactic_semantic_interpretation(ps)
-
-    def consume_resources(self, key, target):
-        if not self.first_solution_found:
-            self.time_from_stimulus_onset += self.resources[key]['ms']
-            if 'Total Time' in self.resources:
-                self.resources['Total Time']['n'] += self.resources[key]['ms']
-            self.resources[key]['n'] += 1
-            if key != 'Agree' and key != 'Last Resort Extraposition':
-                log(f'\n\t\t{key}({target.illustrate()}) => {target.top()} ')
-
-    def record_step(self, step_number, ps, information):
-        self.recorded_steps.append((step_number, ps.copy(), information))
-        self.step_number += 1
-

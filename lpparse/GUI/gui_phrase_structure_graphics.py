@@ -194,6 +194,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         super().__init__(root)
         self.title("Phrase Structure Graphics")
         GPhraseStructure.settings = root.lfs.settings
+        self.geometry(('1800x1000+1800+500'))
 
         # Internal variables
         self.index_of_analysis_shown = 0
@@ -252,14 +253,14 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.draw_phrase_structure_by_title('PF-interface')
 
     def draw_phrase_structure_by_title(self, title):
-        for i, item in enumerate(self.speaker_model.recorded_steps):
+        for i, item in enumerate(self.speaker_model.results.recorded_steps):
             if item[2] == title:
                 self.index_of_analysis_shown = i
                 self.draw_phrase_structure()
                 return
 
     def next_image(self, *_):
-        if self.index_of_analysis_shown < len(self.speaker_model.recorded_steps) - 1:
+        if self.index_of_analysis_shown < len(self.speaker_model.results.recorded_steps) - 1:
             self.index_of_analysis_shown += 1
             self.draw_phrase_structure()
 
@@ -282,9 +283,8 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def get_ps_from_speaker_model(self, speaker_model, index):
         """Returns the phrase structure object to be drawn, None otherwise"""
-        if index < len(speaker_model.recorded_steps):
-            return speaker_model.recorded_steps[index][0], speaker_model.recorded_steps[index][1], speaker_model.recorded_steps[index][2]
-
+        if index < len(speaker_model.results.recorded_steps):
+            return speaker_model.results.recorded_step(index)
 
 class PhraseStructureCanvas(tk.Canvas):
     """Canvas for drawing and manipulating phrase structure objects"""

@@ -485,7 +485,8 @@ class PhraseStructure:
     def reconstruct(self, op):
         for const in (x for x in [self.bottom()] + self.bottom().upward_path() if op['test integrity'](x)):
             op['repair'](const)
-            PhraseStructure.speaker_model.consume_resources(op['type'], const)
+            self.speaker_model.results.record_step(const.top(), f"{op['type']} ({const})")
+            PhraseStructure.speaker_model.results.consume_resources(op['type'], const)
 
     # Chain creation (part of transfer)
     def create_chain(self):
@@ -795,12 +796,12 @@ class PhraseStructure:
 
     def extrapose(self):
         self.sister().head().externalize_structure()
-        PhraseStructure.speaker_model.consume_resources('Extraposition', self)
+        PhraseStructure.speaker_model.results.consume_resources('Extraposition', self)
 
     def last_resort_extrapose(self):
         if self.primitive() and self.cutoff_point_for_last_resort_extraposition():
             self.externalize_structure()
-            PhraseStructure.speaker_model.consume_resources('Last Resort Extraposition', self)
+            PhraseStructure.speaker_model.results.consume_resources('Last Resort Extraposition', self)
 
     def feature_inheritance(self):
         if self.highest_finite_head() and not self.check({'-ΦPF'}):
@@ -1051,7 +1052,7 @@ class PhraseStructure:
             const = self.head_attachment(terminal_lexical_item)
         else:
             const = self.phrasal_attachment(terminal_lexical_item, transfer)
-        self.speaker_model.consume_resources("Merge", const)
+        self.speaker_model.results.consume_resources("Merge", const)
         log(f'({address_label})\n')
         return const
 

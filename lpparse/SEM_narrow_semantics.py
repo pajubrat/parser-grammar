@@ -16,9 +16,7 @@ class NarrowSemantics:
         self.predicates_relations_events_module = PredicatesRelationsEvents(self)
         self.global_cognition = GlobalCognition(self)
         self.predicates = Predicates()
-        self.semantic_interpretation = {}
         self.semantic_interpretation_failed = False
-        self.predicate_argument_dependencies = []
         self.speaker_model = speaker_model
         self.phi_interpretation_failed = False
         self.query = \
@@ -74,23 +72,10 @@ class NarrowSemantics:
                               }
 
     def initialize(self):
-        self.access_interface = {}
         self.pragmatic_pathway.initialize()
         self.quantifiers_numerals_denotations_module.reset()
         self.predicates_relations_events_module.reset()
         self.semantic_interpretation_failed = False
-        self.predicate_argument_dependencies = []
-        self.semantic_interpretation = {'Control': [],
-                                        'Thematic roles': [],
-                                        'Agreement': [],
-                                        'Predicate scopes': [],
-                                        'Aspect': [],
-                                        'DIS-features': [],
-                                        'Operator bindings': [],
-                                        'Semantic space': '',
-                                        'Speaker attitude': [],
-                                        'Information structure': {},
-                                        'Assignments': []}
 
     def reset_for_new_interpretation(self):
         self.semantic_interpretation_failed = False
@@ -99,50 +84,34 @@ class NarrowSemantics:
         self.thematic_roles_module.failure = False
         self.operator_variable_module.interpretation_failed = False
         self.pragmatic_pathway.interpretation_failed = False
-        self.semantic_interpretation = {'Control': [],
-                                        'Thematic roles': [],
-                                        'Agreement': [],
-                                        'Predicates': [],
-                                        'Aspect': [],
-                                        'DIS-features': [],
-                                        'Operator bindings': [],
-                                        'Semantic space': '',
-                                        'Speaker attitude': [],
-                                        'Assignments': [],
-                                        'Information structure': {'Marked topics': None, 'Neutral gradient': None,
-                                                                  'Marked focus': None}}
 
-    def postsyntactic_semantic_interpretation(self, root_node):
-        log(f'\n\t\tInterpreting {root_node.head()}P globally: ')
+    def postsyntactic_semantic_interpretation(self, ps):
         self.reset_for_new_interpretation()
-        self.interpret_(root_node)
-        if self.speaker_model.local_file_system.settings['calculate_assignments']:
-            self.quantifiers_numerals_denotations_module.reconstruct_assignments(root_node)
-        if self.speaker_model.local_file_system.settings['calculate_pragmatics']:
-            self.pragmatic_pathway.calculate_information_structure(root_node, self.semantic_interpretation)
-        self.document_interface_content_for_user()
+        self.interpret_(ps)
+        if self.speaker_model.local_file_system.settings['calculate_assignments'] and not self.speaker_model.results.first_solution_found:
+            self.speaker_model.results.store_semantic_interpretation('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
+        if self.speaker_model.local_file_system.settings['calculate_pragmatics'] and ps.finite():
+            self.speaker_model.results.store_semantic_interpretation('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
+        self.speaker_model.results.store_semantic_interpretation('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
         return not self.semantic_interpretation_failed
 
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
                 if self.speaker_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_predicate():
-                    thematic_assignment = self.thematic_roles_module.reconstruct(ps)
-                    if thematic_assignment:
-                        self.semantic_interpretation['Thematic roles'].append(thematic_assignment)
+                    self.speaker_model.results.store_semantic_interpretation('Thematic roles', self.thematic_roles_module.reconstruct(ps))
                 if self.speaker_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}) and not ps.check({'φ'}):
-                    self.semantic_interpretation['Predicates'].append(self.predicates.reconstruct(ps))
-                    # Predicate-argument mapping does not affect grammaticality under the standard model of Agree
+                    self.speaker_model.results.store_semantic_interpretation('Predicates', self.predicates.reconstruct(ps))
                     if self.speaker_model.local_file_system.settings['Agree'] == 'standard':
                         self.predicates.operation_failed = False
                 if ps.argument_by_agreement():
-                    self.semantic_interpretation['Agreement'].append(self.predicates.reconstruct_agreement(ps))
+                    self.speaker_model.results.store_semantic_interpretation('Agreement', self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
                 if self.speaker_model.local_file_system.settings['project_objects']:
                     self.inventory_projection(ps)
-                self.operator_variable_module.bind_operator(ps, self.semantic_interpretation)
-                self.pragmatic_pathway.interpret_discourse_features(ps, self.semantic_interpretation)
+                self.speaker_model.results.store_semantic_interpretation('Operator bindings', self.operator_variable_module.bind_operator(ps))
+                self.speaker_model.results.store_semantic_interpretation('DIS-features', self.pragmatic_pathway.interpret_discourse_features(ps))
                 if self.failure():
                     return
             else:
@@ -151,7 +120,7 @@ class NarrowSemantics:
 
     def inventory_projection(self, ps):
         def preconditions(x):
-            return not self.speaker_model.first_solution_found and \
+            return not self.speaker_model.results.first_solution_found and \
                    not ps.find_me_elsewhere and \
                    (x.referential() or
                     (not x.referential() and not x.get_dPHI()))
@@ -173,9 +142,6 @@ class NarrowSemantics:
         filtered_object = semantic_object.copy()
         filtered_object.pop('Phi-set', None)
         return filtered_object
-
-    def document_interface_content_for_user(self):
-        self.semantic_interpretation.update(self.access_interface)
 
     def failure(self):
         if self.phi_interpretation_failed or \

@@ -2,10 +2,10 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class DatasetView(ttk.LabelFrame):
+class DatasetView(tk.LabelFrame):
     """Defines the GUI widget to show the dataset"""
     def __init__(self, parent, sentences_to_parse, **kwargs):
-        super().__init__(parent, text='Dataset', **kwargs)
+        super().__init__(parent, text='Dataset', font=('Calibri 16'), **kwargs)
         self.style = ttk.Style()
 
         self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
@@ -14,6 +14,7 @@ class DatasetView(ttk.LabelFrame):
         self.selected_data_item = 1
         self.dataset_treeview = ttk.Treeview(self, columns=['Expression'], selectmode='browse', style="mystyle.Treeview")
         self.dataset_treeview.heading('#0', text='Item')
+        self.dataset_treeview.column('#0', width=200)
         self.dataset_treeview.heading('Expression', text='Expression')
         self.dataset_treeview.column('Expression', width=600)
         self.fill_with_data()
@@ -35,8 +36,8 @@ class DatasetView(ttk.LabelFrame):
             sentence = ' '.join(word_list)
             if not grammatical:
                 sentence = '*' + sentence
-            if not sentence or not sentence.startswith('&') and not sentence.startswith('#') and not sentence.startswith("\'"):
-                self.dataset_treeview.insert('', 'end', iid=str(index), text=str(index), values=[sentence])
+            if sentence and not sentence.startswith('&') and not sentence.startswith('#') and not sentence.startswith("\'"):
+                self.dataset_treeview.insert('', 'end', iid=str(sentence_nro), text=str(sentence_nro), values=[sentence])
                 self.sentences_to_parse_dict[sentence_nro] = {'sentence': word_list, 'grammatical': grammatical}
                 sentence_nro += 1
 
@@ -46,16 +47,19 @@ class DatasetView(ttk.LabelFrame):
             self.event_generate('<<Analyze>>')
 
 
-class LexiconView(ttk.LabelFrame):
+class LexiconView(tk.LabelFrame):
     """Defines the GUI widget to show the lexicon"""
     def __init__(self, parent, lexicon_dict, **kwargs):
-        super().__init__(parent, text='Lexicon', **kwargs)
-        self.lexicon_dict = lexicon_dict
-
-        self.columnconfigure(0, weight=1)
+        super().__init__(parent, text='Lexicon', font=('Calibri 16'), **kwargs)
 
         self.style = ttk.Style()
         self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
+        self.style.configure("mystyle.Treeview.Heading", font=('Calibri', 16))
+
+        # LabelFrame formatting
+        self.configure()
+        self.columnconfigure(0, weight=1)
+
 
         # Create Treeview
         self.lexicon_treeview = ttk.Treeview(self, columns=['Language', 'Comment'], selectmode='browse', style='mystyle.Treeview')
@@ -65,6 +69,8 @@ class LexiconView(ttk.LabelFrame):
         self.lexicon_treeview.heading('Comment', text='Comment')
         self.lexicon_treeview.heading('Language', text='Language')
 
+        self.lexicon_dict = lexicon_dict
+
         # fill Treeview
         self.fill_with_data()
 
@@ -73,7 +79,7 @@ class LexiconView(ttk.LabelFrame):
         self.lexicon_treeview.configure(yscrollcommand=self.scrollbar.set)
 
         # Position the elements
-        self.lexicon_treeview.grid(row=0, column=0, sticky='nwes')
+        self.lexicon_treeview.grid(row=0, column=0, sticky='NSWE')
         self.scrollbar.grid(row=0, column=1, sticky='NSW')
 
     # Fill the treeview with the elements in the lexicon dictionary
@@ -97,10 +103,10 @@ class LexiconView(ttk.LabelFrame):
         return [value1, value2]
 
 
-class SpeakerModelView(ttk.LabelFrame):
+class SpeakerModelView(tk.LabelFrame):
     """Defines the GUI widget to show the speaker models"""
     def __init__(self, parent, speaker_models, **kwargs):
-        super().__init__(parent, text='Speaker Models', **kwargs)
+        super().__init__(parent, text='Speaker Models', font=('Calibri 16'), **kwargs)
         self.speaker_models = speaker_models
         self.columnconfigure(0, weight=1)
 
@@ -111,17 +117,15 @@ class SpeakerModelView(ttk.LabelFrame):
         self.speakermodel_treeview.heading('#0', text='Model')
         self.speakermodel_treeview.heading('Features', text='Features')
         self.speakermodel_treeview.column('Features', width=300)
-        self.speakermodel_treeview.grid(row=0, column=0, sticky='WE')
         self.speakermodel_treeview.columnconfigure(0, weight=1)
-        self.speakermodel_treeview.grid(row=0, column=0, sticky='nwes')
+        self.speakermodel_treeview.grid(row=0, column=0, sticky='WE')
 
         # Create scrollbar
         self.scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.speakermodel_treeview.yview)
         self.scrollbarx = ttk.Scrollbar(self, orient=tk.HORIZONTAL, command=self.speakermodel_treeview.xview)
         self.speakermodel_treeview.configure(yscrollcommand=self.scrollbar.set)
         self.speakermodel_treeview.configure(xscrollcommand=self.scrollbarx.set)
-        self.scrollbar.grid(row=0,column=1, sticky='NSW')
-        self.scrollbarx.grid(row=1, column=0, sticky='WE')
+        self.scrollbar.grid(row=0, column=1, sticky='NSWE')
 
         # Get data for the treeview
         self.fill_with_data()
@@ -133,3 +137,44 @@ class SpeakerModelView(ttk.LabelFrame):
                 for lex in self.speaker_models[model].lexicon.surface_lexicon[lex_list]:
                     features = '  '.join(lex.features)
                     self.speakermodel_treeview.insert(model, 'end', text=lex, values=[features])     # Add features
+
+
+class ResultsView(tk.LabelFrame):
+    def __init__(self, parent, speaker_models, **kwargs):
+        super().__init__(parent, text='Results', font=('Calibri 16 bold'), **kwargs)
+        self.speaker_models = speaker_models
+
+        # Create Treeview
+        self.results_treeview = ttk.Treeview(self, columns=['Result'], selectmode='browse', style='mystyle.Treeview')
+        self.results_treeview.heading('#0', text='Solution')
+        self.results_treeview.heading('Result', text='Result')
+        self.results_treeview.column('#0', width=300)
+        self.results_treeview.column('Result', width=600)
+        self.results_treeview.columnconfigure(0, weight=1)
+        self.results_treeview.grid(row=0, column=0, sticky='NSWE')
+
+        # Create scrollbar
+        self.scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.results_treeview.yview)
+        self.scrollbarx = ttk.Scrollbar(self, orient=tk.HORIZONTAL, command=self.results_treeview.xview)
+        self.results_treeview.configure(yscrollcommand=self.scrollbar.set)
+        self.results_treeview.configure(xscrollcommand=self.scrollbarx.set)
+        self.scrollbar.grid(row=0, column=1, sticky='NSW')
+
+    def fill_with_data(self, speaker_model):
+        self.results_treeview.delete(*self.results_treeview.get_children())
+        for i, solution in enumerate(speaker_model.results.syntax_semantics, start=1):
+            self.results_treeview.insert('', 'end', iid=str(i), text=str(i), values=[f'{speaker_model.results.retrieve_syntax(solution)}'])
+            for semantic_attribute in speaker_model.results.semantic_attributes(solution):
+                self.results_treeview.insert(str(i), 'end', iid=str(i) + semantic_attribute, text=semantic_attribute, values=[''])
+                for interpretation in speaker_model.results.interpretation(solution, semantic_attribute):
+                    self.results_treeview.insert(str(i) + semantic_attribute, 'end', text='', values=[interpretation])
+
+        self.results_treeview.insert('', 'end', iid='Ontology', text='Ontology', values=[''])
+        for semantic_object, data_dict in speaker_model.results.create_inventory_sorting(speaker_model.narrow_semantics.all_inventories().items()):
+            self.results_treeview.insert('Ontology', 'end', iid='Ontology'+semantic_object, text='Object ' + semantic_object + ' in ' + data_dict['Semantic space'], values=[data_dict['Reference']])
+            for property in data_dict:
+                self.results_treeview.insert('Ontology' + semantic_object, 'end', iid='Ontology'+semantic_object+property, text=property, values=[data_dict[property]])
+
+        self.results_treeview.insert('', 'end', iid='Resources', text='Resources', values=[''])
+        for resource in speaker_model.results.resources.keys():
+            self.results_treeview.insert('Resources', 'end', iid=resource, text=resource, values=[speaker_model.results.retrieve_resource(resource)])

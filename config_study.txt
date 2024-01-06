@@ -26,18 +26,12 @@ lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
 redundancy_rules=redundancy_rules.txt
 
 # IMAGE PARAMETERS (requires Pyglet library)
-datatake_images = False
 image_parameter_show_words = True
 image_parameter_labels = False
 image_parameter_spellout = False
-image_parameter_show_sentences = False
 image_parameter_show_glosses = True
 image_parameter_mark_adjuncts = False
-image_parameter_stop_after_image = False
-image_parameter_show_φPs_as_DPs = True
-image_parameter_show_φPs_as_NPs = False
 image_parameter_spellout_complex_heads = False
-image_parameter_ignore_internal_structure_of_DPs = False
 image_parameter_show_head_chains = True
 image_parameter_show_phrasal_chains = True
 image_parameter_compress_phrasal_chains = False
@@ -65,8 +59,8 @@ phase_heads = C;v;FORCE;Inf
 phase_heads_exclude = φ;v-;TO/inf
 
 #	Semantics
-calculate_assignments = False
-calculate_pragmatics = False
+calculate_assignments = True
+calculate_pragmatics = True
 calculate_thematic_roles = True
 project_objects = True
 generate_argument_links = True

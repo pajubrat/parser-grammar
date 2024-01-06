@@ -1,9 +1,11 @@
 from local_file_system import LocalFileSystem
 import tkinter as tk
+from tkinter import ttk
 import ctypes
 from support import is_comment
 from GUI.gui_views import DatasetView, LexiconView, SpeakerModelView
 from GUI.gui_phrase_structure_graphics import PhraseStructureGraphics
+from GUI.gui_views import ResultsView
 from GUI.gui_menus import MainMenu
 
 class Application(tk.Tk):
@@ -12,20 +14,32 @@ class Application(tk.Tk):
         super().__init__(*args, **kwargs)
         ctypes.windll.shcore.SetProcessDpiAwareness(1)
         self.title('LPG LAB')
-        self.geometry('1600x1000')
+        self.geometry('1600x1000+100+500')
+
+        self.style = ttk.Style()
+        self.style.configure("mystyle.Treeview.Heading", font=('Calibri', 16))
+
         self.lfs = LocalFileSystem()
         self.speaker_models, self.sentences_to_parse, self.language_guesser = self.lfs.set_up_experiment()
         self.lex_dictionary = self.lfs.read_lexicons_into_dictionary()
 
         # Set up widgets for the main window
-        self.lexicon_frame = LexiconView(self, self.lex_dictionary)
-        self.dataset_frame = DatasetView(self, self.sentences_to_parse)
-        self.speakermodel_frame = SpeakerModelView(self, self.speaker_models)
-        self.lexicon_frame.grid(row=0, column=0, sticky='WE')
-        self.dataset_frame.grid(row=0, column=1, sticky='WE')
-        self.speakermodel_frame.grid(row=1, column=0, sticky='nwes')
         self.grid_columnconfigure(0, weight=1)
-        #self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=1)
+
+        self.lexicon_frame = LexiconView(self, self.lex_dictionary)
+        self.lexicon_frame.grid(row=0, column=0, sticky='WE')
+
+        self.dataset_frame = DatasetView(self, self.sentences_to_parse)
+        self.dataset_frame.grid(row=0, column=1, sticky='WE')
+
+        self.speakermodel_frame = SpeakerModelView(self, self.speaker_models)
+        self.speakermodel_frame.grid(row=1, column=0, sticky='nwes')
+
+        self.results_frame = ResultsView(self, self.speaker_models)
+        self.results_frame.grid(row=1, column=1, sticky='nwes')
 
         # Set up main menu
         main_menu = MainMenu(self)
@@ -42,8 +56,9 @@ class Application(tk.Tk):
         self.lfs.print_sentence_to_console(self.dataset_frame.selected_data_item, S)
         self.speaker_models[language].parse_sentence(self.dataset_frame.selected_data_item, S)
         self.lfs.print_result_to_console(self.speaker_models[language], S)
-        if self.speaker_models[language].result_list and self.speaker_models[language].result_list[0]:
-            psg = PhraseStructureGraphics(self, self.speaker_models[language])
+        if self.speaker_models[language].results.syntax_semantics:
+            self.results_frame.fill_with_data(self.speaker_models[language])
+            PhraseStructureGraphics(self, self.speaker_models[language])
         else:
             print('\nInput sentence is ungrammatical.')
 
@@ -54,18 +69,14 @@ class Application(tk.Tk):
                 language = self.language_guesser.guess_language(sentence)
                 self.lfs.print_sentence_to_console(index, sentence)
                 self.speaker_models[language].parse_sentence(index, sentence)
-                self.lfs.save_output(self.speaker_models[language],
-                                index,
-                                sentence,
-                                experimental_group,
-                                part_of_conversation,
-                                grammatical)
+                self.lfs.save_output(self.speaker_models[language], index, sentence, experimental_group, part_of_conversation, grammatical)
                 if not part_of_conversation:
                     self.speaker_models[language].narrow_semantics.global_cognition.end_conversation()
             else:
                 self.lfs.write_comment_line(sentence)
         self.lfs.close_all_output_files()
         self.lfs.report_errors_to_console()
+        print('\n\n(You can use the script via graphical user interface by \"python lpparse -app\")')
 
     def quit(self):
         pass

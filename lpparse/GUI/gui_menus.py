@@ -38,6 +38,11 @@ class MainMenu(tk.Menu):
         examine_results_menu.add_command(label='Examine log...', command=self.todo)
         self.add_cascade(label='Results', menu=examine_results_menu)
 
+        # Theory/UG menu
+        theory_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        theory_menu.add_command(label='UG parameters...', command=self.todo)
+        self.add_cascade(label='Theory', menu=theory_menu)
+
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
         settings_menu.add_command(label='Configure study...')
@@ -48,6 +53,7 @@ class MainMenu(tk.Menu):
         # Help menu
         help_menu = tk.Menu(self, tearoff=False, font=menu_font)
         help_menu.add_command(label='Help', command=self.show_help_dialog)
+        help_menu.add_command(label='About', command=self.show_about_dialog)
         self.add_cascade(label='Help', menu=help_menu)
 
     def show_help_dialog(self):
@@ -57,7 +63,7 @@ class MainMenu(tk.Menu):
 
     def show_about_dialog(self):
         about_message = 'LPG Lab'
-        about_detail = ('by Pauli Brattico 2024')
+        about_detail = ('GUI Interface v. 0.1\nLPG/UG version 19.0\nby Pauli Brattico 2024')
         messagebox.showinfo(title='About', message=about_message, detail=about_detail)
 
     def quit(self):

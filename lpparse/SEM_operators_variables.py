@@ -6,9 +6,10 @@ BindingDependency = namedtuple('BindingDependency', ['OperatorHead', 'ScopeMarke
 
 
 class OperatorVariableModule:
-    def __init__(self, narrow_semantics):
-        self.narrow_semantics = narrow_semantics
+    def __init__(self, speaker_model):
         self.interpretation_failed = False
+        self.speaker_model = speaker_model
+        self.bindings = []
         self.operator_interpretation = {'OP:WH': 'Interrogative',
                                          'OP:TOP': 'Topic',
                                          'OP:FAM': 'Familiarity topic',
@@ -19,10 +20,12 @@ class OperatorVariableModule:
                                          'OP:C/OP': 'Generic operator'}
         self.inventory = {}
 
-    def bind_operator(self, head, semantic_interpretation):
+    def bind_operator(self, head):
+        self.bindings = []
         for operator_feature in (f for f in head.features if not self.scope_marker(head) and self.is_operator_feature(f)):
             binding = self.interpret_covert_scope(self.find_overt_scope(head, operator_feature))
-            self.interpret_operator_variable_chain(binding, operator_feature, semantic_interpretation)
+            self.interpret_operator_variable_chain(binding, operator_feature)
+        return self.bindings
 
     @staticmethod
     def find_overt_scope(head, operator_feature):
@@ -38,12 +41,12 @@ class OperatorVariableModule:
                         {'Head': binding['Head'], 'Scope': None, 'Overt': False})
         return binding
 
-    def interpret_operator_variable_chain(self, binding, operator_feature, semantic_interpretation):
+    def interpret_operator_variable_chain(self, binding, operator_feature):
         if binding['Scope']:
             if binding['Overt']:
-                semantic_interpretation['Operator bindings'].append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()}({operator_feature})')
+                self.bindings.append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()}({operator_feature})')
             else:
-                semantic_interpretation['Operator bindings'].append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()} by default. ')
+                self.bindings.append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()} by default. ')
             self.project_operator_objects_into_discourse_inventory(binding)
         else:
             log(f'\n\t\t\t{binding["Head"].illustrate()} with {operator_feature} is not bound by an operator. ')
@@ -51,12 +54,12 @@ class OperatorVariableModule:
                 log(f'Interpretation fails and the derivation crashes. ')
                 self.interpretation_failed = True
             else:
-                semantic_interpretation['Operator bindings'].append(f'Operator {binding["Head"].illustrate()}[{operator_feature}] bound by speaker.')
+                self.bindings.append(f'Operator {binding["Head"].illustrate()}[{operator_feature}] bound by speaker.')
 
     def project_operator_objects_into_discourse_inventory(self, binding):
-        idx, space = self.narrow_semantics.get_referential_index_tuple(binding["Head"], 'OP')
+        idx, space = self.speaker_model.narrow_semantics.get_referential_index_tuple(binding["Head"], 'OP')
         if idx:
-            self.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = binding["Head"]
+            self.speaker_model.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = binding["Head"]
 
     @staticmethod
     def scope_marker(head):
@@ -80,7 +83,7 @@ class OperatorVariableModule:
         self.inventory[idx].update(criteria)
 
     def project(self, ps, idx):
-        self.inventory[idx] = self.narrow_semantics.default_criteria(ps, 'OP')
+        self.inventory[idx] = self.speaker_model.narrow_semantics.default_criteria(ps, 'OP')
         self.inventory[idx]['Semantic type'].add('§Operator')
         log(f'{ps.max().illustrate()}: ({idx}, OP)')
 

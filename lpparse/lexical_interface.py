@@ -23,6 +23,7 @@ class LexicalInterface:
         else:
             lexical_items_lst = [self.unknown_word(phon)]
         self.log_lexical_items(phon, lexical_items_lst)
+        self.speaker_model.results.consume_resources('Lexical Retrieval', phon)
         return lexical_items_lst
 
     def phonological_context(self, phon):

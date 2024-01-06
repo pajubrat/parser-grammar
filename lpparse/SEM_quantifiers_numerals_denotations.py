@@ -31,18 +31,15 @@ class QuantifiersNumeralsDenotations:
         self.inventory[idx].update(criteria)
 
     def reconstruct_assignments(self, ps):
-        if self.narrow_semantics.speaker_model.first_solution_found:
-            self.narrow_semantics.semantic_interpretation['Assignments'] = []
-            return
 
         log(f'\n\t\tDenotations:')
         self.referential_constituents_feed = self.calculate_possible_denotations_(ps)
-
         log(f'\n\t\tAssignments: ')
         if not self.referential_constituents_feed:
             return
+
         self.create_assignments_from_denotations_(0, 0, {})
-        self.narrow_semantics.semantic_interpretation['Assignments'] = self.all_assignments
+        return self.all_assignments
 
     def calculate_possible_denotations_(self, ps):
         L1 = []
