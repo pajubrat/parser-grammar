@@ -1,7 +1,7 @@
 from support import log
 
 class Results():
-    def __init__(self):
+    def __init__(self, speaker_model):
         self.syntax_semantics = None          # List of syntax, semantics tuples
         self.recorded_steps = None            # Contains all derivational steps
         self.step_number = None                # Step number of recorded step
@@ -11,8 +11,11 @@ class Results():
         self.start_time = 0
         self.first_solution_found = False                       # Registers when the first solution if found
         self.number_of_ambiguities = 0
+        self.speaker_model = speaker_model
+        self.sentence = None
 
-    def initialize(self):
+    def initialize(self, lst):
+        self.sentence = lst
         self.syntax_semantics = []
         self.recorded_steps = []
         self.step_number = 1
@@ -61,7 +64,7 @@ class Results():
         self.resources.update(res_dict)
         self.calculate_total_time(sentence)
 
-    def record_step(self, ps, information):
+    def record_derivational_step(self, ps, information):
         self.recorded_steps.append((self.step_number, ps.copy(), information))
         self.step_number += 1
 
@@ -101,35 +104,6 @@ class Results():
     def interpretation(self, solution, semantic_attribute):
         return solution[1][semantic_attribute]
 
-    #
-    # Output formatting functions
-    #
-    def formatted_semantics_output(self, speaker_model):
-        output_str = ''
-        for key in self.semantic_interpretation:
-            if key == 'Assignments':
-                output_str += '\t\t' + key + ': ' + str(self.illustrated(self.semantic_interpretation[key], speaker_model)) + '\n'
-            else:
-                output_str += '\t\t' + key + ': ' + str(self.semantic_interpretation[key]) + '\n'
-        return output_str
-
-    def illustrated(self, assignments_list, parser):
-        output_str = ''
-        i = 0
-        for assignment in assignments_list:
-            if i > 2:
-                output_str += '\n\t (...)'
-                break
-            if assignment['weight'] > 0:
-                i += 1
-                output_str += '\n\t\t'
-                for key, value in assignment.items():
-                    if key != 'weight':
-                        output_str += parser.narrow_semantics.quantifiers_numerals_denotations_module.inventory[key]['Reference'] + ' ~ ' + value + ', '
-                    else:
-                        output_str += 'Weight ' + str(value)
-        return output_str
-
     def consume_resources(self, key, target):
         if not self.first_solution_found:
             self.accumulate_resource_n(key)
@@ -138,30 +112,18 @@ class Results():
         elif key != 'Agree' and key != 'Last Resort Extraposition' and key != 'Lexical Retrieval':
             log(f'\n\t\t{key}({target.illustrate()}) => {target.top()} ')
 
-    def report_success(self, speaker_model, ps):
+    def log_success(self, ps):
         log('\n\t\tAccepted.\n')
         print('X', end='', flush=True)
-        self.log_solution(speaker_model, ps)
-        self.first_solution_found = True
-
-    def log_solution(self, speaker_model, ps):
-        if not self.first_solution_found:
-            log(f'\n\t\tSemantic interpretation:\n{self.formatted_semantics_output(speaker_model)}')
-            log(f'\n\t\tDiscourse inventory: {self.format_ontology_simple(speaker_model)}\n')
-        ps.tidy_names(1)
         log(f'\n\n\t\tLexical features:\n{self.show_primitive_constituents(ps)}')
         if not self.first_solution_found:
+            log(f'{self}')
             log('\n\t\tOntology:')
-            log(f'\t\t{self.format_ontology_all(speaker_model)}\n')
+            log(f'\t\t{self.format_ontology_all(self.speaker_model)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        ps.tidy_names(1)
         log('\n\tChecking if the sentence is ambiguous...\n')
-
-    def count_words(self, sentence):
-        sentence_ = []
-        for word in sentence:
-            word_ = word.split('=')
-            sentence_ = sentence_ + word_
-        return len(sentence_)
+        self.first_solution_found = True
 
     def report_failure(self, ps):
         log('\n\t\tSOLUTION WAS REJECTED. \n\n')
@@ -212,44 +174,6 @@ class Results():
                 reply += f'\t\t{head.get_phonological_string():<10} {show_feature_list(sorted_by_relevance(head.features))}\n'
         return reply
 
-    def save_results(self, parser, count, sentence, part_of_conversation):
-        sentence_string = self.generate_input_sentence_string(sentence)
-        if len(parser.result_list) == 0:
-            self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
-        else:
-            self.results_file.write(str(count) + '. ' + self.judgment_marker(parser) + sentence_string + '\n\n')
-            number_of_solutions = len(parser.result_list)
-            parse_number = 1
-            for parse, semantic_interpretation in parser.result_list:
-                if number_of_solutions == 1:
-                    self.results_file.write('\t' + f'{parse}\n')
-                else:
-                    self.results_file.write('\t' + chr(96 + parse_number) + f'. {parse}\n')
-                if parse_number == 1:
-                    self.results_file.write(
-                        '\n\tSemantics:\n' + str(self.formatted_semantics_output(semantic_interpretation, parser)))
-                    self.results_file.write(
-                        f'\n\tDiscourse inventory: {self.format_ontology_simple(parser)}\n')
-                    self.results_file.write('\tResources:\n\t' + self.format_resource_output(parser.resources) + '\n')
-                parse_number = parse_number + 1
-                if part_of_conversation:
-                    self.results_file.write('\tConversation continues:\n')
-                self.results_file.write('\n')
-
-    def format_ontology_simple(self, P):
-        output_str = '\n\t'
-        if len(P.narrow_semantics.all_inventories()) > 0:
-            for semantic_object, data_dict in self.create_inventory_sorting(
-                    P.narrow_semantics.all_inventories().items()):
-                if data_dict['Semantic space'] == 'GLOBAL':
-                    if 'Reference' in data_dict and '§Thing' in data_dict['Semantic type']:
-                        output_str += '\tObject ' + semantic_object
-                        if 'Semantic space' in data_dict:
-                            output_str += ' in ' + data_dict['Semantic space'] + ': '
-                        if 'Reference' in data_dict:
-                            output_str += data_dict['Reference'] + '\n'
-            return output_str
-
     def format_ontology_all(self, speaker_model):
         output_str = '\n'
         if len(speaker_model.narrow_semantics.all_inventories()) > 0:
@@ -278,3 +202,46 @@ class Results():
         lst_PE = [(semantic_object, data_dict) for semantic_object, data_dict in lst if
                   data_dict['Semantic space'] == 'PRE']
         return lst_QND + lst_PE + lst_OP + lst_GLOBAL
+
+    def __str__(self):
+        stri = f'\t{self.sentence}\n'
+        if len(self.syntax_semantics) > 0:
+            number_of_solutions = len(self.syntax_semantics)
+            parse_number = 1
+            for parse, semantic_interpretation in self.syntax_semantics:
+                if number_of_solutions == 1:
+                    stri += f'\n\t{parse}\n'
+                else:
+                    stri += f'\t{chr(96 + parse_number)}. {parse}\n'
+                stri += f'\n\tSemantics:\n\n{self.formatted_semantics_output()}'
+                parse_number = parse_number + 1
+            stri += f'\n\tResources:\n\n{self.format_resource_output(self.resources)} \n'
+            stri += f'\n\tOntology:\n{self.format_semantic_interpretation_simple()} \n'
+        return stri
+
+    def formatted_semantics_output(self):
+        output_str = ''
+        for key in self.semantic_interpretation:
+            output_str += '\t\t' + key + ': ' + str(self.semantic_interpretation[key]) + '\n'
+        return output_str
+
+    def format_resource_output(self, consumed_resources):
+        s = '\t\t'
+        for i, key in enumerate(consumed_resources, start=1):
+            s += f'{key}:{consumed_resources[key]["ms"]*consumed_resources[key]["n"]}ms({consumed_resources[key]["n"]}), '
+            if i > 0 and i % 3 == 0:
+                s += '\n\t\t'
+        return s
+
+    def format_semantic_interpretation_simple(self):
+        output_str = '\n'
+        if len(self.speaker_model.narrow_semantics.all_inventories()) > 0:
+            for semantic_object, data_dict in self.create_inventory_sorting(self.speaker_model.narrow_semantics.all_inventories().items()):
+                if data_dict['Semantic space'] == 'GLOBAL':
+                    if 'Reference' in data_dict and '§Thing' in data_dict['Semantic type']:
+                        output_str += '\t\tObject ' + semantic_object
+                        if 'Semantic space' in data_dict:
+                            output_str += ' in ' + data_dict['Semantic space'] + ': '
+                        if 'Reference' in data_dict:
+                            output_str += data_dict['Reference'] + '\n'
+            return output_str

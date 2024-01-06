@@ -485,7 +485,7 @@ class PhraseStructure:
     def reconstruct(self, op):
         for const in (x for x in [self.bottom()] + self.bottom().upward_path() if op['test integrity'](x)):
             op['repair'](const)
-            self.speaker_model.results.record_step(const.top(), f"{op['type']} ({const})")
+            self.speaker_model.results.record_derivational_step(const.top(), f"{op['type']} ({const})")
             PhraseStructure.speaker_model.results.consume_resources(op['type'], const)
 
     # Chain creation (part of transfer)

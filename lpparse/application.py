@@ -53,9 +53,8 @@ class Application(tk.Tk):
         """Analyzes the input sentence selected from the dataset frame"""
         S = self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['sentence']
         language = self.language_guesser.guess_language(S)
-        self.lfs.print_sentence_to_console(self.dataset_frame.selected_data_item, S)
         self.speaker_models[language].parse_sentence(self.dataset_frame.selected_data_item, S)
-        self.lfs.print_result_to_console(self.speaker_models[language], S)
+        print(f'{self.speaker_models[language].results}')
         if self.speaker_models[language].results.syntax_semantics:
             self.results_frame.fill_with_data(self.speaker_models[language])
             PhraseStructureGraphics(self, self.speaker_models[language])
@@ -67,9 +66,10 @@ class Application(tk.Tk):
         for index, sentence, experimental_group, part_of_conversation, grammatical in self.sentences_to_parse:
             if not is_comment(sentence):
                 language = self.language_guesser.guess_language(sentence)
-                self.lfs.print_sentence_to_console(index, sentence)
+                print(f'\n{index}. ' + ' '.join(sentence))
                 self.speaker_models[language].parse_sentence(index, sentence)
-                self.lfs.save_output(self.speaker_models[language], index, sentence, experimental_group, part_of_conversation, grammatical)
+                print(f'\n{self.speaker_models[language].results}')
+                self.lfs.save_output(self.speaker_models[language], index, sentence, experimental_group, grammatical)
                 if not part_of_conversation:
                     self.speaker_models[language].narrow_semantics.global_cognition.end_conversation()
             else:

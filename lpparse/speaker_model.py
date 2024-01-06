@@ -14,7 +14,7 @@ class SpeakerModel:
         self.sentence = []
         self.local_file_system = local_file_system              # Access to file system
         self.language = language                                # Contextual variables (language etc.)
-        self.results = Results()
+        self.results = Results(self)
         self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
         self.exit = False                                       # Forced exit tag
         self.name_provider_index = 0                            # Index for name provider, for chain identification
@@ -44,7 +44,7 @@ class SpeakerModel:
 
         # Initialize the components (mostly bookkeeping and logging)
         self.initialize()
-        self.results.initialize()
+        self.results.initialize(lst)
         self.plausibility_metrics.initialize()
         self.narrow_semantics.initialize()
 
@@ -96,7 +96,7 @@ class SpeakerModel:
             log(f' => Insert into working memory.')
             self.parse_new_item(X.copy(), lst, index + 1)
         else:
-            self.results.record_step(ps, 'Phrase structure in syntactic working memory')
+            self.results.record_derivational_step(ps, 'Phrase structure in syntactic working memory')
             # Create derivational search space for existing phrase structure and new constituent X
             for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(ps, X):
                 new_constituent = ps.target_left_branch(N).attach(N, X, transfer, address_label)
@@ -120,19 +120,19 @@ class SpeakerModel:
 
     # Evaluates a complete solution at the LF-interface and semantic interpretation
     def evaluate_complete_solution(self, ps):
-        self.results.record_step(ps, 'PF-interface')
+        self.results.record_derivational_step(ps, 'PF-interface')
         log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
         log(f'\n\t\tPF-interface {ps}\n')
         ps.transfer_to_LF()
         ps = ps.top()
         log(f'\n\n\t\tLF-interface {ps}\n')
-        self.results.record_step(ps, 'LF-interface')
+        self.results.record_derivational_step(ps, 'LF-interface')
 
         # Postsyntactic tests (LF-interface legibility and semantic interpretation)
         if self.postsyntactic_tests(ps):
             self.results.update_resources(PhraseStructure.resources, self.sentence)
-            self.results.report_success(self, ps)
             self.results.store_solution(ps)
+            self.results.log_success(ps)
             if self.local_file_system.settings['only_first_solution']:
                 self.exit = True
         else:

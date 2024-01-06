@@ -102,7 +102,6 @@ class LocalFileSystem:
 
     def initialize_output_files(self):
         self.dev_log_file.write('Initializing output files for writing...')
-        self.initialize_grammaticality_judgments_file()
         self.initialize_results_file()
         self.initialize_resources_file()
         self.initialize_error_file()
@@ -235,18 +234,10 @@ class LocalFileSystem:
         self.dev_log_file.write(f'were used to generate a corpus {self.external_sources["numeration_output"]}.\n')
         self.dev_log_file.write(f'^ This corpus will be used in the processing.\n')
 
-    def print_sentence_to_console(self, sentence_number, sentence):
-        print(f'\n{sentence_number}. {sentence} ', end='')
-
     def initialize_results_file(self):
         self.dev_log_file.write('Initializing results file...')
         self.results_file = open(self.external_sources['results_file_name'], "w", -1, encoding=self.encoding)
         self.stamp(self.results_file)
-
-    def initialize_grammaticality_judgments_file(self):
-        self.dev_log_file.write('Initializing grammaticality judgments file...')
-        self.grammaticality_judgments_file = open(self.external_sources["grammaticality_judgments_file_name"], "w", -1, encoding=self.encoding)
-        self.stamp(self.grammaticality_judgments_file)
 
     def initialize_resources_file(self):
         self.dev_log_file.write('Initializing resources file...')
@@ -263,23 +254,6 @@ class LocalFileSystem:
         for key in resources:
             self.resources_file.write(f'{key},')
         self.resources_file.write("Execution time (ms)\t\n")
-
-    def format_resource_output(self, consumed_resources):
-        s = ''
-        i = 0
-        for key in consumed_resources:
-            s += f'{key}:{consumed_resources[key]["n"]}, '
-            i += len(key)
-            if i > 50:
-                s += '\n\t'
-                i = 0
-        return s
-
-    def generate_input_sentence_string(self, sentence):
-        input_sentence_string = ''
-        for word in sentence:
-            input_sentence_string += word + ' '
-        return input_sentence_string
 
     def read_test_corpus(self):
         experimental_group = []
@@ -350,22 +324,17 @@ class LocalFileSystem:
         file_handle.write('@  '+str(datetime.datetime.now()) + '\n')
         file_handle.write('@  '+f'Test sentences {self.external_sources["test_corpus_file_name"]}.\n')
         file_handle.write('@  '+f'Logs {self.external_sources["log_file_name"]}.\n')
-        file_handle.write('@ \n')
+        file_handle.write('@ \n\n\n')
 
-    def save_output(self, speaker_model, count, sentence, experimental_group, part_of_conversation, grammatical):
-        self.save_predicted_grammaticality_judgment(speaker_model, count, sentence)
-        self.save_results(speaker_model, count, sentence, part_of_conversation)
-        self.save_resources(speaker_model, count, self.generate_input_sentence_string(sentence), experimental_group)
-        self.print_result_to_console(speaker_model, sentence)
+    def save_output(self, speaker_model, count, sentence, experimental_group, grammatical):
+        self.results_file.write(f'#{count}. {speaker_model.results}')
+        self.save_resources(speaker_model, count, " ".join(sentence), experimental_group)
+        self.save_errors(speaker_model, count, sentence, grammatical)
+
+    def save_errors(self, speaker_model, count, sentence, grammatical):
         if len(speaker_model.results.syntax_semantics) > 0 and not grammatical or len(speaker_model.results.syntax_semantics) == 0 and grammatical:
-            self.save_error(count, sentence)
-
-    def save_predicted_grammaticality_judgment(self, P, count, sentence):
-        self.grammaticality_judgments_file.write(f'\n#{str(count)}.\n{self.judgment_marker(P)}{self.generate_input_sentence_string(sentence)}\n')
-
-    def save_error(self, count, sentence):
-        r = f'\n{str(count)}. {self.generate_input_sentence_string(sentence)}'
-        self.errors.write(r)
+            r = f'\n{str(count)}. {self.generate_input_sentence_string(sentence)}'
+            self.errors.write(r)
 
     def judgment_marker(self, parser):
         if len(parser.results.syntax_semantics) == 0:
@@ -385,65 +354,17 @@ class LocalFileSystem:
                 self.resources_file.write(f'{parser.results.resources[key]["n"]},')
         self.resources_file.write('\n')
 
-    def save_results(self, speaker_model, count, sentence, part_of_conversation):
-        sentence_string = self.generate_input_sentence_string(sentence)
-        if len(speaker_model.results.syntax_semantics) == 0:
-            self.results_file.write(str(count) + '. *' + sentence_string + '\n\n')
-        else:
-            self.results_file.write(str(count) + '. ' + self.judgment_marker(speaker_model) + sentence_string + '\n\n')
-            number_of_solutions = len(speaker_model.results.syntax_semantics)
-            parse_number = 1
-            for syntax, semantics in speaker_model.results.syntax_semantics:
-                if number_of_solutions == 1:
-                    self.results_file.write('\t' + f'{syntax}\n')
-                else:
-                    self.results_file.write('\t' + chr(96 + parse_number) + f'. {syntax}\n')
-                if parse_number == 1:
-                    self.results_file.write('\n\tSemantics:\n' + speaker_model.results.formatted_semantics_output(speaker_model))
-                    self.results_file.write(f'\n\tDiscourse inventory: {self.format_semantic_interpretation_simple(speaker_model)}\n')
-                    self.results_file.write('\tResources:\n\t' + self.format_resource_output(speaker_model.results.resources) + '\n')
-                parse_number = parse_number + 1
-                if part_of_conversation:
-                    self.results_file.write('\tConversation continues:\n')
-                self.results_file.write('\n')
-
-    def format_semantic_interpretation_simple(self, P):
-        output_str = '\n'
-        if len(P.narrow_semantics.all_inventories()) > 0:
-            for semantic_object, data_dict in self.create_inventory_sorting(P.narrow_semantics.all_inventories().items()):
-                if data_dict['Semantic space'] == 'GLOBAL':
-                    if 'Reference' in data_dict and '§Thing' in data_dict['Semantic type']:
-                        output_str += '\tObject ' + semantic_object
-                        if 'Semantic space' in data_dict:
-                            output_str += ' in ' + data_dict['Semantic space'] + ': '
-                        if 'Reference' in data_dict:
-                            output_str += data_dict['Reference'] + '\n'
-            return output_str
-
-    def create_inventory_sorting(list, to_be_sorted_dict):
-        lst = [(semantic_object, data_dict) for semantic_object, data_dict in to_be_sorted_dict]
-        lst_GLOBAL = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'GLOBAL']
-        lst_QND = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'QND']
-        lst_OP = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'OP']
-        lst_PE = [(semantic_object, data_dict) for semantic_object, data_dict in lst if data_dict['Semantic space'] == 'PRE']
-        return lst_QND + lst_PE + lst_OP + lst_GLOBAL
-
     def write_comment_line(self, sentence_lst):
         sentence_string = ' '.join(map(str, sentence_lst))
-        if sentence_lst[0].startswith("&"):
-            self.grammaticality_judgments_file.write('\n')
         if sentence_lst[0].startswith("'"):
             prefix = '\t'
         else:
             prefix = ''
-        self.grammaticality_judgments_file.write(prefix + sentence_string)
-        self.grammaticality_judgments_file.write('\n')
         self.results_file.write(prefix + ' '.join(map(str, sentence_lst)) + '\n\n')
 
     def close_all_output_files(self):
         self.dev_log_file.write('Closing all output files...')
         self.results_file.close()
-        self.grammaticality_judgments_file.close()
         self.resources_file.close()
         self.logger_handle.close()
         self.errors.close()
@@ -458,22 +379,6 @@ class LocalFileSystem:
         error_N = len(self.errors.readlines()) - 1
         print(f'= {error_N}  errors.')
         self.errors.close()
-
-    def print_result_to_console(self, speaker_model, sentence):
-        input_sentence_string = self.generate_input_sentence_string(sentence)
-        if len(speaker_model.results.syntax_semantics) > 0:
-            print('\n\n\t' + self.judgment_marker(speaker_model) + input_sentence_string + '\n')
-            number_of_solutions = len(speaker_model.results.syntax_semantics)
-            parse_number = 1
-            for parse, semantic_interpretation in speaker_model.results.syntax_semantics:
-                if number_of_solutions == 1:
-                    print('\t' + f'{parse}')
-                else:
-                    print('\t' + chr(96 + parse_number) + f'. {parse}')
-                if self.settings['console_output'] == 'Full':
-                    print('\n\tSemantics:\n' + str(speaker_model.results.formatted_semantics_output(speaker_model)))
-                    print(f'\tOntology: {self.format_semantic_interpretation_simple(speaker_model)}')
-                parse_number = parse_number + 1
 
     def configure_logging(self):
         handler = logging.FileHandler(self.external_sources["log_file_name"], 'w', 'utf-8')
