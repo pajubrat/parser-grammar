@@ -52,11 +52,11 @@ show_features = Fin
 #	Agree
 #	standard = standard theory (Chomsky 2000, 2001, 2008)
 #	revised = current best formulation
-Agree = revised
+UG_parameter_Agree = revised
 
 # Phase theory
-phase_heads = C;v;FORCE;Inf
-phase_heads_exclude = φ;v-;TO/inf
+UG_parameter_phase_heads = C;v;FORCE;Inf
+UG_parameter_phase_heads_exclude = φ;v-;TO/inf
 
 #	Semantics
 calculate_assignments = True

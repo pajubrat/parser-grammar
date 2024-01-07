@@ -1,14 +1,9 @@
 import itertools
-from pathlib import Path
-from visualizer import Visualizer
 from datetime import datetime
 from support import *
-from phrase_structure import PhraseStructure
 import logging
-from language_guesser import LanguageGuesser
-from speaker_model import SpeakerModel
 from support import feature_explanations
-
+from phrase_structure import PhraseStructure
 
 def explanation(feature):
     for key in feature_explanations.keys():
@@ -18,204 +13,47 @@ def explanation(feature):
 
 class LocalFileSystem:
     def __init__(self):
-        self.folder = {}
         self.test_corpus = None
         self.study_folder = None
         self.external_sources = {}
-        self.grammaticality_judgments_file = None
         self.results_file = None
         self.errors = None
         self.numeration_output = None
-        self.semantics_file = None
         self.resources_file = None
         self.visualizer = None
         self.settings = {}
-        self.timings_file = None
-        self.resource_sequence_file = None
-        self.simple_log_file = None
-        self.simple_results_file = None
-        self.control_file = None
         self.dev_log_file = None
         self.logger_handle = None
         self.instruction_to_ignore_from_test_corpus = False
         self.encoding = 'utf8'
-        self.default_study_parameters = {'author': 'Unknown author',
-                                         'year': 'Unknown year',
-                                         'date': 'Unknown date',
-                                         'study_id': '1',
-                                         'only_first_solution': 'False',
-                                         'logging': 'True',
-                                         'study_folder': 'language data working directory/',
-                                         'lexicon_folder': 'language data working directory/lexicons/',
-                                         'test_corpus_file': 'default_corpus.txt',
-                                         'test_corpus_folder': 'language data working directory/',
-                                         'ignore_ungrammatical_sentences': 'False',
-                                         'console_output': 'Full',
-                                         'datatake_full': 'False',
-                                         'datatake_images': 'False',
-                                         'image_parameter_stop_after_each_image': 'False',
-                                         'image_parameter_show_words': 'True',
-                                         'image_parameter_nolabels': 'False',
-                                         'image_parameter_spellout': 'False',
-                                         'image_parameter_case': 'False',
-                                         'image_parameter_show_sentences': 'False',
-                                         'image_parameter_show_glosses': 'True',
-                                         'extra_ranking': 'True',
-                                         'filter': 'True',
-                                         'lexical_anticipation': 'True',
-                                         'closure': 'Bottom-up',
-                                         'working_memory': 'True',
-                                         'positive_spec_selection': '100',
-                                         'negative_spec_selection': '-100',
-                                         'break_head_comp_relations': '-100',
-                                         'negative_tail_test': '-100',
-                                         'positive_head_comp_selection': '100',
-                                         'negative_head_comp_selection': '-100',
-                                         'negative_semantics_match': '-100',
-                                         'lf_legibility_condition': '-100',
-                                         'negative_adverbial_test': '-100',
-                                         'positive_adverbial_test': '100'
-                                         }
-
-    def set_up_experiment(self):
-        self.initialize()
-        self.configure_logging()
-        lg = LanguageGuesser(self.settings['lexicons'], self.folder['lexicon'])
-        speaker_model = {}
-        for language in lg.languages:
-            speaker_model[language] = SpeakerModel(self, language)
-            speaker_model[language].initialize()
-        sentences_to_parse = [(index, sentence, group, part_of_conversation, grammatical)
-                              for (index, sentence, group, part_of_conversation, grammatical)
-                              in self.read_test_corpus()]
-        return speaker_model, sentences_to_parse, lg
-
-    def initialize(self):
         self.initialize_dev_logging()
-        self.read_study_config_file()
-        self.verify_and_check_mandatory_values()
-        self.set_folders()
-        self.set_external_resources()
-        if self.settings['use_numeration']:
-            self.process_numeration()
-            self.settings['check_output'] = False
 
-    def initialize_output_files(self):
+    def initialize_output_files(self, settings):
         self.dev_log_file.write('Initializing output files for writing...')
-        self.initialize_results_file()
-        self.initialize_resources_file()
-        self.initialize_error_file()
-        self.initialize_simple_log_file()
-        if self.settings['use_numeration']:
-            self.initialize_numeration_output()
+        self.configure_logging(settings)
+        self.initialize_results_file(settings)
+        self.initialize_resources_file(settings)
+        self.initialize_error_file(settings)
+        if settings.get()['use_numeration']:
+            self.initialize_numeration_output(settings)
         self.dev_log_file.write('Done.\n')
 
-    def initialize_error_file(self):
-        self.errors = open(self.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
+    def initialize_error_file(self, settings):
+        self.errors = open(settings.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
         self.errors.write(f'Prediction errors:')
 
-    def initialize_numeration_output(self):
-        self.numeration_output = open(self.external_sources['numeration_output'], 'w', -1, encoding=self.encoding)
+    def initialize_numeration_output(self, settings):
+        self.numeration_output = open(settings.external_sources['numeration_output'], 'w', -1, encoding=self.encoding)
         self.numeration_output.write(f'# Corpus generated from the numeration in {self.external_sources["numeration"]}\n')
 
     def initialize_dev_logging(self):
         self.dev_log_file = open('dev_log.txt', 'w', -1, 'utf-8')
         self.dev_log_file.write(f'Devlogging started at {datetime.datetime.now()}.\n')
 
-    def verify_and_check_mandatory_values(self):
-        self.dev_log_file.write('Checking and validating settings...')
-        self.settings['study_folder'] = self.settings.get('study_folder', '')
-        self.settings['test_corpus_folder'] = self.settings.get('test_corpus_folder', '')
-        self.settings['test_corpus_file'] = self.settings.get('test_corpus_file', 'default_corpus.txt')
-        self.settings['lexicon_folder'] = self.settings.get('lexicon_folder', 'lexicons')
-        self.settings['console_output'] = self.settings.get('console_output', 'Full')
-        self.settings['Agree'] = self.settings.get('Agree', 'standard')
-        self.settings['phase_heads'] = self.settings.get('phase_heads', {'C', 'v', 'FORCE'})
-        self.settings['phase_heads_excluded'] = self.settings.get('phase_heads_excluded', set())
-        self.settings['lexicons'] = self.settings.get('lexicons', {'lexicon.txt', 'ug_morphemes.txt'})
-        self.dev_log_file.write('Done.\n')
-        self.dev_log_file.write(f'Settings: {self.settings}.\n')
-
-    def set_external_resources(self):
-        self.dev_log_file.write('Setting external sources: ')
-        self.external_sources = {"test_corpus_file_name": self.folder['test_corpus'] / self.settings['test_corpus'],
-                                 "log_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_log.txt'),
-                                 "simple_log_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_simple_log.txt'),
-                                 "results_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_results.txt'),
-                                 "grammaticality_judgments_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_grammaticality_judgments.txt'),
-                                 "resources_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_resources.txt'),
-                                 "simple_results_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_simple_results.txt'),
-                                 "surface_vocabulary_file_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_saved_vocabulary.txt'),
-                                 "numeration": self.folder['study'] / self.settings['numeration'],
-                                 "numeration_output": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_N.txt'),
-                                 "redundancy_rules": self.folder['lexicon'] / self.settings['redundancy_rules'],
-                                 "semantics_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_semantics.txt'),
-                                 "control_file_name": self.folder['study'] / (self.settings['test_corpus_file'][:-4] + '_control.txt'),
-                                 "error_report_name": self.folder['study'] / (self.settings['test_corpus'][:-4] + '_error_reports.txt')
-                                 }
-
-        self.dev_log_file.write(f'{self.external_sources}.\n')
-
-    def set_folders(self):
-        self.dev_log_file.write(f'Setting folders for input and output files: ')
-        self.folder['study'] = Path(self.settings.get('study_folder', 'language data working directory'))
-        self.folder['test_corpus'] = Path(self.settings.get('test_corpus_folder', 'language data working directory'))
-        self.folder['lexicon'] = Path(self.settings.get('lexicon_folder', 'language data working directory/lexicons'))
-        self.folder['images'] = Path(self.folder['study'] / "phrase structure images")
-        self.dev_log_file.write(f'{self.folder}.\n')
-
-    def initialize_simple_log_file(self):
-        self.dev_log_file.write('Initializing simple log file...')
-        self.simple_log_file = open(self.external_sources['simple_log_file_name'], 'w', -1, encoding=self.encoding)
-        self.stamp(self.simple_log_file)
-
-    def read_study_config_file(self):
-        self.dev_log_file.write('Reading study configuration file...')
-        try:
-            with open('config_study.txt', encoding=self.encoding) as config_file:
-                # Read file into dict
-                for line in config_file:
-                    line = line.strip().replace('\t', '')
-                    if line and not line.startswith('#'):
-                        key, value = line.split('=', 1)
-                        key = key.strip()
-                        value = value.strip()
-                        if ';' in value:
-                            value = set(value.split(';'))
-                        else:
-                            if key == 'show_features':
-                                value = [value]
-                            else:
-                                value = value
-                        self.settings[key] = value
-                        self.dev_log_file.write(f'\n{key}={value}, ')
-            config_file.close()
-            # Safeguards
-            if not self.settings['show_features'] or self.settings['show_features'] == '':
-                self.settings['show_features'] = []
-            self.dev_log_file.write('Done.\n')
-        except IOError:
-            for key in self.default_study_parameters:
-                self.settings[key] = self.default_study_parameters[key]
-            self.dev_log_file.write('Configuration file does not exist, using default values. Done.\n')
-
-        for key in self.settings:
-            if isinstance(self.settings[key], str):
-                if self.settings[key].lower() in {'true', 'yes'}:
-                    self.settings[key] = True
-                elif self.settings[key].lower() in {'false', 'no'}:
-                    self.settings[key] = False
-                elif self.settings[key].lstrip('-').isdigit():
-                    self.settings[key] = int(self.settings[key])
-
-        PhraseStructure.phase_heads = self.settings['phase_heads']
-        PhraseStructure.phase_heads_exclude = self.settings['phase_heads_exclude']
-        PhraseStructure.spellout_heads = self.settings['image_parameter_spellout_complex_heads']
-
-    def process_numeration(self):
-        self.dev_log_file.write(f'Processing numeration from {self.external_sources["numeration"]} into {self.external_sources["numeration_output"]}...')
+    def process_numeration(self, settings):
+        self.dev_log_file.write(f'Processing numeration from {settings.external_sources["numeration"]} into {settings.external_sources["numeration_output"]}...')
         self.dev_log_file.write('\nNumerations')
-        for line in open(self.external_sources["numeration"], encoding=self.encoding):
+        for line in open(settings.external_sources["numeration"], encoding=self.encoding):
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
@@ -234,14 +72,14 @@ class LocalFileSystem:
         self.dev_log_file.write(f'were used to generate a corpus {self.external_sources["numeration_output"]}.\n')
         self.dev_log_file.write(f'^ This corpus will be used in the processing.\n')
 
-    def initialize_results_file(self):
+    def initialize_results_file(self, settings):
         self.dev_log_file.write('Initializing results file...')
-        self.results_file = open(self.external_sources['results_file_name'], "w", -1, encoding=self.encoding)
-        self.stamp(self.results_file)
+        self.results_file = open(settings.external_sources['results_file_name'], "w", -1, encoding=self.encoding)
+        self.stamp(self.results_file, settings)
 
-    def initialize_resources_file(self):
+    def initialize_resources_file(self, settings):
         self.dev_log_file.write('Initializing resources file...')
-        self.resources_file = open(self.external_sources["resources_file_name"], "w", -1, encoding=self.encoding)
+        self.resources_file = open(settings.external_sources["resources_file_name"], "w", -1, encoding=self.encoding)
 
     def add_columns_to_resources_file(self, resources, experimental_groups):
         self.dev_log_file.write('Add columns to the resources file...')
@@ -255,14 +93,40 @@ class LocalFileSystem:
             self.resources_file.write(f'{key},')
         self.resources_file.write("Execution time (ms)\t\n")
 
-    def read_test_corpus(self):
+    def load_settings(self, settings):
+        try:
+            with open('config_study.txt', encoding=self.encoding) as config_file:
+                # Read file into dict
+                for line in config_file:
+                    line = line.strip().replace('\t', '')
+                    if line and not line.startswith('#'):
+                        key, value = line.split('=', 1)
+                        key = key.strip()
+                        value = value.strip()
+                        if ';' in value:
+                            value = set(value.split(';'))
+                        else:
+                            if key == 'show_features':
+                                value = [value]
+                            else:
+                                value = value
+                        settings.get()[key] = value
+            config_file.close()
+            # Safeguards
+            if not settings.get()['show_features'] or settings.get()['show_features'] == '':
+                settings.data['show_features'] = []
+        except IOError:
+            for key in settings.default_study_parameters:
+                settings.data[key] = settings.default_study_parameters[key]
+
+    def read_test_corpus(self, settings):
         experimental_group = []
         parse_list = []
-        if self.settings['use_numeration']:
-            k = open(self.external_sources['numeration_output'], encoding=self.encoding)
-            input_file = self.external_sources["numeration_output"]
+        if settings.get()['use_numeration']:
+            k = open(settings.external_sources['numeration_output'], encoding=self.encoding)
+            input_file = settings.external_sources["numeration_output"]
         else:
-            input_file = self.external_sources["test_corpus_file_name"]
+            input_file = settings.external_sources["test_corpus_file_name"]
         self.dev_log_file.write(f'Reading test corpus file {input_file}...')
         index = 1
         for line in open(input_file, encoding=self.encoding):
@@ -319,11 +183,11 @@ class LocalFileSystem:
         line = line.strip().replace(' ', '').replace('=>', '')
         return line.split('.')
 
-    def stamp(self, file_handle):
+    def stamp(self, file_handle, settings):
         file_handle.write('@  '+str(self.settings) + '\n')
         file_handle.write('@  '+str(datetime.datetime.now()) + '\n')
-        file_handle.write('@  '+f'Test sentences {self.external_sources["test_corpus_file_name"]}.\n')
-        file_handle.write('@  '+f'Logs {self.external_sources["log_file_name"]}.\n')
+        file_handle.write('@  '+f'Test sentences {settings.external_sources["test_corpus_file_name"]}.\n')
+        file_handle.write('@  '+f'Logs {settings.external_sources["log_file_name"]}.\n')
         file_handle.write('@ \n\n\n')
 
     def save_output(self, speaker_model, count, sentence, experimental_group, grammatical):
@@ -333,13 +197,8 @@ class LocalFileSystem:
 
     def save_errors(self, speaker_model, count, sentence, grammatical):
         if len(speaker_model.results.syntax_semantics) > 0 and not grammatical or len(speaker_model.results.syntax_semantics) == 0 and grammatical:
-            r = f'\n{str(count)}. {self.generate_input_sentence_string(sentence)}'
+            r = f"\n{str(count)}. {' '.join(sentence)}"
             self.errors.write(r)
-
-    def judgment_marker(self, parser):
-        if len(parser.results.syntax_semantics) == 0:
-            return '*'
-        return ' '
 
     def save_resources(self, parser, count, sentence, experimental_group):
         if count == 1:
@@ -355,7 +214,6 @@ class LocalFileSystem:
         self.resources_file.write('\n')
 
     def write_comment_line(self, sentence_lst):
-        sentence_string = ' '.join(map(str, sentence_lst))
         if sentence_lst[0].startswith("'"):
             prefix = '\t'
         else:
@@ -370,33 +228,33 @@ class LocalFileSystem:
         self.errors.close()
         self.dev_log_file.write('Done.\n')
 
-    def report_errors_to_console(self):
-        self.errors = open(self.external_sources['error_report_name'], 'r')
+    def report_errors_to_console(self, settings):
+        self.errors = open(settings.external_sources['error_report_name'], 'r')
         print(f'\n')
         contents = self.errors.read()
         print(contents)
-        self.errors = open(self.external_sources['error_report_name'], 'r')
+        self.errors = open(settings.external_sources['error_report_name'], 'r')
         error_N = len(self.errors.readlines()) - 1
         print(f'= {error_N}  errors.')
         self.errors.close()
 
-    def configure_logging(self):
-        handler = logging.FileHandler(self.external_sources["log_file_name"], 'w', 'utf-8')
+    def configure_logging(self, settings):
+        handler = logging.FileHandler(settings.external_sources["log_file_name"], 'w', 'utf-8')
         handler.terminator = ''
         logging.basicConfig(level=logging.INFO, handlers=[handler], format='%(message)s')
         self.logger_handle = handler
-        if 'logging' in self.settings and not self.settings['logging']:
+        if 'logging' in settings.data and not settings.data['logging']:
             disable_all_logging()
 
-    def read_lexicons_into_dictionary(self):
+    def read_lexicons_into_dictionary(self, settings):
         lexicon_dict = {}
 
         # Examine all lexical files and the lexical redundancy file
-        for lexicon_file in list(self.settings['lexicons']) + [self.settings['redundancy_rules']]:
+        for lexicon_file in list(settings.get()['lexicons']) + [settings.get()['redundancy_rules']]:
             lexicon_dict[lexicon_file] = {}
 
             # Example all lines in each file
-            lexical_entries = open(self.folder['lexicon'] / lexicon_file, encoding='utf8').readlines()
+            lexical_entries = open(settings.folders['lexicon'] / lexicon_file, encoding='utf8').readlines()
 
             # Break every line into (key, features) and then examine all features
             for lex, features in [e.strip().split('::') for e in lexical_entries if '::' in e]:
@@ -412,5 +270,4 @@ class LocalFileSystem:
                     if feature:
                         feature_list.append(feature)
                         lexicon_dict[lexicon_file][lex][feature] = explanation(feature)
-
         return lexicon_dict

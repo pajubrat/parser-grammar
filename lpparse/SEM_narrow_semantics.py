@@ -88,9 +88,9 @@ class NarrowSemantics:
     def postsyntactic_semantic_interpretation(self, ps):
         self.reset_for_new_interpretation()
         self.interpret_(ps)
-        if self.speaker_model.local_file_system.settings['calculate_assignments'] and not self.speaker_model.results.first_solution_found:
+        if self.speaker_model.settings.get()['calculate_assignments'] and not self.speaker_model.results.first_solution_found:
             self.speaker_model.results.store_semantic_interpretation('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
-        if self.speaker_model.local_file_system.settings['calculate_pragmatics'] and ps.finite():
+        if self.speaker_model.settings.get()['calculate_pragmatics'] and ps.finite():
             self.speaker_model.results.store_semantic_interpretation('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
         self.speaker_model.results.store_semantic_interpretation('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
         return not self.semantic_interpretation_failed
@@ -98,17 +98,17 @@ class NarrowSemantics:
     def interpret_(self, ps):
         if not ps.find_me_elsewhere:
             if ps.primitive():
-                if self.speaker_model.local_file_system.settings['calculate_thematic_roles'] and ps.theta_predicate():
+                if self.speaker_model.settings.get()['calculate_thematic_roles'] and ps.theta_predicate():
                     self.speaker_model.results.store_semantic_interpretation('Thematic roles', self.thematic_roles_module.reconstruct(ps))
-                if self.speaker_model.local_file_system.settings['calculate_predicates'] and ps.check({'ARG'}) and not ps.check({'φ'}):
+                if self.speaker_model.settings.get()['calculate_predicates'] and ps.check({'ARG'}) and not ps.check({'φ'}):
                     self.speaker_model.results.store_semantic_interpretation('Predicates', self.predicates.reconstruct(ps))
-                    if self.speaker_model.local_file_system.settings['Agree'] == 'standard':
+                    if self.speaker_model.settings.get()['UG_parameter_Agree'] == 'standard':
                         self.predicates.operation_failed = False
                 if ps.argument_by_agreement():
                     self.speaker_model.results.store_semantic_interpretation('Agreement', self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
-                if self.speaker_model.local_file_system.settings['project_objects']:
+                if self.speaker_model.settings.get()['project_objects']:
                     self.inventory_projection(ps)
                 self.speaker_model.results.store_semantic_interpretation('Operator bindings', self.operator_variable_module.bind_operator(ps))
                 self.speaker_model.results.store_semantic_interpretation('DIS-features', self.pragmatic_pathway.interpret_discourse_features(ps))
@@ -181,9 +181,9 @@ class NarrowSemantics:
             if tailed_head:
                 if 'ASP:BOUNDED' in tailed_head.features:
                     if 'PAR' in ps.features and not in_scope_of(ps, {'POL:NEG'}):
-                        self.semantic_interpretation['Aspect'].append('Aspectually anomalous')
+                        self.speaker_model.results.semantic_interpretation['Aspect'].append('Aspectually anomalous')
                     else:
-                        self.semantic_interpretation['Aspect'].append('Aspectually bounded')
+                        self.speaker_model.results.semantic_interpretation['Aspect'].append('Aspectually bounded')
 
         # ------------ main function ----------------------------------- #
         for tail_set in ps.get_tail_sets():

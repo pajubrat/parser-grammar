@@ -11,7 +11,7 @@ class LexicalInterface:
         self.speaker_model = speaker_model
         self.PhraseStructure = phrase_structure.PhraseStructure
         self.surface_lexicon = defaultdict(list)
-        self.redundancy_rules = self.load_redundancy_rules(self.speaker_model)
+        self.redundancy_rules = self.load_redundancy_rules()
         self.language = self.speaker_model.language
 
     def lexical_retrieval(self, phon):
@@ -93,9 +93,9 @@ class LexicalInterface:
             feature_set |= features_not_blocked_by_language_specific_lexicon
         return feature_set
 
-    def load_redundancy_rules(self, speaker_model):
+    def load_redundancy_rules(self):
         redundancy_rules_dict = {}
-        for line in open(speaker_model.local_file_system.external_sources["redundancy_rules"], encoding='utf8'):
+        for line in open(self.speaker_model.settings.external_sources["redundancy_rules"], encoding='utf8'):    #todo remove SM from settings access
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
@@ -108,10 +108,10 @@ class LexicalInterface:
                 redundancy_rules_dict[antecedent_trigger] = feature_list
         return redundancy_rules_dict
 
-    def load_lexicons(self, local_file_system):
+    def load_lexicons(self, settings):
         self.surface_lexicon = {}
-        for lexicon_file in list(local_file_system.settings['lexicons']):
-            self.load_lexicon(local_file_system.folder['lexicon'] / lexicon_file)
+        for lexicon_file in list(settings.get()['lexicons']):
+            self.load_lexicon(settings.folders['lexicon'] / lexicon_file)
 
     def load_lexicon(self, lexicon_file):
 

@@ -4,14 +4,14 @@ from feature_processing import *
 # Separate class for alternative formulations for the Agree mechanism
 # Standard agreement is implemented in the phrase structure class; this contains only experimental versions
 class ExperimentalFunctions:
-    def __init__(self, brain_model):
-        self.brain_model = brain_model
+    def __init__(self, speaker_model):
+        self.speaker_model = speaker_model
         pass
 
     def Agree(self, probe):
-        if self.brain_model.local_file_system.settings['Agree'] == 'standard':
+        if self.speaker_model.settings.get()['UG_parameter_Agree'] == 'standard':
             self.standard(probe)
-        if self.brain_model.local_file_system.settings['Agree'] == 'revised':
+        if self.speaker_model.settings.get()['UG_parameter_Agree'] == 'revised':
             self.revised(probe)
 
     def revised(self, probe):

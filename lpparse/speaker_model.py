@@ -10,9 +10,9 @@ from Experimental_functions import ExperimentalFunctions
 from results import Results
 
 class SpeakerModel:
-    def __init__(self, local_file_system, language='XX'):
+    def __init__(self, settings, local_file_system, language='XX'):
+        self.settings = settings
         self.sentence = []
-        self.local_file_system = local_file_system              # Access to file system
         self.language = language                                # Contextual variables (language etc.)
         self.results = Results(self)
         self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
@@ -20,7 +20,7 @@ class SpeakerModel:
         self.name_provider_index = 0                            # Index for name provider, for chain identification
         self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
-        self.lexicon.load_lexicons(local_file_system)            # Load the language/dialect specific lexicon
+        self.lexicon.load_lexicons(settings)                     # Load the language/dialect specific lexicon
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.plausibility_metrics = PlausibilityMetrics(self)
@@ -133,7 +133,7 @@ class SpeakerModel:
             self.results.update_resources(PhraseStructure.resources, self.sentence)
             self.results.store_solution(ps)
             self.results.log_success(ps)
-            if self.local_file_system.settings['only_first_solution']:
+            if self.settings.get()['only_first_solution']:
                 self.exit = True
         else:
             self.narrow_semantics.reset_for_new_interpretation()

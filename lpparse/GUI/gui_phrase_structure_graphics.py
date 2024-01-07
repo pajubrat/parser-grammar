@@ -8,8 +8,6 @@ GRID = 150
 
 class GPhraseStructure(PhraseStructure):
     """Phrase Structure class that has additional properties related to tree drawing"""
-    settings = {}
-
     def __init__(self, source=None, left=None, right=None):
         super().__init__(left, right)
 
@@ -133,20 +131,17 @@ class GPhraseStructure(PhraseStructure):
         if self.primitive():
 
             # Phonological string
-            if GPhraseStructure.settings['image_parameter_show_words']:
-                if self.get_phonological_string() != self.label():
-                    label_stack.append((self.get_phonological_string(), 'PF'))
+            if self.get_phonological_string() != self.label():
+                label_stack.append((self.get_phonological_string(), 'PF'))
 
             # Gloss
-            if GPhraseStructure.settings['image_parameter_show_glosses']:
-                if self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
-                    for head in self.get_affix_list():
-                        label_stack.append((f"ʻ{head.gloss()}ʼ", 'gloss'))
+            if self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
+                for head in self.get_affix_list():
+                    label_stack.append((f"ʻ{head.gloss()}ʼ", 'gloss'))
 
             # Features
-            if GPhraseStructure.settings['show_features']:
-                for feature in [x for x in self.features if x in GPhraseStructure.settings['show_features']]:
-                    label_stack.append((f'[{feature_conversion(feature)}]', 'feature'))
+            for feature in [x for x in self.features if x == 'Fin']:    #   todo feature selection from settings
+                label_stack.append((f'[{feature_conversion(feature)}]', 'feature'))
 
         return label_stack
 
@@ -193,7 +188,6 @@ class PhraseStructureGraphics(tk.Toplevel):
     def __init__(self, root, speaker_model):
         super().__init__(root)
         self.title("Phrase Structure Graphics")
-        GPhraseStructure.settings = root.lfs.settings
         self.geometry(('1800x1000+1800+500'))
 
         # Internal variables
@@ -315,11 +309,11 @@ class PhraseStructureCanvas(tk.Canvas):
         self.info_text = self.create_text((200, 300), state='hidden')  # Show information about selected objects
 
         self.project_into_canvas(gps, spx, spy, grid)
-        if gps.settings['image_parameter_show_head_chains']:
+        if self.parent.speaker_model.settings.get()['image_parameter_show_head_chains']:
             self.draw_head_chains(gps)
-        if gps.settings['image_parameter_show_phrasal_chains']:
+        if self.parent.speaker_model.settings.get()['image_parameter_show_phrasal_chains']:
             self.draw_phrasal_chains(gps)
-        if gps.settings['image_parameter_show_Agree']:
+        if self.parent.speaker_model.settings.get()['image_parameter_show_Agree']:
             self.draw_Agree(gps)
 
     def _key_press(self, event):
@@ -405,7 +399,7 @@ class PhraseStructureCanvas(tk.Canvas):
         return ID
 
     def create_primitive_node(self, gps, X1, Y1):
-        for i, item in enumerate(gps.label_stack):
+        for i, item in enumerate(gps.label_stack):  #   todo: control label stack generation by settings
             ID = self.create_text((X1, Y1 + 1.2 * i * self.parent.s['tsize']), fill='black', activefill='red', tag='node', text=item[0], anchor='center', font=self.label_style[item[1]])
             self.node_to_gps[str(ID)] = gps
             if i == 0:

@@ -28,7 +28,7 @@ class MainMenu(tk.Menu):
         # Analysis menu
         study_menu = tk.Menu(self, tearoff=False, font=menu_font)
         study_menu.add_command(label='Run study', command=self._event('<<RunStudy>>'))
-        study_menu.add_command(label='Analyze one expression', command=self._event('<<Analyze>>'))
+        study_menu.add_command(label='Analyze expression', command=self._event('<<Analyze>>'))
         self.add_cascade(label='Study', menu=study_menu)
 
         # Examine_results_meny
@@ -40,7 +40,7 @@ class MainMenu(tk.Menu):
 
         # Theory/UG menu
         theory_menu = tk.Menu(self, tearoff=False, font=menu_font)
-        theory_menu.add_command(label='UG parameters...', command=self.todo)
+        theory_menu.add_command(label='UG parameters...', command=self._event('<<TheorySettings>>'))
         self.add_cascade(label='Theory', menu=theory_menu)
 
         # Settings menu
