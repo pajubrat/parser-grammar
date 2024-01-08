@@ -33,9 +33,11 @@ image_parameter_show_glosses = True
 image_parameter_mark_adjuncts = False
 image_parameter_spellout_complex_heads = False
 image_parameter_show_head_chains = True
+image_parameter_remove_trivial_head_chains = True
 image_parameter_show_phrasal_chains = True
-image_parameter_compress_phrasal_chains = False
-image_parameter_show_Agree = True
+image_parameter_show_Agree = False
+image_parameter_show_complex_heads = True
+image_parameter_show_features = ε
 
 # Study 15 agreement
 # show_features = ΦPF;-ΦPF;!ΦPF;-ΦLF;!ΦLF;+ΦLF,ΦPF;-ΦLF,ΦPF;PER;PHI:NUM:_;PHI:PER:_;PHI:NUM:PL;PHI:NUM:SG;PHI:PER:1;PHI:PER:2;PHI:PER:3
@@ -46,7 +48,7 @@ image_parameter_show_Agree = True
 # Study 18 CSL
 # show_features = &P
 
-show_features = Fin
+
 
 # UG COMPONENTS
 #	Agree
@@ -59,7 +61,7 @@ UG_parameter_phase_heads = C;v;FORCE;Inf
 UG_parameter_phase_heads_exclude = φ;v-;TO/inf
 
 #	Semantics
-calculate_assignments = True
+calculate_assignments = False
 calculate_pragmatics = True
 calculate_thematic_roles = True
 project_objects = True

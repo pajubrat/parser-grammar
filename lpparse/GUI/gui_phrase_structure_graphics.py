@@ -6,8 +6,12 @@ MARGINS = 300
 GRID = 150
 
 
+
 class GPhraseStructure(PhraseStructure):
     """Phrase Structure class that has additional properties related to tree drawing"""
+
+    draw_features = {}
+
     def __init__(self, source=None, left=None, right=None):
         super().__init__(left, right)
 
@@ -29,7 +33,7 @@ class GPhraseStructure(PhraseStructure):
         self.y = 0
         self.X = 0
         self.Y = 0
-        self.label_stack = []
+        self.Y_offset = 0
         self.label_stack = self.generate_label_stack()
         self.phrasal_chain_target = None
         self.head_chain_target = None
@@ -136,11 +140,10 @@ class GPhraseStructure(PhraseStructure):
 
             # Gloss
             if self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
-                for head in self.get_affix_list():
-                    label_stack.append((f"ʻ{head.gloss()}ʼ", 'gloss'))
+                label_stack.append((f"ʻ{self.gloss()}ʼ", 'gloss'))
 
             # Features
-            for feature in [x for x in self.features if x == 'Fin']:    #   todo feature selection from settings
+            for feature in [x for x in self.features if x in GPhraseStructure.draw_features]:
                 label_stack.append((f'[{feature_conversion(feature)}]', 'feature'))
 
         return label_stack
@@ -180,6 +183,7 @@ class GPhraseStructure(PhraseStructure):
                 itext += f'\nComplex head with structure '
                 for c in self.get_affix_list():
                     itext += f'{c} '
+
         return itext
 
 
@@ -189,6 +193,9 @@ class PhraseStructureGraphics(tk.Toplevel):
         super().__init__(root)
         self.title("Phrase Structure Graphics")
         self.geometry(('1800x1000+1800+500'))
+
+        # Features shown in figures on the basis of settings
+        GPhraseStructure.draw_features = root.settings.get()['image_parameter_show_features']
 
         # Internal variables
         self.index_of_analysis_shown = 0
@@ -380,31 +387,86 @@ class PhraseStructureCanvas(tk.Canvas):
             self.create_primitive_node(gps, X1, Y1)
 
     def create_complex_node(self, gps, X1, Y1, spx, spy, grid):
+
+        # End coordinates of the left constituent line (gps.x, gps.y contain logical position)
         X2 = spx + gps.left.x * grid
         Y2 = spy + gps.left.y * grid
+
+        # End coordinates of the right constituent line
         X3 = spx + gps.right.x * grid
         Y3 = spy + gps.right.y * grid
-        ID = self.create_text((X1, Y1), text=gps.label_stack[0][0], fill='black', activefill='red', tag='node', font=("Times New Roman", self.parent.s['tsize']))
+
+        # Create text holding the complex label (e.g., XP)
+        ID = self.create_text((X1, Y1),
+                              text=gps.label_stack[0][0],
+                              fill='black',
+                              activefill='red',
+                              tag='node',
+                              font=("Times New Roman", self.parent.s['tsize']))
+
+        # Map node to the underlying constituent
         self.node_to_gps[str(ID)] = gps
+
+        # Add Y-offset (lower boundary), for chain drawing etc.
+        gps.Y_offset = self.parent.s['tsize']
+
+        # Bind events to the node
         self.tag_bind(ID, '<Enter>', self._show_info)
         self.tag_bind(ID, '<Leave>', self._hide_info)
+
         if self.selected_logical_node == gps:
             x1, y1 = self.coords(ID)
             self.itemconfigure(self.cursor, state='normal')
             self.moveto(self.cursor, x1 - 50, y1 - 50)
+
+        # Create the two lines for left and right constituents.
         self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 2)), (X2, Y2 - int(self.parent.s['tsize'] / 2)), width=2, fill='black')
         self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 2)), (X3, Y3 - int(self.parent.s['tsize'] / 2)), width=2, fill='black')
+
+        # Recursive calls
         self.project_into_canvas(gps.left, spx, spy, grid)
         self.project_into_canvas(gps.right, spx, spy, grid)
         return ID
 
     def create_primitive_node(self, gps, X1, Y1):
-        for i, item in enumerate(gps.label_stack):  #   todo: control label stack generation by settings
-            ID = self.create_text((X1, Y1 + 1.2 * i * self.parent.s['tsize']), fill='black', activefill='red', tag='node', text=item[0], anchor='center', font=self.label_style[item[1]])
-            self.node_to_gps[str(ID)] = gps
-            if i == 0:
-                self.tag_bind(ID, '<Enter>', self._show_info)
-                self.tag_bind(ID, '<Leave>', self._hide_info)
+        Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s)
+
+        # Reproduce the head and all of its affixes
+        for j, affix in enumerate(gps.get_affix_list(), start=1):
+
+            # Do not reproduce copies
+            if affix.find_me_elsewhere:
+                break
+
+            # Do not produce affixes if blocked by settings
+            if j > 1 and not self.parent.speaker_model.settings.get()['image_parameter_show_complex_heads']:
+                break
+
+            # Generate the label text (label + phonological exponent + gloss)
+            for i, item in enumerate(affix.label_stack):
+
+                # Create the text widget for the element
+                ID = self.create_text((X1, Y1 + Y_offset),
+                                      fill='black',
+                                      activefill='red',
+                                      tag='node',
+                                      text=item[0],
+                                      anchor='center',
+                                      font=self.label_style[item[1]])
+
+                # Update the offset
+                Y_offset += 1.2 * self.parent.s['tsize']
+
+                # Add the node to the mapping from nodes to affixes
+                self.node_to_gps[str(ID)] = affix
+
+                # Add events to the first element (i == 0 when producing the label)
+                if i == 0:
+                    self.tag_bind(ID, '<Enter>', self._show_info)
+                    self.tag_bind(ID, '<Leave>', self._hide_info)
+
+        # Store the offset for later use (e.g., drawing chains, agreement)
+        gps.Y_offset = Y_offset
         self.update_cursor(gps, X1, Y1)
 
     def update_cursor(self, gps, x1, y1):
@@ -414,7 +476,8 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def draw_head_chains(self, gps):
         if gps.head_chain_target:
-            self.draw_dependency('phrasal chain', gps, gps.head_chain_target)
+            if gps.sister() != gps.head_chain_target or not self.parent.speaker_model.settings.get()['image_parameter_remove_trivial_head_chains']:
+                self.draw_dependency('phrasal chain', gps, gps.head_chain_target)
         if gps.complex():
             self.draw_head_chains(gps.left)
             self.draw_head_chains(gps.right)
@@ -442,10 +505,9 @@ class PhraseStructureCanvas(tk.Canvas):
         X2 = X1 + abs(X1 - X3) / 2
         if X1 == X3:
             Y3 = Y3 - self.parent.s['tsize'] * 3.5
-        Y2 = Y3 + self.parent.s['grid'] * 1.5
+        Y2 = Y3 + target.Y_offset + self.parent.s['grid']
         start_offset = source.label_size() * self.parent.s['tsize']
-        end_offset = target.label_size() * self.parent.s['tsize']
-        self.create_line((X1, Y1 + start_offset), (X2, Y2), (X3, Y3 + end_offset),
+        self.create_line((X1, Y1 + start_offset), (X2, Y2), (X3, Y3 + target.Y_offset),
                          dash=self.parent.line_style[style]['dash'],
                          width=self.parent.line_style[style]['width'],
                          smooth=True,

@@ -93,7 +93,7 @@ class QuantifiersNumeralsDenotations:
 
             if idx_pred:
                 # Examine if the predicate has been linked with an argument
-                for predicate, argument in self.narrow_semantics.predicate_argument_dependencies:
+                for predicate, argument in self.narrow_semantics.speaker_model.predicate_argument_dependencies:
                     if ps == predicate:
 
                         # Get referential interpretation from the argument

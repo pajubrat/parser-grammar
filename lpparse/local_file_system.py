@@ -113,8 +113,8 @@ class LocalFileSystem:
                         settings.get()[key] = value
             config_file.close()
             # Safeguards
-            if not settings.get()['show_features'] or settings.get()['show_features'] == '':
-                settings.data['show_features'] = []
+            if not settings.get()['image_parameter_show_features'] or settings.get()['image_parameter_show_features'] == '':
+                settings.data['image_parameter_show_features'] = {}
         except IOError:
             for key in settings.default_study_parameters:
                 settings.data[key] = settings.default_study_parameters[key]
