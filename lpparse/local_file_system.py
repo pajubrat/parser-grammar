@@ -1,9 +1,10 @@
 import itertools
+
 from datetime import datetime
 from support import *
 import logging
 from support import feature_explanations
-from phrase_structure import PhraseStructure
+from tkinter import filedialog
 
 def explanation(feature):
     for key in feature_explanations.keys():
@@ -93,9 +94,9 @@ class LocalFileSystem:
             self.resources_file.write(f'{key},')
         self.resources_file.write("Execution time (ms)\t\n")
 
-    def load_settings(self, settings):
+    def load_settings(self, settings, filename='config_study.txt'):
         try:
-            with open('config_study.txt', encoding=self.encoding) as config_file:
+            with open(filename, encoding=self.encoding) as config_file:
                 # Read file into dict
                 for line in config_file:
                     line = line.strip().replace('\t', '')
@@ -118,6 +119,17 @@ class LocalFileSystem:
         except IOError:
             for key in settings.default_study_parameters:
                 settings.data[key] = settings.default_study_parameters[key]
+
+    def save_study(self, settings):
+        filename = filedialog.asksaveasfilename(title='Save study', defaultextension='.txt', initialdir='.')
+        if filename:
+            with open(filename, 'w', encoding=self.encoding) as f:
+                for key in settings.get().keys():
+                    if isinstance(settings.get()[key], set):
+                        value = ';'.join(settings.get()[key])
+                    else:
+                        value = settings.get()[key]
+                    print(f'{key} = {value}', file=f)
 
     def read_test_corpus(self, settings):
         experimental_group = []

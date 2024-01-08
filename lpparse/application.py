@@ -34,6 +34,26 @@ class Application(tk.Tk):
         self.grid_rowconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
 
+        # Widgets
+        self.lexicon_frame = None
+        self.dataset_frame = None
+        self.speakermodel_frame = None
+        self.results_frame = None
+        self.setup_widgets()
+
+        # Set up main menu
+        main_menu = MainMenu(self)
+        self.config(menu=main_menu)
+
+        # Callbacks
+        self.bind('<<Analyze>>', self._analyze)
+        self.bind('<<RunStudy>>', self.run_study)
+        self.bind('<<TheorySettings>>', self.change_theory_settings)
+        self.bind('<<SaveStudy>>', self.save_study)
+        self.bind('<<LoadStudy>>', self.load_study)
+
+    def setup_widgets(self):
+
         self.lexicon_frame = LexiconView(self, self.lex_dictionary)
         self.lexicon_frame.grid(row=0, column=0, sticky='WE')
 
@@ -46,17 +66,29 @@ class Application(tk.Tk):
         self.results_frame = ResultsView(self, self.speaker_models)
         self.results_frame.grid(row=1, column=1, sticky='nwes')
 
-        # Set up main menu
-        main_menu = MainMenu(self)
-        self.config(menu=main_menu)
-
-        # Callbacks
-        self.bind('<<Analyze>>', self._analyze)
-        self.bind('<<RunStudy>>', self.run_study)
-        self.bind('<<TheorySettings>>', self.change_theory_settings)
+        self.status_bar = tk.Label(self, padx=5, pady=5, bg='green', fg='white', anchor='e', justify='right', text=f'Current study: {self.settings.get()["study_folder"]}/{self.settings.get()["test_corpus"]}', font=('Calibri 16'))
+        self.status_bar.grid(row=2, column=0, columnspan=2, sticky='e')
 
     def change_theory_settings(self, event):
         self.settings.change_theory_settings(self)
+
+    def save_study(self, *_):
+        self.local_file_system.save_study(self.settings)
+
+    def load_study(self, *_):
+        if self.settings.load_settings_with_user_input():
+            self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment()
+            self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
+            self.reset_widgets()
+            self.setup_widgets()
+            print('Ready.')
+
+    def reset_widgets(self):
+        self.lexicon_frame.destroy()
+        self.dataset_frame.destroy()
+        self.speakermodel_frame.destroy()
+        self.results_frame.destroy()
+        self.status_bar.destroy()
 
     def set_up_experiment(self):
         lg = LanguageGuesser(self.settings)

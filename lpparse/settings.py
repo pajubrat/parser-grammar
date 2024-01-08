@@ -2,9 +2,11 @@ from phrase_structure import PhraseStructure
 import tkinter as tk
 from tkinter import ttk
 from pathlib import Path
+from tkinter import filedialog, messagebox
 
 class Settings:
     def __init__(self, local_file_system):
+        self.local_file_system = local_file_system
         self.data = {}
         self.folders = {}
         self.external_sources = {}
@@ -46,10 +48,21 @@ class Settings:
                                          'negative_adverbial_test': '-100',
                                          'positive_adverbial_test': '100'
                                          }
-        local_file_system.load_settings(self)
+        self.local_file_system.load_settings(self)
+        self.initialize_settings()
+
+    def initialize_settings(self):
         self.process_settings()
         self.set_folders()
         self.set_external_resources()
+
+    def load_settings_with_user_input(self):
+        filename = filedialog.askopenfilename(title='Load  study', defaultextension='.txt', initialdir='.')
+        if filename:
+            print('Loading new study...')
+            self.local_file_system.load_settings(self, filename)
+            self.initialize_settings()
+            return True     # This will reset the widgets in the application
 
     def process_settings(self):
         for key in self.data:

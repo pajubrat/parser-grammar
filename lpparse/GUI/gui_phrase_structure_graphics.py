@@ -506,8 +506,7 @@ class PhraseStructureCanvas(tk.Canvas):
         if X1 == X3:
             Y3 = Y3 - self.parent.s['tsize'] * 3.5
         Y2 = Y3 + target.Y_offset + self.parent.s['grid']
-        start_offset = source.label_size() * self.parent.s['tsize']
-        self.create_line((X1, Y1 + start_offset), (X2, Y2), (X3, Y3 + target.Y_offset),
+        self.create_line((X1, Y1 + source.Y_offset), (X2, Y2), (X3, Y3 + target.Y_offset),
                          dash=self.parent.line_style[style]['dash'],
                          width=self.parent.line_style[style]['width'],
                          smooth=True,

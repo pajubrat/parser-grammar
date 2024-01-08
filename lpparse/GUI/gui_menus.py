@@ -19,8 +19,8 @@ class MainMenu(tk.Menu):
         file_menu = tk.Menu(self, tearoff=False, font=menu_font)
         file_menu.config(font=menu_font)
         file_menu.add_command(label='New...', command=self.todo)
-        file_menu.add_command(label='Load...', command=self.todo)
-        file_menu.add_command(label='Save', command=self.todo)
+        file_menu.add_command(label='Load Study...', command=self._event('<<LoadStudy>>'))
+        file_menu.add_command(label='Save Study As...', command=self._event('<<SaveStudy>>'))
         file_menu.add_command(label='Preferences...', command=self.todo)
         file_menu.add_command(label='Quit', command=self.todo)
         self.add_cascade(label='File', menu=file_menu)
@@ -31,7 +31,7 @@ class MainMenu(tk.Menu):
         study_menu.add_command(label='Analyze expression', command=self._event('<<Analyze>>'))
         self.add_cascade(label='Study', menu=study_menu)
 
-        # Examine_results_meny
+        # Examine_results_menu
         examine_results_menu = tk.Menu(self, tearoff=False, font=menu_font)
         examine_results_menu.add_command(label='Results...', command=self.todo)
         examine_results_menu.add_command(label='Derivation...', command=self.todo)
