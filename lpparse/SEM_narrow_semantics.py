@@ -9,7 +9,7 @@ from global_cognition import GlobalCognition
 
 class NarrowSemantics:
     def __init__(self, speaker_model):
-        self.operator_variable_module = OperatorVariableModule(self)
+        self.operator_variable_module = OperatorVariableModule(speaker_model)
         self.thematic_roles_module = ThematicRoles()
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
         self.pragmatic_pathway = Discourse(self)

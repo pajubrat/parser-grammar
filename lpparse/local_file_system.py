@@ -3,6 +3,7 @@ import itertools
 from datetime import datetime
 from support import *
 import logging
+import os
 from support import feature_explanations
 from tkinter import filedialog
 
@@ -101,16 +102,11 @@ class LocalFileSystem:
                 for line in config_file:
                     line = line.strip().replace('\t', '')
                     if line and not line.startswith('#'):
-                        key, value = line.split('=', 1)
+                        key, value = line.split('=')
                         key = key.strip()
                         value = value.strip()
-                        if ';' in value:
+                        if ';' in value or key == 'image_parameter_show_features':
                             value = set(value.split(';'))
-                        else:
-                            if key == 'show_features':
-                                value = [value]
-                            else:
-                                value = value
                         settings.get()[key] = value
             config_file.close()
             # Safeguards
@@ -119,6 +115,10 @@ class LocalFileSystem:
         except IOError:
             for key in settings.default_study_parameters:
                 settings.data[key] = settings.default_study_parameters[key]
+
+    def create_new_from_corpus_file(self, settings):
+        corpus_filename = filedialog.askopenfilename(title='Create new study from corpus file', defaultextension='.txt', initialdir='./language data working directory')
+        settings.create_settings_for_file_system(corpus_filename)
 
     def save_study(self, settings):
         filename = filedialog.asksaveasfilename(title='Save study', defaultextension='.txt', initialdir='.')

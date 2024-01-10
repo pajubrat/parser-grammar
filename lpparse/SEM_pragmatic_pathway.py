@@ -54,7 +54,7 @@ class Discourse:
                 result += self.interpret_discourse_feature(f, ps)
 
     def interpret_discourse_feature(self, f, ps):
-        return f, f'{ps.illustrate()}'
+        return f'{f}, {ps.illustrate()}'
 
     def calculate_information_structure(self, ps):
         log('\n\t\tCalculating information structure...')

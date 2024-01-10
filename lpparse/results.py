@@ -108,7 +108,7 @@ class Results():
         if not self.first_solution_found:
             self.accumulate_resource_n(key)
         if key == 'Sensory Processing':
-            log(f'\n\t\t{key} for sentence {target}')
+            log(f'\n\t\t{key} of /#{target}/')
         elif key != 'Agree' and key != 'Last Resort Extraposition' and key != 'Lexical Retrieval':
             log(f'\n\t\t{key}({target.illustrate()}) => {target.top()} ')
 

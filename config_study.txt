@@ -3,11 +3,8 @@ author= Anon
 year= 2024
 date= January
 study_id= 19
-study_folder=			language data working directory/study-19-Morphology
-test_corpus_folder=		language data working directory/study-19-Morphology
-#test_corpus=			Morphology_corpus.txt
-#test_corpus=			45K_corpus.txt
-test_corpus=			Stranding_corpus.txt
+study_folder=			language data working directory/study-19-morphology
+test_corpus=			Morphology_corpus.txt
 numeration=				Morphology_numeration.txt
 
 # GENERAL SIMULATION PARAMETERS
@@ -37,18 +34,8 @@ image_parameter_remove_trivial_head_chains = True
 image_parameter_show_phrasal_chains = True
 image_parameter_show_Agree = False
 image_parameter_show_complex_heads = True
-image_parameter_show_features = ε
-
-# Study 15 agreement
-# show_features = ΦPF;-ΦPF;!ΦPF;-ΦLF;!ΦLF;+ΦLF,ΦPF;-ΦLF,ΦPF;PER;PHI:NUM:_;PHI:PER:_;PHI:NUM:PL;PHI:NUM:SG;PHI:PER:1;PHI:PER:2;PHI:PER:3
-
-# Study 17 Finnish syntax
-# show_features = PHI:NUM:SG;PHI:NUM:PL;PHI:PER:1;PHI:PER:2;PHI:PER:3;Fin*;OP:Q;OP:WH
-
-# Study 18 CSL
-# show_features = &P
-
-
+image_parameter_show_features = Fin/neg
+image_parameter_DP_hypothesis = True
 
 # UG COMPONENTS
 #	Agree

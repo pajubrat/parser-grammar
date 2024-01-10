@@ -133,6 +133,7 @@ class SpeakerModel:
             self.results.update_resources(PhraseStructure.resources, self.sentence)
             self.results.store_solution(ps)
             self.results.log_success(ps)
+            self.results.record_derivational_step(ps, 'Accepted LF-interface')
             if self.settings.get()['only_first_solution']:
                 self.exit = True
         else:

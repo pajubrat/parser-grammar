@@ -27,6 +27,7 @@ class MainMenu(tk.Menu):
 
         # Analysis menu
         study_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        study_menu.add_command(label='Create new from file...', command=self._event('<<CreateNewFromFile>>'))
         study_menu.add_command(label='Run study', command=self._event('<<RunStudy>>'))
         study_menu.add_command(label='Analyze expression', command=self._event('<<Analyze>>'))
         self.add_cascade(label='Study', menu=study_menu)

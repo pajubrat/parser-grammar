@@ -33,6 +33,7 @@ emme		:: e#mme LANG:FI
 ette		:: e#tte LANG:FI
 eivät		:: e#vAt LANG:FI
 e-			:: PF:e- LF:not Neg/fin Fin POL:NEG ARG !COMP:* !COMP:T LANG:FI
+e			:: PF:e- LF:not Neg/fin Fin/neg Fin POL:NEG ARG !COMP:* !COMP:T LANG:FI
 elää		:: elä-#T/fin#[V] LANG:FI
 elä-		:: PF:elää LF:live V V/INTR SPEC:φ LANG:FI
 etsii		:: etsi-#v#T/fin#[V] LANG:FI
@@ -271,12 +272,13 @@ myydä 		:: myy-#v#A/inf LANG:FI
 myy-		:: PF:myy- LF:sell V ASP:BOUNDED V/TR -COMP:T/fin -COMP:Neg/fin COMP:φ LANG:FI
 nainen		:: nainen-#φ#nonhum#r_expression#[nom]
 nainen-		:: PF:nainen LF:woman N LANG:FI
-nauratan	:: naura-#tA#v#T/fin#prs#n LANG:FI
+nauratan	:: naura-*#TA*#v#T/fin#prs#n LANG:FI
 nauratutan	:: naura-#tA#tA#v#T/fin#prs#n LANG:FI
 nauratu		:: naura-#tA
 nauroi		:: naura-#T/fin#pst#[V] LANG:FI
 nauraa		:: naura-#T/fin#prs#[V] LANG:FI
 naura-		:: PF:naura LF:laugh V/INTR V LANG:FI
+naura-*		:: PF:naura LF:laugh V LANG:FI
 nenä-		:: PF:nenä- LF:nose N LANG:FI
 näki		:: näke-#v#T/fin#pst#[V] LANG:FI
 näkee		:: näke-#v#T/fin#[V] LANG:FI
@@ -360,6 +362,8 @@ pieni-		:: PF:pieni- LF:small 0 LANG:FI
 pino-		:: PF:pino LF:stack N LANG:FI
 poikien		::	poika-#φ#[gen]#[-dat]#pl#3p#def#r_expression#hum LANG:FI
 poika-		::	PF:poika LF:boy N LANG:FI
+pudottautuu	:: pudo-#TA*#U*#T/fin#prs#[V]
+pudo-		:: PF:pudo LF:fall V V/INTR LANG:FI
 pukee		:: puke-#T/fin#prs#[V] LANG:FI
 puke-		:: PF:puke- LF:dressup V V/INTR LANG:FI
 puhelinta	:: puhelin-#n LANG:FI

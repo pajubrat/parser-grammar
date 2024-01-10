@@ -1,5 +1,7 @@
 from phrase_structure import PhraseStructure
 import tkinter as tk
+from tkinter import messagebox
+import os
 from tkinter import ttk
 from pathlib import Path
 from tkinter import filedialog, messagebox
@@ -50,11 +52,33 @@ class Settings:
                                          }
         self.local_file_system.load_settings(self)
         self.initialize_settings()
+        self.create_settings_for_file_system()
 
     def initialize_settings(self):
         self.process_settings()
+
+    def create_settings_for_file_system(self, corpus_filename=None):
+        if corpus_filename:
+            self.data['test_corpus'] = os.path.basename(corpus_filename)
+            self.data['study_folder'] = os.path.dirname(corpus_filename)
         self.set_folders()
         self.set_external_resources()
+
+    def set_folders(self):
+        self.folders['study'] = Path(self.data['study_folder'])
+        self.folders['lexicon'] = Path(self.data['lexicon_folder'])
+
+    def set_external_resources(self):
+        self.external_sources = {"test_corpus_file_name": self.folders['study'] / self.data['test_corpus'],
+                                 "log_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_log.txt'),
+                                 "results_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_results.txt'),
+                                 "resources_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_resources.txt'),
+                                 "numeration": self.folders['study'] / self.data['numeration'],
+                                 "numeration_output": self.folders['study'] / (self.data['test_corpus'][:-4] + '_N.txt'),
+                                 "redundancy_rules": self.folders['lexicon'] / self.data['redundancy_rules'],
+                                 "error_report_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_error_reports.txt')
+                                 }
+
 
     def load_settings_with_user_input(self):
         filename = filedialog.askopenfilename(title='Load  study', defaultextension='.txt', initialdir='.')
@@ -77,22 +101,6 @@ class Settings:
         PhraseStructure.phase_heads = self.data['UG_parameter_phase_heads']
         PhraseStructure.phase_heads_exclude = self.data['UG_parameter_phase_heads_exclude']
         PhraseStructure.spellout_heads = self.data['image_parameter_spellout_complex_heads']
-
-    def set_folders(self):
-        self.folders['study'] = Path(self.data.get('study_folder', 'language data working directory'))
-        self.folders['test_corpus'] = Path(self.data.get('test_corpus_folder', 'language data working directory'))
-        self.folders['lexicon'] = Path(self.data.get('lexicon_folder', 'language data working directory/lexicons'))
-
-    def set_external_resources(self):
-        self.external_sources = {"test_corpus_file_name": self.folders['test_corpus'] / self.data['test_corpus'],
-                                 "log_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_log.txt'),
-                                 "results_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_results.txt'),
-                                 "resources_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_resources.txt'),
-                                 "numeration": self.folders['study'] / self.data['numeration'],
-                                 "numeration_output": self.folders['study'] / (self.data['test_corpus'][:-4] + '_N.txt'),
-                                 "redundancy_rules": self.folders['lexicon'] / self.data['redundancy_rules'],
-                                 "error_report_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_error_reports.txt')
-                                 }
 
     def get(self):
         return self.data

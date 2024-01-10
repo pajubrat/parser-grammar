@@ -512,7 +512,7 @@ class PhraseStructure:
         probe.features = PhraseStructure.speaker_model.lexicon.apply_redundancy_rules(probe.features)
 
     def project_phonologically_null_head(self):
-        probe = self.sister().Merge(PhraseStructure.speaker_model.lexicon.PhraseStructure(), 'left').left
+        probe = self.sister().Merge_inside(PhraseStructure(), 'left').left
         probe.features |= probe.add_scope_information()
         return probe
 

@@ -1,6 +1,7 @@
 from local_file_system import LocalFileSystem
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import ctypes
 from support import is_comment
 from settings import Settings
@@ -25,7 +26,7 @@ class Application(tk.Tk):
 
         self.local_file_system = LocalFileSystem()
         self.settings = Settings(self.local_file_system)
-        self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment()
+        self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
         self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
 
         # Set up widgets for the main window
@@ -46,11 +47,22 @@ class Application(tk.Tk):
         self.config(menu=main_menu)
 
         # Callbacks
-        self.bind('<<Analyze>>', self._analyze)
+        self.bind('<<Analyze>>', self.analyze)
         self.bind('<<RunStudy>>', self.run_study)
         self.bind('<<TheorySettings>>', self.change_theory_settings)
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
+        self.bind('<<CreateNewFromFile>>', self.create_new_from_corpus_file)
+
+    def create_new_from_corpus_file(self, *_):
+        self.local_file_system.create_new_from_corpus_file(self.settings)
+        self.create_new_study()
+        self.reset_widgets()
+        self.setup_widgets()
+
+    def create_new_study(self):
+        self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
+        self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
 
     def setup_widgets(self):
 
@@ -90,28 +102,31 @@ class Application(tk.Tk):
         self.results_frame.destroy()
         self.status_bar.destroy()
 
-    def set_up_experiment(self):
-        lg = LanguageGuesser(self.settings)
+    def set_up_experiment(self, settings):
+        lg = LanguageGuesser(settings)
         speaker_model = {}
         for language in lg.languages:
-            speaker_model[language] = SpeakerModel(self.settings, self.local_file_system, language)
+            speaker_model[language] = SpeakerModel(settings, self.local_file_system, language)
             speaker_model[language].initialize()
         sentences_to_parse = [(index, sentence, group, part_of_conversation, grammatical)
                               for (index, sentence, group, part_of_conversation, grammatical)
-                              in self.local_file_system.read_test_corpus(self.settings)]
+                              in self.local_file_system.read_test_corpus(settings)]
         return speaker_model, sentences_to_parse, lg
 
-    def _analyze(self, *_):
+    def analyze(self, *_):
         """Analyzes the input sentence selected from the dataset frame"""
+        self.local_file_system.initialize_output_files(self.settings)
         S = self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['sentence']
         language = self.language_guesser.guess_language(S)
         self.speaker_models[language].parse_sentence(self.dataset_frame.selected_data_item, S)
         print(f'{self.speaker_models[language].results}')
         if self.speaker_models[language].results.syntax_semantics:
+            self.local_file_system.save_output(self.speaker_models[language], 1, S, '0', True)
             self.results_frame.fill_with_data(self.speaker_models[language])
             PhraseStructureGraphics(self, self.speaker_models[language])
         else:
-            print('\nInput sentence is ungrammatical.')
+            messagebox.showinfo(message=f'{" ".join(S)} is ungrammatical')
+            self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
 
     def run_study(self, *_):
         self.local_file_system.initialize_output_files(self.settings)
@@ -126,9 +141,9 @@ class Application(tk.Tk):
                     self.speaker_models[language].narrow_semantics.global_cognition.end_conversation()
             else:
                 self.local_file_system.write_comment_line(sentence)
+
         self.local_file_system.close_all_output_files()
         self.local_file_system.report_errors_to_console(self.settings)
-        print('\n\n(You can use the script via graphical user interface by \"python lpparse -app\")')
 
     def quit(self):
         pass
