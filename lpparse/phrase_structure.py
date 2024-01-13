@@ -17,6 +17,7 @@ class PhraseStructure:
     phase_heads = {'ph', 'φ'}   # Phase heads set for all calculations
     resources = {"Merge-1": {"ms": 0, "n": 0}}
     chain_index = 0
+    node_identity = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
                                     'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.License_EHM(),
@@ -81,6 +82,7 @@ class PhraseStructure:
         self.adjunct = False
         self.find_me_elsewhere = False
         self.identity = ''
+        self.node_identity = self.create_node_identity()
         self.internal = False
         self.rebaptized = False
         self.stop = False
@@ -91,6 +93,7 @@ class PhraseStructure:
             left_constituent.adjunct = False
 
     # Phrase structure geometry --------------------------------
+
 
     def complex(self):
         return self.right and self.left
@@ -1074,6 +1077,12 @@ class PhraseStructure:
 
     def copy(self):
         ps_ = PhraseStructure()
+        ps_.active_in_syntactic_working_memory = self.active_in_syntactic_working_memory
+        ps_.adjunct = self.adjunct
+        ps_.internal = self.internal
+        ps_.find_me_elsewhere = self.find_me_elsewhere
+        ps_.identity = self.identity
+        ps_.node_identity = self.node_identity
         if self.left:
             ps_.left = self.left.copy()
             ps_.left.mother = ps_
@@ -1082,11 +1091,6 @@ class PhraseStructure:
             ps_.right.mother = ps_
         if self.features:
             ps_.features = self.features.copy()
-        ps_.active_in_syntactic_working_memory = self.active_in_syntactic_working_memory
-        ps_.adjunct = self.adjunct
-        ps_.internal = self.internal
-        ps_.find_me_elsewhere = self.find_me_elsewhere
-        ps_.identity = self.identity
         return ps_
 
     def secure_copy(self):
@@ -1198,12 +1202,13 @@ class PhraseStructure:
             if h.right:
                 silence_phonologically(h.right)
 
-        if self.identity == '':
-            self.identity = self.baptize_chain()
+        self.identity = self.baptize_chain()
         self_copy = self.copy()                 # Copy the constituent
+        self_copy.node_identity = self.create_node_identity()
         self_copy.find_me_elsewhere = False     # Copy is marked for being where it is
         silence_phonologically(self_copy)       # Silence the new constituent phonologically
         self.find_me_elsewhere = True           # Mark that the constituent has been copied
+        self.features.add('CHAIN:'+str(self_copy.node_identity))    # Bookkeeping
         return self_copy
 
     def for_LF_interface(self, features):
@@ -1263,10 +1268,6 @@ class PhraseStructure:
             chain_index_str = ':' + self.identity
         else:
             chain_index_str = ''
-
-        # Chain notation
-        if self.find_me_elsewhere:
-            chain_index_str = chain_index_str + ''
 
         # Phonologically null complex constituents
         if self.features and 'null' in self.features and self.complex():
@@ -1522,3 +1523,15 @@ class PhraseStructure:
     def License_EHM(self):
         return 'ε' in self.features
 
+    def create_node_identity(self):
+        PhraseStructure.node_identity += 1
+        return PhraseStructure.node_identity
+
+    def find_node_with_identity(self, identity):
+        if self.node_identity == identity:
+            return self
+        if self.complex():
+            node = self.left.find_node_with_identity(identity)
+            if node:
+                return node
+            return self.right.find_node_with_identity(identity)

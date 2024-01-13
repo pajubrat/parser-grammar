@@ -121,7 +121,6 @@ class Results():
             log('\n\t\tOntology:')
             log(f'\t\t{self.format_ontology_all(self.speaker_model)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
-        ps.tidy_names(1)
         log('\n\tChecking if the sentence is ambiguous...\n')
         self.first_solution_found = True
 

@@ -41,6 +41,8 @@ class SpeakerModel:
         # Bookkeeping and logging
         self.sentence = lst
         log_new_sentence(self, index, lst)
+        PhraseStructure.chain_index = 0
+        PhraseStructure.node_identity = 0
 
         # Initialize the components (mostly bookkeeping and logging)
         self.initialize()

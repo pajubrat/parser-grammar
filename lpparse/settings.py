@@ -7,12 +7,14 @@ from pathlib import Path
 from tkinter import filedialog, messagebox
 
 class Settings:
-    def __init__(self, local_file_system):
+    def __init__(self, local_file_system, app_settings_dict=None):
+        self.app_settings = {}  # Store the application settings (default values)
         self.local_file_system = local_file_system
         self.data = {}
         self.folders = {}
         self.external_sources = {}
         self.encoding = 'utf8'
+        self.app_settings = {}
         self.default_study_parameters = {'author': 'Unknown author',
                                          'year': 'Unknown year',
                                          'date': 'Unknown date',
@@ -50,17 +52,17 @@ class Settings:
                                          'negative_adverbial_test': '-100',
                                          'positive_adverbial_test': '100'
                                          }
-        self.local_file_system.load_settings(self)
-        self.initialize_settings()
-        self.create_settings_for_file_system()
 
-    def initialize_settings(self):
+        self.app_settings = app_settings_dict
+        self.local_file_system.load_settings(self, app_settings_dict['open_with'])
         self.process_settings()
+        self.create_settings_for_file_system()
 
     def create_settings_for_file_system(self, corpus_filename=None):
         if corpus_filename:
             self.data['test_corpus'] = os.path.basename(corpus_filename)
             self.data['study_folder'] = os.path.dirname(corpus_filename)
+            self.app_settings['open_with'] = f"{self.data['study_folder']}/{self.data['test_corpus'][:-11]}.lpg"
         self.set_folders()
         self.set_external_resources()
 

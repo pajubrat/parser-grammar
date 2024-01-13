@@ -3,8 +3,8 @@ author= Anon
 year= 2024
 date= January
 study_id= 19
-study_folder=			language data working directory/study-19-morphology
-test_corpus=			Morphology_corpus.txt
+study_folder=			language data working directory/study-17-Finnish-syntax
+test_corpus=			Finnish_syntax_corpus.txt
 numeration=				Morphology_numeration.txt
 
 # GENERAL SIMULATION PARAMETERS
@@ -29,12 +29,12 @@ image_parameter_spellout = False
 image_parameter_show_glosses = True
 image_parameter_mark_adjuncts = False
 image_parameter_spellout_complex_heads = False
-image_parameter_show_head_chains = True
+image_parameter_show_head_chains = False
 image_parameter_remove_trivial_head_chains = True
 image_parameter_show_phrasal_chains = True
 image_parameter_show_Agree = False
 image_parameter_show_complex_heads = True
-image_parameter_show_features = Fin/neg
+image_parameter_show_features = Fin/neg;OP:Q
 image_parameter_DP_hypothesis = True
 
 # UG COMPONENTS

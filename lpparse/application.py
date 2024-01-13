@@ -15,7 +15,7 @@ from GUI.gui_menus import MainMenu
 
 class Application(tk.Tk):
     """Defines the main application window"""
-    def __init__(self, *args, **kwargs):
+    def __init__(self, arg_lst, *args, **kwargs):
         super().__init__(*args, **kwargs)
         ctypes.windll.shcore.SetProcessDpiAwareness(1)
         self.title('LPG LAB')
@@ -25,7 +25,7 @@ class Application(tk.Tk):
         self.style.configure("mystyle.Treeview.Heading", font=('Calibri', 16))
 
         self.local_file_system = LocalFileSystem()
-        self.settings = Settings(self.local_file_system)
+        self.settings = Settings(self.local_file_system, self.local_file_system.read_app_settings(arg_lst))
         self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
         self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
 
@@ -47,12 +47,17 @@ class Application(tk.Tk):
         self.config(menu=main_menu)
 
         # Callbacks
-        self.bind('<<Analyze>>', self.analyze)
+        self.bind('<<Analyze>>', self.analyze())    # This causes the first item to be analyzed automatically upon launch
         self.bind('<<RunStudy>>', self.run_study)
         self.bind('<<TheorySettings>>', self.change_theory_settings)
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
         self.bind('<<CreateNewFromFile>>', self.create_new_from_corpus_file)
+        self.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+    def on_closing(self):
+        self.local_file_system.save_app_settings(self.settings)
+        self.destroy()
 
     def create_new_from_corpus_file(self, *_):
         self.local_file_system.create_new_from_corpus_file(self.settings)

@@ -95,7 +95,39 @@ class LocalFileSystem:
             self.resources_file.write(f'{key},')
         self.resources_file.write("Execution time (ms)\t\n")
 
-    def load_settings(self, settings, filename='config_study.txt'):
+    def save_app_settings(self, settings):
+        """Save the app settings for the next session before closing the application"""
+        # settings.app_settings['open_with'] = settings.folders['study'] / 'config_study.lpg'     # store the location of current dataset
+        try:
+            with open('$app_settings.txt', 'w', encoding=self.encoding) as output_file:
+                pass
+                for key, value in settings.app_settings.items():
+                    output_file.write(f'{key}={value}')
+        except IOError:
+            pass
+
+    def read_app_settings(self, arg_lst):
+        """Loads application settings which provides the default behavior"""
+        app_settings_dict = {}
+        try:
+            with open('$app_settings.txt', encoding=self.encoding) as app_settings_file:
+                readlines = app_settings_file.readlines()
+                for line in readlines:
+                    key, value = line.split('=')
+                    key = key.strip()
+                    value = value.strip()
+                    app_settings_dict[key] = value
+        except IOError:
+            app_settings_dict['open_with'] = '$config_study.lpg'     # Default configuration
+
+        for arg in arg_lst:
+            if arg.endswith('.lpg'):
+                app_settings_dict['open_with'] = arg
+
+        self.app_settings = app_settings_dict
+        return app_settings_dict
+
+    def load_settings(self, settings, filename='$config_study.lpg'):
         try:
             with open(filename, encoding=self.encoding) as config_file:
                 # Read file into dict
