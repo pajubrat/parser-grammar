@@ -26,10 +26,14 @@ class MainMenu(tk.Menu):
         self.add_cascade(label='File', menu=file_menu)
 
         # Analysis menu
+        analysis_menu = tk.Menu(self, tearoff=False,font=menu_font)
+        analysis_menu.add_command(label='Analyze expression', command=self._event('<<Analyze>>'))
+        self.add_cascade(label='Analyse', menu=analysis_menu)
+
+        # Study menu
         study_menu = tk.Menu(self, tearoff=False, font=menu_font)
         study_menu.add_command(label='New from corpus...', command=self._event('<<CreateNewFromFile>>'))
         study_menu.add_command(label='Run complete study', command=self._event('<<RunStudy>>'))
-        study_menu.add_command(label='Analyze expression', command=self._event('<<Analyze>>'))
         self.add_cascade(label='Study', menu=study_menu)
 
         # Examine_results_menu

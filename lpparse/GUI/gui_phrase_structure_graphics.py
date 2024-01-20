@@ -246,8 +246,8 @@ class PhraseStructureCanvas(tk.Canvas):
             self.moveto(self.cursor, x1 - 50, y1 - 50)
 
         # Create the two lines for left and right constituents.
-        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 2)), (X2, Y2 - int(self.parent.s['tsize'] / 2)), width=2, fill='black')
-        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 2)), (X3, Y3 - int(self.parent.s['tsize'] / 2)), width=2, fill='black')
+        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
+        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
 
         # Recursive calls
         self.project_into_canvas(gps.left, spx, spy, grid)
@@ -364,7 +364,7 @@ class PhraseStructureCanvas(tk.Canvas):
         if X1 == X3:
             Y3 = Y3 - self.parent.s['tsize']
         Y2 = Y3 + target.Y_offset + self.parent.s['grid'] * int(curvature) * 1.2
-        if abs(Y1 - Y3) < self.parent.s['grid'] * 2:
+        if style == 'phrasal_chain' and abs(Y1 - Y3) < self.parent.s['grid'] * 2:
             Y2 = Y2 * 1.2
         ID = self.create_line((X1, Y1 + source.Y_offset), (X2, Y2), (X3, Y3 + target.Y_offset),
                               dash=self.parent.line_style[style]['dash'],
@@ -372,8 +372,7 @@ class PhraseStructureCanvas(tk.Canvas):
                               smooth=True,
                               tag=style,
                               fill=self.parent.line_style[style]['fill'])
-        #self.tag_bind(ID, '<Enter>', self._show_info)
-        #self.tag_bind(ID, '<Leave>', self._hide_info)
+
 
 class GPhraseStructure(PhraseStructure):
     """Phrase Structure class that has additional properties related to tree drawing"""
@@ -511,7 +510,7 @@ class GPhraseStructure(PhraseStructure):
 
         itext += f'{self.x}, {self.y}\n\n'
         if self.complex():
-            for b in self.left.right_boundary():
+            for b in self.left.boundary_points():
                 itext += str(b) + '\n'
             itext += '----\n'
             for j in self.right.boundary_points():

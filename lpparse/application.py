@@ -11,6 +11,7 @@ from GUI.gui_views import DatasetView, LexiconView, SpeakerModelView
 from GUI.gui_phrase_structure_graphics import PhraseStructureGraphics
 from GUI.gui_views import ResultsView
 from GUI.gui_menus import MainMenu
+from GUI.gui_textFrames import LogText
 
 
 class Application(tk.Tk):
@@ -47,13 +48,15 @@ class Application(tk.Tk):
         self.config(menu=main_menu)
 
         # Callbacks
-        self.bind('<<Analyze>>', self.analyze())    # This causes the first item to be analyzed automatically upon launch
+        self.bind('<<Analyze>>', self.analyze)    # This causes the first item to be analyzed automatically upon launch
         self.bind('<<RunStudy>>', self.run_study)
         self.bind('<<TheorySettings>>', self.change_theory_settings)
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
         self.bind('<<CreateNewFromFile>>', self.create_new_from_corpus_file)
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+        self.analyze()  # Analyze the first sentence automatically
 
     def on_closing(self):
         self.local_file_system.save_app_settings(self.settings)
@@ -128,9 +131,10 @@ class Application(tk.Tk):
         if self.speaker_models[language].results.syntax_semantics:
             self.local_file_system.save_output(self.speaker_models[language], 1, S, '0', True)
             self.results_frame.fill_with_data(self.speaker_models[language])
-            PhraseStructureGraphics(self, self.speaker_models[language])
+            PhraseStructureGraphics(self, self.speaker_models[language])                    # Show phrase structure image
+            LogText(self, self.settings.external_sources["log_file_name"], 'Derivation')    # Show derivation
         else:
-            messagebox.showinfo(message=f'{" ".join(S)} is ungrammatical')
+            LogText(self, self.settings.external_sources["log_file_name"], '**The input sentence was ungrammatical. See the derivational log below**')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
 
     def run_study(self, *_):

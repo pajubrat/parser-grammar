@@ -51,7 +51,7 @@ class OperatorVariableModule:
         else:
             log(f'\n\t\t\t{binding["Head"].illustrate()} with {operator_feature} is not bound by an operator. ')
             if 'SCOPE' in binding["Head"].features:
-                log(f'Interpretation fails and the derivation crashes. ')
+                log(f'@@ Interpretation fails and the derivation crashes. ')
                 self.interpretation_failed = True
             else:
                 self.bindings.append(f'Operator {binding["Head"].illustrate()}[{operator_feature}] bound by speaker.')

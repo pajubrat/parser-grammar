@@ -63,7 +63,7 @@ class LexicalInterface:
             lex.morphological_chunk = phonological_entry
             lex.internal = True
         else:
-            log(f' = UNRECOGNIZED WORD (processing will terminate)')
+            log(f' = UNRECOGNIZED WORD (processing will terminate) @@')
             self.speaker_model.exit = True
         return lex
 
