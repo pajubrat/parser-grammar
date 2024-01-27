@@ -93,7 +93,8 @@ class GraphicsMenu(tk.Menu):
         file_menu.config(font=menu_font)
         file_menu.add_command(label='New...', command=self.todo)
         file_menu.add_command(label='Load...', command=self.todo)
-        file_menu.add_command(label='Save', command=self.todo)
+        file_menu.add_command(label='Save As Image', command=self._event('<<SaveImage>>'))
+        file_menu.add_command(label='Print', command=self.print)
         file_menu.add_command(label='Preferences...', command=self.todo)
         file_menu.add_command(label='Quit', command=self.todo)
         self.add_cascade(label='File', menu=file_menu)
@@ -108,4 +109,7 @@ class GraphicsMenu(tk.Menu):
         self.add_cascade(label='Image source', menu=select_image)
 
     def todo(self):
+        pass
+
+    def print(self):
         pass

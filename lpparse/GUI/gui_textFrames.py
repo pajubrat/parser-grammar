@@ -16,12 +16,11 @@ class LogText(tk.Toplevel):
         tk.Label(self, text=filename, font=('Calibri', 15)).grid(row=1, column=0, sticky='E')
 
         # Window holding the text from the derivational log file
-        self.textWindow = tk.Text(lb, undo=False, spacing1=4, spacing2=2, spacing3=4, height=40, width=150, wrap='none', font=("Courier New", 12))
+        self.textWindow = tk.Text(lb, undo=False, spacing1=4, spacing2=2, spacing3=4, height=40, width=150, wrap='none', font=("Courier", 12), tabs=('1c', '2c', '3c', '4c'))
         self.GetTextFromFile(filename)
         self.textWindow.grid(row=0, column=0, sticky='NSEW')
         self.textWindow.configure(bg='white', fg='black')
         self.focus_set()
-        self.grab_set()
         self.wm_attributes("-topmost", True)
 
         # Mark errors
@@ -56,4 +55,4 @@ class LogText(tk.Toplevel):
             else:
                 break
 
-        self.textWindow.tag_configure('ERROR', background="#FFCCCC", foreground="black")
+        self.textWindow.tag_configure('ERROR', background="white", foreground="red")

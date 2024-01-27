@@ -4,7 +4,7 @@
 # =======================================================================================
 
 T/fin   :: T/fin LF:T
-v       :: v V PF:v LF:v -COMP:REFL/V PC:#X
+v       :: v V PF:v LF:v -COMP:REFL/V -COMP:IMPSS PC:#X
 v*		:: v V PF:-ed v- LF:pass -θ EF PC:#X#
 C/fin   :: C/fin PF:C LF:C
 C		:: C C/fin PF:C LF:C
@@ -12,7 +12,7 @@ T		:: T LF:T Fin EF
 T/prt 	:: T/prt LF:Prtc
 Fin		:: Fin LF:Fin ARG COMP:T +ΦLF,ΦPF 	
 a0		:: A PF:a LF:mod
-cau		:: v PF:Cau LF:cause
+cau		:: PF:Cau LF:cause
 φ		:: φ PF:φ LF:φ ARG Inf
 Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
 N		:: N PF:N LF:N COMP:0
@@ -45,13 +45,13 @@ P0			:: PF:-Ø LF:in P LANG:FI
 		
 		# Verbal
 		
-		TA				:: V CAU ε 		 	 							PF:-TA		LF:cause LANG:FI V/TR
-		ile,ele,skele	:: V FREQ ε										PF:-ile		LF:frequent LANG:FI -wCOMP:FREQ,AEVE,MOM2
-		U,UTU			:: V REFL ε										PF:-utu		LF:become LANG:FI -wCOMP:FREQ,V/INTR,AEVE V/INTR
-		AhtA			:: V MOM MOM1 ε									PF:-AhtA	LF:moderated LANG:FI !wCOMP:V,V/INTR -wCOMP:ε
-		Aise			:: V MOM MOM2 ε									PF:-Aise	LF:moderated LANG:FI !wCOMP:V,V/TR -wCOMP:ε
-		a				:: a-#v 															LANG:FI
-		a-				:: V EVNT ε										PF:-a		LF:event LANG:FI !wCOMP:N -wCOMP:ε,n,a
+		TA				:: V CAU ε 		 	PF:-TA		LF:cause LANG:FI V/TR
+		ile,ele,skele	:: V FREQ ε			PF:-ile		LF:frequent LANG:FI -wCOMP:FREQ,AEVE,MOM2
+		U,UTU			:: V REFL ε			PF:-utu		LF:become LANG:FI -wCOMP:FREQ,V/INTR,AEVE V/INTR
+		AhtA			:: V MOM MOM1 ε		PF:-AhtA	LF:moderated LANG:FI !wCOMP:V,V/INTR -wCOMP:ε
+		Aise			:: V MOM MOM2 ε		PF:-Aise	LF:moderated LANG:FI !wCOMP:V,V/TR -wCOMP:ε
+		a				:: a-#v 						LANG:FI
+		a-				:: V EVNT ε			PF:-a		LF:event LANG:FI !wCOMP:N -wCOMP:ε,n,a
 			
 		# Nominal
 		
@@ -84,12 +84,12 @@ P0			:: PF:-Ø LF:in P LANG:FI
 		mAAn,MA.ill/inf		:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	PC:#X LF:to SEM/desired_event !COMP:* -COMP:N PROBE:V LANG:FI adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf
 		# Includes also v, T
 		
-		impss		:: IMPSS	v V EF								PF:-TA 		PC:#X# LF:impss
+		impss		:: IMPSS	V												PF:-TA 		PC:#X# LF:impss COMP:V -COMP:IMPSS
 		impss1		:: Pass ARG PC:#X# PF:-TA LF:Pass EF !COMP:v 
 		
 		# nominal
 		
-			minen,mise	:: n ABS		EF			ARG 					PF:-minen	PC:#X LF:abstr	NOM 	!COMP:V					LANG:FI 
+			minen		:: n ABS		EF			ARG 					PF:-minen	PC:#X LF:abstr	NOM 	!COMP:V					LANG:FI 
 			UUs,UUde	:: n QUA		EF			ARG						PF:-(U)Us	PC:#X LF:abstr	NOM 	!COMP:A					LANG:FI
 			tAr			:: n FEM		EF			ARG						PF:-tAr		PC:#X LF:fem			!COMP:N -COMP:AEVE		LANG:FI	
 			nen,se		:: n DIM		EF			ARG						PF:-nen		PC:#X LF:dim			!COMP:N					LANG:FI 
@@ -98,7 +98,8 @@ P0			:: PF:-Ø LF:in P LANG:FI
 			ri			:: n PER		EF			ARG	 					PF:-ri		PC:#X LF:person			!COMP:N -COMP:AEVE		LANG:FI 
 			jA			:: n ACT		EF			ARG	 					PF:-jA		PC:#X LF:doer			!COMP:V 				LANG:FI 
 			in			:: n INST		EF			ARG	 					PF:-in		PC:#X LF:instr			!COMP:V					LANG:FI 
-
+			mise		:: n ABS		EF			ARG						PF:-minen	PC:#X# LF:abstr			!COMP:V					LANG:FI
+			
 		# Adjectival
 		
 			inen	:: a QLT											PF:-inen	PC:#X LF:quality 		-COMP:V,v,AEVE,FEM,ABS,QLT LANG:FI

@@ -42,7 +42,7 @@ class LF:
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(ps):
                         if logging:
-                            log(f'\n\t\t{ps} failed {test_name} @@')
+                            log(f'\n\t\t@@ {ps} failed {test_name}')
                             if self.failed_feature:
                                 log(f'for [{self.failed_feature}]!')
                         self.error_report_for_external_callers = f'{ps} failed {test_name}.'  # For plausibility metrics calculations and output

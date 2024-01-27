@@ -9,7 +9,7 @@ T/fin 	:: ARG EF +ΦLF,ΦPF T Fin !COMP:* -COMP:a -SPEC:C SPEC:T/prt COMP:v COMP
 T/prt 	:: ARG Fin T EF 		!COMP:* COMP:v COMP:V COMP:T/prt -COMP:NEG !PROBE:V -SPEC:C/fin -SPEC:T/fin -SPEC:FORCE -SPEC:V
 T 		:: ARG 					COMP:* COMP:v COMP:V COMP:Pass -COMP:φ -COMP:D -COMP:NEG !PROBE:V -COMP:Neg/fin -SPEC:T/fin -SPEC:FORCE -SPEC:V -SPEC:v -SPEC:NEG
 Neg/fin :: ARG EF Fin NEG  +ΦLF,ΦPF	!ΦPF COMP:T/prt COMP:T -COMP:T/fin -SPEC:T -SPEC:T/fin %SPEC:Inf SEM:internal
-v   	:: θ ARG -ΦPF ASP 		!COMP:* COMP:V -SPEC:v -SPEC:T/fin !COMP:V SPEC:φ -SPEC:N
+v   	:: θ ARG -ΦPF ASP 		!COMP:* -COMP:V/INTR COMP:V -SPEC:v -SPEC:T/fin !COMP:V SPEC:φ -SPEC:N
 D   	:: φ -ARG 				!COMP:* -COMP:D -COMP:v -COMP:V -COMP:P -COMP:T/fin -COMP:Neg/fin -COMP:T -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:n COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 D/rel	:: φ D -ARG OP OP:REL 	 adjoinable	COMP:* -COMP:C/fin -COMP:φ -SPEC:MA.ade/inf -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 N   	:: θ 					-COMP:EXPL -COMP:VA/inf -COMP:T/fin -COMP:MA/A -COMP:Neg -COMP:T/prt COMP:D/rel COMP:√ COMP:P -COMP:A COMP:C -COMP:AUX -SPEC:FORCE SPEC:A COMP:R COMP:R/D SPEC:φ -SPEC:uWH -SPEC:R -SPEC:V -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:Adv -COMP:WH

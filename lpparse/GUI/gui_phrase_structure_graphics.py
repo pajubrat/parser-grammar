@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from phrase_structure import PhraseStructure
 from GUI.gui_menus import GraphicsMenu
 
@@ -12,6 +13,8 @@ class PhraseStructureGraphics(tk.Toplevel):
         super().__init__(root)
         self.title("Phrase Structure Graphics")
         self.geometry(('1800x1000+1800+500'))
+
+        self.root = root
 
         # Features shown in figures on the basis of settings
         GPhraseStructure.draw_features = root.settings.get()['image_parameter_show_features']
@@ -32,11 +35,24 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.graphics_menu = GraphicsMenu(self)
         self.config(menu=self.graphics_menu)
 
+        # Buttons
+        pad = 10
+        width = 12
+        height = 1
+        ribbon = tk.Frame(self)
+        ribbon.grid(row=0, column=0, sticky='W')
+        nextButton = tk.Button(ribbon, command=self.next_image, text='Next >', width=width, height=height, font=('Calibri', 15), bg='#CCCCCC', fg='white')
+        nextButton.grid(row=0, column=2, sticky=tk.E, padx=pad, pady=pad)
+        previousButton = tk.Button(ribbon, command=self.previous_image, text='< Previous', width=width, height=height, font=('Calibri', 15), bg='#CCCCCC', fg='white')
+        previousButton.grid(row=0, column=1, sticky=tk.E, padx=pad, pady=pad)
+        firstButton = tk.Button(ribbon, command=self.first_image, text='<< First', width=width, height=height, font=('Calibri', 15), bg='#CCCCCC', fg='white')
+        firstButton.grid(row=0, column=0, sticky=tk.E, padx=pad, pady=pad)
+
         # Make host window and canvas visible
         self.focus()
         self.grid()
         self.canvas = PhraseStructureCanvas(self)
-        self.canvas.pack()
+        self.canvas.grid(row=1, column=0)
         self.gps = None     # Current phrase structure e on screen
         self.speaker_model = speaker_model
         self.bind('<<LF>>', self.LF)
@@ -44,9 +60,14 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<NextImage>>', self.next_image)
         self.bind('<<PreviousImage>>', self.previous_image)
         self.bind('<<FirstImage>>', self.first_image)
+        self.bind('<<SaveImage>>', self.save_image)
 
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def save_image(self, *_):
+        filename = self.root.settings.data['study_folder'] + '/phrase_structure_image.ps'
+        self.canvas.postscript(file=filename, colormode='color')
 
     def draw_phrase_structure(self):
         self.prepare_phrase_structure()
@@ -507,14 +528,6 @@ class GPhraseStructure(PhraseStructure):
     def itext(self):
         """Produces information concerning constituents when pointed at the screen by mouse"""
         itext = self.label() + '\n\n'
-
-        itext += f'{self.x}, {self.y}\n\n'
-        if self.complex():
-            for b in self.left.boundary_points():
-                itext += str(b) + '\n'
-            itext += '----\n'
-            for j in self.right.boundary_points():
-                itext += str(j) + '\n'
 
         if self.complex():
 
