@@ -408,8 +408,8 @@ class GPhraseStructure(PhraseStructure):
         self.adjunct = source.adjunct
         self.identity = source.identity
         self.find_me_elsewhere = source.find_me_elsewhere
-        if source.left():
-            self.const = (GPhraseStructure(source.left()), GPhraseStructure(source.right()))
+        if source.complex():
+            self.const = [GPhraseStructure(source.left()), GPhraseStructure(source.right())]
             self.left().mother = self
             self.right().mother = self
 
@@ -426,7 +426,7 @@ class GPhraseStructure(PhraseStructure):
         self.node_identity = source.node_identity
 
     def find_head_chain(self):
-        if self.primitive() and self.is_left() and self.has_affix() and self.right().find_me_elsewhere and self.mother:
+        if self.primitive() and self.is_left() and self.affix() and self.right().find_me_elsewhere and self.mother:
             return self.mother.right().find_constituent_with_index(self.right.index())
 
     def find_Agree(self):

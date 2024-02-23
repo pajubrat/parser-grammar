@@ -97,7 +97,7 @@ class PlausibilityMetrics:
             if site.complex():
                 solutions.append((site, True, self.generate_address_label()))
             else:
-                if site.has_affix():
+                if site.affix():
                     if {'φ', 'D', 'P', 'A', 'D/rel', 'EXPL'} & site.features:
                         solutions.append((site, True, self.generate_address_label()))
                         solutions.append((site, False, self.generate_address_label()))
