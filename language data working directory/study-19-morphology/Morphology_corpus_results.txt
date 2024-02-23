@@ -1,0 +1,1074 @@
+@  {}
+@  2024-02-23 09:24:53.851007
+@  Test sentences language data working directory\study-19-Morphology\Morphology_corpus.txt.
+@  Logs language data working directory\study-19-Morphology\Morphology_corpus_log.txt.
+@ 
+
+
+& 0. Formal examples
+
+#1. 	['Z#Y#X']
+
+	[X [Y Z]]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: []
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:103ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:36ms(4), Merge:14ms(2), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:103.0ms(1), 
+		Merge-1:0ms(4),  
+
+	Ontology:
+None 
+#2. 	["Z'#Y'#X"]
+
+	[X (Z Y)°]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: []
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:103ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:36ms(4), Merge:14ms(2), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:103.0ms(1), 
+		Merge-1:0ms(5),  
+
+	Ontology:
+None 
+#3. 	["X''#Y'#Z'"]
+& 1. Stranding
+
+& 1.1 Verbal morphemes
+
+& T/fin + inflection
+
+#4. 	['Sirkku', 'T/fin#prs#[V]', 'laula-']
+	'Sirkku prs.3sg sing'
+
+#5. 	['Sirkku', 'laula-#T/fin#prs#[V]']
+
+	[<D Sirkku->:3 [-0 [<__>:3 laula-]]]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(sing): <D Sirkku->']
+		Agreement: ['Agree(-0, <D Sirkku->)']
+		Predicates: ['-0: φ/pro, indexed to <D Sirkku->', 'laula-: <D Sirkku->']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:281ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:126ms(14), Merge:21ms(3), Head Chain:14ms(2), 
+		Phrasal Chain:0ms(0), Feature Inheritance:7ms(1), Agree:14ms(2), 
+		Feature:0ms(0), Left Scrambling:7ms(1), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:140.5ms(1), 
+		Merge-1:0ms(15),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D Sirkku-]
+ 
+	'Sirkku.nom sing-prs.3sg'
+
+& Inflection
+
+#6. 	['Sirkku', '[V]', 'laula-#T/fin#prs']
+	'Sirkku.nom 3sg sing-prs'
+
+#7. 	['Sirkku', '[V]', 'T/fin#prs', 'laula-']
+	'Sirkku.nom 3sg prs sing'
+
+& Causative
+
+#8. 	['Sirkku', 'T/fin#prs#[V]', 'TA', 'laula-']
+	'Sirkku.nom prs.3sg cau sing'
+
+#9. 	['Sirkku', 'laula-#TA#T/fin#prs#[V]']
+
+	[<D Sirkku->:3 [-0 [<__>:3 (V -TA)°]]]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(cause): <D Sirkku->']
+		Agreement: ['Agree(-0, <D Sirkku->)']
+		Predicates: ['-0: φ/pro, indexed to <D Sirkku->', '(V -TA)°: <D Sirkku->']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:297ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:135ms(15), Merge:28ms(4), Head Chain:14ms(2), 
+		Phrasal Chain:0ms(0), Feature Inheritance:7ms(1), Agree:14ms(2), 
+		Feature:0ms(0), Left Scrambling:7ms(1), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:148.5ms(1), 
+		Merge-1:0ms(25),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D Sirkku-]
+ 
+	'Sirkku.nom sing-cau-prs-3sg'
+
+& Frequentive
+
+#10. 	['Sirkku', 'T/fin#prs#[V]', 'skele', 'laula-']
+	'Sirkku prs.3sg freq sing
+
+#11. 	['Sirkku', 'laula-#skele#T/fin#prs#[V]']
+
+	[<D Sirkku->:3 [-0 [<__>:3 (V -ile)°]]]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(frequent): <D Sirkku->']
+		Agreement: ['Agree(-0, <D Sirkku->)']
+		Predicates: ['-0: φ/pro, indexed to <D Sirkku->', '(V -ile)°: <D Sirkku->']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:297ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:135ms(15), Merge:28ms(4), Head Chain:14ms(2), 
+		Phrasal Chain:0ms(0), Feature Inheritance:7ms(1), Agree:14ms(2), 
+		Feature:0ms(0), Left Scrambling:7ms(1), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:148.5ms(1), 
+		Merge-1:0ms(35),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D Sirkku-]
+ 
+	'Sirkku.nom sing-freq-prs-3sg'
+
+& Reflexive
+
+#12. 	['sukka', 'T/fin#prs#[V]', 'U', 'kuiva-']
+	'sock.nom prs.3sg relf dry'
+
+#13. 	['sukka', 'kuiva-#U#T/fin#prs#[V]']
+
+	[<φ sukka>:3 [-0 [<__>:3 (V -utu)°]]]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(become): <φ sukka>']
+		Agreement: ['Agree(-0, <φ sukka>)']
+		Predicates: ['-0: <φ sukka>, indexed to <φ sukka>', '(V -utu)°: <φ sukka>']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:293ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:117ms(13), Merge:28ms(4), Head Chain:14ms(2), 
+		Phrasal Chain:0ms(0), Feature Inheritance:7ms(1), Agree:28ms(4), 
+		Feature:0ms(0), Left Scrambling:7ms(1), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:146.5ms(1), 
+		Merge-1:0ms(45),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [φ sukka]
+ 
+	'sock dry-refl-prs-3sg'
+
+& small verb v
+
+#14. 	['Sirkku', 'T/fin#prs#[V]', 'v', 'kuiva-', 'sukkaa']
+	'Sirkku.nom prs.3sg v dry sock.par'
+
+#15. 	['Sirkku', 'kuiva-#v#T/fin#prs#[V]', 'sukkaa']
+
+	[<D Sirkku->:11 [-0 [<__>:11 [v [kuiva- [φ sukka]]]]]]
+
+	Semantics:
+
+		Thematic roles: ['Causer/Agent of v°(v): <D Sirkku->', 'Patient of V°(dry): [φ sukka]']
+		Agreement: ['Agree(-0, <D Sirkku->)', 'Agree(v, φ)', 'Agree(kuiva-, φ)']
+		Predicates: ['-0: φ/pro, indexed to <D Sirkku->', 'v: <D Sirkku->, indexed to [φ sukka]', 'kuiva-: <D Sirkku->, indexed to [φ sukka]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:525ms(1), Garden Paths:0ms(0), Sensory Processing:138ms(3), 
+		Lexical Retrieval:198ms(22), Merge:42ms(6), Head Chain:35ms(5), 
+		Phrasal Chain:0ms(0), Feature Inheritance:21ms(3), Agree:70ms(10), 
+		Feature:0ms(0), Left Scrambling:21ms(3), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:175.0ms(1), 
+		Merge-1:0ms(103),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D Sirkku-]
+		Object 4 in GLOBAL: [φ sukka]
+ 
+	'Sirkku.nom dry-prs-3sg sock.par'
+
+& A-infinitive
+
+#16. 	['Sirkku', 'haluaa', '(t)A', 'laula-']
+	'Sirkku.nom want.prs.3sg A/inf sing'
+
+#17. 	['Sirkku', 'haluaa', 'laula-#(t)A']
+
+	[<D Sirkku->:11 [-0 [<__>:11 [v [halua- [-tA laula-]]]]]]
+
+	Semantics:
+
+		Thematic roles: ['Causer/Agent of v°(v): <D Sirkku->', 'Patient of V°(want): A/infP', 'Agent of V°(sing): pro']
+		Agreement: ['Agree(-0, <D Sirkku->)']
+		Predicates: ['-0: φ/pro, indexed to <D Sirkku->', 'v: <D Sirkku->', 'halua-: <D Sirkku->', 'laula-: <D Sirkku->']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:496ms(1), Garden Paths:0ms(0), Sensory Processing:138ms(3), 
+		Lexical Retrieval:162ms(18), Merge:42ms(6), Head Chain:35ms(5), 
+		Phrasal Chain:0ms(0), Feature Inheritance:28ms(4), Agree:70ms(10), 
+		Feature:0ms(0), Left Scrambling:21ms(3), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:165.33333333333334ms(1), 
+		Merge-1:0ms(163),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D Sirkku-]
+ 
+	'Sirkku.nom want.prs.3sg sing-a/inf'
+
+& 1.2 Nominal and adjectival morphemes
+
+& tAr
+
+#18. 	['nenä-#tAr']
+
+	[-tAr nenä-]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: []
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:94ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:7ms(1), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:94.0ms(1), 
+		Merge-1:0ms(164),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [-tAr nenä-]
+ 
+	'nose-fem'
+
+#19. 	['tAr', 'nenä-']
+	'fem nose'
+
+& inen
+
+#20. 	['nenä-#inen']
+
+	[-inen nenä-]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: []
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:87ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:87.0ms(1), 
+		Merge-1:0ms(165),  
+
+	Ontology:
+None 
+	'nose-A'
+
+#21. 	['inen', 'nenä-']
+	'A nose'
+
+& mAinen
+
+#22. 	['nenä-#mAinen']
+
+	[mAinen nenä-]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: ["mAinen: generic 'one'"]
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:94ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:7ms(1), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:94.0ms(1), 
+		Merge-1:0ms(166),  
+
+	Ontology:
+
+ 
+	'nose-A'
+
+#23. 	['mAinen', 'nenä-']
+	'A nose-'
+
+& tOn
+
+#24. 	['nenä-#tOn']
+
+	[-tOn nenä-]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: []
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:87ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:87.0ms(1), 
+		Merge-1:0ms(167),  
+
+	Ontology:
+None 
+	'nose-A/N'
+
+#25. 	['tOn', 'nenä-']
+	'A/N nose-'
+
+& jA
+
+#26. 	['istu-#jA']
+
+	[-jA istu-]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(sit): pro']
+		Agreement: []
+		Predicates: ['istu-: [-jA istu-]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:94ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:7ms(1), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:94.0ms(1), 
+		Merge-1:0ms(168),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [-jA istu-]
+ 
+	'sit-er'
+
+#27. 	['jA', 'istu-']
+	'er sit-'
+
+& mAtOn
+
+#28. 	['istu-#mAtOn']
+
+	[-mAtOn istu-]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(sit): pro']
+		Agreement: []
+		Predicates: ["istu-: generic 'one'"]
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:87ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:87.0ms(1), 
+		Merge-1:0ms(169),  
+
+	Ontology:
+
+ 
+	'sit-A'
+
+#29. 	['mAtOn', 'istu-']
+	'A sti-'
+
+& VA-participle
+
+#30. 	['istu-#vA']
+
+	[-vA istu-]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(sit): pro']
+		Agreement: []
+		Predicates: ["istu-: generic 'one'"]
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:87ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:87.0ms(1), 
+		Merge-1:0ms(170),  
+
+	Ontology:
+
+ 
+	'sit-VA'
+
+#31. 	['vA', 'istu-']
+	'VA/A sit-'
+
+& MA-participle
+
+#32. 	['luKe-#mA']
+
+	[-mA luke-]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: ["-mA: generic 'one'", "luke-: generic 'one'"]
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:94ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:7ms(1), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:94.0ms(1), 
+		Merge-1:0ms(171),  
+
+	Ontology:
+
+ 
+	'read-MA/A'
+
+#33. 	['mA', 'luke-']
+	'MA/A read-'
+
+& hkO
+
+#34. 	['iso-#hkO']
+
+	[-hkO iso]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: []
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:87ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:87.0ms(1), 
+		Merge-1:0ms(172),  
+
+	Ontology:
+None 
+	'big-A'
+
+#35. 	['hkO', 'iso-']
+	'A big-'
+
+& minen
+
+#36. 	['luKe-#minen']
+
+	[-minen luke-]
+
+	Semantics:
+
+		Thematic roles: []
+		Agreement: []
+		Predicates: ['luke-: [-minen luke-]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:94ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:27ms(3), Merge:7ms(1), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:7ms(1), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:94.0ms(1), 
+		Merge-1:0ms(173),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [-minen luke-]
+ 
+	'read-N'
+
+#37. 	['mise#[NOM]', 'luke-']
+	'N read-'
+
+& 2. Syntactic opaqueness
+
+& 2.1 Intransitives
+
+#38. 	['Sirkku', 'laula-#skele#T/fin#prs#[V]']
+
+	[<D Sirkku->:3 [-0 [<__>:3 (V -ile)°]]]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(frequent): <D Sirkku->']
+		Agreement: ['Agree(-0, <D Sirkku->)']
+		Predicates: ['-0: φ/pro, indexed to <D Sirkku->', '(V -ile)°: <D Sirkku->']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:297ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:135ms(15), Merge:28ms(4), Head Chain:14ms(2), 
+		Phrasal Chain:0ms(0), Feature Inheritance:7ms(1), Agree:14ms(2), 
+		Feature:0ms(0), Left Scrambling:7ms(1), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:148.5ms(1), 
+		Merge-1:0ms(183),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D Sirkku-]
+ 
+	'Sirkku.nom sing-freq-prs.3sg'
+
+#39. 	['sukka', 'kuiva-#TA#UTU#T/fin#prs#[V]']
+
+	[<φ sukka>:3 [-0 [<__>:3 ((V V) -utu)°]]]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(become): <φ sukka>']
+		Agreement: ['Agree(-0, <φ sukka>)']
+		Predicates: ['-0: <φ sukka>, indexed to <φ sukka>', '((V V) -utu)°: <φ sukka>']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:309ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:126ms(14), Merge:35ms(5), Head Chain:14ms(2), 
+		Phrasal Chain:0ms(0), Feature Inheritance:7ms(1), Agree:28ms(4), 
+		Feature:0ms(0), Left Scrambling:7ms(1), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:154.5ms(1), 
+		Merge-1:0ms(193),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [φ sukka]
+ 
+	'sock.nom dry-cau-refl-prs.3sg'
+
+#40. 	['Sirkku', 'kuiva-#TA#UTU#T/fin#prs#[V]', 'sukkaa']
+	'Sirkku.nom dry-cau-refl-prs.3sg sock.par'
+
+& 2.2 Transitives
+
+#41. 	['Sirkku', 'kuiva-#TA#v#T/fin#prs#[V]', 'sukkaa']
+
+	[<D Sirkku->:11 [-0 [<__>:11 [v [(V -TA)° [φ sukka]]]]]]
+
+	Semantics:
+
+		Thematic roles: ['Causer/Agent of v°(v): <D Sirkku->', 'Patient of V°(cause): [φ sukka]']
+		Agreement: ['Agree(-0, <D Sirkku->)', 'Agree(v, φ)', 'Agree((V -TA)°, φ)']
+		Predicates: ['-0: φ/pro, indexed to <D Sirkku->', 'v: <D Sirkku->, indexed to [φ sukka]', '(V -TA)°: <D Sirkku->, indexed to [φ sukka]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:541ms(1), Garden Paths:0ms(0), Sensory Processing:138ms(3), 
+		Lexical Retrieval:207ms(23), Merge:49ms(7), Head Chain:35ms(5), 
+		Phrasal Chain:0ms(0), Feature Inheritance:21ms(3), Agree:70ms(10), 
+		Feature:0ms(0), Left Scrambling:21ms(3), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:180.33333333333334ms(1), 
+		Merge-1:0ms(301),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D Sirkku-]
+		Object 4 in GLOBAL: [φ sukka]
+ 
+	'Sirkku.nom dry-cau-v-prs-3sg sock.par'
+
+#42. 	['Sirkku', 'pino-#TA#UTU#T/fin#prs#[V]']
+
+	[<D Sirkku->:3 [-0 [<__>:3 ((N V) -utu)°]]]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(become): <D Sirkku->']
+		Agreement: ['Agree(-0, <D Sirkku->)']
+		Predicates: ['-0: φ/pro, indexed to <D Sirkku->', '((N V) -utu)°: <D Sirkku->']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:313ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:144ms(16), Merge:35ms(5), Head Chain:14ms(2), 
+		Phrasal Chain:0ms(0), Feature Inheritance:7ms(1), Agree:14ms(2), 
+		Feature:0ms(0), Left Scrambling:7ms(1), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:156.5ms(1), 
+		Merge-1:0ms(311),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D Sirkku-]
+ 
+	'Sirkku stack-cau-refl-prs-3sg'
+
+#43. 	['kuiva-#TA#UTU#minen']
+
+	[-minen ((V V) -utu)°]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(become): pro']
+		Agreement: []
+		Predicates: ['((V V) -utu)°: [-minen ((V V) -utu)°]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:126ms(1), Garden Paths:0ms(0), Sensory Processing:46ms(1), 
+		Lexical Retrieval:45ms(5), Merge:21ms(3), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:7ms(1), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:126.0ms(1), 
+		Merge-1:0ms(312),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [-minen ((V V) -utu)°]
+ 
+	'dry-cau-refl-n'
+
+& 2.3 Participles
+
+& Transitive stem
+
+#44. 	['miehen', 'teke-#mA', 'kello-']
+
+	[[[φ mies]:7 [-mA [__:7 teke-]]] kello]
+
+	Semantics:
+
+		Thematic roles: ['? of N°(watch): aP']
+		Agreement: ['Agree(-mA, [φ mies])']
+		Predicates: ['-mA: φ/pro, indexed to [φ mies]', 'teke-: [φ mies]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:372ms(1), Garden Paths:0ms(0), Sensory Processing:138ms(3), 
+		Lexical Retrieval:108ms(12), Merge:28ms(4), Head Chain:28ms(4), 
+		Phrasal Chain:21ms(3), Feature Inheritance:0ms(0), Agree:49ms(7), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:124.0ms(1), 
+		Merge-1:0ms(339),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [φ mies]
+ 
+	'man.gen make-ma/prtc watch'
+
+#45. 	['miehen', 'tekemä', 'kello-']
+
+	[[[φ mies]:10 [-mA [__:10 [v teke-]]]] kello]
+
+	Semantics:
+
+		Thematic roles: ['Causer/Agent of v°(v): [φ mies]', '? of N°(watch): aP']
+		Agreement: ['Agree(-mA, [φ mies])']
+		Predicates: ['-mA: φ/pro, indexed to [φ mies]', 'v: [φ mies]', 'teke-: [φ mies]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:409ms(1), Garden Paths:0ms(0), Sensory Processing:138ms(3), 
+		Lexical Retrieval:117ms(13), Merge:35ms(5), Head Chain:28ms(4), 
+		Phrasal Chain:21ms(3), Feature Inheritance:0ms(0), Agree:70ms(10), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:136.33333333333334ms(1), 
+		Merge-1:0ms(378),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [φ mies]
+ 
+	'man.gen make-v-ma/prtc watch'
+
+#46. 	['kelloa', 'teke-#vA', 'mies-']
+
+	[[<φ kello>:7 [-vA [teke- __:7]]] mies]
+
+	Semantics:
+
+		Thematic roles: ['Patient of V°(make): [φ kello]', '? of N°(man): aP']
+		Agreement: ['Agree(teke-, φ)']
+		Predicates: ['teke-: <φ kello>, indexed to [φ kello]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:375ms(1), Garden Paths:0ms(0), Sensory Processing:138ms(3), 
+		Lexical Retrieval:90ms(10), Merge:28ms(4), Head Chain:28ms(4), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:70ms(10), 
+		Feature:0ms(0), Left Scrambling:21ms(3), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:125.0ms(1), 
+		Merge-1:0ms(425),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [φ kello]
+ 
+	'watch.par make-va/prtc man'
+
+#47. 	['kelloa', 'teke-#v#vA', 'mies-']
+
+	[[<φ kello>:10 [-vA [v [teke- __:10]]]] mies]
+
+	Semantics:
+
+		Thematic roles: ['Causer/Agent of v°(v): pro', 'Patient of V°(make): [φ kello]', '? of N°(man): aP']
+		Agreement: ['Agree(v, φ)', 'Agree(teke-, φ)']
+		Predicates: ['v: <φ kello>, indexed to [φ kello]', 'teke-: <φ kello>, indexed to [φ kello]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:412ms(1), Garden Paths:0ms(0), Sensory Processing:138ms(3), 
+		Lexical Retrieval:99ms(11), Merge:35ms(5), Head Chain:28ms(4), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:91ms(13), 
+		Feature:0ms(0), Left Scrambling:21ms(3), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:137.33333333333334ms(1), 
+		Merge-1:0ms(488),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [φ kello]
+ 
+	'watch.par make-v-va/prtc man'
+
+& Intransitive stem
+
+#48. 	['nukku-#vA', 'mies-']
+
+	[[-vA nukku-] mies]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(sleep): pro', '? of N°(man): aP']
+		Agreement: []
+		Predicates: ["nukku-: generic 'one'"]
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:149ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:36ms(4), Merge:14ms(2), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:74.5ms(1), 
+		Merge-1:0ms(494),  
+
+	Ontology:
+
+ 
+	'sleep-va/prtc man'
+
+#49. 	['kuiva-#TA#UTU#vA', 'mies-']
+
+	[[-vA ((V V) -utu)°] mies]
+
+	Semantics:
+
+		Thematic roles: ['Agent of V°(become): pro', '? of N°(man): aP']
+		Agreement: []
+		Predicates: ["((V V) -utu)°: generic 'one'"]
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:181ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:54ms(6), Merge:28ms(4), Head Chain:7ms(1), 
+		Phrasal Chain:0ms(0), Feature Inheritance:0ms(0), Agree:0ms(0), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:90.5ms(1), 
+		Merge-1:0ms(500),  
+
+	Ontology:
+
+ 
+	'dry-cau-refl-va/prtc man'
+
+#50. 	['teke-#mA', 'kello-']
+#51. 	['make-ma/prtc', 'watch']
+#52. 	['tekemä', 'kello']
+	a. [[-mA [v teke-]]:4 [φ [__:4 kello]]]
+
+	Semantics:
+
+		Thematic roles: ['Causer/Agent of v°(v): pro', '? of N°(watch): aP', 'Causer/Agent of v°(v): pro']
+		Agreement: ['Agree(v, φ)', 'Agree(teke-, φ)']
+		Predicates: ['-mA: [[-mA [v teke-]] [φ [[-mA [v teke-]] kello]]]', 'v: [[-mA [v teke-]] [φ [[-mA [v teke-]] kello]]]', 'teke-: [[-mA [v teke-]] [φ [[-mA [v teke-]] kello]]]', "-mA: generic 'one'", "v: generic 'one', indexed to [φ kello]", "teke-: generic 'one', indexed to [φ kello]"]
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative', 'Declarative']
+		Assignments: []
+		Information structure: []
+	b. [-mA [v [teke- [φ kello]]]]
+
+	Semantics:
+
+		Thematic roles: ['Causer/Agent of v°(v): pro', '? of N°(watch): aP', 'Causer/Agent of v°(v): pro']
+		Agreement: ['Agree(v, φ)', 'Agree(teke-, φ)']
+		Predicates: ['-mA: [[-mA [v teke-]] [φ [[-mA [v teke-]] kello]]]', 'v: [[-mA [v teke-]] [φ [[-mA [v teke-]] kello]]]', 'teke-: [[-mA [v teke-]] [φ [[-mA [v teke-]] kello]]]', "-mA: generic 'one'", "v: generic 'one', indexed to [φ kello]", "teke-: generic 'one', indexed to [φ kello]"]
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative', 'Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:454ms(1), Garden Paths:0ms(0), Sensory Processing:92ms(2), 
+		Lexical Retrieval:72ms(8), Merge:28ms(4), Head Chain:14ms(2), 
+		Phrasal Chain:7ms(1), Feature Inheritance:0ms(0), Agree:14ms(2), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:227.0ms(1), 
+		Merge-1:0ms(515),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [φ [[-mA [v teke-]] kello]]
+ 

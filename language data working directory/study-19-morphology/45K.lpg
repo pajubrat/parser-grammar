@@ -1,9 +1,10 @@
+
 author= Anon
 year= 2024
 date= January
 study_id= 19
 study_folder=			language data working directory/study-19-Morphology
-test_corpus=			Stranding_corpus.txt
+test_corpus=			45K_corpus.txt
 numeration=				Morphology_numeration.txt
 
 # GENERAL SIMULATION PARAMETERS
@@ -35,6 +36,7 @@ image_parameter_show_Agree = False
 image_parameter_show_complex_heads = True
 image_parameter_show_features = Fin/neg;OP:Q
 image_parameter_DP_hypothesis = True
+image_parameter_chain_curvature = 1
 
 # UG COMPONENTS
 #	Agree

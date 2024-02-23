@@ -234,12 +234,12 @@ class PhraseStructureCanvas(tk.Canvas):
     def create_complex_node(self, gps, X1, Y1, spx, spy, grid):
 
         # End coordinates of the left constituent line (gps.x, gps.y contain logical position)
-        X2 = spx + gps.left.x * grid
-        Y2 = spy + gps.left.y * grid
+        X2 = spx + gps.left().x * grid
+        Y2 = spy + gps.left().y * grid
 
         # End coordinates of the right constituent line
-        X3 = spx + gps.right.x * grid
-        Y3 = spy + gps.right.y * grid
+        X3 = spx + gps.right().x * grid
+        Y3 = spy + gps.right().y * grid
 
         text = self.feature_conversion_for_images(gps.label_stack[0][0], gps)
 
@@ -271,8 +271,8 @@ class PhraseStructureCanvas(tk.Canvas):
         self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
 
         # Recursive calls
-        self.project_into_canvas(gps.left, spx, spy, grid)
-        self.project_into_canvas(gps.right, spx, spy, grid)
+        self.project_into_canvas(gps.left(), spx, spy, grid)
+        self.project_into_canvas(gps.right(), spx, spy, grid)
         return ID
 
     def create_primitive_node(self, gps, X1, Y1):
@@ -354,8 +354,8 @@ class PhraseStructureCanvas(tk.Canvas):
                     not gps.nonverbal():
                 self.draw_dependency('head_chain', gps, gps.head_chain_target)
         if gps.complex():
-            self.draw_head_chains(gps.left)
-            self.draw_head_chains(gps.right)
+            self.draw_head_chains(gps.left())
+            self.draw_head_chains(gps.right())
 
     def draw_phrasal_chains(self, gps):
         i = gps.hasChain()
@@ -364,15 +364,15 @@ class PhraseStructureCanvas(tk.Canvas):
             if target:
                 self.draw_dependency('phrasal_chain', gps, target)
         if gps.complex():
-            self.draw_phrasal_chains(gps.left)
-            self.draw_phrasal_chains(gps.right)
+            self.draw_phrasal_chains(gps.left())
+            self.draw_phrasal_chains(gps.right())
 
     def draw_Agree(self, gps):
         if gps.Agree_target:
             self.draw_dependency('Agree', gps, gps.Agree_target)
         if gps.complex():
-            self.draw_Agree(gps.left)
-            self.draw_Agree(gps.right)
+            self.draw_Agree(gps.left())
+            self.draw_Agree(gps.right())
 
     def draw_dependency(self, style, source, target):
         """Draws a dependency arc from point to point"""
@@ -408,12 +408,10 @@ class GPhraseStructure(PhraseStructure):
         self.adjunct = source.adjunct
         self.identity = source.identity
         self.find_me_elsewhere = source.find_me_elsewhere
-        if source.left:
-            self.left = GPhraseStructure(source.left)
-            self.left.mother = self
-        if source.right:
-            self.right = GPhraseStructure(source.right)
-            self.right.mother = self
+        if source.left():
+            self.const = (GPhraseStructure(source.left()), GPhraseStructure(source.right()))
+            self.left().mother = self
+            self.right().mother = self
 
         # Special properties
         self.x = 0
@@ -428,8 +426,8 @@ class GPhraseStructure(PhraseStructure):
         self.node_identity = source.node_identity
 
     def find_head_chain(self):
-        if self.primitive() and self.is_left() and self.has_affix() and self.right.find_me_elsewhere and self.mother:
-            return self.mother.right.find_constituent_with_index(self.right.index())
+        if self.primitive() and self.is_left() and self.has_affix() and self.right().find_me_elsewhere and self.mother:
+            return self.mother.right().find_constituent_with_index(self.right.index())
 
     def find_Agree(self):
         if self.primitive() and self.is_left() and 'ΦLF' in self.features:
@@ -440,19 +438,19 @@ class GPhraseStructure(PhraseStructure):
         self.head_chain_target = self.find_head_chain()
         self.Agree_target = self.find_Agree()
         if self.complex():
-            self.left.x = self.x - 1
-            self.left.y = self.y + 1
-            self.left.initialize_logical_space()
-            self.right.x = self.x + 1
-            self.right.y = self.y + 1
-            self.right.initialize_logical_space()
+            self.left().x = self.x - 1
+            self.left().y = self.y + 1
+            self.left().initialize_logical_space()
+            self.right().x = self.x + 1
+            self.right().y = self.y + 1
+            self.right().initialize_logical_space()
 
     def boundary_points(self):
         boundary = set()
         boundary.add((self.x, self.y))
         if self.complex():
-            boundary = boundary | self.left.boundary_points()
-            boundary = boundary | self.right.boundary_points()
+            boundary = boundary | self.left().boundary_points()
+            boundary = boundary | self.right().boundary_points()
         return boundary
 
     def find_boundaries(self, left_x, right_x, depth):
@@ -463,40 +461,40 @@ class GPhraseStructure(PhraseStructure):
         if self.y > depth:
             depth = self.y
         if self.complex():
-            left_x, right_x, depth = self.left.find_boundaries(left_x, right_x, depth)
-            left_x, right_x, depth = self.right.find_boundaries(left_x, right_x, depth)
+            left_x, right_x, depth = self.left().find_boundaries(left_x, right_x, depth)
+            left_x, right_x, depth = self.right().find_boundaries(left_x, right_x, depth)
         return left_x, right_x, depth
 
     def remove_overlap(self):
         """Stretches child nodes apart if their offspring create overlap"""
         if self.complex():
-            self.left.remove_overlap()
-            self.right.remove_overlap()
+            self.left().remove_overlap()
+            self.right().remove_overlap()
             overlap = 0
-            LC_right_boundary = self.left.boundary_points()
-            RC_left_boundary = self.right.boundary_points()
+            LC_right_boundary = self.left().boundary_points()
+            RC_left_boundary = self.right().boundary_points()
             for L_bp in LC_right_boundary:
                 for R_bp in RC_left_boundary:
                     if L_bp[1] == R_bp[1]:
                         if L_bp[0] >= R_bp[0] and L_bp[0] - R_bp[0] >= overlap:
                             overlap = L_bp[0] - R_bp[0] + 1
             if overlap > 0:
-                self.left.move_x(-overlap/2)
-                self.right.move_x(overlap/2)
+                self.left().move_x(-overlap/2)
+                self.right().move_x(overlap/2)
 
     def move_x(self, amount):
         """Moves a node and its offspring"""
         self.x = self.x + amount
         if self.complex():
-            self.left.move_x(amount)
-            self.right.move_x(amount)
+            self.left().move_x(amount)
+            self.right().move_x(amount)
 
     def move_y(self, amount):
         """Moves a node and its offspring"""
         self.y = self.y + amount
         if self.complex():
-            self.left.move_y(amount)
-            self.right.move_y(amount)
+            self.left().move_y(amount)
+            self.right().move_y(amount)
 
     def label_size(self):
         return len(self.label_stack)
@@ -580,8 +578,8 @@ class GPhraseStructure(PhraseStructure):
                 return ls
             return label_size
         if self.complex():
-            label_size = self.left.find_max_label_size(label_size)
-            label_size = self.right.find_max_label_size(label_size)
+            label_size = self.left().find_max_label_size(label_size)
+            label_size = self.right().find_max_label_size(label_size)
         return label_size
 
     def hasChain(self):

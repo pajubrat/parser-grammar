@@ -36,6 +36,7 @@ class Settings:
                                          'image_parameter_case': 'False',
                                          'image_parameter_show_sentences': 'False',
                                          'image_parameter_show_glosses': 'True',
+                                         'image_parameter_chain_curvature': 1,
                                          'extra_ranking': 'True',
                                          'filter': 'True',
                                          'lexical_anticipation': 'True',
@@ -87,7 +88,6 @@ class Settings:
         if filename:
             print('Loading new study...')
             self.local_file_system.load_settings(self, filename)
-            self.initialize_settings()
             return True     # This will reset the widgets in the application
 
     def process_settings(self):

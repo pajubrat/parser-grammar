@@ -128,12 +128,11 @@ käskee		:: käske-#v#T/fin#[V] LANG:FI
 käske-		:: PF:käske- LF:order V V/TR !COMP:SEM/desired_event SEMCLASS_desired_event SEM:external LANG:FI
 kellon		:: √kello#φ#r_expression#[acc(n)]
 kellon		:: kello-#[acc(n)] LANG:FI
-kellon_n	:: √kello#φ#r_expression#[acc(n)]
 kellon_N	:: kello-#[acc(n)] LANG:FI
 kelloja		:: kello-#pl#φ#pl#3p#def#r_expression#[par]
 kello		:: kello-#φ#r_expression LANG:FI
+kelloa		:: kello-#φ#sg#3p#[par]
 kello-		:: PF:kello LF:watch N LANG:FI
-√kello 		:: PF:kello LF:√watch √ LANG:FI
 kirja		:: kirja-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[acc(0)] LANG:FI
 kirjan_acc 	:: kirja-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
@@ -438,8 +437,8 @@ tehtyä		:: teke-#v#TUA/inf
 tekevän		:: teke-#v#VA/inf
 tekemään	:: teke-#v#MA.ill/inf
 tekemässä	:: teke-#v#MA.ine/inf
-tekemä		:: teke2-#v#MA/A
-tekevä		:: teke-#v#VA/A
+tekemä		:: teke2-#v#mA
+tekevä		:: teke-#v#vA
 tehdäkse	:: teke-#v#KSE/inf
 tehtiin		:: teke-#impass#T/fin#tVVn LANG:FI
 tee			:: teke-#v#T/fin LANG:FI
@@ -897,9 +896,9 @@ X			:: X PF:X LF:X PC:#X COMP:Y LANG:X
 Y			:: Y PF:Y LF:Y PC:#X COMP:Z LANG:X
 Z			:: Z PF:Z LF:Z 				LANG:X
 
-Y´			:: Y PF:Y LF:Y EHM PC:#X COMP:Z LANG:X
-Z´			:: Z PF:Z LF:Z EHM				LANG:X
-
+X''			:: X PF:X LF:X LANG:X
+Y'			:: Y PF:Y LF:Y ε PC:#X COMP:Z LANG:X
+Z'			:: Z PF:Z LF:Z ε			  LANG:X
 
 a_1sg		:: a PF:a LF:a φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF LANG:X
 a_2pl		:: PF:a LF:a φ PHI:NUM:PL PHI:PER:2 PHI:DET:DEF LANG:X

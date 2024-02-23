@@ -15,12 +15,13 @@ class PhraseStructure:
     access_experimental_functions = None
     spellout_heads = False      # This parameter, if set true, spells out PF-content of heads in all printouts; otherwise only labels are shown
     phase_heads = {'ph', 'φ'}   # Phase heads set for all calculations
+    phase_heads_exclude = set()
     resources = {"Merge-1": {"ms": 0, "n": 0}}
     chain_index = 0
     node_identity = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
-                                    'test integrity': lambda x: x.has_affix() and not x.right.find_me_elsewhere and not x.License_EHM(),
+                                    'test integrity': lambda x: x.has_affix() and not x.right().find_me_elsewhere and not x.License_EHM(),
                                     'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
                                     'sustain': lambda x: True,
@@ -69,13 +70,12 @@ class PhraseStructure:
                          instructions['Agree'],
                          instructions['Last Resort Extraposition']]
 
-    def __init__(self, left_constituent=None, right_constituent=None):
-        self.left = left_constituent
-        self.right = right_constituent
-        if self.left:
-            self.left.mother = self
-        if self.right:
-            self.right.mother = self
+    def __init__(self, left=None, right=None):
+        self.const = (left, right)  #   will replace separate left and right constituents§
+        if self.left():
+            self.left().mother = self
+        if self.right():
+            self.right().mother = self
         self.mother = None
         self.features = set()
         self.active_in_syntactic_working_memory = True
@@ -88,33 +88,38 @@ class PhraseStructure:
         self.stop = False
         self.nn = None
 
-        if left_constituent and left_constituent.adjunct and left_constituent.primitive():
+        if left and left.adjunct and left.primitive():
             self.adjunct = True
-            left_constituent.adjunct = False
+            left.adjunct = False
 
     # Phrase structure geometry --------------------------------
 
+    def left(self):
+        return self.const[0]
+
+    def right(self):
+        return self.const[1]
 
     def complex(self):
-        return self.right and self.left
+        return self.right() and self.left()
 
     def primitive(self):
         return not self.complex()
 
     def is_left(self):
-        return self.mother and self.mother.left == self
+        return self.mother and self.mother.left() == self
 
     def is_right(self):
-        return self.mother and self.mother.right == self
+        return self.mother and self.mother.right() == self
 
     def has_affix(self):
-        return self.right and not self.left
+        return self.right() and not self.left()
 
     def get_affix_list(x):
         lst = [x]
-        while x.right and not x.left:
-            lst.append(x.right)
-            x = x.right
+        while x.right() and not x.left():
+            lst.append(x.right())
+            x = x.right()
         return lst
 
     def bottom(x):
@@ -136,13 +141,13 @@ class PhraseStructure:
     def head(self):
         if self.primitive():
             return self
-        if self.left.primitive():
-            return self.left
-        if self.right.adjunct:
-            return self.left.head()
-        if self.right.primitive():
-            return self.right
-        return self.right.head()
+        if self.left().primitive():
+            return self.left()
+        if self.right().adjunct:
+            return self.left().head()
+        if self.right().primitive():
+            return self.right()
+        return self.right().head()
 
     def inside(self, head):
         return self.head() == head
@@ -164,8 +169,8 @@ class PhraseStructure:
 
     def geometrical_sister(self):
         if self.is_left():
-            return self.mother.right
-        return self.mother.left
+            return self.mother.right()
+        return self.mother.left()
 
     def sister(x):
         while x.mother:
@@ -201,14 +206,14 @@ class PhraseStructure:
         return self
 
     def extract_affix(self):
-        affix = self.right
-        self.right = None
+        affix = self.right()
+        self.const = (self.const[0], None)
         return affix
 
     def bottom_affix(x):
         if x.primitive():
-            while x.right and not x.right.find_me_elsewhere:
-                x = x.right
+            while x.right() and not x.right().find_me_elsewhere:
+                x = x.right()
         return x
 
     def is_licensed_specifier(self):
@@ -226,11 +231,11 @@ class PhraseStructure:
         if self.nn.primitive():
             self.nn = None
             return current
-        elif self.nn.head() == self.nn.right.head() or self.nn.left.proper_selected_complement():
-            self.nn = self.nn.right
+        elif self.nn.head() == self.nn.right().head() or self.nn.left().proper_selected_complement():
+            self.nn = self.nn.right()
         else:
-            self.nn = self.nn.left
-        return current.left
+            self.nn = self.nn.left()
+        return current.left()
 
     def minimal_search(self, selection_condition=lambda x: True, sustain_condition=lambda x: True):
         return takewhile(sustain_condition, (const for const in self if selection_condition(const)))
@@ -239,8 +244,8 @@ class PhraseStructure:
         upward_path = []
         x = self.mother
         while x:
-            if x.left.head() != self:
-                upward_path.append(x.left)
+            if x.left().head() != self:
+                upward_path.append(x.left())
             x = x.mother
         return upward_path
 
@@ -264,7 +269,7 @@ class PhraseStructure:
 
     def contains_features(self, feature_set):
         if self.complex():
-            if self.left.contains_features(feature_set) or self.right.contains_features(feature_set):
+            if self.left().contains_features(feature_set) or self.right().contains_features(feature_set):
                 return True
         else:
             return self.check(feature_set)
@@ -272,19 +277,19 @@ class PhraseStructure:
     def return_constituent_with(self, feature):
         constituent = None
         if self.complex():
-            constituent = self.left.return_constituent_with(feature)
+            constituent = self.left().return_constituent_with(feature)
             if constituent:
                 return constituent
-            constituent = self.right.return_constituent_with(feature)
+            constituent = self.right().return_constituent_with(feature)
         if self.primitive() and feature in self.features:
             constituent = self
         return constituent
 
     def geometrical_minimal_search(x):
         search_list = [x]
-        while x.complex() and x.right:
-            search_list.append(x.right)
-            x = x.right
+        while x.complex() and x.right():
+            search_list.append(x.right())
+            x = x.right()
         return search_list
 
     # Virtual pronouns -----------------------------------------------------------------------
@@ -420,25 +425,25 @@ class PhraseStructure:
     def w_selection(self):
         for feature in self.features:
             if feature.startswith('!wCOMP:') and \
-                    not self.right.check(set(feature.split(':')[1].split(','))):
+                    not self.right().check(set(feature.split(':')[1].split(','))):
                 return True
             elif feature.startswith('-wCOMP:') and \
-                    self.right.check_some(set(feature.split(':')[1].split(','))):
+                    self.right().check_some(set(feature.split(':')[1].split(','))):
                 return True
 
     # Test whether a complex head satisfies conditions of the UG
     def Complex_Head_Integrity(self):
         if self.has_affix():
             x = self
-            while x.right:
+            while x.right():
                 if x.w_selection():
                     return True
-                if x.right.find_me_elsewhere:
+                if x.right().find_me_elsewhere:
                     return x.License_EHM()      # [ε] blocks IHM
                 else:
                     if not x.License_EHM():     # [ε] licenses EHM
                         return True
-                x = x.right
+                x = x.right()
 
     # Projection principle and thematic roles ---------------------------------------------------------------------
     def nonthematic(self):
@@ -499,7 +504,7 @@ class PhraseStructure:
             target.create_chain()   # Recursion, successive-cyclicity
 
     def prepare_head_chain(self):
-        return self, self.right.copy_for_chain()
+        return self, self.right().copy_for_chain()
 
     def prepare_phrasal_chain(self):
         if self.A_bar_operator():
@@ -515,7 +520,7 @@ class PhraseStructure:
         probe.features = PhraseStructure.speaker_model.lexicon.apply_redundancy_rules(probe.features)
 
     def project_phonologically_null_head(self):
-        probe = self.sister().Merge_inside(PhraseStructure(), 'left').left
+        probe = self.sister().Merge_inside(PhraseStructure(), 'left').left()
         probe.features |= probe.add_scope_information()
         return probe
 
@@ -545,10 +550,10 @@ class PhraseStructure:
 
     def scan_features(self, feature):
         criterial_feature_set = set()
-        if self.left and not self.left.find_me_elsewhere:
-            criterial_feature_set = self.left.scan_features(feature)
-        if not criterial_feature_set and self.right and not self.right.find_me_elsewhere and not {'T/fin', 'C'} & self.right.head().features:
-            criterial_feature_set = self.right.scan_features(feature)
+        if self.left() and not self.left().find_me_elsewhere:
+            criterial_feature_set = self.left().scan_features(feature)
+        if not criterial_feature_set and self.right() and not self.right().find_me_elsewhere and not {'T/fin', 'C'} & self.right().head().features:
+            criterial_feature_set = self.right().scan_features(feature)
         if not criterial_feature_set and self.primitive():
             criterial_feature_set = {f for f in self.features if f.startswith(feature) and f[-1] != '_'}
         return criterial_feature_set
@@ -1016,12 +1021,12 @@ class PhraseStructure:
         return PhraseStructure(self, B)
 
     def substitute(self, local_structure):
-        if local_structure[0]:                          # If N had a mother
-            if not local_structure[1]:                  # If N was right...
-                local_structure[0].right = self         # the new constituent will be right,
-            else:                                       # otherwise the new constituent will be left.
-                local_structure[0].left = self
-            self.mother = local_structure[0]            # The new constituent will have the same mother as N had (substitution)
+        if local_structure[0]:                                                      # If N had a mother
+            if not local_structure[1]:                                              # If N was right...
+                local_structure[0].const = (local_structure[0].left(), self)        # the new constituent will be right,
+            else:                                                                   # otherwise the new constituent will be left.
+                local_structure[0].const = (self, local_structure[0].right())
+            self.mother = local_structure[0]                                        # The new constituent will have the same mother as N had (substitution)
 
     def merge_around(self, reconstructed_object, legibility=lambda x: True):
         if not (self.Merge_inside(reconstructed_object, 'right') and legibility(reconstructed_object)):
@@ -1037,17 +1042,16 @@ class PhraseStructure:
             grandparent = self.mother.mother        # {Y {H, X}}
             sister.mother = sister.mother.mother    # Y
             if mother.is_right():
-                grandparent.right = sister           # {Y X} (removed H)
+                grandparent.const = (grandparent.left(), sister)
             elif mother.is_left():
-                grandparent.left = sister            # {X Y} (removed H)
+                grandparent.const = (sister, grandparent.right())
             self.mother = None                          # detach H
 
     def sink(self, ps):
         bottom_affix = self.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
         bottom_affix.active_in_syntactic_working_memory = True
-        bottom_affix.right = ps
+        bottom_affix.const = (None, ps)
         ps.mother = bottom_affix
-        bottom_affix.left = None
         return self.top()
 
     def attach(self, site, terminal_lexical_item, transfer, address_label):
@@ -1083,12 +1087,12 @@ class PhraseStructure:
         ps_.find_me_elsewhere = self.find_me_elsewhere
         ps_.identity = self.identity
         ps_.node_identity = self.node_identity
-        if self.left:
-            ps_.left = self.left.copy()
-            ps_.left.mother = ps_
-        if self.right:
-            ps_.right = self.right.copy()
-            ps_.right.mother = ps_
+        if self.const[0]:
+            ps_.const = (self.left().copy(), ps_.const[1])
+            ps_.left().mother = ps_
+        if self.const[1]:
+            ps_.const = (ps_.const[0], self.right().copy())
+            ps_.right().mother = ps_
         if self.features:
             ps_.features = self.features.copy()
         return ps_
@@ -1135,19 +1139,19 @@ class PhraseStructure:
         if self.index() == idx:
             return self
         if self.complex():
-            const = self.left.find_constituent_with_index(idx)
+            const = self.left().find_constituent_with_index(idx)
             if const:
                 return const
-            return self.right.find_constituent_with_index(idx)
+            return self.right().find_constituent_with_index(idx)
 
     def find_constituent_with_identity(self, ps, identity):
         if self.identity == identity and self != ps:
             return self
         if self.complex():
-            const = self.left.find_constituent_with_identity(ps, identity)
+            const = self.left().find_constituent_with_identity(ps, identity)
             if const:
                 return const
-            return self.right.find_constituent_with_identity(ps, identity)
+            return self.right().find_constituent_with_identity(ps, identity)
 
     def info(self):
         info = [f[5:] for f in self.features if f[:5] == 'INFO:']
@@ -1159,16 +1163,16 @@ class PhraseStructure:
             return '.'.join(sorted(lfs))
 
         pf = ''
-        if self.left:
-            if 'null' in self.left.features:
+        if self.left():
+            if 'null' in self.left().features:
                 pf = pf + '_'
             else:
-                pf = pf + self.left.gloss() + ' '
-        if self.left and self.right:
-            if 'null' in self.right.features:
+                pf = pf + self.left().gloss() + ' '
+        if self.left() and self.right():
+            if 'null' in self.right().features:
                 pf = pf + '_'
             else:
-                pf = pf + self.right.gloss() + ' '
+                pf = pf + self.right().gloss() + ' '
         if self.primitive():
             pf = pf + LF_features(self)
         return pf
@@ -1197,10 +1201,10 @@ class PhraseStructure:
             else:
                 h.features.add('null')      # Null is about what is printed out
                 h.features.discard('Δp')    # This is the grammatical feature that operates in narrow syntax
-            if h.left:
-                silence_phonologically(h.left)
-            if h.right:
-                silence_phonologically(h.right)
+            if h.left():
+                silence_phonologically(h.left())
+            if h.right():
+                silence_phonologically(h.right())
 
         self.identity = self.baptize_chain()
         self_copy = self.copy()                 # Copy the constituent
@@ -1232,20 +1236,20 @@ class PhraseStructure:
 
         if 'null' in self.features:
             if self.adjunct:
-                return '<' + prefix + self.left.illustrate() + ' ' \
-                       + self.right.illustrate() + '>'
+                return '<' + prefix + self.left().illustrate() + ' ' \
+                       + self.right().illustrate() + '>'
             else:
-                return '[' + prefix + self.left.illustrate() + ' ' \
-                       + self.right.illustrate() + ']'
+                return '[' + prefix + self.left().illustrate() + ' ' \
+                       + self.right().illustrate() + ']'
         else:
             if self.adjunct:
                 return f'<' + prefix \
-                       + self.left.illustrate() + ' ' \
-                       + self.right.illustrate() + '>'
+                       + self.left().illustrate() + ' ' \
+                       + self.right().illustrate() + '>'
             else:
                 return f'[' + prefix \
-                       + self.left.illustrate() + ' ' \
-                       + self.right.illustrate() + ']'
+                       + self.left().illustrate() + ' ' \
+                       + self.right().illustrate() + ']'
 
     def phonological_content(self):
         exceptions = {'φ', 'D'}
@@ -1254,11 +1258,11 @@ class PhraseStructure:
             if not set(self.get_phonological_string()) & exceptions:
                 phon = self.get_phonological_string()
         else:
-            str = self.left.phonological_content()
+            str = self.left().phonological_content()
             if str:
                 phon += ' ' + str
-            if not self.right.adjunct:
-                str = self.right.phonological_content()
+            if not self.right().adjunct:
+                str = self.right().phonological_content()
                 if str:
                     phon += ' ' + str
         return phon
@@ -1287,30 +1291,30 @@ class PhraseStructure:
                     return self.get_phonological_string()
         else:
             if self.adjunct:
-                return f'<{self.left} {self.right}>' + chain_index_str
+                return f'<{self.left()} {self.right()}>' + chain_index_str
             else:
                 if self.active_in_syntactic_working_memory:
-                    return f'[{self.left} {self.right}]' + chain_index_str
+                    return f'[{self.left()} {self.right()}]' + chain_index_str
                 else:
-                    return f'[{self.left} {self.right}]' + chain_index_str
+                    return f'[{self.left()} {self.right()}]' + chain_index_str
 
     def get_phonological_string(self):
         def show_affixes(self):
             i = ''
             if self.has_affix():
                 if PhraseStructure.spellout_heads:
-                    i = self.right.PF()
+                    i = self.right().PF()
                 else:
-                    i = self.right.label()
-                if self.right.right:
-                    i = '(' + show_affixes(self.right) + ' ' + i + ')'
+                    i = self.right().label()
+                if self.right().right():
+                    i = '(' + show_affixes(self.right()) + ' ' + i + ')'
             else:
                 i = ''
             return i
 
         pfs = [f[3:] for f in self.features if f[:2] == 'PF']
         if self.has_affix():
-            if not self.right.find_me_elsewhere:
+            if not self.right().find_me_elsewhere:
                 affix_str = show_affixes(self)
                 return '(' + affix_str + ' ' + ''.join(sorted(pfs)) + ')°'
         return ''.join(sorted(pfs))
@@ -1322,18 +1326,18 @@ class PhraseStructure:
                     h.identity = new_name
                     h.rebaptized = True
             if h.left:
-                rebaptize(h.left, old_name, new_name)
+                rebaptize(h.left(), old_name, new_name)
             if h.right:
-                rebaptize(h.right, old_name, new_name)
+                rebaptize(h.right(), old_name, new_name)
             return
 
         if self.identity != '' and not self.rebaptized:
             rebaptize(self.top(), self.identity, str(counter))
             counter = counter + 1
         if self.left:
-            counter = self.left.tidy_names(counter)
+            counter = self.left().tidy_names(counter)
         if self.right:
-            counter = self.right.tidy_names(counter)
+            counter = self.right().tidy_names(counter)
         return counter
 
     def consume_resources(self, resource_key, target):
@@ -1531,7 +1535,7 @@ class PhraseStructure:
         if self.node_identity == identity:
             return self
         if self.complex():
-            node = self.left.find_node_with_identity(identity)
+            node = self.left().find_node_with_identity(identity)
             if node:
                 return node
-            return self.right.find_node_with_identity(identity)
+            return self.right().find_node_with_identity(identity)

@@ -115,8 +115,8 @@ class NarrowSemantics:
                 if self.failure():
                     return
             else:
-                self.interpret_(ps.left)
-                self.interpret_(ps.right)
+                self.interpret_(ps.left())
+                self.interpret_(ps.right())
 
     def inventory_projection(self, ps):
         def preconditions(x):

@@ -42,15 +42,15 @@ class LF:
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(ps):
                         if logging:
-                            log(f'\n\t\t@@ {ps} failed {test_name}')
+                            log(f'\n\t\t@@ {ps} failed {test_name} ')
                             if self.failed_feature:
                                 log(f'for [{self.failed_feature}]!')
                         self.error_report_for_external_callers = f'{ps} failed {test_name}.'  # For plausibility metrics calculations and output
                         return False
             else:
-                if not self.pass_LF_legibility(ps.left, logging):
+                if not self.pass_LF_legibility(ps.left(), logging):
                     return False
-                if not self.pass_LF_legibility(ps.right, logging):
+                if not self.pass_LF_legibility(ps.right(), logging):
                     return False
         return True
 
@@ -78,9 +78,9 @@ class LF:
 
     def final_tail_check(self, goal):
         if goal.complex():
-            if not goal.left.find_me_elsewhere and not self.final_tail_check(goal.left):
+            if not goal.left().find_me_elsewhere and not self.final_tail_check(goal.left()):
                 return False
-            if not goal.right.find_me_elsewhere and not self.final_tail_check(goal.right):
+            if not goal.right().find_me_elsewhere and not self.final_tail_check(goal.right()):
                 return False
         if goal.primitive() and goal.get_tail_sets() and not goal.tail_test():
             log(f'\n\t\tPost-syntactic tail test for \'{goal.illustrate()}\' failed. @@')

@@ -134,8 +134,8 @@ class PlausibilityMetrics:
     @knockout_lexical_ranking
     def break_head_comp_relations(self, site):
         if not site.primitive() and site.mother and \
-                site.mother.left and site.mother.left.primitive():
-            if site.mother.left.licensed_complements() & site.features:
+                site.mother.left() and site.mother.left().primitive():
+            if site.mother.left().licensed_complements() & site.features:
                 if not self.word.adverbial():
                     return True
 

@@ -164,8 +164,8 @@ class Results():
 
         reply = ''
         if not ps.primitive():
-            reply += self.show_primitive_constituents(ps.left)
-            reply += self.show_primitive_constituents(ps.right)
+            reply += self.show_primitive_constituents(ps.left())
+            reply += self.show_primitive_constituents(ps.right())
         else:
             for head in ps.get_affix_list():
                 if head.find_me_elsewhere:

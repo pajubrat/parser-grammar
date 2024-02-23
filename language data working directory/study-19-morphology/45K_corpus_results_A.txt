@@ -1,15 +1,25 @@
 @  {}
-@  2024-01-27 15:56:43.771563
+@  2024-01-31 10:39:38.201441
 @  Test sentences language data working directory\study-19-Morphology\45K_corpus.txt.
 @  Logs language data working directory\study-19-Morphology\45K_corpus_log.txt.
 @ 
 
 
 #1. 	['nenä-#(t)A']
+	'nose-A/inf'
+
 #2. 	['nenä-#impss']
+	'nose-impss'
+
 #3. 	['nenä-#T/fin#prs#n']
+	'nose-prs.1sg'
+
 #4. 	['nenä-#v']
+	'nose-v'
+
 #5. 	['nenä-#mise']
+	'nose-ing'
+
 #6. 	['nenä-#tAr']
 
 	[-tAr nenä-]
@@ -40,7 +50,11 @@
 
 		Object 2 in GLOBAL: [-tAr nenä-]
  
+	'nose-fem'
+
 #7. 	['nenä-#jA']
+	'nose-agt'
+
 #8. 	['nenä-#[NOM]']
 
 	nenä-
@@ -69,6 +83,8 @@
 
 	Ontology:
 None 
+	'nose.nom'
+
 #9. 	['nenä-#inen']
 
 	[-inen nenä-]
@@ -97,6 +113,8 @@ None
 
 	Ontology:
 None 
+	'nose-A'
+
 #10. 	['nenä-#mAinen']
 
 	[mAinen nenä-]
@@ -126,7 +144,11 @@ None
 	Ontology:
 
  
+	'nose-A'
+
 #11. 	['nenä-#mAtOn']
+	'nose-without'
+
 #12. 	['nenä-#tOn']
 
 	[-tOn nenä-]
@@ -155,9 +177,17 @@ None
 
 	Ontology:
 None 
+	'nose-without'
+
 #13. 	['nenä-#mA']
+	'nose-ma/prtc'
+
 #14. 	['nenä-#vA']
+	'nose-va/prtc'
+
 #15. 	['nenä-#hkO']
+	'nose-dim'
+
 #16. 	['istu-#(t)A']
 
 	[-tA istu-]
@@ -187,7 +217,11 @@ None
 	Ontology:
 
  
+	'sit-a/inf'
+
 #17. 	['istu-#impss']
+	'sit-impss'
+
 #18. 	['istu-#T/fin#prs#n']
 
 	[-0 istu-]
@@ -218,9 +252,17 @@ None
 
 		Object 4 in GLOBAL: pro(-0)
  
+	'sit-prs.1sg'
+
 #19. 	['istu-#v']
+	'sit-v'
+
 #20. 	['istu-#mise']
+	'sit-ing-'
+
 #21. 	['istu-#tAr']
+	'sit-fem'
+
 #22. 	['istu-#jA']
 
 	[-jA istu-]
@@ -251,9 +293,17 @@ None
 
 		Object 2 in GLOBAL: [-jA istu-]
  
+	'sit-agt'
+
 #23. 	['istu-#[NOM]']
+	'sit.nom'
+
 #24. 	['istu-#inen']
+	'sit-a'
+
 #25. 	['istu-#mAinen']
+	'sit-a'
+
 #26. 	['istu-#mAtOn']
 
 	[-mAtOn istu-]
@@ -283,8 +333,14 @@ None
 	Ontology:
 
  
+	'sit-without'
+
 #27. 	['istu-#tOn']
+	'sit-without'
+
 #28. 	['istu-#mA']
+	'sit-ma/prtc'
+
 #29. 	['istu-#vA']
 
 	[-vA istu-]
@@ -314,7 +370,11 @@ None
 	Ontology:
 
  
+	'sit-va/prtc'
+
 #30. 	['istu-#hkO']
+	'sit-dim'
+
 #31. 	['luKe-#(t)A']
 
 	[-tA luke-]
@@ -344,7 +404,11 @@ None
 	Ontology:
 
  
+	'read-a/inf'
+
 #32. 	['luKe-#impss']
+	'read-impss'
+
 #33. 	['luKe-#T/fin#prs#n']
 
 	[-0 luke-]
@@ -375,9 +439,15 @@ None
 
 		Object 4 in GLOBAL: pro(-0)
  
+	'read-prs.1sg'
+
 #34. 	['luKe-#v']
 #35. 	['luKe-#mise']
+	'read-ing'
+
 #36. 	['luKe-#tAr']
+	'read-fem'
+
 #37. 	['luKe-#jA']
 
 	[-jA luke-]
@@ -408,9 +478,17 @@ None
 
 		Object 2 in GLOBAL: [-jA luke-]
  
+	'read-agn'
+
 #38. 	['luKe-#[NOM]']
+	'read-nom'
+
 #39. 	['luKe-#inen']
+	'read-a'
+
 #40. 	['luKe-#mAinen']
+	'read-a'
+
 #41. 	['luKe-#mAtOn']
 
 	[-mAtOn luke-]
@@ -440,7 +518,11 @@ None
 	Ontology:
 
  
+	'read-without'
+
 #42. 	['luKe-#tOn']
+	'read-without'
+
 #43. 	['luKe-#mA']
 
 	[-mA luke-]
@@ -470,6 +552,8 @@ None
 	Ontology:
 
  
+	'read-ma/prtc'
+
 #44. 	['luKe-#vA']
 
 	[-vA luke-]
@@ -499,14 +583,32 @@ None
 	Ontology:
 
  
+	'read-va/prtc'
+
 #45. 	['luKe-#hkO']
+	'read-dim'
+
 #46. 	['iso-#(t)A']
+	'big-a/inf' (This item is a bit unclear)
+
 #47. 	['iso-#impss']
+	'big-impss'
+
 #48. 	['iso-#T/fin#prs#n']
+	'big-prs.1sg'
+
 #49. 	['iso-#v']
+	'big-v'
+
 #50. 	['iso-#mise']
+	'big-ing'
+
 #51. 	['iso-#tAr']
+	'big-fem'
+
 #52. 	['iso-#jA']
+	'big-agt'
+
 #53. 	['iso-#[NOM]']
 
 	iso
@@ -535,6 +637,8 @@ None
 
 	Ontology:
 None 
+	'big.nom'
+
 #54. 	['iso-#inen']
 
 	[-inen iso]
@@ -563,11 +667,23 @@ None
 
 	Ontology:
 None 
+	'big-a'
+
 #55. 	['iso-#mAinen']
+	'big-like'
+
 #56. 	['iso-#mAtOn']
+	'big-without'
+
 #57. 	['iso-#tOn']
+	'big-without' (this item /isoton/ is a bit unclear, but seems ungrammatical)
+
 #58. 	['iso-#mA']
+	'big-ma/prtc'
+
 #59. 	['iso-#vA']
+	'big-va/prtc'
+
 #60. 	['iso-#hkO']
 
 	[-hkO iso]
@@ -596,6 +712,8 @@ None
 
 	Ontology:
 None 
+	'big-dim'
+
 #61. 	['nenä-#TA#(t)A']
 
 	[-tA (N -TA)°]
