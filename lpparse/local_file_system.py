@@ -102,7 +102,7 @@ class LocalFileSystem:
             with open('$app_settings.txt', 'w', encoding=self.encoding) as output_file:
                 pass
                 for key, value in settings.app_settings.items():
-                    output_file.write(f'{key}={value}')
+                    output_file.write(f'{key}={value}\n')
         except IOError:
             pass
 
