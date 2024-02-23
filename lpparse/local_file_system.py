@@ -118,7 +118,7 @@ class LocalFileSystem:
                     value = value.strip()
                     app_settings_dict[key] = value
         except IOError:
-            app_settings_dict['open_with'] = '$config_study.lpg'     # Default configuration
+            pass
 
         for arg in arg_lst:
             if arg.endswith('.lpg'):
@@ -127,26 +127,26 @@ class LocalFileSystem:
         self.app_settings = app_settings_dict
         return app_settings_dict
 
-    def load_settings(self, settings, filename='$config_study.lpg'):
-        try:
-            with open(filename, encoding=self.encoding) as config_file:
-                # Read file into dict
-                for line in config_file:
-                    line = line.strip().replace('\t', '')
-                    if line and not line.startswith('#'):
-                        key, value = line.split('=')
-                        key = key.strip()
-                        value = value.strip()
-                        if ';' in value or key == 'image_parameter_show_features':
-                            value = set(value.split(';'))
-                        settings.get()[key] = value
-            config_file.close()
-            # Safeguards
-            if not settings.get()['image_parameter_show_features'] or settings.get()['image_parameter_show_features'] == '':
-                settings.data['image_parameter_show_features'] = {}
-        except IOError:
-            for key in settings.default_study_parameters:
-                settings.data[key] = settings.default_study_parameters[key]
+    def load_settings(self, settings, app_settings_dict):
+        name = app_settings_dict['study_file']
+        folder = app_settings_dict['study_folder']
+        filename = folder + '/' + name
+        with open(filename, encoding=self.encoding) as config_file:
+
+            # Read file into dict
+            for line in config_file:
+                line = line.strip().replace('\t', '')
+                if line and not line.startswith('#'):
+                    key, value = line.split('=')
+                    key = key.strip()
+                    value = value.strip()
+                    if ';' in value or key == 'image_parameter_show_features':
+                        value = set(value.split(';'))
+                    settings.get()[key] = value
+        config_file.close()
+        # Safeguards
+        if not settings.get()['image_parameter_show_features'] or settings.get()['image_parameter_show_features'] == '':
+            settings.data['image_parameter_show_features'] = {}
 
     def create_new_from_corpus_file(self, settings):
         corpus_filename = filedialog.askopenfilename(title='Create new study from corpus file', defaultextension='.txt', initialdir='./language data working directory')

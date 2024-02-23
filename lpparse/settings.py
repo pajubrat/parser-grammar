@@ -37,6 +37,8 @@ class Settings:
                                          'image_parameter_show_sentences': 'False',
                                          'image_parameter_show_glosses': 'True',
                                          'image_parameter_chain_curvature': 1,
+                                         'UG_parameter_phase_heads': {'C', 'v', 'FORCE', 'Inf'},
+                                         'UG_parameter_phase_heads_exclude': {'φ', 'v', 'TO/inf'},
                                          'extra_ranking': 'True',
                                          'filter': 'True',
                                          'lexical_anticipation': 'True',
@@ -55,7 +57,7 @@ class Settings:
                                          }
 
         self.app_settings = app_settings_dict
-        self.local_file_system.load_settings(self, app_settings_dict['open_with'])
+        self.local_file_system.load_settings(self, app_settings_dict)
         self.process_settings()
         self.create_settings_for_file_system()
 
