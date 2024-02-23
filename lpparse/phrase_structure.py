@@ -112,7 +112,7 @@ class PhraseStructure:
         return len(self.const) > 1
 
     def primitive(self):
-        return not self.complex()
+        return len(self.const) < 2
 
     def is_left(self):
         return self.mother and self.mother.left() == self
@@ -180,16 +180,9 @@ class PhraseStructure:
 
     def sister(x):
         while x.mother:
-            if x.is_right():
-                if not x.geometrical_sister().adjunct:
-                    return x.geometrical_sister()
-                else:
-                    x = x.mother
-            else:
-                if not x.geometrical_sister().adjunct:
-                    return x.geometrical_sister()
-                else:
-                    return None
+            if not x.geometrical_sister().adjunct:
+                return x.geometrical_sister()
+            x = x.mother
 
     def right_sister(self):
         if self.sister() and self.sister().is_right():
@@ -212,12 +205,12 @@ class PhraseStructure:
         return self
 
     def extract_affix(self):
-        affix = self.right()
-        self.const = (self.left(), None)
+        affix = self.affix()
+        self.const = []
         return affix
 
     def bottom_affix(x):
-        if x.primitive():
+        if x.affix():
             while x.affix() and not x.affix().find_me_elsewhere:
                 x = x.affix()
         return x
@@ -1021,12 +1014,12 @@ class PhraseStructure:
         return PhraseStructure(self, B)
 
     def substitute(self, local_structure):
-        if local_structure[0]:                                                      # If N had a mother
-            if not local_structure[1]:                                              # If N was right...
-                local_structure[0].create_constituents([local_structure[0].left(), self])        # the new constituent will be right,
-            else:                                                                   # otherwise the new constituent will be left.
+        if local_structure[0]:                                                              # If N had a mother
+            if not local_structure[1]:                                                      # If N was right...
+                local_structure[0].create_constituents([local_structure[0].left(), self])   # the new constituent will be right,
+            else:                                                                           # otherwise the new constituent will be left.
                 local_structure[0].create_constituents([self, local_structure[0].right()])
-            self.mother = local_structure[0]                                        # The new constituent will have the same mother as N had (substitution)
+            self.mother = local_structure[0]                                                # The new constituent will have the same mother as N had (substitution)
 
     def merge_around(self, reconstructed_object, legibility=lambda x: True):
         if not (self.Merge_inside(reconstructed_object, 'right') and legibility(reconstructed_object)):
@@ -1419,9 +1412,6 @@ class PhraseStructure:
 
     def is_adjoinable(self):
         return self.adjunct or (self.head().check({'adjoinable'}) and not self.head().check({'nonadjoinable'}))
-
-    def clitic(self):
-        return self.check({'CL'}) or self.head().check({'CL'}) and not self.head().has_affix() and self.head().internal
 
     def concept(self):
         next((x for x in self.get_affix_list() if x.expresses_concept()), False)
