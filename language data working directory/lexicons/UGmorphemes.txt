@@ -7,15 +7,18 @@ T/fin   :: T/fin LF:T
 v       :: v V PF:v LF:v -COMP:REFL/V -COMP:IMPSS PC:#X
 v*		:: v V PF:-ed v- LF:pass -θ EF PC:#X#
 C/fin   :: C/fin PF:C LF:C
-C		:: C C/fin PF:C LF:C
+C		:: C C/fin LF:C
+Cpol	:: C C/fin PF:C LF:C POL FOC
 T		:: T LF:T Fin EF
 T/prt 	:: T/prt LF:Prtc
 Fin		:: Fin LF:Fin ARG COMP:T +ΦLF,ΦPF 	
-a0		:: A PF:a LF:mod
+a0		:: A PF:a LF:a COMP:A
 cau		:: PF:Cau LF:cause
 φ		:: φ PF:φ LF:φ ARG Inf
 Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
 N		:: N PF:N LF:N COMP:0
+Pr		:: θ Pr PF:-0 LF:Pr ESS !COMP:N SPEC:φ
+Pr2		:: θ Pr PF:-0 LF:Pr TRA !COMP:A SPEC:φ
 
 # Tense
 prs		:: inflectional prs
@@ -55,17 +58,17 @@ P0			:: PF:-Ø LF:in P LANG:FI
 			
 		# Nominal
 		
-		O,ntO			:: N EVE ε										PF:-O		LF:action	LANG:FI !wCOMP:V -wCOMP:CAU,REFL,MOM1
-		Us,Ude			:: N EVE2 ε										PF:-Us		LF:action	LANG:FI !wCOMP:V -wCOMP:FREQ,MOM2
-		stO				:: N COL ε										PF:-stO		LF:group	LANG:FI !wCOMP:N -wCOMP:COL
-		(t)e			:: N RSLT ε										PF:-(t)e	LF:result	LANG:FI !wCOMP:V
-		lAinen,lAise	:: N PER ε										PF:-lAinen	LF:person	LANG:FI !wCOMP:N
-		lise			:: N ε											PF:-lise-	LF:owner	LANG:FI !wCOMP:N
+		O,ntO			:: N EVE ε			PF:-O		LF:action	LANG:FI !wCOMP:V -wCOMP:CAU,REFL,MOM1
+		Us,Ude			:: N EVE2 ε			PF:-Us		LF:action	LANG:FI !wCOMP:V -wCOMP:FREQ,MOM2
+		stO				:: N COL ε			PF:-stO		LF:group	LANG:FI !wCOMP:N -wCOMP:COL
+		(t)e			:: N RSLT ε			PF:-(t)e	LF:result	LANG:FI !wCOMP:V
+		lAinen,lAise	:: N PER ε			PF:-lAinen	LF:person	LANG:FI !wCOMP:N
+		lise			:: N ε				PF:-lise-	LF:owner	LANG:FI !wCOMP:N
 
 		# Adjectival
 		
-		ise		:: A QLT ε										PF:-ise		LF:quality	LANG:FI	-wCOMP:V,EVE2
-		mAise	:: A QLT ε										PF:-mAise	LF:quality	LANG:FI !wCOMP:N
+		ise		:: A QLT ε					PF:-ise		LF:quality	LANG:FI	-wCOMP:V,EVE2
+		mAise	:: A QLT ε					PF:-mAise	LF:quality	LANG:FI !wCOMP:N
 			
 	# Outer layer (layer 2)
 		
@@ -89,44 +92,43 @@ P0			:: PF:-Ø LF:in P LANG:FI
 		
 		# nominal
 		
-			minen		:: n ABS		EF			ARG 					PF:-minen	PC:#X LF:abstr	NOM 	!COMP:V					LANG:FI 
-			UUs,UUde	:: n QUA		EF			ARG						PF:-(U)Us	PC:#X LF:abstr	NOM 	!COMP:A					LANG:FI
-			tAr			:: n FEM		EF			ARG						PF:-tAr		PC:#X LF:fem			!COMP:N -COMP:EVE2		LANG:FI	
-			nen,se		:: n DIM		EF			ARG						PF:-nen		PC:#X LF:dim			!COMP:N					LANG:FI 
-			lA			:: n PLC		EF			ARG						PF:-lA		PC:#X LF:place			!COMP:N 				LANG:FI 
-			mO			:: n PLC		EF			ARG	 					PF:-mO		PC:#X LF:place			!COMP:V					LANG:FI 
-			ri			:: n PER		EF			ARG	 					PF:-ri		PC:#X LF:person			!COMP:N -COMP:EVE2		LANG:FI 
-			jA			:: n ACT		EF			ARG	 					PF:-jA		PC:#X LF:doer			!COMP:V 				LANG:FI 
-			in			:: n INST		EF			ARG	 					PF:-in		PC:#X LF:instr			!COMP:V					LANG:FI 
-			mise		:: n ABS		EF			ARG						PF:-minen	PC:#X# LF:abstr			!COMP:V					LANG:FI
+			minen		:: n ABS	EF	ARG 	PF:-minen	PC:#X LF:abstr	NOM 	!COMP:V					LANG:FI 
+			UUs,UUde	:: n QUA	EF	ARG		PF:-(U)Us	PC:#X LF:abstr	NOM 	!COMP:A					LANG:FI
+			tAr			:: n FEM	EF	ARG		PF:-tAr		PC:#X LF:fem			!COMP:N -COMP:EVE2		LANG:FI	
+			nen,se		:: n DIM	EF	ARG		PF:-nen		PC:#X LF:dim			!COMP:N					LANG:FI 
+			lA			:: n PLC	EF	ARG		PF:-lA		PC:#X LF:place			!COMP:N 				LANG:FI 
+			mO			:: n PLC	EF	ARG	 	PF:-mO		PC:#X LF:place			!COMP:V					LANG:FI 
+			ri			:: n PER	EF	ARG	 	PF:-ri		PC:#X LF:person			!COMP:N -COMP:EVE2		LANG:FI 
+			jA			:: n ACT	EF	ARG	 	PF:-jA		PC:#X LF:doer			!COMP:V 				LANG:FI 
+			in			:: n INST	EF	ARG	 	PF:-in		PC:#X LF:instr			!COMP:V					LANG:FI 
+			mise		:: n ABS	EF	ARG		PF:-minen	PC:#X# LF:abstr			!COMP:V					LANG:FI
 			
 		# Adjectival
 		
-			inen	:: a QLT											PF:-inen	PC:#X LF:quality 		-COMP:V,v,EVE2,FEM,ABS,QLT LANG:FI
-			mAinen	:: a KIND			EF	INF		ARG					PF:mAinen	PC:#X LF:kind 			!COMP:N -COMP:ABS 		LANG:FI
-			llinen	:: a OWN 											PF:-llinen	PC:#X LF:owner 			!COMP:N -COMP:ABS 		LANG:FI 
-			mAtOn	:: a POL1											PF:-mAtOn	PC:#X LF:polarity 		!COMP:V 				LANG:FI
-			tOn		:: a POL2											PF:-tOn		PC:#X LF:polarity		!COMP:N -COMP:ABS,FEM,DIM,INST,EVE2,RSLT			LANG:FI
-			hkO		:: a MOD											PF:-hkO		PC:#X LF:moderate		!COMP:A					LANG:FI
+			inen	:: a QLT					PF:-inen	PC:#X LF:quality 		-COMP:V,v,EVE2,FEM,ABS,QLT LANG:FI
+			mAinen	:: a KIND	EF	INF	ARG		PF:mAinen	PC:#X LF:kind 			!COMP:N -COMP:ABS 		LANG:FI
+			llinen	:: a OWN 					PF:-llinen	PC:#X LF:owner 			!COMP:N -COMP:ABS 		LANG:FI 
+			mAtOn	:: a POL1					PF:-mAtOn	PC:#X LF:polarity 		!COMP:V 				LANG:FI
+			tOn		:: a POL2					PF:-tOn		PC:#X LF:polarity		!COMP:N -COMP:ABS,FEM,DIM,INST,EVE2,RSLT			LANG:FI
+			hkO		:: a MOD					PF:-hkO		PC:#X LF:moderate		!COMP:A					LANG:FI
 
 		# Participles
 		
-			mA		:: a MA/a		EF	Inf		ARG						PF:-mA		PC:#X LF:prtc			COMP:v !COMP:V -COMP:V/INTR		LANG:FI
-			mA´		:: a MA/a 		EF	Inf		ARG  +ΦLF,ΦPF 			PF:-mA 		PC:#X LF:prtc			!COMP:V -COMP:V/INTR 		LANG:FI 
-			vA		:: a VA/a			Inf			 -ΦPF -ΦLF			PF:-vA 		PC:#X LF:prtc			!COMP:V COMP:IMPSS			LANG:FI 
+			mA		:: a MA/a	EF	Inf		ARG				PF:-mA		PC:#X LF:prtc		COMP:v !COMP:V -COMP:V/INTR		LANG:FI
+			vA		:: a VA/a		Inf			 -ΦPF -ΦLF	PF:-vA 		PC:#X LF:prtc		!COMP:V COMP:IMPSS			LANG:FI 
 			
 		# Special purpose elements
 		
-			mista	:: n ABS		EF			ARG 					PF:-mista	PC:#X LF:abstr	NOM 	!COMP:V					LANG:FI 
-			n0		:: n			 EF			ARG						PF:-0		PC:#X LF:n	 			!COMP:* LANG:FI
+			mista	:: n ABS	EF	ARG 		PF:-mista	PC:#X LF:abstr	NOM 	!COMP:V					LANG:FI 
+			n0		:: n		EF	ARG			PF:-0		PC:#X LF:n	 			!COMP:* LANG:FI
 			TA*		:: V CAU 		 	 								PF:-TA		LF:cause  V/TR COMP:V LANG:FI
 			U*		:: V REFL											PF:-utu		LF:become V/INTR COMP:V COMP:CAU LANG:FI
 # Italian
-ARE/inf		:: ARE/inf 		EF	Inf 	ARG 					PF:are 		LF:ARE/inf -SPEC:T/fin nonadjoinable 
+ARE/inf		:: ARE/inf 		EF	Inf 	ARG 	PF:are 	LF:ARE/inf -SPEC:T/fin nonadjoinable 
 
 # Copula
-# BE-		:: V COPULA  				-ARG 					PF:BE 		LF:be COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
-BE-			:: V COPULA 	 			-ARG 					LF:be !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ
+# BE-		:: V COPULA  	-ARG 				PF:BE 	LF:be COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
+BE-			:: V COPULA 	-ARG 				LF:be !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ
 
 # D-elements
 D(3sg)	:: D PF:D LF:det iPHI:NUM:SG iPHI:PER:3 iPHI:DET:DEF

@@ -408,10 +408,8 @@ class GPhraseStructure(PhraseStructure):
         self.adjunct = source.adjunct
         self.identity = source.identity
         self.find_me_elsewhere = source.find_me_elsewhere
-        if source.complex():
-            self.const = [GPhraseStructure(source.left()), GPhraseStructure(source.right())]
-            self.left().mother = self
-            self.right().mother = self
+        if not source.terminal():
+            self.create_constituents([GPhraseStructure(const) for const in source.const])
 
         # Special properties
         self.x = 0
@@ -426,8 +424,8 @@ class GPhraseStructure(PhraseStructure):
         self.node_identity = source.node_identity
 
     def find_head_chain(self):
-        if self.primitive() and self.is_left() and self.affix() and self.right().find_me_elsewhere and self.mother:
-            return self.mother.right().find_constituent_with_index(self.right.index())
+        if self.primitive() and self.is_left() and self.affix() and self.affix().find_me_elsewhere and self.mother:
+            return self.mother.right().find_constituent_with_index(self.affix().index())
 
     def find_Agree(self):
         if self.primitive() and self.is_left() and 'ΦLF' in self.features:
@@ -563,7 +561,7 @@ class GPhraseStructure(PhraseStructure):
                         itext += '\n'
                     i += 1
 
-            if self.has_affix() and not self.right.find_me_elsewhere:
+            if self.affix() and not self.right.find_me_elsewhere:
                 itext += f'\nComplex head with structure '
                 for c in self.get_affix_list():
                     itext += f'{c} '

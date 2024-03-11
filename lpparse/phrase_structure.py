@@ -5,7 +5,7 @@ from support import log, set_logging
 
 major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
               'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
-              'FORCE', 'EXPL', 'Adv',
+              'FORCE', 'EXPL', 'Adv', 'Pr',
               '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z']
 Result = namedtuple('Result', 'match_occurred outcome')
 

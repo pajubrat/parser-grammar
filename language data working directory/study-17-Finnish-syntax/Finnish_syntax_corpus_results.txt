@@ -1,0 +1,38 @@
+@  {}
+@  2024-03-11 12:00:05.535950
+@  Test sentences language data working directory\study-17-Finnish-syntax\Finnish_syntax_corpus.txt.
+@  Logs language data working directory\study-17-Finnish-syntax\Finnish_syntax_corpus_log.txt.
+@ 
+
+
+#1. 	['John', 'admires', 'Mary']
+
+	[[D John]:11 [T [__:11 [v [admire [D Mary]]]]]]
+
+	Semantics:
+
+		Thematic roles: ['Causer/Agent of v°(v): [D John]', 'Patient of V°(admire): [D Mary]']
+		Agreement: ['Agree(T, [D John])', 'Agree(v, D)', 'Agree(admire, D)']
+		Predicates: ['T: φ/pro, indexed to [D John]', 'v: φ/pro, indexed to [D Mary]', 'admire: φ/pro, indexed to [D Mary]']
+		Aspect: []
+		DIS-features: []
+		Operator bindings: []
+		Semantic space: 
+		Speaker attitude: ['Declarative']
+		Assignments: []
+		Information structure: []
+
+	Resources:
+
+		Total Time:527ms(1), Garden Paths:0ms(0), Sensory Processing:138ms(3), 
+		Lexical Retrieval:207ms(23), Merge:42ms(6), Head Chain:35ms(5), 
+		Phrasal Chain:21ms(3), Feature Inheritance:21ms(3), Agree:63ms(9), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:175.66666666666666ms(1), 
+		Merge-1:0ms(36),  
+
+	Ontology:
+
+		Object 2 in GLOBAL: [D John]
+		Object 4 in GLOBAL: [D Mary]
+ 

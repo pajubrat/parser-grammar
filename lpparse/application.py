@@ -132,7 +132,6 @@ class Application(tk.Tk):
             self.local_file_system.save_output(self.speaker_models[language], 1, S, '0', True)
             self.results_frame.fill_with_data(self.speaker_models[language])
             PhraseStructureGraphics(self, self.speaker_models[language])                    # Show phrase structure image
-            LogText(self, self.settings.external_sources["log_file_name"], 'Derivation')    # Show derivation
         else:
             LogText(self, self.settings.external_sources["log_file_name"], '**The input sentence was ungrammatical. See the derivational log below**')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())

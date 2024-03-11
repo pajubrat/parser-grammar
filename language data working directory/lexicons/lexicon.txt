@@ -92,7 +92,10 @@ ikkunan		:: ikkuna-#φ#[acc(n)]#sg#3p#def#hum
 ikkuna[pl]-	:: PF:ikkunat LF:windows N LANG:FI
 ikkunat_N	:: PF:ikkunat LF:windows N iPHI:NUM:PL LANG:FI
 ikkunat_DP	:: ikkuna-#φ#[acc]#pl#3p#def#hum
+ikkunoita	:: ikkuna-#D#[par]#pl#3p#def#nonhum
+ikkunoita*	:: ikkuna*-#D#[par]#pl#3p#def#nonhum
 ikkuna-		:: PF:ikkuna LF:window N LANG:FI
+ikkuna*-	:: PF:ikkunoita LF:windows N LANG:FI
 iso-		:: A PF:iso LF:big LANG:FI
 istuuko		:: istu-#T/fin#C/op LANG:FI
 istuu		:: istu-#T/fin#[V] LANG:FI
@@ -161,6 +164,7 @@ kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[V] LANG:EN
 köy-		:: PF:köysi LF:rope N LANG:FI
 lapsia		:: lapsi-#φ#pl#3p#def#hum#r_expression#[par] LANG:FI
+lapsena		:: N LF:child PF:lapsena ESS LANG:FI
 lapsi-		:: N LF:child PF:lapsi LANG:FI 
 laulaa		:: laula-#T/fin#prs#[V] LANG:FI
 laulan		:: laula-#T/fin#prs#n LANG:FI
@@ -355,23 +359,32 @@ pesin		:: pese-#v#asp#T/fin#pst#n LANG:FI
 pesi*		:: pese-#v#asp#T#pst#Fin#[V] LANG:FI
 pesit*		:: pese-#v#asp#T#Fin#t LANG:FI
 pestä		:: pese-#A/inf LANG:FI
+pese		:: pese-#v#asp#T#prs LANG:FI
 pese-		:: PF:pese- LF:wash V V/TR ASP:BOUNDED LANG:FI
 pieni		:: pieni-#a0 LANG:FI
 pieni-		:: PF:pieni- LF:small 0 LANG:FI
 pino-		:: PF:pino LF:stack N LANG:FI
+pitää		:: pitää-#v#T/fin#pst#[V] LANG:FI
+pitää-		:: PF:pitää LF:regard V !COMP:Pr LANG:FI
 poikien		::	poika-#φ#[gen]#[-dat]#pl#3p#def#r_expression#hum LANG:FI
 poika-		::	PF:poika LF:boy N LANG:FI
 pudottautuu	:: pudo-#TA*#U*#T/fin#prs#[V]
 pudo-		:: PF:pudo LF:fall V V/INTR LANG:FI
+puhtaaksi	:: puhdas-#a0 LANG:FI
+puhdas-		:: PF:puhtaaksi TRA LF:clean A LANG:FI
 pukee		:: puke-#T/fin#prs#[V] LANG:FI
 puke-		:: PF:puke- LF:dressup V V/INTR LANG:FI
 puhelinta	:: puhelin-#n LANG:FI
 puhelin-	:: PF:puhelin- LF:phone 0 LANG:FI
 punainen 	:: puna-#nen LANG:FI
 puna-		:: N PF:puna- LF:red LANG:FI
+pyyhki		:: pyyhki-#v#T/fin#prs#[V] LANG:FI
+pyyhki-		:: V PF:pyyhki LF:wipe LANG:FI
 pyytää		:: pyytä-#v#T/fin#[V] LANG:FI
 pyysi		:: pyytä-#v#T/fin#[V] LANG:FI
 pyytä-		:: PF:pyyda- LF:ask V V/TR SEMCLASS_desired_event SEM:external LANG:FI
+pöydän		:: pöytä-#D LANG:FI
+pöytä-		:: PF:pöydän LF:table N LANG:FI
 saavuttaa	:: saavutta-#v#T/fin#[V] LANG:FI
 saavutta-	:: PF:saavutta- LF:reach !COMP:φ ASP:BOUNDED V/TR V LANG:FI
 sano		:: sano-#T/fin LANG:FI
@@ -447,6 +460,8 @@ teke-		:: V V/TR !COMP:φ -COMP:A/inf COMP:v PF:teke- LF:make LANG:FI
 teke2-		:: V -COMP:A/inf -COMP:v PF:teke- LF:make LANG:FI
 tiesin		:: tietä-#T/fin#pst#n LANG:FI
 tietä-		:: PF:tietä- LF:know V COMP:VA/inf LANG:FI
+tyhmänä		:: tyhmä-#a0
+tyhmä-		:: A PF:tyhmänä LF:stupid ESS LANG:FI
 tyttö		:: tyttö-#φ#r_expression LANG:FI
 tyttö-		:: PF:tyttö LF:girl N LANG:FI
 työtä		:: työ-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
@@ -488,8 +503,10 @@ yritta- 	:: PF:yritta LF:try V SPEC:φ !COMP:A/inf !COMP:-ARG LANG:EN SEM:intern
 
 minä		:: minä-#D/pro#[nom]#sg#1p#def#hum#pronoun1 LANG:FI
 minua		:: minä-#D/pro#[par]#sg#1p#def#hum#pronoun1 LANG:FI
+minua*		:: minua-#D/pro#[par]#sg#1p#def#hum#pronoun1 LANG:FI
 minun		:: minä-#D/pro#[gen]#sg#1p#def#hum#pronoun1 LANG:FI
 minä- 		:: PF:minä LF:I N PHI_N LANG:FI
+minua-		:: PF:minua LF:I N PHI_N LANG:FI
 sinä		:: sinä-#D/pro#[nom]#sg#2p#def#hum#pronoun1 LANG:FI
 sinua		:: sinä-#D/pro#[par]#sg#2p#def#hum#pronoun1 LANG:FI
 sinun		:: sinä-#D/pro#[gen]#sg#2p#def#hum#pronoun1 LANG:FI
