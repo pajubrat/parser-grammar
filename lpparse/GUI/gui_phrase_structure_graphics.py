@@ -561,7 +561,7 @@ class GPhraseStructure(PhraseStructure):
                         itext += '\n'
                     i += 1
 
-            if self.affix() and not self.right.find_me_elsewhere:
+            if self.affix() and not self.right().find_me_elsewhere:
                 itext += f'\nComplex head with structure '
                 for c in self.get_affix_list():
                     itext += f'{c} '
