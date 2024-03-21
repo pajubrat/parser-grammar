@@ -37,7 +37,7 @@ class Discourse:
         return next((f.split(':')[1] for f in ps.features if f[:4] == '*IDX'), None)
 
     def refresh_inventory(self, ps):
-        if not ps.find_me_elsewhere:
+        if not ps.copied:
             idx = self.get_inventory_index(ps)
             if idx:
                 self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
@@ -94,12 +94,12 @@ class Discourse:
         return arguments
 
     def out_of_proposition_scope(self, ps, scope):
-        if ps.left.primitive():
+        if ps.left.zero_level():
             if ps.left.finite():
                 if ps.left.finite_tense():
                     if ps != scope:
                         return True
-        if ps.right.primitive():
+        if ps.right.zero_level():
             if ps.right.finite():
                 if ps != scope:
                     return True
@@ -123,7 +123,7 @@ class Discourse:
             return
 
         idx = self.get_inventory_index(ps.head())
-        if starting_point_head in {const for const in ps.head().upward_path() if const.primitive()}:
+        if starting_point_head in {const for const in ps.head().upward_path() if const.zero_level()}:
             direction = 'High'
         else:
             direction = 'Low'

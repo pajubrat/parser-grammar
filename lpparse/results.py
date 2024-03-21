@@ -36,8 +36,8 @@ class Results():
                                         }
         self.resources = {"Total Time": {'ms': 0, 'n': 1},
                           "Garden Paths": {'ms': 1458, 'n': 0},
-                          "Sensory Processing": {'ms': 46, 'n': 0},
-                          "Lexical Retrieval": {'ms': 9, 'n': 0},
+                          "Sensory Processing": {'ms': 75, 'n': 0},
+                          "Lexical Retrieval": {'ms': 50, 'n': 0},
                           "Merge": {'ms': 7, 'n': 0},
                           "Head Chain": {'ms': 7, 'n': 0},
                           "Phrasal Chain": {'ms': 7, 'n': 0},
@@ -58,7 +58,7 @@ class Results():
         for key in self.resources.keys():
             if key != 'Total Time' and key != 'Mean time per word':
                 self.resources['Total Time']['ms'] += self.resources[key]['ms'] * self.resources[key]['n']
-        self.resources['Mean time per word']['ms'] = self.resources['Total Time']['ms'] / len(sentence)
+        self.resources['Mean time per word']['ms'] = round(self.resources['Total Time']['ms'] / len(sentence), 1)
 
     def update_resources(self, res_dict, sentence):
         self.resources.update(res_dict)
@@ -163,12 +163,12 @@ class Results():
             return str
 
         reply = ''
-        if not ps.primitive():
+        if not ps.zero_level():
             reply += self.show_primitive_constituents(ps.left())
             reply += self.show_primitive_constituents(ps.right())
         else:
             for head in ps.get_affix_list():
-                if head.find_me_elsewhere:
+                if head.copied:
                     break
                 reply += f'\t\t{head.get_phonological_string():<10} {show_feature_list(sorted_by_relevance(head.features))}\n'
         return reply
@@ -203,7 +203,7 @@ class Results():
         return lst_QND + lst_PE + lst_OP + lst_GLOBAL
 
     def __str__(self):
-        stri = f'\t{self.sentence}\n'
+        stri = f'\n\t{self.sentence}\n\n'
         if len(self.syntax_semantics) > 0:
             number_of_solutions = len(self.syntax_semantics)
             parse_number = 1
@@ -221,7 +221,10 @@ class Results():
     def formatted_semantics_output(self):
         output_str = ''
         for key in self.semantic_interpretation:
-            output_str += '\t\t' + key + ': ' + str(self.semantic_interpretation[key]) + '\n'
+            output_str += '\t\t' + key + ':\n'
+            for value in self.semantic_interpretation[key]:
+                output_str += '\t\t\t' + str(value) + '\n'
+        output_str += '\n'
         return output_str
 
     def format_resource_output(self, consumed_resources):

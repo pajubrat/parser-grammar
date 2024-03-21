@@ -10,7 +10,7 @@ from Experimental_functions import ExperimentalFunctions
 from results import Results
 
 class SpeakerModel:
-    def __init__(self, settings, local_file_system, language='XX'):
+    def __init__(self, settings, language='XX'):
         self.settings = settings
         self.sentence = []
         self.language = language                                # Contextual variables (language etc.)

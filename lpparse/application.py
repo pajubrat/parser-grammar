@@ -114,7 +114,7 @@ class Application(tk.Tk):
         lg = LanguageGuesser(settings)
         speaker_model = {}
         for language in lg.languages:
-            speaker_model[language] = SpeakerModel(settings, self.local_file_system, language)
+            speaker_model[language] = SpeakerModel(settings, language)
             speaker_model[language].initialize()
         sentences_to_parse = [(index, sentence, group, part_of_conversation, grammatical)
                               for (index, sentence, group, part_of_conversation, grammatical)
@@ -127,7 +127,7 @@ class Application(tk.Tk):
         S = self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['sentence']
         language = self.language_guesser.guess_language(S)
         self.speaker_models[language].parse_sentence(self.dataset_frame.selected_data_item, S)
-        print(f'{self.speaker_models[language].results}')
+        print(f'\n{self.speaker_models[language].results}')
         if self.speaker_models[language].results.syntax_semantics:
             self.local_file_system.save_output(self.speaker_models[language], 1, S, '0', True)
             self.results_frame.fill_with_data(self.speaker_models[language])

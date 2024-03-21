@@ -35,8 +35,8 @@ class ThematicRoles:
                 self.failure = True
                 return
             if assignee.head().referential():
-                if assignee.head().mother:
-                    argument_str = f'{assignee.head().mother.illustrate()}'
+                if assignee.head().mother_:
+                    argument_str = f'{assignee.head().mother_.illustrate()}'
                 else:
                     argument_str = f'{assignee.head()}'
             else:

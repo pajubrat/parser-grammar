@@ -576,7 +576,11 @@ asks		:: ask-#v#T/fin#[-s] LANG:EN
 ask-		:: PF:ask LF:ask V SPEC:φ COMP:φ SEM:internal LANG:EN
 bank		::	PF:bank1 LF:bank_inst N FREQ:1 LANG:EN
 bank		::	PF:bank2 LF:bank_river N FREQ:2 LANG:EN
-barn		::	PF:barn LF:barn N LANG:EN
+bark		:: PF:bark LF:bark V V/INTR !SPEC:D LANG:EN
+barn		:: PF:barn LF:barn N LANG:EN
+bite		:: bite-#v LANG:EN
+bites		:: bite-#v#T/fin#prs#[-s] LANG:END
+bite-		:: PF:bite LF:bite V V/TR !COMP:D LANG:EN
 Bill 		:: Bill-#D#sg#3p#def#hum#m LANG:EN
 Bill-		:: PF:Bill LF:Bill N R:REF:PROPER_NAME -SEM:directional nonadjoinable LANG:EN
 by			:: PF:by LF:by P Adv -ΦPF TAIL:T TAIL:*V LANG:EN
@@ -584,17 +588,21 @@ cat			:: PF:cat LF:cat N LANG:EN
 city		:: PF:city LF:city N LANG:EN
 claims		::	claim-#T/fin#[V] LANG:EN
 claim-		::	PF:claim LF:claim V SPEC:φ COMP:T/fin -COMP:φ
-does		:: T/fin PHI:PER:3 PHI:NUM:SG PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does LANG:EN
-does_T		:: T/fin PHI:PER:3 PHI:NUM:SG PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does LANG:EN
+dog			::	PF:dog LF:dog N -COMP:V
+does		:: T/fin ΦPF PHI:PER:3 PHI:NUM:SG PER COMP:Neg PF:does LF:does LANG:EN
+does/T		:: T/fin ΦPF PHI:PER:3 PHI:NUM:SG PER COMP:Neg PF:does LF:does LANG:EN
+did/T		:: T/fin ΦPF PER COMP:Neg PF:did LF:did LANG:EN
+did/C		:: did-#C/fin#wh#WH LANG:EN
+did			:: did-#C/fin#wh#WH LANG:EN
 does		:: does-#wh#C/fin#WH LANG:EN
-does_C		:: does-#wh#C/fin#WH LANG:EN
-did			:: does-#C/fin#wh#WH LANG:EN
-does-		:: T/fin PHI:PER:3 PHI:NUM:SG PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does LANG:EN
+does/C		:: does-#wh#C/fin#WH LANG:EN
+does-		:: T/fin ΦPF PHI:PER:3 PHI:NUM:SG PER PHI:GEN:M PHI:GEN:F COMP:Neg PF:does LF:does LANG:EN
+did-		:: T/fin ΦPF PF:did LF:did PER LANG:EN
 disappeared	::	disappear-#T/fin LANG:EN
 disappear-	::	PF:disappear LF:disappear V V/INTR LANG:EN
 easy		::	easy-#a0 LANG:EN
 easy-		::	PF:easy LF:easy 0 LANG:EN
-fell		:: fell-#T/fin LANG:EN
+fell		:: fell-#T/fin#pst LANG:EN
 fell-		:: PF:fell LF:fell V V/INTR LANG:EN
 fence		:: PF:fence LF:fence N LANG:EN
 flows		:: flow-#T/fin#[-s] LANG:EN
@@ -638,6 +646,7 @@ occur-		:: PF:occur LF:occur V V- SPEC:φ LANG:EN
 paint		:: paint-#v LANG:EN
 painted		:: paint-#v#T/fin LANG:EN
 paint-		:: PF:paint LF:paint V V/TR LANG:EN
+past		:: PF:past LF:past P LANG:EN
 persuades 	:: persuade-#v#T/fin#[-s] LANG:EN
 persuade- 	:: PF:persuade LF:persuade V COMP:TO/inf !COMP:* SEM:external LANG:EN
 Paris		:: Paris-#D#sg#3p#def#nonhum#proper_name LANG:EN
@@ -651,9 +660,11 @@ sleeps		:: sleep-#T/fin#[-s] LANG:EN
 sleep- 		:: PF:sleep LF:sleep V V/INTR LANG:EN
 lives		:: live-#T/fin#[-s] LANG:EN
 live-		:: PF:live LF:live V COMP:P V/INTR LANG:EN
-raced		:: race-#T/fin FREQ:2 INFO:finite_verb LANG:EN  
+raced		:: race-#T/fin#pst FREQ:2 INFO:finite_verb LANG:EN  
+raced/1		:: race-#T/fin#pst FREQ:2 INFO:finite_verb LANG:EN 
 raced		:: race-#T/prt FREQ:1 INFO:participle_verb LANG:EN
-race-		:: PF:race LF:race V V/INTR !COMP:* -COMP:T/fin COMP:P LAMG:EN
+raced/2		:: race-#T/prt FREQ:1 INFO:participle_verb LANG:EN
+race-		:: PF:race LF:race V V/INTR !COMP:* -COMP:T/fin !COMP:P LANG:EN
 rains		:: rain-#T/fin#[-s] LANG:EN
 rain-		:: LF:rain PF:rain V V/INTR
 reaches		:: reach-#v#T/fin LANG:EN
@@ -672,7 +683,7 @@ solution	:: PF:solution LF:solution N LANG:EN
 surprised	::	surprise-#v#T/fin LANG:EN
 surprise-	:: PF:surprise LF:surprise V V/TR -COMP:T/fin LANG:EN
 that    	:: PF:that LF:that FORCE FORCE:DECL REF LANG:EN
-the			:: PF:the LF:the D iPHI:DET:DEF iPHI:PER:3 iPHI:NUM:SG LANG:EN
+the			:: PF:the LF:the D iPHI:PER:3 iPHI:DET:DEF iPHI:NUM:SG LANG:EN
 there		:: N#D/expl
 to     		:: PF:to LF:to P +SEM:directional -E TAIL:V +SEM:directional LANG:EN
 towards		:: PF:towards LF:towards P !COMP:φ TAIL:V TAIL:*LF:reach LANG:EN
@@ -687,7 +698,7 @@ was1		:: be-#was LANG:EN
 were1		:: be-#were LANG:EN
 what		:: what-#D#wh#sg#3p#def LANG:EN
 what-		:: PF:what LF:what N PHI_N LANG:EN
-which		:: PF:which LF:which D OP:WH LANG:EN
+which		:: PF:which LF:which D iPHI:DET:DEF iPHI:PER:3 iPHI:NUM:SG OP:WH LANG:EN
 who			:: who-#D#wh#sg#3p#def#hum LANG:EN
 who(rel)	:: who-#D/rel#sg#3p#def#hum LANG:EN
 which(rel)	:: who-#D/rel#sg#3p#def#hum LANG:EN
@@ -785,7 +796,6 @@ operatoria	:: operatoria-#a0 LANG:IT
 operatoria-	:: PF:operatoria LF:operation 0 LANG:IT
 Parigi		:: Parigi-#D#sg#3p#def#f LANG:IT
 Parigi-		:: PF:Parigi LF:Paris N LANG:IT
-past		::	PF:past LF:past P LANG:EN
 per			:: PF:per LF:for P -ΦPF COMP:T TAIL:N LANG:IT
 petardi		:: PF:petardi LF:firecrackers N LANG:IT
 presupposto	:: PF:presupposto LF:presupposition N LANG:IT

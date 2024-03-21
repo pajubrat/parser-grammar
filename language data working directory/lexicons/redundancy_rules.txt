@@ -12,7 +12,7 @@ Neg/fin :: ARG EF Fin NEG  +ΦLF,ΦPF	!ΦPF COMP:T/prt COMP:T -COMP:T/fin -SPEC:
 v   	:: θ ARG -ΦPF ASP 		!COMP:* -COMP:V/INTR COMP:V -SPEC:v -SPEC:T/fin !COMP:V SPEC:φ -SPEC:N
 D   	:: φ -ARG 				!COMP:* -COMP:D -COMP:v -COMP:V -COMP:P -COMP:T/fin -COMP:Neg/fin -COMP:T -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:n COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 D/rel	:: φ D -ARG OP OP:REL 	 adjoinable	COMP:* -COMP:C/fin -COMP:φ -SPEC:MA.ade/inf -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V COMP:N -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
-N   	:: θ 					-COMP:EXPL -COMP:VA/inf -COMP:T/fin -COMP:MA/A -COMP:Neg -COMP:T/prt COMP:D/rel COMP:√ COMP:P -COMP:A COMP:C -COMP:AUX -SPEC:FORCE SPEC:A COMP:R COMP:R/D SPEC:φ -SPEC:uWH -SPEC:R -SPEC:V -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:Adv -COMP:WH
+N   	:: θ 					-COMP:EXPL -COMP:VA/inf -COMP:T/fin -COMP:MA/A -COMP:Neg COMP:D/rel COMP:√ COMP:P -COMP:A COMP:C -COMP:AUX -SPEC:FORCE SPEC:A COMP:R COMP:R/D SPEC:φ -SPEC:uWH -SPEC:R -SPEC:V -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin COMP:uR -SPEC:Adv -COMP:WH
 V   	:: θ ARG -ΦPF ASP 		-SPEC:T/fin -SPEC:FORCE SPEC:Adv -COMP:T/prt -COMP:N -COMP:v SPEC:P SPEC:TO/inf -COMP:EXPL
 P   	:: ARG 					adjoinable COMP:φ -COMP:V -COMP:MA/A -SPEC:Neg -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 Adv 	:: adjoinable			-SPEC:N -SPEC:FORCE -SPEC:Neg/fin -SPEC:T/fin
@@ -120,7 +120,7 @@ T Fin			:: 	SPEC:EXPL
 	ARG LANG:EN		::  PHI:GEN:_
 	LANG:EN T prs	:: PF:T
 	LANG:EN T pst	:: PF:-ed PER ΦPF PC:#X
-
+	T/prt LANG:EN	:: PF:-ed LF:prtc
 
 # ITALIAN
 	P LANG:IT		::  -ΦPF !COMP:*

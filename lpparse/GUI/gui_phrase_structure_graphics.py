@@ -282,7 +282,7 @@ class PhraseStructureCanvas(tk.Canvas):
         for j, affix in enumerate(gps.get_affix_list(), start=1):
 
             # Do not reproduce copies
-            if affix.find_me_elsewhere:
+            if affix.copied:
                 break
 
             # Do not produce affixes if blocked by settings
@@ -407,7 +407,7 @@ class GPhraseStructure(PhraseStructure):
         self.features = source.features
         self.adjunct = source.adjunct
         self.identity = source.identity
-        self.find_me_elsewhere = source.find_me_elsewhere
+        self.copied = source.copied
         if not source.terminal():
             self.create_constituents([GPhraseStructure(const) for const in source.const])
 
@@ -424,11 +424,11 @@ class GPhraseStructure(PhraseStructure):
         self.node_identity = source.node_identity
 
     def find_head_chain(self):
-        if self.primitive() and self.is_left() and self.affix() and self.affix().find_me_elsewhere and self.mother:
-            return self.mother.right().find_constituent_with_index(self.affix().index())
+        if self.zero_level() and self.is_left() and self.affix() and self.affix().copied and self.mother_:
+            return self.mother_.right().find_constituent_with_index(self.affix().index())
 
     def find_Agree(self):
-        if self.primitive() and self.is_left() and 'ΦLF' in self.features:
+        if self.zero_level() and self.is_left() and 'ΦLF' in self.features:
             return self.argument_by_agreement().head()
 
     def initialize_logical_space(self):
@@ -505,7 +505,7 @@ class GPhraseStructure(PhraseStructure):
         # Minimum label is the label itself
         label_stack = [(self.label(), 'label')]
 
-        if self.primitive():
+        if self.zero_level():
 
             # Phonological string
             if self.get_phonological_string() and self.get_phonological_string() != self.label():
@@ -528,12 +528,12 @@ class GPhraseStructure(PhraseStructure):
         if self.complex():
 
             itext += f'Identity: {self.node_identity}\n'
-            itext += f'Reconstructed: {self.find_me_elsewhere}\n'
+            itext += f'Reconstructed: {self.copied}\n'
             itext += f'Adjunct Merge: {self.adjunct}\n'
             itext += ' '.join(self.features)
             return itext
 
-        if self.primitive():
+        if self.zero_level():
 
             feature_dict = {'PF:': [],
                             'LF:': [],
@@ -561,7 +561,7 @@ class GPhraseStructure(PhraseStructure):
                         itext += '\n'
                     i += 1
 
-            if self.affix() and not self.right().find_me_elsewhere:
+            if self.affix() and not self.right().copied:
                 itext += f'\nComplex head with structure '
                 for c in self.get_affix_list():
                     itext += f'{c} '
@@ -570,7 +570,7 @@ class GPhraseStructure(PhraseStructure):
 
     def find_max_label_size(self, label_size):
         """Finds the maximal label size for a phrase structure (to determine canvas margins)"""
-        if self.primitive():
+        if self.zero_level():
             ls = self.label_size() * len(self.get_affix_list())
             if ls > label_size:
                 return ls

@@ -27,7 +27,6 @@ def feature_licensing(G, PP):
                         return False
             return True
 
-
 def unvalued_phi_feature(f):
     return phi_feature(f) and f[-1] == '_'
 

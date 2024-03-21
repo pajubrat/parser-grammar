@@ -19,6 +19,7 @@ class LocalFileSystem:
         self.study_folder = None
         self.external_sources = {}
         self.results_file = None
+        self.simple_log_file = None
         self.errors = None
         self.numeration_output = None
         self.resources_file = None
@@ -36,9 +37,13 @@ class LocalFileSystem:
         self.initialize_results_file(settings)
         self.initialize_resources_file(settings)
         self.initialize_error_file(settings)
+        self.initialize_simple_log_file(settings)
         if settings.get()['use_numeration']:
             self.initialize_numeration_output(settings)
         self.dev_log_file.write('Done.\n')
+
+    def initialize_simple_log_file(self, settings):
+        self.simple_log_file = open(settings.external_sources['simple_log_file'], 'w', -1, encoding=self.encoding)
 
     def initialize_error_file(self, settings):
         self.errors = open(settings.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
@@ -238,6 +243,11 @@ class LocalFileSystem:
         self.results_file.write(f'#{count}. {speaker_model.results}')
         self.save_resources(speaker_model, count, " ".join(sentence), experimental_group)
         self.save_errors(speaker_model, count, sentence, grammatical)
+        self.save_simple_log(speaker_model)
+
+    def save_simple_log(self, speaker_model):
+        for step in speaker_model.results.recorded_steps:
+            self.simple_log_file.write(f'{step[0]}. {step[1]} ({step[2]})\n')
 
     def save_errors(self, speaker_model, count, sentence, grammatical):
         if len(speaker_model.results.syntax_semantics) > 0 and not grammatical or len(speaker_model.results.syntax_semantics) == 0 and grammatical:

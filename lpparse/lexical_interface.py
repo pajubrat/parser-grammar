@@ -15,7 +15,7 @@ class LexicalInterface:
         self.language = self.speaker_model.language
 
     def lexical_retrieval(self, phon):
-        log(f'\n\tNext word /{phon}/')
+        log(f'\n\tNext word /{phon}/ =>')
         phon, onset, offset = self.phonological_context(phon)
         if phon in self.surface_lexicon:
             lexical_items_lst = [lex.copy().set_phonological_context(onset, offset) for lex in self.surface_lexicon[phon] if
@@ -41,11 +41,11 @@ class LexicalInterface:
         return phon[len(onset):len(phon)-len(offset)], onset, offset
 
     def log_lexical_items(self, phon, lst):
-        log(f' => ')
+        log(f' ')
         for i, lex in enumerate(lst):
             if lex:
                 if lex.morphological_chunk:
-                    log(f'morphological chunk [{lex.morphological_chunk}] => ')
+                    log(f'({i+1}) morphological chunk [{lex.morphological_chunk}] ')
                 else:
                     log(f'({i+1}) {lex}° ')
 

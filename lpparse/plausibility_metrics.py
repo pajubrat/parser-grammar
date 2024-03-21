@@ -133,22 +133,22 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def break_head_comp_relations(self, site):
-        if not site.primitive() and site.mother and \
-                site.mother.left() and site.mother.left().primitive():
-            if site.mother.left().licensed_complements() & site.features:
+        if not site.zero_level() and site.mother_ and \
+                site.mother_.left() and site.mother_.left().zero_level():
+            if site.mother_.left().licensed_complements() & site.features:
                 if not self.word.adverbial():
                     return True
 
     @knockout_lexical_ranking
     def positive_head_comp_selection(self, site):
-        if site.primitive():
+        if site.zero_level():
             for m in site.get_affix_list():
                 if self.word.features & convert_features_for_parsing(m.licensed_complements()):
                     return True
 
     @knockout_lexical_ranking
     def negative_head_comp_selection(self, site):
-        if site.primitive():
+        if site.zero_level():
             m = site.bottom_affix()
             if self.word.features & convert_features_for_parsing(m.complements_not_licensed()):
                 log(f'{self.word.features & convert_features_for_parsing(m.complements_not_licensed())}')
@@ -156,14 +156,14 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def negative_semantic_match(self, site):
-        if site.primitive():
+        if site.zero_level():
             m = site.bottom_affix()
             if not m.semantic_match(self.word):
                 return True
 
     @knockout_extra_ranking
     def lf_legibility_condition(self, site):
-        if not site.primitive():
+        if not site.zero_level():
             dropped = site.copy().transfer_to_LF()
             if not self.speaker_model.LF.pass_LF_legibility(dropped, False):
                 return True

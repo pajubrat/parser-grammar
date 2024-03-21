@@ -96,8 +96,8 @@ class NarrowSemantics:
         return not self.semantic_interpretation_failed
 
     def interpret_(self, ps):
-        if not ps.find_me_elsewhere:
-            if ps.primitive():
+        if not ps.copied:
+            if ps.zero_level():
                 if self.speaker_model.settings.get()['calculate_thematic_roles'] and ps.theta_predicate():
                     self.speaker_model.results.store_semantic_interpretation('Thematic roles', self.thematic_roles_module.reconstruct(ps))
                 if self.speaker_model.settings.get()['calculate_predicates'] and ps.check({'ARG'}) and not ps.check({'φ'}):
@@ -121,7 +121,7 @@ class NarrowSemantics:
     def inventory_projection(self, ps):
         def preconditions(x):
             return not self.speaker_model.results.first_solution_found and \
-                   not ps.find_me_elsewhere and \
+                   not ps.copied and \
                    (x.referential() or
                     (not x.referential() and not x.get_dPHI()))
 
@@ -175,7 +175,7 @@ class NarrowSemantics:
             return next((const for const in ps.upward_path() if feature_set.issubset(const.features)), None)
 
         def get_tailed_head(ps, tail_set):
-            return next((const for const in ps.upward_path() if const.primitive() and const.check_some(tail_set) and const.check(tail_set)), None)
+            return next((const for const in ps.upward_path() if const.zero_level() and const.check_some(tail_set) and const.check(tail_set)), None)
 
         def interpret_argument_tailing(ps, tailed_head):
             if tailed_head:

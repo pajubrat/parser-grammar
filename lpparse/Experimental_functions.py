@@ -20,7 +20,7 @@ class ExperimentalFunctions:
     # Standard theory (Chomsky 2000, 2001, 2008)
     def standard(self, probe):
         def goal_selection(probe):
-            return not probe.find_me_elsewhere and (probe.head().referential() or self.standard_Chomskian_phase_head(probe))
+            return not probe.copied and (probe.head().referential() or self.standard_Chomskian_phase_head(probe))
 
         def Agree(probe):
             probe.features.discard('+ΦLF,ΦPF')
@@ -39,5 +39,5 @@ class ExperimentalFunctions:
         Agree(probe)
 
     def standard_Chomskian_phase_head(self, probe):
-        return probe.primitive() and probe.check_some({'v', 'C', 'FORCE'}) and not probe.check_some({'v-'})
+        return probe.zero_level() and probe.check_some({'v', 'C', 'FORCE'}) and not probe.check_some({'v-'})
 

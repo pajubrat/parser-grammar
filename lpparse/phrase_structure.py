@@ -21,7 +21,7 @@ class PhraseStructure:
     node_identity = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
-                                    'test integrity': lambda x: x.affix() and not x.right().find_me_elsewhere and not x.License_EHM(),
+                                    'test integrity': lambda x: x.affix() and not x.right().copied and not x.License_EHM(),
                                     'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
                                     'sustain': lambda x: True,
@@ -29,10 +29,10 @@ class PhraseStructure:
                                     'single operation': False,
                                     'prepare': lambda x: x.prepare_head_chain()},
                            'Phrasal': {'type': 'Phrasal Chain',
-                                       'test integrity': lambda x: not x.find_me_elsewhere and x.complex() and x.is_left() and not x.expletive() and x.container() and x.container().EF(),
+                                       'test integrity': lambda x: not x.copied and x.complex() and x.is_left() and not x.expletive() and x.container() and x.container().EF(),
                                        'repair': lambda x: x.create_chain(),
-                                       'selection': lambda x: x.primitive() and not x.finite(),
-                                       'sustain': lambda x: not (x.primitive() and x.referential()),
+                                       'selection': lambda x: x.zero_level() and not x.finite(),
+                                       'sustain': lambda x: not (x.zero_level() and x.referential()),
                                        'legible': lambda x, y: x.Abar_legible(y),
                                        'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Feature': {'type': 'Feature Inheritance',
@@ -43,20 +43,20 @@ class PhraseStructure:
                                         'repair': lambda x: x.create_chain(),
                                         'selection': lambda x: x.has_vacant_phrasal_position(),
                                         'legible': lambda x, y: True,
-                                        'sustain': lambda x: not (x.primitive() and x.referential()),
-                                        'test integrity': lambda x: not x.find_me_elsewhere and x.complex() and x.is_left() and x.container() and x.container().EF(),
+                                        'sustain': lambda x: not (x.zero_level() and x.referential()),
+                                        'test integrity': lambda x: not x.copied and x.complex() and x.is_left() and x.container() and x.container().EF(),
                                         'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Agree': {'type': 'Agree',
                                      'test integrity': lambda x: x.is_unvalued(),
                                      'repair': lambda x: PhraseStructure.speaker_model.Experimental_functions.Agree(x)},
                            'Extraposition': {'type': 'Extraposition',
-                                             'test integrity': lambda x: x.primitive() and (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
+                                             'test integrity': lambda x: x.zero_level() and (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
                                              'repair': lambda x: x.extrapose()},
                            'Right Scramble': {'type': 'Right Scrambling',
-                                              'test integrity': lambda x: not x.find_me_elsewhere and x.trigger_right_node_scrambling(),
+                                              'test integrity': lambda x: not x.copied and x.trigger_right_node_scrambling(),
                                               'repair': lambda x: x.right_scrambling()},
                            'Left Scramble': {'type': 'Left Scrambling',
-                                             'test integrity': lambda x: x.complex() and not x.find_me_elsewhere and x.trigger_scrambling(),
+                                             'test integrity': lambda x: x.complex() and not x.copied and x.trigger_scrambling(),
                                              'repair': lambda x: x.reconstruct_scrambling()},
                            'Last Resort Extraposition': {'type': 'Last Resort Extraposition',
                                                          'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not PhraseStructure.speaker_model.LF.LF_legibility_test_detached(x.top()),
@@ -74,11 +74,11 @@ class PhraseStructure:
         self.const = []
         if left and right:
             self.create_constituents([left, right])
-        self.mother = None
+        self.mother_ = None
         self.features = set()
         self.active_in_syntactic_working_memory = True
         self.adjunct = False
-        self.find_me_elsewhere = False
+        self.copied = False
         self.identity = ''
         self.node_identity = self.create_node_identity()
         self.internal = False
@@ -86,12 +86,11 @@ class PhraseStructure:
         self.stop = False
         self.nn = None
 
-        if left and left.adjunct and left.primitive():
+        if left and left.adjunct and left.zero_level():
             self.adjunct = True
             left.adjunct = False
 
     # Phrase structure geometry --------------------------------
-
     def left(self):
         if self.const:
             return self.const[0]
@@ -100,29 +99,32 @@ class PhraseStructure:
         if self.const:
             return self.const[-1]
 
+    def mother(self):
+        return self.mother_
+
     def create_constituents(self, lst):
         self.const = lst
-        for x in lst:
-            x.mother = self
+        for x in self.const:
+            x.mother_ = self
 
     def terminal(self):
-        return len(self.const) == 0
+        return not self.const
 
     def complex(self):
         return len(self.const) > 1
 
-    def primitive(self):
+    def zero_level(self):
         return len(self.const) < 2
 
     def is_left(self):
-        return self.mother and self.mother.left() == self
+        return self.mother() and self.mother().left() == self
 
     def is_right(self):
-        return self.mother and self.mother.right() == self
+        return self.mother() and self.mother().right() == self
 
     def affix(self):
-        if len(self.const) == 1:
-            return self.const[0]
+        if self.left() == self.right():
+            return self.left()
 
     def get_affix_list(x):
         lst = [x]
@@ -135,37 +137,40 @@ class PhraseStructure:
         return list(x.minimal_search())[-1]
 
     def top(x):
-        while x.mother:
-            x = x.mother
+        while x.mother():
+            x = x.mother()
         return x
 
     def grandmother(self):
-        if self.mother.mother:
-            return self.mother.mother
+        if self.mother().mother():
+            return self.mother().mother()
 
     def aunt(self):
-        if self.mother:
-            return self.mother.sister()
+        if self.mother():
+            return self.mother().sister()
 
     def head(X):
         for x in [X] + X.const:
-            if x.primitive():
+            if x.zero_level():
                 return x
+        return X.right_nonadjunct().head()
+
+    def right_nonadjunct(X):
         if X.right().adjunct:
-            return X.left().head()
-        return X.right().head()
+            return X.left()
+        return X.right()
 
     def inside(self, head):
         return self.head() == head
 
     def container(self):
-        if self.mother and self.head() != self.mother.head():
-            return self.mother.head()
+        if self.mother() and self.head() != self.mother().head():
+            return self.mother().head()
 
     def max(self):
         x = self
-        while x.mother and x.mother.head() == self:
-            x = x.mother
+        while x.mother() and x.mother().head() == self:
+            x = x.mother()
         return x
 
     def minimal_search_domain(self):
@@ -175,25 +180,25 @@ class PhraseStructure:
 
     def geometrical_sister(self):
         if self.is_left():
-            return self.mother.right()
-        return self.mother.left()
+            return self.mother().right()
+        return self.mother().left()
 
     def sister(x):
-        while x.mother:
+        while x.mother():
             if not x.geometrical_sister().adjunct:
                 return x.geometrical_sister()
-            x = x.mother
+            x = x.mother()
 
     def right_sister(self):
         if self.sister() and self.sister().is_right():
             return self.sister()
 
     def proper_selected_complement(self):
-        if self.primitive():
+        if self.zero_level():
             return self.right_sister()
 
     def selector(self):
-        return self.next(self.upward_path, lambda x: x.primitive())
+        return self.next(self.upward_path, lambda x: x.zero_level())
 
     def selected_sister(self):
         if self.sister() and not self.sister().proper_selected_complement():
@@ -201,7 +206,7 @@ class PhraseStructure:
 
     def specifier_sister(self):
         if self.is_left():
-            return self.mother
+            return self.mother()
         return self
 
     def extract_affix(self):
@@ -211,7 +216,7 @@ class PhraseStructure:
 
     def bottom_affix(x):
         if x.affix():
-            while x.affix() and not x.affix().find_me_elsewhere:
+            while x.affix() and not x.affix().copied:
                 x = x.affix()
         return x
 
@@ -227,7 +232,7 @@ class PhraseStructure:
         if not self.nn:
             raise StopIteration
         current = self.nn
-        if self.nn.primitive():
+        if self.nn.zero_level():
             self.nn = None
             return current
         elif self.nn.head() == self.nn.right().head() or self.nn.left().proper_selected_complement():
@@ -241,18 +246,18 @@ class PhraseStructure:
 
     def upward_path(self):
         upward_path = []
-        x = self.mother
+        x = self.mother()
         while x:
             if x.left().head() != self:
                 upward_path.append(x.left())
-            x = x.mother
+            x = x.mother()
         return upward_path
 
     def next(self, memory_span, condition=lambda x: True):
         return next((x for x in memory_span() if condition(x)), None)
 
     def edge(self):
-        return list(takewhile(lambda x: x.mother and x.mother.inside(self), self.upward_path()))
+        return list(takewhile(lambda x: x.mother() and x.mother().inside(self), self.upward_path()))
 
     def local_edge(self):
         if self.edge():
@@ -274,7 +279,7 @@ class PhraseStructure:
             return self.check(feature_set)
 
     def return_constituent_with(self, feature):
-        if self.primitive() and feature in self.features:
+        if self.zero_level() and feature in self.features:
             return self
         for x in self.const:
             constituent = x.return_constituent_with(feature)
@@ -328,7 +333,7 @@ class PhraseStructure:
     def pro_legibility(self):
         if not self.sister() or self.adjunct or self.nominal() or self.preposition():
             return True
-        iter = self.minimal_search_domain().minimal_search(lambda x: x.primitive(), lambda x: x.theta_predicate() or (not x.phase_head()) and not x.check({'PER'}))
+        iter = self.minimal_search_domain().minimal_search(lambda x: x.zero_level(), lambda x: x.theta_predicate() or (not x.phase_head()) and not x.check({'PER'}))
         return next((x for x in iter if x.theta_predicate()), None)
 
     # Selection -------------------------------------------------------------------------------------------
@@ -434,7 +439,7 @@ class PhraseStructure:
             while x.affix():
                 if x.w_selection():
                     return True
-                if x.affix().find_me_elsewhere:
+                if x.affix().copied:
                     return x.License_EHM()      # [ε] blocks IHM
                 else:
                     if not x.License_EHM():     # [ε] licenses EHM
@@ -455,8 +460,8 @@ class PhraseStructure:
     def projection_principle_applies(self):
         return self.referential() and \
                self.max() and \
-               not self.max().find_me_elsewhere and \
-               self.max().mother and \
+               not self.max().copied and \
+               self.max().mother() and \
                not self.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
     # Configuration [A <XP>] is unclear, currently it satisfies Projection Principle if A licenses XP because Finnish reconstructed arguments
@@ -545,10 +550,10 @@ class PhraseStructure:
                 return True
 
     def scan_features(X, feature):
-        if X.primitive():
+        if X.zero_level():
             return {f for f in X.features if f.startswith(feature) and f[-1] != '_'}
         else:
-            for x in [x for x in X.const if not x.find_me_elsewhere]:
+            for x in [x for x in X.const if not x.copied]:
                 return x.scan_features(feature)
 
     def copy_criterial_features(self, specifier):
@@ -576,7 +581,7 @@ class PhraseStructure:
                 return True
 
     def gapless_head(self):
-        return self.primitive() and self.aunt() and self.aunt().primitive()
+        return self.zero_level() and self.aunt() and self.aunt().zero_level()
 
     def has_nonthematic_specifier(self):
         return self.EF() and next(iter(self.edge()), self).extended_subject()
@@ -636,13 +641,13 @@ class PhraseStructure:
             node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'right')
 
     def local_tense_edge(self):
-        return next((node.mother for node in self.upward_path() if node.finite() or node.force()), self.top())
+        return next((node.mother() for node in self.upward_path() if node.finite() or node.force()), self.top())
 
     def sustain_condition_for_scrambling(self, target, local_tense_edge):
-        return not (self.mother == target or
-                    self.mother.find_me_elsewhere or
+        return not (self.mother() == target or
+                    self.mother().copied or
                     (self.force() and self.container() != local_tense_edge.head()) or
-                    (self.primitive() and self.referential()))
+                    (self.zero_level() and self.referential()))
 
     def test_adjunction_solution(self, scrambled_phrase, virtual_test_item, starting_point, direction):
         if virtual_test_item.valid_reconstructed_adjunct(starting_point):
@@ -657,7 +662,7 @@ class PhraseStructure:
         target_node = self
         if direction == 'left':
             if self.is_left():
-                target_node = self.mother
+                target_node = self.mother()
             if reconstructed_floater.adverbial_adjunct():
                 target_node.Merge_inside(reconstructed_floater, 'right')
             else:
@@ -668,7 +673,7 @@ class PhraseStructure:
         return reconstructed_floater
 
     def externalize_structure(self):
-        if self and self.head().is_adjoinable() and self.mother:
+        if self and self.head().is_adjoinable() and self.mother():
             if self.complex():
                 self.externalize_and_transfer()
             else:
@@ -678,12 +683,12 @@ class PhraseStructure:
         if self.isolated_preposition():
             self.externalize_and_transfer()
         elif self.externalize_with_specifier():
-            self.mother.mother.externalize_and_transfer()
+            self.mother().mother().externalize_and_transfer()
         else:
-            self.mother.externalize_and_transfer()
+            self.mother().externalize_and_transfer()
 
     def externalize_and_transfer(self):
-        if self.mother:
+        if self.mother():
             self.adjunct = True
             self.add_tail_features_if_missing()
             self.transfer_adjunct()
@@ -691,7 +696,7 @@ class PhraseStructure:
     def transfer_adjunct(self):
         detached_phrase, m = self.detached()
         detached_phrase.transfer_to_LF()
-        detached_phrase.mother = m
+        detached_phrase.mother_ = m
         return detached_phrase
 
     def add_tail_features_if_missing(self):
@@ -733,7 +738,7 @@ class PhraseStructure:
     def goal_selection(self):
         # A goal is a phrase at the canonical position that has a referential head
         # or which is a phase head itself
-        return not self.find_me_elsewhere and (self.head().referential() or self.phase_head())
+        return not self.copied and (self.head().referential() or self.phase_head())
 
     def value_from_goal(self, goal):
         if goal:
@@ -789,8 +794,8 @@ class PhraseStructure:
 
     # Extraposition
     def cutoff_point_for_last_resort_extraposition(self):
-        return self.primitive() and self.is_adjoinable() and self.aunt() and \
-               (self.aunt().complex() or (self.aunt().primitive() and self.grandmother().induces_selection_violation()))
+        return self.zero_level() and self.is_adjoinable() and self.aunt() and \
+               (self.aunt().complex() or (self.aunt().zero_level() and self.grandmother().induces_selection_violation()))
 
     def license_extraposition(self):
         return self.top().contains_finiteness() or self.top().referential()
@@ -800,7 +805,7 @@ class PhraseStructure:
         PhraseStructure.speaker_model.results.consume_resources('Extraposition', self)
 
     def last_resort_extrapose(self):
-        if self.primitive() and self.cutoff_point_for_last_resort_extraposition():
+        if self.zero_level() and self.cutoff_point_for_last_resort_extraposition():
             self.externalize_structure()
             PhraseStructure.speaker_model.results.consume_resources('Last Resort Extraposition', self)
 
@@ -951,11 +956,11 @@ class PhraseStructure:
                 self.max() and \
                 self.max().container() and \
                 (self.max().container().check(tset) or
-                 (self.max().mother.sister() and
-                  self.max().mother.sister().check(tset))):
+                 (self.max().mother().sister() and
+                  self.max().mother().sister().check(tset))):
             return True
         if self.referential() or self.preposition():
-            for m in (affix for node in self.upward_path() if node.primitive() for affix in node.get_affix_list()):
+            for m in (affix for node in self.upward_path() if node.zero_level() for affix in node.get_affix_list()):
                 if m.check_some(tset):
                     return m.check(tset)
 
@@ -1001,7 +1006,7 @@ class PhraseStructure:
     # Structure building --------------------------------------------------------------------------
 
     def Merge_inside(self, C, direction=''):
-        local_structure = (self.mother, self.is_left())         # Snapshot of the local structure
+        local_structure = (self.mother(), self.is_left())         # Snapshot of the local structure
         X = self.asymmetric_merge(C, direction)                 # Create new constituent X
         X.substitute(local_structure)                           # Insert X back into the local structure
         return X
@@ -1019,7 +1024,7 @@ class PhraseStructure:
                 local_structure[0].create_constituents([local_structure[0].left(), self])   # the new constituent will be right,
             else:                                                                           # otherwise the new constituent will be left.
                 local_structure[0].create_constituents([self, local_structure[0].right()])
-            self.mother = local_structure[0]                                                # The new constituent will have the same mother as N had (substitution)
+            self.mother_ = local_structure[0]                                                # The new constituent will have the same mother as N had (substitution)
 
     def merge_around(self, reconstructed_object, legibility=lambda x: True):
         if not (self.Merge_inside(reconstructed_object, 'right') and legibility(reconstructed_object)):
@@ -1029,26 +1034,26 @@ class PhraseStructure:
                 return True
 
     def remove(self):
-        if self.mother:
-            mother = self.mother                    # {H, X}
+        if self.mother():
+            mother_ = self.mother()                    # {H, X}
             sister = self.geometrical_sister()      # X
-            grandparent = self.mother.mother        # {Y {H, X}}
-            sister.mother = sister.mother.mother    # Y
-            if mother.is_right():
+            grandparent = self.mother().mother()        # {Y {H, X}}
+            sister.mother_ = sister.mother().mother()   # Y
+            if mother_.is_right():
                 grandparent.const = [grandparent.left(), sister]
-            elif mother.is_left():
+            elif mother_.is_left():
                 grandparent.const = [sister, grandparent.right()]
-            self.mother = None                          # detach H
+            self.mother_ = None                          # detach H
 
     def sink(self, ps):
         bottom_affix = self.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
         bottom_affix.active_in_syntactic_working_memory = True
         bottom_affix.const = [ps]
-        ps.mother = bottom_affix
+        ps.mother_ = bottom_affix
         return self.top()
 
     def attach(self, site, terminal_lexical_item, transfer, address_label):
-        if site.primitive() and site.bottom_affix().word_internal():
+        if site.zero_level() and site.bottom_affix().word_internal():
             const = self.head_attachment(terminal_lexical_item)
         else:
             const = self.phrasal_attachment(terminal_lexical_item, transfer)
@@ -1061,14 +1066,14 @@ class PhraseStructure:
 
     def phrasal_attachment(self, terminal_lexical_item, transfer):
         new_left_branch = self
-        m = self.mother
+        m = self.mother()
         set_logging(False)
         if transfer:
             ps, m = self.detached()
             new_left_branch = self.transfer_to_LF()
-            new_left_branch.mother = m
+            new_left_branch.mother_ = m
         set_logging(True)
-        new_left_branch.mother = m
+        new_left_branch.mother_ = m
         new_constituent = new_left_branch.Merge_inside(terminal_lexical_item)
         return new_constituent
 
@@ -1077,7 +1082,7 @@ class PhraseStructure:
         ps_.active_in_syntactic_working_memory = self.active_in_syntactic_working_memory
         ps_.adjunct = self.adjunct
         ps_.internal = self.internal
-        ps_.find_me_elsewhere = self.find_me_elsewhere
+        ps_.copied = self.copied
         ps_.identity = self.identity
         ps_.node_identity = self.node_identity
         ps_.create_constituents([x.copy() for x in self.const])
@@ -1091,12 +1096,12 @@ class PhraseStructure:
         return None
 
     def detached(self):
-        m = self.mother
-        self.mother = None
+        m = self.mother()
+        self.mother_ = None
         return self, m
 
     def reattach(self, m):
-        self.top().mother = m
+        self.top().mother_ = m
         return self.top()
 
     def __add__(self, incoming_constituent):
@@ -1160,7 +1165,7 @@ class PhraseStructure:
                 pf = pf + '_'
             else:
                 pf = pf + self.right().gloss() + ' '
-        if self.primitive():
+        if self.zero_level():
             pf = pf + LF_features(self)
         return pf
 
@@ -1196,9 +1201,9 @@ class PhraseStructure:
         self.identity = self.baptize_chain()
         self_copy = self.copy()                 # Copy the constituent
         self_copy.node_identity = self.create_node_identity()
-        self_copy.find_me_elsewhere = False     # Copy is marked for being where it is
+        self_copy.copied = False     # Copy is marked for being where it is
         silence_phonologically(self_copy)       # Silence the new constituent phonologically
-        self.find_me_elsewhere = True           # Mark that the constituent has been copied
+        self.copied = True           # Mark that the constituent has been copied
         self.features.add('CHAIN:'+str(self_copy.node_identity))    # Bookkeeping
         return self_copy
 
@@ -1210,7 +1215,7 @@ class PhraseStructure:
         return set_of_features
 
     def illustrate(self):
-        if self.primitive():
+        if self.zero_level():
             if not self.get_phonological_string():
                 return '?'
             else:
@@ -1241,7 +1246,7 @@ class PhraseStructure:
     def phonological_content(self):
         exceptions = {'φ', 'D'}
         phon = ''
-        if self.primitive():
+        if self.zero_level():
             if not set(self.get_phonological_string()) & exceptions:
                 phon = self.get_phonological_string()
         else:
@@ -1268,7 +1273,7 @@ class PhraseStructure:
                 return '__' + chain_index_str
 
         # Primitive heads
-        if self.primitive():
+        if self.zero_level():
             if not self.get_phonological_string():
                 return '?'
             else:
@@ -1298,7 +1303,7 @@ class PhraseStructure:
 
         pfs = [f[3:] for f in self.features if f[:2] == 'PF']
         if self.affix():
-            if not self.affix().find_me_elsewhere:
+            if not self.affix().copied:
                 affix_str = show_affixes(self)
                 return '(' + affix_str + ' ' + ''.join(sorted(pfs)) + ')°'
         return ''.join(sorted(pfs))
@@ -1405,7 +1410,7 @@ class PhraseStructure:
         return self.check_some({'CAT:?', '?'})
 
     def predicate(self):
-        return self.primitive() and self.check({'ARG'}) and not self.check({'-ARG'})
+        return self.zero_level() and self.check({'ARG'}) and not self.check({'-ARG'})
 
     def adverbial_adjunct(self):
         return self.adverbial() or self.preposition()
@@ -1432,28 +1437,28 @@ class PhraseStructure:
         return self.check({'SEM:external'})
 
     def isolated_preposition(self):
-        return self.preposition() and self.sister() and self.sister().primitive()
+        return self.preposition() and self.sister() and self.sister().zero_level()
 
     def adjoinable(self):
-        return self.complex() and not self.find_me_elsewhere and self.head().get_tail_sets() and self.head().check({'adjoinable'}) and not self.head().check({'nonadjoinable'})
+        return self.complex() and not self.copied and self.head().get_tail_sets() and self.head().check({'adjoinable'}) and not self.head().check({'nonadjoinable'})
 
     def legitimate_criterial_feature(self):
-        return self.referential() and not self.relative() and self.mother and self.mother.contains_features({'REL'}) and not self.mother.contains_features({'T/fin'})
+        return self.referential() and not self.relative() and self.mother_ and self.mother_.contains_features({'REL'}) and not self.mother_.contains_features({'T/fin'})
 
     def interpretable_adjunct(self):
-        return self.referential() and self.max() and self.max().adjunct and self.max().is_right() and self.max().mother and self.max().mother.referential()
+        return self.referential() and self.max() and self.max().adjunct and self.max().is_right() and self.max().mother_ and self.max().mother_.referential()
 
     def word_internal(self):
         return self.bottom().bottom_affix().internal
 
     def impossible_sequence(self, w):
-        return self.primitive() and 'T/fin' in self.head().features and 'T/fin' in w.features
+        return self.zero_level() and 'T/fin' in self.head().features and 'T/fin' in w.features
 
     def is_word_internal(self):
-        return self.mother and self.sister() and self.sister().primitive() and self.sister().word_internal()
+        return self.mother_ and self.sister() and self.sister().zero_level() and self.sister().word_internal()
 
     def phase_head(self):
-        return self.primitive() and self.check_some(PhraseStructure.phase_heads) and not self.check_some(PhraseStructure.phase_heads_exclude)
+        return self.zero_level() and self.check_some(PhraseStructure.phase_heads) and not self.check_some(PhraseStructure.phase_heads_exclude)
 
     def extended_subject(self):
         return self.check_some({'GEN'})

@@ -81,9 +81,9 @@ class Settings:
                                  "numeration": self.folders['study'] / self.data['numeration'],
                                  "numeration_output": self.folders['study'] / (self.data['test_corpus'][:-4] + '_N.txt'),
                                  "redundancy_rules": self.folders['lexicon'] / self.data['redundancy_rules'],
-                                 "error_report_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_error_reports.txt')
+                                 "error_report_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_error_reports.txt'),
+                                 "simple_log_file": self.folders['study'] / (self.data['test_corpus'][:-4] + '_simple_log.txt')
                                  }
-
 
     def load_settings_with_user_input(self):
         filename = filedialog.askopenfilename(title='Load  study', defaultextension='.txt', initialdir='.')

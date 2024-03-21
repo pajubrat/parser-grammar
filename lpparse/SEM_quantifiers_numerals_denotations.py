@@ -44,7 +44,7 @@ class QuantifiersNumeralsDenotations:
     def calculate_possible_denotations_(self, ps):
         L1 = []
         L2 = []
-        if not ps.find_me_elsewhere:
+        if not ps.copied:
             if ps.complex():
                 L1 = self.calculate_possible_denotations_(ps.left)
                 L2 = self.calculate_possible_denotations_(ps.right)
@@ -124,10 +124,10 @@ class QuantifiersNumeralsDenotations:
                       self.narrow_semantics.has_referential_index(node.head()) and
                       self.narrow_semantics.exists(node.head(), 'QND') and
                       node.head() != ps and
-                      not node.find_me_elsewhere):
+                      not node.copied):
             reference_set.add(complete_assignment[self.narrow_semantics.get_referential_index(const.head(), 'QND')])
             if intervention_feature and \
-                    not const.find_me_elsewhere and \
+                    not const.copied and \
                     {intervention_feature}.issubset(const.head().features):
                 break
         return reference_set
@@ -212,7 +212,7 @@ class QuantifiersNumeralsDenotations:
     def present(self, head):
         if self.narrow_semantics.query['PRE']['Accept'](head):
             return f'pro({head})'
-        elif head.mother and head.sister():
+        elif head.mother_ and head.sister():
             return f'[{head.illustrate()} {head.sister().illustrate()}]'
         else:
             return f'{head.illustrate}'

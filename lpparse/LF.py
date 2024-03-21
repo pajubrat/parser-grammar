@@ -37,8 +37,8 @@ class LF:
 
     def pass_LF_legibility(self, ps, logging=True):
         self.failed_feature = ''
-        if not ps.find_me_elsewhere:
-            if ps.primitive():
+        if not ps.copied:
+            if ps.zero_level():
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(ps):
                         if logging:
@@ -78,18 +78,18 @@ class LF:
 
     def final_tail_check(self, goal):
         if goal.complex():
-            if not goal.left().find_me_elsewhere and not self.final_tail_check(goal.left()):
+            if not goal.left().copied and not self.final_tail_check(goal.left()):
                 return False
-            if not goal.right().find_me_elsewhere and not self.final_tail_check(goal.right()):
+            if not goal.right().copied and not self.final_tail_check(goal.right()):
                 return False
-        if goal.primitive() and goal.get_tail_sets() and not goal.tail_test():
+        if goal.zero_level() and goal.get_tail_sets() and not goal.tail_test():
             log(f'\n\t\tPost-syntactic tail test for \'{goal.illustrate()}\' failed. @@')
             return False
         return True
 
     def LF_legibility_test_detached(self, ps):
         def detached(ps):
-            ps.mother = None
+            ps.mother_ = None
             return ps
         self.active_test_battery = self.LF_legibility_tests
         return self.pass_LF_legibility(detached(ps.copy()), False)
