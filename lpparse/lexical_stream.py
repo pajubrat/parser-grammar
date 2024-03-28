@@ -10,8 +10,9 @@ class LexicalStream:
     def wrap(self, lex, inflectional_buffer):
         log(f'\n\tNext morph {lex}°')
         const = PhraseStructure()
-        const.features = lex.features
-        const.features.add('§' + str(self.consume_id()))
+        const.features = lex.features.copy()
+        id = str(self.consume_id())
+        const.features.add('§' + id)
         const.features = self.lexicon.apply_redundancy_rules(const.features | inflectional_buffer)
         self.speaker_model.narrow_semantics.pragmatic_pathway.allocate_attention(const)
         if lex.onset == '#':

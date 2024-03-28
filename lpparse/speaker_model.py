@@ -33,6 +33,7 @@ class SpeakerModel:
         self.name_provider_index = 0                            # Index for name provider, for chain identification
         PhraseStructure.speaker_model = self                    # Provides phrase structure operations access to the current speaker model
         PhraseStructure.chain_index = 0
+        self.lexical_stream.id = 0
 
     def parse_sentence(self, index, lst):
         """Prepares the derivational search operation and
@@ -94,12 +95,9 @@ class SpeakerModel:
 
     def explore_derivation_space(self, ps, X, lst, index):
         if not ps:
-            # If there is no phrase structure in syntactic working memory, create it from X
-            log(f' => Insert into working memory.')
             self.parse_new_item(X.copy(), lst, index + 1)
         else:
             self.results.record_derivational_step(ps, 'Phrase structure in syntactic working memory')
-            # Create derivational search space for existing phrase structure and new constituent X
             for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(ps, X):
                 new_constituent = ps.target_left_branch(N).attach(N, X, transfer, address_label)
                 self.parse_new_item(new_constituent.top().copy(), lst, index + 1)

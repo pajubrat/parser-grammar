@@ -44,7 +44,7 @@ class LF:
                         if logging:
                             log(f'\n\t\t@@ {ps} failed {test_name} ')
                             if self.failed_feature:
-                                log(f'for [{self.failed_feature}]!')
+                                log(f'for [{self.failed_feature}]')
                         self.error_report_for_external_callers = f'{ps} failed {test_name}.'  # For plausibility metrics calculations and output
                         return False
             else:
@@ -58,7 +58,7 @@ class LF:
         for f in sorted(probe.features):
             key, feature_set = self.format_selection_feature(f)
             if key and not self.selection_violation_test[key](probe, feature_set):
-                self.failed_feature = f
+                self.failed_feature = str(feature_set)
                 return True  # test failed
 
     # This will be removed once we have a universal standard

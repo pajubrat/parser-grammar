@@ -85,7 +85,6 @@ class PhraseStructure:
         self.rebaptized = False
         self.stop = False
         self.nn = None
-
         if left and left.adjunct and left.zero_level():
             self.adjunct = True
             left.adjunct = False
@@ -201,8 +200,8 @@ class PhraseStructure:
         return self.next(self.upward_path, lambda x: x.zero_level())
 
     def selected_sister(self):
-        if self.sister() and not self.sister().proper_selected_complement():
-            return self.sister()
+        if self.geometrical_sister() and self.zero_level():
+            return self.geometrical_sister()
 
     def specifier_sister(self):
         if self.is_left():
@@ -709,6 +708,7 @@ class PhraseStructure:
 
     def valid_reconstructed_adjunct(self, starting_point_node):
         if self.head().tail_test():
+            log('PAUKKU')
             if self.adverbial_adjunct() or self.non_adverbial_adjunct_condition(starting_point_node):
                 if self.container():
                     h = self.container()
@@ -726,71 +726,51 @@ class PhraseStructure:
 
     # Agreement ---------------------------------------------------------------------------------------------
 
-    def AgreeLF(self):
-        self.value_from_goal(self.get_goal())
+    def AgreeLF(X):
+        X.value_from_goal(X.get_goal())
 
-    def get_goal(self):
-        # Executes minimal search from the search domain until a phase head is encountered and
-        # locates the first suitable goal
-        return next(self.minimal_search_domain().minimal_search(lambda x: x.goal_selection(),
-                                                                lambda x: not x.phase_head()), None)
+    def get_goal(X):
+        return next(X.minimal_search_domain().minimal_search(lambda x: x.goal_selection(),
+                                                             lambda x: not x.phase_head()), None)
 
-    def goal_selection(self):
-        # A goal is a phrase at the canonical position that has a referential head
-        # or which is a phase head itself
-        return not self.copied and (self.head().referential() or self.phase_head())
+    def goal_selection(X):
+        return not X.copied and (X.head().referential() or X.phase_head())
 
-    def value_from_goal(self, goal):
+    def value_from_goal(X, goal):
         if goal:
-            log(f'\n\t\tAgree({self}°, {goal.head()}): ')
-            # Conditions for successful valuation are that
-            # (i) the incoming phi-features are licensed,
-            # (ii) agreement/EPP rule is satisfied
-            if feature_licensing(goal.head().interpretable_phi_features(), self.phi_masks()) and self.agreement_EPP_rule(goal):
-                self.value(goal)
+            log(f'\n\t\tAgree({X}°, {goal.head()}): ')
+            if feature_licensing(goal.head().interpretable_phi_features(), X.phi_masks()) and \
+                    X.Agree_EPP_condition(goal):
+                X.value(goal)
             else:
-                log(f'Failure. ')
-                self.features.add('*')
+                log(f'Failed valuation. ')
+                X.features.add('*')
 
-    # Finds all pairs of phi-features where the goal can value a corresponding unvalued phi-feature at the probe
-    # and performs valuation at the probe
-    def value(self, goal):
+    def value(X, goal):
         log(f'valued features ')
-
-        # A valuing phi-feature must be interpretable and the probe must have a corresponding unvalued feature.
-        for phi in (x for x in goal.head().features if x.startswith('iPHI') and
-                                                       f'PHI:{x.split(":")[1]}:_' in self.features):
+        for phi in (x for x in goal.head().features if x.startswith('iPHI') and f'PHI:{x.split(":")[1]}:_' in X.features):
             log(f'[{phi[5:]}] ')
-            self.features.discard(f'PHI:{phi.split(":")[1]}:_')
-            self.features.add(f'{phi[1:]}')
+            X.features.discard(f'PHI:{phi.split(":")[1]}:_')
+            X.features.add(f'{phi[1:]}')
+        X.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
 
-        # Leave a record of AgreeLF and provide the index
-        self.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
+    def Agree_EPP_condition(X, goal):
+        if X.EF() and X.PHI():
+            return X.check({'strong_pro'}) or X.primary_rule(goal) or X.secondary_rule()
+        return True
 
-    # The probe X satisfies the Agreement/EPP rule if
-    # (i) X is a theta-hear OR
-    # (ii) X does not require an identifiable arguments OR
-    # (iii) X has strong agreement features OR
-    # (iv) X has weak agreement features and something at its edge OR
-    # (v) X satisfies the chain condition.
-    def agreement_EPP_rule(self, goal):
-        return self.theta_head() or not self.requires_identifiable_local_argument() or self.check({'strong'}) or \
-               (self.check({'weak'}) and self.edge()) or self.chain_condition(goal)
+    def primary_rule(X, goal):
+        return (next(iter(X.edge()), X).head().get_id() == goal.head().get_id()) or (X.edge() and X.edge()[0].expletive())
 
-    def requires_identifiable_local_argument(self):
-        return self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF'})
+    def secondary_rule(X):
+        return X.check({'weak_pro'}) and X.edge()
 
-    # Chain legibility for A-system (will be later generalized to A-bar system)
-    def chain_condition(self, goal):
-        return next(iter(self.edge()), self).head().get_id() == goal.head().get_id() or \
-               (self.edge() and self.edge()[0].expletive())
-
-    def argument_by_agreement(self):
-        for f in self.features:
+    def argument_by_agreement(X):
+        for f in X.features:
             if f.startswith('dPHI'):
-                if self.sister():
+                if X.sister():
                     idx = f.split(':')[2]
-                    return next(self.sister().minimal_search(lambda x: idx in x.head().features, lambda x: not x.phase_head()), None)
+                    return next(X.sister().minimal_search(lambda x: idx in x.head().features, lambda x: not x.phase_head()), None)
 
     # Extraposition
     def cutoff_point_for_last_resort_extraposition(self):
@@ -817,7 +797,7 @@ class PhraseStructure:
             if self.selected_by_SEM_internal_predicate():
                 log(f'\n\t\t{self}° resolved into -ARG.')
                 self.features.add('-ARG')
-                self.features.add('-ΦPF,ΦPF')
+                self.features.add('-ΦLF,ΦPF')
             elif self.selected_by_SEM_external_predicate() or (self.selector() and self.selector().check({'Fin'})):
                 log(f'\n\t\t{self}° resolved into ARG.')
                 self.features.add('ARG')
@@ -846,7 +826,7 @@ class PhraseStructure:
     def non_adverbial_adjunct_condition(self, starting_point_head):
         if not self.container():
             return True
-        if self.container() == starting_point_head or self.nonthematic() or (self.referential() and self.projection_principle_failure()):
+        if self.nonthematic() or (self.referential() and self.projection_principle_failure()):
             return False
         return True
 
@@ -960,7 +940,7 @@ class PhraseStructure:
                   self.max().mother().sister().check(tset))):
             return True
         if self.referential() or self.preposition():
-            for m in (affix for node in self.upward_path() if node.zero_level() for affix in node.get_affix_list()):
+            for m in (node for node in self.upward_path() if node.zero_level()):
                 if m.check_some(tset):
                     return m.check(tset)
 
@@ -1199,12 +1179,12 @@ class PhraseStructure:
                 silence_phonologically(h.right())
 
         self.identity = self.baptize_chain()
-        self_copy = self.copy()                 # Copy the constituent
+        self_copy = self.copy()
         self_copy.node_identity = self.create_node_identity()
-        self_copy.copied = False     # Copy is marked for being where it is
-        silence_phonologically(self_copy)       # Silence the new constituent phonologically
-        self.copied = True           # Mark that the constituent has been copied
-        self.features.add('CHAIN:'+str(self_copy.node_identity))    # Bookkeeping
+        self_copy.copied = False
+        silence_phonologically(self_copy)
+        self.copied = True
+        self.features.add('CHAIN:'+str(self_copy.node_identity))
         return self_copy
 
     def for_LF_interface(self, features):
@@ -1503,6 +1483,9 @@ class PhraseStructure:
 
     def EF(self):
         return {x for x in self.features if x == 'EF'}
+
+    def PHI(self):
+        return self.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF', '?ΦLF,ΦPF'})
 
     def A_bar_operator(self):
         return self.scan_criterial_features('ΔOP')

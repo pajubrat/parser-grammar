@@ -267,8 +267,14 @@ class PhraseStructureCanvas(tk.Canvas):
             self.moveto(self.cursor, x1 - 50, y1 - 50)
 
         # Create the two lines for left and right constituents.
-        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
-        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
+        left_dash = None
+        right_dash = None
+        if gps.left() and gps.left().adjunct:
+            left_dash = (10, 10)
+        if gps.right() and gps.right().adjunct:
+            right_dash = (10, 10)
+        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash = left_dash)
+        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash = right_dash)
 
         # Recursive calls
         self.project_into_canvas(gps.left(), spx, spy, grid)
@@ -335,6 +341,8 @@ class PhraseStructureCanvas(tk.Canvas):
             text = 'Fin'
         if text == 'OP:Q':
             text = 'Q'
+        if text == '!ΦLF,ΦPF' or text == '+ΦLF,ΦPF' or text == '?ΦLF,ΦPF':
+            text = 'Φ'
         if text == 'OP:WH':
             if 'C' in node.features:
                 text = 'WH'

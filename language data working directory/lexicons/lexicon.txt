@@ -4,8 +4,8 @@
 aitaa		:: aita-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 aitoja		:: aita-#φ#pl#3p#def#nonhum#r_expression#[par] LANG:FI
 aidan		:: aita-#φ#sg#3p#def#nonhum#r_expression#[acc(n)] LANG:FI
-aita-		:: PF:aita LF:fence N LANG:FI
-ali			:: PF:ali LF:under P -ΦPF TAIL:V Inf !COMP:* LANG:FI ARG
+aita-		:: PF:aita LF:fence N -COMP:A/inf LANG:FI
+ali			:: PF:ali LF:under EF P -ΦPF TAIL:V Inf !COMP:* LANG:FI
 antaa		:: anta-#v#asp#A/inf LANG:FI
 anta-   	:: PF:antaa LF:give V -COMP:P CLASS/DITR -COMP:Fin +SEM:directional LANG:FI
 antoi   	:: anta-#asp#v#T/fin#[V] LANG:FI
@@ -49,9 +49,9 @@ ettemme		:: e#mme#että LANG:FI
 ettette		:: e#tte#että LANG:FI
 etteivät	:: e#vAt#että LANG:FI
 haluaa 		:: halua-#v#T/fin#prs#[V] LANG:FI
-halusi		:: halua-#v#T/fin#[V] LANG:FI
-halusimme	:: halua-#v#T/fin#mme LANG:FI
-haluan		:: halua-#v#T/fin#n LANG:FI
+halusi		:: halua-#v#T/fin#pst#[V] LANG:FI
+halusimme	:: halua-#v#T/fin#pst#mme LANG:FI
+haluan		:: halua-#v#T/fin#prs#n LANG:FI
 halua		:: halua-#v#T LANG:FI
 haluamalla 	:: halua-#v#MA.ade/inf LANG:FI
 haluttiin	:: halua-#impass#T/fin#Vn LANG:FI
@@ -146,7 +146,7 @@ kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
 kirjaa^^ 	:: √kirja#n0#sg#3p#def#r_expression#[par] LANG:FI
 √kirja		:: PF:kirja- LF:√book √ LANG:FI
 kohti		:: P PF:kohti LF:towards !COMP:φ -ΦPF TAIL:V LANG:FI
-kohti^		:: P PF:kohti LF:towards !COMP:φ -ΦPF LANG:FI
+kohti^		:: P PF:kohti LF:towards !COMP:φ -ΦPF  LANG:FI
 koko		:: PF:koko LF:all D LANG:FI TAIL:T COMP:φ adjoinable
 ketä		:: kuka-#D#wh#[par] LANG:FI
 kenen		:: kuka-#D/pro#wh#nonhum#[gen] LANG:FI
@@ -162,24 +162,20 @@ kuorsaa- 	:: PF:kuorsaa- LF:snore V V/INTR COMP:P -COMP:WH -COMP:T/fin -COMP:φ 
 kuvaa		:: kuva-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 kuva-		:: PF:kuva LF:picture N LANG:FI
 kysyi		:: kysy-#v#T/fin#[V] LANG:EN
+kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
 köy-		:: PF:köysi LF:rope N LANG:FI
 lapsia		:: lapsi-#φ#pl#3p#def#hum#r_expression#[par] LANG:FI
 lapsena		:: N LF:child PF:lapsena ESS LANG:FI
 lapsi-		:: N LF:child PF:lapsi LANG:FI 
 laulaa		:: laula-#T/fin#prs#[V] LANG:FI
 laulan		:: laula-#T/fin#prs#n LANG:FI
+lauloi		:: laula-#T/fin#pst#[V] LANG:FI
 laulamaan 	:: laula-#MA.ill/inf LANG:FI
 laulaessa	:: laula-#ESSA/inf LANG:FI
 laula-		:: V PF:laula- LF:sing V/INTR SPEC:φ -COMP:φ COMP:P LANG:FI
 lika-		:: PF:lika LF:dirt N LANG:FI
-kysy-		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
-lähellä		:: P PF:lähellä LF:near -ΦPF TAIL:V LANG:FI
-lähellä		:: P PF:lähellä LF:near TAIL:V Inf +ΦLF,ΦPF LANG:FI
+lähellä		:: P PF:lähellä LF:near TAIL:V -ΦPF LANG:FI
 lähellä[Φ]	:: P PF:lähellä LF:near TAIL:V Inf +ΦLF,ΦPF LANG:FI
-lähellä[K]	:: P PF:lähellä LF:near Inf +ΦLF,ΦPF LANG:FI
-lähellä2	:: P PF:lähellä LF:near TAIL:V Inf LANG:FI
-lähellä'	:: P PF:lähellä LF:near -ΦPF LANG:FI
-lähellä'	:: P PF:lähellä LF:near Inf +ΦLF,ΦPF LANG:FI
 lähden		:: lähte-#T/fin#prs#n LANG:FI
 lähdin		:: lähte-#T/fin#prs#n LANG:FI
 lähdet		:: lähte-#T/fin#prs#t LANG:FI
@@ -431,17 +427,17 @@ talona		:: talo-#φ#sg#3p#r_expression#[-ess]
 taloksi		:: talo-#φ#sg#3p#r_expression#[-ess]
 talo-		:: PF:talo LF:house N LANG:FI
 tapaa-		:: PF:tapaa- LF:meet V LANG:FI
-teki		:: teke-#v#T/fin#[V] LANG:FI
-tein		:: teke-#v#T/fin#n LANG:FI
-teit		:: teke-#v#T/fin#t LANG:FI
-teen		:: teke-#v#T/fin#n LANG:FI
-teet		:: teke-#v#T/fin#t LANG:FI
-tekee		:: teke-#v#T/fin#[V] LANG:FI
+teki		:: teke-#v#T/fin#prs#[V] LANG:FI
+tein		:: teke-#v#T/fin#prs#n LANG:FI
+teit		:: teke-#v#T/fin#prs#t LANG:FI
+teen		:: teke-#v#T/fin#prs#n LANG:FI
+teet		:: teke-#v#T/fin#prs#t LANG:FI
+tekee		:: teke-#v#T/fin#prs#[V] LANG:FI
 tehnyt		:: teke-#v#T/prt#sg_ LANG:FI
 tehneet		:: teke-#v#T/prt#pl_ LANG:FI
-teemme		:: teke-#v#T/fin#mme LANG:FI
-teette		:: teke-#v#T/fin#tte LANG:FI
-tekevät		:: teke-#v#T/fin#vAt LANG:FI
+teemme		:: teke-#v#T/fin#prs#mme LANG:FI
+teette		:: teke-#v#T/fin#prs#tte LANG:FI
+tekevät		:: teke-#v#T/fin#prs#vAt LANG:FI
 tekemättä	:: teke-#v#MA.abe/inf
 tehdessä	:: teke-#v#ESSA/inf
 tehdäkse	:: teke-#v#KSE/inf
@@ -566,7 +562,7 @@ a			:: D iPHI:PER:3 iPHI:NUM:SG iPHI:DET:INDEF PF:D LF:D LANG:EN
 a1			:: D PF:D LF:D LANG:EN
 accident	:: PF:accident LF:accident N
 admire  	:: admire-#v#T/fin#prs#[-0] LANG:EN	
-admire_fin	:: admire-#v#T/fin#prs#[-0] LANG:EN
+admire/fin	:: admire-#v#T/fin#prs#[-0] LANG:EN
 admired		:: admire-#v#T/fin#pst#[-00] LANG:EN
 admire*		:: admire-#v LANG:EN
 admires  	:: admire-#v#T/fin#prs#[-s] LANG:EN
@@ -574,8 +570,8 @@ admired^	:: admire-#v* LANG:EN
 admire-  	:: PF:admire LF:admire V SPEC:φ -COMP:T/fin V/TR -SPEC:Neg -COMP:Neg COMP:D COMP:φ
 asks		:: ask-#v#T/fin#[-s] LANG:EN
 ask-		:: PF:ask LF:ask V SPEC:φ COMP:φ SEM:internal LANG:EN
-bank		::	PF:bank1 LF:bank_inst N FREQ:1 LANG:EN
-bank		::	PF:bank2 LF:bank_river N FREQ:2 LANG:EN
+bank		:: PF:bank1 LF:bank_inst N FREQ:1 LANG:EN
+bank		:: PF:bank2 LF:bank_river N FREQ:2 LANG:EN
 bark		:: PF:bark LF:bark V V/INTR !SPEC:D LANG:EN
 barn		:: PF:barn LF:barn N LANG:EN
 bite		:: bite-#v LANG:EN
@@ -604,8 +600,8 @@ easy		::	easy-#a0 LANG:EN
 easy-		::	PF:easy LF:easy 0 LANG:EN
 fell		:: fell-#T/fin#pst LANG:EN
 fell-		:: PF:fell LF:fell V V/INTR LANG:EN
-fence		:: PF:fence LF:fence N LANG:EN
-flows		:: flow-#T/fin#[-s] LANG:EN
+fence		:: PF:fence LF:fence N -COMP:TO/inf LANG:EN
+flows		:: flow-#T/fin#prs#[-s] LANG:EN
 flow'		:: PF:flow LF:flow V SPEC:φ COMP:P LANG:EN
 flow-		:: PF:flow LF:flow V V/INTR !SPEC:φ COMP:P COMP:Adv LANG:EN
 flowing		:: flow-#ing LANG:EN
@@ -687,7 +683,7 @@ the			:: PF:the LF:the D iPHI:PER:3 iPHI:DET:DEF iPHI:NUM:SG LANG:EN
 there		:: N#D/expl
 to     		:: PF:to LF:to P +SEM:directional -E TAIL:V +SEM:directional LANG:EN
 towards		:: PF:towards LF:towards P !COMP:φ TAIL:V TAIL:*LF:reach LANG:EN
-tries		:: try-#T/fin#[-s] LANG:EN
+tries		:: try-#T/fin#prs#[-s] LANG:EN
 try-		:: PF:try LF:try V SPEC:φ !COMP:TO/inf !COMP:-ARG LANG:EN SEM:internal 
 wants		:: want-#v#T/fin#prs#[-s] LANG:EN
 want		:: want-#v#T/fin#prs#[-0] LANG:EN
@@ -914,10 +910,10 @@ voolab-		:: PF:voolab LF:flow V COMP:P V/INTR LANG:ES
 α			:: α PF:α LF:α LANG:X 
 β			:: β PF:β LF:β LANG:X
 
-a_			:: a PF:a LF:a COMP:a COMP:b COMP:c COMP:d LANG:X
-b_ 			:: b PF:b LF:b COMP:a COMP:b COMP:c COMP:d LANG:X
-c_			:: c PF:c LF:c COMP:a COMP:b COMP:c COMP:d LANG:X
-d_			:: d PF:d LF:d COMP:a COMP:b COMP:c COMP:d LANG:X
+a/			:: a PF:a LF:a COMP:a COMP:b COMP:c COMP:d LANG:X
+b/ 			:: b PF:b LF:b COMP:a COMP:b COMP:c COMP:d LANG:X
+c/			:: c PF:c LF:c COMP:a COMP:b COMP:c COMP:d LANG:X
+d/			:: d PF:d LF:d COMP:a COMP:b COMP:c COMP:d LANG:X
 
 X			:: X PF:X LF:X PC:#X COMP:Y LANG:X
 Y			:: Y PF:Y LF:Y PC:#X COMP:Z LANG:X

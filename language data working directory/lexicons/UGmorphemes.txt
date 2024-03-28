@@ -5,7 +5,7 @@
 
 T/fin   :: T/fin LF:T
 v       :: v V PF:v LF:v -COMP:REFL/V -COMP:IMPSS PC:#X
-v*		:: v V PF:-ed v- LF:pass -θ EF PC:#X#
+v*		:: v V PF:-ed v- LF:pass -θ EF PC:#X
 C/fin   :: C/fin PF:C LF:C
 C		:: C C/fin LF:C
 Cpol	:: C C/fin PF:C LF:C POL FOC
@@ -35,8 +35,8 @@ D/expl		:: EXPL PF:expl PHI:PER:3 LF:expl COMP:N -SPEC:*
 EXPL		:: N#D/expl
 
 # English
-to_inf		:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable
-to^			:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable 
+to/inf		:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable
+to^			:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable 
 
 # Finnish prepositions (semantic cases)
 P(ine)		:: PF:-ssA LF:in P LANG:FI
@@ -76,7 +76,7 @@ P0			:: PF:-Ø LF:in P LANG:FI
 		
 		(t)A,A/inf			:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event -COMP:N !COMP:* -COMP:EVE -COMP:n -COMP:EVE2 -COMP:IMPSS -COMP:A/inf LANG:FI PROBE:V
 		vAn,VA/inf			:: VA/inf 		EF	Inf T   ARG	+ΦLF,ΦPF -ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to -COMP:N -SPEC:N !COMP:*  PROBE:V LANG:FI
-		essA,ESSA/inf		:: ESSA/inf		EF	Inf Adv ARG  					PF:-essA 	PC:#X LF:while !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
+		essA,ESSA/inf		:: ESSA/inf		EF	Inf Adv ARG ?ΦLF,ΦPF 			PF:-essA 	PC:#X LF:while !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
 		tUA,TUA/inf 		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	PC:#X LF:after !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
 		kse,KSE/inf			:: KSE/inf		EF	Inf Adv ARG	-ΦLF !ΦPF			PF:-kse 	PC:#X LF:for !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
 		en,E/inf			:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  			PF:-en 		PC:#X LF:by !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
