@@ -268,7 +268,11 @@ class PhraseStructure:
         return self.edge()
 
     def identify_argument(self):
-        return next((acquire(self) for acquire in [lambda x: x.pro(), lambda x: x.local_edge(), lambda x: x.control()] if acquire(self)), None)
+        return next((acquire(self) for acquire in [lambda x: x.pro(), lambda x: x.argument_complement(), lambda x: x.local_edge(), lambda x: x.control()] if acquire(self)), None)
+
+    def argument_complement(X):
+        if X.proper_selected_complement() and X.proper_selected_complement().referential():
+            return X.proper_selected_complement()
 
     def contains_features(self, feature_set):
         if self.complex():
@@ -295,7 +299,7 @@ class PhraseStructure:
     # Virtual pronouns -----------------------------------------------------------------------
 
     def pro(self):
-        if self.sustains_reference():
+        if self.sustains_reference() or self.has_linked_argument():
             return self.NS()
 
     def NS(self):
@@ -738,12 +742,12 @@ class PhraseStructure:
 
     def value_from_goal(X, goal):
         if goal:
-            log(f'\n\t\tAgree({X}°, {goal.head()}): ')
+            log(f'\n\t\tAgree({X}°, {goal.head()}) ')
             if feature_licensing(goal.head().interpretable_phi_features(), X.phi_masks()) and \
-                    X.Agree_EPP_condition(goal):
+                    X.Condition_on_agreement_and_EPP(goal):
                 X.value(goal)
             else:
-                log(f'Failed valuation. ')
+                log(f'Failed. ')
                 X.features.add('*')
 
     def value(X, goal):
@@ -752,25 +756,27 @@ class PhraseStructure:
             log(f'[{phi[5:]}] ')
             X.features.discard(f'PHI:{phi.split(":")[1]}:_')
             X.features.add(f'{phi[1:]}')
-        X.features.update({'ΦLF', 'dPHI:IDX:' + goal.head().get_id()})
+        X.features.update({'ΦLF'})
+        if X.head().check_some({'weak_pro', 'strong_pro'}) or X.theta_predicate():
+            X.features.add(f'PHI:IDX:{goal.head().get_id()}')
 
-    def Agree_EPP_condition(X, goal):
-        if X.EF() and X.PHI():
-            return X.check({'strong_pro'}) or X.primary_rule(goal) or X.secondary_rule()
-        return True
+    def Condition_on_agreement_and_EPP(X, goal):
+        return not X.EF() or \
+               not X.PHI() or \
+               X.check({'strong_pro'}) or \
+               (X.local_edge() and (X.primary_rule(goal) or X.secondary_rule()))
 
     def primary_rule(X, goal):
-        return (next(iter(X.edge()), X).head().get_id() == goal.head().get_id()) or (X.edge() and X.edge()[0].expletive())
+        return X.local_edge().head().get_id() == goal.head().get_id()
 
     def secondary_rule(X):
-        return X.check({'weak_pro'}) and X.edge()
+        return X.check({'weak_pro'}) or X.local_edge().expletive()
 
     def argument_by_agreement(X):
-        for f in X.features:
-            if f.startswith('dPHI'):
-                if X.sister():
-                    idx = f.split(':')[2]
-                    return next(X.sister().minimal_search(lambda x: idx in x.head().features, lambda x: not x.phase_head()), None)
+        for f in [f for f in X.features if f.startswith('PHI:IDX:')]:
+            if X.sister():
+                idx = f.split(':')[2]
+                return next(X.sister().minimal_search(lambda x: idx in x.head().features, lambda x: not x.phase_head()), None)
 
     # Extraposition
     def cutoff_point_for_last_resort_extraposition(self):
@@ -1463,11 +1469,8 @@ class PhraseStructure:
             return self.theta_predicate()
         return self.check_some({'SPEC:φ', '!SPEC:φ'})
 
-    def coreference_by_Agree(self, goal):
-        return {f.split(':')[2] for f in goal.head().features if f.split(':')[0] == 'dPHI'} & self.head().features
-
-    def get_dPHI(self):
-        return {f for f in self.head().features if f.startswith('dPHI:')}
+    def has_linked_argument(self):
+        return {f for f in self.head().features if f.startswith('PHI:IDX:')}
 
     def get_valued_phi(self):
         return {f[:7] for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}

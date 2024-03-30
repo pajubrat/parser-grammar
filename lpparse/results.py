@@ -24,7 +24,7 @@ class Results():
         self.first_solution_found = False                       # Registers when the first solution if found
         self.number_of_ambiguities = 0
         self.semantic_interpretation = {'Thematic roles': [],
-                                        'Agreement': [],
+                                        'Indexing by Agree': [],
                                         'Predicates': [],
                                         'Aspect': [],
                                         'DIS-features': [],

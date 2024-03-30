@@ -105,7 +105,7 @@ class NarrowSemantics:
                     if self.speaker_model.settings.get()['UG_parameter_Agree'] == 'standard':
                         self.predicates.operation_failed = False
                 if ps.argument_by_agreement():
-                    self.speaker_model.results.store_semantic_interpretation('Agreement', self.predicates.reconstruct_agreement(ps))
+                    self.speaker_model.results.store_semantic_interpretation('Indexing by Agree', self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
                 if self.speaker_model.settings.get()['project_objects']:
@@ -121,9 +121,7 @@ class NarrowSemantics:
     def inventory_projection(self, ps):
         def preconditions(x):
             return not self.speaker_model.results.first_solution_found and \
-                   not ps.copied and \
-                   (x.referential() or
-                    (not x.referential() and not x.get_dPHI()))
+                   not ps.copied and x.referential()
 
         if preconditions(ps):
             for space in self.semantic_spaces:

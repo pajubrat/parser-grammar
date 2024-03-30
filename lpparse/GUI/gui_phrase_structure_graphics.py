@@ -376,11 +376,12 @@ class PhraseStructureCanvas(tk.Canvas):
             self.draw_phrasal_chains(gps.right())
 
     def draw_Agree(self, gps):
-        if gps.Agree_target:
-            self.draw_dependency('Agree', gps, gps.Agree_target)
-        if gps.complex():
-            self.draw_Agree(gps.left())
-            self.draw_Agree(gps.right())
+        pass
+        #if gps.Agree_target:
+        #    self.draw_dependency('Agree', gps, gps.Agree_target)
+        #if gps.complex():
+        #    self.draw_Agree(gps.left())
+        #    self.draw_Agree(gps.right())
 
     def draw_dependency(self, style, source, target):
         """Draws a dependency arc from point to point"""
@@ -437,7 +438,8 @@ class GPhraseStructure(PhraseStructure):
 
     def find_Agree(self):
         if self.zero_level() and self.is_left() and 'ΦLF' in self.features:
-            return self.argument_by_agreement().head()
+            pass
+            #return self.argument_by_agreement().head()
 
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
