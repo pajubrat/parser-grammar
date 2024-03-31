@@ -16,11 +16,11 @@ class Predicates:
 
     def print_target(self, probe, argument):
         indexing = ''
-        if {phi for phi in probe.features if phi.startswith('dPHI')}:
+        if {phi for phi in probe.features if phi.startswith('PHI:IDX:')}:
             if probe.argument_by_agreement():
                 indexing = f', indexed to {probe.argument_by_agreement().max().illustrate()}'
         if 'pro' in argument.features:
-            return f'φ/pro' + indexing
+            return f'pro' + indexing
         else:
             return f'{argument.max().illustrate()}' + indexing
 

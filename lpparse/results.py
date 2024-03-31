@@ -75,14 +75,12 @@ class Results():
         self.syntax_semantics.append((ps, self.semantic_interpretation))
 
     def store_semantic_interpretation(self, key, value):
-        # If the value is string, it is added to the list
         if isinstance(value, str):
             if key not in self.semantic_interpretation:
                 self.semantic_interpretation[key] = [value]
             else:
                 self.semantic_interpretation[key].append(value)
 
-        # If the value is list, the two lists are concatenated
         if isinstance(value, list):
             if key not in self.semantic_interpretation:
                 self.semantic_interpretation[key] = value

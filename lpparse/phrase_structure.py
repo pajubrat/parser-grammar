@@ -1,5 +1,6 @@
 from collections import namedtuple
 from itertools import takewhile
+import itertools
 from feature_processing import *
 from support import log, set_logging
 
@@ -297,47 +298,31 @@ class PhraseStructure:
         return search_list
 
     # Virtual pronouns -----------------------------------------------------------------------
-
     def pro(self):
-        if self.sustains_reference() or self.has_linked_argument():
+        if self.pro_from_overt_agreement() or self.has_linked_argument():
             return self.NS()
 
     def NS(self):
-        if self.check({'ARG'}) and self.phi_consistent_head():
-            if self.sustains_reference():
-                phi_set_for_pro = {f for f in self.features if f[:4] == 'PHI:' and f[-1] != '_'}
-            else:
-                phi_set_for_pro = {f for f in self.features if f[:4] == 'PHI:'}
-                phi_set_for_pro.add('pro_')
+        if self.check({'ARG'}) and self.sustains_reference():
             pro = PhraseStructure()
-            pro.features = pro.features | phi_set_for_pro | {'φ', 'D', 'PF:pro', 'pro'}
+            pro.features = self.valued_phi_features() | {'φ', 'PF:pro', 'pro'}
             return pro
 
+    def sustains_reference(self):
+        return self.phi_consistent_head() and self.has_full_referential_phi_set()
+
     def phi_consistent_head(self):
-        phi_set = self.complete_valued_phi_set()
-        for f in phi_set:
-            for g in phi_set:
-                if f.split(':')[0] == g.split(':')[0] and f.split(':')[1] != g.split(':')[1]:
-                    return False
+        for fpair in itertools.permutations(self.complete_valued_phi_set(), 2):
+            if fpair[0].split(':')[0] == fpair[1].split(':')[0] and fpair[0].split(':')[1] != fpair[1].split(':')[1]:   #   Types match, values mismatch
+                return False
         return True
+
+    def has_full_referential_phi_set(self):
+        return {'NUM', 'PER', 'DET'} <= {phi[:3] for phi in self.complete_valued_phi_set()}
 
     def complete_valued_phi_set(self):
         phi_sets = [phi[4:].split(',') for phi in self.features if phi.startswith('PHI:') and not phi.endswith('_')]
         return {phi for phi_set in phi_sets for phi in phi_set}
-
-    # Condition for independent pro-element: constituent phi-features and values for NUM, PER, DEF
-    def sustains_reference(self):
-        return self.phi_consistent_head() and self.has_full_referential_phi_set()
-
-    def has_full_referential_phi_set(self):
-        return {phi[:3] for phi in self.complete_valued_phi_set()} & {'NUM', 'PER', 'DET'} == {'NUM', 'PER', 'DET'}
-
-    # INACTIVATED
-    def pro_legibility(self):
-        if not self.sister() or self.adjunct or self.nominal() or self.preposition():
-            return True
-        iter = self.minimal_search_domain().minimal_search(lambda x: x.zero_level(), lambda x: x.theta_predicate() or (not x.phase_head()) and not x.check({'PER'}))
-        return next((x for x in iter if x.theta_predicate()), None)
 
     # Selection -------------------------------------------------------------------------------------------
     # Feature -SPEC:L
@@ -1469,6 +1454,9 @@ class PhraseStructure:
             return self.theta_predicate()
         return self.check_some({'SPEC:φ', '!SPEC:φ'})
 
+    def pro_from_overt_agreement(self):
+        return self.check_some({'weak_pro', 'strong_pro'})
+
     def has_linked_argument(self):
         return {f for f in self.head().features if f.startswith('PHI:IDX:')}
 
@@ -1492,9 +1480,6 @@ class PhraseStructure:
 
     def A_bar_operator(self):
         return self.scan_criterial_features('ΔOP')
-
-    def appropriate_argument(self):
-        return not self.head().check({'pro_'}) and (self.referential() or self.expletive())
 
     def License_EHM(self):
         return 'ε' in self.features
