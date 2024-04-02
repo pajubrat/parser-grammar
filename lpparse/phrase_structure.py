@@ -169,7 +169,7 @@ class PhraseStructure:
 
     def max(X):
         x = X
-        while x.mother() and x.mother().head() == X:
+        while x.mother() and x.mother().head() == X.head():
             x = x.mother()
         return x
 
@@ -426,39 +426,25 @@ class PhraseStructure:
                         return True
                 x = x.affix()
 
-    # Projection principle and thematic roles ---------------------------------------------------------------------
+    # Projection principle ---------------------------------------------------------------------
     def nonthematic(X):
         if X.max().container():
             return X.max().container().EF() or \
                    (X.max().container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and
-                    X == next((const for const in X.max().container().edge()), None))
+                    X == X.max().container().local_edge())
 
     def projection_principle_failure(X):
-        return X.max().projection_principle_applies() and \
-               not X.max().container_assigns_theta_role()
+        return X.max().projection_principle_applies() and not X.max().container_assigns_theta_role()
 
     def projection_principle_applies(X):
-        return X.referential() and \
-               X.max() and \
-               not X.max().copied and \
-               X.max().mother() and \
-               not X.max().contains_features({'adjoinable', 'SEM:nonreferential'})
+        return X.referential() and not X.max().copied and X.max().mother() and not X.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
-    # Configuration [A <XP>] is unclear, currently it satisfies Projection Principle if A licenses XP because Finnish reconstructed arguments
-    # satisfy this configuration, but the assumption is unintuitive. Perhaps <XP> has to be returned to the primary plane
-    # when it is reconstructed to this position
     def container_assigns_theta_role(X):
-        assigner = X.max().container()
-        return assigner and \
-               (assigner.sister() == X or
-                (X.referential() and assigner.geometrical_sister() == X and X.check_some(assigner.licensed_complements())) or
-                X.is_licensed_specifier() and assigner.specifier_theta_role_assigner())
-
-    def specifier_theta_role_assigner(X):
-        if X.EF():
-            return False
-        if X.check_some({'SPEC:φ', '!SPEC:φ'}) and not (X.selector() and X.selector().check({'-ARG'})):
-            return True
+        Y = X.max().container()
+        if Y:
+            if Y.sister() == X or (Y.geometrical_sister() == X and X.check_some(Y.licensed_complements())):
+                return True
+            return not Y.EF() and Y.check_some({'SPEC:φ', '!SPEC:φ'}) and X.is_licensed_specifier() and not (X.selector() and X.selector().check({'-ARG'}))
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
@@ -688,22 +674,29 @@ class PhraseStructure:
                 X.head().features.add('Adv')
 
     def valid_reconstructed_adjunct(X, starting_point_node):
-        if X.head().tail_test():
-            log('PAUKKU')
-            if X.adverbial_adjunct() or X.non_adverbial_adjunct_condition(starting_point_node):
-                if X.container():
-                    h = X.container()
-                    if X == h.next(h.edge):
-                        return h.specifier_match(X)
-                    if X == h.sister():
-                        return h.complement_match(X)
-                else:
-                    return True  # XP without container is accepted
+        if X.head().tail_test() and (X.adverbial_adjunct() or X.non_adverbial_adjunct_condition(starting_point_node)):
+            if not X.container():
+                return True
+            if X == X.container().local_edge():
+                return X.container().specifier_match(X)
+            if X == X.container().sister():
+                return X.container().complement_match(X)
+
+    def non_adverbial_adjunct_condition(X, starting_point_head):
+        if not X.container():
+            return True
+        if X.nonthematic() or (X.referential() and X.projection_principle_failure()):
+            return False
+        return True
 
     def externalize_with_specifier(X):
         return X.is_left() and X.predicate() and \
                ((X.tail_test() and X.has_nonthematic_specifier()) or
                 (not X.tail_test() and X.edge() and not X.has_unlicensed_specifier()))
+
+    def has_unlicensed_specifier(X):
+        if X.local_edge():
+            return set(X.specifiers_not_licensed()) & X.local_edge().head().features
 
     # Agreement ---------------------------------------------------------------------------------------------
 
@@ -778,40 +771,17 @@ class PhraseStructure:
         if X.check({'ARG?'}):
             X.features.discard('ARG?')
             if X.selected_by_SEM_internal_predicate():
-                log(f'\n\t\t{X}° resolved into -ARG.')
-                X.features.add('-ARG')
-                X.features.add('-ΦLF,ΦPF')
-            elif X.selected_by_SEM_external_predicate() or (X.selector() and X.selector().check({'Fin'})):
-                log(f'\n\t\t{X}° resolved into ARG.')
-                X.features.add('ARG')
-                X.features.add('+ΦLF,ΦPF')
-                X.features.add('PHI:NUM:_')
-                X.features.add('PHI:PER:_')
+                X.make_non_predicate()
             else:
-                X.features.add('ARG')
-                X.features.add('PHI:NUM:_')
-                X.features.add('PHI:PER:_')
-
-    def empty_finite_EPP(X):
-        return X.selector().finite_C() and X.EF() and not X.edge()
-
-    def has_unlicensed_specifier(X):
-        local_edge = X.next(X.edge)
-        if local_edge:
-            return set(X.specifiers_not_licensed()) & local_edge.head().features
+                X.make_predicate()
+                if X.selected_by_SEM_external_predicate() or (X.selector() and X.selector().finite()):
+                    X.features.add('+ΦLF,ΦPF')
 
     def get_constituent_containing_selection_violation(X):
         return next((x for x in X if x.induces_selection_violation() and not x.sister().adjunct), None)
 
     def induces_selection_violation(X):
         return X.nonlicensed_complement() or X.missing_mandatory_complement()
-
-    def non_adverbial_adjunct_condition(X, starting_point_head):
-        if not X.container():
-            return True
-        if X.nonthematic() or (X.referential() and X.projection_principle_failure()):
-            return False
-        return True
 
     # Feature processing -----------------------------------------------------------------------------
 
@@ -1295,6 +1265,18 @@ class PhraseStructure:
         return '?'
 
     #  Definitions and abstractions for terms
+
+    def make_predicate(X):
+        X.features.add('ARG')
+        X.features.add('PHI:NUM:_')
+        X.features.add('PHI:PER:_')
+
+    def make_non_predicate(X):
+        X.features.add('-ARG')
+        X.features.add('-ΦLF,ΦPF')
+
+    def empty_finite_EPP(X):
+        return X.selector().finite_C() and X.EF() and not X.edge()
 
     def adverbial(X):
         return X.check({'Adv'})
