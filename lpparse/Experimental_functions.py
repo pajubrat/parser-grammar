@@ -9,9 +9,9 @@ class ExperimentalFunctions:
         pass
 
     def Agree(self, probe):
-        if self.speaker_model.settings.get()['UG_parameter_Agree'] == 'standard':
+        if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
             self.standard(probe)
-        if self.speaker_model.settings.get()['UG_parameter_Agree'] == 'revised':
+        if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'revised':
             self.revised(probe)
 
     def revised(self, probe):

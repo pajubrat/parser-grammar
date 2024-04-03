@@ -23,20 +23,16 @@ lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
 redundancy_rules=redundancy_rules.txt
 
 # IMAGE PARAMETERS
-image_parameter_show_words = True
-image_parameter_labels = False
-image_parameter_spellout = False
-image_parameter_show_glosses = True
-image_parameter_mark_adjuncts = False
-image_parameter_spellout_complex_heads = False
-image_parameter_show_head_chains = True
-image_parameter_remove_trivial_head_chains = True
-image_parameter_show_phrasal_chains = True
-image_parameter_show_Agree = False
-image_parameter_show_complex_heads = True
-image_parameter_show_features = EF;!ΦLF,ΦPF;+ΦLF,ΦPF;ΦΦ
+image_parameter_words = True
+image_parameter_glosses = True
+image_parameter_adjuncts = False
+image_parameter_complex_heads = False
+image_parameter_head_chains = True
+image_parameter_trivial_head_chains = True
+image_parameter_phrasal_chains = True
 image_parameter_DP_hypothesis = True
 image_parameter_chain_curvature = 1
+image_parameter_features = EF;!ΦLF,ΦPF;+ΦLF,ΦPF
 
 # UG COMPONENTS
 #	Agree

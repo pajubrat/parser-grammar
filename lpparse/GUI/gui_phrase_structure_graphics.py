@@ -13,11 +13,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         super().__init__(root)
         self.title("Phrase Structure Graphics")
         self.geometry(('1800x1000+1800+500'))
-
+        self.speaker_model = speaker_model
         self.root = root
 
         # Features shown in figures on the basis of settings
-        GPhraseStructure.draw_features = root.settings.get()['image_parameter_show_features']
+        GPhraseStructure.draw_features = {feature.strip() for feature in root.settings.retrieve('image_parameter_features', set()).split(';')}
 
         # Internal variables
         self.index_of_analysis_shown = 0
@@ -54,16 +54,20 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=1, column=0)
         self.gps = None     # Current phrase structure e on screen
-        self.speaker_model = speaker_model
         self.bind('<<LF>>', self.LF)
         self.bind('<<PF>>', self.PF)
         self.bind('<<NextImage>>', self.next_image)
         self.bind('<<PreviousImage>>', self.previous_image)
         self.bind('<<FirstImage>>', self.first_image)
         self.bind('<<SaveImage>>', self.save_image)
+        self.bind('<<Settings>>', self.image_settings)
 
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def image_settings(self, *_):
+        self.root.settings.change_settings(self, ['Image'])
+        self.draw_phrase_structure()
 
     def save_image(self, *_):
         filename = self.root.settings.data['study_folder'] + '/phrase_structure_image.ps'
@@ -156,12 +160,10 @@ class PhraseStructureCanvas(tk.Canvas):
         self.info_text = self.create_text((200, 300), state='hidden')  # Show information about selected objects
 
         self.project_into_canvas(gps, spx, spy, grid)
-        if self.parent.speaker_model.settings.get()['image_parameter_show_head_chains']:
+        if self.parent.speaker_model.settings.retrieve('image_parameter_head_chains', True):
             self.draw_head_chains(gps)
-        if self.parent.speaker_model.settings.get()['image_parameter_show_phrasal_chains']:
+        if self.parent.speaker_model.settings.retrieve('image_parameter_phrasal_chains', True):
             self.draw_phrasal_chains(gps)
-        if self.parent.speaker_model.settings.get()['image_parameter_show_Agree']:
-            self.draw_Agree(gps)
 
     def _key_press(self, event):
         if self.selected_canvas_object:
@@ -292,7 +294,7 @@ class PhraseStructureCanvas(tk.Canvas):
                 break
 
             # Do not produce affixes if blocked by settings
-            if j > 1 and not self.parent.speaker_model.settings.get()['image_parameter_show_complex_heads']:
+            if j > 1 and not self.parent.speaker_model.settings.retrieve('image_parameter_complex_heads', True):
                 break
 
             # Generate the label text (label + phonological exponent + gloss)
@@ -302,6 +304,12 @@ class PhraseStructureCanvas(tk.Canvas):
                 text = self.feature_conversion_for_images(item[0], gps)
                 if text and item[1] == 'feature':
                     text = '[' + text + ']'
+
+                if item[1] == 'gloss' and not self.parent.speaker_model.settings.retrieve('image_parameter_glosses', True):
+                    continue
+
+                if item[1] == 'PF' and not self.parent.speaker_model.settings.retrieve('image_parameter_words', True):
+                    continue
 
                 # Create the text widget for the element
                 ID = self.create_text((X1, Y1 + Y_offset),
@@ -328,7 +336,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.update_cursor(gps, X1, Y1)
 
     def feature_conversion_for_images(self, text, node):
-        if self.parent.speaker_model.settings.get()['image_parameter_DP_hypothesis']:
+        if self.parent.speaker_model.settings.retrieve('image_parameter_DP_hypothesis', False):
             if text == 'φ':
                 text = 'D'
             if text == 'φP':
@@ -358,7 +366,7 @@ class PhraseStructureCanvas(tk.Canvas):
     def draw_head_chains(self, gps):
         if gps.head_chain_target:
             if gps.sister() != gps.head_chain_target or \
-                    not self.parent.speaker_model.settings.get()['image_parameter_remove_trivial_head_chains'] or \
+                    self.parent.speaker_model.settings.retrieve('image_parameter_trivial_head_chains', False) or \
                     not gps.nonverbal():
                 self.draw_dependency('head_chain', gps, gps.head_chain_target)
         if gps.complex():
@@ -389,7 +397,7 @@ class PhraseStructureCanvas(tk.Canvas):
         Y1 = source.Y
         X3 = target.X
         Y3 = target.Y
-        curvature = self.parent.speaker_model.settings.get()['image_parameter_chain_curvature']
+        curvature = self.parent.speaker_model.settings.retrieve('image_parameter_chain_curvature', 1)
         X2 = X1 + abs(X1 - X3) / 2
         if X1 == X3:
             Y3 = Y3 - self.parent.s['tsize']
@@ -444,7 +452,7 @@ class GPhraseStructure(PhraseStructure):
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
         self.head_chain_target = self.find_head_chain()
-        self.Agree_target = self.find_Agree()
+        #self.Agree_target = self.find_Agree()
         if self.complex():
             self.left().x = self.x - 1
             self.left().y = self.y + 1

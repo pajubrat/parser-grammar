@@ -16,31 +16,31 @@ class PlausibilityMetrics:
         self.word = None
         self.plausibility_conditions = \
             {'positive_spec_selection':         {'condition': self.positive_spec_selection,
-                                                 'weight': self.speaker_model.settings.get().get('positive_spec_selection', 100),
+                                                 'weight': self.speaker_model.settings.retrieve('positive_spec_selection', 100),
                                                  'log': '+Spec selection'},
              'negative_spec_selection':         {'condition': self.negative_spec_selection,
-                                                 'weight': self.speaker_model.settings.get().get('negative_spec_selection', -100),
+                                                 'weight': self.speaker_model.settings.retrieve('negative_spec_selection', -100),
                                                  'log': '-Spec selection'},
              'break_head_comp_relations':       {'condition': self.break_head_comp_relations,
-                                                 'weight': self.speaker_model.settings.get().get('break_head_comp_relations', -100),
+                                                 'weight': self.speaker_model.settings.retrieve('break_head_comp_relations', -100),
                                                  'log': 'Head-complement word breaking condition'},
              'positive_head_comp_selection':    {'condition': self.positive_head_comp_selection,
-                                                 'weight': self.speaker_model.settings.get().get('positive_head_comp_selection', 100),
+                                                 'weight': self.speaker_model.settings.retrieve('positive_head_comp_selection', 100),
                                                  'log': '+Comp selection'},
              'negative_head_comp_selection':    {'condition': self.negative_head_comp_selection,
-                                                 'weight': self.speaker_model.settings.get().get('negative_head_comp_selection', -100),
+                                                 'weight': self.speaker_model.settings.retrieve('negative_head_comp_selection', -100),
                                                  'log': '-Comp selection'},
              'negative_semantics_match':        {'condition': self.negative_semantic_match,
-                                                 'weight': self.speaker_model.settings.get().get('negative_semantics_match', -100),
+                                                 'weight': self.speaker_model.settings.retrieve('negative_semantics_match', -100),
                                                  'log': 'Semantic mismatch'},
              'lf_legibility_condition':         {'condition': self.lf_legibility_condition,
-                                                 'weight': self.speaker_model.settings.get().get('lf_legibility_condition', -100),
+                                                 'weight': self.speaker_model.settings.retrieve('lf_legibility_condition', -100),
                                                  'log': '-LF-legibility for left branch'},
              'negative_adverbial_test':         {'condition': self.negative_adverbial_test,
-                                                 'weight': self.speaker_model.settings.get().get('negative_adverbial_test', -100),
+                                                 'weight': self.speaker_model.settings.retrieve('negative_adverbial_test', -100),
                                                  'log': '-Adverbial condition'},
              'positive_adverbial_test':         {'condition': self.positive_adverbial_test,
-                                                 'weight': self.speaker_model.settings.get().get('positive_adverbial_test', 100),
+                                                 'weight': self.speaker_model.settings.retrieve('positive_adverbial_test', 100),
                                                  'log': '+Adverbial condition'}
              }
         self.word_specs = None
@@ -114,10 +114,7 @@ class PlausibilityMetrics:
         return '#' + hex(self.address_label) + '#'
 
     def dispersion_filter_active(self):
-        if 'dispersion_filter' not in self.speaker_model.settings.get():
-            return True
-        else:
-            return self.speaker_model.settings.get()['dispersion_filter']
+        return True
 
     @knockout_lexical_ranking
     def positive_spec_selection(self, site):

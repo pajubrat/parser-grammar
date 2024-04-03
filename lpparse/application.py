@@ -53,14 +53,16 @@ class Application(tk.Tk):
         self.bind('<<TheorySettings>>', self.change_theory_settings)
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
+        self.bind('<<Settings>>', self.modify_settings)
         self.bind('<<CreateNewFromFile>>', self.create_new_from_corpus_file)
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
-
-        self.analyze()  # Analyze the first sentence automatically
 
     def on_closing(self):
         self.local_file_system.save_app_settings(self.settings)
         self.destroy()
+
+    def modify_settings(self, event):
+        self.settings.change_settings(self)
 
     def create_new_from_corpus_file(self, *_):
         self.local_file_system.create_new_from_corpus_file(self.settings)
@@ -86,7 +88,7 @@ class Application(tk.Tk):
         self.results_frame = ResultsView(self, self.speaker_models)
         self.results_frame.grid(row=1, column=1, sticky='nwes')
 
-        self.status_bar = tk.Label(self, padx=5, pady=5, bg='green', fg='white', anchor='e', justify='right', text=f'Current study: {self.settings.get()["study_folder"]}/{self.settings.get()["test_corpus"]}', font=('Calibri 16'))
+        self.status_bar = tk.Label(self, padx=5, pady=5, bg='green', fg='white', anchor='e', justify='right', text=f'Current study: {self.settings.retrieve("study_folder")}/{self.settings.retrieve("test_corpus")}', font=('Calibri 16'))
         self.status_bar.grid(row=2, column=0, columnspan=2, sticky='e')
 
     def change_theory_settings(self, event):
@@ -122,7 +124,6 @@ class Application(tk.Tk):
         return speaker_model, sentences_to_parse, lg
 
     def analyze(self, *_):
-        """Analyzes the input sentence selected from the dataset frame"""
         self.local_file_system.initialize_output_files(self.settings)
         S = self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['sentence']
         language = self.language_guesser.guess_language(S)
@@ -135,6 +136,7 @@ class Application(tk.Tk):
         else:
             LogText(self, self.settings.external_sources["log_file_name"], '**The input sentence was ungrammatical. See the derivational log below**')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
+        self.speaker_models[language].narrow_semantics.global_cognition.end_conversation()
 
     def run_study(self, *_):
         self.local_file_system.initialize_output_files(self.settings)

@@ -110,7 +110,7 @@ class LexicalInterface:
 
     def load_lexicons(self, settings):
         self.surface_lexicon = {}
-        for lexicon_file in list(settings.get()['lexicons']):
+        for lexicon_file in [file.strip() for file in settings.retrieve('lexicons', '').split(';')]:
             self.load_lexicon(settings.folders['lexicon'] / lexicon_file)
 
     def load_lexicon(self, lexicon_file):

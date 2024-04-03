@@ -50,10 +50,8 @@ class MainMenu(tk.Menu):
 
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
-        settings_menu.add_command(label='Configure study...')
-        settings_menu.add_command(label='Simulation settings...')
-        settings_menu.add_command(label='Image settings...')
-        self.add_cascade(label='Options', menu=settings_menu)
+        settings_menu.add_command(label='Settings...', command=self._event('<<Settings>>'))
+        self.add_cascade(label='Settings', menu=settings_menu)
 
         # Help menu
         help_menu = tk.Menu(self, tearoff=False, font=menu_font)
@@ -107,6 +105,12 @@ class GraphicsMenu(tk.Menu):
         select_image.add_command(label='Previous image', command=self._event('<<PreviousImage>>'))
         select_image.add_command(label='First image', command=self._event('<<FirstImage>>'))
         self.add_cascade(label='Image source', menu=select_image)
+
+        # Settings menu
+        settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        settings_menu.add_command(label='Image settings...', command=self._event('<<Settings>>'))
+        self.add_cascade(label='Settings', menu=settings_menu)
+
 
     def todo(self):
         pass

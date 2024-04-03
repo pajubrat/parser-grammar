@@ -4,58 +4,16 @@ from tkinter import messagebox
 import os
 from tkinter import ttk
 from pathlib import Path
-from tkinter import filedialog, messagebox
+from tkinter import filedialog
 
 class Settings:
     def __init__(self, local_file_system, app_settings_dict=None):
-        self.app_settings = {}  # Store the application settings (default values)
+        self.app_settings = {}
         self.local_file_system = local_file_system
         self.data = {}
         self.folders = {}
         self.external_sources = {}
         self.encoding = 'utf8'
-        self.app_settings = {}
-        self.default_study_parameters = {'author': 'Unknown author',
-                                         'year': 'Unknown year',
-                                         'date': 'Unknown date',
-                                         'study_id': '1',
-                                         'only_first_solution': 'False',
-                                         'logging': 'True',
-                                         'study_folder': 'language data working directory/',
-                                         'lexicon_folder': 'language data working directory/lexicons/',
-                                         'test_corpus_file': 'default_corpus.txt',
-                                         'test_corpus_folder': 'language data working directory/',
-                                         'ignore_ungrammatical_sentences': 'False',
-                                         'console_output': 'Full',
-                                         'datatake_full': 'False',
-                                         'datatake_images': 'False',
-                                         'image_parameter_stop_after_each_image': 'False',
-                                         'image_parameter_show_words': 'True',
-                                         'image_parameter_nolabels': 'False',
-                                         'image_parameter_spellout': 'False',
-                                         'image_parameter_case': 'False',
-                                         'image_parameter_show_sentences': 'False',
-                                         'image_parameter_show_glosses': 'True',
-                                         'image_parameter_chain_curvature': 1,
-                                         'UG_parameter_phase_heads': {'C', 'v', 'FORCE', 'Inf'},
-                                         'UG_parameter_phase_heads_exclude': {'φ', 'v', 'TO/inf'},
-                                         'extra_ranking': 'True',
-                                         'filter': 'True',
-                                         'lexical_anticipation': 'True',
-                                         'closure': 'Bottom-up',
-                                         'working_memory': 'True',
-                                         'positive_spec_selection': '100',
-                                         'negative_spec_selection': '-100',
-                                         'break_head_comp_relations': '-100',
-                                         'negative_tail_test': '-100',
-                                         'positive_head_comp_selection': '100',
-                                         'negative_head_comp_selection': '-100',
-                                         'negative_semantics_match': '-100',
-                                         'lf_legibility_condition': '-100',
-                                         'negative_adverbial_test': '-100',
-                                         'positive_adverbial_test': '100'
-                                         }
-
         self.app_settings = app_settings_dict
         self.local_file_system.load_settings(self, app_settings_dict)
         self.process_settings()
@@ -63,15 +21,24 @@ class Settings:
 
     def create_settings_for_file_system(self, corpus_filename=None):
         if corpus_filename:
-            self.data['test_corpus'] = os.path.basename(corpus_filename)
-            self.data['study_folder'] = os.path.dirname(corpus_filename)
+            self.store('test_corpus', os.path.basename(corpus_filename))
+            self.store('study_folder', os.path.dirname(corpus_filename))
             self.app_settings['open_with'] = f"{self.data['study_folder']}/{self.data['test_corpus'][:-11]}.lpg"
-        self.set_folders()
+        self.folders['study'] = Path(self.retrieve('study_folder'))
+        self.folders['lexicon'] = Path(self.retrieve('lexicon_folder'))
         self.set_external_resources()
 
-    def set_folders(self):
-        self.folders['study'] = Path(self.data['study_folder'])
-        self.folders['lexicon'] = Path(self.data['lexicon_folder'])
+    def process_settings(self):
+        for key in self.data:
+            if isinstance(self.data[key], str):
+                if self.data[key].lower() == 'true':
+                    self.data[key] = True
+                elif self.data[key].lower() == 'false':
+                    self.data[key] = False
+                elif self.data[key].lstrip('-').isdigit():
+                    self.data[key] = int(self.data[key])
+        PhraseStructure.phase_heads = {f.strip() for f in self.retrieve('UG_parameter_phase_heads', '').split(';')}
+        PhraseStructure.phase_heads_exclude = {f.strip() for f in self.retrieve('UG_parameter_phase_heads_exclude', '').split(';')}
 
     def set_external_resources(self):
         self.external_sources = {"test_corpus_file_name": self.folders['study'] / self.data['test_corpus'],
@@ -92,89 +59,94 @@ class Settings:
             self.local_file_system.load_settings(self, filename)
             return True     # This will reset the widgets in the application
 
-    def process_settings(self):
-        for key in self.data:
-            if isinstance(self.data[key], str):
-                if self.data[key].lower() in {'true', 'yes'}:
-                    self.data[key] = True
-                elif self.data[key].lower() in {'false', 'no'}:
-                    self.data[key] = False
-                elif self.data[key].lstrip('-').isdigit():
-                    self.data[key] = int(self.data[key])
+    def store(self, key, value):
+        self.data[key] = value
 
-        PhraseStructure.phase_heads = self.data['UG_parameter_phase_heads']
-        PhraseStructure.phase_heads_exclude = self.data['UG_parameter_phase_heads_exclude']
-        PhraseStructure.spellout_heads = self.data['image_parameter_spellout_complex_heads']
+    def retrieve(self, key, value=None):
+        if key in self.data:
+            return self.data[key]
+        else:
+            return value
 
-    def get(self):
-        return self.data
+    def change_settings(self, root, tab_lst=['Image']):
+        d = ChangeSettingsNotebook(root, self, tab_lst)
+        root.wait_window(d)
 
-    def change_theory_settings(self, root):
-        d = ChangeTheorySettingsDialog(root, self)
-
-
-class ChangeTheorySettingsDialog(tk.Toplevel):
-    """Window hosting the dialog for changing the theory settings"""
-    def __init__(self, root, settings_instance):
+class ChangeSettingsNotebook(tk.Toplevel):
+    """Window for hosting the notebook hosting the settings"""
+    def __init__(self, root, settings_instance, tabs_lst=['Image']):
         super().__init__(root)
         self.settings_instance = settings_instance
-        self.variables = {'UG_parameter_Agree': tk.StringVar,
-                          'UG_parameter_phase_heads': tk.StringVar(value=';'.join(settings_instance.data['UG_parameter_phase_heads'])),
-                          'UG_parameter_phase_heads_exclude': tk.StringVar(value=';'.join(settings_instance.data['UG_parameter_phase_heads_exclude']))}
-        text_font = ('Calibri', 20)
-        self.title("Change UG Parameters")
-        self.geometry('800x500+1000+1000')
+        self.title("Study settings")
+        self.geometry('1200x800+1000+1000')
         self.focus()
         self.grid()
+        self.grab_set()
         self.columnconfigure(0, weight=1)
         self.rowconfigure(2, weight=3)
+        self.tab_pages = {}
 
-        # Agreement parameters
-        self.Agree_frame = ttk.LabelFrame(self, text='Agreement parameters')
-        self.Agree_frame.grid(row=0, column=0, sticky='NW', padx=30, pady=30)
+        s = ttk.Style()
+        s.configure('TNotebook.Tab', font=('Calibri', '20'))
+        style = ttk.Style(root)
+        style.configure('TCheckbutton', font=('Calibri', '20'))
 
-        ttk.Label(self.Agree_frame, text='Agreement model', font=text_font).grid(row=0, column=0, sticky='W', padx=10, pady=10)
-        available_models = ['standard', 'revised']
-        self.combobox = ttk.Combobox(self.Agree_frame, textvariable=self.variables['UG_parameter_Agree'], values=available_models, font=text_font)
-        self.combobox.current(available_models.index(settings_instance.data['UG_parameter_Agree']))
-        self.combobox.grid(row=1, column=0, sticky='W', padx=10, pady=10)
+        # Frames for the notebook and buttons
+        self.notebook_Frame = tk.Frame(self)
+        self.notebook_Frame.grid(row=0, column=0, sticky='NSWE')
+        self.buttons_Frame = tk.Frame(self)
+        self.buttons_Frame.grid(row=1, column=0, sticky='NSWE')
+        self.buttons_Frame.grid_rowconfigure(0, weight=1)
+        self.buttons_Frame.grid_columnconfigure(0, weight=1)
+        self.CANCEL_button = tk.Button(self.buttons_Frame, text='Cancel', bg='#ffdddd', fg='#000000', font=('Calibri', 12), command=self.cancel)
+        self.CANCEL_button.grid(row=0, column=1, sticky=tk.E, padx=20, pady=20)
+        self.CANCEL_button.configure(width=15, height=2)
+        self.OK_button = tk.Button(self.buttons_Frame, text='Update settings', bg='#ddffdd', fg='#000000', font=('Calibri', 12), command=self.update_settings)
+        self.OK_button.grid(row=0, column=0, sticky=tk.E, padx=20, pady=20)
+        self.OK_button.configure(width=15, height=2)
+        self.notebook = ttk.Notebook(self.notebook_Frame)
 
-        # Phase theory parameters
-        self.PhaseTheory_frame = ttk.LabelFrame(self, text='Phase theory')
-        self.PhaseTheory_frame.grid(row=0, column=1, sticky='NW', padx=30, pady=30)
+        # NOTEBOOK TAB 1: IMAGE SETTINGS
+        # Read settings dict into variables that are manipulated by the GUI components
+        self.image_boolean_variables = {name: tk.BooleanVar(value=self.settings_instance.retrieve(name, False)) for name in self.settings_instance.data.keys() if name.startswith('image_') and isinstance(self.settings_instance.retrieve(name, False), bool)}
+        self.image_string_variables = {'image_parameter_features': tk.StringVar(value=self.settings_instance.retrieve('image_parameter_features', ''))}
+        self.image_settings_Frame = ttk.LabelFrame(self.notebook, text='Image Settings')
+        # Boolean variables are set by checkboxes
+        self.image_variable_checkboxes = {}
+        for i, parameter in enumerate(self.image_boolean_variables):
+            parameter_name = ' '.join(parameter.split('_')[2:]).capitalize()
+            self.image_variable_checkboxes[parameter] = ttk.Checkbutton(self.image_settings_Frame, variable=self.image_boolean_variables[parameter], text=parameter_name)
+            self.image_variable_checkboxes[parameter].grid(row=i, column=0, sticky='NWSE')
+        # Features are set by entry
+        self.show_features_Frame = tk.LabelFrame(self.image_settings_Frame, text='Show features', font=('Calibri', 20))
+        self.show_features_field = ttk.Entry(self.show_features_Frame, textvariable=self.image_string_variables['image_parameter_features'], font=('Calibri', 20), width=40)
+        self.show_features_Frame.grid(row=i, column=0, sticky='NWSE', pady=20)
+        self.show_features_field.grid(row=0, column=0, sticky='NWSE')
+        self.tab_pages['Image'] = self.image_settings_Frame
 
-        ttk.Label(self.PhaseTheory_frame, text='Phase nodes', font=text_font).grid(row=0, column=0, sticky='W', padx=10, pady=10)
-        self.phase_head_field = ttk.Entry(self.PhaseTheory_frame, textvariable=self.variables['UG_parameter_phase_heads'], font=text_font)
-        self.phase_head_field.grid(row=1, column=0, sticky='W', padx=10, pady=10)
+        for tab_text in tabs_lst:
+            if tab_text in self.tab_pages:
+                self.notebook.add(self.tab_pages[tab_text], text=tab_text, padding=20, sticky='NSEW')
+            #self.general = ttk.LabelFrame(self.notebook, text='General simulation parameters here...')
+            #self.study_sources = ttk.LabelFrame(self.notebook, text='Study source files...')
+            #self.UG_settings = ttk.LabelFrame(self.notebook, text='UG settings will be here...')
+            #self.parsing_heuristics = ttk.LabelFrame(self.notebook, text='Parsing heuristics will be here....')
+            #self.metadata = ttk.LabelFrame(self.notebook, text='Metadata will be here...')
+            #self.notebook.add(self.image_settings_Frame, text=' Image ', padding=20, sticky='NSEW')
+            #self.notebook.add(self.study_sources, text=' Sources ', padding=20, sticky='NSWE')
+            #self.notebook.add(self.general, text=' General ', padding=20, sticky='NSWE')
+            #self.notebook.add(self.metadata, text=' Metadata ', padding=20, sticky='NSWE')
+            #self.notebook.add(self.UG_settings, text=' UG ', padding=20, sticky='NSEW')
+            #self.notebook.add(self.parsing_heuristics, text=' Parsing ', padding=20, sticky='NSEW')
+        self.notebook.enable_traversal()
 
-        ttk.Label(self.PhaseTheory_frame, text='Excluded phase nodes', font=text_font).grid(row=2, column=0, sticky='W', padx=10, pady=10)
-        self.excluded_phase_head_field = ttk.Entry(self.PhaseTheory_frame, textvariable=self.variables['UG_parameter_phase_heads_exclude'], font=text_font)
-        self.excluded_phase_head_field.grid(row=3, column=0, sticky='W', padx=10, pady=10)
+        self.notebook.grid(row=0, column=0, sticky='NSWE')
 
-        # Buttons
-        self.Button_Frame = ttk.Frame(self)
-        self.Button_Frame.grid(row=3, column=1, sticky='SE', padx=30, pady=30)
-        self.OK_Button = tk.Button(self.Button_Frame, text='OK', command=self.OK, default='active', height=3, width=20)
-        self.OK_Button.grid(row=0, column=1, sticky='SE', padx=10, pady=10)
-
-        self.Cancel_Button = tk.Button(self.Button_Frame, text='Cancel', command=self.Cancel, default='normal', height=3, width=20)
-        self.Cancel_Button.grid(row=0, column=0, stick='SW', padx=10, pady=10)
-
-    def OK(self, *_):
-        self.settings_instance.data['UG_parameter_Agree'] = self.combobox.get()
-        self.settings_instance.data['UG_parameter_phase_heads'] = {x.strip() for x in self.phase_head_field.get().split(';')}
-        self.settings_instance.data['UG_parameter_phase_heads_exclude'] = {x.strip() for x in self.excluded_phase_head_field.get().split(';')}
-        tk.messagebox.showinfo(message='UG parameters have been changed')
+    def cancel(self):
         self.destroy()
 
-    def Cancel(self, *_):
+    def update_settings(self):
+        self.settings_instance.data.update({key: self.image_boolean_variables[key].get() for key in self.image_boolean_variables.keys()})
+        for parameter in self.image_string_variables.keys():
+            self.settings_instance.data[parameter] = self.image_string_variables[parameter].get()
         self.destroy()
-
-
-
-
-
-
-
-
-

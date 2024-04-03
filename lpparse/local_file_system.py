@@ -38,7 +38,7 @@ class LocalFileSystem:
         self.initialize_resources_file(settings)
         self.initialize_error_file(settings)
         self.initialize_simple_log_file(settings)
-        if settings.get()['use_numeration']:
+        if settings.retrieve('use_numeration', False):
             self.initialize_numeration_output(settings)
         self.dev_log_file.write('Done.\n')
 
@@ -137,21 +137,14 @@ class LocalFileSystem:
         folder = app_settings_dict['study_folder']
         filename = folder + '/' + name
         with open(filename, encoding=self.encoding) as config_file:
-
-            # Read file into dict
             for line in config_file:
                 line = line.strip().replace('\t', '')
                 if line and not line.startswith('#'):
                     key, value = line.split('=')
                     key = key.strip()
                     value = value.strip()
-                    if ';' in value or key == 'image_parameter_show_features':
-                        value = set(value.split(';'))
-                    settings.get()[key] = value
+                    settings.data[key] = value
         config_file.close()
-        # Safeguards
-        if not settings.get()['image_parameter_show_features'] or settings.get()['image_parameter_show_features'] == '':
-            settings.data['image_parameter_show_features'] = {}
 
     def create_new_from_corpus_file(self, settings):
         corpus_filename = filedialog.askopenfilename(title='Create new study from corpus file', defaultextension='.txt', initialdir='./language data working directory')
@@ -161,17 +154,17 @@ class LocalFileSystem:
         filename = filedialog.asksaveasfilename(title='Save study', defaultextension='.txt', initialdir='.')
         if filename:
             with open(filename, 'w', encoding=self.encoding) as f:
-                for key in settings.get().keys():
-                    if isinstance(settings.get()[key], set):
-                        value = ';'.join(settings.get()[key])
+                for key in settings.retrieve().keys():
+                    if isinstance(settings.retrieve()[key], set):
+                        value = ';'.join(settings.retrieve()[key])
                     else:
-                        value = settings.get()[key]
+                        value = settings.retrieve()[key]
                     print(f'{key} = {value}', file=f)
 
     def read_test_corpus(self, settings):
         experimental_group = []
         parse_list = []
-        if settings.get()['use_numeration']:
+        if settings.retrieve('use_numeration', False):
             k = open(settings.external_sources['numeration_output'], encoding=self.encoding)
             input_file = settings.external_sources["numeration_output"]
         else:
@@ -304,7 +297,8 @@ class LocalFileSystem:
         lexicon_dict = {}
 
         # Examine all lexical files and the lexical redundancy file
-        for lexicon_file in list(settings.get()['lexicons']) + [settings.get()['redundancy_rules']]:
+        for lexicon_file in [file.strip() for file in settings.retrieve('lexicons', '').split(';')] + \
+                            [file.strip() for file in settings.retrieve('redundancy_rules', '').split(';')]:
             lexicon_dict[lexicon_file] = {}
 
             # Example all lines in each file

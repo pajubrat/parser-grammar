@@ -134,7 +134,7 @@ class SpeakerModel:
             self.results.store_solution(ps)
             self.results.log_success(ps)
             self.results.record_derivational_step(ps, 'Accepted LF-interface')
-            if self.settings.get()['only_first_solution']:
+            if self.settings.retrieve('only_first_solution', True):
                 self.exit = True
         else:
             self.narrow_semantics.reset_for_new_interpretation()
