@@ -68,13 +68,13 @@ class Settings:
         else:
             return value
 
-    def change_settings(self, root, tab_lst=['Image']):
+    def change_settings(self, root, tab_lst=['Image', 'General']):
         d = ChangeSettingsNotebook(root, self, tab_lst)
         root.wait_window(d)
 
 class ChangeSettingsNotebook(tk.Toplevel):
     """Window for hosting the notebook hosting the settings"""
-    def __init__(self, root, settings_instance, tabs_lst=['Image']):
+    def __init__(self, root, settings_instance, tabs_lst):
         super().__init__(root)
         self.settings_instance = settings_instance
         self.title("Study settings")
@@ -110,7 +110,7 @@ class ChangeSettingsNotebook(tk.Toplevel):
         # Read settings dict into variables that are manipulated by the GUI components
         self.image_boolean_variables = {name: tk.BooleanVar(value=self.settings_instance.retrieve(name, False)) for name in self.settings_instance.data.keys() if name.startswith('image_') and isinstance(self.settings_instance.retrieve(name, False), bool)}
         self.image_string_variables = {'image_parameter_features': tk.StringVar(value=self.settings_instance.retrieve('image_parameter_features', ''))}
-        self.image_settings_Frame = ttk.LabelFrame(self.notebook, text='Image Settings')
+        self.image_settings_Frame = ttk.LabelFrame(self.notebook, text='Image settings')
         # Boolean variables are set by checkboxes
         self.image_variable_checkboxes = {}
         for i, parameter in enumerate(self.image_boolean_variables):
@@ -124,20 +124,20 @@ class ChangeSettingsNotebook(tk.Toplevel):
         self.show_features_field.grid(row=0, column=0, sticky='NWSE')
         self.tab_pages['Image'] = self.image_settings_Frame
 
+        # NOTEBOOK TAB 2: GENERAL SIMULATION SETTINGS
+        self.general_boolean_variables = {name: tk.BooleanVar(value=self.settings_instance.retrieve(name, False)) for name in self.settings_instance.data.keys() if name.startswith('general_') and isinstance(self.settings_instance.retrieve(name, False), bool)}
+        self.general_settings_Frame = ttk.LabelFrame(self.notebook, text='General simulation settings')
+        self.general_variables_checkboxes = {}
+        for i, parameter in enumerate(self.general_boolean_variables):
+            parameter_name = ' '.join(parameter.split('_')[2:]).capitalize()
+            self.general_variables_checkboxes[parameter] = ttk.Checkbutton(self.general_settings_Frame, variable=self.general_boolean_variables[parameter], text=parameter_name)
+            self.general_variables_checkboxes[parameter].grid(row=i, column=0, sticky='NWSE')
+        self.tab_pages['General'] = self.general_settings_Frame
+
         for tab_text in tabs_lst:
             if tab_text in self.tab_pages:
                 self.notebook.add(self.tab_pages[tab_text], text=tab_text, padding=20, sticky='NSEW')
-            #self.general = ttk.LabelFrame(self.notebook, text='General simulation parameters here...')
-            #self.study_sources = ttk.LabelFrame(self.notebook, text='Study source files...')
-            #self.UG_settings = ttk.LabelFrame(self.notebook, text='UG settings will be here...')
-            #self.parsing_heuristics = ttk.LabelFrame(self.notebook, text='Parsing heuristics will be here....')
-            #self.metadata = ttk.LabelFrame(self.notebook, text='Metadata will be here...')
-            #self.notebook.add(self.image_settings_Frame, text=' Image ', padding=20, sticky='NSEW')
-            #self.notebook.add(self.study_sources, text=' Sources ', padding=20, sticky='NSWE')
-            #self.notebook.add(self.general, text=' General ', padding=20, sticky='NSWE')
-            #self.notebook.add(self.metadata, text=' Metadata ', padding=20, sticky='NSWE')
-            #self.notebook.add(self.UG_settings, text=' UG ', padding=20, sticky='NSEW')
-            #self.notebook.add(self.parsing_heuristics, text=' Parsing ', padding=20, sticky='NSEW')
+
         self.notebook.enable_traversal()
 
         self.notebook.grid(row=0, column=0, sticky='NSWE')
@@ -147,6 +147,7 @@ class ChangeSettingsNotebook(tk.Toplevel):
 
     def update_settings(self):
         self.settings_instance.data.update({key: self.image_boolean_variables[key].get() for key in self.image_boolean_variables.keys()})
+        self.settings_instance.data.update({key: self.general_boolean_variables[key].get() for key in self.general_boolean_variables.keys()})
         for parameter in self.image_string_variables.keys():
             self.settings_instance.data[parameter] = self.image_string_variables[parameter].get()
         self.destroy()

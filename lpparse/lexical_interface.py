@@ -15,7 +15,7 @@ class LexicalInterface:
         self.language = self.speaker_model.language
 
     def lexical_retrieval(self, phon):
-        log(f'\n\tNext word /{phon}/ =>')
+        log(f'\n\tNext morpheme /{phon}/ retrieves ')
         phon, onset, offset = self.phonological_context(phon)
         if phon in self.surface_lexicon:
             lexical_items_lst = [lex.copy().set_phonological_context(onset, offset) for lex in self.surface_lexicon[phon] if
@@ -47,7 +47,7 @@ class LexicalInterface:
                 if lex.morphological_chunk:
                     log(f'({i+1}) morphological chunk [{lex.morphological_chunk}] ')
                 else:
-                    log(f'({i+1}) {lex}° ')
+                    log(f'({i+1}) {lex} ')
 
     def phonological_context_match(self, lex, onset, offset):
         for pfc in [f[3:] for f in lex.features if f.startswith('PC')]:

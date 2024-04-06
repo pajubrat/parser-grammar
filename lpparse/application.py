@@ -1,7 +1,6 @@
 from local_file_system import LocalFileSystem
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
 import ctypes
 from support import is_comment
 from settings import Settings
@@ -153,10 +152,9 @@ class Application(tk.Tk):
                 self.local_file_system.write_comment_line(sentence)
 
         self.local_file_system.close_all_output_files()
-        self.local_file_system.report_errors_to_console(self.settings)
+        sp = list(self.speaker_models.keys())[0]
+        self.speaker_models[sp].results.report_results_to_console()
 
-    def quit(self):
-        pass
 
 
 

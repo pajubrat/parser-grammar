@@ -28,6 +28,7 @@
 		3p_ 			:: inflectional ΦPF Φ PHI:PER:3 PER
 		def_ 			:: inflectional ΦPF Φ PHI:DET:DEF
 		indef_ 			:: inflectional ΦPF Φ PHI:DET:INDEF
+		0				:: inflectional -ΦPF
 		hum_ 			:: inflectional ΦPF PHI:HUM:HUM
 		nonhum_ 		:: inflectional ΦPF PHI:HUM:NONHUM
 		m_				:: inflectional ΦPF PHI:GEN:M
@@ -65,7 +66,7 @@
 	
 		n		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:SG,PER:1 PER PHI:DET:DEF LANG:FI
 		t		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:SG,PER:2 PER PHI:DET:DEF LANG:FI
-		[V]		::	inflectional ΦPF Φ weak_pro	EF -Inf PHI:NUM:SG,PER:3 PER LANG:FI
+		[V]		::	inflectional ΦPF Φ weak_pro	nonreferential_pro EF -Inf PHI:NUM:SG,PER:3 PER LANG:FI
 		mme		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
 		tte		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:PL,PER:2 PER PHI:DET:DEF LANG:FI
 		vAt		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:PL,PER:3 PER LANG:FI
@@ -87,7 +88,7 @@
 		
 			[nom]		:: inflectional NOM TAIL:Fin,ARG,EF adjoinable LANG:FI
 			[NOM]		:: inflectional NOM -V -v -A/inf -T LANG:FI
-			[gen]		:: inflectional GEN TAIL:Inf adjoinable LANG:FI
+			[gen]		:: inflectional GEN TAIL:ARG,Inf adjoinable LANG:FI
 			[par]   	:: inflectional PAR TAIL:ARG,-ΦPF adjoinable LANG:FI
 			[acc(n)]	:: inflectional ACC ACC(n) TAIL:ARG,ASP:BOUNDED TAIL:ΦPF TAIL:*POL:NEG adjoinable LANG:FI
 			[acc(t)]	:: inflectional ACC ACC(t) TAIL:ARG,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI

@@ -3,6 +3,8 @@ from lexical_interface import LexicalInterface
 from LF import LF
 from SEM_narrow_semantics import NarrowSemantics
 from lexical_stream import LexicalStream
+from support import illu
+import time
 
 from plausibility_metrics import PlausibilityMetrics
 from phrase_structure import PhraseStructure
@@ -34,6 +36,8 @@ class SpeakerModel:
         PhraseStructure.speaker_model = self                    # Provides phrase structure operations access to the current speaker model
         PhraseStructure.chain_index = 0
         self.lexical_stream.id = 0
+        if Results.global_start_time == 0:
+            Results.global_start_time = time.time()
 
     def parse_sentence(self, index, lst):
         """Prepares the derivational search operation and
@@ -61,6 +65,8 @@ class SpeakerModel:
     # Recursive derivational search function (parser)
     def parse_new_item(self, ps, lst, index, inflection_buffer=frozenset()):
 
+        Results.accumulate_global_steps()
+
         log_instance.indent_level = self.embedding
 
         # Stop processing if there are no more words to consume
@@ -83,6 +89,7 @@ class SpeakerModel:
                 # 2. Process inflectional feature (withhold streaming to syntax)
                 if not lex.morphological_chunk and lex.inflectional:
                     inflection_buffer = inflection_buffer | lex.features - {'inflectional'}
+                    log(f'= {illu(lex.features)}')
                     self.parse_new_item(secure_copy(ps), lst, index + 1, inflection_buffer)
 
                 # 3. Extract features from primitive lex and wrap them into primitive constituent and stream into syntax
@@ -134,7 +141,7 @@ class SpeakerModel:
             self.results.store_solution(ps)
             self.results.log_success(ps)
             self.results.record_derivational_step(ps, 'Accepted LF-interface')
-            if self.settings.retrieve('only_first_solution', True):
+            if self.settings.retrieve('general_parameter_only_first_solution', True):
                 self.exit = True
         else:
             self.narrow_semantics.reset_for_new_interpretation()

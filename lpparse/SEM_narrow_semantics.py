@@ -88,9 +88,9 @@ class NarrowSemantics:
     def postsyntactic_semantic_interpretation(self, ps):
         self.reset_for_new_interpretation()
         self.interpret_(ps)
-        if self.speaker_model.settings.retrieve('calculate_assignments', False) and not self.speaker_model.results.first_solution_found:
+        if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', False) and not self.speaker_model.results.first_solution_found:
             self.speaker_model.results.store_semantic_interpretation('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
-        if self.speaker_model.settings.retrieve('calculate_pragmatics', False) and ps.finite():
+        if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and ps.finite():
             self.speaker_model.results.store_semantic_interpretation('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
         self.speaker_model.results.store_semantic_interpretation('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
         return not self.semantic_interpretation_failed
@@ -98,9 +98,9 @@ class NarrowSemantics:
     def interpret_(self, ps):
         if not ps.copied:
             if ps.zero_level():
-                if self.speaker_model.settings.retrieve('calculate_thematic_roles', True) and ps.theta_predicate():
+                if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and ps.theta_predicate():
                     self.speaker_model.results.store_semantic_interpretation('Thematic roles', self.thematic_roles_module.reconstruct(ps))
-                if self.speaker_model.settings.retrieve('calculate_predicates', True) and ps.check({'ARG'}) and not ps.check({'φ'}):
+                if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and ps.check({'ARG'}): # and not ps.check({'φ'}):
                     self.speaker_model.results.store_semantic_interpretation('Predicates', self.predicates.reconstruct(ps))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False
@@ -108,7 +108,7 @@ class NarrowSemantics:
                     self.speaker_model.results.store_semantic_interpretation('Indexing by Agree', self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
-                if self.speaker_model.settings.retrieve('project_objects', True):
+                if self.speaker_model.settings.retrieve('general_parameter_project_objects', True):
                     self.inventory_projection(ps)
                 self.speaker_model.results.store_semantic_interpretation('Operator bindings', self.operator_variable_module.bind_operator(ps))
                 self.speaker_model.results.store_semantic_interpretation('DIS-features', self.pragmatic_pathway.interpret_discourse_features(ps))

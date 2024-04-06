@@ -3,7 +3,6 @@ import itertools
 from datetime import datetime
 from support import *
 import logging
-import os
 from support import feature_explanations
 from tkinter import filedialog
 
@@ -275,22 +274,12 @@ class LocalFileSystem:
         self.errors.close()
         self.dev_log_file.write('Done.\n')
 
-    def report_errors_to_console(self, settings):
-        self.errors = open(settings.external_sources['error_report_name'], 'r')
-        print(f'\n')
-        contents = self.errors.read()
-        print(contents)
-        self.errors = open(settings.external_sources['error_report_name'], 'r')
-        error_N = len(self.errors.readlines()) - 1
-        print(f'= {error_N}  errors.')
-        self.errors.close()
-
     def configure_logging(self, settings):
         handler = logging.FileHandler(settings.external_sources["log_file_name"], 'w', 'utf-8')
         handler.terminator = ''
         logging.basicConfig(level=logging.INFO, handlers=[handler], format='%(message)s')
         self.logger_handle = handler
-        if 'logging' in settings.data and not settings.data['logging']:
+        if not settings.retrieve('general_parameter_logging', True):
             disable_all_logging()
 
     def read_lexicons_into_dictionary(self, settings):

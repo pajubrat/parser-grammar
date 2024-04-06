@@ -1,6 +1,12 @@
 from support import log
+import time
+
 
 class Results():
+
+    global_start_time = 0
+    global_steps = 0
+
     def __init__(self, speaker_model):
         self.syntax_semantics = None          # List of syntax, semantics tuples
         self.recorded_steps = None            # Contains all derivational steps
@@ -8,7 +14,6 @@ class Results():
         self.semantic_interpretation = {}
         self.resources = {}
         self.execution_time_results = []       # Execution time
-        self.start_time = 0
         self.first_solution_found = False                       # Registers when the first solution if found
         self.number_of_ambiguities = 0
         self.speaker_model = speaker_model
@@ -53,6 +58,25 @@ class Results():
 
     def accumulate_resource_n(self, resource):
         self.resources[resource]['n'] += 1
+
+    @classmethod
+    def accumulate_global_steps(cls):
+        cls.global_steps += 1
+
+    def report_results_to_console(self):
+        errors = open(self.speaker_model.settings.external_sources['error_report_name'], 'r')
+        print(f'\n')
+        contents = errors.read()
+        print(contents)
+        error_N = len(errors.readlines())
+        print(f'= {error_N}  errors (in {Results.global_steps} steps, {round(time.time() - Results.global_start_time, 2)} seconds). ')
+        Results.reset_global_variables()
+        errors.close()
+
+    @classmethod
+    def reset_global_variables(cls):
+        cls.global_steps = 0
+        cls.global_start_time = 0
 
     def calculate_total_time(self, sentence):
         for key in self.resources.keys():

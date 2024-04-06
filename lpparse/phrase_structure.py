@@ -37,7 +37,7 @@ class PhraseStructure:
                                        'legible': lambda x, y: x.Abar_legible(y),
                                        'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Feature': {'type': 'Feature Inheritance',
-                                       'test integrity': lambda x: x.check({'ARG?'}) or x.highest_finite_head() and not x.check({'-ΦPF'}),
+                                       'test integrity': lambda x: x.check({'ARG?'}) or x.highest_finite_head(),
                                        'repair': lambda x: x.feature_inheritance(),
                                        'single operation': False},
                            'A-chain':  {'type': 'Phrasal Chain',
@@ -242,7 +242,8 @@ class PhraseStructure:
         return current.left()
 
     def minimal_search(X, selection_condition=lambda x: True, sustain_condition=lambda x: True):
-        return takewhile(sustain_condition, (const for const in X if selection_condition(const)))
+        """Collect items that satisfy selection_condition as long as sustain_condition remains true"""
+        return takewhile(sustain_condition, (x for x in X if selection_condition(x)))
 
     def upward_path(X):
         upward_path = []
@@ -291,7 +292,7 @@ class PhraseStructure:
 
     # Virtual pronouns -----------------------------------------------------------------------
     def pro(X):
-        if X.pro_from_overt_agreement() or X.has_linked_argument():
+        if X.independent_pro_from_overt_agreement() or X.sustains_reference() or X.has_linked_argument():
             return X.NS()
 
     def NS(X):
@@ -400,7 +401,9 @@ class PhraseStructure:
 
     def edge_feature_tests(X):
         if 'EF' not in X.features and X.edge() and not X.edge()[0].head().check({'Adv'}):
-            if not ((X.edge()[0] == X.sister() and X.check_some({'!COMP:φ', 'COMP:φ'})) or X.check_some({'SPEC:φ', '!SPEC:φ'})):
+            if not ((X.edge()[0] == X.sister() and
+                     X.check_some({'!COMP:φ', 'COMP:φ'})) or
+                    X.check_some({'SPEC:φ', '!SPEC:φ'})):
                 return True
 
     def w_selection(X):
@@ -434,17 +437,33 @@ class PhraseStructure:
                     X == X.max().container().local_edge())
 
     def projection_principle_failure(X):
-        return X.max().projection_principle_applies() and not X.max().container_assigns_theta_role()
+        return (X.max().projection_principle_applies() and not X.max().container_assigns_theta_role()) or X.pro_projection_principle_violation()
+
+    def pro_projection_principle_violation(X):
+        """Each theta-predicate can be linked with only one pro, since the latter is independent referential argument"""
+        if X.terminal() and X.check_some({'weak_pro', 'strong_pro'}) and X.right_sister():                              #   pro-projection applies
+            for x in X.right_sister().minimal_search(lambda x: x.zero_level(), lambda x: not x.check({'V', 'θ'})):      #   Search until a thematic verb is found
+                if x.independent_pro_from_overt_agreement():                                    #   Another pro causes violation
+                    return True
+                if x.nonthematic_verb():                                            #   Nonthematic verb causes violations if
+                    if X.AgreeLF_has_occurred() or not X.nonreferential_pro():      #   a) phrasal argument exists OR b) pro cannot be interpreted as nonreferential
+                        return True
 
     def projection_principle_applies(X):
-        return X.referential() and not X.max().copied and X.max().mother() and not X.max().contains_features({'adjoinable', 'SEM:nonreferential'})
+        return X.referential() and \
+               not X.max().copied and \
+               X.max().mother() and \
+               not X.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
     def container_assigns_theta_role(X):
         Y = X.max().container()
         if Y:
             if Y.sister() == X or (Y.geometrical_sister() == X and X.check_some(Y.licensed_complements())):
                 return True
-            return not Y.EF() and Y.check_some({'SPEC:φ', '!SPEC:φ'}) and X.is_licensed_specifier() and not (X.selector() and X.selector().check({'-ARG'}))
+            return not Y.EF() and \
+                   Y.check_some({'SPEC:φ', '!SPEC:φ'}) and \
+                   X.is_licensed_specifier() and \
+                   not (X.selector() and X.selector().check({'-ARG'}))
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
@@ -713,8 +732,7 @@ class PhraseStructure:
     def value_from_goal(X, goal):
         if goal:
             log(f'\n\t\tAgree({X}°, {goal.head()}) ')
-            if feature_licensing(goal.head().interpretable_phi_features(), X.phi_masks()) and \
-                    X.Condition_on_agreement_and_EPP(goal):
+            if feature_licensing(goal.head().interpretable_phi_features(), X.phi_masks()) and X.Condition_on_agreement_and_EPP(goal):
                 X.value(goal)
             else:
                 log(f'Failed. ')
@@ -727,8 +745,7 @@ class PhraseStructure:
             X.features.discard(f'PHI:{phi.split(":")[1]}:_')
             X.features.add(f'{phi[1:]}')
         X.features.update({'ΦLF'})
-        if X.head().check_some({'weak_pro', 'strong_pro'}) or X.theta_predicate():
-            X.features.add(f'PHI:IDX:{goal.head().get_id()}')
+        X.features.add(f'PHI:IDX:{goal.head().get_id()}')
 
     def Condition_on_agreement_and_EPP(X, goal):
         return not X.EF() or \
@@ -766,16 +783,18 @@ class PhraseStructure:
             PhraseStructure.speaker_model.results.consume_resources('Last Resort Extraposition', X)
 
     def feature_inheritance(X):
-        if X.highest_finite_head() and not X.check({'-ΦPF'}):
+        if X.highest_finite_head():
+            log(f'Feature inheritance {X}')
             X.features.add('!PER')
         if X.check({'ARG?'}):
             X.features.discard('ARG?')
             if X.selected_by_SEM_internal_predicate():
                 X.make_non_predicate()
-            else:
+            elif X.selected_by_SEM_internal_predicate():
                 X.make_predicate()
-                if X.selected_by_SEM_external_predicate() or (X.selector() and X.selector().finite()):
-                    X.features.add('+ΦLF,ΦPF')
+                X.features.add('+ΦLF,ΦPF')
+            else:
+                X.make_predicate()  #   Neither internal nor external selector will leave the status of subject open
 
     def get_constituent_containing_selection_violation(X):
         return next((x for x in X if x.induces_selection_violation() and not x.sister().adjunct), None)
@@ -917,6 +936,7 @@ class PhraseStructure:
 
     def control(X):
         unvalued_phi = X.get_unvalued_phi()
+        log(f' by control ')
         if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not X.get_valued_phi() & {'PHI:NUM', 'PHI:PER'}:
             return X.standard_control()
         elif unvalued_phi & {'PHI:DET:_'}:
@@ -930,7 +950,7 @@ class PhraseStructure:
         return antecedent
 
     def finite_control(X):
-        antecedent = X.next(X.upward_path, lambda x: x.complex() and (X.is_possible_antecedent(x)))
+        antecedent = X.next(X.upward_path, lambda x: x.complex() and X.is_possible_antecedent(x) and x.head() != X and not x.copied)
         return antecedent
 
     # Structure building --------------------------------------------------------------------------
@@ -1270,6 +1290,7 @@ class PhraseStructure:
         X.features.add('ARG')
         X.features.add('PHI:NUM:_')
         X.features.add('PHI:PER:_')
+        X.features.add('PHI:DET:_')
 
     def make_non_predicate(X):
         X.features.add('-ARG')
@@ -1290,8 +1311,14 @@ class PhraseStructure:
     def adjectival(X):
         return X.check({'A'})
 
+    def verbal(X):
+        return X.check({'V'})
+
     def theta_predicate(X):
         return X.check({'θ'}) and not X.check({'-ARG'}) and not X.check({'-θ'})
+
+    def nonthematic_verb(X):
+        return X.verbal() and not X.theta_predicate()
 
     def light_verb(X):
         return X.check_some({'v', 'v*', 'impass', 'cau'})
@@ -1328,6 +1355,9 @@ class PhraseStructure:
 
     def referential(X):
         return X.check_some({'φ', 'D'})
+
+    def nonreferential_pro(X):
+        return X.check({'nonreferential_pro'})
 
     def interpretable_phi_features(X):
         return {f[5:] for f in X.features if f.startswith('iPHI:')}
@@ -1421,7 +1451,7 @@ class PhraseStructure:
             return X.theta_predicate()
         return X.check_some({'SPEC:φ', '!SPEC:φ'})
 
-    def pro_from_overt_agreement(X):
+    def independent_pro_from_overt_agreement(X):
         return X.check_some({'weak_pro', 'strong_pro'})
 
     def has_linked_argument(X):
@@ -1444,6 +1474,9 @@ class PhraseStructure:
 
     def PHI(X):
         return X.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF', '?ΦLF,ΦPF'})
+
+    def AgreeLF_has_occurred(X):
+        return X.check({'ΦLF'})
 
     def A_bar_operator(X):
         return X.scan_criterial_features('ΔOP')
