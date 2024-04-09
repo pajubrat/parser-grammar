@@ -16,28 +16,14 @@ def interpretable_phi_feature(f):
 def interpretable_phi_features(probe):
     return {phi for phi in probe.head().features if interpretable_phi_feature(phi)}
 
-def type_value_mismatch(p, g):
-    return p.split(':')[0] == g.split(':')[0] and p.split(':')[1] != g.split(':')[1]
-
 def feature_licensing(G, PP):
-    G1 = G.copy()
-    for phi in PP:
-        if phi <= G:
-            G = G - phi
-    if G1 != G:
-        return not mismatch(G, set().union(*PP))
-
-def feature_licensing_(G, PP):
-    for phi in PP:
-        if phi <= G:
-            return not mismatch(G - phi, set().union(*PP))
-    log(f'The phi-features at the probe {PP} did not license the goal features {G}.')
+    return not mismatch(G - set().union(*{frozenset(phi) for phi in PP if phi <= G}), set().union(*PP))
 
 def mismatch(G, P):
-    for p, g in itertools.product(G, P):
-        if type_value_mismatch(p, g):
-            log(f' mismatch {p} ~ {g}. ')
-            return True
+    return {(p, g) for p, g in itertools.product(G, P) if type_value_mismatch(p, g)}
+
+def type_value_mismatch(p, g):
+    return p.split(':')[0] == g.split(':')[0] and p.split(':')[1] != g.split(':')[1]
 
 def unvalued_phi_feature(f):
     return phi_feature(f) and f[-1] == '_'

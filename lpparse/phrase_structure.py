@@ -732,9 +732,10 @@ class PhraseStructure:
     def value_from_goal(X, goal):
         if goal:
             log(f'\n\t\tAgree({X}°, {goal.head()}) ')
-            if (not X.phi_bundles() or feature_licensing(goal.head().interpretable_phi_features(), X.phi_bundles())) and X.Condition_on_agreement_and_EPP(goal):
+            if feature_licensing(goal.head().interpretable_phi_features(), X.phi_bundles()) and X.Condition_on_agreement_and_EPP(goal):
                 X.value(goal)
             else:
+                log(f'failed.')
                 X.features.add('*')
 
     def value(X, goal):
