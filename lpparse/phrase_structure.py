@@ -269,7 +269,7 @@ class PhraseStructure:
         return X.edge()
 
     def identify_argument(X):
-        return next((acquire(X) for acquire in [lambda x: x.pro(), lambda x: x.argument_complement(), lambda x: x.local_edge(), lambda x: x.control()] if acquire(X)), None)
+        return next((acquire(X) for acquire in [lambda x: x.pro_argument(), lambda x: x.argument_complement(), lambda x: x.local_edge(), lambda x: x.control()] if acquire(X)), None)
 
     def argument_complement(X):
         if X.proper_selected_complement() and X.proper_selected_complement().referential():
@@ -291,26 +291,26 @@ class PhraseStructure:
         return search_list
 
     # Virtual pronouns -----------------------------------------------------------------------
-    def pro(X):
-        if X.independent_pro_from_overt_agreement() or X.sustains_reference() or X.has_linked_argument():
+    def pro_argument(X):
+        if X.independent_pro_from_overt_agreement() or X.has_linked_argument():
             return X.NS()
 
     def NS(X):
-        if X.check({'ARG'}) and X.sustains_reference():
+        if X.predicate() and X.sustains_reference():
             pro = PhraseStructure()
             pro.features = X.valued_phi_features() | {'φ', 'PF:pro', 'pro'}
             return pro
 
     def sustains_reference(X):
-        return X.phi_consistent_head() and X.has_full_referential_phi_set()
+        return X.phi_consistent_head() and X.has_minimal_phi_set_for_reference()
 
     def phi_consistent_head(X):
         for fpair in itertools.permutations(X.complete_valued_phi_set(), 2):
-            if fpair[0].split(':')[0] == fpair[1].split(':')[0] and fpair[0].split(':')[1] != fpair[1].split(':')[1]:   #   Types match, values mismatch
+            if type_value_mismatch(*fpair):
                 return False
         return True
 
-    def has_full_referential_phi_set(X):
+    def has_minimal_phi_set_for_reference(X):
         return {'NUM', 'PER', 'DET'} <= {phi[:3] for phi in X.complete_valued_phi_set()}
 
     def complete_valued_phi_set(X):
@@ -784,7 +784,6 @@ class PhraseStructure:
 
     def feature_inheritance(X):
         if X.highest_finite_head():
-            log(f'Feature inheritance {X}')
             X.features.add('!PER')
         if X.check({'ARG?'}):
             X.features.discard('ARG?')

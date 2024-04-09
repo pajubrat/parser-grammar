@@ -64,23 +64,23 @@
 
 	# Finite agreement
 	
-		n		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:SG,PER:1 PER PHI:DET:DEF LANG:FI
-		t		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:SG,PER:2 PER PHI:DET:DEF LANG:FI
-		[V]		::	inflectional ΦPF Φ weak_pro	nonreferential_pro EF -Inf PHI:NUM:SG,PER:3 PER LANG:FI
-		mme		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
-		tte		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:PL,PER:2 PER PHI:DET:DEF LANG:FI
-		vAt		::	inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:PL,PER:3 PER LANG:FI
-		Vn		::  inflectional ΦPF Φ weak_pro EF -Inf PHI:NUM:PL,PER:1 PHI:DET:DEF PER IMPSS LANG:FI
+		n		::	inflectional ΦPF weak_pro PHI:NUM:SG,PER:1 PER PHI:DET:DEF LANG:FI
+		t		::	inflectional ΦPF weak_pro PHI:NUM:SG,PER:2 PER PHI:DET:DEF LANG:FI
+		[V]		::	inflectional ΦPF weak_pro nonreferential_pro PHI:NUM:SG,PER:3 PER LANG:FI
+		mme		::	inflectional ΦPF weak_pro PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
+		tte		::	inflectional ΦPF weak_pro PHI:NUM:PL,PER:2 PER PHI:DET:DEF LANG:FI
+		vAt		::	inflectional ΦPF weak_pro PHI:NUM:PL,PER:3 PER LANG:FI
+		Vn		::  inflectional ΦPF weak_pro PHI:NUM:PL,PER:1 HUM:HUM PHI:DET:DEF PER IMPSS LANG:FI
 
 	# Infinitival agreement (Px)
 	
-		ni		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG,PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
-		si		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:SG,PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
-		nsA		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
-		An		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
-		en		:: 	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
-		mme		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL,PER:1 PER PHI:HUM:HUM PHI:DET:DEF LANG:FI
-		nne		::	inflectional ΦPF Φ EF -Fin PHI:PRON:PRON PHI:NUM:PL,PER:2 PER PHI:HUM:HUM PHI:DET:DEF  LANG:FI
+		ni		::	inflectional ΦPF PHI:PRON:PRON PHI:NUM:SG,PER:1 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+		si		::	inflectional ΦPF PHI:PRON:PRON PHI:NUM:SG,PER:2 PER PHI:DET:DEF PHI:HUM:HUM LANG:FI
+		nsA		:: 	inflectional ΦPF PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
+		An		:: 	inflectional ΦPF PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
+		en		:: 	inflectional ΦPF PHI:PRON:PRON PHI:PER:3 PER PHI:HUM:HUM LANG:FI
+		mme		::	inflectional ΦPF PHI:PRON:PRON PHI:NUM:PL,PER:1 PER PHI:HUM:HUM PHI:DET:DEF LANG:FI
+		nne		::	inflectional ΦPF PHI:PRON:PRON PHI:NUM:PL,PER:2 PER PHI:HUM:HUM PHI:DET:DEF  LANG:FI
 
 	# Case suffixes
 	
@@ -129,9 +129,8 @@
 
 	# Agreement
 	
-		[-s]			::	inflectional ΦPF weak EF PHI:NUM:SG,PER:3 LANG:EN PER
-		[-0]			::  inflectional ΦPF weak EF PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:2 PHI:NUM:PL,PER:1 PHI:NUM:PL,PER:2 PHI:NUM:PL,PER:3 PER LANG:EN
-		[-00]			:: 	inflectional ΦPF weak EF PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:2 PHI:NUM:SG,PER:3 PHI:NUM:PL,PER:1 PHI:NUM:PL,PER:2 PHI:NUM:PL,PER:3 PER LANG:EN
+		[-s]	::	inflectional ΦPF PHI:NUM:SG,PER:3 LANG:EN PER
+		[-0]	::  inflectional ΦPF PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:2 PHI:NUM:PL,PER:1 PHI:NUM:PL,PER:2 PHI:NUM:PL,PER:3 PER LANG:EN
 
 # ITALIAN
 

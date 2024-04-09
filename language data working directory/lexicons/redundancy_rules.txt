@@ -84,7 +84,7 @@ T Fin			:: 	SPEC:EXPL
 		P LANG:FI		::	EF Adv
 		Adv LANG:FI		::	EF
 		A LANG:FI		::	EF
-		T/fin LANG:FI	::  EF +ΦLF,ΦPF
+		T/fin LANG:FI	::  EF +ΦLF,ΦPF 
 		φ LANG:FI		::	EF
 		T/fin LANG:FI	::  EF
 		Neg Fin LANG:FI	::	SPEC:EXPL
@@ -96,6 +96,7 @@ T Fin			:: 	SPEC:EXPL
 		N LANG:FI	:: -COMP:T/prt
 		A LANG:FI 	::  nonadjoinable
 		ARG LANG:FI	:: PHI:HUM:_ PHI:PRON:_
+		LANG:FI T/prt	:: 	-PER
 
 	# Finnish specific operator features
 
@@ -122,6 +123,7 @@ T Fin			:: 	SPEC:EXPL
 	LANG:EN T pst	:: PF:-ed PER ΦPF PC:#X
 	T/prt LANG:EN	:: PF:-ed LF:prtc
 	LANG:EN N		:: -COMP:D
+	pst				:: ΦPF PER
 
 # ITALIAN
 	P LANG:IT		::  -ΦPF !COMP:*
