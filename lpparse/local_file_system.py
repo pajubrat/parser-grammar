@@ -154,10 +154,7 @@ class LocalFileSystem:
         if filename:
             with open(filename, 'w', encoding=self.encoding) as f:
                 for key in settings.retrieve().keys():
-                    if isinstance(settings.retrieve()[key], set):
-                        value = ';'.join(settings.retrieve()[key])
-                    else:
-                        value = settings.retrieve()[key]
+                    value = settings.retrieve()[key]
                     print(f'{key} = {value}', file=f)
 
     def read_test_corpus(self, settings):
@@ -286,8 +283,8 @@ class LocalFileSystem:
         lexicon_dict = {}
 
         # Examine all lexical files and the lexical redundancy file
-        for lexicon_file in [file.strip() for file in settings.retrieve('lexicons', '').split(';')] + \
-                            [file.strip() for file in settings.retrieve('redundancy_rules', '').split(';')]:
+        for lexicon_file in [file.strip() for file in settings.retrieve('file_lexicons', '').split(';')] + \
+                            [file.strip() for file in settings.retrieve('file_redundancy_rules', '').split(';')]:
             lexicon_dict[lexicon_file] = {}
 
             # Example all lines in each file

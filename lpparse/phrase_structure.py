@@ -443,7 +443,7 @@ class PhraseStructure:
         """Each theta-predicate can be linked with only one pro, since the latter is independent referential argument"""
         if X.terminal() and X.check_some({'weak_pro', 'strong_pro'}) and X.right_sister():                              #   pro-projection applies
             for x in X.right_sister().minimal_search(lambda x: x.zero_level(), lambda x: not x.check({'V', 'θ'})):      #   Search until a thematic verb is found
-                if x.independent_pro_from_overt_agreement():                                    #   Another pro causes violation
+                if x.independent_pro_from_overt_agreement():                                                            #   Another pro causes violation
                     return True
                 if x.nonthematic_verb():                                            #   Nonthematic verb causes violations if
                     if X.AgreeLF_has_occurred() or not X.nonreferential_pro():      #   a) phrasal argument exists OR b) pro cannot be interpreted as nonreferential
@@ -732,10 +732,9 @@ class PhraseStructure:
     def value_from_goal(X, goal):
         if goal:
             log(f'\n\t\tAgree({X}°, {goal.head()}) ')
-            if feature_licensing(goal.head().interpretable_phi_features(), X.phi_masks()) and X.Condition_on_agreement_and_EPP(goal):
+            if (not X.phi_bundles() or feature_licensing(goal.head().interpretable_phi_features(), X.phi_bundles())) and X.Condition_on_agreement_and_EPP(goal):
                 X.value(goal)
             else:
-                log(f'Failed. ')
                 X.features.add('*')
 
     def value(X, goal):
@@ -1362,6 +1361,9 @@ class PhraseStructure:
     def interpretable_phi_features(X):
         return {f[5:] for f in X.features if f.startswith('iPHI:')}
 
+    def phi_features(X):
+        return {f[4:] for f in X.features if f.startswith('PHI:') and not f.endswith('_')}
+
     def preposition(X):
         return X.check({'P'})
 
@@ -1463,7 +1465,7 @@ class PhraseStructure:
     def get_unvalued_phi(X):
         return {phi for phi in X.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
 
-    def phi_masks(X):
+    def phi_bundles(X):
         return [set(phi[4:].split(',')) for phi in X.features if valued_phi_feature(phi) and not phi.startswith('i') and not 'IDX' in phi]
 
     def type_match(X, phi, phi_):

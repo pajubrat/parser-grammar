@@ -1,6 +1,6 @@
 from local_file_system import LocalFileSystem
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, font
 import ctypes
 from support import is_comment
 from settings import Settings
@@ -23,6 +23,9 @@ class Application(tk.Tk):
 
         self.style = ttk.Style()
         self.style.configure("mystyle.Treeview.Heading", font=('Calibri', 16))
+
+        tk_font = font.nametofont('TkDefaultFont')
+        tk_font.configure(size=15)
 
         self.local_file_system = LocalFileSystem()
         self.settings = Settings(self.local_file_system, self.local_file_system.read_app_settings(arg_lst))
@@ -49,7 +52,6 @@ class Application(tk.Tk):
         # Callbacks
         self.bind('<<Analyze>>', self.analyze)    # This causes the first item to be analyzed automatically upon launch
         self.bind('<<RunStudy>>', self.run_study)
-        self.bind('<<TheorySettings>>', self.change_theory_settings)
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
         self.bind('<<Settings>>', self.modify_settings)
@@ -87,11 +89,8 @@ class Application(tk.Tk):
         self.results_frame = ResultsView(self, self.speaker_models)
         self.results_frame.grid(row=1, column=1, sticky='nwes')
 
-        self.status_bar = tk.Label(self, padx=5, pady=5, bg='green', fg='white', anchor='e', justify='right', text=f'Current study: {self.settings.retrieve("study_folder")}/{self.settings.retrieve("test_corpus")}', font=('Calibri 16'))
+        self.status_bar = tk.Label(self, padx=5, pady=5, bg='green', fg='white', anchor='e', justify='right', text=f'Current study: {self.settings.app_settings["study_file"]}, {self.settings.retrieve("file_study_folder", "?")}/{self.settings.retrieve("file_test_corpus", "?")}', font=('Calibri 16'))
         self.status_bar.grid(row=2, column=0, columnspan=2, sticky='e')
-
-    def change_theory_settings(self, event):
-        self.settings.change_theory_settings(self)
 
     def save_study(self, *_):
         self.local_file_system.save_study(self.settings)

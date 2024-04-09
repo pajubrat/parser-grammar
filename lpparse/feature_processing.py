@@ -1,3 +1,6 @@
+from support import log
+import itertools
+
 def unvalued(f):
     return f[:4] == 'PHI:' and f[-1] == '_'
 
@@ -17,14 +20,23 @@ def type_value_mismatch(p, g):
     return p.split(':')[0] == g.split(':')[0] and p.split(':')[1] != g.split(':')[1]
 
 def feature_licensing(G, PP):
-    if not PP:
-        return True
-    for P in PP:
-        if P <= G:                                  # Verify that there is P such that P subset of G (licensing).
-            for g in G - P:                         # Verify that unlicensed (G - PP) are not contradicted
-                for p in set().union(*PP):          # Examine each individual phi-feature at the probe
-                    if type_value_mismatch(p, g):
-                        return False
+    G1 = G.copy()
+    for phi in PP:
+        if phi <= G:
+            G = G - phi
+    if G1 != G:
+        return not mismatch(G, set().union(*PP))
+
+def feature_licensing_(G, PP):
+    for phi in PP:
+        if phi <= G:
+            return not mismatch(G - phi, set().union(*PP))
+    log(f'The phi-features at the probe {PP} did not license the goal features {G}.')
+
+def mismatch(G, P):
+    for p, g in itertools.product(G, P):
+        if type_value_mismatch(p, g):
+            log(f' mismatch {p} ~ {g}. ')
             return True
 
 def unvalued_phi_feature(f):
@@ -35,7 +47,7 @@ def valued_phi_feature(f):
 
 def i(phi):
     if interpretable_phi_feature(phi):
-        return phi[5:]
+        return phi[1:]
     return phi
 
 def exactly_one_PHI():

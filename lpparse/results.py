@@ -68,7 +68,7 @@ class Results():
         print(f'\n')
         contents = errors.read()
         print(contents)
-        error_N = len(errors.readlines())
+        error_N = contents.count('\n')
         print(f'= {error_N}  errors (in {Results.global_steps} steps, {round(time.time() - Results.global_start_time, 2)} seconds). ')
         Results.reset_global_variables()
         errors.close()

@@ -6,7 +6,7 @@ class LanguageGuesser:
     def __init__(self, settings):
         self.lang_map = defaultdict(list)
         self.languages = set()
-        for lexicon_file in [file.strip() for file in settings.retrieve('lexicons', set()).split(';')]:
+        for lexicon_file in [file.strip() for file in settings.retrieve('file_lexicons', set()).split(';')]:
             for line in open(settings.folders['lexicon'] / lexicon_file, 'r', encoding='utf-8'):
                 if not line or '::' not in line or line.startswith('#'):
                     continue

@@ -23,9 +23,9 @@ class Settings:
         if corpus_filename:
             self.store('test_corpus', os.path.basename(corpus_filename))
             self.store('study_folder', os.path.dirname(corpus_filename))
-            self.app_settings['open_with'] = f"{self.data['study_folder']}/{self.data['test_corpus'][:-11]}.lpg"
-        self.folders['study'] = Path(self.retrieve('study_folder'))
-        self.folders['lexicon'] = Path(self.retrieve('lexicon_folder'))
+            self.app_settings['open_with'] = f"{self.data['file_study_folder']}/{self.data['file_test_corpus'][:-11]}.lpg"
+        self.folders['study'] = Path(self.retrieve('file_study_folder'))
+        self.folders['lexicon'] = Path(self.retrieve('file_lexicon_folder'))
         self.set_external_resources()
 
     def process_settings(self):
@@ -41,15 +41,15 @@ class Settings:
         PhraseStructure.phase_heads_exclude = {f.strip() for f in self.retrieve('UG_parameter_phase_heads_exclude', '').split(';')}
 
     def set_external_resources(self):
-        self.external_sources = {"test_corpus_file_name": self.folders['study'] / self.data['test_corpus'],
-                                 "log_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_log.txt'),
-                                 "results_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_results.txt'),
-                                 "resources_file_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_resources.txt'),
+        self.external_sources = {"test_corpus_file_name": self.folders['study'] / self.data['file_test_corpus'],
+                                 "log_file_name": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_log.txt'),
+                                 "results_file_name": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_results.txt'),
+                                 "resources_file_name": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_resources.txt'),
                                  "numeration": self.folders['study'] / self.data['numeration'],
-                                 "numeration_output": self.folders['study'] / (self.data['test_corpus'][:-4] + '_N.txt'),
-                                 "redundancy_rules": self.folders['lexicon'] / self.data['redundancy_rules'],
-                                 "error_report_name": self.folders['study'] / (self.data['test_corpus'][:-4] + '_error_reports.txt'),
-                                 "simple_log_file": self.folders['study'] / (self.data['test_corpus'][:-4] + '_simple_log.txt')
+                                 "numeration_output": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_N.txt'),
+                                 "redundancy_rules": self.folders['lexicon'] / self.data['file_redundancy_rules'],
+                                 "error_report_name": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_error_reports.txt'),
+                                 "simple_log_file": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_simple_log.txt')
                                  }
 
     def load_settings_with_user_input(self):
@@ -68,7 +68,7 @@ class Settings:
         else:
             return value
 
-    def change_settings(self, root, tab_lst=['Image', 'General']):
+    def change_settings(self, root, tab_lst=['Image', 'General', 'Meta', 'UG', 'Files']):
         d = ChangeSettingsNotebook(root, self, tab_lst)
         root.wait_window(d)
 
@@ -88,8 +88,7 @@ class ChangeSettingsNotebook(tk.Toplevel):
 
         s = ttk.Style()
         s.configure('TNotebook.Tab', font=('Calibri', '20'))
-        style = ttk.Style(root)
-        style.configure('TCheckbutton', font=('Calibri', '20'))
+        s.configure('TCheckbutton', font=('Calibri', '20'))
 
         # Frames for the notebook and buttons
         self.notebook_Frame = tk.Frame(self)
@@ -110,7 +109,7 @@ class ChangeSettingsNotebook(tk.Toplevel):
         # Read settings dict into variables that are manipulated by the GUI components
         self.image_boolean_variables = {name: tk.BooleanVar(value=self.settings_instance.retrieve(name, False)) for name in self.settings_instance.data.keys() if name.startswith('image_') and isinstance(self.settings_instance.retrieve(name, False), bool)}
         self.image_string_variables = {'image_parameter_features': tk.StringVar(value=self.settings_instance.retrieve('image_parameter_features', ''))}
-        self.image_settings_Frame = ttk.LabelFrame(self.notebook, text='Image settings')
+        self.image_settings_Frame = ttk.LabelFrame(self.notebook, text='Image settings', style='Font.TLabelFrame.Label')
         # Boolean variables are set by checkboxes
         self.image_variable_checkboxes = {}
         for i, parameter in enumerate(self.image_boolean_variables):
@@ -118,7 +117,7 @@ class ChangeSettingsNotebook(tk.Toplevel):
             self.image_variable_checkboxes[parameter] = ttk.Checkbutton(self.image_settings_Frame, variable=self.image_boolean_variables[parameter], text=parameter_name)
             self.image_variable_checkboxes[parameter].grid(row=i, column=0, sticky='NWSE')
         # Features are set by entry
-        self.show_features_Frame = tk.LabelFrame(self.image_settings_Frame, text='Show features', font=('Calibri', 20))
+        self.show_features_Frame = ttk.LabelFrame(self.image_settings_Frame, text='Show features')
         self.show_features_field = ttk.Entry(self.show_features_Frame, textvariable=self.image_string_variables['image_parameter_features'], font=('Calibri', 20), width=40)
         self.show_features_Frame.grid(row=i, column=0, sticky='NWSE', pady=20)
         self.show_features_field.grid(row=0, column=0, sticky='NWSE')
@@ -134,6 +133,82 @@ class ChangeSettingsNotebook(tk.Toplevel):
             self.general_variables_checkboxes[parameter].grid(row=i, column=0, sticky='NWSE')
         self.tab_pages['General'] = self.general_settings_Frame
 
+        #NOTEBOOK TAB 3: METADATA SETTINGS
+        self.meta_string_variables = {name: tk.StringVar(value=self.settings_instance.retrieve(name, '')) for name in self.settings_instance.data.keys() if name.startswith('meta_')}
+        self.meta_Frame = ttk.LabelFrame(self.notebook, text='Metadata')
+        self.meta_variables_entry = {}
+        self.meta_variables_entry_Frame = {}
+        for i, parameter in enumerate(self.meta_string_variables):
+            parameter_name = ' '.join(parameter.split('_')[1:]).capitalize()
+            self.meta_variables_entry_Frame[parameter] = ttk.LabelFrame(self.meta_Frame, text=parameter_name)
+            self.meta_variables_entry[parameter] = ttk.Entry(self.meta_variables_entry_Frame[parameter], textvariable=self.meta_string_variables[parameter], font=('Calibri', 20), width=20)
+            self.meta_variables_entry_Frame[parameter].grid(row=i,column=0, sticky='NWSE')
+            self.meta_variables_entry[parameter].grid(row=0, column=0, sticky='NWSE')
+        self.tab_pages['Meta'] = self.meta_Frame
+
+        #NOTEBOOK TAB 4: UG SETTINGS
+        # Model of Agree
+        self.UG_Frame = ttk.LabelFrame(self.notebook, text='UG parameters')
+        self.UG_Agree_LabelFrame = ttk.LabelFrame(self.UG_Frame, text='Model of Agree')
+        self.str_vari = tk.StringVar(value=self.settings_instance.retrieve('UG_parameter_Agree', 'revised'))
+        self.UG_Agree_LabelFrame.grid(row=0, column=0)
+        self.UG_Agree_Standard_Radiobutton = tk.Radiobutton(self.UG_Agree_LabelFrame, variable=self.str_vari, value='standard', text='Standard', font=('Calibri', 20))
+        self.UG_Agree_Revised_Radiobutton = tk.Radiobutton(self.UG_Agree_LabelFrame, variable=self.str_vari, value='revised', text='Revised', font=('Calibri', 20))
+        self.UG_Agree_Standard_Radiobutton.grid(row=0, column=0, padx=5, pady=5, sticky='NWSE')
+        self.UG_Agree_Revised_Radiobutton.grid(row=0, column=1, padx=5, pady=5, sticky='NWSE')
+        self.tab_pages['UG'] = self.UG_Frame
+        # Phase theory
+        self.UG_phase_LabelFrame = ttk.LabelFrame(self.UG_Frame, text='Phase theory')
+        self.include_heads = tk.StringVar(value=self.settings_instance.retrieve('UG_parameter_phase_heads', 'C;v'))
+        self.exclude_heads = tk.StringVar(value=self.settings_instance.retrieve('UG_parameter_phase_heads_exclude', ''))
+        self.UG_phase_include_Frame = ttk.LabelFrame(self.UG_phase_LabelFrame, text='Phase heads')
+        self.UG_phase_include_entry = ttk.Entry(self.UG_phase_include_Frame, textvariable=self.include_heads, font=('Calibri', 20), width=30)
+        self.UG_phase_exclude_Frame = ttk.LabelFrame(self.UG_phase_LabelFrame, text='Phase heads excluded')
+        self.UG_phase_exclude_entry = ttk.Entry(self.UG_phase_exclude_Frame, textvariable=self.exclude_heads, font=('Calibri', 20), width=30)
+        self.UG_phase_LabelFrame.grid(row=1, column=0)
+        self.UG_phase_include_Frame.grid(row=0, column=0)
+        self.UG_phase_include_entry.grid(row=0, column=0)
+        self.UG_phase_exclude_Frame.grid(row=1, column=0)
+        self.UG_phase_exclude_entry.grid(row=0, column=0)
+
+        #NOTEBOOK TAB 5: Filenames
+        self.Files_Frame = ttk.LabelFrame(self.notebook, text='External files')
+        # App Configuration
+        self.App_configuration_Label = ttk.Label(self.Files_Frame, text='Configuration: ' + self.settings_instance.app_settings['study_file'])
+        self.App_configuration_Label.grid(row=0, column=0, sticky='W', pady=5)
+        # Study files
+        self.Study_files_Frame = ttk.LabelFrame(self.Files_Frame, text='Study files')
+        self.Study_files_Frame.grid(row=1, column=0, sticky='NWSE', pady=5)
+        self.Study_files_corpus_Frame = ttk.LabelFrame(self.Study_files_Frame, text='Corpus')
+        self.Study_files_corpus_Frame.grid(row=0, column=0, sticky='NWSE', padx=10)
+        self.corpus_variable = tk.StringVar(value=self.settings_instance.retrieve('file_test_corpus', '?'))
+        self.Study_files_corpus_Entry = ttk.Entry(self.Study_files_corpus_Frame, textvariable=self.corpus_variable, font=('Calibri', 20), width=50, state='disabled')
+        self.Study_files_corpus_Entry.grid(row=0, column=0, sticky='NWSE', padx=10)
+        self.Study_files_folder_Frame = ttk.LabelFrame(self.Study_files_Frame, text='Folder')
+        self.Study_files_folder_Frame.grid(row=2, column=0, sticky='NWSE', padx=10)
+        self.folder_variable = tk.StringVar(value=self.settings_instance.retrieve('file_study_folder', '?'))
+        self.Study_files_folder_Entry = ttk.Entry(self.Study_files_folder_Frame, textvariable=self.folder_variable, font=('Calibri', 20), width=50, state='disabled')
+        self.Study_files_folder_Entry.grid(row=0, column=0, sticky='NWSE', padx=10)
+        self.Files_Frame.grid(row=0, column=0, sticky='NWSE', pady=5)
+        # Lexicon files
+        self.Lexicon_files_Frame = ttk.LabelFrame(self.Files_Frame, text='Lexicon files')
+        self.Lexicon_files_Frame.grid(row=3, column=0, sticky='NWSE', pady=5)
+        lexicon_files = [file.strip() for file in self.settings_instance.retrieve('file_lexicons').split(';')]
+        self.Lexicon_files_Entries = {}
+        self.Lexicon_files_variables = {}
+        for i, lexicon_file in enumerate(lexicon_files):
+            self.Lexicon_files_variables[lexicon_file] = tk.StringVar(value=lexicon_file)
+            self.Lexicon_files_Entries[lexicon_file] = ttk.Entry(self.Lexicon_files_Frame, textvariable=self.Lexicon_files_variables[lexicon_file], font=('Calibri', 20), width=40, state='disabled')
+            self.Lexicon_files_Entries[lexicon_file].grid(row=i, column=0, sticky='NSWE', padx=20)
+        # Lexical redundancy rules
+        self.Redundancy_rules_Frame = ttk.LabelFrame(self.Files_Frame, text='Lexical redundancy rules')
+        self.Redundancy_rules_Frame.grid(row=4, column=0, sticky='NWSE', pady=5)
+        self.lrr = tk.StringVar(value=self.settings_instance.retrieve('file_redundancy_rules', '?'))
+        self.Redundancy_rules_Entry = ttk.Entry(self.Redundancy_rules_Frame, textvariable=self.lrr, font=('Calibri', 20), width=40, state='disabled')
+        self.Redundancy_rules_Entry.grid(row=0, column=0, sticky='NWSE', padx=20, pady=5)
+
+        self.tab_pages['Files'] = self.Files_Frame
+
         for tab_text in tabs_lst:
             if tab_text in self.tab_pages:
                 self.notebook.add(self.tab_pages[tab_text], text=tab_text, padding=20, sticky='NSEW')
@@ -148,6 +223,14 @@ class ChangeSettingsNotebook(tk.Toplevel):
     def update_settings(self):
         self.settings_instance.data.update({key: self.image_boolean_variables[key].get() for key in self.image_boolean_variables.keys()})
         self.settings_instance.data.update({key: self.general_boolean_variables[key].get() for key in self.general_boolean_variables.keys()})
+        self.settings_instance.data.update({key: self.meta_string_variables[key].get() for key in self.meta_string_variables.keys()})
+        self.settings_instance.data['UG_parameter_Agree'] = self.str_vari.get()
+        self.settings_instance.data['UG_parameter_phase_heads'] = self.include_heads.get()
+        self.settings_instance.data['UG_parameter_phase_heads_exclude'] = self.exclude_heads.get()
+        self.settings_instance.data['file_lexicons'] = ';'.join({self.Lexicon_files_variables[file].get() for file in self.Lexicon_files_variables.keys()})
+        self.settings_instance.data['file_test_corpus'] = self.corpus_variable.get()
+        self.settings_instance.data['file_study_folder'] = self.folder_variable.get()
+        self.settings_instance.data['file_redundancy_rules'] = self.lrr.get()
         for parameter in self.image_string_variables.keys():
             self.settings_instance.data[parameter] = self.image_string_variables[parameter].get()
         self.destroy()

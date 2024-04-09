@@ -43,11 +43,6 @@ class MainMenu(tk.Menu):
         examine_results_menu.add_command(label='Examine log...', command=self.todo)
         self.add_cascade(label='Results', menu=examine_results_menu)
 
-        # Theory/UG menu
-        theory_menu = tk.Menu(self, tearoff=False, font=menu_font)
-        theory_menu.add_command(label='UG parameters...', command=self._event('<<TheorySettings>>'))
-        self.add_cascade(label='Theory', menu=theory_menu)
-
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
         settings_menu.add_command(label='Settings...', command=self._event('<<Settings>>'))
