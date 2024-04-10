@@ -247,11 +247,11 @@ class PhraseStructure:
 
     def upward_path(X):
         upward_path = []
-        x = X.mother()
-        while x:
-            if x.left().head() != X:
-                upward_path.append(x.left())
-            x = x.mother()
+        x = (X, X.mother())
+        while x[1]:
+            if x[1].left() and x[1].left() != x[0]:
+                upward_path.append(x[1].left())
+            x = (x[1], x[1].mother())
         return upward_path
 
     def next(X, memory_span, condition=lambda x: True):
@@ -269,7 +269,8 @@ class PhraseStructure:
         return X.edge()
 
     def identify_argument(X):
-        return next((acquire(X) for acquire in [lambda x: x.pro_argument(), lambda x: x.argument_complement(), lambda x: x.local_edge(), lambda x: x.control()] if acquire(X)), None)
+        available_arguments = [acquire(X) for acquire in [lambda x: x.pro_argument(), lambda x: x.argument_complement(), lambda x: x.local_edge(), lambda x: x.control()]]
+        return next((argument for argument in available_arguments if argument), None)
 
     def argument_complement(X):
         if X.proper_selected_complement() and X.proper_selected_complement().referential():
@@ -292,7 +293,7 @@ class PhraseStructure:
 
     # Virtual pronouns -----------------------------------------------------------------------
     def pro_argument(X):
-        if X.independent_pro_from_overt_agreement() or X.has_linked_argument():
+        if X.independent_pro_from_overt_agreement() or X.sustains_reference() or X.has_linked_argument():
             return X.NS()
 
     def NS(X):
@@ -440,13 +441,16 @@ class PhraseStructure:
         return (X.max().projection_principle_applies() and not X.max().container_assigns_theta_role()) or X.pro_projection_principle_violation()
 
     def pro_projection_principle_violation(X):
-        """Each theta-predicate can be linked with only one pro, since the latter is independent referential argument"""
-        if X.terminal() and X.check_some({'weak_pro', 'strong_pro'}) and X.right_sister():                              #   pro-projection applies
-            for x in X.right_sister().minimal_search(lambda x: x.zero_level(), lambda x: not x.check({'V', 'θ'})):      #   Search until a thematic verb is found
-                if x.independent_pro_from_overt_agreement():                                                            #   Another pro causes violation
+        """Each theta-predicate can be linked with only one pro, 
+		since the latter is independent referential argument"""
+        if X.zero_level() and \
+                X.independent_pro_from_overt_agreement() and \
+                X.right_sister():
+            for x in X.right_sister().minimal_search(lambda x: x.zero_level(), lambda x: not x.check({'V', 'θ'})):
+                if x.independent_pro_from_overt_agreement():
                     return True
-                if x.nonthematic_verb():                                            #   Nonthematic verb causes violations if
-                    if X.AgreeLF_has_occurred() or not X.nonreferential_pro():      #   a) phrasal argument exists OR b) pro cannot be interpreted as nonreferential
+                if x.nonthematic_verb():
+                    if X.AgreeLF_has_occurred() or not X.nonreferential_pro():
                         return True
 
     def projection_principle_applies(X):
@@ -924,7 +928,7 @@ class PhraseStructure:
 
     def is_possible_antecedent(X, antecedent):
         if antecedent:
-            if antecedent.head().referential() or antecedent.head().sustains_reference():
+            if antecedent.head().referential():
                 valued_phi_at_probe = [phi.split(':') for phi in X.features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_') and not ',' in phi]
                 valued_phi_at_antecedent = [phi.split(':') for phi in antecedent.head().features if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:8] == 'iPHI:NUM' or phi[:8] == 'iPHI:PER') and not phi.endswith('_')]
                 for P in valued_phi_at_probe:
@@ -935,21 +939,23 @@ class PhraseStructure:
 
     def control(X):
         unvalued_phi = X.get_unvalued_phi()
-        log(f' by control ')
         if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not X.get_valued_phi() & {'PHI:NUM', 'PHI:PER'}:
             return X.standard_control()
         elif unvalued_phi & {'PHI:DET:_'}:
             return X.finite_control()
 
     def standard_control(X):
+        log(' by standard control')
         search_path = [x for x in takewhile(lambda x: not x.head().check({'SEM:external'}), X.upward_path())]
-        antecedent = next((x for x in search_path if X.is_possible_antecedent(x)), PhraseStructure())
-        if not antecedent.features:
+        antecedent = next((x for x in search_path if X.is_possible_antecedent(x)), None)
+        if not antecedent:
+            antecedent = PhraseStructure()
             antecedent.features = {"PF:generic 'one'", 'LF:generic', 'φ', 'D'}
         return antecedent
 
     def finite_control(X):
-        antecedent = X.next(X.upward_path, lambda x: x.complex() and X.is_possible_antecedent(x) and x.head() != X and not x.copied)
+        log(' by finite control')
+        antecedent = X.next(X.upward_path, lambda x: x.complex() and X.is_possible_antecedent(x) and not x.copied)
         return antecedent
 
     # Structure building --------------------------------------------------------------------------
@@ -1144,13 +1150,13 @@ class PhraseStructure:
                 silence_phonologically(h.right())
 
         X.identity = X.baptize_chain()
-        self_copy = X.copy()
-        self_copy.node_identity = X.create_node_identity()
-        self_copy.copied = False
-        silence_phonologically(self_copy)
+        X_copy = X.copy()
+        X_copy.node_identity = X.create_node_identity()
+        X_copy.copied = False
+        silence_phonologically(X_copy)
         X.copied = True
-        X.features.add('CHAIN:' + str(self_copy.node_identity))
-        return self_copy
+        X.features.add('CHAIN:' + str(X_copy.node_identity))
+        return X_copy
 
     def for_LF_interface(X, features):
         set_of_features = set()
@@ -1168,17 +1174,8 @@ class PhraseStructure:
                     return '<' + X.get_phonological_string() + '>'
                 else:
                     return X.get_phonological_string()
-
-        prefix = ''
-
-        if 'null' in X.features:
-            if X.adjunct:
-                return '<' + prefix + X.left().illustrate() + ' ' \
-                       + X.right().illustrate() + '>'
-            else:
-                return '[' + prefix + X.left().illustrate() + ' ' \
-                       + X.right().illustrate() + ']'
         else:
+            prefix = ''
             if X.adjunct:
                 return f'<' + prefix \
                        + X.left().illustrate() + ' ' \

@@ -6,11 +6,8 @@ from support import is_comment
 from settings import Settings
 from language_guesser import LanguageGuesser
 from speaker_model import SpeakerModel
-from GUI.gui_views import DatasetView, LexiconView, SpeakerModelView
-from GUI.gui_phrase_structure_graphics import PhraseStructureGraphics
-from GUI.gui_views import ResultsView
-from GUI.gui_menus import MainMenu
-from GUI.gui_textFrames import LogText
+from views import DatasetView, LexiconView, SpeakerModelView, ResultsView, PhraseStructureGraphics, LogTextWindow
+from menus import MainMenu
 
 
 class Application(tk.Tk):
@@ -132,7 +129,7 @@ class Application(tk.Tk):
             self.results_frame.fill_with_data(self.speaker_models[language])
             PhraseStructureGraphics(self, self.speaker_models[language])                    # Show phrase structure image
         else:
-            LogText(self, self.settings.external_sources["log_file_name"], '**The input sentence was ungrammatical. See the derivational log below**')
+            LogTextWindow(self, self.settings.external_sources["log_file_name"], '**The input sentence was ungrammatical. See the derivational log below**')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
         self.speaker_models[language].narrow_semantics.global_cognition.end_conversation()
 
@@ -153,8 +150,3 @@ class Application(tk.Tk):
         self.local_file_system.close_all_output_files()
         sp = list(self.speaker_models.keys())[0]
         self.speaker_models[sp].results.report_results_to_console()
-
-
-
-
-
