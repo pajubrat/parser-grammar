@@ -99,11 +99,17 @@ class Results():
         self.syntax_semantics.append((ps, self.semantic_interpretation))
 
     def store_semantic_interpretation(self, key, value):
+        """
+        Converts the output of semantic interpretation into the correct format
+        """
         if isinstance(value, str):
             if key not in self.semantic_interpretation:
                 self.semantic_interpretation[key] = [value]
             else:
                 self.semantic_interpretation[key].append(value)
+
+        if isinstance(value, dict):
+            self.semantic_interpretation[key] = [f'{k}: {value[k]}' for k in value.keys()]
 
         if isinstance(value, list):
             if key not in self.semantic_interpretation:
