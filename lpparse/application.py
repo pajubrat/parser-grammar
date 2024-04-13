@@ -22,7 +22,7 @@ class Application(tk.Tk):
         self.style.configure("mystyle.Treeview.Heading", font=('Calibri', 16))
 
         tk_font = font.nametofont('TkDefaultFont')
-        tk_font.configure(size=15)
+        tk_font.configure(size=20)
 
         self.local_file_system = LocalFileSystem()
         self.settings = Settings(self.local_file_system, self.local_file_system.read_app_settings(arg_lst))

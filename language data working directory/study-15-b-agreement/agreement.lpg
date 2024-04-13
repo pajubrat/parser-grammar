@@ -16,7 +16,7 @@ file_redundancy_rules=redundancy_rules.txt
 numeration=none
 
 # GENERAL SIMULATION PARAMETERS
-general_parameter_only_first_solution = True
+general_parameter_only_first_solution = False
 general_parameter_logging = True
 general_parameter_use_numeration = False
 general_parameter_calculate_assignments = False
@@ -35,7 +35,7 @@ image_parameter_trivial_head_chains = False
 image_parameter_phrasal_chains = True
 image_parameter_DP_hypothesis = True
 image_parameter_chain_curvature = 1
-image_parameter_features = EF;!ΦLF,ΦPF;+ΦLF,ΦPF
+image_parameter_features = !ΦLF,ΦPF;+ΦLF,ΦPF;ΦLF;ΦPF;ARG;iPHI:PER:1;iPHI:PER:2;iPHI:PER:3
 
 # UG COMPONENTS
 #	Agree
