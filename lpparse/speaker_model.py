@@ -153,5 +153,5 @@ class SpeakerModel:
             self.results.consume_resources("Garden Paths", ps)
 
     def postsyntactic_tests(self, ps):
-        log(f'\n\t\tLF-interface and postsyntactic legibility tests:')
+        log(f'\n\t\tLF-interface and postsyntactic legibility tests...')
         return self.LF.pass_LF_legibility(ps) and self.LF.final_tail_check(ps) and self.narrow_semantics.postsyntactic_semantic_interpretation(ps)

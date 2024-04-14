@@ -1013,7 +1013,7 @@ class PhraseStructure:
         else:
             const = X.phrasal_attachment(terminal_lexical_item, transfer)
         X.speaker_model.results.consume_resources("Merge", const)
-        log(f'({address_label})\n')
+        log(f'{address_label}\n')
         return const
 
     def head_attachment(X, terminal_lexical_item):

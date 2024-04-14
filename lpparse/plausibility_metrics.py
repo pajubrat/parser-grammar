@@ -86,9 +86,9 @@ class PlausibilityMetrics:
         for i, (site, transfer, address_label) in enumerate(solutions, start=1):
             log('\n')
             if transfer:
-                log("{:<80}{}".format(f'\t\t({i}) [{site}↓+ {w.label()}°]', f'=>  {address_label}'))
+                log("{:<80}{}".format(f'\t\t({i}) [{site}↓+ {w.label()}°]', f'{address_label}'))
             else:
-                log("{:<80}{}".format(f'\t\t({i}) [{site} + {w.label()}°]', f'=>  {address_label}'))
+                log("{:<80}{}".format(f'\t\t({i}) [{site} + {w.label()}°]', f'{address_label}'))
         return solutions
 
     def evaluate_transfer(self, all_merge_sites):
@@ -111,7 +111,7 @@ class PlausibilityMetrics:
 
     def generate_address_label(self):
         self.address_label += 1
-        return '#' + hex(self.address_label) + '#'
+        return '$' + hex(self.address_label) + '$'
 
     def dispersion_filter_active(self):
         return True

@@ -40,7 +40,7 @@ class MainMenu(tk.Menu):
         examine_results_menu = tk.Menu(self, tearoff=False, font=menu_font)
         examine_results_menu.add_command(label='Results...', command=self.todo)
         examine_results_menu.add_command(label='Derivation...', command=self.todo)
-        examine_results_menu.add_command(label='Examine log...', command=self.todo)
+        examine_results_menu.add_command(label='Examine log...', command=self._event('<<ExamineDerivationalLog>>'))
         self.add_cascade(label='Results', menu=examine_results_menu)
 
         # Settings menu
@@ -69,7 +69,6 @@ class MainMenu(tk.Menu):
 
     def todo(self):
         pass
-
 
 class GraphicsMenu(tk.Menu):
     def _event(self, sequence):

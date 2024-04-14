@@ -153,7 +153,7 @@ class Results():
         self.first_solution_found = True
 
     def report_failure(self, ps):
-        log('\n\t\tSOLUTION WAS REJECTED. \n\n')
+        log('\n\t\tSolution was rejected. \n\n')
         log('\t\tMemory dump:\n')
         log(f'{self.show_primitive_constituents(ps)}')
 

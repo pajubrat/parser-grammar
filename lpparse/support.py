@@ -167,6 +167,5 @@ def is_comment(sentence):
 def log_new_sentence(brain_model, count, lst):
     set_logging(True)
     log('\n------------------------------------------------------------------------------------------------')
-    log(f'\n#{count}. {" ".join(lst)}')
-    log(f'\n{brain_model.sentence}')
-    log(f'\n\n\t 1. {brain_model.sentence}\n')
+    log(f'\nSentence #{count}. {" ".join(lst)}')
+    log(f'\n\n\tPhonological words: {brain_model.sentence}')

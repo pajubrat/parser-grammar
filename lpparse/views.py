@@ -53,6 +53,15 @@ class DatasetView(tk.LabelFrame):
 
 
 class LogTextWindow(tk.Toplevel):
+    color_scheme = {'Next head': {'color': 'black', 'mark whole line': True, 'mark until': None},
+                    'failed': {'color': 'red', 'mark whole line': True, 'mark until': None},
+                    'Accepted': {'color': 'green', 'mark whole line': False, 'mark until': None},
+                    'PF/LF-interface mapping': {'color': 'black', 'mark whole line': False, 'mark until': 'LF-interface and postsyntactic legibility tests'},
+                    '$': {'color': '#eeeeee', 'mark whole line': False, 'mark until': '$'},
+                    'Solution was rejected': {'color': 'red', 'mark whole line': True, 'mark until': None},
+                    'Sentence #': {'color': 'black', 'mark whole line': True, 'mark until': None}
+                    }
+
     def __init__(self, parent, filename, text, *args, **kwargs):
         super().__init__(parent, *args, *kwargs)
 
@@ -69,12 +78,12 @@ class LogTextWindow(tk.Toplevel):
         self.textWindow = tk.Text(lb, undo=False, spacing1=4, spacing2=2, spacing3=4, height=40, width=150, wrap='none', font=("Cascadia Code", 14), tabs=('1c', '2c', '3c', '4c'))
         self.GetTextFromFile(filename)
         self.textWindow.grid(row=0, column=0, sticky='NSEW')
-        self.textWindow.configure(bg='white', fg='black')
+        self.textWindow.configure(bg='white', fg='#bbbbbb')
         self.focus_set()
         self.wm_attributes("-topmost", True)
 
         # Mark errors
-        self.mark_errors()
+        self.mark_colors()
 
         # Create scrollbars
         sby = ttk.Scrollbar(lb, orient=tk.VERTICAL, command=self.textWindow.yview)
@@ -90,23 +99,29 @@ class LogTextWindow(tk.Toplevel):
         self.textWindow.insert('1.0', text)
         self.textWindow.focus()
 
-    def mark_errors(self):
-        """Highlights crashes in the derivational log file"""
-        start_index = '0.1'
-        end_index = 'end'
-        while True:
-            start_index = self.textWindow.search('@@', start_index, end_index)
-            if start_index:
-                start_pos = f"{start_index.split('.')[0]}.0"
-                end_index = f"{start_index.split('.')[0]}.999"
-                self.textWindow.tag_add("ERROR", start_pos, end_index)
-                start_index = end_index
-                end_index = 'end'
-            else:
-                break
-
-        self.textWindow.tag_configure('ERROR', background="white", foreground="red")
-
+    def mark_colors(self):
+        for target in LogTextWindow.color_scheme.keys():
+            start_index = '0.1'
+            end_index = 'end'
+            while True:
+                where = self.textWindow.search(target, start_index, end_index)
+                if where:
+                    line, position = where.split('.')
+                    if LogTextWindow.color_scheme[target]['mark whole line']:
+                        s = line + '.0'
+                        e = line + '.999'
+                    elif LogTextWindow.color_scheme[target]['mark until']:
+                        s = where
+                        selection_end = self.textWindow.search(LogTextWindow.color_scheme[target]['mark until'], where + '+1c', end_index)
+                        e = selection_end.split('.')[0] + '.999'
+                    else:
+                        s = where
+                        e = where + ('+%dc' % len(target))
+                    self.textWindow.tag_add(target, s, e)
+                    start_index = e
+                else:
+                    break
+            self.textWindow.tag_configure(target, background="white", foreground=LogTextWindow.color_scheme[target]['color'])
 
 class LexiconView(tk.LabelFrame):
     """Defines the GUI widget to show the lexicon"""

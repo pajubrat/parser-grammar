@@ -53,11 +53,15 @@ class Application(tk.Tk):
         self.bind('<<LoadStudy>>', self.load_study)
         self.bind('<<Settings>>', self.modify_settings)
         self.bind('<<CreateNewFromFile>>', self.create_new_from_corpus_file)
+        self.bind('<<ExamineDerivationalLog>>', self.examine_derivational_log)
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def on_closing(self):
         self.local_file_system.save_app_settings(self.settings)
         self.destroy()
+
+    def examine_derivational_log(self, event):
+        LogTextWindow(self, self.settings.external_sources["log_file_name"], '**The input sentence was ungrammatical. See the derivational log below**')
 
     def modify_settings(self, event):
         self.settings.change_settings(self)
