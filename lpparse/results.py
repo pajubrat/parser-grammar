@@ -66,10 +66,10 @@ class Results():
     def report_results_to_console(self):
         errors = open(self.speaker_model.settings.external_sources['error_report_name'], 'r')
         print(f'\n')
-        contents = errors.read()
-        print(contents)
-        error_N = contents.count('\n')
-        print(f'= {error_N}  errors (in {Results.global_steps} steps, {round(time.time() - Results.global_start_time, 2)} seconds). ')
+        error_lines = [line for line in errors.readlines() if line.strip() and not line.startswith('@')]
+        for line in error_lines:
+            print(line)
+        print(f'= {len(error_lines)}  errors (in {Results.global_steps} steps, {round(time.time() - Results.global_start_time, 2)} seconds). ')
         Results.reset_global_variables()
         errors.close()
 

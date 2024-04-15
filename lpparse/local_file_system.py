@@ -46,7 +46,7 @@ class LocalFileSystem:
 
     def initialize_error_file(self, settings):
         self.errors = open(settings.external_sources['error_report_name'], 'w', -1, encoding=self.encoding)
-        self.errors.write(f'Prediction errors:')
+        self.stamp(self.errors, settings)
 
     def initialize_numeration_output(self, settings):
         self.numeration_output = open(settings.external_sources['numeration_output'], 'w', -1, encoding=self.encoding)
@@ -117,10 +117,11 @@ class LocalFileSystem:
             with open('$app_settings.txt', encoding=self.encoding) as app_settings_file:
                 readlines = app_settings_file.readlines()
                 for line in readlines:
-                    key, value = line.split('=')
-                    key = key.strip()
-                    value = value.strip()
-                    app_settings_dict[key] = value
+                    if '=' in line:
+                        key, value = line.split('=')
+                        key = key.strip()
+                        value = value.strip()
+                        app_settings_dict[key] = value
         except IOError:
             pass
 
@@ -142,7 +143,10 @@ class LocalFileSystem:
                     key, value = line.split('=')
                     key = key.strip()
                     value = value.strip()
-                    settings.data[key] = value
+                    if key in settings.data:
+                        settings.data[key] += '; ' + value      #   New values are added
+                    else:
+                        settings.data[key] = value
         config_file.close()
 
     def create_new_from_corpus_file(self, settings):
@@ -222,11 +226,15 @@ class LocalFileSystem:
         return line.split('.')
 
     def stamp(self, file_handle, settings):
-        file_handle.write('@  '+str(self.settings) + '\n')
-        file_handle.write('@  '+str(datetime.datetime.now()) + '\n')
-        file_handle.write('@  '+f'Test sentences {settings.external_sources["test_corpus_file_name"]}.\n')
-        file_handle.write('@  '+f'Logs {settings.external_sources["log_file_name"]}.\n')
-        file_handle.write('@ \n\n\n')
+        file_handle.write(self.stamp_string(settings))
+
+    def stamp_string(self, settings):
+        stri = ''
+        stri += f'@  Simulation parameters: {settings.data}\n'
+        stri += f'@  Time: {datetime.datetime.now()}\n'
+        stri += f'@  Test sentences: {settings.external_sources["test_corpus_file_name"]}\n'
+        stri += f'@  Logs: {settings.external_sources["log_file_name"]}\n\n\n'
+        return stri
 
     def save_output(self, speaker_model, count, sentence, experimental_group, grammatical):
         self.results_file.write(f'#{count}. {speaker_model.results}')
@@ -278,6 +286,7 @@ class LocalFileSystem:
         self.logger_handle = handler
         if not settings.retrieve('general_parameter_logging', True):
             disable_all_logging()
+        log(self.stamp_string(settings))
 
     def read_lexicons_into_dictionary(self, settings):
         lexicon_dict = {}

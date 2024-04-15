@@ -35,8 +35,10 @@ image_parameter_trivial_head_chains = False
 image_parameter_phrasal_chains = True
 image_parameter_DP_hypothesis = True
 image_parameter_chain_curvature = 1
-image_parameter_features = !ΦLF,ΦPF;+ΦLF,ΦPF;ΦLF;ΦPF;ARG;iPHI:PER:1;iPHI:PER:2;iPHI:PER:3
-
+image_parameter_features = !ΦLF,ΦPF; +ΦLF,ΦPF; ΦLF; ΦPF; ARG; iPHI:PER:1; iPHI:PER:2; iPHI:PER:3
+image_parameter_visualization = !ΦLF,ΦPF > Φ; +ΦLF,ΦPF > Φ; ?ΦLF,ΦPF > Φ; ΦPF > /φ/; ARG > φ_
+image_parameter_visualization = iPHI:* > iφ
+ 
 # UG COMPONENTS
 #	Agree
 #	standard = standard theory (Chomsky 2000, 2001, 2008)

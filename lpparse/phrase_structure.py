@@ -269,7 +269,10 @@ class PhraseStructure:
         return X.edge()
 
     def identify_argument(X):
-        available_arguments = [acquire(X) for acquire in [lambda x: x.pro_argument(), lambda x: x.argument_complement(), lambda x: x.local_edge(), lambda x: x.control()]]
+        available_arguments = [acquire(X) for acquire in [lambda x: x.pro_argument(),
+                                                          lambda x: x.argument_complement(),
+                                                          lambda x: x.local_edge(),
+                                                          lambda x: x.control()]]
         return next((argument for argument in available_arguments if argument), None)
 
     def argument_complement(X):

@@ -25,6 +25,12 @@ def mismatch(G, P):
 def type_value_mismatch(p, g):
     return p.split(':')[0] == g.split(':')[0] and p.split(':')[1] != g.split(':')[1]
 
+def clean_string(str):
+    str.strip()
+    str = str.replace('\t', '')
+    str = str.replace(' ', '')
+    return str
+
 def unvalued_phi_feature(f):
     return phi_feature(f) and f[-1] == '_'
 

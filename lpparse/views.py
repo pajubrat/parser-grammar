@@ -3,6 +3,7 @@ from tkinter import ttk
 from phrase_structure import PhraseStructure
 from menus import GraphicsMenu
 import widgets as w
+from feature_processing import clean_string
 
 MARGINS = 300
 GRID = 150
@@ -568,9 +569,14 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.geometry(('1800x1000+1800+500'))
         self.speaker_model = speaker_model
         self.root = root
+        self.feature_visualizations = {}
 
         # Features shown in figures on the basis of settings
         GPhraseStructure.draw_features = {feature.strip() for feature in root.settings.retrieve('image_parameter_features', set()).split(';')}
+        mapping_str = self.root.settings.retrieve('image_parameter_visualization', '')
+        # Generate lexical feature visualizations
+        if mapping_str:
+            self.parse_feature_visualizations(mapping_str)
 
         # Internal variables
         self.index_of_analysis_shown = 0
@@ -617,6 +623,30 @@ class PhraseStructureGraphics(tk.Toplevel):
 
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def parse_feature_visualizations(self, stri):
+        """
+        This function can be used to simplify feature representation in the image and/or force it match
+        with the feature presentation in some particular study. The original entries are defined in the
+        study configuration file (*.lpg) by parameter 'image_parameter_visualization'. The parsing results
+        are stored into dictionary that is used during image drawing.
+
+        The form of feature mappings is A // C > T; A // C > T where
+        A = feature to be mapped
+        T = target feature appearing in the image
+        C = optional context (feature at the node itself)
+        A // C > T means print out feature T for feature A if the node has C
+
+        Note: symbol A* matches the beginning of the string, e.g. iPHI* maps all features that begin with iPHI.
+        """
+        stri = clean_string(stri)                                           #   Remove extra spaces, tabs etc.
+        entries = stri.split(';')                                           #   Feature mappings are separated by ;
+        for x in entries:
+            context = ''                                                    #   If there is no context, then C = ''
+            antecedent, target = x.split('>')                               #   Conversion is marked as A > T (A mapped into T)
+            if '//' in antecedent:                                          #   Context is marked as A // C, where C is set of features at the node
+                antecedent, context = antecedent.split('//')
+            self.feature_visualizations[antecedent] = (context, target)     #   Store the result into dictionary [A] = (C, T)
 
     def image_settings(self, *_):
         self.root.settings.change_settings(self, ['Image'])
@@ -894,28 +924,14 @@ class PhraseStructureCanvas(tk.Canvas):
                 text = 'D'
             if text == 'φP':
                 text = 'DP'
-        if text.startswith('iPHI:'):
-            text = 'iφ'
-        if text == 'Neg/fin':
-            text = 'Neg'
-        if text == 'Neg/finP':
-            text = 'NegP'
-        if text == 'Fin/neg':
-            text = 'Fin'
-        if text == 'OP:Q':
-            text = 'Q'
-        if text == 'ARG':
-            text = 'φ_'
-        if text == 'ΦPF':
-            text = '/φ/'
-        if text == '!ΦLF,ΦPF' or text == '+ΦLF,ΦPF' or text == '?ΦLF,ΦPF':
-            text = 'Φ'
-        if text == 'OP:WH':
-            if 'C' in node.features:
-                text = 'WH'
-            else:
-                text = ''
-        return text
+        for feature in self.parent.feature_visualizations.keys():                               #   Stores feature conversions for images
+            if (feature.endswith('*') and text.startswith(feature[:-1])) or (feature == text):  #   wildcard (*) processing
+                context, target = self.parent.feature_visualizations[feature]                   #   context = features in the node itself, target = features to print out
+                if not context:                                                                 #   if not context, then print out target
+                    return target
+                elif set(context.split(',')) <= node.features:                                  #   additional context test, if applicable
+                    return target
+        return text                                                                             #   No change to the feature
 
     def update_cursor(self, gps, x1, y1):
         if self.selected_logical_object == gps:
