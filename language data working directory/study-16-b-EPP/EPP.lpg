@@ -1,13 +1,14 @@
 
-author= Anon
-year= 2024
-date= April
-study_id= 16
-study_folder=			language data working directory/study-16-b-EPP
-test_corpus=			EPP_corpus.txt
+# METADATA
+meta_author= Anon
+meta_year= 2024
+meta_date= April
+meta_study_id= 16
+meta_study_folder=			language data working directory/study-16-b-EPP
+meta_test_corpus=			EPP_corpus.txt
 numeration=				none
 
-# GENERAL SIMULATION PARAMETERS
+# FILES
 general_parameter_only_first_solution = False
 general_parameter_logging = True
 general_parameter_use_numeration = False
@@ -18,11 +19,11 @@ general_parameter_project_objects = True
 general_parameter_calculate_predicates = True
 
 # LEXICONS
-lexicon_folder=language data working directory/lexicons
-lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
-
-# LEXICAL REDUNDANCY RULES
-redundancy_rules=redundancy_rules.txt
+file_study_folder=language data working directory/study-16-b-EPP
+file_test_corpus=EPP_corpus.txt
+file_lexicon_folder=language data working directory/lexicons
+file_lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
+file_redundancy_rules=redundancy_rules.txt
 
 # IMAGE PARAMETERS
 image_parameter_words = True
@@ -30,11 +31,13 @@ image_parameter_glosses = True
 image_parameter_adjuncts = False
 image_parameter_complex_heads = False
 image_parameter_head_chains = True
-image_parameter_trivial_head_chains = True
+image_parameter_trivial_head_chains = False
 image_parameter_phrasal_chains = True
 image_parameter_DP_hypothesis = True
 image_parameter_chain_curvature = 1
-image_parameter_features = EF;!ΦLF,ΦPF;+ΦLF,ΦPF
+image_parameter_features = !ΦLF,ΦPF; +ΦLF,ΦPF; ΦLF; ΦPF; ARG; iPHI:PER:1; iPHI:PER:2; iPHI:PER:3
+image_parameter_visualization = !ΦLF,ΦPF > Φ; +ΦLF,ΦPF > Φ; ?ΦLF,ΦPF > Φ; ΦPF > /φ/; ARG > φ_
+image_parameter_visualization = iPHI:* > iφ
 
 # UG COMPONENTS
 #	Agree
@@ -48,18 +51,18 @@ UG_parameter_phase_heads_exclude = φ;v-;TO/inf
 
 
 # PARSING HEURISTICS
-extra_ranking = True
-filter = True
-lexical_anticipation = True
-closure = Bottom-up
-working_memory = True
-positive_spec_selection = 100
-negative_spec_selection = -100
-break_head_comp_relations = -100
-negative_tail_test = -100
-positive_head_comp_selection = 100
-negative_head_comp_selection = -100
-negative_semantics_match = -100
-lf_legibility_condition = -100
-negative_adverbial_test = -100
-positive_adverbial_test = 100
+parsing_extra_ranking = True
+parsing_filter = True
+parsing_lexical_anticipation = True
+parsing_closure = Bottom-up
+parsing_working_memory = True
+parsing_positive_spec_selection = 100
+parsing_negative_spec_selection = -100
+parsing_break_head_comp_relations = -100
+parsing_negative_tail_test = -100
+parsing_positive_head_comp_selection = 100
+parsing_negative_head_comp_selection = -100
+parsing_negative_semantics_match = -100
+parsing_lf_legibility_condition = -100
+parsing_negative_adverbial_test = -100
+parsing_positive_adverbial_test = 100

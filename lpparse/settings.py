@@ -6,25 +6,29 @@ from views import ChangeSettingsNotebook
 
 class Settings:
     def __init__(self, local_file_system, app_settings_dict=None):
-        self.app_settings = {}
         self.local_file_system = local_file_system
         self.data = {}
+        self.data.update(app_settings_dict)
         self.folders = {}
         self.external_sources = {}
         self.encoding = 'utf8'
-        self.app_settings = app_settings_dict
-        self.local_file_system.load_settings(self, app_settings_dict)
+        self.load_and_initialize_settings()
+
+    def load_and_initialize_settings(self):
+        self.local_file_system.load_settings(self)
         self.process_settings()
         self.create_settings_for_file_system()
 
     def create_settings_for_file_system(self, corpus_filename=None):
         if corpus_filename:
-            self.store('test_corpus', os.path.basename(corpus_filename))
-            self.store('study_folder', os.path.dirname(corpus_filename))
-            self.app_settings['open_with'] = f"{self.data['file_study_folder']}/{self.data['file_test_corpus'][:-11]}.lpg"
+            self.store('file_test_corpus', os.path.basename(corpus_filename))
+            self.store('file_study_folder', os.path.dirname(corpus_filename))
         self.folders['study'] = Path(self.retrieve('file_study_folder'))
         self.folders['lexicon'] = Path(self.retrieve('file_lexicon_folder'))
         self.set_external_resources()
+
+    def reset_settings(self):
+        self.data = {}
 
     def process_settings(self):
         for key in self.data:
@@ -51,10 +55,11 @@ class Settings:
                                  }
 
     def load_settings_with_user_input(self):
-        filename = filedialog.askopenfilename(title='Load  study', defaultextension='.txt', initialdir='.')
-        if filename:
-            print('Loading new study...')
-            self.local_file_system.load_settings(self, filename)
+        self.reset_settings()
+        self.store('full_name', filedialog.askopenfilename(title='Load study', defaultextension='.txt', initialdir='.'))
+        if self.data['full_name']:
+            self.data['file_study_folder'], self.data['file_study_configuration'] = os.path.split(self.data['full_name'])
+            self.load_and_initialize_settings()
             return True     # This will reset the widgets in the application
 
     def store(self, key, value):

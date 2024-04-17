@@ -31,6 +31,12 @@ def clean_string(str):
     str = str.replace(' ', '')
     return str
 
+def mandatory(f):
+    return f.startswith('!')
+
+def illicit(f):
+    return f.startswith('-')
+
 def unvalued_phi_feature(f):
     return phi_feature(f) and f[-1] == '_'
 

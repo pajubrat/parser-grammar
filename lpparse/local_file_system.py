@@ -1,4 +1,5 @@
 import itertools
+import sys
 
 from datetime import datetime
 from support import *
@@ -26,6 +27,7 @@ class LocalFileSystem:
         self.settings = {}
         self.dev_log_file = None
         self.logger_handle = None
+        self.app_settings = {}
         self.instruction_to_ignore_from_test_corpus = False
         self.encoding = 'utf8'
         self.initialize_dev_logging()
@@ -104,7 +106,8 @@ class LocalFileSystem:
         # settings.app_settings['open_with'] = settings.folders['study'] / 'config_study.lpg'     # store the location of current dataset
         try:
             with open('$app_settings.txt', 'w', encoding=self.encoding) as output_file:
-                pass
+                output_file.write(f'file_study_configuration={self.settings["file_study_configuration"]}')
+                output_file.write(f'file_study_folder={self.settings["file_study_folder"]}')
                 for key, value in settings.app_settings.items():
                     output_file.write(f'{key}={value}\n')
         except IOError:
@@ -114,39 +117,46 @@ class LocalFileSystem:
         """Loads application settings which provides the default behavior"""
         app_settings_dict = {}
         try:
-            with open('$app_settings.txt', encoding=self.encoding) as app_settings_file:
-                readlines = app_settings_file.readlines()
-                for line in readlines:
-                    if '=' in line:
-                        key, value = line.split('=')
-                        key = key.strip()
-                        value = value.strip()
-                        app_settings_dict[key] = value
+            app_settings_file = open('$app_settings.txt', encoding=self.encoding)
+            readlines = app_settings_file.readlines()
+            for line in readlines:
+                if '=' in line:
+                    key, value = line.split('=')
+                    key = key.strip()
+                    value = value.strip()
+                    app_settings_dict[key] = value
         except IOError:
-            pass
+            print(f'Could not find the application settings file $app_settings.txt.')
+            print(f'Make sure this file exists in the root directory.')
+            sys.exit()
 
         for arg in arg_lst:
             if arg.endswith('.lpg'):
                 app_settings_dict['open_with'] = arg
-
-        self.app_settings = app_settings_dict
         return app_settings_dict
 
-    def load_settings(self, settings, app_settings_dict):
-        name = app_settings_dict['study_file']
-        folder = app_settings_dict['study_folder']
-        filename = folder + '/' + name
-        with open(filename, encoding=self.encoding) as config_file:
+    def load_settings(self, settings):
+        if 'full_name' not in settings.data:
+            name = settings.retrieve('file_study_configuration', '')
+            folder = settings.retrieve('file_study_folder', '')
+            settings.data['full_name'] = folder + '/' + name
+        try:
+            config_file = open(settings.retrieve('full_name'), encoding=self.encoding)
             for line in config_file:
                 line = line.strip().replace('\t', '')
                 if line and not line.startswith('#'):
                     key, value = line.split('=')
                     key = key.strip()
                     value = value.strip()
-                    if key in settings.data:
+                    if key in settings.data and key != 'file_study_configuration' and key != 'file_study_folder':
                         settings.data[key] += '; ' + value      #   New values are added
                     else:
                         settings.data[key] = value
+        except IOError:
+            print(f'The application settings ($app_settings.txt) points to\n '
+                  f'the study configuration file {settings.retrieve("full_name")},\n'
+                  f'but the file does not seem to exist.')
+            sys.exit()
         config_file.close()
 
     def create_new_from_corpus_file(self, settings):
@@ -156,10 +166,14 @@ class LocalFileSystem:
     def save_study(self, settings):
         filename = filedialog.asksaveasfilename(title='Save study', defaultextension='.txt', initialdir='.')
         if filename:
-            with open(filename, 'w', encoding=self.encoding) as f:
-                for key in settings.retrieve().keys():
-                    value = settings.retrieve()[key]
-                    print(f'{key} = {value}', file=f)
+            try:
+                with open(filename, 'w', encoding=self.encoding) as f:
+                    for key in settings.data.keys():
+                        value = settings.retrieve(key, '')
+                        f.write(f'{str(key)} = {str(value)}\n')
+            except IOError:
+                print(f'Saving the study was unsuccessful.')
+                sys.exit()
 
     def read_test_corpus(self, settings):
         experimental_group = []
@@ -168,44 +182,49 @@ class LocalFileSystem:
             k = open(settings.external_sources['numeration_output'], encoding=self.encoding)
             input_file = settings.external_sources["numeration_output"]
         else:
-            input_file = settings.external_sources["test_corpus_file_name"]
+            input_file = settings.data['file_study_folder'] + '/' + settings.data['file_test_corpus']
         self.dev_log_file.write(f'Reading test corpus file {input_file}...')
         index = 1
-        for line in open(input_file, encoding=self.encoding):
-            part_of_conversation = False
-            line = line.strip()
-            if line.startswith('=STOP=') or line.startswith('=END='):
-                break
-            if line.startswith('=START=') or line.startswith('=BEGIN='):
-                parse_list = []
-                continue
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('%'):
-                parse_list = []
-                line = line.lstrip('%')
-                line = line.strip()
-                line = self.clear_line_end(line)
-                line, grammatical = self.gold_standard_grammaticality(line)
-                parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
-                break
-            if line.endswith(';'):
-                part_of_conversation = True
-                line = self.clear_line_end(line)
-            if line.endswith('.'):
+        try:
+            for line in open(input_file, encoding=self.encoding):
                 part_of_conversation = False
-                line = self.clear_line_end(line)
-            elif line.startswith('=>'):
-                experimental_group = self.read_experimental_group(line)
-                continue
-            line, grammatical = self.gold_standard_grammaticality(line)
-            if line.startswith('&') or line.startswith("\'"):
-                parse_list.append((None, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
-            else:
-                parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
-                index += 1
-        self.dev_log_file.write(f'Found {len(parse_list)} sentences. Done.\n')
-        return parse_list
+                line = line.strip()
+                if line.startswith('=STOP=') or line.startswith('=END='):
+                    break
+                if line.startswith('=START=') or line.startswith('=BEGIN='):
+                    parse_list = []
+                    continue
+                if not line or line.startswith('#'):
+                    continue
+                if line.startswith('%'):
+                    parse_list = []
+                    line = line.lstrip('%')
+                    line = line.strip()
+                    line = self.clear_line_end(line)
+                    line, grammatical = self.gold_standard_grammaticality(line)
+                    parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
+                    break
+                if line.endswith(';'):
+                    part_of_conversation = True
+                    line = self.clear_line_end(line)
+                if line.endswith('.'):
+                    part_of_conversation = False
+                    line = self.clear_line_end(line)
+                elif line.startswith('=>'):
+                    experimental_group = self.read_experimental_group(line)
+                    continue
+                line, grammatical = self.gold_standard_grammaticality(line)
+                if line.startswith('&') or line.startswith("\'"):
+                    parse_list.append((None, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
+                else:
+                    parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
+                    index += 1
+            self.dev_log_file.write(f'Found {len(parse_list)} sentences. Done.\n')
+            return parse_list
+        except IOError:
+            print(f'The corpus file "{input_file}" seems to be missing.\n'
+                  f'Make sure that the file exists and that the name is correct.')
+            sys.exit()
 
     def gold_standard_grammaticality(self, line):
         if line.startswith('*'):

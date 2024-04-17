@@ -387,21 +387,13 @@ class PhraseStructure:
         return X.check({'-COMP:*'})
 
     def probe_goal_test(X):
-        for f in sorted(X.features):
-            if f.startswith('!PROBE:'):
-                if not X.probe(X.features, f[7:]):
-                    return True
-            if f.startswith('-PROBE:'):
-                if X.probe(X.features, f[7:]):
+        if X.sister():
+            for ff in [(f, X.probe(f[7:])) for f in X.features if 'PROBE:' in f]:
+                if (mandatory(ff[0]) and not ff[1]) or (illicit(ff[0]) and ff[1]):
                     return True
 
-    def probe(X, intervention_features, G):
-        if X.sister():
-            for node in X.sister().minimal_search():
-                if node.check({G}) or (G[:4] == 'TAIL' and G[5:] in node.scan_features('OP')[0]):
-                    return True
-                if node.check(intervention_features):
-                    pass
+    def probe(X, G):
+        return next((x for x in X.sister() if x.check({G})), None)
 
     def edge_feature_tests(X):
         if 'EF' not in X.features and X.edge() and not X.edge()[0].head().check({'Adv'}):
@@ -441,7 +433,9 @@ class PhraseStructure:
                     X == X.max().container().local_edge())
 
     def projection_principle_failure(X):
-        return (X.max().projection_principle_applies() and not X.max().container_assigns_theta_role()) or X.pro_projection_principle_violation()
+        return (X.max().projection_principle_applies() and
+                not X.max().container_assigns_theta_role()) or \
+               X.pro_projection_principle_violation()
 
     def pro_projection_principle_violation(X):
         """Each theta-predicate can be linked with only one pro, 
@@ -465,7 +459,9 @@ class PhraseStructure:
     def container_assigns_theta_role(X):
         Y = X.max().container()
         if Y:
-            if Y.sister() == X or (Y.geometrical_sister() == X and X.check_some(Y.licensed_complements())):
+            if Y.sister() == X or \
+                    (Y.geometrical_sister() == X and
+                     X.check_some(Y.licensed_complements())):
                 return True
             return not Y.EF() and \
                    Y.check_some({'SPEC:φ', '!SPEC:φ'}) and \
@@ -518,7 +514,8 @@ class PhraseStructure:
         return probe
 
     def form_chain(X, target):
-        for head in X.minimal_search_domain().minimal_search(PhraseStructure.transfer_operation['selection'], PhraseStructure.transfer_operation['sustain']):
+        for head in X.minimal_search_domain().minimal_search(PhraseStructure.transfer_operation['selection'],
+                                                             PhraseStructure.transfer_operation['sustain']):
             if head != X and head.test_merge(target, PhraseStructure.transfer_operation['legible'], 'left'):
                 break
             target.remove()
@@ -907,17 +904,17 @@ class PhraseStructure:
         return pos_tsets == checked_pos_tsets and not checked_neg_tsets
 
     def tail_condition(X, tset):
-        if not X.referential() and \
-                X.max() and \
-                X.max().container() and \
-                (X.max().container().check(tset) or
-                 (X.max().mother().sister() and
-                  X.max().mother().sister().check(tset))):
-            return True
         if X.referential() or X.preposition():
-            for m in (node for node in X.upward_path() if node.zero_level()):
-                if m.check_some(tset):
-                    return m.check(tset)
+            for m in (x for x in X.upward_path() if x.zero_level() and x.check_some(tset)):
+                return m.check(tset)
+        if not X.referential():
+            return X.check_container(tset) or X.check_aunt(tset)
+
+    def check_container(X, tset):
+        return X.max().container() and X.max().container().check(tset)
+
+    def check_aunt(X, tset):
+        return X.max().mother() and X.max().mother().sister() and X.max().mother().sister().check(tset)
 
     def tail_match(X, constituent_from_MB, direction):
         X.Merge_inside(constituent_from_MB.copy(), direction)   # Test merge
@@ -993,15 +990,16 @@ class PhraseStructure:
 
     def remove(X):
         if X.mother():
-            mother_ = X.mother()                    # {H, X}
-            sister = X.geometrical_sister()      # X
-            grandparent = X.mother().mother()        # {Y {H, X}}
-            sister.mother_ = sister.mother().mother()   # Y
+            mother_, sister, grandmother = X.context()
+            sister.mother_ = sister.mother().mother()
             if mother_.is_right():
-                grandparent.const = [grandparent.left(), sister]
+                grandmother.const = [grandmother.left(), sister]
             elif mother_.is_left():
-                grandparent.const = [sister, grandparent.right()]
-            X.mother_ = None                          # detach H
+                grandmother.const = [sister, grandmother.right()]
+            X.mother_ = None
+
+    def context(X):
+        return X.mother(), X.geometrical_sister(), X.mother().mother()
 
     def sink(X, ps):
         bottom_affix = X.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.

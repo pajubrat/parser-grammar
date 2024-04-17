@@ -55,12 +55,12 @@ class DatasetView(tk.LabelFrame):
 
 class LogTextWindow(tk.Toplevel):
     color_scheme = {'Next head': {'color': 'black', 'mark whole line': True, 'mark until': None},
-                    'failed': {'color': 'red', 'mark whole line': True, 'mark until': None},
                     'Accepted': {'color': 'green', 'mark whole line': False, 'mark until': None},
                     'PF/LF-interface mapping': {'color': 'black', 'mark whole line': False, 'mark until': 'LF-interface and postsyntactic legibility tests'},
                     '$': {'color': '#eeeeee', 'mark whole line': False, 'mark until': '$'},
                     'Solution was rejected': {'color': 'red', 'mark whole line': True, 'mark until': None},
-                    'Sentence #': {'color': 'black', 'mark whole line': True, 'mark until': None}
+                    'Sentence #': {'color': 'black', 'mark whole line': True, 'mark until': None},
+                    'fail': {'color': 'red', 'mark whole line': True, 'mark until': None}
                     }
 
     def __init__(self, parent, filename, text, *args, **kwargs):
@@ -110,11 +110,11 @@ class LogTextWindow(tk.Toplevel):
                     line, position = where.split('.')
                     if LogTextWindow.color_scheme[target]['mark whole line']:
                         s = line + '.0'
-                        e = line + '.999'
+                        e = s + ' lineend'
                     elif LogTextWindow.color_scheme[target]['mark until']:
                         s = where
                         selection_end = self.textWindow.search(LogTextWindow.color_scheme[target]['mark until'], where + '+1c', end_index)
-                        e = selection_end.split('.')[0] + '.999'
+                        e = selection_end.split('.')[0] + '.0 lineend'
                     else:
                         s = where
                         e = where + ('+%dc' % len(target))
@@ -262,7 +262,7 @@ class ChangeSettingsNotebook(tk.Toplevel):
         super().__init__(root)
         self.settings_instance = settings_instance
         self.title("Study settings")
-        self.geometry('1200x800+1000+1000')
+        self.geometry('1200x900+1000+1000')
         self.focus()
         self.grid()
         self.grab_set()
@@ -280,6 +280,7 @@ class ChangeSettingsNotebook(tk.Toplevel):
         self.image_boolean_variables = self.create_boolean_GUI_variables_from_settings('image_')
         self.image_string_variables = self.create_string_GUI_variables_from_settings('image_parameter_features')
         self.image_settings_Frame = ttk.LabelFrame(self.notebook, text='Image settings')
+        i = 0
         for i, parameter in enumerate(self.image_boolean_variables):
             parameter_name = ' '.join(parameter.split('_')[2:]).capitalize()
             ttk.Checkbutton(self.image_settings_Frame, variable=self.image_boolean_variables[parameter], text=parameter_name).grid(row=i, column=0, sticky='NWSE')
@@ -316,7 +317,7 @@ class ChangeSettingsNotebook(tk.Toplevel):
 
         #NOTEBOOK TAB 5: Filenames
         self.Files_Frame = ttk.LabelFrame(self.notebook, text='External files')
-        self.App_configuration_Label = ttk.Label(self.Files_Frame, text='Configuration: ' + self.settings_instance.app_settings['study_file'])
+        self.App_configuration_Label = ttk.Label(self.Files_Frame, text='Configuration: ' + self.settings_instance.retrieve('file_study_configuration', '?'))
         self.App_configuration_Label.grid(row=0, column=0, sticky='W', pady=5)
         self.Study_files_Frame = ttk.LabelFrame(self.Files_Frame, text='Study files')
         self.Study_files_Frame.grid(row=1, column=0, sticky='NWSE', pady=5)

@@ -57,24 +57,17 @@ class Application(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def on_closing(self):
-        self.local_file_system.save_app_settings(self.settings)
         self.destroy()
 
     def examine_derivational_log(self, event):
-        LogTextWindow(self, self.settings.external_sources["log_file_name"], '**The input sentence was ungrammatical. See the derivational log below**')
+        LogTextWindow(self, self.settings.external_sources["log_file_name"], 'Derivation')
 
     def modify_settings(self, event):
         self.settings.change_settings(self)
 
     def create_new_from_corpus_file(self, *_):
         self.local_file_system.create_new_from_corpus_file(self.settings)
-        self.create_new_study()
-        self.reset_widgets()
-        self.setup_widgets()
-
-    def create_new_study(self):
-        self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
-        self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
+        self.load_study()
 
     def setup_widgets(self):
 
@@ -90,7 +83,7 @@ class Application(tk.Tk):
         self.results_frame = ResultsView(self, self.speaker_models)
         self.results_frame.grid(row=1, column=1, sticky='nwes')
 
-        self.status_bar = tk.Label(self, padx=5, pady=5, bg='green', fg='white', anchor='e', justify='right', text=f'Current study: {self.settings.app_settings["study_file"]}, {self.settings.retrieve("file_study_folder", "?")}/{self.settings.retrieve("file_test_corpus", "?")}', font=('Calibri 16'))
+        self.status_bar = tk.Label(self, padx=5, pady=5, bg='green', fg='white', anchor='e', justify='right', text=f'Current study: {self.settings.retrieve("file_study_configuration")}, {self.settings.retrieve("file_study_folder", "?")}/{self.settings.retrieve("file_test_corpus", "?")}', font=('Calibri 16'))
         self.status_bar.grid(row=2, column=0, columnspan=2, sticky='e')
 
     def save_study(self, *_):
@@ -98,11 +91,10 @@ class Application(tk.Tk):
 
     def load_study(self, *_):
         if self.settings.load_settings_with_user_input():
-            self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment()
+            self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
             self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
             self.reset_widgets()
             self.setup_widgets()
-            print('Ready.')
 
     def reset_widgets(self):
         self.lexicon_frame.destroy()
@@ -133,7 +125,7 @@ class Application(tk.Tk):
             self.results_frame.fill_with_data(self.speaker_models[language])
             PhraseStructureGraphics(self, self.speaker_models[language])                    # Show phrase structure image
         else:
-            LogTextWindow(self, self.settings.external_sources["log_file_name"], '**The input sentence was ungrammatical. See the derivational log below**')
+            LogTextWindow(self, self.settings.external_sources["log_file_name"], 'Derivation')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
         self.speaker_models[language].narrow_semantics.global_cognition.end_conversation()
 

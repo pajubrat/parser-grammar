@@ -133,4 +133,4 @@ class Discourse:
         if head.referential() or head.preposition():
             idx = self.consume_index()
             head.features.add('*IDX:'+str(idx))
-            self.records_of_attentional_processing[str(idx)] = {'Order':idx, 'Name': f'{head}'}
+            self.records_of_attentional_processing[str(idx)] = {'Constituent': head.max(), 'Order': idx, 'Name': f'{head}'}
