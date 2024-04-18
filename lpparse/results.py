@@ -161,34 +161,34 @@ class Results():
         def sorted_by_relevance(set):
             id = {feature for feature in set if feature[0] == '#'}
             A = {feature for feature in set if feature in ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
-              'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf', 'FORCE', 'EXPL', 'Adv', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z']}
+              'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf', 'FORCE', 'EXPL', 'Adv', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z', 'adjoinable']}
             B = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
-            C = {feature for feature in set if feature == '!SELF:d' or
-                 feature == '!SELF:p' or
-                 feature == 'p' or
-                 feature == 'd' or
+            C = {feature for feature in set if feature in {'θ', 'ARG', '-ARG'} or feature.startswith('Φ') or
                  feature.startswith('!EF:') or
                  feature.startswith('-EF') or
-                 feature.startswith('EF') or
-                 feature.startswith('δPF')}
-            D = {feature for feature in set if feature in {'ARG', '-ARG', 'ASP', 'Inf', 'Fin'}}
+                 feature.startswith('EF')}
             E = {feature for feature in set if feature.startswith('TAIL')}
-            F = {feature for feature in set if
-                 feature[:4] == 'PHI:' or feature[:5] == 'iPHI:' or feature[:4] == 'PHI/' or feature[:5] == 'dPHI:'}
+            F = {feature for feature in set if 'PHI:' in feature}
             G = {feature for feature in set if feature[:3] == 'SEM'}
-            H = {feature for feature in set if
-                 feature[:4] == 'COMP' or feature[:5] == '-COMP' or feature[:5] == '!COMP'}
-            J = {feature for feature in set if
-                 feature[:4] == 'SPEC' or feature[:5] == '-SPEC' or feature[:5] == '!SPEC'}
-            residuum = set - A - B - C - D - E - F - G - H - J
-            return sorted(A) + sorted(B) + sorted(C) + sorted(D) + sorted(E) + sorted(F) + sorted(G) + sorted(
-                H) + sorted(J) + sorted(id) + sorted(residuum)
-
-        def show_feature_list(lst):
-            str = ''
-            for feature in lst:
-                str += f'[{feature}]'
-            return str
+            H = {feature for feature in set if 'COMP' in feature}
+            J = {feature for feature in set if 'SPEC' in feature}
+            residuum = set - A - B - C - E - F - G - H - J
+            feature_sets = [sorted(A),  sorted(B), sorted(C), sorted(E), sorted(F), sorted(G), sorted(H), sorted(J), sorted(id), sorted(residuum)]
+            feature_stri = ''
+            i = 0
+            for fset in feature_sets:
+                for f in fset:
+                    feature_stri += f'[{f}] '
+                    i += len(f) + 3
+                    if i > 70:
+                        feature_stri += '\n\t\t\t\t\t'
+                        i = 0
+                if '\t' != feature_stri[-1] and fset:
+                    feature_stri += '\n\t\t\t\t\t'
+                    i = 0
+            if '\t' != feature_stri[-1]:
+                feature_stri += '\n'
+            return feature_stri
 
         reply = ''
         if not ps.zero_level():
@@ -198,7 +198,7 @@ class Results():
             for head in ps.get_affix_list():
                 if head.copied:
                     break
-                reply += f'\t\t{head.get_phonological_string():<10} {show_feature_list(sorted_by_relevance(head.features))}\n'
+                reply += f'\t\t{head.get_phonological_string():<11} {sorted_by_relevance(head.features)}\n'
         return reply
 
     def format_ontology_all(self, speaker_model):

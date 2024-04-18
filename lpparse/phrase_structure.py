@@ -2,6 +2,7 @@ from collections import namedtuple
 from itertools import takewhile
 import itertools
 from feature_processing import *
+from phi import *
 from support import log, set_logging
 
 major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
@@ -25,7 +26,7 @@ class PhraseStructure:
                                     'test integrity': lambda x: x.affix() and not x.right().copied and not x.License_EHM(),
                                     'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
-                                    'sustain': lambda x: True,
+                                    'intervention': lambda x: False,
                                     'legible': lambda x, y: y.properly_selected() and not y.empty_finite_EPP() and y.right_sister() != x,
                                     'single operation': False,
                                     'prepare': lambda x: x.prepare_head_chain()},
@@ -33,7 +34,7 @@ class PhraseStructure:
                                        'test integrity': lambda x: not x.copied and x.complex() and x.is_left() and not x.expletive() and x.container() and x.container().EF(),
                                        'repair': lambda x: x.create_chain(),
                                        'selection': lambda x: x.zero_level() and not x.finite(),
-                                       'sustain': lambda x: not (x.zero_level() and x.referential()),
+                                       'intervention': lambda x: x.zero_level() and x.referential(),
                                        'legible': lambda x, y: x.Abar_legible(y),
                                        'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Feature': {'type': 'Feature Inheritance',
@@ -44,7 +45,7 @@ class PhraseStructure:
                                         'repair': lambda x: x.create_chain(),
                                         'selection': lambda x: x.has_vacant_phrasal_position(),
                                         'legible': lambda x, y: True,
-                                        'sustain': lambda x: not (x.zero_level() and x.referential()),
+                                        'intervention': lambda x: not x.zero_level() and x.referential(),
                                         'test integrity': lambda x: not x.copied and x.complex() and x.is_left() and x.container() and x.container().EF(),
                                         'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Agree': {'type': 'Agree',
@@ -241,9 +242,8 @@ class PhraseStructure:
             X.nn = X.nn.left()
         return current.left()
 
-    def minimal_search(X, selection_condition=lambda x: True, sustain_condition=lambda x: True):
-        """Collect items that satisfy selection_condition as long as sustain_condition remains true"""
-        return takewhile(sustain_condition, (x for x in X if selection_condition(x)))
+    def minimal_search(X, intervention=lambda x: False):
+        return takewhile(lambda x: not intervention(x), (x for x in X))
 
     def upward_path(X):
         upward_path = []
@@ -438,12 +438,12 @@ class PhraseStructure:
                X.pro_projection_principle_violation()
 
     def pro_projection_principle_violation(X):
-        """Each theta-predicate can be linked with only one pro, 
-		since the latter is independent referential argument"""
-        if X.zero_level() and \
-                X.independent_pro_from_overt_agreement() and \
-                X.right_sister():
-            for x in X.right_sister().minimal_search(lambda x: x.zero_level(), lambda x: not x.check({'V', 'θ'})):
+        """
+        Each theta-predicate can be linked with only one pro,
+        since the latter is independent referential argument
+        """
+        if X.zero_level() and X.independent_pro_from_overt_agreement() and X.right_sister():
+            for x in X.right_sister().minimal_search(lambda y: y.check({'V', 'θ'})):
                 if x.independent_pro_from_overt_agreement():
                     return True
                 if x.nonthematic_verb():
@@ -514,8 +514,7 @@ class PhraseStructure:
         return probe
 
     def form_chain(X, target):
-        for head in X.minimal_search_domain().minimal_search(PhraseStructure.transfer_operation['selection'],
-                                                             PhraseStructure.transfer_operation['sustain']):
+        for head in (x for x in X.minimal_search_domain().minimal_search(PhraseStructure.transfer_operation['intervention']) if PhraseStructure.transfer_operation['selection'](x)):
             if head != X and head.test_merge(target, PhraseStructure.transfer_operation['legible'], 'left'):
                 break
             target.remove()
@@ -620,7 +619,7 @@ class PhraseStructure:
         scrambled_phrase = X
 
         node = starting_point
-        for node in X.local_tense_edge().minimal_search(lambda x: True, lambda x: x.sustain_condition_for_scrambling(X, X.local_tense_edge())):
+        for node in X.local_tense_edge().minimal_search(lambda x: x.intervention_condition_for_scrambling(X, X.local_tense_edge())):
             node.merge_scrambled_phrase(virtual_test_item)
             if node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'left'):
                 break
@@ -632,11 +631,11 @@ class PhraseStructure:
     def local_tense_edge(X):
         return next((node.mother() for node in X.upward_path() if node.finite() or node.force()), X.top())
 
-    def sustain_condition_for_scrambling(X, target, local_tense_edge):
-        return not (X.mother() == target or
-                    X.mother().copied or
-                    (X.force() and X.container() != local_tense_edge.head()) or
-                    (X.zero_level() and X.referential()))
+    def intervention_condition_for_scrambling(X, target, local_tense_edge):
+        return (X.mother() == target or
+                X.mother().copied or
+                (X.force() and X.container() != local_tense_edge.head()) or
+                (X.zero_level() and X.referential()))
 
     def test_adjunction_solution(X, scrambled_phrase, virtual_test_item, starting_point, direction):
         if virtual_test_item.valid_reconstructed_adjunct(starting_point):
@@ -727,8 +726,7 @@ class PhraseStructure:
         X.value_from_goal(X.get_goal())
 
     def get_goal(X):
-        return next(X.minimal_search_domain().minimal_search(lambda x: x.goal_selection(),
-                                                             lambda x: not x.phase_head()), None)
+        return next((x for x in X.minimal_search_domain().minimal_search(lambda x: x.phase_head()) if x.goal_selection()), None)
 
     def goal_selection(X):
         return not X.copied and (X.head().referential() or X.phase_head())
@@ -741,6 +739,9 @@ class PhraseStructure:
             else:
                 log(f'failed.')
                 X.features.add('*')
+
+    def interpretable_phi_features(X):
+        return {f[5:] for f in X.features if f.startswith('iPHI:')}
 
     def value(X, goal):
         log(f'valued features ')
@@ -767,7 +768,7 @@ class PhraseStructure:
         for f in [f for f in X.features if f.startswith('PHI:IDX:')]:
             if X.sister():
                 idx = f.split(':')[2]
-                return next(X.sister().minimal_search(lambda x: idx in x.head().features, lambda x: not x.phase_head()), None)
+                return next((x for x in X.sister().minimal_search(lambda x: not x.phase_head()) if idx in x.head().features), None)
 
     # Extraposition
     def cutoff_point_for_last_resort_extraposition(X):
@@ -827,7 +828,7 @@ class PhraseStructure:
 
     def is_unvalued(X):
         for f in X.features:
-            if unvalued(f):
+            if unvalued_phi_feature(f):
                 return True
 
     def valued_phi_features(X):
@@ -843,8 +844,8 @@ class PhraseStructure:
         return {frozenset(f[5:].split(',')) for f in X.head().features if f[:4] == 'TAIL'}
 
     def needs_valuation(X):
-        if not X.sustains_reference() and X.get_unvalued_phi():
-            return X.get_unvalued_phi()
+        if not X.sustains_reference() and X.get_unvalued_minimal_phi():
+            return X.get_unvalued_minimal_phi()
 
     def phi_is_unvalued(X):
         for f in X.head().features:
@@ -938,8 +939,8 @@ class PhraseStructure:
                 return True
 
     def control(X):
-        unvalued_phi = X.get_unvalued_phi()
-        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not X.get_valued_phi() & {'PHI:NUM', 'PHI:PER'}:
+        unvalued_phi = X.get_unvalued_minimal_phi()
+        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not X.get_valued_phi_types() & {'PHI:NUM', 'PHI:PER'}:
             return X.standard_control()
         elif unvalued_phi & {'PHI:DET:_'}:
             return X.finite_control()
@@ -1083,7 +1084,6 @@ class PhraseStructure:
         return new_ps.get_node(X.top().get_index(target))
 
     # Support ----------------------------------------------------------------------
-
     def find_constituent_with_index(X, idx):
         if X.index() == idx:
             return X
@@ -1356,12 +1356,6 @@ class PhraseStructure:
     def nonreferential_pro(X):
         return X.check({'nonreferential_pro'})
 
-    def interpretable_phi_features(X):
-        return {f[5:] for f in X.features if f.startswith('iPHI:')}
-
-    def phi_features(X):
-        return {f[4:] for f in X.features if f.startswith('PHI:') and not f.endswith('_')}
-
     def preposition(X):
         return X.check({'P'})
 
@@ -1429,7 +1423,7 @@ class PhraseStructure:
         return X.zero_level() and X.check_some(PhraseStructure.phase_heads) and not X.check_some(PhraseStructure.phase_heads_exclude)
 
     def extended_subject(X):
-        return X.check_some({'GEN'})
+        return X.check({'GEN'})
 
     def highest_finite_head(X):
         return X.check({'Fin'}) and not X.check_some({'C', 'FORCE'}) and not (X.selector() and X.selector().check_some({'T', 'COPULA', 'Fin'}))
@@ -1440,12 +1434,6 @@ class PhraseStructure:
     def expletive(X):
         return X.head().check({'EXPL'})
 
-    def open_class(X):
-        return X.head().check_some({'N', 'V', 'P', 'A'})
-
-    def licensed_expletive(X, phrase):
-        return phrase.expletive() and X.head().check_some({'SPEC:EXPL', '!SPEC:EXPL'})
-
     def theta_marks(X, target):
         if X.sister() == target:
             return X.theta_predicate()
@@ -1454,20 +1442,17 @@ class PhraseStructure:
     def independent_pro_from_overt_agreement(X):
         return X.check_some({'weak_pro', 'strong_pro'})
 
-    def has_linked_argument(X):
-        return {f for f in X.head().features if f.startswith('PHI:IDX:')}
+    def get_valued_phi_types(X):
+        return {f[:7] for f in X.features if valued_phi_feature(f)}
 
-    def get_valued_phi(X):
-        return {f[:7] for f in X.features if f[:4] == 'PHI:' and f[-1] != '_'}
-
-    def get_unvalued_phi(X):
-        return {phi for phi in X.features if phi[-1] == '_' and (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:7] == 'PHI:DET')}
+    def get_unvalued_minimal_phi(X):
+        return {x for x in X.features if x[-1] == '_' and x[:7] in {'PHI:NUM', 'PHI:PER', 'PHI:DET'}}
 
     def phi_bundles(X):
         return [set(phi[4:].split(',')) for phi in X.features if valued_phi_feature(phi) and not phi.startswith('i') and not 'IDX' in phi]
 
-    def type_match(X, phi, phi_):
-        return phi.split(':')[1] == phi_.split(':')[1]
+    def phi_features(X):
+        return {f[4:] for f in X.features if f.startswith('PHI:') and not f.endswith('_')}
 
     def EF(X):
         return {x for x in X.features if x == 'EF'}
@@ -1496,3 +1481,6 @@ class PhraseStructure:
                 node = x.find_node_with_identity(identity)
                 if node:
                     return node
+
+    def has_linked_argument(X):
+        return {f for f in X.head().features if f.startswith('PHI:IDX:')}

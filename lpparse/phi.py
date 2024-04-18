@@ -1,0 +1,31 @@
+import itertools
+
+def phi_feature(f):
+    return 'PHI:' in f
+
+def interpretable_phi_feature(f):
+    return f.startswith('iPHI')
+
+def unvalued_phi_feature(f):
+    return phi_feature(f) and f[-1] == '_'
+
+def valued_phi_feature(f):
+    return phi_feature(f) and f[-1] != '_'
+
+def interpretable_phi_features(probe):
+    return {phi for phi in probe.head().features if interpretable_phi_feature(phi)}
+
+def feature_licensing(G, PP):
+    return not mismatch(G - set().union(*{frozenset(phi) for phi in PP if phi <= G}), set().union(*PP))
+
+def mismatch(G, P):
+    return {(p, g) for p, g in itertools.product(G, P) if type_value_mismatch(p, g)}
+
+def type_value_mismatch(p, g):
+    return p.split(':')[0] == g.split(':')[0] and p.split(':')[1] != g.split(':')[1]
+
+def i(phi):
+    if interpretable_phi_feature(phi):
+        return phi[1:]
+    return phi
+

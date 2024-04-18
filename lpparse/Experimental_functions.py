@@ -58,7 +58,7 @@ class ExperimentalFunctions:
             X.features.discard('-PER')      #
             X.features.discard('weak_pro')  #   This removes the pro-projection principle
             if X.sister():
-                goal = next(X.sister().minimal_search(lambda x: goal_selection(x), lambda x: not self.standard_Chomskian_phase_head(x)), None)
+                goal = next((x for x in X.sister().minimal_search(lambda x: self.standard_Chomskian_phase_head(x)) if lambda x: goal_selection(x)), None)
                 value_from_goal(X, goal)
         Agree(X)
 
