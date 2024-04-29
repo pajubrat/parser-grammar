@@ -9,7 +9,6 @@ major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'T
               'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
               'FORCE', 'EXPL', 'Adv', 'Pr',
               '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z']
-Result = namedtuple('Result', 'match_occurred outcome')
 
 
 class PhraseStructure:
@@ -808,11 +807,11 @@ class PhraseStructure:
 
     # Feature processing -----------------------------------------------------------------------------
 
-    def check(X, feature_set):
-        return feature_set == {'*'} or feature_set <= X.head().features
+    def check(X, fset):
+        return fset <= X.head().features
 
-    def check_some(X, feature_set):
-        return feature_set == {'*'} or feature_set & X.head().features
+    def check_some(X, fset):
+        return fset & X.head().features
 
     def complements_not_licensed(X):
         return {f[6:] for f in X.features if f[:5] == '-COMP'}
@@ -835,7 +834,7 @@ class PhraseStructure:
         return {f for f in X.features if 'PHI:' in f and f[-1] != '_'}
 
     def get_pf(X):
-        return {feature[3:] for feature in X.features if feature[:3] == 'PF:'}
+        return {f[3:] for f in X.features if f[:3] == 'PF:'}
 
     def get_phi_set(X):
         return {f for f in X.features if f[:4] == 'PHI:' and len(f.split(':')) == 3}

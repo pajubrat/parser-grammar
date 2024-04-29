@@ -63,8 +63,9 @@ class LF:
 
     # This will be removed once we have a universal standard
     def format_selection_feature(self, f):
-        if f == 'p':
-            return f, f
+        # Replace * with empty set (no features required, e.g. !COMP:*)
+        if len(f) == 7 and f[6] == '*':
+            return f[:5], set()
 
         # Selection features which do not have standard type:value format
         if ':' not in f and f[0] in self.selection_violation_test.keys():

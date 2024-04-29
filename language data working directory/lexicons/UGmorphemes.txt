@@ -74,17 +74,17 @@ P0			:: PF:-Ø LF:in P LANG:FI
 		
 		# verbal
 		
-		(t)A,A/inf			:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event -COMP:N !COMP:* -COMP:EVE -COMP:n -COMP:EVE2 -COMP:IMPSS -COMP:A/inf LANG:FI PROBE:V
-		vAn,VA/inf			:: VA/inf 		EF	Inf T   ARG	+ΦLF,ΦPF -ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to -COMP:N -SPEC:N !COMP:*  PROBE:V LANG:FI
-		essA,ESSA/inf		:: ESSA/inf		EF	Inf Adv ARG ?ΦLF,ΦPF 			PF:-essA 	PC:#X LF:while !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
-		tUA,TUA/inf 		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	PC:#X LF:after !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
-		kse,KSE/inf			:: KSE/inf		EF	Inf Adv ARG	-ΦLF !ΦPF			PF:-kse 	PC:#X LF:for !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
-		en,E/inf			:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  			PF:-en 		PC:#X LF:by !COMP:* -COMP:N PROBE:V LANG:FI TAIL:T
-		mAssA,MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAssA 	PC:#X LF:in !COMP:* -COMP:N PROBE:V LANG:FI TAIL:V	MA/inf
-		mAttA,MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAttA 	PC:#X LF:without -COMP:N !COMP:* PROBE:V LANG:FI TAIL:T MA/inf
-		mAllA,MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAllA 	PC:#X LF:by -COMP:N !COMP:* PROBE:V LANG:FI TAIL:V MA/inf
-		mAstA,MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 			PF:-mAstA 	PC:#X LF:without !COMP:* -COMP:N PROBE:V LANG:FI TAIL:V/TR,SEMCLASS_denied_event MA/inf
-		mAAn,MA.ill/inf		:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	PC:#X LF:to SEM/desired_event !COMP:* -COMP:N PROBE:V LANG:FI adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf
+		(t)A,A/inf			:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event -COMP:N !COMP:* -COMP:EVE -COMP:n -COMP:EVE2 -COMP:IMPSS -COMP:A/inf LANG:FI COMP:V PROBE:V
+		vAn,VA/inf			:: VA/inf 		EF	Inf T   ARG	+ΦLF,ΦPF -ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to -COMP:N -SPEC:N !COMP:*  PROBE:V COMP:V LANG:FI
+		essA,ESSA/inf		:: ESSA/inf		EF	Inf Adv ARG ?ΦLF,ΦPF 			PF:-essA 	PC:#X LF:while !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:T
+		tUA,TUA/inf 		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	PC:#X LF:after !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:T
+		kse,KSE/inf			:: KSE/inf		EF	Inf Adv ARG	-ΦLF !ΦPF			PF:-kse 	PC:#X LF:for !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:T
+		en,E/inf			:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  			PF:-en 		PC:#X LF:by !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:T
+		mAssA,MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAssA 	PC:#X LF:in !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:V	MA/inf
+		mAttA,MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAttA 	PC:#X LF:without -COMP:N !COMP:* PROBE:V COMP:V LANG:FI TAIL:T MA/inf
+		mAllA,MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAllA 	PC:#X LF:by -COMP:N !COMP:* PROBE:V COMP:V LANG:FI TAIL:V MA/inf
+		mAstA,MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 			PF:-mAstA 	PC:#X LF:without !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:V/TR,SEMCLASS_denied_event MA/inf
+		mAAn,MA.ill/inf		:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	PC:#X LF:to SEM/desired_event !COMP:* -COMP:N PROBE:V COMP:V LANG:FI adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf
 		# Includes also v, T
 		
 		impss		:: IMPSS	V												PF:-TA 		PC:#X# LF:impss SPEC:φ COMP:V -COMP:IMPSS
