@@ -10,15 +10,15 @@ class LexicalInterface:
     def __init__(self, speaker_model):
         self.speaker_model = speaker_model
         self.PhraseStructure = phrase_structure.PhraseStructure
-        self.surface_lexicon = defaultdict(list)
+        self.speaker_lexicon = defaultdict(list)
         self.redundancy_rules = self.load_redundancy_rules()
         self.language = self.speaker_model.language
 
     def lexical_retrieval(self, phon):
         log(f'\n\tNext morpheme /{phon}/ retrieves ')
         phon, onset, offset = self.phonological_context(phon)
-        if phon in self.surface_lexicon:
-            lexical_items_lst = [lex.copy().set_phonological_context(onset, offset) for lex in self.surface_lexicon[phon] if
+        if phon in self.speaker_lexicon:
+            lexical_items_lst = [lex.copy().set_phonological_context(onset, offset) for lex in self.speaker_lexicon[phon] if
                                  self.language_match(lex) and self.phonological_context_match(lex, onset, offset)]
         else:
             lexical_items_lst = [self.unknown_word(phon)]
@@ -82,7 +82,16 @@ class LexicalInterface:
         for i in range(2):                                                  #   Apply twice (so as to allow added features to trigger further rules)
             for f in self.redundancy_rules:
                 antecedent_trigger_set = set(f.split())
-                if antecedent_trigger_set <= feature_set:                   #   If the antecedent features all match,
+                matched_features = 0
+                for feat in antecedent_trigger_set:
+                    if feat.endswith('..'):
+                        for g in feature_set:
+                            if g.startswith(feat[:-2]):
+                                matched_features += 1
+                    else:
+                        if feat in feature_set:
+                            matched_features += 1
+                if len(antecedent_trigger_set) <= matched_features:
                     new_features_to_add |= set(self.redundancy_rules[f])    #   we add the redundancy features
 
             # Resolve conflicts in favor of language specific lexical features
@@ -109,22 +118,19 @@ class LexicalInterface:
         return redundancy_rules_dict
 
     def load_lexicons(self, settings):
-        self.surface_lexicon = {}
+        self.speaker_lexicon = {}
         for lexicon_file in [file.strip() for file in settings.retrieve('file_lexicons', '').split(';')]:
-            self.load_lexicon(settings.folders['lexicon'] / lexicon_file)
+            self.load_and_create_lexicon(settings.folders['lexicon'] / lexicon_file)
 
-    def load_lexicon(self, lexicon_file):
-
-        # Read the entries from the lexicon file (each line = one lexical entry)
+    def load_and_create_lexicon(self, lexicon_file):
         lexical_entries = []
         if lexicon_file:
             lexical_entries = open(lexicon_file, encoding='utf8').readlines()
 
-        # Process the file line-by-line (entry-by-entry)
         for line in lexical_entries:
-            if not line or '::' not in line or line.startswith('#'):                                #   Ignore comments and empty lines
+            if not line or '::' not in line or line.startswith('#'):            #   Ignore comments and empty lines
                 continue
-            line = line.strip()                                                 # remove extra spaces
+            line = line.strip()                                                 #   Remove extra spaces
             phonological_entries, lexical_features = line.split('::')           #   Separate key and value, by symbol '::'
             phonological_entries = phonological_entries.strip().split(',')      #   Remove extra spaces, create set of allomorphs
             lexical_features = [f.strip() for f in lexical_features.split()]    #   Create the feature list
@@ -132,6 +138,6 @@ class LexicalInterface:
                 lexical_features.append(self.language)
             for p in phonological_entries:
                 lex = LexicalItem(p, self.apply_redundancy_rules(lexical_features))
-                if p not in self.surface_lexicon.keys():
-                    self.surface_lexicon[p] = []
-                self.surface_lexicon[p].append(lex)
+                if p not in self.speaker_lexicon.keys():
+                    self.speaker_lexicon[p] = []
+                self.speaker_lexicon[p].append(lex)

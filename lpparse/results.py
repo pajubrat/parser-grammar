@@ -180,14 +180,12 @@ class Results():
                 for f in fset:
                     feature_stri += f'[{f}] '
                     i += len(f) + 3
-                    if i > 70:
+                    if i > 100:
                         feature_stri += '\n\t\t\t\t\t'
                         i = 0
-                if '\t' != feature_stri[-1] and fset:
+                if (feature_stri and '\t' != feature_stri[-1]) and fset and i > 100:
                     feature_stri += '\n\t\t\t\t\t'
                     i = 0
-            if '\t' != feature_stri[-1]:
-                feature_stri += '\n'
             return feature_stri
 
         reply = ''

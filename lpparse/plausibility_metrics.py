@@ -43,9 +43,8 @@ class PlausibilityMetrics:
                                                  'weight': self.speaker_model.settings.retrieve('positive_adverbial_test', 100),
                                                  'log': '+Adverbial condition'}
              }
-        self.word_specs = None
+
         self.not_word_specs = None
-        self.rare_word_specs = None
         self.word_tail_set = None
         self.address_label = 0
         self.left_branch_filter_test_battery = [('Selection test', self.speaker_model.LF.selection_test),
@@ -56,9 +55,7 @@ class PlausibilityMetrics:
     def initialize(self):
         self.weighted_site_list = []
         self.word = None
-        self.word_specs = None
         self.not_word_specs = None
-        self.rare_word_specs = None
         self.word_tail_set = None
 
     def filter_and_rank(self, ps, w):
@@ -118,21 +115,17 @@ class PlausibilityMetrics:
 
     @knockout_lexical_ranking
     def positive_spec_selection(self, site):
-        return (site.complex() or 'D' in site.features) and self.word_specs & site.head().features
+        return (site.complex() or 'D' in site.features) and not self.not_word_specs & site.head().features
 
     @knockout_lexical_ranking
     def negative_spec_selection(self, site):
         return site.complex() and self.not_word_specs & site.head().features
 
     @knockout_lexical_ranking
-    def rare_spec_selection(self, site):
-        return site.complex() and self.rare_word_specs & site.head().features
-
-    @knockout_lexical_ranking
     def break_head_comp_relations(self, site):
         if not site.zero_level() and site.mother_ and \
                 site.mother_.left() and site.mother_.left().zero_level():
-            if site.mother_.left().licensed_complements() & site.features:
+            if not site.mother_.left().nonlicensed_complements() & site.features:
                 if not self.word.adverbial():
                     return True
 
@@ -140,15 +133,15 @@ class PlausibilityMetrics:
     def positive_head_comp_selection(self, site):
         if site.zero_level():
             for m in site.get_affix_list():
-                if self.word.features & convert_features_for_parsing(m.licensed_complements()):
+                if not self.word.features & convert_features_for_parsing(m.nonlicensed_complements()):
                     return True
 
     @knockout_lexical_ranking
     def negative_head_comp_selection(self, site):
         if site.zero_level():
             m = site.bottom_affix()
-            if self.word.features & convert_features_for_parsing(m.complements_not_licensed()):
-                log(f'{self.word.features & convert_features_for_parsing(m.complements_not_licensed())}')
+            if self.word.features & convert_features_for_parsing(m.nonlicensed_complements()):
+                log(f'{self.word.features & convert_features_for_parsing(m.nonlicensed_complements())}')
                 return True
 
     @knockout_lexical_ranking
@@ -189,9 +182,7 @@ class PlausibilityMetrics:
 
     def rank_merge_right_(self, site_list, word):
         self.word = word
-        self.word_specs = convert_features_for_parsing(word.licensed_specifiers())
         self.not_word_specs =  convert_features_for_parsing(word.specifiers_not_licensed())
-        self.rare_word_specs = convert_features_for_parsing(word.rare_specs())
         self.word_tail_set = word.get_tail_sets()
 
         # Create baseline default weighting order (default order is decided by input parameters in study config file)

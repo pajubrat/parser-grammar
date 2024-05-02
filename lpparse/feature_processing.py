@@ -19,5 +19,7 @@ def negative_features(features_to_check):
 def positive_features(features_to_check):
     return {feature for feature in features_to_check if feature[0] != '*' and feature[0] != '$'}
 
+def well_formed_phi_level_feature(f):
+    return f.startswith('Φ/') and f[2].isdigit()
 
 

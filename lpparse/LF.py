@@ -11,7 +11,7 @@ class LF:
     def __init__(self, controlling_parsing_process):
         self.brain_model = controlling_parsing_process
         self.failed_feature = ''
-        self.LF_legibility_tests = [('Edge feature test', PhraseStructure.edge_feature_tests),
+        self.LF_legibility_tests = [
                                     ('Selection test', self.selection_test),
                                     ('Projection Principle', PhraseStructure.projection_principle_failure),
                                     ('Head Integrity test', PhraseStructure.unrecognized_label),
@@ -21,6 +21,7 @@ class LF:
                                     ('Double Specifier Filter', PhraseStructure.double_spec_filter),
                                     ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
                                     ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
+                                    ('Phi Level test', PhraseStructure.phi_level_violation),
                                     ('External head merge test', PhraseStructure.Complex_Head_Integrity)]
 
         self.selection_violation_test = {'1EDGE': PhraseStructure.selection__negative_one_edge,
@@ -42,7 +43,7 @@ class LF:
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(ps):
                         if logging:
-                            log(f'\n\t\t{ps} failed {test_name} ')
+                            log(f'\n\t\t{ps} ({ps.max().illustrate()}) failed {test_name} ')
                             if self.failed_feature:
                                 log(f'for [{self.failed_feature}]')
                         self.error_report_for_external_callers = f'{ps} failed {test_name}.'  # For plausibility metrics calculations and output

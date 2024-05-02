@@ -1,46 +1,66 @@
 
-# ======================================================================================
-# Universal language-invariant morphemes are collected here
-# =======================================================================================
+# ======================================
+# Universal language-invariant morphemes
+# ======================================
+# This list defines symbols available for input words and
+# decompositions (left column). Most of their properties are 
+# defined by lexical redundancy rules.
+#
+# Note: The items in the left are names for lexical entries, 
+# they are not (necessarily) the same as the corresponding features
 
-T/fin   :: T/fin LF:T
-v       :: v V PF:v LF:v -COMP:REFL/V -COMP:IMPSS PC:#X
-v*		:: v V PF:-ed v- LF:pass -θ EF PC:#X
-C/fin   :: C/fin PF:C LF:C
-C		:: C C/fin LF:C
-Cpol	:: C C/fin PF:C LF:C POL FOC
-T		:: T LF:T Fin EF
-T/prt 	:: T/prt LF:Prtc
-Fin		:: Fin LF:Fin ARG COMP:T +ΦLF,ΦPF 	
-a0		:: A PF:a LF:a COMP:A
-cau		:: PF:Cau LF:cause
-φ		:: φ PF:φ LF:φ ARG Inf
-Agr		:: Agr EF PF:Agr LF:Agr ARG Fin COMP:T
-N		:: N PF:N LF:N COMP:0
-Pr		:: θ Pr PF:-0 LF:Pr ESS !COMP:N SPEC:φ
-Pr2		:: θ Pr PF:-0 LF:Pr TRA !COMP:A SPEC:φ
+# Left periphery
 
-# Tense
-prs		:: inflectional prs
-pst		:: inflectional pst 
-cond	:: inflectional cond
-pot		:: inflectional pot
+	FORCE	:: FORCE Fin
+	C/fin   :: C/fin PF:C LF:C
+	C		:: C LF:C
+	Cpol	:: Cpol PF:C LF:C
+	T/fin   :: T/fin LF:T
+	Neg/fin :: Neg/fin
+	Fin		:: Fin LF:Fin	
 
-# Infinitivals
-Inf			:: PF:Inf LF:inf
-prtcpl		:: Inf T T/prt PF:T/prt LF:prtcpl
+# Verbal domain
 
-# Expletives
-D/expl		:: EXPL PF:expl PHI:PER:3 LF:expl COMP:N -SPEC:*
-EXPL		:: N#D/expl
+	T		:: Fin T LF:T
+	T/prt 	:: T/prt LF:Prtc
+	BE-		:: COPULA LF:be
+	v       :: v PF:v LF:v
+	v*		:: v* PF:-ed LF:pass
+	V   	:: V LF:V PF:V
+	cau		:: Cau PF:Cau LF:Cause
+	Pr		:: Pr PF:-0 LF:Pr
+	Pr2		:: Pr PF:-0 LF:Pr
 
-# English
-to/inf		:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable
-to^			:: Inf TO/inf EF PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v ARG? !PROBE:V adjoinable 
+# Nominal domain
 
-# Finnish prepositions (semantic cases)
-P(ine)		:: PF:-ssA LF:in P LANG:FI
-P0			:: PF:-Ø LF:in P LANG:FI
+	a0		:: a0 PF:a LF:
+	a		:: a LF:a PF:a
+	A 		:: A LF:A PF:A
+	DET		:: DET LF:DET PF:DET
+	Qn		:: Qn LF:Qn PF:Qn
+	P   	:: P LF:P LF:P
+	φ		:: φ PF:φ LF:φ
+	Agr		:: Agr PF:Agr LF:Agr
+	N		:: N PF:N LF:N
+	Num		:: Num PF:Num LF:Num
+	D(3sg)	:: D PF:D LF:det iPHI:NUM:SG iPHI:PER:3 iPHI:DET:DEF
+	D		:: φ D PF:D LF:D R:NEW:$$$/SUR
+	D/rel	:: φ D D/rel φ PF:D/rel LF:det/rel adjoinable OP OP:REL
+	D/pro	:: φ D PF:D LF:D R:NEW:REF -R:NEW:$$$/SUR
+	D/refl 	:: φ D PF:D LF:D R:OLD:REF -R:NEW:$$$/SUR
+	P		:: P PF:P LF:prep
+	pro		:: pro-#D
+	pro-	:: PF:(pro) LF:pro N PHI
+	cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL LANG:IT
+	inc		:: inflectional INCORPORATED
+	
+# Others
+
+	Inf		:: Inf LF:Inf PF:Inf
+	Adv 	:: Adv
+	prtcpl	:: Inf T T/prt PF:T/prt LF:prtcpl
+	D/expl	:: EXPL PF:expl PHI:PER:3 LF:expl -SPEC:*
+	EXPL	:: N#D/expl
 
 # FINNISH DERIVATIONAL MORPHOLOGY
 
@@ -48,109 +68,99 @@ P0			:: PF:-Ø LF:in P LANG:FI
 		
 		# Verbal
 		
-		TA				:: V CAU ε 		 	PF:-TA		LF:cause LANG:FI V/TR
-		ile,ele,skele	:: V FREQ ε			PF:-ile		LF:frequent LANG:FI -wCOMP:FREQ,EVE2,MOM2
-		U,UTU			:: V REFL ε			PF:-utu		LF:become LANG:FI -wCOMP:FREQ,V/INTR,EVE2 V/INTR
-		AhtA			:: V MOM1 ε			PF:-AhtA	LF:moderated LANG:FI !wCOMP:V,V/INTR -wCOMP:ε
-		Aise			:: V MOM2 ε			PF:-Aise	LF:moderated LANG:FI !wCOMP:V,V/TR -wCOMP:ε
-		a				:: a-#v 						LANG:FI
-		a-				:: V EVNT ε			PF:-a		LF:event LANG:FI !wCOMP:N -wCOMP:ε,n,a
+		TA				:: V CAU ε 	PF:-TA		LF:cause V/TR LANG:FI
+		ile,ele,skele	:: V FREQ ε	PF:-ile		LF:frequent -wCOMP:FREQ,EVE2,MOM2 LANG:FI
+		U,UTU			:: V REFL ε	PF:-utu		LF:become -wCOMP:FREQ,V/INTR,EVE2 V/INTR LANG:FI
+		AhtA			:: V MOM1 ε	PF:-AhtA	LF:moderated !wCOMP:V,V/INTR -wCOMP:ε LANG:FI
+		Aise			:: V MOM2 ε	PF:-Aise	LF:moderated !wCOMP:V,V/TR -wCOMP:ε LANG:FI
+		a				:: a-#v 				LANG:FI
+		a-				:: V EVNT ε	PF:-a		LF:event !wCOMP:N -wCOMP:ε,n,a LANG:FI
 			
 		# Nominal
 		
-		O,ntO			:: N EVE ε			PF:-O		LF:action	LANG:FI !wCOMP:V -wCOMP:CAU,REFL,MOM1
-		Us,Ude			:: N EVE2 ε			PF:-Us		LF:action	LANG:FI !wCOMP:V -wCOMP:FREQ,MOM2
-		stO				:: N COL ε			PF:-stO		LF:group	LANG:FI !wCOMP:N -wCOMP:COL
-		(t)e			:: N RSLT ε			PF:-(t)e	LF:result	LANG:FI !wCOMP:V
-		lAinen,lAise	:: N PER ε			PF:-lAinen	LF:person	LANG:FI !wCOMP:N
-		lise			:: N ε				PF:-lise-	LF:owner	LANG:FI !wCOMP:N
+		O,ntO			:: N EVE ε	PF:-O		LF:action	!wCOMP:V -wCOMP:CAU,REFL,MOM1 LANG:FI
+		Us,Ude			:: N EVE2 ε	PF:-Us		LF:action	!wCOMP:V -wCOMP:FREQ,MOM2 LANG:FI
+		stO				:: N COL ε	PF:-stO		LF:group	!wCOMP:N -wCOMP:COL LANG:FI
+		(t)e			:: N RSLT ε	PF:-(t)e	LF:result	!wCOMP:V LANG:FI
+		lAinen,lAise	:: N PER ε	PF:-lAinen	LF:person	!wCOMP:N LANG:FI
+		lise			:: N ε		PF:-lise-	LF:owner	!wCOMP:N LANG:FI
 
 		# Adjectival
 		
-		ise		:: A QLT ε					PF:-ise		LF:quality	LANG:FI	-wCOMP:V,EVE2
-		mAise	:: A QLT ε					PF:-mAise	LF:quality	LANG:FI !wCOMP:N
+		ise				:: A QLT ε	PF:-ise		LF:quality	-wCOMP:V,EVE2 LANG:FI
+		mAise			:: A QLT ε	PF:-mAise	LF:quality	!wCOMP:N LANG:FI
 			
 	# Outer layer (layer 2)
 		
 		# verbal
 		
-		(t)A,A/inf			:: A/inf 		EF	Inf 	ARG? -ΦPF 				PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event -COMP:N !COMP:* -COMP:EVE -COMP:n -COMP:EVE2 -COMP:IMPSS -COMP:A/inf LANG:FI COMP:V PROBE:V
-		vAn,VA/inf			:: VA/inf 		EF	Inf T   ARG	+ΦLF,ΦPF -ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to -COMP:N -SPEC:N !COMP:*  PROBE:V COMP:V LANG:FI
-		essA,ESSA/inf		:: ESSA/inf		EF	Inf Adv ARG ?ΦLF,ΦPF 			PF:-essA 	PC:#X LF:while !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:T
-		tUA,TUA/inf 		:: TUA/inf		EF	Inf Adv ARG	+ΦLF,ΦPF -ΦLF,ΦPF 	PF:-tUA 	PC:#X LF:after !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:T
-		kse,KSE/inf			:: KSE/inf		EF	Inf Adv ARG	-ΦLF !ΦPF			PF:-kse 	PC:#X LF:for !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:T
-		en,E/inf			:: E/inf 		EF	Inf Adv ARG	-ΦLF -ΦPF  			PF:-en 		PC:#X LF:by !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:T
-		mAssA,MA.ine/inf	:: MA.ine/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAssA 	PC:#X LF:in !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:V	MA/inf
-		mAttA,MA.abe/inf	:: MA.abe/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAttA 	PC:#X LF:without -COMP:N !COMP:* PROBE:V COMP:V LANG:FI TAIL:T MA/inf
-		mAllA,MA.ade/inf	:: MA.ade/inf	EF	Inf Adv ARG	-ΦLF -ΦPF			PF:-mAllA 	PC:#X LF:by -COMP:N !COMP:* PROBE:V COMP:V LANG:FI TAIL:V MA/inf
-		mAstA,MA.ela/inf	:: MA.ela/inf	EF	Inf Adv ARG	-ΦLF -ΦPF 			PF:-mAstA 	PC:#X LF:without !COMP:* -COMP:N PROBE:V COMP:V LANG:FI TAIL:V/TR,SEMCLASS_denied_event MA/inf
-		mAAn,MA.ill/inf		:: MA.ill/inf	EF	Inf		ARG	-ΦLF -ΦPF 			PF:-mAAn 	PC:#X LF:to SEM/desired_event !COMP:* -COMP:N PROBE:V COMP:V LANG:FI adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf
-		# Includes also v, T
+		(t)A,A/inf			:: A/inf 		Inf 	Φ/? -ΦPF 	PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event -COMP:N -COMP:EVE -COMP:n -COMP:EVE2 -COMP:IMPSS -COMP:A/inf !PROBE:V LANG:FI
+		vAn,VA/inf			:: VA/inf 		Inf T  	-ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to -COMP:N -SPEC:N !PROBE:V LANG:FI
+		essA,ESSA/inf		:: ESSA/inf		Inf Adv ?ΦLF		PF:-essA 	PC:#X LF:while -COMP:N !PROBE:V TAIL:T LANG:FI
+		tUA,TUA/inf 		:: TUA/inf		Inf Adv	-ΦLF,ΦPF	PF:-tUA 	PC:#X LF:after -COMP:N !PROBE:V TAIL:T LANG:FI
+		kse,KSE/inf			:: KSE/inf		Inf Adv -ΦLF !ΦPF	PF:-kse 	PC:#X LF:for -COMP:N !PROBE:V LANG:FI TAIL:T
+		en,E/inf			:: E/inf 		Inf Adv OC  		PF:-en 		PC:#X LF:by -COMP:N !PROBE:V TAIL:T LANG:FI
+		mAssA,MA.ine/inf	:: MA.ine/inf	Inf Adv OC			PF:-mAssA 	PC:#X LF:in -COMP:N !PROBE:V TAIL:V	MA/inf LANG:FI T
+		mAttA,MA.abe/inf	:: MA.abe/inf	Inf Adv OC			PF:-mAttA 	PC:#X LF:without -COMP:N !COMP:* !PROBE:V TAIL:T MA/inf LANG:FI
+		mAllA,MA.ade/inf	:: MA.ade/inf	Inf Adv OC			PF:-mAllA 	PC:#X LF:by -COMP:N !PROBE:V TAIL:V MA/inf LANG:FI
+		mAstA,MA.ela/inf	:: MA.ela/inf	Inf Adv OC 			PF:-mAstA 	PC:#X LF:without -COMP:N !PROBE:V TAIL:V/TR,SEMCLASS_denied_event MA/inf LANG:FI
+		mAAn,MA.ill/inf		:: MA.ill/inf	Inf		OC 			PF:-mAAn 	PC:#X LF:to SEM/desired_event -COMP:N !PROBE:V adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf LANG:FI
 		
-		impss		:: IMPSS	V												PF:-TA 		PC:#X# LF:impss SPEC:φ COMP:V -COMP:IMPSS
-		impss1		:: Pass ARG PC:#X# PF:-TA LF:Pass EF !COMP:v 
+		impss		:: IMPSS	V								PF:-TA 		PC:#X# LF:impss -COMP:IMPSS
+		impss1		:: Pass Φ/1 PC:#X# PF:-TA LF:Pass !COMP:v 
 		
 		# nominal
 		
-			minen		:: n ABS	EF	ARG 	PF:-minen		PC:#X LF:abstr	NOM 	!COMP:V					LANG:FI 
-			UUs,UUde	:: n QUA	EF	ARG		PF:-(U)Us		PC:#X LF:abstr	NOM 	!COMP:A					LANG:FI
-			tAr			:: n FEM	EF	ARG		PF:-tAr			PC:#X LF:fem			!COMP:N -COMP:EVE2		LANG:FI	
-			nen,se		:: n DIM	EF	ARG		PF:-nen			PC:#X LF:dim			!COMP:N					LANG:FI 
-			lA			:: n PLC	EF	ARG		PF:-lA			PC:#X LF:place			!COMP:N 				LANG:FI 
-			mO			:: n PLC	EF	ARG	 	PF:-mO			PC:#X LF:place			!COMP:V					LANG:FI 
-			ri			:: n PER	EF	ARG	 	PF:-ri			PC:#X LF:person			!COMP:N -COMP:EVE2		LANG:FI 
-			jA			:: n ACT	EF	ARG	 	PF:-jA			PC:#X LF:doer			!COMP:V 				LANG:FI 
-			in			:: n INST	EF	ARG	 	PF:-in			PC:#X LF:instr			!COMP:V					LANG:FI 
-			mise		:: n ABS	EF	ARG		PF:-minen		PC:#X# LF:abstr			!COMP:V					LANG:FI
+			minen		:: n ABS	PF:-minen	PC:#X LF:abstr	NOM !COMP:V	LANG:FI 
+			UUs,UUde	:: n QUA	PF:-(U)Us	PC:#X LF:abstr	NOM !COMP:A	LANG:FI
+			tAr			:: n FEM	PF:-tAr		PC:#X LF:fem		!COMP:N LANG:FI	-COMP:EVE2	
+			nen,se		:: n DIM	PF:-nen		PC:#X LF:dim		!COMP:N	LANG:FI 
+			lA			:: n PLC	PF:-lA		PC:#X LF:place		!COMP:N LANG:FI 
+			mO			:: n PLC	PF:-mO		PC:#X LF:place		!COMP:V	LANG:FI 
+			ri			:: n PER	PF:-ri		PC:#X LF:person		!COMP:N LANG:FI -COMP:EVE2
+			jA			:: n ACT	PF:-jA		PC:#X LF:doer		!COMP:V LANG:FI 
+			in			:: n INST	PF:-in		PC:#X LF:instr		!COMP:V	LANG:FI 
+			mise		:: n ABS	PF:-minen	PC:#X# LF:abstr		!COMP:V	LANG:FI
 			
 		# Adjectival
 		
-			inen	:: a QLT					PF:-inen		PC:#X LF:quality 		-COMP:V,v,EVE2,FEM,ABS,QLT LANG:FI
-			mAinen	:: a KIND	EF	INF	ARG		PF:mAinen		PC:#X LF:kind 			!COMP:N -COMP:ABS 		LANG:FI
-			llinen	:: a OWN 					PF:-llinen		PC:#X LF:owner 			!COMP:N -COMP:ABS 		LANG:FI 
-			mAtOn	:: a POL1					PF:-mAtOn		PC:#X LF:polarity 		!COMP:V 				LANG:FI
-			tOn		:: a POL2					PF:-tOn			PC:#X LF:polarity		!COMP:N -COMP:ABS,FEM,DIM,INST,EVE2,RSLT			LANG:FI
-			hkO		:: a MOD					PF:-hkO			PC:#X LF:moderate		!COMP:A					LANG:FI
+			inen	:: a QLT	PF:-inen	PC:#X LF:quality 	-COMP:V,v,EVE2,FEM,ABS,QLT LANG:FI
+			mAinen	:: a KIND	PF:mAinen	PC:#X LF:kind 		!COMP:N -COMP:ABS 		LANG:FI
+			llinen	:: a OWN 	PF:-llinen	PC:#X LF:owner 		!COMP:N -COMP:ABS 		LANG:FI 
+			mAtOn	:: a POL1	PF:-mAtOn	PC:#X LF:polarity 	!COMP:V 				LANG:FI
+			tOn		:: a POL2	PF:-tOn		PC:#X LF:polarity	!COMP:N -COMP:ABS,FEM,DIM,INST,EVE2,RSLT			LANG:FI
+			hkO		:: a MOD	PF:-hkO		PC:#X LF:moderate	!COMP:A					LANG:FI
 
 		# Participles
 		
-			mA		:: a MA/a	EF	Inf	ARG +ΦLF,ΦPF	PF:-mA	PC:#X LF:prtc		COMP:v !COMP:V -COMP:V/INTR	LANG:FI
-			vA		:: a VA/a		Inf	-ΦPF -ΦLF	PF:-vA 	PC:#X LF:prtc		!COMP:V COMP:IMPSS LANG:FI 
+			mA		:: a MA/a	Inf	Φ/2		PF:-mA	PC:#X LF:prtc	!COMP:V -COMP:V/INTR	LANG:FI
+			vA		:: a VA/a	Inf	OC		PF:-vA 	PC:#X LF:prtc	!COMP:V LANG:FI 
 			
 		# Special purpose elements
 		
-			mista	:: n ABS	EF	ARG 		PF:-mista	PC:#X LF:abstr	NOM 	!COMP:V					LANG:FI 
-			n0		:: n		EF	ARG			PF:-0		PC:#X LF:n	 			!COMP:* LANG:FI
-			TA*		:: V CAU 		 	 								PF:-TA		LF:cause  V/TR COMP:V LANG:FI
-			U*		:: V REFL											PF:-utu		LF:become V/INTR COMP:V COMP:CAU LANG:FI
+			mista	:: n ABS	PF:-mista	PC:#X LF:abstr	NOM !COMP:V LANG:FI 
+			n0		:: n		PF:-0		PC:#X LF:n	 		!COMP:* LANG:FI
+			TA*		:: V CAU 	PF:-TA		LF:cause  			V/TR LANG:FI
+			U*		:: V REFL	PF:-utu		LF:become			V/INTR LANG:FI
+
+	# Finnish prepositions (semantic cases)
+	P(ine)		:: PF:-ssA LF:in P LANG:FI
+	P0			:: PF:-Ø LF:in P LANG:FI
+
+
 # Italian
-ARE/inf		:: ARE/inf 		EF	Inf 	ARG 	PF:are 	LF:ARE/inf -SPEC:T/fin nonadjoinable 
+ARE/inf		:: ARE/inf 	Inf 	PF:are 	LF:ARE/inf -SPEC:T/fin nonadjoinable 
 
-# Copula
-# BE-		:: V COPULA  	-ARG 				PF:BE 	LF:be COMP:φ SPEC:φ !COMP:* -COMP:T/prt -COMP:T/fin
-BE-			:: V COPULA 	-ARG 				LF:be !COMP:* COMP:T/prt -COMP:T/fin COMP:D COMP:φ
-
-# D-elements
-D(3sg)	:: D PF:D LF:det iPHI:NUM:SG iPHI:PER:3 iPHI:DET:DEF
-D		:: φ D PF:D LF:D R:NEW:$$$/SUR
-D/rel	:: φ D D/rel φ PF:D/rel LF:det/rel adjoinable
-D/pro	:: φ D PF:D LF:D R:NEW:REF -R:NEW:$$$/SUR
-D/refl 	:: φ D PF:D LF:D R:OLD:REF -R:NEW:$$$/SUR
-P		:: P PF:P LF:prep
-
-# Pronominal items
-pro		:: pro-#D
-pro-	:: PF:(pro) LF:pro N PHI
-cl		:: inflectional CL LEFT:T/fin RIGHT:ARE/inf RIGHT:PRG LEFT:D,CL LANG:IT
-inc		:: inflectional INCORPORATED
-
+# English
+to/inf		:: Inf Φ/? TO/inf PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v !PROBE:V adjoinable
+to^			:: Inf Φ/? TO/inf PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v !PROBE:V adjoinable 
 
 # Miscellanneus items
 # Possessive, as in John's, but status unclear
 poss	:: inflectional POSS
 
 # Experimental
-MA.ine/inf*	:: MA.ine/inf* 		Inf 	ARG  -ΦPF 				PF:-mA-* 	LF:ing LANG:FI !COMP:*
-A/inf*		:: A/inf 			Inf 	ARG  -ΦPF 				PF:-(t)A* 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI !COMP:*
-KSE/inf*	:: KSE/inf		EF	Inf Adv ARG	 !ΦPF	 			PF:-kse 	LF:for LANG:FI COMP:A/inf TAIL:T 	
-P*			:: 						Adv ARG  -ΦPF 				PF:-ssa* 	LF:in COMP:φ !COMP:* TAIL:V COMP:MA.ine/inf* -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
+MA.ine/inf*	:: MA.ine/inf* 	Inf 	-ΦPF 	PF:-mA-* 	LF:ing LANG:FI !COMP:*
+A/inf*		:: A/inf 		Inf 	-ΦPF 	PF:-(t)A* 	LF:to -SPEC:N -SPEC:Neg/fin SEM/desired_event LANG:FI !COMP:*
+KSE/inf*	:: KSE/inf		Inf Adv !ΦPF	PF:-kse 	LF:for LANG:FI TAIL:T 	
+P*			:: 					Adv -ΦPF 	PF:-ssa* 	LF:in !COMP:* TAIL:V -COMP:MA/A -SPEC:Neg -COMP:N -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin adjoinable -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH

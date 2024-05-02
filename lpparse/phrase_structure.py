@@ -1,6 +1,5 @@
-from collections import namedtuple
+
 from itertools import takewhile
-import itertools
 from feature_processing import *
 from phi import *
 from support import log, set_logging
@@ -37,7 +36,7 @@ class PhraseStructure:
                                        'legible': lambda x, y: x.Abar_legible(y),
                                        'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Feature': {'type': 'Feature Inheritance',
-                                       'test integrity': lambda x: x.check({'ARG?'}) or x.highest_finite_head(),
+                                       'test integrity': lambda x: x.check({'Φ/?'}) or x.highest_finite_head(),
                                        'repair': lambda x: x.feature_inheritance(),
                                        'single operation': False},
                            'A-chain':  {'type': 'Phrasal Chain',
@@ -354,7 +353,7 @@ class PhraseStructure:
         return X.check_some(set(selected_features.split(',')))
 
     def specifier_match(X, phrase):
-        return phrase.head().check_some(X.licensed_specifiers())
+        return not phrase.head().check_some(X.nonlicensed_specifiers())
 
     def specifier_mismatch(X, phrase):
         return phrase.head().check_some(X.nonlicensed_specifiers())
@@ -368,19 +367,19 @@ class PhraseStructure:
         return X.next(X.edge, lambda x: x.referential())
 
     def complement_match(X, const):
-        return const.check_some(X.licensed_complements())
+        return not const.check_some(X.nonlicensed_complements())
 
     def nonlicensed_complement(X):
-        return X.proper_selected_complement() and X.proper_selected_complement().check_some(X.complements_not_licensed())
+        return X.proper_selected_complement() and X.proper_selected_complement().check_some(X.nonlicensed_complements())
 
     def missing_mandatory_complement(X):
         return X.get_mandatory_comps() and (not X.proper_selected_complement() or not X.proper_selected_complement().check(X.get_mandatory_comps()))
 
     def complement_not_licensed(X):
-        return X.proper_selected_complement() and not X.proper_selected_complement().check(X.licensed_complements())
+        return X.proper_selected_complement() and X.proper_selected_complement().check_some(X.nonlicensed_complements())
 
     def properly_selected(X):
-        return X.selector() and X.check_some(X.selector().licensed_complements())
+        return X.selector() and not X.check_some(X.selector().nonlicensed_complements())
 
     def does_not_accept_any_complements(X):
         return X.check({'-COMP:*'})
@@ -393,13 +392,6 @@ class PhraseStructure:
 
     def probe(X, G):
         return next((x for x in X.sister() if x.check({G})), None)
-
-    def edge_feature_tests(X):
-        if 'EF' not in X.features and X.edge() and not X.edge()[0].head().check({'Adv'}):
-            if not ((X.edge()[0] == X.sister() and
-                     X.check_some({'!COMP:φ', 'COMP:φ'})) or
-                    X.check_some({'SPEC:φ', '!SPEC:φ'})):
-                return True
 
     def w_selection(X):
         for feature in X.features:
@@ -443,11 +435,12 @@ class PhraseStructure:
         """
         if X.zero_level() and X.independent_pro_from_overt_agreement() and X.right_sister():
             for x in X.right_sister().minimal_search(lambda y: y.check({'V', 'θ'})):
-                if x.independent_pro_from_overt_agreement():
-                    return True
-                if x.nonthematic_verb():
-                    if X.AgreeLF_has_occurred() or not X.nonreferential_pro():
+                if x.zero_level():
+                    if x.independent_pro_from_overt_agreement():
                         return True
+                    if x.nonthematic_verb():
+                        if X.AgreeLF_has_occurred() or not X.nonreferential_pro():
+                            return True
 
     def projection_principle_applies(X):
         return X.referential() and \
@@ -457,15 +450,16 @@ class PhraseStructure:
 
     def container_assigns_theta_role(X):
         Y = X.max().container()
-        if Y:
+        if Y and Y.check({'θ'}):
             if Y.sister() == X or \
                     (Y.geometrical_sister() == X and
-                     X.check_some(Y.licensed_complements())):
+                     not X.check_some(Y.nonlicensed_complements())):
                 return True
             return not Y.EF() and \
-                   Y.check_some({'SPEC:φ', '!SPEC:φ'}) and \
-                   X.is_licensed_specifier() and \
-                   not (X.selector() and X.selector().check({'-ARG'}))
+                   Y.check({'θ'}) and \
+                   X.is_licensed_specifier()
+                   # X.selector() and \
+                   # X.selector().phi_level() > 0
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
@@ -720,7 +714,6 @@ class PhraseStructure:
             return set(X.specifiers_not_licensed()) & X.local_edge().head().features
 
     # Agreement ---------------------------------------------------------------------------------------------
-
     def AgreeLF(X):
         X.value_from_goal(X.get_goal())
 
@@ -789,15 +782,14 @@ class PhraseStructure:
     def feature_inheritance(X):
         if X.highest_finite_head():
             X.features.add('!PER')
-        if X.check({'ARG?'}):
-            X.features.discard('ARG?')
+        if X.check({'Φ/?'}):
+            X.features.discard('Φ/?')
             if X.selected_by_SEM_internal_predicate():
-                X.make_non_predicate()
-            elif X.selected_by_SEM_internal_predicate():
-                X.make_predicate()
-                X.features.add('+ΦLF,ΦPF')
+                X.features = X.features | {'-ΦLF', '-ΦPF'}
+            elif X.selected_by_SEM_external_predicate():
+                X.features.add('Φ/2')
             else:
-                X.make_predicate()  #   Neither internal nor external selector will leave the status of subject open
+                X.features.add('Φ/1')
 
     def get_constituent_containing_selection_violation(X):
         return next((x for x in X if x.induces_selection_violation() and not x.sister().adjunct), None)
@@ -813,17 +805,11 @@ class PhraseStructure:
     def check_some(X, fset):
         return fset & X.head().features
 
-    def complements_not_licensed(X):
+    def nonlicensed_complements(X):
         return {f[6:] for f in X.features if f[:5] == '-COMP'}
-
-    def licensed_specifiers(X):
-        return {f[5:] for f in X.features if f[:4] == 'SPEC'} | {f[6:] for f in X.features if f[:5] == '!SPEC'}
 
     def nonlicensed_specifiers(X):
         return {f[6:] for f in X.features if f[:5] == '-SPEC'}
-
-    def licensed_complements(X):
-        return {f[5:] for f in X.features if f[:4] == 'COMP'} | {f[6:] for f in X.features if f[:5] == '!COMP'}
 
     def is_unvalued(X):
         for f in X.features:
@@ -1282,15 +1268,19 @@ class PhraseStructure:
 
     #  Definitions and abstractions for terms
 
-    def make_predicate(X):
-        X.features.add('ARG')
-        X.features.add('PHI:NUM:_')
-        X.features.add('PHI:PER:_')
-        X.features.add('PHI:DET:_')
+    def phi_level(self):
+        return max({0} | {int(n.split('/')[1]) for n in self.features if well_formed_phi_level_feature(n)})
 
-    def make_non_predicate(X):
-        X.features.add('-ARG')
-        X.features.add('-ΦLF,ΦPF')
+    def phi_level_violation(X):
+        phi_level = X.phi_level()
+        if phi_level == 4:
+            return not X.check({'ΦPF', 'strong_pro'})
+        if phi_level == 3:
+            return not X.check({'ΦPF', 'weak_pro'})
+        if phi_level == 2:
+            return not X.check_some({'ΦLF', '?ΦLF', '-ΦLF', 'ΦPF'})
+        if phi_level == 1:
+            return X.check({'ΦPF'}) or (X.edge() and not X.edge()[0].head().check({'Adv'}) and not X.theta_predicate())
 
     def empty_finite_EPP(X):
         return X.selector().finite_C() and X.EF() and not X.edge()
@@ -1311,7 +1301,7 @@ class PhraseStructure:
         return X.check({'V'})
 
     def theta_predicate(X):
-        return X.check({'θ'}) and not X.check({'-ARG'}) and not X.check({'-θ'})
+        return X.check({'θ'}) and X.phi_level() > 0 and not X.check({'-θ'})
 
     def nonthematic_verb(X):
         return X.verbal() and not X.theta_predicate()
@@ -1371,7 +1361,7 @@ class PhraseStructure:
         return X.check_some({'CAT:?', '?'})
 
     def predicate(X):
-        return X.zero_level() and X.check({'ARG'}) and not X.check({'-ARG'})
+        return X.zero_level() and X.phi_level() > 0
 
     def adverbial_adjunct(X):
         return X.adverbial() or X.preposition()
@@ -1454,7 +1444,7 @@ class PhraseStructure:
         return {f[4:] for f in X.features if f.startswith('PHI:') and not f.endswith('_')}
 
     def EF(X):
-        return {x for x in X.features if x == 'EF'}
+        return X.phi_level() > 1 or {f for f in X.features if f.startswith('EF')}   # todo remover EF condition (required currently for A-bar system)
 
     def PHI(X):
         return X.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF', '?ΦLF,ΦPF'})

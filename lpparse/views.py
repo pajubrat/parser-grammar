@@ -210,8 +210,8 @@ class SpeakerModelView(tk.LabelFrame):
     def fill_with_data(self):
         for model in self.speaker_models.keys():
             self.speakermodel_treeview.insert('', 'end', iid=model, text=model, values=[''])
-            for lex_list in self.speaker_models[model].lexicon.surface_lexicon.keys():
-                for lex in self.speaker_models[model].lexicon.surface_lexicon[lex_list]:
+            for lex_list in self.speaker_models[model].lexicon.speaker_lexicon.keys():
+                for lex in self.speaker_models[model].lexicon.speaker_lexicon[lex_list]:
                     features = '  '.join(lex.features)
                     self.speakermodel_treeview.insert(model, 'end', text=lex, values=[features])     # Add features
 
