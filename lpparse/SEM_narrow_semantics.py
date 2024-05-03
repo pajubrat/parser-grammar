@@ -104,7 +104,7 @@ class NarrowSemantics:
                     self.speaker_model.results.store_semantic_interpretation('Predicates', self.predicates.reconstruct(ps))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False
-                if ps.argument_by_agreement():
+                if ps.indexed_argument():
                     self.speaker_model.results.store_semantic_interpretation('Indexing by Agree', self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)

@@ -29,7 +29,7 @@ class PhraseStructure:
                                     'single operation': False,
                                     'prepare': lambda x: x.prepare_head_chain()},
                            'Phrasal': {'type': 'Phrasal Chain',
-                                       'test integrity': lambda x: not x.copied and x.complex() and x.is_left() and not x.expletive() and x.container() and x.container().EF(),
+                                       'test integrity': lambda x: not x.copied and x.complex() and x.is_left() and not x.expletive() and x.container() and not x.container().theta_predicate() and x.container().EF(),
                                        'repair': lambda x: x.create_chain(),
                                        'selection': lambda x: x.zero_level() and not x.finite(),
                                        'intervention': lambda x: x.zero_level() and x.referential(),
@@ -418,10 +418,7 @@ class PhraseStructure:
 
     # Projection principle ---------------------------------------------------------------------
     def nonthematic(X):
-        if X.max().container():
-            return X.max().container().EF() or \
-                   (X.max().container().check_some({'-SPEC:*', '-SPEC:φ', '-SPEC:D'}) and
-                    X == X.max().container().local_edge())
+        return X.max().container() and 'θ' not in X.max().container().head().features or X != X.max().container().local_edge()
 
     def projection_principle_failure(X):
         return (X.max().projection_principle_applies() and
@@ -450,16 +447,10 @@ class PhraseStructure:
 
     def container_assigns_theta_role(X):
         Y = X.max().container()
-        if Y and Y.check({'θ'}):
-            if Y.sister() == X or \
-                    (Y.geometrical_sister() == X and
-                     not X.check_some(Y.nonlicensed_complements())):
+        if Y:
+            if X == Y.geometrical_sister() and not X.check_some(Y.nonlicensed_complements()):
                 return True
-            return not Y.EF() and \
-                   Y.check({'θ'}) and \
-                   X.is_licensed_specifier()
-                   # X.selector() and \
-                   # X.selector().phi_level() > 0
+            return Y.check({'θ'}) and X.is_licensed_specifier()
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
@@ -607,11 +598,13 @@ class PhraseStructure:
         return X.head().tail_test() and (X.is_right() or (X.is_left() and not X.nonthematic()))
 
     def reconstruct_scrambling(X):
+        log(f' {X}: ')
         starting_point = X.container()
         virtual_test_item = X.copy()
         scrambled_phrase = X
 
         node = starting_point
+        log(f'{X.local_tense_edge()}')
         for node in X.local_tense_edge().minimal_search(lambda x: x.intervention_condition_for_scrambling(X, X.local_tense_edge())):
             node.merge_scrambled_phrase(virtual_test_item)
             if node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'left'):
@@ -627,7 +620,7 @@ class PhraseStructure:
     def intervention_condition_for_scrambling(X, target, local_tense_edge):
         return (X.mother() == target or
                 X.mother().copied or
-                (X.force() and X.container() != local_tense_edge.head()) or
+                (X.force() and X.container() == local_tense_edge.head()) or
                 (X.zero_level() and X.referential()))
 
     def test_adjunction_solution(X, scrambled_phrase, virtual_test_item, starting_point, direction):
@@ -689,7 +682,7 @@ class PhraseStructure:
                 X.head().features.add('Adv')
 
     def valid_reconstructed_adjunct(X, starting_point_node):
-        if X.head().tail_test() and (X.adverbial_adjunct() or X.non_adverbial_adjunct_condition(starting_point_node)):
+        if X.head().tail_test() and (X.adverbial_adjunct() or X.non_adverbial_adjunct_condition()):
             if not X.container():
                 return True
             if X == X.container().local_edge():
@@ -697,7 +690,7 @@ class PhraseStructure:
             if X == X.container().sister():
                 return X.container().complement_match(X)
 
-    def non_adverbial_adjunct_condition(X, starting_point_head):
+    def non_adverbial_adjunct_condition(X):
         if not X.container():
             return True
         if X.nonthematic() or (X.referential() and X.projection_principle_failure()):
@@ -726,7 +719,7 @@ class PhraseStructure:
     def value_from_goal(X, goal):
         if goal:
             log(f'\n\t\tAgree({X}°, {goal.head()}) ')
-            if feature_licensing(goal.head().interpretable_phi_features(), X.phi_bundles()) and X.Condition_on_agreement_and_EPP(goal):
+            if feature_licensing(goal.head().interpretable_phi_features(), X.phi_bundles()):
                 X.value(goal)
             else:
                 log(f'failed.')
@@ -744,23 +737,41 @@ class PhraseStructure:
         X.features.update({'ΦLF'})
         X.features.add(f'PHI:IDX:{goal.head().get_id()}')
 
-    def Condition_on_agreement_and_EPP(X, goal):
-        return not X.EF() or \
-               not X.PHI() or \
-               X.check({'strong_pro'}) or \
-               (X.local_edge() and (X.primary_rule(goal) or X.secondary_rule()))
+    def phi_level(self):
+        return max({0} | {int(n.split('/')[1]) for n in self.features if well_formed_phi_level_feature(n)})
 
-    def primary_rule(X, goal):
-        return X.local_edge().head().get_id() == goal.head().get_id()
+    def phi_level_violation(X):
+        return not X.phi_condition()
 
-    def secondary_rule(X):
-        return X.check({'weak_pro'}) or X.local_edge().expletive()
+    def phi_condition(X):
+        phi_level = X.phi_level()
+        edge = X.local_edge()
+        if X.theta_predicate():
+            return True
+        if phi_level < 2:
+            return not edge
+        if phi_level == 2:
+            if X.check({'ΦLF'}):
+                if X.check({'-ΦPF'}):
+                    if X.indexed_argument() and X.proper_selected_complement() and X.proper_selected_complement().head() == X.indexed_argument():
+                        return True
+                return X.indexed_argument() and edge and edge.head().get_id() == X.indexed_argument().head().get_id()
+            if X.check_some({'?ΦLF', '-ΦLF', '-ΦPF', 'ΦPF'}):
+                return True
+        if phi_level == 3:
+            if X.check({'ΦLF'}):
+                return edge
+            return X.check({'ΦPF', 'weak_pro'}) and X.pro_argument()
+        if phi_level == 4:
+            return X.check({'ΦPF', 'strong_pro'}) and X.pro_argument()
 
-    def argument_by_agreement(X):
-        for f in [f for f in X.features if f.startswith('PHI:IDX:')]:
-            if X.sister():
-                idx = f.split(':')[2]
-                return next((x for x in X.sister().minimal_search(lambda x: not x.phase_head()) if idx in x.head().features), None)
+    def indexed_argument(X):
+        idx = X.phi_index()
+        if idx and X.sister():
+            return next((x for x in X.sister().minimal_search() if idx in x.head().features), None)
+
+    def phi_index(X):
+        return next((f.split(':')[2] for f in X.features if f.startswith('PHI:IDX:')), None)
 
     # Extraposition
     def cutoff_point_for_last_resort_extraposition(X):
@@ -785,11 +796,12 @@ class PhraseStructure:
         if X.check({'Φ/?'}):
             X.features.discard('Φ/?')
             if X.selected_by_SEM_internal_predicate():
+                X.features.add('Φ/2')
                 X.features = X.features | {'-ΦLF', '-ΦPF'}
             elif X.selected_by_SEM_external_predicate():
                 X.features.add('Φ/2')
             else:
-                X.features.add('Φ/1')
+                X.features.add('Φ/2')
 
     def get_constituent_containing_selection_violation(X):
         return next((x for x in X if x.induces_selection_violation() and not x.sister().adjunct), None)
@@ -1268,20 +1280,6 @@ class PhraseStructure:
 
     #  Definitions and abstractions for terms
 
-    def phi_level(self):
-        return max({0} | {int(n.split('/')[1]) for n in self.features if well_formed_phi_level_feature(n)})
-
-    def phi_level_violation(X):
-        phi_level = X.phi_level()
-        if phi_level == 4:
-            return not X.check({'ΦPF', 'strong_pro'})
-        if phi_level == 3:
-            return not X.check({'ΦPF', 'weak_pro'})
-        if phi_level == 2:
-            return not X.check_some({'ΦLF', '?ΦLF', '-ΦLF', 'ΦPF'})
-        if phi_level == 1:
-            return X.check({'ΦPF'}) or (X.edge() and not X.edge()[0].head().check({'Adv'}) and not X.theta_predicate())
-
     def empty_finite_EPP(X):
         return X.selector().finite_C() and X.EF() and not X.edge()
 
@@ -1444,7 +1442,7 @@ class PhraseStructure:
         return {f[4:] for f in X.features if f.startswith('PHI:') and not f.endswith('_')}
 
     def EF(X):
-        return X.phi_level() > 1 or {f for f in X.features if f.startswith('EF')}   # todo remover EF condition (required currently for A-bar system)
+        return X.phi_level() > 1
 
     def PHI(X):
         return X.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF', '?ΦLF,ΦPF'})

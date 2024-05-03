@@ -17,14 +17,14 @@ class Predicates:
     def print_target(self, probe, argument):
         indexing = ''
         if {phi for phi in probe.features if phi.startswith('PHI:IDX:')}:
-            if probe.argument_by_agreement():
-                indexing = f', indexed to {probe.argument_by_agreement().max().illustrate()}'
+            if probe.indexed_argument():
+                indexing = f', indexed to {probe.indexed_argument().max().illustrate()}'
         if 'pro' in argument.features:
             return f'pro' + indexing
         else:
             return f'{argument.max().illustrate()}' + indexing
 
     def reconstruct_agreement(self, ps):
-        goal = ps.argument_by_agreement()
+        goal = ps.indexed_argument()
         if goal:
             return f'Agree({ps}, {goal.illustrate()})'

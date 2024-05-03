@@ -9,7 +9,7 @@ meta_test_corpus=			EPP_corpus.txt
 numeration=				none
 
 # FILES
-general_parameter_only_first_solution = False
+general_parameter_only_first_solution = True
 general_parameter_logging = True
 general_parameter_use_numeration = False
 general_parameter_calculate_assignments = False
@@ -46,7 +46,7 @@ image_parameter_visualization = iPHI:* > iφ
 UG_parameter_Agree = revised
 
 # Phase theory
-UG_parameter_phase_heads = C;v;FORCE;Inf
+UG_parameter_phase_heads = C;v;FORCE;Inf;P
 UG_parameter_phase_heads_exclude = φ;v-;TO/inf
 
 

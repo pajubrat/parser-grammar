@@ -5,7 +5,7 @@
 
 # Left periphery
 
-	FORCE	::	Fin 						!COMP:* !PROBE:Fin -SPEC:T/fin
+	FORCE	::								!COMP:* !PROBE:Fin -SPEC:T/fin
 	C/fin 	:: 	Fin 						-COMP:C/fin -COMP:T/prt !PROBE:Fin -SPEC:N -SPEC:T/fin -SPEC:C/fin -COMP:FORCE
 	C		:: 	C/fin 						-SPEC:MA/A
 	Cpol	::  C C/fin POL FOC
@@ -23,7 +23,7 @@
 	v*			:: 	Φ/2
 	Pr			::	θ ESS 						!COMP:N
 	Pr2			::	θ Pr TRA 					!COMP:A
-	V/TR 		:: 								-COMP:P -COMP:Adv
+	V/TR 		:: 								-COMP:P -COMP:Fin -COMP:Adv
 	V/INTR 		:: 								-COMP:φ -COMP:EXPL
 	CLASS/DITR 	:: 								!COMP:*
 	PHI_N		:: 								-COMP:*
@@ -31,10 +31,10 @@
 
 # Nominal domain
 
-	D   	:: 						-COMP:D -COMP:v -COMP:V -COMP:P -COMP:T/fin -COMP:Neg/fin -COMP:T -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
+	D   	:: 						-COMP:D -COMP:v -SPEC:D -COMP:V -COMP:P -COMP:T/fin -COMP:Neg/fin -COMP:T -SPEC:MA.ade/inf -SPEC:Neg -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 	D/rel	:: 	adjoinable			-COMP:C/fin -COMP:φ -SPEC:MA.ade/inf -SPEC:P -SPEC:C -SPEC:Inf -SPEC:V -COMP:T/fin -SPEC:T/fin -SPEC:Neg/fin -COMP:uR !PROBE:N
 	N   	:: 	θ 					-COMP:EXPL -COMP:NEG -COMP:VA/inf -COMP:T/fin -COMP:MA/A -COMP:Neg -COMP:A -COMP:AUX -SPEC:FORCE SPEC:A -SPEC:uWH -SPEC:R -SPEC:V -SPEC:P -SPEC:N -SPEC:C/fin -SPEC:T/fin -SPEC:Adv -COMP:WH
-	P   	:: 	θ Adv adjoinable 	-COMP:T -COMP:V -COMP:MA/A -SPEC:Neg -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
+	P   	:: 	Adv adjoinable 		-COMP:T -COMP:V -COMP:MA/A -SPEC:Neg -COMP:Neg -COMP:Adv -SPEC:Adv -COMP:T/fin -COMP:T -COMP:A -SPEC:iR -SPEC:iWH -SPEC:C -SPEC:C/fin -SPEC:Adv -SPEC:T/fin -SPEC:Neg/fin -SPEC:N -SPEC:P -SPEC:T/prt -SPEC:V -SPEC:FORCE -SPEC:v -COMP:uWH
 	A 		:: 	θ 					-SPEC:A
 	a0		::  A
 	n		:: 	φ ?ΦLF Inf N 		-COMP:n !COMP:* -COMP:IMPSS
@@ -107,14 +107,18 @@
 		LANG:FI v				:: PC:#X#
 
 	# Finnish edge behavior
-	
-		P LANG:FI		::	Φ/2
+		
+		T/fin LANG:FI	::  Φ/3
+		T Fin LANG:FI	::	Φ/3
 		Adv LANG:FI		::	Φ/2
+		P LANG:FI		::  Φ/2
 		A LANG:FI		::	Φ/2
-		Inf LANG:FI		::	Φ/2
+		V/TR LANG:FI	::	Φ/2 -ΦPF 
+		v LANG:FI		::  Φ/2 -ΦPF
 		Fin LANG:FI		::  Φ/2 ?ΦLF
 		T LANG:FI		::	Φ/2
 		T/prt LANG:FI	::	Φ/2
+		φ LANG:FI		::  Φ/2 ?ΦLF
 		Φ/.. LANG:FI	::  PHI:HUM:_ PHI:PRON:_
 
 	# Other rules

@@ -163,7 +163,7 @@ class Results():
             A = {feature for feature in set if feature in ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
               'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf', 'FORCE', 'EXPL', 'Adv', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z', 'adjoinable']}
             B = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
-            C = {feature for feature in set if feature in {'θ', 'ARG', '-ARG'} or feature.startswith('Φ') or
+            C = {feature for feature in set if feature in {'θ', 'ARG', '-ARG'} or feature.startswith('Φ') or feature.startswith('-Φ') or
                  feature.startswith('!EF:') or
                  feature.startswith('-EF') or
                  feature.startswith('EF')}
