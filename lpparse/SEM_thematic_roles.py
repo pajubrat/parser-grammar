@@ -9,8 +9,8 @@ class ThematicRoles:
         self.failre = False
         theta_role = ''
 
-        if ps.check_some({'COMP:φ', 'COMP:D', '!COMP:φ', '!COMP:D'}) and ps.proper_selected_complement():
-            assignee = ps.proper_selected_complement()
+        if ps.check_some({'COMP:φ', 'COMP:D', '!COMP:φ', '!COMP:D'}) and ps.complement():
+            assignee = ps.complement()
             if assignee.preposition():
                 theta_role = 'Goal'
             else:

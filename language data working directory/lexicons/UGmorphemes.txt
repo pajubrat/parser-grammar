@@ -94,7 +94,7 @@
 		
 		# verbal
 		
-		(t)A,A/inf			:: A/inf 		Inf 	Φ/? -ΦPF 	PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event -COMP:N -COMP:EVE -COMP:n -COMP:EVE2 -COMP:IMPSS -COMP:A/inf !PROBE:V LANG:FI
+		(t)A,A/inf			:: A/inf 		Inf 	Φ? -PER 	PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event -COMP:N -COMP:EVE -COMP:n -COMP:EVE2 -COMP:IMPSS -COMP:A/inf !PROBE:V LANG:FI
 		vAn,VA/inf			:: VA/inf 		Inf T  	-ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to -COMP:N -SPEC:N !PROBE:V LANG:FI
 		essA,ESSA/inf		:: ESSA/inf		Inf Adv ?ΦLF		PF:-essA 	PC:#X LF:while -COMP:N !PROBE:V TAIL:T LANG:FI
 		tUA,TUA/inf 		:: TUA/inf		Inf Adv	-ΦLF,ΦPF	PF:-tUA 	PC:#X LF:after -COMP:N !PROBE:V TAIL:T LANG:FI
@@ -107,7 +107,7 @@
 		mAAn,MA.ill/inf		:: MA.ill/inf	Inf		OC 			PF:-mAAn 	PC:#X LF:to SEM/desired_event -COMP:N !PROBE:V adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf LANG:FI
 		
 		impss		:: IMPSS	V								PF:-TA 		PC:#X# LF:impss -COMP:IMPSS
-		impss1		:: Pass Φ/1 PC:#X# PF:-TA LF:Pass !COMP:v 
+		impss1		:: Pass Φ PC:#X# PF:-TA LF:Pass !COMP:v 
 		
 		# nominal
 		
@@ -133,7 +133,7 @@
 
 		# Participles
 		
-			mA		:: a MA/a	Inf	Φ/2		PF:-mA	PC:#X LF:prtc	!COMP:V -COMP:V/INTR	LANG:FI
+			mA		:: a MA/a	Inf	Φ*		PF:-mA	PC:#X LF:prtc	!COMP:V -COMP:V/INTR	LANG:FI
 			vA		:: a VA/a	Inf	OC		PF:-vA 	PC:#X LF:prtc	!COMP:V LANG:FI 
 			
 		# Special purpose elements
@@ -152,8 +152,8 @@
 ARE/inf		:: ARE/inf 	Inf 	PF:are 	LF:ARE/inf -SPEC:T/fin nonadjoinable 
 
 # English
-to/inf		:: Inf Φ/? ?ΦLF TO/inf PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v !PROBE:V adjoinable
-to^			:: Inf Φ/? ?ΦLF TO/inf PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v !PROBE:V adjoinable 
+to/inf		:: Inf Φ? ?ΦLF TO/inf PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v !PROBE:V adjoinable
+to^			:: Inf Φ? ?ΦLF TO/inf PF:to LF:to -SPEC:T -COMP:D -COMP:T/fin -SPEC:v !PROBE:V adjoinable 
 
 # Miscellanneus items
 # Possessive, as in John's, but status unclear

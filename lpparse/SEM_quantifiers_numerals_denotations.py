@@ -19,7 +19,7 @@ class QuantifiersNumeralsDenotations:
         self.one_complete_assignment = {}
 
     def accept(self, ps):
-        return ps.sustains_reference() or ps.referential()
+        return ps.complete_agreement_suffixes() or ps.referential()
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
