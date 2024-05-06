@@ -750,22 +750,18 @@ class PhraseStructure:
         return [set(phi[4:].split(',')) for phi in X.features if valued_phi_feature(phi) and not phi.startswith('i') and 'IDX' not in phi]
 
     def phi_level_violation(X):
-        if X.check_some({'ASP', 'strong_pro'}):
-            return False
-        return not X.phi_condition()
+        if not X.check_some({'ASP', 'strong_pro'}):
+            if not X.check({'Φ*'}):
+                return X.local_edge()
+            if X.check({'-ΦPF'}):
+                return False
+            if X.check({'weak_pro'}):
+                return X.check({'ΦLF'}) and not X.local_edge()     #   Secondary rule (b)
+            return (X.check({'ΦLF'}) and not X.primary_rule()) or \
+                   (not X.check({'ΦLF'}) and not X.check_some({'?ΦLF', '-ΦLF', 'ΦPF'}))
 
-    def phi_condition(X):
-        Spec = X.local_edge()
-        if not X.check({'Φ*'}):
-            return not Spec
-        if X.check({'weak_pro'}):
-            return not X.check({'ΦLF'}) or Spec     #   Secondary rule (b)
-        if not X.check({'ΦLF'}):
-            return X.check_some({'?ΦLF', '-ΦLF', 'ΦPF'})
-        else:
-            if X.check({'-ΦPF'}) and X.complement() and X.complement().head() == X.indexed_argument():
-                return True
-            return Spec and X.indexed_argument() and Spec.head().get_id() == X.indexed_argument().head().get_id()   #   Primary rule (a)
+    def primary_rule(X):
+        return X.local_edge() and X.indexed_argument() and X.local_edge().head().get_id() == X.indexed_argument().head().get_id()
 
     def indexed_argument(X):
         idx = X.phi_index()
