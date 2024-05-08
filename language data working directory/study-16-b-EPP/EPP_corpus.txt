@@ -1,10 +1,11 @@
 
+
 & 0. Independent examples from the article
 
 	& 0.1 English PP (-EF, -Φ, -pro) and finite T/EPP (+EF, +Φ, -pro)
 
 		Seine flows towards Paris
-		 
+				
 		*Seine flows Paris towards
 		
 		*flows towards Paris
@@ -14,6 +15,8 @@
 		*Paris flows Seine towards
 		
 		*towards Paris flows Seine
+		
+		*Seine flows towards
 		
 		John admires Mary
 	
@@ -104,6 +107,7 @@
 
 			*towards Paris flows Seine
 
+			*Paris towards flows Seine
 			*Paris towards flows Seine
 
 		& 1.1.2 Word order variations, with agreement ([*3sg] = hypothetical nonfinite third person agreement)
@@ -277,9 +281,6 @@
 		
 		& 2.2.3 Word order variations, without argument, with or without agreement
 			
-			Seine virtaa lähellä
-			'Seine.nom flow.prs.3sg near'
-
 			Seine virtaa lähellä/Φ#ni
 			'Seine.nom flow.prs.3sg near.1sg'
 	
@@ -1043,7 +1044,7 @@
 	& 3.6 English want-construction (subject, without agreement)
 	
 		& 3.6.1 Canonical word order
-					
+				
 			John wants to/inf leave
 			
 			John wants to/inf paint the fence
@@ -1054,7 +1055,12 @@
 		
 		& 3.6.2 Noncanonical word order, object fronting
 					
-			*John wants the fence Mary to/inf paint
+		#	*John wants the fence Mary to/inf paint
+		#	Commented out because the model finds an irrelevant solution
+		#	[John wants the fence](for)<Mary to paint>
+		#	Replaced with want/2 that blocks this solution:
+	
+			*John wants/2 the fence Mary to/inf paint
 			
 			*John wants to/inf Mary paint the fence
 			

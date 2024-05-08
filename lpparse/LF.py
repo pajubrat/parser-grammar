@@ -24,14 +24,12 @@ class LF:
                                     ('Phi Level test', PhraseStructure.phi_level_violation),
                                     ('External head merge test', PhraseStructure.Complex_Head_Integrity)]
 
-        self.selection_violation_test = {'1EDGE': PhraseStructure.selection__negative_one_edge,
-                                         '-SPEC': PhraseStructure.selection__negative_specifier,
-                                         '-COMP': PhraseStructure.selection__negative_complement,
-                                         '!COMP': PhraseStructure.selection__positive_obligatory_complement,
-                                         '+COMP': PhraseStructure.selection__positive_disjunctive_complement,
-                                         '!': PhraseStructure.selection__positive_self_selection,
-                                         '-': PhraseStructure.selection__negative_self_selection,
-                                         '+': PhraseStructure.selection__partial_self_selection}
+        self.selection_violation_test = {'-SPEC': PhraseStructure.minus_SPEC,
+                                         '+SPEC': PhraseStructure.plus_SPEC,
+                                         '-COMP': PhraseStructure.minus_COMP,
+                                         '+COMP': PhraseStructure.plus_COMP,
+                                         '-SELF': PhraseStructure.minus_SELF,
+                                         '+SELF': PhraseStructure.plus_SELF}
 
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''
@@ -55,28 +53,12 @@ class LF:
                     return False
         return True
 
-    def selection_test(self, probe):
-        for f in sorted(probe.features):
-            key, feature_set = self.format_selection_feature(f)
-            if key and not self.selection_violation_test[key](probe, feature_set):
-                self.failed_feature = str(feature_set)
-                return True  # test failed
-
-    # This will be removed once we have a universal standard
-    def format_selection_feature(self, f):
-        # Replace * with empty set (no features required, e.g. !COMP:*)
-        if len(f) == 7 and f[6] == '*':
-            return f[:5], set()
-
-        # Selection features which do not have standard type:value format
-        if ':' not in f and f[0] in self.selection_violation_test.keys():
-            return f[0], f[1:]
-
-        # Selection features with the standard type:value format
-        if f[:5] in self.selection_violation_test.keys():
-            return f[:5], set(f[6:].split(','))
-        else:
-            return None, None
+    def selection_test(self, X):
+        for key in [f.split(':')[0] for f in X.features if 'COMP' in f or 'SPEC' in f or 'SELF' in f]:
+            if key in self.selection_violation_test.keys():
+                if not self.selection_violation_test[key](X, X.get_selection_features(key)):
+                    log(f'{X} failed {key}: {X.get_selection_features(key)} ')
+                    return True     #   Failed test
 
     def final_tail_check(self, goal):
         if goal.complex():

@@ -50,7 +50,12 @@ class PhraseStructure:
                                      'test integrity': lambda x: x.is_unvalued(),
                                      'repair': lambda x: PhraseStructure.speaker_model.Experimental_functions.Agree(x)},
                            'Extraposition': {'type': 'Extraposition',
-                                             'test integrity': lambda x: x.zero_level() and (x.top().contains_finiteness() or x.top().referential()) and x.induces_selection_violation() and x.sister() and not x.sister().adjunct,
+                                             'test integrity': lambda x: x.zero_level() and
+                                                                         (x.top().contains_finiteness() or
+                                                                          x.top().referential()) and
+                                                                         x.induces_selection_violation() and
+                                                                         x.sister() and
+                                                                         not x.sister().adjunct,
                                              'repair': lambda x: x.extrapose()},
                            'Right Scramble': {'type': 'Right Scrambling',
                                               'test integrity': lambda x: not x.copied and x.trigger_right_node_scrambling(),
@@ -320,66 +325,70 @@ class PhraseStructure:
         return {phi for phi_set in phi_sets for phi in phi_set}
 
     # Selection -------------------------------------------------------------------------------------------
-    # Feature -SPEC:L
-    def selection__negative_specifier(X, selected_feature_set):
-        return not X.next(X.edge, lambda x: x.check(selected_feature_set) and not x.adjunct)
+
+    # Auxiliary functions
+    def get_selection_features(X, key):
+        feats = [set(f.split(':')[1].split(',')) for f in X.features if f.startswith(key)]
+        return set().union(*feats)
 
     # Feature !1EDGE
     def selection__negative_one_edge(X, selected_feature):
         return len(X.edge()) < 2
 
-    # Feature !COMP:L
-    def selection__positive_obligatory_complement(X, selected_feature_set):
-        return X.selected_sister() and X.selected_sister().check(selected_feature_set)
+    def SPEC_selection(X):
+        minus_specs = X.get_selection_features('-SPEC')
+        plus_specs = X.get_selection_features('+SPEC')
+        return X.minus_SPEC(minus_specs) and X.plus_SPEC(plus_specs)
+
+    def COMP_selection(X):
+        minus_comps = X.get_selection_features('-COMP')
+        plus_comps = X.get_selection_features('+COMP')
+        return X.minus_COMP(minus_comps) and X.plus_COMP(plus_comps)
+
+    # Feature -SPEC:L,K
+    def minus_SPEC(X, fset):
+        return len(fset) == 0 or \
+               not X.local_edge() or \
+               X.local_edge().adjunct or \
+               not X.local_edge().head().check_some(fset)
+
+    # Feature +SPEC:L,K
+    def plus_SPEC(X, fset):
+        return len(fset) == 0 or (not X.local_edge() and len(fset) > 0 and 'ø' in fset) or \
+               (X.local_edge() and X.local_edge().head().check_some(fset))
+
+    # Feature [-SELF]
+    def minus_SELF(X, fset):
+        return not X.check(fset)
+
+    # Feature [+SELF]
+    def plus_SELF(X, fset):
+        return X.check_some(fset)
 
     # Feature +COMP:L,K
-    def selection__positive_disjunctive_complement(X, selected_feature_set):
-        return X.selected_sister() and X.selected_sister().check_some(selected_feature_set)
+    def plus_COMP(X, fset):
+        return (not X.complement() and 'ø' in fset) or (X.complement() and X.complement().head().check_some(fset))
 
     # Feature -COMP:L
-    def selection__negative_complement(X, selected_feature_set):
-        return not (X.complement() and X.complement().check_some(selected_feature_set))
-
-    # Feature [!]
-    def selection__positive_self_selection(X, selected_features):
-        return X.check(set(selected_features.split(',')))
-
-    # Feature [-]
-    def selection__negative_self_selection(X, selected_features):
-        return not X.check(set(selected_features.split(',')))
-
-    # Feature [+]
-    def selection__partial_self_selection(X, selected_features):
-        return X.check_some(set(selected_features.split(',')))
-
-    def specifier_match(X, phrase):
-        return not phrase.head().check_some(X.nonlicensed_specifiers())
-
-    def specifier_mismatch(X, phrase):
-        return phrase.head().check_some(X.nonlicensed_specifiers())
+    def minus_COMP(X, fset):
+        return not X.complement() or not X.complement().head().check_some(fset)
 
     def double_spec_filter(X):
-        return not X.check({'2SPEC'}) and len({spec for spec in X.edge() if not spec.adjunct}) > 1
+        if not X.check({'2SPEC'}) and len(X.edge()) > 1:
+            for x in X.edge()[1:]:
+                if not x.adjunct:
+                    return True
 
     def licensed_phrasal_specifier(X):
         if X.next(X.edge, lambda x: x.referential() and not x.adjunct):
             return X.next(X.edge, lambda x: x.referential() and not x.adjunct)
         return X.next(X.edge, lambda x: x.referential())
 
-    def complement_match(X, const):
-        return not const.check_some(X.nonlicensed_complements())
-
-    def nonlicensed_complement(X):
-        return X.complement() and X.complement().check_some(X.nonlicensed_complements())
-
-    def missing_mandatory_complement(X):
-        return X.get_mandatory_comps() and (not X.complement() or not X.complement().check(X.get_mandatory_comps()))
-
-    def complement_not_licensed(X):
-        return X.complement() and X.complement().check_some(X.nonlicensed_complements())
+    def get_constituent_containing_selection_violation(X):
+        return next((x for x in X if x.induces_selection_violation() and not x.sister().adjunct), None)
 
     def properly_selected(X):
-        return X.selector() and not X.check_some(X.selector().nonlicensed_complements())
+        return X.selector() and X.selector().COMP_selection()
 
     def does_not_accept_any_complements(X):
         return X.check({'-COMP:*'})
@@ -452,7 +461,7 @@ class PhraseStructure:
     def container_assigns_theta_role(X):
         Y = X.max().container()
         if Y:
-            if X == Y.geometrical_sister() and not X.check_some(Y.nonlicensed_complements()):
+            if X == Y.geometrical_sister() and not X.check_some(Y.get_selection_features('-COMP')):
                 return True
             return Y.check({'θ'}) and X.is_licensed_specifier()
 
@@ -476,9 +485,10 @@ class PhraseStructure:
     # Chain creation (part of transfer)
     def create_chain(X):
         head, target = PhraseStructure.transfer_operation['prepare'](X)
-        head.form_chain(target)
-        if PhraseStructure.transfer_operation['test integrity'](target):
-            target.create_chain()   # Recursion, successive-cyclicity
+        if head:
+            head.form_chain(target)
+            if PhraseStructure.transfer_operation['test integrity'](target):
+                target.create_chain()   # Recursion, successive-cyclicity
 
     def prepare_head_chain(X):
         return X, X.right().copy_for_chain()
@@ -486,8 +496,10 @@ class PhraseStructure:
     def prepare_phrasal_chain(X):
         if X.A_bar_operator():
             X.prepare_A_bar_chain(X.container())
-        else:
+        elif X.referential():
             PhraseStructure.transfer_operation = PhraseStructure.instructions['A-chain']    # Last Resort option
+        else:
+            return None, None
         return X.container(), X.copy_for_chain()
 
     def prepare_A_bar_chain(X, probe):
@@ -543,24 +555,20 @@ class PhraseStructure:
 
     def Abar_legible(X, target):
         # Conditions for accepting [SpecXP] as landing site
-        if target == X.next(X.edge) and \
-                len(X.edge()) == 1 and \
-                X.specifier_match(target) and \
-                X.specifier_sister().tail_match(X.specifier_sister(), 'left'):
+        if target == X.local_edge and X.SPEC_selection():
             return True
         # Effect of [CompXP] as landing site
         if target.is_right():
             target.adjunct = False
         # Conditions for accepting [CompXP] as landing site
-        if X.sister() == target:
-            if X.complement_match(target) and not (target.is_left() and X.specifier_mismatch(target)):
-                return True
+        if X.complement() == target and X.COMP_selection():
+            return True
 
     def gapless_head(X):
         return X.zero_level() and X.aunt() and X.aunt().zero_level()
 
     def has_nonthematic_specifier(X):
-        return X.EF() and next(iter(X.edge()), X).extended_subject()
+        return X.EF() and X.local_edge() and X.local_edge().extended_subject()
 
     def add_scope_information(X):
         if not X.non_scopal():
@@ -659,7 +667,7 @@ class PhraseStructure:
     def externalize_head(X):
         if X.isolated_preposition():
             X.externalize_and_transfer()
-        elif X.externalize_with_specifier():
+        elif X.externalize_with_specifier() and X.mother() and X.mother().mother() and X.local_edge():
             X.mother().mother().externalize_and_transfer()
         else:
             X.mother().externalize_and_transfer()
@@ -689,21 +697,17 @@ class PhraseStructure:
             if not X.container():
                 return True
             if X == X.container().local_edge():
-                return X.container().specifier_match(X)
+                return X.container().SPEC_selection()
             if X == X.container().sister():
-                return X.container().complement_match(X)
+                return X.container().COMP_selection()
 
     def non_adverbial_adjunct_condition(X):
         return not X.max().container() or X.in_thematic_position()
 
     def externalize_with_specifier(X):
         return X.is_left() and X.predicate() and \
-               ((X.tail_test() and X.has_nonthematic_specifier()) or
-                (not X.tail_test() and X.edge() and not X.has_unlicensed_specifier()))
-
-    def has_unlicensed_specifier(X):
-        if X.local_edge():
-            return set(X.specifiers_not_licensed()) & X.local_edge().head().features
+               ((X.tail_test() and X.local_edge()) or
+                (not X.tail_test() and X.SPEC_selection()))
 
     # Agreement ---------------------------------------------------------------------------------------------
     def AgreeLF(X):
@@ -758,7 +762,7 @@ class PhraseStructure:
             if X.check({'weak_pro'}):
                 return X.check({'ΦLF'}) and not X.local_edge()     #   Secondary rule (b)
             return (X.check({'ΦLF'}) and not X.primary_rule()) or \
-                   (not X.check({'ΦLF'}) and not X.check_some({'?ΦLF', '-ΦLF', 'ΦPF'}))
+                   (not X.check({'ΦLF'}) and not X.check_some({'?ΦLF', '-ΦLF'}) and not (X.check({'ΦPF'}) and X.phi_consistent_head()))
 
     def primary_rule(X):
         return X.local_edge() and X.indexed_argument() and X.local_edge().head().get_id() == X.indexed_argument().head().get_id()
@@ -773,15 +777,23 @@ class PhraseStructure:
 
     # Extraposition
     def cutoff_point_for_last_resort_extraposition(X):
-        return X.zero_level() and X.is_adjoinable() and X.aunt() and \
-               (X.aunt().complex() or (X.aunt().zero_level() and X.grandmother().induces_selection_violation()))
+        return X.zero_level() and \
+               X.is_adjoinable() and \
+               X.aunt() and \
+               (X.aunt().complex() or (X.aunt().zero_level() and not X.aunt().COMP_selection()))
 
     def license_extraposition(X):
         return X.top().contains_finiteness() or X.top().referential()
 
     def extrapose(X):
-        X.sister().head().externalize_structure()
+        if not X.COMP_selection():
+            X.sister().head().externalize_structure()
+        if not X.SPEC_selection():
+            X.head().externalize_structure()
         PhraseStructure.speaker_model.results.consume_resources('Extraposition', X)
+
+    def induces_selection_violation(X):
+        return not X.COMP_selection() or not X.SPEC_selection()
 
     def last_resort_extrapose(X):
         if X.zero_level() and X.cutoff_point_for_last_resort_extraposition():
@@ -798,12 +810,6 @@ class PhraseStructure:
             if X.selected_by_SEM_internal_predicate():
                 X.features = X.features | {'-ΦLF'}
 
-    def get_constituent_containing_selection_violation(X):
-        return next((x for x in X if x.induces_selection_violation() and not x.sister().adjunct), None)
-
-    def induces_selection_violation(X):
-        return X.nonlicensed_complement() or X.missing_mandatory_complement()
-
     # Feature processing -----------------------------------------------------------------------------
 
     def check(X, fset):
@@ -811,12 +817,6 @@ class PhraseStructure:
 
     def check_some(X, fset):
         return fset & X.head().features
-
-    def nonlicensed_complements(X):
-        return {f[6:] for f in X.features if f[:5] == '-COMP'}
-
-    def nonlicensed_specifiers(X):
-        return {f[6:] for f in X.features if f[:5] == '-SPEC'}
 
     def is_unvalued(X):
         for f in X.features:
@@ -843,9 +843,6 @@ class PhraseStructure:
         for f in X.head().features:
             if f[-1] == '_':
                 return True
-
-    def get_mandatory_comps(X):
-        return {f[6:] for f in X.features if f[:5] == '!COMP' and f != '!COMP:*'}
 
     def specifiers_not_licensed(X):
         return {f[6:] for f in X.features if f[:5] == '-SPEC'}

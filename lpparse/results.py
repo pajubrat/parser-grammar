@@ -137,7 +137,7 @@ class Results():
             self.accumulate_resource_n(key)
         if key == 'Sensory Processing':
             log(f'\n\t\t{key} of /#{target}/')
-        elif key != 'Agree' and key != 'Last Resort Extraposition' and key != 'Lexical Retrieval':
+        elif key != 'Agree' and key != 'Lexical Retrieval':
             log(f'\n\t\t{key}({target.illustrate()}) => {target.top()} ')
 
     def log_success(self, ps):

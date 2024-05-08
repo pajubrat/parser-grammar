@@ -125,7 +125,7 @@ class PlausibilityMetrics:
     def break_head_comp_relations(self, site):
         if not site.zero_level() and site.mother_ and \
                 site.mother_.left() and site.mother_.left().zero_level():
-            if not site.mother_.left().nonlicensed_complements() & site.features:
+            if not site.mother_.left().get_selection_features('-COMP') & site.features:
                 if not self.word.adverbial():
                     return True
 
@@ -133,15 +133,15 @@ class PlausibilityMetrics:
     def positive_head_comp_selection(self, site):
         if site.zero_level():
             for m in site.get_affix_list():
-                if not self.word.features & convert_features_for_parsing(m.nonlicensed_complements()):
+                if not self.word.features & convert_features_for_parsing(m.get_selection_features('-COMP')):
                     return True
 
     @knockout_lexical_ranking
     def negative_head_comp_selection(self, site):
         if site.zero_level():
             m = site.bottom_affix()
-            if self.word.features & convert_features_for_parsing(m.nonlicensed_complements()):
-                log(f'{self.word.features & convert_features_for_parsing(m.nonlicensed_complements())}')
+            if self.word.features & convert_features_for_parsing(m.get_selection_features('-COMP')):
+                log(f'{self.word.features & convert_features_for_parsing(m.get_selection_features("-COMP"))}')
                 return True
 
     @knockout_lexical_ranking

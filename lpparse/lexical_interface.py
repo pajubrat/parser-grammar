@@ -71,9 +71,18 @@ class LexicalInterface:
         return (self.language in lex.language) or (lex.language == 'LANG:X')
 
     def apply_redundancy_rules(self, features):
-        def feature_conflict(new_feature, features_from_lexicon):
-            return (new_feature.startswith('-') and (new_feature[1:] in features_from_lexicon or '!' + new_feature[1:] in features_from_lexicon)) or \
-                   (not new_feature.startswith('-') and '-' + new_feature in features_from_lexicon)
+        def feature_conflict(new_f, features_from_lexicon):
+            for f in features_from_lexicon:
+                if new_f.startswith('+COMP') and f.startswith('+COMP'):
+                    return True
+                if new_f.startswith('-COMP') and f.startswith('-COMP'):
+                    return True
+                if new_f.startswith('+SPEC') and f.startswith('+SPEC'):
+                    return True
+                if new_f.startswith('-SPEC') and f.startswith('-SPEC'):
+                    return True
+                if new_f.endswith(f) and new_f[0] != f[0]:
+                    return True
 
         feature_set = set(features)
         new_features_to_add = set()

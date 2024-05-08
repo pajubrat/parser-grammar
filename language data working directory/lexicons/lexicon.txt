@@ -32,12 +32,12 @@ ei			:: e#[V] LANG:FI
 emme		:: e#mme LANG:FI
 ette		:: e#tte LANG:FI
 eivät		:: e#vAt LANG:FI
-e-			:: PF:e- LF:not Neg/fin Fin POL:NEG Φ* !COMP:* !COMP:T LANG:FI
-e			:: PF:e- LF:not Neg/fin Fin POL:NEG Φ* !COMP:* !COMP:T LANG:FI
+e-			:: PF:e- LF:not Neg/fin Fin POL:NEG Φ* !COMP:* +COMP:T LANG:FI
+e			:: PF:e- LF:not Neg/fin Fin POL:NEG Φ* !COMP:* +COMP:T LANG:FI
 elää		:: elä-#T/fin#[V] LANG:FI
 elä-		:: PF:elää LF:live V V/INTR LANG:FI
 etsii		:: etsi-#v#T/fin#[V] LANG:FI
-etsi-		:: PF:etsi- LF:search V V/TR !COMP:φ LANG:FI
+etsi-		:: PF:etsi- LF:search V V/TR +COMP:φ LANG:FI
 esti		:: estä-#v#T/fin#[V] LANG:FI
 estä-		:: PF:estä- LF:prevent V V/TR SEMCLASS_denied_event LANG:FI
 että		:: PF:että LF:that FORCE -ΦPF -SPEC:φ -COMP:φ REF LANG:FI
@@ -59,7 +59,7 @@ haluttu		:: halua-#impass#T/prt LANG:FI
 halua- 		:: PF:halua- LF:want V ASP:BOUNDED SEMCLASS_desired_event SEM:internal V/TR -SPEC:D -SPEC:φ -COMP:ΦPF LANG:FI
 hypä-		:: PF:hypä LF:jump V V/INTR LANG:FI
 häiritsee 	:: häiritse-#v#T/fin#prs#[V] LANG:FI
-häiritse- 	:: PF:häiritse- LF:disturb V/TR V !COMP:φ -COMP:Fin LANG:FI
+häiritse- 	:: PF:häiritse- LF:disturb V/TR V +COMP:φ -COMP:Fin LANG:FI
 hävisivät	:: häviä-#T/fin#prs#[-vAt] LANG:FI
 häviävän	:: häviä-#VA/inf LANG:FI
 hävisi		:: häviä-#T/fin#prs#[V] LANG:FI
@@ -86,7 +86,7 @@ ihailla		:: ihaile-#v#A/inf LANG:FI
 ihailemalla :: ihaile-#v#MA.ade/inf LANG:FI
 ihaileva	:: ihaile-#v#vA LANG:FI
 ihailtiin	:: ihaile-#impass#T/fin#pst#Vn LANG:FI
-ihaile- 	:: PF:ihaile- LF:admire V V/TR !COMP:φ -COMP:Fin LANG:FI
+ihaile- 	:: PF:ihaile- LF:admire V V/TR LANG:FI
 ikkunat		:: ikkuna[pl]-#φ#[acc(t)]#pl#3p#def#hum
 ikkunan		:: ikkuna-#φ#[acc(n)]#sg#3p#def#hum
 ikkuna[pl]-	:: PF:ikkunat LF:windows N LANG:FI
@@ -128,7 +128,7 @@ kaupunki-	:: PF:kaupunki- LF:city N -COMP:P LANG:FI
 käski		:: käske-#v#T/fin#pst#[V] LANG:FI
 käskee		:: käske-#v#T/fin#prs#[V] LANG:FI
 käskee		:: käske-#v#T/fin#prs#[V] LANG:FI
-käske-		:: PF:käske- LF:order V V/TR !COMP:SEM/desired_event SEMCLASS_desired_event SEM:external LANG:FI
+käske-		:: PF:käske- LF:order V V/TR SEMCLASS_desired_event SEM:external LANG:FI
 kellon		:: √kello#φ#r_expression#[acc(n)]
 kellon		:: kello-#[acc(n)] LANG:FI
 kellon_N	:: kello-#[acc(n)] LANG:FI
@@ -145,8 +145,8 @@ kirjaa^		:: PF:kirjaa LF:book N LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
 kirjaa^^ 	:: √kirja#n0#sg#3p#def#r_expression#[par] LANG:FI
 √kirja		:: PF:kirja- LF:√book √ LANG:FI
-kohti		:: P PF:kohti LF:towards !COMP:φ -ΦPF TAIL:V LANG:FI
-kohti^		:: P PF:kohti LF:towards !COMP:φ -ΦPF LANG:FI
+kohti		:: P PF:kohti LF:towards -ΦPF +COMP:D,φ TAIL:V LANG:FI
+kohti^		:: P PF:kohti LF:towards -ΦPF +COMP:D,φ LANG:FI
 koko		:: PF:koko LF:all D LANG:FI TAIL:T COMP:φ adjoinable
 ketä		:: kuka-#D#wh#[par] LANG:FI
 kenen		:: kuka-#D/pro#wh#nonhum#[gen] LANG:FI
@@ -172,7 +172,7 @@ laulan		:: laula-#T/fin#prs#n LANG:FI
 lauloi		:: laula-#T/fin#pst#[V] LANG:FI
 laulamaan 	:: laula-#MA.ill/inf LANG:FI
 laulaessa	:: laula-#ESSA/inf LANG:FI
-laula-		:: V PF:laula- LF:sing V/INTR -COMP:φ LANG:FI
+laula-		:: V PF:laula- LF:sing V/INTR LANG:FI
 lika-		:: PF:lika LF:dirt N LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Inf Φ* LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Inf Φ ?ΦLF -ΦPF LANG:FI
@@ -223,7 +223,7 @@ löydettiin	:: löytä-#impass#asp#T/fin#pl_#1p_#def_ LANG:FI
 löysimme	:: löytä-#v#asp#T/fin#mme LANG:FI
 löysi		:: löytä-#v#asp#T/fin#[V] LANG:FI
 löytää		:: löytä-#v'#A/inf LANG:FI
-löytä-		:: PF:löytä- LF:find V V/TR !COMP:φ ASP:BOUNDED LANG:FI
+löytä-		:: PF:löytä- LF:find V V/TR SP:BOUNDED LANG:FI
 v'			:: v PF:v LF:v ASP:BOUNDED
 maalatessa	:: maalaa-#v#ESSA/inf LANG:FI
 maalattua	:: maalaa-#v#TUA/inf LANG:FI
@@ -234,7 +234,7 @@ maalannut	:: maalaa-#asp#v#T/prt#sg_ LANG:FI
 maalataan	:: maalaa-#asp#impass#T/fin#prs#Vn LANG:FI
 maalattiin	:: maalaa-#asp#impass#T/fin#pst#Vn LANG:FI
 maalaa		:: maalaa-#v#T/fin#prs LANG:FI
-maalaa-		:: PF:maalaa- LF:paint V !COMP:φ V/TR LANG:FI
+maalaa-		:: PF:maalaa- LF:paint V V/TR LANG:FI
 Merja   	::	Merja-#φ#sg#3p#def#nonhum#proper_name#[nom] LANG:FI
 Merja_nom   ::	Merja-#φ#sg#3p#def#nonhum#def#proper_name#[nom] LANG:FI
 Merjan		::	Merja-#φ#sg#3p#def#nonhum#def#proper_name#[acc(n)] LANG:FI
@@ -290,7 +290,7 @@ näytämme	:: näyttä-#T/fin#mme LANG:FI
 näytätte	:: näyttä-#T/fin#tte LANG:FI
 näyttävät	:: näyttä-#T/fin#vAt LANG:FI
 näytä		:: näyttä-#T/fin LANG:FI
-näyttä- 	:: PF:näyttä- LF:seem V -Φ ASP !COMP:VA/inf SEM:internal LANG:FI
+näyttä- 	:: PF:näyttä- LF:seem V -Φ ASP +COMP:VA/inf SEM:internal LANG:FI
 nukun		:: nukku-#T/fin#prs#n LANG:FI
 nukahti		:: nukku-#T/fin#pst LANG:FI
 nukkunut	:: nukku-#prtcpl#sg LANG:FI
@@ -362,7 +362,7 @@ pieni		:: pieni-#a0 LANG:FI
 pieni-		:: PF:pieni- LF:small 0 LANG:FI
 pino-		:: PF:pino LF:stack N LANG:FI
 pitää		:: pitää-#v#T/fin#pst#[V] LANG:FI
-pitää-		:: PF:pitää LF:regard V !COMP:Pr LANG:FI
+pitää-		:: PF:pitää LF:regard V +COMP:Pr LANG:FI
 poikien		::	poika-#φ#[gen]#[-dat]#pl#3p#def#r_expression#hum LANG:FI
 poika-		::	PF:poika LF:boy N LANG:FI
 pudottautuu	:: pudo-#TA*#U*#T/fin#prs#[V]
@@ -383,7 +383,7 @@ pyytä-		:: PF:pyyda- LF:ask V V/TR SEMCLASS_desired_event SEM:external LANG:FI
 pöydän		:: pöytä-#D LANG:FI
 pöytä-		:: PF:pöydän LF:table N LANG:FI
 saavuttaa	:: saavutta-#v#T/fin#[V] LANG:FI
-saavutta-	:: PF:saavutta- LF:reach !COMP:φ ASP:BOUNDED V/TR V LANG:FI
+saavutta-	:: PF:saavutta- LF:reach SP:BOUNDED V/TR V LANG:FI
 sano		:: sano-#T/fin LANG:FI
 sanon   	:: sano-#T/fin#prs#n LANG:FI
 sanoo   	:: sano-#T/fin#prs#[V] LANG:FI
@@ -403,7 +403,7 @@ sisko		:: sisko-#φ#sg#3p#def#r_expression#[nom]
 sisko-		:: PF:sisko LF:sister N LANG:FI
 sopimuksen	:: sopimus-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 sopimus		:: sopimus-#φ#sg#3p#r_expression#def	LANG:FI
-sopimus-	:: N PF:sopimus LF:agreement !COMP:A/inf LANG:FI
+sopimus-	:: N PF:sopimus LF:agreement +COMP:A/inf LANG:FI
 ssa			:: PF:ssa LF:in P TAIL:V float LANG:FI
 suututti	:: suututa-#v#T/fin#[V] LANG:FI
 suututa-	:: PF:suututa- LF:anger V V/TR ASP:BOUNDED -COMP:ESSA/inf -COMP:MA.abe/inf -COMP:MA.ine/inf LANG:FI
@@ -453,7 +453,7 @@ tehdäkse	:: teke-#v#KSE/inf
 tehtiin		:: teke-#impss#T/fin#pst#Vn LANG:FI
 teke		:: teke-#v#T/fin#prs LANG:FI
 tee			:: teke-#v#T#prs LANG:FI
-teke-		:: V V/TR !COMP:φ -COMP:A/inf PF:teke- LF:make LANG:FI
+teke-		:: V V/TR -COMP:A/inf PF:teke- LF:make LANG:FI
 teke2-		:: V -COMP:A/inf -COMP:v PF:teke- LF:make LANG:FI
 tiesin		:: tietä-#T/fin#pst#n LANG:FI
 tietä-		:: PF:tietä- LF:know V LANG:FI
@@ -472,7 +472,7 @@ täytyi		:: täydy-#T/fin#pst#[V] LANG:FI
 täytyisi	:: täydy-#T/fin#cond#[V] LANG:FI
 täydy		:: täydy-#T/prt#prs LANG:FI
 täytynyt	:: täydy-#T/prt#pst#sg_ LANG:FI
-täydy-		:: PF:täyty- LF:must Fin V MODAL -θ !COMP:A/inf -ASP LANG:FI
+täydy-		:: PF:täyty- LF:must Fin V MODAL -θ +COMP:A/inf -ASP LANG:FI
 tönäisi		:: tönäise-#v#T/fin#[V] LANG:FI
 tönäistä	:: tönäise-#A/inf LANG:FI
 tönäise-	:: PF:tönäise- LF:nudge V V/TR LANG:FI
@@ -494,7 +494,7 @@ yli'		:: PF:yli LF:over P ΦPF Inf Φ* LANG:FI LANG:FI
 yli			:: PF:yli LF:over P ΦPF TAIL:V Inf !COMP:* !SPEC:φ LANG:FI
 ylitse		:: PF:yli LF:over P ΦPF TAIL:V Inf !COMP:* !SPEC:φ LANG:FI
 yrittaa		:: yritta-#T/fin#[V] LANG:FI
-yritta- 	:: PF:yritta LF:try V !COMP:A/inf !COMP:-Φ  LANG:EN SEM:internal 
+yritta- 	:: PF:yritta LF:try V +COMP:A/inf +COMP:-Φ  LANG:EN SEM:internal 
 
 # Pronouns
 
@@ -579,7 +579,7 @@ bark		:: PF:bark LF:bark V V/INTR !SPEC:D LANG:EN
 barn		:: PF:barn LF:barn N LANG:EN
 bite		:: bite-#v LANG:EN
 bites		:: bite-#v#T/fin#prs#[-s] LANG:EN
-bite-		:: PF:bite LF:bite V V/TR !COMP:D LANG:EN
+bite-		:: PF:bite LF:bite V V/TR +COMP:D LANG:EN
 Bill 		:: Bill-#D#sg#3p#def#hum#m LANG:EN
 Bill-		:: PF:Bill LF:Bill N R:REF:PROPER_NAME -SEM:directional nonadjoinable LANG:EN
 by			:: PF:by LF:by P Adv -ΦPF TAIL:T TAIL:*V LANG:EN
@@ -623,9 +623,9 @@ left		:: leave-#T/fin#pst#[-0] LANG:EN
 leave1		:: leave-#T/fin#[-0] LANG:EN
 leave		:: PF:leave- LF:leave V V/INTR -COMP:T/fin LANG:EN
 leave- 		:: PF:leave- LF:leave V V/INTR -COMP:T/fin LANG:EN
-like-   	:: PF:like- LF:like V !COMP:φ LANG:EN
+like-   	:: PF:like- LF:like V +COMP:φ LANG:EN
 likes   	:: like-#v#T/fin#sg_#3p_#def_ LANG:EN
-like		:: PF:like LF:like V !COMP:φ LANG:EN
+like		:: PF:like LF:like V +COMP:φ LANG:EN
 little		:: little-#a0 LANG:EN
 little-		:: PF:little- LF:little 0 LANG:EN
 horse		:: PF:horse LF:horse N LANG:EN
@@ -676,7 +676,7 @@ say'		:: PF:say LF:say V !COMP:FORCE LANG:EN
 say-    	:: PF:say LF:say V !COMP:FORCE LANG:EN
 seems		:: seem-#T/fin#prs#[-s] LANG:EN
 seem		:: seem-#T/fin#prs#[-0] LANG:EN
-seem-		:: PF:seem LF:seem V SPEC:φ Φ !COMP:TO/inf SEM:internal nonphase
+seem-		:: PF:seem LF:seem V SPEC:φ Φ +COMP:TO/inf SEM:internal nonphase
 Seine		:: Seine-#D#sg#3p#def LANG:EN
 Seine-		:: PF:Seine LF:Seine N LANG:EN
 solution	:: PF:solution LF:solution N LANG:EN
@@ -687,10 +687,12 @@ the			:: PF:the LF:the D iPHI:PER:3 iPHI:DET:DEF iPHI:NUM:SG LANG:EN
 the/pl		:: PF:the LF:the D iPHI:PER:3 iPHI:DET:DEF iPHI:NUM:PL LANG:EN
 there		:: N#D/expl
 to     		:: PF:to LF:to P +SEM:directional -E TAIL:V +SEM:directional LANG:EN
-towards		:: PF:towards LF:towards P !COMP:φ TAIL:V TAIL:*LF:reach LANG:EN
+towards		:: PF:towards LF:towards P +COMP:D,φ TAIL:V TAIL:*LF:reach LANG:EN
 tries		:: try-#T/fin#prs#[-s] LANG:EN
-try-		:: PF:try LF:try V !COMP:TO/inf LANG:EN SEM:internal 
+try-		:: PF:try LF:try V +COMP:TO/inf LANG:EN SEM:internal 
 wants		:: want-#v#T/fin#prs#[-s] LANG:EN
+wants/2		:: want/2-#v#T/fin#prs#[-s] LANG:EN
+want/2-		:: PF:want LF:want V +COMP:TO/inf LANG:EN
 want		:: want-#v#T/fin#prs#[-0] LANG:EN
 want-		:: PF:want LF:want V V/TR -COMP:V -SPEC:TO/inf LANG:EN
 was			:: T/fin PF:was LF:T PHI:NUM:SG,PER:1 PHI:NUM:SG,PER:3 PER ΦPF weak LANG:EN
@@ -749,7 +751,7 @@ aver		:: PF:aver LF:having T/prt LANG:IT
 attenzione	:: attenzione-#D LANG:IT
 attenzione-	:: PF:attenzione LF:attention N LANG:IT
 attirato	:: attirato-#v LANG:IT
-attirato-	:: PF:attirato LF:attracted V !COMP:D LANG:IT
+attirato-	:: PF:attirato LF:attracted V +COMP:D LANG:IT
 che			:: che-#D#rel#sg#3p#def#hum LANG:IT
 che-   		:: PF:che LF:who N PHI_N LANG:IT
 chiamato	:: chiamata-#T/prt LANG:IT
