@@ -29,7 +29,8 @@ class LF:
                                          '-COMP': PhraseStructure.minus_COMP,
                                          '+COMP': PhraseStructure.plus_COMP,
                                          '-SELF': PhraseStructure.minus_SELF,
-                                         '+SELF': PhraseStructure.plus_SELF}
+                                         '+SELF': PhraseStructure.plus_SELF,
+                                         '=SELF': PhraseStructure.conjunctive_minus_SELF}
 
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''

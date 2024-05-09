@@ -53,7 +53,7 @@ class PhraseStructure:
                                              'test integrity': lambda x: x.zero_level() and
                                                                          (x.top().contains_finiteness() or
                                                                           x.top().referential()) and
-                                                                         x.induces_selection_violation() and
+                                                                         x.selection_violation() and
                                                                          x.sister() and
                                                                          not x.sister().adjunct,
                                              'repair': lambda x: x.extrapose()},
@@ -204,10 +204,6 @@ class PhraseStructure:
     def selector(X):
         return X.next(X.upward_path, lambda x: x.zero_level())
 
-    def selected_sister(X):
-        if X.geometrical_sister() and X.zero_level():
-            return X.geometrical_sister()
-
     def specifier_sister(X):
         if X.is_left():
             return X.mother()
@@ -223,10 +219,6 @@ class PhraseStructure:
             while X.affix() and not X.affix().copied:
                 X = X.affix()
         return X
-
-    def is_licensed_specifier(X):
-        return X.max().container().licensed_phrasal_specifier() and \
-               X.max() == X.max().container().licensed_phrasal_specifier()
 
     def __iter__(X):
         X.nn = X
@@ -273,12 +265,12 @@ class PhraseStructure:
 
     def identify_argument(X):
         available_arguments = [acquire(X) for acquire in [lambda x: x.pro_argument(),
-                                                          lambda x: x.argument_complement(),
+                                                          lambda x: x.complement_argument(),
                                                           lambda x: x.local_edge(),
                                                           lambda x: x.control()]]
         return next((argument for argument in available_arguments if argument), None)
 
-    def argument_complement(X):
+    def complement_argument(X):
         if X.complement() and X.complement().referential():
             return X.complement()
 
@@ -331,47 +323,56 @@ class PhraseStructure:
         feats = [set(f.split(':')[1].split(',')) for f in X.features if f.startswith(key)]
         return set().union(*feats)
 
-    # Feature !1EDGE
-    def selection__negative_one_edge(X, selected_feature):
-        return len(X.edge()) < 2
+    def selection_violation(X):
+        return not X.COMP_selection() or not X.SPEC_selection()
+
+    def properly_selected(X):
+        return X.selector() and X.selector().COMP_selection()
 
     def SPEC_selection(X):
-        minus_specs = X.get_selection_features('-SPEC')
-        plus_specs = X.get_selection_features('+SPEC')
-        return X.minus_SPEC(minus_specs) and X.plus_SPEC(plus_specs)
+        return X.minus_SPEC(X.get_selection_features('-SPEC')) and \
+               X.plus_SPEC(X.get_selection_features('+SPEC'))
 
     def COMP_selection(X):
-        minus_comps = X.get_selection_features('-COMP')
-        plus_comps = X.get_selection_features('+COMP')
-        return X.minus_COMP(minus_comps) and X.plus_COMP(plus_comps)
+        return X.minus_COMP(X.get_selection_features('-COMP')) and \
+               X.plus_COMP(X.get_selection_features('+COMP'))
 
-    # Feature -SPEC:L,K
+    # -SPEC:L,K
     def minus_SPEC(X, fset):
         return len(fset) == 0 or \
                not X.local_edge() or \
                X.local_edge().adjunct or \
                not X.local_edge().head().check_some(fset)
 
-    # Feature +SPEC:L,K
+    # +SPEC:L,K
     def plus_SPEC(X, fset):
-        return len(fset) == 0 or (not X.local_edge() and len(fset) > 0 and 'ø' in fset) or \
+        return len(fset) == 0 or \
+               (not X.local_edge() and 'ø' in fset) or \
                (X.local_edge() and X.local_edge().head().check_some(fset))
 
-    # Feature [-SELF]
-    def minus_SELF(X, fset):
-        return not X.check(fset)
+    # +COMP:L,K
+    def plus_COMP(X, fset):
+        return len(fset) == 0 or\
+               (not X.complement() and 'ø' in fset) or \
+               (X.complement() and X.complement().head().check_some(fset))
 
-    # Feature [+SELF]
+    # -COMP:L,K
+    def minus_COMP(X, fset):
+        return len(fset) == 0 or \
+               not X.complement() or \
+               not X.complement().head().check_some(fset)
+
+    # -SELF
+    def minus_SELF(X, fset):
+        return not X.check_some(fset)
+
+    # +SELF
     def plus_SELF(X, fset):
         return X.check_some(fset)
 
-    # Feature +COMP:L,K
-    def plus_COMP(X, fset):
-        return (not X.complement() and 'ø' in fset) or (X.complement() and X.complement().head().check_some(fset))
-
-    # Feature -COMP:L
-    def minus_COMP(X, fset):
-        return not X.complement() or not X.complement().head().check_some(fset)
+    # =SELF
+    def conjunctive_minus_SELF(X, fset):
+        return not X.check(fset)
 
     def double_spec_filter(X):
         if not X.check({'2SPEC'}) and len(X.edge()) > 1:
@@ -379,28 +380,11 @@ class PhraseStructure:
                 if not x.adjunct:
                     return True
 
-    def licensed_phrasal_specifier(X):
-        if X.next(X.edge, lambda x: x.referential() and not x.adjunct):
-            return X.next(X.edge, lambda x: x.referential() and not x.adjunct)
-        return X.next(X.edge, lambda x: x.referential())
-
     def get_constituent_containing_selection_violation(X):
-        return next((x for x in X if x.induces_selection_violation() and not x.sister().adjunct), None)
-
-    def properly_selected(X):
-        return X.selector() and X.selector().COMP_selection()
+        return next((x for x in X if x.selection_violation() and not x.sister().adjunct), None)
 
     def does_not_accept_any_complements(X):
         return X.check({'-COMP:*'})
-
-    def probe_goal_test(X):
-        if X.sister():
-            for ff in [(f, X.probe(f[7:])) for f in X.features if 'PROBE:' in f]:
-                if (mandatory(ff[0]) and not ff[1]) or (illicit(ff[0]) and ff[1]):
-                    return True
-
-    def probe(X, G):
-        return next((x for x in X.sister() if x.check({G})), None)
 
     def w_selection(X):
         for feature in X.features:
@@ -425,32 +409,27 @@ class PhraseStructure:
                         return True
                 x = x.affix()
 
+    def probe_goal_test(X):
+        if X.sister():
+            for ff in [(f, X.probe(f[7:])) for f in X.features if 'PROBE:' in f]:
+                if (mandatory(ff[0]) and not ff[1]) or (illicit(ff[0]) and ff[1]):
+                    return True
+
+    def probe(X, G):
+        return next((x for x in X.sister() if x.check({G})), None)
+
     # Projection principle ---------------------------------------------------------------------
+    def thematic_head(X):
+        return 'θ' in X.head().features
+
     def in_thematic_position(X):
-        """
-        A thematic position is either specifier of Y licensed by [θ] or complement of Y
-        """
-        return (X.max().container() and 'θ' in X.max().container().head().features) or \
+        return (X.max().container() and X.max().container().thematic_head()) or \
                (X.max().container().complement() == X.max())
 
     def projection_principle_failure(X):
         return (X.max().projection_principle_applies() and
-                not X.max().container_assigns_theta_role()) or \
+                not X.max().container_assigns_theta_role(X.max().container())) or \
                X.pro_projection_principle_violation()
-
-    def pro_projection_principle_violation(X):
-        """
-        Each theta-predicate can be linked with only one pro,
-        since the latter is independent referential argument
-        """
-        if X.zero_level() and X.independent_pro_from_overt_agreement() and X.right_sister():
-            for x in X.right_sister().minimal_search(lambda y: y.check({'V', 'θ'})):
-                if x.zero_level():
-                    if x.independent_pro_from_overt_agreement():
-                        return True
-                    if x.nonthematic_verb():
-                        if X.AgreeLF_has_occurred() or not X.nonreferential_pro():
-                            return True
 
     def projection_principle_applies(X):
         return X.referential() and \
@@ -458,12 +437,20 @@ class PhraseStructure:
                X.max().mother() and \
                not X.max().contains_features({'adjoinable', 'SEM:nonreferential'})
 
-    def container_assigns_theta_role(X):
-        Y = X.max().container()
-        if Y:
-            if X == Y.geometrical_sister() and not X.check_some(Y.get_selection_features('-COMP')):
-                return True
-            return Y.check({'θ'}) and X.is_licensed_specifier()
+    def pro_projection_principle_violation(X):
+        if X.zero_level() and X.independent_pro_from_overt_agreement() and X.right_sister():
+            for x in X.right_sister().minimal_search(lambda y: y.thematic_head() and y.verbal()):
+                if x.zero_level():
+                    if x.independent_pro_from_overt_agreement():
+                        return True
+                    if x.nonthematic_verb():
+                        if X.AgreeLF_has_occurred() or not X.nonreferential_pro():
+                            return True
+
+    def container_assigns_theta_role(X, Y):
+        return Y and Y.thematic_head() and \
+               ((X == Y.geometrical_sister() and not X.check_some(Y.get_selection_features('-COMP')) or
+                 X == Y.local_edge()))
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
@@ -742,27 +729,37 @@ class PhraseStructure:
         X.features.add(f'PHI:IDX:{goal.head().get_id()}')
 
     def feature_gate(X, feature, PP):
+        """
+        Feature A can be valued for B at probe head X iff
+        (1) B is an unvalued feature of the same type as A
+        (2) X is a Φ* head
+        (3) X contains overtly valued phi-bundle with the same type as A (gate condition)
+            E.g.: D is not valued from the goal if it is not expressed by overt agreement at probe
+        """
         P = set().union(*PP)
-        if feature.startswith('iPHI') and f'PHI:{feature.split(":")[1]}:_' in X.features:
-            if not X.check({'Φ*'}):
+        if feature.startswith('iPHI') and f'PHI:{feature.split(":")[1]}:_' in X.features:   # Condition (1)
+            if not X.check({'Φ*'}):                                                         # Condition (2)
                 return True
             for p in P:
-                if feature.split(":")[1] == p.split(':')[0]:
+                if feature.split(":")[1] == p.split(':')[0]:                                # Condition (3)
                     return True
 
     def phi_bundles(X):
         return [set(phi[4:].split(',')) for phi in X.features if valued_phi_feature(phi) and not phi.startswith('i') and 'IDX' not in phi]
 
     def phi_level_violation(X):
-        if not X.check_some({'ASP', 'strong_pro'}):
-            if not X.check({'Φ*'}):
+        """
+        Current implementation of the Agree/EPP system, tested as LF-legibility
+        """
+        if not X.check_some({'ASP', 'strong_pro'}):                 #   Condition 1. Amnesty for strong pro and theta heads
+            if not X.check({'Φ*'}):                                 #   Condition 2. Φ-heads do not have EF
                 return X.local_edge()
-            if X.check({'-ΦPF'}):
+            if X.check({'-ΦPF'}):                                   #   Condition 3. Heads which cannot agree overtly are not subject to further conditions
                 return False
-            if X.check({'weak_pro'}):
-                return X.check({'ΦLF'}) and not X.local_edge()     #   Secondary rule (b)
+            if X.check({'weak_pro'}):                               #   Secondary rule
+                return X.check({'ΦLF'}) and not X.local_edge()
             return (X.check({'ΦLF'}) and not X.primary_rule()) or \
-                   (not X.check({'ΦLF'}) and not X.check_some({'?ΦLF', '-ΦLF'}) and not (X.check({'ΦPF'}) and X.phi_consistent_head()))
+                   (not X.check({'ΦLF'}) and not X.check_some({'?ΦLF', '-ΦLF'}) and not (X.check({'ΦPF'}) and X.phi_consistent_head()))     #   Primary rule
 
     def primary_rule(X):
         return X.local_edge() and X.indexed_argument() and X.local_edge().head().get_id() == X.indexed_argument().head().get_id()
@@ -791,9 +788,6 @@ class PhraseStructure:
         if not X.SPEC_selection():
             X.head().externalize_structure()
         PhraseStructure.speaker_model.results.consume_resources('Extraposition', X)
-
-    def induces_selection_violation(X):
-        return not X.COMP_selection() or not X.SPEC_selection()
 
     def last_resort_extrapose(X):
         if X.zero_level() and X.cutoff_point_for_last_resort_extraposition():
