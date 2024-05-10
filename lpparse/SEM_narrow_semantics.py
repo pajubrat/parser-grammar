@@ -19,32 +19,32 @@ class NarrowSemantics:
         self.semantic_interpretation_failed = False
         self.speaker_model = speaker_model
         self.phi_interpretation_failed = False
-        self.query = \
+        self.semantic_action = \
             {'GLOBAL': {'Remove': self.global_cognition.remove_object,
                         'Project': self.global_cognition.project,
                         'Get': self.global_cognition.get_object,
                         'Update': self.global_cognition.update_discourse_inventory,
-                        'Present': self.global_cognition.present},
+                        'Presentation': self.global_cognition.present},
              'QND': {'Remove': self.quantifiers_numerals_denotations_module.remove_object,
                      'Project': self.quantifiers_numerals_denotations_module.project,
                      'Get': self.quantifiers_numerals_denotations_module.get_object,
                      'Update': self.quantifiers_numerals_denotations_module.update_discourse_inventory,
                      'Accept': self.quantifiers_numerals_denotations_module.accept,
-                     'Present': self.quantifiers_numerals_denotations_module.present},
+                     'Presentation': self.quantifiers_numerals_denotations_module.object_presentation},
              'PRE': {'Remove': self.predicates_relations_events_module.remove_object,
                      'Project': self.predicates_relations_events_module.project,
                      'Get': self.predicates_relations_events_module.get_object,
                      'Update': self.predicates_relations_events_module.update_discourse_inventory,
                      'Accept': self.predicates_relations_events_module.accept,
-                     'Present': self.predicates_relations_events_module.present},
+                     'Presentation': self.predicates_relations_events_module.present},
              'OP':  {'Remove': self.operator_variable_module.remove_object,
                      'Project': self.operator_variable_module.project,
                      'Get': self.operator_variable_module.get_object,
                      'Update': self.operator_variable_module.update,
                      'Accept': self.operator_variable_module.accept,
-                     'Present': self.operator_variable_module.present}}
+                     'Presentation': self.operator_variable_module.present}}
 
-        self.semantic_spaces = ['PRE', 'QND', 'OP']
+        self.semantic_spaces = ['QND']  #   Removed PRE and OP for this version
 
         self.semantic_type = {'T/fin':'§Proposition',
                               'D': '§Thing',
@@ -88,18 +88,23 @@ class NarrowSemantics:
     def postsyntactic_semantic_interpretation(self, ps):
         self.reset_for_new_interpretation()
         self.interpret_(ps)
+        # Assignments
         if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', False) and not self.speaker_model.results.first_solution_found:
             self.speaker_model.results.store_semantic_interpretation('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
+        # Information structure
         if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and ps.finite():
             self.speaker_model.results.store_semantic_interpretation('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
+        # Speaker attitude
         self.speaker_model.results.store_semantic_interpretation('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
         return not self.semantic_interpretation_failed
 
     def interpret_(self, ps):
         if not ps.copied:
             if ps.zero_level():
+                # Thematic roles
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and ps.theta_predicate():
                     self.speaker_model.results.store_semantic_interpretation('Thematic roles', self.thematic_roles_module.reconstruct(ps))
+                # Argument-predicate pairs
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and ps.check_some({'Φ', 'Φ*'}):
                     self.speaker_model.results.store_semantic_interpretation('Predicates', self.predicates.reconstruct(ps))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
@@ -108,7 +113,8 @@ class NarrowSemantics:
                     self.speaker_model.results.store_semantic_interpretation('Indexing by Agree', self.predicates.reconstruct_agreement(ps))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(ps)
                 self.interpret_tail_features(ps)
-                if self.speaker_model.settings.retrieve('general_parameter_project_objects', True):
+                # Project objects into ontology and narrow semantics
+                if self.speaker_model.settings.retrieve('general_parameter_project_objects', True) and not self.speaker_model.results.first_solution_found:
                     self.inventory_projection(ps)
                 self.speaker_model.results.store_semantic_interpretation('Operator bindings', self.operator_variable_module.bind_operator(ps))
                 self.speaker_model.results.store_semantic_interpretation('DIS-features', self.pragmatic_pathway.interpret_discourse_features(ps))
@@ -118,28 +124,24 @@ class NarrowSemantics:
                 self.interpret_(ps.left())
                 self.interpret_(ps.right())
 
-    def inventory_projection(self, ps):
-        def preconditions(x):
-            return not self.speaker_model.results.first_solution_found and \
-                   not ps.copied and x.referential()
+    def inventory_projection(self, X):
+        """
+        Creates objects on the basis of expressions for narrow semantic and global ontologies
+        """
+        # Examine each semantic space SEMS available (currently only QNP)
+        for space in self.semantic_spaces:
+            # Examine if X can project an object into SEMS (e.g., pro and DP for QNP) and
+            # the object is not projected through full argument (i.e. no AgreeLF has taken place)
+            if self.semantic_action[space]['Accept'](X) and X.AgreeLF_has_occurred():
+                idx = str(self.global_cognition.consume_index())                                                    #   Create new index
+                X.features.add(f'IDX:{idx},{space}')                                                                #   Add the index to the expression
+                new_semantic_object_dict = self.semantic_action[space]['Project'](X, idx)                           #   Project the object into SEMS
+                global_idx = self.semantic_action['GLOBAL']['Project'](X, new_semantic_object_dict.copy())          #   Project corresponding global object
+                self.semantic_action[space]['Denotation'] = global_idx                                              #   Add denotation between QNP and GLOBAL
 
-        if preconditions(ps):
-            for space in self.semantic_spaces:
-                if self.query[space]['Accept'](ps.head()):
-                    idx = str(self.global_cognition.consume_index())
-                    ps.head().features.add('IDX:' + idx + ',' + space)
-                    log('\n\t\t\tProject ')
-                    self.query[space]['Project'](ps, idx)
-                    self.query[space]['Denotation'] = self.query['GLOBAL']['Project'](ps, self.transform_for_global(self.query[space]['Get'](idx)))
-
-                    # For heuristic purposes so that referential arguments are recognized by BT
-                    if space == 'QND':
-                        ps.head().features.add('REF')
-
-    def transform_for_global(self, semantic_object):
-        filtered_object = semantic_object.copy()
-        filtered_object.pop('Phi-set', None)
-        return filtered_object
+                # For heuristic purposes so that referential arguments are recognized by BT
+                if space == 'QND':
+                    X.head().features.add('REF')
 
     def failure(self):
         if self.phi_interpretation_failed or \
@@ -204,13 +206,9 @@ class NarrowSemantics:
                 if space == space_query:
                     return True
 
-    def default_criteria(self, ps, space):
-        def get_semantic_types(ps):
-            return {self.semantic_type[feature] for feature in ps.head().features if feature in self.semantic_type}
-
-        return {'Referring constituent': f'{ps}',
-                      'Reference': self.query[space]['Present'](ps),
-                      'Semantic space': space,
-                      'Semantic type': get_semantic_types(ps),
-                      'Operator': self.operator_variable_module.is_operator(ps)
-                      }
+    def default_attributes(self, X, space):
+        return {'Referring constituent': f'{X}',
+                'Reference': self.semantic_action[space]['Presentation'](X),
+                'Semantic space': space,
+                'Semantic type': {self.semantic_type[feature] for feature in X.head().features if feature in self.semantic_type},
+                'Operator': self.operator_variable_module.is_operator(X)}

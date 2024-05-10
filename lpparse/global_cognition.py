@@ -32,18 +32,12 @@ class GlobalCognition:
     def update_discourse_inventory(self, idx, criteria):
         self.inventory[str(idx)].update(criteria)
 
-    def project(self, ps, semantic_object):
-        criteria_for_new_global_object = self.narrow_semantics.default_criteria(ps, 'GLOBAL')
-        semantic_object['Semantic space'] = 'GLOBAL'
-        criteria_for_new_global_object.update(semantic_object)
-        criteria_for_new_global_object.pop('Phi-set', None)
-        string = self.create_object(criteria_for_new_global_object)
-        return string
+    def project(self, X, semantic_object_dict):
+        return self.create_object({'Semantic space': 'GLOBAL', 'Semantic type': semantic_object_dict.get('Semantic type', 'unknown')})
 
-    def create_object(self, criteria):
+    def create_object(self, ontology_attributes_dict):
         idx = self.consume_index()
-        self.inventory[str(idx)] = criteria
-        log(f'({idx}, GLOBAL)')
+        self.inventory[str(idx)] = ontology_attributes_dict
         return str(idx)
 
     def get_compatible_objects(self, filter_criteria):

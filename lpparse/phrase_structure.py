@@ -869,7 +869,6 @@ class PhraseStructure:
                         return True
 
     # Operators
-
     def checking_domain(X, narrow_domain):
         if narrow_domain:
             return X.head()
@@ -898,11 +897,13 @@ class PhraseStructure:
         return X.max().container() and X.max().container().check(tset)
 
     def check_aunt(X, tset):
-        return X.max().mother() and X.max().mother().sister() and X.max().mother().sister().check(tset)
+        return X.max().mother() and \
+               X.max().mother().sister() and \
+               X.max().mother().sister().check(tset)
 
     def tail_match(X, constituent_from_MB, direction):
         X.Merge_inside(constituent_from_MB.copy(), direction)   # Test merge
-        if direction == 'right':                                   # Presupposition
+        if direction == 'right':                                # Presupposition
             X.geometrical_sister().adjunct = True
         result = X.geometrical_sister().head().tail_test()      # Test
         X.geometrical_sister().remove()                         # Remove trial unit
@@ -946,8 +947,8 @@ class PhraseStructure:
 
     def Merge_inside(X, C, direction=''):
         local_structure = (X.mother(), X.is_left())         # Snapshot of the local structure
-        X = X.asymmetric_merge(C, direction)                 # Create new constituent X
-        X.substitute(local_structure)                           # Insert X back into the local structure
+        X = X.asymmetric_merge(C, direction)                # Create new constituent X
+        X.substitute(local_structure)                       # Insert X back into the local structure
         return X
 
     # Asymmetric Merge is a generalization of the bottom-up Merge (__init__) that can be provided with directionality
@@ -1282,7 +1283,7 @@ class PhraseStructure:
         return X.check({'A'})
 
     def verbal(X):
-        return X.check({'V'})
+        return X.check({'ASP'})
 
     def theta_predicate(X):
         return X.check({'θ'}) and X.check_some({'Φ', 'Φ*'}) and not X.check({'-θ'})
@@ -1302,14 +1303,8 @@ class PhraseStructure:
     def copula(X):
         return X.check({'COPULA'})
 
-    def finite_C(X):
-        return X.check({'C/fin'})
-
     def relative(X):
         return X.check({'REF'})
-
-    def nonfinite(X):
-        return X.check({'Inf'})
 
     def concept_operator(X):
         return X.concept() and {feature for feature in X.features if feature[:2] == 'OP'}
@@ -1399,10 +1394,9 @@ class PhraseStructure:
         return X.check({'GEN'})
 
     def highest_finite_head(X):
-        return X.check({'Fin'}) and not X.check_some({'C', 'FORCE'}) and not (X.selector() and X.selector().check_some({'T', 'COPULA', 'Fin'}))
-
-    def theta_head(X):
-        return X.theta_predicate() and not X.check({'!Φ'})
+        return X.check({'Fin'}) and \
+               not X.check_some({'C', 'FORCE'}) and \
+               not (X.selector() and X.selector().check_some({'T', 'COPULA', 'Fin'}))
 
     def expletive(X):
         return X.head().check({'EXPL'})
@@ -1426,9 +1420,6 @@ class PhraseStructure:
 
     def EF(X):
         return X.check({'Φ*'})
-
-    def PHI(X):
-        return X.check_some({'+ΦLF,ΦPF', '!ΦLF,ΦPF', '?ΦLF,ΦPF'})
 
     def AgreeLF_has_occurred(X):
         return X.check({'ΦLF'})

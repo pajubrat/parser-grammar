@@ -2,6 +2,7 @@
 # It mediates between the syntax-semantics interface and the global discourse inventory
 # Responds to R-features ([R:...], [PHI:...])
 from support import log
+import itertools
 
 class QuantifiersNumeralsDenotations:
     def __init__(self, narrow_semantics):
@@ -18,8 +19,13 @@ class QuantifiersNumeralsDenotations:
         self.all_assignments = []
         self.one_complete_assignment = {}
 
-    def accept(self, ps):
-        return ps.complete_agreement_suffixes() or ps.referential()
+    def project(self, X, idx):
+        log(f'\n\t\t\tProject {X}° in {X.max().illustrate()} ({idx}, QND)')
+        self.inventory[idx] = self.extrapolate_semantic_attributes(X)
+        return self.inventory[idx]
+
+    def accept(self, X):
+        return X.complete_agreement_suffixes() or X.referential()
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
@@ -30,42 +36,58 @@ class QuantifiersNumeralsDenotations:
     def update_discourse_inventory(self, idx, criteria):
         self.inventory[idx].update(criteria)
 
+    def object_presentation(self, X):
+        if X.predicate():
+            return f'pro({X})'
+        return f'{X.illustrate()}'
+
     def reconstruct_assignments(self, ps):
+        """
+        Creates assignments for all referential expressions
 
-        log(f'\n\t\tDenotations:')
-        self.referential_constituents_feed = self.calculate_possible_denotations_(ps)
+        Assignment = interpretation in which all referential expressions in the expressions are provided a denotation,
+        for example 'John(1) admires Mary(2)', where (1) and (2) are persons in the global semantic space
+        All assignments = a set of possible assignments, for example 'John(1,2) admires Mary(1,2)'.
+
+        Denotations/assignments are attached to semantic entries in the narrow semantics space (e.g. QND), which are linked to
+        expressions in narrow syntax (i.e. Exp ~ QND entry ~ global objects). For example, quantifiers like 'some', 'three', 'all'
+        have fixed QND entries which allow them to denote different objects and sets of objects in the global inventory.
+        Global inventory can be modulated by context (e.g., prior sentences). Semantic entries are dictionaries keyed by an index,
+        the latter a feature of the constituent in NS. For example, QND space entry for 'John' holds information about its intension
+        such as 'person', 'male', 'singular' etc. which is then used to find possible denotations (e.g., we block 'John' ~ two female cats).
+        The index features has form [IDX:n,QND], where n = key.
+
+        If two Exp have the same index, they are synonyms in grammatical sense (e.g., pro and subject). If they have the same denotation,
+        they are coreferential. Binding regulates coreferentiality.
+        """
+        log(f'\n\t\tPossible denotations:')
+        # Referential constituents feed contains a list of tuples (index, expression (string), X, denotations) for each referential constituent,
+        # where denotations is a list of global indexes compatible with the expression (e.g., male persons for 'John').
+        self.referential_constituents_feed = self.calculate_possible_denotations(ps)
         log(f'\n\t\tAssignments: ')
-        if not self.referential_constituents_feed:
-            return
+        if self.referential_constituents_feed:
+            #
+            self.create_assignments_from_denotations()
+            return self.all_assignments
 
-        self.create_assignments_from_denotations_(0, 0, {})
-        return self.all_assignments
-
-    def calculate_possible_denotations_(self, ps):
-        L1 = []
-        L2 = []
-        if not ps.copied:
-            if ps.complex():
-                L1 = self.calculate_possible_denotations_(ps.left)
-                L2 = self.calculate_possible_denotations_(ps.right)
+    def calculate_possible_denotations(self, X):
+        denotations_lst = []
+        if not X.copied:
+            if X.complex():
+                denotations_lst += self.calculate_possible_denotations(X.left())
+                denotations_lst += self.calculate_possible_denotations(X.right())
             else:
-                if self.narrow_semantics.has_referential_index(ps, 'QND'):
-                    idx, space = self.narrow_semantics.get_referential_index_tuple(ps, 'QND')
-                    self.inventory[idx]['Denotations'] = self.create_all_denotations(ps)
+                if self.narrow_semantics.has_referential_index(X, 'QND'):
+                    idx, space = self.narrow_semantics.get_referential_index_tuple(X, 'QND')
+                    self.inventory[idx]['Denotations'] = self.create_all_denotations(X)
                     log(f'\n\t\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
-                    return [(idx, f'{ps.illustrate()}', ps, self.inventory[idx]['Denotations'])]
-        return L1 + L2
+                    denotations_lst = [(idx, f'{X.illustrate()}', X, self.inventory[idx]['Denotations'])]
+        return denotations_lst
 
-    def create_assignments_from_denotations_(self, c_index, d_index, one_complete_assignment):
-        idx, const, ps, denotations = self.referential_constituents_feed[c_index]
-        denotation = denotations[d_index]
-        one_complete_assignment[idx] = denotation
-        if len(one_complete_assignment) == len(self.referential_constituents_feed):
-            self.all_assignments.append(self.calculate_assignment_weight(one_complete_assignment))
-        if c_index < len(self.referential_constituents_feed) - 1:
-            self.create_assignments_from_denotations_(c_index + 1, 0, one_complete_assignment.copy())
-        if d_index < len(denotations) - 1:
-            self.create_assignments_from_denotations_(c_index, d_index + 1, one_complete_assignment.copy())
+    def create_assignments_from_denotations(self):
+        for assignment in itertools.product(*[tup[3] for tup in self.referential_constituents_feed]):               #   Create all possible assignments (tup[3] = list of assignments)
+            assignment_dict = {tup[0]: assignment[i] for i, tup in enumerate(self.referential_constituents_feed)}   #   Create assignment dict (because the rest is based on dicts)
+            self.all_assignments.append(self.calculate_assignment_weight(assignment_dict))                          #   Calculate assignment weights
 
     def calculate_assignment_weight(self, complete_assignment):
         weighted_assignment = complete_assignment.copy()
@@ -75,38 +97,9 @@ class QuantifiersNumeralsDenotations:
             if not self.binding_theory_conditions(expression, complete_assignment):
                 weighted_assignment['weight'] = 0
                 log('Rejected by binding.')
-            if not self.predication_theory_conditions(expression, complete_assignment):
-                weighted_assignment['weight'] = 0
-                log('Rejected by predication theory.')
         if weighted_assignment['weight'] > 0:
             log('Accepted.')
         return weighted_assignment
-
-    def predication_theory_conditions(self, expression, complete_assignment):
-        idx_QND_predicate, name, ps, denotations = expression
-
-        # Apply the condition only to heads which have both predicate and referential argument interpretations
-        if self.narrow_semantics.query['PRE']['Accept'](ps) and self.narrow_semantics.query['QND']['Accept'](ps):
-
-            # Get referential interpretation from the predicate
-            idx_pred, space_pred = self.narrow_semantics.get_referential_index_tuple(ps, 'QND')
-
-            if idx_pred:
-                # Examine if the predicate has been linked with an argument
-                for predicate, argument in self.narrow_semantics.speaker_model.predicate_argument_dependencies:
-                    if ps == predicate:
-
-                        # Get referential interpretation from the argument
-                        idx_arg, space_arg = self.narrow_semantics.get_referential_index_tuple(argument, 'QND')
-
-                        # Predicate theory only applies if the argument is linked with a reference
-                        # (This condition is violated exceptionally if the linked argument is EPP-related filler)
-                        if idx_arg:
-
-                            # Check that the predicate reference and the argument are the same
-                            if complete_assignment[idx_arg] != complete_assignment[idx_pred]:
-                                return False
-        return True
 
     def binding_theory_conditions(self, expression, complete_assignment):
         idx, name, ps, denotations = expression
@@ -152,19 +145,16 @@ class QuantifiersNumeralsDenotations:
         component = feature_.split(':')
         return component[0], component[1], component[2], interface
 
-    def project(self, ps, idx):
-        self.inventory[idx] = self.apply_criteria(self.narrow_semantics.default_criteria(ps, 'QND'), ps)
-        log(f'{ps.head().max().illustrate()}: ({idx}, QND)')
-
-    def apply_criteria(self, criteria, ps):
-        for feature in list(self.get_R_features(ps)):
+    def extrapolate_semantic_attributes(self, X):
+        semantic_attributes_dict = self.narrow_semantics.default_attributes(X, 'QND')
+        for feature in list(self.get_R_features(X)):
             feature_type = feature.split(':')[0]
             if feature in self.criteria_function:
-                self.criteria_function[feature](criteria, ps, feature)
+                self.criteria_function[feature](semantic_attributes_dict, X, feature)
             elif feature_type in self.criteria_function:
-                self.criteria_function[feature_type](criteria, ps, feature)
-        criteria['Semantic type'] = {'§Thing'}
-        return criteria
+                self.criteria_function[feature_type](semantic_attributes_dict, X, feature)
+        semantic_attributes_dict['Semantic type'] = {'§Thing'}
+        return semantic_attributes_dict
 
     def criterion_proper_name(self, criteria, ps, feature):
         pf_features = sorted(ps.sister().get_pf())
@@ -208,14 +198,6 @@ class QuantifiersNumeralsDenotations:
         else:
             criteria['Phi-set'] = {feature}
         criteria.update(interpret_phi_features(criteria['Phi-set']))
-
-    def present(self, head):
-        if self.narrow_semantics.query['PRE']['Accept'](head):
-            return f'pro({head})'
-        elif head.mother_ and head.sister():
-            return f'[{head.illustrate()} {head.sister().illustrate()}]'
-        else:
-            return f'{head.illustrate}'
 
     def detect_phi_conflicts(self, ps):
         for phi in ps.head().get_phi_set():

@@ -59,7 +59,7 @@ class OperatorVariableModule:
     def project_operator_objects_into_discourse_inventory(self, binding):
         idx, space = self.speaker_model.narrow_semantics.get_referential_index_tuple(binding["Head"], 'OP')
         if idx:
-            self.speaker_model.narrow_semantics.query['OP']['Get'](idx)['Bound by'] = binding["Head"]
+            self.speaker_model.narrow_semantics.semantic_action['OP']['Get'](idx)['Bound by'] = binding["Head"]
 
     @staticmethod
     def scope_marker(head):
@@ -83,7 +83,7 @@ class OperatorVariableModule:
         self.inventory[idx].update(criteria)
 
     def project(self, ps, idx):
-        self.inventory[idx] = self.speaker_model.narrow_semantics.default_criteria(ps, 'OP')
+        self.inventory[idx] = self.speaker_model.narrow_semantics.default_attributes(ps, 'OP')
         self.inventory[idx]['Semantic type'].add('§Operator')
         log(f'{ps.max().illustrate()}: ({idx}, OP)')
 

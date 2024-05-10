@@ -65,7 +65,7 @@ class SpeakerModel:
     # Recursive derivational search function (parser)
     def parse_new_item(self, ps, lst, index, inflection_buffer=frozenset()):
 
-        Results.accumulate_global_steps()
+        Results.accumulate_global_steps()   #   Internal bookkeeping
 
         log_instance.indent_level = self.embedding
 

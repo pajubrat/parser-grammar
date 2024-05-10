@@ -12,7 +12,7 @@ class PredicatesRelationsEvents:
         return f'{head.illustrate()}'
 
     def accept(self, ps):
-        return 'ARG' in ps.head().features and not {'D', 'φ'} & ps.head().features
+        return ps.predicate() and not {'D', 'φ'} & ps.head().features
 
     def has_PE_index(self, ps):
         if (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'PRE'):
@@ -25,7 +25,7 @@ class PredicatesRelationsEvents:
         self.inventory[idx].update(criteria)
 
     def project(self, ps, idx):
-        self.inventory[idx] = self.narrow_semantics.default_criteria(ps, 'PRE')
+        self.inventory[idx] = self.narrow_semantics.default_attributes(ps, 'PRE')
         log(f'predicate \'{ps.illustrate()}\': ({idx}, PRE)')
 
     def remove_object(self, idx):
