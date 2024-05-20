@@ -25,7 +25,7 @@ class QuantifiersNumeralsDenotations:
         return self.inventory[idx]
 
     def accept(self, X):
-        return X.complete_agreement_suffixes() or X.referential()
+        return (X.complete_agreement_suffixes() and not X.AgreeLF_has_occurred()) or X.referential()
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
@@ -37,9 +37,9 @@ class QuantifiersNumeralsDenotations:
         self.inventory[idx].update(criteria)
 
     def object_presentation(self, X):
-        if X.predicate():
-            return f'pro({X})'
-        return f'{X.illustrate()}'
+        if X.referential():
+            return f'{X.max().illustrate()}'
+        return f'pro({X})'
 
     def reconstruct_assignments(self, ps):
         """

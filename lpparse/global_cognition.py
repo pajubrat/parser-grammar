@@ -33,7 +33,9 @@ class GlobalCognition:
         self.inventory[str(idx)].update(criteria)
 
     def project(self, X, semantic_object_dict):
-        return self.create_object({'Semantic space': 'GLOBAL', 'Semantic type': semantic_object_dict.get('Semantic type', 'unknown')})
+        return self.create_object({'Semantic space': 'GLOBAL',
+                                   'Reference': semantic_object_dict['Reference'],
+                                   'Semantic type': semantic_object_dict.get('Semantic type', 'unknown')})
 
     def create_object(self, ontology_attributes_dict):
         idx = self.consume_index()

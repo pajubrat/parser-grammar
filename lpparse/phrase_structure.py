@@ -154,10 +154,7 @@ class PhraseStructure:
             return X.mother().sister()
 
     def head(X):
-        for x in [X] + X.const:
-            if x.zero_level():
-                return x
-        return X.right_nonadjunct().head()
+        return next((x for x in [X] + X.const if x.zero_level()), X.complex() and X.right_nonadjunct().head())
 
     def right_nonadjunct(X):
         if X.right().adjunct:
@@ -266,6 +263,7 @@ class PhraseStructure:
     def identify_argument(X):
         available_arguments = [acquire(X) for acquire in [lambda x: x.pro_argument(),
                                                           lambda x: x.complement_argument(),
+                                                          lambda x: x.indexed_argument(),
                                                           lambda x: x.local_edge(),
                                                           lambda x: x.control()]]
         return next((argument for argument in available_arguments if argument), None)
@@ -289,9 +287,18 @@ class PhraseStructure:
             x = x.right()
         return search_list
 
+    def predicate_composition(X):
+        if X.complement():
+            lst = [x for x in X.complement().minimal_search(lambda x: x.reference_head()) if x.zero_level()]
+            lst = [X] + lst[:-1] + lst[-1].get_affix_list()
+            return lst
+
+    def reference_head(X):
+        return {'π', 'D', 'φ'} & X.features
+
     # Virtual pronouns -----------------------------------------------------------------------
     def pro_argument(X):
-        if X.independent_pro_from_overt_agreement() or X.complete_agreement_suffixes() or X.has_linked_argument():
+        if X.independent_pro_from_overt_agreement() or X.complete_agreement_suffixes():
             return X.NS()
 
     def NS(X):
@@ -301,7 +308,7 @@ class PhraseStructure:
             return pro
 
     def complete_agreement_suffixes(X):
-        return X.phi_consistent_head() and X.has_minimal_phi_set_for_reference()
+        return X.phi_consistent_head() and X.has_minimal_phi_set_for_reference() and 'ΦPF' in X.features
 
     def phi_consistent_head(X):
         for fpair in itertools.permutations(X.complete_valued_phi_set(), 2):
@@ -767,7 +774,7 @@ class PhraseStructure:
     def indexed_argument(X):
         idx = X.phi_index()
         if idx and X.sister():
-            return next((x for x in X.sister().minimal_search() if idx in x.head().features), None)
+            return next((x.max() for x in X.sister().minimal_search() if idx in x.head().features), None)
 
     def phi_index(X):
         return next((f.split(':')[2] for f in X.features if f.startswith('PHI:IDX:')), None)
@@ -1063,6 +1070,9 @@ class PhraseStructure:
             if x.startswith('§'):
                 return x
 
+    def semantic_index(X, space):
+        return next((f.split(':')[1].split(',')[0] for f in X.features if f.startswith('IDX') and space in f), None)
+
     def target_left_branch(X, target):
         new_ps = X.top().copy()
         return new_ps.get_node(X.top().get_index(target))
@@ -1269,6 +1279,9 @@ class PhraseStructure:
 
     def empty_finite_EPP(X):
         return X.selector().finite_C() and X.EF() and not X.edge()
+
+    def finite_C(X):
+        return 'C/fin' in X.head().features
 
     def adverbial(X):
         return X.check({'Adv'})

@@ -8,11 +8,11 @@ class PredicatesRelationsEvents:
     def reset(self):
         self.inventory = {}
 
-    def present(self, head):
-        return f'{head.illustrate()}'
+    def present(self, X):
+        return f'{self.narrow_semantics.semantic_type[X.label()][1:]}'
 
-    def accept(self, ps):
-        return ps.predicate() and not {'D', 'φ'} & ps.head().features
+    def accept(self, X):
+        return 'π' in X.head().features
 
     def has_PE_index(self, ps):
         if (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'PRE'):
@@ -24,9 +24,23 @@ class PredicatesRelationsEvents:
     def update_discourse_inventory(self, idx, criteria):
         self.inventory[idx].update(criteria)
 
-    def project(self, ps, idx):
-        self.inventory[idx] = self.narrow_semantics.default_attributes(ps, 'PRE')
-        log(f'predicate \'{ps.illustrate()}\': ({idx}, PRE)')
+    def project(self, X, idx):
+        log(f'\n\t\t\tProject {X.label()}-event ({idx}, PRE)')
+        self.inventory[idx] = self.default_attributes(X)
+        return self.inventory[idx]
+
+    def default_attributes(self, X):
+        Pred = X.predicate_composition()
+        Part = self.participant_composition(Pred)
+        return {'Semantic space': 'PRE',
+                'Predicate': X,
+                'Composition': Pred,
+                'Participants': Part,
+                'Semantic type': [self.narrow_semantics.semantic_type[X.label()]],
+                'Reference': self.present(X)}
+
+    def participant_composition(self, Pred):
+        return list({x.identify_argument().head().semantic_index('QND') for x in Pred if x.identify_argument()})
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)

@@ -1,4 +1,5 @@
 from support import log
+from phrase_structure import PhraseStructure
 import time
 
 
@@ -203,15 +204,19 @@ class Results():
         output_str = '\n'
         if len(speaker_model.narrow_semantics.all_inventories()) > 0:
             for semantic_object, data_dict in self.create_inventory_sorting(speaker_model.narrow_semantics.all_inventories().items()):
+                # Create label for the object
                 output_str += '\t\tObject ' + semantic_object
                 if 'Semantic type' in data_dict:
                     output_str += ' ' + str(sorted(data_dict['Semantic type']))
                 if 'Semantic space' in data_dict:
                     output_str += ' in ' + data_dict['Semantic space']
                 output_str += '\n'
+                # Show semantic attributes
                 for item, value in sorted(data_dict.items()):
                     if isinstance(value, set):
                         output_str += '\t\t\t' + item + ': ' + f'{sorted(value)}' + '\n'
+                    if isinstance(value, list) and len(value) > 0 and isinstance(value[0], PhraseStructure):
+                        output_str += '\t\t\t' + item + ': '+ ' + '.join([x.label() for x in value]) + '\n'
                     else:
                         output_str += '\t\t\t' + item + ': ' + f'{value}' + '\n'
         return output_str
@@ -266,10 +271,10 @@ class Results():
         if len(self.speaker_model.narrow_semantics.all_inventories()) > 0:
             for semantic_object, data_dict in self.create_inventory_sorting(self.speaker_model.narrow_semantics.all_inventories().items()):
                 if data_dict['Semantic space'] == 'GLOBAL':
-                    if 'Reference' in data_dict and '§Thing' in data_dict['Semantic type']:
-                        output_str += '\t\tObject ' + semantic_object
-                        if 'Semantic space' in data_dict:
-                            output_str += ' in ' + data_dict['Semantic space'] + ': '
-                        if 'Reference' in data_dict:
-                            output_str += data_dict['Reference'] + '\n'
+                    output_str += '\t\tObject ' + semantic_object
+                    if 'Semantic space' in data_dict:
+                        output_str += ' in ' + data_dict['Semantic space'] + ': '
+                    if 'Reference' in data_dict:
+                        output_str += data_dict['Reference']
+                    output_str += '\n'
             return output_str
