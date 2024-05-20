@@ -44,7 +44,7 @@ class NarrowSemantics:
                      'Accept': self.operator_variable_module.accept,
                      'Presentation': self.operator_variable_module.present}}
 
-        self.semantic_spaces = ['QND', 'PRE']
+        self.semantic_spaces = ['QND', 'PRE', 'GLOBAL']
 
         self.semantic_type = {'T/fin':'§Event',
                               'D': '§Thing',
@@ -88,6 +88,7 @@ class NarrowSemantics:
     def postsyntactic_semantic_interpretation(self, ps):
         self.reset_for_new_interpretation()
         self.interpret_(ps)
+        # Inventory projection and ontology
         if self.speaker_model.settings.retrieve('general_parameter_project_objects', True) and not self.speaker_model.results.first_solution_found:
             self.inventory_projection(ps)
         # Assignments
@@ -130,7 +131,7 @@ class NarrowSemantics:
             self.inventory_projection_(X, space)
 
     def inventory_projection_(self, X, space):
-        if not X.copied:
+        if not X.copied and space != 'GLOBAL':
             if X.complex():
                 self.inventory_projection_(X.left(), space)
                 self.inventory_projection_(X.right(), space)
@@ -198,7 +199,6 @@ class NarrowSemantics:
         dict.update(self.global_cognition.inventory)
         dict.update(self.quantifiers_numerals_denotations_module.inventory)
         dict.update(self.predicates_relations_events_module.inventory)
-        dict.update(self.operator_variable_module.inventory)
         return dict
 
     def has_referential_index(self, ps, space_query=''):

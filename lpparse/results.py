@@ -144,12 +144,12 @@ class Results():
     def log_success(self, ps):
         log('\n\t\tAccepted.\n')
         print('X', end='', flush=True)
-        log(f'\n\n\t\tLexical features:\n{self.show_primitive_constituents(ps)}')
         if not self.first_solution_found:
             log(f'{self}')
-            log('\n\t\tOntology:')
+            log('\n\tComplete ontology:')
             log(f'\t\t{self.format_ontology_all(self.speaker_model)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
+        log(f'\n\n\t\tLexical features:\n{self.show_primitive_constituents(ps)}')
         log('\n\tChecking if the sentence is ambiguous...\n')
         self.first_solution_found = True
 
@@ -203,22 +203,25 @@ class Results():
     def format_ontology_all(self, speaker_model):
         output_str = '\n'
         if len(speaker_model.narrow_semantics.all_inventories()) > 0:
-            for semantic_object, data_dict in self.create_inventory_sorting(speaker_model.narrow_semantics.all_inventories().items()):
-                # Create label for the object
-                output_str += '\t\tObject ' + semantic_object
-                if 'Semantic type' in data_dict:
-                    output_str += ' ' + str(sorted(data_dict['Semantic type']))
-                if 'Semantic space' in data_dict:
-                    output_str += ' in ' + data_dict['Semantic space']
-                output_str += '\n'
-                # Show semantic attributes
-                for item, value in sorted(data_dict.items()):
-                    if isinstance(value, set):
-                        output_str += '\t\t\t' + item + ': ' + f'{sorted(value)}' + '\n'
-                    if isinstance(value, list) and len(value) > 0 and isinstance(value[0], PhraseStructure):
-                        output_str += '\t\t\t' + item + ': '+ ' + '.join([x.label() for x in value]) + '\n'
-                    else:
-                        output_str += '\t\t\t' + item + ': ' + f'{value}' + '\n'
+            all_inventories = self.speaker_model.narrow_semantics.all_inventories()
+            for space in speaker_model.narrow_semantics.semantic_spaces:
+                output_str += f'\n\t\t{space} ----------------------------\n'
+                for semantic_object, data_dict in [(d, all_inventories[d]) for d in all_inventories.keys() if all_inventories[d]['Semantic space'] == space]:
+                    # Create label for the object
+                    output_str += '\t\tObject ' + semantic_object
+                    if 'Semantic type' in data_dict:
+                        output_str += ' ' + str(sorted(data_dict['Semantic type']))
+                    if 'Semantic space' in data_dict:
+                        output_str += ' in ' + data_dict['Semantic space']
+                    output_str += '\n'
+                    # Show semantic attributes
+                    for item, value in sorted(data_dict.items()):
+                        if isinstance(value, set):
+                            output_str += '\t\t\t' + item + ': ' + f'{sorted(value)}' + '\n'
+                        if isinstance(value, list) and len(value) > 0 and isinstance(value[0], PhraseStructure):
+                            output_str += '\t\t\t' + item + ': '+ ' + '.join([x.label() for x in value]) + '\n'
+                        else:
+                            output_str += '\t\t\t' + item + ': ' + f'{value}' + '\n'
         return output_str
 
     def create_inventory_sorting(list, to_be_sorted_dict):
@@ -227,14 +230,12 @@ class Results():
                       data_dict['Semantic space'] == 'GLOBAL']
         lst_QND = [(semantic_object, data_dict) for semantic_object, data_dict in lst if
                    data_dict['Semantic space'] == 'QND']
-        lst_OP = [(semantic_object, data_dict) for semantic_object, data_dict in lst if
-                  data_dict['Semantic space'] == 'OP']
-        lst_PE = [(semantic_object, data_dict) for semantic_object, data_dict in lst if
+        lst_PRE = [(semantic_object, data_dict) for semantic_object, data_dict in lst if
                   data_dict['Semantic space'] == 'PRE']
-        return lst_QND + lst_PE + lst_OP + lst_GLOBAL
+        return lst_QND + lst_PRE + lst_GLOBAL
 
     def __str__(self):
-        stri = f'\n\t{self.sentence}\n\n'
+        stri = ''
         if len(self.syntax_semantics) > 0:
             number_of_solutions = len(self.syntax_semantics)
             parse_number = 1
@@ -246,7 +247,7 @@ class Results():
                 stri += f'\n\tSemantics:\n\n{self.formatted_semantics_output()}'
                 parse_number = parse_number + 1
             stri += f'\n\tResources:\n\n{self.format_resource_output(self.resources)} \n'
-            stri += f'\n\tOntology:\n{self.format_semantic_interpretation_simple()} \n'
+            stri += f'\n\tGlobal ontology:\n{self.format_semantic_interpretation_simple()} \n'
         return stri
 
     def formatted_semantics_output(self):

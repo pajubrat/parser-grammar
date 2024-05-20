@@ -937,7 +937,6 @@ class PhraseStructure:
             return X.finite_control()
 
     def standard_control(X):
-        log(' by standard control')
         search_path = [x for x in takewhile(lambda x: not x.head().check({'SEM:external'}), X.upward_path())]
         antecedent = next((x for x in search_path if X.is_possible_antecedent(x)), None)
         if not antecedent:
@@ -946,7 +945,6 @@ class PhraseStructure:
         return antecedent
 
     def finite_control(X):
-        log(' by finite control')
         antecedent = X.next(X.upward_path, lambda x: x.complex() and X.is_possible_antecedent(x) and not x.copied)
         return antecedent
 
