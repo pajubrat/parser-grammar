@@ -5,6 +5,7 @@ from support import log, log_instance
 
 MBOUNDARY = ('#', '_')
 
+
 # Definition for lexical interface
 class LexicalInterface:
     def __init__(self, speaker_model):

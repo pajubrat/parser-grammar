@@ -143,6 +143,5 @@ class Application(tk.Tk):
             else:
                 self.local_file_system.write_comment_line(sentence)
 
-        self.local_file_system.close_all_output_files()
         sp = list(self.speaker_models.keys())[0]
         self.speaker_models[sp].results.report_results_to_console()
