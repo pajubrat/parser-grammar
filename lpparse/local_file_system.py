@@ -90,7 +90,6 @@ class LocalFileSystem:
         self.resources_file = open(settings.external_sources["resources_file_name"], "w", -1, encoding=self.encoding)
 
     def add_columns_to_resources_file(self, resources, experimental_groups):
-        self.dev_log_file.write('Add columns to the resources file...')
         self.resources_file.write("Number,Sentence,Study_ID,")
         if experimental_groups:
             for index, group in enumerate(experimental_groups):
@@ -114,17 +113,12 @@ class LocalFileSystem:
             pass
 
     def read_app_settings(self, arg_lst):
-        """Loads application settings which provides the default behavior"""
         app_settings_dict = {}
         try:
-            app_settings_file = open('$app_settings.txt', encoding=self.encoding)
-            readlines = app_settings_file.readlines()
-            for line in readlines:
+            for line in open('$app_settings.txt', encoding=self.encoding):
                 if '=' in line:
                     key, value = line.split('=')
-                    key = key.strip()
-                    value = value.strip()
-                    app_settings_dict[key] = value
+                    app_settings_dict[key.strip()] = value.strip()
         except IOError:
             print(f'Could not find the application settings file $app_settings.txt.')
             print(f'Make sure this file exists in the root directory.')
@@ -141,8 +135,7 @@ class LocalFileSystem:
             folder = settings.retrieve('file_study_folder', '')
             settings.data['full_name'] = folder + '/' + name
         try:
-            config_file = open(settings.retrieve('full_name'), encoding=self.encoding)
-            for line in config_file:
+            for line in open(settings.retrieve('full_name'), encoding=self.encoding):
                 line = line.strip().replace('\t', '')
                 if line and not line.startswith('#'):
                     key, value = line.split('=')
@@ -157,7 +150,6 @@ class LocalFileSystem:
                   f'the study configuration file {settings.retrieve("full_name")},\n'
                   f'but the file does not seem to exist.')
             sys.exit()
-        config_file.close()
 
     def create_new_from_corpus_file(self, settings):
         corpus_filename = filedialog.askopenfilename(title='Create new study from corpus file', defaultextension='.txt', initialdir='./language data working directory')
@@ -270,17 +262,13 @@ class LocalFileSystem:
             r = f"\n{str(count)}. {' '.join(sentence)}"
             self.errors.write(r)
 
-    def save_resources(self, parser, count, sentence, experimental_group):
+    def save_resources(self, speaker_model, count, sentence, experimental_group):
         if count == 1:
-            self.add_columns_to_resources_file(parser.results.resources, experimental_group)
-        self.resources_file.write(str(count) + ',')
-        self.resources_file.write(f'{sentence},')
-        self.resources_file.write(f'{self.settings.get("study_id", "0")},')
-        self.resources_file.write(','.join(experimental_group))
-        self.resources_file.write(',')
-        if len(parser.results.syntax_semantics) > 0:
-            for key in parser.results.resources:
-                self.resources_file.write(f'{parser.results.resources[key]["n"]},')
+            self.add_columns_to_resources_file(speaker_model.results.resources, experimental_group)
+        self.resources_file.write(f'{str(count)},{sentence},{self.settings.get("study_id", "0")},{",".join(experimental_group)},')
+        if len(speaker_model.results.syntax_semantics) > 0:
+            for key in speaker_model.results.resources:
+                self.resources_file.write(f'{speaker_model.results.resources[key]["n"]},')
         self.resources_file.write('\n')
 
     def write_comment_line(self, sentence_lst):

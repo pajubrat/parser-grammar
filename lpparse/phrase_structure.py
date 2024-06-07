@@ -21,15 +21,25 @@ class PhraseStructure:
     node_identity = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
-                                    'test integrity': lambda x: x.affix() and not x.right().copied and not x.License_EHM(),
+                                    'test integrity': lambda x: x.affix() and
+                                                                not x.right().copied and
+                                                                not x.License_EHM(),
                                     'repair': lambda x: x.create_chain(),
                                     'selection': lambda x: True,
                                     'intervention': lambda x: False,
-                                    'legible': lambda x, y: y.properly_selected() and not y.empty_finite_EPP() and y.right_sister() != x,
+                                    'legible': lambda x, y: y.properly_selected() and
+                                                            not y.empty_finite_EPP() and
+                                                            y.right_sister() != x,
                                     'single operation': False,
                                     'prepare': lambda x: x.prepare_head_chain()},
                            'Phrasal': {'type': 'Phrasal Chain',
-                                       'test integrity': lambda x: not x.copied and x.complex() and x.is_left() and not x.expletive() and x.container() and not x.container().theta_predicate() and x.container().EF(),
+                                       'test integrity': lambda x: not x.copied and
+                                                                   x.complex() and
+                                                                   x.is_left() and
+                                                                   not x.expletive() and
+                                                                   x.container() and
+                                                                   not x.container().theta_predicate() and
+                                                                   x.container().EF(),
                                        'repair': lambda x: x.create_chain(),
                                        'selection': lambda x: x.zero_level() and not x.finite(),
                                        'intervention': lambda x: x.zero_level() and x.referential(),
@@ -44,7 +54,11 @@ class PhraseStructure:
                                         'selection': lambda x: x.has_vacant_phrasal_position(),
                                         'legible': lambda x, y: True,
                                         'intervention': lambda x: not x.zero_level() and x.referential(),
-                                        'test integrity': lambda x: not x.copied and x.complex() and x.is_left() and x.container() and x.container().EF(),
+                                        'test integrity': lambda x: not x.copied and
+                                                                    x.complex() and
+                                                                    x.is_left() and
+                                                                    x.container() and
+                                                                    x.container().EF(),
                                         'prepare': lambda x: x.prepare_phrasal_chain()},
                            'Agree': {'type': 'Agree',
                                      'test integrity': lambda x: x.is_unvalued(),
@@ -461,8 +475,6 @@ class PhraseStructure:
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
-    # Transfers phrase structure SELF (which may be part of a larger structure)
-    # and re-attaches the transferred SELF to its host
     def transfer_to_LF(X):
         ps, m = X.detached()
         for op in PhraseStructure.transfer_sequence:
@@ -476,7 +488,6 @@ class PhraseStructure:
             X.speaker_model.results.record_derivational_step(const.top(), f"{op['type']} ({const})")
             PhraseStructure.speaker_model.results.consume_resources(op['type'], const)
 
-    # Chain creation (part of transfer)
     def create_chain(X):
         head, target = PhraseStructure.transfer_operation['prepare'](X)
         if head:

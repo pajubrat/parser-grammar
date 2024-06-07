@@ -3,7 +3,7 @@ from phrase_structure import PhraseStructure
 import time
 
 
-class Results():
+class Results:
 
     global_start_time = 0
     global_steps = 0
@@ -11,11 +11,11 @@ class Results():
     def __init__(self, speaker_model):
         self.syntax_semantics = None          # List of syntax, semantics tuples
         self.recorded_steps = None            # Contains all derivational steps
-        self.step_number = None                # Step number of recorded step
+        self.step_number = None               # Step number of recorded step
         self.semantic_interpretation = {}
         self.resources = {}
         self.execution_time_results = []       # Execution time
-        self.first_solution_found = False                       # Registers when the first solution if found
+        self.first_solution_found = False      # Registers when the first solution if found
         self.number_of_ambiguities = 0
         self.speaker_model = speaker_model
         self.sentence = None
@@ -56,9 +56,6 @@ class Results():
                           "Last Resort Extraposition": {'ms': 7, 'n': 0},
                           "Mean time per word": {'ms': 0, 'n': 1}
                           }
-
-    def accumulate_resource_n(self, resource):
-        self.resources[resource]['n'] += 1
 
     @classmethod
     def accumulate_global_steps(cls):
@@ -135,7 +132,7 @@ class Results():
 
     def consume_resources(self, key, target):
         if not self.first_solution_found:
-            self.accumulate_resource_n(key)
+            self.resources[key]['n'] += 1
         if key == 'Sensory Processing':
             log(f'\n\t\t{key} of /#{target}/')
         elif key != 'Agree' and key != 'Lexical Retrieval':
