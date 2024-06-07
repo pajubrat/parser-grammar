@@ -4,14 +4,7 @@ import sys
 from datetime import datetime
 from support import *
 import logging
-from support import feature_explanations
 from tkinter import filedialog
-
-def explanation(feature):
-    for key in feature_explanations.keys():
-        if key in feature:
-            return feature_explanations[key]
-    return ''
 
 class LocalFileSystem:
     def __init__(self):
@@ -101,7 +94,6 @@ class LocalFileSystem:
         self.resources_file.write("Execution time (ms)\t\n")
 
     def save_app_settings(self, settings):
-        """Save the app settings for the next session before closing the application"""
         # settings.app_settings['open_with'] = settings.folders['study'] / 'config_study.lpg'     # store the location of current dataset
         try:
             with open('$app_settings.txt', 'w', encoding=self.encoding) as output_file:
@@ -278,14 +270,6 @@ class LocalFileSystem:
             prefix = ''
         self.results_file.write(prefix + ' '.join(map(str, sentence_lst)) + '\n\n')
 
-    def close_all_output_files(self):
-        self.dev_log_file.write('Closing all output files...')
-        self.results_file.close()
-        self.resources_file.close()
-        self.logger_handle.close()
-        self.errors.close()
-        self.dev_log_file.write('Done.\n')
-
     def configure_logging(self, settings):
         handler = logging.FileHandler(settings.external_sources["log_file_name"], 'w', 'utf-8')
         handler.terminator = ''
@@ -297,27 +281,10 @@ class LocalFileSystem:
 
     def read_lexicons_into_dictionary(self, settings):
         lexicon_dict = {}
-
-        # Examine all lexical files and the lexical redundancy file
         for lexicon_file in [file.strip() for file in settings.retrieve('file_lexicons', '').split(';')] + \
                             [file.strip() for file in settings.retrieve('file_redundancy_rules', '').split(';')]:
             lexicon_dict[lexicon_file] = {}
-
-            # Example all lines in each file
             lexical_entries = open(settings.folders['lexicon'] / lexicon_file, encoding='utf8').readlines()
-
-            # Break every line into (key, features) and then examine all features
             for lex, features in [e.strip().split('::') for e in lexical_entries if '::' in e]:
-
-                lex = lex.strip()
-                features = features.strip()
-                features = features.replace('\t', ' ')
                 lexicon_dict[lexicon_file][lex] = {}
-                # Examine each feature
-                feature_list = []
-                for feature in features.strip().split(' '):
-                    feature = feature.strip()
-                    if feature:
-                        feature_list.append(feature)
-                        lexicon_dict[lexicon_file][lex][feature] = explanation(feature)
         return lexicon_dict
