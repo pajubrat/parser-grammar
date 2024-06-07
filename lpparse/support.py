@@ -20,26 +20,6 @@ class Logger:
 
 log_instance = Logger()
 
-feature_explanations = {'wCOMP': 'Word-internal complement selection',
-                        'COMP': 'Syntactic complement selection',
-                        'SPEC': 'Syntactic specifier selections',
-                        'ε': 'Licenses External head Merge',
-                        'LANG': 'Language',
-                        'TAIL': 'Licenses a position for adjunct',
-                        'PROBE': 'Nonlocal complement selections',
-                        'V/TR': 'Semantic transitivity',
-                        'V/INTR': 'Semantic intransitivity',
-                        'iPHI': 'Interpretable phi-feature, with type and value',
-                        'PHI': 'Uninterpretable phi-feature, with type and value',
-                        'LF': 'Access to meaning in conceptual system',
-                        'PF': 'Phonological form (for output generation only)',
-                        'EF': 'Edge feature, licenses a nonthematic specifier position',
-                        'ΦLF': 'AgreeLF',
-                        'ΦPF': 'AgreePF',
-                        'PC:': 'Phonological context for recognition',
-                        'POL': 'Polarity feature'
-                        }
-
 def legitimate_input_sentence(sentence):
     sentence = sentence.strip()
     return not sentence or not sentence.startswith('&') and not sentence.startswith('#') and not sentence.startswith("\'")
@@ -54,6 +34,21 @@ def get_pro_type(self):
     if 'PHI:NUM:_' not in self.features and 'PHI:PER:_' not in self.features and 'PHI:DET:_' in self.features:
         return '\N{GREEK SMALL LETTER PHI}/x'
     return '\N{GREEK SMALL LETTER PHI}'
+
+
+def comment(line):
+    return line.startswith('#')
+
+
+def extract_key_and_value(line):
+    line = line.strip().replace('\t', '')
+    if not comment(line) and '=' in line:
+        key, value = line.split('=')
+        key = key.strip()
+        value = value.strip()
+        return key, value
+    return None, None
+
 
 def log(text):
     if log_instance.logging and not log_instance.disabled:
