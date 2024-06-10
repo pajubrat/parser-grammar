@@ -14,7 +14,7 @@ class NarrowSemantics:
         self.quantifiers_numerals_denotations_module = QuantifiersNumeralsDenotations(self)
         self.pragmatic_pathway = Discourse(self)
         self.predicates_relations_events_module = PredicatesRelationsEvents(self)
-        self.global_cognition = GlobalCognition(self)
+        self.global_cognition = GlobalCognition()
         self.predicates = Predicates()
         self.semantic_interpretation_failed = False
         self.speaker_model = speaker_model

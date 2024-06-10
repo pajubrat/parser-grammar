@@ -1,11 +1,9 @@
 from support import log
 
 class GlobalCognition:
-    def __init__(self, narrow_semantics):
+    def __init__(self):
         self.inventory = {}
-        self.narrow_semantics = narrow_semantics
         self.index_counter = 1
-        self.excluded_fields = {'Denotations', 'Semantic space', 'Denotation weights', 'Reference', 'Operator', 'Referring constituent'}
 
     def end_conversation(self):
         self.inventory = {}
@@ -47,7 +45,7 @@ class GlobalCognition:
         for idx in self.inventory:
             select_this_item = True
             for field in self.inventory[idx]:
-                if field not in self.excluded_fields:
+                if field not in {'Denotations', 'Semantic space', 'Denotation weights', 'Reference', 'Operator', 'Referring constituent'}:
                     if field in filter_criteria and filter_criteria[field] != self.inventory[idx][field]:
                         select_this_item = False  # The object is rejected if a mismatching (field, value) pair is found.
                         break
