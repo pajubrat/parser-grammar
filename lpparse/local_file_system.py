@@ -1,24 +1,32 @@
 import itertools
 import sys
+
 from datetime import datetime
 from support import *
 import logging
 from tkinter import filedialog
 
-
 class LocalFileSystem:
     def __init__(self):
+        self.test_corpus = None
+        self.study_folder = None
         self.external_sources = {}
+        self.results_file = None
+        self.simple_log_file = None
+        self.errors = None
+        self.numeration_output = None
+        self.resources_file = None
+        self.visualizer = None
         self.settings = {}
-        self.encoding = 'utf8'
         self.dev_log_file = None
+        self.logger_handle = None
+        self.app_settings = {}
+        self.instruction_to_ignore_from_test_corpus = False
+        self.encoding = 'utf8'
         self.initialize_dev_logging()
 
-    def initialize_dev_logging(self):
-        self.dev_log_file = open('dev_log.txt', 'w', -1, self.encoding)
-        self.dev_log_file.write(f'Devlogging started at {datetime.datetime.now()}.\n')
-
     def initialize_output_files(self, settings):
+        self.dev_log_file.write('Initializing output files for writing...')
         self.configure_logging(settings)
         self.initialize_results_file(settings)
         self.initialize_resources_file(settings)
@@ -26,6 +34,7 @@ class LocalFileSystem:
         self.initialize_simple_log_file(settings)
         if settings.retrieve('use_numeration', False):
             self.initialize_numeration_output(settings)
+        self.dev_log_file.write('Done.\n')
 
     def initialize_simple_log_file(self, settings):
         self.simple_log_file = open(settings.external_sources['simple_log_file'], 'w', -1, encoding=self.encoding)
@@ -38,25 +47,39 @@ class LocalFileSystem:
         self.numeration_output = open(settings.external_sources['numeration_output'], 'w', -1, encoding=self.encoding)
         self.numeration_output.write(f'# Corpus generated from the numeration in {self.external_sources["numeration"]}\n')
 
+    def initialize_dev_logging(self):
+        self.dev_log_file = open('dev_log.txt', 'w', -1, 'utf-8')
+        self.dev_log_file.write(f'Devlogging started at {datetime.datetime.now()}.\n')
+
     def process_numeration(self, settings):
+        self.dev_log_file.write(f'Processing numeration from {settings.external_sources["numeration"]} into {settings.external_sources["numeration_output"]}...')
+        self.dev_log_file.write('\nNumerations')
         for line in open(settings.external_sources["numeration"], encoding=self.encoding):
             line = line.strip()
-            if not line or comment('#'):
+            if not line or line.startswith('#'):
                 continue
-            for p in list(itertools.permutations([x.strip() for x in line.split(',')])):
+            numeration = [x.strip() for x in line.split(',')]
+            self.dev_log_file.write(f'\n{numeration}')
+            permutations = list(itertools.permutations(numeration))
+            for p in permutations:
                 if not p[0].startswith('#'):
                     self.numeration_output.write('\n\t')
                     for w in p:
                         if not w.startswith('#'):
                             self.numeration_output.write(' ')
                         self.numeration_output.write(f'{w}')
+        self.dev_log_file.write('\n')
         self.numeration_output.close()
+        self.dev_log_file.write(f'were used to generate a corpus {self.external_sources["numeration_output"]}.\n')
+        self.dev_log_file.write(f'^ This corpus will be used in the processing.\n')
 
     def initialize_results_file(self, settings):
+        self.dev_log_file.write('Initializing results file...')
         self.results_file = open(settings.external_sources['results_file_name'], "w", -1, encoding=self.encoding)
         self.stamp(self.results_file, settings)
 
     def initialize_resources_file(self, settings):
+        self.dev_log_file.write('Initializing resources file...')
         self.resources_file = open(settings.external_sources["resources_file_name"], "w", -1, encoding=self.encoding)
 
     def add_columns_to_resources_file(self, resources, experimental_groups):
@@ -71,6 +94,7 @@ class LocalFileSystem:
         self.resources_file.write("Execution time (ms)\t\n")
 
     def save_app_settings(self, settings):
+        # settings.app_settings['open_with'] = settings.folders['study'] / 'config_study.lpg'     # store the location of current dataset
         try:
             with open('$app_settings.txt', 'w', encoding=self.encoding) as output_file:
                 output_file.write(f'file_study_configuration={self.settings["file_study_configuration"]}')
@@ -84,8 +108,8 @@ class LocalFileSystem:
         app_settings_dict = {}
         try:
             for line in open('$app_settings.txt', encoding=self.encoding):
-                key, value = extract_key_and_value(line)
-                if key:
+                if '=' in line:
+                    key, value = line.split('=')
                     app_settings_dict[key.strip()] = value.strip()
         except IOError:
             print(f'Could not find the application settings file $app_settings.txt.')
@@ -99,13 +123,18 @@ class LocalFileSystem:
 
     def load_settings(self, settings):
         if 'full_name' not in settings.data:
-            settings.data['full_name'] = settings.retrieve('file_study_folder', '') + '/' + settings.retrieve('file_study_configuration', '')
+            name = settings.retrieve('file_study_configuration', '')
+            folder = settings.retrieve('file_study_folder', '')
+            settings.data['full_name'] = folder + '/' + name
         try:
             for line in open(settings.retrieve('full_name'), encoding=self.encoding):
-                key, value = extract_key_and_value(line)
-                if key:
+                line = line.strip().replace('\t', '')
+                if line and not line.startswith('#'):
+                    key, value = line.split('=')
+                    key = key.strip()
+                    value = value.strip()
                     if key in settings.data and key != 'file_study_configuration' and key != 'file_study_folder':
-                        settings.data[key] += '; ' + value
+                        settings.data[key] += '; ' + value      #   New values are added
                     else:
                         settings.data[key] = value
         except IOError:
@@ -123,7 +152,8 @@ class LocalFileSystem:
         if filename:
             try:
                 with open(filename, 'w', encoding=self.encoding) as f:
-                    for key, value in settings.data.items():
+                    for key in settings.data.keys():
+                        value = settings.retrieve(key, '')
                         f.write(f'{str(key)} = {str(value)}\n')
             except IOError:
                 print(f'Saving the study was unsuccessful.')
@@ -137,21 +167,24 @@ class LocalFileSystem:
             input_file = settings.external_sources["numeration_output"]
         else:
             input_file = settings.data['file_study_folder'] + '/' + settings.data['file_test_corpus']
+        self.dev_log_file.write(f'Reading test corpus file {input_file}...')
         index = 1
         try:
             for line in open(input_file, encoding=self.encoding):
                 part_of_conversation = False
                 line = line.strip()
-                if not line or comment(line):
-                    continue
                 if line.startswith('=STOP=') or line.startswith('=END='):
                     break
                 if line.startswith('=START=') or line.startswith('=BEGIN='):
                     parse_list = []
                     continue
+                if not line or line.startswith('#'):
+                    continue
                 if line.startswith('%'):
                     parse_list = []
-                    line = self.clear_line_end(line.lstrip('%').strip())
+                    line = line.lstrip('%')
+                    line = line.strip()
+                    line = self.clear_line_end(line)
                     line, grammatical = self.gold_standard_grammaticality(line)
                     parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
                     break
@@ -170,6 +203,7 @@ class LocalFileSystem:
                 else:
                     parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
                     index += 1
+            self.dev_log_file.write(f'Found {len(parse_list)} sentences. Done.\n')
             return parse_list
         except IOError:
             print(f'The corpus file "{input_file}" seems to be missing.\n'
@@ -178,14 +212,16 @@ class LocalFileSystem:
 
     def gold_standard_grammaticality(self, line):
         if line.startswith('*'):
-            return line.lstrip('*'), False
-        return line, True
+            line = line.lstrip('*')
+            return line, False
+        else:
+            return line, True
 
     def clear_line_end(self, line):
         if line.endswith(';'):
-            return line.rstrip(';')
+            line = line.rstrip(';')
         elif line.endswith('.'):
-            return line.rstrip('.')
+            line = line.rstrip('.')
         return line
 
     def read_experimental_group(self, line):
@@ -214,21 +250,17 @@ class LocalFileSystem:
             self.simple_log_file.write(f'{step[0]}. {step[1]} ({step[2]})\n')
 
     def save_errors(self, speaker_model, count, sentence, grammatical):
-        if grammatical and len(speaker_model.results.syntax_semantics) == 0 or \
-                not grammatical and len(speaker_model.results.syntax_semantics) > 0:
-            self.errors.write(f"\n{str(count)}. {' '.join(sentence)}")
+        if len(speaker_model.results.syntax_semantics) > 0 and not grammatical or len(speaker_model.results.syntax_semantics) == 0 and grammatical:
+            r = f"\n{str(count)}. {' '.join(sentence)}"
+            self.errors.write(r)
 
-    def save_resources(self, parser, count, sentence, experimental_group):
+    def save_resources(self, speaker_model, count, sentence, experimental_group):
         if count == 1:
-            self.add_columns_to_resources_file(parser.results.resources, experimental_group)
-        self.resources_file.write(str(count) + ',')
-        self.resources_file.write(f'{sentence},')
-        self.resources_file.write(f'{self.settings.get("study_id", "0")},')
-        self.resources_file.write(','.join(experimental_group))
-        self.resources_file.write(',')
-        if len(parser.results.syntax_semantics) > 0:
-            for key in parser.results.resources:
-                self.resources_file.write(f'{parser.results.resources[key]["n"]},')
+            self.add_columns_to_resources_file(speaker_model.results.resources, experimental_group)
+        self.resources_file.write(f'{str(count)},{sentence},{self.settings.get("study_id", "0")},{",".join(experimental_group)},')
+        if len(speaker_model.results.syntax_semantics) > 0:
+            for key in speaker_model.results.resources:
+                self.resources_file.write(f'{speaker_model.results.resources[key]["n"]},')
         self.resources_file.write('\n')
 
     def write_comment_line(self, sentence_lst):
@@ -252,6 +284,7 @@ class LocalFileSystem:
         for lexicon_file in [file.strip() for file in settings.retrieve('file_lexicons', '').split(';')] + \
                             [file.strip() for file in settings.retrieve('file_redundancy_rules', '').split(';')]:
             lexicon_dict[lexicon_file] = {}
-            for lex, features in [e.strip().split('::') for e in open(settings.folders['lexicon'] / lexicon_file, encoding='utf8') if '::' in e]:
-                lexicon_dict[lexicon_file][lex.strip()] = {}
+            lexical_entries = open(settings.folders['lexicon'] / lexicon_file, encoding='utf8').readlines()
+            for lex, features in [e.strip().split('::') for e in lexical_entries if '::' in e]:
+                lexicon_dict[lexicon_file][lex] = {}
         return lexicon_dict
