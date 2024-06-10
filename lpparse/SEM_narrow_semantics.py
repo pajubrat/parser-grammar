@@ -141,7 +141,6 @@ class NarrowSemantics:
                         X.features.add(f'IDX:{idx},{space}')
                         new_semantic_object_dict = self.semantic_action[space]['Project'](X, idx)
                         global_idx = self.semantic_action['GLOBAL']['Project'](X, new_semantic_object_dict.copy())
-                        self.semantic_action[space]['Update'](idx, {'Denotation': global_idx})
 
                         # For heuristic purposes so that referential arguments are recognized by BT
                         if space == 'QND':
@@ -211,7 +210,6 @@ class NarrowSemantics:
 
     def default_attributes(self, X, space):
         return {'Referring constituent': f'{X}',
+                'Constituent': X,
                 'Reference': self.semantic_action[space]['Presentation'](X),
-                'Semantic space': space,
-                'Semantic type': {self.semantic_type[feature] for feature in X.head().features if feature in self.semantic_type},
-                'Operator': self.operator_variable_module.is_operator(X)}
+                'Semantic space': space}

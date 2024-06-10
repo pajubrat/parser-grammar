@@ -214,8 +214,8 @@ class Results:
                     # Show semantic attributes
                     for item, value in sorted(data_dict.items()):
                         if isinstance(value, set):
-                            output_str += '\t\t\t' + item + ': ' + f'{sorted(value)}' + '\n'
-                        if isinstance(value, list) and len(value) > 0 and isinstance(value[0], PhraseStructure):
+                            output_str += '\t\t\t' + item + ': ' + f'{", ".join(value)}' + '\n'
+                        elif isinstance(value, list) and len(value) > 0 and isinstance(value[0], PhraseStructure):
                             output_str += '\t\t\t' + item + ': '+ ' + '.join([x.label() for x in value]) + '\n'
                         else:
                             output_str += '\t\t\t' + item + ': ' + f'{value}' + '\n'
@@ -252,7 +252,10 @@ class Results:
         for key in self.semantic_interpretation:
             output_str += '\t\t' + key + ':\n'
             for value in self.semantic_interpretation[key]:
-                output_str += '\t\t\t' + str(value) + '\n'
+                if key == 'Assignments':
+                    output_str += '\t\t\t' + str(self.speaker_model.narrow_semantics.quantifiers_numerals_denotations_module.print_assignment(value)) + '\n'
+                else:
+                    output_str += '\t\t\t' + str(value) + '\n'
         output_str += '\n'
         return output_str
 

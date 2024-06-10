@@ -39,6 +39,17 @@ def get_pro_type(self):
 def comment(line):
     return line.startswith('#')
 
+def gold_standard_grammaticality(line):
+    if line.startswith('*'):
+        return line.lstrip('*'), False
+    return line, True
+
+def clear_line_end(line):
+    if line.endswith(';'):
+        line = line.rstrip(';')
+    elif line.endswith('.'):
+        line = line.rstrip('.')
+    return line
 
 def extract_key_and_value(line):
     line = line.strip().replace('\t', '')

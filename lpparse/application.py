@@ -26,7 +26,7 @@ class Application(tk.Tk):
 
         self.local_file_system = LocalFileSystem()
         self.settings = Settings(self.local_file_system, self.local_file_system.read_app_settings(arg_lst))
-        self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
+        self.speaker_model, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
         self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
 
         # Set up widgets for the main window
@@ -77,10 +77,10 @@ class Application(tk.Tk):
         self.dataset_frame = DatasetView(self, self.sentences_to_parse)
         self.dataset_frame.grid(row=0, column=1, sticky='WE')
 
-        self.speakermodel_frame = SpeakerModelView(self, self.speaker_models)
+        self.speakermodel_frame = SpeakerModelView(self, self.speaker_model)
         self.speakermodel_frame.grid(row=1, column=0, sticky='nwes')
 
-        self.results_frame = ResultsView(self, self.speaker_models)
+        self.results_frame = ResultsView(self, self.speaker_model)
         self.results_frame.grid(row=1, column=1, sticky='nwes')
 
         self.status_bar = tk.Label(self, padx=5, pady=5, bg='green', fg='white', anchor='e', justify='right', text=f'Current study: {self.settings.retrieve("file_study_configuration")}, {self.settings.retrieve("file_study_folder", "?")}/{self.settings.retrieve("file_test_corpus", "?")}', font=('Calibri 16'))
@@ -91,7 +91,7 @@ class Application(tk.Tk):
 
     def load_study(self, *_):
         if self.settings.load_settings_with_user_input():
-            self.speaker_models, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
+            self.speaker_model, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
             self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
             self.reset_widgets()
             self.setup_widgets()
@@ -118,16 +118,16 @@ class Application(tk.Tk):
         self.local_file_system.initialize_output_files(self.settings)
         S = self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['sentence']
         language = self.language_guesser.guess_language(S)
-        self.speaker_models[language].parse_sentence(self.dataset_frame.selected_data_item, S)
-        print(f'\n{self.speaker_models[language].results}')
-        if self.speaker_models[language].results.syntax_semantics:
-            self.local_file_system.save_output(self.speaker_models[language], 1, S, '0', True)
-            self.results_frame.fill_with_data(self.speaker_models[language])
-            PhraseStructureGraphics(self, self.speaker_models[language])                    # Show phrase structure image
+        self.speaker_model[language].parse_sentence(self.dataset_frame.selected_data_item, S)
+        print(f'\n{self.speaker_model[language].results}')
+        if self.speaker_model[language].results.syntax_semantics:
+            self.local_file_system.save_output(self.speaker_model[language], 1, S, '0', True)
+            self.results_frame.fill_with_data(self.speaker_model[language])
+            PhraseStructureGraphics(self, self.speaker_model[language])                    # Show phrase structure image
         else:
             LogTextWindow(self, self.settings.external_sources["log_file_name"], 'Derivation')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
-        self.speaker_models[language].narrow_semantics.global_cognition.end_conversation()
+        self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
 
     def run_study(self, *_):
         self.local_file_system.initialize_output_files(self.settings)
@@ -135,13 +135,14 @@ class Application(tk.Tk):
             if not is_comment(sentence):
                 language = self.language_guesser.guess_language(sentence)
                 print(f'\n{index}. ' + ' '.join(sentence))
-                self.speaker_models[language].parse_sentence(index, sentence)
-                print(f'\n{self.speaker_models[language].results}')
-                self.local_file_system.save_output(self.speaker_models[language], index, sentence, experimental_group, grammatical)
+                self.speaker_model[language].parse_sentence(index, sentence)
+                print(f'\n{self.speaker_model[language].results}')
+                self.local_file_system.save_output(self.speaker_model[language], index, sentence, experimental_group, grammatical)
                 if not part_of_conversation:
-                    self.speaker_models[language].narrow_semantics.global_cognition.end_conversation()
+                    self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
             else:
                 self.local_file_system.write_comment_line(sentence)
+        self.local_file_system.close_all_output_files()
 
-        sp = list(self.speaker_models.keys())[0]
-        self.speaker_models[sp].results.report_results_to_console()
+        sp = list(self.speaker_model.keys())[0]
+        self.speaker_model[sp].results.report_results_to_console()

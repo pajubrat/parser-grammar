@@ -66,7 +66,6 @@ class QuantifiersNumeralsDenotations:
         self.referential_constituents_feed = self.calculate_possible_denotations(ps)
         log(f'\n\t\tAssignments: ')
         if self.referential_constituents_feed:
-            #
             self.create_assignments_from_denotations()
             return self.all_assignments
 
@@ -81,25 +80,34 @@ class QuantifiersNumeralsDenotations:
                     idx, space = self.narrow_semantics.get_referential_index_tuple(X, 'QND')
                     self.inventory[idx]['Denotations'] = self.create_all_denotations(X)
                     log(f'\n\t\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
+                    # Each denotation is a tuple (index in semantic space, expression, constituent itself, possible denotations)
                     denotations_lst = [(idx, f'{X.illustrate()}', X, self.inventory[idx]['Denotations'])]
         return denotations_lst
 
     def create_assignments_from_denotations(self):
-        for assignment in itertools.product(*[tup[3] for tup in self.referential_constituents_feed]):               #   Create all possible assignments (tup[3] = list of assignments)
+        for assignment in itertools.product(*[tup[3] for tup in self.referential_constituents_feed]):               #   Create all possible assignments (tup[3] = connection of denotations)
             assignment_dict = {tup[0]: assignment[i] for i, tup in enumerate(self.referential_constituents_feed)}   #   Create assignment dict (because the rest is based on dicts)
             self.all_assignments.append(self.calculate_assignment_weight(assignment_dict))                          #   Calculate assignment weights
 
-    def calculate_assignment_weight(self, complete_assignment):
-        weighted_assignment = complete_assignment.copy()
-        log(f'\n\t\t\tAssignment {complete_assignment}: ')
+    def calculate_assignment_weight(self, complete_assignment_dict):
+        weighted_assignment = complete_assignment_dict.copy()
+        log(f'\n\t\t\tAssignment {self.print_assignment(complete_assignment_dict)} ')
         weighted_assignment['weight'] = 1
         for expression in self.referential_constituents_feed:
-            if not self.binding_theory_conditions(expression, complete_assignment):
+            if not self.binding_theory_conditions(expression, complete_assignment_dict):
                 weighted_assignment['weight'] = 0
-                log('Rejected by binding.')
+                log('rejected by binding.')
         if weighted_assignment['weight'] > 0:
-            log('Accepted.')
+            log('accepted.')
         return weighted_assignment
+
+    def print_assignment(self, complete_assignment_dict):
+        stri = ''
+        if 'weight' not in complete_assignment_dict or complete_assignment_dict['weight'] > 0:
+            for key, value in complete_assignment_dict.items():
+                if key != 'weight':
+                    stri += f'{self.get_object(key)["Reference"]}({key}) ~ {value}, '
+        return stri
 
     def binding_theory_conditions(self, expression, complete_assignment):
         idx, name, ps, denotations = expression
@@ -204,14 +212,3 @@ class QuantifiersNumeralsDenotations:
             if phi[-1] == '*':
                 log(f'\n\t\t\t{ps.illustrate()} has a phi-feature conflict with {phi}.')
                 self.narrow_semantics.phi_interpretation_failed = True
-
-    def format_assignment(self, assignment):
-        s = '('
-        for i, (idx, denotation) in enumerate(assignment.items()):
-            key_str = str(idx)
-            den_str = str(denotation)
-            s = s + key_str + '~' + den_str
-            if i < len(assignment) - 1:
-                s = s + ', '
-        s = s + ') '
-        return s
