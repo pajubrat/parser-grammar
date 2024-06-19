@@ -8,22 +8,10 @@ def self_selectional_feature(f):
     return ':' not in f and (f.startswith('!') or f.startswith('+') or f.startswith('-'))
 
 class LF:
-    def __init__(self, controlling_parsing_process):
-        self.brain_model = controlling_parsing_process
+    def __init__(self, speaker_model):
+        self.speaker_model = speaker_model
         self.failed_feature = ''
-        self.LF_legibility_tests = [
-                                    ('Selection test', self.selection_test),
-                                    ('Projection Principle', PhraseStructure.projection_principle_failure),
-                                    ('Head Integrity test', PhraseStructure.unrecognized_label),
-                                    ('Feature Conflict test', PhraseStructure.feature_conflict),
-                                    ('Probe-Goal test', PhraseStructure.probe_goal_test),
-                                    ('Semantic Complement test', PhraseStructure.semantic_complement),
-                                    ('Double Specifier Filter', PhraseStructure.double_spec_filter),
-                                    ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
-                                    ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
-                                    ('Phi Level test', PhraseStructure.phi_level_violation),
-                                    ('External head merge test', PhraseStructure.Complex_Head_Integrity)]
-
+        self.LF_legibility_tests = self.determine_legilibity_tests()
         self.selection_violation_test = {'-SPEC': PhraseStructure.minus_SPEC,
                                          '+SPEC': PhraseStructure.plus_SPEC,
                                          '-COMP': PhraseStructure.minus_COMP,
@@ -34,6 +22,20 @@ class LF:
 
         self.active_test_battery = self.LF_legibility_tests
         self.error_report_for_external_callers = ''
+
+    def determine_legilibity_tests(self):
+        all_legibility_tests = [('Selection test', self.selection_test),
+                ('Head Integrity test', PhraseStructure.unrecognized_label),
+                ('Feature Conflict test', PhraseStructure.feature_conflict),
+                ('Probe-Goal test', PhraseStructure.probe_goal_test),
+                ('Semantic Complement test', PhraseStructure.semantic_complement),
+                ('Double Specifier Filter', PhraseStructure.double_spec_filter),
+                ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
+                ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
+                ('Phi Level test', PhraseStructure.phi_level_violation),
+                ('External head merge test', PhraseStructure.Complex_Head_Integrity),
+                ('Projection Principle', PhraseStructure.projection_principle_failure)]
+        return [test for test in all_legibility_tests if self.speaker_model.settings.retrieve(test[0], True)]
 
     def pass_LF_legibility(self, ps, logging=True):
         self.failed_feature = ''

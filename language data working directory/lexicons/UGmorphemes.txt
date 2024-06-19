@@ -17,7 +17,7 @@
 	Cpol	:: Cpol PF:C LF:C
 	T/fin   :: T/fin LF:T π
 	Neg/fin :: Neg/fin
-	Fin		:: Fin LF:Fin	
+	Fin		:: Fin LF:Fin PF:Fin Φ*
 
 # Verbal domain
 
@@ -30,6 +30,7 @@
 	cau		:: Cau PF:Cau LF:Cause
 	Pr		:: Pr PF:-0 LF:Pr
 	Pr2		:: Pr PF:-0 LF:Pr
+	T*		:: T LF:T
 
 # Nominal domain
 
@@ -107,7 +108,7 @@
 		mAAn,MA.ill/inf		:: MA.ill/inf	Inf		OC 				PF:-mAAn 	PC:#X LF:to +COMP:ASP SEM/desired_event adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf LANG:FI
 		
 		impss		:: IMPSS	V									PF:-TA 		PC:#X# LF:impss -COMP:IMPSS
-		impss1		:: Pass Φ PC:#X# PF:-TA LF:Pass +COMP:v 
+		impss1		:: Pass V Φ PC:#X# PF:-TA LF:Pass +COMP:v,V 
 		
 		# nominal
 		
@@ -139,9 +140,9 @@
 		# Special purpose elements
 		
 			mista	:: n ABS	PF:-mista	PC:#X LF:abstr	NOM +COMP:V LANG:FI 
-			n0		:: n		PF:-0		PC:#X LF:n	 		LANG:FI
-			TA*		:: V CAU 	PF:-TA		LF:cause  			V/TR LANG:FI
-			U*		:: V REFL	PF:-utu		LF:become			V/INTR LANG:FI
+			n0		:: n		PF:-0		PC:#X LF:n	 		LANG:FI Φ Φ*
+			TA*		:: V CAU 	PF:-TA		LF:cause  			V/TR LANG:FI -ΦPF Φ Φ*
+			U*		:: V REFL	PF:-utu		LF:become			V/INTR LANG:FI +COMP:V
 
 	# Finnish prepositions (semantic cases)
 	P(ine)		:: PF:-ssA LF:in P LANG:FI

@@ -99,8 +99,6 @@ class NarrowSemantics:
             self.speaker_model.results.store_semantic_interpretation('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
         # Speaker attitude
         self.speaker_model.results.store_semantic_interpretation('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
-        # Project objects into ontology and narrow semantics
-
         return not self.semantic_interpretation_failed
 
     def interpret_(self, X):
@@ -136,15 +134,15 @@ class NarrowSemantics:
                 self.inventory_projection_(X.left(), space)
                 self.inventory_projection_(X.right(), space)
             else:
-                    if self.semantic_action[space]['Accept'](X):
-                        idx = str(self.global_cognition.consume_index())
-                        X.features.add(f'IDX:{idx},{space}')
-                        new_semantic_object_dict = self.semantic_action[space]['Project'](X, idx)
-                        global_idx = self.semantic_action['GLOBAL']['Project'](X, new_semantic_object_dict.copy())
+                if self.semantic_action[space]['Accept'](X):
+                    idx = str(self.global_cognition.consume_index())
+                    X.features.add(f'IDX:{idx},{space}')
+                    new_semantic_object_dict = self.semantic_action[space]['Project'](X, idx)
+                    global_idx = self.semantic_action['GLOBAL']['Project'](X, new_semantic_object_dict.copy())
 
-                        # For heuristic purposes so that referential arguments are recognized by BT
-                        if space == 'QND':
-                            X.head().features.add('REF')
+                    # For heuristic purposes so that referential arguments are recognized by BT
+                    if space == 'QND':
+                        X.head().features.add('REF')
 
     def failure(self):
         if self.phi_interpretation_failed or \

@@ -1,74 +1,67 @@
-
 author= Anon
 year= 2024
 date= January
 study_id= 19
 study_folder=			language data working directory/study-17-Finnish-syntax
 test_corpus=			Finnish_syntax_corpus.txt
-numeration=				Morphology_numeration.txt
+numeration=				None
 
-# GENERAL SIMULATION PARAMETERS
-only_first_solution = False
-ignore_ungrammatical_sentences = False
-console_output = Full
-stop_at_unknown_lexical_item = False
-logging = True
-use_numeration = False
 
-# LEXICONS
-lexicon_folder=language data working directory/lexicons
-lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
+# GENERAL
+general_parameter_only_first_solution = True
+general_parameter_logging = True
+general_parameter_use_numeration = False
+general_parameter_calculate_assignments = True
+general_parameter_calculate_pragmatics = True
+general_parameter_calculate_thematic_roles = True
+general_parameter_project_objects = True
+general_parameter_calculate_predicates = True
 
-# LEXICAL REDUNDANCY RULES
-redundancy_rules=redundancy_rules.txt
+# FILES
+file_study_folder=language data working directory/study-17-Finnish-syntax
+file_test_corpus=Finnish_syntax_corpus.txt
+file_lexicon_folder=language data working directory/lexicons
+file_lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
+file_redundancy_rules=redundancy_rules.txt
 
-# IMAGE PARAMETERS (requires Pyglet library)
-image_parameter_show_words = True
-image_parameter_labels = False
-image_parameter_spellout = False
-image_parameter_show_glosses = True
-image_parameter_mark_adjuncts = False
-image_parameter_spellout_complex_heads = False
-image_parameter_show_head_chains = True
-image_parameter_remove_trivial_head_chains = True
-image_parameter_show_phrasal_chains = True
-image_parameter_show_Agree = False
-image_parameter_show_complex_heads = True
-image_parameter_show_features = ESS;TRA;POL;FOC;OP:Q
+# IMAGE PARAMETERS
+image_parameter_words = True
+image_parameter_glosses = True
+image_parameter_adjuncts = False
+image_parameter_complex_heads = False
+image_parameter_head_chains = True
+image_parameter_trivial_head_chains = False
+image_parameter_phrasal_chains = True
 image_parameter_DP_hypothesis = True
 image_parameter_chain_curvature = 1
+image_parameter_features = ###
+image_parameter_visualization = ### > ###
 
 # UG COMPONENTS
 #	Agree
 #	standard = standard theory (Chomsky 2000, 2001, 2008)
 #	revised = current best formulation
 UG_parameter_Agree = revised
+Projection Principle = True
+Phi Level test = True
 
 # Phase theory
-UG_parameter_phase_heads = C;v;FORCE;Inf
+UG_parameter_phase_heads = C;v;FORCE;Inf;P
 UG_parameter_phase_heads_exclude = φ;v-;TO/inf
 
-#	Semantics
-calculate_assignments = False
-calculate_pragmatics = True
-calculate_thematic_roles = True
-project_objects = True
-generate_argument_links = True
-calculate_predicates = True
-
 # PARSING HEURISTICS
-extra_ranking = True
-filter = True
-lexical_anticipation = True
-closure = Bottom-up
-working_memory = True
-positive_spec_selection = 100
-negative_spec_selection = -100
-break_head_comp_relations = -100
-negative_tail_test = -100
-positive_head_comp_selection = 100
-negative_head_comp_selection = -100
-negative_semantics_match = -100
-lf_legibility_condition = -100
-negative_adverbial_test = -100
-positive_adverbial_test = 100
+parsing_extra_ranking = True
+parsing_filter = True
+parsing_lexical_anticipation = True
+parsing_closure = Bottom-up
+parsing_working_memory = True
+parsing_positive_spec_selection = 100
+parsing_negative_spec_selection = -100
+parsing_break_head_comp_relations = -100
+parsing_negative_tail_test = -100
+parsing_positive_head_comp_selection = 100
+parsing_negative_head_comp_selection = -100
+parsing_negative_semantics_match = -100
+parsing_lf_legibility_condition = -100
+parsing_negative_adverbial_test = -100
+parsing_positive_adverbial_test = 100

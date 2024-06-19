@@ -8,8 +8,8 @@
 	FORCE	::	FORCE						!PROBE:Fin -SPEC:T/fin
 	C/fin 	:: 	Fin 						!PROBE:Fin +COMP:T,Fin,T/fin +SPEC:OP,ø
 	C		:: 	 							-SPEC:MA/A
-	Cpol	::  C C/fin POL FOC				!PROBE:Fin
-	T/fin 	:: 	T/fin Φ* T Fin 				+COMP:T/prt,v,V
+	Cpol	::  C C/fin POL FOC				!PROBE:Fin +COMP:Neg/fin
+	T/fin 	:: 	T/fin Φ* T Fin 				+COMP:T/prt,v,V,COPULA
 	T/prt 	:: 	Fin T 						+COMP:v,V
 	T 		:: 								+COMP:v,V
 	Neg/fin :: 	Φ* Fin NEG !ΦPF 			+COMP:T
@@ -21,9 +21,9 @@
 	V   		:: 	θ Φ -ΦPF ASP 				-SPEC:Fin
 	BE-			::	V COPULA LF:be 				-COMP:Fins
 	v*			:: 	Φ* V						+COMP:V
-	Pr			::	θ ESS 						+COMP:N
-	Pr2			::	θ Pr TRA 					+COMP:A
-	V/TR 		:: 								+COMP:Inf,P,D,φ,ø
+	Pr			::	θ ESS 						+COMP:N,A,a
+	Pr2			::	θ Pr TRA 					+COMP:N,A,a
+	V/TR 		:: 								+COMP:Inf,P,D,φ,ø,V
 	V/INTR 		:: 								+COMP:P,ø
 	ε			:: -ΦPF θ 						!wCOMP:θ -wCOMP:P
 
@@ -31,14 +31,14 @@
 
 	D   	:: 						!PROBE:N +COMP:Q,Qn,Num,φ,N
 	D/rel	:: 	adjoinable			!PROBE:N +COMP:Q,Qn,Num,φ,N 
-	N   	:: 	θ 					+COMP:P,ø,C/rel
+	N   	:: 	 					+COMP:P,ø,C/rel
 	P   	:: 	θ Adv adjoinable 	+COMP:D,φ,ø +SPEC:D,φ,ø
 	A 		:: 	θ 					-SPEC:A
 	a0		::  A					
-	n		:: 	φ ?ΦLF Inf N 		+COMP:√,ASP
+	n		:: 	?ΦLF Inf N 			+COMP:√,ASP
 	√		:: 	SPEC:φ 2SPEC 		+COMP:P,ø,C/rel
-	Num		::  φ Num 				-COMP:D -COMP:QN
-	Qn		:: 	φ 					!PROBE:N +COMP:Num,φ,N
+	Num		::  Num 				-COMP:D -COMP:QN
+	Qn		:: 	 					!PROBE:N +COMP:Num,φ,N
 	φ		:: 	φ ?ΦLF Inf θ		!PROBE:N +COMP:N -SPEC:Inf,Fin
 	a		::	A -θ 				+COMP:√,ASP
 	Neg		:: 						-SPEC:N
@@ -47,7 +47,7 @@
 
 # Others
 
-	Adv 	::	adjoinable 			
+	Adv 	::	adjoinable 					
 	Inf		::	TAM 				-COMP:Fin -SPEC:T/fin,V
 
 # Phi-strength
@@ -89,6 +89,7 @@
 		LANG:FI T/prt pst		:: PF:-nUt
 		LANG:FI T/prt prs		:: PF:-0
 		LANG:FI T/fin pst		:: PF:-i
+		LANG:FI T pst			:: PF:-i
 		LANG:FI T prs			:: PF:-0
 		LANG:FI T cond			:: PF:-isi
 		LANG:FI T pot			:: PF:-ne
@@ -103,14 +104,13 @@
 	# Finnish edge behavior
 		
 		T/fin LANG:FI	::  Φ*
-		T Fin LANG:FI	::	Φ*
 		Adv LANG:FI		::	Φ*
 		P LANG:FI		::  Φ*
 		A LANG:FI		::	Φ*
+		VA/inf LANG:FI	::	Φ*
 		V/TR LANG:FI	::	Φ* -ΦPF 
 		v LANG:FI		::  Φ* -ΦPF
-		Fin LANG:FI		::  Φ* ?ΦLF
-		T LANG:FI		::	Φ*
+	#	Fin LANG:FI		::  Φ* ?ΦLF
 		T/prt LANG:FI	::	Φ*
 		φ LANG:FI		::  Φ* ?ΦLF
 		Φ LANG:FI		::  PHI:HUM:_ PHI:PRON:_
@@ -121,6 +121,7 @@
 		N LANG:FI		:: -COMP:T/prt
 		A LANG:FI 		::  nonadjoinable
 		LANG:FI T/prt	:: 	-PER
+		TA*				:: V COMP:V
 
 	# Finnish specific operator features
 

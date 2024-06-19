@@ -68,6 +68,8 @@ Helsingissä	:: Helsinki-#φ#sg#3p#def#r_expression#ssa LANG:FI
 Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression LANG:EN
 Helsinki-	:: PF:Helsinki LF:Helsinki N R:REF:PROPER_NAME LANG:FI
+hiljaa		:: hiljaa-#Adv LANG:FI
+hiljaa-		:: PF:hiljaa LF:silent LANG:FI
 ihailen		:: ihaile-#v#T/fin#prs#n LANG:FI
 ihaili		:: ihaile-#v#T/fin#pst#[V] LANG:FI
 ihailet		:: ihaile-#v#T/fin#prs#t LANG:FI
@@ -97,9 +99,11 @@ ikkunoita*	:: ikkuna*-#D#[par]#pl#3p#def#nonhum
 ikkuna-		:: PF:ikkuna LF:window N LANG:FI
 ikkuna*-	:: PF:ikkunoita LF:windows N LANG:FI
 iso-		:: A PF:iso LF:big LANG:FI
+istutaan	:: istu/2-#v#asp#impss1#T#prs#Fin#Vn LANG:FI
 istuuko		:: istu-#T/fin#C/op LANG:FI
 istuu		:: istu-#T/fin#[V] LANG:FI
 istu-		:: PF:istu- LF:sit V V/INTR LANG:FI
+istu/2-		:: PF:istu- LF:sit V LANG:FI
 isän		:: isä-#φ#sg#3p#def#hum#def#[gen] LANG:FI
 isä-		:: PF:isä LF:father N LANG:FI
 joka		:: joka-#D/rel#sg#3p#def#hum#[nom] LANG:FI
@@ -110,21 +114,28 @@ Jukka   	:: Jukka-#φ#[nom]#sg#3p#def#hum#def LANG:FI -SEM:directional LANG:FI
 Jukkaa		:: Jukka-#φ#sg#3p#def#hum#def#[par] LANG:FI -SEM:directional 
 Jukka-  	:: PF:Jukka LF:Jukka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 juosten 	:: juokse-#E/inf LANG:FI
+juotiin		:: juo-#v#asp#impss1#T#pst#Fin#Vn LANG:FI
+juo-		:: PF:juo LF:drink V Φ* LANG:FI
 juoksee		:: juokse-#T/fin#prs#[V] LANG:FI
 juoksi		:: juokse-#T/fin#pst#[V] LANG:FI
 juokse-		:: PF:juokse- LF:run V V/INTR LANG:FI
+kahvia		:: kahvi-#D#sg#3p#nonhum#indef#[par] LANG:FI
+kahvi-		:: PF:kahvi LF:coffee N LANG:FI
 kaikki		:: PF:kaikki LF:all Qn LANG:FI
 kaksi		:: PF:kaksi LF:two Num NOM TAIL:Φ ARG,E,Fin PHI:NUM:SG Φ  !COMP:* LANG:FI
 kaksi_1		:: PF:kaksi LF:two Num NOM TAIL:Φ ARG,E,Fin PHI:NUM:SG Φ  !COMP:* LANG:FI
 kaksi		:: PF:kaksi LF:two Num ACC TAIL:Φ ARG,ASP:BOUNDED Φ  !COMP:* TAIL:*POL:NEG
 kaksi_2		:: PF:kaksi LF:two Num ACC TAIL:Φ ARG,ASP:BOUNDED Φ  !COMP:* TAIL:*POL:NEG
-kolme		:: PF:kolme LF:three Num Φ  !COMP:* LANG:FI
 kahdet		:: kaksi-#pl#[nom] LANG:FI
 kahden		:: kaksi-#pl#[gen] LANG:FI
 kaksi-		:: PF:kaksi LF:two Num LANG:FI
+kaupassa	:: kauppa-#D#sg#3p#def#r_expression#ssa LANG:FI
+kauppa-		:: PF:kauppa LF:shop N LANG:FI
 kaupunkia	:: kaupunki-#φ#r_expression#[par]
 kaupunki	:: kaupunki-#φ#r_expression#[nom]
 kaupunki-	:: PF:kaupunki- LF:city N -COMP:P LANG:FI
+kirkossa	:: kirkko-#D#sg#3p#def#r_expression#ssa LANG:FI
+kirkko-		:: PF:kirkko LF:church N LANG:FI
 käski		:: käske-#v#T/fin#pst#[V] LANG:FI
 käskee		:: käske-#v#T/fin#prs#[V] LANG:FI
 käskee		:: käske-#v#T/fin#prs#[V] LANG:FI
@@ -143,12 +154,13 @@ kirjan		:: kirja-#φ#sg#3p#def#r_expression#[gen] LANG:FI
 kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[par] LANG:FI
 kirjaa^		:: PF:kirjaa LF:book N LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
-kirjaa^^ 	:: √kirja#n0#sg#3p#def#r_expression#[par] LANG:FI
-√kirja		:: PF:kirja- LF:√book √ LANG:FI
+kirjaa^^ 	:: √kirja#n0#sg#3p#def#r_expression LANG:FI
+√kirja		:: PF:kirja- LF:√book √ θ LANG:FI
 kohti		:: P PF:kohti LF:towards -ΦPF +COMP:D,φ TAIL:V LANG:FI
 kohti^		:: P PF:kohti LF:towards -ΦPF +COMP:D,φ LANG:FI
 koko		:: PF:koko LF:all D LANG:FI TAIL:T COMP:φ adjoinable
 ketä		:: kuka-#D#wh#[par] LANG:FI
+kolme		:: PF:kolme LF:three Num Φ LANG:FI
 kenen		:: kuka-#D/pro#wh#nonhum#[gen] LANG:FI
 kuivaa		:: kuiva-#v#T/fin#prs#[V] LANG:FI
 kuiva-		:: PF:kuiva- LF:dry V V/TR LANG:FI
@@ -278,7 +290,7 @@ nauratu		:: naura-#tA
 nauroi		:: naura-#T/fin#pst#[V] LANG:FI
 nauraa		:: naura-#T/fin#prs#[V] LANG:FI
 naura-		:: PF:naura LF:laugh V/INTR V LANG:FI
-naura-*		:: PF:naura LF:laugh V LANG:FI
+naura-*		:: PF:naura LF:laugh V Φ* LANG:FI
 nenä-		:: PF:nenä- LF:nose N LANG:FI
 näki		:: näke-#v#T/fin#pst#[V] LANG:FI
 näkee		:: näke-#v#T/fin#[V] LANG:FI
@@ -306,7 +318,7 @@ ollut		:: BE-#T/prt#sg_ LANG:FI
 olleet		:: BE-#T/prt#pl_ LANG:FI
 olen		:: BE-#T/fin#prs#n LANG:FI
 olen*		:: BE-#T#prs#Fin#n LANG:FI
-olet		:: BE-#T/fin#t LANG:FI
+olet		:: BE-#T/fin#prs#t LANG:FI
 on'			:: BE-#T/fin#[V] LANG:FI
 on			:: BE-#T/fin#prs#[V] LANG:FI
 oli			:: BE-#T/fin#pst#[V] LANG:FI
@@ -342,7 +354,7 @@ Pekkahan	:: Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[nom]#[hAn] LANG:FI
 PEKKA		:: Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[nom]#[foc]
 Pekka-  	:: PF:Pekka LF:Pekka N R:REF:PROPER_NAME -SEM:directional LANG:FI
 pelattiin	:: pelaa-#v#asp#impss1#T#pst#Fin#Vn LANG:FI
-pelaa-		:: PF:pelaa- LF:play V V/INTR LANG:FI
+pelaa-		:: PF:pelaa- LF:play V LANG:FI
 peli		:: peli-#D#sg#3p#def#r_expression#[acc(0)] LANG:FI
 peli-		:: PF:peli LF:game N LANG:FI
 pelottaa	:: pelkä-#cau#T/fin#[V] LANG:FI
@@ -353,8 +365,9 @@ peruuntu-	:: PF:peruuntui- LF:cancelled V LANG:FI
 pessyt		:: pese-#v#asp#T/prt#pst#sg_ LANG:FI
 pesi		:: pese-#v#asp#T/fin#pst#[V] LANG:FI
 pesin		:: pese-#v#asp#T/fin#pst#n LANG:FI
-pesi*		:: pese-#v#asp#T#pst#Fin#[V] LANG:FI
-pesit*		:: pese-#v#asp#T#Fin#t LANG:FI
+pesi*		:: pese-#v#asp#T*#pst#Fin#[V] LANG:FI
+pesit*		:: pese-#v#asp#T*#prs#Fin#t LANG:FI
+pesit		:: pese-#v#asp#T/fin#pst#t LANG:FI
 pestä		:: pese-#A/inf LANG:FI
 pese		:: pese-#v#asp#T#prs LANG:FI
 pese-		:: PF:pese- LF:wash V V/TR ASP:BOUNDED LANG:FI
@@ -391,6 +404,7 @@ sanoi		:: sano-#T/fin#pst#[V] LANG:FI
 sano-   	:: PF:sano- LF:say V COMP:VA/inf !COMP:* -PROBE:FORCE:WH LANG:FI
 sala		:: sala-#D LANG:IT
 sala-		:: PF:sala- LF:room N LANG:IT
+siellä		:: 
 silta-		:: PF:silta LF:bridge N LANG:FI
 sillan		:: silta-#φ#def#sg#3p#r_expression#[gen]
 siltaa		:: silta-#φ#def#sg#3p#r_expression#[par]
@@ -544,7 +558,7 @@ itseään		:: itse-#D/refl#3p#sg#def#[par]#reflexive LANG:FI
 itseäni		:: itse-#D/refl#1p#sg#def#[par]#reflexive LANG:FI
 itsensä_gen	:: itse-#D/refl#3p#sg#def#[gen]#reflexive LANG:FI
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
-ne_D		:: PF:ne LF:those D PHI:NUM:PL PHI:PER:3 LANG:FI
+ne/D		:: PF:ne LF:those D PHI:NUM:PL PHI:PER:3 LANG:FI
 ne			:: ne-#D/pro#3p#pl#def#nonhum#[nom]#pronoun1 LANG:FI
 ne-			:: PF:ne LF:those N LANG:FI
 niiden		:: ne#[gen]#pronoun1

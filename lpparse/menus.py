@@ -100,6 +100,48 @@ class GraphicsMenu(tk.Menu):
         select_image.add_command(label='First image', command=self._event('<<FirstImage>>'))
         self.add_cascade(label='Image source', menu=select_image)
 
+        # Node menu
+        node = tk.Menu(self, tearoff=False, font=menu_font)
+        node.add_command(label='Compress', command=self._event('<<CompressNode>>'))
+        node.add_command(label='Decompress', command=self._event('<<DecompressNode>>'))
+
+        # Submenu for Label
+        submenu_Node_Label = tk.Menu(node, tearoff=0, font=menu_font)
+        submenu_Node_Label.add_command(label='New', command=self._event('<<CustomLabel>>'))
+        submenu_Node_Label.add_command(label='Default', command=self._event('<<DefaultLabel>>'))
+        submenu_Node_Label.add_command(label='Empty', command=self._event('<<EmptyLabel>>'))
+        node.add_cascade(label='Label', menu=submenu_Node_Label)
+
+        # Submenu for Text
+        submenu_Node_Text = tk.Menu(node, tearoff=0, font=menu_font)
+        submenu_Node_Text.add_command(label='New', command=self._event('<<CustomPhonology>>'))
+        submenu_Node_Text.add_command(label='Default', command=self._event('<<DefaultPhonology>>'))
+        submenu_Node_Text.add_command(label='Empty', command=self._event('<<EmptyPhonology>>'))
+        node.add_cascade(label='Phonology', menu=submenu_Node_Text)
+
+        # Submenu for Gloss
+        submenu_Node_Gloss = tk.Menu(node, tearoff=0, font=menu_font)
+        submenu_Node_Gloss.add_command(label='New', command=self._event('<<CustomGloss>>'))
+        submenu_Node_Gloss.add_command(label='Default', command=self._event('<<DefaultGloss>>'))
+        submenu_Node_Gloss.add_command(label='Empty', command=self._event('<<EmptyGloss>>'))
+        node.add_cascade(label='Gloss', menu=submenu_Node_Gloss)
+
+        # Submenu for features
+        submenu_Node_Features = tk.Menu(node, tearoff=0, font=menu_font)
+        submenu_Node_Features.add_command(label='New', command=self._event('<<CustomFeatures>>'))
+        submenu_Node_Features.add_command(label='Default', command=self._event('<<DefaultFeatures>>'))
+        submenu_Node_Features.add_command(label='Empty', command=self._event('<<EmptyFeatures>>'))
+        node.add_cascade(label='Features', menu=submenu_Node_Features)
+
+        # Submenu for free text
+        submenu_Node_Text = tk.Menu(node, tearoff=0, font=menu_font)
+        submenu_Node_Text.add_command(label='New', command=self._event('<<CustomText>>'))
+        submenu_Node_Text.add_command(label='Empty', command=self._event('<<EmptyText>>'))
+        node.add_cascade(label='Free text', menu=submenu_Node_Text)
+
+        # Add the whole menu to window menu bar
+        self.add_cascade(label='Node', menu=node)
+
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
         settings_menu.add_command(label='Image settings...', command=self._event('<<Settings>>'))

@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, simpledialog
 from phrase_structure import PhraseStructure
 from menus import GraphicsMenu
 import widgets as w
@@ -79,12 +79,12 @@ class LogTextWindow(tk.Toplevel):
         self.textWindow = tk.Text(lb, undo=False, spacing1=4, spacing2=2, spacing3=4, height=40, width=150, wrap='none', font=("Cascadia Code", 14), tabs=('1c', '2c', '3c', '4c'))
         self.GetTextFromFile(filename)
         self.textWindow.grid(row=0, column=0, sticky='NSEW')
-        self.textWindow.configure(bg='white', fg='#bbbbbb')
+        self.textWindow.configure(bg='white', fg='#555555')
         self.focus_set()
         self.wm_attributes("-topmost", True)
 
         # Mark errors
-        self.mark_colors()
+        # self.mark_colors()
 
         # Create scrollbars
         sby = ttk.Scrollbar(lb, orient=tk.VERTICAL, command=self.textWindow.yview)
@@ -393,11 +393,25 @@ class GPhraseStructure(PhraseStructure):
         self.X = 0
         self.Y = 0
         self.Y_offset = 0
-        self.label_stack = self.generate_label_stack()
+        self.custom_label = None
+        self.custom_phonology = None
+        self.custom_gloss = None
+        self.custom_features = []
+        self.custom_text = None
         self.head_chain_target = None
         self.Agree_target = None
         self.source = source
         self.node_identity = source.node_identity
+        self.compressed = False
+        self.label_stack = self.generate_label_stack()
+
+    def dominating_nodes(self):
+        x = self
+        lst = []
+        while x.mother_:
+            lst.append(x.mother_)
+            x = x.mother_
+        return lst
 
     def find_head_chain(self):
         if self.zero_level() and self.is_left() and self.affix() and self.affix().copied and self.mother_:
@@ -411,7 +425,7 @@ class GPhraseStructure(PhraseStructure):
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
         self.head_chain_target = self.find_head_chain()
-        #self.Agree_target = self.find_Agree()
+        # self.Agree_target = self.find_Agree()
         if self.complex():
             self.left().x = self.x - 1
             self.left().y = self.y + 1
@@ -479,22 +493,45 @@ class GPhraseStructure(PhraseStructure):
         def feature_conversion(feature):
             return feature
 
+        label_stack = []
+
         # Minimum label is the label itself
-        label_stack = [(self.label(), 'label')]
+        if not self.custom_label == '$n/a$':
+            if self.custom_label:
+                label_stack.append((self.custom_label, 'label'))
+            else:
+                label_stack.append((self.label(), 'label'))
 
         if self.zero_level():
 
             # Phonological string
-            if self.get_phonological_string() and self.get_phonological_string() != self.label():
-                label_stack.append((self.get_phonological_string(), 'PF'))
+            if not self.custom_phonology == '$n/a$':
+                if self.custom_phonology:
+                    label_stack.append((self.custom_phonology, 'PF'))
+                else:
+                    if self.get_phonological_string() and self.get_phonological_string() != self.label():
+                        label_stack.append((self.get_phonological_string(), 'PF'))
 
             # Gloss
-            if self.gloss() and self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
-                label_stack.append((f"ʻ{self.gloss()}ʼ", 'gloss'))
+            if not self.custom_gloss == '$n/a$':
+                if self.custom_gloss:
+                    label_stack.append((f"ʻ{self.custom_gloss}ʼ", 'gloss'))
+                else:
+                    if self.gloss() and self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
+                        label_stack.append((f"ʻ{self.gloss()}ʼ", 'gloss'))
 
             # Features
-            for feature in [x for x in self.features if x in GPhraseStructure.draw_features]:
-                label_stack.append((f'{feature_conversion(feature)}', 'feature'))
+            if not self.custom_features == '$n/a$':
+                if self.custom_features:
+                    for feature in self.custom_features:
+                        label_stack.append((feature, 'feature'))
+                else:
+                    for feature in [x for x in self.features if x in GPhraseStructure.draw_features]:
+                        label_stack.append((f'{feature_conversion(feature)}', 'feature'))
+
+            # Custom text
+            if self.custom_text:
+                label_stack.append((self.custom_text, 'gloss'))
 
         return label_stack
 
@@ -621,9 +658,141 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<FirstImage>>', self.first_image)
         self.bind('<<SaveImage>>', self.save_image)
         self.bind('<<Settings>>', self.image_settings)
+        self.bind('<<CompressNode>>', self.compress_node)
+        self.bind('<<DecompressNode>>', self.decompress_node)
+        self.bind('<<CustomLabel>>', self.use_custom_label)
+        self.bind('<<DefaultLabel>>', self.default_label)
+        self.bind('<<EmptyFeatures>>', self.empty_features)
+        self.bind('<<CustomPhonology>>', self.custom_phonology)
+        self.bind('<<DefaultPhonology>>', self.default_phonology)
+        self.bind('<<EmptyPhonology>>', self.empty_phonology)
+        self.bind('<<CustomGloss>>', self.custom_gloss)
+        self.bind('<<DefaultGloss>>', self.default_gloss)
+        self.bind('<<EmptyGloss>>', self.empty_gloss)
+        self.bind('<<CustomFeatures>>', self.custom_features)
+        self.bind('<<DefaultFeatures>>', self.default_features)
+        self.bind('<<EmptyFeatures>>', self.empty_features)
+        self.bind('<<EmptyText>>', self.empty_text)
+        self.bind('<<CustomText>>', self.custom_text)
 
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def custom_text(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_text = simpledialog.askstring(title='Custom text', prompt='New text', parent=self)
+            self.label_stack_update(gps)
+
+    def empty_text(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_text = None
+            self.label_stack_update(gps)
+
+    def custom_features(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_features = simpledialog.askstring(title='Custom features', prompt='New features', parent=self).split(';')
+            self.label_stack_update(gps)
+
+    def default_features(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_features = None
+            self.label_stack_update(gps)
+
+    def empty_features(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_features = ['$n/a$']
+            self.label_stack_update(gps)
+
+    def custom_gloss(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_gloss = simpledialog.askstring(title='Custom gloss', prompt='New gloss', parent=self)
+            self.label_stack_update(gps)
+
+    def default_gloss(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_gloss = None
+            self.label_stack_update(gps)
+
+    def empty_gloss(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_gloss = '$n/a$'
+            self.label_stack_update(gps)
+
+    def custom_phonology(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_phonology = simpledialog.askstring(title='Custom text', prompt='New text', parent=self)
+            self.label_stack_update(gps)
+
+    def default_phonology(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_phonology = None
+            self.label_stack_update(gps)
+
+    def empty_phonology(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_phonology = '$n/a$'
+            self.label_stack_update(gps)
+
+    def default_label(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_label = None
+            self.label_stack_update(gps)
+
+    def use_custom_label(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_label = simpledialog.askstring(title='Custom label', prompt='New label', parent=self)
+            self.label_stack_update(gps)
+
+    def empty_label(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_label = '$n/a$'
+            self.label_stack_update(gps)
+
+    def selected_object_into_gps(self):
+        obj = self.canvas.selected_canvas_object
+        if obj:
+            return self.canvas.node_to_gps[str(obj)]
+
+    def label_stack_update(self, gps):
+        gps.label_stack = gps.generate_label_stack()
+        self.canvas.redraw(gps.top())
+        self.canvas.focus_force()
+
+    def compress_node(self, *_):
+        # Select current, selected object from the canvas
+        obj = self.canvas.selected_canvas_object
+        if obj:
+            # Find the matching GPS object
+            gps = self.canvas.node_to_gps[str(obj)]
+            # Compress the object
+            gps.compressed = True
+            # Redraw the image
+            self.canvas.redraw(gps.top())
+
+    def decompress_node(self, *_):
+        # Select current, selected object from the canvas
+        obj = self.canvas.selected_canvas_object
+        if obj:
+            # Find the matching GPS object
+            gps = self.canvas.node_to_gps[str(obj)]
+            # Compress the object
+            gps.compressed = False
+            # Redraw the image
+            self.canvas.redraw(gps.top())
 
     def parse_feature_visualizations(self, stri):
         """
@@ -812,13 +981,13 @@ class PhraseStructureCanvas(tk.Canvas):
         Y1 = spy + gps.y * grid
         gps.X = X1  # Memorize the point on the canvas for later chain marking
         gps.Y = Y1
+        gps.generate_label_stack()
         if gps.complex():
             self.create_complex_node(gps, X1, Y1, spx, spy, grid)
         else:
             self.create_primitive_node(gps, X1, Y1)
 
     def create_complex_node(self, gps, X1, Y1, spx, spy, grid):
-
         # End coordinates of the left constituent line (gps.x, gps.y contain logical position)
         X2 = spx + gps.left().x * grid
         Y2 = spy + gps.left().y * grid
@@ -855,16 +1024,65 @@ class PhraseStructureCanvas(tk.Canvas):
         # Create the two lines for left and right constituents.
         left_dash = None
         right_dash = None
-        if gps.left() and gps.left().adjunct:
-            left_dash = (10, 10)
-        if gps.right() and gps.right().adjunct:
-            right_dash = (10, 10)
-        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash = left_dash)
-        self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash = right_dash)
+        #if gps.left() and gps.left().adjunct:
+        #    left_dash = (10, 10)
+        #if gps.right() and gps.right().adjunct:
+        #    right_dash = (10, 10)
 
-        # Recursive calls
-        self.project_into_canvas(gps.left(), spx, spy, grid)
-        self.project_into_canvas(gps.right(), spx, spy, grid)
+        if gps.compressed:
+            # Compressed complex node will create a triangle without constituents
+            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=left_dash)
+            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=right_dash)
+            self.create_line((X2, Y2 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=right_dash)
+            text_items = 0
+            X = (X2 + X3) / 2
+            if gps.custom_phonology and gps.custom_phonology != '$n/a$':
+                text_items += 1
+                Y = Y2 + text_items * 1.4 * self.parent.s['tsize']
+                ID = self.create_text((X, Y),
+                                      text=gps.custom_phonology,
+                                      fill='black',
+                                      activefill='red',
+                                      tag='node',
+                                      anchor='center',
+                                      font=self.label_style['PF'])
+            if gps.custom_gloss and gps.custom_gloss != '$n/a$':
+                text_items += 1
+                Y = Y2 + text_items * 1.4 * self.parent.s['tsize']
+                ID = self.create_text((X, Y),
+                                      text=f'ʻ{gps.custom_gloss}ʼ',
+                                      fill='black',
+                                      activefill='red',
+                                      tag='node',
+                                      anchor='center',
+                                      font=self.label_style['gloss'])
+            if gps.custom_features and '$n/a$' not in gps.custom_features:
+                text_items += 1
+                Y = Y2 + text_items * 1.4 * self.parent.s['tsize']
+                ID = self.create_text((X, Y),
+                                      text=' '.join(gps.custom_features),
+                                      fill='black',
+                                      activefill='red',
+                                      tag='node',
+                                      anchor='center',
+                                      font=self.label_style['feature'])
+            if gps.custom_text:
+                text_items += 1
+                Y = Y2 + text_items * 1.4 * self.parent.s['tsize']
+                ID = self.create_text((X, Y),
+                                      text=gps.custom_text,
+                                      fill='black',
+                                      activefill='red',
+                                      tag='node',
+                                      anchor='center',
+                                      font=self.label_style['gloss'])
+
+        else:
+            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=left_dash)
+            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=right_dash)
+            # Recursive calls (for non-compressed complex nodes)
+            self.project_into_canvas(gps.left(), spx, spy, grid)
+            self.project_into_canvas(gps.right(), spx, spy, grid)
         return ID
 
     def create_primitive_node(self, gps, X1, Y1):
@@ -941,11 +1159,9 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def draw_head_chains(self, gps):
         if gps.head_chain_target:
-            if gps.sister() != gps.head_chain_target or \
-                    self.parent.speaker_model.settings.retrieve('image_parameter_trivial_head_chains', False) or \
-                    not gps.nonverbal():
+            if gps.sister() != gps.head_chain_target or self.parent.speaker_model.settings.retrieve('image_parameter_trivial_head_chains', False) or not gps.nonverbal():
                 self.draw_dependency('head_chain', gps, gps.head_chain_target)
-        if gps.complex():
+        if gps.complex() and not gps.compressed:
             self.draw_head_chains(gps.left())
             self.draw_head_chains(gps.right())
 
@@ -955,7 +1171,7 @@ class PhraseStructureCanvas(tk.Canvas):
             target = gps.sister().find_node_with_identity(i)
             if target:
                 self.draw_dependency('phrasal_chain', gps, target)
-        if gps.complex():
+        if gps.complex() and not gps.compressed:
             self.draw_phrasal_chains(gps.left())
             self.draw_phrasal_chains(gps.right())
 
@@ -967,22 +1183,42 @@ class PhraseStructureCanvas(tk.Canvas):
         #    self.draw_Agree(gps.left())
         #    self.draw_Agree(gps.right())
 
-    def draw_dependency(self, style, source, target):
+    def draw_dependency(self, style, source_gps, target_gps):
         """Draws a dependency arc from point to point"""
-        X1 = source.X
-        Y1 = source.Y
-        X3 = target.X
-        Y3 = target.Y
-        curvature = self.parent.speaker_model.settings.retrieve('image_parameter_chain_curvature', 1)
+
+        # If the target node is inside a compressed node, we do not currently draw any arc into it
+        if {x for x in target_gps.dominating_nodes() if x.compressed}:
+            return
+
+        # Phrasal chains start from the bottom of the complex constituent
+        if style == 'phrasal_chain':
+            X1 = source_gps.X
+            X3 = target_gps.X
+            offset = 0
+            if source_gps.compressed:
+                if source_gps.custom_phonology and source_gps.custom_phonology != '$n/a$':
+                    offset += 1
+                if source_gps.custom_gloss and source_gps.custom_gloss != '$n/a$':
+                    offset += 1
+                if source_gps.custom_text:
+                    offset += 1
+            Y1 = source_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
+            Y3 = target_gps.left().Y
+        # Head chains start from the head
+        else:
+            X1 = source_gps.X
+            Y1 = source_gps.Y
+            X3 = target_gps.X
+            Y3 = target_gps.Y
+        # Middle point X2
         X2 = X1 + abs(X1 - X3) / 2
         if X1 == X3:
             Y3 = Y3 - self.parent.s['tsize']
-        Y2 = Y3 + target.Y_offset + self.parent.s['grid'] * int(curvature) * 1.2
-        if style == 'phrasal_chain' and abs(Y1 - Y3) < self.parent.s['grid'] * 2:
-            Y2 = Y2 * 1.2
-        ID = self.create_line((X1, Y1 + source.Y_offset), (X2, Y2), (X3, Y3 + target.Y_offset),
-                              dash=self.parent.line_style[style]['dash'],
-                              width=self.parent.line_style[style]['width'],
-                              smooth=True,
-                              tag=style,
-                              fill=self.parent.line_style[style]['fill'])
+        # Middle point Y2
+        curvature = self.parent.speaker_model.settings.retrieve('image_parameter_chain_curvature', 1)
+        Y2 = Y3 + target_gps.Y_offset + self.parent.s['grid'] * int(curvature) * 1.2
+        #if style == 'phrasal_chain' and abs(Y1 - Y3) < self.parent.s['grid'] * 2:
+        #    Y2 = Y2 * 1.2
+
+        # Create arc
+        self.create_line((X1, Y1 + source_gps.Y_offset), (X2, Y2), (X3, Y3 + target_gps.Y_offset), dash=self.parent.line_style[style]['dash'], width=self.parent.line_style[style]['width'], smooth=True, tag=style, fill=self.parent.line_style[style]['fill'])

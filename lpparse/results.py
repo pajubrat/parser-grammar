@@ -62,7 +62,7 @@ class Results:
         cls.global_steps += 1
 
     def report_results_to_console(self):
-        errors = open(self.speaker_model.settings.external_sources['error_report_name'], 'r')
+        errors = open(self.speaker_model.settings.external_sources['errors'], 'r')
         print(f'\n')
         error_lines = [line for line in errors.readlines() if line.strip() and not line.startswith('@')]
         for line in error_lines:
