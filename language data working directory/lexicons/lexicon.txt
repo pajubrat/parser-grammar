@@ -95,6 +95,7 @@ ikkuna[pl]-	:: PF:ikkunat LF:windows N LANG:FI
 ikkunat_N	:: PF:ikkunat LF:windows N iPHI:NUM:PL LANG:FI
 ikkunat_DP	:: ikkuna-#φ#[acc]#pl#3p#def#hum
 ikkunoita	:: ikkuna-#D#[par]#pl#3p#def#nonhum
+ikkunoita/2	:: ikkuna-#D#[par]#pl#3p#def#nonhum#acc
 ikkunoita*	:: ikkuna*-#D#[par]#pl#3p#def#nonhum
 ikkuna-		:: PF:ikkuna LF:window N LANG:FI
 ikkuna*-	:: PF:ikkunoita LF:windows N LANG:FI
@@ -151,7 +152,7 @@ kirja		:: kirja-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 kirja_0acc	:: kirja-#φ#sg#3p#def#r_expression#[acc(0)] LANG:FI
 kirjan_acc 	:: kirja-#φ#sg#3p#def#r_expression#[acc(n)] LANG:FI
 kirjan		:: kirja-#φ#sg#3p#def#r_expression#[gen] LANG:FI
-kirjaa		:: kirja-#φ#sg#3p#def#r_expression#[par] LANG:FI
+kirjaa		:: kirja-#φ#sg#3p#def#r_expression LANG:FI
 kirjaa^		:: PF:kirjaa LF:book N LANG:FI
 kirja-  	:: PF:kirja LF:book N -SEM:directional LANG:FI
 kirjaa^^ 	:: √kirja#n0#sg#3p#def#r_expression LANG:FI
@@ -325,6 +326,8 @@ oli			:: BE-#T/fin#pst#[V] LANG:FI
 olisi		:: BE-#T/fin#cond LANG:FI
 olemme		:: BE-#T/fin#mme LANG:FI
 olette		:: BE-#T/fin#tte LANG:FI
+oltiin		:: BE/2-#impss1#T#pst#Fin#Vn LANG:FI'
+BE/2-		:: PF:ol- LF:be V LANG:FI
 ovat		:: BE-#T/fin#vAt LANG:FI
 ole			:: BE-#T#prs LANG:FI
 omaisuutensa	:: omaisuus-#D#def#sg#3p#[acc(n)] LANG:FI
@@ -370,6 +373,7 @@ pesit*		:: pese-#v#asp#T*#prs#Fin#t LANG:FI
 pesit		:: pese-#v#asp#T/fin#pst#t LANG:FI
 pestä		:: pese-#A/inf LANG:FI
 pese		:: pese-#v#asp#T#prs LANG:FI
+pese/2		:: pese-#v LANG:FI
 pese-		:: PF:pese- LF:wash V V/TR ASP:BOUNDED LANG:FI
 pieni		:: pieni-#a0 LANG:FI
 pieni-		:: PF:pieni- LF:small 0 LANG:FI
@@ -546,6 +550,7 @@ se			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se'			:: se-#[nom]#sg#3p#def#nonhum#pronoun1 LANG:FI
 se			:: se-#sg#3p#def#nonhum#pronoun1 LANG:FI
 sen			:: se-#[acc(n)]#sg#3p#def#nonhum#pronoun1 LANG:FI
+sen/3		:: se-#sg#3p#def#nonhum#pronoun1 LANG:FI
 sen/2		:: se_N-#D/pro#[gen]#sg#3p#def#nonhum#pronoun1 LANG:FI
 sen			:: se_N-#D/pro#[gen]#sg#3p#def#nonhum#pronoun1 LANG:FI
 sitä		:: se-#[par]#sg#3p#def#nonhum#pronoun1 LANG:FI

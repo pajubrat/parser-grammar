@@ -142,11 +142,20 @@ class GraphicsMenu(tk.Menu):
         # Add the whole menu to window menu bar
         self.add_cascade(label='Node', menu=node)
 
+        arc = tk.Menu(self, tearoff=False, font=menu_font)
+        arc.add_command(label='Set startpoint', command=self._event('<<SetArcStartpoint>>'))
+        arc.add_command(label='Set endpoint', command=self._event('<<SetArcEndpoint>>'))
+        arc.add_command(label='Set Label', command=self._event('<<LabelArc>>'))
+        arc.add_command(label='Create', command=self._event('<<CreateArc>>'))
+        arc.add_command(label='Clear points', command=self._event('<<ClearPoints>>'))
+        arc.add_command(label='Clear label', command=self._event('<<DeleteArcLabel>>'))
+        arc.add_command(label='Delete all', command=self._event('<<DeleteArc>>'))
+        self.add_cascade(label='Arc', menu=arc)
+
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
         settings_menu.add_command(label='Image settings...', command=self._event('<<Settings>>'))
         self.add_cascade(label='Settings', menu=settings_menu)
-
 
     def todo(self):
         pass

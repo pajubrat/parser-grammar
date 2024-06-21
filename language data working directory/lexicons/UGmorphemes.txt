@@ -63,6 +63,11 @@
 	D/expl	:: EXPL PF:expl PHI:PER:3 LF:expl -SPEC:*
 	EXPL	:: N#D/expl
 
+# ad hox
+
+	xx		:: x-#D
+	x-		:: PF:x LF:var N
+
 # FINNISH DERIVATIONAL MORPHOLOGY
 
 	# Inner layer (layer 1)
@@ -135,7 +140,7 @@
 		# Participles
 		
 			mA		:: a MA/a	Inf	Φ*		PF:-mA	PC:#X LF:prtc	+COMP:V -COMP:V/INTR	LANG:FI
-			vA		:: a VA/a	Inf	OC		PF:-vA 	PC:#X LF:prtc	+COMP:V LANG:FI 
+			vA		:: a VA/a	Inf	OC		PF:-vA 	LF:prtc	+COMP:V LANG:FI 
 			
 		# Special purpose elements
 		

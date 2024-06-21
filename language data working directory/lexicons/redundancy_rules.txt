@@ -17,7 +17,8 @@
 
 # Verbal domain
 
-	v   		:: 	Φ V PC:#X θ ASP 			+COMP:V -COMP:V/INTR +SPEC:D,φ,ø
+	#	v   	:: 	Φ V PC:#X θ ASP 			+COMP:V -COMP:V/INTR +SPEC:D,φ,ø
+	v   		:: 	Φ V θ ASP 					+COMP:V -COMP:V/INTR +SPEC:D,φ,ø
 	V   		:: 	θ Φ -ΦPF ASP 				-SPEC:Fin
 	BE-			::	V COPULA LF:be 				-COMP:Fins
 	v*			:: 	Φ* V						+COMP:V
@@ -34,7 +35,7 @@
 	N   	:: 	 					+COMP:P,ø,C/rel
 	P   	:: 	θ Adv adjoinable 	+COMP:D,φ,ø +SPEC:D,φ,ø
 	A 		:: 	θ 					-SPEC:A
-	a0		::  A					
+	a0		::  A					+COMP:A,0
 	n		:: 	?ΦLF Inf N 			+COMP:√,ASP
 	√		:: 	SPEC:φ 2SPEC 		+COMP:P,ø,C/rel
 	Num		::  Num 				-COMP:D -COMP:QN
@@ -96,10 +97,10 @@
 		LANG:FI T IMPASS pst	:: PF:-in
 		LANG:FI Fin K			:: PF:-Vn
 		LANG:FI ε				:: PC:#X#
-		LANG:FI V				:: PC:X#
+		# LANG:FI V				:: PC:X#
 		LANG:FI inflectional	:: PC:#X
 		LANG:FI T				:: PC:#X
-		LANG:FI v				:: PC:#X#
+		# LANG:FI v				:: PC:#X#
 
 	# Finnish edge behavior
 		

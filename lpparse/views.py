@@ -404,6 +404,7 @@ class GPhraseStructure(PhraseStructure):
         self.node_identity = source.node_identity
         self.compressed = False
         self.label_stack = self.generate_label_stack()
+        self.custom_arcs = []
 
     def dominating_nodes(self):
         x = self
@@ -618,6 +619,10 @@ class PhraseStructureGraphics(tk.Toplevel):
 
         # Internal variables
         self.index_of_analysis_shown = 0
+        self.root_gps_node = None
+        self.arc_startpoint = None
+        self.arc_endpoint = None
+        self.arc_label = None
 
         # Settings for drawing
         self.s = {'grid': GRID, 'margins': MARGINS}
@@ -626,7 +631,8 @@ class PhraseStructureGraphics(tk.Toplevel):
         # Line styles
         self.line_style = {'phrasal_chain': {'fill': 'black', 'dash': None, 'width': 2},
                            'head_chain': {'fill': 'black', 'dash': None, 'width': 2},
-                           'Agree': {'fill': 'blue', 'dash': None, 'width': 3}}
+                           'Agree': {'fill': 'blue', 'dash': None, 'width': 3},
+                           'custom': {'fill': 'black', 'dash': None, 'width': 2}}
 
         # Menu
         self.graphics_menu = GraphicsMenu(self)
@@ -673,10 +679,52 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<DefaultFeatures>>', self.default_features)
         self.bind('<<EmptyFeatures>>', self.empty_features)
         self.bind('<<EmptyText>>', self.empty_text)
-        self.bind('<<CustomText>>', self.custom_text)
+        self.bind('<<SetArcStartpoint>>', self.set_arc_startpoint)
+        self.bind('<<SetArcEndpoint>>', self.set_arc_endpoint)
+        self.bind('<<ClearPoints>>', self.clear_points)
+        self.bind('<<CreateArc>>', self.create_arc)
+        self.bind('<<DeleteArc>>', self.delete_arc)
+        self.bind('<<LabelArc>>', self.label_arc)
+        self.bind('<<DeleteLabelArc>>', self.delete_arc_label)
 
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def label_arc(self, *_):
+        self.arc_label = simpledialog.askstring(title='Arc label', prompt='Label', parent=self)
+
+    def delete_arc_label(self, *_):
+        self.arc_label = None
+
+    def clear_points(self, *_):
+        self.arc_startpoint = None
+        self.arc_endpoint = None
+        self.canvas.redraw(self.gps)
+
+    def create_arc(self, *_):
+        if self.arc_startpoint and self.arc_endpoint:
+            self.arc_startpoint.custom_arcs.append((self.arc_endpoint, self.arc_label))
+            self.arc_startpoint = None
+            self.arc_endpoint = None
+            self.canvas.redraw(self.gps)
+
+    def delete_arc(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.custom_arcs = []
+            self.canvas.redraw(gps.top())
+
+    def set_arc_startpoint(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            self.arc_startpoint = gps
+            self.canvas.redraw(gps.top())
+
+    def set_arc_endpoint(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            self.arc_endpoint = gps
+            self.canvas.redraw(gps.top())
 
     def custom_text(self, *_):
         gps = self.selected_object_into_gps()
@@ -899,6 +947,7 @@ class PhraseStructureCanvas(tk.Canvas):
                             'PF': ("Times New Roman", int(parent.s['tsize']*0.90), "italic"),
                             'gloss': ("Times New Roman", int(parent.s['tsize']*0.90)),
                             'feature': ("Times New Roman", int(parent.s['tsize']*0.75)),
+                            'arc label': ("Times New Roman", int(parent.s['tsize']*0.75)),
                             'info': ("Courier", int(parent.s['tsize'] * 0.25))}
         self.bind('<Button-1>', self._on_mouse_click)
         self.bind('<KeyPress>', self._key_press)
@@ -917,6 +966,7 @@ class PhraseStructureCanvas(tk.Canvas):
             self.draw_head_chains(gps)
         if self.parent.speaker_model.settings.retrieve('image_parameter_phrasal_chains', True):
             self.draw_phrasal_chains(gps)
+        self.draw_custom_arcs(gps)
 
     def _key_press(self, event):
         if self.selected_canvas_object:
@@ -982,12 +1032,19 @@ class PhraseStructureCanvas(tk.Canvas):
         gps.X = X1  # Memorize the point on the canvas for later chain marking
         gps.Y = Y1
         gps.generate_label_stack()
-        if gps.complex():
-            self.create_complex_node(gps, X1, Y1, spx, spy, grid)
-        else:
-            self.create_primitive_node(gps, X1, Y1)
 
-    def create_complex_node(self, gps, X1, Y1, spx, spy, grid):
+        # Determine the color of label and node information
+        if gps == self.parent.arc_startpoint or gps == self.parent.arc_endpoint:
+            color = 'green'
+        else:
+            color = 'black'
+
+        if gps.complex():
+            self.create_complex_node(gps, X1, Y1, spx, spy, grid, color)
+        else:
+            self.create_primitive_node(gps, X1, Y1, color)
+
+    def create_complex_node(self, gps, X1, Y1, spx, spy, grid, color):
         # End coordinates of the left constituent line (gps.x, gps.y contain logical position)
         X2 = spx + gps.left().x * grid
         Y2 = spy + gps.left().y * grid
@@ -1001,7 +1058,7 @@ class PhraseStructureCanvas(tk.Canvas):
         # Create text holding the complex label (e.g., XP)
         ID = self.create_text((X1, Y1),
                               text=text,
-                              fill='black',
+                              fill=color,
                               activefill='red',
                               tag='node',
                               font=("Times New Roman", self.parent.s['tsize']))
@@ -1041,7 +1098,7 @@ class PhraseStructureCanvas(tk.Canvas):
                 Y = Y2 + text_items * 1.4 * self.parent.s['tsize']
                 ID = self.create_text((X, Y),
                                       text=gps.custom_phonology,
-                                      fill='black',
+                                      fill=color,
                                       activefill='red',
                                       tag='node',
                                       anchor='center',
@@ -1051,7 +1108,7 @@ class PhraseStructureCanvas(tk.Canvas):
                 Y = Y2 + text_items * 1.4 * self.parent.s['tsize']
                 ID = self.create_text((X, Y),
                                       text=f'ʻ{gps.custom_gloss}ʼ',
-                                      fill='black',
+                                      fill=color,
                                       activefill='red',
                                       tag='node',
                                       anchor='center',
@@ -1061,7 +1118,7 @@ class PhraseStructureCanvas(tk.Canvas):
                 Y = Y2 + text_items * 1.4 * self.parent.s['tsize']
                 ID = self.create_text((X, Y),
                                       text=' '.join(gps.custom_features),
-                                      fill='black',
+                                      fill=color,
                                       activefill='red',
                                       tag='node',
                                       anchor='center',
@@ -1071,7 +1128,7 @@ class PhraseStructureCanvas(tk.Canvas):
                 Y = Y2 + text_items * 1.4 * self.parent.s['tsize']
                 ID = self.create_text((X, Y),
                                       text=gps.custom_text,
-                                      fill='black',
+                                      fill=color,
                                       activefill='red',
                                       tag='node',
                                       anchor='center',
@@ -1085,7 +1142,7 @@ class PhraseStructureCanvas(tk.Canvas):
             self.project_into_canvas(gps.right(), spx, spy, grid)
         return ID
 
-    def create_primitive_node(self, gps, X1, Y1):
+    def create_primitive_node(self, gps, X1, Y1, color):
         Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s)
 
         # Reproduce the head and all of its affixes
@@ -1115,7 +1172,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
                 # Create the text widget for the element
                 ID = self.create_text((X1, Y1 + Y_offset),
-                                      fill='black',
+                                      fill=color,
                                       activefill='red',
                                       tag='node',
                                       text=text,
@@ -1157,6 +1214,14 @@ class PhraseStructureCanvas(tk.Canvas):
             self.itemconfigure(self.cursor, state='normal')
             self.moveto(self.cursor, x1 - 50, y1 - 50)
 
+    def draw_custom_arcs(self, gps):
+        if len(gps.custom_arcs) > 0:
+            for endpoint, label in gps.custom_arcs:
+                self.draw_dependency('custom', gps, endpoint, label)
+        if gps.complex() and not gps.compressed:
+            self.draw_custom_arcs(gps.left())
+            self.draw_custom_arcs(gps.right())
+
     def draw_head_chains(self, gps):
         if gps.head_chain_target:
             if gps.sister() != gps.head_chain_target or self.parent.speaker_model.settings.retrieve('image_parameter_trivial_head_chains', False) or not gps.nonverbal():
@@ -1183,7 +1248,7 @@ class PhraseStructureCanvas(tk.Canvas):
         #    self.draw_Agree(gps.left())
         #    self.draw_Agree(gps.right())
 
-    def draw_dependency(self, style, source_gps, target_gps):
+    def draw_dependency(self, style, source_gps, target_gps, text=''):
         """Draws a dependency arc from point to point"""
 
         # If the target node is inside a compressed node, we do not currently draw any arc into it
@@ -1203,7 +1268,15 @@ class PhraseStructureCanvas(tk.Canvas):
                 if source_gps.custom_text:
                     offset += 1
             Y1 = source_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
-            Y3 = target_gps.left().Y
+            offset = 0
+            if target_gps.compressed:
+                if target_gps.custom_phonology and target_gps.custom_phonology != '$n/a$':
+                    offset += 1
+                if target_gps.custom_gloss and target_gps.custom_gloss != '$n/a$':
+                    offset += 1
+                if target_gps.custom_text:
+                    offset += 1
+            Y3 = target_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
         # Head chains start from the head
         else:
             X1 = source_gps.X
@@ -1217,8 +1290,15 @@ class PhraseStructureCanvas(tk.Canvas):
         # Middle point Y2
         curvature = self.parent.speaker_model.settings.retrieve('image_parameter_chain_curvature', 1)
         Y2 = Y3 + target_gps.Y_offset + self.parent.s['grid'] * int(curvature) * 1.2
-        #if style == 'phrasal_chain' and abs(Y1 - Y3) < self.parent.s['grid'] * 2:
-        #    Y2 = Y2 * 1.2
+
+        if text:
+            ID = self.create_text((X1 + abs(X3-X1)/8, (Y1+Y3)/2),
+                                  fill='black',
+                                  activefill='red',
+                                  tag='node',
+                                  text=text,
+                                  anchor='center',
+                                  font=self.label_style['arc label'])
 
         # Create arc
         self.create_line((X1, Y1 + source_gps.Y_offset), (X2, Y2), (X3, Y3 + target_gps.Y_offset), dash=self.parent.line_style[style]['dash'], width=self.parent.line_style[style]['width'], smooth=True, tag=style, fill=self.parent.line_style[style]['fill'])
