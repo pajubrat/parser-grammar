@@ -1,9 +1,10 @@
 import tkinter as tk
-from tkinter import ttk, simpledialog
+from tkinter import ttk, simpledialog, filedialog
 from phrase_structure import PhraseStructure
 from menus import GraphicsMenu
 import widgets as w
 from feature_processing import clean_string
+import pickle
 
 MARGINS = 300
 GRID = 150
@@ -421,7 +422,6 @@ class GPhraseStructure(PhraseStructure):
     def find_Agree(self):
         if self.zero_level() and self.is_left() and 'ΦLF' in self.features:
             pass
-            #return self.argument_by_agreement().head()
 
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
@@ -657,6 +657,8 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=1, column=0)
         self.gps = None     # Current phrase structure e on screen
+        self.bind('<<SaveAsStructure>>', self.save_as_structure)
+        self.bind('<<LoadAsStructure>>', self.load_as_structure)
         self.bind('<<LF>>', self.LF)
         self.bind('<<PF>>', self.PF)
         self.bind('<<NextImage>>', self.next_image)
@@ -686,9 +688,111 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<DeleteArc>>', self.delete_arc)
         self.bind('<<LabelArc>>', self.label_arc)
         self.bind('<<DeleteLabelArc>>', self.delete_arc_label)
+        self.bind('<<ReversePhraseStructure>>', self.reverse_phrase_structure)
+        self.bind('<<ExpandPhraseStructure>>', self.expand_phrase_structure)
+        self.bind('<<ShrinkPhraseStructure>>', self.shrink_phrase_structure)
+        self.bind('<<DeletePhraseStructure>>', self.delete_phrase_structure)
+        self.bind('<<MoveUp>>', self.move_up)
+        self.bind('<<MoveDown>>', self.move_down)
+        self.bind('<<MoveLeft>>', self.move_left)
+        self.bind('<<MoveRight>>', self.move_right)
+        self.bind('<<Recalibrate>>', self.recalibrate)
 
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def recalibrate(self, *_):
+        self.draw_phrase_structure()
+
+    def move_up(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.move_y(-0.5)
+        self.canvas.redraw(self.gps)
+
+    def move_down(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.move_y(+0.5)
+        self.canvas.redraw(self.gps)
+
+    def move_left(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.move_x(-0.5)
+        self.canvas.redraw(self.gps)
+
+    def move_right(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.move_x(+0.5)
+        self.canvas.redraw(self.gps)
+
+    def save_as_structure(self, *_):
+        filename = filedialog.asksaveasfilename()
+        with open(filename, 'wb') as output_file:
+            pickle.dump(self.gps, output_file)
+
+    def load_as_structure(self, *_):
+        filename = filedialog.askopenfilename()
+        with open(filename, 'rb') as input_file:
+            self.gps = pickle.load(input_file)
+            self.update()
+
+    def expand_phrase_structure(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and not gps.complex():
+            empty_const = PhraseStructure()
+            X = GPhraseStructure(gps)
+            Y = GPhraseStructure(empty_const)
+            gps.const = [X, Y]
+            gps.features = set()
+            self.update()
+
+    def shrink_phrase_structure(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and gps.complex():
+            gps.const = []
+            self.update()
+
+    def delete_phrase_structure(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and gps.mother():
+            if gps.is_left():
+                preserved_sister = gps.mother().right()
+            else:
+                preserved_sister = gps.mother().left()
+            # Delete X and its mother, move the sister upwards
+            if gps.mother().mother():
+                grandmother = gps.mother().mother()
+                if gps.mother().is_right():
+                    grandmother.const = [grandmother.left(), preserved_sister]
+                else:
+                    grandmother.const = [preserved_sister, grandmother.right()]
+                preserved_sister.mother_ = grandmother
+            # We preserve only the sister
+            else:
+                preserved_sister.mother_ = None
+                self.gps = preserved_sister
+            self.update()
+
+    def update(self):
+        self.gps.initialize_logical_space()
+        self.gps.remove_overlap()
+        self.recalculate_labels(self.gps)
+        self.canvas.redraw(self.gps)
+
+    def recalculate_labels(self, gps):
+        gps.label_stack = gps.generate_label_stack()
+        if gps.complex():
+            self.recalculate_labels(gps.left())
+            self.recalculate_labels(gps.right())
+
+    def reverse_phrase_structure(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and gps.complex():
+            gps.const.reverse()
+            self.update()
 
     def label_arc(self, *_):
         self.arc_label = simpledialog.askstring(title='Arc label', prompt='Label', parent=self)

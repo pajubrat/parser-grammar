@@ -83,12 +83,8 @@ class GraphicsMenu(tk.Menu):
         # File menu
         file_menu = tk.Menu(self, tearoff=False, font=menu_font)
         file_menu.config(font=menu_font)
-        file_menu.add_command(label='New...', command=self.todo)
-        file_menu.add_command(label='Load...', command=self.todo)
-        file_menu.add_command(label='Save As Image', command=self._event('<<SaveImage>>'))
-        file_menu.add_command(label='Print', command=self.print)
-        file_menu.add_command(label='Preferences...', command=self.todo)
-        file_menu.add_command(label='Quit', command=self.todo)
+        file_menu.add_command(label='Load...', command=self._event('<<LoadAsStructure>>'))
+        file_menu.add_command(label='Save...', command=self._event('<<SaveAsStructure>>'))
         self.add_cascade(label='File', menu=file_menu)
 
         # Select image menu
@@ -151,6 +147,18 @@ class GraphicsMenu(tk.Menu):
         arc.add_command(label='Clear label', command=self._event('<<DeleteArcLabel>>'))
         arc.add_command(label='Delete all', command=self._event('<<DeleteArc>>'))
         self.add_cascade(label='Arc', menu=arc)
+
+        ps = tk.Menu(self, tearoff=False, font=menu_font)
+        ps.add_command(label='Reverse', command=self._event('<<ReversePhraseStructure>>'))
+        ps.add_command(label='Expand', command=self._event('<<ExpandPhraseStructure>>'))
+        ps.add_command(label='Shrink', command=self._event('<<ShrinkPhraseStructure>>'))
+        ps.add_command(label='Delete', command=self._event('<<DeletePhraseStructure>>'))
+        ps.add_command(label='Recover original', command=self._event('<<Recalibrate>>'))
+        ps.add_command(label='Move Up', command=self._event('<<MoveUp>>'))
+        ps.add_command(label='Move Down', command=self._event('<<MoveDown>>'))
+        ps.add_command(label='Move Left', command=self._event('<<MoveLeft>>'))
+        ps.add_command(label='Move Right', command=self._event('<<MoveRight>>'))
+        self.add_cascade(label='Phrase Structure', menu=ps)
 
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
