@@ -697,9 +697,20 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<MoveLeft>>', self.move_left)
         self.bind('<<MoveRight>>', self.move_right)
         self.bind('<<Recalibrate>>', self.recalibrate)
+        self.bind('<<ClearNode>>', self.clear_content)
 
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def clear_content(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and not gps.complex():
+            gps.custom_label = ' '
+            gps.features = set()
+            gps.custom_text = None
+            gps.custom_gloss = None
+            gps.custom_phonology = None
+            self.update()
 
     def recalibrate(self, *_):
         self.draw_phrase_structure()
@@ -745,6 +756,8 @@ class PhraseStructureGraphics(tk.Toplevel):
             empty_const = PhraseStructure()
             X = GPhraseStructure(gps)
             Y = GPhraseStructure(empty_const)
+            X.mother_ = gps
+            Y.mother_ = gps
             gps.const = [X, Y]
             gps.features = set()
             self.update()
@@ -1360,7 +1373,7 @@ class PhraseStructureCanvas(tk.Canvas):
             return
 
         # Phrasal chains start from the bottom of the complex constituent
-        if style == 'phrasal_chain':
+        if style == 'phrasal_chain' or (style == 'custom' and source_gps.complex()):
             X1 = source_gps.X
             X3 = target_gps.X
             offset = 0
@@ -1395,14 +1408,14 @@ class PhraseStructureCanvas(tk.Canvas):
         curvature = self.parent.speaker_model.settings.retrieve('image_parameter_chain_curvature', 1)
         Y2 = Y3 + target_gps.Y_offset + self.parent.s['grid'] * int(curvature) * 1.2
 
-        if text:
-            ID = self.create_text((X1 + abs(X3-X1)/8, (Y1+Y3)/2),
-                                  fill='black',
-                                  activefill='red',
-                                  tag='node',
-                                  text=text,
-                                  anchor='center',
-                                  font=self.label_style['arc label'])
+        #if text:
+        #    ID = self.create_text((X1 + abs(X3-X1)/8, (Y1+Y3)/2),
+        #                          fill='black',
+        #                          activefill='red',
+        # #                         tag='node',
+        #                          text=text,
+        #                          anchor='center',
+        #                          font=self.label_style['arc label'])
 
         # Create arc
         self.create_line((X1, Y1 + source_gps.Y_offset), (X2, Y2), (X3, Y3 + target_gps.Y_offset), dash=self.parent.line_style[style]['dash'], width=self.parent.line_style[style]['width'], smooth=True, tag=style, fill=self.parent.line_style[style]['fill'])

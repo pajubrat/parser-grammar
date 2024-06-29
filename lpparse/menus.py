@@ -100,6 +100,7 @@ class GraphicsMenu(tk.Menu):
         node = tk.Menu(self, tearoff=False, font=menu_font)
         node.add_command(label='Compress', command=self._event('<<CompressNode>>'))
         node.add_command(label='Decompress', command=self._event('<<DecompressNode>>'))
+        node.add_command(label='Clear content', command=self._event('<<ClearNode>>'))
 
         # Submenu for Label
         submenu_Node_Label = tk.Menu(node, tearoff=0, font=menu_font)
