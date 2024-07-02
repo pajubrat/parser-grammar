@@ -385,6 +385,7 @@ class GPhraseStructure(PhraseStructure):
         self.adjunct = source.adjunct
         self.identity = source.identity
         self.copied = source.copied
+        self.flip = False
         if not source.terminal():
             self.create_constituents([GPhraseStructure(const) for const in source.const])
 
@@ -407,6 +408,19 @@ class GPhraseStructure(PhraseStructure):
         self.label_stack = self.generate_label_stack()
         self.custom_arcs = []
 
+    # Allows left-right flipping during image creation
+    def left(self):
+        if self.flip:
+            return super().right()
+        else:
+            return super().left()
+
+    def right(self):
+        if self.flip:
+            return super().left()
+        else:
+            return super().right()
+
     def dominating_nodes(self):
         x = self
         lst = []
@@ -426,7 +440,6 @@ class GPhraseStructure(PhraseStructure):
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
         self.head_chain_target = self.find_head_chain()
-        # self.Agree_target = self.find_Agree()
         if self.complex():
             self.left().x = self.x - 1
             self.left().y = self.y + 1
@@ -656,7 +669,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.grid()
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=1, column=0)
-        self.gps = None     # Current phrase structure e on screen
+        self.root_gps = None     # Current phrase structure e on screen
         self.bind('<<SaveAsStructure>>', self.save_as_structure)
         self.bind('<<LoadAsStructure>>', self.load_as_structure)
         self.bind('<<LF>>', self.LF)
@@ -686,21 +699,137 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<ClearPoints>>', self.clear_points)
         self.bind('<<CreateArc>>', self.create_arc)
         self.bind('<<DeleteArc>>', self.delete_arc)
-        self.bind('<<LabelArc>>', self.label_arc)
-        self.bind('<<DeleteLabelArc>>', self.delete_arc_label)
+        self.bind('<<AddXP>>', self.add_XP)
+        self.bind('<<AddDP>>', self.add_DP)
+        self.bind('<<AddHead>>', self.add_Head)
         self.bind('<<ReversePhraseStructure>>', self.reverse_phrase_structure)
+        self.bind('<<ReversePresentation>>', self.reverse_presentation)
         self.bind('<<ExpandPhraseStructure>>', self.expand_phrase_structure)
         self.bind('<<ShrinkPhraseStructure>>', self.shrink_phrase_structure)
         self.bind('<<DeletePhraseStructure>>', self.delete_phrase_structure)
+        self.bind('<<MakeAdjunct>>', self.make_adjunct)
+        self.bind('<<MakeRegular>>', self.make_regular)
         self.bind('<<MoveUp>>', self.move_up)
         self.bind('<<MoveDown>>', self.move_down)
         self.bind('<<MoveLeft>>', self.move_left)
         self.bind('<<MoveRight>>', self.move_right)
         self.bind('<<Recalibrate>>', self.recalibrate)
         self.bind('<<ClearNode>>', self.clear_content)
-
+        self.bind('<<EnableHeadChains>>', self.enable_head_chains)
+        self.bind('<<DisableHeadChains>>', self.disable_head_chains)
+        self.bind('<<EnablePhrasalChains>>', self.enable_phrasal_chains)
+        self.bind('<<DisablePhrasalChains>>', self.disable_phrasal_chains)
+        self.bind('<<BasicTemplate>>', self.basic_template)
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def reverse_presentation(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            if gps.flip:
+                gps.flip = False
+            else:
+                gps.flip = True
+        self.update()
+
+    def basic_template(self, *_):
+        X = GPhraseStructure(PhraseStructure())
+        Y = GPhraseStructure(PhraseStructure())
+        Z = GPhraseStructure(PhraseStructure())
+        XP = GPhraseStructure(PhraseStructure(), X, Y)
+        ZP = GPhraseStructure(PhraseStructure(), Z, XP)
+        self.root_gps = ZP
+        self.update()
+
+    def add_Head(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            Y = gps.mother()
+            right = gps.is_right()
+            X = GPhraseStructure(PhraseStructure())
+            Host = GPhraseStructure(PhraseStructure(), X, gps)
+            if Y:
+                if right:
+                    Y.const = [Y.left(), Host]
+                else:
+                    Y.const = [Host, Y.right()]
+                Host.mother_ = Y
+            else:
+                self.root_gps = Host
+            self.update()
+
+    def add_XP(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            Z = gps.mother()
+            right = gps.is_right()
+
+            # Create DP
+            X = GPhraseStructure(PhraseStructure())
+            Y = GPhraseStructure(PhraseStructure())
+            XP = GPhraseStructure(PhraseStructure(), X, Y)
+            Host = GPhraseStructure(PhraseStructure(), XP, gps)
+            if Z:
+                if right:
+                    Z.const = [Z.left(), Host]
+                else:
+                    Z.const = [Host, Z.right()]
+                Host.mother_ = Z
+            else:
+                self.root_gps = Host
+            self.update()
+
+    def add_DP(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            Y = gps.mother()
+            right = gps.is_right()
+
+            # Create DP
+            D = GPhraseStructure(PhraseStructure())
+            D.features = {'D'}
+            N = GPhraseStructure(PhraseStructure())
+            N.features = {'N'}
+            DP = GPhraseStructure(PhraseStructure(), D, N)
+
+            Host = GPhraseStructure(PhraseStructure(), DP, gps)
+            if Y:
+                if right:
+                    Y.const = [Y.left(), Host]
+                else:
+                    Y.const = [Host, Y.right()]
+                Host.mother_ = Y
+            else:
+                self.root_gps = Host
+            self.update()
+
+    def make_adjunct(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and gps.complex():
+            gps.adjunct = True
+            self.update()
+
+    def make_regular(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and gps.complex():
+            gps.adjunct = False
+            self.update()
+
+    def enable_head_chains(self, *_):
+        self.speaker_model.settings.data['image_parameter_head_chains'] = True
+        self.update()
+
+    def disable_head_chains(self, *_):
+        self.speaker_model.settings.data['image_parameter_head_chains'] = False
+        self.update()
+
+    def enable_phrasal_chains(self, *_):
+        self.speaker_model.settings.data['image_parameter_phrasal_chains'] = True
+        self.update()
+
+    def disable_phrasal_chains(self, *_):
+        self.speaker_model.settings.data['image_parameter_phrasal_chains'] = False
+        self.update()
 
     def clear_content(self, *_):
         gps = self.selected_object_into_gps()
@@ -719,35 +848,35 @@ class PhraseStructureGraphics(tk.Toplevel):
         gps = self.selected_object_into_gps()
         if gps:
             gps.move_y(-0.5)
-        self.canvas.redraw(self.gps)
+        self.canvas.redraw(self.root_gps)
 
     def move_down(self, *_):
         gps = self.selected_object_into_gps()
         if gps:
             gps.move_y(+0.5)
-        self.canvas.redraw(self.gps)
+        self.canvas.redraw(self.root_gps)
 
     def move_left(self, *_):
         gps = self.selected_object_into_gps()
         if gps:
             gps.move_x(-0.5)
-        self.canvas.redraw(self.gps)
+        self.canvas.redraw(self.root_gps)
 
     def move_right(self, *_):
         gps = self.selected_object_into_gps()
         if gps:
             gps.move_x(+0.5)
-        self.canvas.redraw(self.gps)
+        self.canvas.redraw(self.root_gps)
 
     def save_as_structure(self, *_):
         filename = filedialog.asksaveasfilename()
         with open(filename, 'wb') as output_file:
-            pickle.dump(self.gps, output_file)
+            pickle.dump(self.root_gps, output_file)
 
     def load_as_structure(self, *_):
         filename = filedialog.askopenfilename()
         with open(filename, 'rb') as input_file:
-            self.gps = pickle.load(input_file)
+            self.root_gps = pickle.load(input_file)
             self.update()
 
     def expand_phrase_structure(self, *_):
@@ -786,14 +915,14 @@ class PhraseStructureGraphics(tk.Toplevel):
             # We preserve only the sister
             else:
                 preserved_sister.mother_ = None
-                self.gps = preserved_sister
+                self.root_gps = preserved_sister
             self.update()
 
     def update(self):
-        self.gps.initialize_logical_space()
-        self.gps.remove_overlap()
-        self.recalculate_labels(self.gps)
-        self.canvas.redraw(self.gps)
+        self.root_gps.initialize_logical_space()
+        self.root_gps.remove_overlap()
+        self.recalculate_labels(self.root_gps)
+        self.canvas.redraw(self.root_gps)
 
     def recalculate_labels(self, gps):
         gps.label_stack = gps.generate_label_stack()
@@ -807,23 +936,17 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.const.reverse()
             self.update()
 
-    def label_arc(self, *_):
-        self.arc_label = simpledialog.askstring(title='Arc label', prompt='Label', parent=self)
-
-    def delete_arc_label(self, *_):
-        self.arc_label = None
-
     def clear_points(self, *_):
         self.arc_startpoint = None
         self.arc_endpoint = None
-        self.canvas.redraw(self.gps)
+        self.canvas.redraw(self.root_gps)
 
     def create_arc(self, *_):
         if self.arc_startpoint and self.arc_endpoint:
             self.arc_startpoint.custom_arcs.append((self.arc_endpoint, self.arc_label))
             self.arc_startpoint = None
             self.arc_endpoint = None
-            self.canvas.redraw(self.gps)
+            self.canvas.redraw(self.root_gps)
 
     def delete_arc(self, *_):
         gps = self.selected_object_into_gps()
@@ -995,16 +1118,16 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.prepare_phrase_structure()
         self.canvas.delete("all")
         spx, spy = self.prepare_canvas()
-        self.canvas.draw_to_canvas(self.gps, spx, spy, self.s['grid'])
+        self.canvas.draw_to_canvas(self.root_gps, spx, spy, self.s['grid'])
 
     def prepare_phrase_structure(self):
         self.canvas.derivational_index, ps, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
-        self.gps = GPhraseStructure(ps.top())
-        self.gps.initialize_logical_space()
-        self.gps.remove_overlap()
+        self.root_gps = GPhraseStructure(ps.top())
+        self.root_gps.initialize_logical_space()
+        self.root_gps.remove_overlap()
 
     def prepare_canvas(self):
-        width, height, spx, spy = self.calculate_canvas_size(self.gps)
+        width, height, spx, spy = self.calculate_canvas_size(self.root_gps)
         self.canvas.configure(width=width, height=height, background='white')
         self.geometry(str(width) + 'x' + str(height))  # Set window size based on the input phrase structure
         return spx, spy

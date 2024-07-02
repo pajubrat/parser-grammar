@@ -142,24 +142,52 @@ class GraphicsMenu(tk.Menu):
         arc = tk.Menu(self, tearoff=False, font=menu_font)
         arc.add_command(label='Set startpoint', command=self._event('<<SetArcStartpoint>>'))
         arc.add_command(label='Set endpoint', command=self._event('<<SetArcEndpoint>>'))
-        arc.add_command(label='Set Label', command=self._event('<<LabelArc>>'))
         arc.add_command(label='Create', command=self._event('<<CreateArc>>'))
         arc.add_command(label='Clear points', command=self._event('<<ClearPoints>>'))
-        arc.add_command(label='Clear label', command=self._event('<<DeleteArcLabel>>'))
         arc.add_command(label='Delete all', command=self._event('<<DeleteArc>>'))
         self.add_cascade(label='Arc', menu=arc)
 
         ps = tk.Menu(self, tearoff=False, font=menu_font)
-        ps.add_command(label='Reverse', command=self._event('<<ReversePhraseStructure>>'))
+        # Submenu Add...
+        submenu_ps = tk.Menu(ps, tearoff=False, font=menu_font)
+        submenu_ps.add_command(label='XP', command=self._event('<<AddXP>>'))
+        submenu_ps.add_command(label='Head', command=self._event('<<AddHead>>'))
+        submenu_ps.add_command(label='DP', command=self._event('<<AddDP>>'))
+        ps.add_cascade(label='Add...', menu=submenu_ps)
+
+        ps.add_command(label='Flip (structure)', command=self._event('<<ReversePhraseStructure>>'))
+        ps.add_command(label='Flip (presentation)', command=self._event('<<ReversePresentation>>'))
         ps.add_command(label='Expand', command=self._event('<<ExpandPhraseStructure>>'))
         ps.add_command(label='Shrink', command=self._event('<<ShrinkPhraseStructure>>'))
         ps.add_command(label='Delete', command=self._event('<<DeletePhraseStructure>>'))
         ps.add_command(label='Recover original', command=self._event('<<Recalibrate>>'))
+        ps.add_command(label='Make Adjunct', command=self._event('<<MakeAdjunct>>'))
+        ps.add_command(label='Make Regular', command=self._event('<<MakeRegular>>'))
         ps.add_command(label='Move Up', command=self._event('<<MoveUp>>'))
         ps.add_command(label='Move Down', command=self._event('<<MoveDown>>'))
         ps.add_command(label='Move Left', command=self._event('<<MoveLeft>>'))
         ps.add_command(label='Move Right', command=self._event('<<MoveRight>>'))
         self.add_cascade(label='Phrase Structure', menu=ps)
+
+        # Chain visibility menu
+        chains_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        # Submenu for chains
+        submenu_chains_head = tk.Menu(chains_menu, tearoff=0, font=menu_font)
+        submenu_chains_head.add_command(label='Enable', command=self._event('<<EnableHeadChains>>'))
+        submenu_chains_head.add_command(label='Disable', command=self._event('<<DisableHeadChains>>'))
+        chains_menu.add_cascade(label='Head chains...', menu=submenu_chains_head)
+        submenu_chains_phrasal = tk.Menu(chains_menu, tearoff=False, font=menu_font)
+        # Submenu for chains
+        submenu_chains_phrasal = tk.Menu(chains_menu, tearoff=0, font=menu_font)
+        submenu_chains_phrasal.add_command(label='Enable', command=self._event('<<EnablePhrasalChains>>'))
+        submenu_chains_phrasal.add_command(label='Disable', command=self._event('<<DisablePhrasalChains>>'))
+        chains_menu.add_cascade(label='Phrasal chains...', menu=submenu_chains_phrasal)
+        self.add_cascade(label='Chains', menu=chains_menu)
+
+        # Templates menu
+        templates_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        templates_menu.add_command(label='Basic template', command=self._event('<<BasicTemplate>>'))
+        self.add_cascade(label='Templates', menu=templates_menu)
 
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
