@@ -105,30 +105,33 @@ class GraphicsMenu(tk.Menu):
         # Submenu for Label
         submenu_Node_Label = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Label.add_command(label='New', command=self._event('<<CustomLabel>>'))
-        submenu_Node_Label.add_command(label='Default', command=self._event('<<DefaultLabel>>'))
+        submenu_Node_Label.add_command(label='Original', command=self._event('<<DefaultLabel>>'))
         submenu_Node_Label.add_command(label='Empty', command=self._event('<<EmptyLabel>>'))
         node.add_cascade(label='Label', menu=submenu_Node_Label)
 
         # Submenu for Text
         submenu_Node_Text = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Text.add_command(label='New', command=self._event('<<CustomPhonology>>'))
-        submenu_Node_Text.add_command(label='Default', command=self._event('<<DefaultPhonology>>'))
+        submenu_Node_Text.add_command(label='Original', command=self._event('<<DefaultPhonology>>'))
         submenu_Node_Text.add_command(label='Empty', command=self._event('<<EmptyPhonology>>'))
         node.add_cascade(label='Phonology', menu=submenu_Node_Text)
 
         # Submenu for Gloss
         submenu_Node_Gloss = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Gloss.add_command(label='New', command=self._event('<<CustomGloss>>'))
-        submenu_Node_Gloss.add_command(label='Default', command=self._event('<<DefaultGloss>>'))
+        submenu_Node_Gloss.add_command(label='Original', command=self._event('<<DefaultGloss>>'))
         submenu_Node_Gloss.add_command(label='Empty', command=self._event('<<EmptyGloss>>'))
         node.add_cascade(label='Gloss', menu=submenu_Node_Gloss)
 
         # Submenu for features
         submenu_Node_Features = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Features.add_command(label='New', command=self._event('<<CustomFeatures>>'))
-        submenu_Node_Features.add_command(label='Default', command=self._event('<<DefaultFeatures>>'))
+        submenu_Node_Features.add_command(label='Original', command=self._event('<<DefaultFeatures>>'))
         submenu_Node_Features.add_command(label='Empty', command=self._event('<<EmptyFeatures>>'))
-        node.add_cascade(label='Features', menu=submenu_Node_Features)
+        node.add_cascade(label='Custom features', menu=submenu_Node_Features)
+
+        node.add_command(label='Change original label...', command=self._event('<<ChangeOriginalLabel>>'))
+        node.add_command(label='Linguistic features...', command=self._event('<<NewFeatures>>'))
 
         # Submenu for free text
         submenu_Node_Text = tk.Menu(node, tearoff=0, font=menu_font)
@@ -153,6 +156,9 @@ class GraphicsMenu(tk.Menu):
         submenu_ps.add_command(label='XP', command=self._event('<<AddXP>>'))
         submenu_ps.add_command(label='Head', command=self._event('<<AddHead>>'))
         submenu_ps.add_command(label='DP', command=self._event('<<AddDP>>'))
+        submenu_ps.add_command(label='C', command=self._event('<<AddC>>'))
+        submenu_ps.add_command(label='T', command=self._event('<<AddT>>'))
+        submenu_ps.add_command(label='V', command=self._event('<<AddV>>'))
         ps.add_cascade(label='Add...', menu=submenu_ps)
 
         ps.add_command(label='Flip (structure)', command=self._event('<<ReversePhraseStructure>>'))
@@ -168,6 +174,8 @@ class GraphicsMenu(tk.Menu):
         ps.add_command(label='Recover original', command=self._event('<<Recalibrate>>'))
         ps.add_command(label='Make Adjunct', command=self._event('<<MakeAdjunct>>'))
         ps.add_command(label='Make Regular', command=self._event('<<MakeRegular>>'))
+        ps.add_command(label='Compress all DPs', command=self._event('<<CompressAllDPs>>'))
+        ps.add_command(label='Bare bones', command=self._event('<<DeleteAllCustomFields>>'))
         ps.add_command(label='Move Up', command=self._event('<<MoveUp>>'))
         ps.add_command(label='Move Down', command=self._event('<<MoveDown>>'))
         ps.add_command(label='Move Left', command=self._event('<<MoveLeft>>'))
@@ -191,7 +199,11 @@ class GraphicsMenu(tk.Menu):
 
         # Templates menu
         templates_menu = tk.Menu(self, tearoff=False, font=menu_font)
-        templates_menu.add_command(label='Basic template', command=self._event('<<BasicTemplate>>'))
+        templates_menu.add_command(label='Basic XP', command=self._event('<<BasicTemplate>>'))
+        templates_menu.add_command(label='VP', command=self._event('<<TemplateVP>>'))
+        templates_menu.add_command(label='vP', command=self._event('<<TemplatevP>>'))
+        templates_menu.add_command(label='TP', command=self._event('<<TemplateTP>>'))
+        templates_menu.add_command(label='CP', command=self._event('<<TemplateCP>>'))
         self.add_cascade(label='Templates', menu=templates_menu)
 
         # Settings menu

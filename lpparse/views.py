@@ -535,7 +535,7 @@ class GPhraseStructure(PhraseStructure):
                         label_stack.append((f"ʻ{self.gloss()}ʼ", 'gloss'))
 
             # Features
-            if not self.custom_features == '$n/a$':
+            if not '$n/a$' in self.custom_features:
                 if self.custom_features:
                     for feature in self.custom_features:
                         label_stack.append((feature, 'feature'))
@@ -693,6 +693,8 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CustomFeatures>>', self.custom_features)
         self.bind('<<DefaultFeatures>>', self.default_features)
         self.bind('<<EmptyFeatures>>', self.empty_features)
+        self.bind('<<NewFeatures>>', self.new_features)
+        self.bind('<<ChangeOriginalLabel>>', self.change_original_label)
         self.bind('<<EmptyText>>', self.empty_text)
         self.bind('<<SetArcStartpoint>>', self.set_arc_startpoint)
         self.bind('<<SetArcEndpoint>>', self.set_arc_endpoint)
@@ -702,6 +704,9 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<AddXP>>', self.add_XP)
         self.bind('<<AddDP>>', self.add_DP)
         self.bind('<<AddHead>>', self.add_Head)
+        self.bind('<<AddC>>', self.add_C)
+        self.bind('<<AddT>>', self.add_T)
+        self.bind('<<AddV>>', self.add_V)
         self.bind('<<ReversePhraseStructure>>', self.reverse_phrase_structure)
         self.bind('<<ReversePresentation>>', self.reverse_presentation)
         self.bind('<<ExpandPhraseStructure>>', self.expand_phrase_structure)
@@ -710,6 +715,8 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<DeletePhraseStructure>>', self.delete_phrase_structure)
         self.bind('<<MakeAdjunct>>', self.make_adjunct)
         self.bind('<<MakeRegular>>', self.make_regular)
+        self.bind('<<CompressAllDPs>>', self.compress_all_DPs)
+        self.bind('<<DeleteAllCustomFields>>', self.delete_all_custom_fields)
         self.bind('<<MoveUp>>', self.move_up)
         self.bind('<<MoveDown>>', self.move_down)
         self.bind('<<MoveLeft>>', self.move_left)
@@ -721,8 +728,108 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<EnablePhrasalChains>>', self.enable_phrasal_chains)
         self.bind('<<DisablePhrasalChains>>', self.disable_phrasal_chains)
         self.bind('<<BasicTemplate>>', self.basic_template)
+        self.bind('<<TemplateVP>>', self.template_VP)
+        self.bind('<<TemplatevP>>', self.template_vP)
+        self.bind('<<TemplateTP>>', self.template_TP)
+        self.bind('<<TemplateCP>>', self.template_CP)
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def compress_all_DPs(self, *_):
+        def compress_all_DPs_(gps):
+            if {'D', 'φ'} & gps.head().features:
+                gps.compressed = True
+            else:
+                if gps.left():
+                    compress_all_DPs_(gps.left())
+                if gps.right():
+                    compress_all_DPs_(gps.right())
+        compress_all_DPs_(self.root_gps)
+        self.update()
+
+    def delete_all_custom_fields(self, *_):
+        def delete_all_custom_fields_(gps):
+            if not gps.complex():
+                gps.custom_label = None
+                gps.custom_phonology = '$n/a$'
+                gps.custom_gloss = '$n/a$'
+                gps.custom_features = ['$n/a$']
+                gps.custom_text = None
+                self.label_stack_update(gps)
+            else:
+                if gps.left():
+                    delete_all_custom_fields_(gps.left())
+                if gps.right():
+                    delete_all_custom_fields_(gps.right())
+        delete_all_custom_fields_(self.root_gps)
+        self.update()
+
+    def new_features(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.features = set(simpledialog.askstring(title='Linguistic features', prompt='New linguistic features', parent=self).split(';'))
+            self.update()
+
+    def change_original_label(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            gps.features.add(simpledialog.askstring(title='Change the original label', prompt='New label', parent=self))
+            gps.features = {f for f in gps.features if not f.startswith('PF:') and not f.startswith('LF:')}
+            self.update()
+
+    def add_T(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            Y = gps.mother()
+            right = gps.is_right()
+            T = GPhraseStructure(PhraseStructure())
+            T.features = {'T'}
+            Host = GPhraseStructure(PhraseStructure(), T, gps)
+            if Y:
+                if right:
+                    Y.const = [Y.left(), Host]
+                else:
+                    Y.const = [Host, Y.right()]
+                Host.mother_ = Y
+            else:
+                self.root_gps = Host
+            self.update()
+
+    def add_V(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            Y = gps.mother()
+            right = gps.is_right()
+            V = GPhraseStructure(PhraseStructure())
+            V.features = {'V'}
+            Host = GPhraseStructure(PhraseStructure(), V, gps)
+            if Y:
+                if right:
+                    Y.const = [Y.left(), Host]
+                else:
+                    Y.const = [Host, Y.right()]
+                Host.mother_ = Y
+            else:
+                self.root_gps = Host
+            self.update()
+
+    def add_C(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps:
+            Y = gps.mother()
+            right = gps.is_right()
+            C = GPhraseStructure(PhraseStructure())
+            C.features = {'C'}
+            Host = GPhraseStructure(PhraseStructure(), C, gps)
+            if Y:
+                if right:
+                    Y.const = [Y.left(), Host]
+                else:
+                    Y.const = [Host, Y.right()]
+                Host.mother_ = Y
+            else:
+                self.root_gps = Host
+            self.update()
 
     def expand_complex_head(self, *_):
         gps = self.selected_object_into_gps()
@@ -756,6 +863,51 @@ class PhraseStructureGraphics(tk.Toplevel):
         YP = GPhraseStructure(PhraseStructure(), Y, Z)
         XP = GPhraseStructure(PhraseStructure(), X, YP)
         self.root_gps = XP
+        self.update()
+
+    def DP(self):
+        D = GPhraseStructure(PhraseStructure())
+        D.features = {'D'}
+        N = GPhraseStructure(PhraseStructure())
+        N.features = {'N'}
+        return GPhraseStructure(PhraseStructure(), D, N)
+
+    def vP(self):
+        v = GPhraseStructure(PhraseStructure())
+        v.features = {'v'}
+        vP1 = GPhraseStructure(PhraseStructure(), v, self.VP())
+        return GPhraseStructure(PhraseStructure(), self.DP(), vP1)
+
+    def TP(self):
+        T = GPhraseStructure(PhraseStructure())
+        T.features = {'T'}
+        TP = GPhraseStructure(PhraseStructure(), T, self.vP())
+        return GPhraseStructure(PhraseStructure(), self.DP(), TP)
+
+    def VP(self):
+        V = GPhraseStructure(PhraseStructure())
+        V.features = {'V'}
+        return GPhraseStructure(PhraseStructure(), V, self.DP())
+
+    def CP(self):
+        C = GPhraseStructure(PhraseStructure())
+        C.features = {'C'}
+        return GPhraseStructure(PhraseStructure(), C, self.TP())
+
+    def template_VP(self, *_):
+        self.root_gps = self.VP()
+        self.update()
+
+    def template_vP(self, *_):
+        self.root_gps = self.vP()
+        self.update()
+
+    def template_TP(self, *_):
+        self.root_gps = self.TP()
+        self.update()
+
+    def template_CP(self, *_):
+        self.root_gps = self.CP()
         self.update()
 
     def add_Head(self, *_):
@@ -1545,7 +1697,11 @@ class PhraseStructureCanvas(tk.Canvas):
                     offset += 1
                 if target_gps.custom_text:
                     offset += 1
-            Y3 = target_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
+            if target_gps.complex():
+                Y3 = target_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
+            else:
+                Y3 = target_gps.Y + 1.4 * self.parent.s['tsize'] * offset
+
         # Head chains start from the head
         else:
             X1 = source_gps.X
