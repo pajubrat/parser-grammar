@@ -157,7 +157,12 @@ class GraphicsMenu(tk.Menu):
 
         ps.add_command(label='Flip (structure)', command=self._event('<<ReversePhraseStructure>>'))
         ps.add_command(label='Flip (presentation)', command=self._event('<<ReversePresentation>>'))
-        ps.add_command(label='Expand', command=self._event('<<ExpandPhraseStructure>>'))
+
+        submenu_expand_ps = tk.Menu(ps, tearoff=False, font=menu_font)
+        submenu_expand_ps.add_command(label='Phrase', command=self._event('<<ExpandPhraseStructure>>'))
+        submenu_expand_ps.add_command(label='Complex head', command=self._event('<<ExpandComplexHead>>'))
+        ps.add_cascade(label='Expand...', menu=submenu_expand_ps)
+
         ps.add_command(label='Shrink', command=self._event('<<ShrinkPhraseStructure>>'))
         ps.add_command(label='Delete', command=self._event('<<DeletePhraseStructure>>'))
         ps.add_command(label='Recover original', command=self._event('<<Recalibrate>>'))

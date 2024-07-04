@@ -705,6 +705,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<ReversePhraseStructure>>', self.reverse_phrase_structure)
         self.bind('<<ReversePresentation>>', self.reverse_presentation)
         self.bind('<<ExpandPhraseStructure>>', self.expand_phrase_structure)
+        self.bind('<<ExpandComplexHead>>', self.expand_complex_head)
         self.bind('<<ShrinkPhraseStructure>>', self.shrink_phrase_structure)
         self.bind('<<DeletePhraseStructure>>', self.delete_phrase_structure)
         self.bind('<<MakeAdjunct>>', self.make_adjunct)
@@ -723,6 +724,19 @@ class PhraseStructureGraphics(tk.Toplevel):
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
 
+    def expand_complex_head(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and not gps.complex():
+            H = GPhraseStructure(PhraseStructure())
+            affix_lst = gps.get_affix_list()
+            # If covert complex heads are set to be disabled, we enable them first
+            if [a for a in affix_lst if a.copied]:
+                self.speaker_model.settings.store('image_parameter_covert_complex_heads', True)
+            last_affix = gps.get_affix_list()[-1]
+            last_affix.const = [H]
+            H.mother_ = last_affix
+            self.update()
+
     def reverse_presentation(self, *_):
         gps = self.selected_object_into_gps()
         if gps:
@@ -734,11 +748,14 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def basic_template(self, *_):
         X = GPhraseStructure(PhraseStructure())
+        X.features = {'X'}
         Y = GPhraseStructure(PhraseStructure())
+        Y.features = {'Y'}
         Z = GPhraseStructure(PhraseStructure())
-        XP = GPhraseStructure(PhraseStructure(), X, Y)
-        ZP = GPhraseStructure(PhraseStructure(), Z, XP)
-        self.root_gps = ZP
+        Z.features = {'Z'}
+        YP = GPhraseStructure(PhraseStructure(), Y, Z)
+        XP = GPhraseStructure(PhraseStructure(), X, YP)
+        self.root_gps = XP
         self.update()
 
     def add_Head(self, *_):
@@ -893,7 +910,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_phrase_structure(self, *_):
         gps = self.selected_object_into_gps()
-        if gps and gps.complex():
+        if gps:
             gps.const = []
             self.update()
 
@@ -1043,6 +1060,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         if gps:
             gps.custom_label = simpledialog.askstring(title='Custom label', prompt='New label', parent=self)
             self.label_stack_update(gps)
+            self.update()
 
     def empty_label(self, *_):
         gps = self.selected_object_into_gps()
@@ -1318,19 +1336,11 @@ class PhraseStructureCanvas(tk.Canvas):
             self.itemconfigure(self.cursor, state='normal')
             self.moveto(self.cursor, x1 - 50, y1 - 50)
 
-        # Create the two lines for left and right constituents.
-        left_dash = None
-        right_dash = None
-        #if gps.left() and gps.left().adjunct:
-        #    left_dash = (10, 10)
-        #if gps.right() and gps.right().adjunct:
-        #    right_dash = (10, 10)
-
         if gps.compressed:
             # Compressed complex node will create a triangle without constituents
-            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=left_dash)
-            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=right_dash)
-            self.create_line((X2, Y2 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=right_dash)
+            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
+            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
+            self.create_line((X2, Y2 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 + int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
             text_items = 0
             X = (X2 + X3) / 2
             if gps.custom_phonology and gps.custom_phonology != '$n/a$':
@@ -1373,10 +1383,29 @@ class PhraseStructureCanvas(tk.Canvas):
                                       tag='node',
                                       anchor='center',
                                       font=self.label_style['gloss'])
-
         else:
-            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=left_dash)
-            self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black', dash=right_dash)
+            # Draw left constituent
+            if gps.left() and self.parent.speaker_model.settings.retrieve('image_parameter_adjuncts', False) and gps.left().adjunct:
+                # Adjunct attachment
+                size = 18
+                MX = X1 - abs(X2 - X1) / 5 - size/2
+                MY = Y1 + abs(Y2 - Y1 + int(self.parent.s['tsize'] / 1.4)) / 5 - size/2
+                self.create_oval(MX, MY, MX + size, MY + size, width=1, fill='black')
+                self.create_line((MX + size/2, MY + size/2), (X2, Y2 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
+            else:
+                # Regular attachment
+                self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X2, Y2 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
+            # Draw right constituent
+            if gps.left() and self.parent.speaker_model.settings.retrieve('image_parameter_adjuncts', False) and gps.right().adjunct:
+                # Adjunct attachment
+                size = 18
+                MX = X1 + abs(X3 - X1) / 5 - size/2
+                MY = Y1 + abs(Y3 - Y1 + int(self.parent.s['tsize'] / 1.4)) / 5 - size/2
+                self.create_oval(MX, MY, MX + size, MY + size, width=1, fill='black')
+                self.create_line((MX + size/2, MY + size/2), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
+            else:
+                # Regular attachment
+                self.create_line((X1, Y1 + int(self.parent.s['tsize'] / 1.4)), (X3, Y3 - int(self.parent.s['tsize'] / 1.4)), width=2, fill='black')
             # Recursive calls (for non-compressed complex nodes)
             self.project_into_canvas(gps.left(), spx, spy, grid)
             self.project_into_canvas(gps.right(), spx, spy, grid)
@@ -1388,8 +1417,8 @@ class PhraseStructureCanvas(tk.Canvas):
         # Reproduce the head and all of its affixes
         for j, affix in enumerate(gps.get_affix_list(), start=1):
 
-            # Do not reproduce copies
-            if affix.copied:
+            # Do not reproduce copies if blocked by settings
+            if affix.copied and not self.parent.speaker_model.settings.retrieve('image_parameter_covert_complex_heads', False):
                 break
 
             # Do not produce affixes if blocked by settings
