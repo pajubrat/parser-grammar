@@ -11,7 +11,7 @@ class ExperimentalFunctions:
     def Agree(self, X):
         if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
             self.standard(X)
-        if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'revised':
+        else:
             self.revised(X)
 
     def revised(self, X):

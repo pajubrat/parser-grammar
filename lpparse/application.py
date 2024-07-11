@@ -14,8 +14,10 @@ class Application(tk.Tk):
     """Defines the main application window"""
     def __init__(self, arg_lst, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.taskbar_icon = tk.PhotoImage(file='./lpparse/image resources/applogo.png')
+        self.iconphoto(True, self.taskbar_icon)
         ctypes.windll.shcore.SetProcessDpiAwareness(1)
-        self.title('LPG LAB')
+        self.title('LPG Lab')
         self.geometry('1600x1000+100+500')
 
         self.style = ttk.Style()

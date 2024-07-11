@@ -100,28 +100,30 @@ class GraphicsMenu(tk.Menu):
         node = tk.Menu(self, tearoff=False, font=menu_font)
         node.add_command(label='Compress', command=self._event('<<CompressNode>>'))
         node.add_command(label='Decompress', command=self._event('<<DecompressNode>>'))
-        node.add_command(label='Clear content', command=self._event('<<ClearNode>>'))
+        node.add_separator()
+        node.add_command(label='Clear', command=self._event('<<ClearNode>>'))
+        node.add_command(label='Only label', command=self._event('<<OnlyLabel>>'))
 
         # Submenu for Label
         submenu_Node_Label = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Label.add_command(label='New', command=self._event('<<CustomLabel>>'))
         submenu_Node_Label.add_command(label='Original', command=self._event('<<DefaultLabel>>'))
         submenu_Node_Label.add_command(label='Empty', command=self._event('<<EmptyLabel>>'))
-        node.add_cascade(label='Label', menu=submenu_Node_Label)
+        node.add_cascade(label='Custom label...', menu=submenu_Node_Label)
 
         # Submenu for Text
         submenu_Node_Text = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Text.add_command(label='New', command=self._event('<<CustomPhonology>>'))
         submenu_Node_Text.add_command(label='Original', command=self._event('<<DefaultPhonology>>'))
         submenu_Node_Text.add_command(label='Empty', command=self._event('<<EmptyPhonology>>'))
-        node.add_cascade(label='Phonology', menu=submenu_Node_Text)
+        node.add_cascade(label='Phonology...', menu=submenu_Node_Text)
 
         # Submenu for Gloss
         submenu_Node_Gloss = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Gloss.add_command(label='New', command=self._event('<<CustomGloss>>'))
         submenu_Node_Gloss.add_command(label='Original', command=self._event('<<DefaultGloss>>'))
         submenu_Node_Gloss.add_command(label='Empty', command=self._event('<<EmptyGloss>>'))
-        node.add_cascade(label='Gloss', menu=submenu_Node_Gloss)
+        node.add_cascade(label='Gloss...', menu=submenu_Node_Gloss)
 
         # Submenu for features
         submenu_Node_Features = tk.Menu(node, tearoff=0, font=menu_font)
@@ -129,7 +131,9 @@ class GraphicsMenu(tk.Menu):
         submenu_Node_Features.add_command(label='Original', command=self._event('<<DefaultFeatures>>'))
         submenu_Node_Features.add_command(label='Empty', command=self._event('<<EmptyFeatures>>'))
         node.add_cascade(label='Custom features', menu=submenu_Node_Features)
+        node.add_cascade(label='Free text', menu=submenu_Node_Text)
 
+        node.add_separator()
         node.add_command(label='Change original label...', command=self._event('<<ChangeOriginalLabel>>'))
         node.add_command(label='Linguistic features...', command=self._event('<<NewFeatures>>'))
 
@@ -137,7 +141,6 @@ class GraphicsMenu(tk.Menu):
         submenu_Node_Text = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Text.add_command(label='New', command=self._event('<<CustomText>>'))
         submenu_Node_Text.add_command(label='Empty', command=self._event('<<EmptyText>>'))
-        node.add_cascade(label='Free text', menu=submenu_Node_Text)
 
         # Add the whole menu to window menu bar
         self.add_cascade(label='Node', menu=node)
@@ -146,6 +149,7 @@ class GraphicsMenu(tk.Menu):
         arc.add_command(label='Set startpoint', command=self._event('<<SetArcStartpoint>>'))
         arc.add_command(label='Set endpoint', command=self._event('<<SetArcEndpoint>>'))
         arc.add_command(label='Create', command=self._event('<<CreateArc>>'))
+        arc.add_separator()
         arc.add_command(label='Clear points', command=self._event('<<ClearPoints>>'))
         arc.add_command(label='Delete all', command=self._event('<<DeleteArc>>'))
         self.add_cascade(label='Arc', menu=arc)
@@ -161,21 +165,23 @@ class GraphicsMenu(tk.Menu):
         submenu_ps.add_command(label='V', command=self._event('<<AddV>>'))
         ps.add_cascade(label='Add...', menu=submenu_ps)
 
-        ps.add_command(label='Flip (structure)', command=self._event('<<ReversePhraseStructure>>'))
-        ps.add_command(label='Flip (presentation)', command=self._event('<<ReversePresentation>>'))
-
         submenu_expand_ps = tk.Menu(ps, tearoff=False, font=menu_font)
         submenu_expand_ps.add_command(label='Phrase', command=self._event('<<ExpandPhraseStructure>>'))
         submenu_expand_ps.add_command(label='Complex head', command=self._event('<<ExpandComplexHead>>'))
         ps.add_cascade(label='Expand...', menu=submenu_expand_ps)
-
         ps.add_command(label='Shrink', command=self._event('<<ShrinkPhraseStructure>>'))
         ps.add_command(label='Delete', command=self._event('<<DeletePhraseStructure>>'))
         ps.add_command(label='Recover original', command=self._event('<<Recalibrate>>'))
+        ps.add_separator()
+        ps.add_command(label='Flip (structure)', command=self._event('<<ReversePhraseStructure>>'))
+        ps.add_command(label='Flip (presentation)', command=self._event('<<ReversePresentation>>'))
+        ps.add_separator()
         ps.add_command(label='Make Adjunct', command=self._event('<<MakeAdjunct>>'))
         ps.add_command(label='Make Regular', command=self._event('<<MakeRegular>>'))
+        ps.add_separator()
         ps.add_command(label='Compress all DPs', command=self._event('<<CompressAllDPs>>'))
         ps.add_command(label='Bare bones', command=self._event('<<DeleteAllCustomFields>>'))
+        ps.add_separator()
         ps.add_command(label='Move Up', command=self._event('<<MoveUp>>'))
         ps.add_command(label='Move Down', command=self._event('<<MoveDown>>'))
         ps.add_command(label='Move Left', command=self._event('<<MoveLeft>>'))

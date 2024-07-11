@@ -17,7 +17,7 @@ class PhraseStructure:
     phase_heads = {'ph', 'φ'}   # Phase heads set for all calculations
     phase_heads_exclude = set()
     resources = {"Merge-1": {"ms": 0, "n": 0}}
-    chain_index = 0
+    chain_index = 0	
     node_identity = 0
     transfer_operation = None
     instructions =        {'Head': {'type': 'Head Chain',
@@ -476,17 +476,17 @@ class PhraseStructure:
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
     def transfer_to_LF(X):
-        ps, m = X.detached()
+        Y, m = X.detached()
         for op in PhraseStructure.transfer_sequence:
             PhraseStructure.transfer_operation = op
-            X.reconstruct(op)
-        return ps.reattach(m)
+            Y.reconstruct(op)
+        return Y.reattach(m)
 
     def reconstruct(X, op):
-        for const in (x for x in [X.bottom()] + X.bottom().upward_path() if op['test integrity'](x)):
-            op['repair'](const)
-            X.speaker_model.results.record_derivational_step(const.top(), f"{op['type']} ({const})")
-            PhraseStructure.speaker_model.results.consume_resources(op['type'], const)
+        for Y in (x for x in [X.bottom()] + X.bottom().upward_path() if op['test integrity'](x)):
+            op['repair'](Y)
+            X.speaker_model.results.record_derivational_step(Y.top(), f"{op['type']} ({Y})")
+            PhraseStructure.speaker_model.results.consume_resources(op['type'], Y)
 
     def create_chain(X):
         head, target = PhraseStructure.transfer_operation['prepare'](X)
@@ -519,7 +519,8 @@ class PhraseStructure:
         return probe
 
     def form_chain(X, target):
-        for head in (x for x in X.minimal_search_domain().minimal_search(PhraseStructure.transfer_operation['intervention']) if PhraseStructure.transfer_operation['selection'](x)):
+        for head in (x for x in X.minimal_search_domain().minimal_search(PhraseStructure.transfer_operation['intervention']) if
+                     PhraseStructure.transfer_operation['selection'](x)):
             if head != X and head.test_merge(target, PhraseStructure.transfer_operation['legible'], 'left'):
                 break
             target.remove()
@@ -612,7 +613,7 @@ class PhraseStructure:
         return X
 
     def legible_adjunct(X):
-        return X.head().tail_test() and (X.is_right() or (X.is_left() and not X.in_thematic_position()))
+        return X.head().tail_test() and (X.is_right() or (X.is_left() and X.in_thematic_position()))
 
     def reconstruct_scrambling(X):
         starting_point = X.container()

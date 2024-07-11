@@ -652,17 +652,76 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.config(menu=self.graphics_menu)
 
         # Buttons
-        pad = 10
-        width = 12
-        height = 1
+        pad = 20
+        width = 100
+        height = 100
         ribbon = tk.Frame(self)
         ribbon.grid(row=0, column=0, sticky='W')
-        nextButton = tk.Button(ribbon, command=self.next_image, text='Next >', width=width, height=height, font=('Calibri', 15), bg='#CCCCCC', fg='white')
-        nextButton.grid(row=0, column=2, sticky=tk.E, padx=pad, pady=pad)
-        previousButton = tk.Button(ribbon, command=self.previous_image, text='< Previous', width=width, height=height, font=('Calibri', 15), bg='#CCCCCC', fg='white')
-        previousButton.grid(row=0, column=1, sticky=tk.E, padx=pad, pady=pad)
-        firstButton = tk.Button(ribbon, command=self.first_image, text='<< First', width=width, height=height, font=('Calibri', 15), bg='#CCCCCC', fg='white')
+
+        self.firstButtonImage = tk.PhotoImage(file='./lpparse/image resources/first_arrow.png')
+        firstButton = tk.Button(ribbon, command=self.first_image,
+                                compound=tk.LEFT,
+                                image=self.firstButtonImage,
+                                font=('Calibri', 20),
+                                bg='white',
+                                fg='black')
         firstButton.grid(row=0, column=0, sticky=tk.E, padx=pad, pady=pad)
+
+        self.previousButtonImage = tk.PhotoImage(file='./lpparse/image resources/left_arrow.png')
+        previousButton = tk.Button(ribbon, command=self.previous_image,
+                                   image=self.previousButtonImage,
+                                   compound=tk.LEFT,
+                                   font=('Calibri', 20),
+                                   bg='white',
+                                   fg='black')
+        previousButton.grid(row=0, column=1, sticky=tk.E, padx=pad, pady=pad)
+
+        self.nextButtonImage = tk.PhotoImage(file='./lpparse/image resources/right_arrow.png')
+        nextButton = tk.Button(ribbon, command=self.next_image,
+                               compound=tk.LEFT,
+                               image=self.nextButtonImage,
+                               font=('Calibri', 20),
+                               bg='white',
+                               fg='black')
+        nextButton.grid(row=0, column=2, sticky=tk.E, padx=pad, pady=pad)
+
+
+        self.compressButtonImage = tk.PhotoImage(file='./lpparse/image resources/compress.png')
+        compressButton = tk.Button(ribbon, command=self.compress_node,
+                                compound=tk.LEFT,
+                                image=self.compressButtonImage,
+                                font=('Calibri', 20),
+                                bg='white',
+                                fg='black')
+        compressButton.grid(row=0, column=3, sticky=tk.E, padx=pad, pady=pad)
+
+        self.phonologyButtonImage = tk.PhotoImage(file='./lpparse/image resources/phonology.png')
+        phonologyButton = tk.Button(ribbon, command=self.custom_phonology,
+                               compound=tk.LEFT,
+                               image=self.phonologyButtonImage,
+                               font=('Calibri', 20),
+                               bg='white',
+                               fg='black')
+        phonologyButton.grid(row=0, column=4, sticky=tk.E, padx=pad, pady=pad)
+
+        self.glossButtonImage = tk.PhotoImage(file='./lpparse/image resources/gloss.png')
+        phonologyButton = tk.Button(ribbon, command=self.custom_gloss,
+                               compound=tk.LEFT,
+                               image=self.glossButtonImage,
+                               font=('Calibri', 20),
+                               bg='white',
+                               fg='black')
+        phonologyButton.grid(row=0, column=5, sticky=tk.E, padx=pad, pady=pad)
+
+        self.no_infoButtonImage = tk.PhotoImage(file='./lpparse/image resources/no_info.png')
+        no_infoButton = tk.Button(ribbon, command=self.only_label,
+                               compound=tk.LEFT,
+                               image=self.no_infoButtonImage,
+                               font=('Calibri', 20),
+                               bg='white',
+                               fg='black')
+        no_infoButton.grid(row=0, column=6, sticky=tk.E, padx=pad, pady=pad)
+
 
         # Make host window and canvas visible
         self.focus()
@@ -732,6 +791,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<TemplatevP>>', self.template_vP)
         self.bind('<<TemplateTP>>', self.template_TP)
         self.bind('<<TemplateCP>>', self.template_CP)
+        self.bind('<<OnlyLabel>>', self.only_label)
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
 
@@ -768,13 +828,16 @@ class PhraseStructureGraphics(tk.Toplevel):
         gps = self.selected_object_into_gps()
         if gps:
             gps.features = set(simpledialog.askstring(title='Linguistic features', prompt='New linguistic features', parent=self).split(';'))
+            self.label_stack_update(gps)
             self.update()
 
     def change_original_label(self, *_):
         gps = self.selected_object_into_gps()
         if gps:
+            old_label = gps.label()
+            gps.features = {f for f in gps.features if not f.startswith('PF:') and not f.startswith('LF:') and f != old_label}
             gps.features.add(simpledialog.askstring(title='Change the original label', prompt='New label', parent=self))
-            gps.features = {f for f in gps.features if not f.startswith('PF:') and not f.startswith('LF:')}
+            self.label_stack_update(gps)
             self.update()
 
     def add_T(self, *_):
@@ -999,6 +1062,16 @@ class PhraseStructureGraphics(tk.Toplevel):
     def disable_phrasal_chains(self, *_):
         self.speaker_model.settings.data['image_parameter_phrasal_chains'] = False
         self.update()
+
+    def only_label(self, *_):
+        gps = self.selected_object_into_gps()
+        if gps and not gps.complex():
+            gps.custom_label = None
+            gps.custom_text = None
+            gps.custom_gloss = '$n/a$'
+            gps.custom_phonology = '$n/a$'
+            gps.custom_features = ['$n/a$']
+            self.update()
 
     def clear_content(self, *_):
         gps = self.selected_object_into_gps()
@@ -1338,7 +1411,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         return int(width), int(height), abs(left_x) * self.s['grid'] + self.s['margins'], self.s['margins']
 
     def get_ps_from_speaker_model(self, speaker_model, index):
-        """Returns the phrase structure object to be drawn, None otherwise"""
+        """Returns the phrase Cstructure object to be drawn, None otherwise"""
         if index < len(speaker_model.results.recorded_steps):
             return speaker_model.results.recorded_step(index)
 
