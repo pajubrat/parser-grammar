@@ -417,7 +417,7 @@ class PhraseStructure:
                 return True
 
     # Test whether a complex head satisfies conditions of the UG
-    def Complex_Head_Integrity(X):
+    def complex_head_integrity(X):
         if X.affix():
             x = X
             while x.affix():
@@ -720,7 +720,8 @@ class PhraseStructure:
         X.value_from_goal(X.get_goal())
 
     def get_goal(X):
-        return next((x for x in X.minimal_search_domain().minimal_search(lambda x: x.phase_head()) if x.goal_selection()), None)
+        return next((x for x in X.minimal_search_domain().minimal_search(lambda x: x.phase_head())
+                     if x.goal_selection()), None)
 
     def goal_selection(X):
         return not X.copied and (X.head().referential() or X.phase_head())
@@ -729,7 +730,7 @@ class PhraseStructure:
         if goal:
             log(f'\n\t\tAgree({X}°, {goal.head()}) ')
             PP = X.phi_bundles()
-            if feature_mismatch_test(goal.head().interpretable_phi_features(), PP):    #   Checks for mismatches
+            if feature_mismatch_test(goal.head().interpretable_phi_features(), PP):
                 X.value(goal, PP)
             else:
                 log(f'failed.')
@@ -770,15 +771,16 @@ class PhraseStructure:
         """
         Current implementation of the Agree/EPP system, tested as LF-legibility
         """
-        if not X.check_some({'ASP', 'strong_pro'}):                 #   Condition 1. Amnesty for strong pro and theta heads
-            if not X.check({'Φ*'}):                                 #   Condition 2. Φ-heads do not have EF
+        if not X.check_some({'ASP', 'strong_pro'}):                         #   Condition 1. Amnesty for strong pro and theta heads
+            if not X.check({'Φ*'}):                                         #   Condition 2. Φ-heads do not have EF
                 return X.local_edge()
-            if X.check({'-ΦPF'}):                                   #   Condition 3. Heads which cannot agree overtly are not subject to further conditions
+            if X.check({'-ΦPF'}):                                           #   Condition 3. Heads which cannot agree overtly are not subject to further conditions
                 return False
-            if X.check({'weak_pro'}):                               #   Secondary rule
+            if X.check({'weak_pro'}):                                       #   Secondary rule
                 return X.check({'ΦLF'}) and not X.local_edge()
             return (X.check({'ΦLF'}) and not X.primary_rule()) or \
-                   (not X.check({'ΦLF'}) and not X.check_some({'?ΦLF', '-ΦLF'}) and not (X.check({'ΦPF'}) and X.phi_consistent_head()))     #   Primary rule
+                   (not X.check({'ΦLF'}) and not X.check_some({'?ΦLF', '-ΦLF'}) and
+                    not (X.check({'ΦPF'}) and X.phi_consistent_head()))     #   Primary rule
 
     def primary_rule(X):
         return X.local_edge() and X.indexed_argument() and X.local_edge().head().get_id() == X.indexed_argument().head().get_id()
@@ -1003,11 +1005,10 @@ class PhraseStructure:
     def context(X):
         return X.mother(), X.geometrical_sister(), X.mother().mother()
 
-    def sink(X, ps):
-        bottom_affix = X.bottom().get_affix_list()[-1]   # If self is complex, we first take the right bottom node.
-        bottom_affix.active_in_syntactic_working_memory = True
-        bottom_affix.const = [ps]
-        ps.mother_ = bottom_affix
+    def sink(X, Y):
+        bottom_affix = X.bottom().get_affix_list()[-1]
+        bottom_affix.const = [Y]
+        Y.mother_ = bottom_affix
         return X.top()
 
     def attach(X, site, terminal_lexical_item, transfer, address_label):

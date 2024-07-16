@@ -722,6 +722,16 @@ class PhraseStructureGraphics(tk.Toplevel):
                                fg='black')
         no_infoButton.grid(row=0, column=6, sticky=tk.E, padx=pad, pady=pad)
 
+        self.expandButtonImage = tk.PhotoImage(file='./lpparse/image resources/expand.png')
+        expandButton = tk.Button(ribbon, command=self.expand_phrase_structure,
+                               compound=tk.LEFT,
+                               image=self.expandButtonImage,
+                               font=('Calibri', 20),
+                               bg='white',
+                               fg='black')
+        expandButton.grid(row=0, column=7, sticky=tk.E, padx=pad, pady=pad)
+
+
 
         # Make host window and canvas visible
         self.focus()
@@ -1750,27 +1760,30 @@ class PhraseStructureCanvas(tk.Canvas):
             return
 
         # Phrasal chains start from the bottom of the complex constituent
-        if style == 'phrasal_chain' or (style == 'custom' and source_gps.complex()):
+        if style == 'phrasal_chain' or style == 'custom':
+            offset = 0
             X1 = source_gps.X
             X3 = target_gps.X
+            if source_gps.custom_phonology and source_gps.custom_phonology != '$n/a$':
+                offset += 1
+            if source_gps.custom_gloss and source_gps.custom_gloss != '$n/a$':
+                offset += 1
+            if source_gps.custom_text:
+                offset += 1
+            if source_gps.complex():
+                Y1 = source_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
+            else:
+                Y1 = source_gps.Y + 1.4 * self.parent.s['tsize'] * offset
+
             offset = 0
-            if source_gps.compressed:
-                if source_gps.custom_phonology and source_gps.custom_phonology != '$n/a$':
-                    offset += 1
-                if source_gps.custom_gloss and source_gps.custom_gloss != '$n/a$':
-                    offset += 1
-                if source_gps.custom_text:
-                    offset += 1
-            Y1 = source_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
-            offset = 0
-            if target_gps.compressed:
-                if target_gps.custom_phonology and target_gps.custom_phonology != '$n/a$':
-                    offset += 1
-                if target_gps.custom_gloss and target_gps.custom_gloss != '$n/a$':
-                    offset += 1
-                if target_gps.custom_text:
-                    offset += 1
             if target_gps.complex():
+                if target_gps.compressed:
+                    if target_gps.custom_phonology and target_gps.custom_phonology != '$n/a$':
+                        offset += 1
+                    if target_gps.custom_gloss and target_gps.custom_gloss != '$n/a$':
+                        offset += 1
+                    if target_gps.custom_text:
+                        offset += 1
                 Y3 = target_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
             else:
                 Y3 = target_gps.Y + 1.4 * self.parent.s['tsize'] * offset

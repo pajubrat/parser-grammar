@@ -33,26 +33,26 @@ class LF:
                 ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
                 ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
                 ('Phi Level test', PhraseStructure.phi_level_violation),
-                ('External head merge test', PhraseStructure.Complex_Head_Integrity),
+                ('External head merge test', PhraseStructure.complex_head_integrity),
                 ('Projection Principle', PhraseStructure.projection_principle_failure)]
         return [test for test in all_legibility_tests if self.speaker_model.settings.retrieve(test[0], True)]
 
-    def pass_LF_legibility(self, ps, logging=True):
+    def pass_LF_legibility(self, X, logging=True):
         self.failed_feature = ''
-        if not ps.copied:
-            if ps.zero_level():
+        if not X.copied:
+            if X.zero_level():
                 for (test_name, test_failure) in self.active_test_battery:
-                    if test_failure(ps):
+                    if test_failure(X):
                         if logging:
-                            log(f'\n\t\t{ps} ({ps.max().illustrate()}) failed {test_name} ')
+                            log(f'\n\t\t{X} ({X.max().illustrate()}) failed {test_name} ')
                             if self.failed_feature:
                                 log(f'for [{self.failed_feature}]')
-                        self.error_report_for_external_callers = f'{ps} failed {test_name}.'  # For plausibility metrics calculations and output
+                        self.error_report_for_external_callers = f'{X} failed {test_name}.'
                         return False
             else:
-                if not self.pass_LF_legibility(ps.left(), logging):
+                if not self.pass_LF_legibility(X.left(), logging):
                     return False
-                if not self.pass_LF_legibility(ps.right(), logging):
+                if not self.pass_LF_legibility(X.right(), logging):
                     return False
         return True
 
