@@ -61,7 +61,7 @@ class LF:
             if key in self.selection_violation_test.keys():
                 if not self.selection_violation_test[key](X, X.get_selection_features(key)):
                     log(f'{X} failed {key}: {X.get_selection_features(key)} ')
-                    return True     #   Failed test
+                    return True # Failed test
 
     def final_tail_check(self, goal):
         if goal.complex():

@@ -60,17 +60,17 @@ class SpeakerModel:
             self.results.consume_resources('Sensory Processing', word)
 
         # Call the derivational search function
-        self.parse_new_item(None, lst, 0)
+        self.derivational_search_function(None, lst, 0)
 
     # Recursive derivational search function (parser)
-    def parse_new_item(self, ps, lst, index, inflection_buffer=frozenset()):
+    def derivational_search_function(self, X, lst, index, inflection_buffer=frozenset()):
 
         Results.accumulate_global_steps()   #   Internal bookkeeping
 
         log_instance.indent_level = self.embedding
 
         # Stop processing if there are no more words to consume
-        if not self.circuit_breaker(ps, lst, index):
+        if not self.circuit_breaker(X, lst, index):
 
             # Retrieve lexical items on the basis of phonological input
             retrieved_lexical_items = self.lexicon.lexical_retrieval(lst[index])
@@ -84,33 +84,36 @@ class SpeakerModel:
                 # 1. Morphological parsing if applicable
                 if lex.morphological_chunk:
                     self.embedding += 1
-                    self.parse_new_item(secure_copy(ps), lex.morphological_parse(ps, lst.copy(), index, inflection_buffer), index, inflection_buffer)
+                    self.derivational_search_function(secure_copy(X),
+                                                      lex.morphological_parse(X, lst.copy(), index, inflection_buffer),
+                                                      index,
+                                                      inflection_buffer)
 
                 # 2. Process inflectional feature (withhold streaming to syntax)
                 if not lex.morphological_chunk and lex.inflectional:
                     inflection_buffer = inflection_buffer | lex.features - {'inflectional'}
                     log(f'= {illu(lex.features)}')
-                    self.parse_new_item(secure_copy(ps), lst, index + 1, inflection_buffer)
+                    self.derivational_search_function(secure_copy(X), lst, index + 1, inflection_buffer)
 
                 # 3. Extract features from primitive lex and wrap them into primitive constituent and stream into syntax
                 if not lex.morphological_chunk and not lex.inflectional:
-                    self.explore_derivation_space(ps, self.lexical_stream.wrap(lex, inflection_buffer), lst, index)
+                    self.syntactic_branching(X, self.lexical_stream.wrap(lex, inflection_buffer), lst, index)
 
                 inflection_buffer = set()
 
         log(f'\n\t\tBacktracking...')
 
-    def explore_derivation_space(self, ps, X, lst, index):
-        if not ps:
-            self.parse_new_item(X.copy(), lst, index + 1)
+    def syntactic_branching(self, X, W, lst, index):
+        if not X:
+            self.derivational_search_function(W.copy(), lst, index + 1)
         else:
-            self.results.record_derivational_step(ps, 'Phrase structure in syntactic working memory')
-            for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(ps, X):
-                new_constituent = ps.target_left_branch(N).attach(N, X, transfer, address_label)
-                self.parse_new_item(new_constituent.top().copy(), lst, index + 1)
+            self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
+            for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(X, W):
+                new_constituent = X.target_left_branch(N).attach(N, W, transfer, address_label)
+                self.derivational_search_function(new_constituent.top().copy(), lst, index + 1)
                 if self.exit:
                     break
-        self.narrow_semantics.pragmatic_pathway.forget_object(X)
+        self.narrow_semantics.pragmatic_pathway.forget_object(W)
 
     def circuit_breaker(self, ps, lst, index):
         set_logging(True)

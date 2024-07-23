@@ -68,7 +68,7 @@ class MainMenu(tk.Menu):
         pass
 
     def todo(self):
-        pass
+            pass
 
 class GraphicsMenu(tk.Menu):
     def _event(self, sequence):
