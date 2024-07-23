@@ -15,17 +15,6 @@ def valued_phi_feature(f):
 def interpretable_phi_features(probe):
     return {phi for phi in probe.head().features if interpretable_phi_feature(phi)}
 
-def feature_mismatch_test(G, PP):
-    """
-    G = interpretable phi-features at the goal
-    PP = phi-bundles at the probe
-    This function examines if there are unlicensed phi-features at the goal (G) that mismatch with
-    phi-features at the probe. Unlicensed phi-features at the goal are those features which are not
-    matched with phi-bundles at the probe.
-    Note 1: The feature format is T:V with (i)PHI removed.
-    """
-    return not mismatch(unlicensed_phi_features_at_goal(G, PP), set().union(*PP))
-
 def unlicensed_phi_features_at_goal(G, PP):
     return G - set().union(*{frozenset(phi) for phi in PP if phi <= G})
 

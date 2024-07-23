@@ -729,39 +729,48 @@ class PhraseStructure:
     def value_from_goal(X, goal):
         if goal:
             log(f'\n\t\tAgree({X}°, {goal.head()}) ')
-            PP = X.phi_bundles()
-            if feature_mismatch_test(goal.head().interpretable_phi_features(), PP):
-                X.value(goal, PP)
+            if goal.feature_mismatch_test(X.phi_bundles()):
+                X.value(goal)
             else:
                 log(f'failed.')
                 X.features.add('*')
 
+    def feature_mismatch_test(X, PP):
+        """
+        X = goal
+        PP = phi-bundles at the probe
+        This function examines if there are unlicensed phi-features at the goal (G) that mismatch with
+        phi-features at the probe. Unlicensed phi-features at the goal are those features which are not
+        matched with phi-bundles at the probe.
+        Note 1: The feature format is TYPE:VALUE with (i)PHI removed.
+        """
+        return not mismatch(unlicensed_phi_features_at_goal(X.head().interpretable_phi_features(), PP),
+                            set().union(*PP))
+
     def interpretable_phi_features(X):
         return {f[5:] for f in X.features if f.startswith('iPHI:')}
 
-    def value(X, goal, PP):
+    def value(X, goal):
         log(f'valued features ')
-        for phi in (x for x in goal.head().features if X.feature_gate(x, PP)):
+        PP = X.phi_bundles()
+        for phi in (f for f in goal.head().features if X.feature_gate(f)):
             log(f'[{phi[5:]}] ')
             X.features.discard(f'PHI:{phi.split(":")[1]}:_')
             X.features.add(f'{phi[1:]}')
         X.features.update({'ΦLF'})
         X.features.add(f'PHI:IDX:{goal.head().get_id()}')
 
-    def feature_gate(X, feature, PP):
+    def feature_gate(X, feature):
         """
         Feature A can be valued for B at probe head X iff
         (1) B is an unvalued feature of the same type as A
-        (2) X is a Φ* head
-        (3) X contains overtly valued phi-bundle with the same type as A (gate condition)
-            E.g.: D is not valued from the goal if it is not expressed by overt agreement at probe
+        (2) X contains overtly valued phi-bundle with the same type as A (gate condition)
         """
+        PP = X.phi_bundles()
         P = set().union(*PP)
-        if feature.startswith('iPHI') and f'PHI:{feature.split(":")[1]}:_' in X.features:   # Condition (1)
-            if not X.check({'Φ*'}):                                                         # Condition (2)
-                return True
+        if feature.startswith('iPHI') and f'PHI:{feature.split(":")[1]}:_' in X.features:           # Condition (1)
             for p in P:
-                if feature.split(":")[1] == p.split(':')[0]:                                # Condition (3)
+                if feature.split(":")[1] == p.split(':')[0]:                                        # Condition (2)
                     return True
 
     def phi_bundles(X):
