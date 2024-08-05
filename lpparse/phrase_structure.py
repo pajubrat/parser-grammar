@@ -416,8 +416,8 @@ class PhraseStructure:
                     X.right().check_some(set(feature.split(':')[1].split(','))):
                 return True
 
-    # Test whether a complex head satisfies conditions of the UG
     def complex_head_integrity(X):
+        """Tests whether a complex head satisfies conditions of the UG"""
         if X.affix():
             x = X
             while x.affix():
@@ -1245,25 +1245,11 @@ class PhraseStructure:
                 return f'[{X.left()} {X.right()}]' + chain_index_str
 
     def get_phonological_string(X):
-        def show_affixes(self):
-            i = ''
-            if self.affix():
-                if PhraseStructure.spellout_heads:
-                    i = self.affix().PF()
-                else:
-                    i = self.affix().label()
-                if self.affix().affix():
-                    i = '(' + show_affixes(self.affix()) + ' ' + i + ')'
-            else:
-                i = ''
-            return i
-
-        pfs = [f[3:] for f in X.features if f[:2] == 'PF']
+        pfs = ''.join(sorted([f[3:] for f in X.features if f[:2] == 'PF']))
         if X.affix():
             if not X.affix().copied:
-                affix_str = show_affixes(X)
-                return '(' + affix_str + ' ' + ''.join(sorted(pfs)) + ')°'
-        return ''.join(sorted(pfs))
+                return f'({X.affix().get_phonological_string()} {pfs})°'
+        return pfs
 
     def tidy_names(X, counter):
         def rebaptize(h, old_name, new_name):

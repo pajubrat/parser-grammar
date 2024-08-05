@@ -547,6 +547,7 @@ class GPhraseStructure(PhraseStructure):
             if self.custom_text:
                 label_stack.append((self.custom_text, 'gloss'))
 
+        self.label_stack = label_stack
         return label_stack
 
     def itext(self):
@@ -915,6 +916,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             last_affix = gps.get_affix_list()[-1]
             last_affix.const = [H]
             H.mother_ = last_affix
+            H.features.add('PF:X')
             self.update()
 
     def reverse_presentation(self, *_):
@@ -928,11 +930,11 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def basic_template(self, *_):
         X = GPhraseStructure(PhraseStructure())
-        X.features = {'X'}
+        X.features = {'X', 'PF:X'}
         Y = GPhraseStructure(PhraseStructure())
-        Y.features = {'Y'}
+        Y.features = {'Y', 'PF:Y'}
         Z = GPhraseStructure(PhraseStructure())
-        Z.features = {'Z'}
+        Z.features = {'Z', 'PF:Z'}
         YP = GPhraseStructure(PhraseStructure(), Y, Z)
         XP = GPhraseStructure(PhraseStructure(), X, YP)
         self.root_gps = XP
@@ -1008,7 +1010,9 @@ class PhraseStructureGraphics(tk.Toplevel):
 
             # Create DP
             X = GPhraseStructure(PhraseStructure())
+            X.features = {'PF:X'}
             Y = GPhraseStructure(PhraseStructure())
+            Y.features = {'PF:Y'}
             XP = GPhraseStructure(PhraseStructure(), X, Y)
             Host = GPhraseStructure(PhraseStructure(), XP, gps)
             if Z:
@@ -1081,6 +1085,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.custom_gloss = '$n/a$'
             gps.custom_phonology = '$n/a$'
             gps.custom_features = ['$n/a$']
+            self.label_stack_update(gps)
             self.update()
 
     def clear_content(self, *_):
@@ -1091,6 +1096,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.custom_text = None
             gps.custom_gloss = None
             gps.custom_phonology = None
+            self.label_stack_update(gps)
             self.update()
 
     def recalibrate(self, *_):
@@ -1177,7 +1183,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas.redraw(self.root_gps)
 
     def recalculate_labels(self, gps):
-        gps.label_stack = gps.generate_label_stack()
+        gps.generate_label_stack()
         if gps.complex():
             self.recalculate_labels(gps.left())
             self.recalculate_labels(gps.right())
@@ -1309,7 +1315,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             return self.canvas.node_to_gps[str(obj)]
 
     def label_stack_update(self, gps):
-        gps.label_stack = gps.generate_label_stack()
+        gps.generate_label_stack()
         self.canvas.redraw(gps.top())
         self.canvas.focus_force()
 
@@ -1684,7 +1690,7 @@ class PhraseStructureCanvas(tk.Canvas):
                                       font=self.label_style[item[1]])
 
                 # Update the offset
-                Y_offset += 1.2 * self.parent.s['tsize']
+                Y_offset += 1.4 * self.parent.s['tsize']
 
                 # Add the node to the mapping from nodes to affixes
                 self.node_to_gps[str(ID)] = affix
@@ -1759,57 +1765,56 @@ class PhraseStructureCanvas(tk.Canvas):
         if {x for x in target_gps.dominating_nodes() if x.compressed}:
             return
 
-        # Phrasal chains start from the bottom of the complex constituent
-        if style == 'phrasal_chain' or style == 'custom':
-            offset = 0
-            X1 = source_gps.X
-            X3 = target_gps.X
-            if source_gps.custom_phonology and source_gps.custom_phonology != '$n/a$':
+        X1 = source_gps.X
+        # Compressed triangles have special properties
+        if source_gps.compressed:
+            offset = 1
+            if source_gps.custom_phonology:
                 offset += 1
-            if source_gps.custom_gloss and source_gps.custom_gloss != '$n/a$':
+            if source_gps.custom_gloss:
                 offset += 1
-            if source_gps.custom_text:
+            if source_gps.custom_features:
                 offset += 1
-            if source_gps.complex():
-                Y1 = source_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
-            else:
-                Y1 = source_gps.Y + 1.4 * self.parent.s['tsize'] * offset
-
-            offset = 0
-            if target_gps.complex():
-                if target_gps.compressed:
-                    if target_gps.custom_phonology and target_gps.custom_phonology != '$n/a$':
-                        offset += 1
-                    if target_gps.custom_gloss and target_gps.custom_gloss != '$n/a$':
-                        offset += 1
-                    if target_gps.custom_text:
-                        offset += 1
-                Y3 = target_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
-            else:
-                Y3 = target_gps.Y + 1.4 * self.parent.s['tsize'] * offset
-
-        # Head chains start from the head
+            Y1 = source_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
+        elif source_gps.complex():
+            Y1 = source_gps.left().Y + 1.4 * self.parent.s['tsize'] * source_gps.label_size()
         else:
-            X1 = source_gps.X
-            Y1 = source_gps.Y
-            X3 = target_gps.X
-            Y3 = target_gps.Y
+            # If X is a complex head, we put the arrow under the lower head (offset)
+            x = source_gps
+            complex_head_offset = 0
+            while x.affix() and not x.affix().copied:
+                complex_head_offset += x.affix().label_size()
+                x = x.affix()
+            Y1 = source_gps.Y + 1.4 * self.parent.s['tsize'] * source_gps.label_size() + 1.4 * complex_head_offset * self.parent.s['tsize']
+        X3 = target_gps.X
+        # Compressed triangles have special properties
+        if target_gps.compressed:
+            offset = 1
+            if target_gps.custom_phonology:
+                offset += 1
+            if target_gps.custom_gloss:
+                offset += 1
+            if target_gps.custom_features:
+                offset += 1
+            Y3 = target_gps.left().Y + 1.4 * self.parent.s['tsize'] * offset
+        elif target_gps.complex():
+            Y3 = target_gps.left().Y + 1.4 * self.parent.s['tsize'] * target_gps.label_size()
+        else:
+            # If X is a complex head, we put the arrow under the lower head (offset)
+            x = target_gps
+            complex_head_offset = 0
+            while x.affix() and not x.affix().copied:
+                complex_head_offset += x.affix().label_size()
+                x = x.affix()
+            Y3 = target_gps.Y + 1.4 * self.parent.s['tsize'] * target_gps.label_size() + 1.4 * complex_head_offset * self.parent.s['tsize']
+
         # Middle point X2
         X2 = X1 + abs(X1 - X3) / 2
         if X1 == X3:
             Y3 = Y3 - self.parent.s['tsize']
         # Middle point Y2
         curvature = self.parent.speaker_model.settings.retrieve('image_parameter_chain_curvature', 1)
-        Y2 = Y3 + target_gps.Y_offset + self.parent.s['grid'] * int(curvature) * 1.2
-
-        #if text:
-        #    ID = self.create_text((X1 + abs(X3-X1)/8, (Y1+Y3)/2),
-        #                          fill='black',
-        #                          activefill='red',
-        # #                         tag='node',
-        #                          text=text,
-        #                          anchor='center',
-        #                          font=self.label_style['arc label'])
+        Y2 = Y3 + self.parent.s['grid'] * int(curvature)
 
         # Create arc
-        self.create_line((X1, Y1 + source_gps.Y_offset), (X2, Y2), (X3, Y3 + target_gps.Y_offset), dash=self.parent.line_style[style]['dash'], width=self.parent.line_style[style]['width'], smooth=True, tag=style, fill=self.parent.line_style[style]['fill'])
+        self.create_line((X1, Y1), (X2, Y2), (X3, Y3), dash=self.parent.line_style[style]['dash'], width=self.parent.line_style[style]['width'], smooth=True, tag=style, fill=self.parent.line_style[style]['fill'])
