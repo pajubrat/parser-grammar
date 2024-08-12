@@ -595,6 +595,7 @@ ask-		:: PF:ask LF:ask V SEM:internal LANG:EN
 bank		:: PF:bank1 LF:bank_inst N FREQ:1 LANG:EN
 bank		:: PF:bank2 LF:bank_river N FREQ:2 LANG:EN
 bark		:: PF:bark LF:bark V V/INTR !SPEC:D LANG:EN
+barks		:: bark#T/fin#[-s] LANG:EN
 barn		:: PF:barn LF:barn N LANG:EN
 bite		:: bite-#v LANG:EN
 bites		:: bite-#v#T/fin#prs#[-s] LANG:EN
@@ -604,9 +605,9 @@ Bill-		:: PF:Bill LF:Bill N R:REF:PROPER_NAME -SEM:directional nonadjoinable LAN
 by			:: PF:by LF:by P Adv -ΦPF TAIL:T TAIL:*V LANG:EN
 cat			:: PF:cat LF:cat N LANG:EN
 city		:: PF:city LF:city N LANG:EN
-claims		::	claim-#T/fin#[V] LANG:EN
-claim-		::	PF:claim LF:claim V -COMP:φ
-dog			::	PF:dog LF:dog N -COMP:V
+claims		:: claim-#T/fin#[V] LANG:EN
+claim-		:: PF:claim LF:claim V -COMP:φ
+dog			:: PF:dog LF:dog N -COMP:V
 does		:: T/fin ΦPF PHI:PER:3 PHI:NUM:SG PER PF:does LF:does LANG:EN
 does/T		:: T/fin ΦPF PHI:PER:3 PHI:NUM:SG PER PF:does LF:does LANG:EN
 did/T		:: T/fin ΦPF PER PF:did LF:did LANG:EN
@@ -941,13 +942,12 @@ b/ 			:: b PF:b LF:b LANG:X
 c/			:: c PF:c LF:c LANG:X
 d/			:: d PF:d LF:d LANG:X
 
-X			:: X PF:X LF:X PC:#X LANG:X
-Y			:: Y PF:Y LF:Y PC:#X LANG:X
-Z			:: Z PF:Z LF:Z 				LANG:X
+X			:: X PF:X LF:X PC:#X 	LANG:X
+Y			:: Y PF:Y LF:Y PC:#X 	LANG:X
+Z			:: Z PF:Z LF:Z 			LANG:X
 
-X''			:: X PF:X LF:X LANG:X
-Y'			:: Y PF:Y LF:Y ε PC:#X LANG:X
-Z'			:: Z PF:Z LF:Z ε			  LANG:X
+X''			:: X PF:X LF:X 			LANG:X
+Y'			:: Y PF:Y LF:Y ε PC:#X	!wCOMP:Z LANG:X
 
 a_1sg		:: a PF:a LF:a φ PHI:NUM:SG PHI:PER:1 PHI:DET:DEF LANG:X
 a_2pl		:: PF:a LF:a φ PHI:NUM:PL PHI:PER:2 PHI:DET:DEF LANG:X
