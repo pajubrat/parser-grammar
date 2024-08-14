@@ -23,7 +23,7 @@
 			Sirkku laula-#T/fin#prs#[V]
 			'Sirkku.nom sing-prs.3sg'
 		
-		& Inflection
+		& Third person singular inflection
 		
 			*Sirkku [V] laula-#T/fin#prs
 			'Sirkku.nom 3sg sing-prs'
@@ -155,20 +155,57 @@
 
 & 2. Syntactic opaqueness
 
-	& 2.1 Intransitives
-
-		Sirkku laula-#skele#T/fin#prs#[V]	
-		'Sirkku.nom sing-freq-prs.3sg'
-			
-		sukka kuiva-#TA#UTU#T/fin#prs#[V]
-		'sock.nom dry-cau-refl-prs.3sg'
-
-		*Sirkku kuiva-#TA#UTU#T/fin#prs#[V] sukkaa
-		'Sirkku.nom dry-cau-refl-prs.3sg sock.par'
-
-	& 2.2 Transitives
-
+	& 2.1 yes/no interrogatives
 	
+		Pekka maalasi taloa
+		'Pekka.nom paint.pst.3sg house.par'
+		
+		maalasi#C/fin#[kO] Pekka taloa
+		'paint.pst.3sg.C.Q Pekka.nom house.par'
+		
+		*Pekka maalasi#C/fin#[kO] Pekka taloa
+		'Pekka.nom paint.pst.3sg.C.Q Pekka.nom house.par'
+
+	& 2.2 Stacked causatives
+	
+		Sirkku kuiva-#TA#v#T/fin#prs#[V] sukkaa
+		'Sirkku.nom dry.cau.prs.3sg sock.par'
+
+		Sirkku kuiva-#TA#TA#v#T/fin#prs#[V] sukkaa
+		'Sirkku.nom dru.cau.cau.prs.3sg sock.par'
+	
+		Sirkku kuiva-#TA#TA#TA#v#T/fin#prs#[V] sukkaa
+		'Sirkku.nom dry.cau.cau.cau.prs.3sg sock.par'
+
+		Sirkku kuiva-#TA#UTU#TA#v#T/fin#prs#[V] sukkaa
+		'Sirkku dru.cau.relf.cau.prs.3sg sock.par'
+
+	& 2.3 Intransitives
+
+		& Grammatical intransitives with complex EHM predicates
+
+			Sirkku laula-#skele#T/fin#prs#[V]	
+			'Sirkku.nom sing-freq-prs.3sg'
+
+			sukka kuiva-#UTU#T/fin#prs#[V]
+			'sukka.nom dry-refl-prs.3sg'
+			
+			sukka kuiva-#TA#UTU#T/fin#prs#[V]
+			'sock.nom dry-cau-refl-prs.3sg'
+
+		& Ungrammatical intransitives with complex EHM predicates and illicit direct argument
+
+			*Sirkku laula-#skele#T/fin#prs#[V] sukkaa	
+			'Sirkku.nom sing-freq-prs.3sg sock.par'
+
+			*Sirkku kuiva-#UTU#T/fin#prs#[V] sukkaa
+			'Sirkku.nom dry-refl-prs.3sg sock.par'
+
+			*Sirkku kuiva-#TA#UTU#T/fin#prs#[V] sukkaa
+			'Sirkku.nom dry-cau-refl-prs.3sg sock.par'
+
+	& 2.4 Transitives
+
 		Sirkku kuiva-#TA#v#T/fin#prs#[V] sukkaa
 		'Sirkku.nom dry-cau-v-prs-3sg sock.par'
 
@@ -177,8 +214,19 @@
 
 		kuiva-#TA#UTU#minen
 		'dry-cau-refl-n'
-		
-	& 2.3 Participles
+	
+	& 2.5 Denominal causatives
+	
+		Sirkku pino-#TA#v#T/fin#prs#[V] sukkaa
+		'Sirkku stack(N).cau.v.prs.3sg sock.par'
+
+		Sirkku pino-#TA#TA#v#T/fin#prs#[V] sukkaa
+		'Sirkku stack(N).cau.cau.v.prs.3sg sock.par'
+
+		Sirkku pino-#TA#TA#TA#v#T/fin#prs#[V] sukkaa
+		'Sirkku stack(N).cau.cau.cau.v.prs.3sg sock.par'
+
+	& 2.6 Participles
 	
 		& Transitive stem
 		
