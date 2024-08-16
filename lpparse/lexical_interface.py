@@ -72,45 +72,23 @@ class LexicalInterface:
         return (self.language in lex.language) or (lex.language == 'LANG:X')
 
     def apply_redundancy_rules(self, features):
-        def feature_conflict(new_f, features_from_lexicon):
-            for f in features_from_lexicon:
-                if new_f.startswith('+COMP') and f.startswith('+COMP'):
-                    return True
-                if new_f.startswith('-COMP') and f.startswith('-COMP'):
-                    return True
-                if new_f.startswith('+SPEC') and f.startswith('+SPEC'):
-                    return True
-                if new_f.startswith('-SPEC') and f.startswith('-SPEC'):
-                    return True
-                if new_f.endswith(f) and new_f[0] != f[0]:
-                    return True
+        new_features = {frozenset(self.redundancy_rules[f]) for f in self.redundancy_rules.keys() if set(f.split()) <= features}
+        return self.combine_features(features | set().union(*new_features))
 
-        feature_set = set(features)
-        new_features_to_add = set()
-
-        # Apply the redundancy rules to the feature set
-        for i in range(2):                                                  #   Apply twice (so as to allow added features to trigger further rules)
-            for f in self.redundancy_rules:
-                antecedent_trigger_set = set(f.split())
-                matched_features = 0
-                for feat in antecedent_trigger_set:
-                    if feat.endswith('..'):
-                        for g in feature_set:
-                            if g.startswith(feat[:-2]):
-                                matched_features += 1
-                    else:
-                        if feat in feature_set:
-                            matched_features += 1
-                if len(antecedent_trigger_set) <= matched_features:
-                    new_features_to_add |= set(self.redundancy_rules[f])    #   we add the redundancy features
-
-            # Resolve conflicts in favor of language specific lexical features
-            features_not_blocked_by_language_specific_lexicon = set()
-            for new_feature in new_features_to_add:
-                if not feature_conflict(new_feature, feature_set):
-                    features_not_blocked_by_language_specific_lexicon.add(new_feature)
-            feature_set |= features_not_blocked_by_language_specific_lexicon
-        return feature_set
+    def combine_features(self, features):
+        """Maps [X:Y] + [X:Z] into [X:Y,Z]"""
+        feature_dict = {}
+        unmodified_features = features.copy()
+        for feature in features:
+            if len(feature.split(':')) == 2:
+                key, value = feature.split(':')
+                if key in feature_dict.keys():
+                    feature_dict[key] |= set(value.split(','))
+                else:
+                    feature_dict[key] = set(value.split(','))
+                unmodified_features.discard(feature)
+        new_aggregrated_features = {f'{key}:{",".join(feature_dict[key])}' for key in feature_dict.keys()}
+        return unmodified_features | new_aggregrated_features
 
     def load_redundancy_rules(self):
         redundancy_rules_dict = {}
@@ -118,13 +96,13 @@ class LexicalInterface:
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
-            antecedent_trigger, feature_list = line.split('::', 1)
-            antecedent_trigger = antecedent_trigger.strip()
-            feature_list = [f.strip() for f in feature_list.split()]
-            if antecedent_trigger in redundancy_rules_dict.keys():
-                redundancy_rules_dict[antecedent_trigger] = redundancy_rules_dict[antecedent_trigger] + feature_list
+            antecedent, features = line.split('::', 1)
+            antecedent = antecedent.strip()
+            feature_set = {f.strip() for f in features.split()}
+            if antecedent in redundancy_rules_dict.keys():
+                redundancy_rules_dict[antecedent] = redundancy_rules_dict[antecedent] | feature_set
             else:
-                redundancy_rules_dict[antecedent_trigger] = feature_list
+                redundancy_rules_dict[antecedent] = feature_set
         return redundancy_rules_dict
 
     def load_lexicons(self, settings):
@@ -143,9 +121,9 @@ class LexicalInterface:
             line = line.strip()                                                 #   Remove extra spaces
             phonological_entries, lexical_features = line.split('::')           #   Separate key and value, by symbol '::'
             phonological_entries = phonological_entries.strip().split(',')      #   Remove extra spaces, create set of allomorphs
-            lexical_features = [f.strip() for f in lexical_features.split()]    #   Create the feature list
+            lexical_features = {f.strip() for f in lexical_features.split()}    #   Create the feature set
             if not {f for f in lexical_features if f[:4] == 'LANG'}:            #   If no language is specified for the lexical entry, add it
-                lexical_features.append(self.language)
+                lexical_features.add(self.language)
             for p in phonological_entries:
                 lex = LexicalItem(p, self.apply_redundancy_rules(lexical_features))
                 if p not in self.speaker_lexicon.keys():

@@ -43,6 +43,7 @@
 	# Generic deficient structural cases
 	
 		nom   	:: inflectional NOM TAIL:Fin,!COMP:*,EF nonfloat nonadjoinable
+		[NOM]	:: inflectional NOM -ASP -TAM -Fin
 		acc		:: inflectional ACC TAIL:v
 		acc_it	:: inflectional ACC TAIL:v adjoinable float
 		dat		:: inflectional DAT TAIL:T LANG:IT

@@ -9,16 +9,16 @@
 	C/fin 	:: 	Fin 						!PROBE:Fin +COMP:T,Fin,T/fin +SPEC:OP,ø
 	C		:: 	 							-SPEC:MA/A
 	Cpol	::  C C/fin POL FOC				!PROBE:Fin +COMP:Neg/fin
-	T/fin 	:: 	T/fin Φ* T Fin 				+COMP:T/prt,v,V,COPULA
-	T/prt 	:: 	Fin T 						+COMP:v,V
-	T 		:: 								+COMP:v,V
+	T/fin 	:: 	T/fin Φ* T Fin 				+COMP:T/prt,ASP,COPULA
+	T/prt 	:: 	Fin T 						+COMP:ASP
+	T 		:: 								+COMP:ASP
 	Neg/fin :: 	Φ* Fin NEG !ΦPF 			+COMP:T
 	T Fin	:: 	SPEC:EXPL
 
 # Verbal domain
 
-	#	v   	:: 	Φ V PC:#X θ ASP 			+COMP:V -COMP:V/INTR +SPEC:D,φ,ø
-	v   		:: 	Φ V θ ASP 					+COMP:V -COMP:V/INTR +SPEC:D,φ,ø
+	#	v   	:: 	Φ V PC:#X θ ASP 			+COMP:V -COMP:V/INTR,v +SPEC:D,φ,ø
+	v   		:: 	Φ V θ ASP 					+COMP:V -COMP:V/INTR,v,IMPSS +SPEC:D,φ,ø
 	V   		:: 	θ Φ -ΦPF ASP 				-SPEC:Fin
 	BE-			::	V COPULA LF:be 				-COMP:Fins
 	v*			:: 	Φ* V						+COMP:V
@@ -35,13 +35,12 @@
 	N   	:: 	θ 					+COMP:P,ø,C/rel
 	P   	:: 	θ Adv adjoinable 	+COMP:D,φ,ø +SPEC:D,φ,ø
 	A 		:: 	θ 					-SPEC:A
-	a0		::  A					+COMP:A,0
-	n		:: 	?ΦLF Inf N 			+COMP:√,ASP
+	n		:: 	?ΦLF Inf			-COMP:n
 	√		:: 	SPEC:φ 2SPEC 		+COMP:P,ø,C/rel
 	Num		::  Num 				-COMP:D -COMP:QN
 	Qn		:: 	 					!PROBE:N +COMP:Num,φ,N
 	φ		:: 	φ ?ΦLF Inf θ		!PROBE:N +COMP:N -SPEC:Inf,Fin
-	a		::	A	 				+COMP:√,ASP,N
+	a0		::	A
 	Neg		:: 						-SPEC:N
 	Agr		::	Φ Fin
 	R:REF:PROPER_NAME :: 			-COMP:Inf
@@ -49,7 +48,7 @@
 # Others
 
 	Adv 	::	adjoinable 					
-	Inf		::	TAM 				-COMP:Fin -SPEC:T/fin,V
+	Inf		::	-COMP:Fin -SPEC:T/fin,V
 
 # Phi-strength
 	
@@ -97,10 +96,10 @@
 		LANG:FI T IMPASS pst	:: PF:-in
 		LANG:FI Fin K			:: PF:-Vn
 		LANG:FI ε				:: PC:#X#
-		# LANG:FI V				:: PC:X#
+		LANG:FI V				:: PC:X#
 		LANG:FI inflectional	:: PC:#X
 		LANG:FI T				:: PC:#X
-		# LANG:FI v				:: PC:#X#
+		LANG:FI v				:: PC:#X#
 
 	# Finnish edge behavior
 		
@@ -111,7 +110,7 @@
 		VA/inf LANG:FI	::	Φ*
 		V/TR LANG:FI	::	Φ* -ΦPF 
 		v LANG:FI		::  Φ* -ΦPF
-	#	Fin LANG:FI		::  Φ* ?ΦLF
+		Fin LANG:FI		::  Φ* ?ΦLF
 		T/prt LANG:FI	::	Φ*
 		φ LANG:FI		::  Φ* ?ΦLF
 		Φ LANG:FI		::  PHI:HUM:_ PHI:PRON:_
@@ -120,6 +119,7 @@
 	# Other rules
 	
 		N LANG:FI		:: -COMP:T/prt
+		n LANG:FI		:: -COMP:IMPSS
 		A LANG:FI 		::  nonadjoinable
 		LANG:FI T/prt	:: 	-PER
 		TA*				:: V COMP:V
@@ -146,7 +146,6 @@
 	D LANG:EN		:: -SPEC:φ
 	φ LANG:EN		:: -SPEC:φ
 	OP:REL LANG:EN	:: SCOPE
-	Φ/.. LANG:EN	:: PHI:GEN:_
 	LANG:EN T prs	:: PF:T
 	LANG:EN T pst	:: PF:-ed PER ΦPF PC:#X
 	T/prt LANG:EN	:: PF:-ed LF:prtc
@@ -161,4 +160,4 @@
 	LANG:IT T prs	:: PF:-0
 	LANG:IT T pst	:: PF:-ava
 	LANG:TI T/fin	:: Φ*
-	Φ/.. LANG:IT	:: PHI:GEN:_
+	

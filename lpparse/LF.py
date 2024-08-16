@@ -60,8 +60,8 @@ class LF:
         for key in [f.split(':')[0] for f in X.features if 'COMP' in f or 'SPEC' in f or 'SELF' in f]:
             if key in self.selection_violation_test.keys():
                 if not self.selection_violation_test[key](X, X.get_selection_features(key)):
-                    log(f'{X} failed {key}: {X.get_selection_features(key)} ')
-                    return True # Failed test
+                    log(f'\t\t{X} failed {key}: {X.get_selection_features(key)} ')
+                    return True     # Failed test
 
     def final_tail_check(self, goal):
         if goal.complex():
