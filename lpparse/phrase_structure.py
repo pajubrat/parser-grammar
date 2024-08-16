@@ -373,13 +373,15 @@ class PhraseStructure:
 
     # +COMP:L,K
     def plus_COMP(X, fset):
-        return len(fset) == 0 or\
+        return not PhraseStructure.speaker_model.settings.retrieve('head_complement_selection', True) or \
+               fset == 0 or\
                (not X.complement() and 'ø' in fset) or \
                (X.complement() and X.complement().head().check_some(fset))
 
     # -COMP:L,K
     def minus_COMP(X, fset):
-        return len(fset) == 0 or \
+        return not PhraseStructure.speaker_model.settings.retrieve('head_complement_selection', True) or \
+               len(fset) == 0 or \
                not X.complement() or \
                not X.complement().head().check_some(fset)
 
@@ -421,13 +423,14 @@ class PhraseStructure:
         if X.affix():
             x = X
             while x.affix():
-                if x.w_selection():
+                if x.w_selection() and PhraseStructure.speaker_model.settings.retrieve('w_selection', True):
                     return True
-                if x.affix().copied:
-                    return x.License_EHM()      # [ε] blocks IHM
-                else:
-                    if not x.License_EHM():     # [ε] licenses EHM
-                        return True
+                if PhraseStructure.speaker_model.settings.retrieve('epsilon', True):
+                    if x.affix().copied:
+                        return x.License_EHM()      # [ε] blocks IHM
+                    else:
+                        if not x.License_EHM():     # [ε] licenses EHM
+                            return True
                 x = x.affix()
 
     def probe_goal_test(X):

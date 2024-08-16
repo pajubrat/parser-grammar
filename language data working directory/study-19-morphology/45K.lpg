@@ -50,13 +50,12 @@ Phi Level test = False
 UG_parameter_phase_heads = C;v;FORCE;Inf
 UG_parameter_phase_heads_exclude = φ;v-;TO/inf
 
-#	Semantics
-calculate_assignments = False
-calculate_pragmatics = True
-calculate_thematic_roles = True
-project_objects = True
-generate_argument_links = True
-calculate_predicates = True
+general_parameter_calculate_predicates = False
+
+# Three conditions regulating word formation										
+head_complement_selection = True
+epsilon = True
+w_selection = True
 
 # PARSING HEURISTICS
 extra_ranking = True
