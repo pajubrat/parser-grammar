@@ -1,0 +1,54 @@
+@  Simulation parameters: {'file_study_configuration': 'CGG.lpg', 'file_study_folder': 'language data working directory/study-18-CGG', 'full_name': 'language data working directory/study-18-CGG//CGG.lpg', 'author': 'Anon', 'year': 2024, 'date': 'January', 'study_id': 19, 'study_folder': 'language data working directory/study-18-CGG', 'test_corpus': 'CGG_corpus.txt', 'numeration': 'none', 'general_parameter_only_first_solution': True, 'general_parameter_logging': True, 'general_parameter_use_numeration': False, 'general_parameter_calculate_assignments': True, 'general_parameter_calculate_pragmatics': True, 'general_parameter_calculate_thematic_roles': True, 'general_parameter_project_objects': True, 'general_parameter_calculate_predicates': True, 'file_test_corpus': 'CGG_corpus.txt', 'file_lexicon_folder': 'language data working directory/lexicons', 'file_lexicons': 'lexicon.txt;UGmorphemes.txt;inflections.txt', 'file_redundancy_rules': 'redundancy_rules.txt', 'image_parameter_words': True, 'image_parameter_glosses': True, 'image_parameter_adjuncts': True, 'image_parameter_complex_heads': True, 'image_parameter_covert_complex_heads': False, 'image_parameter_head_chains': True, 'image_parameter_trivial_head_chains': False, 'image_parameter_phrasal_chains': True, 'image_parameter_DP_hypothesis': True, 'image_parameter_chain_curvature': 1, 'image_parameter_features': '###', 'image_parameter_visualization': '### > ###', 'UG_parameter_Agree': 'revised', 'Projection Principle': True, 'Phi Level test': True, 'Feature Conflict test': True, 'UG_parameter_phase_heads': 'C;v;FORCE;Inf;P', 'UG_parameter_phase_heads_exclude': 'φ;v-;TO/inf', 'parsing_extra_ranking': True, 'parsing_filter': True, 'parsing_lexical_anticipation': True, 'parsing_closure': 'Bottom-up', 'parsing_working_memory': True, 'parsing_positive_spec_selection': 100, 'parsing_negative_spec_selection': -100, 'parsing_break_head_comp_relations': -100, 'parsing_negative_tail_test': -100, 'parsing_positive_head_comp_selection': 100, 'parsing_negative_head_comp_selection': -100, 'parsing_negative_semantics_match': -100, 'parsing_lf_legibility_condition': -100, 'parsing_negative_adverbial_test': -100, 'parsing_positive_adverbial_test': 100}
+@  Time: 2024-08-05 18:02:17.480350
+@  Test sentences: language data working directory\study-18-CGG\CGG_corpus.txt
+@  Logs: language data working directory\study-18-CGG\CGG_corpus_log.txt
+
+
+#1. 
+	[[D John]:11 [-0 [__:11 [v [admire [D Mary]]]]]]
+
+	Semantics:
+
+		Thematic roles:
+		Indexing by Agree:
+			Agree(-0, [D John])
+			Agree(v, [D Mary])
+			Agree(admire, [D Mary])
+		Predicates:
+			-0: [D John], indexed to [D John]
+			D: [D John]
+			v: [D Mary], indexed to [D Mary]
+			admire: [D Mary], indexed to [D Mary]
+			D: [D John]
+		Aspect:
+		DIS-features:
+		Operator bindings:
+		Semantic space:
+		Speaker attitude:
+			Declarative
+		Assignments:
+			
+			[D John](1) ~ 2, [D Mary](3) ~ 4, 
+			[D John](1) ~ 4, [D Mary](3) ~ 2, 
+			
+		Information structure:
+			Marked topics: []
+			Neutral gradient: ['[D John]', '[D Mary]']
+			Marked focus: []
+
+
+	Resources:
+
+		Total Time:1571ms(1), Garden Paths:0ms(0), Sensory Processing:225ms(3), 
+		Lexical Retrieval:1150ms(23), Merge:42ms(6), Head Chain:35ms(5), 
+		Phrasal Chain:21ms(3), Feature Inheritance:21ms(3), Agree:77ms(11), 
+		Feature:0ms(0), Left Scrambling:0ms(0), Right Scrambling:0ms(0), 
+		Extraposition:0ms(0), Last Resort Extraposition:0ms(0), Mean time per word:523.7ms(1), 
+		Merge-1:0ms(13),  
+
+	Global ontology:
+
+		Object 2 in GLOBAL: [D John]
+		Object 4 in GLOBAL: [D Mary]
+		Object 6 in GLOBAL: T-Event
+ 

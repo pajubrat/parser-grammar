@@ -28,7 +28,7 @@ class Application(tk.Tk):
 
         self.local_file_system = LocalFileSystem()
         self.settings = Settings(self.local_file_system, self.local_file_system.read_app_settings(arg_lst))
-        self.speaker_model, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
+        self.speaker_model, self.language_guesser, self.input_data = self.set_up_experiment(self.settings)
         self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
 
         # Set up widgets for the main window
@@ -49,7 +49,7 @@ class Application(tk.Tk):
         self.config(menu=main_menu)
 
         # Callbacks
-        self.bind('<<Analyze>>', self.analyze)    # This causes the first item to be analyzed automatically upon launch
+        self.bind('<<Analyze>>', self.analyze_one)    # This causes the first item to be analyzed automatically upon launch
         self.bind('<<RunStudy>>', self.run_study)
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
@@ -76,7 +76,7 @@ class Application(tk.Tk):
         self.lexicon_frame = LexiconView(self, self.lex_dictionary)
         self.lexicon_frame.grid(row=0, column=0, sticky='WE')
 
-        self.dataset_frame = DatasetView(self, self.sentences_to_parse)
+        self.dataset_frame = DatasetView(self, self.input_data)
         self.dataset_frame.grid(row=0, column=1, sticky='WE')
 
         self.speakermodel_frame = SpeakerModelView(self, self.speaker_model)
@@ -93,7 +93,7 @@ class Application(tk.Tk):
 
     def load_study(self, *_):
         if self.settings.load_settings_with_user_input():
-            self.speaker_model, self.sentences_to_parse, self.language_guesser = self.set_up_experiment(self.settings)
+            self.speaker_model, self.language_guesser, self.input_data = self.set_up_experiment(self.settings)
             self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
             self.reset_widgets()
             self.setup_widgets()
@@ -111,19 +111,17 @@ class Application(tk.Tk):
         for language in lg.languages:
             speaker_model[language] = SpeakerModel(settings, language)
             speaker_model[language].initialize()
-        sentences_to_parse = [(index, sentence, group, part_of_conversation, grammatical)
-                              for (index, sentence, group, part_of_conversation, grammatical)
-                              in self.local_file_system.read_test_corpus(settings)]
-        return speaker_model, sentences_to_parse, lg
+        input_data = self.local_file_system.read_test_corpus(settings)
+        return speaker_model, lg, input_data
 
-    def analyze(self, *_):
+    def analyze_one(self, *_):
         self.local_file_system.initialize_output_files(self.settings)
-        S = self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['sentence']
-        language = self.language_guesser.guess_language(S)
-        self.speaker_model[language].parse_sentence(self.dataset_frame.selected_data_item, S)
+        ad_hoc_data_item = {'index': self.dataset_frame.selected_data_item,
+                            'word_list': self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['word_list']}
+        language = self.language_guesser.guess_language(ad_hoc_data_item)
+        self.speaker_model[language].parse_sentence(ad_hoc_data_item)
         print(f'\n{self.speaker_model[language].results}')
         if self.speaker_model[language].results.syntax_semantics:
-            self.local_file_system.save_output(self.speaker_model[language], 1, S, '0', True)
             self.results_frame.fill_with_data(self.speaker_model[language])
             PhraseStructureGraphics(self, self.speaker_model[language])                    # Show phrase structure image
         else:
@@ -133,17 +131,14 @@ class Application(tk.Tk):
 
     def run_study(self, *_):
         self.local_file_system.initialize_output_files(self.settings)
-        for index, sentence, experimental_group, part_of_conversation, grammatical in self.sentences_to_parse:
-            if not is_comment(sentence):
-                language = self.language_guesser.guess_language(sentence)
-                print(f'\n{index}. ' + ' '.join(sentence))
-                self.speaker_model[language].parse_sentence(index, sentence)
-                print(f'\n{self.speaker_model[language].results}')
-                self.local_file_system.save_output(self.speaker_model[language], index, sentence, experimental_group, grammatical)
-                if not part_of_conversation:
-                    self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
-            else:
-                self.local_file_system.write_comment_line(sentence)
+        for data_item in self.input_data.get_all():
+            language = self.language_guesser.guess_language(data_item)
+            print(f'\n{data_item["index"]}. {data_item["expression"]}')
+            self.speaker_model[language].parse_sentence(data_item)
+            print(f'\n{self.speaker_model[language].results}')
+            self.local_file_system.save_output(self.speaker_model[language], data_item)
+            if not data_item['part_of_conversation']:
+                self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
         self.local_file_system.close_all_output_files()
 
         sp = list(self.speaker_model.keys())[0]

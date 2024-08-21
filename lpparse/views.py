@@ -11,12 +11,12 @@ GRID = 150
 
 class DatasetView(tk.LabelFrame):
     """Defines the GUI widget to show the dataset"""
-    def __init__(self, parent, sentences_to_parse, **kwargs):
+    def __init__(self, parent, input_data, **kwargs):
         super().__init__(parent, text='Dataset', font=('Calibri 16'), **kwargs)
         self.style = ttk.Style()
 
         self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
-        self.sentences_to_parse = sentences_to_parse
+        self.input_data = input_data
         self.sentences_to_parse_dict = {}
         self.selected_data_item = 1
         self.dataset_treeview = ttk.Treeview(self, columns=['Expression'], selectmode='browse', style="mystyle.Treeview")
@@ -39,14 +39,13 @@ class DatasetView(tk.LabelFrame):
 
     def fill_with_data(self):
         sentence_nro = 1
-        for index, word_list, experimental_group, part_of_conversation, grammatical in self.sentences_to_parse:
-            sentence = ' '.join(word_list)
-            if not grammatical:
-                sentence = '*' + sentence
-            if sentence and not sentence.startswith('&') and not sentence.startswith('#') and not sentence.startswith("\'"):
-                self.dataset_treeview.insert('', 'end', iid=str(sentence_nro), text=str(sentence_nro), values=[sentence])
-                self.sentences_to_parse_dict[sentence_nro] = {'sentence': word_list, 'grammatical': grammatical}
-                sentence_nro += 1
+        prefix = ''
+        for data_item in self.input_data.get_all():
+            if not data_item['grammaticality']:
+                prefix = '*'
+            self.dataset_treeview.insert('', 'end', iid=data_item['index'], text=data_item['index'], values=[data_item['expression']])
+            self.sentences_to_parse_dict[sentence_nro] = {'word_list': data_item["word_list"], 'grammatical': data_item["grammaticality"]}
+            sentence_nro += 1
 
     def _analyze(self, k):
         if self.dataset_treeview.selection():

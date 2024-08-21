@@ -4,14 +4,14 @@ from feature_processing import *
 from phi import *
 from support import log, set_logging
 
-major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
-              'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
-              'FORCE', 'EXPL', 'Adv', 'Pr',
-              '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z']
-
 
 class PhraseStructure:
     speaker_model = None
+    major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass',
+                  'VA/inf', 'T', 'Fin', 'Agr',
+                  'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
+                  'FORCE', 'EXPL', 'Adv', 'Pr',
+                  '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z']
     access_experimental_functions = None
     spellout_heads = False      # This parameter, if set true, spells out PF-content of heads in all printouts; otherwise only labels are shown
     phase_heads = {'ph', 'φ'}   # Phase heads set for all calculations
@@ -98,7 +98,7 @@ class PhraseStructure:
         self.active_in_syntactic_working_memory = True
         self.adjunct = False
         self.copied = False
-        self.identity = ''
+        self.identity = 0
         self.node_identity = self.create_node_identity()
         self.internal = False
         self.rebaptized = False
@@ -1150,7 +1150,7 @@ class PhraseStructure:
             suffix = 'P'
         else:
             suffix = ''
-        for cat in major_cats:
+        for cat in PhraseStructure.major_cats:
             if cat in head.features:
                 return cat + suffix
         return 'X' + suffix
@@ -1220,8 +1220,8 @@ class PhraseStructure:
         return phon
 
     def __str__(X):
-        if X.identity != '':
-            chain_index_str = ':' + X.identity
+        if X.identity != 0:
+            chain_index_str = f':{X.identity}'
         else:
             chain_index_str = ''
 
@@ -1255,20 +1255,20 @@ class PhraseStructure:
         return pfs
 
     def tidy_names(X, counter):
-        def rebaptize(h, old_name, new_name):
-            if h.identity == old_name:
-                if not h.rebaptized:
-                    h.identity = new_name
-                    h.rebaptized = True
-            if h.left:
-                rebaptize(h.left(), old_name, new_name)
-            if h.right:
-                rebaptize(h.right(), old_name, new_name)
+        def rebaptize(X, old_identity, new_identity):
+            if X.identity == old_identity:
+                if not X.rebaptized:
+                    X.identity = new_identity
+                    X.rebaptized = True
+            if X.left():
+                rebaptize(X.left(), old_identity, new_identity)
+            if X.right():
+                rebaptize(X.right(), old_identity, new_identity)
             return
 
-        if X.identity != '' and not X.rebaptized:
-            rebaptize(X.top(), X.identity, str(counter))
-            counter = counter + 1
+        if X.identity != 0 and not X.rebaptized:
+            rebaptize(X.top(), X.identity, counter)
+            counter += 1
         if X.left():
             counter = X.left().tidy_names(counter)
         if X.right():

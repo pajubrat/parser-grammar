@@ -87,18 +87,19 @@ class NarrowSemantics:
 
     def postsyntactic_semantic_interpretation(self, ps):
         self.reset_for_new_interpretation()
+        self.speaker_model.results.store_output_fields('LF', f'{ps}')
         self.interpret_(ps)
         # Inventory projection and ontology
         if self.speaker_model.settings.retrieve('general_parameter_project_objects', True) and not self.speaker_model.results.first_solution_found:
             self.inventory_projection(ps)
         # Assignments
-        if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', False) and not self.speaker_model.results.first_solution_found:
-            self.speaker_model.results.store_semantic_interpretation('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
+        if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', True) and not self.speaker_model.results.first_solution_found:
+            self.speaker_model.results.store_output_fields('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
         # Information structure
         if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and ps.finite():
-            self.speaker_model.results.store_semantic_interpretation('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
+            self.speaker_model.results.store_output_fields('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
         # Speaker attitude
-        self.speaker_model.results.store_semantic_interpretation('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
+        self.speaker_model.results.store_output_fields('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
         return not self.semantic_interpretation_failed
 
     def interpret_(self, X):
@@ -106,19 +107,19 @@ class NarrowSemantics:
             if X.zero_level():
                 # Thematic roles
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and X.theta_predicate():
-                    self.speaker_model.results.store_semantic_interpretation('Thematic roles', self.thematic_roles_module.reconstruct(X))
+                    self.speaker_model.results.store_output_fields('Thematic roles', self.thematic_roles_module.reconstruct(X))
                 # Argument-predicate pairs
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and \
                         X.check_some({'Φ', 'Φ*'}):
-                    self.speaker_model.results.store_semantic_interpretation('Predicates', self.predicates.reconstruct(X))
+                    self.speaker_model.results.store_output_fields('Predicates', self.predicates.reconstruct(X))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False
                 if X.indexed_argument():
-                    self.speaker_model.results.store_semantic_interpretation('Indexing by Agree', self.predicates.reconstruct_agreement(X))
+                    self.speaker_model.results.store_output_fields('Indexing by Agree', self.predicates.reconstruct_agreement(X))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(X)
                 self.interpret_tail_features(X)
-                self.speaker_model.results.store_semantic_interpretation('Operator bindings', self.operator_variable_module.bind_operator(X))
-                self.speaker_model.results.store_semantic_interpretation('DIS-features', self.pragmatic_pathway.interpret_discourse_features(X))
+                self.speaker_model.results.store_output_fields('Operator bindings', self.operator_variable_module.bind_operator(X))
+                self.speaker_model.results.store_output_fields('DIS-features', self.pragmatic_pathway.interpret_discourse_features(X))
                 if self.failure():
                     return
             else:
@@ -172,6 +173,12 @@ class NarrowSemantics:
                 return idx, space
         return None, None
 
+    def get_referential_index_tuple_from_head(self, ps, space_query):
+        for idx, space in [tuple(f[4:].split(',')) for f in ps.features if f[:3] == 'IDX']:
+            if space == space_query:
+                return idx, space
+        return None, None
+
     def interpret_tail_features(self, ps):
         def in_scope_of(ps, feature_set):
             return next((const for const in ps.upward_path() if feature_set.issubset(const.features)), None)
@@ -183,9 +190,9 @@ class NarrowSemantics:
             if tailed_head:
                 if 'ASP:BOUNDED' in tailed_head.features:
                     if 'PAR' in ps.features and not in_scope_of(ps, {'POL:NEG'}):
-                        self.speaker_model.results.semantic_interpretation['Aspect'].append('Aspectually anomalous')
+                        self.speaker_model.results.output_fields['Aspect'].append('Aspectually anomalous')
                     else:
-                        self.speaker_model.results.semantic_interpretation['Aspect'].append('Aspectually bounded')
+                        self.speaker_model.results.output_fields['Aspect'].append('Aspectually bounded')
 
         # ------------ main function ----------------------------------- #
         for tail_set in ps.get_tail_sets():

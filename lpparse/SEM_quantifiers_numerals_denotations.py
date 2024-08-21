@@ -2,6 +2,7 @@
 # It mediates between the syntax-semantics interface and the global discourse inventory
 # Responds to R-features ([R:...], [PHI:...])
 from support import log
+from phrase_structure import PhraseStructure
 import itertools
 
 class QuantifiersNumeralsDenotations:
@@ -67,6 +68,7 @@ class QuantifiersNumeralsDenotations:
         log(f'\n\t\tAssignments: ')
         if self.referential_constituents_feed:
             self.create_assignments_from_denotations()
+            self.narrow_semantics.speaker_model.results.store_output_fields('Binding', self.assignment_output_string(ps)[1:])
             return self.all_assignments
 
     def calculate_possible_denotations(self, X):
@@ -103,10 +105,12 @@ class QuantifiersNumeralsDenotations:
 
     def print_assignment(self, complete_assignment_dict):
         stri = ''
-        if 'weight' not in complete_assignment_dict or complete_assignment_dict['weight'] > 0:
+        if 'weight' in complete_assignment_dict and complete_assignment_dict['weight'] > 0:
+            stri += '\t\t\t'
             for key, value in complete_assignment_dict.items():
                 if key != 'weight':
                     stri += f'{self.get_object(key)["Reference"]}({key}) ~ {value}, '
+            stri += '\n'
         return stri
 
     def binding_theory_conditions(self, expression, complete_assignment):
@@ -132,6 +136,59 @@ class QuantifiersNumeralsDenotations:
                     {intervention_feature}.issubset(const.head().features):
                 break
         return reference_set
+
+    def assignment_output_string(self, ps):
+        """Summarises binding dependencies in one string"""
+        stri = ''
+        if not ps.copied:
+            if ps.left() and ps.right():
+                stri += self.assignment_output_string(ps.left())
+                stri += self.assignment_output_string(ps.right())
+            if ps.zero_level():
+                word = ''.join(sorted([f'{f[3:]}' for f in ps.features if f[:2] == 'PF' and f[3:] not in PhraseStructure.major_cats]))
+                if word:
+                    stri += ' ' + word
+            # Create binding tags at the end of referential expressions
+            if ps.mother() and ps.is_right() and self.narrow_semantics.get_referential_index_tuple_from_head(ps.sister(), 'QND')[0]:
+                idx = self.narrow_semantics.get_referential_index_tuple_from_head(ps.sister(), 'QND')[0]
+                self.determine_BindingIndexes(idx)
+                stri += '(' + f'{",".join(self.inventory[idx]["BindingIndexes"])}' + ')'
+        return stri
+
+    def determine_BindingIndexes(self, idx):
+        if 'BindingIndexes' not in self.inventory[idx]:     # Every expression initially has its own binding index
+            self.inventory[idx]['BindingIndexes'] = idx
+        for i in self.inventory.keys():
+            if i == idx:
+                break
+            if i != idx:
+                if self.coreference(i, idx):    # If X and Y co-refer, they must have the same binding index
+                    self.inventory[i]['BindingIndexes'] = [i]
+                    self.inventory[idx]['BindingIndexes'] = [i]
+                if self.overlapping_reference(i, idx):  # If X and Y overlap in denotation, both binding indexes are shown
+                    self.inventory[idx]['BindingIndexes'].add(i)
+
+    def coreference(self, idx1, idx2):
+        """Returns True if meanings idx1 and idx2 (in QND space) denote the same thing
+        under all assignment (i.e. they co-refer)
+        """
+        for assignment in self.all_assignments:
+            if assignment[idx1] != assignment[idx2] and assignment['weight'] > 0:
+                return False
+        return True
+
+    def disjoint_reference(self, idx1, idx2):
+        """Returns True if meanings idx1 and idx2 (in QND space) cannot denote the same thing
+        under all assignments (i.e. they are disjoint)"""
+        for assignment in self.all_assignments:
+            if assignment[idx1] == assignment[idx2] and assignment['weight'] > 0:
+                return False
+        return True
+
+    def overlapping_reference(self, idx1, idx2):
+        """Returns True if meaning idx1 and idx2 (in QND space) can denote same things under
+        some assignments (not disjoint) but not all (not coreferential)"""
+        return not self.coreference(idx1, idx2) and not self.disjoint_reference(idx1, idx2)
 
     def create_all_denotations(self, ps):
         return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[self.narrow_semantics.get_referential_index(ps, 'QND')])

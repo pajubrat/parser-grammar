@@ -72,8 +72,14 @@ class LexicalInterface:
         return (self.language in lex.language) or (lex.language == 'LANG:X')
 
     def apply_redundancy_rules(self, features):
-        new_features = {frozenset(self.redundancy_rules[f]) for f in self.redundancy_rules.keys() if set(f.split()) <= features}
-        return self.combine_features(features | set().union(*new_features))
+        """Applies features by lexical redundancy rules (LRRs) until the set of lexical features stabilizes (no longer changes)
+        This version allows execution of LRRs in a sequence
+        Structure of the algorithm: WHILE (LRRs would add new features F) ADD F
+        Return the new feature set after combining and pruning
+        """
+        while not set().union(*{frozenset(self.redundancy_rules[f]) for f in self.redundancy_rules.keys() if set(f.split()) <= features}) <= features:
+            features = features | set().union(*{frozenset(self.redundancy_rules[f]) for f in self.redundancy_rules.keys() if set(f.split()) <= features})
+        return self.combine_features(features)
 
     def combine_features(self, features):
         """Maps [X:Y] + [X:Z] into [X:Y,Z]"""

@@ -19,8 +19,9 @@ class LanguageGuesser:
                         self.lang_map[key].append(feat)
                         self.languages.add(feat)
 
-    def guess_language(self, sentence):
+    def guess_language(self, data_item):
         counter = {}
+        sentence = data_item["word_list"]
         for word in sentence:
             for lang in self.lang_map[word]:
                 if lang not in counter.keys():

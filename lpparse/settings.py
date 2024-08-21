@@ -48,7 +48,8 @@ class Settings:
                                  "numeration": self.folders['study'] / self.data['numeration'],
                                  "numeration output": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_N.txt'),
                                  "redundancy_rules": self.folders['lexicon'] / self.data['file_redundancy_rules'],
-                                 "errors": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_error_reports.txt'),
+                                 "errors": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_observational_adequacy_errors.txt'),
+                                 "descriptive": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_descriptive_adequacy_errors.txt'),
                                  "simple log": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_simple_log.txt')
                                  }
 

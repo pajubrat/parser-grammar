@@ -2,6 +2,7 @@ import itertools
 import sys
 from datetime import datetime
 from support import *
+from language_data import LanguageData
 import logging
 from tkinter import filedialog
 
@@ -10,7 +11,7 @@ class LocalFileSystem:
         self.external_sources = {}
         self.encoding = 'utf-8'
         self.file_handle = {}
-        self.output_files = ['simple log', 'results', 'resources', 'errors', 'numeration output']
+        self.output_files = ['simple log', 'results', 'resources', 'errors', 'descriptive', 'numeration output']
 
     def initialize_output_files(self, settings):
         self.configure_logging(settings)
@@ -89,51 +90,57 @@ class LocalFileSystem:
                 sys.exit()
 
     def read_test_corpus(self, settings):
-        experimental_group = []
-        parse_list = []
+        input_data = LanguageData()
+        cont = True
         input_file = settings.data['file_study_folder'] + '/' + settings.data['file_test_corpus']
         if settings.retrieve('use_numeration', False):
             input_file = settings.external_sources["numeration output"]
-        index = 1
+        index = 0
         try:
             for line in open(input_file, encoding=self.encoding):
                 part_of_conversation = False
                 line = line.strip()
-                if line.startswith('=STOP=') or line.startswith('=END='):
+                if line.startswith('STOP') or line.startswith('END'):
                     break
-                if line.startswith('=START=') or line.startswith('=BEGIN='):
-                    parse_list = []
-                    continue
-                if not line or line.startswith('#'):
+                if not line or line.startswith('#') or line.startswith("\'") or line.startswith('&'):
                     continue
                 if line.startswith('%'):
-                    parse_list = []
+                    # We take only this line
+                    index = 0
+                    cont = False                #   This will break out of the loop once next sentence is detected
                     line = line.lstrip('%')
                     line = line.strip()
                     line = clear_line_end(line)
-                    line, grammatical = gold_standard_grammaticality(line)
-                    parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
-                    break
+                    input_data.reset()          #   Empty the input data stored thus far; the new item is added below
                 if line.endswith(';'):
                     part_of_conversation = True
                     line = clear_line_end(line)
                 if line.endswith('.'):
                     part_of_conversation = False
                     line = clear_line_end(line)
-                elif line.startswith('=>'):
-                    experimental_group = self.read_experimental_group(line)
+                if line.startswith('§') and len(line.split('=')) == 2:
+                    line = line.lstrip('§')
+                    field, value = line.split('=')
+                    input_data.update(index, {field.strip(): value.strip()})
                     continue
-                line, grammatical = gold_standard_grammaticality(line)
-                if line.startswith('&') or line.startswith("\'"):
-                    parse_list.append((None, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
-                else:
-                    parse_list.append((index, [word.strip() for word in line.split()], experimental_group, part_of_conversation, grammatical))
-                    index += 1
-            return parse_list
+                index += 1
+                if not cont and index > 1:
+                    break
+                input_data.add(self.create_data_from_line(line, index, part_of_conversation))
+            return input_data
         except IOError:
             print(f'The corpus file "{input_file}" seems to be missing.\n'
                   f'Make sure that the file exists and that the name is correct.')
             sys.exit()
+
+    def create_data_from_line(self, line, index, part_of_conversation):
+        line, grammatical = gold_standard_grammaticality(line)
+        return {'index': index,
+                'expression': line.strip(),
+                'word_list': [word.strip() for word in line.split()],
+                'grammaticality': grammatical,
+                'experimental_group': '1',
+                'part_of_conversation': part_of_conversation}
 
     def read_experimental_group(self, line):
         line = line.strip().replace(' ', '').replace('=>', '')
@@ -149,10 +156,10 @@ class LocalFileSystem:
         stri += f'@  Logs: {settings.external_sources["log_file_name"]}\n\n\n'
         return stri
 
-    def save_output(self, speaker_model, count, sentence, experimental_group, grammatical):
-        self.file_handle['results'].write(f'#{count}. {speaker_model.results}')
-        self.save_resources(speaker_model, count, " ".join(sentence), experimental_group)
-        self.save_errors(speaker_model, count, sentence, grammatical)
+    def save_output(self, speaker_model, data_dict):
+        self.file_handle['results'].write(f'#{data_dict["index"]}. {speaker_model.results}')
+        self.save_resources(speaker_model, data_dict["index"], data_dict["expression"], data_dict["experimental_group"])
+        self.save_errors(speaker_model, data_dict)
         self.save_simple_log(speaker_model)
 
     def close_all_output_files(self):
@@ -163,10 +170,15 @@ class LocalFileSystem:
         for step in speaker_model.results.recorded_steps:
             self.file_handle['simple log'].write(f'{step[0]}. {step[1]} ({step[2]})\n')
 
-    def save_errors(self, speaker_model, count, sentence, grammatical):
-        if len(speaker_model.results.syntax_semantics) > 0 and not grammatical or len(speaker_model.results.syntax_semantics) == 0 and grammatical:
-            r = f"\n{str(count)}. {' '.join(sentence)}"
+    def save_errors(self, speaker_model, data_item):
+        if len(speaker_model.results.syntax_semantics) > 0 and not data_item["grammaticality"] or len(speaker_model.results.syntax_semantics) == 0 and data_item["grammaticality"]:
+            r = f'\n{data_item["index"]}. {data_item["expression"]}'
             self.file_handle['errors'].write(r)
+        for key in data_item.keys():
+            if key in speaker_model.results.output_fields:
+                if data_item[key] != ','.join(speaker_model.results.output_fields[key]):
+                    r = f'\n{data_item["index"]}. {data_item["expression"]} ({key})\n\n\tPredicted:\t\t{data_item[key]}\n\tOutcome:\t\t{",".join(speaker_model.results.output_fields[key])}\n\n'
+                    self.file_handle['descriptive'].write(r)
 
     def save_resources(self, speaker_model, count, sentence, experimental_group):
         if count == 1:

@@ -12,7 +12,7 @@ class Results:
         self.syntax_semantics = None          # List of syntax, semantics tuples
         self.recorded_steps = None            # Contains all derivational steps
         self.step_number = None               # Step number of recorded step
-        self.semantic_interpretation = {}
+        self.output_fields = {}
         self.resources = {}
         self.execution_time_results = []       # Execution time
         self.first_solution_found = False      # Registers when the first solution if found
@@ -29,7 +29,7 @@ class Results:
         self.execution_time_results = []
         self.first_solution_found = False                       # Registers when the first solution if found
         self.number_of_ambiguities = 0
-        self.semantic_interpretation = {'Thematic roles': [],
+        self.output_fields = {'Thematic roles': [],
                                         'Indexing by Agree': [],
                                         'Predicates': [],
                                         'Aspect': [],
@@ -39,7 +39,7 @@ class Results:
                                         'Speaker attitude': [],
                                         'Assignments': [],
                                         'Information structure': []
-                                        }
+                              }
         self.resources = {"Total Time": {'ms': 0, 'n': 1},
                           "Garden Paths": {'ms': 1458, 'n': 0},
                           "Sensory Processing": {'ms': 75, 'n': 0},
@@ -93,27 +93,27 @@ class Results:
     def recorded_step(self, index):
         return self.recorded_steps[index][0], self.recorded_steps[index][1], self.recorded_steps[index][2]
 
-    def store_solution(self, ps):
-        self.syntax_semantics.append((ps, self.semantic_interpretation))
+    def store_solution(self, ps, data_item):
+        self.syntax_semantics.append((ps, self.output_fields, data_item))
 
-    def store_semantic_interpretation(self, key, value):
+    def store_output_fields(self, key, value):
         """
         Converts the output of semantic interpretation into the correct format
         """
         if isinstance(value, str):
-            if key not in self.semantic_interpretation:
-                self.semantic_interpretation[key] = [value]
+            if key not in self.output_fields:
+                self.output_fields[key] = [value]
             else:
-                self.semantic_interpretation[key].append(value)
+                self.output_fields[key].append(value)
 
         if isinstance(value, dict):
-            self.semantic_interpretation[key] = [f'{k}: {value[k]}' for k in value.keys()]
+            self.output_fields[key] = [f'{k}: {value[k]}' for k in value.keys()]
 
         if isinstance(value, list):
-            if key not in self.semantic_interpretation:
-                self.semantic_interpretation[key] = value
+            if key not in self.output_fields:
+                self.output_fields[key] = value
             else:
-                self.semantic_interpretation[key] += value
+                self.output_fields[key] += value
 
     def retrieve_syntax(self, solution):
         return solution[0]
@@ -142,7 +142,6 @@ class Results:
         log('\n\t\tAccepted.\n')
         print('X', end='', flush=True)
         if not self.first_solution_found:
-            log(f'{self}')
             log('\n\tComplete ontology:')
             log(f'\t\t{self.format_ontology_all(self.speaker_model)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
@@ -236,28 +235,41 @@ class Results:
         if len(self.syntax_semantics) > 0:
             number_of_solutions = len(self.syntax_semantics)
             parse_number = 1
-            for parse, semantic_interpretation in self.syntax_semantics:
+            for parse, semantic_interpretation, data_item in self.syntax_semantics:
                 if number_of_solutions == 1:
                     stri += f'\n\t{parse}\n'
                 else:
                     stri += f'\t{chr(96 + parse_number)}. {parse}\n'
-                stri += f'\n\tSemantics:\n\n{self.formatted_semantics_output()}'
+                stri += f'\n\tDescriptive output:\n\n{self.formatted_semantics_output()}'
+                stri += f'\tPrediction errors:\n\n{self.prediction_errors(data_item)}\n'
                 parse_number = parse_number + 1
             stri += f'\n\tResources:\n\n{self.format_resource_output(self.resources)} \n'
-            stri += f'\n\tGlobal ontology:\n{self.format_semantic_interpretation_simple()} \n'
+            stri += f'\n\tGlobal ontology:\n{self.format_semantic_interpretation_simple()}'
         return stri
 
+    def prediction_errors(self, data_item):
+        stri = ''
+        for key in data_item.keys():
+            if key in self.output_fields:
+                if data_item[key] != ','.join(self.output_fields[key]):
+                    stri += '\t\t' + data_item[key] + ' ~ ' + ','.join(self.output_fields[key]) + f' ({key})'
+        if stri:
+            return stri
+        return '\t\tNone'
+
     def formatted_semantics_output(self):
-        output_str = ''
-        for key in self.semantic_interpretation:
-            output_str += '\t\t' + key + ':\n'
-            for value in self.semantic_interpretation[key]:
-                if key == 'Assignments':
-                    output_str += '\t\t\t' + str(self.speaker_model.narrow_semantics.quantifiers_numerals_denotations_module.print_assignment(value)) + '\n'
-                else:
-                    output_str += '\t\t\t' + str(value) + '\n'
-        output_str += '\n'
-        return output_str
+        stri = ''
+        for i, key in enumerate(self.output_fields):
+            if self.output_fields[key]:
+                stri += f'\t\t{i}.' + key + ':\n\n'
+                for value in self.output_fields[key]:
+                    if key == 'Assignments':
+                        stri += self.speaker_model.narrow_semantics.quantifiers_numerals_denotations_module.print_assignment(value)
+                    else:
+                        stri += '\t\t\t' + str(value) + '\n'
+                stri += '\n'
+        stri += '\n'
+        return stri
 
     def format_resource_output(self, consumed_resources):
         s = '\t\t'

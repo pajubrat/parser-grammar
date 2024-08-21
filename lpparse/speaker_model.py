@@ -28,6 +28,7 @@ class SpeakerModel:
         self.plausibility_metrics = PlausibilityMetrics(self)
         self.Experimental_functions = ExperimentalFunctions(self)
         self.embedding = 0
+        self.data_item = None
 
     def initialize(self):
         self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
@@ -39,19 +40,20 @@ class SpeakerModel:
         if Results.global_start_time == 0:
             Results.global_start_time = time.time()
 
-    def parse_sentence(self, index, lst):
+    def parse_sentence(self, data_item):
         """Prepares the derivational search operation and
         calls the recursive derivational search function parse_new_item()"""
 
         # Bookkeeping and logging
-        self.sentence = lst
-        log_new_sentence(self, index, lst)
+        self.data_item = data_item
+        self.sentence = data_item["word_list"]
+        log_new_sentence(self, data_item["index"], data_item["word_list"])
         PhraseStructure.chain_index = 0
         PhraseStructure.node_identity = 0
 
         # Initialize the components (mostly bookkeeping and logging)
         self.initialize()
-        self.results.initialize(lst)
+        self.results.initialize(data_item["word_list"])
         self.plausibility_metrics.initialize()
         self.narrow_semantics.initialize()
 
@@ -60,7 +62,7 @@ class SpeakerModel:
             self.results.consume_resources('Sensory Processing', word)
 
         # Call the derivational search function
-        self.derivational_search_function(None, lst, 0)
+        self.derivational_search_function(None, data_item["word_list"].copy(), 0)
 
     # Recursive derivational search function (parser)
     def derivational_search_function(self, X, lst, index, inflection_buffer=frozenset()):
@@ -135,13 +137,14 @@ class SpeakerModel:
         log(f'\n\t\tPF-interface {ps}\n')
         ps.transfer_to_LF()
         ps = ps.top()
+        ps.tidy_names(1)
         log(f'\n\n\t\tLF-interface {ps}\n')
         self.results.record_derivational_step(ps, 'LF-interface')
 
         # Postsyntactic tests (LF-interface legibility and semantic interpretation)
         if self.postsyntactic_tests(ps):
             self.results.update_resources(PhraseStructure.resources, self.sentence)
-            self.results.store_solution(ps)
+            self.results.store_solution(ps, self.data_item)
             self.results.log_success(ps)
             self.results.record_derivational_step(ps, 'Accepted LF-interface')
             if self.settings.retrieve('general_parameter_only_first_solution', True):
