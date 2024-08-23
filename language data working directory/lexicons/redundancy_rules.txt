@@ -17,7 +17,6 @@
 
 # Verbal domain
 
-	#	v   	:: 	Φ V PC:#X θ ASP 			+COMP:V -COMP:V/INTR,v +SPEC:D,φ,ø
 	v   		:: 	Φ V θ ASP 					+COMP:V -COMP:V/INTR,v,IMPSS +SPEC:D,φ,ø
 	V   		:: 	θ Φ -ΦPF ASP 				-SPEC:Fin
 	BE-			::	V COPULA LF:be 				-COMP:Fins
@@ -30,9 +29,9 @@
 
 # Nominal domain
 
-	D   	:: 						!PROBE:N +COMP:Q,Qn,Num,φ,N
-	D/rel	:: 	adjoinable			!PROBE:N +COMP:Q,Qn,Num,φ,N 
-	N   	:: 	θ 					+COMP:P,ø,C/rel
+	D   	:: 						!PROBE:N +COMP:Q,Qn,Num,φ,N +SPEC:D,ø
+	D/rel	:: 	adjoinable			!PROBE:N +COMP:Q,Qn,Num,φ,N +SPEC:D,ø
+	N   	:: 	θ 					+COMP:P,ø,C/rel -SPEC:T
 	P   	:: 	θ Adv adjoinable 	+COMP:D,φ,ø +SPEC:D,φ,ø
 	A 		:: 	θ 					-SPEC:A
 	n		:: 	?ΦLF Inf			-COMP:n
@@ -43,7 +42,6 @@
 	a0		::	A
 	Neg		:: 						-SPEC:N
 	Agr		::	Φ Fin
-	R:REF:PROPER_NAME :: 			-COMP:Inf
 
 # Others
 
@@ -143,7 +141,7 @@
 	A LANG:EN		::	nonadjoinable
 	ACC LANG:EN		::	nonadjoinable nonfloat
 	NOM LANG:EN		::  nonadjoinable nonfloat
-	D LANG:EN		:: -SPEC:φ
+	D LANG:EN		:: Φ*
 	φ LANG:EN		:: -SPEC:φ
 	OP:REL LANG:EN	:: SCOPE
 	LANG:EN T prs	:: PF:T

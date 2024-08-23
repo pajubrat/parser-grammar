@@ -96,7 +96,7 @@ class Results:
     def store_solution(self, ps, data_item):
         self.syntax_semantics.append((ps, self.output_fields, data_item))
 
-    def store_output_fields(self, key, value):
+    def store_output_field(self, key, value):
         """
         Converts the output of semantic interpretation into the correct format
         """
@@ -198,26 +198,22 @@ class Results:
 
     def format_ontology_all(self, speaker_model):
         output_str = '\n'
-        if len(speaker_model.narrow_semantics.all_inventories()) > 0:
-            all_inventories = self.speaker_model.narrow_semantics.all_inventories()
-            for space in speaker_model.narrow_semantics.semantic_spaces:
-                output_str += f'\n\t\t{space} ----------------------------\n'
-                for semantic_object, data_dict in [(d, all_inventories[d]) for d in all_inventories.keys() if all_inventories[d]['Semantic space'] == space]:
-                    # Create label for the object
-                    output_str += '\t\tObject ' + semantic_object
-                    if 'Semantic type' in data_dict:
-                        output_str += ' ' + str(sorted(data_dict['Semantic type']))
-                    if 'Semantic space' in data_dict:
-                        output_str += ' in ' + data_dict['Semantic space']
-                    output_str += '\n'
-                    # Show semantic attributes
-                    for item, value in sorted(data_dict.items()):
-                        if isinstance(value, set):
-                            output_str += '\t\t\t' + item + ': ' + f'{", ".join(value)}' + '\n'
-                        elif isinstance(value, list) and len(value) > 0 and isinstance(value[0], PhraseStructure):
-                            output_str += '\t\t\t' + item + ': '+ ' + '.join([x.label() for x in value]) + '\n'
-                        else:
-                            output_str += '\t\t\t' + item + ': ' + f'{value}' + '\n'
+        for inventory in speaker_model.narrow_semantics.all_inventories():
+            for semantic_object, data_dict in inventory.items():
+                output_str += '\t\tObject ' + semantic_object
+                if 'Semantic type' in data_dict:
+                    output_str += ' ' + str(sorted(data_dict['Semantic type']))
+                if 'Semantic space' in data_dict:
+                    output_str += ' in ' + data_dict['Semantic space']
+                output_str += '\n'
+                # Show semantic attributes
+                for item, value in sorted(data_dict.items()):
+                    if isinstance(value, set):
+                        output_str += '\t\t\t' + item + ': ' + f'{", ".join(value)}' + '\n'
+                    elif isinstance(value, list) and len(value) > 0 and isinstance(value[0], PhraseStructure):
+                        output_str += '\t\t\t' + item + ': '+ ' + '.join([x.label() for x in value]) + '\n'
+                    else:
+                        output_str += '\t\t\t' + item + ': ' + f'{value}' + '\n'
         return output_str
 
     def create_inventory_sorting(list, to_be_sorted_dict):
@@ -280,14 +276,12 @@ class Results:
         return s
 
     def format_semantic_interpretation_simple(self):
-        output_str = '\n'
-        if len(self.speaker_model.narrow_semantics.all_inventories()) > 0:
-            for semantic_object, data_dict in self.create_inventory_sorting(self.speaker_model.narrow_semantics.all_inventories().items()):
-                if data_dict['Semantic space'] == 'GLOBAL':
-                    output_str += '\t\tObject ' + semantic_object
-                    if 'Semantic space' in data_dict:
-                        output_str += ' in ' + data_dict['Semantic space'] + ': '
-                    if 'Reference' in data_dict:
-                        output_str += data_dict['Reference']
-                    output_str += '\n'
-            return output_str
+        stri = '\n'
+        for semantic_object, data_dict in self.speaker_model.narrow_semantics.global_cognition.inventory.items():
+            stri += '\t\tObject ' + semantic_object
+            if 'Semantic space' in data_dict:
+                stri += ' in ' + data_dict['Semantic space'] + ': '
+            if 'Reference' in data_dict:
+                stri += data_dict['Reference']
+            stri += '\n'
+        return stri

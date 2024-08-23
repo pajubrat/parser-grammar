@@ -246,12 +246,6 @@ class ResultsView(tk.LabelFrame):
                 for interpretation in speaker_model.results.interpretation(solution, semantic_attribute):
                     self.results_treeview.insert(str(i) + semantic_attribute, 'end', text='', values=[interpretation])
 
-        self.results_treeview.insert('', 'end', iid='Ontology', text='Ontology', values=[''])
-        for semantic_object, data_dict in speaker_model.results.create_inventory_sorting(speaker_model.narrow_semantics.all_inventories().items()):
-            self.results_treeview.insert('Ontology', 'end', iid='Ontology'+semantic_object, text='Object ' + semantic_object + ' in ' + data_dict['Semantic space'], values=[data_dict['Reference']])
-            for property in data_dict:
-                self.results_treeview.insert('Ontology' + semantic_object, 'end', iid='Ontology'+semantic_object+property, text=property, values=[data_dict[property]])
-
         self.results_treeview.insert('', 'end', iid='Resources', text='Resources', values=[''])
         for resource in speaker_model.results.resources.keys():
             self.results_treeview.insert('Resources', 'end', iid=resource, text=resource, values=[speaker_model.results.retrieve_resource(resource)])

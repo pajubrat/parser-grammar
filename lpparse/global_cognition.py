@@ -3,23 +3,20 @@ from support import log
 class GlobalCognition:
     def __init__(self):
         self.inventory = {}
-        self.index_counter = 1
+        self.index_counter = {'QND': 1, 'GLOBAL': 1, 'PRE': 1}
 
     def end_conversation(self):
         self.inventory = {}
-        self.index_counter = 1
+        self.index_counter = {'QND': 1, 'GLOBAL': 1, 'PRE': 1}
         log('\tCONVERSATION ENDED.')
 
     def present(self, head):
         return f'{head.max().illustrate()}'
 
-    def consume_index(self):
-        idx = self.index_counter
-        self.index_counter += 1
+    def consume_index(self, space='GLOBAL'):
+        idx = self.index_counter[space]
+        self.index_counter[space] += 1
         return idx
-
-    def get_index_counter(self):
-        return self.index_counter
 
     def remove_object(self, idx):
         self.inventory.pop(str(idx), None)
@@ -52,9 +49,3 @@ class GlobalCognition:
             if select_this_item:
                 idx_list.append(idx)
         return idx_list
-
-    def general_evaluation(self, mental_object, rule, reference_set):
-        if 'NEW' in rule:
-            return not {mental_object} & reference_set
-        if 'OLD' in rule:
-            return {mental_object} & reference_set

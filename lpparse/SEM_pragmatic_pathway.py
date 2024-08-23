@@ -82,9 +82,9 @@ class Discourse:
     def collect_arguments(self, ps):
         arguments = set()
         if ps.complex():
-            if self.narrow_semantics.get_referential_index_tuple(ps.left().head(), 'QND'):
+            if self.narrow_semantics.get_idx_tuple(ps.left().head(), 'QND'):
                 arguments.add(ps.left().head())
-            if self.narrow_semantics.get_referential_index_tuple(ps.right().head(), 'QND'):
+            if self.narrow_semantics.get_idx_tuple(ps.right().head(), 'QND'):
                 arguments.add(ps.right().head())
             if ps.right().adjunct:
                 arguments = arguments | self.collect_arguments(ps.right())

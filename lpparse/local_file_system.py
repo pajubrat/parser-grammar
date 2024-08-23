@@ -118,9 +118,9 @@ class LocalFileSystem:
                 if line.endswith('.'):
                     part_of_conversation = False
                     line = clear_line_end(line)
-                if line.startswith('§') and len(line.split('=')) == 2:
-                    line = line.lstrip('§')
-                    field, value = line.split('=')
+                if line.startswith('¦->') and len(line.split(':')) == 2:
+                    line = line.lstrip('¦->')
+                    field, value = line.split(':')
                     input_data.update(index, {field.strip(): value.strip()})
                     continue
                 index += 1

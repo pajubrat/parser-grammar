@@ -87,19 +87,19 @@ class NarrowSemantics:
 
     def postsyntactic_semantic_interpretation(self, ps):
         self.reset_for_new_interpretation()
-        self.speaker_model.results.store_output_fields('LF', f'{ps}')
+        self.speaker_model.results.store_output_field('LF', f'{ps}')
         self.interpret_(ps)
         # Inventory projection and ontology
         if self.speaker_model.settings.retrieve('general_parameter_project_objects', True) and not self.speaker_model.results.first_solution_found:
             self.inventory_projection(ps)
         # Assignments
         if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', True) and not self.speaker_model.results.first_solution_found:
-            self.speaker_model.results.store_output_fields('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
+            self.speaker_model.results.store_output_field('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
         # Information structure
         if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and ps.finite():
-            self.speaker_model.results.store_output_fields('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
+            self.speaker_model.results.store_output_field('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
         # Speaker attitude
-        self.speaker_model.results.store_output_fields('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
+        self.speaker_model.results.store_output_field('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
         return not self.semantic_interpretation_failed
 
     def interpret_(self, X):
@@ -107,19 +107,19 @@ class NarrowSemantics:
             if X.zero_level():
                 # Thematic roles
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and X.theta_predicate():
-                    self.speaker_model.results.store_output_fields('Thematic roles', self.thematic_roles_module.reconstruct(X))
+                    self.speaker_model.results.store_output_field('Thematic roles', self.thematic_roles_module.reconstruct(X))
                 # Argument-predicate pairs
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and \
                         X.check_some({'Φ', 'Φ*'}):
-                    self.speaker_model.results.store_output_fields('Predicates', self.predicates.reconstruct(X))
+                    self.speaker_model.results.store_output_field('Predicates', self.predicates.reconstruct(X))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False
                 if X.indexed_argument():
-                    self.speaker_model.results.store_output_fields('Indexing by Agree', self.predicates.reconstruct_agreement(X))
+                    self.speaker_model.results.store_output_field('Indexing by Agree', self.predicates.reconstruct_agreement(X))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(X)
                 self.interpret_tail_features(X)
-                self.speaker_model.results.store_output_fields('Operator bindings', self.operator_variable_module.bind_operator(X))
-                self.speaker_model.results.store_output_fields('DIS-features', self.pragmatic_pathway.interpret_discourse_features(X))
+                self.speaker_model.results.store_output_field('Operator bindings', self.operator_variable_module.bind_operator(X))
+                self.speaker_model.results.store_output_field('DIS-features', self.pragmatic_pathway.interpret_discourse_features(X))
                 if self.failure():
                     return
             else:
@@ -137,10 +137,10 @@ class NarrowSemantics:
                 self.inventory_projection_(X.right(), space)
             else:
                 if self.semantic_action[space]['Accept'](X):
-                    idx = str(self.global_cognition.consume_index())
+                    idx = str(self.global_cognition.consume_index(space))
                     X.features.add(f'IDX:{idx},{space}')
                     new_semantic_object_dict = self.semantic_action[space]['Project'](X, idx)
-                    global_idx = self.semantic_action['GLOBAL']['Project'](X, new_semantic_object_dict.copy())
+                    self.semantic_action['GLOBAL']['Project'](X, new_semantic_object_dict.copy())
 
                     # For heuristic purposes so that referential arguments are recognized by BT
                     if space == 'QND':
@@ -154,30 +154,6 @@ class NarrowSemantics:
                 self.thematic_roles_module.failure:
             self.semantic_interpretation_failed = True
             return True
-
-    def get_referential_index(self, ps, space):
-        idx_tuples_list = [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']
-        return [idx for idx, space_ in idx_tuples_list if space_ == space][0]
-
-    def exists(self, head, space):
-        for idx, space_ in self.get_referential_index_tuples(head):
-            if space == space_:
-                return True
-
-    def get_referential_index_tuples(self, ps, space_query=''):
-        return [(idx, space) for idx, space in [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX'] if space == space_query or space_query == '']
-
-    def get_referential_index_tuple(self, ps, space_query):
-        for idx, space in [tuple(f[4:].split(',')) for f in ps.head().features if f[:3] == 'IDX']:
-            if space == space_query:
-                return idx, space
-        return None, None
-
-    def get_referential_index_tuple_from_head(self, ps, space_query):
-        for idx, space in [tuple(f[4:].split(',')) for f in ps.features if f[:3] == 'IDX']:
-            if space == space_query:
-                return idx, space
-        return None, None
 
     def interpret_tail_features(self, ps):
         def in_scope_of(ps, feature_set):
@@ -200,19 +176,7 @@ class NarrowSemantics:
         # -------------------------------------------------------------- #
 
     def all_inventories(self):
-        dict = {}
-        dict.update(self.global_cognition.inventory)
-        dict.update(self.quantifiers_numerals_denotations_module.inventory)
-        dict.update(self.predicates_relations_events_module.inventory)
-        return dict
-
-    def has_referential_index(self, ps, space_query=''):
-        for idx, space in self.get_referential_index_tuples(ps, space_query):
-            if space_query == '':
-                return True
-            else:
-                if space == space_query:
-                    return True
+        return [self.global_cognition.inventory, self.quantifiers_numerals_denotations_module.inventory, self.predicates_relations_events_module.inventory]
 
     def default_attributes(self, X, space):
         return {'Referring constituent': f'{X}',

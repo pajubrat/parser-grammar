@@ -1467,3 +1467,26 @@ class PhraseStructure:
 
     def has_linked_argument(X):
         return {f for f in X.head().features if f.startswith('PHI:IDX:')}
+
+    def has_idx(X, space=''):
+        return next((idx for idx, space_ in [tuple(f[4:].split(',')) for f in X.features if f.startswith('IDX:')] if space_ == space or space == ''), None)
+
+    def get_idx_tuple(X, space):
+        return next(((idx, space_) for idx, space_ in [tuple(f[4:].split(',')) for f in X.features if f.startswith('IDX:')] if space_ == space or space == ''), None)
+
+    def get_referential_index(X, space):
+        def index_(f):
+            return f.split(':')[1].split(',')[0]
+
+        def space_(f):
+            return f.split(':')[1].split(',')[1]
+
+        return next((index_(f) for f in X.head().features if f.startswith('IDX:') and space_(f) == space), None)
+
+    def construct_semantic_working_memory(X, intervention_feature, assignment):
+        sWM = set()
+        for const in (x for x in X.upward_path() if x.head().has_idx() and x.head().get_idx_tuple('QND') and x.head() != X and not x.copied):
+            sWM.add(assignment[const.head().get_referential_index('QND')])
+            if intervention_feature and not const.copied and {intervention_feature}.issubset(const.head().features):
+                break
+        return sWM

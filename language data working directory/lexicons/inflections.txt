@@ -22,11 +22,10 @@
 		nonhum 			:: inflectional iPHI:HUM:NONHUM
 		m				:: inflectional iPHI:GEN:M
 		f				:: inflectional iPHI:GEN:F
-		proper_name		:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
-		r_expression	:: inflectional iPHI:PRON:NONPRON R:REF:NAME R:NEW:$$$/SUR
-		pronoun1		:: inflectional iPHI:PRON:PRON R:NEW:REF
-		reflexive		:: inflectional iPHI:PRON:PRON R:OLD:REF
-		Rexpression		:: inflectional iPHI:PRON:NONPRON R:NEW:$$$/SUR
+		proper_name		:: inflectional iPHI:PRON:NONPRON	R:NEW
+		r_expression	:: inflectional iPHI:PRON:NONPRON	R:NEW
+		pron			:: inflectional iPHI:PRON:PRON		R:NEW:REF
+		reflexive		:: inflectional iPHI:PRON:PRON		R:OLD:REF
 		sg_ 			:: inflectional ΦPF Φ PHI:NUM:SG
 		pl_ 			:: inflectional ΦPF Φ PHI:NUM:PL
 		1p_ 			:: inflectional ΦPF Φ PHI:PER:1 PER
@@ -44,6 +43,7 @@
 	
 		nom   	:: inflectional NOM TAIL:Fin,!COMP:*,EF nonfloat nonadjoinable
 		[NOM]	:: inflectional NOM -ASP -TAM -Fin
+		gen		:: inflectional GEN
 		acc		:: inflectional ACC TAIL:v
 		acc_it	:: inflectional ACC TAIL:v adjoinable float
 		dat		:: inflectional DAT TAIL:T LANG:IT

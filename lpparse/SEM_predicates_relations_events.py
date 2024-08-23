@@ -14,9 +14,8 @@ class PredicatesRelationsEvents:
     def accept(self, X):
         return 'π' in X.head().features
 
-    def has_PE_index(self, ps):
-        if (None, None) != self.narrow_semantics.get_referential_index_tuples(ps, 'PRE'):
-            return True
+    def has_PE_index(self, X):
+        return self.narrow_semantics.get_idx_tuple(X.head(), 'PRE')
 
     def get_object(self, idx):
         return self.inventory[idx]

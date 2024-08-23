@@ -44,10 +44,8 @@
 	N		:: N PF:N LF:N
 	Num		:: Num PF:Num LF:Num
 	D(3sg)	:: D PF:D LF:det iPHI:NUM:SG iPHI:PER:3 iPHI:DET:DEF
-	D		:: φ D PF:D LF:D R:NEW:$$$/SUR
+	D		:: φ D PF:D LF:D R:NEW
 	D/rel	:: φ D D/rel φ PF:D/rel LF:det/rel adjoinable OP OP:REL
-	D/pro	:: φ D PF:D LF:D R:NEW:REF -R:NEW:$$$/SUR
-	D/refl 	:: φ D PF:self LF:D R:OLD:REF -R:NEW:$$$/SUR
 	P		:: P PF:P LF:prep
 	pro		:: pro-#D
 	pro-	:: PF:(pro) LF:pro N PHI

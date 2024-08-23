@@ -1,9 +1,39 @@
 
-John admires himself
+# Condition C
 
-	§ Binding=John(1) admire self(1)
+	John admires Bill
+	¦-> Binding: John(1) admire Bill(2)
 
-Mary admires John
+	he 's brother admires Bill
+	¦-> Binding: he(2) brother(1) admire Bill(2,3)
+
+	Bill said that John admires Tim
+	¦-> Binding: Bill(1) say John(2) admire Tim(3)
+
+# Condition A
+
+	John admires himself
+	¦-> Binding: John(1) admire self(1)
+
+	he 's brother admires himself
+	¦-> Binding: he(2) brother(1) admire self(1)
+
+	Bill said that John admires himself
+	¦-> Binding: Bill(1) say John(2) admire self(2)
+
+# Condition B
+
+	John admires him
+	¦-> Binding: John(1) admire him(2)
+
+	he 's brother admires him
+	¦-> Binding: he(2) brother(1) admire him(2,3)
+	
+	Bill said that John admires him
+	¦-> Binding: Bill(1) say John(2) admire him(1,3)
+
+
+END
 
 #
 # One morpheme
@@ -21,7 +51,7 @@ Mary admires John
 *nenä-#T/fin#prs#n 
 'nose-prs.1sg'
 
-#4. (bare N cannot be transitivized)
+#4. (Bare N cannot be transitivized)
 *nenä-#v 
 'nose-v'
 
