@@ -111,6 +111,12 @@ class GraphicsMenu(tk.Menu):
         submenu_Node_Label.add_command(label='Empty', command=self._event('<<EmptyLabel>>'))
         node.add_cascade(label='Custom label...', menu=submenu_Node_Label)
 
+        # Submenu for Label subscript
+        submenu_Label_Subscript = tk.Menu(node, tearoff=0, font=menu_font)
+        submenu_Label_Subscript.add_command(label='Subscript', command=self._event('<<LabelSubscript>>'))
+        submenu_Label_Subscript.add_command(label='Superscript', command=self._event('<<LabelSuperscript>>'))
+        node.add_cascade(label='Special labels...', menu=submenu_Label_Subscript)
+
         # Submenu for Text
         submenu_Node_Text = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Node_Text.add_command(label='New', command=self._event('<<CustomPhonology>>'))
