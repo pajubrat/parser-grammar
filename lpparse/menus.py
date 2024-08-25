@@ -156,6 +156,7 @@ class GraphicsMenu(tk.Menu):
         arc.add_command(label='Set endpoint', command=self._event('<<SetArcEndpoint>>'))
         arc.add_command(label='Create', command=self._event('<<CreateArc>>'))
         arc.add_separator()
+        arc.add_command(label='Change curvature', command=self._event('<<ChangeCurvature>>'))
         arc.add_command(label='Clear points', command=self._event('<<ClearPoints>>'))
         arc.add_command(label='Delete all', command=self._event('<<DeleteArc>>'))
         self.add_cascade(label='Arc', menu=arc)

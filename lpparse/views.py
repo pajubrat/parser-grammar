@@ -612,7 +612,8 @@ class PhraseStructureGraphics(tk.Toplevel):
     def __init__(self, root, speaker_model):
         super().__init__(root)
         self.title("Phrase Structure Graphics")
-        self.geometry(('2480x2480+1800+500'))
+        self.geometry(('2800x2480+'
+                       '1000+500'))
         self.speaker_model = speaker_model
         self.root = root
         self.feature_visualizations = {}
@@ -632,7 +633,14 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.arc_label = None
 
         # Settings for drawing
-        self.S = {'grid': 150, 'margins': 150, 'y_grid': 180, 'y_margins': 300, 'label_padding': 1, 'text_spacing': 1.5, 'tshrink': 1.1}
+        self.S = {'grid': 150,
+                  'margins': 150,
+                  'y_grid': 180,
+                  'y_margins': 300,
+                  'label_padding': 1,
+                  'text_spacing': 1.5,
+                  'tshrink': 1.1,
+                  'arc_curvature': 1}
         self.S['tsize'] = int(self.S['grid'] / 3.5)
 
         # Line styles
@@ -646,13 +654,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.config(menu=self.graphics_menu)
 
         # Buttons
-        pad = 20
-        width = 100
-        height = 100
+        pad = 2
         ribbon = tk.Frame(self)
         ribbon.grid(row=0, column=0, sticky='W')
 
-        self.firstButtonImage = tk.PhotoImage(file='./lpparse/image resources/first_arrow.png')
+        self.firstButtonImage = tk.PhotoImage(file='./lpparse/image resources/first_arrow.png').subsample(2, 2)
         firstButton = tk.Button(ribbon, command=self.first_image,
                                 compound=tk.LEFT,
                                 image=self.firstButtonImage,
@@ -661,7 +667,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                                 fg='black')
         firstButton.grid(row=0, column=0, sticky=tk.E, padx=pad, pady=pad)
 
-        self.previousButtonImage = tk.PhotoImage(file='./lpparse/image resources/left_arrow.png')
+        self.previousButtonImage = tk.PhotoImage(file='./lpparse/image resources/left_arrow.png').subsample(2, 2)
         previousButton = tk.Button(ribbon, command=self.previous_image,
                                    image=self.previousButtonImage,
                                    compound=tk.LEFT,
@@ -670,7 +676,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                                    fg='black')
         previousButton.grid(row=0, column=1, sticky=tk.E, padx=pad, pady=pad)
 
-        self.nextButtonImage = tk.PhotoImage(file='./lpparse/image resources/right_arrow.png')
+        self.nextButtonImage = tk.PhotoImage(file='./lpparse/image resources/right_arrow.png').subsample(2, 2)
         nextButton = tk.Button(ribbon, command=self.next_image,
                                compound=tk.LEFT,
                                image=self.nextButtonImage,
@@ -680,7 +686,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         nextButton.grid(row=0, column=2, sticky=tk.E, padx=pad, pady=pad)
 
 
-        self.compressButtonImage = tk.PhotoImage(file='./lpparse/image resources/compress.png')
+        self.compressButtonImage = tk.PhotoImage(file='./lpparse/image resources/compress.png').subsample(2, 2)
         compressButton = tk.Button(ribbon, command=self.compress_node,
                                 compound=tk.LEFT,
                                 image=self.compressButtonImage,
@@ -689,7 +695,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                                 fg='black')
         compressButton.grid(row=0, column=3, sticky=tk.E, padx=pad, pady=pad)
 
-        self.phonologyButtonImage = tk.PhotoImage(file='./lpparse/image resources/phonology.png')
+        self.phonologyButtonImage = tk.PhotoImage(file='./lpparse/image resources/phonology.png').subsample(2, 2)
         phonologyButton = tk.Button(ribbon, command=self.custom_phonology,
                                compound=tk.LEFT,
                                image=self.phonologyButtonImage,
@@ -698,7 +704,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                                fg='black')
         phonologyButton.grid(row=0, column=4, sticky=tk.E, padx=pad, pady=pad)
 
-        self.glossButtonImage = tk.PhotoImage(file='./lpparse/image resources/gloss.png')
+        self.glossButtonImage = tk.PhotoImage(file='./lpparse/image resources/gloss.png').subsample(2, 2)
         phonologyButton = tk.Button(ribbon, command=self.custom_gloss,
                                compound=tk.LEFT,
                                image=self.glossButtonImage,
@@ -707,7 +713,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                                fg='black')
         phonologyButton.grid(row=0, column=5, sticky=tk.E, padx=pad, pady=pad)
 
-        self.no_infoButtonImage = tk.PhotoImage(file='./lpparse/image resources/no_info.png')
+        self.no_infoButtonImage = tk.PhotoImage(file='./lpparse/image resources/no_info.png').subsample(2, 2)
         no_infoButton = tk.Button(ribbon, command=self.only_label,
                                compound=tk.LEFT,
                                image=self.no_infoButtonImage,
@@ -716,7 +722,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                                fg='black')
         no_infoButton.grid(row=0, column=6, sticky=tk.E, padx=pad, pady=pad)
 
-        self.expandButtonImage = tk.PhotoImage(file='./lpparse/image resources/expand.png')
+        self.expandButtonImage = tk.PhotoImage(file='./lpparse/image resources/expand.png').subsample(2, 2)
         expandButton = tk.Button(ribbon, command=self.expand_phrase_structure,
                                compound=tk.LEFT,
                                image=self.expandButtonImage,
@@ -725,6 +731,14 @@ class PhraseStructureGraphics(tk.Toplevel):
                                fg='black')
         expandButton.grid(row=0, column=7, sticky=tk.E, padx=pad, pady=pad)
 
+        self.custom_labelButtonImage = tk.PhotoImage(file='./lpparse/image resources/custom_label.png').subsample(2, 2)
+        expandButton = tk.Button(ribbon, command=self.use_custom_label,
+                               compound=tk.LEFT,
+                               image=self.custom_labelButtonImage,
+                               font=('Calibri', 20),
+                               bg='white',
+                               fg='black')
+        expandButton.grid(row=0, column=8, sticky=tk.E, padx=pad, pady=pad)
 
 
         # Make host window and canvas visible
@@ -746,6 +760,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<DecompressNode>>', self.decompress_node)
         self.bind('<<CustomLabel>>', self.use_custom_label)
         self.bind('<<DefaultLabel>>', self.default_label)
+        self.bind('<<EmptyLabel>>', self.empty_label)
         self.bind('<<LabelSubscript>>', self.label_subscript)
         self.bind('<<LabelSuperscript>>', self.label_superscript)
         self.bind('<<EmptyFeatures>>', self.empty_features)
@@ -766,6 +781,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<ClearPoints>>', self.clear_points)
         self.bind('<<CreateArc>>', self.create_arc)
         self.bind('<<DeleteArc>>', self.delete_arc)
+        self.bind('<<ChangeCurvature>>', self.change_curvature)
         self.bind('<<AddXP>>', self.add_XP)
         self.bind('<<AddDP>>', self.add_DP)
         self.bind('<<AddHead>>', self.add_Head)
@@ -800,6 +816,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<OnlyLabel>>', self.only_label)
         # Show image
         self.draw_phrase_structure_by_title('Accepted LF-interface')
+
+    def change_curvature(self, *_):
+        self.S['arc_curvature'] = float(simpledialog.askstring(title='Change arc curvature', prompt='Curvature (0-5)', parent=self))
+        self.update()
 
     def label_subscript(self, *_):
         gps = self.selected_object_into_gps()
@@ -1321,7 +1341,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         if gps:
             gps.custom_label = '$n/a$'
             gps.subscript = None
-            gps.scuperscript = None
+            gps.superscript = None
             self.label_stack_update(gps)
 
     def selected_object_into_gps(self):
@@ -1851,8 +1871,7 @@ class PhraseStructureCanvas(tk.Canvas):
         if X1 == X3:
             Y3 = Y3 - self.S['tsize']
         # Middle point Y2
-        curvature = self.parent.speaker_model.settings.retrieve('image_parameter_chain_curvature', 1)
-        Y2 = Y3 + self.S['grid'] * int(curvature)
+        Y2 = Y3 + int(self.S['grid'] * self.S['arc_curvature'])
 
         # Create arc
         self.create_line((X1, Y1), (X2, Y2), (X3, Y3), dash=self.parent.line_style[style]['dash'], width=self.parent.line_style[style]['width'], smooth=True, tag=style, fill=self.parent.line_style[style]['fill'])
