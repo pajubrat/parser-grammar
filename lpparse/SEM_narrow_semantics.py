@@ -127,6 +127,7 @@ class NarrowSemantics:
                 self.interpret_(X.right())
 
     def inventory_projection(self, X):
+        log(f'\n\t\tObject projections:')
         for space in self.semantic_spaces:
             self.inventory_projection_(X, space)
 

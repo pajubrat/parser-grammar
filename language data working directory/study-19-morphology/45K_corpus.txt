@@ -2,13 +2,13 @@
 # Condition C
 
 	John admires Bill
-	¦-> Binding: John(1) admire Bill(2)
+	¦-> Binding: John[a] admire Bill[b]
 
 	he 's brother admires Bill
-	¦-> Binding: he(2) brother(1) admire Bill(2,3)
+	¦-> Binding: he[b] brother[a] admire Bill[b,c]
 
 	Bill said that John admires Tim
-	¦-> Binding: Bill(1) say John(2) admire Tim(3)
+	¦-> Binding: Bill[a] say John[b] admire Tim[c]
 
 # Condition A
 

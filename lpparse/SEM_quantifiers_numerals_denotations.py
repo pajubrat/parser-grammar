@@ -16,7 +16,7 @@ class QuantifiersNumeralsDenotations:
         self.all_assignments = []
 
     def project(self, X, idx):
-        log(f'\n\t\t\tProject {X}° in {X.max().illustrate()} ({idx}, QND)')
+        log(f'\n\t\t\tProject object ({idx}, QND) for {X.max().illustrate()}')
         self.inventory[idx] = self.extrapolate_semantic_attributes(X)
         return self.inventory[idx]
 
@@ -56,12 +56,13 @@ class QuantifiersNumeralsDenotations:
         If two Exp have the same index, they are synonyms in grammatical sense (e.g., pro and subject). If they have the same denotation,
         they are coreferential. Binding regulates coreferentiality.
         """
+        log(f'\n\t\tDenotations:')
         self.create_assignments_from_denotations(self.calculate_possible_denotations(X))
         self.narrow_semantics.speaker_model.results.store_output_field('Binding', self.assignment_output_string(X)[1:])
+        log(f'\n\t\t\tSummary: {self.assignment_output_string(X)}')
         return self.all_assignments
 
     def calculate_possible_denotations(self, X):
-        log(f'\n\t\tPossible denotations:')
         denotations_lst = []
         if not X.copied:
             if X.complex():
@@ -83,24 +84,23 @@ class QuantifiersNumeralsDenotations:
 
     def calculate_assignment_weight(self, assignment, ref_constituents_lst):
         weighted_assignment = assignment.copy()
-        log(f'\n\t\t\tAssignment {self.print_assignment(assignment)} ')
         weighted_assignment['weight'] = 1
+        log(f'\n\t\t\tAssignment {self.print_assignment(weighted_assignment)} ')
+
         for expression in ref_constituents_lst:
             if not self.binding_conditions(expression, assignment):
                 weighted_assignment['weight'] = 0
-                log('rejected by binding.')
+                log('-')
         if weighted_assignment['weight'] > 0:
-            log('accepted.')
+            log('+')
         return weighted_assignment
 
     def print_assignment(self, assignment):
         stri = ''
         if 'weight' in assignment and assignment['weight'] > 0:
-            stri += '\t\t\t'
             for key, value in assignment.items():
                 if key != 'weight':
                     stri += f'{self.get_object(key)["Reference"]} ~ {value}, '
-            stri += '\n'
         return stri
 
     def binding_conditions(self, exp, assignment):
@@ -133,22 +133,21 @@ class QuantifiersNumeralsDenotations:
             if X.mother() and X.is_right() and X.sister().get_idx_tuple('QND'):
                 idx = X.sister().get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
-                stri += '(' + f'{",".join(self.inventory[idx]["BindingIndexes"])}' + ')'
+                stri += f'[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
         return stri
 
     def determine_BindingIndexes(self, idx):
         if 'BindingIndexes' not in self.inventory[idx]:               # Every expression initially has its own binding index
-            self.inventory[idx]['BindingIndexes'] = [idx]
+            self.inventory[idx]['BindingIndexes'] = {chr(int(idx)+96)}
         for i in self.inventory.keys():
             if i == idx:
                 break
             if i != idx:
                 if self.coreference(i, idx):                          # If X and Y co-refer, they must have the same binding index
-                    self.inventory[i]['BindingIndexes'] = [i]
-                    self.inventory[idx]['BindingIndexes'] = [i]
+                    self.inventory[i]['BindingIndexes'] = {chr(int(i)+96)}
+                    self.inventory[idx]['BindingIndexes'] = {chr(int(i)+96)}
                 if self.overlapping_reference(i, idx):                # If X and Y overlap in denotation, both binding indexes are shown
-                    self.inventory[idx]['BindingIndexes'].append(i)
-                    self.inventory[idx]['BindingIndexes'].sort()
+                    self.inventory[idx]['BindingIndexes'].add(chr(int(i)+96))
 
     def coreference(self, idx1, idx2):
         return next((False for a in self.all_assignments if a[idx1] != a[idx2] and a['weight'] > 0), True)

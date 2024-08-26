@@ -444,7 +444,7 @@ class GPhraseStructure(PhraseStructure):
     def boundary_points(self):
         boundary = set()
         boundary.add((self.x, self.y))
-        if self.complex():
+        if self.complex() and not self.compressed:
             boundary = boundary | self.left().boundary_points()
             boundary = boundary | self.right().boundary_points()
         return boundary
@@ -456,7 +456,7 @@ class GPhraseStructure(PhraseStructure):
             right_x = self.x
         if self.y > depth:
             depth = self.y
-        if self.complex():
+        if self.complex() and (not self.mother() or not self.mother().compressed):
             left_x, right_x, depth = self.left().find_boundaries(left_x, right_x, depth)
             left_x, right_x, depth = self.right().find_boundaries(left_x, right_x, depth)
         return left_x, right_x, depth

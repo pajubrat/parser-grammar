@@ -206,7 +206,7 @@ class Results:
                 if 'Semantic space' in data_dict:
                     output_str += ' in ' + data_dict['Semantic space']
                 output_str += '\n'
-                # Show semantic attributes
+                # Show attributes
                 for item, value in sorted(data_dict.items()):
                     if isinstance(value, set):
                         output_str += '\t\t\t' + item + ': ' + f'{", ".join(value)}' + '\n'
@@ -260,7 +260,9 @@ class Results:
                 stri += f'\t\t{i}.' + key + ':\n\n'
                 for value in self.output_fields[key]:
                     if key == 'Assignments':
-                        stri += self.speaker_model.narrow_semantics.quantifiers_numerals_denotations_module.print_assignment(value)
+                        if self.speaker_model.narrow_semantics.quantifiers_numerals_denotations_module.print_assignment(value):
+                            stri += '\t\t\t'
+                            stri += self.speaker_model.narrow_semantics.quantifiers_numerals_denotations_module.print_assignment(value) + '\n'
                     else:
                         stri += '\t\t\t' + str(value) + '\n'
                 stri += '\n'
