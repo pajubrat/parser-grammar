@@ -6,7 +6,7 @@ import widgets as w
 from feature_processing import clean_string
 import pickle
 try:
-    import PIL as pil
+    from PIL import ImageGrab
 except ImportError or ModuleNotFoundError:
     print('Pillow library not found: Image saving will not be available (images cropping is possible)')
 
@@ -761,7 +761,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<NextImage>>', self.next_image)
         self.bind('<<PreviousImage>>', self.previous_image)
         self.bind('<<FirstImage>>', self.first_image)
-        self.bind('<<SaveAsImage>>', self.save_image)
+        self.bind('<<CaptureImage>>', self.capture_image)
         self.bind('<<Settings>>', self.image_settings)
         self.bind('<<CompressNode>>', self.compress_node)
         self.bind('<<DecompressNode>>', self.decompress_node)
@@ -1411,12 +1411,13 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.root.settings.change_settings(self, ['Image'])
         self.draw_phrase_structure()
 
-    def save_image(self, *_):
-        lst = os.popen('pip list')
-        pack_lst = lst.read()
-        dp = list(pack_lst.split(" "))
-        #filename = filedialog.asksaveasfilename()
-        #self.canvas.postscript(file=filename, colormode='color')
+    def capture_image(self, *_):
+        filename = filedialog.asksaveasfilename()
+        self.lift()
+        try:
+            ImageGrab.grab(bbox=(self.canvas.winfo_rootx(), self.canvas.winfo_rooty(), self.canvas.winfo_rootx() + self.canvas.winfo_width() - 50, self.canvas.winfo_rooty() + self.canvas.winfo_height() - 150)).save(filename + '.png')
+        except:
+            print('Image saving was unsuccessful. Make sure pillow is installed or use manual screen capture.')
 
     def draw_phrase_structure(self):
         self.prepare_phrase_structure()
@@ -1471,8 +1472,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         if ps_width > width:    # Make more room if necessary
             width = ps_width
         ps_height = depth * self.S['y_grid'] + self.S['y_margins'] + gps.label_size() * self.S['tsize'] * gps.find_max_label_size(0)
-
-        return int(width), int(ps_height), abs(left_x) * self.S['grid'] + self.S['margins'], self.S['margins']
+        return int(width), int(ps_height), abs(left_x) * self.S['grid'] + self.S['margins'], self.S['y_grid'] / 2
 
     def get_ps_from_speaker_model(self, speaker_model, index):
         """Returns the phrase Cstructure object to be drawn, None otherwise"""
@@ -1567,6 +1567,10 @@ class PhraseStructureCanvas(tk.Canvas):
     def redraw(self, gps):
         self.delete("all")
         gps.remove_overlap()
+        # width = width of the canvas
+        # height = height of the canvas
+        # spx = starting x position of the phrase structure
+        # spy = starting y position of the phrase structure
         width, height, spx, spy = self.parent.calculate_canvas_size(gps)
         self.configure(width=width, height=height, background='white')
         self.parent.geometry(str(width)+'x'+str(height))

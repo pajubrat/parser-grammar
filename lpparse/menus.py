@@ -85,7 +85,7 @@ class GraphicsMenu(tk.Menu):
         file_menu.config(font=menu_font)
         file_menu.add_command(label='Load...', command=self._event('<<LoadAsStructure>>'))
         file_menu.add_command(label='Save As Structure...', command=self._event('<<SaveAsStructure>>'))
-        file_menu.add_command(label='Save As Image...', command=self._event('<<SaveAsImage>>'))
+        file_menu.add_command(label='Capture Image...', command=self._event('<<CaptureImage>>'))
         self.add_cascade(label='File', menu=file_menu)
 
         # Select image menu
