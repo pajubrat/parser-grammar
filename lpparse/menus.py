@@ -84,7 +84,8 @@ class GraphicsMenu(tk.Menu):
         file_menu = tk.Menu(self, tearoff=False, font=menu_font)
         file_menu.config(font=menu_font)
         file_menu.add_command(label='Load...', command=self._event('<<LoadAsStructure>>'))
-        file_menu.add_command(label='Save...', command=self._event('<<SaveAsStructure>>'))
+        file_menu.add_command(label='Save As Structure...', command=self._event('<<SaveAsStructure>>'))
+        file_menu.add_command(label='Save As Image...', command=self._event('<<SaveAsImage>>'))
         self.add_cascade(label='File', menu=file_menu)
 
         # Select image menu
@@ -94,7 +95,7 @@ class GraphicsMenu(tk.Menu):
         select_image.add_command(label='Next image', command=self._event('<<NextImage>>'))
         select_image.add_command(label='Previous image', command=self._event('<<PreviousImage>>'))
         select_image.add_command(label='First image', command=self._event('<<FirstImage>>'))
-        self.add_cascade(label='Image source', menu=select_image)
+        self.add_cascade(label='Image properties', menu=select_image)
 
         # Node menu
         node = tk.Menu(self, tearoff=False, font=menu_font)

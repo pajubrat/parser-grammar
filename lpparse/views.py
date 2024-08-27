@@ -5,6 +5,10 @@ from menus import GraphicsMenu
 import widgets as w
 from feature_processing import clean_string
 import pickle
+try:
+    import PIL as pil
+except ImportError or ModuleNotFoundError:
+    print('Pillow library not found: Image saving will not be available (images cropping is possible)')
 
 
 class DatasetView(tk.LabelFrame):
@@ -630,7 +634,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.root_gps_node = None
         self.arc_startpoint = None
         self.arc_endpoint = None
-        self.arc_label = None
+        self.phase_structure_title = None
 
         # Settings for drawing
         self.S = {'grid': 150,
@@ -640,8 +644,8 @@ class PhraseStructureGraphics(tk.Toplevel):
                   'label_padding': 1,
                   'text_spacing': 1.5,
                   'tshrink': 1.1,
-                  'arc_curvature': 1}
-        self.S['tsize'] = int(self.S['grid'] / 3.5)
+                  'arc_curvature': 1,
+                  'tsize': int(150 / 3.5)}
 
         # Line styles
         self.line_style = {'phrasal_chain': {'fill': 'black', 'dash': None, 'width': 2},
@@ -653,10 +657,14 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.graphics_menu = GraphicsMenu(self)
         self.config(menu=self.graphics_menu)
 
-        # Buttons
+        # Buttons and status info
         pad = 2
         ribbon = tk.Frame(self)
         ribbon.grid(row=0, column=0, sticky='W')
+        status_bar = tk.Frame(self)
+        status_bar.grid(row=1, column=0, sticky='W')
+        self.status_label = tk.Label(status_bar, text='')
+        self.status_label.grid(row=0, column=0, sticky='E')
 
         self.firstButtonImage = tk.PhotoImage(file='./lpparse/image resources/first_arrow.png').subsample(2, 2)
         firstButton = tk.Button(ribbon, command=self.first_image,
@@ -740,12 +748,11 @@ class PhraseStructureGraphics(tk.Toplevel):
                                fg='black')
         expandButton.grid(row=0, column=8, sticky=tk.E, padx=pad, pady=pad)
 
-
         # Make host window and canvas visible
         self.focus()
         self.grid()
         self.canvas = PhraseStructureCanvas(self)
-        self.canvas.grid(row=1, column=0)
+        self.canvas.grid(row=3, column=0)
         self.root_gps = None     # Current phrase structure e on screen
         self.bind('<<SaveAsStructure>>', self.save_as_structure)
         self.bind('<<LoadAsStructure>>', self.load_as_structure)
@@ -754,7 +761,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<NextImage>>', self.next_image)
         self.bind('<<PreviousImage>>', self.previous_image)
         self.bind('<<FirstImage>>', self.first_image)
-        self.bind('<<SaveImage>>', self.save_image)
+        self.bind('<<SaveAsImage>>', self.save_image)
         self.bind('<<Settings>>', self.image_settings)
         self.bind('<<CompressNode>>', self.compress_node)
         self.bind('<<DecompressNode>>', self.decompress_node)
@@ -1405,8 +1412,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.draw_phrase_structure()
 
     def save_image(self, *_):
-        filename = self.root.settings.data['study_folder'] + '/phrase_structure_image.ps'
-        self.canvas.postscript(file=filename, colormode='color')
+        lst = os.popen('pip list')
+        pack_lst = lst.read()
+        dp = list(pack_lst.split(" "))
+        #filename = filedialog.asksaveasfilename()
+        #self.canvas.postscript(file=filename, colormode='color')
 
     def draw_phrase_structure(self):
         self.prepare_phrase_structure()
@@ -1460,7 +1470,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         ps_width = (abs(left_x) + abs(right_x)) * self.S['grid'] + 2 * self.S['margins']
         if ps_width > width:    # Make more room if necessary
             width = ps_width
-        ps_height = depth * self.S['y_grid'] + 1.5 * self.S['y_margins'] + gps.label_size() * self.S['tsize'] * gps.find_max_label_size(0)
+        ps_height = depth * self.S['y_grid'] + self.S['y_margins'] + gps.label_size() * self.S['tsize'] * gps.find_max_label_size(0)
 
         return int(width), int(ps_height), abs(left_x) * self.S['grid'] + self.S['margins'], self.S['margins']
 
@@ -1494,7 +1504,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def draw_to_canvas(self, gps, spx, spy):
         """Creates a canvas and draws the phrase structure object onto it"""
-        self.draw_title(spx)
+        self.update_status_bar(spx)
 
         self.cursor = self.create_oval((50, 50), (150, 150), state='hidden')    # Image object selection cursor
         self.info_text = self.create_text((200, 300), state='hidden')  # Show information about selected objects
@@ -1551,8 +1561,8 @@ class PhraseStructureCanvas(tk.Canvas):
     def _hide_info(self, *_):
         self.itemconfigure(self.info_text, state='hidden')
 
-    def draw_title(self, spx):
-        self.create_text((spx, 50), font=('times', 20), text='(' + str(self.derivational_index) + ')  ' + self.title)
+    def update_status_bar(self, spx):
+        self.parent.status_label.configure(text='Current image: (' + str(self.derivational_index) + ')  ' + self.title)
 
     def redraw(self, gps):
         self.delete("all")
