@@ -6,8 +6,10 @@ from support import is_comment
 from settings import Settings
 from language_guesser import LanguageGuesser
 from speaker_model import SpeakerModel
-from views import DatasetView, LexiconView, SpeakerModelView, ResultsView, PhraseStructureGraphics, LogTextWindow
-from menus import MainMenu
+from GUI_main_application import DatasetView, LexiconView, SpeakerModelView, ResultsView, LogTextWindow, MainMenu
+from GUI_phrase_structure_graphics import PhraseStructureGraphics
+import pickle
+from tkinter import ttk, simpledialog, filedialog
 
 
 class Application(tk.Tk):
@@ -53,6 +55,7 @@ class Application(tk.Tk):
         self.bind('<<RunStudy>>', self.run_study)
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
+        self.bind('<<LoadPhraseStructure>>', self.load_phrase_structure)
         self.bind('<<Settings>>', self.modify_settings)
         self.bind('<<CreateNewFromFile>>', self.create_new_from_corpus_file)
         self.bind('<<ExamineDerivationalLog>>', self.examine_derivational_log)
@@ -98,6 +101,15 @@ class Application(tk.Tk):
             self.reset_widgets()
             self.setup_widgets()
 
+    def load_phrase_structure(self, *_):
+        filename = filedialog.askopenfilename()
+        with open(filename, 'rb') as input_file:
+            # Open the phrase structure with the first speaker model available (SM contains settings)
+            PhraseStructureGraphics(self,
+                                    self.speaker_model[list(self.speaker_model.keys())[0]],
+                                    pickle.load(input_file),
+                                    filename)
+
     def reset_widgets(self):
         self.lexicon_frame.destroy()
         self.dataset_frame.destroy()
@@ -123,7 +135,7 @@ class Application(tk.Tk):
         print(f'\n{self.speaker_model[language].results}')
         if self.speaker_model[language].results.syntax_semantics:
             self.results_frame.fill_with_data(self.speaker_model[language])
-            PhraseStructureGraphics(self, self.speaker_model[language])                    # Show phrase structure image
+            PhraseStructureGraphics(self, self.speaker_model[language], None)   # Show phrase structure images
         else:
             LogTextWindow(self, self.settings.external_sources["log_file_name"], 'Derivation')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())

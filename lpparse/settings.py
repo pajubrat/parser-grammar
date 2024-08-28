@@ -2,7 +2,7 @@ from phrase_structure import PhraseStructure
 import os
 from pathlib import Path
 from tkinter import filedialog
-from views import ChangeSettingsNotebook
+
 
 class Settings:
     def __init__(self, local_file_system, app_settings_dict=None):
@@ -69,7 +69,3 @@ class Settings:
             return self.data[key]
         else:
             return value
-
-    def change_settings(self, root, tab_lst=['Image', 'General', 'Meta', 'UG', 'Files']):
-        d = ChangeSettingsNotebook(root, self, tab_lst)
-        root.wait_window(d)
