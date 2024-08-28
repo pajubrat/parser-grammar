@@ -24,7 +24,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.root_gps = gps  # Current phrase structure on screen
 
         # Features shown in figures on the basis of settings
-        GPhraseStructure.draw_features = {feature.strip() for feature in root.settings.retrieve('image_parameter_features', set()).split(';')}
+        GPhraseStructure.draw_features = {feature.strip() for feature in root.settings.retrieve('image_parameter_features', None).split(';')}
         mapping_str = self.root.settings.retrieve('image_parameter_visualization', '')
         # Generate lexical feature visualizations
         if mapping_str:
@@ -925,7 +925,7 @@ class GraphicsMenu(tk.Menu):
         file_menu = tk.Menu(self, tearoff=False, font=menu_font)
         file_menu.config(font=menu_font)
         file_menu.add_command(label='Load...', command=self._event('<<LoadAsStructure>>'))
-        file_menu.add_command(label='Save As gPhrase Structure...', command=self._event('<<SaveAsStructure>>'))
+        file_menu.add_command(label='Save As...', command=self._event('<<SaveAsStructure>>'))
         file_menu.add_command(label='Capture Image Into File...', command=self._event('<<CaptureImage>>'))
         self.add_cascade(label='File', underline=0, menu=file_menu)
 
